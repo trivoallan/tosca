@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 module BinairesHelper
 
   def link_to_binaire(binaire)

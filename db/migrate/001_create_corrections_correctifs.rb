@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class CreateCorrectionsCorrectifs < ActiveRecord::Migration
   def self.up
     #Quand on ne met pas l'id à false, ca crée une colonne id auto-incrémenté

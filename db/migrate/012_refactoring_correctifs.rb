@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class RefactoringCorrectifs < ActiveRecord::Migration
   def self.up
     create_table :correctifs do |t|

@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Piecejointe < ActiveRecord::Base
   file_column :file
   has_one :commentaire

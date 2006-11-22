@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 # See <a href="http://wiki.rubyonrails.com/rails/show/LoginGeneratorACLSystem">http://wiki.rubyonrails.com/rails/show/LoginGeneratorACLSystem</a>
 
 module ACLSystem

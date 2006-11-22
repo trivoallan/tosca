@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Engagement < ActiveRecord::Base
   belongs_to :severite
   belongs_to :typedemande

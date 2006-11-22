@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Client < ActiveRecord::Base
   belongs_to :photo
   has_many :beneficiaires

@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class EngagementIndex < ActiveRecord::Migration
   def self.up
     add_index :engagements, :severite_id

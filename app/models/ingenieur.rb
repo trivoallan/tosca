@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Ingenieur < ActiveRecord::Base
   belongs_to :identifiant, :dependent => :destroy
   has_and_belongs_to_many :competences

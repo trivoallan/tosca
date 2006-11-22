@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 # Don't change this file. Configuration is done in config/environment.rb and config/environments/*.rb
 
 unless defined?(RAILS_ROOT)

@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 require 'digest/sha1'
 
 class Identifiant < ActiveRecord::Base

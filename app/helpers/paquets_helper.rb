@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 module PaquetsHelper
   def link_to_paquet(paquet)
     return "N/A" unless paquet

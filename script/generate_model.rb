@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 #!/usr/bin/env ruby
 require "config/environment"
 Dir.glob("app/models/*rb") { |f|

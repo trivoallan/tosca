@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class CreateIndexPaquets < ActiveRecord::Migration
   def self.up
     add_index :paquets, :logiciel_id

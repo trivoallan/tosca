@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class AlterCommentaire < ActiveRecord::Migration
   def self.up
     change_column :commentaires, :prive,

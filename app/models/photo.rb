@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Photo < ActiveRecord::Base
   has_many :clients
   has_many :identifiants

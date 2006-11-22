@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class FullIndex < ActiveRecord::Migration
   def self.up
     add_index :beneficiaires, :client_id

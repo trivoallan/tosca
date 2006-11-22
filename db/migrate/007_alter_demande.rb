@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class AlterDemande < ActiveRecord::Migration
 
   def self.up

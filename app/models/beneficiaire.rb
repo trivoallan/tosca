@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Beneficiaire < ActiveRecord::Base
   belongs_to :identifiant, :dependent => :destroy
   belongs_to :client

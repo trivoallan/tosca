@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Document < ActiveRecord::Base
   belongs_to :client
   belongs_to :typedocument

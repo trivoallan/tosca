@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 module DemandesHelper
 
   def link_to_demande(demande, options={})

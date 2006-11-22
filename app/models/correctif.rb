@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Correctif < ActiveRecord::Base
   has_many :binaires, :dependent => :destroy
   has_many :demandes
