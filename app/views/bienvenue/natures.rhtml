@@ -1,0 +1,20 @@
+<h1>Nature d'une demande</h1>
+<br />
+<br />
+
+<p><b>Liste des natures : </b></p>
+
+<table>
+<% for typedemande in @typedemandes %>
+  <tr>
+  <% for column in Typedemande.content_columns %>
+    <td><%=h typedemande.send(column.name) %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<br />
+
+<%= render :partial => 'liens_declaration' %>

@@ -1,0 +1,67 @@
+<%= error_messages_for 'paquet' %>
+
+<!--[form:paquet]-->
+
+
+<p><label for="paquet_logiciel">Logiciel</label><br/>
+  <%= select("paquet", "logiciel_id", 
+	@logiciels.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="paquet_socle">Socle</label><br/>
+  <%= select("paquet", "socle_id", 
+	@socles.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="paquet_contrat">Contrat</label><br/>
+  <%= select("paquet", "contrat_id", 
+	@contrats.collect{|c| [ c.client.nom, c.id]}) %>
+</p>
+
+<p><label for="paquet_nom">Nom</label><br/>
+<%= text_field 'paquet', 'nom'  %></p>
+
+<p><label for="paquet_version">Version</label><br/>
+<%= text_field 'paquet', 'version'  %></p>
+
+<p><label for="paquet_release">Release</label><br/>
+<%= text_field 'paquet', 'release'  %></p>
+
+<p><label for="paquet_conteneur">Conteneur</label><br/>
+  <%= select("paquet", "conteneur_id", 
+	@conteneurs.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="paquet_distributeur">Distributeur</label><br/>
+  <%= select("paquet", "distributeur_id", 
+	@distributeurs.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="paquet_mainteneur">Mainteneur</label><br/>
+  <%= select("paquet", "mainteneur_id", 
+	@mainteneurs.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+
+<p><label for="paquet_arch">Arch</label><br/>
+  <%= select("paquet", "arch_id", 
+	@arches.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="paquet_fournisseur">Provenance</label><br/>
+  <%= select("paquet", "fournisseur_id", 
+	@fournisseurs.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+
+<p><label for="paquet_incoherences">Incohérences</label><br/>
+<%= text_area 'paquet', 'incoherences'  %>
+</p>
+
+<p><label for="paquet_configuration">Configuration spécifique additionnelle</label><br/>
+<%= text_area 'paquet', 'configuration'  %>
+</p>
+
+
+<!--[eoform:paquet]-->
+

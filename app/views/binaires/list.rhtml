@@ -1,0 +1,31 @@
+<h1>Listing binaires</h1>
+
+<table>
+  <tr>
+  <% for column in Binaire.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+    <th>Id</th>
+    <th>Patch</th>
+  </tr>
+  
+<% for binaire in @binaires %>
+  <tr>
+  <% for column in Binaire.content_columns %>
+    <td><%=h binaire.send(column.name) %></td>
+  <% end %>
+    <td><%="#{binaire.id}"%></td>
+    <td><%= link_to_file binaire, 'fichier' %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => binaire %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => binaire %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => binaire }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @binaire_pages.current.previous } if @binaire_pages.current.previous %>
+<%= link_to 'Next page', { :page => @binaire_pages.current.next } if @binaire_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New binaire', :action => 'new' %>

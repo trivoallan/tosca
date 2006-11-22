@@ -1,0 +1,2 @@
+module TypeurlsHelper
+end

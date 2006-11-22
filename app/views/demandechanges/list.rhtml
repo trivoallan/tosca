@@ -1,0 +1,33 @@
+<h1>Listing demandechanges</h1>
+
+<table>
+  <tr>
+    <th>Demande</th>
+    <th>Statut</th>
+  <% for column in Demandechange.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+    <th>Auteur</th>
+  </tr>
+  
+<% for demandechanges in @demandechanges %>
+  <tr>
+    <td>#<%= demandechanges.demande.id.to_s%> : <%= demandechanges.demande.resume %></td>
+    <td><%= demandechanges.statut.nom %></td>
+  <% for column in Demandechange.content_columns %>
+    <td><%=h demandechanges.send(column.name) %></td>
+  <% end %>
+    <td><%= demandechanges.identifiant.login if demandechanges.identifiant %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => demandechanges %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => demandechanges %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => demandechanges }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @demandechanges_pages.current.previous } if @demandechanges_pages.current.previous %>
+<%= link_to 'Next page', { :page => @demandechanges_pages.current.next } if @demandechanges_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New demandechanges', :action => 'new' %>

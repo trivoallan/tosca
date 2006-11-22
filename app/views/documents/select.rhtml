@@ -1,0 +1,9 @@
+<h1>Accès aux dépôts</h1>
+
+<%= show_liste(@typedocuments, 'Type de document') { |t| link_to_typedocument t } %>
+
+
+<% depot = link_to_new %>
+<% unless depot.nil? %>
+  <p>Déposer un fichier <%= depot %></p>
+<% end %>

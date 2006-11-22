@@ -1,0 +1,13 @@
+<% for column in Machine.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @machine.send(column.name) %>
+</p>
+<% end %>
+
+<p>
+  <b>Socle:</b> <%=h @machine.socle.nom %>
+</p>
+
+
+<%= link_to 'Edit', :action => 'edit', :id => @machine %> |
+<%= link_to 'Back', :action => 'list' %>

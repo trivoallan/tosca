@@ -1,0 +1,10 @@
+
+
+<!--[form:sendmail, method:get]-->
+<p>Destinataire<br/>
+  <%= select("dest_id", "", 
+	@identifiants.collect{|i| [ i.nom, i.id]}) %>
+</p>
+
+<!--[eoform:sendmail]-->
+

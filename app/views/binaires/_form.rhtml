@@ -1,0 +1,11 @@
+<%= error_messages_for 'binaire' %>
+
+<!--[form:binaire]-->
+<p><label for="binaire_fichier">Fichier</label><br/>
+<%= file_column_field 'binaire', 'fichier'  %></p>
+
+<p><label for="binaire_correctif">Correctifs</label><br/>
+<%= select("binaire", "correctif_id", 
+           @correctifs.collect{|l| [ l.nom, l.id]}) %></p>
+<!--[eoform:binaire]-->
+

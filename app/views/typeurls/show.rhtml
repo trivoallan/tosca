@@ -1,0 +1,8 @@
+<% for column in Typeurl.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @typeurl.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @typeurl %> |
+<%= link_to 'Back', :action => 'list' %>

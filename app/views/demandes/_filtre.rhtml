@@ -1,0 +1,57 @@
+<table class='nothing'>
+  <tr><th colspan="6" align="center">Filtre de recherche</th></tr>
+  <tr><td colspan="6"><hr/></td></tr>
+  <tr><td><%= image_tag("icon_1.gif", 
+                 :size => "20x20", :border => 0, :title => 'Etape 1', 
+                 :alt => 'Etape 1' )%></td>
+      <td colspan="5">
+        Choisir le périmètre des demandes : 
+        <%= link_to 'toutes les demandes', :filter => 'true' %> ou
+        <%= link_to 'mes demandes actives', :filter => 'false' %>
+      </td>
+  </tr>
+  <tr><td colspan="6"><hr></td></tr>
+  <tr><td rowspan='2' >
+      <%= image_tag("icon_2.gif", 
+                 :size => "20x20", :border => 0, :title => 'Etape 2', 
+                 :alt => 'Etape 2' )%></td>
+
+<% if @ingenieur %>
+    <td>Client : </td>
+    <%= start_form_tag :action => 'list' %>
+    <td><%= select_onchange(@clients, 
+                            @session[:filtres][:client_id], 
+                            'client') %></td>
+    <%= end_form_tag %>
+    <td>Responsable : </td>
+    <%= start_form_tag :action => 'list' %>
+    <td><%= select_onchange(@identifiants_ingenieurs,  
+                            @session[:filtres][:ingenieur_id], 
+                            'ingenieur') %></td>
+    <%= end_form_tag %>
+<% end %>
+
+  </tr>
+  <tr><td nowrap valign='baseline'>Par mot clé : </td>
+      <td><%= start_form_tag :action => 'list' %>
+             <%= text_field_tag 'demande', 
+                                @session[:filtres][:recherche_demande], 
+                                :size => 15 %>
+          <%= end_form_tag %>
+      </td>
+      <td nowrap valign='baseline'>Par identifiant : </td>
+      <td><%= start_form_tag :action => "list", 
+                         :filter => @filter, 
+                         :client => @client, 
+                         :id => 'client_filter' %>
+             <%= text_field 'numero', '', "size" => 5 %>
+          <%= end_form_tag %>
+      </td>
+  </tr>
+  <tr><td colspan="6"><hr></td></tr>
+  <tr><td colspan="6" align='right'>
+        <%= link_to 'Effacer le(s) fitre(s)', 
+                  :action => 'raz_recherche', 
+                  :controller => 'demandes' %> </td>
+  </tr>
+</table>

@@ -1,0 +1,14 @@
+<%= error_messages_for 'machine' %>
+
+<!--[form:machine]-->
+<p><label for="machine_nom">Nom</label><br/>
+<%= text_field 'machine', 'nom'  %></p>
+
+<p>
+ <label for="machine_socle">Socle</label><br/>
+  <%= select("machine", "socle_id", 
+	@socles.collect{|s| [ s.nom, s.id]}) %>
+</p>	
+
+<!--[eoform:machine]-->
+

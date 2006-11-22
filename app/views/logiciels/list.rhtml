@@ -1,0 +1,40 @@
+<table width='100%'>
+ <tr>
+  <td><h1>Liste des logiciels</h1></td>
+  <td align='right'>
+<%= start_form_tag :action => "list" %>
+  <label for="logiciel_nom">Filtrer: </label>
+  <%= text_field 'logiciel', ''  %>
+<!--  <% h submit_tag "Rechercher" %>-->
+<%= end_form_tag %>
+  </td>
+ </tr>
+</table>
+
+<!--
+<%= start_form_tag :action => "list", :controller => "fichiers" %>
+  <p><label for="fichier_???">Recherche par fichier : </label>
+  <%= text_field 'fichier', ''  %>
+  <%= submit_tag "Rechercher" %> (non fonctionnel) </p>
+<%= end_form_tag %>
+-->
+<br/>
+<%= show_pages_links(@logiciel_pages) %>
+
+<% titres = ['Nom', 'Description', 'Technologies', 'Référent', 'Paquet(s)']%>
+<%= show_table(@logiciels, Logiciel, titres) { |l|
+  result = ''
+  result << "<td>#{link_to_logiciel l}</td>"
+  result << "<td>#{l.resume}</td>"
+  result << "<td>#{liste_competences l.competences}</td>"
+  result << "<td>#{l.referent}</td>"
+  result << "<td>#{l.count_mes_paquets(@beneficiaires)}</td>"
+  result << "#{link_to_actions_table l}"
+}%>
+
+
+<%= show_pages_links(@logiciel_pages) %>
+
+<br />
+
+<%= link_to 'Nouveau logiciel', :action => 'new' %>

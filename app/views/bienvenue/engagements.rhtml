@@ -1,0 +1,31 @@
+<h1>Engagements du 08000Linux</h1>
+<br />
+<br />
+
+<p><b>Liste des engagements : </b></p>
+
+<table>
+  <tr>   
+    <th>Support</th>
+    <th>Severite</th>
+
+  <% for column in Engagement.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for engagement in @engagements %>
+  <tr>
+    <td><%=h engagement.support.nom %></td>
+    <td><%=h engagement.severite.nom %></td>
+  <% for column in Engagement.content_columns %>
+    <td><%=h engagement.send(column.name) %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<br />
+
+<%= render :partial => 'liens_deroulement' %>

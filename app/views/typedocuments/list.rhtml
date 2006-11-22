@@ -1,0 +1,27 @@
+<h1>Listing typedocuments</h1>
+
+<table>
+  <tr>
+  <% for column in Typedocument.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for typedocument in @typedocuments %>
+  <tr>
+  <% for column in Typedocument.content_columns %>
+    <td><%=h typedocument.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => typedocument %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => typedocument %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => typedocument }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @typedocument_pages.current.previous } if @typedocument_pages.current.previous %>
+<%= link_to 'Next page', { :page => @typedocument_pages.current.next } if @typedocument_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New typedocument', :action => 'new' %>

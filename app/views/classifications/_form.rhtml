@@ -1,0 +1,28 @@
+<%= error_messages_for 'classification' %>
+
+<!--[form:classification]-->
+
+<p><label for="classification_logiciel">Logiciel</label><br/>
+  <%= select("classification", "logiciel_id", 
+	@logiciels.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="classification_groupe">Groupe</label><br/>
+  <%= select("classification", "groupe_id", 
+	@groupes.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="classification_bouquet">Bouquet</label><br/>
+  <%= select("classification", "bouquet_id", 
+	@bouquets.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="classification_socle">Socle</label><br/>
+  <%= select("classification", "socle_id", 
+	@socles.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+
+
+<!--[eoform:classification]-->
+

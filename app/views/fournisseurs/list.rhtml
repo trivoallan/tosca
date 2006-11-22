@@ -1,0 +1,27 @@
+<h1>Listing fournisseurs</h1>
+
+<table>
+  <tr>
+  <% for column in Fournisseur.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for fournisseur in @fournisseurs %>
+  <tr>
+  <% for column in Fournisseur.content_columns %>
+    <td><%=h fournisseur.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => fournisseur %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => fournisseur %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => fournisseur }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @fournisseur_pages.current.previous } if @fournisseur_pages.current.previous %>
+<%= link_to 'Next page', { :page => @fournisseur_pages.current.next } if @fournisseur_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New fournisseur', :action => 'new' %>

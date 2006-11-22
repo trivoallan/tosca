@@ -1,0 +1,12 @@
+<% for column in Engagement.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h display_jours(@engagement.send(column.name)) %>
+</p>
+<% end %>
+
+<% for contrat in @engagement.contrats %>
+  <%= contrat.client.nom %> <br />
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @engagement %> |
+<%= link_to 'Back', :action => 'list' %>

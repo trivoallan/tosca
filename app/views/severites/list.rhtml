@@ -1,0 +1,29 @@
+<h1>Listing severites</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+  <% for column in Severite.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for severite in @severites %>
+  <tr>
+    <td><%= severite.id %></td>
+  <% for column in Severite.content_columns %>
+    <td><%=h severite.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => severite %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => severite %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => severite }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @severite_pages.current.previous } if @severite_pages.current.previous %>
+<%= link_to 'Next page', { :page => @severite_pages.current.next } if @severite_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New severite', :action => 'new' %>

@@ -1,0 +1,56 @@
+<h1><%= @paquet.nom %> < <%= @paquet.logiciel.nom.capitalize %></h1>
+
+<%= link_to 'Editer', :action => 'edit', :id => @paquet %> |
+<%= link_to 'Retour à la liste', :action => 'list' %>
+
+<p><b>Logiciel:</b> <%= @paquet.logiciel.nom %></p>
+<p><b>Contrat:</b> <%= @paquet.contrat.client.nom %></p>
+
+<% for column in Paquet.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @paquet.send(column.name) %>
+</p>
+<% end %>
+
+<p><b>Arch:</b> <%= @paquet.arch.nom %></p>
+<p><b>Conteneur:</b> <%= @paquet.conteneur.nom %></p>
+<p><b>Distributeur:</b> <%=h @paquet.distributeur.nom %></p>
+<p><b>Mainteneur:</b> <%=h @paquet.mainteneur.nom %></p>
+<% #<p><a href="http://ouzo.linagora.lan/rpmfind/<%=@paquet.arch.nom%>/<%=@paquet.nom+"-"+ %>
+<% #  @p<aquet.version+"-"+@paquet.release+"."+@paquet.arch.nom%>.html">Detail (rpm2html)</a></p> %>
+
+<% if (@fichiers.size != 0) %>
+ <p><b>Fichiers (<%=@fichiers.size%> sur <%=@paquet.fichiers.size%>):</b><br />
+   <div id="bloc_scroll">
+    <table>
+    <tr>
+      <td width="40px">&nbsp;</td>
+      <td><ul>
+       <% @fichiers.each do |fichier| %>
+	 <li><%=fichier.chemin%></li>
+       <% end %>
+      </ul></td>
+    </tr>
+    </table>
+   </div>
+ </p>
+<% end %>
+
+
+<% if (@paquet.changelogs.size != 0) %>
+ <p><b>Changelogs:</b><br />
+   <div id="bloc_scroll">
+    <ul>
+    <% @paquet.changelogs.each do |changelog| %>
+	<li><i><%=changelog.date_modification %></i> <%= changelog.nom_modification %><br />
+	<%=h changelog.text_modification %> <br /></li>
+    <% end %>
+    </ul>
+   </div>
+ </p>
+<% end %>
+
+<p>&nbsp;</p>
+
+<%= link_to 'Editer', :action => 'edit', :id => @paquet %> |
+<%= link_to 'Retour à la liste', :action => 'list' %>

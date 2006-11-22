@@ -1,0 +1,22 @@
+<% for column in Correctif.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @correctif.send(column.name) %>
+</p>
+<% end %>
+
+
+<p><b>Patch:</b> <%= link_to_file @correctif, 'patch' %><p>
+
+
+<%= show_liste(@correctif.demandes, 'demande') { |d| 
+  link_to_demande(d) } %><br />
+
+<%= show_liste(@correctif.binaires, 'binaire') { |b| 
+  link_to_file(b, 'fichier') } %><br />
+
+<%= show_liste(@correctif.reversements, 'reversement') { |r| 
+  link_to_reversement(r) } %><br />
+
+
+<%= link_to 'Editer', :action => 'edit', :id => @correctif %> |
+<%= link_to 'Retour à la liste', :action => 'list' %>

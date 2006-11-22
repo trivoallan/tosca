@@ -1,0 +1,37 @@
+<h1>Liste des ingenieurs</h1>
+
+<table>
+  <tr>
+    <th>Nom</th>
+  <% for column in Ingenieur.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  <% for competence in Competence.find_all %>
+    <th><%= competence.nom %></th>
+  <% end %>
+  </tr>
+  
+<% for ingenieur in @ingenieurs %>
+  <tr>
+    <td><%= ingenieur.identifiant.nom if ingenieur.identifiant %></td>
+  <% for column in Ingenieur.content_columns %>
+    <td><%=h ingenieur.send(column.name) %></td>
+  <% end %>
+  <% for competence in Competence.find_all %>
+    <td><%= "X" if ingenieur.competences.include? competence %></td>
+  <% end %>
+    <td><%= link_to 'Voir', :action => 'show', :id => ingenieur %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => ingenieur %></td>
+    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => ingenieur }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Page précédente', { :page => @ingenieur_pages.current.previous } if @ingenieur_pages.current.previous %>
+<%= link_to 'Page suivante', { :page => @ingenieur_pages.current.next } if @ingenieur_pages.current.next %> 
+
+<br />
+
+<%= link_to 'Ajouter un ingenieur', :action => 'new' %> | 
+<%= link_to 'Ajouter une compétence', :controller => 'competences', :action => 'new' %>
+

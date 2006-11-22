@@ -1,0 +1,8 @@
+<% for column in Jourferie.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @jourferie.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @jourferie %> |
+<%= link_to 'Back', :action => 'list' %>

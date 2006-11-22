@@ -1,0 +1,27 @@
+Date : <%= Time.now %>
+Message : <%= @exception.message %>
+Location : <%= @env['REQUEST_URI'] %>
+Action : <%= @params.delete('action')   %>
+Controller : <%= @params.delete('controller') %>
+Query : <%= @env['QUERY_STRING'] %>
+Method : <%= @env['REQUEST_METHOD']  %>
+SSL : <%= @env['REQUEST_PORT'].to_i == 443 ? "oui" : "non" %>
+Agent : <%= @env['REQUEST_HTTP_USER_AGENT'] %>
+
+Backtrace
+<%= @trace.to_a.join("</p>\n<p>") %>
+
+Params
+<% @params.each do |key, val| -%>
+* <%= key %> : <%= val.to_yaml %>
+<% end -%>
+
+Session
+<% @session.each do |key, val| -%>
+* <%= key %> : <%= val.to_yaml %>
+<% end -%>
+
+Environment
+<% @env.each do |key, val| -%>
+* <%= key %> : <%= val %>
+<% end -%>

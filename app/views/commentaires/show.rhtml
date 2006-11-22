@@ -1,0 +1,8 @@
+<% for column in Commentaire.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @commentaire.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @commentaire %> |
+<%= link_to 'Back', :action => 'list' %>

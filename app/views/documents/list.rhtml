@@ -1,0 +1,25 @@
+<h1>Documents disponible dans <%=h @typedocument.nom %></h1>
+<br />
+
+
+
+<% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
+<%= show_table(@documents, Document, titres, :total => false, 
+    :content_columns => true) { |document| 
+  result = ''
+  result << "<td>#{link_to_file document, "fichier"}</td>"
+  result << "<td>#{file_size(document.fichier)}</td>"
+  result << "<td>#{document.identifiant.nom}</td>"
+  result << "<td>#{document.updated_on.strftime("%d/%m/%Y à %H:%M")}</td>"
+  result << "<td>#{link_to 'Modifier', :action => 'edit', :id => document}</td>"
+  result << "<td>#{link_to 'Effacer', { :action => 'destroy', :id => document }, :confirm => 'Etes vous sûr?', :post => true}</td>"
+}%>
+
+
+<%= link_to 'Page précédente', { :page => @document_pages.current.previous } if @document_pages.current.previous %>
+<%= link_to 'Page suivante', { :page => @document_pages.current.next } if @document_pages.current.next %> 
+
+<br />
+
+<%= link_to 'Déposer un fichier', :action => 'new', :id => @typedocument %> | 
+<%= link_to 'Retour à la sélection', :action => 'select' %>

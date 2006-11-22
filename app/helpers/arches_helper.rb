@@ -1,0 +1,2 @@
+module ArchesHelper
+end

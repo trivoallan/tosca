@@ -1,0 +1,32 @@
+
+<%= error_messages_for 'document' %>
+
+<!--[form:document]-->
+<p><label for="document_client">Bénéficiaire</label><br/>
+<%= select("document", "client_id", 
+	@clients.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<% if @action == :list %>
+<p><label for="document_identifiant">Auteur</label><br/>
+<%= select("document", "identifiant_id", 
+	@identifiants.collect{|l| [ l.nom, l.id]}) %>
+</p>
+<% end %>
+
+<p><label for="document_typedocument">Type</label><br/>
+<%= select("document", "typedocument_id", 
+	@typedocuments.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="document_titre">Titre</label><br/>
+<%= text_field 'document', 'titre'  %></p>
+
+<p><label for="document_description">Description</label><br/>
+<%= text_area 'document', 'description'  %></p>
+
+<p><label for="document_fichier">Fichier</label><br/>
+<%= file_column_field 'document', 'fichier'  %></p>
+
+<!--[eoform:document]-->
+

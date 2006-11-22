@@ -1,0 +1,13 @@
+div#bloc_scroll {
+      	width: 800px;
+      	height: 200px;
+      	overflow: auto;
+      	border: 1px solid #000;
+}
+
+div#description_scroll {
+      	width: 400px;
+      	height: 150px;
+      	overflow: auto;
+      	border: 1px solid #000;
+}

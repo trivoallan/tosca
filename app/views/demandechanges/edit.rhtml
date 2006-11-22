@@ -1,0 +1,9 @@
+<h1>Editing demandechanges</h1>
+
+<%= start_form_tag :action => 'update', :id => @demandechanges %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<%= end_form_tag %>
+
+<%= link_to 'Show', :action => 'show', :id => @demandechanges %> |
+<%= link_to 'Back', :action => 'list' %>

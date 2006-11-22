@@ -1,0 +1,34 @@
+<%= error_messages_for 'ingenieur' %>
+
+<!--[form:ingenieur]-->
+
+<p><label for="ingenieur_domaine">Domaine</label><br/>
+<%= text_area 'ingenieur', 'domaine'  %></p>
+
+<p><label for="ingenieur_identifiant">Identifiant</label><br/>
+  <%= select("ingenieur", "identifiant_id", 
+	@identifiants.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="ingenieur_competence">Competences</label><br/>
+<% for competence in @competences %>
+  <input type="checkbox" id="<%=competence.id%>" 
+	name="competence_ids[]" value="<%=competence.id%>"
+	<%if @ingenieur.competences.include? competence%> checked="checked" <%end%>
+  > 
+  <%= competence.nom %>
+<% end %>
+</p>
+
+<p><label for="ingenieur_contrat">Contrats</label><br/>
+<% for contrat in @contrats %>
+  <input type="checkbox" id="<%=contrat.id%>" 
+	name="contrat_ids[]" value="<%=contrat.id%>"
+	<%if @ingenieur.contrats and @ingenieur.contrats.include? contrat%> checked="checked" <%end%>
+  > 
+  <%= contrat.client.nom %> de <%= contrat.ouverture %> à <%= contrat.cloture %><br />
+<% end %>
+</p>
+
+<!--[eoform:ingenieur]-->
+

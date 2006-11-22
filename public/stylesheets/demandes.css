@@ -1,0 +1,232 @@
+
+/**
+ * demandes.css
+ */
+
+/**
+ * liste des demandes
+ * Suit la vie d'une demande en couleur
+
+
+  .menu1   {
+    position: fixed;
+    top: 9em;
+    right: 1em;
+    border: black solid 1px;
+    padding: 10px;
+  }
+ */
+
+/* enregistree */
+.demande_1 {
+	background: #f03720; /*red;*/
+}
+
+/* priseencompte */
+.demande_2 {
+        background: ffa23e; /*orange;*/
+}	
+
+/* suspendue */
+.demande_3 {
+	background: #ffffaa; /*yellow;*/
+}
+
+/* analysee */
+.demande_4 {
+	background: #a0e0e0; /*cyan;*/
+}
+
+/* contournee */
+.demande_5 {
+	background: lightgreen; /*#00ff60; green;*/
+}
+
+/* corrigee */
+.demande_6 {
+	background: #67ccfd;
+}
+
+/* cloturee */
+.demande_7 {
+	background: #c9c99f; /*grey;*/
+}
+
+/* annulee */
+.demande_8 {
+	background: lightgrey; /*grey;*/
+}
+
+
+/**
+ * Comment : visualisation d'un demande
+ */
+
+tr.infos {
+	vertical-align:top;		
+}
+
+td.infos_demande {
+	width:400px;
+	background-color:white;
+}
+
+td.infos_beneficiaire {
+	background-color:white;
+}
+
+td.infos_logiciel {
+	background-color: white;
+}
+
+table.demandes_list {
+	border: solid;
+	border-width: thin;
+	border-spacing: 0px;
+	border: thin solid #ffc547;
+	spacing: 0px;
+	padding: 0px;
+	margin: 0px;
+	border-collapse: collapse;
+}
+
+table.demandes_list td {
+	border-left: thin solid #ffc547; 
+	border-right: thin solid #ffc547; 
+	border-top: thin solid #ffc547; 
+	border-spacing: 0px;
+	white-space: nowrap;
+	text-align: center;
+	padding: 5px;
+	spacing: 0px;
+	margin: 0px;
+/*	width: 50%; */
+}
+
+table.demandes_list td.wrapped {
+	text-align: left;
+	white-space: normal;
+	border-spacing: 0px;
+        text-align: center;
+        padding: 0px;
+        spacing: 0px;
+        margin: 0px;
+}
+
+table.demandes_list th {
+	border-top: thin solid #ffc547;
+	border-left: thin solid #ffc547;
+	border-right: thin solid #ffc547;
+	border-spacing: 0px;
+	padding: 5px;
+	spacing: 0px;
+	margin: 0px;
+	white-space: nowrap;
+}
+
+table.demandes_list a:hover {
+	text-decoration: underline;
+	color: #226644;
+}
+
+table.demandes_list a {
+	text-decoration: none;
+	color: #806080;
+}
+
+table.nothing td {
+	border: none;
+	white-space: nowrap;
+	padding: 0px;
+        padding-right: 20px;
+}
+
+table.nothing hr {
+	background-color: #ffc547;
+}
+
+table.nothing a:hover {
+	background-color: #CCBBFF;
+	text-decoration: underline;
+	color: #226644;
+}
+
+table.nothing a {
+	text-decoration: none;
+	color: #806080;
+}
+
+table.commentaire td {
+	white-space: nowrap;
+	text-align: center;
+	color: #114188;
+}
+
+tr.resume td {
+	font-size: 150%;
+}
+
+table.standard_infos {
+	border-width: thin;
+	border-spacing: 0px;
+	border: thin solid #ffc547;
+}
+
+table.standard_infos td {
+	border-top: thin solid #ffc547;
+	border-left: thin solid #ffc547;
+	border-right: thin solid #ffc547;
+	padding: 5px;
+	white-space: nowrap;
+	font-weight: normal;
+	text-align: center;
+}
+
+table.standard_infos th {
+	border-top: thin solid #ffc547;
+	border-left: thin solid #ffc547;
+	border-right: thin solid #ffc547;
+	padding: 5px;
+	white-space: nowrap;
+	font-weight: bold;
+	text-align: center;
+}
+
+tr.bold td {
+	font-weight: bold;
+}
+
+td.bordered {
+	border-left: thin solid;
+	border-bottom: thin solid;
+	border-color: #ffbd2f;
+	padding: 10px;
+}
+
+table.logiciel td {
+	text-align: left;
+}
+
+table.infos_beneficiaire td {
+	white-space: nowrap;
+	font-size: 100%;
+}
+
+div.numero_demande {
+	position: absolute;
+	z-index: 1;
+	opacity: .05;
+	-moz-opacity: .05;
+	filter:	alpha(opacity=5);
+	top: 50px;
+	text-align: center;
+}
+
+font.numero_demande {
+/*	opacity: .05;
+	-moz-opacity: .05; */
+	filter:	alpha(opacity=5);
+	font-color: #FFFF;
+	font-size: 3000%;
+	text-align: center;
+}

@@ -1,0 +1,40 @@
+<h2><%= titre %></h2>
+
+<table>
+  <caption><%= caption %></caption>
+  <thead>
+    <tr>
+     <th rowspan="2">Id</th>
+     <th>Temps</th>
+     <th colspan="2">Engagement</th>
+     <th colspan="2">Respect du délai</th>
+    </tr>
+    <tr>
+     <th>Passé</th>
+     <th>Contournement</th>
+     <th>Correction</th>
+     <th>Contournement</th>
+     <th>Correction</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% for donnee in donnees %>
+  <tr>
+    <% for column in donnee.members %>
+     <td><%= display donnee, column %></td>
+    <% end %>
+  </tr>
+<% end %>
+  <% cumul = @cumul.shift %>
+  <% if cumul %>
+  <tr>
+   <td colspan='<%= donnees.first.members.size %>'><hr /></td>
+  </tr>
+  <tr>
+    <% cumul.each do |members| %>
+     <td><%= cumul.send(column) %></td>
+    <% end %>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

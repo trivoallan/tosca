@@ -1,0 +1,9 @@
+<h1>Modifier le client <%= @client.nom %> </h1>
+
+<%= start_form_tag :action => 'update', :id => @client %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<%= end_form_tag %>
+
+<%= link_to 'Voir', :action => 'show', :id => @client %> |
+<%= link_to 'Retour à la liste des clients', :action => 'list' %>

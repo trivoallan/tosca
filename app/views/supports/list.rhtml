@@ -1,0 +1,27 @@
+<h1>Listing supports</h1>
+
+<table>
+  <tr>
+  <% for column in Support.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for support in @supports %>
+  <tr>
+  <% for column in Support.content_columns %>
+    <td><%=h support.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => support %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => support %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => support }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @support_pages.current.previous } if @support_pages.current.previous %>
+<%= link_to 'Next page', { :page => @support_pages.current.next } if @support_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New support', :action => 'new' %>

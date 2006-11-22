@@ -1,0 +1,10 @@
+/*
+ * Permet d'alterner la couleur des lignes des tableaux
+ */
+
+.pair {
+	background-color: #f0f0f0;
+}
+.impair {
+	background-color: #e0e0e0;
+}

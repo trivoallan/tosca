@@ -1,0 +1,38 @@
+<h1>Liste des classifications</h1>
+
+<table>
+  <tr>
+  <% for column in Classification.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+    <th>Logiciel</th>
+    <th>Bouquet</th>
+    <th>Groupe</th>
+    <th>Client</th>
+  </tr>
+  
+<% for classification in @classifications %>
+  <tr>
+
+  <% for column in Classification.content_columns %>
+    <td><%=h classification.send(column.name) %></td>
+  <% end %>
+    <td><%=h classification.logiciel.nom %></td>
+    <td><%=h classification.bouquet.nom %></td>
+    <td><%=h classification.groupe.nom %></td>
+    <td><%=h classification.client.nom %></td>
+
+    <td><%= link_to 'Show', :action => 'show', :id => classification %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => classification %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => classification }, :confirm => 'Are you sure?', :post => true %></td>
+
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @classification_pages.current.previous } if @classification_pages.current.previous %>
+<%= link_to 'Next page', { :page => @classification_pages.current.next } if @classification_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New classification', :action => 'new' %>

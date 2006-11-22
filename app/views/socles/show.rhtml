@@ -1,0 +1,12 @@
+<% for column in Socle.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @socle.send(column.name) %>
+</p>
+<% end %>
+
+<p>
+  <b>Machine:</b> <%=h @socle.machine.nom if @socle.machine %>
+</p>
+
+<%= link_to 'Edit', :action => 'edit', :id => @socle %> |
+<%= link_to 'Back', :action => 'list' %>

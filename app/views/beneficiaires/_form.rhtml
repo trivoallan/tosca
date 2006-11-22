@@ -1,0 +1,27 @@
+<%= error_messages_for 'beneficiaire' %>
+
+<!--[form:beneficiaire]-->
+<p><label for="beneficiaire_identifiant">Identifiant</label><br/>
+  <%= select("beneficiaire", "identifiant_id", 
+	@identifiants.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="beneficiaire_client">Client</label><br/>
+  <%= select("beneficiaire", "client_id", 
+	@clients.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="beneficiaire_notifier_subalternes">Notifier subalternes</label><br/>
+<%= check_box 'beneficiaire', 'notifier_subalternes'  %></p>
+
+<p><label for="beneficiaire_notifier">Notifier a</label><br/>
+<%= check_box 'beneficiaire', 'notifier'  %></p>
+
+<p><label for="beneficiaire_notifier_cc">Notifier cc</label><br/>
+<%= check_box 'beneficiaire', 'notifier_cc'  %></p>
+
+<p><label for="beneficiaire_domaine">Domaine d'activité</label><br/>
+<%= text_area 'beneficiaire', 'domaine'  %></p>
+
+<!--[eoform:beneficiaire]-->
+

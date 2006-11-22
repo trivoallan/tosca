@@ -1,0 +1,10 @@
+<% for column in Binaire.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @binaire.send(column.name) %>
+</p>
+<% end %>
+
+<p><b>Télécharger:</b> <%= link_to_file @binaire, "fichier" %></p>
+
+<%= link_to 'Edit', :action => 'edit', :id => @binaire %> |
+<%= link_to 'Back', :action => 'list' %>

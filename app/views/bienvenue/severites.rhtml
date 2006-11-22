@@ -1,0 +1,18 @@
+<h1>Sévérité d'une demande</h1>
+<br />
+<br />
+
+<p><b>Liste des sévérités : </b></p>
+
+<table>
+<% for severite in @severites %>
+  <tr>
+    <td><%=h severite.nom %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<br />
+
+<%= render :partial => 'liens_declaration' %>

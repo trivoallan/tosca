@@ -1,0 +1,28 @@
+<%= error_messages_for 'contrat' %>
+
+<!--[form:contrat]-->
+<p><label for="contrat_client">Client</label><br/>
+  <%= select("contrat", "client_id", 
+	@clients.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="contrat_ouverture">Ouverture</label><br/>
+<%= datetime_select 'contrat', 'ouverture'  %></p>
+
+<p><label for="contrat_cloture">Cloture</label><br/>
+<%= datetime_select 'contrat', 'cloture'  %></p>
+
+
+<p><label for="contrat_engagements">Engagements</label><br/>
+<% for engagement in @engagements %>
+  <input type="checkbox" id="<%=engagement.id%>" 
+	name="engagement_ids[]" value="<%=engagement.id%>"
+	<%if @contrat.engagements and @contrat.engagements.include? engagement%> checked="checked" <%end%>
+  > 
+  <%= engagement.typedemande.nom %>|<%= engagement.severite.nom%> : <%= display_jours engagement.contournement %> / <%= display_jours engagement.correction %><br />
+<% end %>
+</p>
+
+
+<!--[eoform:contrat]-->
+

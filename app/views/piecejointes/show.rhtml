@@ -1,0 +1,11 @@
+<% for column in Piecejointe.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @piecejointe.send(column.name) %>
+</p>
+<% end %>
+
+ <%= link_to "Download", url_for_file_column(@piecejointe, "file", :absolute => true) %>
+
+
+<%= link_to 'Edit', :action => 'edit', :id => @piecejointe %> |
+<%= link_to 'Back', :action => 'list' %>

@@ -1,0 +1,29 @@
+<h1>Liste des statuts</h1>
+
+<table>
+  <tr>
+    <th>id </th>
+  <% for column in Statut.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for statut in @statuts %>
+  <tr class=<%= "demande_" + statut.id.to_s %>>
+    <td><%= statut.id %>
+  <% for column in Statut.content_columns %>
+    <td><%= indent statut.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Voir', :action => 'show', :id => statut %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => statut %></td>
+    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => statut }, :confirm => 'Voulez-vous vraiment supprimer le statut ' + statut.nom  + ' ?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Page précédente', { :page => @statut_pages.current.previous } if @statut_pages.current.previous %>
+<%= link_to 'Page Suivante', { :page => @statut_pages.current.next } if @statut_pages.current.next %> 
+
+<br />
+
+<%= link_to 'Ajouter un statut', :action => 'new' %>

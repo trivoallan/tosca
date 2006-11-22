@@ -1,0 +1,20 @@
+<%= error_messages_for 'correctif' %>
+
+<!--[form:correctif]-->
+<p><label for="correctif_nom">Nom</label><br/>
+<%= text_field 'correctif', 'nom'  %></p>
+
+<p><label for="correctif_description">Description</label><br/>
+<%= text_area 'correctif', 'description'  %></p>
+
+<p><label for="correctif_patch">Patch</label><br/>
+<%= file_column_field 'correctif', 'patch'  %></p>
+
+<p><label for="correctif_created_on">Crée le</label><br/>
+<%= datetime_select 'correctif', 'created_on'  %></p>
+
+<p><label for="correctif_updated_on">Modifié le</label><br/>
+<%= datetime_select 'correctif', 'updated_on'  %></p>
+
+<!--[eoform:correctif]-->
+

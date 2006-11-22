@@ -1,0 +1,31 @@
+<h1>Liste des socles</h1>
+
+<table>
+  <tr>
+  <% for column in Socle.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+    <th>Machine</th>
+  </tr>
+  
+<% for socle in @socles %>
+  <tr>
+  <% for column in Socle.content_columns %>
+    <td><%=h socle.send(column.name) %></td>
+  <% end %>
+
+    <td><%=h socle.machine ? socle.machine.nom : "Pas de machine" %></td>
+
+    <td><%= link_to 'Voir', :action => 'show', :id => socle %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => socle %></td>
+    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => socle }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Page précédente', { :page => @socle_pages.current.previous } if @socle_pages.current.previous %>
+<%= link_to 'Page suivante', { :page => @socle_pages.current.next } if @socle_pages.current.next %> 
+
+<br />
+
+<%= link_to 'Ajouter un nouveau socle', :action => 'new' %>

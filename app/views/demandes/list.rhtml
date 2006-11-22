@@ -1,0 +1,71 @@
+<h1>Liste des demandes</h1>
+<br/>
+
+    <%= render_partial 'filtre' if @count > 0  %>
+
+<% if @demandes.size > 0 %>
+    
+    <%= show_pages_links(@demande_pages) %>
+
+    <table class="demandes_list" width='100%'>
+      <tr>
+        <th width='3%'>ID</th>
+        <th width='7%'>Type</th>
+        <th width='6%'>Sévérité</th>
+        <th width='8%'>Statut</th>
+        <th width='10%'>Bénéficiaire</th>
+      <% for column in Demande.content_columns %>
+        <th><%= column.human_name %></th>
+      <% end %>
+        <th>Résumé</th>
+        <th width='8%'>A jour du</th>
+        <% if @ingenieur %> <th width='8%'>Ingénieur</th> <% end %>
+        <th colspan="3" width='6%'>Actions</th>
+      </tr>
+
+    <% for demande in @demandes %>
+      <tr class=<%= "demande_#{demande.statut.id}" %>>
+        <td><%= demande.id %></td>
+        <td><%= demande.typedemande.nom %></td>
+        <td><%= demande.severite.nom %></td>
+        <td><%= demande.statut.nom if demande.statut %></td>
+        <td><%= demande.beneficiaire.identifiant.nom %></td>
+
+        <% for column in Demande.content_columns %>
+         <td><%=h demande.send(column.name) %></td>
+        <% end %>
+        <td class="wrapped"><%= link_to_demande demande %></td>
+        <td><small><%=h demande.updated_on.strftime("%d/%m/%Y %H:%M") %></small></td>
+        <% if @ingenieur %> 
+          <td><%= demande.ingenieur.identifiant.login if demande.ingenieur %></td> 
+        <% end %>
+        <td><%= link_to_comment demande %></td>
+        <% if @ingenieur %> 
+          <td><%= link_to_edit demande %></td>
+          <td><%= link_to_delete demande %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </table>
+    <%= show_total @demandes.size, Demande %>
+    <%= show_pages_links(@demande_pages) %>
+
+<% elsif @count == 0 %>
+
+    <p>Aucune demande enregistrée ne vous concerne.</p>
+    <p>Pour déposer une nouvelle demande :  <%= link_to_new() %> </p>
+   
+<% else %>
+
+    <p>Aucune demande ne répond à ces critères.</p>
+    <p>Pour déposer une nouvelle demande :  <%= link_to_new() %> </p>
+
+<% end %>
+
+<br />
+<br />
+
+<table><tr><td>
+<%= link_to 'Légende des couleurs', :controller => 'statuts', :action => 'list' %><br />
+<%= link_to 'Reporting', :controller => 'demandes', :action => 'report' %>
+</td></tr></table>

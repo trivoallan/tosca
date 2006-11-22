@@ -1,0 +1,12 @@
+<%= error_messages_for 'demandechanges' %>
+
+<!--[form:demandechanges]-->
+<p><label for="demandechange_statut">Statut</label><br/>
+  <%= select("demandechange", "statut_id", 
+	@statuts.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="demandechange_created_on">Created on</label><br/>
+<%= datetime_select 'demandechange', 'created_on'  %></p>
+<!--[eoform:demandechanges]-->
+

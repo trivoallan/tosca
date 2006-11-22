@@ -1,0 +1,15 @@
+<% for column in Ingenieur.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @ingenieur.send(column.name) %>
+</p>
+<% end %>
+
+<% if (@ingenieur.competences.size != 0) %>
+ <p><b>Competences:</b>
+    <%= @ingenieur.competences.collect{|c| c.nom}.join(', ') %>
+ </p>
+<% end %>
+
+
+<%= link_to 'Edit', :action => 'edit', :id => @ingenieur %> |
+<%= link_to 'Back', :action => 'list' %>

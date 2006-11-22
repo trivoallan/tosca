@@ -1,0 +1,88 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+  <title>08000linux : <%= controller.controller_name %></title>
+  <link rel="SHORTCUT ICON" href="<%= image_path("favicon.ico") %>"/>
+  <%= stylesheet_link_tag 'comments' %>
+  <%= stylesheet_link_tag 'tools' %>
+  <%= stylesheet_link_tag 'helper' %>
+  <%= stylesheet_link_tag 'common' %>
+  <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>
+
+
+  <%= stylesheet_link_tag 'demandes' %>
+
+  <%= javascript_include_tag 'update_select_ajax' %>
+  <%= javascript_include_tag "prototype" %>
+
+</head>
+
+<body>
+
+  <div id="content">
+
+     <div id="haut">
+
+        <table width=100%>
+          <tr><td style="padding-left:20px">
+               <%= link_to @session[:logo_08000], {
+                       :action => 'list', :controller => 'bienvenue' } %>
+          </td><td style="text-align:right;padding-right:20px">
+                  <% nav_links = [ (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
+                                   (link_to 'Déconnexion',:controller => 'account', :action => 'logout') ] %>
+                  <% nav_links.push((link_to_modify_account @session[:user].id, 'Mon compte')) if @session[:user] %>
+                  <% nav_links.push((link_to 'Plan',:controller => 'bienvenue', :action => 'plan')) if @ingenieur %>
+                  <% nav_links.push((link_to 'Utilisateurs', :controller => 'account', :action => 'list')) if @ingenieur %>
+                  <%= nav_links.join(' | ') if @session[:user] %>
+          </td></tr>
+          </tr><td style="padding-left:20px">
+                  <%=h (@session[:user] ? "Bienvenue #{@session[:user].titre} #{@session[:user].nom}" : ' [Non connecté]') %>
+          </td><td style="text-align:right;padding-right:20px">
+                  <% cut_links =  [ (link_to 'Demandes',:controller => 'demandes', :action => 'list'),
+                                    (link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
+                                    (link_to 'Correctifs',:controller => 'correctifs', :action => 'list') ] %>
+                  <% cut_links.push((link_to 'Paquets',:controller => 'paquets', :action => 'list')) if @ingenieur %>
+                  <% cut_links.push((link_to 'Répertoire',:controller => 'documents', :action => 'select')) %>
+                  <%= cut_links.join(' | ') if @session[:user]   %>
+          </td></tr>
+        </table>
+     </div><!-- end of haut -->
+
+     <div id="contenu">
+
+        <p style="color: green"><%= flash[:notice] %></p>
+        <% if flash[:warn] %>
+          <div class="errorExplanation" id="errorExplanation">
+               <h2>Une erreur a bloqué l'enregistrement</h2>
+               <p>Corriger l'élément suivant pour poursuivre :</p>
+                <ul><li><%= flash[:warn] %></li></ul>
+          </div>
+        <% end %>
+        <%= @content_for_layout %>
+
+     </div>
+
+  </div><!-- end of content -->
+
+  <div id="pied">
+    <table width='100%'>
+      <tr>
+        <td valign='middle' align='right' width='60%'>
+	  <%= Metadata::NOM_LONG_SERVICE %>
+        </td>
+        <td valign='baseline' align='left'>
+	  <a href="http://rubyonrails.org/"><%= image_tag("ruby.png", :size => "15x15",
+		:border => 0, :alt => "OSSA on rails", :title => "OSSA on rails", 
+		:align => 'baseline') %></a>
+        </td>
+      </tr>
+    </table>
+  </div><!-- end of pied -->
+
+</body>
+
+</html>

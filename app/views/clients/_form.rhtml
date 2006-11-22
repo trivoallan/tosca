@@ -1,0 +1,39 @@
+<%= error_messages_for 'client' %>
+
+<!--[form:client]-->
+
+<table><tr><td>
+
+<p><label for="client_nom">Nom</label><br/>
+<%= text_field 'client', 'nom'  %></p>
+
+<p><label for="client_description">Description</label><br/>
+<%= text_area 'client', 'description'  %></p>
+
+</td><td>
+
+<p><label for="client_mailingliste">Mailing liste</label><br/>
+<%= text_field 'client', 'mailingliste'  %></p>
+
+<p><label for="client_adresse">Adresse</label><br/>
+<%= text_area 'client', 'adresse'  %></p>
+
+</td><td>
+
+<p><label for="client_support">Niveau de support</label><br/>
+  <%= select("client", "support_id", 
+	@supports.collect{|s| [ s.nom, s.id]}) %>
+</p>
+
+<p><label for="client_code_acces">Code d'accés</label><br/>
+<%= text_field 'client', 'code_acces'  %></p>
+
+<p><label for="client_photo">Logo</label><br/>
+  <%= select("client", "photo_id", 
+	@photos.collect{|p| [ p.description, p.id]}) %>
+</p>
+
+</td></tr></table>
+
+<!--[eoform:client]-->
+

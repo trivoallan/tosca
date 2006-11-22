@@ -1,0 +1,16 @@
+<h1>Statut d'une demande</h1>
+<br />
+<br />
+
+<p><b>Liste des statuts : </b></p>
+
+<table>
+<% for statut in @statuts %>
+  <tr class=<%= "demande_" + statut.id.to_s %> >
+    <td><%=h statut.nom %></td>
+    <td><%=h statut.description %></td>
+  </tr>
+<% end %>
+</table>
+
+

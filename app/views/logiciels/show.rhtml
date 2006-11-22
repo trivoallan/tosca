@@ -1,0 +1,46 @@
+<h1> Logiciel "<%= @logiciel.nom %>" </h1>
+
+<% for column in Logiciel.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b>
+  <%=indent @logiciel.send(column.name) %>
+</p>
+<% end %>
+
+<p>
+  <b>License:</b> <%=h @logiciel.license.nom if @logiciel.license %>
+</p>
+
+ <p><b>Classifications:</b>
+    <%= @logiciel.classifications.collect{|c| c.groupe.nom+'/'+c.bouquet.nom}.join(', ') %>
+ </p>
+
+<% if (@logiciel.urllogiciels.size != 0) %>
+ <p><b>Urls:</b><ul>
+    <% @logiciel.urllogiciels.each do |urllogiciel| %>
+	<li><%= link_to urllogiciel.typeurl.nom, :action => 'show', 
+	:id => urllogiciel.id, :controller => 'urllogiciels'  %> : <%=urllogiciel.valeur%></li>
+    <% end %>
+ </ul></p>
+<% end %>
+<% if @ingenieur %>
+<ul><li><%= link_to "Ajouter une url", 
+	:action => "new", 
+	:logiciel_id => "#{@logiciel.id}",
+	:controller => 'urllogiciels' %></li></ul>
+<% end %>
+
+
+ <p><b>Competences:</b>
+    <%= @logiciel.competences.collect{|c| c.nom}.join(', ') %></p>
+
+<%= show_liste(@demandes, 'Demande') { |d| link_to_demande d } %>
+
+
+<% paquets = @logiciel.mes_paquets(@beneficiaire); %>
+<%= show_liste(paquets, 'Paquet') { |paquet| link_to_paquet paquet } %>
+
+<p>&nbsp;</p>
+
+<%= link_to 'Editer', :action => 'edit', :id => @logiciel %> |
+<%= link_to 'Retour à la liste', :action => 'list' %>

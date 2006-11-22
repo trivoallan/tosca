@@ -1,0 +1,14 @@
+<%= error_messages_for 'socle' %>
+
+<!--[form:socle]-->
+<p><label for="socle_nom">Nom</label><br/>
+<%= text_field 'socle', 'nom'  %></p>
+
+<p><label for="socle_machine">Machine</label><br/>
+<%= @socle.machine.nom if @socle.machine %>
+</p>
+
+Note : La machine du socle ne se paramètre que dans les paramètres de la machine.
+<br />
+<!--[eoform:socle]-->
+

@@ -1,0 +1,78 @@
+<% for column in Client.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @client.send(column.name) %>
+</p>
+<% end %>
+
+
+<% if @client.support %>
+<p><b>Support:</b> <%=h @client.support.nom %><br />
+   => Ouvert de <%=h @client.support.ouverture %>h à <%=h @client.support.fermeture %>h</p>
+<% end %>
+
+<% if (@client.typedemandes.size != 0) %>
+<p><b>Demandes autorisés </b>
+  <% for typedemande in @client.typedemandes %>
+  <%=h "#{typedemande.nom} " %>
+  <% end %>
+</p>
+<% else %>
+<p><b>Aucun type de demande autorisé</b></p>
+<% end %>
+
+<% if (@client.demandes.size != 0) %>
+<p><b><%=@client.demandes.size%> Demandes déclarées</b>
+  <% for demande in @client.demandes %>
+  <%=h "#{demande.id} " %>
+  <% end %>
+</p>
+<% else %>
+<p><b>Aucune demande déposée</b></p>
+<% end %>
+
+
+
+<% for contrat in @client.contrats %>
+
+<p><b>Contrat:</b> #<%= contrat.id %><br/>
+  <%=h contrat.ouverture.strftime("%d/%m/%Y") %> =>
+  <%=h contrat.cloture.strftime("%d/%m/%Y") %> <br/>
+  concernant <%= contrat.nbpaquets %> paquets :</p>
+
+  <table>
+    <tr>
+      <th>Demande</th>
+      <th>Sévérité</th>  
+      <% for column in Engagement.content_columns %>
+        <th><%= column.human_name %></th>
+      <% end %>
+    </tr>
+    
+    <% for engagement in contrat.engagements %>  
+    <tr>
+      <td><%=h engagement.typedemande.nom%></td>
+      <td><%=h engagement.severite.nom %></td>
+      <% for column in Engagement.content_columns %>
+        <td><%=h engagement.send(column.name) %></td>
+      <% end %>
+      <td><%= link_to_engagement 'Voir', 'show', engagement %></td>
+      <td><%= link_to_engagement 'Modifier', 'edit', engagement %></td>
+    </tr>
+    <% end %>
+   </table>
+<% end %>
+
+
+<% if (@client.logiciels.size != 0) %>
+<p><b>Logiciels</b>
+  <% for logiciel in @client.logiciels %>
+  <%= "#{logiciel.nom} " %>
+  <% end %>
+</p>
+<% else %>
+<p><b>Aucun logiciel rattaché</b></p>
+<% end %>
+
+
+<%= link_to 'Modifier', :action => 'edit', :id => @client %> |
+<%= link_to 'Retour', :action => 'list' %>

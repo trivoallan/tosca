@@ -1,0 +1,18 @@
+<% for column in Urllogiciel.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @urllogiciel.send(column.name) %>
+</p>
+<% end %>
+
+<p><b>Logiciel:</b> <%= link_to @urllogiciel.logiciel.nom, :controller => 'logiciels' ,
+                                                           :action => 'show', 
+                                                           :id => @urllogiciel.logiciel_id  %>
+</p>
+
+<p><b>Type:</b> <%=h @urllogiciel.typeurl.nom %>
+</p>
+
+
+<%= link_to 'Supprimer', { :action => 'destroy', :id => @urllogiciel.id }, :confirm => 'Voulez-vous vraiment supprimer cet url ?', :post => true %> | 
+<%= link_to 'Modifier', :action => 'edit', :logiciel_id => @urllogiciel.logiciel.id, :id => @urllogiciel %> |
+<%= link_to 'Liste des url\'s', :action => 'list' %>

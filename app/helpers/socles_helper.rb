@@ -1,0 +1,2 @@
+module SoclesHelper
+end

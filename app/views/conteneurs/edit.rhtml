@@ -1,0 +1,9 @@
+<h1>Editing conteneur</h1>
+
+<%= start_form_tag :action => 'update', :id => @conteneur %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<%= end_form_tag %>
+
+<%= link_to 'Show', :action => 'show', :id => @conteneur %> |
+<%= link_to 'Back', :action => 'list' %>

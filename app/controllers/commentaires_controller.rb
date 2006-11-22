@@ -1,0 +1,116 @@
+class CommentairesController < ApplicationController
+  def index
+    list
+    render :action => 'list'
+  end
+
+  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
+  verify :method => :post, :only => [ :destroy, :create, :update ],
+         :redirect_to => { :action => :list }
+
+  def list
+    @commentaire_pages, @commentaires = paginate :commentaires, :per_page => 10
+  end
+
+  def show
+    @commentaire = Commentaire.find(params[:id])
+  end
+
+  #utilisé par la vue "show" de Demande pour en ajouter un
+  def comment
+    user = @session[:user]
+    demande = Demande.find(params[:id])
+
+    if params[:demande]
+      # on regarde si le statut a changer
+      statut_modifie = true if params[:demande][:statut_id] != ''
+      params[:demande][:statut_id] = demande.statut_id unless statut_modifie
+      # à la 'prise en compte' : assignation auto à l'ingénieur
+      if  params[:demande][:statut_id] == '2' and demande.ingenieur_id.nil?
+        demande.ingenieur_id = @ingenieur.id
+      end
+    end
+
+    # public si on modifie le statut
+    params[:commentaire][:prive]=false if statut_modifie
+    # avertir ??  'Le statut a été modifié : le commentaire est <b>public</b>' if statut_modifie
+    @commentaire = Commentaire.new(params[:commentaire])
+    @commentaire.demande_id = demande.id 
+    @commentaire.piecejointe = Piecejointe.new(params[:piecejointe]) if params[:piecejointe][:file].original_filename() != ''
+    @commentaire.identifiant_id = user.id
+
+    # on vérifie et on envoie le courrier
+    if @commentaire.corps.size < 5
+      @commentaire.errors.add_on_empty('corps') 
+      flash[:warn] = 'Votre commentaire est trop court, veuillez recommencer'
+    elsif @commentaire.save and demande.update_attributes(params[:demande])
+      flash[:notice] = 'Le commentaire a bien été ajouté.'
+      unless @commentaire.prive
+        Notifier::deliver_demande_nouveau_commentaire({:demande => demande, 
+                                                        :commentaire => @commentaire, 
+                                                        :nom => user.nom, 
+                                                        :controller => self,
+                                                        :request => @request,
+                                                        :statut_modifie => statut_modifie,
+                                                        :statut => demande.statut.nom}, flash)
+      end
+    else
+      flash[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
+    end
+
+    options = { :action => 'comment', :controller => 'demandes', :id => demande }
+    redirect_to(url_for(options))
+  end
+
+  def changer_etat
+    @commentaire = Commentaire.find(params[:id])
+    return unless (params[:demande] and @commentaire)
+    # toggle inverse un statut booleen
+    if @commentaire.toggle!(:prive)
+      flash[:notice] = "Le commentaire ##{@commentaire.id} est désormais #{@commentaire.etat}"
+    else
+      flash[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas été modifié"'
+    end
+    redirect_to :controller => 'demandes', :action => 'comment', :id => params[:demande]
+  end
+
+  def new
+    @commentaire = Commentaire.new
+    @demandes = Demande.find_all
+    @identifiants = Identifiant.find_all
+    @statuts = Statut.find_all
+  end
+
+  def create
+    @commentaire = Commentaire.new(params[:commentaire])
+    if @commentaire.save
+      flash[:notice] = 'Le commentaire a bien été crée.'
+      redirect_to :action => 'list'
+    else
+      render :action => 'new'
+    end
+  end
+
+  def edit
+    @commentaire = Commentaire.find(params[:id])
+    @demandes = Demande.find_all
+    @identifiants = Identifiant.find_all
+    @statuts = Statut.find_all
+  end
+
+  def update
+    @commentaire = Commentaire.find(params[:id])
+    if @commentaire.update_attributes(params[:commentaire])
+      flash[:notice] = 'Commentaire was successfully updated.'
+      redirect_to :action => 'show', :id => @commentaire
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def destroy
+    Commentaire.find(params[:id]).destroy
+    flash[:notice] = 'Le commentaire a bien été supprimé.'
+    redirect_to :action => 'comment', :id => params[:demande], :controller => 'demandes'
+  end
+end

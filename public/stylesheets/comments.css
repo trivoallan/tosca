@@ -1,0 +1,25 @@
+
+.commentaire-public {
+	background: white;
+}
+
+.commentaire-prive {
+	background: #E2E2E2;
+}
+
+.commentaire_infos {
+	vertical-align: top;
+	align: center;
+	width: 160px;
+}
+
+.commentaire_text {
+	width: 430px;
+}
+
+.commentaire_action {
+	vertical-align: top;
+	width: 85px;
+}
+
+

@@ -1,0 +1,29 @@
+<h2><%= titre %></h2>
+
+<table>
+  <tr>
+  <% for entete in entetes %>
+     <th><%= entete %></th>
+  <% end %>
+  </tr>
+
+
+<% for donnee in donnees %>
+  <tr>
+    <% for column in donnee.members %>
+     <td><%= display donnee, column %></td>
+    <% end %>
+  </tr>
+<% end %>
+  <% cumul = @cumul.shift %>
+  <% if cumul %>
+  <tr>
+   <td colspan='<%= donnees.first.members.size %>'><hr /></td>
+  </tr>
+  <tr>
+    <% cumul.each do |column| %>
+     <td><%= column %></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>

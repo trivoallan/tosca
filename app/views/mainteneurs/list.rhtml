@@ -1,0 +1,27 @@
+<h1>Listing mainteneurs</h1>
+
+<table>
+  <tr>
+  <% for column in Mainteneur.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for mainteneur in @mainteneurs %>
+  <tr>
+  <% for column in Mainteneur.content_columns %>
+    <td><%=h mainteneur.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => mainteneur %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => mainteneur %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => mainteneur }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @mainteneur_pages.current.previous } if @mainteneur_pages.current.previous %>
+<%= link_to 'Next page', { :page => @mainteneur_pages.current.next } if @mainteneur_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New mainteneur', :action => 'new' %>

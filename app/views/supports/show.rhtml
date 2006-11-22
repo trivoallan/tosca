@@ -1,0 +1,12 @@
+<% for column in Support.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @support.send(column.name) %>
+</p>
+<% end %>
+
+  
+
+
+
+<%= link_to 'Edit', :action => 'edit', :id => @support %> |
+<%= link_to 'Back', :action => 'list' %>

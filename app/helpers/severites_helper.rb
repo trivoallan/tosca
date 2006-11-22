@@ -1,0 +1,2 @@
+module SeveritesHelper
+end
