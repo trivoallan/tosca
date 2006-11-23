@@ -1,0 +1,25 @@
+
+<table><tr><td>
+<%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
+  <p><label for="demande_resume">Spécifier une année : </label>
+  <%= text_field 'report', '', "mois" => @annee  %>
+  <%= submit_tag "Consulter" %></p>
+<%= end_form_tag %>
+</td><td>
+</td></tr></table>
+
+<h1>Historique pour l année 2006</h1>
+BlablaBla
+<%= report_table(:repartition) %>
+<%= report_table(:severite) %>
+<%= report_table(:resolution) %>
+<%= report_table(:evolution) %>
+
+<h1>Répartition pour l année 2006</h1>
+<center>
+<%= image_tag(@path[:repartition_cumulee], :alt => @titres[:repartition]) %>
+</center><center>
+<%= image_tag(@path[:severite_cumulee], :alt => @titres[:severite]) %>
+</center><center>
+<%= image_tag(@path[:resolution_cumulee], :alt => @titres[:resolution]) %>
+</center>
