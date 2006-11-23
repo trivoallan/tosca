@@ -16,7 +16,7 @@ class Gruff::PhotoBar < Gruff::Base
 #
 
   # The name of a pre-packaged photo-based theme.
-  attr_accessor :theme
+  attr_reader :theme
 
 #   def initialize(target_width=800)
 #     super

@@ -31,19 +31,17 @@ class Gruff::Line < Gruff::Base
     
     @hide_dots = @hide_lines = false
     @baseline_color = 'red'
+    @baseline_value = nil
   end
 
   def draw
     super
 
     return unless @has_data
-      
-    @x_increment = @graph_width / (@column_count - 1).to_f
-    circle_radius = clip_value_if_greater_than(@columns / (@norm_data.first[1].size * 2.5), 5.0)
-
-    @d = @d.stroke_opacity 1.0
-    @d = @d.stroke_width clip_value_if_greater_than(@columns / (@norm_data.first[1].size * 4), 5.0)
- 
+    
+    # Check to see if more than one datapoint was given. NaN can result otherwise.  
+    @x_increment = (@column_count > 1) ? (@graph_width / (@column_count - 1).to_f) : @graph_width
+     
     if (defined?(@norm_baseline)) then
       level = @graph_top + (@graph_height - @norm_baseline * @graph_height)
       @d = @d.push
@@ -55,10 +53,8 @@ class Gruff::Line < Gruff::Base
       @d = @d.pop
     end
 
-    @norm_data.each do |data_row|
+    @norm_data.each do |data_row|      
       prev_x = prev_y = nil
-      @d = @d.stroke data_row[DATA_COLOR_INDEX]
-      @d = @d.fill data_row[DATA_COLOR_INDEX]
 
       data_row[1].each_with_index do |data_point, index|
         new_x = @graph_left + (@x_increment * index)
@@ -68,9 +64,16 @@ class Gruff::Line < Gruff::Base
 
         new_y = @graph_top + (@graph_height - data_point * @graph_height)
 
-        if !@hide_lines and !prev_x.nil? and !prev_y.nil? then
+        # Reset each time to avoid thin-line errors
+        @d = @d.stroke data_row[DATA_COLOR_INDEX]
+        @d = @d.fill data_row[DATA_COLOR_INDEX]
+        @d = @d.stroke_opacity 1.0
+        @d = @d.stroke_width clip_value_if_greater_than(@columns / (@norm_data.first[1].size * 4), 5.0)
+
+        if !@hide_lines and !prev_x.nil? and !prev_y.nil? then          
           @d = @d.line(prev_x, prev_y, new_x, new_y)
         end
+        circle_radius = clip_value_if_greater_than(@columns / (@norm_data.first[1].size * 2.5), 5.0)
         @d = @d.circle(new_x, new_y, new_x - circle_radius, new_y) unless @hide_dots
 
         prev_x = new_x
@@ -83,13 +86,9 @@ class Gruff::Line < Gruff::Base
   end
 
   def normalize
-    @maximum_value = max(@maximum_value.to_f, @baseline_value.to_f)
+    @maximum_value = [@maximum_value.to_f, @baseline_value.to_f].max
     super
     @norm_baseline = (@baseline_value.to_f / @maximum_value.to_f) if @baseline_value
   end
   
-  def max(a, b)
-    (a < b ? b : a)
-  end
-
 end

@@ -1,3 +1,4 @@
+##
 # New gruff graph type added to enable sideways stacking bar charts (basically looks like a x/y
 # flip of a standard stacking bar chart)
 #
@@ -59,6 +60,7 @@ class Gruff::SideStackedBar < Gruff::Base
     end
 
     def draw
+      @has_left_labels = true
       get_maximum_by_stack
       super
 

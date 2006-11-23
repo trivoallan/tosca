@@ -13,7 +13,9 @@ RAILS_GEM_VERSION = '1.1.6'
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 require 'overrides'
+require 'utils'
 require 'config'
+# require 'gruff'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
@@ -68,6 +70,7 @@ module Metadata
   # application
   NOM_COURT_APPLICATION = "LSTM"
   NOM_LONG_APPLICATION = "Linagora Software Tracker Manager"
+  COPYRIGHT_APPLICATION = "Copyright Linagora SA 2006 - Tous droits réservés."
 
   # service
   NOM_COURT_SERVICE = "OSSA"

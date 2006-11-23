@@ -2,10 +2,7 @@
 require "observer"
 require File.dirname(__FILE__) + '/base'
 
-# EXPERIMENTAL!
-#
-# Started by Geoffrey Grosenbach at Canada on Rails, April 2006.
-#
+##
 # A scene is a non-linear graph that assembles layers together to tell a story.
 # Layers are folders with appropriately named files (see below). You can group 
 # layers and control them together or just set their values individually.
@@ -36,7 +33,7 @@ class Gruff::Scene < Gruff::Base
   #
   #  g.layers = %w(sky clouds buildings street people)
   #
-  attr_accessor :layers
+  attr_reader :layers
 
   def initialize(target_width, base_dir)
     @base_dir = base_dir
@@ -147,6 +144,8 @@ class Gruff::Layer
                           else
                             select_default
                           end
+    # Finally, try to use 'default' if we're still blank
+    @selected_filename ||= select_default
   end
 
   # Returns the full path to the selected image, or a blank string
@@ -185,12 +184,14 @@ private
   end
   
   def select_default
-    file_exists_or_blank "default"
+    @filenames.include?("default.png") ? "default.png" : ''
   end
 
-  # Returns the string "#{filename}.png", if it exists
+  # Returns the string "#{filename}.png", if it exists.
+  #
+  # Failing that, it returns default.png, or '' if that doesn't exist.
   def file_exists_or_blank(filename)
-    @filenames.include?("#{filename}.png") ? "#{filename}.png" : ''
+    @filenames.include?("#{filename}.png") ? "#{filename}.png" : select_default
   end
   
 end

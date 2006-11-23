@@ -4,6 +4,15 @@ require File.dirname(__FILE__) + '/base'
 # Experimental!!! See also the Spider graph.
 class Gruff::Net < Gruff::Base
 
+  # Hide parts of the graph to fit more datapoints, or for a different appearance.
+  attr_accessor :hide_dots
+
+  def initialize(*args)
+    super
+    
+    @hide_dots = false
+  end
+
   def draw
 
     super
@@ -121,13 +130,13 @@ private
 
 end
 
-
-class Float
-  # Used for degree => radian conversions
-  def deg2rad
-    self * (Math::PI/180.0)
-  end
-end
+# # This method is already in Float
+# class Float
+#   # Used for degree => radian conversions
+#   def deg2rad
+#     self * (Math::PI/180.0)
+#   end
+# end
 
 
 

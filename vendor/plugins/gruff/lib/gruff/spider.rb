@@ -7,9 +7,9 @@ require File.dirname(__FILE__) + '/base'
 class Gruff::Spider < Gruff::Base
   
   # Hide all text
-  attr_accessor :hide_text
+  attr_reader :hide_text
   attr_accessor :hide_axes
-  attr_accessor :transparent_background
+  attr_reader :transparent_background
   
   def transparent_background=(value)
     @transparent_background = value

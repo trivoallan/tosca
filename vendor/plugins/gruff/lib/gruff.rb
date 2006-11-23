@@ -1,15 +1,24 @@
-# Extra full path added to fix some require errors on some installations.
+# Extra full path added to fix loading errors on some installations.
 
-require File.dirname(__FILE__) + '/gruff/base'
+%w(
+  base
+  area
+  bar
+  line
+  pie
+  spider
+  net
+  stacked_bar
+  side_stacked_bar
+  side_bar
+  accumulator_bar
 
-require File.dirname(__FILE__) + '/gruff/area'
-require File.dirname(__FILE__) + '/gruff/bar'
-require File.dirname(__FILE__) + '/gruff/line'
-require File.dirname(__FILE__) + '/gruff/pie'
-require File.dirname(__FILE__) + '/gruff/spider'
-require File.dirname(__FILE__) + '/gruff/net'
-require File.dirname(__FILE__) + '/gruff/stacked_bar'
-require File.dirname(__FILE__) + '/gruff/side_stacked_bar'
-require File.dirname(__FILE__) + '/gruff/photo_bar'
+  scene
 
-require File.dirname(__FILE__) + '/gruff/scene'
+  mini/legend
+  mini/bar
+  mini/pie
+  mini/side_bar
+).each do |filename|
+  require File.dirname(__FILE__) + "/gruff/#{filename}"
+end

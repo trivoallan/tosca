@@ -2,109 +2,172 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DemandesController < ApplicationController
-
-  SRepartition = Struct.new("Repartition", :periode,:informations,
-                           :anomalies, :demandes)
-
-  SSeverite = Struct.new("Severite", :periode, :bloquante, :majeure,
-                        :mineure, :sansobjet, :demandes )
-
-  SResolution = Struct.new("Resolution", :periode, :annulee, 
-                          :cloturee, :encours, :demandes)
-
-  SLogiciel = Struct.new("SLogiciel", :logiciel, :demandes)
-  SDemande = Struct.new("SDemande", :id, :temps_ecoule, 
-                        :contournement, :correction, 
-                        :respect_contournement,
-                        :respect_correction)
-
-
   before_filter :verifie, 
   :only => [ :comment, :edit, :update, :destroy, :changer_statut ]
 
   helper :correctifs
 
-  def report
-    # @client = Client.find(params[:id])
-    # @demandes = Demande.find(:all)
-    @repartitions, @severites, @cumul, @resolutions = [], [], [], []
-    @start = Time.mktime("2006") 
+  @@titres = { 
+    :repartition => 'Répartition des demandes reçues',
+    :repartition_cumulee => 'Répartition des demandes reçues',
+    :severite => 'Sévérité des demandes reçues',
+    :severite_cumulee => 'Sévérité des demandes reçues',
+    :resolution => 'Résolution des demandes reçues',
+    :resolution_cumulee => 'Résolution des demandes reçues',
+    }
 
-    anomalies = { :conditions => "typedemande_id = 1" }
-    informations = { :conditions => "typedemande_id = 2" }
 
-    severites = []
-    4.times do |i|
-      severites.concat [ { :conditions => "severite_id = #{i+1}" } ]
+  def write_graph(elements, nom, graph)
+    donnees = elements[nom]
+    g = graph.new
+    g.sort = false
+
+    g.title = @@titres[nom]
+    g.theme_37signals
+    # g.font =  File.expand_path('public/font/VeraBd.ttf', RAILS_ROOT)
+    donnees.each {|value| g.data(value[0], value[1..-1]) }
+    g.labels = @dates
+
+    # this writes the file to the hard drive for caching
+    g.write "public/#{@path[nom]}"
+  end
+
+  def test
+    require 'digest/sha1'
+    @titres = @@titres
+    jour = Date.today.strftime "%j%Y"
+    qui = (@beneficiaire ? @beneficiaire.client : 'tous')
+    @path = {}
+
+    init_report
+    @historiques.each_key do |nom|
+      sha1 = Digest::SHA1.hexdigest("-#{jour}-#{qui}-#{nom}-") 
+      @path[nom] = "/reporting/#{sha1}.png"
     end
 
+    @repartitions.each_key do |nom|
+      sha1 = Digest::SHA1.hexdigest("-#{jour}-#{qui}-#{nom}-") 
+      @path[nom] = "/reporting/#{sha1}.png"
+    end
+
+
+    #un peu de cache homemade : une génération par jour
+    report
+    # return if File.exist?("public/#{@path[:repartition]}")
+
+    #on nettoie 
+    reporting = File.expand_path('public/reporting', RAILS_ROOT)
+    rmtree(reporting)
+    Dir.mkdir(reporting)
+
+    #on remplit
+    self.write_graph(@historiques, :repartition, Gruff::StackedBar)
+    self.write_graph(@historiques, :severite, Gruff::StackedBar)
+    self.write_graph(@historiques, :resolution, Gruff::StackedBar)
+    self.write_graph(@historiques, :evolution, Gruff::Line)
+
+    self.write_graph(@repartitions, :repartition_cumulee, Gruff::Pie)
+    self.write_graph(@repartitions, :severite_cumulee, Gruff::Pie)
+    self.write_graph(@repartitions, :resolution_cumulee, Gruff::Pie)
+    
+  end
+
+  def init_report
+    @historiques = {}
+    @repartitions = {}
+
+    @historiques[:repartition]  = 
+      [ [:anomalies], [:informations], [:evolutions] ]
+    @historiques[:severite] = 
+      [ [:bloquante], [:majeure], [:mineure], [:sansobjet] ]
+    @historiques[:resolution] = 
+      [ [:cloturee], [:annulee], [:encours] ]
+    @historiques[:evolution] = 
+      [ [:beneficiaires], [:logiciels] ] # , [:correctifs]
+
+    @repartitions[:repartition_cumulee] = 
+      [ [:anomalies], [:informations], [:evolutions] ]
+    # @historiques[:repartition].dup
+    @repartitions[:severite_cumulee] = 
+      [ [:bloquante], [:majeure], [:mineure], [:sansobjet] ]
+    @repartitions[:resolution_cumulee] = 
+      [ [:cloturee], [:annulee], [:encours] ]
+    
+  end
+
+  def report_repartition(report)
+    anomalies = { :conditions => "typedemande_id = 1" }
+    informations = { :conditions => "typedemande_id = 2" }
+    evolutions = { :conditions => "typedemande_id = 5" }
+
+    report[0].push Demande.count(anomalies)
+    report[1].push Demande.count(informations)
+    report[2].push Demande.count(evolutions)
+  end
+
+  def report_severite(report)
+    severites = []
+    (1..4).each do |i|
+      severites.concat [ { :conditions => "severite_id = #{i}" } ]
+    end
+
+    4.times do |t|
+      report[t].push Demande.count(severites[t])
+    end
+  end
+
+  def report_resolution(report)
     cloturee = { :conditions => "statut_id = 7" }
     annulee = { :conditions => "statut_id = 8" }
     encours = { :conditions => "statut_id NOT IN (7,8)" }
 
-    until (@start > Time.mktime("2006", 10)) do 
-      infdate = "'" + @start.strftime('%y-%m') + "-01'"
-      supdate = "'" + (@start.advance(:months => 1)).strftime('%y-%m') + "-01'"
+    report[0].push Demande.count(cloturee)
+    report[1].push Demande.count(annulee)
+    report[2].push Demande.count(encours)
+  end
+
+  def report_evolution(report)
+    beneficiaires = { }
+    logiciels = {}
+#    correctifs = {}
+
+    report[0].push Demande.count('beneficiaire_id', :distinct => true)
+    report[1].push Demande.count('logiciel_id', :distinct => true)
+#    report[2].push Demande.count(encours)   
+  end
+
+
+  def report
+    init_report unless @historiques
+    # @client = Client.find(params[:id])
+    # @demandes = Demande.find(:all)
+    @severite, @cumul, @resolution = {}, [], [], []
+    start = Time.mktime("2006") 
+
+    @dates = {}
+    i = 0
+    until (start > Time.mktime("2006", 12)) do 
+      infdate = "'" + start.strftime('%y-%m') + "-01'"
+      supdate = "'" + (start.advance(:months => 1)).strftime('%y-%m') + "-01'"
       
       conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
-      date = @start.strftime('%b %y')
-
+      date = start.strftime('%b')
+      @dates[i] = date
+      i += 1
       Demande.with_scope({ :find => { :conditions => conditions } }) do
         demandes = Demande.count
-        @repartitions << 
-          SRepartition.new(date, Demande.count(anomalies),
-                          Demande.count(informations), demandes )
-        @severites <<
-          SSeverite.new(date, Demande.count(severites[0]), 
-                       Demande.count(severites[1]), Demande.count(severites[2]),
-                       Demande.count(severites[3]), demandes)
-        
-        @resolutions <<
-          SResolution.new(date, Demande.count(annulee), Demande.count(cloturee), 
-                          Demande.count(encours), demandes)
+        report_repartition @historiques[:repartition]
+        report_severite @historiques[:severite]     
+        report_resolution @historiques[:resolution]
+        report_evolution @historiques[:evolution]
       end
-      @start = @start.advance(:months => 1)
+      start = start.advance(:months => 1)
     end
 
-    total = 'Total'
-    demandes = Demande.count
-    @cumul << 
-      SRepartition.new(total, Demande.count(anomalies),
-                      Demande.count(informations), demandes )
-    @cumul << 
-      SSeverite.new(total, Demande.count(severites[0]), 
-                   Demande.count(severites[1]), Demande.count(severites[2]),
-                   Demande.count(severites[3]), demandes)
-    
-    @cumul <<
-      SResolution.new(total, Demande.count(annulee), Demande.count(cloturee), 
-                     Demande.count(encours), demandes)
+    report_repartition @repartitions[:repartition_cumulee]
+    report_severite @repartitions[:severite_cumulee]
+    report_resolution @repartitions[:resolution_cumulee]
 
-    if @beneficiaire
-      @contrats = @beneficiaire.client.contrats
-    else
-      @contrats = Contrat.find(:all)
-    end
-    @demandes = {}
-    @contrats.each do |c| 
-      @demandes[c.id] = c.demandes.map { |d| 
-        engagement = d.engagement(c.id)
-        SDemande.new(d.id, d.affiche_temps_ecoule, engagement.contournement, 
-                     engagement.correction, d.respect_contournement(c.id), 
-                     d.respect_correction(c.id))
-      }
-    end
-      
-
-
-    logiciels = Demande.count(:group => "logiciel_id")
-    logiciels = logiciels.sort {|a,b| a[1]<=>b[1]}.reverse
-    #TODO : optimiser ça, ne faire un find que sur les 5 premiers
-    @logiciels = logiciels.map { |key, value| 
-      SLogiciel.new(Logiciel.find(key).nom, value)
-    }
-    @logiciels = @logiciels[0..4]
-    
   end
 
   # verifie :
@@ -186,7 +249,7 @@ class DemandesController < ApplicationController
 
     if filtres[:client_id]
       ids = Beneficiaire.find_all_by_client_id(filtres[:client_id]).collect{|b| [ b.id ]}
-      query.push " demandes.beneficiaire_id IN (#{ids.join(',')})"
+      query.push " demandes.beneficiaire_id IN (#{ids.join(',')})" unless ids.empty?
     end
 
     if filtres[:recherche_demande]

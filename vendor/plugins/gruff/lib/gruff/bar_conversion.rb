@@ -1,28 +1,13 @@
-##############################################################################
+##
+# Original Author: David Stokar
 #
-#  Ruby Gruff/bar_conversion 
+#	This class perfoms the y coordinats conversion for the bar class.
 #
-#  Copyright: David Stokar
+#	There are three cases: 
 #
-#  Date Written: 2006/01/27
-#
-#  $Revision$
-#
-#  $Log$
-#  Revision 1.1  2006/11/22 10:49:08  mloiseleur
-#  gruff
-#
-#  $Log$
-#  Revision 1.1  2006/11/22 10:49:08  mloiseleur
-#  gruff
-#
-##############################################################################
-
-#
-#	This class perfoms the y coordinats conversion for the bar class
-#	There are 3 cases: 1. Bars all go from zero in positiv direction
-#					   2. Bars all go from zero to negativ direction	
-#					   3. Bars either go from zero to positiv or from zero to negativ	
+#   1. Bars all go from zero in positive direction
+#		2. Bars all go from zero to negative direction	
+#		3. Bars either go from zero to positive or from zero to negative
 #
 class Gruff::BarConversion
 	attr_writer :mode
