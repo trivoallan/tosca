@@ -79,7 +79,7 @@ class CorrectifsController < ApplicationController
   private
   def _form
     @logiciels = Logiciel.find_all
-    @paquets = []
+    @paquets = @correctif.paquets || []
   end
 
   # Scope recopié dans le reporting (report_evolution

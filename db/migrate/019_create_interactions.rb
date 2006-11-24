@@ -4,7 +4,7 @@
 class CreateInteractions < ActiveRecord::Migration
   def self.up
     create_table :interactions, :id => false do |t|
-      t.column :nom, :string, :null => false
+      t.column :resume, :string, :null => false
       t.column :url, :string, :null => false
       t.column :logiciel_id, :integer, :null => false
       t.column :ingenieur_id, :integer, :null => false

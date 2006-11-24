@@ -9,6 +9,9 @@ class ReportingController < ApplicationController
     :severite_cumulee => 'Sévérité des demandes reçues',
     :resolution => 'Résolution des demandes reçues',
     :resolution_cumulee => 'Résolution des demandes reçues',
+    :evolution => 'Evolution de nos interventions',
+    :top5_demandes => 'Top 5 des demandes les plus discutées',
+    :top5_logiciels => 'Top 5 des logiciels les plus défectueux',
     }
 
   def index
@@ -42,14 +45,15 @@ class ReportingController < ApplicationController
     Dir.mkdir(reporting)
 
     #on remplit
-#      write_graph(@donnees, :repartition, Gruff::StackedBar)
-#      write_graph(@donnees, :severite, Gruff::StackedBar)
-#      write_graph(@donnees, :resolution, Gruff::StackedBar)
-    write_graph(@donnees, :evolution, Gruff::Line)
-
-#      write_graph(@donnees, :repartition_cumulee, Gruff::Pie)
-#      write_graph(@donnees, :severite_cumulee, Gruff::Pie)
-#      write_graph(@donnees, :resolution_cumulee, Gruff::Pie)
+#    write_graph(:top5_demandes, Gruff::Line)
+    write_graph(:top5_logiciels, Gruff::Pie)
+#      write_graph(:repartition, Gruff::StackedBar)
+#      write_graph(:severite, Gruff::StackedBar)
+#      write_graph(:resolution, Gruff::StackedBar)
+#      write_graph(:evolution, Gruff::Line)
+#      write_graph(:repartition_cumulee, Gruff::Pie)
+#      write_graph(:severite_cumulee, Gruff::Pie)
+#      write_graph(:resolution_cumulee, Gruff::Pie)
     
   end
 
@@ -64,7 +68,13 @@ class ReportingController < ApplicationController
     @donnees[:resolution] = 
       [ [:cloturee], [:annulee], [:encours] ]
     @donnees[:evolution] = 
-      [ [:beneficiaires], [:logiciels] ] # TODO : [:correctifs], [:interactions]
+      [ [:beneficiaires], [:logiciels], [:correctifs] ] # TODO : [:correctifs], [:interactions]
+
+    @donnees[:top5_logiciels] =
+      [ [:logiciel], [:demandes] ]
+
+    @donnees[:top5_demandes] =
+      [ [:demandes], [:commentaires] ]
 
     @donnees[:repartition_cumulee] = 
       [ [:anomalies], [:informations], [:evolutions] ]
@@ -85,11 +95,11 @@ class ReportingController < ApplicationController
       infdate = "'" + start_date.strftime('%y-%m') + "-01'"
       supdate = "'" + (start_date.advance(:months => 1)).strftime('%y-%m') + "-01'"
       
-      conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
+      @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
       date = start_date.strftime('%b')
       @dates[i] = date
       i += 1
-      Demande.with_scope({ :find => { :conditions => conditions } }) do
+      Demande.with_scope({ :find => { :conditions => @conditions } }) do
         report_repartition @donnees[:repartition]
         report_severite @donnees[:severite]     
         report_resolution @donnees[:resolution]
@@ -101,15 +111,25 @@ class ReportingController < ApplicationController
     start_date = Time.mktime(@annee) 
     infdate = "'" + start_date.strftime('%y-%m') + "-01'"
     supdate = "'" + end_date.strftime('%y-%m') + "-01'"
-    conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
-    Demande.with_scope({ :find => { :conditions => conditions } }) do
+    @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
+    @demande_ids = Demande.find(:all, :select => 'demandes.id').join(',')
+    Demande.with_scope({ :find => { :conditions => @conditions } }) do
       report_repartition @donnees[:repartition_cumulee]
       report_severite @donnees[:severite_cumulee]
       report_resolution @donnees[:resolution_cumulee]
+
+      report_top5_logiciels @donnees[:top5_logiciels]
+      # report_top5_demandes @donnees[:top5_demandes]
     end
   end
 
+  def report_top5_logiciels(report)
+    logiciels = Demande.count(:group => "logiciel_id")
+    logiciels = logiciels.sort {|a,b| a[1]<=>b[1]}
 
+    report[0].push logiciels.size
+    report[1].push logiciels.size
+  end
 
   def report_repartition(report)
     anomalies = { :conditions => "typedemande_id = 1" }
@@ -143,18 +163,18 @@ class ReportingController < ApplicationController
   end
 
   def report_evolution(report)
-    # Manque le scope des dates ...
-    # fuck ...
-    if @beneficiaire
-      ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
-      conditions = [ "paquets.contrat_id IN (#{ids})" ]
-      joins= 'INNER JOIN correctifs_paquets cp ON cp.correctif_id = correctifs.id ' +
-        'INNER JOIN paquets ON cp.paquet_id = paquet.id '
-      correctifs = Correctif.count(:conditions => conditions, :joins => joins)
-    else
-      correctifs = Correctif.count()
+    correctifs = 0
+    Correctif.with_scope({ :find => { :conditions => @conditions } }) do
+      if @beneficiaire
+        ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
+        conditions = [ "paquets.contrat_id IN (#{ids})" ]
+        joins= 'INNER JOIN correctifs_paquets cp ON cp.correctif_id = correctifs.id ' +
+          'INNER JOIN paquets ON cp.paquet_id = paquet.id '
+        correctifs = Correctif.count(:conditions => conditions, :joins => joins)
+      else
+        correctifs = Correctif.count()
+      end
     end
-
 
     report[0].push Demande.count('beneficiaire_id', :distinct => true)
     report[1].push Demande.count('logiciel_id', :distinct => true)
@@ -162,17 +182,16 @@ class ReportingController < ApplicationController
   end
 
 
-  def write_graph(elements, nom, graph)
-    donnees = elements[nom]
+  def write_graph(nom, graph)
     g = graph.new
     g.sort = false
 
     g.title = @@titres[nom]
     g.theme_37signals
     # g.font =  File.expand_path('public/font/VeraBd.ttf', RAILS_ROOT)
-    donnees.each {|value| g.data(value[0], value[1..-1]) }
+    @donnees[nom].each {|value| g.data(value[0], value[1..-1]) }
     g.labels =  Date::ABBR_MONTHS_LSTM
-    g.hide_dots = true
+    g.hide_dots = true if g.respond_to? :hide_dots
     g.no_data_message = 'Aucune donnée\n disponible'
 
     # this writes the file to the hard drive for caching
