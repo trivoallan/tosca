@@ -1,0 +1,30 @@
+<%= error_messages_for 'interaction' %>
+
+<!--[form:interaction]-->
+<p><label for="interaction_url_de_suivi">Url de suivi</label><br/>
+<%= text_area 'interaction', 'url_de_suivi'  %></p>
+
+<p><label for="reversement_logiciel">Logiciel</label><br/>
+<%= select("reversement", "logiciel_id", 
+           @logiciels.collect{|l| [ l.nom, l.id]}) %></p>
+
+<p><label for="reversement_ingenieur">Ingénieur</label><br/>
+<%= select("reversement", "ingenieur_id", 
+           @ingenieurs.collect{|l| [ l.nom, l.id]}) %></p>
+
+<p><label for="interaction_temps_passe">Temps passe</label><br/>
+<%= text_field 'interaction', 'temps_passe'  %></p>
+
+<p><label for="interaction_resume">Resume</label><br/>
+<%= text_field 'interaction', 'resume'  %></p>
+
+<p><label for="interaction_description">Description</label><br/>
+<%= text_area 'interaction', 'description'  %></p>
+
+<p><label for="interaction_created_on">Created on</label><br/>
+<%= datetime_select 'interaction', 'created_on'  %></p>
+
+<p><label for="interaction_updated_on">Updated on</label><br/>
+<%= datetime_select 'interaction', 'updated_on'  %></p>
+<!--[eoform:interaction]-->
+

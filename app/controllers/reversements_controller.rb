@@ -60,6 +60,8 @@ class ReversementsController < ApplicationController
   private
   def _form
     @correctifs = Correctif.find_all
+    @interactions = Interaction.find_all
+    @etatreversements = Etatreversement.find_all
   end
 
   def scope_beneficiaire

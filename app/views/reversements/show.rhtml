@@ -1,8 +1,9 @@
-<p><b>Nom:</b> <%=h @reversement.nom %></p>
+<p><b>Résumé Intéraction:</b> <%=h @reversement.interaction.resume if @reversement.interaction %></p>
 <p><b>Commentaire:</b> <%=h @reversement.commentaire %></p>
-<p><b>Suivi:</b> <%=h @reversement.url_de_suivi %></p>
+<p><b>Suivi:</b> <%=h @reversement.interaction.url_de_suivi if @reversement.interaction %></p>
 <% if @reversement.accepte %>
-<p><b>Reversement validé le :</b> <%=h @reversement.url_de_suivi.strftime "%A %d %b %Y" %></p>
+<p><b>Reversement validé le :</b> 
+   <%=h @reversement.interaction.url_de_suivi.strftime "%A %d %b %Y" if @reversement.interaction %></p>
 <% else %>
 <p><b>Reversement en cours de discussion</b></p>
 <% end %>

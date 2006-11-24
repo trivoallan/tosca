@@ -1,17 +1,12 @@
 <%= error_messages_for 'reversement' %>
 
 <!--[form:reversement]-->
-<p><label for="reversement_nom">Nom</label><br/>
-<%= text_field 'reversement', 'nom'  %></p>
 
 <p><label for="reversement_commentaire">Commentaire</label><br/>
 <%= text_area 'reversement', 'commentaire'  %></p>
 
-<p><label for="reversement_url_de_suivi">Url de suivi</label><br/>
-<%= text_area 'reversement', 'url_de_suivi'  %></p>
-
-<p><label for="reversement_accepte_le">Accepte le</label><br/>
-<%= datetime_select 'reversement', 'accepte_le'  %></p>
+<p><label for="reversement_cloture">Accepte le</label><br/>
+<%= datetime_select 'reversement', 'cloture'  %></p>
 
 <p><label for="reversement_accepte">Accepte</label><br/>
 <%= check_box 'reversement', 'accepte'  %></p>
@@ -19,6 +14,14 @@
 <p><label for="reversement_correctif">Correctifs</label><br/>
 <%= select("reversement", "correctif_id", 
            @correctifs.collect{|l| [ l.nom, l.id]}) %></p>
+
+<p><label for="reversement_interaction">Intéraction liée</label><br/>
+<%= select("reversement", "interaction_id", 
+           @interactions.collect{|l| [ l.resume[0..20], l.id]}) %></p>
+
+<p><label for="reversement_etatreversement">Etat</label><br/>
+<%= select("reversement", "etatreversement_id", 
+           @etatreversements.collect{|l| [ l.nom, l.id]}) %></p>
 
 <p><label for="reversement_created_on">Créé le</label><br/>
 <%= datetime_select 'reversement', 'created_on'  %></p>

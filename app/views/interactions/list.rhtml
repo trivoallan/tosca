@@ -1,0 +1,31 @@
+<h1>Listing interactions</h1>
+
+<table>
+  <tr>
+  <% for column in Interaction.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+    <th>Logiciel</th>
+    <th>Ingenieur</th>
+  </tr>
+  
+<% for interaction in @interactions %>
+  <tr>
+  <% for column in Interaction.content_columns %>
+    <td><%=h interaction.send(column.name) %></td>
+  <% end %>
+    <td><%=h interaction.logiciel.nom if interaction.logiciel %></td>
+    <td><%=h interaction.ingenieur.nom if interaction.ingenieur %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => interaction %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => interaction %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => interaction }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @interaction_pages.current.previous } if @interaction_pages.current.previous %>
+<%= link_to 'Next page', { :page => @interaction_pages.current.next } if @interaction_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New interaction', :action => 'new' %>

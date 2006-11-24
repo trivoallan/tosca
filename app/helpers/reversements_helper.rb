@@ -3,7 +3,12 @@
 #####################################################
 module ReversementsHelper
   def link_to_reversement(reversement)
-    link_to reversement.nom,:controller => 'reversements',
+    if reversement.interaction
+      display = reversement.interaction.resume 
+    else 
+      display = "le reversement est orphelin : il n'est pas lié à une interaction"
+    end
+    link_to display, :controller => 'reversements',
     :action => 'show', :id => reversement.id
   end
 end

@@ -3,6 +3,7 @@
 #####################################################
 class Reversement < ActiveRecord::Base
   belongs_to :correctif
+  belongs_to :interaction
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary || 

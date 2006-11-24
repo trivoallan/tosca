@@ -11,6 +11,8 @@ class Logiciel < ActiveRecord::Base
   has_many :urllogiciels, :dependent => :destroy
   has_many :paquets, :order => "version DESC", :dependent => :destroy
 
+  has_many :interactions
+
   validates_presence_of :competences => 
     "Vous devez spécifier au moins une competence" 
 
