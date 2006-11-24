@@ -46,7 +46,7 @@ class ReportingController < ApplicationController
 
     #on remplit
 #    write_graph(:top5_demandes, Gruff::Line)
-    write_graph(:top5_logiciels, Gruff::Pie)
+#    write_graph(:top5_logiciels, Gruff::Pie)
 #      write_graph(:repartition, Gruff::StackedBar)
 #      write_graph(:severite, Gruff::StackedBar)
 #      write_graph(:resolution, Gruff::StackedBar)
@@ -70,11 +70,9 @@ class ReportingController < ApplicationController
     @donnees[:evolution] = 
       [ [:beneficiaires], [:logiciels], [:correctifs] ] # TODO : [:correctifs], [:interactions]
 
-    @donnees[:top5_logiciels] =
-      [ [:logiciel], [:demandes] ]
-
-    @donnees[:top5_demandes] =
-      [ [:demandes], [:commentaires] ]
+    #Pushed by the functor
+    @donnees[:top5_logiciels] = [ ]
+    @donnees[:top5_demandes] = [ ] 
 
     @donnees[:repartition_cumulee] = 
       [ [:anomalies], [:informations], [:evolutions] ]
@@ -126,9 +124,13 @@ class ReportingController < ApplicationController
   def report_top5_logiciels(report)
     logiciels = Demande.count(:group => "logiciel_id")
     logiciels = logiciels.sort {|a,b| a[1]<=>b[1]}
+    5.times do |i|
+      values = logiciels.pop
+      nom = Logiciel.find(values[0]).nom
+      report.push [ :"#{nom}" ]
+      report[i].push values[1]
+    end
 
-    report[0].push logiciels.size
-    report[1].push logiciels.size
   end
 
   def report_repartition(report)
