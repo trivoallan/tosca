@@ -6,6 +6,8 @@ class Correctif < ActiveRecord::Base
   has_many :demandes
   has_many :reversements, :dependent => :destroy
 
+  has_and_belongs_to_many :paquets
+
   file_column :patch
 
   validates_length_of :nom, :within => 3..25

@@ -4,14 +4,16 @@ class CreateCorrectifsPaquets < ActiveRecord::Migration
       t.column :correctif_id, :integer, :null => false
       t.column :paquet_id, :integer, :null => false
     end
-    add_index :documents, :typedocument_id
-    add_index :documents, :client_id
-    add_column :correctifs, :logiciel_id, :integer, :null => false
-    add_index :correctifs, :logiciel_id
+    add_index :correctifs_paquets, :paquet_id
+    add_index :correctifs_paquets, :correctif_id
+
+    # modification des correctifs pour leur indépendances (!)
+    add_column :correctifs, :id_mantis, :integer, :null => true
+
   end
 
   def self.down
     drop_table :correctifs_paquets
-    remove_column :correctifs, :logiciel_id
+    remove_column :correctifs, :id_mantis
   end
 end

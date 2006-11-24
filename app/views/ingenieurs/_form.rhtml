@@ -21,13 +21,7 @@
 </p>
 
 <p><label for="ingenieur_contrat">Contrats</label><br/>
-<% for contrat in @contrats %>
-  <input type="checkbox" id="<%=contrat.id%>" 
-	name="contrat_ids[]" value="<%=contrat.id%>"
-	<%if @ingenieur.contrats and @ingenieur.contrats.include? contrat%> checked="checked" <%end%>
-  > 
-  <%= contrat.client.nom %> de <%= contrat.ouverture %> à <%= contrat.cloture %><br />
-<% end %>
+<%= hbtm_check_box( @ingenieur.contrats, @contrats, 'contrats_ids') %>
 </p>
 
 <!--[eoform:ingenieur]-->

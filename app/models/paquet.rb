@@ -15,7 +15,7 @@ class Paquet < ActiveRecord::Base
   belongs_to :conteneur
 
   has_and_belongs_to_many :demandes
-
+  has_and_belongs_to_many :correctifs
 
   def self.content_columns 
     @content_columns ||= columns.reject { |c| c.primary || 

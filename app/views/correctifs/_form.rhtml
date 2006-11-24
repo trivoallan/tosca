@@ -7,6 +7,34 @@
 <p><label for="correctif_description">Description</label><br/>
 <%= text_area 'correctif', 'description'  %></p>
 
+<% if @ingenieur %>
+<p><label for="correctif_id_mantis">Id Mantis</label><br/>
+<%= text_field 'correctif', 'id_mantis'  %></p>
+<% end %>
+
+<p><label for="paquet_socle">Logiciel</label><br/>
+  <% options = { :include_blank => true } %>
+  <% donnees = @logiciels.collect{|l| [ l.nom, l.id]} %>
+  <%= select("logiciel", "id", donnees, options) %>
+<%= image_tag("images/spinner.gif",
+              :align => 'absmiddle',
+              :border=> 0,
+              :id => "spinner",
+              :style=>"display: none;" ) %>
+</p>
+
+<%= observe_field 'logiciel',  
+         :update => 'paquets',
+         :before => "Element.show('spinner')",
+         :success => "Element.hide('spinner')",
+         :url => {:action => 'ajax_paquets'},
+         :with => 'query' %>
+
+<div id="paquets">
+<%= render :partial => "liste_paquets" %>
+</div>
+
+
 <p><label for="correctif_patch">Patch</label><br/>
 <%= file_column_field 'correctif', 'patch'  %></p>
 

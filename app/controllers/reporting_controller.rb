@@ -143,13 +143,22 @@ class ReportingController < ApplicationController
   end
 
   def report_evolution(report)
-    beneficiaires = { }
-    logiciels = {}
-#    correctifs = {}
+    # Manque le scope des dates ...
+    # fuck ...
+    if @beneficiaire
+      ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
+      conditions = [ "paquets.contrat_id IN (#{ids})" ]
+      joins= 'INNER JOIN correctifs_paquets cp ON cp.correctif_id = correctifs.id ' +
+        'INNER JOIN paquets ON cp.paquet_id = paquet.id '
+      correctifs = Correctif.count(:conditions => conditions, :joins => joins)
+    else
+      correctifs = Correctif.count()
+    end
+
 
     report[0].push Demande.count('beneficiaire_id', :distinct => true)
     report[1].push Demande.count('logiciel_id', :distinct => true)
-#    report[2].push Demande.count(encours)   
+    report[2].push correctifs
   end
 
 

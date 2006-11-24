@@ -29,6 +29,7 @@ class CorrectifsController < ApplicationController
 
   def new
     @correctif = Correctif.new
+    _form
   end
 
   def create
@@ -43,17 +44,18 @@ class CorrectifsController < ApplicationController
 
   def edit
     @correctif = Correctif.find(params[:id])
+    _form
   end
 
   def update
     @correctif = Correctif.find(params[:id])
-    @logiciels = Logiciel.find_all
     @correctif.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
     @correctif.demandes = Demande.find(@params[:demande_ids]) if @params[:demande_ids]
     if @correctif.update_attributes(params[:correctif])
       flash[:notice] = 'Le correctif suivant a bien été mis à jour : </br><i>'+@correctif.description+'</i>'
       redirect_to :action => 'list', :id => @correctif
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -63,16 +65,32 @@ class CorrectifsController < ApplicationController
     redirect_to :action => 'list'
   end
 
+
+  def ajax_paquets
+    return unless request.xml_http_request? and @params[:query]
+
+    @paquets = Paquet.find_all_by_logiciel_id(@params[:query].to_i)
+    render :partial => "liste_paquets", :layout => false
+  end
+
   private
+  def _form
+    @logiciels = Logiciel.find_all
+    @paquets = []
+  end
+
+  # Scope recopié dans le reporting (report_evolution
+  # TODO : trouver une façon de faire unique !
   def scope_beneficiaire
     if @beneficiaire
-      conditions = [ "beneficiaires.client_id = ?", @beneficiaire.client_id ]
+      ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
+      conditions = [ "paquets.contrat_id IN (#{ids})" ]
       Correctif.with_scope({ :find => { 
                                :conditions => conditions,
-                               :joins => 'INNER JOIN demandes ON ' + 
-                                 'demandes.correctif_id = correctifs.id ' +
-                                 'INNER JOIN beneficiaires ON ' + 
-                                 'demandes.beneficiaire_id = beneficiaires.id '
+                               :joins => 'INNER JOIN correctifs_paquets cp ON ' + 
+                                 'cp.correctif_id = correctifs.id ' +
+                                 'INNER JOIN paquets ON ' + 
+                                 'cp.paquet_id = paquet.id '
                              },
                         }) { yield }
     else
