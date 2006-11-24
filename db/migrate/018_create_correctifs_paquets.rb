@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class CreateCorrectifsPaquets < ActiveRecord::Migration
   def self.up
     create_table :correctifs_paquets, :id => false do |t|
