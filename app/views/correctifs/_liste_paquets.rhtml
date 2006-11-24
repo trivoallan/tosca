@@ -1,0 +1,7 @@
+<% if @correctif %>
+  <%= hbtm_check_box( @correctif.paquets, @paquets, 'paquets_ids') %>
+<% else %>
+  <%= hbtm_check_box( [], @paquets, 'paquets_ids') %>
+<% end %>
+
+

@@ -26,8 +26,12 @@ class Paquet < ActiveRecord::Base
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
-  #return a string in the format %nom-%version-%release
-  def to_display
-    "#{nom}-#{version}-#{release}"
+  # display
+  def to_s
+    "(#{socle.nom}) (#{arch.nom}) #{nom}-#{version}-#{release} "
   end
+
+  # TODO : virer TOUT les to_display et les surcharges de nom de tous les modèles
+  alias_method :to_display, :to_s
+
 end

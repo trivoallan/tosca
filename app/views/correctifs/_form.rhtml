@@ -23,7 +23,7 @@
               :style=>"display: none;" ) %>
 </p>
 
-<%= observe_field 'logiciel',  
+<%= observe_field 'logiciel_id',  
          :update => 'paquets',
          :before => "Element.show('spinner')",
          :success => "Element.hide('spinner')",

@@ -31,7 +31,7 @@ module ApplicationHelper
       out << "<input type=\"checkbox\" id=\"#{donnee.id}\" "
       out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
       out << 'checked="checked" ' if objectcollection.include? donnee
-      out << "> #{donnee.nom} <br />"
+      out << "> #{donnee.to_s} <br />"
     end
     out
   end
