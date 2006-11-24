@@ -10,6 +10,9 @@ Date::DAYNAMES = %w(Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche )
 Date::ABBR_MONTHNAMES = [nil] + %w(jan fév mar avr mai juin juil aoû sep oct nov déc)
 Date::ABBR_DAYNAMES = %w(lun mar mer jeu ven sam dim)
 
+
+Date::ABBR_MONTHS_LSTM = { 0 => 'jan', 1 => 'fév', 2 => 'mar', 3 => 'avr', 4 => 'mai', 5 => 'juin', 6 => 'juil', 7 => 'aoû', 8 => 'sep', 9 => 'oct', 10 => 'nov', 11 => 'déc' }
+
 class Time
   alias :strftime_nolocale :strftime
   

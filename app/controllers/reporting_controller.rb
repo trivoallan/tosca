@@ -19,24 +19,21 @@ class ReportingController < ApplicationController
   def general
     require 'digest/sha1'
     @titres = @@titres
-    jour = Date.today.strftime "%j%Y"
+    @annee = params[:id] || Time.now.year.to_s
+    jour = Date.today.strftime "%j" + @annee
     qui = (@beneficiaire ? @beneficiaire.client : 'tous')
     @path = {}
+    @first_col = Date::MONTHNAMES[1..-1] + [ "<b>#{@annee}</b>" ]
 
     init_report
-    @historiques.each_key do |nom|
-      sha1 = Digest::SHA1.hexdigest("-#{jour}-#{qui}-#{nom}-") 
-      @path[nom] = "/reporting/#{sha1}.png"
-    end
-
-    @repartitions.each_key do |nom|
+    @donnees.each_key do |nom|
       sha1 = Digest::SHA1.hexdigest("-#{jour}-#{qui}-#{nom}-") 
       @path[nom] = "/reporting/#{sha1}.png"
     end
 
 
     #un peu de cache homemade : une génération par jour
-    report
+    report 
     # return if File.exist?("public/#{@path[:repartition]}")
 
     #on nettoie 
@@ -45,71 +42,71 @@ class ReportingController < ApplicationController
     Dir.mkdir(reporting)
 
     #on remplit
-    self.write_graph(@historiques, :repartition, Gruff::StackedBar)
-    self.write_graph(@historiques, :severite, Gruff::StackedBar)
-    self.write_graph(@historiques, :resolution, Gruff::StackedBar)
-    self.write_graph(@historiques, :evolution, Gruff::Line)
+#      write_graph(@donnees, :repartition, Gruff::StackedBar)
+#      write_graph(@donnees, :severite, Gruff::StackedBar)
+#      write_graph(@donnees, :resolution, Gruff::StackedBar)
+    write_graph(@donnees, :evolution, Gruff::Line)
 
-    self.write_graph(@repartitions, :repartition_cumulee, Gruff::Pie)
-    self.write_graph(@repartitions, :severite_cumulee, Gruff::Pie)
-    self.write_graph(@repartitions, :resolution_cumulee, Gruff::Pie)
+#      write_graph(@donnees, :repartition_cumulee, Gruff::Pie)
+#      write_graph(@donnees, :severite_cumulee, Gruff::Pie)
+#      write_graph(@donnees, :resolution_cumulee, Gruff::Pie)
     
   end
 
   private
   def init_report
-    @historiques = {}
-    @repartitions = {}
+    @donnees = {}
 
-    @historiques[:repartition]  = 
+    @donnees[:repartition]  = 
       [ [:anomalies], [:informations], [:evolutions] ]
-    @historiques[:severite] = 
+    @donnees[:severite] = 
       [ [:bloquante], [:majeure], [:mineure], [:sansobjet] ]
-    @historiques[:resolution] = 
+    @donnees[:resolution] = 
       [ [:cloturee], [:annulee], [:encours] ]
-    @historiques[:evolution] = 
-      [ [:beneficiaires], [:logiciels] ] # , [:correctifs]
+    @donnees[:evolution] = 
+      [ [:beneficiaires], [:logiciels] ] # TODO : [:correctifs], [:interactions]
 
-    @repartitions[:repartition_cumulee] = 
+    @donnees[:repartition_cumulee] = 
       [ [:anomalies], [:informations], [:evolutions] ]
-    # @historiques[:repartition].dup
-    @repartitions[:severite_cumulee] = 
+    @donnees[:severite_cumulee] = 
       [ [:bloquante], [:majeure], [:mineure], [:sansobjet] ]
-    @repartitions[:resolution_cumulee] = 
-      [ [:cloturee], [:annulee], [:encours] ]  
+    @donnees[:resolution_cumulee] = 
+      [ [:cloturee], [:annulee], [:encours] ]
   end
 
   def report
-    init_report unless @historiques
-    # @client = Client.find(params[:id])
-    # @demandes = Demande.find(:all)
-    @severite, @cumul, @resolution = {}, [], [], []
-    start = Time.mktime("2006") 
+    init_report unless @donnees
+    start_date = Time.mktime(@annee)
+    end_date = Time.mktime(@annee, 12)
 
     @dates = {}
     i = 0
-    until (start > Time.mktime("2006", 12)) do 
-      infdate = "'" + start.strftime('%y-%m') + "-01'"
-      supdate = "'" + (start.advance(:months => 1)).strftime('%y-%m') + "-01'"
+    until (start_date > end_date) do 
+      infdate = "'" + start_date.strftime('%y-%m') + "-01'"
+      supdate = "'" + (start_date.advance(:months => 1)).strftime('%y-%m') + "-01'"
       
       conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
-      date = start.strftime('%b')
+      date = start_date.strftime('%b')
       @dates[i] = date
       i += 1
       Demande.with_scope({ :find => { :conditions => conditions } }) do
-        demandes = Demande.count
-        report_repartition @historiques[:repartition]
-        report_severite @historiques[:severite]     
-        report_resolution @historiques[:resolution]
-        report_evolution @historiques[:evolution]
+        report_repartition @donnees[:repartition]
+        report_severite @donnees[:severite]     
+        report_resolution @donnees[:resolution]
+        report_evolution @donnees[:evolution]
       end
-      start = start.advance(:months => 1)
+      start_date = start_date.advance(:months => 1)
     end
 
-    report_repartition @repartitions[:repartition_cumulee]
-    report_severite @repartitions[:severite_cumulee]
-    report_resolution @repartitions[:resolution_cumulee]
-
+    start_date = Time.mktime(@annee) 
+    infdate = "'" + start_date.strftime('%y-%m') + "-01'"
+    supdate = "'" + end_date.strftime('%y-%m') + "-01'"
+    conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
+    Demande.with_scope({ :find => { :conditions => conditions } }) do
+      report_repartition @donnees[:repartition_cumulee]
+      report_severite @donnees[:severite_cumulee]
+      report_resolution @donnees[:resolution_cumulee]
+    end
   end
 
 
@@ -165,7 +162,9 @@ class ReportingController < ApplicationController
     g.theme_37signals
     # g.font =  File.expand_path('public/font/VeraBd.ttf', RAILS_ROOT)
     donnees.each {|value| g.data(value[0], value[1..-1]) }
-    g.labels = @dates
+    g.labels =  Date::ABBR_MONTHS_LSTM
+    g.hide_dots = true
+    g.no_data_message = 'Aucune donnée\n disponible'
 
     # this writes the file to the hard drive for caching
     g.write "public/#{@path[nom]}"

@@ -1,38 +1,45 @@
 module ReportingHelper
 
-  def report_table(nom)
+  def fill_titles(data, size)
+    titres = ['Période']
+    size.times do |t|
+      titres.push data[t][0]
+    end
+    titres
+  end
+
+  def report_table(nom, options={})
     table = ''
     table << '<table width="100%">'
     table << '<tr>'
     table << '<td align="center">'
-    table << image_tag(@path[nom], :alt => @titres[nom]) 
+    table << image_tag(@path[nom], :alt => @titres[nom])
     table << '</td>'
     table << '<td align="center">'
-    titres = ['Période']
-    size = @historiques[nom].size
-    size.times do |t|
-      titres.push @historiques[nom][t][0]
+
+    first_col = (options[:one_row] ? ['<b>Total</b>'] : @first_col)
+
+    data = @donnees[nom]
+    size = data.size
+    unless options[:one_row]
+      last_line = []
+      size.times do |t|
+        data[t].push data[t][1..-1].inject(0) {|n, value| n + value }
+      end
     end
-    table << show_table(@dates.sort, Demande, titres) { |i, date|
+    i = 1
+    table << show_table(first_col, Demande, fill_titles(data, size)) { |date|
       result = ''
       result << "<td>#{date}</td>"
       size.times do |t|
-          result << "<td>#{@historiques[nom][t][i+1]}</td>"
-        end
-        if i == 11
-          result << '<tr>'
-          result << "<td><b>2006</b></td>"
-          size.times do |t|
-            sum = @historiques[nom][t][1..-1].inject(0) {|n, i| n + i }
-            result << "<td>#{sum}</td>"
-          end
-          result << '</tr>'
-        end
-        result
+        result << "<td>#{data[t][i]}</td>"
+      end
+      i += 1
+      result
     }
     table << '</td>'
     table << '</tr>'
-    table << '</table>'
+    table << '</table'
     table
   end
 
