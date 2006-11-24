@@ -3,7 +3,7 @@
 #####################################################
 class CorrectifsController < ApplicationController
 
-  helper :reversements, :demandes
+  helper :reversements, :demandes, :paquets
 
   def index
     list
@@ -67,9 +67,12 @@ class CorrectifsController < ApplicationController
 
 
   def ajax_paquets
-    return unless request.xml_http_request? and @params[:query]
+    render_text('') and return unless request.xml_http_request? and @params[:id]
 
-    @paquets = Paquet.find_all_by_logiciel_id(@params[:query].to_i)
+    
+    @paquets = Paquet.find_all_by_logiciel_id\
+    (@params[:id].to_i, :order => Paquet::ORDER, :include => Paquet::INCLUDE)
+
     render :partial => "liste_paquets", :layout => false
   end
 

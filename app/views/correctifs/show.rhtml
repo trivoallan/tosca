@@ -17,6 +17,9 @@
 <%= show_liste(@correctif.reversements, 'reversement') { |r| 
   link_to_reversement(r) } %><br />
 
+<%= show_liste(@correctif.paquets, 'paquet') { |p| 
+  link_to_paquet(p) } %><br />
+
 
 <%= link_to 'Editer', :action => 'edit', :id => @correctif %> |
 <%= link_to 'Retour à la liste', :action => 'list' %>

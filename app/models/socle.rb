@@ -5,4 +5,9 @@ class Socle < ActiveRecord::Base
   has_one :machine
   has_many :paquets
   has_many :demandes
+
+  def to_s
+    nom
+  end
+
 end

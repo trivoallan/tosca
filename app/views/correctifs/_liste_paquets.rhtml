@@ -1,7 +1,8 @@
+<p>Paquets sur lesquels il a été appliqué :</p>
 <% if @correctif %>
-  <%= hbtm_check_box( @correctif.paquets, @paquets, 'paquets_ids') %>
+  <%= hbtm_check_box( @correctif.paquets, @paquets, 'paquet_ids') %>
 <% else %>
-  <%= hbtm_check_box( [], @paquets, 'paquets_ids') %>
+  <%= hbtm_check_box( [], @paquets, 'paquet_ids') %>
 <% end %>
 
 

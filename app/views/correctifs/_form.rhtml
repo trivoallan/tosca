@@ -16,7 +16,7 @@
   <% options = { :include_blank => true } %>
   <% donnees = @logiciels.collect{|l| [ l.nom, l.id]} %>
   <%= select("logiciel", "id", donnees, options) %>
-<%= image_tag("images/spinner.gif",
+<%= image_tag("spinner.gif",
               :align => 'absmiddle',
               :border=> 0,
               :id => "spinner",
@@ -28,7 +28,8 @@
          :before => "Element.show('spinner')",
          :success => "Element.hide('spinner')",
          :url => {:action => 'ajax_paquets'},
-         :with => 'query' %>
+         :with => 'id'
+         %>
 
 <div id="paquets">
 <%= render :partial => "liste_paquets" %>

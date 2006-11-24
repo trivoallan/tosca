@@ -26,12 +26,15 @@ class Paquet < ActiveRecord::Base
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
-  # display
+  # (cf Conventions de développement : wiki)
+  INCLUDE = [ :socle, :arch ]
+  ORDER = 'socle_id, version, arch_id DESC'
   def to_s
-    "(#{socle.nom}) (#{arch.nom}) #{nom}-#{version}-#{release} "
+    "(#{socle}) (#{arch}) #{nom}-#{version}-#{release} "
   end
-
+  
   # TODO : virer TOUT les to_display et les surcharges de nom de tous les modèles
   alias_method :to_display, :to_s
+
 
 end
