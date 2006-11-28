@@ -48,21 +48,22 @@ module ApplicationHelper
   # add_view_link(demande)
   def link_to_comment(ar)
     desc = 'Voir'
-    link_to image_tag("view_icon.gif", :size => "20x15", 
+    link_to image_tag("icons/b_comment.png", :size => "15x15",  # "view_icon.gif", :size => "20x15", 
                       :border => 0, :title => desc, :alt => desc ), { 
       :action => 'comment', :id => ar}, { :class => 'nobackground' }
   end
 
   def link_to_view(ar)
     desc = 'Voir'
-    link_to image_tag("view_icon.gif", :size => "20x15", 
+    link_to image_tag("icons/b_view.png", :size => "15x15", # "view_icon.gif", :size => "20x15",
                       :border => 0, :title => desc, :alt => desc ), { 
       :action => 'show', :id => ar }, { :class => 'nobackground' }
   end
+
   # add_edit_link(demande)
   def link_to_edit(ar)
     desc = 'Editer'
-    link_to image_tag("edit_icon.gif", :size => "15x15", 
+    link_to image_tag("icons/b_edit.png", :size => "15x15", # "edit_icon.gif", :size => "15x15",
                       :border => 0, :title => desc, :alt => desc ), {
       :action => 'edit', :id => ar }, { :class => 'nobackground' }
   end
@@ -70,7 +71,7 @@ module ApplicationHelper
   # add_delete_link(demande)
   def link_to_delete(ar)
     desc = 'Supprimer'
-    link_to image_tag("delete_icon.gif", :size => "15x17", 
+    link_to image_tag("icons/b_drop.png", :size => "15x17", # "delete_icon.gif", :size => "15x17", 
                              :border => 0, :title => desc, :alt => desc ), 
                              { :action => 'destroy', :id => ar }, 
                              { :class => 'nobackground', 
