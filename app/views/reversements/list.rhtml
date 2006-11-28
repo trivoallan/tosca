@@ -12,9 +12,9 @@
   <% for column in Reversement.content_columns %>
     <td><%=h reversement.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Voir', :action => 'show', :id => reversement %></td>
-    <td><%= link_to 'Modifier', :action => 'edit', :id => reversement %></td>
-    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => reversement }, :confirm => 'Are you sure?', :post => true %></td>
+    <td><%= link_to_view(reversement) %></td>
+    <td><%= link_to_edit(reversement) %></td>
+    <td><%= link_to_delete(reversement) %></td>
   </tr>
 <% end %>
 </table>
