@@ -1,4 +1,4 @@
-<h1>Listing interactions</h1>
+<h1>Liste des interactions</h1>
 
 <table>
   <tr>
@@ -16,16 +16,16 @@
   <% end %>
     <td><%=h interaction.logiciel.nom if interaction.logiciel %></td>
     <td><%=h interaction.ingenieur.nom if interaction.ingenieur %></td>
-    <td><%= link_to 'Show', :action => 'show', :id => interaction %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => interaction %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => interaction }, :confirm => 'Are you sure?', :post => true %></td>
+    <td><%= link_to_view(interaction) %></td>
+    <td><%= link_to_edit(interaction) %></td>
+    <td><%= link_to_delete(interaction) %></td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @interaction_pages.current.previous } if @interaction_pages.current.previous %>
-<%= link_to 'Next page', { :page => @interaction_pages.current.next } if @interaction_pages.current.next %> 
+<%= link_to 'Page précédente', { :page => @interaction_pages.current.previous } if @interaction_pages.current.previous %>
+<%= link_to 'Page suivante', { :page => @interaction_pages.current.next } if @interaction_pages.current.next %> 
 
 <br />
 
-<%= link_to 'New interaction', :action => 'new' %>
+<%= link_to 'Ajouter une interaction', :action => 'new' %>
