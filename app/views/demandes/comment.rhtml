@@ -31,6 +31,7 @@ function cacherCoordonnees() {
   </td></tr></table>
   <div id='coordonnees' <%= "style='display: none'" if !@ingenieur %>>
     <table>
+      <tr><td><b>Client</b></td>        <td><%= @demande.beneficiaire.client.nom %></td></tr>
       <tr><td><b>Contact</b></td>       <td><%= mail_to(@demande.beneficiaire.identifiant.email, @demande.beneficiaire.identifiant.nom) %></td></tr>
       <tr><td><b>Téléphone</b></td>     <td><%= @demande.beneficiaire.identifiant.telephone %></td></tr>
     </table>

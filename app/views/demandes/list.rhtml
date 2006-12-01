@@ -14,6 +14,9 @@
         <th width='6%'>Sévérité</th>
         <th width='8%'>Statut</th>
         <th width='10%'>Bénéficiaire</th>
+        <% if @ingenieur %> 
+        <th width='10%'>Client</th>
+        <% end %>
       <% for column in Demande.content_columns %>
         <th><%= column.human_name %></th>
       <% end %>
@@ -29,6 +32,9 @@
         <td><%= demande.typedemande.nom %></td>
         <td><%= demande.severite.nom %></td>
         <td><%= demande.statut.nom if demande.statut %></td>
+        <% if @ingenieur %> 
+        <td><%= demande.beneficiaire.client.nom %></td>
+        <% end %>
         <td><%= demande.beneficiaire.identifiant.nom %></td>
 
         <% for column in Demande.content_columns %>

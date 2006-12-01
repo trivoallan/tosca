@@ -45,15 +45,15 @@ class ReportingController < ApplicationController
     Dir.mkdir(reporting)
 
     #on remplit
-#    write_graph(:top5_demandes, Gruff::Line)
-#    write_graph(:top5_logiciels, Gruff::Pie)
-#      write_graph(:repartition, Gruff::StackedBar)
-#      write_graph(:severite, Gruff::StackedBar)
-#      write_graph(:resolution, Gruff::StackedBar)
-#      write_graph(:evolution, Gruff::Line)
-#      write_graph(:repartition_cumulee, Gruff::Pie)
-#      write_graph(:severite_cumulee, Gruff::Pie)
-#      write_graph(:resolution_cumulee, Gruff::Pie)
+     write_graph(:top5_demandes, Gruff::Line)
+     write_graph(:top5_logiciels, Gruff::Pie)
+     write_graph(:repartition, Gruff::StackedBar)
+     write_graph(:severite, Gruff::StackedBar)
+     write_graph(:resolution, Gruff::StackedBar)
+     write_graph(:evolution, Gruff::Line)
+     write_graph(:repartition_cumulee, Gruff::Pie)
+     write_graph(:severite_cumulee, Gruff::Pie)
+     write_graph(:resolution_cumulee, Gruff::Pie)
     
   end
 
