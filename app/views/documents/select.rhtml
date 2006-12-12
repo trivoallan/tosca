@@ -3,7 +3,7 @@
 <%= show_liste(@typedocuments, 'Type de document') { |t| link_to_typedocument t } %>
 
 
-<% depot = link_to_new %>
+<% depot = link_to_new('un fichier') %>
 <% unless depot.nil? %>
   <p>Déposer un fichier <%= depot %></p>
 <% end %>

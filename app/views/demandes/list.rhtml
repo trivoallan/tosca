@@ -5,7 +5,7 @@
 
 <% if @demandes.size > 0 %>
     
-    <%= show_pages_links(@demande_pages) %>
+    <%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
 
     <table class="demandes_list" width='100%'>
       <tr>
@@ -54,7 +54,7 @@
     <% end %>
     </table>
     <%= show_total @demandes.size, Demande %>
-    <%= show_pages_links(@demande_pages) %>
+    <%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
 
 <% elsif @count == 0 %>
 

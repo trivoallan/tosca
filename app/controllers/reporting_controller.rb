@@ -9,7 +9,7 @@ class ReportingController < ApplicationController
     :severite_cumulee => 'Sévérité des demandes reçues',
     :resolution => 'Résolution des demandes reçues',
     :resolution_cumulee => 'Résolution des demandes reçues',
-    :evolution => 'Evolution de nos interventions',
+    :evolution => 'Evolution des sollicitations distinctes',
     :top5_demandes => 'Top 5 des demandes les plus discutées',
     :top5_logiciels => 'Top 5 des logiciels les plus défectueux',
     }
@@ -45,15 +45,15 @@ class ReportingController < ApplicationController
     Dir.mkdir(reporting)
 
     #on remplit
-     write_graph(:top5_demandes, Gruff::Line)
-     write_graph(:top5_logiciels, Gruff::Pie)
-     write_graph(:repartition, Gruff::StackedBar)
-     write_graph(:severite, Gruff::StackedBar)
-     write_graph(:resolution, Gruff::StackedBar)
-     write_graph(:evolution, Gruff::Line)
-     write_graph(:repartition_cumulee, Gruff::Pie)
-     write_graph(:severite_cumulee, Gruff::Pie)
-     write_graph(:resolution_cumulee, Gruff::Pie)
+     write_graph(:top5_demandes, Gruff::Mini::Pie)
+#     write_graph(:top5_logiciels, Gruff::Spider)
+     write_graph(:repartition, Gruff::Mini::SideBar)
+#      write_graph(:severite, Gruff::StackedBar)
+#      write_graph(:resolution, Gruff::StackedBar)
+#      write_graph(:evolution, Gruff::Line)
+#      write_graph(:repartition_cumulee, Gruff::Pie)
+#      write_graph(:severite_cumulee, Gruff::Pie)
+#      write_graph(:resolution_cumulee, Gruff::Pie)
     
   end
 
@@ -117,10 +117,14 @@ class ReportingController < ApplicationController
       report_resolution @donnees[:resolution_cumulee]
 
       report_top5_logiciels @donnees[:top5_logiciels]
-      # report_top5_demandes @donnees[:top5_demandes]
+      Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
+        report_top5_demandes @donnees[:top5_demandes]
+      end
     end
   end
 
+  ##
+  # sort les 5 logiciels qui ont eu le plus de demandes
   def report_top5_logiciels(report)
     logiciels = Demande.count(:group => "logiciel_id")
     logiciels = logiciels.sort {|a,b| a[1]<=>b[1]}
@@ -130,9 +134,23 @@ class ReportingController < ApplicationController
       report.push [ :"#{nom}" ]
       report[i].push values[1]
     end
-
   end
 
+  ##
+  # Sort les 5 demandes les plus commentées de l'année
+  def report_top5_demandes(report)
+    commentaires = Commentaire.count(:group => 'demande_id')
+    commentaires = commentaires.sort {|a,b| a[1]<=>b[1]}
+    5.times do |i|
+      values = commentaires.pop
+      nom = values[0].to_s # "##{values[0]} (#{values[1]})"
+      report.push [ :"#{nom}" ]
+      report[i].push values[1]
+    end
+  end
+
+  ##
+  # Compte les demandes selon leur nature
   def report_repartition(report)
     anomalies = { :conditions => "typedemande_id = 1" }
     informations = { :conditions => "typedemande_id = 2" }
@@ -143,6 +161,8 @@ class ReportingController < ApplicationController
     report[2].push Demande.count(evolutions)
   end
 
+  ##
+  # Compte les demandes par sévérités
   def report_severite(report)
     severites = []
     (1..4).each do |i|
@@ -154,6 +174,8 @@ class ReportingController < ApplicationController
     end
   end
 
+  ##
+  # Compte le nombre de demande Annulée, Cloturée ou en cours de traitement
   def report_resolution(report)
     cloturee = { :conditions => "statut_id = 7" }
     annulee = { :conditions => "statut_id = 8" }
@@ -164,6 +186,9 @@ class ReportingController < ApplicationController
     report[2].push Demande.count(encours)
   end
 
+
+  ##
+  # Calcule le nombre de beneficiaire, de logiciel et correctif distinct par mois
   def report_evolution(report)
     correctifs = 0
     Correctif.with_scope({ :find => { :conditions => @conditions } }) do

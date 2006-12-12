@@ -26,7 +26,7 @@
 <%= link_to 'normal', :action => @action %><br />
 </p>
 
-<%= show_pages_links @paquet_pages %>
+<%= show_pages_links @paquet_pages, 'un paquet virtuel' %>
 <% titres = ['Logiciel', 'Nom', 'Version', 'Release', 'Taille', 'Socle', 'Arch', 'Distributeur', 'Mainteneur']%>
 <%= show_table(@paquets, Paquet, titres) { |p|
   result = ''
@@ -41,7 +41,7 @@
   result << "<td>#{p.mainteneur.nom}</td>"
   result << "#{link_to_actions_table p}"
 }%>
-<%= show_pages_links @paquet_pages %>
+<%= show_pages_links @paquet_pages, 'un paquet virtuel' %>
 
 <br />
 

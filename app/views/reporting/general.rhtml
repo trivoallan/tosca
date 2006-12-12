@@ -11,13 +11,12 @@
 <h1>Historique pour <%= @annee %></h1>
 BlablaBla
 
-<%=h @donnees[:top5_logiciels].inspect %>
 <%= report_table(:repartition) %>
 <%= report_table(:severite) %>
 <%= report_table(:resolution) %>
 <%= report_table(:evolution) %>
 
-<%  #= report_table(:top5_demandes, :one_row => true) %>
+<%= report_table(:top5_demandes, :one_row => true) %>
 <%= report_table(:top5_logiciels, :one_row => true) %>
 
 <%= report_table(:repartition_cumulee, :one_row => true) %>

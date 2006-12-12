@@ -1,6 +1,6 @@
 <h1>Liste des correctifs</h1>
 
-<%= show_pages_links(@correctif_pages) %>
+<%= show_pages_links(@correctif_pages, 'un correctif') %>
 
 <% titres = ['Màj']%>
 <%= show_table(@correctifs, Correctif, titres, :content_columns => true) { |c|
@@ -10,7 +10,7 @@
 }%>
 
 
-<%= show_pages_links(@correctif_pages) %>
+<%= show_pages_links(@correctif_pages, 'un correctif') %>
 
 
 

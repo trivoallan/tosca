@@ -38,10 +38,10 @@ module ApplicationHelper
 
 
   #  add_create_link
-  def link_to_new()
+  def link_to_new(message)
     link_to image_tag("create_icon.png", :size => "16x16", 
-                      :border => 0, :title => 'Déposer une nouvelle demande', 
-                      :alt => 'Déposer une nouvelle demande' ), { 
+                      :border => 0, :title => "Déposer #{message}", 
+                      :alt => "Déposer #{message}" ), { 
       :action => 'new' }, { :class => 'nobackground' }
   end
 
@@ -96,9 +96,9 @@ module ApplicationHelper
 
   # call it like this :
   # <%= show_pages_links @demande_pages %>
-  def show_pages_links(pages)
+  def show_pages_links(pages, message)
     result = '<table class="pages"><tr><td valign="baseline">'
-    result << link_to_new.to_s + '</td><td>'
+    result << "#{link_to_new(message)}</td><td>"
     return "#{result}</td></tr></table>" unless pages.length > 0
 
     result << '<td>' + link_to(image_tag("first_page.png", :size => "14x14", :border => 0, :title => 'Première page', :alt => 'Première page'), { :page => pages.first }, { 

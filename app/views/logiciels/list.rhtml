@@ -19,7 +19,7 @@
 <%= end_form_tag %>
 -->
 <br/>
-<%= show_pages_links(@logiciel_pages) %>
+<%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
 
 <% titres = ['Nom', 'Description', 'Technologies', 'Référent', 'Paquet(s)']%>
 <%= show_table(@logiciels, Logiciel, titres) { |l|
@@ -33,7 +33,7 @@
 }%>
 
 
-<%= show_pages_links(@logiciel_pages) %>
+<%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
 
 <br />
 
