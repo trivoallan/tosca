@@ -1,0 +1,16 @@
+
+<table><tr><td>
+<%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
+  <p><label for="demande_resume">Spécifier une année : </label>
+  <%= text_field 'report', '', "mois" => @annee  %>
+  <%= submit_tag "Consulter" %></p>
+<%= end_form_tag %>
+</td><td>
+</td></tr></table>
+
+<h1>Historique pour <%= @annee %></h1>
+
+<%= report_table(:temps_moyen, :one_row => true) %>
+<%= report_table(:temps_maximum, :one_row => true) %>
+
+

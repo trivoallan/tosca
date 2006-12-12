@@ -1,7 +1,7 @@
 module ReportingHelper
 
   def fill_titles(data, size)
-    titres = ['Période']
+    titres = ['']
     size.times do |t|
       titres.push data[t][0]
     end
@@ -17,10 +17,16 @@ module ReportingHelper
     table << '</td>'
     table << '<td align="center">'
 
-    first_col = (options[:one_row] ? ['<b>Total</b>'] : @first_col)
-
     data = @donnees[nom]
     size = data.size
+
+    if options[:one_row]
+      first_col = ['<b>Total</b>']
+    elsif options[:multi_row]
+      first_col = data[0][1..-1]
+    else
+      first_col = @first_col
+    end
     unless options[:one_row]
       last_line = []
       size.times do |t|

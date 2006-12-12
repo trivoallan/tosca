@@ -47,6 +47,20 @@ class Demande < ActiveRecord::Base
     affiche_delai(temps_ecoule, engagement(contrat_id).correction)
   end
 
+  def affiche_temps_rappel
+    distance_of_time_in_french_words(self.temps_rappel, client.support)
+  end
+
+  def temps_rappel
+    result = 0
+    first = self.versions[0]
+    if (self.versions.size > 1) and (first.statut_id == 1)
+      second = self.versions[1]
+      result = compute_diff(first.updated_on, second.updated_on, client.support)
+    end
+    result
+  end
+
   def engagement(contrat_id)
     conditions = [" contrats_engagements.contrat_id = ? AND " +
       "engagements.severite_id = ? AND engagements.typedemande_id = ? ", 

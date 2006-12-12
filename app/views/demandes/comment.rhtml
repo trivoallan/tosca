@@ -50,11 +50,11 @@ function cacherCoordonnees() {
 	<td  class="<%= "demande_" + @demande.statut_id.to_s %>"><%= @demande.statut.nom %></td>
       <td><b>A jour du </b></td>     <td><%= @demande.updated_on.strftime("%d/%m/%Y à %H:%M:%S") %></td></tr>
   <tr><td><b>Sévérité </b></td>      <td><%= @demande.severite.nom %></td>
-      <td><b>Temps écoulé </b></td>  <td><%= @demande.affiche_temps_ecoule %></td></tr>
+      <td><b>Temps de rappel </b></td>  <td><%= @demande.affiche_temps_rappel %></td></tr>
   <tr><td><b>Reproduit </b></td>     <td><%= @demande.reproduit %></td>
-      <td><b>Correctif fourni </b></td>     <td><%= link_to_correctif @demande.correctif %></td>
+      <td><b>Temps écoulé</b></td>     <td><%= @demande.affiche_temps_ecoule %></td>
   <tr><td><b>Responsable </b></td>   <td><%= @demande.ingenieur.identifiant.nom if @demande.ingenieur %></td>
-      <td><b>Nb de mise à jour </b></td><td><%= @demande.version %></td></tr>
+      <td><b>Correctif fourni</b></td><td><%= link_to_correctif @demande.correctif %></td></tr>
 </table></td><td>
 <table width='100%'>
 <tr><td colspan="4">
