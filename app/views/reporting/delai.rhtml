@@ -9,8 +9,8 @@
 </td></tr></table>
 
 <h1>Historique pour <%= @annee %></h1>
-
-<%= report_table(:temps_moyen, :one_row => true) %>
-<%= report_table(:temps_maximum, :one_row => true) %>
-
-
+<% @clients.each do |c| %>
+  <h1><%= c.nom %></h1>
+   <%= report_table(:"temps_moyen_#{c.id}", :titre => 'test') %>
+   <%= report_table(:"temps_maximum_#{c.id}", :titre => 'test') %>
+<% end %>

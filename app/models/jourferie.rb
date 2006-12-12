@@ -29,7 +29,7 @@ class Jourferie < ActiveRecord::Base
   def self.nb_jours_ouvres(debut, fin)
     # 1 jour = 86400 secondes
     result = 0
-    while (debut < fin)
+    while(debut < fin)
       result += 1 if Jourferie.est_ouvre(debut)
       debut += 1.day
     end
@@ -43,7 +43,7 @@ class Jourferie < ActiveRecord::Base
     for jourferie in Jourferie.find_all
       jourferies += [ jourferie.jour ]
     end
-    false if jourferies.include? (date) 
+    false if jourferies.include?(date) 
     false if date.wday == 0 || date.wday == 6
     true
   end

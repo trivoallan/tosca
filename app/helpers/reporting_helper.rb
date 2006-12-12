@@ -8,12 +8,17 @@ module ReportingHelper
     titres
   end
 
+  # options : one_row, muli_row et titre
   def report_table(nom, options={})
     table = ''
     table << '<table width="100%">'
     table << '<tr>'
     table << '<td align="center">'
-    table << image_tag(@path[nom], :alt => @titres[nom])
+    if options[:titre]
+      table << image_tag(@path[nom], :alt => options[:titre])
+    else
+      table << image_tag(@path[nom], :alt => @titres[nom])
+    end
     table << '</td>'
     table << '<td align="center">'
 

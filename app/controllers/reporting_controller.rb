@@ -22,23 +22,28 @@ class ReportingController < ApplicationController
   end
 
   def delai
-    init_action
+    init_action(params)
     jour = Date.today.strftime "%j" + @annee
     qui = (@beneficiaire ? @beneficiaire.client : 'tous')
-    # TODO : init_delai
+    if @beneficiaire
+      @clients = [ @beneficiaire.client ]
+    else
+      @clients = Client.find_all
+    end
+    init_delai
     @donnees.each_key do |nom|
       sha1 = Digest::SHA1.hexdigest("-#{jour}-#{qui}-#{nom}-") 
       @path[nom] = "/reporting/#{sha1}.png"
     end
 
-    if @beneficiaire
-      @contrats = @beneficiaire.client.contrats
-    else
-      @contrats = Contrat.find(:all)
-    end
+    report_delai
 
-    write_graph(:temps_moyen, Gruff::Pie)
-    write_graph(:temps_maximum, Gruff::Pie)
+    @clients.each do |c| 
+      write_graph(:"temps_moyen_#{c.id}", Gruff::StackedBar, 
+                  :titre => "Temps moyen de #{c.nom}")
+      write_graph(:"temps_maximum_#{c.id}", Gruff::StackedBar, 
+                  :titre => "Temps maximum de #{c.nom}")
+    end
   end
 
   def general
@@ -52,25 +57,24 @@ class ReportingController < ApplicationController
     end
 
 
-    #un peu de cache homemade : une génération par jour
     report_general
     # return if File.exist?("public/#{@path[:repartition]}")
 
     #on nettoie 
-    reporting = File.expand_path('public/reporting', RAILS_ROOT)
-    rmtree(reporting)
-    Dir.mkdir(reporting)
+#     reporting = File.expand_path('public/reporting', RAILS_ROOT)
+#     rmtree(reporting)
+#     Dir.mkdir(reporting)
 
-    #on remplit
-    write_graph(:top5_demandes, Gruff::Pie)
-    write_graph(:top5_logiciels, Gruff::Pie)
-    write_graph(:repartition, Gruff::StackedBar)
-    write_graph(:severite, Gruff::StackedBar)
-    write_graph(:resolution, Gruff::StackedBar)
-    write_graph(:evolution, Gruff::Line)
-    write_graph(:repartition_cumulee, Gruff::Pie)
-    write_graph(:severite_cumulee, Gruff::Pie)
-    write_graph(:resolution_cumulee, Gruff::Pie)
+#     #on remplit
+#     write_graph(:top5_demandes, Gruff::Pie)
+#     write_graph(:top5_logiciels, Gruff::Pie)
+#     write_graph(:repartition, Gruff::StackedBar)
+#     write_graph(:severite, Gruff::StackedBar)
+#     write_graph(:resolution, Gruff::StackedBar)
+#     write_graph(:evolution, Gruff::Line)
+#     write_graph(:repartition_cumulee, Gruff::Pie)
+#     write_graph(:severite_cumulee, Gruff::Pie)
+#     write_graph(:resolution_cumulee, Gruff::Pie)
     
   end
 
@@ -110,10 +114,10 @@ class ReportingController < ApplicationController
 
   def init_delai
     # SideBar sur l'ensemble
-    @contrats.each do |c|
+    @clients.each do |c|
       @donnees[:"temps_moyen_#{c.id}"] =
         [ [:rappel], [:contournement], [:correction] ]
-      @donnees[:"temps_max_#{c.id}"] =
+      @donnees[:"temps_maximum_#{c.id}"] =
         [ [:rappel], [:contournement], [:correction] ]
     end
   end
@@ -134,12 +138,16 @@ class ReportingController < ApplicationController
       @dates[i] = date
       i += 1
       Demande.with_scope({ :find => { :conditions => @conditions } }) do
-        report_temps @donnees[:repartition]
+        @clients.each do |c|
+          liste = c.beneficiaires.collect{|b| b.id}.join(',')
+          conditions = [ "demandes.beneficiaire_id IN (#{liste})" ]
+          Demande.with_scope({ :find => { :conditions => conditions } }) do
+            compute_temps @donnees, c
+          end
+        end
       end
       start_date = start_date.advance(:months => 1)
     end
-
-    
   end
 
   def report_general
@@ -158,10 +166,10 @@ class ReportingController < ApplicationController
       @dates[i] = date
       i += 1
       Demande.with_scope({ :find => { :conditions => @conditions } }) do
-        report_repartition @donnees[:repartition]
-        report_severite @donnees[:severite]     
-        report_resolution @donnees[:resolution]
-        report_evolution @donnees[:evolution]
+        compute_repartition @donnees[:repartition]
+        compute_severite @donnees[:severite]     
+        compute_resolution @donnees[:resolution]
+        compute_evolution @donnees[:evolution]
       end
       start_date = start_date.advance(:months => 1)
     end
@@ -172,13 +180,13 @@ class ReportingController < ApplicationController
     @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
     @demande_ids = Demande.find(:all, :select => 'demandes.id').join(',')
     Demande.with_scope({ :find => { :conditions => @conditions } }) do
-      report_repartition @donnees[:repartition_cumulee]
-      report_severite @donnees[:severite_cumulee]
-      report_resolution @donnees[:resolution_cumulee]
+      compute_repartition @donnees[:repartition_cumulee]
+      compute_severite @donnees[:severite_cumulee]
+      compute_resolution @donnees[:resolution_cumulee]
 
-      report_top5_logiciels @donnees[:top5_logiciels]
+      compute_top5_logiciels @donnees[:top5_logiciels]
       Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
-        report_top5_demandes @donnees[:top5_demandes]
+        compute_top5_demandes @donnees[:top5_demandes]
       end
     end
   end
@@ -187,38 +195,30 @@ class ReportingController < ApplicationController
   ##
   # Sort une moyenne de nos traitements des demandes
   # Sort le temps maximum de nos traitements des demandes
-  def report_temps(donnees)
-    demandes = Demande.find(:all)
+  def compute_temps(donnees, client)
+    demandes = Demande.find_all
 
-    temps_rappels = []
+    rappels, contournements, corrections = [], [], []
     demandes.each do |d|
-      temps_rappels.push d.temps_rappel / 60# contrat.id
+      rappels.push d.temps_rappel / 60# contrat.id
+      contournements.push d.temps_contournement / 60# contrat.id
+      corrections.push d.temps_correction / 60# contrat.id
     end
-    report = donnees[:temps_moyen]
-    report[0].push(avg(temps_rappels).round)
-    report[1].push demandes.size
-    report[2].push 2
+    report = donnees[:"temps_moyen_#{client.id}"]
+    report[0].push((rappels.size == 0 ? 0 : avg(rappels).round))
+    report[1].push((contournements.size == 0 ? 0 : avg(contournements).round))
+    report[2].push((corrections.size == 0 ? 0 : avg(corrections).round))
 
-    report = donnees[:temps_maximum]
-    report[0].push(temps_rappels.max.round)
-    report[1].push demandes.size
-    report[2].push 2
-
+    report = donnees[:"temps_maximum_#{client.id}"]
+    report[0].push((rappels.size == 0 ? 0 : rappels.max.round))
+    report[1].push((contournements.size == 0 ? 0 : contournements.max.round))
+    report[2].push((corrections.size == 0 ? 0 : corrections.max.round))
   end
 
   ##
-  # Sort notre temps maximum de traitement d'une demande
-  def report_temps_maximum(report)
-    @temps_rappels ||= init_temps_rappels
-    report[0].push 10
-    report[1].push 15
-    report[2].push 30
-
-  end
-
-  ##
+  # TODO : le faire marcher si y a moins de 5 logiciels
   # sort les 5 logiciels qui ont eu le plus de demandes
-  def report_top5_logiciels(report)
+  def compute_top5_logiciels(report)
     logiciels = Demande.count(:group => "logiciel_id")
     logiciels = logiciels.sort {|a,b| a[1]<=>b[1]}
     5.times do |i|
@@ -230,8 +230,9 @@ class ReportingController < ApplicationController
   end
 
   ##
+  # TODO : le faire marcher si y a moins de 5 demandes
   # Sort les 5 demandes les plus commentées de l'année
-  def report_top5_demandes(report)
+  def compute_top5_demandes(report)
     commentaires = Commentaire.count(:group => 'demande_id')
     commentaires = commentaires.sort {|a,b| a[1]<=>b[1]}
     5.times do |i|
@@ -244,7 +245,7 @@ class ReportingController < ApplicationController
 
   ##
   # Compte les demandes selon leur nature
-  def report_repartition(report)
+  def compute_repartition(report)
     anomalies = { :conditions => "typedemande_id = 1" }
     informations = { :conditions => "typedemande_id = 2" }
     evolutions = { :conditions => "typedemande_id = 5" }
@@ -256,7 +257,7 @@ class ReportingController < ApplicationController
 
   ##
   # Compte les demandes par sévérités
-  def report_severite(report)
+  def compute_severite(report)
     severites = []
     (1..4).each do |i|
       severites.concat [ { :conditions => "severite_id = #{i}" } ]
@@ -269,7 +270,7 @@ class ReportingController < ApplicationController
 
   ##
   # Compte le nombre de demande Annulée, Cloturée ou en cours de traitement
-  def report_resolution(report)
+  def compute_resolution(report)
     cloturee = { :conditions => "statut_id = 7" }
     annulee = { :conditions => "statut_id = 8" }
     encours = { :conditions => "statut_id NOT IN (7,8)" }
@@ -282,14 +283,14 @@ class ReportingController < ApplicationController
 
   ##
   # Calcule le nombre de beneficiaire, de logiciel et correctif distinct par mois
-  def report_evolution(report)
+  def compute_evolution(report)
     correctifs = 0
     Correctif.with_scope({ :find => { :conditions => @conditions } }) do
       if @beneficiaire
         ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
         conditions = [ "paquets.contrat_id IN (#{ids})" ]
         joins= 'INNER JOIN correctifs_paquets cp ON cp.correctif_id = correctifs.id ' +
-          'INNER JOIN paquets ON cp.paquet_id = paquet.id '
+          'INNER JOIN paquets ON cp.paquet_id = paquets.id '
         correctifs = Correctif.count(:conditions => conditions, :joins => joins)
       else
         correctifs = Correctif.count()
@@ -302,11 +303,12 @@ class ReportingController < ApplicationController
   end
 
 
-  def write_graph(nom, graph)
+  def write_graph(nom, graph, options = {})
+    return unless @donnees[nom]
     g = graph.new
     g.sort = false
 
-    g.title = @@titres[nom]
+    g.title = options[:titre] || @@titres[nom]
     g.theme_37signals
     # g.font =  File.expand_path('public/font/VeraBd.ttf', RAILS_ROOT)
     @donnees[nom].each {|value| g.data(value[0], value[1..-1]) }

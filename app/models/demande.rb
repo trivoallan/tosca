@@ -47,6 +47,36 @@ class Demande < ActiveRecord::Base
     affiche_delai(temps_ecoule, engagement(contrat_id).correction)
   end
 
+
+  def affiche_temps_correction
+    distance_of_time_in_french_words(self.temps_correction, client.support)
+  end
+
+  def temps_correction
+    result = 0
+    derniere = self.versions.find(:first, :conditions => 'statut_id=5', :order => 'updated_on')
+    derniere = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on') unless derniere
+    corrigee = self.versions.find(:first, :conditions => 'statut_id=6', :order => 'updated_on')
+    if corrigee
+      result = compute_diff(derniere.updated_on, corrigee.updated_on, client.support)
+    end
+    result
+  end
+
+  def affiche_temps_contournement
+    distance_of_time_in_french_words(self.temps_contournement, client.support)
+  end
+
+  def temps_contournement
+    result = 0
+    contournee = self.versions.find(:first, :conditions => 'statut_id=5', :order => 'updated_on')
+    if contournee
+      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on')
+      result = compute_diff(appellee.updated_on, contournee.updated_on, client.support)
+    end
+    result
+  end
+
   def affiche_temps_rappel
     distance_of_time_in_french_words(self.temps_rappel, client.support)
   end

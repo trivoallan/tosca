@@ -10,7 +10,7 @@ class Client < ActiveRecord::Base
   has_many :documents
 
   has_many :paquets, :through => :contrats
-  has_many :demandes, :through => :beneficiaires, :source => :demandes
+  has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
 
   def ingenieurs
