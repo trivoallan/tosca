@@ -59,6 +59,7 @@ Inflector.inflections do |inflect|
   inflect.irregular 'person', 'people'
   inflect.irregular 'typeanomalie', 'typeanomalies'
   inflect.irregular 'jourferie', 'jourferies'
+  inflect.irregular 'tache', 'taches'
   inflect.uncountable %w( fish sheep )
 end
 

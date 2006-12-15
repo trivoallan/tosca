@@ -1,27 +1,49 @@
-<h1>Listing taches</h1>
+<h1>Liste des taches</h1>
 
-<table>
-  <tr>
-  <% for column in Tache.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for tache in @taches %>
-  <tr>
-  <% for column in Tache.content_columns %>
-    <td><%=h tache.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => tache %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => tache %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => tache }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@tache_pages, 'un tache') %>
 
-<%= link_to 'Previous page', { :page => @tache_pages.current.previous } if @tache_pages.current.previous %>
-<%= link_to 'Next page', { :page => @tache_pages.current.next } if @tache_pages.current.next %> 
+<% titres = ['Priorité', 'Responsable', 'Etape', 'Durée', 'Deadline', 
+             'Résumé', 'Crée le', 'Màj', 'Terminé ?' ] %>
+<%= show_table(@taches, Tache, titres) { |tache|
+  result=''
+  result << '<td>' + link_to(image_tag("first_task.png", :size => "14x14", 
+                                       :border => 0, :alt => 'Première priorité'), 
+                             :action => 'move2top', :id => tache) 
+  result << link_to(image_tag("previous_task.png", :size => "14x14", 
+                              :border => 0, :alt => 'Monter la priorité'), 
+                             :action => 'movehigher', :id => tache)
+  result << link_to(image_tag("next_task.png", :size => "14x14", 
+                              :border => 0, :alt => 'Baisser la  priorité'), 
+                    :action => 'movelower', :id => tache) 
+  result << link_to(image_tag("last_task.png", :size => "14x14", 
+                              :border => 0, :alt => 'Dernière priorité'), 
+                             :action => 'move2bottom', :id => tache) + '</td>'
+  result << "<td>#{tache.responsable.nom}</td>"
+  result << "<td>#{tache.etape.nom}</td>" if tache.etape
+  result << "<td>#{tache.duree}</td>"
+  result << "<td>#{tache.deadline_formatted if tache.deadline}</td>"
+  result << "<td>#{link_to_tache(tache)}</td>"
+  result << "<td>#{tache.created_on_formatted}</td>"
+  result << "<td>#{tache.updated_on_formatted}</td>"
+  if tache.termine
+    result << '<td style="background: lightgreen;"></td>'
+  else
+    if ((Time.now - tache.created_on) > 1.month)
+      result << '<td style="background: red;"></td>'
+    else
+      result << '<td style="background: orange;"></td>'
+    end
+  end
+  result << "<td>#{link_to 'Modifier', :action => 'edit', :id => tache}</td>"
+  result << "<td>#{link_to 'Annuler', { :action => 'destroy', :id => tache }, :confirm => 'En êtes vous certain ?', :post => true}</td>"
+  result
+}%>
+
+<b><%= @nombre_total%></b> tâche(s) à faire pour un total de 
+<b><%= @duree_total %></b> jours de travail (ô joie)
+
+<%= show_pages_links(@tache_pages, 'un tache') %>
 
 <br />
+<br />
 
-<%= link_to 'New tache', :action => 'new' %>

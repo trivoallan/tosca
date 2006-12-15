@@ -1,11 +1,6 @@
 <%= error_messages_for 'projet' %>
 
 <!--[form:projet]-->
-<p><label for="projet_created_on">Created on</label><br/>
-<%= datetime_select 'projet', 'created_on'  %></p>
-
-<p><label for="projet_updated_on">Updated on</label><br/>
-<%= datetime_select 'projet', 'updated_on'  %></p>
 
 <p><label for="projet_resume">Resume</label><br/>
 <%= text_field 'projet', 'resume'  %></p>
@@ -15,5 +10,26 @@
 
 <p><label for="projet_description">Description</label><br/>
 <%= text_area 'projet', 'description'  %></p>
+
+TODO : faut l'adapter au relations n <-> n et on peut mettre
+cette boite autocomplétée à la place de l'affreux tas de check box.
+<p><label for="projet_logiciel">Logiciel impacté</label>
+<%= text_field_with_auto_complete :logiciel, :nom %>
+<br />
+
+<p><label for="projet_beneficiaires">Client concerné</label><br/>
+<%= hbtm_check_box( @projet.beneficiaires, @beneficiaires, 'beneficiaire_ids', :size => 6) %>
+</p>
+<% #TODO : Ajax avec autocomplétion => champs texte %>
+
+<p><label for="projets_ingenieurs">Ingénieurs concernés</label><br/>
+<%= hbtm_check_box( @projet.ingenieurs, @ingenieurs, 'ingenieur_ids', :size => 6) %>
+</p>
+
+<p><label for="projet_logiciels">Logiciels</label><br/>
+<%= hbtm_check_box( @projet.logiciels, @logiciels, 'logiciel_ids', :size => 6) %>
+</p>
+
+
 <!--[eoform:projet]-->
 

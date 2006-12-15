@@ -28,6 +28,21 @@ end
 
 
 
+module ActiveRecord
+  class Base
+
+    def updated_on_formatted
+      d = @attributes['updated_on']
+      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+    end
+
+    def created_on_formatted
+      d = @attributes['created_on']
+      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+    end
+  end
+end
+
 module ActionController
  def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
    if html_options

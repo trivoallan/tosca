@@ -16,8 +16,9 @@
 
   <%= stylesheet_link_tag 'demandes' %>
 
-  <%= javascript_include_tag 'update_select_ajax' %>
-  <%= javascript_include_tag "prototype" %>
+  <%= javascript_include_tag :defaults %>
+  <% # = javascript_include_tag 'update_select_ajax' %>
+  <% # = javascript_include_tag "prototype" %>
 
 </head>
 
@@ -44,10 +45,12 @@
           </td><td style="text-align:right;padding-right:20px">
                   <% cut_links =  [ (link_to 'Demandes',:controller => 'demandes', :action => 'list'),
                                     (link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
+                                    (link_to 'Projets',:controller => 'projets', :action => 'list'),
+                                    (link_to 'Tâches',:controller => 'taches', :action => 'list'),
                                     (link_to 'Correctifs',:controller => 'correctifs', :action => 'list') ] %>
                   <% cut_links.push((link_to 'Paquets',:controller => 'paquets', :action => 'list')) if @ingenieur %>
                   <% cut_links.push((link_to 'Répertoire',:controller => 'documents', :action => 'select')) %>
-                  <%= cut_links.join(' | ') if @session[:user]   %>
+                  <%= cut_links.compact.join(' | ') if @session[:user]   %>
           </td></tr>
         </table>
      </div><!-- end of haut -->

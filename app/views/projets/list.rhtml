@@ -1,27 +1,18 @@
-<h1>Listing projets</h1>
+<h1>Liste des projets</h1>
 
-<table>
-  <tr>
-  <% for column in Projet.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for projet in @projets %>
-  <tr>
-  <% for column in Projet.content_columns %>
-    <td><%=h projet.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => projet %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => projet %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => projet }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
 
-<%= link_to 'Previous page', { :page => @projet_pages.current.previous } if @projet_pages.current.previous %>
-<%= link_to 'Next page', { :page => @projet_pages.current.next } if @projet_pages.current.next %> 
+<%= show_pages_links(@projet_pages, 'un projet') %>
+<% titres = ['Chrono', 'Résumé', 'Nb de Tâches', 'Crée le', 'Màj' ] %>
+<%= show_table(@projets, Projet, titres) { |projet|
+  result = ''
+  result << "<td>#{link_to_projet(projet)}</td>"
+  result << "<td>#{projet.chrono}</td>"
+  result << "<td>#{projet.taches.count}</td>"
+  result << "<td>#{projet.created_on_formatted}</td>"
+  result << "<td>#{projet.updated_on_formatted}</td>"
+  result << "#{link_to_actions_table projet}"
+  result
+} %>
+<%= show_pages_links(@projet_pages, 'un projet') %>
 
-<br />
 
-<%= link_to 'New projet', :action => 'new' %>

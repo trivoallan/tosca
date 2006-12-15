@@ -26,6 +26,7 @@ module ApplicationHelper
   # objectcollection contient le tableau des objects déjà présents
   # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
   def hbtm_check_box( objectcollection, collection, nom , options={})
+    return '' if collection.nil?
     out = '<table><tr>' and count = 1
     for donnee in collection
       out << "<td><input type=\"checkbox\" id=\"#{donnee.id}\" "
@@ -136,7 +137,7 @@ module ApplicationHelper
   # Utilisé par exemple pour les balise "alt" et "title"
   # 
   def sum_up ( texte, limit=100)
-    return unless (texte.is_a? String) && (limit.is_a? Numeric)
+    return texte unless (texte.is_a? String) && (limit.is_a? Numeric)
     out = ""
     out << texte[0..limit]
     out << '...' if texte.length > limit

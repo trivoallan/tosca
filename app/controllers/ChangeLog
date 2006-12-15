@@ -1,0 +1,5 @@
+2006-12-15  Michel Loiseleur  <mloiseleur@mail.08000linux.com>
+
+	* projets_controller.rb (ProjetsController::_form): Formulaire initial
+	(ProjetsController::_post): Edition & Creation done
+

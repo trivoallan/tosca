@@ -5,6 +5,7 @@ class Logiciel < ActiveRecord::Base
 
   has_many :classifications
   has_and_belongs_to_many :competences
+  has_and_belongs_to_many :projets
   belongs_to :license
 
   has_many :demandes
@@ -58,6 +59,10 @@ class Logiciel < ActiveRecord::Base
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
+  end
+
+  def to_s
+    nom
   end
 
 end

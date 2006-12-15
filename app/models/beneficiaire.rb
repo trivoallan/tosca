@@ -5,9 +5,12 @@ class Beneficiaire < ActiveRecord::Base
   belongs_to :identifiant, :dependent => :destroy
   belongs_to :client
 
+  has_and_belongs_to_many :projets
+
   #TODO : revoir la hiérarchie avec un nested tree (!)
   belongs_to :beneficiaire
   has_many :demandes, :dependent => :destroy
+  
 
   def nom
     return identifiant.nom if identifiant
@@ -18,4 +21,5 @@ class Beneficiaire < ActiveRecord::Base
     return client.contrats.collect{|c| c.id}.join(',')
   end
 
+  alias_method :to_s, :nom
 end

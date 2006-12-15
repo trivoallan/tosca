@@ -10,7 +10,7 @@ class Taches < ActiveRecord::Migration
       t.column :description, :text, :null => true
       t.column :termine, :boolean, :null => false, :default => false
       t.column :position, :integer
-      t.column :auteur_id, :integer, :null => false # ingenieur_id ?
+      t.column :auteur_id, :integer, :null => false # identifiant_id ?
       t.column :responsable_id, :integer, :null => false  # ingenieur_id ?
       t.column :etape_id, :integer
     end
