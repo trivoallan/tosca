@@ -10,7 +10,7 @@
   result << "<td>#{link_to_file document, "fichier"}</td>"
   result << "<td>#{file_size(document.fichier)}</td>"
   result << "<td>#{document.identifiant.nom}</td>"
-  result << "<td>#{document.updated_on.strftime("%d/%m/%Y à %H:%M")}</td>"
+  result << "<td>#{document.updated_on_formatted}</td>"
   result << "<td>#{link_to 'Modifier', :action => 'edit', :id => document}</td>"
   result << "<td>#{link_to 'Effacer', { :action => 'destroy', :id => document }, :confirm => 'Etes vous sûr?', :post => true}</td>"
 }%>

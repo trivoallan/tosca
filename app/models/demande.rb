@@ -26,6 +26,17 @@ class Demande < ActiveRecord::Base
     "#{id}-#{resume.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
+
+  def updated_on_formatted
+    d = @attributes['updated_on']
+    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
+  end
+
+  def created_on_formatted
+    d = @attributes['created_on']
+    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
+  end
+
   def self.content_columns 
     @content_columns ||= columns.reject { |c| c.primary || 
         c.name =~ /(_id|_on|version|resume|description|reproductible)$/ || c.name == inheritance_column } 
@@ -54,11 +65,10 @@ class Demande < ActiveRecord::Base
 
   def temps_correction
     result = 0
-    derniere = self.versions.find(:first, :conditions => 'statut_id=5', :order => 'updated_on')
-    derniere = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on') unless derniere
     corrigee = self.versions.find(:first, :conditions => 'statut_id=6', :order => 'updated_on')
     if corrigee
-      result = compute_diff(derniere.updated_on, corrigee.updated_on, client.support)
+      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on')
+      result = compute_diff(appellee.updated_on, corrigee.updated_on, client.support)
     end
     result
   end
@@ -134,14 +144,14 @@ class Demande < ActiveRecord::Base
 
   def compute_temps_ecoule
     support = client.support
-    changes = Demandechange.find_all_by_demande_id(self.id, :order => "created_on")
+    changes = self.versions # Demandechange.find_all_by_demande_id(self.id, :order => "created_on")
     statuts_sans_chrono = [ 3, 7, 8 ] #Suspendue, Cloture, Annulée, cf modele statut
-    inf = { :date => self.created_on, :statut => Statut.find(1) } #1er statut : enregistré !
+    inf = { :date => self.created_on, :statut => changes.first.statut_id } #1er statut : enregistré !
     delai = 0
     for c in changes
-      sup = { :date => c.created_on, :statut => c.statut }
+      sup = { :date => c.updated_on, :statut => c.statut_id }
 #      delai += (sup[:date] - inf[:date]).to_s + " de " + inf[:statut].nom + " à " + sup[:statut].nom + "<br />"
-      if not statuts_sans_chrono.include? sup[:statut].id
+      unless statuts_sans_chrono.include? sup[:statut]
         delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]), 
                               Jourferie.get_dernier_jour_ouvre(sup[:date]), 
                               support)
@@ -153,7 +163,7 @@ class Demande < ActiveRecord::Base
     end
 
     if not statuts_sans_chrono.include? self.statut.id
-      sup = { :date => Time.now, :statut => self.statut }
+      sup = { :date => Time.now, :statut => self.statut_id }
       delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]), 
                             Jourferie.get_dernier_jour_ouvre(sup[:date]), 
                             support)
@@ -165,20 +175,26 @@ class Demande < ActiveRecord::Base
   end
 
 
- 
+  ##
+  # Calcule le différentiel en secondes entre 2 jours,
+  # selon les horaires d'ouverture du 'support' et les jours fériés
   def compute_diff(dateinf, datesup, support)
     return 0 unless support
     borneinf = dateinf.change(:hour => 0, :minute => 0, :second => 0)
     bornesup = datesup.change(:hour => 0, :minute => 0, :second => 0)
     nb_jours = Jourferie.nb_jours_ouvres(borneinf, bornesup)
 #    return nb_jours.to_s + "<br /> BI " + borneinf.to_s + "<br />" + " BS " + bornesup.to_s + "<br /> "
-    return compute_diff_day(dateinf, 
-                            datesup.change(:day => dateinf.day,:month => dateinf.month, :year => dateinf.year), 
-                            support) if nb_jours == 0
+    if nb_jours == 0
+      return compute_diff_day(dateinf, 
+                              datesup.change(:day => dateinf.day,
+                                             :month => dateinf.month,
+                                             :year => dateinf.year), 
+                              support) 
+    end
     borneinf = borneinf.change(:hour => support.fermeture)
     bornesup = bornesup.change(:hour => support.ouverture)
     nb_jours -= 1 
-    #La durée d'un jour ouvré dépend des horaires d'ouverture
+    # La durée d'un jour ouvré dépend des horaires d'ouverture
     result = (nb_jours * support.interval_in_seconds) 
     result += compute_diff_day(dateinf, borneinf, support)
     result += compute_diff_day(bornesup, datesup, support)
@@ -187,6 +203,9 @@ class Demande < ActiveRecord::Base
     result
   end
 
+  ##
+  # Calcule le temps en seconde qui est écoulé durant la même journée
+  # En temps ouvré, selon les horaires du 'support'
   def compute_diff_day(jourinf, joursup, support)
     #on recup les bornes selon le niveau de support
     borneinf = jourinf.change(:hour => support.ouverture)
@@ -209,7 +228,7 @@ class Demande < ActiveRecord::Base
   
   # J'ai juste traduis les mots, la fonction est nickel :)
   def distance_of_time_in_french_words(distance_in_seconds, support)
-    distance_in_minutes = ( distance_in_seconds.abs / 60 ).round()
+    distance_in_minutes = ((distance_in_seconds.abs)/60).round
     jo = (support.fermeture - support.ouverture) * 60
     demi_jo_inf = (jo / 2) - 60
     demi_jo_sup = (jo / 2) + 60
@@ -232,6 +251,5 @@ class Demande < ActiveRecord::Base
       "#{(distance_in_minutes / jo).round} jours ouvrés"
     end
   end
-
 
 end

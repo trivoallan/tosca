@@ -168,8 +168,6 @@ module ApplicationHelper
 
 
 
-
-
   # Call it like : <%= show_liste(@correctif.binaires, 'correctif') {|e| e.nom} %>
   def show_liste(elements, nom)
     return "<u><b>Aucun(e) #{nom}</b></u>" unless elements.size > 0
@@ -182,7 +180,6 @@ module ApplicationHelper
     elements.each { |e| result << '<li>' + yield(e) + '</li>' }
     result << '</ol>'
 
-#    result << '<tr><th>ID</th><th>Lien</th><th>Taille</th><th>Créé le</th><th>Par</th></tr>'
   end
 
   # Call it like : 

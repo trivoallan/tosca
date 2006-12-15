@@ -9,6 +9,16 @@ class Contrat < ActiveRecord::Base
 
   has_many :logiciels, :through => :paquets, :group => 'id', :order => 'nom ASC'
 
+  def ouverture_formatted
+    d = @attributes['ouverture']
+    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
+  end
+
+  def cloture_formatted
+    d = @attributes['cloture']
+    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
+  end
+
   def demandes
     joins = 'INNER JOIN demandes_paquets ON demandes.id = demandes_paquets.demande_id '
     joins << 'INNER JOIN paquets ON paquets.id = demandes_paquets.paquet_id '

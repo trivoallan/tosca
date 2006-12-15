@@ -63,6 +63,10 @@ Inflector.inflections do |inflect|
 end
 
 
+#Optimization des vues : plus '\n'
+ActionView::Base.erb_trim_mode = '>'
+
+
 # Meta data ici :
 # ajouter par Lstm
 module Metadata

@@ -8,9 +8,18 @@
 </td><td>
 </td></tr></table>
 
-<h1>Historique pour <%= @annee %></h1>
 <% @clients.each do |c| %>
-  <h1><%= c.nom %></h1>
-   <%= report_table(:"temps_moyen_#{c.id}", :titre => 'test') %>
-   <%= report_table(:"temps_maximum_#{c.id}", :titre => 'test') %>
+  <h1>Historique du <%= c.nom %> pour <%= @annee %></h1>
+   <h2>Temps de prise en compte des demandes</h2>
+   <%= report_table(:"temps_rappel_#{c.id}", :titre => 'Prise en compte') %>
+   <label>Estimation faite en minutes</label><br />
+
+   <h2>Temps de contournement des demandes (en JO)</h2>
+   <%= report_table(:"temps_contournement_#{c.id}", :titre => 'Contournement') %>
+   <label>Estimation faite en jours ouvrés</label><br />
+
+   <h2>Temps de correction des demandes</h2>
+   <%= report_table(:"temps_contournement_#{c.id}", :titre => 'Contournement') %>
+   <label>Estimation faite en jours ouvrés</label><br />
+
 <% end %>

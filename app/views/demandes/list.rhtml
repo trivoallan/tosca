@@ -41,7 +41,7 @@
          <td><%=h demande.send(column.name) %></td>
         <% end %>
         <td class="wrapped"><%= link_to_demande demande %></td>
-        <td><small><%=h demande.updated_on.strftime("%d/%m/%Y %H:%M") %></small></td>
+        <td><small><%=h demande.updated_on_formatted %></small></td>
         <% if @ingenieur %> 
           <td><%= demande.ingenieur.identifiant.login if demande.ingenieur %></td> 
         <% end %>

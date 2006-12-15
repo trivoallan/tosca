@@ -5,7 +5,7 @@
 <% titres = ['Màj']%>
 <%= show_table(@correctifs, Correctif, titres, :content_columns => true) { |c|
   result = ''
-  result << "<td>#{c.updated_on.strftime("%d/%m/%Y à %H:%M:%S")}</td>"
+  result << "<td>#{c.updated_on_formatted}</td>"
   result << "#{link_to_actions_table c}"
 }%>
 

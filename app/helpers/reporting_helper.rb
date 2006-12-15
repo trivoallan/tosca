@@ -1,9 +1,9 @@
 module ReportingHelper
 
   def fill_titles(data, size)
-    titres = ['']
+    titres = [@annee]
     size.times do |t|
-      titres.push data[t][0]
+      titres.push data[t][0].to_s.capitalize
     end
     titres
   end
@@ -11,29 +11,28 @@ module ReportingHelper
   # options : one_row, muli_row et titre
   def report_table(nom, options={})
     table = ''
-    table << '<table width="100%">'
-    table << '<tr>'
-    table << '<td align="center">'
+#    table << '<table width="100%">'
+#    table << '<tr>'
+#    table << '<td align="center">'
     if options[:titre]
       table << image_tag(@path[nom], :alt => options[:titre])
     else
       table << image_tag(@path[nom], :alt => @titres[nom])
     end
-    table << '</td>'
-    table << '<td align="center">'
+#    table << '</td>'
+#    table << '<td align="center">'
 
     data = @donnees[nom]
     size = data.size
 
     if options[:one_row]
-      first_col = ['<b>Total</b>']
+      first_col = ['<b>Moyenne</b>']
     elsif options[:multi_row]
       first_col = data[0][1..-1]
     else
       first_col = @first_col
     end
-    unless options[:one_row]
-      last_line = []
+    if options[:total_row]
       size.times do |t|
         data[t].push data[t][1..-1].inject(0) {|n, value| n + value }
       end
@@ -48,9 +47,9 @@ module ReportingHelper
       i += 1
       result
     }
-    table << '</td>'
-    table << '</tr>'
-    table << '</table'
+#    table << '</td>'
+#    table << '</tr>'
+#    table << '</table'
     table
   end
 

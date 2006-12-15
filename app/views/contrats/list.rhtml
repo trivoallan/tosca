@@ -11,8 +11,8 @@
 <% for contrat in @contrats %>
   <tr>
     <td><%=h contrat.client.nom %>
-    <td><%=h contrat.ouverture.strftime "%A %d %b %Y" %>
-    <td><%=h contrat.cloture.strftime "%A %d %b %Y" %>
+    <td><%=h contrat.ouverture_formatted %>
+    <td><%=h contrat.cloture_formatted %>
     <td><%= link_to 'Voir', :action => 'show', :id => contrat %></td>
     <td><%= link_to 'Modifier', :action => 'edit', :id => contrat %></td>
     <td><%= link_to 'Supprimer', { :action => 'destroy', :id => contrat }, :confirm => 'Are you sure?', :post => true %></td>

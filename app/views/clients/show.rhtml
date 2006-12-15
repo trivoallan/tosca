@@ -35,8 +35,8 @@
 <% for contrat in @client.contrats %>
 
 <p><b>Contrat:</b> #<%= contrat.id %><br/>
-  <%=h contrat.ouverture.strftime("%d/%m/%Y") %> =>
-  <%=h contrat.cloture.strftime("%d/%m/%Y") %> <br/>
+  <%=h contrat.ouverture_formatted %> =>
+  <%=h contrat.cloture_formatted %> <br/>
   concernant <%= contrat.nbpaquets %> paquets :</p>
 
   <table>

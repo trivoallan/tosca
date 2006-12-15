@@ -1,4 +1,5 @@
-<%=h @demande.affiche_temps_correction %>
+Correction : <%=h @demande.temps_correction / 60.0 %> / <%=h @demande.affiche_temps_correction %>
+Contournement : <%=h @demande.temps_contournement / 60.0%> / <%=h @demande.affiche_temps_contournement %>
 <div style='z-index:2;'>
 <% ############ bénéficiaire #####################  %>
 <table width='100%' class="infos_beneficiaire">
@@ -46,10 +47,10 @@ function cacherCoordonnees() {
 <tr><td>
 <table class="standard_infos">
   <tr><td><b>Type </b></td>          <td><%= @demande.typedemande.nom %></td>
-      <td><b>Ouverture </b></td>     <td><%= @demande.created_on.strftime("%d/%m/%Y à %H:%M:%S") %></td></tr>
+      <td><b>Ouverture </b></td>     <td><%= @demande.created_on_formatted %></td></tr>
   <tr><td class="<%= "demande_" + @demande.statut_id.to_s %>"><b>Statut </b></td>
 	<td  class="<%= "demande_" + @demande.statut_id.to_s %>"><%= @demande.statut.nom %></td>
-      <td><b>A jour du </b></td>     <td><%= @demande.updated_on.strftime("%d/%m/%Y à %H:%M:%S") %></td></tr>
+      <td><b>A jour du </b></td>     <td><%= @demande.updated_on_formatted %></td></tr>
   <tr><td><b>Sévérité </b></td>      <td><%= @demande.severite.nom %></td>
       <td><b>Temps de rappel </b></td>  <td><%= @demande.affiche_temps_rappel %></td></tr>
   <tr><td><b>Reproduit </b></td>     <td><%= @demande.reproduit %></td>
@@ -167,7 +168,7 @@ function cacherCoordonnees() {
     result << "<td>##{piecejointe.id}</td>"
     result << "<td>#{link_to_file(piecejointe, 'file')}</td>"
     result << "<td>#{file_size(piecejointe.file)}</td>"
-    result << "<td>#{piecejointe.commentaire.created_on.strftime("%d/%m/%Y à %H:%M")}</td>"
+    result << "<td>#{piecejointe.commentaire.created_on_formatted}</td>"
     result << "<td>#{piecejointe.commentaire.identifiant.nom}</td>"
   end
   result

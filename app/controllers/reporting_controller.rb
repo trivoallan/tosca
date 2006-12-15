@@ -39,9 +39,11 @@ class ReportingController < ApplicationController
     report_delai
 
     @clients.each do |c| 
-      write_graph(:"temps_moyen_#{c.id}", Gruff::StackedBar, 
+      write_graph(:"temps_rappel_#{c.id}", Gruff::Line, 
                   :titre => "Temps moyen de #{c.nom}")
-      write_graph(:"temps_maximum_#{c.id}", Gruff::StackedBar, 
+      write_graph(:"temps_contournement_#{c.id}", Gruff::Line, 
+                  :titre => "Temps maximum de #{c.nom}")
+      write_graph(:"temps_correction_#{c.id}", Gruff::Line, 
                   :titre => "Temps maximum de #{c.nom}")
     end
   end
@@ -84,7 +86,7 @@ class ReportingController < ApplicationController
     @titres = @@titres
     @annee = params[:id] || Time.now.year.to_s
     @path = {}
-    @first_col = Date::MONTHNAMES[1..-1] + [ "<b>#{@annee}</b>" ]
+    @first_col = Date::MONTHNAMES[1..-1] # + [ "<b>#{@annee}</b>" ]
     @donnees = {}
   end
 
@@ -115,10 +117,12 @@ class ReportingController < ApplicationController
   def init_delai
     # SideBar sur l'ensemble
     @clients.each do |c|
-      @donnees[:"temps_moyen_#{c.id}"] =
-        [ [:rappel], [:contournement], [:correction] ]
-      @donnees[:"temps_maximum_#{c.id}"] =
-        [ [:rappel], [:contournement], [:correction] ]
+      @donnees[:"temps_rappel_#{c.id}"] =
+        [ [:minimum], [:moyenne], [:maximum] ]
+      @donnees[:"temps_contournement_#{c.id}"] =
+        [ [:minimum], [:moyenne], [:maximum] ]
+      @donnees[:"temps_correction_#{c.id}"] =
+        [ [:minimum], [:moyenne], [:maximum] ]
     end
   end
 
@@ -195,24 +199,30 @@ class ReportingController < ApplicationController
   ##
   # Sort une moyenne de nos traitements des demandes
   # Sort le temps maximum de nos traitements des demandes
+  def fill_report(temps, report)
+    report[0].push((temps.size == 0 ? 0 : temps.min.floor))
+    report[1].push((temps.size == 0 ? 0 : avg(temps).round))
+    report[2].push((temps.size == 0 ? 0 : temps.max.ceil))
+  end
+
+
   def compute_temps(donnees, client)
     demandes = Demande.find_all
 
     rappels, contournements, corrections = [], [], []
     demandes.each do |d|
-      rappels.push d.temps_rappel / 60# contrat.id
-      contournements.push d.temps_contournement / 60# contrat.id
-      corrections.push d.temps_correction / 60# contrat.id
+      rappels.push d.temps_rappel / 60
+      contournements.push distance_of_time_in_working_days(d.temps_contournement,client.support)
+      corrections.push distance_of_time_in_working_days(d.temps_correction,client.support)
     end
-    report = donnees[:"temps_moyen_#{client.id}"]
-    report[0].push((rappels.size == 0 ? 0 : avg(rappels).round))
-    report[1].push((contournements.size == 0 ? 0 : avg(contournements).round))
-    report[2].push((corrections.size == 0 ? 0 : avg(corrections).round))
+    report = donnees[:"temps_rappel_#{client.id}"]
+    fill_report(rappels, report)
 
-    report = donnees[:"temps_maximum_#{client.id}"]
-    report[0].push((rappels.size == 0 ? 0 : rappels.max.round))
-    report[1].push((contournements.size == 0 ? 0 : contournements.max.round))
-    report[2].push((corrections.size == 0 ? 0 : corrections.max.round))
+    report = donnees[:"temps_contournement_#{client.id}"]
+    fill_report(contournements, report)
+
+    report = donnees[:"temps_correction_#{client.id}"]
+    fill_report(corrections, report)
   end
 
   ##
@@ -305,10 +315,10 @@ class ReportingController < ApplicationController
 
   def write_graph(nom, graph, options = {})
     return unless @donnees[nom]
-    g = graph.new
+    g = graph.new(450)
     g.sort = false
 
-    g.title = options[:titre] || @@titres[nom]
+    g.hide_title = true # title = options[:titre] || @@titres[nom]
     g.theme_37signals
     # g.font =  File.expand_path('public/font/VeraBd.ttf', RAILS_ROOT)
     @donnees[nom].each {|value| g.data(value[0], value[1..-1]) }
@@ -318,6 +328,12 @@ class ReportingController < ApplicationController
 
     # this writes the file to the hard drive for caching
     g.write "public/#{@path[nom]}"
+  end
+
+  def distance_of_time_in_working_days(distance_in_seconds, support)
+    distance_in_minutes = ((distance_in_seconds.abs)/60.0)
+    jo = (support.fermeture - support.ouverture) * 60.0
+    distance_in_minutes.to_f / jo.to_f 
   end
 
 

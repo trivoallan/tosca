@@ -12,6 +12,12 @@ class Document < ActiveRecord::Base
   acts_as_versioned
   validates_length_of :titre, :within => 3..60
 
+
+  def updated_on_formatted
+    d = @attributes['updated_on']
+    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
+  end
+
   def nomfichier
     return fichier[/[._ \-a-zA-Z0-9]*$/] if fichier
   end
