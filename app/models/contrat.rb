@@ -45,7 +45,8 @@ class Contrat < ActiveRecord::Base
     Paquet.count([ "contrat_id = ?", id ])
   end
 
-  def nom
-    "#{client.nom} de #{ouverture} à #{cloture}"
+
+  def to_s
+    "#{client.nom} du #{ouverture_formatted} au #{cloture_formatted}"
   end
 end

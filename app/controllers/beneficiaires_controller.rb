@@ -55,7 +55,10 @@ class BeneficiairesController < ApplicationController
   end
 
   def destroy
-    Beneficiaire.find(params[:id]).destroy
+    benef = Beneficiaire.find(params[:id])
+    identifiant = Identifiant.find(benef.identifiant_id)
+    benef.destroy
+    identifiant.destroy
     redirect_to :action => 'list'
   end
 end

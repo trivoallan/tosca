@@ -99,18 +99,17 @@ class AccountController < ApplicationController
       if @identifiant.save
         client = Client.find(@params[:client][:id])
         flash[:notice] = "Enregistrement réussi, n'oubliez pas de vérifier son profil<br />"
-        if client.nom == 'Linagora'
-          ingenieur = Ingenieur.new(:identifiant => @identifiant)
-          flash[:notice] += "Ingénieur associé créé" if ingenieur.save
-          
-        else
+        if @identifiant.client 
           beneficiaire = Beneficiaire.new(:identifiant => @identifiant,
                                          :client => client)
           flash[:notice] += "Beneficiaire associé créé" if beneficiaire.save
-          Notifier::deliver_identifiant_nouveau({:identifiant => @identifiant, 
-                                                  :controller => self,
-                                                  :password => @params[:identifiant][:password_confirmation]}, flash)
+        else
+          ingenieur = Ingenieur.new(:identifiant => @identifiant)
+          flash[:notice] += "Ingénieur associé créé" if ingenieur.save
         end
+        Notifier::deliver_identifiant_nouveau({:identifiant => @identifiant, 
+                                                :controller => self,
+                                                :password => @params[:identifiant][:password_confirmation]}, flash)         
 
         redirect_back_or_default :action => "list"  
       end
@@ -142,7 +141,7 @@ class AccountController < ApplicationController
   
   def destroy
     Identifiant.find(params[:id]).destroy
-    redirect_to :back
+    redirect_back_or_default :action => "list", :controller => 'bienvenue'
   end
 
   private

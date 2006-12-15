@@ -25,15 +25,17 @@ module ApplicationHelper
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
   # objectcollection contient le tableau des objects déjà présents
   # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
-  def hbtm_check_box( objectcollection, collection, nom )
-    out = ""
+  def hbtm_check_box( objectcollection, collection, nom , options={})
+    out = '<table><tr>' and count = 1
     for donnee in collection
-      out << "<input type=\"checkbox\" id=\"#{donnee.id}\" "
+      out << "<td><input type=\"checkbox\" id=\"#{donnee.id}\" "
       out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
-      out << 'checked="checked" ' if objectcollection.include? donnee
-      out << "> #{donnee.to_s} <br />"
+      out << 'checked="checked" ' if objectcollection and objectcollection.include? donnee
+      out << "> #{donnee}</td>"
+      out << '</tr><tr>' and count = 0 if options[:size] and options[:size] == count
+      count += 1
     end
-    out
+    out << '</tr></table>'
   end
 
 

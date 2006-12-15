@@ -31,18 +31,23 @@
 <% end %>
 
 <tr><td><label for="identifiant_password">Choisissez un mot de passe</label></td>
-<td><%= password_field "identifiant", "password", :size => 16, :value => '' %></td></tr>
+<td><%= password_field 'identifiant', 'password', :size => 16, :value => '' %></td></tr>
 <tr><td><label for="identifiant_password_confirmation">Confirmez ce dernier</label></td>
-<td><%= password_field "identifiant", "password_confirmation", :size => 16, 
+<td><%= password_field 'identifiant', 'password_confirmation', :size => 16, 
            :value => '' %></td></tr>
 
 <tr><td colspan="2"><hr/></td></tr>
 <tr><td><label for='identifiant_affichage_personnel'>Affichage Personnel</label></td>
-<td><%= check_box("identifiant", "affichage_personnel") %></td></tr>
+<td><%= check_box('identifiant', 'affichage_personnel') %></td></tr>
 
 <% if @ingenieur %>
 <tr><td><label for="identifiant_role">Roles </label></td>
 <td><%= hbtm_check_box( @identifiant.roles, @roles, 'role_ids') %></td></tr>
+
+ <% if controller.action_name == 'signup' %>
+ <tr><td><label for="identifiant_client">Client ? </label></td>
+ <td><%= check_box('identifiant', 'client') %></td></tr>
+ <% end %>
 <% end %>
 
 </table>

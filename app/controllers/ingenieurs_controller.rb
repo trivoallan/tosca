@@ -21,15 +21,12 @@ class IngenieursController < ApplicationController
 
   def new
     @ingenieur = Ingenieur.new
-    @identifiants = Identifiant.find_all
-    @competences = Competence.find_all
-    @contrats = Contrat.find_all
+    _form
   end
 
   def create
     @ingenieur = Ingenieur.new(params[:ingenieur])
-    @competences = Competence.find_all
-    @contrats = Contrat.find_all
+    _form
     if @ingenieur.save
       flash[:notice] = 'Ingenieur was successfully created.'
       redirect_to :action => 'list'
@@ -40,16 +37,12 @@ class IngenieursController < ApplicationController
 
   def edit
     @ingenieur = Ingenieur.find(params[:id])
-    @identifiants = Identifiant.find_all
-    @competences = Competence.find_all
-    @contrats = Contrat.find_all
+    _form
   end
 
   def update
     @ingenieur = Ingenieur.find(params[:id])
-    @identifiants = Identifiant.find_all
-    @competences = Competence.find_all
-    @contrats = Contrat.find_all
+    _form
     # TODO c'est moche, il faut faire mieux !
     if @params[:competence_ids]
       @ingenieur.competences = Competence.find(@params[:competence_ids]) 
@@ -68,7 +61,7 @@ class IngenieursController < ApplicationController
     if @params[:contrat_ids] and @params[:competence_ids] and 
         @ingenieur.update_attributes(params[:ingenieur]) 
       flash[:notice] = 'Ingenieur was successfully updated.'
-      redirect_to :action => 'show', :id => @ingenieur
+      redirect_to :action => 'list'
     else
       render :action => 'edit'
     end
@@ -76,7 +69,17 @@ class IngenieursController < ApplicationController
   end
 
   def destroy
-    Ingenieur.find(params[:id]).destroy
+    inge = Ingenieur.find(params[:id])
+    identifiant = Identifiant.find(inge.identifiant_id)
+    inge.destroy
+    identifiant.destroy
     redirect_to :action => 'list'
+  end
+
+  private
+  def _form
+    @identifiants = Identifiant.find_all
+    @competences = Competence.find_all
+    @contrats = Contrat.find_all
   end
 end

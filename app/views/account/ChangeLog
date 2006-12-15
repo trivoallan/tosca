@@ -1,0 +1,6 @@
+2006-12-15  Michel Loiseleur  <mloiseleur@mail.08000linux.com>
+
+	* _form.rhtml: Ajout d'un booléen client, qui détermine si le
+	nouvel utilisateur sera bénéficiaire ou ingénieur. Ce booléen
+	n'est paramètrable qu'à la création.
+

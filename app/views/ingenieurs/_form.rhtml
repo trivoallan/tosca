@@ -2,26 +2,26 @@
 
 <!--[form:ingenieur]-->
 
-<p><label for="ingenieur_domaine">Domaine</label><br/>
+<p><label for="ingenieur_domaine">Domaine</label><br />
 <%= text_area 'ingenieur', 'domaine'  %></p>
+
+<p><label for="ingenieur_chef_de_projet">Chef de projet ?</label>
+<%= check_box 'ingenieur', 'chef_de_projet' %></p>
+
+<p><label for="ingenieur_expert_ossa">Expert OSSA ?</label>
+<%= check_box 'ingenieur', 'expert_ossa' %></p>
 
 <p><label for="ingenieur_identifiant">Identifiant</label><br/>
   <%= select("ingenieur", "identifiant_id", 
 	@identifiants.collect{|l| [ l.nom, l.id]}) %>
 </p>
 
-<p><label for="ingenieur_competence">Competences</label><br/>
-<% for competence in @competences %>
-  <input type="checkbox" id="<%=competence.id%>" 
-	name="competence_ids[]" value="<%=competence.id%>"
-	<%if @ingenieur.competences.include? competence%> checked="checked" <%end%>
-  > 
-  <%= competence.nom %>
-<% end %>
+<p><label for="ingenieur_competences">Competences</label><br/>
+<%= hbtm_check_box( @ingenieur.competences, @competences, 'competence_ids', :size => 6) %>
 </p>
 
-<p><label for="ingenieur_contrat">Contrats</label><br/>
-<%= hbtm_check_box( @ingenieur.contrats, @contrats, 'contrats_ids') %>
+<p><label for="ingenieur_contrats">Contrats</label><br/>
+<%= hbtm_check_box( @ingenieur.contrats, @contrats, 'contrat_ids', :size => 2) %>
 </p>
 
 <!--[eoform:ingenieur]-->

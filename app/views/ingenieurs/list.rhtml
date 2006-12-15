@@ -3,6 +3,8 @@
 <table>
   <tr>
     <th>Nom</th>
+    <th>Chef de projet</th>
+    <th>Ossa</th>
   <% for column in Ingenieur.content_columns %>
     <th><%= column.human_name %></th>
   <% end %>
@@ -14,6 +16,8 @@
 <% for ingenieur in @ingenieurs %>
   <tr>
     <td><%= ingenieur.identifiant.nom if ingenieur.identifiant %></td>
+    <td><%= "X" if ingenieur.chef_de_projet %></td>
+    <td><%= "X" if ingenieur.expert_ossa %></td>
   <% for column in Ingenieur.content_columns %>
     <td><%=h ingenieur.send(column.name) %></td>
   <% end %>

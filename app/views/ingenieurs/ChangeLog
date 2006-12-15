@@ -1,0 +1,5 @@
+2006-12-15  Michel Loiseleur  <mloiseleur@mail.08000linux.com>
+
+	* _form.rhtml: Ajout de 2 nouveaux paramètres pour les ingés :
+	Expert OSSA et Chef de projet
+
