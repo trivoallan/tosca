@@ -1,0 +1,28 @@
+<%= error_messages_for 'tache' %>
+
+<!--[form:tache]-->
+<p><label for="tache_created_on">Created on</label><br/>
+<%= datetime_select 'tache', 'created_on'  %></p>
+
+<p><label for="tache_updated_on">Updated on</label><br/>
+<%= datetime_select 'tache', 'updated_on'  %></p>
+
+<p><label for="tache_duree">Duree</label><br/>
+<%= text_field 'tache', 'duree'  %></p>
+
+<p><label for="tache_deadline">Deadline</label><br/>
+<%= datetime_select 'tache', 'deadline'  %></p>
+
+<p><label for="tache_resume">Resume</label><br/>
+<%= text_field 'tache', 'resume'  %></p>
+
+<p><label for="tache_description">Description</label><br/>
+<%= text_area 'tache', 'description'  %></p>
+
+<p><label for="tache_termine">Termine</label><br/>
+<select id="tache_termine" name="tache[termine]"><option value="false" selected>False</option><option value="true">True</option></select></p>
+
+<p><label for="tache_position">Position</label><br/>
+<%= text_field 'tache', 'position'  %></p>
+<!--[eoform:tache]-->
+
