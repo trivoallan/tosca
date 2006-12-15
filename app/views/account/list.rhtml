@@ -5,15 +5,16 @@
 
 <% if @ingenieur %>
 <%= start_form_tag :action => "devenir" %>
-  <p> Bénéficiaires : 
    <select id="account_beneficiaire_id" name="account[beneficiaire_id]">
      <%= option_groups_from_collection_for_select(@clients, "beneficiaires", 
                                                   "nom", "id", "nom" ) %>
    </select>
-  <%= submit_tag "Devenir" %></p>
+   <%= submit_tag "Devenir" %></p>
 <%= end_form_tag %>
 
 <% end %>
+
+<%= link_to_beneficiaires %> / <%= link_to_ingenieurs %>
 
 <table>
   <tr>

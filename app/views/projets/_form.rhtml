@@ -1,0 +1,19 @@
+<%= error_messages_for 'projet' %>
+
+<!--[form:projet]-->
+<p><label for="projet_created_on">Created on</label><br/>
+<%= datetime_select 'projet', 'created_on'  %></p>
+
+<p><label for="projet_updated_on">Updated on</label><br/>
+<%= datetime_select 'projet', 'updated_on'  %></p>
+
+<p><label for="projet_resume">Resume</label><br/>
+<%= text_field 'projet', 'resume'  %></p>
+
+<p><label for="projet_chrono">Chrono</label><br/>
+<%= text_field 'projet', 'chrono'  %></p>
+
+<p><label for="projet_description">Description</label><br/>
+<%= text_area 'projet', 'description'  %></p>
+<!--[eoform:projet]-->
+

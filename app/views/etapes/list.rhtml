@@ -1,0 +1,27 @@
+<h1>Listing etapes</h1>
+
+<table>
+  <tr>
+  <% for column in Etape.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for etape in @etapes %>
+  <tr>
+  <% for column in Etape.content_columns %>
+    <td><%=h etape.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => etape %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => etape %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => etape }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @etape_pages.current.previous } if @etape_pages.current.previous %>
+<%= link_to 'Next page', { :page => @etape_pages.current.next } if @etape_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New etape', :action => 'new' %>

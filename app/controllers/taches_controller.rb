@@ -48,4 +48,11 @@ class TachesController < ApplicationController
     Tache.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+
+  private 
+  def _form
+    @projets = Projet.find_all
+    @ingenieurs = Ingenieur.find_presta(:all, :include => [:identifiants])
+    @etapes = Etape.find_all
+  end
 end

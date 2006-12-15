@@ -5,6 +5,8 @@ class AccountController < ApplicationController
   model   :identifiant
   layout  'standard-layout'
 
+  helper :ingenieurs, :beneficiaires
+
   #before_filter :login_required, :except => [:login]
 
   def login
@@ -136,7 +138,7 @@ class AccountController < ApplicationController
   
   def list
     @clients = Client.find_all
-    @user_pages, @users = paginate :identifiants, :per_page => 10
+    @user_pages, @users = paginate :identifiants, :per_page => 25
   end
   
   def destroy
