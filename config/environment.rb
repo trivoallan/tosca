@@ -65,7 +65,7 @@ end
 
 
 #Optimization des vues : plus '\n'
-ActionView::Base.erb_trim_mode = '>'
+#ActionView::Base.erb_trim_mode = '>'
 
 
 # Meta data ici :
