@@ -15,12 +15,11 @@ class BienvenueController < ApplicationController
          :redirect_to => { :action => :list }
 
   #    @user = @session[:user] # cf identifiants
-
-
   def list
     conditions = [ "statut_id NOT IN (?,?)", 7, 8 ]
     if @ingenieur
       @demandes = Demande.find_all_by_ingenieur_id(@ingenieur.id,
+                                                   :include => 'statut',
                                                    :limit => 5,
                                                    :conditions => conditions,
                                                    :order => "updated_on DESC")
@@ -31,7 +30,7 @@ class BienvenueController < ApplicationController
       liste = @beneficiaire.client.beneficiaires.collect{|b| b.id}.join(',')
       conditions = [ "demandes.beneficiaire_id IN (#{liste})" ]
       Demande.with_scope({ :find => { :conditions => conditions } }) do
-        @demandes = Demande.find(:all, :limit => 5, :order => "updated_on DESC ")
+        @demandes = Demande.find(:all, :include => 'statut', :limit => 5, :order => "updated_on DESC ")
       end
       @client = @beneficiaire.client.nom
     else    
@@ -39,7 +38,6 @@ class BienvenueController < ApplicationController
                         Veuillez nous contacter pour nous avertir de cet incident."
       @demandes = [] # renvoi un tableau vide
     end   
-
   end
 
 

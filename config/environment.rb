@@ -65,7 +65,7 @@ end
 
 
 #Optimization des vues : plus '\n'
-#ActionView::Base.erb_trim_mode = '>'
+ActionView::Base.erb_trim_mode = '>'
 
 
 # Meta data ici :
@@ -88,8 +88,9 @@ module Metadata
   TEXTE_TELEPHONE = "LINUX"
   SITE_INTERNET = "08000LINUX.com"
 
+  # logo
+  LOGO_08000LINUX = '<img alt="08000 LINUX" src="/images/logo_08000.gif">'
 end
-
 
 
 # Rédéfinit globalement en français les messages d'erreur

@@ -16,6 +16,7 @@ require_dependency "acl_system"
 
 class ApplicationController < ActionController::Base
 
+
   meantime_filter :scope_beneficiaire
 
   before_filter :set_charset
@@ -40,7 +41,7 @@ class ApplicationController < ActionController::Base
     @user_group = (@ingenieur ? 'ingénieur' : 'bénéficiaire')
 
   end
-  
+
   protected
   
   # variable utilisateurs; nécessite @session[:user]
@@ -49,13 +50,30 @@ class ApplicationController < ActionController::Base
     @session[:filtres] = Hash.new
     @session[:beneficiaire] = @session[:user].beneficiaire
     @session[:ingenieur] = @session[:user].ingenieur
-    url_logo = '<%= image_tag url_for_file_column(Photo.find(6), "image", "thumb")%>'
-    @session[:logo_08000] = render_to_string :inline => url_logo
+    @session[:nav_links] = render_to_string :inline => "
+        <% nav_links = [ 
+        (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
+        (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
+        (link_to 'Mon compte', :controller => 'account', :action => 'modify', :id => @session[:user].id),
+        (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
+        (link_to 'Utilisateurs', :controller => 'account', :action => 'list')] %>
+        <%= nav_links.compact.join(' | ') if @session[:user] %>"
+    @session[:cut_links] = render_to_string :inline => "
+        <% cut_links = [ 
+        (link_to 'Demandes',:controller => 'demandes', :action => 'list'),
+        (link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
+        (link_to 'Projets',:controller => 'projets', :action => 'list'),
+        (link_to 'Tâches',:controller => 'taches', :action => 'list'),
+        (link_to 'Correctifs',:controller => 'correctifs', :action => 'list'),
+        (link_to 'Paquets',:controller => 'paquets', :action => 'list'),
+        (link_to 'Répertoire',:controller => 'documents', :action => 'select')]%>
+        <%= cut_links.compact.join(' | ') %>"
   end
+
 
   # encodage
   def set_charset
-    @headers["Content-Type"] = "text/html; charset=ISO-8859-1"
+    @headers['Content-Type'] = 'text/html; charset=ISO-8859-1'
   end
 
   #scope

@@ -4,16 +4,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-  # This helper method is used to generate the javascript to execute on the client
-  # It assumes that the function update_select_options is already in the open document
-  #
-  # Options
-  #  <tt>:text</tt> - The method to use on collection objects to get the text for the option
-  #  <tt>:value</tt> - The method to use on collection objects to get the value attribute for the option
-  #  <tt>:include_blank</tt> - Includes a blank option at the top of cascaded boxes
-  #  <tt>:clear</tt> - An array that contains the dom id's of select boxes to clear when target_dom_id changes
 
-  # link_to_modify_account(@session[:user].id, 'Modifier mon compte')
   def link_to_modify_account(id, title)
     link_to title, { 
       :action => 'modify', 

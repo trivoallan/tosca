@@ -24,7 +24,7 @@
                       <table><% ### vue synthétique des demandes personnalisées selon utilisateur ### %>
                       <% if @demandes.size > 0 %>
                        <% for demande in @demandes %>
-                           <tr class=<%= "demande_" + demande.statut.id.to_s %> alt="<%= sum_up(demande) %>" title="<%= sum_up(demande) %>">
+                           <tr class=<%= "demande_#{demande.statut.id}" %> alt="<%= sum_up(demande) %>" title="<%= sum_up(demande) %>">
                             <td><%= link_to_demande demande, :show_id => "true" %></td>
                            </tr>
                         <% end %>
