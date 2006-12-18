@@ -1,48 +1,33 @@
 <h1>Liste des roles</h1>
 <small>[<%= link_to 'et permission accordées', :controller => 'permissions' %>]</small>
 
+<% titres = ['Règle','Info'] 
+  titres.concat(@roles.collect{|r| link_to r.nom, 
+    :action => 'edit', :id => r})
+%>
+<%= show_table(@permissions, Permission, titres) { |p|
+  result = ''
+  result << "<td>#{p.name}</td>"
+  result << "<td>#{p.info}</td>"
+  @roles.each {|r|
+    if p.roles.include? r
+      result << "<td>X</td>"
+    else
+      result << '<td></td>'
+    end
+  }
+#  result << "#{link_to_actions_table p}"
+  result
+}%>
+
+<%= link_to 'Liste des permissions', :controller => 'permissions' %>
+
+
+
+
+
 <p>&nbsp;</p>
 
-<table>
-
-  <tr>
-  <% for column in Role.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  <% for permission in Permission.find_all %>
-    <th><small> [<%= link_to permission.name, :controller => 'permissions', :action => 'edit', :id => permission %>] </small></th>
-  <% end %>
-    <th>Mettre à jour</th>
-  </tr>
-  
-<% for role in @roles %>
-
-  <tr>
-   <% for column in Role.content_columns %>
-      <td><%=h role.send(column.name) %></td>
-   <% end %>
-
-   <%= start_form_tag :action => 'update', :id => role %>
-    <% for permission in Permission.find_all %>
-      <td><input type="checkbox" id="<%=permission.id%>" name="permission_ids[]" value="<%=permission.id%>"
-      <%if role.permissions.include? permission%> checked="checked" <%end%> ></td>
-    <% end %>
-      <td><%= submit_tag 'OK' %></td>
-   <%= end_form_tag %>
-
-      <td><%= link_to 'Voir', :action => 'show', :id => role %></td>
-      <td><%= link_to 'Modifier', :action => 'edit', :id => role %></td>
-      <td><%= link_to 'Supprimer', { :action => 'destroy', :id => role }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-
-<% end %>
-
-</table>
-
-<%= link_to 'Page précédente', { :page => @role_pages.current.previous } if @role_pages.current.previous %>
-<%= link_to 'Page suivante', { :page => @role_pages.current.next } if @role_pages.current.next %> 
-
-<br />
 
 <%= link_to 'Ajouter un rôle', :action => 'new' %> <br/>
 <%= link_to 'Liste des permissions', :controller => 'permissions' %> | 

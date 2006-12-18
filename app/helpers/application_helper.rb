@@ -15,6 +15,8 @@ module ApplicationHelper
 
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
   # objectcollection contient le tableau des objects déjà présents
+  # C'est la fonction to_s qui est utilisée pour le label
+  # L'option :size permettent une mise en colonne
   # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
   def hbtm_check_box( objectcollection, collection, nom , options={})
     return '' if collection.nil?

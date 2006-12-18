@@ -1,3 +1,8 @@
+2006-12-18  Michel Loiseleur  <mloiseleur@mail.08000linux.com>
+
+	* roles_controller.rb (RolesController::update): Gestion améliorée
+	des rôles
+
 2006-12-15  Michel Loiseleur  <mloiseleur@mail.08000linux.com>
 
 	* projets_controller.rb (ProjetsController::_form): Formulaire initial

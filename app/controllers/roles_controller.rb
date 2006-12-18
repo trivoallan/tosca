@@ -12,7 +12,9 @@ class RolesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @role_pages, @roles = paginate :roles, :per_page => 10
+    @permissions = Permission.find(:all, :order => 'name', :include => [:roles])
+    @roles = Role.find_all
+    # @role_pages, @roles = paginate :roles, :per_page => 10
   end
 
   def show
@@ -43,7 +45,7 @@ class RolesController < ApplicationController
     @role = Role.find(params[:id])
     if @role.update_attributes(params[:role])
       flash[:notice] = 'Role was successfully updated.'
-      redirect_to :action => 'show', :id => @role
+      redirect_to :action => 'list'
     else
       render :action => 'edit'
     end
@@ -63,6 +65,6 @@ class RolesController < ApplicationController
 
   private
   def _form
-    @permissions = Permission.find_all
+    @permissions = Permission.find(:all, :order => 'name')
   end
 end

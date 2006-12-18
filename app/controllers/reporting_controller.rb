@@ -144,7 +144,7 @@ class ReportingController < ApplicationController
       Demande.with_scope({ :find => { :conditions => @conditions } }) do
         @clients.each do |c|
           liste = c.beneficiaires.collect{|b| b.id}.join(',')
-          conditions = [ "demandes.beneficiaire_id IN (#{liste})" ]
+          conditions = [ "demandes.beneficiaire_id IN (#{liste})" ] unless liste == ''
           Demande.with_scope({ :find => { :conditions => conditions } }) do
             compute_temps @donnees, c
           end
@@ -200,9 +200,9 @@ class ReportingController < ApplicationController
   # Sort une moyenne de nos traitements des demandes
   # Sort le temps maximum de nos traitements des demandes
   def fill_report(temps, report)
-    report[0].push((temps.size == 0 ? 0 : temps.min.floor))
-    report[1].push((temps.size == 0 ? 0 : avg(temps).round))
-    report[2].push((temps.size == 0 ? 0 : temps.max.ceil))
+    report[0].push((temps.size == 0 ? 0 : temps.min)) # .floor))
+    report[1].push((temps.size == 0 ? 0 : avg(temps))) # .round))
+    report[2].push((temps.size == 0 ? 0 : temps.max)) # .ceil))
   end
 
 

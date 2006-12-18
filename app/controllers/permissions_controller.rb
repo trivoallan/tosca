@@ -12,7 +12,7 @@ class PermissionsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @permission_pages, @permissions = paginate :permissions, :per_page => 10
+    @permission_pages, @permissions = paginate :permissions, :per_page => 100
   end
 
   def show
@@ -41,7 +41,7 @@ class PermissionsController < ApplicationController
     @permission = Permission.find(params[:id])
     if @permission.update_attributes(params[:permission])
       flash[:notice] = 'Permission was successfully updated.'
-      redirect_to :action => 'show', :id => @permission
+      redirect_to :action => 'list'
     else
       render :action => 'edit'
     end

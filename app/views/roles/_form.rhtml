@@ -8,14 +8,9 @@
 <p><label for="role_info">Info</label><br/>
 <%= text_field 'role', 'info'  %></p>
 
+
 <p><label for="role_permission">Permissions</label><br/>
-<% for permission in @permissions %>
-  <input type="checkbox" id="<%=permission.id%>" 
-	name="permission_ids[]" value="<%=permission.id%>"
-	<%if @role.permissions.include? permission%> checked="checked" <%end%>
-  > 
-  <%= permission.name %>
-<% end %>
+<%= hbtm_check_box(@role.permissions, @permissions, 'permission_ids', :size => 4) %>
 </p>
 
 <!--[eoform:role]-->

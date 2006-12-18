@@ -68,7 +68,9 @@ class Demande < ActiveRecord::Base
     corrigee = self.versions.find(:first, :conditions => 'statut_id=6', :order => 'updated_on')
     if corrigee
       appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on')
-      result = compute_diff(appellee.updated_on, corrigee.updated_on, client.support)
+      if appellee
+        result = compute_diff(appellee.updated_on, corrigee.updated_on, client.support)
+      end
     end
     result
   end
@@ -94,7 +96,7 @@ class Demande < ActiveRecord::Base
   def temps_rappel
     result = 0
     first = self.versions[0]
-    if (self.versions.size > 1) and (first.statut_id == 1)
+    if (self.versions.size > 2) and (first.statut_id == 1)
       second = self.versions[1]
       result = compute_diff(first.updated_on, second.updated_on, client.support)
     end
