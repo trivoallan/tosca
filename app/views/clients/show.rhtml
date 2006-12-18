@@ -13,7 +13,7 @@
 <%= show_liste(@client.contrats, 'contrat') { |c|
   result = ''
   result << "Contrat ##{c.id}| #{c.ouverture_formatted} => #{c.cloture_formatted} "
-  result << "concernant #{c.nbpaquets} paquets :"
+  result << "concernant #{c.paquets.size} paquets :"
   titres = ['Demande','Sévérité','Contournement','Correction']
   oldtypedemande = nil
   result << show_table(c.engagements, Engagement, titres) { |e|
