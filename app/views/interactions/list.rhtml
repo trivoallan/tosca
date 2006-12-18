@@ -23,9 +23,4 @@
 <% end %>
 </table>
 
-<%= link_to 'Page précédente', { :page => @interaction_pages.current.previous } if @interaction_pages.current.previous %>
-<%= link_to 'Page suivante', { :page => @interaction_pages.current.next } if @interaction_pages.current.next %> 
-
-<br />
-
-<%= link_to 'Ajouter une interaction', :action => 'new' %>
+<%= show_pages_links(@interaction_pages, 'une interaction') %>

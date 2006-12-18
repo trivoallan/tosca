@@ -1,4 +1,4 @@
-<h1>Liste des roles</h1>
+<h1>Liste des rôles</h1>
 <small>[<%= link_to 'et permission accordées', :controller => 'permissions' %>]</small>
 
 <% titres = ['Règle','Info'] 
@@ -20,16 +20,11 @@
   result
 }%>
 
-<%= link_to 'Liste des permissions', :controller => 'permissions' %>
 
-
-
-
+<%= link_to 'Liste des permissions', :controller => 'permissions' %> | 
+<%= link_to 'Ajouter une permission', :controller => 'permissions', :action => 'new' %>
 
 <p>&nbsp;</p>
 
-
 <%= link_to 'Ajouter un rôle', :action => 'new' %> <br/>
-<%= link_to 'Liste des permissions', :controller => 'permissions' %> | 
-<%= link_to 'Ajouter une permission', :controller => 'permissions', :action => 'new' %>
 
