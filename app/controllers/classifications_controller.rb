@@ -13,7 +13,8 @@ class ClassificationsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @classification_pages, @classifications = paginate :classifications, :per_page => 10
+    @classification_pages, @classifications = paginate :classifications, 
+    :per_page => 10, :include => [:logiciel,:client,:groupe,:bouquet]
   end
 
   def show
@@ -22,10 +23,7 @@ class ClassificationsController < ApplicationController
 
   def new
     @classification = Classification.new
-    @logiciels = Logiciel.find_all
-    @groupes = Groupe.find_all
-    @bouquets = Bouquet.find_all
-    @socles = Socle.find_all
+    _form
   end
 
   def create
@@ -34,16 +32,14 @@ class ClassificationsController < ApplicationController
       flash[:notice] = 'Classification was successfully created.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
 
   def edit
     @classification = Classification.find(params[:id])
-    @logiciels = Logiciel.find_all
-    @groupes = Groupe.find_all
-    @bouquets = Bouquet.find_all
-    @socles = Socle.find_all
+    _form
   end
 
   def update
@@ -52,6 +48,7 @@ class ClassificationsController < ApplicationController
       flash[:notice] = 'Classification was successfully updated.'
       redirect_to :action => 'show', :id => @classification
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -59,5 +56,12 @@ class ClassificationsController < ApplicationController
   def destroy
     Classification.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+  private
+  def _form
+    @logiciels = Logiciel.find_all
+    @groupes = Groupe.find_all
+    @bouquets = Bouquet.find_all
+    @socles = Socle.find_all
   end
 end

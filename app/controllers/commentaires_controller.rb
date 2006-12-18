@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class CommentairesController < ApplicationController
+  helper :demandes
+
   def index
     list
     render :action => 'list'
@@ -12,7 +14,8 @@ class CommentairesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @commentaire_pages, @commentaires = paginate :commentaires, :per_page => 10
+    @commentaire_pages, @commentaires = paginate :commentaires, 
+    :per_page => 10, :include => [:demande]
   end
 
   def show
@@ -49,13 +52,11 @@ class CommentairesController < ApplicationController
     elsif @commentaire.save and demande.update_attributes(params[:demande])
       flash[:notice] = 'Le commentaire a bien été ajouté.'
       unless @commentaire.prive
-        Notifier::deliver_demande_nouveau_commentaire({:demande => demande, 
-                                                        :commentaire => @commentaire, 
-                                                        :nom => user.nom, 
-                                                        :controller => self,
-                                                        :request => @request,
-                                                        :statut_modifie => statut_modifie,
-                                                        :statut => demande.statut.nom}, flash)
+        Notifier::deliver_demande_nouveau_commentaire\
+        ({:demande => demande, :commentaire => @commentaire, 
+           :nom => user.nom, :controller => self,
+           :request => @request, :statut_modifie => statut_modifie,
+           :statut => demande.statut.nom}, flash)
       end
     else
       flash[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
@@ -79,9 +80,7 @@ class CommentairesController < ApplicationController
 
   def new
     @commentaire = Commentaire.new
-    @demandes = Demande.find_all
-    @identifiants = Identifiant.find_all
-    @statuts = Statut.find_all
+    _form
   end
 
   def create
@@ -90,15 +89,14 @@ class CommentairesController < ApplicationController
       flash[:notice] = 'Le commentaire a bien été crée.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
 
   def edit
     @commentaire = Commentaire.find(params[:id])
-    @demandes = Demande.find_all
-    @identifiants = Identifiant.find_all
-    @statuts = Statut.find_all
+    _form
   end
 
   def update
@@ -107,6 +105,7 @@ class CommentairesController < ApplicationController
       flash[:notice] = 'Commentaire was successfully updated.'
       redirect_to :action => 'show', :id => @commentaire
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -115,5 +114,12 @@ class CommentairesController < ApplicationController
     Commentaire.find(params[:id]).destroy
     flash[:notice] = 'Le commentaire a bien été supprimé.'
     redirect_to :action => 'comment', :id => params[:demande], :controller => 'demandes'
+  end
+
+  private
+  def _form
+    @demandes = Demande.find_all
+    @identifiants = Identifiant.find_all
+    @statuts = Statut.find_all
   end
 end

@@ -12,8 +12,9 @@ class ReportingController < ApplicationController
     :evolution => 'Evolution des sollicitations distinctes',
     :top5_demandes => 'Top 5 des demandes les plus discutées',
     :top5_logiciels => 'Top 5 des logiciels les plus défectueux',
-    :temps_moyen => 'Moyenne du temps de traitement',
-    :temps_maximum => 'Temps de traitement maximum constaté'
+    :temps_rappel => 'Evolution du temps de prise en compte',
+    :temps_contournement => 'Evolution du temps de contournement',
+    :temps_correction => 'Evolution du temps de correction'
     }
 
   def index
@@ -39,12 +40,9 @@ class ReportingController < ApplicationController
     report_delai
 
     @clients.each do |c| 
-      write_graph(:"temps_rappel_#{c.id}", Gruff::Line, 
-                  :titre => "Temps moyen de #{c.nom}")
-      write_graph(:"temps_contournement_#{c.id}", Gruff::Line, 
-                  :titre => "Temps maximum de #{c.nom}")
-      write_graph(:"temps_correction_#{c.id}", Gruff::Line, 
-                  :titre => "Temps maximum de #{c.nom}")
+      write_graph(:"temps_rappel_#{c.id}", Gruff::Line)
+      write_graph(:"temps_contournement_#{c.id}", Gruff::Line) 
+      write_graph(:"temps_correction_#{c.id}", Gruff::Line)
     end
   end
 
@@ -67,20 +65,21 @@ class ReportingController < ApplicationController
 #     rmtree(reporting)
 #     Dir.mkdir(reporting)
 
-#     #on remplit
-#     write_graph(:top5_demandes, Gruff::Pie)
-#     write_graph(:top5_logiciels, Gruff::Pie)
-#     write_graph(:repartition, Gruff::StackedBar)
-#     write_graph(:severite, Gruff::StackedBar)
-#     write_graph(:resolution, Gruff::StackedBar)
-#     write_graph(:evolution, Gruff::Line)
-#     write_graph(:repartition_cumulee, Gruff::Pie)
-#     write_graph(:severite_cumulee, Gruff::Pie)
-#     write_graph(:resolution_cumulee, Gruff::Pie)
+    #on remplit
+    write_graph(:top5_demandes, Gruff::Pie)
+    write_graph(:top5_logiciels, Gruff::Pie)
+    write_graph(:repartition, Gruff::StackedBar)
+    write_graph(:severite, Gruff::StackedBar)
+    write_graph(:resolution, Gruff::StackedBar)
+    write_graph(:evolution, Gruff::Line)
+    write_graph(:repartition_cumulee, Gruff::Pie)
+    write_graph(:severite_cumulee, Gruff::Pie)
+    write_graph(:resolution_cumulee, Gruff::Pie)
     
   end
 
   private
+  # initialise toutes les variables de classes nécessaire
   def init_action(params)
     require 'digest/sha1'
     @titres = @@titres
@@ -178,6 +177,7 @@ class ReportingController < ApplicationController
       start_date = start_date.advance(:months => 1)
     end
 
+    end_date = start_date
     start_date = Time.mktime(@annee) 
     infdate = "'" + start_date.strftime('%y-%m') + "-01'"
     supdate = "'" + end_date.strftime('%y-%m') + "-01'"
@@ -313,7 +313,10 @@ class ReportingController < ApplicationController
   end
 
 
-  def write_graph(nom, graph, options = {})
+  # Ecrit le graphe en utilisant les données indexées par 'nom' dans @données
+  # grâce au chemin d'accès spécifié dans @path[nom]
+  # graph sert à spécifier le type de graphe attendu
+  def write_graph(nom, graph)
     return unless @donnees[nom]
     g = graph.new(450)
     g.sort = false
@@ -324,12 +327,14 @@ class ReportingController < ApplicationController
     @donnees[nom].each {|value| g.data(value[0], value[1..-1]) }
     g.labels =  Date::ABBR_MONTHS_LSTM
     g.hide_dots = true if g.respond_to? :hide_dots
-    g.no_data_message = 'Aucune donnée\n disponible'
+    g.no_data_message = 'Aucune donnée\n n\'est disponible'
 
     # this writes the file to the hard drive for caching
     g.write "public/#{@path[nom]}"
   end
 
+  # TODO : mettre ça dans le modèle Demande
+  # Calcule en JO le temps écoulé 
   def distance_of_time_in_working_days(distance_in_seconds, support)
     distance_in_minutes = ((distance_in_seconds.abs)/60.0)
     jo = (support.fermeture - support.ouverture) * 60.0

@@ -1,27 +1,13 @@
 <h1>Liste des bouquets</h1>
+<%= show_pages_links(@bouquet_pages, 'un bouquet') %>
 
-<table>
-  <tr>
-  <% for column in Bouquet.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for bouquet in @bouquets %>
-  <tr>
-  <% for column in Bouquet.content_columns %>
-    <td><%=h bouquet.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Voir', :action => 'show', :id => bouquet %></td>
-    <td><%= link_to 'Editer', :action => 'edit', :id => bouquet %></td>
-    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => bouquet }, :confirm => 'Voulez-vous vraiment supprimer le bouquet '+bouquet.nom+' ?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<% titres = []%>
+<%= show_table(@bouquets, Bouquet, titres, :content_columns => true) { |c|
+  result = ''
+  result << "#{link_to_actions_table c}"
+}%>
 
-<%= link_to 'Page précédente', { :page => @bouquet_pages.current.previous } if @bouquet_pages.current.previous %>
-<%= link_to 'Page suivante', { :page => @bouquet_pages.current.next } if @bouquet_pages.current.next %> 
 
-<br />
+<%= show_pages_links(@bouquet_pages, 'un bouquet') %>
 
-<%= link_to 'Ajouter un bouquet', :action => 'new' %>
+

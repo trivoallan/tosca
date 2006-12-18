@@ -1,31 +1,16 @@
 <h1>Listing binaires</h1>
 
-<table>
-  <tr>
-  <% for column in Binaire.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-    <th>Id</th>
-    <th>Patch</th>
-  </tr>
-  
-<% for binaire in @binaires %>
-  <tr>
-  <% for column in Binaire.content_columns %>
-    <td><%=h binaire.send(column.name) %></td>
-  <% end %>
-    <td><%="#{binaire.id}"%></td>
-    <td><%= link_to_file binaire, 'fichier' %></td>
-    <td><%= link_to 'Show', :action => 'show', :id => binaire %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => binaire %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => binaire }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@binaire_pages, 'une archive binaire') %>
 
-<%= link_to 'Previous page', { :page => @binaire_pages.current.previous } if @binaire_pages.current.previous %>
-<%= link_to 'Next page', { :page => @binaire_pages.current.next } if @binaire_pages.current.next %> 
+<% titres = ['Id','Patch']%>
+<%= show_table(@binaires, Binaire, titres, :content_columns => true) { |b|
+  result = ''
+  result << "<td>#{b.id}</td>"
+  result << "<td>#{link_to_file(b, 'fichier')}</td>"
+  result << "#{link_to_actions_table b}"
+}%>
 
-<br />
 
-<%= link_to 'New binaire', :action => 'new' %>
+<%= show_pages_links(@binaire_pages, 'une archive binaire') %>
+
+

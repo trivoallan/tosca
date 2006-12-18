@@ -113,7 +113,8 @@ class DemandesController < ApplicationController
     conditions = [ query.join(" AND ") ] + params
     @query = query.join(" AND ") + params.inspect
     @demande_pages, @demandes = paginate :demandes, :per_page => 15,
-      :order => 'updated_on DESC', :conditions => conditions
+      :order => 'updated_on DESC', :conditions => conditions,
+    :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut]
   end
 
 

@@ -198,7 +198,7 @@ module ApplicationHelper
       result << "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">"
       if (options[:content_columns])
         ar.content_columns.each {|column| 
-          result << "<td>#{h elements[i].send(column.name)}</td>" 
+          result << "<td>#{indent elements[i].send(column.name)}</td>" 
         }
       end
       result << yield(elements[i])

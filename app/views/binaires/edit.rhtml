@@ -1,6 +1,6 @@
-<h1>Editing binaire</h1>
+<h1>Modification de la livraison du binaire</h1>
 
-<%= start_form_tag {:action => 'update', :id => @binaire}, :multipart => true %>
+<%= start_form_tag({:action => 'update', :id => @binaire}, :multipart => true)%>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <%= end_form_tag %>

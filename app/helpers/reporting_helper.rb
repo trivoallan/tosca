@@ -43,7 +43,7 @@ module ReportingHelper
       result << "<td>#{date}</td>"
       size.times do |t|
         value = data[t][i]
-        if value.is_a? Numeric
+        if value.is_a? Float
           result << "<td>#{sprintf('%.2f', value)}</td>"
         else
           result << "<td>#{value}</td>"

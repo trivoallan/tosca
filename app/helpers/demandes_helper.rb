@@ -8,7 +8,7 @@ module DemandesHelper
     nom = sum_up(demande.resume, 50)
     alt = sum_up(demande.description)
     id = ""
-    id << "#"+demande.id.to_s+" " if options[:show_id] == "true"
+    id << "##{demande.id} " if options[:show_id] == "true"
     link_to id+nom,{:controller => 'demandes',
       :action => 'comment', :id => demande}, { :alt => alt, :title => alt }
 

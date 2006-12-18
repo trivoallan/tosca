@@ -1,29 +1,17 @@
-<h1>Listing beneficiaires</h1>
+<h1>Liste des beneficiaires</h1>
 
-<table>
-  <tr>
-    <th>Nom</th>
-  <% for column in Beneficiaire.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for beneficiaire in @beneficiaires %>
-  <tr>
-    <td><%=h beneficiaire.nom %></td>
-  <% for column in Beneficiaire.content_columns %>
-    <td><%=h beneficiaire.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => beneficiaire %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => beneficiaire %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => beneficiaire }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
 
-<%= link_to 'Previous page', { :page => @beneficiaire_pages.current.previous } if @beneficiaire_pages.current.previous %>
-<%= link_to 'Next page', { :page => @beneficiaire_pages.current.next } if @beneficiaire_pages.current.next %> 
+<%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
 
-<br />
+<% titres = ['Nom', 'Domaine']%>
+<%= show_table(@beneficiaires, Beneficiaire, titres) { |c|
+  result = ''
+  result << "<td>#{c.nom}</td>"
+  result << "<td>#{c.domaine}</td>"
+  result << "#{link_to_actions_table c}"
+}%>
 
-<%= link_to 'New beneficiaire', :action => 'new' %>
+
+<%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
+
+

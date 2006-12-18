@@ -11,15 +11,15 @@
 <% @clients.each do |c| %>
   <h1>Historique du <%= c.nom %> pour <%= @annee %></h1>
    <h2>Temps de prise en compte des demandes</h2>
-   <%= report_table(:"temps_rappel_#{c.id}", :titre => 'Prise en compte') %>
+   <%= report_table(:"temps_rappel_#{c.id}", :titre => @titres[:temps_rappel]) %>
    <label>Estimation faite en minutes</label><br />
 
    <h2>Temps de contournement des demandes (en JO)</h2>
-   <%= report_table(:"temps_contournement_#{c.id}", :titre => 'Contournement') %>
+   <%= report_table(:"temps_contournement_#{c.id}", :titre => @titres[:temps_contournement]) %>
    <label>Estimation faite en jours ouvrés</label><br />
 
    <h2>Temps de correction des demandes</h2>
-   <%= report_table(:"temps_correction_#{c.id}", :titre => 'Correction') %>
+   <%= report_table(:"temps_correction_#{c.id}", :titre => @titres[:temps_correction]) %>
    <label>Estimation faite en jours ouvrés</label><br />
 
 <% end %>

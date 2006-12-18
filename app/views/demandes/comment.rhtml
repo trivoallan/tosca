@@ -1,5 +1,3 @@
-Correction : <%=h @demande.temps_correction / 60.0 %> / <%=h @demande.affiche_temps_correction %>
-Contournement : <%=h @demande.temps_contournement / 60.0%> / <%=h @demande.affiche_temps_contournement %>
 <div style='z-index:2;'>
 <% ############ bénéficiaire #####################  %>
 <table width='100%' class="infos_beneficiaire">
@@ -47,16 +45,20 @@ function cacherCoordonnees() {
 <tr><td>
 <table class="standard_infos">
   <tr><td><b>Type </b></td>          <td><%= @demande.typedemande.nom %></td>
-      <td><b>Ouverture </b></td>     <td><%= @demande.created_on_formatted %></td></tr>
-  <tr><td class="<%= "demande_" + @demande.statut_id.to_s %>"><b>Statut </b></td>
-	<td  class="<%= "demande_" + @demande.statut_id.to_s %>"><%= @demande.statut.nom %></td>
-      <td><b>A jour du </b></td>     <td><%= @demande.updated_on_formatted %></td></tr>
+      <td><b>Ouverture </b></td>     <td><%= @demande.created_on_formatted %></td>
+      <td><b>Rappelée en</b></td>    <td><%= @demande.affiche_temps_rappel %></td></tr>
+  <tr><td class="<%= "demande_#{@demande.statut_id}" %>"><b>Statut </b></td>
+      <td  class="<%= "demande_#{@demande.statut_id}" %>"><%= @demande.statut.nom %></td>
+      <td><b>A jour du </b></td>     <td><%= @demande.updated_on_formatted %></td>
+      <td><b>Contournée en</b></td>    <td><%= @demande.affiche_temps_contournement %></td></tr>
   <tr><td><b>Sévérité </b></td>      <td><%= @demande.severite.nom %></td>
-      <td><b>Temps de rappel </b></td>  <td><%= @demande.affiche_temps_rappel %></td></tr>
+      <td><b>Correctif fourni</b></td><td><%= link_to_correctif @demande.correctif %></td>
+      <td><b>Corrigée en</b></td>  <td><%= @demande.affiche_temps_correction %></td></tr>
   <tr><td><b>Reproduit </b></td>     <td><%= @demande.reproduit %></td>
-      <td><b>Temps écoulé</b></td>     <td><%= @demande.affiche_temps_ecoule %></td>
+      <td></td><td></td>
+      <td><b>Temps écoulé</b></td>     <td><%= @demande.affiche_temps_ecoule %></td></tr>
   <tr><td><b>Responsable </b></td>   <td><%= @demande.ingenieur.identifiant.nom if @demande.ingenieur %></td>
-      <td><b>Correctif fourni</b></td><td><%= link_to_correctif @demande.correctif %></td></tr>
+      <td></td><td></td><td></td><td></td></tr>
 </table></td><td>
 <table width='100%'>
 <tr><td colspan="4">
