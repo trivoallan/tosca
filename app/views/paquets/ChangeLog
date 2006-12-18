@@ -1,0 +1,5 @@
+2006-12-18  Michel Loiseleur  <mloiseleur@mail.08000linux.com>
+
+	* show.rhtml: Grosses optimisations. On peut enfin afficher 20 000
+	fichiers sans problèmes, même sur un PII ;)
+

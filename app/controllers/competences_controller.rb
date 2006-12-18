@@ -12,7 +12,7 @@ class CompetencesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @competence_pages, @competences = paginate :competences, :per_page => 10
+    @competence_pages, @competences = paginate :competences, :per_page => 50
   end
 
   def show

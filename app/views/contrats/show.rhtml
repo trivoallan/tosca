@@ -1,4 +1,4 @@
-<p><b>Client:</b> <%= @contrat.client.nom %>
+<p><b>Client:</b> <%= link_to_client(@contrat.client) %>
 
 <% for column in Contrat.content_columns %>
 <p>
@@ -6,49 +6,26 @@
 </p>
 <% end %>
 
+Note : La consultation du client permet d'avoir une vision globale de l'offre
 
-<% if (@contrat.logiciels.size != 0) %>
-<p><b>Logiciels</b>
-  <% for logiciel in @contrat.logiciels %>
-  <%=h "#{logiciel.nom} " %>
-  <% end %>
-</p>
-<% else %>
-<p><b>Aucun logiciel rattaché</b></p>
-<% end %>
+<%  titres = ['Demande','Sévérité','Contournement','Correction']
+    oldtypedemande = nil %>
+<%= show_table(@contrat.engagements, Engagement, titres) { |e|
+     out = ''
+     if oldtypedemande == e.typedemande_id
+       out << '<td></td>'
+     else
+       out << "<td>#{e.typedemande.nom}</td>"
+     end
+     out << "<td>#{e.severite.nom}</td>"
+     out << "<td>#{display_jours e.contournement}</td>"
+     out << "<td>#{display_jours e.correction}</td>"
+     out << "#{link_to_actions_table e}"
+     oldtypedemande = e.typedemande_id
+     out 
+  } %>
 
-<% if (@contrat.typedemandes.size != 0) %>
-<p><b>Demandes autorisés </b>
-  <% for typedemande in @contrat.typedemandes %>
-  <%=h "#{typedemande.nom} " %>
-  <% end %>
-</p>
-<% else %>
-<p><b>Aucun type de demande autorisé</b></p>
-<% end %>
-
-
-<% if (@contrat.engagements.size != 0) %>
-<p><b>Engagement contractuel :</b></p>
-<table>
-  <tr>
-    <th>Demande</th>
-    <th>Sévérité</th>
-    <th>Contournement</th>
-    <th>Engagement</th>
-  </tr>
-
-  <% @contrat.engagements.each do |e| %>
-    <tr>
-    <td><%= e.typedemande.nom %></td>
-    <td><%= e.severite.nom %></td>
-    <td><%= display_jours e.contournement %></td>
-    <td><%= display_jours e.correction %></td>
-    </tr>
-  <% end %>
-</table>
-<% end %>
+<br />
 
 
-<%= link_to 'Edit', :action => 'edit', :id => @contrat %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to_edit(@contrat) %> | <%= link_to_back %>

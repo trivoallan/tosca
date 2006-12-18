@@ -11,7 +11,7 @@
   end
   result << "<td>#{link_to_client(c)}</td>"
   result << "<td>#{indent sum_up(c.adresse)}</td>"
-  result << "<td>#{c.mailingliste}</td>"
+  result << "<td>#{mail_to(c.mailingliste)}</td>"
   result << "<td>#{c.code_acces}</td>"
   result << "<td>#{c.support.nom}</td>"
   result << "#{link_to_actions_table c}"

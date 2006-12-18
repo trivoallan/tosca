@@ -13,15 +13,6 @@ class Correctif < ActiveRecord::Base
   validates_length_of :nom, :within => 3..25
 
 
-  def updated_on_formatted
-    d = @attributes['updated_on']
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
-  end
-
-  def created_on_formatted
-    d = @attributes['created_on']
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
-  end
 
 
   def mes_demandes(beneficiaire)

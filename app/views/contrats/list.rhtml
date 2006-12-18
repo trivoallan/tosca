@@ -1,28 +1,22 @@
 <h1>Liste des contrats</h1>
 
-<table>
-  <tr>
-    <th>Client</th>
-  <% for column in Contrat.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for contrat in @contrats %>
-  <tr>
-    <td><%=h contrat.client.nom %>
-    <td><%=h contrat.ouverture_formatted %>
-    <td><%=h contrat.cloture_formatted %>
-    <td><%= link_to 'Voir', :action => 'show', :id => contrat %></td>
-    <td><%= link_to 'Modifier', :action => 'edit', :id => contrat %></td>
-    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => contrat }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@contrat_pages, 'un système de paquet') %>
 
-<%= link_to 'Previous page', { :page => @contrat_pages.current.previous } if @contrat_pages.current.previous %>
-<%= link_to 'Next page', { :page => @contrat_pages.current.next } if @contrat_pages.current.next %> 
+<% titres = ['Nom','Logiciels','Paquets','Demandes',
+  'Ingénieurs','Ouverture','=>','Fermeture']%>
+<%= show_table(@contrats, Contrat, titres) { |c|
+  result = ''
+  result << "<td>#{link_to_contrat(c)}</td>"
+  result << "<td>#{c.logiciels.size}</td>"
+  result << "<td>#{c.paquets.size}</td>"
+  result << "<td>#{c.demandes.size}</td>"
+  result << "<td>#{c.ingenieurs.size}</td>"
+  result << "<td>#{c.ouverture_formatted}</td>"
+  result << '<td></td>'
+  result << "<td>#{c.cloture_formatted}</td>"
+  result << "#{link_to_actions_table c}"
+}%>
 
-<br />
 
-<%= link_to 'Ajouter un contrat', :action => 'new' %>
+<%= show_pages_links(@contrat_pages, 'un système de paquet') %>
+

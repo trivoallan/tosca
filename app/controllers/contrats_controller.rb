@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class ContratsController < ApplicationController
+  helper :clients
+
   def index
     list
     render :action => 'list'
@@ -12,7 +14,8 @@ class ContratsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @contrat_pages, @contrats = paginate :contrats, :per_page => 10
+    @contrat_pages, @contrats = paginate :contrats, :per_page => 10,
+    :include => [:client]
   end
 
   def show

@@ -1,27 +1,13 @@
-<h1>Listing conteneurs</h1>
+<h1>Liste des systèmes de paquets</h1>
 
-<table>
-  <tr>
-  <% for column in Conteneur.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for conteneur in @conteneurs %>
-  <tr>
-  <% for column in Conteneur.content_columns %>
-    <td><%=h conteneur.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => conteneur %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => conteneur %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => conteneur }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@conteneur_pages, 'un système de paquet') %>
 
-<%= link_to 'Previous page', { :page => @conteneur_pages.current.previous } if @conteneur_pages.current.previous %>
-<%= link_to 'Next page', { :page => @conteneur_pages.current.next } if @conteneur_pages.current.next %> 
+<% titres = []%>
+<%= show_table(@conteneurs, Conteneur, titres, :content_columns => true) { |c|
+  result = ''
+  result << "#{link_to_actions_table c}"
+}%>
 
-<br />
 
-<%= link_to 'New conteneur', :action => 'new' %>
+<%= show_pages_links(@conteneur_pages, 'un système de paquet') %>
+

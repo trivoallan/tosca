@@ -16,39 +16,19 @@
 <p><b>Conteneur:</b> <%= @paquet.conteneur.nom %></p>
 <p><b>Distributeur:</b> <%=h @paquet.distributeur.nom %></p>
 <p><b>Mainteneur:</b> <%=h @paquet.mainteneur.nom %></p>
-<% #<p><a href="http://ouzo.linagora.lan/rpmfind/<%=@paquet.arch.nom%>/<%=@paquet.nom+"-"+ %>
-<% #  @p<aquet.version+"-"+@paquet.release+"."+@paquet.arch.nom%>.html">Detail (rpm2html)</a></p> %>
-
-<% if (@fichiers.size != 0) %>
- <p><b>Fichiers (<%=@fichiers.size%> sur <%=@paquet.fichiers.size%>):</b><br />
-   <div id="bloc_scroll">
-    <table>
-    <tr>
-      <td width="40px">&nbsp;</td>
-      <td><ul>
-       <% @fichiers.each do |fichier| %>
-	 <li><%=fichier.chemin%></li>
-       <% end %>
-      </ul></td>
-    </tr>
-    </table>
-   </div>
- </p>
-<% end %>
 
 
-<% if (@paquet.changelogs.size != 0) %>
- <p><b>Changelogs:</b><br />
-   <div id="bloc_scroll">
-    <ul>
-    <% @paquet.changelogs.each do |changelog| %>
-	<li><i><%=changelog.date_modification %></i> <%= changelog.nom_modification %><br />
-	<%=h changelog.text_modification %> <br /></li>
-    <% end %>
-    </ul>
-   </div>
- </p>
-<% end %>
+
+<div id="bloc_scroll">
+  <%= show_liste(@fichiers, 'fichier') { |f| f.chemin } %>
+</div>
+
+<div id="bloc_scroll">
+  <%= show_liste(@changelogs, 'changelog') { |c| 
+  "#{c.date_modification_formatted} : #{c.nom_modification}<br />#{c.text_modification}<br />"
+} %>
+</div>
+
 
 <p>&nbsp;</p>
 

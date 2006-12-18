@@ -1,27 +1,14 @@
 <h1>Liste des compétences</h1>
 
-<table>
-  <tr>
-  <% for column in Competence.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for competence in @competences %>
-  <tr>
-  <% for column in Competence.content_columns %>
-    <td><%=h competence.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Voir', :action => 'show', :id => competence %></td>
-    <td><%= link_to 'Modifier', :action => 'edit', :id => competence %></td>
-    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => competence }, :confirm => 'Voulez-vous vraiment supprimer la compétence "'+competence.nom+'" ?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@competence_pages, 'une compétence') %>
 
-<%= link_to 'Page précédente', { :page => @competence_pages.current.previous } if @competence_pages.current.previous %>
-<%= link_to 'Page suivante', { :page => @competence_pages.current.next } if @competence_pages.current.next %> 
+<% titres = []%>
+<%= show_table(@competences, Competence, titres, :content_columns => true) { |c|
+  result = ''
+  result << "#{link_to_actions_table c}"
+}%>
 
-<br />
 
-<%= link_to 'Ajouter une compétence', :action => 'new' %>
+<%= show_pages_links(@competence_pages, 'une compétence') %>
+
+

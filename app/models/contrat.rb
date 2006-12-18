@@ -42,11 +42,6 @@ class Contrat < ActiveRecord::Base
                      :joins => joins)
   end
 
-  def nbpaquets
-    paquets.size # Paquet.count([ "contrat_id = ?", id ])
-  end
-
-
   def to_s
     "#{client.nom} du #{ouverture_formatted} au #{cloture_formatted}"
   end
