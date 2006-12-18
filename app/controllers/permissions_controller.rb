@@ -12,7 +12,7 @@ class PermissionsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @permission_pages, @permissions = paginate :permissions, :per_page => 100
+    @permission_pages, @permissions = paginate :permissions, :order => 'name', :per_page => 100
   end
 
   def show
