@@ -1,5 +1,11 @@
 2006-12-18  Michel Loiseleur  <mloiseleur@mail.08000linux.com>
 
+	* demande.rb (Demande::compute_temps_ecoule): BugFix pour les
+	demandes sans historiques.
+
+	* client.rb (Client::logiciels): Utilisation des includes pour
+	accélération de l'affichage.
+
 	* demande.rb (Demande::affiche_temps_correction): Fix quand les
 	versions ne sont pas là
 

@@ -10,69 +10,33 @@
    => Ouvert de <%=h @client.support.ouverture %>h à <%=h @client.support.fermeture %>h</p>
 <% end %>
 
-<% if (@client.typedemandes.size != 0) %>
-<p><b>Demandes autorisés </b>
-  <% for typedemande in @client.typedemandes %>
-  <%=h "#{typedemande.nom} " %>
-  <% end %>
-</p>
-<% else %>
-<p><b>Aucun type de demande autorisé</b></p>
-<% end %>
+<%= show_liste(@client.contrats, 'contrat') { |c|
+  result = ''
+  result << "Contrat ##{c.id}| #{c.ouverture_formatted} => #{c.cloture_formatted} "
+  result << "concernant #{c.nbpaquets} paquets :"
+  titres = ['Demande','Sévérité','Contournement','Correction']
+  oldtypedemande = nil
+  result << show_table(c.engagements, Engagement, titres) { |e|
+     out = ''
+     if oldtypedemande == e.typedemande_id
+       out << '<td></td>'
+     else
+       out << "<td>#{e.typedemande.nom}</td>"
+     end
+     out << "<td>#{e.severite.nom}</td>"
+     out << "<td>#{display_jours e.contournement}</td>"
+     out << "<td>#{display_jours e.correction}</td>"
+     out << "#{link_to_actions_table e}"
+     oldtypedemande = e.typedemande_id
+     out 
+  }
+  result
+}%>
 
-<% if (@client.demandes.size != 0) %>
-<p><b><%=@client.demandes.size%> Demandes déclarées</b>
-  <% for demande in @client.demandes %>
-  <%=h "#{demande.id} " %>
-  <% end %>
-</p>
-<% else %>
-<p><b>Aucune demande déposée</b></p>
-<% end %>
+<%= show_liste(@client.demandes, 'demande') {|d| link_to_demande(d) } %>
 
-
-
-<% for contrat in @client.contrats %>
-
-<p><b>Contrat:</b> #<%= contrat.id %><br/>
-  <%=h contrat.ouverture_formatted %> =>
-  <%=h contrat.cloture_formatted %> <br/>
-  concernant <%= contrat.nbpaquets %> paquets :</p>
-
-  <table>
-    <tr>
-      <th>Demande</th>
-      <th>Sévérité</th>  
-      <% for column in Engagement.content_columns %>
-        <th><%= column.human_name %></th>
-      <% end %>
-    </tr>
-    
-    <% for engagement in contrat.engagements %>  
-    <tr>
-      <td><%=h engagement.typedemande.nom%></td>
-      <td><%=h engagement.severite.nom %></td>
-      <% for column in Engagement.content_columns %>
-        <td><%=h engagement.send(column.name) %></td>
-      <% end %>
-      <td><%= link_to_engagement 'Voir', 'show', engagement %></td>
-      <td><%= link_to_engagement 'Modifier', 'edit', engagement %></td>
-    </tr>
-    <% end %>
-   </table>
-<% end %>
-
-
-<% if (@client.logiciels.size != 0) %>
-<p><b>Logiciels</b>
-  <% for logiciel in @client.logiciels %>
-  <%= "#{logiciel.nom} " %>
-  <% end %>
-</p>
-<% else %>
-<p><b>Aucun logiciel rattaché</b></p>
-<% end %>
+<%= show_liste(@client.paquets, 'paquet') {|p| link_to_paquet(p) } %>
 
 
 <%= link_to 'Modifier', :action => 'edit', :id => @client %> |
-<%= link_to 'Retour', :action => 'list' %>
+<%= link_to 'Liste des clients', :action => 'list' %>

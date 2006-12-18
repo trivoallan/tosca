@@ -2,4 +2,5 @@
 
 	* standard-layout.rhtml: accélération de 30 ms (~ 17%) sur
 	_chaque_ page en mettant en cache de session le menu dynamique
+	Ajout du sapin de nowel ^_^
 

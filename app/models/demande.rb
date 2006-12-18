@@ -145,6 +145,7 @@ class Demande < ActiveRecord::Base
   end
 
   def compute_temps_ecoule
+    return 0 unless self.versions.size > 0
     support = client.support
     changes = self.versions # Demandechange.find_all_by_demande_id(self.id, :order => "created_on")
     statuts_sans_chrono = [ 3, 7, 8 ] #Suspendue, Cloture, Annulée, cf modele statut

@@ -166,10 +166,11 @@ module ApplicationHelper
 
   # Call it like : <%= show_liste(@correctif.binaires, 'correctif') {|e| e.nom} %>
   def show_liste(elements, nom)
-    return "<u><b>Aucun(e) #{nom}</b></u>" unless elements.size > 0
+    size = elements.size
+    return "<u><b>Aucun(e) #{nom}</b></u>" unless size > 0
     result = ''
-    result << "<p><b>#{elements.size} "
-    result << (elements.size == 1 ? nom.capitalize : nom.capitalize.pluralize)
+    result << "<p><b>#{size} "
+    result << (size == 1 ? nom.capitalize : nom.capitalize.pluralize)
     result << ' : </b><br />'
 
     result << '<ol>'
@@ -227,7 +228,7 @@ module ApplicationHelper
     return temps unless temps.is_a? Numeric
     case temps
     when -1 then "Sans objet"
-    when 1 then " jour ouvré"
+    when 1 then "1 jour ouvré"
     else temps.to_s + " jours ouvrés"
     end
   end

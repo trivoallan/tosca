@@ -7,4 +7,11 @@ module ClientsHelper
   def link_to_engagement(name, action, engagement)
     link_to name, :action => action, :id => engagement.id, :controller => 'engagements'
   end
+
+
+  def link_to_client(c)
+    return "N/A" unless c
+    link_to c.nom, :controller => 'clients', 
+    :action => 'show', :id => c
+  end
 end

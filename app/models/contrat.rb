@@ -4,7 +4,8 @@
 class Contrat < ActiveRecord::Base
   has_many :paquets, :dependent => :destroy
   belongs_to :client
-  has_and_belongs_to_many :engagements, :order => "typedemande_id, severite_id"
+  has_and_belongs_to_many :engagements, :order => "typedemande_id, severite_id",
+    :include => [:severite,:typedemande]
   has_and_belongs_to_many :ingenieurs, :order => 'contrat_id'
 
   has_many :logiciels, :through => :paquets, :group => 'id', :order => 'nom ASC'
@@ -42,7 +43,7 @@ class Contrat < ActiveRecord::Base
   end
 
   def nbpaquets
-    Paquet.count([ "contrat_id = ?", id ])
+    paquets.size # Paquet.count([ "contrat_id = ?", id ])
   end
 
 

@@ -9,7 +9,7 @@ class Client < ActiveRecord::Base
   has_many :classifications
   has_many :documents
 
-  has_many :paquets, :through => :contrats
+  has_many :paquets, :through => :contrats, :include => [:arch,:conteneur]
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
 
@@ -54,5 +54,10 @@ class Client < ActiveRecord::Base
                      :conditions => conditions, 
                      :joins => joins)
   end
+
+  def to_param
+    "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
+  end
+
 
 end
