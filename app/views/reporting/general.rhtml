@@ -10,27 +10,33 @@
   <p><label for="demande_resume">Spécifier une année : </label>
   <%= text_field 'report', '', "annee" => @annee  %>
   <%= submit_tag "Consulter" %></p>
-<%= end_form_tag %>
-</td><td>
-</td></tr></table>
+  <%= end_form_tag %>
+ </td><td>
+ </td></tr>
+</table>
 
 <h1>Historique de vos demandes pour <%= @annee %></h1>
 
 <h2>Evolution du type de vos demandes</h2> 
 <%= report_table(:repartition) %>
+
 <h2>Répartition du type de vos demandes</h2>
 <%= report_table(:repartition_cumulee, :one_row => true) %>
 <br />
+
 <h2>Evolution de la sévérité de vos demandes</h2>
 <%= report_table(:severite) %>
+
 <h2>Répartion de la sévérité de vos demandes</h2>
 <%= report_table(:severite_cumulee, :one_row => true) %>
 <br />
+
 <h2>Evolution de la résolution de vos demandes</h2>
 <%= report_table(:resolution) %>
 <h2>Répartition de la résolution de vos demandes</h2>
 <%= report_table(:resolution_cumulee, :one_row => true) %>
 <br />
+
 <h2>Evolution générale du service</h2> 
 <ul>
 <li>nombre de bénéficiaires distinct</li>
@@ -39,8 +45,10 @@
 </ul>
 <%= report_table(:evolution) %>
 <br />
+
 <h2>Top 5 des demandes les plus commentées</h2>
 <%= report_table(:top5_demandes, :one_row => true) %>
+
 <h2>Top 5 des logiciels les plus sujets à demandes</h2>
 <%= report_table(:top5_logiciels, :one_row => true) %>
 <%= report_table(:repartition_cumulee, :one_row => true) %>
