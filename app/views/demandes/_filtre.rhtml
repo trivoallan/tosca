@@ -40,10 +40,7 @@
           <%= end_form_tag %>
       </td>
       <td nowrap valign='baseline'>Par identifiant : </td>
-      <td><%= start_form_tag :action => "list", 
-                         :filter => @filter, 
-                         :client => @client, 
-                         :id => 'client_filter' %>
+      <td><%= start_form_tag :action => 'comment' %>
              <%= text_field 'numero', '', "size" => 5 %>
           <%= end_form_tag %>
       </td>

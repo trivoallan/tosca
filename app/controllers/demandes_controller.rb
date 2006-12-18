@@ -43,7 +43,7 @@ class DemandesController < ApplicationController
   def list
     return unless @session[:user]
     #cas spécial : consultation directe
-    redirect_to :action => :comment, :id => params['numero'] if @params['numero'] 
+    redirect_to :action => :comment, :id => params['numero'] if params['numero'] 
 
     #init des variables utilisées dans la vue
     @clients = Client.find_all 
