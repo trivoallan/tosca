@@ -1,0 +1,6 @@
+2006-12-18  Michel Loiseleur  <mloiseleur@mail.08000linux.com>
+
+	* application_helper.rb (ApplicationHelper::show_liste):
+	optimisation : on ne compte qu'une fois la taille d'une liste, ça
+	évite un triple count(*).
+
