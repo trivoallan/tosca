@@ -25,19 +25,20 @@
 
      <div id="haut">
 	<table width=100%>
-          <tr>
+        <tr>
           <td width="5" rowspan="2">
-          <%= image_tag '/photo/image/13/thumb/sapin77.gif' %>
+               <%= image_tag '/photo/image/13/thumb/sapin77.gif' %></td>
           <td style="padding-left:20px">
-               <%= Metadata::LOGO_08000LINUX %>
-          </td><td style="text-align:right;padding-right:20px">
-	       <%= @session[:nav_links] if @session[:user] %>
-          </td></tr>
-          </tr><td style="padding-left:20px">
-               <%= (@session[:user] ? "Bienvenue #{@session[:user].titre} #{@session[:user].nom}" : ' [Non connecté]') %>
-          </td><td style="text-align:right;padding-right:20px">
-	       <%= @session[:cut_links] if @session[:user] %>
-          </td></tr>
+               <%= Metadata::LOGO_08000LINUX %></td>
+          <td style="text-align:right;padding-right:20px" colspan="2" >
+               <%= @session[:nav_links] if @session[:user] %></td>
+        </tr>
+        <tr>
+          <td style="padding-left:20px">
+               <%= (@session[:user] ? "Bienvenue #{@session[:user].titre} #{@session[:user].nom}" : ' [Non connecté]') %></td>
+          <td style="text-align:right;padding-right:20px">
+	       <%= @session[:cut_links] if @session[:user] %></td>
+        </tr>
         </table>
      </div><!-- end of haut -->
 
