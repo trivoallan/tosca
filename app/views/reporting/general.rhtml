@@ -1,8 +1,14 @@
-
-<table><tr><td>
-<%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
+<table width="100%">
+ <tr><td  width="100%" align="center">
+ <h1 class="title">
+  <%= (@beneficiaire ? @beneficiaire.client.nom : "OSSA") +
+   ": Rapport d'activité de la cellule OSSA pour #{@annee}" %></h1></td></tr>
+ <tr><td></td><td><div class="form">
+  <%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
+  <p><label for="demande_resume">Spécifier un mois : </label>
+  <%= text_field 'report', '', "mois" => @month  %>
   <p><label for="demande_resume">Spécifier une année : </label>
-  <%= text_field 'report', '', "mois" => @annee  %>
+  <%= text_field 'report', '', "annee" => @annee  %>
   <%= submit_tag "Consulter" %></p>
 <%= end_form_tag %>
 </td><td>
@@ -37,8 +43,7 @@
 <%= report_table(:top5_demandes, :one_row => true) %>
 <h2>Top 5 des logiciels les plus sujets à demandes</h2>
 <%= report_table(:top5_logiciels, :one_row => true) %>
-
-
-
-
+<%= report_table(:repartition_cumulee, :one_row => true) %>
+<%= report_table(:severite_cumulee, :one_row => true) %>
+<%= report_table(:resolution_cumulee, :one_row => true) %>
 

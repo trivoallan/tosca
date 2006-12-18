@@ -11,16 +11,16 @@ module ReportingHelper
   # options : one_row, muli_row et titre
   def report_table(nom, options={})
     table = ''
-#    table << '<table width="100%">'
-#    table << '<tr>'
-#    table << '<td align="center">'
+    table << '<table width="100%">'
+    table << '<tr>'
+    table << '<td width="100%">'
     if options[:titre]
       table << image_tag(@path[nom], :alt => options[:titre])
     else
       table << image_tag(@path[nom], :alt => @titres[nom])
     end
-#    table << '</td>'
-#    table << '<td align="center">'
+    table << '</td>'
+    table << '<td align="center">'
 
     data = @donnees[nom]
     size = data.size
@@ -52,9 +52,9 @@ module ReportingHelper
       i += 1
       result
     }
-#    table << '</td>'
-#    table << '</tr>'
-#    table << '</table'
+    table << '</td>'
+    table << '</tr>'
+    table << '</table'
     table
   end
 

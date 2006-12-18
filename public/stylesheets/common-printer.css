@@ -547,3 +547,6 @@ h1.section {
 	line-height: normal;
 }
 
+div.form {
+	visibility: hidden;
+}
