@@ -28,7 +28,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #000;
-	background-color: #eaeafa;
+	background-color: #FFFFFF;
 	font-size: 1em; /* 0.7em <=> 12px */
   	font-family: verdana, arial, helvetica, sans-serif;
   	font-size:   12px;
@@ -548,5 +548,16 @@ h1.section {
 }
 
 div.form {
+	display: none;
+	visibility: hidden;
+}
+
+div.haut {
+	display: none;
+	visibility: hidden;
+}
+
+div.pied {
+	display: none;
 	visibility: hidden;
 }
