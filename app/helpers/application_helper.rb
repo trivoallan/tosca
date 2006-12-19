@@ -34,11 +34,15 @@ module ApplicationHelper
 
 
   #  add_create_link
-  def link_to_new(message)
-    link_to image_tag("create_icon.png", :size => "16x16", 
+  # options :
+  #  permet de spécifier un controller 
+  def link_to_new(message, options = {})
+    link_options = options.update({:action => 'new'})
+    link_to(image_tag("create_icon.png", :size => "16x16", 
                       :border => 0, :title => "Déposer #{message}", 
-                      :alt => "Déposer #{message}" ), { 
-      :action => 'new' }, { :class => 'nobackground' }
+                      :alt => "Déposer #{message}" ), 
+            link_options, 
+            { :class => 'nobackground' })
   end
 
   # add_view_link(demande)
@@ -151,7 +155,7 @@ module ApplicationHelper
     end
   end
   
-  # Call it like this : link_to_file(document, "fichier", "nomfichier")
+  # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
   def link_to_file(record, file)
     if record and File.exist?(record.send(file))
       nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/] 
@@ -161,9 +165,8 @@ module ApplicationHelper
     end
   end
 
-
-
-  # options : no_title permet de ne pas mettre de titre à la liste
+  # options : 
+  #  * no_title : permet de ne pas mettre de titre à la liste
   # Call it like : <%= show_liste(@correctif.binaires, 'correctif') {|e| e.nom} %>
   def show_liste(elements, nom, options = {})
     size = elements.size

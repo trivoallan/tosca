@@ -16,20 +16,7 @@
   result << "concernant #{c.paquets.size} paquets :"
   titres = ['Demande','Sévérité','Contournement','Correction']
   oldtypedemande = nil
-  result << show_table(c.engagements, Engagement, titres) { |e|
-     out = ''
-     if oldtypedemande == e.typedemande_id
-       out << '<td></td>'
-     else
-       out << "<td>#{e.typedemande.nom}</td>"
-     end
-     out << "<td>#{e.severite.nom}</td>"
-     out << "<td>#{display_jours e.contournement}</td>"
-     out << "<td>#{display_jours e.correction}</td>"
-     out << "#{link_to_actions_table e}"
-     oldtypedemande = e.typedemande_id
-     out 
-  }
+  result << show_table_engagements(c.engagements)
   result
 }%>
 

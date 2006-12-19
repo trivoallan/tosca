@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class ContratsController < ApplicationController
-  helper :clients
+  helper :clients,:engagements
 
   def index
     list

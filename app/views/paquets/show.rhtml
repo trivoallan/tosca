@@ -1,7 +1,6 @@
 <h1><%= @paquet.nom %> < <%= @paquet.logiciel.nom.capitalize %></h1>
 
-<%= link_to 'Editer', :action => 'edit', :id => @paquet %> |
-<%= link_to 'Retour à la liste', :action => 'list' %>
+<%= link_to_edit(@paquet) %> | <%= link_to_back %>
 
 <p><b>Logiciel:</b> <%= @paquet.logiciel.nom %></p>
 <p><b>Contrat:</b> <%= @paquet.contrat.client.nom %></p>

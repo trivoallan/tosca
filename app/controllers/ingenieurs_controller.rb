@@ -12,7 +12,9 @@ class IngenieursController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 10
+    @competences = Competence.find_all
+    @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 10,
+    :include => [:identifiant]
   end
 
   def show

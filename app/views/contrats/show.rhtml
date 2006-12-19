@@ -8,22 +8,8 @@
 
 Note : La consultation du client permet d'avoir une vision globale de l'offre
 
-<%  titres = ['Demande','Sévérité','Contournement','Correction']
-    oldtypedemande = nil %>
-<%= show_table(@contrat.engagements, Engagement, titres) { |e|
-     out = ''
-     if oldtypedemande == e.typedemande_id
-       out << '<td></td>'
-     else
-       out << "<td>#{e.typedemande.nom}</td>"
-     end
-     out << "<td>#{e.severite.nom}</td>"
-     out << "<td>#{display_jours e.contournement}</td>"
-     out << "<td>#{display_jours e.correction}</td>"
-     out << "#{link_to_actions_table e}"
-     oldtypedemande = e.typedemande_id
-     out 
-  } %>
+<%= show_table_engagements @contrat.engagements %>
+
 
 <br />
 

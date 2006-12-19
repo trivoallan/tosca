@@ -1,41 +1,24 @@
 <h1>Liste des ingenieurs</h1>
 
-<table>
-  <tr>
-    <th>Nom</th>
-    <th>Chef de projet</th>
-    <th>Ossa</th>
-  <% for column in Ingenieur.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  <% for competence in Competence.find_all %>
-    <th><%= competence.nom %></th>
-  <% end %>
-  </tr>
-  
-<% for ingenieur in @ingenieurs %>
-  <tr>
-    <td><%= ingenieur.identifiant.nom if ingenieur.identifiant %></td>
-    <td><%= "X" if ingenieur.chef_de_projet %></td>
-    <td><%= "X" if ingenieur.expert_ossa %></td>
-  <% for column in Ingenieur.content_columns %>
-    <td><%=h ingenieur.send(column.name) %></td>
-  <% end %>
-  <% for competence in Competence.find_all %>
-    <td><%= "X" if ingenieur.competences.include? competence %></td>
-  <% end %>
-    <td><%= link_to 'Voir', :action => 'show', :id => ingenieur %></td>
-    <td><%= link_to 'Modifier', :action => 'edit', :id => ingenieur %></td>
-    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => ingenieur }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
 
-<%= link_to 'Page précédente', { :page => @ingenieur_pages.current.previous } if @ingenieur_pages.current.previous %>
-<%= link_to 'Page suivante', { :page => @ingenieur_pages.current.next } if @ingenieur_pages.current.next %> 
+<%= show_pages_links(@ingenieur_pages, 'un ingenieur') %>
 
-<br />
+<% titres = ['Nom','Chef de Projet','OSSA','domaine'] %>
+<% titres.concat(@competences.collect{|c| c.nom}).flatten %>
+<%= show_table(@ingenieurs, Ingenieur, titres) { |i|
+  result = ''
+  result << "<td>#{i.identifiant.nom}</td>"
+  result << "<td>#{'X' if i.chef_de_projet}</td>"
+  result << "<td>#{'X' if i.expert_ossa}</td>"
+  result << "<td>#{i.domaine}</td>"
+  @competences.each do |competence|
+    result << "<td>#{'X' if i.competences.include? competence}</td>"
+  end 
 
-<%= link_to 'Ajouter un ingenieur', :action => 'new' %> | 
+  result << "#{link_to_actions_table i}"
+}%>
+
+<%= show_pages_links(@ingenieur_pages, 'un ingenieur') %>
+<%= link_to_new('Ajouter une compétence', :controller => 'competences') %>
 <%= link_to 'Ajouter une compétence', :controller => 'competences', :action => 'new' %>
 

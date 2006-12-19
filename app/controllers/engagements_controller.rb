@@ -12,7 +12,9 @@ class EngagementsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @engagement_pages, @engagements = paginate :engagements, :per_page => 20, :order => "typedemande_id, severite_id"
+    @engagement_pages, @engagements = paginate :engagements, 
+    :per_page => 20, :order => "typedemande_id, severite_id",
+    :include => [:typedemande,:severite]
   end
 
   def show
@@ -21,9 +23,7 @@ class EngagementsController < ApplicationController
 
   def new
     @engagement = Engagement.new
-    @supports = Support.find_all
-    @typedemandes = Typedemande.find_all
-    @severites = Severite.find_all
+    _form
   end
 
   def create
@@ -32,15 +32,14 @@ class EngagementsController < ApplicationController
       flash[:notice] = 'Engagement was successfully created.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
 
   def edit
     @engagement = Engagement.find(params[:id])
-    @supports = Support.find_all
-    @typedemandes = Typedemande.find_all
-    @severites = Severite.find_all
+    _form
   end
 
   def update
@@ -49,6 +48,7 @@ class EngagementsController < ApplicationController
       flash[:notice] = 'Engagement was successfully updated.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -56,5 +56,12 @@ class EngagementsController < ApplicationController
   def destroy
     Engagement.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+
+  private
+  def _form
+    @supports = Support.find_all
+    @typedemandes = Typedemande.find_all
+    @severites = Severite.find_all
   end
 end

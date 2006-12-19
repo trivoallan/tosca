@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class ClientsController < ApplicationController
-  helper :demandes,:paquets
+  helper :demandes,:paquets,:engagements
 
   def index
     list

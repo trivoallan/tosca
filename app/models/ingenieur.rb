@@ -15,7 +15,7 @@ class Ingenieur < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary || 
-        c.name =~ /(_id|_on|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }       
+        c.name =~ /(_id|_on|_count|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }       
   end
 
 

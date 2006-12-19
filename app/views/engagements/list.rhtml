@@ -1,35 +1,10 @@
-<h1>Liste des engagements <b style="color:red"> >> migration vers delais en jours</b></h1>
+<h1>Liste des engagements possible d&#146;un contrat</h1>
 
-<p>&nbsp;</p>
 
-<table>
-  <tr>   
-    <th>Typedemande</th>
-    <th>Severite</th>
 
-  <% for column in Engagement.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for engagement in @engagements %>
-  <tr>
-    <td><%=h engagement.typedemande.nom if engagement.typedemande_id != 0 %>
-        <%=h "TODO" if engagement.typedemande_id == 0 %></td>
-    <td><%=h engagement.severite.nom %></td>
-  <% for column in Engagement.content_columns %>
-    <td><%=h display_jours(engagement.send(column.name)) %></td>
-  <% end %>
-    <td><%= link_to 'Voir', :action => 'show', :id => engagement %></td>
-    <td><%= link_to 'Modifier', :action => 'edit', :id => engagement %></td>
-    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => engagement }, :confirm => 'Vous êtes sûr ?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@engagement_pages, 'une possibilité d\'engagement') %>
 
-<%= link_to 'Page précédente', { :page => @engagement_pages.current.previous } if @engagement_pages.current.previous %>
-<%= link_to 'Page suivante', { :page => @engagement_pages.current.next } if @engagement_pages.current.next %> 
+<%= show_table_engagements @engagements %>
 
-<br />
+<%= show_pages_links(@engagement_pages, 'une possibilité d\'engagement') %>
 
-<%= link_to 'Ajouter un engagement', :action => 'new' %>

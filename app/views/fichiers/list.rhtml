@@ -1,27 +1,14 @@
-<h1>Listing fichiers</h1>
+<h1>Liste des fichiers</h1>
 
-<table>
-  <tr>
-  <% for column in Fichier.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for fichier in @fichiers %>
-  <tr>
-  <% for column in Fichier.content_columns %>
-    <td><%=h fichier.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => fichier %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => fichier %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => fichier }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@fichier_pages, 'un fichier') %>
 
-<%= link_to 'Previous page', { :page => @fichier_pages.current.previous } if @fichier_pages.current.previous %>
-<%= link_to 'Next page', { :page => @fichier_pages.current.next } if @fichier_pages.current.next %> 
+<% titres = ['']%>
+<%= show_table(@fichiers, Fichier, titres, :content_columns => true) { |c|
+  result = ''
+  result << "#{link_to_actions_table c}"
+}%>
 
-<br />
 
-<%= link_to 'New fichier', :action => 'new' %>
+<%= show_pages_links(@fichier_pages, 'un fichier') %>
+
+
