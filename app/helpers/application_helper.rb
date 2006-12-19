@@ -163,15 +163,15 @@ module ApplicationHelper
 
 
 
-
+  # options : no_title permet de ne pas mettre de titre à la liste
   # Call it like : <%= show_liste(@correctif.binaires, 'correctif') {|e| e.nom} %>
-  def show_liste(elements, nom)
+  def show_liste(elements, nom, options = {})
     size = elements.size
     return "<u><b>Aucun(e) #{nom}</b></u>" unless size > 0
     result = ''
-    result << "<p><b>#{size} "
-    result << (size == 1 ? nom.capitalize : nom.capitalize.pluralize)
-    result << ' : </b><br />'
+    unless options[:no_title]
+      result << "<p><b>#{pluralize(size, nom.capitalize)} : </b><br />"
+    end
 
     result << '<ol>'
     elements.each { |e| result << '<li>' + yield(e) + '</li>' }
@@ -236,16 +236,11 @@ module ApplicationHelper
 
   # select_onchange(@clients, @current_client, 'client')
   def select_onchange(list, default, name)
-    return select_tag(name, 
-                      options_for_select(list.collect{|l| 
-                                           if l.nom.size > 25 
-                                             [ "#{l.nom[0..25]}...", l.id]
-                                           else
-                                             [ l.nom, l.id]
-                                           end
-                                         }.unshift(['','']), 
-                                         default.to_i), 
-                      {:onchange => "this.form.submit();"})
+    options = {:onchange => 'this.form.submit();'}
+    select = options_for_select(list.collect{|l| 
+                                  sum_up(l.nom, 25)}.unshift(['','']), 
+                                default.to_i)
+    return select_tag(name, select, options)
   end
 
 

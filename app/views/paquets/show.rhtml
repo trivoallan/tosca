@@ -17,14 +17,16 @@
 <p><b>Distributeur:</b> <%=h @paquet.distributeur.nom %></p>
 <p><b>Mainteneur:</b> <%=h @paquet.mainteneur.nom %></p>
 
-
-
+<br />
+<p>Ce paquet contient <b><%= pluralize(@paquet.fichiers_count, 'fichier') %></b></p>
 <div id="bloc_scroll">
-  <%= show_liste(@fichiers, 'fichier') { |f| f.chemin } %>
+  <%= show_liste(@fichiers, 'fichier', :no_title => true) { |f| f.chemin } %>
 </div>
 
+<br />
+<p>Ce paquet a subi <b><%= pluralize(@paquet.changelogs_count, 'modification') %></b></p>
 <div id="bloc_scroll">
-  <%= show_liste(@changelogs, 'changelog') { |c| 
+  <%= show_liste(@changelogs, 'changelog', :no_title => true) { |c| 
   "#{c.date_modification_formatted} : #{c.nom_modification}<br />#{c.text_modification}<br />"
 } %>
 </div>
@@ -32,5 +34,4 @@
 
 <p>&nbsp;</p>
 
-<%= link_to 'Editer', :action => 'edit', :id => @paquet %> |
-<%= link_to 'Retour à la liste', :action => 'list' %>
+<%= link_to_edit(@paquet) %> | <%= link_to_back %>

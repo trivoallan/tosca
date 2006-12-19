@@ -233,20 +233,22 @@ class DemandesController < ApplicationController
       @commentaires = Commentaire.find_all_by_demande_id\
       (@demande.id, :order => "created_on DESC", :include => [:identifiant])
     end
-    flash[:warn] = "Cette demande n'a pas de statut, " + 
-      "veuillez contacter la cellule" unless @demande.statut
+    flash[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
+
     @statuts = @demande.statut.possible()
     if (@demande.statut_id == 4 || @demande.statut_id == 5)
       @correctifs = Correctif.find_all 
     end
-    # Elle est grosse celle là, mais elle marche bien ^_^
-    joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id '
-    # joins << ' INNER JOIN contrats_ingenieurs ON contrats_ingenieurs.ingenieur_id=ingenieurs.id '
-    # joins << ' INNER JOIN contrats ON contrats.id=contrats_ingenieurs.contrat_id '
-    # conditions = [ 'contrats.client_id = ?', @demande.client.id ]
-    @identifiants_ingenieurs = 
-      Identifiant.find(:all, :select => "DISTINCT identifiants.* ",
-                       :joins => joins)
+
+    # On va chercher les identifiants des ingénieurs assignés
+    # C'est un héritage du passé
+    # TODO : s'en débarrasser avec une migration et un :include
+    joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
+    select = "DISTINCT identifiants.* "
+    if @ingenieur
+      @identifiants_ingenieurs = 
+        Identifiant.find(:all, :select => select, :joins => joins)
+    end
   end
 
   def update

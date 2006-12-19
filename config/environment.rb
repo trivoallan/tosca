@@ -68,29 +68,6 @@ end
 ActionView::Base.erb_trim_mode = '>'
 
 
-# Meta data ici :
-# ajouter par Lstm
-module Metadata
-
-  # application
-  NOM_COURT_APPLICATION = "LSTM"
-  NOM_LONG_APPLICATION = "Linagora Software Tracker Manager"
-  COPYRIGHT_APPLICATION = "Copyright Linagora SA 2006 - Tous droits réservés."
-
-  # service
-  NOM_COURT_SERVICE = "OSSA"
-  NOM_LONG_SERVICE = "Open Source Software Assurance"
-  NOM_ENTREPRISE = "Linagora"
-
-  # contacts
-  PREFIXE_TELEPHONE = "08000"
-  CODE_TELEPHONE = "54689"
-  TEXTE_TELEPHONE = "LINUX"
-  SITE_INTERNET = "08000LINUX.com"
-
-  # logo
-  LOGO_08000LINUX = '<img alt="08000 LINUX" src="/images/logo_08000.gif">'
-end
 
 
 # Rédéfinit globalement en français les messages d'erreur
