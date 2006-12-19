@@ -4,7 +4,7 @@
 class Jourferie < ActiveRecord::Base
 
 
-  #TODO : implémenter
+  #renvoie le premier jour travaillé
   def self.get_premier_jour_ouvre(debut)
     return debut if Jourferie.est_ouvre(debut)
     debut = debut.change(:hour => 0, :minute => 0, :second => 0)
@@ -14,7 +14,7 @@ class Jourferie < ActiveRecord::Base
     debut
   end
 
-  #TODO : implémenter
+  #renvoie le dernier jour travaillé
   def self.get_dernier_jour_ouvre(fin)
     return fin if Jourferie.est_ouvre(fin)
     fin = fin.change(:hour => 0, :minute => 0, :second => 0)
@@ -37,14 +37,12 @@ class Jourferie < ActiveRecord::Base
   end
 
   private
+  # C'est encore trop lent de faire une requête par jour
   def self.est_ouvre(date)
-    #TODO : C'est moche _et_ inefficace, y a surement mieux
-    jourferies = []
-    for jourferie in Jourferie.find_all
-      jourferies += [ jourferie.jour ]
-    end
-    false if jourferies.include?(date) 
     false if date.wday == 0 || date.wday == 6
+
+    conditions = ['jourferies.jour = ?',date]
+    false if Jourferies.find(:first, :conditions => conditions)
     true
   end
 end

@@ -1,27 +1,15 @@
-<h1>Listing jourferies</h1>
+<h1>Liste des jourferies</h1>
 
-<table>
-  <tr>
-  <% for column in Jourferie.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for jourferie in @jourferies %>
-  <tr>
-  <% for column in Jourferie.content_columns %>
-    <td><%=h jourferie.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => jourferie %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => jourferie %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => jourferie }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
 
-<%= link_to 'Previous page', { :page => @jourferie_pages.current.previous } if @jourferie_pages.current.previous %>
-<%= link_to 'Next page', { :page => @jourferie_pages.current.next } if @jourferie_pages.current.next %> 
+<%= show_pages_links(@jourferie_pages, 'un jour férié') %>
 
-<br />
+<% titres = []%>
+<%= show_table(@jourferies, Jourferie, titres, :content_columns => true) { |c|
+  result = ''
+  result << "#{link_to_actions_table c}"
+}%>
 
-<%= link_to 'New jourferie', :action => 'new' %>
+
+<%= show_pages_links(@jourferie_pages, 'un jour férié') %>
+
+

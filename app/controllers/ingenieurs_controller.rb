@@ -14,11 +14,12 @@ class IngenieursController < ApplicationController
   def list
     @competences = Competence.find_all
     @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 10,
-    :include => [:identifiant]
+    :include => [:identifiant,:competences]
   end
 
   def show
-    @ingenieur = Ingenieur.find(params[:id])
+    @ingenieur = Ingenieur.find(params[:id], 
+                                :include => [:identifiant,:competences])
   end
 
   def new
