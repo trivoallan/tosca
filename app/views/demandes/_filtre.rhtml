@@ -1,5 +1,5 @@
 <table class='nothing'>
-  <tr><th colspan="6" align="center">Filtre de recherche</th></tr>
+  <tr><th colspan="6" align="center">Filtres de recherche</th></tr>
   <tr><td colspan="6"><hr/></td></tr>
   <tr><td><%= image_tag("icon_1.gif", 
                  :size => "20x20", :border => 0, :title => 'Etape 1', 
@@ -32,16 +32,11 @@
 <% end %>
 
   </tr>
-  <tr><td nowrap valign='baseline'>Par mot clé : </td>
+  <tr><td nowrap valign='baseline' colspan="3">Rechercher la demande contenant : </td>
       <td><%= start_form_tag :action => 'list' %>
              <%= text_field_tag 'demande', 
                                 @session[:filtres][:recherche_demande], 
-                                :size => 15 %>
-          <%= end_form_tag %>
-      </td>
-      <td nowrap valign='baseline'>Par identifiant : </td>
-      <td><%= start_form_tag :action => 'comment' %>
-             <%= text_field 'numero', '', "size" => 5 %>
+                                :size => 18 %>
           <%= end_form_tag %>
       </td>
   </tr>

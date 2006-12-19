@@ -189,8 +189,8 @@ function cacherCoordonnees() {
 <%= end_form_tag %>
 </div>
 
-<b><u><%=h @commentaires.size %>
-<%= @commentaires.size > 1 ? " Commentaires" : " Commentaire" %></u></b> sur cette demande
+<b><u><%= pluralize(@demande.commentaires.size, 'Commentaire') %></u></b> 
+sur cette demande
 <br/>
  <div id="commentaires-list">
   <%= render :partial => "commentaire", :collection => @commentaires %>
@@ -198,13 +198,6 @@ function cacherCoordonnees() {
 
 </div>
 
-<!--
-<div class='numero_demande'>
-<table><tr height='300'><td>
-<font class='numero_demande'><%= @demande.id.to_s %></font>
-</td></tr></table>
-</div>
--->
 
 <p>&nbsp;</p>
 <%= link_to_back 'Retour à la liste des demandes' %>

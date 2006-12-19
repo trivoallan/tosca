@@ -75,11 +75,11 @@ module ApplicationHelper
       :post => true }
   end
 
-  def link_to_back(desc='Retour à la liste')
-    link_to image_tag("back_icon.png", :size => "23x23",
+  def link_to_back(desc='Retour à la liste', options = {:action => 'list'})
+    link_to(image_tag("back_icon.png", :size => "23x23",
                       :border => 0, :title => desc, 
                       :alt => desc, :align => 'baseline' ), 
-            { :action => 'list' }
+            options)
   end
 
   # link_to_actions_table(demande)

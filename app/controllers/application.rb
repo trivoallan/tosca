@@ -62,9 +62,10 @@ class ApplicationController < ActionController::Base
         <%= nav_links.compact.join(' | ') if @session[:user] %>"
     @session[:cut_links] = render_to_string :inline => "
         <% cut_links = [ 
-          (link_to 'Demandes',:controller => 'demandes', :action => 'list') + 
-           '&nbsp;' + (text_field 'numero', '', 'size' => 3),
-          (link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
+          (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
+      (@session[:user].authorized?('demandes/list') ?
+         "+ '&nbsp;' + (text_field 'numero', '', 'size' => 3)," : ',' ) + 
+         "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
           (link_to 'Projets',:controller => 'projets', :action => 'list'),
           (link_to 'Tâches',:controller => 'taches', :action => 'list'),
           (link_to 'Correctifs',:controller => 'correctifs', :action => 'list'),

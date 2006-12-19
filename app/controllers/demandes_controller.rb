@@ -92,7 +92,7 @@ class DemandesController < ApplicationController
 
     if filtres[:recherche_demande]
       search =  "%#{filtres[:recherche_demande]}%" 
-      query.push " (resume LIKE ? OR description LIKE ?) "
+      query.push " (demandes.resume LIKE ? OR demandes.description LIKE ?) "
       params.concat [ search, search ]
     end
 
@@ -224,17 +224,21 @@ class DemandesController < ApplicationController
 
   def comment
     @demande = Demande.find(params[:id]) unless @demande
-    @count = Demande.count(:conditions => [ "logiciel_id = ?", @demande.logiciel_id ] )
+    conditions = [ "logiciel_id = ?", @demande.logiciel_id ] 
+    @count = Demande.count(:conditions => conditions)
     if @beneficiaire
-      @commentaires = Commentaire.find_all_by_demande_id_and_prive(@demande.id, false, :order => "created_on DESC")
+      @commentaires = Commentaire.find_all_by_demande_id_and_prive\
+      (@demande.id, false, :order => "created_on DESC", :include => [:identifiant])
     elsif @ingenieur
-      @commentaires = Commentaire.find_all_by_demande_id(@demande.id, :order => "created_on DESC")
+      @commentaires = Commentaire.find_all_by_demande_id\
+      (@demande.id, :order => "created_on DESC", :include => [:identifiant])
     end
     flash[:warn] = "Cette demande n'a pas de statut, " + 
       "veuillez contacter la cellule" unless @demande.statut
     @statuts = @demande.statut.possible()
-    @correctifs = Correctif.find_all if @demande.statut_id == 4 # Analysée
-
+    if (@demande.statut_id == 4 || @demande.statut_id == 5)
+      @correctifs = Correctif.find_all 
+    end
     # Elle est grosse celle là, mais elle marche bien ^_^
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id '
     # joins << ' INNER JOIN contrats_ingenieurs ON contrats_ingenieurs.ingenieur_id=ingenieurs.id '

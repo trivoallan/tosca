@@ -6,8 +6,8 @@ class Paquet < ActiveRecord::Base
   belongs_to :fournisseur
   belongs_to :arch
   has_many :fichiers, :dependent => :destroy
-  belongs_to :socle
-  belongs_to :contrat
+  belongs_to :socle, :counter_cache => true
+  belongs_to :contrat, :counter_cache => true
   has_many :changelogs, :dependent => :destroy
   belongs_to :distributeur
   has_many :dependances, :dependent => :destroy

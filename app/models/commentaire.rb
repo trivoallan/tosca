@@ -3,7 +3,7 @@
 #####################################################
 class Commentaire < ActiveRecord::Base
   belongs_to :demande
-  belongs_to :identifiant
+  belongs_to :identifiant, :counter_cache => true
   belongs_to :piecejointe, :dependent => :destroy
   belongs_to :statut
   

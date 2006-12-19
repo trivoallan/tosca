@@ -152,7 +152,7 @@ module ActionView::Helpers::UrlHelper
      tag_options = nil
    end
    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-   required_perm = "%s/%s" % [ options[:controller] || @controller.controller_name, 
+   required_perm = '%s/%s' % [ options[:controller] || @controller.controller_name, 
      options[:action] || @controller.action_name ]
    if @session[:user] and @session[:user].authorized? required_perm then
      "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"

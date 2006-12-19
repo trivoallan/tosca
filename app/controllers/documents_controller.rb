@@ -13,8 +13,10 @@ class DocumentsController < ApplicationController
 
   def list
     @typedocument = Typedocument.find(params[:id])
+    conditions = ["typedocument_id = ?", @typedocument.id]
     @document_pages, @documents = paginate :documents, :per_page => 10,
-      :order => "created_on DESC", :conditions => ["typedocument_id = ?", @typedocument.id]
+      :order => "created_on DESC", :conditions => conditions,
+      :include => [:identifiant]
   end
 
   def select

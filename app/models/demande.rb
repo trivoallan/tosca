@@ -6,7 +6,7 @@ class Demande < ActiveRecord::Base
   belongs_to :logiciel
   belongs_to :severite
   belongs_to :beneficiaire
-  belongs_to :socle
+  belongs_to :socle, :counter_cache => true
   belongs_to :statut
   belongs_to :ingenieur
   has_and_belongs_to_many :paquets

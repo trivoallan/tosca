@@ -1,5 +1,5 @@
 class Tache < ActiveRecord::Base
-  belongs_to :projet
+  belongs_to :projet, :counter_cache => true
   belongs_to :auteur, :class_name => 'Identifiant', :foreign_key => 'auteur_id'
   belongs_to :responsable, :class_name => 'Ingenieur', :foreign_key => 'responsable_id'
 

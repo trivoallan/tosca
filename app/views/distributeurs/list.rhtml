@@ -1,27 +1,15 @@
-<h1>Listing distributeurs</h1>
+<h1>Liste des distributeurs</h1>
 
-<table>
-  <tr>
-  <% for column in Distributeur.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for distributeur in @distributeurs %>
-  <tr>
-  <% for column in Distributeur.content_columns %>
-    <td><%=h distributeur.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => distributeur %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => distributeur %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => distributeur }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@distributeur_pages, 'un distributeur') %>
 
-<%= link_to 'Previous page', { :page => @distributeur_pages.current.previous } if @distributeur_pages.current.previous %>
-<%= link_to 'Next page', { :page => @distributeur_pages.current.next } if @distributeur_pages.current.next %> 
+<% titres = ['']%>
+<%= show_table(@distributeurs, Distributeur, titres, :content_columns => true) { |c|
+  result = ''
+  result << "#{link_to_actions_table c}"
+}%>
 
-<br />
 
-<%= link_to 'New distributeur', :action => 'new' %>
+<%= show_pages_links(@distributeur_pages, 'un distributeur') %>
+
+
+
