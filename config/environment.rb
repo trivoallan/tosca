@@ -88,7 +88,7 @@ ActiveRecord::Errors.default_error_messages = {
 
 # Rédéfinit globalement en français les titres et textes de la boîtes d'erreur
 module ActionView::Helpers::ActiveRecordHelper
-  def error_messages_for(object_name, options = {})
+  def error_messages_for(object_name, options = {:class => 'error'})
     options = options.symbolize_keys
     object = instance_variable_get("@#{object_name}")
     unless object.errors.empty?

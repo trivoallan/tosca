@@ -1,17 +1,14 @@
 <p><b>Client:</b> <%= link_to_client(@contrat.client) %>
 
 <% for column in Contrat.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @contrat.send(column.name) %>
-</p>
+  <p><b><%= column.human_name %>:</b> <%=h @contrat.send(column.name) %></p>
 <% end %>
-
-Note : La consultation du client permet d'avoir une vision globale de l'offre
-
-<%= show_table_engagements @contrat.engagements %>
-
-
 <br />
 
+<p>Note : La consultation du client permet d'avoir une vision globale de l'offre</p>
+<br />
+
+<%= show_table_engagements @contrat.engagements %>
+<br />
 
 <%= link_to_edit(@contrat) %> | <%= link_to_back %>

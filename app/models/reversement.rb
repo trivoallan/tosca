@@ -17,4 +17,9 @@ class Reversement < ActiveRecord::Base
       "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
   end
 
+  # délai en jour
+  def delai
+    ( cloture - created_on )/(3600*24)
+  end
+
 end

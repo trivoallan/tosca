@@ -3,17 +3,22 @@
 <br/>
 <%= show_pages_links(@reversement_pages, 'un reversement') %>
 
-<% titres = ['Logiciel', 'Version', 'Résumé de l\'interaction', 'Etat', 'Accepté ?', 'Correctif', 'Commentaire', 'Cloturé le', 'Mis à jour le']%>
+<% titres = ['Logiciel', 'Version(s)', 'Demande(s)', 'Résumé de l\'interaction', 'Etat', 'Accepté ?', 'Correctif', 'Commentaire', 'Période',  'Crée le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
 <%= show_table(@reversements, Interaction, titres) { |r|
   result = ''
   result << "<td>#{r.interaction.logiciel.nom if r.interaction.logiciel }</td>"
-  result << "<td>#{r.correctif.paquets.join('<br/>')}</td>"
+  result << "<td>#{r.correctif.paquets.collect{ |p| p.version }.uniq.join(', ')}</td>"
+  result << "<td>#{r.correctif.demandes.collect{ |d| '#'+d.id }.join(', ')}</td>"
   result << "<td>#{link_to(r.interaction.resume, :controller => 'interactions', :action => 'show', :id => r.interaction) if r.interaction }</td>"
+  #result << "<td>#{r.correctif.demandes.collect{ |d| d.resume }.join(', ')}</td>"
   result << "<td>#{r.etatreversement_id}</td>"
   result << "<td>#{r.accepte}</td>"
   result << "<td>#{link_to_correctif r.correctif}</td>"
   result << "<td>#{r.commentaire}</td>"
-  result << "<td>#{r.cloture_formatted}</td>"
+  result << "<td>#{r.correctif.demandes.collect{ |d| '#'+d.created_on_formated }.join(', ')}</td>"
+  result << "<td style='color:green'>#{r.created_on_formatted}</td>"
+  result << "<td style='color:red' >#{r.cloture_formatted}</td>"
+  result << "<td>#{display_jours(r.delai)}</td>"
   result << "<td>#{r.updated_on_formatted}</td>"
   result << "#{link_to_actions_table r}"
 }%>
