@@ -165,6 +165,7 @@ module ApplicationHelper
     end
   end
 
+
   # options : 
   #  * no_title : permet de ne pas mettre de titre à la liste
   # Call it like : <%= show_liste(@correctif.binaires, 'correctif') {|e| e.nom} %>
@@ -185,6 +186,7 @@ module ApplicationHelper
   # Call it like : 
   # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
   # <%= show_table(@documents, Document, titres) {|e| e.nom}%>
+  # N'oubliez pas d'utiliser les <td></td>
   # 2 options, :total et :content_columns
   # La première désactive le décompte total si positionné à false
   # La deuxième active l'affichage des content_columns si positionné à true

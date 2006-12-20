@@ -1,128 +1,88 @@
-	<!-- début contenu -->
+<!-- début contenu -->
 
-        <% if @beneficiaire %>
-             <p>Votre numéro d'appel est le <b><%= Metadata::PREFIXE_TELEPHONE+" "+Metadata::CODE_TELEPHONE %></b>, 
-                et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
-        <% end %>
+<% if @beneficiaire %>
+      <p>Votre numéro d'appel est le 
+         <b><%= Metadata::PREFIXE_TELEPHONE+" "+Metadata::CODE_TELEPHONE %></b>, 
+         et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
+<% end %>
 
-	<h2 class="spacer">Sommaire</h2>
+<h2 class="spacer">Sommaire</h2>
 
-	<table class="sommaire" width="100%">
-	  <tr>
-	    <td>
-		<dl class="sommaire">
+<table class="sommaire" width="100%">
+  <tr>
+    <td>
+      <dl class="sommaire">
 
-                  <dt>
-                      <% if @demandes.size > 0 %>
-                        <%= "Mes #{@demandes.size} dernières demandes" %>
-                      <% else %>
-                        <%= "Aucune demande en cours" %>
-                      <% end %>
-                  </dt>
-		  <dd class="action">
+       <% titre = ( @demandes.size > 0 ? "Mes #{@demandes.size} dernières demandes" : "Aucune demande en cours" ) %>
+       <% links = [ 
+             link_to('Liste détaillée', :controller => 'demandes', :action => 'list'),
+             link_to('Déposer une demande', :controller => 'demandes', :action => 'new'), ] %>
+       <%= show_liste_accueil(links.compact, titre, {:demandes => true}) %>
 
-                      <table><% ### vue synthétique des demandes personnalisées selon utilisateur ### %>
-                      <% if @demandes.size > 0 %>
-                       <% for demande in @demandes %>
-                           <tr class=<%= "demande_#{demande.statut.id}" %> alt="<%= sum_up(demande) %>" title="<%= sum_up(demande) %>">
-                            <td><%= link_to_demande demande, :show_id => "true" %></td>
-                           </tr>
-                        <% end %>
-                       <% end %>
-                       </table><% ### fin de vue synthétique des demandes personnalisées selon utilisateur ### %>
+       <% links = [ 
+             link_to('Liste des logiciels', :controller => 'logiciels', :action => 'list'),
+             link_to('Liste des paquets', :controller => 'paquets', :action => 'list') ] %>
+       <%= show_liste_accueil(links.compact, 'Gestion des paquets') %>
 
-                        <ul>
-                          <li><%= link_to 'Liste détaillée', :controller => 'demandes', :action => 'list' %></li>
-                          <li><%= link_to 'Déposer une demande', :controller => 'demandes', :action => 'new' %></li>
-			</ul>
-		  </dd>
-
-		  <dt>Gestion des paquets</dt>
-  		  <dd class="action">
-			<ul> 
-                          <li><%= link_to 'Liste des logiciels', :controller => 'logiciels', :action => 'list' %></li>
-                          <li><%= link_to 'Liste des paquets', :controller => 'paquets', :action => 'list' %></li>
-			</ul>
-		  </dd>
-
-		  <dt>Communauté</dt>
-  		  <dd class="action">
-			<ul> 
-                          <li><%= link_to 'Suivi des correctifs', :controller => 'correctifs', :action => 'list' %></li>
-<% #                          <li><%= link_to 'Suivi des reversements', :controller => 'reversements', :action => 'list' %></li> 
-			</ul>
-		  </dd>
-
+       <% links = [ 
+            link_to('Suivi des correctifs', :controller => 'correctifs', :action => 'list'),
+            link_to('Suivi des reversements', :controller => 'reversements', :action => 'list') ] %>
+       <%= show_liste_accueil(links.compact, 'Communauté') %>
 
 <% if @ingenieur %><% ############ visible seulement en tant qu'ingénieur ############%>
 
-		  <dt>Actions principales</dt>
-		  <dd class="action">
-			<ul>
-                          <li><%= link_to 'Déposer une demande', :controller => 'demandes', :action => 'new' %></li>
-                          <li><%= link_to 'Ajouter un logiciel', :controller => 'logiciels', :action => 'new' %></li>
-                          <li><%= link_to 'Ajouter un paquet', :controller => 'paquets', :action => 'new' %></li>
-                          <li><%= link_to 'Ajouter un correctif', :controller => 'correctifs', :action => 'new' %></li>
-			</ul>
-		  </dd>
+       <% links = [ 
+           link_to('Déposer une demande', :controller => 'demandes', :action => 'new'),
+           link_to('Ajouter un logiciel', :controller => 'logiciels', :action => 'new'),
+           link_to('Ajouter un paquet', :controller => 'paquets', :action => 'new'),
+           link_to('Ajouter un correctif', :controller => 'correctifs', :action => 'new') ] %>
+       <%= show_liste_accueil(links.compact, 'Actions principales') %>
 
 <% end %><% ############ fin de partie visible seulement en tant qu'ingénieur ############%>
 
-		</dl><!-- end of class sommaire -->
-	    </td>
-	    <td>
-	        <dl class="sommaire">
+      </dl><!-- end of class sommaire -->
+     </td>
+     <td>
+      <dl class="sommaire">
 
-		  <dt>Mon compte</dt>
-		  <dd class="action">
-			<ul>
-                          <li><%= link_to_modify_account @session[:user].id, 'Modifier mon compte' %></li>
-			</ul>
-		  </dd>
+       <% links = [ 
+            link_to_modify_account(@session[:user].id, 'Modifier mon compte') ] %>
+       <%= show_liste_accueil(links.compact, 'Mon compte') %>
 
 <% if @ingenieur %><% ############ visible seulement en tant qu'ingénieur ############%>
-		  <dt>Utilisateurs</dt>
-		  <dd class="action">
-			<ul>
-                          <li><%= link_to 'S\'identifier', :controller => 'account', :action => 'login' %> |
-                              <%= link_to 'Quitter', :controller => 'account', :action => 'logout' %></li>
-                          <li><%= link_to 'Liste des utilisateurs', :controller => 'account', :action => 'list' %></li>
-                          <li><%= link_to 'Ajouter un utilisateur', :controller => 'account', :action => 'signup' %></li>
-                          <li><%= link_to 'Gestion des rôles', :controller => 'roles' %></li>
-                          <li><%= link_to 'Liste des bénéficiaires', :controller => 'beneficiaires' %></li>
-			</ul>
-		  </dd>
 
-		  <dt>Gestion des compétences</dt>
-  		  <dd class="action">
-			<ul> 
-                          <li><%= link_to 'Liste des ingénieurs', :controller => 'ingenieurs' %></li>
-                          <li><%= link_to 'Liste des compétences', :controller => 'competences' %></li>
-			</ul>
-		  </dd>
+       <% links = [ 
+             link_to('S\'identifier', :controller => 'account', :action => 'login')+'|'+
+             link_to('Quitter', :controller => 'account', :action => 'logout'),
+             link_to('Liste des utilisateurs', :controller => 'account', :action => 'list'),
+             link_to('Ajouter un utilisateur', :controller => 'account', :action => 'signup'),
+             link_to('Gestion des rôles', :controller => 'roles'),
+             link_to('Liste des bénéficiaires', :controller => 'beneficiaires')] %>
+       <%= show_liste_accueil(links.compact, 'Utilisateurs') %>
+
+       <% links = [ 
+            link_to('Liste des ingénieurs', :controller => 'ingenieurs'),
+            link_to('Liste des compétences', :controller => 'competences') ] %>
+       <%= show_liste_accueil(links.compact, 'Gestion des compétences') %>
+
 <% end %><% ############ fin de partie visible seulement en tant qu'ingénieur ############%>
 
-		  <dt>Aide</dt>
-		  <dd class="action">
-			<ul>
-                          <li><%= link_to 'Déclaration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande" %></li>
-                          <li><%= link_to 'Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande" %></li>
-			</ul>
-		  </dd>
+       <% links = [ 
+            link_to('Déclaration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande"), 
+            link_to('Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande") ] %>
+       <%= show_liste_accueil(links.compact, 'Aide') %>
 
-		  <dt>Documents </dt>
-		  <dd class="action">
-			<ul>
-                          <li><%= link_to 'Répertoire', :controller => 'documents', :action => 'select' %></li>
-                          <li><%= link_to "Rapport d'activité", :controller => 'demandes', :action => 'report' %></li>
-			</ul>
+       <% links = [ 
+           link_to('Répertoire', :controller => 'documents', :action => 'select'),
+           link_to('Rapport d\'activité', :controller => 'demandes', :action => 'report') ] %>
+       <%= show_liste_accueil(links.compact, 'Documents') %>
 
-		  </dd>
-	        </dl><!-- end of class sommaire -->
-	   </td>
-           <td>
-           </td>
-	  </tr>
-	</table>
+      </dl><!-- end of class sommaire -->
 
-	<!-- end of contenu -->
+    </td>
+    <td>
+    </td>
+  </tr>
+</table>
+
+<!-- end of contenu -->

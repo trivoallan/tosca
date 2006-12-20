@@ -38,8 +38,8 @@ class BienvenueController < ApplicationController
                         Veuillez nous contacter pour nous avertir de cet incident."
       @demandes = [] # renvoi un tableau vide
     end   
-  end
 
+  end
 
   def plan
   end
