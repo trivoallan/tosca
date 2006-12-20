@@ -9,7 +9,6 @@
 <h2 class="spacer">Sommaire</h2>
 
 <table class="sommaire" width="100%"><tr>
-
   <td><dl class="sommaire">
 
        <% titre = ( @demandes.size > 0 ? "Mes #{@demandes.size} dernières demandes" : "Aucune demande en cours" ) %>
@@ -20,53 +19,49 @@
 
        <% links = [ 
              link_to('Liste des logiciels', :controller => 'logiciels', :action => 'list'),
-             link_to('Liste des paquets', :controller => 'paquets', :action => 'list') ] %>
-       <%= show_liste_accueil(links.compact, 'Gestion des paquets') %>
-
-       <% links = [ 
-            link_to('Suivi des correctifs', :controller => 'correctifs', :action => 'list'),
-            link_to('Suivi des reversements', :controller => 'reversements', :action => 'list') ] %>
-       <%= show_liste_accueil(links.compact, 'Communauté') %>
-
-       <% links = [ 
-           link_to('Ajouter un logiciel', :controller => 'logiciels', :action => 'new'),
-           link_to('Ajouter un paquet', :controller => 'paquets', :action => 'new'),
-           link_to('Ajouter un correctif', :controller => 'correctifs', :action => 'new') ] %>
-       <%= show_liste_accueil(links.compact, 'Actions principales') %>
+             link_to('Liste des paquets', :controller => 'paquets', :action => 'list'),
+             link_to('Liste des correctifs', :controller => 'correctifs', :action => 'list') ] %>
+       <%= show_liste_accueil(links.compact, 'Gestion des logiciels') %>
 
   </dl></td>
   <td><dl class="sommaire">
 
        <% links = [ 
-            link_to_modify_account(@session[:user].id, 'Modifier mon compte') ] %>
-       <%= show_liste_accueil(links.compact, 'Mon compte') %>
-
-       <% links = [ 
+             link_to_modify_account(@session[:user].id, 'Modifier mon compte'),
              link_to('Liste des utilisateurs', :controller => 'account', :action => 'list'),
              link_to('Ajouter un utilisateur', :controller => 'account', :action => 'signup'),
-             link_to('Gestion des rôles', :controller => 'roles'),
-             link_to('Liste des bénéficiaires', :controller => 'beneficiaires')] %>
+             link_to('Gestion des rôles', :controller => 'roles') ] %>
        <%= show_liste_accueil(links.compact, 'Utilisateurs') %>
 
        <% links = [ 
-            link_to('Liste des ingénieurs', :controller => 'ingenieurs'),
-            link_to('Liste des compétences', :controller => 'competences') ] %>
+             link_to('Liste des clients', :controller => 'clients'),
+             link_to('Liste des bénéficiaires', :controller => 'beneficiaires')] %>
+       <%= show_liste_accueil(links.compact, 'Clients') %>
+
+       <% links = [ 
+             link_to('Liste des ingénieurs', :controller => 'ingenieurs'),
+             link_to('Liste des compétences', :controller => 'competences') ] %>
        <%= show_liste_accueil(links.compact, 'Gestion des compétences') %>
 
-       <% links = [ 
-            link_to('Déclaration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande"), 
-            link_to('Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande") ] %>
-       <%= show_liste_accueil(links.compact, 'Aide') %>
+  </dl></td>
+  <td><dl class="sommaire">
 
        <% links = [ 
-           link_to('Répertoire', :controller => 'documents', :action => 'select'),
-           link_to('Rapport d\'activité', :controller => 'demandes', :action => 'report') ] %>
+             link_to('Répertoire', :controller => 'documents', :action => 'select'),
+             link_to('Rapport d\'activité', :controller => 'demandes', :action => 'report') ] %>
        <%= show_liste_accueil(links.compact, 'Documents') %>
 
+       <% links = [ 
+             link_to('Suivi des correctifs', :controller => 'correctifs', :action => 'list'),
+             link_to('Suivi des reversements', :controller => 'reversements', :action => 'list') ] %>
+       <%= show_liste_accueil(links.compact, 'Communauté') %>
+
+       <% links = [ 
+             link_to('Déclaration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande"), 
+             link_to('Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande") ] %>
+       <%= show_liste_accueil(links.compact, 'Aide') %>
+
   </dl></td>
-
-  <td></td>
-
 </tr></table>
 
 <!-- end of contenu -->
