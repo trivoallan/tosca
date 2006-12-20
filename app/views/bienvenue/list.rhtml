@@ -35,7 +35,8 @@
 
        <% links = [ 
              link_to('Liste des clients', :controller => 'clients'),
-             link_to('Liste des bénéficiaires', :controller => 'beneficiaires')] %>
+             link_to('Liste des bénéficiaires', :controller => 'beneficiaires'), 
+             link_to('Liste des contrats', :controller => 'contrats')  ] %>
        <%= show_liste_accueil(links.compact, 'Clients') %>
 
        <% links = [ 
@@ -53,6 +54,7 @@
 
        <% links = [ 
              link_to('Suivi des correctifs', :controller => 'correctifs', :action => 'list'),
+             link_to('Suivi des interactionss', :controller => 'interactions', :action => 'list'),
              link_to('Suivi des reversements', :controller => 'reversements', :action => 'list') ] %>
        <%= show_liste_accueil(links.compact, 'Communauté') %>
 

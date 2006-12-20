@@ -185,7 +185,7 @@ module ApplicationHelper
 
   # Call it like : 
   # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
-  # <%= show_table(@documents, Document, titres) {|e| e.nom}%>
+  # <%= show_table(@documents, Document, titres) { |e| "<td>#{e.nom}" } %>
   # N'oubliez pas d'utiliser les <td></td>
   # 2 options, :total et :content_columns
   # La première désactive le décompte total si positionné à false

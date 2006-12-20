@@ -10,16 +10,11 @@ class Reversement < ActiveRecord::Base
         c.name =~ /(_id|_on)$/ || c.name == inheritance_column }     
   end
 
-
-  def updated_on_formatted
-    d = @attributes['created_on']
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
-  end
-
-
-  def updated_on_formatted
-    d = @attributes['updated_on']
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
+  # date de cloture formattée
+  # voir lib/overrides.rb pour les dates auto created _on et updated_on
+  def cloture_formatted
+      d = @attributes['cloture']
+      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
   end
 
 end

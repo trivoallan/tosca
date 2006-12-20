@@ -1,27 +1,24 @@
 <h1>Liste des reversements</h1>
 
-<table>
-  <tr>
-  <% for column in Reversement.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for reversement in @reversements %>
-  <tr>
-  <% for column in Reversement.content_columns %>
-    <td><%=h reversement.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to_view(reversement) %></td>
-    <td><%= link_to_edit(reversement) %></td>
-    <td><%= link_to_delete(reversement) %></td>
-  </tr>
-<% end %>
-</table>
+<br/>
+<%= show_pages_links(@reversement_pages, 'un reversement') %>
 
-<%= link_to 'Page précédente', { :page => @reversement_pages.current.previous } if @reversement_pages.current.previous %>
-<%= link_to 'Page suivante', { :page => @reversement_pages.current.next } if @reversement_pages.current.next %> 
+<% titres = ['Logiciel', 'Version', 'Résumé de l\'interaction', 'Etat', 'Accepté ?', 'Correctif', 'Commentaire', 'Cloturé le', 'Mis à jour le']%>
+<%= show_table(@reversements, Interaction, titres) { |r|
+  result = ''
+  result << "<td>#{r.interaction.logiciel.nom if r.interaction.logiciel }</td>"
+  result << "<td>#{r.correctif.paquets.join('<br/>')}</td>"
+  result << "<td>#{link_to(r.interaction.resume, :controller => 'interactions', :action => 'show', :id => r.interaction) if r.interaction }</td>"
+  result << "<td>#{r.etatreversement_id}</td>"
+  result << "<td>#{r.accepte}</td>"
+  result << "<td>#{link_to_correctif r.correctif}</td>"
+  result << "<td>#{r.commentaire}</td>"
+  result << "<td>#{r.cloture_formatted}</td>"
+  result << "<td>#{r.updated_on_formatted}</td>"
+  result << "#{link_to_actions_table r}"
+}%>
 
-<br />
+<%= show_pages_links(@reversement_pages, 'un reversement') %>
 
-<%= link_to 'Ajouter un reversement', :action => 'new' %>
+<br/>
+<%= link_to 'Liste des interactions', :controller => 'interactions' %>
