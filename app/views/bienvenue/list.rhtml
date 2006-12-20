@@ -1,17 +1,16 @@
 <!-- début contenu -->
 
 <% if @beneficiaire %>
-      <p>Votre numéro d'appel est le 
-         <b><%= Metadata::PREFIXE_TELEPHONE+" "+Metadata::CODE_TELEPHONE %></b>, 
-         et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
+<p>Votre numéro d'appel est le 
+   <b><%= Metadata::PREFIXE_TELEPHONE+" "+Metadata::CODE_TELEPHONE %></b>, 
+   et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
 <% end %>
 
 <h2 class="spacer">Sommaire</h2>
 
-<table class="sommaire" width="100%">
-  <tr>
-    <td>
-      <dl class="sommaire">
+<table class="sommaire" width="100%"><tr>
+
+  <td><dl class="sommaire">
 
        <% titre = ( @demandes.size > 0 ? "Mes #{@demandes.size} dernières demandes" : "Aucune demande en cours" ) %>
        <% links = [ 
@@ -29,31 +28,20 @@
             link_to('Suivi des reversements', :controller => 'reversements', :action => 'list') ] %>
        <%= show_liste_accueil(links.compact, 'Communauté') %>
 
-<% if @ingenieur %><% ############ visible seulement en tant qu'ingénieur ############%>
-
        <% links = [ 
-           link_to('Déposer une demande', :controller => 'demandes', :action => 'new'),
            link_to('Ajouter un logiciel', :controller => 'logiciels', :action => 'new'),
            link_to('Ajouter un paquet', :controller => 'paquets', :action => 'new'),
            link_to('Ajouter un correctif', :controller => 'correctifs', :action => 'new') ] %>
        <%= show_liste_accueil(links.compact, 'Actions principales') %>
 
-<% end %><% ############ fin de partie visible seulement en tant qu'ingénieur ############%>
-
-      </dl><!-- end of class sommaire -->
-     </td>
-     <td>
-      <dl class="sommaire">
+  </dl></td>
+  <td><dl class="sommaire">
 
        <% links = [ 
             link_to_modify_account(@session[:user].id, 'Modifier mon compte') ] %>
        <%= show_liste_accueil(links.compact, 'Mon compte') %>
 
-<% if @ingenieur %><% ############ visible seulement en tant qu'ingénieur ############%>
-
        <% links = [ 
-             link_to('S\'identifier', :controller => 'account', :action => 'login')+'|'+
-             link_to('Quitter', :controller => 'account', :action => 'logout'),
              link_to('Liste des utilisateurs', :controller => 'account', :action => 'list'),
              link_to('Ajouter un utilisateur', :controller => 'account', :action => 'signup'),
              link_to('Gestion des rôles', :controller => 'roles'),
@@ -65,8 +53,6 @@
             link_to('Liste des compétences', :controller => 'competences') ] %>
        <%= show_liste_accueil(links.compact, 'Gestion des compétences') %>
 
-<% end %><% ############ fin de partie visible seulement en tant qu'ingénieur ############%>
-
        <% links = [ 
             link_to('Déclaration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande"), 
             link_to('Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande") ] %>
@@ -77,12 +63,10 @@
            link_to('Rapport d\'activité', :controller => 'demandes', :action => 'report') ] %>
        <%= show_liste_accueil(links.compact, 'Documents') %>
 
-      </dl><!-- end of class sommaire -->
+  </dl></td>
 
-    </td>
-    <td>
-    </td>
-  </tr>
-</table>
+  <td></td>
+
+</tr></table>
 
 <!-- end of contenu -->
