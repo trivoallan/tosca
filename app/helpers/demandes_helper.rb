@@ -4,13 +4,13 @@
 module DemandesHelper
 
   def link_to_demande(demande, options={})
-    return "N/A" unless demande
+    return 'N/A' unless demande
     nom = sum_up(demande.resume, 50)
     alt = sum_up(demande.description)
-    id = ""
+    id = ''
     id << "##{demande.id} " if options[:show_id] == "true"
     link_to id+nom,{:controller => 'demandes',
-      :action => 'comment', :id => demande}, { :alt => alt, :title => alt }
+      :action => 'comment', :id => demande.id}, { :alt => alt, :title => alt }
 
   end
 

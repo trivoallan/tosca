@@ -1,33 +1,19 @@
-<h1>Listing piecejointes</h1>
+<h1>Liste des pièces jointes</h1>
 
-<table>
-  <tr>
-  <% for column in Piecejointe.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-    <th>Commentaire(s)</th>
-    <th>Expéditeur</th>
-  </tr>
-  
-<% for piecejointe in @piecejointes %>
-  <tr>
 
-  <% for column in Piecejointe.content_columns %>
-    <td><%=h piecejointe.send(column.name) %></td>
-  <% end %>
-    <td><%= piecejointe.commentaire.id if piecejointe.commentaire %></td>
-    <td><%= piecejointe.commentaire.identifiant.nom if piecejointe.commentaire %></td>
+<%= show_pages_links(@piecejointe_pages, 'une pièce jointe') %>
 
-    <td><%= link_to 'Show', :action => 'show', :id => piecejointe %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => piecejointe %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => piecejointe }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<% titres = ['Id','Fichier','Taille','Déposé le','Par']%>
+<%= show_table(@piecejointes, Piecejointe, titres) { |p|
+  result = ''
+  result << "<td>##{p.id}</td>"
+  result << "<td>#{link_to_file(p, 'file')}</td>"
+  result << "<td>#{file_size(p.file)}</td>"
+  result << "<td>#{p.commentaire.created_on_formatted if p.commentaire}</td>"
+  result << "<td>#{p.commentaire.identifiant.nom if p.commentaire}</td>"
+  result << "#{link_to_actions_table p}"
+}%>
 
-<%= link_to 'Previous page', { :page => @piecejointe_pages.current.previous } if @piecejointe_pages.current.previous %>
-<%= link_to 'Next page', { :page => @piecejointe_pages.current.next } if @piecejointe_pages.current.next %> 
+<%= show_pages_links(@piecejointe_pages, 'une pièce jointe') %>
 
-<br />
 
-<%= link_to 'New piecejointe', :action => 'new' %>

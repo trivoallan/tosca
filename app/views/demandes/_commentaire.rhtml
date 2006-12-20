@@ -27,9 +27,7 @@
     <td class="standard_infos" valign="middle" width="30" align="center">
        <%= link_to(image_tag("edit_icon.gif", :size => "15x15", 
                       :border => 0, :title => "Modifier", :alt => "Modifier" ),
-        {  :controller => 'commentaires', 
-           :action => 'edit', :id => commentaire, :demande => @demande.id }, 
-           :post => true) %>
+        { :controller => 'commentaires', :action => 'edit', :id => commentaire }) %>
        <br/>
        <%  futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %> 
        <%= if commentaire.prive 
@@ -48,10 +46,9 @@
        <br/> 
        <%= link_to(image_tag("delete_icon.gif", :size => "15x17", 
                              :border => 0, :title => "Supprimer", :alt => "Supprimer" ),
-	{  :controller => 'commentaires', 
-           :action => 'destroy', :id => commentaire, :demande => @demande.id }, 
-           :confirm => 'Voulez-vous vraiment supprimer le commentaire ' + commentaire.id.to_s  + ' ?', 
-           :post => true) %>
+	{  :controller => 'commentaires', :action => 'destroy', 
+           :id => commentaire, :demande => @demande.id }, 
+           :confirm => "Voulez-vous vraiment supprimer le commentaire #{commentaire.id} ?") %>
     </td>
     <% end %>
   </tr>

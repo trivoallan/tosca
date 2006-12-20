@@ -1,29 +1,17 @@
 <h1>Liste des photos</h1>
 
-<table>
-  <tr>
-    <th>Visuel</th>
-  <% for column in Photo.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for photo in @photos %>
-  <tr>
-    <td><%= image_tag url_for_file_column(photo, "image", "thumb") %></td>
-  <% for column in Photo.content_columns %>
-    <td><%=h photo.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => photo %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => photo %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => photo }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@photo_pages, 'une photo') %>
 
-<%= link_to 'Previous page', { :page => @photo_pages.current.previous } if @photo_pages.current.previous %>
-<%= link_to 'Next page', { :page => @photo_pages.current.next } if @photo_pages.current.next %> 
+<% titres = ['Original','Formatté','Description']%>
+<%= show_table(@photos, Photo, titres) { |p|
+  result = ''
+  result << "<td>#{image_tag url_for_file_column(p, 'image')}</td>"
+  result << "<td>#{image_tag url_for_file_column(p, 'image', 'thumb')}</td>"
+  result << "<td>#{p.description}</td>"
+  result << "#{link_to_actions_table p}"
+}%>
 
-<br />
+<%= show_pages_links(@photo_pages, 'une photo') %>
 
-<%= link_to 'New photo', :action => 'new' %>
+
+

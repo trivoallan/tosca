@@ -33,13 +33,11 @@ class ApplicationController < ActionController::Base
 
   # variables globales
   def set_global_shortcuts
-    # TODO : encore nécessaire ? Non !!
-    # groupe
     set_sessions unless @session[:filtres]
     @ingenieur = @session[:ingenieur]
     @beneficiaire = @session[:beneficiaire]
+    # TODO : encore nécessaire ? Non !!
     @user_group = (@ingenieur ? 'ingénieur' : 'bénéficiaire')
-
   end
 
   protected

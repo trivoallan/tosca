@@ -12,7 +12,8 @@ class PiecejointesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @piecejointe_pages, @piecejointes = paginate :piecejointes, :per_page => 10
+    @piecejointe_pages, @piecejointes = paginate :piecejointes, :per_page => 10,
+    :include => [:commentaire]
   end
 
   def show

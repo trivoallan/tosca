@@ -10,7 +10,7 @@ class CommentairesController < ApplicationController
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
+  verify :method => :post, :only => [ :create, :update ],
          :redirect_to => { :action => :list }
 
   def list
@@ -111,9 +111,12 @@ class CommentairesController < ApplicationController
   end
 
   def destroy
+    return redirect_to(:action => 'list', :controller => 'bienvenue') unless params[:demande] and params[:id]
     Commentaire.find(params[:id]).destroy
     flash[:notice] = 'Le commentaire a bien été supprimé.'
-    redirect_to :action => 'comment', :id => params[:demande], :controller => 'demandes'
+    redirect_to(:action => 'comment', 
+                :controller => 'demandes', 
+                :id => params[:demande])
   end
 
   private

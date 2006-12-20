@@ -50,7 +50,7 @@ class Jourferie < ActiveRecord::Base
     false if date.wday == 0 || date.wday == 6
 
     conditions = ['jourferies.jour = ?',date]
-    false if Jourferies.find(:first, :conditions => conditions)
+    false if Jourferie.find(:first, :conditions => conditions)
     true
   end
 end

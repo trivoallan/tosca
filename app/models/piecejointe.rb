@@ -9,4 +9,6 @@ class Piecejointe < ActiveRecord::Base
     return file[/[._ \-a-zA-Z0-9]*$/] if file
   end
 
+
+
 end
