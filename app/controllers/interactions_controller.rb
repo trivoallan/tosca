@@ -31,6 +31,7 @@ class InteractionsController < ApplicationController
       flash[:notice] = 'Interaction was successfully created.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
@@ -46,6 +47,7 @@ class InteractionsController < ApplicationController
       flash[:notice] = 'Interaction was successfully updated.'
       redirect_to :action => 'show', :id => @interaction
     else
+      _form
       render :action => 'edit'
     end
   end

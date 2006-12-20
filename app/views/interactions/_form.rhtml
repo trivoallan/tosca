@@ -6,11 +6,12 @@
 
 <p><label for="interaction_logiciel">Logiciel</label><br/>
 <%= select("interaction", "logiciel_id", 
-           @logiciels.collect{|l| [ l.nom, l.id]}) %></p>
+           @logiciels.collect{|l| [ l.nom, l.id ]}) %></p>
+
 
 <p><label for="interaction_ingenieur">Ingénieur</label><br/>
 <%= select("interaction", "ingenieur_id", 
-           @ingenieurs.collect{|l| [ l.nom, l.id]}) %></p>
+           @ingenieurs.collect{|l| [ l.nom, l.id ]}) %></p>
 
 <p><label for="interaction_temps_passe">Temps passé (unité à définir)</label><br/>
 <%= text_field 'interaction', 'temps_passe'  %></p>
