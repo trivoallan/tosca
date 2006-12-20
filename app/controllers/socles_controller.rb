@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class SoclesController < ApplicationController
+  helper :clients,:paquets,:machines
+
   def index
     list
     render :action => 'list'
@@ -12,7 +14,8 @@ class SoclesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @socle_pages, @socles = paginate :socles, :per_page => 10
+    @socle_pages, @socles = paginate :socles, :per_page => 10,
+    :include => [:machine, :client]
   end
 
   def show
@@ -21,7 +24,7 @@ class SoclesController < ApplicationController
 
   def new
     @socle = Socle.new
-    @machines = Machine.find_all
+    _form
   end
 
   def create
@@ -30,12 +33,14 @@ class SoclesController < ApplicationController
       flash[:notice] = 'Socle was successfully created.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
 
   def edit
     @socle = Socle.find(params[:id])
+    _form
   end
 
   def update
@@ -44,6 +49,7 @@ class SoclesController < ApplicationController
       flash[:notice] = 'Socle was successfully updated.'
       redirect_to :action => 'show', :id => @socle
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -51,5 +57,11 @@ class SoclesController < ApplicationController
   def destroy
     Socle.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+
+  private 
+  def _form
+    @machines = Machine.find_all
+    @clients = Client.find(:all, :select => 'clients.nom, clients.id')
   end
 end

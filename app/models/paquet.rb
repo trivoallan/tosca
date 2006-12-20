@@ -19,7 +19,7 @@ class Paquet < ActiveRecord::Base
 
   def self.content_columns 
     @content_columns ||= columns.reject { |c| c.primary || 
-        c.name =~ /(_id|taille)$/ || c.name == inheritance_column } 
+        c.name =~ /(_id|taille|_count)$/ || c.name == inheritance_column } 
   end
   
   def to_param

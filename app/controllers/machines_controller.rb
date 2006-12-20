@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class MachinesController < ApplicationController
+  helper :socles
+  
   def index
     list
     render :action => 'list'
@@ -12,7 +14,8 @@ class MachinesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @machine_pages, @machines = paginate :machines, :per_page => 10
+    @machine_pages, @machines = paginate :machines, :per_page => 10,
+    :include => [:socle,:hote]
   end
 
   def show
@@ -21,7 +24,7 @@ class MachinesController < ApplicationController
 
   def new
     @machine = Machine.new
-    @socles = Socle.find_all
+    _form
   end
 
   def create
@@ -30,21 +33,23 @@ class MachinesController < ApplicationController
       flash[:notice] = 'Machine was successfully created.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
 
   def edit
     @machine = Machine.find(params[:id])
-    @socles = Socle.find_all
+    _form
   end
 
   def update
     @machine = Machine.find(params[:id])
     if @machine.update_attributes(params[:machine])
       flash[:notice] = 'Machine was successfully updated.'
-      redirect_to :action => 'show', :id => @machine
+      redirect_to :action => 'list', :id => @machine
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -52,5 +57,13 @@ class MachinesController < ApplicationController
   def destroy
     Machine.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+
+  private
+  def _form
+    @socles = Socle.find(:all, :select => 'socles.nom, socles.id')
+    conditions = ['machines.virtuelle = ?', 0] 
+    @hotes = Machine.find(:all, :select => 'machines.acces, machines.id',
+                          :conditions => conditions)
   end
 end

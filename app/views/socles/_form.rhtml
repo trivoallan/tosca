@@ -1,14 +1,20 @@
 <%= error_messages_for 'socle' %>
 
 <!--[form:socle]-->
+<p><label for="socle_client">Client</label><br/>
+<%= select('socle', 'client_id', 
+           @clients.collect{|c| [ c.nom, c.id]}) %></p>
+
 <p><label for="socle_nom">Nom</label><br/>
 <%= text_field 'socle', 'nom'  %></p>
 
-<p><label for="socle_machine">Machine</label><br/>
-<%= @socle.machine.nom if @socle.machine %>
-</p>
+<p><label for="socle_machine">Machine</label><br />
+<%= @socle.machine.nom if @socle.machine %></p>
+<br />
+Note : <br />
+La machine du socle ne se paramètre que dans les paramètres des 
+<%= link_to 'machines', :action => 'list', :controller => 'machines' %>
 
-Note : La machine du socle ne se paramètre que dans les paramètres de la machine.
 <br />
 <!--[eoform:socle]-->
 

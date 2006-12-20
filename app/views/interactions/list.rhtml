@@ -1,26 +1,20 @@
 <h1>Liste des interactions</h1>
 
-<table>
-  <tr>
-  <% for column in Interaction.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-    <th>Logiciel</th>
-    <th>Ingenieur</th>
-  </tr>
-  
-<% for interaction in @interactions %>
-  <tr>
-  <% for column in Interaction.content_columns %>
-    <td><%=h interaction.send(column.name) %></td>
-  <% end %>
-    <td><%=h interaction.logiciel.nom if interaction.logiciel %></td>
-    <td><%=h interaction.ingenieur.nom if interaction.ingenieur %></td>
-    <td><%= link_to_view(interaction) %></td>
-    <td><%= link_to_edit(interaction) %></td>
-    <td><%= link_to_delete(interaction) %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@interaction_pages, 'une interaction') %>
+
+<% titres = ['Ingénieur','Logiciel','Résumé','Description','Durée','Url de suivi']%>
+<%= show_table(@interactions, Interaction, titres) { |i|
+  result = ''
+  result << "<td>#{i.ingenieur.nom if i.ingenieur}</td>"
+  result << "<td>#{i.logiciel.nom if i.logiciel}</td>"
+  result << "<td>#{i.resume}</td>"
+  result << "<td>#{i.description}</td>"
+  result << "<td>#{i.temps_passe}</td>"
+  result << "<td>#{i.url_de_suivi}</td>"
+  result << "#{link_to_actions_table i}"
+}%>
+
 
 <%= show_pages_links(@interaction_pages, 'une interaction') %>
+
+

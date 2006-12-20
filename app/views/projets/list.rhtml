@@ -7,7 +7,7 @@
   result = ''
   result << "<td>#{link_to_projet(projet)}</td>"
   result << "<td>#{projet.chrono}</td>"
-  result << "<td>#{projet.taches.count}</td>"
+  result << "<td>#{projet.taches_count}</td>"
   result << "<td>#{projet.created_on_formatted}</td>"
   result << "<td>#{projet.updated_on_formatted}</td>"
   result << "#{link_to_actions_table projet}"

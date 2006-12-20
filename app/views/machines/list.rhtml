@@ -1,30 +1,16 @@
-<h1>Listing machines</h1>
+<h1>Parc informatique de l&#146;OSSA</h1>
 
-<table>
-  <tr>
-  <% for column in Machine.content_columns %>
-    <th><%= column.human_name %></th>
-    <th>Socle</th>
-  <% end %>
-  </tr>
-  
-<% for machine in @machines %>
-  <tr>
-  <% for column in Machine.content_columns %>
-    <td><%=h machine.send(column.name) %></td>
-  <% end %>
-  <td><%=h machine.socle.nom %></td>
+<%= show_pages_links(@machine_pages, 'une machine') %>
 
-    <td><%= link_to 'Show', :action => 'show', :id => machine %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => machine %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => machine }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<% titres = ['Client','Socle','Accès (IP)','Virtuelle','Hébérgé sur']%>
+<%= show_table(@machines, Machine, titres) { |m|
+  result = ''
+  result << "<td>#{m.socle.client.nom if m.socle.client}</td>"
+  result << "<td>#{link_to_socle(m.socle)}</td>"
+  result << "<td>#{link_to_machine(m)}</td>"
+  result << "<td>#{'X' if m.virtuelle}</td>"
+  result << "<td>#{m.hote.nom if m.hote}</td>"
+  result << "#{link_to_actions_table m}"
+}%>
 
-<%= link_to 'Previous page', { :page => @machine_pages.current.previous } if @machine_pages.current.previous %>
-<%= link_to 'Next page', { :page => @machine_pages.current.next } if @machine_pages.current.next %> 
-
-<br />
-
-<%= link_to 'New machine', :action => 'new' %>
+<%= show_pages_links(@machine_pages, 'une machine') %>

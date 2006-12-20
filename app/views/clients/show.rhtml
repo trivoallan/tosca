@@ -22,8 +22,8 @@
 
 <%= show_liste(@client.demandes, 'demande') {|d| link_to_demande(d) } %>
 
-<%= show_liste(@client.paquets, 'paquet') {|p| link_to_paquet(p) } %>
+<%= show_liste(@client.socles, 'socle') {|s| link_to_socle(s) } %>
 
 
-<%= link_to 'Modifier', :action => 'edit', :id => @client %> |
-<%= link_to 'Liste des clients', :action => 'list' %>
+<%= link_to_edit(@client) %> | <%= link_to_back %>
+

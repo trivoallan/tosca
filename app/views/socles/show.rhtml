@@ -5,8 +5,10 @@
 <% end %>
 
 <p>
-  <b>Machine:</b> <%=h @socle.machine.nom if @socle.machine %>
+  <b>Machine:</b> <%= link_to_machine(@socle.machine) %>
 </p>
 
-<%= link_to 'Edit', :action => 'edit', :id => @socle %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= show_liste(@socle.paquets, 'paquet') {|p| link_to_paquet(p) } %>
+
+<%= link_to_edit(@socle) %> | <%= link_to_back %>
+

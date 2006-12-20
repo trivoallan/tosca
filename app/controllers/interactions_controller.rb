@@ -12,7 +12,8 @@ class InteractionsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @interaction_pages, @interactions = paginate :interactions, :per_page => 10
+    @interaction_pages, @interactions = paginate :interactions, 
+    :per_page => 10, :include => [:logiciel]
   end
 
   def show

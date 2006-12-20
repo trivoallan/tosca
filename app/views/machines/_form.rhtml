@@ -1,14 +1,22 @@
 <%= error_messages_for 'machine' %>
 
 <!--[form:machine]-->
-<p><label for="machine_nom">Nom</label><br/>
-<%= text_field 'machine', 'nom'  %></p>
+<p><label for="machine_acces">Acces :DNS (IP)</label><br/>
+<%= text_field 'machine', 'acces'  %></p>
 
-<p>
- <label for="machine_socle">Socle</label><br/>
-  <%= select("machine", "socle_id", 
-	@socles.collect{|s| [ s.nom, s.id]}) %>
-</p>	
+<p><label for="machine_virtuelle">Virtuelle ?</label> 
+<%= check_box 'machine', 'virtuelle'%></p>
 
+<p><label for="machine_hote">Hôte </label> 
+<%= select('machine', 'hote_id', 
+      @hotes.collect{|h| [h.acces, h.id]}, :include_blank => true) %></p>
+
+
+<p><label for="machine_socle">Socle</label><br/>
+  <%= select('machine', 'socle_id', 
+             @socles.collect{|l| [ l.nom, l.id]}) %></p>
+
+<p><label for="machine_description">Description</label><br/>
+<%= text_area 'machine', 'description'  %></p>
 <!--[eoform:machine]-->
 

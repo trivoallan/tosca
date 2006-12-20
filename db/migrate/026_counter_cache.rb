@@ -5,7 +5,6 @@ class CounterCache < ActiveRecord::Migration
     add_column :contrats, :paquets_count, :integer
     add_column :projets, :taches_count, :integer
     add_column :socles, :paquets_count, :integer
-    add_column :socles, :demandes_count, :integer
     add_column :clients, :beneficiaires_count, :integer
     add_column :identifiants, :commentaires_count, :integer
     add_column :logiciels, :interactions_count, :integer

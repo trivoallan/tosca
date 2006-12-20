@@ -11,7 +11,8 @@ class Client < ActiveRecord::Base
 
   has_many :paquets, :through => :contrats, :include => [:arch,:conteneur]
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
-
+  has_many :socles, :dependent => :destroy
+  
 
   def ingenieurs
     return [] if contrats.empty?

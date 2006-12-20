@@ -4,6 +4,12 @@
 class Jourferie < ActiveRecord::Base
 
 
+  def jour_formatted
+    d = @attributes['jour']
+    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
+  end
+
+
   #renvoie le premier jour travaillé
   def self.get_premier_jour_ouvre(debut)
     return debut if Jourferie.est_ouvre(debut)
@@ -37,7 +43,9 @@ class Jourferie < ActiveRecord::Base
   end
 
   private
-  # C'est encore trop lent de faire une requête par jour
+  # C'est encore trop lent de faire une requête pour tester 
+  # chaque jour
+  # TODO : faire une requête pour tester l'ensemble
   def self.est_ouvre(date)
     false if date.wday == 0 || date.wday == 6
 
