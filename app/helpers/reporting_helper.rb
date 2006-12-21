@@ -9,9 +9,9 @@ module ReportingHelper
   end
 
   # options : one_row, muli_row et titre
-  def report_table(nom, options={})
+  def report_item(nom, options={})
     table = ''
-    table << '<table width="100%" class="report_table">'
+    table << '<table class="report_item">'
     table << '<tr>'
     table << '<td>'
     if options[:titre]
@@ -20,7 +20,7 @@ module ReportingHelper
       table << image_tag(@path[nom], :alt => @titres[nom])
     end
     table << '</td>'
-    table << '<td align="left">'
+    table << '<td class="report_table">'
 
     data = @donnees[nom]
     size = data.size
@@ -38,7 +38,7 @@ module ReportingHelper
       end
     end
     i = 1
-    table << show_table(first_col, Demande, fill_titles(data, size)) { |date|
+    table << show_table(first_col, Demande, fill_titles(data, size), :width => "100%") { |date|
       result = ''
       result << "<td>#{date}</td>"
       size.times do |t|

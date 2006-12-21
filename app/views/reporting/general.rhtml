@@ -1,55 +1,65 @@
-<% client = (@beneficiaire ? @beneficiaire.client.nom : Metadata::NOM_COURT_SERVICE + " (Interne)") %>
+<% client = (@beneficiaire ? @beneficiaire.client : nil) %>
+<% display_name = (client ? client.nom : Metadata::NOM_COURT_SERVICE + " (Interne)") %>
 
 <div class='report' >
 
 <%= render_partial 'form' %>
 
 <h1 class="title">
-  <%= client %><br/>
+  <%= display_name %><br/>
   <%= "Rapport d'activité de la cellule #{Metadata::NOM_COURT_SERVICE} pour #{@annee}" %>
 </h1>
-<br/>
 
-<h1>Sommaire</h1>
-<ol>
-  <li>...</li>
-  <li>...</li>
-</ol>
-<br/>
-
-<h1>Historique de vos demandes pour <%= @annee %></h1>
-
-<h2>Evolution du type de vos demandes</h2> 
-<%= report_table(:repartition) %>
-<h2>Répartition du type de vos demandes</h2>
-<%= report_table(:repartition_cumulee, :one_row => true) %>
-<br />
-
-<h2>Evolution de la sévérité de vos demandes</h2>
-<%= report_table(:severite) %>
-<h2>Répartion de la sévérité de vos demandes</h2>
-<%= report_table(:severite_cumulee, :one_row => true) %>
-<br />
-
-<h2>Evolution de la résolution de vos demandes</h2>
-<%= report_table(:resolution) %>
-<h2>Répartition de la résolution de vos demandes</h2>
-<%= report_table(:resolution_cumulee, :one_row => true) %>
-<br />
-
-<h2>Evolution générale du service</h2> 
-<ul>
-  <li>nombre de bénéficiaires distinct</li>
-  <li>nombre de logiciels impactés distinct</li>
-  <li>nombre de correctifs créés</li>
-</ul>
-<%= report_table(:evolution) %>
-<br />
-
-<h2>Top 5 des demandes les plus commentées</h2>
-<%= report_table(:top5_demandes, :one_row => true) %>
-<h2>Top 5 des logiciels les plus sujets à demandes</h2>
-<%= report_table(:top5_logiciels, :one_row => true) %>
-
-
+<div class="report_images">
+  <%= image_tag '/images/logo_linagora.gif', :size => "176x44" %>
+  <%= image_tag(url_for_file_column(client.photo, 'image', 'thumb')) if client %>
 </div>
+
+<h1 class="chapter">Sommaire</h1>
+
+    <ol>
+      <li>...</li>
+      <li>...</li>
+    </ol>
+    <br/>
+
+<p class="break_here"/>
+<h1 class="chapter">Historique de vos demandes pour <%= @annee %></h1>
+
+    <h2>Evolution du type de vos demandes</h2> 
+    <%= report_item(:repartition) %>
+    <h2>Répartition du type de vos demandes</h2>
+    <%= report_item(:repartition_cumulee, :one_row => true) %>
+    <br />
+
+    <h2>Evolution de la sévérité de vos demandes</h2>
+    <%= report_item(:severite) %>
+    <h2>Répartion de la sévérité de vos demandes</h2>
+    <%= report_item(:severite_cumulee, :one_row => true) %>
+    <br />
+
+    <h2>Evolution de la résolution de vos demandes</h2>
+    <%= report_item(:resolution) %>
+    <h2>Répartition de la résolution de vos demandes</h2>
+    <%= report_item(:resolution_cumulee, :one_row => true) %>
+    <br />
+
+    <h2>Evolution générale du service</h2> 
+    <ul>
+      <li>nombre de bénéficiaires distinct</li>
+      <li>nombre de logiciels impactés distinct</li>
+      <li>nombre de correctifs créés</li>
+    </ul>
+    <%= report_item(:evolution) %>
+    <br />
+
+<p class="break_here"/>
+<h1 class="chapter">Top 5 de vos demandes pour <%= @annee %></h1>
+
+    <h2>Top 5 des demandes les plus commentées</h2>
+    <%= report_item(:top5_demandes, :one_row => true) %>
+    <h2>Top 5 des logiciels les plus sujets à demandes</h2>
+    <%= report_item(:top5_logiciels, :one_row => true) %>
+
+</div><!-- end of report -->
+

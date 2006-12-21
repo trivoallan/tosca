@@ -18,16 +18,27 @@
                        Linagora <http://www.linagora.com/>
 */
 
+#contenu { 
+	margin: 0; 
+	padding: 0; 
+	width: 100%;
+}
+.report {
+	background-color: white;
+	padding: 0em; 
+}
+/* call it by <p class="breakhere"/> */
+p.break_here {
+	page-break-before: always
+}
 div.form {
 	display: none;
 	visibility: hidden;
 }
-
 div.haut {
 	display: none;
 	visibility: hidden;
 }
-
 div.pied {
 	display: none;
 	visibility: hidden;

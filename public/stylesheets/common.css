@@ -544,9 +544,10 @@ h1.title {
 
 h1.chapter {
 	font-size: 200%;
-	text-align: center;
+	/*text-align: center;*/
 	padding: 20pt;
 	line-height: normal;
+	/*page-break-before: always;*/
 }
 
 h1.section {
@@ -557,14 +558,35 @@ h1.section {
 }
 
 
-/* reporting */
-
+/****** reporting *******/
+/* formulaire de saisie mois et année */
 .form {
+	background-color: #d2dfd2;
 	float:right;
-	padding-left: 2em;
+	padding: 1em;
+	margin-left: 2em;
+	border-style:solid; 
+	border-width:1px; 
+	border-color:grey;
 }
-
+/* page de reporting */
 .report {
 	background-color: white;
 	padding: 3em; 
+}
+/* tableaux statistiques */
+.report_item {
+	border-style:solid; 
+	border-width:1px; 
+	border-color:black;
+	width: 100%;
+}
+.report_table {
+	background-color: #d2dfd2;
+	width: 40%;
+}
+/* bandeau d'images du reporting */
+.report_images {
+	margin: 2em;
+	text-align: center;
 }

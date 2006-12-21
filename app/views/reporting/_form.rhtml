@@ -2,10 +2,10 @@
  <%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
   <table>
     <tr><td><label for="demande_resume">Spécifier un mois : </label></td><td>
-    <%= text_field 'report', '', "mois" => @month, :size => 10 %></td></tr>
+    <%= text_field 'report', '', "mois" => @month, :size => 8 %></td></tr>
     <tr><td><label for="demande_resume">Spécifier une année : </label></td><td>
-    <%= text_field 'report', '', "annee" => @annee, :size => 10 %></td></tr>
-    <tr><td rowspan="2"><%= submit_tag "Consulter" %></td></tr>
+    <%= text_field 'report', '', "annee" => @annee, :size => 8 %></td></tr>
+    <tr><td></td><td><%= submit_tag "Consulter" %></td></tr>
   </table>
  <%= end_form_tag %>
 </div>

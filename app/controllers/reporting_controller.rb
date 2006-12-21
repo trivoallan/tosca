@@ -57,7 +57,11 @@ class ReportingController < ApplicationController
     end
 
 
-    report_general
+    #report_general
+
+    # en test
+    report_mensuel(Time.mktime(@annee), Time.now)
+
     # return if File.exist?("public/#{@path[:repartition]}")
 
     #on nettoie 
@@ -84,8 +88,9 @@ class ReportingController < ApplicationController
     require 'digest/sha1'
     @titres = @@titres
     @annee = params[:id] || Time.now.year.to_s
+    @mois = params[:mois] || 1
     @path = {}
-    @first_col = Date::MONTHNAMES[1..-1] # + [ "<b>#{@annee}</b>" ]
+    @first_col = Date::MONTHNAMES[@mois.to_i..-1] # + [ "<b>#{@annee}</b>" ]
     @donnees = {}
   end
 
@@ -157,6 +162,46 @@ class ReportingController < ApplicationController
     init_general unless @donnees
     start_date = Time.mktime(@annee)
     end_date = Time.mktime(@annee, 12)
+
+    @dates = {}
+    i = 0
+    until (start_date > end_date) do 
+      infdate = "'" + start_date.strftime('%y-%m') + "-01'"
+      supdate = "'" + (start_date.advance(:months => 1)).strftime('%y-%m') + "-01'"
+      
+      @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
+      date = start_date.strftime('%b')
+      @dates[i] = date
+      i += 1
+      Demande.with_scope({ :find => { :conditions => @conditions } }) do
+        compute_repartition @donnees[:repartition]
+        compute_severite @donnees[:severite]     
+        compute_resolution @donnees[:resolution]
+        compute_evolution @donnees[:evolution]
+      end
+      start_date = start_date.advance(:months => 1)
+    end
+
+    end_date = start_date
+    start_date = Time.mktime(@annee) 
+    infdate = "'" + start_date.strftime('%y-%m') + "-01'"
+    supdate = "'" + end_date.strftime('%y-%m') + "-01'"
+    @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
+    @demande_ids = Demande.find(:all, :select => 'demandes.id').join(',')
+    Demande.with_scope({ :find => { :conditions => @conditions } }) do
+      compute_repartition @donnees[:repartition_cumulee]
+      compute_severite @donnees[:severite_cumulee]
+      compute_resolution @donnees[:resolution_cumulee]
+
+      compute_top5_logiciels @donnees[:top5_logiciels]
+      Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
+        compute_top5_demandes @donnees[:top5_demandes]
+      end
+    end
+  end
+
+  def report_mensuel( start_date = Time.mktime(@annee, @mois) , end_date = Time.now )
+    init_general unless @donnees
 
     @dates = {}
     i = 0
