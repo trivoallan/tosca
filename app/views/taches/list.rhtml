@@ -1,25 +1,25 @@
 <h1>Liste des taches</h1>
 
-<%= show_pages_links(@tache_pages, 'un tache') %>
+<%= show_pages_links(@tache_pages, 'une nouvelle tâche') %>
 
 <% titres = ['Priorité', 'Responsable', 'Etape', 'Durée', 'Deadline', 
              'Résumé', 'Crée le', 'Màj', 'Terminé ?' ] %>
 <%= show_table(@taches, Tache, titres) { |tache|
   result=''
-  result << '<td>' + link_to(image_tag("first_task.png", :size => "14x14", 
+  result << '<td>' + link_to(image_tag('first_task.png', :size => '14x14', 
                                        :border => 0, :alt => 'Première priorité'), 
                              :action => 'move2top', :id => tache) 
-  result << link_to(image_tag("previous_task.png", :size => "14x14", 
+  result << link_to(image_tag('previous_task.png', :size => '14x14', 
                               :border => 0, :alt => 'Monter la priorité'), 
                              :action => 'movehigher', :id => tache)
-  result << link_to(image_tag("next_task.png", :size => "14x14", 
+  result << link_to(image_tag('next_task.png', :size => '14x14', 
                               :border => 0, :alt => 'Baisser la  priorité'), 
                     :action => 'movelower', :id => tache) 
-  result << link_to(image_tag("last_task.png", :size => "14x14", 
+  result << link_to(image_tag('last_task.png', :size => '14x14', 
                               :border => 0, :alt => 'Dernière priorité'), 
                              :action => 'move2bottom', :id => tache) + '</td>'
   result << "<td>#{tache.responsable.nom}</td>"
-  result << "<td>#{tache.etape.nom}</td>" if tache.etape
+  result << "<td>#{tache.etape.nom if tache.etape}</td>" 
   result << "<td>#{tache.duree}</td>"
   result << "<td>#{tache.deadline_formatted if tache.deadline}</td>"
   result << "<td>#{link_to_tache(tache)}</td>"
@@ -34,16 +34,13 @@
       result << '<td style="background: orange;"></td>'
     end
   end
-  result << "<td>#{link_to 'Modifier', :action => 'edit', :id => tache}</td>"
-  result << "<td>#{link_to 'Annuler', { :action => 'destroy', :id => tache }, :confirm => 'En êtes vous certain ?', :post => true}</td>"
-  result
+  result << "#{link_to_actions_table tache}"
 }%>
 
 <b><%= @nombre_total%></b> tâche(s) à faire pour un total de 
 <b><%= @duree_total %></b> jours de travail (ô joie)
 
-<%= show_pages_links(@tache_pages, 'un tache') %>
+<%= show_pages_links(@tache_pages, 'une nouvelle tâche') %>
 
-<br />
-<br />
+
 

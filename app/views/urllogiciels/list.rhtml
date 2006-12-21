@@ -1,32 +1,16 @@
 <h1>Liste des liens</h1>
 
-<table>
-  <tr>
-  <% for column in Urllogiciel.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-    <th>Logiciel</th>
-    <th>Type</th>
-  </tr>
-  
-<% for urllogiciel in @urllogiciels %>
-  <tr>
-  <% for column in Urllogiciel.content_columns %>
-    <td><%=h urllogiciel.send(column.name) %></td>
-  <% end %>
-    <td><%=h urllogiciel.logiciel.nom %></td>
-    <td><%=h urllogiciel.typeurl.nom %></td>
+<%= show_pages_links(@urllogiciel_pages, 'une nouvelle  url') %>
 
-    <td><%= link_to 'Voir', :action => 'show', :id => urllogiciel %></td>
-    <td><%= link_to 'Editer', :action => 'edit', 	:logiciel_id => "#{urllogiciel.logiciel.id}", :id => urllogiciel %></td>
-    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => urllogiciel }, :confirm => 'Voulez-vous vraiment supprimer le lien '+urllogiciel.valeur+' ?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<% titres = ['Logiciel','Url','Type']%>
+<%= show_table(@urllogiciels, Urllogiciel, titres) { |m|
+  result = ''
+  result << "<td>#{m.logiciel.nom}</td>"
+  result << "<td>#{m.valeur}</td>"
+  result << "<td>#{m.typeurl.nom}</td>"
+  result << "#{link_to_actions_table m}"
+}%>
 
-<%= link_to 'Page précedente', { :page => @urllogiciel_pages.current.previous } if @urllogiciel_pages.current.previous %>
-<%= link_to 'Page suivante', { :page => @urllogiciel_pages.current.next } if @urllogiciel_pages.current.next %> 
+<%= show_pages_links(@urllogiciel_pages, 'une nouvelle url') %>
 
-<br />
 
-<%= link_to 'Ajouter un lien', :action => 'new' %>

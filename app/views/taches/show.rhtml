@@ -15,6 +15,11 @@
 <p><b>Rédacteur : </b><%= @tache.auteur.nom %></p>
 <% end %>
 
+<% if @tache.etape %>
+<p><b>Etape : </b><%= @tache.etape.nom %></p>
+<% end %>
+
+
 <br />
 <p><b>Résumé : </b><%= @tache.resume %></p>
 

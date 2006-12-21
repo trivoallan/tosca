@@ -1,27 +1,13 @@
-<h1>Listing typeurls</h1>
+<h1>Liste des types possible pour les urls de logiciels</h1>
 
-<table>
-  <tr>
-  <% for column in Typeurl.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for typeurl in @typeurls %>
-  <tr>
-  <% for column in Typeurl.content_columns %>
-    <td><%=h typeurl.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => typeurl %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => typeurl %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => typeurl }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@typeurl_pages, 'une nouveau type d\'url') %>
 
-<%= link_to 'Previous page', { :page => @typeurl_pages.current.previous } if @typeurl_pages.current.previous %>
-<%= link_to 'Next page', { :page => @typeurl_pages.current.next } if @typeurl_pages.current.next %> 
+<% titres = []%>
+<%= show_table(@typeurls, Typeurl, titres, :content_columns => true) { |m|
+  result = ''
+  result << "#{link_to_actions_table m}"
+}%>
 
-<br />
+<%= show_pages_links(@typeurl_pages, 'une nouvelle url') %>
 
-<%= link_to 'New typeurl', :action => 'new' %>
+

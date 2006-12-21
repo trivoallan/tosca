@@ -2,12 +2,13 @@
 
 <%= show_pages_links(@socle_pages, 'un socle client') %>
 
-<% titres = ['Client','Socle','Machine']%>
+<% titres = ['Client','Socle','Machine','Virtuelle']%>
 <%= show_table(@socles, Socle, titres) { |m|
   result = ''
   result << "<td>#{link_to_client(m.client)}</td>"
   result << "<td>#{link_to_socle(m)}</td>"
   result << "<td>#{m.machine.to_s if m.machine}</td>"
+  result << "<td>#{'X' if m.machine and m.machine.virtuelle}</td>"
   result << "#{link_to_actions_table m}"
 }%>
 

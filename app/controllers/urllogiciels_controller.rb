@@ -12,7 +12,8 @@ class UrllogicielsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @urllogiciel_pages, @urllogiciels = paginate :urllogiciels, :per_page => 10
+    @urllogiciel_pages, @urllogiciels = paginate :urllogiciels, :per_page => 10,
+    :include => [:logiciel,:typeurl], :order => 'urllogiciels.logiciel_id'
   end
 
   def show

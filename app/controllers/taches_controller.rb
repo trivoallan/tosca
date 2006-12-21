@@ -68,16 +68,14 @@ class TachesController < ApplicationController
     redirect_to :action => 'list'
   end
 
-
-
   def create
     _post(params)
-    _form
     @tache = Tache.new(params[:tache])
      if @tache.save
       flash[:notice] = 'Tache was successfully created.'
       redirect_to :action => 'list'
     else
+       _form
       render :action => 'new'
     end
   end
@@ -90,12 +88,11 @@ class TachesController < ApplicationController
   def update
     @tache = Tache.find(params[:id])
     _post(params)
-    _form
-
     if @tache.update_attributes(params[:tache])
       flash[:notice] = 'Tache was successfully updated.'
       redirect_to :action => 'show', :id => @tache
     else
+      _form
       render :action => 'edit'
     end
   end

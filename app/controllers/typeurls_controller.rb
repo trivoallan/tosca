@@ -12,7 +12,7 @@ class TypeurlsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @typeurl_pages, @typeurls = paginate :typeurls, :per_page => 10
+    @typeurl_pages, @typeurls = paginate :typeurls, :per_page => 50
   end
 
   def show
