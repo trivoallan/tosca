@@ -1,18 +1,8 @@
-<% client = (@beneficiaire ? @beneficiaire.client.nom : Metadata::NOM_COURT_SERVICE + "()") %>
+<% client = (@beneficiaire ? @beneficiaire.client.nom : Metadata::NOM_COURT_SERVICE + " (Interne)") %>
 
 <div class='report' >
 
-<div class="form">
- <%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
-  <table>
-    <tr><td><label for="demande_resume">Spécifier un mois : </label></td><td>
-    <%= text_field 'report', '', "mois" => @month, :size => 10 %></td></tr>
-    <tr><td><label for="demande_resume">Spécifier une année : </label></td><td>
-    <%= text_field 'report', '', "annee" => @annee, :size => 10 %></td></tr>
-    <tr><td rowspan="2"><%= submit_tag "Consulter" %></td></tr>
-  </table>
- <%= end_form_tag %>
-</div>
+<%= render_partial 'form' %>
 
 <h1 class="title">
   <%= client %><br/>
@@ -21,21 +11,22 @@
 <br/>
 
 <h1>Sommaire</h1>
-
+<ol>
+  <li>...</li>
+  <li>...</li>
+</ol>
 <br/>
 
 <h1>Historique de vos demandes pour <%= @annee %></h1>
 
 <h2>Evolution du type de vos demandes</h2> 
 <%= report_table(:repartition) %>
-
 <h2>Répartition du type de vos demandes</h2>
 <%= report_table(:repartition_cumulee, :one_row => true) %>
 <br />
 
 <h2>Evolution de la sévérité de vos demandes</h2>
 <%= report_table(:severite) %>
-
 <h2>Répartion de la sévérité de vos demandes</h2>
 <%= report_table(:severite_cumulee, :one_row => true) %>
 <br />
@@ -48,20 +39,17 @@
 
 <h2>Evolution générale du service</h2> 
 <ul>
-<li>nombre de bénéficiaires distinct</li>
-<li>nombre de logiciels impactés distinct</li>
-<li>nombre de correctifs créés</li>
+  <li>nombre de bénéficiaires distinct</li>
+  <li>nombre de logiciels impactés distinct</li>
+  <li>nombre de correctifs créés</li>
 </ul>
 <%= report_table(:evolution) %>
 <br />
 
 <h2>Top 5 des demandes les plus commentées</h2>
 <%= report_table(:top5_demandes, :one_row => true) %>
-
 <h2>Top 5 des logiciels les plus sujets à demandes</h2>
 <%= report_table(:top5_logiciels, :one_row => true) %>
-<%= report_table(:repartition_cumulee, :one_row => true) %>
-<%= report_table(:severite_cumulee, :one_row => true) %>
-<%= report_table(:resolution_cumulee, :one_row => true) %>
+
 
 </div>

@@ -330,7 +330,7 @@ class ReportingController < ApplicationController
     g.no_data_message = 'Aucune donnée\n n\'est disponible'
 
     # this writes the file to the hard drive for caching
-    g.write "public/#{@path[nom]}"
+    #g.write "public/#{@path[nom]}"
   end
 
   # TODO : mettre ça dans le modèle Demande

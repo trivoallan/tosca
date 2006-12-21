@@ -13,14 +13,14 @@ module ReportingHelper
     table = ''
     table << '<table width="100%" class="report_table">'
     table << '<tr>'
-    table << '<td width="100%">'
+    table << '<td>'
     if options[:titre]
       table << image_tag(@path[nom], :alt => options[:titre])
     else
       table << image_tag(@path[nom], :alt => @titres[nom])
     end
     table << '</td>'
-    table << '<td align="center">'
+    table << '<td align="left">'
 
     data = @donnees[nom]
     size = data.size

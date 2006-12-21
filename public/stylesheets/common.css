@@ -42,7 +42,7 @@ h1 {
 	margin: 0;
 }
 
-h2{
+h2 {
 	font-size: 140%;
 	margin: 1em auto .5em 0.5em;
 }
@@ -52,8 +52,10 @@ p {
 	margin: 0em;
 }
 li {
-	list-style-type: square;
 	color:#114188;
+}
+ul {
+	list-style-type: square;
 }
 hr {
 	color: #114188;
