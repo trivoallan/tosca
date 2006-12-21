@@ -136,6 +136,15 @@ span.left {
 	margin-right: auto;
 	*/
 }
+.form {
+	background-color: #d2dfd2;
+	padding: 1em;
+	margin-left: 2em;
+	border-style:solid; 
+	border-width:1px; 
+	border-color:grey;
+	width:30em;
+}
 .largeur_td {
 	width: 30%
 }
@@ -560,7 +569,7 @@ h1.section {
 
 /****** reporting *******/
 /* formulaire de saisie mois et année */
-.form {
+.report_form {
 	background-color: #d2dfd2;
 	float:right;
 	padding: 1em;
@@ -578,12 +587,13 @@ h1.section {
 .report_item {
 	border-style:solid; 
 	border-width:1px; 
-	border-color:black;
+	border-color:grey;
 	width: 100%;
 }
 .report_table {
-	background-color: #d2dfd2;
+	/*background-color: #d2dfd2;*/
 	width: 40%;
+	vertical-align: top;
 }
 /* bandeau d'images du reporting */
 .report_images {
