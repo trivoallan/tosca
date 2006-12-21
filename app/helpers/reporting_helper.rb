@@ -11,7 +11,7 @@ module ReportingHelper
   # options : one_row, muli_row et titre
   def report_table(nom, options={})
     table = ''
-    table << '<table width="100%" class="report">'
+    table << '<table width="100%" class="report_table">'
     table << '<tr>'
     table << '<td width="100%">'
     if options[:titre]

@@ -91,8 +91,16 @@ span.left {
 	border-bottom: 2px solid #cfc8cf;
 }
 
-#content { margin:0; padding: 0; width: 100% }
-#contenu { margin:2%; padding: 0; width: 95%}
+#content { 
+	margin:0; 
+	padding: 0; 
+	width: 100% 
+}
+#contenu { 
+	margin:2%; 
+	padding: 0; 
+	width: 95%
+}
 #pied {
 	color: black;
 /*	margin: 0;
@@ -529,7 +537,6 @@ a.nobackground {
 h1.title {
 	font-size: 300%;
 	text-align: center;
-	padding: 20pt;
 	line-height: normal;
 }
 
@@ -545,4 +552,17 @@ h1.section {
 	text-align: center;
 	padding: 20pt;
 	line-height: normal;
+}
+
+
+/* reporting */
+
+.form {
+	float:right;
+	padding-left: 2em;
+}
+
+.report {
+	background-color: white;
+	padding: 3em; 
 }

@@ -1,23 +1,28 @@
-<% client = (@beneficiaire ? @beneficiaire.client.nom : Metadata::NOM_COURT_SERVICE) %>
+<% client = (@beneficiaire ? @beneficiaire.client.nom : Metadata::NOM_COURT_SERVICE + "()") %>
 
-<table width="100%">
- <tr><td  width="100%" align="center">
-  <h1 class="title"><%= "#{client} : Rapport d'activité de la cellule #{Metadata::NOM_COURT_SERVICE} pour #{@annee}" %></h1>
- </td></tr>
- <tr><td>
- </td><td>
-  <div class="form">
-   <%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
-    <label for="demande_resume">Spécifier un mois : </label>
-    <%= text_field 'report', '', "mois" => @month  %>
-    <label for="demande_resume">Spécifier une année : </label>
-    <%= text_field 'report', '', "annee" => @annee  %>
-    <%= submit_tag "Consulter" %>
-   <%= end_form_tag %>
-  </div>
- </td><td>
- </td></tr>
-</table>
+<div class='report' >
+
+<div class="form">
+ <%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
+  <table>
+    <tr><td><label for="demande_resume">Spécifier un mois : </label></td><td>
+    <%= text_field 'report', '', "mois" => @month, :size => 10 %></td></tr>
+    <tr><td><label for="demande_resume">Spécifier une année : </label></td><td>
+    <%= text_field 'report', '', "annee" => @annee, :size => 10 %></td></tr>
+    <tr><td rowspan="2"><%= submit_tag "Consulter" %></td></tr>
+  </table>
+ <%= end_form_tag %>
+</div>
+
+<h1 class="title">
+  <%= client %><br/>
+  <%= "Rapport d'activité de la cellule #{Metadata::NOM_COURT_SERVICE} pour #{@annee}" %>
+</h1>
+<br/>
+
+<h1>Sommaire</h1>
+
+<br/>
 
 <h1>Historique de vos demandes pour <%= @annee %></h1>
 
@@ -59,3 +64,4 @@
 <%= report_table(:severite_cumulee, :one_row => true) %>
 <%= report_table(:resolution_cumulee, :one_row => true) %>
 
+</div>
