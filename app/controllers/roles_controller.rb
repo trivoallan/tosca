@@ -29,7 +29,7 @@ class RolesController < ApplicationController
   def create
     @role = Role.new(params[:role])
     if @role.save
-      flash[:notice] = 'Role was successfully created.'
+      flash[:notice] = "Le rôle \"#{@role.nom}\" a bien été crée."
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -44,7 +44,7 @@ class RolesController < ApplicationController
   def update
     @role = Role.find(params[:id])
     if @role.update_attributes(params[:role])
-      flash[:notice] = 'Role was successfully updated.'
+      flash[:notice] = "Le rôle \"#{@role.nom}\" a bien été mis à jour."
       redirect_to :action => 'list'
     else
       render :action => 'edit'

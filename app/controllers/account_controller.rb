@@ -61,7 +61,7 @@ class AccountController < ApplicationController
 
       if @identifiant.update_attributes(newIdentifiant)     
         flash[:notice]  = "Modification réussie, Vous devez vous reconnecter si vous avez modifier votre compte !"
-        redirect_back_or_default :action => "welcome"  
+        redirect_back_or_default :action => "list", :controller => 'bienvenue'
       end
     when :get
       @identifiant = Identifiant.find(params[:id])

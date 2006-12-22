@@ -37,7 +37,10 @@
            :value => '' %></td></tr>
 
 <tr><td colspan="2"><hr/></td></tr>
-<tr><td><label for='identifiant_affichage_personnel'>Affichage Personnel</label></td>
+<tr><td>
+    <label for='identifiant_affichage_personnel'>Affichage Personnel</label>
+    <% help_affichage_perso = "Affichage personnalisé de la liste des demandes"  %>
+    <a alt="<%= help_affichage_perso %>" title="<%= help_affichage_perso %>" >?</a></td>
 <td><%= check_box('identifiant', 'affichage_personnel') %></td></tr>
 
 <% if @ingenieur %>

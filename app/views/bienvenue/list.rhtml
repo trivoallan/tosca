@@ -23,6 +23,12 @@
              link_to('Liste des correctifs', :controller => 'correctifs', :action => 'list') ] %>
        <%= show_liste_accueil(links.compact, 'Gestion des logiciels') %>
 
+       <% links = [ 
+             link_to('Liste des socles', :controller => 'socles', :action => 'list'),
+             link_to('Liste des machines', :controller => 'machines', :action => 'list'),
+             link_to('Liste des arches', :controller => 'arches', :action => 'list') ] %>
+       <%= show_liste_accueil(links.compact, 'Gestion des socles') %>
+
   </dl></td>
   <td><dl class="sommaire">
 
@@ -60,7 +66,8 @@
 
        <% links = [ 
              link_to('Déclaration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande"), 
-             link_to('Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande") ] %>
+             link_to('Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande"),
+             link_to('Plan du portail', :controller => 'bienvenue', :action => 'plan') ] %>
        <%= show_liste_accueil(links.compact, 'Aide') %>
 
   </dl></td>
