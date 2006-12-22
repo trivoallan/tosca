@@ -83,6 +83,7 @@ class ReportingController < ApplicationController
   end
 
   private
+
   # initialise toutes les variables de classes nécessaire
   def init_action(params)
     require 'digest/sha1'
@@ -94,6 +95,7 @@ class ReportingController < ApplicationController
     @donnees = {}
   end
 
+  # initialisation de @donnees
   def init_general
     # Répartions par mois (StackedBar)
     @donnees[:repartition]  = 

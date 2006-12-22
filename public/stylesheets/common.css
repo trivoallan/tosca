@@ -584,13 +584,16 @@ h1.section {
 	padding: 3em; 
 }
 /* tableaux statistiques */
-.report_item {
+.report_item, .report_sommaire {
 	border-style:solid; 
 	border-width:1px; 
 	border-color:grey;
 	width: 100%;
 }
-.report_table {
+.report_graph {
+
+}
+.report_data {
 	/*background-color: #d2dfd2;*/
 	width: 40%;
 	vertical-align: top;

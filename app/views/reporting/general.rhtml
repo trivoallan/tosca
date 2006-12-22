@@ -1,27 +1,10 @@
-<% client = (@beneficiaire ? @beneficiaire.client : nil) %>
-<% display_name = (client ? client.nom : Metadata::NOM_COURT_SERVICE + " (Interne)") %>
-
 <div class='report' >
 
-<%= render_partial 'form' %>
 
-<h1 class="title">
-  <%= display_name %><br/>
-  <%= "Rapport d'activité de la cellule #{Metadata::NOM_COURT_SERVICE} pour #{@annee}" %>
-</h1>
-
-<div class="report_images">
-  <%= image_tag '/images/logo_linagora.gif', :size => "176x44" %>
-  <%= image_tag(url_for_file_column(client.photo, 'image', 'thumb')) if client %>
-</div>
+<%= render_partial 'entete' %>
 
 <h1 class="chapter">Sommaire</h1>
-
-    <ol>
-      <li>...</li>
-      <li>...</li>
-    </ol>
-    <br/>
+<%= render_partial 'sommaire' %>
 
 <p class="break_here"/>
 <h1 class="chapter">Historique de vos demandes pour <%= @annee %></h1>
@@ -53,13 +36,14 @@
     <%= report_item(:evolution) %>
     <br />
 
-<p class="break_here"/>
 <h1 class="chapter">Top 5 de vos demandes pour <%= @annee %></h1>
 
     <h2>Top 5 des demandes les plus commentées</h2>
     <%= report_item(:top5_demandes, :one_row => true) %>
     <h2>Top 5 des logiciels les plus sujets à demandes</h2>
     <%= report_item(:top5_logiciels, :one_row => true) %>
+
+
 
 </div><!-- end of report -->
 

@@ -8,23 +8,46 @@ module ReportingHelper
     titres
   end
 
+  # élément de reporting : 2 cellules
   # options : one_row, muli_row et titre
   def report_item(nom, options={})
     table = ''
     table << '<table class="report_item">'
-    table << '<tr>'
-    table << '<td>'
-    if options[:titre]
-      table << image_tag(@path[nom], :alt => options[:titre])
-    else
-      table << image_tag(@path[nom], :alt => @titres[nom])
-    end
-    table << '</td>'
-    table << '<td class="report_table">'
+    table << ' <tr>'
 
+    # cellule contenant le graphique
+    table << '  <td class="report_graph">'
+    table <<    report_graph(nom, options) 
+    table << '  </td>'
+
+    # cellule contenant le tableau de données
+    table << '  <td class="report_data">'
+    table <<    report_data(nom, options)
+    table << '  </td>'
+
+    table << ' </tr>'
+    table << '</table>'
+    table
+  end
+
+  # graphique
+  # options : titre
+  def report_graph(nom, options={})
+    out = ''
+    if options[:titre]
+      out << image_tag(@path[nom], :alt => options[:titre])
+    else
+      out << image_tag(@path[nom], :alt => @titres[nom])
+    end
+    out
+  end 
+
+  # tableau de données
+  # options : one_row, muli_row
+  def report_data(nom, options={})
+    out = ''
     data = @donnees[nom]
     size = data.size
-
     if options[:one_row]
       first_col = ['<b>Moyenne</b>']
     elsif options[:multi_row]
@@ -38,7 +61,7 @@ module ReportingHelper
       end
     end
     i = 1
-    table << show_table(first_col, Demande, fill_titles(data, size), :width => "100%") { |date|
+    out << show_table(first_col, Demande, fill_titles(data, size), :width => "100%") { |date|
       result = ''
       result << "<td>#{date}</td>"
       size.times do |t|
@@ -52,10 +75,7 @@ module ReportingHelper
       i += 1
       result
     }
-    table << '</td>'
-    table << '</tr>'
-    table << '</table>'
-    table
-  end
+    out
+  end 
 
 end

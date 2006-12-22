@@ -31,7 +31,7 @@
 p.break_here {
 	page-break-before: always
 }
-div.form {
+div.report_form {
 	display: none;
 	visibility: hidden;
 }
