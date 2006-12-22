@@ -51,23 +51,10 @@ class PaquetsController < ApplicationController
   end
 
 
-  def dependances
-    @logiciels = Logiciel.find(:all, :order => 'nom')
-    @groupes = Groupe.find_all
-    @bouquets = Bouquet.find_all
-    @socles = Socle.find_all
-    @conteneurs = Conteneur.find_all
-    @distributeurs = Distributeur.find_all
-    @mainteneurs = Mainteneur.find_all
-    @arches = Arch.find_all
-    @fournisseurs = Fournisseur.find_all
-    @contrats = Contrat.find_all
-    
-  end
 
   def new
     @paquet = Paquet.new
-    dependances
+    _form
     @paquet.mainteneur = Mainteneur.find_by_nom('Linagora')
     @paquet.distributeur = Distributeur.find_by_nom('(none)')
   end
@@ -78,13 +65,14 @@ class PaquetsController < ApplicationController
       flash[:notice] = 'Le paquet '+@paquet.nom+' a bien été crée.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
 
   def edit
     @paquet = Paquet.find(params[:id])
-    dependances
+    _form
   end
 
   def update
@@ -93,6 +81,7 @@ class PaquetsController < ApplicationController
       flash[:notice] = 'Le paquet '+@paquet.nom+' a bien été mis à jour.'
       redirect_to :action => 'list', :id => @paquet
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -115,4 +104,17 @@ class PaquetsController < ApplicationController
       yield
     end
   end
+
+  def _form
+    @logiciels = Logiciel.find(:all, :order => 'nom')
+    @groupes = Groupe.find_all
+    @bouquets = Bouquet.find_all
+    @socles = Socle.find_all
+    @conteneurs = Conteneur.find_all
+    @distributeurs = Distributeur.find_all
+    @mainteneurs = Mainteneur.find_all
+    @fournisseurs = Fournisseur.find_all
+    @contrats = Contrat.find_all
+  end
+
 end

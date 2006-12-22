@@ -1,7 +1,7 @@
 <h1>Liste des clients</h1>
 
 <%= show_pages_links(@client_pages, 'un client') %>
-<% titres = ['Logo','Nom', 'Adresse','MailingListe','Code d\'accès','Support']%>
+<% titres = ['Logo','Nom', 'Socles','MailingListe','Code d\'accès','Support']%>
 <%= show_table(@clients, Client, titres) { |c|
   result = ''
   if c.photo
@@ -10,7 +10,12 @@
     result << '<td></td>'
   end
   result << "<td>#{link_to_client(c)}</td>"
-  result << "<td>#{indent sum_up(c.adresse)}</td>"
+  result << '<td>'
+  c.socles.each {|s| 
+    result << link_to_socle(s).to_s
+    result << ' : ' + pluralize(s.paquets_count, 'paquet') + '<br />'
+  } 
+  result << '</td>'
   result << "<td>#{mail_to(c.mailingliste)}</td>"
   result << "<td>#{c.code_acces}</td>"
   result << "<td>#{c.support.nom}</td>"

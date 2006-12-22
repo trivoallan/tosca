@@ -195,7 +195,7 @@ class DemandesController < ApplicationController
         output << "<input type=\"checkbox\" id=\"#{p.id}\""
         output << " name=\"paquet_ids[]\" value=\"#{p.id}\""
         output << " checked=\"checked\"" if selecteds and selecteds.include? p.id.to_s
-        output << ">#{p.socle.nom} (#{p.arch.nom}) : "
+        output << ">#{p.socle.nom} : "
         output << "#{p.nom}-#{p.version}-#{p.release}</td>"
         if engagement
           output << "<td><%= display_jours #{engagement.contournement}%> </td>"
@@ -245,10 +245,8 @@ class DemandesController < ApplicationController
     # TODO : s'en débarrasser avec une migration et un :include
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
     select = "DISTINCT identifiants.* "
-    if @ingenieur
-      @identifiants_ingenieurs = 
-        Identifiant.find(:all, :select => select, :joins => joins)
-    end
+    @identifiants_ingenieurs = 
+      Identifiant.find(:all, :select => select, :joins => joins)
   end
 
   def update

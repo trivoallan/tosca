@@ -5,7 +5,7 @@
 <table cellspacing="1">
   <tr <%= (commentaire.prive ? 'class="commentaire-prive"' : 'class="commentaire-public"' ) %> id="<%= commentaire.id.to_s %>">
   <td width='160' class="commentaire_infos" align="center">
-	<span class="small">Comment. <%= '#'+commentaire.id.to_s %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
+	<span class="small">Comment. <%= "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id %>
 	    <%= Metadata::LOGO_08000LINUX %>
         <% elsif id.beneficiaire %>

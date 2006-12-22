@@ -5,8 +5,9 @@ module PaquetsHelper
   # Il faut mettre un :include => [:arch,:conteneur] pour accélérer l'affichage
   def link_to_paquet(paquet)
     return "N/A" unless paquet
-    nom = "#{paquet.nom}-#{paquet.version} (#{paquet.release}/" + 
-      "#{paquet.arch.nom}/#{paquet.conteneur.nom} ~ #{human_size(paquet.taille)}"
+    nom = "#{paquet.nom}-#{paquet.version}"
+      # "#{paquet.nom}-#{paquet.version} (#{paquet.release}/" + 
+      #   "#{paquet.arch.nom}/#{paquet.conteneur.nom} ~ #{human_size(paquet.taille)})"
     link_to nom, :controller => 'paquets', 
     :action => 'show', :id => paquet
 

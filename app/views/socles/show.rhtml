@@ -8,7 +8,9 @@
   <b>Machine:</b> <%= link_to_machine(@socle.machine) %>
 </p>
 
-<%= show_liste(@socle.paquets, 'paquet') {|p| link_to_paquet(p) } %>
+<% benchmark 'liste paquet' do %>
+<%= show_liste(@paquets, 'paquet') {|p| link_to_paquet(p) } %>
+<% end %>
 
 <%= link_to_edit(@socle) %> | <%= link_to_back %>
 

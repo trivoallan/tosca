@@ -22,8 +22,9 @@
 <%= show_liste(@client.demandes, 'demande') {|d| link_to_demande(d) } %>
 <br/>
 
-<%= show_liste(@client.socles, 'socle') {|s| link_to_socle(s) } %>
-<br/>
+<%= show_liste(@client.socles, 'socle') {|s| 
+  link_to_socle(s).to_s + ' : ' + pluralize(s.paquets_count, 'paquet') } %>
+
 
 <%= link_to_edit(@client) %> | <%= link_to_back %>
 

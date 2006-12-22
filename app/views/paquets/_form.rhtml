@@ -43,20 +43,12 @@
 </p>
 
 
-<p><label for="paquet_arch">Arch</label><br/>
-  <%= select("paquet", "arch_id", 
-	@arches.collect{|l| [ l.nom, l.id]}) %>
-</p>
-
 <p><label for="paquet_fournisseur">Provenance</label><br/>
   <%= select("paquet", "fournisseur_id", 
 	@fournisseurs.collect{|l| [ l.nom, l.id]}) %>
 </p>
 
 
-<p><label for="paquet_incoherences">Incohérences</label><br/>
-<%= text_area 'paquet', 'incoherences'  %>
-</p>
 
 <p><label for="paquet_configuration">Configuration spécifique additionnelle</label><br/>
 <%= text_area 'paquet', 'configuration'  %>

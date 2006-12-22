@@ -36,7 +36,7 @@ module ApplicationHelper
   #  add_create_link
   # options :
   #  permet de spécifier un controller 
-  def link_to_new(message, options = {})
+  def link_to_new(message='', options = {})
     link_options = options.update({:action => 'new'})
     link_to(image_tag("create_icon.png", :size => "16x16", 
                       :border => 0, :title => "Déposer #{message}", 

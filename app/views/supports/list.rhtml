@@ -2,10 +2,17 @@
 
 <%= show_pages_links(@support_pages, 'une nouveau type d\'url') %>
 
-<% titres = []%>
-<%= show_table(@supports, Support, titres, :content_columns => true) { |m|
+<% titres = ['Ouverture','Fermeture','Assistance<br />Téléphonique',
+             'Maintenance','Veille<br />Technologique','Newsletter']%>
+<%= show_table(@supports, Support, titres) { |s|
   result = ''
-  result << "#{link_to_actions_table m}"
+  result << "<td>#{s.ouverture}h</td>"
+  result << "<td>#{s.fermeture}h</td>"
+  result << "<td>#{'X' if s.assistance_tel}</td>"
+  result << "<td>#{'X' if s.maintenance}</td>"
+  result << "<td>#{'X' if s.veille_technologique}</td>"
+  result << "<td>#{'X' if s.newsletter}</td>"
+  result << "#{link_to_actions_table s}"
 }%>
 
 <%= show_pages_links(@support_pages, 'une nouvelle url') %>

@@ -20,6 +20,7 @@ class SoclesController < ApplicationController
 
   def show
     @socle = Socle.find(params[:id])
+    @paquets = Paquet.find_all_by_socle_id(@socle.id)
   end
 
   def new
