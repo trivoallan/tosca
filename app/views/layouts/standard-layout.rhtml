@@ -45,13 +45,15 @@
 
      <div id="contenu">
         <p style="color: green"><%= flash[:notice] %></p>
+
         <% if flash[:warn] %>
-          <div class="errorExplanation" id="errorExplanation">
+          <div class="error" id="error">
                <h2>Une erreur a bloqué l'enregistrement</h2>
                <p>Corriger l'élément suivant pour poursuivre :</p>
                 <ul><li><%= flash[:warn] %></li></ul>
           </div>
         <% end %>
+
         <%= @content_for_layout %>
      </div>
 

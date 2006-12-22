@@ -1,5 +1,6 @@
 
 <%= error_messages_for 'identifiant' %><br />
+
 <!--[form:identifiant]-->
 
 <table>
@@ -13,10 +14,10 @@
 <% end %>
 <tr><td colspan="2"><hr/></td></tr>
 <tr><td><label for="identifiant_nom">Votre nom complet</label></td>
-<td><%= text_field 'identifiant', 'nom'  %></td></tr>
+<td><%= text_field 'identifiant', 'nom', :value => 'exemple : Prénom  Nom', :onSelect => "this.value = ''"  %></td></tr>
 
 <tr><td><label for="identifiant_titre">Titre</label></td>
-<td><%= text_field 'identifiant', 'titre'  %></td></tr>
+<td><%= text_field 'identifiant', 'titre', :value => 'exemple : Mr', :onSelect => "this.value = ''"  %></td></tr>
 
 <tr><td><label for="identifiant_email">Email</label></td>
 <td><%= text_field 'identifiant', 'email'  %></td></tr>
@@ -27,7 +28,7 @@
 
 <% if @ingenieur %>
 <tr><td><label for="identifiant_login">Choisissez un identifiant</label></td>
-<td><%= text_field "identifiant", "login", :size => 24 %></td></tr>
+<td><%= text_field "identifiant", "login", :size => 24, :value => 'exemple : "jpdupond"', :onSelect => "this.value = ''" %></td></tr>
 <% end %>
 
 <tr><td><label for="identifiant_password">Choisissez un mot de passe</label></td>
@@ -48,19 +49,24 @@
 <td><%= hbtm_check_box( @identifiant.roles, @roles, 'role_ids') %></td></tr>
 
  <% if controller.action_name == 'signup' %>
- <tr><td><label for="identifiant_client">Client ? </label></td>
+ <tr><td><label for="identifiant_client">Client</label>
+    <% help_client = "L'utilisateur est-il un client du service ?"  %>
+    <a alt="<%= help_client %>" title="<%= help_client %>" >?</a></td>
  <td><%= check_box('identifiant', 'client') %></td></tr>
  <% end %>
 <% end %>
 
-</table>
-
+<tr><td colspan="2">
 <label for="identifiant_informations">Informations</label>: <br/>
 <%= text_area 'identifiant', 'informations', :rows => 5 %>
+</td></tr>
 
-<br/>
-
+<tr><td colspan="2" align="center">
 <input type="submit" value="Valider &#187;" class="primary" />
+</td></tr>
+
+</table>
+
 <!--[eoform:identifiant]-->
 
 
