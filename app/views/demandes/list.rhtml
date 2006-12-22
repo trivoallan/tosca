@@ -27,7 +27,7 @@
       </tr>
 
     <% for demande in @demandes %>
-      <tr class=<%= "demande_#{demande.statut_id}" %>>
+      <tr class=<%= "demande_#{demande.statut_id}" %> onclick="window.location.href='comment/<%= demande.id %>';" >
         <td><%= demande.id %></td>
         <td><%= demande.typedemande.nom %></td>
         <td><%= demande.severite.nom %></td>

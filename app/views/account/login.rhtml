@@ -1,31 +1,24 @@
 <%= start_form_tag :action=> "login" %>
-
 <div title="Account login" id="loginform" class="form">
-    <h1>Identification</h1
 
-    <p>&nbsp;</p>
+    <h1>Identification</h1>
 
-    <p>
-    <label for="user_login">Identifiant:</label></br>
-    <input type="text" name="user_login" id="user_login" size="24" value=""/><br/>
-    </p>
+<br/>
+<table class="login">
+  <tr>
+    <td><label for="user_login">Identifiant :</label></td>
+    <td><input type="text" name="user_login" id="user_login" size="16" value=""/></td>
+  </tr><tr>
+    <td><label for="user_password">Mot de passe :</label></td>
+    <td><input type="password" name="user_password" id="user_password" size="16"/>
+        <input type="hidden" name="user_crypt" id="user_crypt" size="24" value="false"/></td>
+  </tr><tr>
+    <td><input type="submit" name="login" value="Valider &#187;" class="primary" /></td>
+    <td></td>
+  </tr>
+</table>
 
-    <p>&nbsp;</p>
-
-    <p>
-    <label for="user_password">Password:</label></br>
-    <input type="password" name="user_password" id="user_password" size="16"/>
-    </p>
-
-    <p>&nbsp;</p>
-    <input type="hidden" name="user_crypt" id="user_crypt" size="24" value="false"/><br/>
-
-
-    <p>
-    <input type="submit" name="login" value="Valider &#187;" class="primary" />
-    </p>    
 
 </div>
-
 <%= end_form_tag %>
 

@@ -10,7 +10,7 @@
    <%=h @logiciel.license.nom if @logiciel.license %></p>
 
  <p><b>Classifications:</b>
-    <%= @logiciel.classifications.collect{|c| c.groupe.nom+'/'+c.bouquet.nom}.join(', ') %></p>
+    <%= @logiciel.classifications.collect{|c| c.groupe.nom + '/'+c.bouquet.nom}.join(', ') %></p>
 
 <%= show_liste(@logiciel.urllogiciels, 'url') {|u| 
     "#{link_to u.typeurl.nom, :controller => 'urllogiciels', :action => 'show', :id => u.id} : #{u.valeur}" } %>

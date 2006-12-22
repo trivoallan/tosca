@@ -4,6 +4,7 @@
 <!--[form:identifiant]-->
 
 <table>
+
 <% if @ingenieur %>
   <%  if controller.action_name == 'signup' %>
   <tr><td><label for="type_client">Client </label></td>
@@ -12,6 +13,7 @@
   </td></tr>
   <% end %>
 <% end %>
+
 <tr><td colspan="2"><hr/></td></tr>
 <tr><td><label for="identifiant_nom">Votre nom complet</label></td>
 <td><%= text_field 'identifiant', 'nom', :value => 'exemple : Prénom  Nom', :onSelect => "this.value = ''"  %></td></tr>
@@ -23,12 +25,12 @@
 <td><%= text_field 'identifiant', 'email'  %></td></tr>
 
 <tr><td><label for="identifiant_telephone">Telephone</label></td>
-<td><%= text_field 'identifiant', 'telephone'  %></td></tr>
+<td><%= text_field 'identifiant', 'telephone', :size => 16  %></td></tr>
 <tr><td colspan="2"><hr/></td></tr>
 
 <% if @ingenieur %>
 <tr><td><label for="identifiant_login">Choisissez un identifiant</label></td>
-<td><%= text_field "identifiant", "login", :size => 24, :value => 'exemple : "jpdupond"', :onSelect => "this.value = ''" %></td></tr>
+<td><%= text_field "identifiant", "login", :size => 16, :value => 'exemple : "jpdupond"', :onSelect => "this.value = ''" %></td></tr>
 <% end %>
 
 <tr><td><label for="identifiant_password">Choisissez un mot de passe</label></td>
@@ -46,7 +48,7 @@
 
 <% if @ingenieur %>
 <tr><td><label for="identifiant_role">Roles </label></td>
-<td><%= hbtm_check_box( @identifiant.roles, @roles, 'role_ids') %></td></tr>
+<td><%= hbtm_radio_button( @identifiant.roles, @roles, 'role_ids') %></td></tr>
 
  <% if controller.action_name == 'signup' %>
  <tr><td><label for="identifiant_client">Client</label>
@@ -57,8 +59,8 @@
 <% end %>
 
 <tr><td colspan="2">
-<label for="identifiant_informations">Informations</label>: <br/>
-<%= text_area 'identifiant', 'informations', :rows => 5 %>
+<label for="identifiant_informations">Informations</label> <br/>
+<%= text_area 'identifiant', 'informations', :rows => 5, :cols => 58 %>
 </td></tr>
 
 <tr><td colspan="2" align="center">

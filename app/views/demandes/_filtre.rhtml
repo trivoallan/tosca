@@ -41,9 +41,17 @@
       </td>
   </tr>
   <tr><td colspan="6"><hr></td></tr>
-  <tr><td colspan="6" align='right'>
+  <tr>
+      <td colspan="3" align='left'>
+        <%= link_to 'Déposer une nouvelle demande', 
+                  :action => 'new', 
+                  :controller => 'demandes' %> 
+      </td>
+      <td colspan="3" align='right'>
         <%= link_to 'Effacer le(s) fitre(s)', 
                   :action => 'raz_recherche', 
-                  :controller => 'demandes' %> </td>
+                  :controller => 'demandes' %> 
+      </td>
   </tr>
 </table>
+<br/>

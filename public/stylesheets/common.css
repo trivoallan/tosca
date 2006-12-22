@@ -344,67 +344,7 @@ td.error div.link {
   margin-top : 1em;
 }
 /* /erreur */
-/* login */
-table.main td.login {
-  font-size : 10pt;
-  vertical-align : middle;
-  text-align : center;
-  padding : 0;
-  margin : 0;
-}
-table.main td.login * {
-  font-size : 10pt;
-}
-table.login {
-  border : 0;
-  border-spacing: 0 ;
-  border-collapse: collapse ;
-  background : url("../img/login.jpg") no-repeat;
-  width : 400px;
-  height : 206px;
-}
-table.login td.login_left {
-  height : 80px;
-  width : 140px;
-  vertical-align : bottom;
-  text-align : right;
-  padding : 0 5px 2px 0;
-}
-table.login td.login_right {
-  width:200px;
-  vertical-align : bottom;
-  text-align : left;
-  padding : 0 5px 0 0;
-}
-table.login td.pw_left {
-  height : 25px;
-  width : 140px;
-  vertical-align : bottom;
-  text-align : right;
-  padding : 0 5px 2px 0;
-}
-table.login td.pw_right {
-  width:200px;
-  vertical-align : bottom;
-  text-align : left;
-  padding : 0 5px 0 0;
-}
-table.login input {
-  border : 1px solid #7285A6;
-  /*width : 200px;*/
-  color : #3E4859;
-  background: #D9E7FF;
-}
-table.login td.buttons {
-  vertical-align : top;
-  text-align : center;
-  padding : 20px 0 0 0;
-}
-table.login td.buttons input {
-  width: 13em;
-  margin : 5px;
-}
-/* /login */
+
 /* stats */
 .stat_titre {
 	font-size: 120%;
@@ -543,6 +483,13 @@ a:hover {
 a.nobackground {
 	background: none;
 	text-decoration: none;
+}
+
+/*****************************************/
+
+/* login */
+.login tr {
+	height: 40px;
 }
 
 h1.title {

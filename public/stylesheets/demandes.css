@@ -21,42 +21,65 @@
 .demande_1 {
 	background: #f03720; /*red;*/
 }
+.demande_1:hover {
+	background: #f03700;
+}
 
 /* priseencompte */
 .demande_2 {
         background: ffa23e; /*orange;*/
 }	
+.demande_2:hover {
+        background: ffa200; 
+}
 
 /* suspendue */
 .demande_3 {
 	background: #ffffaa; /*yellow;*/
+}
+.demande_3:hover {
+	background: #ffff00; 
 }
 
 /* analysee */
 .demande_4 {
 	background: #a0e0e0; /*cyan;*/
 }
+.demande_4:hover {
+	background: #a0e000;
+}
 
 /* contournee */
 .demande_5 {
 	background: lightgreen; /*#00ff60; green;*/
+}
+.demande_5:hover {
+	background: #00ff00; 
 }
 
 /* corrigee */
 .demande_6 {
 	background: #67ccfd;
 }
+.demande_6:hover {
+	background: #67cc00;
+}
 
 /* cloturee */
 .demande_7 {
 	background: #c9c99f; /*grey;*/
+}
+.demande_7:hover {
+	background: #c9c900; 
 }
 
 /* annulee */
 .demande_8 {
 	background: lightgrey; /*grey;*/
 }
-
+.demande_8:hover {
+	background: lightgrey; 
+}
 
 /**
  * Comment : visualisation d'un demande
