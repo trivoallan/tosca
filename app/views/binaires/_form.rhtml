@@ -1,11 +1,33 @@
 <%= error_messages_for 'binaire' %>
 
 <!--[form:binaire]-->
-<p><label for="binaire_fichier">Fichier</label><br/>
-<%= file_column_field 'binaire', 'fichier'  %></p>
 
-<p><label for="binaire_correctif">Correctifs</label><br/>
-<%= select("binaire", "correctif_id", 
-           @correctifs.collect{|l| [ l.nom, l.id]}) %></p>
+<p><label for="binaire_paquet">Paquet</label><br/>
+  <%= select('binaire', 'paquet_id', 
+	@paquets.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="binaire_arch">Arch</label><br/>
+  <%= select('binaire', 'arch_id',
+	@arches.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+<p><label for="binaire_socle">Socle</label><br/>
+  <%= select('binaire', 'socle_id',
+	@socles.collect{|l| [ l.nom, l.id]}) %>
+</p>
+
+
+<p><label for="binaire_nom">Nom</label><br/>
+<%= text_field 'binaire', 'nom'  %></p>
+
+<p><label for="binaire_configuration">Configuration</label><br/>
+<%= text_area 'binaire', 'configuration'  %></p>
+
+
+<p><label for="binaire_archive">Archive</label><br/>
+<%= file_column_field 'binaire', 'archive'  %></p>
+
+
 <!--[eoform:binaire]-->
 

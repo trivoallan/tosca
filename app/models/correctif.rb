@@ -2,7 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Correctif < ActiveRecord::Base
-  has_many :binaires, :dependent => :destroy
   has_many :demandes
   has_many :reversements, :dependent => :destroy
 
@@ -10,10 +9,7 @@ class Correctif < ActiveRecord::Base
 
   file_column :patch
 
-  validates_length_of :nom, :within => 3..25
-
-
-
+  validates_length_of :nom, :within => 3..40
 
   def mes_demandes(beneficiaire)
     if beneficiaire

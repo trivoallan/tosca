@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class BinairesController < ApplicationController
+  helper :paquets
+
   def index
     list
     render :action => 'list'
@@ -12,11 +14,13 @@ class BinairesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @binaire_pages, @binaires = paginate :binaires, :per_page => 10
+    @binaire_pages, @binaires = paginate :binaires, :per_page => 10, 
+    :include => [:socle, :arch, :paquet]
   end
 
   def show
-    @binaire = Binaire.find(params[:id])
+    @binaire = Binaire.find(params[:id], :include => [:paquet,:socle,:arch])
+    @fichierbinaires = Fichierbinaire.find_all_by_binaire_id(@binaire.id)
   end
 
   def new
@@ -30,6 +34,7 @@ class BinairesController < ApplicationController
       flash[:notice] = 'Binaire was successfully created.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
@@ -45,6 +50,7 @@ class BinairesController < ApplicationController
       flash[:notice] = 'Binaire was successfully updated.'
       redirect_to :action => 'show', :id => @binaire
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -57,5 +63,8 @@ class BinairesController < ApplicationController
   private
   def _form
     @correctifs = Correctif.find_all
+    @paquets = Paquet.find_all
+    @arches = Arch.find_all
+    @socles = Socle.find_all
   end
 end

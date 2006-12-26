@@ -3,7 +3,9 @@
 #####################################################
 class Socle < ActiveRecord::Base
   has_one :machine, :dependent => :destroy
-  has_many :paquets
+  has_many :binaires
+  has_many :paquet, :through => :binaires
+
   belongs_to :client # TODO :
   # Mettre des filtres (before_create||before_update) pour maintenir
   # la consistance entre la réalité des paquets.socle et la vision client.socle

@@ -2,8 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class PaquetsController < ApplicationController
-
-  helper :logiciels
+  helper :logiciels, :binaires
 
 
   def index
@@ -43,8 +42,9 @@ class PaquetsController < ApplicationController
   end
 
   def show
-    @paquet = Paquet.find(params[:id], :include => 
-       [:arch, :conteneur, :distributeur, :mainteneur, :logiciel, :contrat])
+    include =  [ :logiciel, :fournisseur, :distributeur, 
+      :contrat, :mainteneur, :conteneur]
+    @paquet = Paquet.find(params[:id], :include => include)
     @fichiers = @paquet.fichiers.find(:all, :select => 'fichiers.chemin')
     @changelogs = @paquet.changelogs
     # Fichier.find_all_by_paquet_id(params[:id], :limit => 1000)

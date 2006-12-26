@@ -27,7 +27,7 @@
 </p>
 
 <%= show_pages_links @paquet_pages, 'un paquet virtuel' %>
-<% titres = ['Logiciel', 'Nom', 'Version', 'Release', 'Taille', 'Socle', 'Arch', 'Distributeur', 'Mainteneur']%>
+<% titres = ['Logiciel', 'Nom', 'Version', 'Release', 'Taille', 'Distributeur', 'Mainteneur']%>
 <%= show_table(@paquets, Paquet, titres) { |p|
   result = ''
   result << "<td>#{link_to_logiciel p.logiciel}</td>"
@@ -35,7 +35,6 @@
   result << "<td>#{p.version}</td>"
   result << "<td>#{p.release}</td>"
   result << "<td>#{human_size p.taille}</td>"
-  result << "<td>#{p.socle.nom}</td>"
   result << "<td>#{p.distributeur.nom}</td>"
   result << "<td>#{p.mainteneur.nom}</td>"
   result << "#{link_to_actions_table p}"

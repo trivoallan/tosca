@@ -1,15 +1,25 @@
-<h1>Listing binaires</h1>
+<h1>Liste des paquets binaires</h1>
 
 <%= show_pages_links(@binaire_pages, 'une archive binaire') %>
 
-<% titres = ['Id','Patch']%>
-<%= show_table(@binaires, Binaire, titres, :content_columns => true) { |b|
+<% titres = ['Source','Binaire','Socle','Arch','Fichiers','Archive'] %>
+<% old_paquet = nil %>
+<%= show_table(@binaires, Binaire, titres) { |b|
   result = ''
-  result << "<td>#{b.id}</td>"
-  result << "<td>#{link_to_file(b, 'fichier')}</td>"
+  if old_paquet != b.paquet
+    result << "<td>#{link_to_paquet(b.paquet)}</td>"
+    old_paquet = b.paquet
+  else
+    result << '<td></td>'
+  end
+
+  result << "<td>#{link_to_binaire(b)}</td>"
+  result << "<td>#{b.socle.nom if b.socle}</td>"
+  result << "<td>#{b.arch.nom if b.arch}</td>"
+  result << "<td>#{b.fichierbinaires_count}</td>"
+  result << "<td>#{link_to_file(b, 'archive') if b.archive}</td>"
   result << "#{link_to_actions_table b}"
 }%>
-
 
 <%= show_pages_links(@binaire_pages, 'une archive binaire') %>
 

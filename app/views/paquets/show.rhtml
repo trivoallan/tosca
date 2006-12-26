@@ -16,6 +16,10 @@
 <p><b>Mainteneur:</b> <%=h @paquet.mainteneur.nom %></p>
 
 <br />
+<p>Ce paquet a produit <b><%= pluralize(@paquet.binaires_count, 'binaire') %></b></p>
+<%= show_liste(@paquet.binaires, 'binaire', :no_title => true) { |b| link_to_binaire(b) } %>
+
+<br />
 <p>Ce paquet contient <b><%= pluralize(@paquet.fichiers_count, 'fichier') %></b></p>
 <div id="bloc_scroll">
   <%= show_liste(@fichiers, 'fichier', :no_title => true) { |f| f.chemin } %>

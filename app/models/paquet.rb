@@ -4,17 +4,15 @@
 class Paquet < ActiveRecord::Base
   belongs_to :logiciel
   belongs_to :fournisseur
-  belongs_to :arch
-  has_many :fichiers, :dependent => :destroy
-  belongs_to :socle, :counter_cache => true
-  belongs_to :contrat, :counter_cache => true
-  has_many :changelogs, :dependent => :destroy
   belongs_to :distributeur
-  has_many :dependances, :dependent => :destroy
+  belongs_to :contrat, :counter_cache => true
   belongs_to :mainteneur, :order => 'nom'
   belongs_to :conteneur
+  has_many :fichiers, :dependent => :destroy
+  has_many :changelogs, :dependent => :destroy
+  has_many :dependances, :dependent => :destroy
+  has_many :binaires, :dependent => :destroy
 
-  has_and_belongs_to_many :demandes
   has_and_belongs_to_many :correctifs
 
   def self.content_columns 
