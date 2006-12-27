@@ -195,10 +195,9 @@ module ApplicationHelper
       result << "<p><b>#{pluralize(size, nom.capitalize)} : </b><br />"
     end
 
-    result << '<ul>'
-    elements.each { |e| result << '<li>' + yield(e) + '</li>' }
-    result << '</ul>'
-
+    result << '<ol>'
+    elements.each { |e| result << '<li>' + yield(e).to_s + '</li>' }
+    result << '</ol>'
   end
 
   # Call it like : 
@@ -262,7 +261,7 @@ module ApplicationHelper
   def select_onchange(list, default, name)
     options = {:onchange => 'this.form.submit();'}
     select = options_for_select(list.collect{|l| 
-                                  sum_up(l.nom, 25)}.unshift(['','']), 
+                                  [sum_up(l.nom, 25), l.id]}.unshift(['','']), 
                                 default.to_i)
     return select_tag(name, select, options)
   end

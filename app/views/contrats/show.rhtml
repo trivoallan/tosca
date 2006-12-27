@@ -8,7 +8,12 @@
 <p>Note : La consultation du client permet d'avoir une vision globale de l'offre</p>
 <br />
 
+<p><b> Engagements contractuels : </b>
 <%= show_table_engagements @contrat.engagements %>
-<br />
+</p>
+
+<%= show_liste(@contrat.ingenieurs, 'ingénieurs affecté') {|i| link_to_ingenieur(i)}%>
+</p>
+
 
 <%= link_to_edit(@contrat) %> | <%= link_to_back %>

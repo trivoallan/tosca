@@ -9,9 +9,10 @@ class Demande < ActiveRecord::Base
   belongs_to :statut
   belongs_to :ingenieur
   has_and_belongs_to_many :paquets
+  has_and_belongs_to_many :binaires
   has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
-  has_many :demandechanges, :dependent => :destroy
   belongs_to :correctif
+  belongs_to :socle
 
   #versioning, qui s'occupe de la table demandes_versions
   acts_as_versioned
@@ -42,7 +43,8 @@ class Demande < ActiveRecord::Base
   end
 
   def client
-    @demande_client ||= beneficiaire.client
+    @client ||= ( beneficiaire ? beneficiaire.client : nil )
+    @client
   end
 
   def reproduit

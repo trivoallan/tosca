@@ -38,7 +38,8 @@ class PaquetsController < ApplicationController
 
     @count = Paquet.count
     @paquet_pages, @paquets = paginate :paquets, :per_page => 25, 
-      :order => @order, :conditions => conditions
+      :order => @order, :conditions => conditions, :include =>
+      [:conteneur,:distributeur,:mainteneur,:logiciel]
   end
 
   def show

@@ -4,11 +4,10 @@
 class Socle < ActiveRecord::Base
   has_one :machine, :dependent => :destroy
   has_many :binaires
-  has_many :paquet, :through => :binaires
+  has_many :paquets, :through => :binaires, :group => 'id', 
+  :order => 'nom,version,release'
 
-  belongs_to :client # TODO :
-  # Mettre des filtres (before_create||before_update) pour maintenir
-  # la consistance entre la réalité des paquets.socle et la vision client.socle
+  has_and_belongs_to_many :clients
 
   def to_s
     nom

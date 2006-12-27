@@ -4,6 +4,7 @@
 <p><b>Contrat:</b> <%= @binaire.paquet.contrat.client.nom %></p>
 <p><b>Socle:</b> <%= @binaire.socle.nom if @binaire.socle %></p>
 <p><b>Arch:</b> <%= @binaire.arch.nom if @binaire.arch %></p>
+<p><b>Source:</b> <%= link_to_paquet(@binaire.paquet) %></p>
 <p><b>Nom:</b> <%= @binaire.nom %></p>
 <p><b>Version:</b> <%= @binaire.paquet.version %></p>
 <p><b>Release:</b> <%= @binaire.paquet.release %></p>

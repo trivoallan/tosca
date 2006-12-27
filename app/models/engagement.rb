@@ -22,6 +22,10 @@ class Engagement < ActiveRecord::Base
     (limite == -1 ? true : (delai < limite*3600))
   end
 
+  def to_s
+    "#{self.typedemande.nom} | #{self.severite.nom} : #{self.contournement} / #{self.correction}"
+  end
+
   #affiche le nombre de jours ou un "sans engagement"
   # voir application_helper
   #

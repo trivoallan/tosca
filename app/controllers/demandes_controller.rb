@@ -48,29 +48,29 @@ class DemandesController < ApplicationController
     #init des variables utilisées dans la vue
     @clients = Client.find_all 
     #Identifiant.find_all where ingenieur
-    joins = "INNER JOIN ingenieurs ON ingenieurs.identifiant_id = identifiants.id"
+    joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id = identifiants.id'
     @identifiants_ingenieurs = Identifiant.find(:all, :joins => joins)
     @count = Demande.count
 
     # récupération des paramètres, que l'on refile à la vue
-    case @params['filter']
+    case params['filter']
       when 'true' 
       @session[:filtres][:liste_globale] = true
       when 'false'
       @session[:filtres][:liste_globale] = false
       else
     end
-    @session[:filtres][:recherche_demande] = @params['demande'] if @params['demande']
-    if @params['client']
+    @session[:filtres][:recherche_demande] = params['demande'] if params['demande']
+    if params['client']
       if params['client'] != ''
-        @session[:filtres][:client_id] = @params['client'].to_i
+        @session[:filtres][:client_id] = params['client'].to_i
       else
         @session[:filtres][:client_id] = nil
       end
     end
-    if @params['ingenieur']
+    if params['ingenieur']
       if params['ingenieur'] != ''
-        @session[:filtres][:ingenieur_id] = Ingenieur.find(@params['ingenieur'].to_i).id
+        @session[:filtres][:ingenieur_id] = params['ingenieur']
       else
         @session[:filtres][:ingenieur_id] = nil
       end
@@ -78,10 +78,10 @@ class DemandesController < ApplicationController
     
     filtres, user = @session[:filtres], @session[:user]
     # défaut
-    query, params = [ "statut_id <> ? " ], [ 0 ] 
+    query, params = [ 'statut_id <> ? ' ], [ 0 ] 
     if filtres[:liste_globale] == false or 
         (user.affichage_personnel and filtres[:liste_globale] != true)
-      query.push "statut_id NOT IN (?,?)" 
+      query.push 'statut_id NOT IN (?,?)'
       params.concat [ 7, 8 ] 
     end
 
@@ -92,7 +92,7 @@ class DemandesController < ApplicationController
 
     if filtres[:recherche_demande]
       search =  "%#{filtres[:recherche_demande]}%" 
-      query.push " (demandes.resume LIKE ? OR demandes.description LIKE ?) "
+      query.push ' (demandes.resume LIKE ? OR demandes.description LIKE ?) '
       params.concat [ search, search ]
     end
 
@@ -100,18 +100,18 @@ class DemandesController < ApplicationController
         (filtres[:liste_globale] != true and 
            user.affichage_personnel and 
            @ingenieur)
-      query.push " (demandes.ingenieur_id = ? OR demandes.ingenieur_id IS NULL) " 
+      query.push ' (demandes.ingenieur_id = ? OR demandes.ingenieur_id IS NULL) '
       params.push filtres[:ingenieur_id] || @ingenieur.id 
     end
 
     if not @beneficiaire and not @ingenieur
-      flash[:warn] = "Vous n'êtes pas identifié comme appartenant à un groupe.\
-                        Veuillez nous contacter pour nous avertir de cet incident."
+      flash[:warn] = 'Vous n\'êtes pas identifié comme appartenant à un groupe.\
+                        Veuillez nous contacter pour nous avertir de cet incident.'
       @demandes = [] # renvoi un tableau vide
     end
 
-    conditions = [ query.join(" AND ") ] + params
-    @query = query.join(" AND ") + params.inspect
+    conditions = [ query.join(' AND ') ] + params
+    @query = query.join(' AND ') + params.inspect
     @demande_pages, @demandes = paginate :demandes, :per_page => 15,
       :order => 'updated_on DESC', :conditions => conditions,
     :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut]
@@ -132,7 +132,7 @@ class DemandesController < ApplicationController
 
   def create
     @demande = Demande.new(params[:demande])
-    @demande.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
+    @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.save
       flash[:notice] = 'La demande a bien été créée.'
       Notifier::deliver_demande_nouveau({:demande => @demande, 
@@ -145,29 +145,18 @@ class DemandesController < ApplicationController
     end
   end 
 
-  def ajax_update_beneficiaire
-    return unless request.xhr?
-    output = ""
-    params.each_pair {|key, value| output << key.to_s + " : " + value.to_s + "<br />" }
-    beneficiaire = Beneficiaire.find params[:beneficiaire_id]
-    contrats = Contrat.find :all, :conditions => ["client_id=?", beneficiaire.client.id ]
-    contrats.each {|c| output << c.support.nom}
-    render_text output
-  end
-
   def ajax_update_delai
     return render_text('') unless request.xhr? and params[:demande] and (params[:demande][:logiciel_id] != "")
-    output = ""
+    output = ''
 #    params.each_pair {|key, value| output << key.to_s + " : " + value.to_s + "<br />" }
     beneficiaire = Beneficiaire.find params[:demande][:beneficiaire_id]
-    contrat = Contrat.find :first, :conditions => ["client_id=?", beneficiaire.client.id ]
-    return render_text(" => pas de contrat, pas de support logiciel libre") unless contrat and beneficiaire
+    contrat = Contrat.find :first, :conditions => ['client_id=?', beneficiaire.client.id ]
+    return render_text(' => pas de contrat, pas de support logiciel libre') unless contrat and beneficiaire
     logiciel = Logiciel.find(params[:demande][:logiciel_id])
     # 6 est l'arch source
     paquets = beneficiaire.client.paquets.\
     find_all_by_logiciel_id(logiciel.id, 
-                            :conditions => [ "paquets.arch_id <> ? ", 6 ],
-                            :order => "socle_id DESC")
+                            :order => 'nom DESC')
 
     severite = Severite.find(params[:demande][:severite_id]) 
     typedemande = Typedemande.find(params[:demande][:typedemande_id])
@@ -195,7 +184,7 @@ class DemandesController < ApplicationController
         output << "<input type=\"checkbox\" id=\"#{p.id}\""
         output << " name=\"paquet_ids[]\" value=\"#{p.id}\""
         output << " checked=\"checked\"" if selecteds and selecteds.include? p.id.to_s
-        output << ">#{p.socle.nom} : "
+        output << "> : "
         output << "#{p.nom}-#{p.version}-#{p.release}</td>"
         if engagement
           output << "<td><%= display_jours #{engagement.contournement}%> </td>"
@@ -252,7 +241,7 @@ class DemandesController < ApplicationController
   def update
     @demande = Demande.find(params[:id])
     common_form @beneficiaire
-    @demande.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
+    @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.update_attributes(params[:demande])
       flash[:notice] = 'La demande a bien été mise à jour.'
       redirect_to :action => 'comment', :id => @demande
@@ -317,8 +306,79 @@ class DemandesController < ApplicationController
     redirect_to :action => 'comment', :id => @demande.id
   end
 
+  def deposer
+    @demande = @demande || Demande.new(params[:demande])
+    flash[:warn] = nil
+
+    # On réinitialise tout le bouzin si on a changé le client
+    if (params[:fake] and 
+          @demande.client.id != params[:fake][:client_id])
+      client = Client.find(params[:fake][:client_id])
+      benefs = client.beneficiaires
+      # Demande.new
+      @demande.beneficiaire = benefs.first 
+      if benefs.empty?
+        message = ": #{client.nom} n'en a pas, veuillez corriger sa fiche client"
+        @demande.errors.add_on_empty(:beneficiaire, message)
+        @demande.beneficiaire = Beneficiaire.find(:first)
+      end
+    end
+
+    # On positionne des paramètres par défaut
+    if @demande.beneficiaire_id == 0
+      @demande.beneficiaire_id = 1 if @ingenieur
+      @demande.beneficiaire = @beneficiaire.id if @beneficiaire
+      if @demande.beneficiaire_id == 0
+        message = 'Votre identification est incomplète, veuillez nous contacter au plus vite'
+        @demande.errors.add_on_empty(:beneficiaire, message)
+        @demande.beneficiaire = Beneficiaire.find(:first)
+      end
+    end
+    fill_with_first('typedemande') if @demande.typedemande_id == 0
+    fill_with_first('severite') if @demande.severite_id == 0
+    fill_with_first('socle') if @demande.socle_id == 0
+    fill_with_first('logiciel') if @demande.logiciel_id == 0
+    # return unless @demande.errors.empty?
+
+    # @demande.paquet_ids = params[:paquet_ids] if params[:paquet_ids]
+    # @demande.binaire_ids = params[:binaire_ids] if params[:binaire_ids]
+
+    @params = params
+    _form 
+    # ajax, quand tu nous tiens ;)
+    if request.xhr?
+      render :partial => 'form_deposer', :layout => false
+    end
+  end
+
 
   private
+  def _form
+    if @ingenieur
+      @clients = Client.find(:all, :select => 'id, nom')
+      @client_id = @demande.client.id 
+    end
+    conditions = [ 'binaires.socle_id = ? ', @demande.socle_id ]
+    options = { :conditions => conditions, :include => [:binaires], 
+      :order => 'paquets.nom DESC' }
+    @paquets = @demande.client.paquets.\
+      find_all_by_logiciel_id(@demande.logiciel_id, options)
+    @binaires = @paquets.collect{|p| p.binaires}.flatten
+  end
+
+  # Remplit une @demande avec l'id de 'param', dispo via le client 
+  def fill_with_first(param)
+    @test = "on remplit avec #{param} <br />" + @test.to_s
+    collection = @demande.client.send(param.pluralize)
+    if collection.empty?
+      message = ": #{@demande.client.nom} n'a aucun #{param}," +
+        ' veuillez nous contacter au plus vite'
+      @demande.errors.add_on_empty(:"#{param}", message)
+    else
+      @demande.send("#{param}=", collection.first)
+    end
+  end
+
   def common_form(beneficiaire)
     @ingenieurs = Ingenieur.find_all unless beneficiaire
     if beneficiaire

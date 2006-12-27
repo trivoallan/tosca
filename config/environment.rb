@@ -96,7 +96,7 @@ module ActionView::Helpers::ActiveRecordHelper
         content_tag("div",
                     content_tag(
                                 options[:header_tag] || "h2",
-                                "Une erreur a bloqué l'enregistrement de #{object_name.to_s.gsub("_", " ")}"
+                                "Une erreur a bloqué l'enregistrement de votre #{object_name.to_s.gsub("_", " ")}"
                                 ) +
                                    content_tag("p", "Corriger l'élément suivant pour poursuivre :") +
                                    content_tag("ul", object.errors.full_messages.collect { |msg| content_tag("li", msg) }),
@@ -106,7 +106,7 @@ module ActionView::Helpers::ActiveRecordHelper
         content_tag("div",
                     content_tag(
                                 options[:header_tag] || "h2",
-                                "#{object.errors.count} erreurs ont bloqué l'enregistrement de #{object_name.to_s.gsub("_", " ")}"
+                                "#{object.errors.count} erreurs ont bloqué l'enregistrement de votre #{object_name.to_s.gsub("_", " ")}"
                                 ) +
                                    content_tag("p", "Corriger les éléments suivants pour poursuivre :") +
                                    content_tag("ul", object.errors.full_messages.collect { |msg| content_tag("li", msg) }),

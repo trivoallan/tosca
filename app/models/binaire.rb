@@ -19,4 +19,8 @@ class Binaire < ActiveRecord::Base
         c.name =~ /(_id|^fichier)$/ || c.name == inheritance_column }     
   end
 
+
+  def to_s
+    "#{nom}-#{paquet.version}-#{paquet.release}"
+  end
 end

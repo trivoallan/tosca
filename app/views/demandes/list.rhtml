@@ -1,4 +1,5 @@
 <h1>Liste des demandes</h1>
+<%=h @session[:filtres].inspect %>
 <br/>
 
     <%= render_partial 'filtre' if @count > 0  %>
@@ -53,7 +54,6 @@
       </tr>
     <% end %>
     </table>
-    <%= show_total @demandes.size, Demande %>
     <%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
 
 <% elsif @count == 0 %>

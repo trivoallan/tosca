@@ -20,20 +20,20 @@
 
 <p>Ordonner : 
 <%= link_to 'auto', :action => @action, :filter => @filter, 
-	:order => 'logiciel_id,version DESC,release,arch_id,nom', :paquet => @search%>,
+	:order => 'logiciel_id,version DESC,release,nom', :paquet => @search%>,
 <%= link_to 'inversé', :action => @action, :filter => @filter, 
-	:order => 'logiciel_id DESC,version DESC,release,arch_id,nom', :paquet => @search%>,
+	:order => 'logiciel_id DESC,version DESC,release,nom', :paquet => @search%>,
 <%= link_to 'normal', :action => @action %><br />
 </p>
 
 <%= show_pages_links @paquet_pages, 'un paquet virtuel' %>
-<% titres = ['Logiciel', 'Nom', 'Version', 'Release', 'Taille', 'Distributeur', 'Mainteneur']%>
+<% titres = ['Logiciel', 'Nom', 'Release', 'Conteneur', 'Taille', 'Distributeur', 'Mainteneur']%>
 <%= show_table(@paquets, Paquet, titres) { |p|
   result = ''
   result << "<td>#{link_to_logiciel p.logiciel}</td>"
-  result << "<td>#{p.nom}</td>"
-  result << "<td>#{p.version}</td>"
+  result << "<td>#{link_to_paquet p}</td>"
   result << "<td>#{p.release}</td>"
+  result << "<td>#{p.conteneur.nom}</td>"
   result << "<td>#{human_size p.taille}</td>"
   result << "<td>#{p.distributeur.nom}</td>"
   result << "<td>#{p.mainteneur.nom}</td>"

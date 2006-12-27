@@ -29,7 +29,7 @@
 <p>Ce paquet a subi <b><%= pluralize(@paquet.changelogs_count, 'modification') %></b></p>
 <div id="bloc_scroll">
   <%= show_liste(@changelogs, 'changelog', :no_title => true) { |c| 
-  "#{c.date_modification_formatted} : #{c.nom_modification}<br />#{c.text_modification}<br />"
+  indent "#{c.date_modification_formatted} : #{c.nom_modification}\n#{c.text_modification}"
 } %>
 </div>
 

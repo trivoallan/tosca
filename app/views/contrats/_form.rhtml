@@ -14,15 +14,15 @@
 
 
 <p><label for="contrat_engagements">Engagements</label><br/>
-<% for engagement in @engagements %>
-  <input type="checkbox" id="<%=engagement.id%>" 
-	name="engagement_ids[]" value="<%=engagement.id%>"
-	<%if @contrat.engagements and @contrat.engagements.include? engagement%> checked="checked" <%end%>
-  > 
-  <%= engagement.typedemande.nom %>|<%= engagement.severite.nom%> : <%= display_jours engagement.contournement %> / <%= display_jours engagement.correction %><br />
-<% end %>
+<%= hbtm_check_box(@contrat.engagements, @informations, 'engagement_ids', :size => 3) %>
+<hr />
+<%= hbtm_check_box(@contrat.engagements, @anomalies, 'engagement_ids', :size => 3) %>
+<hr />
+<%= hbtm_check_box(@contrat.engagements, @evolutions, 'engagement_ids', :size => 3) %>
 </p>
 
-
+<p><label for="contrat_ingenieurs">Ingenieurs</label><br/>
+<%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs, 'ingenieur_ids') %>
+</p>
 <!--[eoform:contrat]-->
 

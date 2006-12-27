@@ -8,10 +8,6 @@
 	@logiciels.collect{|l| [ l.nom, l.id]}) %>
 </p>
 
-<p><label for="paquet_socle">Socle</label><br/>
-  <%= select("paquet", "socle_id", 
-	@socles.collect{|l| [ l.nom, l.id]}) %>
-</p>
 
 <p><label for="paquet_contrat">Contrat</label><br/>
   <%= select("paquet", "contrat_id", 

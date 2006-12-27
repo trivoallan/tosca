@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class ContratsController < ApplicationController
-  helper :clients,:engagements
+  helper :clients,:engagements,:ingenieurs
 
   def index
     list
@@ -19,32 +19,32 @@ class ContratsController < ApplicationController
   end
 
   def show
-    @contrat = Contrat.find(params[:id])
+    @contrat = Contrat.find(params[:id], :include => [:ingenieurs])
   end
 
   def new
     @contrat = Contrat.new
-    common_form
+    _form
   end
 
   def create
     @contrat = Contrat.new(params[:contrat])
     if @contrat.save
-      if @params[:engagement_ids]
-        @contrat.engagements = Engagement.find(@params[:engagement_ids]) 
-      end
+      @contrat.engagements = Engagement.find(@params[:engagement_ids]) if @params[:engagement_ids]
+      @contrat.ingenieurs = Ingenieur.find(@params[:ingenieur_ids]) if @params[:ingenieur_ids]
       @contrat.save
 
       flash[:notice] = 'Contrat was successfully created.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
 
   def edit
     @contrat = Contrat.find(params[:id])
-    common_form
+    _form
   end
 
   def update
@@ -55,11 +55,13 @@ class ContratsController < ApplicationController
       @contrat.engagements = []
       @contrat.errors.add_on_empty('engagements') 
     end
+    @contrat.ingenieurs = Ingenieur.find(@params[:ingenieur_ids]) if @params[:ingenieur_ids]
 
     if @params[:engagement_ids] and @contrat.update_attributes(params[:contrat])
       flash[:notice] = 'Contrat mis à jour correctement.'
       redirect_to :action => 'show', :id => @contrat
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -70,9 +72,12 @@ class ContratsController < ApplicationController
   end
 
 private
-  def common_form
+  def _form
     @clients = Client.find_all
-    @engagements = Engagement.find(:all, :order => "typedemande_id, severite_id")
+    @informations = Engagement.find_all_by_typedemande_id(1, :order => 'severite_id')
+    @anomalies = Engagement.find_all_by_typedemande_id(2, :order => 'severite_id')
+    @evolutions = Engagement.find_all_by_typedemande_id(3, :order => 'severite_id')
+    @ingenieurs = Ingenieur.find_ossa(:all)
   end
 
 end

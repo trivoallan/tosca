@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class SoclesController < ApplicationController
-  helper :clients,:paquets,:machines
+  helper :clients,:binaires,:machines,:paquets
 
   def index
     list
@@ -15,12 +15,14 @@ class SoclesController < ApplicationController
 
   def list
     @socle_pages, @socles = paginate :socles, :per_page => 10,
-    :include => [:machine, :client]
+    :include => [:machine]
   end
 
   def show
-    @socle = Socle.find(params[:id])
-    @paquets = Paquet.find_all_by_socle_id(@socle.id)
+    @socle = Socle.find(params[:id], :include => [:machine])
+    @binaires = Binaire.find_all_by_socle_id(@socle.id, 
+                                             :order => 'binaires.nom,paquets.version',
+                                             :include => [:paquet])
   end
 
   def new
@@ -31,6 +33,8 @@ class SoclesController < ApplicationController
   def create
     @socle = Socle.new(params[:socle])
     if @socle.save
+      @socle.clients = Client.find(@params[:client_ids]) if @params[:client_ids]
+      @socle.save
       flash[:notice] = 'Socle was successfully created.'
       redirect_to :action => 'list'
     else
@@ -46,9 +50,10 @@ class SoclesController < ApplicationController
 
   def update
     @socle = Socle.find(params[:id])
+    @socle.clients = Client.find(@params[:client_ids]) if @params[:client_ids]
     if @socle.update_attributes(params[:socle])
       flash[:notice] = 'Socle was successfully updated.'
-      redirect_to :action => 'show', :id => @socle
+      redirect_to :action => 'list'
     else
       _form
       render :action => 'edit'

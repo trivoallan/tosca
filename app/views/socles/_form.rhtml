@@ -8,9 +8,12 @@
 <p><label for="socle_nom">Nom</label><br/>
 <%= text_field 'socle', 'nom'  %></p>
 
-<p><label for="socle_machine">Machine</label><br />
+<p><label for="socle_machine">Machine : </label> 
 <%= @socle.machine.nom if @socle.machine %></p>
-<br />
+
+<p><label for="socle_clients">Socles : </label><br />
+<%= hbtm_check_box(@socle.clients, @clients, 'client_ids', :size => 4) %>
+
 Note : <br />
 La machine du socle ne se paramètre que dans les paramètres des 
 <%= link_to 'machines', :action => 'list', :controller => 'machines' %>

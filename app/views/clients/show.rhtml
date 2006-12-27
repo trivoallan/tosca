@@ -12,7 +12,8 @@
 <%= show_liste(@client.contrats, 'contrat') { |c|
   result = ''
   result << "Contrat ##{c.id}| #{c.ouverture_formatted} => #{c.cloture_formatted} "
-  result << "concernant #{c.paquets.size} paquets :"
+  result << "concernant #{c.paquets_count} paquets sources "
+  result << "et #{c.binaires.size} binaires :"
   titres = ['Demande','Sévérité','Contournement','Correction']
   oldtypedemande = nil
   result << show_table_engagements(c.engagements)
@@ -23,7 +24,7 @@
 <br/>
 
 <%= show_liste(@client.socles, 'socle') {|s| 
-  link_to_socle(s).to_s + ' : ' + pluralize(s.paquets_count, 'paquet') } %>
+  link_to_socle(s).to_s + ' : ' + pluralize(s.binaires_count, 'binaire') } %>
 
 
 <%= link_to_edit(@client) %> | <%= link_to_back %>

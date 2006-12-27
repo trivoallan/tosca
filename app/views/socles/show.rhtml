@@ -8,9 +8,18 @@
   <b>Machine:</b> <%= link_to_machine(@socle.machine) %>
 </p>
 
-<%= show_liste(@paquets, 'paquet source') {|p| link_to_paquet(p) } %>
 
-<%= show_liste(@socle.binaires, 'paquet binaire') {|p| link_to_paquet(p) } %>
+<p>Ce socle a <b><%= pluralize(@socle.paquets.size, 'source') %></b></p>
+<div id="bloc_scroll">
+<%= show_liste(@socle.paquets, 'paquet source', :no_title => true) {
+  |p| link_to_paquet(p) } %>
+</div></p>
+
+<p>Ce socle a <b><%= pluralize(@binaires.size, 'binaire') %></b></p>
+<div id="bloc_scroll">
+<%= show_liste(@binaires, 'paquet binaire', :no_title => true) {
+  |b| link_to_binaire(b) } %>
+</div></p>
 
 
 <%= link_to_edit(@socle) %> | <%= link_to_back %>

@@ -21,37 +21,37 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
   end
 
-  def commonform
-    @photos = Photo.find_all
-    @supports = Support.find_all
-  end
-
   def new
     @client = Client.new
-    commonform
+    _form
   end
 
   def create
     @client = Client.new(params[:client])
     if @client.save
+      @client.socles = Socle.find(@params[:socle_ids]) if @params[:socle_ids]
+      @client.save
       flash[:notice] = 'Client créé correctement.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
 
   def edit
     @client = Client.find(params[:id])
-    commonform
+    _form
   end
 
   def update
     @client = Client.find(params[:id])
+    @client.socles = Socle.find(@params[:socle_ids]) if @params[:socle_ids]
     if @client.update_attributes(params[:client])
       flash[:notice] = 'Client mis à jour.'
       redirect_to :action => 'show', :id => @client
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -60,4 +60,12 @@ class ClientsController < ApplicationController
     Client.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+
+  private
+  def _form
+    @photos = Photo.find_all
+    @supports = Support.find_all
+    @socles = Socle.find(:all, :order => 'nom')
+  end
+
 end

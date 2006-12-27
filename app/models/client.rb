@@ -9,10 +9,12 @@ class Client < ActiveRecord::Base
   has_many :classifications
   has_many :documents
 
-  has_many :paquets, :through => :contrats, :include => [:arch,:conteneur]
+  has_many :paquets, :through => :contrats, :include => Paquet::INCLUDE
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
-  has_many :socles, :dependent => :destroy
+  has_and_belongs_to_many :socles
   
+  has_many :binaires, :through => :paquets
+
 
   def ingenieurs
     return [] if contrats.empty?
@@ -20,19 +22,19 @@ class Client < ActiveRecord::Base
                    :conditions => 'contrats_ingenieurs.contrat_id IN ' +
                      "(#{contrats.collect{|c| c.id}.join(',')})",
                    :joins => 'INNER JOIN contrats_ingenieurs ON ' +
-                     'contrats_ingenieurs.ingenieur_id=ingenieurs.id'
+                     'contrats_ingenieurs.ingenieur_id=ingenieurs.id',
+                   :include => [:identifiant]
                    )
   end
 
   def logiciels
     return [] if contrats.empty?
-    Logiciel.find(:all,
-                  :conditions => "logiciels.id IN (" +
-                    "SELECT DISTINCT paquets.logiciel_id FROM " + 
-                    "paquets WHERE paquets.contrat_id IN (" + 
-                    contrats.collect{|c| c.id}.join(',') + "))",
-                  :order => 'nom'
-                  )
+    # Voici le hack pour permettre au client Linagora d'avoir tous les softs
+    return Logiciel.find_all if self.id == 4 
+    conditions = 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id FROM ' + 
+      'paquets WHERE paquets.contrat_id IN (' + 
+      contrats.collect{|c| c.id}.join(',') + '))'
+    Logiciel.find(:all, :conditions => conditions, :order => 'nom')
   end
 
   def correctifs
@@ -56,9 +58,18 @@ class Client < ActiveRecord::Base
                      :joins => joins)
   end
 
+  # TODO : à revoir, on pourrait envisager de moduler les sévérités selon 
+  # les type de demandes
+  def severites
+    Severite.find_all
+  end
+
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
+  def to_s
+    nom
+  end
 
 end
