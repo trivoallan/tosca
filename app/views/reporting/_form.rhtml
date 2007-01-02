@@ -1,11 +1,15 @@
-<div class="report_form">
- <%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
-  <table>
-    <tr><td><label for="demande_resume">Spécifier un mois : </label></td><td>
-    <%= text_field 'report', '', "mois" => @month, :size => 8 %></td></tr>
-    <tr><td><label for="demande_resume">Spécifier une année : </label></td><td>
-    <%= text_field 'report', '', "annee" => @annee, :size => 8 %></td></tr>
-    <tr><td></td><td><%= submit_tag "Consulter" %></td></tr>
-  </table>
- <%= end_form_tag %>
+<% # TODO : le div part en sucette à l'anis %>
+<% # <div class="report_form"> %>
+
+<p><b>Période considérée</b><br/>
+Evaluer depuis <%= text_field 'reporting', 'period', 
+  :size => 3,:value => 3  %> mois</p>
+
+<p><b for="reporting_contrat">Contrat</b><br/>
+  <%= select("reporting", "contrat_id", 
+	@contrats.collect{|c| [ c.to_s, c.id]}) %>
+</p>
+
+
+
 </div>

@@ -16,6 +16,7 @@ class Contrat < ActiveRecord::Base
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
   end
 
+
   def cloture_formatted
     d = @attributes['cloture']
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
@@ -42,6 +43,9 @@ class Contrat < ActiveRecord::Base
                      :conditions => conditions, 
                      :joins => joins)
   end
+
+  INCLUDE = [:client]
+  ORDER = 'contrats.ouverture ASC'
 
   def to_s
     "#{client.nom} du #{ouverture_formatted} au #{cloture_formatted}"

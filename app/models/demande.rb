@@ -17,6 +17,10 @@ class Demande < ActiveRecord::Base
   #versioning, qui s'occupe de la table demandes_versions
   acts_as_versioned
 
+  # Etat Terminal : Corrigées, Cloturées et Annulées
+  TERMINEES = 'demandes.statut_id IN (6,7,8)'
+  ENCOURS = 'demandes.statut_id NOT IN (6,7,8)'
+
   has_many :piecejointes, :through => :commentaires
   validates_presence_of :resume, 
   :warn => "Vous devez indiquer un résumé de votre demande"

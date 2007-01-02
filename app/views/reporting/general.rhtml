@@ -1,49 +1,35 @@
 <div class='report' >
 
 
-<%= render_partial 'entete' %>
+<% # = render_partial 'entete' %>
 
 <h1 class="chapter">Sommaire</h1>
 <%= render_partial 'sommaire' %>
 
 <p class="break_here"/>
-<h1 class="chapter">Historique de vos demandes pour <%= @annee %></h1>
 
-    <h2>Evolution du type de vos demandes</h2> 
-    <%= report_item(:repartition) %>
-    <h2>Répartition du type de vos demandes</h2>
-    <%= report_item(:repartition_cumulee, :one_row => true) %>
-    <br />
-
-    <h2>Evolution de la sévérité de vos demandes</h2>
-    <%= report_item(:severite) %>
-    <h2>Répartion de la sévérité de vos demandes</h2>
-    <%= report_item(:severite_cumulee, :one_row => true) %>
-    <br />
-
-    <h2>Evolution de la résolution de vos demandes</h2>
-    <%= report_item(:resolution) %>
-    <h2>Répartition de la résolution de vos demandes</h2>
-    <%= report_item(:resolution_cumulee, :one_row => true) %>
-    <br />
-
-    <h2>Evolution générale du service</h2> 
-    <ul>
-      <li>nombre de bénéficiaires distinct</li>
-      <li>nombre de logiciels impactés distinct</li>
-      <li>nombre de correctifs créés</li>
-    </ul>
-    <%= report_item(:evolution) %>
-    <br />
-
-<h1 class="chapter">Top 5 de vos demandes pour <%= @annee %></h1>
-
-    <h2>Top 5 des demandes les plus commentées</h2>
-    <%= report_item(:top5_demandes, :one_row => true) %>
-    <h2>Top 5 des logiciels les plus sujets à demandes</h2>
-    <%= report_item(:top5_logiciels, :one_row => true) %>
-
-
+Ce reporting va vous montrer l&#146;état des lieux de notre service
+depuis <%= @report[:start_date].strftime('%B %Y') %> jusqu&#146;au 
+<%= @report[:end_date].strftime('%B %Y') %> (<%= @report[:total_report] %> mois). 
+Il va aussi couvrir la période que vous avez sélectionnné, de
+<%= @report[:middle_date].strftime('%B %Y') %> à 
+<%= @report[:end_date].strftime('%B %Y') %> (<%= @report[:middle_report] %> mois). 
+<hr />
+ <%= report_repartition(:repartition, :divise => true) %>
+<hr />
+ <%= report_evolution(:repartition, :divise => true) %>
+<hr />
+ <%= report_repartition(:severite, :divise => true) %>
+<hr />
+ <%= report_evolution(:severite, :divise => true) %>
+<hr />
+ <%= report_repartition(:resolution) %>
+<hr />
+ <%= report_evolution(:resolution) %>
+<hr />
+ <%= report_repartition(:evolution) %>
+<hr />
+ <%= report_evolution(:evolution) %>
 
 </div><!-- end of report -->
 

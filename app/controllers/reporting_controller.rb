@@ -1,4 +1,5 @@
 class ReportingController < ApplicationController
+  require 'digest/sha1'
   model   :identifiant
   layout  'standard-layout'
 
@@ -17,9 +18,19 @@ class ReportingController < ApplicationController
     :temps_correction => 'Evolution du temps de correction'
     }
 
+  @@couleurs = [nil, "#336699", "#339933", "#ff0000", "#cc99cc", "#cf5910" ]
+  @@couleurs_faibles = [ nil, "#225588", "#228822", "#ee0000", "#bb88bb", "#be4800" ]
+
   def index
     general
-    render :action => 'general'
+    render :action => 'configuration'
+  end
+
+  # utilisé avant l'affichage
+  def configuration
+    @contrats = (@beneficiaire ? @beneficiaire.client.contrats : 
+                   Contrat.find(:all, :include => Contrat::INCLUDE,
+                                :order => Contrat::ORDER))
   end
 
   def delai
@@ -32,7 +43,7 @@ class ReportingController < ApplicationController
       @clients = Client.find_all
     end
     init_delai
-    @donnees.each_key do |nom|
+    @data.each_key do |nom|
       sha1 = Digest::SHA1.hexdigest("-#{jour}-#{qui}-#{nom}-") 
       @path[nom] = "/reporting/#{sha1}.png"
     end
@@ -47,95 +58,116 @@ class ReportingController < ApplicationController
   end
 
   def general
-    init_action(params)
-    jour = Date.today.strftime "%j" + @annee
-    qui = (@beneficiaire ? @beneficiaire.client : 'tous')
-    init_general
-    @donnees.each_key do |nom|
-      sha1 = Digest::SHA1.hexdigest("-#{jour}-#{qui}-#{nom}-") 
-      @path[nom] = "/reporting/#{sha1}.png"
+    return redirect_to :action => 'configuration' unless params[:reporting]
+    init_class_var(params)
+    return redirect_to :action => 'configuration' unless 
+      @report[:start_date] < @report[:end_date]
+    init_data_general
+    fill_data_general
+    # TODO : trouver un bon moyen de faire un cache
+    @data.each_key do |nom|
+      #sha1 = Digest::SHA1.hexdigest("-#{qui}-#{nom}-")
+      @path[nom] = "reporting/#{nom}.png"
+      size = @data[nom].size / 2
+      @colors[nom] = @@couleurs[1..size].concat(@@couleurs_faibles[1..size])
     end
-
-
-    #report_general
-
-    # en test
-    report_mensuel(Time.mktime(@annee), Time.now)
 
     # return if File.exist?("public/#{@path[:repartition]}")
 
     #on nettoie 
-#     reporting = File.expand_path('public/reporting', RAILS_ROOT)
-#     rmtree(reporting)
-#     Dir.mkdir(reporting)
+    # reporting = File.expand_path('public/reporting', RAILS_ROOT)
+    # rmtree(reporting)
+    # Dir.mkdir(reporting)
 
-    #on remplit
-    write_graph(:top5_demandes, Gruff::Pie)
-    write_graph(:top5_logiciels, Gruff::Pie)
-    write_graph(:repartition, Gruff::StackedBar)
-    write_graph(:severite, Gruff::StackedBar)
-    write_graph(:resolution, Gruff::StackedBar)
-    write_graph(:evolution, Gruff::Line)
-    write_graph(:repartition_cumulee, Gruff::Pie)
-    write_graph(:severite_cumulee, Gruff::Pie)
-    write_graph(:resolution_cumulee, Gruff::Pie)
-    
+    # on remplit
+#     write_graph(:repartition, Gruff::StackedBar)
+#     write_graph(:severite, Gruff::StackedBar)
+#     write_graph(:resolution, Gruff::StackedBar)
+#     write_graph(:evolution, Gruff::Line)
+
+#     write_graph(:top5_demandes, Gruff::Pie)
+#     write_graph(:top5_logiciels, Gruff::Pie)
+    # on nettoie
+    @first_col.each { |c| c.gsub!('\n','') }
   end
 
   private
 
   # initialise toutes les variables de classes nécessaire
-  def init_action(params)
-    require 'digest/sha1'
+  # path stocke les chemins d'accès, @données les données
+  # @first_col contient la première colonne et @contrat le contrat
+  # sélectionné
+  def init_class_var(params)
+    @contrat = Contrat.find(params[:reporting][:contrat_id])
+    @data, @path, @report, @colors = {}, {}, {}, {}
     @titres = @@titres
-    @annee = params[:id] || Time.now.year.to_s
-    @mois = params[:mois] || 1
-    @path = {}
-    @first_col = Date::MONTHNAMES[@mois.to_i..-1] # + [ "<b>#{@annee}</b>" ]
-    @donnees = {}
+    @report[:start_date] = [@contrat.ouverture, Time.now].min
+    @report[:end_date] = [Time.now, @contrat.cloture].min
+    @first_col = []
+    current_month = @report[:start_date]
+    end_date = @report[:end_date]
+    while (current_month < end_date) do
+      @first_col.push current_month.strftime('%b \n%Y')
+      current_month = current_month.advance(:months => 1)
+    end
+    @labels = {}
+    i = 0
+    @first_col.each do |c|
+      @labels[i] = c if ((i % 2) == 0)
+      i += 1
+    end
+    middle_date = end_date.months_ago(params[:reporting][:period].to_i)
+    @report[:middle_date] = [ middle_date, @report[:start_date] ].max
+    @report[:middle_report] = ((end_date - @report[:middle_date]) / 1.month).round
+    @report[:total_report] = ((end_date - @report[:start_date]) / 1.month).round
   end
 
-  # initialisation de @donnees
-  def init_general
+  # initialisation de @data
+  def init_data_general
     # Répartions par mois (StackedBar)
-    @donnees[:repartition]  = 
-      [ [:anomalies], [:informations], [:evolutions] ]
-    @donnees[:severite] = 
-      [ [:bloquante], [:majeure], [:mineure], [:sansobjet] ]
-    @donnees[:resolution] = 
-      [ [:cloturee], [:annulee], [:encours] ]
-    @donnees[:evolution] = 
-      [ [:beneficiaires], [:logiciels], [:correctifs] ] # TODO : [:correctifs], [:interactions]
+    @data[:repartition]  = 
+      [ [:anomalies_terminees], [:informations_terminees], 
+      [:evolutions_terminees], [:anomalies_encours], 
+      [:informations_encours], [:evolutions_encours] ]
+    @data[:severite] = 
+      [ [:bloquante_terminees], [:majeure_terminees], 
+      [:mineure_terminees], [:sans_objet_terminees],
+      [:bloquante_encours], [:majeure_encours], 
+      [:mineure_encours], [:sans_objet_encours] ]
+    @data[:resolution] = 
+      [ [:corrigee], [:cloturee], [:annulee], [:encours] ]
+    @data[:evolution] = 
+      [ [:beneficiaires], [:logiciels], [:correctifs] ] # TODO : [:interactions]
 
     # Camemberts nommé dynamiquement
-    @donnees[:top5_logiciels] = [ ]
-    @donnees[:top5_demandes] = [ ] 
+#    @data[:top5_logiciels] = [ ]
+#    @data[:top5_demandes] = [ ] 
 
-    # Camemberts statiques
-    @donnees[:repartition_cumulee] = 
-      [ [:anomalies], [:informations], [:evolutions] ]
-    @donnees[:severite_cumulee] = 
-      [ [:bloquante], [:majeure], [:mineure], [:sansobjet] ]
-    @donnees[:resolution_cumulee] = 
-      [ [:cloturee], [:annulee], [:encours] ]
+#     # Camemberts statiques
+#     @data[:repartition_cumulee] = 
+#       [ [:anomalies], [:informations], [:evolutions] ]
+#     @data[:severite_cumulee] = 
+#       [ [:bloquante], [:majeure], [:mineure], [:sansobjet] ]
+#     @data[:resolution_cumulee] = 
+#       [ [:cloturee], [:annulee], [:encours] ]
   end
 
   def init_delai
     # SideBar sur l'ensemble
     @clients.each do |c|
-      @donnees[:"temps_rappel_#{c.id}"] =
+      @data[:"temps_rappel_#{c.id}"] =
         [ [:minimum], [:moyenne], [:maximum] ]
-      @donnees[:"temps_contournement_#{c.id}"] =
+      @data[:"temps_contournement_#{c.id}"] =
         [ [:minimum], [:moyenne], [:maximum] ]
-      @donnees[:"temps_correction_#{c.id}"] =
+      @data[:"temps_correction_#{c.id}"] =
         [ [:minimum], [:moyenne], [:maximum] ]
     end
   end
 
 
   def report_delai
-    start_date = Time.mktime(@annee)
-    end_date = Time.mktime(@annee, 12)
+    start_date = Time.mktime
+    end_date = Time.mktime(start_date.year, 12)
 
     @dates = {}
     i = 0
@@ -143,7 +175,7 @@ class ReportingController < ApplicationController
       infdate = "'" + start_date.strftime('%y-%m') + "-01'"
       supdate = "'" + (start_date.advance(:months => 1)).strftime('%y-%m') + "-01'"
       
-      @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
+      @conditions = [ 'created_on BETWEEN ? AND ? ', infdate, supdate ]
       date = start_date.strftime('%b')
       @dates[i] = date
       i += 1
@@ -152,7 +184,7 @@ class ReportingController < ApplicationController
           liste = c.beneficiaires.collect{|b| b.id}.join(',')
           conditions = [ "demandes.beneficiaire_id IN (#{liste})" ] unless liste == ''
           Demande.with_scope({ :find => { :conditions => conditions } }) do
-            compute_temps @donnees, c
+            compute_temps @data, c
           end
         end
       end
@@ -160,86 +192,67 @@ class ReportingController < ApplicationController
     end
   end
 
-  def report_general
-    init_general unless @donnees
-    start_date = Time.mktime(@annee)
-    end_date = Time.mktime(@annee, 12)
-
-    @dates = {}
-    i = 0
-    until (start_date > end_date) do 
-      infdate = "'" + start_date.strftime('%y-%m') + "-01'"
-      supdate = "'" + (start_date.advance(:months => 1)).strftime('%y-%m') + "-01'"
-      
-      @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
-      date = start_date.strftime('%b')
-      @dates[i] = date
-      i += 1
-      Demande.with_scope({ :find => { :conditions => @conditions } }) do
-        compute_repartition @donnees[:repartition]
-        compute_severite @donnees[:severite]     
-        compute_resolution @donnees[:resolution]
-        compute_evolution @donnees[:evolution]
-      end
-      start_date = start_date.advance(:months => 1)
-    end
-
-    end_date = start_date
-    start_date = Time.mktime(@annee) 
-    infdate = "'" + start_date.strftime('%y-%m') + "-01'"
-    supdate = "'" + end_date.strftime('%y-%m') + "-01'"
-    @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
-    @demande_ids = Demande.find(:all, :select => 'demandes.id').join(',')
-    Demande.with_scope({ :find => { :conditions => @conditions } }) do
-      compute_repartition @donnees[:repartition_cumulee]
-      compute_severite @donnees[:severite_cumulee]
-      compute_resolution @donnees[:resolution_cumulee]
-
-      compute_top5_logiciels @donnees[:top5_logiciels]
-      Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
-        compute_top5_demandes @donnees[:top5_demandes]
+  # Remplit un tableau avec la somme des données sur nb_month
+  # Call it like : middle_period = compute_data_period('middle', 3)
+  def compute_data_period(period, nb_month)
+    start = -nb_month
+    data = {}
+    @data.each_key do |key|
+      mykey = :"#{key}_#{period}"
+      data[mykey] = []
+      @data[key].each do |value|
+        result = []
+        result.push value[0]
+        result.push value[start..-1].inject(0){|s, v| s + v.to_i}
+        data[mykey].push result
       end
     end
+    data
   end
 
-  def report_mensuel( start_date = Time.mktime(@annee, @mois) , end_date = Time.now )
-    init_general unless @donnees
+  def fill_data_general
+    start_date = @report[:start_date]
+    end_date = @report[:end_date]
 
-    @dates = {}
-    i = 0
+    conditions = [ 'created_on BETWEEN ? AND ?', nil, nil ]  
     until (start_date > end_date) do 
-      infdate = "'" + start_date.strftime('%y-%m') + "-01'"
-      supdate = "'" + (start_date.advance(:months => 1)).strftime('%y-%m') + "-01'"
-      
-      @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
-      date = start_date.strftime('%b')
-      @dates[i] = date
-      i += 1
-      Demande.with_scope({ :find => { :conditions => @conditions } }) do
-        compute_repartition @donnees[:repartition]
-        compute_severite @donnees[:severite]     
-        compute_resolution @donnees[:resolution]
-        compute_evolution @donnees[:evolution]
-      end
+      infdate = "#{start_date.strftime('%y-%m')}-01"
       start_date = start_date.advance(:months => 1)
-    end
-
-    end_date = start_date
-    start_date = Time.mktime(@annee) 
-    infdate = "'" + start_date.strftime('%y-%m') + "-01'"
-    supdate = "'" + end_date.strftime('%y-%m') + "-01'"
-    @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
-    @demande_ids = Demande.find(:all, :select => 'demandes.id').join(',')
-    Demande.with_scope({ :find => { :conditions => @conditions } }) do
-      compute_repartition @donnees[:repartition_cumulee]
-      compute_severite @donnees[:severite_cumulee]
-      compute_resolution @donnees[:resolution_cumulee]
-
-      compute_top5_logiciels @donnees[:top5_logiciels]
-      Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
-        compute_top5_demandes @donnees[:top5_demandes]
+      supdate = "#{start_date.strftime('%y-%m')}-01"
+      
+      conditions[1], conditions[2] = infdate, supdate
+      Demande.with_scope({ :find => { :conditions => conditions } }) do
+        compute_repartition @data[:repartition]
+        compute_severite @data[:severite]     
+        compute_resolution @data[:resolution]
+        compute_evolution @data[:evolution]
       end
     end
+    # on fais bien attention à ne merger avec @data
+    # qu'APRES avoir calculé toutes les sommes 
+    middle_report = compute_data_period('middle', @report[:middle_report])
+    total_report = compute_data_period('total', @report[:total_report])
+
+    # Maintenant on peut mettre à jour @data
+    @data.update(middle_report)
+    @data.update(total_report)
+    #TODO : se débarrasser de cet héritage legacy
+#     end_date = start_date
+#     start_date = Time.mktime(@annee) 
+#     infdate = "'" + start_date.strftime('%y-%m') + "-01'"
+#     supdate = "'" + end_date.strftime('%y-%m') + "-01'"
+#     @conditions = [ 'created_on BETWEEN ? AND ? ', infdate, supdate ]
+#     @demande_ids = Demande.find(:all, :select => 'demandes.id').join(',')
+#     Demande.with_scope({ :find => { :conditions => @conditions } }) do
+#       compute_repartition @data[:repartition_cumulee]
+#       compute_severite @data[:severite_cumulee]
+#       compute_resolution @data[:resolution_cumulee]
+
+#       compute_top5_logiciels @data[:top5_logiciels]
+#       Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
+#         compute_top5_demandes @data[:top5_demandes]
+#       end
+#     end
   end
 
 
@@ -307,9 +320,17 @@ class ReportingController < ApplicationController
     informations = { :conditions => "typedemande_id = 2" }
     evolutions = { :conditions => "typedemande_id = 5" }
 
-    report[0].push Demande.count(anomalies)
-    report[1].push Demande.count(informations)
-    report[2].push Demande.count(evolutions)
+    Demande.with_scope({ :find => { :conditions => Demande::TERMINEES } }) do
+      report[0].push Demande.count(anomalies)
+      report[1].push Demande.count(informations)
+      report[2].push Demande.count(evolutions)
+    end
+
+    Demande.with_scope({ :find => { :conditions => Demande::ENCOURS } }) do
+      report[3].push Demande.count(anomalies)
+      report[4].push Demande.count(informations)
+      report[5].push Demande.count(evolutions)
+    end
   end
 
   ##
@@ -320,21 +341,31 @@ class ReportingController < ApplicationController
       severites.concat [ { :conditions => "severite_id = #{i}" } ]
     end
 
-    4.times do |t|
-      report[t].push Demande.count(severites[t])
+    Demande.with_scope({ :find => { :conditions => Demande::TERMINEES } }) do
+      4.times do |t|
+        report[t].push Demande.count(severites[t])
+      end
+    end
+    Demande.with_scope({ :find => { :conditions => Demande::ENCOURS } }) do
+      4.times do |t|
+        report[t+4].push Demande.count(severites[t])
+      end
     end
   end
 
   ##
   # Compte le nombre de demande Annulée, Cloturée ou en cours de traitement
   def compute_resolution(report)
-    cloturee = { :conditions => "statut_id = 7" }
-    annulee = { :conditions => "statut_id = 8" }
-    encours = { :conditions => "statut_id NOT IN (7,8)" }
+    condition = 'demandes.statut_id = ?'
+    corrigee = { :conditions => [condition, 6] }
+    cloturee = { :conditions => [condition, 7] }
+    annulee = { :conditions => [condition, 8] }
+    encours = { :conditions => 'statut_id NOT IN (6,7,8)' }
 
-    report[0].push Demande.count(cloturee)
-    report[1].push Demande.count(annulee)
-    report[2].push Demande.count(encours)
+    report[0].push Demande.count(corrigee)
+    report[1].push Demande.count(cloturee)
+    report[2].push Demande.count(annulee)
+    report[3].push Demande.count(encours)
   end
 
 
@@ -353,31 +384,41 @@ class ReportingController < ApplicationController
         correctifs = Correctif.count()
       end
     end
-
     report[0].push Demande.count('beneficiaire_id', :distinct => true)
     report[1].push Demande.count('logiciel_id', :distinct => true)
     report[2].push correctifs
   end
 
 
+
+  def write_graph(nom, graph)
+    __write_graph(nom, graph)
+    middle = :"#{nom}_middle"
+    __write_graph(middle, Gruff::Pie) if @data[middle]
+    total = :"#{nom}_total"
+    __write_graph(total, Gruff::Pie) if @data[total]
+  end
   # Ecrit le graphe en utilisant les données indexées par 'nom' dans @données
   # grâce au chemin d'accès spécifié dans @path[nom]
   # graph sert à spécifier le type de graphe attendu
-  def write_graph(nom, graph)
-    return unless @donnees[nom]
+  def __write_graph(nom, graph)
+    return unless @data[nom]
     g = graph.new(450)
     g.sort = false
 
     g.hide_title = true # title = options[:titre] || @@titres[nom]
     g.theme_37signals
+    g.colors = @colors[nom]
     # g.font =  File.expand_path('public/font/VeraBd.ttf', RAILS_ROOT)
-    @donnees[nom].each {|value| g.data(value[0], value[1..-1]) }
-    g.labels =  Date::ABBR_MONTHS_LSTM
+
+    @data[nom].each {|value| g.data(value[0].to_s.gsub('_', '\n'), value[1..-1]) }
+    g.labels = @labels
     g.hide_dots = true if g.respond_to? :hide_dots
+    g.hide_legend = true
     g.no_data_message = 'Aucune donnée\n n\'est disponible'
 
     # this writes the file to the hard drive for caching
-    #g.write "public/#{@path[nom]}"
+    g.write "public/images/#{@path[nom]}"
   end
 
   # TODO : mettre ça dans le modèle Demande
@@ -399,6 +440,47 @@ class ReportingController < ApplicationController
                         }) { yield }
     else
       yield
+    end
+  end
+
+  # TODO : on efface cette fonction ?
+  def report_mensuel(start_date, end_date = Time.now)
+    init_general unless @data
+
+    @dates = {}
+    i = 0
+    until (start_date > end_date) do 
+      infdate = "'" + start_date.strftime('%y-%m') + "-01'"
+      supdate = "'" + (start_date.advance(:months => 1)).strftime('%y-%m') + "-01'"
+      
+      @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
+      date = start_date.strftime('%b')
+      @dates[i] = date
+      i += 1
+      Demande.with_scope({ :find => { :conditions => @conditions } }) do
+        compute_repartition @data[:repartition]
+        compute_severite @data[:severite]     
+        compute_resolution @data[:resolution]
+        compute_evolution @data[:evolution]
+      end
+      start_date = start_date.advance(:months => 1)
+    end
+
+    end_date = start_date
+    start_date = Time.mktime(@annee) 
+    infdate = "'" + start_date.strftime('%y-%m') + "-01'"
+    supdate = "'" + end_date.strftime('%y-%m') + "-01'"
+    @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
+    @demande_ids = Demande.find(:all, :select => 'demandes.id').join(',')
+    Demande.with_scope({ :find => { :conditions => @conditions } }) do
+      compute_repartition @data[:repartition_cumulee]
+      compute_severite @data[:severite_cumulee]
+      compute_resolution @data[:resolution_cumulee]
+
+      compute_top5_logiciels @data[:top5_logiciels]
+      Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
+        compute_top5_demandes @data[:top5_demandes]
+      end
     end
   end
 

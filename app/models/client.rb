@@ -4,7 +4,8 @@
 class Client < ActiveRecord::Base
   belongs_to :photo
   has_many :beneficiaires
-  has_many :contrats, :dependent => :destroy
+  has_many :contrats, :dependent => :destroy, 
+    :include => Contrat::INCLUDE, :order => Contrat::ORDER
   belongs_to :support
   has_many :classifications
   has_many :documents
