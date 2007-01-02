@@ -18,8 +18,8 @@ class ReportingController < ApplicationController
     :temps_correction => 'Evolution du temps de correction'
     }
 
-  @@couleurs = [nil, "#336699", "#339933", "#ff0000", "#cc99cc", "#cf5910" ]
-  @@couleurs_faibles = [ nil, "#225588", "#228822", "#ee0000", "#bb88bb", "#be4800" ]
+  @@couleurs = [ nil, "#225588", "#228822", "#ee0000", "#bb88bb", "#be4800" ]
+  @@couleurs_faibles = [nil, "#336699", "#339933", "#ff0000", "#cc99cc", "#cf5910" ]
 
   def index
     general
@@ -33,21 +33,9 @@ class ReportingController < ApplicationController
                                 :order => Contrat::ORDER))
   end
 
+  # deprecated
+  # TODO : effacer
   def delai
-    init_action(params)
-    jour = Date.today.strftime "%j" + @annee
-    qui = (@beneficiaire ? @beneficiaire.client : 'tous')
-    if @beneficiaire
-      @clients = [ @beneficiaire.client ]
-    else
-      @clients = Client.find_all
-    end
-    init_delai
-    @data.each_key do |nom|
-      sha1 = Digest::SHA1.hexdigest("-#{jour}-#{qui}-#{nom}-") 
-      @path[nom] = "/reporting/#{sha1}.png"
-    end
-
     report_delai
 
     @clients.each do |c| 
@@ -58,23 +46,27 @@ class ReportingController < ApplicationController
   end
 
   def general
-    return redirect_to :action => 'configuration' unless params[:reporting]
+    return redirect_to(:action => 'configuration') unless params[:reporting]
     init_class_var(params)
-    return redirect_to :action => 'configuration' unless 
+    return redirect_to(:action => 'configuration') unless 
       @report[:start_date] < @report[:end_date]
     init_data_general
     fill_data_general
     # TODO : trouver un bon moyen de faire un cache
-    @data.each_key do |nom|
+    @data.each_pair do |nom, data| # each_key do |nom|
       #sha1 = Digest::SHA1.hexdigest("-#{qui}-#{nom}-")
       @path[nom] = "reporting/#{nom}.png"
-      size = @data[nom].size / 2
-      @colors[nom] = @@couleurs[1..size].concat(@@couleurs_faibles[1..size])
+      if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
+        size = data.size / 2
+        @colors[nom] = @@couleurs[1..size].concat(@@couleurs_faibles[1..size])
+      else
+        size = data.size 
+        @colors[nom] = @@couleurs[1..size]
+      end
     end
 
-    # return if File.exist?("public/#{@path[:repartition]}")
-
     #on nettoie 
+    # TODO retravailler le nettoyage
     # reporting = File.expand_path('public/reporting', RAILS_ROOT)
     # rmtree(reporting)
     # Dir.mkdir(reporting)
@@ -125,17 +117,18 @@ class ReportingController < ApplicationController
   # initialisation de @data
   def init_data_general
     # Répartions par mois (StackedBar)
+    # _terminees doit être en premier
     @data[:repartition]  = 
       [ [:anomalies_terminees], [:informations_terminees], 
-      [:evolutions_terminees], [:anomalies_encours], 
-      [:informations_encours], [:evolutions_encours] ]
+      [:evolutions_terminees], [:anomalies_en_cours], 
+      [:informations_en_cours], [:evolutions_en_cours] ]
     @data[:severite] = 
       [ [:bloquante_terminees], [:majeure_terminees], 
       [:mineure_terminees], [:sans_objet_terminees],
-      [:bloquante_encours], [:majeure_encours], 
-      [:mineure_encours], [:sans_objet_encours] ]
+      [:bloquante_en_cours], [:majeure_en_cours], 
+      [:mineure_en_cours], [:sans_objet_en_cours] ]
     @data[:resolution] = 
-      [ [:corrigee], [:cloturee], [:annulee], [:encours] ]
+      [ [:corrigee], [:cloturee], [:annulee], [:en_cours] ]
     @data[:evolution] = 
       [ [:beneficiaires], [:logiciels], [:correctifs] ] # TODO : [:interactions]
 
@@ -149,7 +142,7 @@ class ReportingController < ApplicationController
 #     @data[:severite_cumulee] = 
 #       [ [:bloquante], [:majeure], [:mineure], [:sansobjet] ]
 #     @data[:resolution_cumulee] = 
-#       [ [:cloturee], [:annulee], [:encours] ]
+#       [ [:cloturee], [:annulee], [:en_cours] ]
   end
 
   def init_delai
@@ -164,7 +157,7 @@ class ReportingController < ApplicationController
     end
   end
 
-
+  # TODO : effacer apres refactoring
   def report_delai
     start_date = Time.mktime
     end_date = Time.mktime(start_date.year, 12)
@@ -326,7 +319,7 @@ class ReportingController < ApplicationController
       report[2].push Demande.count(evolutions)
     end
 
-    Demande.with_scope({ :find => { :conditions => Demande::ENCOURS } }) do
+    Demande.with_scope({ :find => { :conditions => Demande::EN_COURS } }) do
       report[3].push Demande.count(anomalies)
       report[4].push Demande.count(informations)
       report[5].push Demande.count(evolutions)
@@ -346,7 +339,7 @@ class ReportingController < ApplicationController
         report[t].push Demande.count(severites[t])
       end
     end
-    Demande.with_scope({ :find => { :conditions => Demande::ENCOURS } }) do
+    Demande.with_scope({ :find => { :conditions => Demande::EN_COURS } }) do
       4.times do |t|
         report[t+4].push Demande.count(severites[t])
       end
@@ -360,12 +353,12 @@ class ReportingController < ApplicationController
     corrigee = { :conditions => [condition, 6] }
     cloturee = { :conditions => [condition, 7] }
     annulee = { :conditions => [condition, 8] }
-    encours = { :conditions => 'statut_id NOT IN (6,7,8)' }
+    en_cours = { :conditions => 'statut_id NOT IN (6,7,8)' }
 
     report[0].push Demande.count(corrigee)
     report[1].push Demande.count(cloturee)
     report[2].push Demande.count(annulee)
-    report[3].push Demande.count(encours)
+    report[3].push Demande.count(en_cours)
   end
 
 
@@ -390,7 +383,7 @@ class ReportingController < ApplicationController
   end
 
 
-
+  # Lance l'écriture des 3 graphes
   def write_graph(nom, graph)
     __write_graph(nom, graph)
     middle = :"#{nom}_middle"

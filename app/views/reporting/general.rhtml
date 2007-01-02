@@ -7,7 +7,17 @@
 <%= render_partial 'sommaire' %>
 
 <p class="break_here"/>
-
+<h2>TODO (!)</h2>
+<ul>
+<li>Utiliser plus de CSS et moins de tableaux, c est moche</li>
+<li>Trouver des joulis couleurs, notamment virer le violet</li>
+<li>Faire une génération de la légende</li>
+<li>Voir si les tableaux centrés sont plus jolis que les tableaux alignés à gauche.</li>
+<li>Trouver un moyen de faire un cache, tant pour les images que pour les pages</li>
+<li>Implémenter la spec quand elle sera validée.</li>
+</ul>
+<%=indent @colors.inspect.gsub(/, :/,"\n") %><br />
+<%=indent @data[:repartition_total].inspect.gsub(/, :/,"\n") %><br />
 Ce reporting va vous montrer l&#146;état des lieux de notre service
 depuis <%= @report[:start_date].strftime('%B %Y') %> jusqu&#146;au 
 <%= @report[:end_date].strftime('%B %Y') %> (<%= @report[:total_report] %> mois). 
@@ -15,21 +25,21 @@ Il va aussi couvrir la période que vous avez sélectionnné, de
 <%= @report[:middle_date].strftime('%B %Y') %> à 
 <%= @report[:end_date].strftime('%B %Y') %> (<%= @report[:middle_report] %> mois). 
 <hr />
- <%= report_repartition(:repartition, :divise => true) %>
+ <%= report_repartition(:repartition, :with2rows => 'Demandes') %>
 <hr />
- <%= report_evolution(:repartition, :divise => true) %>
+ <%= report_evolution(:repartition, :with2rows => 'Demandes') %>
 <hr />
- <%= report_repartition(:severite, :divise => true) %>
+ <%= report_repartition(:severite, :with2rows=> 'Demandes') %>
 <hr />
- <%= report_evolution(:severite, :divise => true) %>
+ <%= report_evolution(:severite, :with2rows => 'Demandes') %>
 <hr />
- <%= report_repartition(:resolution) %>
+ <%= report_repartition(:resolution, :with2rows => 'Demandes') %>
 <hr />
- <%= report_evolution(:resolution) %>
+ <%= report_evolution(:resolution, :with2rows => 'Demandes') %>
 <hr />
- <%= report_repartition(:evolution) %>
+ <%= report_repartition(:evolution, :with2rows => 'Nombre') %>
 <hr />
- <%= report_evolution(:evolution) %>
+ <%= report_evolution(:evolution, :with2rows => 'Nombre') %>
 
 </div><!-- end of report -->
 

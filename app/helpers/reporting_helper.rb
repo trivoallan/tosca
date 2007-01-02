@@ -1,33 +1,43 @@
 module ReportingHelper
 
-  def fill_titles(data, size, options)
-    return '' unless data.size > 0
+  # Renvoit les titres du tableau
+  # Data contient les entêtes. Les options applicable sont :
+  # :without_firstcol => permet de ne pas afficher la première colonne
+  # :divise => spécifie si on prends en compte les demandes vivantes 
+  # :with2rows => affichera les entêtes sur 2 lignes, il contient l'intitulé
+  def fill_titles(data, options)
+    size = (options[:divise] ? data.size / 2 : data.size)
     result = ''
+    return result unless size > 0
+    result << '<tr>'
     first = 'Période&nbsp;&nbsp;&nbsp;&nbsp;' 
-    if data[0][0].to_s =~ /terminees/
-      result << "<th rowspan=\"2\">#{first}</th>" unless options[:one_row]
-      result << "<th nowrap colspan=\"#{size}\">Demandes</th>"
-#      result << "<th nowrap colspan=\"#{size/2}\">En cours de traitement</th>"
+    if options[:with2rows]
+      result << "<th rowspan=\"2\">#{first unless options[:without_firstcol]}</th>" 
+      result << "<th nowrap colspan=\"#{size}\">#{options[:with2rows]}</th>"
       result << '</tr><tr>'
       size.times do |t|
-        result << '<th>'
-        result << data[t][0].to_s.gsub(/_(terminees|encours)/, '').gsub('_','&nbsp;').capitalize
+        result << '<th nowrap>'
+        result << data[t][0].to_s.gsub(/_(terminees|en_cours)/, '').gsub('_','&nbsp;').capitalize
         result << '</th>'
       end
     else
       titres = []
-      titres.push first unless options[:one_row]
+      titres.push first unless options[:without_firstcol]
       size.times do |t|
-        titres.push data[t][0].to_s.gsub('_', '<br />').capitalize
+        titres.push data[t][0].to_s.gsub('_', '&nbsp;').capitalize
       end
-      titres.each {|t| result << "<th>#{t}</th>" }
+      titres.each {|t| result << "<th nowrap>#{t}</th>" }
     end
-    result
+    result << '</tr>'
   end
 
   # élément de reporting : 2 cellules
   # options : one_row, muli_row et titre
   def report_evolution(nom, options={})
+    data = @data[nom]
+    if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
+      options.update(:divise => true)
+    end
     table = ''
     table << '<table class="report_item">'
     table << ' <tr>'
@@ -35,6 +45,10 @@ module ReportingHelper
     # cellule contenant le graphique
     table << '  <td class="report_graph">'
     table <<    report_graph(nom, options) 
+    table << '  </td>'
+    # cellule avec la légende
+    table << '  <td class="report_legend">'
+    table <<    report_legend(nom)
     table << '  </td>'
     # cellule contenant le tableau de données
     table << '  <td class="report_data">'
@@ -47,6 +61,10 @@ module ReportingHelper
   end
 
   def report_repartition(nom, options= {})
+    data = @data[nom]
+    if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
+      options.update(:divise => true)
+    end
     middle = :"#{nom}_middle"
     total = :"#{nom}_total"
     table = ''
@@ -56,18 +74,24 @@ module ReportingHelper
     table << '  <td class="report_graph">'
     table <<    report_graph(middle, options) 
     table << '  </td>'
+    # cellule avec la légende
+    table << '  <td class="report_legend">'
+    table <<    report_legend(nom)
+    table << '  </td>'
     # cellule contenant le tableau de données
     table << '  <td class="report_data">'
     table <<    report_graph(total, options)
     table << '  </td>'
     table << ' </tr>'
 
-    options.update(:one_row => true)
+    options.update(:without_firstcol => true)
     table << ' <tr>'
     # cellule contenant le graphique
     table << '  <td class="report_graph">'
     table <<    report_data(middle, options) 
     table << '  </td>'
+    # cellule vide
+    table << '<td></td>'
     # cellule contenant le tableau de données
     table << '  <td class="report_data">'
     table <<    report_data(total, options)
@@ -76,6 +100,41 @@ module ReportingHelper
 
     table << '</table>'
     table
+  end
+
+  def report_legend(nom)
+    out = ''
+    data = @data[nom]
+    options = { :without_firstcol => true }
+    colors = @colors[nom]
+    return out unless colors and colors.size > 0
+
+    out << '<table>'
+#    out << '<tr>'
+    if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
+      twolines = true 
+      size = data.size / 2
+    else
+      twolines = false
+      size = data.size
+    end
+    size.times do |i|
+      name = data[i][0].to_s
+      head = name.gsub(/_(terminees|en_cours)/, '').gsub('_',' ').capitalize
+      out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
+      out << '<tr><th>Terminées</th><th>En cours&nbsp;&nbsp;&nbsp;&nbsp;</th></tr>' if twolines
+      out << '<tr>'
+      color = colors[i]
+      if twolines
+        out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
+        color = colors[i+size]
+        out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
+      else
+        out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
+      end
+      out << '</tr>'
+    end
+    out << '</table>' # << '</tr>'
   end
 
   # graphique
@@ -95,57 +154,47 @@ module ReportingHelper
   def report_data(nom, options={})
     out = ''
     data = @data[nom]
-    size = (options[:divise] ? data.size / 2 : data.size)
-    if options[:one_row]
+    if options[:without_firstcol]
       first_col = ['<b>roh</b>']
     else
       first_col = @first_col
     end
     options.update(:width => '5%')
     out << show_report_table(first_col, nom, 
-                             fill_titles(data, size, options), 
+                             fill_titles(data, options), 
                              options) 
     out
   end 
 
+
+
   def show_report_table(first_col, nom, titres, options = {})
     elements = @data[nom]
-    colors = @colors[nom]
     return 'aucune donnée' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width}>"
     # C'est sensé dire au navigateur d'aligner sur la virgule
     # TODO : vérifier 
     result << '<colgroup><col><col align="char" char=","></colgroup>'
-    result << "<tr>#{titres}</tr>" 
-
-
-#     if colors.size > 0
-#       result << '<tr>'
-#       result << '<td></td>' unless options[:one_row]
-#       elements.each_index do |i|
-#         result << "<td bgcolor=\"#{colors[i]}\"></td>"
-#       end
-#       result << '</tr>'
-#     end
+    result << titres
 
     size = (options[:divise] ? (elements.size / 2) : elements.size)
     first_col.each_index { |i| 
       result << "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">"
-      result << "<td>#{first_col[i]}</td>" unless options[:one_row]
+      result << "<td>#{first_col[i] unless options[:without_firstcol]}</td>" 
       size.times do |c|
-        encours = (options[:divise] ? elements[c+size][i + 1] : 0)
-        total = elements[c][i + 1] + encours
+        en_cours = (options[:divise] ? elements[c+size][i + 1] : 0)
+        total = elements[c][i + 1] + en_cours
         # dieu que c'est moche, j'ai honte
         if total.is_a? Float
-          if encours != 0
-            result << "<td>#{sprintf('%.2f (%.2f)', total, encours)}</td>"
+          if en_cours != 0
+            result << "<td>#{sprintf('%.2f (%.2f)', total, en_cours)}</td>"
           else
             result << "<td>#{sprintf('%.2f', total)}</td>"
           end
         else
-          if encours != 0
-            result << "<td>#{total} (#{encours})</td>"
+          if en_cours != 0
+            result << "<td>#{total} (#{en_cours})</td>"
           else
             result << "<td>#{total}</td>"
           end  
