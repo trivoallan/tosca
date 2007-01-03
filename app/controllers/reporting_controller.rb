@@ -72,12 +72,13 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # on remplit
-#     write_graph(:repartition, Gruff::StackedBar)
-#     write_graph(:severite, Gruff::StackedBar)
-#     write_graph(:resolution, Gruff::StackedBar)
-#     write_graph(:evolution, Gruff::Line)
-#     write_graph(:annulation, Gruff::Line)
+#      write_graph(:repartition, Gruff::StackedBar)
+#      write_graph(:severite, Gruff::StackedBar)
+#      write_graph(:resolution, Gruff::StackedBar)
+#      write_graph(:evolution, Gruff::Line)
+#      write_graph(:annulation, Gruff::Line)
 
+      
 #     write_graph(:top5_demandes, Gruff::Pie)
 #     write_graph(:top5_logiciels, Gruff::Pie)
     # on nettoie
@@ -94,8 +95,8 @@ class ReportingController < ApplicationController
     @contrat = Contrat.find(params[:reporting][:contrat_id])
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titres = @@titres
-    @report[:start_date] = [@contrat.ouverture, Time.now].min
-    @report[:end_date] = [Time.now, @contrat.cloture].min
+    @report[:start_date] = [@contrat.ouverture.beginning_of_month, Time.now].min
+    @report[:end_date] = [Time.now, @contrat.cloture.beginning_of_month].min
     @first_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
@@ -109,10 +110,13 @@ class ReportingController < ApplicationController
       @labels[i] = c if ((i % 2) == 0)
       i += 1
     end
-    middle_date = end_date.months_ago(params[:reporting][:period].to_i)
-    @report[:middle_date] = [ middle_date, @report[:start_date] ].max
-    @report[:middle_report] = ((end_date - @report[:middle_date]) / 1.month).round
-    @report[:total_report] = ((end_date - @report[:start_date]) / 1.month).round
+    middle_date = end_date.months_ago(params[:reporting][:period].to_i - 1)
+    start_date = @report[:start_date]
+    @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
+    @report[:middle_report] = ((end_date - @report[:middle_date]) / 1.month).round + 1
+    @report[:total_report] = ((end_date - start_date) / 1.month).round + 1  
+    @test1 = middle_date
+    @test2 = @report[:middle_date]
   end
 
   # initialisation de @data
@@ -134,8 +138,18 @@ class ReportingController < ApplicationController
       [ [:beneficiaires], [:logiciels], [:correctifs] ] # TODO : [:interactions]
     @data[:annulation] = 
       [ [:informations], [:anomalies], [:evolutions] ]
-#     @data[:temps_de_rappel] =
-#       [ [:dans_les_delais], [:hors_delai] ]
+
+    # calcul des délais
+     @data[:temps_de_rappel] =
+      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
+      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+     @data[:temps_de_contournement] =
+      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
+      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+     @data[:temps_de_correction] =
+      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
+      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+
     # Camemberts nommé dynamiquement
 #    @data[:top5_logiciels] = [ ]
 #    @data[:top5_demandes] = [ ] 
@@ -211,20 +225,25 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     end_date = @report[:end_date]
 
-    conditions = [ 'created_on BETWEEN ? AND ?', nil, nil ]  
+    liste = @contrat.client.beneficiaires.collect{|b| b.id} # .join(',')
+    demandes = [ 'created_on BETWEEN ? AND ? AND demandes.beneficiaire_id IN (?)',
+      nil, nil, liste ]  
+    correctifs = [ 'correctifs.created_on BETWEEN ? AND ?', nil, nil ]  
+    # (#{liste})" ]
     until (start_date > end_date) do 
       infdate = "#{start_date.strftime('%y-%m')}-01"
       start_date = start_date.advance(:months => 1)
       supdate = "#{start_date.strftime('%y-%m')}-01"
       
-      conditions[1], conditions[2] = infdate, supdate
-      Demande.with_scope({ :find => { :conditions => conditions } }) do
+      demandes[1], demandes[2] = infdate, supdate
+      Demande.with_scope({ :find => { :conditions => demandes } }) do
         compute_repartition @data[:repartition]
         compute_severite @data[:severite]     
         compute_resolution @data[:resolution]
         compute_annulation @data[:annulation]
-#        compute_temps_de_rappel @data[:temps_de_rappel]
-        Correctif.with_scope({:find => {:conditions => conditions }}) do
+        compute_temps @data
+        correctifs[1], correctifs[2] = infdate, supdate
+        Correctif.with_scope({:find => {:conditions => correctifs }}) do
           compute_evolution @data[:evolution]
         end
       end
@@ -238,17 +257,6 @@ class ReportingController < ApplicationController
     @data.update(middle_report)
     @data.update(total_report)
     #TODO : se débarrasser de cet héritage legacy
-#     end_date = start_date
-#     start_date = Time.mktime(@annee) 
-#     infdate = "'" + start_date.strftime('%y-%m') + "-01'"
-#     supdate = "'" + end_date.strftime('%y-%m') + "-01'"
-#     @conditions = [ 'created_on BETWEEN ? AND ? ', infdate, supdate ]
-#     @demande_ids = Demande.find(:all, :select => 'demandes.id').join(',')
-#     Demande.with_scope({ :find => { :conditions => @conditions } }) do
-#       compute_repartition @data[:repartition_cumulee]
-#       compute_severite @data[:severite_cumulee]
-#       compute_resolution @data[:resolution_cumulee]
-
 #       compute_top5_logiciels @data[:top5_logiciels]
 #       Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
 #         compute_top5_demandes @data[:top5_demandes]
@@ -260,30 +268,45 @@ class ReportingController < ApplicationController
   ##
   # Sort une moyenne de nos traitements des demandes
   # Sort le temps maximum de nos traitements des demandes
-  def fill_report(temps, report)
-    report[0].push((temps.size == 0 ? 0 : temps.min)) # .floor))
-    report[1].push((temps.size == 0 ? 0 : avg(temps))) # .round))
-    report[2].push((temps.size == 0 ? 0 : temps.max)) # .ceil))
+  def fill_temps_report(donnees, start)
+    demandes = Demande.find_all
+    rappels, contournements, corrections = 0, 0, 0
+    support = @contrat.client.support
+    period = support.fermeture - support.ouverture
+    demandes.each do |d|
+      engagement = d.engagement(@contrat.id)
+      rappel = d.temps_rappel 
+      rappels += 1 if rappel <= 1.hour
+      contournement = distance_of_time_in_working_days(d.temps_contournement,period)
+      contournements += 1
+      correction = distance_of_time_in_working_days(d.temps_correction,period)
+      corrections += 1
+    end
+    size = demandes.size
+    report = donnees[:temps_de_rappel]
+    hors_delais = (rappels / size) * 100.0
+    report[start].push(100.0 - hors_delais)
+    report[start + 1].push(hors_delais)
+
+    report = donnees[:temps_de_contournement]
+    hors_delais = (contournements / size) * 100.0
+    report[start].push(100.0 - hors_delais)
+    report[start + 1].push(hors_delais)
+
+    report = donnees[:temps_de_correction]
+    hors_delais = (corrections / size) * 100.0
+    report[start].push(100.0 - hors_delais)
+    report[start + 1].push(hors_delais)
   end
 
 
-  def compute_temps(donnees, client)
-    demandes = Demande.find_all
-
-    rappels, contournements, corrections = [], [], []
-    demandes.each do |d|
-      rappels.push d.temps_rappel / 60
-      contournements.push distance_of_time_in_working_days(d.temps_contournement,client.support)
-      corrections.push distance_of_time_in_working_days(d.temps_correction,client.support)
+  def compute_temps(donnees)
+    Demande.with_scope({ :find => { :conditions => Demande::TERMINEES } }) do
+      fill_temps_report(donnees, 0)
     end
-    report = donnees[:"temps_rappel_#{client.id}"]
-    fill_report(rappels, report)
-
-    report = donnees[:"temps_contournement_#{client.id}"]
-    fill_report(contournements, report)
-
-    report = donnees[:"temps_correction_#{client.id}"]
-    fill_report(corrections, report)
+    Demande.with_scope({ :find => { :conditions => Demande::EN_COURS } }) do
+      fill_temps_report(donnees, 2)
+    end
   end
 
   ##
@@ -441,21 +464,20 @@ class ReportingController < ApplicationController
 
   # TODO : mettre ça dans le modèle Demande
   # Calcule en JO le temps écoulé 
-  def distance_of_time_in_working_days(distance_in_seconds, support)
+  def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
     distance_in_minutes = ((distance_in_seconds.abs)/60.0)
-    jo = (support.fermeture - support.ouverture) * 60.0
+    jo = period_in_hour * 60.0
     distance_in_minutes.to_f / jo.to_f 
   end
 
 
   def scope_beneficiaire
-    if @beneficiaire
-      liste = @beneficiaire.client.beneficiaires.collect{|b| b.id}.join(',')
-      conditions = [ "demandes.beneficiaire_id IN (#{liste})" ]
-      Demande.with_scope({ :find => { 
-                             :conditions => conditions
-                          }
-                        }) { yield }
+    if @contrat
+      liste = @contrat.client.beneficiaires.collect{|b| b.id} # .join(',')
+      conditions = [ 'demandes.beneficiaire_id IN ?', liste ]
+# (#{liste})" ]
+      Demande.with_scope({ :find => { :conditions => conditions } }) { 
+        yield }
     else
       yield
     end

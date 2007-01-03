@@ -47,10 +47,10 @@ class Jourferie < ActiveRecord::Base
   # chaque jour
   # TODO : faire une requête pour tester l'ensemble
   def self.est_ouvre(date)
-    false if date.wday == 0 || date.wday == 6
+    return false if date.wday == 0 || date.wday == 6
 
     conditions = ['jourferies.jour = ?',date]
-    false if Jourferie.find(:first, :conditions => conditions)
+    return false if Jourferie.find(:first, :conditions => conditions)
     true
   end
 end

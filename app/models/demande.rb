@@ -71,9 +71,9 @@ class Demande < ActiveRecord::Base
 
   def temps_correction
     result = 0
-    corrigee = self.versions.find(:first, :conditions => 'statut_id=6', :order => 'updated_on')
+    corrigee = self.versions.find(:first, :conditions => 'statut_id=6', :order => 'updated_on DESC')
     if corrigee
-      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on')
+      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
       if appellee
         result = compute_diff(appellee.updated_on, corrigee.updated_on, client.support)
       end
@@ -87,9 +87,9 @@ class Demande < ActiveRecord::Base
 
   def temps_contournement
     result = 0
-    contournee = self.versions.find(:first, :conditions => 'statut_id=5', :order => 'updated_on')
+    contournee = self.versions.find(:first, :conditions => 'statut_id=5', :order => 'updated_on DESC')
     if contournee
-      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on')
+      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
       result = compute_diff(appellee.updated_on, contournee.updated_on, client.support)
     end
     result
@@ -103,8 +103,8 @@ class Demande < ActiveRecord::Base
     result = 0
     first = self.versions[0]
     if (self.versions.size > 2) and (first.statut_id == 1)
-      second = self.versions[1]
-      result = compute_diff(first.updated_on, second.updated_on, client.support)
+      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
+      result = compute_diff(first.updated_on, appellee.updated_on, client.support)
     end
     result
   end
@@ -133,7 +133,7 @@ class Demande < ActiveRecord::Base
   end
 
 
-  private
+#  private
   def affiche_delai(temps_passe, delai)
     value = calcul_delai(temps_passe, delai)
     return "N/A" if value == 0
@@ -189,26 +189,23 @@ class Demande < ActiveRecord::Base
   # selon les horaires d'ouverture du 'support' et les jours fériés
   def compute_diff(dateinf, datesup, support)
     return 0 unless support
-    borneinf = dateinf.change(:hour => 0, :minute => 0, :second => 0)
-    bornesup = datesup.change(:hour => 0, :minute => 0, :second => 0)
+    borneinf = dateinf.beginning_of_day
+    bornesup = datesup.beginning_of_day
     nb_jours = Jourferie.nb_jours_ouvres(borneinf, bornesup)
-#    return nb_jours.to_s + "<br /> BI " + borneinf.to_s + "<br />" + " BS " + bornesup.to_s + "<br /> "
+    result = 0
     if nb_jours == 0
-      return compute_diff_day(dateinf, 
-                              datesup.change(:day => dateinf.day,
-                                             :month => dateinf.month,
-                                             :year => dateinf.year), 
-                              support) 
+      borneinf = dateinf, 
+      bornesup = datesup.change(:mday => dateinf.day,
+                                :month => dateinf.month,
+                                :year => dateinf.year)
+    else
+      result = ((nb_jours-1) * support.interval_in_seconds) 
+      borneinf = borneinf.change(:hour => support.fermeture)
+      bornesup = bornesup.change(:hour => support.ouverture)
     end
-    borneinf = borneinf.change(:hour => support.fermeture)
-    bornesup = bornesup.change(:hour => support.ouverture)
-    nb_jours -= 1 
     # La durée d'un jour ouvré dépend des horaires d'ouverture
-    result = (nb_jours * support.interval_in_seconds) 
     result += compute_diff_day(dateinf, borneinf, support)
     result += compute_diff_day(bornesup, datesup, support)
-#    result += " DI " + dateinf.to_s + "<br /> BI " + borneinf.to_s + "<br />"
-#    result += " BS " + bornesup.to_s + "<br /> DS " + datesup.to_s + " <br />"
     result
   end
 
