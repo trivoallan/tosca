@@ -194,7 +194,7 @@ class Demande < ActiveRecord::Base
     nb_jours = Jourferie.nb_jours_ouvres(borneinf, bornesup)
     result = 0
     if nb_jours == 0
-      borneinf = dateinf, 
+      borneinf = dateinf
       bornesup = datesup.change(:mday => dateinf.day,
                                 :month => dateinf.month,
                                 :year => dateinf.year)

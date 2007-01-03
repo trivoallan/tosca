@@ -123,7 +123,7 @@ function cacherCoordonnees() {
   </tr>
   <% @demande.paquets.each do |p| %>
   <tr>
-    <td><%= p.socle.nom + "/" + p.to_display %></td>
+    <td><%= p.to_s %></td>
     <td><%= display_engagement_contournement @demande, p %></td>
     <td><% #display_delai_contournement @demande, p %></td>
     <td><%= display_engagement_correction @demande, p %></td>
