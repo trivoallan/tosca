@@ -196,10 +196,12 @@ module ReportingHelper
         # dieu que c'est moche, j'ai honte
         # TODO (tilt) utilise sprintf pour tous
        if total.is_a? Float
+          total = (total * 100).round
           if en_cours != 0
-            result << "<td>#{sprintf('%.2f (%.2f)', total, en_cours)}</td>"
+            en_cours = (en_cours * 100).round
+            result << "<td>#{total}\% (#{en_cours}\%)</td>"
           else
-            result << "<td>#{sprintf('%.2f', total)}</td>"
+            result << "<td>#{total}\%</td>"
           end
         else
           if en_cours != 0

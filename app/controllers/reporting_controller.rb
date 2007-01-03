@@ -115,8 +115,6 @@ class ReportingController < ApplicationController
     @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
     @report[:middle_report] = ((end_date - @report[:middle_date]) / 1.month).round + 1
     @report[:total_report] = ((end_date - start_date) / 1.month).round + 1  
-    @test1 = middle_date
-    @test2 = @report[:middle_date]
   end
 
   # initialisation de @data
@@ -153,55 +151,7 @@ class ReportingController < ApplicationController
     # Camemberts nommé dynamiquement
 #    @data[:top5_logiciels] = [ ]
 #    @data[:top5_demandes] = [ ] 
-
-#     # Camemberts statiques
-#     @data[:repartition_cumulee] = 
-#       [ [:anomalies], [:informations], [:evolutions] ]
-#     @data[:severite_cumulee] = 
-#       [ [:bloquante], [:majeure], [:mineure], [:sansobjet] ]
-#     @data[:resolution_cumulee] = 
-#       [ [:cloturee], [:annulee], [:en_cours] ]
   end
-
-#   def init_delai
-#     # SideBar sur l'ensemble
-#     @clients.each do |c|
-#       @data[:"temps_rappel_#{c.id}"] =
-#         [ [:minimum], [:moyenne], [:maximum] ]
-#       @data[:"temps_contournement_#{c.id}"] =
-#         [ [:minimum], [:moyenne], [:maximum] ]
-#       @data[:"temps_correction_#{c.id}"] =
-#         [ [:minimum], [:moyenne], [:maximum] ]
-#     end
-#   end
-
-  # TODO : effacer apres refactoring
-#   def report_delai
-#     start_date = Time.mktime
-#     end_date = Time.mktime(start_date.year, 12)
-
-#     @dates = {}
-#     i = 0
-#     until (start_date > end_date) do 
-#       infdate = "'" + start_date.strftime('%y-%m') + "-01'"
-#       supdate = "'" + (start_date.advance(:months => 1)).strftime('%y-%m') + "-01'"
-      
-#       @conditions = [ 'created_on BETWEEN ? AND ? ', infdate, supdate ]
-#       date = start_date.strftime('%b')
-#       @dates[i] = date
-#       i += 1
-#       Demande.with_scope({ :find => { :conditions => @conditions } }) do
-#         @clients.each do |c|
-#           liste = c.beneficiaires.collect{|b| b.id}.join(',')
-#           conditions = [ "demandes.beneficiaire_id IN (#{liste})" ] unless liste == ''
-#           Demande.with_scope({ :find => { :conditions => conditions } }) do
-#             compute_temps @data, c
-#           end
-#         end
-#       end
-#       start_date = start_date.advance(:months => 1)
-#     end
-#   end
 
   # Remplit un tableau avec la somme des données sur nb_month
   # Call it like : middle_period = compute_data_period('middle', 3)
@@ -268,46 +218,52 @@ class ReportingController < ApplicationController
   ##
   # Sort une moyenne de nos traitements des demandes
   # Sort le temps maximum de nos traitements des demandes
-  def fill_temps_report(donnees, start)
-    demandes = Demande.find_all
-    rappels, contournements, corrections = 0, 0, 0
-    support = @contrat.client.support
-    period = support.fermeture - support.ouverture
-    demandes.each do |d|
-      engagement = d.engagement(@contrat.id)
-      rappel = d.temps_rappel 
-      rappels += 1 if rappel <= 1.hour
-      contournement = distance_of_time_in_working_days(d.temps_contournement,period)
-      contournements += 1 if contournement < engagement.contournement
-      correction = distance_of_time_in_working_days(d.temps_correction,period)
-      corrections += 1 if correction < engagement.correction
-    end
-    size = demandes.size
-    report = donnees[:temps_de_rappel]
-    hors_delais = (size ? (rappels / size) * 100.0 : 0)
-    report[start].push(100.0 - hors_delais)
-    report[start + 1].push(hors_delais)
-
-    report = donnees[:temps_de_contournement]
-    hors_delais = (size ? (contournements / size) * 100.0 : 0)
-    report[start].push(100.0 - hors_delais)
-    report[start + 1].push(hors_delais)
-
-    report = donnees[:temps_de_correction]
-    hors_delais = (size ? (corrections / size) * 100.0 : 0)
-    report[start].push(100.0 - hors_delais)
-    report[start + 1].push(hors_delais)
-  end
-
-
   def compute_temps(donnees)
-    Demande.with_scope({ :find => { :conditions => Demande::TERMINEES } }) do
-      fill_temps_report(donnees, 0)
+    demandes = Demande.find_all
+    rappels = donnees[:temps_de_rappel]
+    contournements = donnees[:temps_de_contournement]
+    corrections = donnees[:temps_de_correction]
+    terminal = [6,7,8]
+    support = @contrat.client.support
+    amplitude = support.fermeture - support.ouverture
+    demandes.each do |d|
+      e = d.engagement(@contrat.id)
+      etat = (terminal.include? d.statut_id ? 0 : 2) # +0 : terminées, +2 : en_cours
+      
+      rappel = d.temps_rappel
+      fill_one_report(rappels, rappel, 1.hour, etat)
+
+      contournement = distance_of_time_in_working_days(d.temps_contournement, amplitude)
+      fill_one_report(contournements, contournement, e.contournement, etat)
+
+      correction = distance_of_time_in_working_days(d.temps_correction, amplitude)
+      fill_one_report(corrections, correction, e.correction, etat)
     end
-    Demande.with_scope({ :find => { :conditions => Demande::EN_COURS } }) do
-      fill_temps_report(donnees, 2)
+#    size = demandes.size
+#    fill_all_time_report(terminees, donnees, size, 0)
+#    fill_all_time_report(encours, donnees, size, 2)
+  end
+
+
+  # Petit helper pour être dry, je sais pas trop comment l'appeler
+  def fill_all_time_report(etat, donnees, size, i)
+    fill_one_time_report(donnees[:temps_de_rappel], 
+                         etat[:rappels], size, i)
+    fill_one_time_report(donnees[:temps_de_contournement],
+                         etat[:contournements], size, i)
+    fill_one_time_report(donnees[:temps_de_correction],
+                         etat[:corrections], size, i)
+  end
+
+  # Petit helper pour être dry, je sais pas trop comment l'appeler
+  def fill_one_report(collection, value, max, etat)
+    if value <= max
+      collection[etat+0].last += 1
+    else
+      collection[etat+1].last += 1
     end
   end
+
 
   ##
   # TODO : le faire marcher si y a moins de 5 logiciels
@@ -341,8 +297,8 @@ class ReportingController < ApplicationController
   # Compte les demandes annulées selon leur type
   def compute_annulation(report)
     # TODO : faire des requêtes paramètrées, avec des ?
-    informations = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 2 ] }
-    anomalies = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 1 ] }
+    informations = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 1 ] }
+    anomalies = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 2 ] }
     evolutions = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 5 ] }
 
     report[0].push Demande.count(informations)
@@ -355,8 +311,8 @@ class ReportingController < ApplicationController
   # Compte les demandes selon leur nature
   def compute_repartition(report)
     # TODO : faire des requêtes paramètrées, avec des ?
-    informations = { :conditions => "typedemande_id = 2" }
-    anomalies = { :conditions => "typedemande_id = 1" }
+    informations = { :conditions => "typedemande_id = 1" }
+    anomalies = { :conditions => "typedemande_id = 2" }
     evolutions = { :conditions => "typedemande_id = 5" }
 
     Demande.with_scope({ :find => { :conditions => Demande::TERMINEES } }) do
