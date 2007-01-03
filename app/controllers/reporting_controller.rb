@@ -140,15 +140,15 @@ class ReportingController < ApplicationController
       [ [:informations], [:anomalies], [:evolutions] ]
 
     # calcul des délais
-     @data[:temps_de_rappel] =
-      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
-      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
-     @data[:temps_de_contournement] =
-      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
-      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
-     @data[:temps_de_correction] =
-      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
-      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+#      @data[:temps_de_rappel] =
+#       [ [:dans_les_delais_terminees], [:hors_delai_terminees],
+#       [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+#      @data[:temps_de_contournement] =
+#       [ [:dans_les_delais_terminees], [:hors_delai_terminees],
+#       [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+#      @data[:temps_de_correction] =
+#       [ [:dans_les_delais_terminees], [:hors_delai_terminees],
+#       [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
 
     # Camemberts nommé dynamiquement
 #    @data[:top5_logiciels] = [ ]
@@ -241,7 +241,7 @@ class ReportingController < ApplicationController
         compute_severite @data[:severite]     
         compute_resolution @data[:resolution]
         compute_annulation @data[:annulation]
-        compute_temps @data
+#        compute_temps @data
         correctifs[1], correctifs[2] = infdate, supdate
         Correctif.with_scope({:find => {:conditions => correctifs }}) do
           compute_evolution @data[:evolution]
@@ -278,23 +278,23 @@ class ReportingController < ApplicationController
       rappel = d.temps_rappel 
       rappels += 1 if rappel <= 1.hour
       contournement = distance_of_time_in_working_days(d.temps_contournement,period)
-      contournements += 1
+      contournements += 1 if contournement < engagement.contournement
       correction = distance_of_time_in_working_days(d.temps_correction,period)
-      corrections += 1
+      corrections += 1 if correction < engagement.correction
     end
     size = demandes.size
     report = donnees[:temps_de_rappel]
-    hors_delais = (rappels / size) * 100.0
+    hors_delais = (size ? (rappels / size) * 100.0 : 0)
     report[start].push(100.0 - hors_delais)
     report[start + 1].push(hors_delais)
 
     report = donnees[:temps_de_contournement]
-    hors_delais = (contournements / size) * 100.0
+    hors_delais = (size ? (contournements / size) * 100.0 : 0)
     report[start].push(100.0 - hors_delais)
     report[start + 1].push(hors_delais)
 
     report = donnees[:temps_de_correction]
-    hors_delais = (corrections / size) * 100.0
+    hors_delais = (size ? (corrections / size) * 100.0 : 0)
     report[start].push(100.0 - hors_delais)
     report[start + 1].push(hors_delais)
   end
