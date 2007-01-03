@@ -16,9 +16,25 @@
 <li>Implémenter la spec quand elle sera validée.</li>
 <li>Faire un blabla d&#146;explication, notamment sur le concept encours/terminées</li>
 </ul>
-<%=indent @data.inspect.gsub(/, :/,"\n") %><br />
+<%# =indent @data.inspect.gsub(/, :/,"\n") %><br />
 <%# =indent @colors.inspect.gsub(/, :/,"\n") %><br />
 <% # =indent @data[:severite_total].sort{|x,y| x[0].to_s <=> y[0].to_s}.inspect.gsub(/, :/,"\n") %><br />
+<h1>Temps de rappel</h1>
+ <%= report_repartition(:temps_de_rappel, :with2rows => 'Demandes') %>
+<hr />
+ <%= report_evolution(:temps_de_rappel, :with2rows => 'Demandes') %>
+
+<h1>Temps de contournement</h1>
+ <%= report_repartition(:temps_de_contournement, :with2rows => 'Demandes') %>
+<hr />
+ <%= report_evolution(:temps_de_contournement, :with2rows => 'Demandes') %>
+
+
+<h1>Temps de correction</h1>
+ <%= report_repartition(:temps_de_correction, :with2rows => 'Demandes') %>
+<hr />
+ <%= report_evolution(:temps_de_correction, :with2rows => 'Demandes') %>
+
 
 
 Ce reporting va vous montrer l&#146;état des lieux de notre service

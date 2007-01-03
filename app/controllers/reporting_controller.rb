@@ -138,15 +138,15 @@ class ReportingController < ApplicationController
       [ [:informations], [:anomalies], [:evolutions] ]
 
     # calcul des délais
-#      @data[:temps_de_rappel] =
-#       [ [:dans_les_delais_terminees], [:hors_delai_terminees],
-#       [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
-#      @data[:temps_de_contournement] =
-#       [ [:dans_les_delais_terminees], [:hors_delai_terminees],
-#       [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
-#      @data[:temps_de_correction] =
-#       [ [:dans_les_delais_terminees], [:hors_delai_terminees],
-#       [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+     @data[:temps_de_rappel] =
+      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
+      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+     @data[:temps_de_contournement] =
+      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
+      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+     @data[:temps_de_correction] =
+      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
+      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
 
     # Camemberts nommé dynamiquement
 #    @data[:top5_logiciels] = [ ]
@@ -191,7 +191,7 @@ class ReportingController < ApplicationController
         compute_severite @data[:severite]     
         compute_resolution @data[:resolution]
         compute_annulation @data[:annulation]
-#        compute_temps @data
+        compute_temps @data
         correctifs[1], correctifs[2] = infdate, supdate
         Correctif.with_scope({:find => {:conditions => correctifs }}) do
           compute_evolution @data[:evolution]
@@ -223,44 +223,47 @@ class ReportingController < ApplicationController
     rappels = donnees[:temps_de_rappel]
     contournements = donnees[:temps_de_contournement]
     corrections = donnees[:temps_de_correction]
+    last_index = rappels[0].size 
+    4.times {|i| 
+      rappels[i].push 0; 
+      contournements[i].push 0;
+      corrections[i].push 0 
+    }
+
     terminal = [6,7,8]
     support = @contrat.client.support
     amplitude = support.fermeture - support.ouverture
     demandes.each do |d|
       e = d.engagement(@contrat.id)
-      etat = (terminal.include? d.statut_id ? 0 : 2) # +0 : terminées, +2 : en_cours
+      etat = ((terminal.include?(d.statut_id)) ? 0 : 2) # +0 : terminées, +2 : en_cours
       
       rappel = d.temps_rappel
-      fill_one_report(rappels, rappel, 1.hour, etat)
+      fill_one_report(rappels, rappel, 1.hour, etat, last_index)
 
       contournement = distance_of_time_in_working_days(d.temps_contournement, amplitude)
-      fill_one_report(contournements, contournement, e.contournement, etat)
+      fill_one_report(contournements, contournement, e.contournement, etat, last_index)
 
       correction = distance_of_time_in_working_days(d.temps_correction, amplitude)
-      fill_one_report(corrections, correction, e.correction, etat)
+      fill_one_report(corrections, correction, e.correction, etat, last_index)
     end
-#    size = demandes.size
-#    fill_all_time_report(terminees, donnees, size, 0)
-#    fill_all_time_report(encours, donnees, size, 2)
-  end
-
-
-  # Petit helper pour être dry, je sais pas trop comment l'appeler
-  def fill_all_time_report(etat, donnees, size, i)
-    fill_one_time_report(donnees[:temps_de_rappel], 
-                         etat[:rappels], size, i)
-    fill_one_time_report(donnees[:temps_de_contournement],
-                         etat[:contournements], size, i)
-    fill_one_time_report(donnees[:temps_de_correction],
-                         etat[:corrections], size, i)
+    
+    size = demandes.size
+    if size > 0
+      size = size.to_f
+      4.times {|i| 
+        rappels[i][last_index] = rappels[i][last_index].to_f / size
+        contournements[i][last_index] =  contournements[i][last_index].to_f / size
+        corrections[i][last_index] = corrections[i][last_index].to_f / size
+      }
+    end
   end
 
   # Petit helper pour être dry, je sais pas trop comment l'appeler
-  def fill_one_report(collection, value, max, etat)
+  def fill_one_report(collection, value, max, etat, last)
     if value <= max
-      collection[etat+0].last += 1
+      collection[etat+0][last] += 1
     else
-      collection[etat+1].last += 1
+      collection[etat+1][last] += 1
     end
   end
 
