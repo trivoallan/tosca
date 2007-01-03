@@ -31,8 +31,7 @@ class ReportingController < ApplicationController
   # utilisé avant l'affichage
   def configuration
     @contrats = (@beneficiaire ? @beneficiaire.client.contrats : 
-                   Contrat.find(:all, :include => Contrat::INCLUDE,
-                                :order => Contrat::ORDER))
+                   Contrat.find(:all, Contrat::OPTIONS))
   end
 
   # deprecated
@@ -77,6 +76,7 @@ class ReportingController < ApplicationController
 #     write_graph(:severite, Gruff::StackedBar)
 #     write_graph(:resolution, Gruff::StackedBar)
 #     write_graph(:evolution, Gruff::Line)
+#     write_graph(:annulation, Gruff::Line)
 
 #     write_graph(:top5_demandes, Gruff::Pie)
 #     write_graph(:top5_logiciels, Gruff::Pie)
@@ -120,9 +120,9 @@ class ReportingController < ApplicationController
     # Répartions par mois (StackedBar)
     # _terminees doit être en premier
     @data[:repartition]  = 
-      [ [:anomalies_terminees], [:informations_terminees], 
-      [:evolutions_terminees], [:anomalies_en_cours], 
-      [:informations_en_cours], [:evolutions_en_cours] ]
+      [ [:informations_terminees], [:anomalies_terminees], 
+      [:evolutions_terminees], [:informations_en_cours], 
+      [:anomalies_en_cours], [:evolutions_en_cours] ]
     @data[:severite] = 
       [ [:bloquante_terminees], [:majeure_terminees], 
       [:mineure_terminees], [:sans_objet_terminees],
@@ -132,7 +132,10 @@ class ReportingController < ApplicationController
       [ [:corrigee], [:cloturee], [:annulee], [:en_cours] ]
     @data[:evolution] = 
       [ [:beneficiaires], [:logiciels], [:correctifs] ] # TODO : [:interactions]
-
+    @data[:annulation] = 
+      [ [:informations], [:anomalies], [:evolutions] ]
+#     @data[:temps_de_rappel] =
+#       [ [:dans_les_delais], [:hors_delai] ]
     # Camemberts nommé dynamiquement
 #    @data[:top5_logiciels] = [ ]
 #    @data[:top5_demandes] = [ ] 
@@ -219,6 +222,8 @@ class ReportingController < ApplicationController
         compute_repartition @data[:repartition]
         compute_severite @data[:severite]     
         compute_resolution @data[:resolution]
+        compute_annulation @data[:annulation]
+#        compute_temps_de_rappel @data[:temps_de_rappel]
         Correctif.with_scope({:find => {:conditions => conditions }}) do
           compute_evolution @data[:evolution]
         end
@@ -310,22 +315,36 @@ class ReportingController < ApplicationController
   end
 
   ##
+  # Compte les demandes annulées selon leur type
+  def compute_annulation(report)
+    # TODO : faire des requêtes paramètrées, avec des ?
+    informations = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 2 ] }
+    anomalies = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 1 ] }
+    evolutions = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 5 ] }
+
+    report[0].push Demande.count(informations)
+    report[1].push Demande.count(anomalies)
+    report[2].push Demande.count(evolutions)
+  end
+
+
+  ##
   # Compte les demandes selon leur nature
   def compute_repartition(report)
     # TODO : faire des requêtes paramètrées, avec des ?
-    anomalies = { :conditions => "typedemande_id = 1" }
     informations = { :conditions => "typedemande_id = 2" }
+    anomalies = { :conditions => "typedemande_id = 1" }
     evolutions = { :conditions => "typedemande_id = 5" }
 
     Demande.with_scope({ :find => { :conditions => Demande::TERMINEES } }) do
-      report[0].push Demande.count(anomalies)
-      report[1].push Demande.count(informations)
+      report[0].push Demande.count(informations)
+      report[1].push Demande.count(anomalies)
       report[2].push Demande.count(evolutions)
     end
 
     Demande.with_scope({ :find => { :conditions => Demande::EN_COURS } }) do
-      report[3].push Demande.count(anomalies)
-      report[4].push Demande.count(informations)
+      report[3].push Demande.count(informations)
+      report[4].push Demande.count(anomalies)
       report[5].push Demande.count(evolutions)
     end
   end

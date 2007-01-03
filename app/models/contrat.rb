@@ -46,6 +46,7 @@ class Contrat < ActiveRecord::Base
 
   INCLUDE = [:client]
   ORDER = 'contrats.ouverture ASC'
+  OPTIONS = { :include => INCLUDE, :order => ORDER }
 
   def to_s
     "#{client.nom} du #{ouverture_formatted} au #{cloture_formatted}"

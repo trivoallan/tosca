@@ -125,12 +125,13 @@ module ReportingHelper
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
       out << '<tr><th>Terminées</th><th>En cours&nbsp;&nbsp;&nbsp;&nbsp;</th></tr>' if twolines
       out << '<tr>'
-      color = colors[i*2]
       if twolines
+        color = colors[i*2]
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
         color = colors[i*2+1]
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
       else
+        color = colors[i]
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
       end
       out << '</tr>'
