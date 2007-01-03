@@ -6,6 +6,7 @@ class Correctif < ActiveRecord::Base
   has_many :reversements, :dependent => :destroy
 
   has_and_belongs_to_many :paquets
+  has_and_belongs_to_many :binaires
 
   file_column :patch
 

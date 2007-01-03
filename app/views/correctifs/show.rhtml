@@ -11,14 +11,14 @@
 <%= show_liste(@correctif.demandes, 'demande') { |d| 
   link_to_demande(d) } %><br />
 
-<%= show_liste(@correctif.binaires, 'binaire') { |b| 
-  link_to_file(b, 'fichier') } %><br />
-
 <%= show_liste(@correctif.reversements, 'reversement') { |r| 
   link_to_reversement(r) } %><br />
 
 <%= show_liste(@correctif.paquets, 'paquet') { |p| 
   link_to_paquet(p) } %><br />
+
+<%= show_liste(@correctif.binaires, 'binaire') { |b| 
+  link_to_file(b, 'fichier') } %><br />
 
 
 <%= link_to 'Editer', :action => 'edit', :id => @correctif %> |

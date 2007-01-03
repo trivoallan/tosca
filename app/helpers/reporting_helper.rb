@@ -4,7 +4,8 @@ module ReportingHelper
   # Data contient les entêtes. Les options applicable sont :
   # :without_firstcol => permet de ne pas afficher la première colonne
   # :divise => spécifie si on prends en compte les demandes vivantes 
-  # :with2rows => affichera les entêtes sur 2 lignes, il contient l'intitulé
+  # :with2rows => affichera les entêtes sur 2 lignes, il <b>contient</b> l'intitulé
+  # TODO : renommer with2rows en title
   def fill_titles(data, options)
     size = (options[:divise] ? data.size / 2 : data.size)
     result = ''
@@ -124,10 +125,10 @@ module ReportingHelper
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
       out << '<tr><th>Terminées</th><th>En cours&nbsp;&nbsp;&nbsp;&nbsp;</th></tr>' if twolines
       out << '<tr>'
-      color = colors[i]
+      color = colors[i*2]
       if twolines
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
-        color = colors[i+size]
+        color = colors[i*2+1]
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
       else
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
@@ -159,7 +160,7 @@ module ReportingHelper
     else
       first_col = @first_col
     end
-    options.update(:width => '5%')
+    options.update(:width => '100%')
     out << show_report_table(first_col, nom, 
                              fill_titles(data, options), 
                              options) 
@@ -167,15 +168,21 @@ module ReportingHelper
   end 
 
 
-
+  # Affiche les tableaux de reporting.
+  # 2 options possible :
+  # :without_firstcol désactive la première colonne, des dates
+  # :divise permet de n'afficher que la moitié des colonnes 
+  # :width spécifie la taille du tableau
+  # pour les tableaux contenant les informations des demandes 
+  # en cours et des demandes terminées
   def show_report_table(first_col, nom, titres, options = {})
     elements = @data[nom]
     return 'aucune donnée' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width}>"
     # C'est sensé dire au navigateur d'aligner sur la virgule
-    # TODO : vérifier 
-    result << '<colgroup><col><col align="char" char=","></colgroup>'
+    # RESULT : ca marche po, on garde ?
+    result << '<colgroup><col><col align="char" char="."></colgroup>'
     result << titres
 
     size = (options[:divise] ? (elements.size / 2) : elements.size)
@@ -186,7 +193,8 @@ module ReportingHelper
         en_cours = (options[:divise] ? elements[c+size][i + 1] : 0)
         total = elements[c][i + 1] + en_cours
         # dieu que c'est moche, j'ai honte
-        if total.is_a? Float
+        # TODO (tilt) utilise sprintf pour tous
+       if total.is_a? Float
           if en_cours != 0
             result << "<td>#{sprintf('%.2f (%.2f)', total, en_cours)}</td>"
           else
@@ -204,8 +212,5 @@ module ReportingHelper
       result << '</tr>'
     }
     result << '</tr></table>'
-    # result << show_total(elements.size, ar, options)
   end
-
-
 end

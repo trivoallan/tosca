@@ -30,7 +30,8 @@ class Gruff::Pie < Gruff::Base
     prev_degrees = @zero_degree
 
     # Use full data since we can easily calculate percentages
-    @data.sort{ |a, b| a[DATA_VALUES_INDEX][0] <=> b[DATA_VALUES_INDEX][0] }.each do |data_row|
+    data = (@sort ? @data.sort{ |a, b| a[DATA_VALUES_INDEX][0] <=> b[DATA_VALUES_INDEX][0] } : @data)
+    data.each do |data_row|
       if data_row[DATA_VALUES_INDEX][0] > 0
         @d = @d.stroke data_row[DATA_COLOR_INDEX]
         @d = @d.fill 'transparent'
