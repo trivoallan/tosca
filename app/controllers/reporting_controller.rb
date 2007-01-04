@@ -18,10 +18,22 @@ class ReportingController < ApplicationController
     :temps_de_correction => 'Evolution du temps de correction'
     }
 
-  @@couleurs = [ nil, "#225588", "#228822", "#ee0000", "#bb88bb", "#be4800" ]
-  # clair, foncé, ...
-  @@couleurs_degradees = [nil, "#225588", "#336699", "#228822", "#339933", 
-    "#ee0000", "#ff0000", "#bb88bb", "#cc99cc", "#be4800", "#cf5910" ]
+#  @@couleurs = [ nil, "#225588", "#228822", "#ee0000", "#bb88bb", "#be4800" ]
+#  # clair, foncé, ...
+#  @@couleurs_degradees = [nil, "#225588", "#336699", "#228822", "#339933", 
+#    "#ee0000", "#ff0000", "#bb88bb", "#cc99cc", "#be4800", "#cf5910" ]
+
+
+# Pour respecter ordre alpha des severités : bloquante, majeure, mineure, sans objet, ...
+  @@couleurs = [ nil, "#EE0000", "#EE8242", "#EEEE00", "#84EE00", "#0082EE" ]
+  @@couleurs_degradees = [nil, 
+    # clair, foncé, ...
+    "#EE0000", "#FF1111", #rouge
+    "#EE8242", "#FF9353", #orange
+    "#EEEE00", "#FFFF11", #jaune
+    "#84EE00", "#95FF11", #vert
+    "#0082EE", "#1193FF", #bleu
+  ]
 
   def index
     general
@@ -61,7 +73,7 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # on remplit
-    je_veux_mettre_a_jour_les_graphes = false
+    je_veux_mettre_a_jour_les_graphes = true
     if (je_veux_mettre_a_jour_les_graphes)
      write_graph(:repartition, Gruff::StackedBar)
      write_graph(:severite, Gruff::StackedBar)
