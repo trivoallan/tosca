@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
           (link_to 'Utilisateurs', :controller => 'account', :action => 'list'),
           (link_to 'Clients',:controller => 'clients', :action => 'list')
         ] %>
-        <%= nav_links.compact.join(' | ') if @session[:user] %>"
+        <%= nav_links.compact.join('&nbsp;|&nbsp;') if @session[:user] %>"
     @session[:cut_links] = render_to_string :inline => "
         <% cut_links = [ 
           (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
           (link_to 'Répertoire',:controller => 'documents', :action => 'select')
         ] %>
         <%= start_form_tag :controller => 'demandes', :action => 'list' %>
-        <%= cut_links.compact.join(' | ') %>
+        <%= cut_links.compact.join('&nbsp;|&nbsp;') %>
         <%= end_form_tag %>"
   end
 

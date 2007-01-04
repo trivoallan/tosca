@@ -117,7 +117,7 @@ module ReportingHelper
     colors = @colors[nom]
     return out unless colors and colors.size > 0
 
-    out << '<table>'
+    out << '<table align="center">'
 #    out << '<tr>'
     if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
       twolines = true 
@@ -131,7 +131,7 @@ module ReportingHelper
       name = data[index][0].to_s
       head = name.gsub(/_(terminees|en_cours)/, '').gsub('_',' ').capitalize
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
-      out << '<tr><th>Terminées</th><th>En cours&nbsp;&nbsp;&nbsp;&nbsp;</th></tr>' if twolines
+      out << '<tr><th>Terminées</th><th>En&nbsp;cours</th></tr>' if twolines
       out << '<tr>'
       color = colors[index]
       if twolines

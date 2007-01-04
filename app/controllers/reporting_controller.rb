@@ -412,6 +412,9 @@ class ReportingController < ApplicationController
 
     if title; g.title = title; else g.hide_title = true; end
     g.theme_37signals
+    g.theme = {
+      :background_colors => ['#FFFFFF', '#FFFFFF']
+    }
     g.colors = @colors[nom]
     g.sort = false
     # g.font =  File.expand_path('public/font/VeraBd.ttf', RAILS_ROOT)
