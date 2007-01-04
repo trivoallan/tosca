@@ -95,7 +95,7 @@ module ReportingHelper
     options.update(:without_firstcol => true)
     table << ' <tr>'
     # cellule contenant le graphique
-    table << '  <td class="report_graph">'
+    table << '  <td class="report_data">'
     table <<    report_data(middle, options) 
     table << '  </td>'
     # cellule vide
@@ -164,7 +164,7 @@ module ReportingHelper
     out = ''
     data = @data[nom]
     if options[:without_firstcol]
-      first_col = ['<b>roh</b>']
+      first_col = [nil]
     else
       first_col = @first_col
     end
@@ -183,6 +183,7 @@ module ReportingHelper
   # :width spécifie la taille du tableau
   # pour les tableaux contenant les informations des demandes 
   # en cours et des demandes terminées
+  # TODO : first_col, options[:without_firstcol] : à refactorer
   def show_report_table(first_col, nom, titres, options = {})
     elements = @data[nom]
     return 'aucune donnée' unless elements and elements.size > 0

@@ -540,6 +540,11 @@ h1.section {
 	width: 40%;
 	vertical-align: top;
 }
+.report_data table tr td {
+	text-align: center;
+}
+
+
 /* bandeau d'images du reporting */
 .report_images {
 	margin: 2em;
