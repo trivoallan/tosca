@@ -6,6 +6,8 @@
 
 <h1 class="chapter">Sommaire</h1>
 <%= render_partial 'sommaire' %>
+<%= gap %>
+
 
 <h2>TODO (!)</h2>
 <ul>
@@ -24,30 +26,30 @@
 <%= render_partial 'introduction' %>
 <p class="break_here"/>
 
-<h1 class="chapter">Répartition de vos demandes</h1>
-<h1>Nature de vos demandes</h1>
+<h1 class="chapter">1. Répartition de vos demandes</h1>
+<h1>1.1 Nature de vos demandes</h1>
  <%= report_repartition(:repartition, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:repartition, :with2rows => 'Demandes') %><%= gap %>
-<h1>Sévérité de vos demandes</h1>
+<h1>1.2 Sévérité de vos demandes</h1>
  <%= report_repartition(:severite, :with2rows=> 'Demandes') %><%= gap %>
  <%= report_evolution(:severite, :with2rows => 'Demandes') %><%= gap %>
-<h1>Etat actuel de vos demandes</h1>
+<h1>1.3 Etat actuel de vos demandes</h1>
  <%= report_repartition(:resolution, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:resolution, :with2rows => 'Demandes') %><%= gap %>
 
-<h1 class="chapter">Statistiques divers</h1>
-<h1>Evolution des accès au service</h1>
+<h1 class="chapter">2. Statistiques divers</h1>
+<h1>2.1 Evolution des accès au service</h1>
  <%= report_evolution(:evolution, :with2rows => 'Nombre') %><%= gap %>
-<h1>Demandes annulées</h1>
+<h1>2.2 Demandes annulées</h1>
  <%= report_repartition(:annulation, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:annulation, :with2rows => 'Demandes') %><%= gap %>
 
-<h1 class="chapter">Temps contractuel</h1>
-<h1>Temps de rappel</h1>
+<h1 class="chapter">3. Temps contractuel</h1>
+<h1>3.1 Temps de rappel</h1>
  <%= report_evolution(:temps_de_rappel, :with2rows => 'Demandes') %><%= gap %>
-<h1>Temps de contournement</h1>
+<h1>3.2 Temps de contournement</h1>
  <%= report_evolution(:temps_de_contournement, :with2rows => 'Demandes') %><%= gap %>
-<h1>Temps de correction</h1>
+<h1>3.3 Temps de correction</h1>
  <%= report_evolution(:temps_de_correction, :with2rows => 'Demandes') %><%= gap %>
 
 

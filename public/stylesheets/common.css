@@ -96,7 +96,7 @@ span.left {
 #contenu { 
 	margin:2%; 
 	padding: 0; 
-	width: 100%
+	width: 96%; /* mettre 100% - (2 x margin) */
 }
 #pied {
 	color: black;
@@ -527,13 +527,18 @@ h1.section {
 }
 /* tableaux statistiques */
 .report_item, .report_sommaire {
-	border-style:solid; 
-	border-width:1px; 
-	border-color:grey;
+	/*border-style:solid; 
+	  border-width:1px; 
+	  border-color:grey;*/
 	width: 100%;
+	margin-top: 10px;
 }
 .report_graph {
-
+	width: 40%;
+}
+.report_legend {
+	text-align: center;	
+	align: center;
 }
 .report_data {
 	/*background-color: #d2dfd2;*/
