@@ -32,31 +32,34 @@ Il va aussi couvrir la période que vous avez sélectionnné, de
  <%= report_repartition(:repartition, :with2rows => 'Demandes') %>
 <hr />
  <%= report_evolution(:repartition, :with2rows => 'Demandes') %>
+<hr />
 <h1>Sévérité de vos demandes</h1>
  <%= report_repartition(:severite, :with2rows=> 'Demandes') %>
 <hr />
  <%= report_evolution(:severite, :with2rows => 'Demandes') %>
+<hr />
 <h1>Etat actuel de vos demandes</h1>
  <%= report_repartition(:resolution, :with2rows => 'Demandes') %>
 <hr />
  <%= report_evolution(:resolution, :with2rows => 'Demandes') %>
+<hr />
 <h1>Evolution des accès au service</h1>
  <%= report_evolution(:evolution, :with2rows => 'Nombre') %>
-
+<hr />
 <h1>Demandes annulées</h1>
  <%= report_repartition(:annulation, :with2rows => 'Demandes') %>
 <hr />
  <%= report_evolution(:annulation, :with2rows => 'Demandes') %>
-
+<hr />
 <h1>Temps de rappel</h1>
  <%= report_evolution(:temps_de_rappel, :with2rows => 'Demandes') %>
-
+<hr />
 <h1>Temps de contournement</h1>
  <%= report_evolution(:temps_de_contournement, :with2rows => 'Demandes') %>
-
+<hr />
 <h1>Temps de correction</h1>
  <%= report_evolution(:temps_de_correction, :with2rows => 'Demandes') %>
-
+<hr />
 
 
 </div><!-- end of report -->

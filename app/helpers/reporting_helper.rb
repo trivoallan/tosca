@@ -40,24 +40,30 @@ module ReportingHelper
       options.update(:divise => true)
     end
     table = ''
-    table << '<table class="report_item">'
-    table << ' <tr>'
+    table << '<div id="left">'
+#    table << ' <tr>'
 
     # cellule contenant le graphique
-    table << '  <td class="report_graph">'
+#    table << '  <td class="report_graph">'
     table <<    report_graph(nom, options) 
-    table << '  </td>'
+    table << '</div>'
+#    table << '  </td>'
     # cellule avec la légende
-    table << '  <td class="report_legend">'
+#    table << '  <td class="report_legend">'
+    
+    table << '<div id="middle">'
     table <<    report_legend(nom)
-    table << '  </td>'
+    table << '</div>'
+#    table << '  </td>'
     # cellule contenant le tableau de données
-    table << '  <td class="report_data">'
+#    table << '  <td class="report_data">'
+    table << '<div id="right">'
     table <<    report_data(nom, options)
-    table << '  </td>'
+    table << '</div>'
+#    table << '  </td>'
 
-    table << ' </tr>'
-    table << '</table>'
+#    table << ' </tr>'
+#    table << '</table>'
     table
   end
 

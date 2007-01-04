@@ -93,15 +93,10 @@ span.left {
 	border-bottom: 2px solid #cfc8cf;
 }
 
-#content { 
-	margin:0; 
-	padding: 0; 
-	width: 100% 
-}
 #contenu { 
 	margin:2%; 
 	padding: 0; 
-	width: 95%
+	width: 100%
 }
 #pied {
 	color: black;
@@ -549,4 +544,29 @@ h1.section {
 .report_images {
 	margin: 2em;
 	text-align: center;
+}
+
+#left  {
+	margin: 2px;
+	float: left;
+	width: 40%;
+	text-align: center;
+}
+
+#right {
+	margin: 2px;
+	float: right;
+	width: 40%;
+	text-align: center;
+}
+
+#middle {
+	margin: 2px;
+	float: left;
+	width: 18%;
+	text-align: center;
+}
+
+hr {
+	clear: both;
 }
