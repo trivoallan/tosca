@@ -1,0 +1,8 @@
+
+<p>Ce reporting va vous montrer l&#146;état des lieux de notre service
+depuis <%= @report[:start_date].strftime('%B %Y') %> jusqu&#146;au 
+<%= @report[:end_date].strftime('%B %Y') %> (<%= @report[:total_report] %> mois).</p>
+
+<p>Il va aussi couvrir la période que vous avez sélectionnné, de
+<%= @report[:middle_date].strftime('%B %Y') %> à 
+<%= @report[:end_date].strftime('%B %Y') %> (<%= @report[:middle_report] %> mois).</p>
