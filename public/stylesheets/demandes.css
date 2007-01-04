@@ -27,10 +27,10 @@
 
 /* priseencompte */
 .demande_2 {
-        background: ffa23e; /*orange;*/
+        background: #ffa25e; /*orange;*/
 }	
 .demande_2:hover {
-        background: ffa200; 
+        background: #ffa23e; 
 }
 
 /* suspendue */
@@ -38,7 +38,7 @@
 	background: #ffffaa; /*yellow;*/
 }
 .demande_3:hover {
-	background: #ffff00; 
+	background: #ffff88; 
 }
 
 /* analysee */
@@ -46,15 +46,15 @@
 	background: #a0e0e0; /*cyan;*/
 }
 .demande_4:hover {
-	background: #a0e000;
+	background: #a0e0c0;
 }
 
 /* contournee */
 .demande_5 {
-	background: lightgreen; /*#00ff60; green;*/
+	background: #90EE90; /* lightgreen; */
 }
 .demande_5:hover {
-	background: #00ff00; 
+	background: #90EE70; 
 }
 
 /* corrigee */
@@ -62,7 +62,7 @@
 	background: #67ccfd;
 }
 .demande_6:hover {
-	background: #67cc00;
+	background: #67ccdd;
 }
 
 /* cloturee */
@@ -70,15 +70,15 @@
 	background: #c9c99f; /*grey;*/
 }
 .demande_7:hover {
-	background: #c9c900; 
+	background: #c9c97f; 
 }
 
 /* annulee */
 .demande_8 {
-	background: lightgrey; /*grey;*/
+	background: #D3D3D3; /*lightgrey;*/
 }
 .demande_8:hover {
-	background: lightgrey; 
+	background: #D3D3C3;
 }
 
 /**
