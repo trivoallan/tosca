@@ -72,7 +72,6 @@ class ReportingController < ApplicationController
      write_graph(:temps_de_contournement, Gruff::Line)
      write_graph(:temps_de_correction, Gruff::Line)
     end
-
       
 #     write_graph(:top5_demandes, Gruff::Pie)
 #     write_graph(:top5_logiciels, Gruff::Pie)
@@ -228,6 +227,7 @@ class ReportingController < ApplicationController
     amplitude = support.fermeture - support.ouverture
     demandes.each do |d|
       e = d.engagement(@contrat.id)
+      next unless e
       
       rappel = d.temps_rappel
       fill_one_report(rappels, rappel, 1.hour, last_index)
