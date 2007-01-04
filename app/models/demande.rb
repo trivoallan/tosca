@@ -19,8 +19,8 @@ class Demande < ActiveRecord::Base
 
   # Corrigées, Cloturées et Annulées
   # MLO : on met un '> 6' à la place du 'IN' ?
-  TERMINEES = 'demandes.statut_id IN (6,7,8)'
-  EN_COURS = 'demandes.statut_id NOT IN (6,7,8)'
+  TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
+  EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
 
   has_many :piecejointes, :through => :commentaires
   validates_presence_of :resume, 

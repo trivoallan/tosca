@@ -1,5 +1,0 @@
-<p><b>Beneficiaire : </b>
-<% if @beneficiaires %>
-<%= select('paquet', 'beneficiaire_id', 
-	@beneficiaires.collect{|l| [ l.nom, l.id]}) %></p>
-<% end %>

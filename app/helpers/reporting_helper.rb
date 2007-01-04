@@ -105,7 +105,7 @@ module ReportingHelper
 
   def report_legend(nom)
     out = ''
-    data = @data[nom]
+    data = @data[nom].sort{|x,y| x[0].to_s <=> y[0].to_s}
     options = { :without_firstcol => true }
     colors = @colors[nom]
     return out unless colors and colors.size > 0
@@ -120,18 +120,18 @@ module ReportingHelper
       size = data.size
     end
     size.times do |i|
-      name = data[i][0].to_s
+      index = (twolines ? i*2 : i)
+      name = data[index][0].to_s
       head = name.gsub(/_(terminees|en_cours)/, '').gsub('_',' ').capitalize
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
       out << '<tr><th>Terminées</th><th>En cours&nbsp;&nbsp;&nbsp;&nbsp;</th></tr>' if twolines
       out << '<tr>'
+      color = colors[index]
       if twolines
-        color = colors[i*2]
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
-        color = colors[i*2+1]
+        color = colors[index+1]
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
       else
-        color = colors[i]
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
       end
       out << '</tr>'
@@ -161,7 +161,7 @@ module ReportingHelper
     else
       first_col = @first_col
     end
-    options.update(:width => '100%')
+    options.update(:width => '5%')
     out << show_report_table(first_col, nom, 
                              fill_titles(data, options), 
                              options) 
@@ -196,12 +196,12 @@ module ReportingHelper
         # dieu que c'est moche, j'ai honte
         # TODO (tilt) utilise sprintf pour tous
        if total.is_a? Float
-          total = (total * 100).round
+          total = (total==0.0 ? 'N/A' : "#{total.round}\%")
           if en_cours != 0
             en_cours = (en_cours * 100).round
-            result << "<td>#{total}\% (#{en_cours}\%)</td>"
+            result << "<td>#{total} (#{en_cours})</td>"
           else
-            result << "<td>#{total}\%</td>"
+            result << "<td>#{total}</td>"
           end
         else
           if en_cours != 0

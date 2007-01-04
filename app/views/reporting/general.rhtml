@@ -19,21 +19,6 @@
 <%# =indent @data.inspect.gsub(/, :/,"\n") %><br />
 <%# =indent @colors.inspect.gsub(/, :/,"\n") %><br />
 <% # =indent @data[:severite_total].sort{|x,y| x[0].to_s <=> y[0].to_s}.inspect.gsub(/, :/,"\n") %><br />
-<h1>Temps de rappel</h1>
- <%= report_repartition(:temps_de_rappel, :with2rows => 'Demandes') %>
-<hr />
- <%= report_evolution(:temps_de_rappel, :with2rows => 'Demandes') %>
-
-<h1>Temps de contournement</h1>
- <%= report_repartition(:temps_de_contournement, :with2rows => 'Demandes') %>
-<hr />
- <%= report_evolution(:temps_de_contournement, :with2rows => 'Demandes') %>
-
-
-<h1>Temps de correction</h1>
- <%= report_repartition(:temps_de_correction, :with2rows => 'Demandes') %>
-<hr />
- <%= report_evolution(:temps_de_correction, :with2rows => 'Demandes') %>
 
 
 
@@ -56,8 +41,6 @@ Il va aussi couvrir la période que vous avez sélectionnné, de
 <hr />
  <%= report_evolution(:resolution, :with2rows => 'Demandes') %>
 <h1>Evolution des accès au service</h1>
- <%= report_repartition(:evolution, :with2rows => 'Nombre') %>
-<hr />
  <%= report_evolution(:evolution, :with2rows => 'Nombre') %>
 
 <h1>Demandes annulées</h1>
@@ -65,6 +48,14 @@ Il va aussi couvrir la période que vous avez sélectionnné, de
 <hr />
  <%= report_evolution(:annulation, :with2rows => 'Demandes') %>
 
+<h1>Temps de rappel</h1>
+ <%= report_evolution(:temps_de_rappel, :with2rows => 'Demandes') %>
+
+<h1>Temps de contournement</h1>
+ <%= report_evolution(:temps_de_contournement, :with2rows => 'Demandes') %>
+
+<h1>Temps de correction</h1>
+ <%= report_evolution(:temps_de_correction, :with2rows => 'Demandes') %>
 
 
 

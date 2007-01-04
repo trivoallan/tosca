@@ -13,9 +13,9 @@ class ReportingController < ApplicationController
     :evolution => 'Evolution des sollicitations distinctes',
     :top5_demandes => 'Top 5 des demandes les plus discutées',
     :top5_logiciels => 'Top 5 des logiciels les plus défectueux',
-    :temps_rappel => 'Evolution du temps de prise en compte',
-    :temps_contournement => 'Evolution du temps de contournement',
-    :temps_correction => 'Evolution du temps de correction'
+    :temps_de_rappel => 'Evolution du temps de prise en compte',
+    :temps_de_contournement => 'Evolution du temps de contournement',
+    :temps_de_correction => 'Evolution du temps de correction'
     }
 
   @@couleurs = [ nil, "#225588", "#228822", "#ee0000", "#bb88bb", "#be4800" ]
@@ -34,17 +34,6 @@ class ReportingController < ApplicationController
                    Contrat.find(:all, Contrat::OPTIONS))
   end
 
-  # deprecated
-  # TODO : effacer
- #  def delai
-#     report_delai
-
-#     @clients.each do |c| 
-#       write_graph(:"temps_rappel_#{c.id}", Gruff::Line)
-#       write_graph(:"temps_contournement_#{c.id}", Gruff::Line) 
-#       write_graph(:"temps_correction_#{c.id}", Gruff::Line)
-#     end
-#   end
 
   def general
     return redirect_to(:action => 'configuration') unless params[:reporting]
@@ -72,11 +61,14 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # on remplit
-#      write_graph(:repartition, Gruff::StackedBar)
-#      write_graph(:severite, Gruff::StackedBar)
-#      write_graph(:resolution, Gruff::StackedBar)
-#      write_graph(:evolution, Gruff::Line)
-#      write_graph(:annulation, Gruff::Line)
+#     write_graph(:repartition, Gruff::StackedBar)
+#     write_graph(:severite, Gruff::StackedBar)
+#     write_graph(:resolution, Gruff::StackedBar)
+#     write_graph(:evolution, Gruff::Line)
+#     write_graph(:annulation, Gruff::Line)
+#     write_graph(:temps_de_rappel, Gruff::Line)
+#     write_graph(:temps_de_contournement, Gruff::Line)
+#     write_graph(:temps_de_correction, Gruff::Line)
 
       
 #     write_graph(:top5_demandes, Gruff::Pie)
@@ -131,7 +123,7 @@ class ReportingController < ApplicationController
       [:bloquante_en_cours], [:majeure_en_cours], 
       [:mineure_en_cours], [:sans_objet_en_cours] ]
     @data[:resolution] = 
-      [ [:corrigee], [:cloturee], [:annulee], [:en_cours] ]
+      [ [:contournee], [:corrigee], [:cloturee], [:annulee], [:en_cours] ]
     @data[:evolution] = 
       [ [:beneficiaires], [:logiciels], [:correctifs] ] # TODO : [:interactions]
     @data[:annulation] = 
@@ -139,14 +131,12 @@ class ReportingController < ApplicationController
 
     # calcul des délais
      @data[:temps_de_rappel] =
-      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
-      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+      [ [:dans_les_delais], [:hors_delai] ]
      @data[:temps_de_contournement] =
-      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
-      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+      [ [:dans_les_delais], [:hors_delai] ]
      @data[:temps_de_correction] =
-      [ [:dans_les_delais_terminees], [:hors_delai_terminees],
-      [:dans_les_delais_en_cours], [:hors_delai_en_cours] ]
+      [ [:dans_les_delais], [:hors_delai] ]
+
 
     # Camemberts nommé dynamiquement
 #    @data[:top5_logiciels] = [ ]
@@ -224,10 +214,10 @@ class ReportingController < ApplicationController
     contournements = donnees[:temps_de_contournement]
     corrections = donnees[:temps_de_correction]
     last_index = rappels[0].size 
-    4.times {|i| 
-      rappels[i].push 0; 
-      contournements[i].push 0;
-      corrections[i].push 0 
+    2.times {|i| 
+      rappels[i].push 0.0
+      contournements[i].push 0.0
+      corrections[i].push 0.0 
     }
 
     terminal = [6,7,8]
@@ -235,35 +225,34 @@ class ReportingController < ApplicationController
     amplitude = support.fermeture - support.ouverture
     demandes.each do |d|
       e = d.engagement(@contrat.id)
-      etat = ((terminal.include?(d.statut_id)) ? 0 : 2) # +0 : terminées, +2 : en_cours
       
       rappel = d.temps_rappel
-      fill_one_report(rappels, rappel, 1.hour, etat, last_index)
+      fill_one_report(rappels, rappel, 1.hour, last_index)
 
       contournement = distance_of_time_in_working_days(d.temps_contournement, amplitude)
-      fill_one_report(contournements, contournement, e.contournement, etat, last_index)
+      fill_one_report(contournements, contournement, e.contournement, last_index)
 
       correction = distance_of_time_in_working_days(d.temps_correction, amplitude)
-      fill_one_report(corrections, correction, e.correction, etat, last_index)
+      fill_one_report(corrections, correction, e.correction, last_index)
     end
     
     size = demandes.size
     if size > 0
       size = size.to_f
-      4.times {|i| 
-        rappels[i][last_index] = rappels[i][last_index].to_f / size
-        contournements[i][last_index] =  contournements[i][last_index].to_f / size
-        corrections[i][last_index] = corrections[i][last_index].to_f / size
+      2.times {|i| 
+        rappels[i][last_index] = (rappels[i][last_index].to_f / size) * 100
+        contournements[i][last_index] = (contournements[i][last_index].to_f / size) * 100
+        corrections[i][last_index] = (corrections[i][last_index].to_f / size) * 100
       }
     end
   end
 
   # Petit helper pour être dry, je sais pas trop comment l'appeler
-  def fill_one_report(collection, value, max, etat, last)
+  def fill_one_report(collection, value, max, last)
     if value <= max
-      collection[etat+0][last] += 1
+      collection[0][last] += 1
     else
-      collection[etat+1][last] += 1
+      collection[1][last] += 1
     end
   end
 
@@ -356,15 +345,17 @@ class ReportingController < ApplicationController
   # Compte le nombre de demande Annulée, Cloturée ou en cours de traitement
   def compute_resolution(report)
     condition = 'demandes.statut_id = ?'
+    contournee = { :conditions => [condition, 5] }
     corrigee = { :conditions => [condition, 6] }
     cloturee = { :conditions => [condition, 7] }
     annulee = { :conditions => [condition, 8] }
-    en_cours = { :conditions => 'statut_id NOT IN (6,7,8)' }
+    en_cours = { :conditions => 'statut_id NOT IN (5,6,7,8)' }
 
-    report[0].push Demande.count(corrigee)
-    report[1].push Demande.count(cloturee)
-    report[2].push Demande.count(annulee)
-    report[3].push Demande.count(en_cours)
+    report[0].push Demande.count(contournee)
+    report[1].push Demande.count(corrigee)
+    report[2].push Demande.count(cloturee)
+    report[3].push Demande.count(annulee)
+    report[4].push Demande.count(en_cours)
   end
 
 
@@ -429,58 +420,5 @@ class ReportingController < ApplicationController
     distance_in_minutes.to_f / jo.to_f 
   end
 
-
-  def scope_beneficiaire
-    if @contrat
-      liste = @contrat.client.beneficiaires.collect{|b| b.id} # .join(',')
-      conditions = [ 'demandes.beneficiaire_id IN ?', liste ]
-# (#{liste})" ]
-      Demande.with_scope({ :find => { :conditions => conditions } }) { 
-        yield }
-    else
-      yield
-    end
-  end
-
-  # TODO : on efface cette fonction ?
-  def report_mensuel(start_date, end_date = Time.now)
-    init_general unless @data
-
-    @dates = {}
-    i = 0
-    until (start_date > end_date) do 
-      infdate = "'" + start_date.strftime('%y-%m') + "-01'"
-      supdate = "'" + (start_date.advance(:months => 1)).strftime('%y-%m') + "-01'"
-      
-      @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
-      date = start_date.strftime('%b')
-      @dates[i] = date
-      i += 1
-      Demande.with_scope({ :find => { :conditions => @conditions } }) do
-        compute_repartition @data[:repartition]
-        compute_severite @data[:severite]     
-        compute_resolution @data[:resolution]
-        compute_evolution @data[:evolution]
-      end
-      start_date = start_date.advance(:months => 1)
-    end
-
-    end_date = start_date
-    start_date = Time.mktime(@annee) 
-    infdate = "'" + start_date.strftime('%y-%m') + "-01'"
-    supdate = "'" + end_date.strftime('%y-%m') + "-01'"
-    @conditions = [ "created_on BETWEEN #{infdate} AND #{supdate}" ]
-    # @demande_ids = Demande.find(:all, :select => 'demandes.id').join(',')
-    Demande.with_scope({ :find => { :conditions => @conditions } }) do
-      compute_repartition @data[:repartition_cumulee]
-      compute_severite @data[:severite_cumulee]
-      compute_resolution @data[:resolution_cumulee]
-
-      compute_top5_logiciels @data[:top5_logiciels]
-      Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
-        compute_top5_demandes @data[:top5_demandes]
-      end
-    end
-  end
 
 end
