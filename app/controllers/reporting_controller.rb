@@ -61,14 +61,17 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # on remplit
-#     write_graph(:repartition, Gruff::StackedBar)
-#     write_graph(:severite, Gruff::StackedBar)
-#     write_graph(:resolution, Gruff::StackedBar)
-#     write_graph(:evolution, Gruff::Line)
-#     write_graph(:annulation, Gruff::Line)
-#     write_graph(:temps_de_rappel, Gruff::Line)
-#     write_graph(:temps_de_contournement, Gruff::Line)
-#     write_graph(:temps_de_correction, Gruff::Line)
+    je_veux_mettre_a_jour_les_graphes = false
+    if (je_veux_mettre_a_jour_les_graphes)
+     write_graph(:repartition, Gruff::StackedBar)
+     write_graph(:severite, Gruff::StackedBar)
+     write_graph(:resolution, Gruff::StackedBar)
+     write_graph(:evolution, Gruff::Line)
+     write_graph(:annulation, Gruff::Line)
+     write_graph(:temps_de_rappel, Gruff::Line)
+     write_graph(:temps_de_contournement, Gruff::Line)
+     write_graph(:temps_de_correction, Gruff::Line)
+    end
 
       
 #     write_graph(:top5_demandes, Gruff::Pie)

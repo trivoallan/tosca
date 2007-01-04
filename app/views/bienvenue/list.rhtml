@@ -55,7 +55,7 @@
 
        <% links = [ 
              link_to('Répertoire', :controller => 'documents', :action => 'select'),
-             link_to('Rapport d\'activité', :controller => 'demandes', :action => 'report') ] %>
+             link_to('Rapport d\'activité', :controller => 'reporting', :action => 'general') ] %>
        <%= show_liste_accueil(links.compact, 'Documents') %>
 
        <% links = [ 

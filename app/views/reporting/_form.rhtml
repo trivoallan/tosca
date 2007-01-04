@@ -1,15 +1,12 @@
 <% # TODO : le div part en sucette à l'anis %>
-<% # <div class="report_form"> %>
 
-<p><b>Période considérée</b><br/>
-Evaluer depuis <%= text_field 'reporting', 'period', 
-  :size => 3,:value => 3  %> mois</p>
+<table>
+<tr>
+  <td><label for="reporting_period">Période considérée : évaluer depuis </label>
+      <%= text_field 'reporting', 'period', :size => 3,:value => 3  %> mois</td>
+</tr><tr>
+  <td><label for="reporting_contrat">Contrat </label>
+      <%= select("reporting", "contrat_id", @contrats.collect{|c| [ c.to_s, c.id]}) %></td>
+</tr>
+</table>
 
-<p><b for="reporting_contrat">Contrat</b><br/>
-  <%= select("reporting", "contrat_id", 
-	@contrats.collect{|c| [ c.to_s, c.id]}) %>
-</p>
-
-
-
-</div>

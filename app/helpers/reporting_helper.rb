@@ -196,26 +196,16 @@ module ReportingHelper
     first_col.each_index { |i| 
       result << "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">"
       result << "<td>#{first_col[i] unless options[:without_firstcol]}</td>" 
+
       size.times do |c|
         en_cours = (options[:divise] ? elements[c+size][i + 1] : 0)
         total = elements[c][i + 1] + en_cours
-        # dieu que c'est moche, j'ai honte
-        # TODO (tilt) utilise sprintf pour tous
-       if total.is_a? Float
-          total = (total==0.0 ? 'N/A' : "#{total.round}\%")
-          if en_cours != 0
-            en_cours = (en_cours * 100).round
-            result << "<td>#{total} (#{en_cours})</td>"
-          else
-            result << "<td>#{total}</td>"
-          end
-        else
-          if en_cours != 0
-            result << "<td>#{total} (#{en_cours})</td>"
-          else
-            result << "<td>#{total}</td>"
-          end  
+        if (total.is_a? Float) 
+            total = (total==0.0 ? '-' : "#{total.round}\%")
         end
+        result << "<td>#{total}"
+        result << " (#{en_cours})" if en_cours != 0 
+        result << "</td>"
       end
       i += 1
       result << '</tr>'
