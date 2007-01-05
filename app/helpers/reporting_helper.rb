@@ -100,13 +100,13 @@ module ReportingHelper
       options.update(:without_firstcol => true)
       table << ' <tr>'
       # cellule contenant le graphique
-      table << '  <td class="report_data">'
+      table << '  <td class="report_data" align="center">'
       table <<    report_data(middle, options) 
       table << '  </td>'
       # cellule vide
       table << '<td></td>'
       # cellule contenant le tableau de données
-      table << '  <td class="report_data">'
+      table << '  <td class="report_data" align="center">'
       table <<    report_data(total, options)
       table << '  </td>'
       table << ' </tr>'
@@ -140,11 +140,11 @@ module ReportingHelper
       out << '<tr>'
       color = colors[index]
       # un <td> quoiqu'il se passe
-      out << "<td bgcolor=\"#{color}\">" + image_tag("#{color}", :size => "65x20") + "</td>"
+      out << "<td bgcolor=\"#{color}\">"+'<img src="/images/reporting/'+color.gsub('#','x')+'.png" alt="'+color+'">'+"</td>"
       # un autre si twolines
       if twolines
         color = colors[index+1]
-        out << "<td bgcolor=\"#{color}\">" + image_tag("#{color}", :size => "65x20") + "</td>"
+        out << "<td bgcolor=\"#{color}\">"+'<img src="/images/reporting/'+color.gsub('#','x')+'.png" alt="'+color+'">'+"</td>"
       end
       out << '</tr>'
     end

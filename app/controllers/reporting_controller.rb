@@ -27,11 +27,11 @@ class ReportingController < ApplicationController
 # Pour respecter ordre alpha des severités : bloquante, majeure, mineure, sans objet, ...
   colors =  [
     # clair, foncé, ...
-    "#DD0000", "#FF2222", #rouge
-    "#DD8242", "#FFA464", #orange
-    "#DDDD00", "#FFFF22", #jaune
-    "#84DD00", "#A6FF22", #vert
-    "#0082DD", "#22A4FF", #bleu
+    "#dd0000", "#ff2222", #rouge
+    "#dd8242", "#ffa464", #orange
+    "#dddd00", "#ffff22", #jaune
+    "#84dd00", "#a6ff22", #vert
+    "#0082dd", "#22a4ff", #bleu
   ]
   @@couleurs_degradees = ( [nil] << colors ).flatten
   @@couleurs = ( [nil] << colors.indexes(1, 3, 5, 7, 9) ).flatten
