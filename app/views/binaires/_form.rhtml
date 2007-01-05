@@ -27,6 +27,9 @@
 <p><label for="binaire_archive">Archive</label><br/>
 <%= file_column_field 'binaire', 'archive'  %></p>
 
+<p>Correctifs :</p>
+<%= hbtm_check_box( @binaire.correctifs, @correctifs, 'binaire[correctif_ids]', :size => 3) %>
+
 
 <!--[eoform:binaire]-->
 

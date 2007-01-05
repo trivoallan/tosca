@@ -24,4 +24,14 @@ class Correctif < ActiveRecord::Base
     @content_columns ||= columns.reject { |c| c.primary || 
         c.name =~ /(_id|_on|^patch)$/ || c.name == inheritance_column }     
   end
+
+  def to_s
+    nom
+  end
+
+  def to_param
+    "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
+  end
+
 end
+

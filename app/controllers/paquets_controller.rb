@@ -96,9 +96,9 @@ class PaquetsController < ApplicationController
   
   def scope_beneficiaire
     if @beneficiaire
-      ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
+      ids = @beneficiaire.contrat_ids
       Paquet.with_scope({ :find => { :conditions => 
-                              [ "contrat_id IN (#{ids})" ]
+                              [ 'paquets.contrat_id IN (?)', ids ]
                           }
                         }) { yield }
     else

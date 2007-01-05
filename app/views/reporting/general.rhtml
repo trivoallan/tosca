@@ -31,10 +31,13 @@
 
 <h1 class="chapter">3. Temps contractuel</h1>
 <h1>3.1 <%= @titres[:temps_de_rappel] %></h1>
+ <%= report_repartition(:temps_de_rappel, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:temps_de_rappel, :with2rows => 'Demandes') %><%= gap %>
 <h1>3.2 <%= @titres[:temps_de_contournement] %></h1>
+ <%= report_repartition(:temps_de_contournement, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:temps_de_contournement, :with2rows => 'Demandes') %><%= gap %>
 <h1>3.3 <%= @titres[:temps_de_correction] %></h1>
+ <%= report_repartition(:temps_de_correction, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:temps_de_correction, :with2rows => 'Demandes') %><%= gap %>
 
 </div><!-- end of report -->

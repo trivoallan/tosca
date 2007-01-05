@@ -3,7 +3,7 @@
 #####################################################
 class CorrectifsController < ApplicationController
 
-  helper :reversements, :demandes, :paquets
+  helper :reversements, :demandes, :paquets, :binaires
 
   def index
     list
@@ -49,11 +49,11 @@ class CorrectifsController < ApplicationController
 
   def update
     @correctif = Correctif.find(params[:id])
-    @correctif.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
+#    @correctif.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
     @correctif.demandes = Demande.find(@params[:demande_ids]) if @params[:demande_ids]
     if @correctif.update_attributes(params[:correctif])
       flash[:notice] = 'Le correctif suivant a bien été mis à jour : </br><i>'+@correctif.description+'</i>'
-      redirect_to :action => 'list', :id => @correctif
+      redirect_to :action => 'list'
     else
       _form
       render :action => 'edit'
@@ -66,35 +66,46 @@ class CorrectifsController < ApplicationController
   end
 
 
+  
   def ajax_paquets
-    render_text('') and return unless request.xml_http_request? and @params[:id]
+    render_text('') and return unless request.xml_http_request? and params[:id]
 
-    
-    @paquets = Paquet.find_all_by_logiciel_id\
-    (@params[:id].to_i, :order => Paquet::ORDER, :include => Paquet::INCLUDE)
+    logiciel = Logiciel.find(params[:id].to_i)
+    @paquets = logiciel.paquets
+      #Paquet.find_all_by_logiciel_id\
+      #(@params[:id].to_i, :order => Paquet::ORDER, :include => Paquet::INCLUDE)
 
-    render :partial => "liste_paquets", :layout => false
+    @binaires = logiciel.binaires # Binaire.find_all_by_paquet_id\
+    #(params[:id].to_i, Binaire::OPTIONS)
+
+
+    render :partial => 'liste_paquets', :layout => false
+  end
+
+  def ajax_binaires
+    render_text('') and return unless request.xml_http_request? and params[:id]
+ 
+    @binaires = Binaire.find_all_by_paquet_id\
+    (params[:id].to_i, Binaire::OPTIONS)
+
+    render :partial => 'liste_binaires', :layout => false
   end
 
   private
   def _form
     @logiciels = Logiciel.find_all
     @paquets = @correctif.paquets || []
+    @binaires = @correctif.binaires || []
   end
 
   # Scope recopié dans le reporting (report_evolution
   # TODO : trouver une façon de faire unique !
   def scope_beneficiaire
     if @beneficiaire
-      ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
-      conditions = [ "paquets.contrat_id IN (#{ids})" ]
-      Correctif.with_scope({ :find => { 
-                               :conditions => conditions,
-                               :joins => 'INNER JOIN correctifs_paquets cp ON ' + 
-                                 'cp.correctif_id = correctifs.id ' +
-                                 'INNER JOIN paquets ON ' + 
-                                 'cp.paquet_id = paquet.id '
-                             },
+      ids = @beneficiaire.contrat_ids
+      conditions = [ 'paquets.contrat_id IN (?)', ids ]
+      Correctif.with_scope({ :find => { :conditions => conditions,
+                               :include => [:paquets] },
                         }) { yield }
     else
       yield

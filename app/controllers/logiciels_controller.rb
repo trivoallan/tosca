@@ -34,7 +34,7 @@ class LogicielsController < ApplicationController
 
     conditions = nil
     if @search != nil
-      conditions = [ " nom LIKE ?", "%" + @search[0] + "%" ]
+      conditions = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ]
     end
 
     @logiciel_pages, @logiciels = paginate :logiciels, :per_page => 25,
@@ -121,14 +121,12 @@ class LogicielsController < ApplicationController
   private
   def scope_beneficiaire
     if @beneficiaire
-      contrats = @beneficiaire.client.contrats
-      liste = (contrats.empty? ? '0' : contrats.collect{|c| c.id}.join(','))
-      conditions = [ " logiciels.id IN (" +
-          "SELECT paquets.logiciel_id FROM paquets " + 
-          "WHERE paquets.contrat_id IN (" + liste + ")" + 
-          ")" ]
+      ids = @beneficiaire.contrat_ids
+      # liste = (contrats.empty? ? '0' : contrats.collect{|c| c.id}.join(','))
+      conditions = [ 'paquets.contrat_id IN (?)', ids ]
       Logiciel.with_scope({ :find => { 
-                              :conditions => conditions
+                              :conditions => conditions,
+                              :include => [:paquets]
                           }
                         }) { yield }
     else

@@ -10,7 +10,6 @@ class Beneficiaire < ActiveRecord::Base
   #TODO : revoir la hiérarchie avec un nested tree (!)
   belongs_to :beneficiaire
   has_many :demandes, :dependent => :destroy
-  
 
   def nom
     return identifiant.nom if identifiant
@@ -18,7 +17,8 @@ class Beneficiaire < ActiveRecord::Base
 
 
   def contrat_ids
-    return client.contrats.collect{|c| c.id}.join(',')
+    @cache ||=  Contrat.find(:all, :select => 'id', 
+                             :conditions => ['client_id=?', self.client_id]).collect{|c| c.id}
   end
 
   alias_method :to_s, :nom

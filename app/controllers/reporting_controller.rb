@@ -79,7 +79,7 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # on remplit
-    je_veux_mettre_a_jour_les_graphes = false
+    je_veux_mettre_a_jour_les_graphes = true
     if (je_veux_mettre_a_jour_les_graphes)
      write_graph(:repartition, Gruff::StackedBar)
      write_graph(:severite, Gruff::StackedBar)
@@ -171,10 +171,16 @@ class ReportingController < ApplicationController
     @data.each_key do |key|
       mykey = :"#{key}_#{period}"
       data[mykey] = []
+      ponderation = (key.to_s =~ /^temps/) ? true : false
       @data[key].each do |value|
         result = []
         result.push value[0]
-        result.push value[start..-1].inject(0){|s, v| s + v}
+        if ponderation
+          result.push value[start..-1].inject(0){|s, v| s + v}
+          result[result.size - 1] /= nb_month # total if total != 0
+        else
+          result.push value[start..-1].inject(0){|s, v| s + v}
+        end
         data[mykey].push result
       end
     end
@@ -186,7 +192,7 @@ class ReportingController < ApplicationController
     end_date = @report[:end_date]
 
     liste = @contrat.client.beneficiaires.collect{|b| b.id} # .join(',')
-    demandes = [ 'created_on BETWEEN ? AND ? AND demandes.beneficiaire_id IN (?)',
+    demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.beneficiaire_id IN (?)',
       nil, nil, liste ]  
     correctifs = [ 'correctifs.created_on BETWEEN ? AND ?', nil, nil ]  
     # (#{liste})" ]
@@ -419,13 +425,14 @@ class ReportingController < ApplicationController
     # Trop confus pour l'utilisateur et plus de place pour le graphe
     # if title; g.title = title; else g.hide_title = true; end
     g.hide_title = true
-    g.theme_37signals
-    g.theme = {
-      :background_colors => ['#FFFFFF', '#FFFFFF']
+    g.theme = { #    g.theme_37signals légèrement modifié
+      :colors => @colors[nom],
+      :marker_color => 'black',
+      :font_color => 'black',
+      :background_colors => ['white', 'white']
     }
-    g.colors = @colors[nom]
     g.sort = false
-    # g.font =  File.expand_path('public/font/VeraBd.ttf', RAILS_ROOT)
+
     data = @data[nom].sort{|x,y| x[0].to_s <=> y[0].to_s}
     data.each {|value| g.data(value[0], value[1..-1]) }
     g.labels = @labels

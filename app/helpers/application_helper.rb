@@ -75,7 +75,7 @@ module ApplicationHelper
     desc = 'Voir'
     link_to image_tag("icons/b_view.png", :size => "15x15", # "view_icon.gif", :size => "20x15",
                       :border => 0, :title => desc, :alt => desc ), { 
-      :action => 'show', :id => ar }, { :class => 'nobackground' }
+      :action => 'show', :id => ar.id }, { :class => 'nobackground' }
   end
 
   # add_edit_link(demande)

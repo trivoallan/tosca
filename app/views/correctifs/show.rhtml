@@ -14,11 +14,11 @@
 <%= show_liste(@correctif.reversements, 'reversement') { |r| 
   link_to_reversement(r) } %><br />
 
-<%= show_liste(@correctif.paquets, 'paquet') { |p| 
+<%= show_liste(@correctif.paquets, 'paquet(s) sur lesquels il a été appliqué') { |p| 
   link_to_paquet(p) } %><br />
 
-<%= show_liste(@correctif.binaires, 'binaire') { |b| 
-  link_to_file(b, 'fichier') } %><br />
+<%= show_liste(@correctif.binaires, 'binaire(s) résultant') { |b| 
+  link_to_binaire(b) } %><br />
 
 
 <%= link_to 'Editer', :action => 'edit', :id => @correctif %> |

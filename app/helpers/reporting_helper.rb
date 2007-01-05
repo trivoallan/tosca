@@ -96,20 +96,21 @@ module ReportingHelper
     table << '  </td>'
     table << ' </tr>'
 
-    options.update(:without_firstcol => true)
-    table << ' <tr>'
-    # cellule contenant le graphique
-    table << '  <td class="report_data">'
-    table <<    report_data(middle, options) 
-    table << '  </td>'
-    # cellule vide
-    table << '<td></td>'
-    # cellule contenant le tableau de données
-    table << '  <td class="report_data">'
-    table <<    report_data(total, options)
-    table << '  </td>'
-    table << ' </tr>'
-
+    unless (nom.to_s =~ /^temps/)
+      options.update(:without_firstcol => true)
+      table << ' <tr>'
+      # cellule contenant le graphique
+      table << '  <td class="report_data">'
+      table <<    report_data(middle, options) 
+      table << '  </td>'
+      # cellule vide
+      table << '<td></td>'
+      # cellule contenant le tableau de données
+      table << '  <td class="report_data">'
+      table <<    report_data(total, options)
+      table << '  </td>'
+      table << ' </tr>'
+    end 
     table << '</table>'
     table
   end

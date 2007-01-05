@@ -28,6 +28,8 @@ class Paquet < ActiveRecord::Base
   # INCLUDE à mettre pour chaque finders
   INCLUDE = [ :conteneur ]
   ORDER = 'version, release DESC'
+  OPTIONS = { :include => INCLUDE, :order => ORDER }
+
   def to_s
     "(#{conteneur.nom}) #{nom}-#{version}-#{release}"
   end
