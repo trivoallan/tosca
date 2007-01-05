@@ -79,7 +79,7 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # on remplit
-    je_veux_mettre_a_jour_les_graphes = true
+    je_veux_mettre_a_jour_les_graphes = false
     if (je_veux_mettre_a_jour_les_graphes)
      write_graph(:repartition, Gruff::StackedBar)
      write_graph(:severite, Gruff::StackedBar)

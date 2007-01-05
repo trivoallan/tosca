@@ -140,11 +140,11 @@ module ReportingHelper
       out << '<tr>'
       color = colors[index]
       # un <td> quoiqu'il se passe
-      out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
+      out << "<td bgcolor=\"#{color}\">" + image_tag("#{color}", :size => "65x20") + "</td>"
       # un autre si twolines
       if twolines
         color = colors[index+1]
-        out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
+        out << "<td bgcolor=\"#{color}\">" + image_tag("#{color}", :size => "65x20") + "</td>"
       end
       out << '</tr>'
     end
@@ -200,6 +200,7 @@ module ReportingHelper
     result << titres
 
     size = (options[:divise] ? (elements.size / 2) : elements.size)
+    
     first_col.each_index { |i| 
       result << "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">"
       result << "<td>#{first_col[i] unless options[:without_firstcol]}</td>" 
