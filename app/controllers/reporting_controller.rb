@@ -410,7 +410,9 @@ class ReportingController < ApplicationController
     return unless @data[nom]
     g = graph.new(450)
 
-    if title; g.title = title; else g.hide_title = true; end
+    # Trop confus pour l'utilisateur et plus de place pour le graphe
+    # if title; g.title = title; else g.hide_title = true; end
+    g.hide_title = true
     g.theme_37signals
     g.theme = {
       :background_colors => ['#FFFFFF', '#FFFFFF']
