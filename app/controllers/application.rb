@@ -66,12 +66,12 @@ class ApplicationController < ActionController::Base
               "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
           (link_to 'Projets',:controller => 'projets', :action => 'list'),
           (link_to 'Tâches',:controller => 'taches', :action => 'list'),
-          (link_to 'Correctifs',:controller => 'correctifs', :action => 'list')," +
+          (link_to 'Correctifs',:controller => 'correctifs', :action => 'list'),
+          (link_to 'Répertoire',:controller => 'documents', :action => 'select'), " + 
           (@session[:beneficiaire] ?
-           "(link_to 'Mon Offre',:controller => 'clients', :action => 'show', :id => #{@session[:beneficiaire].client_id})," :
-           "(link_to 'Clients',:controller => 'clients', :action => 'list'),") +
-           "(link_to 'Répertoire',:controller => 'documents', :action => 'select')
-        ] %>
+           "(link_to 'Mon Offre',:controller => 'clients', :action => 'show', :id => #{@session[:beneficiaire].client_id})" :
+           "(link_to 'Clients',:controller => 'clients', :action => 'list')") +
+       "] %>
         <%= start_form_tag :controller => 'demandes', :action => 'list' %>
         <%= cut_links.compact.join('&nbsp;|&nbsp;') %>
         <%= end_form_tag %>"

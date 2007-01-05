@@ -5,13 +5,12 @@
 <% end %>
 
 <% if @client.support %>
-<p><b>Support:</b> <%=h @client.support.nom %><br />
-   => <%=h @client.support.to_s %></p>
+<p><b>Support:</b> <%=h @client.support.to_s %>
 <% end %>
 
 <%= show_liste(@client.contrats, 'contrat') { |c|
   result = ''
-  result << "Contrat ##{c.id}| #{c.ouverture_formatted} => #{c.cloture_formatted} "
+  result << "Du #{c.ouverture_formatted} au #{c.cloture_formatted} "
   result << "concernant #{c.paquets_count} paquets sources "
   result << "et #{c.binaires.size} binaires :"
   titres = ['Demande','Sévérité','Contournement','Correction']
@@ -20,12 +19,14 @@
   result
 }%>
 
-<%= show_liste(@client.demandes, 'demande') {|d| link_to_demande(d) } %>
-<br/>
-
 <%= show_liste(@client.socles, 'socle') {|s| 
   link_to_socle(s).to_s + ' : ' + pluralize(s.binaires_count, 'binaire') } %>
+<br />
+
+<%= show_liste(@client.demandes, 'demande') {|d| link_to_demande(d) } %>
+<br />
 
 
-<%= link_to_edit(@client) %> | <%= link_to_back %>
+
+<%= link_to_edit_and_list(@client) %>
 

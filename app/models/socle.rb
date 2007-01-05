@@ -4,8 +4,7 @@
 class Socle < ActiveRecord::Base
   has_one :machine, :dependent => :destroy
   has_many :binaires
-  has_many :paquets, :through => :binaires, :group => 'id', 
-  :order => 'nom,version,release'
+  has_many :paquets, :through => :binaires, :group => 'paquets.id' 
 
   has_and_belongs_to_many :clients
 

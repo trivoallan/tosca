@@ -78,6 +78,9 @@ module ApplicationHelper
       :action => 'show', :id => ar.id }, { :class => 'nobackground' }
   end
 
+  def link_to_edit_and_list(ar)
+    [ link_to_edit(ar), link_to_back ].compact.join('|')
+  end
   # add_edit_link(demande)
   def link_to_edit(ar)
     desc = 'Editer'

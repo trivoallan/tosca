@@ -14,7 +14,8 @@ class ClientsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @client_pages, @clients = paginate :clients, :per_page => 10
+    @client_pages, @clients = paginate :clients, :per_page => 10,
+    :include => [:photo,:support]
   end
 
   def show
