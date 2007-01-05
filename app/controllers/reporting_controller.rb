@@ -22,10 +22,6 @@ class ReportingController < ApplicationController
     :temps_de_correction => 'Evolution du temps de correction'
     }
 
-#  @@couleurs = [ nil, "#225588", "#228822", "#ee0000", "#bb88bb", "#be4800" ]
-#  # clair, foncé, ...
-#  @@couleurs_degradees = [nil, "#225588", "#336699", "#228822", "#339933", 
-#    "#ee0000", "#ff0000", "#bb88bb", "#cc99cc", "#be4800", "#cf5910" ]
 
 
 # Pour respecter ordre alpha des severités : bloquante, majeure, mineure, sans objet, ...
@@ -38,7 +34,8 @@ class ReportingController < ApplicationController
     "#0082DD", "#22A4FF", #bleu
   ]
   @@couleurs_degradees = ( [nil] << colors ).flatten
-  @@couleurs = ( [nil] << colors.indexes(1, 2, 4, 6, 8, 10) ).flatten
+  @@couleurs = ( [nil] << colors.indexes(1, 3, 5, 7, 9) ).flatten
+  @@couleurs_delais = ( [nil] << colors.indexes(7, 1) ).flatten
 
   def index
     general
@@ -67,10 +64,13 @@ class ReportingController < ApplicationController
       size = data.size 
       if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
         @colors[nom] = @@couleurs_degradees[1..size]
+      elsif nom.to_s =~ /^temps/
+        @colors[nom] = @@couleurs_delais[1..size]
       else
         @colors[nom] = @@couleurs[1..size]
       end
     end
+
 
     #on nettoie 
     # TODO retravailler le nettoyage
@@ -151,11 +151,11 @@ class ReportingController < ApplicationController
 
     # calcul des délais
      @data[:temps_de_rappel] =
-      [ [:dans_les_delais], [:hors_delai] ]
+      [ [:delais_respectes], [:hors_delai] ]
      @data[:temps_de_contournement] =
-      [ [:dans_les_delais], [:hors_delai] ]
+      [ [:delais_respectes], [:hors_delai] ]
      @data[:temps_de_correction] =
-      [ [:dans_les_delais], [:hors_delai] ]
+      [ [:delais_respectes], [:hors_delai] ]
 
 
     # Camemberts nommé dynamiquement

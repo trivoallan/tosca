@@ -46,7 +46,7 @@ module ReportingHelper
 
     # cellule contenant le graphique
     table << '  <td class="report_graph">'
-    table <<    report_graph(nom, options) 
+    table <<    report_graph(nom, options) unless nom.to_s =~ /^temps/
     table << '  </td>'
 #    table << '</div>'
 
@@ -134,7 +134,7 @@ module ReportingHelper
     size.times do |i|
       index = (twolines ? i*2 : i)
       name = data[index][0].to_s
-      head = name.gsub(/_(terminees|en_cours)/, '').gsub('_',' ').capitalize
+      head = name.gsub(/_(terminees|en_cours)/, '').gsub('_','&nbsp;').capitalize
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
       out << '<tr><th>Terminées</th><th>En&nbsp;cours</th></tr>' if twolines
       out << '<tr>'
