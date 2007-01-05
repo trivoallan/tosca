@@ -134,11 +134,11 @@ module ReportingHelper
       out << '<tr><th>Terminées</th><th>En&nbsp;cours</th></tr>' if twolines
       out << '<tr>'
       color = colors[index]
+      # un <td> quoiqu'il se passe
+      out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
+      # un autre si twolines
       if twolines
-        out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
         color = colors[index+1]
-        out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
-      else
         out << "<td bgcolor=\"#{color}\">&nbsp;</td>"
       end
       out << '</tr>'

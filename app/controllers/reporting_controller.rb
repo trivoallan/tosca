@@ -25,15 +25,16 @@ class ReportingController < ApplicationController
 
 
 # Pour respecter ordre alpha des severités : bloquante, majeure, mineure, sans objet, ...
-  @@couleurs = [ nil, "#EE0000", "#EE8242", "#EEEE00", "#84EE00", "#0082EE" ]
-  @@couleurs_degradees = [nil, 
+  colors =  [
     # clair, foncé, ...
-    "#EE0000", "#FF1111", #rouge
-    "#EE8242", "#FF9353", #orange
-    "#EEEE00", "#FFFF11", #jaune
-    "#84EE00", "#95FF11", #vert
-    "#0082EE", "#1193FF", #bleu
+    "#DD0000", "#FF2222", #rouge
+    "#DD8242", "#FFA464", #orange
+    "#DDDD00", "#FFFF22", #jaune
+    "#84DD00", "#A6FF22", #vert
+    "#0082DD", "#22A4FF", #bleu
   ]
+  @@couleurs_degradees = ( [nil] << colors ).flatten
+  @@couleurs = ( [nil] << colors.indexes(1, 2, 4, 6, 8, 10) ).flatten
 
   def index
     general
@@ -48,6 +49,7 @@ class ReportingController < ApplicationController
 
 
   def general
+
     return redirect_to(:action => 'configuration') unless params[:reporting]
     init_class_var(params)
     return redirect_to(:action => 'configuration') unless 

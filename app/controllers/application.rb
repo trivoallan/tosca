@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
         <% nav_links = [ 
           (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
           (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
-          (link_to 'Mon compte', :controller => 'account', :action => 'modify', :id => @session[:user].id),
+          (link_to 'Mon&nbsp;compte', :controller => 'account', :action => 'modify', :id => @session[:user].id),
           (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
           (link_to 'Utilisateurs', :controller => 'account', :action => 'list'),
           (link_to 'Clients',:controller => 'clients', :action => 'list')
@@ -61,9 +61,9 @@ class ApplicationController < ActionController::Base
     @session[:cut_links] = render_to_string :inline => "
         <% cut_links = [ 
           (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
-      (@session[:user].authorized?('demandes/list') ?
-         "+ '&nbsp;' + (text_field 'numero', '', 'size' => 3)," : ',' ) + 
-         "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
+          (@session[:user].authorized?('demandes/list') ? 
+              "+ '&nbsp;' + (text_field 'numero', '', 'size' => 3)," : ',' ) + 
+              "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
           (link_to 'Projets',:controller => 'projets', :action => 'list'),
           (link_to 'Tâches',:controller => 'taches', :action => 'list'),
           (link_to 'Correctifs',:controller => 'correctifs', :action => 'list'),
