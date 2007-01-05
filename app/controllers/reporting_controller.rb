@@ -81,14 +81,14 @@ class ReportingController < ApplicationController
     # on remplit
     je_veux_mettre_a_jour_les_graphes = false
     if (je_veux_mettre_a_jour_les_graphes)
-     write_graph(:repartition, Gruff::StackedBar)
-     write_graph(:severite, Gruff::StackedBar)
-     write_graph(:resolution, Gruff::StackedBar)
-     write_graph(:evolution, Gruff::Line)
-     write_graph(:annulation, Gruff::Line)
-     write_graph(:temps_de_rappel, Gruff::Line)
-     write_graph(:temps_de_contournement, Gruff::Line)
-     write_graph(:temps_de_correction, Gruff::Line)
+     write3graph(:repartition, Gruff::StackedBar)
+     write3graph(:severite, Gruff::StackedBar)
+     write3graph(:resolution, Gruff::StackedBar)
+     write3graph(:evolution, Gruff::Line)
+     write3graph(:annulation, Gruff::Line)
+     write3graph(:temps_de_rappel, Gruff::Line)
+     write3graph(:temps_de_contournement, Gruff::Line)
+     write3graph(:temps_de_correction, Gruff::Line)
     end
       
 #     write_graph(:top5_demandes, Gruff::Pie)
@@ -407,8 +407,8 @@ class ReportingController < ApplicationController
   end
 
 
-  # Lance l'écriture des 3 graphes
-  def write_graph(nom, graph)
+  # Lance l'écriture des _3_ graphes
+  def write3graph(nom, graph)
     __write_graph(nom, graph)
     middle = :"#{nom}_middle"
     __write_graph(middle, Gruff::Pie, "Répartition sur #{@report[:middle_report]} mois") if @data[middle]
