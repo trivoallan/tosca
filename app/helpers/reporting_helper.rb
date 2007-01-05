@@ -68,6 +68,10 @@ module ReportingHelper
     table
   end
 
+
+  # permet de comparer deux graphiques :
+  # - l'un concernant la periode considérée (à gauche)
+  # - l'autre concernant la totalité depuis le début du contrat
   def report_repartition(nom, options= {})
     data = @data[nom]
     if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)

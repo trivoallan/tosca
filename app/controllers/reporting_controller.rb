@@ -6,14 +6,18 @@ class ReportingController < ApplicationController
   @@titres = { 
     :repartition => 'Répartition des demandes reçues',
     :repartition_cumulee => 'Répartition des demandes reçues',
-    :severite => 'Sévérité des demandes reçues',
+    :severite => 'Sévérité des demandes reçues', 
     :severite_cumulee => 'Sévérité des demandes reçues',
-    :resolution => 'Résolution des demandes reçues',
+    :resolution => 'Résolution des demandes reçues', #Etat actuel de vos demandes
     :resolution_cumulee => 'Résolution des demandes reçues',
-    :evolution => 'Evolution des sollicitations distinctes',
+
+    :annulation => 'Demandes annulées',
+    :evolution => 'Evolution des sollicitations distinctes', #Evolution des accès au service
+ 
     :top5_demandes => 'Top 5 des demandes les plus discutées',
     :top5_logiciels => 'Top 5 des logiciels les plus défectueux',
-    :temps_de_rappel => 'Evolution du temps de prise en compte',
+
+    :temps_de_rappel => 'Evolution du temps de prise en compte', #Temps de rappel 
     :temps_de_contournement => 'Evolution du temps de contournement',
     :temps_de_correction => 'Evolution du temps de correction'
     }
