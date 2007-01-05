@@ -6,5 +6,11 @@
 
 <p><label for="permission_info">Info</label><br/>
 <%= text_field 'permission', 'info'  %></p>
+
+<p><label for="role_permission">Roles</label><br/>
+<%= hbtm_check_box(@permission.roles, @roles, 'permission[role_ids]', :size => 4) %>
+</p>
+
+
 <!--[eoform:permission]-->
 

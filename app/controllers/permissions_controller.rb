@@ -21,6 +21,7 @@ class PermissionsController < ApplicationController
 
   def new
     @permission = Permission.new
+    _form
   end
 
   def create
@@ -29,12 +30,14 @@ class PermissionsController < ApplicationController
       flash[:notice] = 'Permission was successfully created.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
 
   def edit
     @permission = Permission.find(params[:id])
+    _form
   end
 
   def update
@@ -43,6 +46,7 @@ class PermissionsController < ApplicationController
       flash[:notice] = 'Permission was successfully updated.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -50,5 +54,10 @@ class PermissionsController < ApplicationController
   def destroy
     Permission.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+
+  private
+  def _form
+    @roles = Role.find_all
   end
 end
