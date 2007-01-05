@@ -494,9 +494,17 @@ h1.title {
 }
 
 h1.chapter {
+	font-size: 300%;
+	/*text-align: center;*/
+	padding: 5pt;
+	line-height: normal;
+	/*page-break-before: always;*/
+}
+
+h2.chapter {
 	font-size: 200%;
 	/*text-align: center;*/
-	padding: 20pt;
+	padding: 5pt;
 	line-height: normal;
 	/*page-break-before: always;*/
 }

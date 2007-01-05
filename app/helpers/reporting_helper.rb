@@ -72,6 +72,7 @@ module ReportingHelper
   # permet de comparer deux graphiques :
   # - l'un concernant la periode considérée (à gauche)
   # - l'autre concernant la totalité depuis le début du contrat
+  # TODO : style : center report_item tr td
   def report_repartition(nom, options= {})
     data = @data[nom]
     if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
@@ -82,20 +83,24 @@ module ReportingHelper
     table = ''
     table << '<table class="report_item">'
     table << ' <tr>'
-    # cellule contenant le graphique
-    table << '  <td class="report_graph">'
+    # cellule contenant le graphique de la periode
+    table << '  <td class="report_graph" align="center">'
+    table << '  Sur la période considérée'
     table <<    report_graph(middle, options) 
     table << '  </td>'
     # cellule avec la légende
     table << '  <td class="report_legend">'
     table <<    report_legend(nom)
     table << '  </td>'
-    # cellule contenant le tableau de données
-    table << '  <td class="report_data">'
+    # cellule contenant le graphique depuis le début
+    table << '  <td class="report_data" align="center">'
+    table << '  Depuis le début du contrat'
     table <<    report_graph(total, options)
     table << '  </td>'
     table << ' </tr>'
 
+    # pas de deuxieme partie pour les calculs des delais
+    # (% affichés dans la première)
     unless (nom.to_s =~ /^temps/)
       options.update(:without_firstcol => true)
       table << ' <tr>'

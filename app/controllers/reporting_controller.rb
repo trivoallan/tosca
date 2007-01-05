@@ -23,19 +23,24 @@ class ReportingController < ApplicationController
     }
 
 
-
-# Pour respecter ordre alpha des severités : bloquante, majeure, mineure, sans objet, ...
+  # Les couleurs par défauts sont dans l'ordre alphabétique des severités : 
+  # ( bloquante, majeure, mineure, sans objet )
+  # TODO : faire un hash @@couleurs{} contenant les tableaux
   colors =  [
-    # clair, foncé, ...
+    # clair,    foncé,    #couleur
     "#dd0000", "#ff2222", #rouge
     "#dd8242", "#ffa464", #orange
     "#dddd00", "#ffff22", #jaune
     "#84dd00", "#a6ff22", #vert
     "#0082dd", "#22a4ff", #bleu
   ]
+  # les index de tableau commencent à 0
   @@couleurs_degradees = ( [nil] << colors ).flatten
   @@couleurs = ( [nil] << colors.indexes(1, 3, 5, 7, 9) ).flatten
+  # on modifie ensuite pour les autres type de données : 
   @@couleurs_delais = ( [nil] << colors.indexes(7, 1) ).flatten
+  @@couleurs_types = ( [nil] << colors.indexes(3, 7, 9) ).flatten
+  @@couleurs_types_degradees = ( [nil] << colors.indexes(2, 3, 6, 7, 8, 9) ).flatten
 
   def index
     general
@@ -63,11 +68,23 @@ class ReportingController < ApplicationController
       @path[nom] = "reporting/#{nom}.png"
       size = data.size 
       if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
-        @colors[nom] = @@couleurs_degradees[1..size]
-      elsif nom.to_s =~ /^temps/
-        @colors[nom] = @@couleurs_delais[1..size]
+        # cas d'une légende à deux colonnes : degradé obligatoire
+        if nom.to_s =~ /^severite/
+          @colors[nom] = @@couleurs_degradees[1..size]
+        elsif nom.to_s =~ /^repartition/
+          @colors[nom] = @@couleurs_types_degradees[1..size]
+        else
+          @colors[nom] = @@couleurs_degradees[1..size]
+        end
       else
-        @colors[nom] = @@couleurs[1..size]
+        # cas d'une légende à une colonne : pas de degradé
+        if nom.to_s =~ /^temps/
+          @colors[nom] = @@couleurs_delais[1..size]
+        elsif nom.to_s =~ /^annulation/
+          @colors[nom] = @@couleurs_types[1..size]   
+        else
+          @colors[nom] = @@couleurs[1..size]
+        end
       end
     end
 
@@ -79,13 +96,15 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # on remplit
-    je_veux_mettre_a_jour_les_graphes = false
+    je_veux_mettre_a_jour_les_graphes = true
     if (je_veux_mettre_a_jour_les_graphes)
      write3graph(:repartition, Gruff::StackedBar)
      write3graph(:severite, Gruff::StackedBar)
      write3graph(:resolution, Gruff::StackedBar)
+
      write3graph(:evolution, Gruff::Line)
-     write3graph(:annulation, Gruff::Line)
+     write3graph(:annulation, Gruff::Bar)
+
      write3graph(:temps_de_rappel, Gruff::Line)
      write3graph(:temps_de_contournement, Gruff::Line)
      write3graph(:temps_de_correction, Gruff::Line)

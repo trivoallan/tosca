@@ -1,44 +1,51 @@
-<% gap = "<p>&nbsp;</p>"  %>
+<% gap = "<p>&nbsp;</p>"*2 %>
 
 <div class='report' >
-
 <%= render_partial 'entete' %>
+
+<h2 class="chapter">Sommaire</h2>
 <%= render_partial 'sommaire' %><%= gap %>
+
+<h2 class="chapter">Todo !</h2>
 <%= render_partial 'todo_reporting' %>
 <%# =indent @data.inspect.gsub(/, :/,"\n") %><br />
 <%# =indent @colors.inspect.gsub(/, :/,"\n") %><br />
 <%# =indent @data[:severite_total].sort{|x,y| x[0].to_s <=> y[0].to_s}.inspect.gsub(/, :/,"\n") %><br />
-<%= render_partial 'introduction' %>
+
+<h2 class="chapter">Introduction</h2>
+<%= render_partial 'introduction' %><%= gap %>
 <p class="break_here"/>
 
 <h1 class="chapter">1. Répartition de vos demandes</h1>
-<h1>1.1 <%= @titres[:repartition] %></h1>
+<h2 class="chapter">1.1 <%= @titres[:repartition] %></h2>
  <%= report_repartition(:repartition, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:repartition, :with2rows => 'Demandes') %><%= gap %>
-<h1>1.2 <%= @titres[:severite] %></h1>
+<h2 class="chapter">1.2 <%= @titres[:severite] %></h2>
  <%= report_repartition(:severite, :with2rows=> 'Demandes') %><%= gap %>
  <%= report_evolution(:severite, :with2rows => 'Demandes') %><%= gap %>
-<h1>1.3 <%= @titres[:resolution] %></h1>
+<h2 class="chapter">1.3 <%= @titres[:resolution] %></h2>
  <%= report_repartition(:resolution, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:resolution, :with2rows => 'Demandes') %><%= gap %>
+<p class="break_here"/>
 
 <h1 class="chapter">2. Statistiques divers</h1>
-<h1>2.1 <%= @titres[:evolution] %></h1>
+<h2 class="chapter">2.1 <%= @titres[:evolution] %></h2>
  <%= report_evolution(:evolution, :with2rows => 'Nombre') %><%= gap %>
-<h1>2.2 <%= @titres[:annulation] %></h1>
+<h2 class="chapter">2.2 <%= @titres[:annulation] %></h2>
  <%= report_repartition(:annulation, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:annulation, :with2rows => 'Demandes') %><%= gap %>
+<p class="break_here"/>
 
 <h1 class="chapter">3. Temps contractuel</h1>
-<h1>3.1 <%= @titres[:temps_de_rappel] %></h1>
+<h2 class="chapter">3.1 <%= @titres[:temps_de_rappel] %></h2>
  <%= report_repartition(:temps_de_rappel, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:temps_de_rappel, :with2rows => 'Demandes') %><%= gap %>
-<h1>3.2 <%= @titres[:temps_de_contournement] %></h1>
+<h2 class="chapter">3.2 <%= @titres[:temps_de_contournement] %></h2>
  <%= report_repartition(:temps_de_contournement, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:temps_de_contournement, :with2rows => 'Demandes') %><%= gap %>
-<h1>3.3 <%= @titres[:temps_de_correction] %></h1>
+<h2 class="chapter">3.3 <%= @titres[:temps_de_correction] %></h2>
  <%= report_repartition(:temps_de_correction, :with2rows => 'Demandes') %><%= gap %>
  <%= report_evolution(:temps_de_correction, :with2rows => 'Demandes') %><%= gap %>
+<p class="break_here"/>
 
 </div><!-- end of report -->
-
