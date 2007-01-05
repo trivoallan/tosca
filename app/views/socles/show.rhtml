@@ -4,10 +4,11 @@
 </p>
 <% end %>
 
+<% if @ingenieur %>
 <p>
   <b>Machine:</b> <%= link_to_machine(@socle.machine) %>
 </p>
-
+<% end %>
 
 <p>Ce socle a <b><%= pluralize(@socle.paquets.size, 'source') %></b></p>
 <div id="bloc_scroll">

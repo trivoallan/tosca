@@ -83,10 +83,28 @@ class ApplicationController < ActionController::Base
     @headers['Content-Type'] = 'text/html; charset=ISO-8859-1'
   end
 
+
   #scope
   def scope_beneficiaire
     yield
   end
+
+  # verifie :
+  # - s'il il y a un id en paramètre (sinon :  retour à la liste)
+  # - si un ActiveRecord ayant cet id existe (sinon : erreur > rescue > retour à la liste)
+  def verifie(ar)
+    if !params[:id]
+      flash[:warn] = "Veuillez préciser l'identifiant de la demande à consulter." 
+      redirect_to :action => 'list' and return false
+    end
+    object = ar.find(params[:id], :select => 'id') 
+    true
+    if object = nil
+  rescue  ActiveRecord::RecordNotFound
+    flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
+    redirect_to :action => 'list' and return false
+  end
+
 
 private
 

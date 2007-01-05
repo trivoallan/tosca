@@ -69,6 +69,7 @@ class BinairesController < ApplicationController
   end
 
   def scope_beneficiaire
+    
     if @beneficiaire
       ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
       conditions = [ "paquets.contrat_id IN (#{ids})" ]

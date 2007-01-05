@@ -20,7 +20,7 @@ class DemandesController < ApplicationController
     demande = Demande.find(params[:id])
     true
   rescue  ActiveRecord::RecordNotFound
-    flash[:warn] = "Acune demande ne correspond à l'identifiant " + params[:id] + "."
+    flash[:warn] = "Aucune demande ne correspond à l'identifiant " + params[:id] + "."
     list
     redirect_to :action => 'list' and return false
   end

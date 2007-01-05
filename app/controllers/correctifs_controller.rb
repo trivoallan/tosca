@@ -2,8 +2,14 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class CorrectifsController < ApplicationController
-
   helper :reversements, :demandes, :paquets, :binaires
+
+  before_filter :verifie, 
+  :only => [ :show, :edit, :update, :destroy ]
+
+  def verifie
+    super(Correctif)
+  end
 
   def index
     list
