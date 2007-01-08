@@ -58,8 +58,7 @@ class ApplicationController < ActionController::Base
           (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
           (link_to 'Mon&nbsp;compte', :controller => 'account', :action => 'modify', :id => @session[:user].id),
           (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
-          (link_to 'Utilisateurs', :controller => 'account', :action => 'list'),
-          (link_to 'Clients',:controller => 'clients', :action => 'list')
+          (link_to 'Utilisateurs', :controller => 'account', :action => 'list')
         ] %>
         <%= nav_links.compact.join('&nbsp;|&nbsp;') if @session[:user] %>"
     @session[:cut_links] = render_to_string :inline => "
