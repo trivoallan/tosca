@@ -13,7 +13,7 @@ module ReportingHelper
     result << '<tr>'
     first = 'Période&nbsp;&nbsp;&nbsp;&nbsp;' 
     if options[:with2rows]
-      result << "<th rowspan=\"2\">#{first unless options[:without_firstcol]}</th>" 
+      result << "<th rowspan=\"2\">#{first}</th>"  unless options[:without_firstcol]
       result << "<th nowrap colspan=\"#{size}\">#{options[:with2rows]}</th>"
       result << '</tr><tr>'
       size.times do |t|
@@ -208,7 +208,7 @@ module ReportingHelper
     
     first_col.each_index { |i| 
       result << "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">"
-      result << "<td>#{first_col[i] unless options[:without_firstcol]}</td>" 
+      result << "<td>#{first_col[i]}</td>"  unless options[:without_firstcol] 
 
       size.times do |c|
         en_cours = (options[:divise] ? elements[c+size][i + 1] : 0)

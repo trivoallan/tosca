@@ -12,14 +12,14 @@ class ReportingController < ApplicationController
     :resolution_cumulee => 'Résolution des demandes reçues',
 
     :annulation => 'Demandes annulées',
-    :evolution => 'Evolution des sollicitations distinctes', #Evolution des accès au service
+    :evolution => 'Evolution du volume d\'activité', #Evolution des accès au service
  
     :top5_demandes => 'Top 5 des demandes les plus discutées',
     :top5_logiciels => 'Top 5 des logiciels les plus défectueux',
 
-    :temps_de_rappel => 'Evolution du temps de prise en compte', #Temps de rappel 
-    :temps_de_contournement => 'Evolution du temps de contournement',
-    :temps_de_correction => 'Evolution du temps de correction'
+    :temps_de_rappel => 'Temps de prise en compte', #Temps de rappel 
+    :temps_de_contournement => 'Temps de contournement',
+    :temps_de_correction => 'Temps de correction'
     }
 
 
@@ -157,24 +157,24 @@ class ReportingController < ApplicationController
       [:evolutions_terminees], [:informations_en_cours], 
       [:anomalies_en_cours], [:evolutions_en_cours] ]
     @data[:severite] = 
-      [ [:bloquante_terminees], [:majeure_terminees], 
-      [:mineure_terminees], [:sans_objet_terminees],
-      [:bloquante_en_cours], [:majeure_en_cours], 
-      [:mineure_en_cours], [:sans_objet_en_cours] ]
+      [ [:bloquantes_terminees], [:majeures_terminees], 
+      [:mineures_terminees], [:sans_objet_terminees],
+      [:bloquantes_en_cours], [:majeures_en_cours], 
+      [:mineures_en_cours], [:sans_objet_en_cours] ]
     @data[:resolution] = 
-      [ [:contournee], [:corrigee], [:cloturee], [:annulee], [:en_cours] ]
+      [ [:'contournée'], [:'corrigée'], [:'cloturée'], [:'annulée'], [:en_cours] ]
     @data[:evolution] = 
-      [ [:beneficiaires], [:logiciels], [:correctifs] ] # TODO : [:interactions]
+      [ [:'bénéficiaires'], [:logiciels], [:correctifs] ] # TODO : [:interactions]
     @data[:annulation] = 
-      [ [:informations], [:anomalies], [:evolutions] ]
+      [ [:informations], [:anomalies], [:'évolutions'] ]
 
     # calcul des délais
      @data[:temps_de_rappel] =
-      [ [:delais_respectes], [:hors_delai] ]
+      [ [:'délais_respectés'], [:'hors_délai'] ]
      @data[:temps_de_contournement] =
-      [ [:delais_respectes], [:hors_delai] ]
+      [ [:'délais_respectés'], [:'hors_délai'] ]
      @data[:temps_de_correction] =
-      [ [:delais_respectes], [:hors_delai] ]
+      [ [:'délais_respectés'], [:'hors_délai'] ]
 
 
     # Camemberts nommé dynamiquement
