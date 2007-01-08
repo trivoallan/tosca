@@ -48,6 +48,10 @@ class ApplicationController < ActionController::Base
     @session[:filtres] = Hash.new
     @session[:beneficiaire] = @session[:user].beneficiaire
     @session[:ingenieur] = @session[:user].ingenieur
+    @session[:logo_lstm] = render_to_string :inline => 
+      "<%=image_tag('logo_lstm.gif', :alt => 'accueil')%>"
+    @session[:logo_08000] = render_to_string :inline => 
+      "<%=image_tag('logo_08000.gif', :alt => '08000 LINUX')%>"
     @session[:nav_links] = render_to_string :inline => "
         <% nav_links = [ 
           (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
@@ -100,6 +104,9 @@ class ApplicationController < ActionController::Base
     object = ar.find(params[:id], :select => 'id') 
     true
     if object = nil
+      flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
+      redirect_to :action => 'list' and return false
+    end
   rescue  ActiveRecord::RecordNotFound
     flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
     redirect_to :action => 'list' and return false
