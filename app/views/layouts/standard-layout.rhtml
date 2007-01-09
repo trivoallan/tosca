@@ -50,6 +50,7 @@
                <p>Corriger l'élément suivant pour poursuivre :</p>
                 <ul><li><%= flash[:warn] %></li></ul>
           </div>
+          <% flash[:warn] = nil %>
         <% end %>
 
         <%= @content_for_layout %>

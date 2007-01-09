@@ -4,6 +4,12 @@
 class PaquetsController < ApplicationController
   helper :logiciels, :binaires
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
+  def verifie
+    super(Paquet)
+  end
+
 
   def index
     list

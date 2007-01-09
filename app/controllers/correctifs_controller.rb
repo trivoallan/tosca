@@ -104,18 +104,4 @@ class CorrectifsController < ApplicationController
     @binaires = @correctif.binaires || []
   end
 
-  # Scope recopié dans le reporting (report_evolution
-  # TODO : trouver une façon de faire unique !
-  def scope_beneficiaire
-    if @beneficiaire
-      ids = @beneficiaire.contrat_ids
-      conditions = [ 'paquets.contrat_id IN (?)', ids ]
-      Correctif.with_scope({ :find => { :conditions => conditions,
-                               :include => [:paquets] },
-                        }) { yield }
-    else
-      yield
-    end
-  end
-
 end

@@ -4,6 +4,13 @@
 class BinairesController < ApplicationController
   helper :paquets
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
+  def verifie
+    super(Binaire)
+  end
+
+
   def index
     list
     render :action => 'list'

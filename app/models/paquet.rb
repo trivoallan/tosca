@@ -27,7 +27,7 @@ class Paquet < ActiveRecord::Base
   # (cf Conventions de développement : wiki)
   # INCLUDE à mettre pour chaque finders
   INCLUDE = [ :conteneur ]
-  ORDER = 'version, release DESC'
+  ORDER = 'paquets.nom, version, release DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
   def to_s

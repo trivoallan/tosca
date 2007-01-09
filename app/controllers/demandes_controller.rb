@@ -394,21 +394,6 @@ class DemandesController < ApplicationController
     @severites = Severite.find_all
   end
 
-  # Ce code a été copié dans le controller de bienvenue (list)
-  # C'est mal, il faudra trouver une solution
-  def scope_beneficiaire
-    if @beneficiaire
-      liste = @beneficiaire.client.beneficiaires.collect{|b| b.id}.join(',')
-      conditions = [ "demandes.beneficiaire_id IN (#{liste})" ]
-      Demande.with_scope({ :find => { 
-                             :conditions => conditions
-                          }
-                        }) { yield }
-    else
-      yield
-    end
-  end
-
   def redirect_to_comment
     redirect_to :action => 'comment', :id => @demande
   end

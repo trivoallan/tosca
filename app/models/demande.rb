@@ -71,7 +71,7 @@ class Demande < ActiveRecord::Base
 
   def temps_correction
     result = 0
-    corrigee = self.versions.find(:first, :conditions => 'statut_id=6', :order => 'updated_on DESC')
+    corrigee = self.versions.find(:first, :conditions => 'statut_id=6', :order => 'updated_on ASC')
     if corrigee
       appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
       if appellee
@@ -87,7 +87,7 @@ class Demande < ActiveRecord::Base
 
   def temps_contournement
     result = 0
-    contournee = self.versions.find(:first, :conditions => 'statut_id=5', :order => 'updated_on DESC')
+    contournee = self.versions.find(:first, :conditions => 'statut_id=5', :order => 'updated_on ASC')
     if contournee
       appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
       result = compute_diff(appellee.updated_on, contournee.updated_on, client.support)
@@ -164,9 +164,6 @@ class Demande < ActiveRecord::Base
         delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]), 
                               Jourferie.get_dernier_jour_ouvre(sup[:date]), 
                               support)
-        #delai += " de " + inf[:statut].nom + " à " + sup[:statut].nom + "<br />"
-        #delai += " de " + inf[:date].to_s + " à " + sup[:date].to_s + "<br />"
-        #delai += "<hr />"
       end
       inf = sup
     end
@@ -176,9 +173,6 @@ class Demande < ActiveRecord::Base
       delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]), 
                             Jourferie.get_dernier_jour_ouvre(sup[:date]), 
                             support)
-      #delai += " de " + inf[:statut].nom + " à " + self.statut.nom + "<br />"      
-      #delai += " de " + inf[:date].to_s + " à " + sup[:date].to_s + "<br />"      
-      #delai += "<hr />"
     end
     delai
   end

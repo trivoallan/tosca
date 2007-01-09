@@ -89,26 +89,56 @@ class ApplicationController < ActionController::Base
 
   #scope
   def scope_beneficiaire
-    yield
+    if @beneficiaire
+      ids = @beneficiaire.contrat_ids || 0
+      cclient = ['clients.id = ? ', @beneficiaire.client_id ]
+      cdocument = ['documents.client_id = ? ', @beneficiaire.client_id ]
+      cdemande = ['beneficiaires.client_id = ? ', @beneficiaire.client_id ]
+      cpaquets = ['paquets.contrat_id IN (?) ', ids ]
+      sbinaires = {:find => {:conditions => cpaquets, :include => [:paquet]}}
+      slogiciels = {:find => {:conditions => cpaquets, :include => [:paquets]}}
+      scorrectifs = slogiciels # {:find => {:conditions => cpaquets, :include => [:paquets]}}
+      spaquets = { :find => { :conditions => cpaquets } }
+      ssocles = {:find => {:conditions => cclient, :include => [:clients]}}
+      sclients = {:find => {:conditions => cclient}}
+      sdocuments = {:find => {:conditions => cdocument}}
+      sdemandes = {:find => {:conditions => cdemande, :include => [:beneficiaire]}}
+      sreversements = {:find => {:conditions => cdemande, :include => [:beneficiaires]}}
+      Binaire.with_scope(sbinaires) {
+      Client.with_scope(sclients) {
+      Correctif.with_scope(scorrectifs) {
+      Demande.with_scope(sdemandes) {
+      Document.with_scope(sdocuments) {
+      Logiciel.with_scope(slogiciels) {
+      Paquet.with_scope(spaquets) {
+      Reversement.with_scope(sreversements) {
+      Socle.with_scope(ssocles) { yield }
+      }}}}}}}}
+    else
+      yield
+    end
   end
 
   # verifie :
   # - s'il il y a un id en paramètre (sinon :  retour à la liste)
   # - si un ActiveRecord ayant cet id existe (sinon : erreur > rescue > retour à la liste)
   def verifie(ar)
+    options = { :action => 'list', :controller => 'bienvenue' }
     if !params[:id]
-      flash[:warn] = "Veuillez préciser l'identifiant de la demande à consulter." 
-      redirect_to :action => 'list' and return false
+      flash[:warn] = 'Veuillez préciser l\'identifiant de la demande à consulter.'
+      redirect_to(options) and return false
     end
-    object = ar.find(params[:id], :select => 'id') 
+    scope_beneficiaire {
+      object = ar.find(params[:id], :select => 'id') 
+      if object = nil
+        flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
+        redirect_to(options) and return false
+      end
+    }
     true
-    if object = nil
-      flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
-      redirect_to :action => 'list' and return false
-    end
   rescue  ActiveRecord::RecordNotFound
     flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
-    redirect_to :action => 'list' and return false
+    redirect_to(options) and return false
   end
 
 
