@@ -4,8 +4,8 @@
 class CorrectifsController < ApplicationController
   helper :reversements, :demandes, :paquets, :binaires
 
-  before_filter :verifie, 
-  :only => [ :show, :edit, :update, :destroy ]
+  before_filter :verifie, :only => 
+    [ :show, :edit, :update, :destroy ]
 
   def verifie
     super(Correctif)

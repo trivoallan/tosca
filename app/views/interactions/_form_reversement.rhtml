@@ -1,3 +1,4 @@
+<% if @reversement %>
 <%= error_messages_for 'reversement' %>
 
 <!--[form:reversement]-->
@@ -15,13 +16,9 @@
 <%= select('reversement', 'correctif_id', 
            @correctifs.collect{|l| [ l.nom, l.id]}) %></p>
 
-<p><label for="reversement_interaction">Intéraction liée</label><br/>
-<%= select('reversement', 'interaction_id', 
-           @interactions.collect{|l| [ l.resume[0..20], l.id]}) %></p>
-
 <p><label for="reversement_etatreversement">Etat</label><br/>
 <%= select('reversement', 'etatreversement_id', 
            @etatreversements.collect{|l| [ l.nom, l.id]}) %></p>
 
 <!--[eoform:reversement]-->
-
+<% end %>

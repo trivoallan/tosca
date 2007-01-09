@@ -9,7 +9,7 @@
   result = ''
   result << "<td><a href=#{url}</a>#{url}</td>"
   result << "<td>#{i.logiciel.nom if i.logiciel}</td>"
-  result << "<td>#{i.temps_passe} (unité?)</td>"
+  result << "<td>#{display_jours i.temps_passe}</td>"
   result << "<td>#{i.resume}</td>"
   result << "<td>#{i.description}</td>"
   result << "<td>#{i.created_on_formatted}</td>"

@@ -1,0 +1,27 @@
+<h1>Listing etatreversements</h1>
+
+<table>
+  <tr>
+  <% for column in Etatreversement.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for etatreversement in @etatreversements %>
+  <tr>
+  <% for column in Etatreversement.content_columns %>
+    <td><%=h etatreversement.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => etatreversement %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => etatreversement %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => etatreversement }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @etatreversement_pages.current.previous } if @etatreversement_pages.current.previous %>
+<%= link_to 'Next page', { :page => @etatreversement_pages.current.next } if @etatreversement_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New etatreversement', :action => 'new' %>

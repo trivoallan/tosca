@@ -39,7 +39,7 @@ class PaquetsController < ApplicationController
     conditions = nil
     # @count = Paquet.count
     if @search != nil
-      conditions = [ " nom LIKE ?", "%" + @search[0] + "%" ]
+      conditions = [ " paquets.nom LIKE ?", "%" + @search[0] + "%" ]
     end
 
     @count = Paquet.count

@@ -6,7 +6,7 @@ class Reversement < ActiveRecord::Base
   # beneficiaire pourra consulter le reversement
   belongs_to :correctif
   belongs_to :interaction
-
+  belongs_to :etatreversement
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary || 
@@ -22,7 +22,7 @@ class Reversement < ActiveRecord::Base
 
   # délai en jour
   def delai
-    ( cloture - created_on )/(3600*24)
+    (cloture - created_on)
   end
 
 end

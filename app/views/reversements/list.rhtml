@@ -7,22 +7,21 @@
 <%= show_table(@reversements, Interaction, titres) { |r|
   result = ''
   result << "<td>#{r.interaction.logiciel.nom if r.interaction.logiciel }</td>"
-  result << "<td>#{r.correctif.paquets.collect{ |p| p.version }.uniq.join(', ')}</td>"
+  result << "<td>#{r.correctif.paquets.collect{ |p| p.version.to_s + '-' + p.release.to_s }.uniq.join(', ')}</td>"
   result << "<td>#{r.correctif.demandes.collect{ |d| '#'+d.id }.join(', ')}</td>"
   result << "<td>#{link_to(r.interaction.resume, :controller => 'interactions', :action => 'show', :id => r.interaction) if r.interaction }</td>"
   #result << "<td>#{r.correctif.demandes.collect{ |d| d.resume }.join(', ')}</td>"
-  result << "<td>#{r.etatreversement_id}</td>"
-  result << "<td>#{r.accepte}</td>"
+  result << "<td>#{r.etatreversement.nom}</td>"
+  result << "<td>#{'X' if r.accepte}</td>"
   result << "<td>#{link_to_correctif r.correctif}</td>"
   result << "<td>#{r.commentaire}</td>"
   result << "<td>#{r.correctif.demandes.collect{ |d| '#'+d.created_on_formated }.join(', ')}</td>"
   result << "<td style='color:green'>#{r.created_on_formatted}</td>"
   result << "<td style='color:red' >#{r.cloture_formatted}</td>"
-  result << "<td>#{display_jours(r.delai)}</td>"
+  result << "<td nowrap>#{time_in_french_words(r.delai) if r.accepte}</td>"
   result << "<td>#{r.updated_on_formatted}</td>"
   result << "#{link_to_actions_table r}"
 }%>
-
 <%= show_pages_links(@reversement_pages, 'un reversement') %>
 
 <br/>

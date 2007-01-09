@@ -2,9 +2,10 @@
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 
-<% titres = ['Patch', 'Màj']%>
+<% titres = ['Paquets', 'Patch', 'Màj']%>
 <%= show_table(@correctifs, Correctif, titres, :content_columns => true) { |c|
   result = ''
+  result << "<td>#{correctif.paquets.collect{ |p| p.version.to_s + '-' + p.release.to_s }.uniq.join(', ')}</td>"
   result << "<td>#{link_to_file c, 'patch'}</td>"
   result << "<td>#{c.updated_on_formatted}</td>"
   result << "#{link_to_actions_table c}"

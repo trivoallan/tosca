@@ -90,6 +90,7 @@ class ApplicationController < ActionController::Base
   #scope
   def scope_beneficiaire
     if @beneficiaire
+
       ids = @beneficiaire.contrat_ids || 0
       client_id = @beneficiaire.client_id
       cclient = ['clients.id = ? ', client_id ]
@@ -124,6 +125,7 @@ class ApplicationController < ActionController::Base
   # verifie :
   # - s'il il y a un id en paramètre (sinon :  retour à la liste)
   # - si un ActiveRecord ayant cet id existe (sinon : erreur > rescue > retour à la liste)
+  # TODO : trop de copier-coller 
   def verifie(ar)
     options = { :action => 'list', :controller => 'bienvenue' }
     if !params[:id]

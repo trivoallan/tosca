@@ -50,6 +50,7 @@
                <p>Corriger l'élément suivant pour poursuivre :</p>
                 <ul><li><%= flash[:warn] %></li></ul>
           </div>
+          <% #TODO : Regarder si rails 1.2+ permet d'éviter cette ligne %>
           <% flash[:warn] = nil %>
         <% end %>
 

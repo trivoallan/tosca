@@ -227,6 +227,8 @@ class Demande < ActiveRecord::Base
   # Set <tt>include_seconds</tt> to true if you want more detailed approximations if distance < 1 minute
   
   # J'ai juste traduis les mots, la fonction est nickel :)
+  # Dupliqué avec le helper d'application
+  # TODO : être DRY, ca n'a rien à faire dans un model
   def distance_of_time_in_french_words(distance_in_seconds, support)
     distance_in_minutes = ((distance_in_seconds.abs)/60).round
     jo = (support.fermeture - support.ouverture) * 60

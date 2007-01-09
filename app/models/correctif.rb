@@ -10,7 +10,7 @@ class Correctif < ActiveRecord::Base
 
   file_column :patch
 
-  validates_length_of :nom, :within => 3..50
+  validates_length_of :nom, :within => 3..100
 
   def mes_demandes(beneficiaire)
     if beneficiaire

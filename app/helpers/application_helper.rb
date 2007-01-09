@@ -4,7 +4,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-
   def link_to_modify_account(id, title)
     link_to title, { 
       :action => 'modify', 
@@ -186,7 +185,6 @@ module ApplicationHelper
     end
   end
 
-
   # options : 
   #  * no_title : permet de ne pas mettre de titre à la liste
   # Call it like : <%= show_liste(@correctif.binaires, 'correctif') {|e| e.nom} %>
@@ -218,7 +216,7 @@ module ApplicationHelper
     if (options[:content_columns])
       ar.content_columns.each{|c| result <<  "<th>#{c.human_name}</th>"}
     end
-    titres.each {|t| result << "<th>#{t}</th>" }
+    titres.each {|t| result << "<th nowrap>#{t}</th>" }
     
     result << '</tr>'
     elements.each_index { |i| 
@@ -273,6 +271,33 @@ module ApplicationHelper
   def display_seconds(temps)
     return temps #unless temps.is_a? Numeric
 #    temps==-1 ? "sans engagement" : distance_of_time_in_french_words(temps) + " "
+  end
+
+  # Dupliqué de app/models/demande.rb
+  # TODO : être DRY
+  def time_in_french_words(distance_in_seconds)
+    distance_in_minutes = ((distance_in_seconds.abs)/60).round
+    jo = 24.hours / 60 #/ 60 
+    demi_jo_inf = (jo / 2) - 60
+    demi_jo_sup = (jo / 2) + 60
+
+    case distance_in_minutes
+    when 0..1 then 
+      (distance_in_minutes==0) ? "moins d'une minute" : '1 minute'
+    when 2..45      then 
+      "#{distance_in_minutes} minutes"
+    when 46..90     then 
+      'environ 1 heure'
+    when 90..demi_jo_inf, (demi_jo_sup+1)..jo   then 
+      "environ #{(distance_in_minutes.to_f / 60.0).round} heures"
+    when (demi_jo_inf+1)..demi_jo_sup
+      "1 demie journée "
+    when jo..(1.5*jo)
+       "1 jour ouvré"
+    # à partir de 1.5 inclus, le round fait 2 ou plus : pluriel
+    else                 
+      "#{(distance_in_minutes / jo).round} jours"
+    end
   end
 
 

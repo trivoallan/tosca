@@ -27,7 +27,12 @@ class InteractionsController < ApplicationController
 
   def create
     @interaction = Interaction.new(params[:interaction])
-    if @interaction.save
+    if @interaction.save 
+      if params[:reversement]
+        reversement = Reversement.new(params[:reversement])
+        reversement.interaction = @interaction
+        reversement.save
+      end
       flash[:notice] = 'Interaction was successfully created.'
       redirect_to :action => 'list'
     else
@@ -57,10 +62,27 @@ class InteractionsController < ApplicationController
     redirect_to :action => 'list'
   end
 
+
+  def ajax_update_reversement
+    render_text '' and return unless request.xhr?
+    if params[:action_reversement] == '1'
+      @reversement = Reversement.new
+      @correctifs = Correctif.find_all
+      @etatreversements = Etatreversement.find_all
+    else
+      @reversement = nil
+    end
+    # ajax, quand tu nous tiens ;)
+    render :partial => 'form_reversement', :layout => false
+
+  end
+
   private
   def _form
     @ingenieurs = Ingenieur.find_all
+    @clients = Client.find_all
     @logiciels = Logiciel.find_all
+    @reversement = @interaction.reversement if @interaction and @interaction.reversement
   end
 
 end

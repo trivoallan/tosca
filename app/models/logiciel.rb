@@ -46,18 +46,6 @@ class Logiciel < ActiveRecord::Base
   end
 
 
-#  def mes_correctifs(beneficiaire)
-#    if beneficiaire
-#      result = []
-#      correctifs.each do |co|
-#        result.concat co.mes_paquets(beneficiaire)
-#      end
-#      result
-#    else
-#      correctifs
-#    end
-#  end
-
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"

@@ -23,7 +23,8 @@ class ReversementsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @reversement_pages, @reversements = paginate :reversements, :per_page => 10
+    @reversement_pages, @reversements = paginate :reversements, :per_page => 
+      10, :include => [:etatreversement]
   end
 
   def show
@@ -66,6 +67,8 @@ class ReversementsController < ApplicationController
   end
 
   private
+  # TODO : cette fonction devrait être appeléee dans le 
+  # formulaire des interactions. Pour l'instant c'est un copier coller
   def _form
     @correctifs = Correctif.find_all
     @interactions = Interaction.find_all

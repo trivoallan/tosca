@@ -8,12 +8,15 @@
 <%= select("interaction", "logiciel_id", 
            @logiciels.collect{|l| [ l.nom, l.id ]}) %></p>
 
-
 <p><label for="interaction_ingenieur">Ingénieur</label><br/>
 <%= select("interaction", "ingenieur_id", 
            @ingenieurs.collect{|l| [ l.nom, l.id ]}) %></p>
 
-<p><label for="interaction_temps_passe">Temps passé (unité à définir)</label><br/>
+<p><label for="interaction_client">Client</label><br/>
+<%= select("interaction", "client_id", 
+           @clients.collect{|l| [ l.nom, l.id ]}) %></p>
+
+<p><label for="interaction_temps_passe">Temps passé (en Jours Ouvrés)</label><br/>
 <%= text_field 'interaction', 'temps_passe'  %></p>
 
 <p><label for="interaction_resume">Resumé</label><br/>
@@ -22,10 +25,18 @@
 <p><label for="interaction_description">Description</label><br/>
 <%= text_area 'interaction', 'description', :rows => 3  %></p>
 
-<p><label for="interaction_created_on">Created on</label><br/>
-<%= datetime_select 'interaction', 'created_on'  %></p>
+<p><label for="action_reversement">Reversement ?</label> 
+<%= check_box 'action', 'reversement'  %></p>
 
-<p><label for="interaction_updated_on">Updated on</label><br/>
-<%= datetime_select 'interaction', 'updated_on'  %></p>
+<%= observe_field "action_reversement", { :url => 
+      {:action => :ajax_update_reversement}, 
+       :update => :reversement, :with => "action_reversement" 
+   } %>
+
+<div id="reversement">
+<%= render :partial => 'form_reversement' %>
+</div>
+
+
 <!--[eoform:interaction]-->
 
