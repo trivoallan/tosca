@@ -5,6 +5,14 @@ class ReversementsController < ApplicationController
 
   helper :correctifs
 
+  before_filter :verifie, 
+  :only => [ :show, :edit, :update, :destroy ]
+
+  def verifie
+    super(Reversement)
+  end
+
+
   def index
     list
     render :action => 'list'

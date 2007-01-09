@@ -7,17 +7,6 @@ class Reversement < ActiveRecord::Base
   belongs_to :correctif
   belongs_to :interaction
 
-  # le has_many :through ne marche pas sur :correctif
-  # TODO : checker si en rails 1.2 ou + ca marche
-  # sinon, mettre des boites à cocher client_id ?
-  has_many :beneficiaires, :finder_sql => 
-    'SELECT beneficiaires.* FROM beneficiaires INNER JOIN demandes ' +
-    'ON beneficiaires.id=demandes.beneficiaire_id INNER JOIN correctifs ' +
-    'ON demandes.correctif_id = correctifs.id INNER JOIN reversements ' +
-    'ON correctifs.id=reversements.correctif_id ' + 
-    "WHERE reversements.id = #{id}"
-
-  #, :joins => 'INNER JOIN correctifs ON demandes.correctif_id = correctifs.id '
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary || 

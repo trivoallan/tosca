@@ -91,9 +91,11 @@ class ApplicationController < ActionController::Base
   def scope_beneficiaire
     if @beneficiaire
       ids = @beneficiaire.contrat_ids || 0
-      cclient = ['clients.id = ? ', @beneficiaire.client_id ]
-      cdocument = ['documents.client_id = ? ', @beneficiaire.client_id ]
-      cdemande = ['beneficiaires.client_id = ? ', @beneficiaire.client_id ]
+      client_id = @beneficiaire.client_id
+      cclient = ['clients.id = ? ', client_id ]
+      cdocument = ['documents.client_id = ? ', client_id ]
+      cbeneficiaire = ['beneficiaires.client_id = ? ', client_id ]
+      cinteraction = ['interactions.client_id = ? ', client_id ]
       cpaquets = ['paquets.contrat_id IN (?) ', ids ]
       sbinaires = {:find => {:conditions => cpaquets, :include => [:paquet]}}
       slogiciels = {:find => {:conditions => cpaquets, :include => [:paquets]}}
@@ -102,8 +104,8 @@ class ApplicationController < ActionController::Base
       ssocles = {:find => {:conditions => cclient, :include => [:clients]}}
       sclients = {:find => {:conditions => cclient}}
       sdocuments = {:find => {:conditions => cdocument}}
-      sdemandes = {:find => {:conditions => cdemande, :include => [:beneficiaire]}}
-      sreversements = {:find => {:conditions => cdemande, :include => [:beneficiaires]}}
+      sdemandes = {:find => {:conditions => cbeneficiaire, :include => [:beneficiaire]}}
+      sreversements = {:find => {:conditions => cinteraction, :include => [:interaction]}}
       Binaire.with_scope(sbinaires) {
       Client.with_scope(sclients) {
       Correctif.with_scope(scorrectifs) {
