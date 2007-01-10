@@ -387,7 +387,7 @@ class DemandesController < ApplicationController
       @typedemandes = client.typedemandes
       @clients = [ client ] 
     else
-      @logiciels = Logiciel.find(:all, :order => "nom")
+      @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
       @typedemandes = Typedemande.find_all
       @clients = Client.find_all
     end

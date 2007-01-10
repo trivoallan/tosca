@@ -7,6 +7,13 @@ class DocumentsController < ApplicationController
     render :action => 'select'
   end
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
+  def verifie
+    super(Document)
+  end
+
+
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :select }

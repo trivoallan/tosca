@@ -2,9 +2,14 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class LogicielsController < ApplicationController
-
-
   helper :paquets, :demandes, :competences
+
+  before_filter :verifie, :only => 
+    [ :show, :edit, :update, :destroy ]
+
+  def verifie
+    super(Logiciel)
+  end
 
   def index
     list

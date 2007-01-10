@@ -2,6 +2,14 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class InteractionsController < ApplicationController
+  before_filter :verifie, :only => 
+    [ :show, :edit, :update, :destroy ]
+
+  def verifie
+    super(Interaction)
+  end
+
+
   def index
     list
     render :action => 'list'

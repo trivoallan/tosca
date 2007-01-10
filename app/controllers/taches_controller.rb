@@ -3,6 +3,13 @@ class TachesController < ApplicationController
 
   helper :ingenieurs, :projets
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
+  def verifie
+    super(Tache)
+  end
+
+
   def auto_complete_for_tache_projet
     @projets = Projet.find(:all,
                        :conditions => [ 'LOWER(resume) LIKE ?',

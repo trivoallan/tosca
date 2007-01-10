@@ -16,10 +16,10 @@
 
 <tr><td colspan="2"><hr/></td></tr>
 <tr><td><label for="identifiant_nom">Votre nom complet</label></td>
-<td><%= text_field 'identifiant', 'nom', :onSelect => "this.value = ''"  %></td></tr>
+<td><%= text_field 'identifiant', 'nom' %></td></tr>
 
 <tr><td><label for="identifiant_titre">Titre</label></td>
-<td><%= text_field 'identifiant', 'titre', :onSelect => "this.value = ''"  %></td></tr>
+<td><%= text_field 'identifiant', 'titre' %></td></tr>
 
 <tr><td><label for="identifiant_email">Email</label></td>
 <td><%= text_field 'identifiant', 'email'  %></td></tr>
@@ -30,7 +30,7 @@
 
 <% if @ingenieur %>
 <tr><td><label for="identifiant_login">Choisissez un identifiant</label></td>
-<td><%= text_field "identifiant", "login", :size => 16, :onSelect => "this.value = ''" %></td></tr>
+<td><%= text_field "identifiant", "login", :size => 16 %></td></tr>
 <% end %>
 
 <tr><td><label for="identifiant_password">Choisissez un mot de passe</label></td>

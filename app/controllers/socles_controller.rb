@@ -4,6 +4,13 @@
 class SoclesController < ApplicationController
   helper :clients,:binaires,:machines,:paquets
 
+  before_filter :verifie, :only => 
+    [ :show, :edit, :update, :destroy ]
+
+  def verifie
+    super(Socle)
+  end
+
 
   before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
