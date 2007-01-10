@@ -20,8 +20,8 @@ class MachinesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @machine_pages, @machines = paginate :machines, :per_page => 10,
-    :include => [:socle,:hote]
+    @machine_pages, @machines = paginate :machines, :per_page => 250,
+    :include => [:socle,:hote], :order => 'machines.hote_id, machines.acces'
   end
 
   def show
@@ -67,7 +67,8 @@ class MachinesController < ApplicationController
 
   private
   def _form
-    @socles = Socle.find(:all, :select => 'socles.nom, socles.id')
+    @socles = Socle.find(:all, :select => 'socles.nom, socles.id', 
+                         :order => 'socles.nom')
     conditions = ['machines.virtuelle = ?', 0] 
     @hotes = Machine.find(:all, :select => 'machines.acces, machines.id',
                           :conditions => conditions)

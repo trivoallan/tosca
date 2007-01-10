@@ -28,7 +28,7 @@ class SoclesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @socle_pages, @socles = paginate :socles, :per_page => 10,
+    @socle_pages, @socles = paginate :socles, :per_page => 250,
     :include => [:machine]
   end
 

@@ -2,14 +2,19 @@
 
 <%= show_pages_links(@machine_pages, 'une machine') %>
 
-<% titres = ['Client','Socle','Accès (IP)','Virtuelle','Hébérgé sur']%>
+<% titres = ['Client','Socle','Accès (IP)','Virtuelle','Hébérgé sur','Informations']%>
 <%= show_table(@machines, Machine, titres) { |m|
   result = ''
-  result << "<td>#{m.socle.client.nom if m.socle.client}</td>"
+  result << '<td>'
+  m.socle.clients.each do |c| 
+    result << "#{c.nom}<br />"
+  end if m.socle
+  result << '</td>'
   result << "<td>#{link_to_socle(m.socle)}</td>"
-  result << "<td>#{link_to_machine(m)}</td>"
+  result << "<td nowrap>#{link_to_machine(m)}</td>"
   result << "<td>#{'X' if m.virtuelle}</td>"
-  result << "<td>#{m.hote.nom if m.hote}</td>"
+  result << "<td nowrap>#{m.hote.nom if m.hote}</td>"
+  result << "<td>#{indent m.description}</td>"
   result << "#{link_to_actions_table m}"
 }%>
 

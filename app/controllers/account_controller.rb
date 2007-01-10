@@ -15,7 +15,7 @@ class AccountController < ApplicationController
         if @session[:user] = Identifiant.authenticate(@params['user_login'], 
                                                        @params['user_password'], 
                                                        @params['user_crypt'])
-          # set_sessions
+          set_sessions
           flash[:notice]  = "Connexion réussie"
           redirect_back_or_default :action => "list", :controller => 'bienvenue'
         else
