@@ -15,7 +15,7 @@
   result << "<td>#{'X' if r.accepte}</td>"
   result << "<td>#{link_to_correctif r.correctif}</td>"
   result << "<td>#{r.commentaire}</td>"
-  result << "<td>#{r.correctif.demandes.collect{ |d| '#'+d.created_on_formated }.join(', ')}</td>"
+  result << "<td>#{r.correctif.demandes.collect{ |d| d.created_on_formatted }.join(', ')}</td>"
   result << "<td style='color:green'>#{r.created_on_formatted}</td>"
   result << "<td style='color:red' >#{r.cloture_formatted}</td>"
   result << "<td nowrap>#{time_in_french_words(r.delai) if r.accepte}</td>"
