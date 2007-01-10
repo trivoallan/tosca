@@ -98,16 +98,16 @@ class ReportingController < ApplicationController
     # on remplit
     je_veux_mettre_a_jour_les_graphes = true
     if (je_veux_mettre_a_jour_les_graphes)
-     write3graph(:repartition, Gruff::StackedBar)
-     write3graph(:severite, Gruff::StackedBar)
-     write3graph(:resolution, Gruff::StackedBar)
+      write3graph(:repartition, Gruff::StackedBar)
+      write3graph(:severite, Gruff::StackedBar)
+      write3graph(:resolution, Gruff::StackedBar)
 
-     write3graph(:evolution, Gruff::Line)
-     write3graph(:annulation, Gruff::Bar)
+      write3graph(:evolution, Gruff::Line)
+      write3graph(:annulation, Gruff::Bar)
 
-     write3graph(:temps_de_rappel, Gruff::Line)
-     write3graph(:temps_de_contournement, Gruff::Line)
-     write3graph(:temps_de_correction, Gruff::Line)
+      write3graph(:temps_de_rappel, Gruff::Line)
+      write3graph(:temps_de_contournement, Gruff::Line)
+      write3graph(:temps_de_correction, Gruff::Line)
     end
       
 #     write_graph(:top5_demandes, Gruff::Pie)
@@ -165,7 +165,7 @@ class ReportingController < ApplicationController
       [ [:'contournée'], [:'corrigée'], [:'cloturée'], [:'annulée'], [:en_cours] ]
     @data[:evolution] = 
       [ [:'bénéficiaires'], [:logiciels], [:correctifs] ] # TODO : [:interactions]
-    @data[:annulation] = 
+     @data[:annulation] = 
       [ [:informations], [:anomalies], [:'évolutions'] ]
 
     # calcul des délais
@@ -236,7 +236,7 @@ class ReportingController < ApplicationController
     # on fais bien attention à ne merger avec @data
     # qu'APRES avoir calculé toutes les sommes 
     middle_report = compute_data_period('middle', @report[:middle_report])
-    total_report = compute_data_period('total', @report[:total_report])
+    total_report = compute_data_period('total', @report[:total_report] - 1)
 
     # Maintenant on peut mettre à jour @data
     @data.update(middle_report)
@@ -251,8 +251,8 @@ class ReportingController < ApplicationController
 
 
   ##
-  # Sort une moyenne de nos traitements des demandes
-  # Sort le temps maximum de nos traitements des demandes
+  # Calcul un tableaux du respect des délais
+  # pour les 3 étapes : prise en compte, contournée, corrigée
   def compute_temps(donnees)
     demandes = Demande.find_all
     rappels = donnees[:temps_de_rappel]
