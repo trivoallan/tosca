@@ -10,5 +10,4 @@ module InteractionsHelper
     :action => 'show', :id => i.id
   end
 
-  
 end

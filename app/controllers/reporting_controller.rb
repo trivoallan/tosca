@@ -36,10 +36,10 @@ class ReportingController < ApplicationController
   ]
   # les index de tableau commencent à 0
   @@couleurs_degradees = ( [nil] << colors ).flatten
-  @@couleurs = ( [nil] << colors.indexes(1, 3, 5, 7, 9) ).flatten
+  @@couleurs = ( [nil] << colors.values_at(1, 3, 5, 7, 9) ).flatten
   # on modifie ensuite pour les autres type de données : 
-  @@couleurs_delais = ( [nil] << colors.indexes(7, 1) ).flatten
-  @@couleurs_types = ( [nil] << colors.indexes(3, 7, 9) ).flatten
+  @@couleurs_delais = ( [nil] << colors.values_at(7, 1) ).flatten
+  @@couleurs_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
   @@couleurs_types_degradees = ( [nil] << colors.indexes(2, 3, 6, 7, 8, 9) ).flatten
 
   def index
@@ -55,11 +55,10 @@ class ReportingController < ApplicationController
 
 
   def general
-
-    return redirect_to(:action => 'configuration') unless params[:reporting]
+    redirect_to(:action => 'configuration') and return unless params[:reporting]
     init_class_var(params)
-    return redirect_to(:action => 'configuration') unless 
-      @report[:start_date] < @report[:end_date]
+    redirect_to(:action => 'configuration') and return unless 
+      @contrat and (@report[:start_date] < @report[:end_date])
     init_data_general
     fill_data_general
     # TODO : trouver un bon moyen de faire un cache
@@ -123,6 +122,8 @@ class ReportingController < ApplicationController
   # @first_col contient la première colonne et @contrat le contrat
   # sélectionné
   def init_class_var(params)
+    period =  params[:reporting][:period].to_i
+    return unless period > 0 
     @contrat = Contrat.find(params[:reporting][:contrat_id])
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titres = @@titres
@@ -141,11 +142,24 @@ class ReportingController < ApplicationController
       @labels[i] = c if ((i % 2) == 0)
       i += 1
     end
-    middle_date = end_date.months_ago(params[:reporting][:period].to_i - 1)
+    if period == 1 
+      middle_date = end_date.beginning_of_month
+    else
+      middle_date = end_date.months_ago(period - 1)
+    end
     start_date = @report[:start_date]
-    @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
-    @report[:middle_report] = ((end_date - @report[:middle_date]) / 1.month).round + 1
-    @report[:total_report] = ((end_date - start_date) / 1.month).round + 1  
+    if (middle_date > start_date and middle_date < end_date)     
+      @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
+      @report[:middle_report] = ((end_date - @report[:middle_date]) / 1.month).round + 1
+      @report[:total_report] = ((end_date - start_date) / 1.month).round + 1  
+    else
+      flash[:warn] = 'paramètres incorrects'
+      # condition de sortie
+      @contrat = nil
+    end
+  rescue
+    flash[:warn] = 'paramètres incorrects'
+    @contrat = nil
   end
 
   # initialisation de @data
@@ -461,7 +475,7 @@ class ReportingController < ApplicationController
     g.no_data_message = 'Aucune donnée\n n\'est disponible'
 
     # this writes the file to the hard drive for caching
-    g.write "public/images/#{@path[nom]}"
+    g.write "#{RAILS_ROOT}/public/images/#{@path[nom]}"
   end
 
   # TODO : mettre ça dans le modèle Demande
