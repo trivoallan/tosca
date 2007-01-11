@@ -21,13 +21,14 @@
 <br/>
 <%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
 
-<% titres = ['Nom', 'Description', 'Technologies', 'Référent', 'Paquet(s)']%>
+<% titres = ['Nom', 'Description', 'Technologies', 'Référent', 'Groupe', 'Paquet(s)']%>
 <%= show_table(@logiciels, Logiciel, titres) { |l|
   result = ''
   result << "<td>#{link_to_logiciel l}</td>"
   result << "<td>#{l.resume}</td>"
   result << "<td>#{liste_competences l.competences}</td>"
   result << "<td>#{l.referent}</td>"
+  result << "<td>#{l.classifications.collect{|c| c.groupe.nom}.join(', ')}</td>"
   result << "<td>#{l.count_mes_paquets(@beneficiaires)}</td>"
   result << "#{link_to_actions_table l}"
 }%>
