@@ -24,10 +24,7 @@
 <%= show_liste(@demandes, 'Demande') { |d| link_to_demande d } %>
 <br/>
 
-<% paquets = @logiciel.mes_paquets(@beneficiaire); %>
-<%= show_liste(paquets, 'Paquet') { |paquet| link_to_paquet paquet } %>
-
-<% ### à scoper / mes_correctifs, mes_reversements ### %>
+<%= show_liste(@logiciel.paquets, 'Paquet') { |paquet| link_to_paquet paquet } %>
 
 <%# correctifs = @logiciel.interactions.collect{|i| i.reversement.correctif} %>
 <%#= show_liste(correctifs, 'Correctif') { |c| c.nom } %>

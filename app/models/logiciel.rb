@@ -26,16 +26,6 @@ class Logiciel < ActiveRecord::Base
   end
 
 
-  def mes_paquets(beneficiaire)
-    if beneficiaire
-      paquets.find_all_by_contrat_id( beneficiaire.client.\
-                                      contrats.collect{|c| c.id}, 
-                                      :order => "version DESC")
-    else
-      paquets
-    end
-  end
-
   def count_mes_paquets(beneficiaire)
     if beneficiaire
       Paquet.count(:all, :conditions => 

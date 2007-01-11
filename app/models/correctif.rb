@@ -12,14 +12,6 @@ class Correctif < ActiveRecord::Base
 
   validates_length_of :nom, :within => 3..100
 
-  def mes_demandes(beneficiaire)
-    if beneficiaire
-      demandes.find_all_by_beneficiaire_id(beneficiaire.client.beneficiaires)
-    else
-      demandes
-    end
-  end
-
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary || 
         c.name =~ /(_id|_on|^patch)$/ || c.name == inheritance_column }     
@@ -31,6 +23,22 @@ class Correctif < ActiveRecord::Base
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
+  end
+
+  # Rien ne nous empeche, vue du mcd, d'avoir un correctif
+  # sur plusieurs logiciels
+  # TODO : a voir et a revoir
+  def logiciels
+    @logiciels ||= Logiciel.find(self.paquets.find(:all, :select => 
+      'DISTINCT paquets.logiciel_id').collect{|p| p.logiciel_id})
+    @logiciels
+  end
+
+private
+  def find_logiciels
+    paquets = self.paquets.find(:all, :select => 'DISTINCT paquets.logiciel_id')
+    ids = paquets
+    Logiciel.find(ids)
   end
 
 end

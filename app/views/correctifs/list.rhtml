@@ -2,11 +2,13 @@
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 
-<% titres = ['Paquets', 'Patch', 'Màj']%>
+<% titres = ['Logiciels', 'Patch', 'Paquets concernés', 'Binaires résultants', 'Màj']%>
 <%= show_table(@correctifs, Correctif, titres, :content_columns => true) { |c|
   result = ''
-  result << "<td>#{c.paquets.collect{ |p| p.version.to_s + '-' + p.release.to_s }.uniq.join(', ')}</td>"
+  result << show_cell_list(c.logiciels) { |l| link_to_logiciel(l) }
   result << "<td>#{link_to_file c, 'patch'}</td>"
+  result << show_cell_list(c.paquets) { |p| link_to_paquet(p) }
+  result << show_cell_list(c.binaires) { |b| link_to_binaire(b) }
   result << "<td>#{c.updated_on_formatted}</td>"
   result << "#{link_to_actions_table c}"
 }%>

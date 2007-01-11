@@ -50,6 +50,16 @@ module ApplicationHelper
     out << '</tr></table>'
   end
 
+  # Affiche uye liste d'élements dans une cellule de tableaux
+  # call it like : show_cell_list(c.paquets) { |p| link_to_paquet(p) }
+  def show_cell_list(list)
+    out = '<td>'
+    if list and not list.empty?
+      list.each { |e| out << yield(e) + '<br />' }
+    end
+    out << '</td>'
+  end
+
   #  add_create_link
   # options :
   #  permet de spécifier un controller 

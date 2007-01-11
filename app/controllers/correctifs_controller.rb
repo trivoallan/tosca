@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class CorrectifsController < ApplicationController
-  helper :reversements, :demandes, :paquets, :binaires
+  helper :reversements, :demandes, :paquets, :binaires, :logiciels
 
   before_filter :verifie, :only => 
     [ :show, :edit, :update, :destroy ]
@@ -77,25 +77,12 @@ class CorrectifsController < ApplicationController
     render_text('') and return unless request.xml_http_request? and params[:id]
 
     logiciel = Logiciel.find(params[:id].to_i)
-    @paquets = logiciel.paquets
-      #Paquet.find_all_by_logiciel_id\
-      #(@params[:id].to_i, :order => Paquet::ORDER, :include => Paquet::INCLUDE)
-
-    @binaires = logiciel.binaires # Binaire.find_all_by_paquet_id\
-    #(params[:id].to_i, Binaire::OPTIONS)
-
+    @paquets = logiciel.paquets.find(:all, Paquet::OPTIONS)
+    @binaires = logiciel.binaires.find(:all, Binaire::OPTIONS) 
 
     render :partial => 'liste_paquets', :layout => false
   end
 
-  def ajax_binaires
-    render_text('') and return unless request.xml_http_request? and params[:id]
- 
-    @binaires = Binaire.find_all_by_paquet_id\
-    (params[:id].to_i, Binaire::OPTIONS)
-
-    render :partial => 'liste_binaires', :layout => false
-  end
 
   private
   def _form
