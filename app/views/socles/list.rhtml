@@ -7,11 +7,10 @@
   result = ''
   result << "<td>#{link_to_socle(m)}</td>"
   result << "<td>#{m.machine.to_s if m.machine}</td>"
-  result << "<td>#{'X' if m.machine and m.machine.virtuelle}</td>"
+  result << "<td>#{'VM' if m.machine and m.machine.virtuelle}</td>"
   result << '<td>'
   m.clients.each { |c| result << "#{link_to_client(c)}<br />" }
   result << '</td>'
-  result << "<td>#{'X' if m.machine and m.machine.virtuelle}</td>"
   result << "#{link_to_actions_table m}"
 }%>
 
