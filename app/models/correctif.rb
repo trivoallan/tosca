@@ -8,7 +8,7 @@ class Correctif < ActiveRecord::Base
   has_and_belongs_to_many :paquets
   has_and_belongs_to_many :binaires
 
-  file_column :patch
+  file_column :patch, :fix_file_extensions => nil
 
   validates_length_of :nom, :within => 3..100
 
@@ -18,8 +18,11 @@ class Correctif < ActiveRecord::Base
   end
 
   def to_s
-    nom
+    index = patch.rindex('/')+ 1
+    patch[index..-1]
   end
+
+  alias_method :nom, :to_s
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"

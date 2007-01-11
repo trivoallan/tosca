@@ -3,7 +3,7 @@
 #####################################################
 class ReversementsController < ApplicationController
 
-  helper :correctifs
+  helper :correctifs, :paquets, :demandes, :interactions
 
   before_filter :verifie, 
   :only => [ :show, :edit, :update, :destroy ]
