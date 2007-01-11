@@ -5,7 +5,7 @@ class Document < ActiveRecord::Base
   belongs_to :client
   belongs_to :typedocument
   belongs_to :identifiant
-  file_column :fichier
+  file_column :fichier, :fix_file_extensions => nil
 
 
   #versioning, qui s'occupe de la table documents_versions

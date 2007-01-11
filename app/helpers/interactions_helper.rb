@@ -7,7 +7,7 @@ module InteractionsHelper
   def link_to_interaction(i)
     return "N/A" unless c
     link_to i.resume, :controller => 'interactions', 
-    :action => 'show', :id => c.id
+    :action => 'show', :id => i.id
   end
 
   
