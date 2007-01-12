@@ -43,7 +43,7 @@ class ReportingController < ApplicationController
   @@couleurs_types_degradees = ( [nil] << colors.indexes(2, 3, 6, 7, 8, 9) ).flatten
 
   def index
-    general
+    configuration
     render :action => 'configuration'
   end
 
