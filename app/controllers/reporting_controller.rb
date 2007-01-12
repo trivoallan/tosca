@@ -151,7 +151,7 @@ class ReportingController < ApplicationController
     if (middle_date > start_date and middle_date < end_date)     
       @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
       @report[:middle_report] = ((end_date - @report[:middle_date]) / 1.month).round + 1
-      @report[:total_report] = ((end_date - start_date) / 1.month).round + 1  
+      @report[:total_report] = ((end_date.beginning_of_month - start_date.beginning_of_month) / 1.month).round + 1  
     else
       flash[:warn] = 'paramètres incorrects'
       # condition de sortie
