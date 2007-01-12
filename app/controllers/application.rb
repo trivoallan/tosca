@@ -88,6 +88,8 @@ class ApplicationController < ActionController::Base
 
 
   #scope
+  # TODO : c'est pas DRY, une sous partie a été recopié dans
+  # reporting
   def scope_beneficiaire
     if @beneficiaire
 

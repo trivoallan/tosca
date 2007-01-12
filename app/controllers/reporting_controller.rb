@@ -124,7 +124,7 @@ class ReportingController < ApplicationController
   def init_class_var(params)
     period =  params[:reporting][:period].to_i
     return unless period > 0 
-    @contrat = Contrat.find(params[:reporting][:contrat_id])
+    @contrat = Contrat.find(params[:reporting][:contrat_id].to_i)
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titres = @@titres
     @report[:start_date] = [@contrat.ouverture.beginning_of_month, Time.now].min
@@ -229,6 +229,12 @@ class ReportingController < ApplicationController
       nil, nil, liste ]  
     correctifs = [ 'correctifs.created_on BETWEEN ? AND ?', nil, nil ]  
     # (#{liste})" ]
+
+    # TODO : provient du scop de appication.rb
+    # TODO : c'est pas DRY
+    cpaquets = ['paquets.contrat_id = ?', @contrat.id ]
+    scorrectifs = {:find => {:conditions => cpaquets, :include => [:paquets]}}
+    Correctif.with_scope(scorrectifs) {
     until (start_date > end_date) do 
       infdate = "#{start_date.strftime('%y-%m')}-01"
       start_date = start_date.advance(:months => 1)
@@ -247,6 +253,7 @@ class ReportingController < ApplicationController
         end
       end
     end
+    }
     # on fais bien attention à ne merger avec @data
     # qu'APRES avoir calculé toutes les sommes 
     middle_report = compute_data_period('middle', @report[:middle_report])

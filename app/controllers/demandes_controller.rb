@@ -156,7 +156,7 @@ class DemandesController < ApplicationController
     # 6 est l'arch source
     paquets = beneficiaire.client.paquets.\
     find_all_by_logiciel_id(logiciel.id, 
-                            :order => 'nom DESC')
+                            :order => 'logiciels.nom DESC')
 
     severite = Severite.find(params[:demande][:severite_id]) 
     typedemande = Typedemande.find(params[:demande][:typedemande_id])
@@ -355,7 +355,7 @@ class DemandesController < ApplicationController
   private
   def _form
     if @ingenieur
-      @clients = Client.find(:all, :select => 'id, nom')
+      @clients = Client.find(:all, :select => 'id, clients.nom')
       @client_id = @demande.client.id 
     end
     conditions = [ 'binaires.socle_id = ? ', @demande.socle_id ]

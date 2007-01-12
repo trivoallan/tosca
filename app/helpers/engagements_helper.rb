@@ -21,7 +21,9 @@ module EngagementsHelper
       out << "<td>#{e.severite.nom}</td>"
       out << "<td>#{display_jours e.contournement}</td>"
       out << "<td>#{display_jours e.correction}</td>"
-      out << "#{link_to_actions_table e}"
+      if controller.controller_name == 'engagements'
+        out << "#{link_to_actions_table e}"
+      end
       oldtypedemande = e.typedemande_id
      out 
     }

@@ -36,7 +36,7 @@ class Client < ActiveRecord::Base
     conditions = 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id FROM ' + 
       'paquets WHERE paquets.contrat_id IN (' + 
       contrats.collect{|c| c.id}.join(',') + '))'
-    Logiciel.find(:all, :conditions => conditions, :order => 'nom')
+    Logiciel.find(:all, :conditions => conditions, :order => 'logiciels.nom')
   end
 
   def correctifs

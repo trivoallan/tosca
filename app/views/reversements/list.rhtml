@@ -6,7 +6,7 @@
 <% titres = ['Logiciel', 'Paquet(s)', 'Demande(s)', 'Résumé de l\'interaction', 
              'Etat', 'Accepté ?', 'Correctif', 'Commentaire', 'Période',  
              'Crée le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
-<%= show_table(@reversements, Interaction, titres) { |r|
+<%= show_table(@reversements, Reversement, titres) { |r|
   result = ''
   result << "<td>#{r.interaction.logiciel.nom if r.interaction.logiciel }</td>"
   result << show_cell_list(r.correctif.paquets) { |p| 
