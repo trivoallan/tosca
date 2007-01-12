@@ -176,7 +176,7 @@ class ReportingController < ApplicationController
       [:bloquantes_en_cours], [:majeures_en_cours], 
       [:mineures_en_cours], [:sans_objet_en_cours] ]
     @data[:resolution] = 
-      [ [:'contournée'], [:'corrigée'], [:'cloturée'], [:'annulée'], [:en_cours] ]
+      [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:en_cours] ]
     @data[:evolution] = 
       [ [:'bénéficiaires'], [:logiciels], [:correctifs] ] # TODO : [:interactions]
      @data[:annulation] = 
