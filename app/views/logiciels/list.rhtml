@@ -28,7 +28,7 @@
   result << "<td>#{l.resume}</td>"
   result << "<td>#{liste_competences l.competences}</td>"
   result << "<td>#{l.referent}</td>"
-  result << "<td>#{l.classifications.collect{|c| c.groupe.nom}.join(', ')}</td>"
+  result << show_cell_list(l.classifications) { |c| c.groupe.nom } 
   result << "<td>#{l.count_mes_paquets(@beneficiaires)}</td>"
   result << "#{link_to_actions_table l}"
 }%>
