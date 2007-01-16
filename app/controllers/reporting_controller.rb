@@ -150,7 +150,7 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     if (middle_date > start_date and middle_date < end_date)     
       @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
-      @report[:middle_report] = ((end_date - @report[:middle_date]) / 1.month).round + 1
+      @report[:middle_report] = ((end_date.beginning_of_month - @report[:middle_date]) / 1.month).round + 1
       @report[:total_report] = ((end_date.beginning_of_month - start_date.beginning_of_month) / 1.month).round + 1  
     else
       flash[:warn] = 'paramètres incorrects'
@@ -316,7 +316,7 @@ class ReportingController < ApplicationController
 
   # Petit helper pour être dry, je sais pas trop comment l'appeler
   def fill_one_report(collection, value, max, last)
-    if value <= max
+    if ((value <= max) || (max == -1))
       collection[0][last] += 1
     else
       collection[1][last] += 1
