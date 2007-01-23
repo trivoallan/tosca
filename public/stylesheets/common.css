@@ -51,6 +51,11 @@ p {
 	color:#114188;
 	margin: 0em;
 }
+
+table {
+	-moz-border-radius: 1em;
+}
+
 li {
 	color:#114188;
 }
