@@ -2,3 +2,14 @@
 <p>Le présent rapport rend compte de l'exécution du service depuis le
 <%= @report[:middle_date].strftime('%d %B %Y') %> jusqu&#146;au 
 <%= @report[:end_date].strftime('%d %B %Y') %> inclus (soit <%= @report[:middle_report] %> mois).</p>
+
+<p>Le début du rapport est organisé suivant quatre zones pour chaque type d'information : </p>
+<ul>
+  <li>le premier camembert concerne un récapitulatif sur la période considérée correspondant au nombre de mois que vous avez sélectionné, </li>
+  <li>le second camembert récapitule l'ensemble des données depuis l'ouverture du marché : il ne varie donc pas quelque soit la période que vous aurez choisie, </li>
+  <li>le troisième graphique vous offre une autre vision du récapitulatif à travers un histographe d'évolution de ces données sur la durée du marché </li>
+  <li>le dernier tableau vous offre une vision numérique des données utilisées pour dessiner les graphiques qui vous sont présentés dans la même zone. </li>
+</ul>
+<p>Vous observerez notamment que les nombres sont parfois accompagnés d'un second nombre entre parenthèses : 
+le premier correspond au nombre de demandes, 
+alors que le second indique, si cela est nécessaire, au sein de ces demandes, quelles sont celles qui sont toujours "en activité". </p>
