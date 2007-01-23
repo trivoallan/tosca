@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
   protected
   
   # variable utilisateurs; nécessite @session[:user]
+  # penser à mettre à jour les pages statiques 404 et 500 en cas de modification
   def set_sessions
     return unless @session[:user]
     @session[:filtres] = Hash.new
