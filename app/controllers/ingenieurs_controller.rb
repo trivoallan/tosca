@@ -13,7 +13,7 @@ class IngenieursController < ApplicationController
 
   def list
     @competences = Competence.find_all
-    @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 10,
+    @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 20,
     :include => [:identifiant,:competences]
   end
 

@@ -24,6 +24,7 @@
   <% end %>
     <th>Ingénieur</th>
     <th>Bénéficiaire</th>
+    <th>(Client)</th>
     <th></th>
   </tr>
 
@@ -39,7 +40,9 @@
       <%if user.roles.include? role%> checked="checked" <%end%> ></td>
     <% end %>
       <td><%= "X" if user.ingenieur %></td>
-      <td><%= "X" if user.beneficiaire %></td>
+      <td><%= "X" if user.beneficiaire %>
+          <%= "Permissions anormales" unless user.valide %></td>
+      <td><%= user.beneficiaire.client.nom if user.beneficiaire %></td>
       <td><%= submit_tag 'Modifier ses droits' %></td>
    <%= end_form_tag %>
 

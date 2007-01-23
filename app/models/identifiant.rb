@@ -79,6 +79,16 @@ class Identifiant < ActiveRecord::Base
     a
   end
 
+  # Vérifie l'intégrité/la validité d'un utilisateur
+  # à utiliser à la crétion et à la modification d'un utilisateur
+  # - cohérence des droits en fonction de l'appartenance (ingénieur ou bénéficiaire)
+  def valide
+    # cohérence des droits en fonction de l'appartenance (ingénieur ou bénéficiaire)
+    return false if beneficiaire && ( roles != [Role.find(2)] )
+    # si tout va bien
+    return true 
+  end
+
   # Ce qui suit est protected
   protected
 
@@ -98,6 +108,5 @@ class Identifiant < ActiveRecord::Base
   validates_presence_of :login, :password, :password_confirmation
   validates_uniqueness_of :login, :on => :create
   validates_confirmation_of :password, :on => :create     
-
 
 end
