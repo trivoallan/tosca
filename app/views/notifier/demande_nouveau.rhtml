@@ -2,9 +2,4 @@ Bonjour,
 
    Un nouveau ticket [#<%= @demande.id %>] a été déclaré par <%=h @nom %> et vous concerne.
 
-   <%= @demande.resume %>
-
-   <%= @demande.description %>
-
-
 <%= render :partial => '../notifier/end_mail'%>
