@@ -12,7 +12,7 @@ Consulter la demande : <%= url_for :only_path => false, :id => @demande.id,
 <% if (@commentaire && @commentaire.piecejointe) %>
 Télécharger la pièce jointe : http://<%= @request.host_with_port + 
                                          url_for_file_column(@commentaire.piecejointe, 
-                                                             "file", :absolute => true) %>
+                                                             "file", :absolute => true) + "\n" %>
 <% end %>
 
 Cordialement,
