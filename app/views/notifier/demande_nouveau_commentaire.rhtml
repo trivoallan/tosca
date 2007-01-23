@@ -1,10 +1,10 @@
 Bonjour,
 
-   <% if @statut_modifie %>
-   <%=h @nom %> a passé votre demande en <%= @demande.statut.nom %> :
-   <% else %>
+<% if @statut_modifie %>
+   <%=h @nom %> a passé votre demande <%= "#{@demande.id} %>  en <%= @demande.statut.nom %> :
+<% else %>
    Votre demande a été commentée par <%=h @nom %> :
-   <% end %>
-   <%= wrap @commentaire.corps %>
+<% end %>
+  <%= wrap "#{@commentaire.corps}" %>
 
 <%= render :partial => '../notifier/end_mail'%>

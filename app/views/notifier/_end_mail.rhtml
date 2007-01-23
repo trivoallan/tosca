@@ -1,23 +1,25 @@
 <% if @demande %>
 ===============================================================================
-<%= wrap "Résumé :        #{@demande.resume}" %>
+Résumé de la demande <%= "#{@demande.id}" %> : <%= wrap "#{@demande.resume}" %>
 Description :
-<%= wrap "   #{@demande.description}" %>
+<%= wrap "#{@demande.description}" %>
 ===============================================================================
-<%= url_for :only_path => false, :id => @demande.id, 
+
+Consulter la demande : <%= url_for :only_path => false, :id => @demande.id, 
   :controller => 'demandes', :action => 'comment' %>
 <% end %>
 
+<% if (@commentaire && @commentaire.piecejointe) %>
+Télécharger la pièce jointe : http://<%= @request.host_with_port + 
+                                         url_for_file_column(@commentaire.piecejointe, 
+                                                             "file", :absolute => true) %>
+<% end %>
+
 Cordialement,
-L'équipe du <%= Metadata::SITE_INTERNET %>
+L'équipe du <%= Metadata::SITE_INTERNET+"\n" %>
 
 -- 
-<% if (@commentaire && @commentaire.piecejointe) %>
-Télécharger la pièce jointe :
-http://<%= @request.host_with_port + 
-  url_for_file_column(@commentaire.piecejointe, "file", 
-    :absolute => true) %>
-<% end %>
+<%= Metadata::SITE_INTERNET+"\n" %>
 
 Rappel sur les statuts et nos engagements :
 http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande
