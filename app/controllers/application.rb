@@ -50,9 +50,9 @@ class ApplicationController < ActionController::Base
     @session[:beneficiaire] = @session[:user].beneficiaire
     @session[:ingenieur] = @session[:user].ingenieur
     @session[:logo_lstm] = render_to_string :inline => 
-      "<%=image_tag('logo_lstm.gif', :alt => 'accueil')%>"
+      "<%=image_tag('logo_lstm.gif', :alt => 'Accueil', :title => 'Accueil' )%>"
     @session[:logo_08000] = render_to_string :inline => 
-      "<%=image_tag('logo_08000.gif', :alt => '08000 LINUX')%>"
+      "<%=image_tag('logo_08000.gif', :alt => '08000 LINUX', :title => '08000 LINUX' )%>"
     @session[:nav_links] = render_to_string :inline => "
         <% nav_links = [ 
           (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),

@@ -24,9 +24,9 @@
 	<table width=100%>
         <tr>
           <td width="5" rowspan="2">
-              <%= @session[:logo_lstm] %></td>
+              <%= link_to @session[:logo_lstm], :controller => 'bienvenue', :action => 'list'%></td>
           <td style="padding-left:20px">
-              <%= @session[:logo_08000] %></td>
+              <%=image_tag('logo_08000.gif', :alt => '08000 LINUX', :title => '08000 LINUX' )%></td>
           <td style="text-align:right;padding-right:20px" colspan="2" >
                <%= @session[:nav_links] if @session[:user] %></td>
         </tr>
