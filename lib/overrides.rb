@@ -26,7 +26,11 @@ class Time
   end
 end
 
-
+class Array
+   def sum 
+    inject( nil ) { |sum,x| sum ? sum+x : x }
+   end
+end
 
 module ActiveRecord
   class Base
@@ -55,5 +59,4 @@ module ActionController
    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
    "<a href=\"#{url}\"#{tag_options}>Yeah ! #{name || url}</a>"
  end
-
 end
