@@ -91,6 +91,9 @@ class InteractionsController < ApplicationController
     @clients = Client.find_all
     @logiciels = Logiciel.find_all
     @reversement = @interaction.reversement if @interaction and @interaction.reversement
+    # pour le formulaire partiel de reversement
+    @correctifs = Correctif.find_all
+    @etatreversements = Etatreversement.find_all
   end
 
 end
