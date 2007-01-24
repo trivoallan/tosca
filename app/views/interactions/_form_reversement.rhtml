@@ -1,10 +1,13 @@
 <% if @reversement %>
+
+<h2>Reversement</h2>
+
 <%= error_messages_for 'reversement' %>
 
 <!--[form:reversement]-->
 
 <p><label for="reversement_commentaire">Commentaire</label><br/>
-<%= text_area 'reversement', 'commentaire'  %></p>
+<%= text_area 'reversement', 'commentaire', :rows => 5  %></p>
 
 <p><label for="reversement_cloture">Accepte le</label><br/>
 <%= datetime_select 'reversement', 'cloture'  %></p>
@@ -20,5 +23,7 @@
 <%= select('reversement', 'etatreversement_id', 
            @etatreversements.collect{|l| [ l.nom, l.id]}) %></p>
 
+
 <!--[eoform:reversement]-->
+
 <% end %>

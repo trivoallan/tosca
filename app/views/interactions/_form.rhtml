@@ -1,42 +1,57 @@
 <%= error_messages_for 'interaction' %>
 
 <!--[form:interaction]-->
+
+<table>
+<tr><td colspan="2"><br/><hr/></td></tr>
+<tr style="vertical-align:top;"><td>
+
+<h2>Interaction avec la communauté</h2>
+
 <p><label for="interaction_url_de_suivi">Url de suivi</label><br/>
 <%= text_area 'interaction', 'url_de_suivi', :rows => 3  %></p>
 
-<p><label for="interaction_logiciel">Logiciel</label><br/>
+<p><label for="interaction_logiciel">Logiciel / Communauté</label><br/>
 <%= select("interaction", "logiciel_id", 
            @logiciels.collect{|l| [ l.nom, l.id ]}) %></p>
 
-<p><label for="interaction_ingenieur">Ingénieur</label><br/>
+<p><label for="interaction_ingenieur">Ingénieur auteur de l'intéraction</label><br/>
 <%= select("interaction", "ingenieur_id", 
            @ingenieurs.collect{|l| [ l.nom, l.id ]}) %></p>
 
-<p><label for="interaction_client">Client</label><br/>
+<p><label for="interaction_client">Client associé</label><br/>
 <%= select("interaction", "client_id", 
            @clients.collect{|l| [ l.nom, l.id ]}) %></p>
 
 <p><label for="interaction_temps_passe">Temps passé (en Jours Ouvrés)</label><br/>
 <%= text_field 'interaction', 'temps_passe'  %></p>
 
-<p><label for="interaction_resume">Resumé</label><br/>
+<p><label for="interaction_resume">Resumé de l'intéraction</label><br/>
 <%= text_field 'interaction', 'resume'  %></p>
 
 <p><label for="interaction_description">Description</label><br/>
 <%= text_area 'interaction', 'description', :rows => 3  %></p>
 
-<p><label for="action_reversement">Reversement ?</label> 
+<p><label for="action_reversement">Un reversement a t-il eu lieu ?</label> 
 <%= check_box 'action', 'reversement'  %></p>
+
+</div>
+
+</td><td>
 
 <%= observe_field "action_reversement", { :url => 
       {:action => :ajax_update_reversement}, 
        :update => :reversement, :with => "action_reversement" 
    } %>
 
-<div id="reversement">
+<div id="reversement" >
 <%= render :partial => 'form_reversement' %>
 </div>
 
+</td></tr>
+</table>
 
 <!--[eoform:interaction]-->
+
+
 
