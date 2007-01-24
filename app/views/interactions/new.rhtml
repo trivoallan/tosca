@@ -1,9 +1,10 @@
-<h1>Ajouter une interaction</h1>
-
+<div title="interaction" id="interaction" class="_form_interaction">
+<h1>Ajouter une interaction / un reversement</h1>
 <%= start_form_tag :action => 'create' %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Ajouter" %>
 <%= end_form_tag %>
+</div>
 
 <br/>
 <%= link_to_back()%>
