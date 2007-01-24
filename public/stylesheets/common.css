@@ -104,6 +104,7 @@ span.left {
 	width: 96%; /* mettre 100% - (2 x margin) */
 }
 #pied {
+	position: fixed;
 	color: black;
 /*	margin: 0;
 	padding: 0;
@@ -112,7 +113,6 @@ span.left {
 /*	padding: .3em; */
 	width: 100%;
 	text-align: center;
-	position: relative;
 	bottom: 0;
 	border-top: 2px solid #cfc8cf;
 	font-weight: bolder;
@@ -136,6 +136,7 @@ span.left {
 	margin-right: auto;
 	*/
 }
+
 .form {
 	background-color: #d2dfd2;
 	padding: 1em;
@@ -145,9 +146,21 @@ span.left {
 	border-color:grey;
 	width:40em;
 }
+
+.form_interaction {
+	background-color: #d2dfd2;
+	padding: 1em;
+	margin-left: 2em;
+	border-style:solid; 
+	border-width:1px; 
+	border-color:grey;
+	width:55em;
+}
+
 .largeur_td {
 	width: 30%
 }
+
 /* filtres */
 .table_filtre {
 	background-color: #D4D8FF;
