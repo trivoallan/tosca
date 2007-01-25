@@ -69,16 +69,6 @@ class ClientsController < ApplicationController
   end
 
   private
-  def scope_beneficiaire
-    if @beneficiaire
-      conditions = ['clients.id = ? ', @beneficiaire.client_id ]
-      Client.with_scope({ :find => { :conditions => conditions },
-                        }) { yield }
-    else
-      yield
-    end
-  end
-
   def _form
     @photos = Photo.find_all
     @supports = Support.find_all

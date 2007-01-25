@@ -124,18 +124,5 @@ class LogicielsController < ApplicationController
   end
 
   private
-#   def scope_beneficiaire
-#     if @beneficiaire
-#       ids = @beneficiaire.contrat_ids
-#       # liste = (contrats.empty? ? '0' : contrats.collect{|c| c.id}.join(','))
-#       conditions = [ 'paquets.contrat_id IN (?)', ids ]
-#       Logiciel.with_scope({ :find => { 
-#                               :conditions => conditions,
-#                               :include => [:paquets]
-#                           }
-#                         }) { yield }
-#     else
-#       yield
-#     end
-#   end
+
 end

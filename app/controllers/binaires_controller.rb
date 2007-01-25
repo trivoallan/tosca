@@ -75,22 +75,4 @@ class BinairesController < ApplicationController
     @socles = Socle.find_all
   end
 
-  def scope_beneficiaire
-    
-    if @beneficiaire
-      ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
-      conditions = [ "paquets.contrat_id IN (#{ids})" ]
-      Correctif.with_scope({ :find => { 
-                               :conditions => conditions,
-                               :joins => 'INNER JOIN correctifs_paquets cp ON ' + 
-                                 'cp.correctif_id = correctifs.id ' +
-                                 'INNER JOIN paquets ON ' + 
-                                 'cp.paquet_id = paquet.id '
-                             },
-                        }) { yield }
-    else
-      yield
-    end
-  end
-
 end

@@ -99,19 +99,6 @@ class PaquetsController < ApplicationController
   end
 
   private
-  
-  def scope_beneficiaire
-    if @beneficiaire
-      ids = @beneficiaire.contrat_ids
-      Paquet.with_scope({ :find => { :conditions => 
-                              [ 'paquets.contrat_id IN (?)', ids ]
-                          }
-                        }) { yield }
-    else
-      yield
-    end
-  end
-
   def _form
     @logiciels = Logiciel.find(:all, :order => 'nom')
     @groupes = Groupe.find_all

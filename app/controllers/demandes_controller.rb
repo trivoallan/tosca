@@ -7,6 +7,11 @@ class DemandesController < ApplicationController
 
   helper :correctifs
 
+  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
+  verify :method => :post, :only => [ :destroy, :create, :update ],
+         :redirect_to => { :action => :list }
+
+
 
   # verifie :
   # - s'il il y a un demande_id en paramètre (sinon :  retour à la liste)
@@ -29,10 +34,6 @@ class DemandesController < ApplicationController
     list
     render :action => 'list'
   end
-
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
 
 
   def raz_recherche
@@ -252,7 +253,6 @@ class DemandesController < ApplicationController
 
   def destroy
     Demande.find(params[:id]).destroy
-    redirect_to :back
   end
 
   def changer_statut
