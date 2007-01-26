@@ -20,9 +20,50 @@ class Reversement < ActiveRecord::Base
       "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
   end
 
-  # délai en jour
+  # délai (en secondes) entre la déclaration et l'acceptation
+  # en texte : time_in_french_words(delai)
+  # en jours : sec2jours(delai)
   def delai
     (cloture - created_on)
+  end
+
+  # conditions de mise à jour d'un reversement
+  # + "non clos" ET (updated_on > 1 mois)
+  # + OU "à reverser"
+  def todo(max_jours)
+    # TODO : vérifier max_jours is integer
+    age = ((Time.now - updated_on)/(60*60*24)).round
+    if etatreversement != 3 && age > max_jours.to_i
+      # non clos && non maj
+      return "mettre-à-jour" 
+    elsif etatreversement == 0
+      # non initialisé
+      return "reverser"
+    else 
+      # rien à faire
+      return false
+    end
+  end
+
+  # bilan du workflow "etatreversement" et du booleen "accepte"
+  def etat
+    out = etatreversement.nom
+    case etatreversement.id
+     when 1..3 then out << " "
+     when 4    then out << " : <b>#{( accepte ? "accepté" : "refusé" )}</b>"
+     else           out << " (?)"
+    end
+    out
+  end
+
+  # retourne true si l'état du reversement est final
+  def clos
+    etatreversement.id==4 
+  end
+
+  # retourne true si le reversement est clos et qu'il a été accepté
+  def reverse
+    clos && accepte
   end
 
 end
