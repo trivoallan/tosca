@@ -83,7 +83,8 @@ span.right {
 span.left {
 	float: left;
 }
-/* structure */
+
+/********************* structure *******************/
 .imgTete {
 	padding: 10px;
 	height: 80px;
@@ -117,7 +118,9 @@ span.left {
 	border-top: 2px solid #cfc8cf;
 	font-weight: bolder;
 }
-/* /structure */
+
+/***************************************************/
+
 .floating-box {
 	float: right;
 	width: 60%;
@@ -145,6 +148,7 @@ span.left {
 	border-width:1px; 
 	border-color:grey;
 	width:40em;
+	-moz-border-radius: 1em;
 }
 
 .form_interaction {
@@ -161,7 +165,8 @@ span.left {
 	width: 30%
 }
 
-/* filtres */
+/******************* filtres **********************/
+
 .table_filtre {
 	background-color: #D4D8FF;
 	font-size: 80%;
@@ -188,8 +193,9 @@ span.left {
 	clear: both;
 	display: block;
 }
-/* /filtres */
-/* listes */
+
+/************************* listes ****************/
+
 .list {
 	margin:0;
 	position: relative;
@@ -330,8 +336,9 @@ span.left {
 	float: left;
 	clear: right;
 }
-/* /listes */
-/* erreur */
+
+/**************************** erreur **************************/
+
 .error {
 	background-color: #FFD9D9;
 	border: 1px solid Red;
@@ -356,9 +363,10 @@ td.error div.message {
 td.error div.link {
   margin-top : 1em;
 }
-/* /erreur */
 
-/* stats */
+
+/************************** stats **********************/
+
 .stat_titre {
 	font-size: 120%;
 	padding-bottom: 1em;
@@ -377,8 +385,9 @@ td.error div.link {
 .stat_img {
 	margin: 0 auto;
 }
-/* /stats */
-/* sommaire */
+
+/************************ sommaire ************************/
+
 table.sommaire   {
 	border: 1px solid black;
 	background-color: #DFDFDF;
@@ -414,8 +423,9 @@ dl.sommaire dd.action>ul li {
 	margin-left: 1em;
 	padding-left: 0em;
 }
-/* /sommaire */
-/* typo */
+
+/************************** typo ***********************/
+
 .nowrap {
 	white-space: nowrap;
 }
@@ -445,7 +455,9 @@ dl.sommaire dd.action>ul li {
 	text-align: center;
 	margin: .5em 0 0 0;
 }
-/* /typo */
+
+/****************************************************/
+
 .rappel_utilisateur {
 	background-color: #CAD9F9;
 	border: 1px solid #12419E;
@@ -498,12 +510,14 @@ a.nobackground {
 	text-decoration: none;
 }
 
-/*****************************************/
+/*************************************************/
 
 /* login */
 .login tr {
 	height: 40px;
 }
+
+
 
 h1.title {
 	font-size: 300%;
@@ -535,7 +549,8 @@ h1.section {
 }
 
 
-/****** reporting *******/
+/******************** reporting *******************/
+
 /* formulaire de saisie mois et année */
 .report_form {
 	background-color: #d2dfd2;
@@ -606,4 +621,17 @@ h1.section {
 
 hr {
 	clear: both;
+}
+
+
+/***************** zones spéciales ***************/
+
+.info {
+	border: 1px solid black;
+	background-color: #DFDFDF;
+	-moz-border-radius: 1em;
+	padding: 2em;
+	margin: 1em;
+	margin-left: 0em;
+	margin-right: 0em;
 }
