@@ -11,18 +11,25 @@
 
 <!--[form:demande]-->
 
-<table><tr valign="top"><td width="600px">
+<table class="info" ><tr><td valign="top">
 
 <table><% #colonne gauche %>
 
-<% if @demande.beneficiaire %>
-<% if @ingenieur %>
+<% if @demande.beneficiaire && @ingenieur %>
 <tr>
-<td><p>Client</p></td>
-<td><%= @demande.beneficiaire.client.nom %></td>
+  <td><p>Client</p></td>
+  <td><%= @demande.beneficiaire.client.nom %></td>
 </tr>
 <% end %>
-<% end %>
+
+<tr>
+<td colspan="2"><p><label for="demande_resume">Resumé</label><br/>
+   <%= text_area 'demande', 'resume', :cols => 65, :rows => 2 %></p></td></tr>
+
+<tr><tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
 
 <tr>
 <td><p><label for="demande_beneficiaire">Bénéficiaire</label></p></td>
@@ -30,7 +37,7 @@
 <%= option_groups_from_collection_for_select(@clients, "beneficiaires", 
                                              "nom", "id", "nom", 
                                              @demande.beneficiaire_id ) %>
-</select><td>
+</select></td>
 </tr>
 
 <% if @ingenieurs %>
@@ -38,82 +45,71 @@
 <td><p><label for="demande_ingenieur">Ingénieur assigné à la demande</label></p></td>
 <td><%= select("demande", "ingenieur_id", 
 	@ingenieurs.collect{|i| [ i.identifiant.nom, i.id]}, 
-     { :include_blank => true }) %></td>
-</tr>
+     { :include_blank => true }) %></td></tr>
 <% end %>
 
 <tr>
 <td colspan="2">
 <div id="contrat"></div>
 <%  #observe_field "demande_beneficiaire_id", { :url => {:action => :ajax_update_beneficiaire}, 
-    #:update => :contrat, :with => "beneficiaire_id" } 
-%>
-</td>
-</tr>
+    #:update => :contrat, :with => "beneficiaire_id" } %>
+</td></tr>
 
 <tr>
 <td><p><label for="demande_logiciel">Logiciel concerné</label></p></td>
 <td><%= select("demande", "logiciel_id", 
-	@logiciels.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td>
-</tr>
+	@logiciels.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td></tr>
 
 <tr>
 <td><p><label for="demande_typedemande">Type de la demande</label></p></td>
 <td><%= select("demande", "typedemande_id", 
-	@typedemandes.collect{|l| [ l.nom, l.id]}) %></td>
-</tr>
+	@typedemandes.collect{|l| [ l.nom, l.id]}) %></td></tr>
 
 <tr>
 <td><p><label for="demande_severite">Sévérité de la demande</label></p></td>
 <td><%= select("demande", "severite_id", 
-	@severites.collect{|l| [ l.nom, l.id]}) %></td>
-</tr>
+	@severites.collect{|l| [ l.nom, l.id]}) %></td></tr>
 
 <tr>
 <td colspan="2">
 <div id="demande_paquets"></div>
-</td>
-</tr>
+</td></tr>
 
 <% # hidden lors de la création d'un demande et absent lors de son édition %>
 <% if controller.action_name != 'edit' %>
+<tr><td>
  <p <%= hidden_on_create %>><label for="demande_statut">Statut de la demande</label><br/>
   <%= text_field("demande", "statut_id") %>
  </p>
+</td></tr>
 <% end %>
 
 
 <% # hidden lors de la création d'un demande %>
 <tr>
 <td><p <%= hidden_on_create %>><label for="demande_reproductible">Reproductible ?</label></p></td>
-<td><p <%= hidden_on_create %>><%= check_box("demande", "reproductible") %></p></td>
-</tr>
+<td><p <%= hidden_on_create %>><%= check_box("demande", "reproductible") %></p></td></tr>
 
 <tr>
 <td><div id="delai"></div>
 <% # option :function et :on pour remplacer :url, par defaut "changed" %>
 <%= observe_form 'demande_form', :url => {:action => :ajax_update_delai},
-  :update => :demande_paquets %></td><td></td>
-</tr>
+  :update => :demande_paquets %></td>
+<td></td></tr>
 
 </table>
 
-</td><td>
+</td><td valign="top">
 
 <table><% #colonne droite %>
-
-<p><label for="demande_resume">Resumé</label><br/>
-<%= text_field 'demande', 'resume', "size" => 40 %></p>
-
-<p><label for="demande_description">Description détaillée</label><br />
-<%= text_area 'demande', 'description', "cols" => 45, "rows" => 10 %></p>
-
+<tr><td><p><label for="demande_description">Description détaillée</label><br />
+   <%= text_area 'demande', 'description', "cols" => 45, "rows" => 14 %></p></td>
+</tr>
 </table>
-
-</td><td>
 
 <% #TODO : Mettre un partial de commentaire pour la première pièce jointe %>
 
-</td></tr></table>
+</td></tr>
+</table>
 
 <!--[eoform:demande]-->
