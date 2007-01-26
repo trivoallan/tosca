@@ -74,10 +74,22 @@ module ApplicationHelper
 
   # add_view_link(demande)
   def link_to_comment(ar)
-    desc = 'Voir'
-    link_to image_tag("icons/b_comment.png", :size => "15x15",  # "view_icon.gif", :size => "20x15", 
-                      :border => 0, :title => desc, :alt => desc ), { 
-      :action => 'comment', :id => ar}, { :class => 'nobackground' }
+      desc = 'Voir'
+      link_to image_tag("icons/b_comment.png", :size => "15x15",  # "view_icon.gif", :size => "20x15", 
+              :border => 0, :title => desc, :alt => desc ), 
+              { :controller => 'demandes', :action => 'comment', :id => ar}, { :class => 'nobackground' }
+  end
+
+  # une interaction peut être liée à une demande externe
+  def link_to_any_demande(interaction)
+    if interaction.id_mantis
+      "<a href=\"http://www.08000linux.com/clients/minefi_SLL/mantis/view.php?id=#{interaction.id_mantis}\">
+       Mantis ##{interaction.id_mantis}</a>"
+    elsif interaction.demande
+      link_to_comment(interaction.demande)
+    else
+      "Aucune demande associée"
+    end
   end
 
   def link_to_view(ar)
@@ -310,5 +322,13 @@ module ApplicationHelper
     end
   end
 
+  # conversion secondes en jours
+  def sec2jour(seconds)
+    ((seconds.abs)/(60*60*24)).round
+  end
+  # conversion secondes en minutes
+  def sec2min(seconds)
+    ((seconds.abs)/60).round
+  end
 
 end
