@@ -6,13 +6,12 @@ class Logiciel < ActiveRecord::Base
   has_many :classifications
   has_and_belongs_to_many :competences
   has_and_belongs_to_many :projets
-  belongs_to :license
-
   has_many :demandes
   has_many :urllogiciels, :dependent => :destroy
   has_many :paquets, :order => "version DESC", :dependent => :destroy
+  #belongs_to :communaute
   has_many :interactions
-
+  belongs_to :license
 
   has_many :binaires, :through => :paquets, :dependent => :destroy
 
@@ -25,7 +24,6 @@ class Logiciel < ActiveRecord::Base
           c.name == inheritance_column } 
   end
 
-
   def count_mes_paquets(beneficiaire)
     if beneficiaire
       Paquet.count(:all, :conditions => 
@@ -34,8 +32,6 @@ class Logiciel < ActiveRecord::Base
       Paquet.count(:all, :conditions => "logiciel_id = #{id}")
     end
   end
-
-
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
