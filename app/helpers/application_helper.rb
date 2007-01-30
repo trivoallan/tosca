@@ -219,9 +219,9 @@ module ApplicationHelper
       result << "<p><b>#{pluralize(size, nom.capitalize)} : </b><br />"
     end
 
-    result << '<ol>'
+    result << '<ul>'
     elements.each { |e| result << '<li>' + yield(e).to_s + '</li>' }
-    result << '</ol>'
+    result << '</ul>'
   end
 
   # Call it like : 
