@@ -1,12 +1,16 @@
+<table class="info">
+
 <% for column in Client.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=indent @client.send(column.name) %>
-</p>
+<tr><td><b><%= column.human_name %>:</b></td>
+    <td><%=indent @client.send(column.name) %></p></td></tr>
 <% end %>
 
 <% if @client.support %>
-<p><b>Support:</b> <%=h @client.support.to_s %>
+<tr><td><b>Support:</b></td>
+    <td><%=h @client.support.to_s %></td></tr>
 <% end %>
+
+</table>
 
 <%= show_liste(@client.contrats, 'contrat') { |c|
   result = ''
@@ -16,17 +20,13 @@
   titres = ['Demande','Sévérité','Contournement','Correction']
   oldtypedemande = nil
   result << show_table_engagements(c.engagements)
-  result
-}%>
+  result } %>
 
 <%= show_liste(@client.socles, 'socle') {|s| 
   link_to_socle(s).to_s + ' : ' + pluralize(s.binaires_count, 'binaire') } %>
-<br />
 
-<%= show_liste(@client.demandes, 'demande') {|d| link_to_demande(d) } %>
-<br />
-
-
+<%= show_liste(@client.demandes, 'demande') {|d| 
+  link_to_demande(d) } %>
 
 <%= link_to_edit_and_list(@client) %>
 

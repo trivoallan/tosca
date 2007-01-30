@@ -210,18 +210,24 @@ module ApplicationHelper
 
   # options : 
   #  * no_title : permet de ne pas mettre de titre à la liste
+  #  * puce : permet d'utiliser un caractère qcq à la place des balises <liste>
   # Call it like : <%= show_liste(@correctif.binaires, 'correctif') {|e| e.nom} %>
   def show_liste(elements, nom, options = {})
     size = elements.size
     return "<u><b>Aucun(e) #{nom}</b></u>" unless size > 0
     result = ''
     unless options[:no_title]
-      result << "<p><b>#{pluralize(size, nom.capitalize)} : </b><br />"
+      result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
     end
-
-    result << '<ul>'
-    elements.each { |e| result << '<li>' + yield(e).to_s + '</li>' }
-    result << '</ul>'
+    if options[:puce]
+      puce = ' ' + options[:puce].to_s + ' '
+      elements.each { |e| result << puce + yield(e).to_s + '<br/>' }
+    else
+      result << '<ul>'
+      elements.each { |e| result << '<li>' + yield(e).to_s + '</li>' }
+      result << '</ul>'
+    end
+    result
   end
 
   # Call it like : 
