@@ -106,7 +106,7 @@ module ApplicationHelper
   # add_edit_link(demande)
   def link_to_edit(ar)
     desc = 'Editer'
-    link_to image_tag("icons/b_edit.png", :size => "15x15", # "edit_icon.gif", :size => "15x15",
+    link_to image_tag( "edit_icon.gif", :size => "15x15", # "icons/b_edit.png", :size => "15x15", #
                       :border => 0, :title => desc, :alt => desc ), {
       :action => 'edit', :id => ar }, { :class => 'nobackground' }
   end
@@ -114,7 +114,7 @@ module ApplicationHelper
   # add_delete_link(demande)
   def link_to_delete(ar)
     desc = 'Supprimer'
-    link_to image_tag("icons/b_drop.png", :size => "15x17", # "delete_icon.gif", :size => "15x17", 
+    link_to image_tag("delete_icon.gif", :size => "15x17", # "icons/b_drop.png", :size => "15x17", 
                              :border => 0, :title => desc, :alt => desc ), 
                              { :action => 'destroy', :id => ar }, 
                              { :class => 'nobackground', 
