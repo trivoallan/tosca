@@ -20,6 +20,7 @@
        <% links = [ 
              link_to('Liste des logiciels', :controller => 'logiciels', :action => 'list'),
              link_to('Liste des paquets', :controller => 'paquets', :action => 'list'),
+             link_to('Liste des binaires', :controller => 'binaires', :action => 'list'),
              link_to('Liste des correctifs', :controller => 'correctifs', :action => 'list') ] %>
        <%= show_liste_accueil(links.compact, 'Gestion des logiciels') %>
 

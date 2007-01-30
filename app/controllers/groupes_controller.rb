@@ -12,7 +12,7 @@ class GroupesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @groupe_pages, @groupes = paginate :groupes, :per_page => 10
+    @groupe_pages, @groupes = paginate :groupes, :per_page => 20
   end
 
   def show

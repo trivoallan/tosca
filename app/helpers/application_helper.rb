@@ -4,6 +4,18 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  # lien rapide vers la consultation d'UN logiciel
+  def link_to_logiciel(logiciel)
+      desc = 'Voir'
+      link_to logiciel.nom, :controller => 'logiciels', :action => 'show', :id => logiciel.id
+  end
+
+  # lien rapide vers la consultation d'UN groupe
+  def link_to_groupe(groupe)
+      desc = 'Voir'
+      link_to groupe.nom, :controller => 'groupes', :action => 'show', :id => groupe.id
+  end
+
   def link_to_modify_account(id, title)
     link_to title, { 
       :action => 'modify', 

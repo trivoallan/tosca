@@ -1,8 +1,17 @@
+<h1><%= "Classification logiciels \"#{@classification.groupe.nom}\"" %></h1>
+
+<table class="info">
 <% for column in Classification.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @classification.send(column.name) %>
-</p>
+<tr><td><b><%= column.human_name %>:</b> 
+    <td><%=h @classification.send(column.name) %></td></tr>
 <% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @classification %> |
-<%= link_to 'Back', :action => 'list' %>
+<tr><td><b>Groupe</b></td>
+    <td><%= @classification.groupe.nom %></td></tr>
+
+<tr><td><b>Logiciel</b></td>
+    <td><%= @classification.logiciel.nom %></td></tr>
+
+</table>
+
+<%= link_to_edit_and_list @classification %>
