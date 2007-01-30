@@ -1,7 +1,7 @@
 <h1>Liste des demandes</h1>
 
 
-    <%= render_partial 'filtre' if @count > 0  %>
+<%= render_partial 'filtre' if @count > 0  %>
 
 <% if @demandes.size > 0 %>
     
@@ -45,11 +45,10 @@
         <% if @ingenieur %> 
           <td><%= demande.ingenieur.identifiant.login if demande.ingenieur %></td> 
         <% end %>
-        <td><%= link_to_comment demande %></td>
-        <% if @ingenieur %> 
-          <td><%= link_to_edit demande %></td>
-          <td><%= link_to_delete demande %></td>
-        <% end %>
+        <td><%= link_to_comment demande %>
+            <%= link_to_edit demande %>
+            <%= link_to_delete demande %>
+        </td>
       </tr>
     <% end %>
     </table>
