@@ -8,7 +8,7 @@
   url = i.url_de_suivi
   result = ''
   result << "<td><a href=#{url}</a>#{url}</td>"
-  result << "<td>#{link_to_demande i}</td>"
+  result << "<td>#{link_to_any_demande i}</td>"
   result << "<td>#{i.logiciel.nom if i.logiciel}</td>"
   result << "<td>#{display_jours i.temps_passe}</td>"
   result << "<td title=\"#{i.description}\">#{i.resume}</td>"
