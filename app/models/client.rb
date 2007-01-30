@@ -11,12 +11,11 @@ class Client < ActiveRecord::Base
   has_many :classifications
   has_many :documents
 
+  has_and_belongs_to_many :socles
+
   has_many :paquets, :through => :contrats, :include => Paquet::INCLUDE
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
-  has_and_belongs_to_many :socles
-  
   has_many :binaires, :through => :paquets
-
 
   def ingenieurs
     return [] if contrats.empty?

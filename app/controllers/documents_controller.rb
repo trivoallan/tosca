@@ -78,18 +78,6 @@ class DocumentsController < ApplicationController
   end
 
   private
-  def scope_beneficiaire
-    if @beneficiaire
-      conditions = [ "documents.client_id = ?", @beneficiaire.client_id ]
-      Document.with_scope({ :find => { 
-                               :conditions => conditions
-                          }
-                        }) { yield }
-    else
-      yield
-    end
-  end
-
   def _form
     @clients = Client.find_all
     @typedocuments = Typedocument.find_all

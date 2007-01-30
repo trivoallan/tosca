@@ -80,27 +80,9 @@ class SoclesController < ApplicationController
   end
 
   private 
-  def scope_beneficiaire
-    if @beneficiaire
-      ids = @beneficiaire.contrat_ids
-      socles = ['clients.id = ? ', @beneficiaire.client_id ]
-      paquets = ['paquets.contrat_id = ? ', ids ]
-      Binaire.with_scope({ :find => { :conditions => paquets, 
-                             :include => [:paquet]} }) {
-        Paquet.with_scope({ :find => { :conditions => paquets } }) {
-          Socle.with_scope({ :find => { :conditions => socles, 
-                               :include => [:clients] }
-                           }) { yield }
-        }
-      }
-    else
-      yield
-    end
-  end
-
-
   def _form
     @machines = Machine.find_all
     @clients = Client.find(:all, :select => 'clients.nom, clients.id')
   end
+
 end

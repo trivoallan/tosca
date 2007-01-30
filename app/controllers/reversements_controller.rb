@@ -75,19 +75,4 @@ class ReversementsController < ApplicationController
     @etatreversements = Etatreversement.find_all
   end
 
-#   def scope_beneficiaire
-#     if @beneficiaire
-#       conditions = [ 'beneficiaires.client_id = ?', benef.client_id ]
-#       joins = 'INNER JOIN demandes ON demandes.correctif_id = reversements.correctif_id ' 
-#       joins << 'INNER JOIN beneficiaires ON demandes.beneficiaire_id = beneficiaires.id '
-#       Reversement.with_scope({ :find => { 
-#                                :conditions => conditions,
-#                                :joins => joins
-#                              },
-#                         }) { yield }
-#     else
-#       yield
-#     end
-#   end
-
 end

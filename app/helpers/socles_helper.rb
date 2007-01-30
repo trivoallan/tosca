@@ -5,10 +5,10 @@ module SoclesHelper
 
   # call it like : 
   # <%= link_to_socle @socle %>
-  def link_to_socle(c)
-    return "N/A" unless c
-    link_to c.nom, :controller => 'socles', 
-    :action => 'show', :id => c
+  def link_to_socle(s)
+    return "N/A" unless s
+    link_to s.nom, :controller => 'socles', 
+    :action => 'show', :id => s.id
   end
 
 end
