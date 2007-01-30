@@ -75,12 +75,13 @@ module ApplicationHelper
   # add_view_link(demande)
   def link_to_comment(ar)
       desc = 'Voir'
-      link_to image_tag("icons/b_comment.png", :size => "15x15",  # "view_icon.gif", :size => "20x15", 
+      link_to image_tag("view_icon.gif", :size => "20x15", # "icons/b_comment.png", :size => "15x15", 
               :border => 0, :title => desc, :alt => desc ), 
               { :controller => 'demandes', :action => 'comment', :id => ar}, { :class => 'nobackground' }
   end
 
   # une interaction peut être liée à une demande externe
+  # le "any" indique que la demande peut etre sur n'importe quel tracker
   def link_to_any_demande(interaction)
     if interaction.id_mantis
       "<a href=\"http://www.08000linux.com/clients/minefi_SLL/mantis/view.php?id=#{interaction.id_mantis}\">
