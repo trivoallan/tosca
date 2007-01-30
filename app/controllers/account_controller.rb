@@ -30,7 +30,6 @@ class AccountController < ApplicationController
     @clients = Client.find_all
   end
 
-
   def devenir
     return unless @ingenieur
     benef = Beneficiaire.find(params[:account][:beneficiaire_id])
