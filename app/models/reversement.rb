@@ -21,10 +21,16 @@ class Reversement < ActiveRecord::Base
   end
 
   # délai (en secondes) entre la déclaration et l'acceptation
-  # en texte : time_in_french_words(delai)
+  # delai_to_s (texte)
   # en jours : sec2jours(delai)
   def delai
     (cloture - created_on)
+  end
+  def delai_to_s
+    if reverse : "#{time_in_french_words(delai)}"
+    elsif clos && !accepte : "Sans objet"
+    else "..."
+    end 
   end
 
   # conditions de mise à jour d'un reversement
@@ -33,7 +39,7 @@ class Reversement < ActiveRecord::Base
   def todo(max_jours)
     # TODO : vérifier max_jours is integer
     age = ((Time.now - updated_on)/(60*60*24)).round
-    if etatreversement != 3 && age > max_jours.to_i
+    if !clos && age > max_jours.to_i
       # non clos && non maj
       return "mettre-à-jour" 
     elsif etatreversement == 0
