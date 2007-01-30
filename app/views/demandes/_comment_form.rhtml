@@ -2,30 +2,32 @@
 
 <!--[form:commentaire]-->
 <br/>
-<b><u><label for="commentaire_description">Votre commentaire</label></u></b>: <br/>
+<b><u><label for="commentaire_description">Votre commentaire</label></u></b>:
+<br/>
+
 <table class="commentaire">
-<tr><td rowspan="4">
-<%= text_area 'commentaire', 'corps', 'cols' => 50, 'rows' => 7  %></p>
-
-</td>
-<% # on n'affiche si privé que si c'est un ingénieur  %>
-<% if @ingenieur %>
+<tr valign="top" >
 <td>
-<label for="commentaire_prive">Privé ? </label>
-</td><td>
-     <%= check_box("commentaire", "prive") %></p>
-</td></tr><tr><td>
-<label for="demande_statut">Statut</label>
-</td><td>
-   <%= select("demande", "statut_id", 
-      @statuts.collect{|l| [ l.nom, l.id]}, :include_blank => true) %>
-</td></tr><tr>
+ <%= text_area 'commentaire', 'corps', :cols => 100, :rows => 20 %>
+</td>
+<td>
+ <table class="info">
+  <% # on n'affiche si privé que si c'est un ingénieur  %>
+  <% if @ingenieur %>
+  <tr><td><label for="commentaire_prive">Privé ?</label></td>
+      <td style="text-align:left"><%= check_box("commentaire", "prive") %></td></tr>
+  <tr><td><label for="demande_statut">Statut</label></td>
+      <td style="text-align:left"><%= select("demande", "statut_id", 
+          @statuts.collect{|l| [ l.nom, l.id]}, :include_blank => true) %></td></tr>
+  <% end %>
+  <tr><td><label for="piecejointe_file">Adjoindre un fichier : </label></td>
+      <td style="text-align:left"><%= file_column_field 'piecejointe', 'file', :size => 12  %></td></tr>
+  <tr><td></td>
+      <td style="text-align:left"><%= submit_tag 'Commenter' %></tr>
+ </table>
+</td>
+</tr>
+</table>
 
-<% end %>
-<td colspan="2" align="left"><label for="piecejointe_file">Adjoindre un fichier : </label>
-</td></tr><tr><td colspan="2">
-<%= file_column_field 'piecejointe', 'file'  %></p>
-</td></tr>
-<tr><td><%= submit_tag 'Commenter' %></tr></td></table>
 <!--[eoform:commentaire]-->
 
