@@ -634,4 +634,8 @@ hr {
 	margin: 1em;
 	margin-left: 0em;
 	margin-right: 0em;
+	width: 50%;
+}
+.info tr {
+	vertical-align: top;
 }

@@ -1,30 +1,34 @@
 
 <h1><%= "Logiciel \"#{@logiciel.nom}\"" %></h1>
 
+  <table class="info">
+
 <% for column in Logiciel.content_columns %>
-  <p><b><%= column.human_name %>:</b>
-  <%=indent @logiciel.send(column.name) %></p>
+<tr><td><b><%= column.human_name %></b> </td>
+    <td><%=indent @logiciel.send(column.name) %></td></tr>
 <% end %>
 
-<p><b>License:</b> 
-   <%=h @logiciel.license.nom if @logiciel.license %></p>
+<tr><td><b>License</b></td>
+    <td><%=h @logiciel.license.nom if @logiciel.license %></td></tr>
 
- <p><b>Classifications:</b>
-    <%= @logiciel.classifications.collect{|c| c.groupe.nom + '/'+c.bouquet.nom}.join(', ') %></p>
+<tr><td><b>Classifications</b></td>
+    <td><%= @logiciel.classifications.collect{|c| c.groupe.nom + '/'+c.bouquet.nom}.join(', ') %></td></tr>
 
-<%= show_liste(@logiciel.urllogiciels, 'url') {|u| 
-    "#{link_to u.typeurl.nom, :controller => 'urllogiciels', :action => 'show', :id => u.id} : #{u.valeur}" } %>
+<tr><td><b>Liens</b></td>
+    <td><%= show_liste(@logiciel.urllogiciels, 'url') {|u| 
+    "#{link_to u.typeurl.nom, :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+    : <a href=\"#{u.valeur}\">#{u.valeur}</a>" } %>
+    <%= link_to "Ajouter une url", :controller => 'urllogiciels', 
+        :action => "new", :logiciel_id => @logiciel.id %></td></tr>
 
-<%= link_to "Ajouter une url", :controller => 'urllogiciels', 
-    :action => "new", :logiciel_id => @logiciel.id %>
+<tr><td><b>Competences</b></td>
+    <td><%= @logiciel.competences.collect{|c| c.nom}.join(', ') %></td></tr>
 
-<p><b>Competences:</b>
-    <%= @logiciel.competences.collect{|c| c.nom}.join(', ') %></p>
+<tr><td><b>Demandes</b></td>
+    <td><%= show_liste(@demandes, 'Demande') { |d| link_to_demande d } %></td></tr>
 
-<%= show_liste(@demandes, 'Demande') { |d| link_to_demande d } %>
-<br/>
-
-<%= show_liste(@logiciel.paquets, 'Paquet') { |paquet| link_to_paquet paquet } %>
+<tr><td><b>Paquets</b></td>
+    <td><%= show_liste(@logiciel.paquets, 'Paquet') { |paquet| link_to_paquet paquet } %></td></tr>
 
 <%# correctifs = @logiciel.interactions.collect{|i| i.reversement.correctif} %>
 <%#= show_liste(correctifs, 'Correctif') { |c| c.nom } %>
@@ -33,6 +37,8 @@
 <%# reversements = @logiciel.interactions.collect{|i| i.reversement} %>
 <%#= show_liste(reversements, 'Reversement') { |r| r.interaction.resume } %>
 <br/>
+
+</td></tr></table>
 
 <% ####### %>
 
