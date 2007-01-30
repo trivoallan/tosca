@@ -14,7 +14,7 @@
 }
 
 .commentaire_text {
-	width: 430px;
+	width: 45em; /*430px;*/
 }
 
 .commentaire_action {
