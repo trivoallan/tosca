@@ -1,4 +1,3 @@
-
 <h1><%= "Logiciel \"#{@logiciel.nom}\"" %></h1>
 
 <table class="info">
@@ -11,24 +10,27 @@
 <tr><td><b>License</b></td>
     <td><%=h @logiciel.license.nom if @logiciel.license %></td></tr>
 
-<tr><td><b>Classifications</b></td>
-    <td><%= @logiciel.classifications.collect{|c| c.groupe.nom + '/'+c.bouquet.nom}.join(', ') %></td></tr>
-
-<tr><td><b>Liens</b></td>
-    <td><%= show_liste(@logiciel.urllogiciels, 'url', {:no_title => true, :puce => '-'}) {|u| 
-    "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
-    <a href=\"#{u.valeur}\">#{u.valeur}</a>" } %>
-    <%= link_to "Ajouter une url", :controller => 'urllogiciels', 
-        :action => "new", :logiciel_id => @logiciel.id %></td></tr>
-
-<tr><td><b>Competences</b></td>
+<tr><td><b>Compétences</b></td>
     <td><%= @logiciel.competences.collect{|c| c.nom}.join(', ') %></td></tr>
 
+<tr><td><b>Classifications</b></td>
+    <td><%= @logiciel.classifications.collect{|c| 
+              "#{link_to_groupe(c.groupe)} / #{c.bouquet.nom}" }.join(', ') %></td></tr>
+
+<tr><td><b>Liens</b></td>
+    <td><%= show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 
+            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+            <a href=\"#{u.valeur}\">#{u.valeur}</a>" } %>
+        <%= link_to "Ajouter une url", :controller => 'urllogiciels', 
+            :action => "new", :logiciel_id => @logiciel.id %></td></tr>
+
 <tr><td><b>Demandes</b></td>
-    <td><%= show_liste(@demandes, 'Demande') { |d| link_to_demande d } %></td></tr>
+    <td><%= show_liste(@demandes, 'Demande', {:no_title => true}) { |d| 
+    link_to_demande d } %></td></tr>
 
 <tr><td><b>Paquets</b></td>
-    <td><%= show_liste(@logiciel.paquets, 'Paquet') { |paquet| link_to_paquet paquet } %></td></tr>
+    <td><%= show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) { |paquet| 
+            link_to_paquet paquet } %></td></tr>
 
 <tr><td><b><!--Correctifs--></b></td>
 <%# correctifs = @logiciel.interactions.collect{|i| i.reversement.correctif} %>
@@ -39,7 +41,5 @@
     <td><%#= show_liste(reversements, 'Reversement') { |r| r.interaction.resume } %></td></tr>
 
 </table>
-
-<% ####### %>
 
 <%= link_to_edit_and_list @logiciel %>

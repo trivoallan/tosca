@@ -2,10 +2,11 @@
 
 <%= show_pages_links(@groupe_pages, 'un groupe') %>
 
-<% titres = []%>
-<%= show_table(@groupes, Groupe, titres, :content_columns => true) { |c|
+<% titres = ['Nom']%>
+<%= show_table(@groupes, Groupe, titres) { |g|
   result = ''
-  result << "#{link_to_actions_table c}"
+  result << "<td>#{link_to g.nom, :action => 'show', :id => g.id }</td>"
+  result << "#{link_to_actions_table g}"
 }%>
 
 
