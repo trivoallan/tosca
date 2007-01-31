@@ -2,10 +2,11 @@
 
 <%= show_pages_links(@groupe_pages, 'un groupe') %>
 
-<% titres = ['Nom']%>
+<% titres = ['Nom', 'Logiciels']%>
 <%= show_table(@groupes, Groupe, titres) { |g|
   result = ''
   result << "<td>#{link_to g.nom, :action => 'show', :id => g.id }</td>"
+  result << "<td>#{g.classifications.collect{|c| c.logiciel}.compact.size}</td>"
   result << "#{link_to_actions_table g}"
 }%>
 
