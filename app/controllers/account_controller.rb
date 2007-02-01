@@ -137,7 +137,8 @@ class AccountController < ApplicationController
   
   def list
     @clients = Client.find_all
-    @user_pages, @users = paginate :identifiants, :per_page => 25
+    @user_pages, @users = paginate :identifiants, :per_page => 25, 
+    :order => 'identifiants.login'
   end
   
   def destroy
