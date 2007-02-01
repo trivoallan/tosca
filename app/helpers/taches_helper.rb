@@ -5,4 +5,5 @@ module TachesHelper
     link_to tache.resume, :controller => 'taches', 
     :action => 'show', :id => tache.id
   end
+
 end
