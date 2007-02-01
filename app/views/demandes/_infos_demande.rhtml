@@ -59,8 +59,8 @@
   <tr><td colspan="4" width="100%" class="bordered">
       <%= indent @demande.description %>  </td></tr>
   <tr height="10"><td></td></tr>
-  <tr><td><b><u>Logiciel concerné</u></b>: <%= link_to(@demande.logiciel.nom , 
-                :controller => 'logiciels', :action => 'show', :id => @demande.logiciel_id)  %>
+  <tr><td><b><u>Logiciel concerné</u></b>: <%= link_to_logiciel(@demande.logiciel) %>
+
           <% if @ingenieur %>
                <% if @count>1 %>
                    <a id="voir_infos_demandes"
