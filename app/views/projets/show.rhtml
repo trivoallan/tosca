@@ -10,6 +10,4 @@
 
 <%= show_liste(@projet.taches, 'tache') { |t| link_to_tache(t) } %>
 
-
-<%= link_to 'Edit', :action => 'edit', :id => @projet %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to_edit_and_list(@projet) %>
