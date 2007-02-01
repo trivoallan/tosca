@@ -3,12 +3,13 @@
 
 <%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
 
-<% titres = ['Nom', 'Domaine']%>
-<%= show_table(@beneficiaires, Beneficiaire, titres) { |c|
+<% titres = ['Nom', 'Client', 'Domaine']%>
+<%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
   result = ''
-  result << "<td>#{c.nom}</td>"
-  result << "<td>#{c.domaine}</td>"
-  result << "#{link_to_actions_table c}"
+  result << "<td>#{b.nom}</td>"
+  result << "<td>#{b.client}</td>"
+  result << "<td>#{b.domaine}</td>"
+  result << "#{link_to_actions_table b}"
 }%>
 
 
