@@ -12,8 +12,6 @@ require_dependency "login_system"
 # en cas de soucis : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/versions/468
 require_dependency "acl_system" 
 
-
-
 class ApplicationController < ActionController::Base
 
 
