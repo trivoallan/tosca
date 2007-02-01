@@ -1,0 +1,17 @@
+<h1>Exports de données</h1>
+      
+<% c = ExportController %>
+<% cname = c.controller_name %>
+
+<% # on indique son nom et on le fait pointer vers la page principale du controller  %>
+<br/><b><%= link_to cname,  { :action => "index", :controller => cname }   %></b>
+
+<% # on prend maintenant chacune de ses actions  %>
+<% c.public_instance_methods(false).sort.each { |m|
+      mname = m.to_s
+      next if mname == "index" %>
+      <% # et on link sous réserve d'autorisation  %>
+      <% if session[:user].authorized?(cname+'/'+mname)%>
+	 <small>| <%= link_to mname, { :action => mname, :controller => cname } %> </small>
+      <% end %>
+<% } # fin de la boucle sur les actions %>
