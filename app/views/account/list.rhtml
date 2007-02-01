@@ -1,7 +1,6 @@
 <h1>Liste des utilisateurs</h1>
-
+<%= link_to_beneficiaires %> / <%= link_to_ingenieurs %>
 <p>&nbsp;</p>
-
 
 <% if @ingenieur %>
 <%= start_form_tag :action => "devenir" %>
@@ -13,7 +12,7 @@
 <%= end_form_tag %>
 <% end %>
 
-<%= link_to_beneficiaires %> / <%= link_to_ingenieurs %>
+<%= show_pages_links(@user_pages, 'un nouvel utilisateur') %>
 
 <table>
   <tr>
@@ -27,10 +26,9 @@
     <th></th>
   </tr>
 
-
-  
-<% for user in @users %>
-  <tr>
+  <% @users.each_index {|i| %>
+   <% user = @users[i] %>
+   <%= "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">" %>
     <td><%=h user.login %></td>
 
    <%= start_form_tag :action => 'update', :id => user %>
@@ -47,14 +45,11 @@
 
     <td><%= link_to_modify_account user.id, 'Modifier son compte' %></td>
 
-  </tr>
-<% end %>
+   </tr>
+  <% } %>
 </table>
 
-<%= link_to 'Page précédente', { :page => @user_pages.current.previous } if @user_pages.current.previous %>
-<%= link_to 'Page suivante', { :page => @user_pages.current.next } if @user_pages.current.next %> 
-
-<br />
+<%= show_pages_links(@user_pages, 'un nouvel utilisateur') %><br/>
 
 <%= link_to 'Ajouter un utilisateur', :action => 'signup' %><br/>
 <%= link_to_export( :data => 'identifiants') %>
