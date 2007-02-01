@@ -76,9 +76,8 @@ module ApplicationHelper
     }
   end
 
-  # lien rapide vers la consultation d'UN logiciel
+  # lien vers la consultation d'UN logiciel
   def link_to_logiciel(logiciel)
-      desc = 'Voir'
       if logiciel
         link_to logiciel.nom, :controller => 'logiciels', :action => 'show', :id => logiciel.id
       else 
@@ -87,9 +86,8 @@ module ApplicationHelper
       end
   end
 
-  # lien rapide vers la consultation d'UN groupe
+  # lien vers la consultation d'UN groupe
   def link_to_groupe(groupe)
-      desc = 'Voir'
       link_to groupe.nom, :controller => 'groupes', :action => 'show', :id => groupe.id
   end
 
@@ -190,6 +188,19 @@ module ApplicationHelper
     result << '<td>' + link_to(image_tag("last_page.png", :size => "14x14", :border => 0, :title => 'Dernière page', :alt => 'Dernière page'), { :page => pages.last }, { 
       :title => "Dernière page" }).to_s + '</td>' if pages.current.next 
     result << '</tr></table>'
+  end
+
+  # lien vers l'export de données
+  # options : 
+  #  :data permet de spécifier un autre nom de controller (contexte par défaut)
+  def link_to_export(options={})
+    # TODO : tester si ExportController a une public_instance_methods du nom du controller
+    if options[:data] 
+      cname = options[:data]
+    else
+      cname = controller.controller_name  
+    end
+    link_to "Exporter les #{cname}", :controller => 'export', :action => cname
   end
 
 
