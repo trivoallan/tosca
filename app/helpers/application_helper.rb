@@ -79,7 +79,12 @@ module ApplicationHelper
   # lien rapide vers la consultation d'UN logiciel
   def link_to_logiciel(logiciel)
       desc = 'Voir'
-      link_to logiciel.nom, :controller => 'logiciels', :action => 'show', :id => logiciel.id
+      if logiciel
+        link_to logiciel.nom, :controller => 'logiciels', :action => 'show', :id => logiciel.id
+      else 
+        # cas où le logiciel n'existe pas/plus
+        "logiciel inconnu"
+      end
   end
 
   # lien rapide vers la consultation d'UN groupe
