@@ -2,7 +2,7 @@
 
 
 <%= show_pages_links(@projet_pages, 'un projet') %>
-<% titres = ['Chrono', 'Résumé', 'Nb de Tâches', 'Crée le', 'Màj' ] %>
+<% titres = ['Résumé', 'Chrono', 'Nb de Tâches', 'Crée le', 'Màj' ] %>
 <%= show_table(@projets, Projet, titres) { |projet|
   result = ''
   result << "<td>#{link_to_projet(projet)}</td>"
