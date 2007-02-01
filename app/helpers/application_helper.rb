@@ -1,28 +1,21 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
+
 # Methods added to this helper will be available to all templates in the application.
+# This is a big helper, so find by keyword :
+# - FORMULAIRES
+# - LIENS ABSOLUS
+# - LIENS RELATIFS
+# - AJAX ET JAVASCRIPT
+# - TEXTE
+# - FILES
+# - LISTES ET TABLES
+# - TIME
 module ApplicationHelper
 
-  # lien rapide vers la consultation d'UN logiciel
-  def link_to_logiciel(logiciel)
-      desc = 'Voir'
-      link_to logiciel.nom, :controller => 'logiciels', :action => 'show', :id => logiciel.id
-  end
 
-  # lien rapide vers la consultation d'UN groupe
-  def link_to_groupe(groupe)
-      desc = 'Voir'
-      link_to groupe.nom, :controller => 'groupes', :action => 'show', :id => groupe.id
-  end
-
-  def link_to_modify_account(id, title)
-    link_to title, { 
-      :action => 'modify', 
-      :controller => 'account', 
-      :id => id
-    }
-  end
+  ### FORMULAIRES #############################################################
 
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
   # objectcollection contient le tableau des objects déjà présents
@@ -62,26 +55,37 @@ module ApplicationHelper
     out << '</tr></table>'
   end
 
-  # Affiche uye liste d'élements dans une cellule de tableaux
-  # call it like : show_cell_list(c.paquets) { |p| link_to_paquet(p) }
-  def show_cell_list(list)
-    out = '<td>'
-    if list and not list.empty?
-      list.each { |e| out << yield(e) + '<br />' }
-    end
-    out << '</td>'
+  # select_onchange(@clients, @current_client, 'client')
+  def select_onchange(list, default, name)
+    options = {:onchange => 'this.form.submit();'}
+    select = options_for_select(list.collect{|l| 
+                                  [sum_up(l.nom, 25), l.id]}.unshift(['','']), 
+                                default.to_i)
+    return select_tag(name, select, options)
   end
 
-  #  add_create_link
-  # options :
-  #  permet de spécifier un controller 
-  def link_to_new(message='', options = {})
-    link_options = options.update({:action => 'new'})
-    link_to(image_tag("create_icon.png", :size => "16x16", 
-                      :border => 0, :title => "Déposer #{message}", 
-                      :alt => "Déposer #{message}" ), 
-            link_options, 
-            { :class => 'nobackground' })
+
+  ### LIENS ABSOLUS ################################################################
+
+  # lien vers un compte existant
+  def link_to_modify_account(id, title)
+    link_to title, { 
+      :action => 'modify', 
+      :controller => 'account', 
+      :id => id
+    }
+  end
+
+  # lien rapide vers la consultation d'UN logiciel
+  def link_to_logiciel(logiciel)
+      desc = 'Voir'
+      link_to logiciel.nom, :controller => 'logiciels', :action => 'show', :id => logiciel.id
+  end
+
+  # lien rapide vers la consultation d'UN groupe
+  def link_to_groupe(groupe)
+      desc = 'Voir'
+      link_to groupe.nom, :controller => 'groupes', :action => 'show', :id => groupe.id
   end
 
   # add_view_link(demande)
@@ -103,6 +107,21 @@ module ApplicationHelper
     else
       "Aucune demande associée"
     end
+  end
+
+
+  ### LIENS RELATIFS ##############################################################
+
+  # add_create_link
+  # options :
+  # permet de spécifier un controller 
+  def link_to_new(message='', options = {})
+    link_options = options.update({:action => 'new'})
+    link_to(image_tag("create_icon.png", :size => "16x16", 
+                      :border => 0, :title => "Déposer #{message}", 
+                      :alt => "Déposer #{message}" ), 
+            link_options, 
+            { :class => 'nobackground' })
   end
 
   def link_to_view(ar)
@@ -169,6 +188,8 @@ module ApplicationHelper
   end
 
 
+  ### AJAX ET JAVASCRIPT ##########################################################
+
   # fonction JS de mis à jour d'une boite select
   # Non utilisé pour l'instant
   def update_select_box( target_dom_id, collection, options={} )
@@ -185,9 +206,11 @@ module ApplicationHelper
     out << "#{options[:clear].to_json} )"
   end
 
+
+  ### TEXTE ######################################################################
+
   # Affiche un résumé texte succint d'une demande
   # Utilisé par exemple pour les balise "alt" et "title"
-  # 
   def sum_up ( texte, limit=100)
     return texte unless (texte.is_a? String) && (limit.is_a? Numeric)
     out = ""
@@ -201,6 +224,9 @@ module ApplicationHelper
     text = h text
     text.gsub(/[\n]/, "<br />")
   end
+
+
+  ### FILES ######################################################################
 
   def file_size( file )
     if File.exist?(file)
@@ -218,6 +244,19 @@ module ApplicationHelper
     else
       "N/A"
     end
+  end
+
+
+  ### LISTES ET TABLES ############################################################
+
+  # Affiche une liste d'élements dans une cellule de tableaux
+  # call it like : show_cell_list(c.paquets) { |p| link_to_paquet(p) }
+  def show_cell_list(list)
+    out = '<td>'
+    if list and not list.empty?
+      list.each { |e| out << yield(e) + '<br />' }
+    end
+    out << '</td>'
   end
 
   # options : 
@@ -288,6 +327,8 @@ module ApplicationHelper
   end
 
 
+  ### TIME #########################################################################
+
   #affiche le nombre de jours ou un "Sans objet"
   def display_jours(temps)
     return temps unless temps.is_a? Numeric
@@ -298,20 +339,9 @@ module ApplicationHelper
     end
   end
 
-
-  # select_onchange(@clients, @current_client, 'client')
-  def select_onchange(list, default, name)
-    options = {:onchange => 'this.form.submit();'}
-    select = options_for_select(list.collect{|l| 
-                                  [sum_up(l.nom, 25), l.id]}.unshift(['','']), 
-                                default.to_i)
-    return select_tag(name, select, options)
-  end
-
-
   def display_seconds(temps)
     return temps #unless temps.is_a? Numeric
-#    temps==-1 ? "sans engagement" : distance_of_time_in_french_words(temps) + " "
+    # temps==-1 ? "sans engagement" : distance_of_time_in_french_words(temps) + " "
   end
 
   # Dupliqué de app/models/demande.rb
@@ -349,5 +379,8 @@ module ApplicationHelper
   def sec2min(seconds)
     ((seconds.abs)/60).round
   end
+
+
+  ### NON CLASSE ###################################################################
 
 end
