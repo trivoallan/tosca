@@ -5,7 +5,7 @@
 <%= text_field 'correctif', 'nom'  %></p>
 
 <p><label for="correctif_description">Description</label><br/>
-<%= text_area 'correctif', 'description'  %></p>
+<%= text_area 'correctif', 'description', :cols => 60   %></p>
 
 <% if @ingenieur %>
 <p><label for="correctif_id_mantis">Id Mantis</label><br/>
