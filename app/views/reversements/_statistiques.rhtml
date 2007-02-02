@@ -4,8 +4,9 @@
 
 <h1>Statistiques</h1>
 
-<br/>
-<p>Communautés : <a style="color:red">[TODO]</a> <%# communautes.size %></p>
-<p>Logiciels : <%= logiciels.size %></p>
-<p>Délais moyen : <%= ( count_acceptes > 0 ? @reversements.collect{|r| sec2jour r.delai}.sum/count_acceptes : "N/A" ) %> jours</p>
-<p></p>
+<div class="info_reversement">
+ <p>Communautés : <a style="color:red">[TODO]</a> <%# communautes.size %></p>
+ <p>Logiciels : <%= logiciels.size %></p>
+ <p>Délais moyen : <%= ( count_acceptes > 0 ? @reversements.collect{|r| sec2jour r.delai}.sum/count_acceptes : "N/A" ) %> jours</p>
+ <p></p>
+</div>

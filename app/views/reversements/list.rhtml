@@ -1,19 +1,8 @@
-<% max_jours = ( @params[:reversement] ? @params[:reversement][:max_jours] : 12 ) %>
+<% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? @params[:reversement][:max_jours] : 12 ) %>
 
 <h1>Liste des reversements</h1>
-<br/>
 
-<div class="info">
-<%= start_form_tag :action => 'list' %>
-  <p>Pour marquer les reversements "urgents", préciser le délais de reversement : 
-  <%= text_field('reversement','max_jours', :size => 5, :value => max_jours) %>
-  <%= submit_tag "Afficher" %></p>
-<%= end_form_tag %>
-<p>Est considéré <b>urgent</b> un reversement lorsque : 
-il n'est pas "clos" ET a été mis à jour il y a plus de max_jours, 
-OU bien il est "à reverser"</p>
-<p>Vous afficher actuellement les reversement n'ayant pas été mis à jour depuis plus de <b><%= max_jours %> jours</b></p> 
-</div>
+<%= render_partial "filtre" %>
 
 <br/>
 <%= show_pages_links(@reversement_pages, 'un reversement') %>
@@ -23,7 +12,7 @@ OU bien il est "à reverser"</p>
              'Crée le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
 <%= show_table(@reversements, Reversement, titres) { |r|
   result = ''
-  tache = r.todo(max_jours)
+  tache = r.todo(@max_jours)
   result << "<td>#{r.interaction.logiciel.nom if r.interaction.logiciel }</td>"
   result << show_cell_list(r.correctif.paquets) { |p| 
      link_to_paquet(p) } if r.correctif
@@ -41,12 +30,9 @@ OU bien il est "à reverser"</p>
   result << "#{link_to_actions_table r}"
 }%>
 
-<%= show_pages_links(@reversement_pages, 'un reversement') %>
-<br/>
+<%= show_pages_links(@reversement_pages, 'un reversement') %><br/>
 
 <%= render_partial "statistiques" %>
 
-<br/>
-<%= link_to 'Liste des interactions', :controller => 'interactions' %>
-<br/>
+<%= link_to 'Liste des interactions', :controller => 'interactions' %><br/>
 <%= link_to 'Liste des correctifs', :controller => 'correctifs' %>
