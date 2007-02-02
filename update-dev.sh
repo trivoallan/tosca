@@ -1,5 +1,4 @@
 sudo chown -R mloiseleur:mloiseleur *
-rake log:clear
 rake tmp:clear
 cvs up
 mkdir -p public/images/reporting

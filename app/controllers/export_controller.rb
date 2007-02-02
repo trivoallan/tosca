@@ -8,6 +8,8 @@ require 'fastercsv'
 # source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
 class ExportController < ApplicationController
 
+
+
   # return the contents of identifiants in a table in CSV format
   def identifiants
     identifiants = Identifiant.find(:all)
@@ -81,7 +83,7 @@ class ExportController < ApplicationController
      end
 
      render :text => Proc.new { |response, output|
-       csv = FasterCSV.new(output, :row_sep => "\r\n", :col_sep => ";") 
+       csv = FasterCSV.new(output, :row_sep => "\r\n", :col_sep => "\";\"") 
        yield csv
      }
   end

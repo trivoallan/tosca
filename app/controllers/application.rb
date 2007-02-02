@@ -96,6 +96,7 @@ class ApplicationController < ActionController::Base
       cbeneficiaire = ['beneficiaires.client_id = ? ', client_id ]
       cinteraction = ['interactions.client_id = ? ', client_id ]
       cpaquets = ['paquets.contrat_id IN (?) ', ids ]
+      sidentifiants = {:find => {:conditions => cbeneficiaire, :include => [:beneficiaire]}}
       sbinaires = {:find => {:conditions => cpaquets, :include => [:paquet]}}
       slogiciels = {:find => {:conditions => cpaquets, :include => [:paquets]}}
       scorrectifs = slogiciels # {:find => {:conditions => cpaquets, :include => [:paquets]}}
@@ -105,6 +106,7 @@ class ApplicationController < ActionController::Base
       sdocuments = {:find => {:conditions => cdocument}}
       sdemandes = {:find => {:conditions => cbeneficiaire, :include => [:beneficiaire]}}
       sreversements = {:find => {:conditions => cinteraction, :include => [:interaction]}}
+      Identifiant.with_scope(sidentifiants) {
       Binaire.with_scope(sbinaires) {
       Client.with_scope(sclients) {
       Correctif.with_scope(scorrectifs) {
@@ -114,7 +116,7 @@ class ApplicationController < ActionController::Base
       Paquet.with_scope(spaquets) {
       Reversement.with_scope(sreversements) {
       Socle.with_scope(ssocles) { yield }
-      }}}}}}}}
+      }}}}}}}}}
     else
       yield
     end

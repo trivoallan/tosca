@@ -9,9 +9,9 @@ class Identifiant < ActiveRecord::Base
   has_many :piecejointes
   has_and_belongs_to_many :roles
   has_many :documents
-  # migration 006 :
-  has_many :demandechanges
 
+  has_one :ingenieur
+  has_one :beneficiaire
   # TODO : vérifier que l'email est valide, et rattraper l'erreur si l'envoi de mail échoue !!!
 
   def ingenieur?

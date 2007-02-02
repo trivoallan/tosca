@@ -1,6 +1,5 @@
 sudo chown -R mloiseleur:niveau3 *
 mkdir -p public/images/reporting
-rake log:clear
 rake tmp:clear
 cvs up
 sudo chown -R www-data:www-data *
