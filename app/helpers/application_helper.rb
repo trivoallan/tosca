@@ -76,6 +76,27 @@ module ApplicationHelper
     }
   end
 
+  # lien vers mon compte
+  def link_to_my_account(options = {:text => 'Mon&nbsp;compte'})
+    link_to_modify_account(@session[:user].id, options[:text])
+  end
+
+  # lien vers mon offre / mon client
+  # TODO options[:text] doit prendre l'image si options[:image]
+  # options
+  # :text texte du lien à afficher
+  # :image image du client à afficher à la place
+  def link_to_my_client(options = {:text => 'Mon&nbsp;Offre'})
+    return unless @session[:beneficiaire]
+    if options[:image]
+      link_to image_tag(url_for_file_column(@beneficiaire.client.photo, 'image', 'thumb')), 
+      :controller => 'clients', :action => 'show', :id => @session[:beneficiaire].client_id
+    else 
+      link_to options[:text],  
+      :controller => 'clients', :action => 'show', :id => @session[:beneficiaire].client_id
+    end
+  end
+
   # lien vers la consultation d'UN logiciel
   def link_to_logiciel(logiciel)
       if logiciel
