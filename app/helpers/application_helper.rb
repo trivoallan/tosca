@@ -283,7 +283,7 @@ module ApplicationHelper
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
     end
     if options[:puce]
-      puce = ' ' + options[:puce].to_s + ' '
+      puce = " #{options[:puce]} "
       elements.each { |e| result << puce + yield(e).to_s + '<br/>' }
     else
       result << '<ul>'
