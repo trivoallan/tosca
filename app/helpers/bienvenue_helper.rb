@@ -6,11 +6,13 @@ module BienvenueHelper
   # Call it like : 
   #   <%= show_liste_accueil(links, 'Groupe') %>
   def show_liste_accueil(elements, titre, options = {})
+    elements.compact! 
     size = elements.size
     return "" unless size > 0
     result = ''
     result << "<dt>#{titre.humanize}</dt>"
     result << ' <dd class="action">'
+    # résumé des demandes
     result << show_table_demandes(@demandes, []) { |demande| 
        "<td>#{link_to_demande demande, :show_id => 'true'}</td>" 
     } if options[:demandes]
