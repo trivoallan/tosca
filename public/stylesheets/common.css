@@ -627,6 +627,7 @@ hr {
 /***************** zones spéciales ***************/
 
 .info,
+.info_reversement,
 .fiche_logiciel {
 	border: 1px solid black;
 	background-color: #DFDFDF;
@@ -639,4 +640,7 @@ hr {
 }
 .info tr {
 	vertical-align: top;
+}
+.info_reversement {
+	width: 95%;
 }
