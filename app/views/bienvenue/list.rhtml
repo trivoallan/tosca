@@ -14,8 +14,8 @@
        <% titre = ( @demandes.size > 0 ? "Mes #{@demandes.size} dernières demandes" : "Aucune demande en cours" ) %>
        <% links = [ 
              link_to('Liste détaillée', :controller => 'demandes', :action => 'list'),
-             link_to('Déposer une demande', :controller => 'demandes', :action => 'new'), ] %>
-       <%= show_liste_accueil(links.compact, titre, {:demandes => true}) %>
+             link_to('Déposer une demande', :controller => 'demandes', :action => 'new') ] %>
+       <%= show_liste_accueil(links, titre, {:demandes => true}) %>
 
        <% links = [ 
              link_to('Liste des logiciels', :controller => 'logiciels', :action => 'list'),
@@ -23,34 +23,35 @@
              link_to('Liste des paquets', :controller => 'paquets', :action => 'list'),
              link_to('Liste des binaires', :controller => 'binaires', :action => 'list'),
              link_to('Liste des correctifs', :controller => 'correctifs', :action => 'list') ] %>
-       <%= show_liste_accueil(links.compact, 'Gestion des logiciels') %>
+       <%= show_liste_accueil(links, 'Gestion des logiciels') %>
 
        <% links = [ 
              link_to('Liste des socles', :controller => 'socles', :action => 'list'),
              link_to('Liste des machines', :controller => 'machines', :action => 'list'),
              link_to('Liste des arches', :controller => 'arches', :action => 'list') ] %>
-       <%= show_liste_accueil(links.compact, 'Gestion des socles') %>
+       <%= show_liste_accueil(links, 'Gestion des socles') %>
 
   </dl></td>
   <td><dl class="sommaire">
 
        <% links = [ 
-             link_to_modify_account(@session[:user].id, 'Modifier mon compte'),
+             link_to_my_account(:text => 'Modifier mon compte'),
              link_to('Liste des utilisateurs', :controller => 'account', :action => 'list'),
              link_to('Ajouter un utilisateur', :controller => 'account', :action => 'signup'),
              link_to('Gestion des rôles', :controller => 'roles') ] %>
-       <%= show_liste_accueil(links.compact, 'Utilisateurs') %>
+       <%= show_liste_accueil(links, 'Utilisateurs') %>
 
        <% links = [ 
+             link_to_my_client, #({:image => true}),
              link_to('Liste des clients', :controller => 'clients'),
              link_to('Liste des bénéficiaires', :controller => 'beneficiaires'), 
              link_to('Liste des contrats', :controller => 'contrats')  ] %>
-       <%= show_liste_accueil(links.compact, 'Clients') %>
+       <%= show_liste_accueil(links, (@beneficiaire ? 'Client' : 'Clients')) %>
 
        <% links = [ 
              link_to('Liste des ingénieurs', :controller => 'ingenieurs'),
              link_to('Liste des compétences', :controller => 'competences') ] %>
-       <%= show_liste_accueil(links.compact, 'Gestion des compétences') %>
+       <%= show_liste_accueil(links, 'Gestion des compétences') %>
 
   </dl></td>
   <td><dl class="sommaire">
@@ -58,19 +59,19 @@
        <% links = [ 
              link_to('Répertoire', :controller => 'documents', :action => 'select'),
              link_to('Rapport d\'activité', :controller => 'reporting', :action => 'general') ] %>
-       <%= show_liste_accueil(links.compact, 'Documents') %>
+       <%= show_liste_accueil(links, 'Documents') %>
 
        <% links = [ 
              link_to('Suivi des correctifs', :controller => 'correctifs', :action => 'list'),
              link_to('Suivi des interactions', :controller => 'interactions', :action => 'list'),
              link_to('Suivi des reversements', :controller => 'reversements', :action => 'list') ] %>
-       <%= show_liste_accueil(links.compact, 'Communauté') %>
+       <%= show_liste_accueil(links, 'Communauté') %>
 
        <% links = [ 
              link_to('Déclaration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande"), 
              link_to('Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande"),
              link_to('Plan du portail', :controller => 'bienvenue', :action => 'plan') ] %>
-       <%= show_liste_accueil(links.compact, 'Aide') %>
+       <%= show_liste_accueil(links, 'Aide') %>
 
   </dl></td>
 </tr></table>
