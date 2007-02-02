@@ -66,7 +66,7 @@ class ExportController < ApplicationController
   private
   
   def stream_csv
-    filename = params[:action] + ( params[:id] ? "_#{params[:id]}" : "" )  + ".csv"    
+    filename = ( @beneficiaire ? "#{@beneficiaire.client.nom}_" : "OSSA_" ) + params[:action] + ( params[:id] ? "_#{params[:id]}" : "" )  + ".csv"    
 
      #this is required if you want this to work with IE        
      if request.env['HTTP_USER_AGENT'] =~ /msie/i
