@@ -92,7 +92,7 @@ class ApplicationController < ActionController::Base
   def scope_beneficiaire
     if @beneficiaire
 
-      ids = @beneficiaire.contrat_ids || 0
+      ids = @beneficiaire.contrat_ids || [ 0 ]
       client_id = @beneficiaire.client_id
       cclient = ['clients.id = ? ', client_id ]
       cdocument = ['documents.client_id = ? ', client_id ]

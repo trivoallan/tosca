@@ -52,7 +52,8 @@ class PaquetsController < ApplicationController
     include =  [ :logiciel, :fournisseur, :distributeur, 
       :contrat, :mainteneur, :conteneur]
     @paquet = Paquet.find(params[:id], :include => include)
-    @fichiers = @paquet.fichiers.find(:all, :select => 'fichiers.chemin')
+    @fichiers = @paquet.fichiers.find(:all, :select => 'fichiers.chemin',
+                                      :limit => 10000)
     @changelogs = @paquet.changelogs
     # Fichier.find_all_by_paquet_id(params[:id], :limit => 1000)
   end
