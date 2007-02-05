@@ -26,17 +26,15 @@
 	<%= select_onchange @correctifs, 'demande', 'correctif_id' %>
 	<% # TODO: include a default value for already setted up requests %>
       <%= end_form_tag %></td>      
-      <% else %><td></td><td></td><% end %>
+      <% else %><td></td>             <td></td><% end %>
       <td></td>                       <td></td></tr>
   <tr><td><b>Responsable</b></td>     <td><%= @demande.ingenieur.identifiant.nom if @demande.ingenieur %></td>
       <% if @ingenieur %>
       <td><b>Assigner à</b></td>      <td>
       <%= start_form_tag (:action => 'changer_ingenieur', :id => @demande.id) %>
-        <% h submit_tag 'Assigner' %>    
-        <%= hidden_field 'demande', 'id' %>
 	<%= select_onchange @identifiants_ingenieurs, 'demande', 'ingenieur_id' %>
       <%= end_form_tag %></td>
-      <% else %><td></td><td></td><% end %>
+      <% else %><td></td>             <td></td><% end %>
       <td></td>                       <td></td></tr>
 </table>
 

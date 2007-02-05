@@ -233,6 +233,7 @@ class DemandesController < ApplicationController
     # C'est un héritage du passé
     # TODO : s'en débarrasser avec une migration et un :include
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
+    #joins << " AND identifiants.id != #{@demande.ingenieur.identifiant_id}" if @demande.ingenieur
     select = "DISTINCT identifiants.* "
     @identifiants_ingenieurs = 
       Identifiant.find(:all, :select => select, :joins => joins)
@@ -275,8 +276,8 @@ class DemandesController < ApplicationController
   end
 
   def changer_ingenieur
-    redirect_to_comment unless params[:demande][:id] and params[:ingenieur_id]
-    @demande = Demande.find(params[:demande][:id])
+    redirect_to_comment unless params and params[:id] and params[:ingenieur_id]
+    @demande = Demande.find(params[:id])
     @demande.ingenieur = Ingenieur.find_by_identifiant_id(params[:ingenieur_id])
     if @demande.save
       if @demande.ingenieur
@@ -284,11 +285,9 @@ class DemandesController < ApplicationController
         Notifier::deliver_demande_assigner({:demande => @demande, 
                                              :controller => self}, 
                                            flash)
-      else
-        flash[:notice] = "La demande n'est plus assignée"
+      else flash[:notice] = "La demande n'est plus assignée"
       end
-    else
-      flash[:warn] = "Une erreur est survenue, veuillez nous contacter"
+    else flash[:warn] = "Une erreur est survenue, veuillez nous contacter"
     end
     redirect_to_comment
   end
