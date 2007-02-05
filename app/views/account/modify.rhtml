@@ -1,7 +1,11 @@
 
 <div title="Account modify" id="modifyform" class="form">
 
-<h1>Modifier mon compte</h1>
+<% compte = ( session[:user].id == @identifiant.id ? 'mon compte' : 
+              "le compte de #{@identifiant.nom}" ) %>
+
+
+<h1>Modifier <%= compte %></h1>
 <%= start_form_tag :action=> "modify" %>
   <%= render :partial => 'form' %>
 <%= end_form_tag %>
