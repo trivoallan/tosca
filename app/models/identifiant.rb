@@ -14,32 +14,13 @@ class Identifiant < ActiveRecord::Base
   has_one :beneficiaire
   # TODO : vérifier que l'email est valide, et rattraper l'erreur si l'envoi de mail échoue !!!
 
-  def ingenieur?
-    #si la recherche d'un ingenieur n'est pas nulle : true
-    return Ingenieur.count(['identifiant_id = ?', id ]) > 0
-  end
-
   def ingenieur
-    if ingenieur?
-      Ingenieur.find_by_identifiant_id(id)
-    else
-      nil
-    end
-  end
-
-  def beneficiaire?
-    #si la recherche d'un beneficiaire n'est pas nulle : true
-    return Beneficiaire.count(['identifiant_id = ?', id ]) > 0
+    Ingenieur.find_by_identifiant_id(id)
   end
 
   def beneficiaire
-    if beneficiaire?
-      Beneficiaire.find_by_identifiant_id(id) 
-    else
-      nil
-    end
+    Beneficiaire.find_by_identifiant_id(id) 
   end
-
 
   def self.authenticate(login, pass, crypt)
     Identifiant.with_exclusive_scope() do

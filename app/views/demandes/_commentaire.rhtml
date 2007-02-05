@@ -12,7 +12,6 @@
             <%= image_tag url_for_file_column(id.beneficiaire.client.photo, "image", "thumb") %>
          <% end %><br/>
 	<%= id.nom %><br /> 
-        <% #if @id.ingenieur? %><%= "ingénieur" %><% else %><%="bénéficiaire" %><% end %><br />
 	<span class="small"><%= commentaire.created_on_formatted %></span><br />
     </td>
     <td class="commentaire_text">

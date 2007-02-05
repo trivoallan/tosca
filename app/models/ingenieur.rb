@@ -9,10 +9,6 @@ class Ingenieur < ActiveRecord::Base
   has_many :demandes
   has_many :interactions
 
-  def self.ingenieur?(identifiant)
-    Ingenieur.find_by_identifiant_id(identifiant.id).nil?
-  end
-
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary || 
         c.name =~ /(_id|_on|_count|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }       
