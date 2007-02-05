@@ -233,10 +233,10 @@ class DemandesController < ApplicationController
     # C'est un héritage du passé
     # TODO : s'en débarrasser avec une migration et un :include
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
-    #joins << " AND identifiants.id != #{@demande.ingenieur.identifiant_id}" if @demande.ingenieur
+    conditions = [' ingenieurs.id != ?', @demande.ingenieur_id || 0] 
     select = "DISTINCT identifiants.* "
     @identifiants_ingenieurs = 
-      Identifiant.find(:all, :select => select, :joins => joins)
+      Identifiant.find(:all, :select => select, :joins => joins, :conditions => conditions)
   end
 
   def update
