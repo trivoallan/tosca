@@ -8,6 +8,11 @@ class AccountController < ApplicationController
   helper :ingenieurs, :beneficiaires
 
   #before_filter :login_required, :except => [:login]
+  before_filter :verifie, :only => [ :modify, :update ]
+
+  def verifie
+    super(Identifiant)
+  end 
 
   def login
     case @request.method
