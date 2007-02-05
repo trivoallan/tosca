@@ -125,9 +125,14 @@ class ApplicationController < ActionController::Base
   # verifie :
   # - s'il il y a un id en paramètre (sinon :  retour à la liste)
   # - si un ActiveRecord ayant cet id existe (sinon : erreur > rescue > retour à la liste)
+  # options
+  # :controller en cas de redirection (bienvenue)
+  # :action en cas de redirection (list)
   # TODO : trop de copier-coller 
-  def verifie(ar)
-    options = { :action => 'list', :controller => 'bienvenue' }
+  # NOTODO : "options[:controller] = controller_name" par défaut
+  #       c'est idéal, mais les clients n'ont pas les droits sur tous les */list
+  #       on tombe alors sur un acces/refuse, dommage
+  def verifie(ar, options = {:controller => 'bienvenue', :action => 'list'})
     if !params[:id]
       flash[:warn] = 'Veuillez préciser l\'identifiant de la demande à consulter.'
       redirect_to(options) and return false

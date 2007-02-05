@@ -17,16 +17,7 @@ class DemandesController < ApplicationController
   # - si une demande ayant cet id existe (sinon : erreur > rescue > retour à la liste)
   # - dans le cas d'un bénéficiaire, s'il est bien beneficiaire de cette demande (sinon : retour à la liste)
   def verifie
-    if !params[:id]
-      flash[:warn] = "Veuillez préciser l'identifiant de la demande à consulter." 
-      redirect_to :action => 'list' and return false
-    end
-    demande = Demande.find(params[:id])
-    true
-  rescue  ActiveRecord::RecordNotFound
-    flash[:warn] = "Aucune demande ne correspond à l'identifiant " + params[:id] + "."
-    list
-    redirect_to :action => 'list' and return false
+    super(Demande, {:controller => 'demandes'})
   end
 
   def index
