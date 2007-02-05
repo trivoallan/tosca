@@ -7,7 +7,7 @@
 %>
 <%= show_table(@permissions, Permission, titres) { |p|
   result = ''
-  result << "<td>#{p.name}</td>"
+  result << "<td>#{link_to p.name, :controller => 'permissions', :action => 'edit', :id => p.id }</td>"
   result << "<td>#{p.info}</td>"
   @roles.each {|r|
     if p.roles.include? r
