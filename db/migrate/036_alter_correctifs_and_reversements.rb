@@ -5,7 +5,6 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
     # on recupère la plupart des champs des reversements et des interactions
     add_column :correctifs, :reverse_le, :datetime
     add_column :correctifs, :description_fonctionnelle, :text, :default => "", :null => false
-    add_column :correctifs, :updated_on, :timestamp
     add_column :correctifs, :etatreversement_id, :integer, :default => 0, :null => false
     add_column :correctifs, :cloture_le, :datetime
     add_column :correctifs, :logiciel_id, :integer, :default => 0, :null => false
