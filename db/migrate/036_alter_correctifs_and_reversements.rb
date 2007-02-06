@@ -1,9 +1,6 @@
 class AlterCorrectifsAndReversements < ActiveRecord::Migration
 
-  # fusion des reversements et des correctifs
-  # - on garde la possibilité d'avoir plusieurs urls de reversement : ajout d'une table urlreversements
-  # - on découple les interactions
-  # - on ajoute la notion de type de contribution. Les patchs sont correctifs ou amélioratifs
+  # fusion des reversements et des correctif
   def self.up
     # on recupère la plupart des champs des reversements et des interactions
     add.column :correctifs, :reverse_le, :datetime
@@ -14,11 +11,10 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
     add.column :correctifs, :logiciel_id, :integer, :default => 0, :null => false
     add.column :correctifs, :ingenieur_id, :integer, :null => false
 
-    # on fait fusionner reversements et correctifs
     # la liaison n'existe donc plus entre correctifs et interactions
     rename_table :reversements :old_reversements
 
-    # - on garde la possibilité d'avoir plusieurs urls de reversement : ajout d'une table urlreversements
+    # on garde la possibilité d'avoir plusieurs urls de reversement : ajout d'une table urlreversements
     create_table :urlreversements, :force => true do |t|
       t.column :correctif_id, :integer, :default => 0, :null => false
       t.column :valeur, :string, :default => "", :null => false
@@ -40,16 +36,15 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
     remove.column :correctifs, :updated_on
     remove.column :correctifs, :etatreversement_id
     remove.column :correctifs, :cloture_le
+    remove.column :correctifs, :logiciel_id
+    remove.column :correctifs, :ingenieur_id
 
     # restauration de la table précédemment sauvegardée (cf self.up)
     rename_table :old_reversements :reversements
 
-    remove.column :correctifs, :logiciel_id
-    remove.column :correctifs, :ingenieur_id
-    remove.column :correctifs, :typecontribution_id
-
     drop_table :urlreversements
     drop_table :typecontributions
+    remove.column :correctifs, :typecontribution_id
   end
 
 end
