@@ -1,0 +1,27 @@
+<h1>Listing urlreversements</h1>
+
+<table>
+  <tr>
+  <% for column in Urlreversement.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for urlreversement in @urlreversements %>
+  <tr>
+  <% for column in Urlreversement.content_columns %>
+    <td><%=h urlreversement.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => urlreversement %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => urlreversement %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => urlreversement }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @urlreversement_pages.current.previous } if @urlreversement_pages.current.previous %>
+<%= link_to 'Next page', { :page => @urlreversement_pages.current.next } if @urlreversement_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New urlreversement', :action => 'new' %>
