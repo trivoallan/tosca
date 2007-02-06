@@ -25,8 +25,8 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
       t.column :nom, :string, :default => "", :null => false
       t.column :description, :text, :default => "", :null => false
     end    
-    Typecontribution.create :nom => "correction", :description => "Patch correctif"
-    Typecontribution.create :nom => "évolution", :description => "Patch amélioratif"
+    #Typecontribution.create :nom => "correction", :description => "Patch correctif"
+    #Typecontribution.create :nom => "évolution", :description => "Patch amélioratif"
   end
 
   def self.down
