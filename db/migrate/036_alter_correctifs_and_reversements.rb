@@ -12,7 +12,7 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
     add.column :correctifs, :ingenieur_id, :integer, :null => false
 
     # la liaison n'existe donc plus entre correctifs et interactions
-    rename_table :reversements :old_reversements
+    rename_table :reversements, :old_reversements
 
     # on garde la possibilité d'avoir plusieurs urls de reversement : ajout d'une table urlreversements
     create_table :urlreversements, :force => true do |t|
@@ -40,7 +40,7 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
     remove.column :correctifs, :ingenieur_id
 
     # restauration de la table précédemment sauvegardée (cf self.up)
-    rename_table :old_reversements :reversements
+    rename_table :old_reversements, :reversements
 
     drop_table :urlreversements
     drop_table :typecontributions
