@@ -1,0 +1,9 @@
+<h1>Editing typecontribution</h1>
+
+<%= start_form_tag :action => 'update', :id => @typecontribution %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<%= end_form_tag %>
+
+<%= link_to 'Show', :action => 'show', :id => @typecontribution %> |
+<%= link_to 'Back', :action => 'list' %>
