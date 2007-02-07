@@ -1,29 +1,29 @@
 <h1>Liste des correctifs</h1>
 
+<%= render_partial "filtre" %>
+
+<% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? 
+                  @params[:reversement][:max_jours] : 12 ) %>
+
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 
-<% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? @params[:reversement][:max_jours] : 12 ) %>
-
 <% titres = ['Logiciel', 'Patch', 'Demande', 'Tâches',
-             'Etat du reversement', 'Correctif', 'Description fonctionnelle', 
+             'Etat du reversement', 'Description fonctionnelle', 
              'Reversé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
 <%= show_table(@correctifs, Correctif, titres) { |c|
   result = ''
   tache = c.todo(@max_jours)
-  result << "<td>#{c.logiciel.nom if c.logiciel}</td>"
-  result << "<td>#{link_to_file c, 'patch'}<br/>
-                 #{c.description}</td>"
+  result << "<td>#{link_to_logiciel c.logiciel if c.logiciel}</td>"
+  result << "<td>#{link_to_file c, 'patch'}</td>"
   result << "<td>#{link_to_any_demande c}</td>"
-  result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"
+result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"
   result << "<td>#{c.etatreversement.nom if c.etatreversement}</td>"
-  result << "<td>#{link_to_correctif c}</td>"
   result << "<td>#{c.description_fonctionnelle}</td>"
   result << "<td style='color:green'>#{c.reverse_le_formatted}</td>"
   result << "<td style='color:red' >#{c.cloture_le_formatted if c.clos}</td>"
-  result << "<td nowrap>#{c.delai}</td>"
+  result << "<td nowrap>#{time_in_french_words(c.delai)}</td>"
   result << "<td>#{c.updated_on_formatted}</td>"
   result << "#{link_to_actions_table c}"
 }%>
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
-

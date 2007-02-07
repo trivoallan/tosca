@@ -59,22 +59,17 @@ class Correctif < ActiveRecord::Base
   # delai_to_s (texte)
   # en jours : sec2jours(delai)
   def delai
-    (cloture_le - reverse_le)
-  end
-  def delai_to_s
-    if reverse : "#{time_in_french_words(delai)}"
-    elsif clos && !accepte : "Sans objet"
-    else "..."
-    end 
+    if reverse
+      (cloture_le - reverse_le)
+    else
+      -1
+    end
   end
 
   # conditions de mise à jour d'un reversement
   # + "non clos" ET (updated_on > 1 mois)
   # + OU "à reverser"
   def todo(max_jours)
-
-    return "test" # TODO
-
     # TODO : vérifier max_jours is integer
     age = ((Time.now - reverse_le)/(60*60*24)).round
     if !clos && age > max_jours.to_i

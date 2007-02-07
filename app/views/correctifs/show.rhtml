@@ -7,7 +7,6 @@
 <p><b>Logiciel:</b> <%= link_to_logiciel @correctif.logiciel if @correctif.logiciel %></p>
 <p><b>Patch:</b> <%= link_to_file @correctif, 'patch' %><p>
 
-
 <%= show_liste(@correctif.demandes, 'demande') { |d| 
   link_to_demande(d) } %><br />
 
@@ -22,6 +21,5 @@
 <%= show_liste(@correctif.binaires, 'binaire(s) résultant') { |b| 
   link_to_binaire(b) } %><br />
 
+<%= link_to_edit_and_list @correctif %>
 
-<%= link_to 'Editer', :action => 'edit', :id => @correctif %> |
-<%= link_to 'Retour à la liste', :action => 'list' %>

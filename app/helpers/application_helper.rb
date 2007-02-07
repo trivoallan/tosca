@@ -380,11 +380,13 @@ module ApplicationHelper
     # temps==-1 ? "sans engagement" : distance_of_time_in_french_words(temps) + " "
   end
 
-  # Dupliqué de app/models/demande.rb
+  # déplacé depuis app/models/demande.rb
   # TODO : être DRY
   def time_in_french_words(distance_in_seconds)
+    return '-' unless distance_in_seconds.is_a? Numeric and distance_in_seconds > 0
     distance_in_minutes = ((distance_in_seconds.abs)/60).round
     jo = 24.hours / 60 #/ 60 
+    mo = 30 * jo
     demi_jo_inf = (jo / 2) - 60
     demi_jo_sup = (jo / 2) + 60
 
@@ -402,8 +404,12 @@ module ApplicationHelper
     when jo..(1.5*jo)
        "1 jour ouvré"
     # à partir de 1.5 inclus, le round fait 2 ou plus : pluriel
-    else                 
+    when (1.5*jo)..mo
       "#{(distance_in_minutes / jo).round} jours"
+    when mo..(1.5*mo)
+       "1 mois ouvré"
+    else
+      "#{(distance_in_minutes / mo).round} mois"
     end
   end
 
