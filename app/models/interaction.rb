@@ -8,7 +8,6 @@ class Interaction < ActiveRecord::Base
   # has_one :demande 
   belongs_to :client, :counter_cache => true
   belongs_to :ingenieur, :counter_cache => true, :include => [:identifiant]
-  has_one :reversement
 
   validates_length_of :url_de_suivi, :minimum => 8,
    :too_short => "Vous devez spécifier l'url de suivi de l'interaction" 

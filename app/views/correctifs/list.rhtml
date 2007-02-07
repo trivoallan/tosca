@@ -2,19 +2,28 @@
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 
-<% titres = ['Id Mantis', 'Patch', 'Description','Logiciels', 'Paquets concernés', 'Binaires résultants', 'Màj']%>
+<% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? @params[:reversement][:max_jours] : 12 ) %>
+
+<% titres = ['Logiciel', 'Patch', 'Demande', 'Tâches',
+             'Etat du reversement', 'Correctif', 'Description fonctionnelle', 
+             'Reversé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
 <%= show_table(@correctifs, Correctif, titres) { |c|
   result = ''
-  result << "<td>#{c.id_mantis}</td>"
-  result << "<td>#{link_to_file c, 'patch'}</td>"
-  result << "<td>#{c.description}</td>"
-  result << show_cell_list(c.logiciels) { |l| link_to_logiciel(l) }
-  result << show_cell_list(c.paquets) { |p| link_to_paquet(p) }
-  result << show_cell_list(c.binaires) { |b| link_to_binaire(b) }
+  tache = c.todo(@max_jours)
+  result << "<td>#{c.logiciel.nom if c.logiciel}</td>"
+  result << "<td>#{link_to_file c, 'patch'}<br/>
+                 #{c.description}</td>"
+  result << "<td>#{link_to_any_demande c}</td>"
+  result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"
+  result << "<td>#{c.etatreversement.nom if c.etatreversement}</td>"
+  result << "<td>#{link_to_correctif c}</td>"
+  result << "<td>#{c.description_fonctionnelle}</td>"
+  result << "<td style='color:green'>#{c.reverse_le_formatted}</td>"
+  result << "<td style='color:red' >#{c.cloture_le_formatted if c.clos}</td>"
+  result << "<td nowrap>#{c.delai}</td>"
   result << "<td>#{c.updated_on_formatted}</td>"
   result << "#{link_to_actions_table c}"
 }%>
-
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 

@@ -1,18 +1,18 @@
 <%= error_messages_for 'urllogiciel' %>
 
 <!--[form:urllogiciel]-->
+
 <p><label for="urllogiciel_valeur">Valeur</label><br/>
 <%= text_area 'urllogiciel', 'valeur'  %></p>
 
 <p><label for="urllogiciel_logiciel">Logiciel</label><br/>
   <%= select("urllogiciel", "logiciel_id", 
 	@logiciels.collect{|l| [ l.nom, l.id]}, 
-	:selected => params[:logiciel_id].to_i) %>
-</p>	
+	:selected => params[:logiciel_id].to_i) %></p>	
+
 <p><label for="urllogiciel_typeurl">Typeurl</label><br/>
   <%= select("urllogiciel", "typeurl_id", 
-	@typeurls.collect{|t| [ t.nom, t.id]}) %>
-</p>	
+	@typeurls.collect{|t| [ t.nom, t.id]}) %></p>	
 
 <!--[eoform:urllogiciel]-->
 

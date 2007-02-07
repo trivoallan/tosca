@@ -18,6 +18,7 @@ class UrlreversementsController < ApplicationController
 
   def new
     @urlreversement = Urlreversement.new
+    _form
   end
 
   def create
@@ -32,6 +33,11 @@ class UrlreversementsController < ApplicationController
 
   def edit
     @urlreversement = Urlreversement.find(params[:id])
+    _form
+  end
+
+  def _form
+    @correctifs = Correctif.find_all
   end
 
   def update

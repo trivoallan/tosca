@@ -4,15 +4,17 @@
 </p>
 <% end %>
 
-
+<p><b>Logiciel:</b> <%= link_to_logiciel @correctif.logiciel if @correctif.logiciel %></p>
 <p><b>Patch:</b> <%= link_to_file @correctif, 'patch' %><p>
 
 
 <%= show_liste(@correctif.demandes, 'demande') { |d| 
   link_to_demande(d) } %><br />
 
-<%= show_liste(@correctif.reversements, 'reversement') { |r| 
-  link_to_reversement(r) } %><br />
+<%= show_liste(@correctif.urlreversements, 'url(s) de reversement') { |u| 
+  "<a href=\"#{u.valeur}\">#{u.valeur}</a>" } %><br />
+<%= link_to "Ajouter un reversement", :controller => 'urlreversements', 
+            :action => "new", :correctif_id => @correctif.id %><br />
 
 <%= show_liste(@correctif.paquets, 'paquet(s) sur lesquels il a été appliqué') { |p| 
   link_to_paquet(p) } %><br />

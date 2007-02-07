@@ -3,7 +3,11 @@
 #####################################################
 class Correctif < ActiveRecord::Base
   has_many :demandes
-  has_many :reversements, :dependent => :destroy
+  has_many :urlreversements
+
+  belongs_to :typecontribution
+  belongs_to :etatreversement
+  belongs_to :logiciel
 
   has_and_belongs_to_many :paquets
   has_and_belongs_to_many :binaires
@@ -35,6 +39,73 @@ class Correctif < ActiveRecord::Base
     @logiciels ||= Logiciel.find(self.paquets.find(:all, :select => 
       'DISTINCT paquets.logiciel_id').collect{|p| p.logiciel_id})
     @logiciels
+  end
+
+  # date de reversement formattée
+  # voir lib/overrides.rb pour les dates auto created _on et updated_on
+  def reverse_le_formatted
+      d = @attributes['reverse_le']
+      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+  end
+
+  # date de cloture formattée
+  # voir lib/overrides.rb pour les dates auto created _on et updated_on
+  def cloture_le_formatted
+      d = @attributes['cloture_le']
+      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+  end
+
+  # délai (en secondes) entre la déclaration et l'acceptation
+  # delai_to_s (texte)
+  # en jours : sec2jours(delai)
+  def delai
+    (cloture_le - reverse_le)
+  end
+  def delai_to_s
+    if reverse : "#{time_in_french_words(delai)}"
+    elsif clos && !accepte : "Sans objet"
+    else "..."
+    end 
+  end
+
+  # conditions de mise à jour d'un reversement
+  # + "non clos" ET (updated_on > 1 mois)
+  # + OU "à reverser"
+  def todo(max_jours)
+
+    return "test" # TODO
+
+    # TODO : vérifier max_jours is integer
+    age = ((Time.now - reverse_le)/(60*60*24)).round
+    if !clos && age > max_jours.to_i
+      # non clos && non maj
+      return "mettre-à-jour" 
+    elsif !reverse
+      # non initialisé
+      return "reverser"
+    else 
+      # rien à faire
+      return false
+    end
+  end
+
+  # retourne true si le reversement a commencé
+  def reverse
+    return false unless etatreversement
+    etatreversement.id >= 1
+  end
+
+  # retourne true si l'état du reversement est final
+  # "accepté", "refusé", "ne sera pas reversé"
+  def clos
+    return false unless etatreversement
+    etatreversement_id >= 4 
+  end
+
+  # retourne true si le reversement est accepté
+  def accepte
+    return false unless etatreversement
+    etatreversement_id == 4 
   end
 
 private

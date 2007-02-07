@@ -14,7 +14,7 @@ module BienvenueHelper
     result << ' <dd class="action">'
     # résumé des demandes
     result << show_table_demandes(@demandes, []) { |demande| 
-       "<td>#{link_to_demande demande, :show_id => 'true'}</td>" 
+       "<td>#{link_to_demande demande, :show_id => true}</td>" 
     } if options[:demandes]
     result << '   <ul>'
     elements.each { |e| result << "<li>#{e}</li>" }

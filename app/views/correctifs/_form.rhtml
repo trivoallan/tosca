@@ -1,29 +1,48 @@
 <%= error_messages_for 'correctif' %>
 
 <!--[form:correctif]-->
+<table><tr valign='top'><td>
+
 <p><label for="correctif_nom">Nom</label><br/>
 <%= text_field 'correctif', 'nom'  %></p>
 
-<p><label for="correctif_description">Description</label><br/>
-<%= text_area 'correctif', 'description', :cols => 60   %></p>
+<p><label for="correctif_logiciel">Logiciel</label><br/>
+  <% options = { :include_blank => true } %>
+  <% donnees = @logiciels.collect{|l| [ l.nom, l.id]} %>
+  <%= select("correctif", "logiciel_id", donnees, options) %>
+  <%= image_tag("spinner.gif",
+                :align => 'absmiddle',
+                :border=> 0,
+                :id => "spinner",
+                :style=>"display: none;" ) %></p>
+
+<p><label for="correctif_description_fonctionnelle">Description fonctionnelle</label><br/>
+<%= text_area 'correctif', 'description_fonctionnelle', :cols => 60, :rows => 10  %></p>
+
+<p><label for="correctif_etatreversement">Etat du reversement</label><br/>
+<%= select('correctif', 'etatreversement_id', 
+           @etatreversements.collect{|e| [ e.nom, e.id]}) %></p>
+
+<p><label for="correctif_reverse_le">Reversé le</label><br/>
+<%= datetime_select 'correctif', 'reverse_le'  %></p>
+
+<p><label for="correctif_cloture_le">CLoturé le</label><br/>
+<%= datetime_select 'correctif', 'cloture_le'  %></p>
+
+</td><td>
+
+<p><label for="correctif_patch">Patch</label><br/>
+<%= file_column_field 'correctif', 'patch'  %></p>
 
 <% if @ingenieur %>
 <p><label for="correctif_id_mantis">Id Mantis</label><br/>
-<%= text_field 'correctif', 'id_mantis'  %></p>
+<%= text_field 'correctif', 'id_mantis', :size => 3 %></p>
 <% end %>
 
-<p><label for="paquet_socle">Logiciel</label><br/>
-  <% options = { :include_blank => true } %>
-  <% donnees = @logiciels.collect{|l| [ l.nom, l.id]} %>
-  <%= select("logiciel", "id", donnees, options) %>
-<%= image_tag("spinner.gif",
-              :align => 'absmiddle',
-              :border=> 0,
-              :id => "spinner",
-              :style=>"display: none;" ) %>
-</p>
+<p><label for="correctif_description">Description technique</label><br/>
+<%= text_area 'correctif', 'description', :cols => 60, :rows => 10  %></p>
 
-<%= observe_field 'logiciel_id',  
+<%= observe_field 'correctif_logiciel_id',  
          :update => 'paquets',
          :before => "Element.show('spinner')",
          :success => "Element.hide('spinner')",
@@ -31,17 +50,10 @@
          :with => 'id'
          %>
 
-
 <div id="paquets">
   <%= render :partial => "liste_paquets" %>
 </div>
 
-
-
-<p><label for="correctif_patch">Patch</label><br/>
-<%= file_column_field 'correctif', 'patch'  %></p>
-
-
-
+</td></tr></table>
 <!--[eoform:correctif]-->
 

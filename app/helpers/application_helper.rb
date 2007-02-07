@@ -120,17 +120,20 @@ module ApplicationHelper
               { :controller => 'demandes', :action => 'comment', :id => ar}, { :class => 'nobackground' }
   end
 
-  # une interaction peut être liée à une demande externe
+  # un correctif peut être liée à une demande externe
   # le "any" indique que la demande peut etre sur n'importe quel tracker
-  def link_to_any_demande(interaction)
-    if interaction.id_mantis
-      "<a href=\"http://www.08000linux.com/clients/minefi_SLL/mantis/view.php?id=#{interaction.id_mantis}\">
-       Mantis ##{interaction.id_mantis}</a>"
-    elsif interaction.demande
-      link_to_comment(interaction.demande)
-    else
-      "Aucune demande associée"
+  # TODO : verifier que le paramètre est un correctif
+  def link_to_any_demande(correctif)
+    return "Aucune demande associée" if !correctif.id_mantis && correctif.demandes.size == 0
+    out = []
+    if correctif.id_mantis
+      out << "<a href=\"http://www.08000linux.com/clients/minefi_SLL/mantis/view.php?id=#{correctif.id_mantis}\">
+       Mantis ##{correctif.id_mantis}</a>"
     end
+    correctif.demandes.each {|d|
+      out << "#{link_to_demande(d, {:show_id => true, :pre_text => 'Lstm'})}"
+    }
+    out * '<br/>'
   end
 
 

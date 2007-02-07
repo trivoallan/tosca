@@ -1,7 +1,13 @@
 <%= error_messages_for 'urlreversement' %>
 
 <!--[form:urlreversement]-->
+
 <p><label for="urlreversement_valeur">Valeur</label><br/>
 <%= text_field 'urlreversement', 'valeur'  %></p>
-<!--[eoform:urlreversement]-->
 
+<p><label for="urlreversement_correctif">Correctif</label><br/>
+  <%= select("urlreversement", "correctif_id", 
+	@correctifs.collect{|c| [ c.nom, c.id]}, 
+	:selected => params[:correctif_id].to_i) %></p>
+
+<!--[eoform:urlreversement]-->

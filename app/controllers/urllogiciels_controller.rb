@@ -22,8 +22,7 @@ class UrllogicielsController < ApplicationController
 
   def new
     @urllogiciel = Urllogiciel.new
-    @typeurls = Typeurl.find_all
-    @logiciels = Logiciel.find_all
+    _form
   end
 
   def create
@@ -38,6 +37,10 @@ class UrllogicielsController < ApplicationController
 
   def edit
     @urllogiciel = Urllogiciel.find(params[:id])
+    _form
+  end
+
+  def _form
     @typeurls = Typeurl.find_all
     @logiciels = Logiciel.find_all
   end

@@ -89,6 +89,7 @@ class CorrectifsController < ApplicationController
     @logiciels = Logiciel.find_all
     @paquets = @correctif.paquets || []
     @binaires = @correctif.binaires || []
+    @etatreversements = Etatreversement.find_all
   end
 
 end
