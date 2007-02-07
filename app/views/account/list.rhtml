@@ -22,6 +22,8 @@
   <% end %>
     <th>Ingénieur</th>
     <th>Bénéficiaire</th>
+    <th>Mail</th>
+    <th>T&eacute;l&eacute;phone</th>
     <th>(Client)</th>
     <th></th>
   </tr>
@@ -39,6 +41,8 @@
       <td><%= "X" if user.ingenieur %></td>
       <td><%= "X" if user.beneficiaire %>
           <%= "Permissions anormales" unless user.valide %></td>
+      <td><%= mail_to user.email, user.email %></td>
+      <td><%= user.telephone %></td>
       <td><%= user.beneficiaire.client.nom if user.beneficiaire %></td>
       <td><%= submit_tag 'Modifier ses droits' %></td>
    <%= end_form_tag %>
