@@ -1,27 +1,16 @@
-<h1>Listing urlreversements</h1>
+<h1>Listes des urls de reversement</h1>
 
-<table>
-  <tr>
-  <% for column in Urlreversement.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for urlreversement in @urlreversements %>
-  <tr>
-  <% for column in Urlreversement.content_columns %>
-    <td><%=h urlreversement.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => urlreversement %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => urlreversement %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => urlreversement }, :confirm => 'Are you sure?', :post => true %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@urlreversement_pages, 'une nouvelle  url') %>
 
-<%= link_to 'Previous page', { :page => @urlreversement_pages.current.previous } if @urlreversement_pages.current.previous %>
-<%= link_to 'Next page', { :page => @urlreversement_pages.current.next } if @urlreversement_pages.current.next %> 
+<% titres = ['Logiciel','Url','Correctif']%>
+<%= show_table(@urlreversements, Urlreversement, titres) { |u|
+  result = ''
+  result << "<td>#{link_to_logiciel u.correctif.logiciel if u.correctif.logiciel}</td>"
+  result << "<td><a href=\"#{u.valeur}\">
+                 #{u.valeur}</a></td>"
+  result << "<td>#{u.correctif.nom}</td>"
+  result << "#{link_to_actions_table u}"
+}%>
 
-<br />
+<%= show_pages_links(@urlreversement_pages, 'une nouvelle url') %>
 
-<%= link_to 'New urlreversement', :action => 'new' %>
