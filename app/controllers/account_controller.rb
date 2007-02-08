@@ -54,8 +54,13 @@ class AccountController < ApplicationController
         newIdentifiant[:password] = @identifiant.password
         newIdentifiant[:password_confirmation] = @identifiant.password
       else
-        @identifiant.change_password(newIdentifiant[:password])
-        newIdentifiant[:password] = @identifiant.password
+        if newIdentifiant[:password] != newIdentifiant[:password_confirmation]
+          flash[:notice]  = "Les mots de passe que avez entrés sont différents."
+          redirect_back_or_default :action => "modify", :controller => "account"
+        else
+          @identifiant.change_password(newIdentifiant[:password])
+          newIdentifiant[:password] = @identifiant.password
+        end
       end
 
       # pour update des roles accordéss
@@ -71,7 +76,12 @@ class AccountController < ApplicationController
       @identifiant = Identifiant.find(params[:id])
       @identifiant.password_confirmation = @identifiant.password
     end      
-  end  
+  end
+  
+  def show
+    @identifiant = Identifiant.find(params[:id])
+
+  end
 
   #utilisé dans account/list
   def update

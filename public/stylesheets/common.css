@@ -151,6 +151,10 @@ span.left {
 	-moz-border-radius: 1em;
 }
 
+.form td {
+        padding-right: 5px;
+}
+
 .form_interaction {
 	background-color: #d2dfd2;
 	padding: 1em;
@@ -551,7 +555,7 @@ h1.section {
 
 /******************** reporting *******************/
 
-/* formulaire de saisie mois et année */
+/* formulaire de saisie mois et annï¿½ */
 .report_form {
 	background-color: #d2dfd2;
 	float:right;
@@ -624,7 +628,7 @@ hr {
 }
 
 
-/***************** zones spéciales ***************/
+/***************** zones spï¿½iales ***************/
 
 .info,
 .info_reversement,
