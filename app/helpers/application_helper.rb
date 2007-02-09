@@ -37,19 +37,39 @@ module ApplicationHelper
   end
 
   # select_onchange(@clients, @current_client, 'client')
-  def select_onchange(list, default, name)
-    options = {:onchange => 'this.form.submit();'}
-    select = options_for_select(list.collect{|l| 
-                                  [sum_up(l.nom, 25), l.id]}.unshift(['','']), 
-                                default.to_i)
+  # options
+  # :width limite la taille du texte en nb de caractères
+  # :title à afficher comme 1er élément de la liste (no value)
+  # :onchange action si changement
+  # :size hauteur du select
+  def select_onchange(list, default, name, 
+                      options = {:width => 10, :title => '...', :onchange => 'this.form.submit();' })
+    collected = list.collect{|e| [sum_up(e.nom, options[:width]), e.id] }.unshift([options[:title], ''])
+    select = options_for_select(collected, default.to_i)
     return select_tag(name, select, options)
   end
 
+  def select_filter(list, property, options = {})
+    out = ''
+    field = "#{property}_id"
+    out << '<br/>' unless options[:inline] == true
+    out << select_onchange(list, @session[:filtres][field], "filtres[#{field}]")
+  end
+
+  def text_filter(property, options = {})
+    out = ''
+    name = "filtres[#{property}]"
+    out << '<br/>' unless options[:inline] == true
+    #out << text_field_tag(name, @session[:filtres][property], options)
+    out << text_field("filtres", property, :value => @session[:filtres]['motcle'] )
+  end
 
   ### LIENS ABSOLUS ################################################################
 
   # lien vers un compte existant
-  def link_to_modify_account(id, title)
+  # TODO : passer id en options, avec @session[:user].id par défaut
+  # TODO : title en options, avec 'Le compte' par défaut
+  def link_to_modify_account(id, title, options = {})
     link_to title, { 
       :action => 'modify', 
       :controller => 'account', 
@@ -58,6 +78,8 @@ module ApplicationHelper
   end
 
   # lien vers mon compte
+  # TODO : ne pas utiliser.
+  #        à préférer :  link_to_modify_account({:text => 'Mon&nbsp;compte'})
   def link_to_my_account(options = {:text => 'Mon&nbsp;compte'})
     link_to_modify_account(@session[:user].id, options[:text])
   end
@@ -169,8 +191,9 @@ module ApplicationHelper
   end
 
   # link_to_actions_table(demande)
-  def link_to_actions_table(ar)
+  def link_to_actions_table(ar, options = {})
     return '' unless ar
+    view = link_to_comment(ar) if options[:view] == 'comment'
     actions = [ link_to_view(ar), link_to_edit(ar), link_to_delete(ar) ]
     actions.compact!
     return "<td>#{actions.join('</td><td>')}</td>"
@@ -228,11 +251,16 @@ module ApplicationHelper
 
   # Affiche un résumé texte succint d'une demande
   # Utilisé par exemple pour les balise "alt" et "title"
+  # on affiche '...' si le reste a afficher fait plus de 3 caracteres
   def sum_up ( texte, limit=100)
     return texte unless (texte.is_a? String) && (limit.is_a? Numeric)
     out = ""
-    out << texte[0..limit]
-    out << '...' if texte.length > limit
+    if texte.size <= limit+3
+      out << texte
+    elsif
+      out << texte[0..limit] 
+      out << '...'
+    end
     out
   end 
 

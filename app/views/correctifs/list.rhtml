@@ -1,9 +1,9 @@
+<% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? 
+                  @params[:reversement][:max_jours] : 12 ) %>
+
 <h1>Liste des correctifs</h1>
 
 <%= render_partial "filtre" %>
-
-<% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? 
-                  @params[:reversement][:max_jours] : 12 ) %>
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 

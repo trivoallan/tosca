@@ -40,7 +40,11 @@
   </div><!-- end of haut -->
 
   <div id="contenu">
-        <p style="color: green"><%= flash[:notice] %></p>
+        <p id="notice" style="color: green"><%= flash[:notice] %></p>
+        <script type="text/javascript">
+          <%#= visual_effect(:highlight, "notice", :duration => 1,5) %>
+          <%#= javascript_include_tag "prototype", "effects" %>
+        </script>
 
         <% if flash[:warn] %>
           <div class="error" id="error">

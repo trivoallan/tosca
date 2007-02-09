@@ -32,68 +32,35 @@ class DemandesController < ApplicationController
   end
 
   def list
+    #TODO  
+    #super(params) # see before_filter:set_filters in application.rb
     return unless @session[:user]
     #cas spécial : consultation directe
     redirect_to :action => :comment, :id => params['numero'] if params['numero'] 
 
     #init des variables utilisées dans la vue
-    @clients = Client.find_all 
+    #Logiciel.with_exclusive_scope() do
+      @logiciels = Logiciel.find_all
+    #end
+    Client.with_exclusive_scope do
+      @clients = Client.find_all 
+    end
+    @beneficiaires = Beneficiaire.find_all
+
+    @severites = Severite.find_all
+    @statuts = Statut.find_all
+    @types = Typedemande.find_all
+
     #Identifiant.find_all where ingenieur
-    joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id = identifiants.id'
-    @identifiants_ingenieurs = Identifiant.find(:all, :joins => joins)
+    # joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id = identifiants.id'
+    # @identifiants_ingenieurs = Identifiant.find(:all, :joins => joins)
+    # TODO : VA MLO : il faut la liste des ingénieurs, non ?
+    @ingenieurs = Ingenieur.find_all
+
     @count = Demande.count
 
-    # récupération des paramètres, que l'on refile à la vue
-    case params['filter']
-      when 'true' 
-      @session[:filtres][:liste_globale] = true
-      when 'false'
-      @session[:filtres][:liste_globale] = false
-      else
-    end
-    @session[:filtres][:recherche_demande] = params['demande'] if params['demande']
-    if params['client']
-      if params['client'] != ''
-        @session[:filtres][:client_id] = params['client'].to_i
-      else
-        @session[:filtres][:client_id] = nil
-      end
-    end
-    if params['ingenieur']
-      if params['ingenieur'] != ''
-        @session[:filtres][:ingenieur_id] = params['ingenieur']
-      else
-        @session[:filtres][:ingenieur_id] = nil
-      end
-    end
-    
-    filtres, user = @session[:filtres], @session[:user]
-    # défaut
-    query, params = [ 'statut_id <> ? ' ], [ 0 ] 
-    if filtres[:liste_globale] == false or 
-        (user.affichage_personnel and filtres[:liste_globale] != true)
-      query.push 'statut_id NOT IN (?,?)'
-      params.concat [ 7, 8 ] 
-    end
-
-    if filtres[:client_id]
-      ids = Beneficiaire.find_all_by_client_id(filtres[:client_id]).collect{|b| [ b.id ]}
-      query.push " demandes.beneficiaire_id IN (#{ids.join(',')})" unless ids.empty?
-    end
-
-    if filtres[:recherche_demande]
-      search =  "%#{filtres[:recherche_demande]}%" 
-      query.push ' (demandes.resume LIKE ? OR demandes.description LIKE ?) '
-      params.concat [ search, search ]
-    end
-
-    if filtres[:ingenieur_id] or 
-        (filtres[:liste_globale] != true and 
-           user.affichage_personnel and 
-           @ingenieur)
-      query.push ' (demandes.ingenieur_id = ? OR demandes.ingenieur_id IS NULL) '
-      params.push filtres[:ingenieur_id] || @ingenieur.id 
-    end
+    # les filtres sont définis dans le controller principal
+    # see set_filters, @session[:filtres]
 
     if not @beneficiaire and not @ingenieur
       flash[:warn] = 'Vous n\'êtes pas identifié comme appartenant à un groupe.\
@@ -101,10 +68,8 @@ class DemandesController < ApplicationController
       @demandes = [] # renvoi un tableau vide
     end
 
-    conditions = [ query.join(' AND ') ] + params
-    @query = query.join(' AND ') + params.inspect
     @demande_pages, @demandes = paginate :demandes, :per_page => 15,
-      :order => 'updated_on DESC', :conditions => conditions,
+    :order => 'updated_on DESC', #:conditions => conditions,
     :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut]
   end
 
@@ -207,11 +172,13 @@ class DemandesController < ApplicationController
     conditions = [ "logiciel_id = ?", @demande.logiciel_id ] 
     @count = Demande.count(:conditions => conditions)
     if @beneficiaire
-      @commentaires = Commentaire.find_all_by_demande_id_and_prive\
-      (@demande.id, false, :order => "created_on DESC", :include => [:identifiant])
+      @commentaires = Commentaire.find_all_by_demande_id_and_prive(
+                      @demande.id, false, :order => "created_on DESC", 
+                      :include => [:identifiant])
     elsif @ingenieur
-      @commentaires = Commentaire.find_all_by_demande_id\
-      (@demande.id, :order => "created_on DESC", :include => [:identifiant])
+      @commentaires = Commentaire.find_all_by_demande_id(
+                      @demande.id, :order => "created_on DESC", 
+                      :include => [:identifiant])
     end
     flash[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 

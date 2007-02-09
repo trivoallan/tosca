@@ -1,58 +1,19 @@
 
-<table class="info"><!--class='nothing'--> 
-  <tr><th colspan="6" align="center">Filtres de recherche</th></tr>
-  <tr><td colspan="6"><hr/></td></tr>
-  <tr><td><%= image_tag("icon_1.gif", 
-                 :size => "20x20", :border => 0, :title => 'Etape 1', 
-                 :alt => 'Etape 1' )%></td>
-      <td colspan="5">
+<table class="info">
+  <tr>
+    <td>
         Choisir le périmètre des demandes : 
         <%= link_to 'toutes les demandes', :filter => 'true' %> ou
         <%= link_to 'mes demandes actives', :filter => 'false' %>
-      </td>
+    </td>
   </tr>
-  <tr><td colspan="6"><hr></td></tr>
-  <tr><td rowspan='2' >
-      <%= image_tag("icon_2.gif", 
-                 :size => "20x20", :border => 0, :title => 'Etape 2', 
-                 :alt => 'Etape 2' )%></td>
-
-<% if @ingenieur %>
-    <td>Client : </td>
-    <%= start_form_tag :action => 'list' %>
-    <td><%= select_onchange(@clients, 
-                            @session[:filtres][:client_id], 
-                            'client') %></td>
-    <%= end_form_tag %>
-    <td>Responsable : </td>
-    <%= start_form_tag :action => 'list' %>
-    <td><%= select_onchange(@identifiants_ingenieurs,  
-                            @session[:filtres][:ingenieur_id], 
-                            'ingenieur') %></td>
-    <%= end_form_tag %>
-<% end %>
-
-  </tr>
-  <tr><td nowrap valign='baseline' colspan="3">Rechercher la demande contenant : </td>
-      <td><%= start_form_tag :action => 'list' %>
-             <%= text_field_tag 'demande', 
-                                @session[:filtres][:recherche_demande], 
-                                :size => 18 %>
-          <%= end_form_tag %>
-      </td>
-  </tr>
-  <tr><td colspan="6"><hr></td></tr>
   <tr>
-      <td colspan="3" align='left'>
+    <td>
         <%= link_to 'Déposer une nouvelle demande', 
-                  :action => 'new', 
-                  :controller => 'demandes' %> 
-      </td>
-      <td colspan="3" align='right'>
+                  :action => 'new', :controller => 'demandes' %> | 
         <%= link_to 'Effacer le(s) fitre(s)', 
-                  :action => 'raz_recherche', 
-                  :controller => 'demandes' %> 
-      </td>
+                  :action => 'raz_recherche', :controller => 'demandes' %> 
+        : <%= @session[:filtres].collect{|f| f[0] unless f[1] == nil}.compact * ', ' %></td>
   </tr>
 </table>
 

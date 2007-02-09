@@ -6,15 +6,14 @@ module DemandesHelper
   # lien vers une demande : affiche le nom de la demande
   # options
   # :pre_text à afficher avant le nom
-  # :show_id affiche l'id en plus
+  # :show_id affiche l'id à la place du nom de la demande
   def link_to_demande(demande, options={})
     return 'N/A' unless demande
     nom = sum_up(demande.resume, 50)
     alt = sum_up(demande.description)
     link = ''
     link << "#{options[:pre_text]} " if options[:pre_text]
-    link << "##{demande.id} " if options[:show_id]
-    link << nom
+    link << ( options[:show_id] ? "##{demande.id} " : nom )
     link_to link,{:controller => 'demandes',
       :action => 'comment', :id => demande.id}, { :alt => alt, :title => alt }
 

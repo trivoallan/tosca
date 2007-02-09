@@ -10,36 +10,37 @@
  ***************************************/
 
 /* enregistree */
-.demande_1 	{background: #f03720; /*red;*/}
+.demande_1 	{background: #f03730; /*red;*/}
 .demande_1:hover{background: #f03700;}
 
 /* priseencompte */
-.demande_2 	{background: #ffa25e; /*orange;*/}	
+.demande_2 	{background: #ffa26e; /*orange;*/}	
 .demande_2:hover{background: #ffa23e; }
 
 /* suspendue */
-.demande_3	{background: #ffffaa; /*yellow;*/}
+.demande_3	{background: #ffffba; /*yellow;*/}
 .demande_3:hover{background: #ffff88; }
 
 /* analysee */
-.demande_4 	{background: #a0e0e0; /*cyan;*/}
+.demande_4 	{background: #a0e0f0; /*cyan;*/}
 .demande_4:hover{background: #a0e0c0;}
 
 /* contournee */
-.demande_5 	{background: #90EE90; /* lightgreen; */}
+.demande_5 	{background: #90EEa0; /* lightgreen; */}
 .demande_5:hover{background: #90EE70; }
 
 /* corrigee */
 .demande_6 	{background: #67ccfd;}
-.demande_6:hover{background: #67ccdd;}
+.demande_6:hover{background: #67cccd;}
 
 /* cloturee */
-.demande_7 	{background: #c9c99f; /*grey;*/}
+.demande_7 	{background: #c9c9af; /*grey;*/}
 .demande_7:hover{background: #c9c97f; }
 
 /* annulee */
 .demande_8 	{background: #D3D3D3; /*lightgrey;*/}
-.demande_8:hover{background: #D3D3C3;}
+.demande_8:hover{background: #D3D3a3;
+cursor: url('http://www2:3000/images/logo_08000.gif)';}
 
 
 /******************************************
@@ -66,11 +67,11 @@ td.infos_logiciel {
 table.demande_list,
 table.demandes_list td, 
 table.demandes_list th {
-        border: thin solid lightgrey; /*#ffc547;*/
+        border: thin solid #eaeafa; /*#ffc547;*/
 	border-spacing: 0px;
 	white-space: nowrap;
 	text-align: center;
-	padding: 5px;
+	padding: 3px;
 	spacing: 0px;
 	margin: 0px;
 }
