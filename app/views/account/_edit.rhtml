@@ -1,0 +1,76 @@
+<% identifiant_titre = nil
+   identifiant_champ = nil
+   
+   role_titre = nil
+   role_champ = nil
+   
+   type_client_titre = nil
+   type_client_champ = nil
+   identifiant_client_titre = nil
+   identifiant_client_champ = nil
+
+   if @ingenieur
+     identifiant_titre = '<label for="identifiant_login">Choisissez un identifiant</label>'
+     identifiant_champ = text_field("identifiant", "login", :size => 16)
+     role_titre = '<label for="identifiant_role">R&ocirc;les</label>'
+
+     if controller.action_name == 'signup'
+       role_champs = hbtm_radio_button( @identifiant.roles, @roles, 'role_ids')
+       type_client_titre = '<label for="type_client">Client </label>'
+       type_client_champ = select("client", "id", @clients.collect{|c| [ c.nom, c.id]}) 
+
+       help_client = "L'utilisateur est-il un client du service ?" 
+       identifiant_client_titre = "<label for=\"identifiant_client\">Client&nbsp;</label><a alt=\"#{help_client}\" title=\"#{help_client}\" >?</a>"
+       identifiant_client_champ = check_box('identifiant', 'client')
+     elsif controller.action_name == 'modify'
+       role_champs = @identifiant.roles
+     end
+     
+   end
+%>
+ 
+<% help_affichage_perso = "Affichage personnalis&eacute; de la liste des demandes" %>
+
+<% titre = [ type_client_titre,
+             nil, 
+             '<label for="identifiant_nom">Nom complet</label>', 
+             '<label for="identifiant_titre">Titre</label>',
+             '<label for="identifiant_email">Email</label>',
+             '<label for="identifiant_telephone">T&eacute;l&eacute;phone</label>',
+             nil,
+             identifiant_titre,
+             '<label for="identifiant_password">Choisissez un mot de passe</label>',
+             '<label for="identifiant_password_confirmation">Confirmez ce dernier</label>',
+             nil,
+             "<label for=\"identifiant_affichage_personnel\">Affichage Personnel&nbsp;</label><a alt=\"#{help_affichage_perso}\" title=\"#{help_affichage_perso}\">?</a>",
+             role_titre,
+             identifiant_client_titre,
+             '<label for="identifiant_informations">Informations</label><br/>',
+             nil]
+  champs = [  type_client_champ,
+              "<hr/>", 
+              text_field('identifiant', 'nom'), 
+              text_field('identifiant', 'titre'),
+              text_field('identifiant', 'email'),
+              text_field('identifiant', 'telephone', :size => 16),
+              "<hr/>",
+              identifiant_champ,
+              password_field('identifiant', 'password', :size => 16, :value => ''),
+              password_field('identifiant', 'password_confirmation', :size => 16, :value => ''),
+              "<hr/>",
+              check_box('identifiant', 'affichage_personnel'),
+              role_champs,
+              identifiant_client_champ,
+              nil, 
+              text_area('identifiant', 'informations', :rows => 5, :cols => 58) ] %>
+       
+<% if mode == "modify"
+     compte = ( session[:user].id == @identifiant.id ? 'mon compte' : "le compte de #{@identifiant.nom}" )
+     title = "Modifier #{compte}"
+   elsif mode == "signup"
+     title = "Cr&eacute;er un compte"
+   end 
+%>
+
+<%= show_table_form titre, champs, :title => title %>
+<br/><center><input type="submit" value="Valider &#187;" class="primary"/></center>

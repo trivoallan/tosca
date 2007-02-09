@@ -131,9 +131,9 @@ class AccountController < ApplicationController
       end
     when :get
       @identifiant = Identifiant.new
-    end      
-  end  
-   
+    end
+  end
+
   def logout
     @session[:user] = nil
     @session[:beneficiaire] = nil

@@ -36,25 +36,6 @@ module ApplicationHelper
     out << '</tr></table>'
   end
 
-  # Collection doit contenir des objects qui ont un 'id' et un 'nom'
-  # objectcollection contient le tableau des objects déjà présents
-  # C'est la fonction to_s qui est utilisée pour le label
-  # L'option :size permettent une mise en colonne
-  # Ex : hbtm_radio_button( @logiciel.competences, @competences, 'competence_ids')
-  def hbtm_radio_button( objectcollection, collection, nom , options={})
-    return '' if collection.nil?
-    out = '<table><tr>' and count = 1
-    for donnee in collection
-      out << "<td><input type=\"radio\" id=\"#{donnee.id}\" "
-      out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
-      out << 'checked="checked" ' if objectcollection and objectcollection.include? donnee
-      out << "> #{donnee}</td>"
-      out << '</tr><tr>' and count = 0 if options[:size] and options[:size] == count
-      count += 1
-    end
-    out << '</tr></table>'
-  end
-
   # select_onchange(@clients, @current_client, 'client')
   def select_onchange(list, default, name)
     options = {:onchange => 'this.form.submit();'}
