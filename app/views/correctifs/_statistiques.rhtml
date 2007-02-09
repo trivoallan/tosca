@@ -1,0 +1,11 @@
+<% logiciels = @correctifs.collect{|c| c.logiciel_id}.uniq %>
+<%# count_acceptes = ... %>
+
+<h1>Statistiques</h1>
+
+<div class="info_reversement">
+ <p>Communautés : <a style="color:red">[TODO]</a> <%# communautes.size %></p>
+ <p>Logiciels : <%= logiciels.size %></p>
+ <p>Délais moyen : <%#= ( count_acceptes > 0 ? @correctifs.collect{|c| sec2jour c.delai}.sum/count_acceptes : "N/A" ) %>... jours</p>
+ <p></p>
+</div>
