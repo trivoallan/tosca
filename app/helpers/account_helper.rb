@@ -42,7 +42,10 @@ module AccountHelper
     result << "</table>\n"
   end
 
-  
+  # Collection doit contenir des objects qui ont un 'id' et un 'nom'
+  # objectcollection contient le tableau des objects déjà présents
+  # C'est la fonction to_s qui est utilisée pour le label
+  # Ex : hbtm_radio_button( @logiciel.competences, @competences, 'competence_ids') 
   def hbtm_radio_button( objectcollection, collection, nom )
     return '' if collection.nil?
     out = ""
@@ -54,6 +57,5 @@ module AccountHelper
     end
     out
   end
-  
 
 end
