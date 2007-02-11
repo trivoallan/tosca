@@ -3,7 +3,7 @@
 <br/>
 <%= show_pages_links(@interaction_pages, 'une interaction') %>
 
-<% titres = ['Url de suivi', 'Demande', 'Logiciel', 'Temps passé', 'Résumé', 'Crée le', 'Mis à jour le', 'Ingénieur']%>
+<% titres = ['Url de suivi', 'Demande', 'Logiciel', 'Temps passÃ©', 'RÃ©sumÃ©', 'CrÃ©e le', 'Mis Ã  jour le', 'IngÃ©nieur']%>
 <%= show_table(@interactions, Interaction, titres) { |i|
   url = i.url_de_suivi
   result = ''

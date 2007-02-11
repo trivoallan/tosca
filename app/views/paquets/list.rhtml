@@ -8,20 +8,20 @@
 
 
 <%
-# TODO : A reprendre de A à Z
+# TODO : A reprendre de A Ã  Z
 #<!-- oui, je sais : c'est mal -->
 #<form action="/paquets/list" method="post">
 #  <p><label>Recherche par fichier : </label>
 #  <input name="file" size="30" type="text" />
 #  <input name="commit" type="submit" value="Rechercher" />
-#  (recherche limitée à 50, pas de pagination, requete sql, form html : c'est mal) </p>
+#  (recherche limitÃ©e Ã  50, pas de pagination, requete sql, form html : c'est mal) </p>
 #</form>
 %>
 
 <p>Ordonner : 
 <%= link_to 'auto', :action => @action, :filter => @filter, 
 	:order => 'logiciel_id,version DESC,release,nom', :paquet => @search%>,
-<%= link_to 'inversé', :action => @action, :filter => @filter, 
+<%= link_to 'inversÃ©', :action => @action, :filter => @filter, 
 	:order => 'logiciel_id DESC,version DESC,release,nom', :paquet => @search%>,
 <%= link_to 'normal', :action => @action %><br />
 </p>

@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits rÈservÈs.#
+# Copyright Linagora SA 2006 - Tous droits r√©serv√©s.#
 #####################################################
 class CorrectifsController < ApplicationController
   helper :reversements, :demandes, :paquets, :binaires, :logiciels
@@ -41,7 +41,7 @@ class CorrectifsController < ApplicationController
   def create
     @correctif = Correctif.new(params[:correctif])
     if @correctif.save
-      flash[:notice] = 'Le correctif suivant a bien ÈtÈ crÈe : </br><i>'+@correctif.description+'</i>'
+      flash[:notice] = 'Le correctif suivant a bien √©t√© cr√©e : </br><i>'+@correctif.description+'</i>'
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -58,7 +58,7 @@ class CorrectifsController < ApplicationController
 #    @correctif.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
     @correctif.demandes = Demande.find(@params[:demande_ids]) if @params[:demande_ids]
     if @correctif.update_attributes(params[:correctif])
-      flash[:notice] = 'Le correctif suivant a bien ÈtÈ mis ‡ jour : </br><i>'+@correctif.description+'</i>'
+      flash[:notice] = 'Le correctif suivant a bien √©t√© mis √† jour : </br><i>'+@correctif.description+'</i>'
       redirect_to :action => 'list'
     else
       _form

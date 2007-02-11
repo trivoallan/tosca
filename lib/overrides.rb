@@ -1,17 +1,17 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits rÈservÈs.#
+# Copyright Linagora SA 2006 - Tous droits r√©serv√©s.#
 #####################################################
-Date::MONTHS = { 'Janvier' => 1, 'FÈvrier' => 2, 'Mars' => 3, 'Avril' => 4, 'Mai' => 5, 'Juin' => 6, 'Juillet' => 7, 'Ao˚t' => 8, 'Septembre'=> 9, 'Octobre' =>10, 'Novembre' =>11, 'DÈcembre' =>12 }
+Date::MONTHS = { 'Janvier' => 1, 'F√©vrier' => 2, 'Mars' => 3, 'Avril' => 4, 'Mai' => 5, 'Juin' => 6, 'Juillet' => 7, 'Ao√ªt' => 8, 'Septembre'=> 9, 'Octobre' =>10, 'Novembre' =>11, 'D√©cembre' =>12 }
 Date::DAYS = { 'Lundi' => 0, 'Mardi' => 1, 'Mercredi' => 2, 'Jeudi'=> 3, 'Vendredi' => 4, 'Samedi' => 5, 'Dimanche' => 6 }
-Date::ABBR_MONTHS = { 'Jan' => 1, 'FÈv' => 2, 'Mar' => 3, 'Avr' => 4, 'Mai' => 5, 'Juin' => 6, 'Juil' => 7, 'Ao˚' => 8, 'Sep' => 9, 'Oct' =>10, 'Nov' =>11, 'DÈc' =>12 }
+Date::ABBR_MONTHS = { 'Jan' => 1, 'F√©v' => 2, 'Mar' => 3, 'Avr' => 4, 'Mai' => 5, 'Juin' => 6, 'Juil' => 7, 'Ao√ª' => 8, 'Sep' => 9, 'Oct' =>10, 'Nov' =>11, 'D√©c' =>12 }
 Date::ABBR_DAYS = { 'lun' => 0, 'mar' => 1, 'mer' => 2, 'jeu' => 3, 'ven' => 4, 'sam' => 5, 'dim' => 6 }
-Date::MONTHNAMES = [nil] + %w(Janvier FÈvrier Mars Avril Mai Juin Juillet Ao˚t Septembre Octobre Novembre DÈcembre )
+Date::MONTHNAMES = [nil] + %w(Janvier F√©vrier Mars Avril Mai Juin Juillet Ao√ªt Septembre Octobre Novembre D√©cembre )
 Date::DAYNAMES = %w(Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche )
-Date::ABBR_MONTHNAMES = [nil] + %w(Jan FÈv Mar Avr Mai Juin Juil Ao˚ Sep Oct Nov DÈc)
+Date::ABBR_MONTHNAMES = [nil] + %w(Jan F√©v Mar Avr Mai Juin Juil Ao√ª Sep Oct Nov D√©c)
 Date::ABBR_DAYNAMES = %w(lun mar mer jeu ven sam dim)
 
 
-Date::ABBR_MONTHS_LSTM = { 0 => 'jan', 1 => 'fÈv', 2 => 'mar', 3 => 'avr', 4 => 'mai', 5 => 'juin', 6 => 'juil', 7 => 'ao˚', 8 => 'sep', 9 => 'oct', 10 => 'nov', 11 => 'dÈc' }
+Date::ABBR_MONTHS_LSTM = { 0 => 'jan', 1 => 'f√©v', 2 => 'mar', 3 => 'avr', 4 => 'mai', 5 => 'juin', 6 => 'juil', 7 => 'ao√ª', 8 => 'sep', 9 => 'oct', 10 => 'nov', 11 => 'd√©c' }
 
 class Time
   alias :strftime_nolocale :strftime
@@ -37,12 +37,12 @@ module ActiveRecord
 
     def updated_on_formatted
       d = @attributes['updated_on']
-      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} ‡ #{d[11,2]}h#{d[14,2]}"
+      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} √† #{d[11,2]}h#{d[14,2]}"
     end
 
     def created_on_formatted
       d = @attributes['created_on']
-      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} ‡ #{d[11,2]}h#{d[14,2]}"
+      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} √† #{d[11,2]}h#{d[14,2]}"
     end
   end
 end

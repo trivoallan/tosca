@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class ClientsController < ApplicationController
   helper :demandes,:socles,:engagements
@@ -38,7 +38,7 @@ class ClientsController < ApplicationController
     if @client.save
       @client.socles = Socle.find(@params[:socle_ids]) if @params[:socle_ids]
       @client.save
-      flash[:notice] = 'Client créé correctement.'
+      flash[:notice] = 'Client crÃ©Ã© correctement.'
       redirect_to :action => 'list'
     else
       _form
@@ -55,7 +55,7 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
     @client.socles = Socle.find(@params[:socle_ids]) if @params[:socle_ids]
     if @client.update_attributes(params[:client])
-      flash[:notice] = 'Client mis à jour.'
+      flash[:notice] = 'Client mis Ã  jour.'
       redirect_to :action => 'show', :id => @client
     else
       _form

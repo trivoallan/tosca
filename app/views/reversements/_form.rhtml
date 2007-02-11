@@ -15,7 +15,7 @@
 <%= select('reversement', 'correctif_id', 
            @correctifs.collect{|l| [ l.nom, l.id]}) %></p>
 
-<p><label for="reversement_interaction">Intéraction liée</label><br/>
+<p><label for="reversement_interaction">IntÃ©raction liÃ©e</label><br/>
 <%= select('reversement', 'interaction_id', 
            @interactions.collect{|l| [ l.resume[0..20], l.id]}) %></p>
 

@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Paquet < ActiveRecord::Base
   belongs_to :logiciel
@@ -24,8 +24,8 @@ class Paquet < ActiveRecord::Base
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
-  # (cf Conventions de développement : wiki)
-  # INCLUDE à mettre pour chaque finders
+  # (cf Conventions de dÃ©veloppement : wiki)
+  # INCLUDE Ã  mettre pour chaque finders
   INCLUDE = [ :conteneur ]
   ORDER = 'paquets.nom, version, release DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
@@ -34,7 +34,7 @@ class Paquet < ActiveRecord::Base
     "(#{conteneur.nom}) #{nom}-#{version}-#{release}"
   end
   
-  # TODO : virer TOUT les to_display et les surcharges de nom de tous les modèles
+  # TODO : virer TOUT les to_display et les surcharges de nom de tous les modÃ¨les
   alias_method :to_display, :to_s
 
 
@@ -47,8 +47,8 @@ class Paquet < ActiveRecord::Base
   end
 
   private
-  # mis en cache car rappelé souvent, notamment sur les binaires
-  # d'un même paquet
+  # mis en cache car rappelÃ© souvent, notamment sur les binaires
+  # d'un mÃªme paquet
   def engagement(typedemande_id, severite_id)
     @result = {} unless @result
     if (typedemande_id != @result[:typedemande] or severite_id != @result[:severite])

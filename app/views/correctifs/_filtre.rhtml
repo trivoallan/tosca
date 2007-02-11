@@ -1,8 +1,8 @@
 <div class="info_reversement">
  <%= start_form_tag :action => 'list' %>
-   <p>Vous afficher actuellement les contributions n'ayant pas été mises à jour depuis plus de 
+   <p>Vous afficher actuellement les contributions n'ayant pas Ã©tÃ© mises Ã  jour depuis plus de 
       <b><%= @max_jours %> jours</b></p> 
-   <p>Pour marquer les reversements "urgents", préciser le délais de reversement : 
+   <p>Pour marquer les reversements "urgents", prÃ©ciser le dÃ©lais de reversement : 
       <%= text_field('reversement','max_jours', :size => 5, :value => @max_jours) %>
       <%= submit_tag "Afficher" %></p>
  <%= end_form_tag %>

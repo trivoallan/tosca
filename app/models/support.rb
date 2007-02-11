@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Support < ActiveRecord::Base
 
@@ -10,7 +10,7 @@ class Support < ActiveRecord::Base
   end
 
   def to_s
-    "Ouvert de #{ouverture}h à #{fermeture}h"
+    "Ouvert de #{ouverture}h Ã  #{fermeture}h"
   end 
 
 end

@@ -8,7 +8,7 @@ class AlterSupport < ActiveRecord::Migration
 
   def self.down
     remove_column :supports, :newsletter
-    # Les 3 autres colonnes étaient des enum('OUI','NON')
+    # Les 3 autres colonnes Ã©taient des enum('OUI','NON')
     # Une erreur de jeunesse :)
   end
 end

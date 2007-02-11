@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Ingenieur < ActiveRecord::Base
   belongs_to :identifiant, :dependent => :destroy
@@ -32,7 +32,8 @@ class Ingenieur < ActiveRecord::Base
   # ne pas oublier de faire :include => [:identifiant] si vous 
   # appeler cette fonction, durant le Ingenieur.find
   def nom
-    identifiant.nom
+    @nom ||= Identifiant.find(identifiant_id, :select => 'identifiants.nom').nom
+    @nom
   end
 
   alias_method :to_s, :nom

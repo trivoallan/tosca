@@ -15,10 +15,10 @@
 <%= link_to "Ajouter un reversement", :controller => 'urlreversements', 
             :action => "new", :correctif_id => @correctif.id %><br />
 
-<%= show_liste(@correctif.paquets, 'paquet(s) sur lesquels il a été appliqué') { |p| 
+<%= show_liste(@correctif.paquets, 'paquet(s) sur lesquels il a Ã©tÃ© appliquÃ©') { |p| 
   link_to_paquet(p) } %><br />
 
-<%= show_liste(@correctif.binaires, 'binaire(s) résultant') { |b| 
+<%= show_liste(@correctif.binaires, 'binaire(s) rÃ©sultant') { |b| 
   link_to_binaire(b) } %><br />
 
 <%= link_to_edit_and_list @correctif %>

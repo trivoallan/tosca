@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class ReversementsController < ApplicationController
 
@@ -67,7 +67,7 @@ class ReversementsController < ApplicationController
   end
 
   private
-  # TODO : cette fonction devrait être appeléee dans le 
+  # TODO : cette fonction devrait Ãªtre appelÃ©ee dans le 
   # formulaire des interactions. Pour l'instant c'est un copier coller
   def _form
     @correctifs = Correctif.find_all

@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Commentaire < ActiveRecord::Base
   belongs_to :demande
@@ -7,16 +7,16 @@ class Commentaire < ActiveRecord::Base
   belongs_to :piecejointe
   belongs_to :statut
   
-  validates_length_of :corps, :minimum => 5, :warn => "Vous devez mettre un commentaire d'au moins 5 caractères"
+  validates_length_of :corps, :minimum => 5, :warn => "Vous devez mettre un commentaire d'au moins 5 caractÃ¨res"
 
-  # On détruit l'éventuelle pièce jointe
+  # On dÃ©truit l'Ã©ventuelle piÃ¨ce jointe
   # le belongs_to ne permet pas d'appeler :dependent :'(
 
 
-  # permet de récuperer l'état du commentaire en texte
-  # le booléen correspondant est :  prive = true || false
+  # permet de rÃ©cuperer l'Ã©tat du commentaire en texte
+  # le boolÃ©en correspondant est :  prive = true || false
   def etat
-    ( prive ? "privé" : "public" )
+    ( prive ? "privÃ©" : "public" )
   end
 
 

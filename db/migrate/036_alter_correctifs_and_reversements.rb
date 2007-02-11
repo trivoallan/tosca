@@ -2,7 +2,7 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
 
   # fusion des reversements et des correctif
   def self.up
-    # on recupËre la plupart des champs des reversements et des interactions
+    # on recup√®re la plupart des champs des reversements et des interactions
     add_column :correctifs, :reverse_le, :datetime
     add_column :correctifs, :description_fonctionnelle, :text, :default => "", :null => false
     add_column :correctifs, :etatreversement_id, :integer, :default => 0, :null => false
@@ -13,7 +13,7 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
     # la liaison n'existe donc plus entre correctifs et interactions
     rename_table :reversements, :old_reversements
 
-    # on garde la possibilitÈ d'avoir plusieurs urls de reversement : ajout d'une table urlreversements
+    # on garde la possibilit√© d'avoir plusieurs urls de reversement : ajout d'une table urlreversements
     create_table :urlreversements, :force => true do |t|
       t.column :correctif_id, :integer, :default => 0, :null => false
       t.column :valeur, :string, :default => "", :null => false
@@ -26,7 +26,7 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
       t.column :description, :text, :default => "", :null => false
     end    
     #Typecontribution.create :nom => "correction", :description => "Patch correctif"
-    #Typecontribution.create :nom => "Èvolution", :description => "Patch amÈlioratif"
+    #Typecontribution.create :nom => "√©volution", :description => "Patch am√©lioratif"
   end
 
   def self.down
@@ -38,7 +38,7 @@ class AlterCorrectifsAndReversements < ActiveRecord::Migration
     remove_column :correctifs, :logiciel_id
     remove_column :correctifs, :ingenieur_id
 
-    # restauration de la table prÈcÈdemment sauvegardÈe (cf self.up)
+    # restauration de la table pr√©c√©demment sauvegard√©e (cf self.up)
     rename_table :old_reversements, :reversements
 
     drop_table :urlreversements

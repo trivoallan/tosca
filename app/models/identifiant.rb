@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 require 'digest/sha1'
 
@@ -12,7 +12,7 @@ class Identifiant < ActiveRecord::Base
 
   has_one :ingenieur
   has_one :beneficiaire
-  # TODO : vérifier que l'email est valide, et rattraper l'erreur si l'envoi de mail échoue !!!
+  # TODO : vÃ©rifier que l'email est valide, et rattraper l'erreur si l'envoi de mail Ã©choue !!!
 
   def ingenieur
     Ingenieur.find_by_identifiant_id(id)
@@ -40,7 +40,6 @@ class Identifiant < ActiveRecord::Base
 
   # Return true/false if User is authorized for resource.
   def authorized?(resource)
-   
     match=false
     
     permission_strings.each do |p|
@@ -49,22 +48,19 @@ class Identifiant < ActiveRecord::Base
     end
     return match
   end
-  #def authorized?(resource)
-  #  return permission_strings.include?(resource)
-  #end
 
-  # Load permission strings 
   def permission_strings
-    a = []
-    self.roles.each{|r| r.permissions.each{|p| a<< p.name }}
-    a
+    return @permissions if @permissions 
+    @permissions = []
+    self.roles.each{|r| r.permissions.each{|p| @permissions << p.name }}
+    @permissions 
   end
 
-  # Vérifie l'intégrité/la validité d'un utilisateur
-  # à utiliser à la crétion et à la modification d'un utilisateur
-  # - cohérence des droits en fonction de l'appartenance (ingénieur ou bénéficiaire)
+  # VÃ©rifie l'intÃ©gritÃ©/la validitÃ© d'un utilisateur
+  # Ã  utiliser Ã  la crÃ©tion et Ã  la modification d'un utilisateur
+  # - cohÃ©rence des droits en fonction de l'appartenance (ingÃ©nieur ou bÃ©nÃ©ficiaire)
   def valide
-    # cohérence des droits en fonction de l'appartenance (ingénieur ou bénéficiaire)
+    # cohÃ©rence des droits en fonction de l'appartenance (ingÃ©nieur ou bÃ©nÃ©ficiaire)
     return false if beneficiaire && ( roles != [Role.find(2)] )
     # si tout va bien
     return true 

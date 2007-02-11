@@ -1,5 +1,5 @@
-<p><b>Crée le : </b><%=@tache.created_on_formatted%> et 
-<b>Màj le : </b><%=@tache.updated_on_formatted%></p>
+<p><b>CrÃ©e le : </b><%=@tache.created_on_formatted%> et 
+<b>MÃ j le : </b><%=@tache.updated_on_formatted%></p>
 <br />
 
 
@@ -12,7 +12,7 @@
 <% end %>
 
 <% if @tache.auteur %>
-<p><b>Rédacteur : </b><%= @tache.auteur.nom %></p>
+<p><b>RÃ©dacteur : </b><%= @tache.auteur.nom %></p>
 <% end %>
 
 <% if @tache.etape %>
@@ -21,7 +21,7 @@
 
 
 <br />
-<p><b>Résumé : </b><%= @tache.resume %></p>
+<p><b>RÃ©sumÃ© : </b><%= @tache.resume %></p>
 
 <p><b>Description : </b><br />
 <%= indent @tache.description %>
@@ -29,15 +29,15 @@
 
 
 <br />
-<p><b>Etat : </b>c'est une tâche
+<p><b>Etat : </b>c'est une tÃ¢che
 <% if @tache.termine %>
-  <b>terminé</b>
+  <b>terminÃ©</b>
 <% else %>
-  <b>reporté</b>
+  <b>reportÃ©</b>
 <% end %>
-d'une durée de <%= @tache.duree %> jour(s)</p>
-<p><b>Priorité: </b><%= @tache.position %></p>
+d'une durÃ©e de <%= @tache.duree %> jour(s)</p>
+<p><b>PrioritÃ©: </b><%= @tache.position %></p>
 
 
 <%= link_to 'Modifier', :action => 'edit', :id => @tache %> |
-<%= link_to 'Retour à la liste', :action => 'list' %>
+<%= link_to 'Retour Ã  la liste', :action => 'list' %>

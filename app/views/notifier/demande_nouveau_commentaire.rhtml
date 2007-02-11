@@ -1,9 +1,9 @@
 Bonjour,
 
 <% if @statut_modifie %>
-<%=h @nom %> a passé votre demande <%= "#{@demande.id}" %> en <%= @demande.statut.nom %> :
+<%=h @nom %> a passÃ© votre demande <%= "#{@demande.id}" %> en <%= @demande.statut.nom %> :
 <% else %>
-Votre demande a été commentée par <%=h @nom %> :
+Votre demande a Ã©tÃ© commentÃ©e par <%=h @nom %> :
 <% end %>
 <%= wrap "#{@commentaire.corps}" %>
 

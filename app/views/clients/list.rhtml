@@ -1,7 +1,7 @@
 <h1>Liste des clients</h1>
 
 <%= show_pages_links(@client_pages, 'un client') %>
-<% titres = ['Logo','Nom', 'Paquets', 'MailingListe','Code d\'accès','Support']%>
+<% titres = ['Logo','Nom', 'Paquets', 'MailingListe','Code d\'accÃ¨s','Support']%>
 <%= show_table(@clients, Client, titres) { |c|
   result = ''
   if c.photo

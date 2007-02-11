@@ -1,11 +1,11 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits rÈservÈs.#
+# Copyright Linagora SA 2006 - Tous droits r√©serv√©s.#
 #####################################################
 module AccountHelper
 
   # Titles doit contenir un tableau
   # Champs doit contenir un tableau
-  # Les ÈlÈments de Titles et Champs doivent Ítre affichable par to_s
+  # Les √©l√©ments de Titles et Champs doivent √™tre affichable par to_s
   # Les options sont 
   #         :title => Donne un titre au tableau
   # Ex : show_table_form( { "TOTO", "TITI"}, { "TATA", "TUTU" }, :title => "Titre" )
@@ -43,8 +43,8 @@ module AccountHelper
   end
 
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
-  # objectcollection contient le tableau des objects dÈj‡ prÈsents
-  # C'est la fonction to_s qui est utilisÈe pour le label
+  # objectcollection contient le tableau des objects d√©j√† pr√©sents
+  # C'est la fonction to_s qui est utilis√©e pour le label
   # Ex : hbtm_radio_button( @logiciel.competences, @competences, 'competence_ids') 
   def hbtm_radio_button( objectcollection, collection, nom )
     return '' if collection.nil?

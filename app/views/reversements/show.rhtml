@@ -1,13 +1,13 @@
-<p><b>Résumé Intéraction:</b> <%=h @reversement.interaction.resume if @reversement.interaction %></p>
+<p><b>RÃ©sumÃ© IntÃ©raction:</b> <%=h @reversement.interaction.resume if @reversement.interaction %></p>
 <p><b>Commentaire:</b> <%=indent @reversement.commentaire %></p>
 <p><b>Suivi:</b> <%=h @reversement.interaction.url_de_suivi if @reversement.interaction %></p>
 <% if @reversement.accepte %>
-<p><b>Reversement validé le :</b> 
+<p><b>Reversement validÃ© le :</b> 
    <%= @reversement.cloture_formatted %>
 <% else %>
 <p><b>Reversement en cours de discussion</b></p>
 <% end %>
-<p><b>Màj:</b> <%= @reversement.updated_on_formatted %></p>
+<p><b>MÃ j:</b> <%= @reversement.updated_on_formatted %></p>
 <br />
 <p><b>Correctif:</b> <%= link_to_correctif @reversement.correctif %></p>
 

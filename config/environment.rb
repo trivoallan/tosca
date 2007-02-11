@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 *# Be sure to restart your web server when you modify this file.
 
@@ -8,14 +8,12 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.1.6'
+RAILS_GEM_VERSION = '1.2.2'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 require 'overrides'
 require 'utils'
-require 'config'
-# require 'gruff'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
@@ -48,7 +46,9 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 end
 
-#TimeZone française, nécessaire sur ces *hum* de debian
+require 'config'
+
+#TimeZone franÃ§aise, nÃ©cessaire sur ces *hum* de debian
 ENV['TZ'] = 'Europe/Paris'
 
 # Add new inflection rules using the following format 
@@ -70,23 +70,23 @@ ActionView::Base.erb_trim_mode = '>'
 
 
 
-# Rédéfinit globalement en français les messages d'erreur
+# RÃ©dÃ©finit globalement en franÃ§ais les messages d'erreur
 ActiveRecord::Errors.default_error_messages = {
   :inclusion => "n'est pas inclus dans la liste",
-  :exclusion => "est réservé",
+  :exclusion => "est rÃ©servÃ©",
   :invalid => "est invalide",
-  :confirmation => "ne correspond pas à la confirmation",
-  :accepted => "doit être accepté",
-  :empty => "ne peut être vide",
-  :blank => "ne peut être blanc",
-  :too_long => "est trop long (max. %d caractère(s))",
-  :too_short => "est trop court (min %d caractère(s))",
-  :wrong_length => "a une longueur incorrecte (doit être de %d caractère(s))",
-  :taken => "est déjà utilisé",
-  :not_a_number => "n'est pas une valeur numérique"
+  :confirmation => "ne correspond pas Ã  la confirmation",
+  :accepted => "doit Ãªtre acceptÃ©",
+  :empty => "ne peut Ãªtre vide",
+  :blank => "ne peut Ãªtre blanc",
+  :too_long => "est trop long (max. %d caractÃ¨re(s))",
+  :too_short => "est trop court (min %d caractÃ¨re(s))",
+  :wrong_length => "a une longueur incorrecte (doit Ãªtre de %d caractÃ¨re(s))",
+  :taken => "est dÃ©jÃ  utilisÃ©",
+  :not_a_number => "n'est pas une valeur numÃ©rique"
 }
 
-# Rédéfinit globalement en français les titres et textes de la boîtes d'erreur
+# RÃ©dÃ©finit globalement en franÃ§ais les titres et textes de la boÃ®tes d'erreur
 module ActionView::Helpers::ActiveRecordHelper
   def error_messages_for(object_name, options = {:class => 'error'})
     options = options.symbolize_keys
@@ -96,9 +96,9 @@ module ActionView::Helpers::ActiveRecordHelper
         content_tag("div",
                     content_tag(
                                 options[:header_tag] || "h2",
-                                "Une erreur a bloqué l'enregistrement de votre #{object_name.to_s.gsub('_', ' ')}"
+                                "Une erreur a bloquÃ© l'enregistrement de votre #{object_name.to_s.gsub('_', ' ')}"
                                 ) +
-                                   content_tag("p", "Corriger l'élément suivant pour poursuivre :") +
+                                   content_tag("p", "Corriger l'Ã©lÃ©ment suivant pour poursuivre :") +
                                    content_tag("ul", object.errors.full_messages.collect { |msg| content_tag("li", msg) }),
                     "id" => options[:id] || "errorExplanation", "class" => options[:class] || "errorExplanation"
                     )
@@ -106,9 +106,9 @@ module ActionView::Helpers::ActiveRecordHelper
         content_tag("div",
                     content_tag(
                                 options[:header_tag] || "h2",
-                                "#{object.errors.count} erreurs ont bloqué l'enregistrement de votre #{object_name.to_s.gsub('_', ' ')}"
+                                "#{object.errors.count} erreurs ont bloquÃ© l'enregistrement de votre #{object_name.to_s.gsub('_', ' ')}"
                                 ) +
-                                   content_tag("p", "Corriger les éléments suivants pour poursuivre :") +
+                                   content_tag("p", "Corriger les Ã©lÃ©ments suivants pour poursuivre :") +
                                    content_tag("ul", object.errors.full_messages.collect { |msg| content_tag("li", msg) }),
                     "id" => options[:id] || "errorExplanation", "class" => options[:class] || "errorExplanation"
                     )
@@ -117,7 +117,7 @@ module ActionView::Helpers::ActiveRecordHelper
   end
 end
 
-#redéfinit l'affichage des urls _uniquement_ si l'utilisateur en a le droit
+#redÃ©finit l'affichage des urls _uniquement_ si l'utilisateur en a le droit
 module ActionView::Helpers::UrlHelper
 
  def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
@@ -129,9 +129,9 @@ module ActionView::Helpers::UrlHelper
      tag_options = nil
    end
    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-   required_perm = '%s/%s' % [ options[:controller] || @controller.controller_name, 
-     options[:action] || @controller.action_name ]
-   if @session[:user] and @session[:user].authorized? required_perm then
+   required_perm = '%s/%s' % [ options[:controller] || controller.controller_name, 
+     options[:action] || controller.action_name ]
+   if session[:user] and session[:user].authorized? required_perm then
      "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
    else
      nil

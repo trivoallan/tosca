@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 module BienvenueHelper
 
@@ -12,7 +12,7 @@ module BienvenueHelper
     result = ''
     result << "<dt>#{titre.humanize}</dt>"
     result << ' <dd class="action">'
-    # résumé des demandes
+    # rÃ©sumÃ© des demandes
     result << show_table_demandes(@demandes, []) { |demande| 
        "<td>#{link_to_demande demande, :show_id => true}</td>" 
     } if options[:demandes]

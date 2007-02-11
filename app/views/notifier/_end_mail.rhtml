@@ -1,6 +1,6 @@
 <% if @demande %>
 ===============================================================================
-Résumé de la demande <%= "#{@demande.id}" %> : <%= wrap "#{@demande.resume}" %>
+RÃ©sumÃ© de la demande <%= "#{@demande.id}" %> : <%= wrap "#{@demande.resume}" %>
 Description :
 <%= wrap "#{@demande.description}" %>
 ===============================================================================
@@ -10,13 +10,13 @@ Consulter la demande : <%= url_for :only_path => false, :id => @demande.id,
 <% end %>
 
 <% if (@commentaire && @commentaire.piecejointe) %>
-Télécharger la pièce jointe : http://<%= @request.host_with_port + 
+TÃ©lÃ©charger la piÃ¨ce jointe : http://<%= @request.host_with_port + 
                                          url_for_file_column(@commentaire.piecejointe, 
                                                              "file", :absolute => true) + "\n" %>
 <% end %>
 
 Cordialement,
-L'équipe du <%= Metadata::SITE_INTERNET+"\n" %>
+L'Ã©quipe du <%= Metadata::SITE_INTERNET+"\n" %>
 
 -- 
 <%= Metadata::SITE_INTERNET+"\n" %>
@@ -25,4 +25,4 @@ Rappel sur les statuts et nos engagements :
 http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande
 
 Ceci est un mail automatique
-Merci de ne pas y répondre.
+Merci de ne pas y rÃ©pondre.

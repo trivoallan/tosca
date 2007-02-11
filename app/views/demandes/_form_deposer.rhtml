@@ -12,7 +12,7 @@
 
 <%= render :partial => 'form_client' %><br />
 
-<p><label>Paquets supportés pour <%= @demande.logiciel.nom if @demande.logiciel %> : </label>
+<p><label>Paquets supportÃ©s pour <%= @demande.logiciel.nom if @demande.logiciel %> : </label>
 <div id="bloc_scroll">
 <%= render :partial => 'form_binaires' %>
 </div>
@@ -22,10 +22,10 @@
 <p><label for="demande_reproductible">Reproductible ? </label>
 <%= check_box('demande', 'reproductible') %></p>
 
-<p><label for="demande_resume">Resumé</label><br/>
+<p><label for="demande_resume">ResumÃ©</label><br/>
 <%= text_field 'demande', 'resume', "size" => 40 %></p>
 
-<p><label for="demande_description">Description détaillée</label><br />
+<p><label for="demande_description">Description dÃ©taillÃ©e</label><br />
 <%= text_area 'demande', 'description', "cols" => 45, "rows" => 10 %></p>
 
 </div>

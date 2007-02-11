@@ -41,13 +41,13 @@
 </td></tr>
 <% end %>
 
-<% if @ingenieur && @count>1 %><% ############ visible seulement en tant qu'ingénieur ############%>
+<% if @ingenieur && @count>1 %><% ############ visible seulement en tant qu'ingÃ©nieur ############%>
 <tr>
 
-<td class="infos_demandes" colspan="2"><% ############## demandes liées ############  %>
+<td class="infos_demandes" colspan="2"><% ############## demandes liÃ©es ############  %>
 <div id="infos_demandes" style="display: none">
 <!--<a onclick='document.getElementById("infos_demandes").style.display="none";
-            document.getElementById("voir_infos_demandes").style.display="block";'>Cacher les demandes associées</a>-->
+            document.getElementById("voir_infos_demandes").style.display="block";'>Cacher les demandes associÃ©es</a>-->
 <table>
   <% @demande.logiciel.demandes.each do |demande| %>
   <tr class=<%= "demande_" + demande.statut_id.to_s %> 
@@ -63,15 +63,15 @@
 </td>
 
 </tr>
-<% end %><% ############ fin de partie visible seulement en tant qu'ingénieur ############%>
+<% end %><% ############ fin de partie visible seulement en tant qu'ingÃ©nieur ############%>
 
 </table>
 
 <br/>
 <br/>
 
-<b><u><%= pluralize(@demande.piecejointes.size, 'Piècejointe') %></u></b> 
-<% titres = ['Id', 'Lien', 'Taille', 'Créé le', 'Par' ] %>
+<b><u><%= pluralize(@demande.piecejointes.size, 'PiÃ¨cejointe') %></u></b> 
+<% titres = ['Id', 'Lien', 'Taille', 'CrÃ©Ã© le', 'Par' ] %>
 <%= show_table(@demande.piecejointes, Piecejointe, 
                titres, :total => false) {|piecejointe| 
   result = ''
@@ -91,11 +91,11 @@
 
 <% ############# commentaire ####################  %>
 <div class="menu1">
-<%= start_form_tag ({:action => 'comment', :controller => 'commentaires', :id => @demande},
-                    :multipart => true) %>
+<% form_tag ({:action => 'comment', :controller => 'commentaires', :id => @demande},
+                    :multipart => true) do %>
   <%= render :partial => 'comment_form' %>
   <p>&nbsp;</p>
-<%= end_form_tag %>
+<% end %>
 </div>
 
 <b><u><%= pluralize(@demande.commentaires.size, 'Commentaire') %></u></b> 
@@ -109,5 +109,5 @@ sur cette demande
 
 
 <p>&nbsp;</p>
-<%= link_to_back 'Retour à la liste des demandes' %>
+<%= link_to_back 'Retour Ã  la liste des demandes' %>
 

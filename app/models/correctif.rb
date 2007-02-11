@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Correctif < ActiveRecord::Base
   has_many :demandes
@@ -41,21 +41,21 @@ class Correctif < ActiveRecord::Base
     @logiciels
   end
 
-  # date de reversement formattée
+  # date de reversement formattÃ©e
   # voir lib/overrides.rb pour les dates auto created _on et updated_on
   def reverse_le_formatted
       d = @attributes['reverse_le']
-      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} Ã  #{d[11,2]}h#{d[14,2]}"
   end
 
-  # date de cloture formattée
+  # date de cloture formattÃ©e
   # voir lib/overrides.rb pour les dates auto created _on et updated_on
   def cloture_le_formatted
       d = @attributes['cloture_le']
-      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} Ã  #{d[11,2]}h#{d[14,2]}"
   end
 
-  # délai (en secondes) entre la déclaration et l'acceptation
+  # dÃ©lai (en secondes) entre la dÃ©claration et l'acceptation
   # delai_to_s (texte)
   # en jours : sec2jours(delai)
   def delai
@@ -66,38 +66,38 @@ class Correctif < ActiveRecord::Base
     end
   end
 
-  # conditions de mise à jour d'un reversement
+  # conditions de mise Ã  jour d'un reversement
   # + "non clos" ET (updated_on > 1 mois)
-  # + OU "à reverser"
+  # + OU "Ã  reverser"
   def todo(max_jours)
-    # TODO : vérifier max_jours is integer
+    # TODO : vÃ©rifier max_jours is integer
     age = ((Time.now - reverse_le)/(60*60*24)).round
     if !clos && age > max_jours.to_i
       # non clos && non maj
-      return "mettre-à-jour" 
+      return "mettre-Ã -jour" 
     elsif !reverse
-      # non initialisé
+      # non initialisÃ©
       return "reverser"
     else 
-      # rien à faire
+      # rien Ã  faire
       return false
     end
   end
 
-  # retourne true si le reversement a commencé
+  # retourne true si le reversement a commencÃ©
   def reverse
     return false unless etatreversement
     etatreversement.id >= 1
   end
 
-  # retourne true si l'état du reversement est final
-  # "accepté", "refusé", "ne sera pas reversé"
+  # retourne true si l'Ã©tat du reversement est final
+  # "acceptÃ©", "refusÃ©", "ne sera pas reversÃ©"
   def clos
     return false unless etatreversement
     etatreversement_id >= 4 
   end
 
-  # retourne true si le reversement est accepté
+  # retourne true si le reversement est acceptÃ©
   def accepte
     return false unless etatreversement
     etatreversement_id == 4 

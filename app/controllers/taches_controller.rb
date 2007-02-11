@@ -46,7 +46,7 @@ class TachesController < ApplicationController
     _form
   end
 
-  # TODO : mettre ça en ajax, c'est un peu, beaucoup trop lent
+  # TODO : mettre Ã§a en ajax, c'est un peu, beaucoup trop lent
   def move2bottom
     tache = Tache.find(params[:id])
     tache.move_to_bottom
@@ -116,7 +116,7 @@ class TachesController < ApplicationController
 
   def _post(params)
     # On retransforme en identifiant
-    # C'est bien l'ajax, mais ça fait pas tout
+    # C'est bien l'ajax, mais Ã§a fait pas tout
     params[:tache][:responsable] = Ingenieur.find(
      :first, :include => [:identifiant],
      :conditions => ['nom=?', params[:tache][:responsable]])

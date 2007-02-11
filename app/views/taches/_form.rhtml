@@ -8,7 +8,7 @@
 <p><label for="tache_responsable">Responsable</label><br/>
 <%= text_field_with_auto_complete(:tache, :responsable, {}, :skip_style => true) %>
 
-<p><label for="tache_responsable">Nature de l'étape </label> 
+<p><label for="tache_responsable">Nature de l'Ã©tape </label> 
 <%= select('tache', 'etape_id', 
       @etapes.collect{|l| [ l.nom, l.id]}, :include_blank => true) %>
 

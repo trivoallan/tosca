@@ -4,18 +4,18 @@ class ReportingController < ApplicationController
   layout  'standard-layout'
 
   @@titres = { 
-    :repartition => 'Répartition des demandes reçues',
-    :repartition_cumulee => 'Répartition des demandes reçues',
-    :severite => 'Sévérité des demandes reçues', 
-    :severite_cumulee => 'Sévérité des demandes reçues',
-    :resolution => 'Résolution des demandes reçues', #Etat actuel de vos demandes
-    :resolution_cumulee => 'Résolution des demandes reçues',
+    :repartition => 'RÃ©partition des demandes reÃ§ues',
+    :repartition_cumulee => 'RÃ©partition des demandes reÃ§ues',
+    :severite => 'SÃ©vÃ©ritÃ© des demandes reÃ§ues', 
+    :severite_cumulee => 'SÃ©vÃ©ritÃ© des demandes reÃ§ues',
+    :resolution => 'RÃ©solution des demandes reÃ§ues', #Etat actuel de vos demandes
+    :resolution_cumulee => 'RÃ©solution des demandes reÃ§ues',
 
-    :annulation => 'Demandes annulées',
-    :evolution => 'Evolution du volume d\'activité', #Evolution des accès au service
+    :annulation => 'Demandes annulÃ©es',
+    :evolution => 'Evolution du volume d\'activitÃ©', #Evolution des accÃ¨s au service
  
-    :top5_demandes => 'Top 5 des demandes les plus discutées',
-    :top5_logiciels => 'Top 5 des logiciels les plus défectueux',
+    :top5_demandes => 'Top 5 des demandes les plus discutÃ©es',
+    :top5_logiciels => 'Top 5 des logiciels les plus dÃ©fectueux',
 
     :temps_de_rappel => 'Temps de prise en compte', #Temps de rappel 
     :temps_de_contournement => 'Temps de contournement',
@@ -23,21 +23,21 @@ class ReportingController < ApplicationController
     }
 
 
-  # Les couleurs par défauts sont dans l'ordre alphabétique des severités : 
+  # Les couleurs par dÃ©fauts sont dans l'ordre alphabÃ©tique des severitÃ©s : 
   # ( bloquante, majeure, mineure, sans objet )
   # TODO : faire un hash @@couleurs{} contenant les tableaux
   colors =  [
-    # clair,    foncé,    #couleur
+    # clair,    foncÃ©,    #couleur
     "#dd0000", "#ff2222", #rouge
     "#dd8242", "#ffa464", #orange
     "#dddd00", "#ffff22", #jaune
     "#84dd00", "#a6ff22", #vert
     "#0082dd", "#22a4ff", #bleu
   ]
-  # les index de tableau commencent à 0
+  # les index de tableau commencent Ã  0
   @@couleurs_degradees = ( [nil] << colors ).flatten
   @@couleurs = ( [nil] << colors.values_at(1, 3, 5, 7, 9) ).flatten
-  # on modifie ensuite pour les autres type de données : 
+  # on modifie ensuite pour les autres type de donnÃ©es : 
   @@couleurs_delais = ( [nil] << colors.values_at(7, 1) ).flatten
   @@couleurs_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
   @@couleurs_types_degradees = ( [nil] << colors.indexes(2, 3, 6, 7, 8, 9) ).flatten
@@ -47,7 +47,7 @@ class ReportingController < ApplicationController
     render :action => 'configuration'
   end
 
-  # utilisé avant l'affichage
+  # utilisÃ© avant l'affichage
   def configuration
     @contrats = (@beneficiaire ? @beneficiaire.client.contrats : 
                    Contrat.find(:all, Contrat::OPTIONS))
@@ -67,7 +67,7 @@ class ReportingController < ApplicationController
       @path[nom] = "reporting/#{nom}.png"
       size = data.size 
       if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
-        # cas d'une légende à deux colonnes : degradé obligatoire
+        # cas d'une lÃ©gende Ã  deux colonnes : degradÃ© obligatoire
         if nom.to_s =~ /^severite/
           @colors[nom] = @@couleurs_degradees[1..size]
         elsif nom.to_s =~ /^repartition/
@@ -76,7 +76,7 @@ class ReportingController < ApplicationController
           @colors[nom] = @@couleurs_degradees[1..size]
         end
       else
-        # cas d'une légende à une colonne : pas de degradé
+        # cas d'une lÃ©gende Ã  une colonne : pas de degradÃ©
         if nom.to_s =~ /^temps/
           @colors[nom] = @@couleurs_delais[1..size]
         elsif nom.to_s =~ /^annulation/
@@ -117,10 +117,10 @@ class ReportingController < ApplicationController
 
   private
 
-  # initialise toutes les variables de classes nécessaire
-  # path stocke les chemins d'accès, @données les données
-  # @first_col contient la première colonne et @contrat le contrat
-  # sélectionné
+  # initialise toutes les variables de classes nÃ©cessaire
+  # path stocke les chemins d'accÃ¨s, @donnÃ©es les donnÃ©es
+  # @first_col contient la premiÃ¨re colonne et @contrat le contrat
+  # sÃ©lectionnÃ©
   def init_class_var(params)
     period =  params[:reporting][:period].to_i
     return unless period > 0 
@@ -153,19 +153,19 @@ class ReportingController < ApplicationController
       @report[:middle_report] = ((end_date.beginning_of_month - @report[:middle_date]) / 1.month).round + 1
       @report[:total_report] = ((end_date.beginning_of_month - start_date.beginning_of_month) / 1.month).round + 1  
     else
-      flash[:warn] = 'paramètres incorrects'
+      flash[:warn] = 'paramÃ¨tres incorrects'
       # condition de sortie
       @contrat = nil
     end
   rescue
-    flash[:warn] = 'paramètres incorrects'
+    flash[:warn] = 'paramÃ¨tres incorrects'
     @contrat = nil
   end
 
   # initialisation de @data
   def init_data_general
-    # Répartions par mois (StackedBar)
-    # _terminees doit être en premier
+    # RÃ©partions par mois (StackedBar)
+    # _terminees doit Ãªtre en premier
     @data[:repartition]  = 
       [ [:informations_terminees], [:anomalies_terminees], 
       [:evolutions_terminees], [:informations_en_cours], 
@@ -176,27 +176,27 @@ class ReportingController < ApplicationController
       [:bloquantes_en_cours], [:majeures_en_cours], 
       [:mineures_en_cours], [:sans_objet_en_cours] ]
     @data[:resolution] = 
-      [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:en_cours] ]
+      [ [:'contournÃ©es'], [:'corrigÃ©es'], [:'cloturÃ©es'], [:'annulÃ©es'], [:en_cours] ]
     @data[:evolution] = 
-      [ [:'bénéficiaires'], [:logiciels], [:correctifs] ] # TODO : [:interactions]
+      [ [:'bÃ©nÃ©ficiaires'], [:logiciels], [:correctifs] ] # TODO : [:interactions]
      @data[:annulation] = 
-      [ [:informations], [:anomalies], [:'évolutions'] ]
+      [ [:informations], [:anomalies], [:'Ã©volutions'] ]
 
-    # calcul des délais
+    # calcul des dÃ©lais
      @data[:temps_de_rappel] =
-      [ [:'délais_respectés'], [:'hors_délai'] ]
+      [ [:'dÃ©lais_respectÃ©s'], [:'hors_dÃ©lai'] ]
      @data[:temps_de_contournement] =
-      [ [:'délais_respectés'], [:'hors_délai'] ]
+      [ [:'dÃ©lais_respectÃ©s'], [:'hors_dÃ©lai'] ]
      @data[:temps_de_correction] =
-      [ [:'délais_respectés'], [:'hors_délai'] ]
+      [ [:'dÃ©lais_respectÃ©s'], [:'hors_dÃ©lai'] ]
 
 
-    # Camemberts nommé dynamiquement
+    # Camemberts nommÃ© dynamiquement
 #    @data[:top5_logiciels] = [ ]
 #    @data[:top5_demandes] = [ ] 
   end
 
-  # Remplit un tableau avec la somme des données sur nb_month
+  # Remplit un tableau avec la somme des donnÃ©es sur nb_month
   # Call it like : middle_period = compute_data_period('middle', 3)
   def compute_data_period(period, nb_month)
     start = -nb_month
@@ -254,15 +254,15 @@ class ReportingController < ApplicationController
       end
     end
     }
-    # on fais bien attention à ne merger avec @data
-    # qu'APRES avoir calculé toutes les sommes 
+    # on fais bien attention Ã  ne merger avec @data
+    # qu'APRES avoir calculÃ© toutes les sommes 
     middle_report = compute_data_period('middle', @report[:middle_report])
     total_report = compute_data_period('total', @report[:total_report])
 
-    # Maintenant on peut mettre à jour @data
+    # Maintenant on peut mettre Ã  jour @data
     @data.update(middle_report)
     @data.update(total_report)
-    #TODO : se débarrasser de cet héritage legacy
+    #TODO : se dÃ©barrasser de cet hÃ©ritage legacy
 #       compute_top5_logiciels @data[:top5_logiciels]
 #       Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
 #         compute_top5_demandes @data[:top5_demandes]
@@ -272,8 +272,8 @@ class ReportingController < ApplicationController
 
 
   ##
-  # Calcul un tableaux du respect des délais
-  # pour les 3 étapes : prise en compte, contournée, corrigée
+  # Calcul un tableaux du respect des dÃ©lais
+  # pour les 3 Ã©tapes : prise en compte, contournÃ©e, corrigÃ©e
   def compute_temps(donnees)
     demandes = Demande.find_all
     rappels = donnees[:temps_de_rappel]
@@ -314,7 +314,7 @@ class ReportingController < ApplicationController
     end
   end
 
-  # Petit helper pour être dry, je sais pas trop comment l'appeler
+  # Petit helper pour Ãªtre dry, je sais pas trop comment l'appeler
   def fill_one_report(collection, value, max, last)
     if ((value <= max) || (max == -1))
       collection[0][last] += 1
@@ -340,7 +340,7 @@ class ReportingController < ApplicationController
 
   ##
   # TODO : le faire marcher si y a moins de 5 demandes
-  # Sort les 5 demandes les plus commentées de l'année
+  # Sort les 5 demandes les plus commentÃ©es de l'annÃ©e
   def compute_top5_demandes(report)
     commentaires = Commentaire.count(:group => 'demande_id')
     commentaires = commentaires.sort {|a,b| a[1]<=>b[1]}
@@ -353,9 +353,9 @@ class ReportingController < ApplicationController
   end
 
   ##
-  # Compte les demandes annulées selon leur type
+  # Compte les demandes annulÃ©es selon leur type
   def compute_annulation(report)
-    # TODO : faire des requêtes paramètrées, avec des ?
+    # TODO : faire des requÃªtes paramÃ¨trÃ©es, avec des ?
     informations = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 1 ] }
     anomalies = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 2 ] }
     evolutions = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 5 ] }
@@ -369,7 +369,7 @@ class ReportingController < ApplicationController
   ##
   # Compte les demandes selon leur nature
   def compute_repartition(report)
-    # TODO : faire des requêtes paramètrées, avec des ?
+    # TODO : faire des requÃªtes paramÃ¨trÃ©es, avec des ?
     informations = { :conditions => "typedemande_id = 1" }
     anomalies = { :conditions => "typedemande_id = 2" }
     evolutions = { :conditions => "typedemande_id = 5" }
@@ -388,10 +388,10 @@ class ReportingController < ApplicationController
   end
 
   ##
-  # Compte les demandes par sévérités
+  # Compte les demandes par sÃ©vÃ©ritÃ©s
   def compute_severite(report)
     severites = []
-    # TODO : requête paramètréé, avec ?
+    # TODO : requÃªte paramÃ¨trÃ©Ã©, avec ?
     (1..4).each do |i|
       severites.concat [ { :conditions => "severite_id = #{i}" } ]
     end
@@ -409,7 +409,7 @@ class ReportingController < ApplicationController
   end
 
   ##
-  # Compte le nombre de demande Annulée, Cloturée ou en cours de traitement
+  # Compte le nombre de demande AnnulÃ©e, CloturÃ©e ou en cours de traitement
   def compute_resolution(report)
     condition = 'demandes.statut_id = ?'
     contournee = { :conditions => [condition, 5] }
@@ -429,7 +429,7 @@ class ReportingController < ApplicationController
   ##
   # Calcule le nombre de beneficiaire, de logiciel et correctif distinct par mois
   def compute_evolution(report)
-    # TODO : corriger ça, maintenant on a le contrat
+    # TODO : corriger Ã§a, maintenant on a le contrat
     correctifs = 0
     if @beneficiaire
       ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
@@ -447,25 +447,25 @@ class ReportingController < ApplicationController
   end
 
 
-  # Lance l'écriture des _3_ graphes
+  # Lance l'Ã©criture des _3_ graphes
   def write3graph(nom, graph)
     __write_graph(nom, graph)
     middle = :"#{nom}_middle"
-    __write_graph(middle, Gruff::Pie, "Répartition sur #{@report[:middle_report]} mois") if @data[middle]
+    __write_graph(middle, Gruff::Pie, "RÃ©partition sur #{@report[:middle_report]} mois") if @data[middle]
     total = :"#{nom}_total"
-    __write_graph(total, Gruff::Pie, "Répartition sur #{@report[:total_report]} mois") if @data[total]
+    __write_graph(total, Gruff::Pie, "RÃ©partition sur #{@report[:total_report]} mois") if @data[total]
   end
-  # Ecrit le graphe en utilisant les données indexées par 'nom' dans @données
-  # grâce au chemin d'accès spécifié dans @path[nom]
-  # graph sert à spécifier le type de graphe attendu
-  def __write_graph(nom, graph, title = 'Récapitulatif')
+  # Ecrit le graphe en utilisant les donnÃ©es indexÃ©es par 'nom' dans @donnÃ©es
+  # grÃ¢ce au chemin d'accÃ¨s spÃ©cifiÃ© dans @path[nom]
+  # graph sert Ã  spÃ©cifier le type de graphe attendu
+  def __write_graph(nom, graph, title = 'RÃ©capitulatif')
     return unless @data[nom]
     g = graph.new(450)
 
     # Trop confus pour l'utilisateur et plus de place pour le graphe
     # if title; g.title = title; else g.hide_title = true; end
     g.hide_title = true
-    g.theme = { #    g.theme_37signals légèrement modifié
+    g.theme = { #    g.theme_37signals lÃ©gÃ¨rement modifiÃ©
       :colors => @colors[nom],
       :marker_color => 'black',
       :font_color => 'black',
@@ -479,14 +479,14 @@ class ReportingController < ApplicationController
     g.hide_dots = true if g.respond_to? :hide_dots
     g.hide_legend = true
     # TODO : mettre ca dans les metadatas
-    g.no_data_message = 'Aucune donnée\n n\'est disponible'
+    g.no_data_message = 'Aucune donnÃ©e\n n\'est disponible'
 
     # this writes the file to the hard drive for caching
     g.write "#{RAILS_ROOT}/public/images/#{@path[nom]}"
   end
 
-  # TODO : mettre ça dans le modèle Demande
-  # Calcule en JO le temps écoulé 
+  # TODO : mettre Ã§a dans le modÃ¨le Demande
+  # Calcule en JO le temps Ã©coulÃ© 
   def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
     distance_in_minutes = ((distance_in_seconds.abs)/60.0)
     jo = period_in_hour * 60.0

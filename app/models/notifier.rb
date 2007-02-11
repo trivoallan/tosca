@@ -1,16 +1,16 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Notifier < ActionMailer::Base
   helper :mail
 
-# Notifie un état d'erreur
+# Notifie un Ã©tat d'erreur
 def error_message (exception, trace, session, params, env, envoye_le = Time.now)
-  @recipients = "support-plateforme@08000linux.com"
-  @from = "lstm@noreply.08000linux.com"
-  @subject = "Message d'erreur : #{env['REQUEST_URI']}" 
-  @envoye_le = envoye_le
-  @body = {
+  recipients = "mloiseleur@linagora.com"
+  from = "lstm@noreply.08000linux.com"
+  subject = "Message d'erreur : #{env['REQUEST_URI']}" 
+  envoye_le = envoye_le
+  body = {
     :exception => exception,
     :trace => trace,
     :params => params,
@@ -36,7 +36,7 @@ def identifiant_nouveau(options, flash)
   demande =  @body[:demande]
   @recipients = @body[:identifiant].email
   @from = "noreply@08000linux.com"
-  @subject = "Accès au Support Logiciel Libre"
+  @subject = "AccÃ¨s au Support Logiciel Libre"
   flash[:notice] << message_notice(@recipients, nil) if flash and flash[:notice]
 end
 
@@ -98,13 +98,13 @@ end
 private
   def compute_recipients (demande)
     result = demande.beneficiaire.identifiant.email
-    result += ", " + demande.ingenieur.identifiant.email if demande.ingenieur # non assigné initialement
+    result += ", " + demande.ingenieur.identifiant.email if demande.ingenieur # non assignÃ© initialement
     result
   end
 
   def message_notice (recipients, cc)
     result = "<br />Un email en informant <b>#{recipients}</b>, "
-    result << "<br />avec en copie <b>#{cc}</b> a été envoyé" if cc
+    result << "<br />avec en copie <b>#{cc}</b> a Ã©tÃ© envoyÃ©" if cc
     result
   end
 

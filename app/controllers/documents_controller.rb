@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class DocumentsController < ApplicationController
   def index
@@ -50,7 +50,7 @@ class DocumentsController < ApplicationController
     @document.identifiant = @session[:user]
     _form
     if @document.save
-      flash[:notice] = 'Votre document a été correctement créé.'
+      flash[:notice] = 'Votre document a Ã©tÃ© correctement crÃ©Ã©.'
       redirect_to :action => 'select'
     else
       render :action => 'new'
@@ -65,7 +65,7 @@ class DocumentsController < ApplicationController
   def update
     @document = Document.find(params[:id])
     if @document.update_attributes(params[:document])
-      flash[:notice] = 'Votre document a été correctement mis à jour.'
+      flash[:notice] = 'Votre document a Ã©tÃ© correctement mis Ã  jour.'
       redirect_to :action => 'show', :id => @document
     else
       render :action => 'edit'

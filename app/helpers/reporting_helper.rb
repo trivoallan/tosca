@@ -1,17 +1,17 @@
 module ReportingHelper
 
   # Renvoit les titres du tableau
-  # Data contient les entêtes. Les options applicable sont :
-  # :without_firstcol => permet de ne pas afficher la première colonne
-  # :divise => spécifie si on prends en compte les demandes vivantes 
-  # :with2rows => affichera les entêtes sur 2 lignes, il <b>contient</b> l'intitulé
+  # Data contient les entÃªtes. Les options applicable sont :
+  # :without_firstcol => permet de ne pas afficher la premiÃ¨re colonne
+  # :divise => spÃ©cifie si on prends en compte les demandes vivantes 
+  # :with2rows => affichera les entÃªtes sur 2 lignes, il <b>contient</b> l'intitulÃ©
   # TODO : renommer with2rows en title
   def fill_titles(data, options)
     size = (options[:divise] ? data.size / 2 : data.size)
     result = ''
     return result unless size > 0
     result << '<tr>'
-    first = 'Période&nbsp;&nbsp;&nbsp;&nbsp;' 
+    first = 'PÃ©riode&nbsp;&nbsp;&nbsp;&nbsp;' 
     if options[:with2rows]
       result << "<th rowspan=\"2\">#{first}</th>"  unless options[:without_firstcol]
       result << "<th nowrap colspan=\"#{size}\">#{options[:with2rows]}</th>"
@@ -32,7 +32,7 @@ module ReportingHelper
     result << '</tr>'
   end
 
-  # élément de reporting : 2 cellules
+  # Ã©lÃ©ment de reporting : 2 cellules
   # options : one_row, muli_row et titre
   def report_evolution(nom, options={})
     data = @data[nom]
@@ -50,13 +50,13 @@ module ReportingHelper
     table << '  </td>'
 #    table << '</div>'
 
-    # cellule avec la légende
+    # cellule avec la lÃ©gende
 #    table << '<div id="middle">'
     table << '  <td class="report_legend">'
     table <<    report_legend(nom)
     table << '  </td>'
 #    table << '</div>'
-    # cellule contenant le tableau de données
+    # cellule contenant le tableau de donnÃ©es
 #    table << '<div id="right">'
     table << '  <td class="report_data">'
     table <<    report_data(nom, options)
@@ -70,8 +70,8 @@ module ReportingHelper
 
 
   # permet de comparer deux graphiques :
-  # - l'un concernant la periode considérée (à gauche)
-  # - l'autre concernant la totalité depuis le début du contrat
+  # - l'un concernant la periode considÃ©rÃ©e (Ã  gauche)
+  # - l'autre concernant la totalitÃ© depuis le dÃ©but du contrat
   # TODO : style : center report_item tr td
   def report_repartition(nom, options= {})
     data = @data[nom]
@@ -85,22 +85,22 @@ module ReportingHelper
     table << ' <tr>'
     # cellule contenant le graphique de la periode
     table << '  <td class="report_graph" align="center">'
-    table << '  Sur la période considérée'
+    table << '  Sur la pÃ©riode considÃ©rÃ©e'
     table <<    report_graph(middle, options) 
     table << '  </td>'
-    # cellule avec la légende
+    # cellule avec la lÃ©gende
     table << '  <td class="report_legend">'
     table <<    report_legend(nom)
     table << '  </td>'
-    # cellule contenant le graphique depuis le début
+    # cellule contenant le graphique depuis le dÃ©but
     table << '  <td class="report_data" align="center">'
-    table << '  Depuis le début du contrat'
+    table << '  Depuis le dÃ©but du contrat'
     table <<    report_graph(total, options)
     table << '  </td>'
     table << ' </tr>'
 
     # pas de deuxieme partie pour les calculs des delais
-    # (% affichés dans la première)
+    # (% affichÃ©s dans la premiÃ¨re)
     unless (nom.to_s =~ /^temps/)
       options.update(:without_firstcol => true)
       table << ' <tr>'
@@ -110,7 +110,7 @@ module ReportingHelper
       table << '  </td>'
       # cellule vide
       table << '<td></td>'
-      # cellule contenant le tableau de données
+      # cellule contenant le tableau de donnÃ©es
       table << '  <td class="report_data" align="center">'
       table <<    report_data(total, options)
       table << '  </td>'
@@ -141,7 +141,7 @@ module ReportingHelper
       name = data[index][0].to_s
       head = name.gsub(/_(terminees|en_cours)/, '').gsub('_','&nbsp;').capitalize
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
-      out << '<tr><th>Terminées</th><th>En&nbsp;cours</th></tr>' if twolines
+      out << '<tr><th>TerminÃ©es</th><th>En&nbsp;cours</th></tr>' if twolines
       out << '<tr>'
       color = colors[index]
       # un <td> quoiqu'il se passe
@@ -168,7 +168,7 @@ module ReportingHelper
     out
   end 
 
-  # tableau de données
+  # tableau de donnÃ©es
   # options : one_row, muli_row
   def report_data(nom, options={})
     out = ''
@@ -188,18 +188,18 @@ module ReportingHelper
 
   # Affiche les tableaux de reporting.
   # 2 options possible :
-  # :without_firstcol désactive la première colonne, des dates
-  # :divise permet de n'afficher que la moitié des colonnes 
-  # :width spécifie la taille du tableau
+  # :without_firstcol dÃ©sactive la premiÃ¨re colonne, des dates
+  # :divise permet de n'afficher que la moitiÃ© des colonnes 
+  # :width spÃ©cifie la taille du tableau
   # pour les tableaux contenant les informations des demandes 
-  # en cours et des demandes terminées
-  # TODO : first_col, options[:without_firstcol] : à refactorer
+  # en cours et des demandes terminÃ©es
+  # TODO : first_col, options[:without_firstcol] : Ã  refactorer
   def show_report_table(first_col, nom, titres, options = {})
     elements = @data[nom]
-    return 'aucune donnée' unless elements and elements.size > 0
+    return 'aucune donnÃ©e' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width}>"
-    # C'est sensé dire au navigateur d'aligner sur la virgule
+    # C'est sensÃ© dire au navigateur d'aligner sur la virgule
     # RESULT : ca marche po, on garde ?
     result << '<colgroup><col><col align="char" char="."></colgroup>'
     result << titres

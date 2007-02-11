@@ -1,6 +1,6 @@
 class AlterLicencesAndPaquets < ActiveRecord::Migration
-  # Un peu de nettoyage dans le modèle.
-  # On passe la compatibilité des licenses en booléen
+  # Un peu de nettoyage dans le modÃ¨le.
+  # On passe la compatibilitÃ© des licenses en boolÃ©en
   def self.up
     remove_column :paquets, :incoherences
     remove_column :licenses, :compatible_oss

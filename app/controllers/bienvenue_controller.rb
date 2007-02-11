@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class BienvenueController < ApplicationController
 
@@ -25,7 +25,7 @@ class BienvenueController < ApplicationController
 #                                                    :order => "updated_on DESC")
  #      @clients = @ingenieur.contrats.collect{|c| c.client.nom}
 #     elsif @beneficiaire
-#       # Ce code a été copié depuis le controller de demandes, dans scope_beneficiaire
+#       # Ce code a Ã©tÃ© copiÃ© depuis le controller de demandes, dans scope_beneficiaire
 #       # C'est mal, il faudra trouver une solution
 #       liste = @beneficiaire.client.beneficiaires.collect{|b| b.id}.join(',')
 #       conditions = [ "demandes.beneficiaire_id IN (#{liste})" ]
@@ -35,7 +35,7 @@ class BienvenueController < ApplicationController
 #       end
 #       @client = @beneficiaire.client.nom
 #     else    
-#       flash[:warn] = "Vous n'êtes pas identifié comme appartenant à un groupe.\
+#       flash[:warn] = "Vous n'Ãªtes pas identifiÃ© comme appartenant Ã  un groupe.\
 #                         Veuillez nous contacter pour nous avertir de cet incident."
 #       @demandes = [] # renvoi un tableau vide
 #     end   

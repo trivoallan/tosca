@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Demande < ActiveRecord::Base
   belongs_to :typedemande
@@ -17,14 +17,14 @@ class Demande < ActiveRecord::Base
   #versioning, qui s'occupe de la table demandes_versions
   acts_as_versioned
 
-  # Corrigées, Cloturées et Annulées
-  # MLO : on met un '> 6' à la place du 'IN' ?
+  # CorrigÃ©es, CloturÃ©es et AnnulÃ©es
+  # MLO : on met un '> 6' Ã  la place du 'IN' ?
   TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
   EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
 
   has_many :piecejointes, :through => :commentaires
   validates_presence_of :resume, 
-  :warn => "Vous devez indiquer un résumé de votre demande"
+  :warn => "Vous devez indiquer un rÃ©sumÃ© de votre demande"
   validates_length_of :resume, :within => 3..60
 
   def to_param
@@ -123,8 +123,8 @@ class Demande < ActiveRecord::Base
     @temps_passe
   end
 
-  #Oui ces 2 fonctions n'ont rien à faire dans un modèle.
-  # Mais l'affichage dépend du modèle (du support client)
+  #Oui ces 2 fonctions n'ont rien Ã  faire dans un modÃ¨le.
+  # Mais l'affichage dÃ©pend du modÃ¨le (du support client)
   # donc en fait si ^_^
   def affiche_temps_ecoule
     temps = temps_ecoule
@@ -154,12 +154,12 @@ class Demande < ActiveRecord::Base
     return 0 unless self.versions.size > 0
     support = client.support
     changes = self.versions # Demandechange.find_all_by_demande_id(self.id, :order => "created_on")
-    statuts_sans_chrono = [ 3, 7, 8 ] #Suspendue, Cloture, Annulée, cf modele statut
-    inf = { :date => self.created_on, :statut => changes.first.statut_id } #1er statut : enregistré !
+    statuts_sans_chrono = [ 3, 7, 8 ] #Suspendue, Cloture, AnnulÃ©e, cf modele statut
+    inf = { :date => self.created_on, :statut => changes.first.statut_id } #1er statut : enregistrÃ© !
     delai = 0
     for c in changes
       sup = { :date => c.updated_on, :statut => c.statut_id }
-#      delai += (sup[:date] - inf[:date]).to_s + " de " + inf[:statut].nom + " à " + sup[:statut].nom + "<br />"
+#      delai += (sup[:date] - inf[:date]).to_s + " de " + inf[:statut].nom + " Ã  " + sup[:statut].nom + "<br />"
       unless statuts_sans_chrono.include? sup[:statut]
         delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]), 
                               Jourferie.get_dernier_jour_ouvre(sup[:date]), 
@@ -179,8 +179,8 @@ class Demande < ActiveRecord::Base
 
 
   ##
-  # Calcule le différentiel en secondes entre 2 jours,
-  # selon les horaires d'ouverture du 'support' et les jours fériés
+  # Calcule le diffÃ©rentiel en secondes entre 2 jours,
+  # selon les horaires d'ouverture du 'support' et les jours fÃ©riÃ©s
   def compute_diff(dateinf, datesup, support)
     return 0 unless support
     borneinf = dateinf.beginning_of_day
@@ -197,15 +197,15 @@ class Demande < ActiveRecord::Base
       borneinf = borneinf.change(:hour => support.fermeture)
       bornesup = bornesup.change(:hour => support.ouverture)
     end
-    # La durée d'un jour ouvré dépend des horaires d'ouverture
+    # La durÃ©e d'un jour ouvrÃ© dÃ©pend des horaires d'ouverture
     result += compute_diff_day(dateinf, borneinf, support)
     result += compute_diff_day(bornesup, datesup, support)
     result
   end
 
   ##
-  # Calcule le temps en seconde qui est écoulé durant la même journée
-  # En temps ouvré, selon les horaires du 'support'
+  # Calcule le temps en seconde qui est Ã©coulÃ© durant la mÃªme journÃ©e
+  # En temps ouvrÃ©, selon les horaires du 'support'
   def compute_diff_day(jourinf, joursup, support)
     #on recup les bornes selon le niveau de support
     borneinf = jourinf.change(:hour => support.ouverture)
@@ -227,8 +227,8 @@ class Demande < ActiveRecord::Base
   # Set <tt>include_seconds</tt> to true if you want more detailed approximations if distance < 1 minute
   
   # J'ai juste traduis les mots, la fonction est nickel :)
-  # Dupliqué avec le helper d'application
-  # TODO : être DRY, ca n'a rien à faire dans un model
+  # DupliquÃ© avec le helper d'application
+  # TODO : Ãªtre DRY, ca n'a rien Ã  faire dans un model
   def distance_of_time_in_french_words(distance_in_seconds, support)
     distance_in_minutes = ((distance_in_seconds.abs)/60).round
     jo = (support.fermeture - support.ouverture) * 60
@@ -245,12 +245,12 @@ class Demande < ActiveRecord::Base
     when 90..demi_jo_inf, (demi_jo_sup+1)..jo   then 
       "environ #{(distance_in_minutes.to_f / 60.0).round} heures"
     when (demi_jo_inf+1)..demi_jo_sup
-      "1 demi-jour ouvré"
+      "1 demi-jour ouvrÃ©"
     when jo..(1.5*jo)
-       "1 jour ouvré"
-    # à partir de 1.5 inclus, le round fait 2 ou plus : pluriel
+       "1 jour ouvrÃ©"
+    # Ã  partir de 1.5 inclus, le round fait 2 ou plus : pluriel
     else                 
-      "#{(distance_in_minutes / jo).round} jours ouvrés"
+      "#{(distance_in_minutes / jo).round} jours ouvrÃ©s"
     end
   end
 

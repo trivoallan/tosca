@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits rÈservÈs.#
+# Copyright Linagora SA 2006 - Tous droits r√©serv√©s.#
 #####################################################
 class Interaction < ActiveRecord::Base
 
@@ -10,7 +10,7 @@ class Interaction < ActiveRecord::Base
   belongs_to :ingenieur, :counter_cache => true, :include => [:identifiant]
 
   validates_length_of :url_de_suivi, :minimum => 8,
-   :too_short => "Vous devez spÈcifier l'url de suivi de l'interaction" 
+   :too_short => "Vous devez sp√©cifier l'url de suivi de l'interaction" 
 
   def self.content_columns 
     @content_columns ||= columns.reject { |c| c.primary || 

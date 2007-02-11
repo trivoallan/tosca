@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 
 # Meta data ici :
@@ -9,7 +9,7 @@ module Metadata
   # application
   NOM_COURT_APPLICATION = "LSTM"
   NOM_LONG_APPLICATION = "Linagora Software Tracker Manager"
-  COPYRIGHT_APPLICATION = "Copyright Linagora SA 2006 - Tous droits réservés."
+  COPYRIGHT_APPLICATION = "Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s."
 
   # service
   NOM_COURT_SERVICE = "OSSA"

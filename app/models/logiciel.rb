@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Logiciel < ActiveRecord::Base
 
@@ -17,7 +17,7 @@ class Logiciel < ActiveRecord::Base
   has_many :binaires, :through => :paquets, :dependent => :destroy
 
   validates_presence_of :competences => 
-    "Vous devez spécifier au moins une competence" 
+    "Vous devez spÃ©cifier au moins une competence" 
 
   def self.list_columns 
     columns.reject { |c| c.primary || 

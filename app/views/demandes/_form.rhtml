@@ -1,6 +1,6 @@
 <%= error_messages_for 'demande' %>
 
-<% # hidden_on_create : à placer si on veut cacher un élément %>
+<% # hidden_on_create : Ã  placer si on veut cacher un Ã©lÃ©ment %>
 <% case controller.action_name
    when 'new', 'create'
      hidden_on_create = 'style="visibility:hidden"'
@@ -23,7 +23,7 @@
 <% end %>
 
 <tr>
-<td colspan="2"><p><label for="demande_resume">Resumé</label><br/>
+<td colspan="2"><p><label for="demande_resume">ResumÃ©</label><br/>
    <%= text_area 'demande', 'resume', :cols => 65, :rows => 2 %></p></td></tr>
 
 <tr><tr>
@@ -32,7 +32,7 @@
 </tr>
 
 <tr>
-<td><p><label for="demande_beneficiaire">Bénéficiaire</label></p></td>
+<td><p><label for="demande_beneficiaire">BÃ©nÃ©ficiaire</label></p></td>
 <td><select id="demande_beneficiaire_id" name="demande[beneficiaire_id]">
 <%= option_groups_from_collection_for_select(@clients, "beneficiaires", 
                                              "nom", "id", "nom", 
@@ -42,7 +42,7 @@
 
 <% if @ingenieurs %>
 <tr>
-<td><p><label for="demande_ingenieur">Ingénieur assigné à la demande</label></p></td>
+<td><p><label for="demande_ingenieur">IngÃ©nieur assignÃ© Ã  la demande</label></p></td>
 <td><%= select("demande", "ingenieur_id", 
 	@ingenieurs.collect{|i| [ i.identifiant.nom, i.id]}, 
      { :include_blank => true }) %></td></tr>
@@ -56,7 +56,7 @@
 </td></tr>
 
 <tr>
-<td><p><label for="demande_logiciel">Logiciel concerné</label></p></td>
+<td><p><label for="demande_logiciel">Logiciel concernÃ©</label></p></td>
 <td><%= select("demande", "logiciel_id", 
 	@logiciels.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td></tr>
 
@@ -66,7 +66,7 @@
 	@typedemandes.collect{|l| [ l.nom, l.id]}) %></td></tr>
 
 <tr>
-<td><p><label for="demande_severite">Sévérité de la demande</label></p></td>
+<td><p><label for="demande_severite">SÃ©vÃ©ritÃ© de la demande</label></p></td>
 <td><%= select("demande", "severite_id", 
 	@severites.collect{|l| [ l.nom, l.id]}) %></td></tr>
 
@@ -75,7 +75,7 @@
 <div id="demande_paquets"></div>
 </td></tr>
 
-<% # hidden lors de la création d'un demande et absent lors de son édition %>
+<% # hidden lors de la crÃ©ation d'un demande et absent lors de son Ã©dition %>
 <% if controller.action_name != 'edit' %>
 <tr><td>
  <p <%= hidden_on_create %>><label for="demande_statut">Statut de la demande</label><br/>
@@ -85,7 +85,7 @@
 <% end %>
 
 
-<% # hidden lors de la création d'un demande %>
+<% # hidden lors de la crÃ©ation d'un demande %>
 <tr>
 <td><p <%= hidden_on_create %>><label for="demande_reproductible">Reproductible ?</label></p></td>
 <td><p <%= hidden_on_create %>><%= check_box("demande", "reproductible") %></p></td></tr>
@@ -102,12 +102,12 @@
 </td><td valign="top">
 
 <table><% #colonne droite %>
-<tr><td><p><label for="demande_description">Description détaillée</label><br />
+<tr><td><p><label for="demande_description">Description dÃ©taillÃ©e</label><br />
    <%= text_area 'demande', 'description', "cols" => 45, "rows" => 14 %></p></td>
 </tr>
 </table>
 
-<% #TODO : Mettre un partial de commentaire pour la première pièce jointe %>
+<% #TODO : Mettre un partial de commentaire pour la premiÃ¨re piÃ¨ce jointe %>
 
 </td></tr>
 </table>

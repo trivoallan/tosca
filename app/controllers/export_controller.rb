@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 
 require 'fastercsv'
@@ -32,16 +32,16 @@ class ExportController < ApplicationController
     stream_csv do |csv|
       csv << ["id", 
               "logiciel", 
-              "bénéficiaire", 
+              "bÃ©nÃ©ficiaire", 
               "client", 
-              "ingénieur", 
-              "sévérité", 
+              "ingÃ©nieur", 
+              "sÃ©vÃ©ritÃ©", 
               "reproductible", 
               "version", 
               "date de soumission", 
               "plate-forme", 
-              "mis-à-jour", 
-              "résumé", 
+              "mis-Ã -jour", 
+              "rÃ©sumÃ©", 
               "statut", 
               "type" ]
       demandes.each do |d|

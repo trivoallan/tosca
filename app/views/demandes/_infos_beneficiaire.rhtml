@@ -17,7 +17,7 @@ function cacherCoordonnees() {
 
 <table class="infos_beneficiaire">
 <tr><td align='right' nowrap>
-    <b><u>Coordonnées du Bénéficiaire</u></b>
+    <b><u>CoordonnÃ©es du BÃ©nÃ©ficiaire</u></b>
      <a id='lien_montrer' href='#' onclick='montrerCoordonnees();'
   	<%= "style='display: none'" if @ingenieur %>>
      <%= image_tag("expand_icon.png", :size => "11x14", :border => 0, 
@@ -32,7 +32,7 @@ function cacherCoordonnees() {
    <table>
      <tr><td><b>Client</b></td>        <td><%= @demande.beneficiaire.client.nom %></td></tr>
      <tr><td><b>Contact</b></td>       <td><%= mail_to(@demande.beneficiaire.identifiant.email, @demande.beneficiaire.identifiant.nom) %></td></tr>
-     <tr><td><b>Téléphone</b></td>     <td><%= @demande.beneficiaire.identifiant.telephone %></td></tr>
+     <tr><td><b>TÃ©lÃ©phone</b></td>     <td><%= @demande.beneficiaire.identifiant.telephone %></td></tr>
    </table>
    </div>
 </td></tr>

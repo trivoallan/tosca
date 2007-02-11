@@ -1,10 +1,10 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 
 # Controller general de l'application
-# Les filtres ajoutés à ce controller seront chargés pour tous les autres.
-# De même, toutes les méthodes ajoutées ici seront disponibles.
+# Les filtres ajoutÃ©s Ã  ce controller seront chargÃ©s pour tous les autres.
+# De mÃªme, toutes les mÃ©thodes ajoutÃ©es ici seront disponibles.
 
 # authentification
 require_dependency "login_system"
@@ -13,125 +13,176 @@ require_dependency "login_system"
 require_dependency "acl_system" 
 
 class ApplicationController < ActionController::Base
-
-
-  meantime_filter :scope_beneficiaire
-
   before_filter :set_filters
-  before_filter :set_charset
+  around_filter :scope_beneficiaire
+
+  before_filter :set_headers
   before_filter :set_global_shortcuts
   before_filter :login_required, :except => [:refuse, :login]
 
   # systems d'authentification 
   include LoginSystem
   include ACLSystem
-  model :identifiant
 
   # layout standard
   layout "standard-layout"
 
-  # variables globales
+  # variables globales (beurk, mais tellement pratique ;))
   def set_global_shortcuts
-    set_sessions unless @session[:filtres]
-    @ingenieur = @session[:ingenieur]
-    @beneficiaire = @session[:beneficiaire]
-    # TODO : encore nécessaire ? Non !!
-    @user_group = (@ingenieur ? 'ingénieur' : 'bénéficiaire')
+    @ingenieur = session[:ingenieur]
+    @beneficiaire = session[:beneficiaire]
   end
 
   protected
   
-  # variable utilisateurs; nécessite @session[:user]
-  # penser à mettre à jour les pages statiques 404 et 500 en cas de modification
+  # variable utilisateurs; nÃ©cessite session[:user]
+  # penser Ã  mettre Ã  jour les pages statiques 404 et 500 en cas de modification
   def set_sessions
-    return unless @session[:user]
-    @session[:filtres] = Hash.new
-    @session[:beneficiaire] = @session[:user].beneficiaire
-    @session[:ingenieur] = @session[:user].ingenieur
-    @session[:logo_lstm] = render_to_string :inline => 
+    session[:logo_lstm] = render_to_string :inline => 
       "<%=image_tag('logo_lstm.gif', :alt => 'Accueil', :title => 'Accueil' )%>"
-    @session[:logo_08000] = render_to_string :inline => 
+    session[:logo_08000] = render_to_string :inline => 
       "<%=image_tag('logo_08000.gif', :alt => '08000 LINUX', :title => '08000 LINUX' )%>"
-    @session[:nav_links] = render_to_string :inline => "
+    return unless session[:user]
+    session[:filtres] = Hash.new
+    session[:beneficiaire] = session[:user].beneficiaire
+    session[:ingenieur] = session[:user].ingenieur
+    session[:nav_links] = render_to_string :inline => "
         <% nav_links = [ 
           (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
-          (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
+          (link_to 'DÃ©connexion',:controller => 'account', :action => 'logout'), 
           (link_to_my_account),
           (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
           (link_to 'Utilisateurs', :controller => 'account', :action => 'list')
         ] %>
-        <%= nav_links.compact.join('&nbsp;|&nbsp;') if @session[:user] %>"
-    @session[:cut_links] = render_to_string :inline => "
+        <%= nav_links.compact.join('&nbsp;|&nbsp;') if session[:user] %>"
+    session[:cut_links] = render_to_string :inline => "
         <% cut_links = [ 
           (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
-          (@session[:user].authorized?('demandes/list') ? 
+          (session[:user].authorized?('demandes/list') ? 
               "+ '&nbsp;' + (text_field 'numero', '', 'size' => 3)," : ',' ) + 
               "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
           (link_to 'Projets',:controller => 'projets', :action => 'list'),
-          (link_to 'Tâches',:controller => 'taches', :action => 'list'),
+          (link_to 'TÃ¢ches',:controller => 'taches', :action => 'list'),
           (link_to 'Correctifs',:controller => 'correctifs', :action => 'list'),
-          (link_to 'Répertoire',:controller => 'documents', :action => 'select'), 
+          (link_to 'RÃ©pertoire',:controller => 'documents', :action => 'select'), 
           (link_to_my_client), 
           (link_to 'Clients',:controller => 'clients', :action => 'list')
         ] %>
-        <%= start_form_tag :controller => 'demandes', :action => 'list' %>
+        <% form_tag(:controller => 'demandes', :action => 'list') do %>
         <%= cut_links.compact.join('&nbsp;|&nbsp;') %>
-        <%= end_form_tag %>"
+        <% end %>"
   end
 
-  # encodage
-  def set_charset
-    @headers['Content-Type'] = 'text/html; charset=ISO-8859-1'
+
+  def set_headers
+    if request.xhr?
+      headers['Content-Type'] = 'text/javascript; charset=utf-8'
+    else
+      headers['Content-Type'] = 'text/html; charset=utf-8'
+    end
   end
 
-  # défini les filtres de tri
+  # dÃ©fini les filtres de tri
   # TODO : VA MLO
   def set_filters
-    @session[:filtres] ||= {}
-    @session[:filtres][:liste_globale] = case params['filter']
+    session[:filtres] ||= {}
+    session[:filtres][:liste_globale] = case params['filter']
       when 'true' : true
       when 'false' : false
       else nil
     end
-    # les filtres sont nommés "filtres[nom_du_parametre]"
+    # les filtres sont nommÃ©s "filtres[nom_du_parametre]"
     if params['filtres']
-      params['filtres'].each{|p|
-        set_filter(p[0])
-      }
+      params['filtres'].each{ |p| set_filter(p[0]) }
     end
   end
 
   # positionne un filtre de tri
   # TODO : faire une regexp : to_i si filtre se termine par "_id"
-  # mais ça n'a pas l'air necessaire
-  # @session[:filtres][filtre].to_i if options[:to_i]
-  # à vérifier en détail
+  # mais Ã§a n'a pas l'air necessaire
+  # session[:filtres][filtre].to_i if options[:to_i]
+  # Ã  vÃ©rifier en dÃ©tail
   def set_filter(filtre, options = {})
     if params['filtres'][filtre]
       if params['filtres'][filtre] != ''
         value = params['filtres'][filtre]
         value = value.to_i if filtre =~ /(_id)$/
-        @session[:filtres][filtre] = value
+        session[:filtres][filtre] = value
       else
-        @session[:filtres][filtre] = nil      
+        session[:filtres][filtre] = nil      
       end
     end
   end
 
+
+  # surcharge des requetes find
+  # TODO :VA MLO
+  def compute_scope(include = nil, *args)
+    args.compact!
+    return {} if args.empty?
+
+    # si conditions est une condition (et non pas un tableau de conditions)
+    # on vire les nil
+    
+    query, params = [], []
+    args.each do |condition| 
+      query.push condition[0] 
+      params.concat condition[1..-1]
+    end
+
+      
+    #query.compact!
+    computed_conditions = [ query.join(' AND ') ] + params
+    computed_conditions.compact!
+    return {} if computed_conditions[0] == ''
+    return {:find => {:conditions => computed_conditions, :include => include}} 
+  end
+
+  # verifie :
+  # - s'il il y a un id en paramÃ¨tre (sinon :  retour Ã  la liste)
+  # - si un ActiveRecord ayant cet id existe (sinon : erreur > rescue > retour Ã  la liste)
+  # options
+  # :controller en cas de redirection (bienvenue)
+  # :action en cas de redirection (list)
+  # TODO : trop de copier-coller 
+  # NOTODO : "options[:controller] = controller_name" par dÃ©faut
+  #       c'est idÃ©al, mais les clients n'ont pas les droits sur tous les */list
+  #       on tombe alors sur un acces/refuse, dommage
+  def verifie(ar, options = {:controller => 'bienvenue', :action => 'list'})
+    if !params[:id]
+      flash[:warn] = 'Veuillez prÃ©ciser l\'identifiant de la demande Ã  consulter.'
+      redirect_to(options) and return false
+    end
+    scope_beneficiaire {
+      object = ar.find(params[:id], :select => 'id') 
+      if object = nil
+        flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond Ã  l'identifiant #{params[:id]}."
+        redirect_to(options) and return false
+      end
+    }
+    true
+  rescue  ActiveRecord::RecordNotFound
+    flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond Ã  l'identifiant #{params[:id]}."
+    redirect_to(options) and return false
+  end
+
+
+private
   # scope
-  # TODO : c'est pas DRY, une sous partie a été recopié dans reporting
+  # TODO : c'est pas DRY, une sous partie a Ã©tÃ© recopiÃ© dans reporting
   def scope_beneficiaire
 
     # on applique les filtre sur les listes uniquement
-    # le scope client est tout de même appliqué partout si client
-    filtres = ( self.action_name == 'list' ? @session[:filtres] : {} )
+    # le scope client est tout de mÃªme appliquÃ© partout si client
+    filtres = ( self.action_name == 'list' ? session[:filtres] : {} )
 
-    # scope imposés si l'utilisateur est beneficiaire
-    if @beneficiaire
-      client_id = @beneficiaire.client_id
-      contrat_ids = @beneficiaire.contrat_ids || [ 0 ]
+    # scope imposÃ©s si l'utilisateur est beneficiaire
+    beneficiaire = session[:beneficiaire]
+    if beneficiaire
+      client_id = beneficiaire.client_id
+      contrat_ids = beneficiaire.contrat_ids || [ 0 ]
     else
-      client_id = filtres['client_id'] if filtres['client_id']
+      client_id = filtres['client_id'].to_i if filtres['client_id']
       contrat_ids = filtres['contrat_ids'] if filtres['contrat_ids']
     end
 
@@ -183,72 +234,10 @@ class ApplicationController < ActionController::Base
     Paquet.with_scope(spaquets) {
     Socle.with_scope(ssocles) { 
     yield }}}}}}}}}
-
-  end
-
-  # surcharge des requetes find
-  # TODO :VA MLO
-  def compute_scope(include = nil, *args)
-    args.compact!
-    return {} if args.empty?
-
-    # si conditions est une condition (et non pas un tableau de conditions)
-    # on vire les nil
-    
-    query, params = [], []
-    args.each do |condition| 
-      query.push condition[0] 
-      params.concat condition[1..-1]
-    end
-
-      
-    #query.compact!
-    computed_conditions = [ query.join(' AND ') ] + params
-    computed_conditions.compact!
-    return {} if computed_conditions[0] == ''
-    return {:find => {:conditions => computed_conditions, :include => include}} 
-  end
-
-  # verifie :
-  # - s'il il y a un id en paramètre (sinon :  retour à la liste)
-  # - si un ActiveRecord ayant cet id existe (sinon : erreur > rescue > retour à la liste)
-  # options
-  # :controller en cas de redirection (bienvenue)
-  # :action en cas de redirection (list)
-  # TODO : trop de copier-coller 
-  # NOTODO : "options[:controller] = controller_name" par défaut
-  #       c'est idéal, mais les clients n'ont pas les droits sur tous les */list
-  #       on tombe alors sur un acces/refuse, dommage
-  def verifie(ar, options = {:controller => 'bienvenue', :action => 'list'})
-    if !params[:id]
-      flash[:warn] = 'Veuillez préciser l\'identifiant de la demande à consulter.'
-      redirect_to(options) and return false
-    end
-    scope_beneficiaire {
-      object = ar.find(params[:id], :select => 'id') 
-      if object = nil
-        flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
-        redirect_to(options) and return false
-      end
-    }
-    true
-  rescue  ActiveRecord::RecordNotFound
-    flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
-    redirect_to(options) and return false
   end
 
 
-private
 
-  # notifie en cas d'erreur
-  def log_error(exception)
-    super
-    Notifier::deliver_error_message(exception,
-                                    clean_backtrace(exception),
-                                    session.instance_variable_get("@data"),
-                                    params,
-                                    request.env)
-  end
 
 end
 

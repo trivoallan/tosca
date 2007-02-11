@@ -7,9 +7,9 @@
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 
-<% titres = ['Logiciel', 'Patch', 'Demande', 'Tâches',
+<% titres = ['Logiciel', 'Patch', 'Demande', 'TÃ¢ches',
              'Etat du reversement', 'Description fonctionnelle', 
-             'Reversé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
+             'ReversÃ© le', 'CloturÃ© le', 'DÃ©lai', 'Mis Ã  jour le']%>
 <%= show_table(@correctifs, Correctif, titres) { |c|
   result = ''
   tache = c.todo(@max_jours)

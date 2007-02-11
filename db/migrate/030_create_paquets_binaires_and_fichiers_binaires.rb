@@ -22,12 +22,12 @@ class CreatePaquetsBinairesAndFichiersBinaires < ActiveRecord::Migration
       # insertion des paquets binaires
       insert('INSERT INTO paquets_binaires(paquet_id,arch_id,nom) ' + 
                'SELECT id, arch_id, nom FROM paquets where arch_id <> 6;')
-      # insertions des fichiers associés
+      # insertions des fichiers associÃ©s
       insert('INSERT INTO fichiers_binaires(paquet_binaire_id,chemin,taille) ' + 
                'SELECT pb.id, f.chemin, f.taille ' +
                'FROM fichiers f INNER JOIN paquets_binaires pb ' +
                'ON pb.paquet_id=f.paquet_id;')
-      # mis à jour des liens vers les paquets sources
+      # mis Ã  jour des liens vers les paquets sources
       update('UPDATE paquets_binaires pb SET pb.paquet_id = ' +
                '(SELECT p_src.id FROM paquets p_src, paquets p_bin '+ 
                'WHERE pb.paquet_id=p_bin.id AND ' + 
@@ -41,7 +41,7 @@ class CreatePaquetsBinairesAndFichiersBinaires < ActiveRecord::Migration
       # nettoyage des fichiers
       delete('DELETE FROM fichiers WHERE paquet_id NOT IN ' +
                '(SELECT id FROM paquets);')
-      # on peut enfin se débarrasser de l'arch :)
+      # on peut enfin se dÃ©barrasser de l'arch :)
       remove_column :paquets, :arch_id
     end
   end

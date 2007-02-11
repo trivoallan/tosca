@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits rÈservÈs.#
+# Copyright Linagora SA 2006 - Tous droits r√©serv√©s.#
 #####################################################
 class AccountController < ApplicationController
   model   :identifiant
@@ -15,13 +15,14 @@ class AccountController < ApplicationController
   end 
 
   def login
+    set_sessions
     case @request.method
       when :post
         if @session[:user] = Identifiant.authenticate(@params['user_login'], 
                                                        @params['user_password'], 
                                                        @params['user_crypt'])
           set_sessions
-          flash[:notice]  = "Connexion rÈussie"
+          flash[:notice]  = "Connexion r√©ussie"
           redirect_back_or_default :action => "list", :controller => 'bienvenue'
         else
           @login = @params['user_login']
@@ -38,7 +39,7 @@ class AccountController < ApplicationController
   def devenir
     return unless @ingenieur
     benef = Beneficiaire.find(params[:account][:beneficiaire_id])
-    @session[:user] = benef.identifiant
+    session[:user] = benef.identifiant
     set_sessions
     redirect_back_or_default :action => "list", :controller => 'bienvenue'
   end
@@ -49,13 +50,13 @@ class AccountController < ApplicationController
     when :post
       @identifiant = Identifiant.find(params[:id])
       newIdentifiant = params[:identifiant]
-      #on ne met pas ‡ jour le mot de passe
+      #on ne met pas √† jour le mot de passe
       if newIdentifiant[:password] == ''
         newIdentifiant[:password] = @identifiant.password
         newIdentifiant[:password_confirmation] = @identifiant.password
       else
         if newIdentifiant[:password] != newIdentifiant[:password_confirmation]
-          flash[:notice]  = "Les mots de passe que avez entrÈs sont diffÈrents."
+          flash[:notice]  = "Les mots de passe que avez entr√©s sont diff√©rents."
           redirect_back_or_default :action => "modify", :controller => "account"
         else
           @identifiant.change_password(newIdentifiant[:password])
@@ -63,13 +64,13 @@ class AccountController < ApplicationController
         end
       end
 
-      # pour update des roles accordÈss
+      # pour update des roles accord√©ss
      
       @identifiant.roles = Role.find(@params[:role_ids])  if @params[:role_ids]
 
 
       if @identifiant.update_attributes(newIdentifiant)     
-        flash[:notice]  = "Modification rÈussie, Vous devez vous reconnecter si vous avez modifier votre compte !"
+        flash[:notice]  = "Modification r√©ussie, Vous devez vous reconnecter si vous avez modifier votre compte !"
         redirect_back_or_default :action => "list", :controller => 'bienvenue'
       end
     when :get
@@ -83,18 +84,18 @@ class AccountController < ApplicationController
 
   end
 
-  #utilisÈ dans account/list
+  #utilis√© dans account/list
   def update
     @user = Identifiant.find(params[:id])
-    # j'ai pas fait de vÈrification, Áa plante
-    # pour update des roles accordÈss
+    # j'ai pas fait de v√©rification, √ßa plante
+    # pour update des roles accord√©ss
     if @params[:role_ids]
       @user.roles = Role.find(@params[:role_ids]) 
     else
       @user.roles = []
       # @user.errors.add_on_empty('roles') 
     end
-    flash[:notice] = "L'utilisateur a bien ÈtÈ mis ‡ jour."
+    flash[:notice] = "L'utilisateur a bien √©t√© mis √† jour."
     redirect_to :action => 'list'
   end
   
@@ -114,14 +115,14 @@ class AccountController < ApplicationController
 
       if @identifiant.save
         client = Client.find(@params[:client][:id])
-        flash[:notice] = "Enregistrement rÈussi, n'oubliez pas de vÈrifier son profil<br />"
+        flash[:notice] = "Enregistrement r√©ussi, n'oubliez pas de v√©rifier son profil<br />"
         if @identifiant.client 
           beneficiaire = Beneficiaire.new(:identifiant => @identifiant,
                                          :client => client)
-          flash[:notice] += "Beneficiaire associÈ crÈÈ" if beneficiaire.save
+          flash[:notice] += "Beneficiaire associ√© cr√©√©" if beneficiaire.save
         else
           ingenieur = Ingenieur.new(:identifiant => @identifiant)
-          flash[:notice] += "IngÈnieur associÈ crÈÈ" if ingenieur.save
+          flash[:notice] += "Ing√©nieur associ√© cr√©√©" if ingenieur.save
         end
         Notifier::deliver_identifiant_nouveau({:identifiant => @identifiant, 
                                                 :controller => self,

@@ -7,7 +7,7 @@
 <p><label for="machine_virtuelle">Virtuelle ?</label> 
 <%= check_box 'machine', 'virtuelle'%></p>
 
-<p><label for="machine_hote">Hôte </label> 
+<p><label for="machine_hote">HÃ´te </label> 
 <%= select('machine', 'hote_id', 
       @hotes.collect{|h| [h.acces, h.id]}, :include_blank => true) %></p>
 

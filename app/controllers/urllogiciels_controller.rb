@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class UrllogicielsController < ApplicationController
   def index
@@ -28,7 +28,7 @@ class UrllogicielsController < ApplicationController
   def create
     @urllogiciel = Urllogiciel.new(params[:urllogiciel])
     if @urllogiciel.save
-      flash[:notice] = 'l\'url ' + @urllogiciel.valeur + ' a bien été crée.'
+      flash[:notice] = 'l\'url ' + @urllogiciel.valeur + ' a bien Ã©tÃ© crÃ©e.'
       redirect_to :controller => 'logiciels' , :action => 'show', :id => @urllogiciel.logiciel
     else
       render :action => 'new'

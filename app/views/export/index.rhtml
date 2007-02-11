@@ -1,4 +1,4 @@
-<h1>Exports de données</h1>
+<h1>Exports de donnÃ©es</h1>
       
 <% c = ExportController %>
 <% cname = c.controller_name %>
@@ -10,7 +10,7 @@
 <% c.public_instance_methods(false).sort.each { |m|
       mname = m.to_s
       next if mname == "index" %>
-      <% # et on link sous réserve d'autorisation  %>
+      <% # et on link sous rÃ©serve d'autorisation  %>
       <% if session[:user].authorized?(cname+'/'+mname)%>
 	 <small>| <%= link_to mname, { :action => mname, :controller => cname } %> </small>
       <% end %>

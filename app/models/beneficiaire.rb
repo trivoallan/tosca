@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Beneficiaire < ActiveRecord::Base
   belongs_to :identifiant, :dependent => :destroy
@@ -7,12 +7,13 @@ class Beneficiaire < ActiveRecord::Base
 
   has_and_belongs_to_many :projets
 
-  #TODO : revoir la hiérarchie avec un nested tree (!)
+  #TODO : revoir la hiÃ©rarchie avec un nested tree (!)
   belongs_to :beneficiaire
   has_many :demandes, :dependent => :destroy
 
   def nom
-    return identifiant.nom if identifiant
+    @nom ||= Identifiant.find(identifiant_id, :select => 'identifiants.nom').nom
+    @nom
   end
 
 

@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits rÈservÈs.#
+# Copyright Linagora SA 2006 - Tous droits r√©serv√©s.#
 #####################################################
 class CommentairesController < ApplicationController
   helper :demandes
@@ -22,7 +22,7 @@ class CommentairesController < ApplicationController
     @commentaire = Commentaire.find(params[:id])
   end
 
-  #utilisÈ par la vue "show" de Demande pour en ajouter un
+  #utilis√© par la vue "show" de Demande pour en ajouter un
   def comment
     user = @session[:user]
     demande = Demande.find(params[:id])
@@ -31,7 +31,7 @@ class CommentairesController < ApplicationController
       # on regarde si le statut a changer
       statut_modifie = true if params[:demande][:statut_id] != ''
       params[:demande][:statut_id] = demande.statut_id unless statut_modifie
-      # ‡ la 'prise en compte' : assignation auto ‡ l'ingÈnieur
+      # √† la 'prise en compte' : assignation auto √† l'ing√©nieur
       if  params[:demande][:statut_id] == '2' and demande.ingenieur_id.nil?
         demande.ingenieur_id = @ingenieur.id
       end
@@ -39,18 +39,18 @@ class CommentairesController < ApplicationController
 
     # public si on modifie le statut
     params[:commentaire][:prive]=false if statut_modifie
-    # avertir ??  'Le statut a ÈtÈ modifiÈ : le commentaire est <b>public</b>' if statut_modifie
+    # avertir ??  'Le statut a √©t√© modifi√© : le commentaire est <b>public</b>' if statut_modifie
     @commentaire = Commentaire.new(params[:commentaire])
     @commentaire.demande_id = demande.id 
-    @commentaire.piecejointe = Piecejointe.new(params[:piecejointe]) if params[:piecejointe][:file].original_filename() != ''
+    @commentaire.piecejointe = Piecejointe.new(params[:piecejointe]) if params[:piecejointe][:file] != ''
     @commentaire.identifiant_id = user.id
 
-    # on vÈrifie et on envoie le courrier
+    # on v√©rifie et on envoie le courrier
     if @commentaire.corps.size < 5
       @commentaire.errors.add_on_empty('corps') 
       flash[:warn] = 'Votre commentaire est trop court, veuillez recommencer'
     elsif @commentaire.save and demande.update_attributes(params[:demande])
-      flash[:notice] = 'Le commentaire a bien ÈtÈ ajoutÈ.'
+      flash[:notice] = 'Le commentaire a bien √©t√© ajout√©.'
       unless @commentaire.prive
         Notifier::deliver_demande_nouveau_commentaire\
         ({:demande => demande, :commentaire => @commentaire, 
@@ -59,7 +59,7 @@ class CommentairesController < ApplicationController
            :statut => demande.statut.nom}, flash)
       end
     else
-      flash[:warn] = 'Votre commentaire n\'a pas ÈtÈ ajoutÈ correctement'
+      flash[:warn] = 'Votre commentaire n\'a pas √©t√© ajout√© correctement'
     end
 
     options = { :action => 'comment', :controller => 'demandes', :id => demande }
@@ -71,9 +71,9 @@ class CommentairesController < ApplicationController
     return unless (params[:demande] and @commentaire)
     # toggle inverse un statut booleen
     if @commentaire.toggle!(:prive)
-      flash[:notice] = "Le commentaire ##{@commentaire.id} est dÈsormais #{@commentaire.etat}"
+      flash[:notice] = "Le commentaire ##{@commentaire.id} est d√©sormais #{@commentaire.etat}"
     else
-      flash[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas ÈtÈ modifiÈ"'
+      flash[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas √©t√© modifi√©"'
     end
     redirect_to :controller => 'demandes', :action => 'comment', :id => params[:demande]
   end
@@ -86,7 +86,7 @@ class CommentairesController < ApplicationController
   def create
     @commentaire = Commentaire.new(params[:commentaire])
     if @commentaire.save
-      flash[:notice] = 'Le commentaire a bien ÈtÈ crÈe.'
+      flash[:notice] = 'Le commentaire a bien √©t√© cr√©e.'
       redirect_to :action => 'list'
     else
       _form
@@ -113,7 +113,7 @@ class CommentairesController < ApplicationController
   def destroy
     return redirect_to(:action => 'list', :controller => 'bienvenue') unless params[:demande] and params[:id]
     Commentaire.find(params[:id]).destroy
-    flash[:notice] = 'Le commentaire a bien ÈtÈ supprimÈ.'
+    flash[:notice] = 'Le commentaire a bien √©t√© supprim√©.'
     redirect_to(:action => 'comment', 
                 :controller => 'demandes', 
                 :id => params[:demande])

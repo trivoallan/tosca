@@ -2,7 +2,7 @@
 
 <%= show_pages_links(@commentaire_pages, 'un commentaire') %>
 
-<% titres = ['Demande','Corps','Crée le', 'Màj le']%>
+<% titres = ['Demande','Corps','CrÃ©e le', 'MÃ j le']%>
 <%= show_table(@commentaires, Commentaire, titres) { |c|
   result = ''
   result << "<td>#{link_to_demande c.demande}</td>"

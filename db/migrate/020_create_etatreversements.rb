@@ -1,15 +1,15 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class CreateEtatreversements < ActiveRecord::Migration
   def self.up
-    # les états possibles d'un reversement
+    # les Ã©tats possibles d'un reversement
     create_table :etatreversements do |t|
       t.column :nom, :string, :null => false
       t.column :description, :text, :null => false
     end
 
-    # un reversement a maintenant un état ^_^'
+    # un reversement a maintenant un Ã©tat ^_^'
     add_column :reversements, :etatreversement_id, :integer, :null => false
 
   end

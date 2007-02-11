@@ -6,27 +6,27 @@
 <tr><td colspan="2"><br/><hr/></td></tr>
 <tr style="vertical-align:top;"><td>
 
-<h2>Interaction avec la communauté</h2>
+<h2>Interaction avec la communautÃ©</h2>
 
 <p><label for="interaction_url_de_suivi">Url de suivi</label><br/>
 <%= text_area 'interaction', 'url_de_suivi', :rows => 3  %></p>
 
-<p><label for="interaction_logiciel">Logiciel / Communauté</label><br/>
+<p><label for="interaction_logiciel">Logiciel / CommunautÃ©</label><br/>
 <%= select("interaction", "logiciel_id", 
            @logiciels.collect{|l| [ l.nom, l.id ]}) %></p>
 
-<p><label for="interaction_ingenieur">Ingénieur auteur de l'intéraction</label><br/>
+<p><label for="interaction_ingenieur">IngÃ©nieur auteur de l'intÃ©raction</label><br/>
 <%= select("interaction", "ingenieur_id", 
            @ingenieurs.collect{|l| [ l.nom, l.id ]}) %></p>
 
-<p><label for="interaction_client">Client associé</label><br/>
+<p><label for="interaction_client">Client associÃ©</label><br/>
 <%= select("interaction", "client_id", 
            @clients.collect{|l| [ l.nom, l.id ]}) %></p>
 
-<p><label for="interaction_temps_passe">Temps passé (en Jours Ouvrés)</label><br/>
+<p><label for="interaction_temps_passe">Temps passÃ© (en Jours OuvrÃ©s)</label><br/>
 <%= text_field 'interaction', 'temps_passe'  %></p>
 
-<p><label for="interaction_resume">Resumé de l'intéraction</label><br/>
+<p><label for="interaction_resume">ResumÃ© de l'intÃ©raction</label><br/>
 <%= text_field 'interaction', 'resume'  %></p>
 
 <p><label for="interaction_description">Description</label><br/>

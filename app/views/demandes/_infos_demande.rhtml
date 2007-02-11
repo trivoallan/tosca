@@ -5,18 +5,18 @@
 <table class="standard_infos">
   <tr><td><b>Type </b></td>           <td><%= @demande.typedemande.nom %></td>
       <td><b>Ouverture </b></td>      <td><%= @demande.created_on_formatted %></td>
-      <td><b>Rappelée en</b></td>     <td><%= @demande.affiche_temps_rappel %></td></tr>
+      <td><b>RappelÃ©e en</b></td>     <td><%= @demande.affiche_temps_rappel %></td></tr>
   <tr><td class="<%= "demande_#{@demande.statut_id}" %>"><b>Statut </b></td>
       <td class="<%= "demande_#{@demande.statut_id}" %>"><%= @demande.statut.nom %></td>
       <td><b>A jour du </b></td>      <td><%= @demande.updated_on_formatted %></td>
-      <td><b>Contournée en</b></td>   <td><%= @demande.affiche_temps_contournement %></td></tr>
-  <tr><td><b>Sévérité </b></td>       <td><%= @demande.severite.nom %></td>
+      <td><b>ContournÃ©e en</b></td>   <td><%= @demande.affiche_temps_contournement %></td></tr>
+  <tr><td><b>SÃ©vÃ©ritÃ© </b></td>       <td><%= @demande.severite.nom %></td>
       <td><b></b></td>                <td></td>
-      <td><b>Corrigée en</b></td>     <td><%= @demande.affiche_temps_correction %></td></tr>
+      <td><b>CorrigÃ©e en</b></td>     <td><%= @demande.affiche_temps_correction %></td></tr>
   <tr><td><b>Reproduit </b></td>      <td><%= @demande.reproduit %></td>
       <td></td>
       <td></td>
-      <td><b>Temps écoulé</b></td>    <td><%= @demande.affiche_temps_ecoule %></td></tr>
+      <td><b>Temps Ã©coulÃ©</b></td>    <td><%= @demande.affiche_temps_ecoule %></td></tr>
   <tr><td><b>Correctif fourni</b></td><td><%= link_to_correctif @demande.correctif %></td>
       <% if @correctifs and @ingenieur %>
       <td><b>Associer</b></td>        <td>
@@ -30,10 +30,11 @@
       <td></td>                       <td></td></tr>
   <tr><td><b>Responsable</b></td>     <td><%= @demande.ingenieur.identifiant.nom if @demande.ingenieur %></td>
       <% if @ingenieur %>
-      <td><b>Assigner à</b></td>      <td>
-      <%= start_form_tag (:action => 'changer_ingenieur', :id => @demande.id) %>
+      <td><b>Assigner Ã </b></td>      <td>
+      <% form_tag (:action => 'changer_ingenieur',  
+	  :id => @demande.id) do %>
 	<%= select_onchange @identifiants_ingenieurs, 'demande', 'ingenieur_id' %>
-      <%= end_form_tag %></td>
+      <% end %></td>
       <% else %><td></td>             <td></td><% end %>
       <td></td>                       <td></td></tr>
 </table>
@@ -42,7 +43,7 @@
 
 <table width="100%">
    <tr><td>
-     <% # infos bénéficiaire :  require @demande %>
+     <% # infos bÃ©nÃ©ficiaire :  require @demande %>
      <%= render_partial 'infos_beneficiaire' %>
    </td></tr>
 </table>
@@ -57,7 +58,7 @@
   <tr><td colspan="4" width="100%" class="bordered">
       <%= indent @demande.description %>  </td></tr>
   <tr height="10"><td></td></tr>
-  <tr><td><b><u>Logiciel concerné</u></b>: <%= link_to_logiciel(@demande.logiciel) %>
+  <tr><td><b><u>Logiciel concernÃ©</u></b>: <%= link_to_logiciel(@demande.logiciel) %>
 
           <% if @ingenieur %>
                <% if @count>1 %>
@@ -68,7 +69,7 @@
                       onclick='hide("infos_demandes"); show("voir_infos_demandes"); hide("cacher_infos_demandes");'>
                       <%= image_tag("collapse_icon.png", :size => "11x14", :border => 0, :title => "Montrer", :alt => "Montrer", :align => 'baseline') %></a>
                <% else %>             
-                   Aucune demande associée
+                   Aucune demande associÃ©e
                <% end %>
           <% end %> </td></tr>
 </table>

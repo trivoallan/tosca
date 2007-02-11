@@ -1,7 +1,7 @@
 
 <table><tr><td>
 <%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
-  <p><label for="demande_resume">Spécifier une année : </label>
+  <p><label for="demande_resume">SpÃ©cifier une annÃ©e : </label>
   <%= text_field 'report', '', "mois" => @annee  %>
   <%= submit_tag "Consulter" %></p>
 <%= end_form_tag %>
@@ -16,10 +16,10 @@
 
    <h2>Temps de contournement des demandes (en JO)</h2>
    <%= report_table(:"temps_contournement_#{c.id}", :titre => @titres[:temps_contournement]) %>
-   <label>Estimation faite en jours ouvrés</label><br />
+   <label>Estimation faite en jours ouvrÃ©s</label><br />
 
    <h2>Temps de correction des demandes</h2>
    <%= report_table(:"temps_correction_#{c.id}", :titre => @titres[:temps_correction]) %>
-   <label>Estimation faite en jours ouvrés</label><br />
+   <label>Estimation faite en jours ouvrÃ©s</label><br />
 
 <% end %>

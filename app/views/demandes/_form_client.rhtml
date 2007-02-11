@@ -1,12 +1,12 @@
 <% client = @demande.client %>
 
-<p><label>Bénéficiaire : </label>
+<p><label>BÃ©nÃ©ficiaire : </label>
 <% if client %>
 <%= select('demande', 'beneficiaire_id', 
 	client.beneficiaires.collect{|l| [ l.nom, l.id]}) %></p>
 <% end %>
 
-<p><label>Ingénieur affecté : </label>
+<p><label>IngÃ©nieur affectÃ© : </label>
 <% if client %>
 <%= select('demande', 'ingenieur_id', 
 	client.ingenieurs.collect{|l| [ l.nom, l.id]},
@@ -19,7 +19,7 @@
 	client.typedemandes.collect{|l| [ l.nom, l.id]}) %></p>
 <% end %>
 
-<p><label>Sévérité : </label>
+<p><label>SÃ©vÃ©ritÃ© : </label>
 <% if client %>
 <%= select('demande', 'severite_id', 
 	client.severites.collect{|l| [ l.nom, l.id]}) %></p>

@@ -1,4 +1,4 @@
-<h1>Déposer une demande</h1>
+<h1>DÃ©poser une demande</h1>
 
 <p>&nbsp;</p>
 <p>Renseignez les champs ci dessous.</p>
@@ -9,20 +9,20 @@
 <%= start_form_tag ({:action => 'create'}, 
                     {:multipart => true, :id => 'demande_form', :name => 'demande_form' })  %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Déposer cette demande" %>
+  <%= submit_tag "DÃ©poser cette demande" %>
 <%= end_form_tag %>
 
 
 
 <p>&nbsp;</p>
 
-<%= link_to_back 'Retour à la liste' %>
+<%= link_to_back 'Retour Ã  la liste' %>
 
 <p>&nbsp;</p>
 
 <% if @beneficiaire %>
-<p>Nota : Un jour ouvré correspond au temps d'ouverture du service quotidien 
-          défini dans le contrat SLL <%= @beneficiaire.client.nom  %> : <%= @beneficiaire.client.support.nom %>, 
+<p>Nota : Un jour ouvrÃ© correspond au temps d'ouverture du service quotidien 
+          dÃ©fini dans le contrat SLL <%= @beneficiaire.client.nom  %> : <%= @beneficiaire.client.support.nom %>, 
           soit <%= @beneficiaire.client.support.fermeture - @beneficiaire.client.support.ouverture %> heures.<br/>
-   Les jours ouvrés sont du lundi au vendredi, hors week-ends et jours fériés.</p>
+   Les jours ouvrÃ©s sont du lundi au vendredi, hors week-ends et jours fÃ©riÃ©s.</p>
 <% end %>

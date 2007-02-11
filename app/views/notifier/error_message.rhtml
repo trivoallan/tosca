@@ -12,16 +12,16 @@ Backtrace
 <%= @trace.to_a.join("</p>\n<p>") %>
 
 Params
-<% @params.each do |key, val| -%>
+<% @params.each do |key, val| %>
 * <%= key %> : <%= val.to_yaml %>
-<% end -%>
+<% end %>
 
 Session
-<% @session.each do |key, val| -%>
+<% @session.each do |key, val| %>
 * <%= key %> : <%= val.to_yaml %>
-<% end -%>
+<% end %>
 
 Environment
-<% @env.each do |key, val| -%>
+<% @env.each do |key, val| %>
 * <%= key %> : <%= val %>
-<% end -%>
+<% end %>

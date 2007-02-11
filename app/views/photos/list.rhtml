@@ -2,7 +2,7 @@
 
 <%= show_pages_links(@photo_pages, 'une photo') %>
 
-<% titres = ['Original','Formatté','Description']%>
+<% titres = ['Original','FormattÃ©','Description']%>
 <%= show_table(@photos, Photo, titres) { |p|
   result = ''
   result << "<td>#{image_tag url_for_file_column(p, 'image')}</td>"

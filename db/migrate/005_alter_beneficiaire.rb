@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class AlterBeneficiaire < ActiveRecord::Migration
   def self.up
@@ -11,7 +11,7 @@ class AlterBeneficiaire < ActiveRecord::Migration
       :boolean, :default => true, :null => false
   end
 
-  #pas de retour en arrière cette fois ci
+  #pas de retour en arriÃ¨re cette fois ci
   def self.down
   end
 end

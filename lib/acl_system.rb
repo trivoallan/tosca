@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 # See <a href="http://wiki.rubyonrails.com/rails/show/LoginGeneratorACLSystem">http://wiki.rubyonrails.com/rails/show/LoginGeneratorACLSystem</a>
 
@@ -23,7 +23,7 @@ module ACLSystem
   # This works in conjunction with the LoginController.
   # The LoginController loads the User object.
   def authorize?(user)
-    required_perm = "%s/%s" % [ @params['controller'], @params['action'] ]
+    required_perm = "%s/%s" % [ params['controller'], params['action'] ]
     if user.authorized? required_perm
       return true
     end

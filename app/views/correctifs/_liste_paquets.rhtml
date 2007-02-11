@@ -3,8 +3,8 @@
 <% else %>
   <% paquets, binaires = [], [] %>
 <% end %>
-<p>Paquets sur lesquels il a été appliqué :</p>
+<p>Paquets sur lesquels il a Ã©tÃ© appliquÃ© :</p>
 <%= hbtm_check_box( paquets, @paquets, 'correctif[paquet_ids]', :size => 3) %>
-<p>Binaires résultants :</p>
+<p>Binaires rÃ©sultants :</p>
 <%= hbtm_check_box( binaires, @binaires, 'correctif[binaire_ids]', :size => 3) %>
 

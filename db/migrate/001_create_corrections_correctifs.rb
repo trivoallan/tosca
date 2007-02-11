@@ -1,9 +1,9 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class CreateCorrectionsCorrectifs < ActiveRecord::Migration
   def self.up
-    #Quand on ne met pas l'id à false, ca crée une colonne id auto-incrémenté
+    #Quand on ne met pas l'id Ã  false, ca crÃ©e une colonne id auto-incrÃ©mentÃ©
     create_table :correctifs_demandes, :id => false do |table|
       table.column :correctif_id, :integer, :null => false
       table.column :demande_id, :integer, :null => false

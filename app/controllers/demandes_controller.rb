@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class DemandesController < ApplicationController
   before_filter :verifie, 
@@ -13,9 +13,9 @@ class DemandesController < ApplicationController
 
 
   # verifie :
-  # - s'il il y a un demande_id en paramètre (sinon :  retour à la liste)
-  # - si une demande ayant cet id existe (sinon : erreur > rescue > retour à la liste)
-  # - dans le cas d'un bénéficiaire, s'il est bien beneficiaire de cette demande (sinon : retour à la liste)
+  # - s'il il y a un demande_id en paramÃ¨tre (sinon :  retour Ã  la liste)
+  # - si une demande ayant cet id existe (sinon : erreur > rescue > retour Ã  la liste)
+  # - dans le cas d'un bÃ©nÃ©ficiaire, s'il est bien beneficiaire de cette demande (sinon : retour Ã  la liste)
   def verifie
     super(Demande, {:controller => 'demandes'})
   end
@@ -34,43 +34,45 @@ class DemandesController < ApplicationController
   def list
     #TODO  
     #super(params) # see before_filter:set_filters in application.rb
-    return unless @session[:user]
-    #cas spécial : consultation directe
+    return unless session[:user]
+    #cas spÃ©cial : consultation directe
     redirect_to :action => :comment, :id => params['numero'] if params['numero'] 
 
-    #init des variables utilisées dans la vue
+    #init des variables utilisÃ©es dans la vue
     #Logiciel.with_exclusive_scope() do
-      @logiciels = Logiciel.find_all
+      @logiciels = Logiciel.find(:all)
     #end
     Client.with_exclusive_scope do
-      @clients = Client.find_all 
+      @clients = Client.find(:all)
     end
-    @beneficiaires = Beneficiaire.find_all
+    @beneficiaires = Beneficiaire.find(:all)
 
-    @severites = Severite.find_all
-    @statuts = Statut.find_all
-    @types = Typedemande.find_all
+    @severites = Severite.find(:all)
+    @statuts = Statut.find(:all)
+    @types = Typedemande.find(:all)
 
     #Identifiant.find_all where ingenieur
     # joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id = identifiants.id'
     # @identifiants_ingenieurs = Identifiant.find(:all, :joins => joins)
-    # TODO : VA MLO : il faut la liste des ingénieurs, non ?
-    @ingenieurs = Ingenieur.find_all
+    # TODO : VA MLO : il faut la liste des ingÃ©nieurs, non ?
+    @ingenieurs = Ingenieur.find(:all)
 
     @count = Demande.count
 
-    # les filtres sont définis dans le controller principal
+    # les filtres sont dÃ©finis dans le controller principal
     # see set_filters, @session[:filtres]
 
     if not @beneficiaire and not @ingenieur
-      flash[:warn] = 'Vous n\'êtes pas identifié comme appartenant à un groupe.\
+      flash[:warn] = 'Vous n\'Ãªtes pas identifiÃ© comme appartenant Ã  un groupe.\
                         Veuillez nous contacter pour nous avertir de cet incident.'
       @demandes = [] # renvoi un tableau vide
     end
 
-    @demande_pages, @demandes = paginate :demandes, :per_page => 15,
-    :order => 'updated_on DESC', #:conditions => conditions,
-    :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut]
+    Beneficiaire.with_scope(:find => {:include => [:identifiant, :client]}) do
+      @demande_pages, @demandes = paginate :demandes, :per_page => 50,
+      :order => 'updated_on DESC', #:conditions => conditions,
+      :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut,:logiciel]
+    end
   end
 
 
@@ -78,9 +80,9 @@ class DemandesController < ApplicationController
     @demande = Demande.new unless @demande
     common_form @beneficiaire
 
-    # sans object par défaut 
+    # sans object par dÃ©faut 
     @demande.severite_id = 4
-    # statut "prise en compte" si ingénieur, sinon : "enregistrée"
+    # statut "prise en compte" si ingÃ©nieur, sinon : "enregistrÃ©e"
     @demande.statut_id = (@ingenieur ? 2 : 1)
 
     @demande.beneficiaire_id = @beneficiaire.id if @beneficiaire
@@ -90,7 +92,7 @@ class DemandesController < ApplicationController
     @demande = Demande.new(params[:demande])
     @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.save
-      flash[:notice] = 'La demande a bien été créée.'
+      flash[:notice] = 'La demande a bien Ã©tÃ© crÃ©Ã©e.'
       Notifier::deliver_demande_nouveau({:demande => @demande, 
                                           :nom => @session[:user].nom, 
                                           :controller => self}, flash)
@@ -123,10 +125,10 @@ class DemandesController < ApplicationController
      when 0
       output << "<p>Nous ne disposons d'aucun paquet binaire concernant " + logiciel.nom  + "</p>" 
      when paquets.size < 0
-      # n'est jamais appelé ? la condition n'est pas bonne
+      # n'est jamais appelÃ© ? la condition n'est pas bonne
       output << "<p>Une erreur s'est produite concernant les paquets de " + logiciel.nom  + "</p>"
      else 
-      output << "<p>Précisez ici les paquets impactés par la demande :</p>" 
+      output << "<p>PrÃ©cisez ici les paquets impactÃ©s par la demande :</p>" 
     
       output << "<table>"
       output << "<tr><td> <b>Paquets</b> </td>"
@@ -187,9 +189,9 @@ class DemandesController < ApplicationController
       @correctifs = Correctif.find_all 
     end
 
-    # On va chercher les identifiants des ingénieurs assignés
-    # C'est un héritage du passé
-    # TODO : s'en débarrasser avec une migration et un :include
+    # On va chercher les identifiants des ingÃ©nieurs assignÃ©s
+    # C'est un hÃ©ritage du passÃ©
+    # TODO : s'en dÃ©barrasser avec une migration et un :include
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
     conditions = [' ingenieurs.id != ?', @demande.ingenieur_id || 0] 
     select = "DISTINCT identifiants.* "
@@ -202,7 +204,7 @@ class DemandesController < ApplicationController
     common_form @beneficiaire
     @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.update_attributes(params[:demande])
-      flash[:notice] = 'La demande a bien été mise à jour.'
+      flash[:notice] = 'La demande a bien Ã©tÃ© mise Ã  jour.'
       redirect_to :action => 'comment', :id => @demande
     else
       render :action => 'edit'
@@ -222,7 +224,7 @@ class DemandesController < ApplicationController
     # migration 006 :
     changement.identifiant = @session[:user]
     if @demande.update_attributes(params[:demande]) and changement.save
-      flash[:notice] = "<br />Le statut a été mis à jour"
+      flash[:notice] = "<br />Le statut a Ã©tÃ© mis Ã  jour"
       Notifier::deliver_demande_change_statut({:demande => @demande, 
                                                 :nom => @session[:user].nom, 
                                                 :controller => self},
@@ -239,11 +241,11 @@ class DemandesController < ApplicationController
     @demande.ingenieur = Ingenieur.find_by_identifiant_id(params[:ingenieur_id])
     if @demande.save
       if @demande.ingenieur
-        flash[:notice] = "La demande a été assignée correctement" 
+        flash[:notice] = "La demande a Ã©tÃ© assignÃ©e correctement" 
         Notifier::deliver_demande_assigner({:demande => @demande, 
                                              :controller => self}, 
                                            flash)
-      else flash[:notice] = "La demande n'est plus assignée"
+      else flash[:notice] = "La demande n'est plus assignÃ©e"
       end
     else flash[:warn] = "Une erreur est survenue, veuillez nous contacter"
     end
@@ -255,7 +257,7 @@ class DemandesController < ApplicationController
     return unless params[:demande][:id] and params[:correctif_id]
     @demande = Demande.find(params[:demande][:id])
     if @demande.update_attributes(:correctif_id => params[:correctif_id])
-      flash[:notice] = "<br />Un correctif a été lié"
+      flash[:notice] = "<br />Un correctif a Ã©tÃ© liÃ©"
     else
       flash[:warn] = "Une erreur est survenue, veuillez nous contacter"
     end
@@ -266,7 +268,7 @@ class DemandesController < ApplicationController
     @demande = @demande || Demande.new(params[:demande])
     flash[:warn] = nil
 
-    # On réinitialise tout le bouzin si on a changé le client
+    # On rÃ©initialise tout le bouzin si on a changÃ© le client
     if (params[:fake] and 
           @demande.client.id != params[:fake][:client_id])
       client = Client.find(params[:fake][:client_id])
@@ -280,12 +282,12 @@ class DemandesController < ApplicationController
       end
     end
 
-    # On positionne des paramètres par défaut
+    # On positionne des paramÃ¨tres par dÃ©faut
     if @demande.beneficiaire_id == 0
       @demande.beneficiaire_id = 1 if @ingenieur
       @demande.beneficiaire = @beneficiaire.id if @beneficiaire
       if @demande.beneficiaire_id == 0
-        message = 'Votre identification est incomplète, veuillez nous contacter au plus vite'
+        message = 'Votre identification est incomplÃ¨te, veuillez nous contacter au plus vite'
         @demande.errors.add_on_empty(:beneficiaire, message)
         @demande.beneficiaire = Beneficiaire.find(:first)
       end

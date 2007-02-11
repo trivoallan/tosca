@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class PaquetsController < ApplicationController
   helper :logiciels, :binaires
@@ -70,7 +70,7 @@ class PaquetsController < ApplicationController
   def create
     @paquet = Paquet.new(params[:paquet])
     if @paquet.save
-      flash[:notice] = 'Le paquet '+@paquet.nom+' a bien été crée.'
+      flash[:notice] = 'Le paquet '+@paquet.nom+' a bien Ã©tÃ© crÃ©e.'
       redirect_to :action => 'list'
     else
       _form
@@ -86,7 +86,7 @@ class PaquetsController < ApplicationController
   def update
     @paquet = Paquet.find(params[:id])
     if @paquet.update_attributes(params[:paquet])
-      flash[:notice] = 'Le paquet '+@paquet.nom+' a bien été mis à jour.'
+      flash[:notice] = 'Le paquet '+@paquet.nom+' a bien Ã©tÃ© mis Ã  jour.'
       redirect_to :action => 'list', :id => @paquet
     else
       _form

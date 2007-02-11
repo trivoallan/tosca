@@ -2,7 +2,7 @@
 <%= error_messages_for 'document' %>
 
 <!--[form:document]-->
-<p><label for="document_client">Bénéficiaire</label><br/>
+<p><label for="document_client">BÃ©nÃ©ficiaire</label><br/>
 <%= select("document", "client_id", 
 	@clients.collect{|l| [ l.nom, l.id]}) %>
 </p>

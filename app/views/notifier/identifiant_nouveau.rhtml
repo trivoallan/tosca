@@ -1,20 +1,20 @@
 Bonjour,
 
 <% if @identifiant.client %>
-   Vous recevez ce courriel car vous avez été identifié(e) 
-en tant que bénéficiaire du marché passé entre <%= Metadata::NOM_ENTREPRISE %>
+   Vous recevez ce courriel car vous avez Ã©tÃ© identifiÃ©(e) 
+en tant que bÃ©nÃ©ficiaire du marchÃ© passÃ© entre <%= Metadata::NOM_ENTREPRISE %>
  et <%= @identifiant.beneficiaire.client.nom %>.
 
    <%= render :partial => '../notifier/identifiant_canaux_acces'%>
 <% else %>
-   Vous recevez ce courriel car vous avez désormais 
-accès à notre outil de travail en ligne développé pour 
+   Vous recevez ce courriel car vous avez dÃ©sormais 
+accÃ¨s Ã  notre outil de travail en ligne dÃ©veloppÃ© pour 
 vous par <%= Metadata::NOM_ENTREPRISE %>.
    Le portail est accessible ici : http://www.08000linux.com/ 
-et là : http://www.linagora.com/projets/
+et lÃ  : http://www.linagora.com/projets/
 <% end %>
 
-   Vos codes d'accès sont :
+   Vos codes d'accÃ¨s sont :
    - identifiant: <%= @identifiant.login %>
 
    - mot de passe: <%= @password %>

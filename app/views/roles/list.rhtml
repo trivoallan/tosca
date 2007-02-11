@@ -1,7 +1,7 @@
-<h1>Liste des rôles</h1>
-<small>[<%= link_to 'et permission accordées', :controller => 'permissions' %>]</small>
+<h1>Liste des rÃ´les</h1>
+<small>[<%= link_to 'et permission accordÃ©es', :controller => 'permissions' %>]</small>
 
-<% titres = ['Règle','Info'] 
+<% titres = ['RÃ¨gle','Info'] 
   titres.concat(@roles.collect{|r| link_to r.nom, 
     :action => 'edit', :id => r})
 %>
@@ -26,5 +26,5 @@
 
 <p>&nbsp;</p>
 
-<%= link_to 'Ajouter un rôle', :action => 'new' %> <br/>
+<%= link_to 'Ajouter un rÃ´le', :action => 'new' %> <br/>
 

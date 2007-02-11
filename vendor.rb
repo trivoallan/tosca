@@ -5,7 +5,7 @@
 
 copyright = [
   "#####################################################\n",
-  "# Copyright Linagora SA 2006 - Tous droits réservés.#\n",
+  "# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#\n",
   "#####################################################\n" ]
 
 $*.each do |arg|

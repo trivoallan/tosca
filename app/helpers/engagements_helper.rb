@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 module EngagementsHelper
 
@@ -12,7 +12,7 @@ module EngagementsHelper
 
   def show_table_engagements(engagements)
     result = ''
-    titres = ['Demande','Sévérité','Contournement','Correction']
+    titres = ['Demande','SÃ©vÃ©ritÃ©','Contournement','Correction']
     oldtypedemande = nil 
     result << show_table(engagements, Engagement, titres) { |e|
       out = ''

@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class CreateCorrectifsPaquets < ActiveRecord::Migration
   def self.up
@@ -10,7 +10,7 @@ class CreateCorrectifsPaquets < ActiveRecord::Migration
     add_index :correctifs_paquets, :paquet_id
     add_index :correctifs_paquets, :correctif_id
 
-    # modification des correctifs pour leur indépendances (!)
+    # modification des correctifs pour leur indÃ©pendances (!)
     add_column :correctifs, :id_mantis, :integer, :null => true
 
   end

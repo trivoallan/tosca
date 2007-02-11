@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class CreateInteractions < ActiveRecord::Migration
   def self.up
@@ -15,19 +15,19 @@ class CreateInteractions < ActiveRecord::Migration
     end
     add_index :interactions, :logiciel_id
 
-    # un reversement est maintenant lié à une interaction
+    # un reversement est maintenant liÃ© Ã  une interaction
     add_column :reversements, :interaction_id, :integer, :null => false
     add_index :reversements, :interaction_id
 
     # l'url est dans Interaction
     remove_column :reversements, :url_de_suivi
 
-    # 'clos' ne veut pas dire 'accepté'
+    # 'clos' ne veut pas dire 'acceptÃ©'
     remove_column :reversements, :accepte_le
     add_column :reversements, :cloture, :timestamp
     
     # Un reversement n'a plus besoin de nom
-    # il y le résumé de son interaction
+    # il y le rÃ©sumÃ© de son interaction
     remove_column :reversements, :nom
   end
 

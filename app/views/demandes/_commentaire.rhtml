@@ -7,7 +7,7 @@
   <td width='160' class="commentaire_infos" align="center">
 	<span class="small">Comment. <%= "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id %>
-	    <%= @session[:logo_08000] %>
+	    <%= session[:logo_08000] %>
         <% elsif id.beneficiaire %>
             <%= image_tag url_for_file_column(id.beneficiaire.client.photo, "image", "thumb") %>
          <% end %><br/>
@@ -28,7 +28,7 @@
                       :border => 0, :title => "Modifier", :alt => "Modifier" ),
         { :controller => 'commentaires', :action => 'edit', :id => commentaire }) %>
        <br/>
-       <%  futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %> 
+       <%  futur_etat_commentaire = (commentaire.prive ? "public" : "privÃ©") %> 
        <%= if commentaire.prive 
 		link_to(image_tag("public_icon.png", :size => "17x16", 
                    	:border => 0, :title => "Rendre #{futur_etat_commentaire}",

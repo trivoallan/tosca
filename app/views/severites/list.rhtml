@@ -1,6 +1,6 @@
-<h1>Liste des sévérités</h1>
+<h1>Liste des sÃ©vÃ©ritÃ©s</h1>
 
-<%= show_pages_links(@severite_pages, 'une nouvelle sévérité') %>
+<%= show_pages_links(@severite_pages, 'une nouvelle sÃ©vÃ©ritÃ©') %>
 
 <% titres = [] %>
 <%= show_table(@severites, Severite, titres, :content_columns => true) { |p|
@@ -8,4 +8,4 @@
   result << "#{link_to_actions_table p}"
 }%>
 
-<%= show_pages_links(@severite_pages, 'une nouvelle sévérité') %>
+<%= show_pages_links(@severite_pages, 'une nouvelle sÃ©vÃ©ritÃ©') %>

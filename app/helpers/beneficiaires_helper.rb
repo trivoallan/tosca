@@ -1,9 +1,9 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 module BeneficiairesHelper
 
   def link_to_beneficiaires
-    link_to 'Bénéficiaires', :action => 'list', :controller => 'beneficiaires'
+    link_to 'BÃ©nÃ©ficiaires', :action => 'list', :controller => 'beneficiaires'
   end
 end

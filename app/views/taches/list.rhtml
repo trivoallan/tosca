@@ -1,22 +1,22 @@
 <h1>Liste des taches</h1>
 
-<%= show_pages_links(@tache_pages, 'une nouvelle t‚che') %>
+<%= show_pages_links(@tache_pages, 'une nouvelle t√¢che') %>
 
-<% titres = ['PrioritÈ', 'Responsable', 'Etape', 'DurÈe', 'Deadline', 
-             'RÈsumÈ', 'CrÈe le', 'M‡j', 'TerminÈ ?' ] %>
+<% titres = ['Priorit√©', 'Responsable', 'Etape', 'Dur√©e', 'Deadline', 
+             'R√©sum√©', 'Cr√©e le', 'M√†j', 'Termin√© ?' ] %>
 <%= show_table(@taches, Tache, titres) { |tache|
   result=''
   result << '<td>' + link_to(image_tag('first_task.png', :size => '14x14', 
-                                       :border => 0, :alt => 'PremiËre prioritÈ'), 
+                                       :border => 0, :alt => 'Premi√®re priorit√©'), 
                              :action => 'move2top', :id => tache) 
   result << link_to(image_tag('previous_task.png', :size => '14x14', 
-                              :border => 0, :alt => 'Monter la prioritÈ'), 
+                              :border => 0, :alt => 'Monter la priorit√©'), 
                              :action => 'movehigher', :id => tache)
   result << link_to(image_tag('next_task.png', :size => '14x14', 
-                              :border => 0, :alt => 'Baisser la  prioritÈ'), 
+                              :border => 0, :alt => 'Baisser la  priorit√©'), 
                     :action => 'movelower', :id => tache) 
   result << link_to(image_tag('last_task.png', :size => '14x14', 
-                              :border => 0, :alt => 'DerniËre prioritÈ'), 
+                              :border => 0, :alt => 'Derni√®re priorit√©'), 
                              :action => 'move2bottom', :id => tache) + '</td>'
   result << "<td>#{tache.responsable.nom}</td>"
   result << "<td>#{tache.etape.nom if tache.etape}</td>" 
@@ -37,10 +37,10 @@
   result << "#{link_to_actions_table tache}"
 }%>
 
-<b><%= @nombre_total%></b> t‚che(s) ‡ faire pour un total de 
-<b><%= @duree_total %></b> jours de travail (Ù joie)
+<b><%= @nombre_total%></b> t√¢che(s) √† faire pour un total de 
+<b><%= @duree_total %></b> jours de travail (√¥ joie)
 
-<%= show_pages_links(@tache_pages, 'une nouvelle t‚che') %>
+<%= show_pages_links(@tache_pages, 'une nouvelle t√¢che') %>
 
 
 

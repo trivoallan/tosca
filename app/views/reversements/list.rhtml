@@ -7,9 +7,9 @@
 <br/>
 <%= show_pages_links(@reversement_pages, 'un reversement') %>
 
-<% titres = ['Logiciel', 'Paquets impactés', 'Interaction<br/>Demande', 'Tâches',
-             'Etat', 'Correctif', 'Commentaire', 'Période',  
-             'Crée le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
+<% titres = ['Logiciel', 'Paquets impactÃ©s', 'Interaction<br/>Demande', 'TÃ¢ches',
+             'Etat', 'Correctif', 'Commentaire', 'PÃ©riode',  
+             'CrÃ©e le', 'CloturÃ© le', 'DÃ©lai', 'Mis Ã  jour le']%>
 <%= show_table(@reversements, Reversement, titres) { |r|
   result = ''
   tache = r.todo(@max_jours)

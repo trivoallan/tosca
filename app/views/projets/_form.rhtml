@@ -12,17 +12,17 @@
 <%= text_area 'projet', 'description'  %></p>
 
 TODO : faut l'adapter au relations n <-> n et on peut mettre
-cette boite autocomplétée à la place de l'affreux tas de check box.
-<p><label for="projet_logiciel">Logiciel impacté</label>
+cette boite autocomplÃ©tÃ©e Ã  la place de l'affreux tas de check box.
+<p><label for="projet_logiciel">Logiciel impactÃ©</label>
 <%= text_field_with_auto_complete :logiciel, :nom %>
 <br />
 
-<p><label for="projet_beneficiaires">Client concerné</label><br/>
+<p><label for="projet_beneficiaires">Client concernÃ©</label><br/>
 <%= hbtm_check_box( @projet.beneficiaires, @beneficiaires, 'beneficiaire_ids', :size => 6) %>
 </p>
-<% #TODO : Ajax avec autocomplétion => champs texte %>
+<% #TODO : Ajax avec autocomplÃ©tion => champs texte %>
 
-<p><label for="projets_ingenieurs">Ingénieurs concernés</label><br/>
+<p><label for="projets_ingenieurs">IngÃ©nieurs concernÃ©s</label><br/>
 <%= hbtm_check_box( @projet.ingenieurs, @ingenieurs, 'ingenieur_ids', :size => 6) %>
 </p>
 

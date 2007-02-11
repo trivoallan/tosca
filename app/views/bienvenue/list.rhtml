@@ -1,9 +1,9 @@
-<!-- début contenu -->
+<!-- dÃ©but contenu -->
 
 <% if @beneficiaire %>
-<p>Votre numéro d'appel est le 
+<p>Votre numÃ©ro d'appel est le 
    <b><%= Metadata::PREFIXE_TELEPHONE+" "+Metadata::CODE_TELEPHONE %></b>, 
-   et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
+   et votre code d'accÃ¨s est le <b><%= @beneficiaire.client.code_acces %></b></p>
 <% end %>
 
 <h2 class="spacer">Sommaire</h2>
@@ -11,10 +11,10 @@
 <table class="sommaire" width="100%"><tr>
   <td><dl class="sommaire">
 
-       <% titre = ( @demandes.size > 0 ? "Mes #{@demandes.size} dernières demandes" : "Aucune demande en cours" ) %>
+       <% titre = ( @demandes.size > 0 ? "Mes #{@demandes.size} derniÃ¨res demandes" : "Aucune demande en cours" ) %>
        <% links = [ 
-             link_to('Liste détaillée', :controller => 'demandes', :action => 'list'),
-             link_to('Déposer une demande', :controller => 'demandes', :action => 'new') ] %>
+             link_to('Liste dÃ©taillÃ©e', :controller => 'demandes', :action => 'list'),
+             link_to('DÃ©poser une demande', :controller => 'demandes', :action => 'new') ] %>
        <%= show_liste_accueil(links, titre, {:demandes => true}) %>
 
        <% links = [ 
@@ -38,38 +38,38 @@
              link_to_my_account(:text => 'Modifier mon compte'),
              link_to('Liste des utilisateurs', :controller => 'account', :action => 'list'),
              link_to('Ajouter un utilisateur', :controller => 'account', :action => 'signup'),
-             link_to('Gestion des rôles', :controller => 'roles') ] %>
+             link_to('Gestion des rÃ´les', :controller => 'roles') ] %>
        <%= show_liste_accueil(links, 'Utilisateurs') %>
 
        <% links = [ 
              link_to_my_client, #({:image => true}),
              link_to('Liste des clients', :controller => 'clients'),
-             link_to('Liste des bénéficiaires', :controller => 'beneficiaires'), 
+             link_to('Liste des bÃ©nÃ©ficiaires', :controller => 'beneficiaires'), 
              link_to('Liste des contrats', :controller => 'contrats')  ] %>
        <%= show_liste_accueil(links, (@beneficiaire ? 'Client' : 'Clients')) %>
 
        <% links = [ 
-             link_to('Liste des ingénieurs', :controller => 'ingenieurs'),
-             link_to('Liste des compétences', :controller => 'competences') ] %>
-       <%= show_liste_accueil(links, 'Gestion des compétences') %>
+             link_to('Liste des ingÃ©nieurs', :controller => 'ingenieurs'),
+             link_to('Liste des compÃ©tences', :controller => 'competences') ] %>
+       <%= show_liste_accueil(links, 'Gestion des compÃ©tences') %>
 
   </dl></td>
   <td><dl class="sommaire">
 
        <% links = [ 
-             link_to('Répertoire', :controller => 'documents', :action => 'select'),
-             link_to('Rapport d\'activité', :controller => 'reporting', :action => 'general') ] %>
+             link_to('RÃ©pertoire', :controller => 'documents', :action => 'select'),
+             link_to('Rapport d\'activitÃ©', :controller => 'reporting', :action => 'general') ] %>
        <%= show_liste_accueil(links, 'Documents') %>
 
        <% links = [ 
              link_to('Suivi des correctifs', :controller => 'correctifs', :action => 'list'),
              link_to('Suivi des interactions', :controller => 'interactions', :action => 'list'),
              link_to('Suivi des reversements', :controller => 'reversements', :action => 'list') ] %>
-       <%= show_liste_accueil(links, 'Communauté') %>
+       <%= show_liste_accueil(links, 'CommunautÃ©') %>
 
        <% links = [ 
-             link_to('Déclaration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande"), 
-             link_to('Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande"),
+             link_to('DÃ©claration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande"), 
+             link_to('DÃ©roulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande"),
              link_to('Plan du portail', :controller => 'bienvenue', :action => 'plan') ] %>
        <%= show_liste_accueil(links, 'Aide') %>
 

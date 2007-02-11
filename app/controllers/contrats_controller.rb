@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class ContratsController < ApplicationController
   helper :clients,:engagements,:ingenieurs
@@ -58,7 +58,7 @@ class ContratsController < ApplicationController
     @contrat.ingenieurs = Ingenieur.find(@params[:ingenieur_ids]) if @params[:ingenieur_ids]
 
     if @params[:engagement_ids] and @contrat.update_attributes(params[:contrat])
-      flash[:notice] = 'Contrat mis à jour correctement.'
+      flash[:notice] = 'Contrat mis Ã  jour correctement.'
       redirect_to :action => 'show', :id => @contrat
     else
       _form

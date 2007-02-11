@@ -1,9 +1,9 @@
-<h1>Liste des pièces jointes</h1>
+<h1>Liste des piÃ¨ces jointes</h1>
 
 
-<%= show_pages_links(@piecejointe_pages, 'une pièce jointe') %>
+<%= show_pages_links(@piecejointe_pages, 'une piÃ¨ce jointe') %>
 
-<% titres = ['Id','Fichier','Taille','Déposé le','Par']%>
+<% titres = ['Id','Fichier','Taille','DÃ©posÃ© le','Par']%>
 <%= show_table(@piecejointes, Piecejointe, titres) { |p|
   result = ''
   result << "<td>##{p.id}</td>"
@@ -14,6 +14,6 @@
   result << "#{link_to_actions_table p}"
 }%>
 
-<%= show_pages_links(@piecejointe_pages, 'une pièce jointe') %>
+<%= show_pages_links(@piecejointe_pages, 'une piÃ¨ce jointe') %>
 
 

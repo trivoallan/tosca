@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Client < ActiveRecord::Base
   belongs_to :photo
@@ -59,7 +59,7 @@ class Client < ActiveRecord::Base
                      :joins => joins)
   end
 
-  # TODO : à revoir, on pourrait envisager de moduler les sévérités selon 
+  # TODO : Ã  revoir, on pourrait envisager de moduler les sÃ©vÃ©ritÃ©s selon 
   # les type de demandes
   def severites
     Severite.find_all

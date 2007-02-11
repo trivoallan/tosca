@@ -3,28 +3,28 @@
 
 	<h1 class="spacer"><%= Metadata::NOM_COURT_APPLICATION+" - "+Metadata::NOM_LONG_APPLICATION %></h1>
 
-	<h2 class="spacer">Plan / accés autorisés</h2>
+	<h2 class="spacer">Plan / accÃ©s autorisÃ©s</h2>
 
 	<table class="sommaire" width="100%">
 	  <tr>
 	    <td>
 		<dl class="sommaire">
 
-<%  ############ affichage du plan des autorisations d'accés  ##############  %>
+<%  ############ affichage du plan des autorisations d'accÃ©s  ##############  %>
 
-<%  # recherche des dépendances pour tous les controllers
+<%  # recherche des dÃ©pendances pour tous les controllers
     @classes = Hash.new;
     require 'find'
     Find.find(File.join(RAILS_ROOT, 'app/controllers'))  { |name|  
         require_dependency(name) if /_controller\.rb$/ =~ name
     }
 
-    # définition de @classes[] : listes des controllers de l'application
+    # dÃ©finition de @classes[] : listes des controllers de l'application
     ObjectSpace.subclasses_of(ActionController::Base).each do |obj|
         @classes["#{obj.controller_name}"] = obj
     end
 
-    # on prend mainteant chaque controller un à un
+    # on prend mainteant chaque controller un Ã  un
     @classes.sort {|a,b| a[0]<=>b[0]}.each { |ca|
       c = ca[1]
       cname = c.controller_name
@@ -43,7 +43,7 @@
             mname = m.to_s
             next if mname == "index" 
       %>
-          <% # et on link sous réserve d'autorisation  %>
+          <% # et on link sous rÃ©serve d'autorisation  %>
           <% if session[:user].authorized?(cname+'/'+mname)%>
 		<small>| <%= link_to mname, { :action => mname, :controller => cname } %> </small>
           <% end %>
@@ -52,7 +52,7 @@
 
 <%  } # fin de la boucle sur les controllers %>
 
-<%  ############ affichage du plan des autorisations d'accés  ##############  %>
+<%  ############ affichage du plan des autorisations d'accÃ©s  ##############  %>
 
 
 	        </dl><!-- end of class sommaire -->

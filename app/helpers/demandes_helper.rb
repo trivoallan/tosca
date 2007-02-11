@@ -1,12 +1,12 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 module DemandesHelper
 
   # lien vers une demande : affiche le nom de la demande
   # options
-  # :pre_text à afficher avant le nom
-  # :show_id affiche l'id à la place du nom de la demande
+  # :pre_text Ã  afficher avant le nom
+  # :show_id affiche l'id Ã  la place du nom de la demande
   def link_to_demande(demande, options={})
     return 'N/A' unless demande
     nom = sum_up(demande.resume, 50)

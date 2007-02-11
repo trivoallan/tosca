@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class LogicielsController < ApplicationController
   helper :paquets, :demandes, :competences
@@ -80,7 +80,7 @@ class LogicielsController < ApplicationController
     end
 
     if @logiciel.save
-      flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien été crée.'
+      flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien Ã©tÃ© crÃ©e.'
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -109,7 +109,7 @@ class LogicielsController < ApplicationController
     end
 
     if @logiciel.update_attributes(params[:logiciel])
-      flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien été mis à jour.'
+      flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien Ã©tÃ© mis Ã  jour.'
       redirect_to :action => 'list'
     else
       render :action => 'edit'
@@ -119,7 +119,7 @@ class LogicielsController < ApplicationController
   def destroy
     @logiciel = Logiciel.find(params[:id])
     @logiciel.destroy
-    flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien été supprimé.'
+    flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien Ã©tÃ© supprimÃ©.'
     redirect_to :action => 'list'
   end
 

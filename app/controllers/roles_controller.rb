@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class RolesController < ApplicationController
   def index
@@ -29,7 +29,7 @@ class RolesController < ApplicationController
   def create
     @role = Role.new(params[:role])
     if @role.save
-      flash[:notice] = "Le rôle \"#{@role.nom}\" a bien été crée."
+      flash[:notice] = "Le rÃ´le \"#{@role.nom}\" a bien Ã©tÃ© crÃ©e."
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -44,12 +44,12 @@ class RolesController < ApplicationController
   def update
     @role = Role.find(params[:id])
     if @role.update_attributes(params[:role])
-      flash[:notice] = "Le rôle \"#{@role.nom}\" a bien été mis à jour."
+      flash[:notice] = "Le rÃ´le \"#{@role.nom}\" a bien Ã©tÃ© mis Ã  jour."
       redirect_to :action => 'list'
     else
       render :action => 'edit'
     end
-    # pour update des permissions liées
+    # pour update des permissions liÃ©es
     if @params[:permission_ids]
       @role.permissions = Permission.find(@params[:permission_ids]) 
     else

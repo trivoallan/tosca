@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Engagement < ActiveRecord::Base
   belongs_to :severite
@@ -33,8 +33,8 @@ class Engagement < ActiveRecord::Base
   #  return temps unless temps.is_a? Numeric
   #  case temps
   #    when -1 then "sans engagement" 
-  #    when 1 then "1 jour ouvré"
-  #    else temps.to_s + " jours ouvrés"
+  #    when 1 then "1 jour ouvrÃ©"
+  #    else temps.to_s + " jours ouvrÃ©s"
   #  end
   #end
 

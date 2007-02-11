@@ -1,9 +1,9 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 module ContratsHelper
 
-  # Cette méthode nécessite un :include => [:client] pour
+  # Cette mÃ©thode nÃ©cessite un :include => [:client] pour
   # fonctionner correctement
   def link_to_contrat(c)
     return "N/A" unless c

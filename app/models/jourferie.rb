@@ -1,5 +1,5 @@
 #####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
+# Copyright Linagora SA 2006 - Tous droits rÃ©servÃ©s.#
 #####################################################
 class Jourferie < ActiveRecord::Base
   def jour_formatted
@@ -8,7 +8,7 @@ class Jourferie < ActiveRecord::Base
   end
 
 
-  #renvoie le premier jour travaillé
+  #renvoie le premier jour travaillÃ©
   def self.get_premier_jour_ouvre(debut)
     courant = debut.beginning_of_day
     return debut if Jourferie.est_ouvre(courant)
@@ -19,7 +19,7 @@ class Jourferie < ActiveRecord::Base
     courant
   end
 
-  #renvoie le dernier jour travaillé
+  #renvoie le dernier jour travaillÃ©
   def self.get_dernier_jour_ouvre(fin)
     courant = fin.beginning_of_day
     return fin if Jourferie.est_ouvre(courant)
@@ -31,25 +31,42 @@ class Jourferie < ActiveRecord::Base
   end
 
 
-  #A appeler sur 2 dates dont l'heure, les minutes et les seconds sont à 0
-  # TODO c'est nul
-  # Il faut faire une requête sur l'intervalle entre début et fin,
-  # et y soustraire les WEs et les jours fériés trouvés
+  #A appeler sur 2 dates dont l'heure, les minutes et les seconds sont Ã  0
   def self.nb_jours_ouvres(debut, fin)
-    # 1 jour = 86400 secondes
+    return 0 if fin < debut
     result = 0
-    courant = debut.beginning_of_day
-    while(courant < fin)
-      result += 1 if Jourferie.est_ouvre(courant)
-      courant += 1.day
-    end
+    starting = debut
+    ending = fin
+
+    # logger.debug('****init : ' + starting.to_s + ' jusqua ' + ending.to_s)
+    result = ((ending - starting) / 1.day).round
+    # logger.debug('**** base : ' + result.to_s)
+    return result unless (result > 7) or (starting.wday > ending.wday)
+    # on y soustrait les WE
+    result -= ((result / 7.0).floor*2)  
+    # sans oublier le dernier we 
+    result -= 2 if (starting.wday > ending.wday) 
+    # logger.debug('**** result / 7 : ' + result.to_s)
+    # ni les joursfÃ©riÃ©s de l'intervalle
+    conditions = ['jourferies.jour BETWEEN ? AND ?', starting, ending ]
+    result -=  Jourferie.count(:all, :conditions => conditions)
+    # logger.debug('**** result : ' + result.to_s)
     result
+#   ancienne version : lente mais garantie
+#     courant = debut.beginning_of_day
+#     logger.debug('****init : ' + courant.to_s + ' jusqua ' + fin.to_s)
+#     while(courant < fin)
+#       result += 1 if Jourferie.est_ouvre(courant)
+#       courant += 1.day
+#       logger.debug('***work : ' + courant.to_s + ' | ' + result.to_s)
+#     end
+#     logger.debug('***result : ' + courant.to_s + ' | ' + result.to_s)
   end
 
   private
-  # C'est encore trop lent de faire une requête pour tester 
+  # C'est encore trop lent de faire une requÃªte pour tester 
   # chaque jour
-  # TODO : faire une requête pour tester l'ensemble
+  # TODO : faire une requÃªte pour tester l'ensemble
   def self.est_ouvre(date)
     return false if date.wday == 0 || date.wday == 6
 
