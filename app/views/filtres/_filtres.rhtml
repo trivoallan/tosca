@@ -1,22 +1,3 @@
-
-<table class="info">
-  <tr>
-    <td>
-        Choisir le périmètre des demandes : 
-        <%= link_to 'toutes les demandes', :filter => 'true' %> ou
-        <%= link_to 'mes demandes actives', :filter => 'false' %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-        <%= link_to 'Déposer une nouvelle demande', 
-                  :action => 'new', :controller => 'demandes' %> | 
-        <%= link_to 'Effacer le(s) fitre(s)', 
-                  :action => 'raz_recherche', :controller => 'demandes' %> 
-        : <%= session[:filtres].collect{|f| f[0] unless f[1] == nil}.compact * ', ' %></td>
-  </tr>
-</table>
-
    <table class="info">
       <tr>
       <% form_tag do %>
@@ -45,4 +26,3 @@
       <% end %>
       </tr>
     </table>
-

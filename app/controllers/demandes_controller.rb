@@ -25,10 +25,9 @@ class DemandesController < ApplicationController
     render :action => 'list'
   end
 
-
-  def raz_recherche
-    @session[:filtres] = {}
-    redirect_to :back
+  # supprime les filtres de session
+  def remove_filters
+    remove_filters
   end
 
   def list

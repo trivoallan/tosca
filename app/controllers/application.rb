@@ -52,7 +52,8 @@ class ApplicationController < ActionController::Base
           (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
           (link_to_my_account),
           (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
-          (link_to 'Utilisateurs', :controller => 'account', :action => 'list')
+          (link_to 'Utilisateurs', :controller => 'account', :action => 'list'),
+          (link_to 'Rôles', :controller => 'roles', :action => 'list')
         ] %>
         <%= nav_links.compact.join('&nbsp;|&nbsp;') if session[:user] %>"
     session[:cut_links] = render_to_string :inline => "
@@ -60,7 +61,8 @@ class ApplicationController < ActionController::Base
           (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
           (session[:user].authorized?('demandes/list') ? 
               "+ '&nbsp;' + (text_field 'numero', '', 'size' => 3)," : ',' ) + 
-              "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
+         "(link_to 'Filtres',:controller => 'filtres', :action => 'index'),
+          (link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
           (link_to 'Projets',:controller => 'projets', :action => 'list'),
           (link_to 'Tâches',:controller => 'taches', :action => 'list'),
           (link_to 'Correctifs',:controller => 'correctifs', :action => 'list'),
@@ -114,6 +116,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def remove_filters
+    @session[:filtres] = {}
+    redirect_to :back
+  end
 
   # surcharge des requetes find
   # TODO :VA MLO
