@@ -20,7 +20,7 @@ class FiltresController < ApplicationController
 
   # supprime les filtres de session
   def remove_filters
-    remove_filters
+    super
   end
 
 end

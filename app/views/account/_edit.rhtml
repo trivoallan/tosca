@@ -20,32 +20,31 @@
   if @ingenieur
     identifiant_titre = '<label for="identifiant_login">Choisissez un identifiant</label>'
     identifiant_champ = text_field("identifiant", "login", :size => 16)
-    role_titre = '<label for="identifiant_role">R&ocirc;les</label>'
+    role_titre = '<label for="identifiant_role">Rôles</label>'
+    role_champs = hbtm_radio_button( @identifiant.roles, @roles, 'role_ids')
 
     if controller.action_name.include? "signup"
-      role_champs = hbtm_radio_button( @identifiant.roles, @roles, 'role_ids')
       type_client_titre = '<label for="type_client">Client </label>'
       type_client_champ = select("client", "id", @clients.collect{|c| [ c.nom, c.id]})
 
       if controller.action_name == "signup"
-        help_client = "L'utilisateur est-il un client du service ?"
+        help_client = 'L\'utilisateur est-il un client du service ?'
       elsif controller.action_name == "multiple_signup"
-        help_client = "Les utilisateurs sont-ils des clients du service ?"
+        help_client = 'Les utilisateurs sont-ils des clients du service ?'
 
         csv_hr_champ = "<hr/>"
-        csv_text_titre = "<label for=\"identifiant_csv\">Texte sous format CSV</label><br/>"
+        csv_text_titre = '<label for="identifiant_csv">Texte sous format CSV</label><br/>'
         csv_champ = text_area('textarea_csv', nil, :rows => 10, :cols => 58)
       end
-      identifiant_client_titre = "<label for=\"identifiant_client\">Client&nbsp;</label><a alt=\"#{help_client}\" title=\"#{help_client}\" >?</a>"
+      identifiant_client_titre = "<label for=\"identifiant_client\">Client</label> #{show_help(help_client)}"
       identifiant_client_champ = check_box('identifiant', 'client')
     elsif controller.action_name == 'modify'
-      role_champs = hbtm_radio_button( @identifiant.roles, @roles, 'role_ids')
     end
 
   end
 %>
 
-<% help_affichage_perso = "Affichage personnalis&eacute; de la liste des demandes" %>
+<% help_affichage_perso = 'Affichage personnalisé de la liste des demandes' %>
 
 <% titre = [ type_client_titre,
              nil,
@@ -58,44 +57,48 @@
              ('<label for="identifiant_password">Choisissez un mot de passe</label>' unless controller.action_name == "multiple_signup"),
              ('<label for="identifiant_password_confirmation">Confirmez ce dernier</label>' unless controller.action_name == "multiple_signup"),
              nil,
-             ("<label for=\"identifiant_affichage_personnel\">Affichage Personnel&nbsp;</label><a alt=\"#{help_affichage_perso}\" title=\"#{help_affichage_perso}\">?</a>" unless controller.action_name == "multiple_signup"),
+             ("<label for=\"identifiant_affichage_personnel\">Affichage Personnel&nbsp;</label>#{show_help(help_affichage_perso)}" unless controller.action_name == "multiple_signup"),
              role_titre,
              identifiant_client_titre,
              ('<label for="identifiant_informations">Informations</label><br/>' unless controller.action_name == "multiple_signup"),
              nil,
              csv_hr_titre,
              csv_text_titre,
-             csv_titre ]
-  champs = [  type_client_champ,
-              "<hr/>",
-              (text_field('identifiant', 'nom')  unless controller.action_name == "multiple_signup"),
-              (text_field('identifiant', 'titre') unless controller.action_name == "multiple_signup"),
-              (text_field('identifiant', 'email') unless controller.action_name == "multiple_signup"),
-              (text_field('identifiant', 'telephone', :size => 16) unless controller.action_name == "multiple_signup"),
-              ("<hr/>" unless controller.action_name == "multiple_signup"),
-              (identifiant_champ unless controller.action_name == "multiple_signup"),
-              (password_field('identifiant', 'password', :size => 16, :value => '') unless controller.action_name == "multiple_signup"),
-              (password_field('identifiant', 'password_confirmation', :size => 16, :value => '') unless controller.action_name == "multiple_signup"),
-              ("<hr/>" unless controller.action_name == "multiple_signup"),
-              (check_box('identifiant', 'affichage_personnel') unless controller.action_name == "multiple_signup"),
-              role_champs,
-              identifiant_client_champ,
-              nil,
-              (text_area('identifiant', 'informations', :rows => 5, :cols => 58) unless controller.action_name == "multiple_signup"),
-              csv_hr_champ,
-              csv_text_champ,
-              csv_champ ] %>
+             csv_titre 
+  ]
+  champs = [ type_client_champ,
+             "<hr/>",
+             (text_field('identifiant', 'nom')  unless controller.action_name == "multiple_signup"),
+             (text_field('identifiant', 'titre') unless controller.action_name == "multiple_signup"),
+             (text_field('identifiant', 'email') unless controller.action_name == "multiple_signup"),
+             (text_field('identifiant', 'telephone', :size => 16) unless controller.action_name == "multiple_signup"),
+             ("<hr/>" unless controller.action_name == "multiple_signup"),
+             (identifiant_champ unless controller.action_name == "multiple_signup"),
+             (password_field('identifiant', 'password', :size => 16, :value => '') unless controller.action_name == "multiple_signup"),
+             (password_field('identifiant', 'password_confirmation', :size => 16, :value => '') unless controller.action_name == "multiple_signup"),
+             ("<hr/>" unless controller.action_name == "multiple_signup"),
+             (check_box('identifiant', 'affichage_personnel') unless controller.action_name == "multiple_signup"),
+             role_champs,
+             identifiant_client_champ,
+             nil,
+             (text_area('identifiant', 'informations', :rows => 5, :cols => 58) unless controller.action_name == "multiple_signup"),
+             csv_hr_champ,
+             csv_text_champ,
+             csv_champ 
+  ] %>
 
 <%
   subtitle = nil
-  if controller.action_name == "modify"
+  case controller.action_name 
+  when 'modify'
     compte = ( session[:user].id == @identifiant.id ? 'mon compte' : "le compte de #{@identifiant.nom}" )
     title = "Modifier #{compte}"
-  elsif controller.action_name == "signup"
-    title = "Cr&eacute;er un compte"
-  elsif controller.action_name == "multiple_signup"
-    title = "Cr&eacute;er plusieurs comptes"
-    subtitle = "Veuillez remplir les champs communs &agrave; tous les comptes.<br/>Completez le reste des informations dans le dernier champs texte sous format CSV."
+  when 'signup'
+    title = 'Créer un compte'
+  when 'multiple_signup'
+    title = 'Créer plusieurs comptes'
+    subtitle = 'Veuillez remplir les champs communs à tous les comptes.<br/>
+                Completez le reste des informations dans le dernier champs texte sous format CSV.'
   end
 %>
 

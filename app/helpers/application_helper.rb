@@ -288,6 +288,9 @@ module ApplicationHelper
     text.gsub(/[\n]/, "<br />")
   end
 
+  def show_help(help_text, options = {:symbol => '?'})
+    "<a alt=\"#{help_text}\" title=\"#{help_text}\" >#{options[:symbol]}</a>"
+  end
 
   ### FILES ######################################################################
 

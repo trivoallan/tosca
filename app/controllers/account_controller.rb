@@ -14,6 +14,11 @@ class AccountController < ApplicationController
   #before_filter :login_required, :except => [:login]
   before_filter :verifie, :only => [ :modify, :update ]
 
+  def index
+    list
+    render :action => 'list'
+  end
+ 
   def verifie
     super(Identifiant)
   end
@@ -165,7 +170,7 @@ class AccountController < ApplicationController
 
       flash[:notice] = ""
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), { :col_sep => ";", :headers => true }) do |row|
-         @identifiant = Identifiant.new do |i|
+        @identifiant = Identifiant.new do |i|
            logger.debug(row.inspect)
            i.nom = row['Nom Complet'].to_s
            i.titre = row['Titre'].to_s
@@ -176,7 +181,7 @@ class AccountController < ApplicationController
            i.password_confirmation = row['Mot de passe'].to_s
            i.informations = row['Informations'].to_s
            i.client = params[:identifiant][:client]
-         end
+        end
         if params[:role_ids]
           @identifiant.roles = Role.find(params[:role_ids])
         else
@@ -184,7 +189,7 @@ class AccountController < ApplicationController
           @identifiant.errors.add_on_empty('roles')
           render :action => 'multiple_signup'
           return
-         end
+        end
         if @identifiant.save
           client = Client.find(params[:client][:id])
           flash[:notice] += "L'utilisateur " + row['Nom Complet'].to_s + " a bien été créé.<br/>"

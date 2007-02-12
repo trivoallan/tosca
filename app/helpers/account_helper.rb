@@ -6,9 +6,9 @@ module AccountHelper
   # Titles doit contenir un tableau
   # Champs doit contenir un tableau
   # Les éléments de Titles et Champs doivent être affichable par to_s
-  # Les options sont 
-  #         :title => Donne un titre au tableau
-  #         :subtitle => Donne un sous titre au tableau
+  # options 
+  # :title => Donne un titre au tableau
+  # :subtitle => Donne un sous titre au tableau
   # Ex : show_table_form( { "TOTO", "TITI"}, { "TATA", "TUTU" }, :title => "Titre" )
   def show_table_form(titles, champs, options = {})
     return "Error" unless titles and titles.size > 0
@@ -22,22 +22,16 @@ module AccountHelper
       result << "<br/>" unless options[:subtitle]
       result << "\n"
     end
-      
     if(options[:subtitle])
       result << "<h2>#{options[:subtitle]}</h2><br>\n"
     end
 
     result << "<table>\n"
-
     for i in 0..titles.size
-      if not champs[i].nil? or not titles[i].nil?
+      unless champs[i].nil? and titles[i].nil?
         result << "<tr>\n"
         if champs[i].nil? or titles[i].nil?
-          if champs[i]
-            value = champs[i].to_s
-          else
-            value = titles[i].to_s
-          end
+          value = ( champs[i] ? champs[i].to_s : titles[i].to_s )
           result << "<td colspan=\"2\">" << value << "</td>\n"
         else
           result << "<td>" << titles[i].to_s << "</td>\n"
