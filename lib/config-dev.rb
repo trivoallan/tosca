@@ -11,5 +11,5 @@ ActionMailer::Base.server_settings = {
   #:password  => "",
 #  :authentication  => :login
 } 
-ActionMailer::Base.default_charset = "ISO-8859-1"
+ActionMailer::Base.default_charset = "UTF-8"
 
