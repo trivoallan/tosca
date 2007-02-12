@@ -198,6 +198,22 @@ span.left {
 	display: block;
 }
 
+
+/* personnlisation du select des severites : non actif */
+#select_severite {
+	padding: 2px;
+	background-color: #fed;
+	border: 3px ridge #643;
+	font-size: 14pt;	
+}
+.severite_1 {
+	background-image: url(../images/severite_1.gif);
+	background-repeat: no-repeat;
+	background-position: left center;	
+}
+			
+
+
 /************************* listes ****************/
 
 .list {
@@ -628,7 +644,7 @@ hr {
 }
 
 
-/***************** zones sp�iales ***************/
+/***************** zones spéiales ***************/
 
 .info,
 .info_reversement,

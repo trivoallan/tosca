@@ -1,6 +1,5 @@
 <h1>Liste des demandes</h1>
 
-
 <%= render_partial 'filtre' %>
 
 <%# if @demandes.size > 0 %>
@@ -9,33 +8,33 @@
     <table class="demandes_list" width='100%'>
 
       <tr>
+      <% form_tag(:controller => 'demandes', :action => 'list') do %>
+        <th width='2%'>ID<%= search_demande %></th>
+      <% end %>
       <% form_tag :action => 'list' do %>
-        <th width='3%'>ID</th>
-        <th width='7%'>Logiciel<%= select_filter(@logiciels, 'logiciel') %></th>
-        <th width='7%'>Type<%= select_filter(@types, 'typedemande') %></th>
-        <th width='6%'>Sévérité<%= select_filter(@severites, 'severite') %></th>
-        <th width='8%'>Statut<%= select_filter(@statuts, 'statut') %></th>
+        <th width='7%'>Logiciel<%= select_filter(@logiciels, 'logiciel', :title => 'Logiciel') %></th>
+        <th width='7%' colspan="2">Type<%= select_filter(@types, 'typedemande', :title => 'Type') %></th>
+        <%#= select_filter(@severites, 'severite', :title => 'Sévérité') %>
        <% if @ingenieur %> 
-        <th width='10%'>Client<%= select_filter(@clients, 'client') %></th>
+        <th width='5%'>Client<%= select_filter(@clients, 'client', :title => 'Client') %></th>
        <% end %>
-        <th width='10%'>Bénéficiaire<%= select_filter(@beneficiaires, 'beneficiaire') %></th>
-        <th>Résumé<%= text_filter('motcle', :title => 'Résumé') %></th>
-        <th width='8%'>A jour du</th>
+        <th width='10%'>Bénéficiaire<%= select_filter(@beneficiaires, 'beneficiaire', :title => 'Bénéficiaire') %></th>
+        <th>Résumé<%= text_filter('motcle', :title => 'Résumé', :title => 'Résumé') %></th>
+        <th width='8%'>A jour du<%= select_filter_date %></th>
        <% if @ingenieur %> 
-        <th width='8%'>Responsable<%= select_filter(@ingenieurs, 'ingenieur') %></th> 
+        <th width='8%'>Responsable<%= select_filter(@ingenieurs, 'ingenieur', :title => 'Responsable') %></th> 
 
        <% end %>
-        <th colspan="3" width='6%'>Actions</th>
+        <th colspan="3" width='1%'></th>
       <% end %>
       </tr>
 
       <% for demande in @demandes %>
       <tr class=<%= "demande_#{demande.statut_id}" %> onclick="window.location.href='comment/<%= demande.id %>';" >
-        <td><%= demande.id %></td>
-        <td><%= sum_up(demande.logiciel.nom,25) %></td>
+        <td><%= link_to_demande demande, :show_id => true, :resume => false %></td>
+        <td><%= sum_up(demande.logiciel.nom,15) %></td>
         <td><%= demande.typedemande.nom %></td>
-        <td><%= demande.severite.nom %></td>
-        <td><%= demande.statut.nom if demande.statut %></td>
+        <td><%= icon_severite(demande) %></td>
        <% if @ingenieur %> 
         <td><%= demande.beneficiaire.client.nom %></td>
        <% end %>

@@ -42,18 +42,31 @@ module ApplicationHelper
   # :title à afficher comme 1er élément de la liste (no value)
   # :onchange action si changement
   # :size hauteur du select
-  def select_onchange(list, default, name, 
-                      options = {:width => 10, :title => '...', :onchange => 'this.form.submit();' })
-    collected = list.collect{|e| [sum_up(e.nom, options[:width]), e.id] }.unshift([options[:title], ''])
+  def select_onchange(list, default, name, options = {})
+    options[:width] ||= 15
+    options[:title] = '...' 
+    options[:onchange] ||= 'this.form.submit();'
+    collected = list.collect{|e| [sum_up(e.nom, options[:width]), e.id] }.unshift(["#{options[:title]}", ''])
     select = options_for_select(collected, default.to_i)
-    return select_tag(name, select, options)
+    return select_tag(name, select, options) 
   end
 
-  def select_filter(list, property, options = {})
+  def select_filter(list, property, options = {:title => property})
     out = ''
     field = "#{property}_id"
     out << '<br/>' unless options[:inline] == true
-    out << select_onchange(list, session[:filtres][field], "filtres[#{field}]")
+    out << select_onchange(list, session[:filtres][field], "filtres[#{field}]", options)
+  end
+  # en test
+  def select_filter_severite
+    select("filtres", "severite_id", collected, options)
+  end
+  def select_filter_date(options = {})
+    out = ''
+    out << '<br/>' unless options[:inline] == true
+    out << date_select("filtres", "updated_on", :start_year => 2006,
+                       :use_month_numbers => true, :include_blank => true, 
+                       :order => [:day, :month, :year])
   end
 
   def text_filter(property, options = {})
@@ -61,8 +74,14 @@ module ApplicationHelper
     name = "filtres[#{property}]"
     out << '<br/>' unless options[:inline] == true
     #out << text_field_tag(name, @session[:filtres][property], options)
-    out << text_field("filtres", property, :value => session[:filtres]['motcle'] )
+    out << text_field("filtres", property, :value => session[:filtres]['motcle'], :size => 20 )
   end
+  def search_demande(options = {})
+    out = '' 
+    out << '<br/>' unless options[:inline] == true
+    out << text_field('numero', '', 'size' => 3)
+  end
+
 
   ### LIENS ABSOLUS ################################################################
 

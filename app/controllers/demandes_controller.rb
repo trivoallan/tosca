@@ -69,7 +69,7 @@ class DemandesController < ApplicationController
     end
 
     Beneficiaire.with_scope(:find => {:include => [:identifiant, :client]}) do
-      @demande_pages, @demandes = paginate :demandes, :per_page => 50,
+      @demande_pages, @demandes = paginate :demandes, :per_page => 20,
       :order => 'updated_on DESC', #:conditions => conditions,
       :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut,:logiciel]
     end
