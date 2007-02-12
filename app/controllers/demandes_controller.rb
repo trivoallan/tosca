@@ -25,11 +25,6 @@ class DemandesController < ApplicationController
     render :action => 'list'
   end
 
-  # supprime les filtres de session
-  def remove_filters
-    remove_filters
-  end
-
   def list
     #TODO  
     #super(params) # see before_filter:set_filters in application.rb

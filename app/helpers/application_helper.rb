@@ -137,7 +137,7 @@ module ApplicationHelper
   # add_view_link(demande)
   def link_to_comment(ar)
       desc = 'Voir'
-      link_to image_tag("view_icon.gif", :size => "20x15", # "icons/b_comment.png", :size => "15x15", 
+      link_to image_tag("icons/b_view.png", :size => "15x15", # "view_icon.gif", :size => "20x15", # 
               :border => 0, :title => desc, :alt => desc ), 
               { :controller => 'demandes', :action => 'comment', :id => ar}, { :class => 'nobackground' }
   end
@@ -212,7 +212,6 @@ module ApplicationHelper
   # link_to_actions_table(demande)
   def link_to_actions_table(ar, options = {})
     return '' unless ar
-    view = link_to_comment(ar) if options[:view] == 'comment'
     actions = [ link_to_view(ar), link_to_edit(ar), link_to_delete(ar) ]
     actions.compact!
     return "<td>#{actions.join('</td><td>')}</td>"

@@ -18,4 +18,9 @@ class FiltresController < ApplicationController
     @ingenieurs = Ingenieur.find(:all)
   end
 
+  # supprime les filtres de session
+  def remove_filters
+    remove_filters
+  end
+
 end

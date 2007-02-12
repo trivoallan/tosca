@@ -8,13 +8,29 @@
   </tr>
   <tr>
     <td>
+        <%  actions = []
+            case controller.controller_name 
+             when 'filtres' : actions << link_to('Voir le liste des demandes', :controller => 'demandes', :action => 'list') 
+             else actions << link_to('Modifier les filtres', :controller => 'filtres', :action => 'index') 
+            end
+            actions << link_to('Déposer une nouvelle demande', :controller => 'demandes', :action => 'new')
+         %>
+        <%= actions.compact * ' | ' %>
+    </td>
+  </tr>
+  <tr>
+    <td>
         <%  filtres = session[:filtres].collect{|f| f[0] unless f[1] == nil}.compact
             actions = []
-            actions << link_to('Déposer une nouvelle demande', 
-                      :action => 'new', :controller => 'demandes')
-            actions << link_to('Effacer le(s) fitre(s)', 
-                      :action => 'remove_filters', :controller => 'demandes') + ' : ' unless filtres.size == 0  %>
-        <%= actions.compact * ' | ' %>
-        <%= filtres * ', ' %></td>
+            if  filtres.size == 0  
+              actions << 'Aucun filtre n\'est activé'
+            else
+              actions << ( link_to('Effacer le(s) fitre(s)', :controller => 'filtres', :action => 'remove_filters') <<  ' : ')
+            end
+         %>
+        <%= actions %><%= filtres * ', ' %>
+    </td>
   </tr>
 </table>
+
+

@@ -18,7 +18,7 @@
         <tr><td>Résumé</td>
             <td><%= text_filter('motcle', :title => 'Résumé', :title => 'Résumé', :inline => true) %></td></tr>
         <tr><td>A jour du</td>
-            <td><%= select_filter_date :inline => true %></td></tr>
+            <td><%= select_filter_date :inline => true %> (non fonctionnel)</td></tr>
        <% if @ingenieur %> 
         <tr><td>Responsable</td>
             <td><%= select_filter(@ingenieurs, 'ingenieur', :title => 'Responsable', :inline => true) %></td></tr> 

@@ -20,11 +20,10 @@
        <% end %>
         <th width='10%'>Bénéficiaire<%= select_filter(@beneficiaires, 'beneficiaire', :title => 'Bénéficiaire') %></th>
         <th>Résumé<%= text_filter('motcle', :title => 'Résumé', :title => 'Résumé') %></th>
-        <th width='8%'>A jour du<%= select_filter_date %></th>
        <% if @ingenieur %> 
         <th width='8%'>Responsable<%= select_filter(@ingenieurs, 'ingenieur', :title => 'Responsable') %></th> 
-
        <% end %>
+        <th width='8%'>A jour du</th>
         <th colspan="3" width='1%'></th>
       <% end %>
       </tr>
@@ -40,11 +39,11 @@
        <% end %>
         <td><%= demande.beneficiaire.nom %></td>
         <td class="wrapped"><%= link_to_demande demande %></td>
-        <td><small><%=h demande.updated_on_formatted %></small></td>
        <% if @ingenieur %> 
           <td><%= demande.ingenieur.nom if demande.ingenieur %></td> 
        <% end %>
-        <%= link_to_actions_table(demande, :view => 'comment') %>
+        <td><small><%=h demande.updated_on_formatted %></small></td>
+        <td><%= link_to_comment demande %></td>
       </tr>
       <% end %>
 
