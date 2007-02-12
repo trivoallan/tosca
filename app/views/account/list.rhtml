@@ -1,11 +1,12 @@
 <h1>Liste des utilisateurs</h1>
-<%= link_to_beneficiaires %> / <%= link_to_ingenieurs %>
-<p>&nbsp;</p>
+<%= link_to_beneficiaires %> / <%= link_to_ingenieurs %><br/><br/>
+<%= link_to 'Ajouter un utilisateur', :action => 'signup' %> / <%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %> / <%= link_to_export( :data => 'identifiants') %>
+<br/><br/>
 
 <% if @ingenieur %>
 <%= start_form_tag :action => "devenir" %>
    <select id="account_beneficiaire_id" name="account[beneficiaire_id]">
-     <%= option_groups_from_collection_for_select(@clients, "beneficiaires", 
+     <%= option_groups_from_collection_for_select(@clients, "beneficiaires",
                                                   "nom", "id", "nom" ) %>
    </select>
    <%= submit_tag "Devenir" %></p>
@@ -57,4 +58,5 @@
 <%= show_pages_links(@user_pages, 'un nouvel utilisateur') %><br/>
 
 <%= link_to 'Ajouter un utilisateur', :action => 'signup' %><br/>
+<%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %><br/>
 <%= link_to_export( :data => 'identifiants') %>

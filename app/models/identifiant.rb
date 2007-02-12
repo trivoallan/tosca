@@ -19,7 +19,7 @@ class Identifiant < ActiveRecord::Base
   end
 
   def beneficiaire
-    Beneficiaire.find_by_identifiant_id(id) 
+    Beneficiaire.find_by_identifiant_id(id)
   end
 
   def self.authenticate(login, pass, crypt)
@@ -30,7 +30,7 @@ class Identifiant < ActiveRecord::Base
         Identifiant.find(:first, :conditions => ["login = ? AND password = ?", login, pass])
       end
     end
-  end  
+  end
 
   def change_password(pass)
     update_attribute "password", self.class.sha1(pass)
@@ -41,7 +41,7 @@ class Identifiant < ActiveRecord::Base
   # Return true/false if User is authorized for resource.
   def authorized?(resource)
     match=false
-    
+
     permission_strings.each do |p|
       r = Regexp.new(p)
       match = match || ((r =~ resource) != nil)
@@ -49,11 +49,12 @@ class Identifiant < ActiveRecord::Base
     return match
   end
 
+  # Load permission strings
   def permission_strings
-    return @permissions if @permissions 
+    return @permissions if @permissions
     @permissions = []
     self.roles.each{|r| r.permissions.each{|p| @permissions << p.name }}
-    @permissions 
+    @permissions
   end
 
   # Vérifie l'intégrité/la validité d'un utilisateur
@@ -63,7 +64,7 @@ class Identifiant < ActiveRecord::Base
     # cohérence des droits en fonction de l'appartenance (ingénieur ou bénéficiaire)
     return false if beneficiaire && ( roles != [Role.find(2)] )
     # si tout va bien
-    return true 
+    return true
   end
 
   # Ce qui suit est protected
@@ -72,10 +73,10 @@ class Identifiant < ActiveRecord::Base
   def self.sha1(pass)
     Digest::SHA1.hexdigest("linagora--#{pass}--")
   end
-    
+
   before_create :crypt_password
 
-  
+
   def crypt_password
     write_attribute("password", self.class.sha1(password))
   end

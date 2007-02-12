@@ -1,7 +1,7 @@
 <%= error_messages_for 'identifiant' %><br />
 <div title="Account modify" id="modifyform" class="form">
-<%= start_form_tag :action=> "modify" %>
-  <%= render :partial => "edit", :locals => { :mode => "modify" } %>
+<%= form_tag :action=> "modify" %>
+  <%= render :partial => "edit" %>
 <%= end_form_tag %>
 </div>
 
