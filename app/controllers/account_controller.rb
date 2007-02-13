@@ -158,7 +158,6 @@ class AccountController < ApplicationController
 
   # Format du fichier CSV
   # Nom complet, Titre, Email, Téléphone, Identifiant, Mot de passe, Informations
-  #
   def multiple_signup
     _form
     @identifiant = Identifiant.new

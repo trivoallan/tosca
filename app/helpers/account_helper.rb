@@ -3,6 +3,18 @@
 #####################################################
 module AccountHelper
 
+  def show_title(title, options = {})
+    return unless title
+    result = ''
+    result << "<h1>#{title}</h1>"
+    if options[:subtitle]
+      result << "<h2>#{options[:subtitle]}</h2>"
+    else
+      result << "<br/>"
+    end
+    result << "<br/>"
+  end
+
   # Titles doit contenir un tableau
   # Champs doit contenir un tableau
   # Les éléments de Titles et Champs doivent être affichable par to_s
@@ -11,36 +23,26 @@ module AccountHelper
   # :subtitle => Donne un sous titre au tableau
   # Ex : show_table_form( { "TOTO", "TITI"}, { "TATA", "TUTU" }, :title => "Titre" )
   def show_table_form(titles, champs, options = {})
-    return "Error" unless titles and titles.size > 0
-    return "Error" unless champs and champs.size > 0
-    return "Error" unless titles.size == champs.size
-
-    result = ""
-
-    if(options[:title])
-      result << "<h1>#{options[:title]}</h1>"
-      result << "<br/>" unless options[:subtitle]
-      result << "\n"
-    end
-    if(options[:subtitle])
-      result << "<h2>#{options[:subtitle]}</h2><br>\n"
-    end
-
-    result << "<table>\n"
+    return 'Error (titles)' unless titles and titles.size > 0
+    return 'Error (champs)' unless champs and champs.size > 0
+    return 'Error (size)' unless titles.size == champs.size
+    result = ''
+    result << '<table>'
     for i in 0..titles.size
       unless champs[i].nil? and titles[i].nil?
-        result << "<tr>\n"
+        result << '<tr>'
         if champs[i].nil? or titles[i].nil?
           value = ( champs[i] ? champs[i].to_s : titles[i].to_s )
-          result << "<td colspan=\"2\">" << value << "</td>\n"
+          result << '<td colspan= "2">' << value << '</td>'
         else
-          result << "<td>" << titles[i].to_s << "</td>\n"
-          result << "<td>" << champs[i].to_s << "</td>\n"
+          result << '<td>' << titles[i].to_s << '</td>'
+          result << '<td>' << champs[i].to_s << '</td>'
         end
-        result << "</tr>\n"
+        result << '</tr>'
       end
     end
-    result << "</table>\n"
+    result << '</table>'
+    result << '<br/>'
   end
 
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'

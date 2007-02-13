@@ -26,3 +26,17 @@
       <% end %>
       </tr>
     </table>
+
+<%
+   titres = []
+   titres << ''
+
+   champs = []
+   champs << ''
+
+   title = ''
+   subtitle = '' 
+%>
+
+<%= show_title title, :subtitle => subtitle %>
+<%= show_table_form titres, champs %>
