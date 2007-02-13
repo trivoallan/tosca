@@ -59,8 +59,7 @@ class ApplicationController < ActionController::Base
     session[:cut_links] = render_to_string :inline => "
         <% cut_links = [ 
           (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
-          (session[:user].authorized?('demandes/list') ? 
-              "+ '&nbsp;' + (text_field 'numero', '', 'size' => 3)," : ',' ) + 
+          (session[:user].authorized?('demandes/list') ? "+ '&nbsp;' + search_demande," : ',' ) + 
          "(link_to 'Filtres',:controller => 'filtres', :action => 'index'),
           (link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
           (link_to 'Projets',:controller => 'projets', :action => 'list'),

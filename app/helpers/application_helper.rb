@@ -94,7 +94,7 @@ module ApplicationHelper
   end
   def search_demande(options = {})
     out = '' 
-    out << '<br/>' unless options[:inline] == true
+    out << '<br/>' if options[:inline] == false
     out << text_field('numero', '', 'size' => 3)
   end
 
@@ -316,14 +316,14 @@ module ApplicationHelper
   # Affiche un résumé texte succint d'une demande
   # Utilisé par exemple pour les balise "alt" et "title"
   # on affiche '...' si le reste a afficher fait plus de 3 caracteres
-  def sum_up ( texte, limit=100)
+  def sum_up ( texte, limit=100, options ={:less => '...'})
     return texte unless (texte.is_a? String) && (limit.is_a? Numeric)
     out = ""
     if texte.size <= limit+3
       out << texte
     elsif
       out << texte[0..limit] 
-      out << '...'
+      out << options[:less]
     end
     out
   end 
