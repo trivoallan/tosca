@@ -1,42 +1,26 @@
-   <table class="info">
-      <tr>
-      <% form_tag do %>
-        <tr><td>Logiciel</td>
-            <td><%= select_filter(@logiciels, 'logiciel', :title => 'Logiciel', :inline => true) %></td></tr>
-        <tr><td>Type</td>
-            <td><%= select_filter(@types, 'typedemande', :title => 'Type', :inline => true) %></tr>
-        <tr><td>Sévérité</td>
-            <td><%= select_filter(@severites, 'severite', :title => 'Sévérité', :inline => true) %></td></tr>
-        <tr><td>Statut</td>
-            <td><%= select_filter(@statuts, 'statut', :title => 'Statut', :inline => true) %></td></tr>
-       <% if @ingenieur %> 
-        <tr><td>Client</td>
-            <td><%= select_filter(@clients, 'client', :title => 'Client', :inline => true) %></td></th>
-       <% end %>
-        <tr><td>Bénéficiaire</td>
-            <td><%= select_filter(@beneficiaires, 'beneficiaire', :title => 'Bénéficiaire', :inline => true) %></td></tr>
-        <tr><td>Résumé</td>
-            <td><%= text_filter('motcle', :title => 'Résumé', :title => 'Résumé', :inline => true) %></td></tr>
-        <tr><td>A jour du</td>
-            <td><%= select_filter_date :inline => true %> (non fonctionnel)</td></tr>
-       <% if @ingenieur %> 
-        <tr><td>Responsable</td>
-            <td><%= select_filter(@ingenieurs, 'ingenieur', :title => 'Responsable', :inline => true) %></td></tr> 
-       <% end %>
-      <% end %>
-      </tr>
-    </table>
 
 <%
    titres = []
-   titres << ''
+   titres << 'Logiciel'
+   titres << 'Type' 
+   titres << 'Sévérité'
+   titres << 'Statut'
+   titres << 'Client' if @ingenieur 
+   titres << 'Bénéficiaire'
+   titres << 'Résumé'
+   titres << 'A jour du'
+   titres << 'Responsable' if @ingenieur
 
    champs = []
-   champs << ''
-
-   title = ''
-   subtitle = '' 
+   champs << select_filter(@logiciels, 'logiciel', :title => 'Logiciel', :inline => true)
+   champs << select_filter(@types, 'typedemande', :title => 'Type', :inline => true)
+   champs << select_filter(@severites, 'severite', :title => 'Sévérité', :inline => true)
+   champs << select_filter(@statuts, 'statut', :title => 'Statut', :inline => true)
+   champs << select_filter(@clients, 'client', :title => 'Client', :inline => true)
+   champs << select_filter(@beneficiaires, 'beneficiaire', :title => 'Bénéficiaire', :inline => true)
+   champs << text_filter('motcle', :title => 'Résumé', :title => 'Résumé', :inline => true)
+   champs << select_filter_date(:inline => true) + '(non fonctionnel)'
+   champs << select_filter(@ingenieurs, 'ingenieur', :title => 'Responsable', :inline => true)
 %>
 
-<%= show_title title, :subtitle => subtitle %>
-<%= show_table_form titres, champs %>
+<%= show_table_form titres, champs, :class => 'info' %>

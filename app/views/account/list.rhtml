@@ -36,7 +36,7 @@
 
    <%= start_form_tag :action => 'update', :id => user %>
     <% for role in Role.find_all %>
-      <td><input type="checkbox" id="<%=role.id%>" name="role_ids[]" value="<%=role.id%>"
+      <td><input type="radio" id="<%=role.id%>" name="role_ids[]" value="<%=role.id%>"
       <%if user.roles.include? role%> checked="checked" <%end%> ></td>
     <% end %>
       <td><%= "X" if user.ingenieur %></td>
