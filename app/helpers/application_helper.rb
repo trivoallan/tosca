@@ -106,12 +106,13 @@ module ApplicationHelper
   # :subtitle => Donne un sous titre au tableau
   # Ex : show_table_form( { "TOTO", "TITI"}, { "TATA", "TUTU" }, :title => "Titre" )
   def show_table_form(titles, champs, options = {})
-    return 'Error (titles)' unless titles and titles.size > 0
-    return 'Error (champs)' unless champs and champs.size > 0
+    return 'Error (titles)' unless titles and titles.size >= 0
+    return 'Error (champs)' unless champs and champs.size >= 0
     return 'Error (size)' unless titles.size == champs.size
     result = ''
     style = "class='#{options[:class] if options[:class]}'"
     result << "<table #{style}"
+    return 'Aucune donnée à afficher' if titles.size == 0
     for i in 0..titles.size
       unless champs[i].nil? and titles[i].nil?
         result << '<tr>'

@@ -158,16 +158,18 @@ class AccountController < ApplicationController
 
   # Format du fichier CSV
   # Nom complet, Titre, Email, Téléphone, Identifiant, Mot de passe, Informations
+  # Nom complet	 Titre	Email	Téléphone	Identifiant	Mot de passe	Informations
   def multiple_signup
     _form
     @identifiant = Identifiant.new
-    if request.method == :post
+    case request.method 
+    when :post
       if(params['textarea_csv'].to_s.empty?)
-        flash[:notice] = "Veuillez rentrer un texte sous format CSV"
+        flash[:warn] = "Veuillez rentrer un texte sous format CSV"
         return
       end
 
-      flash[:notice] = ""
+      flash[:notice] = ''
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), { :col_sep => ";", :headers => true }) do |row|
         @identifiant = Identifiant.new do |i|
            logger.debug(row.inspect)
@@ -185,7 +187,7 @@ class AccountController < ApplicationController
           @identifiant.roles = Role.find(params[:role_ids])
         else
           @identifiant.roles = []
-          @identifiant.errors.add_on_empty('roles')
+          #@identifiant.errors.add_on_empty('roles')
           render :action => 'multiple_signup'
           return
         end
@@ -206,6 +208,7 @@ class AccountController < ApplicationController
         end
       end
       redirect_back_or_default :action => "list"
+    when :get
     end
   end
 

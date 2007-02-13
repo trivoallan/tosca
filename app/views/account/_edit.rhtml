@@ -34,7 +34,8 @@
         help[:client] = 'L\'utilisateur est-il un client du service ?'
       when 'multiple_signup'
         help[:client] = 'Les utilisateurs sont-ils des clients du service ?'
-        csv[:titre] = '<label for="identifiant_csv">Texte sous format CSV</label><br/>'
+        csv[:titre] = '<label for="identifiant_csv">Texte sous format CSV (séparateur : tabulation)</label><br/>
+                       Nom complet	 Titre	Email	Téléphone	Identifiant	Mot de passe	Informations'
         csv[:champ] = text_area('textarea_csv', nil, :rows => 10, :cols => 58)
       end
       type_client[:titre] = '<label for="type_client">Client </label>'
