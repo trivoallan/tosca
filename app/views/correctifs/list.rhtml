@@ -5,11 +5,14 @@ logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Lo
 
 <h1>Liste des correctifs</h1>
 
-<%= render_partial "filtre" %>
+<%= render_partial 'filtres/actions' %>
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 
-<% titres = [logiciel_titre, 'Patch', 'Demande', 'Tâches',
+<% titres = ["Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}", 
+             'Patch', 'Demande', 
+             "Tâches #{show_help 'Marquer les reversements urgents en précisant le délais de reversement'}"+
+               "<br/>#{text_field('reversement','max_jours', :size => 5, :value => @max_jours)}",
              'Etat du reversement', 'Description fonctionnelle', 
              'Reversé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
 <% form_tag(:controller => 'correctifs', :action => 'list') do %>
