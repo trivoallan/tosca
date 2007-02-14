@@ -9,6 +9,10 @@
 <p><b>Version:</b> <%= @binaire.paquet.version %></p>
 <p><b>Release:</b> <%= @binaire.paquet.release %></p>
 
+<% if @binaire.archive %>
+<br />
+<p><b>Ce paquet est téléchargeable : </b><%= link_to_file(@binaire, 'archive') %></p>
+<% end %>
 
 
 <br />
