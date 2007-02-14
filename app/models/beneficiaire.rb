@@ -22,5 +22,9 @@ class Beneficiaire < ActiveRecord::Base
                              :conditions => ['client_id=?', self.client_id]).collect{|c| c.id}
   end
 
+  def scope_filter
+    super scope_filter
+  end
+
   alias_method :to_s, :nom
 end

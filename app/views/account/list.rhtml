@@ -15,9 +15,11 @@
 
 <%= show_pages_links(@user_pages, 'un nouvel utilisateur') %>
 
+
 <table>
+  <% form_tag(:controller => 'account', :action => 'list') do %>
   <tr>
-    <th>Identifiant</th>
+    <th>Identifiant <%= select_filter(@all_users, 'identifiant', :title => 'Identifiant') %></th>
   <% for role in Role.find_all %>
     <th><small> [<%= link_to role.nom, :controller => 'roles', :action => 'edit', :id => role %>] </small></th>
   <% end %>
@@ -28,6 +30,7 @@
     <th>(Client)</th>
     <th></th>
   </tr>
+  <% end %>
 
   <% @users.each_index {|i| %>
    <% user = @users[i] %>

@@ -23,10 +23,12 @@ class CorrectifsController < ApplicationController
   def list
     # @count = Correctif.count
     conditions = nil
-
+    @logiciels = Logiciel.find(:all)
     @count = Correctif.count
-    @correctif_pages, @correctifs = paginate :correctifs, :per_page => 10,
-    :conditions => conditions
+    scope_filter do
+      @correctif_pages, @correctifs = paginate :correctifs, :per_page => 10 #, :conditions => conditions
+  end
+
   end
 
   def show

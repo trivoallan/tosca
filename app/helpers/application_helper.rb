@@ -85,12 +85,13 @@ module ApplicationHelper
                        :order => [:day, :month, :year])
   end
 
+  # text_filter('motcle', :title => 'Résumé')
   def text_filter(property, options = {})
     out = ''
     name = "filtres[#{property}]"
     out << '<br/>' unless options[:inline] == true
     #out << text_field_tag(name, @session[:filtres][property], options)
-    out << text_field("filtres", property, :value => session[:filtres]['motcle'], :size => 20 )
+    out << text_field("filtres", property, :value => session[:filtres][property], :size => 20 )
   end
   def search_demande(options = {})
     out = '' 
@@ -147,7 +148,7 @@ module ApplicationHelper
   # TODO : ne pas utiliser.
   #        à préférer :  link_to_modify_account({:text => 'Mon&nbsp;compte'})
   def link_to_my_account(options = {:text => 'Mon&nbsp;compte'})
-    link_to_modify_account(session[:user].id, options[:text])
+    link_to_modify_account(session[:user].id, options[:text]) if session[:user]
   end
 
   # lien vers mon offre / mon client
@@ -435,7 +436,7 @@ module ApplicationHelper
       result << yield(elements[i])
       result << '</tr>' 
     }
-    result << '</tr></table>'
+    result << '</tr></table><br/>'
     # result << show_total(elements.size, ar, options)
   end
 

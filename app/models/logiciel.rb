@@ -41,5 +41,9 @@ class Logiciel < ActiveRecord::Base
   def to_s
     nom
   end
+  
+  def self.not_found
+    '(Inconnu)'
+  end
 
 end

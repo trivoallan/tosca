@@ -1,5 +1,7 @@
 <% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? 
-                  @params[:reversement][:max_jours] : 12 ) %>
+                  @params[:reversement][:max_jours] : 12 ) 
+logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}"
+%>
 
 <h1>Liste des correctifs</h1>
 
@@ -7,9 +9,10 @@
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 
-<% titres = ['Logiciel', 'Patch', 'Demande', 'Tâches',
+<% titres = [logiciel_titre, 'Patch', 'Demande', 'Tâches',
              'Etat du reversement', 'Description fonctionnelle', 
              'Reversé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
+<% form_tag(:controller => 'correctifs', :action => 'list') do %>
 <%= show_table(@correctifs, Correctif, titres) { |c|
   result = ''
   tache = c.todo(@max_jours)
@@ -25,6 +28,7 @@ result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"
   result << "<td>#{c.updated_on_formatted}</td>"
   result << "#{link_to_actions_table c}"
 }%>
+<% end %>
 
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 

@@ -110,7 +110,7 @@ class ApplicationController < ActionController::Base
         value = value.to_i if filtre =~ /(_id)$/
         session[:filtres][filtre] = value
       else
-        session[:filtres][filtre] = nil      
+        session[:filtres][filtre] = nil
       end
     end
   end
@@ -175,7 +175,7 @@ class ApplicationController < ActionController::Base
 private
   # scope
   # TODO : c'est pas DRY, une sous partie a été recopié dans reporting
-  def scope_beneficiaire
+  def scope_beneficiaire()
 
     # on applique les filtre sur les listes uniquement
     # le scope client est tout de même appliqué partout si client
@@ -190,16 +190,17 @@ private
       client_id = filtres['client_id'].to_i if filtres['client_id']
       contrat_ids = filtres['contrat_ids'] if filtres['contrat_ids']
     end
-
+    
     # on construit les conditions pour les demandes et les logiciels
-    cdemande_severite = ['demandes.severite_id = ? ', filtres['severite_id'] ] if filtres['severite_id'] 
-    cdemande_motcle = ['(demandes.resume LIKE ? OR demandes.description LIKE ?) ', 
-                       "%#{filtres['motcle']}%", "%#{filtres['motcle']}%"] if filtres['motcle']
-    cdemande_ingenieur = ['demandes.ingenieur_id = ? ', filtres['ingenieur_id'] ] if filtres['ingenieur_id']
-    cdemande_beneficiaire = ['demandes.beneficiaire_id = ? ', filtres['beneficiaire_id'] ] if filtres['beneficiaire_id']
-    cdemande_type = ['demandes.typedemande_id = ? ', filtres['typedemande_id'] ] if filtres['typedemande_id']
-    cdemande_statut = ['demandes.statut_id = ? ', filtres['statut_id'] ] if filtres['statut_id']
-    clogiciel = [ 'logiciels.id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
+    #cdemande_severite = ['demandes.severite_id = ? ', filtres['severite_id'] ] if filtres['severite_id'] 
+    #cdemande_motcle = ['(demandes.resume LIKE ? OR demandes.description LIKE ?) ', 
+    #                    "%#{filtres['motcle']}%", "%#{filtres['motcle']}%"] if filtres['motcle']
+    #cdemande_ingenieur = ['demandes.ingenieur_id = ? ', filtres['ingenieur_id'] ] if filtres['ingenieur_id']
+    #cdemande_beneficiaire = ['demandes.beneficiaire_id = ? ', filtres['beneficiaire_id'] ] if filtres['beneficiaire_id']
+    #cdemande_type = ['demandes.typedemande_id = ? ', filtres['typedemande_id'] ] if filtres['typedemande_id']
+    #cdemande_statut = ['demandes.statut_id = ? ', filtres['statut_id'] ] if filtres['statut_id']
+    #clogiciel = [ 'logiciels.id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
+
     if client_id
       cclient = ['clients.id = ? ', client_id ] 
       cbeneficiaire_client = ['beneficiaires.client_id = ? ', client_id ] 
@@ -210,23 +211,24 @@ private
     end
 
     # on construit les scopes
-    sdemandes = compute_scope([:beneficiaire,:logiciel],
-                              cbeneficiaire_client, 
-                              cdemande_severite, 
-                              cdemande_motcle, 
-                              cdemande_ingenieur, 
-                              cdemande_beneficiaire, 
-                              cdemande_type,
-                              clogiciel, 
-                              cdemande_statut)
-    slogiciels = compute_scope([:paquets], clogiciel, cpaquet_contrat)
+    #sdemandes = compute_scope([:beneficiaire,:logiciel],
+    #                          cbeneficiaire_client, 
+    #                          cdemande_severite, 
+    #                          cdemande_motcle, 
+    #                          cdemande_ingenieur, 
+    #                          cdemande_beneficiaire, 
+    #                          cdemande_type,
+    #                          clogiciel, 
+    #                          cdemande_statut)
+    sdemandes = compute_scope([:beneficiaire],cbeneficiaire_client)
+    slogiciels = compute_scope([:paquets], cpaquet_contrat) #([:paquets], clogiciel, cpaquet_contrat)
     sclients = compute_scope(nil, cclient)
     spaquets = compute_scope(nil, cpaquet_contrat)
     sbinaires = compute_scope([:paquet], cpaquet_contrat)
     ssocles = compute_scope([:client], cclient)
     sbeneficiaire = compute_scope(nil, cbeneficiaire_client)
     sdocuments = compute_scope(nil, cdocument_client)
-    scorrectifs = compute_scope([:paquets,:logiciel], clogiciel, cpaquet_contrat)
+    scorrectifs = compute_scope([:paquets], cpaquet_contrat)#([:paquets,:logiciel], clogiciel, cpaquet_contrat)
 
     # with_scope
     Beneficiaire.with_scope(sbeneficiaire) {
@@ -235,14 +237,50 @@ private
     Correctif.with_scope(scorrectifs) {
     Demande.with_scope(sdemandes) {
     Document.with_scope(sdocuments) {
-    Logiciel.with_scope(slogiciels) {
     Paquet.with_scope(spaquets) {
     Socle.with_scope(ssocles) { 
-    yield }}}}}}}}}
+    Logiciel.with_scope(slogiciels) {
+      yield
+    }}}}}}}}}
   end
 
+  def scope_filter
 
+    # on applique les filtre sur les listes uniquement
+    # le scope client est tout de même appliqué partout si client
+    filtres = ( self.action_name == 'list' ? session[:filtres] : {} )
 
+    # on construit les conditions pour les demandes et les logiciels
+    cidentifiant = ['identifiants.id = ? ', filtres['identifiant_id'] ] if filtres['identifiant_id'] 
+    cdemande_severite = ['demandes.severite_id = ? ', filtres['severite_id'] ] if filtres['severite_id'] 
+    cdemande_motcle = ['(demandes.resume LIKE ? OR demandes.description LIKE ?) ', 
+                        "%#{filtres['motcle']}%", "%#{filtres['motcle']}%"] if filtres['motcle']
+    cdemande_ingenieur = ['demandes.ingenieur_id = ? ', filtres['ingenieur_id'] ] if filtres['ingenieur_id']
+    cdemande_beneficiaire = ['demandes.beneficiaire_id = ? ', filtres['beneficiaire_id'] ] if filtres['beneficiaire_id']
+    cdemande_type = ['demandes.typedemande_id = ? ', filtres['typedemande_id'] ] if filtres['typedemande_id']
+    cdemande_statut = ['demandes.statut_id = ? ', filtres['statut_id'] ] if filtres['statut_id']
+    clogiciel = [ 'logiciels.id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
+    ccorrectif_logiciel = [ 'logiciel_id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
+    #clogiciel_groupe = ['logiciels.classifications.groupe_id = ? ', filtres['groupe_id'] ] if filtres['groupe_id']
+
+    sidentifiant = compute_scope(nil, cidentifiant)
+    sdemandes = compute_scope([:logiciel],
+                              cdemande_severite, 
+                              cdemande_motcle, 
+                              cdemande_ingenieur, 
+                              cdemande_beneficiaire, 
+                              cdemande_type,
+                              clogiciel, 
+                              cdemande_statut)
+    slogiciels = compute_scope(nil, clogiciel)
+    scorrectifs = compute_scope(nil, ccorrectif_logiciel)
+
+    Identifiant.with_scope(sidentifiant) {
+    Demande.with_scope(sdemandes) {
+    Logiciel.with_scope(slogiciels) {  
+    Correctif.with_scope(scorrectifs) {
+    yield }}}}
+  end
 
 end
 

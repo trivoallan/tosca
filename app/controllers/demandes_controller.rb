@@ -33,9 +33,7 @@ class DemandesController < ApplicationController
     redirect_to :action => :comment, :id => params['numero'] if params['numero'] 
 
     #init des variables utilisées dans la vue
-    #Logiciel.with_exclusive_scope() do
-      @logiciels = Logiciel.find(:all)
-    #end
+    @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
     Client.with_exclusive_scope do
       @clients = Client.find(:all)
     end
@@ -62,10 +60,12 @@ class DemandesController < ApplicationController
       @demandes = [] # renvoi un tableau vide
     end
 
-    Beneficiaire.with_scope(:find => {:include => [:identifiant, :client]}) do
-      @demande_pages, @demandes = paginate :demandes, :per_page => 20,
-      :order => 'updated_on DESC', #:conditions => conditions,
-      :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut,:logiciel]
+    scope_filter do
+      #Beneficiaire.with_scope(:find => {:include => [:identifiant, :client]}) do
+        @demande_pages, @demandes = paginate :demandes, :per_page => 20,
+        :order => 'updated_on DESC'#, #:conditions => conditions,
+        #:include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut,:logiciel]
+      #end
     end
   end
 

@@ -12,14 +12,14 @@
         <th width='2%'>ID<%= search_demande(:inline => false) %></th>
       <% end %>
       <% form_tag :action => 'list' do %>
-        <th width='7%'>Logiciel<%= select_filter(@logiciels, 'logiciel', :title => 'Logiciel') %></th>
+        <th width='7%'>Logiciel<%= select_filter(@logiciels, 'logiciel', :title => 'Logiciel', :group => Classification.find_all.collect{|c| c.groupe}) %></th>
         <th width='7%' colspan = '2'>Type<%= select_filter(@types, 'typedemande', :title => 'Type') %></th>
         <!--<th>Sévérité<%#= select_filter(@severites, 'severite', :title => 'Sévérité') %></th>-->
        <% if @ingenieur %> 
         <th width='5%'>Client<%= select_filter(@clients, 'client', :title => 'Client') %></th>
        <% end %>
         <th width='10%'>Bénéficiaire<%= select_filter(@beneficiaires, 'beneficiaire', :title => 'Bénéficiaire') %></th>
-        <th>Résumé<%= text_filter('motcle', :title => 'Résumé', :title => 'Résumé') %></th>
+        <th>Résumé<%= text_filter('motcle', :title => 'Résumé') %></th>
        <% if @ingenieur %> 
         <th width='8%'>Responsable<%= select_filter(@ingenieurs, 'ingenieur', :title => 'Responsable') %></th> 
        <% end %>
@@ -31,7 +31,7 @@
    <% for demande in @demandes %>
    <tr class=<%= "demande_#{demande.statut_id}" %> onclick="window.location.href='comment/<%= demande.id %>';" >
         <td><%= link_to_demande demande, :show_id => true, :resume => false %></td>
-        <td><%= sum_up(demande.logiciel.nom,15) %></td>
+        <td><%= demande.logiciel ? sum_up(demande.logiciel.nom,15) : Logiciel.not_found  %></td>
         <td><%= demande.typedemande.nom %></td>
         <td><%= icon_severite(demande) %></td>
        <% if @ingenieur %> 

@@ -42,8 +42,11 @@ class LogicielsController < ApplicationController
       conditions = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ]
     end
 
-    @logiciel_pages, @logiciels = paginate :logiciels, :per_page => 25,
-    :order => 'logiciels.nom', :conditions => conditions 
+    @groupes = Classification.find(:all).collect{|c| c.groupe}.uniq
+    scope_filter do
+      @logiciel_pages, @logiciels = paginate :logiciels, :per_page => 25,
+      :order => 'logiciels.nom', :conditions => conditions 
+    end
   end
 
   def rpmlist

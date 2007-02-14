@@ -23,4 +23,6 @@
    champs << select_filter(@ingenieurs, 'ingenieur', :title => 'Responsable', :inline => true)
 %>
 
+<% form_tag(:controller => 'demandes', :action => 'list') do %>
 <%= show_table_form titres, champs, :class => 'info' %>
+<% end %>
