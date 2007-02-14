@@ -5,9 +5,8 @@ class FiltresController < ApplicationController
 
   # sélection des filtres de session
   def index
-    #Logiciel.with_exclusive_scope(sall_logiciels) do
-      @logiciels = Logiciel.find(:all)
-    #end   
+    @logiciels = Logiciel.find(:all) 
+    @groupes = Groupe.find(:all)
     @severites = Severite.find(:all)
     @statuts = Statut.find(:all)
     @types = Typedemande.find(:all)

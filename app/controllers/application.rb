@@ -261,7 +261,7 @@ private
     cdemande_statut = ['demandes.statut_id = ? ', filtres['statut_id'] ] if filtres['statut_id']
     clogiciel = [ 'logiciels.id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
     ccorrectif_logiciel = [ 'logiciel_id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
-    #clogiciel_groupe = ['logiciels.classifications.groupe_id = ? ', filtres['groupe_id'] ] if filtres['groupe_id']
+    cclassification_groupe = ['classifications.groupe_id = ? ', filtres['groupe_id'] ] if filtres['groupe_id']
 
     sidentifiant = compute_scope(nil, cidentifiant)
     sdemandes = compute_scope([:logiciel],
@@ -272,14 +272,16 @@ private
                               cdemande_type,
                               clogiciel, 
                               cdemande_statut)
-    slogiciels = compute_scope(nil, clogiciel)
+    slogiciels = compute_scope([:classifications], clogiciel, cclassification_groupe)
     scorrectifs = compute_scope(nil, ccorrectif_logiciel)
+    spaquets = compute_scope([:logiciel], clogiciel)
 
     Identifiant.with_scope(sidentifiant) {
     Demande.with_scope(sdemandes) {
     Logiciel.with_scope(slogiciels) {  
     Correctif.with_scope(scorrectifs) {
-    yield }}}}
+    Paquet.with_scope(spaquets) {
+              yield }}}}}
   end
 
 end

@@ -13,7 +13,10 @@ class BeneficiairesController < ApplicationController
 
 
   def list
-    @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, :per_page => 10
+    @clients = Client.find(:all)
+    scope_filter do 
+      @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, :per_page => 10
+    end
   end
 
   def show

@@ -1,23 +1,31 @@
 
 <%
    titres = []
+   titres << show_title('Logiciel') 
    titres << 'Logiciel'
+   titres << 'Groupe'
+   titres << show_title('Client')
+   titres << 'Client' if @ingenieur 
+   titres << 'Bénéficiaire'
+   titres << show_title('Demande')
    titres << 'Type' 
    titres << 'Sévérité'
    titres << 'Statut'
-   titres << 'Client' if @ingenieur 
-   titres << 'Bénéficiaire'
    titres << 'Résumé'
    titres << 'A jour du'
    titres << 'Responsable' if @ingenieur
 
    champs = []
+   champs << nil ############
    champs << select_filter(@logiciels, 'logiciel', :title => 'Logiciel', :inline => true)
+   champs << select_filter(@groupes, 'groupe', :title => 'Groupe', :inline => true)
+   champs << nil ############
+   champs << select_filter(@clients, 'client', :title => 'Client', :inline => true)
+   champs << select_filter(@beneficiaires, 'beneficiaire', :title => 'Bénéficiaire', :inline => true)
+   champs << nil ############
    champs << select_filter(@types, 'typedemande', :title => 'Type', :inline => true)
    champs << select_filter(@severites, 'severite', :title => 'Sévérité', :inline => true)
    champs << select_filter(@statuts, 'statut', :title => 'Statut', :inline => true)
-   champs << select_filter(@clients, 'client', :title => 'Client', :inline => true)
-   champs << select_filter(@beneficiaires, 'beneficiaire', :title => 'Bénéficiaire', :inline => true)
    champs << text_filter('motcle', :title => 'Résumé', :title => 'Résumé', :inline => true)
    champs << select_filter_date(:inline => true) + '(non fonctionnel)'
    champs << select_filter(@ingenieurs, 'ingenieur', :title => 'Responsable', :inline => true)

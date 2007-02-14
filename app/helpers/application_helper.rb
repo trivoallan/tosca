@@ -342,14 +342,13 @@ module ApplicationHelper
 
   def show_title(title, options = {})
     return unless title
-    result = ''
+    result = '<br/>'
     result << "<h1>#{title}</h1>"
     if options[:subtitle]
       result << "<h2>#{options[:subtitle]}</h2>"
     else
       result << "<br/>"
     end
-    result << "<br/>"
   end
 
 

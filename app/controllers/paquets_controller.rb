@@ -43,9 +43,12 @@ class PaquetsController < ApplicationController
     end
 
     @count = Paquet.count
-    @paquet_pages, @paquets = paginate :paquets, :per_page => 25, 
-      :order => @order, :conditions => conditions, :include =>
-      [:conteneur,:distributeur,:mainteneur,:logiciel]
+    @logiciels = Logiciel.find(:all)
+    scope_filter do 
+      @paquet_pages, @paquets = paginate :paquets, :per_page => 25, 
+        :order => @order, :conditions => conditions, :include =>
+        [:conteneur,:distributeur,:mainteneur,:logiciel]
+    end
   end
 
   def show

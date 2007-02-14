@@ -1,12 +1,5 @@
 <h1>Liste des paquets</h1>
 
-<%= start_form_tag :action => "list", :filter => @filter, :order => @order %>
-  <p><label for="paquet_nom">Recherche par nom : </label>
-  <%= text_field 'paquet', ''  %>
-  <%= submit_tag 'Rechercher' %></p>
-<%= end_form_tag %>
-
-
 <%
 # TODO : A reprendre de A à Z
 #<!-- oui, je sais : c'est mal -->
@@ -27,7 +20,10 @@
 </p>
 
 <%= show_pages_links @paquet_pages, 'un paquet virtuel' %>
-<% titres = ['Logiciel', 'Nom', 'Release', 'Conteneur', 'Taille', 'Distributeur', 'Mainteneur']%>
+<% titres = ["Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}", 
+             "Nom <br/>#{text_field 'paquet', '' , :size => 15}", 
+             'Release', 'Conteneur', 'Taille', 'Distributeur', 'Mainteneur']%>
+<%= start_form_tag :action => "list", :filter => @filter, :order => @order %>
 <%= show_table(@paquets, Paquet, titres) { |p|
   result = ''
   result << "<td>#{link_to_logiciel p.logiciel}</td>"
@@ -39,6 +35,7 @@
   result << "<td>#{p.mainteneur.nom}</td>"
   result << "#{link_to_actions_table p}"
 }%>
+<%= end_form_tag %>
 <%= show_pages_links @paquet_pages, 'un paquet virtuel' %>
 
 <br />
