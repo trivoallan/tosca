@@ -7,6 +7,10 @@ class LogicielsController < ApplicationController
   before_filter :verifie, :only => 
     [ :show, :edit, :update, :destroy ]
 
+  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
+  verify :method => :post, :only => [ :destroy, :create, :update ],
+         :redirect_to => { :action => :list }
+
   def verifie
     super(Logiciel)
   end
@@ -16,15 +20,11 @@ class LogicielsController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def content_columns
      @content_columns ||= columns.reject { |c| c.primary || c.name =~ /(_id|_count|Description)$/ || c.name == inheritance_column }
   end
 
-
+  # affiche la liste des logiciels avec filtres
   def list
     @filter = params[:filter]
     @search = params[:logiciel]
@@ -50,9 +50,8 @@ class LogicielsController < ApplicationController
   end
 
   def rpmlist
-    @logiciels = Logiciel.find_all
+    @logiciels = Logiciel.find(:all)
   end
-
 
   def show
     @logiciel = Logiciel.find(params[:id])

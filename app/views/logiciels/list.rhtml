@@ -17,7 +17,7 @@
 
 <% titres = ["Nom<br/> #{text_field 'logiciel', '', :size => 15, :value => search_logiciel }", 
              'Description', 'Technologies', 'Référent', 
-             "Groupe #{select_filter(@groupes, 'groupe', :title => 'Groupe')}", 
+             "Groupe #{select_filter(@groupes, 'groupe', :title => 'Groupe', :width => 16)}", 
              'Paquet(s)']%>
 <%= start_form_tag :action => "list" %>
 <%= show_table(@logiciels, Logiciel, titres) { |l|
