@@ -7,13 +7,14 @@ class Beneficiaire < ActiveRecord::Base
 
   has_and_belongs_to_many :projets
 
+  INCLUDE = [:identifiant]
+
   #TODO : revoir la hiérarchie avec un nested tree (!)
   belongs_to :beneficiaire
   has_many :demandes, :dependent => :destroy
 
   def nom
-    @nom ||= Identifiant.find(identifiant_id, :select => 'identifiants.nom').nom
-    @nom
+    (identifiant ? identifiant.nom : '')
   end
 
 

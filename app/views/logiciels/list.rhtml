@@ -1,16 +1,8 @@
-<% search_logiciel = '' #Logiciel.find_all(session[:filtres][:logiciel])[0][:nom] #nom if session[:filtres] && session[:filtres][:logiciel] %>
+<% search_logiciel = '' %>
 
 <h1>Liste des logiciels</h1></td>
 
 <%= render_partial 'filtres/actions' %>
-
-<!--
-<%= start_form_tag :action => "list", :controller => "fichiers" %>
-  <p><label for="fichier_???">Recherche par fichier : </label>
-  <%= text_field 'fichier', ''  %>
-  <%= submit_tag "Rechercher" %> (non fonctionnel) </p>
-<%= end_form_tag %>
--->
 
 <br/>
 <%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
@@ -19,7 +11,7 @@
              'Description', 'Technologies', 'Référent', 
              "Groupe #{select_filter(@groupes, 'groupe', :title => 'Groupe', :width => 16)}", 
              'Paquet(s)']%>
-<%= start_form_tag :action => "list" %>
+<% form_tag(:action => "list") do %>
 <%= show_table(@logiciels, Logiciel, titres) { |l|
   result = ''
   result << "<td>#{link_to_logiciel l}</td>"
@@ -31,12 +23,13 @@
   result << "#{link_to_actions_table l}"
 }%>
   <label for="logiciel_nom">Filtrer: </label>
-<%= end_form_tag %>
+<% end %>
 
 <%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
 
 <br />
 
 <%= link_to 'Ajouter un logiciel', :action => 'new' %> | 
-<%= link_to 'Afficher la classification', :controller => 'groupes', :action => 'list' %> 
+<%= link_to 'Afficher la classification', :controller => 'groupes', 
+     :action => 'list' %> 
 

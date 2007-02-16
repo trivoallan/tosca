@@ -9,6 +9,8 @@ class Ingenieur < ActiveRecord::Base
   has_many :demandes
   has_many :interactions
 
+  INCLUDE = [:identifiant]
+
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary || 
         c.name =~ /(_id|_on|_count|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }       
@@ -32,8 +34,7 @@ class Ingenieur < ActiveRecord::Base
   # ne pas oublier de faire :include => [:identifiant] si vous 
   # appeler cette fonction, durant le Ingenieur.find
   def nom
-    @nom ||= Identifiant.find(identifiant_id, :select => 'identifiants.nom').nom
-    @nom
+    identifiant.nom
   end
 
   alias_method :to_s, :nom

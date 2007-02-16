@@ -5,16 +5,16 @@ class FiltresController < ApplicationController
 
   # sélection des filtres de session
   def index
-    @logiciels = Logiciel.find(:all) 
-    @groupes = Groupe.find(:all)
-    @severites = Severite.find(:all)
-    @statuts = Statut.find(:all)
-    @types = Typedemande.find(:all)
+    @logiciels = Logiciel.find_select(:all) 
+    @groupes = Groupe.find_select(:all)
+    @severites = Severite.find_select(:all)
+    @statuts = Statut.find_select(:all)
+    @types = Typedemande.find_select(:all)
     Client.with_exclusive_scope do
-      @clients = Client.find(:all)
+      @clients = Client.find_select(:all)
     end    
-    @beneficiaires = Beneficiaire.find(:all)
-    @ingenieurs = Ingenieur.find(:all)
+    @beneficiaires = Beneficiaire.find_select(:all, :include => Beneficiaire::INCLUDE)
+    @ingenieurs = Ingenieur.find_select(:all, :include => Ingenieur::INCLUDE)
   end
 
   # supprime les filtres de session

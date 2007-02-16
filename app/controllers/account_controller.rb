@@ -217,7 +217,7 @@ class AccountController < ApplicationController
 
   def list
     @clients = Client.find(:all)
-    @all_users = Identifiant.find(:all)
+    @all_users = Identifiant.find(:all, :include => [:beneficiaire,:ingenieur])
     scope_filter do
       @user_pages, @users = paginate :identifiants, :per_page => 25,
       :order => 'identifiants.login'

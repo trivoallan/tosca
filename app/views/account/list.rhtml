@@ -4,20 +4,19 @@
 <br/><br/>
 
 <% if @ingenieur %>
-<%= start_form_tag :action => "devenir" %>
+ <% form_tag :action => "devenir" do %>
    <select id="account_beneficiaire_id" name="account[beneficiaire_id]">
      <%= option_groups_from_collection_for_select(@clients, "beneficiaires",
                                                   "nom", "id", "nom" ) %>
    </select>
-   <%= submit_tag "Devenir" %></p>
-<%= end_form_tag %>
+   <%= submit_tag "Devenir" %><br />
+ <% end %>
 <% end %>
 
 <%= show_pages_links(@user_pages, 'un nouvel utilisateur') %>
 
 
 <table>
-  <% form_tag(:controller => 'account', :action => 'list') do %>
   <tr>
     <th>Identifiant <%= select_filter(@all_users, 'identifiant', :title => 'Identifiant') %></th>
   <% for role in Role.find_all %>
@@ -30,14 +29,13 @@
     <th>(Client)</th>
     <th></th>
   </tr>
-  <% end %>
 
   <% @users.each_index {|i| %>
    <% user = @users[i] %>
    <%= "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">" %>
-    <td><%=h user.login %></td>
+    <% form_tag(:action => 'update', :id => user) do%> 
+     <td><%=h user.login %></td>
 
-   <%= start_form_tag :action => 'update', :id => user %>
     <% for role in Role.find_all %>
       <td><input type="radio" id="<%=role.id%>" name="role_ids[]" value="<%=role.id%>"
       <%if user.roles.include? role%> checked="checked" <%end%> ></td>
@@ -48,15 +46,17 @@
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.telephone %></td>
       <td><%= user.beneficiaire.client.nom if user.beneficiaire %></td>
-      <td><%= submit_tag 'Modifier ses droits' %></td>
-   <%= end_form_tag %>
+      <td><%= submit_tag 'Modifier ses droits' %>
+       </td>
+
 
     <td><%= link_to_view user %></td>
     <td><%= link_to_modify_account user.id, 'Modifier son compte' %></td>
-
+   <% end %>
    </tr>
   <% } %>
 </table>
+
 
 <%= show_pages_links(@user_pages, 'un nouvel utilisateur') %><br/>
 

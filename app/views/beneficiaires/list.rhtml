@@ -1,12 +1,13 @@
 <h1>Liste des beneficiaires</h1>
 
+<%=h @beneficiaires.inspect %>
 
 <%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
 
 <% titres = ['Nom', 
              "Client #{select_filter(@clients, 'client', :title => 'Client')}", 
              'Domaine']%>
-<%= start_form_tag :action => "list" %>
+<% form_tag :action => "list" do %>
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
   result = ''
   result << "<td>#{b.nom}</td>"
@@ -14,7 +15,7 @@
   result << "<td>#{b.domaine}</td>"
   result << "#{link_to_actions_table b}"
 }%>
-<%= end_form_tag %>
+<% end %>
 
 <%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
 

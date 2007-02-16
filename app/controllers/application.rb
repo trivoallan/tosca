@@ -13,8 +13,8 @@ require_dependency "login_system"
 require_dependency "acl_system" 
 
 class ApplicationController < ActionController::Base
-  before_filter :set_filters
   around_filter :scope_beneficiaire
+  helper :filters
 
   before_filter :set_headers
   before_filter :set_global_shortcuts
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     session[:logo_08000] = render_to_string :inline => 
       "<%=image_tag('logo_08000.gif', :alt => '08000 LINUX', :title => '08000 LINUX' )%>"
     return unless session[:user]
-    session[:filtres] = Hash.new
+    session[:filters] = Hash.new
     session[:beneficiaire] = session[:user].beneficiaire
     session[:ingenieur] = session[:user].ingenieur
     session[:nav_links] = render_to_string :inline => "
@@ -83,59 +83,48 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # défini les filtres de tri
-  # TODO : VA MLO
+  # fill up the new filter(s)
+  # sended from POST request
   def set_filters
-    session[:filtres] ||= {}
-    session[:filtres][:liste_globale] = case params['filter']
-      when 'true' : true
-      when 'false' : false
-      else nil
-    end
+    session[:filters] ||= {}
+
     # les filtres sont nommés "filtres[nom_du_parametre]"
-    if params['filtres']
-      params['filtres'].each{ |p| set_filter(p[0]) }
+    if params[:filters]
+      params[:filters].each{ |p| set_filter(p.first) }
     end
   end
 
-  # positionne un filtre de tri
-  # TODO : faire une regexp : to_i si filtre se termine par "_id"
-  # mais ça n'a pas l'air necessaire
-  # session[:filtres][filtre].to_i if options[:to_i]
-  # à vérifier en détail
+  # fill up one named filter from params
   def set_filter(filtre, options = {})
-    if params['filtres'][filtre]
-      if params['filtres'][filtre] != ''
-        value = params['filtres'][filtre]
-        value = value.to_i if filtre =~ /(_id)$/
-        session[:filtres][filtre] = value
-      else
-        session[:filtres][filtre] = nil
-      end
+    value = params[:filters][filtre]
+    if value != ''
+      value = value.to_i if filtre =~ /(_id)$/
+      session[:filters][filtre] = value
+    else
+      session[:filters][filtre] = nil
     end
   end
 
   def remove_filters
-    @session[:filtres] = {}
+    session[:filters] = {}
     redirect_to :back
   end
 
-  # surcharge des requetes find
-  # TODO :VA MLO
+  # Compute scope from args sended
+  # Call it :
+  #  sdocuments = compute_scope(nil, ['paquet_id = ?', 3])
   def compute_scope(include = nil, *args)
     args.compact!
-    return {} if args.empty?
+    return {} if args.empty? or args.first.nil?
 
     # si conditions est une condition (et non pas un tableau de conditions)
     # on vire les nil
-    
     query, params = [], []
     args.each do |condition| 
       query.push condition[0] 
       params.concat condition[1..-1]
     end
 
-      
     #query.compact!
     computed_conditions = [ query.join(' AND ') ] + params
     computed_conditions.compact!
@@ -179,7 +168,7 @@ private
 
     # on applique les filtre sur les listes uniquement
     # le scope client est tout de même appliqué partout si client
-    filtres = ( self.action_name == 'list' ? session[:filtres] : {} )
+    filtres = ( self.action_name == 'list' ? session[:filters] : {} )
 
     # scope imposés si l'utilisateur est beneficiaire
     beneficiaire = session[:beneficiaire]
@@ -191,16 +180,6 @@ private
       contrat_ids = filtres['contrat_ids'] if filtres['contrat_ids']
     end
     
-    # on construit les conditions pour les demandes et les logiciels
-    #cdemande_severite = ['demandes.severite_id = ? ', filtres['severite_id'] ] if filtres['severite_id'] 
-    #cdemande_motcle = ['(demandes.resume LIKE ? OR demandes.description LIKE ?) ', 
-    #                    "%#{filtres['motcle']}%", "%#{filtres['motcle']}%"] if filtres['motcle']
-    #cdemande_ingenieur = ['demandes.ingenieur_id = ? ', filtres['ingenieur_id'] ] if filtres['ingenieur_id']
-    #cdemande_beneficiaire = ['demandes.beneficiaire_id = ? ', filtres['beneficiaire_id'] ] if filtres['beneficiaire_id']
-    #cdemande_type = ['demandes.typedemande_id = ? ', filtres['typedemande_id'] ] if filtres['typedemande_id']
-    #cdemande_statut = ['demandes.statut_id = ? ', filtres['statut_id'] ] if filtres['statut_id']
-    #clogiciel = [ 'logiciels.id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
-
     if client_id
       cclient = ['clients.id = ? ', client_id ] 
       cbeneficiaire_client = ['beneficiaires.client_id = ? ', client_id ] 
@@ -211,15 +190,6 @@ private
     end
 
     # on construit les scopes
-    #sdemandes = compute_scope([:beneficiaire,:logiciel],
-    #                          cbeneficiaire_client, 
-    #                          cdemande_severite, 
-    #                          cdemande_motcle, 
-    #                          cdemande_ingenieur, 
-    #                          cdemande_beneficiaire, 
-    #                          cdemande_type,
-    #                          clogiciel, 
-    #                          cdemande_statut)
     sdemandes = compute_scope([:beneficiaire],cbeneficiaire_client)
     slogiciels = compute_scope([:paquets], cpaquet_contrat) #([:paquets], clogiciel, cpaquet_contrat)
     sclients = compute_scope(nil, cclient)
@@ -248,7 +218,7 @@ private
 
     # on applique les filtre sur les listes uniquement
     # le scope client est tout de même appliqué partout si client
-    filtres = ( self.action_name == 'list' ? session[:filtres] : {} )
+    filtres = ( self.action_name == 'list' ? session[:filters] : {} )
 
     # on construit les conditions pour les demandes et les logiciels
     cidentifiant = ['identifiants.id = ? ', filtres['identifiant_id'] ] if filtres['identifiant_id'] 

@@ -35,6 +35,11 @@ end
 module ActiveRecord
   class Base
 
+    def self.find_select(qty, options = {})
+      options.update(:select => 'id, nom')
+      self.find(:all, options)
+    end
+
     def updated_on_formatted
       d = @attributes['updated_on']
       "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
@@ -48,6 +53,8 @@ module ActiveRecord
 end
 
 module ActionController
+
+
  def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
    if html_options
      html_options = html_options.stringify_keys
