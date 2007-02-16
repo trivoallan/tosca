@@ -160,6 +160,13 @@ class ApplicationController < ActionController::Base
     redirect_to(options) and return false
   end
 
+  # overriding for escaping count of include (eager loading)
+  def count_collection_for_pagination(model, options)
+    model.count(:conditions => options[:conditions],
+                :joins => options[:join] || options[:joins],
+                :select => options[:count])
+  end
+
 
 private
   # scope

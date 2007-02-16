@@ -47,64 +47,43 @@
 %>
 
 <%
-   titres = []
-   titres << type_client[:titre]
-   titres << '<hr/>'
-   # form
-   unless controller.action_name == 'multiple_signup'
-     titres.concat([
-             '<label for="identifiant_nom">Nom complet</label>',
-             '<label for="identifiant_titre">Titre</label>',
-             '<label for="identifiant_email">Email</label>',
-             '<label for="identifiant_telephone">T&eacute;l&eacute;phone</label>',
-             '<hr/>',
-             identifiant[:titre],
-             '<label for="identifiant_password">Choisissez un mot de passe</label>',
-             '<label for="identifiant_password_confirmation">Confirmez ce dernier</label>',
-             '<hr/>',
-             '<label for=\"identifiant_affichage_personnel\">Affichage Personnel&nbsp;</label>' + show_help(help[:affichage_perso]) 
-     ])
+   fields = [
+     [ type_client[:titre], type_client[:champ] ],
+     [ '<hr/>', nil ]
+   ]
+   unless (controller.action_name == 'multiple_signup')
+      fields.concat([
+       lstm_text_field('Nom complet', 'identifiant', 'nom'),
+       lstm_text_field('Titre', 'identifiant', 'titre'),
+       lstm_text_field('Email', 'identifiant', 'email'),
+       lstm_text_field('T&eacute;l&eacute;phone', 'identifiant', 'telephone'),
+       [ '<hr/>', nil ],
+       [ identifiant[:titre], identifiant[:champ] ],
+       lstm_password_field('Choisissez un mot de passe', 'identifiant', 
+          'password', :size => 16, :value => '' ),
+       lstm_password_field('Confirmez ce dernier', 'identifiant', 
+          'password_confirmation', :size => 16, :value => '' ),
+       [ '<hr/>', nil ]
+      ])
    end
-   # roles
-   titres << role[:titre]
-   titres << identifiant_client[:titre]
-   # informations
-   titres << '<label for="identifiant_informations">Informations</label><br/>' unless controller.action_name == 'multiple_signup'
-   titres << nil
-   titres << '<hr/>'
-   # import csv 
-   titres << csv[:titre] << nil 
 
-
-   champs = []
-   champs << type_client[:champ]
-   champs << nil
-   # form
-   unless controller.action_name == 'multiple_signup'
-     champs.concat([
-             text_field('identifiant', 'nom'),
-             text_field('identifiant', 'titre'),
-             text_field('identifiant', 'email'),
-             text_field('identifiant', 'telephone', :size => 16) ,
-             nil,
-             identifiant[:champ],
-             password_field('identifiant', 'password', :size => 16, :value => '') ,
-             password_field('identifiant', 'password_confirmation', :size => 16, :value => ''),
-             nil,
-             check_box('identifiant', 'affichage_personnel'),
-     ])
-   end
-   # roles
-   champs << role[:champ]
-   champs << identifiant_client[:champ]
-   # informations
-   champs << nil 
-   champs << text_area('identifiant', 'informations', :rows => 5, :cols => 58) unless controller.action_name == "multiple_signup"
-   champs << nil 
-   # import csv 
-   champs << nil << csv[:champ] 
+   fields.concat([
+      [ role[:titre], role[:champ] ],
+      [ identifiant_client[:titre], identifiant_client[:champ] ]
+   ])
+   
+   if (controller.action_name != 'multiple_signup')
+     informations = lstm_text_area('Informations', 'identifiant', 
+                       'informations', :rows => 5, :cols => 58) 
+     fields.concat([ [informations[0], nil] , [nil, informations[1]]])
+   end 
+   fields.concat([
+      [ '<hr/>', nil ],
+      [ csv[:titre], nil ],
+      [ nil , csv[:champ] ]
+    ])
 %>
 
 <%= show_title title, :subtitle => subtitle %>
-<%= show_table_form titres, champs %>
+<%= show_table_form fields %>
 <center><input type="submit" value="Valider &#187;" class="primary"/></center>

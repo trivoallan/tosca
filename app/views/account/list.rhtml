@@ -1,7 +1,10 @@
 <h1>Liste des utilisateurs</h1>
 <%= link_to_beneficiaires %> / <%= link_to_ingenieurs %><br/><br/>
-<%= link_to 'Ajouter un utilisateur', :action => 'signup' %> / <%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %> / <%= link_to_export( :data => 'identifiants') %>
+<%= link_to 'Ajouter un utilisateur', :action => 'signup' %> / 
+  <%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %> / 
+  <%= link_to_export( :data => 'identifiants') %>
 <br/><br/>
+
 
 <% if @ingenieur %>
  <% form_tag :action => "devenir" do %>
@@ -13,13 +16,13 @@
  <% end %>
 <% end %>
 
-<%= show_pages_links(@user_pages, 'un nouvel utilisateur') %>
 
+<%= show_pages_links(@user_pages, 'un nouvel utilisateur') %>
 
 <table>
   <tr>
-    <th>Identifiant <%= select_filter(@all_users, 'identifiant', :title => 'Identifiant') %></th>
-  <% for role in Role.find_all %>
+    <th>Identifiant<br/>TODO : une text box de recherche ici</th>
+  <% for role in @roles %>
     <th><small> [<%= link_to role.nom, :controller => 'roles', :action => 'edit', :id => role %>] </small></th>
   <% end %>
     <th>Ingénieur</th>

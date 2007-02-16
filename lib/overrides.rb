@@ -53,17 +53,15 @@ module ActiveRecord
 end
 
 module ActionController
-
-
- def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
-   if html_options
-     html_options = html_options.stringify_keys
-     convert_options_to_javascript!(html_options)
-     tag_options = tag_options(html_options)
-   else
-     tag_options = nil
-   end
-   url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-   "<a href=\"#{url}\"#{tag_options}>Yeah ! #{name || url}</a>"
+  def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
+    if html_options
+      html_options = html_options.stringify_keys
+      convert_options_to_javascript!(html_options)
+      tag_options = tag_options(html_options)
+    else
+      tag_options = nil
+    end
+    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
+    "<a href=\"#{url}\"#{tag_options}>Yeah ! #{name || url}</a>"
  end
 end

@@ -105,6 +105,21 @@ module ApplicationHelper
   result << '</table>'
   end
 
+  def lstm_text_field(label, mmodel, field, options = {})
+    [ "<label for=\"#{mmodel}_#{field}\">#{label}</label>", 
+      text_field(mmodel, field, options) ]
+  end
+
+  def lstm_password_field(label, model, field, options = {})
+    [ "<label for=\"#{model}_#{field}\">#{label}</label>", 
+      password_field(model, field, options) ]
+  end
+
+  def lstm_text_area(label, model, field, options = {})
+    [ "<label for=\"#{model}_#{field}\">#{label}</label>", 
+      text_area(model, field, options) ]
+  end
+
   ### LIENS ABSOLUS ################################################################
 
   # lien vers un compte existant

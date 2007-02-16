@@ -6,7 +6,6 @@
 require 'fastercsv'
 
 class AccountController < ApplicationController
-  model   :identifiant
   layout  'standard-layout'
 
   helper :ingenieurs, :beneficiaires
@@ -216,11 +215,12 @@ class AccountController < ApplicationController
   ### ajouts pour test ###
 
   def list
-    @clients = Client.find(:all)
-    @all_users = Identifiant.find(:all, :include => [:beneficiaire,:ingenieur])
+    @clients = Client.find(:all, :include => [:beneficiaires])
+    @roles = Role.find(:all)
     scope_filter do
       @user_pages, @users = paginate :identifiants, :per_page => 25,
-      :order => 'identifiants.login'
+      :order => 'identifiants.login', :include => 
+        [:beneficiaire,:ingenieur]
     end
   end
 

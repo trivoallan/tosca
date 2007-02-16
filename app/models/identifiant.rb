@@ -62,7 +62,7 @@ class Identifiant < ActiveRecord::Base
   # - cohérence des droits en fonction de l'appartenance (ingénieur ou bénéficiaire)
   def valide
     # cohérence des droits en fonction de l'appartenance (ingénieur ou bénéficiaire)
-    return false if beneficiaire && ( roles != [Role.find(2)] )
+    # return false if beneficiaire && ( roles != [Role.find(2)] )
     # si tout va bien
     return true
   end
