@@ -236,6 +236,7 @@ class Demande < ActiveRecord::Base
     demi_jo_sup = (jo / 2) + 60
 
     case distance_in_minutes
+    when 0 : " - "
     when 0..1 then 
       (distance_in_minutes==0) ? "moins d'une minute" : '1 minute'
     when 2..45      then 

@@ -31,7 +31,8 @@ module BienvenueHelper
     titres.each {|t| result << "<th>#{t}</th>" }
     result << '</tr>'
     elements.each_index { |i| 
-      infos = sum_up(elements[i])
+      infos = '' #sum_up(elements[i])
+      infos << "#{elements[i].typedemande.nom} (#{elements[i].severite.nom}) :  #{elements[i][:description]}"
       result << "<tr class='demande_#{elements[i].statut_id}' alt='#{infos}' title='#{infos}' >"
       result << yield(elements[i])
       result << '</tr>' 

@@ -108,6 +108,7 @@ module ApplicationHelper
   ### LIENS ABSOLUS ################################################################
 
   # lien vers un compte existant
+  # DEPRECATED : préferer link_to_edit(id)
   # TODO : passer id en options, avec @session[:user].id par défaut
   # TODO : title en options, avec 'Le compte' par défaut
   def link_to_modify_account(id, title, options = {})
@@ -455,13 +456,15 @@ module ApplicationHelper
     demi_jo_sup = (jo / 2) + 60
 
     case distance_in_minutes
-    when 0..1 then 
+    when 0
+      " - "
+    when 0..1 
       (distance_in_minutes==0) ? "moins d'une minute" : '1 minute'
-    when 2..45      then 
+    when 2..45 
       "#{distance_in_minutes} minutes"
-    when 46..90     then 
+    when 46..90  
       'environ 1 heure'
-    when 90..demi_jo_inf, (demi_jo_sup+1)..jo   then 
+    when 90..demi_jo_inf, (demi_jo_sup+1)..jo 
       "environ #{(distance_in_minutes.to_f / 60.0).round} heures"
     when (demi_jo_inf+1)..demi_jo_sup
       "1 demie journée "

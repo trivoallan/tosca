@@ -28,19 +28,13 @@ class LogicielsController < ApplicationController
   def list
     @filter = params[:filter]
     @search = params[:logiciel]
-    if $orderway == nil || $orderway == " ASC"
-	$orderway = " DESC"
-    else
-        $orderway = " ASC"
-    end
-    if @order != nil 
-      @order += $orderway
-    end
+    @groupe = params[:groupe_id]
+    $orderway = ($orderway == nil || $orderway == " ASC") ? " DESC" : " ASC"
+    @order += $orderway if @order != nil 
 
     conditions = nil
-    if @search != nil
-      conditions = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ]
-    end
+    conditions = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ] if @search != nil
+    cclassification_groupe = ['classifications.groupe_id = ? ', @groupe ] if @groupe != nil  
 
     @groupes = Classification.find(:all).collect{|c| c.groupe}.uniq
     scope_filter do

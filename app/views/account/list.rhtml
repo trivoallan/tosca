@@ -33,26 +33,26 @@
   <% @users.each_index {|i| %>
    <% user = @users[i] %>
    <%= "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">" %>
-    <% form_tag(:action => 'update', :id => user) do%> 
-     <td><%=h user.login %></td>
 
-    <% for role in Role.find_all %>
-      <td><input type="radio" id="<%=role.id%>" name="role_ids[]" value="<%=role.id%>"
-      <%if user.roles.include? role%> checked="checked" <%end%> ></td>
-    <% end %>
+     <td><%=h user.login %></td>
+     <td colspan="4">
+      <% form_tag({:action => 'update', :id => user}, {:name => 'form_'+user.id.to_s}) do%> 
+         <% for role in Role.find_all %>
+           &nbsp;&nbsp;<input type="radio" id="<%=role.id%>" name="role_ids[]" value="<%=role.id%>"
+           <%if user.roles.include? role%> checked="checked" <%end%> >&nbsp;&nbsp;
+         <% end %>
+         <% end %></td>
       <td><%= "X" if user.ingenieur %></td>
       <td><%= "X" if user.beneficiaire %>
           <%= "Permissions anormales" unless user.valide %></td>
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.telephone %></td>
       <td><%= user.beneficiaire.client.nom if user.beneficiaire %></td>
-      <td><%= submit_tag 'Modifier ses droits' %>
-       </td>
+      <td><a onclick="document.forms['form_<%= user.id.to_s  %>'].submit()"><b>Valider</b></a></td>
 
 
     <td><%= link_to_view user %></td>
-    <td><%= link_to_modify_account user.id, 'Modifier son compte' %></td>
-   <% end %>
+    <td><%= link_to_edit user %></td>
    </tr>
   <% } %>
 </table>
