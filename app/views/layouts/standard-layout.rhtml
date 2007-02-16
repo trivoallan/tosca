@@ -1,6 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
 <html>
 
 <head>
@@ -21,7 +19,7 @@
 </head>
 <body>
   <div id="haut" class="haut">
-	<table width=100%>
+	<table width="100%">
         <tr>
           <td width="5" rowspan="2">
               <%= link_to session[:logo_lstm], :controller => 'bienvenue', :action => 'list'%></td>
@@ -60,9 +58,9 @@
         <td valign='middle' align='right' width='60%'>
 	  <%= Metadata::NOM_LONG_SERVICE %>
         </td>
-        <td valign='baseline' align='left'>
+        <td valign='middle' align='left'>
 	  <a href="http://rubyonrails.org/"><%= image_tag("ruby.png", :size => "15x15",
-		:border => 0, :alt => "OSSA on rails", :title => "OSSA on rails", 
+		:border => 0, :alt => "OSSA on rails", :title => "OSSA on rails",
 		:align => 'baseline') %></a>
         </td>
         <td valign='middle' align='right'>
