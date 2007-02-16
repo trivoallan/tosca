@@ -390,7 +390,7 @@ module ApplicationHelper
   # La première désactive le décompte total si positionné à false
   # La deuxième active l'affichage des content_columns si positionné à true
   def show_table(elements, ar, titres, options = {})
-    return "<br/><p>Aucun #{ar.table_name.singularize} à ce jour</p>" unless elements and elements.size > 0
+    #return "<br/><p>Aucun #{ar.table_name.singularize} à ce jour</p>" unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : "" )
     result = "<table #{width}><tr>"
 
@@ -411,6 +411,7 @@ module ApplicationHelper
       result << '</tr>' 
     }
     result << '</tr></table><br/>'
+    result << "<p>Aucun #{ar.table_name.singularize} à ce jour</p>" unless elements and elements.size > 0
     # result << show_total(elements.size, ar, options)
   end
 

@@ -7,11 +7,11 @@
 <br/>
 <%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
 
-<% titres = ["Nom<br/> #{text_field 'logiciel', '', :size => 15, :value => search_logiciel }", 
+<% titres = ["Nom<br/> #{text_field 'logiciel', '', :size => 15, :value => params[:logiciel] }", 
              'Description', 'Technologies', 'Référent', 
-             "Groupe #{select_onchange(@groupe, default, name, options = {})",
+             "Groupe <br/>#{select_onchange(@groupes, params[:groupe_id], 'groupe_id')}",
              #select_filter(@groupes, 'groupe_id', :title => 'Groupe', :width => 16)}", 
-             'Paquet(s)']%>
+             'Paquet(s)'] %>
 <% form_tag(:action => "list") do %>
 <%= show_table(@logiciels, Logiciel, titres) { |l|
   result = ''

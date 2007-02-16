@@ -6,7 +6,7 @@
     [ 'Groupe',                 select_filter(@groupes, 'groupe')],
     [ show_title('Client'),     nil ],
     (@ingenieur ? [ 'Client',  select_filter(@clients, 'client')] : nil),
-    [ 'Bénéficiaire',           select_filter(@beneficiaires, 'beneficiaire'&)],
+    [ 'Bénéficiaire',           select_filter(@beneficiaires, 'beneficiaire')],
     [ show_title('Demande'),    nil ],
     [ 'Type',                   select_filter_typedemande ],
     [ 'Sévérité',               select_filter_severity ],

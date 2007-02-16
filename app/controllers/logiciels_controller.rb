@@ -28,19 +28,20 @@ class LogicielsController < ApplicationController
   def list
     @filter = params[:filter]
     @search = params[:logiciel]
-    @groupe = params[:groupe_id]
+    @groupe = params[:groupe_id] if params[:groupe_id] != ''
     $orderway = ($orderway == nil || $orderway == " ASC") ? " DESC" : " ASC"
     @order += $orderway if @order != nil 
 
-    conditions = nil
-    conditions = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ] if @search != nil
+    clogiciel = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ] if @search != nil
     cclassification_groupe = ['classifications.groupe_id = ? ', @groupe ] if @groupe != nil  
+    options = compute_scope([:classifications], clogiciel, cclassification_groupe)
+    options = options[:find]
+    options = options.update(:per_page => 25, :order => 'logiciels.nom')
 
     @groupes = Classification.find(:all).collect{|c| c.groupe}.uniq
-    scope_filter do
-      @logiciel_pages, @logiciels = paginate :logiciels, :per_page => 25,
-      :order => 'logiciels.nom', :conditions => conditions 
-    end
+    #scope_filter do
+      @logiciel_pages, @logiciels = paginate :logiciels, options
+    #end
   end
 
   def rpmlist
