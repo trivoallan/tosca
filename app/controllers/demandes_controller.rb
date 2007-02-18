@@ -37,7 +37,7 @@ class DemandesController < ApplicationController
     Client.with_exclusive_scope do
       @clients = Client.find(:all)
     end
-    @beneficiaires = Beneficiaire.find(:all)
+    @beneficiaires = Beneficiaire.find(:all, :include => [:identifiant])
 
     @severites = Severite.find(:all)
     @statuts = Statut.find(:all)
@@ -47,9 +47,7 @@ class DemandesController < ApplicationController
     # joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id = identifiants.id'
     # @identifiants_ingenieurs = Identifiant.find(:all, :joins => joins)
     # TODO : VA MLO : il faut la liste des ingénieurs, non ?
-    @ingenieurs = Ingenieur.find(:all)
-
-    @count = Demande.count
+    @ingenieurs = Ingenieur.find(:all, :include => [:identifiant])
 
     # les filtres sont définis dans le controller principal
     # see set_filters, @session[:filtres]
@@ -61,11 +59,10 @@ class DemandesController < ApplicationController
     end
 
     scope_filter do
-      #Beneficiaire.with_scope(:find => {:include => [:identifiant, :client]}) do
-        @demande_pages, @demandes = paginate :demandes, :per_page => 20,
-        :order => 'updated_on DESC'#, #:conditions => conditions,
-        #:include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut,:logiciel]
-      #end
+      @demande_pages, @demandes = paginate :demandes, :per_page => 10,
+      :order => 'updated_on DESC', 
+      :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut,:logiciel]
+
     end
   end
 
@@ -163,22 +160,27 @@ class DemandesController < ApplicationController
 #    @engagement = @demande.engagement(contrat)
   end
 
+  def test_comment
+    comment
+  end
+
   def comment
     @demande = Demande.find(params[:id]) unless @demande
     conditions = [ "logiciel_id = ?", @demande.logiciel_id ] 
     @count = Demande.count(:conditions => conditions)
     if @beneficiaire
       @commentaires = Commentaire.find_all_by_demande_id_and_prive(
-                      @demande.id, false, :order => "created_on DESC", 
+                      @demande.id, false, :order => "created_on ASC", 
                       :include => [:identifiant])
     elsif @ingenieur
       @commentaires = Commentaire.find_all_by_demande_id(
-                      @demande.id, :order => "created_on DESC", 
+                      @demande.id, :order => "created_on ASC", 
                       :include => [:identifiant])
     end
+    
     flash[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 
-    @statuts = @demande.statut.possible()
+    @statuts = @demande.statut.possible().collect{ |s| [ s.nom, s.id] }
     if (@demande.statut_id == 4 || @demande.statut_id == 5)
       @correctifs = Correctif.find_all 
     end
@@ -192,6 +194,43 @@ class DemandesController < ApplicationController
     @identifiants_ingenieurs = 
       Identifiant.find(:all, :select => select, :joins => joins, :conditions => conditions)
   end
+
+  def ajax_description
+    return render_text('') unless request.xhr? and params[:id]
+    @demande = Demande.find(params[:id]) unless @demande
+    render :partial => 'tab_description', :layout => false
+  end
+
+  def ajax_comments
+    return render_text('') unless request.xhr? and params[:id]
+    @demande_id = params[:id]
+    if @beneficiaire
+      @commentaires = Commentaire.find_all_by_demande_id_and_prive(
+                      @demande_id, false, :order => "created_on ASC", 
+                      :include => [:identifiant])
+    elsif @ingenieur
+      @commentaires = Commentaire.find_all_by_demande_id(
+                      @demande_id, :order => "created_on ASC", 
+                      :include => [:identifiant])
+    end
+    # On va chercher les identifiants des ingénieurs assignés
+    # C'est un héritage du passé
+    # TODO : s'en débarrasser avec une migration et un :include
+    joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
+    select = "DISTINCT identifiants.* "
+    @identifiants_ingenieurs = 
+      Identifiant.find(:all, :select => select, :joins => joins)
+
+    render :partial => "tab_comments", :collection => 
+      @commentaires, :layout => false
+  end
+
+  def ajax_history
+    return render_text('') unless request.xhr? and params[:id]
+    @demande = Demande.find(params[:id]) unless @demande
+    render :partial => 'tab_history', :layout => false
+  end
+
 
   def update
     @demande = Demande.find(params[:id])

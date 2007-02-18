@@ -169,56 +169,28 @@ class ApplicationController < ActionController::Base
 
 
 private
-  # scope
-  # TODO : c'est pas DRY, une sous partie a été recopié dans reporting
-  def scope_beneficiaire()
-
-    # on applique les filtre sur les listes uniquement
-    # le scope client est tout de même appliqué partout si client
-    filtres = ( self.action_name == 'list' ? session[:filters] : {} )
-
-    # scope imposés si l'utilisateur est beneficiaire
+  # scope imposé sur toutes les vues, 
+  # pour limiter ce que peuvent voir nos clients
+  # TODO : check les interférences avec les filtres
+  def scope_beneficiaire
     beneficiaire = session[:beneficiaire]
+    logger.debug('scope here : ' + beneficiaire.to_s)
     if beneficiaire
+      logger.debug('starting to scope')
       client_id = beneficiaire.client_id
-      contrat_ids = beneficiaire.contrat_ids || [ 0 ]
-    else
-      client_id = filtres['client_id'].to_i if filtres['client_id']
-      contrat_ids = filtres['contrat_ids'] if filtres['contrat_ids']
-    end
-    
-    if client_id
-      cclient = ['clients.id = ? ', client_id ] 
-      cbeneficiaire_client = ['beneficiaires.client_id = ? ', client_id ] 
-      cdocument_client = ['documents.client_id = ? ', client_id ]
-    end
-    if contrat_ids
-      cpaquet_contrat = ['paquets.contrat_id IN (?) ', contrat_ids ]
-    end
+      contrat_ids = beneficiaire.contrat_ids 
 
-    # on construit les scopes
-    sdemandes = compute_scope([:beneficiaire],cbeneficiaire_client)
-    slogiciels = compute_scope([:paquets], cpaquet_contrat) #([:paquets], clogiciel, cpaquet_contrat)
-    sclients = compute_scope(nil, cclient)
-    spaquets = compute_scope(nil, cpaquet_contrat)
-    sbinaires = compute_scope([:paquet], cpaquet_contrat)
-    ssocles = compute_scope([:client], cclient)
-    sbeneficiaire = compute_scope(nil, cbeneficiaire_client)
-    sdocuments = compute_scope(nil, cdocument_client)
-    scorrectifs = compute_scope([:paquets], cpaquet_contrat)#([:paquets,:logiciel], clogiciel, cpaquet_contrat)
-
-    # with_scope
-    Beneficiaire.with_scope(sbeneficiaire) {
-    Binaire.with_scope(sbinaires) {
-    Client.with_scope(sclients) {
-    Correctif.with_scope(scorrectifs) {
-    Demande.with_scope(sdemandes) {
-    Document.with_scope(sdocuments) {
-    Paquet.with_scope(spaquets) {
-    Socle.with_scope(ssocles) { 
-    Logiciel.with_scope(slogiciels) {
-      yield
-    }}}}}}}}}
+      # damn fast with_scope (MLO ;))
+      Binaire.set_scope(contrat_ids)
+      Client.set_scope(client_id)
+      Correctif.set_scope(contrat_ids)
+      Demande.set_scope(client_id)
+      Document.set_scope(client_id) 
+      Logiciel.set_scope(contrat_ids)
+      Paquet.set_scope(contrat_ids)
+      Socle.set_scope(client_id)
+    end
+    yield
   end
 
   def scope_filter
@@ -240,6 +212,21 @@ private
     ccorrectif_logiciel = [ 'logiciel_id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
     cclassification_groupe = ['classifications.groupe_id = ? ', filtres['groupe_id'] ] if filtres['groupe_id']
 
+    ###########
+    client_id = filtres['client_id'].to_i if filtres['client_id']
+    contrat_ids = filtres['contrat_ids'] if filtres['contrat_ids']
+    
+    if client_id
+      cclient = ['clients.id = ? ', client_id ] 
+      cbeneficiaire_client = ['beneficiaires.client_id = ? ', client_id ] 
+      cdocument_client = ['documents.client_id = ? ', client_id ]
+    end
+
+    sbeneficiaire = compute_scope(nil, cbeneficiaire_client)
+    sdocuments = compute_scope(nil, cdocument_client)
+    sclients = compute_scope(nil, cclient)
+    #########
+
     sidentifiant = compute_scope(nil, cidentifiant)
     sdemandes = compute_scope([:logiciel],
                               cdemande_severite, 
@@ -253,12 +240,15 @@ private
     scorrectifs = compute_scope(nil, ccorrectif_logiciel)
     spaquets = compute_scope([:logiciel], clogiciel)
 
+    Beneficiaire.with_scope(sbeneficiaire) {
+    Client.with_scope(sclients) {
+    Document.with_scope(sdocuments) {
     Identifiant.with_scope(sidentifiant) {
     Demande.with_scope(sdemandes) {
     Logiciel.with_scope(slogiciels) {  
     Correctif.with_scope(scorrectifs) {
     Paquet.with_scope(spaquets) {
-              yield }}}}}
+      yield }}}}}}}}
   end
 
 end

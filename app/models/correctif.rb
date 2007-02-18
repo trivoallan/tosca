@@ -21,6 +21,13 @@ class Correctif < ActiveRecord::Base
         c.name =~ /(_id|_on|^patch)$/ || c.name == inheritance_column }     
   end
 
+  def self.set_scope(contrat_ids)
+    self.scoped_methods << { :find => { :conditions => 
+        [ 'paquets.contrat_id = ?', contrat_ids ],
+        :include => [:paquets]} }
+  end
+
+
   def to_s
     index = patch.rindex('/')+ 1
     patch[index..-1]

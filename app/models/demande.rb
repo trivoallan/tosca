@@ -22,6 +22,12 @@ class Demande < ActiveRecord::Base
   TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
   EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
 
+  def self.set_scope(client_id)
+    self.scoped_methods << { :find => { :conditions => 
+        [ 'beneficiaires.client_id = ?', client_id ],
+        :include => [:beneficiaire]} }
+  end
+
   has_many :piecejointes, :through => :commentaires
   validates_presence_of :resume, 
   :warn => "Vous devez indiquer un résumé de votre demande"

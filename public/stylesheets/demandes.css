@@ -43,146 +43,50 @@
 cursor: url('http://www2:3000/images/logo_08000.gif)';}
 
 
+
+/**************************************
+ * Mise en page
+ **************************************/
+
+.content {
+  top: 1em;
+  float: left;
+  width: 75%;
+  padding: 0 0 0 1em;
+}
+.summary {
+  border-right: 1px solid #990066; /* #cfc8cf;*/
+  border-bottom: 1px solid #990066;
+  width: 23%;
+  float: left;
+}
+
+.underline {
+  border-bottom: 1px solid #990066;
+  width: 100%;
+}
+
+
+ul.menu {
+  margin: 2px 0 1em 0;
+}
+
+ul.menu li {
+  font-family: Verdana, Arial, Helvetica, Geneva, sans-serif;
+  font-size: 100%;
+  color: black;
+  list-style-type: none;
+  background-image: url(/images/puce.png);
+  background-repeat: no-repeat;
+  background-position: 0% 65%;
+  padding-left: 15px;
+  margin-left: -30px;
+  margin-top: -3px;
+}
+
+
+
 /******************************************
- * Comment : visualisation d'un demande
+ * Comment : visualisation d'une demande
  ******************************************/
 
-tr.infos {
-	vertical-align:top;		
-}
-
-td.infos_demande {
-	width:400px;
-	background-color:white;
-}
-
-td.infos_beneficiaire {
-	background-color:white;
-}
-
-td.infos_logiciel {
-	background-color: white;
-}
-
-table.demande_list,
-table.demandes_list td, 
-table.demandes_list th {
-        border: thin solid #eaeafa; /*#ffc547;*/
-	border-spacing: 0px;
-	white-space: nowrap;
-	text-align: center;
-	padding: 3px;
-	spacing: 0px;
-	margin: 0px;
-}
-
-.demandes_list {
-	border-collapse: collapse;
-}
-
-table.demandes_list td.wrapped {
-	white-space: normal;
-}
-
-table.demandes_list a:hover {
-	text-decoration: underline;
-	color: #226644;
-}
-
-table.demandes_list a {
-	text-decoration: none;
-	color: #806080;
-}
-
-table.nothing td {
-	border: none;
-	white-space: nowrap;
-	padding: 0px;
-        padding-right: 20px;
-}
-
-table.nothing hr {
-	background-color: #ffc547;
-}
-
-table.nothing a:hover {
-	background-color: #CCBBFF;
-	text-decoration: underline;
-	color: #226644;
-}
-
-table.nothing a {
-	text-decoration: none;
-	color: #806080;
-}
-
-table.commentaire td {
-	white-space: nowrap;
-	text-align: center;
-	color: #114188;
-}
-
-tr.resume td {
-	font-size: 150%;
-}
-
-
-table.standard_infos {
-	border-width: thin;
-	border-spacing: 0px;
-	border: thin solid #ffc547;
-}
-
-table.standard_infos th,
-table.standard_infos td {
-	border-top: thin solid #ffc547;
-	border-left: thin solid #ffc547;
-	border-right: thin solid #ffc547;
-	padding: 5px;
-	white-space: nowrap;
-	font-weight: normal;
-	text-align: center;
-}
-
-table.standard_infos th {
-	font-weight: bold;
-}
-
-tr.bold td {
-	font-weight: bold;
-}
-
-td.bordered {
-	border-left: thin solid;
-	border-bottom: thin solid;
-	border-color: #ffbd2f;
-	padding: 10px;
-}
-
-table.logiciel td {
-	text-align: left;
-}
-
-table.infos_beneficiaire td {
-	white-space: nowrap;
-	font-size: 100%;
-}
-
-div.numero_demande {
-	position: absolute;
-	z-index: 1;
-	opacity: .05;
-	-moz-opacity: .05;
-	filter:	alpha(opacity=5);
-	top: 50px;
-	text-align: center;
-}
-
-font.numero_demande {
-/*	opacity: .05;
-	-moz-opacity: .05; */
-	filter:	alpha(opacity=5);
-	font-color: #FFFF;
-	font-size: 3000%;
-	text-align: center;
-}

@@ -11,19 +11,13 @@ class BeneficiairesController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
-
   def list
-    @clients = Client.find(:all)
-    scope_filter do 
-      @beneficiaire_pages, @beneficiaires = 
-        paginate :beneficiaires, :per_page => 10, 
-      :select => 'beneficiaires.id, identifiants.nom as identifiants_nom, '+
-        'clients.id as client_id, clients.nom as client_nom, ' + 
-        'beneficiaires.domaine',
-      :joins => 'INNER JOIN clients ON clients.id=beneficiaires.client_id '+
-        'INNER JOIN identifiants ON identifiants.id=beneficiaires.identifiant_id'
-      # :include => [:client,:identifiant]
-    end
+    set_filters
+    @clients = Client.find_select(:all)
+#    scope_filter do 
+      @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, :per_page => 
+      10, :include => [:client,:identifiant]
+#    end
   end
 
   def show

@@ -12,6 +12,13 @@ class Binaire < ActiveRecord::Base
   file_column :archive
 
 
+  def self.set_scope(contrat_ids)
+    self.scoped_methods << { :find => { :conditions => 
+        [ 'paquets.contrat_id = ?', contrat_ids ],
+        :include => [:paquet]} }
+  end
+
+
   # belongs_to :contrat
 
   def self.content_columns

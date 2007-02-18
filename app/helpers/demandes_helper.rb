@@ -58,5 +58,19 @@ module DemandesHelper
   def display_tempsecoule(demande)
     "TODO" #distance_of_time_in_french_words compute_delai4paquet @demande
   end
-  
+
+  # used to display more nicely change to history table
+  # use it like :
+  # <%= display_history_changes(demande.ingenieur_id, old_ingenieur_id, Ingenieur) %>
+  def display_history_changes(field, old_field, model)
+    if field
+      if old_field and old_field == field 
+        '<center>||</center>'
+      else 
+        model.find(field).nom 
+      end 
+    else
+      '<center>-</center>'
+    end 
+  end
 end

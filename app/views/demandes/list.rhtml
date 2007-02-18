@@ -2,26 +2,27 @@
 
 <%= render_partial 'filtres/actions' %>
 
-<%# if @demandes.size > 0 %>
     
 <%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
 <table class="demandes_list" width='100%'>
 
    <tr>
-      <% form_tag(:controller => 'demandes', :action => 'list') do %>
-        <th width='2%'>ID<%= search_demande(:inline => false) %></th>
-      <% end %>
+      <th width='2%'>
+       <% form_tag(:controller => 'demandes', :action => 'list') do %>
+        <%= search_demande(:inline => false) %>
+       <% end %>
+      </th>
       <% form_tag :action => 'list' do %>
-        <th width='7%'>Logiciel<%= select_filter(@logiciels, 'logiciel', :title => 'Logiciel', :group => Classification.find_all.collect{|c| c.groupe}) %></th>
-        <th width='7%' colspan = '2'>Type<%= select_filter(@types, 'typedemande', :title => 'Type') %></th>
+        <th width='7%'><%= select_filter(@logiciels, 'logiciel') %></th>
+        <th width='7%' colspan = '2'><%= select_filter(@types, 'typedemande', :title => '» Type') %></th>
         <!--<th>Sévérité<%#= select_filter(@severites, 'severite', :title => 'Sévérité') %></th>-->
        <% if @ingenieur %> 
-        <th width='5%'>Client<%= select_filter(@clients, 'client', :title => 'Client') %></th>
+        <th width='5%'><%= select_filter(@clients, 'client') %></th>
        <% end %>
-        <th width='10%'>Bénéficiaire<%= select_filter(@beneficiaires, 'beneficiaire', :title => 'Bénéficiaire') %></th>
-        <th>Résumé<%= text_filter('motcle', :title => 'Résumé') %></th>
+        <th width='10%'><%= select_filter(@beneficiaires, 'beneficiaire', :title => '» Bénéficiaire') %></th>
+        <th>Résumé<%= text_filter('motcle', :title => '» Résumé') %></th>
        <% if @ingenieur %> 
-        <th width='8%'>Responsable<%= select_filter(@ingenieurs, 'ingenieur', :title => 'Responsable') %></th> 
+         <th width='8%'><%= select_filter(@ingenieurs, 'ingenieur', :title => '» Responsable') %></th> 
        <% end %>
         <th width='8%'>A jour du</th>
         <th colspan="3" width='1%'></th>
@@ -47,14 +48,9 @@
    </tr>
    <% end %>
 
-<% if @count == 0 %>
+<% if @demandes.size == 0 %>
 <tr><td colspan="11">
     <p>Aucune demande enregistrée ne vous concerne.</p>
-    <p>Pour déposer une nouvelle demande :  <%= link_to_new() %> </p>
-</td></tr>
-<% elsif @count < 0 %>
-<tr><td colspan="11">
-    <p>Aucune demande ne répond à ces critères.</p>
     <p>Pour déposer une nouvelle demande :  <%= link_to_new() %> </p>
 </td></tr>
 <% end %>

@@ -14,6 +14,7 @@ class DocumentsController < ApplicationController
   end
 
 
+
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :select }
@@ -27,7 +28,7 @@ class DocumentsController < ApplicationController
   end
 
   def select
-    @typedocuments = Typedocument.find_all
+    @typedocuments = Typedocument.find(:all)
     if @beneficiaire
       @typedocuments.delete_if { |t| 
         Document.count(:conditions => "documents.typedocument_id = #{t.id}") == 0

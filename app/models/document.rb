@@ -13,6 +13,11 @@ class Document < ActiveRecord::Base
   validates_length_of :titre, :within => 3..60
 
 
+  def self.set_scope(client_id)
+    self.scoped_methods << { :find => { :conditions => 
+        [ 'documents.client_id = ?', client_id ] } }
+  end
+
   def updated_on_formatted
     d = @attributes['updated_on']
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"

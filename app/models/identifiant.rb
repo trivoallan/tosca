@@ -14,13 +14,6 @@ class Identifiant < ActiveRecord::Base
   has_one :beneficiaire
   # TODO : vérifier que l'email est valide, et rattraper l'erreur si l'envoi de mail échoue !!!
 
-  def ingenieur
-    Ingenieur.find_by_identifiant_id(id)
-  end
-
-  def beneficiaire
-    Beneficiaire.find_by_identifiant_id(id)
-  end
 
   def self.authenticate(login, pass, crypt)
     Identifiant.with_exclusive_scope() do

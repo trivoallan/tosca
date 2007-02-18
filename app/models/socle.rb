@@ -8,6 +8,14 @@ class Socle < ActiveRecord::Base
 
   has_and_belongs_to_many :clients
 
+
+  def self.set_scope(client_id)
+    self.scoped_methods << { :find => { :conditions => 
+        [ 'clients.id = ?', client_id ],
+        :include => [:clients]} }
+  end
+
+
   def to_s
     nom
   end

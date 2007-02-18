@@ -34,9 +34,8 @@ class LogicielsController < ApplicationController
 
     clogiciel = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ] if @search != nil
     cclassification_groupe = ['classifications.groupe_id = ? ', @groupe ] if @groupe != nil  
-    options = compute_scope([:classifications], clogiciel, cclassification_groupe)
-    options = options[:find]
-    options = options.update(:per_page => 25, :order => 'logiciels.nom')
+    # options = compute_scope([:classifications], clogiciel, cclassification_groupe)
+    options = { :per_page => 25, :order => 'logiciels.nom' }
 
     @groupes = Classification.find(:all).collect{|c| c.groupe}.uniq
     #scope_filter do

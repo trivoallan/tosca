@@ -46,7 +46,7 @@ class AccountController < ApplicationController
 
   def devenir
     return unless @ingenieur
-    benef = Beneficiaire.find(params[:account][:beneficiaire_id])
+    benef = Beneficiaire.find(params[:id])
     session[:user] = benef.identifiant
     set_sessions
     redirect_back_or_default :action => "list", :controller => 'bienvenue'
@@ -212,15 +212,12 @@ class AccountController < ApplicationController
   end
 
 
-  ### ajouts pour test ###
-
   def list
-    @clients = Client.find(:all, :include => [:beneficiaires])
     @roles = Role.find(:all)
     scope_filter do
       @user_pages, @users = paginate :identifiants, :per_page => 25,
       :order => 'identifiants.login', :include => 
-        [:beneficiaire,:ingenieur]
+        [:beneficiaire,:ingenieur,:roles]
     end
   end
 

@@ -17,6 +17,12 @@ class Client < ActiveRecord::Base
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
 
+  def self.set_scope(client_id)
+    self.scoped_methods << { :find => { :conditions => 
+        [ 'clients.id = ?', client_id ]} }
+  end
+
+
   def ingenieurs
     return [] if contrats.empty?
     Ingenieur.find(:all,

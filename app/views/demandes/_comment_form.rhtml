@@ -1,33 +1,29 @@
 <%= error_messages_for 'commentaire' if @commentaire %>
 
 <!--[form:commentaire]-->
-<br/>
-<b><u><label for="commentaire_description">Votre commentaire</label></u></b>:
-<br/>
-
-<table class="commentaire">
-<tr valign="top" >
-<td>
- <%= text_area 'commentaire', 'corps', :cols => 100, :rows => 20 %>
-</td>
-<td>
- <table class="info">
-  <% # on n'affiche si privé que si c'est un ingénieur  %>
+<table width="100%"><tr>
+  <td><b><u>
+    <label for="commentaire_corps">Votre Réponse:</label>
+  </u></b></td>
   <% if @ingenieur %>
-  <tr><td><label for="commentaire_prive">Privé ?</label></td>
-      <td style="text-align:left"><%= check_box("commentaire", "prive") %></td></tr>
-  <tr><td><label for="demande_statut">Statut</label></td>
-      <td style="text-align:left"><%= select("demande", "statut_id", 
-          @statuts.collect{|l| [ l.nom, l.id]}, :include_blank => true) %></td></tr>
+    <td>
+      <label for="commentaire_prive">Privé ?</label>
+      <%= check_box("commentaire", "prive") %>
+    </td><td>
+       <label for="demande_statut_id">Statut</label>
+        <%= select("demande", "statut_id", @statuts, 
+          :include_blank => true) %>
+    </td>
   <% end %>
-  <tr><td><label for="piecejointe_file">Adjoindre un fichier : </label></td>
-      <td style="text-align:left"><%= file_column_field 'piecejointe', 'file', :size => 12  %></td></tr>
-  <tr><td></td>
-      <td style="text-align:left"><%= submit_tag 'Commenter' %></tr>
- </table>
-</td>
-</tr>
-</table>
+</tr></table>
+
+
+ <%= text_area 'commentaire', 'corps', :cols => 90, :rows => 15 %><br />
+
+
+ <label for="piecejointe_file">Adjoindre un fichier : </label>
+ <%= file_column_field 'piecejointe', 'file', :size => 59  %>
+ <%= submit_tag 'Répondre' %>
 
 <!--[eoform:commentaire]-->
 

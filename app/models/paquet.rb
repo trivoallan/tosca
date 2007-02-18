@@ -20,6 +20,11 @@ class Paquet < ActiveRecord::Base
         c.name =~ /(_id|taille|_count)$/ || c.name == inheritance_column } 
   end
   
+  def self.set_scope(contrat_ids)
+    self.scoped_methods << { :find => { :conditions => 
+        [ 'paquets.contrat_id = ?', contrat_ids ]} }
+  end
+
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
   end
@@ -29,6 +34,10 @@ class Paquet < ActiveRecord::Base
   INCLUDE = [ :conteneur ]
   ORDER = 'paquets.nom, version, release DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
+
+  def self.get_scoped_methods
+    scoped_methods
+  end
 
   def to_s
     "(#{conteneur.nom}) #{nom}-#{version}-#{release}"

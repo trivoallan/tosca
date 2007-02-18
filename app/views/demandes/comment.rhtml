@@ -91,8 +91,8 @@
 
 <% ############# commentaire ####################  %>
 <div class="menu1">
-<% form_tag ({:action => 'comment', :controller => 'commentaires', :id => @demande},
-                    :multipart => true) do %>
+<% form_tag({:action => 'comment', :controller => 'commentaires', :id => @demande},
+            :multipart => true) do %>
   <%= render :partial => 'comment_form' %>
   <p>&nbsp;</p>
 <% end %>

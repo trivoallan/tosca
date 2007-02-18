@@ -1,14 +1,5 @@
+<% if false %>
 <table class="info">
-        <%  out = ''
-         if controller.controller_name == 'demandes'
-           out << '<tr><td>'
-           out << 'Choisir le périmètre des demandes : '
-           out << link_to('toutes les demandes', :filter => 'true') << ' ou '
-           out << link_to('mes demandes actives', :filter => 'false')
-           out << '</td></tr>'
-        end
-        %>
-        <%= out %>
   <tr>
     <td>
         <%  actions = []
@@ -28,9 +19,9 @@
             end
          %>
         <%= actions.compact * ' | ' %><%= filters * ', ' %>
-
     </td>
   </tr>
 </table>
+<% end %>
 
 

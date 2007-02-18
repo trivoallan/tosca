@@ -6,52 +6,44 @@
 <br/><br/>
 
 
-<% if @ingenieur %>
- <% form_tag :action => "devenir" do %>
-   <select id="account_beneficiaire_id" name="account[beneficiaire_id]">
-     <%= option_groups_from_collection_for_select(@clients, "beneficiaires",
-                                                  "nom", "id", "nom" ) %>
-   </select>
-   <%= submit_tag "Devenir" %><br />
- <% end %>
-<% end %>
-
 
 <%= show_pages_links(@user_pages, 'un nouvel utilisateur') %>
-
 <table>
   <tr>
     <th>Identifiant<br/>TODO : une text box de recherche ici</th>
-  <% for role in @roles %>
-    <th><small> [<%= link_to role.nom, :controller => 'roles', :action => 'edit', :id => role %>] </small></th>
-  <% end %>
+  <th><% for role in @roles %>
+    <small> [<%= link_to role.nom, :controller => 'roles', :action => 'edit', :id => role %>] </small>
+  <% end %></th>
+    <th>Modifier les droits</th>
     <th>Ingénieur</th>
     <th>Bénéficiaire</th>
     <th>Mail</th>
     <th>T&eacute;l&eacute;phone</th>
-    <th>(Client)</th>
-    <th></th>
+
   </tr>
 
   <% @users.each_index {|i| %>
    <% user = @users[i] %>
+   <% beneficiaire = user.beneficiaire %>
+   <% ingenieur = user.ingenieur %>
    <%= "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">" %>
 
      <td><%=h user.login %></td>
-     <td colspan="4">
+     <td>
       <% form_tag({:action => 'update', :id => user}, {:name => 'form_'+user.id.to_s}) do%> 
-         <% for role in Role.find_all %>
-           &nbsp;&nbsp;<input type="radio" id="<%=role.id%>" name="role_ids[]" value="<%=role.id%>"
+         <% for role in @roles %>
+           &nbsp;&nbsp;<input type="checkbox" id="<%=role.id%>" name="role_ids[]" value="<%=role.id%>"
            <%if user.roles.include? role%> checked="checked" <%end%> >&nbsp;&nbsp;
          <% end %>
-         <% end %></td>
-      <td><%= "X" if user.ingenieur %></td>
-      <td><%= "X" if user.beneficiaire %>
+      <% end %></td>
+      <td><a onclick="document.forms['form_<%=user.id.to_s%>'].submit()">
+          <b>Valider</b></a></td>
+      <td><%= "X" if ingenieur %></td>
+      <td><%= "X" if beneficiaire %>
           <%= "Permissions anormales" unless user.valide %></td>
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.telephone %></td>
-      <td><%= user.beneficiaire.client.nom if user.beneficiaire %></td>
-      <td><a onclick="document.forms['form_<%= user.id.to_s  %>'].submit()"><b>Valider</b></a></td>
+
 
 
     <td><%= link_to_view user %></td>
