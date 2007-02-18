@@ -1,0 +1,24 @@
+<% old_statut_id, old_ingenieur_id = nil, nil %>
+
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Responsable</th>
+    <th>Statut</th>
+  </tr>
+
+  <% @demande.versions.each_index do |i| %>
+  <% demande = @demande.versions[i] %>
+  <% next if old_statut_id == demande.statut_id and old_ingenieur_id == demande.ingenieur_id %>
+  <tr class="<%= (i % 2)==0 ? 'pair':'impair' %>">
+    <td><%= demande.updated_on_formatted %></td>
+    <td><%= display_history_changes(demande.ingenieur_id, 
+       old_ingenieur_id, Ingenieur) %></td>
+    <td><%= display_history_changes(demande.statut_id, 
+       old_statut_id, Statut) %></td>
+  </tr>
+  <% old_statut_id, old_ingenieur_id = demande.statut_id, demande.ingenieur_id %>
+  <% end %>
+</table>
+

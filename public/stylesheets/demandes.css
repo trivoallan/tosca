@@ -87,6 +87,50 @@ ul.menu li {
 
 
 /******************************************
- * Comment : visualisation d'une demande
+ * Tabulations 
  ******************************************/
+.demande_tabnav {
+	color: #000000;
+	border-bottom: 2px solid black;
+	margin: 12px 0px 0px 0px;
+	padding: 0px;
+	z-index: 1;
+	padding-left: 10px }
+
+.demande_tabnav li {
+	display: inline;
+	overflow: hidden;
+	list-style-type: none; }
+
+.demande_tabnav a, a.active {
+	color: #000000;
+	background: #FFEBBF;
+	font: bold 1em "Trebuchet MS", Arial, sans-serif;
+	border: 2px solid black;
+	padding: 2px 5px 0px 5px;
+	margin: 0;
+	text-decoration: none; }
+
+.demande_tabnav a.active {
+	background: #FFB000;
+	border-bottom: 3px solid #FFB000; }
+
+.demande_tabnav a:hover {
+	color: #FFFFFF;
+	background: #FFD880; }
+
+.demande_tabnav a:visited {
+	color: #B37B00; }
+
+.demande_tabnav a.active:hover {
+	background: #FFB000;
+	color: #FFEBBF; }
+
+.demande_tab {font: 0.9em/1.3em "bitstream vera sans", verdana, sans-serif;
+	text-align: justify;
+	background: #FFB000;
+	padding: 20px;
+	border: 2px solid black;
+	border-top: none;
+	z-index: 2;	}
 

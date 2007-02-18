@@ -30,7 +30,7 @@
 <ul class="demande_tabnav" id="demande_tabnav">
  <li>
    <% options[:url][:action] = 'ajax_description' %>
-   <%= link_to_remote 'Description', options %>
+   <%= link_to_remote 'Description', options, :class => 'active' %>
  </li>
  <li>
    <% options[:url][:action] = 'ajax_comments' %>
@@ -47,7 +47,4 @@
 
 
 </div>
-<br /><br /><br /><br /><br /><br />
-<br /><br /><br /><br /><br /><br />
-<br /><br /><br /><br /><br /><br />
-aa
+
