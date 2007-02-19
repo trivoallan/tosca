@@ -83,10 +83,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # fill up the new filter(s)
-  # sended from POST request
-  def set_filters
-    session[:filters] ||= {}
+  #   # fill up the new filter(s)
+  #   # sended from POST request
+   def set_filters
+     session[:filters] ||= {}
 
     # les filtres sont nommés "filtres[nom_du_parametre]"
     if params[:filters]
