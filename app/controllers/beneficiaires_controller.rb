@@ -13,7 +13,7 @@ class BeneficiairesController < ApplicationController
 
   def list
     set_filters
-    @clients = Client.find_select(:all)
+    @clients = Client.find_select
 #    scope_filter do 
       @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, :per_page => 
       10, :include => [:client,:identifiant]
@@ -26,9 +26,9 @@ class BeneficiairesController < ApplicationController
 
   def new
     @beneficiaire = Beneficiaire.new
-    @identifiants = Identifiant.find_all
-    @clients = Client.find_all
-    @responsables = Beneficiaire.find_all
+    @identifiants = Identifiant.find :all
+    @clients = Client.find :all
+    @responsables = Beneficiaire.find :all
   end
 
   def create
@@ -43,9 +43,9 @@ class BeneficiairesController < ApplicationController
 
   def edit
     @beneficiaire = Beneficiaire.find(params[:id])
-    @identifiants = Identifiant.find_all
-    @clients = Client.find_all
-    @responsables = Beneficiaire.find_all
+    @identifiants = Identifiant.find :all
+    @clients = Client.find :all
+    @responsables = Beneficiaire.find :all
   end
 
   def update

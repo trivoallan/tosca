@@ -165,14 +165,13 @@ class DemandesController < ApplicationController
     conditions = [ "logiciel_id = ?", @demande.logiciel_id ] 
     @count = Demande.count(:conditions => conditions)
     # TODO c'est pas dry, cf ajax_comments
+    options = { :order => 'created_on DESC', :include => [:identifiant], 
+      :limit => 1, :conditions => { :demande_id => @demande.id } }
     if @beneficiaire
-      @commentaire = Commentaire.find_by_demande_id_and_prive(
-                      @demande.id, false, :order => "created_on DESC", 
-                      :include => [:identifiant])
+      options[:conditions][:prive] = false
+      @commentaire = Commentaire.find(:first, options)
     elsif @ingenieur
-      @commentaire = Commentaire.find_by_demande_id(
-                      @demande.id, :order => "created_on DESC", 
-                      :include => [:identifiant])
+      @commentaire = Commentaire.find(:first, options)
     end
     
     flash[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
@@ -181,7 +180,7 @@ class DemandesController < ApplicationController
     if (@demande.statut_id == 4 || @demande.statut_id == 5)
       @correctifs = Correctif.find(:all)
     end
-
+    @ingenieurs = Ingenieur.find_select(:include => [:identifiant])
     
     # On va chercher les identifiants des ingénieurs assignés
     # C'est un héritage du passé
@@ -269,7 +268,7 @@ class DemandesController < ApplicationController
   def changer_ingenieur
     redirect_to_comment unless params and params[:id] and params[:ingenieur_id]
     @demande = Demande.find(params[:id])
-    @demande.ingenieur = Ingenieur.find_by_identifiant_id(params[:ingenieur_id])
+    @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
     if @demande.save
       if @demande.ingenieur
         flash[:notice] = "La demande a été assignée correctement" 

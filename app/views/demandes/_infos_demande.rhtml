@@ -8,7 +8,7 @@
  <li><b>Sévérité: </b><%= @demande.severite.nom %></li>
  <li><b>Resp.: </b><%= @demande.ingenieur.nom %></li>
  <li><% form_tag (:action => 'changer_ingenieur', :id => @demande.id) do %>
-  <%= select_onchange @identifiants_ingenieurs, 'demande', 'ingenieur_id' %>
+  <%= select_onchange @ingenieurs, 'demande', 'ingenieur_id' %>
  <% end %></li>
 
 </ul>
