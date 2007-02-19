@@ -174,9 +174,7 @@ private
   # TODO : check les interférences avec les filtres
   def scope_beneficiaire
     beneficiaire = session[:beneficiaire]
-    logger.debug('scope here : ' + beneficiaire.to_s)
     if beneficiaire
-      logger.debug('starting to scope')
       client_id = beneficiaire.client_id
       contrat_ids = beneficiaire.contrat_ids 
 
@@ -194,10 +192,9 @@ private
   end
 
   def scope_filter
+    filtres = session[:filters]
 
-    # on applique les filtre sur les listes uniquement
-    # le scope client est tout de même appliqué partout si client
-    filtres = ( self.action_name == 'list' ? session[:filters] : {} )
+    logger.debug('scope_filter : logiciel : ' + filtres['logiciel_id'].to_s)
 
     # on construit les conditions pour les demandes et les logiciels
     cidentifiant = ['identifiants.id = ? ', filtres['identifiant_id'] ] if filtres['identifiant_id'] 

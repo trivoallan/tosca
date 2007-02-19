@@ -5,14 +5,11 @@
 
 <%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
 <table class="demandes_list" width='100%'>
-
    <tr>
       <th width='2%'>
-        <td>
           <% form_tag(:controller => 'demandes', :action => 'list') do %>
-            <%= search_demande(:inline => false) %>
+            <%= search_demande %>
           <% end %>
-        </td>
       </th>
       <% form_tag :action => 'list' do %>
         <th width='7%'><%= select_filter(@logiciels, 'logiciel') %></th>

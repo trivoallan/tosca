@@ -26,11 +26,15 @@ class DemandesController < ApplicationController
   end
 
   def list
+
     #TODO  
     #super(params) # see before_filter:set_filters in application.rb
     return unless session[:user]
     #cas spécial : consultation directe
     redirect_to :action => :comment, :id => params['numero'] if params['numero'] 
+
+    # activate the filters
+    set_filters
 
     #init des variables utilisées dans la vue
     @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
