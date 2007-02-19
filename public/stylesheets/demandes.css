@@ -91,6 +91,11 @@ ul.menu li {
 /******************************************
  * Tabulations 
  ******************************************/
+
+.demande_tab {
+	padding-bottom: 40px;
+}
+
 .demande_tabnav {
 	color: #000000;
 	border-bottom: 2px solid #cfc8cf; /*2px solid black;*/

@@ -77,14 +77,14 @@ span.left {
 #haut {
 	width: 100%;
 	background: #e2efe2; 
-	margin-bottom: 20;
+	margin-bottom: 20px;
         padding-top: 5px;
         padding-bottom: 0px;
 	border-bottom: 2px solid #cfc8cf;
 }
 #contenu { 
 	margin:2%; 
-	padding: 0; 
+	padding: 0px;
 	width: 96%; /* mettre 100% - (2 x margin) */
 }
 #pied {
