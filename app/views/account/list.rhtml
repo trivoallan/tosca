@@ -1,7 +1,7 @@
 <h1>Liste des utilisateurs</h1>
 <%= link_to_beneficiaires %> / <%= link_to_ingenieurs %><br/><br/>
-<%= link_to 'Ajouter un utilisateur', :action => 'signup' %> / 
-  <%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %> / 
+<%= link_to 'Ajouter un utilisateur', :action => 'signup' %> /
+  <%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %> /
   <%= link_to_export( :data => 'identifiants') %>
 <br/><br/>
 
@@ -18,7 +18,7 @@
     <th>Ingénieur</th>
     <th>Bénéficiaire</th>
     <th>Mail</th>
-    <th>T&eacute;l&eacute;phone</th>
+    <th>Téléphone</th>
 
   </tr>
 
@@ -30,10 +30,10 @@
 
      <td><%=h user.login %></td>
      <td>
-      <% form_tag({:action => 'update', :id => user}, {:name => 'form_'+user.id.to_s}) do%> 
+      <% form_tag({:action => 'update', :id => user}, {:name => 'form_'+user.id.to_s}) do%>
          <% for role in @roles %>
-           &nbsp;&nbsp;<input type="checkbox" id="<%=role.id%>" name="role_ids[]" value="<%=role.id%>"
-           <%if user.roles.include? role%> checked="checked" <%end%> >&nbsp;&nbsp;
+           &nbsp;&nbsp;<input type="checkbox" id="<%=user.login.to_s + role.id.to_s%>" name="role_ids[]" value="<%=role.id%>"
+           <%if user.roles.include? role%> checked="checked" <%end%> />&nbsp;&nbsp;
          <% end %>
       <% end %></td>
       <td><a onclick="document.forms['form_<%=user.id.to_s%>'].submit()">
