@@ -67,14 +67,12 @@ span.left {
 }
 #haut {
 	width: 100%;
-	background: #e2efe2; /*url("../img/header_fond_repro.gif") repeat-x;*/
+	background: #e2efe2; 
 	margin-bottom: 20;
-	/*height: 50px;*/
         padding-top: 5px;
         padding-bottom: 0px;
 	border-bottom: 2px solid #cfc8cf;
 }
-
 #contenu { 
 	margin:2%; 
 	padding: 0; 

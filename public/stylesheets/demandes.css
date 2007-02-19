@@ -59,6 +59,7 @@ cursor: url('http://www2:3000/images/logo_08000.gif)';}
   border-bottom: 1px solid #990066;
   width: 23%;
   float: left;
+  margin-left: -2%;
 }
 
 .underline {

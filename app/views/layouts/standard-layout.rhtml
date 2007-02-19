@@ -39,7 +39,7 @@
         </table>
   </div><!-- end of haut -->
 
-
+  <div id="contenu">
         <p id="notice" style="color: green"><%= flash[:notice] %></p>
 
         <% if flash[:warn] %>
@@ -52,7 +52,7 @@
         <% end %>
 
         <%= @content_for_layout %>
-
+  </div><!-- end of contenu -->
 
   <div id="pied" class="pied">
     <table width='100%'>
