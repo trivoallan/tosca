@@ -30,7 +30,7 @@
    </tr>
 
    <% for demande in @demandes %>
-   <tr class=<%= "demande_#{demande.statut_id}" %> onclick="window.location.href='comment/<%= demande.id %>';" >
+   <tr class=<%= "demande_#{demande.statut_id}" %> onclick="window.location.href='../demandes/comment/<%= demande.id %>';" >
         <td><%= link_to_demande demande, :show_id => true, :resume => false %></td>
         <td><%= demande.logiciel ? sum_up(demande.logiciel.nom,15) : Logiciel.not_found  %></td>
         <td><%= demande.typedemande.nom %></td>
