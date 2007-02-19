@@ -160,21 +160,18 @@ class DemandesController < ApplicationController
 #    @engagement = @demande.engagement(contrat)
   end
 
-  def test_comment
-    comment
-  end
-
   def comment
     @demande = Demande.find(params[:id]) unless @demande
     conditions = [ "logiciel_id = ?", @demande.logiciel_id ] 
     @count = Demande.count(:conditions => conditions)
+    # TODO c'est pas dry, cf ajax_comments
     if @beneficiaire
-      @commentaires = Commentaire.find_all_by_demande_id_and_prive(
-                      @demande.id, false, :order => "created_on ASC", 
+      @commentaire = Commentaire.find_by_demande_id_and_prive(
+                      @demande_id, false, :order => "created_on DESC", 
                       :include => [:identifiant])
     elsif @ingenieur
-      @commentaires = Commentaire.find_all_by_demande_id(
-                      @demande.id, :order => "created_on ASC", 
+      @commentaire = Commentaire.find_by_demande_id(
+                      @demande_id, :order => "created_on DESC", 
                       :include => [:identifiant])
     end
     
@@ -182,9 +179,10 @@ class DemandesController < ApplicationController
 
     @statuts = @demande.statut.possible().collect{ |s| [ s.nom, s.id] }
     if (@demande.statut_id == 4 || @demande.statut_id == 5)
-      @correctifs = Correctif.find_all 
+      @correctifs = Correctif.find(:all)
     end
 
+    
     # On va chercher les identifiants des ingénieurs assignés
     # C'est un héritage du passé
     # TODO : s'en débarrasser avec une migration et un :include

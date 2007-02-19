@@ -1,86 +1,38 @@
-
-
-
-
-<table width='100%' class="description">
-<tr><td>
-
-<table class="standard_infos">
-  <tr><td><b>Type </b></td>           <td><%= @demande.typedemande.nom %></td>
-      <td><b>Ouverture </b></td>      <td><%= @demande.created_on_formatted %></td>
-      <td><b>Rappelée en</b></td>     <td><%= @demande.affiche_temps_rappel %></td></tr>
-  <tr><td class="<%= "demande_#{@demande.statut_id}" %>"><b>Statut </b></td>
-      <td class="<%= "demande_#{@demande.statut_id}" %>"><%= @demande.statut.nom %></td>
-      <td><b>A jour du </b></td>      <td><%= @demande.updated_on_formatted %></td>
-      <td><b>Contournée en</b></td>   <td><%= @demande.affiche_temps_contournement %></td></tr>
-  <tr><td><b>Sévérité </b></td>       <td><%= @demande.severite.nom %></td>
-      <td><b></b></td>                <td></td>
-      <td><b>Corrigée en</b></td>     <td><%= @demande.affiche_temps_correction %></td></tr>
-  <tr><td><b>Reproduit </b></td>      <td><%= @demande.reproduit %></td>
-      <td></td>
-      <td></td>
-      <td><b>Temps écoulé</b></td>    <td><%= @demande.affiche_temps_ecoule %></td></tr>
-  <tr><td><b>Correctif fourni</b></td><td><%= link_to_correctif @demande.correctif %></td>
-      <% if @correctifs and @ingenieur %>
-       <td><b>Associer</b></td>        <td>
-        <% form_tag (:action => 'associer_correctif', :id => @demande.id) do %>
-          <%= submit_tag 'Associer' %>   
-          <%= hidden_field 'demande', 'id' %>
-    	  <%= select_onchange @correctifs, 'demande', 'correctif_id' %>
-        <% end %></td>      
-      <% else %>
-         <td></td>             <td></td>
-      <% end %>
-      <td></td>                       <td></td></tr>
-  <tr><td><b>Responsable</b></td>     <td><%= @demande.ingenieur.identifiant.nom if @demande.ingenieur %></td>
-      <% if @ingenieur %>
-       <td><b>Assigner à</b></td>      <td>
-        <% form_tag (:action => 'changer_ingenieur', :id => @demande.id) do %>
-	      <%= select_onchange @identifiants_ingenieurs, 'demande', 'ingenieur_id' %>
-        <% end %></td>
-      <% else %>
-        <td></td><td></td>
-      <% end %>
-      <td></td>                       <td></td></tr>
+<table class="underline" cellpadding="3" cellspacing="0">
+  <tbody><tr><td bgcolor="#dddddd"><b>Résumé</b></td></tr></tbody>
 </table>
+<ul class="menu">
+ <li><b>Logiciel: </b><%= link_to_logiciel @demande.logiciel %></li>
+ <li><b>Statut: </b><%= @demande.statut.nom %></li>
+ <li><b>Type: </b><%= @demande.typedemande.nom %></li>
+ <li><b>Sévérité: </b><%= @demande.severite.nom %></li>
+ <li><b>Resp.: </b><%= @demande.ingenieur.nom %></li>
+ <li><% form_tag (:action => 'changer_ingenieur', :id => @demande.id) do %>
+  <%= select_onchange @identifiants_ingenieurs, 'demande', 'ingenieur_id' %>
+ <% end %></li>
 
-</td><td>
-
-<table width="100%">
-   <tr><td>
-     <% # infos bnficiaire :  require @demande %>
-     <%= render_partial 'infos_beneficiaire' %>
-   </td></tr>
+</ul>
+<table class="underline" border="0" cellpadding="3" cellspacing="0">
+  <tbody><tr><td bgcolor="#dddddd"><b>Bénéficiaire</b></td></tr></tbody>
 </table>
-
-</td></tr>
+<ul class="menu">
+ <li><b>Contact: </b><%= @demande.beneficiaire.nom %></li>
+ <li><b>Téléphone: </b><%= @demande.beneficiaire.identifiant.telephone %></li>
+ <li><b>Société: </b><%= @demande.beneficiaire.client.nom %></li>
+</ul>
+<table class="underline" border="0" cellpadding="3" cellspacing="0">
+  <tbody><tr><td bgcolor="#dddddd"><b>C.N.S.</b></td></tr></tbody>
 </table>
-
-<br/>
-
-<table class="logiciel" width='100%'>
-  <tr><td colspan="2"><b><u>Description</u></b> </td></tr>
-  <tr><td colspan="4" width="100%" class="bordered">
-      <%= indent @demande.description %>  </td></tr>
-  <tr height="10"><td></td></tr>
-  <tr><td><b><u>Logiciel concerné</u></b>: <%= @demande.logiciel ? link_to_logiciel(@demande.logiciel) : Logiciel.not_found %>
-
-          <% if @ingenieur %>
-               <% if @count>1 %>
-                   <a id="voir_infos_demandes"
-                      onclick='show("infos_demandes"); show("cacher_infos_demandes"); hide("voir_infos_demandes");'>
-                      <%= image_tag("expand_icon.png", :size => "11x14", :border => 0, :title => "Montrer", :alt => "Montrer", :align => 'baseline') %></a>
-                   <a id="cacher_infos_demandes" style="display: none"
-                      onclick='hide("infos_demandes"); show("voir_infos_demandes"); hide("cacher_infos_demandes");'>
-                      <%= image_tag("collapse_icon.png", :size => "11x14", :border => 0, :title => "Montrer", :alt => "Montrer", :align => 'baseline') %></a>
-               <% else %>             
-                   Aucune demande associe
-               <% end %>
-          <% end %> 
-
-
-
-
-
-</td></tr>
+<ul class="menu">
+  <li><b>Rappelée en: </b> <%= @demande.affiche_temps_rappel %></li>
+  <li><b>Contournée en: </b></td>   <td><%= @demande.affiche_temps_contournement %></li>
+  <li><b>Corrigée en: </b></td>   <td><%= @demande.affiche_temps_correction %></li>
+</ul>
+<table class="underline" border="0" cellpadding="3" cellspacing="0">
+  <tbody><tr><td bgcolor="#dddddd"><b>Cycle de vie</b></td></tr></tbody>
 </table>
+<ul class="menu">
+  <li><b>Ouverte le: </b><%= @demande.created_on_formatted %></li>
+  <li><b>Mise à jour le: </b> <%= @demande.updated_on_formatted %></li>
+  <li><b>Temps écoulé: </b><%= @demande.affiche_temps_ecoule %></li>
+</ul>

@@ -1,113 +1,61 @@
 
-<div style='z-index:2;'>
 
-<table width='100%'>
-<tr height="40px"><td>
- <h1><%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %></h1>
-</td><td align='right'>
- 
-</td></tr>
-</table>
 
 <% ############ infos demandes #########################  
    # require : @demande, @correctifs, @count 
    #           @identifiant_ingenieurs %>
-<%= render_partial 'infos_demande' %>
-
-</td></tr>
-<% if @demande.paquets.count > 0 %>
-<tr><td class="infos_logiciel" colspan="2">
-
-<% ############ logiciels #####################  %>
-<table class='standard_infos'>
-  <tr class="bold">
-    <td>Paquet</td>
-    <td>Contournement</td> 
-    <td>Atteint</td>
-    <td>Correction</td>
-    <td>Atteint</td>
-  </tr>
-  <% @demande.paquets.each do |p| %>
-  <tr>
-    <td><%= p.to_s %></td>
-    <td><%= display_engagement_contournement @demande, p %></td>
-    <td><% #display_delai_contournement @demande, p %></td>
-    <td><%= display_engagement_correction @demande, p %></td>
-    <td><% #display_delai_correction @demande, p %></td>
-  </tr>
-  <% end %>
-</table>
-
-</td></tr>
-<% end %>
-
-<% if @ingenieur && @count>1 %><% ############ visible seulement en tant qu'ingénieur ############%>
-<tr>
-
-<td class="infos_demandes" colspan="2"><% ############## demandes liées ############  %>
-<div id="infos_demandes" style="display: none">
-<!--<a onclick='document.getElementById("infos_demandes").style.display="none";
-            document.getElementById("voir_infos_demandes").style.display="block";'>Cacher les demandes associées</a>-->
-<table>
-  <% @demande.logiciel.demandes.each do |demande| %>
-  <tr class=<%= "demande_" + demande.statut_id.to_s %> 
-      alt="<%= sum_up(demande.description) %>" 
-      title="<%= sum_up(demande.description) %>">
-    <td>#<%= demande.id %>  
-        <%= link_to_demande demande %>
-    </td>
-  </tr>
-  <% end %>
-</table>
-</div>
-</td>
-
-</tr>
-<% end %><% ############ fin de partie visible seulement en tant qu'ingénieur ############%>
-
-</table>
-
-<br/>
-<br/>
-
-<b><u><%= pluralize(@demande.piecejointes.size, 'Piècejointe') %></u></b> 
-<% titres = ['Id', 'Lien', 'Taille', 'Créé le', 'Par' ] %>
-<%= show_table(@demande.piecejointes, Piecejointe, 
-               titres, :total => false) {|piecejointe| 
-  result = ''
-  if File.exist?(piecejointe.file)
-    result << "<td>##{piecejointe.id}</td>"
-    result << "<td>#{link_to_file(piecejointe, 'file')}</td>"
-    result << "<td>#{file_size(piecejointe.file)}</td>"
-    result << "<td>#{piecejointe.commentaire.created_on_formatted}</td>"
-    result << "<td>#{piecejointe.commentaire.identifiant.nom}</td>"
-  end
-  result
-} %>
-<p>&nbsp;</p>
+<div class="summary">
+<%= render_partial 'test_infos_demande' %>
 </div>
 
-<div style='position: relative'>
-
-<% ############# commentaire ####################  %>
-<div class="menu1">
-<% form_tag({:action => 'comment', :controller => 'commentaires', :id => @demande},
-            :multipart => true) do %>
+<div class="content">
+<h1><%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %></h1>
+ <% if @commentaire %>
+   <div id="commentaires-list">
+    <%= render :partial => 'tab_comments', :collection => [@commentaire] %>
+   </div>
+ <% else %>
+   <%=indent @demande.description %>
+ <% end %>
+<% action = {:action => 'comment', :controller => 'commentaires', :id => @demande} %>
+<% form_tag(action, :multipart => true) do %>
   <%= render :partial => 'comment_form' %>
   <p>&nbsp;</p>
 <% end %>
-</div>
 
-<b><u><%= pluralize(@demande.commentaires.size, 'Commentaire') %></u></b> 
-sur cette demande
+
+<% options = { :update => 'demande_tab',
+    :url => { :action => nil, :id => @demande.id } } %>
+<ul class="demande_tabnav" id="demande_tabnav">
+ <li>
+   <% options[:url][:action] = 'ajax_description' %>
+   <%= link_to_remote 'Description', options %>
+ </li>
+ <li>
+   <% options[:url][:action] = 'ajax_comments' %>
+   <%= link_to_remote 'Commentaire', options, :class => 'active' %>
+ </li>
+ <li>
+   <% options[:url][:action] = 'ajax_history' %>
+   <%= link_to_remote 'Historique', options %>
+ </li>
+</ul>
+<div class="demande_tab" id="demande_tab">
+<%= render :partial => 'tab_description' if @commentaire %>
+</div>
 <br/>
- <div id="commentaires-list">
-  <%= render :partial => "commentaire", :collection => @commentaires %>
- </div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 </div>
-
-
-<p>&nbsp;</p>
-<%= link_to_back 'Retour à la liste des demandes' %>
 
