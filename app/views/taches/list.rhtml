@@ -2,24 +2,24 @@
 
 <%= show_pages_links(@tache_pages, 'une nouvelle tâche') %>
 
-<% titres = ['Priorité', 'Responsable', 'Etape', 'Durée', 'Deadline', 
+<% titres = ['Priorité', 'Responsable', 'Etape', 'Durée', 'Deadline',
              'Résumé', 'Crée le', 'Màj', 'Terminé ?' ] %>
 <%= show_table(@taches, Tache, titres) { |tache|
   result=''
-  result << '<td>' + link_to(image_tag('first_task.png', :size => '14x14', 
-                                       :border => 0, :alt => 'Première priorité'), 
-                             :action => 'move2top', :id => tache) 
-  result << link_to(image_tag('previous_task.png', :size => '14x14', 
-                              :border => 0, :alt => 'Monter la priorité'), 
+  result << '<td>' + link_to(image_tag('first_task.png', :size => '14x14',
+                                       :border => 0, :title => 'Première priorité'),
+                             :action => 'move2top', :id => tache)
+  result << link_to(image_tag('previous_task.png', :size => '14x14',
+                              :border => 0, :title => 'Monter la priorité'),
                              :action => 'movehigher', :id => tache)
-  result << link_to(image_tag('next_task.png', :size => '14x14', 
-                              :border => 0, :alt => 'Baisser la  priorité'), 
-                    :action => 'movelower', :id => tache) 
-  result << link_to(image_tag('last_task.png', :size => '14x14', 
-                              :border => 0, :alt => 'Dernière priorité'), 
+  result << link_to(image_tag('next_task.png', :size => '14x14',
+                              :border => 0, :title => 'Baisser la  priorité'),
+                    :action => 'movelower', :id => tache)
+  result << link_to(image_tag('last_task.png', :size => '14x14',
+                              :border => 0, :title => 'Dernière priorité'),
                              :action => 'move2bottom', :id => tache) + '</td>'
   result << "<td>#{tache.responsable.nom}</td>"
-  result << "<td>#{tache.etape.nom if tache.etape}</td>" 
+  result << "<td>#{tache.etape.nom if tache.etape}</td>"
   result << "<td>#{tache.duree}</td>"
   result << "<td>#{tache.deadline_formatted if tache.deadline}</td>"
   result << "<td>#{link_to_tache(tache)}</td>"
@@ -37,7 +37,7 @@
   result << "#{link_to_actions_table tache}"
 }%>
 
-<b><%= @nombre_total%></b> tâche(s) à faire pour un total de 
+<b><%= @nombre_total%></b> tâche(s) à faire pour un total de
 <b><%= @duree_total %></b> jours de travail (ô joie)
 
 <%= show_pages_links(@tache_pages, 'une nouvelle tâche') %>

@@ -2,27 +2,29 @@
 
 <%= render_partial 'filtres/actions' %>
 
-    
+
 <%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
 <table class="demandes_list" width='100%'>
 
    <tr>
       <th width='2%'>
-       <% form_tag(:controller => 'demandes', :action => 'list') do %>
-        <%= search_demande(:inline => false) %>
-       <% end %>
+        <td>
+          <% form_tag(:controller => 'demandes', :action => 'list') do %>
+            <%= search_demande(:inline => false) %>
+          <% end %>
+        </td>
       </th>
       <% form_tag :action => 'list' do %>
         <th width='7%'><%= select_filter(@logiciels, 'logiciel') %></th>
         <th width='7%' colspan = '2'><%= select_filter(@types, 'typedemande', :title => '» Type') %></th>
         <!--<th>Sévérité<%#= select_filter(@severites, 'severite', :title => 'Sévérité') %></th>-->
-       <% if @ingenieur %> 
+       <% if @ingenieur %>
         <th width='5%'><%= select_filter(@clients, 'client') %></th>
        <% end %>
         <th width='10%'><%= select_filter(@beneficiaires, 'beneficiaire', :title => '» Bénéficiaire') %></th>
         <th>Résumé<%= text_filter('motcle', :title => '» Résumé') %></th>
-       <% if @ingenieur %> 
-         <th width='8%'><%= select_filter(@ingenieurs, 'ingenieur', :title => '» Responsable') %></th> 
+       <% if @ingenieur %>
+         <th width='8%'><%= select_filter(@ingenieurs, 'ingenieur', :title => '» Responsable') %></th>
        <% end %>
         <th width='8%'>A jour du</th>
         <th colspan="3" width='1%'></th>
@@ -35,13 +37,13 @@
         <td><%= demande.logiciel ? sum_up(demande.logiciel.nom,15) : Logiciel.not_found  %></td>
         <td><%= demande.typedemande.nom %></td>
         <td><%= icon_severite(demande) %></td>
-       <% if @ingenieur %> 
+       <% if @ingenieur %>
         <td><%= demande.beneficiaire.client.nom %></td>
        <% end %>
         <td><%= demande.beneficiaire.nom %></td>
         <td class="wrapped"><%= link_to_demande demande %></td>
-       <% if @ingenieur %> 
-          <td><%= demande.ingenieur.nom if demande.ingenieur %></td> 
+       <% if @ingenieur %>
+          <td><%= demande.ingenieur.nom if demande.ingenieur %></td>
        <% end %>
         <td><small><%=h demande.updated_on_formatted %></small></td>
         <td><%= link_to_comment demande %></td>
@@ -62,7 +64,7 @@
 
 <%= [ link_to('Déposer une nouvelle demande', :controller => 'demandes', :action => 'new'),
       link_to('Légende des couleurs', :controller => 'statuts', :action => 'list'),
-      link_to_export, 
+      link_to_export,
       link_to('Reporting', :controller => 'reporting', :action => 'general')
     ].compact * ' | ' %>
 
