@@ -408,6 +408,7 @@ module ApplicationHelper
       if (options[:content_columns])
         ar.content_columns.each{|c| result <<  "<th>#{c.human_name}</th>"}
       end
+      #On doit mettre nowrap="nowrap" pour que ça soit valide XHTML
       titres.each {|t| result << "<th nowrap=\"nowrap\">#{t}</th>" }
       result << '</tr>'
     end
