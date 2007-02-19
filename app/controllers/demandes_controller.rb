@@ -195,10 +195,6 @@ class DemandesController < ApplicationController
     return render_text('') unless request.xhr? and params[:id]
     @demande = Demande.find(params[:id]) unless @demande
     render :partial => 'tab_description', :layout => false
-#     render :update do |page|
-#       # page.replace_html :demande_tabnav, :partial => 'tab_menu', :layout => false 
-#       page.replace_html 'demande_tab', :partial => 'tab_description' # , :layout => false 
-#     end
   end
 
   def ajax_comments

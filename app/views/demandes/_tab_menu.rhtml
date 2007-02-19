@@ -1,0 +1,20 @@
+<% options = { :update => 'demande_tab',
+    :url => { :action => nil },
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+<% options[:url][:id] = @demande.id if @demande %>
+<% options[:url][:id] = @demande_id if @demande_id %>
+<ul class="demande_tabnav" id="demande_tabnav">
+ <li>
+   <%= link_to_remote_tab 'Description', 'ajax_description', options %>
+ </li>
+ <li>
+   <%= link_to_remote_tab 'Commentaire', 'ajax_comments', options %>
+ </li>
+ <li>
+   <%= link_to_remote_tab 'Historique', 'ajax_history', options %>
+ </li>
+ <li>
+   <%= image_spinner %>
+ </li>
+</ul>  

@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   around_filter :scope_beneficiaire
   helper :filters
 
-  #  before_filter :set_headers
+  before_filter :set_headers
   before_filter :set_global_shortcuts
   before_filter :login_required, :except => [:refuse, :login]
 

@@ -1,6 +1,8 @@
+<%= render :partial => 'tab_menu' %>
+
 <% old_statut_id, old_ingenieur_id = nil, nil %>
 
-
+<div class="demande_tab_content" name="demande_tab_content">
 <table>
   <tr>
     <th>Date</th>
@@ -21,4 +23,4 @@
   <% old_statut_id, old_ingenieur_id = demande.statut_id, demande.ingenieur_id %>
   <% end %>
 </table>
-
+</div>

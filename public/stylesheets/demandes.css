@@ -127,7 +127,8 @@ ul.menu li {
 	background: #FFB000;
 	color: #FFEBBF; }
 
-.demande_tab {font: 0.9em/1.3em "bitstream vera sans", verdana, sans-serif;
+.demande_tab_content {
+        font: 0.9em/1.3em "bitstream vera sans", verdana, sans-serif;
 	text-align: justify;
 	background: #FFB000;
 	padding: 20px;
