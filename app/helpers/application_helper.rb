@@ -246,9 +246,9 @@ module ApplicationHelper
   # call it like this :
   # <%= show_pages_links @demande_pages %>
   def show_pages_links(pages, message)
-    result = '<table class="pages"><tr><td valign="baseline">'
-    result << "#{link_to_new(message)}</td>"
-    return "<td>#{result}</td></tr></table>" unless pages.length > 0
+    result = '<table class="pages"><tr><td>'
+    result << "#{link_to_new(message)}</td><td>"
+    return "#{result}</td></tr></table>" unless pages.length > 0
 
     if pages.current.previous
       result << '<td>' + link_to(image_first_page, { :page => pages.first }, {
@@ -305,7 +305,7 @@ module ApplicationHelper
   # on affiche '...' si le reste a afficher fait plus de 3 caracteres
   def sum_up ( texte, limit=100, options ={:less => '...'})
     return texte unless (texte.is_a? String) && (limit.is_a? Numeric)
-    out = ""
+    out = ''
     if texte.size <= limit+3
       out << texte
     elsif

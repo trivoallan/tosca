@@ -40,6 +40,11 @@ li img {
 	vertical-align: middle;
 }
 
+table.pages td { 
+	valign: baseline;
+}
+
+
 li {
 	color:#114188;
 }

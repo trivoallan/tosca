@@ -10,13 +10,11 @@ module DemandesHelper
   def link_to_demande(demande, options={})
     return 'N/A' unless demande
     resume = sum_up(demande.resume, 50)
-    alt = demande.typedemande.nom + ' (' + demande.severite.nom + ') : ' + sum_up(demande.description)
-    link = ''
-    link << "#{options[:pre_text]} " if options[:pre_text]
-    link << "##{demande.id} " if options[:show_id]
-    link << resume unless options[:resume] == false
-    link_to link,{:controller => 'demandes',
-      :action => 'comment', :id => demande.id}, { :title => alt }
+    alt = '' # sum_up(demande.description) # demande.typedemande.nom + ' (' + demande.severite.nom + ') : ' 
+    link = resume 
+    options = {:controller => 'demandes', :action => 
+        'comment', :id => demande.id}
+    link_to link, options
 
   end
 
@@ -30,7 +28,7 @@ module DemandesHelper
   end
 
   def icon_severite(demande)
-    desc = demande.severite.nom
+    desc = demande.severites_nom
     image_tag("severite_#{demande.severite_id}.gif", :title => desc, :alt => desc )
   end
 

@@ -7,14 +7,13 @@
 
 <div class="content">
 <h1><%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %></h1>
- <% if @commentaire %>
-   <div id="commentaires-list">
-    <%= render :partial => 'tab_comment', :collection => [@commentaire] %>
-   </div>
+ <% if @last_commentaire %>
+    <%= render :partial => 'tab_comment', :collection => [@last_commentaire] %>
  <% else %>
    <%=indent @demande.description %>
  <% end %>
-<% action = {:action => 'comment', :controller => 'commentaires', :id => @demande} %>
+<% action = {:action => 'comment', :controller => 'commentaires', 
+             :id => @demande} %>
 <% form_tag(action, :multipart => true) do %>
   <%= render :partial => 'comment_form' %>
   <p>&nbsp;</p>
@@ -22,7 +21,7 @@
 
 
 <div class="demande_tab" id="demande_tab">
-<%= render :partial => 'tab_description' if @commentaire %>
+<%= render :partial => 'tab_description' if @last_commentaire %>
 </div>
 
 </div>

@@ -12,9 +12,7 @@
   <%= stylesheet_link_tag 'common', :media => "all" %>
   <%= stylesheet_link_tag 'common-printer', :media => "print" %>
   <%= stylesheet_link_tag 'demandes' %>
-   <script id="snap_preview_anywhere" type="text/javascript"
-      src="http://spa.snap.com/snap_preview_anywhere.js?ap=1&amp;key=9fa8e5dbd8fe49124930ef15dabb50f4&amp;sb=0&amp;th=orange&amp;cl=0&amp;si=0&amp;oi=0&amp;domain=www.08000linux.com">
-   </script>
+  <%= javascript_include_tag 'snap_preview_anywhere' %>
   <%= javascript_include_tag :defaults %>
   <% # = javascript_include_tag 'update_select_ajax' %>
   <% # = javascript_include_tag "prototype" %>

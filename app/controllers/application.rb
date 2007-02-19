@@ -89,9 +89,9 @@ class ApplicationController < ActionController::Base
      session[:filters] ||= {}
 
     # les filtres sont nommés "filtres[nom_du_parametre]"
-    if params[:filters]
-      params[:filters].each{ |p| set_filter(p.first) }
-    end
+     if params[:filters]
+       params.each{ |p| set_filter(p.first) }
+     end
   end
 
   # fill up one named filter from params
@@ -194,7 +194,6 @@ private
   def scope_filter
     filtres = session[:filters]
 
-    logger.debug('scope_filter : logiciel : ' + filtres['logiciel_id'].to_s)
 
     # on construit les conditions pour les demandes et les logiciels
     cidentifiant = ['identifiants.id = ? ', filtres['identifiant_id'] ] if filtres['identifiant_id'] 
@@ -225,12 +224,13 @@ private
     #########
 
     sidentifiant = compute_scope(nil, cidentifiant)
-    sdemandes = compute_scope([:logiciel],
+    sdemandes = compute_scope([:logiciel,:beneficiaire],
                               cdemande_severite, 
                               cdemande_motcle, 
                               cdemande_ingenieur, 
                               cdemande_beneficiaire, 
                               cdemande_type,
+                              cbeneficiaire_client,
                               clogiciel, 
                               cdemande_statut)
     slogiciels = compute_scope([:classifications], clogiciel, cclassification_groupe)

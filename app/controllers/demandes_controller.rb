@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DemandesController < ApplicationController
+  auto_complete_for :logiciel, :nom
+
   before_filter :verifie, 
   :only => [ :comment, :edit, :update, :destroy, :changer_statut ]
 
@@ -25,51 +27,60 @@ class DemandesController < ApplicationController
     render :action => 'list'
   end
 
-  def list
+  # We don't use finder for this overused view
+  # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
+  # it's not enough, but a good start :)
+  SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' + 
+    'logiciels.nom as logiciels_nom, id_benef.nom as beneficiaires_nom, ' +
+    'typedemandes.nom as typedemandes_nom, clients.nom as clients_nom, ' +
+    'id_inge.nom as ingenieurs_nom '
+  JOINS_LIST = 'INNER JOIN severites ON severites.id = demandes.severite_id ' + 
+      'INNER JOIN beneficiaires ON beneficiaires.id = demandes.beneficiaire_id '+
+      'INNER JOIN identifiants id_benef ON id_benef.id = beneficiaires.identifiant_id '+
+      'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
+      'INNER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' + 
+      'INNER JOIN identifiants id_inge ON id_inge.id = ingenieurs.identifiant_id '+
+      'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' + 
+      'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
+      'INNER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
 
-    #TODO  
+  def list
     #super(params) # see before_filter:set_filters in application.rb
     return unless session[:user]
     #cas spécial : consultation directe
     redirect_to :action => :comment, :id => params['numero'] if params['numero'] 
 
     # activate the filters
-    set_filters
+    # set_filters
 
-    #init des variables utilisées dans la vue
-    @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
+    #### init des variables utilisées dans la vue
+    # @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
+    # @beneficiaires = Beneficiaire.find(:all, :include => [:identifiant])
+    # @ingenieurs = Ingenieur.find(:all, :include => [:identifiant])
     Client.with_exclusive_scope do
-      @clients = Client.find(:all)
+      @clients = Client.find_select()
     end
-    @beneficiaires = Beneficiaire.find(:all, :include => [:identifiant])
-
-    @severites = Severite.find(:all)
-    @statuts = Statut.find(:all)
-    @types = Typedemande.find(:all)
-
-    #Identifiant.find_all where ingenieur
-    # joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id = identifiants.id'
-    # @identifiants_ingenieurs = Identifiant.find(:all, :joins => joins)
-    # TODO : VA MLO : il faut la liste des ingénieurs, non ?
-    @ingenieurs = Ingenieur.find(:all, :include => [:identifiant])
-
-    # les filtres sont définis dans le controller principal
-    # see set_filters, @session[:filtres]
-
-    if not @beneficiaire and not @ingenieur
-      flash[:warn] = 'Vous n\'êtes pas identifié comme appartenant à un groupe.\
-                        Veuillez nous contacter pour nous avertir de cet incident.'
-      @demandes = [] # renvoi un tableau vide
-    end
-
-    scope_filter do
+    @statuts = Statut.find_select()
+    @types = Typedemande.find_select()
+  
+    Demande.with_scope(session[:filters][:sdemande] || {}) {
       @demande_pages, @demandes = paginate :demandes, :per_page => 10,
-      :order => 'updated_on DESC', 
-      :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut,:logiciel]
-
-    end
+      :order => 'updated_on DESC', :select => SELECT_LIST, :joins => JOINS_LIST
+    }
+    # :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut,:logiciel]
   end
 
+
+  def set_filters
+    filters = session[:filters]
+    cdemandes = session[:cdemandes]
+    if params[:logiciel] and params[:logiciel][:nom]
+      nom =  params[:logiciel][:nom]
+      logiciel = Logiciel.find(:first, :conditions => 
+                                 "logiciels.nom LIKE '%#{nom}%'")
+      filters[sdemandes] << "logiciels.id = #{logiciel.id}"
+    end
+  end
 
   def new
     @demande = Demande.new unless @demande
@@ -173,9 +184,9 @@ class DemandesController < ApplicationController
       :limit => 1, :conditions => { :demande_id => @demande.id } }
     if @beneficiaire
       options[:conditions][:prive] = false
-      @commentaire = Commentaire.find(:first, options)
+      @last_commentaire = Commentaire.find(:first, options)
     elsif @ingenieur
-      @commentaire = Commentaire.find(:first, options)
+      @last_commentaire = Commentaire.find(:first, options)
     end
     
     flash[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
@@ -230,6 +241,11 @@ class DemandesController < ApplicationController
     render :partial => 'tab_history', :layout => false
   end
 
+  def ajax_piecejointes
+    return render_text('') unless request.xhr? and params[:id]
+    @demande = Demande.find(params[:id], :include => [:piecejointes]) unless @demande
+    render :partial => 'tab_piecejointe', :layout => false
+  end
 
   def update
     @demande = Demande.find(params[:id])
