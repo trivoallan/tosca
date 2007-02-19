@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_headers
   before_filter :set_global_shortcuts
-  before_filter :login_required, :except => [:refuse, :login]
+  #before_filter :login_required, :except => [:refuse, :login]
 
   # systems d'authentification 
   include LoginSystem
