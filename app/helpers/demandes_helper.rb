@@ -13,10 +13,10 @@ module DemandesHelper
     alt = demande.typedemande.nom + ' (' + demande.severite.nom + ') : ' + sum_up(demande.description)
     link = ''
     link << "#{options[:pre_text]} " if options[:pre_text]
-    link << "##{demande.id} " if options[:show_id] 
+    link << "##{demande.id} " if options[:show_id]
     link << resume unless options[:resume] == false
     link_to link,{:controller => 'demandes',
-      :action => 'comment', :id => demande.id}, { :alt => alt, :title => alt }
+      :action => 'comment', :id => demande.id}, { :title => alt }
 
   end
 
@@ -52,7 +52,7 @@ module DemandesHelper
 
   def display_engagement_correction(demande, paquet)
     engagement = demande.engagement(paquet.contrat_id)
-    display_jours(engagement.correction) 
+    display_jours(engagement.correction)
   end
 
   def display_tempsecoule(demande)
@@ -64,14 +64,14 @@ module DemandesHelper
   # <%= display_history_changes(demande.ingenieur_id, old_ingenieur_id, Ingenieur) %>
   def display_history_changes(field, old_field, model)
     if field
-      if old_field and old_field == field 
+      if old_field and old_field == field
         '<center>||</center>'
-      else 
-        model.find(field).nom 
-      end 
+      else
+        model.find(field).nom
+      end
     else
       '<center>-</center>'
-    end 
+    end
   end
 
   # Used to call remote ajax action
@@ -84,7 +84,7 @@ module DemandesHelper
   def link_to_remote_tab(name, action_name, options)
     options[:url][:action] = action_name
     if (action_name != controller.action_name)
-      link_to_remote name, options 
+      link_to_remote name, options
     else
       link_to_remote name, options, :class => 'active'
     end
