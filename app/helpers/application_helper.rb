@@ -32,10 +32,10 @@ module ApplicationHelper
     return '' if collection.nil?
     out = '<table><tr>' and count = 1
     for donnee in collection
-      out << "<td><input type=\"checkbox\" id=\"#{donnee.id}\" "
+      out << "<td><input type=\"checkbox\" "
       out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
       out << 'checked="checked" ' if objectcollection and objectcollection.include? donnee
-      out << "> #{donnee}</td>"
+      out << "/> #{donnee}</td>"
       out << '</tr><tr>' and count = 0 if options[:size] and options[:size] == count
       count += 1
     end

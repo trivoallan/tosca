@@ -12,18 +12,18 @@
 
 
 <p><label for="logiciel_referent">Referent</label><br/>
-<%= text_field 'logiciel', 'referent'  %></p>
+<%= text_field 'logiciel', 'referent' %></p>
 
 
-<p><label for="logiciel_license">License</label><br/>
-  <%= select("logiciel", "license_id", 
-	@licenses.collect{|l| [ l.nom, l.id]}, 
+<p><label>License</label><br/>
+  <%= select("logiciel", "license_id",
+	@licenses.collect{|l| [ l.nom, l.id]},
 	:selected => @logiciel.license_id.to_i) %></p>
 
 <p><label for="logiciel_classification">Classification(s)</label><br/>
 <div style="color:red"> TODO </div></p>
 
-<p><label for="logiciel_competence">Competences</label><br/>
+<p><label>Competences</label><br/>
 <%= hbtm_check_box( @logiciel.competences, @competences, 'competence_ids') %></p>
 
 
