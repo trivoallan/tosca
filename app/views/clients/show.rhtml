@@ -1,7 +1,7 @@
 <table class="info">
 <% for column in Client.content_columns %>
 <tr><td><b><%= column.human_name %>:</b></td>
-    <td><%=indent @client.send(column.name) %></p></td></tr>
+    <td><%=indent @client.send(column.name) %></td></tr>
 <% end %>
 <% if @client.support %>
 <tr><td><b>Support:</b></td>
@@ -19,13 +19,13 @@
   result << show_table_engagements(c.engagements)
   result } %>
 
-<%= show_liste(@client.socles, 'socle') {|s| 
+<%= show_liste(@client.socles, 'socle') {|s|
     result = ''
-    result << link_to_socle(s).to_s << ' : ' 
-    result << pluralize(s.binaires_count, 'binaire') 
+    result << link_to_socle(s).to_s << ' : '
+    result << pluralize(s.binaires_count, 'binaire')
  } %>
 
-<%= show_liste(@client.demandes, 'demande') {|d| 
+<%= show_liste(@client.demandes, 'demande') {|d|
   link_to_demande(d) } %>
 
 <%= link_to_edit_and_list @client %>
