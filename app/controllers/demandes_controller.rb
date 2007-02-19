@@ -167,11 +167,11 @@ class DemandesController < ApplicationController
     # TODO c'est pas dry, cf ajax_comments
     if @beneficiaire
       @commentaire = Commentaire.find_by_demande_id_and_prive(
-                      @demande_id, false, :order => "created_on DESC", 
+                      @demande.id, false, :order => "created_on DESC", 
                       :include => [:identifiant])
     elsif @ingenieur
       @commentaire = Commentaire.find_by_demande_id(
-                      @demande_id, :order => "created_on DESC", 
+                      @demande.id, :order => "created_on DESC", 
                       :include => [:identifiant])
     end
     
