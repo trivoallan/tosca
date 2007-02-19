@@ -5,7 +5,7 @@ class DemandesController < ApplicationController
   before_filter :verifie, 
   :only => [ :comment, :edit, :update, :destroy, :changer_statut ]
 
-  helper :correctifs
+  helper :correctifs, :logiciels
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],

@@ -1,11 +1,8 @@
-
-
-
 <% ############ infos demandes #########################  
    # require : @demande, @correctifs, @count 
    #           @identifiant_ingenieurs %>
 <div class="summary">
-<%= render_partial 'test_infos_demande' %>
+<%= render_partial 'infos_demande' %>
 </div>
 
 <div class="content">
@@ -24,38 +21,10 @@
 <% end %>
 
 
-<% options = { :update => 'demande_tab',
-    :url => { :action => nil, :id => @demande.id } } %>
-<ul class="demande_tabnav" id="demande_tabnav">
- <li>
-   <% options[:url][:action] = 'ajax_description' %>
-   <%= link_to_remote 'Description', options %>
- </li>
- <li>
-   <% options[:url][:action] = 'ajax_comments' %>
-   <%= link_to_remote 'Commentaire', options, :class => 'active' %>
- </li>
- <li>
-   <% options[:url][:action] = 'ajax_history' %>
-   <%= link_to_remote 'Historique', options %>
- </li>
-</ul>
+<%= render :partial => 'tab_menu' %>
 <div class="demande_tab" id="demande_tab">
 <%= render :partial => 'tab_description' if @commentaire %>
 </div>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
 </div>
 

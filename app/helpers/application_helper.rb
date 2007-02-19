@@ -14,6 +14,7 @@
 # - TIME
 module ApplicationHelper
 
+  include ImagesHelper
 
   def search_demande(options = {})
     text_field('numero', '', 'size' => 3)
@@ -211,7 +212,7 @@ module ApplicationHelper
 
   def link_to_view(ar)
     desc = 'Voir'
-    link_to image_tag("icons/b_view.png", :size => "15x15", # "view_icon.gif", :size => "20x15",
+    link_to image_tag("icons/b_view.png", :size => "15x15", 
                       :border => 0, :title => desc, :alt => desc ), { 
       :action => 'show', :id => ar.id }, { :class => 'nobackground' }
   end
@@ -458,6 +459,7 @@ module ApplicationHelper
     # temps==-1 ? "sans engagement" : distance_of_time_in_french_words(temps) + " "
   end
 
+
   # déplacé depuis app/models/demande.rb
   # TODO : être DRY
   def time_in_french_words(distance_in_seconds)
@@ -502,7 +504,8 @@ module ApplicationHelper
     ((seconds.abs)/60).round
   end
 
-
   ### NON CLASSE ###################################################################
+
+
 
 end

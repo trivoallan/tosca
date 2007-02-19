@@ -3,6 +3,8 @@
 
 <% #style au choix : "beau" ou "moche" %>
 
+<%= controller.action_name %><br />
+
 <table cellspacing="1">
   <tr <%= (commentaire.prive ? 'class="commentaire-prive"' : 'class="commentaire-public"' ) %> id="<%= commentaire.id.to_s %>">
   <td width='160' class="commentaire_infos" align="center">
@@ -17,29 +19,23 @@
     </td>
     <td class="commentaire_text">
       <%= indent commentaire.corps %>
-      <%= '<br/><br/>' + image_tag("folder_icon.gif", :size => "16x16",
-               :border => 0, :title => "Fichier", :alt => "Fichier", :align => "baseline") + ' ' +
+      <%= '<br/><br/>' + image_folder + ' ' +
           link_to_file(commentaire.piecejointe, "file") + 
           ' ('+ file_size(commentaire.piecejointe.file) + 
           ')' if commentaire.piecejointe %>
     </td>
     <% if @ingenieur %>
     <td class="standard_infos" valign="middle" width="30" align="center">
-       <%= link_to(image_tag("edit_icon.gif", :size => "15x15", 
-                      :border => 0, :title => "Modifier", :alt => "Modifier" ),
+       <%= link_to(image_edit,
         { :controller => 'commentaires', :action => 'edit', :id => commentaire }) %>
        <br/>
        <%  futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %> 
        <%= if commentaire.prive 
-		link_to(image_tag("public_icon.png", :size => "17x16", 
-                   	:border => 0, :title => "Rendre #{futur_etat_commentaire}",
-			:alt => "Rendre #{futur_etat_commentaire}"), 
+		link_to(image_public, 
 		   :controller => 'commentaires', 
 	           :action => 'changer_etat', :id => commentaire, :demande =>@demande_id)
 	   else
-		link_to(image_tag("private_icon.png", :size => "12x14", 
-                   	:border => 0, :title => "Rendre #{futur_etat_commentaire}",
-			:alt => "Rendre #{futur_etat_commentaire}"), 
+		link_to(image_private, 
 		   :controller => 'commentaires', 
 	           :action => 'changer_etat', :id => commentaire, :demande =>@demande_id)
 	   end %>
