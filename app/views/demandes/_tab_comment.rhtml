@@ -10,7 +10,7 @@
   <td width='160' class="commentaire_infos" align="center">
 	<span class="small">Comment. <%= "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id %>
-	    <%= session[:logo_08000] %>
+	    <%= logo_08000 %>
         <% elsif id.beneficiaire %>
             <%= image_tag url_for_file_column(id.beneficiaire.client.photo, "image", "thumb") %>
          <% end %><br/>

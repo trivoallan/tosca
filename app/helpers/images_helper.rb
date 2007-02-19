@@ -82,4 +82,26 @@ module ImagesHelper
                            :align => 'bottom')
   end
 
+  @@logo_08000 = nil
+  def logo_08000
+    @@logo_08000 ||= image_tag('logo_08000.gif', :alt => '08000 LINUX')
+  end
+
+
+  @@logo_lstm = nil
+  def logo_lstm
+    @@logo_lstm ||= image_tag('logo_lstm.gif', :alt => 'Accueil')
+  end
+
+  @@logo_ruby = nil
+  def logo_ruby
+    @@logo_ruby ||= image_tag('ruby.png', :size => '15x15',
+                              :border => 0, :alt => 'OSSA on rails')
+  end
+
+  @@image_favicon = nil
+  def image_favicon
+    @@image_favicon ||= image_path("favicon.ico")
+  end
+
 end

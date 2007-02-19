@@ -5,7 +5,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>
-  <link rel="SHORTCUT ICON" href="<%= image_path("favicon.ico") %>"/>
+  <link rel="SHORTCUT ICON" href="<%= image_favicon %>"/>
   <%= stylesheet_link_tag 'comments' %>
   <%= stylesheet_link_tag 'tools' %>
   <%= stylesheet_link_tag 'helper' %>
@@ -23,9 +23,9 @@
 	<table width="100%">
         <tr>
           <td width="5" rowspan="2">
-              <%= link_to session[:logo_lstm], :controller => 'bienvenue', :action => 'list'%></td>
+              <%= link_to logo_lstm, :controller => 'bienvenue', :action => 'list'%></td>
           <td style="padding-left:20px">
-              <%=image_tag('logo_08000.gif', :alt => '08000 LINUX', :title => '08000 LINUX' )%></td>
+              <%= logo_08000 %></td>
           <td style="text-align:right;padding-right:20px" colspan="2" >
                <%= session[:nav_links] if session[:user] %></td>
         </tr>
@@ -60,9 +60,7 @@
 	  <%= Metadata::NOM_LONG_SERVICE %>
         </td>
         <td valign='middle' align='left'>
-	  <a href="http://rubyonrails.org/"><%= image_tag("ruby.png", :size => "15x15",
-		:border => 0, :alt => "OSSA on rails", :title => "OSSA on rails",
-		:align => 'middle') %></a>
+	  <a href="http://rubyonrails.org/"><%= logo_ruby %></a>
         </td>
         <td valign='middle' align='right'>
           <%= Metadata::COPYRIGHT_APPLICATION%>
