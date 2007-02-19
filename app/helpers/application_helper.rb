@@ -45,7 +45,7 @@ module ApplicationHelper
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
   # objectcollection contient le tableau des objects déjà présents
   # C'est la fonction to_s qui est utilisée pour le label
-  # Ex : hbtm_radio_button( @logiciel.competences, @competences, 'competence_ids') 
+  # Ex : hbtm_radio_button( @logiciel.competences, @competences, 'competence_ids')
   def hbtm_radio_button( objectcollection, collection, nom )
     return '' if collection.nil?
     out = ""
@@ -65,19 +65,19 @@ module ApplicationHelper
   # :onchange action si changement
   # :size hauteur du select
   def select_onchange(list, default, name, options = {})
-    # options[:width] ||= 15
-    options[:title] ||= '' 
+    options[:width] ||= 15
+    options[:title] ||= ''
     options[:onchange] ||= 'this.form.submit();'
     collected = list.collect{|e| [sum_up(e.nom, options[:width]), e.id] }.unshift(["#{options[:title]}", ''])
     select = options_for_select(collected, default.to_i)
-    return select_tag(name, select, options) 
+    return select_tag(name, select, options)
   end
 
 
   # Titles doit contenir un tableau
   # Champs doit contenir un tableau
   # Les éléments de Titles et Champs doivent être affichable par to_s
-  # options 
+  # options
   # :title => Donne un titre au tableau
   # :subtitle => Donne un sous titre au tableau
   # Ex : show_table_form( { "TOTO", "TITI"}, { "TATA", "TUTU" }, :title => "Titre" )
@@ -90,7 +90,7 @@ module ApplicationHelper
       title, field = f.first, f.last
       unless title.nil? and field.nil?
         result << '<tr>'
-        if field.nil? 
+        if field.nil?
           result << '<td colspan="2">' << title << '</td>'
         elsif title.nil?
           result << '<td colspan="2">' << field << '</td>'
@@ -105,17 +105,17 @@ module ApplicationHelper
   end
 
   def lstm_text_field(label, mmodel, field, options = {})
-    [ "<label for=\"#{mmodel}_#{field}\">#{label}</label>", 
+    [ "<label for=\"#{mmodel}_#{field}\">#{label}</label>",
       text_field(mmodel, field, options) ]
   end
 
   def lstm_password_field(label, model, field, options = {})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>", 
+    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
       password_field(model, field, options) ]
   end
 
   def lstm_text_area(label, model, field, options = {})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>", 
+    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
       text_area(model, field, options) ]
   end
 
@@ -126,9 +126,9 @@ module ApplicationHelper
   # TODO : passer id en options, avec @session[:user].id par défaut
   # TODO : title en options, avec 'Le compte' par défaut
   def link_to_modify_account(id, title, options = {})
-    link_to title, { 
-      :action => 'modify', 
-      :controller => 'account', 
+    link_to title, {
+      :action => 'modify',
+      :controller => 'account',
       :id => id
     }
   end
@@ -148,10 +148,10 @@ module ApplicationHelper
   def link_to_my_client(options = {:text => 'Mon&nbsp;Offre'})
     return unless session[:beneficiaire]
     if options[:image]
-      link_to image_tag(url_for_file_column(@beneficiaire.client.photo, 'image', 'thumb')), 
+      link_to image_tag(url_for_file_column(@beneficiaire.client.photo, 'image', 'thumb')),
       :controller => 'clients', :action => 'show', :id => session[:beneficiaire].client_id
-    else 
-      link_to options[:text],  
+    else
+      link_to options[:text],
       :controller => 'clients', :action => 'show', :id => session[:beneficiaire].client_id
     end
   end
@@ -160,7 +160,7 @@ module ApplicationHelper
   def link_to_logiciel(logiciel)
       if logiciel
         link_to logiciel.nom, :controller => 'logiciels', :action => 'show', :id => logiciel.id
-      else 
+      else
         # cas où le logiciel n'existe pas/plus
         "logiciel inconnu"
       end
@@ -173,7 +173,7 @@ module ApplicationHelper
 
   # add_view_link(demande)
   def link_to_comment(ar)
-      link_to image_view, { :controller => 'demandes', :action => 'comment', 
+      link_to image_view, { :controller => 'demandes', :action => 'comment',
         :id => ar}, { :class => 'nobackground' }
   end
 
@@ -198,16 +198,16 @@ module ApplicationHelper
 
   # add_create_link
   # options :
-  # permet de spécifier un controller 
+  # permet de spécifier un controller
   def link_to_new(message='', options = {})
     link_options = options.update({:action => 'new'})
-    link_to(image_create(message), link_options, 
+    link_to(image_create(message), link_options,
             { :class => 'nobackground' })
   end
 
   def link_to_view(ar)
     desc = 'Voir'
-    link_to image_view, { :action => 'show', :id => ar.id }, { 
+    link_to image_view, { :action => 'show', :id => ar.id }, {
       :class => 'nobackground' }
   end
 
@@ -224,9 +224,9 @@ module ApplicationHelper
   # add_delete_link(demande)
   def link_to_delete(ar)
     desc = 'Supprimer'
-    link_to image_delete, { :action => 'destroy', :id => ar }, 
-    { :class => 'nobackground', 
-      :confirm => "Voulez-vous vraiment  supprimer ##{ar.id} ?", 
+    link_to image_delete, { :action => 'destroy', :id => ar },
+    { :class => 'nobackground',
+      :confirm => "Voulez-vous vraiment  supprimer ##{ar.id} ?",
       :method => 'post' }
   end
 
@@ -246,30 +246,30 @@ module ApplicationHelper
   # <%= show_pages_links @demande_pages %>
   def show_pages_links(pages, message)
     result = '<table class="pages"><tr><td valign="baseline">'
-    result << "#{link_to_new(message)}</td><td>"
-    return "#{result}</td></tr></table>" unless pages.length > 0
+    result << "#{link_to_new(message)}</td>"
+    return "<td>#{result}</td></tr></table>" unless pages.length > 0
 
     if pages.current.previous
-      result << '<td>' + link_to(image_first_page, { :page => pages.first }, { 
-        :title => "Première page" }).to_s + '</td>' 
-      result << '<td>' + link_to(image_previous_page, { :page => pages.current.previous }, { 
+      result << '<td>' + link_to(image_first_page, { :page => pages.first }, {
+        :title => "Première page" }).to_s + '</td>'
+      result << '<td>' + link_to(image_previous_page, { :page => pages.current.previous }, {
         :title => "Page précédente" }).to_s + '</td>'
     end
     if pages.current.last_item > 0
       result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item} "
-      result << "à #{pages.current.last_item}&nbsp; sur #{pages.last.last_item}&nbsp;</small></td>" 
+      result << "à #{pages.current.last_item}&nbsp; sur #{pages.last.last_item}&nbsp;</small></td>"
     end
-    if pages.current.next 
-      result << '<td>' + link_to(image_next_page, { :page => pages.current.next }, { 
-        :title => "Page suivante" }).to_s + '</td>' 
-      result << '<td>' + link_to(image_last_page, { :page => pages.last }, { 
+    if pages.current.next
+      result << '<td>' + link_to(image_next_page, { :page => pages.current.next }, {
+        :title => "Page suivante" }).to_s + '</td>'
+      result << '<td>' + link_to(image_last_page, { :page => pages.last }, {
         :title => "Dernière page" }).to_s + '</td>'
     end
     result << '</tr></table>'
   end
 
   # lien vers l'export de données
-  # options : 
+  # options :
   #  :data permet de spécifier un autre nom de controller (contexte par défaut)
   def link_to_export(options={})
     # TODO : tester si ExportController a une public_instance_methods du nom du controller
@@ -283,14 +283,14 @@ module ApplicationHelper
   # fonction JS de mis à jour d'une boite select
   # Non utilisé pour l'instant
   def update_select_box( target_dom_id, collection, options={} )
-    
+
     # Set the default options
     options[:text]           ||= 'name'
     options[:value]          ||= 'id'
     options[:include_blank]  ||= true
     options[:clear]     ||= []
     pre = options[:include_blank] ? [['','']] : []
-    
+
     out = "update_select_options( $('" << target_dom_id.to_s << "'),"
     out << "#{(pre + collection.collect{ |c| [c.send(options[:text]), c.send(options[:value])]}).to_json}" << ","
     out << "#{options[:clear].to_json} )"
@@ -308,11 +308,11 @@ module ApplicationHelper
     if texte.size <= limit+3
       out << texte
     elsif
-      out << texte[0..limit] 
+      out << texte[0..limit]
       out << options[:less]
     end
     out
-  end 
+  end
 
   def indent( text )
     return text unless text.is_a? String
@@ -340,17 +340,17 @@ module ApplicationHelper
 
   def file_size( file )
     if File.exist?(file)
-      human_size(File.size(file)) 
+      human_size(File.size(file))
     else
       "N/A"
     end
   end
-  
+
   # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
   def link_to_file(record, file)
     if record and File.exist?(record.send(file))
-      nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/] 
-      link_to nom, url_for_file_column(record, file, :absolute => true) 
+      nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
+      link_to nom, url_for_file_column(record, file, :absolute => true)
     else
       "N/A"
     end
@@ -369,7 +369,7 @@ module ApplicationHelper
     out << '</td>'
   end
 
-  # options : 
+  # options :
   #  * no_title : permet de ne pas mettre de titre à la liste
   #  * puce : permet d'utiliser un caractère qcq à la place des balises <liste>
   # Call it like : <%= show_liste(@correctif.binaires, 'correctif') {|e| e.nom} %>
@@ -391,7 +391,7 @@ module ApplicationHelper
     result
   end
 
-  # Call it like : 
+  # Call it like :
   # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
   # <%= show_table(@documents, Document, titres) { |e| "<td>#{e.nom}" } %>
   # N'oubliez pas d'utiliser les <td></td>
@@ -401,26 +401,28 @@ module ApplicationHelper
   def show_table(elements, ar, titres, options = {})
     return "<br/><p>Aucun #{ar.table_name.singularize} à ce jour</p>" unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : "" )
-    result = "<table #{width}><tr>"
+    result = "<table #{width}>"
 
-    if (options[:content_columns])
-      ar.content_columns.each{|c| result <<  "<th>#{c.human_name}</th>"}
+    if titres.size > 0
+      result << '<tr>'
+      if (options[:content_columns])
+        ar.content_columns.each{|c| result <<  "<th>#{c.human_name}</th>"}
+      end
+      titres.each {|t| result << "<th nowrap=\"nowrap\">#{t}</th>" }
+      result << '</tr>'
     end
-    titres.each {|t| result << "<th nowrap>#{t}</th>" }
-    
-    result << '</tr>'
-    elements.each_index { |i| 
+
+    elements.each_index { |i|
       result << "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">"
       if (options[:content_columns])
-        ar.content_columns.each {|column| 
-          result << "<td>#{indent elements[i].send(column.name)}</td>" 
+        ar.content_columns.each {|column|
+          result << "<td>#{indent elements[i].send(column.name)}</td>"
         }
       end
       result << yield(elements[i])
-      result << '</tr>' 
+      result << '</tr>'
     }
-    result << '</tr></table><br/>'
-    result
+    result << '</table><br/>'
   end
 
   # show_total(elements.size, ar, options)
@@ -433,7 +435,7 @@ module ApplicationHelper
       result = "<p><b>#{ar.count}</b> "
     end
     result << (size==1? ar.table_name.singularize : ar.table_name.pluralize)
-    result << '</p>'  
+    result << '</p>'
   end
 
 
@@ -460,7 +462,7 @@ module ApplicationHelper
   def time_in_french_words(distance_in_seconds)
     return '-' unless distance_in_seconds.is_a? Numeric and distance_in_seconds > 0
     distance_in_minutes = ((distance_in_seconds.abs)/60).round
-    jo = 24.hours / 60 #/ 60 
+    jo = 24.hours / 60 #/ 60
     mo = 30 * jo
     demi_jo_inf = (jo / 2) - 60
     demi_jo_sup = (jo / 2) + 60
@@ -468,13 +470,13 @@ module ApplicationHelper
     case distance_in_minutes
     when 0
       " - "
-    when 0..1 
+    when 0..1
       (distance_in_minutes==0) ? "moins d'une minute" : '1 minute'
-    when 2..45 
+    when 2..45
       "#{distance_in_minutes} minutes"
-    when 46..90  
+    when 46..90
       'environ 1 heure'
-    when 90..demi_jo_inf, (demi_jo_sup+1)..jo 
+    when 90..demi_jo_inf, (demi_jo_sup+1)..jo
       "environ #{(distance_in_minutes.to_f / 60.0).round} heures"
     when (demi_jo_inf+1)..demi_jo_sup
       "1 demie journée "
