@@ -174,9 +174,8 @@ module ApplicationHelper
   # add_view_link(demande)
   def link_to_comment(ar)
       desc = 'Voir'
-      link_to image_tag("icons/b_view.png", :size => "15x15", # "view_icon.gif", :size => "20x15", # 
-              :border => 0, :title => desc, :alt => desc ), 
-              { :controller => 'demandes', :action => 'comment', :id => ar}, { :class => 'nobackground' }
+      link_to image_view, { :controller => 'demandes', :action => 'comment', 
+        :id => ar}, { :class => 'nobackground' }
   end
 
   # un correctif peut être liée à une demande externe
@@ -203,18 +202,14 @@ module ApplicationHelper
   # permet de spécifier un controller 
   def link_to_new(message='', options = {})
     link_options = options.update({:action => 'new'})
-    link_to(image_tag("create_icon.png", :size => "16x16", 
-                      :border => 0, :title => "Déposer #{message}", 
-                      :alt => "Déposer #{message}" ), 
-            link_options, 
+    link_to(image_create(message), link_options, 
             { :class => 'nobackground' })
   end
 
   def link_to_view(ar)
     desc = 'Voir'
-    link_to image_tag("icons/b_view.png", :size => "15x15", 
-                      :border => 0, :title => desc, :alt => desc ), { 
-      :action => 'show', :id => ar.id }, { :class => 'nobackground' }
+    link_to image_view, { :action => 'show', :id => ar.id }, { 
+      :class => 'nobackground' }
   end
 
   def link_to_edit_and_list(ar)
@@ -223,27 +218,21 @@ module ApplicationHelper
   # add_edit_link(demande)
   def link_to_edit(ar)
     desc = 'Editer'
-    link_to image_tag( "edit_icon.gif", :size => "15x15", # "icons/b_edit.png", :size => "15x15", #
-                      :border => 0, :title => desc, :alt => desc ), {
+    link_to image_edit, {
       :action => 'edit', :id => ar }, { :class => 'nobackground' }
   end
 
   # add_delete_link(demande)
   def link_to_delete(ar)
     desc = 'Supprimer'
-    link_to image_tag("delete_icon.gif", :size => "15x17", # "icons/b_drop.png", :size => "15x17", 
-                             :border => 0, :title => desc, :alt => desc ), 
-                             { :action => 'destroy', :id => ar }, 
-                             { :class => 'nobackground', 
+    link_to image_delete, { :action => 'destroy', :id => ar }, 
+    { :class => 'nobackground', 
       :confirm => "Voulez-vous vraiment  supprimer ##{ar.id} ?", 
       :method => 'post' }
   end
 
   def link_to_back(desc='Retour à la liste', options = {:action => 'list'})
-    link_to(image_tag("back_icon.png", :size => "23x23",
-                      :border => 0, :title => desc, 
-                      :alt => desc, :align => 'baseline' ), 
-            options)
+    link_to(image_back, options)
   end
 
   # link_to_actions_table(demande)
@@ -261,15 +250,22 @@ module ApplicationHelper
     result << "#{link_to_new(message)}</td><td>"
     return "#{result}</td></tr></table>" unless pages.length > 0
 
-    result << '<td>' + link_to(image_tag("first_page.png", :size => "14x14", :border => 0, :title => 'Première page', :alt => 'Première page'), { :page => pages.first }, { 
-      :title => "Première page" }).to_s + '</td>'  if pages.current.previous
-    result << '<td>' + link_to(image_tag("previous_page.png", :size => "14x14", :border => 0, :title => 'Page précédente', :alt => 'Page précédente'), { :page => pages.current.previous }, { 
-      :title => "Page précédente" }).to_s + '</td>' if pages.current.previous
-    result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item} à #{pages.current.last_item}&nbsp; sur #{pages.last.last_item}&nbsp;</small></td>" if pages.current.last_item > 0
-    result << '<td>' + link_to(image_tag("next_page.png", :size => "14x14", :border => 0, :title => 'Page suivante', :alt => 'Page suivante'), { :page => pages.current.next }, { 
-      :title => "Page suivante" }).to_s + '</td>' if pages.current.next 
-    result << '<td>' + link_to(image_tag("last_page.png", :size => "14x14", :border => 0, :title => 'Dernière page', :alt => 'Dernière page'), { :page => pages.last }, { 
-      :title => "Dernière page" }).to_s + '</td>' if pages.current.next 
+    if pages.current.previous
+      result << '<td>' + link_to(image_first_page, { :page => pages.first }, { 
+        :title => "Première page" }).to_s + '</td>' 
+      result << '<td>' + link_to(image_previous_page, { :page => pages.current.previous }, { 
+        :title => "Page précédente" }).to_s + '</td>'
+    end
+    if pages.current.last_item > 0
+      result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item} "
+      result << "à #{pages.current.last_item}&nbsp; sur #{pages.last.last_item}&nbsp;</small></td>" 
+    end
+    if pages.current.next 
+      result << '<td>' + link_to(image_next_page, { :page => pages.current.next }, { 
+        :title => "Page suivante" }).to_s + '</td>' 
+      result << '<td>' + link_to(image_last_page, { :page => pages.last }, { 
+        :title => "Dernière page" }).to_s + '</td>'
+    end
     result << '</tr></table>'
   end
 
