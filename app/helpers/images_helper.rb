@@ -34,7 +34,7 @@ module ImagesHelper
   @@first_page = nil
   def image_first_page
     @@first_page ||= image_tag("first_page.png", :size => "14x14", :border => 0, 
-                             :alt => 'Première page'), 
+                             :alt => 'Première page')
   end
 
   @@previous_page = nil
