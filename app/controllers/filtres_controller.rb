@@ -13,8 +13,8 @@ class FiltresController < ApplicationController
     Client.with_exclusive_scope do
       @clients = Client.find_select
     end    
-    @beneficiaires = Beneficiaire.find_select(:all, :include => Beneficiaire::INCLUDE)
-    @ingenieurs = Ingenieur.find_select(:all, :include => Ingenieur::INCLUDE)
+    @beneficiaires = Beneficiaire.find_select(:include => Beneficiaire::INCLUDE)
+    @ingenieurs = Ingenieur.find_select(:include => Ingenieur::INCLUDE)
   end
 
   # supprime les filtres de session
