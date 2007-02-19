@@ -1,50 +1,5 @@
-<% commentaire = tab_comments %>
-<% id = commentaire.identifiant  %>
+<%= render :partial => 'tab_menu' %>
+<div id='demande_tab_content' class='demande_tab_content'>
+<%= render :partial => 'tab_comment', :collection => @commentaires %>
+</div>
 
-<% #style au choix : "beau" ou "moche" %>
-
-
-
-<table cellspacing="1">
-  <tr <%= (commentaire.prive ? 'class="commentaire-prive"' : 'class="commentaire-public"' ) %> id="<%= commentaire.id.to_s %>">
-  <td width='160' class="commentaire_infos" align="center">
-	<span class="small">Comment. <%= "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
-        <% if @identifiants_ingenieurs.include? id %>
-	    <%= session[:logo_08000] %>
-        <% elsif id.beneficiaire %>
-            <%= image_tag url_for_file_column(id.beneficiaire.client.photo, "image", "thumb") %>
-         <% end %><br/>
-	<%= id.nom %><br /> 
-	<span class="small"><%= commentaire.created_on_formatted %></span><br />
-    </td>
-    <td class="commentaire_text">
-      <%= indent commentaire.corps %>
-      <%= '<br/><br/>' + image_folder + ' ' +
-          link_to_file(commentaire.piecejointe, "file") + 
-          ' ('+ file_size(commentaire.piecejointe.file) + 
-          ')' if commentaire.piecejointe %>
-    </td>
-    <% if @ingenieur %>
-    <td class="standard_infos" valign="middle" width="30" align="center">
-       <%= link_to(image_edit,
-        { :controller => 'commentaires', :action => 'edit', :id => commentaire }) %>
-       <br/>
-       <%  futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %> 
-       <%= if commentaire.prive 
-		link_to(image_public, 
-		   :controller => 'commentaires', 
-	           :action => 'changer_etat', :id => commentaire, :demande =>@demande_id)
-	   else
-		link_to(image_private, 
-		   :controller => 'commentaires', 
-	           :action => 'changer_etat', :id => commentaire, :demande =>@demande_id)
-	   end %>
-       <br/> 
-       <%= link_to(image_delete,
-	{  :controller => 'commentaires', :action => 'destroy', 
-           :id => commentaire, :demande => @demande_id }, 
-           :confirm => "Voulez-vous vraiment supprimer le commentaire #{commentaire.id} ?") %>
-    </td>
-    <% end %>
-  </tr>
-</table>

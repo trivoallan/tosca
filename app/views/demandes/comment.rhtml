@@ -9,7 +9,7 @@
 <h1><%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %></h1>
  <% if @commentaire %>
    <div id="commentaires-list">
-    <%= render :partial => 'tab_comments', :collection => [@commentaire] %>
+    <%= render :partial => 'tab_comment', :collection => [@commentaire] %>
    </div>
  <% else %>
    <%=indent @demande.description %>

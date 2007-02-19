@@ -217,8 +217,7 @@ class DemandesController < ApplicationController
     @identifiants_ingenieurs = 
       Identifiant.find(:all, :select => select, :joins => joins)
 
-    render :partial => "tab_comments", :collection => 
-      @commentaires, :layout => false
+    render :partial => "tab_comments", :layout => false
   end
 
   def ajax_history
