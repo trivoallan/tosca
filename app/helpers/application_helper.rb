@@ -173,7 +173,6 @@ module ApplicationHelper
 
   # add_view_link(demande)
   def link_to_comment(ar)
-      desc = 'Voir'
       link_to image_view, { :controller => 'demandes', :action => 'comment', 
         :id => ar}, { :class => 'nobackground' }
   end

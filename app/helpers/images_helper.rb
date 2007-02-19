@@ -2,6 +2,7 @@ module ImagesHelper
   
   @@view = nil
   def image_view
+    desc = 'Voir'
     @@view ||= image_tag('icons/b_view.png', :size => '15x15', 
                          :border => 0, :title => desc, :alt => desc )
   end
