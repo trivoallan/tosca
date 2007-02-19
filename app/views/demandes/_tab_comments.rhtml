@@ -3,7 +3,7 @@
 
 <% #style au choix : "beau" ou "moche" %>
 
-<%= controller.action_name %><br />
+
 
 <table cellspacing="1">
   <tr <%= (commentaire.prive ? 'class="commentaire-prive"' : 'class="commentaire-public"' ) %> id="<%= commentaire.id.to_s %>">
@@ -40,8 +40,7 @@
 	           :action => 'changer_etat', :id => commentaire, :demande =>@demande_id)
 	   end %>
        <br/> 
-       <%= link_to(image_tag("delete_icon.gif", :size => "15x17", 
-                             :border => 0, :title => "Supprimer", :alt => "Supprimer" ),
+       <%= link_to(image_delete,
 	{  :controller => 'commentaires', :action => 'destroy', 
            :id => commentaire, :demande => @demande_id }, 
            :confirm => "Voulez-vous vraiment supprimer le commentaire #{commentaire.id} ?") %>

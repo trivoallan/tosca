@@ -186,16 +186,19 @@ class DemandesController < ApplicationController
     # C'est un héritage du passé
     # TODO : s'en débarrasser avec une migration et un :include
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
-    conditions = [' ingenieurs.id != ?', @demande.ingenieur_id || 0] 
-    select = "DISTINCT identifiants.* "
+    select = "DISTINCT identifiants.id "
     @identifiants_ingenieurs = 
-      Identifiant.find(:all, :select => select, :joins => joins, :conditions => conditions)
+      Identifiant.find(:all, :select => select, :joins => joins)
   end
 
   def ajax_description
     return render_text('') unless request.xhr? and params[:id]
     @demande = Demande.find(params[:id]) unless @demande
     render :partial => 'tab_description', :layout => false
+#     render :update do |page|
+#       # page.replace_html :demande_tabnav, :partial => 'tab_menu', :layout => false 
+#       page.replace_html 'demande_tab', :partial => 'tab_description' # , :layout => false 
+#     end
   end
 
   def ajax_comments
