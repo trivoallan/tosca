@@ -93,7 +93,7 @@ ul.menu li {
  ******************************************/
 .demande_tabnav {
 	color: #000000;
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #cfc8cf; /*2px solid black;*/
 	margin: 12px 0px 0px 0px;
 	padding: 0px;
 	z-index: 1;
@@ -106,16 +106,17 @@ ul.menu li {
 
 .demande_tabnav a, a.active {
 	color: #000000;
-	background: #FFEBBF;
+	background:  #FFEBBF;
 	font: bold 1em "Trebuchet MS", Arial, sans-serif;
-	border: 2px solid black;
+	border: 2px solid #cfc8cf; /* 2px solid black;*/
 	padding: 2px 5px 0px 5px;
 	margin: 0;
 	text-decoration: none; }
 
 .demande_tabnav a.active {
-	background: #FFB000;
-	border-bottom: 3px solid #FFB000; }
+	background: #cfc8cf;  /*#FFB000;*/
+	border-bottom: 3px solid #cfc8cf; /* 3px solid #FFB000; */ 
+}
 
 .demande_tabnav a:hover {
 	color: #FFFFFF;
@@ -131,9 +132,9 @@ ul.menu li {
 .demande_tab_content {
         font: 0.9em/1.3em "bitstream vera sans", verdana, sans-serif;
 	text-align: justify;
-	background: #FFB000;
+	background: #DDDDDD /* background: #FFB000; */
 	padding: 20px;
-	border: 2px solid black;
+	border: 2px solid #cfc8cf; /* 2px solid black; */
 	border-top: none;
 	z-index: 2;	}
 

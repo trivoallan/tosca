@@ -32,6 +32,14 @@ p {
 	margin: 0em;
 }
 
+p img {
+	vertical-align: middle;
+}
+
+li img {
+	vertical-align: middle;
+}
+
 li {
 	color:#114188;
 }
@@ -59,6 +67,7 @@ span.right {
 span.left {
 	float: left;
 }
+
 
 /********************* structure *******************/
 .imgTete {

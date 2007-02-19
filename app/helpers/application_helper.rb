@@ -65,7 +65,7 @@ module ApplicationHelper
   # :onchange action si changement
   # :size hauteur du select
   def select_onchange(list, default, name, options = {})
-    options[:width] ||= 15
+    # options[:width] ||= 15
     options[:title] ||= '' 
     options[:onchange] ||= 'this.form.submit();'
     collected = list.collect{|e| [sum_up(e.nom, options[:width]), e.id] }.unshift(["#{options[:title]}", ''])

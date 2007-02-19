@@ -72,8 +72,7 @@ module ImagesHelper
 
   @@spinner = nil
   def image_spinner
-    @@spinner ||= image_tag('spinner.gif', :align => 'absmiddle', 
-                            :border=> 0, :id => 'spinner', 
+    @@spinner ||= image_tag('spinner.gif', :border=> 0, :id => 'spinner', 
                             :style=> 'display: none;')
   end  
   @@folder = nil
