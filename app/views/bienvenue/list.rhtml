@@ -61,6 +61,7 @@
 
        <% links = [ 
              link_to('Suivi des correctifs', :controller => 'correctifs', :action => 'list'),
+             link_to('Contributions', :controller => 'contributions', :action => 'select'),
              link_to('Suivi des interactions', :controller => 'interactions', :action => 'list'),
              link_to('Suivi des reversements', :controller => 'reversements', :action => 'list') ] %>
        <%= show_liste_accueil(links, 'Communauté') %>
