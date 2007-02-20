@@ -215,7 +215,8 @@ module ApplicationHelper
 
   # add_edit_link(demande)
   def link_to_edit(ar, options = {})
-    options.update(:action => 'edit', :id => ar) 
+    action = options[:action] ||= 'edit'
+    options.update(:action => action, :id => ar) 
     link_to image_edit, options, { :class => 'nobackground' }
   end
 
