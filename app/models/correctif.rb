@@ -34,7 +34,7 @@ class Correctif < ActiveRecord::Base
     patch[index..-1]
   end
 
-  alias_method :nom, :to_s
+  #alias_method :nom, :to_s
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"

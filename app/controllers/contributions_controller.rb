@@ -8,6 +8,7 @@ class ContributionsController < ApplicationController
   end
 
   def list
+    (select and render :action => 'select' and return) unless params[:id]
     @logiciel = Logiciel.find(params[:id])
     conditions = ["logiciel_id = ?", @logiciel.id]
     #scope_filter do
@@ -21,3 +22,4 @@ class ContributionsController < ApplicationController
   end
 
 end
+

@@ -1,2 +1,5 @@
+<h1>Liste des contributions à <%= @logiciel.nom %></h1>
+
 <%= render :partial => 'contribution', :collection => @contributions %>
 
+<%= link_to_new('contribution', :controller => 'correctifs') %>

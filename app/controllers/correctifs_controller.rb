@@ -53,7 +53,7 @@ class CorrectifsController < ApplicationController
       end
       redirect_to :action => 'list'
     else
-      render :action => 'new'
+      new and render :action => 'new'
     end
   end
 
@@ -97,6 +97,8 @@ class CorrectifsController < ApplicationController
     @paquets = @correctif.paquets || []
     @binaires = @correctif.binaires || []
     @etatreversements = Etatreversement.find_all
+    @ingenieurs = Ingenieur.find_all
+    @typecontributions = Typecontribution.find_all
   end
 
 end
