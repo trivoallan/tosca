@@ -13,7 +13,7 @@ class ContributionsController < ApplicationController
     @logiciel = Logiciel.find(params[:id])
     conditions = ["logiciel_id = ?", @logiciel.id]
     #scope_filter do
-      @contribution_pages, @contributions = paginate :correctifs, :per_page => 10,
+      @contribution_pages, @contributions = paginate :contributions, :per_page => 10,
       :order => "created_on DESC", :conditions => conditions
     #end
   end
