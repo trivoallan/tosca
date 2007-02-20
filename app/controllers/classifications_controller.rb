@@ -14,7 +14,7 @@ class ClassificationsController < ApplicationController
 
   def list
     @classification_pages, @classifications = paginate :classifications, 
-    :per_page => 10, :include => [:logiciel,:client,:groupe,:bouquet]
+    :per_page => 25, :include => [ :logiciel, :client, :groupe, :bouquet ]
   end
 
   def show
@@ -57,6 +57,7 @@ class ClassificationsController < ApplicationController
     Classification.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+
   private
   def _form
     @logiciels = Logiciel.find_all
