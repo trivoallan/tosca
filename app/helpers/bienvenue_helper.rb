@@ -36,7 +36,8 @@ module BienvenueHelper
     elements.each_index { |i|
       infos = '' #sum_up(elements[i])
       infos << "#{elements[i].typedemande.nom} (#{elements[i].severite.nom}) :  #{elements[i][:description]}"
-      result << "<tr class='demande_#{elements[i].statut_id}' title='#{infos}' >"
+      result << "<tr class='demande_#{elements[i].statut_id}' title='#{infos}' " +
+                " onclick=\"window.location.href='../demandes/comment/#{elements[i].id}';\" >"
       result << yield(elements[i])
       result << '</tr>'
     }
