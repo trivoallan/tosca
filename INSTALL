@@ -1,0 +1,19 @@
+I/ Welcome aboard
+  
+
+  You need ruby, ruby-devel and ruby-RubyGems in order to start.
+  After that, you'll need either packaged gem or to install them
+  yourself.
+  The gem needed are : rmagick mysql fastercsv
+
+  To install it at hand, you'll need first devel package of mysql and
+  rmagick.
+
+sudo urpmi ruby-devel mysql-devel libMagick-devel
+
+
+  After that, you'll need those gems :
+
+sudo gem install rmagick mysql fastercsv
+
+
