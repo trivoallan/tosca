@@ -1,0 +1,25 @@
+<h1>Liste des logiciels</h1>
+
+<%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
+
+<% titres = ['Nom',
+             'Description', 'Technologies', 'Référent',
+             'Groupe',
+             #select_filter(@groupes, 'groupe_id', :title => 'Groupe', :width => 16)}",
+             'Paquet(s)'] %>
+<%= show_table(@logiciels, Logiciel, titres) { |l|
+  result = ''
+  result << "<td>#{link_to_logiciel l}</td>"
+  result << "<td>#{l.resume}</td>"
+  result << "<td>#{liste_competences l.competences}</td>"
+  result << "<td>#{l.referent}</td>"
+  result << show_cell_list(l.classifications) { |c| c.groupe.nom }
+  result << "<td>#{l.paquets.size}</td>"
+  result << "#{link_to_actions_table l}"
+}%>
+
+
+<%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
+
+<br />
+
