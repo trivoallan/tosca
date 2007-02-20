@@ -1,19 +1,27 @@
-I/ Welcome aboard
+#!/bin/bash
+
+echo "Welcome aboard"
   
 
-  You need ruby, ruby-devel and ruby-RubyGems in order to start.
+echo "You need ruby, ruby-devel and ruby-RubyGems in order to start.
   After that, you'll need either packaged gem or to install them
   yourself.
   The gem needed are : rmagick mysql fastercsv
 
   To install it at hand, you'll need first devel package of mysql and
-  rmagick.
+  rmagick. CTRL+C to exit"
 
+echo sudo urpmi ruby-devel mysql-devel libMagick-devel
 sudo urpmi ruby-devel mysql-devel libMagick-devel
 
 
-  After that, you'll need those gems :
+echo "After that, you'll need those gems :"
 
+echo sudo gem install rmagick mysql fastercsv
 sudo gem install rmagick mysql fastercsv
 
-
+  echo "And you will need a small patch over action_controller gem
+  (dependency of rails) :"
+echo sudo cp app/views/rescues/_trace.rhtml
+  /usr/lib/ruby/gems/1.8/gems/actionpack-1.13.2/lib/action_controller/templates/rescues/
+sudo cp app/views/rescues/_trace.rhtml /usr/lib/ruby/gems/1.8/gems/actionpack-1.13.2/lib/action_controller/templates/rescues/
