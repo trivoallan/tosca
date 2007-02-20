@@ -13,7 +13,6 @@ class Paquet < ActiveRecord::Base
   has_many :dependances, :dependent => :destroy
   has_many :binaires, :dependent => :destroy
 
-  has_and_belongs_to_many :correctifs
 
   def self.content_columns 
     @content_columns ||= columns.reject { |c| c.primary || 

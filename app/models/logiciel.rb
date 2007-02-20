@@ -13,6 +13,7 @@ class Logiciel < ActiveRecord::Base
   #belongs_to :communaute
   has_many :interactions
   belongs_to :license
+  belongs_to :groupe
 
   has_many :binaires, :through => :paquets, :dependent => :destroy
 
@@ -24,6 +25,8 @@ class Logiciel < ActiveRecord::Base
         [ 'paquets.contrat_id = ?', contrat_ids ],
         :include => [:paquets]} }
   end
+
+
 
   def self.list_columns 
     columns.reject { |c| c.primary || 

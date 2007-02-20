@@ -1,8 +1,12 @@
-
-
+<% options = { :update => 'content',
+    :url => '/logiciels/update_list',
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+<% form_remote_tag options do %>
 <div class="summary">
   <%= render_partial 'infos_logiciels' %>
 </div>
+<% end %>
 
 <div class="content">
   <%= render_partial 'softwares_list' %>

@@ -2,8 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Groupe < ActiveRecord::Base
-  has_many :classifications
-
+  has_many :logiciels
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 

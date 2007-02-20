@@ -1,4 +1,4 @@
-<h1>Liste des logiciels</h1>
+<h1>Liste des logiciels <%= image_spinner %></h1>
 
 <%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
 
@@ -13,7 +13,7 @@
   result << "<td>#{l.resume}</td>"
   result << "<td>#{liste_competences l.competences}</td>"
   result << "<td>#{l.referent}</td>"
-  result << show_cell_list(l.classifications) { |c| c.groupe.nom }
+  result << "<td>#{l.groupe.nom if l.groupe}</td>"
   result << "<td>#{l.paquets.size}</td>"
   result << "#{link_to_actions_table l}"
 }%>

@@ -6,7 +6,7 @@ class Binaire < ActiveRecord::Base
   belongs_to :socle, :counter_cache => true
   belongs_to :arch
   has_many :fichierbinaires, :dependent => :destroy
-  has_and_belongs_to_many :correctifs
+  has_and_belongs_to_many :contributions
   has_and_belongs_to_many :demandes
 
   file_column :archive

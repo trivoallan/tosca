@@ -12,6 +12,8 @@
   <%= stylesheet_link_tag 'common', :media => "all" %>
   <%= stylesheet_link_tag 'common-printer', :media => "print" %>
   <%= stylesheet_link_tag 'demandes' %>
+  <%= stylesheet_link_tag 'auto_complete' %>
+  <%= stylesheet_link_tag 'info_box' %>
   <%= javascript_include_tag 'snap_preview_anywhere' %>
   <%= javascript_include_tag :defaults %>
   <% # = javascript_include_tag 'update_select_ajax' %>
@@ -40,16 +42,17 @@
   </div><!-- end of haut -->
 
   <div id="information">
-        <% if flash[:notice] %>
+        <% if false %> <%# MLO : mis dans le pied du site. TODO : on efface ? %>
           <div class="notice">
             <p><%= flash[:notice] %></p>
           </div>
         <% end %>
         <% if flash[:warn] %>
           <div class="error">
-               <h2>Une erreur s'est produite</h2>
+               <h2>Une erreur s&#146;est produite</h2>
                 <ul><li><%= flash[:warn] %></li></ul>
           </div>
+          <% flash[:warn] = nil %>
         <% end %>
   </div><!-- end of infos -->
 
@@ -60,7 +63,10 @@
   <div class="pied">
     <table width='100%'>
       <tr>
-        <td valign='middle' align='right' width='60%'>
+        <td valign='middle' align='leftt' width='30%'>
+           <%= flash[:notice] %>
+        </td>
+        <td valign='middle' align='right' width='30%'>
 	  <%= Metadata::NOM_LONG_SERVICE %>
         </td>
         <td valign='middle' align='left'>

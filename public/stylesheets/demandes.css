@@ -44,52 +44,6 @@ cursor: url('http://www2:3000/images/logo_08000.gif)';}
 
 
 
-/**************************************
- * Mise en page
- **************************************/
-
-.content {
-  top: 1em;
-  float: left;
-  width: 75%;
-  padding: 0 0 0 1em;
-}
-.summary {
-  border-right: 1px solid #990066; /* #cfc8cf;*/
-  border-bottom: 1px solid #990066;
-  width: 23%;
-  float: left;
-  margin-left: -2%;
-  margin-top: -2%;
-}
-
-.underline {
-  border-bottom: 1px solid #990066;
-  width: 100%;
-}
-
-
-ul.menu {
-  margin: 2px 0 1em 0;
-}
-
-
-ul.menu li {
-  font-family: Verdana, Arial, Helvetica, Geneva, sans-serif;
-  font-size: 100%;
-  color: black;
-  list-style-type: none;
-  background-image: url(/images/puce.png);
-  background-repeat: no-repeat;
-  background-position: 0% 65%;
-  padding-left: 15px;
-  margin-left: -30px;
-  margin-top: -3px;
-}
-
-div.auto_complete ul li {
-  background-image: none;
-}
 
 /******************************************
  * Tabulations 

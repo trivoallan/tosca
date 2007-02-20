@@ -69,6 +69,7 @@ module ApplicationHelper
   def select_onchange(list, default, name, options = {})
     #options[:width] ||= 15
     options[:title] ||= ''
+    options[:script] ||= true
     options[:onchange] ||= 'this.form.submit();'
     options[:name] ||= name
     #collected = list.collect{|e| [sum_up(e.nom, options[:width]), e.id] }.unshift(["#{options[:title]}", ''])

@@ -1,8 +1,0 @@
-<% for column in Bouquet.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @bouquet.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Editer', :action => 'edit', :id => @bouquet %> |
-<%= link_to 'Retour à la liste', :action => 'list' %>

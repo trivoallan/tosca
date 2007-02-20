@@ -29,33 +29,40 @@ class LogicielsController < ApplicationController
     }
   end
 
+  def update_list
+    return render_text('') unless request.xhr? 
+    logger.debug(params.inspect)
+    options = { :per_page => 15, :order => 'logiciels.nom', :include => [:groupe,:competences] }
+
+    @logiciel_pages, @logiciels = paginate :logiciels, options
+    render :partial => 'softwares_list', :layout => false
+    # options.update([:conditions { :client_id => params['filters'][:client_id]] 
+  end
+
   # affiche la liste des logiciels avec filtres
   def list
-    @filter = params[:filter]
-    @search = params[:logiciel]
-    @groupe = params[:groupe_id] if params[:groupe_id] != ''
-    $orderway = ($orderway == nil || $orderway == " ASC") ? " DESC" : " ASC"
-    @order += $orderway if @order != nil 
 
-    clogiciel = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ] if @search != nil
-    cclassification_groupe = ['classifications.groupe_id = ? ', @groupe ] if @groupe != nil  
+    # clogiciel = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ] if @search != nil
+    # cclassification_groupe = ['classifications.groupe_id = ? ', @groupe ] if @groupe != nil  
     #options = compute_scope([:classifications], clogiciel, cclassification_groupe)[:find] ||= {}
-    options = compute_scope(nil, clogiciel)[:find] ||= {}
-    options = options.update(:per_page => 15, :order => 'logiciels.nom')
+    # options = compute_scope(nil, clogiciel)[:find] ||= {}
+    options = { :per_page => 15, :order => 'logiciels.nom', :include => [:groupe,:competences] }
+
+
 
     @count = {}
     @clients = Client.find_select
     @groupes = Groupe.find_select
     @technologies = Competence.find_select
 
-    @groupes = Classification.find(:all).collect{|c| c.groupe}.uniq
+    @groupes = Groupe.find_select
     #scope_filter do
     @count[:paquets] = Paquet.count
     @count[:binaires] = Binaire.count
     @count[:softwares] = Logiciel.count
     @count[:technologies] = Competence.count
 
-      @logiciel_pages, @logiciels = paginate :logiciels, options
+    @logiciel_pages, @logiciels = paginate :logiciels, options
     #end
   end
 
