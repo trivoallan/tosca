@@ -35,7 +35,7 @@
    </tr>
 
    <% for demande in @demandes %>
-   <tr class=<%= "demande_#{demande.statut_id}" %> onclick="window.location.href='../demandes/comment/<%= demande.id %>';" >
+   <tr class="<%= "demande_#{demande.statut_id}" %>" onclick="window.location.href='../demandes/comment/<%= demande.id %>';" >
         <td><%= demande.id %></td>
         <td><%= demande.logiciels_nom ? sum_up(demande.logiciels_nom,15) : Logiciel.not_found  %></td>
         <td><%= demande.typedemandes_nom %></td>

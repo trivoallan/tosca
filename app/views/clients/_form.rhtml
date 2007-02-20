@@ -25,17 +25,17 @@
       <%= select("client", "support_id",
 	@supports.collect{|s| [ s.nom, s.id]}) %></p>
 
-      <p><label for="client_code_acces">Code d&#146;accés</label><br/>
+      <p><label for="client_code_acces">Code d'accès</label><br/>
       <%= text_field 'client', 'code_acces'  %></p>
 
       <p><label for="client_photo_id">Logo</label><br/>
       <%= select("client", "photo_id",
 	@photos.collect{|p| [ p.description, p.id]}) %></p>
 
-      <p><label>Socles</label><br/>
+      <p><label>Socles</label></p>
       <div id="bloc_scroll">
         <%= hbtm_check_box(@client.socles, @socles, 'socle_ids', :size => 1) %>
-      </div></p>
+      </div>
     </td>
   </tr>
 </table>

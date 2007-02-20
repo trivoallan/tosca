@@ -32,11 +32,12 @@ module ApplicationHelper
     return '' if collection.nil?
     out = '<table><tr>' and count = 1
     for donnee in collection
-      out << "<td><input type=\"checkbox\" "
+      id = nom.to_s + '_' + donnee.id.to_s
+      out << "<td><input type=\"checkbox\" id=\"#{id}\" "
       out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
       out << 'checked="checked" ' if objectcollection and objectcollection.include? donnee
-      out << "/> #{donnee}</td>"
-      out << '</tr><tr>' and count = 0 if options[:size] and options[:size] == count
+      out << "/><label for=\"#{id}\">#{donnee}</label></td>"
+      out << '</tr><tr>' if options[:size] and count % options[:size] == 0 and collection.size > count
       count += 1
     end
     out << '</tr></table>'
@@ -198,9 +199,12 @@ module ApplicationHelper
   ### LIENS RELATIFS ##############################################################
 
   # add_create_link
+  # options :
+  # permet de spécifier un controller
   def link_to_new(message='', options = {})
-    options.update({:action => 'new'})
-    link_to image_create(message), options, { :class => 'nobackground' }
+    link_options = options.update({:action => 'new'})
+    link_to(image_create(message), link_options,
+            { :class => 'nobackground' })
   end
 
   def link_to_view(ar)
@@ -210,18 +214,17 @@ module ApplicationHelper
   end
 
   def link_to_edit_and_list(ar)
-    [ link_to_edit(ar), link_to_back ].compact * (' | ')
+    [ link_to_edit(ar), link_to_back ].compact.join('|')
   end
-
   # add_edit_link(demande)
-  def link_to_edit(ar, options = {})
-    action = options[:action] ||= 'edit'
-    options.update(:action => action, :id => ar) 
-    link_to image_edit, options, { :class => 'nobackground' }
+  def link_to_edit(ar, action = 'edit')
+    desc = 'Editer'
+    link_to image_edit, {
+      :action => action, :id => ar }, { :class => 'nobackground' }
   end
 
   def link_to_modify(ar)
-    link_to_edit(ar, :action => 'modify')
+    link_to_edit(ar, 'modify')
   end
 
   # add_delete_link(demande)
@@ -249,8 +252,8 @@ module ApplicationHelper
   # <%= show_pages_links @demande_pages %>
   def show_pages_links(pages, message)
     result = '<table class="pages"><tr><td>'
-    result << "#{link_to_new(message)}</td><td>"
-    return "#{result}</td></tr></table>" unless pages.length > 0
+    result << "#{link_to_new(message)}</td>"
+    return "<td>#{result}</td></tr></table>" unless pages.length > 0
 
     if pages.current.previous
       result << '<td>' + link_to(image_first_page, { :page => pages.first }, {
