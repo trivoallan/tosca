@@ -10,7 +10,7 @@ logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Lo
 <%= show_pages_links(@correctif_pages, 'un correctif') %>
 
 <% titres = ["Logiciel <br/>#{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}", 
-             'Patch', 'Demande', 
+             'Version', 'Patch', 'Demande', 
              "Tâches #{show_help 'Marquer les reversements urgents en précisant le délais de reversement'}"+
                "<br/>#{text_field('reversement','max_jours', :size => 5, :value => @max_jours)}",
              'Etat du reversement', 'Description fonctionnelle', 
@@ -20,6 +20,7 @@ logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Lo
   result = ''
   tache = c.todo(@max_jours)
   result << "<td>#{link_to_logiciel c.logiciel if c.logiciel}</td>"
+  result << "<td>#{c.demandes.collect{|d| d.paquets.collect{|p| p.version}}}</td>"
   result << "<td>#{link_to_file c, 'patch'}</td>"
   result << "<td>#{link_to_any_demande c}</td>"
 result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"

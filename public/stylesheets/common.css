@@ -79,7 +79,7 @@ span.left {
 	padding: 10px;
 	height: 80px;
 }
-#haut {
+.haut {
 	width: 100%;
 	background: #e2efe2; 
 	margin-bottom: 20px;
@@ -87,12 +87,12 @@ span.left {
         padding-bottom: 0px;
 	border-bottom: 2px solid #cfc8cf;
 }
-#contenu { 
+.contenu { 
 	margin:2%; 
 	padding: 0px;
 	width: 96%; /* mettre 100% - (2 x margin) */
 }
-#pied {
+.pied {
 	position: fixed;
 	color: black;
 	background-color: #e2efe2;
@@ -341,14 +341,23 @@ span.left {
 	clear: right;
 }
 
-/**************************** erreur **************************/
+/**************************** warn et notice **************************/
 
 .error {
 	background-color: #FFD9D9;
 	border: 1px solid Red;
 	color: red;
 	font-weight: bold;
-	margin: 1em 2em; /* 1em auto */
+	margin: 1em 2em; 
+	padding: 1em;
+	width: 40%;
+}
+.notice {
+	background-color: #D9FFD9;
+	border: 1px solid Green;
+	color: green;
+	font-weight: bold;
+	margin: 1em 2em; 
 	padding: 1em;
 	width: 40%;
 }

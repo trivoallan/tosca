@@ -19,7 +19,8 @@
   <title>08000linux : <%= controller.controller_name %></title>
 </head>
 <body>
-  <div id="haut" class="haut">
+
+  <div class="haut">
 	<table width="100%">
         <tr>
           <td width="5" rowspan="2">
@@ -38,9 +39,12 @@
         </table>
   </div><!-- end of haut -->
 
-  <div id="contenu">
-        <p id="notice" style="color: green"><%= flash[:notice] %></p>
-
+  <div id="information">
+        <% if flash[:notice] %>
+          <div class="notice" id="notice">
+            <p id="notice"><%= flash[:notice] %></p>
+          </div>
+        <% end %>
         <% if flash[:warn] %>
           <div class="error" id="error">
                <h2>Une erreur s'est produite</h2>
@@ -49,11 +53,13 @@
           <% #TODO : Regarder si rails 1.2+ permet d'éviter cette ligne %>
           <% flash[:warn] = nil %>
         <% end %>
+  </div><!-- end of infos -->
 
+  <div class="contenu">
         <%= @content_for_layout %>
   </div><!-- end of contenu -->
 
-  <div id="pied" class="pied">
+  <div class="pied">
     <table width='100%'>
       <tr>
         <td valign='middle' align='right' width='60%'>
