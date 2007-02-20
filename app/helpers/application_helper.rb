@@ -216,10 +216,14 @@ module ApplicationHelper
     [ link_to_edit(ar), link_to_back ].compact.join('|')
   end
   # add_edit_link(demande)
-  def link_to_edit(ar)
+  def link_to_edit(ar, action = 'edit')
     desc = 'Editer'
     link_to image_edit, {
-      :action => 'edit', :id => ar }, { :class => 'nobackground' }
+      :action => action, :id => ar }, { :class => 'nobackground' }
+  end
+
+  def link_to_modify(ar)
+    link_to_edit(ar, 'modify')
   end
 
   # add_delete_link(demande)
