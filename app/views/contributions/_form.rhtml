@@ -1,0 +1,70 @@
+<%= error_messages_for 'contribution' %>
+
+<!--[form:contribution]-->
+<table><tr valign='top'><td>
+
+<p><label for="contribution_nom">Nom</label><br/>
+<%= text_field 'contribution', 'nom'  %></p>
+
+<p><label for="contribution_logiciel">Logiciel</label><br/>
+  <% options = { :include_blank => true } %>
+  <% donnees = @logiciels.collect{|l| [ l.nom, l.id]} %>
+  <%= select("contribution", "logiciel_id", donnees, options) %>
+  <%= image_tag("spinner.gif",
+                :align => 'absmiddle',
+                :border=> 0,
+                :id => "spinner",
+                :style=>"display: none;" ) %></p>
+
+<p><label for="contribution_ingenieur">Ingénieur</label><br/>
+<%= select('contribution', 'ingenieur_id', 
+           @ingenieurs.collect{|i| [ i.nom, i.id]}, :include_blank => true ) %></p>
+
+<p><label for="contribution_description_fonctionnelle">Description fonctionnelle</label><br/>
+<%= text_area 'contribution', 'description_fonctionnelle', :cols => 60, :rows => 10  %></p>
+
+<p><label for="contribution_etatreversement">Etat du reversement</label><br/>
+<%= select('contribution', 'etatreversement_id', 
+           @etatreversements.collect{|e| [ e.nom, e.id]}) %></p>
+
+<p><label for="urlreversement_valeur">Url de reversement principale</label><br/>
+<%= text_field 'urlreversement', 'valeur' %></p>
+
+<p><label for="contribution_reverse_le">Reversé le</label><br/>
+<%= datetime_select 'contribution', 'reverse_le'  %></p>
+
+<p><label for="contribution_cloture_le">Cloturé le</label><br/>
+<%= datetime_select 'contribution', 'cloture_le'  %></p>
+
+</td><td>
+
+<p><label for="contribution_patch">Patch</label><br/>
+<%= file_column_field 'contribution', 'patch'  %></p>
+
+<p><label for="contribution_typecontribution">Type de contribution</label><br/>
+<%= select('contribution', 'etatreversement_id', 
+           @typecontributions.collect{|t| [ t.nom, t.id]}) %></p>
+
+<% if @ingenieur %>
+<p><label for="contribution_id_mantis">Id Mantis</label><br/>
+<%= text_field 'contribution', 'id_mantis', :size => 3 %></p>
+<% end %>
+
+<p><label for="contribution_description">Description technique</label><br/>
+<%= text_area 'contribution', 'description', :cols => 60, :rows => 10  %></p>
+
+<%= observe_field 'contribution_logiciel_id',  
+         :update => 'paquets',
+         :before => "Element.show('spinner')",
+         :success => "Element.hide('spinner')",
+         :url => {:action => 'ajax_paquets'},
+         :with => 'id'
+         %>
+
+<div id="paquets">
+  <%= render :partial => "liste_paquets" %>
+</div>
+
+</td></tr></table>
+<!--[eoform:contribution]-->
+

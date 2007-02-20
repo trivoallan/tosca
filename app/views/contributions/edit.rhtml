@@ -1,0 +1,9 @@
+<h1>Editer un correctif</h1>
+
+<%= start_form_tag({:action => 'update', :id => @correctif}, :multipart => true ) %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Enregistrer' %>
+<%= end_form_tag %>
+
+<%= link_to 'Voir', :action => 'show', :id => @correctif %> |
+<%= link_to 'Retour à la liste', :action => 'list' %>
