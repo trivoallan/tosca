@@ -244,7 +244,7 @@ class DemandesController < ApplicationController
   def ajax_piecejointes
     return render_text('') unless request.xhr? and params[:id]
     @demande = Demande.find(params[:id], :include => [:piecejointes]) unless @demande
-    render :partial => 'tab_piecejointe', :layout => false
+    render :partial => 'tab_piecejointes', :layout => false
   end
 
   def update
