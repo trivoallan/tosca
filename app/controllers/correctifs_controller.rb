@@ -5,10 +5,10 @@ class CorrectifsController < ApplicationController
 
   model :contribution
 
-  helper :reversements, :demandes, :paquets, :binaires, :logiciels
+  #helper :reversements, :demandes, :paquets, :binaires, :logiciels
 
   before_filter :verifie, :only => 
-    [ :show, :edit, :update, :destroy ]
+    [ :show, :update, :destroy ]
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
@@ -35,6 +35,11 @@ class CorrectifsController < ApplicationController
 
   def show
     @correctif = Contribution.find(params[:id])
+  end
+
+  def edit 
+    return redirect_to :controller => 'contributions', 
+                       :action => 'edit', :id => params[:id]
   end
 
 end

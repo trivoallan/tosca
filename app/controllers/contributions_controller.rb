@@ -6,7 +6,7 @@ class ContributionsController < ApplicationController
   #helper :reversements, :demandes, :paquets, :binaires, :logiciels
 
   before_filter :verifie, :only => 
-    [ :show, :edit, :update, :destroy ]
+    [ :show, :edit, :update, :destroy ] 
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],

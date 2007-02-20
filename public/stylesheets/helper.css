@@ -5,6 +5,13 @@
 .pair {
 	background-color: #f0f0f0;
 }
+.pair:hover {
+	background-color: #e2efe2;
+}
+
 .impair {
 	background-color: #e0e0e0;
+}
+.impair:hover {
+	background-color: #e2efe2;
 }
