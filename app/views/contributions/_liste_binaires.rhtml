@@ -1,0 +1,6 @@
+<p>Binaires résultants :</p>
+<% if @correctif %>
+  <%= hbtm_check_box( @correctif.binaires, @binaires, 'correctif[binaire_ids]') %>
+<% else %>
+  <%= hbtm_check_box( [], @binaires, 'correctif[binaire_ids]') %>
+<% end %>
