@@ -21,7 +21,7 @@ class ContributionsController < ApplicationController
   end
 
   def select
-    @logiciels = Correctif.find(:all).collect{|c| c.logiciel }.uniq
+    @logiciels = Correctif.find(:all, :order => 'reverse_le').collect{|c| c.logiciel }.uniq
   end
 
 end
