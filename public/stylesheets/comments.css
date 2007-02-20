@@ -1,25 +1,28 @@
+/* comments.css
+ * Copyright Linagora SA 2006 - Tous droits réservés.
+ */
 
 .commentaire-public {
 	background: white;
 }
-
 .commentaire-prive {
 	background: #E2E2E2;
 }
-
 .commentaire_infos {
 	vertical-align: top;
 	align: center;
 	width: 160px;
 }
-
 .commentaire_text {
-	width: 45em; /*430px;*/
+	width: 100%; 
 }
-
 .commentaire_action {
 	vertical-align: top;
 	width: 85px;
+}
+
+#commentaire_corps { /* textarea  */
+	width: 100%; 
 }
 
 

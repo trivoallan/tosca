@@ -1,28 +1,36 @@
 <% ############ infos demandes #########################  
    # require : @demande, @correctifs, @count 
-   #           @identifiant_ingenieurs %>
+   #           @identifiant_ingenieurs 
+%>
+
 <div class="summary">
-<%= render_partial 'infos_demande' %>
+  <%= render_partial 'infos_demande' %>
 </div>
 
 <div class="content">
-<h1><%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %></h1>
- <% if @last_commentaire %>
-    <%= render :partial => 'tab_comment', :collection => [@last_commentaire] %>
- <% else %>
-   <%=indent @demande.description %>
- <% end %>
-<% action = {:action => 'comment', :controller => 'commentaires', 
-             :id => @demande} %>
-<% form_tag(action, :multipart => true) do %>
-  <%= render :partial => 'comment_form' %>
-  <p>&nbsp;</p>
-<% end %>
 
+  <h1><%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %></h1>
 
-<div class="demande_tab" id="demande_tab">
-<%= render :partial => 'tab_description' if @last_commentaire %>
-</div>
+  <div class="demande_tab_content">
+  <% if @last_commentaire %>
+     <%= render :partial => 'tab_comment', :collection => [@last_commentaire] %>
+  <% else %>
+     <%=indent @demande.description %>
+  <% end %>
+  </div>
+
+  <div>  
+    <% action = {:controller => 'commentaires', 
+                 :action => 'comment', :id => @demande } %>
+    <% form_tag(action, :multipart => true) do %>
+      <%= render :partial => 'comment_form' %>
+      <p>&nbsp;</p>
+    <% end %>
+  </div>
+
+  <div class="demande_tab" id="demande_tab">
+    <%= render :partial => 'tab_description' if @last_commentaire %>
+  </div>
 
 </div>
 

@@ -93,12 +93,11 @@ ul.menu li {
  ******************************************/
 
 .demande_tab {
-	padding-bottom: 40px;
+	padding-bottom: 5em;
 }
 
 .demande_tabnav {
 	color: #000000;
-	border-bottom: 2px solid #cfc8cf; /*2px solid black;*/
 	margin: 12px 0px 0px 0px;
 	padding: 0px;
 	z-index: 1;
@@ -140,6 +139,5 @@ ul.menu li {
 	background: #DDDDDD /* background: #FFB000; */
 	padding: 20px;
 	border: 2px solid #cfc8cf; /* 2px solid black; */
-	border-top: none;
 	z-index: 2;	}
 

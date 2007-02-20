@@ -1,26 +1,24 @@
 <%= error_messages_for 'commentaire' if @commentaire %>
 
 <!--[form:commentaire]-->
+
 <table width="100%"><tr>
-  <td><b><u>
+  <td width="70%"><b><u>
     <label for="commentaire_corps">Votre Réponse:</label>
-  </u></b></td>
+    </u></b></td>
   <% if @ingenieur %>
-    <td>
-      <label for="commentaire_prive">Privé ?</label>
-      <%= check_box("commentaire", "prive") %>
-    </td><td>
-       <label for="demande_statut_id">Statut</label>
-        <%= select("demande", "statut_id", @statuts, 
-          :include_blank => true) %>
-    </td>
+  <td width="10%" align="right">
+    <label for="commentaire_prive">Privé ?</label>
+    <%= check_box("commentaire", "prive") %></td>
+  <td width="20%" align="right">
+    <label for="demande_statut_id">Statut</label>
+    <%= select("demande", "statut_id", @statuts, 
+               :include_blank => true) %></td>
   <% end %>
 </tr></table>
 
-
- <%= text_area 'commentaire', 'corps', :cols => 90, :rows => 15 %><br />
-
-
+ <%= text_area 'commentaire', 'corps', :cols => nil, :rows => 15 %>
+ <br/> <br/>
  <label for="piecejointe_file">Adjoindre un fichier : </label>
  <%= file_column_field 'piecejointe', 'file', :size => 59  %>
  <%= submit_tag 'Répondre' %>
