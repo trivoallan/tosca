@@ -32,7 +32,8 @@ module ApplicationHelper
     return '' if collection.nil?
     out = '<table><tr>' and count = 1
     for donnee in collection
-      id = nom.to_s + '_' + donnee.id.to_s
+      # Pour enlever les [ et ] qui ne sont pas valides dans un id d'une balise XHTML
+      id = nom.to_s.gsub(/[\[\]]/, '_') + '_' + donnee.id.to_s
       out << "<td><input type=\"checkbox\" id=\"#{id}\" "
       out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
       out << 'checked="checked" ' if objectcollection and objectcollection.include? donnee
