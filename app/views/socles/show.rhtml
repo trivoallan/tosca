@@ -11,16 +11,16 @@
 <% end %>
 
 <p>Ce socle a <b><%= pluralize(@socle.paquets.size, 'source') %></b></p>
-<div id="bloc_scroll">
+<div class="bloc_scroll">
 <%= show_liste(@socle.paquets, 'paquet source', :no_title => true) {
   |p| link_to_paquet(p) } %>
-</div></p>
+</div><br/>
 
 <p>Ce socle a <b><%= pluralize(@binaires.size, 'binaire') %></b></p>
-<div id="bloc_scroll">
+<div class="bloc_scroll">
 <%= show_liste(@binaires, 'paquet binaire', :no_title => true) {
   |b| link_to_binaire(b) } %>
-</div></p>
+</div><br/>
 
 
 <%= link_to_edit_and_list(@socle) %>

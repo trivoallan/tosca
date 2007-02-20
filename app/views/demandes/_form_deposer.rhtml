@@ -13,7 +13,7 @@
 <%= render :partial => 'form_client' %><br />
 
 <p><label>Paquets supportés pour <%= @demande.logiciel.nom if @demande.logiciel %> : </label>
-<div id="bloc_scroll">
+<div class="bloc_scroll">
 <%= render :partial => 'form_binaires' %>
 </div>
 </p>

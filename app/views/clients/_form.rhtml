@@ -33,7 +33,7 @@
 	@photos.collect{|p| [ p.description, p.id]}) %></p>
 
       <p><label>Socles</label></p>
-      <div id="bloc_scroll">
+      <div class="bloc_scroll">
         <%= hbtm_check_box(@client.socles, @socles, 'socle_ids', :size => 1) %>
       </div>
     </td>
