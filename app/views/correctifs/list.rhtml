@@ -7,7 +7,7 @@ logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Lo
 
 <%= render_partial 'filtres/actions' %>
 
-<%= show_pages_links(@correctif_pages, 'un correctif') %>
+<%= show_pages_links(@correctif_pages, 'un correctif', :controller => 'contributions') %>
 
 <% titres = ["Logiciel <br/>#{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}", 
              'Version', 'Patch', 'Demande', 
@@ -34,6 +34,5 @@ result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"
 }%>
 <% end %>
 
-<%= show_pages_links(@correctif_pages, 'un correctif') %>
-
+<%= show_pages_links(@correctif_pages, 'un correctif', :controller => 'contributions') %>
 <%= render_partial "statistiques" %>

@@ -13,6 +13,12 @@ class Demande < ActiveRecord::Base
   has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
   belongs_to :correctif
   belongs_to :socle
+  has_many :piecejointes, :through => :commentaires
+
+
+  validates_presence_of :resume, 
+       :warn => "Vous devez indiquer un résumé de votre demande"
+  validates_length_of :resume, :within => 3..60
 
   #versioning, qui s'occupe de la table demandes_versions
   acts_as_versioned
@@ -27,11 +33,6 @@ class Demande < ActiveRecord::Base
         [ 'beneficiaires.client_id = ?', client_id ],
         :include => [:beneficiaire]} }
   end
-
-  has_many :piecejointes, :through => :commentaires
-  validates_presence_of :resume, 
-  :warn => "Vous devez indiquer un résumé de votre demande"
-  validates_length_of :resume, :within => 3..60
 
   def to_param
     "#{id}-#{resume.gsub(/[^a-z1-9]+/i, '-')}"

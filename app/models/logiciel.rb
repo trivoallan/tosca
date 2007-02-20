@@ -19,7 +19,6 @@ class Logiciel < ActiveRecord::Base
   validates_presence_of :competences => 
     "Vous devez spécifier au moins une compétence" 
 
-
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 
         [ 'paquets.contrat_id = ?', contrat_ids ],
@@ -31,7 +30,6 @@ class Logiciel < ActiveRecord::Base
         c.name =~ /(_id|nom|resume|description|referent)$/ || 
           c.name == inheritance_column } 
   end
-
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"

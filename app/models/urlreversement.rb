@@ -1,3 +1,3 @@
 class Urlreversement < ActiveRecord::Base
-  belongs_to :correctif
+  belongs_to :contribution
 end

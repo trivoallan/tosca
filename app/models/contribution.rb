@@ -15,6 +15,8 @@ class Contribution < ActiveRecord::Base
   file_column :patch, :fix_file_extensions => nil
 
   validates_length_of :nom, :within => 3..100
+  validates_presence_of :logiciel,
+      :warn => "Vous devez spécifier un logiciel" 
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary || 

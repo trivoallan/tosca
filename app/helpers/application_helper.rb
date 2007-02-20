@@ -238,7 +238,7 @@ module ApplicationHelper
       :method => 'post' }
   end
 
-  def link_to_back(desc='Retour à la liste', options = {:action => 'list'})
+  def link_to_back(desc='Retour à la liste', options = {:action => 'list', :id => nil })
     link_to(image_back, options)
   end
 
@@ -252,9 +252,9 @@ module ApplicationHelper
 
   # call it like this :
   # <%= show_pages_links @demande_pages %>
-  def show_pages_links(pages, message)
+  def show_pages_links(pages, message, options={})
     result = '<table class="pages"><tr><td>'
-    result << "#{link_to_new(message)}</td>"
+    result << "#{link_to_new(message, options)}</td>"
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
 
     if pages.current.previous

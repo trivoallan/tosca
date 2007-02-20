@@ -90,6 +90,7 @@ span.left {
 .contenu { 
 	margin:2%; 
 	padding: 0px;
+	padding-bottom: 5em;
 	width: 96%; /* mettre 100% - (2 x margin) */
 }
 .pied {
