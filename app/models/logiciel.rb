@@ -32,14 +32,6 @@ class Logiciel < ActiveRecord::Base
           c.name == inheritance_column } 
   end
 
-  def count_mes_paquets(beneficiaire)
-    if beneficiaire
-      Paquet.count(:all, :conditions => 
-                     "contrat_id IN (#{contrats.collect{|c| c.id}.join(',')})")
-    else
-      Paquet.count(:all, :conditions => "logiciel_id = #{id}")
-    end
-  end
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"

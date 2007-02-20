@@ -13,16 +13,7 @@
 <%  ############ affichage du plan des autorisations d'accés  ##############  %>
 
 <%  # recherche des dépendances pour tous les controllers
-    @classes = Hash.new;
-    require 'find'
-    Find.find(File.join(RAILS_ROOT, 'app/controllers'))  { |name|
-        require_dependency(name) if /_controller\.rb$/ =~ name
-    }
-
-    # définition de @classes[] : listes des controllers de l'application
-    ObjectSpace.subclasses_of(ActionController::Base).each do |obj|
-        @classes["#{obj.controller_name}"] = obj
-    end
+   
 
     # on prend mainteant chaque controller un à un
     @classes.sort {|a,b| a[0]<=>b[0]}.each { |ca|

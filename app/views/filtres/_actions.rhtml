@@ -5,7 +5,7 @@
         <%  actions = []
             filters = session[:filters].collect{|f| f[0] unless f[1] == nil}.compact
             case controller.controller_name 
-            when 'filtres' : actions << link_to('Voir le liste des demandes', 
+            when 'filtres' : actions << link_to('Voir la liste des demandes', 
                                          :controller => 'demandes', :action => 'list') 
             else actions << link_to('Modifier les filtres', 
                                      :controller => 'filtres', :action => 'index') 

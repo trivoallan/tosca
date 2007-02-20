@@ -2,7 +2,10 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class LogicielsController < ApplicationController
-  helper :paquets, :demandes, :competences
+  helper :paquets, :demandes, :competences, :classifications
+  
+  # auto completion in 2 lines, yeah !
+  auto_complete_for :logiciel, :nom
 
   before_filter :verifie, :only => 
     [ :show, :edit, :update, :destroy ]
@@ -38,10 +41,20 @@ class LogicielsController < ApplicationController
     cclassification_groupe = ['classifications.groupe_id = ? ', @groupe ] if @groupe != nil  
     #options = compute_scope([:classifications], clogiciel, cclassification_groupe)[:find] ||= {}
     options = compute_scope(nil, clogiciel)[:find] ||= {}
-    options = options.update(:per_page => 25, :order => 'logiciels.nom')
+    options = options.update(:per_page => 15, :order => 'logiciels.nom')
+
+    @count = {}
+    @clients = Client.find_select
+    @groupes = Groupe.find_select
+    @technologies = Competence.find_select
 
     @groupes = Classification.find(:all).collect{|c| c.groupe}.uniq
     #scope_filter do
+    @count[:paquets] = Paquet.count
+    @count[:binaires] = Binaire.count
+    @count[:softwares] = Logiciel.count
+    @count[:technologies] = Competence.count
+
       @logiciel_pages, @logiciels = paginate :logiciels, options
     #end
   end

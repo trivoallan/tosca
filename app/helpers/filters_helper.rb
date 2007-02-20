@@ -41,7 +41,7 @@ module FiltersHelper
     name = "filtres[#{property}]"
     # out << '<br/>' unless options[:inline] == true
     # out << text_field_tag(name, @session[:filtres][property], options)
-    out << text_field("filters", property, :value => session[:filters][property], :size => 20 )
+    out << text_field('filters', property, :value => session[:filters][property], :size => 20 )
   end
 
 

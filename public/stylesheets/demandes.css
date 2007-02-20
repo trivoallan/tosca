@@ -73,6 +73,7 @@ ul.menu {
   margin: 2px 0 1em 0;
 }
 
+
 ul.menu li {
   font-family: Verdana, Arial, Helvetica, Geneva, sans-serif;
   font-size: 100%;
@@ -86,7 +87,9 @@ ul.menu li {
   margin-top: -3px;
 }
 
-
+div.auto_complete ul li {
+  background-image: none;
+}
 
 /******************************************
  * Tabulations 

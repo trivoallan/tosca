@@ -43,6 +43,18 @@ class BienvenueController < ApplicationController
   end
 
   def plan
+    classes = Hash.new;
+    require 'find'
+
+    Find.find(File.join(RAILS_ROOT, 'app/controllers'))  { |name|
+        require_dependency(name) if /_controller\.rb$/ =~ name
+    }
+
+    # définition de @classes[] : listes des controllers de l'application
+    ObjectSpace.subclasses_of(::ActionController::Base).each do |obj|
+      classes["#{obj.controller_name}"] = obj
+    end
+    @classes = classes.sort {|a,b| a[0]<=>b[0]}
   end
 
 end
