@@ -2,9 +2,10 @@
 
 <%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
 
-<% titres = ['Nom', select_filter(@clients, 'client'), 
+<% titres = ['Nom', 
+             '<form action="/beneficiaires/list" method="post">' + 
+             select_filter(@clients, 'client') + '</form>', 
              '', 'Domaine']%>
-<% form_tag :action => "list" do %>
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
   result = ''
   result << "<td>#{b.nom}</td>"
@@ -12,13 +13,13 @@
   result << '<td>'
   result << "<form action=\"/account/devenir/#{b.id}\" "
   result << 'method="post">   <input name="commit" '
-  result << 'value="Devenir" type="submit"></form>'
+  result << 'value="Devenir" type="submit" /></form>'
   result << '</td>'
   result << "<td>#{b.domaine}</td>"
   result << "#{link_to_actions_table b}"
   result
 }%>
-<% end %>
+
 
 
 <%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>

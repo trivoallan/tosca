@@ -21,7 +21,9 @@ class LogicielsController < ApplicationController
   end
 
   def content_columns
-     @content_columns ||= columns.reject { |c| c.primary || c.name =~ /(_id|_count|Description)$/ || c.name == inheritance_column }
+    @content_columns ||= columns.reject { |c| 
+      c.primary || c.name =~ /(_id|_count|Description)$/  
+    }
   end
 
   # affiche la liste des logiciels avec filtres

@@ -69,10 +69,11 @@ module ApplicationHelper
     #options[:width] ||= 15
     options[:title] ||= ''
     options[:onchange] ||= 'this.form.submit();'
+    options[:name] ||= name
     #collected = list.collect{|e| [sum_up(e.nom, options[:width]), e.id] }.unshift(["#{options[:title]}", ''])
     collected = list.collect{|e| [e.nom, e.id] }.unshift(["#{options[:title]}", ''])
     select = options_for_select(collected, default.to_i)
-    return select_tag(name, select, options)
+    content_tag :select, select, options 
   end
 
 
