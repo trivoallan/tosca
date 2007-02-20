@@ -198,12 +198,9 @@ module ApplicationHelper
   ### LIENS RELATIFS ##############################################################
 
   # add_create_link
-  # options :
-  # permet de spécifier un controller
   def link_to_new(message='', options = {})
-    link_options = options.update({:action => 'new'})
-    link_to(image_create(message), link_options,
-            { :class => 'nobackground' })
+    options.update({:action => 'new'})
+    link_to image_create(message), options, { :class => 'nobackground' }
   end
 
   def link_to_view(ar)
@@ -213,17 +210,17 @@ module ApplicationHelper
   end
 
   def link_to_edit_and_list(ar)
-    [ link_to_edit(ar), link_to_back ].compact.join('|')
+    [ link_to_edit(ar), link_to_back ].compact * (' | ')
   end
+
   # add_edit_link(demande)
-  def link_to_edit(ar, action = 'edit')
-    desc = 'Editer'
-    link_to image_edit, {
-      :action => action, :id => ar }, { :class => 'nobackground' }
+  def link_to_edit(ar, options = {})
+    options.update(:action => 'edit', :id => ar) 
+    link_to image_edit, options, { :class => 'nobackground' }
   end
 
   def link_to_modify(ar)
-    link_to_edit(ar, 'modify')
+    link_to_edit(ar, :action => 'modify')
   end
 
   # add_delete_link(demande)
