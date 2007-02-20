@@ -114,7 +114,7 @@ module ImagesHelper
                               :border => 0, :alt => desc, :title => desc)
   end
 
-  @@image_favicon = nil
+  @@image_favicon = nil 
   def image_favicon
     @@image_favicon ||= image_path("favicon.ico")
   end
