@@ -181,7 +181,7 @@ private
       # damn fast with_scope (MLO ;))
       Binaire.set_scope(contrat_ids)
       Client.set_scope(client_id)
-      Correctif.set_scope(contrat_ids)
+      Contribution.set_scope(contrat_ids)
       Demande.set_scope(client_id)
       Document.set_scope(client_id) 
       Logiciel.set_scope(contrat_ids)
@@ -243,7 +243,7 @@ private
     Identifiant.with_scope(sidentifiant) {
     Demande.with_scope(sdemandes) {
     Logiciel.with_scope(slogiciels) {  
-    Correctif.with_scope(scorrectifs) {
+    Contribution.with_scope(scorrectifs) {
     Paquet.with_scope(spaquets) {
       yield }}}}}}}}
   end

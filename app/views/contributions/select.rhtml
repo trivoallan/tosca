@@ -3,5 +3,5 @@
 <%= show_liste(@logiciels, 'Logiciels') { |l| 
   out = ''
   out << "#{link_to l.nom, :controller => 'contributions', :action => 'list', :id => l.id}" 
-  out << " (#{l.correctifs.size}) "
+  out << " (#{l.contributions.size}) "
 } %>

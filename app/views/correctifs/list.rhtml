@@ -16,11 +16,11 @@ logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Lo
              'Etat du reversement', 'Description fonctionnelle', 
              'Reversé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
 <% form_tag(:controller => 'correctifs', :action => 'list') do %>
-<%= show_table(@correctifs, Correctif, titres) { |c|
+<%= show_table(@correctifs, Contribution, titres) { |c|
   result = ''
   tache = c.todo(@max_jours)
   result << "<td>#{link_to_logiciel c.logiciel if c.logiciel}</td>"
-  result << "<td>#{c.demandes.collect{|d| d.paquets.collect{|p| p.version}}}</td>"
+  result << "<td>#{c.demandes.collect{|d| d.paquets.inspect}}</td>"
   result << "<td>#{link_to_file c, 'patch'}</td>"
   result << "<td>#{link_to_any_demande c}</td>"
 result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"

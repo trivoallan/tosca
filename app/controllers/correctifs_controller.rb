@@ -2,6 +2,9 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class CorrectifsController < ApplicationController
+
+  model :contribution
+
   helper :reversements, :demandes, :paquets, :binaires, :logiciels
 
   before_filter :verifie, :only => 
@@ -24,32 +27,31 @@ class CorrectifsController < ApplicationController
     # @count = Correctif.count
     conditions = nil
     @logiciels = Logiciel.find(:all)
-    @count = Correctif.count
+    @count = Contribution.count
     scope_filter do
-      @correctif_pages, @correctifs = paginate :correctifs, :per_page => 10
+      @correctif_pages, @correctifs = paginate :contributions, :per_page => 10
     end
   end
 
   def show
-    @correctif = Correctif.find(params[:id])
+    @correctif = Contribution.find(params[:id])
   end
 
   def new
-    @correctif = Correctif.new
+    @correctif = Contribution.new
     @urlreversement = Urlreversement.new
     _form
   end
 
   def create
-    @correctif = Correctif.new(params[:correctif])
+    @correctif = Contribution.new(params[:correctif])
     if @correctif.save
       flash[:notice] = 'Le correctif suivant a bien été crée : </br><i>'+@correctif.description+'</i>'
       if params[:urlreversement]
-        # TODO : eviter de refaire un hash à la main...
         urlreversement = Urlreversement.new(params[:urlreversement])
         urlreversement.correctif = @correctif
         urlreversement.save
-        flash[:notice] = '</br>L\'url a également été enregistrée'
+        flash[:notice] << '</br>L\'url a également été enregistrée.'
       end
       redirect_to :action => 'list'
     else
@@ -58,12 +60,12 @@ class CorrectifsController < ApplicationController
   end
 
   def edit
-    @correctif = Correctif.find(params[:id])
+    @correctif = Contribution.find(params[:id])
     _form
   end
 
   def update
-    @correctif = Correctif.find(params[:id])
+    @correctif = Contribution.find(params[:id])
     # @correctif.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
     @correctif.demandes = Demande.find(@params[:demande_ids]) if @params[:demande_ids]
     if @correctif.update_attributes(params[:correctif])
@@ -76,7 +78,7 @@ class CorrectifsController < ApplicationController
   end
 
   def destroy
-    Correctif.find(params[:id]).destroy
+    Contribution.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
 

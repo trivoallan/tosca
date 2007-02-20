@@ -3,7 +3,7 @@
 #####################################################
 class Logiciel < ActiveRecord::Base
 
-  has_many :correctifs
+  has_many :contributions
   has_many :classifications
   has_and_belongs_to_many :competences
   has_and_belongs_to_many :projets
