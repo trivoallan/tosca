@@ -50,10 +50,10 @@ module ApplicationHelper
     return '' if collection.nil?
     out = ""
     for donnee in collection
-      out << "<input type=\"radio\" id=\"#{donnee.id}\" "
+      out << "<input type=\"radio\" "
       out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
       out << 'checked="checked" ' if objectcollection and objectcollection.include? donnee
-      out << "> #{donnee} </input>"
+      out << "/>#{donnee}"
     end
     out
   end

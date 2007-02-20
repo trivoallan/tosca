@@ -1,6 +1,6 @@
 <%
   title, subtitle = nil, nil
-  case controller.action_name 
+  case controller.action_name
   when 'modify'
     compte = ( session[:user].id == @identifiant.id ? 'mon compte' : "le compte de #{@identifiant.nom}" )
     title = "Modifier #{compte}"
@@ -24,12 +24,12 @@
   if @ingenieur
     identifiant[:titre] = '<label for="identifiant_login">Choisissez un identifiant</label>'
     identifiant[:champ] = text_field("identifiant", "login", :size => 16)
-    role[:titre] = '<label for="identifiant_role">Rôles</label>'
+    role[:titre] = '<label>Rôles</label>'
     role[:champ] = hbtm_radio_button( @identifiant.roles, @roles, 'role_ids')
 
     case controller.action_name
     when 'signup', 'multiple_signup'
-      case controller.action_name 
+      case controller.action_name
       when 'signup'
         help[:client] = 'L\'utilisateur est-il un client du service ?'
       when 'multiple_signup'
@@ -59,9 +59,9 @@
        lstm_text_field('T&eacute;l&eacute;phone', 'identifiant', 'telephone'),
        [ '<hr/>', nil ],
        [ identifiant[:titre], identifiant[:champ] ],
-       lstm_password_field('Choisissez un mot de passe', 'identifiant', 
+       lstm_password_field('Choisissez un mot de passe', 'identifiant',
           'password', :size => 16, :value => '' ),
-       lstm_password_field('Confirmez ce dernier', 'identifiant', 
+       lstm_password_field('Confirmez ce dernier', 'identifiant',
           'password_confirmation', :size => 16, :value => '' ),
        [ '<hr/>', nil ]
       ])
@@ -71,12 +71,12 @@
       [ role[:titre], role[:champ] ],
       [ identifiant_client[:titre], identifiant_client[:champ] ]
    ])
-   
+
    if (controller.action_name != 'multiple_signup')
-     informations = lstm_text_area('Informations', 'identifiant', 
-                       'informations', :rows => 5, :cols => 58) 
+     informations = lstm_text_area('Informations', 'identifiant',
+                       'informations', :rows => 5, :cols => 58)
      fields.concat([ [informations[0], nil] , [nil, informations[1]]])
-   end 
+   end
    fields.concat([
       [ '<hr/>', nil ],
       [ csv[:titre], nil ],
