@@ -322,7 +322,7 @@ module ApplicationHelper
   end
 
   def show_help(help_text, options = {:symbol => '?'})
-    "<a alt=\"#{help_text}\" title=\"#{help_text}\" >#{options[:symbol]}</a>"
+    "<a title=\"#{help_text}\" >#{options[:symbol]}</a>"
   end
 
   def show_title(title, options = {})
