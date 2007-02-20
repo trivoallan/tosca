@@ -20,6 +20,7 @@ class DocumentsController < ApplicationController
          :redirect_to => { :action => :select }
 
   def list
+    return redirect_to :action => 'select' unless params[:id]
     @typedocument = Typedocument.find(params[:id])
     conditions = ["typedocument_id = ?", @typedocument.id]
     @document_pages, @documents = paginate :documents, :per_page => 10,

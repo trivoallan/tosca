@@ -96,7 +96,7 @@ class DemandesController < ApplicationController
 
   def create
     @demande = Demande.new(params[:demande])
-    @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
+    @demande.paquets = Paquet.find(:all, params[:paquet_ids]) if params[:paquet_ids]
     if @demande.save
       flash[:notice] = 'La demande a bien été créée.'
       Notifier::deliver_demande_nouveau({:demande => @demande, 
@@ -182,13 +182,8 @@ class DemandesController < ApplicationController
     # TODO c'est pas dry, cf ajax_comments
     options = { :order => 'created_on DESC', :include => [:identifiant], 
       :limit => 1, :conditions => { :demande_id => @demande.id } }
-    if @beneficiaire
-      options[:conditions][:prive] = false
-      @last_commentaire = Commentaire.find(:first, options)
-    elsif @ingenieur
-      @last_commentaire = Commentaire.find(:first, options)
-    end
-    
+    options[:conditions][:prive] = false if @beneficiaire
+    @last_commentaire = Commentaire.find(:first, options)    
     flash[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 
     @statuts = @demande.statut.possible().collect{ |s| [ s.nom, s.id] }
@@ -199,7 +194,7 @@ class DemandesController < ApplicationController
     
     # On va chercher les identifiants des ingénieurs assignés
     # C'est un héritage du passé
-    # TODO : s'en débarrasser avec une migration et un :include
+    # TODO : s'en débarrasser avec une migration et un :include'
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
     select = "DISTINCT identifiants.id "
     @identifiants_ingenieurs = 
