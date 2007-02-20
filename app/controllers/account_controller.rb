@@ -34,7 +34,7 @@ class AccountController < ApplicationController
           redirect_back_or_default :action => "list", :controller => 'bienvenue'
         else
           @login = params['user_login']
-          flash[:warn]  = "Echec lors de la connexion"
+          flash.now[:warn]  = "Echec lors de la connexion"
       end
     end
   end
@@ -163,7 +163,7 @@ class AccountController < ApplicationController
     case request.method 
     when :post
       if(params['textarea_csv'].to_s.empty?)
-        flash[:warn] = "Veuillez rentrer un texte sous format CSV"
+        flash.now[:warn] = "Veuillez rentrer un texte sous format CSV"
         return
       end
 

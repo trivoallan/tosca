@@ -41,17 +41,15 @@
 
   <div id="information">
         <% if flash[:notice] %>
-          <div class="notice" id="notice">
-            <p id="notice"><%= flash[:notice] %></p>
+          <div class="notice">
+            <p><%= flash[:notice] %></p>
           </div>
         <% end %>
         <% if flash[:warn] %>
-          <div class="error" id="error">
+          <div class="error">
                <h2>Une erreur s'est produite</h2>
                 <ul><li><%= flash[:warn] %></li></ul>
           </div>
-          <% #TODO : Regarder si rails 1.2+ permet d'éviter cette ligne %>
-          <% flash[:warn] = nil %>
         <% end %>
   </div><!-- end of infos -->
 

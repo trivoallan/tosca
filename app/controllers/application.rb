@@ -144,19 +144,19 @@ class ApplicationController < ActionController::Base
   #       on tombe alors sur un acces/refuse, dommage
   def verifie(ar, options = {:controller => 'bienvenue', :action => 'list'})
     if !params[:id]
-      flash[:warn] = 'Veuillez préciser l\'identifiant de la demande à consulter.'
+      flash.now[:warn] = 'Veuillez préciser l\'identifiant de la demande à consulter.'
       redirect_to(options) and return false
     end
     scope_beneficiaire {
       object = ar.find(params[:id], :select => 'id') 
       if object = nil
-        flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
+        flash.now[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
         redirect_to(options) and return false
       end
     }
     true
   rescue  ActiveRecord::RecordNotFound
-    flash[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
+    flash.now[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
     redirect_to(options) and return false
   end
 

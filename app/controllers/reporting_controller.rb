@@ -153,12 +153,12 @@ class ReportingController < ApplicationController
       @report[:middle_report] = ((end_date.beginning_of_month - @report[:middle_date]) / 1.month).round + 1
       @report[:total_report] = ((end_date.beginning_of_month - start_date.beginning_of_month) / 1.month).round + 1  
     else
-      flash[:warn] = 'paramètres incorrects'
+      flash.now[:warn] = 'paramètres incorrects'
       # condition de sortie
       @contrat = nil
     end
   rescue
-    flash[:warn] = 'paramètres incorrects'
+    flash.now[:warn] = 'paramètres incorrects'
     @contrat = nil
   end
 

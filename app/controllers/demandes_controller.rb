@@ -184,7 +184,7 @@ class DemandesController < ApplicationController
       :limit => 1, :conditions => { :demande_id => @demande.id } }
     options[:conditions][:prive] = false if @beneficiaire
     @last_commentaire = Commentaire.find(:first, options)    
-    flash[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
+    flash.now[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 
     @statuts = @demande.statut.possible().collect{ |s| [ s.nom, s.id] }
     if (@demande.statut_id == 4 || @demande.statut_id == 5)
@@ -273,7 +273,7 @@ class DemandesController < ApplicationController
                                                 :controller => self},
                                               flash)
     else
-      flash[:warn] = "Une erreur est survenue, veuillez nous contacter"
+      flash.now[:warn] = "Une erreur est survenue, veuillez nous contacter"
     end
     redirect_to :action => 'comment', :id => @demande.id
   end
@@ -290,7 +290,7 @@ class DemandesController < ApplicationController
                                            flash)
       else flash[:notice] = "La demande n'est plus assignée"
       end
-    else flash[:warn] = "Une erreur est survenue, veuillez nous contacter"
+    else flash.now[:warn] = "Une erreur est survenue, veuillez nous contacter"
     end
     redirect_to_comment
   end
@@ -302,14 +302,14 @@ class DemandesController < ApplicationController
     if @demande.update_attributes(:correctif_id => params[:correctif_id])
       flash[:notice] = "<br />Un correctif a été lié"
     else
-      flash[:warn] = "Une erreur est survenue, veuillez nous contacter"
+      flash.now[:warn] = "Une erreur est survenue, veuillez nous contacter"
     end
     redirect_to :action => 'comment', :id => @demande.id
   end
 
   def deposer
     @demande = @demande || Demande.new(params[:demande])
-    flash[:warn] = nil
+    flash.now[:warn] = nil
 
     # On réinitialise tout le bouzin si on a changé le client
     if (params[:fake] and 

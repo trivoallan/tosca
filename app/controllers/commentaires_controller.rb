@@ -48,7 +48,7 @@ class CommentairesController < ApplicationController
     # on vérifie et on envoie le courrier
     if @commentaire.corps.size < 5
       @commentaire.errors.add_on_empty('corps') 
-      flash[:warn] = 'Votre commentaire est trop court, veuillez recommencer'
+      flash.now[:warn] = 'Votre commentaire est trop court, veuillez recommencer'
     elsif @commentaire.save and demande.update_attributes(params[:demande])
       flash[:notice] = 'Le commentaire a bien été ajouté.'
       unless @commentaire.prive
@@ -59,7 +59,7 @@ class CommentairesController < ApplicationController
            :statut => demande.statut.nom}, flash)
       end
     else
-      flash[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
+      flash.now[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
     end
 
     options = { :action => 'comment', :controller => 'demandes', :id => demande }
@@ -73,7 +73,7 @@ class CommentairesController < ApplicationController
     if @commentaire.toggle!(:prive)
       flash[:notice] = "Le commentaire ##{@commentaire.id} est désormais #{@commentaire.etat}"
     else
-      flash[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas été modifié"'
+      flash.now[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas été modifié"'
     end
     redirect_to :controller => 'demandes', :action => 'comment', :id => params[:demande]
   end
