@@ -23,6 +23,9 @@
 <%= select('correctif', 'etatreversement_id', 
            @etatreversements.collect{|e| [ e.nom, e.id]}) %></p>
 
+<p><label for="urlreversement_valeur">Valeur</label><br/>
+<%= text_field 'urlreversement', 'valeur'  %></p>
+
 <p><label for="correctif_reverse_le">Reversé le</label><br/>
 <%= datetime_select 'correctif', 'reverse_le'  %></p>
 

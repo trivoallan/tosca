@@ -29,6 +29,7 @@ class Correctif < ActiveRecord::Base
 
 
   def to_s
+    return '' unless patch
     index = patch.rindex('/')+ 1
     patch[index..-1]
   end

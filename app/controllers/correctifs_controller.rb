@@ -36,6 +36,7 @@ class CorrectifsController < ApplicationController
 
   def new
     @correctif = Correctif.new
+    @urlreversement = Urlreversement.new
     _form
   end
 
@@ -43,6 +44,13 @@ class CorrectifsController < ApplicationController
     @correctif = Correctif.new(params[:correctif])
     if @correctif.save
       flash[:notice] = 'Le correctif suivant a bien été crée : </br><i>'+@correctif.description+'</i>'
+      if params[:urlreversement]
+        # TODO : eviter de refaire un hash à la main...
+        urlreversement = Urlreversement.new(params[:urlreversement])
+        urlreversement.correctif = @correctif
+        urlreversement.save
+        flash[:notice] = '</br>L\'url a également été enregistrée'
+      end
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -56,7 +64,7 @@ class CorrectifsController < ApplicationController
 
   def update
     @correctif = Correctif.find(params[:id])
-#    @correctif.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
+    # @correctif.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
     @correctif.demandes = Demande.find(@params[:demande_ids]) if @params[:demande_ids]
     if @correctif.update_attributes(params[:correctif])
       flash[:notice] = 'Le correctif suivant a bien été mis à jour : </br><i>'+@correctif.description+'</i>'
@@ -72,8 +80,6 @@ class CorrectifsController < ApplicationController
     redirect_to :action => 'list'
   end
 
-
-  
   def ajax_paquets
     render_text('') and return unless request.xml_http_request? and params[:id]
 
