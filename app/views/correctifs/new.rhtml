@@ -1,8 +1,0 @@
-<h1>Ajouter un nouveau correctif</h1>
-
-<%= start_form_tag({:action => 'create'}, :multipart => true) %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag "Ajouter" %>
-<%= end_form_tag %>
-
-<%= link_to 'Retour à la liste', :action => 'list' %>
