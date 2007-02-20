@@ -77,7 +77,12 @@ class AccountController < ApplicationController
       @identifiant.roles = Role.find(params[:role_ids]) if params[:role_ids]
 
       if @identifiant.update_attributes(newIdentifiant)
-        flash[:notice]  = "Modification réussie, Vous devez vous reconnecter si vous avez modifier votre compte !"
+        if session[:user] == @identifiant
+          #On sauve bien notre profil
+          clear
+          session[:user] = @identifiant
+        end
+        flash[:notice]  = "Modification réussie"
         redirect_back_or_default :action => "list", :controller => 'bienvenue'
       end
     when :get
@@ -142,13 +147,7 @@ class AccountController < ApplicationController
   end
 
   def logout
-    @session[:user] = nil
-    @session[:beneficiaire] = nil
-    @session[:ingenieur] = nil
-    @session[:logo_08000] = nil
-    @session[:filtres] = nil
-    @beneficiaire = nil
-    @ingenieur = nil
+    clear
     redirect_to "/"
   end
 
@@ -237,6 +236,16 @@ class AccountController < ApplicationController
     else
       yield
     end
+  end
+
+  def clear
+    @session[:user] = nil
+    @session[:beneficiaire] = nil
+    @session[:ingenieur] = nil
+    @session[:logo_08000] = nil
+    @session[:filtres] = nil
+    @beneficiaire = nil
+    @ingenieur = nil
   end
 
 
