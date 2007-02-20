@@ -8,38 +8,28 @@
 <% role_titre = nil
    role_champs = nil
    if @ingenieur
-     role_titre = 'R&ocirc;le'
+     role_titre = 'Rôle'
      role_champs = @identifiant.roles
    end
+
+   fields = [
+     [ '<hr/>', nil ],
+     [ 'Nom complet', "<label>#{@identifiant.nom}</label>" ],
+     [ 'Titre', "<label>#{@identifiant.titre}</label>" ],
+     [ 'Email', mail_to(@identifiant.email, @identifiant.email) ],
+     [ 'Téléphone', "<label>#{@identifiant.telephone}</label>" ],
+     [ '<hr/>', nil ],
+     [ 'Identifiant', "<label>#{@identifiant.login}</label>" ],
+     [ '<hr/>', nil ],
+     [ role_titre, role_champs ],
+     [ 'Informations :', nil ],
+     [  nil, "<dl><dd>#{indent @identifiant.informations}</dd></dl>" ]
+   ]
+
 %>
 
-<% titre = [ nil,
-             'Nom complet',
-             'Titre',
-             'Email',
-             'T&eacute;l&eacute;phone',
-             nil,
-             'Identifiant',
-             nil,
-             'Affichage Personnel ?',
-             role_titre,
-             'Informations :',
-             nil] %>
-
-<% champs = [ "<hr/>",
-              "<label>#{@identifiant.nom}</label>",
-              "<label>#{@identifiant.titre}</label>",
-              mail_to(@identifiant.email, @identifiant.email),
-              "<label>#{@identifiant.telephone}</label>",
-              "<hr/>",
-              "<label>#{@identifiant.login}</label>",
-              "<hr/>",
-              check_box('identifiant', 'affichage_personnel', :disabled => true),
-              role_champs,
-              nil,
-              "<dd>#{indent @identifiant.informations}</dd>" ] %>
-
-<%= show_table_form titre, champs, :title => "Voir #{compte}"  %>
+<%= show_title "Voir #{compte}" %>
+<%= show_table_form fields %>
 </div>
 <br/>
 <%= link_to_back 'Retour à la liste des comptes' %>
