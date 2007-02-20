@@ -1,7 +1,8 @@
 
 <div class="info">
 
-<h1><%= link_to_logiciel contribution.logiciel if contribution.logiciel %></h1>
+<h1><%= link_to_logiciel contribution.logiciel if contribution.logiciel %>
+    : <%= contribution.nom %></h1>
 <p><%= contribution.description_fonctionnelle %></p>
 <p><b>Reversé le</b> : <%= contribution.reverse_le_formatted %></p>
 <p><b>Etat du reversement</b> : <%= contribution.etatreversement.nom if contribution.etatreversement %></p>
