@@ -178,7 +178,7 @@ class ReportingController < ApplicationController
     @data[:resolution] = 
       [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:en_cours] ]
     @data[:evolution] = 
-      [ [:'bénéficiaires'], [:logiciels], [:correctifs] ] # TODO : [:interactions]
+      [ [:'bénéficiaires'], [:logiciels], [:contributions] ] # TODO : [:interactions]
      @data[:annulation] = 
       [ [:informations], [:anomalies], [:'évolutions'] ]
 
@@ -227,14 +227,14 @@ class ReportingController < ApplicationController
     liste = @contrat.client.beneficiaires.collect{|b| b.id} # .join(',')
     demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.beneficiaire_id IN (?)',
       nil, nil, liste ]  
-    correctifs = [ 'correctifs.created_on BETWEEN ? AND ?', nil, nil ]  
+    contributions = [ 'contributions.created_on BETWEEN ? AND ?', nil, nil ]  
     # (#{liste})" ]
 
     # TODO : provient du scop de appication.rb
     # TODO : c'est pas DRY
     cpaquets = ['paquets.contrat_id = ?', @contrat.id ]
-    scorrectifs = {:find => {:conditions => cpaquets, :include => [:paquets]}}
-    Correctif.with_scope(scorrectifs) {
+    scontributions = {:find => {:conditions => cpaquets, :include => [:paquets]}}
+    Contribution.with_scope(scontributions) {
     until (start_date > end_date) do 
       infdate = "#{start_date.strftime('%y-%m')}-01"
       start_date = start_date.advance(:months => 1)
@@ -247,8 +247,8 @@ class ReportingController < ApplicationController
         compute_resolution @data[:resolution]
         compute_annulation @data[:annulation]
         compute_temps @data
-        correctifs[1], correctifs[2] = infdate, supdate
-        Correctif.with_scope({:find => {:conditions => correctifs }}) do
+        contributions[1], contributions[2] = infdate, supdate
+        Contribution.with_scope({:find => {:conditions => contributions }}) do
           compute_evolution @data[:evolution]
         end
       end
@@ -427,23 +427,23 @@ class ReportingController < ApplicationController
 
 
   ##
-  # Calcule le nombre de beneficiaire, de logiciel et correctif distinct par mois
+  # Calcule le nombre de beneficiaire, de logiciel et contribution distinct par mois
   def compute_evolution(report)
     # TODO : corriger ça, maintenant on a le contrat
-    correctifs = 0
+    contributions = 0
     if @beneficiaire
       ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
       conditions = [ "paquets.contrat_id IN (#{ids})" ]
-      joins= 'INNER JOIN correctifs_paquets cp ON cp.correctif_id = correctifs.id ' +
+      joins= 'INNER JOIN contributions_paquets cp ON cp.contribution_id = contributions.id ' +
         'INNER JOIN paquets ON cp.paquet_id = paquets.id '
-      correctifs = Correctif.count(:conditions => conditions, :joins => joins)
+      contributions = Contribution.count(:conditions => conditions, :joins => joins)
     else
-      correctifs = Correctif.count()
+      contributions = Contribution.count()
     end
     # TODO : distinct ?
     report[0].push Demande.count('beneficiaire_id', :distinct => true)
     report[1].push Demande.count('logiciel_id', :distinct => true)
-    report[2].push correctifs
+    report[2].push contributions
   end
 
 
