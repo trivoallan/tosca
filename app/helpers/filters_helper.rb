@@ -9,16 +9,11 @@ module FiltersHelper
   def select_filter(list, property, options = {:title => "» #{property.capitalize}"})
     out = ''
     field = "#{property}_id"
-    # it's so dirty. mais le bel appel à remote_function 
-    # fait un bug sur le spinner :/
-    # Celui qui arrive à nettoyer ca aura une biere free ;)
+    # le filtre est invoqué à chaque changement du formulaire, donc 
+    # on désactive  le onchange
     options[:onchange] = ''
-#     options[:onchange] = "Element.show('spinner'); new Ajax.Updater('content', " + 
-#       "'/logiciels/update_list', {asynchronous:true, evalScripts:true, " + 
-#       "onSuccess:function(request){Element.hide('spinner')}}); return false;"
-    out << select_onchange(list, 
-                           session[:filters][field], "filters[#{field}]", 
-                           options)
+    out << select_onchange(list, session[:filters][field], 
+                           "filters[#{field}]", options)
   end
 
   ############

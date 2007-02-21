@@ -17,6 +17,10 @@
   margin-top: -2%;
 }
 
+.summary input,select {
+  width: 90%;
+}
+
 .underline {
   border-bottom: 1px solid #990066;
   width: 100%;
