@@ -8,19 +8,18 @@
              '', 'Domaine']%>
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
   result = ''
+  form = ''
+  form << "<form action=\"/account/devenir/#{b.id}\" method=\"post\">"
+  form << '<input name="commit" value="Devenir" type="submit" /></form>'
   result << "<td>#{b.nom}</td>"
   result << "<td>#{b.client.nom}</td>"
   result << '<td>'
-  result << "<form action=\"/account/devenir/#{b.id}\" "
-  result << 'method="post">   <input name="commit" '
-  result << 'value="Devenir" type="submit" /></form>'
+  result << form2
   result << '</td>'
   result << "<td>#{b.domaine}</td>"
   result << "#{link_to_actions_table b}"
   result
 }%>
-
-
 
 <%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
 

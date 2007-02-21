@@ -45,11 +45,14 @@ class AccountController < ApplicationController
   end
 
   def devenir
-    return unless @ingenieur
-    benef = Beneficiaire.find(params[:id])
-    session[:user] = benef.identifiant
-    set_sessions
-    redirect_back_or_default :action => "list", :controller => 'bienvenue'
+    if @ingenieur
+      benef = Beneficiaire.find(params[:id])
+      session[:user] = benef.identifiant
+      set_sessions
+    else
+      flash[:warn] = 'Vous n\'êtes pas autoriser à changer d\'identité'
+    end
+    redirect_to_home
   end
 
   def modify

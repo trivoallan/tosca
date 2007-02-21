@@ -33,8 +33,14 @@ class ApplicationController < ActionController::Base
     @beneficiaire = session[:beneficiaire]
   end
 
-  protected
-  
+
+protected
+   
+  # redirection par défaut en cas d'erreur / de non droit
+  def redirect_to_home
+      redirect_back_or_default :controller => 'bienvenue', :action => "list"
+  end
+ 
   # variable utilisateurs; nécessite session[:user]
   # penser à mettre à jour les pages statiques 404 et 500 en cas de modification
   def set_sessions
@@ -76,11 +82,8 @@ class ApplicationController < ActionController::Base
 
 
   def set_headers
-    if request.xhr?
-      headers['Content-Type'] = 'text/javascript; charset=utf-8'
-    else
-      headers['Content-Type'] = 'text/html; charset=utf-8'
-    end
+    headers['Content-Type'] = ( request.xhr? ? 'text/javascript; charset=utf-8' : 
+                                               'text/html; charset=utf-8' )
   end
 
   #   # fill up the new filter(s)
@@ -169,6 +172,7 @@ class ApplicationController < ActionController::Base
 
 
 private
+
   # scope imposé sur toutes les vues, 
   # pour limiter ce que peuvent voir nos clients
   # TODO : check les interférences avec les filtres
