@@ -13,9 +13,8 @@
 <tr><td><b>Compétences</b></td>
     <td><%= @logiciel.competences.collect{|c| c.nom}.join(', ') %></td></tr>
 
-<tr><td><b>Classifications</b></td>
-    <td><%= @logiciel.classifications.collect{|c| 
-              "#{link_to_groupe(c.groupe)} / #{c.bouquet.nom}" }.join(', ') %></td></tr>
+<tr><td><b>Groupe</b></td>
+    <td><%= @logiciel.groupe.nom if @logiciel.groupe %></td></tr>
 
 <tr><td><b>Liens</b></td>
     <td><%= show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 

@@ -3,7 +3,7 @@
 #####################################################
 class EraseAnnoyingClassifications < ActiveRecord::Migration
   def self.up
-    add_column :logiciels, :groupe_id, :integer
+    # add_column :logiciels, :groupe_id, :integer
 
     # lazy way
     logiciels = Logiciel.find(:all)

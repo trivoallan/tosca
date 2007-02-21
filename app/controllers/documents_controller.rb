@@ -43,6 +43,7 @@ class DocumentsController < ApplicationController
 
   def new
     @document = Document.new
+    # pour préciser le type dès la création
     @document.typedocument_id = params[:id]
     _form
   end

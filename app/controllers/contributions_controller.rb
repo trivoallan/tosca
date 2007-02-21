@@ -49,6 +49,8 @@ class ContributionsController < ApplicationController
   def new
     @contribution = Contribution.new
     @urlreversement = Urlreversement.new
+    # pour préciser le type dès la création
+    @contribution.logiciel_id = params[:id]
     _form
   end
 
@@ -105,6 +107,9 @@ class ContributionsController < ApplicationController
     render :partial => 'liste_paquets', :layout => false
   end
 
+  def to_s
+    nom
+  end
 
 private
 

@@ -26,8 +26,6 @@ class Logiciel < ActiveRecord::Base
         :include => [:paquets]} }
   end
 
-
-
   def self.list_columns 
     columns.reject { |c| c.primary || 
         c.name =~ /(_id|nom|resume|description|referent)$/ || 

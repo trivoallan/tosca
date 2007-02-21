@@ -7,8 +7,7 @@ class LogicielsController < ApplicationController
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom
 
-  before_filter :verifie, :only => 
-    [ :show, :edit, :update, :destroy ]
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
@@ -59,8 +58,6 @@ class LogicielsController < ApplicationController
     # options = compute_scope(nil, clogiciel)[:find] ||= {}
     options = { :per_page => 15, :order => 'logiciels.nom', :include => [:groupe,:competences] }
 
-
-
     @count = {}
     @clients = Client.find_select
     @groupes = Groupe.find_select
@@ -92,14 +89,11 @@ class LogicielsController < ApplicationController
 
   def new
     @logiciel = Logiciel.new
-    @competences = Competence.find(:all, :order => "nom")
-    @classifications = Classification.find_all
-    @licenses = License.find_all
+    _form
   end
 
   def create
     @logiciel = Logiciel.new(params[:logiciel])
-
     if @params[:competence_ids]
       @logiciel.competences = Competence.find(@params[:competence_ids]) 
     else
@@ -108,7 +102,6 @@ class LogicielsController < ApplicationController
       render :action => 'edit'
       return 
     end
-
     if @logiciel.save
       flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien été crée.'
       redirect_to :action => 'list'
@@ -119,16 +112,13 @@ class LogicielsController < ApplicationController
 
   def edit
     @logiciel = Logiciel.find(params[:id])
-    @competences = Competence.find(:all, :order => "nom")
-    @classifications = Classification.find(:all, :order => "client_id, bouquet_id, groupe_id")
-    @licenses = License.find(:all, :order => "nom")
+    _form
   end
 
   def update
     @logiciel = Logiciel.find(params[:id])
-    @licenses = License.find_all
-    @competences = Competence.find_all
-
+    @licenses = License.find(:all)
+    @competences = Competence.find(:all)
     if @params[:competence_ids]
       @logiciel.competences = Competence.find(@params[:competence_ids]) 
     else
@@ -137,9 +127,8 @@ class LogicielsController < ApplicationController
       render :action => 'edit'
       return 
     end
-
     if @logiciel.update_attributes(params[:logiciel])
-      flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien été mis à jour.'
+      flash[:notice] = "Le logiciel #{@logiciel.nom} a bien été mis à jour."
       redirect_to :action => 'list'
     else
       render :action => 'edit'
@@ -149,10 +138,17 @@ class LogicielsController < ApplicationController
   def destroy
     @logiciel = Logiciel.find(params[:id])
     @logiciel.destroy
-    flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien été supprimé.'
+    flash[:notice] = "Le logiciel #{@logiciel.nom} a bien été supprimé."
     redirect_to :action => 'list'
   end
 
-  private
+
+private
+
+  def _form
+    @competences = Competence.find(:all, :order => "nom")
+    @groupes = Groupe.find(:all, :order => "nom")
+    @licenses = License.find(:all, :order => "nom")
+  end  
 
 end
