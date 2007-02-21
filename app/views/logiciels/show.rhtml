@@ -14,7 +14,8 @@
     <td><%= @logiciel.competences.collect{|c| c.nom}.join(', ') %></td></tr>
 
 <tr><td><b>Groupe</b></td>
-    <td><%= @logiciel.groupe.nom if @logiciel.groupe %></td></tr>
+    <td><%= link_to(@logiciel.groupe.nom, :controller => 'groupes',
+            :action => 'show', :id => @logiciel.groupe_id ) if @logiciel.groupe %></td></tr>
 
 <tr><td><b>Liens</b></td>
     <td><%= show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 
@@ -31,13 +32,11 @@
     <td><%= show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) { |paquet| 
             link_to_paquet paquet } %></td></tr>
 
-<tr><td><b><!--Correctifs--></b></td>
-<%# correctifs = @logiciel.interactions.collect{|i| i.reversement.correctif} %>
-    <td><%#= show_liste(correctifs, 'Correctif') { |c| c.nom } %></td></tr>
-
-<tr><td><b><!--Reversements--></b></td>
-<%# reversements = @logiciel.interactions.collect{|i| i.reversement} %>
-    <td><%#= show_liste(reversements, 'Reversement') { |r| r.interaction.resume } %></td></tr>
+<tr><td><b>Contributions</b></td>
+    <td><%= show_liste(@logiciel.contributions, 'Contribution') { |c| 
+              link_to c.nom, :controller => 'contributions', 
+                             :action => 'show', :id => c.id
+            } %></td></tr>
 
 </table>
 
