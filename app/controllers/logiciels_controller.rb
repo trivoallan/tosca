@@ -29,6 +29,7 @@ class LogicielsController < ApplicationController
   end
 
   def update_list
+    # return render_text('toto')
     # return redirect_to_home unless request.xhr? 
     options = { :per_page => 15, :order => 'logiciels.nom', :include => [:groupe,:competences] }
 

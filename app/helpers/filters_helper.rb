@@ -9,7 +9,7 @@ module FiltersHelper
   def select_filter(list, property, options = {:title => "» #{property.capitalize}"})
     out = ''
     field = "#{property}_id"
-    options[:onchange] = '' # this.form.submit();'
+    options[:onchange] = '' # 'this.form.submit();'
 #     options[:onchange] = "Element.show('spinner'); new Ajax.Updater('content', " + 
 #       "'/logiciels/update_list', {asynchronous:true, evalScripts:true, " + 
 #       "onSuccess:function(request){Element.hide('spinner')}}); return false;"
