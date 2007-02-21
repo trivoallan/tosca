@@ -39,11 +39,6 @@ class AccountController < ApplicationController
     end
   end
 
-  def _form
-    @roles = Role.find(:all)
-    @clients = Client.find(:all)
-  end
-
   def devenir
     if @ingenieur
       benef = Beneficiaire.find(params[:id])
@@ -213,7 +208,6 @@ class AccountController < ApplicationController
     end
   end
 
-
   def list
     @roles = Role.find(:all)
     scope_filter do
@@ -225,17 +219,21 @@ class AccountController < ApplicationController
 
   def destroy
     Identifiant.find(params[:id]).destroy
-    redirect_back_or_default :action => "list", :controller => 'bienvenue'
+    redirect_to_home
   end
 
-  private
+
+private
+
+  def _form
+    @roles = Role.find(:all)
+    @clients = Client.find(:all)
+  end
+
   def scope_beneficiaire
     if @beneficiaire
       conditions = [ "identifiants.id = ?", @beneficiaire.identifiant_id ]
-      Identifiant.with_scope({ :find => {
-                               :conditions => conditions
-                               }
-                             }) { yield }
+      Identifiant.with_scope({ :find => {:conditions => conditions} }) { yield }
     else
       yield
     end
@@ -250,6 +248,5 @@ class AccountController < ApplicationController
     @beneficiaire = nil
     @ingenieur = nil
   end
-
 
 end

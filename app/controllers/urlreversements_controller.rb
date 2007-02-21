@@ -39,10 +39,6 @@ class UrlreversementsController < ApplicationController
     _form
   end
 
-  def _form
-    @correctifs = Correctif.find_all
-  end
-
   def update
     @urlreversement = Urlreversement.find(params[:id])
     if @urlreversement.update_attributes(params[:urlreversement])
@@ -57,4 +53,11 @@ class UrlreversementsController < ApplicationController
     Urlreversement.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+
+private
+
+  def _form
+    @correctifs = Correctif.find_all
+  end
+
 end

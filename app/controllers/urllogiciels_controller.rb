@@ -40,11 +40,6 @@ class UrllogicielsController < ApplicationController
     _form
   end
 
-  def _form
-    @typeurls = Typeurl.find_all
-    @logiciels = Logiciel.find_all
-  end
-
   def update
     @urllogiciel = Urllogiciel.find(params[:id])
     if @urllogiciel.update_attributes(params[:urllogiciel])
@@ -59,4 +54,12 @@ class UrllogicielsController < ApplicationController
     Urllogiciel.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+
+private
+
+  def _form
+    @typeurls = Typeurl.find_all
+    @logiciels = Logiciel.find_all
+  end
+
 end
