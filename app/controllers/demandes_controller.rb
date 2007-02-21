@@ -297,10 +297,10 @@ class DemandesController < ApplicationController
 
 
   def associer_contribution
-    return unless params[:demande][:id] and params[:contribution_id]
-    @demande = Demande.find(params[:demande][:id])
+    return unless params[:id] and params[:contribution_id]
+    @demande = Demande.find(params[:id])
     if @demande.update_attributes(:contribution_id => params[:contribution_id])
-      flash[:notice] = "<br />Un contribution a été lié"
+      flash[:notice] = "<br />Une contribution a été liée"
     else
       flash.now[:warn] = "Une erreur est survenue, veuillez nous contacter"
     end

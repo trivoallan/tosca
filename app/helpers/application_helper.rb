@@ -123,7 +123,7 @@ module ApplicationHelper
       text_area(model, field, options) ]
   end
 
-  ### LIENS ABSOLUS ################################################################
+  ### LIENS ABSOLUS ############################################################
 
   # lien vers un compte existant
   # DEPRECATED : préferer link_to_edit(id)
@@ -152,18 +152,22 @@ module ApplicationHelper
   def link_to_my_client(options = {:text => 'Mon&nbsp;Offre'})
     return unless session[:beneficiaire]
     if options[:image]
-      link_to image_tag(url_for_file_column(@beneficiaire.client.photo, 'image', 'thumb')),
-      :controller => 'clients', :action => 'show', :id => session[:beneficiaire].client_id
+      link_to image_tag(url_for_file_column(
+                  @beneficiaire.client.photo, 'image', 'thumb')),
+                  :controller => 'clients', 
+                  :action => 'show', :id => session[:beneficiaire].client_id
     else
-      link_to options[:text],
-      :controller => 'clients', :action => 'show', :id => session[:beneficiaire].client_id
+      link_to options[:text], :controller => 'clients', 
+                              :action => 'show', 
+                              :id => session[:beneficiaire].client_id
     end
   end
 
   # lien vers la consultation d'UN logiciel
   def link_to_logiciel(logiciel)
       if logiciel
-        link_to logiciel.nom, :controller => 'logiciels', :action => 'show', :id => logiciel.id
+        link_to logiciel.nom, :controller => 'logiciels', 
+                              :action => 'show', :id => logiciel.id
       else
         # cas où le logiciel n'existe pas/plus
         "logiciel inconnu"
@@ -172,7 +176,8 @@ module ApplicationHelper
 
   # lien vers la consultation d'UN groupe
   def link_to_groupe(groupe)
-      link_to groupe.nom, :controller => 'groupes', :action => 'show', :id => groupe.id
+      link_to groupe.nom, :controller => 'groupes', 
+                          :action => 'show', :id => groupe.id
   end
 
   # add_view_link(demande)
@@ -181,9 +186,9 @@ module ApplicationHelper
         :id => ar}, { :class => 'nobackground' }
   end
 
-  # un contribution peut être liée à une demande externe
+  # une contribution peut être liée à une demande externe
   # le "any" indique que la demande peut etre sur n'importe quel tracker
-  # TODO : verifier que le paramètre est un contribution
+  # TODO : verifier que le paramètre est une contribution
   def link_to_any_demande(contribution)
     return "Aucune demande associée" if !contribution.id_mantis && contribution.demandes.size == 0
     out = []
@@ -198,7 +203,7 @@ module ApplicationHelper
   end
 
 
-  ### LIENS RELATIFS ##############################################################
+  ### LIENS RELATIFS ############################################################
 
   # add_create_link
   # options :
@@ -238,7 +243,8 @@ module ApplicationHelper
       :method => 'post' }
   end
 
-  def link_to_back(desc='Retour à la liste', options = {:action => 'list', :id => nil })
+  def link_to_back(desc='Retour à la liste', 
+                   options = {:action => 'list', :id => nil })
     link_to(image_back, options)
   end
 
@@ -286,7 +292,7 @@ module ApplicationHelper
   end
 
 
-  ### AJAX ET JAVASCRIPT ##########################################################
+  ### AJAX ET JAVASCRIPT ########################################################
 
   # fonction JS de mis à jour d'une boite select
   # Non utilisé pour l'instant
@@ -305,7 +311,7 @@ module ApplicationHelper
   end
 
 
-  ### TEXTE ######################################################################
+  ### TEXTE #####################################################################
 
   # Affiche un résumé texte succint d'une demande
   # Utilisé par exemple pour les balise "alt" et "title"
@@ -349,7 +355,7 @@ module ApplicationHelper
   end
 
 
-  ### FILES ######################################################################
+  ### FILES #####################################################################
 
   def file_size( file )
     if File.exist?(file)
@@ -370,7 +376,7 @@ module ApplicationHelper
   end
 
 
-  ### LISTES ET TABLES ############################################################
+  ### LISTES ET TABLES ##########################################################
 
   # Affiche une liste d'élements dans une cellule de tableaux
   # call it like : show_cell_list(c.paquets) { |p| link_to_paquet(p) }
@@ -385,7 +391,8 @@ module ApplicationHelper
   # options :
   #  * no_title : permet de ne pas mettre de titre à la liste
   #  * puce : permet d'utiliser un caractère qcq à la place des balises <liste>
-  # Call it like : <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
+  # Call it like : 
+  #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
   def show_liste(elements, nom, options = {})
     size = elements.size
     return "<u><b>Aucun(e) #{nom}</b></u>" unless size > 0
@@ -453,7 +460,7 @@ module ApplicationHelper
   end
 
 
-  ### TIME #########################################################################
+  ### TIME ######################################################################
 
   #affiche le nombre de jours ou un "Sans objet"
   def display_jours(temps)
@@ -515,8 +522,6 @@ module ApplicationHelper
     ((seconds.abs)/60).round
   end
 
-  ### NON CLASSE ###################################################################
-
-
+  ### NON CLASSE ################################################################ 
 
 end
