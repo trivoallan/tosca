@@ -149,9 +149,6 @@ class AccountController < ApplicationController
     redirect_to "/"
   end
 
-  def welcome
-  end
-
   # Format du fichier CSV
   # Nom complet, Titre, Email, Téléphone, Identifiant, Mot de passe, Informations
   # Nom complet	 Titre	Email	Téléphone	Identifiant	Mot de passe	Informations

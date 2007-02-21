@@ -1,30 +1,22 @@
+<h1 class="spacer"><%= Metadata::NOM_COURT_APPLICATION+" - "+Metadata::NOM_LONG_APPLICATION %></h1>
+<h2 class="spacer">Plan / accés autorisés</h2>
 
-	<!-- contenu -->
-
-	<h1 class="spacer"><%= Metadata::NOM_COURT_APPLICATION+" - "+Metadata::NOM_LONG_APPLICATION %></h1>
-
-	<h2 class="spacer">Plan / accés autorisés</h2>
-
-	<table class="sommaire" width="100%">
-	  <tr>
-	    <td>
-		<div class="sommaire">
+<table class="sommaire" width="100%">
+  <tr>
+    <td>
+       <div class="sommaire">
 
 <%  ############ affichage du plan des autorisations d'accés  ##############  %>
-
-<%  # recherche des dépendances pour tous les controllers
+<%  # recherche des dépendances pour tous les controllers %>
    
-
-    # on prend mainteant chaque controller un à un
+<%    # on prend mainteant chaque controller un à un
     @classes.sort {|a,b| a[0]<=>b[0]}.each { |ca|
       c = ca[1]
-      cname = c.controller_name
-%>
+      cname = c.controller_name %>
+
       <% # on indique son nom et on le fait pointer vers la page principale du controller  %>
       <% if session[:user].authorized?(cname+'/index')%>
 	 <br/><b><%= link_to cname,  { :action => "index", :controller => cname }   %></b>
-      <% elsif session[:user].authorized?(cname+'/welcome')%>
-         <br/><b><%= link_to cname,  { :action => "welcome", :controller => cname }   %></b>
       <% elsif session[:user].authorized?(cname+'/list')%>
          <br/><b><%= link_to cname,  { :action => "list", :controller => cname }   %></b>
       <% end %>
@@ -32,24 +24,18 @@
       <% # on prend maintenant chacune de ses actions  %>
       <% c.public_instance_methods(false).sort.each { |m|
             mname = m.to_s
-            next if mname == "index"
-      %>
+            next if mname == "index"  %>
           <% # et on link sous réserve d'autorisation  %>
           <% if session[:user].authorized?(cname+'/'+mname)%>
 		<small>| <%= link_to mname, { :action => mname, :controller => cname } %> </small>
           <% end %>
-
       <% } # fin de la boucle sur les actions %>
 
 <%  } # fin de la boucle sur les controllers %>
-
 <%  ############ affichage du plan des autorisations d'accés  ##############  %>
 
+       </div>
+    </td>
+  </tr>
+</table>
 
-	        </div><!-- end of class sommaire -->
-	   </td>
-	  </tr>
-	</table>
-
-
-	<!-- end of contenu -->
