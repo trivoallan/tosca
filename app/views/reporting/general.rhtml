@@ -1,10 +1,13 @@
+
+<%# gap : espacement à l'affichage
+  # break_here : saut de page à l'impression  %>
 <% gap = "<p>&nbsp;</p>"*2 %>
 
 <div class='report' >
 <%= render_partial 'entete' %>
 
 <h2 class="chapter">Sommaire</h2>
-<%= render_partial 'sommaire' %><%= gap %>
+<%= render_partial 'sommaire' %>
 
 <%# =indent @data.inspect.gsub(/, :/,"\n") %><br />
 <%# =indent @colors.inspect.gsub(/, :/,"\n") %><br />
@@ -13,6 +16,8 @@
 <h2 class="chapter">Introduction</h2>
 <%= render_partial 'introduction' %><%= gap %>
 <p class="break_here"/>
+
+<%# penser à mettre à jour le sommaire si vous changer les titres ! %>
 
 <h1 class="chapter">1. Répartition de vos demandes</h1>
 <h2 class="chapter">1.1 <%= @titres[:repartition] %></h2>
