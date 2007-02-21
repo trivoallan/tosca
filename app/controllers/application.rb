@@ -38,7 +38,7 @@ protected
    
   # redirection par défaut en cas d'erreur / de non droit
   def redirect_to_home
-      redirect_back_or_default :controller => 'bienvenue', :action => "list"
+    redirect_back_or_default :controller => 'bienvenue', :action => "list"
   end
  
   # variable utilisateurs; nécessite session[:user]

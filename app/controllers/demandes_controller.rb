@@ -374,7 +374,7 @@ class DemandesController < ApplicationController
     if collection.empty?
       message = ": #{@demande.client.nom} n'a aucun #{param}," +
         ' veuillez nous contacter au plus vite'
-      @demande.errors.add_on_empty(:"#{param}", message)
+      @demande.errors.add_on_empty(param.intern, message)
     else
       @demande.send("#{param}=", collection.first)
     end

@@ -1,14 +1,20 @@
-<% form_tag({}, :id => 'filters', :name => 'filters') do %>
+<% options = { :update => 'content',
+    :url => '/logiciels/update_list',
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+
+
+<%= link_to_remote 'test', options %>
+
+
+
+<% form_remote_tag( options.update(:html => { :id => 'filters', :name => 'filters'})) do %>
 <div class="summary">
   <%= render_partial 'infos_logiciels' %>
 </div>
 <% end %>
 
-<% options = { :update => 'content',
-    :url => '/logiciels/update_list',
-    :before => "Element.show('spinner')",
-    :success => "Element.hide('spinner')" } %>
-<%= observe_form 'filters', options %>
+<%# = observe_form 'filters', options %>
 
 
 <div class="content">

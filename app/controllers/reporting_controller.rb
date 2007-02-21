@@ -336,7 +336,7 @@ class ReportingController < ApplicationController
     5.times do |i|
       values = logiciels.pop
       nom = Logiciel.find(values[0]).nom
-      report.push [ :"#{nom}" ]
+      report.push [ nom.intern ]
       report[i].push values[1]
     end
   end
@@ -350,7 +350,7 @@ class ReportingController < ApplicationController
     5.times do |i|
       values = commentaires.pop
       nom = values[0].to_s # "##{values[0]} (#{values[1]})"
-      report.push [ :"#{nom}" ]
+      report.push [ nom.intern ]
       report[i].push values[1]
     end
   end

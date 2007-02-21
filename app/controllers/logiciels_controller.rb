@@ -30,12 +30,23 @@ class LogicielsController < ApplicationController
   end
 
   def update_list
-    return render_text('') unless request.xhr? 
-    logger.debug(params.inspect)
+    return render_text('toto')
+    # return redirect_to_home unless request.xhr? 
     options = { :per_page => 15, :order => 'logiciels.nom', :include => [:groupe,:competences] }
 
+    conditions = nil
+    params['logiciel'].each_pair { |key, value|
+      conditions = " #{key} LIKE '%#{value}%'" if value != ''
+    }
+
+    params['filters'].each_pair { |key, value|
+      conditions = { key.intern => value } if value != ''
+    }
+    @test = conditions
+    options[:conditions] = conditions 
+    logger.debug("cond : #{conditions.inspect}")
     @logiciel_pages, @logiciels = paginate :logiciels, options
-    render :partial => 'softwares_list', :layout => false
+    render_text('toto') # :partial => 'softwares_list', :layout => false
     # options.update([:conditions { :client_id => params['filters'][:client_id]] 
   end
 
