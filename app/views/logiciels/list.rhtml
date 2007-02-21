@@ -4,19 +4,20 @@
     :success => "Element.hide('spinner')" } %>
 
 
-<%= link_to_remote 'test', options %>
-
 <% form_remote_tag( options.update(:html => { :id => 'filters', :name => 'filters'})) do %>
 <div class="summary">
   <%= render_partial 'infos_logiciels' %>
 </div>
 <% end %>
 
-<%# = observe_form 'filters', options %>
 
-<div class="content">
+<%= observe_form 'filters', options %>
+
+<div id="content">
   <%= render_partial 'softwares_list' %>
 </div>
+
+
 
 
 

@@ -9,9 +9,10 @@ module FiltersHelper
   def select_filter(list, property, options = {:title => "» #{property.capitalize}"})
     out = ''
     field = "#{property}_id"
-    # le filtre est invoqué à chaque changement du formulaire, donc 
-    # on désactive  le onchange
-    options[:onchange] = ''
+    options[:onchange] = '' # this.form.submit();'
+#     options[:onchange] = "Element.show('spinner'); new Ajax.Updater('content', " + 
+#       "'/logiciels/update_list', {asynchronous:true, evalScripts:true, " + 
+#       "onSuccess:function(request){Element.hide('spinner')}}); return false;"
     out << select_onchange(list, session[:filters][field], 
                            "filters[#{field}]", options)
   end

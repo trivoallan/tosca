@@ -1,12 +1,23 @@
 <table class="underline" cellpadding="3" cellspacing="0">
-  <tbody><tr><td bgcolor="#dddddd"><b>Offre</b></td></tr></tbody>
+  <tbody><tr><td bgcolor="#dddddd"><b>Recherche</b></td></tr></tbody>
 </table>
 <ul class="menu">
  <li><b>Nom </b></li>
- <li><%#= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
+ <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
  <li><b>Client </b></li>
  <li><%=select_filter(@clients, 'client') %></li>
 </ul>
+
+<%= image_next_remote_page %>
+<% options = { :update => 'content',
+    :with => "Form.serialize(document.forms['filters'])",
+    :url => '/logiciels/update_list',
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+<%= link_to_function 'suivant ', "document.forms['filters'].page.value++; " + 
+  remote_function(options) %>
+
+<%= hidden_field_tag 'page', '1' %>
 
 <table class="underline" cellpadding="3" cellspacing="0">
   <tbody><tr><td bgcolor="#dddddd"><b>Caractéristique</b></td></tr></tbody>

@@ -60,11 +60,19 @@ module ImagesHelper
                                 :border => 0, :alt => desc, :title => desc )
   end
 
+
+  def image_next_remote_page
+    image_tag("next_page.png", :size => "14x14",
+              :border => 0, :alt => 'Page suivante', 
+              :title => 'Page suivante', :onclick => 
+              " alert('ca y est');")
+  end
+
   @@next_page = nil
   def image_next_page
-    desc = 'Page suivante'
     @@next_page ||= image_tag("next_page.png", :size => "14x14",
-                                :border => 0, :alt => desc, :title => desc )
+                              :border => 0, :alt => 'Page suivante', 
+                              :title => 'Page suivante' )
   end
 
   @@last_page = nil
