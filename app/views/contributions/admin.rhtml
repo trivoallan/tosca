@@ -1,0 +1,38 @@
+<% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? 
+                  @params[:reversement][:max_jours] : 12 ) 
+logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}"
+%>
+
+<h1>Liste des contributions : interface de suivi</h1>
+
+<%= render_partial 'filtres/actions' %>
+
+<%= show_pages_links(@contribution_pages, 'une contribution', :controller => 'contributions') %>
+
+<% titres = ["Logiciel <br/>#{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}", 
+             'Version', 'Patch', 'Demande', 
+             "Tâches #{show_help 'Marquer les reversements urgents en précisant le délais de reversement'}"+
+               "<br/>#{text_field('reversement','max_jours', :size => 5, :value => @max_jours)}",
+             'Etat du reversement', 'Description fonctionnelle', 
+             'Reversé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
+<% form_tag(:controller => 'contributions', :action => 'list') do %>
+<%= show_table(@contributions, Contribution, titres) { |c|
+  result = ''
+  tache = c.todo(@max_jours)
+  result << "<td>#{link_to_logiciel c.logiciel if c.logiciel}</td>"
+  result << "<td>#{c.demandes.collect{|d| d.paquets.inspect}}</td>"
+  result << "<td>#{link_to_file c, 'patch'}</td>"
+  result << "<td>#{link_to_any_demande c}</td>"
+result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"
+  result << "<td>#{c.etatreversement.nom if c.etatreversement}</td>"
+  result << "<td>#{c.description_fonctionnelle}</td>"
+  result << "<td style='color:green'>#{c.reverse_le_formatted}</td>"
+  result << "<td style='color:red' >#{c.cloture_le_formatted if c.clos}</td>"
+  result << "<td nowrap>#{time_in_french_words(c.delai)}</td>"
+  result << "<td>#{c.updated_on_formatted}</td>"
+  result << "#{link_to_actions_table c}"
+}%>
+<% end %>
+
+<%= show_pages_links(@contribution_pages, 'une contribution', :controller => 'contributions') %>
+<%= render_partial "contributions/statistiques" %>

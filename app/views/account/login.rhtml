@@ -1,12 +1,5 @@
-<script language="javascript">
-<!--
-function javascriptOn() {
-  document.getElementById("javascript").value="true";
-}
--->
-</script>
 
-<%= start_form_tag :action=> "login" %>
+<% form_tag :action=> "login" do %>
 <div title="Account login" id="loginform" class="form">
 
     <h1>Identification</h1>
@@ -21,13 +14,20 @@ function javascriptOn() {
     <td><input type="password" name="user_password" id="user_password" size="16"/>
         <input type="hidden" name="user_crypt" id="user_crypt" size="24" value="false"/></td>
   </tr><tr>
-    <td><input type="submit" name="login" value="Valider &#187;" class="primary"
-               onmouseover='javascript:javascriptOn();' />
+    <td><input type="submit" name="login" value="Valider &#187;" class="primary" />
         <input type="hidden" name="javascript" id="javascript" size="24" value="false"/></td>
     <td></td>
   </tr>
 </table>
 
 </div>
-<%= end_form_tag %>
+<% end %>
+
+<script language="javascript">
+<!-- 
+  // used for ajaxified filters (session is set)
+  document.getElementById("javascript").value="true";
+-->
+</script>
+
 

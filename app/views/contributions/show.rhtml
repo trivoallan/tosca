@@ -1,0 +1,35 @@
+<%= render :partial => 'contribution' %>
+
+<h2>Autres informations</h2>
+
+<% for column in Contribution.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @contribution.send(column.name) %>
+</p>
+<% end %>
+
+<p><b>Logiciel:</b> <%= link_to_logiciel @contribution.logiciel if @contribution.logiciel %></p>
+<p><b>Patch:</b> <%= link_to_file @contribution, 'patch' %><p>
+
+<%= show_liste(@contribution.demandes, 'demande') { |d| 
+    link_to_demande(d, :show_id => true, :icon_severite => true) 
+    } %><br />
+
+<%= show_liste(@contribution.urlreversements, 'url(s) de reversement') { |u| 
+      out = "<a href=\"#{u.valeur}\">#{u.valeur}</a> " 
+      out << link_to(image_edit, :controller => 'urlreversements', 
+                                 :action => 'edit', :id => u.id)
+    } %>
+    <%= link_to "Ajouter un reversement", :controller => 'urlreversements', 
+                :action => "new", :contribution_id => @contribution.id %><br />
+
+<%= show_liste(@contribution.paquets, 'paquet(s) sur lesquels il a été appliqué') { |p| 
+      link_to_paquet(p) 
+    } %><br />
+
+<%= show_liste(@contribution.binaires, 'binaire(s) résultant') { |b| 
+      link_to_binaire(b) 
+    } %><br />
+
+<%= link_to_edit_and_list @contribution %>
+

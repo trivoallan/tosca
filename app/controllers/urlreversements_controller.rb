@@ -43,7 +43,8 @@ class UrlreversementsController < ApplicationController
     @urlreversement = Urlreversement.find(params[:id])
     if @urlreversement.update_attributes(params[:urlreversement])
       flash[:notice] = 'Urlreversement was successfully updated.'
-      redirect_to :action => 'show', :id => @urlreversement
+      redirect_to :controller => 'contributions', 
+                   :action => 'show', :id => @urlreversement.contribution_id
     else
       render :action => 'edit'
     end

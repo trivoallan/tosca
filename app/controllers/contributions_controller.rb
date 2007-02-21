@@ -5,7 +5,7 @@ class ContributionsController < ApplicationController
 
   # je ne sais pas s'il sont tous nécessaire : 
   # helper :reversements, :demandes, :paquets, :binaires, :logiciels
-  helper :demandes
+  helper                  :demandes, :paquets, :binaires
 
   before_filter :verifie, :only => [ :show, :edit, :update, :destroy ] 
 
