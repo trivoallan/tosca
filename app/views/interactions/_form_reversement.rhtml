@@ -15,9 +15,9 @@
 <p><label for="reversement_accepte">Accepte</label><br/>
 <%= check_box 'reversement', 'accepte'  %></p>
 
-<p><label for="reversement_correctif">Correctifs</label><br/>
-<%= select('reversement', 'correctif_id', 
-           @correctifs.collect{|l| [ l.nom, l.id]}) %></p>
+<p><label for="reversement_contribution">Contributions</label><br/>
+<%= select('reversement', 'contribution_id', 
+           @contributions.collect{|l| [ l.nom, l.id]}) %></p>
 
 <p><label for="reversement_etatreversement">Etat</label><br/>
 <%= select('reversement', 'etatreversement_id', 

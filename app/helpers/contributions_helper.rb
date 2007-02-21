@@ -1,7 +1,7 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-module ContributionHelper
+module ContributionsHelper
   # call it like : 
   # <%= link_to_contribution @contribution %>
   def link_to_contribution(c)

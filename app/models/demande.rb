@@ -11,7 +11,7 @@ class Demande < ActiveRecord::Base
   has_and_belongs_to_many :paquets
   has_and_belongs_to_many :binaires
   has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
-  belongs_to :correctif
+  belongs_to :contribution
   belongs_to :socle
   has_many :piecejointes, :through => :commentaires
 

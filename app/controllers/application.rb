@@ -210,7 +210,7 @@ private
     cdemande_type = ['demandes.typedemande_id = ? ', filtres['typedemande_id'] ] if filtres['typedemande_id']
     cdemande_statut = ['demandes.statut_id = ? ', filtres['statut_id'] ] if filtres['statut_id']
     clogiciel = [ 'logiciels.id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
-    ccorrectif_logiciel = [ 'logiciel_id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
+    ccontribution_logiciel = [ 'logiciel_id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
     cclassification_groupe = ['classifications.groupe_id = ? ', filtres['groupe_id'] ] if filtres['groupe_id']
 
     ###########
@@ -239,7 +239,7 @@ private
                               clogiciel, 
                               cdemande_statut)
     slogiciels = compute_scope([:classifications], clogiciel, cclassification_groupe)
-    scorrectifs = compute_scope(nil, ccorrectif_logiciel)
+    scontributions = compute_scope(nil, ccontribution_logiciel)
     spaquets = compute_scope([:logiciel], clogiciel)
 
     Beneficiaire.with_scope(sbeneficiaire) {
@@ -248,7 +248,7 @@ private
     Identifiant.with_scope(sidentifiant) {
     Demande.with_scope(sdemandes) {
     Logiciel.with_scope(slogiciels) {  
-    Contribution.with_scope(scorrectifs) {
+    Contribution.with_scope(scontributions) {
     Paquet.with_scope(spaquets) {
       yield }}}}}}}}
   end

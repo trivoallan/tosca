@@ -69,7 +69,7 @@ class BinairesController < ApplicationController
 
   private
   def _form
-    @correctifs = Correctif.find_all
+    @contributions = Contribution.find_all
     @paquets = Paquet.find(:all, Paquet::OPTIONS)
     @arches = Arch.find_all
     @socles = Socle.find_all

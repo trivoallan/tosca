@@ -181,17 +181,17 @@ module ApplicationHelper
         :id => ar}, { :class => 'nobackground' }
   end
 
-  # un correctif peut être liée à une demande externe
+  # un contribution peut être liée à une demande externe
   # le "any" indique que la demande peut etre sur n'importe quel tracker
-  # TODO : verifier que le paramètre est un correctif
-  def link_to_any_demande(correctif)
-    return "Aucune demande associée" if !correctif.id_mantis && correctif.demandes.size == 0
+  # TODO : verifier que le paramètre est un contribution
+  def link_to_any_demande(contribution)
+    return "Aucune demande associée" if !contribution.id_mantis && contribution.demandes.size == 0
     out = []
-    if correctif.id_mantis
-      out << "<a href=\"http://www.08000linux.com/clients/minefi_SLL/mantis/view.php?id=#{correctif.id_mantis}\">
-       Mantis ##{correctif.id_mantis}</a>"
+    if contribution.id_mantis
+      out << "<a href=\"http://www.08000linux.com/clients/minefi_SLL/mantis/view.php?id=#{contribution.id_mantis}\">
+       Mantis ##{contribution.id_mantis}</a>"
     end
-    correctif.demandes.each {|d|
+    contribution.demandes.each {|d|
       out << "#{link_to_demande(d, {:show_id => true, :pre_text => 'Lstm'})}"
     }
     out * '<br/>'
@@ -385,7 +385,7 @@ module ApplicationHelper
   # options :
   #  * no_title : permet de ne pas mettre de titre à la liste
   #  * puce : permet d'utiliser un caractère qcq à la place des balises <liste>
-  # Call it like : <%= show_liste(@correctif.binaires, 'correctif') {|e| e.nom} %>
+  # Call it like : <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
   def show_liste(elements, nom, options = {})
     size = elements.size
     return "<u><b>Aucun(e) #{nom}</b></u>" unless size > 0

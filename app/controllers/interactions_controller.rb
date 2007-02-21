@@ -75,7 +75,7 @@ class InteractionsController < ApplicationController
     render_text '' and return unless request.xhr?
     if params[:action_reversement] == '1'
       @reversement = Reversement.new
-      @correctifs = Correctif.find_all
+      @contributions = Contribution.find_all
       @etatreversements = Etatreversement.find_all
     else
       @reversement = nil
@@ -92,7 +92,7 @@ class InteractionsController < ApplicationController
     @logiciels = Logiciel.find_all
     @reversement = @interaction.reversement if @interaction and @interaction.reversement
     # pour le formulaire partiel de reversement
-    @correctifs = Correctif.find_all
+    @contributions = Contribution.find_all
     @etatreversements = Etatreversement.find_all
   end
 

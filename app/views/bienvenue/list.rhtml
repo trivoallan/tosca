@@ -20,7 +20,7 @@
              link_to('Liste des groupes', :controller => 'groupes', :action => 'list'),
              link_to('Liste des paquets', :controller => 'paquets', :action => 'list'),
              link_to('Liste des binaires', :controller => 'binaires', :action => 'list'),
-             link_to('Liste des correctifs', :controller => 'correctifs', :action => 'list') ] %>
+             link_to('Liste des contributions', :controller => 'contributions', :action => 'list') ] %>
        <%= show_liste_accueil(links, 'Gestion des logiciels') %>
 
        <% links = [ 
@@ -60,7 +60,7 @@
        <%= show_liste_accueil(links, 'Documents') %>
 
        <% links = [ 
-             link_to('Suivi des correctifs', :controller => 'correctifs', :action => 'list'),
+             link_to('Suivi des contributions', :controller => 'contributions', :action => 'list'),
              link_to('Contributions', :controller => 'contributions', :action => 'select'),
              link_to('Suivi des interactions', :controller => 'interactions', :action => 'list'),
              link_to('Suivi des reversements', :controller => 'reversements', :action => 'list') ] %>

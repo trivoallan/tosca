@@ -1,6 +1,6 @@
 <p>Binaires résultants :</p>
-<% if @correctif %>
-  <%= hbtm_check_box( @correctif.binaires, @binaires, 'correctif[binaire_ids]') %>
+<% if @contribution %>
+  <%= hbtm_check_box( @contribution.binaires, @binaires, 'contribution[binaire_ids]') %>
 <% else %>
-  <%= hbtm_check_box( [], @binaires, 'correctif[binaire_ids]') %>
+  <%= hbtm_check_box( [], @binaires, 'contribution[binaire_ids]') %>
 <% end %>

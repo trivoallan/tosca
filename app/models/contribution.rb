@@ -42,7 +42,7 @@ class Contribution < ActiveRecord::Base
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
-  # Rien ne nous empeche, vue du mcd, d'avoir un correctif
+  # Rien ne nous empeche, vue du mcd, d'avoir un contribution
   # sur plusieurs logiciels
   # TODO : a voir et a revoir
   def logiciels

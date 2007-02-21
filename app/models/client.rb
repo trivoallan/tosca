@@ -44,11 +44,11 @@ class Client < ActiveRecord::Base
     Logiciel.find(:all, :conditions => conditions, :order => 'logiciels.nom')
   end
 
-  def correctifs
+  def contributions
     return [] if demandes.empty?
-    Correctif.find(:all, 
-                   :conditions => "correctifs.id IN (" + 
-                     "SELECT DISTINCT demandes.correctif_id FROM demandes " +
+    Contribution.find(:all, 
+                   :conditions => "contributions.id IN (" + 
+                     "SELECT DISTINCT demandes.contribution_id FROM demandes " +
                      "WHERE demandes.beneficiaire_id IN (" +
                      beneficiaires.collect{|c| c.id}.join(',') + "))"
                    )

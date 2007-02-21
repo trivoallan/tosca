@@ -5,7 +5,7 @@
 <p><label for="urlreversement_valeur">Valeur</label><br/>
 <%= text_field 'urlreversement', 'valeur'  %></p>
 
-<p><label for="urlreversement_correctif">Contribution</label><br/>
+<p><label for="urlreversement_contribution">Contribution</label><br/>
   <%= select("urlreversement", "contribution_id", 
 	@contributions.collect{|c| [ c.nom, c.id]}, 
 	:selected => params[:contribution_id].to_i) %></p>
