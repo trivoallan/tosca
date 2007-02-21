@@ -7,7 +7,7 @@ class DemandesController < ApplicationController
   before_filter :verifie, 
   :only => [ :comment, :edit, :update, :destroy, :changer_statut ]
 
-  helper :correctifs, :logiciels
+  helper :contributions, :logiciels
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
@@ -188,7 +188,7 @@ class DemandesController < ApplicationController
 
     @statuts = @demande.statut.possible().collect{ |s| [ s.nom, s.id] }
     if (@demande.statut_id == 4 || @demande.statut_id == 5)
-      @correctifs = Correctif.find(:all)
+      @contributions = Contribution.find(:all)
     end
     @ingenieurs = Ingenieur.find_select(:include => [:identifiant])
     
@@ -296,11 +296,11 @@ class DemandesController < ApplicationController
   end
 
 
-  def associer_correctif
-    return unless params[:demande][:id] and params[:correctif_id]
+  def associer_contribution
+    return unless params[:demande][:id] and params[:contribution_id]
     @demande = Demande.find(params[:demande][:id])
-    if @demande.update_attributes(:correctif_id => params[:correctif_id])
-      flash[:notice] = "<br />Un correctif a été lié"
+    if @demande.update_attributes(:contribution_id => params[:contribution_id])
+      flash[:notice] = "<br />Un contribution a été lié"
     else
       flash.now[:warn] = "Une erreur est survenue, veuillez nous contacter"
     end
