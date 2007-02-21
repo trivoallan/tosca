@@ -6,13 +6,9 @@
 <h2 class="chapter">Sommaire</h2>
 <%= render_partial 'sommaire' %><%= gap %>
 
-<% if @ingenieur %>
-<h2 class="chapter">Todo !</h2>
-<%= render_partial 'todo_reporting' %>
 <%# =indent @data.inspect.gsub(/, :/,"\n") %><br />
 <%# =indent @colors.inspect.gsub(/, :/,"\n") %><br />
 <%# =indent @data[:severite_total].sort{|x,y| x[0].to_s <=> y[0].to_s}.inspect.gsub(/, :/,"\n") %><br />
-<% end %>
 
 <h2 class="chapter">Introduction</h2>
 <%= render_partial 'introduction' %><%= gap %>
