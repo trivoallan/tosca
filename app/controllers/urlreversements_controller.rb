@@ -57,7 +57,7 @@ class UrlreversementsController < ApplicationController
 private
 
   def _form
-    @correctifs = Correctif.find_all
+    @contributions = Contribution.find_all
   end
 
 end

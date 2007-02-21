@@ -52,6 +52,7 @@ protected
     session[:filters] = Hash.new
     session[:beneficiaire] = session[:user].beneficiaire
     session[:ingenieur] = session[:user].ingenieur
+    session[:javascript] = ( params['javascript'] == "true" ? true : false )
     session[:nav_links] = render_to_string :inline => "
         <% nav_links = [ 
           (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),

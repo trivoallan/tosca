@@ -27,7 +27,7 @@
 <%= select('contribution', 'etatreversement_id', 
            @etatreversements.collect{|e| [ e.nom, e.id]}) %></p>
 
-<p><label for="urlreversement_valeur">Url de reversement principale</label><br/>
+<p><label for="urlreversement_valeur">Ajouter une url de reversement</label><br/>
 <%= text_field 'urlreversement', 'valeur' %></p>
 
 <p><label for="contribution_reverse_le">Reversé le</label><br/>

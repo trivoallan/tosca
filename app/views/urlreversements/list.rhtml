@@ -2,13 +2,12 @@
 
 <%= show_pages_links(@urlreversement_pages, 'une nouvelle  url') %>
 
-<% titres = ['Logiciel','Url','Correctif']%>
+<% titres = ['Logiciel','Url','Contribution']%>
 <%= show_table(@urlreversements, Urlreversement, titres) { |u|
   result = ''
-  result << "<td>#{link_to_logiciel u.correctif.logiciel if u.correctif.logiciel}</td>"
-  result << "<td><a href=\"#{u.valeur}\">
-                 #{u.valeur}</a></td>"
-  result << "<td>#{u.correctif.nom}</td>"
+  result << "<td>#{link_to_logiciel u.contribution.logiciel if u.contribution and u.contribution.logiciel}</td>"
+  result << "<td><a href=\"#{u.valeur}\">#{u.valeur}</a></td>"
+  result << "<td>#{u.contribution.nom if u.contribution}</td>"
   result << "#{link_to_actions_table u}"
 }%>
 

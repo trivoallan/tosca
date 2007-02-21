@@ -7,6 +7,8 @@
 <p><%= indent contribution.description_fonctionnelle %></p>
 <br/>
 <p><b>Patch</b> : <%= link_to_file contribution, 'patch' %></p>
+<p><b>Url de reversement</b> : 
+     <%= contribution.urlreversements.collect{|u| u.valeur } * ', ' %></p>
 <p><b>Reversé le</b> : <%= contribution.reverse_le_formatted %></p>
 <p><b>Etat du reversement</b> : <%= contribution.etatreversement.nom if contribution.etatreversement %></p>
 

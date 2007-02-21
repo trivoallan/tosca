@@ -30,7 +30,8 @@ class AccountController < ApplicationController
                                                       params['user_password'],
                                                       params['user_crypt'])
           set_sessions
-          flash[:notice]  = "Connexion réussie"
+          flash[:notice] = "Connexion réussie"
+          flash[:warn] = 'Javascript n\'est pas activé sur votre navigateur' unless @session[:javascript]==true
           redirect_back_or_default :action => "list", :controller => 'bienvenue'
         else
           @login = params['user_login']

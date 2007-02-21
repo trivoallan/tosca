@@ -1,9 +1,8 @@
-<h1>Editing urlreversement</h1>
+<h1>Modifier une url de reversement</h1>
 
 <%= start_form_tag :action => 'update', :id => @urlreversement %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag 'Valider' %>
 <%= end_form_tag %>
 
-<%= link_to 'Show', :action => 'show', :id => @urlreversement %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to_edit_and_list(@urlreversement) %>

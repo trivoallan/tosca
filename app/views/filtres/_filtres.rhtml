@@ -13,7 +13,9 @@
     [ 'Statut',                 select_filter(@statuts, 'statut') ],
     [ 'Résumé',                 text_filter('motcle') ],
     [ 'A jour du',              select_filter_date() + '(non fonctionnel)' ],
-    (@ingenieur ? [ 'Resp.',    select_filter_engineer ] : nil)
+    (@ingenieur ? [ 'Resp.',    select_filter_engineer ] : nil),
+    [ show_title('Navigateur'), nil ],
+    [ 'javascript',             ( session[:javascript] ? 'Activé'  : 'Désactivé' ) ]
   ]
 %>
 
