@@ -42,7 +42,7 @@
   </div><!-- end of haut -->
 
   <div id="information">
-        <% if false %> <%# MLO : mis dans le pied du site. TODO : on efface ? %>
+        <% if flash[:notice] %>
           <div class="notice">
             <p><%= flash[:notice] %></p>
           </div>
@@ -62,16 +62,9 @@
   <div class="pied">
     <table width='100%'>
       <tr>
-        <td valign='middle' align='leftt' width='30%'>
-           <%= flash[:notice] %>
-        </td>
-        <td valign='middle' align='right' width='30%'>
+        <td valign='middle' align='center'>
 	  <%= Metadata::NOM_LONG_SERVICE %>
-        </td>
-        <td valign='middle' align='left'>
 	  <a href="http://rubyonrails.org/"><%= logo_ruby %></a>
-        </td>
-        <td valign='middle' align='right'>
           <%= Metadata::COPYRIGHT_APPLICATION%>
         </td>
       </tr>

@@ -9,7 +9,7 @@ module Metadata
   # application
   NOM_COURT_APPLICATION = "LSTM"
   NOM_LONG_APPLICATION = "Linagora Software Tracker Manager"
-  COPYRIGHT_APPLICATION = "Copyright Linagora SA 2006 - Tous droits réservés."
+  COPYRIGHT_APPLICATION = "Copyright Linagora SA 2007 - Tous droits réservés."
 
   # service
   NOM_COURT_SERVICE = "OSSA"
@@ -26,8 +26,6 @@ module Metadata
   DEMANDE_NOSTATUS = 'Cette demande n\'a pas de statut, veuillez contacter la cellule'
 end
 
-
-
 def rmtree(directory)
   Dir.foreach(directory) do |entry|
     next if entry =~ /^\.\.?$/     # Ignore . and .. as usual
@@ -41,7 +39,6 @@ def rmtree(directory)
 
   Dir.delete(directory)
 end
-
 
 def avg(data)
   return 0 unless data.is_a? Array
