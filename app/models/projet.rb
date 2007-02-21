@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Projet < ActiveRecord::Base
   has_many :taches
   has_and_belongs_to_many :ingenieurs

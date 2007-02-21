@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class EraseAnnoyingClassifications < ActiveRecord::Migration
   def self.up
     add_column :logiciels, :groupe_id, :integer

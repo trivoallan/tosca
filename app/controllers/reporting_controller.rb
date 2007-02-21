@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class ReportingController < ApplicationController
   require 'digest/sha1'
   model   :identifiant

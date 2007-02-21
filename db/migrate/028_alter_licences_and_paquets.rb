@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class AlterLicencesAndPaquets < ActiveRecord::Migration
   # Un peu de nettoyage dans le modèle.
   # On passe la compatibilité des licenses en booléen

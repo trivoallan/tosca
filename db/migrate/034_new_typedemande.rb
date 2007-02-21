@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class NewTypedemande < ActiveRecord::Migration
   def self.up
     Typedemande.create(:nom => 'Monitorat')

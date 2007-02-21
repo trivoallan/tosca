@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class TachesController < ApplicationController
   auto_complete_for :tache, :projet
 

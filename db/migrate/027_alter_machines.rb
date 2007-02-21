@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class AlterMachines < ActiveRecord::Migration
   def self.up
     add_column :machines, :acces, :string

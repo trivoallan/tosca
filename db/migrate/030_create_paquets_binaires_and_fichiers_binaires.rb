@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class CreatePaquetsBinairesAndFichiersBinaires < ActiveRecord::Migration
   def self.up
     transaction do

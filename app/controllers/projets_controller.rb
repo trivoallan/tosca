@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class ProjetsController < ApplicationController
   auto_complete_for :logiciel, :nom
 

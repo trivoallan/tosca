@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Projets < ActiveRecord::Migration
   def self.up
     create_table :projets do |t|

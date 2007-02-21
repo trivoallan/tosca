@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class AlterInteractions < ActiveRecord::Migration
   def self.up
     add_column :interactions, :client_id, :integer

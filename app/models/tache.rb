@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class Tache < ActiveRecord::Base
   belongs_to :projet, :counter_cache => true
   belongs_to :auteur, :class_name => 'Identifiant', :foreign_key => 'auteur_id'

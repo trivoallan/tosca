@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class CreateClientsSocles < ActiveRecord::Migration
   def self.up
     create_table :clients_socles, :id => false do |t|

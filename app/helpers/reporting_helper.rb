@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 module ReportingHelper
 
   # Renvoit les titres du tableau

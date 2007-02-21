@@ -1,3 +1,6 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
 class CounterCache < ActiveRecord::Migration
   def self.up
     add_column :paquets, :fichiers_count, :integer
