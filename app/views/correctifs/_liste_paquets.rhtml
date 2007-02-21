@@ -1,10 +1,1 @@
-<% if @correctif %>
-  <% paquets, binaires = @correctif.paquets, @correctif.binaires %>
-<% else %>
-  <% paquets, binaires = [], [] %>
-<% end %>
-<p>Paquets sur lesquels il a été appliqué :</p>
-<%= hbtm_check_box( paquets, @paquets, 'correctif[paquet_ids]', :size => 3) %>
-<p>Binaires résultants :</p>
-<%= hbtm_check_box( binaires, @binaires, 'correctif[binaire_ids]', :size => 3) %>
-
+# DEPRECATED : use contributions

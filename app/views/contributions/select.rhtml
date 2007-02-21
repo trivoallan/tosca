@@ -6,4 +6,7 @@
   out << " (#{l.contributions.size}) "
 } %>
 
-Déposer une contribution <%= link_to_new('contribution') %>
+<%= link_to 'Déposer une contribution', :action => 'new' %>
+<%= link_to_new('contribution') %>
+<br/>
+<%= link_to 'Accéder à l\'interface d\'administration', :action => 'admin'  %>

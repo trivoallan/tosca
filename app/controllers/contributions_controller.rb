@@ -3,14 +3,19 @@
 #####################################################
 class ContributionsController < ApplicationController
 
-  #helper :reversements, :demandes, :paquets, :binaires, :logiciels
+  # je ne sais pas s'il sont tous nécessaire : 
+  # helper :reversements, :demandes, :paquets, :binaires, :logiciels
+  helper :demandes
 
-  before_filter :verifie, :only => 
-    [ :show, :edit, :update, :destroy ] 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ] 
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
+
+  def verifie
+    super(Contribution)
+  end
 
   def index
     select
@@ -31,23 +36,29 @@ class ContributionsController < ApplicationController
     #end
   end
 
-  # Voir correctifs_controller pour
-  # - list (tous les correctifs)
-  # - show
+  def admin
+    # @count = Contribution.count
+    conditions = nil
+    @logiciels = Logiciel.find(:all)
+    @count = Contribution.count
+    scope_filter do
+      @contribution_pages, @contributions = paginate :contributions, :per_page => 10
+    end
+  end
 
   def new
-    @correctif = Contribution.new
+    @contribution = Contribution.new
     @urlreversement = Urlreversement.new
     _form
   end
 
   def create
-    @correctif = Contribution.new(params[:contribution])
-    if @correctif.save
-      flash[:notice] = 'Le correctif suivant a bien été crée : </br><i>'+@correctif.description+'</i>'
+    @contribution = Contribution.new(params[:contribution])
+    if @contribution.save
+      flash[:notice] = 'La contribution suivante a bien été créee : </br><i>'+@contribution.description+'</i>'
       if params[:urlreversement]
         urlreversement = Urlreversement.new(params[:urlreversement])
-        urlreversement.contribution = @correctif
+        urlreversement.contribution = @contribution
         urlreversement.save
         flash[:notice] << '</br>L\'url a également été enregistrée.'
       end
@@ -58,16 +69,20 @@ class ContributionsController < ApplicationController
   end
 
   def edit
-    @correctif = Contribution.find(params[:id])
+    @contribution = Contribution.find(params[:id])
     _form
   end
 
+  def show
+    @contribution = Contribution.find(params[:id])
+  end
+
   def update
-    @correctif = Contribution.find(params[:id])
-    # @correctif.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
-    @correctif.demandes = Demande.find(@params[:demande_ids]) if @params[:demande_ids]
-    if @correctif.update_attributes(params[:correctif])
-      flash[:notice] = 'Le correctif suivant a bien été mis à jour : </br><i>'+@correctif.description+'</i>'
+    @contribution = Contribution.find(params[:id])
+    # @contribution.paquets = Paquet.find(@params[:paquet_ids]) if @params[:paquet_ids]
+    @contribution.demandes = Demande.find(@params[:demande_ids]) if @params[:demande_ids]
+    if @contribution.update_attributes(params[:contribution])
+      flash[:notice] = 'La contribution suivante a bien été mise à jour : </br><i>'+@contribution.description+'</i>'
       redirect_to :action => 'list'
     else
       _form
@@ -91,11 +106,12 @@ class ContributionsController < ApplicationController
   end
 
 
-  private
+private
+
   def _form
     @logiciels = Logiciel.find_all
-    @paquets = @correctif.paquets || []
-    @binaires = @correctif.binaires || []
+    @paquets = @contribution.paquets || []
+    @binaires = @contribution.binaires || []
     @etatreversements = Etatreversement.find_all
     @ingenieurs = Ingenieur.find_all
     @typecontributions = Typecontribution.find_all

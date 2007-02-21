@@ -70,7 +70,7 @@ protected
           (link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
           (link_to 'Projets',:controller => 'projets', :action => 'list'),
           (link_to 'Tâches',:controller => 'taches', :action => 'list'),
-          (link_to 'Correctifs',:controller => 'correctifs', :action => 'list'),
+          (link_to 'Contributions',:controller => 'contributions', :action => 'list'),
           (link_to 'Répertoire',:controller => 'documents', :action => 'select'), 
           (link_to_my_client), 
           (link_to 'Clients',:controller => 'clients', :action => 'list')
