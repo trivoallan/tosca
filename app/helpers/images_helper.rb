@@ -3,19 +3,26 @@
 #####################################################
 module ImagesHelper
 
+  # por éviter la réaffection de desc à chaque coup
+  def image_options(desc = '')
+    { :border => 0, :alt => desc, :title => desc }
+  end
+
+  # TODO : utiliser image_options (cf image_delete pour exemple)
+
+  # We cannot cache a parametered image
+  @@create = nil
+  def image_create(message)
+    desc = "Déposer #{message}"
+    @@create ||= image_tag("create_icon.png", :size => "16x16",
+                           :border => 0, :alt => desc, :title => desc )
+  end
+
   @@view = nil
   def image_view
     desc = 'Consulter'
     @@view ||= image_tag('icons/b_view.png', :size => '15x15',
                          :border => 0, :alt => desc, :title => desc )
-  end
-
-
-  # We cannot cache a parametered image
-  def image_create(message)
-    desc = "Déposer #{message}"
-    image_tag("create_icon.png", :size => "16x16",
-                           :border => 0, :alt => desc, :title => desc )
   end
 
   @@edit = nil
@@ -27,9 +34,8 @@ module ImagesHelper
 
   @@delete = nil
   def image_delete
-    desc = 'Supprimer'
-    @delete ||= image_tag('delete_icon.gif', :size => '15x17',
-                          :border => 0, :alt => desc, :title => desc )
+    @delete ||= image_tag('delete_icon.gif', image_options('Supprimer')\
+                          .update(:size => '15x17'))
   end
 
   @@back = nil
