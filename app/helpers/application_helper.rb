@@ -323,6 +323,11 @@ module ApplicationHelper
     out
   end
 
+  def sum_up_demande(demande)
+    return 'N/A' unless demande
+   "#{demande.typedemande.nom} (#{demande.severite.nom}) : #{demande.description}"
+  end
+
   def indent( text )
     return text unless text.is_a? String
     text = h text

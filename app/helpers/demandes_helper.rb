@@ -9,13 +9,13 @@ module DemandesHelper
   # :show_id affiche l'id à la place du nom de la demande
   def link_to_demande(demande, options={})
     return 'N/A' unless demande
-    resume = sum_up(demande.resume, 50)
-    alt = '' # sum_up(demande.description) # demande.typedemande.nom + ' (' + demande.severite.nom + ') : ' 
-    link = resume 
-    options = {:controller => 'demandes', :action => 
-        'comment', :id => demande.id}
-    link_to link, options
-
+    text = ''
+    text << "##{demande.id} " if options[:show_id] 
+    text << "#{icon_severite(demande)} " if options[:icon_severite] 
+    text << "#{sum_up(demande.resume, 50)}"
+    options = {:controller => 'demandes', 
+               :action => 'comment', :id => demande.id}
+    link_to text, options
   end
 
   def display(donnee, column)
@@ -28,7 +28,7 @@ module DemandesHelper
   end
 
   def icon_severite(demande)
-    desc = demande.severites_nom
+    desc = demande.severite.nom
     image_tag("severite_#{demande.severite_id}.gif", :title => desc, :alt => desc )
   end
 

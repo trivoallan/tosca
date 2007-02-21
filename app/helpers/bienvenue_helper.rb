@@ -14,7 +14,7 @@ module BienvenueHelper
     result << ' <dd class="action">'
     # résumé des demandes
     result << show_table_demandes(@demandes, []) { |demande|
-       "<td>#{link_to_demande demande, :show_id => true}</td>"
+      "<td>#{link_to_demande demande, :show_id => true, :icon_severite => true}</td>"
     } if options[:demandes]
     result << '   <ul>'
     elements.each { |e| result << "<li>#{e}</li>" }
@@ -34,8 +34,8 @@ module BienvenueHelper
       result << '</tr>'
     end
     elements.each_index { |i|
-      infos = '' #sum_up(elements[i])
-      infos << "#{elements[i].typedemande.nom} (#{elements[i].severite.nom}) :  #{elements[i][:description]}"
+      infos = ''
+      infos << sum_up_demande(elements[i])
       result << "<tr class='demande_#{elements[i].statut_id}' title='#{infos}' " +
                 " onclick=\"window.location.href='../demandes/comment/#{elements[i].id}';\" >"
       result << yield(elements[i])
