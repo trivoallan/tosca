@@ -69,6 +69,7 @@ module PagesHelper
     :with => "Form.serialize(#{PAGE_FORM})",
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" }
+
   def show_pages_links(pages, message, options={})
     result = '<table class="pages"><tr><td>'
     result << "#{link_to_new(message, options)}</td>"
@@ -80,7 +81,7 @@ module PagesHelper
 
     
     if pages.current.previous
-      result << "<td>#{link_to_first_page(ajax_call)}</td>"
+      result << "<td>#{link_to_first_page(pages, ajax_call)}</td>"
       result << "<td>#{link_to_previous_page(ajax_call)}</td>"
     end
     if pages.current.last_item > 0
@@ -99,7 +100,7 @@ module PagesHelper
   private
   ## intern functions
   # used in show_page_links
-  def link_to_page(page, title, image, ajax_call)
+  def link_to_page(pages, page, title, image, ajax_call)
     html_options = {:title => title }
     if ajax_call
       page = "#{PAGE_FORM}.page.value=#{page}; #{ajax_call}"
@@ -111,7 +112,7 @@ module PagesHelper
   end
 
   # used in show_page_links
-  def link_to_first_page(ajax_call)
+  def link_to_first_page(pages, ajax_call)
     html_options = {:title => 'Première page' }
     if ajax_call
       page = "#{PAGE_FORM}.page.value=1; #{ajax_call}"
@@ -122,6 +123,9 @@ module PagesHelper
     end
   end
 
-
+  # used in show_page_links
+  def link_to_previous_page(ajax_call)
+    # TODO
+  end
 
 end
