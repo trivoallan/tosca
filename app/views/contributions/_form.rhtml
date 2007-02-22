@@ -10,15 +10,12 @@
   <% options = { :include_blank => true } %>
   <% donnees = @logiciels.collect{|l| [ l.nom, l.id]} %>
   <%= select("contribution", "logiciel_id", donnees, options) %>
-  <%= image_tag("spinner.gif",
-                :align => 'absmiddle',
-                :border=> 0,
-                :id => "spinner",
-                :style=>"display: none;" ) %></p>
+  <%= image_spinner %></p>
 
 <p><label for="contribution_ingenieur">Ingénieur</label><br/>
 <%= select('contribution', 'ingenieur_id', 
-           @ingenieurs.collect{|i| [ i.nom, i.id]}, :include_blank => true ) %></p>
+           @ingenieurs.collect{|i| [ i.nom, i.id]}, 
+            :include_blank => true ) %></p>
 
 <p><label for="contribution_description_fonctionnelle">Description fonctionnelle</label><br/>
 <%= text_area 'contribution', 'description_fonctionnelle', :cols => 60, :rows => 10  %></p>
@@ -64,6 +61,9 @@
 <div id="paquets">
   <%= render :partial => "liste_paquets" %>
 </div>
+
+</td><td>
+<%= render :partial => './textile_help' %>
 
 </td></tr></table>
 <!--[eoform:contribution]-->

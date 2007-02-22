@@ -1,10 +1,10 @@
 
 <div class="info">
-
 <h2><%= link_to_logiciel contribution.logiciel %> : <%= contribution.nom %>
     <%= link_to_edit(contribution) %></h2>
 <%# TODO : textilze %>
-<p><%= indent contribution.description_fonctionnelle %></p>
+<%= textilize("h1. This is a test of textile\n\nParagraph\n\nAnother paragraph\n\n* Bullets") %>
+<%= textilize(contribution.description_fonctionnelle) %>
 <br/>
 <p><b>Patch</b> : <%= link_to_file contribution, 'patch' %></p>
 <p><b>Url de reversement</b> : 
