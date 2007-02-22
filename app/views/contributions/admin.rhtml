@@ -5,7 +5,7 @@ logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Lo
 
 <h1>Liste des contributions : interface de suivi</h1>
 
-<%= render_partial 'filtres/actions' %>
+<%#= render_partial 'filtres/actions' %>
 
 <%= show_pages_links(@contribution_pages, 'une contribution', :controller => 'contributions') %>
 
@@ -20,7 +20,7 @@ logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Lo
   result = ''
   tache = c.todo(@max_jours)
   result << "<td>#{link_to_logiciel c.logiciel if c.logiciel}</td>"
-  result << "<td>#{c.demandes.collect{|d| d.paquets.inspect}}</td>"
+  result << "<td>#{c.demandes.collect{|d| d.paquets.collect{|p| p.nom}}*', '}</td>"
   result << "<td>#{link_to_file c, 'patch'}</td>"
   result << "<td>#{link_to_any_demande c}</td>"
 result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"

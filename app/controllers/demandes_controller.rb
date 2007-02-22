@@ -124,7 +124,7 @@ class DemandesController < ApplicationController
 
   def create
     @demande = Demande.new(params[:demande])
-    @demande.paquets = Paquet.find(:all, params[:paquet_ids]) if params[:paquet_ids]
+    @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.save
       flash[:notice] = 'La demande a bien été créée.'
       Notifier::deliver_demande_nouveau({:demande => @demande, 
@@ -270,6 +270,12 @@ class DemandesController < ApplicationController
     return render_text('') unless request.xhr? and params[:id]
     @demande = Demande.find(params[:id], :include => [:piecejointes]) unless @demande
     render :partial => 'tab_piecejointes', :layout => false
+  end
+
+  def ajax_cns
+    return render_text('') unless request.xhr? and params[:id]
+    @demande = Demande.find(params[:id]) unless @demande
+    render :partial => 'tab_cns', :layout => false
   end
 
   def update
