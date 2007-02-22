@@ -17,10 +17,10 @@ class Beneficiaire < ActiveRecord::Base
     (identifiant ? identifiant.nom : '')
   end
 
-
   def contrat_ids
     @cache ||=  Contrat.find(:all, :select => 'id', 
-                             :conditions => ['client_id=?', self.client_id]).collect{|c| c.id}
+                             :conditions => ['client_id=?', 
+                                             self.client_id]).collect{|c| c.id}
   end
 
   def scope_filter

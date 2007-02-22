@@ -166,14 +166,19 @@ protected
 
   # overriding for escaping count of include (eager loading)
   def count_collection_for_pagination(model, options)
-    model.count(:conditions => options[:conditions],
-                :joins => options[:join] || options[:joins],
-                :select => options[:count])
+    if options[:conditions]
+      model.count({ :joins => options[:joins],
+                    :conditions => options[:conditions],
+                    :include => options[:include],
+                    :select => options[:count] })
+    else
+      model.count({ :joins => options[:joins],
+                    :select => options[:count] })
+    end
   end
 
 
 private
-
   # scope imposé sur toutes les vues, 
   # pour limiter ce que peuvent voir nos clients
   # TODO : check les interférences avec les filtres
@@ -194,6 +199,20 @@ private
       Socle.set_scope(client_id)
     end
     yield
+  end
+
+  # met le scope client en session
+  # ca permet de ne pas recharger les ids contrats 
+  # à chaque fois
+  # call it like this : scope_client(params['filters']['client_id'])
+  def scope_client(value)
+    if value == '' 
+      session[:contrat_ids] = nil 
+    else
+      conditions = { :client_id => value.to_i }
+      options = { :select => 'id', :conditions => conditions }
+      session[:contrat_ids] = Contrat.find(:all, options).collect{|c| c.id}
+    end
   end
 
   def scope_filter

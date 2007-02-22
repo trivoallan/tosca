@@ -30,8 +30,8 @@ class BienvenueController < ApplicationController
 #       liste = @beneficiaire.client.beneficiaires.collect{|b| b.id}.join(',')
 #       conditions = [ "demandes.beneficiaire_id IN (#{liste})" ]
 #       Demande.with_scope({ :find => { :conditions => conditions } }) do
-    @demandes = Demande.find(:all, :include => 'statut', :limit => 5, 
-                             :order => "updated_on DESC ")
+    @demandes = Demande.find(:all, :include => [:statut,:typedemande,:severite], 
+                             :limit => 5,  :order => "updated_on DESC ")
 #       end
 #       @client = @beneficiaire.client.nom
 #     else    

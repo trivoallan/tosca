@@ -6,7 +6,7 @@
     :url => '/logiciels/update_list',
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
-<%= link_to_function 'suivant ', "document.forms['filters'].page.value++; " + 
+<%= link_to_function 'precedent ', "document.forms['filters'].page.value--; " + 
   remote_function(options) %>
 
 <% options = { :update => 'content',
@@ -14,11 +14,10 @@
     :url => '/logiciels/update_list',
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
-<%= link_to_function 'precedent ', "document.forms['filters'].page.value--; " + 
+<%= link_to_function 'suivant ', "document.forms['filters'].page.value++; " + 
   remote_function(options) %>
 
 
-<%=h @params.inspect %>
 <%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
 
 

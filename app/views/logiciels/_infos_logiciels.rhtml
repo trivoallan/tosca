@@ -8,15 +8,7 @@
  <li><%=select_filter(@clients, 'client') %></li>
 </ul>
 
-<%= image_next_remote_page %>
-<% options = { :update => 'content',
-    :with => "Form.serialize(document.forms['filters'])",
-    :url => '/logiciels/update_list',
-    :before => "Element.show('spinner')",
-    :success => "Element.hide('spinner')" } %>
-<%= link_to_function 'suivant ', "document.forms['filters'].page.value++; " + 
-  remote_function(options) %>
-
+<% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
 <table class="underline" cellpadding="3" cellspacing="0">
@@ -28,7 +20,7 @@
  <li><b>Groupe </b></li>
  <li><%=select_filter(@groupes, 'groupe')%></li>
  <li><b>Technologie </b></li>
- <li><%=select_filter(@technologies, 'technologies')%></li>
+ <li><%=select_filter(@technologies, 'competence')%></li>
 </ul>
 
 <table class="underline" cellpadding="3" cellspacing="0">

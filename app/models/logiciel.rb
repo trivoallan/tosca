@@ -23,7 +23,7 @@ class Logiciel < ActiveRecord::Base
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 
         [ 'paquets.contrat_id = ?', contrat_ids ],
-        :include => [:paquets]} }
+        :include => [:paquets]} } if contrat_ids
   end
 
   def self.list_columns 
