@@ -1,75 +1,23 @@
-<h1>Liste des demandes</h1>
+<% options = { :update => 'content',
+    :url => '/demandes/update_list',
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
 
-<%= render_partial 'filtres/actions' %>
 
+<% form_remote_tag( options.dup.update(:html => { 
+    :id => 'filters', :name => 'filters'})) do %>
+  <div class="summary">
+    <%= render_partial 'requests_info' %>
 
-<%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
-<table class="demandes_list" width='100%'>
-   <tr>
-      <th width='2%'>Id</th>
-        <th width='7%'>
-          <% form_tag(:action => 'set_filters') do %>
-            <%= text_field_with_auto_complete :logiciel, :nom %>
-          <% end %>
-        </th>
-        <th width='7%' colspan = '2'>
-          <% form_tag(:action => 'list') do %>
-            <%= select_filter(@types, 'typedemande', :title => '» Type') %>
-          <% end %>
-        </th>
-        <!--<th>Sévérité<%#= select_filter(@severites, 'severite', :title => 'Sévérité') %></th>-->
-       <% if @ingenieur %>
-          <th width='5%'><%= select_filter(@clients, 'client') %></th>
-       <% end %>
-        <th width='10%'><%# = select_filter(@beneficiaires, 'beneficiaire', :title => '» Bénéficiaire') %></th>
-        <th>
-          <% form_tag(:action => 'list') do %>
-            Résumé<%= text_filter('motcle', :title => '» Résumé') %>
-          <% end %>
-       </th>
-       <% if @ingenieur %>
-         <th width='9%'><%# = select_filter(@ingenieurs, 'ingenieur', :title => '» Responsable') %></th>
-       <% end %>
-        <th width='8%'>A jour du</th>
-        <th colspan="3" width='1%'></th>
-   </tr>
-
-   <% for demande in @demandes %>
-   <tr class="<%= "demande_#{demande.statut_id}" %>" onclick="window.location.href='../demandes/comment/<%= demande.id %>';" >
-        <td><%= demande.id %></td>
-        <td><%= demande.logiciels_nom ? sum_up(demande.logiciels_nom,15) : Logiciel.not_found  %></td>
-        <td><%= demande.typedemandes_nom %></td>
-        <td><%= icon_severite(demande) %></td>
-       <% if @ingenieur %>
-        <td><%= demande.clients_nom %></td>
-       <% end %>
-        <td><%= demande.beneficiaires_nom %></td>
-        <td class="wrapped"><%= link_to_demande demande %></td>
-       <% if @ingenieur %>
-          <td><%= demande.ingenieurs_nom %></td>
-       <% end %>
-        <td><small><%=h demande.updated_on_formatted %></small></td>
-        <td><%= link_to_comment demande %></td>
-   </tr>
-   <% end %>
-
-<% if @demandes.size == 0 %>
-<tr><td colspan="11">
-    <p>Aucune demande enregistrée ne vous concerne.</p>
-    <p>Pour déposer une nouvelle demande :  <%= link_to_new() %> </p>
-</td></tr>
+  </div>
 <% end %>
 
-</table>
+<%= observe_form 'filters', options %>
+
+<div class="content" id="content">
+  <%= render_partial 'requests_list' %>
+</div>
 
 
-<%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
 
-<br/>
-
-<%= [ link_to('Déposer une nouvelle demande', :controller => 'demandes', :action => 'new'),
-      link_to('Légende des couleurs', :controller => 'statuts', :action => 'list'),
-      link_to_export,
-      link_to('Reporting', :controller => 'reporting', :action => 'general')
-    ].compact * ' | ' %>
 

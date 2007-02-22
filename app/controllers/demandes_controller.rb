@@ -3,6 +3,7 @@
 #####################################################
 class DemandesController < ApplicationController
   auto_complete_for :logiciel, :nom
+  auto_complete_for :demande, :resume
 
   before_filter :verifie, 
   :only => [ :comment, :edit, :update, :destroy, :changer_statut ]
@@ -38,11 +39,38 @@ class DemandesController < ApplicationController
       'INNER JOIN beneficiaires ON beneficiaires.id = demandes.beneficiaire_id '+
       'INNER JOIN identifiants id_benef ON id_benef.id = beneficiaires.identifiant_id '+
       'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
-      'INNER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' + 
-      'INNER JOIN identifiants id_inge ON id_inge.id = ingenieurs.identifiant_id '+
+      'LEFT OUTER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' + 
+      'LEFT OUTER JOIN identifiants id_inge ON id_inge.id = ingenieurs.identifiant_id '+
       'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' + 
       'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
       'INNER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
+
+
+  # keep list2update the ajax way
+  # TODO : it's could be more dry
+  # called by all filters in info_box of list view
+  def update_list
+    return redirect_to_home unless request.xhr? 
+
+    options = { :per_page => 10, :order => 'updated_on DESC', 
+      :select => SELECT_LIST, :joins => JOINS_LIST }
+    conditions = []
+
+    params['logiciel'].each_pair { |key, value|
+      conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
+    }
+    params['demande'].each_pair { |key, value|
+      conditions << " demandes.#{key} LIKE '%#{value}%'" if value != ''
+    }
+    params['filters'].each_pair { |key, value|
+      conditions << " #{key}=#{value} " unless value == '' 
+    }
+
+    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+    @demande_pages, @demandes = paginate :demandes, options
+    render :partial => 'requests_list', :layout => false
+  end
+
 
   def list
     #super(params) # see before_filter:set_filters in application.rb
@@ -50,24 +78,24 @@ class DemandesController < ApplicationController
     #cas spécial : consultation directe
     redirect_to :action => :comment, :id => params['numero'] if params['numero'] 
 
-    # activate the filters
-    # set_filters
-
     #### init des variables utilisées dans la vue
-    # @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
-    # @beneficiaires = Beneficiaire.find(:all, :include => [:identifiant])
-    # @ingenieurs = Ingenieur.find(:all, :include => [:identifiant])
-    Client.with_exclusive_scope do
-      @clients = Client.find_select()
-    end
+    @clients = Client.find_select()
     @statuts = Statut.find_select()
-    @types = Typedemande.find_select()
+    @typedemandes = Typedemande.find_select()
+    @severites = Severite.find_select()
+    @ingenieurs = Ingenieur.find_select(:include => [:identifiant])
+    @beneficiaires = Beneficiaire.find_select(:include => [:identifiant])
+
+    @count = { :demandes =>  Demande.count }
+    count_logiciels = { :select => 'DISTINCT demandes.logiciel_id' }
+    @count[:logiciels] = Demande.count(count_logiciels)
+    @count[:commentaires] = Commentaire.count
+    @count[:piecejointes] = Piecejointe.count
+    @count[:contributions] = Contribution.count
+
   
-    Demande.with_scope(session[:filters][:sdemande] || {}) {
-      @demande_pages, @demandes = paginate :demandes, :per_page => 10,
-      :order => 'updated_on DESC', :select => SELECT_LIST, :joins => JOINS_LIST
-    }
-    # :include => [:severite,:beneficiaire,:ingenieur,:typedemande,:statut,:logiciel]
+    @demande_pages, @demandes = paginate :demandes, :per_page => 10,
+    :order => 'updated_on DESC', :select => SELECT_LIST, :joins => JOINS_LIST
   end
 
 
@@ -187,8 +215,10 @@ class DemandesController < ApplicationController
     flash.now[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 
     @statuts = @demande.statut.possible().collect{ |s| [ s.nom, s.id] }
-    if (@demande.statut_id == 4 || @demande.statut_id == 5)
+    if ([4,5].include? @demande.statut_id)
       @contributions = Contribution.find(:all)
+    else
+      @contributions = []
     end
     @ingenieurs = Ingenieur.find_select(:include => [:identifiant])
     

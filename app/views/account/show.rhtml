@@ -5,8 +5,7 @@
 <% compte = ( session[:user].id == @identifiant.id ? 'mon compte' :
               "le compte de #{@identifiant.nom}" ) %>
 
-<% role_titre = nil
-   role_champs = nil
+<% role_titre, role_champs = nil, nil
    if @ingenieur
      role_titre = 'Rôle'
      role_champs = @identifiant.roles
@@ -28,7 +27,7 @@
 
 %>
 
-<%= show_title "Voir #{compte}" %>
+<h1>Consulter <%=compte%></h1>
 <%= show_table_form fields %>
 </div>
 <br/>

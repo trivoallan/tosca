@@ -15,7 +15,7 @@ div.auto_complete ul li {
   background-image: none;
 }
 div.auto_complete ul li.selected { 
-  background-color: #ffb; 
+  background-color: #e2efe2; /* #ffb; */
 }
 div.auto_complete ul strong.highlight { 
   color: #800; 

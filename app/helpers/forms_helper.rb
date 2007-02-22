@@ -1,0 +1,122 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
+
+
+module FormsHelper
+  ### FORMULAIRES ##################################################
+
+  # Collection doit contenir des objects qui ont un 'id' et un 'nom'
+  # objectcollection contient le tableau des objects déjà présents
+  # C'est la fonction to_s qui est utilisée pour le label
+  # L'option :size permet une mise en colonne
+  # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
+  def hbtm_check_box( objectcollection, collection, nom , options={})
+    return '' if collection.nil?
+    objectcollection ||= [] # TODO : changer la signature et faire le sed qui va bien
+    out = '<table><tr>' and count = 1
+    options_size = options[:size]
+    length = collection.size
+    for donnee in collection
+      out << "<td><input type=\"checkbox\" " 
+      out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
+      out << 'checked="checked" ' if objectcollection.include? donnee
+      out << "/><label for=\"#{id}\">#{donnee}</label></td>"
+      if options_size 
+        out << '</tr><tr>' if count % options_size == 0 and length > count
+        count += 1
+      end
+    end
+    out << '</tr></table>'
+  end
+
+  # Collection doit contenir des objects qui ont un 'id' et un 'nom'
+  # objectcollection contient le tableau des objects déjà présents
+  # C'est la fonction to_s qui est utilisée pour le label
+  # Ex : hbtm_radio_button( @logiciel.competences, @competences, 'competence_ids')
+  def hbtm_radio_button( objectcollection, collection, nom )
+    return '' if collection.nil?
+    objectcollection ||= [] # TODO : changer la signature et faire le sed qui va bien
+    out = ""
+    for donnee in collection
+      out << '<input type="radio" '
+      out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
+      out << 'checked="checked" ' if objectcollection.include? donnee
+      out << "/>#{donnee}"
+    end
+    out
+  end
+
+  # select_onchange(@clients, @current_client, 'client')
+  # options
+  # :width limite la taille du texte en nb de caractères
+  # :title à afficher comme 1er élément de la liste (no value)
+  # :onchange action si changement
+  # :size hauteur du select
+  def select_onchange(list, default, name, options = {})
+    options[:title] ||= ''
+    options[:onchange] ||= 'this.form.submit();'
+    options[:name] ||= name
+    collected = list.collect{|e| [e.nom, e.id] }.unshift([options[:title], ''])
+    select = options_for_select(collected, default.to_i)
+    content_tag :select, select, options 
+  end
+
+
+  # Fields est un tableau du formulaire, en 2 colonnes
+  # mutualisé pour le formulaire et l'affichage
+  # Les éléments doivent être affichable par to_s
+  # si l'une des colonne est à nil, la ligne est fusionnée
+  # Call it like this : 
+  # <% fields = [ lstm_text_field('Titre', 'identifiant', 'titre') ] %>
+  # <%= show_table_form( fields) %>
+  def show_table_form(fields, options = {})
+    fields.compact!
+    result = ''
+    style = "class='#{options[:class]}'" if options[:class]
+    result << "<table #{style}>"
+    fields.each { |f|
+      title, field = f.first, f.last
+      unless title.nil? and field.nil?
+        result << '<tr>'
+        if field.nil?
+          result << '<td colspan="2">' << title << '</td>'
+        elsif title.nil?
+          result << '<td colspan="2">' << field << '</td>'
+        else
+          result << "<td>#{title}</td>"
+          result << "<td>#{field}</td>"
+        end
+        result << '</tr>'
+      end
+    }
+    result << '</table>'
+  end
+
+
+
+
+
+
+  # write the label with the field.
+  # heavily used in account with show_table_form
+  # call it like this :
+  # lstm_text_field('Téléphone', 'identifiant', 'telephone')
+  def lstm_text_field(label, mmodel, field, options = {})
+    [ "<label for=\"#{mmodel}_#{field}\">#{label}</label>",
+      text_field(mmodel, field, options) ]
+  end
+
+  def lstm_password_field(label, model, field, 
+                          options = {:size => 16, :value => ''})
+    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
+      password_field(model, field, options) ]
+  end
+
+  def lstm_text_area(label, model, field, options = {})
+    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
+      text_area(model, field, options) ]
+  end
+
+
+end

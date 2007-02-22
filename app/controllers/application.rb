@@ -57,7 +57,7 @@ protected
         <% nav_links = [ 
           (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
           (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
-          (link_to_my_account),
+          (link_to_modify_account(session[:user], 'Mon compte')),
           (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
           (link_to 'Utilisateurs', :controller => 'account', :action => 'list'),
           (link_to 'Rôles', :controller => 'roles', :action => 'list')
@@ -67,8 +67,7 @@ protected
         <% cut_links = [ 
           (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
           (session[:user].authorized?('demandes/list') ? "+ '&nbsp;' + search_demande," : ',' ) + 
-         "(link_to 'Filtres',:controller => 'filtres', :action => 'index'),
-          (link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
+         "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
           (link_to 'Projets',:controller => 'projets', :action => 'list'),
           (link_to 'Tâches',:controller => 'taches', :action => 'list'),
           (link_to 'Contributions',:controller => 'contributions', :action => 'list'),

@@ -29,12 +29,12 @@ class LogicielsController < ApplicationController
   end
 
   def update_list
-    # return render_text('toto')
-    # return redirect_to_home unless request.xhr? 
+    return redirect_to_home unless request.xhr? 
+
     options = { :per_page => 15, :order => 'logiciels.nom', 
       :include => [:groupe,:competences]}
-
     conditions = []
+
     params['logiciel'].each_pair { |key, value|
       conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
     }
@@ -44,14 +44,9 @@ class LogicielsController < ApplicationController
     scope_client(params['filters']['client_id'])
     Logiciel.set_scope(session[:contrat_ids])
 
-    # TODO : remove this debug line
-    @params = params
-    options[:conditions] = conditions.join(' AND ') unless conditions.empty? 
-    logger.debug(options.inspect)
-    logger.debug("cond : #{conditions.inspect}")
+    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
     @logiciel_pages, @logiciels = paginate :logiciels, options
     render :partial => 'softwares_list', :layout => false
-    # options.update([:conditions { :client_id => params['filters'][:client_id]] 
   end
 
   # affiche la liste des logiciels avec filtres

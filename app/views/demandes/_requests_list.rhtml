@@ -1,0 +1,54 @@
+<h1>Liste des demandes <%= image_spinner %></h1>
+
+<%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
+<table class="demandes_list" width='100%'>
+   <tr>
+      <th width='2%'>Id</th>
+        <th width='7%'>Logiciel</th>
+        <th width='7%' colspan = '2'>Type</th>
+        <!--<th>Sévérité</th>-->
+        <% if @ingenieur %>
+          <th width='7%'>Client</th>
+        <% end %>
+        <th width='10%'>Dépositaire</th>
+        <th>Résumé</th>
+        <% if @ingenieur %>
+          <th width='9%'>Responsable</th>
+        <% end %>
+        <th width='8%'>A jour du</th>
+        <th colspan="3" width='1%'></th>
+   </tr>
+
+   <% for demande in @demandes %>
+   <tr class="demande_<%=demande.statut_id%>" 
+     onclick="window.location.href='../demandes/comment/<%=demande.id%>';" >
+        <td><%= demande.id %></td>
+        <td><%= demande.logiciels_nom ? demande.logiciels_nom : Logiciel.not_found  %></td>
+        <td><%= demande.typedemandes_nom %></td>
+        <td><%= icon_severite(demande) %></td>
+       <% if @ingenieur %>
+        <td><%= demande.clients_nom %></td>
+       <% end %>
+        <td><%= demande.beneficiaires_nom %></td>
+        <td class="wrapped"><%= link_to_demande demande %></td>
+       <% if @ingenieur %>
+          <td><%= demande.ingenieurs_nom %></td>
+       <% end %>
+        <td><small><%=h demande.updated_on_formatted %></small></td>
+        <td><%= link_to_comment demande %></td>
+   </tr>
+   <% end %>
+
+<% if @demandes.size == 0 %>
+  <tr><td colspan="11">
+    <p>Aucune demande enregistrée ne vous concerne.</p>
+    <p>Pour déposer une nouvelle demande :  <%= link_to_new() %> </p>
+  </td></tr>
+<% end %>
+
+</table>
+
+
+<%= show_pages_links(@demande_pages, 'une nouvelle demande') %>
+
+

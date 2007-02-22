@@ -16,7 +16,7 @@
 	@identifiants.collect{|l| [ l.nom, l.id]}) %>
 </p>
 
-<p><label for="ingenieur_competences">Competences</label><br/>
+<p><label for="ingenieur_competences">Competences ?</label><br/>
 <%= hbtm_check_box( @ingenieur.competences, @competences, 'competence_ids', :size => 6) %>
 </p>
 

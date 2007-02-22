@@ -1,3 +1,7 @@
+<% # used for iteration in ajaxified list %>
+<%= hidden_field_tag 'page', '1' %>
+
+
 <table class="underline" cellpadding="3" cellspacing="0">
   <tbody><tr><td bgcolor="#dddddd"><b>Recherche</b></td></tr></tbody>
 </table>
@@ -8,8 +12,6 @@
  <li><%=select_filter(@clients, 'client') %></li>
 </ul>
 
-<% # used for iteration in ajaxified list %>
-<%= hidden_field_tag 'page', '1' %>
 
 <table class="underline" cellpadding="3" cellspacing="0">
   <tbody><tr><td bgcolor="#dddddd"><b>Caractéristique</b></td></tr></tbody>

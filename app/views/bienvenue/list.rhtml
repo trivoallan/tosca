@@ -33,7 +33,7 @@
   <td><dl class="sommaire">
 
        <% links = [ 
-             link_to_my_account(:text => 'Modifier mon compte'),
+             link_to_modify_account(session[:user], 'Modifier mon compte'),
              link_to('Liste des utilisateurs', :controller => 'account', :action => 'list'),
              link_to('Ajouter un utilisateur', :controller => 'account', :action => 'signup'),
              link_to('Gestion des rôles', :controller => 'roles') ] %>

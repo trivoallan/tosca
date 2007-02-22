@@ -15,133 +15,26 @@
 module ApplicationHelper
 
   include ImagesHelper
+  include PagesHelper
+  include FormsHelper
 
   def search_demande(options = {})
     text_field('numero', '', 'size' => 3)
   end
-
-
-  ### FORMULAIRES #############################################################
-
-  # Collection doit contenir des objects qui ont un 'id' et un 'nom'
-  # objectcollection contient le tableau des objects déjà présents
-  # C'est la fonction to_s qui est utilisée pour le label
-  # L'option :size permettent une mise en colonne
-  # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
-  def hbtm_check_box( objectcollection, collection, nom , options={})
-    return '' if collection.nil?
-    out = '<table><tr>' and count = 1
-    for donnee in collection
-      # Pour enlever les [ et ] qui ne sont pas valides dans un id d'une balise XHTML
-      id = nom.to_s.gsub(/[\[\]]/, '_') + '_' + donnee.id.to_s
-      out << "<td><input type=\"checkbox\" id=\"#{id}\" "
-      out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
-      out << 'checked="checked" ' if objectcollection and objectcollection.include? donnee
-      out << "/><label for=\"#{id}\">#{donnee}</label></td>"
-      out << '</tr><tr>' if options[:size] and count % options[:size] == 0 and collection.size > count
-      count += 1
-    end
-    out << '</tr></table>'
-  end
-
-  # Collection doit contenir des objects qui ont un 'id' et un 'nom'
-  # objectcollection contient le tableau des objects déjà présents
-  # C'est la fonction to_s qui est utilisée pour le label
-  # Ex : hbtm_radio_button( @logiciel.competences, @competences, 'competence_ids')
-  def hbtm_radio_button( objectcollection, collection, nom )
-    return '' if collection.nil?
-    out = ""
-    for donnee in collection
-      out << "<input type=\"radio\" "
-      out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
-      out << 'checked="checked" ' if objectcollection and objectcollection.include? donnee
-      out << "/>#{donnee}"
-    end
-    out
-  end
-
-  # select_onchange(@clients, @current_client, 'client')
-  # options
-  # :width limite la taille du texte en nb de caractères
-  # :title à afficher comme 1er élément de la liste (no value)
-  # :onchange action si changement
-  # :size hauteur du select
-  def select_onchange(list, default, name, options = {})
-    #options[:width] ||= 15
-    options[:title] ||= ''
-    options[:onchange] ||= 'this.form.submit();'
-    options[:name] ||= name
-    #collected = list.collect{|e| [sum_up(e.nom, options[:width]), e.id] }.unshift(["#{options[:title]}", ''])
-    collected = list.collect{|e| [e.nom, e.id] }.unshift(["#{options[:title]}", ''])
-    select = options_for_select(collected, default.to_i)
-    content_tag :select, select, options 
-  end
-
-
-  # Titles doit contenir un tableau
-  # Champs doit contenir un tableau
-  # Les éléments de Titles et Champs doivent être affichable par to_s
-  # options
-  # :title => Donne un titre au tableau
-  # :subtitle => Donne un sous titre au tableau
-  # Ex : show_table_form( { "TOTO", "TITI"}, { "TATA", "TUTU" }, :title => "Titre" )
-  def show_table_form(fields, options = {})
-    fields.compact!
-    result = ''
-    style = "class='#{options[:class]}'" if options[:class]
-    result << "<table #{style}>"
-    fields.each { |f|
-      title, field = f.first, f.last
-      unless title.nil? and field.nil?
-        result << '<tr>'
-        if field.nil?
-          result << '<td colspan="2">' << title << '</td>'
-        elsif title.nil?
-          result << '<td colspan="2">' << field << '</td>'
-        else
-          result << "<td>#{title}</td>"
-          result << "<td>#{field}</td>"
-        end
-        result << '</tr>'
-      end
-    }
-  result << '</table>'
-  end
-
-  def lstm_text_field(label, mmodel, field, options = {})
-    [ "<label for=\"#{mmodel}_#{field}\">#{label}</label>",
-      text_field(mmodel, field, options) ]
-  end
-
-  def lstm_password_field(label, model, field, options = {})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      password_field(model, field, options) ]
-  end
-
-  def lstm_text_area(label, model, field, options = {})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      text_area(model, field, options) ]
-  end
-
+  
   ### LIENS ABSOLUS ############################################################
 
   # lien vers un compte existant
   # DEPRECATED : préferer link_to_edit(id)
   # TODO : passer id en options, avec @session[:user].id par défaut
   # TODO : title en options, avec 'Le compte' par défaut
-  def link_to_modify_account(id, title, options = {})
+  def link_to_modify_account(id, title)
+    return nil unless id
     link_to title, {
       :action => 'modify',
       :controller => 'account',
       :id => id
     }
-  end
-
-  # lien vers mon compte
-  # TODO : ne pas utiliser.
-  #        à préférer :  link_to_modify_account({:text => 'Mon&nbsp;compte'})
-  def link_to_my_account(options = {:text => 'Mon&nbsp;compte'})
-    link_to_modify_account(session[:user].id, options[:text]) if session[:user]
   end
 
   # lien vers mon offre / mon client
@@ -239,7 +132,7 @@ module ApplicationHelper
     desc = 'Supprimer'
     link_to image_delete, { :action => 'destroy', :id => ar },
     { :class => 'nobackground',
-      :confirm => "Voulez-vous vraiment  supprimer ##{ar.id} ?",
+      :confirm => "Voulez-vous vraiment supprimer ##{ar.id} ?",
       :method => 'post' }
   end
 
@@ -292,25 +185,6 @@ module ApplicationHelper
   end
 
 
-  ### AJAX ET JAVASCRIPT ########################################################
-
-  # fonction JS de mis à jour d'une boite select
-  # Non utilisé pour l'instant
-  def update_select_box( target_dom_id, collection, options={} )
-
-    # Set the default options
-    options[:text]           ||= 'name'
-    options[:value]          ||= 'id'
-    options[:include_blank]  ||= true
-    options[:clear]     ||= []
-    pre = options[:include_blank] ? [['','']] : []
-
-    out = "update_select_options( $('" << target_dom_id.to_s << "'),"
-    out << "#{(pre + collection.collect{ |c| [c.send(options[:text]), c.send(options[:value])]}).to_json}" << ","
-    out << "#{options[:clear].to_json} )"
-  end
-
-
   ### TEXTE #####################################################################
 
   # Affiche un résumé texte succint d'une demande
@@ -328,41 +202,25 @@ module ApplicationHelper
     out
   end
 
-  def sum_up_demande(demande)
-    return 'N/A' unless demande
-   "#{demande.typedemande.nom} (#{demande.severite.nom}) : #{demande.description}"
-  end
-
+  # indente du texte et échappe les caractères html
+  # à utiliser sur les descriptions, commentaires, etc
   def indent( text )
-    return text unless text.is_a? String
-    text = h text
-    text.gsub(/[\n]/, "<br />")
+    (text.is_a? String) ? h(text.gsub(/[\n]/, '<br />')) : text
   end
 
-  def show_help(help_text, options = {:symbol => '?'})
-    "<a title=\"#{help_text}\" >#{options[:symbol]}</a>"
+  # affiche un message d'aide
+  # TODO : mettre une icône
+  # TODO : en mettre plus dans les formulaires
+  def show_help(help_text)
+    "<a title=\"#{help_text}\" >?</a>"
   end
 
-  def show_title(title, options = {})
-    return unless title
-    result = '<br/>'
-    result << "<h1>#{title}</h1>"
-    if options[:subtitle]
-      result << "<h2>#{options[:subtitle]}</h2>"
-    else
-      result << "<br/>"
-    end
-  end
 
 
   ### FILES #####################################################################
 
   def file_size( file )
-    if File.exist?(file)
-      human_size(File.size(file))
-    else
-      "N/A"
-    end
+    (File.exist?(file) ? human_size(File.size(file)) : '-' )
   end
 
   # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
@@ -371,22 +229,12 @@ module ApplicationHelper
       nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
       link_to nom, url_for_file_column(record, file, :absolute => true)
     else
-      "N/A"
+      '-'
     end
   end
 
 
   ### LISTES ET TABLES ##########################################################
-
-  # Affiche une liste d'élements dans une cellule de tableaux
-  # call it like : show_cell_list(c.paquets) { |p| link_to_paquet(p) }
-  def show_cell_list(list)
-    out = '<td>'
-    if list and not list.empty?
-      list.each { |e| out << yield(e) + '<br />' }
-    end
-    out << '</td>'
-  end
 
   # options :
   #  * no_title : permet de ne pas mettre de titre à la liste
@@ -413,11 +261,12 @@ module ApplicationHelper
 
   # Call it like :
   # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
-  # <%= show_table(@documents, Document, titres) { |e| "<td>#{e.nom}" } %>
+  # <%= show_table(@documents, Document, titres) { |e| "<td>#{e.nom}</td>" } %>
   # N'oubliez pas d'utiliser les <td></td>
   # 2 options, :total et :content_columns
   # La première désactive le décompte total si positionné à false
   # La deuxième active l'affichage des content_columns si positionné à true
+  # TODO : intégrer width et style dans une seule option
   def show_table(elements, ar, titres, options = {})
     return "<br/><p>Aucun #{ar.table_name.singularize} à ce jour</p>" unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : "" )

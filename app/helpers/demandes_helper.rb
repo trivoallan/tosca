@@ -18,6 +18,12 @@ module DemandesHelper
     link_to text, options
   end
 
+  def sum_up_demande(demande)
+    return '-' unless demande
+   "#{demande.typedemande.nom} (#{demande.severite.nom}) : #{demande.description}"
+  end
+
+
   def display(donnee, column)
     case column
     when 'contournement','correction'
