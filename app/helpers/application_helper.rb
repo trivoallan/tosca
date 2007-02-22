@@ -128,7 +128,8 @@ module ApplicationHelper
   # affiche un message d'aide
   # TODO : mettre une icône
   # TODO : en mettre plus dans les formulaires
-  def show_help(help_text)
+  # TODO : changer le curseur en celui avec le '?'
+  def show_help( help_text )
     "<a title=\"#{help_text}\" >?</a>"
   end
 
