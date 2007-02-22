@@ -57,8 +57,7 @@ module PagesHelper
 
   # Je veux voir ces commentaires dans l'email
   # Nom di diou
-  # grumf de grumf
-
+  
   # call it like this :
   # <%= show_pages_links @demande_pages, 'déposer une nouvelle demande' %>
   # if you want ajax links, you must specificy the remote function this way :
