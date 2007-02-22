@@ -4,10 +4,8 @@
 
 # Methods added to this helper will be available to all templates in the application.
 # This is a big helper, so find by keyword :
-# - FORMULAIRES
 # - LIENS ABSOLUS
 # - LIENS RELATIFS
-# - AJAX ET JAVASCRIPT
 # - TEXTE
 # - FILES
 # - LISTES ET TABLES
@@ -29,12 +27,9 @@ module ApplicationHelper
   # TODO : passer id en options, avec @session[:user].id par défaut
   # TODO : title en options, avec 'Le compte' par défaut
   def link_to_modify_account(id, title)
-    return nil unless id
-    link_to title, {
-      :action => 'modify',
-      :controller => 'account',
-      :id => id
-    }
+    return '' unless id
+    options = {:action => 'modify', :controller => 'account', :id => id }
+    link_to title, options
   end
 
   # lien vers mon offre / mon client
@@ -43,7 +38,7 @@ module ApplicationHelper
   # :text texte du lien à afficher
   # :image image du client à afficher à la place
   def link_to_my_client(options = {:text => 'Mon&nbsp;Offre'})
-    return unless session[:beneficiaire]
+    return nil unless session[:beneficiaire]
     if options[:image]
       link_to image_tag(url_for_file_column(
                   @beneficiaire.client.photo, 'image', 'thumb')),
@@ -96,84 +91,6 @@ module ApplicationHelper
   end
 
 
-  ### LIENS RELATIFS ############################################################
-
-  # add_create_link
-  # options :
-  # permet de spécifier un controller
-  def link_to_new(message='', options = {})
-    link_options = options.update({:action => 'new'})
-    link_to(image_create(message), link_options,
-            { :class => 'nobackground' })
-  end
-
-  def link_to_view(ar)
-    desc = 'Voir'
-    link_to image_view, { :action => 'show', :id => ar.id }, {
-      :class => 'nobackground' }
-  end
-
-  def link_to_edit_and_list(ar)
-    [ link_to_edit(ar), link_to_back ].compact.join('|')
-  end
-  # add_edit_link(demande)
-  def link_to_edit(ar, action = 'edit')
-    desc = 'Editer'
-    link_to image_edit, {
-      :action => action, :id => ar }, { :class => 'nobackground' }
-  end
-
-  def link_to_modify(ar)
-    link_to_edit(ar, 'modify')
-  end
-
-  # add_delete_link(demande)
-  def link_to_delete(ar)
-    desc = 'Supprimer'
-    link_to image_delete, { :action => 'destroy', :id => ar },
-    { :class => 'nobackground',
-      :confirm => "Voulez-vous vraiment supprimer ##{ar.id} ?",
-      :method => 'post' }
-  end
-
-  def link_to_back(desc='Retour à la liste', 
-                   options = {:action => 'list', :id => nil })
-    link_to(image_back, options)
-  end
-
-  # link_to_actions_table(demande)
-  def link_to_actions_table(ar, options = {})
-    return '' unless ar
-    actions = [ link_to_view(ar), link_to_edit(ar), link_to_delete(ar) ]
-    actions.compact!
-    return "<td>#{actions.join('</td><td>')}</td>"
-  end
-
-  # call it like this :
-  # <%= show_pages_links @demande_pages %>
-  def show_pages_links(pages, message, options={})
-    result = '<table class="pages"><tr><td>'
-    result << "#{link_to_new(message, options)}</td>"
-    return "<td>#{result}</td></tr></table>" unless pages.length > 0
-
-    if pages.current.previous
-      result << '<td>' + link_to(image_first_page, { :page => pages.first }, {
-        :title => "Première page" }).to_s + '</td>'
-      result << '<td>' + link_to(image_previous_page, { :page => pages.current.previous }, {
-        :title => "Page précédente" }).to_s + '</td>'
-    end
-    if pages.current.last_item > 0
-      result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item} "
-      result << "à #{pages.current.last_item}&nbsp; sur #{pages.last.last_item}&nbsp;</small></td>"
-    end
-    if pages.current.next
-      result << '<td>' + link_to(image_next_page, { :page => pages.current.next }, {
-        :title => "Page suivante" }).to_s + '</td>'
-      result << '<td>' + link_to(image_last_page, { :page => pages.last }, {
-        :title => "Dernière page" }).to_s + '</td>'
-    end
-    result << '</tr></table>'
-  end
 
   # lien vers l'export de données
   # options :
