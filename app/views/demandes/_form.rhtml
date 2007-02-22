@@ -1,110 +1,89 @@
 <%= error_messages_for 'demande' %>
 
 <% # hidden_on_create : à placer si on veut cacher un élément %>
-<% case controller.action_name
-   when 'new', 'create'
-     hidden_on_create = 'style="visibility:hidden"'
-   else
-     hidden_on_create = ""
-   end
-%>
+<% hidden_on_create = case controller.action_name
+     when 'new', 'create' : 'style="visibility:hidden"'
+     else ''
+   end %>
 
 <!--[form:demande]-->
 
 <table class="info" ><tr><td valign="top">
 
 <table><% #colonne gauche %>
-
 <% if @demande.beneficiaire && @ingenieur %>
 <tr>
   <td><p>Client</p></td>
   <td><%= @demande.beneficiaire.client.nom %></td>
 </tr>
 <% end %>
-
 <tr>
   <td colspan="2"><p><label for="demande_resume">Resumé</label><br/>
     <%= text_area 'demande', 'resume', :cols => 65, :rows => 2 %></p></td>
 </tr>
-
 <tr>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
+  <td colspan="2">&nbsp;</td>
 </tr>
-
 <tr>
-<td><p><label for="demande_beneficiaire">Bénéficiaire</label></p></td>
-<td><select id="demande_beneficiaire_id" name="demande[beneficiaire_id]">
-<%= option_groups_from_collection_for_select(@clients, "beneficiaires",
-                                             "nom", "id", "nom",
-                                             @demande.beneficiaire_id ) %>
-</select></td>
+  <td><p><label for="demande_beneficiaire">Bénéficiaire</label></p></td>
+  <td><select id="demande_beneficiaire_id" name="demande[beneficiaire_id]">
+        <%= option_groups_from_collection_for_select(@clients, "beneficiaires",
+            "nom", "id", "nom", @demande.beneficiaire_id ) %>
+      </select></td>
 </tr>
-
 <% if @ingenieurs %>
 <tr>
-<td><p><label for="demande_ingenieur">Ingénieur assigné à la demande</label></p></td>
-<td><%= select("demande", "ingenieur_id",
-	@ingenieurs.collect{|i| [ i.identifiant.nom, i.id]},
-     { :include_blank => true }) %></td></tr>
+  <td><p><label for="demande_ingenieur">Ingénieur assigné à la demande</label></p></td>
+  <td><%= select("demande", "ingenieur_id",
+	    @ingenieurs.collect{|i| [ i.identifiant.nom, i.id]}, 
+            { :include_blank => true }) %></td>
+</tr>
 <% end %>
-
 <tr>
-<td colspan="2">
-<div id="contrat"></div>
-<%  #observe_field "demande_beneficiaire_id", { :url => {:action => :ajax_update_beneficiaire},
-    #:update => :contrat, :with => "beneficiaire_id" } %>
-</td></tr>
-
+  <td><p><label for="demande_logiciel">Logiciel concerné</label></p></td>
+  <td><%= select("demande", "logiciel_id",
+	  @logiciels.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td>
+</tr>
 <tr>
-<td><p><label for="demande_logiciel">Logiciel concerné</label></p></td>
-<td><%= select("demande", "logiciel_id",
-	@logiciels.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td></tr>
-
+  <td><p><label for="demande_typedemande">Type de la demande</label></p></td>
+  <td><%= select("demande", "typedemande_id",
+	  @typedemandes.collect{|l| [ l.nom, l.id]}) %></td>
+</tr>
 <tr>
-<td><p><label for="demande_typedemande">Type de la demande</label></p></td>
-<td><%= select("demande", "typedemande_id",
-	@typedemandes.collect{|l| [ l.nom, l.id]}) %></td></tr>
-
+  <td><p><label for="demande_severite">Sévérité de la demande</label></p></td>
+  <td><%= select("demande", "severite_id",
+	  @severites.collect{|l| [ l.nom, l.id]}) %></td>
+</tr>
 <tr>
-<td><p><label for="demande_severite">Sévérité de la demande</label></p></td>
-<td><%= select("demande", "severite_id",
-	@severites.collect{|l| [ l.nom, l.id]}) %></td></tr>
-
-<tr>
-<td colspan="2">
-<div id="demande_paquets"></div>
-</td></tr>
-
+  <td colspan="2"><div id="demande_paquets"></div></td>
+</tr>
 <% # hidden lors de la création d'un demande et absent lors de son édition %>
 <% if controller.action_name != 'edit' %>
-<tr><td>
- <p <%= hidden_on_create %>><label for="demande_statut">Statut de la demande</label><br/>
-  <%= text_field("demande", "statut_id") %>
- </p>
-</td></tr>
+<tr>
+  <td colspan="2"><p <%= hidden_on_create %>>
+    <label for="demande_statut">Statut de la demande</label><br/>
+    <%= text_field("demande", "statut_id") %></p></td>
+</tr>
 <% end %>
-
-
 <% # hidden lors de la création d'un demande %>
 <tr>
-<td><p <%= hidden_on_create %>><label for="demande_reproductible">Reproductible ?</label></p></td>
-<td><p <%= hidden_on_create %>><%= check_box("demande", "reproductible") %></p></td></tr>
-
+  <td><p <%= hidden_on_create %>><label for="demande_reproductible">Reproductible ?</label></p></td>
+  <td><p <%= hidden_on_create %>><%= check_box("demande", "reproductible") %></p></td>
+</tr>
 <tr>
-<td><div id="delai"></div>
-<% # option :function et :on pour remplacer :url, par defaut "changed" %>
-<%= observe_form 'demande_form', :url => {:action => :ajax_update_delai},
-  :update => :demande_paquets %></td>
-<td></td></tr>
-
+  <td><div id="delai"></div>
+    <% # option :function et :on pour remplacer :url, par defaut "changed" %>
+    <%= observe_form 'demande_form', :url => {:action => :ajax_update_delai},
+                                     :update => :demande_paquets %></td>
+  <td></td>
+</tr>
 </table>
 
 </td><td valign="top">
 
 <table><% #colonne droite %>
 <tr><td><p><label for="demande_description">Description détaillée</label><br />
-   <%= text_area 'demande', 'description', "cols" => 45, "rows" => 14 %></p></td>
+   <%= text_area 'demande', 'description', :cols => 70, :rows =>22 %></p></td>
 </tr>
 </table>
 
