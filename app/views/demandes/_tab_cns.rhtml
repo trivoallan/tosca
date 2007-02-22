@@ -1,0 +1,37 @@
+<%= render :partial => 'tab_menu' %>
+
+
+<div class="demande_tab_content" name="demande_tab_content">
+
+<p>Les engagements pris sur le contournement et la résolution 
+   de cotre demande dépendent du logiciel concerné, 
+   <%= @demande.logiciel.nom %> dans votre cas.</p>
+
+<% size = @demande.paquets.size %> 
+<p>Votre demande impacte <%= pluralize(size, 'paquet source') %> :</p>
+
+<table>
+
+  <tr>
+    <th>Paquet</th>
+    <th>Version</th>    
+    <th>Contournement</th>
+    <th>Correction</th>
+  </tr>
+
+  <% type_id = @demande.typedemande_id %>
+  <% severite_id = @demande.severite_id %>
+
+  <% @demande.paquets.each_index do |i| %>
+  <% p = @demande.paquets[i] %>
+  <tr class="<%= (i % 2)==0 ? 'pair':'impair' %>">
+    <td><%= p.nom %></td>
+    <td><%= p.version %></td>
+    <td><%= "#{ display_jours p.contournement(type_id, severite_id) }" %></td>
+    <td><%= "#{ display_jours p.correction(type_id, severite_id) }" %></td>
+  </tr>
+  <% end %>
+
+</table>
+
+</div>
