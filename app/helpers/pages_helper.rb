@@ -82,17 +82,15 @@ module PagesHelper
     
     if pages.current.previous
       result << "<td>#{link_to_first_page(pages, ajax_call)}</td>"
-      result << "<td>#{link_to_previous_page(ajax_call)}</td>"
+      result << "<td>#{link_to_previous_page(pages, ajax_call)}</td>"
     end
     if pages.current.last_item > 0
       result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item} "
       result << "à #{pages.current.last_item}&nbsp; sur #{pages.last.last_item}&nbsp;</small></td>"
     end
     if pages.current.next
-      result << '<td>' + link_to(image_next_page, { :page => pages.current.next }, {
-        :title => "Page suivante" }).to_s + '</td>'
-      result << '<td>' + link_to(image_last_page, { :page => pages.last }, {
-        :title => "Dernière page" }).to_s + '</td>'
+      result << "<td>#{link_to_next_page(pages, ajax_call)}</td>"
+      result << "<td>#{link_to_last_page(pages, ajax_call)}</td>"
     end
     result << '</tr></table>'
   end
@@ -124,8 +122,21 @@ module PagesHelper
   end
 
   # used in show_page_links
-  def link_to_previous_page(ajax_call)
-    # TODO
+  def link_to_last_page(pages, ajax_call)
+      link_to(image_last_page, { :page => pages.last }, {
+        :title => "Dernière page" }).to_s
+  end
+
+  # used in show_page_links
+  def link_to_previous_page(pages, ajax_call)
+      link_to(image_previous_page, { :page => pages.current.previous }, {
+        :title => "Page précédente" }).to_s + '</td>'
+  end
+
+  # used in show_page_links
+  def link_to_next_page(pages, ajax_call)
+      link_to(image_next_page, { :page => pages.current.next }, {
+        :title => "Page suivante" }).to_s + '</td>'
   end
 
 end
