@@ -40,6 +40,7 @@ class ContributionsController < ApplicationController
     # @count = Contribution.count
     conditions = nil
     @logiciels = Logiciel.find(:all)
+    @clients = Client.find(:all)
     @count = Contribution.count
     scope_filter do
       @contribution_pages, @contributions = paginate :contributions, :per_page => 10

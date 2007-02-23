@@ -3,14 +3,16 @@
 #####################################################
 module ImagesHelper
 
+  # TODO : utiliser image_options (cf image_delete pour exemple)
+  # We cannot cache a parametered image
+
   # por éviter la réaffection de desc à chaque coup
   def image_options(desc = '')
     { :border => 0, :alt => desc, :title => desc }
   end
 
-  # TODO : utiliser image_options (cf image_delete pour exemple)
+  # Database manipulation
 
-  # We cannot cache a parametered image
   @@create = nil
   def image_create(message)
     desc = "Déposer #{message}"
@@ -37,6 +39,8 @@ module ImagesHelper
     @delete ||= image_tag('delete_icon.gif', image_options('Supprimer')\
                           .update(:size => '15x17'))
   end
+
+  # Navigation
 
   @@back = nil
   def image_back
@@ -82,6 +86,15 @@ module ImagesHelper
                                 :border => 0, :alt => desc, :title => desc )
   end
 
+  @@folder = nil
+  def image_folder
+    desc = 'Fichier'
+    @@folder ||= image_tag('folder_icon.gif', :size => '16x16',
+                           :border => 0, :alt => desc, :title => desc,
+                           :align => 'bottom')
+  end
+
+  # Security
 
   @@public = nil
   def image_public
@@ -97,26 +110,13 @@ module ImagesHelper
                             :border => 0, :alt => desc, :title => desc )
   end
 
-
-  @@spinner = nil
-  def image_spinner
-    @@spinner ||= image_tag('spinner.gif', :border=> 0, :id => 'spinner',
-                            :style=> 'display: none;')
-  end
-  @@folder = nil
-  def image_folder
-    desc = 'Fichier'
-    @@folder ||= image_tag('folder_icon.gif', :size => '16x16',
-                           :border => 0, :alt => desc, :title => desc,
-                           :align => 'bottom')
-  end
+  # Logos
 
   @@logo_08000 = nil
   def logo_08000
     desc = '08000 LINUX'
     @@logo_08000 ||= image_tag('logo_08000.gif', :alt => desc, :title => desc)
   end
-
 
   @@logo_lstm = nil
   def logo_lstm
@@ -134,6 +134,14 @@ module ImagesHelper
   @@image_favicon = nil 
   def image_favicon
     @@image_favicon ||= image_path("favicon.ico")
+  end
+
+  # Other
+
+  @@spinner = nil
+  def image_spinner
+    @@spinner ||= image_tag('spinner.gif', :border=> 0, :id => 'spinner',
+                            :style=> 'display: none;')
   end
 
 end

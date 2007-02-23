@@ -78,7 +78,7 @@ module ApplicationHelper
   # le "any" indique que la demande peut etre sur n'importe quel tracker
   # TODO : verifier que le paramètre est une contribution
   def link_to_any_demande(contribution)
-    return "Aucune demande associée" if !contribution.id_mantis && contribution.demandes.size == 0
+    return " - " if !contribution.id_mantis && contribution.demandes.size == 0
     out = []
     if contribution.id_mantis
       out << "<a href=\"http://www.08000linux.com/clients/minefi_SLL/mantis/view.php?id=#{contribution.id_mantis}\">
