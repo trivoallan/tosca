@@ -9,9 +9,10 @@
   padding: 0 0 0 1em;
 }
 .summary {
-  border-right: 1px solid #999999; /*#990066; /* #cfc8cf;*/
-  border-bottom: 1px solid #999999; /*#990066;*/
+  border-right: 1px solid #999999; 
+  border-bottom: 1px solid #999999; 
   width: 23%;
+  /*height: 100%;*/
   float: left;
   margin-left: -2%;
   margin-top: -2%;

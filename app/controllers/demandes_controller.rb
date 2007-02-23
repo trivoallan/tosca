@@ -87,7 +87,7 @@ class DemandesController < ApplicationController
     @beneficiaires = Beneficiaire.find_select(:include => [:identifiant])
 
     @count = { :demandes =>  Demande.count }
-    count_logiciels = { :select => 'DISTINCT demandes.logiciel_id' }
+    count_logiciels = { :select => 'demandes.logiciel_id' }
     @count[:logiciels] = Demande.count(count_logiciels)
     @count[:commentaires] = Commentaire.count
     @count[:piecejointes] = Piecejointe.count
