@@ -166,6 +166,13 @@ class AccountController < ApplicationController
 
       flash[:notice] = ''
       flash.now[:warn] = ''
+
+      # TODO : tester si toutes les rows sont bien là
+      # if row['Nom Complet'] && row['Titre'] && row['Email'] 
+      # && row['Téléphone'] && row['Identifiant'] && row['Mot de passe']
+      # && row['Mot de passe'] && row['Informations']
+      # && params[:identifiant] && params[:identifiant][:client]
+
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), { :col_sep => ";", :headers => true }) do |row|
         @identifiant = Identifiant.new do |i|
            logger.debug(row.inspect)
