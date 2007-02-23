@@ -3,8 +3,7 @@
 <h2><%= link_to_logiciel contribution.logiciel %> : <%= contribution.nom %>
     <%= link_to_edit(contribution) %>
     <%= link_to_view(contribution) %></h2>
-<%# TODO : textilze %>
-<%= textilize("h1. This is a test of textile\n\nParagraph\n\nAnother paragraph\n\n* Bullets") %>
+</div>
 <%= textilize(contribution.description_fonctionnelle) %>
 <br/>
 <p><b>Patch</b> : <%= link_to_file contribution, 'patch' %></p>
@@ -13,4 +12,4 @@
 <p><b>Reversé le</b> : <%= contribution.reverse_le_formatted %></p>
 <p><b>Etat du reversement</b> : <%= contribution.etatreversement.nom if contribution.etatreversement %></p>
 
-</div>
+
