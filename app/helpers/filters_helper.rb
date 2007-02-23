@@ -15,6 +15,11 @@ module FiltersHelper
                            "filters[#{field}]", options)
   end
 
+  # TODO cas particulier pour select_filter(@severites, :severite)
+  # les couleurs associée peuvent etre utilise dans le style du select
+  def select_filter_severite
+    "TODO"
+  end
 
   # TODO : MLO: wtf ? it's dirty
   # and even with a fixed year in it

@@ -18,7 +18,9 @@
 <ul class="menu" id="menu_beneficiaire">
   <li><b>Contact : </b><%= @demande.beneficiaire.nom %></li>
   <li><b>Téléphone : </b><%= @demande.beneficiaire.identifiant.telephone %></li>
-  <li><b>Société : </b><%= @demande.beneficiaire.client.nom %></li>
+  <% client = @demande.beneficiaire.client %> 
+  <li><b>Société : </b><%= link_to client.nom, :controller => 'clients', 
+                           :action => 'show', :id => client %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_cns')" %>
