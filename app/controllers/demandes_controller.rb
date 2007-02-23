@@ -239,7 +239,7 @@ class DemandesController < ApplicationController
 
   def ajax_comments
     return render_text('') unless request.xhr? and params[:id]
-    @demande_id = params[:id]
+    @demande_id = params[:id] 
     if @beneficiaire
       @commentaires = Commentaire.find_all_by_demande_id_and_prive(
                       @demande_id, false, :order => "created_on ASC", 

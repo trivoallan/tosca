@@ -33,16 +33,15 @@
        <%= if commentaire.prive
 		link_to(image_public,
 		   :controller => 'commentaires',
-	           :action => 'changer_etat', :id => commentaire, :demande =>@demande_id)
+	           :action => 'changer_etat', :id => commentaire)
 	   else
 		link_to(image_private,
 		   :controller => 'commentaires',
-	           :action => 'changer_etat', :id => commentaire, :demande =>@demande_id)
+	           :action => 'changer_etat', :id => commentaire)
 	   end %>
        <br/>
        <%= link_to(image_delete,
-	{  :controller => 'commentaires', :action => 'destroy',
-           :id => commentaire, :demande => @demande_id },
+	{  :controller => 'commentaires', :action => 'destroy', :id => commentaire },
            :confirm => "Voulez-vous vraiment supprimer le commentaire #{commentaire.id} ?") %>
     </td>
     <% end %>

@@ -162,12 +162,13 @@ class AccountController < ApplicationController
       if(params['textarea_csv'].to_s.empty?)
         flash.now[:warn] = "Veuillez rentrer un texte sous format CSV"
         return
-      #elsif 
-      # TODO : tester si toutes les rows sont bien là
-      # if row['Nom Complet'] && row['Titre'] && row['Email'] 
-      # && row['Téléphone'] && row['Identifiant'] && row['Mot de passe']
-      # && row['Mot de passe'] && row['Informations']
-      # && params[:identifiant] && params[:identifiant][:client]
+      #elsif TODO : tester si toutes les rows sont bien là
+      #   row['Nom Complet'] && row['Titre'] && row['Email'] 
+      #   && row['Téléphone'] && row['Identifiant'] && row['Mot de passe']
+      #   && row['Mot de passe'] && row['Informations']
+      #   && params[:identifiant] && params[:identifiant][:client]
+      # flash.now[:warn] = "Le fichier CSV n'est pas bien formé"
+      # return
       end
 
       flash[:notice] = ''

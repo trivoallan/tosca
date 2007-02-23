@@ -68,14 +68,13 @@ class CommentairesController < ApplicationController
 
   def changer_etat
     @commentaire = Commentaire.find(params[:id])
-    return unless (params[:demande] and @commentaire)
     # toggle inverse un statut booleen
     if @commentaire.toggle!(:prive)
       flash[:notice] = "Le commentaire ##{@commentaire.id} est désormais #{@commentaire.etat}"
     else
       flash.now[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas été modifié"'
     end
-    redirect_to :controller => 'demandes', :action => 'comment', :id => params[:demande]
+    redirect_to :controller => 'demandes', :action => 'comment', :id => @commentaire.demande_id
   end
 
   def new
@@ -111,12 +110,12 @@ class CommentairesController < ApplicationController
   end
 
   def destroy
-    return redirect_to(:action => 'list', :controller => 'bienvenue') unless params[:demande] and params[:id]
-    Commentaire.find(params[:id]).destroy
+    return redirect_to(:action => 'list', :controller => 'bienvenue') unless params[:id]
+    commentaire = Commentaire.find(params[:id])
+    demande = commentaire.demande_id
+    commentaire.destroy
     flash[:notice] = 'Le commentaire a bien été supprimé.'
-    redirect_to(:action => 'comment', 
-                :controller => 'demandes', 
-                :id => params[:demande])
+    redirect_to(:action => 'comment', :controller => 'demandes')
   end
 
   private
