@@ -8,4 +8,5 @@ module DocumentsHelper
     link_to typedocument.nom + ' (' + typedocument.documents.size.to_s + ')', {
       :action => 'list', :id => typedocument }
   end
+
 end
