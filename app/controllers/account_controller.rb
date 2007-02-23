@@ -165,6 +165,7 @@ class AccountController < ApplicationController
       end
 
       flash[:notice] = ''
+      flash.now[:warn] = ''
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), { :col_sep => ";", :headers => true }) do |row|
         @identifiant = Identifiant.new do |i|
            logger.debug(row.inspect)
@@ -200,6 +201,8 @@ class AccountController < ApplicationController
                                                   :controller => self,
                                                   :password => row['Mot de passe'].to_s}, flash)
           flash[:notice] += "<br/>"
+        else
+          flash.now[:warn] += "L'utilisateur " + row['Nom Complet'].to_s + " n'a pas été créé.<br/>"
         end
       end
       redirect_back_or_default :action => "list"
