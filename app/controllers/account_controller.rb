@@ -78,8 +78,9 @@ class AccountController < ApplicationController
       if @identifiant.update_attributes(newIdentifiant)
         if session[:user] == @identifiant
           #On sauve bien notre profil
-          clear
+          clear_sessions
           session[:user] = @identifiant
+          set_sessions
         end
         flash[:notice]  = "Modification réussie"
         redirect_back_or_default :action => "list", :controller => 'bienvenue'
@@ -146,7 +147,7 @@ class AccountController < ApplicationController
   end
 
   def logout
-    clear
+    clear_sessions
     redirect_to "/"
   end
 
@@ -235,16 +236,6 @@ private
     else
       yield
     end
-  end
-
-  def clear
-    @session[:user] = nil
-    @session[:beneficiaire] = nil
-    @session[:ingenieur] = nil
-    @session[:logo_08000] = nil
-    @session[:filtres] = nil
-    @beneficiaire = nil
-    @ingenieur = nil
   end
 
 end

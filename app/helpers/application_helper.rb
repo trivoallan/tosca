@@ -143,7 +143,7 @@ module ApplicationHelper
 
   # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
   def link_to_file(record, file)
-    if record and File.exist?(record.send(file))
+    if record and record.send(file) and File.exist?(record.send(file))
       nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
       link_to nom, url_for_file_column(record, file, :absolute => true)
     else

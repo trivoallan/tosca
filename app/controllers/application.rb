@@ -80,6 +80,16 @@ protected
         <% end %>"
   end
 
+  # efface les paramètres de session
+  def clear_sessions
+    @session[:user] = nil
+    @session[:beneficiaire] = nil
+    @session[:ingenieur] = nil
+    @session[:logo_08000] = nil
+    @session[:filtres] = nil
+    @beneficiaire = nil
+    @ingenieur = nil
+  end
 
   def set_headers
     headers['Content-Type'] = ( request.xhr? ? 'text/javascript; charset=utf-8' : 

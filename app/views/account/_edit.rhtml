@@ -67,6 +67,9 @@
       ])
    end
 
+    role[:titre] = '<label>Rôles</label>'
+    role[:champ] = hbtm_radio_button( @identifiant.roles, @roles, 'role_ids')
+
    fields.concat([
       [ role[:titre], role[:champ] ],
       [ identifiant_client[:titre], identifiant_client[:champ] ]
