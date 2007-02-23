@@ -22,7 +22,7 @@
  <li><b>Groupe </b></li>
  <li><%=select_filter(@groupes, 'groupe')%></li>
  <li><b>Technologie </b></li>
- <li><%=select_filter(@technologies, 'competence')%></li>
+ <li><%=select_filter(@technologies, 'competences_logiciels.competence')%></li>
 </ul>
 
 <table class="underline" cellpadding="3" cellspacing="0">
@@ -35,13 +35,6 @@
  <li><b>Logiciels: </b><%=@count[:softwares]%></li>
 </ul>
 
-<table class="underline" cellpadding="3" cellspacing="0">
-  <tbody><tr><td bgcolor="#dddddd"><b>Aide</b></td></tr></tbody>
-</table>
-<ul class="menu">
- <li><%= link_to_group_list %></li>
- <li><b>Technologies </b></li>
-</ul>
 
 
 

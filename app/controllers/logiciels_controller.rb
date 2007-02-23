@@ -30,7 +30,6 @@ class LogicielsController < ApplicationController
 
   def update_list
     return redirect_to_home unless request.xhr? 
-
     options = { :per_page => 15, :order => 'logiciels.nom', 
       :include => [:groupe,:competences]}
     conditions = []
@@ -39,10 +38,12 @@ class LogicielsController < ApplicationController
       conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
     }
     params['filters'].each_pair { |key, value|
-      conditions << " #{key}=#{value} " unless value == '' or key.intern == :client_id
+      unless value == '' or key.intern == :client_id
+        conditions << " #{key}=#{value} " 
+      end
     }
-    scope_client(params['filters']['client_id'])
-    Logiciel.set_scope(session[:contrat_ids])
+    #scope_client(params['filters']['client_id'])
+    #Logiciel.set_scope(session[:contrat_ids])
 
     options[:conditions] = conditions.join(' AND ') unless conditions.empty?
     @logiciel_pages, @logiciels = paginate :logiciels, options
