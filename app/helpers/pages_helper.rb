@@ -74,23 +74,30 @@ module PagesHelper
     result = '<table class="pages"><tr><td>'
     result << "#{link_to_new(message, options)}</td>"
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
-    javascript = session[:javascript]
-    if options[:url] and javascript
-      ajax_call = remote_function(AJAX_OPTIONS.dup.update(options)) 
+    if options[:url] and session[:javascript]
+      ajax_call = 
+        remote_function(AJAX_OPTIONS.dup.update(:url => options[:url]))
     end
-
     
     if pages.current.previous
-      result << "<td>#{link_to_first_page(pages, ajax_call)}</td>"
-      result << "<td>#{link_to_previous_page(pages, ajax_call)}</td>"
+      link = link_to_page(pages, pages.first, 
+                          'Première page', ajax_call)
+      result << "<td>#{link}</td>"
+      link = link_to_page(pages, pages.current.previous, 
+                          'Page précédente', ajax_call)
+      result << "<td>#{link}</td>"
     end
     if pages.current.last_item > 0
       result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item} "
       result << "à #{pages.current.last_item}&nbsp; sur #{pages.last.last_item}&nbsp;</small></td>"
     end
     if pages.current.next
-      result << "<td>#{link_to_next_page(pages, ajax_call)}</td>"
-      result << "<td>#{link_to_last_page(pages, ajax_call)}</td>"
+      link = link_to_page(pages, pages.current.next, 
+                          'Page suivante', ajax_call)
+      result << "<td>#{link}</td>"
+      link = link_to_page(pages, pages.last, 
+                          'Dernière page', ajax_call)
+      result << "<td>#{link}</td>"
     end
     result << '</tr></table>'
   end
@@ -109,34 +116,5 @@ module PagesHelper
     end
   end
 
-  # used in show_page_links
-  def link_to_first_page(pages, ajax_call)
-    html_options = {:title => 'Première page' }
-    if ajax_call
-      page = "#{PAGE_FORM}.page.value=1; #{ajax_call}"
-      link = link_to_function(image_first_page, page, html_options)
-    else
-      page = { :page => pages.first }
-      link = link_to(image_first_page, page, html_options)
-    end
-  end
-
-  # used in show_page_links
-  def link_to_last_page(pages, ajax_call)
-      link_to(image_last_page, { :page => pages.last }, {
-        :title => "Dernière page" }).to_s
-  end
-
-  # used in show_page_links
-  def link_to_previous_page(pages, ajax_call)
-      link_to(image_previous_page, { :page => pages.current.previous }, {
-        :title => "Page précédente" }).to_s + '</td>'
-  end
-
-  # used in show_page_links
-  def link_to_next_page(pages, ajax_call)
-      link_to(image_next_page, { :page => pages.current.next }, {
-        :title => "Page suivante" }).to_s + '</td>'
-  end
 
 end
