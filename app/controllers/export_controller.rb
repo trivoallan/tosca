@@ -8,8 +8,6 @@ require 'fastercsv'
 # source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
 class ExportController < ApplicationController
 
-
-
   # return the contents of identifiants in a table in CSV format
   def identifiants
     identifiants = Identifiant.find(:all)
@@ -28,7 +26,6 @@ class ExportController < ApplicationController
   # return the contents of a demande in a table in CSV format
   def demandes
     demandes = Demande.find(:all)
-    #demande = Demande.find(params[:id]) if params[:id]
     stream_csv do |csv|
       csv << ["id", 
               "logiciel", 
@@ -68,7 +65,9 @@ class ExportController < ApplicationController
   private
   
   def stream_csv
-    filename = ( @beneficiaire ? "#{@beneficiaire.client.nom}_" : "OSSA_" ) + params[:action] + ( params[:id] ? "_#{params[:id]}" : "" )  + ".csv"    
+    prefix = ( @beneficiaire ? @beneficiaire.client.nom : 'OSSA' )
+    suffix = Time.now.strftime('%d_%m_%Y')
+    filename = [ prefix, params[:action], suffix].join('_') + ".csv"
 
      #this is required if you want this to work with IE        
      if request.env['HTTP_USER_AGENT'] =~ /msie/i
@@ -78,14 +77,15 @@ class ExportController < ApplicationController
        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\"" 
        headers['Expires'] = "0" 
      else
-       headers["Content-Type"] ||= 'text/csv'
+       headers["Content-type"] ||= 'text/csv'
+       headers['Pragma'] = 'public'
        headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" 
      end
 
      render :text => Proc.new { |response, output|
        csv = FasterCSV.new(output, :row_sep => "\r\n", :col_sep => "\";\"") 
        yield csv
-     }
+     }, :layout => false
   end
 
 end

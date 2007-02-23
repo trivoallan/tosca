@@ -1,25 +1,9 @@
 <h1>Liste des logiciels <%= image_spinner %></h1>
 
 
-<% options = { :update => 'content',
-    :with => "Form.serialize(document.forms['filters'])",
-    :url => '/logiciels/update_list',
-    :before => "Element.show('spinner')",
-    :success => "Element.hide('spinner')" } %>
-<%= link_to_function 'precedent ', "document.forms['filters'].page.value--; " + 
-  remote_function(options) %>
-
-<% options = { :update => 'content',
-    :with => "Form.serialize(document.forms['filters'])",
-    :url => '/logiciels/update_list',
-    :before => "Element.show('spinner')",
-    :success => "Element.hide('spinner')" } %>
-<%= link_to_function 'suivant ', "document.forms['filters'].page.value++; " + 
-  remote_function(options) %>
-
-
-<%= show_pages_links(@logiciel_pages, 'un nouveau logiciel', :url => 'logiciels/update_list') %>
-
+<% links = show_pages_links(@logiciel_pages, 'un nouveau logiciel', 
+                     :url => '/logiciels/update_list') %>
+<%= links %>
 
 <% titres = ['Nom',
              'Description', 'Technologies', 'Référent',
@@ -38,7 +22,7 @@
 }%>
 
 
-<%= show_pages_links(@logiciel_pages, 'un nouveau logiciel') %>
+<%= links %>
 
 <br />
 

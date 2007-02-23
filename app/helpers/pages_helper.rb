@@ -108,7 +108,7 @@ module PagesHelper
   def link_to_page(pages, page, title, image, ajax_call)
     html_options = {:title => title }
     if ajax_call
-      page = "#{PAGE_FORM}.page.value=#{page}; #{ajax_call}"
+      page = "#{PAGE_FORM}.page.value=#{page.number}; #{ajax_call}"
       link = link_to_function(image, page, html_options)
     else
       page = { :page => page }
