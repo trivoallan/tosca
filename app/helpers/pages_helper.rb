@@ -70,7 +70,7 @@ module PagesHelper
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" }
 
-  def show_pages_links(pages, message, options={})
+  def show_pages_links(pages, message, options = {} )
     result = '<table class="pages"><tr><td>'
     result << "#{link_to_new(message, options)}</td>"
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
@@ -80,11 +80,11 @@ module PagesHelper
     end
     
     if pages.current.previous
-      link = link_to_page(pages, pages.first, 
-                          'Première page', ajax_call)
+      link = link_to_page(pages, pages.first, 'Première page',
+                          image_first_page, ajax_call)
       result << "<td>#{link}</td>"
-      link = link_to_page(pages, pages.current.previous, 
-                          'Page précédente', ajax_call)
+      link = link_to_page(pages, pages.current.previous, 'Page précédente',
+                          image_previous_page, ajax_call)
       result << "<td>#{link}</td>"
     end
     if pages.current.last_item > 0
@@ -92,11 +92,11 @@ module PagesHelper
       result << "à #{pages.current.last_item}&nbsp; sur #{pages.last.last_item}&nbsp;</small></td>"
     end
     if pages.current.next
-      link = link_to_page(pages, pages.current.next, 
-                          'Page suivante', ajax_call)
+      link = link_to_page(pages, pages.current.next, 'Page suivante',
+                          image_next_page, ajax_call)
       result << "<td>#{link}</td>"
-      link = link_to_page(pages, pages.last, 
-                          'Dernière page', ajax_call)
+      link = link_to_page(pages, pages.last, 'Dernière page', 
+                          image_last_page,ajax_call)
       result << "<td>#{link}</td>"
     end
     result << '</tr></table>'
@@ -111,7 +111,7 @@ module PagesHelper
       page = "#{PAGE_FORM}.page.value=#{page}; #{ajax_call}"
       link = link_to_function(image, page, html_options)
     else
-      page = { :page => pages.current.previous }
+      page = { :page => page }
       link = link_to(image, page, html_options)
     end
   end
