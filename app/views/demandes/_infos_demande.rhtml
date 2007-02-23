@@ -1,7 +1,6 @@
-<table class="underline" cellpadding="3" cellspacing="0">
-  <tbody><tr><td bgcolor="#dddddd"><b>Résumé</b></td></tr></tbody>
-</table>
-<ul class="menu">
+<div class="menu_title" onclick="Element.toggle('menu_resume')" %>
+> Résumé </div>
+<ul class="menu" id="menu_resume">
   <li><b>Logiciel : </b><%= link_to_logiciel @demande.logiciel %></li>
   <li><b>Statut : </b><%= @demande.statut.nom %></li>
   <li><b>Type : </b><%= @demande.typedemande.nom %></li>
@@ -13,18 +12,18 @@
     <%= select_onchange @ingenieurs, 'demande', 'ingenieur_id' %>
   <% end %></li>
 </ul>
-<table class="underline" border="0" cellpadding="3" cellspacing="0">
-  <tbody><tr><td bgcolor="#dddddd"><b>Bénéficiaire</b></td></tr></tbody>
-</table>
-<ul class="menu">
+
+<div class="menu_title" onclick="Element.toggle('menu_beneficiaire')" %>
+> Bénéficiaire</div>
+<ul class="menu" id="menu_beneficiaire">
   <li><b>Contact : </b><%= @demande.beneficiaire.nom %></li>
   <li><b>Téléphone : </b><%= @demande.beneficiaire.identifiant.telephone %></li>
   <li><b>Société : </b><%= @demande.beneficiaire.client.nom %></li>
 </ul>
-<table class="underline" border="0" cellpadding="3" cellspacing="0">
-  <tbody><tr><td bgcolor="#dddddd"><b>C.N.S.</b></td></tr></tbody>
-</table>
-<ul class="menu">
+
+<div class="menu_title" onclick="Element.toggle('menu_cns')" %>
+> C.N.S.</div>
+<ul class="menu" id="menu_cns">
   <li><b>Rappelée en : </b> <%= @demande.affiche_temps_rappel %></li>
   <li><b>Contournée en : </b><%= @demande.affiche_temps_contournement %></li>
   <li><b>Corrigée en : </b><%= @demande.affiche_temps_correction %></li>
@@ -39,10 +38,10 @@
     <%= select_onchange @contributions, 'demande', 'contribution_id' %>
   <% end %></li>
 </ul>
-<table class="underline" border="0" cellpadding="3" cellspacing="0">
-  <tbody><tr><td bgcolor="#dddddd"><b>Cycle de vie</b></td></tr></tbody>
-</table>
-<ul class="menu">
+
+<div class="menu_title" onclick="Element.toggle('menu_cycle_de_vie')" %>
+> Cycle de vie</div>
+<ul class="menu" id="menu_cycle_de_vie">
   <li><b>Ouverte le : </b><%= @demande.created_on_formatted %></li>
   <li><b>Mise à jour le : </b> <%= @demande.updated_on_formatted %></li>
   <li><b>Temps écoulé : </b><%= @demande.affiche_temps_ecoule %></li>
