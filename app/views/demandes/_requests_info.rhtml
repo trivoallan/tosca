@@ -1,17 +1,17 @@
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
-<div class="menu_title" onclick="Element.toggle('menu_actions')" %>
-> Actions </div>
+<div class="menu_title" onclick="Element.toggle('menu_actions')" %>> 
+Actions </div>
 <ul class="menu" id="menu_actions">
  <li><%= link_to('Déposer une demande', :action => 'new')%></li>
  <li><%= link_to('Rapport d\'activité', :controller => 'reporting', 
-                  :action => 'general')%><li>
- <li><%= link_to_export %>
+                  :action => 'general')%></li>
+ <li><%= link_to_export %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_recherche')" %>
-> Recherche</div>
+<div class="menu_title" onclick="Element.toggle('menu_recherche')" %>> 
+Recherche</div>
 <ul class="menu" id="menu_recherche">
  <li><b>Logiciel </b></li>
  <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
@@ -25,8 +25,8 @@
  <% end %>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_caracteristiques')" %>
-> Caractéristiques</div>
+<div class="menu_title" onclick="Element.toggle('menu_caracteristiques')" %>> 
+Caractéristiques</div>
 <ul class="menu" id="menu_caracteristiques">
  <li><b>Type </b></li>
  <li><%=select_filter(@typedemandes, :typedemande) %></li>
@@ -36,8 +36,8 @@
  <li><%=select_filter(@statuts, :statut) %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_synthese')" %>
-> Synthèse</div>
+<div class="menu_title" onclick="Element.toggle('menu_synthese')" %>> 
+Synthèse</div>
 <ul class="menu" id="menu_synthese">
  <li><b>Demandes: </b><%=@count[:demandes]%></li>
  <li><b>Logiciels: </b><%=@count[:logiciels]%></li>
@@ -46,13 +46,12 @@
  <li><b>Contributions: </b><%=@count[:contributions]%></li>
 </ul>
 
-<% if @beneficiaire %>
-<table class="underline" cellpadding="3" cellspacing="0">
-  <tbody><tr><td bgcolor="#dddddd"><b>Aide</b></td></tr></tbody>
-</table>
-<ul class="menu">
+<%# if @beneficiaire %>
+<div class="menu_title" onclick="Element.toggle('menu_aide')" %>> 
+Aide</div>
+<ul class="menu" id="menu_aide">
  <li><%= link_to('Légende des couleurs', :controller => 'statuts', :action => 'list') %></li>
  <li><b>depot de demande </b></li>
  <li><b>déroulement de demande </b></li>
 </ul>
-<% end %>
+<%# end %>

@@ -3,50 +3,45 @@
  **************************************/
 
 .content {
-  top: 1em;
-  float: left;
-  width: 75%;
-  padding: 0 0 0 1em;
+	top: 1em;
+	float: left;
+	width: 75%;
+	padding: 0 0 0 1em;
 }
 .summary {
-  border-right: 1px solid #999999; 
-  border-bottom: 1px solid #999999; 
-  width: 23%;
-  /*height: 100%;*/
-  float: left;
-  margin-left: -2%;
-  margin-top: -2%;
+	border-right: 1px solid #999999; 
+	border-bottom: 1px solid #999999; 
+	width: 23%;
+	float: left;
+	margin-top: -3.7%;
+	margin-left: -2%
 }
-
 .summary input, .summary select {
-  width: 90%;
+	width: 90%;
 }
-
 .underline {
-  border-bottom: 1px solid #990066;
-  width: 100%;
+	border-bottom: 1px solid #990066;
+	width: 100%;
 }
-
 .menu_title {
-  border-bottom: 1px solid #999999;
-  width: 100%;
-  background-color: #dddddd;
-  font-weight: bold;
+	border-bottom: 1px solid #999999;
+	width: 100%;
+	background-color: #dddddd;
+	font-weight: bold;
 }
-
 ul.menu {
-  margin: 2px 0 1em 0;
+	margin: 1em 0 1em 0;
 }
-
 ul.menu li {
-  font-family: Verdana, Arial, Helvetica, Geneva, sans-serif;
-  font-size: 100%;
-  color: black;
-  list-style-type: none;
-  background-image: url(/images/puce.png);
-  background-repeat: no-repeat;
-  background-position: 0% 65%;
-  padding-left: 15px;
-  margin-left: -30px;
-  margin-top: -3px;
+	font-family: Verdana, Arial, Helvetica, Geneva, sans-serif;
+	font-size: 100%;
+	color: black;
+	list-style-type: none;
+	background-image: url(/images/puce.png);
+	background-repeat: no-repeat;
+	background-position: 0% 65%;
+	padding-left: 15px;
+	margin-left: -30px;
+	margin-top: -3px;
+	text-align: top;
 }

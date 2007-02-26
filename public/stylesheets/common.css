@@ -84,9 +84,9 @@ span.left {
         padding-bottom: 0px;
 	border-bottom: 2px solid #cfc8cf;
 }
-#content { 
-	margin: 2%; 
-	padding: 0px;
+#bodycontent { 
+	margin: 0; 
+	padding: 2%;
 	padding-bottom: 5em;
 	width: 96%; /* mettre 100% - (2.margin) */
 }
@@ -337,7 +337,7 @@ span.left {
 	font-weight: bold;
 	margin: 1em 2em; 
 	padding: 1em;
-	width: 90%;
+	width: 95%;
 }
 .error {
 	background-color: #FFD9D9;
@@ -425,7 +425,7 @@ dl.sommaire dd.action > ul {
 	margin-left: 0em;
 	text-align: left;
 }
-dl.sommaire dd.action>ul li {
+dl.sommaire dd.action > ul li {
 	margin-left: 1em;
 	padding-left: 0em;
 }
