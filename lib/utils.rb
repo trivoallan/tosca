@@ -9,11 +9,11 @@ module Metadata
   # application
   NOM_COURT_APPLICATION = "LSTM"
   NOM_LONG_APPLICATION = "Linagora Software Tracker Manager"
-  COPYRIGHT_APPLICATION = "Copyright Linagora SA 2007 - Tous droits réservés."
+  COPYRIGHT_APPLICATION = "Copyright Linagora SA 2007 - Tous droits réservés.".gsub(' ','&nbsp;')
 
   # service
   NOM_COURT_SERVICE = "OSSA"
-  NOM_LONG_SERVICE = "Open Source Software Assurance"
+  NOM_LONG_SERVICE = "Open Source Software Assurance".gsub(' ','&nbsp;')
   NOM_ENTREPRISE = "Linagora"
 
   # contacts
