@@ -1,13 +1,13 @@
 <h1><%= "Groupe logiciels \"#{@groupe.nom}\"" %></h1>
 
-<table class="info">
+<table class="show">
 <% for column in Groupe.content_columns %>
 <tr><td><b><%= column.human_name %>:</b>
     <td><%=h @groupe.send(column.name) %></td></tr>
 <% end %>
 
 <tr><td><b>Logiciels:</b>
-    <% liste_logiciels = @groupe.classifications.collect{|c| c.logiciel}.compact %>
+    <% liste_logiciels = @groupe.collect{|g| g.logiciel}.compact %>
     <td><%= show_liste(liste_logiciels, 'Logiciels', {:no_title => true}) { |l| 
             link_to_logiciel l} %></td></tr>
 

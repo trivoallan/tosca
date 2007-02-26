@@ -1,12 +1,9 @@
 
 <% form_tag :action=> "login" do %>
-<div title="Account login" id="loginform" class="form">
-
-    <h1>Identification</h1>
-
-<br/>
 <table class="login">
   <tr>
+    <td colspan="2"><h1>Identification</h1></td>
+  </tr><tr>
     <td><label for="user_login">Identifiant :</label></td>
     <td><input type="text" name="user_login" id="user_login" size="16" value="" /></td>
   </tr><tr>
@@ -19,8 +16,6 @@
     <td></td>
   </tr>
 </table>
-
-</div>
 <% end %>
 
 <script language="javascript">

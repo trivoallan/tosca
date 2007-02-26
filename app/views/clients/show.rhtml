@@ -1,4 +1,4 @@
-<table class="info">
+<table class="show">
 <% for column in Client.content_columns %>
 <tr><td><b><%= column.human_name %>:</b></td>
     <td><%=indent @client.send(column.name) %></td></tr>

@@ -1,3 +1,8 @@
+/** 
+ * Copyright Linagora SA 2007 - Tous droits réservés.
+ * common.css
+ */
+
 p, ol, ul, td {
   	font-family: verdana, arial, helvetica, sans-serif;
   	font-size:   12px;
@@ -104,7 +109,7 @@ span.left {
 	font-weight: bolder;
 }
 
-/***************************************************/
+/******************************************************/
 
 .floating-box {
 	float: right;
@@ -154,7 +159,7 @@ span.left {
 	width: 30%
 }
 
-/******************* filtres **********************/
+/*********************** filtres **********************/
 
 .table_filtre {
 	background-color: #D4D8FF;
@@ -199,7 +204,7 @@ span.left {
 			
 
 
-/************************* listes ****************/
+/************************* listes **********************/
 
 .list {
 	margin:0;
@@ -342,8 +347,10 @@ span.left {
 	clear: right;
 }
 
-/**************************** warn et notice **************************/
+/********************** warn et notice *******************/
 
+#information {	
+}
 .error {
 	background-color: #FFD9D9;
 	border: 1px solid Red;
@@ -405,7 +412,7 @@ td.error div.link {
 	margin: 0 auto;
 }
 
-/************************ sommaire ************************/
+/************************ sommaire ***********************/
 
 table.sommaire   {
 	border: 1px solid black;
@@ -531,13 +538,6 @@ a.nobackground {
 
 /*************************************************/
 
-/* login */
-.login tr {
-	height: 40px;
-}
-
-
-
 h1.title {
 	font-size: 300%;
 	text-align: center;
@@ -645,21 +645,29 @@ hr {
 
 /***************** zones spéiales ***************/
 
+.login,
+.form,
+.show,
+.help,
 .info,
 .info_reversement,
 .fiche_logiciel {
 	border: 1px solid black;
 	background-color: #DFDFDF;
 	-moz-border-radius: 1em;
+	vertical-align: top;
 	padding: 1em;
 	margin: 1em;
 	margin-left: 0em;
 	margin-right: 0em;
 	width: 50%;
 }
-.info tr {
-	vertical-align: top;
-}
 .info_reversement {
 	width: 95%;
+}
+.help {
+	background-color: #FFFFFF;
+}
+.login tr {
+	height: 40px;
 }
