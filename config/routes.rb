@@ -16,6 +16,13 @@ ActionController::Routing::Routes.draw do |map|
   # -- just remember to delete public/index.html.
   map.connect '', :controller => "bienvenue"
 
+  # routing files to prevent download from public access
+  options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
+  map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
+  map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
+  map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
+  map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
+
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'
