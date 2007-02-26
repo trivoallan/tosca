@@ -235,6 +235,7 @@ module ApplicationHelper
     case temps
     when -1 then "Sans objet"
     when 1 then "1 jour ouvré"
+    when 0..1 then temps.to_s + " jour ouvré"
     else temps.to_s + " jours ouvrés"
     end
   end

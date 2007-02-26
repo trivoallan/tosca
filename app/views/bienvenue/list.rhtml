@@ -1,5 +1,5 @@
 <% if @beneficiaire %>
-<p>Votre numéro d'appel est le 
+   <p>Votre numéro d'appel est le 
    <b><%= Metadata::PREFIXE_TELEPHONE+" "+Metadata::CODE_TELEPHONE %></b>, 
    et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
 <% end %>

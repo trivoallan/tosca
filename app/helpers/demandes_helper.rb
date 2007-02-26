@@ -23,7 +23,6 @@ module DemandesHelper
    "#{demande.typedemande.nom} (#{demande.severite.nom}) : #{demande.description}"
   end
 
-
   def display(donnee, column)
     case column
     when 'contournement','correction'

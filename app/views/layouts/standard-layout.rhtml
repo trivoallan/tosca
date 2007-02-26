@@ -2,7 +2,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>
   <link rel="SHORTCUT ICON" href="<%= image_favicon %>"/>
@@ -22,44 +21,44 @@
 </head>
 <body>
 
-  <div class="haut">
-	<table width="100%">
-        <tr>
-          <td width="5" rowspan="2">
+  <div id="header">
+    <table width="100%">
+      <tr>
+        <td width="5" rowspan="2">
               <%= link_to logo_lstm, :controller => 'bienvenue', :action => 'list'%></td>
-          <td style="padding-left:20px">
+        <td style="padding-left:20px">
               <%= logo_08000 %></td>
-          <td style="text-align:right;padding-right:20px" colspan="2" >
+        <td style="text-align:right;padding-right:20px" colspan="2" >
                <%= session[:nav_links] if session[:user] %></td>
-        </tr>
-        <tr>
-          <td style="padding-left:20px">
+      </tr>
+      <tr>
+        <td style="padding-left:20px">
                <%= (session[:user] ? "Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}" : ' [Non&nbsp;connecté]') %></td>
-          <td style="text-align:right;padding-right:20px">
+        <td style="text-align:right;padding-right:20px">
 	       <%= session[:cut_links] if session[:user] %></td>
-        </tr>
-        </table>
-  </div><!-- end of haut -->
+      </tr>
+    </table>
+  </div><!-- end of header -->
 
   <div id="information">
         <% if flash[:notice] %>
-          <div class="notice">
+          <div class="information notice">
             <p><%= flash[:notice] %></p>
           </div>
         <% end %>
         <% if flash[:warn] %>
-          <div class="error">
+          <div class="information error">
              <h2>Une erreur s&#146;est produite</h2>
              <ul><li><%= flash[:warn] %></li></ul>
           </div>
         <% end %>
-  </div><!-- end of infos -->
+  </div><!-- end of information -->
 
-  <div class="contenu">
+  <div id="content">
         <%= @content_for_layout %>
-  </div><!-- end of contenu -->
+  </div><!-- end of content -->
 
-  <div class="pied">
+  <div id="footer">
     <table width='100%'>
       <tr>
         <td valign='middle' align='center'>
@@ -69,8 +68,7 @@
         </td>
       </tr>
     </table>
-  </div><!-- end of pied -->
+  </div><!-- end of footer -->
 
 </body>
-
 </html>

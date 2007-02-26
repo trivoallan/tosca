@@ -2,6 +2,9 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class InteractionsController < ApplicationController
+
+  helper :demandes 
+
   before_filter :verifie, :only => 
     [ :show, :edit, :update, :destroy ]
 
