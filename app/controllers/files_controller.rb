@@ -50,8 +50,8 @@ class FilesController < ApplicationController
     send_file fullpath 
 
   rescue 
-    # if error on findingtarget
-    flash.now[:warn] = 'Ce fichier n\'existe pas.'
+    # if error on finding target
+    flash[:warn] = 'Ce fichier n\'existe pas.'
     redirect_to_home 
   end
 

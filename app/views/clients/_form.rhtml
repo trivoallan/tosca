@@ -2,40 +2,33 @@
 
 <!--[form:client]-->
 
-<table>
+<table class="form">
   <tr>
     <td>
       <p><label for="client_nom">Nom</label><br/>
-      <%= text_field 'client', 'nom'  %></p>
-
+         <%= text_field 'client', 'nom'  %></p>
       <p><label for="client_description">Description</label><br/>
-      <%= text_area 'client', 'description'  %></p>
+         <%= text_area 'client', 'description'  %></p>
     </td>
     <td>
       <p><label for="client_mailingliste">Mailing liste</label><br/>
-      <%= text_field 'client', 'mailingliste'  %></p>
-
+         <%= text_field 'client', 'mailingliste'  %></p>
       <p><label for="client_adresse">Adresse</label><br/>
-      <%= text_area 'client', 'adresse'  %></p>
-
+         <%= text_area 'client', 'adresse'  %></p>
     </td>
     <td>
-
       <p><label for="client_support_id">Niveau de support</label><br/>
-      <%= select("client", "support_id",
-	@supports.collect{|s| [ s.nom, s.id]}) %></p>
-
+         <%= select("client", "support_id",
+	     @supports.collect{|s| [ s.nom, s.id]}) %></p>
       <p><label for="client_code_acces">Code d'accès</label><br/>
-      <%= text_field 'client', 'code_acces'  %></p>
-
+         <%= text_field 'client', 'code_acces'  %></p>
       <p><label for="client_photo_id">Logo</label><br/>
-      <%= select("client", "photo_id",
-	@photos.collect{|p| [ p.description, p.id]}) %></p>
-
+         <%= select("client", "photo_id",
+	     @photos.collect{|p| [ p.description, p.id]}) %></p>
       <p><label>Socles</label></p>
-      <div class="bloc_scroll">
-        <%= hbtm_check_box(@client.socles, @socles, 'socle_ids', :size => 1) %>
-      </div>
+         <div class="bloc_scroll">
+         <%= hbtm_check_box(@client.socles, @socles, 'socle_ids', :size => 1) %>
+         </div>
     </td>
   </tr>
 </table>
