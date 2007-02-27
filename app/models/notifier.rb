@@ -35,7 +35,7 @@ def identifiant_nouveau(options, flash)
   # Email header info MUST be added here
   demande =  @body[:demande]
   @recipients = @body[:identifiant].email
-  @content_type = "text/plain; charset=utf-8charset=uft-8"
+  @content_type = "text/plain; charset=utf-8"
   @from = "noreply@08000linux.com"
   @subject = "Accès au Support Logiciel Libre"
   flash[:notice] << message_notice(@recipients, nil) if flash and flash[:notice]
@@ -48,7 +48,7 @@ def demande_nouveau(options, flash)
   # Email header info MUST be added here
   demande =  @body[:demande]
   @recipients = compute_recipients(demande)
-  @content_type = "text/plain; charset=utf-8charset=uft-8"
+  @content_type = "text/plain; charset=utf-8"
   @cc = demande.beneficiaire.client.mailingliste
   @from = "noreply@08000linux.com"
   @subject = "[SLL:#{demande.id}] : #{demande.resume}"
@@ -63,7 +63,8 @@ def demande_assigner (options, flash)
   # Email header info MUST be added here
   demande =  @body[:demande]
   @recipients = compute_recipients(demande)
-  @content_type = "text/plain; charset=utf-8charset=uft-8"
+  @content_type = "text/plain; charset=utf-8"
+@headers['Content-Type'] = "text/plain; charset=utf-8; format=flowed"
   @cc = demande.beneficiaire.client.mailingliste
   @from = "noreply@08000linux.com"
   @subject = "[SLL:#{demande.id}] : #{demande.resume}"
@@ -77,7 +78,7 @@ def demande_change_statut (options, flash)
   # Email header info MUST be added here
   demande =  @body[:demande]
   @recipients = compute_recipients(demande)
-  @content_type = "text/plain; charset=utf-8charset=uft-8"
+  @content_type = "text/plain; charset=utf-8"
   @cc = demande.beneficiaire.client.mailingliste
   @from = "noreply@08000linux.com"
   @subject = "[SLL:#"+ demande.id.to_s + "] : " + demande.resume
@@ -92,7 +93,7 @@ def demande_nouveau_commentaire(options, flash)
   # Email header info MUST be added here
   demande =  @body[:demande]
   @recipients = compute_recipients(demande)
-  @content_type = "text/plain; charset=utf-8charset=uft-8"
+  @content_type = "text/plain; charset=utf-8"
   @cc = demande.beneficiaire.client.mailingliste
   @from = "noreply@08000linux.com"
   @subject = "[SLL:#{demande.id}] : #{demande.resume}"
