@@ -152,31 +152,38 @@ class AccountController < ApplicationController
   end
 
   # Format du fichier CSV
-  # Nom complet, Titre, Email, Téléphone, Identifiant, Mot de passe, Informations
-  # Nom complet	 Titre	Email	Téléphone	Identifiant	Mot de passe	Informations
+  COLUMNS = [ 'Nom complet', 'Titre', 'Email', 'Téléphone', 
+              'Identifiant', 'Mot de passe', 'Informations' ]
+
   def multiple_signup
     _form
     @identifiant = Identifiant.new
     case request.method 
     when :post
       if(params['textarea_csv'].to_s.empty?)
-        flash.now[:warn] = "Veuillez rentrer un texte sous format CSV"
-        return
-      #elsif TODO : tester si toutes les rows sont bien là
-      #   row['Nom Complet'] && row['Titre'] && row['Email'] 
-      #   && row['Téléphone'] && row['Identifiant'] && row['Mot de passe']
-      #   && row['Mot de passe'] && row['Informations']
-      #   && params[:identifiant] && params[:identifiant][:client]
-      # flash.now[:warn] = "Le fichier CSV n'est pas bien formé"
-      # return
+        flash.now[:warn] = 'Veuillez rentrer un texte sous format CSV'
+      end
+      COLUMNS.each { |key|
+        unless row.include? key
+          flash.now[:warn] = 'Le fichier CSV n\'est pas bien formé'
+        end
+      }
+      if params[:identifiant].nil? or params[:identifiant][:client].nil? 
+        flash.now[:warn] = 'Vous n\'avez pas spécifié de client'
+      end
+      if params[:role_ids].nil?
+        flash.now[:warn] = 'Vous devez spécifier un rôle'  
       end
 
+      return unless flash.now[:warn] == ''
       flash[:notice] = ''
       flash.now[:warn] = ''
-
-      FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), { :col_sep => ";", :headers => true }) do |row|
-        @identifiant = Identifiant.new do |i|
+      
+      FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), 
+                      { :col_sep => ";", :headers => true }) do |row|
+        identifiant = Identifiant.new do |i|
            logger.debug(row.inspect)
+          # TODO : ca peut tenir en une ligne ce truc
            i.nom = row['Nom Complet'].to_s
            i.titre = row['Titre'].to_s
            i.email = row['Email'].to_s
@@ -188,24 +195,24 @@ class AccountController < ApplicationController
            i.client = params[:identifiant][:client]
         end
         if params[:role_ids]
-          @identifiant.roles = Role.find(params[:role_ids])
+          identifiant.roles = Role.find(params[:role_ids])
         else
-          @identifiant.roles = []
-          #@identifiant.errors.add_on_empty('roles')
+          identifiant.roles = []
+          #identifiant.errors.add_on_empty('roles')
           render :action => 'multiple_signup'
           return
         end
-        if @identifiant.save
+        if identifiant.save
           client = Client.find(params[:client][:id])
-          flash[:notice] += "L'utilisateur " + row['Nom Complet'].to_s + " a bien été créé.<br/>"
-          if @identifiant.client
-            beneficiaire = Beneficiaire.new(:identifiant => @identifiant, :client => client)
+          flash[:notice] += "L'utilisateur #{row['Nom Complet']} a bien été créé.<br/>"
+          if identifiant.client
+            beneficiaire = Beneficiaire.new(:identifiant => identifiant, :client => client)
             flash[:notice] += "Bénéficiaire associé créé" if beneficiaire.save
           else
-            ingenieur = Ingenieur.new(:identifiant => @identifiant)
+            ingenieur = Ingenieur.new(:identifiant => identifiant)
             flash[:notice] += "Ingénieur associé créé" if ingenieur.save
           end
-          Notifier::deliver_identifiant_nouveau({ :identifiant => @identifiant,
+          Notifier::deliver_identifiant_nouveau({ :identifiant => identifiant,
                                                   :controller => self,
                                                   :password => row['Mot de passe'].to_s}, flash)
           flash[:notice] += "<br/>"
