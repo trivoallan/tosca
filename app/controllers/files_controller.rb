@@ -36,6 +36,7 @@ class FilesController < ApplicationController
     root_path = "#{RAILS_ROOT}/files"
     root = [ root_path, file_type, map[file_type.intern] ] * '/'
     fullpath = [ root, params[:id], params[:filename] ] * '/'
+
     # rescue unless item not found
     send_file fullpath if model[file_type.intern].find(params[:id])
 
