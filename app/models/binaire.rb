@@ -9,7 +9,7 @@ class Binaire < ActiveRecord::Base
   has_and_belongs_to_many :contributions
   has_and_belongs_to_many :demandes
 
-  file_column :archive
+  file_column :archive, :fix_file_extensions => nil
 
 
   def self.set_scope(contrat_ids)

@@ -18,20 +18,16 @@
 
 class FilesController < ApplicationController
 
-  def index
-    out = "Downloading file with id #{params[:id]} : #{params[:filename]}"
-    render_text out
-  end
-
   def download
     map = {:piecejointe => 'file', 
-           :contribution => 'patch',
+           :correctif => 'patch',
            :document => 'fichier',
            :binaire => 'archive', 
            :photo => 'image'
     }
-    # TODO : rails_root = RAILS_ROOT + '/files'
-    root = [ 'files', params[:file_type], map[:"#{params[:file_type]}"] ] * '/'
+    file_type = params[:file_type]
+    root_path = "#{RAILS_ROOT}/files"
+    root = [ root_path, file_type, map[file_type.intern] ] * '/'
     fullpath = [ root, params[:id], params[:filename] ] * '/'
     send_file fullpath
   end

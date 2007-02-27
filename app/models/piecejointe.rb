@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Piecejointe < ActiveRecord::Base
-  file_column :file
+  file_column :file, :fix_file_extensions => nil
   has_one :commentaire
 
   def nom
