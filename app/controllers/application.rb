@@ -41,55 +41,6 @@ protected
     redirect_back_or_default :controller => 'bienvenue', :action => "list"
   end
  
-  # variable utilisateurs; nécessite session[:user]
-  # penser à mettre à jour les pages statiques 404 et 500 en cas de modification
-  def set_sessions
-    session[:logo_lstm] = render_to_string :inline => 
-      "<%=image_tag('logo_lstm.gif', :alt => 'Accueil', :title => 'Accueil' )%>"
-    session[:logo_08000] = render_to_string :inline => 
-      "<%=image_tag('logo_08000.gif', :alt => '08000 LINUX', :title => '08000 LINUX' )%>"
-    return unless session[:user]
-    session[:filters] = Hash.new
-    session[:beneficiaire] = session[:user].beneficiaire
-    session[:ingenieur] = session[:user].ingenieur
-    session[:javascript] = ( params['javascript'] == "true" ? true : false )
-    session[:nav_links] = render_to_string :inline => "
-        <% nav_links = [ 
-          (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
-          (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
-          (link_to_modify_account(session[:user], 'Mon compte')),
-          (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
-          (link_to 'Utilisateurs', :controller => 'account', :action => 'list'),
-          (link_to 'Rôles', :controller => 'roles', :action => 'list')
-        ] %>
-        <%= nav_links.compact.join('&nbsp;|&nbsp;') if session[:user] %>"
-    session[:cut_links] = render_to_string :inline => "
-        <% cut_links = [ 
-          (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
-          (session[:user].authorized?('demandes/list') ? "+ '&nbsp;' + search_demande," : ',' ) + 
-         "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
-          (link_to 'Projets',:controller => 'projets', :action => 'list'),
-          (link_to 'Tâches',:controller => 'taches', :action => 'list'),
-          (link_to 'Contributions',:controller => 'contributions', :action => 'list'),
-          (link_to 'Répertoire',:controller => 'documents', :action => 'select'), 
-          (link_to_my_client), 
-          (link_to 'Clients',:controller => 'clients', :action => 'list')
-        ] %>
-        <% form_tag(:controller => 'demandes', :action => 'list') do %>
-        <%= cut_links.compact.join('&nbsp;|&nbsp;') %>
-        <% end %>"
-  end
-
-  # efface les paramètres de session
-  def clear_sessions
-    @session[:user] = nil
-    @session[:beneficiaire] = nil
-    @session[:ingenieur] = nil
-    @session[:logo_08000] = nil
-    @session[:filtres] = nil
-    @beneficiaire = nil
-    @ingenieur = nil
-  end
 
   def set_headers
     headers['Content-Type'] = ( request.xhr? ? 'text/javascript; charset=utf-8' : 
