@@ -41,7 +41,7 @@ class Identifiant < ActiveRecord::Base
     end
     return match
   end
-
+ 
   # Load permission strings
   def permission_strings
     return @permissions if @permissions
