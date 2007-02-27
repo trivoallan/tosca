@@ -36,11 +36,16 @@ class ApplicationController < ActionController::Base
 
 protected
    
-  # redirection par défaut en cas d'erreur / de non droit
+  # redirection à l'accueil
+  # TODO : certain redirect_to_home devrait etre redirect_back
   def redirect_to_home
-    redirect_back_or_default :controller => 'bienvenue', :action => "list"
+    redirect_to :controller => 'bienvenue', :action => "list"
   end
  
+  # redirection par défaut en cas d'erreur / de non droit
+  def redirect_back
+    redirect_back_or_default :controller => 'bienvenue', :action => "list"
+  end
 
   def set_headers
     headers['Content-Type'] = ( request.xhr? ? 'text/javascript; charset=utf-8' : 
@@ -157,6 +162,7 @@ private
       Logiciel.set_scope(contrat_ids)
       Paquet.set_scope(contrat_ids)
       Socle.set_scope(client_id)
+      #Piecejointe.set_scope(client_id) #only for files
     end
     yield
   end
