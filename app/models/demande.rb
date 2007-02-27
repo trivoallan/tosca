@@ -19,6 +19,8 @@ class Demande < ActiveRecord::Base
   validates_presence_of :resume, 
        :warn => "Vous devez indiquer un résumé de votre demande"
   validates_length_of :resume, :within => 3..60
+  validates_presence_of :logiciel, 
+       :warn => "Vous devez indiquer le logiciel concerné"
 
   #versioning, qui s'occupe de la table demandes_versions
   acts_as_versioned
