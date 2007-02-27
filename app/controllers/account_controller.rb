@@ -23,19 +23,20 @@ class AccountController < ApplicationController
   end
 
   def login
-    set_sessions
     case request.method
       when :post
-        if @session[:user] = Identifiant.authenticate(params['user_login'],
-                                                      params['user_password'],
-                                                      params['user_crypt'])
-          set_sessions
-          flash[:notice] = "Connexion réussie"
-          flash[:notice] << '<br/>Javascript n\'est pas activé sur votre navigateur' unless @session[:javascript]
-          redirect_back_or_default :action => "list", :controller => 'bienvenue'
-        else
-          @login = params['user_login']
-          flash.now[:warn]  = "Echec lors de la connexion"
+      if session[:user] = Identifiant.authenticate(params['user_login'],
+                                                   params['user_password'],
+                                                   params['user_crypt'])
+        set_sessions
+        flash[:notice] = "Connexion réussie"
+        unless session[:javascript]
+          message = '<br/>Javascript n\'est pas activé sur votre navigateur'
+          flash[:notice] << message
+        end
+        redirect_back_or_default :action => "list", :controller => 'bienvenue'
+      else
+        flash.now[:warn]  = "Echec lors de la connexion"
       end
     end
   end
@@ -43,8 +44,7 @@ class AccountController < ApplicationController
   def devenir
     if @ingenieur
       benef = Beneficiaire.find(params[:id])
-      session[:user] = benef.identifiant
-      set_sessions
+      set_sessions benef.identifiant
     else
       flash[:warn] = 'Vous n\'êtes pas autoriser à changer d\'identité'
     end
@@ -63,8 +63,8 @@ class AccountController < ApplicationController
         newIdentifiant[:password_confirmation] = @identifiant.password
       else
         if newIdentifiant[:password] != newIdentifiant[:password_confirmation]
-          flash[:notice]  = "Les mots de passe que avez entrés sont différents."
-          redirect_back_or_default :action => "modify", :controller => "account"
+          flash[:notice] = 'Les mots de passe que avez entrés sont différents.'
+          redirect_to :action => 'modify', :controller => 'account'
         else
           @identifiant.change_password(newIdentifiant[:password])
           newIdentifiant[:password] = @identifiant.password
@@ -76,12 +76,8 @@ class AccountController < ApplicationController
       @identifiant.roles = Role.find(params[:role_ids]) if params[:role_ids]
 
       if @identifiant.update_attributes(newIdentifiant)
-        if session[:user] == @identifiant
-          #On sauve bien notre profil
-          clear_sessions
-          session[:user] = @identifiant
-          set_sessions
-        end
+        #On a sauve le profil, on l'applique sur l'utilisateur courant
+        set_sessions  @identifiant if session[:user] == @identifiant
         flash[:notice]  = "Modification réussie"
         redirect_back_or_default :action => "list", :controller => 'bienvenue'
       end
@@ -98,13 +94,11 @@ class AccountController < ApplicationController
   #utilisé dans account/list
   def update
     @user = Identifiant.find(params[:id])
-    # j'ai pas fait de vérification, ça plante
-    # pour update des roles accordéss
     if params[:role_ids]
       @user.roles = Role.find(params[:role_ids])
     else
       @user.roles = []
-      # @user.errors.add_on_empty('roles')
+      @user.errors.add_on_empty('roles')
     end
     flash[:notice] = "L'utilisateur a bien été mis à jour."
     redirect_to :action => 'list'
@@ -120,8 +114,7 @@ class AccountController < ApplicationController
       else
         @identifiant.roles = []
         @identifiant.errors.add_on_empty('roles')
-        render :action => 'signup'
-        return
+        render :action => 'signup' and return
       end
 
       if @identifiant.save
@@ -135,9 +128,11 @@ class AccountController < ApplicationController
           ingenieur = Ingenieur.new(:identifiant => @identifiant)
           flash[:notice] += "Ingénieur associé créé" if ingenieur.save
         end
-        Notifier::deliver_identifiant_nouveau({ :identifiant => @identifiant,
-                                                :controller => self,
-                                                :password => params[:identifiant][:password_confirmation]}, flash)
+        # welcome mail
+        options = { :identifiant => @identifiant,
+          :controller => self,
+          :password => params[:identifiant][:password_confirmation]}
+        Notifier::deliver_identifiant_nouveau(options, flash)
 
         redirect_back_or_default :action => "list"
       end
@@ -247,12 +242,16 @@ private
     @clients = Client.find(:all)
   end
 
+
   # variable utilisateurs; nécessite session[:user]
   # penser à mettre à jour les pages statiques 404 
   # et 500 en cas de modification
-  def set_sessions
-    return unless session[:user]
-    session[:filters] = Hash.new
+  def set_sessions(identifiant = nil)
+    return unless session[:user] or identifiant
+    # clear_session erase session[:user]
+    identifiant = session[:user] unless identifiant
+    clear_sessions
+    session[:user] = identifiant 
     session[:beneficiaire] = session[:user].beneficiaire
     session[:ingenieur] = session[:user].ingenieur
     session[:javascript] = ( params['javascript'] == "true" ? true : false )
@@ -287,20 +286,21 @@ private
   # efface les paramètres de session
   # TODO : session off ?
   def clear_sessions
-    @session[:user] = nil
-    @session[:beneficiaire] = nil
-    @session[:ingenieur] = nil
-    @session[:logo_08000] = nil
-    @session[:filtres] = nil
+    session[:user] = nil
+    session[:beneficiaire] = nil
+    session[:ingenieur] = nil
+    session[:logo_08000] = nil
     @beneficiaire = nil
     @ingenieur = nil
   end
 
 
+  # empeche les bénéficiaires de toucher à un autre compte qu'au leur
   def scope_beneficiaire
     if @beneficiaire
-      conditions = [ "identifiants.id = ?", @beneficiaire.identifiant_id ]
-      Identifiant.with_scope({ :find => {:conditions => conditions} }) { yield }
+      conditions = [ 'identifiants.id = ?', @beneficiaire.identifiant_id ]
+      scope = { :find => {:conditions => conditions } }
+      Identifiant.with_scope(scope) { yield }
     else
       yield
     end
