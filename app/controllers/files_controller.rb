@@ -27,8 +27,10 @@ class FilesController < ApplicationController
     map = {:piecejointe => 'file', 
            :contribution => 'patch',
            :document => 'fichier',
-           :binaire => 'archive' 
+           :binaire => 'archive', 
+           :photo => 'image'
     }
+    # TODO : rails_root = RAILS_ROOT + '/files'
     root = [ 'files', params[:file_type], map[:"#{params[:file_type]}"] ] * '/'
     fullpath = [ root, params[:id], params[:filename] ] * '/'
     send_file fullpath

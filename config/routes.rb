@@ -22,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
   map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
   map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
+  map.files 'photo/image/:id/:filename', options.update(:file_type => 'photo')
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
