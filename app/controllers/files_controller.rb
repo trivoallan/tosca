@@ -20,7 +20,7 @@ class FilesController < ApplicationController
 
   def download
     map = {:piecejointe => 'file', 
-           :correctif => 'patch',
+           :contribution => 'patch',
            :document => 'fichier',
            :binaire => 'archive', 
            :photo => 'image'
