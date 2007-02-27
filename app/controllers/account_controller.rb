@@ -285,6 +285,7 @@ private
 
 
   # efface les paramètres de session
+  # TODO : session off ?
   def clear_sessions
     @session[:user] = nil
     @session[:beneficiaire] = nil

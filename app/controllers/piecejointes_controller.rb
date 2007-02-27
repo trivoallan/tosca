@@ -52,4 +52,5 @@ class PiecejointesController < ApplicationController
     Piecejointe.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+
 end

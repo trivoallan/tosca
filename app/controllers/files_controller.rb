@@ -20,28 +20,38 @@ class FilesController < ApplicationController
 
   def download
     file_type = params[:file_type]
+ 
+    # mapping path
     map = {:piecejointe => 'file', 
            :contribution => 'patch',
            :document => 'fichier',
            :binaire => 'archive', 
-           :photo => 'image'
-    }
-    # TODO : recuperer le model sans hash
+           :photo => 'image' }
+
+    # TODO : get model name without hash
     model = { :piecejointe => Piecejointe, 
               :contribution => Contribution,
               :document => Document,
               :binaire => Binaire, 
-              :photo => nil
-    }
+              :photo => nil }
+    
+    # building path
     root_path = "#{RAILS_ROOT}/files"
     root = [ root_path, file_type, map[file_type.intern] ] * '/'
     fullpath = [ root, params[:id], params[:filename] ] * '/'
 
+    # special scope if piecejointe 
+    if session[:beneficiaire] and file_type == 'piecejointe'
+      client_id = session[:beneficiaire].client_id
+      Piecejointe.set_scope(client_id) 
+    end
     # rescue unless item not found
-    send_file fullpath if model[file_type.intern].find(params[:id])
+    target = model[file_type.intern].find(params[:id])
+    send_file fullpath 
 
   rescue 
-    flash[:warn] = 'Ce fichier n\'existe pas.'
+    # if error on findingtarget
+    flash.now[:warn] = 'Ce fichier n\'existe pas.'
     redirect_to_home 
   end
 
