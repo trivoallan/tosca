@@ -10,7 +10,7 @@
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
-<div class="menu_title" onclick="Element.toggle('menu_recherche')" %>
+<div class="menu_title" onclick="Element.toggle('menu_recherche')">
 > Recherche</div>
 <ul class="menu" id="menu_recherche">
  <li><b>Nom </b></li>
@@ -19,7 +19,7 @@
  <li><%=select_filter(@clients, 'client') %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_caracteristique')" %>
+<div class="menu_title" onclick="Element.toggle('menu_caracteristique')">
 > Caractéristique</div>
 <ul class="menu" id="menu_caracteristique">
  <li><b>Description </b></li>
@@ -30,7 +30,7 @@
  <li><%=select_filter(@technologies, 'competences_logiciels.competence')%></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_perimetre')" %>
+<div class="menu_title" onclick="Element.toggle('menu_perimetre')">
 > Périmètre</div>
 <ul class="menu" id="menu_perimetre">
  <li><b>Technologies: </b><%=@count[:technologies]%></li>
