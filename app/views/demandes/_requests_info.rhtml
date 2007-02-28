@@ -10,7 +10,7 @@
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
-<div class="menu_title" onclick="Element.toggle('menu_actions')" %>> 
+<div class="menu_title" onclick="Element.toggle('menu_actions')">>
 Actions </div>
 <ul class="menu" id="menu_actions">
  <li><%= link_to('Déposer une demande', :action => 'new')%></li>
@@ -19,7 +19,7 @@ Actions </div>
  <li><%= link_to_export %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_recherche')"> 
+<div class="menu_title" onclick="Element.toggle('menu_recherche')">>
 Recherche</div>
 <ul class="menu" id="menu_recherche">
  <li><b>Logiciel </b></li>
@@ -34,7 +34,7 @@ Recherche</div>
  <% end %>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_caracteristiques')"> 
+<div class="menu_title" onclick="Element.toggle('menu_caracteristiques')">>
 Caractéristiques</div>
 <ul class="menu" id="menu_caracteristiques">
  <li><b>Type </b></li>
@@ -45,7 +45,7 @@ Caractéristiques</div>
  <li><%=select_filter(@statuts, :statut) %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_synthese')"> 
+<div class="menu_title" onclick="Element.toggle('menu_synthese')">>
 Synthèse</div>
 <ul class="menu" id="menu_synthese">
  <li><b>Demandes: </b><%=@count[:demandes]%></li>
@@ -56,7 +56,7 @@ Synthèse</div>
 </ul>
 
 <%# if @beneficiaire %>
-<div class="menu_title" onclick="Element.toggle('menu_aide')"> 
+<div class="menu_title" onclick="Element.toggle('menu_aide')">>
 Aide</div>
 <ul class="menu" id="menu_aide">
  <li><%= link_to('Légende des couleurs', :controller => 'statuts', :action => 'list') %></li>
