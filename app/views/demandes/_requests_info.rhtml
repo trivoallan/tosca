@@ -19,9 +19,9 @@ Recherche</div>
  <li><%= text_field_with_auto_complete :demande, :resume, {}, :skip_style => true %></li>
  <% if @ingenieur %>
   <li><b>Client </b></li>
-  <li><%=select_filter(@clients, :client) %></li>
+  <li><%= select_filter(@clients, :client) %></li>
   <li><b>Responsable </b></li>
-  <li><%=select_filter(@ingenieurs, :ingenieur) %></li>
+  <li><%= select_filter(@ingenieurs, :ingenieur) %></li>
  <% end %>
 </ul>
 
