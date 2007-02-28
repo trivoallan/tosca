@@ -232,6 +232,8 @@ class DemandesController < ApplicationController
     select = "DISTINCT identifiants.id "
     @identifiants_ingenieurs = 
       Identifiant.find(:all, :select => select, :joins => joins)
+
+    @partial_for_summary = 'infos_demande'
   end
 
   def ajax_description
