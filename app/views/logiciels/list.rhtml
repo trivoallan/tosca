@@ -1,20 +1,4 @@
-<% options = { :update => 'content',
-    :url => '/logiciels/update_list',
-    :before => "Element.show('spinner')",
-    :success => "Element.hide('spinner')" } %>
-
-
-<% form_remote_tag( options.dup.update(:html => { 
-    :id => 'filters', :name => 'filters'})) do %>
-  <div class="summary">
-    <%= render_partial 'softwares_info' %>
-
-  </div>
-<% end %>
-
-<%= observe_form 'filters', options %>
-
-
+<%# 'softwares_info' in summary%>
 
 <div class="content" id="content">
   <%= render_partial 'softwares_list' %>

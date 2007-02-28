@@ -54,9 +54,15 @@
         <% end %>
   </div><!-- end of information -->
 
+  <% if @partial_for_summary %>
+  <div class="summary">
+    <%= render_partial @partial_for_summary %>
+  </div><!-- end of summary -->
+  <% end %>
+
   <div id="bodycontent">
         <%= @content_for_layout %>
-  </div><!-- end of content -->
+  </div><!-- end of bodycontent -->
 
   <div id="footer">
     <table width='100%'>

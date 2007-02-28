@@ -96,6 +96,9 @@ class DemandesController < ApplicationController
   
     @demande_pages, @demandes = paginate :demandes, :per_page => 10,
     :order => 'updated_on DESC', :select => SELECT_LIST, :joins => JOINS_LIST
+
+    @partial_for_summary = 'requests_info'
+
   end
 
 

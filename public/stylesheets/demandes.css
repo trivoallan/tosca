@@ -1,12 +1,13 @@
 
-/****************
- * demandes.css *
- ****************/
+/***************************************************
+ * demandes.css 
+ * style des demandes et de leurs propriétés
+ *
+ ****************************************************/
 
 
 /***************************************
- * liste des demandes
- * Suit la vie d'une demande en couleur
+ * Statut d'une demande en couleur
  ***************************************/
 
 /* enregistree */
@@ -39,40 +40,54 @@
 
 /* annulee */
 .demande_8 	{background: #D3D3D3; /*lightgrey;*/}
-.demande_8:hover{background: #D3D3a3;
-cursor: url('http://www2:3000/images/logo_08000.gif)';}
+.demande_8:hover{background: #D3D3a3;}
 
 
 
 /***************************************/
- *                form
+ *                severite
  ***************************************/
 
-option {
+/* TODO : options du select severite en couleur  */
+option.severite_1 {
  	background-color: white;
+}
+option.severite_2 {
+ 	background-color: green;
+}
+option.severite_3 {
+ 	background-color: yellow;
+}
+option.severite_4 {
+ 	background-color: orange;
+}
+option.severite_5 {
+ 	background-color: red;
+}
+option.severite_6 {
+ 	background-color: black;
 }
 
 
 /******************************************
- * Tabulations 
+ * Tabulations (onglets)
  ******************************************/
 
 .demande_tab {
 	padding-bottom: 5em;
 }
-
 .demande_tabnav {
 	color: #000000;
 	margin: 12px 0px 0px 0px;
 	padding: 0px;
 	z-index: 1;
-	padding-left: 10px }
-
+	padding-left: 10px 
+}
 .demande_tabnav li {
 	display: inline;
 	overflow: hidden;
-	list-style-type: none; }
-
+	list-style-type: none; 
+}
 .demande_tabnav a, a.active {
 	color: #000000;
 	background:  #FFEBBF;
@@ -80,29 +95,30 @@ option {
 	border: 2px solid #cfc8cf; /* 2px solid black;*/
 	padding: 2px 5px 0px 5px;
 	margin: 0;
-	text-decoration: none; }
-
+	text-decoration: none; 
+}
 .demande_tabnav a.active {
 	background: #cfc8cf;  /*#FFB000;*/
 	border-bottom: 3px solid #cfc8cf; /* 3px solid #FFB000; */ 
 }
-
 .demande_tabnav a:hover {
 	color: #FFFFFF;
-	background: #FFD880; }
-
+	background: #FFD880; 
+}
 .demande_tabnav a:visited {
-	color: #B37B00; }
-
+	color: #B37B00; 
+}
 .demande_tabnav a.active:hover {
 	background: #FFB000;
-	color: #FFEBBF; }
-
+	color: #FFEBBF; 
+}
 .demande_tab_content {
         font: 0.9em/1.3em "bitstream vera sans", verdana, sans-serif;
 	text-align: justify;
 	background: #DDDDDD /* background: #FFB000; */
 	padding: 20px;
 	border: 2px solid #cfc8cf; /* 2px solid black; */
-	z-index: 2;	}
+	z-index: 2;	
+}
 
+/*****************  A RANGER  *****************/

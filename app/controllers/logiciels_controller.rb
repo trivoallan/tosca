@@ -73,6 +73,9 @@ class LogicielsController < ApplicationController
 
     @logiciel_pages, @logiciels = paginate :logiciels, options
     #end
+
+    @partial_for_summary = 'softwares_info'
+
   end
 
   def rpmlist

@@ -1,3 +1,12 @@
+<% options = { :update => 'content',
+    :url => '/logiciels/update_list',
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+
+<% form_remote_tag( options.dup.update(:html => { 
+    :id => 'filters', :name => 'filters'})) do %>
+
+
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
@@ -30,6 +39,9 @@
  <li><b>Logiciels: </b><%=@count[:softwares]%></li>
 </ul>
 
+
+<% end %>
+<%= observe_form 'filters', options %>
 
 
 
