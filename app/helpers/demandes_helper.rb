@@ -21,7 +21,7 @@ module DemandesHelper
   # Affiche un résumé texte succint d'une demande
   # Utilisé par exemple pour les balise "alt" et "title"
   # on affiche '...' si le reste a afficher fait plus de 3 caracteres
-  def sum_up ( texte, limit=100, options ={:less => '...'})
+  def sum_up( texte, limit=100, options ={:less => '...'})
     return texte unless (texte.is_a? String) && (limit.is_a? Numeric)
     out = ''
     if texte.size <= limit+3
@@ -33,7 +33,8 @@ module DemandesHelper
     out
   end
 
-  def sum_up_demande(demande)
+  # Décrit une demande
+  def demande_description(demande)
     return '-' unless demande
    "#{demande.typedemande.nom} (#{demande.severite.nom}) : #{demande.description}"
   end
