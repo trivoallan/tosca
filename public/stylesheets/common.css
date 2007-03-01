@@ -8,7 +8,8 @@ body {
 	padding: 0;
 	color: #000;
 	background-color: #eaeafa;
-	font-size: 1em; /* 0.7em <=> 12px */
+	font-size: 1em; 
+	/* keep DRY : one font-family for all */
   	font-family: verdana, arial, helvetica, sans-serif;
   	font-size:   12px;
   	line-height: 18px;
@@ -169,7 +170,6 @@ table.pages td {
 	padding: .2em;
 	border-bottom-color: Gray;
 	border-bottom: 1px solid;
-	font-family: Arial, Helvetica, sans-serif;
 }
 .table_filtre_content {
 	padding: 1em .5em;
@@ -205,7 +205,6 @@ table.pages td {
 	vertical-align: middle;
 }
 .list table {
-	font-family: inherit;
 	padding: 0;
 	border-collapse: collapse;
 	width: 100%;
@@ -215,7 +214,6 @@ table.pages td {
 	color: #000;
 	vertical-align: middle;
 	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
 	font-size: 80%;
 	padding: 4px 0 10px 4px;
 }
@@ -305,6 +303,8 @@ table.pages td {
 	width: 90%;
 	height: 6em;
 }
+
+/******** conserve for later 
 .list fieldset {
 	width: 95%;
 	margin: 0em auto;
@@ -313,7 +313,6 @@ table.pages td {
 	border-top: 16px solid #cfc8cf;
 }
 .list fieldset > legend{
-	font-family: Arial, Helvetica, sans-serif;
 	font-size: 150%;
 	font-weight: bolder;
 	padding: .5em .2em;
@@ -324,6 +323,8 @@ table.pages td {
 	border-left: 1px white solid;
 	border-right: #e4e4e4 1px solid;
 }
+**********/
+
 /* largeur des balises inputs */
 .list input.text {
 	width: 250px;
@@ -438,7 +439,7 @@ dl.sommaire dt {
 dl.sommaire dd {
 	text-align: justify;
 }
-dl.sommaire dd.action > ul {
+dl.sommaire dd.action ul {
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
 	width: 60%;
@@ -447,7 +448,7 @@ dl.sommaire dd.action > ul {
 	margin-left: 0em;
 	text-align: left;
 }
-dl.sommaire dd.action > ul li {
+dl.sommaire dd.action ul li {
 	margin-left: 1em;
 	padding-left: 0em;
 }
@@ -466,7 +467,6 @@ dl.sommaire dd.action > ul li {
 	font-size: 65%;
 	color: black;
 	text-decoration: none;
-	font-family: Arial, Helvetica, sans-serif;
 	background-color: #F3F3EF;
 	padding: .3em;
 	width: 13em;
@@ -506,10 +506,8 @@ dl.sommaire dd.action > ul li {
 }
 .filtre_petitcomment {
 	font-size: 80%;
-	font-family: arial;
 }
 .boite_bienvenue {
-	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 200%;
 }
