@@ -167,13 +167,13 @@ class AccountController < ApplicationController
         flash.now[:warn] = 'Vous n\'avez pas spécifié de client'
       end
       if params[:role_ids].nil?
-        flash.now[:warn] = 'Vous devez spécifier un rôle'  
+        flash.now[:warn] = 'Vous devez spécifier un rôle'
       end
 
       return unless flash.now[:warn] == ''
       flash[:notice] = ''
       flash.now[:warn] = ''
-      
+
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), 
                       { :col_sep => ";", :headers => true }) do |row|
         identifiant = Identifiant.new do |i|
@@ -222,7 +222,7 @@ class AccountController < ApplicationController
 
   def list
     @roles = Role.find(:all)
-      @user_pages, @users = paginate :identifiants, :per_page => 25,
+    @user_pages, @users = paginate :identifiants, :per_page => 25,
       :order => 'identifiants.login', :include => 
         [:beneficiaire,:ingenieur,:roles]
   end
