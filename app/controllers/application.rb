@@ -38,6 +38,7 @@ protected
    
   # redirection à l'accueil
   # TODO : certain redirect_to_home devrait etre redirect_back
+  # TODO : faire une route nommée, c'est pas railsien cette fonction
   def redirect_to_home
     redirect_to :controller => 'bienvenue', :action => "list"
   end
@@ -50,55 +51,6 @@ protected
   def set_headers
     headers['Content-Type'] = ( request.xhr? ? 'text/javascript; charset=utf-8' : 
                                                'text/html; charset=utf-8' )
-  end
-
-  #   # fill up the new filter(s)
-  #   # sended from POST request
-   def set_filters
-     session[:filters] ||= {}
-
-    # les filtres sont nommés "filtres[nom_du_parametre]"
-     if params[:filters]
-       params.each{ |p| set_filter(p.first) }
-     end
-  end
-
-  # fill up one named filter from params
-  def set_filter(filtre, options = {})
-    value = params[:filters][filtre]
-    if value != ''
-      value = value.to_i if filtre =~ /(_id)$/
-      session[:filters][filtre] = value
-    else
-      session[:filters][filtre] = nil
-    end
-  end
-
-  def remove_filters
-    session[:filters] = {}
-    redirect_to :back
-  end
-
-  # Compute scope from args sended
-  # Call it :
-  #  sdocuments = compute_scope(nil, ['paquet_id = ?', 3])
-  def compute_scope(include = nil, *args)
-    args.compact!
-    return {} if args.empty? or args.first.nil?
-
-    # si conditions est une condition (et non pas un tableau de conditions)
-    # on vire les nil
-    query, params = [], []
-    args.each do |condition| 
-      query.push condition[0] 
-      params.concat condition[1..-1]
-    end
-
-    #query.compact!
-    computed_conditions = [ query.join(' AND ') ] + params
-    computed_conditions.compact!
-    return {} if computed_conditions[0] == ''
-    return {:find => {:conditions => computed_conditions, :include => include}} 
   end
 
   # verifie :
@@ -146,7 +98,6 @@ protected
 private
   # scope imposé sur toutes les vues, 
   # pour limiter ce que peuvent voir nos clients
-  # TODO : check les interférences avec les filtres
   def scope_beneficiaire
     beneficiaire = session[:beneficiaire]
     if beneficiaire
@@ -181,64 +132,5 @@ private
     end
   end
 
-  def scope_filter
-    filtres = session[:filters]
-
-
-    # on construit les conditions pour les demandes et les logiciels
-    cidentifiant = ['identifiants.id = ? ', filtres['identifiant_id'] ] if filtres['identifiant_id'] 
-    cdemande_severite = ['demandes.severite_id = ? ', filtres['severite_id'] ] if filtres['severite_id'] 
-    cdemande_motcle = ['(demandes.resume LIKE ? OR demandes.description LIKE ?) ', 
-                        "%#{filtres['motcle']}%", "%#{filtres['motcle']}%"] if filtres['motcle']
-    cdemande_ingenieur = ['demandes.ingenieur_id = ? ', filtres['ingenieur_id'] ] if filtres['ingenieur_id']
-    cdemande_beneficiaire = ['demandes.beneficiaire_id = ? ', filtres['beneficiaire_id'] ] if filtres['beneficiaire_id']
-    cdemande_type = ['demandes.typedemande_id = ? ', filtres['typedemande_id'] ] if filtres['typedemande_id']
-    cdemande_statut = ['demandes.statut_id = ? ', filtres['statut_id'] ] if filtres['statut_id']
-    clogiciel = [ 'logiciels.id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
-    ccontribution_logiciel = [ 'logiciel_id = ? ', filtres['logiciel_id'] ] if filtres['logiciel_id'] 
-    cclassification_groupe = ['classifications.groupe_id = ? ', filtres['groupe_id'] ] if filtres['groupe_id']
-
-    ###########
-    client_id = filtres['client_id'].to_i if filtres['client_id']
-    contrat_ids = filtres['contrat_ids'] if filtres['contrat_ids']
-    
-    if client_id
-      cclient = ['clients.id = ? ', client_id ] 
-      cbeneficiaire_client = ['beneficiaires.client_id = ? ', client_id ] 
-      cdocument_client = ['documents.client_id = ? ', client_id ]
-    end
-
-    sbeneficiaire = compute_scope(nil, cbeneficiaire_client)
-    sdocuments = compute_scope(nil, cdocument_client)
-    sclients = compute_scope(nil, cclient)
-    #########
-
-    sidentifiant = compute_scope(nil, cidentifiant)
-    sdemandes = compute_scope([:logiciel,:beneficiaire],
-                              cdemande_severite, 
-                              cdemande_motcle, 
-                              cdemande_ingenieur, 
-                              cdemande_beneficiaire, 
-                              cdemande_type,
-                              cbeneficiaire_client,
-                              clogiciel, 
-                              cdemande_statut)
-    slogiciels = compute_scope([:classifications], clogiciel, cclassification_groupe)
-    scontributions = compute_scope(nil, ccontribution_logiciel)
-    spaquets = compute_scope([:logiciel], clogiciel)
-
-    Beneficiaire.with_scope(sbeneficiaire) {
-    Client.with_scope(sclients) {
-    Document.with_scope(sdocuments) {
-    Identifiant.with_scope(sidentifiant) {
-    Demande.with_scope(sdemandes) {
-    Logiciel.with_scope(slogiciels) {  
-    Contribution.with_scope(scontributions) {
-    Paquet.with_scope(spaquets) {
-      yield }}}}}}}}
-  end
 
 end
-
-
-

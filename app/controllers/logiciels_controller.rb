@@ -42,8 +42,8 @@ class LogicielsController < ApplicationController
         conditions << " #{key}=#{value} " 
       end
     }
-    #scope_client(params['filters']['client_id'])
-    #Logiciel.set_scope(session[:contrat_ids])
+    scope_client(params['filters']['client_id'])
+    Logiciel.set_scope(session[:contrat_ids])
 
     options[:conditions] = conditions.join(' AND ') unless conditions.empty?
     @logiciel_pages, @logiciels = paginate :logiciels, options
@@ -52,12 +52,8 @@ class LogicielsController < ApplicationController
 
   # affiche la liste des logiciels avec filtres
   def list
-
-    # clogiciel = [ " logiciels.nom LIKE ?", "%" + @search[0] + "%" ] if @search != nil
-    # cclassification_groupe = ['classifications.groupe_id = ? ', @groupe ] if @groupe != nil  
-    #options = compute_scope([:classifications], clogiciel, cclassification_groupe)[:find] ||= {}
-    # options = compute_scope(nil, clogiciel)[:find] ||= {}
-    options = { :per_page => 15, :order => 'logiciels.nom', :include => [:groupe,:competences] }
+    options = { :per_page => 15, :order => 'logiciels.nom', 
+      :include => [:groupe,:competences] }
 
     @count = {}
     @clients = Client.find_select
