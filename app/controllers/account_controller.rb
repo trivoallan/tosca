@@ -222,11 +222,9 @@ class AccountController < ApplicationController
 
   def list
     @roles = Role.find(:all)
-    scope_filter do
       @user_pages, @users = paginate :identifiants, :per_page => 25,
       :order => 'identifiants.login', :include => 
         [:beneficiaire,:ingenieur,:roles]
-    end
   end
 
   def destroy
