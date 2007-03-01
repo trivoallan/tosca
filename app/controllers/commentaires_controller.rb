@@ -104,8 +104,7 @@ class CommentairesController < ApplicationController
       flash[:notice] = 'Commentaire was successfully updated.'
       redirect_to :action => 'show', :id => @commentaire
     else
-      _form
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 

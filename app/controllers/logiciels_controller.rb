@@ -131,7 +131,7 @@ class LogicielsController < ApplicationController
       flash[:notice] = "Le logiciel #{@logiciel.nom} a bien été mis à jour."
       redirect_to :action => 'list'
     else
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 

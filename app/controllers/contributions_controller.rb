@@ -88,8 +88,7 @@ class ContributionsController < ApplicationController
       flash[:notice] = 'La contribution suivante a bien été mise à jour : </br><i>'+@contribution.description+'</i>'
       redirect_to :action => 'list'
     else
-      _form
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 

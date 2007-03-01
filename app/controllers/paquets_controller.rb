@@ -92,8 +92,7 @@ class PaquetsController < ApplicationController
       flash[:notice] = 'Le paquet '+@paquet.nom+' a bien été mis à jour.'
       redirect_to :action => 'list', :id => @paquet
     else
-      _form
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 

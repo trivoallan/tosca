@@ -61,8 +61,7 @@ class ContratsController < ApplicationController
       flash[:notice] = 'Contrat mis à jour correctement.'
       redirect_to :action => 'show', :id => @contrat
     else
-      _form
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 

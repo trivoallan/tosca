@@ -26,9 +26,7 @@ class BeneficiairesController < ApplicationController
 
   def new
     @beneficiaire = Beneficiaire.new
-    @identifiants = Identifiant.find :all
-    @clients = Client.find :all
-    @responsables = Beneficiaire.find :all
+    _form
   end
 
   def create
@@ -43,9 +41,7 @@ class BeneficiairesController < ApplicationController
 
   def edit
     @beneficiaire = Beneficiaire.find(params[:id])
-    @identifiants = Identifiant.find :all
-    @clients = Client.find :all
-    @responsables = Beneficiaire.find :all
+    _form
   end
 
   def update
@@ -65,4 +61,13 @@ class BeneficiairesController < ApplicationController
     identifiant.destroy
     redirect_to :action => 'list'
   end
+
+private
+
+  def _form
+    @identifiants = Identifiant.find :all
+    @clients = Client.find :all
+    @responsables = Beneficiaire.find :all
+  end  
+
 end

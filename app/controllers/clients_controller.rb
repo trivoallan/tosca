@@ -58,8 +58,7 @@ class ClientsController < ApplicationController
       flash[:notice] = 'Client mis à jour.'
       redirect_to :action => 'show', :id => @client
     else
-      _form
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 
@@ -69,6 +68,7 @@ class ClientsController < ApplicationController
   end
 
   private
+
   def _form
     @photos = Photo.find_all
     @supports = Support.find_all

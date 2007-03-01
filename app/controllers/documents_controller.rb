@@ -71,7 +71,7 @@ class DocumentsController < ApplicationController
       flash[:notice] = 'Votre document a été correctement mis à jour.'
       redirect_to :action => 'show', :id => @document
     else
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 

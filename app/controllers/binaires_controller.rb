@@ -57,8 +57,7 @@ class BinairesController < ApplicationController
       flash[:notice] = 'Binaire was successfully updated.'
       redirect_to :action => 'show', :id => @binaire
     else
-      _form
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 

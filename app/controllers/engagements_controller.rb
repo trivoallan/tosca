@@ -48,8 +48,7 @@ class EngagementsController < ApplicationController
       flash[:notice] = 'Engagement was successfully updated.'
       redirect_to :action => 'list'
     else
-      _form
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 
