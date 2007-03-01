@@ -23,10 +23,12 @@ class ContributionsController < ApplicationController
   end
 
   def select
+    #flash[:notice] = 'test'
     @logiciels = Contribution.find(:all, :order => 'reverse_le').collect{|c| c.logiciel }.uniq
   end
 
   def list
+    flash[:notice]= flash[:notice]
     return redirect_to :action => 'select' unless params[:id]
     @logiciel = Logiciel.find(params[:id])
     conditions = ["logiciel_id = ?", @logiciel.id]
