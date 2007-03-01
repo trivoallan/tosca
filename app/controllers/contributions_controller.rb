@@ -18,8 +18,7 @@ class ContributionsController < ApplicationController
   end
 
   def index
-    select
-    render :action => 'select'
+    select and render :action => 'select'
   end
 
   def select
@@ -45,12 +44,18 @@ class ContributionsController < ApplicationController
   def admin
     # @count = Contribution.count
     conditions = nil
+    @etatreversements = Etatreversement.find(:all)
     @logiciels = Logiciel.find(:all)
     @clients = Client.find(:all)
-    @count = Contribution.count
-    scope_filter do
-      @contribution_pages, @contributions = paginate :contributions, :per_page => 10
-    end
+
+    @count = {:contributions => Contribution.count }
+    count_logiciels = { :select => 'DISTINCT contributions.logiciel_id' }
+    @count[:logiciels] = Contribution.count(count_logiciels)
+
+    @contribution_pages, @contributions = paginate :contributions, :per_page => 10, 
+    :order => 'updated_on DESC'
+
+    @partial_for_summary = 'panel'
   end
 
   def new
