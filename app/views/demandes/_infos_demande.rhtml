@@ -1,5 +1,5 @@
-<div class="menu_title" onclick="Element.toggle('menu_resume')" %>
-> Résumé </div>
+<div class="menu_title" onclick="Element.toggle('menu_resume')">
+> Résumé</div>
 <ul class="menu" id="menu_resume">
   <li><b>Logiciel : </b><%= link_to_logiciel @demande.logiciel %></li>
   <li><b>Statut : </b><%= @demande.statut.nom %></li>
@@ -13,7 +13,7 @@
   <% end %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_beneficiaire')" %>
+<div class="menu_title" onclick="Element.toggle('menu_beneficiaire')">
 > Bénéficiaire</div>
 <ul class="menu" id="menu_beneficiaire">
   <li><b>Contact : </b><%= @demande.beneficiaire.nom %></li>
@@ -23,7 +23,7 @@
                            :action => 'show', :id => client %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_cns')" %>
+<div class="menu_title" onclick="Element.toggle('menu_cns')" >
 > C.N.S.</div>
 <ul class="menu" id="menu_cns">
   <li><b>Rappelée en : </b> <%= @demande.affiche_temps_rappel %></li>
@@ -41,7 +41,7 @@
   <% end %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_cycle_de_vie')" %>
+<div class="menu_title" onclick="Element.toggle('menu_cycle_de_vie')" >
 > Cycle de vie</div>
 <ul class="menu" id="menu_cycle_de_vie">
   <li><b>Ouverte le : </b><%= @demande.created_on_formatted %></li>
