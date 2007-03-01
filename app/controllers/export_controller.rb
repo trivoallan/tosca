@@ -9,6 +9,18 @@ require 'fastercsv'
 class ExportController < ApplicationController
 
   # return the contents of identifiants in a table in CSV format
+  def contributions
+    contributions = Contribution.find(:all)
+    stream_csv do |csv|
+      csv << ["id", "logiciel", "etat", "description"]
+      contributions.each do |c|
+        csv << [c.id, c.logiciel.nom, c.etatreversement.nom, 
+                c.description]
+      end
+    end
+  end
+
+  # return the contents of identifiants in a table in CSV format
   def identifiants
     identifiants = Identifiant.find(:all)
     stream_csv do |csv|
