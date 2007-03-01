@@ -1,4 +1,4 @@
-<h1>Liste des contributions à <%= @logiciel.nom %></h1>
+<h1>Liste des contributions à <%= @logiciel ? @logiciel.nom : 'tous les logiciels' %></h1>
 
 <%= render :partial => 'contribution', :collection => @contributions %>
 

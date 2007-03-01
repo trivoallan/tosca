@@ -30,8 +30,12 @@ class ContributionsController < ApplicationController
   def list
     flash[:notice]= flash[:notice]
     return redirect_to :action => 'select' unless params[:id]
-    @logiciel = Logiciel.find(params[:id])
-    conditions = ["logiciel_id = ?", @logiciel.id]
+    unless params[:id] == 'all'
+      @logiciel = Logiciel.find(params[:id])
+      conditions = ["logiciel_id = ?", @logiciel.id]
+    else
+      conditions = nil
+    end
     #scope_filter do
       @contribution_pages, @contributions = paginate :contributions, :per_page => 10,
       :order => "created_on DESC", :conditions => conditions

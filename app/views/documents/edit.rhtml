@@ -1,9 +1,9 @@
-<h1>Editing document</h1>
+<h1>Modifier le document : <%= @document.titre %></h1>
 
 <%= start_form_tag({:action => 'update', :id => @document}, :multipart => true) %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Modifier' %>
 <%= end_form_tag %>
 
-<%= link_to 'Show', :action => 'show', :id => @document %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Voir', :action => 'show', :id => @document %> |
+<%= link_to 'Retour', :action => 'list' %>
