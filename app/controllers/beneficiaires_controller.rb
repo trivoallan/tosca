@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class BeneficiairesController < ApplicationController
+
   def index
     list
     render :action => 'list'
@@ -12,12 +13,9 @@ class BeneficiairesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    #set_filters
     @clients = Client.find_select
-#    scope_filter do 
-      @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, :per_page => 
+    @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, :per_page =>
       10, :include => [:client,:identifiant]
-#    end
   end
 
   def show
