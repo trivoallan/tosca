@@ -83,15 +83,13 @@ protected
 
   # overriding for escaping count of include (eager loading)
   def count_collection_for_pagination(model, options)
+    count_options = { :joins => options[:joins],
+                      :select => options[:count] }
     if options[:conditions]
-      model.count({ :joins => options[:joins],
-                    :conditions => options[:conditions],
-                    :include => options[:include],
-                    :select => options[:count] })
-    else
-      model.count({ :joins => options[:joins],
-                    :select => options[:count] })
+      count_options.update( { :conditions => options[:conditions],
+                              :include => options[:include] } )
     end
+    model.count(count_options)
   end
 
 
