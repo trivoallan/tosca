@@ -1,0 +1,36 @@
+<% options = { :update => 'content',
+    :url => '/contributions/update_list',
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+
+<% form_remote_tag( options.dup.update(:html => { 
+    :id => 'filters', :name => 'filters'})) do %>
+
+<div class="menu_title" onclick="Element.toggle('menu_actions')">>
+Actions </div>
+<ul class="menu" id="menu_actions">
+ <li><%= link_to('Déposer une contribution', :action => 'new')%></li>
+ <li><%= link_to_export %></li>
+</ul>
+
+<div class="menu_title" onclick="Element.toggle('menu_recherche')">>
+Recherche</div>
+<ul class="menu" id="menu_recherche">
+ <li><b>Logiciel </b></li>
+ <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
+ <li><b>Description </b></li>
+ <li><%= text_field_with_auto_complete :contribution, :description, {}, :skip_style => true %></li>
+ <li><b>Etat </b></li>
+ <li><%= select_filter(@etatreversements, :etatreversement) %></li>
+</ul>
+
+<div class="menu_title" onclick="Element.toggle('menu_synthese')">>
+Synthèse</div>
+<ul class="menu" id="menu_synthese">
+ <li><b>Contributions: </b><%=@count[:contributions]%></li>
+ <li><b>Logiciels: </b><%=@count[:logiciels]%></li>
+</ul>
+
+<% end %>
+
+<%= observe_form 'filters', options %>
