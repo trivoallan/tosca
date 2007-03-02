@@ -7,91 +7,70 @@ module ImagesHelper
   # We cannot cache a parametered image
 
   # por éviter la réaffection de desc à chaque coup
-  def image_options(desc = '')
-    { :border => 0, :alt => desc, :title => desc }
+  def image_options(desc = '', size = nil )
+    options = { :alt => desc, :title => desc }
+    options.update(:size => size) if size
+    options
   end
 
   # Database manipulation
 
-  @@create = nil
   def image_create(message)
     desc = "Déposer #{message}"
-    @@create ||= image_tag("create_icon.png", :size => "16x16",
-                           :border => 0, :alt => desc, :title => desc )
+    image_tag("create_icon.png", image_options(desc, '16x16'))
   end
 
   @@view = nil
   def image_view
-    desc = 'Consulter'
-    @@view ||= image_tag('icons/b_view.png', :size => '15x15',
-                         :border => 0, :alt => desc, :title => desc )
+    @@view ||= image_tag('icons/b_view.png', image_options('Consulter', '15x15'))
   end
 
   @@edit = nil
   def image_edit
-    desc = 'Modifier'
-    @@edit ||= image_tag('edit_icon.gif', :size => '15x15',
-                         :border => 0, :alt => desc, :title => desc )
+    @@edit ||= image_tag('edit_icon.gif', image_options('Modifier', '15x15'))
   end
 
   @@delete = nil
   def image_delete
-    @delete ||= image_tag('delete_icon.gif', image_options('Supprimer')\
-                          .update(:size => '15x17'))
+    @delete ||= image_tag('delete_icon.gif', image_options('Supprimer', '15x17'))
   end
 
   # Navigation
 
   @@back = nil
   def image_back
-    desc = 'Retour'
-    @@back ||= image_tag("back_icon.png", :size => "23x23",
-                         :border => 0, :alt => desc, :title => desc, 
-                         :align => 'bottom' )
+    @@back ||= image_tag("back_icon.png", image_options('retour', '23x23'))
   end
 
   @@first_page = nil
   def image_first_page
     desc = 'Première page'
-    @@first_page ||= image_tag("first_page.png", :size => "14x14", 
-                         :border => 0, :alt => desc, :title => desc )
+    @@first_page ||= image_tag("first_page.png", image_options(desc, '14x14')) 
   end
 
   @@previous_page = nil
   def image_previous_page
     desc = 'Page précédente'
-    @@previous_page ||= image_tag("previous_page.png", :size => "14x14",
-                                :border => 0, :alt => desc, :title => desc )
+    @@previous_page ||= image_tag("previous_page.png", image_options(desc, '14x14'))
   end
 
-
-  def image_next_remote_page
-    image_tag("next_page.png", :size => "14x14",
-              :border => 0, :alt => 'Page suivante', 
-              :title => 'Page suivante', :onclick => 
-              " alert('ca y est');")
-  end
 
   @@next_page = nil
   def image_next_page
-    @@next_page ||= image_tag("next_page.png", :size => "14x14",
-                              :border => 0, :alt => 'Page suivante', 
-                              :title => 'Page suivante' )
+    desc = 'Page suivante'
+    @@next_page ||= image_tag("next_page.png", image_options(desc, '14x14'))
   end
 
   @@last_page = nil
   def image_last_page
     desc = 'Dernière page'
-    @@last_page ||= image_tag("last_page.png", :size => "14x14",
-                                :border => 0, :alt => desc, :title => desc )
+    @@last_page ||= image_tag("last_page.png", image_options(desc, '14x14'))
   end
 
   @@folder = nil
   def image_folder
     desc = 'Fichier'
-    @@folder ||= image_tag('folder_icon.gif', :size => '16x16',
-                           :border => 0, :alt => desc, :title => desc,
-                           :align => 'bottom')
+    @@folder ||= image_tag('folder_icon.gif', image_options(desc, '16x16'))
   end
 
   # Security
@@ -99,36 +78,31 @@ module ImagesHelper
   @@public = nil
   def image_public
     desc = 'Rendre public'
-    @@public ||= image_tag('public_icon.png', :size => '17x16',
-                           :border => 0, :alt => desc, :title => desc )
+    @@public ||= image_tag('public_icon.png', image_options(desc, '17x16'))
   end
 
   @@private = nil
   def image_private
     desc = 'Rendre privé'
-    @@private ||= image_tag('private_icon.png', :size => '12x14',
-                            :border => 0, :alt => desc, :title => desc )
+    @@private ||= image_tag('private_icon.png', image_options(desc, '12x14'))
   end
 
   # Logos
 
   @@logo_08000 = nil
   def logo_08000
-    desc = '08000 LINUX'
-    @@logo_08000 ||= image_tag('logo_08000.gif', :alt => desc, :title => desc)
+    @@logo_08000 ||= image_tag('logo_08000.gif', image_options('08000 LINUX'))
   end
 
   @@logo_lstm = nil
   def logo_lstm
-    desc = 'Accueil'
-    @@logo_lstm ||= image_tag('logo_lstm.gif', :alt => desc, :title => desc)
+    @@logo_lstm ||= image_tag('logo_lstm.gif', image_options('Accueil'))
   end
 
   @@logo_ruby = nil
   def logo_ruby
     desc = 'OSSA on rails'
-    @@logo_ruby ||= image_tag('ruby.png', :size => '15x15',
-                              :border => 0, :alt => desc, :title => desc)
+    @@logo_ruby ||= image_tag('ruby.png', image_options(desc, '15x15'))
   end
 
   @@image_favicon = nil 
@@ -140,8 +114,19 @@ module ImagesHelper
 
   @@spinner = nil
   def image_spinner
-    @@spinner ||= image_tag('spinner.gif', :border=> 0, :id => 'spinner',
+    @@spinner ||= image_tag('spinner.gif', :id => 'spinner',
                             :style=> 'display: none;')
+  end
+
+
+  @@expand = nil
+  def image_expand
+    @@expand ||= image_tag('navigation_expand.gif', image_options('expand'))
+  end
+
+  @@hide = nil
+  def image_hide
+    @@hide ||= image_tag('navigation_hide.gif', image_options('hide'))
   end
 
 end

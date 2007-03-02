@@ -27,6 +27,8 @@
 	width: 100%;
 	background-color: #dddddd;
 	font-weight: bold;
+	cursor: pointer;
+	cursor: hand;
 }
 ul.menu li {
 	color: black;

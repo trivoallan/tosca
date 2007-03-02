@@ -182,7 +182,6 @@ class AccountController < ApplicationController
                       { :col_sep => ";", :headers => true }) do |row|
         identifiant = Identifiant.new do |i|
            logger.debug(row.inspect)
-          # TODO : ca peut tenir en une ligne ce truc
            i.nom = row['Nom Complet'].to_s
            i.titre = row['Titre'].to_s
            i.email = row['Email'].to_s
@@ -193,14 +192,7 @@ class AccountController < ApplicationController
            i.informations = row['Informations'].to_s
            i.client = params[:identifiant][:client]
         end
-        if params[:role_ids]
-          identifiant.roles = Role.find(params[:role_ids])
-        else
-          identifiant.roles = []
-          #identifiant.errors.add_on_empty('roles')
-          render :action => 'multiple_signup'
-          return
-        end
+        identifiant.roles = Role.find(params[:role_ids])
         if identifiant.save
           client = Client.find(params[:client][:id])
           flash[:notice] += "L'utilisateur #{row['Nom Complet']} a bien été créé.<br/>"
@@ -211,13 +203,15 @@ class AccountController < ApplicationController
             ingenieur = Ingenieur.new(:identifiant => identifiant)
             flash[:notice] += "Ingénieur associé créé" if ingenieur.save
           end
-          Notifier::deliver_identifiant_nouveau({ :identifiant => identifiant,
-                                                  :controller => self,
-                                                  :password => row['Mot de passe'].to_s}, flash)
-          flash[:notice] += "<br/>"
+          options = { :identifiant => identifiant, :controller => self,
+            :password => row['Mot de passe'].to_s }
+          Notifier::deliver_identifiant_nouveau(options, flash)
+          flash[:notice] += '<br/>'
         else
-          flash.now[:warn] += "L'utilisateur " + row['Nom Complet'].to_s + " n'a pas été créé.<br/>"
+          flash.now[:warn] += "L'utilisateur #{row['Nom Complet']} n'a " + 
+            'pas été créé.<br/>'
         end
+
       end
       redirect_back_or_default :action => "list"
     when :get

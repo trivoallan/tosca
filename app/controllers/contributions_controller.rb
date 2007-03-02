@@ -31,7 +31,7 @@ class ContributionsController < ApplicationController
     return redirect_to(:action => 'select') unless params[:id]
     unless params[:id] == 'all'
       @logiciel = Logiciel.find(params[:id])
-      conditions = ["logiciel_id = ?", @logiciel.id]
+      conditions = ['logiciel_id = ?', @logiciel.id]
     else
       conditions = nil
     end
