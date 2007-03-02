@@ -14,13 +14,10 @@
 %>
 
 <% # TODO : improve it, c'est plus tres lisible
-  identifiant = {:titre => nil, :champ => nil}
-  role = {:titre => nil, :champ => nil}
-  identifiant_client = {:titre => nil, :champ => nil}
-  type_client = {:titre => nil, :champ => nil}
+  #ESSAI : un peu mieux ?
+  identifiant, role, identifiant_client, type_client, csv = {}, {}, {}, {}, {}
   help = {:affichage_perso => 'Affichage personnalisé de la liste des demandes', :client => nil }
-  csv = {:titre => nil, :champ => nil}
-
+  
   if @ingenieur
     identifiant[:titre] = '<label for="identifiant_login">Choisissez un identifiant</label>'
     identifiant[:champ] = text_field("identifiant", "login", :size => 16)
