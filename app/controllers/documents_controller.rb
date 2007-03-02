@@ -20,9 +20,14 @@ class DocumentsController < ApplicationController
          :redirect_to => { :action => :select }
 
   def list
+    flash[:notice]= flash[:notice]
     return redirect_to :action => 'select' unless params[:id]
-    @typedocument = Typedocument.find(params[:id])
-    conditions = ["typedocument_id = ?", @typedocument.id]
+    unless params[:id] == 'all'
+      @typedocument = Typedocument.find(params[:id])
+      conditions = ["typedocument_id = ?", @typedocument.id]
+    else
+      conditions = nil
+    end
     @document_pages, @documents = paginate :documents, :per_page => 10,
       :order => "created_on DESC", :conditions => conditions,
       :include => [:identifiant]

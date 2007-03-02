@@ -148,6 +148,11 @@ table.pages td {
 	height: 40px;
 }
 
+.show_table {
+	border-collapse: collapse;
+	/*border: 1px solid #999999;*/
+}
+
 /*********************** filtres **********************/
 
 .table_filtre {

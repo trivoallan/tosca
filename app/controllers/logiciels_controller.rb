@@ -54,22 +54,8 @@ class LogicielsController < ApplicationController
   def list
     options = { :per_page => 15, :order => 'logiciels.nom', 
       :include => [:groupe,:competences] }
-
-    @count = {}
-    @clients = Client.find_select
-    @groupes = Groupe.find_select
-    @technologies = Competence.find_select
-
-    @groupes = Groupe.find_select
-    #scope_filter do
-    @count[:paquets] = Paquet.count
-    @count[:binaires] = Binaire.count
-    @count[:softwares] = Logiciel.count
-    @count[:technologies] = Competence.count
-
+    _panel
     @logiciel_pages, @logiciels = paginate :logiciels, options
-    #end
-
     @partial_for_summary = 'softwares_info'
 
   end
@@ -150,5 +136,18 @@ private
     @groupes = Groupe.find(:all, :order => "nom")
     @licenses = License.find(:all, :order => "nom")
   end  
+
+  def _panel 
+    @count = {}
+    @clients = Client.find_select
+    @groupes = Groupe.find_select
+    @technologies = Competence.find_select
+    @groupes = Groupe.find_select
+
+    @count[:paquets] = Paquet.count
+    @count[:binaires] = Binaire.count
+    @count[:softwares] = Logiciel.count
+    @count[:technologies] = Competence.count
+  end
 
 end

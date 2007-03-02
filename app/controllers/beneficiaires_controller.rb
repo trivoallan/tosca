@@ -12,7 +12,7 @@ class BeneficiairesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    set_filters
+    #set_filters
     @clients = Client.find_select
 #    scope_filter do 
       @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, :per_page => 

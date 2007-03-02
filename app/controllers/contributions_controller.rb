@@ -133,7 +133,7 @@ private
     @clients = Client.find(:all)
     # count
     @count = {:contributions => Contribution.count }
-    count_logiciels = { :select => 'DISTINCT contributions.logiciel_id' }
+    count_logiciels = { :select => 'contributions.logiciel_id' }
     @count[:logiciels] = Contribution.count(count_logiciels)
   end
 
