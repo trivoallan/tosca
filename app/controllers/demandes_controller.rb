@@ -74,7 +74,7 @@ class DemandesController < ApplicationController
 
   def list
     #super(params) # see before_filter:set_filters in application.rb
-    return unless session[:user]
+#     return unless session[:user]
     #cas spécial : consultation directe
     redirect_to :action => :comment, :id => params['numero'] if params['numero'] 
 
