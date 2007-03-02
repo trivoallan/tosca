@@ -118,7 +118,9 @@ module ApplicationHelper
     "<a title=\"#{help_text}\" >?</a>"
   end
 
-
+  def error_message
+    flash.now[:warning] = "Une erreur est survenue, veuillez nous contacter"
+  end
 
   ### FILES #####################################################################
 

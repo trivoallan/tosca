@@ -93,12 +93,10 @@ class DemandesController < ApplicationController
     @count[:piecejointes] = Piecejointe.count
     @count[:contributions] = Contribution.count
 
-  
     @demande_pages, @demandes = paginate :demandes, :per_page => 10,
     :order => 'updated_on DESC', :select => SELECT_LIST, :joins => JOINS_LIST
 
     @partial_for_summary = 'requests_info'
-
   end
 
 
@@ -166,7 +164,6 @@ class DemandesController < ApplicationController
       output << "<p>Une erreur s'est produite concernant les paquets de " + logiciel.nom  + "</p>"
      else 
       output << "<p>Précisez ici les paquets impactés par la demande :</p>" 
-    
       output << "<table>"
       output << "<tr><td> <b>Paquets</b> </td>"
       output << "<td> Contournement  </td><td> Correction  </td><tr>"
@@ -314,7 +311,7 @@ class DemandesController < ApplicationController
                                                 :controller => self},
                                               flash)
     else
-      flash.now[:warn] = "Une erreur est survenue, veuillez nous contacter"
+      error_message
     end
     redirect_to :action => 'comment', :id => @demande.id
   end
@@ -329,9 +326,11 @@ class DemandesController < ApplicationController
         Notifier::deliver_demande_assigner({:demande => @demande, 
                                              :controller => self}, 
                                            flash)
-      else flash[:notice] = "La demande n'est plus assignée"
+      else
+        flash[:notice] = "La demande n'est plus assignée"
       end
-    else flash.now[:warn] = "Une erreur est survenue, veuillez nous contacter"
+    else
+      error_message
     end
     redirect_to_comment
   end
@@ -343,7 +342,7 @@ class DemandesController < ApplicationController
     if @demande.update_attributes(:contribution_id => params[:contribution_id])
       flash[:notice] = "<br />Une contribution a été liée"
     else
-      flash.now[:warn] = "Une erreur est survenue, veuillez nous contacter"
+      error_message
     end
     redirect_to :action => 'comment', :id => @demande.id
   end
