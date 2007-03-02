@@ -36,7 +36,7 @@
            <%if user.roles.include? role%> checked="checked" <%end%> />&nbsp;&nbsp;
          <% end %>
       <% end %></td>
-      <td><a onclick="document.forms['form_<%=user.id.to_s%>'].submit()">
+      <td><a href="." onclick="document.forms['form_<%=user.id.to_s%>'].submit()">
           <b>Valider</b></a></td>
       <td><%= "X" if ingenieur %></td>
       <td><%= "X" if beneficiaire %>
