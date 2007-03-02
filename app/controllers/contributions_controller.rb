@@ -22,8 +22,10 @@ class ContributionsController < ApplicationController
   end
 
   def select
+    _panel
     #flash[:notice] = 'test'
     @logiciels = Contribution.find(:all, :order => 'reverse_le').collect{|c| c.logiciel }.uniq
+    @partial_for_summary = 'panel'
   end
 
   def list
@@ -44,17 +46,9 @@ class ContributionsController < ApplicationController
   def admin
     # @count = Contribution.count
     conditions = nil
-    @etatreversements = Etatreversement.find(:all)
-    @logiciels = Logiciel.find(:all)
-    @clients = Client.find(:all)
-
-    @count = {:contributions => Contribution.count }
-    count_logiciels = { :select => 'DISTINCT contributions.logiciel_id' }
-    @count[:logiciels] = Contribution.count(count_logiciels)
-
+    _panel
     @contribution_pages, @contributions = paginate :contributions, :per_page => 10, 
     :order => 'updated_on DESC'
-
     @partial_for_summary = 'panel'
   end
 
@@ -131,6 +125,16 @@ private
     @etatreversements = Etatreversement.find_all
     @ingenieurs = Ingenieur.find_all
     @typecontributions = Typecontribution.find_all
+  end
+
+  def _panel
+    @etatreversements = Etatreversement.find(:all)
+    @logiciels = Logiciel.find(:all)
+    @clients = Client.find(:all)
+    # count
+    @count = {:contributions => Contribution.count }
+    count_logiciels = { :select => 'DISTINCT contributions.logiciel_id' }
+    @count[:logiciels] = Contribution.count(count_logiciels)
   end
 
 end

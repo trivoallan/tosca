@@ -10,7 +10,11 @@
 Actions </div>
 <ul class="menu" id="menu_actions">
  <li><%= link_to('Déposer une contribution', :action => 'new')%></li>
+ <li><%= link_to 'Voir toutes les contributions', 
+         :action => 'list', :id => 'all'  %></li>
  <li><%= link_to_export %></li>
+ <li><%= link_to 'Interface d\'administration', 
+         :action => 'admin'  %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>
