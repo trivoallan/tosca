@@ -4,8 +4,7 @@
 class BeneficiairesController < ApplicationController
 
   def index
-    list
-    render :action => 'list'
+    list and render :action => 'list'
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
@@ -14,8 +13,8 @@ class BeneficiairesController < ApplicationController
 
   def list
     @clients = Client.find_select
-    @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, :per_page =>
-      10, :include => [:client,:identifiant]
+    @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, 
+    :per_page => 10, :include => [:client,:identifiant]
   end
 
   def show
@@ -61,7 +60,6 @@ class BeneficiairesController < ApplicationController
   end
 
 private
-
   def _form
     @identifiants = Identifiant.find :all
     @clients = Client.find :all
