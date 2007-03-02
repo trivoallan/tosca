@@ -52,15 +52,22 @@
         <% end %>
   </div><!-- end of information -->
 
-  <% if @partial_for_summary %>
-  <div class="summary">
-    <%= render_partial @partial_for_summary %>
-  </div><!-- end of summary -->
-  <% end %>
-
-  <div id="bodycontent">
+  <table id="content_table">
+  <tr valign="top">
+    <% if @partial_for_summary %>
+    <td width="22%">
+      <div class="summary">
+        <%= render_partial @partial_for_summary %>
+      </div><!-- end of summary -->
+    </td>
+    <% end %>
+    <td>
+      <div id="bodycontent">
         <%= @content_for_layout %>
-  </div><!-- end of bodycontent -->
+      </div><!-- end of bodycontent -->
+    </td>
+  </tr>
+  </table><!-- end of content_table -->
 
   <div id="footer">
     <table width='100%'>

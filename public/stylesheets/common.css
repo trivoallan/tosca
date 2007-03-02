@@ -28,6 +28,11 @@ body {
 
 	/* overflow: auto; */
 }
+#content_table{
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+}
 #summary {
 	/* see info_box.css  .summary */
 }
@@ -36,7 +41,6 @@ body {
 	margin: 0; 
 	padding: 1em;
 	padding-bottom: 5em;
-
 	height: 84%;
 	overflow: auto;
 }

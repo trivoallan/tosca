@@ -9,8 +9,8 @@ logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Lo
 
 <%= show_pages_links(@contribution_pages, 'une contribution', :controller => 'contributions') %>
 
-<%= "#{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}" %>
-<%= "#{select_filter(@clients, 'client', :title => 'Client')}" %>
+<%#= "#{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}" %>
+<%#= "#{select_filter(@clients, 'client', :title => 'Client')}" %>
 
 <% titres = ["Logiciel", 
              'Patch', 'Demande', 
@@ -39,4 +39,4 @@ result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"
 <% end %>
 
 <%= show_pages_links(@contribution_pages, 'une contribution', :controller => 'contributions') %>
-<%= render_partial "contributions/statistiques" %>
+<%#= render_partial "contributions/statistiques" %>

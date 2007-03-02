@@ -16,19 +16,23 @@ Actions </div>
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>
 Recherche</div>
 <ul class="menu" id="menu_recherche">
- <li><b>Logiciel </b></li>
- <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
- <li><b>Description </b></li>
- <li><%= text_field_with_auto_complete :contribution, :description, {}, :skip_style => true %></li>
- <li><b>Etat </b></li>
- <li><%= select_filter(@etatreversements, :etatreversement) %></li>
+ <li><b>Client </b><br />
+     <%#= text_field_with_auto_complete :client, :nom, {}, :skip_style => true %></li>
+ <li><b>Logiciel </b><br />
+     <%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
+ <li><b>Description </b><br />
+     <%= text_field_with_auto_complete :contribution, :description, {}, :skip_style => true %></li>
+ <li><b>Etat </b><br />
+     <%= select_filter(@etatreversements, :etatreversement) %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_synthese')">>
 Synthèse</div>
 <ul class="menu" id="menu_synthese">
- <li><b>Contributions: </b><%=@count[:contributions]%></li>
- <li><b>Logiciels: </b><%=@count[:logiciels]%></li>
+ <li><b>Contributions : </b><%=@count[:contributions]%></li>
+ <li><b>Logiciels : </b><%=@count[:logiciels]%></li>
+ <li><b>Communautés : </b>...</li>
+ <li><b>Délais moyen : </b>...</li>
 </ul>
 
 <% end %>
