@@ -5,9 +5,9 @@
 
 
 
-<table cellspacing="1">
+<table class="commentaire_table">
   <tr <%= (commentaire.prive ? 'class="commentaire-prive"' : 'class="commentaire-public"' ) %>>
-  <td width='160' class="commentaire_infos" align="center">
+    <td class="commentaire_infos" align="center">
 	<span class="small">Comment. <%= "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id %>
 	    <%= logo_08000 %>

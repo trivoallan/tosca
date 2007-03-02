@@ -6,21 +6,25 @@
 	background: white;
 }
 .commentaire-prive {
-	background: #E2E2E2;
+	background: #E6E6E6;
 }
 .commentaire_infos {
 	vertical-align: top;
 	align: center;
-	width: 160px;
+	width: 18%;
 }
 .commentaire_text {
-	width: 100%; 
+	width: 82%; 
 }
 .commentaire_action {
 	vertical-align: top;
 	width: 85px;
 }
-
+.commentaire_table {
+	border: 1px solid #999999; /* border-spacing: 1em; */
+	border-collapse: collapse;
+	margin: 0.5em;
+}
 #commentaire_corps { /* textarea  */
 	width: 100%; 
 }

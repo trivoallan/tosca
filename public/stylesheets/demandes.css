@@ -74,7 +74,7 @@ option.severite_6 {
  ******************************************/
 
 .demande_tab {
-	padding-bottom: 5em;
+	/*padding-bottom: 5em;*/
 }
 .demande_tabnav {
 	color: #000000;
@@ -113,11 +113,12 @@ option.severite_6 {
 	color: #FFEBBF; 
 }
 .demande_tab_content {
-        font: 0.9em/1.3em "bitstream vera sans", verdana, sans-serif;
+        /* font: 0.9em/1.3em "bitstream vera sans", verdana, sans-serif;*/
 	text-align: justify;
-	background: #DDDDDD /* background: #FFB000; */
-	padding: 20px;
-	border: 2px solid #cfc8cf; /* 2px solid black; */
+	background: #DDDDDD;
+	padding: 0.5em;
+	margin: 0;
+	/* border: 2px solid #cfc8cf; */
 	z-index: 2;	
 }
 

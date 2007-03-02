@@ -39,7 +39,7 @@ body {
 #bodycontent { 
 	background-color: #eaeafa;
 	margin: 0; 
-	padding: 1em;
+	padding: 2em;
 	padding-bottom: 5em;
 	height: 84%;
 	overflow: auto;
@@ -213,6 +213,8 @@ table.pages td {
 	font-size: 80%;
 	padding: 4px 0 10px 4px;
 }
+
+/**** non use
 .list table th.dynamic {
 	cursor: pointer;
 	border-left: 1px dotted #A9A9A9;
@@ -227,6 +229,8 @@ table.pages td {
 	border-right: 1px dotted #A9A9A9;
 	border-bottom: 2px solid #5E5E5E;
 }
+*****/
+
 .list table th {
 	color: #000;
 	text-decoration: none;
@@ -242,6 +246,8 @@ table.pages td {
 .list table td.void {
 	border: 0;
 }
+
+/**** non use
 .list table tr.even {
 	background-color: #fff ! important;
 }
@@ -262,6 +268,8 @@ table.pages td {
 	background-color: #f8f8f8;
 	border-bottom: #8a8a8a 2px solid;
 }
+******/
+
 .list table .rowgroupend {
 	border-bottom-width: 3px;
 }
