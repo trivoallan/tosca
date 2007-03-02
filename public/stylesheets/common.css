@@ -135,25 +135,17 @@ table.pages td {
 .form,
 .show,
 .help,
-.info,
-.info_reversement,
-.fiche_logiciel {
+.info {
 	border: 1px solid black;
 	background-color: #DFDFDF;
 	-moz-border-radius: 1em;
 	vertical-align: top;
 	padding: 1em;
 	margin: 1em 0em 1em 0em;
-	width: 50%; /*38em;*/
-}
-.info_reversement {
 	width: 95%;
 }
 .login tr {
 	height: 40px;
-}
-.form td {
-        padding-right: 5px;
 }
 
 /*********************** filtres **********************/

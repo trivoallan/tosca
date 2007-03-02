@@ -16,7 +16,7 @@ Actions </div>
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>
 Recherche</div>
 <ul class="menu" id="menu_recherche">
- <li><b>Client </b><br />
+ <li><b>Client </b><br />TODO
      <%#= text_field_with_auto_complete :client, :nom, {}, :skip_style => true %></li>
  <li><b>Logiciel </b><br />
      <%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
@@ -24,6 +24,17 @@ Recherche</div>
      <%= text_field_with_auto_complete :contribution, :description, {}, :skip_style => true %></li>
  <li><b>Etat </b><br />
      <%= select_filter(@etatreversements, :etatreversement) %></li>
+</ul>
+
+<div class="menu_title" onclick="Element.toggle('menu_caracteristiques')">>
+Caractéristiques</div>
+<ul class="menu" id="menu_caracteristiques">
+ <li><b>Tâches </b>
+     <% form_tag(:controller => 'contributions', :action => 'list') do %>
+      <%= show_help 'Marquer les reversements urgents en précisant le délais de reversement' %><br />
+      <%= text_field('reversement','max_jours', :size => 5, 
+          :value => 'TODO : '+@max_jours.to_s+' jours') %></li>
+     <% end %>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_synthese')">>

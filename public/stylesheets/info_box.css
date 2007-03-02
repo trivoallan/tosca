@@ -31,7 +31,7 @@
 ul.menu li {
 	color: black;
 	list-style-image: url(/images/puce.png);
-	/*padding-left: 15px;*/
+	margin-left: -1.5em;
 	margin-bottom: -2px;
 }
 

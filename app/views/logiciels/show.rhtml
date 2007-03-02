@@ -1,6 +1,6 @@
 <h1><%= "Logiciel \"#{@logiciel.nom}\"" %></h1>
 
-<table class="fiche_logiciel">
+<table class="show">
 
 <% for column in Logiciel.content_columns %>
 <tr><td><b><%= column.human_name %></b> </td>
