@@ -1,5 +1,4 @@
 <%
-  title, subtitle = nil, nil
   case controller.action_name
   when 'modify'
     compte = ( session[:user].id == @identifiant.id ? 'mon compte' : "le compte de #{@identifiant.nom}" )

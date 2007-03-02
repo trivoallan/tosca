@@ -104,6 +104,10 @@ class AccountController < ApplicationController
     redirect_to :action => 'list'
   end
 
+  def new
+    redirect_to :action => 'signup'
+  end
+
   def signup
     _form
     case request.method
