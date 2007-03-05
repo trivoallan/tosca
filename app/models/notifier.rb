@@ -5,8 +5,8 @@ class Notifier < ActionMailer::Base
   helper :mail
 
 # Notifie un état d'erreur
-def error_message (exception, trace, session, params, env, envoye_le = Time.now)
-  recipients = "mloiseleur@linagora.com"
+def error_message(exception, trace, session, params, env)
+  recipients = "lstm-devel@linagora.com"
   from = "lstm@noreply.08000linux.com"
   subject = "Message d'erreur : #{env['REQUEST_URI']}"
   envoye_le = envoye_le
@@ -14,6 +14,7 @@ def error_message (exception, trace, session, params, env, envoye_le = Time.now)
     :exception => exception,
     :trace => trace,
     :params => params,
+    :session => session,
     :env => env
   }
 end

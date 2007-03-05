@@ -118,14 +118,6 @@ module ApplicationHelper
     "<a title=\"#{help_text}\" >?</a>"
   end
 
-  # Affiche un message d'erreur si l'application a planté
-  # dans une requête par exemple
-  # TODO : rajouter des options ?
-  # TODO : envoyer un mail ?
-  def error_message
-    flash.now[:warning] = "Une erreur est survenue, veuillez nous contacter"
-  end
-
   ### FILES #####################################################################
 
   def file_size( file )

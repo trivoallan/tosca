@@ -92,6 +92,12 @@ protected
     model.count(count_options)
   end
 
+  # Affiche un message d'erreur si l'application a planté
+  # dans une requête par exemple
+  def error_message
+    flash.now[:warning] = "Une erreur est survenue, veuillez nous contacter"
+  end
+
 
 private
   # scope imposé sur toutes les vues, 
@@ -114,6 +120,16 @@ private
       #Piecejointe.set_scope(client_id) #only for files
     end
     yield
+  rescue Exception => e
+    flash[:warn] = 'Une erreur est survenue. Notre service a été prévenue ' + 
+      'et dispose des informations nécessaire pour corriger.<br />' +
+      'N\'hésitez pas à nous contacter si le problème persiste.'
+    Notifier::deliver_error_message(e,
+                                    clean_backtrace(e),
+                                    session.instance_variable_get("@data"),
+                                    params,
+                                    request.env)
+    redirect_to :action => 'list', :controller => 'bienvenue'
   end
 
   # met le scope client en session
@@ -129,6 +145,7 @@ private
       session[:contrat_ids] = Contrat.find(:all, options).collect{|c| c.id}
     end
   end
+
 
 
 end

@@ -102,7 +102,7 @@ class DemandesController < ApplicationController
 
   def new
     @demande = Demande.new unless @demande
-    common_form @beneficiaire
+    _form @beneficiaire
 
     # sans object par défaut 
     @demande.severite_id = 4
@@ -127,13 +127,20 @@ class DemandesController < ApplicationController
     end
   end 
 
+
+  # TODO : passer au nouveau formulaire (deposer), 
+  # qui a besoin d'un petit check
+  # et virer ce vieux code legacy tout laid
   def ajax_update_delai
-    return render_text('') unless request.xhr? and params[:demande] and (params[:demande][:logiciel_id] != "")
+    return render_text('') unless request.xhr? and 
+      params[:demande] and (params[:demande][:logiciel_id] != "")
     output = ''
-#    params.each_pair {|key, value| output << key.to_s + " : " + value.to_s + "<br />" }
+
     beneficiaire = Beneficiaire.find params[:demande][:beneficiaire_id]
     contrat = Contrat.find :first, :conditions => ['client_id=?', beneficiaire.client.id ]
-    return render_text(' => pas de contrat, pas de support logiciel libre') unless contrat and beneficiaire
+    unless contrat and beneficiaire
+      return render_text(' => pas de contrat, pas d\'ossa') 
+    end
     logiciel = Logiciel.find(params[:demande][:logiciel_id])
     # 6 est l'arch source
     paquets = beneficiaire.client.paquets.\
@@ -277,6 +284,7 @@ class DemandesController < ApplicationController
       flash[:notice] = 'La demande a bien été mise à jour.'
       redirect_to :action => 'comment', :id => @demande
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -293,15 +301,12 @@ class DemandesController < ApplicationController
     changement.demande = @demande
     # migration 006 :
     changement.identifiant = @session[:user]
-    if @demande.update_attributes(params[:demande]) and changement.save
-      flash[:notice] = "<br />Le statut a été mis à jour"
-      Notifier::deliver_demande_change_statut({:demande => @demande, 
-                                                :nom => @session[:user].nom, 
-                                                :controller => self},
-                                              flash)
-    else
-      error_message
-    end
+    @demande.update_attributes!(params[:demande]) and changement.save
+    flash[:notice] = "Le statut a été mis à jour"
+    Notifier::deliver_demande_change_statut({:demande => @demande, 
+                                              :nom => @session[:user].nom, 
+                                              :controller => self},
+                                            flash)
     redirect_to :action => 'comment', :id => @demande.id
   end
 
@@ -309,17 +314,14 @@ class DemandesController < ApplicationController
     redirect_to_comment unless params and params[:id] and params[:ingenieur_id]
     @demande = Demande.find(params[:id])
     @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
-    if @demande.save
-      if @demande.ingenieur
-        flash[:notice] = "La demande a été assignée correctement" 
-        Notifier::deliver_demande_assigner({:demande => @demande, 
-                                             :controller => self}, 
-                                           flash)
-      else
-        flash[:notice] = "La demande n'est plus assignée"
-      end
+    @demande.save!
+    if @demande.ingenieur
+      flash[:notice] = "La demande a été assignée correctement" 
+      Notifier::deliver_demande_assigner({:demande => @demande, 
+                                           :controller => self}, 
+                                         flash)
     else
-      error_message
+      flash[:notice] = "La demande n'est plus assignée"
     end
     redirect_to_comment
   end
@@ -328,11 +330,8 @@ class DemandesController < ApplicationController
   def associer_contribution
     return unless params[:id] and params[:contribution_id]
     @demande = Demande.find(params[:id])
-    if @demande.update_attributes(:contribution_id => params[:contribution_id])
-      flash[:notice] = "<br />Une contribution a été liée"
-    else
-      error_message
-    end
+    @demande.update_attributes!(:contribution_id => params[:contribution_id])
+    flash[:notice] = "Une contribution a été liée"
     redirect_to :action => 'comment', :id => @demande.id
   end
 
@@ -398,7 +397,6 @@ class DemandesController < ApplicationController
 
   # Remplit une @demande avec l'id de 'param', dispo via le client 
   def fill_with_first(param)
-    @test = "on remplit avec #{param} <br />" + @test.to_s
     collection = @demande.client.send(param.pluralize)
     if collection.empty?
       message = ": #{@demande.client.nom} n'a aucun #{param}," +
@@ -409,7 +407,7 @@ class DemandesController < ApplicationController
     end
   end
 
-  def common_form(beneficiaire)
+  def _form(beneficiaire)
     @ingenieurs = Ingenieur.find_all unless beneficiaire
     if beneficiaire
       client = beneficiaire.client
