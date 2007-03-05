@@ -1,19 +1,20 @@
 <%
   case controller.action_name
   when 'modify'
-    compte = ( session[:user].id == @identifiant.id ? 'mon compte' : "le compte de #{@identifiant.nom}" )
+    compte = ( session[:user].id == @identifiant.id ? 'mon compte' : 
+               "le compte de #{@identifiant.nom}" )
     title = "Modifier #{compte}"
   when 'signup'
     title = 'Créer un compte'
   when 'multiple_signup'
     title = 'Créer plusieurs comptes'
-    subtitle = 'Veuillez remplir les champs communs à tous les comptes.<br/>
-                Completez le reste des informations dans le dernier champs texte sous format CSV.'
+    subtitle = 'Veuillez remplir les champs communs à tous les comptes.<br/>' +
+      ' Completez le reste des informations dans le dernier champs texte sous format CSV.'
   end
 %>
 
-<% # TODO : improve it, c'est plus tres lisible
-  #ESSAI : un peu mieux ?
+<% # TODO : improve it, c'est encore tres peu lisible
+  #ESSAI : un peu mieux ? un chouilla ;)
   identifiant, role, identifiant_client, type_client, csv = {}, {}, {}, {}, {}
   help = {:affichage_perso => 'Affichage personnalisé de la liste des demandes', :client => nil }
   
