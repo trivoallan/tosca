@@ -54,30 +54,34 @@ protected
   end
 
   # verifie :
-  # - s'il il y a un id en paramètre (sinon :  retour à la liste)
-  # - si un ActiveRecord ayant cet id existe (sinon : erreur > rescue > retour à la liste)
+  # - s'il il y a un id en paramètre 
+  # - si un ActiveRecord ayant cet id existe 
   # options
   # :controller en cas de redirection (bienvenue)
   # :action en cas de redirection (list)
   # TODO : trop de copier-coller 
   # NOTODO : "options[:controller] = controller_name" par défaut
-  #       c'est idéal, mais les clients n'ont pas les droits sur tous les */list
-  #       on tombe alors sur un acces/refuse, dommage
+  #    c'est idéal, mais les clients n'ont pas les droits sur tous les */list
+  #    on tombe alors sur un acces/refuse, dommage
+  # TODO : find a pretty solution !
+  WARN_NOID = 'Veuillez préciser l\'identifiant nécessaire à la consultation'
   def verifie(ar, options = {:controller => 'bienvenue', :action => 'list'})
     if !params[:id]
-      flash.now[:warn] = 'Veuillez préciser l\'identifiant de la demande à consulter.'
+      flash.now[:warn] = WARN_NOID
       redirect_to(options) and return false
     end
     scope_beneficiaire {
       object = ar.find(params[:id], :select => 'id') 
       if object = nil
-        flash.now[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
+        flash.now[:warn] = "Aucun(e) #{ar.to_s} ne correspond " + 
+          "à l'identifiant #{params[:id]}."
         redirect_to(options) and return false
       end
     }
     true
   rescue  ActiveRecord::RecordNotFound
-    flash.now[:warn] = "Aucun(e) #{ar.to_s} ne correspond à l'identifiant #{params[:id]}."
+    flash.now[:warn] = "Aucun(e) #{ar.to_s} ne correspond " + 
+      "à l'identifiant #{params[:id]}."
     redirect_to(options) and return false
   end
 
@@ -92,16 +96,13 @@ protected
     model.count(count_options)
   end
 
-  # Affiche un message d'erreur si l'application a planté
-  # dans une requête par exemple
-  def error_message
-    flash.now[:warning] = "Une erreur est survenue, veuillez nous contacter"
-  end
-
 
 private
   # scope imposé sur toutes les vues, 
   # pour limiter ce que peuvent voir nos clients
+  ERROR_MESSAGE = 'Une erreur est survenue. Notre service a été prévenu' + 
+    ' et dispose des informations nécessaire pour corriger.<br />' +
+    'N\'hésitez pas à nous contacter si le problème persiste.' 
   def scope_beneficiaire
     beneficiaire = session[:beneficiaire]
     if beneficiaire
@@ -121,15 +122,18 @@ private
     end
     yield
   rescue Exception => e
-    flash[:warn] = 'Une erreur est survenue. Notre service a été prévenue ' + 
-      'et dispose des informations nécessaire pour corriger.<br />' +
-      'N\'hésitez pas à nous contacter si le problème persiste.'
+    raise e unless ENV['RAILS_ENV'] == 'production'
     Notifier::deliver_error_message(e,
                                     clean_backtrace(e),
                                     session.instance_variable_get("@data"),
                                     params,
                                     request.env)
-    redirect_to :action => 'list', :controller => 'bienvenue'
+    if request.xhr?
+      render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
+    else
+      flash.new[:warn] = ERROR_MESSAGE
+      redirect_to :action => 'list', :controller => 'bienvenue'
+    end
   end
 
   # met le scope client en session

@@ -9,19 +9,19 @@ SSL : <%= @env['REQUEST_PORT'].to_i == 443 ? "oui" : "non" %>
 Agent : <%= @env['REQUEST_HTTP_USER_AGENT'] %>
 
 Backtrace
-<%= @trace.to_a.join("</p>\n<p>") %>
+<%= @trace.to_a.join('<<br />') %>
 
 Params
 <% @params.each do |key, val| %>
-* <%= key %> : <%= val.to_yaml %>
+* <%= key %> : <%= val.to_yaml %><br />
 <% end %>
 
 Session
 <% @session.each do |key, val| %>
-* <%= key %> : <%= val.to_yaml %>
+* <%= key %> : <%= val.to_yaml %><br />
 <% end %>
 
 Environment
 <% @env.each do |key, val| %>
-* <%= key %> : <%= val %>
+* <%= key %> : <%= val %><br />
 <% end %>
