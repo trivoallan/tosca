@@ -184,7 +184,7 @@ module ApplicationHelper
     end
 
     elements.each_index { |i|
-      result << "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">"
+      result << "<tr class=\"#{cycle('pair', 'impair')}\">"
       if (options[:content_columns])
         ar.content_columns.each {|column|
           result << "<td>#{indent elements[i].send(column.name)}</td>"

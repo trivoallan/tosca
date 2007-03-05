@@ -24,7 +24,7 @@
 
   <% @demande.paquets.each_index do |i| %>
   <% p = @demande.paquets[i] %>
-  <tr class="<%= (i % 2)==0 ? 'pair':'impair' %>">
+  <tr class="<%= cycle('pair', 'impair') %>">
     <td><%= p.nom %></td>
     <td><%= p.version %></td>
     <td><%= "#{ display_jours p.contournement(type_id, severite_id) }" %></td>

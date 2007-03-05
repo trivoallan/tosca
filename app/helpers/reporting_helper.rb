@@ -210,7 +210,7 @@ module ReportingHelper
     size = (options[:divise] ? (elements.size / 2) : elements.size)
     
     first_col.each_index { |i| 
-      result << "<tr class=\"#{(i % 2)==0 ? 'pair':'impair'}\">"
+      result << "<tr class=\"#{cycle('pair', 'impair')}\">"
       result << "<td>#{first_col[i]}</td>"  unless options[:without_firstcol] 
 
       size.times do |c|

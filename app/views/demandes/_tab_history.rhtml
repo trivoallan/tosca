@@ -10,11 +10,10 @@
     <th>Changement(s)</th>
   </tr>
 
-  <% idx = 0 %>
   <% @demande.versions.each_index do |i| %>
    <% demande = @demande.versions[i] %>
    <% next if old_statut_id == demande.statut_id and old_ingenieur_id == demande.ingenieur_id %>
-    <tr class="<%= (idx % 2)==0 ? 'pair':'impair' %>">
+    <tr class="<%= cycle('pair', 'impair') %>">
      <td><%= demande.updated_on_formatted %></td>
      <td>
        <% if old_ingenieur_id != demande.ingenieur_id %>
@@ -27,7 +26,6 @@
        <% end %>
      </td>
    </tr>
-   <% idx = idx + 1 %>
   <% old_statut_id, old_ingenieur_id = demande.statut_id, demande.ingenieur_id %>
   <% end %>
 </table>
