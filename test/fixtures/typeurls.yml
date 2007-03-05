@@ -1,5 +1,37 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+--- 
+typeurl_00012: 
+  nom: Development plans
+  id: 12
+typeurl_00001: 
+  nom: blog
   id: 1
-another:
+typeurl_00002: 
+  nom: sourceforge
   id: 2
+typeurl_00003: 
+  nom: homepage
+  id: 3
+typeurl_00004: 
+  nom: cvs
+  id: 4
+typeurl_00005: 
+  nom: svn
+  id: 5
+typeurl_00006: 
+  nom: mailing-list
+  id: 6
+typeurl_00007: 
+  nom: documentation
+  id: 7
+typeurl_00008: 
+  nom: bugtracker
+  id: 8
+typeurl_00009: 
+  nom: changelog
+  id: 9
+typeurl_00010: 
+  nom: sources
+  id: 10
+typeurl_00011: 
+  nom: darcs
+  id: 11

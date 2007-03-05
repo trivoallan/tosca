@@ -1,5 +1,19 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+--- 
+typedemande_00001: 
+  nom: Information
   id: 1
-another:
+typedemande_00002: 
+  nom: Anomalie
   id: 2
+typedemande_00005: 
+  nom: Evolution
+  id: 5
+typedemande_00006: 
+  nom: Monitorat
+  id: 6
+typedemande_00007: 
+  nom: Intervention
+  id: 7
+typedemande_00008: 
+  nom: Etude
+  id: 8

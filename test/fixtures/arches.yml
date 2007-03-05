@@ -1,5 +1,25 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+--- 
+arch_00004: 
+  nom: noarch
+  id: 4
+arch_00005: 
+  nom: ppc
+  id: 5
+arch_00006: 
+  nom: src
+  id: 6
+arch_00010: 
+  nom: sparc32
+  id: 10
+arch_00011: 
+  nom: sparc64
+  id: 11
+arch_00001: 
+  nom: i386
   id: 1
-another:
+arch_00002: 
+  nom: i586
   id: 2
+arch_00003: 
+  nom: i686
+  id: 3

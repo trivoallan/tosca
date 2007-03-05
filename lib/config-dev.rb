@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 # Include your application configuration below
-ActionMailer::Base.server_settings = {
+ActionMailer::Base.smtp_settings = {
   :address  => "mail.linagora.com",
   :port  => 25, 
   :domain  => 'linagora.com'

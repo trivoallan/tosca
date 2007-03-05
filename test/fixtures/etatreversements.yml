@@ -1,5 +1,25 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+--- 
+etatreversement_00003: 
+  nom: "soumis : en attente"
+  id: 3
+  description: "Correctif soumis, en attente de r\xC3\xA9ponse de la communaut\xC3\xA9"
+etatreversement_00004: 
+  nom: "accept\xC3\xA9"
+  id: 4
+  description: "Correctif soumis et accept\xC3\xA9"
+etatreversement_00005: 
+  nom: "refus\xC3\xA9"
+  id: 5
+  description: "Correctif soumis mais refus\xC3\xA9"
+etatreversement_00006: 
+  nom: "ne sera pas revers\xC3\xA9"
+  id: 6
+  description: "Correctif qui ne sera pas revers\xC3\xA9 \xC3\xA0 la communaut\xC3\xA9"
+etatreversement_00001: 
+  nom: "\xC3\xA0 reverser"
   id: 1
-another:
+  description: "Correctif r\xC3\xA9alis\xC3\xA9, \xC3\xA0 reverser \xC3\xA0 la communaut\xC3\xA9"
+etatreversement_00002: 
+  nom: en cours
   id: 2
+  description: "Echanges en cours pour d\xC3\xA9terminer les modalit\xC3\xA9s de la soumission du correctif"

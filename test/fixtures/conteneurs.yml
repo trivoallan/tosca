@@ -1,5 +1,19 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+--- 
+conteneur_00001: 
+  nom: rpm
   id: 1
-another:
+conteneur_00002: 
+  nom: deb
   id: 2
+conteneur_00003: 
+  nom: hp-ux
+  id: 3
+conteneur_00004: 
+  nom: tarball
+  id: 4
+conteneur_00005: 
+  nom: CVS
+  id: 5
+conteneur_00006: 
+  nom: nosrc
+  id: 6

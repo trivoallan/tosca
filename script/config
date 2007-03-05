@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../config/boot'
+require RAILS_ROOT + '/config/environment'
+
+
+
+@action = :dump
+def options
+  OptionParser.new do |o|
+    o.set_summary_indent('  ')
+    o.banner =    "Usage: #{@script_name} [OPTIONS]"
+    o.define_head "Lstm configuration manager."
+    
+    o.separator ""        
+    o.separator "GENERAL OPTIONS"
+    
+    o.on("-d", "--dump", "Dump all the configurations.") { @action = :dump }
+    o.on("-l", "--load", "Load all the configurations.") { @action = :load }
+    o.on("-v", "--verbose", "Turn on verbose output.") { |$verbose| }
+    o.on("-h", "--help", "Show this help message.") { puts o; exit }
+  end
+end
+
+args=ARGV
+options.parse!(ARGV)
+
+models = [ Arch, Conteneur, Etatreversement, Groupe, Role, Statut,  
+           Typecontribution, Typedemande, Typedocument, Typeurl, Competence,
+           Permission ]
+files = %w(arches conteneurs etatreversements groupes roles 
+          permissions statuts typecontributions typedemandes
+          typedocuments typeurls competences permissions 
+          permissions_roles )
+
+action_name = @action.to_s.capitalize + 'ing'
+if @action == :dump
+  models.each do |m| 
+    puts "#{action_name} #{m}..." if $verbose
+    m.to_fixture 
+  end
+end
+
+
+if @action == :load
+  require 'active_record/fixtures'
+  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  files.each do |fixturefile|
+    puts "#{action_name} #{fixturefile}..." if $verbose
+    Fixtures.create_fixtures('test/fixtures', File.basename(fixturefile, '.*'))
+  end
+end
+
+puts 'Finished ' + action_name
+
+
