@@ -73,10 +73,10 @@ class DemandesController < ApplicationController
 
 
   def list
-    #super(params) # see before_filter:set_filters in application.rb
-#     return unless session[:user]
     #cas spécial : consultation directe
-    redirect_to :action => :comment, :id => params['numero'] if params['numero'] 
+    if params['numero'] 
+      redirect_to :action => :comment, :id => params['numero'] 
+    end
 
     #### init des variables utilisées dans la vue
     @clients = Client.find_select()
@@ -99,17 +99,6 @@ class DemandesController < ApplicationController
     @partial_for_summary = 'requests_info'
   end
 
-
-  def set_filters
-    filters = session[:filters]
-    cdemandes = session[:cdemandes]
-    if params[:logiciel] and params[:logiciel][:nom]
-      nom =  params[:logiciel][:nom]
-      logiciel = Logiciel.find(:first, :conditions => 
-                                 "logiciels.nom LIKE '%#{nom}%'")
-      filters[sdemandes] << "logiciels.id = #{logiciel.id}"
-    end
-  end
 
   def new
     @demande = Demande.new unless @demande
