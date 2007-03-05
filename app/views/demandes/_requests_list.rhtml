@@ -26,7 +26,7 @@
    <tr class="demande_<%=demande.statut_id%>" 
      onclick="window.location.href='../demandes/comment/<%=demande.id%>';" >
         <td><%= demande.id %></td>
-        <td><%= demande.logiciels_nom ? demande.logiciels_nom : Logiciel.not_found  %></td>
+        <td><%= demande.respond_to?(:logiciels_nom) ? demande.logiciels_nom : Logiciel.not_found  %></td>
         <td><%= demande.typedemandes_nom %></td>
         <td><%= icon_severite(demande) %></td>
        <% if @ingenieur %>

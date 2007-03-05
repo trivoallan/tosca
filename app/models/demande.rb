@@ -32,8 +32,16 @@ class Demande < ActiveRecord::Base
 
   def self.set_scope(client_id)
     self.scoped_methods << { :find => { :conditions => 
-        [ 'beneficiaires.client_id = ?', client_id ],
+        [ 'beneficiaires.client_id = ?', client_id],
         :include => [:beneficiaire]} }
+  end
+
+  # return the condition of the scope.
+  # Used in controller demande for the speed n dirty hack finder
+  # on list actions
+  def self.get_scope_without_include(client_id)
+    { :find => { :conditions => 
+        [ 'beneficiaires.client_id = ?', client_id]} }
   end
 
   def to_param

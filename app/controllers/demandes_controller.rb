@@ -67,8 +67,13 @@ class DemandesController < ApplicationController
     }
 
     options[:conditions] = conditions.join(' AND ') unless conditions.empty?
-    @demande_pages, @demandes = paginate :demandes, options
-    render :partial => 'requests_list', :layout => false
+    if @beneficiaire
+      escope = Demande.get_scope_without_include(@beneficiaire.client_id)
+    end
+    Demande.with_exclusive_scope(escope) do
+      @demande_pages, @demandes = paginate :demandes, options
+      render :partial => 'requests_list', :layout => false
+    end
   end
 
 
@@ -87,15 +92,19 @@ class DemandesController < ApplicationController
     @beneficiaires = Beneficiaire.find_select(:include => [:identifiant])
 
     @count = { :demandes =>  Demande.count }
-    count_logiciels = { :select => 'DISTINCT demandes.logiciel_id' }
+    count_logiciels = { :select => 'demandes.logiciel_id' }
     @count[:logiciels] = Demande.count(count_logiciels)
     @count[:commentaires] = Commentaire.count
     @count[:piecejointes] = Piecejointe.count
     @count[:contributions] = Contribution.count
 
-    @demande_pages, @demandes = paginate :demandes, :per_page => 10,
-    :order => 'updated_on DESC', :select => SELECT_LIST, :joins => JOINS_LIST
-
+    if @beneficiaire
+      escope = Demande.get_scope_without_include(@beneficiaire.client_id)
+    end
+    Demande.with_exclusive_scope(escope) do
+      @demande_pages, @demandes = paginate :demandes, :per_page => 10,
+      :order => 'updated_on DESC', :select => SELECT_LIST, :joins => JOINS_LIST
+    end
     @partial_for_summary = 'requests_info'
   end
 
