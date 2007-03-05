@@ -35,15 +35,15 @@ class DemandesController < ApplicationController
     'logiciels.nom as logiciels_nom, id_benef.nom as beneficiaires_nom, ' +
     'typedemandes.nom as typedemandes_nom, clients.nom as clients_nom, ' +
     'id_inge.nom as ingenieurs_nom '
-  JOINS_LIST = 'INNER JOIN severites ON severites.id = demandes.severite_id ' + 
-      'INNER JOIN beneficiaires ON beneficiaires.id = demandes.beneficiaire_id '+
-      'INNER JOIN identifiants id_benef ON id_benef.id = beneficiaires.identifiant_id '+
-      'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
-      'LEFT OUTER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' + 
-      'LEFT OUTER JOIN identifiants id_inge ON id_inge.id = ingenieurs.identifiant_id '+
-      'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' + 
-      'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
-      'INNER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
+  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' + 
+    'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
+    'INNER JOIN identifiants id_benef ON id_benef.id=beneficiaires.identifiant_id '+
+    'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
+    'LEFT OUTER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' + 
+    'LEFT OUTER JOIN identifiants id_inge ON id_inge.id=ingenieurs.identifiant_id '+
+    'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' + 
+    'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
+    'INNER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
 
 
   # keep list2update the ajax way
@@ -266,7 +266,9 @@ class DemandesController < ApplicationController
 
   def ajax_piecejointes
     return render_text('') unless request.xhr? and params[:id]
-    options = { :demande_id => params[:id].to_i, :order => 'updated_on DESC' }
+    conditions = [ 'commentaires.demande_id = ? ', params[:id].to_i ]
+    options = { :conditions => conditions, :order => 
+      'commentaires.updated_on DESC', :include => [:commentaire] }
     @piecejointes = Piecejointe.find(:all, options)
     render :partial => 'tab_piecejointes', :layout => false
   end

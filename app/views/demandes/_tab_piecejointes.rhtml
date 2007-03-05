@@ -2,7 +2,7 @@
 
 
 <div id='demande_tab_content' class='demande_tab_content'>
-  <b><u><%= pluralize(@dpiecejointes.size, 'Piècejointe') %></u></b> 
+  <b><u><%= pluralize(@piecejointes.size, 'Piècejointe') %></u></b> 
   <% titres = ['Id', 'Lien', 'Taille', 'Créé le', 'Par' ] %>
   <%= show_table(@piecejointes, Piecejointe, titres, :total => false) {|pj| 
     result = ''
