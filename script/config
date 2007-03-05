@@ -2,7 +2,11 @@
 require File.dirname(__FILE__) + '/../config/boot'
 require RAILS_ROOT + '/config/environment'
 
-
+# It's using ar_fixtures plugin
+# http://nubyonrails.topfunky.com/articles/2005/12/27/dump-or-slurp-yaml-reference-data
+# It's not the best solution, but it's on the way.
+# TODO : Puts dump elsewhere than in test/fixtures.
+# Fix maybe in the vendor/plugin/ar_fixture/lib/*.rb
 
 @action = :dump
 def options
