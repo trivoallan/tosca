@@ -266,7 +266,8 @@ class DemandesController < ApplicationController
 
   def ajax_piecejointes
     return render_text('') unless request.xhr? and params[:id]
-    conditions = [ 'commentaires.demande_id = ? ', params[:id].to_i ]
+    @demande_id = params[:id] 
+    conditions = [ 'commentaires.demande_id = ? ', @demande_id ]
     options = { :conditions => conditions, :order => 
       'commentaires.updated_on DESC', :include => [:commentaire] }
     @piecejointes = Piecejointe.find(:all, options)
@@ -274,7 +275,7 @@ class DemandesController < ApplicationController
   end
 
   def ajax_cns
-    return render_text('') unless request.xhr? and params[:id]
+    return render_text('roh') unless request.xhr? and params[:id]
     @demande = Demande.find(params[:id]) unless @demande
     render :partial => 'tab_cns', :layout => false
   end
