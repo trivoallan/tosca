@@ -84,7 +84,7 @@ module DemandesHelper
   def display_history_changes(field, old_field, model)
     if field
       if old_field and old_field == field
-        '<center>"</center>'
+        '<center></center>'
       else
         model.find(field).nom
       end

@@ -9,7 +9,7 @@
 # authentification
 require_dependency "login_system"
 # gestion des roles et des permissions
-# en cas de soucis : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/versions/468
+# Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency "acl_system" 
 
 class ApplicationController < ActionController::Base
@@ -39,8 +39,15 @@ protected
   # redirection à l'accueil
   # TODO : certain redirect_to_home devrait etre redirect_back
   # TODO : faire une route nommée, c'est pas railsien cette fonction
+  # TODO : trouver une meilleure solution, comme surcharger (un peu) 
+  # le redirect_to de l'ActionController::Base
+  # TODO : c'est mal, doublon avec le rescue du scope_beneficiaire
   def redirect_to_home
-    redirect_to :controller => 'bienvenue', :action => "list"
+    if request.xhr?   
+      render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
+    else
+      redirect_to :controller => 'bienvenue', :action => "list"
+    end
   end
  
   # redirection par défaut en cas d'erreur / de non droit
@@ -49,8 +56,9 @@ protected
   end
 
   def set_headers
-    headers['Content-Type'] = ( request.xhr? ? 'text/javascript; charset=utf-8' : 
-                                               'text/html; charset=utf-8' )
+    headers['Content-Type'] =
+      ( request.xhr? ? 'text/javascript; charset=utf-8' : 
+        'text/html; charset=utf-8' )
   end
 
   # verifie :
@@ -131,7 +139,7 @@ private
     if request.xhr?
       render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
-      flash.new[:warn] = ERROR_MESSAGE
+      flash.now[:warn] = ERROR_MESSAGE
       redirect_to :action => 'list', :controller => 'bienvenue'
     end
   end

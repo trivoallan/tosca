@@ -98,6 +98,7 @@ class DemandesController < ApplicationController
     @count[:piecejointes] = Piecejointe.count
     @count[:contributions] = Contribution.count
 
+    escope = {}
     if @beneficiaire
       escope = Demande.get_scope_without_include(@beneficiaire.client_id)
     end
