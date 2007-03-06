@@ -326,9 +326,9 @@ class DemandesController < ApplicationController
   end
 
   def changer_ingenieur
-    redirect_to_comment unless params and params[:id] and params[:ingenieur_id]
+    redirect_to_comment unless params and params[:id] and params[:ingenieur][:id]
     @demande = Demande.find(params[:id])
-    @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
+    @demande.ingenieur = Ingenieur.find(params[:ingenieur][:id].to_i)
     @demande.save!
     if @demande.ingenieur
       flash[:notice] = "La demande a été assignée correctement" 

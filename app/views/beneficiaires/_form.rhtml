@@ -2,13 +2,11 @@
 
 <!--[form:beneficiaire]-->
 <p><label for="beneficiaire_identifiant">Identifiant</label><br/>
-  <%= select("beneficiaire", "identifiant_id", 
-	@identifiants.collect{|l| [ l.nom, l.id]}) %>
+  <%= collection_select(:beneficiaire, :identifiant_id,	@identifiants, :id, :nom) %>
 </p>
 
 <p><label for="beneficiaire_client">Client</label><br/>
-  <%= select("beneficiaire", "client_id", 
-	@clients.collect{|l| [ l.nom, l.id]}) %>
+  <%= collection_select(:beneficiaire, :client_id, @clients, :id, :nom) %>
 </p>
 
 <p><label for="beneficiaire_notifier_subalternes">Notifier subalternes</label><br/>

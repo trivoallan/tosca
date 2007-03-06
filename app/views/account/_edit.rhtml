@@ -36,7 +36,7 @@
         csv[:champ] = text_area('textarea_csv', nil, :rows => 10, :cols => 58)
       end
       type_client[:titre] = '<label>Client </label>'
-      type_client[:champ] = select("client", "id", @clients.collect{|c| [ c.nom, c.id]})
+      type_client[:champ] = collection_select(:client, :id, @clients, :id, :nom)
       identifiant_client[:titre] = "<label for=\"identifiant_client\">Client</label> #{show_help(help[:client])}"
       identifiant_client[:champ] = check_box('identifiant', 'client')
     end

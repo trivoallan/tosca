@@ -18,13 +18,11 @@
     </td>
     <td>
       <p><label for="client_support_id">Niveau de support</label><br/>
-         <%= select("client", "support_id",
-	     @supports.collect{|s| [ s.nom, s.id]}) %></p>
+         <%= collection_select(:client, :support_id, @supports, :id, :nom) %></p>
       <p><label for="client_code_acces">Code d'accès</label><br/>
          <%= text_field 'client', 'code_acces'  %></p>
       <p><label for="client_photo_id">Logo</label><br/>
-         <%= select("client", "photo_id",
-	     @photos.collect{|p| [ p.description, p.id]}) %></p>
+         <%= collection_select(:client, :photo_id, @photos, :id, :description) %></p>
       <p><label>Socles</label></p>
          <div class="bloc_scroll">
          <%= hbtm_check_box(@client.socles, @socles, 'socle_ids', :size => 1) %>

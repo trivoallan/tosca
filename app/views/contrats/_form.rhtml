@@ -2,8 +2,7 @@
 
 <!--[form:contrat]-->
 <p><label for="contrat_client">Client</label><br/>
-  <%= select("contrat", "client_id", 
-	@clients.collect{|l| [ l.nom, l.id]}) %>
+  <%= collection_select(:contrat, :client_id, @clients, :id, :nom) %>
 </p>
 
 <p><label for="contrat_ouverture">Ouverture</label><br/>

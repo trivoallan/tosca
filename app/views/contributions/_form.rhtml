@@ -7,22 +7,17 @@
 <%= text_field 'contribution', 'nom'  %></p>
 
 <p><label for="contribution_logiciel">Logiciel</label><br/>
-  <% options = { :include_blank => true } %>
-  <% donnees = @logiciels.collect{|l| [ l.nom, l.id]} %>
-  <%= select("contribution", "logiciel_id", donnees, options) %>
-  <%= image_spinner %></p>
+<%= collection_select(:contribution, :logiciel_id, @logiciels, :id, :nom) %>
+<%= image_spinner %></p>
 
 <p><label for="contribution_ingenieur">Ingénieur</label><br/>
-<%= select('contribution', 'ingenieur_id', 
-           @ingenieurs.collect{|i| [ i.nom, i.id]}, 
-            :include_blank => true ) %></p>
+<%= collection_select(:contribution, :ingenieur_id, @ingenieurs, :id, :nom) %></p>
 
 <p><label for="contribution_description_fonctionnelle">Description fonctionnelle</label><br/>
 <%= text_area 'contribution', 'description_fonctionnelle', :cols => 60, :rows => 10  %></p>
 
 <p><label for="contribution_etatreversement">Etat du reversement</label><br/>
-<%= select('contribution', 'etatreversement_id', 
-           @etatreversements.collect{|e| [ e.nom, e.id]}) %></p>
+<%= collection_select(:contribution, :etatreversement_id, @etatreversements, :id, :nom) %></p>
 
 <p><label for="urlreversement_valeur">Ajouter une url de reversement</label><br/>
 <%= text_field 'urlreversement', 'valeur' %></p>
@@ -39,8 +34,7 @@
 <%= file_column_field 'contribution', 'patch'  %></p>
 
 <p><label for="contribution_typecontribution">Type de contribution</label><br/>
-<%= select('contribution', 'etatreversement_id', 
-           @typecontributions.collect{|t| [ t.nom, t.id]}) %></p>
+<%= collection_select(:contribution, :etatreversement_id, @typecontributions, :id, :nom) %></p>
 
 <% if @ingenieur %>
 <p><label for="contribution_id_mantis">Id Mantis</label><br/>

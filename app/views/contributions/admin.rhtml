@@ -1,6 +1,6 @@
 <% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? 
                   @params[:reversement][:max_jours] : 12 ) 
-logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}"
+logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :prompt => 'Logiciel')}"
 %>
 
 <h1>Liste des contributions : interface de suivi</h1>
