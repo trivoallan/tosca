@@ -48,7 +48,7 @@ end
 
 require 'config'
 
-#TimeZone française, nécessaire sur ces gens très bien de debian
+#TimeZone française, nécessaire sur ces barbus trolleurs de debian
 ENV['TZ'] = 'Europe/Paris'
 
 # Add new inflection rules using the following format 
