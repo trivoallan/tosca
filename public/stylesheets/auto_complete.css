@@ -7,18 +7,23 @@ div.auto_complete ul {
   margin:0;
   padding:0;
   width:100%;
-  list-style-type:none;
 }
 div.auto_complete ul li {
+  margin-left: -1.5em;
+  margin-bottom: -2px;
   margin:0;
   padding:3px;
   background-image: none;
+  list-style-type:none;
+  list-style-image:none;
 }
+
 div.auto_complete ul li.selected { 
-  background-color: #e2efe2; /* #ffb; */
+  background-color: #e2efe2; 
 }
 div.auto_complete ul strong.highlight { 
   color: #800; 
   margin:0;
   padding:0;
 }
+
