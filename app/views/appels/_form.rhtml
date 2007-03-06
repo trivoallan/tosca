@@ -4,13 +4,11 @@
 <table class="form" >
 <tr>
   <td><p><label for="appel_ingenieur">Ingenieur</label><br/>
-      <%= select('appel', 'ingenieur_id', 
-	@ingenieurs.collect{|l| [ l.nom, l.id]}) %></td>
+	<%= collection_select(:appel, :ingenieur_id, @ingenieurs, :id, :nom) %></td>
 </tr>
 <tr>
   <td><p><label for="appel_beneficiaire">Beneficiaire</label><br/>
-      <%= select('appel', 'beneficiaire_id', 
-	@beneficiaires.collect{|l| [ l.nom, l.id]}) %></td>
+      <%= collection_select(:appel, :beneficiaire_id, @beneficiaires, :id, :nom) %></td>
 </tr>
 <tr>
   <td><p><label for="appel_debut">Debut</label><br/>
