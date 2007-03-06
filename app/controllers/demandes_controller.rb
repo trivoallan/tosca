@@ -14,7 +14,6 @@ class DemandesController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
-
   # verifie :
   # - s'il il y a un demande_id en paramètre (sinon :  retour à la liste)
   # - si une demande ayant cet id existe (sinon : erreur > rescue > retour à la liste)
