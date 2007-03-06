@@ -3,13 +3,14 @@
 
 <%= show_pages_links(@appel_pages, 'un appel') %>
 
-<% titres = ['Bénéficiaire','Responsable','Appel','Fin de l\'appel'] %>
+<% titres = ['Bénéficiaire','Responsable','Appel','Fin de l\'appel','Durée'] %>
 <%= show_table(@appels, Appel, titres) { |a|
   result = ''
   result << "<td>#{a.beneficiaire.nom}</td>"
   result << "<td>#{a.ingenieur.nom}</td>"
   result << "<td>#{a.debut_formatted}</td>"
   result << "<td>#{a.fin_formatted}</td>"
+  result << "<td>#{distance_of_time_in_words(a.debut, a.fin)}</td>"
   result << "#{link_to_actions_table a}"
 }%>
 

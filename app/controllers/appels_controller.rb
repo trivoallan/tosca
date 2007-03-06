@@ -24,7 +24,7 @@ class AppelsController < ApplicationController
   def create
     @appel = Appel.new(params[:appel])
     if @appel.save
-      flash[:notice] = 'Appel was successfully created.'
+      flash[:notice] = 'l\'Appel a été créé.'
       redirect_to :action => 'list'
     else
       _form and render :action => 'new'
@@ -39,8 +39,8 @@ class AppelsController < ApplicationController
   def update
     @appel = Appel.find(params[:id])
     if @appel.update_attributes(params[:appel])
-      flash[:notice] = 'Appel was successfully updated.'
-      redirect_to :action => 'show', :id => @appel
+      flash[:notice] = 'l\'appel a été mis à jour.'
+      redirect_to :action => 'list'
     else
       _form and render :action => 'edit'
     end
