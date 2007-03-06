@@ -12,7 +12,16 @@ class Identifiant < ActiveRecord::Base
 
   has_one :ingenieur
   has_one :beneficiaire
-  # TODO : vérifier que l'email est valide, et rattraper l'erreur si l'envoi de mail échoue !!!
+  # TODO : vérifier que l'email est valide, et 
+  # rattraper l'erreur si l'envoi de mail échoue !!!
+
+  def create_person(client) 
+    if self.client
+      Beneficiaire.create(:identifiant => self, :client => client)
+    else
+      Ingenieur.create(:identifiant => self)
+    end
+  end
 
 
   def self.authenticate(login, pass, crypt)

@@ -2,11 +2,13 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-#Pour l'import de plusieurs utilisateurs
-require 'fastercsv'
-
 class AccountController < ApplicationController
-  layout  'standard-layout'
+  #Pour l'import de plusieurs utilisateurs
+  require 'fastercsv'
+
+  # auto completion in 2 lines, yeah !
+  auto_complete_for :identifiant, :nom
+  auto_complete_for :identifiant, :email
 
   helper :ingenieurs, :beneficiaires
 
@@ -22,6 +24,7 @@ class AccountController < ApplicationController
     super(Identifiant)
   end
 
+  NO_JAVASCRIPT = '<br/>Javascript n\'est pas activé sur votre navigateur'
   def login
     case request.method
       when :post
@@ -30,11 +33,8 @@ class AccountController < ApplicationController
                                                    params['user_crypt'])
         set_sessions
         flash[:notice] = "Connexion réussie"
-        unless session[:javascript]
-          message = '<br/>Javascript n\'est pas activé sur votre navigateur'
-          flash[:notice] << message
-        end
-        redirect_back_or_default :action => "list", :controller => 'bienvenue'
+        flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
+        redirect_back :action => "list", :controller => 'bienvenue'
       else
         flash.now[:warn]  = "Echec lors de la connexion"
       end
@@ -124,18 +124,13 @@ class AccountController < ApplicationController
       if @identifiant.save
         client = Client.find(params[:client][:id])
         flash[:notice] = "Enregistrement réussi, n'oubliez pas de vérifier son profil<br />"
-        if @identifiant.client
-          beneficiaire = Beneficiaire.new(:identifiant => @identifiant,
-                                          :client => client)
-          flash[:notice] += "Beneficiaire associé créé" if beneficiaire.save
-        else
-          ingenieur = Ingenieur.new(:identifiant => @identifiant)
-          flash[:notice] += "Ingénieur associé créé" if ingenieur.save
-        end
+        @identifiant.create_person(client)
+        flash[:notice] += (@identifiant.client ? 'Bénéficiaire' : 'Ingénieur ') +
+          ' associé créé'
+        
         # welcome mail
-        options = { :identifiant => @identifiant,
-          :controller => self,
-          :password => params[:identifiant][:password_confirmation]}
+        options = { :identifiant => @identifiant, :controller => self,
+          :password => params[:identifiant][:password]}
         Notifier::deliver_identifiant_nouveau(options, flash)
 
         redirect_back_or_default :action => "list"
@@ -154,6 +149,8 @@ class AccountController < ApplicationController
   COLUMNS = [ 'Nom complet', 'Titre', 'Email', 'Téléphone', 
               'Identifiant', 'Mot de passe', 'Informations' ]
 
+  # TODO : fonction trop grosse.
+  # proposal : un chtit module qu'on inclu ?
   def multiple_signup
     _form
     @identifiant = Identifiant.new
@@ -176,7 +173,6 @@ class AccountController < ApplicationController
 
       return unless flash.now[:warn] == ''
       flash[:notice] = ''
-      flash.now[:warn] = ''
 
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), 
                       { :col_sep => ";", :headers => true }) do |row|
@@ -196,19 +192,15 @@ class AccountController < ApplicationController
         if identifiant.save
           client = Client.find(params[:client][:id])
           flash[:notice] += "L'utilisateur #{row['Nom Complet']} a bien été créé.<br/>"
-          if identifiant.client
-            beneficiaire = Beneficiaire.new(:identifiant => identifiant, :client => client)
-            flash[:notice] += "Bénéficiaire associé créé" if beneficiaire.save
-          else
-            ingenieur = Ingenieur.new(:identifiant => identifiant)
-            flash[:notice] += "Ingénieur associé créé" if ingenieur.save
-          end
+          identifiant.create_person(client)
+          flash[:notice] += (@identifiant.client ? 'Bénéficiaire' : 'Ingénieur ') +
+            ' associé créé'
           options = { :identifiant => identifiant, :controller => self,
             :password => row['Mot de passe'].to_s }
           Notifier::deliver_identifiant_nouveau(options, flash)
           flash[:notice] += '<br/>'
         else
-          flash.now[:warn] += "L'utilisateur #{row['Nom Complet']} n'a " + 
+          flash.now[:warn] += "L'utilisateur #{identifiant.nom} n'a " + 
             'pas été créé.<br/>'
         end
 
@@ -218,11 +210,34 @@ class AccountController < ApplicationController
     end
   end
 
+  # ajaxified list
   def list
-    @roles = Role.find(:all)
-    @user_pages, @users = paginate :identifiants, :per_page => 25,
-      :order => 'identifiants.login', :include => 
-        [:beneficiaire,:ingenieur,:roles]
+    # init
+    options = { :per_page => 15, :order => 'identifiants.login', :include => 
+      [:beneficiaire,:ingenieur,:roles] }
+    conditions = []
+    @roles = Role.find_select
+
+    # filters
+    params['identifiant'].each_pair { |key, value|
+      conditions << " identifiants.#{key} LIKE '%#{value}%'" if value != ''
+    } if params['identifiant']
+    params['filters'].each_pair { |key, value|
+      conditions << " #{key}=#{value} " unless value == ''
+    } if params['filters']
+
+
+    # query
+    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+    @user_pages, @users = paginate :identifiants, options
+    
+    # panel on the left side
+    if request.xhr? 
+      render :partial => 'users_list', :layout => false
+    else
+      _panel
+      @partial_for_summary = 'users_info'
+    end
   end
 
   def destroy
@@ -232,16 +247,26 @@ class AccountController < ApplicationController
 
 
 private
-
+  # variables du formulaires
   def _form
     @roles = Role.find(:all)
     @clients = Client.find(:all)
   end
 
+  # variables utilisé par le panneau de gauche
+  def _panel 
+    @count = {}
+    @clients = Client.find(:all)
+
+    @count[:identifiants] = Identifiant.count
+    @count[:beneficiaires] = Beneficiaire.count
+    @count[:ingenieurs] = Ingenieur.count
+  end
 
   # variable utilisateurs; nécessite session[:user]
   # penser à mettre à jour les pages statiques 404 
   # et 500 en cas de modification
+  # Le menu du layout est inclus pour des raisons de performances
   def set_sessions(identifiant = nil)
     return unless session[:user] or identifiant
     # clear_session erase session[:user]
@@ -290,7 +315,6 @@ private
     @beneficiaire = nil
     @ingenieur = nil
   end
-
 
   # empeche les bénéficiaires de toucher à un autre compte qu'au leur
   def scope_beneficiaire

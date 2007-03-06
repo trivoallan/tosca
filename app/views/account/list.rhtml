@@ -1,60 +1,6 @@
-<h1>Liste des utilisateurs</h1>
-<%= link_to_beneficiaires %> / <%= link_to_ingenieurs %><br/><br/>
-<%= link_to 'Ajouter un utilisateur', :action => 'signup' %> /
-  <%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %> /
-  <%= link_to_export( :data => 'identifiants') %>
-<br/><br/>
+<%# 'softwares_info' setted in controller%>
 
 
-
-<%= show_pages_links(@user_pages, 'un nouvel utilisateur') %>
-<table>
-  <tr>
-    <th>Identifiant<br/>TODO : une text box de recherche ici</th>
-  <th><% for role in @roles %>
-    <small> [<%= link_to role.nom, :controller => 'roles', :action => 'edit', :id => role %>] </small>
-  <% end %></th>
-    <th>Modifier les droits</th>
-    <th>Ingénieur</th>
-    <th>Bénéficiaire</th>
-    <th>Mail</th>
-    <th>Téléphone</th>
-
-  </tr>
-
-  <% @users.each_index {|i| %>
-   <% user = @users[i] %>
-   <% beneficiaire = user.beneficiaire %>
-   <% ingenieur = user.ingenieur %>
-   <tr class="<%= cycle('pair', 'impair') %>">
-
-     <td><%=h user.login %></td>
-     <td>
-      <% form_tag({:action => 'update', :id => user}, {:name => 'form_'+user.id.to_s}) do%>
-         <% for role in @roles %>
-           &nbsp;&nbsp;<input type="checkbox" id="<%=user.login.to_s + role.id.to_s%>" name="role_ids[]" value="<%=role.id%>"
-           <%if user.roles.include? role%> checked="checked" <%end%> />&nbsp;&nbsp;
-         <% end %>
-      <% end %></td>
-      <td><a href="." onclick="document.forms['form_<%=user.id.to_s%>'].submit()">
-          <b>Valider</b></a></td>
-      <td><%= "X" if ingenieur %></td>
-      <td><%= "X" if beneficiaire %>
-          <%= "Permissions anormales" unless user.valide %></td>
-      <td><%= mail_to user.email, user.email %></td>
-      <td><%= user.telephone %></td>
-
-
-
-    <td><%= link_to_view user %></td>
-    <td><%= link_to_modify user %></td>
-   </tr>
-  <% } %>
-</table>
-
-
-<%= show_pages_links(@user_pages, 'un nouvel utilisateur') %><br/>
-
-<%= link_to 'Ajouter un utilisateur', :action => 'signup' %><br/>
-<%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %><br/>
-<%= link_to_export( :data => 'identifiants') %>
+<div class="content" id="content">
+  <%= render_partial 'users_list' %>
+</div>

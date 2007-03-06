@@ -28,10 +28,13 @@ class LogicielsController < ApplicationController
     }
   end
 
+
+  # keep dry, used in list and ajax list
+  LIST_OPTIONS = { :per_page => 15, :order => 'logiciels.nom', 
+    :include => [:groupe,:competences]}
   def update_list
     return redirect_to_home unless request.xhr? 
-    options = { :per_page => 15, :order => 'logiciels.nom', 
-      :include => [:groupe,:competences]}
+    options = LIST_OPTIONS.dup
     conditions = []
 
     params['logiciel'].each_pair { |key, value|
@@ -52,12 +55,9 @@ class LogicielsController < ApplicationController
 
   # affiche la liste des logiciels avec filtres
   def list
-    options = { :per_page => 15, :order => 'logiciels.nom', 
-      :include => [:groupe,:competences] }
     _panel
-    @logiciel_pages, @logiciels = paginate :logiciels, options
+    @logiciel_pages, @logiciels = paginate :logiciels, LIST_OPTIONS
     @partial_for_summary = 'softwares_info'
-
   end
 
   def rpmlist
@@ -103,15 +103,13 @@ class LogicielsController < ApplicationController
 
   def update
     @logiciel = Logiciel.find(params[:id])
-    @licenses = License.find(:all)
-    @competences = Competence.find(:all)
     if @params[:competence_ids]
       @logiciel.competences = Competence.find(@params[:competence_ids]) 
     else
       @logiciel.competences = []
       @logiciel.errors.add_on_empty('competences') 
-      render :action => 'edit'
-      return 
+      _form
+      render :action => 'edit' and return
     end
     if @logiciel.update_attributes(params[:logiciel])
       flash[:notice] = "Le logiciel #{@logiciel.nom} a bien été mis à jour."

@@ -14,7 +14,7 @@
 > Recherche</div>
 <ul class="menu" id="menu_recherche">
  <li><b>Nom </b><br />
-     <%= text_field_with_auto_complete :logiciel, :nom %></li>
+     <%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
  <li><b>Client </b><br />
      <%=select_filter(@clients, 'client') %></li>
 </ul>
