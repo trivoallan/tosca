@@ -152,6 +152,9 @@ table.pages td {
 	border-collapse: collapse;
 	/*border: 1px solid #999999;*/
 }
+.show_table tr td, .show_table tr th {
+	padding: 0 0.5em 0 0.5em;
+}
 
 /*********************** filtres **********************/
 
