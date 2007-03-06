@@ -8,7 +8,7 @@
    <tr>
       <th width='2%'>Id</th>
         <th width='7%'>Logiciel</th>
-        <th width='7%' colspan = '2'>Type</th>
+        <th width='7%' colspan="2">Type</th>
         <!--<th>Sévérité</th>-->
         <% if @ingenieur %>
           <th width='7%'>Client</th>
@@ -23,17 +23,17 @@
    </tr>
 
    <% for demande in @demandes %>
-   <tr class="demande_<%=demande.statut_id%>" 
+   <tr class="<%=cycle('pair', 'impair')%>"
      onclick="window.location.href='../demandes/comment/<%=demande.id%>';" >
         <td><%= demande.id %></td>
         <td><%= demande.respond_to?(:logiciels_nom) ? demande.logiciels_nom : Logiciel.not_found  %></td>
         <td><%= demande.typedemandes_nom %></td>
-        <td><%= icon_severite(demande) %></td>
+        <td class="demande_<%=demande.statut_id%>"><%= icon_severite(demande) %></td>
        <% if @ingenieur %>
         <td><%= demande.clients_nom %></td>
        <% end %>
         <td><%= demande.beneficiaires_nom %></td>
-        <td class="wrapped"><%= link_to_demande demande %></td>
+        <td class="wrapped"><b><%= link_to_demande demande %></b></td>
        <% if @ingenieur %>
           <td><%= demande.ingenieurs_nom %></td>
        <% end %>
