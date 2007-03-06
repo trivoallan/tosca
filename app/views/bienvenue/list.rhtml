@@ -66,8 +66,8 @@
        <%= show_liste_accueil(links, 'Communauté') %>
 
        <% links = [ 
-             link_to('Déclaration d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande"), 
-             link_to('Déroulement d\'une demande', "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande"),
+             link_to_help_new_request, 
+             link_to_howto_request,
              link_to('Plan du portail', :controller => 'bienvenue', :action => 'plan') ] %>
        <%= show_liste_accueil(links, 'Aide') %>
 

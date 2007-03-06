@@ -68,6 +68,8 @@ class DemandesController < ApplicationController
     options[:conditions] = conditions.join(' AND ') unless conditions.empty?
     if @beneficiaire
       escope = Demande.get_scope_without_include(@beneficiaire.client_id)
+    else
+      escope = {}
     end
     Demande.with_exclusive_scope(escope) do
       @demande_pages, @demandes = paginate :demandes, options

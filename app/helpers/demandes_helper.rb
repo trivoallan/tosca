@@ -18,6 +18,19 @@ module DemandesHelper
     link_to text, options
   end
 
+  # link to the 08000 wiki
+  def link_to_help_new_request
+    link_to('Déclaration d\'une demande', 
+            "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande")
+  end
+  
+  # link to the 08000 wiki
+  def link_to_howto_request
+    link_to('Déroulement d\'une demande', 
+            "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande")
+  end
+
+
   # Affiche un résumé texte succint d'une demande
   # Utilisé par exemple pour les balise "alt" et "title"
   # on affiche '...' si le reste a afficher fait plus de 3 caracteres
