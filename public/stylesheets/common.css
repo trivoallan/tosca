@@ -131,6 +131,9 @@ table.pages td {
 
 /***************** bloc standard ***************/
 
+/* warning : 
+ * applied to divs and tables
+ */
 .login,
 .form,
 .show,
@@ -142,7 +145,6 @@ table.pages td {
 	vertical-align: top;
 	padding: 1em;
 	margin: 1em 0em 1em 0em;
-	width: 100%;
 }
 .login tr {
 	height: 40px;
