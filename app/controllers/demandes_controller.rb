@@ -102,10 +102,10 @@ class DemandesController < ApplicationController
     if @beneficiaire
       escope = Demande.get_scope_without_include(@beneficiaire.client_id)
     end
-    Demande.with_exclusive_scope(escope) do
+#     Demande.with_exclusive_scope(escope) do
       @demande_pages, @demandes = paginate :demandes, :per_page => 10,
       :order => 'updated_on DESC', :select => SELECT_LIST, :joins => JOINS_LIST
-    end
+#     end
     @partial_for_summary = 'requests_info'
   end
 
