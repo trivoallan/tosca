@@ -1,9 +1,9 @@
-<h1>Editing appel</h1>
+<h1>Modifier un appel</h1>
 
 <% form_tag :action => 'update', :id => @appel do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag 'Valider' %>
 <% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @appel %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Voir', :action => 'show', :id => @appel %> |
+<%= link_to 'Retour', :action => 'list' %>

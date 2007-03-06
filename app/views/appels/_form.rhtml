@@ -1,19 +1,25 @@
 <%= error_messages_for 'appel' %>
 
 <!--[form:appel]-->
-
-<p><label for="appel_ingenieur">Ingenieur</label><br/>
-<%= select('appel', 'ingenieur_id', 
-	@ingenieurs.collect{|l| [ l.nom, l.id]}) %>
-
-<p><label for="appel_beneficiaire">Beneficiaire</label><br/>
-<%= select('appel', 'beneficiaire_id', 
-	@beneficiaires.collect{|l| [ l.nom, l.id]}) %>
-
-<p><label for="appel_debut">Debut</label><br/>
-<%= datetime_select 'appel', 'debut'  %></p>
-
-<p><label for="appel_fin">Fin</label><br/>
-<%= datetime_select 'appel', 'fin'  %></p>
+<table class="form" >
+<tr>
+  <td><p><label for="appel_ingenieur">Ingenieur</label><br/>
+      <%= select('appel', 'ingenieur_id', 
+	@ingenieurs.collect{|l| [ l.nom, l.id]}) %></td>
+</tr>
+<tr>
+  <td><p><label for="appel_beneficiaire">Beneficiaire</label><br/>
+      <%= select('appel', 'beneficiaire_id', 
+	@beneficiaires.collect{|l| [ l.nom, l.id]}) %></td>
+</tr>
+<tr>
+  <td><p><label for="appel_debut">Debut</label><br/>
+      <%= datetime_select 'appel', 'debut'  %></p></td>
+</tr>
+<tr>
+  <td><p><label for="appel_fin">Fin</label><br/>
+      <%= datetime_select 'appel', 'fin'  %></p></td>
+</tr>
+</table>
 <!--[eoform:appel]-->
 
