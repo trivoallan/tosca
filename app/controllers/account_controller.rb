@@ -34,7 +34,7 @@ class AccountController < ApplicationController
         set_sessions
         flash[:notice] = "Connexion réussie"
         flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
-        redirect_back :action => "list", :controller => 'bienvenue'
+        redirect_to_home
       else
         flash.now[:warn]  = "Echec lors de la connexion"
       end
