@@ -23,7 +23,6 @@ class ContributionsController < ApplicationController
     # TODO c'est lent. Il faut un DISTINCT et repenser ce finder
     logiciels = Contribution.find(:all, :order => 'reverse_le')
     @logiciels = logiciels.collect{ |c| c.logiciel }.uniq
-    @partial_for_summary = 'panel'
   end
 
   def list
@@ -40,11 +39,18 @@ class ContributionsController < ApplicationController
   end
 
   def admin
-    conditions = nil
-    _panel
+    conditions = []
+
     @contribution_pages, @contributions = paginate :contributions, 
     :per_page => 10, :order => 'updated_on DESC'
-    @partial_for_summary = 'panel'
+
+    # panel on the left side
+    if request.xhr? 
+      render :partial => 'contributions_admin', :layout => false
+    else
+      _panel
+      @partial_for_summary = 'contributions_info'
+    end
   end
 
   def new
@@ -129,9 +135,9 @@ private
     @logiciels = Logiciel.find(:all)
     @clients = Client.find(:all)
     # count
-    @count = {:contributions => Contribution.count }
     count_logiciels = { :select => 'contributions.logiciel_id' }
-    @count[:logiciels] = Contribution.count(count_logiciels)
+    @count = {:contributions => Contribution.count,
+      :logiciels => Contribution.count(count_logiciels) }
   end
 
 end
