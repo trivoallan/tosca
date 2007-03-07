@@ -51,21 +51,6 @@ class DemandesController < ApplicationController
   def update_list
     return redirect_to_home unless request.xhr? 
 
-    options = { :per_page => 10, :order => 'updated_on DESC', 
-      :select => SELECT_LIST, :joins => JOINS_LIST }
-    conditions = []
-
-    params['logiciel'].each_pair { |key, value|
-      conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
-    }
-    params['demande'].each_pair { |key, value|
-      conditions << " demandes.#{key} LIKE '%#{value}%'" if value != ''
-    }
-    params['filters'].each_pair { |key, value|
-      conditions << " #{key}=#{value} " unless value == '' 
-    }
-
-    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
     if @beneficiaire
       escope = Demande.get_scope_without_include(@beneficiaire.client_id)
     else
@@ -84,30 +69,38 @@ class DemandesController < ApplicationController
       redirect_to :action => :comment, :id => params['numero'] 
     end
 
-    #### init des variables utilisées dans la vue
-    @clients = Client.find_select()
-    @statuts = Statut.find_select()
-    @typedemandes = Typedemande.find_select()
-    @severites = Severite.find_select()
-    @ingenieurs = Ingenieur.find_select(:include => [:identifiant])
-    @beneficiaires = Beneficiaire.find_select(:include => [:identifiant])
+    options = { :per_page => 10, :order => 'updated_on DESC', 
+      :select => SELECT_LIST, :joins => JOINS_LIST }
+    conditions = []
 
-    @count = { :demandes =>  Demande.count }
-    count_logiciels = { :select => 'demandes.logiciel_id' }
-    @count[:logiciels] = Demande.count(count_logiciels)
-    @count[:commentaires] = Commentaire.count
-    @count[:piecejointes] = Piecejointe.count
-    @count[:contributions] = Contribution.count
+    params['logiciel'].each_pair { |key, value|
+      conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
+    } if params['logiciel']
+    params['demande'].each_pair { |key, value|
+      conditions << " demandes.#{key} LIKE '%#{value}%'" if value != ''
+    } if params['demande']
+    params['filters'].each_pair { |key, value|
+      conditions << " #{key}=#{value} " unless value == '' 
+    } if params['filters']
+
+    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+
 
     escope = {}
     if @beneficiaire
       escope = Demande.get_scope_without_include(@beneficiaire.client_id)
     end
-#     Demande.with_exclusive_scope(escope) do
-      @demande_pages, @demandes = paginate :demandes, :per_page => 10,
-      :order => 'updated_on DESC', :select => SELECT_LIST, :joins => JOINS_LIST
-#     end
-    @partial_for_summary = 'requests_info'
+    Demande.with_exclusive_scope(escope) do
+      @demande_pages, @demandes = paginate :demandes, options
+    end
+
+    # panel on the left side
+    if request.xhr? 
+      render :partial => 'requests_list', :layout => false
+    else
+      _panel
+      @partial_for_summary = 'requests_info'
+    end
   end
 
 
@@ -201,13 +194,6 @@ class DemandesController < ApplicationController
   def edit
     @demande = Demande.find(params[:id])
     common_form @beneficiaire
-  end
-
-  def bench
-    @demande = Demande.find(params[:id])
-#    contrat = Contrat.find(4)
-    @test = Demande.find(134).engagement(4)
-#    @engagement = @demande.engagement(contrat)
   end
 
   def comment
@@ -420,6 +406,21 @@ class DemandesController < ApplicationController
     else
       @demande.send("#{param}=", collection.first)
     end
+  end
+
+  def _panel
+    @clients = Client.find_select()
+    @statuts = Statut.find_select()
+    @typedemandes = Typedemande.find_select()
+    @severites = Severite.find_select()
+    @ingenieurs = Ingenieur.find_select(:include => [:identifiant])
+    @beneficiaires = Beneficiaire.find_select(:include => [:identifiant])
+
+    @count = { :demandes =>  Demande.count,
+      :logiciels => Demande.count({ :select => 'demandes.logiciel_id' }),
+      :commentaires => Commentaire.count,
+      :piecejointes => Piecejointe.count,
+      :contributions => Contribution.count }
   end
 
   def _form(beneficiaire)

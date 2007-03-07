@@ -1,5 +1,5 @@
 <% options = { :update => 'content',
-    :url => '/demandes/update_list',
+    :url => '/demandes/list',
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
@@ -22,27 +22,27 @@ Actions </div>
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>
 Recherche</div>
 <ul class="menu" id="menu_recherche">
- <li><b>Logiciel </b><br />
-     <%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
- <li><b>Résumé </b><br />
-     <%= text_field_with_auto_complete :demande, :resume, {}, :skip_style => true %></li>
+ <li><b>Logiciel </b></li>
+ <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
+ <li><b>Résumé </b></li>
+ <li><%= text_field_with_auto_complete :demande, :resume, {}, :skip_style => true %></li>
  <% if @ingenieur %>
-  <li><b>Client </b><br />
-      <%= select_filter(@clients, :client) %></li>
-  <li><b>Responsable </b><br />
-      <%= select_filter(@ingenieurs, :ingenieur) %></li>
+  <li><b>Client </b></li>
+  <li><%= select_filter(@clients, :client) %></li>
+  <li><b>Responsable </b></li>
+  <li><%= select_filter(@ingenieurs, :ingenieur) %></li>
  <% end %>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_caracteristiques')">>
 Caractéristiques</div>
 <ul class="menu" id="menu_caracteristiques">
- <li><b>Type </b><br />
-     <%=select_filter(@typedemandes, :typedemande) %></li>
- <li><b>Sévérité </b><br />
-     <%=select_filter(@severites, :severite) %></li>
- <li><b>Statuts </b><br />
-     <%=select_filter(@statuts, :statut) %></li>
+ <li><b>Type </b></li>
+ <li><%=select_filter(@typedemandes, :typedemande) %></li>
+ <li><b>Sévérité </b></li>
+ <li><%=select_filter(@severites, :severite) %></li>
+ <li><b>Statuts </b></li>
+ <li><%=select_filter(@statuts, :statut) %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_synthese')">>
