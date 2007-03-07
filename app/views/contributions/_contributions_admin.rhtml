@@ -1,9 +1,8 @@
-<% @max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? 
+<% max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? 
                   @params[:reversement][:max_jours] : 12 ) 
-logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :prompt => 'Logiciel')}"
 %>
 
-<h1>Liste des contributions : interface de suivi</h1>
+<h1>Liste des contributions <%= image_spinner %></h1>
 
 <% links = show_pages_links(@contribution_pages, 'une contribution', 
        :url => '/contributions/admin') %>
@@ -19,12 +18,12 @@ logiciel_titre = "Logiciel #{select_filter(@logiciels, 'logiciel', :prompt => 'L
 <% form_tag(:controller => 'contributions', :action => 'list') do %>
 <%= show_table(@contributions, Contribution, titres) { |c|
   result = ''
-  tache = c.todo(@max_jours)
+  tache = c.todo(max_jours)
   versions = c.paquets.collect{|p| p.version } * ', '
   result << "<td>#{link_to_logiciel c.logiciel if c.logiciel}"
   result << " (#{versions})</td>" unless versions == ''
   result << "<td>#{link_to_file c, 'patch'}</td>"
-  result << "<td>#{link_to_any_demande c}</td>"
+  result << "<td nowrap=\"nowrap\">#{link_to_any_demande c}</td>"
   result << "<td " + (tache ? "bgcolor='orange'>#{tache}" : ">") +"</td>"
   result << "<td>#{c.etatreversement.nom if c.etatreversement}</td>"
   result << "<td>#{textilize sum_up c.description_fonctionnelle}</td>"

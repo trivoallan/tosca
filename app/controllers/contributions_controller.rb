@@ -4,12 +4,14 @@
 class ContributionsController < ApplicationController
   helper :demandes, :paquets, :binaires
 
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ] 
+  # auto completion in 2 lines, yeah !
+  auto_complete_for :logiciel, :nom
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ] 
   def verifie
     super(Contribution)
   end
@@ -131,9 +133,9 @@ private
   end
 
   def _panel
-    @etatreversements = Etatreversement.find(:all)
-    @logiciels = Logiciel.find(:all)
-    @clients = Client.find(:all)
+    @etatreversements = Etatreversement.find_select
+    @logiciels = Logiciel.find_select
+    @clients = Client.find_select
     # count
     count_logiciels = { :select => 'contributions.logiciel_id' }
     @count = {:contributions => Contribution.count,
