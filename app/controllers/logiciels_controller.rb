@@ -29,35 +29,35 @@ class LogicielsController < ApplicationController
   end
 
 
-  # keep dry, used in list and ajax list
-  LIST_OPTIONS = { :per_page => 15, :order => 'logiciels.nom', 
+  # ajaxified list
+  def list
+    options = { :per_page => 10, :order => 'logiciels.nom', 
     :include => [:groupe,:competences]}
-  def update_list
-    return redirect_to_home unless request.xhr? 
-    options = LIST_OPTIONS.dup
     conditions = []
 
     params['logiciel'].each_pair { |key, value|
       conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
-    }
-    params['filters'].each_pair { |key, value|
-      unless value == '' or key.intern == :client_id
-        conditions << " #{key}=#{value} " 
-      end
-    }
-    scope_client(params['filters']['client_id'])
-    Logiciel.set_scope(session[:contrat_ids])
-
+    } if params['logiciel']
+    if params['filters']
+      params['filters'].each_pair { |key, value|
+        unless value == '' or key.intern == :client_id
+          conditions << " #{key}=#{value} " 
+        end
+      } 
+      scope_client(params['filters']['client_id'])
+      Logiciel.set_scope(session[:contrat_ids])
+    end
     options[:conditions] = conditions.join(' AND ') unless conditions.empty?
-    @logiciel_pages, @logiciels = paginate :logiciels, options
-    render :partial => 'softwares_list', :layout => false
-  end
 
-  # affiche la liste des logiciels avec filtres
-  def list
-    _panel
-    @logiciel_pages, @logiciels = paginate :logiciels, LIST_OPTIONS
-    @partial_for_summary = 'softwares_info'
+    @logiciel_pages, @logiciels = paginate :logiciels, options
+
+    # panel on the left side
+    if request.xhr? 
+      render :partial => 'softwares_list', :layout => false
+    else
+      _panel
+      @partial_for_summary = 'softwares_info'
+    end
   end
 
   def rpmlist

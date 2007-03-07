@@ -2,14 +2,11 @@
 
 
 <% links = show_pages_links(@logiciel_pages, 'un nouveau logiciel', 
-                     :url => '/logiciels/update_list') %>
+                     :url => '/logiciels/list') %>
 <%= links %>
 
-<% titres = ['Nom',
-             'Description', 'Technologies', 'Référent',
-             'Groupe',
-             #select_filter(@groupes, 'groupe_id', :title => 'Groupe', :width => 16)}",
-             'Paquet(s)'] %>
+<% titres = ['Nom', 'Description', 'Technologies', 'Référent',
+             'Groupe', 'Paquet(s)'] %>
 <%= show_table(@logiciels, Logiciel, titres) { |l|
   result = ''
   result << "<td>#{link_to_logiciel l}</td>"

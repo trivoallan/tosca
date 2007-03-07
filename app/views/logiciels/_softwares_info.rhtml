@@ -1,11 +1,10 @@
 <% options = { :update => 'content',
-    :url => '/logiciels/update_list',
+    :url => '/logiciels/list',
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
 <% form_remote_tag( options.dup.update(:html => { 
     :id => 'filters', :name => 'filters'})) do %>
-
 
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
@@ -13,21 +12,21 @@
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
 > Recherche</div>
 <ul class="menu" id="menu_recherche">
- <li><b>Nom </b><br />
-     <%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
- <li><b>Client </b><br />
-     <%=select_filter(@clients, 'client') %></li>
+ <li><b>Nom </b></li>
+ <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
+ <li><b>Client </b></li>
+ <li><%=select_filter(@clients, 'client') %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_caracteristique')">
 > Caractéristique</div>
 <ul class="menu" id="menu_caracteristique">
- <li><b>Description </b><br />
-     <%= text_field :logiciel, :description %></li>
- <li><b>Groupe </b><br />
-     <%=select_filter(@groupes, 'groupe')%></li>
- <li><b>Technologie </b><br />
-     <%=select_filter(@technologies, 'competences_logiciels.competence')%></li>
+ <li><b>Description </b></li>
+ <li><%= text_field :logiciel, :description %></li>
+ <li><b>Groupe </b></li>
+ <li><%=select_filter(@groupes, 'groupe')%></li>
+ <li><b>Technologie </b></li>
+ <li><%=select_filter(@technologies, 'competences_logiciels.competence')%></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
