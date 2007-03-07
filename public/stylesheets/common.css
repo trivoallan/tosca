@@ -82,6 +82,7 @@ p {
 p img {
 	vertical-align: middle;
 }
+
 a, a:active, a:visited, a:focus {
 	text-decoration: none;
 	color: #1A528F;
@@ -91,6 +92,7 @@ a:hover {
 	text-decoration: underline;
 	color: #226644;
 }
+
 ul {
 	list-style-type: square;
 }
@@ -157,33 +159,8 @@ table.pages td {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
 
-/*********************** filtres **********************/
 
-.table_filtre {
-	background-color: #D4D8FF;
-	font-size: 80%;
-	border: 1px solid #D3D3D3;
-	padding: 0;
-	margin-bottom: 2em;
-}
-.table_filtre h4 {
-	background-image: url(../img/th_filter_background.png);
-	color: #fff;
-	margin: 0;
-	font-size: 80%;
-	text-align: center;
-	padding: .2em;
-	border-bottom-color: Gray;
-	border-bottom: 1px solid;
-}
-.table_filtre_content {
-	padding: 1em .5em;
-}
-/* pour faire un block des champs dans les filtres */
-.table_filtre_content label {
-	clear: both;
-	display: block;
-}
+
 /* personnlisation du select des severites : non actif */
 #select_severite {
 	padding: 2px;
@@ -428,43 +405,6 @@ td.error div.link {
 	margin: 0 auto;
 }
 
-/************************ sommaire ***********************/
-
-table.sommaire   {
-	border: 1px solid black;
-	background-color: #DFDFDF;	
-}
-table.sommaire tr td {
-	width: 33%;
-	vertical-align: top;
-}
-dl.sommaire {
-	padding: 0 2em 2em 1em;
-	width: 90%;
-	margin: 0;
-}
-dl.sommaire dt {
-	border-bottom: 1px solid black;
-	width: 50%;
-	margin-top: 2em;
-	margin-bottom: 1em;
-}
-dl.sommaire dd {
-	text-align: justify;
-}
-dl.sommaire dd.action ul {
-	border-left: 1px solid black;
-	border-bottom: 1px solid black;
-	width: 60%;
-	margin-top: 1em;
-	padding: 0.4em 1em 0.4em 1em;
-	margin-left: 0em;
-	text-align: left;
-}
-dl.sommaire dd.action ul li {
-	margin-left: 1em;
-	padding-left: 0em;
-}
 
 /************************** typo ***********************/
 
