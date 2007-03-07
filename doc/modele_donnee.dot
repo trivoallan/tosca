@@ -1,6 +1,6 @@
 digraph x {
 
-rotate=90;
+//rotate=90;
 
 Binaire -> Paquet [arrowhead=dot,arrowtail=crow,dir=both]
 Binaire -> Socle [arrowhead=dot,dir=both,arrowtail=crow]
