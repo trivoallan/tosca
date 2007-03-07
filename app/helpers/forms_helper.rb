@@ -4,6 +4,9 @@
 
 
 module FormsHelper
+
+  PROMPT_SELECT = { :prompt => '» ' }
+
   ### FORMULAIRES ##################################################
 
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
