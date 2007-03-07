@@ -8,6 +8,11 @@ class AppelsController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+  def verifie
+    super(Appel)
+  end
+
   def list
     @appel_pages, @appels = paginate :appels, :per_page => 10
   end
