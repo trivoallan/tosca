@@ -1,6 +1,9 @@
 class InitialAppels < ActiveRecord::Migration
   def self.up
-    create_table :appels do |t|
+    # TODO : surcharger le create_table pour forcer cette option
+    # ou mieux : la configuration de MySQL
+    create_table(:appels, :options => 
+                 'ENGINE=MyISAM DEFAULT CHARSET=utf8') do |t|
       t.column :beneficiaire_id, :integer
       t.column :ingenieur_id, :integer
       t.column :debut, :timestamp
