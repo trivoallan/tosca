@@ -1,5 +1,6 @@
-<% options = { :update => 'content', :url => '/account/list',
-   :before => "Element.show('spinner')",:success => "Element.hide('spinner')" } %>
+<% options = { :update => 'content', :url => '../account/list',
+  :before => "Element.show('spinner')",:success => "Element.hide('spinner')" } 
+%>
 
 <% form_remote_tag( options.dup.update(:html => { 
     :id => 'filters', :name => 'filters'})) do %>
