@@ -43,10 +43,29 @@ class ContributionsController < ApplicationController
 
   def admin
     conditions = []
+    options = { :per_page => 10, :order => 'contributions.updated_on DESC', 
+      :include => [:logiciel,:etatreversement,:demandes] }
 
-    @contribution_pages, @contributions = paginate :contributions, 
-    :per_page => 10, :order => 'updated_on DESC'
+    params['logiciel'].each_pair { |key, value|
+      conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
+    } if params['logiciel']
+    if params['filters']
+      params['filters'].each_pair { |key, value|
+        unless value == '' or key.intern == :client_id
+          conditions << " #{key}=#{value} " 
+        end
+      } 
+      scope_client(params['filters']['client_id'])
+      Paquet.set_scope(session[:contrat_ids])
+      Demande.set_scope(params['filters']['client_id'])
+    end
+    params['contribution'].each_pair { |key, value|
+      conditions << " contributions.#{key} LIKE '%#{value}%'" if value != ''
+    } if params['contribution']
 
+    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+
+    @contribution_pages, @contributions = paginate :contributions, options
     # panel on the left side
     if request.xhr? 
       render :partial => 'contributions_admin', :layout => false

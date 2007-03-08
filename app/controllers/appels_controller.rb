@@ -13,6 +13,7 @@ class AppelsController < ApplicationController
     super(Appel)
   end
 
+
   def list
     @appel_pages, @appels = paginate :appels, :per_page => 10
   end

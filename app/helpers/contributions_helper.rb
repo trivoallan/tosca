@@ -16,6 +16,7 @@ module ContributionsHelper
     link_to c.nom, :controller => 'contributions', :action => 'show', :id => c
   end
 
+  
   def link_to_all_contributions
     link_to 'Voir toutes les contributions', :action => 'list', :id => 'all'
   end

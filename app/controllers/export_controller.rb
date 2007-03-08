@@ -30,7 +30,7 @@ class ExportController < ApplicationController
       identifiants.each do |i|
         csv << [i.id, i.login, i.nom, i.email, i.telephone,
                 (i.beneficiaire.client.nom if i.beneficiaire), 
-                i.roles.join(', ') ]
+                i.roles.join(', ') ].compact
       end
     end
   end
@@ -95,7 +95,7 @@ class ExportController < ApplicationController
      end
 
      render :text => Proc.new { |response, output|
-       csv = FasterCSV.new(output, :row_sep => "\r\n", :col_sep => "\";\"") 
+       csv = FasterCSV.new(output, :row_sep => "\r\n", :col_sep => ";") 
        yield csv
      }, :layout => false
   end
