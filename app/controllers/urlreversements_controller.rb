@@ -59,6 +59,7 @@ class UrlreversementsController < ApplicationController
 private
   def _form
     @contributions = Contribution.find(:all)
+    @urlreversement.contribution_id = params[:contribution_id].to_i if params[:contribution_id]
   end
 
 end

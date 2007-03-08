@@ -6,15 +6,8 @@
 <%= text_field 'urlreversement', 'valeur'  %></p>
 
 <p><label for="urlreversement_contribution">Contribution</label><br/>
-  <%
-    if params[:contribution_id]
-      selected = params[:contribution_id].to_i
-    else
-      selected = @urlreversement.contribution_id
-    end
-  %>
   <%= select( :urlreversement, :contribution_id,
               @contributions.collect { |c| [ c.nom, c.id ] },
-              :selected => selected) %></p>
+              :selected => @urlreversement.contribution_id) %></p>
 
 <!--[eoform:urlreversement]-->
