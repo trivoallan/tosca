@@ -3,4 +3,8 @@
 #####################################################
 class Urlreversement < ActiveRecord::Base
   belongs_to :contribution
+
+  validates_presence_of :url
+  validates_presence_of :contribution
+  
 end

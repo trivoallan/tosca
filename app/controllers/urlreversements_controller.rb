@@ -26,6 +26,7 @@ class UrlreversementsController < ApplicationController
 
   def create
     @urlreversement = Urlreversement.new(params[:urlreversement])
+    _form
     if @urlreversement.save
       flash[:notice] = 'Urlreversement was successfully created.'
       redirect_to :action => 'list'
