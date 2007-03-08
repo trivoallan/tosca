@@ -1,9 +1,10 @@
 <h1>Editer une contribution</h1>
 
-<%= start_form_tag({:action => 'update', :id => @contribution}, :multipart => true ) %>
+<% action = { :action => 'update', :id => @contribution } %>
+<% form_tag(action, :multipart => true ) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Enregistrer' %>
-<%= end_form_tag %>
+<% end %>
 
 <%= link_to 'Voir', :action => 'show', :id => @contribution %> |
 <%= link_to 'Retour à la liste', :action => 'list' %>

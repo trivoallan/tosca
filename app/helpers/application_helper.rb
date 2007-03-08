@@ -121,7 +121,7 @@ module ApplicationHelper
   ### FILES #####################################################################
 
   def file_size( file )
-    (File.exist?(file) ? human_size(File.size(file)) : '-' )
+    (File.exist?(file) ? number_to_human_size(File.size(file)) : '-' )
   end
 
   # Call it like this : link_to_file(document, 'fichier', 'nomfichier')

@@ -28,7 +28,7 @@
   result << "<td>#{link_to_paquet p}</td>"
   result << "<td>#{p.release}</td>"
   result << "<td>#{p.conteneur.nom}</td>"
-  result << "<td>#{human_size p.taille}</td>"
+  result << "<td>#{number_to_human_size p.taille}</td>"
   result << "<td>#{p.distributeur.nom}</td>"
   result << "<td>#{p.mainteneur.nom}</td>"
   result << "#{link_to_actions_table p}"
