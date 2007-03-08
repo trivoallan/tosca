@@ -32,17 +32,8 @@
 }
 ul.menu li {
 	color: black;
-	list-style-image: url(/images/puce.png);
+	list-style-image: url(../images/puce.png);
 	margin-left: -1.5em;
 	margin-bottom: -2px;
 }
 
-/*********** not used *************/
-
-/* au cas ou les listes passent pas sur IE 
-.menu div {
-	background-image: url(/images/puce.png);
-	background-repeat: no-repeat;
-	background-position: 0% 65% 0% 20%;
-}
-*/

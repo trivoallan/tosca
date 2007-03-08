@@ -1,7 +1,7 @@
 /* Editor Toolbar */
 td.toolbar { 
 width: 523px; 
-background-image: url(/images/toolbar.gif);
+background-image: url(../images/toolbar.gif);
 background-repeat: repeat-y;
 background-color: #ffffff;
 }
