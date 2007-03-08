@@ -20,9 +20,7 @@
 </p>
 
 <%= show_pages_links @paquet_pages, 'un paquet virtuel' %>
-<% titres = ["Logiciel #{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}", 
-             "Nom <br/>#{text_field 'paquet', '' , :size => 15}", 
-             'Release', 'Conteneur', 'Taille', 'Distributeur', 'Mainteneur']%>
+<% titres = %w(Logiciel Nom Release Conteneur Taille Distributeur Mainteneur)%>
 <%= start_form_tag :action => "list", :filter => @filter, :order => @order %>
 <%= show_table(@paquets, Paquet, titres) { |p|
   result = ''
