@@ -60,7 +60,7 @@ class AppelsController < ApplicationController
   private
   # conventions
   def _form   
-    @ingenieurs = Ingenieur.find_select(:include => [:identifiant])
-    @beneficiaires = Beneficiaire.find_select(:include => [:identifiant])
+    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
   end
 end

@@ -213,7 +213,7 @@ class DemandesController < ApplicationController
     else
       @contributions = []
     end
-    @ingenieurs = Ingenieur.find_select(:include => [:identifiant])
+    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
     
     # On va chercher les identifiants des ingénieurs assignés
     # C'est un héritage du passé
@@ -413,8 +413,8 @@ class DemandesController < ApplicationController
     @statuts = Statut.find_select()
     @typedemandes = Typedemande.find_select()
     @severites = Severite.find_select()
-    @ingenieurs = Ingenieur.find_select(:include => [:identifiant])
-    @beneficiaires = Beneficiaire.find_select(:include => [:identifiant])
+    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
 
     @count = { :demandes =>  Demande.count,
       :logiciels => Demande.count({ :select => 'demandes.logiciel_id' }),

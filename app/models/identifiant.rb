@@ -14,7 +14,6 @@ class Identifiant < ActiveRecord::Base
   has_one :beneficiaire
   # TODO : vérifier que l'email est valide, et 
   # rattraper l'erreur si l'envoi de mail échoue !!!
-
   def create_person(client) 
     if self.client
       Beneficiaire.create(:identifiant => self, :client => client)
@@ -22,6 +21,9 @@ class Identifiant < ActiveRecord::Base
       Ingenieur.create(:identifiant => self)
     end
   end
+
+  SELECT_OPTIONS = { :include => [:identifiant], 
+    :order => 'identifiants.nom ASC' }
 
 
   def self.authenticate(login, pass, crypt)
