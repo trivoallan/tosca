@@ -55,6 +55,7 @@ class Contribution < ActiveRecord::Base
   # voir lib/overrides.rb pour les dates auto created _on et updated_on
   def reverse_le_formatted
       d = @attributes['reverse_le']
+    return '' unless d
       "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
   end
 
@@ -80,6 +81,7 @@ class Contribution < ActiveRecord::Base
   # + "non clos" ET (updated_on > 1 mois)
   # + OU "à reverser"
   def todo(max_jours)
+    return false unless reverse_le
     # TODO : vérifier max_jours is integer
     age = ((Time.now - reverse_le)/(60*60*24)).round
     if !clos && age > max_jours.to_i
@@ -88,10 +90,9 @@ class Contribution < ActiveRecord::Base
     elsif !reverse
       # non initialisé
       return "reverser"
-    else 
-      # rien à faire
-      return false
     end
+      # rien à faire
+    return false
   end
 
   # retourne true si le reversement a commencé

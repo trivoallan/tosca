@@ -57,7 +57,7 @@ module FormsHelper
   # :onchange action si changement
   # :size hauteur du select
   def select_onchange(list, default, name, options = {})
-    options[:title] ||= ''
+    options[:title] ||= '» '
     options[:onchange] ||= 'this.form.submit();'
     options[:name] ||= name
     collected = list.collect{|e| [e.nom, e.id] }.unshift([options[:title], ''])

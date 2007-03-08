@@ -6,10 +6,11 @@
     <td><%=h @groupe.send(column.name) %></td></tr>
 <% end %>
 
-<tr><td><b>Logiciels:</b>
-    <% liste_logiciels = @groupe.collect{|g| g.logiciel}.compact %>
-    <td><%= show_liste(liste_logiciels, 'Logiciels', {:no_title => true}) { |l| 
-            link_to_logiciel l} %></td></tr>
+  <tr>
+    <td><b>Logiciels:</b>
+    <td><%= show_liste(@groupe.logiciels, 'Logiciels', 
+             {:no_title => true}) { |l| link_to_logiciel l} %></td>
+  </tr>
 
 </table>
 
