@@ -12,10 +12,12 @@ class ExportController < ApplicationController
   def contributions
     contributions = Contribution.find(:all)
     stream_csv do |csv|
-      csv << ["id", "logiciel", "etat", "description"]
+      csv << %w(id logiciel version etat description reversé cloturé délai)
       contributions.each do |c|
-        csv << [c.id, c.logiciel.nom, c.etatreversement.nom, 
-                c.description]
+        csv << [ c.id, c.logiciel.nom, c.paquets.collect{|p| p.version}.join(','),
+                 c.etatreversement.nom, c.description_fonctionnelle,
+                 c.reverse_le_formatted, c.cloture_le_formatted, c.delai
+               ]
       end
     end
   end

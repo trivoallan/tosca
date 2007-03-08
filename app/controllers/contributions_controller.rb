@@ -43,7 +43,7 @@ class ContributionsController < ApplicationController
 
   def admin
     conditions = []
-    options = { :per_page => 10, :order => 'contributions.updated_on DESC', 
+    options = { :per_page => 25, 
       :include => [:logiciel,:etatreversement,:demandes] }
 
     params['logiciel'].each_pair { |key, value|
