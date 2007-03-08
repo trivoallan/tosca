@@ -2,12 +2,12 @@
 
 <!--[form:urlreversement]-->
 
-<p><label for="urlreversement_valeur">URL</label><br/>
+<p><label for="urlreversement_valeur">Valeur</label><br/>
 <%= text_field 'urlreversement', 'valeur'  %></p>
 
 <p><label for="urlreversement_contribution">Contribution</label><br/>
-  <%= select("urlreversement", "contribution_id",
-	@contributions.collect{|c| [ c.nom, c.id]}, 
+  <%= collection_select(:urlreversement, :contribution_id,
+	@contributions, :id, :nom, FormsHelper::PROMPT_SELECT,
 	:selected => @urlreversement.contribution_id) %></p>
 
 <!--[eoform:urlreversement]-->
