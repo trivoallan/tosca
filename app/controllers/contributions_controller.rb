@@ -131,9 +131,16 @@ class ContributionsController < ApplicationController
   def ajax_paquets
     return redirect_to_home unless request.xml_http_request? and params[:id]
 
-    logiciel = Logiciel.find(params[:id].to_i)
-    @paquets = logiciel.paquets.find(:all, Paquet::OPTIONS)
-    @binaires = logiciel.binaires.find(:all, Binaire::OPTIONS) 
+    # la magie de rails est cassé pour la 1.2.2, en mode production
+    # donc je dois le faire manuellement
+    # TODO : vérifier pour les versions > 1.2.2 en _production_ (!)
+    clogiciel = [ 'paquets.logiciel_id = ?', params[:id].to_i ]
+    options = Paquet::OPTIONS.dup
+    options[:conditions] = clogiciel
+    @paquets = Paquet.find(:all, options)
+    options = Binaire::OPTIONS
+    options[:conditions] = clogiciel
+    @binaires = Binaire.find(:all, options) 
 
     render :partial => 'liste_paquets', :layout => false
   end
