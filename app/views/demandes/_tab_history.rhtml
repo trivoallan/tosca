@@ -18,11 +18,12 @@
      <td>
        <% if old_ingenieur_id != demande.ingenieur_id %>
          <% ingenieur = Ingenieur.find(demande.ingenieur_id) %>
-         Le responsable de votre demande est <%= ingenieur.nom %><br />
+         Le <b>responsable</b> de votre demande est devenu 
+         <b><%= ingenieur.nom %></b><br />
        <% end %>
        <% if old_statut_id != demande.statut_id %>
          <% statut = Statut.find(demande.statut_id) %>
-         Le statut de votre demande est <%= statut.nom %>
+         Le <b>statut</b> de votre demande est devenu <b><%= statut.nom %></b>
        <% end %>
      </td>
    </tr>
