@@ -11,7 +11,8 @@ class ContributionsController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ] 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+  
   def verifie
     super(Contribution)
   end
