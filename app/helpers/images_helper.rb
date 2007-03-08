@@ -39,7 +39,8 @@ module ImagesHelper
 
   @@back = nil
   def image_back
-    @@back ||= image_tag("back_icon.png", image_options('retour', '23x23'))
+#     @@back ||= image_tag("back_icon.png", image_options('retour', '23x23'))
+    @@back ||= image_tag("back3.gif", image_options('retour', '15x15'))
   end
 
   @@first_page = nil
