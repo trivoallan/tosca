@@ -59,7 +59,7 @@ class UrlreversementsController < ApplicationController
 private
 
   def _form
-    @contributions = Contribution.find_all
+    @contributions = Contribution.find(:all)
   end
 
 end

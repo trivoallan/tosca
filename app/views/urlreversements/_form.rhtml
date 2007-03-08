@@ -6,8 +6,15 @@
 <%= text_field 'urlreversement', 'valeur'  %></p>
 
 <p><label for="urlreversement_contribution">Contribution</label><br/>
-  <%= collection_select(:urlreversement, :contribution_id,
-	@contributions, :id, :nom, FormsHelper::PROMPT_SELECT,
-	:selected => @urlreversement.contribution_id) %></p>
+  <%
+    if params[:contribution_id]
+      selected = params[:contribution_id].to_i
+    else
+      selected = @urlreversement.contribution_id
+    end
+  %>
+  <%= select( :urlreversement, :contribution_id,
+              @contributions.collect { |c| [ c.nom, c.id ] },
+              :selected => selected) %></p>
 
 <!--[eoform:urlreversement]-->
