@@ -36,7 +36,8 @@ module ActiveRecord
   class Base
 
     def self.find_select(options = {})
-      options.update(:select => 'id, nom', :order => 'nom ASC')
+      options.update(:select => 'id, nom')
+      options[:order] ||= "#{self.table_name}.nom ASC"
       self.find(:all, options)
     end
 
