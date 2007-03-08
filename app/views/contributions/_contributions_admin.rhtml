@@ -8,11 +8,7 @@
        :url => '/contributions/admin') %>
 <%= links %>
 
-<%#= "#{select_filter(@logiciels, 'logiciel', :title => 'Logiciel')}" %>
-<%#= "#{select_filter(@clients, 'client', :title => 'Client')}" %>
-
-<% titres = ['Logiciel',
-             'Patch', 'Demande', 'Tâches',
+<% titres = ['Logiciel', 'Patch', 'Demande', 
              'Etat', 'Description', 'Description fonctionnelle',
              'Reversé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
 <% form_tag(:controller => 'contributions', :action => 'list') do %>
@@ -24,7 +20,7 @@
   result << " (#{versions})</td>" unless versions == ''
   result << "<td>#{link_to_file c, 'patch'}</td>"
   result << "<td nowrap=\"nowrap\">#{link_to_any_demande c}</td>"
-  result << "<td " + (tache ? "style='background-color:orange'>#{tache}" : ">") +"</td>"
+  # result << "<td " + (tache ? "style='background-color:orange'>#{tache}" : ">") +"</td>"
   result << "<td>#{c.etatreversement.nom if c.etatreversement}</td>"
   result << "<td>#{link_to_contribution c}</td>"
   result << "<td>#{textilize sum_up c.description_fonctionnelle}</td>"
