@@ -12,7 +12,8 @@ class UrlreversementsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @urlreversement_pages, @urlreversements = paginate :urlreversements, :per_page => 10
+    @urlreversement_pages, @urlreversements = paginate :urlreversements, 
+    :per_page => 10
   end
 
   def show
@@ -26,12 +27,11 @@ class UrlreversementsController < ApplicationController
 
   def create
     @urlreversement = Urlreversement.new(params[:urlreversement])
-    _form
     if @urlreversement.save
       flash[:notice] = 'Urlreversement was successfully created.'
       redirect_to :action => 'list'
     else
-      render :action => 'new'
+      _form and render :action => 'new'
     end
   end
 
@@ -47,7 +47,7 @@ class UrlreversementsController < ApplicationController
       redirect_to :controller => 'contributions', 
                    :action => 'show', :id => @urlreversement.contribution_id
     else
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 
@@ -57,7 +57,6 @@ class UrlreversementsController < ApplicationController
   end
 
 private
-
   def _form
     @contributions = Contribution.find(:all)
   end
