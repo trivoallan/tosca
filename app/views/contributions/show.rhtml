@@ -1,12 +1,41 @@
 <%= render :partial => 'contribution' %>
 
+<div class="show">
+
 <h2>Autres informations</h2>
 
-<% for column in Contribution.content_columns %>
+<%
+
+#  demande result << "<td nowrap=\"nowrap\">#{link_to_any_demande c}</td>"
+
+
+#   result << "<td>#{link_to_contribution c}</td>"
+#  description result << "<td>#{textilize sum_up c.description_fonctionnelle}</td>"
+  
+#   result << "<td style='color:red'>"
+#  Cloturé le result << "<span class=\"date\">#{c.cloture_le_formatted}</span>" if c.clos
+#   result << "</td>"
+  
+#   result << "<td nowrap>#{time_in_french_words(c.delai)}</td>"
+#   result << "<td><span class=\"date\">#{c.updated_on_formatted}</span></td>"
+
+%>
+
+
+
 <p>
-  <b><%= column.human_name %>:</b> <%=h @contribution.send(column.name) %>
+  <b>Description : </b><%= @contribution.description %><br/>
+
+| created_on                | datetime     |      |     | 0000-00-00 00:00:00 |                |
+| updated_on                | datetime     |      |     | 0000-00-00 00:00:00 |                |
+| id_mantis                 | int(11)      | YES  |     | NULL                |                |
+| reverse_le                | datetime     | YES  |     | NULL                |                |
+| description_fonctionnelle | text         |      |     |                     |                |
+| etatreversement_id        | int(11)      |      |     | 0                   |                |
+| cloture_le                | datetime     | YES  |     | NULL                |                |
+| typecontribution_id      </b>
 </p>
-<% end %>
+
 
 <p><b>Logiciel:</b> <%= link_to_logiciel @contribution.logiciel if @contribution.logiciel %></p>
 <p><b>Patch:</b> <%= link_to_file @contribution, 'patch' %><p>
@@ -31,5 +60,6 @@
       link_to_binaire(b) 
     } %><br />
 
+</div>
 <%= link_to_edit_and_list @contribution %>
 
