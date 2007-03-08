@@ -1,6 +1,7 @@
 <h1>Liste des contributions de <%= @logiciel ? @logiciel.nom : 'tous les logiciels' %></h1>
+<%= link_to_new('contribution') %><br/>
 
 <%= render :partial => 'contribution', :collection => @contributions %>
 
-<%= link_to_new('contribution') %><br/>
+<%= link_to_new('contribution') %><br/><br/>
 <%= link_to_back %>
