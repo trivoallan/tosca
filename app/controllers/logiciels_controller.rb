@@ -44,8 +44,12 @@ class LogicielsController < ApplicationController
           conditions << " #{key}=#{value} " 
         end
       } 
-      scope_client(params['filters']['client_id'])
-      Logiciel.set_scope(session[:contrat_ids])
+      # TODO: c'est moche et c'est lent
+      contrat_ids = scope_client(params['filters']['client_id'])
+      if contrat_ids
+        conditions << " paquets.contrat_id IN (#{contrat_ids})"
+        options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id' 
+      end
     end
     options[:conditions] = conditions.join(' AND ') unless conditions.empty?
 

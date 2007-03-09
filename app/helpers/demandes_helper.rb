@@ -47,9 +47,9 @@ module DemandesHelper
   end
 
   # Décrit une demande
-  def demande_description(demande)
-    return '-' unless demande
-   "#{demande.typedemande.nom} (#{demande.severite.nom}) : #{demande.description}"
+  def demande_description(d)
+    return '-' unless d
+   "#{d.typedemande.nom} (#{d.severite.nom}) : #{d.description}"
   end
 
   def display(donnee, column)
@@ -61,9 +61,9 @@ module DemandesHelper
     end
   end
 
-  def icon_severite(demande)
-    desc = demande.severite.nom
-    image_tag("severite_#{demande.severite_id}.gif", :title => desc, :alt => desc )
+  def icon_severite(d)
+    desc = (d.respond_to?(:severite_nom) ? d.severite_nom : d.severite.nom)
+    image_tag("severite_#{d.severite_id}.gif", :title => desc, :alt => desc )
   end
 
   def render_table(options)

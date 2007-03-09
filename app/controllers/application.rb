@@ -150,11 +150,11 @@ private
   # call it like this : scope_client(params['filters']['client_id'])
   def scope_client(value)
     if value == '' 
-      session[:contrat_ids] = nil 
+      nil 
     else
       conditions = { :client_id => value.to_i }
       options = { :select => 'id', :conditions => conditions }
-      session[:contrat_ids] = Contrat.find(:all, options).collect{|c| c.id}
+      Contrat.find(:all, options).collect{|c| c.id}
     end
   end
 

@@ -72,6 +72,7 @@ class DemandesController < ApplicationController
     if @beneficiaire
       escope = Demande.get_scope_without_include(@beneficiaire.client_id)
     end
+    # cet exclusive scope sert à ne pas se faire effacer les jointures
     Demande.with_exclusive_scope(escope) do
       @demande_pages, @demandes = paginate :demandes, options
     end
