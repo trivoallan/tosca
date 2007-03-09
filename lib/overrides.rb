@@ -32,6 +32,13 @@ class Array
    end
 end
 
+class String
+
+  def urlize
+    (self.gsub(/(\s+|^)[a-zA-Z]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.[a-zA-Z]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)?/) { |s| " http://" + s.strip }).strip
+  end
+end
+
 module ActiveRecord
   class Base
 
