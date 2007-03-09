@@ -1,5 +1,5 @@
-<% max_jours = ( @params[:reversement] && @params[:reversement][:max_jours] != "" ? 
-                  @params[:reversement][:max_jours] : 12 ) 
+<% # max_jours = ( params[:reversement] && params[:reversement][:max_jours] != "" ? 
+     #             params[:reversement][:max_jours] : 12 ) 
 %>
 
 <h1>Liste des contributions <%= image_spinner %></h1>
@@ -14,7 +14,7 @@
 <% form_tag(:controller => 'contributions', :action => 'list') do %>
 <%= show_table(@contributions, Contribution, titres) { |c|
   result = ''
-  tache = c.todo(max_jours)
+  # tache = c.todo(max_jours)
   versions = c.paquets.collect{|p| p.version } * ', '
   result << "<td>#{link_to_logiciel c.logiciel if c.logiciel}"
   result << " (#{versions})</td>" unless versions == ''

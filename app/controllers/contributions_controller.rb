@@ -55,9 +55,14 @@ class ContributionsController < ApplicationController
           conditions << " #{key}=#{value} " 
         end
       } 
-      scope_client(params['filters']['client_id'])
-      Paquet.set_scope(session[:contrat_ids])
-      Demande.set_scope(params['filters']['client_id'])
+      # TODO : trouver un moyen plus rapide
+      if params['filters']['client_id'] != ''
+        client = Client.find(params['filters']['client_id']) 
+        conditions << ' ( demandes.beneficiaire_id IN (' + 
+          client.beneficiaire_ids + ' ) OR paquets.contrat_id IN (' + 
+          client.contrat_ids + '))'
+        options[:include] << :paquets
+      end
     end
     params['contribution'].each_pair { |key, value|
       conditions << " contributions.#{key} LIKE '%#{value}%'" if value != ''

@@ -17,9 +17,21 @@ class Client < ActiveRecord::Base
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
 
+  # don't use this function outside of an around_filter
   def self.set_scope(client_id)
     self.scoped_methods << { :find => { :conditions => 
         [ 'clients.id = ?', client_id ]} }
+  end
+
+  # TODO : c'est pas DRY
+  def contrat_ids
+    contrats = self.contrats.find(:all, :select => 'id').collect{|c| c.id}
+    return (contrats.empty? ? '0' : contrats.join(','))
+  end
+
+  def beneficiaire_ids
+    benefs = self.beneficiaires.find(:all, :select => 'id').collect{|c| c.id}
+    return (benefs.empty? ? '0' : benefs.join(','))
   end
 
 
