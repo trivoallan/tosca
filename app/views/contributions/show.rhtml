@@ -18,7 +18,7 @@
     } %><br />
 
 <%= show_liste(@contribution.urlreversements, 'url(s) de reversement') { |u| 
-      out = "<a href=\"#{u.valeur}\">#{u.valeur}</a> " 
+      out = "<a href=\"#{u.valeur}\">#{u.valeur}</a> "
       out << link_to(image_edit, :controller => 'urlreversements', 
                                  :action => 'edit', :id => u.id)
     } %>

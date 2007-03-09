@@ -6,4 +6,12 @@ class Urlreversement < ActiveRecord::Base
 
   validates_presence_of :valeur
 
+  def nom
+    valeur
+  end
+
+  def to_s
+    nom
+  end
+
 end
