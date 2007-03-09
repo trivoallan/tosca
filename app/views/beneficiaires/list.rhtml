@@ -9,7 +9,7 @@
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
   result = ''
   form = ''
-  form << "<form action=\"/account/devenir/#{b.id}\" method=\"post\">"
+  form << "<form action=\"../account/devenir/#{b.id}\" method=\"post\">"
   form << '<input name="commit" value="Devenir" type="submit" /></form>'
   result << "<td>#{b.nom}</td>"
   result << "<td>#{b.client.nom}</td>"
