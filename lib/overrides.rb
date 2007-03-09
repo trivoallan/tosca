@@ -34,8 +34,17 @@ end
 
 class String
 
+  #RFC sur les URLS : http://rfc.net/rfc1738.html
+  #URL de la regexp : http://www.editeurjavascript.com/scripts/scripts_formulaires_3_250.php
+  #
+  #Fonctionne avec :
+  #  "www.google.com"
+  #  "http://www.google.com"
+  #  "toto tutu djdjdjd google.com"
+  #  "toto tutu djdjdjd http://truc.machin.com/touo/sdqsd?tutu=1&machin google.com/toto/ddk?tr=1&machin"
+  #TODO: A améliorer
   def urlize
-    (self.gsub(/(\s+|^)[a-zA-Z]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.[a-zA-Z]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)?/) { |s| " http://" + s.strip }).strip
+    (self.gsub(/(\s+|^)[a-zA-Z]([\w-]{0,61}\w)?\.[a-zA-Z]([\w-]{0,61}\w)?(\.[a-zA-Z]([\w-]{0,61}\w)?)?/) { |s| " http://" + s.strip }).strip
   end
 end
 
