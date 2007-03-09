@@ -16,8 +16,9 @@ class DemandesController < ApplicationController
 
   # verifie :
   # - s'il il y a un demande_id en paramètre (sinon :  retour à la liste)
-  # - si une demande ayant cet id existe (sinon : erreur > rescue > retour à la liste)
-  # - dans le cas d'un bénéficiaire, s'il est bien beneficiaire de cette demande (sinon : retour à la liste)
+  # - si une demande ayant cet id existe (sinon : retour à la liste)
+  # - dans le cas d'un bénéficiaire, s'il est bien beneficiaire de 
+  # cette demande (sinon : retour à la liste)
   def verifie
     super(Demande, {:controller => 'demandes'})
   end
@@ -45,24 +46,6 @@ class DemandesController < ApplicationController
     'INNER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
 
 
-  # keep list2update the ajax way
-  # TODO : it's could be more dry
-  # called by all filters in info_box of list view
-  def update_list
-    return redirect_to_home unless request.xhr? 
-
-    if @beneficiaire
-      escope = Demande.get_scope_without_include(@beneficiaire.client_id)
-    else
-      escope = {}
-    end
-    Demande.with_exclusive_scope(escope) do
-      @demande_pages, @demandes = paginate :demandes, options
-      render :partial => 'requests_list', :layout => false
-    end
-  end
-
-
   def list
     #cas spécial : consultation directe
     if params['numero'] 
@@ -82,7 +65,6 @@ class DemandesController < ApplicationController
     params['filters'].each_pair { |key, value|
       conditions << " #{key}=#{value} " unless value == '' 
     } if params['filters']
-
     options[:conditions] = conditions.join(' AND ') unless conditions.empty?
 
 
@@ -416,8 +398,9 @@ class DemandesController < ApplicationController
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
     @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
 
+    softwares = { :select => 'demandes.logiciel_id', :distinct => true }
     @count = { :demandes =>  Demande.count,
-      :logiciels => Demande.count({ :select => 'demandes.logiciel_id' }),
+      :logiciels => Demande.count(softwares),
       :commentaires => Commentaire.count,
       :piecejointes => Piecejointe.count,
       :contributions => Contribution.count }

@@ -17,7 +17,8 @@ class BienvenueController < ApplicationController
   #    @user = @session[:user] # cf identifiants
   def list
     conditions = [ "statut_id NOT IN (?,?)", 7, 8 ]
-    @demandes = Demande.find(:all, :include => [:statut,:typedemande,:severite], 
+    @demandes = Demande.find(:all, :include => 
+                               [:statut,:typedemande,:severite], 
                              :limit => 5,  :order => "updated_on DESC ")
   end
 
