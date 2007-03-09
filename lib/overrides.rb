@@ -51,6 +51,10 @@ end
 module ActiveRecord
   class Base
 
+    def self.remove_scope
+      self.scoped_methods.pop
+    end
+
     def self.find_select(options = {})
       options.update(:select => 'id, nom')
       options[:order] ||= "#{self.table_name}.nom ASC"

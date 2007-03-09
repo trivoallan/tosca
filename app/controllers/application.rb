@@ -126,9 +126,16 @@ private
       Logiciel.set_scope(contrat_ids)
       Paquet.set_scope(contrat_ids)
       Socle.set_scope(client_id)
-      #Piecejointe.set_scope(client_id) #only for files
     end
-    yield
+    begin
+      yield
+    ensure
+      if beneficiaire
+        models = [ Binaire, Client, Contribution, Demande, Document, 
+          Logiciel, Paquet, Socle ]
+        models.each { |m| m.remove_scope }
+      end
+    end
   rescue Exception => e
     raise e unless ENV['RAILS_ENV'] == 'production'
     Notifier::deliver_error_message(e,

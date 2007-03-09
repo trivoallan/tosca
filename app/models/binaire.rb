@@ -18,7 +18,6 @@ class Binaire < ActiveRecord::Base
         :include => [:paquet]} }
   end
 
-
   # belongs_to :contrat
 
   def self.content_columns
