@@ -24,7 +24,7 @@ class AccountController < ApplicationController
     super(Identifiant)
   end
 
-  NO_JAVASCRIPT = '<br/>Javascript n\'est pas activé sur votre navigateur'
+  # NO_JAVASCRIPT = '<br/>Javascript n\'est pas activé sur votre navigateur'
   def login
     case request.method
       when :post
@@ -33,7 +33,7 @@ class AccountController < ApplicationController
                                                    params['user_crypt'])
         set_sessions
         flash[:notice] = "Connexion réussie"
-        flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
+        # flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
         redirect_to_home
       else
         flash.now[:warn]  = "Echec lors de la connexion"
@@ -275,7 +275,10 @@ private
     session[:user] = identifiant 
     session[:beneficiaire] = session[:user].beneficiaire
     session[:ingenieur] = session[:user].ingenieur
-    session[:javascript] = ( params['javascript'] == "true" ? true : false )
+    session[:javascript] = true 
+    # TODO : à intégrer de manière propre avec le SSO du portail
+    # désactivé pour l'instant
+    # ( params['javascript'] == "true" ? true : false )
     session[:nav_links] = render_to_string :inline => "
         <% nav_links = [ 
           (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
