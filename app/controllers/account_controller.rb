@@ -155,7 +155,7 @@ class AccountController < ApplicationController
 
       return unless flash.now[:warn] == ''
       flash[:notice] = ''
-      roles = Role.find(params(:identifiant][:role_ids])
+      roles = Role.find(params[:identifiant][:role_ids])
 
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), 
                       { :col_sep => ";", :headers => true }) do |row|

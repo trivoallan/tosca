@@ -31,6 +31,11 @@ class Ingenieur < ActiveRecord::Base
     }
   end
 
+  def contrat_ids
+    @cache ||=  self.contrat.find(:all, :select => 'id').collect {|c| c.id}
+  end
+
+
   # ne pas oublier de faire :include => [:identifiant] si vous 
   # appeler cette fonction, durant le Ingenieur.find
   def nom

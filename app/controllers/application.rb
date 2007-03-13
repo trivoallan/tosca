@@ -111,30 +111,26 @@ private
   ERROR_MESSAGE = 'Une erreur est survenue. Notre service a été prévenu' + 
     ' et dispose des informations nécessaire pour corriger.<br />' +
     'N\'hésitez pas à nous contacter si le problème persiste.' 
+  SCOPE_CLIENT = [ Client, Demande, Document ]
+  SCOPE_CONTRAT = [ Binaire, Contribution, Logiciel, Paquet, Socle ]
+  # Cette fonction intègre un scope "maison", beaucoup plus rapide.
+  # Il reste néanmoins intégralement safe
+  # Le but est d'éviter les 15 imbrications de yield, trop couteuses
   def scope_beneficiaire
     beneficiaire = session[:beneficiaire]
+    ingenieur = session[:ingenieur]
     if beneficiaire
       client_id = beneficiaire.client_id
       contrat_ids = beneficiaire.contrat_ids 
-
-      # damn fast with_scope (MLO ;))
-      Binaire.set_scope(contrat_ids)
-      Client.set_scope(client_id)
-      Contribution.set_scope(contrat_ids)
-      Demande.set_scope(client_id)
-      Document.set_scope(client_id) 
-      Logiciel.set_scope(contrat_ids)
-      Paquet.set_scope(contrat_ids)
-      Socle.set_scope(client_id)
+      SCOPE_CLIENT.each {|m| m.set_scope(client_id) }
     end
+    contrat_ids = ingenieur.contrat_ids if ingenieur
+    SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) } if contrat_ids
     begin
       yield
     ensure
-      if beneficiaire
-        models = [ Binaire, Client, Contribution, Demande, Document, 
-          Logiciel, Paquet, Socle ]
-        models.each { |m| m.remove_scope }
-      end
+      SCOPE_CLIENT.each { |m| m.remove_scope } if client_id
+      SCOPE_CONTRAT.each { |m| m.remove_scope } if contrat_ids
     end
   rescue Exception => e
     raise e unless ENV['RAILS_ENV'] == 'production'
