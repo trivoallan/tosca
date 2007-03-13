@@ -8,7 +8,7 @@ class DemandesController < ApplicationController
   before_filter :verifie, 
   :only => [ :comment, :edit, :update, :destroy, :changer_statut ]
 
-  helper :contributions, :logiciels
+  helper :filters, :contributions, :logiciels
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
@@ -70,9 +70,13 @@ class DemandesController < ApplicationController
 
     escope = {}
     if @beneficiaire
-      escope = Demande.get_scope_without_include(@beneficiaire.client_id)
+      escope = Demande.get_scope_without_include([@beneficiaire.client_id])
+    end
+    if @ingenieur
+      escope = Demande.get_scope_without_include(@ingenieur.client_ids)
     end
     # cet exclusive scope sert à ne pas se faire effacer les jointures
+    # c'est ça ou 7 include ... :/
     Demande.with_exclusive_scope(escope) do
       @demande_pages, @demandes = paginate :demandes, options
     end

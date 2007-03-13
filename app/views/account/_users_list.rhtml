@@ -1,6 +1,5 @@
 <h1>Liste des utilisateurs <%= image_spinner %></h1>
 
-
 <% links = show_pages_links(@user_pages, 'un nouvel utilisateur', 
                      :url => '../account/list') %>
 <%= links %>
@@ -8,9 +7,8 @@
   <tr>
     <th>Identifiant</th>
   <th><% for role in @roles %>
-    <small> [<%= link_to role.nom, :controller => 'roles', :action => 'edit', :id => role %>] </small>
+    <small> [<%= link_to_edit_role role %>] </small>
   <% end %></th>
-    <th>Modifier les droits</th>
     <th>Ingénieur</th>
     <th>Bénéficiaire</th>
     <th>Mail</th>
@@ -18,6 +16,8 @@
 
   </tr>
 
+
+  <% options = PagesHelper::AJAX_OPTIONS %>
   <% @users.each_index {|i| %>
    <% user = @users[i] %>
    <% beneficiaire = user.beneficiaire %>
@@ -25,18 +25,19 @@
    <tr class="<%= cycle('pair', 'impair') %>">
 
      <td><%=h user.login %></td>
-     <td>
-      <% form_tag({:action => 'update', :id => user}, {:name => 'form_'+user.id.to_s}) do%>
+     <td nowrap="nowrap">
+      <% options[:html] = { :id => "form_#{user.id}", :name => "form_#{user.id}" } %>
+      <% options[:url] = "../account/update/#{user.id}" %>
+      <% form_remote_tag options do %>
+      <% # form_tag({:action => 'update', :id => user}, {:name => 'form_'+user.id.to_s}) do%>
          <% for role in @roles %>
-           &nbsp;&nbsp;<input type="checkbox" id="<%=user.login.to_s + role.id.to_s%>" name="role_ids[]" value="<%=role.id%>"
+           &nbsp;&nbsp;<input type="checkbox" id="<%=user.login + role.id.to_s%>" name="identifiant[role_ids][]" value="<%=role.id%>"
            <%if user.roles.include? role%> checked="checked" <%end%> />&nbsp;&nbsp;
          <% end %>
+         <input type="submit" value="Valider &#187;" class="primary"/>
       <% end %></td>
-      <td><a href="." onclick="document.forms['form_<%=user.id.to_s%>'].submit()">
-          <b>Valider</b></a></td>
-      <td><%= "X" if ingenieur %></td>
-      <td><%= "X" if beneficiaire %>
-          <%= "Permissions anormales" unless user.valide %></td>
+      <td><center><%= "X" if ingenieur %></center></td>
+      <td><center><%= "X" if beneficiaire %></center></td>
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.telephone %></td>
 

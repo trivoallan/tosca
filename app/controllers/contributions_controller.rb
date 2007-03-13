@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class ContributionsController < ApplicationController
-  helper :demandes, :paquets, :binaires
+  helper :filters, :demandes, :paquets, :binaires
 
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom

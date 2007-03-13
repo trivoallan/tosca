@@ -10,7 +10,7 @@ class AccountController < ApplicationController
   auto_complete_for :identifiant, :nom
   auto_complete_for :identifiant, :email
 
-  helper :ingenieurs, :beneficiaires
+  helper :filters, :ingenieurs, :beneficiaires, :roles
 
   #before_filter :login_required, :except => [:login]
   before_filter :verifie, :only => [ :modify, :update ]
@@ -90,8 +90,15 @@ class AccountController < ApplicationController
   #utilisé dans account/list
   def update
     @user = Identifiant.find(params[:id])
-    flash[:notice] = "L'utilisateur a bien été mis à jour."
-    redirect_to :action => 'list'
+    if @user.update_attributes(params[:identifiant])
+      flash[:notice] = "L'utilisateur a bien été mis à jour."
+    end
+    if request.xhr?
+      logger.debug("on est en xml chose")
+    else
+      logger.debug("on n'y est pas")
+    end
+    list
   end
 
   def new
@@ -203,7 +210,9 @@ class AccountController < ApplicationController
 
     # filters
     params['identifiant'].each_pair { |key, value|
-      conditions << " identifiants.#{key} LIKE '%#{value}%'" if value != ''
+      if value !='' and key != 'role_ids'
+        conditions << " identifiants.#{key} LIKE '%#{value}%'" 
+      end
     } if params['identifiant']
     params['filters'].each_pair { |key, value|
       conditions << " #{key}=#{value} " unless value == ''

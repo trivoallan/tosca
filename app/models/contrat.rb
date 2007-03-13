@@ -11,6 +11,13 @@ class Contrat < ActiveRecord::Base
   has_many :logiciels, :through => :paquets, :group => 'id', :order => 'nom ASC'
   has_many :binaires, :through => :paquets
 
+
+  def self.set_scope(contrat_ids)
+    self.scoped_methods << { :find => { :conditions => 
+        [ 'contrats.id IN (?)', contrat_ids ]} }
+  end
+
+
   def ouverture_formatted
     d = @attributes['ouverture']
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"

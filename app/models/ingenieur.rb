@@ -9,6 +9,8 @@ class Ingenieur < ActiveRecord::Base
   has_many :demandes
   has_many :interactions
 
+
+
   INCLUDE = [:identifiant]
 
   def self.content_columns
@@ -31,10 +33,16 @@ class Ingenieur < ActiveRecord::Base
     }
   end
 
+  # mis en cache, car utilisé dans les scopes
   def contrat_ids
-    @cache ||=  self.contrats.find(:all, :select => 'id').collect {|c| c.id}
+    @contrat_ids ||=  self.contrats.find(:all, :select => 'id').collect {|c| c.id}
   end
 
+  # mis en cache, car utilisé dans les scopes
+  def client_ids
+    @client_ids ||=  self.contrats.find(:all, :group => 'client_id',
+         :select => 'client_id').collect {|c| c.client_id}
+  end
 
   # ne pas oublier de faire :include => [:identifiant] si vous 
   # appeler cette fonction, durant le Ingenieur.find

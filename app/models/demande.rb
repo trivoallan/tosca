@@ -30,18 +30,18 @@ class Demande < ActiveRecord::Base
   TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
   EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
 
-  def self.set_scope(client_id)
+  def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions => 
-        [ 'beneficiaires.client_id = ?', client_id],
+        [ 'beneficiaires.client_id IN (?)', client_ids],
         :include => [:beneficiaire]} }
   end
 
   # return the condition of the scope.
   # Used in controller demande for the speed n dirty hack finder
   # on list actions
-  def self.get_scope_without_include(client_id)
+  def self.get_scope_without_include(client_ids)
     { :find => { :conditions => 
-        [ 'beneficiaires.client_id = ?', client_id]} }
+        [ 'beneficiaires.client_id IN (?)', client_ids]} }
   end
 
   def to_param

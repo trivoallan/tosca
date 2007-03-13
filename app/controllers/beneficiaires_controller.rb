@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class BeneficiairesController < ApplicationController
+  helper :filters
 
   def index
     list and render :action => 'list'

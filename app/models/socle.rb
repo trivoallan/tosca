@@ -9,10 +9,10 @@ class Socle < ActiveRecord::Base
   has_and_belongs_to_many :clients
 
 
-  def self.set_scope(client_id)
+  def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions => 
-        [ 'clients.id = ?', client_id ],
-        :include => [:clients]} }
+        [ 'clients_socles.client_id IN (?)', client_ids ],
+        :joins => 'INNER JOIN clients_socles ON clients_socles.socle_id=socles.id'} }
   end
 
 

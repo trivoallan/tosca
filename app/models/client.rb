@@ -18,9 +18,9 @@ class Client < ActiveRecord::Base
 
 
   # don't use this function outside of an around_filter
-  def self.set_scope(client_id)
+  def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions => 
-        [ 'clients.id = ?', client_id ]} }
+        [ 'clients.id IN (?)', client_ids ]} }
   end
 
   # TODO : c'est pas DRY

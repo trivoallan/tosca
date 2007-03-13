@@ -19,12 +19,7 @@ class Beneficiaire < ActiveRecord::Base
 
   def contrat_ids
     @cache ||=  Contrat.find(:all, :select => 'id', 
-                             :conditions => ['client_id=?', 
-                                             self.client_id]).collect{|c| c.id}
-  end
-
-  def scope_filter
-    super scope_filter
+      :conditions => ['client_id=?', self.client_id]).collect{|c| c.id}
   end
 
   alias_method :to_s, :nom

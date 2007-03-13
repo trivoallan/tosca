@@ -13,12 +13,12 @@ require_dependency "login_system"
 require_dependency "acl_system" 
 
 class ApplicationController < ActionController::Base
-  around_filter :scope_beneficiaire
-  helper :filters
-
-  before_filter :set_headers
+  # accès protégé et standardisé
   before_filter :set_global_shortcuts
   before_filter :login_required, :except => [:refuse, :login]
+
+  # périmètre limité pour certains profils
+  around_filter :scope
 
   # systems d'authentification 
   include LoginSystem
@@ -27,15 +27,8 @@ class ApplicationController < ActionController::Base
   # layout standard
   layout "standard-layout"
 
-  # variables globales (beurk, mais tellement pratique ;))
-  def set_global_shortcuts
-    @ingenieur = session[:ingenieur]
-    @beneficiaire = session[:beneficiaire]
-  end
 
-
-protected
-   
+protected  
   # redirection à l'accueil
   # TODO : certain redirect_to_home devrait etre redirect_back
   # TODO : faire une route nommée, c'est pas railsien cette fonction
@@ -55,11 +48,17 @@ protected
     redirect_back_or_default :controller => 'bienvenue', :action => "list"
   end
 
-  def set_headers
+  # variables globales (beurk, mais tellement pratique ;))
+  # on en profite pour forcer une bonne en-tête.
+  # TODO : verifier si ce header est encore nécessaire.
+  def set_global_shortcuts
     headers['Content-Type'] =
       ( request.xhr? ? 'text/javascript; charset=utf-8' : 
         'text/html; charset=utf-8' )
+    @ingenieur = session[:ingenieur]
+    @beneficiaire = session[:beneficiaire]
   end
+
 
   # verifie :
   # - s'il il y a un id en paramètre 
@@ -78,7 +77,7 @@ protected
       flash.now[:warn] = WARN_NOID
       redirect_to(options) and return false
     end
-    scope_beneficiaire {
+    scope {
       object = ar.find(params[:id], :select => 'id') 
       if object = nil
         flash.now[:warn] = "Aucun(e) #{ar.to_s} ne correspond " + 
@@ -104,6 +103,21 @@ protected
     model.count(count_options)
   end
 
+  # Surcharge en attendant que ce soit fixé dans la branche officielle
+  def self.auto_complete_for(object, method, options = {})
+    define_method("auto_complete_for_#{object}_#{method}") do
+      column = object.to_s.pluralize + '.' + method.to_s
+      find_options = { 
+        :conditions => [ "LOWER(#{column}) LIKE ?", 
+                         '%' + params[object][method].downcase + '%' ], 
+        :order => "#{column} ASC",
+        :limit => 10 }.merge!(options)
+      
+      @items = object.to_s.camelize.constantize.find(:all, find_options)
+      
+      render :inline => "<%= auto_complete_result @items, '#{method}' %>"
+    end
+  end
 
 private
   # scope imposé sur toutes les vues, 
@@ -111,21 +125,24 @@ private
   ERROR_MESSAGE = 'Une erreur est survenue. Notre service a été prévenu' + 
     ' et dispose des informations nécessaire pour corriger.<br />' +
     'N\'hésitez pas à nous contacter si le problème persiste.' 
-  SCOPE_CLIENT = [ Client, Demande, Document ]
-  SCOPE_CONTRAT = [ Binaire, Contribution, Logiciel, Paquet, Socle ]
+  SCOPE_CLIENT = [ Client, Demande, Document, Socle ]
+  SCOPE_CONTRAT = [ Binaire, Contrat, Contribution, Logiciel, Paquet ]
   # Cette fonction intègre un scope "maison", beaucoup plus rapide.
   # Il reste néanmoins intégralement safe
   # Le but est d'éviter les 15 imbrications de yield, trop couteuses
-  def scope_beneficiaire
+  def scope
     beneficiaire = session[:beneficiaire]
     ingenieur = session[:ingenieur]
     if beneficiaire
-      client_id = beneficiaire.client_id
+      client_ids = [ beneficiaire.client_id ]
       contrat_ids = beneficiaire.contrat_ids 
-      SCOPE_CLIENT.each {|m| m.set_scope(client_id) }
     end
-    contrat_ids = ingenieur.contrat_ids if ingenieur
+    if ingenieur and not ingenieur.expert_ossa
+      contrat_ids = ingenieur.contrat_ids 
+      client_ids = ingenieur.client_ids
+    end
     SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) } if contrat_ids
+    SCOPE_CLIENT.each {|m| m.set_scope(client_ids) } if client_ids
     begin
       yield
     ensure

@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class LogicielsController < ApplicationController
-  helper :paquets, :demandes, :competences, :classifications
+  helper :filters, :paquets, :demandes, :competences, :classifications
   
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom

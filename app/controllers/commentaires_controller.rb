@@ -48,7 +48,9 @@ class CommentairesController < ApplicationController
     # on vérifie et on envoie le courrier
     if @commentaire.corps.size < 5
       @commentaire.errors.add_on_empty('corps') 
-      flash.now[:warn] = 'Votre commentaire est trop court, veuillez recommencer'
+      # Il ne faut _PAS_ de .now dans ce warn. Il est renvoyé au 
+      # contrôleur des demandes.
+      flash[:warn] = 'Votre commentaire est trop court, veuillez recommencer'
     elsif @commentaire.save and demande.update_attributes(params[:demande])
       flash[:notice] = 'Le commentaire a bien été ajouté.'
       unless @commentaire.prive
