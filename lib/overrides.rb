@@ -50,7 +50,6 @@ end
 
 module ActiveRecord
   class Base
-
     def self.remove_scope
       self.scoped_methods.pop
     end

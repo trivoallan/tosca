@@ -129,8 +129,8 @@ private
     begin
       yield
     ensure
-      SCOPE_CLIENT.each { |m| m.remove_scope } if client_id
-      SCOPE_CONTRAT.each { |m| m.remove_scope } if contrat_ids
+      # SCOPE_CLIENT.each { |m| m.remove_scope() } if client_id
+      # SCOPE_CONTRAT.each { |m| m.remove_scope() } if contrat_ids
     end
   rescue Exception => e
     raise e unless ENV['RAILS_ENV'] == 'production'

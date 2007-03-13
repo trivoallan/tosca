@@ -25,7 +25,7 @@ class Contribution < ActiveRecord::Base
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 
-        [ 'paquets.contrat_id = ?', contrat_ids ],
+        [ 'paquets.contrat_id IN (?)', contrat_ids ],
         :include => [:paquets]} }
   end
 

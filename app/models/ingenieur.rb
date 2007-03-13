@@ -32,7 +32,7 @@ class Ingenieur < ActiveRecord::Base
   end
 
   def contrat_ids
-    @cache ||=  self.contrat.find(:all, :select => 'id').collect {|c| c.id}
+    @cache ||=  self.contrats.find(:all, :select => 'id').collect {|c| c.id}
   end
 
 
