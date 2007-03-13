@@ -12,7 +12,7 @@ class IngenieursController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @competences = Competence.find_all
+    @competences = Competence.find(:all)
     @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 20,
     :include => [:identifiant,:competences]
   end
@@ -29,12 +29,11 @@ class IngenieursController < ApplicationController
 
   def create
     @ingenieur = Ingenieur.new(params[:ingenieur])
-    _form
     if @ingenieur.save
       flash[:notice] = 'Ingenieur was successfully created.'
       redirect_to :action => 'list'
     else
-      render :action => 'new'
+      _form and render :action => 'new'
     end
   end
 
@@ -45,32 +44,16 @@ class IngenieursController < ApplicationController
 
   def update
     @ingenieur = Ingenieur.find(params[:id])
-    _form
-    # TODO c'est moche, il faut faire mieux !
-    if @params[:competence_ids]
-      @ingenieur.competences = Competence.find(@params[:competence_ids]) 
-    else
-      @ingenieur.competences = []
-      @ingenieur.errors.add_on_empty('competences') 
-    end
-
-    if @params[:contrat_ids]
-      @ingenieur.contrats = Contrat.find(@params[:contrat_ids]) 
-    else
-      @ingenieur.contrats = []
-      @ingenieur.errors.add_on_empty('contrats') 
-    end
-
-    if @params[:contrat_ids] and @params[:competence_ids] and 
-        @ingenieur.update_attributes(params[:ingenieur]) 
+    if @ingenieur.update_attributes(params[:ingenieur]) 
       flash[:notice] = 'Ingenieur was successfully updated.'
       redirect_to :action => 'list'
     else
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
 
   end
 
+  # TODO : mettre dans le modèle, avec un before_destroy
   def destroy
     inge = Ingenieur.find(params[:id])
     identifiant = Identifiant.find(inge.identifiant_id)
@@ -81,8 +64,8 @@ class IngenieursController < ApplicationController
 
   private
   def _form
-    @identifiants = Identifiant.find_all
-    @competences = Competence.find_all
-    @contrats = Contrat.find_all
+    @identifiants = Identifiant.find(:all)
+    @competences = Competence.find(:all)
+    @contrats = Contrat.find(:all)
   end
 end

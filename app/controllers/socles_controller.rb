@@ -34,9 +34,9 @@ class SoclesController < ApplicationController
 
   def show
     @socle = Socle.find(params[:id], :include => [:machine])
-    @binaires = Binaire.find_all_by_socle_id(@socle.id, 
-                                             :order => 'binaires.nom,paquets.version',
-                                             :include => [:paquet])
+    options = { :order => 'binaires.nom,paquets.version',
+      :include => [:paquet] }
+    @binaires = Binaire.find_all_by_socle_id(@socle.id, options)
   end
 
   def new
@@ -47,7 +47,6 @@ class SoclesController < ApplicationController
   def create
     @socle = Socle.new(params[:socle])
     if @socle.save
-      @socle.clients = Client.find(@params[:client_ids]) if @params[:client_ids]
       @socle.save
       flash[:notice] = 'Socle was successfully created.'
       redirect_to :action => 'list'
@@ -64,7 +63,6 @@ class SoclesController < ApplicationController
 
   def update
     @socle = Socle.find(params[:id])
-    @socle.clients = Client.find(@params[:client_ids]) if @params[:client_ids]
     if @socle.update_attributes(params[:socle])
       flash[:notice] = 'Socle was successfully updated.'
       redirect_to :action => 'list'

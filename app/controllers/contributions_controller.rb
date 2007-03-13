@@ -31,14 +31,12 @@ class ContributionsController < ApplicationController
   def list
     flash[:notice]= flash[:notice]
     return redirect_to(:action => 'select') unless params[:id]
+    options = { :per_page => 10, :order => "created_on DESC" }
     unless params[:id] == 'all'
       @logiciel = Logiciel.find(params[:id])
-      conditions = ['logiciel_id = ?', @logiciel.id]
-    else
-      conditions = nil
+      options[:conditions] = ['logiciel_id = ?', @logiciel.id]
     end
-    @contribution_pages, @contributions = paginate :contributions, 
-    :per_page => 10, :order => "created_on DESC", :conditions => conditions
+    @contribution_pages, @contributions = paginate :contributions, options
   end
 
   def admin
@@ -84,24 +82,22 @@ class ContributionsController < ApplicationController
     @contribution = Contribution.new
     @urlreversement = Urlreversement.new
     # pour préciser le type dès la création
-    @contribution.logiciel_id = params[:id]
+    @contribution.logiciel_id = params[:id] if params[:id]
     _form
   end
 
   def create
     @contribution = Contribution.new(params[:contribution])
+    @urlreversement = Urlreversement.new(params[:urlreversement])
     if @contribution.save
       flash[:notice] = 'La contribution suivante a bien été créee : ' + 
         '</br><i>'+@contribution.description+'</i>'
-      if params[:urlreversement]
-        urlreversement = Urlreversement.new(params[:urlreversement])
-        urlreversement.contribution = @contribution
-        urlreversement.save
-        flash[:notice] << '</br>L\'url a également été enregistrée.'
-      end
+      @urlreversement.contribution = @contribution
+      @urlreversement.save
+      flash[:notice] << '</br>L\'url a également été enregistrée.'
       redirect_to :action => 'list'
     else
-      new and render :action => 'new'
+      _form and render :action => 'new'
     end
   end
 
@@ -116,9 +112,6 @@ class ContributionsController < ApplicationController
 
   def update
     @contribution = Contribution.find(params[:id])
-    if @params[:demande_ids]
-      @contribution.demandes = Demande.find(@params[:demande_ids]) 
-    end
     if @contribution.update_attributes(params[:contribution])
       flash[:notice] = 'La contribution suivante a bien été mise à jour ' + 
         ': </br><i>'+@contribution.description+'</i>'
@@ -156,12 +149,12 @@ class ContributionsController < ApplicationController
 
 private
   def _form
-    @logiciels = Logiciel.find_all
+    @logiciels = Logiciel.find_select
     @paquets = @contribution.paquets || []
     @binaires = @contribution.binaires || []
-    @etatreversements = Etatreversement.find_all
-    @ingenieurs = Ingenieur.find_all
-    @typecontributions = Typecontribution.find_all
+    @etatreversements = Etatreversement.find_select
+    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @typecontributions = Typecontribution.find_select
   end
 
   def _panel

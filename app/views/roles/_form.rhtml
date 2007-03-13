@@ -2,15 +2,15 @@
 
 <!--[form:role]-->
 
-<p><label for="role_name">Name</label><br/>
+<p><label for="role_name">Nom</label><br/>
 <%= text_field 'role', 'nom'  %></p>
 
-<p><label for="role_info">Info</label><br/>
+<p><label for="role_info">Description courte</label><br/>
 <%= text_field 'role', 'info'  %></p>
 
 
 <p><label for="role_permission">Permissions</label><br/>
-<%= hbtm_check_box(@role.permissions, @permissions, 'permission_ids', :size => 4) %>
+<%= hbtm_check_box(@role.permissions, @permissions, 'role[permission_ids]', :size => 4) %>
 </p>
 
 <!--[eoform:role]-->

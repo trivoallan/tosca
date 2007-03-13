@@ -18,16 +18,16 @@ cette boite autocomplétée à la place de l'affreux tas de check box.
 <br />
 
 <p><label for="projet_beneficiaires">Client concerné</label><br/>
-<%= hbtm_check_box( @projet.beneficiaires, @beneficiaires, 'beneficiaire_ids', :size => 6) %>
+<%= hbtm_check_box( @projet.beneficiaires, @beneficiaires, 'projet[beneficiaire_ids]', :size => 6) %>
 </p>
 <% #TODO : Ajax avec autocomplétion => champs texte %>
 
 <p><label for="projets_ingenieurs">Ingénieurs concernés</label><br/>
-<%= hbtm_check_box( @projet.ingenieurs, @ingenieurs, 'ingenieur_ids', :size => 6) %>
+<%= hbtm_check_box( @projet.ingenieurs, @ingenieurs, 'projet[ingenieur_ids]', :size => 6) %>
 </p>
 
 <p><label for="projet_logiciels">Logiciels</label><br/>
-<%= hbtm_check_box( @projet.logiciels, @logiciels, 'logiciel_ids', :size => 6) %>
+<%= hbtm_check_box( @projet.logiciels, @logiciels, 'projet[logiciel_ids]', :size => 6) %>
 </p>
 
 

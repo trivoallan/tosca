@@ -101,7 +101,6 @@ class DemandesController < ApplicationController
 
   def create
     @demande = Demande.new(params[:demande])
-    @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.save
       flash[:notice] = 'La demande a bien été créée.'
       Notifier::deliver_demande_nouveau({:demande => @demande, 
@@ -109,7 +108,7 @@ class DemandesController < ApplicationController
                                           :controller => self}, flash)
       redirect_to :action => 'list'
     else
-      new
+      _form @beneficiaire
       render :action => 'new' 
     end
   end 
@@ -137,7 +136,7 @@ class DemandesController < ApplicationController
     severite = Severite.find(params[:demande][:severite_id]) 
     typedemande = Typedemande.find(params[:demande][:typedemande_id])
     return render_text('') unless paquets and severite and typedemande
-    selecteds = params[:paquet_ids]
+    selecteds = params[:demande][:paquet_ids]
 
     case paquets.size
      when 0
@@ -157,7 +156,7 @@ class DemandesController < ApplicationController
         output << "<tr><td>"
         #TODO : remplacer ce truc par un <%= check_box ... %>
         output << "<input type=\"checkbox\" id=\"#{p.id}\""
-        output << " name=\"paquet_ids[]\" value=\"#{p.id}\""
+        output << " name=\"demande[paquet_ids][]\" value=\"#{p.id}\""
         output << " checked=\"checked\"" if selecteds and selecteds.include? p.id.to_s
         output << "> : "
         output << "#{p.nom}-#{p.version}-#{p.release}</td>"
@@ -319,6 +318,7 @@ class DemandesController < ApplicationController
     redirect_to :action => 'comment', :id => @demande.id
   end
 
+  # TODO : trop lent et pas encore au point
   def deposer
     @demande = @demande || Demande.new(params[:demande])
     flash.now[:warn] = nil
@@ -352,9 +352,6 @@ class DemandesController < ApplicationController
     fill_with_first('socle') if @demande.socle_id == 0
     fill_with_first('logiciel') if @demande.logiciel_id == 0
     # return unless @demande.errors.empty?
-
-    # @demande.paquet_ids = params[:paquet_ids] if params[:paquet_ids]
-    # @demande.binaire_ids = params[:binaire_ids] if params[:binaire_ids]
 
     @params = params
     _form 

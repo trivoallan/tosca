@@ -84,18 +84,11 @@ class LogicielsController < ApplicationController
 
   def create
     @logiciel = Logiciel.new(params[:logiciel])
-    if @params[:competence_ids]
-      @logiciel.competences = Competence.find(@params[:competence_ids]) 
-    else
-      @logiciel.competences = []
-      @logiciel.errors.add_on_empty('competences') 
-      render :action => 'edit'
-      return 
-    end
     if @logiciel.save
       flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien été crée.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
@@ -107,14 +100,6 @@ class LogicielsController < ApplicationController
 
   def update
     @logiciel = Logiciel.find(params[:id])
-    if @params[:competence_ids]
-      @logiciel.competences = Competence.find(@params[:competence_ids]) 
-    else
-      @logiciel.competences = []
-      @logiciel.errors.add_on_empty('competences') 
-      _form
-      render :action => 'edit' and return
-    end
     if @logiciel.update_attributes(params[:logiciel])
       flash[:notice] = "Le logiciel #{@logiciel.nom} a bien été mis à jour."
       redirect_to :action => 'list'

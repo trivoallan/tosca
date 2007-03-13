@@ -30,15 +30,10 @@ class ContratsController < ApplicationController
   def create
     @contrat = Contrat.new(params[:contrat])
     if @contrat.save
-      @contrat.engagements = Engagement.find(@params[:engagement_ids]) if @params[:engagement_ids]
-      @contrat.ingenieurs = Ingenieur.find(@params[:ingenieur_ids]) if @params[:ingenieur_ids]
-      @contrat.save
-
       flash[:notice] = 'Contrat was successfully created.'
       redirect_to :action => 'list'
     else
-      _form
-      render :action => 'new'
+      _form and render :action => 'new'
     end
   end
 
@@ -49,15 +44,7 @@ class ContratsController < ApplicationController
 
   def update
     @contrat = Contrat.find(params[:id])
-    if @params[:engagement_ids]
-      @contrat.engagements = Engagement.find(@params[:engagement_ids]) 
-    else
-      @contrat.engagements = []
-      @contrat.errors.add_on_empty('engagements') 
-    end
-    @contrat.ingenieurs = Ingenieur.find(@params[:ingenieur_ids]) if @params[:ingenieur_ids]
-
-    if @params[:engagement_ids] and @contrat.update_attributes(params[:contrat])
+    if @contrat.update_attributes(params[:contrat])
       flash[:notice] = 'Contrat mis à jour correctement.'
       redirect_to :action => 'show', :id => @contrat
     else
@@ -72,7 +59,7 @@ class ContratsController < ApplicationController
 
 private
   def _form
-    @clients = Client.find_all
+    @clients = Client.find_select
     @informations = Engagement.find_all_by_typedemande_id(1, :order => 'severite_id')
     @anomalies = Engagement.find_all_by_typedemande_id(2, :order => 'severite_id')
     @evolutions = Engagement.find_all_by_typedemande_id(3, :order => 'severite_id')

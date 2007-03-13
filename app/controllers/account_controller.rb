@@ -71,10 +71,6 @@ class AccountController < ApplicationController
         end
       end
 
-      # pour update des roles accordéss
-
-      @identifiant.roles = Role.find(params[:role_ids]) if params[:role_ids]
-
       if @identifiant.update_attributes(newIdentifiant)
         #On a sauve le profil, on l'applique sur l'utilisateur courant
         set_sessions  @identifiant if session[:user] == @identifiant
@@ -94,12 +90,6 @@ class AccountController < ApplicationController
   #utilisé dans account/list
   def update
     @user = Identifiant.find(params[:id])
-    if params[:role_ids]
-      @user.roles = Role.find(params[:role_ids])
-    else
-      @user.roles = []
-      @user.errors.add_on_empty('roles')
-    end
     flash[:notice] = "L'utilisateur a bien été mis à jour."
     redirect_to :action => 'list'
   end
@@ -113,14 +103,6 @@ class AccountController < ApplicationController
     case request.method
     when :post
       @identifiant = Identifiant.new(params['identifiant'])
-      if @params[:role_ids]
-        @identifiant.roles = Role.find(params[:role_ids])
-      else
-        @identifiant.roles = []
-        @identifiant.errors.add_on_empty('roles')
-        render :action => 'signup' and return
-      end
-
       if @identifiant.save
         client = Client.find(params[:client][:id])
         flash[:notice] = "Enregistrement réussi, n'oubliez pas de vérifier son profil<br />"
@@ -167,12 +149,13 @@ class AccountController < ApplicationController
       if params[:identifiant].nil? or params[:identifiant][:client].nil? 
         flash.now[:warn] = 'Vous n\'avez pas spécifié de client'
       end
-      if params[:role_ids].nil?
+      if params[:identifiant][:role_ids].nil?
         flash.now[:warn] = 'Vous devez spécifier un rôle'
       end
 
       return unless flash.now[:warn] == ''
       flash[:notice] = ''
+      roles = Role.find(params(:identifiant][:role_ids])
 
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"), 
                       { :col_sep => ";", :headers => true }) do |row|
@@ -188,7 +171,7 @@ class AccountController < ApplicationController
            i.informations = row['Informations'].to_s
            i.client = params[:identifiant][:client]
         end
-        identifiant.roles = Role.find(params[:role_ids])
+        identifiant.roles = roles
         if identifiant.save
           client = Client.find(params[:client][:id])
           flash[:notice] += "L'utilisateur #{row['Nom Complet']} a bien été créé.<br/>"
@@ -249,14 +232,14 @@ class AccountController < ApplicationController
 private
   # variables du formulaires
   def _form
-    @roles = Role.find(:all)
-    @clients = Client.find(:all)
+    @roles = Role.find_select
+    @clients = Client.find_select
   end
 
   # variables utilisé par le panneau de gauche
   def _panel 
     @count = {}
-    @clients = Client.find(:all)
+    @clients = Client.find_select
 
     @count[:identifiants] = Identifiant.count
     @count[:beneficiaires] = Beneficiaire.count

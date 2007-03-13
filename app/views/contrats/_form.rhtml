@@ -13,15 +13,15 @@
 
 
 <p><label for="contrat_engagements">Engagements</label><br/>
-<%= hbtm_check_box(@contrat.engagements, @informations, 'engagement_ids', :size => 3) %>
+<%= hbtm_check_box(@contrat.engagements, @informations, 'contrat[engagement_ids]', :size => 3) %>
 <hr />
-<%= hbtm_check_box(@contrat.engagements, @anomalies, 'engagement_ids', :size => 3) %>
+<%= hbtm_check_box(@contrat.engagements, @anomalies, 'contrat[engagement_ids]', :size => 3) %>
 <hr />
-<%= hbtm_check_box(@contrat.engagements, @evolutions, 'engagement_ids', :size => 3) %>
+<%= hbtm_check_box(@contrat.engagements, @evolutions, 'contrat[engagement_ids]', :size => 3) %>
 </p>
 
 <p><label for="contrat_ingenieurs">Ingenieurs</label><br/>
-<%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs, 'ingenieur_ids') %>
+<%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs, 'contrat[ingenieur_ids]') %>
 </p>
 <!--[eoform:contrat]-->
 

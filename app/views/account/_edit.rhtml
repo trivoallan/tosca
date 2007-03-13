@@ -22,7 +22,7 @@
     identifiant[:titre] = '<label for="identifiant_login">Choisissez un identifiant</label>'
     identifiant[:champ] = text_field("identifiant", "login", :size => 16)
     role[:titre] = '<label>Rôles</label>'
-    role[:champ] = hbtm_radio_button( @identifiant.roles, @roles, 'role_ids')
+    role[:champ] = hbtm_check_box(@identifiant.roles, @roles, 'identifiant[role_ids]') 
 
     case controller.action_name
     when 'signup', 'multiple_signup'
@@ -43,7 +43,7 @@
   end
 %>
 
-<%
+<% # TODO : faire un lstm_check_field et un lstm_newline
    fields = [
      [ type_client[:titre], type_client[:champ] ],
      [ ( type_client[:titre]  ? '<hr/>' : nil ), nil ]

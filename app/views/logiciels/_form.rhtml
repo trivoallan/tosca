@@ -17,16 +17,14 @@
 
 <p><label>License</label><br/>
   <%= select("logiciel", "license_id",
-	@licenses.collect{|l| [ l.nom, l.id]},
-	:selected => @logiciel.license_id.to_i) %></p>
+	@licenses.collect{|l| [ l.nom, l.id]}) %></p>
 
 <p><label for="logiciel_groupe">Groupe</label><br/>
  <%= select("logiciel", "groupe_id",
-	@groupes.collect{|l| [ l.nom, l.id]},
-	:selected => @logiciel.groupe_id.to_i) %></p>
+	@groupes.collect{|l| [ l.nom, l.id]}) %></p>
 
 <p><label>Competences</label><br/>
-<%= hbtm_check_box( @logiciel.competences, @competences, 'competence_ids') %></p>
+<%= hbtm_check_box( @logiciel.competences, @competences, 'logiciel[competence_ids]') %></p>
 
 
 <!--[eoform:logiciel]-->

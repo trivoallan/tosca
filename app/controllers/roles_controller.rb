@@ -13,8 +13,7 @@ class RolesController < ApplicationController
 
   def list
     @permissions = Permission.find(:all, :order => 'name', :include => [:roles])
-    @roles = Role.find_all
-    # @role_pages, @roles = paginate :roles, :per_page => 10
+    @roles = Role.find(:all)
   end
 
   def show
@@ -48,13 +47,6 @@ class RolesController < ApplicationController
       redirect_to :action => 'list'
     else
       render :action => 'edit'
-    end
-    # pour update des permissions liées
-    if @params[:permission_ids]
-      @role.permissions = Permission.find(@params[:permission_ids]) 
-    else
-      @role.permissions = []
-      # @role.errors.add_on_empty('permissions') 
     end
   end
 

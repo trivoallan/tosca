@@ -1,10 +1,6 @@
 <%= error_messages_for 'socle' %>
 
 <!--[form:socle]-->
-<p><label for="socle_client">Client</label><br/>
-<%= select('socle', 'client_id', 
-           @clients.collect{|c| [ c.nom, c.id]}) %></p>
-
 <p><label for="socle_nom">Nom</label><br/>
 <%= text_field 'socle', 'nom'  %></p>
 
@@ -12,7 +8,7 @@
 <%= @socle.machine.nom if @socle.machine %></p>
 
 <p><label for="socle_clients">Socles : </label><br />
-<%= hbtm_check_box(@socle.clients, @clients, 'client_ids', :size => 4) %>
+<%= hbtm_check_box(@socle.clients, @clients, 'socle[client_ids]', :size => 4) %>
 
 Note : <br />
 La machine du socle ne se paramètre que dans les paramètres des 
