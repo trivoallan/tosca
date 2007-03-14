@@ -21,7 +21,7 @@ class DocumentsController < ApplicationController
 
   def list
     flash[:notice]= flash[:notice]
-    return redirect_to :action => 'select' unless params[:id]
+    return redirect_to(:action => 'select') unless params[:id]
     unless params[:id] == 'all'
       @typedocument = Typedocument.find(params[:id])
       conditions = ["typedocument_id = ?", @typedocument.id]

@@ -43,7 +43,7 @@ class ReportingController < ApplicationController
   # on modifie ensuite pour les autres type de données : 
   @@couleurs_delais = ( [nil] << colors.values_at(7, 1) ).flatten
   @@couleurs_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
-  @@couleurs_types_degradees = ( [nil] << colors.indexes(2, 3, 6, 7, 8, 9) ).flatten
+  @@couleurs_types_degradees = ( [nil] << colors.values_at(2, 3, 6, 7, 8, 9) ).flatten
 
   def index
     configuration

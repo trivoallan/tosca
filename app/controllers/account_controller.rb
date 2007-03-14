@@ -94,11 +94,6 @@ class AccountController < ApplicationController
     if @user.update_attributes(params[:identifiant])
       flash[:notice] = "L'utilisateur a bien été mis à jour."
     end
-    if request.xhr?
-      logger.debug("on est en xml chose")
-    else
-      logger.debug("on n'y est pas")
-    end
     list
   end
 

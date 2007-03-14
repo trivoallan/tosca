@@ -54,11 +54,11 @@ class CommentairesController < ApplicationController
     elsif @commentaire.save and demande.update_attributes(params[:demande])
       flash[:notice] = 'Le commentaire a bien été ajouté.'
       unless @commentaire.prive
-        Notifier::deliver_demande_nouveau_commentaire\
-        ({:demande => demande, :commentaire => @commentaire, 
+        options = {:demande => demande, :commentaire => @commentaire, 
            :nom => user.nom, :controller => self,
            :request => @request, :statut_modifie => statut_modifie,
-           :statut => demande.statut.nom}, flash)
+           :statut => demande.statut.nom }
+        Notifier::deliver_demande_nouveau_commentaire(options, flash)
       end
     else
       flash.now[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
