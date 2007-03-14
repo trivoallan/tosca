@@ -12,8 +12,10 @@ class Identifiant < ActiveRecord::Base
 
   has_one :ingenieur
   has_one :beneficiaire
+
   # TODO : vérifier que l'email est valide, et 
   # rattraper l'erreur si l'envoi de mail échoue !!!
+  # TODO 2 : créer un ingénieur ossa ou presta selon le rôle choisi
   def create_person(client) 
     if self.client
       Beneficiaire.create(:identifiant => self, :client => client)
@@ -25,13 +27,12 @@ class Identifiant < ActiveRecord::Base
   SELECT_OPTIONS = { :include => [:identifiant], 
     :order => 'identifiants.nom ASC' }
 
-
   def self.authenticate(login, pass, crypt)
     Identifiant.with_exclusive_scope() do
       if crypt == 'false'
-        Identifiant.find(:first, :conditions => ["login = ? AND password = ?", login, sha1(pass)])
+        Identifiant.find(:first, :conditions => ['login = ? AND password = ?', login, sha1(pass)])
       else
-        Identifiant.find(:first, :conditions => ["login = ? AND password = ?", login, pass])
+        Identifiant.find(:first, :conditions => ['login = ? AND password = ?', login, pass])
       end
     end
   end

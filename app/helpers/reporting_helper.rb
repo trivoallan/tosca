@@ -148,11 +148,13 @@ module ReportingHelper
       out << '<tr>'
       color = colors[index]
       # un <td> quoiqu'il se passe
-      out << "<td bgcolor=\"#{color}\"><img src=\"/images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\">&nbsp;</td>"
+      # TODO : passer ça dans les images helpers
+      # eventuellement avec un hashé sur les couleurs
+      out << "<td bgcolor=\"#{color}\"><img src=\"../images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\">&nbsp;</td>"
       # un autre si twolines
       if twolines
         color = colors[index+1]
-        out << "<td bgcolor=\"#{color}\"><img src=\"/images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\">&nbsp;</td>"
+        out << "<td bgcolor=\"#{color}\"><img src=\"../images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\">&nbsp;</td>"
       end
       out << '</tr>'
     end

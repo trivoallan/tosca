@@ -3,13 +3,12 @@
 #####################################################
 class Client < ActiveRecord::Base
   belongs_to :photo
-  has_many :beneficiaires
+  has_many :beneficiaires, :dependent => :destroy
   has_many :interactions, :dependent => :destroy
   has_many :contrats, :dependent => :destroy, 
     :include => Contrat::INCLUDE, :order => Contrat::ORDER
   belongs_to :support
-  has_many :classifications
-  has_many :documents
+  has_many :documents, :dependent => :destroy
 
   has_and_belongs_to_many :socles
 
