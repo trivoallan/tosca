@@ -9,10 +9,6 @@ class AppelsController < ApplicationController
          :redirect_to => { :action => :list }
 
   before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-  def verifie
-    super(Appel)
-  end
-
 
   def list
     @appel_pages, @appels = paginate :appels, :per_page => 10
@@ -63,4 +59,9 @@ class AppelsController < ApplicationController
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
     @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
   end
+
+  def verifie
+    super(Appel)
+  end
+
 end

@@ -12,17 +12,14 @@ class AccountController < ApplicationController
 
   helper :filters, :ingenieurs, :beneficiaires, :roles
 
-  #before_filter :login_required, :except => [:login]
-  before_filter :verifie, :only => [ :modify, :update ]
+  # check pour échouer gracieusement
+  before_filter :verifie, :only => [ :show, :modify, :update, :destroy ]
 
   def index
     list
     render :action => 'list'
   end
  
-  def verifie
-    super(Identifiant)
-  end
 
   # NO_JAVASCRIPT = '<br/>Javascript n\'est pas activé sur votre navigateur'
   def login
@@ -48,6 +45,10 @@ class AccountController < ApplicationController
     else
       flash[:warn] = 'Vous n\'êtes pas autoriser à changer d\'identité'
     end
+    redirect_to_home
+    return
+  rescue ActiveRecord::RecordNotFound
+    flash[:warn] = 'Personne inexistante'
     redirect_to_home
   end
 
@@ -301,7 +302,6 @@ private
 
 
   # efface les paramètres de session
-  # TODO : session off ?
   def clear_sessions
     session[:user] = nil
     session[:beneficiaire] = nil
@@ -310,6 +310,11 @@ private
     @beneficiaire = nil
     @ingenieur = nil
   end
+
+  def verifie
+    super(Identifiant)
+  end
+
 
   # empeche les bénéficiaires de toucher à un autre compte qu'au leur
   def scope_beneficiaire
