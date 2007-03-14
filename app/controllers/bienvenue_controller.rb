@@ -23,6 +23,16 @@ class BienvenueController < ApplicationController
   end
 
   def plan
+    _plan
+  end
+
+  def selenium
+    _plan
+    render :layout => false
+  end
+
+  private
+  def _plan
     classes = Hash.new;
     require 'find'
 
