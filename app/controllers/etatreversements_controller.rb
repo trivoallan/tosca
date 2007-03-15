@@ -11,8 +11,11 @@ class EtatreversementsController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
   def list
-    @etatreversement_pages, @etatreversements = paginate :etatreversements, :per_page => 10
+    @etatreversement_pages, @etatreversements = 
+      paginate :etatreversements, :per_page => 10
   end
 
   def show
@@ -50,5 +53,10 @@ class EtatreversementsController < ApplicationController
   def destroy
     Etatreversement.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+
+  private 
+  def verifie
+    super(Etatreversement)
   end
 end

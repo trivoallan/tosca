@@ -11,6 +11,8 @@ class ChangelogsController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
   def list
     @changelog_pages, @changelogs = paginate :changelogs, :per_page => 10
   end
@@ -51,4 +53,10 @@ class ChangelogsController < ApplicationController
     Changelog.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+
+  private
+  def verifie
+    super(Changelog)
+  end
 end
+

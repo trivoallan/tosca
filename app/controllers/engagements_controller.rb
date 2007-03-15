@@ -11,6 +11,8 @@ class EngagementsController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
   def list
     @engagement_pages, @engagements = paginate :engagements, 
     :per_page => 20, :order => "typedemande_id, severite_id",
@@ -59,8 +61,12 @@ class EngagementsController < ApplicationController
 
   private
   def _form
-    @supports = Support.find_all
-    @typedemandes = Typedemande.find_all
-    @severites = Severite.find_all
+    @supports = Support.find(:all)
+    @typedemandes = Typedemande.find_select
+    @severites = Severite.find_select
+  end
+
+  def verifie
+    super(Engagement)
   end
 end

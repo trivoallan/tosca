@@ -26,11 +26,20 @@ class Logiciel < ActiveRecord::Base
         :include => [:paquets]} } if contrat_ids
   end
 
+  # TODO : l'une des deux est de trop. Normalement c'est 
+  # uniquement content_columns
   def self.list_columns 
     columns.reject { |c| c.primary || 
         c.name =~ /(_id|nom|resume|description|referent)$/ || 
           c.name == inheritance_column } 
   end
+
+  def self.content_columns
+    @content_columns ||= columns.reject { |c| 
+      c.primary || c.name =~ /(_id|_count|Description)$/  
+    }
+  end
+
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"

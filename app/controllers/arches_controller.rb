@@ -11,6 +11,8 @@ class ArchesController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
   def list
     @arch_pages, @arches = paginate :arches, :per_page => 10
   end
@@ -51,4 +53,10 @@ class ArchesController < ApplicationController
     Arch.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+
+  private
+  def verifie
+    super(Arch)
+  end
+  
 end

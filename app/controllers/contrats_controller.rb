@@ -13,6 +13,9 @@ class ContratsController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
+
   def list
     @contrat_pages, @contrats = paginate :contrats, :per_page => 10,
     :include => [:client]
@@ -63,7 +66,11 @@ private
     @informations = Engagement.find_all_by_typedemande_id(1, :order => 'severite_id')
     @anomalies = Engagement.find_all_by_typedemande_id(2, :order => 'severite_id')
     @evolutions = Engagement.find_all_by_typedemande_id(3, :order => 'severite_id')
-    @ingenieurs = Ingenieur.find_ossa(:all)
+    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+  end
+
+  def verifie
+    super(Contrat)
   end
 
 end

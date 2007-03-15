@@ -22,13 +22,6 @@ class LogicielsController < ApplicationController
     render :action => 'list'
   end
 
-  def content_columns
-    @content_columns ||= columns.reject { |c| 
-      c.primary || c.name =~ /(_id|_count|Description)$/  
-    }
-  end
-
-
   # ajaxified list
   def list
     options = { :per_page => 10, :order => 'logiciels.nom', 

@@ -5,13 +5,7 @@ class InteractionsController < ApplicationController
 
   helper :demandes 
 
-  before_filter :verifie, :only => 
-    [ :show, :edit, :update, :destroy ]
-
-  def verifie
-    super(Interaction)
-  end
-
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   def index
     list
@@ -97,6 +91,10 @@ class InteractionsController < ApplicationController
     # pour le formulaire partiel de reversement
     @contributions = Contribution.find_all
     @etatreversements = Etatreversement.find_all
+  end
+
+  def verifie
+    super(Interaction)
   end
 
 end

@@ -10,6 +10,7 @@ class TypedocumentsController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   def list
     @typedocument_pages, @typedocuments = paginate :typedocuments, :per_page => 10
@@ -50,5 +51,10 @@ class TypedocumentsController < ApplicationController
   def destroy
     Typedocument.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+
+  private
+  def verifie
+    super(Typedocument)
   end
 end

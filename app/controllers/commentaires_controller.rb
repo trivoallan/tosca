@@ -13,6 +13,8 @@ class CommentairesController < ApplicationController
   verify :method => :post, :only => [ :create, :update ],
          :redirect_to => { :action => :list }
 
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
   def list
     @commentaire_pages, @commentaires = paginate :commentaires, 
     :per_page => 10, :include => [:demande]
@@ -22,8 +24,12 @@ class CommentairesController < ApplicationController
     @commentaire = Commentaire.find(params[:id])
   end
 
-  #utilisé par la vue "show" de Demande pour en ajouter un
+  #utilisé par la vue "comment" de Demande pour en ajouter un
   def comment
+    unless params[:id] and params[:demande] and params[:commentaire]
+      return render_text('') 
+    end
+
     user = @session[:user]
     demande = Demande.find(params[:id])
 
@@ -39,10 +45,13 @@ class CommentairesController < ApplicationController
 
     # public si on modifie le statut
     params[:commentaire][:prive]=false if statut_modifie
-    # avertir ??  'Le statut a été modifié : le commentaire est <b>public</b>' if statut_modifie
+    # TODO : avertir ??  
+    # 'Le statut a été modifié : le commentaire est <b>public</b>' 
     @commentaire = Commentaire.new(params[:commentaire])
     @commentaire.demande_id = demande.id 
-    @commentaire.piecejointe = Piecejointe.new(params[:piecejointe]) if params[:piecejointe][:file] != ''
+    if params[:piecejointe][:file] != ''
+      @commentaire.piecejointe = Piecejointe.new(params[:piecejointe]) 
+    end
     @commentaire.identifiant_id = user.id
 
     # on vérifie et on envoie le courrier
@@ -61,14 +70,16 @@ class CommentairesController < ApplicationController
         Notifier::deliver_demande_nouveau_commentaire(options, flash)
       end
     else
-      flash.now[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
+      flash[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
     end
 
-    options = { :action => 'comment', :controller => 'demandes', :id => demande }
+    options = { :action => 'comment', :controller => 
+      'demandes', :id => demande }
     redirect_to(url_for(options))
   end
 
   def changer_etat
+    return render_text('') unless params[:id]
     @commentaire = Commentaire.find(params[:id])
     # toggle inverse un statut booleen
     if @commentaire.toggle!(:prive)
@@ -76,7 +87,8 @@ class CommentairesController < ApplicationController
     else
       flash.now[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas été modifié"'
     end
-    redirect_to :controller => 'demandes', :action => 'comment', :id => @commentaire.demande_id
+    redirect_to :controller => 'demandes', :action => 
+      'comment', :id => @commentaire.demande_id
   end
 
   def new
@@ -121,8 +133,12 @@ class CommentairesController < ApplicationController
 
   private
   def _form
-    @demandes = Demande.find_all
-    @identifiants = Identifiant.find_all
-    @statuts = Statut.find_all
+    @demandes = Demande.find_select
+    @identifiants = Identifiant.find_select
+    @statuts = Statut.find_select
+  end
+
+  def verifie
+    super(Commentaire)
   end
 end

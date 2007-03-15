@@ -4,33 +4,23 @@
 class PaquetsController < ApplicationController
   helper :logiciels, :binaires
 
+  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
+  verify :method => :post, :only => [ :destroy, :create, :update ],
+         :redirect_to => { :action => :list }
   before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
-  def verifie
-    super(Paquet)
-  end
-
 
   def index
     list
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
+  # TODO : faire une interface à base de filtres ?
+  # ou  pas d'interfaces du tout.
   def list
     @filter = @params['filter']
     @order = @params['order']
     @search = @params['paquet']
     @action = 'list'
-#    case @order
-#      when /ASC$/; @order["ASC"] = "DESC"
-#      when /DESC$/; @order["DESC"] = "ASC"
-#      when /^a-z*$/; @order += " ASC"
-#      else; 
-#    end
     if @filter != nil
       @conditions = @filter.split(',')
       @conditions[0] += " = ?"
@@ -58,8 +48,6 @@ class PaquetsController < ApplicationController
     @changelogs = @paquet.changelogs
     # Fichier.find_all_by_paquet_id(params[:id], :limit => 1000)
   end
-
-
 
   def new
     @paquet = Paquet.new
@@ -102,14 +90,16 @@ class PaquetsController < ApplicationController
   private
   def _form
     @logiciels = Logiciel.find(:all, :order => 'nom')
-    @groupes = Groupe.find_all
-    @bouquets = Bouquet.find_all
-    @socles = Socle.find_all
-    @conteneurs = Conteneur.find_all
-    @distributeurs = Distributeur.find_all
-    @mainteneurs = Mainteneur.find_all
-    @fournisseurs = Fournisseur.find_all
-    @contrats = Contrat.find_all
+    @groupes = Groupe.find_select
+    @socles = Socle.find_select
+    @conteneurs = Conteneur.find_select
+    @distributeurs = Distributeur.find_select
+    @mainteneurs = Mainteneur.find_select
+    @fournisseurs = Fournisseur.find_select
+    @contrats = Contrat.find(:all)
   end
 
+  def verifie
+    super(Paquet)
+  end
 end

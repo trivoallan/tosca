@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DependancesController < ApplicationController
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
+
   def index
     list
     render :action => 'list'
@@ -50,5 +52,10 @@ class DependancesController < ApplicationController
   def destroy
     Dependance.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+
+  private
+  def verifie
+    super(Dependance)
   end
 end

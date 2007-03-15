@@ -298,15 +298,14 @@ class DemandesController < ApplicationController
   end
 
   def changer_ingenieur
-    redirect_to_comment unless params and params[:id] and params[:ingenieur_id]
+    return render_text('') unless params[:id] and params[:ingenieur_id]
     @demande = Demande.find(params[:id])
     @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
     @demande.save!
     if @demande.ingenieur
       flash[:notice] = "La demande a été assignée correctement" 
-      Notifier::deliver_demande_assigner({:demande => @demande, 
-                                           :controller => self}, 
-                                         flash)
+      options = {:demande => @demande, :controller => self}
+      Notifier::deliver_demande_assigner(options, flash)
     else
       flash[:notice] = "La demande n'est plus assignée"
     end
@@ -315,14 +314,30 @@ class DemandesController < ApplicationController
 
 
   def associer_contribution
-    return unless params[:id] and params[:contribution_id]
+    return render_text('') unless params[:id] and params[:contribution_id]
     @demande = Demande.find(params[:id])
     @demande.update_attributes!(:contribution_id => params[:contribution_id])
     flash[:notice] = "Une contribution a été liée"
     redirect_to :action => 'comment', :id => @demande.id
   end
 
+
+  private
+  def _form
+    if @ingenieur
+      @clients = Client.find(:all, :select => 'id, clients.nom')
+      @client_id = @demande.client.id 
+    end
+    conditions = [ 'binaires.socle_id = ? ', @demande.socle_id ]
+    options = { :conditions => conditions, :include => [:binaires], 
+      :order => 'paquets.nom DESC' }
+    @paquets = @demande.client.paquets.\
+      find_all_by_logiciel_id(@demande.logiciel_id, options)
+    @binaires = @paquets.collect{|p| p.binaires}.flatten
+  end
+
   # TODO : trop lent et pas encore au point
+  # mis en privé pour cette release, à corriger pour la suivante
   def deposer
     @demande = @demande || Demande.new(params[:demande])
     flash.now[:warn] = nil
@@ -365,20 +380,6 @@ class DemandesController < ApplicationController
     end
   end
 
-
-  private
-  def _form
-    if @ingenieur
-      @clients = Client.find(:all, :select => 'id, clients.nom')
-      @client_id = @demande.client.id 
-    end
-    conditions = [ 'binaires.socle_id = ? ', @demande.socle_id ]
-    options = { :conditions => conditions, :include => [:binaires], 
-      :order => 'paquets.nom DESC' }
-    @paquets = @demande.client.paquets.\
-      find_all_by_logiciel_id(@demande.logiciel_id, options)
-    @binaires = @paquets.collect{|p| p.binaires}.flatten
-  end
 
   # Remplit une @demande avec l'id de 'param', dispo via le client 
   def fill_with_first(param)

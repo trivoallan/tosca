@@ -10,6 +10,7 @@ class UrllogicielsController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   def list
     @urllogiciel_pages, @urllogiciels = paginate :urllogiciels, :per_page => 10,
@@ -56,10 +57,12 @@ class UrllogicielsController < ApplicationController
   end
 
 private
-
   def _form
-    @typeurls = Typeurl.find_all
-    @logiciels = Logiciel.find_all
+    @typeurls = Typeurl.find_select
+    @logiciels = Logiciel.find_select
   end
 
+  def verifie
+    super(Urllogiciel)
+  end
 end

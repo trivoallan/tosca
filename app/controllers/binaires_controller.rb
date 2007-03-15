@@ -6,11 +6,6 @@ class BinairesController < ApplicationController
 
   before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
-  def verifie
-    super(Binaire)
-  end
-
-
   def index
     list
     render :action => 'list'
@@ -74,4 +69,7 @@ class BinairesController < ApplicationController
     @socles = Socle.find_all
   end
 
+  def verifie
+    super(Binaire)
+  end
 end

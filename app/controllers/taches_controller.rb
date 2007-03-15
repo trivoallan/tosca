@@ -6,12 +6,8 @@ class TachesController < ApplicationController
 
   helper :ingenieurs, :projets
 
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
-  def verifie
-    super(Tache)
-  end
-
+  before_filter :verifie, :only => [ :show, :edit, :update, :destroy,
+    :move2top, :movehigher, :movelower, :move2bottom ]
 
   def auto_complete_for_tache_projet
     @projets = Projet.find(:all,
@@ -130,13 +126,15 @@ class TachesController < ApplicationController
   end
 
   def auto_complete_responder_for_prestas(value)
-    @prestas = Ingenieur.find_presta(:all, :include => [:identifiant],
-                                     :conditions => 
-                                       [ 'LOWER(identifiants.nom) LIKE ?',
-                                       '%' + value.downcase + '%' ], 
-                                     :order => 'identifiants.nom ASC',
-                                     :limit => 8)
+    options = { :include => [:identifiant], :conditions => 
+      [ 'LOWER(identifiants.nom) LIKE ?', '%' + value.downcase + '%' ], 
+      :order => 'identifiants.nom ASC', :limit => 8 }
+    @prestas = Ingenieur.find_presta(:all, options)
     render :partial => 'prestas'
+  end
+
+  def verifie
+    super(Tache)
   end
 
 end

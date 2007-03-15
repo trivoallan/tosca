@@ -13,19 +13,14 @@ class ContributionsController < ApplicationController
 
   before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
   
-  def verifie
-    super(Contribution)
-  end
-
   def index
     select and render :action => 'select'
   end
 
+  # TODO : c'est pas très rails tout ça (mais c'est moins lent)
   def select
-    _panel
-    # TODO c'est lent. Il faut un DISTINCT et repenser ce finder
-    logiciels = Contribution.find(:all, :order => 'reverse_le')
-    @logiciels = logiciels.collect{ |c| c.logiciel }.uniq
+    @logiciels = Logiciel.find_by_sql 'SELECT logiciels.* FROM logiciels ' + 
+      'WHERE logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)'
   end
 
   def list
@@ -143,10 +138,6 @@ class ContributionsController < ApplicationController
     render :partial => 'liste_paquets', :layout => false
   end
 
-  def to_s
-    nom
-  end
-
 private
   def _form
     @logiciels = Logiciel.find_select
@@ -167,5 +158,8 @@ private
       :logiciels => Contribution.count(count_logiciels) }
   end
 
+  def verifie
+    super(Contribution)
+  end
 end
 
