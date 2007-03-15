@@ -19,14 +19,20 @@
      <% # on prend maintenant chacune de ses actions  %>
      <% user = session[:user] %>
      <% c.public_instance_methods(false).sort.each do |action|
-         next if action =~ /^(index|logout|auto_complete_for)/ %>
+         next if action =~ /^(index|selenium|logout|auto_complete_for)/ %>
        <% # et on link sous réserve d'autorisation  %>
        <% short_url = cname + '/' + action %>
        <% if user.authorized?(short_url)%>
 <tr>
 	<td>open</td>
         <td>/lstm/<%=short_url%></td>
+        <td></td>
 </tr> 
+<tr>
+	<td>assertLstmTextNotPresent</td>
+	<td>Informez-nous de cette anomalie</td>
+	<td></td>
+</tr>
           <% end %>
      <% end %>
 
