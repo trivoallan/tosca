@@ -25,28 +25,28 @@ class FilesController < ApplicationController
     map = {:piecejointe => 'file', 
            :contribution => 'patch',
            :document => 'fichier',
-           :binaire => 'archive', 
-           :photo => 'image' }
+           :binaire => 'archive' }
 
     # TODO : get model name without hash
     model = { :piecejointe => Piecejointe, 
               :contribution => Contribution,
               :document => Document,
-              :binaire => Binaire, 
-              :photo => nil }
+              :binaire => Binaire }
     
     # building path
     root_path = "#{RAILS_ROOT}/files"
     root = [ root_path, file_type, map[file_type.intern] ] * '/'
     fullpath = [ root, params[:id], params[:filename] ] * '/'
 
-    # special scope if piecejointe 
     if session[:beneficiaire] and file_type == 'piecejointe'
       client_id = session[:beneficiaire].client_id
       Piecejointe.set_scope(client_id) 
     end
     # rescue unless item not found
     target = model[file_type.intern].find(params[:id])
+    if session[:beneficiaire] and file_type == 'piecejointe'
+      Piecejointe.remove_scope()
+    end
     send_file fullpath 
 
   rescue 

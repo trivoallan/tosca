@@ -123,7 +123,7 @@ private
   # scope imposé sur toutes les vues, 
   # pour limiter ce que peuvent voir nos clients
   ERROR_MESSAGE = 'Une erreur est survenue. Notre service a été prévenu' + 
-    ' et dispose des informations nécessaire pour corriger.<br />' +
+    ' et dispose des informations nécessaires pour corriger.<br />' +
     'N\'hésitez pas à nous contacter si le problème persiste.' 
   SCOPE_CLIENT = [ Client, Demande, Document, Socle ]
   SCOPE_CONTRAT = [ Binaire, Contrat, Contribution, Logiciel, Paquet ]
@@ -133,6 +133,7 @@ private
   def scope
     beneficiaire = session[:beneficiaire]
     ingenieur = session[:ingenieur]
+    client_ids, contrat_ids = nil, nil
     if beneficiaire
       client_ids = [ beneficiaire.client_id ]
       contrat_ids = beneficiaire.contrat_ids 
@@ -146,8 +147,8 @@ private
     begin
       yield
     ensure
-      # SCOPE_CLIENT.each { |m| m.remove_scope() } if client_id
-      # SCOPE_CONTRAT.each { |m| m.remove_scope() } if contrat_ids
+      SCOPE_CLIENT.each { |m| m.remove_scope() } if client_ids
+      SCOPE_CONTRAT.each { |m| m.remove_scope() } if contrat_ids
     end
   rescue Exception => e
     raise e unless ENV['RAILS_ENV'] == 'production'
