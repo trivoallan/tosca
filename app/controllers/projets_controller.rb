@@ -6,13 +6,6 @@ class ProjetsController < ApplicationController
 
   helper :taches
 
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
-  def verifie
-    super(Projet)
-  end
-
-
   def index
     list
     render :action => 'list'

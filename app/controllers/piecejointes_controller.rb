@@ -10,7 +10,6 @@ class PiecejointesController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   def list
     @piecejointe_pages, @piecejointes = paginate :piecejointes, :per_page => 10,
@@ -52,10 +51,5 @@ class PiecejointesController < ApplicationController
   def destroy
     Piecejointe.find(params[:id]).destroy
     redirect_to :action => 'list'
-  end
-
-  private
-  def verifie
-    super(Piecejointe)
   end
 end

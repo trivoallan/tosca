@@ -4,12 +4,6 @@
 class ClientsController < ApplicationController
   helper :demandes,:socles,:engagements
 
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
-  def verifie
-    super(Client)
-  end
-
   def index
     list
     render :action => 'list'
@@ -64,7 +58,6 @@ class ClientsController < ApplicationController
   end
 
   private
-
   def _form
     @photos = Photo.find(:all)
     @supports = Support.find_select

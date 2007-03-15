@@ -10,7 +10,6 @@ class PermissionsController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   def list
     @permission_pages, @permissions = paginate :permissions, :order => 'name', :per_page => 100
@@ -61,9 +60,4 @@ class PermissionsController < ApplicationController
   def _form
     @roles = Role.find(:all)
   end
-  
-  def verifie
-    super(Permission)
-  end
-  
 end

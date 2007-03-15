@@ -10,7 +10,6 @@ class SeveritesController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   def list
     @severite_pages, @severites = paginate :severites, :per_page => 10
@@ -51,10 +50,5 @@ class SeveritesController < ApplicationController
   def destroy
     Severite.find(params[:id]).destroy
     redirect_to :action => 'list'
-  end
-
-  private
-  def verifie
-    super(Severite)
   end
 end

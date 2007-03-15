@@ -1,11 +1,10 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
+# TODO : on a encore des interactions ????
+# TODO : le virer !
 class InteractionsController < ApplicationController
-
   helper :demandes 
-
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   def index
     list
@@ -87,14 +86,11 @@ class InteractionsController < ApplicationController
     @ingenieurs = Ingenieur.find_all
     @clients = Client.find_all
     @logiciels = Logiciel.find_all
-    @reversement = @interaction.reversement if @interaction and @interaction.reversement
+    if @interaction and @interaction.reversement
+      @reversement = @interaction.reversement 
+    end
     # pour le formulaire partiel de reversement
     @contributions = Contribution.find_all
     @etatreversements = Etatreversement.find_all
   end
-
-  def verifie
-    super(Interaction)
-  end
-
 end

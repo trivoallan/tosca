@@ -7,15 +7,9 @@ class LogicielsController < ApplicationController
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom
 
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-
-  def verifie
-    super(Logiciel)
-  end
 
   def index
     list

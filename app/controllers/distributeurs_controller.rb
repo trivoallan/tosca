@@ -2,8 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DistributeursController < ApplicationController
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
   def index
     list
     render :action => 'list'
@@ -52,10 +50,5 @@ class DistributeursController < ApplicationController
   def destroy
     Distributeur.find(params[:id]).destroy
     redirect_to :action => 'list'
-  end
-
-  private
-  def verifie
-    super(Distributeur)
   end
 end

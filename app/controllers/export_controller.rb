@@ -41,20 +41,20 @@ class ExportController < ApplicationController
   def demandes
     demandes = Demande.find(:all)
     stream_csv do |csv|
-      csv << ["id", 
-              "logiciel", 
-              "bénéficiaire", 
-              "client", 
-              "ingénieur", 
-              "sévérité", 
-              "reproductible", 
-              "version", 
-              "date de soumission", 
-              "plate-forme", 
-              "mis-à-jour", 
-              "résumé", 
-              "statut", 
-              "type" ]
+      csv << ['id', 
+              'logiciel', 
+              'bénéficiaire', 
+              'client', 
+              'ingénieur', 
+              'sévérité', 
+              'reproductible', 
+              'version', 
+              'date de soumission', 
+              'plate-forme', 
+              'mis-à-jour', 
+              'résumé', 
+              'statut', 
+              'type' ]
       demandes.each do |d|
         csv << [d.id, 
                 d.logiciel.nom, 
@@ -63,15 +63,15 @@ class ExportController < ApplicationController
                 (d.ingenieur.identifiant.nom if d.ingenieur), 
                 d.severite.nom, 
                 d.reproduit, 
-                "version?", 
+                'version?', 
                 d.created_on_formatted, 
-                "socle?", 
+                'socle?', 
                 d.updated_on_formatted, 
                 d.resume, 
                 d.statut.nom,              
                 d.typedemande.nom ]
       end
-      #csv << ["id", "type", "statut", "resume"]
+      #csv << ['id', 'type', 'statut', 'resume']
       #csv << [demande.id, demande.typedemande.nom, demande.statut.nom, demande.resume]
     end 
   end
@@ -81,12 +81,12 @@ class ExportController < ApplicationController
   def stream_csv
     prefix = ( @beneficiaire ? @beneficiaire.client.nom : 'OSSA' )
     suffix = Time.now.strftime('%d_%m_%Y')
-    filename = [ prefix, params[:action], suffix].join('_') + ".csv"
+    filename = [ prefix, params[:action], suffix].join('_') + '.csv'
 
      #this is required if you want this to work with IE        
      if request.env['HTTP_USER_AGENT'] =~ /msie/i
        headers['Pragma'] = 'public'
-       headers["Content-type"] = "text/plain" 
+       headers['Content-type'] = 'text/plain' 
        headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\"" 
        headers['Expires'] = "0" 

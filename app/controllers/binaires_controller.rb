@@ -4,8 +4,6 @@
 class BinairesController < ApplicationController
   helper :paquets
 
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
   def index
     list
     render :action => 'list'
@@ -67,9 +65,5 @@ class BinairesController < ApplicationController
     @paquets = Paquet.find(:all, Paquet::OPTIONS)
     @arches = Arch.find_all
     @socles = Socle.find_all
-  end
-
-  def verifie
-    super(Binaire)
   end
 end

@@ -296,12 +296,9 @@ private
   end
 
 
-  # efface les paramètres de session
+  # efface les paramètres de session et les raccourcis
   def clear_sessions
-    session[:user] = nil
-    session[:beneficiaire] = nil
-    session[:ingenieur] = nil
-    session[:logo_08000] = nil
+    reset_session
     @beneficiaire = nil
     @ingenieur = nil
   end

@@ -10,9 +10,6 @@ class ConteneursController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
   def list
     @conteneur_pages, @conteneurs = paginate :conteneurs, :per_page => 10
   end
@@ -52,10 +49,5 @@ class ConteneursController < ApplicationController
   def destroy
     Conteneur.find(params[:id]).destroy
     redirect_to :action => 'list'
-  end
-  
-  private
-  def verifie
-    super(Conteneur)
   end
 end

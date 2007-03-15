@@ -12,10 +12,6 @@ class ContratsController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
-
   def list
     @contrat_pages, @contrats = paginate :contrats, :per_page => 10,
     :include => [:client]
@@ -68,9 +64,4 @@ private
     @evolutions = Engagement.find_all_by_typedemande_id(3, :order => 'severite_id')
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
   end
-
-  def verifie
-    super(Contrat)
-  end
-
 end

@@ -6,9 +6,6 @@ class TachesController < ApplicationController
 
   helper :ingenieurs, :projets
 
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy,
-    :move2top, :movehigher, :movelower, :move2bottom ]
-
   def auto_complete_for_tache_projet
     @projets = Projet.find(:all,
                        :conditions => [ 'LOWER(resume) LIKE ?',
@@ -132,9 +129,4 @@ class TachesController < ApplicationController
     @prestas = Ingenieur.find_presta(:all, options)
     render :partial => 'prestas'
   end
-
-  def verifie
-    super(Tache)
-  end
-
 end

@@ -59,39 +59,6 @@ protected
     @beneficiaire = session[:beneficiaire]
   end
 
-
-  # verifie :
-  # - s'il il y a un id en paramètre 
-  # - si un ActiveRecord ayant cet id existe 
-  # options
-  # :controller en cas de redirection (bienvenue)
-  # :action en cas de redirection (list)
-  # TODO : trop de copier-coller 
-  # NOTODO : "options[:controller] = controller_name" par défaut
-  #    c'est idéal, mais les clients n'ont pas les droits sur tous les */list
-  #    on tombe alors sur un acces/refuse, dommage
-  # TODO : find a pretty solution !
-  WARN_NOID = 'Veuillez préciser l\'identifiant nécessaire à la consultation'
-  def verifie(ar, options = {:controller => 'bienvenue', :action => 'list'})
-    if !params[:id]
-      flash.now[:warn] = WARN_NOID
-      redirect_to(options) and return false
-    end
-    scope {
-      object = ar.find(params[:id], :select => 'id') 
-      if object = nil
-        flash.now[:warn] = "Aucun(e) #{ar.to_s} ne correspond " + 
-          "à l'identifiant #{params[:id]}."
-        redirect_to(options) and return false
-      end
-    }
-    true
-  rescue  ActiveRecord::RecordNotFound
-    flash.now[:warn] = "Aucun(e) #{ar.to_s} ne correspond " + 
-      "à l'identifiant #{params[:id]}."
-    redirect_to(options) and return false
-  end
-
   # overriding for escaping count of include (eager loading)
   def count_collection_for_pagination(model, options)
     count_options = { :joins => options[:joins],
@@ -122,9 +89,6 @@ protected
 private
   # scope imposé sur toutes les vues, 
   # pour limiter ce que peuvent voir nos clients
-  ERROR_MESSAGE = 'Une erreur est survenue. Notre service a été prévenu' + 
-    ' et dispose des informations nécessaires pour corriger.<br />' +
-    'N\'hésitez pas à nous contacter si le problème persiste.' 
   SCOPE_CLIENT = [ Client, Demande, Document, Socle ]
   SCOPE_CONTRAT = [ Binaire, Contrat, Contribution, Logiciel, Paquet ]
   # Cette fonction intègre un scope "maison", beaucoup plus rapide.
@@ -150,25 +114,40 @@ private
       SCOPE_CLIENT.each { |m| m.remove_scope() } if client_ids
       SCOPE_CONTRAT.each { |m| m.remove_scope() } if contrat_ids
     end
-  rescue Exception => e
-    raise e unless ENV['RAILS_ENV'] == 'production'
-    Notifier::deliver_error_message(e,
-                                    clean_backtrace(e),
-                                    session.instance_variable_get("@data"),
-                                    params,
-                                    request.env)
-    if request.xhr?
-      render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
+  end
+
+  ERROR_MESSAGE = 'Une erreur est survenue. Notre service a été prévenu' + 
+    ' et dispose des informations nécessaires pour corriger.<br />' +
+    'N\'hésitez pas à nous contacter si le problème persiste.' 
+  WARN_NOID = 'Veuillez préciser une adresse existante et valide. Nous ne ' + 
+    'considérons pas que c\'est une erreur. Si vous pensez le contraire, ' + 
+    'n\'hésitez pas à nous contacter.' 
+  def rescue_action_in_public(exception)
+    if exception.is_a? ActiveRecord::RecordNotFound
+      msg = WARN_NOID
     else
-      flash.now[:warn] = ERROR_MESSAGE
+      msg = ERROR_MESSAGE
+      if ENV['RAIL_ENV'] == 'production'
+        Notifier::deliver_error_message(exception, clean_backtrace(e),
+                                        session.instance_variable_get("@data"),
+                                        params, request.env)
+      end
+    end
+    if request.xhr?
+      render_text('<div class="information error">' + msg + '</div>')
+    else
+      flash[:warn] = msg
       redirect_to :action => 'list', :controller => 'bienvenue'
     end
+
   end
+  
 
   # met le scope client en session
   # ca permet de ne pas recharger les ids contrats 
   # à chaque fois
   # call it like this : scope_client(params['filters']['client_id'])
+  # TODO : virer cette horreur
   def scope_client(value)
     if value == '' 
       nil 

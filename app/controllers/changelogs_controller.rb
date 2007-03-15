@@ -10,9 +10,6 @@ class ChangelogsController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
   def list
     @changelog_pages, @changelogs = paginate :changelogs, :per_page => 10
   end
@@ -52,11 +49,6 @@ class ChangelogsController < ApplicationController
   def destroy
     Changelog.find(params[:id]).destroy
     redirect_to :action => 'list'
-  end
-
-  private
-  def verifie
-    super(Changelog)
   end
 end
 

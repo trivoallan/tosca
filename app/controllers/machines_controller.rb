@@ -3,12 +3,6 @@
 #####################################################
 class MachinesController < ApplicationController
   helper :socles
-
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
-  def verifie
-    super(Machine)
-  end
   
   def index
     list

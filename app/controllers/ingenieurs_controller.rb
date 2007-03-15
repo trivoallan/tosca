@@ -10,7 +10,6 @@ class IngenieursController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   def list
     @competences = Competence.find(:all)
@@ -70,7 +69,4 @@ class IngenieursController < ApplicationController
     @contrats = Contrat.find_select(Contrat::OPTIONS)
   end
 
-  def verifie
-    super(Ingenieur)
-  end
 end

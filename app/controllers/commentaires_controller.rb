@@ -12,9 +12,6 @@ class CommentairesController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :create, :update ],
          :redirect_to => { :action => :list }
-
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
-
   def list
     @commentaire_pages, @commentaires = paginate :commentaires, 
     :per_page => 10, :include => [:demande]
@@ -136,9 +133,5 @@ class CommentairesController < ApplicationController
     @demandes = Demande.find_select
     @identifiants = Identifiant.find_select
     @statuts = Statut.find_select
-  end
-
-  def verifie
-    super(Commentaire)
   end
 end

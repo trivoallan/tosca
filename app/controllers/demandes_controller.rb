@@ -5,23 +5,11 @@ class DemandesController < ApplicationController
   auto_complete_for :logiciel, :nom
   auto_complete_for :demande, :resume
 
-  before_filter :verifie, 
-  :only => [ :comment, :edit, :update, :destroy, :changer_statut ]
-
   helper :filters, :contributions, :logiciels
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-
-  # verifie :
-  # - s'il il y a un demande_id en paramètre (sinon :  retour à la liste)
-  # - si une demande ayant cet id existe (sinon : retour à la liste)
-  # - dans le cas d'un bénéficiaire, s'il est bien beneficiaire de 
-  # cette demande (sinon : retour à la liste)
-  def verifie
-    super(Demande, {:controller => 'demandes'})
-  end
 
   def index
     list

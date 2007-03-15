@@ -10,7 +10,6 @@ class UrlreversementsController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-  before_filter :verifie, :only => [ :show, :edit, :update, :destroy ]
 
   def list
     @urlreversement_pages, @urlreversements = paginate :urlreversements, 
@@ -63,9 +62,5 @@ private
     if params[:contribution_id]
       @urlreversement.contribution_id = params[:contribution_id].to_i 
     end
-  end
-
-  def verifie
-    super(Urlreversement)
   end
 end
