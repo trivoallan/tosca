@@ -57,6 +57,7 @@ class Contrat < ActiveRecord::Base
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
   def to_s
-    "#{client.nom} du #{ouverture_formatted} au #{cloture_formatted}"
+    self.id.to_s + ' - ' + client.nom
   end
+  alias_method :nom, :to_s
 end

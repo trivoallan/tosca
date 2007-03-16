@@ -1,4 +1,6 @@
 class AppelsController < ApplicationController
+  helper :filters
+
   def index
     list
     render :action => 'list'
@@ -9,7 +11,23 @@ class AppelsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @appel_pages, @appels = paginate :appels, :per_page => 10
+    # init
+    options = { :per_page => 15, :order => 'appels.debut', :include => 
+      [:beneficiaire,:ingenieur,:contrat] }
+    conditions = Appel.filters(params)
+
+    # query
+    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+    @appel_pages, @appels = paginate :appels, options
+    
+    # panel on the left side
+    if request.xhr? 
+      render :partial => 'calls_list', :layout => false
+    else
+      _panel
+      @partial_for_summary = 'calls_info'
+    end
+
   end
 
   def show
@@ -18,6 +36,7 @@ class AppelsController < ApplicationController
 
   def new
     @appel = Appel.new
+    @appel.ingenieur = @ingenieur 
     _form
   end
 
@@ -51,10 +70,41 @@ class AppelsController < ApplicationController
     redirect_to :action => 'list'
   end
 
+  def ajax_beneficiaires
+    return render_text('') unless request.xml_http_request? and params[:id]
+
+    # la magie de rails est cassé pour la 1.2.2, en mode production
+    # donc je dois le faire manuellement
+    # TODO : vérifier pour les versions > 1.2.2 en _production_ (!)
+    contrat = Contrat.find(params[:id])
+    @beneficiaires = contrat.client.beneficiaires.find_select(Identifiant::SELECT_OPTIONS)
+
+    render :partial => 'select_beneficiaires', :layout => false and return
+  rescue ActiveRecord::RecordNotFound
+    render_text '-'
+  end
+
+
   private
   # conventions
   def _form   
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
-    @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
+    options = { :conditions => [ 'contrats.astreinte=?', 1 ], 
+      :include => Contrat::INCLUDE, :order => 'clients.nom' }
+    @contrats = Contrat.find_select(options)
   end
+
+  # variables utilisé par le panneau de gauche
+  def _panel 
+    @count = {}
+    _form
+    @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
+
+    @count[:appels] = Appel.count
+    @count[:beneficiaires] = Appel.count('beneficiaire_id')
+    @count[:ingenieurs] = Appel.count('ingenieur_id')
+    @count[:duree_totale] = 0 # TODO 
+    @count[:demandes] = 0 # TODO 
+  end
+
 end

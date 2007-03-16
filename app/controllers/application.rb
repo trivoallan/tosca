@@ -157,7 +157,4 @@ private
       Contrat.find(:all, options).collect{|c| c.id}
     end
   end
-
-
-
 end

@@ -1,0 +1,41 @@
+<% options = { :update => 'content', :url => '../appels/list',
+  :before => "Element.show('spinner')",:success => "Element.hide('spinner')" } 
+%>
+
+<% form_remote_tag( options.dup.update(:html => { 
+    :id => 'filters', :name => 'filters'})) do %>
+
+<% # used for iteration in ajaxified list %>
+<%= hidden_field_tag 'page', '1' %>
+
+<div class="menu_title" onclick="Element.toggle('menu_action')">
+> Action</div>
+<ul class="menu" id="menu_action">
+ <li><%= link_to 'Ajouter un appel', :action => 'signup' %></li>
+ <li><%= link_to_export( :data => 'appels') %></li>
+</ul>
+
+<div class="menu_title" onclick="Element.toggle('menu_recherche')">
+> Recherche</div>
+<ul class="menu" id="menu_recherche">
+ <li><b>Ingénieur </b></li>
+ <li><%=select_filter(@ingenieurs, 'appels.ingenieur')%></li>
+ <li><b>Bénéficiaire </b></li>
+ <li><%=select_filter(@beneficiaires, 'appels.beneficiaire')%></li>
+ <li><b>Contrat </b></li>
+ <li><%=select_filter(@contrats, 'appels.contrat')%></li>
+</ul>
+
+<div class="menu_title" onclick="Element.toggle('menu_perimetre')">
+> Périmètre</div>
+<ul class="menu" id="menu_perimetre">
+ <li><b>Appels: </b><%=@count[:appels]%></li>
+ <li><b>Demandes: </b><%=@count[:demandes] %></li>
+ <li><b>Ingénieurs: </b><%=@count[:ingenieurs]%></li>
+ <li><b>Bénéficiaires: </b><%=@count[:beneficiaires]%></li>
+ <li><b>Durée totale: </b><%=@count[:duree_totale] %></li>
+</ul>
+
+<% end %>
+
+<%= observe_form 'filters', options %>

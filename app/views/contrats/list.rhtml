@@ -2,11 +2,12 @@
 
 <%= show_pages_links(@contrat_pages, 'un système de paquet') %>
 
-<% titres = ['Nom','Logiciels','Paquets','Demandes',
+<% titres = ['Nom','Astreinte','Logiciels','Paquets','Demandes',
   'Ingénieurs','Ouverture','=>','Fermeture']%>
 <%= show_table(@contrats, Contrat, titres) { |c|
   result = ''
   result << "<td>#{link_to_contrat(c)}</td>"
+  result << "<td><center>#{'X' if c.astreinte}</center></td>"
   result << "<td>#{c.logiciels.size}</td>"
   result << "<td>#{c.paquets.size}</td>"
   result << "<td>#{c.demandes.size}</td>"

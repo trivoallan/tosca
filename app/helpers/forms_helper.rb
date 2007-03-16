@@ -121,5 +121,34 @@ module FormsHelper
       text_area(model, field, options) ]
   end
 
+  # Used for hiding field which will be displaye by ajax_*
+  # call it like this : 
+  #   lstm_ajax_field('Bénéficiaire', :appel, :beneficiaires),
+  def lstm_ajax_field(label, model, field)
+    [ "<label for=\"#{model}_#{field}\">#{label}</label>", 
+      "<div id=\"#{field}\"></div>" ]
+  end
 
+  # put a select field in a lazy way
+  # call it like this : 
+  #  lstm_select_field('Contrat', :appel, :contrat, @contrats, :spinner => true)
+  # options : 
+  #  * spinner : put the spinner for ajax stuff
+  def lstm_select_field(label, model, field, collection, options = {})
+    result = [ "<label for=\"#{model}_#{field}\">#{label}</label>",
+               collection_select(model, field.to_s + '_id', collection, 
+                                 :id, :nom, PROMPT_SELECT)  ]
+    result.last << ' ' + image_spinner if options[:spinner]
+    result
+  end
+
+
+  def lstm_datetime_field(label, model, field, options={})
+    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
+      datetime_select(model, field) ]
+  end
+
+  def lstm_hline
+    [ '<hr/>', nil ]
+  end
 end

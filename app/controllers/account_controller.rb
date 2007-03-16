@@ -12,9 +12,6 @@ class AccountController < ApplicationController
 
   helper :filters, :ingenieurs, :beneficiaires, :roles
 
-  # check pour échouer gracieusement
-  before_filter :verifie, :only => [ :show, :modify, :update, :destroy ]
-
   def index
     list
     render :action => 'list'
@@ -282,8 +279,7 @@ private
           (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
           (session[:user].authorized?('demandes/list') ? "+ '&nbsp;' + search_demande," : ',' ) + 
          "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
-          (link_to 'Projets',:controller => 'projets', :action => 'list'),
-          (link_to 'Tâches',:controller => 'taches', :action => 'list'),
+          (link_to 'Astreintes',:controller => 'appels', :action => 'list'),
           (link_to 'Contributions',:controller => 'contributions', 
                     :action => '#{session[:beneficiaire] ?'list':'admin'}'),
           (link_to 'Répertoire',:controller => 'documents', :action => 'select'), 
@@ -301,10 +297,6 @@ private
     reset_session
     @beneficiaire = nil
     @ingenieur = nil
-  end
-
-  def verifie
-    super(Identifiant)
   end
 
 

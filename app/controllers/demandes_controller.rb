@@ -83,6 +83,8 @@ class DemandesController < ApplicationController
     @demande = Demande.new unless @demande
     _form @beneficiaire
 
+    # si on est ingénieur, elle est pour nous par défaut
+    @demande.ingenieur = @ingenieur
     # sans object par défaut 
     @demande.severite_id = 4
     # statut "prise en compte" si ingénieur, sinon : "enregistrée"

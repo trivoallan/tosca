@@ -1,14 +1,18 @@
 class Appel < ActiveRecord::Base
   belongs_to :ingenieur
   belongs_to :beneficiaire
-  has_and_belongs_to_many :demandes
+  belongs_to :demandes
   belongs_to :contrat
 
   validate do |record|
     if record.fin < record.debut
-      record.errors.add 'Le début de l\'appel doit être inférieure à sa fin' 
+      record.errors.add 'Le début de l\'appel doit être inférieure à sa fin. Il ' 
     end
   end
+
+  validates_presence_of :ingenieur
+  validates_presence_of :contrat
+  
 
 
   # date de reversement formattée
@@ -29,5 +33,12 @@ class Appel < ActiveRecord::Base
     fin - debut
   end
 
+  def self.filters(params)
+    conditions = []
+    params['filters'].each_pair { |key, value|
+      conditions << " #{key}=#{value} " unless value == ''
+    } if params['filters']
+    conditions
+  end
 
 end

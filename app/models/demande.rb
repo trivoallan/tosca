@@ -11,7 +11,7 @@ class Demande < ActiveRecord::Base
   has_and_belongs_to_many :paquets
   # TODO : à voir si c'est inutile. avec le socle, on a dejà la plateforme
   has_and_belongs_to_many :binaires
-  has_and_belongs_to_many :appels
+  has_many :appels
   has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
   belongs_to :contribution
   belongs_to :socle

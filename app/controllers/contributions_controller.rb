@@ -119,7 +119,7 @@ class ContributionsController < ApplicationController
   end
 
   def ajax_paquets
-    return redirect_to_home unless request.xml_http_request? and params[:id]
+    return render_text('') unless request.xml_http_request? and params[:id]
 
     # la magie de rails est cassé pour la 1.2.2, en mode production
     # donc je dois le faire manuellement

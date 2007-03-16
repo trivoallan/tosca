@@ -1,8 +1,18 @@
+<h1>Appel n°<%=@appel.id%></h1>
+
+<table class="show">
 <% for column in Appel.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @appel.send(column.name) %>
-</p>
+<tr><td><b><%= column.human_name %></b> </td>
+    <td><%=indent @appel.send(column.name) %></td></tr>
 <% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @appel %> |
-<%= link_to 'Back', :action => 'list' %>
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td><b>Début de l&#146;appel</b></td>
+    <td><%=h @appel.debut_formatted %></td></tr>
+<tr><td><b>Fin de l&#146;appel</b></td>
+    <td><%=h @appel.fin_formatted %></td></tr>
+
+</table>
+
+<%= link_to_edit_and_list(@appel.id) %>
+
