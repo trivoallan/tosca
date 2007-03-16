@@ -1,6 +1,6 @@
 class Appel < ActiveRecord::Base
   belongs_to :ingenieur
-  has_one :beneficiaire
+  belongs_to :beneficiaire
   has_and_belongs_to_many :demandes
   belongs_to :contrat
 

@@ -1,11 +1,10 @@
 class AddConstraints < ActiveRecord::Migration
   def self.up
-    options =  { :id => false, :options => 'ENGINE=MyISAM' }
+    options = {:id => false, :options => 'ENGINE=MyISAM DEFAULT CHARSET=utf8'}
     create_table :appels_demandes, options do |t|
       t.column :appel_id, :integer, :null => false
       t.column :demande_id, :integer, :null => false
     end
-
     add_index :appels_demandes, :appel_id
     add_index :appels_demandes, :demande_id
     
