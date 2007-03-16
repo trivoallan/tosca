@@ -35,7 +35,7 @@ class CommentairesController < ApplicationController
       statut_modifie = true if params[:demande][:statut_id] != ''
       params[:demande][:statut_id] = demande.statut_id unless statut_modifie
       # à la 'prise en compte' : assignation auto à l'ingénieur
-      if  params[:demande][:statut_id] == '2' and demande.ingenieur_id.nil?
+      if params[:demande][:statut_id] == '2' and demande.ingenieur_id.nil?
         demande.ingenieur_id = @ingenieur.id
       end
     end
@@ -130,7 +130,7 @@ class CommentairesController < ApplicationController
 
   private
   def _form
-    @demandes = Demande.find_select
+    @demandes = Demande.find(:all)
     @identifiants = Identifiant.find_select
     @statuts = Statut.find_select
   end
