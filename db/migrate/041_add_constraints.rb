@@ -3,7 +3,8 @@ class AddConstraints < ActiveRecord::Migration
     options = {:id => false, :options => 'ENGINE=MyISAM DEFAULT CHARSET=utf8'} 
 
     add_column :appels, :contrat_id, :integer, :null => false
-    add_column :appels, :demande_id, :integer, :null => true
+    add_column :appels, :demande_id, :integer, :null => false
+    add_column :appels, :duree_facturee, :integer, :null => false
 
     add_index :appels, :contrat_id
 
@@ -13,9 +14,9 @@ class AddConstraints < ActiveRecord::Migration
   end
 
   def self.down
+    drop_table :appels_demandes
     remove_column :contrats, :astreinte
     remove_column :supports, :duree_intervention
     remove_column :appels, :contrat_id
-    remove_column :appels, :demande_id
   end
 end
