@@ -10,6 +10,5 @@ module ExportHelper
     link_to "Exporter les #{cname}", :controller => 'export', :action => cname
   end
 
-
 end
 

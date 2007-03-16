@@ -1,7 +1,7 @@
 class Appel < ActiveRecord::Base
   belongs_to :ingenieur
   belongs_to :beneficiaire
-  belongs_to :demandes
+  belongs_to :demande
   belongs_to :contrat
 
   validate do |record|

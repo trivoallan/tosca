@@ -53,7 +53,12 @@ class DemandesController < ApplicationController
     params['filters'].each_pair { |key, value|
       conditions << " #{key}=#{value} " unless value == '' 
     } if params['filters']
-    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+
+
+    # query. Le flash est utilisé pour un export des données visionnées
+    unless conditions.empty?
+      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
+    end
 
 
     escope = {}

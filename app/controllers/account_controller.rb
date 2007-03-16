@@ -212,8 +212,10 @@ class AccountController < ApplicationController
     } if params['filters']
 
 
-    # query
-    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+    # query. Le flash est utilisé pour un export des données visionnées
+    unless conditions.empty?
+      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
+    end
     @user_pages, @users = paginate :identifiants, options
     
     # panel on the left side

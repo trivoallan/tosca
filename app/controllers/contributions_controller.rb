@@ -58,7 +58,10 @@ class ContributionsController < ApplicationController
       conditions << " contributions.#{key} LIKE '%#{value}%'" if value != ''
     } if params['contribution']
 
-    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+    # query. Le flash est utilisé pour un export des données visionnées
+    unless conditions.empty?
+      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
+    end
 
     @contribution_pages, @contributions = paginate :contributions, options
     # panel on the left side

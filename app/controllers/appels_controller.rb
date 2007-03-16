@@ -1,5 +1,5 @@
 class AppelsController < ApplicationController
-  helper :filters
+  helper :filters, :export
 
   def index
     list
@@ -13,11 +13,17 @@ class AppelsController < ApplicationController
   def list
     # init
     options = { :per_page => 15, :order => 'appels.debut', :include => 
-      [:beneficiaire,:ingenieur,:contrat] }
-    conditions = Appel.filters(params)
+      [:beneficiaire,:ingenieur,:contrat,:demande] }
+    conditions = []
 
-    # query
-    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+    params['filters'].each_pair { |key, value|
+      conditions << " #{key}=#{value} " unless value == ''
+    } if params['filters']
+
+    # query. Le flash est utilisé pour un export des données visionnées
+    unless conditions.empty?
+      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
+    end
     @appel_pages, @appels = paginate :appels, options
     
     # panel on the left side

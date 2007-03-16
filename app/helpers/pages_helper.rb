@@ -65,14 +65,14 @@ module PagesHelper
   #        :url => '/demandes/update_list' %>
   # (!) you will need an image_spinner too (!)
   PAGE_FORM = 'document.forms[\'filters\']'
-  AJAX_OPTIONS = { :update => 'content',
+  AJAX_OPTIONS = {  :update => 'content',
     :with => "Form.serialize(#{PAGE_FORM})",
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" }
 
   def show_pages_links(pages, message, options = {} )
     result = '<table class="pages"><tr><td>'
-    result << "#{link_to_new(message, options)}</td>"
+    result << "#{link_to_new(message)}</td>"
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
     if options[:url] and session[:javascript]
       ajax_call = 
