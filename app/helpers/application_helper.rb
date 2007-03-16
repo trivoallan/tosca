@@ -92,16 +92,6 @@ module ApplicationHelper
 
 
 
-  # lien vers l'export de données
-  # options :
-  #  :data permet de spécifier un autre nom de controller (contexte par défaut)
-  def link_to_export(options={})
-    # TODO : tester si ExportController a une public_instance_methods du nom du controller
-    cname = ( options[:data] ? options[:data] : controller.controller_name)
-    link_to "Exporter les #{cname}", :controller => 'export', :action => cname
-  end
-
-
   ### TEXTE #####################################################################
 
   # indente du texte et échappe les caractères html

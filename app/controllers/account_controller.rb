@@ -10,7 +10,7 @@ class AccountController < ApplicationController
   auto_complete_for :identifiant, :nom
   auto_complete_for :identifiant, :email
 
-  helper :filters, :ingenieurs, :beneficiaires, :roles
+  helper :filters, :ingenieurs, :beneficiaires, :roles, :export
 
   def index
     list

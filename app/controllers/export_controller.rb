@@ -30,11 +30,15 @@ class ExportController < ApplicationController
               "(client)", 
               "roles" ]
       identifiants.each do |i|
-        csv << [i.id, i.login, i.nom, i.email, i.telephone,
+        csv << [ i.id, i.login, i.nom, i.email, i.telephone,
                 (i.beneficiaire.client.nom if i.beneficiaire), 
                 i.roles.join(', ') ].compact
       end
     end
+  end
+
+  def appels
+    gre
   end
 
   # return the contents of a demande in a table in CSV format

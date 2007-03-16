@@ -64,11 +64,12 @@ protected
     count_options = { :joins => options[:joins],
                       :select => options[:count] }
     if options[:conditions]
-      count_options.update( { :conditions => options[:conditions],
+      count_options.dup.update( { :conditions => options[:conditions],
                               :include => options[:include] } )
     end
     model.count(count_options)
   end
+
 
   # Surcharge en attendant que ce soit fixé dans la branche officielle
   def self.auto_complete_for(object, method, options = {})

@@ -13,6 +13,7 @@
 <ul class="menu" id="menu_action">
  <li><%= link_to 'Ajouter un appel', :action => 'signup' %></li>
  <li><%= link_to_export( :data => 'appels') %></li>
+ <li><%= link_to_remote_export( :data => 'appels') %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">

@@ -2,10 +2,10 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DemandesController < ApplicationController
-  auto_complete_for :logiciel, :nom
-  auto_complete_for :demande, :resume
+  # auto_complete_for :logiciel, :nom
+  # auto_complete_for :demande, :resume
 
-  helper :filters, :contributions, :logiciels
+  helper :filters, :contributions, :logiciels, :export
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
