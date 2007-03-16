@@ -6,6 +6,7 @@ class Beneficiaire < ActiveRecord::Base
   belongs_to :client, :counter_cache => true
 
   has_and_belongs_to_many :projets
+  has_many :appels
 
   INCLUDE = [:identifiant]
 

@@ -7,7 +7,7 @@ class Ingenieur < ActiveRecord::Base
   has_and_belongs_to_many :contrats
   has_and_belongs_to_many :projets
   has_many :demandes
-
+  has_many :appels
 
 
   INCLUDE = [:identifiant]

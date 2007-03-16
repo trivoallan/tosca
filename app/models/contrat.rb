@@ -11,7 +11,7 @@ class Contrat < ActiveRecord::Base
   has_many :logiciels, :through => :paquets, :group => 
     'id', :order => 'nom ASC'
   has_many :binaires, :through => :paquets
-
+  has_many :appels
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 

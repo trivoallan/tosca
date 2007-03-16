@@ -1,6 +1,8 @@
 class Appel < ActiveRecord::Base
   belongs_to :ingenieur
-  belongs_to :beneficiaire
+  has_one :beneficiaire
+  has_and_belongs_to_many :demandes
+  belongs_to :contrat
 
   validate do |record|
     if record.fin < record.debut
