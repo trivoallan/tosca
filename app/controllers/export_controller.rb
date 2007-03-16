@@ -63,6 +63,8 @@ class ExportController < ApplicationController
   # dirty hack to the end :)
   # c'est une copie de ceux du controlleur des demandes pour éviter les effets
   # de bord. Le premier n'influe pas sur le second
+  # quoique ... TODO : on se repete entre ici et la méthode list.
+  # TODO : c'est pas dry,  trouver une solution !
   SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' + 
     'logiciels.nom as logiciels_nom, id_benef.nom as beneficiaires_nom, ' +
     'typedemandes.nom as typedemandes_nom, clients.nom as clients_nom, ' +
