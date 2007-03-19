@@ -237,44 +237,19 @@ class Demande < ActiveRecord::Base
     (joursup - jourinf)
   end
 
-  # EN COURS DE MIGRATION vers lib/time.rb
-  #
-  # Reports the approximate distance in time between two Time objects or integers. 
-  # For example, if the distance is 47 minutes, it'll return
-  # "about 1 hour". See the source for the complete wording list.
-  #
-  # Integers are interpreted as seconds. So,
-  # <tt>distance_of_time_in_words(50)</tt> returns "less than a minute".
-  #
-  # Set <tt>include_seconds</tt> to true if you want more detailed approximations if distance < 1 minute
-  
-  # J'ai juste traduis les mots, la fonction est nickel :)
-  # Dupliqué avec le helper d'application
-  # TODO : être DRY, ca n'a rien à faire dans un model
+  # FONCTION vers lib/time.rb:time_in_french_words
   def distance_of_time_in_french_words(distance_in_seconds, support)
-    distance_in_minutes = ((distance_in_seconds.abs)/60).round
-    jo = (support.fermeture - support.ouverture) * 60
-    demi_jo_inf = (jo / 2) - 60
-    demi_jo_sup = (jo / 2) + 60
+    dayly_time = support.fermeture - support.ouverture # in hours
+    time_in_french_words(distance_in_seconds, dayly_time)
 
-    case distance_in_minutes
-    when 0 : " - "
-    when 0..1 then 
-      (distance_in_minutes==0) ? "moins d'une minute" : '1 minute'
-    when 2..45      then 
-      "#{distance_in_minutes} minutes"
-    when 46..90     then 
-      'environ 1 heure'
-    when 90..demi_jo_inf, (demi_jo_sup+1)..jo   then 
-      "environ #{(distance_in_minutes.to_f / 60.0).round} heures"
-    when (demi_jo_inf+1)..demi_jo_sup
-      "1 demi-jour ouvré"
-    when jo..(1.5*jo)
-       "1 jour ouvré"
-    # à partir de 1.5 inclus, le round fait 2 ou plus : pluriel
-    else                 
-      "#{(distance_in_minutes / jo).round} jours ouvrés"
-    end
+    #distance_in_minutes = ((distance_in_seconds.abs)/60).round
+    #jo = (support.fermeture - support.ouverture) * 60
+    #demi_jo_inf = (jo / 2) - 60
+    #demi_jo_sup = (jo / 2) + 60
+
+    #case distance_in_minutes
+    # [..]
+    #end
   end
 
 end

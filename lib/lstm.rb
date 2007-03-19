@@ -46,11 +46,9 @@
     when mo..(1.5*mo)
       out << "1 mois"
     else        
-      distance_in_month = (distance_in_minutes / mo).round  
-      remaining_days = (distance_in_minutes / jo - 30*distance_in_month).round
-      out << "#{distance_in_month} mois et #{remaining_days} jours"
+      out << "#{(distance_in_minutes / mo).round} mois"
     end
-    out << " ouvré" if (dayly_time!=24 and distance_in_minutes!=0)
+    out << " ouvré(s)" if (dayly_time!=24 and distance_in_minutes!=0)
     out
   end
 
