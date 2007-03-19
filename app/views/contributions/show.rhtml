@@ -3,20 +3,18 @@
 <div class="show">
 
 <h2>Autres informations</h2>
-
 <p>
-  <b>Description : </b><%= @contribution.description %><br/>
+  <b>Description technique: </b><%= @contribution.description %><br/>
   <% if @contribution.id_mantis %>
   <b>Bug mantis associé : </b><%= link_to_any_demande @contribution %><br/>
   <% end %>
   <b>Cloturé le : </b><%= @contribution.cloture_le_formatted %><br/>
   <b>Type de contribution : </b><%= @contribution.typecontribution %><br/>
 </p>
-<br/>
+<br />
 <%= show_liste(@contribution.demandes, 'demande') { |d|
     link_to_demande(d, :show_id => true, :icon_severite => true) 
-    } %><br />
-
+    } %>
 <%= show_liste(@contribution.urlreversements, 'url(s) de reversement') { |u| 
       out = "<a href=\"#{u.valeur}\">#{u.valeur}</a> "
       out << link_to(image_edit, :controller => 'urlreversements', 
@@ -24,14 +22,13 @@
     } %>
     <%= link_to "Ajouter un reversement", :controller => 'urlreversements', 
                 :action => "new", :contribution_id => @contribution.id %><br />
-<br/>
 <%= show_liste(@contribution.paquets, 'paquet(s) sur lesquels il a été appliqué') { |p| 
       link_to_paquet(p) 
-    } %><br />
-
+    } %>
 <%= show_liste(@contribution.binaires, 'binaire(s) résultant') { |b| 
       link_to_binaire(b) 
     } %>
+
 </div>
 <%= link_to_edit_and_list @contribution %>
 

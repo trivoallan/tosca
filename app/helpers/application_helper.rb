@@ -134,7 +134,7 @@ module ApplicationHelper
   #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
   def show_liste(elements, nom, options = {})
     size = elements.size
-    return "<u><b>Aucun(e) #{nom}</b></u>" unless size > 0
+    return "<u><b>Aucun(e) #{nom}</b></u><br />" unless size > 0
     result = ''
     unless options[:no_title]
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
@@ -145,7 +145,7 @@ module ApplicationHelper
     else
       result << '<ul>'
       elements.each { |e| result << '<li>' + yield(e).to_s + '</li>' }
-      result << '</ul>'
+      result << '</ul><br />'
     end
     result
   end
