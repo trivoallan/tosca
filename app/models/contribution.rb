@@ -70,7 +70,7 @@ class Contribution < ActiveRecord::Base
   # delai_to_s (texte)
   # en jours : sec2jours(delai)
   def delai
-    if reverse
+    if clos
       (cloture_le - reverse_le)
     else
       -1

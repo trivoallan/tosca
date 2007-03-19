@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Demande < ActiveRecord::Base
+
   belongs_to :typedemande
   belongs_to :logiciel
   belongs_to :severite
@@ -236,6 +237,8 @@ class Demande < ActiveRecord::Base
     (joursup - jourinf)
   end
 
+  # EN COURS DE MIGRATION vers lib/time.rb
+  #
   # Reports the approximate distance in time between two Time objects or integers. 
   # For example, if the distance is 47 minutes, it'll return
   # "about 1 hour". See the source for the complete wording list.

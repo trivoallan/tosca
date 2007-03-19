@@ -1,4 +1,4 @@
-#####################################################
+#time_in_frenzezzrzrzrzzirhoahni'"o####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
@@ -219,40 +219,9 @@ module ApplicationHelper
   end
 
 
-  # déplacé depuis app/models/demande.rb
-  # TODO : être DRY
-  def time_in_french_words(distance_in_seconds)
-    return '-' unless distance_in_seconds.is_a? Numeric and distance_in_seconds > 0
-    distance_in_minutes = ((distance_in_seconds.abs)/60).round
-    jo = 24.hours / 60 #/ 60
-    mo = 30 * jo
-    demi_jo_inf = (jo / 2) - 60
-    demi_jo_sup = (jo / 2) + 60
-
-    case distance_in_minutes
-    when 0
-      " - "
-    when 0..1
-      (distance_in_minutes==0) ? "moins d'une minute" : '1 minute'
-    when 2..45
-      "#{distance_in_minutes} minutes"
-    when 46..90
-      'environ 1 heure'
-    when 90..demi_jo_inf, (demi_jo_sup+1)..jo
-      "environ #{(distance_in_minutes.to_f / 60.0).round} heures"
-    when (demi_jo_inf+1)..demi_jo_sup
-      "1 demie journée "
-    when jo..(1.5*jo)
-       "1 jour ouvré"
-    # à partir de 1.5 inclus, le round fait 2 ou plus : pluriel
-    when (1.5*jo)..mo
-      "#{(distance_in_minutes / jo).round} jours"
-    when mo..(1.5*mo)
-       "1 mois ouvré"
-    else
-      "#{(distance_in_minutes / mo).round} mois"
-    end
-  end
+  # DEPRECATED : fonction du meme nom appelee depuis lib/lstm.rb
+  #def time_in_french_words(distance_in_seconds)
+  #end
 
   # conversion secondes en jours
   def sec2jour(seconds)

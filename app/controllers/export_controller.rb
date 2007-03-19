@@ -20,7 +20,8 @@ class ExportController < ApplicationController
       contributions.each do |c|
         csv << [ c.id, c.logiciel.nom, c.paquets.collect{|p| p.version}.join(','),
                  c.etatreversement.nom, c.description_fonctionnelle,
-                 c.reverse_le_formatted, c.cloture_le_formatted, c.delai
+                 c.reverse_le_formatted, (c.clos ? c.cloture_le_formatted : ''), 
+                 time_in_french_words(c.delai)
                ]
       end
     end
