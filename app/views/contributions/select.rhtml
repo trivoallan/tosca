@@ -6,5 +6,8 @@
 
 <%= link_to 'Déposer une contribution', :action => 'new' %><br/>
 <% #link_to_new('contribution') %><br/>
-<%= link_to 'Voir toutes les contributions', :action => 'list', :id => 'all'  %><br/>
+<%= link_to 'Voir toutes les contributions', 
+      :action => 'list', :id => 'all'  %><br/>
+<%= link_to 'Exporter les contributions', :controller => 'export', 
+      :action => 'contributions'  %><br/>
 <%= link_to "Accéder à l'interface d'administration", :action => 'admin'  %>
