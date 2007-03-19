@@ -16,17 +16,8 @@
 <p><label for="contribution_description_fonctionnelle">Description fonctionnelle</label><br/>
 <%= text_area 'contribution', 'description_fonctionnelle', :cols => 60, :rows => 10  %></p>
 
-<p><label for="contribution_etatreversement">Etat du reversement</label><br/>
-<%= collection_select(:contribution, :etatreversement_id, @etatreversements, :id, :nom) %></p>
-
-<p><label for="urlreversement_valeur">Ajouter une url de reversement</label><br/>
-<%= text_field 'urlreversement', 'valeur' %></p>
-
-<p><label for="contribution_reverse_le">Reversé le</label><br/>
-<%= datetime_select 'contribution', 'reverse_le'  %></p>
-
-<p><label for="contribution_cloture_le">Cloturé le</label><br/>
-<%= datetime_select 'contribution', 'cloture_le'  %></p>
+<p><label for="contribution_description">Description technique</label><br/>
+<%= text_area 'contribution', 'description', :cols => 60, :rows => 5  %></p>
 
 </td><td>
 
@@ -41,8 +32,17 @@
 <%= text_field 'contribution', 'id_mantis', :size => 3 %></p>
 <% end %>
 
-<p><label for="contribution_description">Description technique</label><br/>
-<%= text_area 'contribution', 'description', :cols => 60, :rows => 10  %></p>
+<p><label for="contribution_etatreversement">Etat du reversement</label><br/>
+<%= collection_select(:contribution, :etatreversement_id, @etatreversements, :id, :nom) %></p>
+
+<p><label for="urlreversement_valeur">Ajouter une url de reversement</label><br/>
+<%= text_field 'urlreversement', 'valeur' %></p>
+
+<p><label for="contribution_reverse_le">Reversé le</label><br/>
+<%= datetime_select 'contribution', 'reverse_le'  %></p>
+
+<p><label for="contribution_cloture_le">Cloturé le</label><br/>
+<%= datetime_select 'contribution', 'cloture_le'  %></p>
 
 <%= observe_field 'contribution_logiciel_id',  
          :update => 'paquets',
@@ -52,13 +52,17 @@
          :with => 'id'
          %>
 
+</td><td>
+<%= render :partial => './textile_help' %>
+
+</td></tr>
+<tr><td colspan="2">
+
 <div id="paquets">
   <%= render :partial => "liste_paquets" %>
 </div>
 
-</td><td>
-<%= render :partial => './textile_help' %>
-
-</td></tr></table>
+</td></tr>
+</table>
 <!--[eoform:contribution]-->
 
