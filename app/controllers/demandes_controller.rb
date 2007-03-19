@@ -174,7 +174,7 @@ class DemandesController < ApplicationController
 
   def edit
     @demande = Demande.find(params[:id])
-    common_form @beneficiaire
+    _form @beneficiaire
   end
 
   def comment
@@ -260,13 +260,12 @@ class DemandesController < ApplicationController
 
   def update
     @demande = Demande.find(params[:id])
-    common_form @beneficiaire
     @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.update_attributes(params[:demande])
       flash[:notice] = 'La demande a bien été mise à jour.'
       redirect_to :action => 'comment', :id => @demande
     else
-      _form
+      _form @beneficiaire
       render :action => 'edit'
     end
   end
@@ -317,24 +316,10 @@ class DemandesController < ApplicationController
   end
 
 
-  private
-  def _form
-    if @ingenieur
-      @clients = Client.find(:all, :select => 'id, clients.nom')
-      @client_id = @demande.client.id 
-    end
-    conditions = [ 'binaires.socle_id = ? ', @demande.socle_id ]
-    options = { :conditions => conditions, :include => [:binaires], 
-      :order => 'paquets.nom DESC' }
-    @paquets = @demande.client.paquets.\
-      find_all_by_logiciel_id(@demande.logiciel_id, options)
-    @binaires = @paquets.collect{|p| p.binaires}.flatten
-  end
-
   # TODO : trop lent et pas encore au point
   # mis en privé pour cette release, à corriger pour la suivante
   def deposer
-    @demande = @demande || Demande.new(params[:demande])
+    @demande ||= Demande.new(params[:demande])
     flash.now[:warn] = nil
 
     # On réinitialise tout le bouzin si on a changé le client
@@ -361,19 +346,34 @@ class DemandesController < ApplicationController
         @demande.beneficiaire = Beneficiaire.find(:first)
       end
     end
-    fill_with_first('typedemande') if @demande.typedemande_id == 0
-    fill_with_first('severite') if @demande.severite_id == 0
-    fill_with_first('socle') if @demande.socle_id == 0
-    fill_with_first('logiciel') if @demande.logiciel_id == 0
+#     fill_with_first('typedemande') if @demande.typedemande_id == 0
+#     fill_with_first('severite') if @demande.severite_id == 0
+#     fill_with_first('socle') if @demande.socle_id == 0
+#     fill_with_first('logiciel') if @demande.logiciel_id == 0
+    @binaires = []
     # return unless @demande.errors.empty?
-
     @params = params
-    _form 
+    _form nil
     # ajax, quand tu nous tiens ;)
     if request.xhr?
       render :partial => 'form_deposer', :layout => false
     end
   end
+
+
+  private
+#   def _form
+#     if @ingenieur
+#       @clients = Client.find(:all, :select => 'id, clients.nom')
+#       @client_id = @demande.client.id 
+#     end
+#     conditions = [ 'binaires.socle_id = ? ', @demande.socle_id ]
+#     options = { :conditions => conditions, :include => [:binaires], 
+#       :order => 'paquets.nom DESC' }
+#     @paquets = @demande.client.paquets.\
+#       find_all_by_logiciel_id(@demande.logiciel_id, options)
+#     @binaires = @paquets.collect{|p| p.binaires}.flatten
+#   end
 
 
   # Remplit une @demande avec l'id de 'param', dispo via le client 
@@ -404,8 +404,9 @@ class DemandesController < ApplicationController
       :contributions => Contribution.count }
   end
 
+  # todo à retravailler
   def _form(beneficiaire)
-    @ingenieurs = Ingenieur.find_all unless beneficiaire
+    @ingenieurs = Ingenieur.find(:all) unless beneficiaire
     if beneficiaire
       client = beneficiaire.client
       @logiciels = client.logiciels
@@ -413,10 +414,10 @@ class DemandesController < ApplicationController
       @clients = [ client ] 
     else
       @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
-      @typedemandes = Typedemande.find_all
-      @clients = Client.find_all
+      @typedemandes = Typedemande.find_select
+      @clients = Client.find(:all)
     end
-    @severites = Severite.find_all
+    @severites = Severite.find_select
   end
 
   def redirect_to_comment

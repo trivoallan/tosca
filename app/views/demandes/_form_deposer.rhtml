@@ -1,12 +1,11 @@
 <div id="demande">
-<%= error_messages_for 'demande' %>
+<%# = error_messages_for 'demande' %>
 
 <!--[form:demande]-->
 <% if @ingenieur %>
  <p><label>Client : </label>
- <% options = { :selected => @client_id } %>
  <%= select('fake', 'client_id', 
-	@clients.collect{|l| [ l.nom, l.id]}, options) %>
+	@clients.collect{|l| [ l.nom, l.id]}) %>
  </p>
 <% end %>
 

@@ -13,9 +13,9 @@ class Document < ActiveRecord::Base
   validates_length_of :titre, :within => 3..60
 
 
-  def self.set_scope(client_id)
+  def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions => 
-        [ 'documents.client_id = ?', client_id ] } }
+        [ 'documents.client_id IN (?)', client_ids ] } }
   end
 
   def updated_on_formatted

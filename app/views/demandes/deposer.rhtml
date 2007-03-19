@@ -6,11 +6,11 @@
 <p>&nbsp;</p>
 
 
-<%= start_form_tag ({:action => 'create'}, 
-                    {:multipart => true, :id => 'demande_form', :name => 'demande_form' })  %>
+<% form_tag ({:action => 'create'}, 
+                    {:multipart => true, :id => 'demande_form', :name => 'demande_form' }) do %>
   <%= render :partial => 'form_deposer' %><br />
   <%= submit_tag "Déposer cette demande" %>
-<%= end_form_tag %>
+<% end %>
 
 
 

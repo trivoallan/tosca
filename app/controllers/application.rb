@@ -59,18 +59,6 @@ protected
     @beneficiaire = session[:beneficiaire]
   end
 
-  # overriding for escaping count of include (eager loading)
-  def count_collection_for_pagination(model, options)
-    count_options = { :joins => options[:joins],
-                      :select => options[:count] }
-    if options[:conditions]
-      count_options.dup.update( { :conditions => options[:conditions],
-                              :include => options[:include] } )
-    end
-    model.count(count_options)
-  end
-
-
   # Surcharge en attendant que ce soit fixé dans la branche officielle
   def self.auto_complete_for(object, method, options = {})
     define_method("auto_complete_for_#{object}_#{method}") do
