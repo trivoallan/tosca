@@ -26,7 +26,7 @@ class ContributionsController < ApplicationController
     options = { :per_page => 10, :order => "created_on DESC" }
     unless params[:id] == 'all'
       @logiciel = Logiciel.find(params[:id])
-      options[:conditions] = ['logiciel_id = ?', @logiciel.id]
+      options[:conditions] = ['contributions.logiciel_id = ?', @logiciel.id]
     end
     @contribution_pages, @contributions = paginate :contributions, options
   end
