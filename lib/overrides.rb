@@ -40,12 +40,17 @@ class String
   #Fonctionne avec :
   #  "www.google.com"
   #  "http://www.google.com"
-  #  "toto tutu djdjdjd google.com"
+  #  "toto tutu djdjdjd google.com" > 
   #  "toto tutu djdjdjd http://truc.machin.com/touo/sdqsd?tutu=1&machin google.com/toto/ddk?tr=1&machin"
   #TODO: A améliorer
   def urlize
     (self.gsub(/(\s+|^)[a-zA-Z]([\w-]{0,61}\w)?\.[a-zA-Z]([\w-]{0,61}\w)?(\.[a-zA-Z]([\w-]{0,61}\w)?)?/) { |s| " http://" + s.strip }).strip
   end
+
+  def unbreak
+    self.gsub(/[ ]/, '&nbsp;')  
+  end
+
 end
 
 module ActiveRecord

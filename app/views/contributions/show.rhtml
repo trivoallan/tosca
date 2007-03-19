@@ -9,14 +9,14 @@
   <b>Bug mantis associé : </b><%= link_to_any_demande @contribution %><br/>
   <% end %>
   <b>Cloturé le : </b><%= @contribution.cloture_le_formatted %><br/>
-  <b>Type de contribution : </b><%= @contribution.typecontribution %><br/>
+  <b>Type de contribution : </b><%= @contribution.typecontribution.nom if @contribution.typecontribution %><br/>
 </p>
 <br />
 <%= show_liste(@contribution.demandes, 'demande') { |d|
     link_to_demande(d, :show_id => true, :icon_severite => true) 
     } %>
 <%= show_liste(@contribution.urlreversements, 'url(s) de reversement') { |u| 
-      out = "<a href=\"#{u.valeur}\">#{u.valeur}</a> "
+      out = "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
       out << link_to(image_edit, :controller => 'urlreversements', 
                                  :action => 'edit', :id => u.id)
     } %>

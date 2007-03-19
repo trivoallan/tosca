@@ -145,7 +145,7 @@ module ApplicationHelper
     else
       result << '<ul>'
       elements.each { |e| result << '<li>' + yield(e).to_s + '</li>' }
-      result << '</ul><br />'
+      result << '</ul>'
     end
     result
   end

@@ -25,7 +25,7 @@
 <%= file_column_field 'contribution', 'patch'  %></p>
 
 <p><label for="contribution_typecontribution">Type de contribution</label><br/>
-<%= collection_select(:contribution, :etatreversement_id, @typecontributions, :id, :nom) %></p>
+<%= collection_select(:contribution, :typecontribution_id, @typecontributions, :id, :nom) %></p>
 
 <% if @ingenieur %>
 <p><label for="contribution_id_mantis">Id Mantis</label><br/>
