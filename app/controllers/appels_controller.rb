@@ -1,5 +1,5 @@
 class AppelsController < ApplicationController
-  helper :filters, :export
+  helper :filters, :export, :demandes, :clients
 
   def index
     list

@@ -2,7 +2,7 @@ module AppelsHelper
 
   # call it like : link_to_call call
   def link_to_call(appel)
-    link_to appel.debut_formatted, :controller => 'appels', :action => 
+    link_to image_view, :controller => 'appels', :action => 
       'show', :id => appel.id
   end
 
