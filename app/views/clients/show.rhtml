@@ -31,9 +31,11 @@
     result << pluralize(s.binaires_count, 'binaire')
  } %>
 
+<div class="long_bloc_scroll">
 <%= show_liste(@client.demandes, 'demande') {|d|
   link_to_demande(d) } %>
-
-<%= link_to_edit_and_list @client %>
+</div>
 
 </td></tr></table>
+
+<%= link_to_edit_and_list @client %>
