@@ -281,7 +281,7 @@ private
           (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
           (session[:user].authorized?('demandes/list') ? "+ '&nbsp;' + search_demande," : ',' ) + 
          "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
-          (link_to 'Astreintes',:controller => 'appels', :action => 'list'),
+          (link_to 'Appels',:controller => 'appels', :action => 'list'),
           (link_to 'Contributions',:controller => 'contributions', 
                     :action => '#{session[:beneficiaire] ?'list':'admin'}'),
           (link_to 'Répertoire',:controller => 'documents', :action => 'select'), 

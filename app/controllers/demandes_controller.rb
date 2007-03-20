@@ -242,6 +242,17 @@ class DemandesController < ApplicationController
     render :partial => 'tab_history', :layout => false
   end
 
+
+  def ajax_appels
+    return render_text('') unless request.xhr? and params[:id]
+    @demande_id = params[:id] 
+    conditions = [ 'appels.demande_id = ? ', @demande_id ]
+    options = { :conditions => conditions, :order => 'appels.debut', 
+      :include => [:beneficiaire,:ingenieur,:contrat,:demande] }
+    @appels = Appel.find(:all, options)
+    render :partial => 'tab_appels', :layout => false
+  end
+
   def ajax_piecejointes
     return render_text('') unless request.xhr? and params[:id]
     @demande_id = params[:id] 
