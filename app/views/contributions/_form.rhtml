@@ -24,6 +24,9 @@
 <p><label for="contribution_patch">Patch</label><br/>
 <%= file_column_field 'contribution', 'patch'  %></p>
 
+<p><label for="contribution_version">Version du logiciel</label><br/>
+<%= text_field 'contribution', 'version', :size => 10 %></p>
+
 <p><label for="contribution_typecontribution">Type de contribution</label><br/>
 <%= collection_select(:contribution, :typecontribution_id, @typecontributions, :id, :nom) %></p>
 
