@@ -106,6 +106,12 @@ module ImagesHelper
     @@logo_ruby ||= image_tag('ruby.png', image_options(desc, '15x15'))
   end
 
+  @@logo_linagora = nil
+  def logo_linagora
+    desc = 'OSSA on rails'
+    @@logo_linagora ||= image_tag('logo_linagora.gif', image_options(desc, '176x44'))
+  end
+
   @@image_favicon = nil 
   def image_favicon
     @@image_favicon ||= image_path("favicon.ico")
