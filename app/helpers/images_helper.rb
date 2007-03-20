@@ -74,6 +74,13 @@ module ImagesHelper
     @@folder ||= image_tag('folder_icon.gif', image_options(desc, '16x16'))
   end
 
+  @@patch = nil
+  def image_patch(alt)
+    desc = 'Contribution'
+    desc << ' : ' + alt if alt and alt!=''
+    @@patch ||= image_tag('patch.gif', image_options(desc, '16x16'))
+  end
+
   # Security
 
   @@public = nil

@@ -17,8 +17,9 @@
   # tache = c.todo(max_jours)
   versions = c.paquets.collect{|p| p.version } * ', '
   result << "<td>#{link_to_logiciel c.logiciel if c.logiciel}"
-  result << " (#{versions})</td>" unless versions == ''
-  result << "<td>#{link_to_file c, 'patch'}</td>"
+  result << " (#{versions})" unless versions == ''
+  result << " </td>"
+  result << "<td>#{link_to_file c, 'patch', :image => true}</td>"
   result << "<td nowrap=\"nowrap\">#{link_to_any_demande c}</td>"
   # result << "<td " + (tache ? "style='background-color:orange'>#{tache}" : ">") +"</td>"
   result << "<td>#{c.etatreversement.nom.unbreak if c.etatreversement}</td>"

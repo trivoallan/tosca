@@ -115,10 +115,11 @@ module ApplicationHelper
   end
 
   # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
-  def link_to_file(record, file)
+  def link_to_file(record, file, options={})
     if record and record.send(file) and File.exist?(record.send(file))
       nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
-      link_to nom, url_for_file_column(record, file, :absolute => true)
+      show = (options[:image] ? image_patch(nom) : nom )
+      link_to show, url_for_file_column(record, file, :absolute => true)
     else
       '-'
     end
