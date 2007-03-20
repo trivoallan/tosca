@@ -18,7 +18,7 @@ class ExportController < ApplicationController
     stream_csv do |csv|
       csv << %w(id logiciel version etat description reversé cloturé délai)
       contributions.each do |c|
-        csv << [ c.id, c.logiciel.nom, c.paquets.collect{|p| p.version}.join(','),
+        csv << [ c.id, c.logiciel.nom, "'"+c.paquets.collect{|p| p.version}.join(','),
                  c.etatreversement.nom, c.description_fonctionnelle,
                  c.reverse_le_formatted, (c.clos ? c.cloture_le_formatted : ''), 
                  time_in_french_words(c.delai)
