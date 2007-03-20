@@ -38,6 +38,14 @@ class Contribution < ActiveRecord::Base
 
   #alias_method :nom, :to_s
 
+  def summary
+    out = 'Contribution'
+    out << " de #{typecontribution.nom.downcase}" if typecontribution 
+    out << " sur #{logiciel.nom}"
+    out << " (#{version})" if version
+    out << "."
+  end 
+
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
   end
