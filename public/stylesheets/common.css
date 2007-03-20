@@ -13,7 +13,7 @@ body {
   	font-family: verdana, arial, helvetica, sans-serif;
   	font-size:   12px;
   	line-height: 18px;
-	overflow: auto;
+	/* overflow: auto; */
 }
 
 /****************** structure/ layout ****************/
@@ -21,12 +21,9 @@ body {
 #header {
 	width: 100%;
 	background-color: #e2efe2;
-	/*margin-bottom: 20px;*/
         padding-top: 5px;
         padding-bottom: 0px;
 	border-bottom: 2px solid #cfc8cf;
-
-	/* overflow: auto; */
 }
 #content_table{
 	width: 100%;
@@ -34,16 +31,12 @@ body {
 	text-align: left;
 	height: 85%;
 }
-#summary {
-	/* see info_box.css  .summary */
-}
 #bodycontent { 
 	background-color: #eaeafa;
 	margin: 0; 
 	padding: 2em;
 	padding-bottom: 5em;
 	height: 84%;
-	/*overflow: auto;*/
 }
 #footer {
 	position: fixed;
@@ -54,8 +47,6 @@ body {
 	bottom: 0;
 	border-top: 2px solid #cfc8cf;
 	font-weight: bolder;
-
-	/* overflow: auto; */
 }
 .imgTete {
 	padding: 10px;
@@ -137,11 +128,7 @@ table.pages td {
 /* warning : 
  * applied to divs and tables
  */
-.login,
-.form,
-.show,
-.help,
-.info {
+.login, .form, .show, .help, .info {
 	border: 1px solid black;
 	background-color: #DFDFDF;
 	-moz-border-radius: 1em;
@@ -159,8 +146,6 @@ table.pages td {
 .show_table tr th {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
-
-
 
 /* personnlisation du select des severites : non actif */
 #select_severite {
@@ -234,29 +219,6 @@ table.pages td {
 	border: 0;
 }
 
-/**** non use
-.list table tr.even {
-	background-color: #fff ! important;
-}
-.list table tr.odd {
-	background-color: #f8f8f8 ! important;
-}
-.list table tr.editeven {
-	display: none;
-}
-.list table tr.editodd {
-	display: none;
-}
-.list table tr.editeven td {
-	background-color: #fff;
-	border-bottom: #8a8a8a 2px solid;
-}
-.list table tr.editodd td {
-	background-color: #f8f8f8;
-	border-bottom: #8a8a8a 2px solid;
-}
-******/
-
 .list table .rowgroupend {
 	border-bottom-width: 3px;
 }
@@ -316,19 +278,6 @@ table.pages td {
 }
 **********/
 
-/* largeur des balises inputs */
-.list input.text {
-	width: 250px;
-}
-.list dl dt {
-	float: left;
-	clear: left;
-	font-weight: bold;
-}
-.list dl dd {
-	float: left;
-	clear: right;
-}
 
 /***************** aide et informations ***************/
 
@@ -488,9 +437,6 @@ a.nobackground {
 }
 /* tableaux statistiques */
 .report_item, .report_sommaire {
-	/*border-style:solid; 
-	  border-width:1px; 
-	  border-color:grey;*/
 	width: 100%;
 	margin-top: 10px;
 }
@@ -512,6 +458,7 @@ a.nobackground {
 }
 
 
+/* TODO : faire une css reporting **/
 /** titres du reporting **/
 
 h1.title {
@@ -522,18 +469,14 @@ h1.title {
 
 h1.chapter {
 	font-size: 300%;
-	/*text-align: center;*/
 	padding: 5pt;
 	line-height: normal;
-	/*page-break-before: always;*/
 }
 
 h2.chapter {
 	font-size: 200%;
-	/*text-align: center;*/
 	padding: 5pt;
 	line-height: normal;
-	/*page-break-before: always;*/
 }
 
 h1.section {

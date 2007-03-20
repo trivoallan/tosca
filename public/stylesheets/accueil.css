@@ -35,3 +35,18 @@ dl.sommaire dd.action ul li {
 	margin-left: 1em;
 	padding-left: 0em;
 }
+
+
+/* largeur des balises inputs */
+.list input.text {
+	width: 250px;
+}
+.list dl dt {
+	float: left;
+	clear: left;
+	font-weight: bold;
+}
+.list dl dd {
+	float: left;
+	clear: right;
+}

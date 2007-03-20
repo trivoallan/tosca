@@ -1,24 +1,7 @@
-/*
-    This file is part of "TM2L-Portail".
-    "TM2L-Portail" is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+/* sans cette ligne, on n'imprime qu'une page */
+body { overflow: none; }
 
-    "TM2L-Portail" is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with TM2L-Portail; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
-
-    (C) Copyright 2005 Manuel Odesser <modesser@linagora.com>,
-                       Linagora <http://www.linagora.com/>
-*/
-
-#contenu { 
+#bodycontent { 
 	margin: 0; 
 	padding: 0; 
 	width: 100%;
@@ -29,17 +12,17 @@
 }
 /* call it by <p class="breakhere"/> */
 p.break_here {
-	page-break-before: always
+	page-break-before: always;
 }
 div.report_form {
 	display: none;
 	visibility: hidden;
 }
-div.haut {
+#header {
 	display: none;
 	visibility: hidden;
 }
-div.pied {
+#footer {
 	display: none;
 	visibility: hidden;
 }
