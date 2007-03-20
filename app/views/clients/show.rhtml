@@ -23,6 +23,8 @@
   result << show_table_engagements(c.engagements)
   result } %>
 
+<b>Rapport d'activité : </b><%= link_to('consulter', :controller => 'reporting', :action => 'general') %>
+
 </td><td>
 
 <%= show_liste(@client.socles, 'socle') {|s|
