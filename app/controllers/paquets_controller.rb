@@ -2,7 +2,10 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class PaquetsController < ApplicationController
-  helper :logiciels, :binaires
+  helper :filters, :logiciels, :binaires
+
+  # auto completion in 2 lines, yeah !
+  auto_complete_for :paquet, :nom
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
@@ -13,6 +16,7 @@ class PaquetsController < ApplicationController
     render :action => 'list'
   end
 
+  # TODO : filtres du panel à gauche
   # TODO : faire une interface à base de filtres ?
   # ou  pas d'interfaces du tout.
   def list
@@ -27,7 +31,7 @@ class PaquetsController < ApplicationController
 
     conditions = nil
     # @count = Paquet.count
-    if @search != nil
+    if @search != nil and @search[0] != nil
       conditions = [ " paquets.nom LIKE ?", "%" + @search[0] + "%" ]
     end
 
@@ -36,6 +40,15 @@ class PaquetsController < ApplicationController
     @paquet_pages, @paquets = paginate :paquets, :per_page => 25,
         :order => @order, :conditions => conditions, :include =>
         [:conteneur,:distributeur,:mainteneur,:logiciel]
+
+    # panel on the left side
+    if request.xhr? 
+      render :partial => 'paquets_list', :layout => false
+    else
+      _panel
+      @partial_for_summary = 'paquets_info'
+    end
+
   end
 
   def show
@@ -97,4 +110,11 @@ class PaquetsController < ApplicationController
     @fournisseurs = Fournisseur.find_select
     @contrats = Contrat.find(:all)
   end
+
+  def _panel 
+    @count = {}
+    @clients = Client.find_select
+    @count[:paquets] = Paquet.count
+  end
+
 end
