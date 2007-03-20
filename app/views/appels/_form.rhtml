@@ -2,6 +2,7 @@
 
 <!--[form:appel]-->
 <% fields = [
+   lstm_text_field('Demande', :appel, :demande_id),
    lstm_select_field('Contrat', :appel, :contrat, @contrats, :spinner => true),
    lstm_select_field('Ingénieur', :appel, :ingenieur, @ingenieurs),
    lstm_ajax_field('Bénéficiaire', :appel, :beneficiaires),

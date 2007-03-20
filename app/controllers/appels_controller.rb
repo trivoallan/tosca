@@ -49,6 +49,7 @@ class AppelsController < ApplicationController
   def new
     @appel = Appel.new
     @appel.ingenieur = @ingenieur 
+    @appel.demande_id = params[:id]
     _form
   end
 
