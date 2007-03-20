@@ -20,7 +20,7 @@
 <tr><td><b>Liens</b></td>
     <td><%= show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 
             "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
-            <a href=\"#{u.valeur}\">#{u.valeur}</a>" } %>
+            <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %>
         <%= link_to "Ajouter une url", :controller => 'urllogiciels', 
             :action => "new", :logiciel_id => @logiciel.id %></td></tr>
 
