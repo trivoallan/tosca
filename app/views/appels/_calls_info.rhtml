@@ -1,4 +1,5 @@
-<% options = { :update => 'content', :url => '../appels/list',
+<% url = '../appels/list' %>
+<% options = { :update => 'content', :url => url,
   :before => "Element.show('spinner')",:success => "Element.hide('spinner')" } 
 %>
 
@@ -30,37 +31,20 @@
 </ul>
 
 
+<% submit_function = remote_function(PagesHelper::AJAX_OPTIONS.dup.update(:url => url)) %>
 <div class="menu_title" onclick="Element.toggle('menu_periode')">
 > Période</div>
 <ul class="menu" id="menu_periode">
  <li><b>Du </b></li>
- <li><%= text_field :dates, :after %>
-<span class="calendarPicker"><img id="img_dates_after" 
-src="../images/cal.gif" alt="Pick a date" height="16" width="16"
-title="Date selector"
-style="cursor: pointer;"
-     onmouseover="this.style.border='1px solid red';"
-     onmouseout="this.style.border='none';"
-
-></span>
-</li>
+ <li><%= text_field :date, :after, :onchange => submit_function %>
+   <span class="calendarPicker"><%= image_date_from %></span>
+   <%= script_date('date_after', 'date_from') %></li>
  <li><b>Au </b></li>
- <li><%= text_field :dates, :before %></li>
- <li></li>
+ <li><%= text_field :date, :before, :onchange => submit_function %>
+   <span class="calendarPicker"><%= image_date_to %></span>
+   <%= script_date('date_before', 'date_to') %></li>
 </ul>
 
-
-<script type="text/javascript">
-    Calendar.setup({
-
-        firstDay       :    0,                  // first day of the week
-        inputField     :    "dates_after",     // id of the input field
-        button         :    "img_dates_after",  // trigger for the calendar (button ID)
-        align          :    "Tl",           // alignment (defaults to "Bl")
-        singleClick    :    true,
-             ifFormat       : "%e/%b/%y"      // our date only format
-         });
-</script>
 
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">

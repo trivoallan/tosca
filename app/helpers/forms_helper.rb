@@ -65,6 +65,15 @@ module FormsHelper
     content_tag :select, select, options 
   end
 
+  def select_empty(list, default, name, options = {})
+    title = [ '» ', '' ]
+    options[:name] = name
+    collected = list.collect{|e| [e.nom, e.id] }.unshift(title)
+    select = options_for_select(collected, default.to_i)
+    content_tag :select, select, options 
+  end
+
+
 
   # Fields est un tableau du formulaire, en 2 colonnes
   # mutualisé pour le formulaire et l'affichage

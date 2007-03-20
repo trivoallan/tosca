@@ -143,7 +143,9 @@
 
 .calendar tfoot .ttip { /* Tooltip (status bar) cell <TD> */
   padding: 2px;
-  background: url("../images/status-bg.gif") repeat-x 0 0; color: #000;
+  background: url("../images/status-bg.gif") repeat-x 0 0; 
+  color: #000;
+  border-top: 1px solid #797979;
 }
 
 .calendar tfoot .hilite { /* Hover style for buttons in footer */

@@ -20,6 +20,12 @@ class AppelsController < ApplicationController
       conditions << " #{key}=#{value} " unless value == ''
     } if params['filters']
 
+    if params['date'] 
+      before = params['date']['before'] 
+      after = params['date']['after'] 
+      conditions << "appels.debut > '#{after}'" if after != ''
+      conditions << "appels.fin < '#{before}'" if before != ''
+    end
     # query. Le flash est utilisé pour un export des données visionnées
     unless conditions.empty?
       flash[:conditions] = options[:conditions] = conditions.join(' AND ') 

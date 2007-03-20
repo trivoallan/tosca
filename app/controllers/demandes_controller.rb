@@ -406,14 +406,15 @@ class DemandesController < ApplicationController
 
   # todo à retravailler
   def _form(beneficiaire)
-    @ingenieurs = Ingenieur.find(:all) unless beneficiaire
+    @socles = Socle.find_select
     if beneficiaire
       client = beneficiaire.client
       @logiciels = client.logiciels
       @typedemandes = client.typedemandes
       @clients = [ client ] 
     else
-      @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
+      @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+      @logiciels = Logiciel.find_select
       @typedemandes = Typedemande.find_select
       @clients = Client.find(:all)
     end

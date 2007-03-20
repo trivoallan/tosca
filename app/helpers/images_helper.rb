@@ -136,4 +136,39 @@ module ImagesHelper
     @@hide ||= image_tag('navigation_hide.gif', image_options('hide'))
   end
 
+  @@date_from = nil
+  def image_date_from
+    @@date_from ||= image_tag('cal.gif', :size => '16x16', :title => 
+      'Sélecteur de date',  :alt => 'Choisissez une date', :id => 'date_from',
+      :onmouseover => "this.style.border='1px solid red';",
+      :onmouseout => "this.style.border='none';", :style => 'cursor: pointer;')
+  end
+
+  # used to generate js for calendar
+  # first args : id of input field
+  # second args : id of image calendar trigger
+  # call it : <%= script_date('date_before', 'date_to') %>
+  def script_date(*args)
+    '<script type="text/javascript">
+       Calendar.setup({
+        firstDay       :    0,            // first day of the week
+        inputField     :    "%s", // id of the input field
+        button         :    "%s",  // trigger for the calendar (button ID)
+        align          :    "Tl",         // alignment : Top left
+        singleClick    :    true,
+             ifFormat       : "%%Y-%%m-%%d"  // our date only format
+         });
+   </script>' % args
+  end
+
+
+  @@date_to = nil
+  def image_date_to
+    @@date_to ||= image_tag('cal.gif', :size => '16x16', :title => 
+      'Sélecteur de date',  :alt => 'Choisissez une date', :id => 'date_to',
+      :onmouseover => "this.style.border='1px solid red';",
+      :onmouseout => "this.style.border='none';", :style => 'cursor: pointer;')
+  end
+
+
 end
