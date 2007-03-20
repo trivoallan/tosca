@@ -1,5 +1,7 @@
 <h1><%= @client.nom %></h1>
 
+<table><tr valign="top"><td>
+
 <table class="show">
 <% for column in Client.content_columns %>
 <tr><td><b><%= column.human_name %>:</b></td>
@@ -21,6 +23,8 @@
   result << show_table_engagements(c.engagements)
   result } %>
 
+</td><td>
+
 <%= show_liste(@client.socles, 'socle') {|s|
     result = ''
     result << link_to_socle(s).to_s << ' : '
@@ -31,3 +35,5 @@
   link_to_demande(d) } %>
 
 <%= link_to_edit_and_list @client %>
+
+</td></tr></table>
