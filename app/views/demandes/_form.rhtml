@@ -18,8 +18,8 @@
 </tr>
 <% end %>
 <tr>
-  <td colspan="2"><p><label for="demande_resume">Resumé</label><br/>
-    <%= text_area 'demande', 'resume', :cols => 65, :rows => 2 %></p></td>
+  <td colspan="2"><p><label for="demande_resume">Intitulé</label><br/>
+    <%= text_area :demande, :resume, :cols => 65, :rows => 2 %></p></td>
 </tr>
 <tr>
   <td colspan="2">&nbsp;</td>
@@ -34,7 +34,7 @@
 <% if @ingenieurs %>
 <tr>
   <td><p><label for="demande_ingenieur">Ingénieur assigné à la demande</label></p></td>
-  <td><%= select("demande", "ingenieur_id",
+  <td><%= select(:demande, :ingenieur_id,
 	    @ingenieurs.collect{|i| [ i.identifiant.nom, i.id]}, 
             { :include_blank => true }) %></td>
 </tr>

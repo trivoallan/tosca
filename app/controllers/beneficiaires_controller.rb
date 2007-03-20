@@ -12,9 +12,13 @@ class BeneficiairesController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
   def list
+    options = { :per_page => 10, :include => [:client,:identifiant] }
+    if params['client_id']
+      options[:conditions] = ['beneficiaires.client_id=?', params['client_id'] ]
+    end
     @clients = Client.find_select
-    @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, 
-    :per_page => 10, :include => [:client,:identifiant]
+    @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, options
+    
   end
 
   def show
@@ -32,6 +36,7 @@ class BeneficiairesController < ApplicationController
       flash[:notice] = 'Beneficiaire was successfully created.'
       redirect_to :action => 'list'
     else
+      _form
       render :action => 'new'
     end
   end
@@ -47,6 +52,7 @@ class BeneficiairesController < ApplicationController
       flash[:notice] = 'Beneficiaire was successfully updated.'
       redirect_to :action => 'show', :id => @beneficiaire
     else
+      _form
       render :action => 'edit'
     end
   end
@@ -61,8 +67,7 @@ class BeneficiairesController < ApplicationController
 
 private
   def _form
-    @identifiants = Identifiant.find :all
-    @clients = Client.find :all
-    @responsables = Beneficiaire.find :all
+    @identifiants = Identifiant.find_select
+    @clients = Client.find_select
   end  
 end

@@ -21,14 +21,4 @@ module FiltersHelper
     "TODO"
   end
 
-  # TODO : MLO: wtf ? it's dirty
-  # and even with a fixed year in it
-  def select_filter_date(options = {})
-    out = ''
-    out << '<br/>' unless options[:inline] == true
-    out << date_select("filtres", "updated_on", :start_year => 2006,
-                       :use_month_numbers => true, :include_blank => true, 
-                       :order => [:day, :month, :year])
-  end
-
 end

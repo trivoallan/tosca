@@ -38,7 +38,10 @@ class LogicielsController < ApplicationController
         options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id' 
       end
     end
-    options[:conditions] = conditions.join(' AND ') unless conditions.empty?
+
+    unless conditions.empty?
+      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
+    end
 
     @logiciel_pages, @logiciels = paginate :logiciels, options
 

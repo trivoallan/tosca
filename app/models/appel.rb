@@ -33,12 +33,4 @@ class Appel < ActiveRecord::Base
     fin - debut
   end
 
-  def self.filters(params)
-    conditions = []
-    params['filters'].each_pair { |key, value|
-      conditions << " #{key}=#{value} " unless value == ''
-    } if params['filters']
-    conditions
-  end
-
 end

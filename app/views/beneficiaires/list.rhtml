@@ -4,7 +4,7 @@
 
 <% titres = ['Nom', 
              '<form action="/beneficiaires/list" method="post">' + 
-             select_filter(@clients, 'client') + '</form>', 
+             select_onchange(@clients, 0, 'client_id') + '</form>', 
              '', 'Domaine']%>
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
   result = ''
