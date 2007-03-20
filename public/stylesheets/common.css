@@ -42,7 +42,7 @@ body {
 	padding: 2em;
 	padding-bottom: 5em;
 	height: 84%;
-	overflow: auto;
+	/*overflow: auto;*/
 }
 #footer {
 	position: fixed;
