@@ -32,6 +32,7 @@ body {
 	width: 100%;
 	border-collapse: collapse;
 	text-align: left;
+	height: 85%;
 }
 #summary {
 	/* see info_box.css  .summary */
