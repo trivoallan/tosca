@@ -9,7 +9,7 @@
 <table class="sommaire" width="100%"><tr>
   <td><dl class="sommaire">
 
-       <% titre = ( @demandes.size > 0 ? "Mes #{@demandes.size} dernières demandes" : "Aucune demande en cours" ) %>
+       <% titre = ( @demandes.size > 0 ? "Les #{@demandes.size} dernières demandes" : "Aucune demande en cours" ) %>
        <% links = [ 
              link_to('Liste détaillée', :controller => 'demandes', :action => 'list'),
              link_to('Déposer une demande', :controller => 'demandes', :action => 'new') ] %>

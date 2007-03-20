@@ -218,11 +218,6 @@ module ApplicationHelper
     # temps==-1 ? "sans engagement" : distance_of_time_in_french_words(temps) + " "
   end
 
-
-  # DEPRECATED : fonction du meme nom appelee depuis lib/lstm.rb
-  #def time_in_french_words(distance_in_seconds)
-  #end
-
   # conversion secondes en jours
   def sec2jour(seconds)
     ((seconds.abs)/(60*60*24)).round
@@ -231,7 +226,4 @@ module ApplicationHelper
   def sec2min(seconds)
     ((seconds.abs)/60).round
   end
-
-  ### NON CLASSE ################################################################
-
 end
