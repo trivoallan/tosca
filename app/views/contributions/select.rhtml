@@ -1,7 +1,9 @@
 <h1>Accès aux contributions</h1>
 
 <%= show_liste(@logiciels, 'Logiciels') { |l| 
-      link_to_contribution_logiciel l 
+      out = ''
+      out << "<b>#{link_to_contribution_logiciel l }</b>"
+      out << ' : ' + l.resume
 } %>
 
 <%= link_to 'Déposer une contribution', :action => 'new' %><br/>
