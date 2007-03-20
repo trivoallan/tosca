@@ -3,25 +3,31 @@
 <h2><%= link_to_logiciel contribution.logiciel %> : <%= contribution.nom %>
     <%= link_to_edit(contribution) %>
     <%= link_to_view(contribution) %></h2>
-<%= 'Contribution de '+contribution.typecontribution.nom.downcase+' sur '+contribution.logiciel.nom+'.'  if contribution.typecontribution %><br>
-<%= textilize(contribution.description_fonctionnelle) %>
+<b><%=h contribution.summary %></b>
+<%= textilize contribution.description_fonctionnelle %>
 <br/>
 <p><b>Patch</b> : <%= link_to_file contribution, 'patch' %></p>
-<p><b>Url de reversement</b> : 
-     <%= contribution.urlreversements.collect{|u| 
-           "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "} * ', ' 
-     %></p>
+<p><b>Url(s) de reversement</b> : 
+     <%= contribution.urlreversements.collect {|u| 
+           "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> " +
+           link_to(image_edit, :controller => 'urlreversements', 
+                          :action => 'edit', :id => u.id)
+    } * ', ' %>
+    <%= link_to "(Ajouter un reversement)", :controller => 'urlreversements', 
+                :action => "new", :contribution_id => contribution.id %></p>
 <p><b>Reversé le</b> : <%= contribution.reverse_le_formatted %></p>
 <p><b>Etat du reversement</b> : <%= contribution.etatreversement.nom if contribution.etatreversement %></p>
 
 
 <% if @ingenieur %>
-<div onclick="Element.toggle('contribution_<%= contribution.id %>_prive');">Autres informations (privé)</div>
+<br />
+<div onclick="Element.toggle('contribution_<%= contribution.id %>_prive');">
+  <b>Autres informations (réservées cellule OSSA)</b></div>
 <div style="display: none;" id="contribution_<%= contribution.id %>_prive">
 <p>
   <b>Description technique: </b><%= textilize contribution.description %><br/>
   <% if contribution.id_mantis %>
-  <b>Bug mantis associé : </b><%= link_to_any_demande contribution %><br/>
+  <b><%= "Demande mantis associée: </b>#{link_to_any_demande contribution}" if contribution.id_mantis %><br/>
   <% end %>
   <b>Cloturé le : </b><%= contribution.cloture_le_formatted %><br/>
 </p>
@@ -29,13 +35,7 @@
 <%= show_liste(contribution.demandes, 'demande') { |d|
     link_to_demande(d, :show_id => true, :icon_severite => true) 
     } %>
-<%= show_liste(contribution.urlreversements, 'url(s) de reversement') { |u| 
-      out = "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
-      out << link_to(image_edit, :controller => 'urlreversements', 
-                                 :action => 'edit', :id => u.id)
-    } %>
-    <%= link_to "Ajouter un reversement", :controller => 'urlreversements', 
-                :action => "new", :contribution_id => contribution.id %><br />
+
 <%= show_liste(contribution.paquets, 'paquet(s) sur lesquels il a été appliqué') { |p| 
       link_to_paquet(p) 
     } %>
