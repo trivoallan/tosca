@@ -155,9 +155,10 @@ module ApplicationHelper
   # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
   # <%= show_table(@documents, Document, titres) { |e| "<td>#{e.nom}</td>" } %>
   # N'oubliez pas d'utiliser les <td></td>
-  # 2 options, :total et :content_columns
-  # La première désactive le décompte total si positionné à false
-  # La deuxième active l'affichage des content_columns si positionné à true
+  # 3 options
+  #   :total > désactive le décompte total si positionné à false
+  #   :content_columns > active l'affichage des content_columns si positionné à true
+  #   :add_lines > affiche à la fin le tableau de lignes passé [[line1],[line2]]
   # TODO : intégrer width et style dans une seule option
   def show_table(elements, ar, titres, options = {})
     return "<br/><p>Aucun #{ar.table_name.singularize} à ce jour</p>" unless elements and elements.size > 0
@@ -184,6 +185,15 @@ module ApplicationHelper
       result << yield(elements[i])
       result << '</tr>'
     }
+    if (options[:add_lines])
+      options[:add_lines].each {|line|
+        result << "<tr>"
+        line.each {|cell|
+          result << "<td>#{cell}</td>"
+        }
+        result << "</tr>"
+      }
+    end
     result << '</table><br/>'
   end
 
