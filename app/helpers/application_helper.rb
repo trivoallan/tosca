@@ -121,7 +121,7 @@ module ApplicationHelper
       show = (options[:image] ? image_patch(nom) : nom )
       link_to show, url_for_file_column(record, file, :absolute => true)
     else
-      '-'
+      options[:else] ||= '-'
     end
   end
 

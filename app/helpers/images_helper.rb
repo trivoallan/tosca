@@ -75,9 +75,7 @@ module ImagesHelper
   end
 
   @@patch = nil
-  def image_patch(alt)
-    desc = 'Contribution'
-    desc << ' : ' + alt if alt and alt!=''
+  def image_patch(desc = 'Contribution')
     @@patch ||= image_tag('patch.gif', image_options(desc, '16x16'))
   end
 
@@ -90,8 +88,7 @@ module ImagesHelper
   end
 
   @@private = nil
-  def image_private
-    desc = 'Rendre privé'
+  def image_private(desc = 'Rendre privé')
     @@private ||= image_tag('private_icon.png', image_options(desc, '12x14'))
   end
 

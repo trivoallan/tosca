@@ -15,6 +15,7 @@ class ContributionsController < ApplicationController
   end
 
   # TODO : c'est pas très rails tout ça (mais c'est moins lent)
+  # le find_by_sql affiche aussi les logiciels qui n'ont pas de contributions vu d'un client
   def select
     @logiciels = Logiciel.find_by_sql 'SELECT logiciels.* FROM logiciels ' + 
       'WHERE logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)'

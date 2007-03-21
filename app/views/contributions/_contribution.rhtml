@@ -1,46 +1,59 @@
-<div class="show">
+<div class="_show">
 
 <h2><%= link_to_logiciel contribution.logiciel %> : <%= contribution.nom %>
     <%= link_to_edit(contribution) %>
-    <%= link_to_view(contribution) %></h2>
-<b><%=h contribution.summary %></b>
-<%= textilize contribution.description_fonctionnelle %>
-<br/>
-<p><b>Patch</b> : <%= link_to_file contribution, 'patch' %></p>
-<p><b>Url(s) de reversement</b> : 
-     <%= contribution.urlreversements.collect {|u| 
+    <%= link_to_view(contribution) %>
+    <span onclick="Element.toggle('contribution_<%= contribution.id %>_prive');">
+      <%= image_private('Afficher/Cacher les informations privées') %>
+    </span>
+    
+</h2>
+
+<div onclick="Element.toggle('contribution_<%= contribution.id %>_public');">
+  <b><%=h contribution.summary %></b> 
+  <%= link_to_file contribution, 'patch', :image => true, :else => '(Aucun fichier disponible)' %>
+</div>
+<div style="display: none;" id="contribution_<%= contribution.id %>_public">
+  <p>
+    <b>Description fonctionnelle : </b><%= textilize contribution.description_fonctionnelle %></p>
+  </p>
+  <p>
+    <b>Url(s) de reversement</b> : 
+      <%= contribution.urlreversements.collect {|u| 
            "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> " +
            link_to(image_edit, :controller => 'urlreversements', 
                           :action => 'edit', :id => u.id)
-    } * ', ' %>
-    <%= link_to "(Ajouter un reversement)", :controller => 'urlreversements', 
-                :action => "new", :contribution_id => contribution.id %></p>
-<p><b>Reversé le</b> : <%= contribution.reverse_le_formatted %></p>
-<p><b>Etat du reversement</b> : <%= contribution.etatreversement.nom if contribution.etatreversement %></p>
-
+          } * ', ' %>
+      <%= link_to "(Ajouter un reversement)", :controller => 'urlreversements', 
+                :action => "new", :contribution_id => contribution.id %><br/>
+    <b>Reversé le</b> : <%= contribution.reverse_le_formatted %><br/>
+    <b>Etat du reversement</b> : <%= contribution.etatreversement.nom if contribution.etatreversement %>
+      <%= " du #{contribution.cloture_le_formatted}." if contribution.clos %>
+  </p>
+</div>
 
 <% if @ingenieur %>
 <br />
-<div onclick="Element.toggle('contribution_<%= contribution.id %>_prive');">
-  <b>Autres informations (réservées cellule OSSA)</b></div>
 <div style="display: none;" id="contribution_<%= contribution.id %>_prive">
-<p>
-  <b>Description technique: </b><%= textilize contribution.description %><br/>
-  <% if contribution.id_mantis %>
-  <b><%= "Demande mantis associée: </b>#{link_to_any_demande contribution}" if contribution.id_mantis %><br/>
-  <% end %>
-  <b>Cloturé le : </b><%= contribution.cloture_le_formatted %><br/>
-</p>
-<br />
-<%= show_liste(contribution.demandes, 'demande') { |d|
-    link_to_demande(d, :show_id => true, :icon_severite => true) 
-    } %>
-
-<%= show_liste(contribution.paquets, 'paquet(s) sur lesquels il a été appliqué') { |p| 
-      link_to_paquet(p) 
-    } %>
+  <div onclick="Element.toggle('contribution_<%= contribution.id %>_prive');">
+    <b>Autres informations (réservées cellule OSSA)</b>
+  </div>
+  <p>
+    <b>Description technique : </b><%= textilize contribution.description %>
+  </p>
+  <p>
+    <% if contribution.id_mantis %>
+      <%= "<b>Demande mantis associée : </b>#{link_to_any_demande contribution}<br/>" %>
+    <% end %>
+  </p>
+  <br />
+  <%= show_liste(contribution.demandes, 'demande') { |d|
+        link_to_demande(d, :show_id => true, :icon_severite => true) 
+      } %>
+  <%= show_liste(contribution.paquets, 'paquet(s) sur lesquels il a été appliqué') { |p| 
+        link_to_paquet(p) 
+      } %>
 </div>
 <% end %>
-
 
 </div>
