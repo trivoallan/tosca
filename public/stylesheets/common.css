@@ -80,7 +80,7 @@ a, a:active, a:visited, a:focus {
 	color: #1A528F;
 }
 a:hover {
-	background-color: #d2dfd2;
+	/*background-color: #d2dfd2;*/
 	text-decoration: underline;
 	color: #226644;
 }
