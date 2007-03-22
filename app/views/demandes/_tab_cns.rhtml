@@ -3,12 +3,9 @@
 
 <div class="demande_tab_content" name="demande_tab_content">
 
-<p>Les engagements pris sur le contournement et la résolution 
-   de cotre demande dépendent du logiciel concerné, 
-   <%= @demande.logiciel.nom %> dans votre cas.</p>
-
 <% size = @demande.paquets.size %> 
-<p>Votre demande impacte <%= pluralize(size, 'paquet source') %> :</p>
+<p>Votre demande impacte <%= pluralize(size, 'paquet source') %> sur 
+<%= @demande.logiciel.nom if @demande.logiciel %>:</p>
 
 <table>
 

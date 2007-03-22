@@ -33,13 +33,13 @@
 <p><label for="urlreversement_valeur">Ajouter une url de reversement</label><br/>
 <%= text_field 'urlreversement', 'valeur' %></p>
 
-<p><label for="toggle_reverse">Reversé</label>
-<%= check_box 'toggle', 'reverse', :onchange => "Element.toggle('reverse_le');"%>
-<div id='reverse_le' style="display: none;"><%= datetime_select 'contribution', 'reverse_le'  %></div></p>
+<p><label for="contribution_reverse">Reversé</label>
+<%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('reverse_le');"%>
+<div id='reverse_le' <%unless @contribution.reverse%>style="display: none;"><%end%><%= datetime_select 'contribution', 'reverse_le'  %></div></p>
 
-<p><label for="toggle_cloture">Cloturé le</label>
-<%= check_box 'toggle', 'cloture', :onchange => "Element.toggle('cloture_le');"%>
-<div id='cloture_le' style="display: none;"><%= datetime_select 'contribution', 'cloture_le'  %></div></p>
+<p><label for="contribution_clos">Cloturé le</label>
+<%= check_box 'contribution', 'clos', :onchange => "Element.toggle('cloture_le');"%>
+<div id='cloture_le' <%unless @contribution.clos%>style="display: none;"><%end%><%= datetime_select 'contribution', 'cloture_le'  %></div></p>
 
 </td><td>
 

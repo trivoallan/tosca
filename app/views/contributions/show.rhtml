@@ -22,7 +22,7 @@
              et elle a été accepté le <%= @contribution.cloture_le_formatted %>
         <% end %>
     <% else %>
-        Cette <%@contribution.typecontribution.nom %> n&#146;est pas reversé
+        Cette <%=@contribution.typecontribution.nom.downcase %> n&#146;est pas reversée
     <% end %>
 
 <% if @ingenieur %>

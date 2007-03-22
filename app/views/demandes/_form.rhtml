@@ -34,24 +34,26 @@
 <% if @ingenieurs %>
 <tr>
   <td><p><label for="demande_ingenieur">Ingénieur assigné à la demande</label></p></td>
-  <td><%= select(:demande, :ingenieur_id,
-	    @ingenieurs.collect{|i| [ i.identifiant.nom, i.id]}, 
-            { :include_blank => true }) %></td>
+  <td><%= select_empty(@ingenieurs, @demande.ingenieur_id, 'demande[ingenieur_id]') %></td>
 </tr>
 <% end %>
 <tr>
+  <td><p><label for="demande_socle">Système concerné</label></p></td>
+  <td><%= select(:demande, :socle_id,
+	  @socles.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td>
+</tr>
+<tr>
   <td><p><label for="demande_logiciel">Logiciel concerné</label></p></td>
-  <td><%= select("demande", "logiciel_id",
-	  @logiciels.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td>
+  <td><%= select_empty(@logiciels, @demande.logiciel_id, 'demande[logiciel_id]')%></td>
 </tr>
 <tr>
   <td><p><label for="demande_typedemande">Type de la demande</label></p></td>
-  <td><%= select("demande", "typedemande_id",
+  <td><%= select(:demande, :typedemande_id,
 	  @typedemandes.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
 <tr>
   <td><p><label for="demande_severite">Sévérité de la demande</label></p></td>
-  <td><%= select("demande", "severite_id",
+  <td><%= select(:demande, :severite_id,
 	  @severites.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
 <tr>
@@ -62,7 +64,7 @@
 <tr>
   <td colspan="2"><p <%= hidden_on_create %>>
     <label for="demande_statut">Statut de la demande</label><br/>
-    <%= text_field("demande", "statut_id") %></p></td>
+    <%= text_field(:demande, :statut_id) %></p></td>
 </tr>
 <% end %>
 <% # hidden lors de la création d'un demande %>

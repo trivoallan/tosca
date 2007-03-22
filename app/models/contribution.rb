@@ -79,7 +79,7 @@ class Contribution < ActiveRecord::Base
   # delai_to_s (texte)
   # en jours : sec2jours(delai)
   def delai
-    if clos
+    if cloture_le and reverse_le
       (cloture_le - reverse_le)
     else
       -1
@@ -106,15 +106,18 @@ class Contribution < ActiveRecord::Base
 
   # retourne true si le reversement a commencé
   def reverse
-    return false unless etatreversement
-    etatreversement.id >= 1
+    (reverse_le ? true : false)
   end
 
   # retourne true si l'état du reversement est final
   # "accepté", "refusé", "ne sera pas reversé"
   def clos
-    return false unless etatreversement
-    etatreversement_id >= 4 
+    (cloture_le ? true : false)
+  end
+
+  def clos=(fake)
+  end
+  def reverse=(fake)
   end
 
   # retourne true si le reversement est accepté

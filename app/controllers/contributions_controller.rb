@@ -87,12 +87,10 @@ class ContributionsController < ApplicationController
 
   def create
     @contribution = Contribution.new(params[:contribution])
-    @urlreversement = Urlreversement.new(params[:urlreversement])
     if @contribution.save
       flash[:notice] = 'La contribution suivante a bien été créee : ' + 
         '</br><i>'+@contribution.description+'</i>'
-      @urlreversement.contribution = @contribution
-      @urlreversement.save
+      _update(@contribution)
       flash[:notice] << '</br>L\'url a également été enregistrée.'
       redirect_to :action => 'show', :id => @contribution
     else
@@ -114,6 +112,7 @@ class ContributionsController < ApplicationController
     if @contribution.update_attributes(params[:contribution])
       flash[:notice] = 'La contribution suivante a bien été mise à jour ' + 
         ': </br><i>'+@contribution.description+'</i>'
+      _update(@contribution)
       redirect_to :action => 'show', :id => @contribution
     else
       _form and render :action => 'edit'
@@ -160,6 +159,18 @@ private
     count_logiciels = { :select => 'DISTINCT contributions.logiciel_id' }
     @count = {:contributions => Contribution.count,
       :logiciels => Contribution.count(count_logiciels) }
+  end
+
+  def _update(contribution)
+    urlreversement = params[:urlreversement]
+    if urlreversement != ''
+      urlreversement = Urlreversement.new(urlreversement)
+      urlreversement.contribution = contribution
+      urlreversement.save
+    end
+    contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
+    contribution.cloture_le = nil if params[:contribution][:clos] == '0'
+    contribution.save
   end
 end
 
