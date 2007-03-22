@@ -1,7 +1,11 @@
-<h1>Liste des contributions de <%= @logiciel ? @logiciel.nom : 'tous les logiciels' %></h1>
-<%= link_to_new('contribution') %><br/>
+<%= link_to 'Contributions', :action => 'select', :id => nil %> > <%= @logiciel ? @logiciel.nom : 'Tous' %></h1>
 
-<%= render :partial => 'contribution', :collection => @contributions %>
+<% @contributions.each do |contribution| %>
+  <h2>
+   <%= link_to_edit(contribution) %>   
+   <%= link_to contribution.nom, :action => 'show', :id => contribution.id %>
+  </h2>
+<% end %>
 
 <%= link_to_new('contribution') %><br/><br/>
 <%= link_to_back %>

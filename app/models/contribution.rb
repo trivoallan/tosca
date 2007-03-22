@@ -8,6 +8,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :typecontribution
   belongs_to :etatreversement
   belongs_to :logiciel
+  belongs_to :ingenieur
 
   has_and_belongs_to_many :paquets
   has_and_belongs_to_many :binaires
@@ -39,11 +40,11 @@ class Contribution < ActiveRecord::Base
   #alias_method :nom, :to_s
 
   def summary
-    out = 'Contribution'
-    out << " de #{typecontribution.nom.downcase}" if typecontribution 
-    out << " sur #{logiciel.nom}"
-    out << " (#{version})" if version
-    out << "."
+    out = ''
+    out << typecontribution.nom + ' sur ' if typecontribution
+    out << logiciel.nom
+    out << " #{version}" if version
+    out
   end 
 
   def to_param

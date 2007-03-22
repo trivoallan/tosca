@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class ContributionsController < ApplicationController
-  helper :filters, :demandes, :paquets, :binaires, :export
+  helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements
 
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom
@@ -15,14 +15,14 @@ class ContributionsController < ApplicationController
   end
 
   # TODO : c'est pas très rails tout ça (mais c'est moins lent)
-  # le find_by_sql affiche aussi les logiciels qui n'ont pas de contributions vu d'un client
+  # le find_by_sql affiche aussi les logiciels qui n'ont pas de contributions 
+  # vu d'un client
   def select
     @logiciels = Logiciel.find_by_sql 'SELECT logiciels.* FROM logiciels ' + 
       'WHERE logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)'
   end
 
   def list
-    flash[:notice]= flash[:notice]
     return redirect_to(:action => 'select') unless params[:id]
     options = { :per_page => 10, :order => "created_on DESC" }
     unless params[:id] == 'all'

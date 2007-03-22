@@ -29,7 +29,10 @@ class UrlreversementsController < ApplicationController
     @urlreversement = Urlreversement.new(params[:urlreversement])
     if @urlreversement.save
       flash[:notice] = 'Urlreversement was successfully created.'
-      redirect_to :action => 'list'
+      url = { :controller => 'contributions', :action => 'show', :id => 
+        @urlreversement.contribution_id }
+      redirect_to url
+      
     else
       _form and render :action => 'new'
     end

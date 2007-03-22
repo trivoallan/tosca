@@ -4,6 +4,7 @@
 class AlterContributions < ActiveRecord::Migration
   def self.up
     add_column :contributions, :version, :string
+    add_column :contributions, :synthese, :text
   end
 
   def self.down
