@@ -57,7 +57,11 @@ class AppelsController < ApplicationController
     @appel = Appel.new(params[:appel])
     if @appel.save
       flash[:notice] = 'l\'Appel a été créé.'
-      redirect_to :action => 'list'
+      if @appel.demande
+        redirect_to :action => 'comment', :controller => 'demandes', :id => @appel.demande
+      else
+        redirect_to :action => 'list'
+      end
     else
       _form and render :action => 'new'
     end
@@ -102,8 +106,7 @@ class AppelsController < ApplicationController
   # conventions
   def _form   
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
-    options = { :conditions => [ 'contrats.astreinte=?', 1 ], 
-      :include => Contrat::INCLUDE, :order => 'clients.nom' }
+    options = { :include => Contrat::INCLUDE, :order => 'clients.nom' }
     @contrats = Contrat.find_select(options)
   end
 

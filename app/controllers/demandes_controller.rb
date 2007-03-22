@@ -31,7 +31,7 @@ class DemandesController < ApplicationController
     'LEFT OUTER JOIN identifiants id_inge ON id_inge.id=ingenieurs.identifiant_id '+
     'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' + 
     'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
-    'INNER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
+    'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
 
 
   def list
