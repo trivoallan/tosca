@@ -23,7 +23,10 @@ class ContributionsController < ApplicationController
   end
 
   def list
-    return redirect_to(:action => 'select') unless params[:id]
+    unless params[:id]
+      flash[:notice] = flash[:notice] 
+      return redirect_to(:action => 'select') 
+    end
     options = { :per_page => 10, :order => "created_on DESC" }
     unless params[:id] == 'all'
       @logiciel = Logiciel.find(params[:id])
@@ -91,7 +94,7 @@ class ContributionsController < ApplicationController
       @urlreversement.contribution = @contribution
       @urlreversement.save
       flash[:notice] << '</br>L\'url a également été enregistrée.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'show', :id => @contribution
     else
       _form and render :action => 'new'
     end
@@ -111,7 +114,7 @@ class ContributionsController < ApplicationController
     if @contribution.update_attributes(params[:contribution])
       flash[:notice] = 'La contribution suivante a bien été mise à jour ' + 
         ': </br><i>'+@contribution.description+'</i>'
-      redirect_to :action => 'list'
+      redirect_to :action => 'show', :id => @contribution
     else
       _form and render :action => 'edit'
     end
@@ -154,7 +157,7 @@ private
     @logiciels = Logiciel.find_select
     @clients = Client.find_select
     # count
-    count_logiciels = { :select => 'contributions.logiciel_id' }
+    count_logiciels = { :select => 'DISTINCT contributions.logiciel_id' }
     @count = {:contributions => Contribution.count,
       :logiciels => Contribution.count(count_logiciels) }
   end

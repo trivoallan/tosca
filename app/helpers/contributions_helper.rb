@@ -22,4 +22,17 @@ module ContributionsHelper
     link_to 'Voir toutes les contributions', :action => 'list', :id => 'all'
   end
 
+  # une contribution peut être liée à une demande externe
+  # le "any" indique que la demande peut etre sur n'importe quel tracker
+  # TODO : verifier que le paramètre est une contribution
+  def link_to_any_demande(contribution)
+    return " - " if !contribution.id_mantis && contribution.demandes.size == 0
+    out = ''
+    if contribution.id_mantis
+      out << "<a href=\"http://www.08000linux.com/clients/minefi_SLL/mantis/view.php?id=#{contribution.id_mantis}\">
+       Mantis ##{contribution.id_mantis}</a>"
+    end
+    out
+  end
+
 end
