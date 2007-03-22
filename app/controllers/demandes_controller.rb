@@ -189,11 +189,9 @@ class DemandesController < ApplicationController
     flash.now[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 
     @statuts = @demande.statut.possible().collect{ |s| [ s.nom, s.id] }
-    if ([4,5].include? @demande.statut_id)
-      @contributions = Contribution.find(:all)
-    else
-      @contributions = []
-    end
+    options =  { :conditions => 
+      ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
+    @contributions = Contribution.find(:all, options)
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
     
     # On va chercher les identifiants des ingénieurs assignés

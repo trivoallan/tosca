@@ -2,17 +2,10 @@
 
 <h2><%= link_to @contribution.nom, :action => 'show', :id => @contribution.id %>
     <%= link_to_edit(@contribution) %>
-    <span onclick="Element.toggle('contribution_<%= @contribution.id %>_prive');">
-      <%= image_private('Afficher/Cacher les informations privées') %>
-    </span>
     
 </h2>
-<% hide = (controller.action_name == 'show' ? false : true ) %>
-<div onclick="Element.toggle('contribution_<%= @contribution.id %>_public');">
   <%= link_to_file @contribution, 'patch', :image => true, :else => '' %>
   <b><%=h @contribution.nom %></b> 
-</div>
-<div <%if hide%>style="display: none;"<%end%> id="contribution_<%= @contribution.id %>_public">
   <p>
     <%= textilize @contribution.description_fonctionnelle %></p>
   </p>
@@ -34,22 +27,15 @@
         Cette <%@contribution.typecontribution.nom %> n&#146;est pas reversé
     <% end %>
   </p>
-</div>
 
 <% if @ingenieur %>
 <br />
-<div style="display: none;" id="contribution_<%= @contribution.id %>_prive">
-  <div onclick="Element.toggle('contribution_<%= @contribution.id %>_prive');">
-    <b>Autres informations (réservées cellule OSSA)</b>
-  </div>
-  <p>
-    <b>Description technique : </b><%= textilize @contribution.description %>
-  </p>
-  <p>
-    <% if @contribution.id_mantis %>
-      <%= "<b>Demande mantis associée : </b>#{link_to_any_demande @contribution}<br/>" %>
-    <% end %>
-  </p>
+  <b>Détails interne</b>
+  <%= textilize @contribution.description %>
+  <% if @contribution.id_mantis %>
+     <p><b>Demande du portail v1 : </b>
+        <%=link_to_any_demande @contribution %></p>
+  <% end %>
   <br />
   <%= show_liste(@contribution.demandes, 'demande') { |d|
         link_to_demande(d, :show_id => true, :icon_severite => true) 
@@ -57,7 +43,6 @@
   <%= show_liste(@contribution.paquets, 'paquet(s) sur lesquels il a été appliqué') { |p| 
         link_to_paquet(p) 
       } %>
-</div>
 <% end %>
 
 </div>

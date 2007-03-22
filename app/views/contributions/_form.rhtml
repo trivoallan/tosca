@@ -13,14 +13,6 @@
 <p><label for="contribution_ingenieur">Ingénieur</label><br/>
 <%= collection_select(:contribution, :ingenieur_id, @ingenieurs, :id, :nom) %></p>
 
-<p><label for="contribution_description_fonctionnelle">Description fonctionnelle(public)</label><br/>
-<%= text_area 'contribution', 'description_fonctionnelle', :cols => 60, :rows => 10  %></p>
-
-<p><label for="contribution_description">Description technique (privé)</label><br/>
-<%= text_area 'contribution', 'description', :cols => 60, :rows => 5  %></p>
-
-</td><td>
-
 <p><label for="contribution_patch">Patch</label><br/>
 <%= file_column_field 'contribution', 'patch'  %></p>
 
@@ -35,7 +27,7 @@
 <%= text_field 'contribution', 'id_mantis', :size => 3 %></p>
 <% end %>
 
-<p><label for="contribution_etatreversement">Etat du reversement</label><br/>
+<p><label for="contribution_etatreversement">Etat</label><br/>
 <%= collection_select(:contribution, :etatreversement_id, @etatreversements, :id, :nom) %></p>
 
 <p><label for="urlreversement_valeur">Ajouter une url de reversement</label><br/>
@@ -48,6 +40,18 @@
 <p><label for="toggle_cloture">Cloturé le</label>
 <%= check_box 'toggle', 'cloture', :onchange => "Element.toggle('cloture_le');"%>
 <div id='cloture_le' style="display: none;"><%= datetime_select 'contribution', 'cloture_le'  %></div></p>
+
+</td><td>
+
+<p><label for="contribution_synthese">Synthèse</label><br/>
+<%= text_area 'contribution', 'synthese', :cols => 60, :rows => 2  %></p>
+
+<p><label for="contribution_description_fonctionnelle">Description (public)</label><br/>
+<%= text_area 'contribution', 'description_fonctionnelle', :cols => 60, :rows => 20  %></p>
+
+<p><label for="contribution_description">Détails techniques (privé)</label><br/>
+<%= text_area 'contribution', 'description', :cols => 60, :rows => 5  %></p>
+
 
 <%= observe_field 'contribution_logiciel_id',  
          :update => 'paquets',
