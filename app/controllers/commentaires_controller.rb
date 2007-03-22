@@ -46,7 +46,7 @@ class CommentairesController < ApplicationController
     # 'Le statut a été modifié : le commentaire est <b>public</b>' 
     @commentaire = Commentaire.new(params[:commentaire])
     @commentaire.demande_id = demande.id 
-    if params[:piecejointe][:file] != ''
+    if params[:piecejointe] and params[:piecejointe][:file] != ''
       @commentaire.piecejointe = Piecejointe.new(params[:piecejointe]) 
     end
     @commentaire.identifiant_id = user.id

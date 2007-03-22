@@ -87,9 +87,9 @@ module ImagesHelper
     @@public ||= image_tag('public_icon.png', image_options(desc, '17x16'))
   end
 
-  @@private = nil
+   # pas mis en cache, celle ci est paramétrée
   def image_private(desc = 'Rendre privé')
-    @@private ||= image_tag('private_icon.png', image_options(desc, '12x14'))
+    image_tag('private_icon.png', image_options(desc, '12x14'))
   end
 
   # Logos
