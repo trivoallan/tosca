@@ -14,6 +14,13 @@ class MachinesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
+    options = { :per_page => 250, :include => [:socle,:hote], :order => 
+        'machines.hote_id, machines.acces', :conditions => 
+        'machines.hote_id IS NOT NULL' }
+    @machine_pages, @machines = paginate :machines, options
+  end
+
+  def all
     @machine_pages, @machines = paginate :machines, :per_page => 250,
     :include => [:socle,:hote], :order => 'machines.hote_id, machines.acces'
   end
