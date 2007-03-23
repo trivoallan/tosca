@@ -156,7 +156,7 @@ private
     @logiciels = Logiciel.find_select
     @clients = Client.find_select
     # count
-    count_logiciels = { :select => 'DISTINCT contributions.logiciel_id' }
+    clogiciels = { :select => 'contributions.logiciel_id', :distinct => true }
     @count = {:contributions => Contribution.count,
       :logiciels => Contribution.count(count_logiciels) }
   end
