@@ -12,6 +12,10 @@
 <div class="menu_title" onclick="Element.toggle('menu_resume')">
 > Résumé</div>
 <ul class="menu" id="menu_resume">
+  <% if @ingenieur and @demande.socle %>
+     <li><b>Vm : </b><%= @demande.socle.machine %></li>
+  <% end %>
+  <li><b>Socle : </b><%= link_to_socle @demande.socle %></li>
   <li><b>Logiciel : </b><%= link_to_logiciel @demande.logiciel %></li>
   <li><b>Statut : </b><%= @demande.statut.nom %></li>
   <li><b>Type : </b><%= @demande.typedemande.nom %></li>

@@ -5,7 +5,7 @@ class DemandesController < ApplicationController
   # auto_complete_for :logiciel, :nom
   # auto_complete_for :demande, :resume
 
-  helper :filters, :contributions, :logiciels, :export, :appels
+  helper :filters, :contributions, :logiciels, :export, :appels, :socles
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
