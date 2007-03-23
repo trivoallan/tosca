@@ -29,7 +29,6 @@
       <% options[:html] = { :id => "form_#{user.id}", :name => "form_#{user.id}" } %>
       <% options[:url] = "../account/update/#{user.id}" %>
       <% form_remote_tag options do %>
-      <% # form_tag({:action => 'update', :id => user}, {:name => 'form_'+user.id.to_s}) do%>
          <% for role in @roles %>
            &nbsp;&nbsp;<input type="checkbox" id="<%=user.login + role.id.to_s%>" name="identifiant[role_ids][]" value="<%=role.id%>"
            <%if user.roles.include? role%> checked="checked" <%end%> />&nbsp;&nbsp;

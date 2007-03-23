@@ -1,6 +1,6 @@
 <h1>Accès aux contributions</h1>
 
-<%= show_liste(@logiciels, 'Logiciels') { |l| 
+<%= show_liste(@logiciels, 'contribution', :no_title => true) { |l| 
       out = ''
       out << "<b>#{link_to_contribution_logiciel l }</b>"
       out << ' : ' + l.resume

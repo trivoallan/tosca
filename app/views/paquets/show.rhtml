@@ -21,7 +21,7 @@
 
 <br />
 <p>Ce paquet contient <b><%= pluralize(@paquet.fichiers_count, 'fichier') %></b></p>
-<% if @paquet.fichiers_count %>
+<% if @paquet.fichiers_count > 0 %>
 <div class="bloc_scroll">
   <%= show_liste(@fichiers, 'fichier', :no_title => true) { |f| f.chemin } %>
 </div>
@@ -29,7 +29,7 @@
 
 <br />
 <p>Ce paquet a subi <b><%= pluralize(@paquet.changelogs_count, 'modification') %></b></p>
-<% if @paquet.changelogs_count %>
+<% if @paquet.changelogs_count > 0 %>
 <div class="bloc_scroll">
   <%= show_liste(@changelogs, 'changelog', :no_title => true) { |c| 
   indent "#{c.date_modification_formatted} : #{c.nom_modification}\n#{c.text_modification}"

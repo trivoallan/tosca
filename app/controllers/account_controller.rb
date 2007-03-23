@@ -201,23 +201,16 @@ class AccountController < ApplicationController
     conditions = []
     @roles = Role.find_select
 
-    # filters
-    params['identifiant'].each_pair { |key, value|
-      if value !='' and key != 'role_ids'
-        conditions << " identifiants.#{key} LIKE '%#{value}%'" 
-      end
-    } if params['identifiant']
-    params['filters'].each_pair { |key, value|
-      conditions << " #{key}=#{value} " unless value == ''
-    } if params['filters']
+    # Specification of a filter f :
+    # [ namespace, field, database field, operation ]
+    conditions = Filters.build_conditions(params, [
+       ['identifiant', 'nom', 'identifiants.nom', :like ],
+       ['filters', 'client_id', 'beneficiaires.client_id', :equal ],
+       ['filters', 'role_id', 'identifiants_roles.role_id', :equal ]
+     ])
+    flash[:conditions] = options[:conditions] = conditions 
 
-
-    # query. Le flash est utilisé pour un export des données visionnées
-    unless conditions.empty?
-      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
-    end
-    @user_pages, @users = paginate :identifiants, options
-    
+    @user_pages, @users = paginate :identifiants, options 
     # panel on the left side
     if request.xhr? 
       render :partial => 'users_list', :layout => false

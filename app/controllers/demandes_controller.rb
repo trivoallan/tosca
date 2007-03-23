@@ -2,8 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DemandesController < ApplicationController
-  # auto_complete_for :logiciel, :nom
-  # auto_complete_for :demande, :resume
+  auto_complete_for :logiciel, :nom
+  auto_complete_for :demande, :resume
 
   helper :filters, :contributions, :logiciels, :export, :appels, :socles
 
@@ -37,35 +37,32 @@ class DemandesController < ApplicationController
   def list
     #cas spécial : consultation directe
     if params['numero'] 
-      redirect_to :action => :comment, :id => params['numero'] 
+      redirect_to :action => :comment, :id => params['numero']  and return
     end
 
     options = { :per_page => 10, :order => 'updated_on DESC', 
       :select => SELECT_LIST, :joins => JOINS_LIST }
     conditions = []
 
-    params['logiciel'].each_pair { |key, value|
-      conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
-    } if params['logiciel']
-    params['demande'].each_pair { |key, value|
-      conditions << " demandes.#{key} LIKE '%#{value}%'" if value != ''
-    } if params['demande']
-    params['filters'].each_pair { |key, value|
-      conditions << " #{key}=#{value} " unless value == '' 
-    } if params['filters']
-
-
-    # query. Le flash est utilisé pour un export des données visionnées
-    unless conditions.empty?
-      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
-    end
+    # Specification of a filter f :
+    # [ namespace, field, database field, operation ]
+    conditions = Filters::build_conditions(params, [
+       ['logiciel', 'nom', 'logiciels.nom', :like ],
+       ['demande', 'resume', 'demandes.resume', :like ],
+       ['filters', 'client_id', 'beneficiaires.client_id', :equal ],
+       ['filters', 'ingenieur_id', 'ingenieurs.id', :equal ],
+       ['filters', 'typedemande_id', 'demandes.typedemande_id', :equal ],
+       ['filters', 'severite_id', 'demandes.severite_id', :equal ],
+       ['filters', 'statut_id', 'demandes.statut_id', :equal ]
+     ])
+    flash[:conditions] = options[:conditions] = conditions if conditions
 
 
     escope = {}
     if @beneficiaire
       escope = Demande.get_scope_without_include([@beneficiaire.client_id])
     end
-    if @ingenieur
+    if @ingenieur and not @ingenieur.expert_ossa
       escope = Demande.get_scope_without_include(@ingenieur.client_ids)
     end
     # cet exclusive scope sert à ne pas se faire effacer les jointures

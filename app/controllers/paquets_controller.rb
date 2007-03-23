@@ -20,26 +20,18 @@ class PaquetsController < ApplicationController
   # TODO : faire une interface à base de filtres ?
   # ou  pas d'interfaces du tout.
   def list
-    @filter = @params['filter']
-    @order = @params['order']
-    @search = @params['paquet']
-    @action = 'list'
-    if @filter != nil
-      @conditions = @filter.split(',')
-      @conditions[0] += " = ?"
-    end
+    options = { :per_page => 15, :order => 
+      'paquets.logiciel_id, paquets.version, paquets.release',
+      :include => [:conteneur,:distributeur,:mainteneur,:logiciel] }
 
-    conditions = nil
-    # @count = Paquet.count
-    if @search != nil and @search[0] != nil
-      conditions = [ " paquets.nom LIKE ?", "%" + @search[0] + "%" ]
-    end
+    # Specification of a filter f :
+    # [ namespace, field, database field, operation ]
+    conditions = build_conditions(params, [
+       ['paquet', 'nom', 'paquets.nom', :like ] 
+     ])
+    flash[:conditions] = options[:conditions] = conditions 
 
-    @count = Paquet.count
-    @logiciels = Logiciel.find(:all)
-    @paquet_pages, @paquets = paginate :paquets, :per_page => 25,
-        :order => @order, :conditions => conditions, :include =>
-        [:conteneur,:distributeur,:mainteneur,:logiciel]
+    @paquet_pages, @paquets = paginate :paquets, options
 
     # panel on the left side
     if request.xhr? 
@@ -58,14 +50,13 @@ class PaquetsController < ApplicationController
     @fichiers = @paquet.fichiers.find(:all, :select => 'fichiers.chemin',
                                       :limit => 10000)
     @changelogs = @paquet.changelogs
-    # Fichier.find_all_by_paquet_id(params[:id], :limit => 1000)
   end
 
   def new
-    @paquet = Paquet.new
     _form
     @paquet.mainteneur = Mainteneur.find_by_nom('Linagora')
     @paquet.distributeur = Distributeur.find_by_nom('(none)')
+    @paquet.logiciel_id = params[:id]
   end
 
   def create
@@ -115,6 +106,7 @@ class PaquetsController < ApplicationController
     @count = {}
     @clients = Client.find_select
     @count[:paquets] = Paquet.count
+    @count[:binaires] = Binaire.count
   end
 
 end

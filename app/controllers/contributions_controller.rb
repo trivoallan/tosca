@@ -15,11 +15,10 @@ class ContributionsController < ApplicationController
   end
 
   # TODO : c'est pas très rails tout ça (mais c'est moins lent)
-  # le find_by_sql affiche aussi les logiciels qui n'ont pas de contributions 
-  # vu d'un client
   def select
-    @logiciels = Logiciel.find_by_sql 'SELECT logiciels.* FROM logiciels ' + 
-      'WHERE logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)'
+    options = { :conditions => 
+      'logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)' }
+    @logiciels = Logiciel.find(:all, options)
   end
 
   def list
@@ -40,32 +39,14 @@ class ContributionsController < ApplicationController
     options = { :per_page => 10, :order => 'contributions.updated_on DESC', 
       :include => [:logiciel,:etatreversement,:demandes] }
 
-    params['logiciel'].each_pair { |key, value|
-      conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
-    } if params['logiciel']
-    if params['filters']
-      params['filters'].each_pair { |key, value|
-        unless value == '' or key.intern == :client_id
-          conditions << " #{key}=#{value} " 
-        end
-      } 
-      # TODO : trouver un moyen plus rapide
-      if params['filters']['client_id'] != ''
-        client = Client.find(params['filters']['client_id']) 
-        conditions << ' ( demandes.beneficiaire_id IN (' + 
-          client.beneficiaire_ids + ' ) OR paquets.contrat_id IN (' + 
-          client.contrat_ids + '))'
-        options[:include] << :paquets
-      end
-    end
-    params['contribution'].each_pair { |key, value|
-      conditions << " contributions.#{key} LIKE '%#{value}%'" if value != ''
-    } if params['contribution']
-
-    # query. Le flash est utilisé pour un export des données visionnées
-    unless conditions.empty?
-      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
-    end
+    # Specification of a filter f :
+    # [ namespace, field, database field, operation ]
+    conditions = Filters.build_conditions(params, [
+       ['logiciel', 'nom', 'logiciels.nom', :like ],
+       ['contribution', 'description', 'contributions.nom', :like ],
+       ['filters', 'etatreversement_id', 'contributions.etatreversement_id', :equal ]
+     ])
+    flash[:conditions] = options[:conditions] = conditions 
 
     @contribution_pages, @contributions = paginate :contributions, options
     # panel on the left side
@@ -81,7 +62,7 @@ class ContributionsController < ApplicationController
     @contribution = Contribution.new
     @urlreversement = Urlreversement.new
     # pour préciser le type dès la création
-    @contribution.logiciel_id = params[:id] if params[:id]
+    @contribution.logiciel_id = params[:id] 
     _form
   end
 
@@ -154,11 +135,10 @@ private
   def _panel
     @etatreversements = Etatreversement.find_select
     @logiciels = Logiciel.find_select
-    @clients = Client.find_select
     # count
     clogiciels = { :select => 'contributions.logiciel_id', :distinct => true }
     @count = {:contributions => Contribution.count,
-      :logiciels => Contribution.count(count_logiciels) }
+      :logiciels => Contribution.count(clogiciels) }
   end
 
   def _update(contribution)

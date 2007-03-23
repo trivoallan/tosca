@@ -16,22 +16,18 @@ class AppelsController < ApplicationController
       [:beneficiaire,:ingenieur,:contrat,:demande] }
     conditions = []
 
-    params['filters'].each_pair { |key, value|
-      conditions << " #{key}=#{value} " unless value == ''
-    } if params['filters']
+    # Specification of a filter f :
+    # [ namespace, field, database field, operation ]
+    conditions = Filters.build_conditions(params, [
+       ['filters', 'ingenieur_id', 'appels.ingenieur_id', :equal ],
+       ['filters', 'beneficiaire_id', 'appels.beneficiaire_id', :equal ],
+       ['filters', 'contrat_id', 'appels.contrat_id', :equal ],
+       ['date', 'after', 'appels.debut', :greater_than ],
+       ['date', 'before', 'appels.fin', :lesser_than ]
+     ])
+    flash[:conditions] = options[:conditions] = conditions 
 
-    if params['date'] 
-      before = params['date']['before'] 
-      after = params['date']['after'] 
-      conditions << "appels.debut > '#{after}'" if after != ''
-      conditions << "appels.fin < '#{before}'" if before != ''
-    end
-    # query. Le flash est utilisé pour un export des données visionnées
-    unless conditions.empty?
-      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
-    end
-    @appel_pages, @appels = paginate :appels, options
-    
+    @appel_pages, @appels = paginate :appels, options   
     # panel on the left side
     if request.xhr? 
       render :partial => 'calls_list', :layout => false
@@ -119,8 +115,10 @@ class AppelsController < ApplicationController
     @count[:appels] = Appel.count
     @count[:beneficiaires] = Appel.count('beneficiaire_id')
     @count[:ingenieurs] = Appel.count('ingenieur_id')
-    @count[:duree_totale] = 0 # TODO 
-    @count[:demandes] = 0 # TODO 
+    @count[:demandes] = Appel.count('demande_id', :distinct => true)
+    diff = 'TIME_TO_SEC(TIMEDIFF(fin,debut))'
+    @count[:somme] = Appel.sum(diff).to_i 
+    @count[:moyenne] = Appel.average(diff).to_i 
   end
 
 end

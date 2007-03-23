@@ -10,7 +10,7 @@
   result << "<td>#{a.beneficiaire ? a.beneficiaire.nom : '-' }</td>"
   result << "<td>#{a.debut_formatted}</td>"
   result << "<td>#{a.fin_formatted}</td>"
-  result << "<td>#{distance_of_time_in_words(a.debut, a.fin)}</td>"
+  result << "<td>#{time_in_french_words(a.duree)}</td>"
   result << "#{link_to_call a}"
  }%>
 </div>

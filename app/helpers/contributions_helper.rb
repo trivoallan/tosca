@@ -10,6 +10,14 @@ module ContributionsHelper
       :action => 'list', :id => logiciel.id }
   end
 
+
+  # call it like : 
+  # <%= link_to_new_contribution %>
+  def link_to_new_contribution(logiciel_id = nil)
+    link_to image_create('une contribution'), :controller => 
+      'contributions', :action => 'new', :id => logiciel_id
+  end
+
   # call it like : 
   # <%= link_to_contribution @contribution %>
   def link_to_contribution(c)

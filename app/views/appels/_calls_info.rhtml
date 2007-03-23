@@ -23,11 +23,11 @@
 > Recherche</div>
 <ul class="menu" id="menu_recherche">
  <li><b>Ingénieur </b></li>
- <li><%=select_filter(@ingenieurs, 'appels.ingenieur')%></li>
+ <li><%=select_filter(@ingenieurs, 'ingenieur')%></li>
  <li><b>Bénéficiaire </b></li>
- <li><%=select_filter(@beneficiaires, 'appels.beneficiaire')%></li>
+ <li><%=select_filter(@beneficiaires, 'beneficiaire')%></li>
  <li><b>Contrat </b></li>
- <li><%=select_filter(@contrats, 'appels.contrat')%></li>
+ <li><%=select_filter(@contrats, 'contrat')%></li>
 </ul>
 
 
@@ -54,7 +54,8 @@
  <li><b>Demandes: </b><%=@count[:demandes] %></li>
  <li><b>Ingénieurs: </b><%=@count[:ingenieurs]%></li>
  <li><b>Bénéficiaires: </b><%=@count[:beneficiaires]%></li>
- <li><b>Durée totale: </b><%=@count[:duree_totale] %></li>
+ <li><b>Durée totale: </b><%=time_in_french_words @count[:somme]%></li>
+ <li><b>Durée moyenne: </b><%=time_in_french_words @count[:moyenne]%></li>
 </ul>
 
 <% end %>

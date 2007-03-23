@@ -7,10 +7,11 @@
 # De même, toutes les méthodes ajoutées ici seront disponibles.
 
 # authentification
-require_dependency "login_system"
+require_dependency 'login_system'
 # gestion des roles et des permissions
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
-require_dependency "acl_system" 
+require_dependency 'acl_system'
+require_dependency 'filters'
 
 class ApplicationController < ActionController::Base
   # accès protégé et standardisé
@@ -23,6 +24,8 @@ class ApplicationController < ActionController::Base
   # systems d'authentification 
   include LoginSystem
   include ACLSystem
+  # système de construction des filters
+  include Filters
 
   # layout standard
   layout "standard-layout"

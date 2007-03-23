@@ -8,6 +8,13 @@ module PaquetsHelper
     nom = "#{paquet.nom}-#{paquet.version}-#{paquet.release}"
     link_to nom, :controller => 'paquets', 
     :action => 'show', :id => paquet
-
   end
+
+  # call it like : 
+  # <%= link_to_new_contribution %>
+  def link_to_new_paquet(logiciel_id = nil)
+    link_to image_create('un paquet'), :controller => 
+      'paquets', :action => 'new', :id => logiciel_id
+  end
+
 end

@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class LogicielsController < ApplicationController
-  helper :filters, :paquets, :demandes, :competences
+  helper :filters, :paquets, :demandes, :competences, :contributions
   
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom
@@ -22,26 +22,22 @@ class LogicielsController < ApplicationController
     :include => [:groupe,:competences]}
     conditions = []
 
-    params['logiciel'].each_pair { |key, value|
-      conditions << " logiciels.#{key} LIKE '%#{value}%'" if value != ''
-    } if params['logiciel']
-    if params['filters']
-      params['filters'].each_pair { |key, value|
-        unless value == '' or key.intern == :client_id
-          conditions << " #{key}=#{value} " 
-        end
-      } 
-      # TODO: c'est moche et c'est lent
-      contrat_ids = scope_client(params['filters']['client_id'])
-      if contrat_ids
-        conditions << " paquets.contrat_id IN (#{contrat_ids})"
-        options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id' 
-      end
-    end
 
-    unless conditions.empty?
-      flash[:conditions] = options[:conditions] = conditions.join(' AND ') 
+    # Dirty Hack. TODO : faire mieux
+    if params['filters'] and params['filters']['client_id'] != ''
+      params['filters']['client_id'] = scope_client(params['filters']['client_id'])
+      options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id' 
     end
+    # Specification of a filter f :
+    # [ namespace, field, database field, operation ]
+    conditions = Filters.build_conditions(params, [
+       ['logiciel', 'nom', 'logiciels.nom', :like ],
+       ['logiciel', 'description', 'logiciels.description', :like ],
+       ['filters', 'groupe_id', 'logiciels.groupe_id', :equal ],
+       ['filters', 'competence_id', 'competences_logiciels.competence_id', :equal ],
+       ['filters', 'client_id', ' paquets.contrat_id', :in ] 
+     ])
+    flash[:conditions] = options[:conditions] = conditions 
 
     @logiciel_pages, @logiciels = paginate :logiciels, options
 
@@ -107,7 +103,6 @@ class LogicielsController < ApplicationController
 
 
 private
-
   def _form
     @competences = Competence.find(:all, :order => "nom")
     @groupes = Groupe.find(:all, :order => "nom")

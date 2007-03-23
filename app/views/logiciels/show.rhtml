@@ -28,12 +28,12 @@
     <td><%= show_liste(@demandes, 'Demande', {:no_title => true}) { |d| 
     link_to_demande d } %></td></tr>
 
-<tr><td><b>Paquets</b></td>
+<tr><td><b>Paquets</b> <%= link_to_new_paquet(@logiciel.id) %></td>
     <td><%= show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) { |paquet| 
             link_to_paquet paquet } %></td></tr>
 
-<tr><td><b>Contributions</b></td>
-    <td><%= show_liste(@logiciel.contributions, 'Contribution') { |c| 
+<tr><td><b>Contributions</b> <%= link_to_new_contribution(@logiciel.id)%></td>
+    <td><%= show_liste(@logiciel.contributions, 'Contribution', :no_title => true) { |c| 
               link_to c.nom, :controller => 'contributions', 
                              :action => 'show', :id => c.id
             } %></td></tr>
