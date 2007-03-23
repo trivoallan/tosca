@@ -116,8 +116,8 @@ private
       msg = WARN_NOID
     else
       msg = ERROR_MESSAGE
-      if ENV['RAIL_ENV'] == 'production'
-        Notifier::deliver_error_message(exception, clean_backtrace(e),
+      if ENV['RAILS_ENV'] == 'production'
+        Notifier::deliver_error_message(exception, clean_backtrace(exception),
                                         session.instance_variable_get("@data"),
                                         params, request.env)
       end
