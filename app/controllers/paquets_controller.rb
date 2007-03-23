@@ -26,7 +26,7 @@ class PaquetsController < ApplicationController
 
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]
-    conditions = build_conditions(params, [
+    conditions = Filters.build_conditions(params, [
        ['paquet', 'nom', 'paquets.nom', :like ] 
      ])
     flash[:conditions] = options[:conditions] = conditions 

@@ -281,7 +281,10 @@ class DemandesController < ApplicationController
   end
 
   def changer_statut
-    return unless params[:demande][:id] and params[:demande][:statut_id]
+    unless params[:demande] and params[:demande][:id] and 
+        params[:demande][:statut_id]
+      render_text('') and return 
+    end
     @demande = Demande.find(params[:demande][:id])
     changement = Demandechange.new
     changement.statut = @demande.statut
