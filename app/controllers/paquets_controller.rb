@@ -53,6 +53,7 @@ class PaquetsController < ApplicationController
   end
 
   def new
+    @paquet = Paquet.new
     _form
     @paquet.mainteneur = Mainteneur.find_by_nom('Linagora')
     @paquet.distributeur = Distributeur.find_by_nom('(none)')

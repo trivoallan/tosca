@@ -6,7 +6,7 @@
 <% size = @demande.paquets.size %> 
 <p>Votre demande impacte <%= pluralize(size, 'paquet source') %> sur 
 <%= @demande.logiciel.nom if @demande.logiciel %>:</p>
-
+<% if size > 0 %>
 <table>
 
   <tr>
@@ -28,7 +28,6 @@
     <td><%= "#{ display_jours p.correction(type_id, severite_id) }" %></td>
   </tr>
   <% end %>
-
 </table>
-
+<% end %>
 </div>

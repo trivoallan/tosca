@@ -6,7 +6,7 @@ class Machine < ActiveRecord::Base
   belongs_to :hote, :class_name => 'Machine', :foreign_key => 'hote_id'
 
   def to_s
-    acces || 'N/A'
+    acces || '-'
   end
   alias_method :nom, :to_s
 end

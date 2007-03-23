@@ -1,0 +1,18 @@
+<h1>Liste des paquets <%=image_spinner%></h1>
+
+
+<% links = show_pages_links @paquet_pages, 'un paquet virtuel', :url => 
+     '../paquets/list' %>
+<%= links %>
+<% titres = %w(Logiciel Nom Conteneur Taille Distributeur Mainteneur)%>
+<%= show_table(@paquets, Paquet, titres) { |p|
+  result = ''
+  result << "<td>#{p.logiciel.nom}</td>"
+  result << "<td>#{link_to_paquet p}</td>"
+  result << "<td>#{p.conteneur.nom}</td>"
+  result << "<td>#{number_to_human_size p.taille}</td>"
+  result << "<td>#{p.distributeur.nom}</td>"
+  result << "<td>#{p.mainteneur.nom}</td>"
+  result << "#{link_to_actions_table p}"
+}%>
+<%= links %>
