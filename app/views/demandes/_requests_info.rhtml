@@ -54,7 +54,7 @@ Synthèse</div>
  <li><b>Pièces jointes: </b><%=@count[:piecejointes]%></li>
 </ul>
 
-<%# if @beneficiaire %>
+
 <div class="menu_title" onclick="Element.toggle('menu_aide')">>
 Aide</div>
 <ul class="menu" id="menu_aide">
@@ -62,7 +62,8 @@ Aide</div>
  <li><%= link_to_help_new_request %></li>
  <li><%= link_to_howto_request %></li>
 </ul>
-<%# end %>
+<%# mandatory for seeing last link ... :/ %>
+<br />
 
 <% end %>
 
