@@ -392,7 +392,6 @@ class DemandesController < ApplicationController
     @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
 
     softwares = { :select => 'demandes.logiciel_id', :distinct => true }
-    commentaires = 
     @count = { :demandes =>  Demande.count,
       :logiciels => Demande.count(softwares),
       :commentaires => Demande.count(:select => 'commentaires.id', 
