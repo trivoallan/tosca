@@ -17,14 +17,13 @@
 
 <br />
 <p>Ce paquet contient <b><%= pluralize(@binaire.fichierbinaires_count, 'fichier') %></b></p>
+<% if @binaire.fichierbinaires_count > 0 %>
 <div class="bloc_scroll">
   <%= show_liste(@fichierbinaires, 'fichier', :no_title => true) { |f| f.chemin } %>
 </div>
-
-<br />
-
+<% end %>
 
 
 <p>&nbsp;</p>
 
-<%= link_to_edit(@binaire) %> | <%= link_to_back %>
+<%= link_to_edit_and_list(@binaire) %>

@@ -24,12 +24,13 @@ class Contribution < ActiveRecord::Base
         c.name =~ /(_id|_on|^patch)$/ || c.name == inheritance_column }     
   end
 
+  # TODO : tout le monde doit pouvoir voir toutes les contributions.
+  # Ca pose problème avec le scope logiciel ...
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 
-        [ 'paquets.contrat_id IN (?)', contrat_ids ],
-        :include => [:paquets]} }
+        [ 'paquets.contrat_id IN (?)', contrat_ids ], :include => [:logiciel], 
+        :joins => 'INNER JOIN paquets ON logiciels.id=paquets.logiciel_id'} }
   end
-
 
   def to_s
     return '' unless patch

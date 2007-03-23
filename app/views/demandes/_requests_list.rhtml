@@ -39,7 +39,7 @@
        <% end %>
         <td><span class="date"><%=h demande.updated_on_formatted %></span></td>
         <td><%= link_to_comment demande %></td>
-        <td><%= link_to image_delete, { :action => 'destroy', :id => demande }, :confirm => 'Les conséquences sont graves. Etes vous bien certain de ce que vous faites ?', :post => true %></td>
+        <td><%= link_to image_delete, { :action => 'destroy', :id => demande }, :confirm => 'Les conséquences sont graves. Etes vous bien certain de ce que vous faites ?', :method => 'post' %></td>
    </tr>
    <% end %>
 

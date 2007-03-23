@@ -32,9 +32,9 @@ class Demande < ActiveRecord::Base
   EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
 
   def self.set_scope(client_ids)
-    self.scoped_methods << { :find => { :conditions => 
-        [ 'beneficiaires.client_id IN (?)', client_ids],
-        :include => [:beneficiaire]} }
+    scope = { :conditions => [ 'beneficiaires.client_id IN (?)', client_ids],
+      :include => [:beneficiaire] } 
+    self.scoped_methods << { :find => scope, :count => scope }
   end
 
   # return the condition of the scope.

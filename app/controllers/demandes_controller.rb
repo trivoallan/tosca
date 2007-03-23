@@ -371,20 +371,6 @@ class DemandesController < ApplicationController
 
 
   private
-#   def _form
-#     if @ingenieur
-#       @clients = Client.find(:all, :select => 'id, clients.nom')
-#       @client_id = @demande.client.id 
-#     end
-#     conditions = [ 'binaires.socle_id = ? ', @demande.socle_id ]
-#     options = { :conditions => conditions, :include => [:binaires], 
-#       :order => 'paquets.nom DESC' }
-#     @paquets = @demande.client.paquets.\
-#       find_all_by_logiciel_id(@demande.logiciel_id, options)
-#     @binaires = @paquets.collect{|p| p.binaires}.flatten
-#   end
-
-
   # Remplit une @demande avec l'id de 'param', dispo via le client 
   def fill_with_first(param)
     collection = @demande.client.send(param.pluralize)
@@ -406,11 +392,13 @@ class DemandesController < ApplicationController
     @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
 
     softwares = { :select => 'demandes.logiciel_id', :distinct => true }
+    commentaires = 
     @count = { :demandes =>  Demande.count,
       :logiciels => Demande.count(softwares),
-      :commentaires => Commentaire.count,
-      :piecejointes => Piecejointe.count,
-      :contributions => Contribution.count }
+      :commentaires => Demande.count(:select => 'commentaires.id', 
+                                     :include => [:commentaires]),
+      :piecejointes =>  Demande.count(:select => 'commentaires.piecejointe_id', 
+                                      :include => [:commentaires]) }
   end
 
   # todo à retravailler

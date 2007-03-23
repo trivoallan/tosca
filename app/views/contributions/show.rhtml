@@ -12,8 +12,8 @@
     <%= link_to image_create('un reversement'), :controller => 'urlreversements', 
                 :action => "new", :contribution_id => @contribution.id %>
     <%= show_liste(@contribution.urlreversements, 'lien') { |u| 
-        link_to_edit_urlreversement(u) +
-          " <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "       
+        link_to_edit_urlreversement(u).to_s +
+          " <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> " 
     } %>
     <% if @contribution.reverse_le %>
         Cette contribution a été reversée le <%= @contribution.reverse_le_formatted %> par
