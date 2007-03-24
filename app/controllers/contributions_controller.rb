@@ -26,7 +26,7 @@ class ContributionsController < ApplicationController
       flash[:notice] = flash[:notice] 
       return redirect_to(:action => 'select') 
     end
-    options = { :per_page => 10, :order => "created_on DESC" }
+    options = { :order => "created_on DESC" }
     unless params[:id] == 'all'
       @logiciel = Logiciel.find(params[:id])
       options[:conditions] = ['contributions.logiciel_id = ?', @logiciel.id]
