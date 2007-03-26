@@ -18,6 +18,12 @@
 	/* width: 90%; *//* strange effect on IE */
         width: 15em;
 }
+/* keep little space on the right 
+   of date input for js_calendar ~2em */
+#date_after,
+#date_before {
+        width: 13em;
+}
 .underline {
 	border-bottom: 1px solid #990066;
 	width: 100%;
