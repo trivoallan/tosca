@@ -1,5 +1,8 @@
 <%= link_to 'Accueil', :action => 'list', :controller => 'bienvenue'%> > <%= link_to 'Contributions', :action => 'select', :id => nil %> > <%= @logiciel ? @logiciel.nom : 'Tous' %></h1>
 
+
+<%= show_pages_links(@contribution_pages, 'une nouvelle contribution') %>
+
 <% @contributions.each do |contribution| %>
   <h2>
    <%= link_to_edit(contribution) %>   
@@ -8,5 +11,7 @@
   <%= contribution.synthese.to_s + '<br />' %>
 <% end %>
 
-<%= link_to_new('contribution') %><br/><br/>
-<%= link_to_back %>
+
+<%= show_pages_links(@contribution_pages, 'une nouvelle contribution') %>
+
+
