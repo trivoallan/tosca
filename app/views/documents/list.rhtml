@@ -4,13 +4,12 @@
 
 <%= show_pages_links(@document_pages, 'un document') %>
 
-<% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
+<% titres = ['Fichier', 'Taille', 'Maj'] %>
 <%= show_table(@documents, Document, titres, :total => false, 
     :content_columns => true) { |document| 
   result = ''
   result << "<td>#{link_to_file document, 'fichier'}</td>"
   result << "<td>#{file_size(document.fichier)}</td>"
-  result << "<td>#{document.identifiant.nom}</td>"
   result << "<td>#{document.updated_on_formatted}</td>"
   result << "#{link_to_actions_table document}"
 }%>
