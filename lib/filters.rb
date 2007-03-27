@@ -23,7 +23,7 @@ module Filters
     filters.each { |f|
       if params[f.first] 
         value =  params[f.first][f[1]] 
-        if value != ''
+        if value and value != ''
           query = case f[3]
                   when :equal
                     "#{f[2]}=?"

@@ -46,7 +46,7 @@ class DemandesController < ApplicationController
 
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]
-    conditions = Filters::build_conditions(params, [
+    conditions = Filters.build_conditions(params, [
        ['logiciel', 'nom', 'logiciels.nom', :like ],
        ['demande', 'resume', 'demandes.resume', :like ],
        ['filters', 'client_id', 'beneficiaires.client_id', :equal ],
@@ -56,7 +56,6 @@ class DemandesController < ApplicationController
        ['filters', 'statut_id', 'demandes.statut_id', :equal ]
      ])
     flash[:conditions] = options[:conditions] = conditions if conditions
-
 
     escope = {}
     if @beneficiaire
