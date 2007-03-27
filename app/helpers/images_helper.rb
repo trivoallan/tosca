@@ -121,6 +121,12 @@ module ImagesHelper
     @@image_favicon ||= image_path("favicon.ico")
   end
 
+  @@image_print = nil
+  def image_print
+    desc = 'Imprimer'
+    @@image_print ||= image_tag('imprimer.png', image_options(desc, '22x22'))
+  end
+
   # Other
 
   @@spinner = nil
