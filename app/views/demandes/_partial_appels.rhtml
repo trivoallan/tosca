@@ -1,0 +1,14 @@
+<div id='demande_tab_content' class='demande_tab_content'>
+ <% titres = ['Contrat','Responsable','Bénéficiaire','Appel',
+     'Fin de l\'appel','Durée'] %>
+ <%= show_table(@appels, Appel, titres) { |a|
+  result = ''
+  result << "<td>#{a.contrat.nom}</td>"
+  result << "<td>#{a.ingenieur.nom if a.ingenieur}</td>"
+  result << "<td>#{a.beneficiaire ? a.beneficiaire.nom : '-' }</td>"
+  result << "<td>#{a.debut_formatted}</td>"
+  result << "<td>#{a.fin_formatted}</td>"
+  result << "<td>#{time_in_french_words(a.duree)}</td>"
+  result << "#{link_to_call a}"
+ }%>
+</div>

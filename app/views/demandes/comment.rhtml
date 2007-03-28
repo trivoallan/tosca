@@ -5,8 +5,11 @@
 
 <div class="content">
 
-  <h1><%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %></h1>
-
+  <h1>
+    <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
+    <%= link_to(image_print, :controller => 'demandes', :action => 'pretty_print', :id => @demande.id) %>
+  </h1>
+  
   <div class="demande_tab_content">
   <% if @last_commentaire %>
      <%=render :partial => 'tab_comment', :collection =>[@last_commentaire]%>

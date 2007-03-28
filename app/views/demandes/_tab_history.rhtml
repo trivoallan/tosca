@@ -1,33 +1,3 @@
 <%= render :partial => 'tab_menu' %>
 
-
-<div class="demande_tab_content" name="demande_tab_content">
-
-<% old_statut_id, old_ingenieur_id = nil, nil %>
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Changement(s)</th>
-  </tr>
-
-  <% @demande.versions.each_index do |i| %>
-   <% demande = @demande.versions[i] %>
-   <% next if old_statut_id == demande.statut_id and old_ingenieur_id == demande.ingenieur_id %>
-    <tr class="<%= cycle('pair', 'impair') %>">
-     <td><%= demande.updated_on_formatted %></td>
-     <td>
-       <% if old_ingenieur_id != demande.ingenieur_id %>
-         <% ingenieur = Ingenieur.find(demande.ingenieur_id) %>
-         Le <b>responsable</b> de votre demande est devenu 
-         <b><%= ingenieur.nom %></b><br />
-       <% end %>
-       <% if old_statut_id != demande.statut_id %>
-         <% statut = Statut.find(demande.statut_id) %>
-         Le <b>statut</b> de votre demande est devenu <b><%= statut.nom %></b>
-       <% end %>
-     </td>
-   </tr>
-  <% old_statut_id, old_ingenieur_id = demande.statut_id, demande.ingenieur_id %>
-  <% end %>
-</table>
-</div>
+<%= render :partial => 'partial_history' %>
