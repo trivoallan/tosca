@@ -79,7 +79,6 @@ class DemandesController < ApplicationController
     end
   end
 
-
   def new
     @demande = Demande.new unless @demande
     _form @beneficiaire
@@ -108,8 +107,7 @@ class DemandesController < ApplicationController
     end
   end 
 
-
-  # TODO : passer au nouveau formulaire (deposer), 
+  # TODO : passer au nouveau formulaire (deposer),
   # qui a besoin d'un petit check
   # et virer ce vieux code legacy tout laid
   def ajax_update_delai
@@ -167,7 +165,6 @@ class DemandesController < ApplicationController
     render :inline => output
   end
 
-
   def edit
     @demande = Demande.find(params[:id])
     _form @beneficiaire
@@ -208,7 +205,7 @@ class DemandesController < ApplicationController
   end
 
   def ajax_comments
-    return render_text('') unless request.xhr? and params[:id]
+   return render_text('') unless request.xhr? and params[:id]
     @demande_id = params[:id] 
     if @beneficiaire
       @commentaires = Commentaire.find_all_by_demande_id_and_prive(
@@ -236,7 +233,6 @@ class DemandesController < ApplicationController
     render :partial => 'tab_history', :layout => false
   end
 
-
   def ajax_appels
     return render_text('') unless request.xhr? and params[:id]
     @demande_id = params[:id] 
@@ -249,11 +245,8 @@ class DemandesController < ApplicationController
 
   def ajax_piecejointes
     return render_text('') unless request.xhr? and params[:id]
-    @demande_id = params[:id] 
-    conditions = [ 'commentaires.demande_id = ? ', @demande_id ]
-    options = { :conditions => conditions, :order => 
-      'commentaires.updated_on DESC', :include => [:commentaire] }
-    @piecejointes = Piecejointe.find(:all, options)
+    @demande_id = params[:id]
+    set_piecejointes(@demande_id)
     render :partial => 'tab_piecejointes', :layout => false
   end
 
@@ -314,7 +307,6 @@ class DemandesController < ApplicationController
     redirect_to_comment
   end
 
-
   def associer_contribution
     return render_text('') unless params[:id] and params[:contribution_id]
     @demande = Demande.find(params[:id])
@@ -323,6 +315,10 @@ class DemandesController < ApplicationController
     redirect_to :action => 'comment', :id => @demande.id
   end
 
+  def pretty_print
+    @demande = Demande.find(params[:id]) unless @demande
+    set_piecejointes(@demande.id)
+  end
 
   # TODO : trop lent et pas encore au point
   # mis en privé pour cette release, à corriger pour la suivante
@@ -367,7 +363,6 @@ class DemandesController < ApplicationController
       render :partial => 'form_deposer', :layout => false
     end
   end
-
 
   private
   # Remplit une @demande avec l'id de 'param', dispo via le client 
@@ -418,6 +413,13 @@ class DemandesController < ApplicationController
 
   def redirect_to_comment
     redirect_to :action => 'comment', :id => @demande
+  end
+
+  def set_piecejointes(demande_id)
+    conditions = [ 'commentaires.demande_id = ? ', demande_id ]
+    options = { :conditions => conditions, :order => 
+      'commentaires.updated_on DESC', :include => [:commentaire] }
+    @piecejointes = Piecejointe.find(:all, options)
   end
 
 end
