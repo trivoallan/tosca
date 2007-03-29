@@ -27,7 +27,7 @@ class CommentairesController < ApplicationController
       return render_text('') 
     end
 
-    user = @session[:user]
+    user = session[:user]
     demande = Demande.find(params[:id])
 
     if params[:demande]

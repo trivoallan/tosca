@@ -55,6 +55,7 @@ class Notifier < ActionMailer::Base
     demande =  @body[:demande]
     @recipients = compute_recipients(demande)
     @cc = demande.beneficiaire.client.mailingliste
+    @cc << ", " << demande.mail_cc if demande.mail_cc
     @from = FROM
     @subject = "[SLL:#{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]
@@ -71,6 +72,7 @@ class Notifier < ActionMailer::Base
     demande =  @body[:demande]
     @recipients = compute_recipients(demande)
     @cc = demande.beneficiaire.client.mailingliste
+    @cc << ", " << demande.mail_cc if demande.mail_cc
     @from = FROM
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]
@@ -86,6 +88,7 @@ class Notifier < ActionMailer::Base
     demande =  @body[:demande]
     @recipients = compute_recipients(demande)
     @cc = demande.beneficiaire.client.mailingliste
+    @cc << ", " << demande.mail_cc if demande.mail_cc
     @from = FROM
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]
@@ -102,6 +105,7 @@ class Notifier < ActionMailer::Base
     demande =  @body[:demande]
     @recipients = compute_recipients(demande)
     @cc = demande.beneficiaire.client.mailingliste
+    @cc << ", " << demande.mail_cc if demande.mail_cc
     @from = "noreply@08000linux.com"
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]

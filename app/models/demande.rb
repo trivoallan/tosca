@@ -83,7 +83,6 @@ class Demande < ActiveRecord::Base
     affiche_delai(temps_ecoule, engagement(contrat_id).correction)
   end
 
-
   def affiche_temps_correction
     distance_of_time_in_french_words(self.temps_correction, client.support)
   end
