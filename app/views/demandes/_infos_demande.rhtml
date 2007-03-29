@@ -21,6 +21,7 @@
   <li><b>Statut : </b><%= @demande.statut.nom %></li>
   <li><b>Type : </b><%= @demande.typedemande.nom %></li>
   <li><b>Sévérité : </b><%= @demande.severite.nom %></li>
+  <li><b>CC : </b><%= @demande.mail_cc %></li>
   <% if @demande.ingenieur %>
     <li><b>Resp. : </b><%= @demande.ingenieur.nom %></li>
   <% end %>
