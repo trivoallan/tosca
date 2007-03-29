@@ -206,24 +206,8 @@ class DemandesController < ApplicationController
 
   def ajax_comments
    return render_text('') unless request.xhr? and params[:id]
-    @demande_id = params[:id] 
-    if @beneficiaire
-      @commentaires = Commentaire.find_all_by_demande_id_and_prive(
-                      @demande_id, false, :order => "created_on ASC", 
-                      :include => [:identifiant])
-    elsif @ingenieur
-      @commentaires = Commentaire.find_all_by_demande_id(
-                      @demande_id, :order => "created_on ASC", 
-                      :include => [:identifiant])
-    end
-    # On va chercher les identifiants des ingénieurs assignés
-    # C'est un héritage du passé
-    # TODO : s'en débarrasser avec une migration et un :include
-    joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
-    select = "DISTINCT identifiants.* "
-    @identifiants_ingenieurs = 
-      Identifiant.find(:all, :select => select, :joins => joins)
-
+    @demande_id = params[:id]
+    set_comments(@demande_id)
     render :partial => "tab_comments", :layout => false
   end
 
@@ -318,6 +302,7 @@ class DemandesController < ApplicationController
   def pretty_print
     @demande = Demande.find(params[:id]) unless @demande
     set_piecejointes(@demande.id)
+    set_comments(@demande.id)
   end
 
   # TODO : trop lent et pas encore au point
@@ -420,6 +405,25 @@ class DemandesController < ApplicationController
     options = { :conditions => conditions, :order => 
       'commentaires.updated_on DESC', :include => [:commentaire] }
     @piecejointes = Piecejointe.find(:all, options)
+  end
+
+  def set_comments(demande_id)
+    if @beneficiaire
+      @commentaires = Commentaire.find_all_by_demande_id_and_prive(
+                      demande_id, false, :order => "created_on ASC",
+                      :include => [:identifiant])
+    elsif @ingenieur
+      @commentaires = Commentaire.find_all_by_demande_id(
+                      demande_id, :order => "created_on ASC",
+                      :include => [:identifiant])
+    end
+    # On va chercher les identifiants des ingénieurs assignés
+    # C'est un héritage du passé
+    # TODO : s'en débarrasser avec une migration et un :include
+    joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
+    select = "DISTINCT identifiants.* "
+    @identifiants_ingenieurs = 
+      Identifiant.find(:all, :select => select, :joins => joins)
   end
 
 end
