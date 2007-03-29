@@ -29,7 +29,7 @@
       <% user = session[:user] %>
       <% c.public_instance_methods(false).sort.each { |m|
             mname = m.to_s
-            next if m == :index  %>
+            next if mname =~ /^(index|auto_complete_for)/ %>
           <% # et on link sous réserve d'autorisation  %>
           <% if user.authorized?(cname+'/'+mname)%>
 		<small>| <%= link_to mname, { :action => mname, :controller => cname } %> </small>
