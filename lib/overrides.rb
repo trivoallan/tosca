@@ -48,7 +48,7 @@ class String
   end
 
   def unbreak
-    self.gsub(' ', '&nbsp;')  
+    self.gsub(' ', '&nbsp;')
   end
 
 end
