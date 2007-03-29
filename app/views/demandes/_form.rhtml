@@ -38,6 +38,10 @@
 </tr>
 <% end %>
 <tr>
+  <td><p><label for="demande_cc">Mails associés à la demande</label></p></td>
+  <td><%= text_field :demande, :cc %></td>
+</tr>
+<tr>
   <td><p><label for="demande_socle">Système concerné</label></p></td>
   <td><%= select(:demande, :socle_id,
 	  @socles.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td>
