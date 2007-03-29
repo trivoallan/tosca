@@ -64,9 +64,8 @@ module PagesHelper
   # <%= show_pages_links @demande_pages, 'déposer une demande', 
   #        :url => '/demandes/update_list' %>
   # (!) you will need an image_spinner too (!)
-  PAGE_FORM = 'document.forms[\'filters\']'
   AJAX_OPTIONS = {  :update => 'content',
-    :with => "Form.serialize(#{PAGE_FORM})",
+    :with => "Form.serialize(document.forms['filters'])",
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" }
 
@@ -108,7 +107,7 @@ module PagesHelper
   def link_to_page(pages, page, title, image, ajax_call)
     html_options = {:title => title }
     if ajax_call
-      page = "#{PAGE_FORM}.page.value=#{page.number}; #{ajax_call}"
+      page = "document.forms['filters'].page.value=#{page.number}; #{ajax_call}"
       link = link_to_function(image, page, html_options)
     else
       page = { :page => page }
