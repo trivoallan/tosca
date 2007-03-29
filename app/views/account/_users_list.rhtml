@@ -17,7 +17,7 @@
   </tr>
 
 
-  <% options = PagesHelper::AJAX_OPTIONS %>
+  <% options = PagesHelper::AJAX_OPTIONS.dup %>
   <% @users.each_index {|i| %>
    <% user = @users[i] %>
    <% beneficiaire = user.beneficiaire %>
