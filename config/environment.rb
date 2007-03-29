@@ -15,8 +15,6 @@ require File.join(File.dirname(__FILE__), 'boot')
 require 'overrides'
 require 'utils'
 
-require 'lstm'
-
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
   
@@ -147,7 +145,3 @@ module ActionView::Helpers::UrlHelper
    end
  end
 end
-
-
-
-

@@ -17,7 +17,7 @@ module Filters
   # ])
   # flash[:conditions] = options[:conditions] = conditions 
   # This helpers is here mainly for avoiding SQL injection.
-  # you MUST use it, if you don't want to burn in hell during your seven next lifes
+  # you MUST use it, if you don't want to burn in hell during your seven next lives
   def self.build_conditions(params, filters)
     conditions = [[]]
     filters.each { |f|

@@ -1,6 +1,7 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
+
 class Demande < ActiveRecord::Base
 
   belongs_to :typedemande
@@ -195,7 +196,6 @@ class Demande < ActiveRecord::Base
     delai
   end
 
-
   ##
   # Calcule le différentiel en secondes entre 2 jours,
   # selon les horaires d'ouverture du 'support' et les jours fériés
@@ -235,19 +235,10 @@ class Demande < ActiveRecord::Base
     (joursup - jourinf)
   end
 
-  # FONCTION vers lib/time.rb:time_in_french_words
+  # FONCTION vers lib/lstm.rb:time_in_french_words
   def distance_of_time_in_french_words(distance_in_seconds, support)
     dayly_time = support.fermeture - support.ouverture # in hours
-    time_in_french_words(distance_in_seconds, dayly_time)
-
-    #distance_in_minutes = ((distance_in_seconds.abs)/60).round
-    #jo = (support.fermeture - support.ouverture) * 60
-    #demi_jo_inf = (jo / 2) - 60
-    #demi_jo_sup = (jo / 2) + 60
-
-    #case distance_in_minutes
-    # [..]
-    #end
+    Lstm.time_in_french_words(distance_in_seconds, dayly_time)
   end
 
 end
