@@ -21,10 +21,10 @@ module FormsHelper
     options_size = options[:size]
     length = collection.size
     for donnee in collection
-      out << "<td><input type=\"checkbox\" " 
+      out << "<td><input id=\"#{nom}_#{donnee.id}\" type=\"checkbox\" " 
       out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
       out << 'checked="checked" ' if objectcollection.include? donnee
-      out << "/><label for=\"#{id}\">#{donnee}</label></td>"
+      out << "/><label for=\"#{nom}_#{donnee.id}\">#{donnee}</label></td>"
       if options_size 
         out << '</tr><tr>' if count % options_size == 0 and length > count
         count += 1
