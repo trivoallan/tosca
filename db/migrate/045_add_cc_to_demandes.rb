@@ -4,5 +4,6 @@ class AddCcToDemandes < ActiveRecord::Migration
   end
 
   def self.down
+     remove_column :demandes, :mail_cc
   end
 end
