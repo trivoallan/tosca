@@ -30,6 +30,7 @@ module Lstm
     demi_jo_sup = (jo / 2) + 60
     out = ''
     plural = false
+    male = false
 
     case distance_in_minutes
     when 0..1 
@@ -48,21 +49,26 @@ module Lstm
       nb_jours = (distance_in_minutes / jo).floor
       nb_heures = (jo - nb_jours)/60.round
       out << pluralize(nb_jours, "jour").to_s
+      male = true
       if nb_heures > 0
         out << " et #{self.pluralize(nb_heures, "heure")}"
         plural = true
       end
     when (3*jo)..mo
       out << "#{(distance_in_minutes / jo).round} jours"
+      male = true
       plural = true
     when mo..(1.5*mo)
       out << "1 mois"
+      male = true
     else
       out << "#{(distance_in_minutes / mo).round} mois"
+      male = true
       plural = true
     end
     if dayly_time!=24 and distance_in_minutes!=0
       out << " ouvré"
+      out << "e" if not male
       out << "s" if plural
     end
   end

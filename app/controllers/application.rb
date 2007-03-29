@@ -12,6 +12,7 @@ require_dependency 'login_system'
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency 'acl_system'
 require_dependency 'filters'
+require_dependency 'lstm'
 
 class ApplicationController < ActionController::Base
   # accès protégé et standardisé
@@ -26,6 +27,7 @@ class ApplicationController < ActionController::Base
   include ACLSystem
   # système de construction des filters
   include Filters
+  include Lstm
 
   # layout standard
   layout "standard-layout"
