@@ -25,8 +25,12 @@
             :action => "new", :logiciel_id => @logiciel.id %></td></tr>
 
 <tr><td><b>Demandes</b></td>
-    <td><%= show_liste(@demandes, 'Demande', {:no_title => true}) { |d| 
-    link_to_demande d } %></td></tr>
+    <td>
+      <div class="bloc_scroll">
+      <%= show_liste(@demandes, 'Demande', {:no_title => true}) { |d| 
+          link_to_demande d 
+      } %>
+      </div></td></tr>
 
 <tr><td><b>Paquets</b> <%= link_to_new_paquet(@logiciel.id) %></td>
     <td><%= show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) { |paquet| 
