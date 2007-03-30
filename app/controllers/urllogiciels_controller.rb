@@ -29,7 +29,8 @@ class UrllogicielsController < ApplicationController
     @urllogiciel = Urllogiciel.new(params[:urllogiciel])
     if @urllogiciel.save
       flash[:notice] = 'l\'url ' + @urllogiciel.valeur + ' a bien été crée.'
-      redirect_to :controller => 'logiciels' , :action => 'show', :id => @urllogiciel.logiciel
+      redirect_to :controller => 'logiciels' , :action => 'show', :id => 
+        @urllogiciel.logiciel
     else
       render :action => 'new'
     end
@@ -43,8 +44,9 @@ class UrllogicielsController < ApplicationController
   def update
     @urllogiciel = Urllogiciel.find(params[:id])
     if @urllogiciel.update_attributes(params[:urllogiciel])
-      flash[:notice] = 'Urllogiciel was successfully updated.'
-      redirect_to :action => 'show', :id => @urllogiciel
+      flash[:notice] = 'Urll mis à jour correctement.'
+      redirect_to :controller => 'logiciels' , :action => 'show', :id => 
+        @urllogiciel.logiciel
     else
       render :action => 'edit'
     end

@@ -8,7 +8,7 @@ module DemandesHelper
   # :pre_text à afficher avant le nom
   # :show_id affiche l'id à la place du nom de la demande
   def link_to_demande(demande, options={})
-    return 'N/A' unless demande
+    return '-'unless demande
     text = ''
     text << "##{demande.id} " if options[:show_id] 
     text << "#{icon_severite(demande)} " if options[:icon_severite] 
@@ -16,6 +16,12 @@ module DemandesHelper
     options = {:controller => 'demandes', 
                :action => 'comment', :id => demande.id}
     link_to text, options
+  end
+
+  def link_to_new_urllogiciel(logiciel_id)
+    return '-' unless logiciel_id
+    link_to(image_create('une url'), :controller => 'urllogiciels', 
+            :action => 'new', :logiciel_id => logiciel_id)
   end
 
   # link to the 08000 wiki
