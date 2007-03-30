@@ -24,7 +24,7 @@
           ' ('+ file_size(commentaire.piecejointe.file) +
           ')' if commentaire.piecejointe %>
     </td>
-    <% if @ingenieur and !pretty_print %>
+    <% if @ingenieur and not pretty_print %>
     <td class="standard_infos" valign="middle" width="30" align="center">
        <%= link_to(image_edit,
         { :controller => 'commentaires', :action => 'edit', :id => commentaire }) %>
