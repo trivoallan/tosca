@@ -11,10 +11,6 @@
 <p><label for="ingenieur_expert_ossa">Expert OSSA ?</label>
 <%= check_box 'ingenieur', 'expert_ossa' %></p>
 
-<p><label for="ingenieur_identifiant">Identifiant</label><br/>
-  <%= select("ingenieur", "identifiant_id", 
-	@identifiants.collect{|l| [ l.nom, l.id]}) %>
-</p>
 
 <p><label for="ingenieur_competences">Competences ?</label><br/>
 <%= hbtm_check_box( @ingenieur.competences, @competences, 'ingenieur[competence_ids]', :size => 6) %>

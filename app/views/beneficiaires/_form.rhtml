@@ -1,9 +1,6 @@
 <%= error_messages_for 'beneficiaire' %>
 
 <!--[form:beneficiaire]-->
-<p><label for="beneficiaire_identifiant">Identifiant</label><br/>
-  <%= collection_select(:beneficiaire, :identifiant_id,	@identifiants, :id, :nom) %>
-</p>
 
 <p><label for="beneficiaire_client">Client</label><br/>
   <%= collection_select(:beneficiaire, :client_id, @clients, :id, :nom) %>

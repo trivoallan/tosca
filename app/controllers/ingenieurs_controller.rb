@@ -64,9 +64,7 @@ class IngenieursController < ApplicationController
 
   private
   def _form
-    @identifiants = Identifiant.find_select
     @competences = Competence.find_select
     @contrats = Contrat.find_select(Contrat::OPTIONS)
   end
-
 end

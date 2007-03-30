@@ -64,10 +64,9 @@ class BeneficiairesController < ApplicationController
     identifiant.destroy
     redirect_to :action => 'list'
   end
-
 private
   def _form
-    @identifiants = Identifiant.find_select
     @clients = Client.find_select
   end  
+
 end
