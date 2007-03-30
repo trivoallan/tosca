@@ -47,7 +47,7 @@ module Lstm
       out << "1 demie-journée"
     when jo..(3*jo)
       nb_jours = (distance_in_minutes / jo).floor
-      nb_heures = (jo - nb_jours)/60.round
+      nb_heures = ((jo - nb_jours)/60).round
       out << pluralize(nb_jours, "jour").to_s
       male = true
       if nb_heures > 0
