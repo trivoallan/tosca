@@ -36,11 +36,11 @@
   <td><p><label for="demande_ingenieur">Ingénieur assigné à la demande</label></p></td>
   <td><%= select_empty(@ingenieurs, @demande.ingenieur_id, 'demande[ingenieur_id]') %></td>
 </tr>
-<% end %>
 <tr>
   <td><p><label for="demande_mail_cc">Mails associés à la demande <br/>séparé par des virgules ','</label></p></td>
   <td><%= text_field :demande, :mail_cc %></td>
 </tr>
+<% end %>
 <tr>
   <td><p><label for="demande_socle">Système concerné</label></p></td>
   <td><%= select(:demande, :socle_id,
