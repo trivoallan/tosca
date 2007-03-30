@@ -3,7 +3,6 @@
 #####################################################
 
 class Demande < ActiveRecord::Base
-
   belongs_to :typedemande
   belongs_to :logiciel
   belongs_to :severite
@@ -171,7 +170,7 @@ class Demande < ActiveRecord::Base
   def compute_temps_ecoule
     return 0 unless self.versions.size > 0
     support = client.support
-    changes = self.versions # Demandechange.find_all_by_demande_id(self.id, :order => "created_on")
+    changes = self.versions # Demandechange.find(:all)
     statuts_sans_chrono = [ 3, 7, 8 ] #Suspendue, Cloture, Annulée, cf modele statut
     inf = { :date => self.created_on, :statut => changes.first.statut_id } #1er statut : enregistré !
     delai = 0
@@ -211,9 +210,10 @@ class Demande < ActiveRecord::Base
                                 :year => dateinf.year)
     else
       result = ((nb_jours-1) * support.interval_in_seconds) 
-      borneinf = borneinf.change(:hour => support.fermeture)
-      bornesup = bornesup.change(:hour => support.ouverture)
     end
+    borneinf = borneinf.change(:hour => support.fermeture)
+    bornesup = bornesup.change(:hour => support.ouverture)
+
     # La durée d'un jour ouvré dépend des horaires d'ouverture
     result += compute_diff_day(dateinf, borneinf, support)
     result += compute_diff_day(bornesup, datesup, support)
@@ -224,12 +224,13 @@ class Demande < ActiveRecord::Base
   # Calcule le temps en seconde qui est écoulé durant la même journée
   # En temps ouvré, selon les horaires du 'support'
   def compute_diff_day(jourinf, joursup, support)
-    #on recup les bornes selon le niveau de support
+    # mise au minimum à 7h
     borneinf = jourinf.change(:hour => support.ouverture)
-    bornesup = joursup.change(:hour => support.fermeture)
-    #on reste dans les bornes
     jourinf = borneinf if jourinf < borneinf
+    # mise au minimum à 19h
+    bornesup = joursup.change(:hour => support.fermeture)
     joursup = bornesup if joursup > bornesup
+    #on reste dans les bornes
     return 0 unless jourinf < joursup
     (joursup - jourinf)
   end
