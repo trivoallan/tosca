@@ -41,14 +41,14 @@
 
        <% links = [ 
              link_to_my_client, #({:image => true}),
-             link_to('Liste des clients', :controller => 'clients'),
-             link_to('Liste des bénéficiaires', :controller => 'beneficiaires'), 
-             link_to('Liste des contrats', :controller => 'contrats')  ] %>
+             link_to('Liste des clients', :controller => 'clients', :action => 'list'),
+             link_to('Liste des bénéficiaires', :controller => 'beneficiaires', :action => 'list'), 
+             link_to('Liste des contrats', :controller => 'contrats', :action => 'list')  ] %>
        <%= show_liste_accueil(links, (@beneficiaire ? 'Client' : 'Clients')) %>
 
        <% links = [ 
-             link_to('Liste des ingénieurs', :controller => 'ingenieurs'),
-             link_to('Liste des compétences', :controller => 'competences') ] %>
+             link_to('Liste des ingénieurs', :controller => 'ingenieurs', :action => 'list'),
+             link_to('Liste des compétences', :controller => 'competences', :action => 'list') ] %>
        <%= show_liste_accueil(links, 'Gestion des compétences') %>
 
   </dl></td>
