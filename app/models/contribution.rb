@@ -28,8 +28,7 @@ class Contribution < ActiveRecord::Base
   # Ca pose problème avec le scope logiciel ...
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 
-        [ 'spaquets.contrat_id IN (?)', contrat_ids ], :include => [:logiciel], 
-        :joins => 'INNER JOIN paquets spaquets ON logiciels.id=spaquets.logiciel_id'} }
+        [ 'paquets.contrat_id IN (?)', contrat_ids ], :include => [:paquets] } }
   end
 
   def to_s
