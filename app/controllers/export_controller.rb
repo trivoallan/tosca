@@ -18,10 +18,10 @@ class ExportController < ApplicationController
     stream_csv do |csv|
       csv << %w(id logiciel version etat résumé reversé cloturé délai)
       contributions.each do |c|
-        csv << [ c.id, c.logiciel.nom, "'"+c.version,
+        csv << [ c.id, c.logiciel.nom, "'"+c.version.to_s,
                  c.etatreversement.nom, c.synthese,
                  c.reverse_le_formatted, (c.clos ? c.cloture_le_formatted : ''), 
-                 time_in_french_words(c.delai)
+                 Lstm.time_in_french_words(c.delai)
                ]
       end
     end

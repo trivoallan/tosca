@@ -8,7 +8,7 @@
   result << "<td>#{a.beneficiaire ? a.beneficiaire.nom : '-' }</td>"
   result << "<td>#{a.debut_formatted}</td>"
   result << "<td>#{a.fin_formatted}</td>"
-  result << "<td>#{time_in_french_words(a.duree)}</td>"
+  result << "<td>#{Lstm.time_in_french_words(a.duree)}</td>"
   result << "#{link_to_call a}"
  }%>
 </div>
