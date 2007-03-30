@@ -12,7 +12,8 @@
   
   <div class="demande_tab_content">
   <% if @last_commentaire %>
-     <%=render :partial => 'tab_comment', :collection =>[@last_commentaire]%>
+     <%=render :partial => 'tab_comment', :collection =>[@last_commentaire], 
+         :locals => { :pretty_print => false }%>
   <% else %>
      <%=indent @demande.description %>
   <% end %>

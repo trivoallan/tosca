@@ -1,9 +1,6 @@
 <% commentaire = tab_comment %>
 <% id = commentaire.identifiant  %>
-
 <% #style au choix : "beau" ou "moche" %>
-
-
 
 <table class="commentaire_table">
   <tr <%= (commentaire.prive ? 'class="commentaire-prive"' : 'class="commentaire-public"' ) %>>
