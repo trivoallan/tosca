@@ -7,7 +7,7 @@
   <tr>
     <th>Identifiant</th>
   <th><% for role in @roles %>
-    <small> [<%= link_to_edit_role role %>] </small>
+    <small> [<%=role.nom%>] </small>
   <% end %></th>
     <th>Ingénieur</th>
     <th>Bénéficiaire</th>
