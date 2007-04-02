@@ -32,6 +32,7 @@ class Jourferie < ActiveRecord::Base
 
 
   #A appeler sur 2 dates dont l'heure, les minutes et les seconds sont à 0
+  # TODO : y intégrer la constante JOUR_FERIE_FRANCE
   def self.nb_jours_ouvres(debut, fin)
     return 0 if fin < debut
     result = 0
