@@ -145,10 +145,9 @@ class Demande < ActiveRecord::Base
   # donc en fait si ^_^
   def affiche_temps_ecoule
     temps = temps_ecoule
-    temps==-1 ? "sans engagement" :
-      distance_of_time_in_french_words(temps, client.support)
+    return "sans engagement" if temps == -1 
+    distance_of_time_in_french_words(temps, client.support)
   end
-
 
 #  private
   def affiche_delai(temps_passe, delai)
@@ -168,6 +167,7 @@ class Demande < ActiveRecord::Base
   end
 
   def compute_temps_ecoule
+#     return (self.updated_on - self.created_on).to_i
     return 0 unless self.versions.size > 0
     support = client.support
     changes = self.versions # Demandechange.find(:all)
@@ -177,15 +177,21 @@ class Demande < ActiveRecord::Base
     for c in changes
       sup = { :date => c.updated_on, :statut => c.statut_id }
 #      delai += (sup[:date] - inf[:date]).to_s + " de " + inf[:statut].nom + " à " + sup[:statut].nom + "<br />"
-      unless statuts_sans_chrono.include? sup[:statut]
-        delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]), 
-                              Jourferie.get_dernier_jour_ouvre(sup[:date]), 
+      unless statuts_sans_chrono.include? inf[:statut]
+        delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
+                              Jourferie.get_dernier_jour_ouvre(sup[:date]),
                               support)
+        puts 'debut ' + Jourferie.get_premier_jour_ouvre(inf[:date]).to_s
+        puts 'fin ' + Jourferie.get_dernier_jour_ouvre(sup[:date]).to_s
+        puts 'delai ' + compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
+                              Jourferie.get_dernier_jour_ouvre(sup[:date]),
+                              support).to_s
+#           delai += sup[:date] - inf[:date]
       end
       inf = sup
     end
 
-    if not statuts_sans_chrono.include? self.statut.id
+    unless statuts_sans_chrono.include? self.statut.id
       sup = { :date => Time.now, :statut => self.statut_id }
       delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]), 
                             Jourferie.get_dernier_jour_ouvre(sup[:date]), 
@@ -204,10 +210,11 @@ class Demande < ActiveRecord::Base
     nb_jours = Jourferie.nb_jours_ouvres(borneinf, bornesup)
     result = 0
     if nb_jours == 0
-      borneinf = dateinf
-      bornesup = datesup.change(:mday => dateinf.day,
-                                :month => dateinf.month,
-                                :year => dateinf.year)
+      return compute_diff_day(dateinf, datesup, support)
+#       borneinf = dateinf
+#       bornesup = datesup.change(:mday => dateinf.day,
+#                                 :month => dateinf.month,
+#                                 :year => dateinf.year)
     else
       result = ((nb_jours-1) * support.interval_in_seconds) 
     end
@@ -216,7 +223,9 @@ class Demande < ActiveRecord::Base
 
     # La durée d'un jour ouvré dépend des horaires d'ouverture
     result += compute_diff_day(dateinf, borneinf, support)
+#     puts 'dateinf ' + dateinf.to_s + ' borneinf ' + borneinf.to_s + ' result 1 : ' + compute_diff_day(dateinf, borneinf, support).to_s
     result += compute_diff_day(bornesup, datesup, support)
+#     puts 'bornesup ' + bornesup.to_s + ' datesup ' + datesup .to_s + ' result 2 : ' +  compute_diff_day(bornesup, datesup, support).to_s
     result
   end
 

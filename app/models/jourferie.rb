@@ -33,8 +33,6 @@ class Jourferie < ActiveRecord::Base
 
   #A appeler sur 2 dates dont l'heure, les minutes et les seconds sont à 0
   def self.nb_jours_ouvres(debut, fin)
-    debut.inspect
-    fin.inspect
     return 0 if fin < debut
     result = 0
     starting = debut
@@ -47,7 +45,7 @@ class Jourferie < ActiveRecord::Base
     # on y soustrait les WE
     result -= ((result / 7.0).floor*2)
     # sans oublier le dernier we 
-    result -= 2 if (starting.wday > ending.wday) 
+    result -= 2 if (starting.wday > ending.wday)
     # logger.debug('**** result / 7 : ' + result.to_s)
     # ni les joursfériés de l'intervalle
     conditions = ['jourferies.jour BETWEEN ? AND ?', starting, ending ]
@@ -59,10 +57,11 @@ class Jourferie < ActiveRecord::Base
 #     logger.debug('****init : ' + courant.to_s + ' jusqua ' + fin.to_s)
 #     while(courant < fin)
 #       result += 1 if Jourferie.est_ouvre(courant)
-#       courant += 1.day
+#       courant += 1
 #       logger.debug('***work : ' + courant.to_s + ' | ' + result.to_s)
 #     end
 #     logger.debug('***result : ' + courant.to_s + ' | ' + result.to_s)
+    result
   end
 
   private
@@ -71,12 +70,13 @@ class Jourferie < ActiveRecord::Base
   # TODO : faire une requête pour tester l'ensemble
   def self.est_ouvre(date)
     return false if date.wday == 0 || date.wday == 6
-
+    return false if JOUR_FERIE_FRANCE.include?(date)
     conditions = ['jourferies.jour = ?',date]
     return false if Jourferie.find(:first, :conditions => conditions)
     true
   end
 
+  # TODO : Un jour penser à faire que l'on ai pas besoin de redémarrer le serveur une fois l'an ...
   ANNEE_ACTUELLE = Time.now.year
 
   def self.paques
