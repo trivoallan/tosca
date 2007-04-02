@@ -23,7 +23,7 @@ class CommentairesController < ApplicationController
 
   #utilisé par la vue "comment" de Demande pour en ajouter un
   def comment
-    unless params[:id] and params[:demande] and params[:commentaire]
+    unless params[:id] and params[:commentaire]
       return render_text('') 
     end
 
@@ -38,6 +38,8 @@ class CommentairesController < ApplicationController
       if params[:demande][:statut_id] == '2' and demande.ingenieur_id.nil?
         demande.ingenieur_id = @ingenieur.id
       end
+    else
+      params[:demande] = {}
     end
 
     # public si on modifie le statut
