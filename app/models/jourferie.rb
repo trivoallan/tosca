@@ -33,6 +33,8 @@ class Jourferie < ActiveRecord::Base
 
   #A appeler sur 2 dates dont l'heure, les minutes et les seconds sont à 0
   def self.nb_jours_ouvres(debut, fin)
+    debut.inspect
+    fin.inspect
     return 0 if fin < debut
     result = 0
     starting = debut
@@ -43,7 +45,7 @@ class Jourferie < ActiveRecord::Base
     # logger.debug('**** base : ' + result.to_s)
     return result unless (result > 7) or (starting.wday > ending.wday)
     # on y soustrait les WE
-    result -= ((result / 7.0).floor*2)  
+    result -= ((result / 7.0).floor*2)
     # sans oublier le dernier we 
     result -= 2 if (starting.wday > ending.wday) 
     # logger.debug('**** result / 7 : ' + result.to_s)
@@ -74,4 +76,35 @@ class Jourferie < ActiveRecord::Base
     return false if Jourferie.find(:first, :conditions => conditions)
     true
   end
+
+  def self.vendredi_saint
+     Date.new(1, 1, 1)
+  end
+
+  def self.lundi_de_paques
+    Date.new(1, 1, 1)
+  end
+
+  def self.ascension
+    Date.new(1, 1, 1)
+  end
+
+  # http://fr.wikipedia.org/wiki/Jour_f%C3%A9ri%C3%A9
+  # L'année ne compte pas, ainsi on la met à 0
+  JOUR_FERIE_FRANCE = [ Date.new(0, 1, 1), #1er janvier
+                        Jourferie.vendredi_saint,
+                        Jourferie.lundi_de_paques,
+                        Date.new(0, 5, 1), #1er mai
+                        Date.new(0, 5, 8), #8 mai
+                        Jourferie.ascension,
+                        Date.new(0, 7, 14), #14 juillet
+                        Date.new(0, 8, 15), #15 août
+                        Date.new(0, 11, 1), #1er novembre
+                        Date.new(0, 11, 11), #11 novembre
+                        Date.new(0, 12, 25)] #25 décembre
+
+
+
+
+
 end
