@@ -1,0 +1,104 @@
+<h1><%= "Logiciel \"#{@logiciel.nom}\"" %></h1>
+
+<table class="show">
+
+
+<tr><td colspan="2" align="center"><b>RESUME</b></td></tr>
+
+<tr><td><b>Nom du projet</b></td>
+    <td><%=h @logiciel.nom %></td></tr>
+
+<tr><td><b>Classification</b></td>
+    <td><%= link_to(@logiciel.groupe.nom, :controller => 'groupes',
+            :action => 'show', :id => @logiciel.groupe_id ) if @logiciel.groupe %></td></tr>
+
+<tr><td><b>Description courte</b></td>
+    <td><%=h @logiciel.resume %></td></tr>
+
+<tr><td><b>Site(s)</b></td>
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 3), 'url', {:no_title => true}) {|u| 
+            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+            <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
+
+<tr><td><b>Version</b></td>
+    <td><%=h '-' %></td></tr>
+
+<tr><td><b>Utilisateur cibles</b></td>
+    <td><%=h '-' %></td></tr>
+
+<tr><td><b>License</b></td>
+    <td><%=h @logiciel.license.nom if @logiciel.license %></td></tr>
+
+
+<tr><td colspan="2" align="center"><b>DESCRIPTION COMPLETE</b></td></tr>
+
+<tr><td><b>Historique</b></td>
+    <td>La première version de <%= @logiciel.nom %> est apparue le @logiciel.launched_on.<br/>
+        <%= @logiciel.description %><br/>
+        @logiciel.logo</td></tr>
+
+<tr><td><b>Fonctionnalités</b></td>
+    <td>@logiciel.fonctionnalites</td></tr>
+
+<tr><td><b>Documentation</b></td>
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 7), 'url', {:no_title => true}) {|u| 
+            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+            <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
+
+<tr><td><b>Support en ligne</b></td>
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 0), 'url', {:no_title => true}) {|u| 
+            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+            <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
+
+<tr><td><b>OS</b></td>
+    <td>@logiciel.plateformes.collect{|s| s.nom} * ', ' </td></tr>
+
+<tr><td><b>Langues</b></td>
+    <td>@logiciel.langues.collect{|l| l.symbole} * ', ' </td></tr>
+
+<tr><td><b>Extensions possibles</b></td>
+    <td>@logiciel.extensions?</td></tr>
+
+<tr><td><b>Langage de programmation</b></td>
+    <td>@logiciel.langages.collect{|l| l.nom} *', ' </td></tr>
+
+<tr><td><b>Taille de la communauté</b></td>
+    <td>@logiciel.communaute.nombre <br/>
+        @logiciel.communaute.description </td></tr>
+
+<tr><td><b>Status</b></td>
+    <td>@logiciel.stabilite.nom </td></tr>
+
+
+<tr><td colspan="2" align="center"><b>CONTRIBUER</b></td></tr>
+
+<tr><td><b>Copyright Assignment</b></td>
+    <td>@logiciel.copyright_assignement <br/>
+        link_to_file(@logiciel.copyright_assignement)</td></tr>
+
+<tr><td><b>Appendice à ajouter au patch</b></td>
+    <td>@logiciel.patch_add_on </td></tr>
+
+<tr><td><b>Bug Tracker</b></td>
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 8), 'url', {:no_title => true}) {|u| 
+            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+            <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
+
+<tr><td><b>Contributions</b></td>
+    <td><%= show_liste(@logiciel.contributions, 'Contribution', :no_title => true) { |c| 
+              link_to c.nom, :controller => 'contributions', 
+                             :action => 'show', :id => c.id
+            } %></td></tr>
+
+<tr><td><b>Contact</b></td>
+    <td>@logiciel.ingenieurs.colect{|i| "#{i.nom} (#{i.email})"} * ', ' </td></tr>
+
+<tr><td><b>Commentaires</b></td>
+    <td>@logiciel.commentaire </td></tr>
+
+<tr><td><b>Attention</b></td>
+    <td>@logiciel.warning </td></tr>
+
+</table>
+
+<%= link_to_edit_and_list @logiciel %>

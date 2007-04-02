@@ -63,6 +63,10 @@ class LogicielsController < ApplicationController
     end
   end
 
+  def card
+    @logiciel = Logiciel.find(params[:id])
+  end
+
   def new
     @logiciel = Logiciel.new
     _form
