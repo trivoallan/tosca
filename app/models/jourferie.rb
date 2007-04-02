@@ -77,34 +77,48 @@ class Jourferie < ActiveRecord::Base
     true
   end
 
-  def self.vendredi_saint
-     Date.new(1, 1, 1)
+  ANNEE_ACTUELLE = Time.now.year
+
+  def self.paques
+    @@temps_passe ||= Jourferie.calcul_paques
+    @@temps_passe
   end
 
+  # Calcul : http://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques
+  # On prend cette version : http://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques#Algorithme_de_Thomas_O.E2.80.99Beirne
+  # Le résultat n'est valide que si la période est entre 1900 et 2099 (on a le temps de voir venir)
+  def self.calcul_paques
+    n = ANNEE_ACTUELLE - 1900
+    a = n % 19
+    b = (a * 7 +1) / 19
+    c = ((11 * a) - b + 4) % 29
+    d = n / 4
+    e = (n - c + d +31) % 7
+    p = 25 - c - e
+    trente_et_un_mars = Date.new(ANNEE_ACTUELLE, 3, 31)
+    trente_et_un_mars + p
+  end
+
+  # 1 jour après paques
   def self.lundi_de_paques
-    Date.new(1, 1, 1)
+    Jourferie.paques + 1
   end
 
+  # 40 jours après paques
   def self.ascension
-    Date.new(1, 1, 1)
+     Jourferie.paques + 40
   end
 
   # http://fr.wikipedia.org/wiki/Jour_f%C3%A9ri%C3%A9
-  # L'année ne compte pas, ainsi on la met à 0
-  JOUR_FERIE_FRANCE = [ Date.new(0, 1, 1), #1er janvier
-                        Jourferie.vendredi_saint,
+  JOUR_FERIE_FRANCE = [ Date.new(ANNEE_ACTUELLE, 1, 1), #1er janvier
                         Jourferie.lundi_de_paques,
-                        Date.new(0, 5, 1), #1er mai
-                        Date.new(0, 5, 8), #8 mai
+                        Date.new(ANNEE_ACTUELLE, 5, 1), #1er mai
+                        Date.new(ANNEE_ACTUELLE, 5, 8), #8 mai
                         Jourferie.ascension,
-                        Date.new(0, 7, 14), #14 juillet
-                        Date.new(0, 8, 15), #15 août
-                        Date.new(0, 11, 1), #1er novembre
-                        Date.new(0, 11, 11), #11 novembre
-                        Date.new(0, 12, 25)] #25 décembre
-
-
-
-
+                        Date.new(ANNEE_ACTUELLE, 7, 14), #14 juillet
+                        Date.new(ANNEE_ACTUELLE, 8, 15), #15 août
+                        Date.new(ANNEE_ACTUELLE, 11, 1), #1er novembre
+                        Date.new(ANNEE_ACTUELLE, 11, 11), #11 novembre
+                        Date.new(ANNEE_ACTUELLE, 12, 25)] #25 décembre
 
 end
