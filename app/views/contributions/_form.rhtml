@@ -44,13 +44,13 @@
 </td><td>
 
 <p><label for="contribution_synthese">Synthèse</label><br/>
-<%= text_area 'contribution', 'synthese', :cols => 60, :rows => 2  %></p>
+<%= text_field 'contribution', 'synthese', :size => 87 %></p>
 
 <p><label for="contribution_description_fonctionnelle">Description (public)</label><br/>
-<%= text_area 'contribution', 'description_fonctionnelle', :cols => 60, :rows => 20  %></p>
+<%= text_area 'contribution', 'description_fonctionnelle', :cols => 100, :rows => 20  %></p>
 
 <p><label for="contribution_description">Détails techniques (privé)</label><br/>
-<%= text_area 'contribution', 'description', :cols => 60, :rows => 5  %></p>
+<%= text_area 'contribution', 'description', :cols => 100, :rows => 5  %></p>
 
 
 <%= observe_field 'contribution_logiciel_id',  
@@ -60,9 +60,6 @@
          :url => {:action => 'ajax_paquets'},
          :with => 'id'
          %>
-
-</td><td>
-<%= render :partial => './textile_help' %>
 
 </td></tr>
 <tr><td colspan="2">
