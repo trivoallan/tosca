@@ -18,6 +18,11 @@ class ClientsController < ApplicationController
     :order => 'clients.nom', :include => [:photo,:support]
   end
 
+  def stats
+    list
+    @typedemandes = Typedemande.find(:all)
+  end
+
   def show
     @client = Client.find(params[:id], :include => [:socles])
   end

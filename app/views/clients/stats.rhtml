@@ -1,0 +1,34 @@
+<h1>Statistiques par client</h1>
+
+<%= show_pages_links(@client_pages, 'un client') %>
+<% titres = ['Logo','Nom']%>
+<% @typedemandes.each{|t| titres << t.nom  } %>
+<% titres << 'TOTAL' %>
+<% total = 0 %>
+<% addline = ['', '',] %>
+<% @typedemandes.each{ |t|
+    sub_total =  Demande.find_all_by_typedemande_id(t.id).size
+    addline << "<b>#{sub_total}</b>"
+    total += sub_total
+   } %>
+<% addline << "<b>#{total}</b>" %>
+<%= show_table(@clients, Client, titres, :add_lines => [addline]) { |c|
+  result = ''
+  total = 0
+  if c.photo
+    result << "<td>#{image_tag(url_for_file_column(c.photo, 'image', 'thumb'))}</td>"
+  else
+    result << '<td></td>'
+  end
+  result << "<td>#{link_to_client(c)}</td>"
+  @typedemandes.each{ |t|
+    count = c.demandes.find_all_by_typedemande_id(t.id).size
+    result << "<td>#{count}</td>"
+    total += count
+  }
+  result << "<td><b>#{total}</b></td>"
+}%>
+
+<%= show_pages_links(@client_pages, 'un client') %>
+
+<%= link_to_back %>
