@@ -29,4 +29,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id'
+
+  #Pour la compression de TinyMce
+  TinyMceGzip::Routes.add_routes
 end
