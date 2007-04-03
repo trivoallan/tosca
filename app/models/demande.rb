@@ -181,11 +181,11 @@ class Demande < ActiveRecord::Base
         delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
                               Jourferie.get_dernier_jour_ouvre(sup[:date]),
                               support)
-        puts 'debut ' + Jourferie.get_premier_jour_ouvre(inf[:date]).to_s
-        puts 'fin ' + Jourferie.get_dernier_jour_ouvre(sup[:date]).to_s
-        puts 'delai ' + compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
-                              Jourferie.get_dernier_jour_ouvre(sup[:date]),
-                              support).to_s
+#         puts 'debut ' + Jourferie.get_premier_jour_ouvre(inf[:date]).to_s
+#         puts 'fin ' + Jourferie.get_dernier_jour_ouvre(sup[:date]).to_s
+#         puts 'delai ' + compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
+#                               Jourferie.get_dernier_jour_ouvre(sup[:date]),
+#                               support).to_s
 #           delai += sup[:date] - inf[:date]
       end
       inf = sup
