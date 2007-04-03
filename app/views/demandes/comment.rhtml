@@ -15,7 +15,7 @@
      <%=render :partial => 'tab_comment', :collection =>[@last_commentaire], 
          :locals => { :pretty_print => false } %>
   <% else %>
-     <%=indent @demande.description %>
+     <%= @demande.description %>
   <% end %>
   </div>
 

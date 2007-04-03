@@ -32,6 +32,23 @@ class ApplicationController < ActionController::Base
   # layout standard
   layout "standard-layout"
 
+  # Options pour tiny_mce
+  # http://wiki.moxiecode.com/index.php/TinyMCE:Configuration
+  uses_tiny_mce :options => { :mode => 'textareas',
+                              :theme => 'advanced',
+                              :browsers => %w{msie gecko opera},
+                              :theme_advanced_toolbar_location => "top",
+                              :theme_advanced_toolbar_align => "left",
+                              :paste_auto_cleanup_on_paste => true,
+                              :theme_advanced_buttons1 => %w{formatselect fontselect fontsizeselect bold
+                                                             italic underline strikethrough},
+                              :theme_advanced_buttons2 => %w{justifyleft justifycenter justifyright indent outdent separator
+                                                             bullist numlist forecolor backcolor separator link
+                                                             unlink image undo redo},
+                              :theme_advanced_buttons3 => [],
+                              :plugins => %w{contextmenu paste},
+                              :language => 'fr' }
+
 
 protected  
   # redirection à l'accueil

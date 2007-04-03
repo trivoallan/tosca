@@ -16,6 +16,10 @@ module ApplicationHelper
   include PagesHelper
   include FormsHelper
 
+  # Fix pour TinyMCE
+  # TODO : Voir le bug
+  include TinyMCEHelper
+
   def search_demande(options = {})
     text_field('numero', '', 'size' => 3)
   end
@@ -82,6 +86,7 @@ module ApplicationHelper
   def indent( text )
     (text.is_a? String) ? h(text).gsub(/[\n]/, '<br />') : text
   end
+
 
   # affiche un message d'aide
   # TODO : mettre une icône

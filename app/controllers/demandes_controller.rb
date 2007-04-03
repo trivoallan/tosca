@@ -11,6 +11,14 @@ class DemandesController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
+#   uses_tiny_mce :options => { :theme_advanced_buttons1 => %w{formatselect fontselect fontsizeselect bold
+#                                                              italic underline strikethrough separator
+#                                                              justifyleft justifycenter justifyright indent outdent separator
+#                                                              bullist numlist forecolor backcolor separator link
+#                                                              unlink image undo redo},
+#                               :theme_advanced_buttons2 => [],
+#                               :theme_advanced_buttons3 => []}
+
   def index
     list
     render :action => 'list'
@@ -32,7 +40,6 @@ class DemandesController < ApplicationController
     'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' + 
     'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
     'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
-
 
   def list
     #cas spécial : consultation directe
