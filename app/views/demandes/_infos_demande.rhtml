@@ -22,7 +22,7 @@
   <li><b>Type : </b><%= @demande.typedemande.nom %></li>
   <li><b>Sévérité : </b><%= @demande.severite.nom %></li>
   <% if @demande.mail_cc %>
-     <li><b>CC : </b><%= @demande.mail_cc.gsub(",", ",</li><li>") %></li>
+     <li><b>CC : </b><%= @demande.mail_cc.gsub(",", ",<br/>") %></li>
   <% end %>
   <% if @demande.ingenieur %>
     <li><b>Resp. : </b><%= @demande.ingenieur.nom %></li>
@@ -47,7 +47,14 @@
 <div class="menu_title" onclick="Element.toggle('menu_cns')" >
 > C.N.S.</div>
 <ul class="menu" id="menu_cns">
-  <li><b>Rappelée en : </b> <%= @demande.affiche_temps_rappel %></li>
+  <li><b>
+  <%= if @demande.affiche_temps_rappel == "-"
+      "Rappelée immédiatement </b>"
+     else
+      "Rappelée en : </b> #{@demande.affiche_temps_rappel}"
+     end
+  %>
+  </li>
   <li><b>Contournée en : </b><%= @demande.affiche_temps_contournement %></li>
   <li><b>Corrigée en : </b><%= @demande.affiche_temps_correction %></li>
   <% if @demande.contribution %>
