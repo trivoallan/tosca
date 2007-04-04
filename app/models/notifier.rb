@@ -41,6 +41,7 @@ class Notifier < ActionMailer::Base
     demande =  @body[:demande]
     @recipients = @body[:identifiant].email
     @from = FROM
+    @content_type = HTML_CONTENT
     @subject = "Accès au Support Logiciel Libre"
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, nil) 
@@ -57,15 +58,15 @@ class Notifier < ActionMailer::Base
     @cc = demande.beneficiaire.client.mailingliste
     @cc << ", " << demande.mail_cc if demande.mail_cc
     @from = FROM
-    @subject = "[SLL:#{demande.id}] : #{demande.resume}"
+    @content_type = HTML_CONTENT
+    @subject = "[OSSA:#{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc) 
     end
   end
-
 
   # This function require 2 parameters : :demande, :controller
-  def demande_assigner (options, flash)
+  def demande_assigner(options, flash)
     # Email body substitutions go here
     @body = options
     # Email header info MUST be added here
@@ -74,22 +75,7 @@ class Notifier < ActionMailer::Base
     @cc = demande.beneficiaire.client.mailingliste
     @cc << ", " << demande.mail_cc if demande.mail_cc
     @from = FROM
-    @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
-    if flash and flash[:notice]
-      flash[:notice] << message_notice(@recipients, @cc) 
-    end
-  end
-
-  # This function require 4 parameters : :demande, :nom, :controller
-  def demande_change_statut (options, flash)
-    # Email body substitutions go here
-    @body = options
-    # Email header info MUST be added here
-    demande =  @body[:demande]
-    @recipients = compute_recipients(demande)
-    @cc = demande.beneficiaire.client.mailingliste
-    @cc << ", " << demande.mail_cc if demande.mail_cc
-    @from = FROM
+    @content_type = HTML_CONTENT
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc) 
@@ -106,7 +92,8 @@ class Notifier < ActionMailer::Base
     @recipients = compute_recipients(demande)
     @cc = demande.beneficiaire.client.mailingliste
     @cc << ", " << demande.mail_cc if demande.mail_cc
-    @from = "noreply@08000linux.com"
+    @from = FROM
+    @content_type = HTML_CONTENT
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc) 
@@ -129,6 +116,3 @@ class Notifier < ActionMailer::Base
   end
 
 end
-
-
-
