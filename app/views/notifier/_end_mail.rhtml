@@ -1,28 +1,39 @@
 <% if @demande %>
-===============================================================================
-Résumé de la demande <%= "#{@demande.id}" %> : <%= wrap "#{@demande.resume}" %>
-Description :
-<%= wrap "#{@demande.description}" %>
-===============================================================================
-
-Consulter la demande : <%= url_for :only_path => false, :id => @demande.id, 
-  :controller => 'demandes', :action => 'comment' %>
+  <hr/>
+    <p>
+      Résumé de la demande <%= "#{@demande.id}" %> : <%= wrap "#{@demande.resume}" %><br/>
+      Description :<br/>
+      <%= @demande.description %>
+    </p>
+  <hr/>
+  <p>
+    Consulter la demande : <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
+    <%= "<a href=\"#{url}\">#{url}</a>" %><br/>
+  </p>
 <% end %>
 
 <% if (@commentaire && @commentaire.piecejointe) %>
-Télécharger la pièce jointe : http://<%= @request.host_with_port + 
-                                         url_for_file_column(@commentaire.piecejointe, 
-                                                             "file", :absolute => true) + "\n" %>
+  <% url = "http://#{@request.host_with_port}#{url_for_file_column(@commentaire.piecejointe, "file", :absolute => true)}" %>
+  <p>
+    Télécharger la pièce jointe : <%= "<a href=\"#{url}\">#{url}</a>" %>
+  </p>
 <% end %>
 
-Cordialement,
-L'équipe du <%= Metadata::SITE_INTERNET+"\n" %>
+<p>
+  Cordialement,<br/>
+  L'équipe du <%= Metadata::SITE_INTERNET+"\n" %><br/>
+</p>
 
--- 
-<%= Metadata::SITE_INTERNET+"\n" %>
-
-Rappel sur les statuts et nos engagements :
-http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande
-
-Ceci est un mail automatique
-Merci de ne pas y répondre.
+<p>
+  <font color="#c0c0c0">
+    --<br/>
+    <%= Metadata::SITE_INTERNET+"\n" %><br/>
+        Rappel sur les statuts et nos engagements : <br/>
+    <% url = "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande" %>
+    <%= "<a href=\"#{url}\">#{url}</a>" %><br/>
+    <b>
+      Ceci est un mail automatique<br/>
+      Merci de ne pas y répondre.<br/>
+    </b>
+  </font>
+</p>

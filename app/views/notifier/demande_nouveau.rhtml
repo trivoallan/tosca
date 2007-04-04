@@ -1,5 +1,7 @@
-Bonjour,
+Bonjour,<br/>
 
-   Un nouveau ticket [#<%= @demande.id %>] a été déclaré par <%=h @nom %> et vous concerne.
+<p>
+  Un nouveau ticket [#<%= @demande.id %>] a été déclaré par <%=h @nom %> et vous concerne.
+</p>
 
 <%= render :partial => '../notifier/end_mail'%>
