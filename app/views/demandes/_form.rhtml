@@ -23,9 +23,6 @@
     <%= text_field :demande, :resume, :size => 60 %></p></td>
 </tr>
 <tr>
-  <td colspan="2">&nbsp;</td>
-</tr>
-<tr>
   <td><p><label for="demande_beneficiaire">Bénéficiaire</label></p></td>
   <td><select id="demande_beneficiaire_id" name="demande[beneficiaire_id]">
         <%= option_groups_from_collection_for_select(@clients, "beneficiaires",

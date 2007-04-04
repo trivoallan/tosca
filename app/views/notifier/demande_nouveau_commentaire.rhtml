@@ -2,11 +2,11 @@ Bonjour,<br/>
 
 <% if @statut_modifie %>
   <p>
-    <%=h @nom %> a passé votre demande <%= "#{@demande.id}" %> en <%= @demande.statut.nom %> :
+&nbsp;&nbsp;<%=h @nom %> a passé votre demande #<%= "#{@demande.id}" %> en <%= @demande.statut.nom %> :
   </p>
 <% else %>
   <p>
-    Votre demande a été commentée par <%=h @nom %> :
+&nbsp;&nbsp;Votre demande a été commentée par <%=h @nom %> :
   </p>
 <% end %>
 

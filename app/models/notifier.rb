@@ -23,7 +23,6 @@ class Notifier < ActionMailer::Base
     }
   end
 
-
 #  part :content_type => "text/plain", :body => render_message('mailto', body)
 
 #  attachment "application/txt" do |a|
@@ -31,7 +30,6 @@ class Notifier < ActionMailer::Base
 #   a.filename= "piece_jointe_renommee.txt"
 #   a.body = File.read(RAILS_ROOT + "/public/documents/piece_jointe.txt")
 # end
-
 
   # This function require 3 parameters : :identifiant, :controller, :password
   def identifiant_nouveau(options, flash)
@@ -59,7 +57,7 @@ class Notifier < ActionMailer::Base
     @cc << ", " << demande.mail_cc if demande.mail_cc
     @from = FROM
     @content_type = HTML_CONTENT
-    @subject = "[OSSA:#{demande.id}] : #{demande.resume}"
+    @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc) 
     end
@@ -99,7 +97,6 @@ class Notifier < ActionMailer::Base
       flash[:notice] << message_notice(@recipients, @cc) 
     end
   end
-
 
   private
   def compute_recipients (demande)

@@ -1,7 +1,7 @@
 <% if @demande %>
   <hr/>
     <p>
-      Résumé de la demande <%= "#{@demande.id}" %> : <%= wrap "#{@demande.resume}" %><br/>
+      Résumé de la demande #<%= "#{@demande.id}" %> : <%= "#{@demande.resume}" %><br/>
       Description :<br/>
       <%= @demande.description %>
     </p>
@@ -20,17 +20,16 @@
 <% end %>
 
 <p>
-  Cordialement,<br/>
-  L'équipe du <%= Metadata::SITE_INTERNET+"\n" %><br/>
+  Cordialement,<br/><br/>
+  L'équipe du <%= Metadata::SITE_INTERNET+"\n" %>
 </p>
 
 <p>
   <font color="#c0c0c0">
     --<br/>
     <%= Metadata::SITE_INTERNET+"\n" %><br/>
-        Rappel sur les statuts et nos engagements : <br/>
     <% url = "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande" %>
-    <%= "<a href=\"#{url}\">#{url}</a>" %><br/>
+    <a href="<%= url %>">Rappel sur les statuts et nos engagements.</a><br/>
     <b>
       Ceci est un mail automatique<br/>
       Merci de ne pas y répondre.<br/>
