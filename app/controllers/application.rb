@@ -44,9 +44,9 @@ class ApplicationController < ActionController::Base
                                                              italic underline strikethrough},
                               :theme_advanced_buttons2 => %w{justifyleft justifycenter justifyright indent outdent separator
                                                              bullist numlist forecolor backcolor separator link
-                                                             unlink image undo redo},
+                                                             unlink image undo redo separator emotions code},
                               :theme_advanced_buttons3 => [],
-                              :plugins => %w{contextmenu paste},
+                              :plugins => %w{contextmenu paste emotions},
                               :language => 'fr' }
 
 
