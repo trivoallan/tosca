@@ -31,6 +31,9 @@ class BienvenueController < ApplicationController
     render :layout => false
   end
 
+  def about
+  end
+
   private
   def _plan
     classes = Hash.new;

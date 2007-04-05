@@ -266,7 +266,8 @@ private
           (link_to_modify_account(session[:user], 'Mon compte')),
           (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
           (link_to 'Utilisateurs', :controller => 'account', :action => 'list'),
-          (link_to 'Rôles', :controller => 'roles', :action => 'list')
+          (link_to 'Rôles', :controller => 'roles', :action => 'list'),
+          (link_to '&Agrave; propos', :controller => 'bienvenue', :action => 'about')
         ] %>
         <%= nav_links.compact.join('&nbsp;|&nbsp;') if session[:user] %>"
     session[:cut_links] = render_to_string :inline => "
