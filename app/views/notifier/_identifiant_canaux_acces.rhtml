@@ -1,9 +1,9 @@
 <p>&nbsp;&nbsp;Pour mémoire, nous vous rappelons les canaux d'accès :
 <% url = "http://www.08000linux.com/" %>
 <ul>
-  <li> courriel : <%= mail_to @identifiant.beneficiaire.client.mailingliste %></li>
-  <li> téléphone : 08000 54 689 (taper 1 puis <%= @identifiant.beneficiaire.client.code_acces %>)</li>
-  <li> fax : 01 58 18 68 29</li>
-  <li> portail : <%= "<a href=\"#{url}\">#{url}</a><br/>" %></li>
+  <li> Courriel<%= mail_to @identifiant.beneficiaire.client.mailingliste %></li>
+  <li> Téléphone : 08000 54 689 (taper 1 puis <%= @identifiant.beneficiaire.client.code_acces %>)</li>
+  <li> Fax : 01 58 18 68 29</li>
+  <li> <%= "<a href=\"#{url}\">Portail</a>" %></li>
 </ul>
 </p>

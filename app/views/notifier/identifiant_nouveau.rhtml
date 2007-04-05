@@ -8,10 +8,9 @@ Bonjour,<br/>
 <% else %>
   <p>
 &nbsp;&nbsp;Vous recevez ce courriel car vous avez désormais accès à notre outil de travail en ligne développé pour vous par <%= Metadata::NOM_ENTREPRISE %>.<br/><br/>
-   Le portail est accessible ici :
    <% #On doit faire ça car la méthode link_to ne semble pas fonctionner %>
    <% url = "http://www.08000linux.com/" %>
-   <%= "<a href=\"#{url}\">#{url}</a><br/>" %>.
+   <%= "<a href=\"#{url}\">Le portail est accessible ici.</a>" %>.
   </p>
 <% end %>
 <p>
