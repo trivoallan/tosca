@@ -1,11 +1,4 @@
 <% if @demande %>
-  <hr/>
-    <p>
-      Résumé de la demande #<%= "#{@demande.id}" %> : <%= "#{@demande.resume}" %><br/>
-      Description :<br/>
-      <%= @demande.description %>
-    </p>
-  <hr/>
   <p>
     <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
     <%= "<a href=\"#{url}\">Consulter la demande.</a>" %><br/>
@@ -20,7 +13,7 @@
 <% end %>
 
 <p>
-  Cordialement,<br/><br/>
+  Cordialement,<br/>
   L'équipe du <%= Metadata::SITE_INTERNET+"\n" %>
 </p>
 

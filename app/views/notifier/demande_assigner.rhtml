@@ -1,7 +1,8 @@
 Bonjour,<br/>
 
 <p>
-&nbsp;&nbsp;Votre demande #<%= @demande.id %> : "<%= @demande.resume %>" est pris en charge par <%=h @demande.ingenieur.identifiant.nom %>. Il est dorénavant votre interlocuteur priviligié sur votre demande.
+  <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
+&nbsp;&nbsp;Votre <%= "<a href=\"#{url}\">demande ##{@demande.id}.</a>" %><br/> : "<%= @demande.resume %>" est pris en charge par <%=h @demande.ingenieur.identifiant.nom %>. Il est dorénavant votre interlocuteur priviligié sur votre demande.
 </p>
 
 <%= render :partial => '../notifier/end_mail'%>

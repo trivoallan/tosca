@@ -2,7 +2,8 @@ Bonjour,<br/>
 
 <% if @statut_modifie %>
   <p>
-&nbsp;&nbsp;<%=h @nom %> a passé votre demande #<%= "#{@demande.id}" %> en <%= @demande.statut.nom %> :
+    <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
+&nbsp;&nbsp;<%=h @nom %> a passé votre <%= "<a href=\"#{url}\">demande ##{@demande.id}.</a>" %><br/> en <%= @demande.statut.nom %> :
   </p>
 <% else %>
   <p>

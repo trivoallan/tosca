@@ -1,7 +1,8 @@
 Bonjour,<br/>
 
 <p>
-&nbsp;&nbsp;Un nouveau ticket #<%= @demande.id %> a été déclaré par <%=h @nom %> et vous concerne.
+  <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
+&nbsp;&nbsp;Un nouveau ticket <%= "<a href=\"#{url}\">##{@demande.id}</a>" %> a été déclaré par <%=h @nom %> et vous concerne.
 </p>
 
 <%= render :partial => '../notifier/end_mail'%>
