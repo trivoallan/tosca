@@ -1,13 +1,15 @@
 Bonjour,<br/>
 
+<% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
+<% url_demande = "<a href=\"#{url}\">demande ##{@demande.id}</a>" %>
+
 <% if @statut_modifie %>
   <p>
-    <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
-&nbsp;&nbsp;<%=h @nom %> a passé votre <%= "<a href=\"#{url}\">demande ##{@demande.id}.</a>" %><br/> en <%= @demande.statut.nom %> :
+&nbsp;&nbsp;<%=h @nom %> a passé votre <%= url_demande %> en <%= @demande.statut.nom %> :
   </p>
 <% else %>
   <p>
-&nbsp;&nbsp;Votre demande a été commentée par <%=h @nom %> :
+&nbsp;&nbsp;Votre <%= url_demande %> a été commentée par <%=h @nom %> :
   </p>
 <% end %>
 

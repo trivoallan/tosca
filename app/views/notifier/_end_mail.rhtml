@@ -1,10 +1,3 @@
-<% if @demande %>
-  <p>
-    <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
-    <%= "<a href=\"#{url}\">Consulter la demande.</a>" %><br/>
-  </p>
-<% end %>
-
 <% if (@commentaire && @commentaire.piecejointe) %>
   <% url = "http://#{@request.host_with_port}#{url_for_file_column(@commentaire.piecejointe, "file", :absolute => true)}" %>
   <p>
