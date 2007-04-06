@@ -128,12 +128,14 @@ module ApplicationHelper
     unless options[:no_title]
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
     end
+    # Le to_s sur le yield sert à ne pas faire péter l'appli si on
+    # on a un lien sans les droits (objet nil).
     if options[:puce]
       puce = " #{options[:puce]} "
       elements.each { |e| result << puce + yield(e).to_s + '<br/>' }
     else
-      result << '<ul>'
-      elements.each { |e| result << '<li>' + yield(e) + '</li>' }
+      result << '<ul>' 
+      elements.each { |e| result << '<li>' + yield(e).to_s + '</li>' }
       result << '</ul>'
     end
     result

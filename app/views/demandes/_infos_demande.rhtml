@@ -27,10 +27,11 @@
   <% if @demande.ingenieur %>
     <li><b>Resp. : </b><%= @demande.ingenieur.nom %></li>
   <% end %>
-  <li><% form_tag(:action => 'changer_ingenieur', :id => @demande.id) do %>
-    <% #select_onchange @ingenieurs, 'demande', :ingenieur, :id, { :prompt => PROMPT_SELECT } %>
-    <%= select_onchange @ingenieurs, 'demande', 'ingenieur_id' %>
-  <% end %></li>
+  <% if @ingenieur %>
+      <li><% form_tag(:action => 'changer_ingenieur', :id => @demande.id) do %>
+            <%= select_onchange @ingenieurs, 'demande', 'ingenieur_id' %>
+      <% end %></li>
+  <% end %>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_beneficiaire')">
