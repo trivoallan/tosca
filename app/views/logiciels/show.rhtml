@@ -18,15 +18,16 @@
             :action => 'show', :id => @logiciel.groupe_id ) if @logiciel.groupe %></td></tr>
 
 <tr><td><b>Liens</b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
-    <td><%= show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 
+    <td><%= show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u|
             result = link_to(image_edit, :controller => 'urllogiciels', 
                      :action => 'edit', :id => u.id) 
             result << ' ' + u.typeurl.nom.to_s + ' : '
-            result << "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> " 
-            result << link_to(image_delete, { :controller => 'urllogiciels', 
+            result << "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
+            link = link_to(image_delete, { :controller => 'urllogiciels',
              :action => 'destroy', :id => u.id } ,  { :class => 'nobackground',
              :confirm => "Voulez-vous vraiment supprimer #{u.valeur} ?",
              :method => 'post' })
+            result << link if link
             result } %>
     </td></tr>
 

@@ -133,7 +133,7 @@ module ApplicationHelper
       elements.each { |e| result << puce + yield(e).to_s + '<br/>' }
     else
       result << '<ul>'
-      elements.each { |e| result << '<li>' + yield(e).to_s + '</li>' }
+      elements.each { |e| result << '<li>' + yield(e) + '</li>' }
       result << '</ul>'
     end
     result
