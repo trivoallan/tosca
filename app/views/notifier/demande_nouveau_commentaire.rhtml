@@ -1,3 +1,5 @@
+<%= render :partial => '../notifier/head_mail' %>
+
 Bonjour,<br/>
 
 <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
