@@ -1,7 +1,7 @@
 <% if (@commentaire && @commentaire.piecejointe) %>
   <% url = "http://#{@request.host_with_port}#{url_for_file_column(@commentaire.piecejointe, "file", :absolute => true)}" %>
   <p>
-    <%= "<a href=\"#{url}\">Télécharger la pièce jointe.</a>" %>
+    <a href="<%= url %>">Télécharger la pièce jointe.</a>
   </p>
 <% end %>
 
