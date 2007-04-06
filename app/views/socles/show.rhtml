@@ -1,6 +1,6 @@
 <% for column in Socle.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @socle.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @socle.send(column.name) %>
 </p>
 <% end %>
 

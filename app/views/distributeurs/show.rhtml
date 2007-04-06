@@ -1,6 +1,6 @@
 <% for column in Distributeur.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @distributeur.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @distributeur.send(column.name) %>
 </p>
 <% end %>
 

@@ -1,6 +1,6 @@
 <% for column in Fournisseur.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @fournisseur.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @fournisseur.send(column.name) %>
 </p>
 <% end %>
 

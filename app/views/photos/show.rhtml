@@ -1,6 +1,6 @@
 <% for column in Photo.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @photo.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @photo.send(column.name) %>
 </p>
 <% end %>
 <%= image_tag url_for_file_column("photo", "image", "thumb") %><br />

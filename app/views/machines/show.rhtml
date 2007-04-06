@@ -1,11 +1,11 @@
 <% for column in Machine.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @machine.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @machine.send(column.name) %>
 </p>
 <% end %>
 
 <p>
-  <b>Socle:</b> <%=h @machine.socle.nom if @machine.socle %>
+  <b>Socle:</b> <%= @machine.socle.nom if @machine.socle %>
 </p>
 
 

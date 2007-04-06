@@ -7,7 +7,7 @@
 
 <% for column in Paquet.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @paquet.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @paquet.send(column.name) %>
 </p>
 <% end %>
 

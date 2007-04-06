@@ -15,7 +15,6 @@
 	<span class="small"><%= commentaire.created_on_formatted %></span><br />
     </td>
     <td class="commentaire_text">
-      <%#= indent commentaire.corps %>
       <%= commentaire.corps %>
       <%= '<br/><br/>' + image_folder + ' ' +
           link_to_file(commentaire.piecejointe, "file") +

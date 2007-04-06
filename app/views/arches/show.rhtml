@@ -1,6 +1,6 @@
 <% for column in Arch.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @arch.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @arch.send(column.name) %>
 </p>
 <% end %>
 

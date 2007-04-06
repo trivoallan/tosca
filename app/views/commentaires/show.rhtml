@@ -1,6 +1,6 @@
 <% for column in Commentaire.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=indent @commentaire.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @commentaire.send(column.name) %>
 </p>
 <% end %>
 

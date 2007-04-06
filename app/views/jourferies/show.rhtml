@@ -1,6 +1,6 @@
 <% for column in Jourferie.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @jourferie.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @jourferie.send(column.name) %>
 </p>
 <% end %>
 

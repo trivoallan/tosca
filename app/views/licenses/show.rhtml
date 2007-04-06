@@ -1,6 +1,6 @@
 <% for column in License.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @license.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @license.send(column.name) %>
 </p>
 <% end %>
 

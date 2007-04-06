@@ -1,6 +1,6 @@
 <% for column in Support.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @support.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @support.send(column.name) %>
 </p>
 <% end %>
 

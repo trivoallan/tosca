@@ -4,7 +4,7 @@
 
 <% for column in Logiciel.content_columns %>
 <tr><td><b><%= column.human_name %></b> </td>
-    <td><%=indent @logiciel.send(column.name) %></td></tr>
+    <td><%= @logiciel.send(column.name) %></td></tr>
 <% end %>
 
 <tr><td><b>License</b></td>

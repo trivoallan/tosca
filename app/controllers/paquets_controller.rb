@@ -93,7 +93,7 @@ class PaquetsController < ApplicationController
 
   private
   def _form
-    @logiciels = Logiciel.find(:all, :order => 'nom')
+    @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
     @groupes = Groupe.find_select
     @socles = Socle.find_select
     @conteneurs = Conteneur.find_select

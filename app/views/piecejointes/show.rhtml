@@ -1,6 +1,6 @@
 <% for column in Piecejointe.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @piecejointe.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @piecejointe.send(column.name) %>
 </p>
 <% end %>
 

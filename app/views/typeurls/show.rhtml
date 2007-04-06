@@ -1,6 +1,6 @@
 <% for column in Typeurl.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @typeurl.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @typeurl.send(column.name) %>
 </p>
 <% end %>
 

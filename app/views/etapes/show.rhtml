@@ -1,6 +1,6 @@
 <% for column in Etape.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @etape.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @etape.send(column.name) %>
 </p>
 <% end %>
 

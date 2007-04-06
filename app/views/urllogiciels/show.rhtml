@@ -1,6 +1,6 @@
 <% for column in Urllogiciel.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @urllogiciel.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @urllogiciel.send(column.name) %>
 </p>
 <% end %>
 

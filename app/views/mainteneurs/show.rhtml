@@ -1,6 +1,6 @@
 <% for column in Mainteneur.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @mainteneur.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @mainteneur.send(column.name) %>
 </p>
 <% end %>
 

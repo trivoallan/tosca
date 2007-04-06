@@ -12,11 +12,11 @@
   <tr class=<%= "demande_" + statut.id.to_s %>>
     <td><%= statut.id %>
   <% for column in Statut.content_columns %>
-    <td><%= indent statut.send(column.name) %></td>
+    <td><%= statut.send(column.name) %></td>
   <% end %>
     <td><%= link_to 'Voir', :action => 'show', :id => statut %></td>
     <td><%= link_to 'Modifier', :action => 'edit', :id => statut %></td>
-    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => statut }, :confirm => 'Voulez-vous vraiment supprimer le statut ' + statut.nom  + ' ?', :post => true %></td>
+    <td><%= link_to 'Supprimer', { :action => 'destroy', :id => statut }, :confirm => 'Voulez-vous vraiment supprimer le statut ' + statut.nom  + ' ?', :method => 'post' %></td>
   </tr>
 <% end %>
 </table>

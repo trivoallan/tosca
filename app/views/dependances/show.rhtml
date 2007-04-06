@@ -1,6 +1,6 @@
 <% for column in Dependance.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @dependance.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @dependance.send(column.name) %>
 </p>
 <% end %>
 

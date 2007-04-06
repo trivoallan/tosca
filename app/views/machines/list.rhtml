@@ -12,7 +12,7 @@
   result << '</td>'
   result << "<td>#{link_to_socle(m.socle)}</td>"
   result << "<td nowrap=\"nowrap\">#{link_to_machine(m)}</td>"
-  result << "<td>#{indent m.description}</td>"
+  result << "<td>#{m.description}</td>"
   result << "#{link_to_actions_table m}"
 }%>
 

@@ -1,6 +1,6 @@
 <% for column in Etatreversement.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @etatreversement.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @etatreversement.send(column.name) %>
 </p>
 <% end %>
 

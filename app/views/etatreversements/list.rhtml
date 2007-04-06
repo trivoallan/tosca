@@ -10,7 +10,7 @@
 <% for etatreversement in @etatreversements %>
   <tr>
   <% for column in Etatreversement.content_columns %>
-    <td><%=h etatreversement.send(column.name) %></td>
+    <td><%= etatreversement.send(column.name) %></td>
   <% end %>
     <td><%= link_to 'Show', :action => 'show', :id => etatreversement %></td>
     <td><%= link_to 'Edit', :action => 'edit', :id => etatreversement %></td>

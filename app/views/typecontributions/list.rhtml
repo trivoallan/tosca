@@ -10,7 +10,7 @@
 <% for typecontribution in @typecontributions %>
   <tr>
   <% for column in Typecontribution.content_columns %>
-    <td><%=h typecontribution.send(column.name) %></td>
+    <td><%= typecontribution.send(column.name) %></td>
   <% end %>
     <td><%= link_to 'Show', :action => 'show', :id => typecontribution %></td>
     <td><%= link_to 'Edit', :action => 'edit', :id => typecontribution %></td>

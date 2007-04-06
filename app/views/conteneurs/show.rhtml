@@ -1,6 +1,6 @@
 <% for column in Conteneur.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @conteneur.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @conteneur.send(column.name) %>
 </p>
 <% end %>
 

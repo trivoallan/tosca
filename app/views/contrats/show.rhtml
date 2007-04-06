@@ -1,7 +1,7 @@
 <b>Client:</b> <%= link_to_client(@contrat.client) %>
 
 <% for column in Contrat.content_columns %>
-  <p><b><%= column.human_name %>:</b> <%=h @contrat.send(column.name) %></p>
+  <p><b><%= column.human_name %>:</b> <%= @contrat.send(column.name) %></p>
 <% end %>
 <br/>
 

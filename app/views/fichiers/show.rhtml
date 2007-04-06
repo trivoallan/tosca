@@ -1,6 +1,6 @@
 <% for column in Fichier.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @fichier.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%= @fichier.send(column.name) %>
 </p>
 <% end %>
 

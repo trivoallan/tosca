@@ -5,11 +5,11 @@
 <table class="show">
 <% for column in Client.content_columns %>
 <tr><td><b><%= column.human_name %>:</b></td>
-    <td><%=indent @client.send(column.name) %></td></tr>
+    <td><%= @client.send(column.name) %></td></tr>
 <% end %>
 <% if @client.support %>
 <tr><td><b>Support:</b></td>
-    <td><%=h @client.support.to_s %></td></tr>
+    <td><%= @client.support.to_s %></td></tr>
 <% end %>
 </table>
 
