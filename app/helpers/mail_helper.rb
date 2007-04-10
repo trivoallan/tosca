@@ -9,4 +9,9 @@ module MailHelper
     s.gsub!(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
   end
 
+
+  def awrap(s, width=78)
+    s.gsub!(/(.{1,#{width}})(\s+|\Z)/, ">\\1\n")
+  end
+
 end

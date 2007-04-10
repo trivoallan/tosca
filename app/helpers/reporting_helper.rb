@@ -150,11 +150,11 @@ module ReportingHelper
       # un <td> quoiqu'il se passe
       # TODO : passer ça dans les images helpers
       # eventuellement avec un hashé sur les couleurs
-      out << "<td bgcolor=\"#{color}\"><img src=\"../images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\">&nbsp;</td>"
+      out << "<td bgcolor=\"#{color}\"><img src=\"../images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       # un autre si twolines
       if twolines
         color = colors[index+1]
-        out << "<td bgcolor=\"#{color}\"><img src=\"../images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\">&nbsp;</td>"
+        out << "<td bgcolor=\"#{color}\"><img src=\"../images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       end
       out << '</tr>'
     end
@@ -204,9 +204,6 @@ module ReportingHelper
     return 'aucune donnée' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width}>"
-    # C'est sensé dire au navigateur d'aligner sur la virgule
-    # RESULT : ca marche po, on garde ?
-    result << '<colgroup><col><col align="char" char="."></colgroup>'
     result << titres
 
     size = (options[:divise] ? (elements.size / 2) : elements.size)
@@ -228,6 +225,6 @@ module ReportingHelper
       i += 1
       result << '</tr>'
     }
-    result << '</tr></table>'
+    result << '</table>'
   end
 end

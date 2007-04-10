@@ -121,7 +121,7 @@ class Demande < ActiveRecord::Base
     first = self.versions[0]
     if (self.versions.size > 2) and (first.statut_id == 1)
       appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
-      result = compute_diff(first.updated_on, appellee.updated_on, client.support)
+      result = compute_diff(first.updated_on, appellee.updated_on, client.support) if appellee
     end
     result
   end

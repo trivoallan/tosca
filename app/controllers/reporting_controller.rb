@@ -278,7 +278,7 @@ class ReportingController < ApplicationController
   # Calcul un tableaux du respect des délais
   # pour les 3 étapes : prise en compte, contournée, corrigée
   def compute_temps(donnees)
-    demandes = Demande.find_all
+    demandes = Demande.find(:all)
     rappels = donnees[:temps_de_rappel]
     contournements = donnees[:temps_de_contournement]
     corrections = donnees[:temps_de_correction]

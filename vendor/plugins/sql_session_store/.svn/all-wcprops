@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/plugins/!svn/ver/67/sql_session_store/trunk
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/plugins/!svn/ver/45/sql_session_store/trunk/LICENSE
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/plugins/!svn/ver/28/sql_session_store/trunk/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/plugins/!svn/ver/40/sql_session_store/trunk/init.rb
+END
+install.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/plugins/!svn/ver/28/sql_session_store/trunk/install.rb
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/plugins/!svn/ver/62/sql_session_store/trunk/README
+END

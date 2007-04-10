@@ -19,7 +19,7 @@ Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
   
   # Skip frameworks you're not going to use
-  # config.frameworks -= [ :action_web_service, :action_mailer ]
+  config.frameworks -= [ :action_web_service ] # , :action_mailer ]
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
@@ -45,6 +45,11 @@ Rails::Initializer.run do |config|
   
   # See Rails::Configuration for more options
 end
+
+# MLO : sql session store, 1.5x times faster than Active record store
+ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.
+  update(:database_manager => SqlSessionStore)
+SqlSessionStore.session_class = MysqlSession
 
 require 'config'
 
@@ -93,6 +98,7 @@ ActiveRecord::Errors.default_error_messages = {
   :not_a_number => "n'est pas une valeur numérique"
 }
 
+# TODO : mettre dans les overrides
 # Rédéfinit globalement en français les titres et textes de la boîtes d'erreur
 module ActionView::Helpers::ActiveRecordHelper
   def error_messages_for(object_name, options = {:class => 'error'})

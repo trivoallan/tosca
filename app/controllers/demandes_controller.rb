@@ -242,7 +242,7 @@ class DemandesController < ApplicationController
   end
 
   def ajax_cns
-    return render_text('roh') unless request.xhr? and params[:id]
+    return render_text('') unless request.xhr? and params[:id]
     @demande = Demande.find(params[:id]) unless @demande
     render :partial => 'tab_cns', :layout => false
   end
@@ -263,26 +263,7 @@ class DemandesController < ApplicationController
     Demande.find(params[:id]).destroy
   end
 
-  def changer_statut
-    unless params[:demande] and params[:demande][:id] and 
-        params[:demande][:statut_id]
-      render_text('') and return 
-    end
-    @demande = Demande.find(params[:demande][:id])
-    changement = Demandechange.new
-    changement.statut = @demande.statut
-    changement.demande = @demande
-    # migration 006 :
-    changement.identifiant = @session[:user]
-    @demande.update_attributes!(params[:demande]) and changement.save
-    flash[:notice] = "Le statut a été mis à jour"
-    Notifier::deliver_demande_change_statut({:demande => @demande, 
-                                              :nom => @session[:user].nom, 
-                                              :controller => self},
-                                            flash)
-    redirect_to :action => 'comment', :id => @demande.id
-  end
-
+  # TODO : enlever cette méthode quand elle passera dans le commentaire.
   def changer_ingenieur
     return render_text('') unless params[:id] and params[:ingenieur_id]
     @demande = Demande.find(params[:id])
@@ -307,7 +288,7 @@ class DemandesController < ApplicationController
   end
 
   def pretty_print
-    @demande = Demande.find(params[:id]) unless @demande
+    @demande ||= Demande.find(params[:id]) 
     set_piecejointes(@demande.id)
     set_comments(@demande.id)
   end
@@ -375,7 +356,6 @@ class DemandesController < ApplicationController
     @typedemandes = Typedemande.find_select()
     @severites = Severite.find_select()
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
-    @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
 
     softwares = { :select => 'demandes.logiciel_id', :distinct => true }
     @count = { :demandes =>  Demande.count,

@@ -68,7 +68,7 @@ module DemandesHelper
   end
 
   def icon_severite(d)
-    desc = (d.respond_to?(:severite_nom) ? d.severite_nom : d.severite.nom)
+    desc = (d.respond_to?(:severites_nom) ? d.severites_nom : d.severite.nom)
     image_tag("severite_#{d.severite_id}.gif", :title => desc, :alt => desc )
   end
 
