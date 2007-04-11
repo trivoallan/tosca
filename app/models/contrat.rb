@@ -9,7 +9,7 @@ class Contrat < ActiveRecord::Base
   has_and_belongs_to_many :ingenieurs, :order => 'contrat_id'
 
   has_many :logiciels, :through => :paquets, :group => 
-    'id', :order => 'nom ASC'
+    'id', :order => 'logiciels.nom ASC'
   has_many :binaires, :through => :paquets
   has_many :appels
 
