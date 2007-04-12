@@ -47,7 +47,8 @@ class ApplicationController < ActionController::Base
                                                              unlink image undo redo separator emotions code},
                               :theme_advanced_buttons3 => [],
                               :plugins => %w{contextmenu paste emotions},
-                              :language => 'fr' }
+                              :language => 'fr',
+                              :editor_deselector => 'mceNoEditor' }
 
 
 protected  
