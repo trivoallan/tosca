@@ -34,21 +34,20 @@ class ApplicationController < ActionController::Base
 
   # Options pour tiny_mce
   # http://wiki.moxiecode.com/index.php/TinyMCE:Configuration
+  # L'option pour ne pas avoir de tinyMCE est la class "mceNoEditor".
   uses_tiny_mce :options => { :mode => 'textareas',
-                              :theme => 'advanced',
-                              :browsers => %w{msie gecko opera},
-                              :theme_advanced_toolbar_location => "top",
-                              :theme_advanced_toolbar_align => "left",
-                              :paste_auto_cleanup_on_paste => true,
-                              :theme_advanced_buttons1 => %w{formatselect fontselect fontsizeselect bold
-                                                             italic underline strikethrough},
-                              :theme_advanced_buttons2 => %w{justifyleft justifycenter justifyright indent outdent separator
-                                                             bullist numlist forecolor backcolor separator link
-                                                             unlink image undo redo separator emotions code},
-                              :theme_advanced_buttons3 => [],
-                              :plugins => %w{contextmenu paste emotions},
-                              :language => 'fr',
-                              :editor_deselector => 'mceNoEditor' }
+    :theme => 'advanced', :browsers => %w{msie gecko opera},
+    :theme_advanced_toolbar_location => "top",
+    :theme_advanced_toolbar_align => "left",
+    :paste_auto_cleanup_on_paste => true,
+    :theme_advanced_buttons1 => %w{formatselect fontselect 
+       fontsizeselect bold italic underline strikethrough},
+    :theme_advanced_buttons2 => %w{justifyleft justifycenter justifyright indent outdent separator
+       bullist numlist forecolor backcolor separator link
+       unlink image undo redo separator code},
+    :theme_advanced_buttons3 => [],
+    :plugins => %w{contextmenu paste emotions},
+    :language => 'fr', :editor_deselector => 'mceNoEditor' }
 
 
 protected  
