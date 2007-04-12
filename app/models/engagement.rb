@@ -22,8 +22,15 @@ class Engagement < ActiveRecord::Base
     (limite == -1 ? true : (delai < limite*3600))
   end
 
+
+  INCLUDE = [:typedemande,:severite]
+  ORDER = 'engagements.type_demande_id, engagements.severite_id'
+  OPTIONS = { :include => INCLUDE, :order => ORDER }
+
   def to_s
-    "#{self.typedemande.nom} | #{self.severite.nom} : #{self.contournement} / #{self.correction}"
+    "#{self.typedemande.nom} | #{self.severite.nom} : " + 
+      "#{Lstm.time_in_french_words(self.contournement.days, true)} " + 
+      "/ #{Lstm.time_in_french_words(self.correction.days, true)}"
   end
 
   #affiche le nombre de jours ou un "sans engagement"

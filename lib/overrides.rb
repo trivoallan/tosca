@@ -2,19 +2,21 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-# TODO : faire class << Date
-class << Date
-  MONTHS = { 'Janvier' => 1, 'Février' => 2, 'Mars' => 3, 'Avril' => 4, 'Mai' => 5, 'Juin' => 6, 'Juillet' => 7, 'Août' => 8, 'Septembre'=> 9, 'Octobre' =>10, 'Novembre' =>11, 'Décembre' =>12 }
-  DAYS = { 'Lundi' => 0, 'Mardi' => 1, 'Mercredi' => 2, 'Jeudi'=> 3, 'Vendredi' => 4, 'Samedi' => 5, 'Dimanche' => 6 }
-  ABBR_MONTHS = { 'Jan' => 1, 'Fév' => 2, 'Mar' => 3, 'Avr' => 4, 'Mai' => 5, 'Juin' => 6, 'Juil' => 7, 'Aoû' => 8, 'Sep' => 9, 'Oct' =>10, 'Nov' =>11, 'Déc' =>12 }
-  ABBR_DAYS = { 'lun' => 0, 'mar' => 1, 'mer' => 2, 'jeu' => 3, 'ven' => 4, 'sam' => 5, 'dim' => 6 }
 
-  MONTHNAMES = [nil] + %w(Janvier Février Mars Avril Mai Juin Juillet Août Septembre Octobre Novembre Décembre )
-  DAYNAMES = %w(Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche )
+# MLO : ça permet de virer le warning comme quoi on override :)
+$VERBOSE=nil
+class Date
+    MONTHS = { 'Janvier' => 1, 'Février' => 2, 'Mars' => 3, 'Avril' => 4, 'Mai' => 5, 'Juin' => 6, 'Juillet' => 7, 'Août' => 8, 'Septembre'=> 9, 'Octobre' =>10, 'Novembre' =>11, 'Décembre' =>12 }
+    DAYS = { 'Lundi' => 0, 'Mardi' => 1, 'Mercredi' => 2, 'Jeudi'=> 3, 'Vendredi' => 4, 'Samedi' => 5, 'Dimanche' => 6 }
+    ABBR_MONTHS = { 'Jan' => 1, 'Fév' => 2, 'Mar' => 3, 'Avr' => 4, 'Mai' => 5, 'Juin' => 6, 'Juil' => 7, 'Aoû' => 8, 'Sep' => 9, 'Oct' =>10, 'Nov' =>11, 'Déc' =>12 }
+    ABBR_DAYS = { 'lun' => 0, 'mar' => 1, 'mer' => 2, 'jeu' => 3, 'ven' => 4, 'sam' => 5, 'dim' => 6 }
 
-  ABBR_MONTHNAMES = [nil] + %w(Jan Fév Mar Avr Mai Juin Juil Aoû Sep Oct Nov Déc)
-  ABBR_DAYNAMES = %w(lun mar mer jeu ven sam dim)
-  ABBR_MONTHS_LSTM = { 0 => 'jan', 1 => 'fév', 2 => 'mar', 3 => 'avr', 4 => 'mai', 5 => 'juin', 6 => 'juil', 7 => 'aoû', 8 => 'sep', 9 => 'oct', 10 => 'nov', 11 => 'déc' }
+    MONTHNAMES = [nil] + %w(Janvier Février Mars Avril Mai Juin Juillet Août Septembre Octobre Novembre Décembre )
+    DAYNAMES = %w(Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche )
+    
+    ABBR_MONTHNAMES = [nil] + %w(Jan Fév Mar Avr Mai Juin Juil Aoû Sep Oct Nov Déc)
+    ABBR_DAYNAMES = %w(lun mar mer jeu ven sam dim)
+    ABBR_MONTHS_LSTM = { 0 => 'jan', 1 => 'fév', 2 => 'mar', 3 => 'avr', 4 => 'mai', 5 => 'juin', 6 => 'juil', 7 => 'aoû', 8 => 'sep', 9 => 'oct', 10 => 'nov', 11 => 'déc' }
 end
 
 

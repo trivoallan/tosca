@@ -9,7 +9,7 @@ module Metadata
   # application
   NOM_COURT_APPLICATION = "LSTM"
   NOM_LONG_APPLICATION = "Linagora Software Tracker Manager"
-  VERSION_APPLICATION = "0.3.3.1"
+  VERSION_APPLICATION = "0.3.3.2"
   COPYRIGHT_APPLICATION = "Copyright Linagora SA 2007 - Tous droits réservés.".gsub(' ','&nbsp;')
 
   # service

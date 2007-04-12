@@ -13,8 +13,11 @@
 <% end %>
 </table>
 
+<%= link_to_new_contrat(@client.id) %>
 <%= show_liste(@client.contrats, 'contrat') { |c|
   result = ''
+  edit = link_to_edit_contrat(c)
+  result << "#{edit}&nbsp;" if edit
   result << "Du #{c.ouverture_formatted} au #{c.cloture_formatted} "
   result << "concernant #{c.paquets_count} paquets sources "
   result << "et #{c.binaires.size} binaires :"

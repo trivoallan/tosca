@@ -1,24 +1,28 @@
 <%= error_messages_for 'contrat' %>
 
 <!--[form:contrat]-->
-<p><label for="contrat_client">Client</label><br/>
-  <%= collection_select(:contrat, :client_id, @clients, :id, :nom) %>
-</p>
+<table class="form">
+  <tr>
+    <th><label for="contrat_client_id">Client</label></th>
+    <td><%= collection_select(:contrat, :client_id, @clients, :id, :nom) %></td>
+  </tr><tr>
+    <th><label for="contrat_ouverture">Ouverture</label></th>
+    <td><%= datetime_select 'contrat', 'ouverture'  %></td>
+  </tr><tr>
+    <th><label for="contrat_cloture">Cloture</label></th>
+    <td><%= datetime_select 'contrat', 'cloture'  %></td>
+  </tr><tr>
+    <th><label for="contrat_astreinte">Astreinte ?</label></th>
+    <td><%= check_box :contrat, :astreinte %></td>
+  </tr><tr>
+    <th><label for="contrat_engagements">Engagements</label></th>
+    <td><%= hbtm_check_box(@contrat.engagements, @informations, 'contrat[engagement_ids]', :size => 3) %></td>
+  </tr>
+</table>
 
-<p><label for="contrat_ouverture">Ouverture</label><br/>
-<%= datetime_select 'contrat', 'ouverture'  %></p>
-
-<p><label for="contrat_cloture">Cloture</label><br/>
-<%= datetime_select 'contrat', 'cloture'  %></p>
-
-<p><label for="contrat_astreinte">Astreinte ?</label><br/>
-<%= check_box :contrat, :astreinte %>
-</p>
+<%= show_form_engagements(@engagements) %>
 
 
-<p><label for="contrat_engagements">Engagements</label><br/>
-<%= hbtm_check_box(@contrat.engagements, @informations, 'contrat[engagement_ids]', :size => 3) %>
-<hr />
 <%= hbtm_check_box(@contrat.engagements, @anomalies, 'contrat[engagement_ids]', :size => 3) %>
 <hr />
 <%= hbtm_check_box(@contrat.engagements, @evolutions, 'contrat[engagement_ids]', :size => 3) %>
