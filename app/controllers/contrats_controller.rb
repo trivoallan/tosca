@@ -60,10 +60,7 @@ class ContratsController < ApplicationController
 private
   def _form
     @clients = Client.find_select
-    @engagements Engagements.find(:all, Engagements::OPTIONS)
-    @informations = Engagement.find_all_by_typedemande_id(1, :order => 'severite_id')
-    @anomalies = Engagement.find_all_by_typedemande_id(2, :order => 'severite_id')
-    @evolutions = Engagement.find_all_by_typedemande_id(3, :order => 'severite_id')
+    @engagements = Engagement.find(:all, Engagement::OPTIONS)
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
   end
 end

@@ -9,19 +9,33 @@ module EngagementsHelper
     link_to name, :action => action, :id => engagement.id, :controller => 'engagements'
   end
 
+
+  def link_to_new_engagement()
+    link_to(image_create('engagement'), :action => 'new', 
+            :controller => 'engagements')
+  end
+
   # Display form for choosing engagements;
   # They MUST have been sort by the Engagement::ORDER options.
-  def show_form_engagements(engagements)
+  # Call it like this :
+  #   show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]' )
+  # TODO : habiller et mettre des bordures pour que ca se distingue du reste
+  #  cf /contrats/new pour le voir
+  def show_form_engagements(object_engagement, engagements, nom)
     out = '<table>'
-    out << '<tr><th>Demande</th><th>Sévérité</th>'
+    out << '<tr><th>Demande</th><th>Sévérité</th><th></th>'
     out << '<th>Contournement</th><th>Correction</th></tr>'
     last_typedemande_id = 0
     last_severite_id = 0
+    last_cycle = cycle('pair', 'impair')
     e = engagements.pop
     while (e) do
+      out << '<tr><td colspan="5"><hr/></td></tr>' if e.typedemande_id != last_typedemande_id
+      last_cycle = cycle('pair', 'impair') if e.severite_id != last_severite_id
+      out << "<tr class=\"#{last_cycle}\">"
       out << '<td>'
       if e.typedemande_id != last_typedemande_id
-        out << e.typedemande.nom 
+        out << "<strong>#{e.typedemande.nom}</strong>" 
         last_typedemande_id = e.typedemande_id
       end
       out << '</td><td>'
@@ -30,10 +44,16 @@ module EngagementsHelper
         last_severite_id = e.severite_id
       end
       out << '</td><td>'
-      Lstm.time_in_french_words(e.contournement.days)
-      out << '</td><td>'
-      Lstm.time_in_french_words(e.correction.days)
-      out << '</td>'
+      out << "<input id=\"engagement_#{e.id}\" type=\"checkbox\" " 
+      out << "name=\"#{nom}[]\" value=\"#{e.id}\" "
+      out << 'checked="checked" ' if object_engagement.include? e
+      out << '/>'
+      out << "</td><td align=\"center\"><label for=\"engagement_#{e.id}\">"
+      out << Lstm.time_in_french_words(e.contournement.days, true)
+      out << '</label></td><td align="center">'
+      out << Lstm.time_in_french_words(e.correction.days, true)
+      out << '</td></tr>'
+      e = engagements.pop
     end
     out << '</table'
   end

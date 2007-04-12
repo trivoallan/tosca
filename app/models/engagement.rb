@@ -24,7 +24,7 @@ class Engagement < ActiveRecord::Base
 
 
   INCLUDE = [:typedemande,:severite]
-  ORDER = 'engagements.type_demande_id, engagements.severite_id'
+  ORDER = 'engagements.typedemande_id, engagements.severite_id DESC, engagements.contournement DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
   def to_s

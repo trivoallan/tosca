@@ -15,21 +15,14 @@
     <th><label for="contrat_astreinte">Astreinte ?</label></th>
     <td><%= check_box :contrat, :astreinte %></td>
   </tr><tr>
-    <th><label for="contrat_engagements">Engagements</label></th>
-    <td><%= hbtm_check_box(@contrat.engagements, @informations, 'contrat[engagement_ids]', :size => 3) %></td>
+    <th><label>Engagements <%= link_to_new_engagement %></label></th>
+    <td><%= show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]' ) %></td>
+  </tr><tr>
+    <th>Ingénieurs<br/> assignés</th>
+    <td><%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs, 'contrat[ingenieur_ids]', :size => 3) %></td>
   </tr>
 </table>
 
-<%= show_form_engagements(@engagements) %>
 
-
-<%= hbtm_check_box(@contrat.engagements, @anomalies, 'contrat[engagement_ids]', :size => 3) %>
-<hr />
-<%= hbtm_check_box(@contrat.engagements, @evolutions, 'contrat[engagement_ids]', :size => 3) %>
-</p>
-
-<p><label for="contrat_ingenieurs">Ingenieurs</label><br/>
-<%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs, 'contrat[ingenieur_ids]', :size => 3) %>
-</p>
 <!--[eoform:contrat]-->
 

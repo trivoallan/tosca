@@ -1,9 +1,9 @@
 <h1>Edition du contrat</h1>
 
-<%= start_form_tag :action => 'update', :id => @contrat %>
+<% form_tag(:action => 'update', :id => @contrat) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
 <%= link_to 'Show', :action => 'show', :id => @contrat %> |
 <%= link_to 'Back', :action => 'list' %>
