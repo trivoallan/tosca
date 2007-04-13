@@ -107,7 +107,7 @@ class Demande < ActiveRecord::Base
     contournee = self.versions.find(:first, :conditions => 'statut_id=5', :order => 'updated_on ASC')
     if contournee
       appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
-      if appelle
+      if appellee
         result = compute_diff(appellee.updated_on, contournee.updated_on, client.support)
       end
     end
