@@ -98,6 +98,15 @@ class Demande < ActiveRecord::Base
     result
   end
 
+  # Retourne le délais imparti pour corriger la demande
+  # TODO : validation MLO
+  # TODO : inaffichable dans la liste des demandes > améliorer le calcul de ce délais
+  def delais_correction
+    delais = paquets.compact.collect{|p|
+     p.correction(typedemande_id, severite_id) * p.contrat.client.support.interval_in_seconds 
+   }.min
+  end
+
   def affiche_temps_contournement
     distance_of_time_in_french_words(self.temps_contournement, client.support)
   end
