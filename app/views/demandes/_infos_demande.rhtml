@@ -71,6 +71,8 @@
 <div class="menu_title" onclick="Element.toggle('menu_cycle_de_vie')" >
 > Cycle de vie</div>
 <ul class="menu" id="menu_cycle_de_vie">
+  <%#= show_cns_bar(@demande) %>
+  <%#= '<li><b>Avancement : </b></li>' %>
   <li><b>Ouverte le : </b><%= @demande.created_on_formatted %></li>
   <li><b>Mise à jour le : </b> <%= @demande.updated_on_formatted %></li>
   <li><b>Temps écoulé : </b><%= @demande.affiche_temps_ecoule %></li>
