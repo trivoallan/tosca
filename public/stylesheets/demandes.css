@@ -128,14 +128,14 @@ option.severite_6 {
  ******************************************/
 
 .progress-border {
-  width: 115px; 
+  width: 70px; 
   height: 15px;
   background: #fff; 
   border: 1px solid silver; 
   margin: 1px; 
   padding: 0px;
   position: relative; 
-  bottom: 18px;
+  float: right;
 }
 .progress-correction {
   height: 100%; 
@@ -144,7 +144,7 @@ option.severite_6 {
   background: #f2ab99; 
   float: left
 }
-.progress-limit {
+.progress-restant {
   height: 100%;  
   margin: 0;  
   padding: 0;  
