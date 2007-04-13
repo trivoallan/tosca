@@ -122,4 +122,41 @@ option.severite_6 {
 	z-index: 2;	
 }
 
+
+/******************************************
+ * Barre de progression 
+ ******************************************/
+
+.progress-border {
+  width: 115px; 
+  height: 15px;
+  background: #fff; 
+  border: 1px solid silver; 
+  margin: 1px; 
+  padding: 0px;
+  position: relative; 
+  bottom: 18px;
+}
+.progress-correction {
+  height: 100%; 
+  margin: 0; 
+  padding: 0; 
+  background: #f2ab99; 
+  float: left
+}
+.progress-limit {
+  height: 100%;  
+  margin: 0;  
+  padding: 0;  
+  background-color: #b0d295;  
+  float: left
+}
+.progress-contournement {
+  height: 100%; 
+  margin: 0;  
+  padding: 0;  
+  background-color:#e7e0c4;  
+  float: left
+}
+
 /*****************  A RANGER  *****************/
