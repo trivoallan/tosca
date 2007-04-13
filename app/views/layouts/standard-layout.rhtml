@@ -6,31 +6,23 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
   <link rel="SHORTCUT ICON" href="<%= image_favicon %>" />
   <title>08000linux : <%= controller.controller_name %></title>
-  <%= stylesheet_link_tag 'comments' %>
-  <%= stylesheet_link_tag 'tools' %>
-  <%= stylesheet_link_tag 'helper' %>
+  <%= stylesheet_link_tag('comments', 'tools', 'helper',  'demandes') %>
   <%= stylesheet_link_tag 'common', :media => "all" %>
   <%= stylesheet_link_tag 'common-printer', :media => "print" %>
-  <%= stylesheet_link_tag 'demandes' %>
-  <%= stylesheet_link_tag 'info_box' %>
-  <%= stylesheet_link_tag 'auto_complete' %>
-  <%= stylesheet_link_tag 'toolbar' %>
-  <%= stylesheet_link_tag 'accueil' %>
+  <%= stylesheet_link_tag('info_box', 'auto_complete', 'toolbar', 'accueil') %>
 
-  <% # Include TinyMCE before other JS to avoid problems %>
-  <%= javascript_include_tiny_mce_if_used %>
-  <%= tiny_mce if using_tiny_mce? %>
-  <%#= javascript_include_tag 'tiny_mce/tiny_mce_gzip' %>
-
+  <% # Include TinyMCE with gzip before other JS to avoid problems %>
+  <% if using_tiny_mce? %>
+    <%= javascript_include_tiny_mce %>
+    <%= tiny_mce %>
+  <% end %>
   <%= javascript_include_tag 'calendar', 'calendar-fr', 'calendar-setup' %>
   <%= stylesheet_link_tag 'calendar'%>
-
-
 
   <%# = javascript_include_tag 'snap_preview_anywhere' %>
   <%= javascript_include_tag :defaults %>
 </head>
-<body>
+<body <%if flash[:notice]%>onload="window.setTimeout('Element.toggle(\'information_notice\')', 7000);" <%end%>>
 
   <div id="header">
     <table width="100%">
@@ -53,7 +45,7 @@
 
   <div id="information">
         <% if flash[:notice] %>
-          <div class="information notice">
+          <div class="information notice" id="information_notice">
             <p><%= flash[:notice] %></p>
           </div>
         <% end %>

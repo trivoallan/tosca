@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
                               :theme_advanced_buttons1 => %w{formatselect bold italic underline separator bullist numlist forecolor backcolor separator link unlink separator undo redo separator code},
                               :theme_advanced_buttons2 => [],
                               :theme_advanced_buttons3 => [],
-                              :plugins => %w{contextmenu paste emotions},
+                              :plugins => %w{contextmenu paste},
                               :language => 'fr',
                               :editor_deselector => 'mceNoEditor' }
 
