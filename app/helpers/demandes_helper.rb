@@ -128,4 +128,22 @@ module DemandesHelper
     end
   end
 
+  # Display a css bar for graphic repesentation of a ticket timeline
+  def show_cns_bar(demande, options={})
+    #done, limit = 0, 100
+    return '' unless demande.is_a?(Demande)
+    done = demande.temps_correction 
+    limit = demande.delais_correction 
+    return '' unless done.is_a?(Numeric) && limit.is_a?(Numeric) && done <= limit
+
+    out = ''
+    progress = (100*(done.to_f / limit.to_f)).round
+    remains = (100 - progress)
+    out << '<span class="progress-border">'
+    #out << '  <div class="progress-contournement tooltip" style="width: 20%;" title="20% (0/2)  Low Priority "> </div>'
+    out << '  <div class="progress-correction tooltip" style="width: '+progress.to_s+'%;" title="'+progress.to_s+'%  écoulé"> </div>'
+    out << '  <div class="progress-restant tooltip" style="width: '+remains.to_s+'%;" title="'+remains.to_s+'%  restant"> </div>'
+    out << '</span>'
+  end
+
 end
