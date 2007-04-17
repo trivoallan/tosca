@@ -106,7 +106,18 @@ module FormsHelper
     result << '</table>'
   end
 
-
+  # Display a quick form field to go to a ticket
+  # TODO : use yield to include what we want in the form
+  # Call it like : 
+  #  if session[:user] && session[:user].authorized?('demandes/list')
+  #    out << form_tag(:controller => 'demandes', :action => 'list') 
+  #    out <<  search_demande_field
+  #    out << end_form_tag
+  #  end
+  def search_demande_field(options = {})
+    text_field('numero', '', 'size' => 3)
+  end
+  alias_method :search_demande, :search_demande_field
 
 
 
@@ -151,7 +162,6 @@ module FormsHelper
     result.last << ' ' + image_spinner if options[:spinner]
     result
   end
-
 
   def lstm_datetime_field(label, model, field, options={})
     [ "<label for=\"#{model}_#{field}\">#{label}</label>",
