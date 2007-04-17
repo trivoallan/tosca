@@ -1,7 +1,8 @@
     <% menu = {} %>
     <% menu[:titles], menu[:links] = [], [] %>
 
-    <% menu[:titles] << link_to('Accueil',:controller => 'bienvenue', :action => 'list') %>
+    <% menu[:titles] << link_to_home(:image=> true) %>
+    <%# menu[:titles] << link_to('Accueil',:controller => 'bienvenue', :action => 'list') %>
     <% menu[:links] << [ 
         (link_to_modify_account(session[:user], 'Mon compte')),
         (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
@@ -41,4 +42,4 @@
     <% menu[:titles] << 'Rechercher :' %> 
     <% menu[:links] << [] %>
 
-    <%= build_simple_menu(menu[:titles]) if session[:user]%>
+    <%= build_menu(menu) if session[:user]%>
