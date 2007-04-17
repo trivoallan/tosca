@@ -1,0 +1,44 @@
+    <% menu = {} %>
+    <% menu[:titles], menu[:links] = [], [] %>
+
+    <% menu[:titles] << link_to('Accueil',:controller => 'bienvenue', :action => 'list') %>
+    <% menu[:links] << [ 
+        (link_to_modify_account(session[:user], 'Mon compte')),
+        (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
+        (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
+        (link_to_about),
+      ] %>
+    <% menu[:titles] << link_to('Demandes',:controller => 'demandes', :action => 'list') %>
+    <% menu[:links] << [ 
+        (link_to 'Liste des demandes',:controller => 'demandes', :action => 'list'), 
+        (link_to 'Déposer une demande',:controller => 'demandes', :action => 'new'), 
+        (link_to 'Appels',:controller => 'appels', :action => 'list'),
+      ] %>
+    <% menu[:titles] << link_to('Logiciels',:controller => 'logiciels', :action => 'list') %>
+    <% menu[:links] << [ 
+        (link_to 'Logiciels', :controller => 'logiciels', :action => 'list'), 
+        (link_to 'Paquets', :controller => 'paquets', :action => 'list'), 
+        (link_to_contributions), 
+      ] %>
+    <% menu[:titles] << link_to('Répertoire',:controller => 'documents', :action => 'select') %>
+    <% out_table = []
+         Typedocument.find(:all).each {|t| out_table << (link_to_typedocument t)} 
+         menu[:links] << out_table 
+        %>
+    <% menu[:titles] << link_to('Utilisateurs', :controller => 'account', :action => 'list') %>
+    <% menu[:links] << [ 
+         (link_to_modify_account session[:user], 'Modifier mon compte'),
+         (link_to 'Liste des utilisateurs', :controller => 'account', :action => 'list'),
+         (link_to 'Ajouter un utilisateur', :controller => 'account', :action => 'signup'),
+         (link_to 'Gestion des rôles', :controller => 'roles')
+      ] %>
+    <% menu[:titles] << link_to('Clients',:controller => 'clients', :action => 'list') %>
+    <% menu[:links] << [ 
+        (link_to_my_client),
+        (link_to 'Clients',:controller => 'clients', :action => 'list'),
+        (link_to "Rapport d\'activité", :controller => 'reporting', :action => 'general'),
+      ] %>
+    <% menu[:titles] << 'Rechercher :' %> 
+    <% menu[:links] << [] %>
+
+    <%= build_simple_menu(menu[:titles]) if session[:user]%>

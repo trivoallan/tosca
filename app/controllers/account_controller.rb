@@ -3,10 +3,10 @@
 #####################################################
 
 class AccountController < ApplicationController
-  #Pour l'import de plusieurs utilisateurs
+  # Pour l'import de plusieurs utilisateurs
   require 'fastercsv'
 
-  # auto completion in 2 lines, yeah !
+  # Auto completion in 2 lines, yeah !
   auto_complete_for :identifiant, :nom
   auto_complete_for :identifiant, :email
 
@@ -35,6 +35,7 @@ class AccountController < ApplicationController
     end
   end
 
+  # Let an Engineer become a client user
   def devenir
     if @ingenieur
       benef = Beneficiaire.find(params[:id])
@@ -98,6 +99,8 @@ class AccountController < ApplicationController
     redirect_to :action => 'signup'
   end
 
+  # Create an account
+  # Depending on if is a client, create related beneficiaire or engineer
   def signup
     _form
     case request.method
@@ -122,6 +125,7 @@ class AccountController < ApplicationController
     end
   end
 
+  # Exit gracefully
   def logout
     clear_sessions
     redirect_to "/"
@@ -131,8 +135,10 @@ class AccountController < ApplicationController
   COLUMNS = [ 'Nom complet', 'Titre', 'Email', 'Téléphone', 
               'Identifiant', 'Mot de passe', 'Informations' ]
 
+  # Bulk import users 
   # TODO : fonction trop grosse.
-  # proposal : un chtit module qu'on inclu ?
+  #  proposal : un chtit module qu'on inclu ?
+  # Needs 'fastercsv'
   def multiple_signup
     _form
     @identifiant = Identifiant.new
@@ -193,7 +199,7 @@ class AccountController < ApplicationController
     end
   end
 
-  # ajaxified list
+  # Ajaxified list
   def list
     # init
     options = { :per_page => 15, :order => 'identifiants.login', :include => 
@@ -220,6 +226,7 @@ class AccountController < ApplicationController
     end
   end
 
+  # Destroy a user (via object)
   def destroy
     Identifiant.find(params[:id]).destroy
     redirect_to_home
@@ -227,13 +234,13 @@ class AccountController < ApplicationController
 
 
 private
-  # variables du formulaires
+  # Partial variables used in forms
   def _form
     @roles = Role.find_select
     @clients = Client.find_select
   end
 
-  # variables utilisé par le panneau de gauche
+  # Variables utilisé par le panneau de gauche
   def _panel 
     @count = {}
     @clients = Client.find_select
@@ -252,14 +259,28 @@ private
     # clear_session erase session[:user]
     identifiant = session[:user] unless identifiant
     clear_sessions
+    # Set user properties
     session[:user] = identifiant 
     session[:beneficiaire] = session[:user].beneficiaire
     session[:ingenieur] = session[:user].ingenieur
+    # Just to remember if javascript activated on client browser
     session[:javascript] = true 
     # TODO : à intégrer de manière propre avec le SSO du portail
     # désactivé pour l'instant
     # ( params['javascript'] == "true" ? true : false )
-    session[:nav_links] = render_to_string :inline => "
+    session[:nav_links] = set_nav_links
+    session[:cut_links] = set_cut_links
+    session[:menu] = set_menu
+  end
+
+  # Build the menu to html string
+  def set_menu
+    render_to_string :partial => 'menu'
+  end
+
+  # Build navigation links
+  def set_nav_links
+    render_to_string :inline => "
         <% nav_links = [ 
           (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
           (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
@@ -270,7 +291,11 @@ private
           (link_to '&Agrave; propos', :controller => 'bienvenue', :action => 'about')
         ] %>
         <%= nav_links.compact.join('&nbsp;|&nbsp;') if session[:user] %>"
-    session[:cut_links] = render_to_string :inline => "
+  end
+
+  # Build shortcut links
+  def set_cut_links
+    render_to_string :inline => "
         <% cut_links = [ 
           (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
           (session[:user].authorized?('demandes/list') ? "+ '&nbsp;' + search_demande," : ',' ) + 
@@ -287,16 +312,14 @@ private
         <% end %>"
   end
 
-
-  # efface les paramètres de session et les raccourcis
+  # Efface les paramètres de session et les raccourcis
   def clear_sessions
     reset_session
     @beneficiaire = nil
     @ingenieur = nil
   end
 
-
-  # empeche les bénéficiaires de toucher à un autre compte qu'au leur
+  # Empeche les bénéficiaires de toucher à un autre compte qu'au leur
   def scope_beneficiaire
     if @beneficiaire
       conditions = [ 'identifiants.id = ?', @beneficiaire.identifiant_id ]
