@@ -10,7 +10,8 @@ body {
 	background-color: #eaeafa;
 	font-size: 1em; 
 	/* keep DRY : one font-family for all */
-  	font-family: verdana, arial, helvetica, sans-serif;
+  	/*font-family: verdana, arial, helvetica, sans-serif;*/
+	font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
   	font-size:   12px;
   	line-height: 18px;
 	/* overflow: auto; */
@@ -21,9 +22,10 @@ body {
 #header {
 	width: 100%;
 	background-color: #e2efe2;
-        padding-top: 5px;
-        padding-bottom: 0px;
-	border-bottom: 2px solid #cfc8cf;
+        /*padding-top: 5px;*/
+        /*padding-bottom: 0px;*/
+	border-bottom: 1px solid #cfc8cf;
+	height: 5em;
 }
 #content_table{
 	width: 100%;
@@ -107,6 +109,99 @@ hr {
 img {
 	border:0;
 }
+
+/******************* MENU ************************/
+
+/**
+ * simple menu
+ * http://collaboa.org/
+ */
+
+#simple_menu {
+  position: absolute;
+  top: 3em; 
+  left: 50px;
+}
+#simple_menu ul {
+  margin: 0; padding: 0;
+  list-style: none;
+  height: 24px;
+}
+#simple_menu li {
+  display: inline;
+}
+#simple_menu a {
+  float: left;
+  padding: 0 10px; 
+  margin: 0; 
+  font-size: 12px;
+  line-height: 200%;
+  text-decoration: none;
+  border-bottom: none;
+}
+#simple_menu a:hover {
+  color: #eee;
+  background-color: #1A5260;
+}
+
+/** 
+ * advanced menu
+ * http://css.alsacreations.com/xmedia/exemples/deroulant/menu-horizontal2.htm 
+ */
+
+#menu .liste_menu, #menu .liste_title, #menu ul, #menu li {
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+#menu {
+position: absolute;
+top: 3em; 
+left: 50px;
+z-index:100; 
+}
+#menu .liste_menu{
+float: left;
+width: 8em; /* keep it for IE */
+margin: 0;
+background: #eee;
+}
+#menu .liste_title {
+height: 2em;
+cursor: pointer;
+text-align: center;
+font-weight: bold;
+}
+
+
+#menu a {
+  padding: 0 10px; 
+  margin: 0; 
+  font-size: 12px;
+  line-height: 200%;
+}
+#menu a:hover {
+  color: #eee;
+  background-color: #1A5260;
+}
+
+
+#menu .liste_items {
+display: none;
+padding: 1em;
+padding-top:0;
+}
+#menu li {
+text-align: left;
+}
+
+/* PB with IE : 
+   le hover ne s'applique qu'aux elements 'a href' 
+.liste_menu:hover {
+background: #eee;
+border: 1px solid #ccc;
+} /**/
+
 
 /******************* A RANGER ********************/
 

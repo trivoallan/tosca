@@ -26,7 +26,7 @@ class AccountController < ApplicationController
                                                    params['user_password'],
                                                    params['user_crypt'])
         set_sessions
-        flash[:notice] = "Connexion réussie"
+        flash[:notice] = "Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}"
         # flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
         redirect_to_home
       else
@@ -269,48 +269,61 @@ private
     # désactivé pour l'instant
     # ( params['javascript'] == "true" ? true : false )
     session[:nav_links] = set_nav_links
-    session[:cut_links] = set_cut_links
+    session[:account_links] = set_account_links
     session[:menu] = set_menu
   end
 
-  # Build the menu to html string
+  # Build the header menu
   def set_menu
-    render_to_string :partial => 'menu'
+    render_to_string :inline => <<-EOF
+      <% menu = [] 
+         menu << link_to_home(:image=> false) 
+         menu << link_to('Demandes', {:controller => 'demandes', :action => 'list'}, 
+                         :title => 'Consulter vos demandes')
+         menu << (session[:user].authorized?('demandes/list') ? '<a>'+search_demande+'</a>' : nil ) 
+         menu << link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
+                         :title => 'Consulter les logiciels') 
+         menu << link_to('Documents', {:controller => 'documents', :action => 'select'}, 
+                         :title => 'Accédez à votre dépôt documentaire') 
+         menu << link_to_admin
+         menu << link_to_about(:text => '?')
+      %>
+      <%= build_simple_menu(menu) if session[:user]%>
+    EOF
+    # for those who do want a complex menu
+    #render_to_string :partial => 'menu' 
   end
 
+  # DEPRECATED : use set menu or home page for links
   # Build navigation links
   def set_nav_links
-    render_to_string :inline => "
-        <% nav_links = [ 
-          (link_to 'Accueil',:controller => 'bienvenue', :action => 'list'),
-          (link_to 'Déconnexion',:controller => 'account', :action => 'logout'), 
-          (link_to_modify_account(session[:user], 'Mon compte')),
-          (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
-          (link_to 'Utilisateurs', :controller => 'account', :action => 'list'),
-          (link_to 'Rôles', :controller => 'roles', :action => 'list'),
-          (link_to '&Agrave; propos', :controller => 'bienvenue', :action => 'about')
-        ] %>
-        <%= nav_links.compact.join('&nbsp;|&nbsp;') if session[:user] %>"
+    render_to_string :inline => <<-EOF
+      <% nav_links = []
+         nav_links << link_to('Déconnexion', :controller => 'account', :action => 'logout')
+         nav_links << link_to_modify_account(session[:user], 'Mon compte')
+         nav_links << link_to('Plan', :controller => 'bienvenue', :action => 'plan')
+         nav_links << link_to('Utilisateurs', :controller => 'account', :action => 'list')
+         nav_links << link_to('Rôles', :controller => 'roles', :action => 'list')
+         nav_links << link_to_about
+         nav_links << link_to('Appels', :controller => 'appels', :action => 'list')
+         nav_links << link_to_contributions
+         nav_links << link_to_my_client 
+      %>
+      <%= nav_links.compact.join('&nbsp;|&nbsp;') if session[:user] %>
+    EOF
   end
 
-  # Build shortcut links
-  def set_cut_links
-    render_to_string :inline => "
-        <% cut_links = [ 
-          (link_to 'Demandes',:controller => 'demandes', :action => 'list') " +
-          (session[:user].authorized?('demandes/list') ? "+ '&nbsp;' + search_demande," : ',' ) + 
-         "(link_to 'Logiciels',:controller => 'logiciels', :action => 'list'),
-          (link_to 'Appels',:controller => 'appels', :action => 'list'),
-          (link_to 'Contributions',:controller => 'contributions', 
-                    :action => '#{session[:beneficiaire] ?'list':'admin'}'),
-          (link_to 'Répertoire',:controller => 'documents', :action => 'select'), 
-          (link_to_my_client), 
-          (link_to 'Clients',:controller => 'clients', :action => 'list')
-        ] %>
-        <% form_tag(:controller => 'demandes', :action => 'list') do %>
-        <%= cut_links.compact.join('&nbsp;|&nbsp;') %>
-        <% end %>"
-  end
+  # Build account links
+  def set_account_links
+    render_to_string :inline => <<-EOF
+      <% infos = []  
+         infos << (session[:user] ? "Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}" : ' [Non&nbsp;connecté]')
+         infos << link_to_modify_account(session[:user], 'Mon compte')
+         infos << link_to('Déconnexion',:controller => 'account', :action => 'logout')
+      %>
+      <%= '' + infos.compact.join('&nbsp;|&nbsp;') + ''  %>
+    EOF
+  end 
 
   # Efface les paramètres de session et les raccourcis
   def clear_sessions

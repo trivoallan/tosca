@@ -22,39 +22,36 @@
   <%# = javascript_include_tag 'snap_preview_anywhere' %>
   <%= javascript_include_tag :defaults %>
 </head>
-<body <%if flash[:notice]%>onload="window.setTimeout('Element.toggle(\'information_notice\')', 7000);" <%end%>>
+
+<body <% if flash[:notice] %>
+      onload="window.setTimeout('Element.hide(\'information_notice\')', 7000);"
+      <% end %>>
 
   <div id="header">
-    <table width="100%">
-      <tr>
-        <td width="5" rowspan="2">
-              <%= link_to logo_lstm, :controller => 'bienvenue', :action => 'list'%></td>
-        <td style="padding-left:20px">
-              <%= logo_08000 %></td>
-        <td style="text-align:right;padding-right:20px" colspan="2" >
-               <%= session[:nav_links] if session[:user] %></td>
-      </tr>
-      <tr>
-        <td style="padding-left:20px">
-               <%= (session[:user] ? "Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}" : ' [Non&nbsp;connecté]') %></td>
-        <td style="text-align:right;padding-right:20px">
-	       <%= session[:cut_links] if session[:user] %></td>
-      </tr>
-    </table>
+  <%= session[:menu] if session[:user] %>
+  <table width="100%" cellspading="0" cellspacing="0">
+    <tr valign="center">
+      <td width="50px"><%= link_to_home(:image_src => logo_lstm, :text => false) %></td>
+      <td style="text-align:right;"><%= session[:account_links] if session[:user] %>
+      <td width="150px"><%= logo_08000 %></td>
+    </tr>
+  </table>
   </div><!-- end of header -->
 
   <div id="information">
-        <% if flash[:notice] %>
-          <div class="information notice" id="information_notice">
-            <p><%= flash[:notice] %></p>
-          </div>
-        <% end %>
-        <% if flash[:warn] %>
-          <div class="information error">
-             <h2>Une erreur s&#146;est produite</h2>
-             <ul><li><%= flash[:warn] %></li></ul>
-          </div>
-        <% end %>
+     <% if flash[:notice] %>
+       <div class="information notice" id="information_notice">
+         <p><%= flash[:notice] %></p>  
+       <a class="close_information" onclick="Element.hide('information_notice')">Fermer</a>
+       </div>
+     <% end %>
+     <% if flash[:warn] %>
+       <div class="information error" id="information_error">
+         <h2>Une erreur s&#146;est produite</h2>
+         <ul><li><%= flash[:warn] %></li></ul>
+       <a class="close_information" onclick="Element.hide('information_error')">Fermer</a>
+       </div>
+     <% end %>
   </div><!-- end of information -->
 
   <table id="content_table">
