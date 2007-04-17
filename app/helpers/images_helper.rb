@@ -37,6 +37,12 @@ module ImagesHelper
 
   # Navigation
 
+  @@home = nil
+  def image_home
+    desc = 'Page d\'accueil'
+    @@home ||= image_tag("home.gif", image_options(desc, '17x18')) 
+  end
+
   @@back = nil
   def image_back
 #     @@back ||= image_tag("back_icon.png", image_options('retour', '23x23'))
