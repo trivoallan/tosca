@@ -179,8 +179,8 @@ module ApplicationHelper
       result << '<ul>' 
       elements.each { |e| result << '<li>' + e.to_s + '</li>' }
       result << '</ul>'
+      return result
     end
-    return result
     #yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
 
     # Le to_s sur le yield sert à ne pas faire péter l'appli si on
