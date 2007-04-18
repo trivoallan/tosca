@@ -82,11 +82,16 @@ a, a:active, a:visited, a:focus {
 	color: #1A5260;
 }
 a:hover {
-	/*background-color: #d2dfd2;*/
 	text-decoration: underline;
 	color: #226644;
-}
 
+	/* Repris de menu, si ça plait on fusionne  */
+	text-decoration: none;
+	border-bottom: none;
+	color: #eee;
+	background-color: #1A5260;
+	/**/
+}
 ul {
 	list-style-type: square;
 }
@@ -109,7 +114,6 @@ hr {
 img {
 	border:0;
 }
-
 
 /******************* A RANGER ********************/
 
@@ -150,7 +154,7 @@ table.pages td {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
 
-/* personnlisation du select des severites : non actif */
+/* personnalisation du select des severites : non actif */
 #select_severite {
 	padding: 2px;
 	background-color: #fed;
@@ -314,6 +318,8 @@ table.pages td {
 	padding: .5em;
 	width: 70%;
 }
+
+
 table.main td.error {
 	vertical-align : top;
 	padding : 150px 0 0 150px;

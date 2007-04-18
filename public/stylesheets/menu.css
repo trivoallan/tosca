@@ -3,6 +3,7 @@
  * menu.css
  */
 
+
 /******************* MENU ************************/
 
 /**
@@ -27,8 +28,8 @@
   float: left;
   padding: 0 10px; 
   margin: 0; 
-  font-size: 12px;
   line-height: 200%;
+
   text-decoration: none;
   border-bottom: none;
 }
@@ -94,5 +95,6 @@ text-align: left;
 background: #eee;
 border: 1px solid #ccc;
 } /**/
+
 
 
