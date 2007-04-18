@@ -156,18 +156,33 @@ module ApplicationHelper
 
   ### LISTES ET TABLES ##########################################################
 
-  # options :
-  #  * no_title : permet de ne pas mettre de titre à la liste
-  #  * puce : permet d'utiliser un caractère qcq à la place des balises <liste>
+  # Affiche une liste depuis un tableau d'élements
+  # Un bloc permet de manipuler un tableau d'objet
+  # Options :
+  #  * :no_title : permet de ne pas mettre de titre à la liste
+  #  * :puce : permet d'utiliser un caractère qcq à la place des balises <liste>
   # Call it like : 
   #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
-  def show_liste(elements, nom, options = {})
+  def show_liste(elements, nom, options = {}) 
+
     size = elements.size
     return "<u><b>Aucun(e) #{nom}</b></u><br />" unless size > 0
     result = ''
     unless options[:no_title]
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
     end
+
+    # Define a default bloc unless bloc is given
+    # call "yield_or_default .call(e)" in spite of "yield(e)"
+    # TODO : use it when yarv virtual machine is ready
+    unless block_given?
+      result << '<ul>' 
+      elements.each { |e| result << '<li>' + e.to_s + '</li>' }
+      result << '</ul>'
+    end
+    return result
+    #yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
+
     # Le to_s sur le yield sert à ne pas faire péter l'appli si on
     # on a un lien sans les droits (objet nil).
     if options[:puce]
@@ -215,6 +230,7 @@ module ApplicationHelper
       result << yield(elements[i])
       result << '</tr>'
     }
+
     if (options[:add_lines])
       options[:add_lines].each {|line|
         result << "<tr>"

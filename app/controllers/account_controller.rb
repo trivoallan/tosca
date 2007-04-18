@@ -268,7 +268,6 @@ private
     # TODO : à intégrer de manière propre avec le SSO du portail
     # désactivé pour l'instant
     # ( params['javascript'] == "true" ? true : false )
-    session[:nav_links] = set_nav_links
     session[:account_links] = set_account_links
     session[:menu] = set_menu
   end

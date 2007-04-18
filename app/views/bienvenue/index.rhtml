@@ -1,0 +1,37 @@
+<% if @beneficiaire and @beneficiaire.client.code_acces != '' %>
+   <p>Votre numéro d'appel est le 
+   <b><%= Metadata::PREFIXE_TELEPHONE+" "+Metadata::CODE_TELEPHONE %></b>, 
+   et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
+<% end %>
+
+<h2 class="spacer">Sommaire</h2>
+
+Bienvenue sur le Portail du 08000linux.
+
+<div class="sommaire show">
+  <h3>Demandes</h3>
+  <%= "Vous pouvez consulter la #{link_to('liste de vos demandes', :controller => 'demandes', :action => 'list')} 
+  et #{link_to('déposer une demande', :controller => 'demandes', :action => 'new')}. "%>
+</div>
+
+<div class="sommaire show">
+  <h3>Logiciels</h3>
+  <%= "Vous pouvez consulter la #{link_to('liste des logiciels supportés', :controller => 'logiciels', :action => 'list')} 
+  dans le cadre de votre #{link_to_my_client}. <br/>" if session[:beneficiaire]%>
+  <%= "Vous pouvez consulter #{link_to('les contributions', :controller => 'contributions', :action => 'list')}
+  réalisées par notre équipe. "%>
+</div>
+
+<div class="sommaire show">
+  <h3>Documents</h3>
+  <% links = []
+     links << link_to('Répertoire', :controller => 'documents', :action => 'select'),
+     links << link_to('Rapport d\'activité', :controller => 'reporting', :action => 'general')
+   %>
+  <%= show_liste(links, 'Documents') %>
+</div>
+
+<div class="sommaire show">
+  <h3>Administration</h3>
+  <%= " . " %>
+</div>

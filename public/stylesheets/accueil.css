@@ -1,5 +1,8 @@
 /************************ sommaire ***********************/
 
+
+/* Heritage du portail V1 */
+
 table.sommaire   {
 	border: 1px solid black;
 	background-color: #DFDFDF;	
@@ -34,6 +37,14 @@ dl.sommaire dd.action ul {
 dl.sommaire dd.action ul li {
 	margin-left: 1em;
 	padding-left: 0em;
+}
+
+
+/* Nouvel accueil */
+
+div.sommaire {
+	float: left;
+	margin-right: 50px;
 }
 
 
