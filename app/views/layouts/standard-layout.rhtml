@@ -28,6 +28,8 @@
       <% end %>>
 
   <div id="header">
+  <%# This menu is built during login, in account controller. %>
+  <%# And is in session for better perf (~ +30% on all pages) %>
   <%= session[:menu] if session[:user] %>
   <table width="100%" cellspading="0" cellspacing="0">
     <tr valign="center">
