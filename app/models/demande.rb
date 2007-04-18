@@ -48,8 +48,10 @@ class Demande < ActiveRecord::Base
   def to_param
     "#{id}-#{resume.gsub(/[^a-z1-9]+/i, '-')}"
   end
-  alias_method :to_s, :to_param
-
+  
+  def to_s
+    "#{typedemande.nom} (#{severite.nom}) : #{description}"
+  end
 
   def updated_on_formatted
     d = @attributes['updated_on']

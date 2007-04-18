@@ -1,6 +1,6 @@
 <% if @beneficiaire and @beneficiaire.client.code_acces != '' %>
    <p>Votre numéro d'appel est le 
-   <b><%= Metadata::PREFIXE_TELEPHONE+" "+Metadata::CODE_TELEPHONE %></b>, 
+   <b><%= Metadata::PREFIXE_TELEPHONE + "&nbsp;" + Metadata::CODE_TELEPHONE %></b>, 
    et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
 <% end %>
 
@@ -10,25 +10,32 @@ Bienvenue sur le Portail du 08000linux.
 
 <div class="sommaire show">
   <h3>Demandes</h3>
-  <%= "Vous pouvez consulter la #{link_to('liste de vos demandes', :controller => 'demandes', :action => 'list')} 
-  et #{link_to('déposer une demande', :controller => 'demandes', :action => 'new')}. "%>
+  <p><%= "Vous pouvez consulter la #{link_to('liste de vos demandes', :controller => 'demandes', :action => 'list')} : "
+          show_liste(@demandes, 'Demande en cours', :no_title => true) { |d| 
+            link_to_demande(d, :show_id => true, :icon_severite => true) 
+          } %></p>
+   <p><%= "Vous pouvez également #{link_to('déposer une demande', :controller => 'demandes', :action => 'new')}. "%></p>
 </div>
 
 <div class="sommaire show">
   <h3>Logiciels</h3>
-  <%= "Vous pouvez consulter la #{link_to('liste des logiciels supportés', :controller => 'logiciels', :action => 'list')} 
-  dans le cadre de votre #{link_to_my_client}. <br/>" if session[:beneficiaire]%>
-  <%= "Vous pouvez consulter #{link_to('les contributions', :controller => 'contributions', :action => 'list')}
-  réalisées par notre équipe. "%>
+  <% if session[:beneficiaire] %>
+  <p><%= "Vous pouvez consulter la #{link_to('liste des logiciels supportés', :controller => 'logiciels', :action => 'list')} 
+          dans le cadre de votre #{link_to_my_client}. " %></p>
+  <% end %>
+  <p><%= "Vous pouvez consulter #{link_to('les contributions', :controller => 'contributions', :action => 'list')}
+       réalisées par notre équipe. "%></p>
 </div>
 
 <div class="sommaire show">
   <h3>Documents</h3>
-  <% links = []
-     links << link_to('Répertoire', :controller => 'documents', :action => 'select'),
-     links << link_to('Rapport d\'activité', :controller => 'reporting', :action => 'general')
-   %>
-  <%= show_liste(links, 'Documents') %>
+  <p><%= "Vous pouvez parcourir #{link_to('votre répertoire', :controller => 'documents', :action => 'select')}
+          pour accéder aux documents suivants : " + 
+          show_liste(@typedocuments, 'Type de document', :no_title => true) { |t| 
+            link_to_typedocument t 
+          } %></p>
+  <p><%= "Vous pouvez également consulter votre 
+          #{link_to('rapport d\'activité', :controller => 'reporting', :action => 'general')} en ligne"%></p>
 </div>
 
 <div class="sommaire show">

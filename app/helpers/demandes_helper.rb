@@ -3,61 +3,65 @@
 #####################################################
 module DemandesHelper
 
-  # lien vers une demande : affiche le nom de la demande
-  # options
-  # :pre_text à afficher avant le nom
-  # :show_id affiche l'id à la place du nom de la demande
+  # Display a link to a demand
+  # Options
+  #  * :pre_text (deprecated) display before
+  #  * :show_id display the id 
+  #  * :icon_severite display severity icon
   def link_to_demande(demande, options={})
-    return '-'unless demande
+    return '-' unless demande and demande.is_a? Demande
+    limit = options[:limit] ||= 50
     text = ''
     text << "##{demande.id} " if options[:show_id] 
     text << "#{icon_severite(demande)} " if options[:icon_severite] 
-    text << "#{sum_up(demande.resume, 50)}"
+    text << "#{sum_up(demande.resume, limit)}"
     options = {:controller => 'demandes', 
                :action => 'comment', :id => demande.id}
     link_to text, options
   end
 
-  def link_to_new_urllogiciel(logiciel_id)
-    return '-' unless logiciel_id
-    link_to(image_create('une url'), :controller => 'urllogiciels', 
-            :action => 'new', :logiciel_id => logiciel_id)
-  end
-
-  # link to the 08000 wiki
+  # Link to the inline help to post a request
   def link_to_help_new_request
     link_to('Déclaration d\'une demande', 
             "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande")
   end
   
-  # link to the 08000 wiki
+  # Link to the the inline help about life cycle of a demand
   def link_to_howto_request
     link_to('Déroulement d\'une demande', 
             "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande")
   end
 
-
-  # Affiche un résumé texte succint d'une demande
-  # Utilisé par exemple pour les balise "alt" et "title"
-  # on affiche '...' si le reste a afficher fait plus de 3 caracteres
-  def sum_up( texte, limit=100, options ={:less => '...'})
-    return texte unless (texte.is_a? String) && (limit.is_a? Numeric)
+  # Display a short text summary of a demand
+  # Often used for "alt" and "title" markup/tag
+  # Options
+  #  * :less 
+  # Display '...' by default if remaining text size bigger than 3 characters
+  def sum_up(text, limit=100, options ={})
+    return text unless (text.is_a? String) && (limit.is_a? Numeric)
+    less = options[:less] ||= '...'
     out = ''
-    if texte.size <= limit+3
-      out << texte
-    elsif
-      out << texte[0..limit]
-      out << options[:less]
-    end
+    out << ( text.size <= limit+3 ? text : text[0..limit] + less )
+    #if text.size <= limit + 3
+    #  out << text
+    #else
+    #  out << text[0..limit]
+    #  out << less
+    #end
     out
   end
 
-  # Décrit une demande
+  # Description of a demand
+  # DEPRECATED : use instance method for 'to_s' Demande
   def demande_description(d)
     return '-' unless d
-   "#{d.typedemande.nom} (#{d.severite.nom}) : #{d.description}"
+    "#{d.typedemande.nom} (#{d.severite.nom}) : #{d.description}"
   end
 
+  # TODO : explain what does this function
+  # TODO : teach the author how to make it understandable
+  # TODO : give an example
+  # TODO : think about replacing case/when by if/else
   def display(donnee, column)
     case column
     when 'contournement','correction'
@@ -67,6 +71,7 @@ module DemandesHelper
     end
   end
 
+  # Display an icon matching severity
   def icon_severite(d)
     desc = (d.respond_to?(:severites_nom) ? d.severites_nom : d.severite.nom)
     image_tag("severite_#{d.severite_id}.gif", :title => desc, :alt => desc )
@@ -80,8 +85,8 @@ module DemandesHelper
     render :partial => "report_detail", :locals => options
   end
 
-  # todo : modifier le model : ajouter champs type demande aux engagements
-  # todo : prendre en compte le type de la demande !!!
+  # TODO : modifier le model : ajouter champs type demande aux engagements
+  # TODO : prendre en compte le type de la demande !!!
 
   def display_engagement_contournement(demande, paquet)
     engagement = demande.engagement(paquet.contrat_id)
@@ -93,13 +98,15 @@ module DemandesHelper
     display_jours(engagement.correction)
   end
 
+  # Display (open) time spent to now 
+  # TODO : rename it 'display_temps_ecoule'
   def display_tempsecoule(demande)
     "TODO" #distance_of_time_in_french_words compute_delai4paquet @demande
   end
 
-  # used to display more nicely change to history table
-  # use it like :
-  # <%= display_history_changes(demande.ingenieur_id, old_ingenieur_id, Ingenieur) %>
+  # Display more nicely change to history table
+  # Use it like :
+  #  <%= display_history_changes(demande.ingenieur_id, old_ingenieur_id, Ingenieur) %>
   def display_history_changes(field, old_field, model)
     if field
       if old_field and old_field == field
@@ -114,11 +121,11 @@ module DemandesHelper
 
   # Used to call remote ajax action
   # Call it like :
-  # <% options = { :update => 'demande_tab',
+  #  <% options = { :update => 'demande_tab',
   #     :url => { :action => nil, :id => @demande.id },
   #     :before => "Element.show('spinner')",
   #     :success => "Element.hide('spinner')" } %>
-  # <%= link_to_remote_tab('Description', 'ajax_description', options) %>
+  #  <%= link_to_remote_tab('Description', 'ajax_description', options) %>
   def link_to_remote_tab(name, action_name, options)
     options[:url][:action] = action_name
     if (action_name != controller.action_name)
@@ -128,7 +135,10 @@ module DemandesHelper
     end
   end
 
-  # Display a css bar for graphic repesentation of a ticket timeline
+  # Display a css bar for graphic representation of a ticket timeline
+  # Options 
+  #  * (no options yet)
+  # Need adequat CSS stylesheet 
   def show_cns_bar(demande, options={})
     #done, limit = 0, 100
     return '' unless demande.is_a?(Demande)
