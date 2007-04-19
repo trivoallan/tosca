@@ -122,10 +122,16 @@ module ImagesHelper
     @@logo_linagora ||= image_tag('logo_linagora.gif', image_options(desc, '176x44'))
   end
 
-  @@image_favicon = nil 
-  def image_favicon
-    @@image_favicon ||= image_path("favicon.ico")
+  @@image_favicon_png = nil 
+  def image_favicon_png
+    @@image_favicon_png ||= image_path("favicon.png")
   end
+
+  @@image_favicon_ico = nil 
+  def image_favicon_ico
+    @@image_favicon_ico ||= image_path("favicon.ico")
+  end
+
 
   @@image_print = nil
   def image_print
