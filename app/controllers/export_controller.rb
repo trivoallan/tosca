@@ -10,7 +10,7 @@ class ExportController < ApplicationController
 
   # return the contents of identifiants in a table in CSV format
   def contributions
-    options = { :order => 'contributions.updated_on DESC', 
+    options = { :order => 'contributions.reverse_le ASC', 
       :include => [:logiciel,:etatreversement,:demandes], 
       :conditions => flash[:conditions] }
 
