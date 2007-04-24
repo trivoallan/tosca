@@ -15,7 +15,7 @@ class BienvenueController < ApplicationController
     _my_list
     @typedocuments = Typedocument.find(:all)
     # this line will be deleted when index is ready
-    render :action => 'list'
+    #render :action => 'list'
   end
  
   # Welcome page

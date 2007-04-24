@@ -11,35 +11,42 @@
  * http://collaboa.org/
  */
 
-#simple_menu {
+.simple_menu {
   position: absolute;
-  top: 3em; 
-  left: 50px;
+  top: 0.2em;
+  left: 210px; 
+  z-index: 0;
 }
-#simple_menu ul {
+.account_menu {
+}
+.simple_menu ul, .account_menu ul {
   margin: 0; padding: 0;
   list-style: none;
   height: 24px;
 }
-#simple_menu li {
+.simple_menu li, .account_menu li {
   display: inline;
 }
-#simple_menu a {
-  float: left;
+.simple_menu a, .account_menu a {
   padding: 0 10px; 
   margin: 0; 
   line-height: 200%;
-
   text-decoration: none;
   border-bottom: none;
 }
-#simple_menu a:hover {
+.simple_menu a {
+  float: left;
+}
+.account_menu a {
+  float: right;
+}
+.simple_menu a:hover, .account_menu a:hover{
   color: #eee;
   background-color: #1A5260;
 }
 
 /** 
- * advanced menu
+ * advanced menu (NON YET USED)
  * http://css.alsacreations.com/xmedia/exemples/deroulant/menu-horizontal2.htm 
  */
 

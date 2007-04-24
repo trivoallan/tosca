@@ -30,13 +30,16 @@ module ApplicationHelper
   #  :text show text on the right (true)
   def link_to_home(options={})
     display = ''
+    html_options = {:title => 'Revenir à l\'accueil'}
     if options[:image] || options[:image_src]
       image = options[:image_src] ||= image_home
       display << image
+      html_options.update(:class => 'no_hover')
     end
     display << ' Accueil' unless options[:text] == false
-    link_to display, {:controller => 'bienvenue', :action => 'list'},
-            :title => 'Revenir à l\'accueil'
+    link_to display, 
+            {:controller => 'bienvenue', :action => 'list'},
+            html_options
   end 
 
   # lien vers un compte existant
@@ -289,17 +292,20 @@ module ApplicationHelper
 
   # Display a simple menu (without submenu) from an array
   # a field may be add in the array, to select a ticket
-  # form_tag might be add only if options[:form]
+  # Options
+  #  * :form include all in a form_tag 
+  #  * :add_class specifie a class to overide .simple_menu style
   def build_simple_menu(menu, options={})
     return unless menu.is_a? Array 
     menu.compact!
+    class_name = options[:class] ||= 'simple_menu'
     out = ''
-    out << '<div id="simple_menu">'
-    out << form_tag(:controller => 'demandes', :action => 'list') #if options[:form]
+    out << '<div class="'+ class_name +'">'
+    out << form_tag(:controller => 'demandes', :action => 'list') if options[:form]
     out << ' <ul>'
-    menu.each { |e| out << "<li>#{e}</li>" } #if options[:form]
+    menu.each { |e| out << "<li>#{e}</li>" } 
     out << ' </ul>'
-    out << end_form_tag 
+    out << end_form_tag if options[:form]
     out << '</div>'
   end
 

@@ -17,7 +17,6 @@ class AccountController < ApplicationController
     render :action => 'list'
   end
  
-
   # NO_JAVASCRIPT = '<br/>Javascript n\'est pas activé sur votre navigateur'
   def login
     case request.method
@@ -287,7 +286,7 @@ private
          menu << link_to_admin
          menu << link_to_about(:text => '?')
       %>
-      <%= build_simple_menu(menu) if session[:user]%>
+      <%= build_simple_menu(menu, :form => true) if session[:user] %>
     EOF
     # for those who do want a complex menu
     #render_to_string :partial => 'menu' 
@@ -299,7 +298,7 @@ private
     render_to_string :inline => <<-EOF
       <% nav_links = []
          nav_links << link_to('Déconnexion', :controller => 'account', :action => 'logout')
-         nav_links << link_to_modify_account(session[:user], 'Mon compte')
+         nav_links << link_to_modify_account(session[:user], 'Mon&nbsp;compte')
          nav_links << link_to('Plan', :controller => 'bienvenue', :action => 'plan')
          nav_links << link_to('Utilisateurs', :controller => 'account', :action => 'list')
          nav_links << link_to('Rôles', :controller => 'roles', :action => 'list')
@@ -316,12 +315,12 @@ private
   def set_account_links
     render_to_string :inline => <<-EOF
       <% infos = []  
-         infos << (session[:user] ? "Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}" : ' [Non&nbsp;connecté]')
-         infos << link_to_modify_account(session[:user], 'Mon compte')
+         infos << link_to_modify_account(session[:user], 'Mon&nbsp;compte')
          infos << link_to('Déconnexion',:controller => 'account', :action => 'logout')
       %>
-      <%= '' + infos.compact.join('&nbsp;|&nbsp;') + ''  %>
+      <%= build_simple_menu(infos, :class => 'account_menu') if session[:user] %>
     EOF
+    #infos << (session[:user] ? "Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}" : ' [Non&nbsp;connecté]')
   end 
 
   # Efface les paramètres de session et les raccourcis

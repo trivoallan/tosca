@@ -10,7 +10,7 @@ Bienvenue sur le Portail du 08000linux.
 
 <div class="sommaire show">
   <h3>Demandes</h3>
-  <p><%= "Vous pouvez consulter la #{link_to('liste de vos demandes', :controller => 'demandes', :action => 'list')} : "
+  <p><%= "Vous pouvez consulter la #{link_to('liste de vos demandes', :controller => 'demandes', :action => 'list')} : " +
           show_liste(@demandes, 'Demande en cours', :no_title => true) { |d| 
             link_to_demande(d, :show_id => true, :icon_severite => true) 
           } %></p>
@@ -19,10 +19,9 @@ Bienvenue sur le Portail du 08000linux.
 
 <div class="sommaire show">
   <h3>Logiciels</h3>
-  <% if session[:beneficiaire] %>
-  <p><%= "Vous pouvez consulter la #{link_to('liste des logiciels supportés', :controller => 'logiciels', :action => 'list')} 
-          dans le cadre de votre #{link_to_my_client}. " %></p>
-  <% end %>
+  <p><%= "Vous pouvez consulter la 
+          #{link_to('liste des logiciels supportés', :controller => 'logiciels', :action => 'list')}" +
+          ( session[:beneficiaire] ? " dans le cadre de votre #{link_to_my_client} " : "." ) %></p>
   <p><%= "Vous pouvez consulter #{link_to('les contributions', :controller => 'contributions', :action => 'list')}
        réalisées par notre équipe. "%></p>
 </div>
@@ -35,7 +34,7 @@ Bienvenue sur le Portail du 08000linux.
             link_to_typedocument t 
           } %></p>
   <p><%= "Vous pouvez également consulter votre 
-          #{link_to('rapport d\'activité', :controller => 'reporting', :action => 'general')} en ligne"%></p>
+          #{link_to('rapport d\'activité', :controller => 'reporting', :action => 'general')} en ligne. " %></p>
 </div>
 
 <div class="sommaire show">

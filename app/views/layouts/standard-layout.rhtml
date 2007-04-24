@@ -28,17 +28,18 @@
 <body>
 
   <div id="header">
-  <%# This menu is built during login, in account controller. %>
-  <%# And is in session for better perf (~ +30% on all pages) %>
-  <%= session[:menu] if session[:user] %>
-  <table width="100%" cellspading="0" cellspacing="0">
-    <tr valign="center">
-      <td width="50px"><%= link_to_home(:image_src => logo_lstm, :text => false) %></td>
-      <td style="text-align:right;"><%= session[:account_links] if session[:user] %>
-      <td width="150px"><%= logo_08000 %></td>
-    </tr>
-  </table>
+    <table width="100%" height="100%" cellspading="0" cellspacing="0">
+      <tr valign="top">
+        <td><%= logo_08000 %></td>
+        <td align="right"><%= session[:account_links] if session[:user] %></td>
+      </tr>
+    </table>
+    <%# This menu is built during login, in account controller. %>
+    <%# And is in session for better perf (~ +30% on all pages) %>
+    <%= session[:menu] if session[:user] %>
   </div><!-- end of header -->
+
+  <div id="content">
 
   <div id="information">
      <% if flash[:notice] %>
@@ -73,13 +74,15 @@
   </tr>
   </table><!-- end of content_table -->
 
+  </div><!-- end of content -->
+
   <div id="footer">
     <table width='100%'>
       <tr>
         <td valign='middle' align='center'>
-	  <%= Metadata::NOM_LONG_SERVICE %>
+	  <%= link_to Metadata::NOM_LONG_SERVICE, 'http://www.linagora.com/services/assistance' %>
 	  <a href="http://rubyonrails.org/"><%= logo_ruby %></a>
-          <%= Metadata::COPYRIGHT_APPLICATION %>
+          <%= link_to Metadata::COPYRIGHT_APPLICATION, 'http://www.linagora.com' %>
         </td>
       </tr>
     </table>

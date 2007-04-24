@@ -7,7 +7,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #000;
-	background-color: #eaeafa;
+	background-color: #ffffff; /*#eaeafa;*/
 	font-size: 1em; 
 	/* keep DRY : one font-family for all */
   	/*font-family: verdana, arial, helvetica, sans-serif;*/
@@ -21,11 +21,14 @@ body {
 
 #header {
 	width: 100%;
-	background-color: #e2efe2;
-        /*padding-top: 5px;*/
-        /*padding-bottom: 0px;*/
-	border-bottom: 1px solid #cfc8cf;
-	height: 5em;
+	background-color: #EEEEEE; /*#e2efe2;*/
+	border-bottom: 1px solid #dddddd; /*#cfc8cf;*/
+	height: 2.2em; 
+	z-index: 1;
+}
+#content {
+	/*position: relative;
+	top: 3.2em;*/ /* uncomment when IE is dead */
 }
 #content_table{
 	width: 100%;
@@ -34,21 +37,22 @@ body {
 	height: 85%;
 }
 #bodycontent { 
-	background-color: #eaeafa;
+	background-color: #ffffff; /*#eaeafa;*/
 	margin: 0; 
 	padding: 2em;
 	padding-bottom: 5em;
 	height: 84%;
 }
 #footer {
-	position: fixed;
+	position: fixed; /* IE ignore it  */
+	/*position: relative;*/
 	color: black;
-	background-color: #e2efe2;
+	background-color: #EEEEEE; /*#e2efe2;*/
 	width: 100%;
 	text-align: center;
 	bottom: 0;
-	border-top: 2px solid #cfc8cf;
-	font-weight: bolder;
+	border-top: 1px solid #dddddd; /*#cfc8cf;*/
+	z-index: 1;
 }
 .imgTete {
 	padding: 10px;
@@ -91,6 +95,9 @@ a:hover {
 	color: #eee;
 	background-color: #1A5260;
 	/**/
+}
+table {
+	border-collapse: collapse;
 }
 ul {
 	list-style-type: square;
@@ -394,6 +401,12 @@ td.error div.link {
 	padding: 5px;
 	text-align: center;
 	margin: .5em 0 0 0;
+}
+/* Prevent from changing background when mouseover
+   often used for <a> tag or other that have modified 
+   behaviour when :hover  */
+.no_hover:hover {
+	background: none;
 }
 
 /****************************************************/
