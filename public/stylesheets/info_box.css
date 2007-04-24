@@ -3,15 +3,15 @@
  **************************************/
 
 .content {
-
 }
 .summary {
 	width: 100%;
 	height: 84%;
 	background-color: #EEEEEE;
 	/* float: left; *//* if table_content. See common.css */
-	border-right: 1px solid #999999;
-	border-bottom: 1px solid #999999;
+	border-right: 1px solid #dddddd; 
+	border-bottom: 1px solid #dddddd; 
+	margin-top: -1px;
 }
 .summary input, 
 .summary select {
@@ -29,6 +29,7 @@
 	width: 100%;
 }
 .menu_title {
+	border-top: 1px solid #ffffff;
 	border-bottom: 1px solid #999999;
 	width: 100%;
 	background-color: #dddddd;
