@@ -156,10 +156,16 @@ table.pages td {
 .show_table {
 	border-collapse: collapse;
 }
+/* all lines are clickable */
+#demandes_list tr *:hover {
+	cursor: pointer;
+	cursor: hand;
+}
 .show_table tr td, 
 .show_table tr th {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
+
 
 /* personnalisation du select des severites : non actif */
 #select_severite {
