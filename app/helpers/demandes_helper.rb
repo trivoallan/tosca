@@ -9,12 +9,15 @@ module DemandesHelper
   #  * :show_id display the id 
   #  * :icon_severite display severity icon
   def link_to_demande(demande, options={})
-    return '-' unless demande and demande.is_a? Demande
-    limit = options[:limit] ||= 50
-    text = ''
-    text << "##{demande.id} " if options[:show_id] 
-    text << "#{icon_severite(demande)} " if options[:icon_severite] 
-    text << "#{sum_up(demande.resume, limit)}"
+    return '-' unless demande
+    text = options[:text]
+    if text.nil?  
+      limit = options[:limit] || 50
+      text = ''
+      text << "##{demande.id} " if options[:show_id] 
+      text << "#{icon_severite(demande)} " if options[:icon_severite] 
+      text << "#{sum_up(demande.resume, limit)}"
+    end
     options = {:controller => 'demandes', 
                :action => 'comment', :id => demande.id}
     link_to text, options

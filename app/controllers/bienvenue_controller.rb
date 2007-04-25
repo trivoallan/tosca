@@ -43,7 +43,7 @@ class BienvenueController < ApplicationController
   def about
   end
 
-private
+protected
 
   # Return all methods sorted by class name
   def _plan

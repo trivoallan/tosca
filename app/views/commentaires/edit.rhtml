@@ -6,4 +6,5 @@
 <%= end_form_tag %>
 
 <%= link_to 'Show', :action => 'show', :id => @commentaire %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Retour à la liste', :action => 'list' %> |
+<%= link_to_demande @commentaire.demande, :text => 'Retour à la demande' %>

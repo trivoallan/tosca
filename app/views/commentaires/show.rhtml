@@ -4,5 +4,5 @@
 </p>
 <% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @commentaire %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Modifier', :action => 'edit', :id => @commentaire %> |
+<%= link_to_demande @commentaire.demande, :text => 'Retour à la demande' %>
