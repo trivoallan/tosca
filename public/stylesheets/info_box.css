@@ -18,8 +18,8 @@
 	height: 100%;
         vertical-align: middle;
 	background-color: #eeeeee; /* #009C55; */
-	border-left: 1px solid white;
-	border-right: 1px solid white;
+	border-left: 1px dotted white;
+	border-right: 1px dotted white;
 	margin-top: -1px;
 	font-weight: bold;
 	cursor: pointer;
@@ -27,8 +27,8 @@
 }
 .summary_toogle:hover {
 	background-color: #ffffff;
-	border-left: 1px solid #009C55; /* green */
-	border-right: 1px solid #009C55; /* green */
+	border-left: 1px dotted #009C55; /* green */
+	border-right: 1px dotted #009C55; /* green */
 }
 .summary input, 
 .summary select {
