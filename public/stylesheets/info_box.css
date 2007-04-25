@@ -5,13 +5,30 @@
 .content {
 }
 .summary {
-	width: 100%;
-	height: 84%;
+	width: 19em;
+	height: 100%; /*84%;*/
 	background-color: #EEEEEE;
 	/* float: left; *//* if table_content. See common.css */
 	border-right: 1px solid #dddddd; 
 	border-bottom: 1px solid #dddddd; 
 	margin-top: -1px;
+}
+.summary_toogle {
+	width: 4px;
+	height: 100%;
+        vertical-align: middle;
+	background-color: #eeeeee; /* #009C55; */
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	margin-top: -1px;
+	font-weight: bold;
+	cursor: pointer;
+	cursor: hand;
+}
+.summary_toogle:hover {
+	background-color: #ffffff;
+	border-left: 1px solid #009C55; /* green */
+	border-right: 1px solid #009C55; /* green */
 }
 .summary input, 
 .summary select {

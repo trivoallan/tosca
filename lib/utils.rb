@@ -16,6 +16,8 @@ module Metadata
   NOM_COURT_SERVICE = "OSSA"
   NOM_LONG_SERVICE = "Open Source Software Assurance".gsub(' ','&nbsp;')
   NOM_ENTREPRISE = "Linagora"
+  SITE_ENTREPRISE = "http://www.linagora.com"
+  PATH_SERVICE = "/services/assistance"
 
   # contacts
   PREFIXE_TELEPHONE = "08000"

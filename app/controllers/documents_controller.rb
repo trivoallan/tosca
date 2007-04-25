@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DocumentsController < ApplicationController
+  helper :filters
+
   def index
     select
     render :action => 'select'
@@ -25,12 +27,12 @@ class DocumentsController < ApplicationController
       :include => [:identifiant]
 
     # panel on the left side
-    #if request.xhr? 
-    #  render :partial => 'documents_list', :layout => false
-    #else
-    #  _panel
-    #  @partial_for_summary = 'documents_info'
-    #end
+    if request.xhr? 
+      render :partial => 'documents_list', :layout => false
+    else
+      _panel
+      @partial_for_summary = 'documents_info'
+    end
 
   end
 
@@ -41,6 +43,16 @@ class DocumentsController < ApplicationController
         Document.count(:conditions => "documents.typedocument_id = #{t.id}") == 0
       }
     end
+
+    # TODO : fusionner avec la répétition dans 'list'
+    # panel on the left side
+    if request.xhr? 
+      render :partial => 'documents_list', :layout => false
+    else
+      _panel
+      @partial_for_summary = 'documents_info'
+    end
+
   end
 
   def show
@@ -95,7 +107,7 @@ class DocumentsController < ApplicationController
 
   def _panel 
     @count = {}
-    @type_documents = Typedocument.find_select
+    @typedocuments = Typedocument.find_select
     @count[:documents] = Document.count
   end
 

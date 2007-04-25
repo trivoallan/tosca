@@ -58,18 +58,17 @@
   </div><!-- end of information -->
 
   <table id="content_table">
-  <tr valign="top">
+  <tr valign="center">
     <% if @partial_for_summary %>
-    <td width="20%">
-      <div class="summary">
-        <%= render_partial @partial_for_summary %>
-      </div><!-- end of summary -->
+    <td width="1px" height="100%">
+      <div id="summary" class="summary"><%= render_partial @partial_for_summary %></div>
+    </td>
+    <td class="summary_toogle" width="1px" height="100%"  
+        onclick="Element.toggle('summary')" title="Montrer/cacher le menu latéral">. . .
     </td>
     <% end %>
     <td>
-      <div id="bodycontent">
-        <%= @content_for_layout %>
-      </div><!-- end of bodycontent -->
+      <div id="bodycontent"><%= @content_for_layout %></div>
     </td>
   </tr>
   </table><!-- end of content_table -->
@@ -80,9 +79,9 @@
     <table width='100%'>
       <tr>
         <td valign='middle' align='center'>
-	  <%= link_to Metadata::NOM_LONG_SERVICE, 'http://www.linagora.com/services/assistance' %>
+	  <%= link_to Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE %>
 	  <a href="http://rubyonrails.org/"><%= logo_ruby %></a>
-          <%= link_to Metadata::COPYRIGHT_APPLICATION, 'http://www.linagora.com' %>
+          <%= link_to Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE %>
         </td>
       </tr>
     </table>
