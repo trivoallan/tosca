@@ -139,11 +139,10 @@ table.pages td {
 
 /***************** bloc standard ***************/
 
-/* warning : 
- * applied to divs and tables
+/* WARNING : applied to DIV's AND TABLE's
  */
 .login, .form, .show, .help, .info {
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	background-color: #DFDFDF;
 	-moz-border-radius: 1em;
 	vertical-align: top;
