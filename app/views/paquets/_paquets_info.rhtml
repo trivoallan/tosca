@@ -9,6 +9,14 @@
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
+<div class="menu_title" onclick="Element.toggle('menu_consultation')">
+> Consultation</div>
+<ul class="menu" id="menu_consultation">
+ <li><%= link_to 'Liste des logiciels', :controller => 'logiciels' %></li>
+ <li><%= link_to 'Liste des paquets', :controller => 'paquets' %></li>
+</ul>
+
+
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
 > Recherche</div>
 <ul class="menu" id="menu_recherche">

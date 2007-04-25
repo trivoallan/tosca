@@ -23,6 +23,15 @@ class DocumentsController < ApplicationController
     @document_pages, @documents = paginate :documents, :per_page => 10,
       :order => "created_on DESC", :conditions => conditions,
       :include => [:identifiant]
+
+    # panel on the left side
+    #if request.xhr? 
+    #  render :partial => 'documents_list', :layout => false
+    #else
+    #  _panel
+    #  @partial_for_summary = 'documents_info'
+    #end
+
   end
 
   def select
@@ -83,4 +92,11 @@ class DocumentsController < ApplicationController
     @typedocuments = Typedocument.find_all
     @identifiants = Identifiant.find_all
   end
+
+  def _panel 
+    @count = {}
+    @type_documents = Typedocument.find_select
+    @count[:documents] = Document.count
+  end
+
 end
