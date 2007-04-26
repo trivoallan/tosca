@@ -1,8 +1,3 @@
-<% for column in Statut.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @statut.send(column.name) %>
-</p>
-<% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @statut %> |
-<%= link_to 'Back', :action => 'list' %>
+<p><b><%=@statut.nom%>: </b><br/>
+<%= @statut.description %></p>

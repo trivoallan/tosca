@@ -15,6 +15,11 @@ class StatutsController < ApplicationController
     @statut_pages, @statuts = paginate :statuts, :per_page => 10
   end
 
+  def help
+    @statut = Statut.find(params[:id])
+    render :action => 'show', :layout => false
+  end
+
   def show
     @statut = Statut.find(params[:id])
   end
