@@ -16,7 +16,7 @@ module FormsHelper
   # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
   def hbtm_check_box( objectcollection, collection, nom , options={})
     return '' if collection.nil?
-    objectcollection ||= [] # TODO : changer la signature et faire le sed qui va bien
+    objectcollection ||= [] 
     out = '<table><tr>' and count = 1
     options_size = options[:size]
     length = collection.size
@@ -32,6 +32,7 @@ module FormsHelper
       end
     end
     out << '</tr></table>'
+    out << "<input type=\"hidden\" value=\"\" name=\"#{nom}[]\"/>"
   end
 
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
