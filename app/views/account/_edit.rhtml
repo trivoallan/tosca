@@ -17,12 +17,14 @@
   #ESSAI : un peu mieux ? un chouilla ;)
   identifiant, role, identifiant_client, type_client, csv = {}, {}, {}, {}, {}
   help = {:affichage_perso => 'Affichage personnalisé de la liste des demandes', :client => nil }
-  
+
   if @ingenieur
     identifiant[:titre] = '<label for="identifiant_login">Choisissez un identifiant</label>'
     identifiant[:champ] = text_field("identifiant", "login", :size => 16)
-    role[:titre] = '<label>Rôles</label>'
-    role[:champ] = hbtm_check_box(@identifiant.roles, @roles, 'identifiant[role_ids]') 
+    if @ingenieur and @ingenieur.expert_ossa
+      role[:titre] = '<label>Rôles</label>'
+      role[:champ] = hbtm_check_box(@identifiant.roles, @roles, 'identifiant[role_ids]') 
+    end
 
     case controller.action_name
     when 'signup', 'multiple_signup'
