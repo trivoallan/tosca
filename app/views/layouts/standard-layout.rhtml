@@ -43,16 +43,16 @@
 
   <div id="information">
      <% if flash[:notice] %>
-       <div class="information notice" id="information_notice">
+       <div id="information_notice" class="information notice">
          <p><%= flash[:notice] %></p>  
-       <a class="close_information" onclick="Element.hide('information_notice')">Fermer</a>
+         <a class="close_information" onclick="Element.hide('information_notice')">Fermer</a>
        </div>
      <% end %>
      <% if flash[:warn] %>
-       <div class="information error" id="information_error">
+       <div id="information_error" class="information error">
          <h2>Une erreur s&#146;est produite</h2>
          <ul><li><%= flash[:warn] %></li></ul>
-       <a class="close_information" onclick="Element.hide('information_error')">Fermer</a>
+         <a class="close_information" onclick="Element.hide('information_error')">Fermer</a>
        </div>
      <% end %>
   </div><!-- end of information -->
@@ -76,11 +76,11 @@
   </div><!-- end of content_div -->
 
   <div id="footer">
-    <table width='100%'>
+    <table>
       <tr>
         <td valign='middle' align='center'>
 	  <%= link_to Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE %>
-	  <a href="http://rubyonrails.org/"><%= logo_ruby %></a>
+	  <%= link_to logo_ruby, "http://rubyonrails.org/", :class => 'no_hover' %>
           <%= link_to Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE %>
         </td>
       </tr>

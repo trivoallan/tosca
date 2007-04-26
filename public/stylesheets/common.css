@@ -33,8 +33,9 @@ body {
 	cellspacing:0;
 }
 #content_div {
-	/*position: relative;
-	top: 3.2em;*/ /* uncomment when IE is dead */
+	/* uncomment when IE is dead :
+	position: relative;
+	top: 3.2em;                 */ 
 }
 #content_table{
 	width: 100%;
@@ -62,6 +63,9 @@ body {
 	bottom: 0;
 	border-top: 1px solid #dddddd; /*#cfc8cf;*/
 	z-index: 1;
+}
+#footer table {
+	width: 100%;
 }
 .imgTete {
 	padding: 10px;
