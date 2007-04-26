@@ -106,7 +106,7 @@ ul {
 	list-style-type: square;
 }
 li {
-	color:#114188;
+	/*color:#114188;*/
 }
 li img {
 	vertical-align: middle;
@@ -152,6 +152,13 @@ table.pages td {
 	padding: 1em;
 	margin: 1em 0em 1em 0em;
 }
+/* 3D border just for DIV's */
+div.login, div.form, div.show, div.help, div.info {
+	border-left: 1px solid #ffffff;
+	border-top: 1px solid #ffffff;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+}
 .login tr {
 	height: 40px;
 }
@@ -167,7 +174,6 @@ table.pages td {
 .show_table tr th {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
-
 
 /* personnalisation du select des severites : non actif */
 #select_severite {
@@ -207,24 +213,6 @@ table.pages td {
 	font-size: 80%;
 	padding: 4px 0 10px 4px;
 }
-
-/**** non use
-.list table th.dynamic {
-	cursor: pointer;
-	border-left: 1px dotted #A9A9A9;
-	border-right: 1px dotted #A9A9A9;
-	border-bottom: 2px solid #5E5E5E;
-	font-weight: bold;
-	text-decoration: underline;
-}
-.list table th.static {
-	cursor: default;
-	border-left: 1px dotted #A9A9A9;
-	border-right: 1px dotted #A9A9A9;
-	border-bottom: 2px solid #5E5E5E;
-}
-*****/
-
 .list table th {
 	color: #000;
 	text-decoration: none;
@@ -240,7 +228,6 @@ table.pages td {
 .list table td.void {
 	border: 0;
 }
-
 .list table .rowgroupend {
 	border-bottom-width: 3px;
 }
@@ -279,7 +266,7 @@ table.pages td {
 	height: 6em;
 }
 
-/******** conserve for later 
+/******** conserve for later **********
 .list fieldset {
 	width: 95%;
 	margin: 0em auto;
@@ -298,7 +285,7 @@ table.pages td {
 	border-left: 1px white solid;
 	border-right: #e4e4e4 1px solid;
 }
-**********/
+***************************************/
 
 
 /***************** aide et informations ***************/
@@ -309,6 +296,14 @@ table.pages td {
 #information {
 
 }
+
+/** Messages d'informations
+ * Tous les messages heritent de la classe .information 
+ * Ainsi, tous les messages sont homogènes au niveau du style
+ * On précise *en plus* le type d'info concerné : error, notice ou rappel
+ * Surcharger les classe de type pour préciser la couleur par exemple
+ * Exemple : <div class="information notice"></div> 
+ */
 .information {
 	font-weight: bold;
 	margin: 1em 2em; 
