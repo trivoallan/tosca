@@ -40,8 +40,11 @@ body {
 	background-color: #ffffff; /*#eaeafa;*/
 	margin: 0; 
 	padding: 2em;
+	/* keep some space for positionned-fixed footer */
 	padding-bottom: 5em;
+	/* use min-height < 50em for small screen */
 	height: 84%;
+	min-height: 50em;
 }
 #footer {
 	position: fixed; /* IE ignore it  */

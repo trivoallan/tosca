@@ -13,7 +13,7 @@
 	border-bottom: 1px solid #dddddd; 
 	margin-top: -1px;
 }
-.summary_toogle {
+.summary_toggle {
 	width: 4px;
 	height: 100%;
         vertical-align: middle;
@@ -25,7 +25,7 @@
 	cursor: pointer;
 	cursor: hand;
 }
-.summary_toogle:hover {
+.summary_toggle:hover {
 	background-color: #ffffff;
 	border-left: 1px dotted #009C55; /* green */
 	border-right: 1px dotted #009C55; /* green */
