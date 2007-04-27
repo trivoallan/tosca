@@ -7,20 +7,20 @@
   <link rel="shortcut icon" href="<%=image_favicon_ico%>" type="image/x-icon" />
   <link rel="icon" href="<%=image_favicon_png%>" type="image/png" />
   <title>08000linux : <%= controller.controller_name %></title>
+
   <%= stylesheet_link_tag('comments', 'tools', 'helper',  'demandes') %>
   <%= stylesheet_link_tag 'common', :media => "all" %>
   <%= stylesheet_link_tag 'common-printer', :media => "print" %>
   <%= stylesheet_link_tag('info_box', 'auto_complete', 'toolbar', 'accueil') %>
   <%= stylesheet_link_tag('menu', 'reporting') %>
 
-  <% # Include TinyMCE with gzip before other JS to avoid problems %>
+  <%# Include TinyMCE with gzip before other JS to avoid problems %>
   <% if using_tiny_mce? %>
     <%= javascript_include_tiny_mce %>
     <%= tiny_mce %>
   <% end %>
   <%= javascript_include_tag 'calendar', 'calendar-fr', 'calendar-setup' %>
   <%= stylesheet_link_tag 'calendar'%>
-
   <%# = javascript_include_tag 'snap_preview_anywhere' %>
   <%= javascript_include_tag :defaults %>
 </head>
@@ -34,45 +34,36 @@
         <td align="right"><%= session[:account_links] if session[:user] %></td>
       </tr>
     </table>
-    <%# This menu is built during login, in account controller. %>
-    <%# And is in session for better perf (~ +30% on all pages) %>
+    <%# This menu is built during login, in account controller.%>
     <%= session[:menu] if session[:user] %>
   </div><!-- end of header -->
 
   <div id="content_div">
+    <div id="information">
+       <%= show_notice if flash[:notice] %>
+       <%= show_warn if flash[:warn] %>
+    </div><!-- end of information -->
 
-  <div id="information">
-     <% if flash[:notice] %>
-       <div id="information_notice" class="information notice">
-         <p><%= flash[:notice] %></p>  
-         <a class="close_information" onclick="Element.hide('information_notice')">Fermer</a>
-       </div>
-     <% end %>
-     <% if flash[:warn] %>
-       <div id="information_error" class="information error">
-         <h2>Une erreur s&#146;est produite</h2>
-         <ul><li><%= flash[:warn] %></li></ul>
-         <a class="close_information" onclick="Element.hide('information_error')">Fermer</a>
-       </div>
-     <% end %>
-  </div><!-- end of information -->
-
-  <table id="content_table">
-  <tr valign="center">
-    <% if @partial_for_summary %>
-    <td width="1px" height="100%">
-      <div id="summary" class="summary"><%= render_partial @partial_for_summary %></div>
-    </td>
-    <td class="summary_toggle" width="1px" height="100%"  
-        onclick="Element.toggle('summary')" title="Montrer/cacher le menu latéral">. . .
-    </td>
-    <% end %>
-    <td>
-      <div id="bodycontent"><%= @content_for_layout %></div>
-    </td>
-  </tr>
-  </table><!-- end of content_table -->
-
+    <table id="content_table">
+      <tr valign="center">
+        <% if @partial_for_summary %>
+        <td width="1px" height="100%">
+          <div id="summary" class="summary">
+            <%= render_partial @partial_for_summary %>
+          </div>
+        </td>
+        <td class="summary_toggle" width="1px" height="100%"  
+            onclick="Element.toggle('summary')" title="Montrer/cacher le menu latéral">
+            . . .
+        </td>
+        <% end %>
+        <td>
+          <div id="bodycontent">
+            <%= @content_for_layout %>
+          </div>
+        </td>
+      </tr>
+    </table><!-- end of content_table -->
   </div><!-- end of content_div -->
 
   <div id="footer">

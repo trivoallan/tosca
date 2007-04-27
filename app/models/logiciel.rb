@@ -15,8 +15,8 @@ class Logiciel < ActiveRecord::Base
 
   has_many :binaires, :through => :paquets, :dependent => :destroy
 
-  validates_presence_of :competences => 
-    "Vous devez spécifier au moins une compétence" 
+  # "Vous devez spécifier au moins une compétence" 
+  validates_length_of :competences, :minimum => 1
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 
@@ -37,7 +37,6 @@ class Logiciel < ActiveRecord::Base
       c.primary || c.name =~ /(_id|_count|Description)$/  
     }
   end
-
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"

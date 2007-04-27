@@ -37,9 +37,8 @@ module ApplicationHelper
       html_options.update(:class => 'no_hover')
     end
     display << ' Accueil' unless options[:text] == false
-    link_to display, 
-            {:controller => 'bienvenue', :action => 'list'},
-            html_options
+    route_options = {:controller => 'bienvenue', :action => ''}
+    link_to display, route_options, html_options
   end 
 
   # lien vers un compte existant
@@ -162,16 +161,17 @@ module ApplicationHelper
   # Affiche une liste depuis un tableau d'élements
   # Un bloc permet de manipuler un tableau d'objet
   # Options :
-  #  * :no_title : permet de ne pas mettre de titre à la liste
+  #  * :no_title : DEPRECATED permet de ne pas mettre de titre à la liste
+  #  * :title : mettre à false pour ne pas afficher le titre
   #  * :puce : permet d'utiliser un caractère qcq à la place des balises <liste>
   # Call it like : 
   #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
-  def show_liste(elements, nom, options = {}) 
+  def show_liste(elements, nom = '', options = {}) 
 
     size = elements.size
     return "<u><b>Aucun(e) #{nom}</b></u><br />" unless size > 0
     result = ''
-    unless options[:no_title]
+    unless options[:title]==false or options[:no_title]
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
     end
 
@@ -359,6 +359,26 @@ module ApplicationHelper
     elements.each { |e| result << "<li>#{e}</li>" }
     result << '    </ul>'
     result << '  </div>'
+  end
+
+
+  ### INFORMATIONS #########################################################
+
+  def show_notice
+      "<div id=\"information_notice\" class=\"information notice\">
+         <div class=\"close_information\" onclick=\"Element.hide('information_notice')\">" + 
+         image_delete + "</div>
+         <p>" + flash[:notice] + "</p>  
+       </div>"
+  end
+
+  def show_warn
+      "<div id=\"information_error\" class=\"information error\">
+         <div class=\"close_information\" onclick=\"Element.hide('information_error')\">" + 
+         image_delete + "</div>
+         <h2>Une erreur s&#146;est produite</h2>
+         <ul><li>" + flash[:warn] + "</li></ul>
+       </div>"
   end
 
 end

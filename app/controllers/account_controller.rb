@@ -267,7 +267,10 @@ private
     # TODO : à intégrer de manière propre avec le SSO du portail
     # désactivé pour l'instant
     # ( params['javascript'] == "true" ? true : false )
+
+    # Account links in header
     session[:account_links] = set_account_links
+    # Navigation menu in header
     session[:menu] = set_menu
   end
 
@@ -275,7 +278,7 @@ private
   def set_menu
     render_to_string :inline => <<-EOF
       <% menu = [] 
-         menu << link_to_home(:image=> false) 
+         menu << link_to_home(:image=> true) 
          menu << link_to('Demandes', {:controller => 'demandes', :action => 'list'}, 
                          :title => 'Consulter vos demandes')
          menu << (session[:user].authorized?('demandes/list') ? '<a>'+search_demande+'</a>' : nil ) 

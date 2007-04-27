@@ -1,9 +1,52 @@
 
 <h2 class="spacer">Sommaire</h2>
 
-Vous êtes un vil admin du Portail du 08000linux.
+Vous êtes administrateur du Portail 08000linux.com.
 
 <div class="sommaire show">
-  <h3>Administration</h3>
-  <%= " . " %>
+  <h3>Utilisateurs</h3>
+  <p>Gestion des utilisateurs</p>
+  <% links = [ 
+        link_to('Liste des utilisateurs', :controller => 'account', :action => 'list'),
+        link_to('Ajouter un utilisateur', :controller => 'account', :action => 'signup'),
+        link_to('Ajouter des utilisateurs par lot', :controller => 'account', :action => 'multiple_signup') ] %>
+  <%= show_liste(links, 'Utilisateurs', :title => false) %>
+  <p>Gestion des permissions</p>
+  <% links = [ 
+        link_to('Permissions', :controller => 'permissions'),
+        link_to('Rôles', :controller => 'roles') ] %>
+  <%= show_liste(links, 'Permissions', :title => false) %>
+  <p>Gestion des compétences</p>
+  <% links = [ 
+        link_to('Ingénieurs', :controller => 'ingenieurs', :action => 'list'),
+        link_to('Compétences', :controller => 'competences', :action => 'list') ] %>
+  <%= show_liste(links, 'Compétences', :title => false) %>
+</div>
+
+<div class="sommaire show">
+  <h3>Clients</h3>
+  <p>Gestion des clients</p>
+  <% links = [ 
+        link_to('Clients', :controller => 'clients', :action => 'list'),
+        link_to('Bénéficiaires', :controller => 'beneficiaires', :action => 'list'), 
+        link_to('Contrats', :controller => 'contrats', :action => 'list')  ] %>
+  <%= show_liste(links, 'Clients', :title => false) %>
+</div>
+
+
+<div class="sommaire show">
+  <h3>Plateformes</h3>
+  <p>Gestion des socles</p>
+  <% links = [ 
+        link_to('Socles', :controller => 'socles', :action => 'list'),
+        link_to('Machines', :controller => 'machines', :action => 'list'),
+        link_to('Architectures', :controller => 'arches', :action => 'list') ] %>
+  <%= show_liste(links, 'Gestion des socles', :title => false) %>
+  <p>Gestion des sources</p>
+  <% links = [ 
+         link_to('Liste des logiciels', :controller => 'logiciels', :action => 'list'),
+         link_to('Classification des logiciels', :controller => 'groupes', :action => 'list'),
+         link_to('Paquets', :controller => 'paquets', :action => 'list'),
+         link_to('Binaires', :controller => 'binaires', :action => 'list') ] %>
+   <%= show_liste(links, 'Gestion des logiciels', :title => false) %>
 </div>

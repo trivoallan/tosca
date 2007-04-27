@@ -11,10 +11,12 @@ Bienvenue sur le Portail du 08000linux.
 <div class="sommaire show">
   <h3>Demandes</h3>
   <p><%= "Vous pouvez consulter la #{link_to('liste de vos demandes', :controller => 'demandes', :action => 'list')} : " +
-          show_liste(@demandes, 'Demande en cours', :no_title => true) { |d| 
+          show_liste(@demandes, 'Demande en cours', :title => false) { |d| 
             link_to_demande(d, :show_id => true, :icon_severite => true) 
           } %></p>
    <p><%= "Vous pouvez également #{link_to('déposer une demande', :controller => 'demandes', :action => 'new')}. "%></p>
+   <p><%= "Vous avez " + @request_stats[:en_cours].to_s + " demandes en cours." %></p>
+   <p><%= "Vous avez " + @request_stats[:terminees].to_s + " demandes terminées."  %></p>
 </div>
 
 <div class="sommaire show">
@@ -22,7 +24,8 @@ Bienvenue sur le Portail du 08000linux.
   <p><%= "Vous pouvez consulter la 
           #{link_to('liste des logiciels supportés', :controller => 'logiciels', :action => 'list')}" +
           ( session[:beneficiaire] ? " dans le cadre de votre #{link_to_my_client} " : "." ) %></p>
-  <p><%= "Vous pouvez consulter #{link_to('les contributions', :controller => 'contributions', :action => 'list')}
+  <p><%= "Vous pouvez parcourir #{link_to('la classification', :controller => 'groupes', :action => 'list')}." %></p>
+  <p><%= "Vous pouvez accéder aux #{link_to('contributions', :controller => 'contributions', :action => 'list')}
        réalisées par notre équipe. "%></p>
 </div>
 
@@ -30,10 +33,18 @@ Bienvenue sur le Portail du 08000linux.
   <h3>Documents</h3>
   <p><%= "Vous pouvez parcourir #{link_to('votre répertoire', :controller => 'documents', :action => 'select')}
           pour accéder aux documents suivants : " + 
-          show_liste(@typedocuments, 'Type de document', :no_title => true) { |t| 
+          show_liste(@typedocuments, 'Type de document', :title => false) { |t| 
             link_to_typedocument t 
           } %></p>
   <p><%= "Vous pouvez également consulter votre 
           #{link_to('rapport d\'activité', :controller => 'reporting', :action => 'general')} en ligne. " %></p>
 </div>
 
+<div class="sommaire show">
+  <h3>Aide</h3>
+  <% links = [ 
+        link_to_help_new_request, 
+        link_to_howto_request,
+        link_to('Plan du portail', :controller => 'bienvenue', :action => 'plan') ] %>
+  <%= show_liste(links, 'Aide', :title => false) %>
+</div>

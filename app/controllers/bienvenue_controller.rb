@@ -12,16 +12,19 @@ class BienvenueController < ApplicationController
 
   # Default page, redirect if necessary
   def index
-    _my_list
+    _request_list
     @typedocuments = Typedocument.find(:all)
     # this line will be deleted when index is ready
     #render :action => 'list'
+    @request_stats = _request_stats
   end
+
+
  
   # Welcome page
   # DEPRECATED : use index
   def list
-    _my_list
+    _request_list
   end
 
   # New welcome page, current development
@@ -61,13 +64,36 @@ protected
 
   # Pick some demands
   # Used to be shown in the welcome page
-  def _my_list
+  def _request_list
     conditions = Demande::EN_COURS
     @demandes = Demande.find(:all, 
        :include => [:statut, :typedemande, :severite], 
        :limit => 5, :order => "updated_on DESC ",
        :conditions => conditions)
   end 
+
+  # Some stats for current user
+  # return request_stats hash for engineer or beneficiaire
+  # TODO : add a graph ?
+  # TODO : think querues as Ingenieur.method and Beneficiaire.method ?
+  def _request_stats
+    request_stats = {}
+    include = [:statut]
+    if session[:user].ingenieur
+      id = session[:user].ingenieur.id 
+      role = 'ingenieur'
+    else 
+      id = session[:user].beneficiaire.id 
+      role = 'beneficiaire'
+    end
+    conditions = [" demandes.#{role}_id = ? AND #{Demande::EN_COURS} ", id ]
+    request_stats[:en_cours] = Demande.find(:all, 
+      :conditions => conditions, :include => include).size
+    conditions = [" demandes.#{role}_id = ? AND #{Demande::TERMINEES} ", id ]
+    request_stats[:terminees] = Demande.find(:all, 
+      :conditions => conditions, :include => include).size
+    request_stats
+  end
 
 end
 

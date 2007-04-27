@@ -161,6 +161,7 @@ table.pages td {
 	vertical-align: top;
 	padding: 1em;
 	margin: 1em 0em 1em 0em;
+	min-width: 30%;
 }
 /* 3D border just for DIV's */
 div.login, div.form, div.show, div.help, div.info {
@@ -316,9 +317,12 @@ div.login, div.form, div.show, div.help, div.info {
  */
 .information {
 	font-weight: bold;
-	margin: 1em 2em; 
+	margin: 1em 0em 1em 0em;
 	padding: 1em;
-	width: 95%;
+	/*width: 95%;*/
+}
+.close_information {
+	float: right;
 }
 .error {
 	background-color: #FFD9D9;
@@ -339,7 +343,10 @@ div.login, div.form, div.show, div.help, div.info {
 	width: 70%;
 }
 
-
+/** Messages d'erreurs
+ * ce sont les messages générées lors des validates des models
+ * cf: ActionView::Helpers::ActiveRecordHelper (config/environment.rb)
+ */
 table.main td.error {
 	vertical-align : top;
 	padding : 150px 0 0 150px;
