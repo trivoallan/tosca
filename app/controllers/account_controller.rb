@@ -321,7 +321,7 @@ private
          infos << link_to_modify_account(session[:user], 'Mon&nbsp;compte')
          infos << link_to('Déconnexion',:controller => 'account', :action => 'logout')
       %>
-      <%= build_simple_menu(infos, :class => 'account_menu') if session[:user] %>
+      <%= build_simple_menu(infos.reverse, :class => 'account_menu') if session[:user] %>
     EOF
     #infos << (session[:user] ? "Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}" : ' [Non&nbsp;connecté]')
   end 
