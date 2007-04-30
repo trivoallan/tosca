@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-04-30 10:31+0200\n"
-"PO-Revision-Date: 2007-04-30 10:22+0200\n"
+"PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -214,15 +214,15 @@ msgstr ""
 
 #: app/models/etatreversement.rb:-
 msgid "etatreversement"
-msgstr ""
+msgstr "contributionstate"
 
 #: app/models/etatreversement.rb:-
 msgid "Etatreversement|Nom"
-msgstr ""
+msgstr "Name"
 
 #: app/models/etatreversement.rb:-
 msgid "Etatreversement|Description"
-msgstr ""
+msgstr "Description"
 
 #: app/models/fichier.rb:-
 msgid "fichier"

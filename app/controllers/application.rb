@@ -74,9 +74,10 @@ protected
   # on en profite pour forcer une bonne en-tête.
   # TODO : verifier si ce header est encore nécessaire.
   def set_global_shortcuts
-    headers['Content-Type'] =
-      ( request.xhr? ? 'text/javascript; charset=utf-8' : 
-        'text/html; charset=utf-8' )
+    # not needed since we use rgettext
+    # headers['Content-Type'] =
+    # ( request.xhr? ? 'text/javascript; charset=utf-8' : 
+    # 'text/html; charset=utf-8' )
     @ingenieur = session[:ingenieur]
     @beneficiaire = session[:beneficiaire]
   end
