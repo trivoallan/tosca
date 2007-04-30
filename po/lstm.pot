@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-04-30 10:31+0200\n"
+"POT-Creation-Date: 2007-04-30 15:48+0200\n"
 "PO-Revision-Date: 2007-04-30 09:55+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,6 +84,38 @@ msgstr ""
 msgid "Beneficiaire|Domaine"
 msgstr ""
 
+#: app/models/binaire.rb:-
+msgid "binaire"
+msgstr ""
+
+#: app/models/binaire.rb:-
+msgid "Binaire|Paquet"
+msgstr ""
+
+#: app/models/binaire.rb:-
+msgid "Binaire|Arch"
+msgstr ""
+
+#: app/models/binaire.rb:-
+msgid "Binaire|Nom"
+msgstr ""
+
+#: app/models/binaire.rb:-
+msgid "Binaire|Configuration"
+msgstr ""
+
+#: app/models/binaire.rb:-
+msgid "Binaire|Archive"
+msgstr ""
+
+#: app/models/binaire.rb:-
+msgid "Binaire|Socle"
+msgstr ""
+
+#: app/models/binaire.rb:-
+msgid "Binaire|Fichierbinaires count"
+msgstr ""
+
 #: app/models/changelog.rb:-
 msgid "changelog"
 msgstr ""
@@ -102,6 +134,126 @@ msgstr ""
 
 #: app/models/changelog.rb:-
 msgid "Changelog|Text modification"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "paquet"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Logiciel"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Nom"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Version"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Release"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Conteneur"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Paquet"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Distributeur"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Mainteneur"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Contrat"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Taille"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Fournisseur"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Configuration"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Fichiers count"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Changelogs count"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "client"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Nom"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Description"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Mailingliste"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Adresse"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Photo"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Support"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Beneficiaires count"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "contrat"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Client"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Ouverture"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Cloture"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Paquets count"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Astreinte"
 msgstr ""
 
 #: app/models/commentaire.rb:-
@@ -152,6 +304,134 @@ msgstr ""
 msgid "Conteneur|Nom"
 msgstr ""
 
+#: app/models/contribution.rb:-
+msgid "contribution"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Nom"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Description"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Patch"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Created on"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Updated on"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Id mantis"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Reverse le"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Description fonctionnelle"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Etatreversement"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Cloture le"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Logiciel"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Ingenieur"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Typecontribution"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Version"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Synthese"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "demande"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Beneficiaire"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Ingenieur"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Resume"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Description"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Statut"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Severite"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Logiciel"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Reproductible"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Created on"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Updated on"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Typedemande"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Version"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Contribution"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Socle"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Demande|Mail cc"
+msgstr ""
+
 #: app/models/dependance.rb:-
 msgid "dependance"
 msgstr ""
@@ -178,6 +458,46 @@ msgstr ""
 
 #: app/models/distributeur.rb:-
 msgid "Distributeur|Nom"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "document"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "Document|Identifiant"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "Document|Typedocument"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "Document|Client"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "Document|Titre"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "Document|Fichier"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "Document|Description"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "Document|Created on"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "Document|Updated on"
+msgstr ""
+
+#: app/models/document.rb:-
+msgid "Document|Version"
 msgstr ""
 
 #: app/models/engagement.rb:-
@@ -272,6 +592,54 @@ msgstr ""
 msgid "Groupe|Nom"
 msgstr ""
 
+#: app/models/identifiant.rb:-
+msgid "identifiant"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Login"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Password"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Titre"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Nom"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Email"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Telephone"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Photo"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Informations"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Affichage personnel"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Client"
+msgstr ""
+
+#: app/models/identifiant.rb:-
+msgid "Identifiant|Commentaires count"
+msgstr ""
+
 #: app/models/ingenieur.rb:-
 msgid "ingenieur"
 msgstr ""
@@ -314,6 +682,34 @@ msgstr ""
 
 #: app/models/license.rb:-
 msgid "License|Certifie osi"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "logiciel"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Nom"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Referent"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Resume"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Description"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|License"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Groupe"
 msgstr ""
 
 #: app/models/machine.rb:-
@@ -398,6 +794,22 @@ msgstr ""
 
 #: app/models/severite.rb:-
 msgid "Severite|Nom"
+msgstr ""
+
+#: app/models/socle.rb:-
+msgid "socle"
+msgstr ""
+
+#: app/models/socle.rb:-
+msgid "Socle|Nom"
+msgstr ""
+
+#: app/models/socle.rb:-
+msgid "Socle|Binaires count"
+msgstr ""
+
+#: app/models/socle.rb:-
+msgid "Socle|Client"
 msgstr ""
 
 #: app/models/statut.rb:-

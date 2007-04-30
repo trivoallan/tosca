@@ -11,7 +11,7 @@
 RAILS_GEM_VERSION = '1.2.3'
 $KCODE='u'
 require 'jcode'
-require 'gettext/rails'
+
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -56,6 +56,7 @@ ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.
 SqlSessionStore.session_class = MysqlSession
 
 require 'config'
+require 'gettext/rails'
 
 #TimeZone française, nécessaire sur ces barbus trolleurs de debian
 ENV['TZ'] = 'Europe/Paris'
@@ -65,74 +66,13 @@ ENV['TZ'] = 'Europe/Paris'
 Inflector.inflections do |inflect|
   inflect.plural /^(ox)$/i, '\1en'
   inflect.singular /^(ox)en/i, '\1'
-  inflect.irregular 'person', 'people'
-  inflect.irregular 'typeanomalie', 'typeanomalies'
   inflect.irregular 'jourferie', 'jourferies'
-  inflect.irregular 'tache', 'taches'
   inflect.uncountable %w( fish sheep )
 end
 
 
 #Optimization des vues : plus '\n'
 ActionView::Base.erb_trim_mode = '>'
-
-# Needed for textilize to work properly :/
-class RedCloth
-  # Patch for RedCloth.  Fixed in RedCloth r128 but _why hasn't released it yet.
-  # <a href="http://code.whytheluckystiff.net/redcloth/changeset/128">http://code.whytheluckystiff.net/redcloth/changeset/128</a>
-  def hard_break( text ) 
-    text.gsub!( /(.)\n(?!\n|\Z| *([#*=]+(\s|$)|[{|]))/, "\\1<br />" ) if hard_breaks 
-  end 
-end
-
-
-# Rédéfinit globalement en français les messages d'erreur
-ActiveRecord::Errors.default_error_messages = {
-  :inclusion => "n'est pas inclus dans la liste",
-  :exclusion => "est réservé",
-  :invalid => "est invalide",
-  :confirmation => "ne correspond pas à la confirmation",
-  :accepted => "doit être accepté",
-  :empty => "ne peut être vide",
-  :blank => "ne peut être blanc",
-  :too_long => "est trop long (max. %d caractère(s))",
-  :too_short => "est trop court (min %d caractère(s))",
-  :wrong_length => "a une longueur incorrecte (doit être de %d caractère(s))",
-  :taken => "est déjà utilisé",
-  :not_a_number => "n'est pas une valeur numérique"
-}
-
-# TODO : mettre dans les overrides
-# Rédéfinit globalement en français les titres et textes de la boîtes d'erreur
-module ActionView::Helpers::ActiveRecordHelper
-  def error_messages_for(object_name, options = {:class => 'error'})
-    options = options.symbolize_keys
-    object = instance_variable_get("@#{object_name}")
-    unless object.errors.empty?
-      if object.errors.count==1 then
-        content_tag("div",
-                    content_tag(
-                                options[:header_tag] || "h2",
-                                "Une erreur a bloqué l'enregistrement de votre #{object_name.to_s.gsub('_', ' ')}"
-                                ) +
-                                   content_tag("p", "Corriger l'élément suivant pour poursuivre :") +
-                                   content_tag("ul", object.errors.full_messages.collect { |msg| content_tag("li", msg) }),
-                    "id" => options[:id] || "errorExplanation", "class" => options[:class] || "errorExplanation"
-                    )
-      else
-        content_tag("div",
-                    content_tag(
-                                options[:header_tag] || "h2",
-                                "#{object.errors.count} erreurs ont bloqué l'enregistrement de votre #{object_name.to_s.gsub('_', ' ')}"
-                                ) +
-                                   content_tag("p", "Corriger les éléments suivants pour poursuivre :") +
-                                   content_tag("ul", object.errors.full_messages.collect { |msg| content_tag("li", msg) }),
-                    "id" => options[:id] || "errorExplanation", "class" => options[:class] || "errorExplanation"
-                    )
-      end
-    end
-  end
-end
 
 #redéfinit l'affichage des urls _uniquement_ si l'utilisateur en a le droit
 module ActionView::Helpers::UrlHelper
@@ -148,7 +88,8 @@ module ActionView::Helpers::UrlHelper
    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
    required_perm = '%s/%s' % [ options[:controller] || controller.controller_name, 
      options[:action] || controller.action_name ]
-   if session[:user] and session[:user].authorized? required_perm then
+   user = session[:user]
+   if user and user.authorized? required_perm then
      "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
    else
      nil
