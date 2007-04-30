@@ -68,7 +68,7 @@ protected
     conditions = Demande::EN_COURS
     @demandes = Demande.find(:all, 
        :include => [:statut, :typedemande, :severite], 
-       :limit => 5, :order => "updated_on DESC ",
+       :limit => 5, :order => 'updated_on DESC ',
        :conditions => conditions)
   end 
 

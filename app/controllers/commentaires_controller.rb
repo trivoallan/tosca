@@ -127,7 +127,7 @@ class CommentairesController < ApplicationController
     demande = commentaire.demande_id
     commentaire.destroy
     flash[:notice] = 'Le commentaire a bien été supprimé.'
-    redirect_to(:action => 'comment', :controller => 'demandes')
+    redirect_to(:action => 'comment', :controller => 'demandes', :id => demande)
   end
 
   private

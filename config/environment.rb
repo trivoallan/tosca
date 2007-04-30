@@ -9,11 +9,15 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '1.2.3'
+$KCODE='u'
+require 'jcode'
+require 'gettext/rails'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 require 'overrides'
 require 'utils'
+
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here

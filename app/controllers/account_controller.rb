@@ -25,7 +25,7 @@ class AccountController < ApplicationController
                                                    params['user_password'],
                                                    params['user_crypt'])
         set_sessions
-        flash[:notice] = "Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}"
+        flash[:notice] = _("Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}")
         # flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
         redirect_to_home
       else

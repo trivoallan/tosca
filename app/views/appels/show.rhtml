@@ -1,5 +1,5 @@
 <h1>Appel n°<%=@appel.id%></h1>
-<%= logo_client(@appel.beneficiaire.client) %>
+<%= logo_client(@appel.beneficiaire.client) if @appel.beneficiaire %>
 
 <table class="show">
 
@@ -12,7 +12,7 @@
     <td><%= @appel.ingenieur.nom %></td></tr>
 
 <tr><td><b>Bénéficiaire</b></td>
-    <td><%= @appel.beneficiaire.nom %></td></tr>
+    <td><%= @appel.beneficiaire.nom if @appel.beneficiaire %></td></tr>
 
 <tr><td colspan="2"><hr/></td></tr>
 <tr><td><b>Début de l&#146;appel</b></td>

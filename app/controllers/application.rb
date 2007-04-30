@@ -15,6 +15,8 @@ require_dependency 'filters'
 require_dependency 'lstm'
 
 class ApplicationController < ActionController::Base
+  init_gettext 'lstm'
+
   # accès protégé et standardisé
   before_filter :set_global_shortcuts
   before_filter :login_required, :except => [:refuse, :login]
