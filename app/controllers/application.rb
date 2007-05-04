@@ -61,7 +61,7 @@ protected
     if request.xhr?   
       render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
-      redirect_to :controller => 'bienvenue', :action => 'index'
+      redirect_to :controller => 'bienvenue', :action => ''
     end
   end
  
@@ -149,7 +149,7 @@ private
       render_text('<div class="information error">' + msg + '</div>')
     else
       flash[:warn] = msg
-      redirect_to :action => 'list', :controller => 'bienvenue'
+      redirect_to :action => '', :controller => 'bienvenue'
     end
 
   end

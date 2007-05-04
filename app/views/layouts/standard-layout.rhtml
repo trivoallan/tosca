@@ -23,7 +23,7 @@
   <div id="header">
     <table>
       <tr valign="top">
-        <td><%= logo_08000 %></td>
+        <td><%= link_to logo_08000, :controller => 'bienvenue', :action => '' %></td>
         <td align="right"><%= session[:account_links] if session[:user] %></td>
       </tr>
     </table>

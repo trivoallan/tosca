@@ -73,7 +73,7 @@ class AccountController < ApplicationController
         #On a sauve le profil, on l'applique sur l'utilisateur courant
         set_sessions  @identifiant if session[:user] == @identifiant
         flash[:notice]  = "Modification réussie"
-        redirect_back_or_default :action => 'index', :controller => 'bienvenue'
+        redirect_back_or_default :action => '', :controller => 'bienvenue'
       end
     when :get
       @identifiant = Identifiant.find(params[:id])

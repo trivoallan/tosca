@@ -1,20 +1,14 @@
 <%= render :partial => '../notifier/head_mail' %>
 
-Bonjour,<br/>
-
 <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
 <% url_demande = "<a href=\"#{url}\">demande ##{@demande.id}</a>" %>
-
-<% if @statut_modifie %>
-  <p>
-&nbsp;&nbsp;<%=h @nom %> a passé votre <%= url_demande %> en <%= @demande.statut.nom %> :
-  </p>
-<% else %>
-  <p>
-&nbsp;&nbsp;Votre <%= url_demande %> a été commentée par <%=h @nom %> :
-  </p>
+La <%= url_demande %> a été commentée par <i><%=h @nom %></i> 
+<% if @statut_modifie%> 
+ et est désormais <b><%= @demande.statut.nom %></b>
 <% end %>
-
+:<br /><br />
+<hr noshade size="1px"/>
 <%= @commentaire.corps %>
+<hr noshade size="1px"/><br />
 
 <%= render :partial => '../notifier/end_mail' %>
