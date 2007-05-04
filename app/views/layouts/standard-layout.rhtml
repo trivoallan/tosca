@@ -2,11 +2,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=Locale.get%>" lang="<%=Locale.get%>">
 <head>
- <%# Include TinyMCE with gzip before other JS to avoid problems %>
-  <% if using_tiny_mce? %>
-    <%= javascript_include_tiny_mce %>
-    <%= tiny_mce %>
-  <% end %>
  <%#precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
  <% @@head ||=
        '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
@@ -16,6 +11,9 @@
        stylesheet_link_tag(*(%w(comments tools helper demandes info_box auto_complete toolbar accueil menu reporting calendar))) <<
        stylesheet_link_tag('common', :media => "all") <<
        stylesheet_link_tag('common-printer', :media => "print") <<
+       # Include TinyMCE with gzip before other JS to avoid problems 
+       javascript_include_tiny_mce <<
+       tiny_mce <<
        javascript_include_tag('calendar', 'calendar-fr', 'calendar-setup') <<
        javascript_include_tag(:defaults)
  %>
@@ -62,15 +60,20 @@
   </div><!-- end of content_div -->
 
   <div id="footer">
-    <table>
-      <tr>
-        <td valign='middle' align='center'>
-	  <%= link_to Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE %>
-	  <%= link_to logo_ruby, "http://rubyonrails.org/", :class => 'no_hover' %>
-          <%= link_to Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE %>
-        </td>
-      </tr>
-    </table>
+    <% @@footer ||=
+       '<table>' <<
+         '<tr>' <<
+           '<td valign="middle" align="center">' <<
+	      link_to(Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE) <<
+              '&nbsp;' <<
+ 	      link_to(logo_ruby, "http://rubyonrails.org/", :class => 'no_hover') <<
+              '&nbsp;' <<
+              link_to(Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE) <<
+           '</td>' <<
+        '</tr>' <<
+      '</table>'
+     %>
+    <%= @@footer %>
   </div><!-- end of footer -->
 
 </body>
