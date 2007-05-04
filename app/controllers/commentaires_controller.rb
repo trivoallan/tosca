@@ -122,7 +122,7 @@ class CommentairesController < ApplicationController
   end
 
   def destroy
-    return redirect_to(:action => 'list', :controller => 'bienvenue') unless params[:id]
+    return redirect_to_home unless params[:id]
     commentaire = Commentaire.find(params[:id])
     demande = commentaire.demande_id
     commentaire.destroy

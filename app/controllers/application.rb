@@ -61,13 +61,13 @@ protected
     if request.xhr?   
       render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
-      redirect_to :controller => 'bienvenue', :action => "list"
+      redirect_to :controller => 'bienvenue', :action => 'index'
     end
   end
  
   # redirection par défaut en cas d'erreur / de non droit
   def redirect_back
-    redirect_back_or_default :controller => 'bienvenue', :action => "list"
+    redirect_back_or_default :controller => 'bienvenue', :action => ''
   end
 
   # variables globales (beurk, mais tellement pratique ;))

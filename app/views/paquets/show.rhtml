@@ -1,7 +1,8 @@
-<h1><%= @paquet.nom %> < <%= @paquet.logiciel.nom.capitalize %></h1>
+<h1><%= @paquet.nom %></h1>
 
 <%= link_to_edit(@paquet) %> | <%= link_to_back %>
 
+<div class="show">
 <p><b>Logiciel:</b> <%= @paquet.logiciel.nom %></p>
 <p><b>Contrat:</b> <%= @paquet.contrat.client.nom %></p>
 
@@ -14,6 +15,7 @@
 <p><b>Conteneur:</b> <%= @paquet.conteneur.nom %></p>
 <p><b>Distributeur:</b> <%=h @paquet.distributeur.nom %></p>
 <p><b>Mainteneur:</b> <%=h @paquet.mainteneur.nom %></p>
+</div>
 
 <br />
 <p>Ce paquet a produit <b><%= pluralize(@paquet.binaires_count, 'binaire') %></b></p>
