@@ -22,25 +22,21 @@
           ')' if commentaire.piecejointe %>
     </td>
     <% if @ingenieur and not pretty_print %>
-    <td class="standard_infos" valign="middle" width="30" align="center">
-       <%= link_to(image_edit,
-        { :controller => 'commentaires', :action => 'edit', :id => commentaire }) %>
+     <td class="standard_infos" valign="middle" width="30" align="center">
+        <% html_options = { :class => 'no_hover' } %>
+        <% options = { :controller => 'commentaires', :id => commentaire } %>
+        <% options[:action] = 'edit' %>
+       <%= link_to(image_edit, options, html_options) %>
        <br/>
-       <%  futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %>
-       <%= if commentaire.prive
-		link_to(image_public,
-		   :controller => 'commentaires',
-	           :action => 'changer_etat', :id => commentaire)
-	   else
-		link_to(image_private,
-		   :controller => 'commentaires',
-	           :action => 'changer_etat', :id => commentaire)
-	   end %>
+        <%  futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %>
+        <% options[:action] = 'changer_etat' %>
+        <% limage = (commentaire.prive ? image_public : image_private) %>
+       <%= link_to(limage, options, html_options) %>
        <br/>
-       <%= link_to(image_delete,
-	{  :controller => 'commentaires', :action => 'destroy', :id => commentaire },
-           :confirm => "Voulez-vous vraiment supprimer le commentaire #{commentaire.id} ?") %>
-    </td>
+        <% options[:action] = 'destroy' %>
+        <% html_options[:confirm] = "Voulez-vous vraiment supprimer le commentaire #{commentaire.id} ?" %>
+       <%= link_to(image_delete, options, html_options) %>
+     </td>
     <% end %>
   </tr>
 </table>

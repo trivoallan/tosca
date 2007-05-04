@@ -2,8 +2,9 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-# Methods added to this helper will be available to all templates in the application.
-# This is a big helper, so find by keyword :
+# Methods added to this helper will be available to all templates 
+# in the application. Don't ever add a method to this one without a really good 
+# reason. Anyway, this is a big helper, so find by keyword :
 # - LIENS ABSOLUS
 # - LIENS RELATIFS
 # - TEXTE
@@ -11,36 +12,12 @@
 # - LISTES ET TABLES
 # - TIME
 module ApplicationHelper
-
   include ImagesHelper
   include PagesHelper
   include FormsHelper
-
-  # Fix pour TinyMCE
-  # TODO : Voir le bug
-  include TinyMCEHelper
-
-  
+ 
   ### LIENS ABSOLUS ############################################################
  
-  # Link to home page
-  # options
-  #  :image show image_home on the left (false) 
-  #  :image_src to change image source
-  #  :text show text on the right (true)
-  def link_to_home(options={})
-    display = ''
-    html_options = {:title => 'Revenir à l\'accueil'}
-    if options[:image] || options[:image_src]
-      image = options[:image_src] ||= image_home
-      display << image
-      html_options.update(:class => 'no_hover')
-    end
-    display << ' Accueil' unless options[:text] == false
-    route_options = {:controller => 'bienvenue', :action => ''}
-    link_to display, route_options, html_options
-  end 
-
   # lien vers un compte existant
   # DEPRECATED : préferer link_to_edit(id)
   # TODO : passer id en options, avec @session[:user].id par défaut

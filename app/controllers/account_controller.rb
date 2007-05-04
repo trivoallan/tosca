@@ -284,7 +284,7 @@ private
          menu << (session[:user].authorized?('demandes/list') ? '<a>'+search_demande+'</a>' : nil ) 
          menu << link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
                          :title => 'Consulter les logiciels') 
-         menu << link_to('Documents', {:controller => 'documents', :action => 'select'}, 
+         menu << link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
                          :title => 'Accédez à votre dépôt documentaire') 
          menu << link_to_admin
          menu << link_to_about(:text => '?')
@@ -323,7 +323,6 @@ private
       %>
       <%= build_simple_menu(infos.reverse, :class => 'account_menu') if session[:user] %>
     EOF
-    #infos << (session[:user] ? "Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}" : ' [Non&nbsp;connecté]')
   end 
 
   # Efface les paramètres de session et les raccourcis

@@ -39,63 +39,63 @@ module ImagesHelper
 
   @@home = nil
   def image_home
-    desc = 'Page d\'accueil'
+    desc = _('Page d\'accueil')
     @@home ||= image_tag("home.gif", image_options(desc, '17x18')) 
   end
 
   @@back = nil
   def image_back
-#     @@back ||= image_tag("back_icon.png", image_options('retour', '23x23'))
     @@back ||= image_tag("back3.gif", image_options('retour', '15x15'))
   end
 
   @@first_page = nil
   def image_first_page
-    desc = 'Première page'
+    desc = _('Première page')
     @@first_page ||= image_tag("first_page.png", image_options(desc, '14x14')) 
   end
 
   @@previous_page = nil
   def image_previous_page
-    desc = 'Page précédente'
+    desc = _('Page précédente')
     @@previous_page ||= image_tag("previous_page.png", image_options(desc, '14x14'))
   end
 
 
   @@next_page = nil
   def image_next_page
-    desc = 'Page suivante'
+    desc = _('Page suivante')
     @@next_page ||= image_tag("next_page.png", image_options(desc, '14x14'))
   end
 
   @@last_page = nil
   def image_last_page
-    desc = 'Dernière page'
+    desc = _('Dernière page')
     @@last_page ||= image_tag("last_page.png", image_options(desc, '14x14'))
   end
 
   @@folder = nil
   def image_folder
-    desc = 'Fichier'
+    desc = _('Fichier')
     @@folder ||= image_tag('folder_icon.gif', image_options(desc, '16x16'))
   end
 
   @@patch = nil
-  def image_patch(desc = 'Contribution')
-    @@patch ||= image_tag('patch.gif', image_options(desc, '16x16'))
+  def image_patch
+    @@patch ||= image_tag('patch.gif', image_options('Contribution', '16x16'))
   end
 
   # Security
 
   @@public = nil
   def image_public
-    desc = 'Rendre public'
+    desc = _('Rendre public')
     @@public ||= image_tag('public_icon.png', image_options(desc, '17x16'))
   end
 
-   # pas mis en cache, celle ci est paramétrée
-  def image_private(desc = 'Rendre privé')
-    image_tag('private_icon.png', image_options(desc, '12x14'))
+  @@private = nil
+  def image_private
+    desc = _('Rendre privé')
+    @@private ||= image_tag('private_icon.png', image_options(desc, '12x14'))
   end
 
   # Logos
@@ -135,7 +135,7 @@ module ImagesHelper
 
   @@image_print = nil
   def image_print
-    desc = 'Imprimer'
+    desc = _('Imprimer')
     @@image_print ||= image_tag('imprimer.png', image_options(desc, '22x22'))
   end
 
