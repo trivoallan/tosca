@@ -32,6 +32,11 @@ Logiciel -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
 Logiciel -> License [arrowhead=dot,dir=both,arrowtail=crow]
 Logiciel -> Communaute [arrowhead=dot,dir=both,arrowtail=crow]
 Logiciel -> Groupe [arrowhead=dot,dir=both,arrowtail=crow]
+
+News -> Ingenieur [arrowhead=dot,dir=both,arrowtail=crow]
+News -> Client [arrowhead=odot,dir=both,arrowtail=crow]
+News -> Logiciel [arrowhead=dot,dir=both,arrowtail=crow]
+
 Paquet -> Logiciel [arrowhead=dot,dir=both,arrowtail=crow]
 Paquet -> Fournisseur [arrowhead=dot,dir=both,arrowtail=crow]
 Paquet -> Fichier [arrowhead=crow,dir=both,arrowtail=dot]
