@@ -5,7 +5,7 @@
 <%= links %>
 
 <% titres = ['Logiciel', 'Patch', 'Demande', 'Etat', 'Nom', 
-             'Reversé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
+             'Signalé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
 <% form_tag(:controller => 'contributions', :action => 'list') do %>
 <%= show_table(@contributions, Contribution, titres) { |c|
   result = ''

@@ -16,7 +16,7 @@ class ExportController < ApplicationController
 
     contributions = Contribution.find(:all, options)
     stream_csv do |csv|
-      csv << %w(id type logiciel version etat résumé reversé cloturé délai)
+      csv << %w(id type logiciel version etat résumé signalé cloturé délai)
       contributions.each do |c|
         csv << [ c.id, c.typecontribution.nom, c.logiciel.nom, 
                  "'"+c.version.to_s, c.etatreversement.nom, c.synthese,
