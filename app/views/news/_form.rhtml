@@ -1,0 +1,16 @@
+<%= error_messages_for 'new' %>
+
+<!--[form:new]-->
+<p><label for="new_subject">Subject</label><br/>
+<%= text_field 'new', 'subject'  %></p>
+
+<p><label for="new_body">Body</label><br/>
+<%= text_area 'new', 'body'  %></p>
+
+<p><label for="new_created_on">Created on</label><br/>
+<%= datetime_select 'new', 'created_on'  %></p>
+
+<p><label for="new_updated_on">Updated on</label><br/>
+<%= datetime_select 'new', 'updated_on'  %></p>
+<!--[eoform:new]-->
+
