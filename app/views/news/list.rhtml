@@ -10,7 +10,7 @@
 <% for new in @news %>
   <tr>
   <% for column in New.content_columns %>
-    <td><%=h new.send(column.name) %></td>
+    <td><%= new.send(column.name) %></td>
   <% end %>
     <td><%= link_to 'Show', :action => 'show', :id => new %></td>
     <td><%= link_to 'Edit', :action => 'edit', :id => new %></td>

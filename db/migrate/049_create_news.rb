@@ -2,6 +2,7 @@ class CreateNews < ActiveRecord::Migration
   def self.up
     create_table :news, :options => 'ENGINE=MyISAM CHARSET=utf8' do |t|
       t.column :subject, :string, :null => false
+      t.column :source, :string, :null => false
       t.column :body, :text
       t.column :created_on, :datetime
       t.column :updated_on, :datetime

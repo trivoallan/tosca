@@ -1,16 +1,29 @@
 <%= error_messages_for 'new' %>
 
 <!--[form:new]-->
-<p><label for="new_subject">Subject</label><br/>
-<%= text_field 'new', 'subject'  %></p>
-
-<p><label for="new_body">Body</label><br/>
-<%= text_area 'new', 'body'  %></p>
-
-<p><label for="new_created_on">Created on</label><br/>
-<%= datetime_select 'new', 'created_on'  %></p>
-
-<p><label for="new_updated_on">Updated on</label><br/>
-<%= datetime_select 'new', 'updated_on'  %></p>
+<table class="form">
+  <tr>
+    <th><label for="new_ingenieur_id">Ingénieur</label></th>  
+    <td><%= collection_select(:new, 'ingenieur_id', @ingenieurs, 
+                              :id, :nom) %>
+  </tr><tr>
+    <th><label for="new_client_id">Client</label></th>  
+    <td><%= collection_select(:new, 'client_id', @clients, 
+                              :id, :nom, FormsHelper::PROMPT_SELECT.dup) %>
+  </tr><tr>
+    <th><label for="new_logiciel_id">Logiciel</label></th>  
+    <td><%= collection_select(:new, 'logiciel_id', @logiciels, 
+                              :id, :nom) %>
+  </tr><tr><td colspan="2"><hr /></td></tr><tr>
+    <th><label for="new_subject">Subject</label></th>
+    <td><%= text_field 'new', 'subject', :size => '60'  %></td>
+  </tr><tr><td colspan="2"><hr /></td></tr><tr>
+    <th><label for="new_source">Source</label></th>
+    <td><%= text_field 'new', 'source', :size => '60'  %></td>
+  </tr><tr>
+    <th><label for="new_body">Body</label></th>
+    <td><%= text_area 'new', 'body'  %></td>
+  </tr>
+</table>
 <!--[eoform:new]-->
 

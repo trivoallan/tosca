@@ -1,8 +1,6 @@
-<% for column in New.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @new.send(column.name) %>
-</p>
-<% end %>
+<h1><%= @new.subject %></h1>
+<p><%= @new.body %></p>
+<small><%= link_to(@new.source.urlize, @new.source.urlize) %></small>
 
-<%= link_to 'Edit', :action => 'edit', :id => @new %> |
-<%= link_to 'Back', :action => 'list' %>
+<br />
+<%= link_to_edit_and_list @new %>

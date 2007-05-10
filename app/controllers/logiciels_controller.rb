@@ -39,7 +39,9 @@ class LogicielsController < ApplicationController
      ])
     flash[:conditions] = options[:conditions] = conditions 
 
+    Logiciel.set_scope(@beneficiaire.contrat_ids) if @beneficiaire
     @logiciel_pages, @logiciels = paginate :logiciels, options
+    Logiciel.remove_scope if @beneficiaire
 
     # panel on the left side
     if request.xhr? 

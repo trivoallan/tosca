@@ -125,7 +125,7 @@ module ApplicationHelper
   def link_to_file(record, file, options={})
     if record and record.send(file) and File.exist?(record.send(file))
       nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
-      show = (options[:image] ? image_patch(nom) : nom )
+      show = (options[:image] ? image_patch : nom )
       link_to show, url_for_file_column(record, file, :absolute => true)
     else
       options[:else] ||= '-'

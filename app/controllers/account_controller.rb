@@ -278,7 +278,7 @@ private
   def set_menu
     render_to_string :inline => <<-EOF
       <% menu = [] 
-         menu << link_to_home(:image=> true) 
+         menu << link_to('Accueil', {:controller => 'bienvenue', :action => ''}) 
          menu << link_to('Demandes', {:controller => 'demandes', :action => 'list'}, 
                          :title => 'Consulter vos demandes')
          menu << (session[:user].authorized?('demandes/list') ? '<a>'+search_demande+'</a>' : nil ) 

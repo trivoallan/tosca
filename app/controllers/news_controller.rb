@@ -9,7 +9,7 @@ class NewsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @new_pages, @news = paginate :news, :per_page => 10
+    @new_pages, @news = paginate :new, :per_page => 15
   end
 
   def show
@@ -18,6 +18,8 @@ class NewsController < ApplicationController
 
   def new
     @new = New.new
+    @new.ingenieur = @ingenieur 
+    _form
   end
 
   def create
@@ -26,12 +28,13 @@ class NewsController < ApplicationController
       flash[:notice] = 'New was successfully created.'
       redirect_to :action => 'list'
     else
-      render :action => 'new'
+      _form and render :action => 'new'
     end
   end
 
   def edit
     @new = New.find(params[:id])
+    _form
   end
 
   def update
@@ -40,12 +43,19 @@ class NewsController < ApplicationController
       flash[:notice] = 'New was successfully updated.'
       redirect_to :action => 'show', :id => @new
     else
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 
   def destroy
     New.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+
+  private
+  def _form
+    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @clients = Client.find_select
+    @logiciels = Logiciel.find_select
   end
 end

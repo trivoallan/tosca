@@ -6,7 +6,7 @@
 
 <h2 class="spacer">Sommaire</h2>
 
-Bienvenue sur le Portail du 08000linux.
+Bienvenue <%= session[:user].nom if session[:user] %> sur le Portail du 08000linux.
 
 <div class="sommaire show">
   <h3>Demandes</h3>
