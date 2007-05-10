@@ -47,17 +47,6 @@ module ApplicationHelper
     end
   end
 
-  # Lien vers la consultation d'UN logiciel
-  def link_to_logiciel(logiciel)
-      if logiciel
-        link_to logiciel.nom, :controller => 'logiciels', 
-                              :action => 'show', :id => logiciel.id
-      else
-        # cas où le logiciel n'existe pas/plus
-        "logiciel inconnu"
-      end
-  end
-
   # Lien vers la consultation d'UN groupe
   def link_to_groupe(groupe)
       link_to groupe.nom, :controller => 'groupes', 

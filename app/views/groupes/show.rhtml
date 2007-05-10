@@ -9,7 +9,7 @@
   <tr>
     <td><b>Logiciels:</b>
     <td><%= show_liste(@groupe.logiciels, 'Logiciels', 
-             {:no_title => true}) { |l| link_to_logiciel l} %></td>
+             {:no_title => true}) { |l| public_link_to_logiciel l} %></td>
   </tr>
 
 </table>

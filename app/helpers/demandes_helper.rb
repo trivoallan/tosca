@@ -24,14 +24,14 @@ module DemandesHelper
   end
 
   # Link to the inline help to post a request
-  def link_to_help_new_request
-    link_to('Déclaration d\'une demande', 
+  def public_link_to_help_new_request
+    public_link_to('Déclaration d\'une demande', 
             "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande")
   end
   
   # Link to the the inline help about life cycle of a demand
-  def link_to_howto_request
-    link_to('Déroulement d\'une demande', 
+  def public_link_to_howto_request
+    public_link_to('Déroulement d\'une demande', 
             "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande")
   end
 

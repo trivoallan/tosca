@@ -2,6 +2,13 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class GroupesController < ApplicationController
+  # public access to the list
+  skip_before_filter :login_required
+  before_filter :login_required, :except => [:list,:show]
+
+  helper :logiciels
+
+
   def index
     list
     render :action => 'list'

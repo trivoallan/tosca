@@ -9,6 +9,11 @@ module LogicielsHelper
     link_to logiciel.nom, :action => 'show', :controller => 'logiciels', :id => logiciel
   end
 
+  def public_link_to_logiciel(logiciel)
+    return '-' unless logiciel and logiciel.is_a? Logiciel
+    public_link_to logiciel.nom, :action => 'show', :controller => 'logiciels', :id => logiciel
+  end
+
   # Link to create a new url for a Logiciel
   def link_to_new_urllogiciel(logiciel_id)
     return '-' unless logiciel_id 

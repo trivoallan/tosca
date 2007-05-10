@@ -10,22 +10,27 @@ Bienvenue <%= session[:user].nom if session[:user] %> sur l&#146;outil de gestio
 
 <div class="sommaire show">
   <h3>Demandes</h3>
-  <p><%= "Vous pouvez consulter la #{link_to('liste de vos demandes', :controller => 'demandes', :action => 'list')} : " +
+  <% if session[:user] %>
+    <p><%= "Vous pouvez consulter la #{link_to('liste de vos demandes', :controller => 'demandes', :action => 'list')} : " +
           show_liste(@demandes, 'Demande en cours', :title => false) { |d| 
             link_to_demande(d, :show_id => true, :icon_severite => true) 
           } %></p>
-   <p><%= "Vous pouvez également #{link_to('déposer une demande', :controller => 'demandes', :action => 'new')}. "%></p>
-   <p><%= "Vous avez " + @request_stats[:en_cours].to_s + " demandes en cours." %></p>
-   <p><%= "Vous avez " + @request_stats[:terminees].to_s + " demandes terminées."  %></p>
+     <p><%= "Vous pouvez également #{link_to('déposer une demande', :controller => 'demandes', :action => 'new')}. "%></p>
+     <p><%= "Vous avez " + @request_stats[:en_cours].to_s + " demandes en cours." %></p>
+     <p><%= "Vous avez " + @request_stats[:terminees].to_s + " demandes terminées."  %></p>
+  <% else %>
+    <p><%=_("Vous n'êtes pas connectés, vous n'avez pas accès à l'interface des demandes de notre service")%></p>
+  <% end %>
 </div>
 
 <div class="sommaire show">
   <h3>Logiciels</h3>
   <p><%= "Vous pouvez consulter la 
-          #{link_to('liste des logiciels supportés', :controller => 'logiciels', :action => 'list')}" +
-          ( session[:beneficiaire] ? " dans le cadre de votre #{link_to_my_client} " : "." ) %></p>
-  <p><%= "Vous pouvez parcourir #{link_to('la classification', :controller => 'groupes', :action => 'list')}." %></p>
-  <p><%= "Vous pouvez accéder aux #{link_to('contributions', :controller => 'contributions', :action => 'list')}
+          #{public_link_to('liste des logiciels', :controller => 'logiciels', :action => 'list')}" +
+          ( @beneficiaire ? " dans le cadre de votre #{link_to_my_client} " : '.' ) %></p>
+  <p><%= "Ces logiciels sont répartis selon une #{public_link_to('classification', :controller => 'groupes', :action => 'list')}." %> précise et simple, par groupe d&#146;activité</p>
+  <p>Nous avons des offres d'assistance, de support et de maintenance pour l'ensemble de ces logiciels, n&#146;hésitez pas à nous contacter</p>
+  <p><%= "Vous pouvez également accéder aux #{public_link_to('contributions', :controller => 'contributions', :action => 'list')}
        réalisées par notre équipe. "%></p>
 </div>
 
@@ -42,6 +47,6 @@ Bienvenue <%= session[:user].nom if session[:user] %> sur l&#146;outil de gestio
 
 <div class="sommaire show">
   <h3>Aide</h3>
-  <% links = [ link_to_help_new_request, link_to_howto_request ] %>
+  <% links = [ public_link_to_help_new_request, public_link_to_howto_request ] %>
   <%= show_liste(links, 'Aide', :title => false) %>
 </div>
