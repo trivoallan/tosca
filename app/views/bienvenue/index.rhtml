@@ -6,7 +6,7 @@
 
 <h2 class="spacer">Sommaire</h2>
 
-Bienvenue <%= session[:user].nom if session[:user] %> sur le Portail du 08000linux.
+Bienvenue <%= session[:user].nom if session[:user] %> sur l&#146;outil de gestion du 08000linux.
 
 <div class="sommaire show">
   <h3>Demandes</h3>
@@ -42,9 +42,6 @@ Bienvenue <%= session[:user].nom if session[:user] %> sur le Portail du 08000lin
 
 <div class="sommaire show">
   <h3>Aide</h3>
-  <% links = [ 
-        link_to_help_new_request, 
-        link_to_howto_request,
-        link_to('Plan du portail', :controller => 'bienvenue', :action => 'plan') ] %>
+  <% links = [ link_to_help_new_request, link_to_howto_request ] %>
   <%= show_liste(links, 'Aide', :title => false) %>
 </div>

@@ -10,6 +10,9 @@ class BienvenueController < ApplicationController
   # Includes somme helpers
   helper :demandes, :account
 
+  skip_before_filter :login_required
+  before_filter :login_required, :except => [:index,:about]
+
   # Default page, redirect if necessary
   def index
     _request_list
@@ -76,6 +79,7 @@ protected
   # TODO : add a graph ?
   # TODO : think querues as Ingenieur.method and Beneficiaire.method ?
   def _request_stats
+    return '' unless session.nil?
     request_stats = {}
     include = [:statut]
     if session[:user].ingenieur
