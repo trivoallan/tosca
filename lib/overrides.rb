@@ -68,24 +68,39 @@ ActionView::Base.erb_trim_mode = '>'
 
 #redéfinit l'affichage des urls _uniquement_ si l'utilisateur en a le droit
 module ActionView::Helpers::UrlHelper
- def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
-   if html_options
-     html_options = html_options.stringify_keys
-     convert_options_to_javascript!(html_options)
-     tag_options = tag_options(html_options)
-   else
-     tag_options = nil
-   end
-   url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-   required_perm = '%s/%s' % [ options[:controller] || controller.controller_name, 
-     options[:action] || controller.action_name ]
-   user = session[:user]
-   if user.nil? or user.authorized? required_perm then
-     "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
-   else
-     nil
-   end
- end
+  # this link_to is a specialised one which return nil if the connected user
+  # does not have access to the ressource requested
+  def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
+    if html_options
+      html_options = html_options.stringify_keys
+      convert_options_to_javascript!(html_options)
+      tag_options = tag_options(html_options)
+    else
+      tag_options = nil
+    end
+    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
+    required_perm = '%s/%s' % [ options[:controller] || controller.controller_name, 
+                                options[:action] || controller.action_name ]
+    user = session[:user]
+    if !user.nil? and user.authorized? required_perm then
+      "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
+    else
+      nil
+    end
+  end
+  
+  # this link_to display a link whatever happens
+  def public_link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
+    if html_options
+      html_options = html_options.stringify_keys
+      convert_options_to_javascript!(html_options)
+      tag_options = tag_options(html_options)
+    else
+      tag_options = nil
+    end
+    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
+    "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
+  end
 end
 
 

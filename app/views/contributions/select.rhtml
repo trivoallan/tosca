@@ -2,7 +2,7 @@
 
 <%= show_liste(@logiciels, 'contribution', :no_title => true) { |l| 
       out = ''
-      out << "<b>#{link_to_contribution_logiciel l }</b>"
+      out << "<b>#{public_link_to_contribution_logiciel l }</b>"
       out << ' : ' + l.resume
 } %>
 

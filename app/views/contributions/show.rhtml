@@ -1,6 +1,6 @@
 <div class="_show">
 
-<h2>  <%= link_to_file @contribution, 'patch', :image => true, :else => '' %>
+<h2>  <%= public_link_to_file @contribution, 'patch', :image => true, :else => '' %>
   <b><%=h @contribution.nom %></b> 
   <%= link_to_edit(@contribution) %>
     

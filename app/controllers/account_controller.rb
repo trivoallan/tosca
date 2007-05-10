@@ -290,7 +290,7 @@ private
          menu << link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
                          :title => 'Consulter les contributions réalisés dans le cadre de ce service') 
          menu << link_to_admin
-         menu << link_to_about
+         menu << public_link_to_about
       %>
       <%= build_simple_menu(menu, :form => true) if session[:user] %>
     EOF

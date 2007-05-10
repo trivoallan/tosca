@@ -23,15 +23,15 @@
   <div id="header">
     <table>
       <tr valign="top">
-        <td><%= link_to logo_08000, :controller => 'bienvenue', :action => 'index' %></td>
+        <td><%= public_link_to logo_08000, :controller => 'bienvenue', :action => '' %></td>
         <td align="right">
           <% @@menu ||= build_simple_menu([
-            link_to('Accueil', {:controller => 'bienvenue', :action => ''}),
-            link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
+            public_link_to('Accueil', {:controller => 'bienvenue', :action => ''}),
+            public_link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
                          :title => _('Consulter les logiciels')), 
-            link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
+            public_link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
                          :title => _('Accédez à votre dépôt documentaire')),
-            link_to_about ]) %>
+            public_link_to_about ]) %>
           <%= (session[:user] ? session[:account_links] : @@menu) %>
         </td>
       </tr>
@@ -72,11 +72,11 @@
        '<table>' <<
          '<tr>' <<
            '<td valign="middle" align="center">' <<
-  	      link_to(Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE) <<
+  	      public_link_to(Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE) <<
               '&nbsp;' <<
- 	      link_to(logo_ruby, 'http://rubyonrails.org/', :class => 'no_hover') <<
+ 	      public_link_to(logo_ruby, 'http://rubyonrails.org/', :class => 'no_hover') <<
               '&nbsp;' <<
-               link_to(Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE) <<
+              public_link_to(Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE) <<
            '</td>' <<
         '</tr>' <<
       '</table>'

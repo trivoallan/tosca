@@ -3,10 +3,10 @@
 #####################################################
 module ContributionsHelper
 
-  # call it like : link_to_typedocument t 
-  def link_to_contribution_logiciel(logiciel)
+  # call it like : link_to_contribution_logiciel
+  def public_link_to_contribution_logiciel(logiciel)
     return '-' unless logiciel 
-    link_to logiciel.nom + ' (' + logiciel.contributions.size.to_s + ')', {
+    public_link_to logiciel.nom + ' (' + logiciel.contributions.size.to_s + ')', {
       :action => 'list', :id => logiciel.id }
   end
 

@@ -78,7 +78,7 @@ module ApplicationHelper
   end
 
   # About page
-  def link_to_about()
+  def public_link_to_about()
     link_to '?', {:controller => 'bienvenue', :action => 'about'}, 
                   :title => _("A propos de #{Metadata::NOM_COURT_APPLICATION}")
   end
@@ -121,11 +121,22 @@ module ApplicationHelper
   end
 
   # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
+  # don't forget to update his public alter ego just below
   def link_to_file(record, file, options={})
     if record and record.send(file) and File.exist?(record.send(file))
       nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
       show = (options[:image] ? image_patch : nom )
       link_to show, url_for_file_column(record, file, :absolute => true)
+    else
+      options[:else] ||= '-'
+    end
+  end
+
+  def public_link_to_file(record, file, options={})
+    if record and record.send(file) and File.exist?(record.send(file))
+      nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
+      show = (options[:image] ? image_patch : nom )
+      public_link_to show, url_for_file_column(record, file, :absolute => true)
     else
       options[:else] ||= '-'
     end
