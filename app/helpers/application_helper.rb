@@ -146,6 +146,9 @@ module ApplicationHelper
 
     size = elements.size
     return "<u><b>Aucun(e) #{nom}</b></u><br />" unless size > 0
+    if session[:user].nil? and options[:public].nil?
+      return "<u><b>#{pluralize(size, nom.capitalize)} à ce jour</b></u><br />" 
+    end
     result = ''
     unless options[:title]==false or options[:no_title]
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
@@ -173,6 +176,11 @@ module ApplicationHelper
       result << '</ul>'
     end
     result
+  end
+
+  def public_show_liste(elements, nom = '', options = {}, &functor) 
+    options[:public] = true
+    show_liste(elements, nom, options, &functor)
   end
 
   # Call it like :

@@ -48,5 +48,5 @@ Bienvenue <%= session[:user].nom if session[:user] %> sur l&#146;outil de gestio
 <div class="sommaire show">
   <h3>Aide</h3>
   <% links = [ public_link_to_help_new_request, public_link_to_howto_request ] %>
-  <%= show_liste(links, 'Aide', :title => false) %>
+  <%= public_show_liste(links, 'Aide', :title => false) %>
 </div>

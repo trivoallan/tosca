@@ -18,7 +18,7 @@
                       :action => 'show', :id => @logiciel.groupe_id ) if @logiciel.groupe %></td></tr>
 
 <tr><td><b>Liens</b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
-    <td><%= show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 
+    <td><%= public_show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 
             result = ''
 	        link = link_to(image_edit, :controller => 'urllogiciels', 
                            :action => 'edit', :id => u.id) 
