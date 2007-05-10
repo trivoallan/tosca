@@ -155,6 +155,7 @@ table.pages td {
 /* it's applied to DIV's AND TABLE's */
 .form, .show, .help, .info {
 	background-color: #DFDFDF;
+/* 	border: 1px solid black; */
 	-moz-border-radius: 1em;
 	vertical-align: top;
 	padding: 1em 1em 1em 1em;

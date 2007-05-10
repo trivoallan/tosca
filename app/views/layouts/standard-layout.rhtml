@@ -23,7 +23,7 @@
   <div id="header">
     <table>
       <tr valign="top">
-        <td><%= link_to logo_08000, :controller => 'bienvenue', :action => '' %></td>
+        <td><%= link_to logo_08000, :controller => 'bienvenue', :action => 'index' %></td>
         <td align="right">
           <% @@menu ||= build_simple_menu([
             link_to('Accueil', {:controller => 'bienvenue', :action => ''}),
@@ -34,7 +34,6 @@
             link_to_about ]) %>
           <%= (session[:user] ? session[:account_links] : @@menu) %>
         </td>
-      
       </tr>
     </table>
     <%# This menu is built during login, in account controller.%>
@@ -57,7 +56,6 @@
         </td>
         <td class="summary_toggle" width="1px" height="100%"  
             onclick="Element.toggle('summary')" title="Montrer/cacher le menu latéral">
-            . . .
         </td>
         <% end %>
         <td>
@@ -74,11 +72,11 @@
        '<table>' <<
          '<tr>' <<
            '<td valign="middle" align="center">' <<
-	      link_to(Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE) <<
+  	      link_to(Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE) <<
               '&nbsp;' <<
  	      link_to(logo_ruby, 'http://rubyonrails.org/', :class => 'no_hover') <<
               '&nbsp;' <<
-              link_to(Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE) <<
+               link_to(Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE) <<
            '</td>' <<
         '</tr>' <<
       '</table>'
