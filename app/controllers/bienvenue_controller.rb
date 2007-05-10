@@ -10,6 +10,8 @@ class BienvenueController < ApplicationController
   # Includes somme helpers
   helper :demandes, :account
 
+  skip_before_filter :login_required
+
   # Default page, redirect if necessary
   def index
     _request_list
