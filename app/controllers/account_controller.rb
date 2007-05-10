@@ -11,6 +11,9 @@ class AccountController < ApplicationController
   auto_complete_for :identifiant, :email
 
   helper :filters, :ingenieurs, :beneficiaires, :roles, :export
+  
+  skip_before_filter :login_required
+  before_filter :login_required, :except => [:login]
 
   def index
     list
@@ -285,9 +288,9 @@ private
          menu << link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
                          :title => 'Consulter les logiciels') 
          menu << link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
-                         :title => 'Accédez à votre dépôt documentaire') 
+                         :title => 'Consulter les contributions réalisés dans le cadre de ce service') 
          menu << link_to_admin
-         menu << link_to_about(:text => '?')
+         menu << link_to_about
       %>
       <%= build_simple_menu(menu, :form => true) if session[:user] %>
     EOF

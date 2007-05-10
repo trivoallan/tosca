@@ -11,6 +11,8 @@ class BienvenueController < ApplicationController
   helper :demandes, :account
 
   skip_before_filter :login_required
+  before_filter :login_required, :except => [:index,:about]
+
 
   # Default page, redirect if necessary
   def index
@@ -22,7 +24,6 @@ class BienvenueController < ApplicationController
   end
 
 
- 
   # Welcome page
   # DEPRECATED : use index
   def list

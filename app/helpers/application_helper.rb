@@ -78,10 +78,9 @@ module ApplicationHelper
   end
 
   # About page
-  def link_to_about(options={:text => 'A propos'})
-    text = options[:text]
-    link_to text, {:controller => 'bienvenue', :action => 'about'}, 
-                  :title => "A propos de #{Metadata::NOM_COURT_APPLICATION}"
+  def link_to_about()
+    link_to '?', {:controller => 'bienvenue', :action => 'about'}, 
+                  :title => _("A propos de #{Metadata::NOM_COURT_APPLICATION}")
   end
 
   # Link for Richard

@@ -15,8 +15,8 @@ class Logiciel < ActiveRecord::Base
 
   has_many :binaires, :through => :paquets, :dependent => :destroy
 
-  # "Vous devez spécifier au moins une compétence" 
-  validates_length_of :competences, :minimum => 1
+  validates_length_of :competences, :minimum => 1, :message => 
+    _('Vous devez spécifier au moins une compétence')
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 

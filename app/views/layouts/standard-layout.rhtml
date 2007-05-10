@@ -24,7 +24,17 @@
     <table>
       <tr valign="top">
         <td><%= link_to logo_08000, :controller => 'bienvenue', :action => '' %></td>
-        <td align="right"><%= session[:account_links] if session[:user] %></td>
+        <td align="right">
+          <% @@menu ||= build_simple_menu([
+            link_to('Accueil', {:controller => 'bienvenue', :action => ''}),
+            link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
+                         :title => _('Consulter les logiciels')), 
+            link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
+                         :title => _('Accédez à votre dépôt documentaire')),
+            link_to_about ]) %>
+          <%= (session[:user] ? session[:account_links] : @@menu) %>
+        </td>
+      
       </tr>
     </table>
     <%# This menu is built during login, in account controller.%>

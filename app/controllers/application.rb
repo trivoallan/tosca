@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   # accès protégé et standardisé
   before_filter :set_global_shortcuts
-  before_filter :login_required, :except => [:refuse, :login]
+  before_filter :login_required
 
   # périmètre limité pour certains profils
   around_filter :scope
