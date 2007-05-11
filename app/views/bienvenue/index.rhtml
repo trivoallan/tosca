@@ -29,7 +29,7 @@ Bienvenue <%= (user.titre + ' ' + user.nom) if user %> sur l&#146;outil de gesti
 <div class="sommaire show">
   <h3>Logiciels</h3>
   <p><%= _("Vous pouvez consulter la liste des %s. Ces logiciels sont répartis") % public_link_to_logiciels %><br />
-     <%= _("Ces logiciels sont répartis selon une %s précise et simple, par groupe d'activité.") % public_link_to_groupes %></p><br />
+     <%= _("selon une %s précise et simple, par groupe d'activité.") % public_link_to_groupes %></p><br />
   <% #       ( @beneficiaire ? " dans le cadre de votre #{link_to_my_client} " : '.' ) +%>
   <% unless user %>
     <p><%=_("Nous avons des offres d'assistance, de support et de maintenance pour")%><br />
