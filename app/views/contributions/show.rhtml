@@ -1,17 +1,15 @@
+<%= public_link_to 'Accueil', :action => '', :controller => 'bienvenue'%> > 
+ <%= public_link_to 'Contributions', :action => 'select', :id => nil %> > 
+  <%= public_link_to @contribution.logiciel.nom, :action => 'list', :id => @contribution.logiciel_id %> >
+    <%= link_to_edit(@contribution) %><b><%=h @contribution.nom %></b> 
+     <%= public_link_to_file @contribution, 'patch', :image => true, :else => '' %>
 <div class="_show">
-
-<h2>  <%= public_link_to_file @contribution, 'patch', :image => true, :else => '' %>
-  <b><%=h @contribution.nom %></b> 
-  <%= link_to_edit(@contribution) %>
-    
-</h2>
-
-    <%= textilize @contribution.description_fonctionnelle %>
+    <%= @contribution.description_fonctionnelle %>
 
 <hr />
     <%= link_to image_create('un reversement'), :controller => 'urlreversements', 
                 :action => "new", :contribution_id => @contribution.id %>
-    <%= show_liste(@contribution.urlreversements, 'lien') { |u| 
+    <%= public_show_liste(@contribution.urlreversements, 'lien') { |u| 
         link_to_edit_urlreversement(u).to_s +
           " <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> " 
     } %>
@@ -28,7 +26,7 @@
 <% if @ingenieur %>
 <hr />
   <h2>Détails interne</h2>
-  <%= textilize @contribution.description %>
+  <%= @contribution.description %>
   <% if @contribution.id_mantis %>
      <p><b>Demande du portail v1 : </b>
         <%=link_to_any_demande @contribution %></p>

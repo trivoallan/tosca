@@ -10,6 +10,10 @@ module ContributionsHelper
       :action => 'list', :id => logiciel.id }
   end
 
+  @@contributions = nil
+  def public_link_to_contributions
+    @@contributions ||= public_link_to(_('contributions'), :controller => 'contributions', :action => 'list')
+  end
 
   # call it like : 
   # <%= link_to_new_contribution %>

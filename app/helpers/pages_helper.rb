@@ -73,7 +73,7 @@ module PagesHelper
     result = '<table class="pages"><tr><td>'
     result << "#{link_to_new(message)}</td>"
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
-    if options[:url] and session[:javascript]
+    if options[:url] 
       ajax_call = 
         remote_function(AJAX_OPTIONS.dup.update(:url => options[:url]))
     end
@@ -111,7 +111,7 @@ module PagesHelper
       link = link_to_function(image, page, html_options)
     else
       page = { :page => page }
-      link = link_to(image, page, html_options)
+      link = public_link_to(image, page, html_options)
     end
   end
 

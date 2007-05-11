@@ -298,25 +298,6 @@ private
     #render_to_string :partial => 'menu' 
   end
 
-  # DEPRECATED : use set menu or home page for links
-  # Build navigation links
-  def set_nav_links
-    render_to_string :inline => <<-EOF
-      <% nav_links = []
-         nav_links << link_to('Déconnexion', :controller => 'account', :action => 'logout')
-         nav_links << link_to_modify_account(session[:user], 'Mon&nbsp;compte')
-         nav_links << link_to('Plan', :controller => 'bienvenue', :action => 'plan')
-         nav_links << link_to('Utilisateurs', :controller => 'account', :action => 'list')
-         nav_links << link_to('Rôles', :controller => 'roles', :action => 'list')
-         nav_links << link_to_about
-         nav_links << link_to('Appels', :controller => 'appels', :action => 'list')
-         nav_links << link_to_contributions
-         nav_links << link_to_my_client 
-      %>
-      <%= nav_links.compact.join('&nbsp;|&nbsp;') if session[:user] %>
-    EOF
-  end
-
   # Build account links
   def set_account_links
     render_to_string :inline => <<-EOF

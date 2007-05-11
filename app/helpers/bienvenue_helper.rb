@@ -3,6 +3,11 @@
 #####################################################
 module BienvenueHelper
 
+  def html_wrap(s, width=78)
+    s.gsub!(/(.{1,#{width}})(\s+|\Z)/, "\\1<br />")
+  end
+
+
   # Call it like :
   #   <%= show_liste_accueil(links, 'Groupe') %>
   def show_liste_accueil(elements, titre, options = {})

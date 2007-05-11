@@ -8,7 +8,7 @@ module ImagesHelper
 
   # por éviter la réaffection de desc à chaque coup
   def image_options(desc = '', size = nil )
-    options = { :alt => desc, :title => desc }
+    options = { :alt => desc, :title => desc, :class => 'no_hover' }
     options.update(:size => size) if size
     options
   end

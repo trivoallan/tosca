@@ -4,7 +4,7 @@
 class LogicielsController < ApplicationController
   # public access to the list
   skip_before_filter :login_required
-  before_filter :login_required, :except => [:list,:show]
+  before_filter :login_required, :except => [:list,:show,:auto_complete_for_logiciel_nom]
 
   helper :filters, :paquets, :demandes, :competences, :contributions
   
@@ -22,16 +22,17 @@ class LogicielsController < ApplicationController
 
   # ajaxified list
   def list
-    options = { :per_page => 10, :order => 'logiciels.nom', 
-    :include => [:groupe,:competences]}
+    options = { :per_page => 10, :order => 'logiciels.nom',
+      :include => [:groupe,:competences]}
     conditions = []
 
-
     # Dirty Hack. TODO : faire mieux
-    if params['filters'] and params['filters']['client_id'] != ''
-      params['filters']['client_id'] = scope_client(params['filters']['client_id'])
+    filters = params['filters']
+    if @ingenieur and filters and filters['client_id'] != ''
+      filters['client_id'] = scope_client(filters['client_id'])
       options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id' 
     end
+
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]
     conditions = Filters.build_conditions(params, [
@@ -43,9 +44,9 @@ class LogicielsController < ApplicationController
      ])
     flash[:conditions] = options[:conditions] = conditions 
 
-    Logiciel.set_scope(@beneficiaire.contrat_ids) if @beneficiaire
+    # Logiciel.set_scope(@beneficiaire.contrat_ids) if @beneficiaire
     @logiciel_pages, @logiciels = paginate :logiciels, options
-    Logiciel.remove_scope if @beneficiaire
+    # Logiciel.remove_scope if @beneficiaire
 
     # panel on the left side
     if request.xhr? 
@@ -121,7 +122,7 @@ private
 
   def _panel 
     @count = {}
-    @clients = Client.find_select
+    @clients = Client.find_select if @ingenieur
     @groupes = Groupe.find_select
     @technologies = Competence.find_select
     @groupes = Groupe.find_select

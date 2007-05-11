@@ -78,14 +78,6 @@ module ApplicationHelper
             :title => 'Interface d\'administration'
   end
 
-  # Link to a defined type of document
-  # call it like : link_to_typedocument t 
-  def link_to_typedocument(typedocument)
-    link_to typedocument.nom + ' (' + typedocument.documents.size.to_s + ')', {
-      :controller => 'documents', :action => 'list', :id => typedocument }
-  end
-
-
   ### TEXTE #####################################################################
 
   # indente du texte et échappe les caractères html
@@ -125,7 +117,8 @@ module ApplicationHelper
     if record and record.send(file) and File.exist?(record.send(file))
       nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
       show = (options[:image] ? image_patch : nom )
-      public_link_to show, url_for_file_column(record, file, :absolute => true)
+      html_options = (options[:image] ? {:class => 'no_hover'} : {})
+      public_link_to(show, url_for_file_column(record, file, :absolute => true), html_options)
     else
       options[:else] ||= '-'
     end
@@ -140,6 +133,7 @@ module ApplicationHelper
   #  * :no_title : DEPRECATED permet de ne pas mettre de titre à la liste
   #  * :title : mettre à false pour ne pas afficher le titre
   #  * :puce : permet d'utiliser un caractère qcq à la place des balises <liste>
+  # If there is no yield given, the field is displayed as is, with 'to_s' method.
   # Call it like : 
   #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
   def show_liste(elements, nom = '', options = {}) 
@@ -159,20 +153,27 @@ module ApplicationHelper
     # TODO : use it when yarv virtual machine is ready
     unless block_given?
       result << '<ul>' 
-      elements.each { |e| result << '<li>' + e.to_s + '</li>' }
+      elements.each { |e| 
+        result << '<li>' << e << '</li>' unless e.nil?
+      }
       result << '</ul>'
       return result
     end
-    #yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
+    # c'est lent mais c'est tellement beau ruby :
+    # yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
 
-    # Le to_s sur le yield sert à ne pas faire péter l'appli si on
-    # on a un lien sans les droits (objet nil).
     if options[:puce]
       puce = " #{options[:puce]} "
-      elements.each { |e| result << puce + yield(e).to_s + '<br/>' }
+      elements.each { |e| 
+        elt = yield(e)
+        result << puce << elt << '<br/>' unless elt.nil?
+      }
     else
       result << '<ul>' 
-      elements.each { |e| result << '<li>' + yield(e).to_s + '</li>' }
+      elements.each { |e| 
+        elt = yield(e)
+        result << '<li>' << elt << '</li>' unless elt.nil?
+      }
       result << '</ul>'
     end
     result

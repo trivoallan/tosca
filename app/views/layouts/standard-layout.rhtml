@@ -20,24 +20,28 @@
  <title>08000linux : <%=_(controller.controller_name)%></title>
 </head>
 <body>
+  <% # All the menu are built during first rendering or during login, in account controller %>
+  <% @@menu ||= build_simple_menu([
+    public_link_to('Accueil', {:controller => 'bienvenue', :action => ''}),
+    public_link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
+                :title => _('Consulter les logiciels')), 
+    public_link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
+                :title => _('Accédez à votre dépôt documentaire')),
+    public_link_to_about ]) %>
+  <% #TODO : formulaire de login en haut ? %>
+  <% @@links ||= build_simple_menu([
+        public_link_to(_("S'identifier"), :action => 'login', 
+             :controller => 'account')], :class => 'account_menu') %>
   <div id="header">
     <table>
       <tr valign="top">
         <td><%= public_link_to logo_08000, :controller => 'bienvenue', :action => '' %></td>
         <td align="right">
-          <% @@menu ||= build_simple_menu([
-            public_link_to('Accueil', {:controller => 'bienvenue', :action => ''}),
-            public_link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
-                         :title => _('Consulter les logiciels')), 
-            public_link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
-                         :title => _('Accédez à votre dépôt documentaire')),
-            public_link_to_about ]) %>
-          <%= (session[:user] ? session[:account_links] : @@menu) %>
+          <%= (session[:user] ? session[:account_links] : @@links) %>
         </td>
       </tr>
     </table>
-    <%# This menu is built during login, in account controller.%>
-    <%= session[:menu] if session[:user] %>
+    <%= session[:user] ? session[:menu] : @@menu %>
   </div><!-- end of header -->
 
   <div id="content_div">

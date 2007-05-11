@@ -9,7 +9,7 @@ module Metadata
   # application
   NOM_COURT_APPLICATION = "TOSCA"
   VERSION_APPLICATION = "0.3.3.3"
-  COPYRIGHT_APPLICATION = "Copyright Linagora SA 2007 - Tous droits réservés.".gsub(' ','&nbsp;')
+  COPYRIGHT_APPLICATION = " ©2007 Linagora SA".gsub(' ','&nbsp;')
 
   # service
   NOM_COURT_SERVICE = "OSSA"

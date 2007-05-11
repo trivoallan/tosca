@@ -4,13 +4,16 @@
    et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
 <% end %>
 
+<% user = session[:user] %>
+<% connected = public_link_to(_('connecté'), :action => 'login', :controller => 'account') %>
 <h2 class="spacer">Sommaire</h2>
 
-Bienvenue <%= session[:user].nom if session[:user] %> sur l&#146;outil de gestion du 08000linux.
+
+Bienvenue <%= (user.titre + ' ' + user.nom) if user %> sur l&#146;outil de gestion du 08000linux.
 
 <div class="sommaire show">
   <h3>Demandes</h3>
-  <% if session[:user] %>
+  <% if user %>
     <p><%= "Vous pouvez consulter la #{link_to('liste de vos demandes', :controller => 'demandes', :action => 'list')} : " +
           show_liste(@demandes, 'Demande en cours', :title => false) { |d| 
             link_to_demande(d, :show_id => true, :icon_severite => true) 
@@ -19,30 +22,39 @@ Bienvenue <%= session[:user].nom if session[:user] %> sur l&#146;outil de gestio
      <p><%= "Vous avez " + @request_stats[:en_cours].to_s + " demandes en cours." %></p>
      <p><%= "Vous avez " + @request_stats[:terminees].to_s + " demandes terminées."  %></p>
   <% else %>
-    <p><%=_("Vous n'êtes pas connectés, vous n'avez pas accès à l'interface des demandes de notre service")%></p>
+    <p><%= html_wrap(_("Vous n'êtes pas #{connected} vous n'avez pas accès à l'interface des demandes de notre service"))%></p>
   <% end %>
 </div>
 
 <div class="sommaire show">
   <h3>Logiciels</h3>
-  <p><%= "Vous pouvez consulter la 
-          #{public_link_to('liste des logiciels', :controller => 'logiciels', :action => 'list')}" +
-          ( @beneficiaire ? " dans le cadre de votre #{link_to_my_client} " : '.' ) %></p>
-  <p><%= "Ces logiciels sont répartis selon une #{public_link_to('classification', :controller => 'groupes', :action => 'list')}." %> précise et simple, par groupe d&#146;activité</p>
-  <p>Nous avons des offres d'assistance, de support et de maintenance pour l'ensemble de ces logiciels, n&#146;hésitez pas à nous contacter</p>
-  <p><%= "Vous pouvez également accéder aux #{public_link_to('contributions', :controller => 'contributions', :action => 'list')}
-       réalisées par notre équipe. "%></p>
+  <p><%= _("Vous pouvez consulter la liste des %s. Ces logiciels sont répartis") % public_link_to_logiciels %><br />
+     <%= _("Ces logiciels sont répartis selon une %s précise et simple, par groupe d'activité.") % public_link_to_groupes %></p><br />
+  <% #       ( @beneficiaire ? " dans le cadre de votre #{link_to_my_client} " : '.' ) +%>
+  <% unless user %>
+    <p><%=_("Nous avons des offres d'assistance, de support et de maintenance pour")%><br />
+       <%=_("l'ensemble de ces logiciels, n'hésitez pas à nous")%>
+       <%=mail_to('contact@08000linux.com',_('contacter'))%></p><br />
+  <% end %>
+  <p><%=_("Vous pouvez également accéder aux %s réalisées par notre équipe.") % public_link_to_contributions %></p>
 </div>
 
 <div class="sommaire show">
   <h3>Documents</h3>
-  <p><%= "Vous pouvez parcourir #{link_to('votre répertoire', :controller => 'documents', :action => 'select')}
-          pour accéder aux documents suivants : " + 
-          show_liste(@typedocuments, 'Type de document', :title => false) { |t| 
-            link_to_typedocument t 
-          } %></p>
-  <p><%= "Vous pouvez également consulter votre 
-          #{link_to('rapport d\'activité', :controller => 'reporting', :action => 'general')} en ligne. " %></p>
+  <% if user %>
+    <p><%= "Vous pouvez parcourir #{link_to('votre répertoire', :controller => 'documents', :action => 'select')}
+            pour accéder aux documents suivants : " + 
+            show_liste(@typedocuments, 'Type de document', :title => false) { |t| 
+              link_to_typedocument t 
+            } %></p>
+    <p><%= "Vous pouvez également consulter votre 
+            #{link_to('rapport d\'activité', :controller => 'reporting', :action => 'general')} en ligne. " %></p>
+  <% else %>
+    <p><%= _("Lorsque vous êtes %s, vous avez accès à un rapport d'activité") % connected %><br />
+       <%= _("dynamique montrant l'activité de notre service en temps réel.")%></p><br />
+    <p><%= _("Vous avez également accès à l'intégralité des documents que nous vous")%><br />
+       <%= _("livrons, et ce de manière centralisée et versionnée")%></p>
+  <% end %>
 </div>
 
 <div class="sommaire show">
