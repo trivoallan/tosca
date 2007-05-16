@@ -47,8 +47,8 @@
             link_to_paquet paquet } %></td></tr>
 
 <tr><td><b>Contributions</b> <%= link_to_new_contribution(@logiciel.id)%></td>
-    <td><%= show_liste(@logiciel.contributions, 'Contribution', :no_title => true) { |c| 
-              link_to c.nom, :controller => 'contributions', 
+    <td><%= public_show_liste(@logiciel.contributions, 'Contribution', :no_title => true) { |c| 
+              public_link_to c.nom, :controller => 'contributions', 
                              :action => 'show', :id => c.id
             } %></td></tr>
 
