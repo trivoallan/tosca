@@ -14,6 +14,13 @@ class Appel < ActiveRecord::Base
   validates_presence_of :contrat
   
 
+  def self.set_scope(contrat_ids)
+    if contrat_ids
+      self.scoped_methods << { :find => { :conditions => 
+          [ 'appels.contrat_id IN (?)', contrat_ids ] } }
+    end
+  end
+
 
   # date de reversement formattée
   # voir lib/overrides.rb pour les dates auto created _on et updated_on

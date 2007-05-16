@@ -102,7 +102,7 @@ private
   # scope imposé sur toutes les vues, 
   # pour limiter ce que peuvent voir nos clients
   SCOPE_CLIENT = [ Client, Demande, Document, Socle ]
-  SCOPE_CONTRAT = [ Binaire, Contrat, Paquet ] 
+  SCOPE_CONTRAT = [ Appel, Binaire, Contrat, Paquet ] 
   # Cette fonction intègre un scope "maison", beaucoup plus rapide.
   # Il reste néanmoins intégralement safe
   # Le but est d'éviter les 15 imbrications de yield, trop couteuses

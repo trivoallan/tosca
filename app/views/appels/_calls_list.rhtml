@@ -7,7 +7,7 @@
     'Fin de l\'appel','Durée'] %>
 <%= show_table(@appels, Appel, titres) { |a|
   result = ''
-  result << "<td>#{a.contrat.nom}</td>"
+  result << "<td>#{a.contrat.nom if a.contrat}</td>"
   result << "<td>#{a.ingenieur.nom if a.ingenieur}</td>"
   result << "<td>#{a.beneficiaire ? a.beneficiaire.nom : '-' }</td>"
   result << "<td>#{a.debut_formatted}</td>"
