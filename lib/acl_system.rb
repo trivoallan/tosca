@@ -1,21 +1,24 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-# See <a href="http://wiki.rubyonrails.com/rails/show/LoginGeneratorACLSystem">http://wiki.rubyonrails.com/rails/show/LoginGeneratorACLSystem</a>
-
+# This module is derived from the examples on Rails wiki. 
+# It's tosca implementation
+#
+# This module wires itself into the LoginSystem authorize? method.  You
+# should use the normal:
+#
+#   before_filter :login_required
+#
+# or to leave some actions unprotected:
+#
+#   before_filter :login_required, :except => [ :list, :show ]
+#
+# 
+# See link:http://wiki.rubyonrails.com/rails/show/LoginGeneratorACLSystem
+# for more info.
 module ACLSystem
 
   include LoginSystem
-
-  # This module wires itself into the LoginSystem authorize? method.  You
-  # should use the normal:
-  #
-  #   before_filter :login_required
-  #
-  # or to leave some actions unprotected:
-  #
-  #   before_filter :login_required, :except => [ :list, :show ]
-  #
 
   protected
 

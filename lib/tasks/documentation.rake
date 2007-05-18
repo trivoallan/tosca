@@ -7,11 +7,12 @@ namespace :doc do
   Rake::RDocTask.new("tosca") { |rdoc|
     rdoc.rdoc_dir = "#{WWW_ROOT}tosca"
     rdoc.title    = "Tosca Documentation"
-    rdoc.template = "lib/template"
+    rdoc.template = "doc/template"
     rdoc.options << '--line-numbers' << '--inline-source'
     rdoc.options << '-c utf8 --quiet'
     rdoc.rdoc_files.include('doc/README')
-    rdoc.rdoc_files.include('app/**/*.rb')
+    rdoc.rdoc_files.include('app/helpers/**/*.rb')
+    rdoc.rdoc_files.include('app/models/**/*.rb')
     rdoc.rdoc_files.include('lib/**/*.rb')
   }
 
@@ -31,7 +32,7 @@ namespace :doc do
         options << "--title '#{plugin.titlecase} Plugin Documentation'"
         options << '--line-numbers' << '--inline-source'
 	options << '-c utf8 --quiet'
-        options << '-T lib/template'
+        options << '-T doc/template'
 
         files.include("#{plugin_base}/lib/**/*.rb")
         if File.exists?("#{plugin_base}/README")
