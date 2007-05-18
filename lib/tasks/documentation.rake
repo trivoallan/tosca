@@ -5,27 +5,29 @@ namespace :doc do
 
   desc "Generate all documentation for Tosca"
   Rake::RDocTask.new("tosca") { |rdoc|
-    rdoc.rdoc_dir = "#{WWW_ROOT}doc/app"
+    rdoc.rdoc_dir = "#{WWW_ROOT}tosca"
     rdoc.title    = "Tosca Documentation"
     rdoc.template = "lib/template"
     rdoc.options << '--line-numbers' << '--inline-source'
     rdoc.options << '-c utf8 --quiet'
-    rdoc.rdoc_files.include('doc/README_FOR_APP')
+    rdoc.rdoc_files.include('doc/README')
     rdoc.rdoc_files.include('app/**/*.rb')
     rdoc.rdoc_files.include('lib/**/*.rb')
   }
 
-  plugins = FileList['vendor/plugins/**'].collect { |plugin| File.basename(plugin) }
-  task :plugins => plugins.collect { |plugin| "tosca:plugins:#{plugin}" }
 
-  namespace :plugins do		    
+  namespace :tplugins do		    
+    plugins = FileList['vendor/plugins/**'].collect { |plugin| File.basename(plugin) }
+    task :all => plugins.collect { |plugin| "doc:tplugins:#{plugin}" }
+
+
     # Define doc tasks for each plugin
     plugins.each do |plugin|
       task(plugin => :environment) do
         plugin_base   = "vendor/plugins/#{plugin}"
         options       = []
         files         = Rake::FileList.new
-        options << "-o #{WWW_ROOT}doc/plugins/#{plugin}"
+        options << "-o #{WWW_ROOT}plugins/#{plugin}"
         options << "--title '#{plugin.titlecase} Plugin Documentation'"
         options << '--line-numbers' << '--inline-source'
 	options << '-c utf8 --quiet'

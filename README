@@ -1,3 +1,13 @@
+== Welcome to Tosca 
+
+Tosca is a Rails application. You can see the standard README below. For seeing tosca README, see doc/README. You can generate doc with :
+$ rake doc:tosca
+And plugins doc with
+$ rake doc:tplugins:all
+
+The task are hidden in lib/task/documentation.rake.
+
+
 == Welcome to Rails
 
 Rails is a web-application and persistence framework that includes everything

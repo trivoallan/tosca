@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class SeveritesController < ApplicationController
+
   def index
     list
     render :action => 'list'
