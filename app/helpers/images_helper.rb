@@ -1,6 +1,21 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
+# This helpers is here to put in cache most of images 
+# urls generation. The images do not moves after the
+# web server is launched, so there are computed only the
+# first time one needs it and saved in class variables.
+# 
+# You need to restart server in order to reinitialize them
+# but you don't need to recompute them each time you want
+# to display a picture.
+# 
+# All image_* follow this scheme :
+#   @@view = nil
+#   def image_view
+#     @@view ||= image_tag('icons/b_view.png', image_options('Consulter', '15x15'))
+#   end
+# 
 module ImagesHelper
 
   # TODO : utiliser image_options (cf image_delete pour exemple)
@@ -12,8 +27,6 @@ module ImagesHelper
     options.update(:size => size) if size
     options
   end
-
-  # Database manipulation
 
   def image_create(message)
     desc = "Déposer #{message}"

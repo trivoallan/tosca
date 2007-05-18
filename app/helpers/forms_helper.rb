@@ -1,8 +1,7 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-
-
+# This module contains all the stuff related to forms.
 module FormsHelper
 
   PROMPT_SELECT = { :prompt => '» ' }
