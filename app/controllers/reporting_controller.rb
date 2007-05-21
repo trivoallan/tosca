@@ -3,7 +3,6 @@
 #####################################################
 class ReportingController < ApplicationController
   require 'digest/sha1'
-  model   :identifiant
   layout  'standard-layout'
 
   @@titres = { 
@@ -23,7 +22,7 @@ class ReportingController < ApplicationController
     :temps_de_rappel => 'Temps de prise en compte', #Temps de rappel 
     :temps_de_contournement => 'Temps de contournement',
     :temps_de_correction => 'Temps de correction'
-    }
+  }
 
 
   # Les couleurs par défauts sont dans l'ordre alphabétique des severités : 
@@ -62,8 +61,10 @@ class ReportingController < ApplicationController
     init_class_var(params)
     redirect_to(:action => 'configuration') and return unless 
       @contrat and (@report[:start_date] < @report[:end_date])
+    render_text '' and return
     init_data_general
     fill_data_general
+
     # TODO : trouver un bon moyen de faire un cache
     @data.each_pair do |nom, data| # each_key do |nom|
       #sha1 = Digest::SHA1.hexdigest("-#{qui}-#{nom}-")

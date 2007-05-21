@@ -171,17 +171,25 @@ module ImagesHelper
     @@hide ||= image_tag('navigation_hide.gif', image_options('hide'))
   end
 
+
+  @@date_opt = { :alt => 'Choisissez une date', :size => '16x16', 
+    :title => 'Sélecteur de date',
+    :onmouseover => "this.className='calendar_over';", :class => 'calendar_out',
+    :onmouseout => "this.className='calendar_out';", :style => 'cursor: pointer;'
+  }
+
   @@date_from = nil
   def image_date_from
-    @@date_from ||= image_tag('cal.gif', :size => '16x16', :title => 
-      'Sélecteur de date',  :alt => 'Choisissez une date', :id => 'date_from',
-      :onmouseover => "this.style.border='1px solid red';",
-      :onmouseout => "this.style.border='none';", :style => 'cursor: pointer;')
+    @@date_from ||= image_tag('cal.gif', @@date_opt.dup.update(:id => 'date_from'))
   end
 
-  # used to generate js for calendar
+  # used to generate js for calendar. It uses an array of 2 arguments. See 
+  # link:"http://www.dynarch.com/projects/calendar/"
+  #
   # first args : id of input field
+  #
   # second args : id of image calendar trigger
+  #
   # call it : <%= script_date('date_before', 'date_to') %>
   def script_date(*args)
     '<script type="text/javascript">
@@ -199,10 +207,7 @@ module ImagesHelper
 
   @@date_to = nil
   def image_date_to
-    @@date_to ||= image_tag('cal.gif', :size => '16x16', :title => 
-      'Sélecteur de date',  :alt => 'Choisissez une date', :id => 'date_to',
-      :onmouseover => "this.style.border='1px solid red';",
-      :onmouseout => "this.style.border='none';", :style => 'cursor: pointer;')
+    @@date_to ||= image_tag('cal.gif', @@date_opt.dup.update(:id => 'date_to'))
   end
 
 

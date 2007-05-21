@@ -7,6 +7,10 @@
 </tr><tr>
   <td><label for="reporting_contrat">Contrat </label>
       <%= select("reporting", "contrat_id", @contrats.collect{|c| [ c.to_s, c.id]}) %></td>
+</tr><tr>
+  <td><%= text_field_tag('start_date', Time.now.strftime('%Y-%m-%d')) %>
+   <span class="calendarPicker"><%= image_date_from %></span>
+   <%= script_date('start_date', 'date_from') %></td>
 </tr>
 </table>
 

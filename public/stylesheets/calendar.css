@@ -4,7 +4,18 @@
    Thanks jira for the pretty cloths
 */
 
+/* Added by MLO : Hover on calendar images */
+.calendar_over {
+  margin: 0px;
+  border: 1px solid red;
+}
 
+.calendar_out {
+  margin: 1px;
+  border: none;
+}
+
+/* Real calendar stuff */
 .calendar, .calendar table {
   border: 1px solid #bdb2bf;
   font-size: 11px;
@@ -145,7 +156,6 @@
   padding: 2px;
   background: url("../images/status-bg.gif") repeat-x 0 0; 
   color: #000;
-  border-top: 1px solid #797979;
 }
 
 .calendar tfoot .hilite { /* Hover style for buttons in footer */
