@@ -28,6 +28,19 @@ module Metadata
   DEMANDE_NOSTATUS = 'Cette demande n\'a pas de statut, veuillez contacter la cellule'
 end
 
+# Converts the date value of a calendar into a Time object
+# Value is expected to be a string in the form : "YYYY-MM-DD"
+# 
+# Call it like this :
+#   calendar2time('2007-05-21') 
+#   => Mon May 21 00:00:00 +0200 2007
+def calendar2time(value)
+  values = value.split('-')
+  Time.mktime(values[0], values[1], values[2], 0, 0, 0)
+end
+
+
+# Remove entirely a tree. Like 'rm -Rf directory'
 def rmtree(directory)
   Dir.foreach(directory) do |entry|
     next if entry =~ /^\.\.?$/     # Ignore . and .. as usual
@@ -42,6 +55,7 @@ def rmtree(directory)
   Dir.delete(directory)
 end
 
+# compute the average of an Array
 def avg(data)
   return 0 unless data.is_a? Array
   data.inject(0){|n, value| n + value} / data.size.to_f

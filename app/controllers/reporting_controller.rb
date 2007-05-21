@@ -3,6 +3,7 @@
 #####################################################
 class ReportingController < ApplicationController
   require 'digest/sha1'
+  model   :identifiant
   layout  'standard-layout'
 
   @@titres = { 
@@ -61,7 +62,6 @@ class ReportingController < ApplicationController
     init_class_var(params)
     redirect_to(:action => 'configuration') and return unless 
       @contrat and (@report[:start_date] < @report[:end_date])
-    render_text '' and return
     init_data_general
     fill_data_general
 
@@ -132,7 +132,8 @@ class ReportingController < ApplicationController
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titres = @@titres
     @report[:start_date] = [@contrat.ouverture.beginning_of_month, Time.now].min
-    @report[:end_date] = [Time.now, @contrat.cloture.beginning_of_month].min
+    @report[:end_date] = [calendar2time(params[:end_date]), 
+                          @contrat.cloture.beginning_of_month].min
     @first_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]

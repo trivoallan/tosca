@@ -121,7 +121,6 @@ module FormsHelper
 
 
 
-
   # write the label with the field.
   # heavily used in account with show_table_form
   # call it like this :

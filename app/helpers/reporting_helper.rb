@@ -81,8 +81,8 @@ module ReportingHelper
     if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
       options.update(:divise => true)
     end
-    middle = "#{nom}_middle"
-    total = "#{nom}_total"
+    middle = :"#{nom}_middle"
+    total = :"#{nom}_total"
     table = ''
     table << '<table class="report_item">'
     table << ' <tr>'
