@@ -1,16 +1,24 @@
 <% # TODO : le div part en sucette à l'anis %>
-
+<h1>Configuration du rapport d&rsquo;activité</h1>
+<br />
+<p><small>Le rapport d&rsquo;activité vous permet de consulter une vue d&rsquo;ensemble de 
+l&rsquo;activité.</small></p>
 <table>
 <tr>
-  <td><label for="reporting_period">Période considérée : évaluer depuis </label>
-      <%= text_field 'reporting', 'period', :size => 3,:value => 3  %> mois</td>
-</tr><tr>
-  <td><label for="reporting_contrat">Contrat </label>
-      <%= select("reporting", "contrat_id", @contrats.collect{|c| [ c.to_s, c.id]}) %></td>
-</tr><tr>
-  <td><%= text_field_tag('end_date', Time.now.strftime('%Y-%m-%d')) %>
+  <td><label for="end_date">Date de fin</label>
+   <%= text_field_tag('end_date', Time.now.strftime('%Y-%m-%d')) %>
    <span class="calendarPicker"><%= image_date_from %></span>
    <%= script_date('end_date', 'date_from') %></td>
+</tr><tr>
+  <td><label for="reporting_period">Sur une <i>période considérée</i> de </label>
+      <%= text_field 'reporting', 'period', :size => 3,:value => 3  %> mois</td>
+</tr><tr>
+  <td><label for="reporting_contrat_id">Portant sur le contrat </label>
+      <%= select("reporting", "contrat_id", @contrats.collect{|c| [ c.to_s, c.id]}) %></td>
 </tr>
 </table>
+<p><small>
+Le rapport met en valeur la période considérée par rapport à la 
+période écoulée depuis le debut de votre contrat.
+</small></p>
 
