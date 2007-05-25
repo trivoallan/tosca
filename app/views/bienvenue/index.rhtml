@@ -6,10 +6,9 @@
 
 <% user = session[:user] %>
 <% connected = public_link_to(_('connecté'), :action => 'login', :controller => 'account') %>
-<h2 class="spacer">Sommaire</h2>
-
-
-Bienvenue <%= (user.titre + ' ' + user.nom) if user %> sur l&#146;outil de gestion du 08000linux.
+<table><tr><td rowspan="2"><%= logo_lstm %> </td><td><h2 class="spacer">Sommaire</h2></td></tr>
+       <tr><td> Bienvenue <%= (user.titre + ' ' + user.nom) if user %> sur l&lsquo;outil de gestion du 08000linux.</td></tr>
+</table>
 
 <div class="sommaire show">
   <h3>Demandes</h3>
@@ -19,8 +18,6 @@ Bienvenue <%= (user.titre + ' ' + user.nom) if user %> sur l&#146;outil de gesti
             link_to_demande(d, :show_id => true, :icon_severite => true) 
           } %></p>
      <p><%= "Vous pouvez également #{link_to('déposer une demande', :controller => 'demandes', :action => 'new')}. "%></p>
-     <p><%= "Vous avez " + @request_stats[:en_cours].to_s + " demandes en cours." %></p>
-     <p><%= "Vous avez " + @request_stats[:terminees].to_s + " demandes terminées."  %></p>
   <% else %>
     <p><%= html_wrap(_("Vous n'êtes pas #{connected} vous n'avez pas accès à l'interface des demandes de notre service"))%></p>
   <% end %>

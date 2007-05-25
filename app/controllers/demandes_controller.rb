@@ -188,7 +188,7 @@ class DemandesController < ApplicationController
     @last_commentaire = Commentaire.find(:first, options)    
     flash.now[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 
-    @statuts = @demande.statut.possible().collect{ |s| [ s.nom, s.id] }
+    @statuts = @demande.statut.possible()
     options =  { :conditions => 
       ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
     @contributions = Contribution.find(:all, options)

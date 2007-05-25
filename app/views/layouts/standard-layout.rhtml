@@ -35,7 +35,8 @@
   <div id="header">
     <table>
       <tr valign="top">
-        <td><%= public_link_to logo_08000, :controller => 'bienvenue', :action => '' %></td>
+        <td valign="middle" width="145"><%= public_link_to logo_08000, :controller => 'bienvenue', :action => '' %>
+        </td>
         <td align="right">
           <%= (session[:user] ? session[:account_links] : @@links) %>
         </td>
@@ -53,12 +54,12 @@
     <table id="content_table">
       <tr valign="middle">
         <% if @partial_for_summary %>
-        <td width="1px" height="100%">
+        <td height="100%" width="1">
           <div id="summary" class="summary">
             <%= render_partial @partial_for_summary %>
           </div>
         </td>
-        <td class="summary_toggle" width="1px" height="100%"  
+        <td class="summary_toggle" width="2" height="100%"  
             onclick="Element.toggle('summary')" title="Montrer/cacher le menu latéral">
         </td>
         <% end %>

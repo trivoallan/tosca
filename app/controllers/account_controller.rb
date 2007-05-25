@@ -284,7 +284,7 @@ private
          menu << link_to('Accueil', {:controller => 'bienvenue', :action => ''}) 
          menu << link_to('Demandes', {:controller => 'demandes', :action => 'list'}, 
                          :title => 'Consulter vos demandes')
-         menu << (session[:user].authorized?('demandes/list') ? '<a>'+search_demande+'</a>' : nil ) 
+         menu << (session[:user].authorized?('demandes/list') ? '<a class="no_hover">'+search_demande+'</a>' : nil ) 
          menu << link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
                          :title => 'Consulter les logiciels') 
          menu << link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 

@@ -115,7 +115,8 @@ module FormsHelper
   #    out << end_form_tag
   #  end
   def search_demande_field(options = {})
-    text_field('numero', '', 'size' => 3)
+    text_field('numero', '', 'size' => 3) + 
+      '<script type="text/javascript">document.getElementById("numero_").focus()</script>'
   end
   alias_method :search_demande, :search_demande_field
 

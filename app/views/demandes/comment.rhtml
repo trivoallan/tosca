@@ -7,7 +7,10 @@
 
   <h1>
     <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
-    <%= link_to(image_print, :controller => 'demandes', :action => 'pretty_print', :id => @demande.id) %>
+  <% options = { :controller => 'demandes', :action => 'pretty_print', 
+                  :id => @demande.id } %>
+    <% html_options = { :class => 'no_hover' } %>
+    <%= link_to(image_print, options, html_options) %>
   </h1>
   
   <div class="demande_tab_content">

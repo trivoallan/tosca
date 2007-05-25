@@ -6,22 +6,22 @@
 <% options[:url][:id] = @demande_id if @demande_id %>
 <ul class="demande_tabnav" id="demande_tabnav">
  <li>
-   <%= link_to_remote_tab 'Description', 'ajax_description', options %>
+   <%= link_to_remote_tab _('Description'), 'ajax_description', options %>
  </li>
  <li>
-   <%= link_to_remote_tab 'Commentaires', 'ajax_comments', options %>
+   <%= link_to_remote_tab _('Commentaires'), 'ajax_comments', options %>
  </li>
  <li>
-   <%= link_to_remote_tab 'Historique', 'ajax_history', options %>
+   <%= link_to_remote_tab _('Historique'), 'ajax_history', options %>
  </li>
  <li>
-   <%= link_to_remote_tab 'Pièces jointes', 'ajax_piecejointes', options %>
+   <%= link_to_remote_tab _('Pièces jointes'), 'ajax_piecejointes', options %>
  </li>
  <li>
-   <%= link_to_remote_tab 'Appels Téléphoniques', 'ajax_appels', options %>
+   <%= link_to_remote_tab _('Appels Téléphoniques'), 'ajax_appels', options %>
  </li>
  <li>
-   <%= link_to_remote_tab 'CNS', 'ajax_cns', options %>
+   <%= link_to_remote_tab _('CNS'), 'ajax_cns', options %>
  </li>
  <li>
    <%= image_spinner %>

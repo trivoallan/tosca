@@ -12,12 +12,11 @@
     <%= check_box("commentaire", "prive") %></td>
   <td width="20%" align="right">
     <label for="demande_statut_id">Statut</label>
-    <%= select("demande", "statut_id", @statuts, 
-               :include_blank => true) %></td>
+    <%= select_empty(@statuts, nil, 'demande[statut_id]') %></td>
   <% end %>
 </tr></table>
 
- <%= text_area 'commentaire', 'corps', :cols => nil, :rows => 15 %>
+ <%= text_area 'commentaire', 'corps', :style => 'width:100%;', :rows => 15 %>
  <br/> <br/>
  <label for="piecejointe_file">Adjoindre un fichier : </label>
  <%= file_column_field 'piecejointe', 'file', :size => 59  %>

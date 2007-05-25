@@ -196,7 +196,7 @@ module ApplicationHelper
   def show_table(elements, ar, titres, options = {})
     return "<br/><p>Aucun #{ar.table_name.singularize} à ce jour</p>" unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : "" )
-    result = "<table #{width} class=\"show_table\">"
+    result = "<table #{width} class=\"show\">"
 
     if titres.size > 0
       result << '<tr>'

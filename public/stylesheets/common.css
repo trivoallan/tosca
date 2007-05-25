@@ -7,7 +7,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #000;
-	background-color: #ffffff; /*#eaeafa;*/
+	background-color: #eaeafa; /* #f2fff2; /* ffffff; */
 	font-size: 1em; 
 	/* keep DRY : one font-family for all */
   	/*font-family: verdana, arial, helvetica, sans-serif;*/
@@ -21,7 +21,7 @@ body {
 
 #header {
 	width: 100%;
-	background-color: #EEEEEE; /*#e2efe2;*/
+	background-color: #e2efe2; /* #f2fff2; /* #EEEEEE; /*#e2efe2;*/
 	border-bottom: 1px solid #dddddd; /*#cfc8cf;*/
 	height: 2.2em; 
 	z-index: 1;
@@ -44,7 +44,6 @@ body {
 	height: 85%;
 }
 #bodycontent { 
-	background-color: #ffffff; /*#eaeafa;*/
 	margin: 0; 
 	padding: 2em;
 	/* keep some space for positionned-fixed footer */
@@ -57,7 +56,7 @@ body {
 	position: fixed; /* IE ignore it  */
 	/*position: relative;*/
 	color: black;
-	background-color: #EEEEEE; /*#e2efe2;*/
+	background-color: #e2efe2; /*background-color: #EEEEEE; /*#e2efe2;*/
 	width: 100%;
 	text-align: center;
 	bottom: 0;
@@ -156,18 +155,22 @@ table.pages td {
 
 /* it's applied to DIV's AND TABLE's */
 .form, .show, .help, .info {
-	background-color: #DFDFDF;
-/* 	border: 1px solid black; */
+	background-color: #f2fff2; /*#f0f0ff; /* #DFDFDF; */
 	-moz-border-radius: 1em;
 	vertical-align: top;
 	padding: 1em 1em 1em 1em;
-	margin: 1em 0em 1em 0em;
+	margin: 1em 0.5em 1em 0.5em;
 	min-width: 30%;
 	border-collapse: collapse;
 }
+
+
 .show tr td, tr th {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
+
+
+
 
 
 /* 3D border just for DIV's */
@@ -302,6 +305,11 @@ div.login, div.form, div.show, div.help, div.info {
 }
 #information {
 
+}
+
+.bloc_scroll {
+	background-color: #f2fff2;
+font-size: 150%;
 }
 
 /** Messages d'informations

@@ -8,7 +8,6 @@
 	width: 19em;
 	height: 100%; /*84%;*/
 	background-color: #EEEEEE;
-	/* float: left; *//* if table_content. See common.css */
 	border-right: 1px solid #dddddd; 
 	border-bottom: 1px solid #dddddd; 
 	margin-top: -1px;
@@ -17,7 +16,10 @@
 	width: 4px;
 	height: 100%;
         vertical-align: middle;
-	background-color: #eeeeee; /* #009C55; */
+	background-color: #DDDDDD; /* #eeeeee; /* #009C55; */
+	background-image: url(../images/transition.gif);
+	background-position: center; 
+	background-repeat: no-repeat; 
 	border-left: 1px dotted white;
 	border-right: 1px dotted white;
 	margin-top: -1px;

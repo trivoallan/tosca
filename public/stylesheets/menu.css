@@ -45,6 +45,10 @@
   background-color: #1A5260;
 }
 
+.simple_menu .no_hover:hover {
+	background: none;
+}
+
 /** 
  * advanced menu (NON YET USED)
  * http://css.alsacreations.com/xmedia/exemples/deroulant/menu-horizontal2.htm 
