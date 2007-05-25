@@ -13,8 +13,8 @@ module PaquetsHelper
   # call it like : 
   # <%= link_to_new_contribution %>
   def link_to_new_paquet(logiciel_id = nil)
-    link_to image_create('un paquet'), :controller => 
-      'paquets', :action => 'new', :id => logiciel_id
+    options = { :controller => 'paquets', :action => 'new', :id => logiciel_id }
+    link_to(image_create(_('un paquet')), options, ImagesHelper::NO_HOVER)
   end
 
 end

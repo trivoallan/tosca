@@ -307,11 +307,6 @@ div.login, div.form, div.show, div.help, div.info {
 
 }
 
-.bloc_scroll {
-	background-color: #f2fff2;
-font-size: 150%;
-}
-
 /** Messages d'informations
  * Tous les messages heritent de la classe .information 
  * Ainsi, tous les messages sont homogènes au niveau du style

@@ -18,6 +18,8 @@
 # 
 module ImagesHelper
 
+  NO_HOVER = { :class => 'no_hover' }
+
   # TODO : utiliser image_options (cf image_delete pour exemple)
   # We cannot cache a parametered image
 

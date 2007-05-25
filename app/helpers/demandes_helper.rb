@@ -138,6 +138,11 @@ module DemandesHelper
     end
   end
 
+  def link_to_new_request
+    options = { :action => 'new', :controller => 'demandes' }
+    link_to(image_create(_('nouvelle demande')), options, ImagesHelper::NO_HOVER)
+  end
+
   # Display a css bar for graphic representation of a ticket timeline
   # Options 
   #  * (no options yet)

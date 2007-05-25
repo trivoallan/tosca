@@ -18,14 +18,15 @@
                       :action => 'show', :id => @logiciel.groupe_id ) if @logiciel.groupe %></td></tr>
 
 <tr><td><b>Liens</b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
+    <% options = { :controller => 'urllogiciels', :action => 'edit' } %>
     <td><%= public_show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 
             result = ''
-	        link = link_to(image_edit, :controller => 'urllogiciels', 
-                           :action => 'edit', :id => u.id) 
+            options[:id] = u.id
+            link = link_to(image_edit, options, ImagesHelper::NO_HOVER) 
     	    result << link if link
             result << ' ' + u.typeurl.nom.to_s + ' : '
             result << "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
-	        link = link_to(image_delete, { :controller => 'urllogiciels',
+	    link = link_to(image_delete, { :controller => 'urllogiciels',
              :action => 'destroy', :id => u.id } ,  { :class => 'nobackground',
              :confirm => "Voulez-vous vraiment supprimer #{u.valeur} ?",
              :method => 'post' })
@@ -33,24 +34,23 @@
             result } %>
     </td></tr>
 
-<tr><td><b>Demandes</b></td>
-    <td>
+<tr><td colspan="2"><b>Demandes</b> <%=link_to_new_request%> <br/>
+
       <% if @demandes.size > 0 %>
       <div class="bloc_scroll">
       <%= show_liste(@demandes, 'Demande', {:no_title => true}) { |d| 
           link_to_demande d 
       } %>
-      </div><% end %></td></tr>
+      </div><% end %>
+</tr>
 
 <tr><td><b>Paquets</b> <%= link_to_new_paquet(@logiciel.id) %></td>
     <td><%= show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) { |paquet| 
             link_to_paquet paquet } %></td></tr>
 
-<tr><td><b>Contributions</b> <%= link_to_new_contribution(@logiciel.id)%></td>
-    <td><%= public_show_liste(@logiciel.contributions, 'Contribution', :no_title => true) { |c| 
-              public_link_to c.nom, :controller => 'contributions', 
-                             :action => 'show', :id => c.id
-            } %></td></tr>
+<tr><td colspan="2"><b>Contributions</b> <%= link_to_new_contribution(@logiciel.id)%><br />
+    <%= public_table_of_contributions(@logiciel.contributions) %> </td>
+</tr>
 
 </table>
 

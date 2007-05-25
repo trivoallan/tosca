@@ -1,10 +1,13 @@
 div.bloc_scroll, 
 div.long_bloc_scroll {
       width: 99%;
-      height: 200px;
+      height: 10em;
       overflow: auto;
       border: 1px solid #000;
+      background-color: #f2fff2;
+}
+
 }
 div.long_bloc_scroll {
-      height: 400px;
+      height: 40em;
 }
