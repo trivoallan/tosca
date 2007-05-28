@@ -1,9 +1,10 @@
+
 <div id='demande_tab_content' class='demande_tab_content'>
   <b><u><%= pluralize(@piecejointes.size, 'Piècejointe') %></u></b> 
   <% titres = ['Id', 'Lien', 'Taille', 'Créé le', 'Par' ] %>
   <%= show_table(@piecejointes, Piecejointe, titres, :total => false) {|pj| 
     result = ''
-    if File.exist?(pj.file)
+    if File.exist?(pj.file.to_s)
       result << "<td>##{pj.id}</td>"
       result << "<td>#{link_to_file(pj, 'file')}</td>"
       result << "<td>#{file_size(pj.file)}</td>"
