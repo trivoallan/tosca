@@ -1,0 +1,11 @@
+--- 
+prefix: /lstm
+cwd: /var/www/lstm
+port: "8000"
+environment: production
+address: 127.0.0.1
+pid_file: log/mongrel.pid
+servers: 3
+user: www-data
+group: www-data
+

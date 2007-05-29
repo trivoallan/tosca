@@ -11,7 +11,7 @@
 RAILS_GEM_VERSION = '1.2.3'
 $KCODE='u'
 require 'jcode'
-
+# require 'syslog_logger'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -28,6 +28,9 @@ Rails::Initializer.run do |config|
   # Force all environments to use the same logger level 
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
+
+  # require 'hodel_3000_compliant_logger'
+  # config.logger = Hodel3000CompliantLogger.new(config.log_path)
 
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')

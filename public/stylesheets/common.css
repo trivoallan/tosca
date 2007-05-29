@@ -106,7 +106,6 @@ a:hover {
 	border-bottom: none;
 	color: #eee;
 	background-color: #1A5260;
-	/**/
 }
 
 
@@ -155,7 +154,7 @@ table.pages td {
 
 /* it's applied to DIV's AND TABLE's */
 .form, .show, .help, .info {
-	background-color: #f2fff2; /*#f0f0ff; /* #DFDFDF; */
+	background-color: #f2fff2; 
 	-moz-border-radius: 1em;
 	vertical-align: top;
 	padding: 1em 1em 1em 1em;
@@ -169,10 +168,6 @@ table.pages td {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
 
-
-
-
-
 /* 3D border just for DIV's */
 div.login, div.form, div.show, div.help, div.info {
 	border-left: 1px solid #ffffff;
@@ -183,7 +178,6 @@ div.login, div.form, div.show, div.help, div.info {
 /* all lines are clickable */
 #demandes_list tr *:hover {
 	cursor: pointer;
-	cursor: hand;
 }
 /* personnalisation du select des severites : non actif */
 #select_severite {
@@ -322,6 +316,7 @@ div.login, div.form, div.show, div.help, div.info {
 }
 .close_information {
 	float: right;
+	cursor: pointer;
 }
 .error {
 	background-color: #FFD9D9;
