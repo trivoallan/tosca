@@ -8,11 +8,8 @@
 config.cache_classes = true
 
 # Use a different logger for distributed setups
-# require 'syslog_logger'
-# config.logger = SyslogLogger.new
-
 require 'hodel_3000_compliant_logger'
-config.logger = nil # Hodel3000CompliantLogger.new(config.log_path)
+config.logger = nil 
 RAILS_DEFAULT_LOGGER = Hodel3000CompliantLogger.new(config.log_path)
 
 # Full error reports are disabled and caching is turned on
