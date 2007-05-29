@@ -1,27 +1,29 @@
-<h1><%= @paquet.nom %></h1>
+<%= public_link_to 'Accueil', :action => '', :controller => 'bienvenue'%> > 
+ <%= public_link_to 'Logiciels', :action => 'list', :controller => 'logiciels', :id => nil %> > 
+  <%= public_link_to @paquet.logiciel.nom, :action => 'show', :controller => 'logiciels', :id => @paquet.logiciel_id %> >
+   <%=@paquet.version%>-<%=@paquet.release%>  <%= link_to_edit(@paquet) %>
 
-<%= link_to_edit(@paquet) %> | <%= link_to_back %>
+<h1>Paquet source</h1>
 
 <div class="show">
-<p><b>Logiciel:</b> <%= @paquet.logiciel.nom %></p>
-<p><b>Contrat:</b> <%= @paquet.contrat.client.nom %></p>
+ <p><b>Logiciel:</b> <%= @paquet.logiciel.nom %></p>
+ <p><b>Contrat:</b> <%= @paquet.contrat.client.nom %></p>
 
-<% for column in Paquet.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @paquet.send(column.name) %>
-</p>
-<% end %>
+ <% for column in Paquet.content_columns %>
+   <p><b><%= column.human_name %>:</b> <%= @paquet.send(column.name) %></p>
+ <% end %>
 
-<p><b>Conteneur:</b> <%= @paquet.conteneur.nom %></p>
-<p><b>Distributeur:</b> <%=h @paquet.distributeur.nom %></p>
-<p><b>Mainteneur:</b> <%=h @paquet.mainteneur.nom %></p>
+ <p><b>Conteneur:</b> <%= @paquet.conteneur.nom %></p>
+ <p><b>Distributeur:</b> <%=h @paquet.distributeur.nom %></p>
+ <p><b>Mainteneur:</b> <%=h @paquet.mainteneur.nom %></p>
 </div>
 
-<br />
-<p>Ce paquet a produit <b><%= pluralize(@paquet.binaires_count, 'binaire') %></b></p>
-<%= show_liste(@paquet.binaires, 'binaire', :no_title => true) { |b| link_to_binaire(b) } %>
+<% if @paquet.binaires.size > 0 %>
+  <p>Ce paquet source a <b><%= pluralize(@paquet.binaires_count, 'binaire') %></b></p>
+  <%= show_liste(@paquet.binaires, 'binaire', :no_title => true) { |b| link_to_binaire(b) } %>
+<% end %>
 
-<br />
+
 <p>Ce paquet contient <b><%= pluralize(@paquet.fichiers_count, 'fichier') %></b></p>
 <% if @paquet.fichiers_count > 0 %>
 <div class="bloc_scroll">
@@ -30,7 +32,7 @@
 <% end %>
 
 <br />
-<p>Ce paquet a subi <b><%= pluralize(@paquet.changelogs_count, 'modification') %></b></p>
+<p>Ce paquet a été mis à jour <b><%= pluralize(@paquet.changelogs_count, 'fois') %></b></p>
 <% if @paquet.changelogs_count > 0 %>
 <div class="bloc_scroll">
   <%= show_liste(@changelogs, 'changelog', :no_title => true) { |c| 

@@ -1,13 +1,20 @@
-<h1><%= @binaire.nom %> &lt; <%= @binaire.paquet.nom.capitalize %></h1>
+<%= public_link_to 'Accueil', :action => '', :controller => 'bienvenue'%> > 
+ <%= public_link_to 'Logiciels', :action => 'list', :controller => 'logiciels', :id => nil %> > 
+  <%= public_link_to @binaire.paquet.logiciel.nom, :action => 'show', :controller => 'logiciels', :id => @binaire.paquet.logiciel_id %> >
+   <%= link_to(@binaire.paquet.version << '-' << @binaire.paquet.release, :controller => 'paquets', :action => 'show', :id => @binaire.paquet_id ) %> >
+     <%=h @binaire.nom %> <%= link_to_edit(@binaire) %>
 
-<p><b>Logiciel:</b> <%= @binaire.paquet.logiciel.nom %></p>
-<p><b>Contrat:</b> <%= @binaire.paquet.contrat.client.nom %></p>
-<p><b>Socle:</b> <%= @binaire.socle.nom if @binaire.socle %></p>
-<p><b>Arch:</b> <%= @binaire.arch.nom if @binaire.arch %></p>
-<p><b>Source:</b> <%= link_to_paquet(@binaire.paquet) %></p>
-<p><b>Nom:</b> <%= @binaire.nom %></p>
-<p><b>Version:</b> <%= @binaire.paquet.version %></p>
-<p><b>Release:</b> <%= @binaire.paquet.release %></p>
+<h1>Paquet Binaire</h1>
+<div class="show">
+ <p><b>Logiciel:</b> <%= @binaire.paquet.logiciel.nom %></p>
+ <p><b>Contrat:</b> <%= @binaire.paquet.contrat.client.nom %></p>
+ <p><b>Socle:</b> <%= @binaire.socle.nom if @binaire.socle %></p>
+ <p><b>Arch:</b> <%= @binaire.arch.nom if @binaire.arch %></p>
+ <p><b>Source:</b> <%= link_to_paquet(@binaire.paquet) %></p>
+ <p><b>Nom:</b> <%= @binaire.nom %></p>
+ <p><b>Version:</b> <%= @binaire.paquet.version %></p>
+ <p><b>Release:</b> <%= @binaire.paquet.release %></p>
+</div>
 
 <% if @binaire.archive %>
 <br />
