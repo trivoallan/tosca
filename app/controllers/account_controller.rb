@@ -281,14 +281,11 @@ private
   def set_menu
     render_to_string :inline => <<-EOF
       <% menu = [] 
-         menu << link_to('Accueil', {:controller => 'bienvenue', :action => ''}) 
-         menu << link_to('Demandes', {:controller => 'demandes', :action => 'list'}, 
-                         :title => 'Consulter vos demandes')
+         menu << public_link_to_home
+         menu << link_to_requests
          menu << (session[:user].authorized?('demandes/list') ? '<a class="no_hover">'+search_demande+'</a>' : nil ) 
-         menu << link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
-                         :title => 'Consulter les logiciels') 
-         menu << link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
-                         :title => 'Consulter les contributions réalisés dans le cadre de ce service') 
+         menu << public_link_to_softwares
+         menu << public_link_to_contributions
          menu << link_to_admin
          menu << public_link_to_about
       %>
@@ -302,7 +299,7 @@ private
   def set_account_links
     render_to_string :inline => <<-EOF
       <% infos = []  
-         infos << link_to_modify_account(session[:user], 'Mon&nbsp;compte')
+         infos << link_to_modify_account(session[:user], _('Mon&nbsp;compte'))
          infos << link_to('Déconnexion',:controller => 'account', :action => 'logout')
       %>
       <%= build_simple_menu(infos.reverse, :class => 'account_menu') if session[:user] %>

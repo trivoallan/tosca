@@ -18,8 +18,6 @@
 # 
 module ImagesHelper
 
-  NO_HOVER = { :class => 'no_hover' }
-
   # TODO : utiliser image_options (cf image_delete pour exemple)
   # We cannot cache a parametered image
 
@@ -33,6 +31,12 @@ module ImagesHelper
   def image_create(message)
     desc = "Déposer #{message}"
     image_tag("create_icon.png", image_options(desc, '16x16'))
+  end
+
+  def logo_client(client)
+    return '' if client.nil?
+    image_tag(url_for_file_column(client.photo, 'image', 'thumb'),
+              image_options(client.nom))
   end
 
   @@view = nil

@@ -168,7 +168,7 @@ table.pages td {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
 
-/* 3D border just for DIV's */
+/* predefined pretty width and 3D border just for DIV's */
 div.login, div.form, div.show, div.help, div.info {
 	border-left: 1px solid #ffffff;
 	border-top: 1px solid #ffffff;

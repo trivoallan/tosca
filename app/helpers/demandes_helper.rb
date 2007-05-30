@@ -140,8 +140,16 @@ module DemandesHelper
 
   def link_to_new_request
     options = { :action => 'new', :controller => 'demandes' }
-    link_to(image_create(_('nouvelle demande')), options, ImagesHelper::NO_HOVER)
+    link_to(image_create(_('nouvelle demande')), options, LinksHelper::NO_HOVER)
   end
+
+
+  # Link to access a ticket
+  def link_to_comment(ar)
+      link_to image_view, { :controller => 'demandes', :action => 'comment',
+        :id => ar}, { :class => 'nobackground' }
+  end
+
 
   # Display a css bar for graphic representation of a ticket timeline
   # Options 

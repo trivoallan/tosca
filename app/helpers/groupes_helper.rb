@@ -9,4 +9,11 @@ module GroupesHelper
         :controller => 'groupes', :action => 'list')
   end
 
+  # Lien vers la consultation d'UN groupe
+  def link_to_groupe(groupe)
+      link_to groupe.nom, :controller => 'groupes', 
+                          :action => 'show', :id => groupe.id
+  end
+
+
 end

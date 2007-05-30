@@ -22,7 +22,7 @@
     <td><%= public_show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 
             result = ''
             options[:id] = u.id
-            link = link_to(image_edit, options, ImagesHelper::NO_HOVER) 
+            link = link_to(image_edit, options, LinksHelper::NO_HOVER) 
     	    result << link if link
             result << ' ' + u.typeurl.nom.to_s + ' : '
             result << "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "

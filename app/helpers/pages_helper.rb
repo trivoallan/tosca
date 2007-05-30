@@ -7,9 +7,9 @@ module PagesHelper
   # options :
   # permet de spécifier un controller
   def link_to_new(message='', options = {})
-    link_options = options.update({:action => 'new'})
-    link_to(image_create(message), link_options,
-            { :class => 'nobackground' })
+    options[:action] = 'new'
+    html_options = LinksHelper::NO_HOVER
+    link_to(image_create(message), options, html_options)
   end
 
   def link_to_view(ar)

@@ -22,6 +22,7 @@
   result << "#{link_to_actions_table c}"
 }%>
 
+<%= link_to image_create(_('ajouter un logo')), :controller => 'photos', :action => 'new' %>
 <%= show_pages_links(@client_pages, 'un client') %>
 
 

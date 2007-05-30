@@ -8,7 +8,7 @@ class BienvenueController < ApplicationController
          :redirect_to => { :action => :list }
   
   # Includes somme helpers
-  helper :demandes, :account, :contributions, :logiciels, :groupes, :documents
+  helper :demandes, :account, :contributions, :logiciels, :groupes, :documents, :clients
 
   skip_before_filter :login_required
   before_filter :login_required, :except => [:index,:about]

@@ -33,7 +33,7 @@ module LogicielsHelper
   def link_to_new_urllogiciel(logiciel_id)
     return '-' unless logiciel_id 
     options = { :controller => 'urllogiciels', :action => 'new', :logiciel_id => logiciel_id }
-    link_to(image_create('une url'), options, ImagesHelper::NO_HOVER)
+    link_to(image_create('une url'), options, LinksHelper::NO_HOVER)
   end
 
 end

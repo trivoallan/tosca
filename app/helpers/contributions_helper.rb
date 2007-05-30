@@ -32,7 +32,7 @@ module ContributionsHelper
   # <%= link_to_new_contribution %>
   def link_to_new_contribution(logiciel_id = nil)
     options = { :controller => 'contributions', :action => 'new', :id => logiciel_id }
-    link_to(image_create(_('une contribution')), options, ImagesHelper::NO_HOVER)
+    link_to(image_create(_('une contribution')), options, LinksHelper::NO_HOVER)
   end
 
   # call it like : 

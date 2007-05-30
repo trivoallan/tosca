@@ -22,11 +22,9 @@
 <body>
   <% # All the menu are built during first rendering or during login, in account controller %>
   <% @@menu ||= build_simple_menu([
-    public_link_to('Accueil', {:controller => 'bienvenue', :action => ''}),
-    public_link_to('Logiciels', {:controller => 'logiciels', :action => 'list'}, 
-                :title => _('Consulter les logiciels')), 
-    public_link_to('Contributions', {:controller => 'contributions', :action => 'select'}, 
-                :title => _('Accédez à votre dépôt documentaire')),
+    public_link_to_home,
+    public_link_to_softwares, 
+    public_link_to_contributions,
     public_link_to_about ]) %>
   <% #TODO : formulaire de login en haut ? %>
   <% @@links ||= build_simple_menu([

@@ -5,8 +5,6 @@
 # Methods added to this helper will be available to all templates 
 # in the application. Don't ever add a method to this one without a really good 
 # reason. Anyway, this is a big helper, so find by keyword :
-# - LIENS ABSOLUS
-# - LIENS RELATIFS
 # - TEXTE
 # - FILES
 # - LISTES ET TABLES
@@ -15,69 +13,8 @@ module ApplicationHelper
   include ImagesHelper
   include PagesHelper
   include FormsHelper
+  include LinksHelper
  
-  ### LIENS ABSOLUS ############################################################
- 
-  # lien vers un compte existant
-  # DEPRECATED : préferer link_to_edit(id)
-  # TODO : passer id en options, avec @session[:user].id par défaut
-  # TODO : title en options, avec 'Le compte' par défaut
-  def link_to_modify_account(id, title)
-    return '' unless id
-    options = {:action => 'modify', :controller => 'account', :id => id }
-    link_to title, options
-  end
-
-  # lien vers mon offre / mon client
-  # TODO options[:text] doit prendre l'image si options[:image]
-  # options
-  # :text texte du lien à afficher
-  # :image image du client à afficher à la place
-  def link_to_my_client(options = {:text => 'Mon&nbsp;Offre'})
-    return nil unless session[:beneficiaire]
-    if options[:image]
-      link_to image_tag(url_for_file_column(
-                  @beneficiaire.client.photo, 'image', 'thumb')),
-                  :controller => 'clients', 
-                  :action => 'show', :id => session[:beneficiaire].client_id
-    else
-      link_to options[:text], :controller => 'clients', 
-                              :action => 'show', 
-                              :id => session[:beneficiaire].client_id
-    end
-  end
-
-  # Lien vers la consultation d'UN groupe
-  def link_to_groupe(groupe)
-      link_to groupe.nom, :controller => 'groupes', 
-                          :action => 'show', :id => groupe.id
-  end
-
-  # Link to access a ticket
-  def link_to_comment(ar)
-      link_to image_view, { :controller => 'demandes', :action => 'comment',
-        :id => ar}, { :class => 'nobackground' }
-  end
-
-  # lien vers les contributions
-  # action :list ou :admin selon les droits
-  def link_to_contributions
-    action = (session[:beneficiaire] ? 'list' : 'admin')
-    link_to 'Contributions',:controller => 'contributions', :action => action
-  end
-
-  # About page
-  def public_link_to_about()
-    link_to '?', {:controller => 'bienvenue', :action => 'about'}, 
-                  :title => _("A propos de #{Metadata::NOM_COURT_APPLICATION}")
-  end
-
-  # Link for Richard
-  def link_to_admin
-    link_to 'Administration', {:controller => 'bienvenue', :action => 'admin'},
-            :title => 'Interface d\'administration'
-  end
-
   ### TEXTE #####################################################################
 
   # indente du texte et échappe les caractères html
@@ -100,30 +37,6 @@ module ApplicationHelper
   def file_size( file )
     (File.exist?(file) ? number_to_human_size(File.size(file)) : '-' )
   end
-
-  # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
-  # don't forget to update his public alter ego just below
-  def link_to_file(record, file, options={})
-    if record and record.send(file) and File.exist?(record.send(file))
-      nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
-      show = (options[:image] ? image_patch : nom )
-      link_to show, url_for_file_column(record, file, :absolute => true)
-    else
-      options[:else] ||= '-'
-    end
-  end
-
-  def public_link_to_file(record, file, options={})
-    if record and record.send(file) and File.exist?(record.send(file))
-      nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
-      show = (options[:image] ? image_patch : nom )
-      html_options = (options[:image] ? {:class => 'no_hover'} : {})
-      public_link_to(show, url_for_file_column(record, file, :absolute => true), html_options)
-    else
-      options[:else] ||= '-'
-    end
-  end
-
 
   ### LISTES ET TABLES ##########################################################
 

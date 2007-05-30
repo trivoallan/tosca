@@ -27,8 +27,8 @@ Actions </div>
 <ul class="menu" id="menu_recherche">
  <li><b>Logiciel </b></li>
  <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
- <li><b>Description </b></li>
- <li><%= text_field :contribution, :description %></li>
+ <li><b>Auteur </b></li>
+ <li><%= select_filter(@ingenieurs, 'ingenieur') %></li>
  <li><b>Etat </b></li>
  <li><%= select_filter(@etatreversements, 'etatreversement') %></li>
 </ul>

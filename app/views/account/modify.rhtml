@@ -1,9 +1,9 @@
 <%= error_messages_for 'identifiant' %><br />
-<div title="Account modify" id="modifyform" class="form">
+
 <% form_tag :action=> "modify" do %>
   <%= render :partial => "edit" %>
 <% end %>
-</div>
+
 
 <br/>
 <%= link_to_back 'Retour à la liste des comptes' %>
