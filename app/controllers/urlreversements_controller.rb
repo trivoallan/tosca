@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class UrlreversementsController < ApplicationController
+  helper :logiciels
+
   def index
     list
     render :action => 'list'

@@ -23,15 +23,6 @@ class BienvenueController < ApplicationController
   end
 
 
-  # Welcome page
-  # DEPRECATED : use index
-  def list
-    _request_list
-  end
-
-  # New welcome page, current development
-  def test
-  end
 
   # Display all method that user can access
   def plan
