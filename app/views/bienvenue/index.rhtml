@@ -1,8 +1,3 @@
-<% if @beneficiaire and @beneficiaire.client.code_acces != '' %>
-   <p>Votre numéro d'appel est le 
-   <b><%= Metadata::PREFIXE_TELEPHONE + "&nbsp;" + Metadata::CODE_TELEPHONE %></b>, 
-   et votre code d'accès est le <b><%= @beneficiaire.client.code_acces %></b></p>
-<% end %>
 
 <% user = session[:user] %>
 <% connected = public_link_to(_('connecté'), :action => 'login', :controller => 'account') %>
