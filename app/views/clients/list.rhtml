@@ -12,8 +12,7 @@
   result << "<td>#{link_to_client(c)}</td>"
   result << '<td>'
   c.socles.each {|s| 
-    result << link_to_socle(s).to_s
-    result << " : #{pluralize(s.binaires_count, 'binaire')}<br />"
+    result << link_to_socle(s).to_s << '<br />'
   } 
   result << '</td>'
   result << "<td>#{mail_to(c.mailingliste)}</td>"
@@ -22,7 +21,7 @@
   result << "#{link_to_actions_table c}"
 }%>
 
-<%= link_to image_create(_('ajouter un logo')), :controller => 'photos', :action => 'new' %>
+<%= link_to _('ajouter un logo'), :controller => 'photos', :action => 'new' %>
 <%= show_pages_links(@client_pages, 'un client') %>
 
 
