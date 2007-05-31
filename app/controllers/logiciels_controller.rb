@@ -22,7 +22,7 @@ class LogicielsController < ApplicationController
 
   # ajaxified list
   def list
-    options = { :per_page => 10, :order => 'logiciels.nom',
+    options = { :per_page => 60, :order => 'logiciels.nom',
       :include => [:groupe,:competences]}
     conditions = []
 
