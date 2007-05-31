@@ -52,12 +52,12 @@
     <table id="content_table">
       <tr valign="top">
         <% if @partial_for_summary %>
-        <td width="1">
+        <td width="1" height="100%">
           <div id="summary" class="summary">
             <%= render_partial @partial_for_summary %>
           </div>
         </td>
-        <td class="summary_toggle" width="2"   
+        <td class="summary_toggle" width="2" height="100%"   
             onclick="Element.toggle('summary')" title="Montrer/cacher le menu latéral">
         </td>
         <% end %>
