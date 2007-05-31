@@ -4,5 +4,6 @@ rake tmp:clear
 rake makemo
 cvs up
 sudo chown -R www-data:www-data *
-sudo /etc/init.d/apache2 reload
+sudo /etc/init.d/mongrel_cluster restart
+
 

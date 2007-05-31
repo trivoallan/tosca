@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-04-30 15:48+0200\n"
+"POT-Creation-Date: 2007-05-31 16:35+0200\n"
 "PO-Revision-Date: 2007-04-30 15:56+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -15,6 +15,159 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: app/helpers/clients_helper.rb:20
+msgid "Mon&nbsp;Offre"
+msgstr ""
+
+#: app/helpers/contributions_helper.rb:28
+#, fuzzy
+msgid "contributions"
+msgstr "Créé le"
+
+#: app/helpers/contributions_helper.rb:35
+msgid "une contribution"
+msgstr ""
+
+#: app/helpers/demandes_helper.rb:143
+msgid "nouvelle demande"
+msgstr ""
+
+#: app/helpers/links_helper.rb:51
+msgid "Accueil"
+msgstr ""
+
+#: app/helpers/links_helper.rb:56
+#, fuzzy
+msgid "Demandes"
+msgstr "Résumé"
+
+#: app/helpers/links_helper.rb:56
+msgid "Consulter vos demandes"
+msgstr ""
+
+#: app/helpers/links_helper.rb:61
+#, fuzzy
+msgid "Logiciels"
+msgstr "Résumé"
+
+#: app/helpers/links_helper.rb:62
+msgid "Consulter les logiciels"
+msgstr ""
+
+#: app/helpers/links_helper.rb:67
+#, fuzzy
+msgid "Contributions"
+msgstr "Créé le"
+
+#: app/helpers/links_helper.rb:68
+msgid "Accédez à la liste des contributions réalisées sur votre périmètre"
+msgstr ""
+
+#: app/helpers/links_helper.rb:73
+msgid "Administration"
+msgstr ""
+
+#: app/helpers/links_helper.rb:74
+msgid "Interface d&lsquo;administration"
+msgstr ""
+
+#: app/helpers/links_helper.rb:89
+msgid "Mon&nbsp;Compte"
+msgstr ""
+
+#: app/helpers/groupes_helper.rb:8
+msgid "classifications"
+msgstr ""
+
+#: app/helpers/images_helper.rb:61
+msgid "Page d'accueil"
+msgstr ""
+
+#: app/helpers/images_helper.rb:72
+msgid "Première page"
+msgstr ""
+
+#: app/helpers/images_helper.rb:78
+msgid "Page précédente"
+msgstr ""
+
+#: app/helpers/images_helper.rb:85
+msgid "Page suivante"
+msgstr ""
+
+#: app/helpers/images_helper.rb:91
+msgid "Dernière page"
+msgstr ""
+
+#: app/helpers/images_helper.rb:97
+msgid "Fichier"
+msgstr ""
+
+#: app/helpers/images_helper.rb:110
+msgid "Rendre public"
+msgstr ""
+
+#: app/helpers/images_helper.rb:116
+msgid "Rendre privé"
+msgstr ""
+
+#: app/helpers/images_helper.rb:157
+msgid "Imprimer"
+msgstr ""
+
+#: app/helpers/logiciels_helper.rb:23
+#, fuzzy
+msgid "logiciels"
+msgstr "Résumé"
+
+#: app/helpers/paquets_helper.rb:17
+msgid "un paquet"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "news"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "new"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Subject"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Source"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Body"
+msgstr ""
+
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Created on"
+msgstr "Créé le"
+
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Updated on"
+msgstr "Mis à jour le"
+
+# Ingénieur
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Ingenieur"
+msgstr "Ingénieur"
+
+#: app/models/new.rb:-
+msgid "New|Client"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Logiciel"
+msgstr ""
 
 #: app/models/appel.rb:-
 msgid "appel"
@@ -43,6 +196,10 @@ msgstr "Contrat"
 
 #: app/models/appel.rb:-
 msgid "Appel|Demande"
+msgstr ""
+
+#: app/models/appel.rb:12
+msgid "Le début de l'appel doit être inférieure à sa fin."
 msgstr ""
 
 #: app/models/arch.rb:-
@@ -140,6 +297,68 @@ msgid "Changelog|Text modification"
 msgstr ""
 
 #: app/models/client.rb:-
+#, fuzzy
+msgid "contrat"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+msgid "Contrat|Client"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Ouverture"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Cloture"
+msgstr "Clotûre"
+
+#: app/models/client.rb:-
+msgid "Contrat|Paquets count"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Astreinte"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "client"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Nom"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Description"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Mailingliste"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Adresse"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Photo"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Support"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr ""
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Beneficiaires count"
+msgstr "Bénéficiaire"
+
+#: app/models/client.rb:-
 msgid "paquet"
 msgstr ""
 
@@ -198,68 +417,6 @@ msgstr ""
 
 #: app/models/client.rb:-
 msgid "Paquet|Changelogs count"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "client"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Nom"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Description"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Mailingliste"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Adresse"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Photo"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Support"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Code acces"
-msgstr ""
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Client|Beneficiaires count"
-msgstr "Bénéficiaire"
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "contrat"
-msgstr "Contrat"
-
-#: app/models/client.rb:-
-msgid "Contrat|Client"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Ouverture"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Cloture"
-msgstr "Clotûre"
-
-#: app/models/client.rb:-
-msgid "Contrat|Paquets count"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Astreinte"
 msgstr ""
 
 #: app/models/commentaire.rb:-
@@ -532,18 +689,6 @@ msgstr ""
 msgid "Engagement|Typedemande"
 msgstr ""
 
-#: app/models/etape.rb:-
-msgid "etape"
-msgstr ""
-
-#: app/models/etape.rb:-
-msgid "Etape|Nom"
-msgstr ""
-
-#: app/models/etape.rb:-
-msgid "Etape|Description"
-msgstr ""
-
 #: app/models/etatreversement.rb:-
 msgid "etatreversement"
 msgstr ""
@@ -723,6 +868,10 @@ msgstr ""
 
 #: app/models/logiciel.rb:-
 msgid "Logiciel|Groupe"
+msgstr ""
+
+#: app/models/logiciel.rb:18
+msgid "Vous devez spécifier au moins une compétence"
 msgstr ""
 
 #: app/models/machine.rb:-
@@ -939,4 +1088,82 @@ msgstr ""
 
 #: app/models/urlreversement.rb:-
 msgid "Urlreversement|Valeur"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:3
+msgid "connecté"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:42
+msgid "Vous pouvez consulter la liste des %s. Ces logiciels sont répartis"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:43
+msgid "selon une %s précise et simple, par groupe d'activité."
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:46
+msgid "Nous avons des offres d'assistance, de support et de maintenance pour"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:47
+msgid "l'ensemble de ces logiciels, n'hésitez pas à nous"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:48
+#, fuzzy
+msgid "contacter"
+msgstr "Contrat"
+
+#: app/views/bienvenue/index.rhtml:50
+msgid "Vous pouvez également accéder aux %s réalisées par notre équipe."
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:64
+msgid "Lorsque vous êtes %s, vous avez accès à un rapport d'activité"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:65
+msgid "dynamique montrant l'activité de notre service en temps réel."
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:66
+msgid "Vous avez également accès à l'intégralité des documents que nous vous"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:67
+msgid "livrons, et ce de manière centralisée et versionnée"
+msgstr ""
+
+#: app/views/clients/list.rhtml:24
+msgid "ajouter un logo"
+msgstr ""
+
+#: app/views/demandes/_tab_menu.rhtml:9
+msgid "Description"
+msgstr ""
+
+#: app/views/demandes/_tab_menu.rhtml:12
+#, fuzzy
+msgid "Commentaires"
+msgstr "Privé"
+
+#: app/views/demandes/_tab_menu.rhtml:15
+msgid "Historique"
+msgstr ""
+
+#: app/views/demandes/_tab_menu.rhtml:18
+msgid "Pièces jointes"
+msgstr ""
+
+#: app/views/demandes/_tab_menu.rhtml:21
+msgid "Appels Téléphoniques"
+msgstr ""
+
+#: app/views/demandes/_tab_menu.rhtml:24
+msgid "CNS"
+msgstr ""
+
+#: app/views/layouts/standard-layout.rhtml:31
+msgid "S'identifier"
 msgstr ""
