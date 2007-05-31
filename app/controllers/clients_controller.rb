@@ -25,6 +25,10 @@ class ClientsController < ApplicationController
 
   def show
     @client = Client.find(params[:id], :include => [:socles])
+    # allows to see only binaries of this client
+    Binaire.set_scope(@client.contrat_ids)
+    render
+    Binaire.remove_scope
   end
 
   def new
