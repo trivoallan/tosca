@@ -95,7 +95,7 @@ class Demande < ActiveRecord::Base
     if corrigee
       appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
       if appellee
-        result = compute_diff(appellee.updated_on, corrigee.updated_on, client.support)
+        result = compute_temps_ecoule(6) 
       end
     end
     result
@@ -120,7 +120,7 @@ class Demande < ActiveRecord::Base
     if contournee
       appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
       if appellee
-        result = compute_diff(appellee.updated_on, contournee.updated_on, client.support)
+        result = compute_temps_ecoule(5)
       end
     end
     result
@@ -182,8 +182,7 @@ class Demande < ActiveRecord::Base
     - (temps_passe - delai * client.support.interval_in_seconds)
   end
 
-  def compute_temps_ecoule
-#     return (self.updated_on - self.created_on).to_i
+  def compute_temps_ecoule(to = nil)
     return 0 unless self.versions.size > 0
     support = client.support
     changes = self.versions # Demandechange.find(:all)
@@ -192,22 +191,16 @@ class Demande < ActiveRecord::Base
     delai = 0
     for c in changes
       sup = { :date => c.updated_on, :statut => c.statut_id }
-#      delai += (sup[:date] - inf[:date]).to_s + " de " + inf[:statut].nom + " à " + sup[:statut].nom + "<br />"
       unless statuts_sans_chrono.include? inf[:statut]
         delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
                               Jourferie.get_dernier_jour_ouvre(sup[:date]),
                               support)
-#         puts 'debut ' + Jourferie.get_premier_jour_ouvre(inf[:date]).to_s
-#         puts 'fin ' + Jourferie.get_dernier_jour_ouvre(sup[:date]).to_s
-#         puts 'delai ' + compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
-#                               Jourferie.get_dernier_jour_ouvre(sup[:date]),
-#                               support).to_s
-#           delai += sup[:date] - inf[:date]
       end
       inf = sup
+      break if to == inf[:statut]
     end
 
-    unless statuts_sans_chrono.include? self.statut.id
+    unless statuts_sans_chrono.include? self.statut.id and to != nil
       sup = { :date => Time.now, :statut => self.statut_id }
       delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]), 
                             Jourferie.get_dernier_jour_ouvre(sup[:date]), 
