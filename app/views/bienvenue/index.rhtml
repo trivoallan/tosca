@@ -27,7 +27,7 @@
 <div class="sommaire show">
   <h3>Demandes</h3>
   <% if user %>
-    <p><%= "Vous pouvez consulter la #{link_to_requests} : " +
+    <p><%= "Vous pouvez consulter la liste des #{link_to_requests} : " +
           show_liste(@demandes, 'Demande en cours', :title => false) { |d| 
             link_to_demande(d, :show_id => true, :icon_severite => true) 
           } %></p>
