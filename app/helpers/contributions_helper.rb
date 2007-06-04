@@ -9,9 +9,11 @@ module ContributionsHelper
     return '' unless contribs.size > 0
     out = '<div class="bloc_scroll"><table class="show"><tr><th>Date</th><th>Version</th><th>Résumé</th></tr>'
     contribs.each{|c|
+      out << "<tr class=\"#{cycle('pair', 'impair')}\">"
       out << "<td>#{c.reverse_le_formatted}</td>"
       out << "<td>#{c.version}</td>"
       out << "<td>#{public_link_to_contribution(c)}</td>"
+      out << '</tr>'
     }
     out << '</table></div>'
   end
