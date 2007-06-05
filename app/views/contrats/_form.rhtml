@@ -15,6 +15,9 @@
     <th><label for="contrat_astreinte">Astreinte ?</label></th>
     <td><%= check_box :contrat, :astreinte %></td>
   </tr><tr>
+    <th><label for="contrat_socle">Socle Entier ?</label></th>
+    <td><%= check_box :contrat, :socle %></td>
+  </tr><tr>
     <th><label>Engagements <%= link_to_new_engagement %></label></th>
     <td><%= show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]' ) %></td>
   </tr><tr>

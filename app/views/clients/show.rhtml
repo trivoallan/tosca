@@ -19,8 +19,12 @@
   edit = link_to_edit_contrat(c)
   result << "#{edit}&nbsp;" if edit
   result << "Du #{c.ouverture_formatted} au #{c.cloture_formatted} "
-  result << "concernant #{c.paquets_count} paquets sources "
-  result << "et #{c.binaires.size} binaires :"
+  if c.socle
+    result << " sur l'ensemble de votre distribution : "
+  else
+    result << "concernant #{c.paquets_count} paquets sources "
+    result << "et #{c.binaires.size} binaires :"
+  end
   titres = ['Demande','Sévérité','Contournement','Correction']
   oldtypedemande = nil
   result << show_table_engagements(c.engagements)

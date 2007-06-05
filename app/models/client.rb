@@ -27,6 +27,17 @@ class Client < ActiveRecord::Base
     return (contrats.empty? ? '0' : contrats.join(','))
   end
 
+  # TODO : c'est lent et moche
+  # returns true if we have a contract to support an entire distribution 
+  # for this client, false otherwise.
+  def support_distribution
+    contrats = self.contrats.find(:all, :select => 'socle')
+    result = false
+    contrats.each { |c| result = true if c.socle }
+    result
+  end
+
+
   def beneficiaire_ids
     benefs = self.beneficiaires.find(:all, :select => 'id').collect{|c| c.id}
     return (benefs.empty? ? '0' : benefs.join(','))

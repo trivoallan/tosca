@@ -371,7 +371,11 @@ class DemandesController < ApplicationController
     @socles = Socle.find_select
     if beneficiaire
       client = beneficiaire.client
-      @logiciels = client.logiciels
+      if client.support_distribution
+        @logiciels = Logiciel.find_select
+      else
+        @logiciels = client.logiciels
+      end
       @typedemandes = client.typedemandes
       @clients = [ client ] 
     else
