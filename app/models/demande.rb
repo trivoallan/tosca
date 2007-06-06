@@ -70,7 +70,6 @@ class Demande < ActiveRecord::Base
     'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
     'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
 
-
   def updated_on_formatted
     d = @attributes['updated_on']
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
@@ -83,7 +82,8 @@ class Demande < ActiveRecord::Base
 
   def self.content_columns 
     @content_columns ||= columns.reject { |c| c.primary || 
-        c.name =~ /(_id|_on|version|resume|description|reproductible)$/ || c.name == inheritance_column } 
+      c.name =~ /(_id|_on|version|resume|description|reproductible)$/ || 
+      c.name == inheritance_column } 
   end
 
   def client
@@ -109,12 +109,10 @@ class Demande < ActiveRecord::Base
 
   def temps_correction
     result = 0
-    corrigee = self.versions.find(:first, :conditions => 'statut_id IN (6,7)', :order => 'updated_on ASC')
-    if corrigee
-      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
-      if appellee
-        result = compute_temps_ecoule(corrigee.statut_id) 
-      end
+    corrigee = self.versions.find(:first, :conditions => 'statut_id IN (6,7)',
+                                  :order => 'updated_on ASC')
+    if corrigee and self.appellee()
+      result = compute_temps_ecoule(corrigee.statut_id) 
     end
     result
   end
@@ -124,7 +122,8 @@ class Demande < ActiveRecord::Base
   # TODO : inaffichable dans la liste des demandes > améliorer le calcul de ce délais
   def delais_correction
     delais = paquets.compact.collect{|p|
-     p.correction(typedemande_id, severite_id) * p.contrat.client.support.interval_in_seconds 
+     p.correction(typedemande_id, severite_id) * 
+      p.contrat.client.support.interval_in_seconds 
    }.min
   end
 
@@ -134,12 +133,10 @@ class Demande < ActiveRecord::Base
 
   def temps_contournement
     result = 0
-    contournee = self.versions.find(:first, :conditions => 'statut_id=5', :order => 'updated_on ASC')
-    if contournee
-      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
-      if appellee
-        result = compute_temps_ecoule(5)
-      end
+    contournee = self.versions.find(:first, :conditions => 'statut_id=5', 
+                                    :order => 'updated_on ASC')
+    if contournee and self.appellee()
+      result = compute_temps_ecoule(5)
     end
     result
   end
@@ -152,9 +149,9 @@ class Demande < ActiveRecord::Base
     result = 0
     first = self.versions[0]
     if (self.versions.size > 2) and (first.statut_id == 1)
-      appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
       if appellee
-        result = compute_diff(first.updated_on, appellee.updated_on, client.support) if appellee
+        result = compute_diff(first.updated_on, appellee.updated_on, 
+                              client.support) 
       end
     end
     result
@@ -276,5 +273,13 @@ class Demande < ActiveRecord::Base
     dayly_time = support.fermeture - support.ouverture # in hours
     Lstm.time_in_french_words(distance_in_seconds, dayly_time)
   end
+
+  private 
+  def appellee 
+    @appellee ||= self.versions.find(:first, :conditions => 'statut_id=2', 
+                                    :order => 'updated_on ASC')
+  end
+
+
 
 end
