@@ -109,11 +109,11 @@ class Demande < ActiveRecord::Base
 
   def temps_correction
     result = 0
-    corrigee = self.versions.find(:first, :conditions => 'statut_id=6', :order => 'updated_on ASC')
+    corrigee = self.versions.find(:first, :conditions => 'statut_id IN (6,7)', :order => 'updated_on ASC')
     if corrigee
       appellee = self.versions.find(:first, :conditions => 'statut_id=2', :order => 'updated_on ASC')
       if appellee
-        result = compute_temps_ecoule(6) 
+        result = compute_temps_ecoule(corrigee.statut_id) 
       end
     end
     result
