@@ -51,8 +51,14 @@ module ImagesHelper
 
   @@delete = nil
   def image_delete
-    @delete ||= image_tag('delete_icon.gif', image_options('Supprimer', '15x17'))
+    @@delete ||= image_tag('delete_icon.gif', image_options('Supprimer', '15x17'))
   end
+
+  @@hide_notice = nil
+  def image_hide_notice
+    @@hide_notice ||= image_tag('delete_icon.gif', image_options('Masquer', '15x17'))
+  end
+
 
   # Navigation
 

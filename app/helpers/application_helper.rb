@@ -265,7 +265,7 @@ module ApplicationHelper
   def show_notice
       "<div id=\"information_notice\" class=\"information notice\">
          <div class=\"close_information\" onclick=\"Element.hide('information_notice')\">" + 
-         image_delete << "</div>
+         image_hide_notice << "</div>
          <p>" << flash[:notice] << "</p>  
        </div>"
   end
@@ -273,7 +273,7 @@ module ApplicationHelper
   def show_warn
       "<div id=\"information_error\" class=\"information error\">
          <div class=\"close_information\" onclick=\"Element.hide('information_error')\">" + 
-         image_delete << "</div>
+         image_hide_notice << "</div>
          <h2>Une erreur s&#146;est produite</h2>
          <ul><li>" << flash[:warn] << "</li></ul>
        </div>"
