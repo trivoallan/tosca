@@ -73,7 +73,7 @@ class ExportController < ApplicationController
               'logiciel', 
               'bénéficiaire', 
               'client', 
-              'ingénieur', 
+              'responsable', 
               'sévérité', 
               'reproductible', 
               'version', 
@@ -84,6 +84,17 @@ class ExportController < ApplicationController
               'statut', 
               'type' ]
       demandes.each do |d|
+        paquets = d.paquets
+        if paquets and paquets.size > 0
+          if paquets.size == 1
+            version = "'#{paquets.first.version}"
+          else
+            version = paquets.collect {|p| p.version}.join("\n")
+          end
+        else
+          version = '-'
+        end
+
         csv << [d.id, 
                 d.logiciels_nom, 
                 (d.beneficiaires_nom), 
@@ -91,9 +102,9 @@ class ExportController < ApplicationController
                 (d.ingenieurs_nom), 
                 d.severites_nom, 
                 d.reproduit, 
-                'version?', 
+                version,
                 d.created_on_formatted, 
-                'socle?', 
+                (d.socle ? d.socle.nom : '-'), 
                 d.updated_on_formatted, 
                 d.resume, 
                 d.statuts_nom,              

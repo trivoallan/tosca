@@ -59,7 +59,7 @@ class Demande < ActiveRecord::Base
   SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' + 
     'logiciels.nom as logiciels_nom, id_benef.nom as beneficiaires_nom, ' +
     'typedemandes.nom as typedemandes_nom, clients.nom as clients_nom, ' +
-    'id_inge.nom as ingenieurs_nom '
+    'id_inge.nom as ingenieurs_nom, statuts.nom as statuts_nom '
   JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' + 
     'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
     'INNER JOIN identifiants id_benef ON id_benef.id=beneficiaires.identifiant_id '+
