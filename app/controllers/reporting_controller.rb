@@ -307,7 +307,7 @@ class ReportingController < ApplicationController
       e = d.engagement(@contrat.id)
       next unless e
       
-      rappel = d.temps_rappel
+      rappel = d.temps_rappel()
       fill_one_report(rappels, rappel, 1.hour, last_index)
 
       contournement = distance_of_time_in_working_days(d.temps_contournement, amplitude)

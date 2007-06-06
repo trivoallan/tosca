@@ -142,17 +142,15 @@ class Demande < ActiveRecord::Base
   end
 
   def affiche_temps_rappel
-    distance_of_time_in_french_words(self.temps_rappel, client.support)
+    self.distance_of_time_in_french_words(self.temps_rappel, client.support)
   end
 
   def temps_rappel
     result = 0
     first = self.versions[0]
-    if (self.versions.size > 2) and (first.statut_id == 1)
-      if appellee
-        result = compute_diff(first.updated_on, appellee.updated_on, 
-                              client.support) 
-      end
+    if (self.versions.size > 2) and (first.statut_id == 1) and self.appellee()
+      result = compute_diff(first.updated_on, appellee().updated_on, 
+                            client.support) 
     end
     result
   end
@@ -274,12 +272,14 @@ class Demande < ActiveRecord::Base
     Lstm.time_in_french_words(distance_in_seconds, dayly_time)
   end
 
-  private 
-  def appellee 
+
+
+  protected
+  # this method must be protected and cannot be private as Ruby 1.8.6
+  def appellee
     @appellee ||= self.versions.find(:first, :conditions => 'statut_id=2', 
                                     :order => 'updated_on ASC')
   end
-
 
 
 end
