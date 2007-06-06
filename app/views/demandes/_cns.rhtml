@@ -1,11 +1,11 @@
 <div class="demande_tab_content" name="demande_tab_content">
 
 <% size = @demande.paquets.size %> 
-<p>Votre demande impacte <%= pluralize(size, 'paquet source') %> sur 
-<%= @demande.logiciel.nom if @demande.logiciel %>:</p>
-<% if size > 0 %>
+<% if size == 0 %>
+<p>Votre demande n&lsquo;impacte pas de paquet source.</p>
+<% else %>
+<p>Votre demande impacte <%= pluralize(size, 'paquet source') %>.</p>
 <table>
-
   <tr>
     <th>Paquet</th>
     <th>Version</th>    
@@ -16,13 +16,12 @@
   <% type_id = @demande.typedemande_id %>
   <% severite_id = @demande.severite_id %>
 
-  <% @demande.paquets.each_index do |i| %>
-  <% p = @demande.paquets[i] %>
+  <% @demande.paquets.each_with_index do |p,i| %>
   <tr class="<%= cycle('pair', 'impair') %>">
     <td><%= p.nom %></td>
     <td><%= p.version %></td>
-    <td><%= "#{ display_jours p.contournement(type_id, severite_id) }" %></td>
-    <td><%= "#{ display_jours p.correction(type_id, severite_id) }" %></td>
+    <td><%= "#{ Lstm.time_in_french_words(p.contournement(type_id, severite_id).days,true)}" %></td>
+    <td><%= "#{ Lstm.time_in_french_words(p.correction(type_id, severite_id).days,true) }" %></td>
   </tr>
   <% end %>
 </table>

@@ -161,8 +161,8 @@ class DemandesController < ApplicationController
         output << "> : "
         output << "#{p.nom}-#{p.version}-#{p.release}</td>"
         if engagement
-          output << "<td><%= display_jours #{engagement.contournement}%> </td>"
-          output << "<td><%= display_jours #{engagement.correction}%> </td>"
+          output << "<td><%= Lstm.time_in_french_words(#{engagement.contournement}.days, true)%> </td>"
+          output << "<td><%= Lstm.time_in_french_words(#{engagement.correction}.days, true)%> </td>"
         end
         output << "</tr>"
       }

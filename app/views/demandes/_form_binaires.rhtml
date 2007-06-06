@@ -23,8 +23,8 @@
                   (@demande.paquets.include? b.paquet)) %></td>
         <td><%= b.paquet.nom %></td>
         <td><%= "#{b.paquet.version}-#{b.paquet.release}" %></td>
-        <td><%= display_jours b.paquet.contournement(@demande.typedemande_id, @demande.severite_id) %></td>
-        <td><%= display_jours b.paquet.correction(@demande.typedemande_id, @demande.severite_id) %></td>
+        <td><%= Lstm.time_in_french_words(b.paquet.contournement(@demande.typedemande_id, @demande.severite_id).days, true) %></td>
+        <td><%= Lstm.time_in_french_words(b.paquet.correction(@demande.typedemande_id, @demande.severite_id).days, true) %></td>
       <% end %>  
       <td><%= check_box_tag('demande[binaire_ids][]', b.id, 
                 (@demande.binaires.include? b)) %></td>

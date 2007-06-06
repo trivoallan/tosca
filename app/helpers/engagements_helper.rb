@@ -67,8 +67,8 @@ module EngagementsHelper
       out << (oldtypedemande == e.typedemande_id ? '<td></td>' : 
                 "<td>#{e.typedemande.nom}</td>" )
       out << "<td>#{e.severite.nom}</td>"
-      out << "<td>#{display_jours e.contournement}</td>"
-      out << "<td>#{display_jours e.correction}</td>"
+      out << "<td>#{Lstm.time_in_french_words(e.contournement.days, true)}</td>"
+      out << "<td>#{Lstm.time_in_french_words(e.correction.days, true)}</td>"
       if controller.controller_name == 'engagements'
         out << "#{link_to_actions_table e}"
       end

@@ -22,6 +22,9 @@ class Engagement < ActiveRecord::Base
     (limite == -1 ? true : (delai < limite*3600))
   end
 
+  def display_working_days(time, working_time)
+  end
+
 
   INCLUDE = [:typedemande,:severite]
   ORDER = 'engagements.typedemande_id, engagements.severite_id DESC, engagements.contournement DESC'
