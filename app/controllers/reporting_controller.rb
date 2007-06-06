@@ -3,8 +3,9 @@
 #####################################################
 class ReportingController < ApplicationController
   require 'digest/sha1'
-  model   :identifiant
   layout  'standard-layout'
+  helper :demandes
+
 
   @@titres = { 
     :repartition => 'Répartition des demandes reçues',
@@ -91,7 +92,6 @@ class ReportingController < ApplicationController
       end
     end
 
-
     #on nettoie 
     # TODO retravailler le nettoyage
     # reporting = File.expand_path('public/reporting', RAILS_ROOT)
@@ -119,6 +119,15 @@ class ReportingController < ApplicationController
     @first_col.each { |c| c.gsub!('\n','') }
   end
 
+  def flux
+    #cas spécial : consultation directe
+    options = { :per_page => 10, :order => 'created_on DESC', 
+      :select => Demande::SELECT_LIST, 
+      :joins => Demande::JOINS_LIST }
+    @demande_pages, @demandes = paginate :demandes, options
+  end
+
+
   private
 
   # initialise toutes les variables de classes nécessaire
@@ -137,7 +146,7 @@ class ReportingController < ApplicationController
     @first_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
-    while (current_month < end_date) do
+    while (current_month <= end_date) do
       @first_col.push current_month.strftime('%b \n%Y')
       current_month = current_month.advance(:months => 1)
     end

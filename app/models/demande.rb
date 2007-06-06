@@ -53,6 +53,24 @@ class Demande < ActiveRecord::Base
     "#{typedemande.nom} (#{severite.nom}) : #{description}"
   end
 
+  # We use finder for overused view mainly (demandes/list)
+  # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
+  # it's not enough, but a good start :)
+  SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' + 
+    'logiciels.nom as logiciels_nom, id_benef.nom as beneficiaires_nom, ' +
+    'typedemandes.nom as typedemandes_nom, clients.nom as clients_nom, ' +
+    'id_inge.nom as ingenieurs_nom '
+  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' + 
+    'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
+    'INNER JOIN identifiants id_benef ON id_benef.id=beneficiaires.identifiant_id '+
+    'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
+    'LEFT OUTER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' + 
+    'LEFT OUTER JOIN identifiants id_inge ON id_inge.id=ingenieurs.identifiant_id '+
+    'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' + 
+    'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
+    'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
+
+
   def updated_on_formatted
     d = @attributes['updated_on']
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"

@@ -80,6 +80,19 @@ module DemandesHelper
     image_tag("severite_#{d.severite_id}.gif", :title => desc, :alt => desc )
   end
 
+  #Display the short way of severity
+  # TODO : take the id and make the case on the id
+  def short_severite(d)
+    case d.severite_id
+    when 1 then 'Bl'
+    when 2 then 'Ma'
+    when 3 then 'mi'
+    when 4 then 'so'
+    else
+      'wtf'
+    end
+  end
+
   def render_table(options)
     render :partial => "report_table", :locals => options
   end

@@ -1,0 +1,39 @@
+<div class="content" id="content">
+<h1>Flux <%= image_spinner %></h1>
+<% links = show_pages_links(@demande_pages, 'une nouvelle demande') %>
+<%= links %>
+
+<table id="demandes_list" class="show" width="80%">
+   <tr>
+      <th width='2%'>Id</th>
+        <th width='8%'>Déposé le</th>
+        <th width='5%'>Type</th>
+        <!--<th>Sévérité</th>-->
+        <% if @ingenieur %>
+          <th width='7%'>Client</th>
+        <% end %>
+        <th>Résumé</th>
+   </tr>
+
+   <% for demande in @demandes %>
+   <tr class="<%=cycle('pair', 'impair')%>">
+        <td><%= demande.id %></td>
+        <td><span class="date"><%=h demande.created_on_formatted %></span></td>
+        <td><%= demande.typedemandes_nom[0].chr %><%= short_severite(demande) %></td>
+       <% if @ingenieur %>
+        <td><%= demande.clients_nom %></td>
+       <% end %>
+        <td class="wrapped"><b><%= link_to_demande demande %></b></td>
+   </tr>
+   <% end %>
+<% if @demandes.size == 0 %>
+  <tr><td colspan="11">
+    <p>Aucune demande déclarée.</p>
+  </td></tr>
+<% end %>
+</table>
+
+
+
+<%= links%>
+</div>

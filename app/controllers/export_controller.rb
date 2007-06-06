@@ -61,29 +61,12 @@ class ExportController < ApplicationController
   end
 
 
-  # dirty hack to the end :)
-  # c'est une copie de ceux du controlleur des demandes pour éviter les effets
-  # de bord. Le premier n'influe pas sur le second
-  # quoique ... TODO : on se repete entre ici et la méthode list.
-  # TODO : c'est pas dry,  trouver une solution !
-  SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' + 
-    'logiciels.nom as logiciels_nom, id_benef.nom as beneficiaires_nom, ' +
-    'typedemandes.nom as typedemandes_nom, clients.nom as clients_nom, ' +
-    'id_inge.nom as ingenieurs_nom, statuts.nom as statuts_nom '
-  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' + 
-    'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
-    'INNER JOIN identifiants id_benef ON id_benef.id=beneficiaires.identifiant_id '+
-    'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
-    'LEFT OUTER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' + 
-    'LEFT OUTER JOIN identifiants id_inge ON id_inge.id=ingenieurs.identifiant_id '+
-    'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' + 
-    'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
-    'INNER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
+
 
   # return the contents of a demande in a table in CSV format
   def demandes
     options = { :order => 'updated_on DESC', :conditions => flash[:conditions],
-      :select => SELECT_LIST, :joins => JOINS_LIST }
+      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
     demandes = Demande.find(:all, options)
     stream_csv do |csv|
       csv << ['id', 
