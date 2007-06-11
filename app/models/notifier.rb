@@ -53,8 +53,7 @@ class Notifier < ActionMailer::Base
     # Email header info MUST be added here
     demande =  @body[:demande]
     @recipients = compute_recipients(demande)
-    @cc = demande.beneficiaire.client.mailingliste
-    @cc << ", " << demande.mail_cc if demande.mail_cc
+    @cc = compute_copy(demande)
     @from = FROM
     @content_type = HTML_CONTENT
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
@@ -70,8 +69,7 @@ class Notifier < ActionMailer::Base
     # Email header info MUST be added here
     demande =  @body[:demande]
     @recipients = compute_recipients(demande)
-    @cc = demande.beneficiaire.client.mailingliste
-    @cc << ", " << demande.mail_cc if demande.mail_cc
+    @cc = compute_copy(demande)
     @from = FROM
     @content_type = HTML_CONTENT
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
@@ -88,8 +86,7 @@ class Notifier < ActionMailer::Base
     # Email header info MUST be added here
     demande =  @body[:demande]
     @recipients = compute_recipients(demande)
-    @cc = demande.beneficiaire.client.mailingliste
-    @cc << ", " << demande.mail_cc if demande.mail_cc
+    @cc = compute_copy(demande) 
     @from = FROM
     @content_type = HTML_CONTENT
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
@@ -99,6 +96,14 @@ class Notifier < ActionMailer::Base
   end
 
   private
+  def compute_copy(demande)
+    res = demande.beneficiaire.client.mailingliste
+    if demande.mail_cc and demande.mail_cc.size > 4
+      res << ", " << demande.mail_cc 
+    end
+    res
+  end
+
   def compute_recipients (demande)
     result = demande.beneficiaire.identifiant.email
     # l'ingénieur est non assigné initialement
