@@ -15,7 +15,7 @@ class SoclesController < ApplicationController
 
   def list
     @socle_pages, @socles = paginate :socles, :per_page => 250,
-    :include => [:machine], :order=>["socles.nom"]
+    :include => [:machine], :order=> 'socles.nom'
   end
 
   def show
