@@ -195,6 +195,23 @@ module ImagesHelper
     @@date_from ||= image_tag('cal.gif', @@date_opt.dup.update(:id => 'date_from'))
   end
 
+
+
+  # Severity
+  
+  # Display an icon matching severity
+  @@image_severite_default = nil #image_tag('default_severite.gif', :title => "Severite" , :alt => "Severite")
+  @@images_severite =
+    {
+      "default" => @@image_severite_default
+    }
+  def icon_severite(d)
+    desc = (d.respond_to?(:severites_nom) ? d.severites_nom : d.severite.nom)
+    file_name = "severite_#{d.severite_id}.gif"
+    @@images_severite[file_name] ||= image_tag(file_name, :title => desc, :alt => desc)
+  end
+
+
   # used to generate js for calendar. It uses an array of 2 arguments. See 
   # link:"http://www.dynarch.com/projects/calendar/"
   #

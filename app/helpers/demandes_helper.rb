@@ -74,12 +74,6 @@ module DemandesHelper
     end
   end
 
-  # Display an icon matching severity
-  def icon_severite(d)
-    desc = (d.respond_to?(:severites_nom) ? d.severites_nom : d.severite.nom)
-    image_tag("severite_#{d.severite_id}.gif", :title => desc, :alt => desc )
-  end
-
   #Display the short way of severity
   # TODO : take the id and make the case on the id
   def short_severite(d)
