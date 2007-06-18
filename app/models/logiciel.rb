@@ -3,6 +3,7 @@
 #####################################################
 class Logiciel < ActiveRecord::Base
 
+  has_many :states
   has_many :contributions
   has_and_belongs_to_many :competences
   has_many :demandes
@@ -16,6 +17,16 @@ class Logiciel < ActiveRecord::Base
 
   validates_length_of :competences, :minimum => 1, :message => 
     _('Vous devez spécifier au moins une compétence')
+
+
+  def active?
+    @states.each do |state|
+      if state.name == "disabled"
+        return false
+      end
+    end
+    true
+  end
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 

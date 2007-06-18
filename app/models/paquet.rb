@@ -14,7 +14,7 @@ class Paquet < ActiveRecord::Base
   has_many :binaires, :dependent => :destroy
 
 
-  def self.content_columns 
+  def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary || 
         c.name =~ /(_id|taille|_count)$/ || c.name == inheritance_column } 
   end

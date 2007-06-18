@@ -141,14 +141,16 @@ class DemandesController < ApplicationController
       output << "<tr><td> <b>Paquets</b> </td>"
       output << "<td> Contournement  </td><td> Correction  </td><tr>"
       
-      paquets.each {|p| 
+      paquets.each do |p|
+        if p.active
         contrat = Contrat.find(p.contrat.id)
         engagement = contrat.engagements.find_by_typedemande_id_and_severite_id(typedemande.id, severite.id)
         output << "<tr><td>"
         #TODO : remplacer ce truc par un <%= check_box ... %>
         output << "<input type=\"checkbox\" id=\"#{p.id}\""
         output << " name=\"demande[paquet_ids][]\" value=\"#{p.id}\""
-        output << " checked=\"checked\"" if selecteds and selecteds.include? p.id.to_s
+        output << ' checked="checked"' if selecteds and selecteds.include? p.id.to_s
+        #output << ' disabled="disabled" ' unless p.active
         output << "> : "
         output << "#{p.nom}-#{p.version}-#{p.release}</td>"
         if engagement
@@ -156,7 +158,8 @@ class DemandesController < ApplicationController
           output << "<td><%= Lstm.time_in_french_words(#{engagement.correction}.days, true)%> </td>"
         end
         output << "</tr>"
-      }
+        end
+      end
       output << "</table>"
     end
     
