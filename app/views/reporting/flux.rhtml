@@ -12,6 +12,7 @@
         <% if @ingenieur %>
           <th width='7%'>Client</th>
         <% end %>
+        <th width='7%'>Statut</th>
         <th>Résumé</th>
    </tr>
 
@@ -23,6 +24,7 @@
        <% if @ingenieur %>
         <td><%= demande.clients_nom %></td>
        <% end %>
+        <td><%= demande.statuts_nom %></td>
         <td class="wrapped"><b><%= link_to_demande demande %></b></td>
    </tr>
    <% end %>
