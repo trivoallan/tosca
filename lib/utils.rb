@@ -8,7 +8,7 @@ module Metadata
 
   # application
   NOM_COURT_APPLICATION = "TOSCA"
-  VERSION_APPLICATION = "0.5.1"
+  VERSION_APPLICATION = "0.5.2"
   COPYRIGHT_APPLICATION = " ©2007 Linagora SA".gsub(' ','&nbsp;')
 
   # service
@@ -25,7 +25,8 @@ module Metadata
   SITE_INTERNET = "08000LINUX.com"
 
   # message d'erreur
-  DEMANDE_NOSTATUS = 'Cette demande n\'a pas de statut, veuillez contacter la cellule'
+  DEMANDE_NOSTATUS = 'Cette demande n\'a pas de statut, ' + 
+    'veuillez contacter la cellule'
 end
 
 # Converts the date value of a calendar into a Time object

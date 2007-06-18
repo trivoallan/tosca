@@ -54,7 +54,11 @@ class DemandesController < ApplicationController
        ['filters', 'statut_id', 'demandes.statut_id', :equal ]
      ])
     flash[:conditions] = options[:conditions] = conditions if conditions
-	
+
+    # DIRTY HACK : WARNING
+    # ALERT !!!! recopied in export/demandes !!!!
+    # We need this hack for avoiding 7 includes
+    # TODO : find a better way
     escope = {}
     if @beneficiaire
       escope = Demande.get_scope_without_include([@beneficiaire.client_id])
@@ -62,8 +66,6 @@ class DemandesController < ApplicationController
     if @ingenieur and not @ingenieur.expert_ossa
       escope = Demande.get_scope_without_include(@ingenieur.client_ids)
     end
-    # cet exclusive scope sert à ne pas se faire effacer les jointures
-    # c'est ça ou 7 include ... :/
     Demande.with_exclusive_scope(escope) do
       @demande_pages, @demandes = paginate :demandes, options
     end

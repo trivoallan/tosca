@@ -18,8 +18,8 @@ class ExportController < ApplicationController
     stream_csv do |csv|
       csv << %w(id type logiciel version etat résumé signalé cloturé délai)
       contributions.each do |c|
-        csv << [ c.id, c.typecontribution.nom, c.logiciel.nom, 
-                 "'"+c.version.to_s, c.etatreversement.nom, c.synthese,
+        csv << [ c.id, pnom(c.typecontribution), pnom(c.logiciel), 
+                 "'"+c.version.to_s, pnom(c.etatreversement), c.synthese,
                  c.reverse_le_formatted, (c.clos ? c.cloture_le_formatted : ''), 
                  Lstm.time_in_french_words(c.delai)
                ]
@@ -67,7 +67,21 @@ class ExportController < ApplicationController
   def demandes
     options = { :order => 'updated_on DESC', :conditions => flash[:conditions],
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
-    demandes = Demande.find(:all, options)
+    # DIRTY HACK : WARNING
+    # !!!! ALERT !!!! recopied from demandes/list
+    # We need this hack for avoiding 7 includes
+    # TODO : find a better way
+    escope = Hash.new
+    if @beneficiaire
+      escope = Demande.get_scope_without_include([@beneficiaire.client_id])
+    end
+    if @ingenieur and not @ingenieur.expert_ossa
+      escope = Demande.get_scope_without_include(@ingenieur.client_ids)
+    end
+    demandess = nil
+    Demande.with_exclusive_scope(escope) do
+      demandess = Demande.find(:all, options)
+    end
     stream_csv do |csv|
       csv << ['id', 
               'logiciel', 
@@ -83,7 +97,7 @@ class ExportController < ApplicationController
               'résumé', 
               'statut', 
               'type' ]
-      demandes.each do |d|
+      demandess.each do |d|
         paquets = d.paquets
         if paquets and paquets.size > 0
           if paquets.size == 1
@@ -104,14 +118,12 @@ class ExportController < ApplicationController
                 d.reproduit, 
                 version,
                 d.created_on_formatted, 
-                (d.socle ? d.socle.nom : '-'), 
+                pnom(d.socle), 
                 d.updated_on_formatted, 
                 d.resume, 
                 d.statuts_nom,              
                 d.typedemandes_nom ]
       end
-      #csv << ['id', 'type', 'statut', 'resume']
-      #csv << [demande.id, demande.typedemande.nom, demande.statut.nom, demande.resume]
     end 
   end
 
@@ -135,12 +147,18 @@ class ExportController < ApplicationController
        headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" 
      end
     # output = ''
-    # csv = FasterCSV.new(output, :row_sep => "\r\n", :col_sep => ";") 
-    # send_data 'toto', :type => 'text/csv', :filename => filename
-      render :text => Proc.new { |response, output|
-        csv = FasterCSV.new(output, :row_sep => "\r\n", :col_sep => ";") 
-        yield csv
-      }, :layout => false
+    # data = FasterCSV.new(stream_csv, :row_sep => "\r\n", :col_sep => ";") 
+    # send_data data, :type => 'text/csv', :filename => filename
+    data = Proc.new { |response, output|
+      csv = FasterCSV.new(output, :row_sep => "\r\n", :col_sep => ";") 
+      yield(csv)
+    }
+    render(:text => data, :layout => false)
+  end
+
+  # TODO : le mettre dans les utils ?
+  def pnom(object)
+    (object ? object.nom : '-')
   end
 
 end

@@ -31,6 +31,8 @@ class Demande < ActiveRecord::Base
   TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
   EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
 
+  # WARNING : you cannot use this scope with the optimisation hidden 
+  # in the model of Demande. You must then use get_scope_without_include
   def self.set_scope(client_ids)
     scope = { :conditions => [ 'beneficiaires.client_id IN (?)', client_ids],
       :include => [:beneficiaire] } 
