@@ -24,15 +24,22 @@ class DemandesController < ApplicationController
     render :action => 'list'
   end
 
-
   def list
     #cas spécial : consultation directe
     if params['numero'] 
       redirect_to :action => :comment, :id => params['numero']  and return
     end
 
-    options = { :per_page => 10, :order => 'updated_on DESC', 
-      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
+	if params['type'] == 'total'
+			@title = 'Liste de toutes les demandes'
+	    options = { :per_page => 10, :order => 'updated_on DESC', 
+    	  :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
+	else
+			@title = 'Liste des demandes en cours'
+	    options = { :per_page => 10, :order => 'updated_on DESC', 
+			:conditions => Demande::EN_COURS,
+    		:select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
+	end
     conditions = []
 
     # Specification of a filter f :
@@ -47,7 +54,7 @@ class DemandesController < ApplicationController
        ['filters', 'statut_id', 'demandes.statut_id', :equal ]
      ])
     flash[:conditions] = options[:conditions] = conditions if conditions
-
+	
     escope = {}
     if @beneficiaire
       escope = Demande.get_scope_without_include([@beneficiaire.client_id])

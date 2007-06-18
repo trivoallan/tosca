@@ -1,4 +1,4 @@
-<h1>Liste des demandes <%= image_spinner %></h1>
+<h1><%= @title %><%= image_spinner %></h1>
 
 <% links = show_pages_links(@demande_pages, 'une nouvelle demande', 
                      :url => '../demandes/list') %>
@@ -52,6 +52,6 @@
 </table>
 
 <%= links %>
-
+<%= link_to( 'Afficher toutes les demandes', 'list?type=total')%>
 
 
