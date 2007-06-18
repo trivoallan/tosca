@@ -50,3 +50,10 @@ Vous êtes administrateur du Portail 08000linux.com.
          link_to('Binaires', :controller => 'binaires', :action => 'list') ] %>
    <%= show_liste(links, 'Gestion des logiciels', :title => false) %>
 </div>
+<div class="sommaire show">
+	<h3>Reporting</h3>
+	<p>Comex</p>
+	<% links = [
+		link_to('Rapport Comex', :controller => 'reporting', :action =>'comex') ] %>
+	<%= show_liste(links, 'Rapport Comex', :title => false) %>
+</div>
