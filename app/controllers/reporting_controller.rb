@@ -2,8 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class ReportingController < ApplicationController
-  require 'digest/sha1'
-  layout  'standard-layout'
   helper :demandes
 
 
@@ -57,6 +55,95 @@ class ReportingController < ApplicationController
                    Contrat.find(:all, Contrat::OPTIONS))
   end
 
+	
+	def comex_resultat
+          control=params[:control]
+
+          @date={}
+          #c'est pas trop top
+		  if control == 'week_num'
+				  if params[:results].nil? or params[:results][:week_num].empty?
+						  redirect_to :action => 'comex' and return
+				  end
+		  results= params[:results]
+
+		  @date[:first_day] = Time.now.beginning_of_year + (results[:week_num].to_i-1).week
+		  @date[:end_day]= @date[:first_day] + 6.days
+		  else
+				  if params[:results].nil? or (params[:results][:first_day].empty? or params[:results][:end_day].empty?)
+						  redirect_to :action => 'comex' and return
+				  end
+				  results=params[:results]
+				  if results[:first_day] > results[:end_day]
+						  redirect_to :action => 'comex' and return
+				  end
+
+				  @date[:first_day]= results[:first_day].to_time
+				  @date[:end_day]= results[:end_day].to_time
+		  end
+
+          @clients=Client.find(:all )
+          @demandes={}
+          @demandes[:sem_prec]={}
+          @demandes[:nouvelles]={}
+          @demandes[:closes]={}
+
+          @total={:en_cours=>{}, :final=> {} }
+          compute_comex_report(:total)
+
+          @clients.each do |c|
+            @total[:final][c.nom]=0
+            @demandes[:sem_prec][c.nom]= {}	
+            @demandes[:nouvelles][c.nom]= {}
+            @demandes[:closes][c.nom]= {}
+            @total[:en_cours][c.nom]= {}
+            cscope = { :find => { :conditions => [ 'demandes.beneficiaire_id IN (?)', c.beneficiaire_ids ] } }
+            Demande.with_scope(cscope) {
+              compute_comex_report(c.nom)
+            }
+			end
+
+        end
+
+
+	def compute_comex_report(name)
+			@demandes[:sem_prec][name] = []
+			@demandes[:nouvelles][name] = []
+			liste_demande = @demandes[:closes]
+			liste_demande[name]=[]
+			@total[:en_cours][name] = []
+			@total[:final][name]=0
+			4.times do |i|
+					conditions_valeurs_total= { :s=>i+1 , 
+							:monday_before_week_asked=> ( @date[:first_day] - 7.days ) , 
+							:monday_week_asked => @date[:first_day], 
+							:sunday_week_asked=> @date[:end_day] 
+					}
+					conditions_sem_prec_total= [" severite_id = :s AND created_on < :monday_week_asked AND ("+
+							Demande::EN_COURS + 'OR ('+ Demande::TERMINEES + "AND updated_on BETWEEN :monday_week_asked AND :sunday_week_asked) )" , 
+							conditions_valeurs_total ]
+
+					@demandes[:sem_prec][name][i]=
+						Demande.count( :conditions=> conditions_sem_prec_total )
+
+					conditions_nouvelles_total= [" severite_id = :s AND " + Demande::EN_COURS+ " AND 
+						created_on BETWEEN :monday_week_asked AND :sunday_week_asked ", 
+						conditions_valeurs_total ]
+					@demandes[:nouvelles][name][i]=
+						Demande.count( :conditions=> conditions_nouvelles_total )
+
+					conditions_closes= [" severite_id = :s AND "+ Demande::TERMINEES +
+						"AND updated_on BETWEEN :monday_week_asked AND :sunday_week_asked",
+						conditions_valeurs_total ]
+					liste_demande[name][i]= Demande.count( :conditions=> conditions_closes  )
+
+					@total[:en_cours][name][i] = @demandes[:sem_prec][name][i] +
+						@demandes[:nouvelles][name][i] - @demandes[:closes][name][i]
+					@total[:final][name] += @total[:en_cours][name][i]
+
+			end
+	end
+		
 
   def general
     redirect_to(:action => 'configuration') and return unless params[:reporting]
@@ -90,8 +177,9 @@ class ReportingController < ApplicationController
           @colors[nom] = @@couleurs[1..size]
         end
       end
-    end
+    end	
 
+		
     #on nettoie 
     # TODO retravailler le nettoyage
     # reporting = File.expand_path('public/reporting', RAILS_ROOT)
@@ -174,6 +262,7 @@ class ReportingController < ApplicationController
   rescue
     flash.now[:warn] = 'paramètres incorrects'
     @contrat = nil
+
   end
 
   # initialisation de @data
@@ -506,6 +595,5 @@ class ReportingController < ApplicationController
     jo = period_in_hour * 60.0
     distance_in_minutes.to_f / jo.to_f 
   end
-
-
+		
 end

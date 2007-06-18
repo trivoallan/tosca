@@ -1,0 +1,66 @@
+<div class="content" id="content">
+	<h1>Activité OSSA par semaine</h1><br />
+	<% form_tag :action => 'comex_resultat' do %>
+		<h2>Recherche par numéro de semaine</h2>
+		<label for="week_num">Numéro de la semaine : </label>
+		<%= text_field :results, :week_num, :size => 2 %>
+		<br /><br />
+		<%= submit_tag ( "Voir le reporting pour cette semaine") %>
+		<%= hidden_field_tag(:control, :week_num) %>
+	<% end %>
+
+	<% form_tag :action => 'comex_resultat' do %>
+		<h2>Recherche par période </h2>
+		<p>
+		<label for="first_day">Premier jour : </label>
+		<%= text_field :results, :first_day, :size =>8 %>
+		<span class="calendarPicker">
+			<img alt="Choisissez une date" class="calendar_out" 
+				id="date_begin_from" onmouseout="this.className='calendar_out';" 
+					onmouseover="this.className='calendar_over';" 
+				src="/images/cal.gif?1174066161" style="cursor: pointer;" 
+					title="Sélecteur de date" height="16" width="16">
+		</span>
+   <script type="text/javascript">
+       Calendar.setup({
+        firstDay       :    1,            // first day of the week
+        inputField     :    "results_first_day", // id of the input field
+        button         :    "date_begin_from",  // trigger for the calendar (button ID)
+        align          :    "Br",         // alignment : Top left
+        singleClick    :    true,
+             ifFormat       : "%d-%m-%Y"  // our date only format
+         });
+   </script>
+
+
+
+			<br /><br />
+			<label for="end_day">Dernier jour : </label>
+			<%= text_field :results, :end_day,  :size => 8 %>
+			<span class="calendarPicker">
+				<img alt="Choisissez une date" class="calendar_out" 
+				id="date_end_from" onmouseout="this.className='calendar_out';"
+			       		onmouseover="this.className='calendar_over';" 
+				src="/images/cal.gif?1174066161" style="cursor: pointer;" 
+					title="Sélecteur de date" height="16" width="16">
+			</span>
+
+   <script type="text/javascript">
+       Calendar.setup({
+        firstDay       :    1,            // first day of the week
+        inputField     :    "results_end_day", // id of the input field
+        button         :    "date_end_from",  // trigger for the calendar (button ID)
+        align          :    "Br",         // alignment : Top left
+        singleClick    :    true,
+             ifFormat       : "%d-%m-%Y"  // our date only format
+         });
+   </script>
+
+			<br /><br />
+			<%= submit_tag ("voir le reporting pour cette période", :id=>2 ) %>
+			<%= hidden_field_tag(:control,:days) %>
+	<% end %>
+	
+	
+
+</div>
