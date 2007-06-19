@@ -4,7 +4,8 @@
 class LogicielsController < ApplicationController
   # public access to the list
   skip_before_filter :login_required
-  before_filter :login_required, :except => [:list,:show,:auto_complete_for_logiciel_nom]
+  before_filter :login_required, :except => 
+    [:list,:show,:auto_complete_for_logiciel_nom]
 
   helper :filters, :paquets, :demandes, :competences, :contributions
   
@@ -22,11 +23,11 @@ class LogicielsController < ApplicationController
 
   # ajaxified list
   def list
-	@qte = :total
-	if params['qte'] and params['qte']== 'mine'
-			@qte= :mine
-	end
-
+    @scope = nil
+    if @beneficiaire and 'true' == params['scope'] 
+      @scope = :supported
+    end
+    
     options = { :per_page => 10, :order => 'logiciels.nom',
       :include => [:groupe,:competences]}
     conditions = []
@@ -49,13 +50,10 @@ class LogicielsController < ApplicationController
      ])
     flash[:conditions] = options[:conditions] = conditions 
 
-	if @qte == :mine
-    	Logiciel.set_scope(@beneficiaire.contrat_ids) if @beneficiaire
-	end
+    # optional scope, for customers 
+    Logiciel.set_scope(@beneficiaire.contrat_ids) if @scope
     @logiciel_pages, @logiciels = paginate :logiciels, options
-	if @qte == :mine
-    	Logiciel.remove_scope if @beneficiaire
-	end
+    Logiciel.remove_scope if @scope
 
     # panel on the left side
     if request.xhr? 
@@ -73,9 +71,11 @@ class LogicielsController < ApplicationController
   def show
     @logiciel = Logiciel.find(params[:id])
     if @beneficiaire
-      @demandes = @beneficiaire.demandes.find_all_by_logiciel_id(params[:id])
+      @demandes = @beneficiaire.demandes.find(:all, :conditions => 
+                                              ['demandes.logiciel_id=?', params[:id]])
     else
-      @demandes = Demande.find_all_by_logiciel_id(params[:id])
+      @demandes = Demande.find(:all, :conditions => 
+                               ['demandes.logiciel_id=?',params[:id]])
     end
   end
 
@@ -94,8 +94,7 @@ class LogicielsController < ApplicationController
       flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien été crée.'
       redirect_to :action => 'list'
     else
-      _form
-      render :action => 'new'
+      _form and render :action => 'new'
     end
   end
 
@@ -124,9 +123,10 @@ class LogicielsController < ApplicationController
 
 private
   def _form
-    @competences = Competence.find(:all, :order => "nom")
-    @groupes = Groupe.find(:all, :order => "nom")
-    @licenses = License.find(:all, :order => "nom")
+    order_by_name = { :order => 'nom' }
+    @competences = Competence.find(:all, order_by_name)
+    @groupes = Groupe.find(:all, order_by_name)
+    @licenses = License.find(:all, order_by_name)
   end  
 
   def _panel 

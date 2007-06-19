@@ -1,7 +1,7 @@
-<% if @qte == :mine and @beneficiaire %>
-	<h1>Liste de mes logiciels <%= image_spinner %></h1>
+<% if @scope %>
+  <h1>Liste de mes logiciels supportés <%= image_spinner %></h1>
 <% else %>
-	<h1>Liste des logiciels <%= image_spinner %></h1>
+  <h1>Liste des logiciels <%= image_spinner %></h1>
 <%end%>
 
 
@@ -28,10 +28,10 @@
 <br />
 
 <%if @beneficiaire %>
-	<% if @qte == :total %>
-		<%= link_to('Voir uniquement mes logiciels', 'list?qte=mine') %>
-	<% else %>
-		<%= link_to('Voir tous les logiciels', 'list') %>
-	<% end %>
+  <% if @scope %>
+    <%= link_to('Voir tous les logiciels', 'list') %>
+  <% else %>
+    <%= link_to('Voir uniquement mes logiciels', 'list?scope=true') %>
+  <% end %>
 <% end %>
 
