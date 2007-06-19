@@ -14,51 +14,19 @@
 		<p>
 		<label for="first_day">Premier jour : </label>
 		<%= text_field :results, :first_day, :size =>8 %>
-		<span class="calendarPicker">
-			<img alt="Choisissez une date" class="calendar_out" 
-				id="date_begin_from" onmouseout="this.className='calendar_out';" 
-					onmouseover="this.className='calendar_over';" 
-				src="/images/cal.gif?1174066161" style="cursor: pointer;" 
-					title="Sélecteur de date" height="16" width="16">
-		</span>
-   <script type="text/javascript">
-       Calendar.setup({
-        firstDay       :    1,            // first day of the week
-        inputField     :    "results_first_day", // id of the input field
-        button         :    "date_begin_from",  // trigger for the calendar (button ID)
-        align          :    "Br",         // alignment : Top left
-        singleClick    :    true,
-             ifFormat       : "%d-%m-%Y"  // our date only format
-         });
-   </script>
+		<span class="calendarPicker"><%= image_date_from %></span>
+		<%= script_date('results_first_day', 'date_from') %>
 
+		<br /><br />
+		<label for="end_day">Dernier jour : </label>
+		<%= text_field :results, :end_day,  :size => 8 %>
+		<span class="calendarPicker"><%= image_date_to %></span>
+		<%= script_date('results_end_day', 'date_to') %>
 
-
-			<br /><br />
-			<label for="end_day">Dernier jour : </label>
-			<%= text_field :results, :end_day,  :size => 8 %>
-			<span class="calendarPicker">
-				<img alt="Choisissez une date" class="calendar_out" 
-				id="date_end_from" onmouseout="this.className='calendar_out';"
-			       		onmouseover="this.className='calendar_over';" 
-				src="/images/cal.gif?1174066161" style="cursor: pointer;" 
-					title="Sélecteur de date" height="16" width="16">
-			</span>
-
-   <script type="text/javascript">
-       Calendar.setup({
-        firstDay       :    1,            // first day of the week
-        inputField     :    "results_end_day", // id of the input field
-        button         :    "date_end_from",  // trigger for the calendar (button ID)
-        align          :    "Br",         // alignment : Top left
-        singleClick    :    true,
-             ifFormat       : "%d-%m-%Y"  // our date only format
-         });
-   </script>
-
-			<br /><br />
-			<%= submit_tag ("voir le reporting pour cette période", :id=>2 ) %>
-			<%= hidden_field_tag(:control,:days) %>
+		<br /><br />
+		<%= submit_tag ("voir le reporting pour cette période", :id=>2 ) %>
+		<%= hidden_field_tag(:control,:days) %>
+		</p>
 	<% end %>
 	
 	
