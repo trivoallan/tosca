@@ -1,0 +1,20 @@
+
+#
+# Patch pour TinyMCE
+#
+# Lors de la création d'un lien dans TinyMce, pour avoir comme choix par défaut un lien vers 
+# une nouvelle page, il faut intervertir les lignes suivantes :
+#
+
+--- link.htm	2007-06-19 08:38:16.000000000 +0200
++++ public/javascripts/tiny_mce/themes/advanced/link.htm	2007-06-18 17:15:00.000000000 +0200
+@@ -49,8 +49,8 @@
+           <tr>
+             <td nowrap="nowrap"><label for="target">{$lang_insert_link_target}</label></td>
+             <td><select id="target" name="target" style="width: 200px">
+-                <option value="_self">{$lang_insert_link_target_same}</option>
+                 <option value="_blank">{$lang_insert_link_target_blank}</option>
++                <option value="_self">{$lang_insert_link_target_same}</option>
+ 				<script language="javascript">
+ 					var html = "";
+ 					var targets = tinyMCE.getParam('theme_advanced_link_targets', '').split(';');
