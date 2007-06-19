@@ -22,6 +22,11 @@ class LogicielsController < ApplicationController
 
   # ajaxified list
   def list
+	@qte = :total
+	if params['qte'] and params['qte']== 'mine'
+			@qte= :mine
+	end
+
     options = { :per_page => 10, :order => 'logiciels.nom',
       :include => [:groupe,:competences]}
     conditions = []
@@ -44,9 +49,13 @@ class LogicielsController < ApplicationController
      ])
     flash[:conditions] = options[:conditions] = conditions 
 
-    # Logiciel.set_scope(@beneficiaire.contrat_ids) if @beneficiaire
+	if @qte == :mine
+    	Logiciel.set_scope(@beneficiaire.contrat_ids) if @beneficiaire
+	end
     @logiciel_pages, @logiciels = paginate :logiciels, options
-    # Logiciel.remove_scope if @beneficiaire
+	if @qte == :mine
+    	Logiciel.remove_scope if @beneficiaire
+	end
 
     # panel on the left side
     if request.xhr? 

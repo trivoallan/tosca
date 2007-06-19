@@ -1,4 +1,10 @@
-<h1>Liste des logiciels <%= image_spinner %></h1>
+<% if @qte == :mine and @beneficiaire %>
+	<h1>Liste de mes logiciels <%= image_spinner %></h1>
+<% else %>
+	<h1>Liste des logiciels <%= image_spinner %></h1>
+<%end%>
+
+
 
 <% links = show_pages_links(@logiciel_pages, 'un nouveau logiciel', 
                      :url => '../logiciels/list') %>
@@ -20,4 +26,12 @@
 <%= links %>
 
 <br />
+
+<%if @beneficiaire %>
+	<% if @qte == :total %>
+		<%= link_to('Voir uniquement mes logiciels', 'list?qte=mine') %>
+	<% else %>
+		<%= link_to('Voir tous les logiciels', 'list') %>
+	<% end %>
+<% end %>
 
