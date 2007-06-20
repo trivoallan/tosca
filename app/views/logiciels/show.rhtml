@@ -44,16 +44,9 @@
       </div><% end %>
 </tr>
 
-<tr><td><b>Paquets</b></td></tr>
-
-<tr><td><b>actifs</b> <%= link_to_new_paquet(@logiciel.id) %></td>
-    <td><%= show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) { |paquet| 
-            link_to_paquet paquet if paquet.active} %></td></tr>
-
-<tr><td><b>inactifs</b> <%= link_to_new_paquet(@logiciel.id) %></td>
-    <td><%= show_liste( @logiciel.paquets, 'Paquet', {:no_title => true}) { |paquet|
-            link_to_paquet paquet unless paquet.active } %></td></tr>
-
+<tr><td><b>Paquets</b><%= link_to_new_paquet(@logiciel.id) %></td>
+    <td><%= show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) { |p| 
+            link_to_paquet p} %></td></tr>
 <tr><td colspan="2"><b>Contributions</b> <%= link_to_new_contribution(@logiciel.id)%><br />
     <%= public_table_of_contributions(@logiciel.contributions) %> </td>
 </tr>

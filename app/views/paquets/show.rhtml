@@ -5,6 +5,7 @@
 
 <h1>Paquet source</h1>
 
+
 <div class="show">
  <p><b>Logiciel:</b> <%= @paquet.logiciel.nom %></p>
  <p><b>Contrat:</b> <%= @paquet.contrat.client.nom %></p>
@@ -16,13 +17,6 @@
  <p><b>Conteneur:</b> <%= @paquet.conteneur.nom %></p>
  <p><b>Distributeur:</b> <%=h @paquet.distributeur.nom %></p>
  <p><b>Mainteneur:</b> <%=h @paquet.mainteneur.nom %></p>
- <!--
-   <p>
-      <b>Actif</b>
-      <%=h (if @paquet.active then "oui" else "non" end )%>
-   </p>
- -->
-
 </div>
 
 
@@ -40,8 +34,8 @@
 <% end %>
 
 <br />
-<p>Ce paquet a été mis à jour <b><%= pluralize(@paquet.changelogs_count, 'fois') %></b></p>
 <% if @paquet.changelogs_count > 0 %>
+<p>Ce paquet a été mis à jour <b><%= pluralize(@paquet.changelogs_count, 'fois') %></b></p>
 <div class="bloc_scroll">
   <%= show_liste(@changelogs, 'changelog', :no_title => true) { |c| 
   indent "#{c.date_modification_formatted} : #{c.nom_modification}\n#{c.text_modification}"

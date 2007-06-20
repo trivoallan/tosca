@@ -4,8 +4,9 @@
 module PaquetsHelper
   # Il faut mettre un :include => [:arch,:conteneur] pour accélérer l'affichage
   def link_to_paquet(paquet)
-    return "N/A" unless paquet
+    return '-' unless paquet and paquet.is_a? Paquet
     nom = "#{paquet.nom}-#{paquet.version}-#{paquet.release}"
+    nom = "<i>#{nom}</i>" unless paquet.active
     link_to nom, :controller => 'paquets', 
     :action => 'show', :id => paquet
   end
