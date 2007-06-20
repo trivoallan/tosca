@@ -44,14 +44,12 @@
 	@fournisseurs.collect{|l| [ l.nom, l.id]}) %>
 </p>
 
-
-
 <p><label for="paquet_configuration">Configuration spécifique additionnelle</label><br/>
 <%= text_area 'paquet', 'configuration'  %>
 </p>
 
-<p><label>État</label></p>
-<%= check_box( 'paquet' , 'active')%> Actif <br />
+<p><label for="paquet_active">Supporté ?</label>
+<%= check_box( 'paquet' , 'active')%></p>
 
 <br />
 
