@@ -34,21 +34,6 @@ module FormsHelper
     out << "<input type=\"hidden\" value=\"\" name=\"#{nom}[]\"/>"
   end
 
-  # obj a un 'id' et un 'nom'
-  # object est l'objet déjà présent
-  # C'est la fonction to_s qui est utilisée pour le label
-  # L'option :size permet une mise en colonne
-  # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
-  def hbtm_check_box1( checked, obj, nom)
-    out = ''
-    nom_w3c = nom.gsub(/[^a-z1-9]+/i, '_')
-    out << "<input id=\"#{nom_w3c}\" type=\"checkbox\" "
-    out << "name=\"#{nom}\" value=\"#{nom_w3c}\" "
-    out << 'checked="checked" ' if checked
-    out << "/><label for=\"#{nom_w3c}\">#{obj}</label>"
-    out << "<br />"
-  end
-
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
   # objectcollection contient le tableau des objects déjà présents
   # C'est la fonction to_s qui est utilisée pour le label
