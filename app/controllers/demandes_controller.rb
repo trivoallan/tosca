@@ -107,45 +107,45 @@ class DemandesController < ApplicationController
     end
   end 
 
-  # TODO : passer au nouveau formulaire (deposer),
+  # TODO : refaire le formulaire associé. 
   # qui a besoin d'un petit check
   # et virer ce vieux code legacy tout laid
   def ajax_update_delai
+    demande = params[:demande]
     return render_text('') unless request.xhr? and 
-      params[:demande] and (params[:demande][:logiciel_id] != "")
+      demande and (demande[:logiciel_id] != "")
     output = ''
 
-    beneficiaire = Beneficiaire.find params[:demande][:beneficiaire_id]
+    beneficiaire = Beneficiaire.find demande[:beneficiaire_id]
     contrat = Contrat.find :first, :conditions => ['client_id=?', beneficiaire.client.id ]
     unless contrat and beneficiaire
-      return render_text(' => pas de contrat, pas d\'ossa') 
+      return render_text(' => pas de contrat, pas d&lsquo;ossa') 
     end
-    logiciel = Logiciel.find(params[:demande][:logiciel_id])
-    # 6 est l'arch source
-    paquets = beneficiaire.client.paquets.\
-    find_all_by_logiciel_id(logiciel.id, 
-                            :order => 'paquets.nom DESC')
+    logiciel = Logiciel.find(demande[:logiciel_id])
+    # active = 1 : we only take supported packages. 
+    # MySQL doesn't support true/false so Rails use Tinyint...
+    conditions = { :conditions => 
+      [ 'paquets.logiciel_id=? AND paquets.active=1', logiciel.id ], 
+      :order => 'paquets.nom DESC' }
+    paquets = beneficiaire.client.paquets.find(:all, conditions) 
 
-    severite = Severite.find(params[:demande][:severite_id]) 
-    typedemande = Typedemande.find(params[:demande][:typedemande_id])
+    severite = Severite.find(demande[:severite_id]) 
+    typedemande = Typedemande.find(demande[:typedemande_id])
     return render_text('') unless paquets and severite and typedemande
-    selecteds = params[:demande][:paquet_ids]
+    selecteds = demande[:paquet_ids]
 
     case paquets.size
-     when 0
-      output << "<p>Nous ne disposons d'aucun paquet binaire concernant " + logiciel.nom  + "</p>" 
-     when paquets.size < 0
-      # n'est jamais appelé ? la condition n'est pas bonne
-      output << "<p>Une erreur s'est produite concernant les paquets de " + logiciel.nom  + "</p>"
-     else 
+    when 0
+      output << "<p>Nous ne disposons d'aucun paquet concernant " + 
+        logiciel.nom  + "</p>" 
+    else 
       output << "<p>Précisez ici les paquets impactés par la demande :</p>" 
       output << "<table>"
       output << "<tr><td> <b>Paquets</b> </td>"
       output << "<td> Contournement  </td><td> Correction  </td><tr>"
       
       paquets.each do |p|
-        if p.active
-        contrat = Contrat.find(p.contrat.id)
+        contrat = Contrat.find(p.contrat_id)
         engagement = contrat.engagements.find_by_typedemande_id_and_severite_id(typedemande.id, severite.id)
         output << "<tr><td>"
         #TODO : remplacer ce truc par un <%= check_box ... %>
@@ -160,7 +160,6 @@ class DemandesController < ApplicationController
           output << "<td><%= Lstm.time_in_french_words(#{engagement.correction}.days, true)%> </td>"
         end
         output << "</tr>"
-        end
       end
       output << "</table>"
     end
