@@ -5,6 +5,12 @@
 
 <h1>Paquet source</h1>
 
+<% unless @paquet.active %>
+ <div class="show">
+  <p><b>Note : </b>Ce paquet ne fait désormais plus partie de votre périmètre. 
+  Il n&lsquo;est conservé ici qu&lsquo;à des fins historiques. </p>
+ </div>
+<% end %>
 
 <div class="show">
  <p><b>Logiciel:</b> <%= @paquet.logiciel.nom %></p>
@@ -19,28 +25,26 @@
  <p><b>Mainteneur:</b> <%=h @paquet.mainteneur.nom %></p>
 </div>
 
-
 <% if @paquet.binaires.size > 0 %>
   <p>Ce paquet source a <b><%= pluralize(@paquet.binaires_count, 'binaire') %></b></p>
   <%= show_liste(@paquet.binaires, 'binaire', :no_title => true) { |b| link_to_binaire(b) } %>
 <% end %>
 
 
-<p>Ce paquet contient <b><%= pluralize(@paquet.fichiers_count, 'fichier') %></b></p>
 <% if @paquet.fichiers_count > 0 %>
-<div class="bloc_scroll">
+ <p>Ce paquet contient <b><%= pluralize(@paquet.fichiers_count, 'fichier') %></b></p>
+ <div class="bloc_scroll">
   <%= show_liste(@fichiers, 'fichier', :no_title => true) { |f| f.chemin } %>
-</div>
+ </div>
 <% end %>
 
 <br />
 <% if @paquet.changelogs_count > 0 %>
-<p>Ce paquet a été mis à jour <b><%= pluralize(@paquet.changelogs_count, 'fois') %></b></p>
-<div class="bloc_scroll">
-  <%= show_liste(@changelogs, 'changelog', :no_title => true) { |c| 
-  indent "#{c.date_modification_formatted} : #{c.nom_modification}\n#{c.text_modification}"
-} %>
-</div>
+ <p>Ce paquet a été mis à jour <b><%= pluralize(@paquet.changelogs_count, 'fois') %></b></p>
+ <div class="bloc_scroll">
+   <%= show_liste(@changelogs, 'changelog', :no_title => true) { |c| 
+      indent (c.to_s) } %>
+ </div>
 <% end %>
 
 
