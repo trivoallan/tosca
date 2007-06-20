@@ -39,7 +39,6 @@ class ApplicationController < ActionController::Base
   # L'option pour ne pas avoir de tinyMCE est la class "mceNoEditor".
   uses_tiny_mce :options => { :mode => 'textareas',
                               :theme => 'advanced',
-                              :browsers => %w{msie gecko opera},
                               :theme_advanced_toolbar_location => "top",
                               :theme_advanced_toolbar_align => "left",
                               :paste_auto_cleanup_on_paste => true,
