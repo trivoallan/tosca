@@ -192,13 +192,13 @@ module DemandesHelper
   def remote_link_to_dead_request
     js_call = "document.forms['filters'].active.value=-1; #{remote_function(AJAX_CALL)}"
     link_to_function(_('demandes terminées'), js_call, 
-                     _('affiche les demandes qui sont encore à traiter'))
+                     _('affiche les demandes qui ont été traitées'))
   end
 
   def remote_link_to_all_request
     js_call = "document.forms['filters'].active.value=0; #{remote_function(AJAX_CALL)}"
     link_to_function(_('toutes les demandes'), js_call, 
-                     _('affiche les demandes qui sont encore à traiter'))
+                     _('affiche l\'intégralité des demandes'))
   end
 
 
