@@ -80,7 +80,7 @@ option.severite_6 {
 	color: #000000;
 	margin: 12px 0px 0px 0px;
 	padding: 0px;
-	z-index: 1;
+	z-index: 2;
 	padding-left: 10px 
 }
 .demande_tabnav li {
@@ -93,7 +93,7 @@ option.severite_6 {
 	background:  #FFEBBF;
 	font: bold 1em "Trebuchet MS", Arial, sans-serif;
 	border: 2px solid #cfc8cf; /* 2px solid black;*/
-	padding: 2px 5px 0px 5px;
+	padding: 2px 5px 2px 5px;
 	margin: 0;
 	text-decoration: none; 
 }
@@ -117,9 +117,9 @@ option.severite_6 {
 	text-align: justify;
 	background: #DDDDDD;
 	padding: 0.5em;
-	margin: 0;
+	margin: 0; 
 	/* border: 2px solid #cfc8cf; */
-	z-index: 2;	
+	z-index: 3;	
 }
 
 

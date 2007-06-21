@@ -179,4 +179,27 @@ module DemandesHelper
     out << '</span>'
   end
 
+
+  # TODO : beaucoup trop de copier coller, c'est honteux !
+  # TODO/MLO : me taper sur les doigts et faire une version propre
+  AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(:url => '../demandes/list')
+  def remote_link_to_active_request
+    js_call = "document.forms['filters'].active.value=1; #{remote_function(AJAX_CALL)}"
+    link_to_function(_('demandes actives'), js_call, 
+                     _('affiche les demandes qui sont encore à traiter'))
+  end
+
+  def remote_link_to_dead_request
+    js_call = "document.forms['filters'].active.value=-1; #{remote_function(AJAX_CALL)}"
+    link_to_function(_('demandes terminées'), js_call, 
+                     _('affiche les demandes qui sont encore à traiter'))
+  end
+
+  def remote_link_to_all_request
+    js_call = "document.forms['filters'].active.value=0; #{remote_function(AJAX_CALL)}"
+    link_to_function(_('toutes les demandes'), js_call, 
+                     _('affiche les demandes qui sont encore à traiter'))
+  end
+
+
 end

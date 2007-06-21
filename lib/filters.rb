@@ -18,11 +18,13 @@ module Filters
   # flash[:conditions] = options[:conditions] = conditions 
   # This helpers is here mainly for avoiding SQL injection.
   # you MUST use it, if you don't want to burn in hell during your seven next lives
-  def self.build_conditions(params, filters)
+  # special_conditions allows to put additional conditions to the filters.
+  # it must be a string !
+  def self.build_conditions(params, filters, special_conditions = nil)
     conditions = [[]]
     filters.each { |f|
       if params[f.first] 
-        value =  params[f.first][f[1]] 
+        value = params[f.first][f[1]] 
         if value and value != ''
           query = case f[3]
                   when :equal
@@ -39,6 +41,7 @@ module Filters
         end
       end
     }
+    conditions.first.push special_conditions if special_conditions.is_a? String
     if conditions.first.empty?
       nil
     else

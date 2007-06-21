@@ -30,19 +30,16 @@ class DemandesController < ApplicationController
       redirect_to :action => :comment, :id => params['numero']  and return
     end
 
-	if params['type'] == 'total'
-			@title = 'Liste de toutes les demandes'
-	    options = { :per_page => 10, :order => 'updated_on DESC', 
-    	  :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
-	else
-			@title = 'Liste des demandes en cours'
-	    options = { :per_page => 10, :order => 'updated_on DESC', 
-			:conditions => Demande::EN_COURS,
-    		:select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
-	end
+    options = { :per_page => 10, :order => 'updated_on DESC', 
+      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
     conditions = []
 
     # Specification of a filter f :
+    special_cond = nil
+    case params[:active]
+    when '1' : special_cond = Demande::EN_COURS
+    when '-1' : special_cond = Demande::TERMINEES
+    end
     # [ namespace, field, database field, operation ]
     conditions = Filters.build_conditions(params, [
        ['logiciel', 'nom', 'logiciels.nom', :like ],
@@ -52,7 +49,7 @@ class DemandesController < ApplicationController
        ['filters', 'typedemande_id', 'demandes.typedemande_id', :equal ],
        ['filters', 'severite_id', 'demandes.severite_id', :equal ],
        ['filters', 'statut_id', 'demandes.statut_id', :equal ]
-     ])
+     ], special_cond)
     flash[:conditions] = options[:conditions] = conditions if conditions
 
     # DIRTY HACK : WARNING
