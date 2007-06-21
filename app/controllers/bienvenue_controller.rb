@@ -39,6 +39,15 @@ class BienvenueController < ApplicationController
   def about
   end
 
+  def send_suggestion
+		  @send=0
+		  if params[:suggestion] and params[:suggestion][:text]!= ''
+			  @text=params[:suggestion][:text]
+			  Notifier::deliver_suggestion( @text)
+			  @send=1
+		  end
+  end
+
 protected
 
   # Return all methods sorted by class name

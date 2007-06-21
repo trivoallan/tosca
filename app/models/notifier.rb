@@ -95,6 +95,15 @@ class Notifier < ActionMailer::Base
     end
   end
 
+  def suggestion( text )
+		# Email header info MUST be added here
+		@recipients = "agrellier@linagora.com"  #identifiant.email
+		@content_type= HTML_CONTENT
+		@subject = "[Suggestion]" 
+		# Email body substitutions go here
+		@body["textoo"] = text
+  end
+
   private
   def compute_copy(demande)
     res = demande.beneficiaire.client.mailingliste
