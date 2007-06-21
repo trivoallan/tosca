@@ -79,19 +79,14 @@ class ReportingController < ApplicationController
     end
 
     # user 'n developer sanity check
-    if results[:first_day] > results[:end_day]
+    if @date[:first_day] > @date[:end_day]
       redirect_to :action => 'comex' and return
     end
 
     init_comex_report()
-    compute_comex_report(:total)
-
-    @clients.each do |c|
-      cscope = { :find => { :conditions => 
-          [ 'demandes.beneficiaire_id IN (?)', c.beneficiaire_ids ] } }
-      Demande.with_scope(cscope) { compute_comex_report(c.nom) }
-    end
-
+    @clients.each do |client|
+	    compute_comex_report(client)
+		end
   end
 
   def init_comex_report
@@ -109,47 +104,69 @@ class ReportingController < ApplicationController
       @demandes[:closes][nom] = {}
       @total[:en_cours][nom] = {}
     end
-  end
-
-
-  def compute_comex_report(name)
-    @demandes[:sem_prec][name] = []
-    @demandes[:nouvelles][name] = []
-    liste_demande = @demandes[:closes]
-    liste_demande[name]=[]
-    @total[:en_cours][name] = []
-    @total[:final][name]=0
-    4.times do |i|
-      conditions_valeurs_total= { :s =>i+1 , 
-        :monday_before_week_asked => ( @date[:first_day] - 7.days ) , 
-        :monday_week_asked => @date[:first_day], 
-        :sunday_week_asked => @date[:end_day] 
-      }
-      conditions_sem_prec_total= [" severite_id = :s AND created_on < :monday_week_asked AND ("+
-                                  Demande::EN_COURS + 'OR ('+ Demande::TERMINEES + "AND updated_on BETWEEN :monday_week_asked AND :sunday_week_asked) )" , 
-                                  conditions_valeurs_total ]
-
-      @demandes[:sem_prec][name][i]=
-        Demande.count( :conditions=> conditions_sem_prec_total )
-
-      conditions_nouvelles_total= [" severite_id = :s AND " + Demande::EN_COURS+ " AND 
-						created_on BETWEEN :monday_week_asked AND :sunday_week_asked ", 
-                                   conditions_valeurs_total ]
-      @demandes[:nouvelles][name][i]=
-        Demande.count( :conditions=> conditions_nouvelles_total )
-
-      conditions_closes= [" severite_id = :s AND "+ Demande::TERMINEES +
-                          "AND updated_on BETWEEN :monday_week_asked AND :sunday_week_asked",
-                          conditions_valeurs_total ]
-      liste_demande[name][i]= Demande.count( :conditions=> conditions_closes  )
-
-      @total[:en_cours][name][i] = @demandes[:sem_prec][name][i] +
-        @demandes[:nouvelles][name][i] - @demandes[:closes][name][i]
-      @total[:final][name] += @total[:en_cours][name][i]
-
-    end
-  end
+		@demandes[:sem_prec][:total]=[0,0,0,0]
+		@demandes[:nouvelles][:total]=[0,0,0,0]
+		@demandes[:closes][:total]=[0,0,0,0]
+		@total[:en_cours][:total]=[0,0,0,0]
 		
+		@total[:final][:total]= 0
+  end
+
+	def compute_comex_report(client)
+			name=client.nom
+			@demandes[:sem_prec][name] = [0,0,0,0]
+			@demandes[:nouvelles][name] = [0,0,0,0]
+			@total[:en_cours][name] = [0,0,0,0]
+			@demandes[:closes][name]= [0,0,0,0]
+			@total[:en_cours][name] = []
+			@total[:final][name]=0
+
+			4.times do |i|
+				conditions_valeurs= { :s=>i+1 , 
+					:first_day => @date[:first_day],
+					:last_day=> @date[:end_day],
+					:b => client.beneficiaire_ids,
+					:before_first_day =>@date[:first_day] - 7.days
+				}
+
+      	cscope = { :find => { :conditions => 
+	          [ 'beneficiaire_id IN (:b) AND severite_id IN (:s)', conditions_valeurs ] } 
+				}
+				Demande.with_scope(cscope) {
+					 
+					conditions_sem_prec= ["created_on < :first_day AND 
+						NOT ( "+ Demande::TERMINEES + " AND updated_on < :first_day)" , 
+						conditions_valeurs ]
+					@demandes[:sem_prec][name][i]=
+						Demande.find(:all, :conditions => conditions_sem_prec).length
+	
+					conditions_nouvelles= ["created_on BETWEEN :first_day AND :last_day ", 
+		    	  conditions_valeurs]
+					@demandes[:nouvelles][name][i]=
+						Demande.find(:all, :conditions => conditions_nouvelles).length
+	
+					conditions_closes= [Demande::TERMINEES +
+ 	         "AND updated_on BETWEEN :first_day AND :last_day",
+ 	         conditions_valeurs]
+					@demandes[:closes][name][i]=
+						Demande.find(:all, :conditions => conditions_closes).length 
+
+				}
+	
+	
+				@total[:en_cours][name][i] = @demandes[:sem_prec][name][i] +
+					@demandes[:nouvelles][name][i] - @demandes[:closes][name][i]
+ 	   		@total[:final][name] += @total[:en_cours][name][i]
+	
+				@demandes[:sem_prec][:total][i] += @demandes[:sem_prec][name][i]
+				@demandes[:nouvelles][:total][i] += @demandes[:nouvelles][name][i]
+				@demandes[:closes][:total][i] += @demandes[:closes][name][i]
+				@total[:en_cours][:total][i] += @total[:en_cours][name][i]
+			end
+			@total[:final][:total] += @total[:final][name]
+	end
+
+
 
   def general
     redirect_to(:action => 'configuration') and return unless params[:reporting]
