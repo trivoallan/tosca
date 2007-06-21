@@ -80,6 +80,7 @@ class ReportingController < ApplicationController
 
     # user 'n developer sanity check
     if @date[:first_day] > @date[:end_day]
+			flash[:warn]= "Le premier jour doit précéder le dernier jour"
       redirect_to :action => 'comex' and return
     end
 
