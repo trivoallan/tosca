@@ -97,7 +97,8 @@ class Notifier < ActionMailer::Base
 
   def suggestion( text )
 		# Email header info MUST be added here
-		@recipients = "agrellier@linagora.com"  #identifiant.email
+		@recipients = "lstm-devel@08000linux.com"  #identifiant.email
+		@from = FROM
 		@content_type= HTML_CONTENT
 		@subject = "[Suggestion]" 
 		# Email body substitutions go here
