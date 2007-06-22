@@ -39,13 +39,14 @@ class BienvenueController < ApplicationController
   def about
   end
 
-  def send_suggestion
-		  @send=0
-		  if params[:suggestion] and params[:suggestion][:text]!= ''
-			  @text=params[:suggestion][:text]
-			  Notifier::deliver_suggestion( @text)
-			  @send=1
-		  end
+  #nodoc
+  def suggestions
+    if params[:suggestion]
+      Notifier::deliver_suggestion(params[:suggestion][:team], :team) if params[:suggestion][:team] != ""
+      Notifier::deliver_suggestion(params[:suggestion][:tosca], :tosca) if params[:suggestion][:tosca] != ""
+      flash[:notice] = "Merci. Vos suggestions a bien été envoyé"
+      redirect_to_home
+    end
   end
 
 protected

@@ -95,14 +95,14 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def suggestion( text )
-		# Email header info MUST be added here
-		@recipients = "lstm-devel@08000linux.com"  #identifiant.email
-		@from = FROM
-		@content_type= HTML_CONTENT
-		@subject = "[Suggestion]" 
-		# Email body substitutions go here
-		@body["textoo"] = text
+  def suggestion(text, to)
+    @recipients = MAIL_TEAM if to == :team
+    @recipients = MAIL_TOSCA if to == :tosca
+    @from = FROM
+    @content_type= HTML_CONTENT
+    @subject = "[Suggestion d'amélioration]" 
+    # Email body substitutions go here
+    @body["textoo"] = text
   end
 
   private
@@ -126,5 +126,4 @@ class Notifier < ActionMailer::Base
     result << "<br />avec en copie <b>#{cc}</b> " if cc
     result << "a été envoyé."
   end
-
 end
