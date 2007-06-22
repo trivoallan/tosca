@@ -15,3 +15,4 @@ ActionMailer::Base.default_charset = "UTF-8"
 
 ActionMailer::Base::MAIL_TEAM = "team@08000linux.com"
 ActionMailer::Base::MAIL_TOSCA = "lstm-devel@08000linux.com"
+ActionMailer::Base::MAIL_MAINTENER = "mloiseleur@linagora.com"

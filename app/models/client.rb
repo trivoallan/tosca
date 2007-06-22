@@ -39,8 +39,7 @@ class Client < ActiveRecord::Base
 
 
   def beneficiaire_ids
-    benefs = self.beneficiaires.find(:all, :select => 'id').collect{|c| c.id}
-    return (benefs.empty? ? '0' : benefs.join(','))
+    @benefs ||= self.beneficiaires.find(:all, :select => 'id').collect{|c| c.id}
   end
 
 

@@ -1,66 +1,60 @@
 <div class="content" id="content">
-	<h1>Activité OSSA de la période du 
-		<span class="date"><%= @date[:first_day].strftime("%A %d %B %Y") %></span> au 
-		<span class="date"><%= @date[:end_day].strftime("%A %d %B %Y") %></span></h1>
-	<br />	
-
-	<table class="show">
-		<tr>
-			<td></td>
-			<th colspan=4>Restant à clore (I)=(IV) <br /> "semaine précédente"</th>
-			<th colspan=4>Répartitions des nouvelles <br /> demandes (III)</th>
-			<th colspan=4>Demandes closes cette <br />semaine (IV)</th>
-			<th colspan=4>Total en cours fin de semaine <br /> (V=I+III-IV)</th>
-			<th>TOTAL <br />(VI)</th>
-
-		</tr>
-		<tr>
-			<th>Client</th>
-			<% 4.times do %>
-				<td>Bloquantes</td>
-				<td>Majeures</td>
-				<td>Mineures</td>
-				<td>Sans objet</td>
-			<% end %>
-			<th>A Clore</th>
-		</tr>
-		<% @clients.each do |c| %>
-		   <tr class="<%=cycle('pair','impair')%>">		
-			<td><%= c %></td>
-			<% 4.times do |i| %>
-				<td align="center"><%= @demandes[:sem_prec][c.nom][i] %></td>
-			<% end %>
-			<% 4.times do |i| %>
-				<td align="center"><%= @demandes[:nouvelles][c.nom][i] %></td>
-			<% end %>
-			<% 4.times do |i| %>
-				<td align="center"><%= @demandes[:closes][c.nom][i] %></td>
-			<% end %>
-			<%4.times do |i| %>
-				<td align="center"><%= @total[:en_cours][c.nom][i] %> </td>
-			<% end %>
-			<td  align="center"><%=h @total[:final][c.nom].inspect %></td>
-		   </tr>
-                <% end %>
-		<tr>
-			<th>TOTAUX</th>
-			<% 4.times do |i| %>
-				<td align="center"><%= @demandes[:sem_prec][:total][i].inspect %></td>
-			<%end %>
-			<% 4.times do |i| %>
-				<td align="center"><%= @demandes[:nouvelles][:total][i] %></td>
-			<% end %>
-			<% 4.times do |i| %>
-				<td align="center"><%= @demandes[:closes][:total][i] %></td>
-			<%end %>
-			<% 4.times do |i| %>
-				<td align="center"><%= @total[:en_cours][:total][i] %></td>
-			<%end %>
-			<td align="center"><%= @total[:final][:total] %></td>
-
-		</tr>
-	
-			
-	</table>
-	
+  <h1>Activité OSSA de la période du 
+    <span class="date"><%= @date[:first_day].strftime("%A %d %B %Y") %></span> au 
+    <span class="date"><%= @date[:end_day].strftime("%A %d %B %Y") %></span></h1>
+  <br />
+  <table class="show report">
+    <tr>
+      <td></td>
+	<th colspan="4">Restant à clore (I)=(IV) <br /> "semaine précédente"</th>
+	<th colspan="4">Répartitions des nouvelles <br /> demandes (III)</th>
+        <th colspan="4">Demandes closes cette <br />semaine (IV)</th>
+	<th colspan="4">Total en cours fin de semaine <br /> (V=I+III-IV)</th>
+	<th colspan="4">TOTAL <br />(VI)</th>
+    </tr><tr>
+	<th>Client</th>
+	<% 4.times do %>
+          <td>Bloquantes</td>
+	  <td>Majeures</td>
+	  <td>Mineures</td>
+          <td>Sans objet</td>
+	<% end %>
+	<th colspan="4">A Clore</th>
+    </tr>
+    <% @clients.each do |c| %>
+     <tr class="<%=cycle('pair','impair')%>">		
+      <td><%= c %></td>
+        <% name = c.nom.intern %>
+	<% 4.times do |i| %>
+	  <td><%= @requests[:last_week][name][i] %></td>
+        <% end %>
+	<% 4.times do |i| %>
+          <td><%= @requests[:new][name][i] %></td>
+        <% end %>
+	<% 4.times do |i| %>
+          <td><%= @requests[:closed][name][i] %></td>
+        <% end %>
+	<% 4.times do |i| %>
+          <td><%= @total[:active][name][i] %></td>
+        <% end %>
+        <td><%= @total[:final][name] %></td>
+      </tr>
+     <% end %>
+     <tr><td colspan="18"><hr /></td></tr><tr>
+	<th>TOTAUX</th>
+        <% 4.times do |i| %>
+	    <td><%= @requests[:last_week][:total][i] %></td>
+        <% end %>
+        <% 4.times do |i| %>
+            <td><%= @requests[:new][:total][i] %></td>
+        <% end %>
+        <% 4.times do |i| %>
+	    <td><%= @requests[:closed][:total][i] %></td>
+        <% end %>
+        <% 4.times do |i| %>
+	    <td><%= @total[:active][:total][i] %></td>
+        <% end %>
+        <td><%= @total[:final][:total] %></td>
+     </tr>
+   </table>
 </div>

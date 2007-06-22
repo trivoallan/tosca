@@ -1,6 +1,7 @@
 <%= render :partial => '../notifier/head_mail' %>
 
-<% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
+<% url = url_for :only_path => false, :id => @demande.id, 
+            :controller => 'demandes', :action => 'comment' %>
 <% url_demande = "<a href=\"#{url}\">demande ##{@demande.id}</a>" %>
 La <%= url_demande %> a été commentée par <i><%=h @nom %></i> 
 <% if @statut_modifie%> 

@@ -95,14 +95,18 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def suggestion(text, to)
-    @recipients = MAIL_TEAM if to == :team
-    @recipients = MAIL_TOSCA if to == :tosca
+  def bienvenue_suggestion(text, to, from)
+    case to
+    when :team : @recipients = MAIL_TEAM 
+    when :tosca : @recipients = MAIL_TOSCA 
+    else @recipients = MAIL_MAINTENER
+    end
     @from = FROM
     @content_type= HTML_CONTENT
-    @subject = "[Suggestion d'amélioration]" 
+    @subject = "[Suggestion] => #{to}" 
     # Email body substitutions go here
-    @body["textoo"] = text
+    @body[:suggestion] = text
+    @body[:author] = from
   end
 
   private

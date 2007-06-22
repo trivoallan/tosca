@@ -6,6 +6,11 @@
 
 /******************** reporting *******************/
 
+
+table.report tr td {
+	text-align: center;
+}
+
 /* formulaire de saisie mois et ann� */
 .report_form {
 	background-color: #d2dfd2;

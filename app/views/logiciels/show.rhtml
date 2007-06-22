@@ -49,9 +49,8 @@
   <% options = { :controller => 'paquets' } %>
   <%= 
     show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) do |paquet|
-      result=''
-      options[:id] = paquet.id
-      options[:action] = 'edit'
+      result = ''
+      options[:id], options[:action] = paquet.id, 'edit'
       link = link_to(image_edit, options, LinksHelper::NO_HOVER)
       result << link if link
       result << ' '
@@ -59,11 +58,9 @@
       result << link if link
       result << ' '
       options[:action]= 'destroy'
-      link = link_to(image_delete, 
-                     options, 
-                     :class => 'nobackground', 
-                     :confirm => "Voulez-vous vraiment supprimer #{paquet.nom}-#{paquet.version}-#{paquet.release} ?",
-                     :method => 'post')
+      link = link_to(image_delete, options, :class => 'nobackground', 
+            :confirm => "Voulez-vous vraiment supprimer #{paquet.to_s} ?",
+            :method => 'post')
       result << link if link
       result
    end
