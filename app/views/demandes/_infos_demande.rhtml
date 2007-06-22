@@ -1,14 +1,14 @@
-<% if @ingenieur %>
 <div class="menu_title" onclick="Element.toggle('menu_action')">
 > Action</div>
 <ul class="menu" id="menu_action">
-  <li><% form_tag(:action => 'associer_contribution', :id => @demande.id) do %>
+  <% if @ingenieur %>
+   <li><% form_tag(:action => 'associer_contribution', :id => @demande.id) do %>
     <%= select_onchange @contributions, 'demande', 'contribution_id' %>
-  <% end %></li>
-  <li><%= link_to_add_call @demande.id %></li>
+   </li>
+   <li><%= link_to_add_call @demande.id %></li>
+  <% end %>
   <li><%= link_to "Imprimer", :controller => 'demandes', :action => 'pretty_print', :id => @demande.id %></li>
 </ul>
-<% end %>
 
 <div class="menu_title" onclick="Element.toggle('menu_resume')">
 > Résumé</div>
