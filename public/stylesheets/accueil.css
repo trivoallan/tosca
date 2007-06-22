@@ -11,9 +11,6 @@ div.sommaire {
 table.sommaire tr { 
 	vertical-align: top;
 }
-table.sommaire tr td { 
-	width: 35em;;
-}
 
 /* largeur des balises inputs */
 .list input.text {

@@ -7,24 +7,6 @@
 
 
 <table class="sommaire"><tr><td>
- <% if @beneficiaire %> 
- <div class="sommaire show">
-  <h3>Offre</h3>
-  <% client = @beneficiaire.client %>
-  <table><tr><td rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>, 
-      vous avez accès à l&lsquo;une de nos offres dont vous pouvez consulter à tout moment le détail : <%=link_to_my_client%></td></tr>
-       <tr><td>Nous espèrons que cet outil vous donnera entière satisfaction.</td></tr>
-  </table>
-  <% access_code = @beneficiaire.client.code_acces %>
-  <% if access_code != '' %>
-     <p>Votre numéro d&lsquo;appel est le 
-     <b><%=Metadata::PREFIXE_TELEPHONE%>&nbsp;<%=Metadata::CODE_TELEPHONE %></b>, 
-     et votre code d&lsquo;accès est le <b><%=access_code%></b></p>
-  <% else %>
-      Vous n&lsquo;avez pas de code d&lsquo;accès.
-  <% end %>
- </div>
- <% end %>
 
  <div class="sommaire show">
   <h3>Demandes</h3>
@@ -50,6 +32,25 @@
  </div>
 
  </td><td>
+
+ <% if @beneficiaire %> 
+ <div class="sommaire show">
+  <h3>Offre</h3>
+  <% client = @beneficiaire.client %>
+  <table><tr><td rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>, 
+      vous avez accès à l&lsquo;une de nos offres dont vous pouvez consulter à tout moment le détail : <%=link_to_my_client%></td></tr>
+       <tr><td>Nous espèrons que cet outil vous donnera entière satisfaction.</td></tr>
+  </table>
+  <% access_code = @beneficiaire.client.code_acces %>
+  <% if access_code != '' %>
+     <p>Votre numéro d&lsquo;appel est le 
+     <b><%=Metadata::PREFIXE_TELEPHONE%>&nbsp;<%=Metadata::CODE_TELEPHONE %></b>, 
+     et votre code d&lsquo;accès est le <b><%=access_code%></b></p>
+  <% else %>
+      Vous n&lsquo;avez pas de code d&lsquo;accès.
+  <% end %>
+ </div>
+ <% end %>
 
  <div class="sommaire show">
   <h3>Logiciels</h3>
