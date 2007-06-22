@@ -44,26 +44,31 @@
       </div><% end %>
 </tr>
 
-<tr><td><b>Paquets</b> <%= link_to_new_paquet(@logiciel.id) %></td>
-				<% options= {:controller => 'paquets' } %>
-    <td><%= show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) { |paquet| 
-						result=''
-							options[:id]= paquet.id
-							options[:action]= 'edit'
-							link = link_to(image_edit, options,	LinksHelper::NO_HOVER)
-						result << link if link
-						result << ' '
-							link = link_to_paquet paquet 
-						result << link if link
-						result << ' '
-							options[:action]= 'destroy'
-							link= link_to(image_delete, options , 
-							{:class => 'nobackground',
-							:confirm => "Voulez-vous vraiment supprimer #{paquet.nom}-#{paquet.version}-#{paquet.release} ?",
-							:method => 'post' } )
-						result << link if link
-						result } %>
-		</td>
+<tr><td><b>Paquets</b><%= link_to_new_paquet(@logiciel.id) %></td>
+  <td>
+  <% options = { :controller => 'paquets' } %>
+  <%= 
+    show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) do |paquet|
+      result=''
+      options[:id] = paquet.id
+      options[:action] = 'edit'
+      link = link_to(image_edit, options, LinksHelper::NO_HOVER)
+      result << link if link
+      result << ' '
+      link = link_to_paquet paquet
+      result << link if link
+      result << ' '
+      options[:action]= 'destroy'
+      link = link_to(image_delete, 
+                     options, 
+                     :class => 'nobackground', 
+                     :confirm => "Voulez-vous vraiment supprimer #{paquet.nom}-#{paquet.version}-#{paquet.release} ?",
+                     :method => 'post')
+      result << link if link
+      result
+   end
+  %>
+  </td>
 </tr>
 
 <tr><td colspan="2"><b>Contributions</b> <%= link_to_new_contribution(@logiciel.id)%><br />
