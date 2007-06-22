@@ -74,20 +74,21 @@ class ReportingController < ApplicationController
       if results[:first_day].empty? or results[:end_day].empty?
         redirect_to :action => 'comex' and return
       end
-      @date[:first_day] = results[:first_day].to_time
-      @date[:end_day] = results[:end_day].to_time
+      @date[:first_day] = results[:first_day].to_time.beginning_of_day
+      @date[:end_day] = results[:end_day].to_time.beginning_of_day + 
+        1.day - 1.second
     end
 
     # user 'n developer sanity check
     if @date[:first_day] > @date[:end_day]
-			flash[:warn]= "Le premier jour doit précéder le dernier jour"
+      flash[:warn]= "Le premier jour doit précéder le dernier jour"
       redirect_to :action => 'comex' and return
     end
 
     init_comex_report()
     @clients.each do |client|
-	    compute_comex_report(client)
-		end
+      compute_comex_report(client)
+    end
   end
 
   def init_comex_report
@@ -127,10 +128,11 @@ class ReportingController < ApplicationController
             'severite_id = :severite_id', values ] } 
       }
       Demande.with_scope(cscope) {
-        clast_week  = [ "#{Demande::EN_COURS} OR " <<
-                        '(created_on < :first_day AND ' << 
-                        "updated_on BETWEEN :first_day AND :last_day AND " <<
-                        "#{Demande::TERMINEES})", values ]
+        clast_week  = [ "created_on <= :first_day AND " << 
+                        "(#{Demande::EN_COURS} OR " << 
+                         "(#{Demande::TERMINEES} AND " << 
+                           "updated_on BETWEEN :first_day AND :last_day " <<
+                         "))", values ]
         @requests[:last_week][name][i] = 
           Demande.count(:conditions => clast_week)
 	
