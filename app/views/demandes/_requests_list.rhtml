@@ -45,13 +45,13 @@
 <% if @demandes.size == 0 %>
   <tr><td colspan="11">
     <p>Aucune demande enregistrée ne vous concerne.</p>
-    <p>Pour déposer une nouvelle demande :  <%= link_to_new() %> </p>
+    <p>Cliquer ici <%= link_to_new() %> pour déposer une nouvelle demande </p>
   </td></tr>
 <% end %>
 
 </table>
 
 <%= links %>
-<%= link_to( 'Afficher toutes les demandes', 'list?type=total')%>
+
 
 
