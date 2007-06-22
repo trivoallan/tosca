@@ -2,7 +2,7 @@
 <h2 class="spacer">Sommaire</h2>
 
 Vous êtes administrateur du Portail 08000linux.com.
-
+<table class="sommaire"><tr><td>
 <div class="sommaire show">
   <h3>Utilisateurs</h3>
   <p>Gestion des utilisateurs</p>
@@ -33,8 +33,8 @@ Vous êtes administrateur du Portail 08000linux.com.
   <%= show_liste(links, 'Clients', :title => false) %>
 </div>
 
-
-<div class="sommaire show">
+</td><td>
+ <div class="sommaire show">
   <h3>Plateformes</h3>
   <p>Gestion des socles</p>
   <% links = [ 
@@ -49,11 +49,13 @@ Vous êtes administrateur du Portail 08000linux.com.
          link_to('Paquets', :controller => 'paquets', :action => 'list'),
          link_to('Binaires', :controller => 'binaires', :action => 'list') ] %>
    <%= show_liste(links, 'Gestion des logiciels', :title => false) %>
-</div>
-<div class="sommaire show">
+ </div>
+ <div class="sommaire show">
 	<h3>Reporting</h3>
 	<p>Comex</p>
 	<% links = [
 		link_to('Rapport Comex', :controller => 'reporting', :action =>'comex') ] %>
 	<%= show_liste(links, 'Rapport Comex', :title => false) %>
-</div>
+ </div>
+</td></tr></table>
+

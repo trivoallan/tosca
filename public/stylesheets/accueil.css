@@ -3,12 +3,15 @@
 /* Nouvel accueil */
 
 div.sommaire {
-	float: left;
 	margin-right: 50px;
 	valign: top;
 }
 
-table.sommaire tr { 
+table.sommaire tr  { 
+	vertical-align: top;
+}
+
+table.sommaire tr td { 
 	vertical-align: top;
 }
 
