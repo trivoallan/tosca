@@ -127,8 +127,10 @@ class ReportingController < ApplicationController
             'severite_id = :severite_id', values ] } 
       }
       Demande.with_scope(cscope) {
-        clast_week  = [ 'updated_on < :first_day AND ' << 
-                        "NOT (#{Demande::TERMINEES})" , values ]
+        clast_week  = [ "#{Demande::EN_COURS} OR " <<
+                        '(created_on < :first_day AND ' << 
+                        "updated_on BETWEEN :first_day AND :last_day AND " <<
+                        "#{Demande::TERMINEES})", values ]
         @requests[:last_week][name][i] = 
           Demande.count(:conditions => clast_week)
 	
