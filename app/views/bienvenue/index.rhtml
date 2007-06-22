@@ -26,9 +26,11 @@
   <% links = [ public_link_to_help_new_request, public_link_to_howto_request ] %>
   <%= public_show_liste(links, 'Aide', :title => false) %>
 	</p> <h3>Boite à idée</h3>
-  <p> Vous avez une idée qui permettrait d'améliorer nos services ? <br />
-  Vos suggestions et vos idées sont les bienvenues dans
-  <%= link_to('la boîte à idée', 'suggestions') %></p>
+  <% if user %>
+    <p> Vous avez une idée qui permettrait d&lsquo;améliorer nos services ? <br />
+    Vos remarques et vos suggestions sont les bienvenues dans
+    <%= link_to('la boîte à idée', 'suggestions') %></p>
+  <% end %>
  </div>
 
  </td><td>
