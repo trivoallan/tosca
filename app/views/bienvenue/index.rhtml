@@ -6,8 +6,9 @@
 </table>
 
 
-<% if @beneficiaire %> 
-<div class="sommaire show">
+<table class="sommaire"><tr><td>
+ <% if @beneficiaire %> 
+ <div class="sommaire show">
   <h3>Offre</h3>
   <% client = @beneficiaire.client %>
   <table><tr><td rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>, vous avez accès à l&lsquo;une de nos offres dont vous pouvez consulter à tout moment le détail : <%=link_to_my_client%></td></tr>
@@ -21,11 +22,10 @@
   <% else %>
       Vous n&lsquo;avez pas de code d&lsquo;accès.
   <% end %>
+ </div>
+ <% end %>
 
-</div>
-<% end %>
-
-<div class="sommaire show">
+ <div class="sommaire show">
   <h3>Demandes</h3>
   <% if user %>
     <p><%= "Vous pouvez consulter la liste des #{link_to_requests} : " +
@@ -36,9 +36,21 @@
   <% else %>
     <p><%= html_wrap(_("Vous n'êtes pas #{connected} vous n'avez pas accès à l'interface des demandes de notre service"))%></p>
   <% end %>
-</div>
+ </div>
 
-<div class="sommaire show">
+ <div class="sommaire show">
+  <h3>Aide</h3>
+  <% links = [ public_link_to_help_new_request, public_link_to_howto_request ] %>
+  <%= public_show_liste(links, 'Aide', :title => false) %>
+	</p> <h3>Boite à idée</h3>
+  <p> Vous avez une idée qui permettrait d'améliorer nos services ? <br />
+  Vos suggestions et vos idées sont les bienvenues dans
+  <%= link_to('la boite à idée', 'send_suggestion') %></p>
+ </div>
+
+ </td><td>
+
+ <div class="sommaire show">
   <h3>Logiciels</h3>
   <p><%= _("Vous pouvez consulter la liste des %s. Ces logiciels sont répartis") % public_link_to_logiciels %><br />
      <%= _("selon une %s précise et simple, par groupe d'activité.") % public_link_to_groupes %></p><br />
@@ -49,13 +61,12 @@
        <%=mail_to('contact@08000linux.com',_('contacter'))%></p><br />
   <% end %>
   <p><%=_("Vous pouvez également accéder aux %s réalisées par notre équipe.") % public_link_to_contributions %></p>
-</div>
+ </div>
 
-<div class="sommaire show">
+ <div class="sommaire show">
   <h3>Documents</h3>
   <% if user %>
-    <p><%= "Vous pouvez parcourir #{link_to('votre répertoire', :controller => 'documents', :action => 'select')}
-            pour accéder aux documents suivants : " + 
+    <p><%= "Vous pouvez parcourir #{link_to('votre répertoire', :controller => 'documents', :action => 'select')} " + 
             show_liste(@typedocuments, 'Type de document', :title => false) { |t| 
               link_to_typedocument t 
             } %></p>
@@ -67,17 +78,6 @@
     <p><%= _("Vous avez également accès à l'intégralité des documents que nous vous")%><br />
        <%= _("livrons, et ce de manière centralisée et versionnée")%></p>
   <% end %>
-</div>
+ </div>
 
-<div class="sommaire show">
-  <h3>Aide</h3>
-  <% links = [ public_link_to_help_new_request, public_link_to_howto_request ] %>
-  <%= public_show_liste(links, 'Aide', :title => false) %>
-	</p> <h3>Boite à idée</h3>
-  <p> Vous avez une idée qui permettrait d'améliorer nos services ? <br />
-  Vos suggestions et vos idées sont les bienvenues dans
-  <%= link_to('la boite à idée', 'send_suggestion') %>
-
-</div>
-
-
+</td></tr></table>

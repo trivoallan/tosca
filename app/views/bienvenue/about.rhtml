@@ -1,4 +1,5 @@
-<div class="sommaire show">
+<table class="sommaire"><tr><td>
+ <div class="sommaire show">
   <h1>&Agrave; propos de <%= "#{Metadata::NOM_COURT_APPLICATION} v#{Metadata::VERSION_APPLICATION}" %></h1>
 
   <p>Cette application a été conçue, écrite et réalisée par <b>Michel Loiseleur</b> dans les locaux  
@@ -7,22 +8,23 @@
   sans tous les <b>testeurs</b> qui ont contribués à assurer sa qualité et sans un grand nombre de <b>logiciel libre</b>
   qui ont permis à son développement d&lsquo;être rapide et agile. Ils sont tous ici grandement remerciés.
   <%=Metadata::NOM_COURT_APPLICATION%> ne serait rien sans eux.</p>
-</div>
-<div class="sommaire show">
+ </div>
+ <div class="sommaire show">
   <h2>Contributeurs</h2>
   <ul>
     <li>Sébastien Bahloul</li>
     <li>Guillaume Dufloux</li>
     <li>Rémy-Christophe Schermesser</li>
   </ul>
-</div><div class="sommaire show">
+ </div></td>
+ <td><div class="sommaire show">
   <h2>Testeurs</h2>
   <ul>
     <li>Richard Samson</li>
     <li>Jonathan Clarke</li>
     <li>Philippe Brière</li>
   </ul>
-</div><div class="sommaire show">
+ </div><div class="sommaire show">
   <h2>Logiciels libres utilisés par <%= Metadata::NOM_COURT_APPLICATION %></h2>
   <ul>
     <li><a href="http://www.ruby-lang.org">Ruby</a></li>
@@ -42,4 +44,5 @@
       </ul>
     </li>
   </ul>
-</div>
+ </div></td>
+</tr></table>

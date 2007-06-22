@@ -160,7 +160,7 @@ table.pages td {
 	padding: 1em 1em 1em 1em;
 	margin: 1em 0.5em 1em 0.5em;
 	min-width: 30%;
-	border-collapse: collapse;
+	/*border-collapse: collapse;*/
 }
 
 
