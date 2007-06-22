@@ -1,7 +1,7 @@
 <%= public_link_to 'Accueil', :action => '', :controller => 'bienvenue'%> > 
  <%= public_link_to 'Logiciels', :action => 'list', :controller => 'logiciels', :id => nil %> > 
   <%= public_link_to @binaire.paquet.logiciel.nom, :action => 'show', :controller => 'logiciels', :id => @binaire.paquet.logiciel_id %> >
-   <%= link_to(@binaire.paquet.version << '-' << @binaire.paquet.release, :controller => 'paquets', :action => 'show', :id => @binaire.paquet_id ) %> >
+   <%= link_to(@binaire.paquet.version + '-' << @binaire.paquet.release, :controller => 'paquets', :action => 'show', :id => @binaire.paquet_id ) %> >
      <%=h @binaire.nom %> <%= link_to_edit(@binaire) %>
 
 <h1>Paquet Binaire</h1>
