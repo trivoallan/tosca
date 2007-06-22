@@ -3,8 +3,8 @@
 <!--[form:contribution]-->
 <table class="form"><tr valign='top'><td>
 
-<p><label for="contribution_nom">Nom</label><br/>
-<%= text_field 'contribution', 'nom'  %></p>
+<p><label for="contribution_nom">Nom ( 20 caractères max.)</label><br/>
+<%= text_field 'contribution', 'nom', :size => 20, :maxlength => 20  %></p>
 
 <p><label for="contribution_logiciel">Logiciel</label><br/>
 <%= collection_select(:contribution, :logiciel_id, @logiciels, :id, :nom) %>
