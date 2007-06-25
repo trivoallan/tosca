@@ -9,6 +9,7 @@ body {
 	color: #000;
 	background-color: #eaeafa;
 	font-size: 1em; 
+        /* keep DRY : one font-family for all */
 	font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
   	font-size:   12px;
   	line-height: 18px;
