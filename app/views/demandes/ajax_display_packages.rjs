@@ -1,0 +1,5 @@
+page.replace_html("delai", :partial => "packages")
+# page[:delai].visual_effect :highlight, 
+# 			   :startcolor => "#88ff88",
+# 			   :endcolor => "114411"
+page[:delai].visual_effect :blind_down

@@ -347,8 +347,9 @@ class ReportingController < ApplicationController
     contributions = [ 'contributions.created_on BETWEEN ? AND ?', nil, nil ]  
     # (#{liste})" ]
 
-    # TODO : provient du scop de appication.rb
-    # TODO : c'est pas DRY
+    # TODO : provient du scope de appication.rb
+    # TODO : Le scope des contribs devrait plutot porter 
+    # sur les demandes qui ont des contribs, non.
     cpaquets = ['paquets.contrat_id = ?', @contrat.id ]
     scontributions = {:find => {:conditions => cpaquets, :include => [:paquets]}}
     Contribution.with_scope(scontributions) {
@@ -404,10 +405,11 @@ class ReportingController < ApplicationController
     }
 
     terminal = [6,7,8]
+    contrat_id = @contrat.id
     support = @contrat.client.support
     amplitude = support.fermeture - support.ouverture
     demandes.each do |d|
-      e = d.engagement(@contrat.id)
+      e = d.engagement(contrat_id)
       next unless e
       
       rappel = d.temps_rappel()

@@ -19,7 +19,6 @@
 <% end %>
 <tr>
   <td colspan="2"><p><label for="demande_resume">Intitulé</label><br/>
-    <%#= text_area :demande, :resume, :cols => 65, :rows => 5 %>
     <%= text_field :demande, :resume, :size => 60 %></p></td>
 </tr>
 <tr>
@@ -69,19 +68,17 @@
     <%= text_field(:demande, :statut_id) %></p></td>
 </tr>
 <% end %>
+
 <% # hidden lors de la création d'un demande %>
 <tr>
-  <td><p <%= hidden_on_create %>><label for="demande_reproductible">Reproductible ?</label></p></td>
-  <td><p <%= hidden_on_create %>><%= check_box("demande", "reproductible") %></p></td>
-</tr>
-<tr>
   <td><div id="delai"></div>
-    <% # option :function et :on pour remplacer :url, par defaut "changed" %>
-    <%= observe_form 'demande_form', :url => {:action => :ajax_update_delai},
-                                     :update => :demande_paquets %></td>
+  </td>
   <td></td>
 </tr>
 </table>
+
+<%= observe_form 'demande_form', :url => {:action => :ajax_display_packages},
+                                 :with => 'demande_form' %>
 
 </td><td valign="top">
 

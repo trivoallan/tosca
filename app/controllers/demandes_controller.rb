@@ -82,7 +82,7 @@ class DemandesController < ApplicationController
 
     # si on est ingénieur, elle est pour nous par défaut
     @demande.ingenieur = @ingenieur
-    # sans object par défaut 
+    # sans objet par défaut 
     @demande.severite_id = 4
     # statut "prise en compte" si ingénieur, sinon : "enregistrée"
     @demande.statut_id = (@ingenieur ? 2 : 1)
@@ -103,6 +103,30 @@ class DemandesController < ApplicationController
       render :action => 'new' 
     end
   end 
+
+
+  # Used when submitting new request, in order to select
+  # packages which are subjects to SLA.
+  def ajax_display_packages
+    @demande = Demande.new(params[:demande])
+    
+    begin
+      beneficiaire = Beneficiaire.find @demande.beneficiaire_id
+      contrat = Contrat.find :first, :conditions => 
+      ['contrats.client_id = ?', beneficiaire.client.id ]
+      logiciel = Logiciel.find(@demande[:logiciel_id])
+    rescue  ActiveRecord::RecordNotFound
+      @paquets = []
+      flash[:warn] = "object not found ???"
+    else
+      # active = 1 : we only take supported packages. 
+      # MySQL doesn't support true/false so Rails use Tinyint...
+      conditions = { :conditions => 
+        [ 'paquets.logiciel_id=? AND paquets.active=1', logiciel.id ], 
+        :order => 'paquets.nom DESC' }
+      @paquets = beneficiaire.client.paquets.find(:all, conditions) 
+    end
+  end
 
   # TODO : refaire le formulaire associé. 
   # qui a besoin d'un petit check

@@ -30,6 +30,13 @@ class Contrat < ActiveRecord::Base
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
   end
 
+  def find_engagement(request)
+    cond = 'engagements.typedemande_id = ? AND severite_id = ?'
+    options = { :conditions => 
+      [ cond, request.typedemande_id, request.severite_id ] }
+    self.engagements.find(:first, options)
+  end
+
   def demandes
     joins = 'INNER JOIN demandes_paquets ON demandes.id = demandes_paquets.demande_id '
     joins << 'INNER JOIN paquets ON paquets.id = demandes_paquets.paquet_id '
