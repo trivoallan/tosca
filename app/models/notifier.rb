@@ -6,6 +6,7 @@ class Notifier < ActionMailer::Base
 
   FROM = 'lstm@noreply.08000linux.com'
   HTML_CONTENT = 'text/html; charset=utf-8'
+  TEXT_CONTENT = 'text/plain; charset=utf-8'
 
   # Notifie un état d'erreur
   def error_message(exception, trace, session, params, env)
@@ -48,7 +49,7 @@ class Notifier < ActionMailer::Base
     @content_type = HTML_CONTENT
     @subject = "Accès au Support Logiciel Libre"
     if flash and flash[:notice]
-      flash[:notice] << message_notice(@recipients, nil) 
+      flash[:notice] << message_notice(@recipients, nil)
     end
   end
 
@@ -64,7 +65,7 @@ class Notifier < ActionMailer::Base
     @content_type = HTML_CONTENT
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]
-      flash[:notice] << message_notice(@recipients, @cc) 
+      flash[:notice] << message_notice(@recipients, @cc)
     end
   end
 
@@ -97,19 +98,19 @@ class Notifier < ActionMailer::Base
     @content_type = HTML_CONTENT
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
     if flash and flash[:notice]
-      flash[:notice] << message_notice(@recipients, @cc) 
+      flash[:notice] << message_notice(@recipients, @cc)
     end
   end
 
   def bienvenue_suggestion(text, to, from)
     case to
-    when :team : @recipients = MAIL_TEAM 
-    when :tosca : @recipients = MAIL_TOSCA 
+    when :team : @recipients = MAIL_TEAM
+    when :tosca : @recipients = MAIL_TOSCA
     else @recipients = MAIL_MAINTENER
     end
     @from = FROM
     @content_type= HTML_CONTENT
-    @subject = "[Suggestion] => #{to}" 
+    @subject = "[Suggestion] => #{to}"
     # Email body substitutions go here
     @body[:suggestion] = text
     @body[:author] = from
@@ -119,7 +120,7 @@ class Notifier < ActionMailer::Base
   def compute_copy(demande)
     res = demande.beneficiaire.client.mailingliste
     if demande.mail_cc and demande.mail_cc.size > 4
-      res << ", " << demande.mail_cc 
+      res << ", " << demande.mail_cc
     end
     res
   end
@@ -127,7 +128,7 @@ class Notifier < ActionMailer::Base
   def compute_recipients (demande)
     result = demande.beneficiaire.identifiant.email
     # l'ingénieur est non assigné initialement
-    result += ", " + demande.ingenieur.identifiant.email if demande.ingenieur 
+    result += ", " + demande.ingenieur.identifiant.email if demande.ingenieur
     result
   end
 
