@@ -57,7 +57,7 @@ protected
   # le redirect_to de l'ActionController::Base
   # TODO : c'est mal, doublon avec le rescue du scope_beneficiaire
   def redirect_to_home
-    if request.xhr?   
+    if request.xhr?
       render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
       redirect_to :controller => 'bienvenue', :action => ''
