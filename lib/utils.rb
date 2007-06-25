@@ -2,6 +2,9 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
+#For html2text
+require 'cgi'
+
 # Meta data ici :
 # ajouter par Lstm
 module Metadata
@@ -60,4 +63,38 @@ end
 def avg(data)
   return 0 unless data.is_a? Array
   data.inject(0){|n, value| n + value} / data.size.to_f
+end
+
+
+#Found here
+#http://blog.yanime.org/articles/2005/10/10/html2text-function-in-ruby
+#TODO : améliorer
+def html2text(html)
+  text = html.
+    gsub(/(&nbsp;|\n|\s)+/im, ' ').squeeze(' ').strip.
+    gsub(/<([^\s]+)[^>]*(src|href)=\s*(.?)([^>\s]*)\3[^>]*>\4<\/\1>/i, '\4')
+
+  links = []
+  linkregex = /<[^>]*(src|href)=\s*(.?)([^>\s]*)\2[^>]*>\s*/i
+  while linkregex.match(text)
+    links << $~[3]
+    text.sub!(linkregex, "[#{links.size}]")
+  end
+
+  text = CGI.unescapeHTML(
+    text.
+      gsub(/<(script|style)[^>]*>.*<\/\1>/im, '').
+      gsub(/<!--.*-->/m, '').
+      gsub(/<hr(| [^>]*)>/i, "___\n").
+      gsub(/<li(| [^>]*)>/i, "\n* ").
+      gsub(/<blockquote(| [^>]*)>/i, '> ').
+      gsub(/<(br)(| [^>]*)>/i, "\n").
+      gsub(/<(\/h[\d]+|p)(| [^>]*)>/i, "\n\n").
+      gsub(/<[^>]*>/, '')
+  ).lstrip.gsub(/\n[ ]+/, "\n") + "\n"
+
+  for i in (0...links.size).to_a
+    text = text + "\n  [#{i+1}] <#{CGI.unescapeHTML(links[i])}>" unless links[i].nil?
+  end
+  text
 end
