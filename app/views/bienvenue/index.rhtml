@@ -25,11 +25,11 @@
   <h3>Aide</h3>
   <% links = [ public_link_to_help_new_request, public_link_to_howto_request ] %>
   <%= public_show_liste(links, 'Aide', :title => false) %>
-	</p> <h3>Boite à idée</h3>
   <% if user %>
+  <h3>Boite à idée</h3>
     <p> Vous avez une idée qui permettrait d&lsquo;améliorer nos services ? <br />
     Vos remarques et vos suggestions sont les bienvenues dans
-    <%= link_to('la boîte à idée', 'suggestions') %></p>
+    <%= link_to('la boîte à idée', 'suggestions') %>.</p>
   <% end %>
  </div>
 
@@ -56,11 +56,11 @@
 
  <div class="sommaire show">
   <h3>Logiciels</h3>
-  <p><%= _("Vous pouvez consulter la liste des %s. Ces logiciels sont répartis") % public_link_to_logiciels %><br />
-     <%= _("selon une %s précise et simple, par groupe d'activité.") % public_link_to_groupes %></p><br />
+  <p><%= _("Vous pouvez consulter la liste des %s.") % public_link_to_logiciels %><br/>
+     <%= _("Ces logiciels sont répartis selon une %s précise et simple, par groupe d'activité.") % public_link_to_groupes %></p><br />
   <% #       ( @beneficiaire ? " dans le cadre de votre #{link_to_my_client} " : '.' ) +%>
   <% unless user %>
-    <p><%=_("Nous avons des offres d'assistance, de support et de maintenance pour")%><br />
+    <p><%=_("Nous avons des offres d'assistance, de support et de maintenance pour")%>
        <%=_("l'ensemble de ces logiciels, n'hésitez pas à nous")%>
        <%=mail_to('contact@08000linux.com',_('contacter'))%></p><br />
   <% end %>
