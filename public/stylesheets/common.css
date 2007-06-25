@@ -7,14 +7,12 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #000;
-	background-color: #eaeafa; /* #f2fff2; /* ffffff; */
+	background-color: #eaeafa;
 	font-size: 1em; 
-	/* keep DRY : one font-family for all */
-  	/*font-family: verdana, arial, helvetica, sans-serif;*/
 	font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
   	font-size:   12px;
   	line-height: 18px;
-	/* overflow: auto; */
+
 }
 
 /****************** structure/ layout ****************/

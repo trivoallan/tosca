@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
-  map.connect '', :controller => "account", :action => "login"
+  map.connect '', :controller => "bienvenue"
 
   # routing files to prevent download from public access
   options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
