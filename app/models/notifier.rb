@@ -15,8 +15,12 @@ class Notifier < ActionMailer::Base
     @from = FROM
     @content_type = HTML_CONTENT
     @subject = "Time to fix this one : #{env['REQUEST_URI']}"
+    user = "Nobody"
+    if session
+      user = session[:user].nom if session[:user] and session[:user].nom
+    end
     @body = {
-      :user => session[:user][:nom],
+      :user => user,
       :exception => exception,
       :trace => trace,
       :params => params,
