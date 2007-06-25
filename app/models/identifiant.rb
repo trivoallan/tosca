@@ -11,7 +11,7 @@ class Identifiant < ActiveRecord::Base
 
   has_one :ingenieur
   has_one :beneficiaire
-
+  has_one :preference
 
 
   # TODO : vérifier que l'email est valide, et 
