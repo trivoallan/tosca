@@ -86,14 +86,14 @@ def html2text(html)
       gsub(/<(script|style)[^>]*>.*<\/\1>/im, '').
       gsub(/<!--.*-->/m, '').
       gsub(/<hr(| *[^>]*)>/i, "\n----------------------------\n").
-      gsub(/<li(| [^>]*)>/i, "\n* ").
+      gsub(/<li(| [^>]*)>/i, "\n * ").
       gsub(/<blockquote(| [^>]*)>/i, '> ').
       gsub(/<br(| *[^>]*)>/i, "\n").
       gsub(/<\/(h[\d]+|p)(| [^>]*)>/i, "\n\n").
       gsub(/<\/address(| [^>]*)>/i, "\n").
       gsub(/<\/pre(| [^>]*)>/i, "\n").
       gsub(/<[^>]*>/, '')
-  ).lstrip.gsub(/\n[ ]+/, "\n") + "\n"
+  ).lstrip.gsub(/\n[ ]+/, "\n")
 
   for i in (0...links.size).to_a
     text = text + "\n  [#{i+1}] <#{CGI.unescapeHTML(links[i])}>" unless links[i].nil?
