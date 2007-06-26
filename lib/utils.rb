@@ -75,10 +75,10 @@ def html2text(html)
     gsub(/<([^\s]+)[^>]*(src|href)=\s*(.?)([^>\s]*)\3[^>]*>\4<\/\1>/i, '\4')
 
   links = []
-  linkregex = /<[^>]*(src|href)=\s*(.?)([^>\s]*)\2[^>]*>\s*/i
+  linkregex = /<[^>]*(src|href)=\s*(.?)([^>\s]*)\2[^>]*>([^>]*)<[^>]*>/i
   while linkregex.match(text)
     links << $~[3]
-    text.sub!(linkregex, "[#{links.size}]")
+    text.sub!(linkregex, "#{$~[4]}[#{links.size}]")
   end
 
   text = CGI.unescapeHTML(
