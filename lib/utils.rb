@@ -93,8 +93,7 @@ def html2text(html)
       gsub(/<\/address(| [^>]*)>/i, "\n").
       gsub(/<\/pre(| [^>]*)>/i, "\n").
       gsub(/<[^>]*>/, '')
-  ).lstrip.gsub(/\n[ ]+/, "\n")
-
+  )
   for i in (0...links.size).to_a
     text = text + "\n  [#{i+1}] <#{CGI.unescapeHTML(links[i])}>" unless links[i].nil?
   end

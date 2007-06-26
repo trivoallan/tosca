@@ -88,19 +88,14 @@ class Notifier < ActionMailer::Base
   # This function require 5 parameters : :demande, :nom,
   # :controller, :commentaire, :request
   def demande_nouveau_commentaire(options, flash)
-    # Email body substitutions go here
-    @body = options
-    # Email header info MUST be added here
     demande = options[:demande]
-    @recipients = compute_recipients(demande)
-    @cc = compute_copy(demande) 
-    @from = FROM
-    @content_type = HTML_CONTENT
-    @charset = "utf-8"
-    @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
 
-    part :content_type => TEXT_CONTENT,
-        :body => html2text(render_message("demande_nouveau_commentaire", @body))
+    recipients compute_recipients(demande)
+    cc compute_copy(demande) 
+    from FROM
+    content_type "multipart/alternative"
+    body options
+    subject "[OSSA:##{demande.id}] : #{demande.resume}"
 
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc)
