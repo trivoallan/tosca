@@ -85,11 +85,13 @@ def html2text(html)
     text.
       gsub(/<(script|style)[^>]*>.*<\/\1>/im, '').
       gsub(/<!--.*-->/m, '').
-      gsub(/<hr(| [^>]*)>/i, "___\n").
+      gsub(/<hr(| *[^>]*)>/i, "\n----------------------------\n").
       gsub(/<li(| [^>]*)>/i, "\n* ").
       gsub(/<blockquote(| [^>]*)>/i, '> ').
-      gsub(/<(br)(| [^>]*)>/i, "\n").
-      gsub(/<(\/h[\d]+|p)(| [^>]*)>/i, "\n\n").
+      gsub(/<br(| *[^>]*)>/i, "\n").
+      gsub(/<\/(h[\d]+|p)(| [^>]*)>/i, "\n\n").
+      gsub(/<\/address(| [^>]*)>/i, "\n").
+      gsub(/<\/pre(| [^>]*)>/i, "\n").
       gsub(/<[^>]*>/, '')
   ).lstrip.gsub(/\n[ ]+/, "\n") + "\n"
 

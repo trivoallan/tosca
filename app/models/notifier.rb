@@ -5,8 +5,8 @@ class Notifier < ActionMailer::Base
   helper :mail
 
   FROM = 'lstm@noreply.08000linux.com'
-  HTML_CONTENT = 'text/html; charset=utf-8'
-  TEXT_CONTENT = 'text/plain; charset=utf-8'
+  HTML_CONTENT = 'text/html'
+  TEXT_CONTENT = 'text/plain'
 
   # Notifie un état d'erreur
   def error_message(exception, trace, session, params, env)
@@ -91,12 +91,17 @@ class Notifier < ActionMailer::Base
     # Email body substitutions go here
     @body = options
     # Email header info MUST be added here
-    demande =  @body[:demande]
+    demande = options[:demande]
     @recipients = compute_recipients(demande)
     @cc = compute_copy(demande) 
     @from = FROM
     @content_type = HTML_CONTENT
+    @charset = "utf-8"
     @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
+
+    part :content_type => TEXT_CONTENT,
+        :body => html2text(render_message("demande_nouveau_commentaire", @body))
+
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc)
     end
@@ -137,4 +142,5 @@ class Notifier < ActionMailer::Base
     result << "<br />avec en copie <b>#{cc}</b> " if cc
     result << "a été envoyé."
   end
+
 end

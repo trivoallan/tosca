@@ -38,6 +38,7 @@ class ApplicationController < ActionController::Base
   # http://wiki.moxiecode.com/index.php/TinyMCE:Configuration
   # L'option pour ne pas avoir de tinyMCE est la class "mceNoEditor".
   uses_tiny_mce :options => { :mode => 'textareas',
+                              :entity_encoding => 'raw',
                               :theme => 'advanced',
                               :theme_advanced_toolbar_location => "top",
                               :theme_advanced_toolbar_align => "left",
