@@ -61,6 +61,7 @@ class ReportingController < ApplicationController
     results = params[:results]
     cns = params[:cns]
     comex = params[:reporting]
+
     clients = '(' << params[:clients].join(',') << ')'
     @date = {}
     scope= {}
@@ -94,7 +95,7 @@ class ReportingController < ApplicationController
       redirect_to :action => 'comex' and return
     end
     if comex
-      scope= { :conditions => "id IN #{clients}"} unless clients.include?('all')2
+      scope= { :conditions => "id IN #{clients}"} unless clients.include?('all')
       Client.with_scope(:find => scope) {
       init_comex_report()
       }

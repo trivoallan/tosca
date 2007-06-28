@@ -233,24 +233,14 @@ module ReportingHelper
   def progress_bar( percent )
       mesg=' ' 
       mesg << percent.to_s << '%'
-      if percent== -1
-        mesg='-'
-        return mesg
-      elsif percent < 0
-        percent=0
-        mesg << ' Pourcentage négatif !'
-      elsif percent > 100
-        red= 0
-        green =0
-        mesg= ' Hors CNS de ' + percent.to_s + '% !'
-      elsif percent > 50
-        red = 255
-        green = 255*(100-percent)/50
-      else
-        green=255
-        red = 255*percent/50
-        percent.to_s
+      case percent
+        when -1 then mesg='-' and return mesg
+        when percent < 0 then percent=0 and mesg << 'Pourcentage négatif !'
+        when 0..50 then green=255 and red=255*percent/50
+        when 50..100 then red=255 and green = 255*(100-percent)/50
+        else red=0 and green=0 and mesg = ' Hors CNs de '+percent.to_s+ '% !'
       end
+
       color = 'rgb(' << red.to_s << ',' << green.to_s << ',0)'
 
       return '<img alt="barre de progression" class="percentImage" 
