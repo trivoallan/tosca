@@ -1,0 +1,33 @@
+<h1>Rapport CNS</h1>
+<ul>
+<% @contrats.each do |contrat| %>
+
+	<li> Contrat : <%= contrat.client.nom %></li>
+	<% if @demandes[contrat.id] %>
+		<table class="show", width='100%'>
+			<tr>
+				<th width='2%'>Id</th>
+				<th width= '25%'> Contournement</th>
+				<th width= '25%'> Correction</th>
+				<th>Résumé</th>
+			</tr>
+			<% @demandes[contrat.id].each do |demand|%>
+				<tr class="<%=cycle('pair', 'impair')%>">
+					<td><%= demand.id %></td>
+					<td>
+						<%=progress_bar( 
+								@percent[:contournement][contrat.id][demand.id].to_i) %>
+					</td>
+					<td>
+						<%=progress_bar( 
+								@percent[:correction][contrat.id][demand.id].to_i )%>
+					</td>
+					<td><%= demand[:resume] %></td>
+				</tr>
+			<% end %>
+		</table>
+	<%else %>
+		<p> - </p>
+	<%end%>
+<%end %>
+</ul>
