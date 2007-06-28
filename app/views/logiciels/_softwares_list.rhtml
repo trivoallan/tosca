@@ -6,14 +6,20 @@
 
 
 
-<% links = show_pages_links(@logiciel_pages, 'un nouveau logiciel', 
+<% links = show_pages_links(@logiciel_pages, _('un nouveau logiciel'),
                      :url => '../logiciels/list') %>
 <%= links %>
 
-<% titres = ['Nom', 'Description', 'Technologie(s)', 'Référent',
-             'Groupe', 'Paquet(s)'] %>
+<% titres = [ _('Logo'), _('Nom'), _('Description'), _('Technologie(s)'),
+              _('Référent'), _('Groupe'), _('Paquet(s)') ] %>
+
 <%= show_table(@logiciels, Logiciel, titres) { |l|
   result = ''
+  if l.logo
+    result << "<td>#{image_tag(url_for_file_column(l.logo, 'image', 'thumb'))}</td>"
+  else
+    result << '<td></td>'
+  end
   result << "<td>#{public_link_to_logiciel l}</td>"
   result << "<td>#{l.resume}</td>"
   result << "<td>#{liste_competences l.competences}</td>"
@@ -29,9 +35,8 @@
 
 <%if @beneficiaire %>
   <% if @scope %>
-    <%= link_to('Voir tous les logiciels', 'list') %>
+    <%= link_to(_('Voir tous les logiciels'), 'list') %>
   <% else %>
-    <%= link_to('Voir uniquement mes logiciels', 'list?scope=true') %>
+    <%= link_to(_('Voir uniquement mes logiciels'), 'list?scope=true') %>
   <% end %>
 <% end %>
-

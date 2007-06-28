@@ -2,6 +2,17 @@
 
 <table class="show">
 
+<tr>
+  <td><b><%= _("Logo") %></b></td>
+  <td>
+    <% if @logiciel.logo %>
+      <%= image_tag(url_for_file_column(@logiciel.logo, 'image', 'thumb')) %>
+    <% else %>
+      
+    <% end %>
+  </td>
+</tr>
+
 <% for column in Logiciel.content_columns %>
 <tr><td><b><%= column.human_name %></b> </td>
     <td><%= @logiciel.send(column.name) %></td></tr>
@@ -23,10 +34,10 @@
             result = ''
             options[:id] = u.id
             link = link_to(image_edit, options, LinksHelper::NO_HOVER) 
-    	    result << link if link
+            result << link if link
             result << ' ' + u.typeurl.nom.to_s + ' : '
             result << "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
-	    link = link_to(image_delete, { :controller => 'urllogiciels',
+            link = link_to(image_delete, { :controller => 'urllogiciels',
              :action => 'destroy', :id => u.id } ,  { :class => 'nobackground',
              :confirm => "Voulez-vous vraiment supprimer #{u.valeur} ?",
              :method => 'post' })
