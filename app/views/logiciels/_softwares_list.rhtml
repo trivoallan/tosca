@@ -15,8 +15,8 @@
 
 <%= show_table(@logiciels, Logiciel, titres) { |l|
   result = ''
-  if l.logo
-    result << "<td>#{image_tag(url_for_file_column(l.logo, 'image', 'thumb'))}</td>"
+  if l.image
+    result << "<td>#{image_tag(url_for_file_column(l.image, 'image', 'thumb'))}</td>"
   else
     result << '<td></td>'
   end

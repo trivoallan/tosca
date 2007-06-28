@@ -5,8 +5,8 @@
 <tr>
   <td><b><%= _("Logo") %></b></td>
   <td>
-    <% if @logiciel.logo %>
-      <%= image_tag(url_for_file_column(@logiciel.logo, 'image', 'thumb')) %>
+    <% if @logiciel.image %>
+      <%= image_tag(url_for_file_column(@logiciel.image, 'image', 'thumb')) %>
     <% else %>
       
     <% end %>
