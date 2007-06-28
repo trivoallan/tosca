@@ -42,17 +42,14 @@ class BienvenueController < ApplicationController
   #nodoc
   def suggestions
     suggestion = params[:suggestion]
-    flash[:notice] = "tosca"
     if suggestion
       if suggestion[:team] != ""
         Notifier::deliver_bienvenue_suggestion(suggestion[:team],
                                                :team, session[:user])
-    flash[:notice] << "a"
       end
       if suggestion[:tosca] != ""
         Notifier::deliver_bienvenue_suggestion(suggestion[:tosca],
                                                :tosca, session[:user])
-                                               flash[:notice] << "b"
       end
       flash[:notice] << _("Merci d'avoir pris le temps de nous aider à " <<
             "améliorer cet outil. Vos suggestions ont bien été envoyées")
