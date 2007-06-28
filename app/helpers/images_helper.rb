@@ -35,7 +35,7 @@ module ImagesHelper
 
   def logo_client(client)
     return '' if client.nil?
-    image_tag(url_for_file_column(client.photo, 'image', 'thumb'),
+    image_tag(url_for_file_column(client.image, 'image', 'thumb'),
               image_options(client.nom))
   end
 

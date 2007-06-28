@@ -1,22 +1,31 @@
 class AddLogoLogiciel < ActiveRecord::Migration
   def self.up
-    create_table :logos, :options => 'ENGINE=MyISAM CHARSET=utf8' do |t|
-      t.column :image, :string, :null => false
-      t.column :description, :string, :null => true
-      t.column :logiciel_id, :integer, :null => false
-    end
+    add_column :logiciels, :image_id, :integer, :null => true
+    add_index :logiciels, :image_id
 
-    add_column :logiciels, :logo_id, :integer, :null => true
-    add_index :logiciels, :logo_id
-    add_index :logos, :logiciel_id
+#     remove_index :clients, :photo_id
+    rename_column :clients, :photo_id, :image_id
+    add_index :clients, :image_id
+
+#     remove_index :identifiants, :photo_id
+    rename_column :identifiants, :photo_id, :image_id
+    add_index :identifiants, :image_id
+
+    rename_table :photos, :images
   end
 
   def self.down
-    #Faire le drop index AVANT le remove column sinon ça plante
-    remove_index :logiciels, :logo_id
-    remove_column :logiciels, :logo_id
+    rename_table :images, :photos
 
-    remove_index :logos, :logiciel_id
-    drop_table :logos
+    remove_index :logiciels, :image_id
+    remove_column :logiciels, :image_id
+
+    remove_index :clients, :image_id
+    rename_column :clients, :image_id, :photo_id
+#     add_index :clients, :photo_id
+
+    remove_index :identifiants, :image_id
+    rename_column :identifiants, :image_id, :photo_id
+#     add_index :identifiants, :photo_id
   end
 end

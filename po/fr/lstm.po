@@ -342,7 +342,7 @@ msgid "Client|Adresse"
 msgstr ""
 
 #: app/models/client.rb:-
-msgid "Client|Photo"
+msgid "Client|Image"
 msgstr ""
 
 #: app/models/client.rb:-
@@ -778,7 +778,7 @@ msgid "Identifiant|Telephone"
 msgstr ""
 
 #: app/models/identifiant.rb:-
-msgid "Identifiant|Photo"
+msgid "Identifiant|Image"
 msgstr ""
 
 #: app/models/identifiant.rb:-
@@ -918,16 +918,16 @@ msgstr ""
 msgid "Permission|Info"
 msgstr ""
 
-#: app/models/photo.rb:-
-msgid "photo"
+#: app/models/image.rb:-
+msgid "image"
 msgstr ""
 
-#: app/models/photo.rb:-
-msgid "Photo|Image"
+#: app/models/image.rb:-
+msgid "Image|Image"
 msgstr ""
 
-#: app/models/photo.rb:-
-msgid "Photo|Description"
+#: app/models/image.rb:-
+msgid "Image|Description"
 msgstr ""
 
 #: app/models/piecejointe.rb:-

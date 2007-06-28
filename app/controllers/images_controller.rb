@@ -1,7 +1,7 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-class PhotosController < ApplicationController
+class ImagesController < ApplicationController
   def index
     list
     render :action => 'list'
@@ -12,21 +12,21 @@ class PhotosController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @photo_pages, @photos = paginate :photos, :per_page => 10
+    @image_pages, @images = paginate :images, :per_page => 10
   end
 
   def show
-    @photo = Photo.find(params[:id])
+    @image = Image.find(params[:id])
   end
 
   def new
-    @photo = Photo.new
+    @image = Image.new
   end
 
   def create
-    @photo = Photo.new(params[:photo])
-    if @photo.save
-      flash[:notice] = 'Photo was successfully created.'
+    @image = Image.new(params[:image])
+    if @image.save
+      flash[:notice] = 'Image was successfully created.'
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -34,21 +34,21 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @photo = Photo.find(params[:id])
+    @image = Image.find(params[:id])
   end
 
   def update
-    @photo = Photo.find(params[:id])
-    if @photo.update_attributes(params[:photo])
-      flash[:notice] = 'Photo was successfully updated.'
-      redirect_to :action => 'show', :id => @photo
+    @image = Image.find(params[:id])
+    if @image.update_attributes(params[:image])
+      flash[:notice] = 'Image was successfully updated.'
+      redirect_to :action => 'show', :id => @image
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Photo.find(params[:id]).destroy
+    Image.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
 end

@@ -4,7 +4,7 @@
 require 'digest/sha1'
 
 class Identifiant < ActiveRecord::Base
-  belongs_to :photo
+  has_one :image 
   has_many :piecejointes
   has_and_belongs_to_many :roles
   has_many :documents

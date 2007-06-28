@@ -21,8 +21,8 @@
          <%= collection_select(:client, :support_id, @supports, :id, :nom) %></p>
       <p><label for="client_code_acces">Code d&#146;accès</label><br/>
          <%= text_field 'client', 'code_acces'  %></p>
-      <p><label for="client_photo_id">Logo</label><br/>
-         <%= collection_select(:client, :photo_id, @photos, :id, :description) %></p>
+      <p><label for="client_image_id">Logo</label><br/>
+         <%= collection_select(:client, :image_id, @images, :id, :description) %></p>
       <p><label>Socles</label></p>
          <div class="bloc_scroll">
          <%= hbtm_check_box(@client.socles, @socles, 'client[socle_ids]', :size => 1) %>

@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Client < ActiveRecord::Base
-  belongs_to :photo
+  has_one :image
   has_many :beneficiaires, :dependent => :destroy
   has_many :contrats, :dependent => :destroy, 
     :include => Contrat::INCLUDE, :order => Contrat::ORDER

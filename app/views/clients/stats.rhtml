@@ -15,8 +15,8 @@
 <%= show_table(@clients, Client, titres, :add_lines => [addline]) { |c|
   result = ''
   total = 0
-  if c.photo
-    result << "<td>#{image_tag(url_for_file_column(c.photo, 'image', 'thumb'))}</td>"
+  if c.image
+    result << "<td>#{image_tag(url_for_file_column(c.image, 'image', 'thumb'))}</td>"
   else
     result << '<td></td>'
   end

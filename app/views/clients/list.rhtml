@@ -4,8 +4,8 @@
 <% titres = ['Logo','Nom', 'Paquets', 'MailingListe','Code d\'accès','Support']%>
 <%= show_table(@clients, Client, titres) { |c|
   result = ''
-  if c.photo
-    result << "<td>#{image_tag(url_for_file_column(c.photo, 'image', 'thumb'))}</td>"
+  if c.image
+    result << "<td>#{image_tag(url_for_file_column(c.image, 'image', 'thumb'))}</td>"
   else
     result << '<td></td>'
   end
@@ -21,7 +21,7 @@
   result << "#{link_to_actions_table c}"
 }%>
 
-<%= link_to _('ajouter un logo'), :controller => 'photos', :action => 'new' %>
+<%= link_to _('ajouter un logo'), :controller => 'images', :action => 'new' %>
 <%= show_pages_links(@client_pages, 'un client') %>
 
 
