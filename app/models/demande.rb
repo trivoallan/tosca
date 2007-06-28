@@ -274,6 +274,13 @@ class Demande < ActiveRecord::Base
     Lstm.time_in_french_words(distance_in_seconds, dayly_time)
   end
 
+	# TODO : l'enlever de reporting_controller
+  # Calcule en JO (jours ouvrés) le temps écoulé 
+  def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
+    distance_in_minutes = ((distance_in_seconds.abs)/60.0)
+    jo = period_in_hour * 60.0
+    distance_in_minutes.to_f / jo.to_f 
+  end
 
 
   protected
