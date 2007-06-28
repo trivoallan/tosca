@@ -68,7 +68,7 @@ end
 
 #Found here
 #http://blog.yanime.org/articles/2005/10/10/html2text-function-in-ruby
-#TODO : améliorer
+#TODO : Faire la numérotation pour les listes numérotée
 def html2text(html)
   text = html.
     gsub(/(&nbsp;|\n|\s)+/im, ' ').squeeze(' ').strip.

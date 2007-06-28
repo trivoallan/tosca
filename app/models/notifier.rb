@@ -8,6 +8,11 @@ class Notifier < ActionMailer::Base
   HTML_CONTENT = 'text/html'
   TEXT_CONTENT = 'text/plain'
 
+  # To send a text and html mail it's simple
+  # fill the recipients, from, subject, cc, bcc of your mail
+  # then call the html_and_text_body method with a parameter
+  # this parameter is the variables you want to use in the view of your mail
+
   # Notifie un état d'erreur
   def error_message(exception, trace, session, params, env)
     #@recipients = "mloiseleur@linagora.com"
@@ -40,14 +45,14 @@ class Notifier < ActionMailer::Base
 
   # This function require 3 parameters : :identifiant, :controller, :password
   def identifiant_nouveau(options, flash)
-    # Email body substitutions go here
-    @body = options
-    # Email header info MUST be added here
-    demande =  @body[:demande]
-    @recipients = @body[:identifiant].email
-    @from = FROM
-    @content_type = HTML_CONTENT
-    @subject = "Accès au Support Logiciel Libre"
+    demande = options[:demande]
+
+    recipients  options[:identifiant].email
+    from        FROM
+    subject    "Accès au Support Logiciel Libre"
+
+    html_and_text_body(options);
+
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, nil)
     end
@@ -55,15 +60,15 @@ class Notifier < ActionMailer::Base
 
   # This function require 3 parameters : :demande, :controller, :nom
   def demande_nouveau(options, flash)
-    # Email body substitutions go here
-    @body = options
-    # Email header info MUST be added here
-    demande =  @body[:demande]
-    @recipients = compute_recipients(demande)
-    @cc = compute_copy(demande)
-    @from = FROM
-    @content_type = HTML_CONTENT
-    @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
+    demande =  options[:demande]
+
+    recipients  compute_recipients(demande)
+    cc          compute_copy(demande)
+    from        FROM
+    subject     "[OSSA:##{demande.id}] : #{demande.resume}"
+
+    html_and_text_body(options);
+
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc)
     end
@@ -71,15 +76,15 @@ class Notifier < ActionMailer::Base
 
   # This function require 2 parameters : :demande, :controller
   def demande_assigner(options, flash)
-    # Email body substitutions go here
-    @body = options
-    # Email header info MUST be added here
-    demande =  @body[:demande]
-    @recipients = compute_recipients(demande)
-    @cc = compute_copy(demande)
-    @from = FROM
-    @content_type = HTML_CONTENT
-    @subject = "[OSSA:##{demande.id}] : #{demande.resume}"
+    demande = options[:demande]
+
+    recipients  compute_recipients(demande)
+    cc          compute_copy(demande)
+    from        FROM
+    subject     "[OSSA:##{demande.id}] : #{demande.resume}"
+
+    html_and_text_body(options);
+
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc) 
     end
@@ -91,11 +96,11 @@ class Notifier < ActionMailer::Base
     demande = options[:demande]
 
     recipients compute_recipients(demande)
-    cc compute_copy(demande) 
-    from FROM
-    content_type "multipart/alternative"
-    body options
-    subject "[OSSA:##{demande.id}] : #{demande.resume}"
+    cc         compute_copy(demande) 
+    from       FROM
+    subject    "[OSSA:##{demande.id}] : #{demande.resume}"
+
+    html_and_text_body(options);
 
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc)
@@ -104,16 +109,21 @@ class Notifier < ActionMailer::Base
 
   def bienvenue_suggestion(text, to, from)
     case to
-    when :team : @recipients = MAIL_TEAM
-    when :tosca : @recipients = MAIL_TOSCA
-    else @recipients = MAIL_MAINTENER
+      when :team :
+        recipients MAIL_TEAM
+      when :tosca :
+        recipients MAIL_TOSCA
+      else
+        recipients MAIL_MAINTENER
     end
-    @from = FROM
-    @content_type= HTML_CONTENT
-    @subject = "[Suggestion] => #{to}"
-    # Email body substitutions go here
-    @body[:suggestion] = text
-    @body[:author] = from
+    from    FROM
+    subject "[Suggestion] => #{to}"
+
+    options = Hash.new
+    options[:suggestion] = text
+    options[:author] = from
+
+    html_and_text_body(options)
   end
 
   private
@@ -136,6 +146,19 @@ class Notifier < ActionMailer::Base
     result = "<br />Un email en informant <b>#{recipients}</b>, "
     result << "<br />avec en copie <b>#{cc}</b> " if cc
     result << "a été envoyé."
+  end
+
+  MULTIPART_CONTENT = 'multipart/alternative'
+  SUFFIX_VIEW = ".multi.rhtml"
+  def html_and_text_body(body)
+    method = caller[0].slice(/`.+'/).delete("`'") + SUFFIX_VIEW
+
+    content_type MULTIPART_CONTENT
+    part :content_type => TEXT_CONTENT,
+      :body => html2text(render_message(method, body))
+
+    part :content_type => HTML_CONTENT,
+      :body => render_message(method, body)
   end
 
 end
