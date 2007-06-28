@@ -51,6 +51,9 @@ ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.
   update(:database_manager => SqlSessionStore)
 SqlSessionStore.session_class = MysqlSession
 
+# MLO : session duration is one month, 
+# thanks to the plugin.: dynamic_session_expr
+CGI::Session.expire_after 1.month
 
 require 'overrides'
 require 'utils'
