@@ -92,6 +92,9 @@ def html2text(html)
       gsub(/<\/(h[\d]+|p)(| [^>]*)>/i, "\n\n").
       gsub(/<\/address(| [^>]*)>/i, "\n").
       gsub(/<\/pre(| [^>]*)>/i, "\n").
+      gsub(/<\/?(b|strong)[^>]*>/i, "*").
+      gsub(/<\/?(i|em)[^>]*>/i, "/").
+      gsub(/<\/?u[^>]*>/i, "_").
       gsub(/<[^>]*>/, '')
   )
   for i in (0...links.size).to_a
