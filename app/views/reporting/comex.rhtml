@@ -1,46 +1,46 @@
 <div class="content" id="content">
-	<h1>Activité OSSA par semaine</h1><br />
-		<% form_tag :action => 'comex_resultat' do %>
-		<table class='show'>
-			<tr>
-				<th>Recherche par numéro de semaine</th>
-				<th>Recherche par client</th>
-			</tr>
-			<tr>
-				<td>
-					<label for="week_num">Numéro de la semaine : </label>
-					<%= text_field :results, :week_num, :size => 2, 
-						:value => Time.now.strftime("%W") %>
-				</td>
-				<td rowspan='5'><%= box_clients(9)%></td>
-			</tr>
-			<tr><th>Recherche par période </th></tr>
-			<tr><td>(prioritaire sur la rech. par semaine)</td></tr>
-			<tr>
-				<td>
-					<label for="first_day">Premier jour : </label>
-					<%= text_field :results, :first_day, :size =>8 %>
-					<span class="calendarPicker"><%= image_date_from %></span>
-					<%= script_date('results_first_day', 'date_from') %>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="end_day">Dernier jour : </label>
-					<%= text_field :results, :end_day,  :size => 8 %>
-					<span class="calendarPicker"><%= image_date_to %></span>
-					<%= script_date('results_end_day', 'date_to') %>
-					</td>
-			</tr>
-			<tr>
-				<td align='center'>
-					<%= submit_tag "Voir le reporting pour cette semaine",
-						{:name => "reporting" } %>
-				</td>
-				<td align='center'>
-					<%= submit_tag "Voir l'avancement des CNS", {:name => "cns"}%>
-				</td>
-			</tr>
-		</table>
-		<% end %>
+  <h1>Activité OSSA par semaine</h1><br />
+    <% form_tag :action => 'comex_resultat' do %>
+    <table class='show'>
+      <tr>
+        <th>Recherche par numéro de semaine</th>
+        <th>Recherche par client</th>
+      </tr>
+      <tr>
+        <td>
+          <label for="week_num">Numéro de la semaine : </label>
+          <%= text_field :results, :week_num, :size => 2, 
+            :value => Time.now.strftime("%W") %>
+        </td>
+        <td rowspan='5'><%= box_clients(9)%></td>
+      </tr>
+      <tr><th>Recherche par période </th></tr>
+      <tr><td>(prioritaire sur la rech. par semaine)</td></tr>
+      <tr>
+        <td>
+          <label for="first_day">Premier jour : </label>
+          <%= text_field :results, :first_day, :size =>8 %>
+          <span class="calendarPicker"><%= image_date_from %></span>
+          <%= script_date('results_first_day', 'date_from') %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="end_day">Dernier jour : </label>
+          <%= text_field :results, :end_day,  :size => 8 %>
+          <span class="calendarPicker"><%= image_date_to %></span>
+          <%= script_date('results_end_day', 'date_to') %>
+          </td>
+      </tr>
+      <tr>
+        <td align='center'>
+          <%= submit_tag "Voir le reporting pour cette semaine",
+            {:name => "reporting" } %>
+        </td>
+        <td align='center'>
+          <%= submit_tag "Voir l'avancement des CNS", {:name => "cns"}%>
+        </td>
+      </tr>
+    </table>
+    <% end %>
 </div>
