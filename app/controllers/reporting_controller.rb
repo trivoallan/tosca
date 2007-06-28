@@ -59,37 +59,50 @@ class ReportingController < ApplicationController
   def comex_resultat
     control = params[:control]
     results = params[:results]
-    (redirect_to :action => 'comex' and return) unless results
+		cns = params[:cns]
+		comex = params[:reporting]
+		clients = '(' << params[:clients].join(',') << ')'
     @date = {}
-
-    #c'est pas trop top
-    if control == 'week_num'
-      if results[:week_num].empty?
-        redirect_to :action => 'comex' and return
-      end     
-      @date[:first_day] = Time.now.beginning_of_year + 
-        (results[:week_num].to_i-1).week
-      @date[:end_day] = @date[:first_day] + 6.days
+		scope= {}
+		if cns
+			@cns= cns
+			scope= { :conditions => "client_id IN #{clients}"} unless clients.include?('all')
+			Contrat.with_scope(:find => scope) {
+				cns_correction()
+			}
+			return
+		end
+    (redirect_to :action => 'comex' and return) unless results
+		#recherche par période prioritaire sur les semaines
+		if results[:first_day].empty? or results[:end_day].empty?
+			if results[:week_num].empty?
+				flash[:notice]= "Vous devez indiquer une période sur laquelle effectuer le rapport"
+				redirect_to :action => 'comex' and return
+			else
+				@date[:first_day] = Time.now.beginning_of_year + 
+					(results[:week_num].to_i-1).week
+				@date[:end_day] = @date[:first_day] + 6.days
+			end			
     else
-      if results[:first_day].empty? or results[:end_day].empty?
-        redirect_to :action => 'comex' and return
-      end
       @date[:first_day] = results[:first_day].to_time.beginning_of_day
       @date[:end_day] = results[:end_day].to_time.beginning_of_day + 
         1.day - 1.second
     end
-
     # user 'n developer sanity check
     if @date[:first_day] > @date[:end_day]
-      flash[:warn]= "Le premier jour doit précéder le dernier jour"
+      flash[:notice]= "Le premier jour doit précéder le dernier jour"
       redirect_to :action => 'comex' and return
     end
-
-    init_comex_report()
-    @clients.each do |client|
-      compute_comex_report(client)
-    end
-  end
+		if comex
+			scope= { :conditions => "id IN #{clients}"} unless clients.include?('all')
+			Client.with_scope(:find => scope) {
+			init_comex_report()
+			}
+			@clients.each do |client|
+				compute_comex_report(client)
+			end
+		end
+	end
 
   def init_comex_report
     @clients = Client.find(:all )
@@ -156,7 +169,50 @@ class ReportingController < ApplicationController
     end
     @total[:final][:total] += @total[:final][name]
   end
+	def cns_correction
+		@demandes= {}
+		@percent = { :correction => {}, :contournement => {} }
+		@contrats= Contrat.find(:all)
+		@contrats.each do |contrat|
+			@percent[:correction][contrat.id]= {}
+			@percent[:contournement][contrat.id]= {}
+			corrections= @percent[:correction][contrat.id]
+			contournements = @percent[:contournement][contrat.id]
 
+			support = contrat.client.support
+			amplitude = support.fermeture - support.ouverture
+
+	    @demandes[contrat.id] = Demande.find :all,
+						 :conditions => Demande::EN_COURS, 
+						 :order=> 'updated_on ASC'
+			demandes=@demandes[contrat.id]
+			demandes.delete_if { |demand|
+						demand.engagement( contrat.id) == nil
+			}
+			demandes.each do |demand|
+				temps_ecoule = demand.temps_ecoule
+				temps_correction = demand.engagement( contrat.id ).correction.days
+				temps_contournement= demand.engagement(contrat.id).contournement.days
+
+				temps_reel= 
+					demand.distance_of_time_in_working_days(temps_ecoule, amplitude)
+				temps_prevu_correction= 
+					demand.distance_of_time_in_working_days(temps_correction,
+																									amplitude)
+				temps_prevu_contournement =
+					demand.distance_of_time_in_working_days(temps_contournement,
+																									amplitude)
+				if temps_ecoule <= 0
+					corrections[demand.id]=0
+					contournements[demand.id]=0
+				else
+					corrections[demand.id]= (temps_reel/temps_prevu_correction )*100
+					contournements[demand.id]= 
+									(temps_reel/temps_prevu_contournement )*100
+				end
+			end
+		end
+	end
 
 
   def general
@@ -415,10 +471,10 @@ class ReportingController < ApplicationController
       rappel = d.temps_rappel()
       fill_one_report(rappels, rappel, 1.hour, last_index)
 
-      contournement = distance_of_time_in_working_days(d.temps_contournement, amplitude)
+      contournement = d.distance_of_time_in_working_days(d.temps_contournement, amplitude)
       fill_one_report(contournements, contournement, e.contournement, last_index)
 
-      correction = distance_of_time_in_working_days(d.temps_correction, amplitude)
+      correction = d.distance_of_time_in_working_days(d.temps_correction, amplitude)
       fill_one_report(corrections, correction, e.correction, last_index)
     end
     
@@ -604,12 +660,13 @@ class ReportingController < ApplicationController
     g.write "#{RAILS_ROOT}/public/images/#{@path[nom]}"
   end
 
-  # TODO : mettre ça dans le modèle Demande
+  # TODO : L'enlever de reporting
+	# il est dans models/demandes
   # Calcule en JO le temps écoulé 
-  def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
+"""  def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
     distance_in_minutes = ((distance_in_seconds.abs)/60.0)
     jo = period_in_hour * 60.0
     distance_in_minutes.to_f / jo.to_f 
   end
-		
+	"""	
 end

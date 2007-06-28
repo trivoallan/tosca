@@ -227,4 +227,49 @@ module ReportingHelper
     }
     result << '</table>'
   end
+
+	#Affiche une barre de progression colorée en fonction du pourcentage donné
+	#qui vas du vert (0%) au rouge (100%) et noir au dela
+	def progress_bar( percent )
+			mesg=' ' 
+			mesg << percent.to_s << '%'
+			if percent== -1
+					mesg='-'
+					return mesg
+			elsif percent < 0
+							percent=0
+							mesg << ' Pourcentage négatif !'
+			elsif percent > 100
+				red= 0
+				green =0
+				mesg= ' Hors CNS de ' + percent.to_s + '% !'
+			elsif percent > 50
+							red = 255
+							green = 255*(100-percent)/50
+			else
+							green=255
+							red = 255*percent/50
+							percent.to_s
+			end
+			color = 'rgb(' << red.to_s << ',' << green.to_s << ',0)'
+
+			return '<img alt="barre de progression" class="percentImage" 
+					src="/images/percentimage.png" 
+					style="background-position: ' << (1.23*percent).to_s << 'px ; 
+					background-color: '<< color << ';">' << 
+					mesg 
+	end	
+	#display a select box with all clients.
+	#number_items defines the number of visible items in the drop-down list
+	def box_clients(number_items)
+		elements = Client.find(:all, :select => 'id,nom')
+		items='<option value=\'all\' selected=\'selected\'>»</option>'
+    
+		elements.each do |elt|
+			items << '<option value=\'' << elt.id.to_s << '\'>'
+			items << elt.nom
+			items << '</option>'
+		end
+		return '<select id=\'clients\' multiple=\'multiple\' name=\'clients[]\' size=' << number_items.to_s << '>' <<  items << '</select>'
+	end
 end
