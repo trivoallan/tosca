@@ -6,7 +6,7 @@
 <% for column in Client.content_columns %>
 <tr>
   <td><b><%= column.human_name %>:</b></td>
-  <% if column.human_name=='Adresse'%>
+  <% if column.name=='adresse'%>
     </tr><tr>
   <% end %>
   <td><%= @client.send(column.name) %></td>
