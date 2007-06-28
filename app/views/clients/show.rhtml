@@ -4,8 +4,13 @@
 
 <table class="show">
 <% for column in Client.content_columns %>
-<tr><td><b><%= column.human_name %>:</b></td>
-    <td><%= @client.send(column.name) %></td></tr>
+<tr>
+  <td><b><%= column.human_name %>:</b></td>
+  <% if column.human_name=='Adresse'%>
+    </tr><tr>
+  <% end %>
+  <td><%= @client.send(column.name) %></td>
+</tr>
 <% end %>
 <% if @client.support %>
 <tr><td><b>Support:</b></td>
