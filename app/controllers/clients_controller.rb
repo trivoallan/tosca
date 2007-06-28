@@ -15,7 +15,7 @@ class ClientsController < ApplicationController
 
   def list
     @client_pages, @clients = paginate :clients, :per_page => 10, 
-    :order => 'clients.nom', :include => [:photo,:support]
+    :order => 'clients.nom', :include => [:image,:support]
   end
 
   def stats
@@ -68,7 +68,7 @@ class ClientsController < ApplicationController
 
   private
   def _form
-    @photos = Photo.find(:all)
+    @images = Image.find(:all)
     @supports = Support.find_select
     @socles = Socle.find_select
   end
