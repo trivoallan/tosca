@@ -2,27 +2,29 @@
  * Copyright Linagora SA 2006 - Tous droits réservés.
  */
 
-.commentaire-public {
+table.commentaire tr.public {
 	background: white;
 }
-.commentaire-prive {
+table.commentaire tr.prive {
 	background: #E6E6E6;
 }
-.commentaire_infos {
+table.commentaire td.infos {
 	vertical-align: top;
 	align: center;
-	width: 18%;
+	padding-right: 2px;
+	min-width: 20em;
+	max-width: 20em;
+	width: 20em;
 }
-.commentaire_text {
-	width: 82%; 
+
+table.commentaire td.text {
+	border-left: 1px solid #999999;
+	padding-left: 13px;
+	width: 100%; 
 }
-.commentaire_action {
-	vertical-align: top;
-	width: 85px;
-}
-.commentaire_table {
-	border: 1px solid #999999; /* border-spacing: 1em; */
-	border-collapse: collapse;
+
+table.commentaire {
+	border: 1px solid #999999;
 	margin: 0.5em;
 }
 #commentaire_corps { /* textarea  */

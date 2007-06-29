@@ -1,3 +1,52 @@
-<%= render :partial => 'tab_menu' %>
+<% logo_img = nil %>
+<% html_options = { :class => 'no_hover' } %>
+<% pretty_print = (controller.action_name == 'pretty_print') %>
+<% commentaires = @commentaires || [@last_commentaire] %>
 
-<%= render :partial => 'comments', :locals => { :pretty_print => false } %>
+<%= render :partial => 'tab_menu' unless pretty_print or @last_commentaire %>
+
+<% commentaires.each do |commentaire| %>
+ <% options = { :controller => 'commentaires', :id => commentaire } %>
+ <% id = commentaire.identifiant  %>
+ <% #style au choix : "beau" ou "moche" %>
+
+ <table class="commentaire">
+   <tr <%= (commentaire.prive ? 'class="prive"' : 'class="public"' ) %>>
+     <td class="infos" align="center">
+	<span class="small">Comment. <%= "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
+        <% if @identifiants_ingenieurs.include? id %>
+	    <%= logo_08000 %>
+        <% elsif id and id.beneficiaire %>
+            <%= logo_img ||= logo_client(id.beneficiaire.client) %>
+         <% end %><br/>
+	<%= id.nom if id %><br />
+
+        <% if @ingenieur and not pretty_print %>
+          <% options[:action] = 'edit' %>
+         <%= link_to(image_edit, options, html_options) %>&nbsp;
+          <%  futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %>
+          <% options[:action] = 'changer_etat' %>
+          <% limage = (commentaire.prive ? image_public : image_private) %>
+         <%= link_to(limage, options, html_options) %>&nbsp;
+          <% options[:action] = 'destroy' %>
+          <% html_options[:confirm] = "Voulez-vous vraiment supprimer le commentaire #{commentaire.id} ?" %>
+         <%= link_to(image_delete, options, html_options) %>&nbsp;
+         <br />
+        <% end %>
+	<span class="small"><%= commentaire.created_on_formatted %></span><br />
+     </td>
+     <td class="text">
+     <%= commentaire.corps %>
+     <% piecejointe = commentaire.piecejointe %>
+     <% if piecejointe %>
+       <%= "<br /><br />#{image_folder} " << link_to_file(piecejointe, "file") <<
+            " (#{file_size(piecejointe.file)})"  %>
+     <% end %>
+    </td>
+    </tr>
+</table>
+<%= "<hr/>" if pretty_print %>
+<% end %>
+
+
+

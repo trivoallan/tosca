@@ -309,77 +309,14 @@ class DemandesController < ApplicationController
     set_comments(@demande.id)
   end
 
-  # TODO : trop lent et pas encore au point
-  # mis en privé pour cette release, à corriger pour la suivante
-  def deposer
-    @demande ||= Demande.new(params[:demande])
-    flash.now[:warn] = nil
-
-    # On réinitialise tout le bouzin si on a changé le client
-    if (params[:fake] and 
-          @demande.client.id != params[:fake][:client_id])
-      client = Client.find(params[:fake][:client_id])
-      benefs = client.beneficiaires
-      # Demande.new
-      @demande.beneficiaire = benefs.first 
-      if benefs.empty?
-        message = ": #{client.nom} n'en a pas, veuillez corriger sa fiche client"
-        @demande.errors.add_on_empty(:beneficiaire, message)
-        @demande.beneficiaire = Beneficiaire.find(:first)
-      end
-    end
-
-    # On positionne des paramètres par défaut
-    if @demande.beneficiaire_id == 0
-      @demande.beneficiaire_id = 1 if @ingenieur
-      @demande.beneficiaire = @beneficiaire.id if @beneficiaire
-      if @demande.beneficiaire_id == 0
-        message = 'Votre identification est incomplète, veuillez nous contacter au plus vite'
-        @demande.errors.add_on_empty(:beneficiaire, message)
-        @demande.beneficiaire = Beneficiaire.find(:first)
-      end
-    end
-#     fill_with_first('typedemande') if @demande.typedemande_id == 0
-#     fill_with_first('severite') if @demande.severite_id == 0
-#     fill_with_first('socle') if @demande.socle_id == 0
-#     fill_with_first('logiciel') if @demande.logiciel_id == 0
-    @binaires = []
-    # return unless @demande.errors.empty?
-    @params = params
-    _form nil
-    # ajax, quand tu nous tiens ;)
-    if request.xhr?
-      render :partial => 'form_deposer', :layout => false
-    end
-  end
 
   private
-  # Remplit une @demande avec l'id de 'param', dispo via le client 
-  def fill_with_first(param)
-    collection = @demande.client.send(param.pluralize)
-    if collection.empty?
-      message = ": #{@demande.client.nom} n'a aucun #{param}," +
-        ' veuillez nous contacter au plus vite'
-      @demande.errors.add_on_empty(param.intern, message)
-    else
-      @demande.send("#{param}=", collection.first)
-    end
-  end
-
   def _panel
     @clients = Client.find_select()
     @statuts = Statut.find_select()
     @typedemandes = Typedemande.find_select()
     @severites = Severite.find_select()
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
-
-    softwares = { :select => 'demandes.logiciel_id', :distinct => true }
-    @count = { :demandes =>  Demande.count,
-      :logiciels => Demande.count(softwares),
-      :commentaires => Demande.count(:select => 'commentaires.id', 
-                                     :include => [:commentaires]),
-      :piecejointes =>  Demande.count(:select => 'commentaires.piecejointe_id', 
-                                      :include => [:commentaires]) }
   end
 
   # todo à retravailler
@@ -416,13 +353,14 @@ class DemandesController < ApplicationController
 
   def set_comments(demande_id)
     if @beneficiaire
-      @commentaires = Commentaire.find_all_by_demande_id_and_prive(
-                      demande_id, false, :order => "created_on ASC",
-                      :include => [:identifiant])
+      @commentaires = Commentaire.find(:all, :conditions => 
+         [ 'commentaires.demande_id = ? AND commentaires.prive = ? ', 
+           demande_id, false ],
+         :order => 'created_on ASC', :include => [:identifiant])
     elsif @ingenieur
-      @commentaires = Commentaire.find_all_by_demande_id(
-                      demande_id, :order => "created_on ASC",
-                      :include => [:identifiant])
+      @commentaires = Commentaire.find(:all, :conditions => 
+         [ 'commentaires.demande_id = ?', demande_id ],
+         :order => "created_on ASC", :include => [:identifiant])
     end
     # On va chercher les identifiants des ingénieurs assignés
     # C'est un héritage du passé

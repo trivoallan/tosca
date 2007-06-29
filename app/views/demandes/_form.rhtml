@@ -21,6 +21,7 @@
   <td colspan="2"><p><label for="demande_resume">Intitulé</label><br/>
     <%= text_field :demande, :resume, :size => 60 %></p></td>
 </tr>
+<tr><td colspan="2"><hr /></td></tr>
 <tr>
   <td><p><label for="demande_beneficiaire">Bénéficiaire</label></p></td>
   <td><select id="demande_beneficiaire_id" name="demande[beneficiaire_id]">
@@ -57,23 +58,22 @@
   <td><%= select(:demande, :severite_id,
 	  @severites.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
+<tr><td colspan="2"><hr /></td></tr>
 <tr>
   <td colspan="2"><div id="demande_paquets"></div></td>
 </tr>
 <% # hidden lors de la création d'un demande et absent lors de son édition %>
 <% if controller.action_name != 'edit' %>
 <tr>
-  <td colspan="2"><p <%= hidden_on_create %>>
-    <label for="demande_statut">Statut de la demande</label><br/>
-    <%= text_field(:demande, :statut_id) %></p></td>
+  <td colspan="2">
+    <%= hidden_field(:demande, :statut_id) %>
+  </td>
 </tr>
 <% end %>
 
 <% # hidden lors de la création d'un demande %>
 <tr>
-  <td><div id="delai"></div>
-  </td>
-  <td></td>
+  <td colspan="2"><div id="delai"></div></td>
 </tr>
 </table>
 

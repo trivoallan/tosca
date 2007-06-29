@@ -24,7 +24,7 @@ module ImagesHelper
   # por éviter la réaffection de desc à chaque coup
   def image_options(desc = '', size = nil )
     options = { :alt => desc, :title => desc, :class => 'no_hover' }
-    options.update(:size => size) if size
+    options[:size] = size if size
     options
   end
 
@@ -34,7 +34,7 @@ module ImagesHelper
   end
 
   def logo_client(client)
-    return '' if client.nil?
+    return '' if client.nil? or client.image.nil?
     image_tag(url_for_file_column(client.image, 'image', 'thumb'),
               image_options(client.nom))
   end
