@@ -34,17 +34,18 @@
        #      :controller => 'account')], :class => 'account_menu') %>
   <% @@links ||= build_simple_menu([
         link_to_redbox(_("S'identifier"), 'login')], :class => 'account_menu') %>
+  <% user = session[:user] %>
   <div id="header">
     <table>
       <tr valign="top">
         <td valign="middle" width="145"><%= public_link_to logo_08000, :controller => 'bienvenue', :action => '' %>
         </td>
         <td align="right">
-          <%= (session[:user] ? session[:account_links] : @@links) %>
+          <%= (user ? session[:account_links] : @@links) %>
         </td>
       </tr>
     </table>
-    <%= session[:user] ? session[:menu] : @@menu %>
+    <%= user ? session[:menu] : @@menu %>
   </div><!-- end of header -->
 
   <div id="content_div"> 
@@ -90,10 +91,12 @@
      %>
     <%= @@footer %>
   </div><!-- end of footer -->
-
-  <div id="login" style="display: none">
-    <%= render :file => "account/login" %>
-  </div>
+  
+  <% unless user %>
+   <div id="login" style="display: none">
+     <%= render :file => "account/login" %>
+   </div>
+  <% end %>
 
 </body>
 </html>
