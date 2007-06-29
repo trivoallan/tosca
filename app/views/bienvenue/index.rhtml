@@ -44,7 +44,7 @@
        <tr><td>Nous espèrons que cet outil vous donnera entière satisfaction.</td></tr>
   </table>
   <% access_code = @beneficiaire.client.code_acces %>
-  <% if access_code != '' %>
+  <% unless access_code.blank? %>
      <p>Votre numéro d&lsquo;appel est le 
      <b><%=Metadata::PREFIXE_TELEPHONE%>&nbsp;<%=Metadata::CODE_TELEPHONE %></b>, 
      et votre code d&lsquo;accès est le <b><%=access_code%></b></p>
