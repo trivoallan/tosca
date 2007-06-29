@@ -61,11 +61,12 @@
   <li><b>Contournée en : </b><%= @demande.affiche_temps_contournement %></li>
   <li><b>Corrigée en : </b><%= @demande.affiche_temps_correction %></li>
   <% if @demande.contribution %>
-    <li><b>Livrable : </b>
-      <% contribution = @demande.contribution  %>
-      <%= link_to(contribution.nom, :controller => 'contributions', 
-                  :action => 'show', :id => contribution.id) %>
-      (<%= link_to_file contribution, 'patch' %>)
+    <% contrib = @demande.contribution %>
+    <li><b>Livrable : </b> <br />Une    
+      <%= link_to('contribution', :controller => 'contributions', 
+        :action => 'show', :id => contrib.id) %>
+      est disponible
+         (<%= link_to_file contrib, 'patch' %>)
     </li>
   <% end %>
 </ul>
