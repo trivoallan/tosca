@@ -7,7 +7,7 @@
 
 
 <% links = show_pages_links(@logiciel_pages, _('un nouveau logiciel'),
-                     :url => '../logiciels/list') %>
+                     :url => url_for('list')) %>
 <%= links %>
 
 <% titres = [ _('Logo'), _('Nom'), _('Description'), _('Technologie(s)'),

@@ -13,8 +13,11 @@ class LogicielsController < ApplicationController
   auto_complete_for :logiciel, :nom
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
+  POST_METHODS = [ :destroy, :create, :update, 
+                   :auto_complete_for_logiciel_nom ]
+  verify :method => :post, :only => POST_METHODS,
+    :redirect_to => { :action => :list }
+
 
   def index
     list

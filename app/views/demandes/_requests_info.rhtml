@@ -1,5 +1,5 @@
 <% options = { :update => 'content',
-    :url => '../demandes/list',
+    :url => url_for(:action => 'list'),
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
