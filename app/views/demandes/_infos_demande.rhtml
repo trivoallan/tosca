@@ -80,3 +80,14 @@
   <li><b>Mise à jour le : </b> <%= @demande.updated_on_formatted %></li>
   <li><b>Temps écoulé : </b><%= @demande.affiche_temps_ecoule %></li>
 </ul>
+
+<div class="menu_title" onclick="Element.toggle('menu_aide')">>
+Aide</div>
+<ul class="menu" id="menu_aide">
+ <li><%= public_link_to_help_new_request %></li>
+ <li><%= public_link_to_howto_request %></li>
+ <li><%= public_link_to_help_demand_state %></li>
+</ul>
+<%# mandatory for seeing last link ... :/ %>
+<br />
+

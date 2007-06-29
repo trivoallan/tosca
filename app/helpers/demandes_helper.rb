@@ -35,6 +35,13 @@ module DemandesHelper
             "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande")
   end
 
+  #Link to the inline help about the differents states of a demand
+  def public_link_to_help_demand_state
+        public_link_to('Aide sur l\'état des demandes',
+          'http://www.08000linux.com/wiki/index.php/%C3%89tats_demande')
+  end
+
+
   # Display a short text summary of a demand
   # Often used for "alt" and "title" markup/tag
   # Options
@@ -156,6 +163,16 @@ module DemandesHelper
       link_to image_view, { :controller => 'demandes', :action => 'comment',
         :id => ar}, { :class => 'nobackground' }
   end
+
+  #usage : link_to_help('state') to link to the help page
+  # for states demand
+  def link_to_help( topic)
+      link_to image_help, 
+        'http://www.08000linux.com/wiki/index.php/%C3%89tats_demande',
+        { :class => 'nobackground' }
+  end
+    
+
 
 
   # Display a css bar for graphic representation of a ticket timeline

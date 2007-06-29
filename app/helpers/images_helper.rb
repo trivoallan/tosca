@@ -58,6 +58,11 @@ module ImagesHelper
   def image_hide_notice
     @@hide_notice ||= image_tag('delete_icon.gif', image_options('Masquer', '15x17'))
   end
+  @@help= nil
+  def image_help
+        @@help ||= image_tag('icons/b_help.png', image_options('Aide', '15x15'))
+  end
+  
 
 
   # Navigation

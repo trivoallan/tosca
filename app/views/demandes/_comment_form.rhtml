@@ -13,6 +13,7 @@
   <td width="20%" align="right">
     <label for="demande_statut_id">Statut</label>
     <%= select_empty(@statuts, nil, 'demande[statut_id]') %></td>
+  <td><%= link_to_help('state') %></td>
   <% end %>
 </tr></table>
 
