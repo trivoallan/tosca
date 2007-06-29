@@ -13,12 +13,6 @@
   filter: alpha(opacity=60);
 }
 
-#RB_redbox {
-  width: 100%;
-  position: absolute;
-  top: 0px;
-}
-
 #RB_loading {
   position: relative;
   top: 200px;

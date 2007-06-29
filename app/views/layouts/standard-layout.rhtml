@@ -10,11 +10,13 @@
        stylesheet_link_tag(*(%w(comments tools helper demandes info_box auto_complete toolbar accueil menu reporting calendar))) <<
        stylesheet_link_tag('common', :media => "all") <<
        stylesheet_link_tag('common-printer', :media => "print") <<
+       stylesheet_link_tag('redbox') <<
        # Include TinyMCE with gzip before other JS to avoid problems 
        javascript_include_tiny_mce <<
        tiny_mce <<
        javascript_include_tag('calendar', 'calendar-fr', 'calendar-setup') <<
-       javascript_include_tag(:defaults)
+       javascript_include_tag(:defaults) <<
+       javascript_include_tag('redbox')
  %>
  <%= @@head %>
  <title>08000linux : <%=_(controller.controller_name)%></title>
@@ -27,9 +29,11 @@
     public_link_to_contributions,
     public_link_to_about ]) %>
   <% #TODO : formulaire de login en haut ? %>
+  <% #@@links ||= build_simple_menu([
+      #  public_link_to(_("S'identifier"), :action => 'login', 
+       #      :controller => 'account')], :class => 'account_menu') %>
   <% @@links ||= build_simple_menu([
-        public_link_to(_("S'identifier"), :action => 'login', 
-             :controller => 'account')], :class => 'account_menu') %>
+        link_to_redbox(_("S'identifier"), 'login')], :class => 'account_menu') %>
   <div id="header">
     <table>
       <tr valign="top">
@@ -86,5 +90,27 @@
      %>
     <%= @@footer %>
   </div><!-- end of footer -->
+
+  <div id="login" style="display: none">
+    <% form_tag :controller => "account", :action=> "login" do %>
+      <table class="sommaire show">
+        <tr>
+          <td colspan="2"><h1>Identification</h1></td>
+        </tr><tr>
+          <td><label for="user_login">Identifiant :</label></td>
+          <td><input type="text" name="user_login" id="user_login" size="16" value="" /></td>
+        </tr><tr>
+          <td><label for="user_password">Mot de passe :</label></td>
+          <td><input type="password" name="user_password" id="user_password" size="16"/>
+              <input type="hidden" name="user_crypt" id="user_crypt" size="24" value="false"/></td>
+        </tr><tr>
+          <td><input type="submit" name="login" value="Valider &#187;" class="primary" />
+              <input type="hidden" name="javascript" id="javascript" size="24" value="false"/></td>
+          <td></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
 </body>
 </html>
