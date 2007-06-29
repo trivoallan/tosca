@@ -12,20 +12,19 @@ table.commentaire td.infos {
 	vertical-align: top;
 	align: center;
 	padding-right: 2px;
-	min-width: 20em;
-	max-width: 20em;
-	width: 20em;
+	width: 20%;
 }
 
 table.commentaire td.text {
 	border-left: 1px solid #999999;
 	padding-left: 13px;
-	width: 100%; 
+	width: 75%; 
 }
 
 table.commentaire {
 	border: 1px solid #999999;
 	margin: 0.5em;
+	width: 100%;
 }
 #commentaire_corps { /* textarea  */
 	width: 100%; 
