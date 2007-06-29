@@ -10,8 +10,8 @@ class Changelog < ActiveRecord::Base
   end
 
   def to_s
-    c.date_modification_formatted + ' : ' << c.nom_modification << '\n' << 
-      c.text_modification
+    self.date_modification_formatted + ' : ' << self.nom_modification << '\n' << 
+      self.text_modification
   end
 
 end
