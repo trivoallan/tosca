@@ -43,15 +43,15 @@ class BienvenueController < ApplicationController
   def suggestions
     suggestion = params[:suggestion]
     if suggestion
-      if suggestion[:team] != ""
+      unless suggestion[:team].blank?
         Notifier::deliver_bienvenue_suggestion(suggestion[:team],
                                                :team, session[:user])
       end
-      if suggestion[:tosca] != ""
+      unless suggestion[:tosca].blank?
         Notifier::deliver_bienvenue_suggestion(suggestion[:tosca],
                                                :tosca, session[:user])
       end
-      flash[:notice] << _("Merci d'avoir pris le temps de nous aider à " <<
+      flash[:notice] = _("Merci d'avoir pris le temps de nous aider à " <<
             "améliorer cet outil. Vos suggestions ont bien été envoyées")
       redirect_to_home
     end
