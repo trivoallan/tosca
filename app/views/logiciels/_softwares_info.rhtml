@@ -14,7 +14,8 @@
 > Consultation</div>
 <ul class="menu" id="menu_consultation">
  <li><%= link_to 'Liste des logiciels', :controller => 'logiciels' %></li>
- <li><%= link_to 'Liste des paquets', :controller => 'paquets' %></li>
+ <li><%= link_to 'Liste des paquets', :controller => 'paquets', 
+                                      :action => 'list' %></li>
 </ul>
 <% end %>
 
