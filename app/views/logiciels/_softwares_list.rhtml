@@ -1,25 +1,14 @@
-<% if @scope %>
-  <h1>Liste de mes logiciels supportés <%= image_spinner %></h1>
-<% else %>
-  <h1>Liste des logiciels <%= image_spinner %></h1>
-<%end%>
-
-
+<h1>Liste des logiciels <%= image_spinner %></h1>
 
 <% links = show_pages_links(@logiciel_pages, _('un nouveau logiciel'),
                      :url => url_for('list')) %>
 <%= links %>
 
-<% titres = [ _('Logo'), _('Nom'), _('Description'), _('Technologie(s)'),
+<% titres = [ _('Nom'), _('Description'), _('Technologie(s)'),
               _('Référent'), _('Groupe'), _('Paquet(s)') ] %>
 
 <%= show_table(@logiciels, Logiciel, titres) { |l|
   result = ''
-  if l.image
-    result << "<td>#{image_tag(url_for_file_column(l.image, 'image', 'thumb'))}</td>"
-  else
-    result << '<td></td>'
-  end
   result << "<td>#{public_link_to_logiciel l}</td>"
   result << "<td>#{l.resume}</td>"
   result << "<td>#{liste_competences l.competences}</td>"
@@ -33,10 +22,3 @@
 
 <br />
 
-<%if @beneficiaire %>
-  <% if @scope %>
-    <%= link_to(_('Voir tous les logiciels'), 'list') %>
-  <% else %>
-    <%= link_to(_('Voir uniquement mes logiciels'), 'list?scope=true') %>
-  <% end %>
-<% end %>
