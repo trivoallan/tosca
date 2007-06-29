@@ -37,7 +37,7 @@ module DemandesHelper
 
   #Link to the inline help about the differents states of a demand
   def public_link_to_help_demand_state
-        public_link_to('Aide sur l\'état des demandes',
+        public_link_to('Explication détaillée des statuts',
           'http://www.08000linux.com/wiki/index.php/%C3%89tats_demande')
   end
 
