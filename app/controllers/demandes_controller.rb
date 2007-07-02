@@ -2,7 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DemandesController < ApplicationController
-  auto_complete_for :logiciel, :nom
   auto_complete_for :demande, :resume
 
   helper :filters, :contributions, :logiciels, :export, :appels, :socles
@@ -18,7 +17,20 @@ class DemandesController < ApplicationController
 #                                                              unlink image undo redo},
 #                               :theme_advanced_buttons2 => [],
 #                               :theme_advanced_buttons3 => []}
+  def auto_complete_for_logiciel_nom
+    options = '%' + params[:logiciel][:nom].downcase + '%'
 
+    @logiciels = Logiciel.find(:all, :select => 'nom',
+      :conditions => [ 'LOWER(nom) LIKE :recherche OR 
+        LOWER(description) LIKE :recherche',{:recherche => options } ], 
+      :order => 'nom ASC')
+    @resume = Logiciel.find(:all, :include => 'demandes',
+      :select => 'nom',
+      :conditions => ['demandes.resume LIKE ?', options ] )
+
+    @logiciels += [@resume].flatten
+    render :partial => 'dem_auto_complete'
+  end
   def index
     list
     render :action => 'list'

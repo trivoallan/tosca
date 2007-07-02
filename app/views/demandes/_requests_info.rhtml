@@ -25,10 +25,8 @@ Actions </div>
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>
 Recherche</div>
 <ul class="menu" id="menu_recherche">
- <li><b>Logiciel </b></li>
+ <li><b>Logiciel et Résumé </b></li>
  <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
- <li><b>Résumé </b></li>
- <li><%= text_field_with_auto_complete :demande, :resume, {}, :skip_style => true %></li>
  <% if @ingenieur %>
   <li><b>Client </b></li>
   <li><%= select_filter(@clients, :client) %></li>
