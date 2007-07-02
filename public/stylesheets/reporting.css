@@ -101,3 +101,8 @@ h1.section {
 	width: 18%;
 	text-align: center;
 }
+
+/* barre de progression */
+.percentImage {
+    background: white url(/images/percentimage_back2.png) no-repeat;
+}
