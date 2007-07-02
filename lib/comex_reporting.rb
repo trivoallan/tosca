@@ -40,7 +40,7 @@ module  ComexReporting
         clast_week  = [ "created_on <= :first_day AND " << 
                         "(#{Demande::EN_COURS} OR " << 
                          "(#{Demande::TERMINEES} AND " << 
-                           "updated_on BETWEEN :first_day AND :last_day " <<
+                           "updated_on >= :first_day " <<
                          "))", values ]
         @requests[:last_week][name][i] = 
           Demande.count(:conditions => clast_week)
