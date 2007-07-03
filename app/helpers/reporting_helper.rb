@@ -228,17 +228,14 @@ module ReportingHelper
     result << '</table>'
   end
 
-	#Affiche une barre de progression colorée en fonction du pourcentage donné
-	#qui vas du vert (0%) au rouge (100%) et noir au dela
+  #Affiche une barre de progression colorée en fonction du pourcentage donné
+  #qui vas du vert (0%) au rouge (100%) et noir au dela
   def progress_bar( percent )
-      mesg=' ' 
-      mesg << percent.to_s << '%'
       case percent
-        when -1 then mesg='-' and return mesg
-        when percent < 0 then percent=0 and mesg << 'Pourcentage négatif !'
+        when percent < 0 then percent=0
         when 0..50 then green=255 and red=255*percent/50
         when 50..100 then red=255 and green = 255*(100-percent)/50
-        else red=0 and green=0 and mesg = ' Hors CNs de '+percent.to_s+ '% !'
+        else red=0 and green=0
       end
 
       color = 'rgb(' << red.to_s << ',' << green.to_s << ',0)'
@@ -246,8 +243,7 @@ module ReportingHelper
       return '<img alt="barre de progression" class="percentImage" 
           src="/images/percentimage.png" 
           style="background-position: ' << (1.23*percent).to_s << 'px ; 
-          background-color: '<< color << ';">' << 
-          mesg 
+          background-color: '<< color << ';">'
   end  
   #display a select box with all clients.
   #number_items defines the number of visible items in the drop-down list
