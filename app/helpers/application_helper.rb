@@ -35,7 +35,8 @@ module ApplicationHelper
   ### FILES #####################################################################
 
   def file_size( file )
-    (File.exist?(file) ? number_to_human_size(File.size(file)) : '-' )
+    return '-' if file.blank? or not File.exists?(file)
+    number_to_human_size(File.size(file))
   end
 
   ### LISTES ET TABLES ##########################################################

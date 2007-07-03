@@ -22,12 +22,14 @@ module LinksHelper
   # to true, use <b>public_link_to_file</b> instead
   #
   def link_to_file(record, file, options={}, public = false)
-    if record and record.send(file) and File.exist?(record.send(file))
-      nom = record.send(file)[/[._ \-a-zA-Z0-9]*$/]
+    return '-' unless record
+    filepath = record.send(file)
+    unless filepath.blank? or not File.exist?(filepath)
+      filename = filepath[/[._ \-a-zA-Z0-9]*$/]
       if options[:image]
         show = image_patch and html_options = {:class => 'no_hover'} 
       else
-        show = nom and html_options = {}
+        show = filename and html_options = {}
       end
       url = url_for_file_column(record, file, :absolute => true)
       if public
