@@ -8,14 +8,20 @@
 
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
+<%# used_by remote_link_to_software and remote_link_to_all_software%>
+<%= hidden_field_tag 'active', '1' %>
 
 <% if session[:user] %>
 <div class="menu_title" onclick="Element.toggle('menu_consultation')">
 > Consultation</div>
 <ul class="menu" id="menu_consultation">
- <li><%= link_to 'Liste des logiciels', :controller => 'logiciels' %></li>
+  <% if @beneficiaire %>
+    <li><%= remote_link_to_active('Mes logiciels','affiche uniquement les logiciels avec lesquels vous avez un contrat', 1) %></li>
+  <% end %>
+  <li><%= remote_link_to_active('Tous les logiciels', 'affiche tous les logiciels', 0) %></li>
  <li><%= link_to 'Liste des paquets', :controller => 'paquets', 
-                                      :action => 'list' %></li>
+          :action => 'list' %>
+ </li>
 </ul>
 <% end %>
 

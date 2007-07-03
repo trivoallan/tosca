@@ -26,9 +26,14 @@ class LogicielsController < ApplicationController
 
   # ajaxified list
   def list
-    @scope = nil
-    if @beneficiaire and 'true' == params['scope'] 
-      @scope = :supported
+    scope = nil
+    @title= 'Liste des logiciels'
+    if @beneficiaire
+      unless params['active'] == '0'
+        scope=:supported
+        @title = 'Liste de vos logiciels'
+      end
+
     end
     
     options = { :per_page => 10, :order => 'logiciels.nom',
@@ -54,9 +59,9 @@ class LogicielsController < ApplicationController
     flash[:conditions] = options[:conditions] = conditions 
 
     # optional scope, for customers 
-    Logiciel.set_scope(@beneficiaire.contrat_ids) if @scope
+    Logiciel.set_scope(@beneficiaire.contrat_ids) if scope
     @logiciel_pages, @logiciels = paginate :logiciels, options
-    Logiciel.remove_scope if @scope
+    Logiciel.remove_scope if scope
 
     # panel on the left side
     if request.xhr? 

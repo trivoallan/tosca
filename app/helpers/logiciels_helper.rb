@@ -36,4 +36,19 @@ module LogicielsHelper
     link_to(image_create('une url'), options, LinksHelper::NO_HOVER)
   end
 
+  # Créate a link to modify the active value in the form filter
+  # Usage : 
+  #   text : text of the link
+  #   description
+  #   value : the new active value
+  #TODO pas DRY : dans demandes_helpers il y a la même chose
+  #     mais le AJAX_CALL est différent
+    AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(:url => '../logiciels/list')
+  def remote_link_to_active( text, description, value)
+    js_call = "document.forms['filters'].active.value=" << value.to_s << "; 
+      #{remote_function(AJAX_CALL)}"
+    link_to_function(_(text), js_call, _(description))
+  end
+  
+
 end
