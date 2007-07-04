@@ -1,7 +1,7 @@
 module  ComexReporting
 
   def init_comex_report
-    @clients = Client.find(:all )
+    @clients = Client.find(:all, :order => 'clients.nom')
     @requests = {}
     @requests[:last_week] = {}
     @requests[:new] = {}
