@@ -58,7 +58,6 @@ protected
   # TODO : faire une route nommée, c'est pas railsien cette fonction
   # TODO : trouver une meilleure solution, comme surcharger (un peu) 
   # le redirect_to de l'ActionController::Base
-  # TODO : c'est mal, doublon avec le rescue du scope_beneficiaire
   def redirect_to_home
     if request.xhr?
       render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')

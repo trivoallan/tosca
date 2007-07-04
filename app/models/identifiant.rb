@@ -13,6 +13,37 @@ class Identifiant < ActiveRecord::Base
   has_one :beneficiaire
   has_one :preference
 
+  validates_length_of :login, :within => 3..40
+  validates_presence_of :login, :password
+  validates_uniqueness_of :login
+
+  attr_accessor :pwd_confirmation
+
+  def pwd
+    @pwd
+  end
+
+  def pwd=(pass)
+    @pwd = pass
+    return if pass.blank?
+    self.password = Identifiant.sha1(pass)
+  end
+
+  # Eck ... We must add message manually in order to
+  # not have the "pwd" prefix ... TODO : find a pretty way 
+  def validate
+    errors.add_to_base(_("Mot de passe manquant")) if password.blank?
+    if pwd != pwd_confirmation
+      errors.add_to_base(_('Votre mot de passe ne correspond pas à la confirmation'))
+    end
+    unless pwd.blank?
+      if pwd.length > 20
+        errors.add_to_base(_('Votre mot de passe est trop long (max. 20 caractères)'))
+      elsif pwd.length < 5
+        errors.add_to_base(_('Votre mot de passe est trop court (min. 5 caractères)'))
+      end
+    end
+  end
 
   # TODO : vérifier que l'email est valide, et 
   # rattraper l'erreur si l'envoi de mail échoue !!!
@@ -31,15 +62,13 @@ class Identifiant < ActiveRecord::Base
   def self.authenticate(login, pass, crypt)
     Identifiant.with_exclusive_scope() do
       if crypt == 'false'
-        Identifiant.find(:first, :conditions => ['login = ? AND password = ?', login, sha1(pass)])
+        Identifiant.find(:first, :conditions => ['login = ? AND password = ?', 
+                                                 login, sha1(pass)])
       else
-        Identifiant.find(:first, :conditions => ['login = ? AND password = ?', login, pass])
+        Identifiant.find(:first, :conditions => ['login = ? AND password = ?',
+                                                 login, pass])
       end
     end
-  end
-
-  def change_password(pass)
-    update_attribute "password", self.class.sha1(pass)
   end
 
   # Pour la gestion des roles/perms :
@@ -48,9 +77,11 @@ class Identifiant < ActiveRecord::Base
   def authorized?(resource)
     match=false
 
-    permission_strings.each do |p|
-      r = Regexp.new(p)
-      match = match || ((r =~ resource) != nil)
+    permission_strings.each do |r|
+      if ((r =~ resource) != nil)
+        match = true
+        break
+      end
     end
     return match
   end
@@ -59,38 +90,13 @@ class Identifiant < ActiveRecord::Base
   def permission_strings
     return @permissions if @permissions
     @permissions = []
-    self.roles.each{|r| r.permissions.each{|p| @permissions << p.name }}
+    self.roles.each{|r| r.permissions.each{|p| @permissions << Regexp.new(p.name) }}
     @permissions
   end
 
-  # Vérifie l'intégrité/la validité d'un utilisateur
-  # à utiliser à la crétion et à la modification d'un utilisateur
-  # - cohérence des droits en fonction de l'appartenance (ingénieur ou bénéficiaire)
-  def valide
-    # cohérence des droits en fonction de l'appartenance (ingénieur ou bénéficiaire)
-    # return false if beneficiaire && ( roles != [Role.find(2)] )
-    # si tout va bien
-    return true
-  end
-
-  # Ce qui suit est protected
-  protected
-
+  private
   def self.sha1(pass)
     Digest::SHA1.hexdigest("linagora--#{pass}--")
   end
-
-  before_create :crypt_password
-
-
-  def crypt_password
-    write_attribute("password", self.class.sha1(password))
-  end
-
-  validates_length_of :login, :within => 3..40
-  validates_length_of :password, :within => 5..40
-  validates_presence_of :login, :password, :password_confirmation
-  validates_uniqueness_of :login, :on => :create
-  validates_confirmation_of :password, :on => :create
 
 end

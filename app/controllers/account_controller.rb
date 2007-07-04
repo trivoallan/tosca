@@ -32,7 +32,7 @@ class AccountController < ApplicationController
         # flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
         redirect_to_home
       else
-        flash.now[:warn]  = "Echec lors de la connexion"
+        flash.now[:warn]  = _("Échec lors de la connexion")
       end
     end
   end
@@ -54,33 +54,14 @@ class AccountController < ApplicationController
 
   def modify
     _form
-    case request.method
-    when :post
-      @identifiant = Identifiant.find(params[:id])
-      newIdentifiant = params[:identifiant]
-      #on ne met pas à jour le mot de passe
-      if newIdentifiant[:password] == ''
-        newIdentifiant[:password] = @identifiant.password
-        newIdentifiant[:password_confirmation] = @identifiant.password
-      else
-        if newIdentifiant[:password] != newIdentifiant[:password_confirmation]
-          flash[:notice] = 'Les mots de passe que avez entrés sont différents.'
-          redirect_to :action => 'modify', :controller => 'account'
-        else
-          @identifiant.change_password(newIdentifiant[:password])
-          newIdentifiant[:password] = @identifiant.password
-        end
-      end
-
-      if @identifiant.update_attributes(newIdentifiant)
+    @identifiant = Identifiant.find(params[:id])
+    if request.method == :post
+      if @identifiant.update_attributes(params[:identifiant])
         #On a sauve le profil, on l'applique sur l'utilisateur courant
         set_sessions  @identifiant if session[:user] == @identifiant
-        flash[:notice]  = "Modification réussie"
-        redirect_back_or_default :action => '', :controller => 'bienvenue'
+        flash[:notice]  = _("Modification réussie")
+        redirect_back
       end
-    when :get
-      @identifiant = Identifiant.find(params[:id])
-      @identifiant.password_confirmation = @identifiant.password
     end
   end
 
@@ -92,7 +73,7 @@ class AccountController < ApplicationController
   def update
     @user = Identifiant.find(params[:id])
     if @user.update_attributes(params[:identifiant])
-      flash[:notice] = "L'utilisateur a bien été mis à jour."
+      flash[:notice] = _("L'utilisateur a bien été mis à jour.")
     end
     list
   end
@@ -112,14 +93,12 @@ class AccountController < ApplicationController
         client = Client.find(params[:client][:id])
         flash[:notice] = "Enregistrement réussi, n'oubliez pas de vérifier son profil<br />"
         @identifiant.create_person(client)
-        flash[:notice] += (@identifiant.client ? 'Bénéficiaire' : 'Ingénieur ') +
-          ' associé créé'
-        
+        flash[:notice] += (@identifiant.client ? 
+                           'Bénéficiaire' : 'Ingénieur ') << ' associé créé'
         # welcome mail
         options = { :identifiant => @identifiant, :controller => self,
-          :password => params[:identifiant][:password]}
+          :password => @identifiant.pwd }
         Notifier::deliver_identifiant_nouveau(options, flash)
-
         redirect_back_or_default :action => "list"
       end
     when :get
@@ -311,17 +290,6 @@ private
     reset_session
     @beneficiaire = nil
     @ingenieur = nil
-  end
-
-  # Empeche les bénéficiaires de toucher à un autre compte qu'au leur
-  def scope_beneficiaire
-    if @beneficiaire
-      conditions = [ 'identifiants.id = ?', @beneficiaire.identifiant_id ]
-      scope = { :find => {:conditions => conditions } }
-      Identifiant.with_scope(scope) { yield }
-    else
-      yield
-    end
   end
 
 end
