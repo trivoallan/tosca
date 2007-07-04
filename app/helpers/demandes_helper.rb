@@ -199,7 +199,7 @@ module DemandesHelper
 
   # TODO : beaucoup trop de copier coller, c'est honteux !
   # TODO/MLO : me taper sur les doigts et faire une version propre
-  # Début de factorisation dans logiciel helper
+  # begining of factorisation in logiciels_helper
   AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(:url => '../demandes/list')
   def remote_link_to_active_request
     js_call = "document.forms['filters'].active.value=1; #{remote_function(AJAX_CALL)}"
@@ -219,5 +219,10 @@ module DemandesHelper
                      _('affiche l\'intégralité des demandes'))
   end
 
+  #usage : <tr <%= tr_attributes(demand.id)%> >
+  def tr_attributes(demand_id)
+   return "class=\"#{cycle('pair', 'impair')}\",
+      onclick=\"window.location.href='../demandes/comment/#{demand_id}';\""
+  end
 
 end

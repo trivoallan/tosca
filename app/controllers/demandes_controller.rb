@@ -18,13 +18,14 @@ class DemandesController < ApplicationController
 #                               :theme_advanced_buttons2 => [],
 #                               :theme_advanced_buttons3 => []}
   def auto_complete_for_logiciel_nom
-    unless params[:logiciel][:nom]
+    logiciel = params[:logiciel]
+    unless logiciel and logiciel[:nom]
       redirect_to :action => 'list'
     end
-    options = '%' + params[:logiciel][:nom].downcase + '%'
+    options = '%' + logiciel[:nom] + '%'
 
     @logiciels = Logiciel.find(:all, :select => 'nom',
-      :conditions => [ 'LOWER(nom) LIKE :recherche OR 
+      :conditions => [ 'nom LIKE :recherche OR 
         LOWER(description) LIKE :recherche',{:recherche => options } ], 
       :order => 'nom ASC')
 

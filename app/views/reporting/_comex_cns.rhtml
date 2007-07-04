@@ -3,36 +3,34 @@
   <h2>Légende</h2>
   <div>
     <p>Les barres de progressions représentent l'état d'avancement du contrat : </p><br />
-    <%=progress_bar( 0) %> Le contrat n'est pas commencé 
-    <%=progress_bar( 25) %> 25% de fini 
-    <%=progress_bar( 50) %> 50% de fini 
-    <%=progress_bar( 75) %> 75% de fini 
-    <%=progress_bar( 110) %> Le contrat est dépassé ! <br /><br />
+    <%=progress_bar(0) %> Le contrat n'est pas commencé 
+    <%=progress_bar(25) %> 25% de fini 
+    <%=progress_bar(50) %> 50% de fini 
+    <%=progress_bar(75) %> 75% de fini 
+    <%=progress_bar(110) %> Le contrat est dépassé ! <br /><br />
     </p>Le temps indiqué correspond au temps restant pour finir le contrat, ou bien au temps de dépassement du contrat.</p>
   </div>
   <ul>
-  <% @p.keys.sort.each do |c_id| %>
-    <li><h2><%= @p_extra[c_id][:nom] %><h2></li>
-      <table class="show", width='100%'>
+    <% @demandes.each do |contrat| %>
+    <% c_id= @demandes.index(contrat) %>
+    <li><h2><%= @demandes_extra[c_id][:nom] %><h2></li>
+      <table class="show", style="width: 100%">
         <tr>
           <th>Id</th>
           <th> Contournement</th>
           <th> Correction</th>
           <th>Résumé</th>
         </tr>
-        <% @p_extra[c_id][:demandes].each do |demande|%>
-          <% d_id= @p[c_id].index(demande)%>
-        <tr class="<%=cycle('pair', 'impair')%>", 
-          onclick="window.location.href='../demandes/comment/<%=d_id%>';">
+        <% @demandes_extra[c_id][:demandes].each do |demande|%>
+          <% d_id= @demandes[c_id].index(demande)%>
+        <tr <%= tr_attributes(d_id)%> >
           <td><%= d_id%></td>
           <td>
-            <%= progress_bar( demande[:contournement].to_i) unless
-                demande[:mesg_contournement] == '-' %>
+            <%= progress_bar( demande[:contournement].to_i) %>
             <%= demande[:mesg_contournement] %>
           </td>
           <td>
-            <%=progress_bar( demande[:correction].to_i ) unless 
-              demande[:mesg_correction] == '-'%>
+            <%=progress_bar( demande[:correction].to_i ) %>
             <%= demande[:mesg_correction] %>
           </td>
           <td><%= demande[:resume] %></td>

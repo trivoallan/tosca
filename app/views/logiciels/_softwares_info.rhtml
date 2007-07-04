@@ -16,9 +16,13 @@
 > Consultation</div>
 <ul class="menu" id="menu_consultation">
   <% if @beneficiaire %>
-    <li><%= remote_link_to_active('Mes logiciels','affiche uniquement les logiciels avec lesquels vous avez un contrat', 1) %></li>
+  <li><%= remote_link_to_active(_('Mes logiciels'),
+    _('affiche uniquement les logiciels avec lesquels vous avez un contrat'),
+    1) %>
+  </li>
+  <li><%= remote_link_to_active(_('Tous les logiciels'),
+           _('affiche tous les logiciels'), 0) %></li>
   <% end %>
-  <li><%= remote_link_to_active('Tous les logiciels', 'affiche tous les logiciels', 0) %></li>
  <li><%= link_to 'Liste des paquets', :controller => 'paquets', 
           :action => 'list' %>
  </li>

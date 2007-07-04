@@ -23,8 +23,7 @@
    </tr>
 
    <% for demande in @demandes %>
-   <tr class="<%=cycle('pair', 'impair')%>"
-     onclick="window.location.href='../demandes/comment/<%=demande.id%>';" >
+   <tr <%=tr_attributes(demande.id)%>"
         <td><%= demande.id %></td>
         <td><%= demande.respond_to?(:logiciels_nom) ? demande.logiciels_nom : Logiciel.not_found  %></td>
         <td><%= demande.typedemandes_nom %></td>
