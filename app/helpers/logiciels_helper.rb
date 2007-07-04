@@ -38,12 +38,21 @@ module LogicielsHelper
 
   # Create a link to modify the active value in the form filter
   # Usage : 
-  #  <%= remote_link_to_active('Mes logiciels','description', 1) %>
+  #  <%= remote_link_to_active(:all) %> to display all the sofwares
   #TODO pas DRY : dans demandes_helpers il y a la même chose
   #     mais le AJAX_CALL est différent
     AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(
       :url => '../logiciels/list')
-  def remote_link_to_active( text, description, value)
+  def remote_link_to_active( param)
+    if param == :supported
+      text = _('Mes Logiciels')
+      description= _('Affiche uniquement les logiciels avec lesquels vous avez un contrat')
+      value = 1
+    else
+      text= _('Tous les logiciels')
+      description= _('Affiche tous les logiciels')
+      value = 0
+    end
     js_call = "document.forms['filters'].active.value=" << value.to_s << "; 
       #{remote_function(AJAX_CALL)}"
     link_to_function(_(text), js_call, _(description))
