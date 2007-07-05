@@ -309,10 +309,22 @@ class DemandesController < ApplicationController
 
   def associer_contribution
     return render_text('') unless params[:id] and params[:contribution_id]
-    @demande = Demande.find(params[:id])
-    @demande.update_attributes!(:contribution_id => params[:contribution_id])
-    flash[:notice] = "Une contribution a été liée"
-    redirect_to :action => 'comment', :id => @demande.id
+    update_contribution( params[:id], params[:contribution_id] )
+  end
+  def delete_contribution
+    return '' unless params[:id]
+    update_contribution params[:id], nil
+  end
+  def update_contribution( demand_id , contribution_id)
+    if contribution_id == nil
+        flash_text = _('La contribution est déliée')
+    else
+      flash_text = _('La contribution est maintenant liée')
+    end
+    @demand = Demande.find(demand_id)
+    @demand.update_attributes!(:contribution_id => contribution_id)
+    flash[:notice] = flash_text
+    redirect_to :action => 'comment', :id => demand_id
   end
 
   def pretty_print

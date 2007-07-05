@@ -172,7 +172,11 @@ module DemandesHelper
         { :class => 'nobackground' }
   end
     
-
+  def link_to_delete_contribution( demand_id )
+    link_to _('Délier la contribution') ,:action => 'delete_contribution',
+      :id=> demand_id 
+  end
+  
 
 
   # Display a css bar for graphic representation of a ticket timeline
@@ -225,4 +229,5 @@ module DemandesHelper
       onclick=\"window.location.href='../demandes/comment/#{demand_id}';\""
   end
 
+  
 end
