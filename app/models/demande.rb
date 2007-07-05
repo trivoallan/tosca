@@ -19,7 +19,7 @@ class Demande < ActiveRecord::Base
   has_many :piecejointes, :through => :commentaires
 
 
-  validates_presence_of :resume, 
+  validates_presence_of :resume,
        :warn => "Vous devez indiquer un résumé de votre demande"
   validates_length_of :resume, :within => 3..60
 
@@ -31,11 +31,11 @@ class Demande < ActiveRecord::Base
   TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
   EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
 
-  # WARNING : you cannot use this scope with the optimisation hidden 
+  # WARNING : you cannot use this scope with the optimisation hidden
   # in the model of Demande. You must then use get_scope_without_include
   def self.set_scope(client_ids)
     scope = { :conditions => [ 'beneficiaires.client_id IN (?)', client_ids],
-      :include => [:beneficiaire] } 
+      :include => [:beneficiaire] }
     self.scoped_methods << { :find => scope, :count => scope }
   end
 
@@ -43,14 +43,14 @@ class Demande < ActiveRecord::Base
   # Used in controller demande for the speed n dirty hack finder
   # on list actions
   def self.get_scope_without_include(client_ids)
-    { :find => { :conditions => 
+    { :find => { :conditions =>
         [ 'beneficiaires.client_id IN (?)', client_ids]} }
   end
 
   def to_param
     "#{id}-#{resume.gsub(/[^a-z1-9]+/i, '-')}"
   end
-  
+
   def to_s
     "#{typedemande.nom} (#{severite.nom}) : #{description}"
   end
@@ -58,18 +58,18 @@ class Demande < ActiveRecord::Base
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
-  SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' + 
+  SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' +
     'logiciels.nom as logiciels_nom, id_benef.nom as beneficiaires_nom, ' +
     'typedemandes.nom as typedemandes_nom, clients.nom as clients_nom, ' +
     'id_inge.nom as ingenieurs_nom, statuts.nom as statuts_nom '
-  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' + 
+  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' +
     'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
     'INNER JOIN identifiants id_benef ON id_benef.id=beneficiaires.identifiant_id '+
     'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
-    'LEFT OUTER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' + 
+    'LEFT OUTER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' +
     'LEFT OUTER JOIN identifiants id_inge ON id_inge.id=ingenieurs.identifiant_id '+
-    'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' + 
-    'INNER JOIN statuts ON statuts.id = demandes.statut_id ' + 
+    'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' +
+    'INNER JOIN statuts ON statuts.id = demandes.statut_id ' +
     'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
 
   def updated_on_formatted
@@ -82,19 +82,15 @@ class Demande < ActiveRecord::Base
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
   end
 
-  def self.content_columns 
-    @content_columns ||= columns.reject { |c| c.primary || 
-      c.name =~ /(_id|_on|version|resume|description|reproductible)$/ || 
-      c.name == inheritance_column } 
+  def self.content_columns
+    @content_columns ||= columns.reject { |c| c.primary ||
+      c.name =~ /(_id|_on|version|resume|description)$/ ||
+      c.name == inheritance_column }
   end
 
   def client
     @client ||= ( beneficiaire ? beneficiaire.client : nil )
     @client
-  end
-
-  def reproduit
-    if reproductible then 'Oui' else 'Non' end
   end
 
   def respect_contournement(contrat_id)
@@ -114,7 +110,7 @@ class Demande < ActiveRecord::Base
     corrigee = self.versions.find(:first, :conditions => 'statut_id IN (6,7)',
                                   :order => 'updated_on ASC')
     if corrigee and self.appellee()
-      result = compute_temps_ecoule(corrigee.statut_id) 
+      result = compute_temps_ecoule(corrigee.statut_id)
     end
     result
   end
@@ -124,8 +120,8 @@ class Demande < ActiveRecord::Base
   # TODO : inaffichable dans la liste des demandes > améliorer le calcul de ce délais
   def delais_correction
     delais = paquets.compact.collect{|p|
-     p.correction(typedemande_id, severite_id) * 
-      p.contrat.client.support.interval_in_seconds 
+     p.correction(typedemande_id, severite_id) *
+      p.contrat.client.support.interval_in_seconds
    }.min
   end
 
@@ -135,7 +131,7 @@ class Demande < ActiveRecord::Base
 
   def temps_contournement
     result = 0
-    contournee = self.versions.find(:first, :conditions => 'statut_id=5', 
+    contournee = self.versions.find(:first, :conditions => 'statut_id=5',
                                     :order => 'updated_on ASC')
     if contournee and self.appellee()
       result = compute_temps_ecoule(5)
@@ -151,15 +147,15 @@ class Demande < ActiveRecord::Base
     result = 0
     first = self.versions[0]
     if (self.versions.size > 2) and (first.statut_id == 1) and self.appellee()
-      result = compute_diff(first.updated_on, appellee().updated_on, 
-                            client.support) 
+      result = compute_diff(first.updated_on, appellee().updated_on,
+                            client.support)
     end
     result
   end
 
   def engagement(contrat_id)
     conditions = [" contrats_engagements.contrat_id = ? AND " +
-      "engagements.severite_id = ? AND engagements.typedemande_id = ? ", 
+      "engagements.severite_id = ? AND engagements.typedemande_id = ? ",
       contrat_id, severite_id, typedemande_id ]
     joins = " INNER JOIN contrats_engagements ON engagements.id = contrats_engagements.engagement_id"
     Engagement.find(:first, :conditions => conditions, :joins => joins)
@@ -176,7 +172,7 @@ class Demande < ActiveRecord::Base
   # donc en fait si ^_^
   def affiche_temps_ecoule
     temps = temps_ecoule
-    return "sans engagement" if temps == -1 
+    return "sans engagement" if temps == -1
     distance_of_time_in_french_words(temps, client.support)
   end
 
@@ -217,8 +213,8 @@ class Demande < ActiveRecord::Base
 
     unless statuts_sans_chrono.include? self.statut.id and to != nil
       sup = { :date => Time.now, :statut => self.statut_id }
-      delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]), 
-                            Jourferie.get_dernier_jour_ouvre(sup[:date]), 
+      delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
+                            Jourferie.get_dernier_jour_ouvre(sup[:date]),
                             support)
     end
     delai
@@ -240,7 +236,7 @@ class Demande < ActiveRecord::Base
 #                                 :month => dateinf.month,
 #                                 :year => dateinf.year)
     else
-      result = ((nb_jours-1) * support.interval_in_seconds) 
+      result = ((nb_jours-1) * support.interval_in_seconds)
     end
     borneinf = borneinf.change(:hour => support.fermeture)
     bornesup = bornesup.change(:hour => support.ouverture)
@@ -274,18 +270,18 @@ class Demande < ActiveRecord::Base
     Lstm.time_in_french_words(distance_in_seconds, dayly_time)
   end
 
-  # Calcule en JO (jours ouvrés) le temps écoulé 
+  # Calcule en JO (jours ouvrés) le temps écoulé
   def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
     distance_in_minutes = ((distance_in_seconds.abs)/60.0)
     jo = period_in_hour * 60.0
-    distance_in_minutes.to_f / jo.to_f 
+    distance_in_minutes.to_f / jo.to_f
   end
 
 
   protected
   # this method must be protected and cannot be private as Ruby 1.8.6
   def appellee
-    @appellee ||= self.versions.find(:first, :conditions => 'statut_id=2', 
+    @appellee ||= self.versions.find(:first, :conditions => 'statut_id=2',
                                     :order => 'updated_on ASC')
   end
 

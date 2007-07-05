@@ -4,7 +4,7 @@
 <!--[form:demande]-->
 <% if @ingenieur %>
  <p><label>Client : </label>
- <%= select('fake', 'client_id', 
+ <%= select('fake', 'client_id',
 	@clients.collect{|l| [ l.nom, l.id]}) %>
  </p>
 <% end %>
@@ -16,10 +16,6 @@
 <%= render :partial => 'form_binaires' %>
 </div>
 </p>
-
-
-<p><label for="demande_reproductible">Reproductible ? </label>
-<%= check_box('demande', 'reproductible') %></p>
 
 <p><label for="demande_resume">Resumé</label><br/>
 <%= text_field 'demande', 'resume', "size" => 40 %></p>
