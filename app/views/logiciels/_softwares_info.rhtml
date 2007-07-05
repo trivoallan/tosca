@@ -16,8 +16,8 @@
 > Consultation</div>
 <ul class="menu" id="menu_consultation">
   <% if @beneficiaire %>
-  <li><%= remote_link_to_active( :supported) %></li>
-  <li><%= remote_link_to_active( :all) %></li>
+  <li><%= remote_link_to_software( :supported) %></li>
+  <li><%= remote_link_to_software( :all) %></li>
 
   <% end %>
  <li><%= link_to 'Liste des paquets', :controller => 'paquets', 
