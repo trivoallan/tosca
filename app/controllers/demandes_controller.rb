@@ -25,8 +25,8 @@ class DemandesController < ApplicationController
     options = '%' + logiciel[:nom] + '%'
 
     @logiciels = Logiciel.find(:all, :select => 'nom',
-      :conditions => [ 'nom LIKE :recherche OR 
-        LOWER(description) LIKE :recherche',{:recherche => options } ], 
+      :conditions => [ 'nom LIKE :recherche OR
+        LOWER(description) LIKE :recherche',{:recherche => options } ],
       :order => 'nom ASC')
 
     render :partial => 'dem_auto_complete'
@@ -38,11 +38,11 @@ class DemandesController < ApplicationController
 
   def list
     #cas spécial : consultation directe
-    if params['numero'] 
+    if params['numero']
       redirect_to :action => :comment, :id => params['numero']  and return
     end
 
-    options = { :per_page => 10, :order => 'updated_on DESC', 
+    options = { :per_page => 10, :order => 'updated_on DESC',
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
     conditions = []
 
@@ -80,7 +80,7 @@ class DemandesController < ApplicationController
     end
 
     # panel on the left side
-    if request.xhr? 
+    if request.xhr?
       render :partial => 'requests_list', :layout => false
     else
       _panel
@@ -94,7 +94,7 @@ class DemandesController < ApplicationController
 
     # si on est ingénieur, elle est pour nous par défaut
     @demande.ingenieur = @ingenieur
-    # sans objet par défaut 
+    # sans objet par défaut
     @demande.severite_id = 4
     # statut "prise en compte" si ingénieur, sinon : "enregistrée"
     @demande.statut_id = (@ingenieur ? 2 : 1)
@@ -105,78 +105,86 @@ class DemandesController < ApplicationController
   def create
     @demande = Demande.new(params[:demande])
     if @demande.save
+      pj = params[:piecejointe]
+      if pj != nil
+        piecejointe = Piecejointe.new(:file => pj[:file])
+        commentaire = Commentaire.new(:corps => "fichier attaché", :piecejointe => piecejointe)
+        commentaire.save
+        commentaire.demande = @demande
+        commentaire.save
+      end
       flash[:notice] = 'La demande a bien été créée.'
-      Notifier::deliver_demande_nouveau({:demande => @demande, 
-                                          :nom => @session[:user].nom, 
+      Notifier::deliver_demande_nouveau({:demande => @demande,
+                                          :nom => @session[:user].nom,
                                           :controller => self}, flash)
       redirect_to :action => 'list'
     else
       _form @beneficiaire
-      render :action => 'new' 
+      render :action => 'new'
     end
-  end 
+  end
 
 
   # Used when submitting new request, in order to select
   # packages which are subjects to SLA.
   def ajax_display_packages
     @demande = Demande.new(params[:demande])
-    
+
     begin
       beneficiaire = Beneficiaire.find @demande.beneficiaire_id
-      contrat = Contrat.find :first, :conditions => 
+      contrat = Contrat.find :first, :conditions =>
       ['contrats.client_id = ?', beneficiaire.client.id ]
       logiciel = Logiciel.find(@demande[:logiciel_id])
     rescue  ActiveRecord::RecordNotFound
       @paquets = []
       flash[:warn] = "object not found ???"
     else
-      # active = 1 : we only take supported packages. 
+      # active = 1 : we only take supported packages.
       # MySQL doesn't support true/false so Rails use Tinyint...
-      conditions = { :conditions => 
-        [ 'paquets.logiciel_id=? AND paquets.active=1', logiciel.id ], 
+      conditions = { :conditions =>
+        [ 'paquets.logiciel_id=? AND paquets.active=1', logiciel.id ],
         :order => 'paquets.nom DESC' }
-      @paquets = beneficiaire.client.paquets.find(:all, conditions) 
+      @paquets = beneficiaire.client.paquets.find(:all, conditions)
     end
   end
 
-  # TODO : refaire le formulaire associé. 
+  # TODO : refaire le formulaire associé.
   # qui a besoin d'un petit check
   # et virer ce vieux code legacy tout laid
   def ajax_update_delai
     demande = params[:demande]
-    return render_text('') unless request.xhr? and 
+    return render_text('') unless request.xhr? and
       demande and (demande[:logiciel_id] != "")
     output = ''
 
     beneficiaire = Beneficiaire.find demande[:beneficiaire_id]
     contrat = Contrat.find :first, :conditions => ['client_id=?', beneficiaire.client.id ]
     unless contrat and beneficiaire
-      return render_text(' => pas de contrat, pas d&lsquo;ossa') 
+      return render_text(' => pas de contrat, pas d&lsquo;ossa')
     end
     logiciel = Logiciel.find(demande[:logiciel_id])
-    # active = 1 : we only take supported packages. 
+    # active = 1 : we only take supported packages.
     # MySQL doesn't support true/false so Rails use Tinyint...
-    conditions = { :conditions => 
-      [ 'paquets.logiciel_id=? AND paquets.active=1', logiciel.id ], 
+    conditions = { :conditions =>
+      [ 'paquets.logiciel_id=? AND paquets.active=1', logiciel.id ],
       :order => 'paquets.nom DESC' }
-    paquets = beneficiaire.client.paquets.find(:all, conditions) 
+    paquets = beneficiaire.client.paquets.find(:all, conditions)
 
-    severite = Severite.find(demande[:severite_id]) 
+    severite = Severite.find(demande[:severite_id])
     typedemande = Typedemande.find(demande[:typedemande_id])
     return render_text('') unless paquets and severite and typedemande
     selecteds = demande[:paquet_ids]
 
     case paquets.size
     when 0
-      output << "<p>Nous ne disposons d'aucun paquet concernant " + 
-        logiciel.nom  + "</p>" 
-    else 
-      output << "<p>Précisez ici les paquets impactés par la demande :</p>" 
+      output << "<p>Nous ne disposons d'aucun paquet concernant " +
+        logiciel.nom  + "</p>"
+    else
+      output << "<p>Précisez ici les paquets impactés par la demande :</p>"
       output << "<table>"
       output << "<tr><td> <b>Paquets</b> </td>"
       output << "<td> Contournement  </td><td> Correction  </td><tr>"
-      
+
       paquets.each do |p|
         contrat = Contrat.find(p.contrat_id)
         engagement = contrat.engagements.find_by_typedemande_id_and_severite_id(typedemande.id, severite.id)
@@ -196,7 +204,7 @@ class DemandesController < ApplicationController
       end
       output << "</table>"
     end
-    
+
     render :inline => output
   end
 
@@ -207,27 +215,27 @@ class DemandesController < ApplicationController
 
   def comment
     @demande = Demande.find(params[:id]) unless @demande
-    conditions = [ "logiciel_id = ?", @demande.logiciel_id ] 
+    conditions = [ "logiciel_id = ?", @demande.logiciel_id ]
     @count = Demande.count(:conditions => conditions)
     # TODO c'est pas dry, cf ajax_comments
-    options = { :order => 'created_on DESC', :include => [:identifiant], 
+    options = { :order => 'created_on DESC', :include => [:identifiant],
       :limit => 1, :conditions => { :demande_id => @demande.id } }
     options[:conditions][:prive] = false if @beneficiaire
-    @last_commentaire = Commentaire.find(:first, options)    
+    @last_commentaire = Commentaire.find(:first, options)
     flash.now[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 
     @statuts = @demande.statut.possible()
-    options =  { :conditions => 
+    options =  { :conditions =>
       ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
     @contributions = Contribution.find(:all, options)
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
-    
+
     # On va chercher les identifiants des ingénieurs assignés
     # C'est un héritage du passé
     # TODO : s'en débarrasser avec une migration et un :include'
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
     select = "DISTINCT identifiants.id "
-    @identifiants_ingenieurs = 
+    @identifiants_ingenieurs =
       Identifiant.find(:all, :select => select, :joins => joins)
 
     @partial_for_summary = 'infos_demande'
@@ -254,9 +262,9 @@ class DemandesController < ApplicationController
 
   def ajax_appels
     return render_text('') unless request.xhr? and params[:id]
-    @demande_id = params[:id] 
+    @demande_id = params[:id]
     conditions = [ 'appels.demande_id = ? ', @demande_id ]
-    options = { :conditions => conditions, :order => 'appels.debut', 
+    options = { :conditions => conditions, :order => 'appels.debut',
       :include => [:beneficiaire,:ingenieur,:contrat,:demande] }
     @appels = Appel.find(:all, options)
     render :partial => 'tab_appels', :layout => false
@@ -298,7 +306,7 @@ class DemandesController < ApplicationController
     @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
     @demande.save!
     if @demande.ingenieur
-      flash[:notice] = "La demande a été assignée correctement" 
+      flash[:notice] = "La demande a été assignée correctement"
       options = {:demande => @demande, :controller => self}
       Notifier::deliver_demande_assigner(options, flash)
     else
@@ -328,7 +336,7 @@ class DemandesController < ApplicationController
   end
 
   def pretty_print
-    @demande ||= Demande.find(params[:id]) 
+    @demande ||= Demande.find(params[:id])
     set_piecejointes(@demande.id)
     set_comments(@demande.id)
   end
@@ -354,7 +362,7 @@ class DemandesController < ApplicationController
         @logiciels = client.logiciels
       end
       @typedemandes = client.typedemandes
-      @clients = [ client ] 
+      @clients = [ client ]
     else
       @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
       @logiciels = Logiciel.find_select
@@ -370,19 +378,19 @@ class DemandesController < ApplicationController
 
   def set_piecejointes(demande_id)
     conditions = [ 'commentaires.demande_id = ? ', demande_id ]
-    options = { :conditions => conditions, :order => 
+    options = { :conditions => conditions, :order =>
       'commentaires.updated_on DESC', :include => [:commentaire] }
     @piecejointes = Piecejointe.find(:all, options)
   end
 
   def set_comments(demande_id)
     if @beneficiaire
-      @commentaires = Commentaire.find(:all, :conditions => 
-         [ 'commentaires.demande_id = ? AND commentaires.prive = ? ', 
+      @commentaires = Commentaire.find(:all, :conditions =>
+         [ 'commentaires.demande_id = ? AND commentaires.prive = ? ',
            demande_id, false ],
          :order => 'created_on ASC', :include => [:identifiant])
     elsif @ingenieur
-      @commentaires = Commentaire.find(:all, :conditions => 
+      @commentaires = Commentaire.find(:all, :conditions =>
          [ 'commentaires.demande_id = ?', demande_id ],
          :order => "created_on ASC", :include => [:identifiant])
     end
@@ -391,7 +399,7 @@ class DemandesController < ApplicationController
     # TODO : s'en débarrasser avec une migration et un :include
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
     select = "DISTINCT identifiants.* "
-    @identifiants_ingenieurs = 
+    @identifiants_ingenieurs =
       Identifiant.find(:all, :select => select, :joins => joins)
   end
 
@@ -402,9 +410,9 @@ end
 #  :update => :delai,
 #  :frequency => 15 } %>
 #<%= observe_field "demande_severite_id", {
-#  :url => {:action => :ajax_update_delai}, 
-#  :update => :delai,  
-#  :with => "severite_id" } 
+#  :url => {:action => :ajax_update_delai},
+#  :update => :delai,
+#  :with => "severite_id" }
 #%>
 #<%= observe_field "demande_logiciel_id",
 # {:url => {:action => :ajax_update_paquets},

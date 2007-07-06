@@ -6,8 +6,8 @@ class Commentaire < ActiveRecord::Base
   belongs_to :identifiant
   belongs_to :piecejointe
   belongs_to :statut
-  
-  validates_length_of :corps, :minimum => 5, 
+
+  validates_length_of :corps, :minimum => 5,
     :warn => _("Vous devez mettre un commentaire d'au moins 5 caractères")
 
   # On détruit l'éventuelle pièce jointe
