@@ -19,6 +19,9 @@ class Identifiant < ActiveRecord::Base
 
   attr_accessor :pwd_confirmation
 
+  N_('Identifiant|Pwd')
+  N_('Identifiant|Pwd confirmation')
+
   def pwd
     @pwd
   end
@@ -30,7 +33,8 @@ class Identifiant < ActiveRecord::Base
   end
 
   # Eck ... We must add message manually in order to
-  # not have the "pwd" prefix ... TODO : find a pretty way 
+  # not have the "pwd" prefix ... TODO : find a pretty way ?
+  # TODO : check if gettext is an answer ?
   def validate
     errors.add_to_base(_("Mot de passe manquant")) if password.blank?
     if pwd != pwd_confirmation

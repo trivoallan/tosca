@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-06 14:53+0200\n"
-"PO-Revision-Date: 2007-07-06 15:09+0200\n"
+"POT-Creation-Date: 2007-07-06 18:17+0200\n"
+"PO-Revision-Date: 2007-07-06 18:14+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,12 +32,12 @@ msgstr ""
 msgid "Merci d'avoir pris le temps de nous aider à "
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:328
+#: app/controllers/demandes_controller.rb:323
 #, fuzzy
 msgid "La contribution est déliée"
 msgstr "Créé le"
 
-#: app/controllers/demandes_controller.rb:330
+#: app/controllers/demandes_controller.rb:325
 msgid "La contribution est maintenant liée"
 msgstr ""
 
@@ -104,10 +104,11 @@ msgstr "Résumé"
 msgid "Consulter les logiciels"
 msgstr ""
 
-#: app/helpers/links_helper.rb:70
+#: app/helpers/links_helper.rb:70 app/views/contributions/list.rhtml:1
+#: app/views/contributions/select.rhtml:1
 #, fuzzy
 msgid "Contributions"
-msgstr "Créé le"
+msgstr "Contributions"
 
 #: app/helpers/links_helper.rb:71
 msgid "Accédez à la liste des contributions réalisées sur votre périmètre"
@@ -367,9 +368,9 @@ msgstr ""
 msgid "Conteneur|Nom"
 msgstr ""
 
-#: app/models/contribution.rb:-
+#: app/models/contribution.rb:- app/views/contributions/select.rhtml:3
 msgid "contribution"
-msgstr ""
+msgstr "contribution"
 
 #: app/models/contribution.rb:-
 msgid "Contribution|Nom"
@@ -553,19 +554,29 @@ msgstr ""
 msgid "Groupe|Nom"
 msgstr ""
 
-#: app/models/identifiant.rb:35
+#: app/models/identifiant.rb:22
+#, fuzzy
+msgid "Identifiant|Pwd"
+msgstr "Client"
+
+#: app/models/identifiant.rb:23
+#, fuzzy
+msgid "Identifiant|Pwd confirmation"
+msgstr "Client"
+
+#: app/models/identifiant.rb:39
 msgid "Mot de passe manquant"
 msgstr ""
 
-#: app/models/identifiant.rb:37
+#: app/models/identifiant.rb:41
 msgid "Votre mot de passe ne correspond pas à la confirmation"
 msgstr ""
 
-#: app/models/identifiant.rb:41
+#: app/models/identifiant.rb:45
 msgid "Votre mot de passe est trop long (max. 20 caractères)"
 msgstr ""
 
-#: app/models/identifiant.rb:43
+#: app/models/identifiant.rb:47
 msgid "Votre mot de passe est trop court (min. 5 caractères)"
 msgstr ""
 
@@ -905,13 +916,144 @@ msgstr ""
 msgid "ajouter un logo"
 msgstr ""
 
+#: app/views/contributions/_contributions_admin.rhtml:1
+msgid "List of contributions"
+msgstr "Liste des contributions"
+
+#: app/views/contributions/_contributions_admin.rhtml:3
+msgid "a contribution"
+msgstr "une contribution"
+
+#: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_form.rhtml:9
+msgid "Software"
+msgstr "Logiciel"
+
+#: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_form.rhtml:16
+msgid "Patch"
+msgstr "Correctif"
+
+#: app/views/contributions/_contributions_admin.rhtml:7
+msgid "Request"
+msgstr "Demande"
+
+#: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_form.rhtml:30
+msgid "State"
+msgstr "Etat"
+
+#: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_form.rhtml:6 app/views/roles/_form.rhtml:5
+msgid "Name"
+msgstr "Nom"
+
+#: app/views/contributions/_contributions_admin.rhtml:8
+#: app/views/contributions/_form.rhtml:36
+msgid "Submitted on"
+msgstr "Déposé le"
+
+#: app/views/contributions/_contributions_admin.rhtml:8
+#: app/views/contributions/_form.rhtml:40
+msgid "Closed on"
+msgstr "Clôturé le"
+
+#: app/views/contributions/_contributions_admin.rhtml:8
+msgid "Delay"
+msgstr "Délai"
+
+#: app/views/contributions/_contributions_admin.rhtml:8
+msgid "Updated on"
+msgstr "Mis à jour le"
+
+#: app/views/contributions/_contributions_info.rhtml:18
+#: app/views/contributions/select.rhtml:7
+msgid "Submit a contribution"
+msgstr "Déposer une contribution"
+
+#: app/views/contributions/_contributions_info.rhtml:19
+msgid "Selection interface"
+msgstr "Interface de sélection"
+
+#: app/views/contributions/_form.rhtml:13
+msgid "Engineer"
+msgstr "Ingénieur"
+
+#: app/views/contributions/_form.rhtml:19
+#, fuzzy
+msgid "Impacted version"
+msgstr "Version impactée"
+
+#: app/views/contributions/_form.rhtml:22
+msgid "Kind of contribution"
+msgstr "Type de contribution"
+
+#: app/views/contributions/_form.rhtml:33
+msgid "Add an url for the community issue"
+msgstr "Ajouter une url de suivi communautaire"
+
+#: app/views/contributions/_form.rhtml:46
+msgid "Synthesis"
+msgstr "Synthèse"
+
+#: app/views/contributions/_form.rhtml:49
+msgid "Description (public)"
+msgstr "Description  (public)"
+
+#: app/views/contributions/_form.rhtml:52
+msgid "Technical details (private)"
+msgstr "Détails techniques (privé)"
+
+#: app/views/contributions/edit.rhtml:1
+msgid "Edit this contribution"
+msgstr "Modifier cette contribution"
+
+#: app/views/contributions/edit.rhtml:6 app/views/roles/edit.rhtml:5
+msgid "Validate"
+msgstr "Valider"
+
+#: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
+msgid "Home"
+msgstr "Accueil"
+
+#: app/views/contributions/list.rhtml:1
+msgid "All"
+msgstr "Tous"
+
+#: app/views/contributions/list.rhtml:3
+msgid "a new contribution"
+msgstr "une nouvelle contribution"
+
+#: app/views/contributions/new.rhtml:1
+msgid "Add a new contribution"
+msgstr "Ajouter une nouvelle contribution"
+
+#: app/views/contributions/new.rhtml:5 app/views/roles/new.rhtml:5
+msgid "Create"
+msgstr "Créer"
+
+#: app/views/contributions/select.rhtml:9
+msgid "See all contributions"
+msgstr "Consulter toutes les contributions"
+
+#: app/views/contributions/select.rhtml:10
+msgid "Export all contributions"
+msgstr "Exporter toutes les contributions"
+
+#: app/views/contributions/select.rhtml:11
+msgid "Access to interface of administration"
+msgstr "Accéder à l'interface d'admnistration"
+
+#: app/views/contributions/show.rhtml:21
+msgid "This contribution has been submitted on %s by <b>%s</b>"
+msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
+
 #: app/views/demandes/_tab_menu.rhtml:9
 #: app/views/logiciels/_softwares_list.rhtml:7 app/views/roles/list.rhtml:4
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: app/views/demandes/_tab_menu.rhtml:12
-#, fuzzy
 msgid "Commentaires"
 msgstr "Privé"
 
@@ -967,9 +1109,13 @@ msgstr ""
 msgid " <i>sur</i> "
 msgstr ""
 
-#: app/views/roles/_form.rhtml:5
-msgid "Name"
-msgstr "Nom"
+#: app/views/reporting/comex.rhtml:37
+msgid "Voir le reporting pour cette semaine"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:41
+msgid "Voir l'avancement des CNS"
+msgstr ""
 
 #: app/views/roles/_form.rhtml:8
 msgid "Short description"
@@ -982,10 +1128,6 @@ msgstr ""
 #: app/views/roles/edit.rhtml:1
 msgid "Edit a role"
 msgstr "Modifier un rôle"
-
-#: app/views/roles/edit.rhtml:5
-msgid "Validate"
-msgstr "Valider"
 
 #: app/views/roles/list.rhtml:1
 msgid "Roles list"
@@ -1014,10 +1156,6 @@ msgstr "Ajouter un rôle"
 #: app/views/roles/new.rhtml:1
 msgid "New role"
 msgstr "Nouveau rôle"
-
-#: app/views/roles/new.rhtml:5
-msgid "Create"
-msgstr "Créer"
 
 #~ msgid "appel"
 #~ msgstr "appel"
@@ -1082,7 +1220,3 @@ msgstr "Créer"
 #, fuzzy
 #~ msgid "Document|Updated on"
 #~ msgstr "Mis à jour le"
-
-#, fuzzy
-#~ msgid "Identifiant|Client"
-#~ msgstr "Client"
