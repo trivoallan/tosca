@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-07-06 14:53+0200\n"
-"PO-Revision-Date: 2007-07-06 14:54+0200\n"
+"PO-Revision-Date: 2007-07-06 15:09+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -969,11 +969,11 @@ msgstr ""
 
 #: app/views/roles/_form.rhtml:5
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: app/views/roles/_form.rhtml:8
 msgid "Short description"
-msgstr ""
+msgstr "Description courte"
 
 #: app/views/roles/_form.rhtml:12
 msgid "Permissions"
