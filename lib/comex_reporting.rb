@@ -9,10 +9,10 @@ module  ComexReporting
     @total = { :active=> {}, :final=> {} }
     @clients.each do |c|
       name = c.nom.intern
-      @requests[:last_week][name] = [0,0,0,0]
-      @requests[:new][name] = [0,0,0,0]
-      @requests[:closed][name] = [0,0,0,0]
-      @total[:active][name] = [0,0,0,0]
+      @requests[:last_week][name] = [0,0,0,0, []]
+      @requests[:new][name] = [0,0,0,0, []]
+      @requests[:closed][name] = [0,0,0,0, []]
+      @total[:active][name] = [0,0,0,0, []]
       @total[:final][name] = 0
     end
     @requests[:last_week][:total]=[0,0,0,0]
@@ -29,41 +29,44 @@ module  ComexReporting
       :last_day=> @date[:end_day],
       :beneficiaire_ids => client.beneficiaire_ids
     }
+    cscopeTest = { :find => { :conditions => 
+        [ 'beneficiaire_id IN (:beneficiaire_ids) ',values ] } 
+    }
+    Demande.with_scope(cscopeTest) {
+      clast_week  = [ "created_on <= :first_day AND " << 
+                      "(#{Demande::EN_COURS} OR " << 
+                       "(#{Demande::TERMINEES} AND " << 
+                         "updated_on >= :first_day " <<
+                       "))", values ]
+      @requests[:last_week][name][4] = 
+        Demande.count(:group=> 'severite_id',:conditions => clast_week)
+
+      cnew = [ 'created_on BETWEEN :first_day AND :last_day',values]
+      @requests[:new][name][4] =
+        Demande.count(:group => 'severite_id', :conditions => cnew)
+
+      cclosed = [ 'updated_on BETWEEN :first_day AND :last_day AND ' <<
+                  "#{Demande::TERMINEES}", values ]
+      @requests[:closed][name][4] =
+        Demande.count(:group => 'severite_id', :conditions => cclosed)
+    }
     
     4.times do |i|
-      values[:severite_id] = i+1 
-      cscope = { :find => { :conditions => 
-          [ 'beneficiaire_id IN (:beneficiaire_ids) AND ' + 
-            'severite_id = :severite_id', values ] } 
-      }
-      Demande.with_scope(cscope) {
-        clast_week  = [ "created_on <= :first_day AND " << 
-                        "(#{Demande::EN_COURS} OR " << 
-                         "(#{Demande::TERMINEES} AND " << 
-                           "updated_on >= :first_day " <<
-                         "))", values ]
-        @requests[:last_week][name][i] = 
-          Demande.count(:conditions => clast_week)
-  
-        cnew = [ 'created_on BETWEEN :first_day AND :last_day',values]
-        @requests[:new][name][i] =
-          Demande.count(:conditions => cnew)
-  
-        cclosed = [ 'updated_on BETWEEN :first_day AND :last_day AND ' <<
-                    "#{Demande::TERMINEES}", values ]
-        @requests[:closed][name][i] =
-          Demande.count(:conditions => cclosed)
-      }
-      @total[:active][name][i] = @requests[:last_week][name][i] +
-        @requests[:new][name][i] - @requests[:closed][name][i]
+      last_week, closed, new = 0,0,0
+      last_week= @requests[:last_week][name][4][i+1] if @requests[:last_week][name][4][i+1]
+      closed = @requests[:closed][name][4][i+1] if @requests[:closed][name][4][i+1]
+      new = @requests[:new][name][4][i+1] if @requests[:new][name][4][i+1]
+
+      @total[:active][name][i] = last_week + new - closed
       @total[:final][name] += @total[:active][name][i]
       
-      @requests[:last_week][:total][i] += @requests[:last_week][name][i]
-      @requests[:new][:total][i] += @requests[:new][name][i]
-      @requests[:closed][:total][i] += @requests[:closed][name][i]
+      @requests[:last_week][:total][i] += last_week
+      @requests[:new][:total][i] += new
+      @requests[:closed][:total][i] += closed
       @total[:active][:total][i] += @total[:active][name][i]
     end
-    @total[:final][:total] += @total[:final][name]
+      @total[:active][name].map!{|x| x==0?nil:x}
+      @total[:final][:total] += @total[:final][name]
   end
   def cns_correction
     @demandes= {}

@@ -320,17 +320,17 @@ class DemandesController < ApplicationController
     update_contribution( params[:id], params[:contribution_id] )
   end
   def delete_contribution
-    return '' unless params[:id]
+    render unless params[:id]
     update_contribution params[:id], nil
   end
-  def update_contribution( demand_id , contribution_id)
+  def update_contribution( demand_id , contribution_id )
     if contribution_id == nil
-        flash_text = _('La contribution est déliée')
+      flash_text = _('La contribution est déliée')
     else
       flash_text = _('La contribution est maintenant liée')
     end
-    @demand = Demande.find(demand_id)
-    @demand.update_attributes!(:contribution_id => contribution_id)
+    @demande = Demande.find(demand_id) unless @demande
+    @demande.update_attributes!(:contribution_id => contribution_id)
     flash[:notice] = flash_text
     redirect_to :action => 'comment', :id => demand_id
   end
