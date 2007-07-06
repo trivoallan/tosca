@@ -16,10 +16,10 @@ module DemandesHelper
       text = ''
       text << "##{demande.id} " if options[:show_id] 
       text << "#{icon_severite(demande)} " if options[:icon_severite] 
-      text << "#{sum_up(demande.resume, limit)}"
+      text << truncate(demande.resume, limit)
     end
     options = {:controller => 'demandes', 
-               :action => 'comment', :id => demande.id}
+               :action => 'comment', :id => demande.id }
     link_to text, options
   end
 
@@ -41,25 +41,6 @@ module DemandesHelper
           'http://www.08000linux.com/wiki/index.php/%C3%89tats_demande')
   end
 
-
-  # Display a short text summary of a demand
-  # Often used for "alt" and "title" markup/tag
-  # Options
-  #  * :less 
-  # Display '...' by default if remaining text size bigger than 3 characters
-  def sum_up(text, limit=100, options ={})
-    return text unless (text.is_a? String) && (limit.is_a? Numeric)
-    less = options[:less] ||= '...'
-    out = ''
-    out << ( text.size <= limit+3 ? text : text[0..limit] + less )
-    #if text.size <= limit + 3
-    #  out << text
-    #else
-    #  out << text[0..limit]
-    #  out << less
-    #end
-    out
-  end
 
   # Description of a demand
   # DEPRECATED : use instance method for 'to_s' Demande
