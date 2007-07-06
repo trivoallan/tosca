@@ -313,11 +313,9 @@ class DemandesController < ApplicationController
   end
 
   def associer_contribution
-    return render_text('') unless params[:id] and params[:contribution_id]
     update_contribution( params[:id], params[:contribution_id] )
   end
   def delete_contribution
-    render unless params[:id]
     update_contribution params[:id], nil
   end
   def update_contribution( demand_id , contribution_id )

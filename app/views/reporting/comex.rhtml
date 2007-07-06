@@ -1,6 +1,6 @@
 <div class="content" id="content">
   <h1>Activité OSSA par semaine</h1><br />
-    <% form_tag :action => 'comex_resultat' do %>
+    <% form_tag comex_resultat_reporting_url do %>
     <table class='show'>
       <tr>
         <th>Recherche par numéro de semaine</th>
@@ -34,11 +34,11 @@
       </tr>
       <tr>
         <td align='center'>
-          <%= submit_tag "Voir le reporting pour cette semaine",
+          <%= submit_tag _('Voir le reporting pour cette semaine'),
             {:name => "reporting" } %>
         </td>
         <td align='center'>
-          <%= submit_tag "Voir l'avancement des CNS", {:name => "cns"}%>
+          <%= submit_tag _('Voir l\'avancement des CNS'), {:name => "cns"}%>
         </td>
       </tr>
     </table>
