@@ -4,8 +4,7 @@
   <% if @ingenieur %>
   <li><% form_tag(:action => 'associer_contribution', :id => @demande.id) do %>
     <%= select_onchange @contributions, 'demande', 'contribution_id' %>
-   </li>
- <% end%>
+ <% end%></li>
   <li><%= link_to_delete_contribution @demande.id %></li>
    <li><%= link_to_add_call @demande.id %></li>
   <% end %>
