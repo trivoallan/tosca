@@ -89,7 +89,6 @@ class DemandesController < ApplicationController
   end
 
   def new
-    @demande_edit_mode = false
     @demande = Demande.new unless @demande
     _form @beneficiaire
 
@@ -208,7 +207,6 @@ class DemandesController < ApplicationController
 
   def edit
     @demande = Demande.find(params[:id])
-    @demande_edit_mode = true
     _form @beneficiaire
   end
 
