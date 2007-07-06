@@ -91,10 +91,10 @@
 </td></tr>
 
 </table>
-
+<% if @demande_edit_mode == false %>
 <% #TODO : Mettre un partial de commentaire pour la première pièce jointe %>
   <label for="piecejointe_file">Adjoindre un fichier :   </label>
   <%= file_column_field 'piecejointe', 'file', :size =>  100 %>
   <br /><br /><br />
-
+<% end %>
 <!--[eoform:demande]-->

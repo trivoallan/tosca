@@ -89,6 +89,7 @@ class DemandesController < ApplicationController
   end
 
   def new
+    @demande_edit_mode = false
     @demande = Demande.new unless @demande
     _form @beneficiaire
 
@@ -104,15 +105,12 @@ class DemandesController < ApplicationController
 
   def create
     @demande = Demande.new(params[:demande])
+    pj = params[:piecejointe]
+    if pj != nil
+      piecejointe = Piecejointe.create(:file => pj[:file])
+      commentaire = Commentaire.create(:corps => "fichier attaché", :piecejointe => piecejointe, :demande => @demande)
+    end
     if @demande.save
-      pj = params[:piecejointe]
-      if pj != nil
-        piecejointe = Piecejointe.new(:file => pj[:file])
-        commentaire = Commentaire.new(:corps => "fichier attaché", :piecejointe => piecejointe)
-        commentaire.save
-        commentaire.demande = @demande
-        commentaire.save
-      end
       flash[:notice] = 'La demande a bien été créée.'
       Notifier::deliver_demande_nouveau({:demande => @demande,
                                           :nom => @session[:user].nom,
@@ -210,6 +208,7 @@ class DemandesController < ApplicationController
 
   def edit
     @demande = Demande.find(params[:id])
+    @demande_edit_mode = true
     _form @beneficiaire
   end
 
