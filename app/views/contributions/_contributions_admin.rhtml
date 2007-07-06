@@ -1,11 +1,11 @@
-<h1>Liste des contributions <%= image_spinner %></h1>
+<h1><%= _('List of contributions') << image_spinner %></h1>
 
-<% links = show_pages_links(@contribution_pages, 'une contribution', 
-       :url => url_for('admin')) %>
+<% links = show_pages_links(@contribution_pages, _('a contribution'), 
+                            :url => admin_contributions_url) %>
 <%= links %>
 
-<% titres = ['Logiciel', 'Patch', 'Demande', 'Etat', 'Nom', 
-             'Signalé le', 'Cloturé le', 'Délai', 'Mis à jour le']%>
+<% titres = [_('Software'), _('Patch'), _('Request'), _('State'), _('Name'), 
+             _('Submitted on'), _('Closed on'), _('Delay'), _('Updated on')]%>
 <% form_tag(:controller => 'contributions', :action => 'list') do %>
 <%= show_table(@contributions, Contribution, titres) { |c|
   result = ''

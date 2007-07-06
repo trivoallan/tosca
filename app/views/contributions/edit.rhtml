@@ -1,10 +1,10 @@
-<h1>Modifier cette contribution</h1>
+<h1><%= _('Edit this contribution') %></h1>
 
-<% action = { :action => 'update', :id => @contribution } %>
-<% form_tag(action, :multipart => true ) do %>
+<% form_tag(edit_contribution_url(@contribution), 
+      :multipart => true, :method => :put ) do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Enregistrer' %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
-<%= link_to 'Voir', :action => 'show', :id => @contribution %> |
-<%= link_to 'Retour à la liste', :action => 'list' %>
+<%= link_to_show_and_list(@contribution) %>
+

@@ -146,9 +146,8 @@ private
   def _update(contribution)
     urlreversement = params[:urlreversement]
     if urlreversement != ''
-      urlreversement = Urlreversement.new(urlreversement)
-      urlreversement.contribution = contribution
-      urlreversement.save
+      urlreverment[:contribution_id] = contribution.id
+      Urlreversement.create(urlreversement)
     end
     contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
     contribution.cloture_le = nil if params[:contribution][:clos] == '0'

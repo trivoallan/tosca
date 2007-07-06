@@ -14,18 +14,22 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :arches
   map.resources :beneficiaires
   map.resources :bienvenue,
-    :collection => { :admin => :get, :plan => :get, 
+    :collection => { :index => :get, :admin => :get, :plan => :get, 
                      :selenium => :get, :about => :get }
   map.resources :binaires
   map.resources :clients
   map.resources :competences
   map.resources :contrats
-  map.resources :contributions
+  map.resources :contributions, 
+    :collection => { :admin => :any, :select => :get },
+    :member => { :list => :get }
   map.resources :demandes, 
     :member => { :comment => :any }
   map.resources :documents, 
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
+  map.resources :export,
+    :collection => { :contributions => :get  }
   map.resources :groupes
   map.resources :ingenieurs
   map.resources :logiciels

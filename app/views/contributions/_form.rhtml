@@ -3,23 +3,23 @@
 <!--[form:contribution]-->
 <table class="form"><tr valign='top'><td>
 
-<p><label for="contribution_nom">Nom</label><br/>
+<p><label for="contribution_nom"><%=_('Name')%></label><br/>
 <%= text_field 'contribution', 'nom', :size => 20 %></p>
 
-<p><label for="contribution_logiciel">Logiciel</label><br/>
+<p><label for="contribution_logiciel"><%=_('Software')%></label><br/>
 <%= collection_select(:contribution, :logiciel_id, @logiciels, :id, :nom) %>
 <%= image_spinner %></p>
 
-<p><label for="contribution_ingenieur">Ingénieur</label><br/>
+<p><label for="contribution_ingenieur"><%=_('Engineer')%></label><br/>
 <%= collection_select(:contribution, :ingenieur_id, @ingenieurs, :id, :nom) %></p>
 
-<p><label for="contribution_patch">Patch</label><br/>
+<p><label for="contribution_patch"><%=_('Patch')%></label><br/>
 <%= file_column_field 'contribution', 'patch'  %></p>
 
-<p><label for="contribution_version">Version du logiciel</label><br/>
+<p><label for="contribution_version"><%=_('Software version')%></label><br/>
 <%= text_field 'contribution', 'version', :size => 10 %></p>
 
-<p><label for="contribution_typecontribution">Type de contribution</label><br/>
+<p><label for="contribution_typecontribution"><%=_('Kind of contribution')%></label><br/>
 <%= collection_select(:contribution, :typecontribution_id, @typecontributions, :id, :nom) %></p>
 
 <% if @ingenieur %>
@@ -27,39 +27,35 @@
 <%= text_field 'contribution', 'id_mantis', :size => 3 %></p>
 <% end %>
 
-<p><label for="contribution_etatreversement">Etat</label><br/>
+<p><label for="contribution_etatreversement"><%=_('State')%></label><br/>
 <%= collection_select(:contribution, :etatreversement_id, @etatreversements, :id, :nom) %></p>
 
-<p><label for="urlreversement_valeur">Ajouter une url de reversement</label><br/>
+<p><label for="urlreversement_valeur"><%=_('Add an url for the community issue')%></label><br/>
 <%= text_field 'urlreversement', 'valeur' %></p>
 
-<p><label for="contribution_reverse">Signalé</label>
+<p><label for="contribution_reverse"><%=_('Submitted on')%></label>
 <%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('reverse_le');"%>
 <div id='reverse_le' <%unless @contribution.reverse%>style="display: none;"><%end%><%= datetime_select 'contribution', 'reverse_le'  %></div></p>
 
-<p><label for="contribution_clos">Cloturé le</label>
+<p><label for="contribution_clos"><%=_('Closed on')%></label>
 <%= check_box 'contribution', 'clos', :onchange => "Element.toggle('cloture_le');"%>
 <div id='cloture_le' <%unless @contribution.clos%>style="display: none;"><%end%><%= datetime_select 'contribution', 'cloture_le'  %></div></p>
 
 </td><td>
 
-<p><label for="contribution_synthese">Synthèse</label><br/>
+<p><label for="contribution_synthese"><%=_('Synthesis')%></label><br/>
 <%= text_field 'contribution', 'synthese', :size => 87 %></p>
 
-<p><label for="contribution_description_fonctionnelle">Description (public)</label><br/>
+<p><label for="contribution_description_fonctionnelle"><%=_('Description (public)')%></label><br/>
 <%= text_area 'contribution', 'description_fonctionnelle', :cols => 100, :rows => 20  %></p>
 
-<p><label for="contribution_description">Détails techniques (privé)</label><br/>
+<p><label for="contribution_description"><%=_('Technical details (private)')%></label><br/>
 <%= text_area 'contribution', 'description', :cols => 100, :rows => 5  %></p>
 
-
-<%= observe_field 'contribution_logiciel_id',  
-         :update => 'paquets',
-         :before => "Element.show('spinner')",
-         :success => "Element.hide('spinner')",
-         :url => {:action => 'ajax_paquets'},
-         :with => 'id'
-         %>
+<% # deactivated : TO DO : think it a better a way %>
+<%# = observe_field 'contribution_logiciel_id', :update => 'paquets',
+  #       :before => "Element.show('spinner')", :success => "Element.hide('spinner')",
+  #       :url => {:action => 'ajax_paquets'},:with => 'id' %>
 
 </td></tr>
 <tr><td colspan="2">

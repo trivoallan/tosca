@@ -1,5 +1,5 @@
 <% options = { :update => 'content',
-    :url => url_for(:action => 'admin'),
+    :url => admin_contributions_url,
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
@@ -15,8 +15,8 @@
 Actions </div>
 
 <ul class="menu" id="menu_actions">
- <li><%= link_to('Déposer une contribution', :action => 'new')%></li>
- <li><%= link_to('Interface de sélection', :action => 'select')%></li>
+ <li><%= link_to(_('Submit a contribution'), new_contribution_url)%></li>
+ <li><%= link_to(_('Selection interface'), select_contributions_url)%></li>
  <li><%= link_to_export %></li>
  <%= "<li>#{link_to 'Interface d\'administration', :action => 'admin'}</li>" if controller.action_name != 'admin' %>
 </ul>

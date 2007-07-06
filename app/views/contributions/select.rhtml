@@ -1,15 +1,11 @@
-<h1>Accès aux contributions</h1>
+<h1><%= _('Contributions') %></h1>
 
-<%= public_show_liste(@logiciels, 'contribution', :no_title => true) { |l| 
-      out = ''
-      out << "<b>#{public_link_to_contribution_logiciel l }</b>"
-      out << ' : ' + l.resume
+<%= public_show_liste(@logiciels, _('contribution'), :no_title => true) { |l| 
+      out = "<b>#{public_link_to_contribution_logiciel l }</b> : #{l.resume}"
 } %>
 
-<%= link_to 'Déposer une contribution', :action => 'new' %><br/>
+<%= link_to _('Submit a contribution'), new_contribution_url %><br/>
 <% #link_to_new('contribution') %><br/>
-<%= link_to 'Voir toutes les contributions', 
-      :action => 'list', :id => 'all'  %><br/>
-<%= link_to 'Exporter les contributions', :controller => 'export', 
-      :action => 'contributions'  %><br/>
-<%= link_to "Accéder à l'interface d'administration", :action => 'admin'  %>
+<%= link_to _('See all contributions'), list_contribution_url(:id => 'all') %><br/>
+<%= link_to _('Export all contributions'), contributions_export_url %><br/>
+<%= link_to _('Access to interface of administration'), admin_contributions_url %>
