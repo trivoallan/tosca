@@ -3,6 +3,41 @@
 #####################################################
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
+
+  # RESTful routes
+  map.resources :accounts, 
+    :controller => 'account',
+    :member => { :modify => :any, :devenir => :post }, 
+    :collection => { :logout => :post, :login => :any },
+    :new => { :signup => :any, :multiple_signup => :any }
+  map.resources :appels
+  map.resources :arches
+  map.resources :beneficiaires
+  map.resources :bienvenue,
+    :collection => { :admin => :get, :plan => :get, 
+                     :selenium => :get, :about => :get }
+  map.resources :binaires
+  map.resources :clients
+  map.resources :competences
+  map.resources :contrats
+  map.resources :contributions
+  map.resources :demandes, 
+    :member => { :comment => :any }
+  map.resources :documents, 
+    :collection => { :select => :get },
+    :member => { :list => :get, :destroy => :delete }
+  map.resources :groupes
+  map.resources :ingenieurs
+  map.resources :logiciels
+  map.resources :machines
+  map.resources :paquets
+  map.resources :permissions
+  # TODO : Comex resultat en :get ? Faut changer le formulaire aussi
+  map.resources :reporting,
+    :collection => { :comex => :get, :general => :get, :comex_resultat => :post }
+  map.resources :roles
+  map.resources :socles
+  map.resources :urllogiciels
  
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'

@@ -1,9 +1,8 @@
-<h1>Editer un rôle</h1>
+<h1><%= _('Edit a role')%></h1>
 
-<%= start_form_tag :action => 'update', :id => @role %>
+<% form_tag(role_url(@role), :method => :put) do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+  <%= submit_tag _('Validate') %>
+<% end %>
 
-<%= link_to_view(@role) %> |
-<%= link_to_back() %>
+<%= link_to_show_and_list(@role) %>

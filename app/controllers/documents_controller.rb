@@ -9,10 +9,6 @@ class DocumentsController < ApplicationController
     render :action => 'select'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :select }
-
   def list
     flash[:notice]= flash[:notice]
     return redirect_to(:action => 'select') unless params[:id]
@@ -94,8 +90,10 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    Document.find(params[:id]).destroy
-    redirect_to :action => 'select'
+    doc = Document.find(params[:id])
+    typedocument_id = doc.typedocument_id
+    doc.destroy
+    redirect_to list_document_url(:id => typedocument_id)
   end
 
   private

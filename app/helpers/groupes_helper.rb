@@ -5,14 +5,12 @@ module GroupesHelper
 
   @@groupes = nil
   def public_link_to_groupes
-    @@groupes ||= public_link_to(_('classifications'),
-        :controller => 'groupes', :action => 'list')
+    @@groupes ||= public_link_to(_('classification'), groupes_url)
   end
 
   # Lien vers la consultation d'UN groupe
   def link_to_groupe(groupe)
-      link_to groupe.nom, :controller => 'groupes', 
-                          :action => 'show', :id => groupe.id
+      link_to groupe.nom, groupe_url(:id => groupe.id)
   end
 
 

@@ -25,15 +25,10 @@ module ContributionsHelper
       :action => 'list', :id => logiciel.id }
   end
 
-  @@contributions = nil
-  def public_link_to_contributions
-    @@contributions ||= public_link_to(_('contributions'), :controller => 'contributions', :action => 'list')
-  end
-
   # call it like : 
   # <%= link_to_new_contribution %>
   def link_to_new_contribution(logiciel_id = nil)
-    options = { :controller => 'contributions', :action => 'new', :id => logiciel_id }
+    options = new_contribution_url(:id => logiciel_id)
     link_to(image_create(_('une contribution')), options, LinksHelper::NO_HOVER)
   end
 
@@ -41,18 +36,17 @@ module ContributionsHelper
   # <%= link_to_contribution @contribution %>
   def link_to_contribution(c)
     return '-' unless c
-    link_to c.nom, :controller => 'contributions', :action => 'show', :id => c
+    link_to c.nom, contribution_url(c)
   end
 
   def public_link_to_contribution(c)
     return '-' unless c
-    public_link_to(c.nom, :controller => 'contributions', 
-                   :action => 'show', :id => c)
+    public_link_to(c.nom, contribution_url(c))
   end
 
   
   def link_to_all_contributions
-    link_to 'Voir toutes les contributions', :action => 'list', :id => 'all'
+    link_to 'Voir toutes les contributions', contributions_url
   end
 
   # une contribution peut être liée à une demande externe

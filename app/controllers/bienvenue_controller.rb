@@ -16,7 +16,6 @@ class BienvenueController < ApplicationController
   # Default page, redirect if necessary
   def index
     _request_list
-    @typedocuments = Typedocument.find(:all)
   end
 
 
@@ -73,11 +72,9 @@ protected
   # Pick some demands
   # Used to be shown in the welcome page
   def _request_list
-    conditions = Demande::EN_COURS
-    @demandes = Demande.find(:all, 
-       :include => [:statut, :typedemande, :severite], 
+    @demandes = Demande.find(:all, :include => [:severite], 
        :limit => 5, :order => 'updated_on DESC ',
-       :conditions => conditions)
+       :conditions => Demande::EN_COURS)
   end 
 
 

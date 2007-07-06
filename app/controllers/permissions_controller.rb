@@ -7,10 +7,6 @@ class PermissionsController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def list
     @permission_pages, @permissions = paginate :permissions, :order => 'name', :per_page => 100
   end
@@ -28,7 +24,7 @@ class PermissionsController < ApplicationController
     @permission = Permission.new(params[:permission])
     if @permission.save
       flash[:notice] = 'Permission was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to permissions_url
     else
       _form
       render :action => 'new'
@@ -44,7 +40,7 @@ class PermissionsController < ApplicationController
     @permission = Permission.find(params[:id])
     if @permission.update_attributes(params[:permission])
       flash[:notice] = 'Permission was successfully updated.'
-      redirect_to :action => 'list'
+      redirect_to permissions_url
     else
       _form
       render :action => 'edit'
@@ -53,7 +49,7 @@ class PermissionsController < ApplicationController
 
   def destroy
     Permission.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to permissions_url
   end
 
   private

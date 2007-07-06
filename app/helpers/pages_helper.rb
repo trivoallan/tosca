@@ -12,8 +12,7 @@ module PagesHelper
     link_to(image_create(message), options, html_options)
   end
 
-  def link_to_view(ar)
-    desc = 'Voir'
+  def link_to_show(ar)
     link_to image_view, { :action => 'show', :id => ar.id }, {
       :class => 'nobackground' }
   end
@@ -21,11 +20,16 @@ module PagesHelper
   def link_to_edit_and_list(ar)
     [ link_to_edit(ar), link_to_back ].compact.join('|')
   end
+
+  def link_to_show_and_list(ar)
+    [ link_to_show(ar), link_to_back ].compact.join('|')
+  end
+
   # add_edit_link(demande)
   def link_to_edit(ar, action = 'edit')
-    desc = 'Editer'
-    link_to image_edit, {
-      :action => action, :id => ar }, { :class => 'nobackground' }
+    desc = _('Edit')
+    options = { :action => action, :id => ar }
+    link_to image_edit, options, { :class => 'nobackground' }
   end
 
   def link_to_modify(ar)
@@ -34,22 +38,22 @@ module PagesHelper
 
   # add_delete_link(demande)
   def link_to_delete(ar)
-    desc = 'Supprimer'
+    desc = _('Delete')
     link_to image_delete, { :action => 'destroy', :id => ar },
     { :class => 'nobackground',
       :confirm => "Voulez-vous vraiment supprimer ##{ar.id} ?",
-      :method => 'post' }
+      :method => :delete }
   end
 
   def link_to_back(desc='Retour à la liste', 
-                   options = {:action => 'list', :id => nil })
+                   options = {:action => nil, :id => nil })
     link_to(image_back, options)
   end
 
   # link_to_actions_table(demande)
   def link_to_actions_table(ar, options = {})
     return '' unless ar
-    actions = [ link_to_view(ar), link_to_edit(ar), link_to_delete(ar) ]
+    actions = [ link_to_show(ar), link_to_edit(ar), link_to_delete(ar) ]
     actions.compact!
     return "<td>#{actions.join('</td><td>')}</td>"
   end

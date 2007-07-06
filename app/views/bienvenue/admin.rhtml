@@ -7,19 +7,19 @@ Vous êtes administrateur du Portail 08000linux.com.
   <h3>Utilisateurs</h3>
   <p>Gestion des utilisateurs</p>
   <% links = [ 
-        link_to('Liste des utilisateurs', :controller => 'account', :action => 'list'),
-        link_to('Ajouter un utilisateur', :controller => 'account', :action => 'signup'),
-        link_to('Ajouter des utilisateurs par lot', :controller => 'account', :action => 'multiple_signup') ] %>
+        link_to('Liste des utilisateurs', accounts_url),
+        link_to('Ajouter un utilisateur', signup_new_account_url),
+        link_to('Ajouter des utilisateurs par lot', multiple_signup_new_account_url) ] %>
   <%= show_liste(links, 'Utilisateurs', :title => false) %>
   <p>Gestion des permissions</p>
   <% links = [ 
-        link_to('Permissions', :controller => 'permissions'),
-        link_to('Rôles', :controller => 'roles') ] %>
+        link_to('Permissions', permissions_url),
+        link_to('Rôles', roles_url) ] %>
   <%= show_liste(links, 'Permissions', :title => false) %>
   <p>Gestion des compétences</p>
   <% links = [ 
-        link_to('Ingénieurs', :controller => 'ingenieurs', :action => 'list'),
-        link_to('Compétences', :controller => 'competences', :action => 'list') ] %>
+        link_to('Ingénieurs', ingenieurs_url),
+        link_to('Compétences', competences_url) ] %>
   <%= show_liste(links, 'Compétences', :title => false) %>
 </div>
 
@@ -27,9 +27,9 @@ Vous êtes administrateur du Portail 08000linux.com.
   <h3>Clients</h3>
   <p>Gestion des clients</p>
   <% links = [ 
-        link_to('Clients', :controller => 'clients', :action => 'list'),
-        link_to('Bénéficiaires', :controller => 'beneficiaires', :action => 'list'), 
-        link_to('Contrats', :controller => 'contrats', :action => 'list')  ] %>
+        link_to('Clients', clients_url),
+        link_to('Bénéficiaires', beneficiaires_url), 
+        link_to('Contrats', contrats_url)  ] %>
   <%= show_liste(links, 'Clients', :title => false) %>
 </div>
 
@@ -38,23 +38,23 @@ Vous êtes administrateur du Portail 08000linux.com.
   <h3>Plateformes</h3>
   <p>Gestion des socles</p>
   <% links = [ 
-        link_to('Socles', :controller => 'socles', :action => 'list'),
-        link_to('Machines', :controller => 'machines', :action => 'list'),
-        link_to('Architectures', :controller => 'arches', :action => 'list') ] %>
+        link_to('Socles', socles_url),
+        link_to('Machines', machines_url),
+        link_to('Architectures', arches_url) ] %>
   <%= show_liste(links, 'Gestion des socles', :title => false) %>
   <p>Gestion des sources</p>
   <% links = [ 
-         link_to('Liste des logiciels', :controller => 'logiciels', :action => 'list'),
-         link_to('Classification des logiciels', :controller => 'groupes', :action => 'list'),
-         link_to('Paquets', :controller => 'paquets', :action => 'list'),
-         link_to('Binaires', :controller => 'binaires', :action => 'list') ] %>
+         link_to('Liste des logiciels', logiciels_url),
+         link_to('Classification des logiciels', groupes_url),
+         link_to('Paquets', paquets_url),
+         link_to('Binaires', binaires_url) ] %>
    <%= show_liste(links, 'Gestion des logiciels', :title => false) %>
  </div>
  <div class="sommaire show">
 	<h3>Reporting</h3>
 	<p>Comex</p>
 	<% links = [
-		link_to('Rapport Comex', :controller => 'reporting', :action =>'comex') ] %>
+		link_to('Rapport Comex', comex_reporting_url) ] %>
 	<%= show_liste(links, 'Rapport Comex', :title => false) %>
  </div>
 </td></tr></table>

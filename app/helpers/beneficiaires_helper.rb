@@ -4,6 +4,6 @@
 module BeneficiairesHelper
 
   def link_to_beneficiaires
-    link_to 'Bénéficiaires', :action => 'list', :controller => 'beneficiaires'
+    link_to 'Bénéficiaires', beneficiaires_url
   end
 end

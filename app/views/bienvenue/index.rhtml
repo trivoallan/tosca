@@ -5,33 +5,45 @@
        <tr><td> Bienvenue sur l&lsquo;outil de gestion du 08000linux.</td></tr>
 </table>
 
-
 <table class="sommaire"><tr><td>
 
  <div class="sommaire show">
   <h3>Demandes</h3>
   <% if user %>
+    <% options = { :show_id => true, :icon_severite => true } %>
     <p><%= "Vous pouvez consulter la liste des #{link_to_requests} : " +
           show_liste(@demandes, 'Demande en cours', :title => false) { |d| 
-            link_to_demande(d, :show_id => true, :icon_severite => true) 
+            link_to_demande(d, options) 
           } %></p>
-     <p><%= "Vous pouvez également #{link_to('déposer une demande', :controller => 'demandes', :action => 'new')}. "%></p>
+     <p><%= "Vous pouvez également #{link_to('déposer une demande', new_demande_url)}. "%></p>
   <% else %>
     <p><%= html_wrap(_("Vous n'êtes pas #{connected} vous n'avez pas accès à l'interface des demandes de notre service"))%></p>
   <% end %>
  </div>
 
  <div class="sommaire show">
-  <h3>Aide</h3>
-  <% links = [ public_link_to_help_new_request, public_link_to_howto_request ] %>
-  <%= public_show_liste(links, 'Aide', :title => false) %>
+  <h3>Documents</h3>
   <% if user %>
+    <p><%= "Vous pouvez parcourir #{link_to('votre répertoire', select_documents_url)}. " %>
+      Vous y trouverez l&lsquo;ensemble des documents qui vous ont été livrés par nos services</p><br />
+    <p><%= "Vous pouvez également consulter votre 
+            #{link_to('rapport d\'activité', general_reporting_url)} en ligne." %></p>
+  <% else %>
+    <p><%= _("Lorsque vous êtes %s, vous avez accès à un rapport d'activité") % connected %><br />
+       <%= _("dynamique montrant l'activité de notre service en temps réel.")%></p><br />
+    <p><%= _("Vous avez également accès à l'intégralité des documents que nous vous")%><br />
+       <%= _("livrons, et ce de manière centralisée et versionnée")%></p>
+  <% end %>
+ </div>
+
+ <% if user %>
+ <div class="sommaire show">
   <h3>Boite à idée</h3>
     <p> Vous avez une idée qui permettrait d&lsquo;améliorer nos services ? <br />
     Vos remarques et vos suggestions sont les bienvenues dans
     <%= link_to('la boîte à idée', 'suggestions') %>.</p>
-  <% end %>
  </div>
+ <% end %>
 
  </td><td>
 
@@ -56,7 +68,7 @@
 
  <div class="sommaire show">
   <h3>Logiciels</h3>
-  <p><%= _("Vous pouvez consulter la liste des %s.") % public_link_to_logiciels %><br/>
+  <p><%= _("Vous pouvez consulter la liste des %s.") % public_link_to_softwares %>
      <%= _("Ces logiciels sont répartis selon une %s précise et simple, par groupe d'activité.") % public_link_to_groupes %></p><br />
   <% #       ( @beneficiaire ? " dans le cadre de votre #{link_to_my_client} " : '.' ) +%>
   <% unless user %>
@@ -64,24 +76,7 @@
        <%=_("l'ensemble de ces logiciels, n'hésitez pas à nous")%>
        <%=mail_to('contact@08000linux.com',_('contacter'))%></p><br />
   <% end %>
-  <p><%=_("Vous pouvez également accéder aux %s réalisées par notre équipe.") % public_link_to_contributions %></p>
- </div>
-
- <div class="sommaire show">
-  <h3>Documents</h3>
-  <% if user %>
-    <p><%= "Vous pouvez parcourir #{link_to('votre répertoire', :controller => 'documents', :action => 'select')} " + 
-            show_liste(@typedocuments, 'Type de document', :title => false) { |t| 
-              link_to_typedocument t 
-            } %></p>
-    <p><%= "Vous pouvez également consulter votre 
-            #{link_to('rapport d\'activité', :controller => 'reporting', :action => 'general')} en ligne. " %></p>
-  <% else %>
-    <p><%= _("Lorsque vous êtes %s, vous avez accès à un rapport d'activité") % connected %><br />
-       <%= _("dynamique montrant l'activité de notre service en temps réel.")%></p><br />
-    <p><%= _("Vous avez également accès à l'intégralité des documents que nous vous")%><br />
-       <%= _("livrons, et ce de manière centralisée et versionnée")%></p>
-  <% end %>
+  <p><%=_("Vous pouvez également accéder aux %s réalisées par notre équipe.") % public_link_to_contributions  %></p>
  </div>
 
 </td></tr></table>

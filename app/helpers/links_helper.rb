@@ -37,8 +37,6 @@ module LinksHelper
       else
         link_to show, url, html_options
       end
-    else
-      options[:else] ||= '-'
     end
   end
 
@@ -49,38 +47,41 @@ module LinksHelper
   ### Header ###
   # TODO : put all those methods into another module 
   # and merge it dynamically in this module
+  @@home = nil
   def public_link_to_home
-    public_link_to(_('Accueil'), {:controller => 'bienvenue', :action => ''})
+    @@home ||= public_link_to(_('Accueil'), {:controller => 'bienvenue', 
+                                :action => ''})
   end
 
-  @@requests = {:controller => 'demandes', :action => 'list'}
+  @@requests = nil
   def link_to_requests
-    link_to(_('Demandes'), @@requests, :title => _('Consulter vos demandes'))
+    @@requests ||= link_to(_('Demandes'), demandes_url, :title => 
+                           _('Consulter vos demandes'))
   end
 
-  @@softwares = {:controller => 'logiciels', :action => 'list'}
+  @@softwares = nil
   def public_link_to_softwares
-    public_link_to(_('Logiciels'), @@softwares, 
-                   :title => _('Consulter les logiciels'))
+    @@softwares ||= public_link_to(_('Logiciels'), logiciels_url, :title => 
+                                   _('Consulter les logiciels'))
   end
 
-  @@contributions = {:controller => 'contributions', :action => 'select' }
+  @@contributions = nil
   def public_link_to_contributions
-    public_link_to(_('Contributions'), @@contributions, 
-                   :title => _('Accédez à la liste des contributions réalisées sur votre périmètre'))
+    @@contributions ||= public_link_to(_('Contributions'), contributions_url, 
+       :title => _('Accédez à la liste des contributions réalisées sur votre périmètre'))
   end
 
-  @@administration = {:controller => 'bienvenue', :action => 'admin'}
+  @@administration = nil
   def link_to_admin
-    link_to _('Administration'), @@administration,
-            :title => _('Interface d&lsquo;administration')
+    @@administration ||= link_to(_('Administration'), admin_bienvenue_url, 
+                           :title => _('Interface d&lsquo;administration'))
   end
 
   # About page
-  @@about = {:controller => 'bienvenue', :action => 'about'}
+  @@about = nil
   def public_link_to_about()
-    public_link_to '?', @@about, 
-                  :title => _("A propos de #{Metadata::NOM_COURT_APPLICATION}")
+    @@about ||= public_link_to('?', about_bienvenue_url, 
+       :title => _("A propos de %s") % Metadata::NOM_COURT_APPLICATION)
   end
 
 
@@ -88,10 +89,9 @@ module LinksHelper
   # DEPRECATED : préferer link_to_edit(id)
   # TODO : passer id en options, avec @session[:user].id par défaut
   # TODO : title en options, avec 'Le compte' par défaut
-  def link_to_modify_account(id, title=_('Mon&nbsp;Compte'))
-    return '' unless id
-    options = {:action => 'modify', :controller => 'account', :id => id }
-    link_to title, options
+  def link_to_modify_account(account_id, title=_('Mon&nbsp;Compte'))
+    return '' unless account_id
+    link_to title, modify_account_url(:id => account_id)
   end
 
 end

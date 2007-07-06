@@ -12,7 +12,11 @@
 <p><b>Type:</b> <%=h @urllogiciel.typeurl.nom %>
 </p>
 
+<% 50.times do %> 
+  <%= link_to_logiciel(@urllogiciel.logiciel) %><br />
+<% end %>
 
-<%= link_to 'Supprimer', { :action => 'destroy', :id => @urllogiciel.id }, :confirm => 'Voulez-vous vraiment supprimer cet url ?', :post => true %> | 
+
+<%= link_to 'Supprimer', { :action => 'destroy', :id => @urllogiciel.id }, :confirm => 'Voulez-vous vraiment supprimer cet url ?', :method => :post %> | 
 <%= link_to 'Modifier', :action => 'edit', :logiciel_id => @urllogiciel.logiciel.id, :id => @urllogiciel %> |
 <%= link_to 'Liste des url\'s', :action => 'list' %>

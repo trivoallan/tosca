@@ -9,9 +9,6 @@ class ContributionsController < ApplicationController
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
   def index
     select and render :action => 'select'
   end

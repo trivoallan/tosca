@@ -9,8 +9,8 @@ module DocumentsHelper
     return '-' unless typedocument
     size = typedocument.documents.size
     return nil if typedocument.documents.size == 0
-    link_to typedocument.nom + ' (' + size.to_s + ')', {
-      :controller => 'documents', :action => 'list', :id => typedocument }
+    link_to "#{typedocument.nom} (#{size})",  
+      list_document_url(:id => typedocument.id) 
   end
 
 end

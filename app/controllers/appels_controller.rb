@@ -6,10 +6,6 @@ class AppelsController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def list
     # init
     options = { :per_page => 15, :order => 'appels.debut', :include => 
@@ -80,7 +76,7 @@ class AppelsController < ApplicationController
 
   def destroy
     Appel.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to appels_url
   end
 
   def ajax_beneficiaires

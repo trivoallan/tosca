@@ -7,10 +7,6 @@ class RolesController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def list
     @permissions = Permission.find(:all, :order => 'name', :include => [:roles])
     @roles = Role.find(:all)
@@ -29,7 +25,7 @@ class RolesController < ApplicationController
     @role = Role.new(params[:role])
     if @role.save
       flash[:notice] = "Le rôle \"#{@role.nom}\" a bien été crée."
-      redirect_to :action => 'list'
+      redirect_to roles_url
     else
       render :action => 'new'
     end
@@ -44,7 +40,7 @@ class RolesController < ApplicationController
     @role = Role.find(params[:id])
     if @role.update_attributes(params[:role])
       flash[:notice] = "Le rôle \"#{@role.nom}\" a bien été mis à jour."
-      redirect_to :action => 'list'
+      redirect_to roles_url
     else
       render :action => 'edit'
     end
@@ -52,7 +48,7 @@ class RolesController < ApplicationController
 
   def destroy
     Role.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to roles_url
   end
 
   private

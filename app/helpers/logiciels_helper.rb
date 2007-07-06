@@ -6,23 +6,15 @@ module LogicielsHelper
   # Display a link to a Logiciel (software)
   def link_to_logiciel(logiciel)
     return '-' unless logiciel and logiciel.is_a? Logiciel
-    link_to logiciel.nom, :action => 'show', :controller => 'logiciels', 
-      :id => logiciel
+    link_to logiciel.nom, logiciel_url(:id => logiciel.id)
   end
 
   # Display a link to a Logiciel (software)
   def public_link_to_logiciel(logiciel)
     return '-' unless logiciel and logiciel.is_a? Logiciel
-    public_link_to logiciel.nom, :action => 'show', :controller => 'logiciels', 
-      :id => logiciel
+    public_link_to logiciel.nom, logiciel_url(:id => logiciel.id)
   end
 
-
-  @@logiciels = nil
-  def public_link_to_logiciels()
-    @@logiciels ||= public_link_to(_('logiciels'), 
-        :action => 'list', :controller => 'logiciels')
-  end
 
   def public_link_to_logiciel(logiciel)
     return '-' unless logiciel and logiciel.is_a? Logiciel

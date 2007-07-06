@@ -109,7 +109,7 @@ module ApplicationHelper
   # TODO : intégrer width et style dans une seule option
   def show_table(elements, ar, titres, options = {})
     return "<br/><p>Aucun #{ar.table_name.singularize} à ce jour</p>" unless elements and elements.size > 0
-    width = ( options[:width] ? "width=#{options[:width]}" : "" )
+    width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width} class=\"show\">"
 
     if titres.size > 0
@@ -200,7 +200,7 @@ module ApplicationHelper
     class_name = options[:class] ||= 'simple_menu'
     out = ''
     out << '<div class="'+ class_name +'">'
-    out << form_tag(:controller => 'demandes', :action => 'list') if options[:form]
+    out << form_tag(demandes_url) if options[:form]
     out << ' <ul>'
     menu.each { |e| out << "<li>#{e}</li>" } 
     out << ' </ul>'

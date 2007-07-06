@@ -18,9 +18,7 @@ module DemandesHelper
       text << "#{icon_severite(demande)} " if options[:icon_severite] 
       text << truncate(demande.resume, limit)
     end
-    options = {:controller => 'demandes', 
-               :action => 'comment', :id => demande.id }
-    link_to text, options
+    link_to text, comment_demande_url(:id => demande.id)
   end
 
   # Link to the inline help to post a request
@@ -134,7 +132,7 @@ module DemandesHelper
   end
 
   def link_to_new_request
-    options = { :action => 'new', :controller => 'demandes' }
+    options = new_demande_url
     link_to(image_create(_('nouvelle demande')), options, LinksHelper::NO_HOVER)
   end
 
