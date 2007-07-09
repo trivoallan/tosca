@@ -1,5 +1,4 @@
-<% url = '../appels/list' %>
-<% options = { :update => 'content', :url => url,
+<% options = { :update => 'content', :url => appels_url,
   :before => "Element.show('spinner')",:success => "Element.hide('spinner')" } 
 %>
 
@@ -9,37 +8,35 @@
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
-
-
 <div class="menu_title" onclick="Element.toggle('menu_action')">
-> Action</div>
+> <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
- <li><%= link_to 'Ajouter un appel', :action => 'new' %></li>
- <li><%= link_to_export( :data => 'appels') %></li>
+ <li><%= link_to _('Add a call'), new_appel_url %></li>
+ <li><%= link_to _('Export calls'), appels_export_url %></li>
 </ul>
 
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
-> Recherche</div>
+> <%= _('Search') %></div>
 <ul class="menu" id="menu_recherche">
- <li><b>Ingénieur </b></li>
+ <li><b><%= _('Expert') %></b></li>
  <li><%=select_filter(@ingenieurs, 'ingenieur')%></li>
- <li><b>Bénéficiaire </b></li>
+ <li><b><%= _('Recipient') %></b></li>
  <li><%=select_filter(@beneficiaires, 'beneficiaire')%></li>
- <li><b>Contrat </b></li>
+ <li><b><%= _('Contract') %></b></li>
  <li><%=select_filter(@contrats, 'contrat')%></li>
 </ul>
 
 
-<% submit_function = remote_function(PagesHelper::AJAX_OPTIONS.dup.update(:url => url)) %>
+<% submit_function = remote_function(PagesHelper::AJAX_OPTIONS.dup.update(:url => appels_url)) %>
 <div class="menu_title" onclick="Element.toggle('menu_periode')">
-> Période</div>
+> <%=_('Period')%></div>
 <ul class="menu" id="menu_periode">
- <li><b>Du </b></li>
- <li><%= text_field :date, :after, :onchange => submit_function %>
+ <li><b><%= _('From')%></b></li>
+   <li><%= text_field :date, :after, :onchange => submit_function %>
    <span class="calendarPicker"><%= image_date_from %></span>
    <%= script_date('date_after', 'date_from') %></li>
- <li><b>Au </b></li>
+ <li><b><%= _('To')%> </b></li>
  <li><%= text_field :date, :before, :onchange => submit_function %>
    <span class="calendarPicker"><%= image_date_to %></span>
    <%= script_date('date_before', 'date_to') %></li>
@@ -48,14 +45,14 @@
 
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
-> Périmètre</div>
+> <%= _('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
- <li><b>Appels: </b><%=@count[:appels]%></li>
- <li><b>Demandes: </b><%=@count[:demandes] %></li>
- <li><b>Ingénieurs: </b><%=@count[:ingenieurs]%></li>
- <li><b>Bénéficiaires: </b><%=@count[:beneficiaires]%></li>
- <li><b>Durée totale: </b><%=Lstm.time_in_french_words @count[:somme]%></li>
- <li><b>Durée moyenne: </b><%=Lstm.time_in_french_words @count[:moyenne]%></li>
+ <li><b><%=_('Calls')%>: </b><%=@count[:appels]%></li>
+ <li><b><%=_('Requests')%>: </b><%=@count[:demandes] %></li>
+ <li><b><%=_('Engineers')%>: </b><%=@count[:ingenieurs]%></li>
+ <li><b><%=_('Recipients')%>: </b><%=@count[:beneficiaires]%></li>
+ <li><b><%=_('Total duration')%>: </b><%=Lstm.time_in_french_words @count[:somme]%></li>
+ <li><b><%=_('Average duration')%>: </b><%=Lstm.time_in_french_words @count[:moyenne]%></li>
 </ul>
 
 <% end %>

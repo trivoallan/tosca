@@ -29,7 +29,7 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
   map.resources :export,
-    :collection => { :contributions => :get  }
+    :collection => { :contributions => :get, :appels => :get }
   map.resources :groupes
   map.resources :ingenieurs
   map.resources :logiciels

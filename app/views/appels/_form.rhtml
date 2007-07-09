@@ -2,13 +2,13 @@
 
 <!--[form:appel]-->
 <% fields = [
-   lstm_text_field('Demande', :appel, :demande_id),
-   lstm_select_field('Contrat', :appel, :contrat, @contrats, :spinner => true),
-   lstm_select_field('Ingénieur', :appel, :ingenieur, @ingenieurs),
-   lstm_ajax_field('Bénéficiaire', :appel, :beneficiaires),
+   lstm_text_field(_('Request'), :appel, :demande_id),
+   lstm_select_field(_('Contract'), :appel, :contrat, @contrats, :spinner => true),
+   lstm_select_field(_('Engineer'), :appel, :ingenieur, @ingenieurs),
+   lstm_ajax_field(_('Recipient'), :appel, :beneficiaires),
    lstm_hline,
-   lstm_datetime_field('Début de l\'appel', :appel, :debut),
-   lstm_datetime_field('Fin de l\'appel', :appel, :fin)
+   lstm_datetime_field(_('Start of call'), :appel, :debut),
+   lstm_datetime_field(_('End of call'), :appel, :fin)
   ]
 %>
 <%= show_table_form fields, :class => 'form' %>

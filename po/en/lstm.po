@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-06 18:17+0200\n"
+"POT-Creation-Date: 2007-07-09 15:31+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -853,6 +853,141 @@ msgstr ""
 msgid "Preferences|Digest weekly"
 msgstr ""
 
+#: app/views/appels/_calls_info.rhtml:12
+msgid "Action"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:14
+msgid "Add a call"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:15
+#, fuzzy
+msgid "Export calls"
+msgstr "contributionstate"
+
+#: app/views/appels/_calls_info.rhtml:20
+msgid "Search"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:22
+msgid "Expert"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
+#: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
+#, fuzzy
+msgid "Recipient"
+msgstr "Description"
+
+#: app/views/appels/_calls_info.rhtml:26 app/views/appels/_calls_list.rhtml:6
+#: app/views/appels/_form.rhtml:6
+msgid "Contract"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:33
+msgid "Period"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:35
+msgid "From"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:39
+msgid "To"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:48
+msgid "Perimeter"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:50
+msgid "Calls"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:51
+msgid "Requests"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:52
+msgid "Engineers"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:53
+msgid "Recipients"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:54
+msgid "Total duration"
+msgstr ""
+
+#: app/views/appels/_calls_info.rhtml:55
+msgid "Average duration"
+msgstr ""
+
+#: app/views/appels/_calls_list.rhtml:1
+msgid "List of calls"
+msgstr ""
+
+#: app/views/appels/_calls_list.rhtml:3
+msgid "a call"
+msgstr ""
+
+#: app/views/appels/_calls_list.rhtml:6 app/views/appels/show.rhtml:11
+msgid "Interlocutor"
+msgstr ""
+
+#: app/views/appels/_calls_list.rhtml:6
+msgid "Call"
+msgstr ""
+
+#: app/views/appels/_calls_list.rhtml:7 app/views/appels/_form.rhtml:11
+msgid "End of call"
+msgstr ""
+
+#: app/views/appels/_calls_list.rhtml:7
+#, fuzzy
+msgid "Duration"
+msgstr "Description"
+
+#: app/views/appels/_form.rhtml:5 app/views/appels/show.rhtml:8
+#: app/views/contributions/_contributions_admin.rhtml:7
+msgid "Request"
+msgstr ""
+
+#: app/views/appels/_form.rhtml:7 app/views/contributions/_form.rhtml:13
+msgid "Engineer"
+msgstr ""
+
+#: app/views/appels/_form.rhtml:10
+msgid "Start of call"
+msgstr ""
+
+#: app/views/appels/edit.rhtml:1
+msgid "Edit a phone call"
+msgstr ""
+
+#: app/views/appels/edit.rhtml:5 app/views/contributions/edit.rhtml:6
+#: app/views/roles/edit.rhtml:5
+msgid "Validate"
+msgstr ""
+
+#: app/views/appels/new.rhtml:1
+msgid "New phone call"
+msgstr ""
+
+#: app/views/appels/show.rhtml:1
+msgid "Call n°%s"
+msgstr ""
+
+#: app/views/appels/show.rhtml:18
+msgid "Started on"
+msgstr ""
+
+#: app/views/appels/show.rhtml:20
+msgid "Ended on"
+msgstr ""
+
 #: app/views/bienvenue/index.rhtml:3
 msgid "connecté"
 msgstr ""
@@ -924,10 +1059,6 @@ msgid "Patch"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:7
-msgid "Request"
-msgstr ""
-
-#: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:30
 msgid "State"
 msgstr ""
@@ -965,10 +1096,6 @@ msgstr "contributionstate"
 msgid "Selection interface"
 msgstr ""
 
-#: app/views/contributions/_form.rhtml:13
-msgid "Engineer"
-msgstr ""
-
 #: app/views/contributions/_form.rhtml:19
 msgid "Impacted version"
 msgstr ""
@@ -999,10 +1126,6 @@ msgstr ""
 #, fuzzy
 msgid "Edit this contribution"
 msgstr "contributionstate"
-
-#: app/views/contributions/edit.rhtml:6 app/views/roles/edit.rhtml:5
-msgid "Validate"
-msgstr ""
 
 #: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
 msgid "Home"

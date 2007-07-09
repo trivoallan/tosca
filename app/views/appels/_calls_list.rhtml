@@ -1,10 +1,10 @@
-<h1>Liste des appels <%= image_spinner %></h1>
+<h1><%=_('List of calls')%> <%= image_spinner %></h1>
 
+<% links = show_pages_links(@appel_pages, _('a call'), :url => appels_url) %>
+<%= links %>
 
-<%= show_pages_links(@appel_pages, 'un appel', :url => '../appels/list') %>
-
-<% titres = ['Contrat','Responsable','Bénéficiaire','Appel',
-    'Fin de l\'appel','Durée'] %>
+<% titres = [_('Contract'),_('Interlocutor'),_('Recipient'),_('Call'),
+    _('End of call'),_('Duration') ] %>
 <%= show_table(@appels, Appel, titres) { |a|
   result = ''
   result << "<td>#{a.contrat.nom if a.contrat}</td>"
@@ -16,6 +16,6 @@
   result << "#{link_to_actions_table a}"
 }%>
 
-<%= show_pages_links(@appel_pages, 'un appel') %>
+<%= links %>
 
 

@@ -1,10 +1,9 @@
-<h1>Nouvel appel</h1>
+<h1><%= _('New phone call')</h1>
 
 <% form_tag :action => 'create' do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Créer" %>
+  <%= submit_tag _('Create') %>
 <% end %>
 
-<br />
 <%= link_to_back %>
 
