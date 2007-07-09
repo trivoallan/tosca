@@ -22,7 +22,6 @@ end
 
 
 
-
 class Time
   alias :strftime_nolocale :strftime
   
@@ -154,18 +153,51 @@ end
 
 
 # This module is overloaded in order to have rails fitting more 
-# Tosca specific needs.
-#module ActionController
-#  # This overload permits to display or not a link, if the
-#  def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
-#    if html_options
-#      html_options = html_options.stringify_keys
-#      convert_options_to_javascript!(html_options)
-#      tag_options = tag_options(html_options)
-#    else
-#      tag_options = nil
-#    end
-#    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-#    "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
-# end
-#end
+# Tosca specific needs or specific improvments
+module ActionController::Routing
+  class RouteSet
+    class NamedRouteCollection
+      # This overload permits to gain a factor 7 in performance of
+      # url generation
+      def define_url_helper(route, name, kind, options)
+        selector = url_helper_name(name, kind)
+            
+        # The segment keys used for positional paramters
+        segment_keys = route.segments.collect do |segment|
+          segment.key if segment.respond_to? :key
+        end.compact
+        hash_access_method = hash_access_name(name, kind)
+        
+        @module.send :module_eval, <<-end_eval #We use module_eval to avoid leaks
+          def #{selector}(*args)
+            opts = if args.empty? || Hash === args.first
+              args.first || {}
+            else
+              # allow ordered parameters to be associated with corresponding
+              # dynamic segments, so you can do
+              #
+              #   foo_url(bar, baz, bang)
+              #
+              # instead of
+              #
+              #   foo_url(:bar => bar, :baz => baz, :bang => bang)
+              args.zip(#{segment_keys.inspect}).inject({}) do |h, (v, k)|
+                h[k] = v
+                h
+              end
+            end
+
+            # return a cached version of the url for the default one
+            if opts.empty?
+              @@#{selector}_cache ||= url_for(#{hash_access_method}(opts))
+            else
+              url_for(#{hash_access_method}(opts))
+            end
+          end
+        end_eval
+        @module.send(:protected, selector)
+        helpers << selector
+      end
+    end
+  end
+end
