@@ -76,8 +76,10 @@ class ReportingController < ApplicationController
     end
     (redirect_to :action => 'comex' and return) unless results
     #recherche par période prioritaire sur les semaines
-    if results[:first_day].empty? or results[:end_day].empty?
-      if results[:week_num].empty?
+    if !results[:first_day] or !results[:end_day] or
+      results[:first_day].empty? or results[:end_day].empty?
+
+      if !results[:week_num] or results[:week_num].empty?
         flash[:notice]= "Vous devez indiquer une période sur laquelle effectuer le rapport"
         redirect_to :action => 'comex' and return
       else

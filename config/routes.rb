@@ -36,9 +36,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :machines
   map.resources :paquets
   map.resources :permissions
-  # TODO : Comex resultat en :get ? Faut changer le formulaire aussi
   map.resources :reporting,
-    :collection => { :comex => :get, :general => :get, :comex_resultat => :post }
+    :collection => { :comex => :get, :general => :get, :comex_resultat => :get }
   map.resources :roles
   map.resources :socles
   map.resources :urllogiciels

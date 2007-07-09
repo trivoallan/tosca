@@ -69,26 +69,35 @@ module  ComexReporting
       @total[:final][:total] += @total[:final][name]
   end
   def cns_correction
-    @demandes= {}
-    @percent = { :correction => {}, :contournement => {} }
-    @contrats= Contrat.find(:all)
-    @contrats.each do |contrat|
-      @percent[:correction][contrat.id]= {}
-      @percent[:contournement][contrat.id]= {}
-      corrections= @percent[:correction][contrat.id]
-      contournements = @percent[:contournement][contrat.id]
+    @percents, @extra = [], []
+
+    contrats= Contrat.find(:all, :order => 'id ASC')
+    contrats.each do |contrat|
+      @percents[contrat.id]= []
+      c= @percents[contrat.id]
+
+      @extra[contrat.id] = {}
+      c_extra = @extra[contrat.id]
+      c_extra[:nom] = contrat.nom
+      c_extra[:demandes_ids]= []
 
       support = contrat.client.support
       amplitude = support.fermeture - support.ouverture
 
-      @demandes[contrat.id] = Demande.find :all,
+      demandes = Demande.find :all,
              :conditions => Demande::EN_COURS, 
              :order=> 'updated_on ASC'
-      demandes=@demandes[contrat.id]
       demandes.delete_if { |demand|
-            demand.engagement( contrat.id) == nil
+        engagement= demand.engagement(contrat.id)
+        engagement == nil or
+        ( engagement.correction < 0 and engagement.contournement < 0 )
       }
       demandes.each do |demand|
+        c_extra[:demandes_ids].push( demand.id )
+        c[demand.id]= {}
+        d=c[demand.id]
+        d[:resume]= demand.resume
+
         temps_ecoule = demand.temps_ecoule
         temps_correction = demand.engagement( contrat.id ).correction.days
         temps_contournement= demand.engagement(contrat.id).contournement.days
@@ -101,16 +110,27 @@ module  ComexReporting
         temps_prevu_contournement =
           demand.distance_of_time_in_working_days(temps_contournement,
                                                   amplitude)
-        if temps_ecoule <= 0
-          corrections[demand.id]=0
-          contournements[demand.id]=0
+        if temps_ecoule < 0
+          d[:correction], d[:contournement] = 0,0
+          d[:mesg_correction], d[:mesg_contournement] ='-', '-'
         else
-          corrections[demand.id]= (temps_reel/temps_prevu_correction )*100
-          contournements[demand.id]= 
-                  (temps_reel/temps_prevu_contournement )*100
+          percent_correction=(temps_reel/temps_prevu_correction )*100
+          percent_contournement =(temps_reel/temps_prevu_contournement )*100
+          time= demand.distance_of_time_in_french_words(
+            (temps_correction - temps_ecoule).abs , support)
+
+            d[:mesg_correction]=  time
+            d[:mesg_contournement] = time
+
+          d[:correction]= (temps_reel/temps_prevu_correction )*100
+          d[:contournement]= (temps_reel/temps_prevu_contournement )*100
         end
       end
+      c_extra[:demandes_ids].sort!{|a,b| c[a][:correction] <=> c[b][:correction] }.reverse!
+
     end
+    @percents.compact!
+    @extra.compact!
   end
 
 end
