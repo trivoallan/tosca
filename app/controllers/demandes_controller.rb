@@ -31,6 +31,7 @@ class DemandesController < ApplicationController
 
     render :partial => 'dem_auto_complete'
   end
+  
   def index
     list
     render :action => 'list'

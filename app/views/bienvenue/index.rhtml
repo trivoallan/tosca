@@ -11,11 +11,11 @@
   <h3>Demandes</h3>
   <% if user %>
     <% options = { :show_id => true, :icon_severite => true } %>
-    <p><%= "Vous pouvez consulter la liste des #{link_to_requests} : " +
-          show_liste(@demandes, 'Demande en cours', :title => false) { |d| 
-            link_to_demande(d, options) 
+    <p><%= _("Vous pouvez consulter la liste des %s :") % link_to(_("demandes"), demandes_url) %>
+       <%= show_liste(@demandes, 'Demande en cours', :title => false) { |d| 
+             link_to_demande(d, options)
           } %></p>
-     <p><%= "Vous pouvez également #{link_to('déposer une demande', new_demande_url)}. "%></p>
+     <p><%= _("Vous pouvez également %s.") % link_to(_("déposer une demande"), new_demande_url) %></p>
   <% else %>
     <p><%= html_wrap(_("Vous n'êtes pas #{connected} vous n'avez pas accès à l'interface des demandes de notre service"))%></p>
   <% end %>

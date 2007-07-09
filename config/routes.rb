@@ -24,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :admin => :any, :select => :get },
     :member => { :list => :get }
   map.resources :demandes,
+    :collection => { :index => :get },
     :member => { :comment => :any }
   map.resources :documents,
     :collection => { :select => :get },
