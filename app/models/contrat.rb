@@ -4,17 +4,17 @@
 class Contrat < ActiveRecord::Base
   has_many :paquets, :dependent => :destroy
   belongs_to :client
-  has_and_belongs_to_many :engagements, :order => 
+  has_and_belongs_to_many :engagements, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
   has_and_belongs_to_many :ingenieurs, :order => 'contrat_id'
 
-  has_many :logiciels, :through => :paquets, :group => 
+  has_many :logiciels, :through => :paquets, :group =>
     'id', :order => 'logiciels.nom ASC'
   has_many :binaires, :through => :paquets
   has_many :appels
 
   def self.set_scope(contrat_ids)
-    self.scoped_methods << { :find => { :conditions => 
+    self.scoped_methods << { :find => { :conditions =>
         [ 'contrats.id IN (?)', contrat_ids ]} }
   end
 
@@ -32,7 +32,7 @@ class Contrat < ActiveRecord::Base
 
   def find_engagement(request)
     cond = 'engagements.typedemande_id = ? AND severite_id = ?'
-    options = { :conditions => 
+    options = { :conditions =>
       [ cond, request.typedemande_id, request.severite_id ] }
     self.engagements.find(:first, options)
   end
@@ -53,9 +53,9 @@ class Contrat < ActiveRecord::Base
     joins = 'INNER JOIN engagements ON engagements.typedemande_id = typedemandes.id '
     joins << 'INNER JOIN contrats_engagements ON engagements.id = contrats_engagements.engagement_id'
     conditions = [ 'contrats_engagements.contrat_id = ? ', id ]
-    Typedemande.find(:all, 
+    Typedemande.find(:all,
                      :select => "DISTINCT typedemandes.*",
-                     :conditions => conditions, 
+                     :conditions => conditions,
                      :joins => joins)
   end
 
@@ -64,7 +64,12 @@ class Contrat < ActiveRecord::Base
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
   def to_s
-    self.id.to_s + ' - ' + client.nom
+    #TODO voir pouquoi la base est corompue
+    if client.nil?
+      self.id.to_s + ' - ' + 'nom inconnu'
+    else
+      self.id.to_s + ' - ' + client.nom
+    end
   end
   alias_method :nom, :to_s
 end
