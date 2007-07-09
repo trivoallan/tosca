@@ -37,7 +37,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :paquets
   map.resources :permissions
   map.resources :reporting,
-    :collection => { :comex => :get, :general => :get, :comex_resultat => :get }
+    :collection => { :comex => :get, :general => :get, :comex_resultat => :get, :configuration=> :get }
   map.resources :roles
   map.resources :socles
   map.resources :urllogiciels
