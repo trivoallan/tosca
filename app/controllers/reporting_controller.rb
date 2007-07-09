@@ -86,9 +86,6 @@ class ReportingController < ApplicationController
         @date[:end_day] = @date[:first_day] + 6.days
       end      
     else
-      if !results[:week_num].blank?
-        flash[:notice] = _('La recherche est effectuée sur la plage donnée, et non sur la semaine donnée')
-      end
       @date[:first_day] = results[:first_day].to_time.beginning_of_day
       @date[:end_day] = results[:end_day].to_time.beginning_of_day + 
         1.day - 1.second
