@@ -29,13 +29,13 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :admin => :any, :select => :get },
     :member => { :list => :get }
   map.resources :demandes,
-    :collection => { :index => :get },
+    :collection => { :auto_complete_for_logiciel_nom => :get },
     :member => { :comment => :any }
   map.resources :documents,
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
   map.resources :export,
-    :collection => { :contributions => :get  }
+    :collection => { :contributions => :get, :demandes => :get  }
   map.resources :groupes
   map.resources :ingenieurs
   map.resources :logiciels
@@ -49,6 +49,7 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :comex => :get, :general => :get, :comex_resultat => :get, :configuration=> :get }
   map.resources :roles
   map.resources :socles
+  map.resources :statuts
   map.resources :urllogiciels
 
   # Sample of regular route:

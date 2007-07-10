@@ -1,7 +1,7 @@
 <h1><%= @title %><%= image_spinner %></h1>
 
 <% links = show_pages_links(@demande_pages, 'une nouvelle demande', 
-                     :url => url_for(:action => 'list')) %>
+                     :url => demandes_url) %>
 <%= links %>
 
 <table id="demandes_list" class="show" width='100%'>

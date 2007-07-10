@@ -1,5 +1,5 @@
 <% options = { :update => 'content',
-    :url => url_for(:action => 'list'),
+    :url => demandes_path,
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
@@ -16,9 +16,9 @@
 <div class="menu_title" onclick="Element.toggle('menu_actions')">>
 Actions </div>
 <ul class="menu" id="menu_actions">
- <li><%= link_to 'Déposer une demande', new_demande_url %></li>
- <li><%= link_to 'Rapport d\'activité', general_reporting_url %></li>
- <li><%= link_to_export %></li>
+ <li><%= link_to 'Déposer une demande', new_demande_path %></li>
+ <li><%= link_to 'Rapport d\'activité', general_reporting_path %></li>
+ <li><%= link_to _('Export requests'), demandes_export_path %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>
@@ -57,7 +57,7 @@ Flux</div>
 <div class="menu_title" onclick="Element.toggle('menu_aide')">>
 Aide</div>
 <ul class="menu" id="menu_aide">
- <li><%= link_to('Légende des couleurs', :controller => 'statuts', :action => 'list') %></li>
+ <li><%= link_to('Légende des couleurs', statuts_path) %></li>
  <li><%= public_link_to_help_new_request %></li>
  <li><%= public_link_to_howto_request %></li>
 </ul>
