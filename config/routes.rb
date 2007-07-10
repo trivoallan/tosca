@@ -4,14 +4,6 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
-  # connect routes
-  map.connect ":controller/:action",
-    :defaults => {:action => "index", :controller => "bienvenue"},
-    :requirements => {:controller => /bienvenue/,
-                      :action     => /index|admin|plan|selenium|about/},
-    :conditions => { :method => :get }
-
-
   # RESTful routes
   map.resources :accounts,
     :controller => 'account',
@@ -29,7 +21,8 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :admin => :any, :select => :get },
     :member => { :list => :get }
   map.resources :demandes,
-    :collection => { :auto_complete_for_logiciel_nom => :post },
+    :collection => { :auto_complete_for_logiciel_nom => :post,
+                     :ajax_display_packages => :post},
     :member => { :comment => :any }
   map.resources :documents,
     :collection => { :select => :get },
@@ -61,11 +54,11 @@ ActionController::Routing::Routes.draw do |map|
   # This route can be invoked with purchase_url(:id => product.id)
 
   # routing files to prevent download from public access
-  #options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
-  #map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
-  #map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
-  #map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
-  #map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
+  options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
+  map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
+  map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
+  map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
+  map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
