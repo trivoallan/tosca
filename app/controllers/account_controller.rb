@@ -263,7 +263,7 @@ private
       <% menu = []
          menu << public_link_to_home
          menu << link_to_requests
-         menu << (session[:user].authorized?('demandes') ? '<a class="no_hover">'+search_demande+'</a>' : nil )
+         menu << (session[:user].authorized?('demandes') ? 'AAA<a class="no_hover">'+search_demande+'</a>' : nil )
          menu << public_link_to_softwares
          menu << public_link_to_contributions
          menu << link_to_admin

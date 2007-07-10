@@ -6,7 +6,7 @@
 
 <% titres = [_('Software'), _('Patch'), _('Request'), _('State'), _('Name'), 
              _('Submitted on'), _('Closed on'), _('Delay'), _('Updated on')]%>
-<% form_tag(:controller => 'contributions', :action => 'list') do %>
+<% form_tag(contributions_path) do %>
 <%= show_table(@contributions, Contribution, titres) { |c|
   result = ''
   # tache = c.todo(max_jours)

@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
     :member => { :list => :get }
   map.resources :demandes,
     :collection => { :auto_complete_for_logiciel_nom => :post, 
-                     :ajax_display_packages => :post },
+                     :ajax_display_packages => :post},
     :member => { :comment => :any }
   map.resources :documents,
     :collection => { :select => :get },

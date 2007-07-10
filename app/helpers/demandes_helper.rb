@@ -204,8 +204,8 @@ module DemandesHelper
 
   #usage : <tr <%= tr_attributes(demand.id)%> >
   def tr_attributes(demand_id)
-   return "class=\"#{cycle('pair', 'impair')}\",
-      onclick=\"window.location.href='../demandes/comment/#{demand_id}';\""
+   return "class=\"#{cycle('pair', 'impair')}\" " <<
+      "onclick=\"window.location.href='../demandes/comment/#{demand_id}'\""
   end
 
   

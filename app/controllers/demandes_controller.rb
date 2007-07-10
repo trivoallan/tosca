@@ -6,17 +6,6 @@ class DemandesController < ApplicationController
 
   helper :filters, :contributions, :logiciels, :export, :appels, :socles
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
-#   uses_tiny_mce :options => { :theme_advanced_buttons1 => %w{formatselect fontselect fontsizeselect bold
-#                                                              italic underline strikethrough separator
-#                                                              justifyleft justifycenter justifyright indent outdent separator
-#                                                              bullist numlist forecolor backcolor separator link
-#                                                              unlink image undo redo},
-#                               :theme_advanced_buttons2 => [],
-#                               :theme_advanced_buttons3 => []}
   def auto_complete_for_logiciel_nom
     logiciel = params[:logiciel]
     unless logiciel and logiciel[:nom]
@@ -33,11 +22,6 @@ class DemandesController < ApplicationController
   end
   
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     #cas spécial : consultation directe
     if params['numero']
       redirect_to :action => :comment, :id => params['numero']  and return
