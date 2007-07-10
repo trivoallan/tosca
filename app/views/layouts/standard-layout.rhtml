@@ -11,7 +11,7 @@
        stylesheet_link_tag('common', :media => "all") <<
        stylesheet_link_tag('common-printer', :media => "print") <<
        stylesheet_link_tag('redbox') <<
-       # Include TinyMCE with gzip before other JS to avoid problems 
+       # Include TinyMCE with gzip before other JS to avoid problems
        javascript_include_tiny_mce <<
        tiny_mce <<
        javascript_include_tag('calendar', 'calendar-fr', 'calendar-setup') <<
@@ -25,12 +25,12 @@
   <% # All the menu are built during first rendering or during login, in account controller %>
   <% @@menu ||= build_simple_menu([
     public_link_to_home,
-    public_link_to_softwares, 
+    public_link_to_softwares,
     public_link_to_contributions,
     public_link_to_about ]) %>
   <% #TODO : formulaire de login en haut ? %>
   <% #@@links ||= build_simple_menu([
-      #  public_link_to(_("S'identifier"), :action => 'login', 
+      #  public_link_to(_("S'identifier"), :action => 'login',
        #      :controller => 'account')], :class => 'account_menu') %>
   <% @@links ||= build_simple_menu([
         link_to_redbox(_("S'identifier"), 'login')], :class => 'account_menu') %>
@@ -38,7 +38,7 @@
   <div id="header">
     <table>
       <tr valign="top">
-        <td valign="middle" width="145"><%= public_link_to logo_08000, :controller => 'bienvenue', :action => '' %>
+        <td valign="middle" width="145"><%= public_link_to logo_08000, :controller => 'bienvenue', :action => 'index' %>
         </td>
         <td align="right">
           <%= (user ? session[:account_links] : @@links) %>
@@ -48,11 +48,11 @@
     <%= user ? session[:menu] : @@menu %>
   </div><!-- end of header -->
 
-  <div id="content_div"> 
-    <div id="information"> 
+  <div id="content_div">
+    <div id="information">
        <%= show_notice if flash[:notice] %>
        <%= show_warn if flash[:warn] %>
-    </div><!-- end of information --> 
+    </div><!-- end of information -->
 
     <table id="content_table">
       <tr valign="top">
@@ -62,7 +62,7 @@
             <%= render_partial @partial_for_summary %>
           </div>
         </td>
-        <td class="summary_toggle" width="2" height="100%"   
+        <td class="summary_toggle" width="2" height="100%"
             onclick="Element.toggle('summary')" title="Montrer/cacher le menu latéral">
         </td>
         <% end %>
@@ -72,7 +72,7 @@
           </div>
         </td>
       </tr>
-    </table><!-- end of content_table --> 
+    </table><!-- end of content_table -->
   </div><!-- end of content_div -->
 
   <div id="footer">
@@ -91,7 +91,7 @@
      %>
     <%= @@footer %>
   </div><!-- end of footer -->
-  
+
   <% unless user %>
    <div id="login" style="display: none">
      <%= render :file => "account/login" %>

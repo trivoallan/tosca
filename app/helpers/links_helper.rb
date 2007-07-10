@@ -2,14 +2,14 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 #
-# This helpers is here to put links helper not really 
+# This helpers is here to put links helper not really
 # related to any model or controller.
 #
-# They help to generate link with image, for instance, 
+# They help to generate link with image, for instance,
 # or link to files.
 #
-# It contains also general links in the header/footer part 
-# 
+# It contains also general links in the header/footer part
+#
 module LinksHelper
 
   # this contains the hash for escaping hover effect for images
@@ -18,7 +18,7 @@ module LinksHelper
 
   # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
   # don't forget to update his public alter ego just below
-  # DO NOT EVER CALL this method with 'public' parameter set 
+  # DO NOT EVER CALL this method with 'public' parameter set
   # to true, use <b>public_link_to_file</b> instead
   #
   def link_to_file(record, file, options={}, public = false)
@@ -27,7 +27,7 @@ module LinksHelper
     unless filepath.blank? or not File.exist?(filepath)
       filename = filepath[/[._ \-a-zA-Z0-9]*$/]
       if options[:image]
-        show = image_patch and html_options = {:class => 'no_hover'} 
+        show = image_patch and html_options = {:class => 'no_hover'}
       else
         show = filename and html_options = {}
       end
@@ -45,42 +45,42 @@ module LinksHelper
   end
 
   ### Header ###
-  # TODO : put all those methods into another module 
+  # TODO : put all those methods into another module
   # and merge it dynamically in this module
   @@home = nil
   def public_link_to_home
-    @@home ||= public_link_to(_('Accueil'), {:controller => 'bienvenue', 
-                                :action => ''})
+    @@home ||= public_link_to(_('Accueil'), {:controller => 'bienvenue',
+                                :action => 'index'})
   end
 
   @@requests = nil
   def link_to_requests
-    @@requests ||= link_to(_('Demandes'), demandes_url, :title => 
+    @@requests ||= link_to(_('Demandes'), demandes_url, :title =>
                            _('Consulter vos demandes'))
   end
 
   @@softwares = nil
   def public_link_to_softwares
-    @@softwares ||= public_link_to(_('Logiciels'), logiciels_url, :title => 
+    @@softwares ||= public_link_to(_('Logiciels'), logiciels_url, :title =>
                                    _('Consulter les logiciels'))
   end
 
   @@contributions = nil
   def public_link_to_contributions
-    @@contributions ||= public_link_to(_('Contributions'), contributions_url, 
+    @@contributions ||= public_link_to(_('Contributions'), contributions_url,
        :title => _('Accédez à la liste des contributions réalisées sur votre périmètre'))
   end
 
   @@administration = nil
   def link_to_admin
-    @@administration ||= link_to(_('Administration'), admin_bienvenue_url, 
+    @@administration ||= link_to(_('Administration'), {:action => "admin" , :controller => "bienvenue"},
                            :title => _('Interface d&lsquo;administration'))
   end
 
   # About page
   @@about = nil
   def public_link_to_about()
-    @@about ||= public_link_to('?', about_bienvenue_url, 
+    @@about ||= public_link_to('?', {:action => "about" , :controller => "bienvenue"},
        :title => _("A propos de %s") % Metadata::NOM_COURT_APPLICATION)
   end
 
