@@ -7,7 +7,7 @@ module ExportHelper
   #  :data permet de spécifier un autre nom de controller (contexte par défaut)
   def link_to_export(options={})
     cname = ( options[:data] ? options[:data] : controller.controller_name)
-    link_to "Exporter les #{cname}", :controller => 'export', :action => cname
+    link_to "Exporter les #{cname}", export_url(:action => cname)
   end
 
 end

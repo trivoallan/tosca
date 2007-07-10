@@ -7,8 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   # connect routes
   map.bienvenue ":controller/:action",
     :defaults => {:action => "index", :controller => "bienvenue"},
-    :requirements => {:controller => /bienvenue/,
-                      :action     => /index|admin|plan|selenium|about/},
+    :requirements => {:controller => /bienvenue|/,
+                      :action     => /index|admin|plan|selenium|about|/},
     :conditions => { :method => :get }
 
 
@@ -19,8 +19,11 @@ ActionController::Routing::Routes.draw do |map|
               :auto_complete_for_identifiant_nom => :get,
               :auto_complete_for_identifiant_email => :get},
     :new => { :signup => :any, :multiple_signup => :any }
+  map.resources :export,
+    :collection => { :contributions => :get, :demandes => :get, :appels => :get, :identifiants => :get  }
   ############# OK ##############
-  map.resources :appels
+  map.resources :appels,
+    :member => { :show => :get }
   map.resources :arches
   map.resources :beneficiaires
   map.resources :binaires
@@ -36,8 +39,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :documents,
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
-  map.resources :export,
-    :collection => { :contributions => :get, :demandes => :get, :identifiants => :get  }
   map.resources :groupes
   map.resources :ingenieurs,
     :collection => { :list => :get }
