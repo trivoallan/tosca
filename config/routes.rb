@@ -24,8 +24,8 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :contributions => :get, :demandes => :get, :appels => :get, :identifiants => :get  }
   map.resources :appels,
     :member => { :show => :get }
-  ############# OK ##############
   map.resources :arches
+  ############# OK ##############
   map.resources :beneficiaires
   map.resources :binaires
   map.resources :clients
@@ -78,6 +78,6 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   # Install the default route as the lowest priority.
-   map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id'
 
 end

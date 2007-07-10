@@ -45,9 +45,8 @@ module PagesHelper
       :method => :delete }
   end
 
-  def link_to_back(desc='Retour à la liste', 
-                   options = {:action => nil, :id => nil })
-    link_to(image_back, options)
+  def link_to_back(desc='Retour à la liste')
+    link_to(image_back, { :action => 'index' , :id => nil })
   end
 
   # link_to_actions_table(demande)
@@ -61,11 +60,11 @@ module PagesHelper
 
   # Je veux voir ces commentaires dans l'email
   # Nom di diou
-  
+
   # call it like this :
   # <%= show_pages_links @demande_pages, 'déposer une nouvelle demande' %>
   # if you want ajax links, you must specificy the remote function this way :
-  # <%= show_pages_links @demande_pages, 'déposer une demande', 
+  # <%= show_pages_links @demande_pages, 'déposer une demande',
   #        :url => '/demandes/update_list' %>
   # (!) you will need an image_spinner too (!)
   AJAX_OPTIONS = {  :update => 'content',
@@ -77,11 +76,11 @@ module PagesHelper
     result = '<table class="pages"><tr><td>'
     result << "#{link_to_new(message)}</td>"
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
-    if options[:url] 
-      ajax_call = 
+    if options[:url]
+      ajax_call =
         remote_function(AJAX_OPTIONS.dup.update(:url => options[:url]))
     end
-    
+
     if pages.current.previous
       link = link_to_page(pages, pages.first, 'Première page',
                           image_first_page, ajax_call)
@@ -98,7 +97,7 @@ module PagesHelper
       link = link_to_page(pages, pages.current.next, 'Page suivante',
                           image_next_page, ajax_call)
       result << "<td>#{link}</td>"
-      link = link_to_page(pages, pages.last, 'Dernière page', 
+      link = link_to_page(pages, pages.last, 'Dernière page',
                           image_last_page,ajax_call)
       result << "<td>#{link}</td>"
     end
