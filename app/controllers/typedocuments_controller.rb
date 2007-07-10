@@ -51,9 +51,5 @@ class TypedocumentsController < ApplicationController
     Typedocument.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
-  
-  def toto
-  
-  	
-  end
+
 end
