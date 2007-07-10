@@ -68,7 +68,7 @@ module ApplicationHelper
     unless block_given?
       result << '<ul>' 
       elements.each { |e| 
-        result << '<li>' << e << '</li>' unless e.nil?
+        result << '<li>' << e << '</li>' unless e.blank?
       }
       result << '</ul>'
       return result
@@ -80,13 +80,13 @@ module ApplicationHelper
       puce = " #{options[:puce]} "
       elements.each { |e| 
         elt = yield(e)
-        result << puce << elt << '<br/>' unless elt.nil?
+        result << puce << elt << '<br/>' unless elt.blank?
       }
     else
       result << '<ul>' 
       elements.each { |e| 
         elt = yield(e)
-        result << '<li>' << elt << '</li>' unless elt.nil?
+        result << '<li>' << elt << '</li>' unless elt.blank?
       }
       result << '</ul>'
     end

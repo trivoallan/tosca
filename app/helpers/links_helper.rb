@@ -49,37 +49,37 @@ module LinksHelper
   # and merge it dynamically in this module
   @@home = nil
   def public_link_to_home
-    @@home ||= public_link_to(_('Accueil'), bienvenue_url)
+    @@home ||= public_link_to(_('Accueil'), bienvenue_path)
   end
 
   @@requests = nil
   def link_to_requests
-    @@requests ||= link_to(_('Demandes'), demandes_url, :title =>
+    @@requests ||= link_to(_('Demandes'), demandes_path, :title =>
                            _('Consulter vos demandes'))
   end
 
   @@softwares = nil
   def public_link_to_softwares
-    @@softwares ||= public_link_to(_('Logiciels'), logiciels_url, :title =>
+    @@softwares ||= public_link_to(_('Logiciels'), logiciels_path, :title =>
                                    _('Consulter les logiciels'))
   end
 
   @@contributions = nil
   def public_link_to_contributions
-    @@contributions ||= public_link_to(_('Contributions'), contributions_url,
+    @@contributions ||= public_link_to(_('Contributions'), contributions_path,
        :title => _('Accédez à la liste des contributions réalisées sur votre périmètre'))
   end
 
   @@administration = nil
   def link_to_admin
-    @@administration ||= link_to(_('Administration'), bienvenue_url(:action => "admin"),
-                           :title => _('Interface d&lsquo;administration'))
+    @@administration ||= link_to(_('Administration'), admin_bienvenue_path,
+                           :title => _('Administration interface'))
   end
 
   # About page
   @@about = nil
   def public_link_to_about()
-    @@about ||= public_link_to('?', bienvenue_url(:action => "about"),
+    @@about ||= public_link_to('?', about_bienvenue_path,
        :title => _("A propos de %s") % Metadata::NOM_COURT_APPLICATION)
   end
 
@@ -90,7 +90,7 @@ module LinksHelper
   # TODO : title en options, avec 'Le compte' par défaut
   def link_to_modify_account(account_id, title=_('Mon&nbsp;Compte'))
     return '' unless account_id
-    link_to title, modify_account_url(:id => account_id)
+    link_to title, modify_account_path(:id => account_id)
   end
 
 end

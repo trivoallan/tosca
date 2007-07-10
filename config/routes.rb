@@ -1,31 +1,37 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
+require 'overrides'
 ActionController::Routing::Routes.draw do |map|
-  # The priority is based upon order of creation: first created -> highest priority.
+  # The priority is based upon order of creation: 
+  #   first created -> highest priority.
 
-  # connect routes
-  map.bienvenue ":controller/:action",
-    :defaults => {:action => "index", :controller => "bienvenue"},
-    :requirements => {:controller => /bienvenue|/,
-                      :action     => /index|admin|plan|selenium|about|/},
-    :conditions => { :method => :get }
+  # RESTful routes without ORM 
+  # it generates helper likes admin_bienvenue_url and admin_bienvenue_path
+  # all those helpers only have GET method.
+  # See overrides.rb for without_orm source code
+  map.without_orm('bienvenue', %w(admin plan selenium about))
+  map.without_orm('reporting', %w(configuration general comex comex_resultat))
+  map.without_orm('export', %w(contributions demandes appels identifiants))
+  sweet_home = { :controller => 'bienvenue', :action => 'index', 
+                 :conditions => { :method => :get } }
+  map.bienvenue '/', sweet_home
 
 
-  # RESTful routes
+
+  # RESTful routes with ORM 
+  # Sample call :
+  #   link_to _('..'), edit_account_path(:id => a.id)
+  #   link_to _('..'), accounts_path()
   map.resources :accounts,
     :controller => "account",
     :member => { :modify => :any, :devenir => :post },
     :collection => { :logout => :post, :login => :any,
-              :auto_complete_for_identifiant_nom => :get,
-              :auto_complete_for_identifiant_email => :get},
+              :auto_complete_for_identifiant_nom => :post,
+              :auto_complete_for_identifiant_email => :post},
     :new => { :signup => :any, :multiple_signup => :any }
-  map.resources :export,
-    :collection => { :contributions => :get, :demandes => :get, :appels => :get, :identifiants => :get  }
-  map.resources :appels,
-    :member => { :show => :get }
+  map.resources :appels
   map.resources :arches
-  ############# OK ##############
   map.resources :beneficiaires
   map.resources :binaires
   map.resources :clients
@@ -35,7 +41,8 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :admin => :any, :select => :get },
     :member => { :list => :get }
   map.resources :demandes,
-    :collection => { :auto_complete_for_logiciel_nom => :post, :ajax_display_packages => :post },
+    :collection => { :auto_complete_for_logiciel_nom => :post, 
+                     :ajax_display_packages => :post },
     :member => { :comment => :any }
   map.resources :documents,
     :collection => { :select => :get },
@@ -47,11 +54,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :machines
   map.resources :paquets
   map.resources :permissions
-  # TODO : Comex resultat en :get ? Faut changer le formulaire aussi
-  map.resources :reporting => {:general => :get},
-    :collection => { :comex => :get, :general => :get, :comex_resultat => :post }
-  map.resources :reporting,
-    :collection => { :comex => :get, :general => :get, :comex_resultat => :get, :configuration=> :get }
   map.resources :roles
   map.resources :socles
   map.resources :statuts

@@ -55,7 +55,6 @@ SqlSessionStore.session_class = MysqlSession
 # thanks to the plugin.: dynamic_session_expr
 CGI::Session.expire_after 1.month
 
-require 'overrides'
 require 'utils'
 require 'config'
 require 'gettext/rails'
