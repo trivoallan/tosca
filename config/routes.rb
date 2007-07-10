@@ -14,7 +14,6 @@ ActionController::Routing::Routes.draw do |map|
 
   # RESTful routes
   map.resources :accounts,
-    :controller => 'account',
     :member => { :modify => :any, :devenir => :post },
     :collection => { :logout => :post, :login => :any,
               :auto_complete_for_identifiant_nom => :get,
@@ -32,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :admin => :any, :select => :get },
     :member => { :list => :get }
   map.resources :demandes,
-    :collection => { :auto_complete_for_logiciel_nom => :post },
+    :collection => { :auto_complete_for_logiciel_nom => :post, :ajax_display_packages => :post },
     :member => { :comment => :any }
   map.resources :documents,
     :collection => { :select => :get },
