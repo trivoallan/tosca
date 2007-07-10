@@ -2,13 +2,8 @@ class AppelsController < ApplicationController
   helper :filters, :export, :demandes, :clients
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     # init
-    options = { :per_page => 15, :order => 'appels.debut', :include => 
+    options = { :per_page => 15, :order => 'appels.debut', :include =>
       [:beneficiaire,:ingenieur,:contrat,:demande] }
     conditions = []
 
@@ -21,17 +16,18 @@ class AppelsController < ApplicationController
        ['date', 'after', 'appels.debut', :greater_than ],
        ['date', 'before', 'appels.fin', :lesser_than ]
      ])
-    flash[:conditions] = options[:conditions] = conditions 
+    flash[:conditions] = options[:conditions] = conditions
 
-    @appel_pages, @appels = paginate :appels, options   
+    @appel_pages, @appels = paginate :appels, options
     # panel on the left side
-    if request.xhr? 
+    if request.xhr?
       render :partial => 'calls_list', :layout => false
     else
       _panel
       @partial_for_summary = 'calls_info'
     end
 
+    render :action => 'list'
   end
 
   def show
@@ -39,23 +35,24 @@ class AppelsController < ApplicationController
   end
 
   def new
-    @appel = Appel.new
-    @appel.ingenieur = @ingenieur 
-    @appel.demande_id = params[:id]
-    _form
-  end
-
-  def create
-    @appel = Appel.new(params[:appel])
-    if @appel.save
-      flash[:notice] = 'l\'Appel a été créé.'
-      if @appel.demande
-        redirect_to :action => 'comment', :controller => 'demandes', :id => @appel.demande
+    case request.method
+    when :get
+      @appel = Appel.new
+      @appel.ingenieur = @ingenieur
+      @appel.demande_id = params[:id]
+      _form
+    when :post
+      @appel = Appel.new(params[:appel])
+      if @appel.save
+        flash[:notice] = 'l\'Appel a été créé.'
+        if @appel.demande
+          redirect_to :action => 'comment', :controller => 'demandes', :id => @appel.demande
+        else
+          redirect_to :action => 'index'
+        end
       else
-        redirect_to :action => 'list'
+        _form and render :action => 'new'
       end
-    else
-      _form and render :action => 'new'
     end
   end
 
@@ -68,7 +65,7 @@ class AppelsController < ApplicationController
     @appel = Appel.find(params[:id])
     if @appel.update_attributes(params[:appel])
       flash[:notice] = 'l\'appel a été mis à jour.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form and render :action => 'edit'
     end
@@ -96,14 +93,14 @@ class AppelsController < ApplicationController
 
   private
   # conventions
-  def _form   
+  def _form
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
     options = { :include => Contrat::INCLUDE, :order => 'clients.nom' }
     @contrats = Contrat.find_select(options)
   end
 
   # variables utilisé par le panneau de gauche
-  def _panel 
+  def _panel
     @count = {}
     _form
     @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
@@ -113,8 +110,9 @@ class AppelsController < ApplicationController
     @count[:ingenieurs] = Appel.count('ingenieur_id')
     @count[:demandes] = Appel.count('demande_id', :distinct => true)
     diff = 'TIME_TO_SEC(TIMEDIFF(fin,debut))'
-    @count[:somme] = Appel.sum(diff).to_i 
-    @count[:moyenne] = Appel.average(diff).to_i 
+    @count[:somme] = Appel.sum(diff).to_i
+    @count[:moyenne] = Appel.average(diff).to_i
   end
+
 
 end
