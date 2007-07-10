@@ -1,5 +1,5 @@
-<%= public_link_to 'Accueil', :action => '', :controller => 'bienvenue'%> > 
- <%= public_link_to 'Logiciels', :action => 'list', :controller => 'logiciels', :id => nil %> > 
+<%= public_link_to 'Accueil', :action => 'index', :controller => 'bienvenue'%> >
+ <%= public_link_to 'Logiciels', :action => 'list', :controller => 'logiciels', :id => nil %> >
   <%= public_link_to @paquet.logiciel.nom, :action => 'show', :controller => 'logiciels', :id => @paquet.logiciel_id %> >
    <%=@paquet.version%>-<%=@paquet.release%>  <%= link_to_edit(@paquet) %>
 
@@ -7,7 +7,7 @@
 
 <% unless @paquet.active %>
  <div class="show">
-  <p><b>Note : </b>Ce paquet ne fait désormais plus partie de votre périmètre. 
+  <p><b>Note : </b>Ce paquet ne fait désormais plus partie de votre périmètre.
   Il n&lsquo;est conservé ici qu&lsquo;à des fins historiques. </p>
  </div>
 <% end %>
@@ -27,7 +27,7 @@
 
 <% if @paquet.binaires.size > 0 %>
   <p>Ce paquet source a <b><%= pluralize(@paquet.binaires_count, 'binaire') %></b></p>
-  <%= show_liste(@binaires, 'binaire', :no_title => true) { |b| 
+  <%= show_liste(@binaires, 'binaire', :no_title => true) { |b|
         link_to_binaire(b) << _(' <i>sur</i> ') << b.socle.nom } %>
 <% end %>
 
@@ -43,7 +43,7 @@
 <% if @paquet.changelogs_count > 0 %>
  <p>Ce paquet a été mis à jour <b><%= pluralize(@paquet.changelogs_count, 'fois') %></b></p>
  <div class="bloc_scroll">
-   <%= show_liste(@changelogs, 'changelog', :no_title => true) { |c| 
+   <%= show_liste(@changelogs, 'changelog', :no_title => true) { |c|
       indent (c.to_s) } %>
  </div>
 <% end %>

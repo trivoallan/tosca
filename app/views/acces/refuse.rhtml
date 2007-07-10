@@ -1,6 +1,6 @@
 
 <h1>Accés refusé</h1>
-    
+
 <div class="information error">
 <p>L'accés à cette page vous a été refusé.</p>
 <p>Vous pouvez reprendre votre navigation en cliquant sur accueil</p>
@@ -9,6 +9,6 @@
 </div>
 
 
-<%= link_to("Revenir à l'accueil", :controller => 'bienvenue', :action => '') %>
+<%= link_to("Revenir à l'accueil", :controller => 'bienvenue', :action => 'index') %>
 <% # Ce lien est en dur car on n'a plus aucun droit en étant déconnecter. Donc les link_to marche pu %>
-<p><a href="http://<%= request.host_with_port%>/"%>Se reconnecter</a></p>  
+<p><a href="http://<%= request.host_with_port%>/"%>Se reconnecter</a></p>
