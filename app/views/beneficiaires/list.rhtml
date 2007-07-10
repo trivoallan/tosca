@@ -2,17 +2,22 @@
 
 <%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
 
-<% titres = ['Nom', 
-             '<form action="../beneficiaires/list" method="post">' + 
-             select_onchange(@clients, 0, 'client_id') + '</form>', 
+<% titres = ['Nom',
+             '<form action="../beneficiaires" method="post">' +
+             select_onchange(@clients, 0, 'client_id') + '</form>',
              '', 'Domaine']%>
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
+  if (b.client == nil)
+    clientname = "client inconnu"
+  else
+    clientname = b.client.nom
+  end
   result = ''
   form = ''
   form << "<form action=\"../account/devenir/#{b.id}\" method=\"post\">"
   form << '<input name="commit" value="Devenir" type="submit" /></form>'
   result << "<td>#{b.nom}</td>"
-  result << "<td>#{b.client.nom}</td>"
+  result << "<td>#{clientname}</td>"
   result << '<td>'
   result << form
   result << '</td>'

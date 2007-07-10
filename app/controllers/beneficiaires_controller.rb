@@ -5,17 +5,14 @@ class BeneficiairesController < ApplicationController
   helper :filters
 
   def index
-    list and render :action => 'list'
-  end
-
-  def list
     options = { :per_page => 10, :include => [:client,:identifiant] }
     if params['client_id']
       options[:conditions] = ['beneficiaires.client_id=?', params['client_id'] ]
     end
     @clients = Client.find_select
     @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, options
-    
+
+    render :action => 'list'
   end
 
   def show
@@ -23,18 +20,19 @@ class BeneficiairesController < ApplicationController
   end
 
   def new
-    @beneficiaire = Beneficiaire.new
-    _form
-  end
-
-  def create
-    @beneficiaire = Beneficiaire.new(params[:beneficiaire])
-    if @beneficiaire.save
-      flash[:notice] = 'Beneficiaire was successfully created.'
-      redirect_to beneficiaires_url
-    else
+    case request.method
+    when :get
+      @beneficiaire = Beneficiaire.new
       _form
-      render :action => 'new'
+    when :post
+      @beneficiaire = Beneficiaire.new(params[:beneficiaire])
+      if @beneficiaire.save
+        flash[:notice] = 'Beneficiaire was successfully created.'
+        redirect_to beneficiaires_url
+      else
+        _form
+        render :action => 'new'
+      end
     end
   end
 
@@ -66,6 +64,6 @@ class BeneficiairesController < ApplicationController
 private
   def _form
     @clients = Client.find_select
-  end  
+  end
 
 end
