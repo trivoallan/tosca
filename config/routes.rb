@@ -13,6 +13,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :appels
   map.resources :arches
   map.resources :beneficiaires
+  map.resources :bienvenue,
+   :collection => { :index => :get, :admin => :get, :plan => :get,
+                    :selenium => :get, :about => :get }
   map.resources :binaires
   map.resources :clients
   map.resources :competences

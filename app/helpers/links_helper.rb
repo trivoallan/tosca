@@ -49,8 +49,7 @@ module LinksHelper
   # and merge it dynamically in this module
   @@home = nil
   def public_link_to_home
-    @@home ||= public_link_to(_('Accueil'), {:controller => 'bienvenue',
-                                :action => 'index'})
+    @@home ||= public_link_to(_('Accueil'), index_bienvenue_path)
   end
 
   @@requests = nil
