@@ -66,7 +66,7 @@ class Contrat < ActiveRecord::Base
   def to_s
     #TODO voir pouquoi la base est corompue
     if client.nil?
-      self.id.to_s + ' - ' + 'nom inconnu'
+      self.id.to_s + ' - ' + _('unknown client')
     else
       self.id.to_s + ' - ' + client.nom
     end

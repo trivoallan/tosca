@@ -62,13 +62,13 @@ protected
     if request.xhr?
       render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
-      redirect_to :controller => 'bienvenue', :action => 'index'
+      redirect_to bienvenue_url
     end
   end
 
   # redirection par défaut en cas d'erreur / de non droit
   def redirect_back
-    redirect_back_or_default :controller => 'bienvenue', :action => 'index'
+    redirect_back_or_default bienvenue_url
   end
 
   # variables globales (beurk, mais tellement pratique ;))
@@ -150,7 +150,7 @@ private
       render_text('<div class="information error">' + msg + '</div>')
     else
       flash[:warn] = msg
-      redirect_to :action => 'index', :controller => 'bienvenue'
+      redirect_to bienvenue_url
     end
 
   end

@@ -4,18 +4,26 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
+  # connect routes
+  map.bienvenue ":controller/:action",
+    :defaults => {:action => "index", :controller => "bienvenue"},
+    :requirements => {:controller => /bienvenue/,
+                      :action     => /index|admin|plan|selenium|about/},
+    :conditions => { :method => :get }
+
+
   # RESTful routes
   map.resources :accounts,
     :controller => 'account',
     :member => { :modify => :any, :devenir => :post },
-    :collection => { :logout => :post, :login => :any },
+    :collection => { :logout => :post, :login => :any,
+              :auto_complete_for_identifiant_nom => :get,
+              :auto_complete_for_identifiant_email => :get},
     :new => { :signup => :any, :multiple_signup => :any }
+  ############# OK ##############
   map.resources :appels
   map.resources :arches
   map.resources :beneficiaires
-  map.resources :bienvenue,
-   :collection => { :index => :get, :admin => :get, :plan => :get,
-                    :selenium => :get, :about => :get }
   map.resources :binaires
   map.resources :clients
   map.resources :competences
@@ -24,16 +32,16 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :admin => :any, :select => :get },
     :member => { :list => :get }
   map.resources :demandes,
-    :collection => { :auto_complete_for_logiciel_nom => :post,
-                     :ajax_display_packages => :post},
+    :collection => { :auto_complete_for_logiciel_nom => :post },
     :member => { :comment => :any }
   map.resources :documents,
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
   map.resources :export,
-    :collection => { :contributions => :get, :demandes => :get  }
+    :collection => { :contributions => :get, :demandes => :get, :identifiants => :get  }
   map.resources :groupes
-  map.resources :ingenieurs
+  map.resources :ingenieurs,
+    :collection => { :list => :get }
   map.resources :logiciels
   map.resources :machines
   map.resources :paquets
@@ -57,17 +65,17 @@ ActionController::Routing::Routes.draw do |map|
   # This route can be invoked with purchase_url(:id => product.id)
 
   # routing files to prevent download from public access
-  options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
-  map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
-  map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
-  map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
-  map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
+  #options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
+  #map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
+  #map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
+  #map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
+  #map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
   # map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   # Install the default route as the lowest priority.
-  #map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id'
 
 end

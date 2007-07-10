@@ -9,6 +9,6 @@
 </div>
 
 
-<%= link_to("Revenir à l'accueil", :controller => 'bienvenue', :action => 'index') %>
+<%= link_to("Revenir à l'accueil", bienvenue_url) %>
 <% # Ce lien est en dur car on n'a plus aucun droit en étant déconnecter. Donc les link_to marche pu %>
 <p><a href="http://<%= request.host_with_port%>/"%>Se reconnecter</a></p>

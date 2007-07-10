@@ -38,7 +38,7 @@
   <div id="header">
     <table>
       <tr valign="top">
-        <td valign="middle" width="145"><%= public_link_to logo_08000, :controller => 'bienvenue', :action => 'index' %>
+        <td valign="middle" width="145"><%= public_link_to logo_08000, bienvenue_url%>
         </td>
         <td align="right">
           <%= (user ? session[:account_links] : @@links) %>

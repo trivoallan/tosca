@@ -2,10 +2,10 @@
     <% menu[:titles], menu[:links] = [], [] %>
 
     <% menu[:titles] << link_to_home(:image=> true) %>
-    <%# menu[:titles] << link_to('Accueil',:controller => 'bienvenue', :action => 'index') %>
+    <%# menu[:titles] << link_to('Accueil',bienvenue_url) %>
     <% menu[:links] << [
         (link_to_modify_account(session[:user], 'Mon compte')),
-        (link_to 'Plan',:controller => 'bienvenue', :action => 'plan'),
+        (link_to 'Plan',bienvenue_url(:action => 'plan')),
         (link_to 'Déconnexion',:controller => 'account', :action => 'logout'),
         (link_to_about),
       ] %>

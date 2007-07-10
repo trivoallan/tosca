@@ -49,7 +49,7 @@ module LinksHelper
   # and merge it dynamically in this module
   @@home = nil
   def public_link_to_home
-    @@home ||= public_link_to(_('Accueil'), index_bienvenue_path)
+    @@home ||= public_link_to(_('Accueil'), bienvenue_url)
   end
 
   @@requests = nil
@@ -72,14 +72,14 @@ module LinksHelper
 
   @@administration = nil
   def link_to_admin
-    @@administration ||= link_to(_('Administration'), {:action => "admin" , :controller => "bienvenue"},
+    @@administration ||= link_to(_('Administration'), bienvenue_url(:action => "admin"),
                            :title => _('Interface d&lsquo;administration'))
   end
 
   # About page
   @@about = nil
   def public_link_to_about()
-    @@about ||= public_link_to('?', {:action => "about" , :controller => "bienvenue"},
+    @@about ||= public_link_to('?', bienvenue_url(:action => "about"),
        :title => _("A propos de %s") % Metadata::NOM_COURT_APPLICATION)
   end
 
