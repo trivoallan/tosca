@@ -26,8 +26,6 @@ class AppelsController < ApplicationController
       _panel
       @partial_for_summary = 'calls_info'
     end
-
-    render :action => 'list'
   end
 
   def create
@@ -35,9 +33,9 @@ class AppelsController < ApplicationController
     if @appel.save
       flash[:notice] = 'l\'Appel a été créé.'
       if @appel.demande
-        redirect_to :action => 'comment', :controller => 'demandes', :id => @appel.demande
+        redirect_to comment_demande_path(:id => @appel.demande)
       else
-        redirect_to :action => 'index'
+        redirect_to appels_path
       end
     else
       _form and render :action => 'new'
@@ -76,13 +74,14 @@ class AppelsController < ApplicationController
   end
 
   def ajax_beneficiaires
-    return render_text('') unless request.xml_http_request? and params[:id]
+    return render :nothing unless request.xml_http_request?
 
     # la magie de rails est cassé pour la 1.2.2, en mode production
     # donc je dois le faire manuellement
     # TODO : vérifier pour les versions > 1.2.2 en _production_ (!)
     contrat = Contrat.find(params[:id])
-    @beneficiaires = contrat.client.beneficiaires.find_select(Identifiant::SELECT_OPTIONS)
+    @beneficiaires = 
+      contrat.client.beneficiaires.find_select(Identifiant::SELECT_OPTIONS)
 
     render :partial => 'select_beneficiaires', :layout => false and return
   rescue ActiveRecord::RecordNotFound
