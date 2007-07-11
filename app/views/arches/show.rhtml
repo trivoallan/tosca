@@ -1,8 +1,7 @@
 <% for column in Arch.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%= @arch.send(column.name) %>
+  <b><%= _(column.human_name) %>:</b> <%= @arch.send(column.name) %>
 </p>
 <% end %>
 
-<%= link_to 'Editer', :action => 'edit', :id => @arch %> |
-<%= link_to 'Retour à la liste', :action => 'index' %>
+<%= link_to_edit_and_list(@arch) %>

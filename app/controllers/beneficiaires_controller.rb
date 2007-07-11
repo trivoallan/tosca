@@ -11,29 +11,26 @@ class BeneficiairesController < ApplicationController
     end
     @clients = Client.find_select
     @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, options
-
-    render :action => 'list'
   end
 
   def show
     @beneficiaire = Beneficiaire.find(params[:id])
   end
 
-  def new
-    case request.method
-    when :get
-      @beneficiaire = Beneficiaire.new
+  def create
+    @beneficiaire = Beneficiaire.new(params[:beneficiaire])
+    if @beneficiaire.save
+      flash[:notice] = 'Beneficiaire was successfully created.'
+      redirect_to beneficiaires_url
+    else
       _form
-    when :post
-      @beneficiaire = Beneficiaire.new(params[:beneficiaire])
-      if @beneficiaire.save
-        flash[:notice] = 'Beneficiaire was successfully created.'
-        redirect_to beneficiaires_url
-      else
-        _form
-        render :action => 'new'
-      end
+      render :action => 'new'
     end
+  end
+
+  def new
+    @beneficiaire = Beneficiaire.new
+    _form
   end
 
   def edit

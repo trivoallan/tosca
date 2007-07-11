@@ -1,8 +1,8 @@
-<h1>Ajouter une Url de reversement</h1>
+<h1><%=_('Add an url to follow your contribution')%></h1>
 
-<% form_tag :action => 'create' do %>
+<% form_tag urlreversements_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to_back %>

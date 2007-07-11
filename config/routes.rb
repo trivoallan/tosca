@@ -58,6 +58,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :socles
   map.resources :statuts
   map.resources :urllogiciels
+  map.resources :urlreversements
 
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'

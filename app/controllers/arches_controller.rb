@@ -4,26 +4,24 @@
 class ArchesController < ApplicationController
   def index
     @arch_pages, @arches = paginate :arches, :per_page => 10
-    render :action => 'list'
   end
 
   def show
     @arch = Arch.find(params[:id])
   end
 
-  def new
-    case request.method
-    when :get
-      @arch = Arch.new
-    when :post
-      @arch = Arch.new(params[:arch])
-      if @arch.save
-        flash[:notice] = 'Arch was successfully created.'
-        redirect_to arches_url
-      else
-        render :action => 'new'
-      end
+  def create
+    @arch = Arch.new(params[:arch])
+    if @arch.save
+      flash[:notice] = 'Arch was successfully created.'
+      redirect_to arches_url
+    else
+      render :action => 'new'
     end
+  end
+
+  def new
+    @arch = Arch.new
   end
 
   def edit
