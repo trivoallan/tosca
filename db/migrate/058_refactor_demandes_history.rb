@@ -1,3 +1,4 @@
+#rake db:migrate VERSION=57 --trace && rake db:migrate --trace   
 class RefactorDemandesHistory < ActiveRecord::Migration
   def self.up
 #     add_column(:commentaires, :severite_id, :integer, :null => true)
