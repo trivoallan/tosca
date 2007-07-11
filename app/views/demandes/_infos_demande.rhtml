@@ -18,7 +18,7 @@
      <li><b>Vm : </b><%=h @demande.socle.machine %></li>
   <% end %>
   <li><b>Socle : </b><%= link_to_socle @demande.socle %></li>
-  <li><b>Logiciel : </b><%= link_to_logiciel @demande.logiciel %></li>
+  <li><b>Logiciel : </b><%= public_link_to_logiciel @demande.logiciel %></li>
    <% options = { :controller => 'statuts', :action => 'help', :id => @demande.statut_id } %>
    <% html_options = { :popup => ['help_statut', 'height=300,width=600'] } %>
   <li><b>Statut : </b><%= link_to(@demande.statut.nom, options, html_options) %></li>

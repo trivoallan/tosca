@@ -1,9 +1,8 @@
-<h1>Editer un logiciel</h1>
+<h1><%= _('Edit a software')%></h1>
 
-<% form_tag(:action => 'update', :id => @logiciel) do %>
+<% form_tag(logiciel_path(@logiciel), :method => :put) do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Enregistrer' %>
+  <%= submit_tag _('Update') %>
 <% end %>
 
-<%= link_to 'Voir', :action => 'show', :id => @logiciel %> |
-<%= link_to 'Retour à la liste', :action => 'list' %>
+<%= link_to_show_and_list(@logiciel) %>

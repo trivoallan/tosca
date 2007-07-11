@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-11 13:14+0200\n"
+"POT-Creation-Date: 2007-07-11 19:18+0200\n"
 "PO-Revision-Date: 2007-04-30 09:55+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,23 +32,63 @@ msgstr ""
 msgid "Merci d'avoir pris le temps de nous aider à "
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:308
+#: app/controllers/demandes_controller.rb:313
 msgid "La contribution est déliée"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:310
+#: app/controllers/demandes_controller.rb:315
 msgid "La contribution est maintenant liée"
+msgstr ""
+
+#: app/controllers/logiciels_controller.rb:18
+msgid "List of softwares"
+msgstr ""
+
+#: app/controllers/logiciels_controller.rb:22
+msgid "List of your supported softwares"
+msgstr ""
+
+#: app/controllers/logiciels_controller.rb:89
+msgid "The software %s has been created succesfully."
+msgstr ""
+
+#: app/controllers/logiciels_controller.rb:104
+msgid "The software %s been updated successfully."
+msgstr ""
+
+#: app/controllers/logiciels_controller.rb:114
+msgid "The software %s has been successfully deleted."
 msgstr ""
 
 #: app/controllers/reporting_controller.rb:81
 msgid "Vous devez indiquer une période sur laquelle effectuer le rapport"
 msgstr ""
 
+#: app/controllers/urlreversements_controller.rb:24
+msgid "Urlreversement was successfully created."
+msgstr ""
+
+#: app/controllers/urlreversements_controller.rb:40
+msgid "Urlreversement was successfully updated."
+msgstr ""
+
 #: app/helpers/clients_helper.rb:20
 msgid "Mon&nbsp;Offre"
 msgstr ""
 
-#: app/helpers/contributions_helper.rb:32
+#: app/helpers/contributions_helper.rb:10
+msgid "Date"
+msgstr ""
+
+#: app/helpers/contributions_helper.rb:10
+msgid "Version"
+msgstr ""
+
+#: app/helpers/contributions_helper.rb:10 app/views/logiciels/_form.rhtml:7
+msgid "Summary"
+msgstr ""
+
+#: app/helpers/contributions_helper.rb:35
 msgid "une contribution"
 msgstr ""
 
@@ -84,48 +124,52 @@ msgstr ""
 msgid "affiche l'intégralité des demandes"
 msgstr ""
 
-#: app/helpers/links_helper.rb:52
+#: app/helpers/links_helper.rb:50
+msgid "Do you really want to delete %s"
+msgstr ""
+
+#: app/helpers/links_helper.rb:62
 msgid "Accueil"
 msgstr ""
 
-#: app/helpers/links_helper.rb:57
+#: app/helpers/links_helper.rb:67
 msgid "Demandes"
 msgstr ""
 
-#: app/helpers/links_helper.rb:58
+#: app/helpers/links_helper.rb:68
 msgid "Consulter vos demandes"
 msgstr ""
 
-#: app/helpers/links_helper.rb:63
+#: app/helpers/links_helper.rb:73
 msgid "Logiciels"
 msgstr ""
 
-#: app/helpers/links_helper.rb:64
+#: app/helpers/links_helper.rb:74
 msgid "Consulter les logiciels"
 msgstr ""
 
-#: app/helpers/links_helper.rb:69 app/views/contributions/list.rhtml:1
-#: app/views/contributions/select.rhtml:1
+#: app/helpers/links_helper.rb:79 app/views/contributions/list.rhtml:1
+#: app/views/contributions/select.rhtml:1 app/views/logiciels/show.rhtml:68
 msgid "Contributions"
 msgstr ""
 
-#: app/helpers/links_helper.rb:70
+#: app/helpers/links_helper.rb:80
 msgid "Accédez à la liste des contributions réalisées sur votre périmètre"
 msgstr ""
 
-#: app/helpers/links_helper.rb:75
+#: app/helpers/links_helper.rb:85
 msgid "Administration"
 msgstr ""
 
-#: app/helpers/links_helper.rb:76
+#: app/helpers/links_helper.rb:86
 msgid "Administration interface"
 msgstr ""
 
-#: app/helpers/links_helper.rb:83
+#: app/helpers/links_helper.rb:93
 msgid "A propos de %s"
 msgstr ""
 
-#: app/helpers/links_helper.rb:91
+#: app/helpers/links_helper.rb:101
 msgid "Mon&nbsp;Compte"
 msgstr ""
 
@@ -177,24 +221,48 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+#: app/helpers/pages_helper.rb:85
+msgid "First page"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:88
+msgid "Previous page"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:94
+msgid " to "
+msgstr ""
+
+#: app/helpers/pages_helper.rb:95
+msgid "&nbsp; on "
+msgstr ""
+
+#: app/helpers/pages_helper.rb:98
+msgid "Next page"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:101
+msgid "Last page"
+msgstr ""
+
 #: app/helpers/paquets_helper.rb:18
 msgid "un paquet"
 msgstr ""
 
-#: app/helpers/logiciels_helper.rb:40
-msgid "Mes Logiciels"
+#: app/helpers/logiciels_helper.rb:28
+msgid "My supported softwares"
 msgstr ""
 
-#: app/helpers/logiciels_helper.rb:41
-msgid "Affiche uniquement les logiciels avec lesquels vous avez un contrat"
+#: app/helpers/logiciels_helper.rb:29
+msgid "Display only software supported in your contract"
 msgstr ""
 
-#: app/helpers/logiciels_helper.rb:44
-msgid "Tous les logiciels"
+#: app/helpers/logiciels_helper.rb:32
+msgid "All softwares"
 msgstr ""
 
-#: app/helpers/logiciels_helper.rb:45
-msgid "Affiche tous les logiciels"
+#: app/helpers/logiciels_helper.rb:33
+msgid "Display all softwares"
 msgstr ""
 
 #: app/models/new.rb:-
@@ -870,6 +938,7 @@ msgid "Export calls"
 msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:20
+#: app/views/logiciels/_softwares_info.rhtml:27
 msgid "Search"
 msgstr ""
 
@@ -900,6 +969,7 @@ msgid "To"
 msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:48
+#: app/views/logiciels/_softwares_info.rhtml:49
 msgid "Perimeter"
 msgstr ""
 
@@ -907,7 +977,7 @@ msgstr ""
 msgid "Calls"
 msgstr ""
 
-#: app/views/appels/_calls_info.rhtml:51
+#: app/views/appels/_calls_info.rhtml:51 app/views/logiciels/show.rhtml:39
 msgid "Requests"
 msgstr ""
 
@@ -968,8 +1038,10 @@ msgstr ""
 msgid "Edit a phone call"
 msgstr ""
 
-#: app/views/appels/edit.rhtml:5 app/views/contributions/edit.rhtml:6
-#: app/views/roles/edit.rhtml:5
+#: app/views/appels/edit.rhtml:5 app/views/beneficiaires/new.rhtml:5
+#: app/views/contributions/edit.rhtml:6 app/views/logiciels/new.rhtml:5
+#: app/views/roles/edit.rhtml:5 app/views/urlreversements/edit.rhtml:5
+#: app/views/urlreversements/new.rhtml:5
 msgid "Validate"
 msgstr ""
 
@@ -977,8 +1049,8 @@ msgstr ""
 msgid "New phone call"
 msgstr ""
 
-#: app/views/appels/new.rhtml:5 app/views/contributions/new.rhtml:5
-#: app/views/roles/new.rhtml:5
+#: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
+#: app/views/contributions/new.rhtml:5 app/views/roles/new.rhtml:5
 msgid "Create"
 msgstr ""
 
@@ -992,6 +1064,14 @@ msgstr ""
 
 #: app/views/appels/show.rhtml:20
 msgid "Ended on"
+msgstr ""
+
+#: app/views/arches/new.rhtml:1
+msgid "Add a new processor architecture"
+msgstr ""
+
+#: app/views/beneficiaires/new.rhtml:1
+msgid "Add a recipient"
 msgstr ""
 
 #: app/views/bienvenue/index.rhtml:3
@@ -1070,6 +1150,7 @@ msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:9
+#: app/views/urlreversements/index.rhtml:6
 msgid "Software"
 msgstr ""
 
@@ -1084,7 +1165,9 @@ msgid "State"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:7
-#: app/views/contributions/_form.rhtml:6 app/views/roles/_form.rhtml:5
+#: app/views/contributions/_form.rhtml:6 app/views/logiciels/_form.rhtml:4
+#: app/views/logiciels/_softwares_info.rhtml:29
+#: app/views/logiciels/_softwares_list.rhtml:6 app/views/roles/_form.rhtml:5
 msgid "Name"
 msgstr ""
 
@@ -1183,8 +1266,9 @@ msgstr ""
 msgid "Export requests"
 msgstr ""
 
-#: app/views/demandes/_tab_menu.rhtml:9
-#: app/views/logiciels/_softwares_list.rhtml:7 app/views/roles/list.rhtml:4
+#: app/views/demandes/_tab_menu.rhtml:9 app/views/logiciels/_form.rhtml:10
+#: app/views/logiciels/_softwares_info.rhtml:40
+#: app/views/logiciels/_softwares_list.rhtml:6 app/views/roles/list.rhtml:4
 msgid "Description"
 msgstr ""
 
@@ -1212,32 +1296,94 @@ msgstr ""
 msgid "S'identifier"
 msgstr ""
 
+#: app/views/logiciels/_form.rhtml:14
+msgid "Base name"
+msgstr ""
+
+#: app/views/logiciels/_form.rhtml:17 app/views/logiciels/show.rhtml:17
+msgid "Copyright"
+msgstr ""
+
+#: app/views/logiciels/_form.rhtml:21
+#: app/views/logiciels/_softwares_info.rhtml:42
+#: app/views/logiciels/_softwares_list.rhtml:7
+#: app/views/logiciels/show.rhtml:23
+msgid "Group"
+msgstr ""
+
+#: app/views/logiciels/_form.rhtml:25
+#: app/views/logiciels/_softwares_info.rhtml:51
+#: app/views/logiciels/show.rhtml:20
+msgid "Technologies"
+msgstr ""
+
+#: app/views/logiciels/_softwares_info.rhtml:16
+msgid "Consultation"
+msgstr ""
+
+#: app/views/logiciels/_softwares_info.rhtml:22
+msgid "List of packages"
+msgstr ""
+
+#: app/views/logiciels/_softwares_info.rhtml:32
+msgid "Client"
+msgstr ""
+
+#: app/views/logiciels/_softwares_info.rhtml:38
+msgid "Characteristic"
+msgstr ""
+
+#: app/views/logiciels/_softwares_info.rhtml:44
+msgid "Technology"
+msgstr ""
+
+#: app/views/logiciels/_softwares_info.rhtml:52
+msgid "Source packages"
+msgstr ""
+
+#: app/views/logiciels/_softwares_info.rhtml:53
+msgid "Binary packages"
+msgstr ""
+
+#: app/views/logiciels/_softwares_info.rhtml:54
+msgid "Softwares"
+msgstr ""
+
 #: app/views/logiciels/_softwares_list.rhtml:3
-msgid "un nouveau logiciel"
+msgid "a new software"
 msgstr ""
 
-#: app/views/logiciels/_softwares_list.rhtml:7
-msgid "Nom"
-msgstr ""
-
-#: app/views/logiciels/_softwares_list.rhtml:7
+#: app/views/logiciels/_softwares_list.rhtml:6
 msgid "Technologie(s)"
 msgstr ""
 
-#: app/views/logiciels/_softwares_list.rhtml:8
-msgid "Référent"
+#: app/views/logiciels/_softwares_list.rhtml:7
+#: app/views/logiciels/show.rhtml:49
+msgid "Package(s)"
 msgstr ""
 
-#: app/views/logiciels/_softwares_list.rhtml:8
-msgid "Groupe"
+#: app/views/logiciels/edit.rhtml:1
+msgid "Edit a software"
 msgstr ""
 
-#: app/views/logiciels/_softwares_list.rhtml:8
-msgid "Paquet(s)"
+#: app/views/logiciels/edit.rhtml:5
+msgid "Update"
 msgstr ""
 
-#: app/views/logiciels/show.rhtml:6
+#: app/views/logiciels/new.rhtml:1
+msgid "Add a new software"
+msgstr ""
+
+#: app/views/logiciels/show.rhtml:1
+msgid "Software \"%s\""
+msgstr ""
+
+#: app/views/logiciels/show.rhtml:7
 msgid "Logo"
+msgstr ""
+
+#: app/views/logiciels/show.rhtml:27
+msgid "Links"
 msgstr ""
 
 #: app/views/paquets/show.rhtml:31
@@ -1290,4 +1436,28 @@ msgstr ""
 
 #: app/views/roles/new.rhtml:1
 msgid "New role"
+msgstr ""
+
+#: app/views/urlreversements/index.rhtml:1
+msgid "List of urls in contributions"
+msgstr ""
+
+#: app/views/urlreversements/index.rhtml:3
+msgid "a new url"
+msgstr ""
+
+#: app/views/urlreversements/index.rhtml:6
+msgid "Url"
+msgstr ""
+
+#: app/views/urlreversements/index.rhtml:6
+msgid "Contribution"
+msgstr ""
+
+#: app/views/urlreversements/edit.rhtml:1
+msgid "Edit this url"
+msgstr ""
+
+#: app/views/urlreversements/new.rhtml:1
+msgid "Add an url to follow your contribution"
 msgstr ""

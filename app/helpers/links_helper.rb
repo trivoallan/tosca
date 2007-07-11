@@ -44,6 +44,16 @@ module LinksHelper
     link_to_file(record, file, options, true)
   end
 
+  @@delete_options = { :class => 'nobackground', :method => :delete }
+  def delete_options(objet_name)
+    @@delete_options.update(:confirm => 
+        _('Do you really want to delete %s') % objet_name)
+  end
+
+  def edit_options
+    LinksHelper::NO_HOVER
+  end
+  
   ### Header ###
   # TODO : put all those methods into another module
   # and merge it dynamically in this module

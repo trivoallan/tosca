@@ -46,6 +46,8 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 end
 
+require 'overrides'
+
 # MLO : sql session store, 1.5x times faster than Active record store
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.
   update(:database_manager => SqlSessionStore)

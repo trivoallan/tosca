@@ -21,6 +21,7 @@ class DemandesController < ApplicationController
     render :partial => 'dem_auto_complete'
   end
   
+
   def index
     #cas spécial : consultation directe
     if params['numero']
@@ -221,7 +222,11 @@ class DemandesController < ApplicationController
       Identifiant.find(:all, :select => select, :joins => joins)
 
     @partial_for_summary = 'infos_demande'
+    # render is mandatory becoz' of the alias with 'show'
+    render 'demandes/comment'
   end
+
+  alias_method :show, :comment
 
   def ajax_description
     return render_text('') unless request.xhr? and params[:id]

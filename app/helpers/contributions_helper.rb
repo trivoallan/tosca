@@ -7,7 +7,10 @@ module ContributionsHelper
   # software in parameters
   def public_table_of_contributions(contribs)
     return '' unless contribs.size > 0
-    out = '<div class="bloc_scroll"><table class="show"><tr><th>Date</th><th>Version</th><th>Résumé</th></tr>'
+    columns = [ _('Date'), _('Version'), _('Summary') ]
+    out = '<div class="bloc_scroll"><table class="show"><tr>'
+    columns.each { |c| out << "<th>#{c}</th>" }
+    out << '</tr>'
     contribs.each{|c|
       out << "<tr class=\"#{cycle('pair', 'impair')}\">"
       out << "<td>#{c.reverse_le_formatted}</td>"

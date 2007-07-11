@@ -5,44 +5,31 @@ class LogicielsController < ApplicationController
   # public access to the list
   skip_before_filter :login_required
   before_filter :login_required, :except => 
-    [:list,:show,:auto_complete_for_logiciel_nom]
+    [:index,:show,:auto_complete_for_logiciel_nom]
 
   helper :filters, :paquets, :demandes, :competences, :contributions
   
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  POST_METHODS = [ :destroy, :create, :update, 
-                   :auto_complete_for_logiciel_nom ]
-  verify :method => :post, :only => POST_METHODS,
-    :redirect_to => { :action => :list }
-
-
-  def index
-    list
-    render :action => 'list'
-  end
-
   # ajaxified list
-  def list
+  def index
     scope = nil
-    @title= 'Liste des logiciels'
+    @title = _('List of softwares')
     if @beneficiaire
       unless params['active'] == '0'
-        scope=:supported
-        @title = 'Liste de vos logiciels'
+        scope = :supported
+        @title = _('List of your supported softwares')
       end
-
     end
     
     options = { :per_page => 10, :order => 'logiciels.nom',
-      :include => [:groupe,:competences]}
+                :include => [:groupe,:competences] }
     conditions = []
 
     # Dirty Hack. TODO : faire mieux
     filters = params['filters']
-    if @ingenieur and filters and filters['client_id'] != ''
+    if @ingenieur and filters and not filters['client_id'].blank?
       filters['client_id'] = scope_client(filters['client_id'])
       options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id' 
     end
@@ -72,10 +59,6 @@ class LogicielsController < ApplicationController
     end
   end
 
-  def rpmlist
-    @logiciels = Logiciel.find(:all)
-  end
-
   def show
     @logiciel = Logiciel.find(params[:id])
     if @beneficiaire
@@ -99,8 +82,8 @@ class LogicielsController < ApplicationController
   def create
     @logiciel = Logiciel.new(params[:logiciel])
     if @logiciel.save
-      flash[:notice] = 'Le logiciel '+@logiciel.nom+' a bien été crée.'
-      redirect_to :action => 'list'
+      flash[:notice] = _('The software %s has been created succesfully.') % @logiciel.nom
+      redirect_to logiciels_path
     else
       _form and render :action => 'new'
     end
@@ -114,8 +97,8 @@ class LogicielsController < ApplicationController
   def update
     @logiciel = Logiciel.find(params[:id])
     if @logiciel.update_attributes(params[:logiciel])
-      flash[:notice] = "Le logiciel #{@logiciel.nom} a bien été mis à jour."
-      redirect_to :action => 'list'
+      flash[:notice] = _('The software %s been updated successfully.') % @logiciel.nom
+      redirect_to logiciels_path
     else
       _form and render :action => 'edit'
     end
@@ -124,8 +107,8 @@ class LogicielsController < ApplicationController
   def destroy
     @logiciel = Logiciel.find(params[:id])
     @logiciel.destroy
-    flash[:notice] = "Le logiciel #{@logiciel.nom} a bien été supprimé."
-    redirect_to :action => 'list'
+    flash[:notice] = _('The software %s has been successfully deleted.') % @logiciel.nom
+    redirect_to logiciel_path
   end
 
 
@@ -138,16 +121,14 @@ private
   end  
 
   def _panel 
-    @count = {}
     @clients = Client.find_select if @ingenieur
     @groupes = Groupe.find_select
     @technologies = Competence.find_select
     @groupes = Groupe.find_select
 
-    @count[:paquets] = Paquet.count
-    @count[:binaires] = Binaire.count
-    @count[:softwares] = Logiciel.count
-    @count[:technologies] = Competence.count
+    stats = Struct.new(:technologies, :sources, :binaries, :softwares)
+    @count = stats.new(Competence.count, Paquet.count,
+                       Binaire.count, Logiciel.count)
   end
 
 end

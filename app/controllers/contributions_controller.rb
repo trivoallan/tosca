@@ -4,7 +4,7 @@
 class ContributionsController < ApplicationController
   helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
   skip_before_filter :login_required
-  before_filter :login_required, :except => [:list,:select,:show]
+  before_filter :login_required, :except => [:index,:select,:show]
 
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom

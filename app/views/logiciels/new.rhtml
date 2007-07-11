@@ -1,8 +1,8 @@
-<h1>Ajouter un nouveau logiciel</h1>
+<h1><%= _('Add a new software')%></h1>
 
-<%= start_form_tag :action => 'create' %>
+<% form_tag logiciels_path %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Ajouter" %>
-<%= end_form_tag %>
+  <%= submit_tag _('Validate') %>
+<% end %>
 
-<%= link_to 'Retour à la liste', :action => 'list' %>
+<%= link_to_back %>

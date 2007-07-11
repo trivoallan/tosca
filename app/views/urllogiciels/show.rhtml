@@ -4,9 +4,7 @@
 </p>
 <% end %>
 
-<p><b>Logiciel:</b> <%= link_to @urllogiciel.logiciel.nom, :controller => 'logiciels' ,
-                                                           :action => 'show', 
-                                                           :id => @urllogiciel.logiciel_id  %>
+<p><b>Logiciel:</b> <%= public_link_to_logiciel @urllogiciel.logiciel %>
 </p>
 
 <p><b>Type:</b> <%=h @urllogiciel.typeurl.nom %>

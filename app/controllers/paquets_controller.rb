@@ -7,10 +7,6 @@ class PaquetsController < ApplicationController
   # auto completion in 2 lines, yeah !
   auto_complete_for :paquet, :nom
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def index
     list
     render :action => 'list'
@@ -93,7 +89,7 @@ class PaquetsController < ApplicationController
 
   def destroy
     Paquet.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to paquets_path
   end
 
   private

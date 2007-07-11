@@ -1,18 +1,16 @@
 <h1><%= @title %><%= image_spinner %></h1>
 
-<% links = show_pages_links(@logiciel_pages, _('un nouveau logiciel'),
-                     :url => url_for('list')) %>
+<% links = show_pages_links(@logiciel_pages, _('a new software'), :url => logiciels_path) %>
 <%= links %>
 
-<% titres = [ _('Nom'), _('Description'), _('Technologie(s)'),
-              _('Référent'), _('Groupe'), _('Paquet(s)') ] %>
+<% titres = [ _('Name'), _('Description'), _('Technologie(s)'),
+              _('Group'), _('Package(s)') ] %>
 
 <%= show_table(@logiciels, Logiciel, titres) { |l|
   result = ''
   result << "<td>#{public_link_to_logiciel l}</td>"
   result << "<td>#{l.resume}</td>"
   result << "<td>#{liste_competences l.competences}</td>"
-  result << "<td>#{l.referent}</td>"
   result << "<td>#{l.groupe.nom if l.groupe}</td>"
   result << "<td>#{l.paquets.size}</td>"
   result << "#{link_to_actions_table l}"

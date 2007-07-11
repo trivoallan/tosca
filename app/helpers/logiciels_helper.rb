@@ -4,28 +4,16 @@
 module LogicielsHelper
 
   # Display a link to a Logiciel (software)
-  def link_to_logiciel(logiciel)
-    return '-' unless logiciel and logiciel.is_a? Logiciel
-    link_to logiciel.nom, logiciel_url(:id => logiciel.id)
-  end
-
-  # Display a link to a Logiciel (software)
   def public_link_to_logiciel(logiciel)
     return '-' unless logiciel and logiciel.is_a? Logiciel
-    public_link_to logiciel.nom, logiciel_url(:id => logiciel.id)
-  end
-
-
-  def public_link_to_logiciel(logiciel)
-    return '-' unless logiciel and logiciel.is_a? Logiciel
-    public_link_to logiciel.nom, :action => 'show', :controller => 'logiciels', :id => logiciel
+    public_link_to logiciel.nom, logiciel_path(logiciel)
   end
 
   # Link to create a new url for a Logiciel
   def link_to_new_urllogiciel(logiciel_id)
     return '-' unless logiciel_id 
-    options = { :controller => 'urllogiciels', :action => 'new', :logiciel_id => logiciel_id }
-    link_to(image_create('une url'), options, LinksHelper::NO_HOVER)
+    options = new_urllogiciel_path(:logiciel_id => logiciel_id)
+    link_to(image_create('an url'), options, LinksHelper::NO_HOVER)
   end
 
   # Create a link to modify the active value in the form filter
@@ -37,12 +25,12 @@ module LogicielsHelper
       :url => '../logiciels/list')
   def remote_link_to_software( param)
     if param == :supported
-      text = _('Mes Logiciels')
-      description= _('Affiche uniquement les logiciels avec lesquels vous avez un contrat')
+      text = _('My supported softwares')
+      description= _('Display only software supported in your contract')
       value = 1
     else
-      text= _('Tous les logiciels')
-      description= _('Affiche tous les logiciels')
+      text = _('All softwares')
+      description= _('Display all softwares')
       value = 0
     end
     js_call = "document.forms['filters'].active.value=" << value.to_s << "; 

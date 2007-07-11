@@ -11,8 +11,8 @@
   result = ''
   # tache = c.todo(max_jours)
   versions = c.paquets.collect{|p| p.version } * ', '
-  result << "<td>#{link_to_logiciel c.logiciel if c.logiciel}"
-  result << " (#{versions})" unless versions == ''
+  result << "<td>#{public_link_to_logiciel c.logiciel}"
+  result << " (#{versions})" unless versions.blank?
   result << " </td>"
   result << "<td>#{link_to_file c, 'patch', :image => true}</td>"
   result << "<td nowrap=\"nowrap\">#{link_to_any_demande c}</td>"

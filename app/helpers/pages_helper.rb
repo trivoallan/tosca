@@ -67,7 +67,7 @@ module PagesHelper
   # <%= show_pages_links @demande_pages, 'déposer une demande',
   #        :url => '/demandes/update_list' %>
   # (!) you will need an image_spinner too (!)
-  AJAX_OPTIONS = {  :update => 'content',
+  AJAX_OPTIONS = {  :update => 'content', :method => :get,
     :with => "Form.serialize(document.forms['filters'])",
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" }
@@ -82,22 +82,23 @@ module PagesHelper
     end
 
     if pages.current.previous
-      link = link_to_page(pages, pages.first, 'Première page',
+      link = link_to_page(pages, pages.first, _('First page'),
                           image_first_page, ajax_call)
       result << "<td>#{link}</td>"
-      link = link_to_page(pages, pages.current.previous, 'Page précédente',
+      link = link_to_page(pages, pages.current.previous, _('Previous page'),
                           image_previous_page, ajax_call)
       result << "<td>#{link}</td>"
     end
     if pages.current.last_item > 0
-      result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item} "
-      result << "à #{pages.current.last_item}&nbsp; sur #{pages.last.last_item}&nbsp;</small></td>"
+      result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item}"
+      result << _(' to ') << pages.current.last_item.to_s
+      result << _('&nbsp; on ') << pages.last.last_item.to_s << '&nbsp;</small></td>'
     end
     if pages.current.next
-      link = link_to_page(pages, pages.current.next, 'Page suivante',
+      link = link_to_page(pages, pages.current.next, _('Next page'),
                           image_next_page, ajax_call)
       result << "<td>#{link}</td>"
-      link = link_to_page(pages, pages.last, 'Dernière page',
+      link = link_to_page(pages, pages.last, _('Last page'),
                           image_last_page,ajax_call)
       result << "<td>#{link}</td>"
     end
