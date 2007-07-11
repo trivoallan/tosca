@@ -30,30 +30,29 @@ class AppelsController < ApplicationController
     render :action => 'list'
   end
 
+  def create
+    @appel = Appel.new(params[:appel])
+    if @appel.save
+      flash[:notice] = 'l\'Appel a été créé.'
+      if @appel.demande
+        redirect_to :action => 'comment', :controller => 'demandes', :id => @appel.demande
+      else
+        redirect_to :action => 'index'
+      end
+    else
+      _form and render :action => 'new'
+    end
+  end
+
   def show
     @appel = Appel.find(params[:id])
   end
 
   def new
-    case request.method
-    when :get
-      @appel = Appel.new
-      @appel.ingenieur = @ingenieur
-      @appel.demande_id = params[:id]
-      _form
-    when :post
-      @appel = Appel.new(params[:appel])
-      if @appel.save
-        flash[:notice] = 'l\'Appel a été créé.'
-        if @appel.demande
-          redirect_to :action => 'comment', :controller => 'demandes', :id => @appel.demande
-        else
-          redirect_to :action => 'index'
-        end
-      else
-        _form and render :action => 'new'
-      end
-    end
+    @appel = Appel.new
+    @appel.ingenieur = @ingenieur
+    @appel.demande_id = params[:id]
+    _form
   end
 
   def edit
