@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-require 'fastercsv'
+#require 'fastercsv'
 # generate CSV files for download
 # send formatted output directly to the HTTP response
 # source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
@@ -33,6 +33,8 @@ class ExportController < ApplicationController
       [_('id'), _('type'), _('software'), _('version'), _('state'),
         _('summary'), _('reported'), _('closed'), _('delay') ]
     
+    #to keep the custom filters before the export :
+    flash[:conditions] = flash[:conditions]
     generate_report(report, type, {}) 
   end
   
@@ -60,6 +62,7 @@ class ExportController < ApplicationController
       [_('id'), _('login'), _('name'), _('e-mail'), _('phone'),
         _('(customer)'), _('roles') ]
 
+    flash[:conditions] = flash[:conditions]
     generate_report(report, type, {})    
   end
   
@@ -81,6 +84,8 @@ class ExportController < ApplicationController
     report.rename_columns columns,
       [_('Contract'), _('Person in charge'), _('Customer'), _('Call'), 
         _('End of the call') ]
+
+    flash[:conditions] = flash[:conditions]
     generate_report(report, type, {})    
   end
   
@@ -121,6 +126,8 @@ class ExportController < ApplicationController
         _('version') , _('date de soumission') , _('plateform'), _('update'),
         _('summary'), _('status'), _('type') ]
 
+    #to keep the custom filters before the export :
+    flash[:conditions] = flash[:conditions]
     generate_report(report, type, options_generate)
     
   end

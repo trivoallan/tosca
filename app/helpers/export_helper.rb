@@ -2,14 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 module ExportHelper
-  # lien vers l'export de données
-  # options :
-  #  :data permet de spécifier un autre nom de controller (contexte par défaut)
-  def link_to_export(options={})
-    cname = ( options[:data] ? options[:data] : controller.controller_name)
-    link_to "Exporter les #{cname}", export_url(:action => cname)
-  end
-
+  # créate a link with the images coresponding to the type mime of the export
   def export_images(url)
     style = {:class => 'nobackground'} 
     return link_to image_ods, url, style 
