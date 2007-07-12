@@ -1,4 +1,4 @@
-<% options = { :update => 'content', :url => appels_url,
+<% options = { :update => 'content', :url => appels_path, :method => :get
   :before => "Element.show('spinner')",:success => "Element.hide('spinner')" }
 %>
 
@@ -11,9 +11,8 @@
 <div class="menu_title" onclick="Element.toggle('menu_action')">
 > <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
- <li><%= link_to _('Add a call'), new_appel_url %></li>
- <li><%= link_to _('Export calls'), appels_export_url %></li>
- <li>Exporter en : <br /><%= appels_export_images %></li>
+ <li><%= link_to _('Add a call'), new_appel_path %></li>
+ <li><%= calls_export_link %></li>
 </ul>
 
 
@@ -29,7 +28,7 @@
 </ul>
 
 
-<% submit_function = remote_function(PagesHelper::AJAX_OPTIONS.dup.update(:url => appels_url)) %>
+<% submit_function = remote_function(PagesHelper::AJAX_OPTIONS.dup.update(:url => appels_path)) %>
 <div class="menu_title" onclick="Element.toggle('menu_periode')">
 > <%=_('Period')%></div>
 <ul class="menu" id="menu_periode">

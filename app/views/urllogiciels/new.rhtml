@@ -1,8 +1,8 @@
-<h1>Ajouter une urllogiciel</h1>
+<h1><%=_('Add an url for a software')%></h1>
 
-<%= start_form_tag :action => 'create' %>
+<% form_tag urllogiciels_path %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Ajouter" %>
-<%= end_form_tag %>
+  <%= submit_tag _('Validate') %>
+<% end %>
 
-<%= link_to 'Liste des url\'s', :action => 'list' %>
+<%= link_to_back %>

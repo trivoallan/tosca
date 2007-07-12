@@ -1,16 +1,14 @@
-<h1>Liste des liens concernant les logiciels</h1>
+<h1><%=_('List of softwares\' links')%></h1>
 
-<%= show_pages_links(@urllogiciel_pages, 'une nouvelle  url') %>
+<%= show_pages_links(@urllogiciel_pages, 'a new url') %>
 
-<% titres = ['Logiciel','Url','Type']%>
+<% titres = [_('Software'),_('Url'),_('Kind')]%>
 <%= show_table(@urllogiciels, Urllogiciel, titres) { |u|
   result = ''
   result << "<td>#{u.logiciel.nom}</td>"
   result << "<td>#{u.valeur}</td>"
   result << "<td>#{u.typeurl.nom}</td>"
-  result << "#{link_to_actions_table u}"
+  result << link_to_actions_table u
 }%>
 
-<%= show_pages_links(@urllogiciel_pages, 'une nouvelle url') %>
-
-
+<%= show_pages_links(@urllogiciel_pages, 'a new url') %>

@@ -5,13 +5,9 @@ class UrllogicielsController < ApplicationController
   helper :logiciels
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
-    @urllogiciel_pages, @urllogiciels = paginate :urllogiciels, :per_page => 10,
-    :include => [:logiciel,:typeurl], :order => 'urllogiciels.logiciel_id'
+    @urllogiciel_pages, @urllogiciels = paginate :urllogiciels, 
+     :per_page => 10, :include => [:logiciel,:typeurl], 
+     :order => 'urllogiciels.logiciel_id'
   end
 
   def show
@@ -26,9 +22,9 @@ class UrllogicielsController < ApplicationController
   def create
     @urllogiciel = Urllogiciel.new(params[:urllogiciel])
     if @urllogiciel.save
-      flash[:notice] = 'l\'url ' + @urllogiciel.valeur + ' a bien été crée.'
-      redirect_to :controller => 'logiciels' , :action => 'show', :id => 
-        @urllogiciel.logiciel
+      flash[:notice] = _('The url of "%s" has been created successfully.') %
+        @urllogiciel.valeur
+      redirect_to logiciel_path(@urllogiciel.logiciel)
     else
       render :action => 'new'
     end
@@ -52,7 +48,7 @@ class UrllogicielsController < ApplicationController
 
   def destroy
     Urllogiciel.find(params[:id]).destroy
-    redirect_to urllogiciels_url
+    redirect_to urllogiciels_path
   end
 
 private

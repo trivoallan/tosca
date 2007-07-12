@@ -17,7 +17,7 @@ Actions </div>
 <ul class="menu" id="menu_actions">
  <li><%= link_to(_('Submit a contribution'), new_contribution_path)%></li>
  <li><%= link_to(_('Selection interface'), select_contributions_path)%></li>
- <li><%= link_to(_('Export contributions'), contributions_export_path)%></li>
+ <li><%= contributions_export_link %></li>
  <%= "<li>#{link_to 'Interface d\'administration', :action => 'admin'}</li>" if controller.action_name != 'admin' %>
 </ul>
 
