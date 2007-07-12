@@ -310,9 +310,9 @@ class DemandesController < ApplicationController
   end
   def update_contribution( demand_id , contribution_id )
     if contribution_id == nil
-      flash_text = _('La contribution est déliée')
+      flash_text = _('The demand has now no contribution')
     else
-      flash_text = _('La contribution est maintenant liée')
+      flash_text = _('This contribution is now linked')
     end
     @demande = Demande.find(demand_id) unless @demande
     @demande.update_attributes!(:contribution_id => contribution_id)

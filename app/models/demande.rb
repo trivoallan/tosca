@@ -25,11 +25,17 @@ class Demande < ActiveRecord::Base
 
   #versioning, qui s'occupe de la table demandes_versions
   acts_as_versioned
+  acts_as_reportable
 
   # Corrigées, Cloturées et Annulées
   # MLO : on met un '> 6' à la place du 'IN' ?
   TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
   EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
+
+  def demande_resume
+    demande.resume
+  end
+  
 
   # WARNING : you cannot use this scope with the optimisation hidden
   # in the model of Demande. You must then use get_scope_without_include

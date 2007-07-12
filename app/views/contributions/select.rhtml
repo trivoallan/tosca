@@ -8,4 +8,5 @@
 <% #link_to_new('contribution') %><br/>
 <%= link_to _('See all contributions'), list_contribution_url(:id => 'all') %><br/>
 <%= link_to _('Export all contributions'), contributions_export_url %><br/>
+<p>Exporter les contributions en ods : <%= contributions_export_images %></p>
 <%= link_to _('Access to interface of administration'), admin_contributions_url %>

@@ -60,6 +60,8 @@ CGI::Session.expire_after 1.month
 require 'utils'
 require 'config'
 require 'gettext/rails'
+require 'ruport'
+require 'ruport/util'
 
 #TimeZone française, nécessaire sur ces barbus trolleurs de debian
 ENV['TZ'] = 'Europe/Paris'

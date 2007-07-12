@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Contrat < ActiveRecord::Base
+  acts_as_reportable
   has_many :paquets, :dependent => :destroy
   belongs_to :client
   has_and_belongs_to_many :engagements, :order =>

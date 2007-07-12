@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Logiciel < ActiveRecord::Base
+  acts_as_reportable
   has_many :contributions
   has_and_belongs_to_many :competences
   has_many :demandes

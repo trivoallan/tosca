@@ -169,6 +169,30 @@ module ImagesHelper
     @@image_print ||= image_tag('imprimer.png', image_options(desc, '22x22'))
   end
 
+  # type mime icons
+
+  @@image_txt = nil
+  def image_txt
+    @@image_txt ||= image_tag('icons/mime-type/txt.png')
+  end
+
+  @@image_pdf = nil
+  def image_pdf
+    @@image_pdf ||= image_tag('icons/mime-type/pdf.png')
+  end
+
+  @@image_ods = nil
+  def image_ods
+    @@image_ods ||= image_tag('icons/mime-type/ods.png')
+  end
+  
+  @@image_csv = nil
+  def image_csv
+    @@image_csv ||= image_tag('icons/mime-type/csv.png')
+  end
+  
+  
+  
   # Other
 
   @@spinner = nil

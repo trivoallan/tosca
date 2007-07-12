@@ -18,7 +18,7 @@ Actions </div>
 <ul class="menu" id="menu_actions">
  <li><%= link_to 'Déposer une demande', new_demande_path %></li>
  <li><%= link_to 'Rapport d\'activité', general_reporting_path %></li>
- <li><%= link_to _('Export requests'), demandes_export_path %></li>
+ <li>Exporter en : <br /> <%= demandes_export_images %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>

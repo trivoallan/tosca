@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Contribution < ActiveRecord::Base
+
+  acts_as_reportable
   has_many :demandes
   has_many :urlreversements
 
@@ -125,6 +127,31 @@ class Contribution < ActiveRecord::Base
     return false unless etatreversement
     etatreversement_id == 4 
   end
+
+  # For Ruport :
+  def pnom(object)
+    (object ? object.nom : '-')
+  end
+  def pnom_typecontribution
+    pnom(typecontribution)
+  end
+  def pnom_logiciel
+    pnom(logiciel)
+  end
+  def pnom_etatreversement
+    pnom(etatreversement)
+  end
+  def clos_enhance
+    clos ? cloture_le_formatted : ''
+  end
+  def delai_in_french_words
+    Lstm.time_in_french_words(delai)
+  end
+  def version_to_s
+    version.to_s
+  end
+  
+  
 
 private
   def find_logiciels

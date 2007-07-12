@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Socle < ActiveRecord::Base
+  acts_as_reportable
   has_one :machine, :dependent => :destroy
   has_many :binaires
   has_many :paquets, :through => :binaires, :group => 'paquets.id' 

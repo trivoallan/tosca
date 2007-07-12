@@ -2,6 +2,7 @@
 # an Engineer. There's also a link to the contract, because those phones
 # calls can be in the 24/24 contract.
 class Appel < ActiveRecord::Base
+  acts_as_reportable
   belongs_to :ingenieur
   belongs_to :beneficiaire
   belongs_to :demande
@@ -43,4 +44,15 @@ class Appel < ActiveRecord::Base
     fin - debut
   end
 
+  # For Ruport :
+  def contrat_nom
+    contrat.nom
+  end
+  def ingenieur_nom
+    ingenieur.nom
+  end
+  def beneficiaire_nom
+    beneficiaire ? beneficiaire.nom : '-'
+  end
+  
 end

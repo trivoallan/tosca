@@ -152,7 +152,7 @@ module DemandesHelper
   end
     
   def link_to_delete_contribution( demand_id )
-    link_to _('Délier la contribution') ,:action => 'delete_contribution',
+    link_to _('Unlink the contribution') ,:action => 'delete_contribution',
       :id=> demand_id 
   end
   

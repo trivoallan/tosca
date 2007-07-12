@@ -8,65 +8,97 @@ require 'fastercsv'
 # source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
 class ExportController < ApplicationController
 
-  # return the contents of identifiants in a table in CSV format
-  def contributions
+  # return the contents of identifiants in a table in ODS format
+  # with Ruport :
+  # We can export to other formats : 
+  # compute_contributions(:pdf) export to pdf
+  def contributions_ods
+    compute_contributions(:ods)
+  end
+  def compute_contributions(type)
+    methods = ['pnom_typecontribution', 'pnom_logiciel', 'version_to_s',
+      'pnom_etatreversement', 'delai_in_french_words', 'clos_enhance', 
+      'reverse_le_formatted']
     options = { :order => 'contributions.reverse_le ASC', 
       :include => [:logiciel,:etatreversement,:demandes], 
-      :conditions => flash[:conditions] }
+      :conditions => flash[:conditions],
+      :methods => methods }
 
-    contributions = Contribution.find(:all, options)
-    stream_csv do |csv|
-      csv << %w(id type logiciel version etat résumé signalé cloturé délai)
-      contributions.each do |c|
-        csv << [ c.id, pnom(c.typecontribution), pnom(c.logiciel), 
-                 "'"+c.version.to_s, pnom(c.etatreversement), c.synthese,
-                 c.reverse_le_formatted, (c.clos ? c.cloture_le_formatted : ''), 
-                 Lstm.time_in_french_words(c.delai)
-               ]
-      end
-    end
+    report = Contribution.report_table(:all, options)
+    columns= ['id','pnom_typecontribution', 'pnom_logiciel', 
+      'version_to_s','pnom_etatreversement', 'synthese',
+      'reverse_le_formatted','clos_enhance','delai_in_french_words']
+    report.reorder columns
+    report.rename_columns columns,
+      [_('id'), _('type'), _('software'), _('version'), _('state'),
+        _('summary'), _('reported'), _('closed'), _('delay') ]
+    
+    generate_report(report, type, {}) 
   end
+  
 
-  # return the contents of identifiants in a table in CSV format
-  def identifiants
+  # return the contents of identifiants in a table in ODS format
+  # with Ruport
+  def identifiants_ods
+    compute_identifiants( :ods)
+  end
+  def identifiants_csv
+    compute_identifiants( :csv)
+  end
+  def compute_identifiants(type)
     options = { :order => 'identifiants.login', :include => 
-      [:beneficiaire,:ingenieur,:roles], :conditions => flash[:conditions] }
+      [:beneficiaire,:ingenieur,:roles], :conditions => flash[:conditions],
+      :methods => ['beneficiaire_client_nom', 'roles_join']
+    }
+    
+    report = Identifiant.report_table(:all, options)
+    columns = ['id','login','nom','email','telephone',
+      'beneficiaire_client_nom', 'roles_join']
 
-    identifiants = Identifiant.find(:all, options)
-    stream_csv do |csv|
-      csv << ["id", "login", "nom", "e-mail", "telephone", 
-              "(client)", 
-              "roles" ]
-      identifiants.each do |i|
-        csv << [ i.id, i.login, i.nom, i.email, i.telephone,
-                (i.beneficiaire.client.nom if i.beneficiaire), 
-                i.roles.join(', ') ].compact
-      end
-    end
+    report.reorder columns
+    report.rename_columns columns,
+      [_('id'), _('login'), _('name'), _('e-mail'), _('phone'),
+        _('(customer)'), _('roles') ]
+
+    generate_report(report, type, {})    
   end
+  
 
-  def appels
+  # with Ruport:
+  def appels_ods
+    compute_appels(:ods)
+  end
+  def compute_appels(type)
+    columns= ['contrat_nom', 'ingenieur_nom', 'beneficiaire_nom']
     options = { :order => 'appels.debut', :include => 
       [:beneficiaire,:ingenieur,:contrat,:demande], 
-      :conditions => flash[:conditions] }
-    appels = Appel.find(:all, options)
-    stream_csv do |csv|
-      csv << ['Contrat','Responsable','Bénéficiaire','Appel','Fin de l\'appel' ]
-      appels.each { |a|
-        csv << [ a.contrat.nom, a.ingenieur.nom, 
-                 (a.beneficiaire ? a.beneficiaire.nom : '-'),
-                 a.debut, a.fin ]
-      }
-    end
+      :conditions => flash[:conditions],
+      :methods => columns }
+    report = Appel.report_table(:all, options)
+    
+    columns.push( 'debut','fin')
+    report.reorder columns
+    report.rename_columns columns,
+      [_('Contract'), _('Person in charge'), _('Customer'), _('Call'), 
+        _('End of the call') ]
+    generate_report(report, type, {})    
   end
-
-
-
-
-  # return the contents of a demande in a table in CSV format
-  def demandes
-    options = { :order => 'updated_on DESC', :conditions => flash[:conditions],
-      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
+  
+  # return the contents of a demande in a table in  ods
+  def demandes_ods
+    compute_demandes(:ods, {})
+  end
+  def compute_demandes(type, options_generate)
+    columns = ['id','logiciels_nom', 'beneficiaires_nom','clients_nom', 
+      'ingenieurs_nom','severites_nom','version','created_on_formatted', 
+      'socle', 'updated_on_formatted', 'resume', 'statuts_nom',
+       'typedemandes_nom'
+    ]
+    options= { :order => 'updated_on DESC', :conditions => flash[:conditions],
+      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST, 
+      :methods => columns
+     }
+     report = nil
     # DIRTY HACK : WARNING
     # !!!! ALERT !!!! recopied from demandes/list
     # We need this hack for avoiding 7 includes
@@ -78,81 +110,62 @@ class ExportController < ApplicationController
     if @ingenieur and not @ingenieur.expert_ossa
       escope = Demande.get_scope_without_include(@ingenieur.client_ids)
     end
-    demandess = nil
+    report = nil
     Demande.with_exclusive_scope(escope) do
-      demandess = Demande.find(:all, options)
+      report = Demande.report_table(:all, options)
     end
-    stream_csv do |csv|
-      csv << ['id', 
-              'logiciel', 
-              'bénéficiaire', 
-              'client', 
-              'responsable', 
-              'sévérité', 
-              'version', 
-              'date de soumission', 
-              'plate-forme', 
-              'mis-à-jour', 
-              'résumé', 
-              'statut', 
-              'type' ]
-      demandess.each do |d|
-        paquets = d.paquets
-        if paquets and paquets.size > 0
-          if paquets.size == 1
-            version = "'#{paquets.first.version}"
-          else
-            version = paquets.collect {|p| p.version}.join("\n")
-          end
-        else
-          version = '-'
-        end
+    report.reorder columns 
+    report.rename_columns columns, 
+      [_('id'), _('software'), _('beneficiaire'), ('Customer') ,
+        _('Person in charge') , _('severity'),
+        _('version') , _('date de soumission') , _('plateform'), _('update'),
+        _('summary'), _('status'), _('type') ]
 
-        csv << [d.id, 
-                d.logiciels_nom, 
-                (d.beneficiaires_nom), 
-                (d.clients_nom), 
-                (d.ingenieurs_nom), 
-                d.severites_nom, 
-                version,
-                d.created_on_formatted, 
-                pnom(d.socle), 
-                d.updated_on_formatted, 
-                d.resume, 
-                d.statuts_nom,              
-                d.typedemandes_nom ]
-      end
-    end 
+    generate_report(report, type, options_generate)
+    
   end
-
-  private
   
-  def stream_csv
+  # Generate and upload a report to the user with a predefined name.
+  #
+  # Usage : generate_report(report, :csv) with report a Ruport Data Table
+  def generate_report(report, type, options )
+    case type
+    when :text
+      file_extension = '.txt'
+      content_type = 'text/plain'
+    when :csv
+      file_extension ='.csv'
+      content_type = 'text/csv'
+    when :pdf
+      file_extension = '.pdf'
+      content_type = 'application/pdf'
+    when :html
+      file_extension = '.html'
+      content_type = 'text/html'
+    when :ods
+      file_extension = '.ods'
+      content_type = 'application/vnd.oasis.opendocument.spreadsheet'
+    end
     prefix = ( @beneficiaire ? @beneficiaire.client.nom : 'OSSA' )
     suffix = Time.now.strftime('%d_%m_%Y')
-    filename = [ prefix, params[:action], suffix].join('_') + '.csv'
+    filename = [ prefix, params[:action], suffix].join('_') + file_extension
 
      #this is required if you want this to work with IE        
      if request.env['HTTP_USER_AGENT'] =~ /msie/i
        headers['Pragma'] = 'public'
-       headers['Content-type'] = 'text/plain' 
+       headers['Content-type'] = content_type
        headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\"" 
        headers['Expires'] = "0" 
      else
-       headers["Content-type"] ||= 'text/csv'
+       headers["Content-type"] ||= content_type
        headers['Pragma'] = 'public'
        headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" 
      end
-    # output = ''
-    # data = FasterCSV.new(stream_csv, :row_sep => "\r\n", :col_sep => ";") 
-    # send_data data, :type => 'text/csv', :filename => filename
-    data = Proc.new { |response, output|
-      csv = FasterCSV.new(output, :row_sep => "\r\n", :col_sep => ";") 
-      yield(csv)
-    }
-    render(:text => data, :layout => false)
+    report_out = report.as(type, options)
+    render(:text =>report_out , :layout => false)
   end
+  
 
   # TODO : le mettre dans les utils ?
   def pnom(object)

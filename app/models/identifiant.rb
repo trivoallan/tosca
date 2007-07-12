@@ -4,6 +4,7 @@
 require 'digest/sha1'
 
 class Identifiant < ActiveRecord::Base
+  acts_as_reportable
   belongs_to :image 
   has_many :piecejointes
   has_and_belongs_to_many :roles
@@ -103,4 +104,11 @@ class Identifiant < ActiveRecord::Base
     Digest::SHA1.hexdigest("linagora--#{pass}--")
   end
 
+  # For Ruport :
+  def beneficiaire_client_nom
+    beneficiaire.client.nom if beneficiaire
+  end
+  def roles_join
+    roles.join(', ')
+  end
 end

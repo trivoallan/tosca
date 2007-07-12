@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-11 19:18+0200\n"
+"POT-Creation-Date: 2007-07-12 14:19+0200\n"
 "PO-Revision-Date: 2007-07-11 19:20+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -33,13 +33,126 @@ msgid "Merci d'avoir pris le temps de nous aider à "
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:313
-#, fuzzy
-msgid "La contribution est déliée"
-msgstr "Créé le"
+msgid "The demand has now no contribution"
+msgstr "La contribution est maintenant déliée"
 
 #: app/controllers/demandes_controller.rb:315
-msgid "La contribution est maintenant liée"
-msgstr ""
+msgid "This contribution is now linked"
+msgstr "La contribution est liée"
+
+#: app/controllers/export_controller.rb:33
+#: app/controllers/export_controller.rb:60
+#: app/controllers/export_controller.rb:119
+msgid "id"
+msgstr "id"
+
+#: app/controllers/export_controller.rb:33
+#: app/controllers/export_controller.rb:122
+msgid "type"
+msgstr "type"
+
+#: app/controllers/export_controller.rb:33
+#: app/controllers/export_controller.rb:119
+msgid "software"
+msgstr "Logiciel"
+
+#: app/controllers/export_controller.rb:33
+#: app/controllers/export_controller.rb:121
+msgid "version"
+msgstr "Version"
+
+#: app/controllers/export_controller.rb:33
+msgid "state"
+msgstr "Etat"
+
+#: app/controllers/export_controller.rb:34
+#: app/controllers/export_controller.rb:122
+msgid "summary"
+msgstr "Résumé"
+
+#: app/controllers/export_controller.rb:34
+msgid "reported"
+msgstr "Signalé"
+
+#: app/controllers/export_controller.rb:34
+msgid "closed"
+msgstr "Clôturé le"
+
+#: app/controllers/export_controller.rb:34
+msgid "delay"
+msgstr "Délai"
+
+#: app/controllers/export_controller.rb:60
+msgid "login"
+msgstr "Login"
+
+#: app/controllers/export_controller.rb:60
+msgid "name"
+msgstr "Nom"
+
+#: app/controllers/export_controller.rb:60
+msgid "e-mail"
+msgstr "e-mail"
+
+#: app/controllers/export_controller.rb:60
+msgid "phone"
+msgstr "téléphone"
+
+#: app/controllers/export_controller.rb:61
+msgid "(customer)"
+msgstr "(client)"
+
+#: app/controllers/export_controller.rb:61
+msgid "roles"
+msgstr "rôle"
+
+#: app/controllers/export_controller.rb:82
+#: app/views/appels/_calls_info.rhtml:27 app/views/appels/_calls_list.rhtml:6
+#: app/views/appels/_form.rhtml:6
+msgid "Contract"
+msgstr "Contrat"
+
+#: app/controllers/export_controller.rb:82
+#: app/controllers/export_controller.rb:120
+msgid "Person in charge"
+msgstr "Responsable"
+
+#: app/controllers/export_controller.rb:82
+msgid "Customer"
+msgstr "Client"
+
+#: app/controllers/export_controller.rb:82
+#: app/views/appels/_calls_list.rhtml:6
+msgid "Call"
+msgstr "Appel"
+
+#: app/controllers/export_controller.rb:83
+msgid "End of the call"
+msgstr "Fin de l'appel"
+
+#: app/controllers/export_controller.rb:119 app/models/beneficiaire.rb:-
+msgid "beneficiaire"
+msgstr "bénéficiaire"
+
+#: app/controllers/export_controller.rb:120
+msgid "severity"
+msgstr "Sévérité"
+
+#: app/controllers/export_controller.rb:121
+msgid "date de soumission"
+msgstr "Date de soumission"
+
+#: app/controllers/export_controller.rb:121
+msgid "plateform"
+msgstr "plateforme"
+
+#: app/controllers/export_controller.rb:121
+msgid "update"
+msgstr "Mis à jour"
+
+#: app/controllers/export_controller.rb:122
+msgid "status"
+msgstr "Statut"
 
 #: app/controllers/logiciels_controller.rb:18
 msgid "List of softwares"
@@ -49,15 +162,15 @@ msgstr "Liste des logiciels"
 msgid "List of your supported softwares"
 msgstr "Liste de vos logiciels supportés"
 
-#: app/controllers/logiciels_controller.rb:89
+#: app/controllers/logiciels_controller.rb:85
 msgid "The software %s has been created succesfully."
 msgstr "Le logiciel %s a bien été créé."
 
-#: app/controllers/logiciels_controller.rb:104
+#: app/controllers/logiciels_controller.rb:100
 msgid "The software %s been updated successfully."
 msgstr "Le logiciel %s a bien été mis à jour."
 
-#: app/controllers/logiciels_controller.rb:114
+#: app/controllers/logiciels_controller.rb:110
 msgid "The software %s has been successfully deleted."
 msgstr "Le logiciel %s a bien été effacé."
 
@@ -72,6 +185,42 @@ msgstr "Cette url a bien été créé"
 #: app/controllers/urlreversements_controller.rb:40
 msgid "Urlreversement was successfully updated."
 msgstr "Cette url a bien été mis à jour"
+
+#: app/helpers/images_helper.rb:72
+msgid "Page d'accueil"
+msgstr ""
+
+#: app/helpers/images_helper.rb:83
+msgid "Première page"
+msgstr ""
+
+#: app/helpers/images_helper.rb:89
+msgid "Page précédente"
+msgstr ""
+
+#: app/helpers/images_helper.rb:96
+msgid "Page suivante"
+msgstr ""
+
+#: app/helpers/images_helper.rb:102
+msgid "Dernière page"
+msgstr ""
+
+#: app/helpers/images_helper.rb:108
+msgid "Fichier"
+msgstr ""
+
+#: app/helpers/images_helper.rb:121
+msgid "Rendre public"
+msgstr ""
+
+#: app/helpers/images_helper.rb:127
+msgid "Rendre privé"
+msgstr ""
+
+#: app/helpers/images_helper.rb:168
+msgid "Imprimer"
+msgstr ""
 
 #: app/helpers/clients_helper.rb:20
 msgid "Mon&nbsp;Offre"
@@ -98,9 +247,8 @@ msgid "nouvelle demande"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:155
-#, fuzzy
-msgid "Délier la contribution"
-msgstr "Créé le"
+msgid "Unlink the contribution"
+msgstr "Délier cette contribution"
 
 #: app/helpers/demandes_helper.rb:189
 msgid "demandes actives"
@@ -124,6 +272,10 @@ msgstr ""
 
 #: app/helpers/demandes_helper.rb:202
 msgid "affiche l'intégralité des demandes"
+msgstr ""
+
+#: app/helpers/groupes_helper.rb:8
+msgid "classification"
 msgstr ""
 
 #: app/helpers/links_helper.rb:50
@@ -180,45 +332,21 @@ msgstr ""
 msgid "Mon&nbsp;Compte"
 msgstr ""
 
-#: app/helpers/groupes_helper.rb:8
-msgid "classification"
-msgstr ""
+#: app/helpers/logiciels_helper.rb:28
+msgid "My supported softwares"
+msgstr "Mes logiciels supportés"
 
-#: app/helpers/images_helper.rb:72
-msgid "Page d'accueil"
-msgstr ""
+#: app/helpers/logiciels_helper.rb:29
+msgid "Display only software supported in your contract"
+msgstr "Affiche uniquement les logiciels de votre contrat"
 
-#: app/helpers/images_helper.rb:83
-msgid "Première page"
-msgstr ""
+#: app/helpers/logiciels_helper.rb:32
+msgid "All softwares"
+msgstr "Tous les logiciels"
 
-#: app/helpers/images_helper.rb:89
-msgid "Page précédente"
-msgstr ""
-
-#: app/helpers/images_helper.rb:96
-msgid "Page suivante"
-msgstr ""
-
-#: app/helpers/images_helper.rb:102
-msgid "Dernière page"
-msgstr ""
-
-#: app/helpers/images_helper.rb:108
-msgid "Fichier"
-msgstr ""
-
-#: app/helpers/images_helper.rb:121
-msgid "Rendre public"
-msgstr ""
-
-#: app/helpers/images_helper.rb:127
-msgid "Rendre privé"
-msgstr ""
-
-#: app/helpers/images_helper.rb:168
-msgid "Imprimer"
-msgstr ""
+#: app/helpers/logiciels_helper.rb:33
+msgid "Display all softwares"
+msgstr "Affiche les logiciels"
 
 #: app/helpers/pages_helper.rb:30
 msgid "Edit"
@@ -256,67 +384,38 @@ msgstr "Dernière page"
 msgid "un paquet"
 msgstr ""
 
-#: app/helpers/logiciels_helper.rb:28
-msgid "My supported softwares"
-msgstr "Mes logiciels supportés"
+#: app/models/appel.rb:-
+msgid "appel"
+msgstr "appel"
 
-#: app/helpers/logiciels_helper.rb:29
-msgid "Display only software supported in your contract"
-msgstr "Affiche uniquement les logiciels de votre contrat"
-
-#: app/helpers/logiciels_helper.rb:32
-msgid "All softwares"
-msgstr "Tous les logiciels"
-
-#: app/helpers/logiciels_helper.rb:33
-msgid "Display all softwares"
-msgstr "Affiche les logiciels"
-
-#: app/models/new.rb:-
-msgid "news"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "new"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Subject"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Source"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Body"
-msgstr ""
-
-#: app/models/new.rb:-
-#, fuzzy
-msgid "New|Created on"
-msgstr "Créé le"
-
-#: app/models/new.rb:-
-#, fuzzy
-msgid "New|Updated on"
-msgstr "Mis à jour le"
+#: app/models/appel.rb:-
+msgid "Appel|Beneficiaire"
+msgstr "Bénéficiaire"
 
 # Ingénieur
-#: app/models/new.rb:-
-#, fuzzy
-msgid "New|Ingenieur"
+#: app/models/appel.rb:-
+msgid "Appel|Ingenieur"
 msgstr "Ingénieur"
 
-#: app/models/new.rb:-
-msgid "New|Client"
-msgstr ""
+#: app/models/appel.rb:-
+msgid "Appel|Debut"
+msgstr "Début"
 
-#: app/models/new.rb:-
-msgid "New|Logiciel"
-msgstr ""
+#: app/models/appel.rb:-
+#, fuzzy
+msgid "Appel|Fin"
+msgstr "Contrat"
 
-#: app/models/appel.rb:12
+#: app/models/appel.rb:-
+msgid "Appel|Contrat"
+msgstr "Contrat"
+
+#: app/models/appel.rb:-
+#, fuzzy
+msgid "Appel|Demande"
+msgstr "Résumé"
+
+#: app/models/appel.rb:13
 msgid "Le début de l'appel doit être inférieure à sa fin."
 msgstr ""
 
@@ -327,10 +426,6 @@ msgstr ""
 #: app/models/arch.rb:-
 msgid "Arch|Nom"
 msgstr ""
-
-#: app/models/beneficiaire.rb:-
-msgid "beneficiaire"
-msgstr "bénéficiaire"
 
 #: app/models/beneficiaire.rb:-
 msgid "Beneficiaire|Client"
@@ -360,6 +455,45 @@ msgstr ""
 msgid "Beneficiaire|Domaine"
 msgstr ""
 
+#: app/models/binaire.rb:-
+#, fuzzy
+msgid "binaire"
+msgstr "bénéficiaire"
+
+#: app/models/binaire.rb:-
+#, fuzzy
+msgid "Binaire|Paquet"
+msgstr "Privé"
+
+#: app/models/binaire.rb:-
+#, fuzzy
+msgid "Binaire|Arch"
+msgstr "Privé"
+
+#: app/models/binaire.rb:-
+#, fuzzy
+msgid "Binaire|Nom"
+msgstr "bénéficiaire"
+
+#: app/models/binaire.rb:-
+msgid "Binaire|Configuration"
+msgstr ""
+
+#: app/models/binaire.rb:-
+#, fuzzy
+msgid "Binaire|Archive"
+msgstr "Privé"
+
+#: app/models/binaire.rb:-
+#, fuzzy
+msgid "Binaire|Socle"
+msgstr "Privé"
+
+#: app/models/binaire.rb:-
+#, fuzzy
+msgid "Binaire|Fichierbinaires count"
+msgstr "Bénéficiaire"
+
 #: app/models/changelog.rb:-
 msgid "changelog"
 msgstr ""
@@ -378,6 +512,157 @@ msgstr ""
 
 #: app/models/changelog.rb:-
 msgid "Changelog|Text modification"
+msgstr ""
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "client"
+msgstr "Client"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Nom"
+msgstr "Client"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Description"
+msgstr "Description"
+
+#: app/models/client.rb:-
+msgid "Client|Mailingliste"
+msgstr ""
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Adresse"
+msgstr "Client"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Image"
+msgstr "Client"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Support"
+msgstr "Client"
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr ""
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Beneficiaires count"
+msgstr "Bénéficiaire"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "contrat"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Client"
+msgstr "Clotûre"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Ouverture"
+msgstr "Clotûre"
+
+#: app/models/client.rb:-
+msgid "Contrat|Cloture"
+msgstr "Clotûre"
+
+#: app/models/client.rb:-
+msgid "Contrat|Paquets count"
+msgstr ""
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Astreinte"
+msgstr "Clotûre"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Socle"
+msgstr "Clotûre"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "paquet"
+msgstr "Demande"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Logiciel"
+msgstr "Résumé"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Nom"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Version"
+msgstr "Version"
+
+#: app/models/client.rb:-
+msgid "Paquet|Release"
+msgstr ""
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Conteneur"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Paquet"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Distributeur"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Mainteneur"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Contrat"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+msgid "Paquet|Taille"
+msgstr ""
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Fournisseur"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Paquet|Configuration"
+msgstr "Contrat"
+
+#: app/models/client.rb:-
+msgid "Paquet|Fichiers count"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Changelogs count"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Paquet|Active"
 msgstr ""
 
 #: app/models/commentaire.rb:-
@@ -440,7 +725,7 @@ msgstr ""
 msgid "Conteneur|Nom"
 msgstr ""
 
-#: app/models/contrat.rb:69
+#: app/models/contrat.rb:70
 msgid "unknown client"
 msgstr ""
 
@@ -510,6 +795,83 @@ msgstr ""
 msgid "Contribution|Synthese"
 msgstr ""
 
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "demande"
+msgstr "Résumé"
+
+#: app/models/demande.rb:-
+msgid "Demande|Beneficiaire"
+msgstr "Bénéficiaire"
+
+#: app/models/demande.rb:-
+msgid "Demande|Ingenieur"
+msgstr "Ingénieur"
+
+#: app/models/demande.rb:-
+msgid "Demande|Resume"
+msgstr "Résumé"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Description"
+msgstr "Description"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Statut"
+msgstr "Résumé"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Severite"
+msgstr "Bénéficiaire"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Logiciel"
+msgstr "Bénéficiaire"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Reproductible"
+msgstr "Résumé"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Created on"
+msgstr "Créé le"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Updated on"
+msgstr "Mis à jour le"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Typedemande"
+msgstr "Résumé"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Version"
+msgstr "Résumé"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Contribution"
+msgstr "Contributions"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Socle"
+msgstr "Résumé"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Mail cc"
+msgstr "Résumé"
+
 #: app/models/dependance.rb:-
 msgid "dependance"
 msgstr ""
@@ -538,6 +900,54 @@ msgstr ""
 msgid "Distributeur|Nom"
 msgstr ""
 
+#: app/models/document.rb:-
+msgid "document"
+msgstr ""
+
+#: app/models/document.rb:-
+#, fuzzy
+msgid "Document|Identifiant"
+msgstr "Client"
+
+#: app/models/document.rb:-
+#, fuzzy
+msgid "Document|Typedocument"
+msgstr "Mis à jour le"
+
+#: app/models/document.rb:-
+#, fuzzy
+msgid "Document|Client"
+msgstr "Créé le"
+
+#: app/models/document.rb:-
+#, fuzzy
+msgid "Document|Titre"
+msgstr "Créé le"
+
+#: app/models/document.rb:-
+msgid "Document|Fichier"
+msgstr ""
+
+#: app/models/document.rb:-
+#, fuzzy
+msgid "Document|Description"
+msgstr "Description"
+
+#: app/models/document.rb:-
+#, fuzzy
+msgid "Document|Created on"
+msgstr "Créé le"
+
+#: app/models/document.rb:-
+#, fuzzy
+msgid "Document|Updated on"
+msgstr "Mis à jour le"
+
+#: app/models/document.rb:-
+#, fuzzy
+msgid "Document|Version"
+msgstr "Créé le"
+
 #: app/models/engagement.rb:-
 msgid "engagement"
 msgstr ""
@@ -556,18 +966,6 @@ msgstr ""
 
 #: app/models/engagement.rb:-
 msgid "Engagement|Typedemande"
-msgstr ""
-
-#: app/models/image.rb:-
-msgid "image"
-msgstr ""
-
-#: app/models/image.rb:-
-msgid "Image|Image"
-msgstr ""
-
-#: app/models/image.rb:-
-msgid "Image|Description"
 msgstr ""
 
 #: app/models/etatreversement.rb:-
@@ -630,29 +1028,79 @@ msgstr ""
 msgid "Groupe|Nom"
 msgstr ""
 
-#: app/models/identifiant.rb:22
+#: app/models/identifiant.rb:-
 #, fuzzy
-msgid "Identifiant|Pwd"
+msgid "identifiant"
+msgstr "Client"
+
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Login"
+msgstr "Client"
+
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Password"
+msgstr "Client"
+
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Titre"
+msgstr "Client"
+
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Nom"
+msgstr "Client"
+
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Email"
+msgstr "Client"
+
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Telephone"
+msgstr "Client"
+
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Image"
+msgstr "Client"
+
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Informations"
+msgstr "Client"
+
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Client"
 msgstr "Client"
 
 #: app/models/identifiant.rb:23
 #, fuzzy
+msgid "Identifiant|Pwd"
+msgstr "Client"
+
+#: app/models/identifiant.rb:24
+#, fuzzy
 msgid "Identifiant|Pwd confirmation"
 msgstr "Client"
 
-#: app/models/identifiant.rb:39
+#: app/models/identifiant.rb:40
 msgid "Mot de passe manquant"
 msgstr ""
 
-#: app/models/identifiant.rb:41
+#: app/models/identifiant.rb:42
 msgid "Votre mot de passe ne correspond pas à la confirmation"
 msgstr ""
 
-#: app/models/identifiant.rb:45
+#: app/models/identifiant.rb:46
 msgid "Votre mot de passe est trop long (max. 20 caractères)"
 msgstr ""
 
-#: app/models/identifiant.rb:47
+#: app/models/identifiant.rb:48
 msgid "Votre mot de passe est trop court (min. 5 caractères)"
 msgstr ""
 
@@ -733,7 +1181,7 @@ msgstr ""
 msgid "Logiciel|Image"
 msgstr "Résumé"
 
-#: app/models/logiciel.rb:18
+#: app/models/logiciel.rb:19
 msgid "Vous devez spécifier au moins une compétence"
 msgstr ""
 
@@ -769,6 +1217,50 @@ msgstr ""
 msgid "Mainteneur|Nom"
 msgstr ""
 
+#: app/models/new.rb:-
+msgid "news"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "new"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Subject"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Source"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Body"
+msgstr ""
+
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Created on"
+msgstr "Créé le"
+
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Updated on"
+msgstr "Mis à jour le"
+
+# Ingénieur
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Ingenieur"
+msgstr "Ingénieur"
+
+#: app/models/new.rb:-
+msgid "New|Client"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Logiciel"
+msgstr ""
+
 #: app/models/permission.rb:-
 msgid "permission"
 msgstr ""
@@ -780,6 +1272,24 @@ msgstr ""
 #: app/models/permission.rb:-
 msgid "Permission|Info"
 msgstr ""
+
+#: app/models/socle.rb:-
+msgid "socle"
+msgstr ""
+
+#: app/models/socle.rb:-
+msgid "Socle|Nom"
+msgstr ""
+
+#: app/models/socle.rb:-
+#, fuzzy
+msgid "Socle|Binaires count"
+msgstr "Bénéficiaire"
+
+#: app/models/socle.rb:-
+#, fuzzy
+msgid "Socle|Client"
+msgstr "Client"
 
 #: app/models/piecejointe.rb:-
 msgid "piecejointe"
@@ -799,6 +1309,14 @@ msgstr ""
 
 #: app/models/role.rb:-
 msgid "Role|Info"
+msgstr ""
+
+#: app/models/severite.rb:-
+msgid "severite"
+msgstr ""
+
+#: app/models/severite.rb:-
+msgid "Severite|Nom"
 msgstr ""
 
 #: app/models/statut.rb:-
@@ -917,6 +1435,18 @@ msgstr ""
 msgid "Urlreversement|Valeur"
 msgstr ""
 
+#: app/models/image.rb:-
+msgid "image"
+msgstr ""
+
+#: app/models/image.rb:-
+msgid "Image|Image"
+msgstr ""
+
+#: app/models/image.rb:-
+msgid "Image|Description"
+msgstr ""
+
 #: app/models/preferences.rb:-
 msgid "preference"
 msgstr ""
@@ -953,63 +1483,58 @@ msgstr "Ajouter un appel"
 msgid "Export calls"
 msgstr "Exporter les appels"
 
-#: app/views/appels/_calls_info.rhtml:20
+#: app/views/appels/_calls_info.rhtml:21
 #: app/views/logiciels/_softwares_info.rhtml:27
 msgid "Search"
 msgstr "Recherche"
 
-#: app/views/appels/_calls_info.rhtml:22
+#: app/views/appels/_calls_info.rhtml:23
 msgid "Expert"
 msgstr "Expert"
 
-#: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
+#: app/views/appels/_calls_info.rhtml:25 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
 msgid "Recipient"
 msgstr "Bénéficiaire"
 
-#: app/views/appels/_calls_info.rhtml:26 app/views/appels/_calls_list.rhtml:6
-#: app/views/appels/_form.rhtml:6
-msgid "Contract"
-msgstr "Contrat"
-
-#: app/views/appels/_calls_info.rhtml:33
+#: app/views/appels/_calls_info.rhtml:34
 msgid "Period"
 msgstr "Période"
 
-#: app/views/appels/_calls_info.rhtml:35
+#: app/views/appels/_calls_info.rhtml:36
 msgid "From"
 msgstr "Du"
 
-#: app/views/appels/_calls_info.rhtml:39
+#: app/views/appels/_calls_info.rhtml:40
 msgid "To"
 msgstr "Au"
 
-#: app/views/appels/_calls_info.rhtml:48
+#: app/views/appels/_calls_info.rhtml:49
 #: app/views/logiciels/_softwares_info.rhtml:49
 msgid "Perimeter"
 msgstr "Périmètre"
 
-#: app/views/appels/_calls_info.rhtml:50
+#: app/views/appels/_calls_info.rhtml:51
 msgid "Calls"
 msgstr "Appels"
 
-#: app/views/appels/_calls_info.rhtml:51 app/views/logiciels/show.rhtml:39
+#: app/views/appels/_calls_info.rhtml:52 app/views/logiciels/show.rhtml:39
 msgid "Requests"
 msgstr "Demandes"
 
-#: app/views/appels/_calls_info.rhtml:52
+#: app/views/appels/_calls_info.rhtml:53
 msgid "Engineers"
 msgstr "Ingénieurs"
 
-#: app/views/appels/_calls_info.rhtml:53
+#: app/views/appels/_calls_info.rhtml:54
 msgid "Recipients"
 msgstr "Bénéficiaires"
 
-#: app/views/appels/_calls_info.rhtml:54
+#: app/views/appels/_calls_info.rhtml:55
 msgid "Total duration"
 msgstr "Durée totale"
 
-#: app/views/appels/_calls_info.rhtml:55
+#: app/views/appels/_calls_info.rhtml:56
 msgid "Average duration"
 msgstr "Durée moyenne"
 
@@ -1024,10 +1549,6 @@ msgstr "un appel"
 #: app/views/appels/_calls_list.rhtml:6 app/views/appels/show.rhtml:11
 msgid "Interlocutor"
 msgstr "Interlocuteur"
-
-#: app/views/appels/_calls_list.rhtml:6
-msgid "Call"
-msgstr "Appel"
 
 #: app/views/appels/_calls_list.rhtml:7 app/views/appels/_form.rhtml:11
 msgid "End of call"
@@ -1275,18 +1796,13 @@ msgstr "Consulter toutes les contributions"
 msgid "Export all contributions"
 msgstr "Exporter toutes les contributions"
 
-#: app/views/contributions/select.rhtml:11
+#: app/views/contributions/select.rhtml:12
 msgid "Access to interface of administration"
 msgstr "Accéder à l'interface d'admnistration"
 
 #: app/views/contributions/show.rhtml:21
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
-
-#: app/views/demandes/_requests_info.rhtml:21
-#, fuzzy
-msgid "Export requests"
-msgstr "Demandes"
 
 #: app/views/demandes/_tab_menu.rhtml:9 app/views/logiciels/_form.rhtml:10
 #: app/views/logiciels/_softwares_info.rhtml:40
@@ -1460,6 +1976,15 @@ msgstr "Ajouter un rôle"
 msgid "New role"
 msgstr "Nouveau rôle"
 
+#: app/views/urlreversements/edit.rhtml:1
+#, fuzzy
+msgid "Edit this url"
+msgstr "Modifier cette url"
+
+#: app/views/urlreversements/new.rhtml:1
+msgid "Add an url to follow your contribution"
+msgstr "Ajouter une nouvelle contribution"
+
 #: app/views/urlreversements/index.rhtml:1
 msgid "List of urls in contributions"
 msgstr "Liste des urls rattachées aux contributions"
@@ -1476,82 +2001,6 @@ msgstr "Url"
 msgid "Contribution"
 msgstr "Contributions"
 
-#: app/views/urlreversements/edit.rhtml:1
 #, fuzzy
-msgid "Edit this url"
-msgstr "Modifier cette url"
-
-#: app/views/urlreversements/new.rhtml:1
-msgid "Add an url to follow your contribution"
-msgstr "Ajouter une nouvelle contribution"
-
-#, fuzzy
-#~ msgid "Mes Logiciels"
-#~ msgstr "Résumé"
-
-#, fuzzy
-#~ msgid "Tous les logiciels"
-#~ msgstr "Résumé"
-
-#~ msgid "Call started on"
-#~ msgstr "Appel du "
-
-#~ msgid "appel"
-#~ msgstr "appel"
-
-#~ msgid "Appel|Beneficiaire"
-#~ msgstr "Bénéficiaire"
-
-# Ingénieur
-#~ msgid "Appel|Ingenieur"
-#~ msgstr "Ingénieur"
-
-#~ msgid "Appel|Debut"
-#~ msgstr "Début"
-
-#~ msgid "Appel|Contrat"
-#~ msgstr "Contrat"
-
-#, fuzzy
-#~ msgid "binaire"
-#~ msgstr "bénéficiaire"
-
-#, fuzzy
-#~ msgid "Binaire|Archive"
-#~ msgstr "Privé"
-
-#~ msgid "Contrat|Cloture"
-#~ msgstr "Clotûre"
-
-#, fuzzy
-#~ msgid "Client|Beneficiaires count"
-#~ msgstr "Bénéficiaire"
-
-#, fuzzy
-#~ msgid "Paquet|Contrat"
-#~ msgstr "Contrat"
-
-#~ msgid "Demande|Beneficiaire"
-#~ msgstr "Bénéficiaire"
-
-#~ msgid "Demande|Ingenieur"
-#~ msgstr "Ingénieur"
-
-#~ msgid "Demande|Resume"
-#~ msgstr "Résumé"
-
-#, fuzzy
-#~ msgid "Demande|Created on"
-#~ msgstr "Créé le"
-
-#, fuzzy
-#~ msgid "Demande|Updated on"
-#~ msgstr "Mis à jour le"
-
-#, fuzzy
-#~ msgid "Document|Created on"
-#~ msgstr "Créé le"
-
-#, fuzzy
-#~ msgid "Document|Updated on"
-#~ msgstr "Mis à jour le"
+#~ msgid "Export requests"
+#~ msgstr "Demandes"
