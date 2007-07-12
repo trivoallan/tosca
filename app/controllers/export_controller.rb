@@ -33,8 +33,6 @@ class ExportController < ApplicationController
       [_('id'), _('type'), _('software'), _('version'), _('state'),
         _('summary'), _('reported'), _('closed'), _('delay') ]
     
-    #to keep the custom filters before the export :
-    flash[:conditions] = flash[:conditions]
     generate_report(report, type, {}) 
   end
   
@@ -62,7 +60,6 @@ class ExportController < ApplicationController
       [_('id'), _('login'), _('name'), _('e-mail'), _('phone'),
         _('(customer)'), _('roles') ]
 
-    flash[:conditions] = flash[:conditions]
     generate_report(report, type, {})    
   end
   
@@ -85,7 +82,6 @@ class ExportController < ApplicationController
       [_('Contract'), _('Person in charge'), _('Customer'), _('Call'), 
         _('End of the call') ]
 
-    flash[:conditions] = flash[:conditions]
     generate_report(report, type, {})    
   end
   
@@ -126,8 +122,6 @@ class ExportController < ApplicationController
         _('version') , _('date de soumission') , _('plateform'), _('update'),
         _('summary'), _('status'), _('type') ]
 
-    #to keep the custom filters before the export :
-    flash[:conditions] = flash[:conditions]
     generate_report(report, type, options_generate)
     
   end
@@ -136,6 +130,9 @@ class ExportController < ApplicationController
   #
   # Usage : generate_report(report, :csv) with report a Ruport Data Table
   def generate_report(report, type, options )
+
+    #to keep the custom filters before the export :
+    flash[:conditions] = flash[:conditions]
     case type
     when :text
       file_extension = '.txt'
