@@ -1508,7 +1508,7 @@ msgid "Preferences|Digest weekly"
 msgstr "Digeste prêt"
 
 #: app/views/acces/refuse.rhtml:2
-msgid "Acces denied"
+msgid "Access denied"
 msgstr "Accès refusé"
 
 #: app/views/acces/refuse.rhtml:5
