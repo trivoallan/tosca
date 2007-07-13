@@ -1,24 +1,24 @@
 <div class="content" id="content">
-  <h1>Activité OSSA par semaine</h1><br />
+  <h1><%= _('Activity OSSA per week') %></h1><br />
   <% form_tag comex_resultat_reporting_url, :method => :get do %>
     <table class='show'>
       <tr>
-        <th>Recherche par numéro de semaine</th>
-        <th>Recherche par client</th>
+        <th><%= _('Please select')%></th>
+        <th><%= _('Select customer')%></th>
       </tr>
       <tr>
         <td>
-          <label for="week_num">Numéro de la semaine : </label>
-          <%= text_field :results, :week_num, :size => 2, 
+          <label for="week_num"><%= _('Number of the week:')%></label>
+          <%= text_field :results, :week_num, :size => 2,
             :value => Time.now.strftime("%W") %>
         </td>
         <td rowspan='5'><%= box_clients(9)%></td>
       </tr>
-      <tr><th>Recherche par période </th></tr>
-      <tr><td>(prioritaire sur la rech. par semaine)</td></tr>
+      <tr><th><%= _('Search by period') %></th></tr>
+      <tr><td><%= _("(not counting the week above)")%></td></tr>
       <tr>
         <td>
-          <label for="first_day">Premier jour : </label>
+          <label for="first_day"><%= _('First day : ') %></label>
           <%= text_field :results, :first_day, :size =>8 %>
           <span class="calendarPicker"><%= image_date_from %></span>
           <%= script_date('results_first_day', 'date_from') %>
@@ -26,7 +26,7 @@
       </tr>
       <tr>
         <td>
-          <label for="end_day">Dernier jour : </label>
+          <label for="end_day"><%= _('Last day : ') %></label>
           <%= text_field :results, :end_day,  :size => 8 %>
           <span class="calendarPicker"><%= image_date_to %></span>
           <%= script_date('results_end_day', 'date_to') %>
@@ -34,11 +34,11 @@
       </tr>
       <tr>
         <td align='center'>
-          <%= submit_tag _('Voir le reporting pour cette semaine'),
+          <%= submit_tag _('See the reporting for this week'),
             {:name => "reporting" } %>
         </td>
         <td align='center'>
-          <%= submit_tag _('Voir l\'avancement des CNS'), {:name => "cns"}%>
+          <%= submit_tag _('See the progress report of the CNS'), {:name => "cns"}%>
         </td>
       </tr>
     </table>

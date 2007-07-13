@@ -6,7 +6,7 @@ class BienvenueController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
-  
+
   # Includes somme helpers
   helper :demandes, :account, :contributions, :logiciels, :groupes, :documents, :clients
 
@@ -17,8 +17,6 @@ class BienvenueController < ApplicationController
   def index
     _request_list
   end
-
-
 
   # Display all method that user can access
   def plan
@@ -47,8 +45,7 @@ class BienvenueController < ApplicationController
         Notifier::deliver_bienvenue_suggestion(suggestion[:tosca],
                                                :tosca, session[:user])
       end
-      flash[:notice] = _("Merci d'avoir pris le temps de nous aider à " <<
-            "améliorer cet outil. Vos suggestions ont bien été envoyées")
+      flash[:notice] = _("Thank for taking of your time to help us with improving this product. Your comments were well sent.")
       redirect_to_home
     end
   end
@@ -72,10 +69,10 @@ protected
   # Pick some demands
   # Used to be shown in the welcome page
   def _request_list
-    @demandes = Demande.find(:all, :include => [:severite], 
+    @demandes = Demande.find(:all, :include => [:severite],
        :limit => 5, :order => 'updated_on DESC ',
        :conditions => Demande::EN_COURS)
-  end 
+  end
 
 
 end

@@ -6,16 +6,16 @@ module DemandesHelper
   # Display a link to a demand
   # Options
   #  * :pre_text (deprecated) display before
-  #  * :show_id display the id 
+  #  * :show_id display the id
   #  * :icon_severite display severity icon
   def link_to_demande(demande, options={})
     return '-' unless demande
     text = options[:text]
-    if text.nil?  
+    if text.nil?
       limit = options[:limit] || 50
       text = ''
-      text << "##{demande.id} " if options[:show_id] 
-      text << "#{icon_severite(demande)} " if options[:icon_severite] 
+      text << "##{demande.id} " if options[:show_id]
+      text << "#{icon_severite(demande)} " if options[:icon_severite]
       text << truncate(demande.resume, limit)
     end
     link_to text, comment_demande_url(:id => demande.id)
@@ -23,13 +23,13 @@ module DemandesHelper
 
   # Link to the inline help to post a request
   def public_link_to_help_new_request
-    public_link_to('Déclaration d\'une demande', 
+    public_link_to('Déclaration d\'une demande',
             "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande")
   end
-  
+
   # Link to the the inline help about life cycle of a demand
   def public_link_to_howto_request
-    public_link_to('Déroulement d\'une demande', 
+    public_link_to('Déroulement d\'une demande',
             "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande")
   end
 
@@ -94,7 +94,7 @@ module DemandesHelper
     display_jours(engagement.correction)
   end
 
-  # Display (open) time spent to now 
+  # Display (open) time spent to now
   # TODO : rename it 'display_temps_ecoule'
   def display_tempsecoule(demande)
     "TODO" #distance_of_time_in_french_words compute_delai4paquet @demande
@@ -133,7 +133,7 @@ module DemandesHelper
 
   def link_to_new_request
     options = new_demande_url
-    link_to(image_create(_('nouvelle demande')), options, LinksHelper::NO_HOVER)
+    link_to(image_create(_('New request')), options, LinksHelper::NO_HOVER)
   end
 
 
@@ -146,27 +146,27 @@ module DemandesHelper
   #usage : link_to_help('state') to link to the help page
   # for states demand
   def link_to_help( topic)
-      link_to image_help, 
+      link_to image_help,
         'http://www.08000linux.com/wiki/index.php/%C3%89tats_demande',
         { :class => 'nobackground' }
   end
-    
+
   def link_to_delete_contribution( demand_id )
     link_to _('Unlink the contribution') ,:action => 'delete_contribution',
-      :id=> demand_id 
+      :id=> demand_id
   end
-  
+
 
 
   # Display a css bar for graphic representation of a ticket timeline
-  # Options 
+  # Options
   #  * (no options yet)
-  # Need adequat CSS stylesheet 
+  # Need adequat CSS stylesheet
   def show_cns_bar(demande, options={})
     #done, limit = 0, 100
     return '' unless demande.is_a?(Demande)
-    done = demande.temps_correction 
-    limit = demande.delais_correction 
+    done = demande.temps_correction
+    limit = demande.delais_correction
     return '' unless done.is_a?(Numeric) && limit.is_a?(Numeric) && done <= limit
 
     out = ''
@@ -186,20 +186,20 @@ module DemandesHelper
   AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(:url => '../demandes/list')
   def remote_link_to_active_request
     js_call = "document.forms['filters'].active.value=1; #{remote_function(AJAX_CALL)}"
-    link_to_function(_('demandes actives'), js_call, 
-                     _('affiche les demandes qui sont encore à traiter'))
+    link_to_function(_('active requests'), js_call,
+                     _('show the requests that are waiting to be processed'))
   end
 
   def remote_link_to_dead_request
     js_call = "document.forms['filters'].active.value=-1; #{remote_function(AJAX_CALL)}"
-    link_to_function(_('demandes terminées'), js_call, 
-                     _('affiche les demandes qui ont été traitées'))
+    link_to_function(_('finished requests'), js_call,
+                     _('show the requests that were processed'))
   end
 
   def remote_link_to_all_request
     js_call = "document.forms['filters'].active.value=0; #{remote_function(AJAX_CALL)}"
-    link_to_function(_('toutes les demandes'), js_call, 
-                     _('affiche l\'intégralité des demandes'))
+    link_to_function(_('all the requests'), js_call,
+                     _('show all the requests'))
   end
 
   #usage : <tr <%= tr_attributes(demand.id)%> >
@@ -208,5 +208,5 @@ module DemandesHelper
       "onclick=\"window.location.href='../demandes/comment/#{demand_id}'\""
   end
 
-  
+
 end

@@ -1,36 +1,16 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
+#
 class ReportingController < ApplicationController
   helper :demandes
   include ComexReporting
 
-
-  @@titres = { 
-    :repartition => 'Répartition des demandes reçues',
-    :repartition_cumulee => 'Répartition des demandes reçues',
-    :severite => 'Sévérité des demandes reçues', 
-    :severite_cumulee => 'Sévérité des demandes reçues',
-    :resolution => 'Résolution des demandes reçues', #Etat actuel de vos demandes
-    :resolution_cumulee => 'Résolution des demandes reçues',
-
-    :annulation => 'Demandes annulées',
-    :evolution => 'Evolution du volume d\'activité', #Evolution des accès au service
- 
-    :top5_demandes => 'Top 5 des demandes les plus discutées',
-    :top5_logiciels => 'Top 5 des logiciels les plus défectueux',
-
-    :temps_de_rappel => 'Temps de prise en compte', #Temps de rappel 
-    :temps_de_contournement => 'Temps de contournement',
-    :temps_de_correction => 'Temps de correction'
-  }
-
-
-  # Les couleurs par défauts sont dans l'ordre alphabétique des severités : 
+  # Les couleurs par défauts sont dans l'ordre alphabétique des severités :
   # ( bloquante, majeure, mineure, sans objet )
   # TODO : faire un hash @@couleurs{} contenant les tableaux
   colors =  [
-    # clair,    foncé,    #couleur
+  # clair,    foncé,    #couleur
     "#dd0000", "#ff2222", #rouge
     "#dd8242", "#ffa464", #orange
     "#dddd00", "#ffff22", #jaune
@@ -40,24 +20,24 @@ class ReportingController < ApplicationController
   # les index de tableau commencent à 0
   @@couleurs_degradees = ( [nil] << colors ).flatten
   @@couleurs = ( [nil] << colors.values_at(1, 3, 5, 7, 9) ).flatten
-  # on modifie ensuite pour les autres type de données : 
+  # on modifie ensuite pour les autres type de données :
   @@couleurs_delais = ( [nil] << colors.values_at(7, 1) ).flatten
   @@couleurs_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
   @@couleurs_types_degradees = ( [nil] << colors.values_at(2, 3, 6, 7, 8, 9) ).flatten
 
-  def index
-    configuration
-    render :action => 'configuration'
-  end
-
   # utilisé avant l'affichage
   def configuration
-    @contrats = (@beneficiaire ? @beneficiaire.client.contrats : 
-                   Contrat.find(:all, Contrat::OPTIONS))
+    _titres()
+    @contrats = (@beneficiaire ? @beneficiaire.client.contrats :
+                 Contrat.find(:all, Contrat::OPTIONS))
   end
 
-  
+  def comex
+    _titres()
+  end
+
   def comex_resultat
+    _titres()
     control = params[:control]
     results = params[:results]
     cns = params[:cns]
@@ -74,31 +54,31 @@ class ReportingController < ApplicationController
       }
       return
     end
-    (redirect_to :action => 'comex' and return) unless results
+     (redirect_to comex_reporting_path and return) unless results
     if results[:first_day].blank? or results[:end_day].blank?
 
       if results[:week_num].blank?
-        flash[:notice]= _('Vous devez indiquer une période sur laquelle effectuer le rapport')
-        redirect_to :action => 'comex' and return
+        flash[:notice]= _('You must indicate a period over which to carry out the report')
+        redirect_to comex_reporting_path and return
       else
-        @date[:first_day] = Time.now.beginning_of_year + 
-          (results[:week_num].to_i-1).week
+        @date[:first_day] = Time.now.beginning_of_year +
+         (results[:week_num].to_i-1).week
         @date[:end_day] = @date[:first_day] + 6.days
-      end      
+      end
     else
       @date[:first_day] = results[:first_day].to_time.beginning_of_day
-      @date[:end_day] = results[:end_day].to_time.beginning_of_day + 
-        1.day - 1.second
+      @date[:end_day] = results[:end_day].to_time.beginning_of_day +
+      1.day - 1.second
     end
     # user 'n developer sanity check
     if @date[:first_day] > @date[:end_day]
-      flash[:notice]= "Le premier jour doit précéder le dernier jour"
-      redirect_to :action => 'comex' and return
+      flash[:notice]= _('The first day must precede the last day')
+      redirect_to comex_reporting_path and return
     end
     if comex
       scope= { :conditions => "id IN #{clients}"} unless clients.include?('all')
       Client.with_scope(:find => scope) {
-      init_comex_report()
+        init_comex_report()
       }
       @clients.each do |client|
         compute_comex_report(client)
@@ -108,10 +88,11 @@ class ReportingController < ApplicationController
 
 
   def general
-    redirect_to(:action => 'configuration') and return unless params[:reporting]
+    _titres()
+    redirect_to configuration_reporting_path and return unless params[:reporting]
     init_class_var(params)
-    redirect_to(:action => 'configuration') and return unless 
-      @contrat and (@report[:start_date] < @report[:end_date])
+    redirect_to configuration_reporting_path and return unless
+    @contrat and (@report[:start_date] < @report[:end_date])
     init_data_general
     fill_data_general
 
@@ -119,7 +100,7 @@ class ReportingController < ApplicationController
     @data.each_pair do |nom, data| # each_key do |nom|
       #sha1 = Digest::SHA1.hexdigest("-#{qui}-#{nom}-")
       @path[nom] = "reporting/#{nom}.png"
-      size = data.size 
+      size = data.size
       if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
         # cas d'une légende à deux colonnes : degradé obligatoire
         if nom.to_s =~ /^severite/
@@ -134,15 +115,15 @@ class ReportingController < ApplicationController
         if nom.to_s =~ /^temps/
           @colors[nom] = @@couleurs_delais[1..size]
         elsif nom.to_s =~ /^annulation/
-          @colors[nom] = @@couleurs_types[1..size]   
+          @colors[nom] = @@couleurs_types[1..size]
         else
           @colors[nom] = @@couleurs[1..size]
         end
       end
-    end	
+    end
 
-		
-    #on nettoie 
+
+    #on nettoie
     # TODO retravailler le nettoyage
     # reporting = File.expand_path('public/reporting', RAILS_ROOT)
     # rmtree(reporting)
@@ -162,17 +143,17 @@ class ReportingController < ApplicationController
       write3graph(:temps_de_contournement, Gruff::Line)
       write3graph(:temps_de_correction, Gruff::Line)
     end
-      
-#     write_graph(:top5_demandes, Gruff::Pie)
-#     write_graph(:top5_logiciels, Gruff::Pie)
+
+    #     write_graph(:top5_demandes, Gruff::Pie)
+    #     write_graph(:top5_logiciels, Gruff::Pie)
     # on nettoie
     @first_col.each { |c| c.gsub!('\n','') }
   end
 
   def flux
     #cas spécial : consultation directe
-    options = { :per_page => 10, :order => 'created_on DESC', 
-      :select => Demande::SELECT_LIST, 
+    options = { :per_page => 10, :order => 'created_on DESC',
+      :select => Demande::SELECT_LIST,
       :joins => Demande::JOINS_LIST }
     @demande_pages, @demandes = paginate :demandes, options
   end
@@ -186,13 +167,13 @@ class ReportingController < ApplicationController
   # sélectionné
   def init_class_var(params)
     period =  params[:reporting][:period].to_i
-    return unless period > 0 
+    return unless period > 0
     @contrat = Contrat.find(params[:reporting][:contrat_id].to_i)
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titres = @@titres
     @report[:start_date] = [@contrat.ouverture.beginning_of_month, Time.now].min
-    @report[:end_date] = [calendar2time(params[:end_date]), 
-                          @contrat.cloture.beginning_of_month].min
+    @report[:end_date] = [calendar2time(params[:end_date]),
+    @contrat.cloture.beginning_of_month].min
     @first_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
@@ -206,23 +187,23 @@ class ReportingController < ApplicationController
       @labels[i] = c if ((i % 2) == 0)
       i += 1
     end
-    if period == 1 
+    if period == 1
       middle_date = end_date.beginning_of_month
     else
       middle_date = end_date.months_ago(period - 1)
     end
     start_date = @report[:start_date]
-    if (middle_date > start_date and middle_date < end_date)     
+    if (middle_date > start_date and middle_date < end_date)
       @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
       @report[:middle_report] = ((end_date.beginning_of_month - @report[:middle_date]) / 1.month).round + 1
-      @report[:total_report] = ((end_date.beginning_of_month - start_date.beginning_of_month) / 1.month).round + 1  
+      @report[:total_report] = ((end_date.beginning_of_month - start_date.beginning_of_month) / 1.month).round + 1
     else
-      flash.now[:warn] = 'paramètres incorrects'
+      flash.now[:warn] = _('incorrect parameters')
       # condition de sortie
       @contrat = nil
     end
   rescue
-    flash.now[:warn] = 'paramètres incorrects'
+    flash.now[:warn] = _('incorrect parameters')
     @contrat = nil
 
   end
@@ -231,34 +212,34 @@ class ReportingController < ApplicationController
   def init_data_general
     # Répartions par mois (StackedBar)
     # _terminees doit être en premier
-    @data[:repartition]  = 
-      [ [:informations_terminees], [:anomalies_terminees], 
-      [:evolutions_terminees], [:informations_en_cours], 
-      [:anomalies_en_cours], [:evolutions_en_cours] ]
-    @data[:severite] = 
-      [ [:bloquantes_terminees], [:majeures_terminees], 
-      [:mineures_terminees], [:sans_objet_terminees],
-      [:bloquantes_en_cours], [:majeures_en_cours], 
-      [:mineures_en_cours], [:sans_objet_en_cours] ]
-    @data[:resolution] = 
-      [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:en_cours] ]
-    @data[:evolution] = 
-      [ [:'bénéficiaires'], [:logiciels], [:contributions] ] # TODO : [:interactions]
-     @data[:annulation] = 
-      [ [:informations], [:anomalies], [:'évolutions'] ]
+    @data[:repartition]  =
+    [ [:informations_terminees], [:anomalies_terminees],
+    [:evolutions_terminees], [:informations_en_cours],
+    [:anomalies_en_cours], [:evolutions_en_cours] ]
+    @data[:severite] =
+    [ [:bloquantes_terminees], [:majeures_terminees],
+    [:mineures_terminees], [:sans_objet_terminees],
+    [:bloquantes_en_cours], [:majeures_en_cours],
+    [:mineures_en_cours], [:sans_objet_en_cours] ]
+    @data[:resolution] =
+    [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:en_cours] ]
+    @data[:evolution] =
+    [ [:'bénéficiaires'], [:logiciels], [:contributions] ] # TODO : [:interactions]
+    @data[:annulation] =
+    [ [:informations], [:anomalies], [:'évolutions'] ]
 
     # calcul des délais
-     @data[:temps_de_rappel] =
-      [ [:'délais_respectés'], [:'hors_délai'] ]
-     @data[:temps_de_contournement] =
-      [ [:'délais_respectés'], [:'hors_délai'] ]
-     @data[:temps_de_correction] =
-      [ [:'délais_respectés'], [:'hors_délai'] ]
+    @data[:temps_de_rappel] =
+    [ [:'délais_respectés'], [:'hors_délai'] ]
+    @data[:temps_de_contournement] =
+    [ [:'délais_respectés'], [:'hors_délai'] ]
+    @data[:temps_de_correction] =
+    [ [:'délais_respectés'], [:'hors_délai'] ]
 
 
     # Camemberts nommé dynamiquement
-#    @data[:top5_logiciels] = [ ]
-#    @data[:top5_demandes] = [ ] 
+    #    @data[:top5_logiciels] = [ ]
+    #    @data[:top5_demandes] = [ ]
   end
 
   # Remplit un tableau avec la somme des données sur nb_month
@@ -291,37 +272,37 @@ class ReportingController < ApplicationController
 
     liste = @contrat.client.beneficiaires.collect{|b| b.id} # .join(',')
     demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.beneficiaire_id IN (?)',
-      nil, nil, liste ]  
-    contributions = [ 'contributions.created_on BETWEEN ? AND ?', nil, nil ]  
+    nil, nil, liste ]
+    contributions = [ 'contributions.created_on BETWEEN ? AND ?', nil, nil ]
     # (#{liste})" ]
 
     # TODO : provient du scope de appication.rb
-    # TODO : Le scope des contribs devrait plutot porter 
+    # TODO : Le scope des contribs devrait plutot porter
     # sur les demandes qui ont des contribs, non.
     cpaquets = ['paquets.contrat_id = ?', @contrat.id ]
     scontributions = {:find => {:conditions => cpaquets, :include => [:paquets]}}
     Contribution.with_scope(scontributions) {
-    until (start_date > end_date) do 
-      infdate = "#{start_date.strftime('%y-%m')}-01"
-      start_date = start_date.advance(:months => 1)
-      supdate = "#{start_date.strftime('%y-%m')}-01"
-      
-      demandes[1], demandes[2] = infdate, supdate
-      Demande.with_scope({ :find => { :conditions => demandes } }) do
-        compute_repartition @data[:repartition]
-        compute_severite @data[:severite]     
-        compute_resolution @data[:resolution]
-        compute_annulation @data[:annulation]
-        compute_temps @data
-        contributions[1], contributions[2] = infdate, supdate
-        Contribution.with_scope({:find => {:conditions => contributions }}) do
-          compute_evolution @data[:evolution]
+      until (start_date > end_date) do
+        infdate = "#{start_date.strftime('%y-%m')}-01"
+        start_date = start_date.advance(:months => 1)
+        supdate = "#{start_date.strftime('%y-%m')}-01"
+
+        demandes[1], demandes[2] = infdate, supdate
+        Demande.with_scope({ :find => { :conditions => demandes } }) do
+          compute_repartition @data[:repartition]
+          compute_severite @data[:severite]
+          compute_resolution @data[:resolution]
+          compute_annulation @data[:annulation]
+          compute_temps @data
+          contributions[1], contributions[2] = infdate, supdate
+          Contribution.with_scope({:find => {:conditions => contributions }}) do
+            compute_evolution @data[:evolution]
+          end
         end
       end
-    end
     }
     # on fais bien attention à ne merger avec @data
-    # qu'APRES avoir calculé toutes les sommes 
+    # qu'APRES avoir calculé toutes les sommes
     middle_report = compute_data_period('middle', @report[:middle_report])
     total_report = compute_data_period('total', @report[:total_report])
 
@@ -329,11 +310,11 @@ class ReportingController < ApplicationController
     @data.update(middle_report)
     @data.update(total_report)
     #TODO : se débarrasser de cet héritage legacy
-#       compute_top5_logiciels @data[:top5_logiciels]
-#       Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
-#         compute_top5_demandes @data[:top5_demandes]
-#       end
-#     end
+    #       compute_top5_logiciels @data[:top5_logiciels]
+    #       Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
+    #         compute_top5_demandes @data[:top5_demandes]
+    #       end
+    #     end
   end
 
 
@@ -345,11 +326,11 @@ class ReportingController < ApplicationController
     rappels = donnees[:temps_de_rappel]
     contournements = donnees[:temps_de_contournement]
     corrections = donnees[:temps_de_correction]
-    last_index = rappels[0].size 
-    2.times {|i| 
+    last_index = rappels[0].size
+    2.times {|i|
       rappels[i].push 0.0
       contournements[i].push 0.0
-      corrections[i].push 0.0 
+      corrections[i].push 0.0
     }
 
     terminal = [6,7,8]
@@ -359,7 +340,7 @@ class ReportingController < ApplicationController
     demandes.each do |d|
       e = d.engagement(contrat_id)
       next unless e
-      
+
       rappel = d.temps_rappel()
       fill_one_report(rappels, rappel, 1.hour, last_index)
 
@@ -369,11 +350,11 @@ class ReportingController < ApplicationController
       correction = d.distance_of_time_in_working_days(d.temps_correction, amplitude)
       fill_one_report(corrections, correction, e.correction, last_index)
     end
-    
+
     size = demandes.size
     if size > 0
       size = size.to_f
-      2.times {|i| 
+      2.times {|i|
         rappels[i][last_index] = (rappels[i][last_index].to_f / size) * 100
         contournements[i][last_index] = (contournements[i][last_index].to_f / size) * 100
         corrections[i][last_index] = (corrections[i][last_index].to_f / size) * 100
@@ -459,7 +440,7 @@ class ReportingController < ApplicationController
   def compute_severite(report)
     severites = []
     # TODO : requête paramètréé, avec ?
-    (1..4).each do |i|
+     (1..4).each do |i|
       severites.concat [ { :conditions => "severite_id = #{i}" } ]
     end
 
@@ -518,14 +499,14 @@ class ReportingController < ApplicationController
   def write3graph(nom, graph)
     __write_graph(nom, graph)
     middle = :"#{nom}_middle"
-    __write_graph(middle, Gruff::Pie, "Répartition sur #{@report[:middle_report]} mois") if @data[middle]
+    __write_graph(middle, Gruff::Pie, _("Distributed on ") + "#{@report[:middle_report]}" + _(" months")) if @data[middle]
     total = :"#{nom}_total"
-    __write_graph(total, Gruff::Pie, "Répartition sur #{@report[:total_report]} mois") if @data[total]
+    __write_graph(total, Gruff::Pie, _("Distributed on ") + "#{@report[:total_report]}" + _(" months")) if @data[total]
   end
   # Ecrit le graphe en utilisant les données indexées par 'nom' dans @données
   # grâce au chemin d'accès spécifié dans @path[nom]
   # graph sert à spécifier le type de graphe attendu
-  def __write_graph(nom, graph, title = 'Récapitulatif')
+  def __write_graph(nom, graph, title = _('Summary'))
     return unless @data[nom]
     g = graph.new(450)
 
@@ -546,19 +527,43 @@ class ReportingController < ApplicationController
     g.hide_dots = true if g.respond_to? :hide_dots
     g.hide_legend = true
     # TODO : mettre ca dans les metadatas
-    g.no_data_message = 'Aucune donnée\n n\'est disponible'
+    g.no_data_message = _('No data available')
 
     # this writes the file to the hard drive for caching
     g.write "#{RAILS_ROOT}/public/images/#{@path[nom]}"
   end
 
+
+  def _titres
+    @@titres = {
+      :repartition => _('Distribution of your requests'),
+      :repartition_cumulee => _('Distribution of your requests'),
+      :severite => _('Severity of the received requests'),
+      :severite_cumulee => _('Severity of the received requests'),
+      :resolution => _('Resolution of the received requests'),
+      :resolution_cumulee => _('Resolution of the received requests'),
+
+      :annulation => _('Cancelled requests'),
+      :evolution => _('Evolution of the activity volume'),
+
+      :top5_demandes => _('Top 5 of the most discussed requests'),
+      :top5_logiciels => _('Top 5 of the most discussed software'),
+
+      :processing_time => _('Processing time'),
+      :temps_de_rappel => _('Response time'),
+      :temps_de_contournement => _('Workaround time'),
+      :temps_de_correction => _('Correction time')
+    }
+  end
+
+
   # TODO : L'enlever de reporting
-	# il est dans models/demandes
-  # Calcule en JO le temps écoulé 
+  # il est dans models/demandes
+  # Calcule en JO le temps écoulé
 """  def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
     distance_in_minutes = ((distance_in_seconds.abs)/60.0)
     jo = period_in_hour * 60.0
-    distance_in_minutes.to_f / jo.to_f 
+    distance_in_minutes.to_f / jo.to_f
   end
-	"""	
+	"""
 end

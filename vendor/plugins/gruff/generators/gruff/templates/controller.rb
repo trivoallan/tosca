@@ -1,4 +1,4 @@
-class <%= controller_class_name %>Controller < ApplicationController
+class controller_class_name Controller < ApplicationController
 
   # To make caching easier, add a line like this to config/routes.rb:
   # map.graph "graph/:action/:id/image.png", :controller => "graph"
@@ -18,7 +18,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 #     g.font = File.expand_path('artwork/fonts/VeraBd.ttf', RAILS_ROOT)
 
     g.title = "Gruff-o-Rama"
-    
+
     g.data("Apples", [1, 2, 3, 4, 4, 3])
     g.data("Oranges", [4, 8, 7, 9, 8, 9])
     g.data("Watermelon", [2, 3, 1, 5, 6, 8])

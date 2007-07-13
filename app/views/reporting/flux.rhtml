@@ -1,6 +1,6 @@
 <div class="content" id="content">
 <h1>Flux <%= image_spinner %></h1>
-<% links = show_pages_links(@demande_pages, 'une nouvelle demande') %>
+<% links = show_pages_links(@demande_pages, _('a new request')) %>
 <%= links %>
 
 <table id="demandes_list" class="show" width="80%">
@@ -30,7 +30,7 @@
    <% end %>
 <% if @demandes.size == 0 %>
   <tr><td colspan="11">
-    <p>Aucune demande déclarée.</p>
+    <p><%= _('No request declared.') %></p>
   </td></tr>
 <% end %>
 </table>

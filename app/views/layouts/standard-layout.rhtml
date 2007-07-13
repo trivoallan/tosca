@@ -33,7 +33,7 @@
       #  public_link_to(_("S'identifier"), :action => 'login',
        #      :controller => 'account')], :class => 'account_menu') %>
   <% @@links ||= build_simple_menu([
-        link_to_redbox(_("S'identifier"), 'login')], :class => 'account_menu') %>
+        link_to_redbox(_("Login"), 'login')], :class => 'account_menu') %>
   <% user = session[:user] %>
   <div id="header">
     <table>

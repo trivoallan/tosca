@@ -1,25 +1,25 @@
 
 <table><tr><td>
 <%= start_form_tag :action => "list", :filter => @filter, :client => @client %>
-  <p><label for="demande_resume">Spécifier une année : </label>
+  <p><label for="demande_resume"><%=_('Specify one year:')%></label>
   <%= text_field 'report', '', "mois" => @annee  %>
-  <%= submit_tag "Consulter" %></p>
+  <%= submit_tag _('Consult') %></p>
 <%= end_form_tag %>
 </td><td>
 </td></tr></table>
 
 <% @clients.each do |c| %>
-  <h1>Historique du <%= c.nom %> pour <%= @annee %></h1>
-   <h2>Temps de prise en compte des demandes</h2>
+  <h1><%= _('History of ') + c.nom _(' for') + @annee %></h1>
+   <h2><%=_('Time of taking into account the requests')%></h2>
    <%= report_table(:"temps_rappel_#{c.id}", :titre => @titres[:temps_rappel]) %>
-   <label>Estimation faite en minutes</label><br />
+   <label><%=_('Estimation made in minutes')%></label><br />
 
-   <h2>Temps de contournement des demandes (en JO)</h2>
+   <h2><%=_('Workaround time of the demands in wrought days')%></h2>
    <%= report_table(:"temps_contournement_#{c.id}", :titre => @titres[:temps_contournement]) %>
-   <label>Estimation faite en jours ouvrés</label><br />
+   <label><%=_('Estimate made in wrought days')%></label><br />
 
-   <h2>Temps de correction des demandes</h2>
+   <h2><%=_('Requests correction time')%></h2>
    <%= report_table(:"temps_correction_#{c.id}", :titre => @titres[:temps_correction]) %>
-   <label>Estimation faite en jours ouvrés</label><br />
+   <label><%=_('Estimation made in wrought days')%></label><br />
 
 <% end %>

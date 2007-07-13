@@ -1,6 +1,6 @@
 
 <% user = session[:user] %>
-<% connected = public_link_to(_('connecté'), :action => 'login', :controller => 'account') %>
+<% connected = public_link_to(_('conected'), :action => 'login', :controller => 'account') %>
 <table><tr><td rowspan="2"><%= logo_lstm %> </td><td><h2 class="spacer">Sommaire</h2></td></tr>
        <tr><td> Bienvenue sur l&lsquo;outil de gestion du 08000linux.</td></tr>
 </table>
@@ -11,11 +11,11 @@
   <h3>Demandes</h3>
   <% if user %>
     <% options = { :show_id => true, :icon_severite => true } %>
-    <p><%= _("Vous pouvez consulter la liste des %s :") % link_to(_("demandes"), demandes_url) %>
-       <%= show_liste(@demandes, 'Demande en cours', :title => false) { |d| 
+    <p><%= _("You can see the list of %s :") % link_to(_("requests"), demandes_url) %>
+       <%= show_liste(@demandes, 'Demande en cours', :title => false) { |d|
              link_to_demande(d, options)
           } %></p>
-     <p><%= _("Vous pouvez également %s.") % link_to(_("déposer une demande"), new_demande_url) %></p>
+     <p><%= _("you can also %s.") % link_to(_("make a request"), new_demande_url) %></p>
   <% else %>
     <p><%= html_wrap(_("Vous n'êtes pas #{connected} vous n'avez pas accès à l'interface des demandes de notre service"))%></p>
   <% end %>
@@ -26,13 +26,13 @@
   <% if user %>
     <p><%= "Vous pouvez parcourir #{link_to('votre répertoire', select_documents_url)}. " %>
       Vous y trouverez l&lsquo;ensemble des documents qui vous ont été livrés par nos services</p><br />
-    <p><%= "Vous pouvez également consulter votre 
+    <p><%= "Vous pouvez également consulter votre
             #{link_to('rapport d\'activité', general_reporting_url)} en ligne." %></p>
   <% else %>
-    <p><%= _("Lorsque vous êtes %s, vous avez accès à un rapport d'activité") % connected %><br />
-       <%= _("dynamique montrant l'activité de notre service en temps réel.")%></p><br />
-    <p><%= _("Vous avez également accès à l'intégralité des documents que nous vous")%><br />
-       <%= _("livrons, et ce de manière centralisée et versionnée")%></p>
+    <p><%= _("When you are %s, you have access to an activity report") % connected %><br />
+       <%= _("dinamicaly showin the activity of owr service in real time.")%></p><br />
+    <p><%= _("You also have access to all the documents we")%><br />
+       <%= _("deliver to you, and all this in a centralized and versioned way.")%></p>
   <% end %>
  </div>
 
@@ -47,18 +47,18 @@
 
  </td><td>
 
- <% if @beneficiaire %> 
+ <% if @beneficiaire %>
  <div class="sommaire show">
   <h3>Offre</h3>
   <% client = @beneficiaire.client %>
-  <table><tr><td rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>, 
+  <table><tr><td rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>,
       vous avez accès à l&lsquo;une de nos offres dont vous pouvez consulter à tout moment le détail : <%=link_to_my_client%></td></tr>
        <tr><td>Nous espèrons que cet outil vous donnera entière satisfaction.</td></tr>
   </table>
   <% access_code = @beneficiaire.client.code_acces %>
   <% unless access_code.blank? %>
-     <p>Votre numéro d&lsquo;appel est le 
-     <b><%=Metadata::PREFIXE_TELEPHONE%>&nbsp;<%=Metadata::CODE_TELEPHONE %></b>, 
+     <p>Votre numéro d&lsquo;appel est le
+     <b><%=Metadata::PREFIXE_TELEPHONE%>&nbsp;<%=Metadata::CODE_TELEPHONE %></b>,
      et votre code d&lsquo;accès est le <b><%=access_code%></b></p>
   <% else %>
       Vous n&lsquo;avez pas de code d&lsquo;accès.
@@ -68,15 +68,15 @@
 
  <div class="sommaire show">
   <h3>Logiciels</h3>
-  <p><%= _("Vous pouvez consulter la liste des %s.") % public_link_to_softwares %>
-     <%= _("Ces logiciels sont répartis selon une %s précise et simple, par groupe d'activité.") % public_link_to_groupes %></p><br />
+  <p><%= _("you can see the list of %s.") % public_link_to_softwares %>
+     <%= _("This software is distributed by a precise and simple %s, by activity group.") % public_link_to_groupes %></p><br />
   <% #       ( @beneficiaire ? " dans le cadre de votre #{link_to_my_client} " : '.' ) +%>
   <% unless user %>
-    <p><%=_("Nous avons des offres d'assistance, de support et de maintenance pour")%>
-       <%=_("l'ensemble de ces logiciels, n'hésitez pas à nous")%>
-       <%=mail_to('contact@08000linux.com',_('contacter'))%></p><br />
+    <p><%=_("We have assistance offers, also support and mantainance for")%>
+       <%=_("all this software, so don't hesitate to")%>
+       <%=mail_to('contact@08000linux.com',_('contact us'))%></p><br />
   <% end %>
-  <p><%=_("Vous pouvez également accéder aux %s réalisées par notre équipe.") % public_link_to_contributions  %></p>
+  <p><%=_("You can also access to %s done by owr team.") % public_link_to_contributions  %></p>
  </div>
 
 </td></tr></table>

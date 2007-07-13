@@ -2,22 +2,23 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 require 'overrides'
-
 ActionController::Routing::Routes.draw do |map|
-  # The priority is based upon order of creation: 
+  # The priority is based upon order of creation:
   #   first created -> highest priority.
 
-  # RESTful routes without ORM 
+  # RESTful routes without ORM
   # it generates helper likes admin_bienvenue_url and admin_bienvenue_path
   # all those helpers only have GET method.
   # See overrides.rb for without_orm source code
-  map.without_orm('bienvenue', %w(admin plan selenium about))
-  map.without_orm('reporting', %w(configuration general comex comex_resultat))
-  map.without_orm('export', %w(contributions demandes appels identifiants))
-  sweet_home = { :controller => 'bienvenue', :action => 'index', 
-                 :conditions => { :method => :get } }
-  map.bienvenue '/', sweet_home
+  map.bienvenue "", { :controller => 'bienvenue', :action => 'index',
+    :conditions => { :method => :get } }
 
+  map.without_orm('bienvenue', %w(admin plan selenium about))
+  map.without_orm('reporting', %w(comex configuration general comex_resultat))
+  map.without_orm('export', %w(contributions demandes appels identifiants))
+  map.without_orm('acces', %w(refuse))
+
+  # RESTful routes with ORM
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
@@ -29,17 +30,17 @@ ActionController::Routing::Routes.draw do |map|
 
 
 
-  # RESTful routes with ORM 
+  # RESTful routes with ORM
   # Sample call :
   #   link_to _('..'), edit_account_path(:id => a.id)
   #   link_to _('..'), accounts_path()
   map.resources :accounts,
-    :controller => "account",
-    :member => { :modify => :any, :devenir => :post },
-    :collection => { :logout => :post, :login => :any,
-              :auto_complete_for_identifiant_nom => :post,
-              :auto_complete_for_identifiant_email => :post},
-    :new => { :signup => :any, :multiple_signup => :any }
+  :controller => "account",
+  :member => { :modify => :any, :devenir => :post },
+  :collection => { :logout => :post, :login => :any,
+    :auto_complete_for_identifiant_nom => :post,
+    :auto_complete_for_identifiant_email => :post},
+  :new => { :signup => :any, :multiple_signup => :any }
   map.resources :appels
   map.resources :arches
   map.resources :beneficiaires
@@ -48,15 +49,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :competences
   map.resources :contrats
   map.resources :contributions,
-    :collection => { :admin => :any, :select => :get },
-    :member => { :list => :get }
+  :collection => { :admin => :any, :select => :get },
+  :member => { :list => :get }
   map.resources :demandes,
-    :collection => { :auto_complete_for_logiciel_nom => :post, 
-                     :ajax_display_packages => :post},
-    :member => { :comment => :any }
+  :collection => { :auto_complete_for_logiciel_nom => :post,
+    :ajax_display_packages => :post},
+  :member => { :comment => :any }
   map.resources :documents,
-    :collection => { :select => :get },
-    :member => { :list => :get, :destroy => :delete }
+  :collection => { :select => :get },
+  :member => { :list => :get, :destroy => :delete }
   map.resources :export,
     :collection => { :contributions => :get, :appels => :get,
       :demandes_ods => :get, :appels_ods => :get,
@@ -64,7 +65,7 @@ ActionController::Routing::Routes.draw do |map|
     }
   map.resources :groupes
   map.resources :ingenieurs,
-    :collection => { :list => :get }
+  :collection => { :list => :get }
   map.resources :logiciels
   map.resources :machines
   map.resources :paquets
@@ -96,6 +97,6 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id'
+  # map.connect ':controller/:action/:id'
 
 end

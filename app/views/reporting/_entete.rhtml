@@ -5,10 +5,10 @@
 
 <h1 class="title">
   <%= display_name %><br/>
-  <%= "Rapport d'activité de la cellule #{Metadata::NOM_COURT_SERVICE}" %><br/>
-  de <%= @report[:middle_date].strftime('%B %Y') %> 
-  à <%= @report[:end_date].strftime('%B %Y') %> 
-  (<%= @report[:middle_report] %> mois)
+  <%= _("Activity report of the ") + "#{Metadata::NOM_COURT_SERVICE}" %><br/>
+  <%= _('from') %> <%= @report[:middle_date].strftime('%B %Y') %>
+  <%= _('to') %> <%= @report[:end_date].strftime('%B %Y') %>
+  (<%= @report[:middle_report] %> <%= _('months') %>)
 </h1>
 
 <div class="report_images">

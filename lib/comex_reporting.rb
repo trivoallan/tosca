@@ -29,16 +29,16 @@ module  ComexReporting
       :last_day=> @date[:end_day],
       :beneficiaire_ids => client.beneficiaire_ids
     }
-    cscopeTest = { :find => { :conditions => 
-        [ 'beneficiaire_id IN (:beneficiaire_ids) ',values ] } 
+    cscopeTest = { :find => { :conditions =>
+        [ 'beneficiaire_id IN (:beneficiaire_ids) ',values ] }
     }
     Demande.with_scope(cscopeTest) {
-      clast_week  = [ "created_on <= :first_day AND " << 
-                      "(#{Demande::EN_COURS} OR " << 
-                       "(#{Demande::TERMINEES} AND " << 
+      clast_week  = [ "created_on <= :first_day AND " <<
+                      "(#{Demande::EN_COURS} OR " <<
+                       "(#{Demande::TERMINEES} AND " <<
                          "updated_on >= :first_day " <<
                        "))", values ]
-      @requests[:last_week][name][4] = 
+      @requests[:last_week][name][4] =
         Demande.count(:group=> 'severite_id',:conditions => clast_week)
 
       cnew = [ 'created_on BETWEEN :first_day AND :last_day',values]
@@ -50,7 +50,7 @@ module  ComexReporting
       @requests[:closed][name][4] =
         Demande.count(:group => 'severite_id', :conditions => cclosed)
     }
-    
+
     4.times do |i|
       last_week, closed, new = 0,0,0
       last_week= @requests[:last_week][name][4][i+1] if @requests[:last_week][name][4][i+1]
@@ -59,7 +59,7 @@ module  ComexReporting
 
       @total[:active][name][i] = last_week + new - closed
       @total[:final][name] += @total[:active][name][i]
-      
+
       @requests[:last_week][:total][i] += last_week
       @requests[:new][:total][i] += new
       @requests[:closed][:total][i] += closed
@@ -68,6 +68,7 @@ module  ComexReporting
       @total[:active][name].map!{|x| x==0?nil:x}
       @total[:final][:total] += @total[:final][name]
   end
+
   def cns_correction
     @percents, @extra = [], []
 
@@ -85,7 +86,7 @@ module  ComexReporting
       amplitude = support.fermeture - support.ouverture
 
       demandes = Demande.find :all,
-             :conditions => Demande::EN_COURS, 
+             :conditions => Demande::EN_COURS,
              :order=> 'updated_on ASC'
       demandes.delete_if { |demand|
         engagement= demand.engagement(contrat.id)
@@ -102,9 +103,9 @@ module  ComexReporting
         temps_correction = demand.engagement( contrat.id ).correction.days
         temps_contournement= demand.engagement(contrat.id).contournement.days
 
-        temps_reel= 
+        temps_reel=
           demand.distance_of_time_in_working_days(temps_ecoule, amplitude)
-        temps_prevu_correction= 
+        temps_prevu_correction=
           demand.distance_of_time_in_working_days(temps_correction,
                                                   amplitude)
         temps_prevu_contournement =

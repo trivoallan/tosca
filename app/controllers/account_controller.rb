@@ -32,7 +32,7 @@ class AccountController < ApplicationController
           # flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
           redirect_to_home
         else
-          flash.now[:warn]  = _("Échec lors de la connexion")
+          flash.now[:warn]  = _("Connexion failure")
           redirect_to_home
         end
     end
@@ -60,7 +60,7 @@ class AccountController < ApplicationController
       if @identifiant.update_attributes(params[:identifiant])
         #On a sauve le profil, on l'applique sur l'utilisateur courant
         set_sessions  @identifiant if session[:user] == @identifiant
-        flash[:notice]  = _("Modification réussie")
+        flash[:notice]  = _("Edition succeeded")
         redirect_back
       end
     end
@@ -74,7 +74,7 @@ class AccountController < ApplicationController
   def update
     @user = Identifiant.find(params[:id])
     if @user.update_attributes(params[:identifiant])
-      flash[:notice] = _("L'utilisateur a bien été mis à jour.")
+      flash[:notice] = _("The user was successfully updated.")
     end
     list
   end

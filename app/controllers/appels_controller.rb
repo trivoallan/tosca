@@ -80,7 +80,7 @@ class AppelsController < ApplicationController
     # donc je dois le faire manuellement
     # TODO : vérifier pour les versions > 1.2.2 en _production_ (!)
     contrat = Contrat.find(params[:id])
-    @beneficiaires = 
+    @beneficiaires =
       contrat.client.beneficiaires.find_select(Identifiant::SELECT_OPTIONS)
 
     render :partial => 'select_beneficiaires', :layout => false and return

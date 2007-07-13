@@ -6,7 +6,7 @@ module ReportingHelper
   # Renvoit les titres du tableau
   # Data contient les entêtes. Les options applicable sont :
   # :without_firstcol => permet de ne pas afficher la première colonne
-  # :divise => spécifie si on prends en compte les demandes vivantes 
+  # :divise => spécifie si on prends en compte les demandes vivantes
   # :with2rows => affichera les entêtes sur 2 lignes, il <b>contient</b> l'intitulé
   # TODO : renommer with2rows en title
   def fill_titles(data, options)
@@ -14,10 +14,10 @@ module ReportingHelper
     result = ''
     return result unless size > 0
     result << '<tr>'
-    first = 'Période&nbsp;&nbsp;&nbsp;&nbsp;' 
+    first = _('Période')
     if options[:with2rows]
       result << "<th rowspan=\"2\">#{first}</th>"  unless options[:without_firstcol]
-      result << "<th nowrap colspan=\"#{size}\">#{options[:with2rows]}</th>"
+      result << "<th nowrap colspan=\"#{size}\"><center>#{options[:with2rows]}</center></th>"
       result << '</tr><tr>'
       size.times do |t|
         result << '<th nowrap>'
@@ -88,8 +88,8 @@ module ReportingHelper
     table << ' <tr>'
     # cellule contenant le graphique de la periode
     table << '  <td class="report_graph" align="center">'
-    table << '  Sur la période considérée'
-    table <<    report_graph(middle, options) 
+    table << '  ' + _('During the chosen period')
+    table <<    report_graph(middle, options)
     table << '  </td>'
     # cellule avec la légende
     table << '  <td class="report_legend">'
@@ -97,7 +97,7 @@ module ReportingHelper
     table << '  </td>'
     # cellule contenant le graphique depuis le début
     table << '  <td class="report_data" align="center">'
-    table << '  Depuis le début du contrat'
+    table << '  ' + _('Since the begining of the contract')
     table <<    report_graph(total, options)
     table << '  </td>'
     table << ' </tr>'
@@ -109,7 +109,7 @@ module ReportingHelper
       table << ' <tr>'
       # cellule contenant le graphique
       table << '  <td class="report_data" align="center">'
-      table <<    report_data(middle, options) 
+      table <<    report_data(middle, options)
       table << '  </td>'
       # cellule vide
       table << '<td></td>'
@@ -118,7 +118,7 @@ module ReportingHelper
       table <<    report_data(total, options)
       table << '  </td>'
       table << ' </tr>'
-    end 
+    end
     table << '</table>'
     table
   end
@@ -133,7 +133,7 @@ module ReportingHelper
     out << '<table align="center">'
 #    out << '<tr>'
     if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
-      twolines = true 
+      twolines = true
       size = data.size / 2
     else
       twolines = false
@@ -144,7 +144,7 @@ module ReportingHelper
       name = data[index][0].to_s
       head = name.gsub(/_(terminees|en_cours)/, '').gsub('_','&nbsp;').capitalize
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
-      out << '<tr><th>Terminées</th><th>En&nbsp;cours</th></tr>' if twolines
+      out << '<tr><th>'+_('Finished')+'</th><th>'+_('Running')+'</th></tr>' if twolines
       out << '<tr>'
       color = colors[index]
       # un <td> quoiqu'il se passe
@@ -171,7 +171,7 @@ module ReportingHelper
       out << image_tag(@path[nom], :alt => @titres[nom])
     end
     out
-  end 
+  end
 
   # tableau de données
   # options : one_row, muli_row
@@ -184,19 +184,19 @@ module ReportingHelper
       first_col = @first_col
     end
     options.update(:width => '5%')
-    out << show_report_table(first_col, nom, 
-                             fill_titles(data, options), 
-                             options) 
+    out << show_report_table(first_col, nom,
+                             fill_titles(data, options),
+                             options)
     out
-  end 
+  end
 
 
   # Affiche les tableaux de reporting.
   # 2 options possible :
   # :without_firstcol désactive la première colonne, des dates
-  # :divise permet de n'afficher que la moitié des colonnes 
+  # :divise permet de n'afficher que la moitié des colonnes
   # :width spécifie la taille du tableau
-  # pour les tableaux contenant les informations des demandes 
+  # pour les tableaux contenant les informations des demandes
   # en cours et des demandes terminées
   # TODO : first_col, options[:without_firstcol] : à refactorer
   def show_report_table(first_col, nom, titres, options = {})
@@ -207,19 +207,19 @@ module ReportingHelper
     result << titres
 
     size = (options[:divise] ? (elements.size / 2) : elements.size)
-    
-    first_col.each_index { |i| 
+
+    first_col.each_index { |i|
       result << "<tr class=\"#{cycle('pair', 'impair')}\">"
-      result << "<td>#{first_col[i]}</td>"  unless options[:without_firstcol] 
+      result << "<td>#{first_col[i]}</td>"  unless options[:without_firstcol]
 
       size.times do |c|
         en_cours = (options[:divise] ? elements[c+size][i + 1] : 0)
         total = elements[c][i + 1] + en_cours
-        if (total.is_a? Float) 
+        if (total.is_a? Float)
             total = (total==0.0 ? '-' : "#{total.round}\%")
         end
         result << "<td>#{total}"
-        result << " (#{en_cours})" if en_cours != 0 
+        result << " (#{en_cours})" if en_cours != 0
         result << "</td>"
       end
       i += 1
@@ -242,17 +242,17 @@ module ReportingHelper
 
       color = "rgb( #{red}, #{green},0)"
 
-      return '<img alt="barre de progression" class="percentImage" 
-          src="/images/percentimage.png" 
-          style="background-position: ' << (1.23*percent).to_s << 'px ; 
+      return '<img alt="barre de progression" class="percentImage"
+          src="/images/percentimage.png"
+          style="background-position: ' << (1.23*percent).to_s << 'px ;
           background-color: '<< color << ';">'
-  end  
+  end
   #display a select box with all clients.
   #number_items defines the number of visible items in the drop-down list
   def box_clients(number_items)
     elements = Client.find(:all, :select => 'id,nom')
     items='<option value=\'all\' selected=\'selected\'>»</option>'
-    
+
     elements.each do |elt|
       items << '<option value=\'' << elt.id.to_s << '\'>'
       items << elt.nom

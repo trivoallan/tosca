@@ -1,14 +1,14 @@
 <div class="content">
-<h1>Rapport CNS</h1>
-  <h2>Légende</h2>
+<h1><%= _('CNS report') %> </h1>
+  <h2><%= _('Legend') %> </h2>
   <div>
-    <p>Les barres de progressions représentent l'état d'avancement du contrat : </p><br />
-    <%=progress_bar( 0) %> Le contrat n'est pas commencé 
-    <%=progress_bar( 25) %> 25% de fini 
-    <%=progress_bar( 50) %> 50% de fini 
-    <%=progress_bar( 75) %> 75% de fini 
-    <%=progress_bar( 110) %> Le contrat est dépassé ! <br /><br />
-    </p>Le temps indiqué correspond au temps restant pour finir le contrat, ou bien au temps de dépassement du contrat.</p>
+    <p><%= _('The progressions bar represent the progress ratio of the contract: ') %></p><br />
+    <%=progress_bar( 0) %> <%= _('The contract has not yet been started') %>
+    <%=progress_bar( 25) %> <%= _('25% de ready') %>
+    <%=progress_bar( 50) %> <%= _('50% de ready') %>
+    <%=progress_bar( 75) %> <%= _('75% de ready') %>
+    <%=progress_bar( 110) %> <%= _('The contract is outdated! ') %><br /><br />
+    </p><%= _('The indicated time is the remaining time until the end of the contract, or the time needed beyond the contract.') %></p>
   </div>
   <ul>
   <% @percents.each do |c| %>
@@ -16,10 +16,10 @@
     <li><h2><%= @extra[c_id][:nom] %><h2></li>
       <table class="show", width='100%'>
         <tr>
-          <th>Id</th>
-          <th> Contournement</th>
-          <th> Correction</th>
-          <th>Résumé</th>
+          <th><%= _('Id')%></th>
+          <th><%= _('Contournement')%></th>
+          <th><%= _('Correction')%></th>
+          <th><%= _('Summary')%></th>
         </tr>
         <% @extra[c_id][:demandes_ids].each do |d_id| %>
         <% d= c[d_id] %>
@@ -31,7 +31,7 @@
             <%= d[:mesg_contournement] %>
           </td>
           <td>
-            <%=progress_bar( d[:correction].to_i ) unless 
+            <%=progress_bar( d[:correction].to_i ) unless
               d[:mesg_correction] == '-'%>
             <%= d[:mesg_correction] %>
           </td>

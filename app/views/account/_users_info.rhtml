@@ -1,8 +1,8 @@
 <% options = { :update => 'content', :url => '../account/list',
-  :before => "Element.show('spinner')",:success => "Element.hide('spinner')" } 
+  :before => "Element.show('spinner')",:success => "Element.hide('spinner')" }
 %>
 
-<% form_remote_tag( options.dup.update(:html => { 
+<% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
 
 <% # used for iteration in ajaxified list %>
@@ -13,9 +13,8 @@
 <ul class="menu" id="menu_action">
  <li><%= link_to 'Ajouter un utilisateur', :action => 'signup' %></li>
  <li><%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %></li>
- <li><%= identifiants_export_link %></li>
+ <li><%= link_to _("Export users"), identifiants_export_url %></li>
 </ul>
-
 
 <div class="menu_title" onclick="Element.toggle('menu_consultation')">
 > Consultation</div>
@@ -42,7 +41,7 @@
  <li><b>Identifiants: </b><%=@count[:identifiants]%></li>
  <li><b>Bénéficiaires: </b><%=@count[:beneficiaires]%></li>
  <li><b>Ingénieurs: </b><%=@count[:ingenieurs]%></li>
- <li><b>Inconsistances: </b><%=(@count[:identifiants] - 
+ <li><b>Inconsistances: </b><%=(@count[:identifiants] -
   (@count[:beneficiaires] + @count[:ingenieurs])).to_s %></li>
 </ul>
 

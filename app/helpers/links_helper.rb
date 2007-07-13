@@ -46,14 +46,14 @@ module LinksHelper
 
   @@delete_options = { :class => 'nobackground', :method => :delete }
   def delete_options(objet_name)
-    @@delete_options.update(:confirm => 
+    @@delete_options.update(:confirm =>
         _('Do you really want to delete %s') % objet_name)
   end
 
   def edit_options
     LinksHelper::NO_HOVER
   end
-  
+
   ### Header ###
   # TODO : put all those methods into another module
   # and merge it dynamically in this module
@@ -77,7 +77,7 @@ module LinksHelper
   @@contributions = nil
   def public_link_to_contributions
     @@contributions ||= public_link_to(_('Contributions'), contributions_path,
-       :title => _('Accédez à la liste des contributions réalisées sur votre périmètre'))
+       :title => _('Access to the list of contributions done on your graveyard.'))
   end
 
   @@administration = nil
@@ -90,7 +90,7 @@ module LinksHelper
   @@about = nil
   def public_link_to_about()
     @@about ||= public_link_to('?', about_bienvenue_path,
-       :title => _("A propos de %s") % Metadata::NOM_COURT_APPLICATION)
+       :title => _("Regarding %s") % Metadata::NOM_COURT_APPLICATION)
   end
 
 
@@ -98,7 +98,7 @@ module LinksHelper
   # DEPRECATED : préferer link_to_edit(id)
   # TODO : passer id en options, avec @session[:user].id par défaut
   # TODO : title en options, avec 'Le compte' par défaut
-  def link_to_modify_account(account_id, title=_('Mon&nbsp;Compte'))
+  def link_to_modify_account(account_id, title=_('My&nbsp;account'))
     return '' unless account_id
     link_to title, modify_account_path(:id => account_id)
   end

@@ -1,28 +1,28 @@
 <div class="content" id="content">
-  <h1>Activité OSSA de la période du 
-    <span class="date"><%= @date[:first_day].strftime("%A %d %B %Y") %></span> au 
+  <h1><%= _('OSSA activity from ') %>
+    <span class="date"><%= @date[:first_day].strftime("%A %d %B %Y") %></span> <%= _('to') %>
     <span class="date"><%= @date[:end_day].strftime("%A %d %B %Y") %></span></h1>
   <br />
   <table class="show report">
     <tr>
       <td></td>
-	<th colspan="4">Restant à clore (I)=(IV) <br /> "semaine précédente"</th>
-	<th colspan="4">Répartitions des nouvelles <br /> demandes (III)</th>
-        <th colspan="4">Demandes closes cette <br />semaine (IV)</th>
-	<th colspan="4">Total en cours fin de semaine <br /> (V=I+III-IV)</th>
-	<th colspan="4">TOTAL <br />(VI)</th>
+	<th colspan="4"><%= _('To be closed') %> (I)=(IV) <br /> <%= _('"last week"') %> </th>
+	<th colspan="4"><%= _('New requests') %> (III)</th>
+        <th colspan="4"><%= _('Requests closed <br /> this week') %> (IV)</th>
+	<th colspan="4"><%= _('Total in progress <br /> end week') %> (V=I+III-IV)</th>
+	<th colspan="4"><%= _('TOTAL') %> (VI)</th>
     </tr><tr>
-	<th>Client</th>
+	<th><%= _('Client') %></th>
 	<% 4.times do %>
-          <td>Bloquantes</td>
-	  <td>Majeures</td>
-	  <td>Mineures</td>
-          <td>Sans objet</td>
+          <td><%= _('Blocking') %></td>
+	  <td><%= _('Major') %> </td>
+	  <td><%= _('Minor') %> </td>
+          <td><%= _('None') %></td>
 	<% end %>
-	<th colspan="4">A Clore</th>
+	<th colspan="4"><%= _('To close') %></th>
     </tr>
     <% @clients.each do |c| %>
-     <tr class="<%=cycle('pair','impair')%>">		
+     <tr class="<%=cycle('pair','impair')%>">
       <td><%= c %></td>
         <% name = c.nom.intern %>
 	<% 4.times do |i| %>
@@ -41,7 +41,7 @@
       </tr>
      <% end %>
      <tr><td colspan="18"><hr /></td></tr><tr>
-	<th>TOTAUX</th>
+	<th><%= _('TOTALS') %></th>
         <% 4.times do |i| %>
 	    <td><%= @requests[:last_week][:total][i] %></td>
         <% end %>
