@@ -1,9 +1,8 @@
-<h1>Editing statut</h1>
+<h1>_('Editing statut')</h1>
 
-<%= start_form_tag :action => 'update', :id => @statut %>
+<% form_tag statut_path(@statut), :method => :put %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+  <%= submit_tag _('Validate') %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @statut %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to_show_and_list(@statut) %>
