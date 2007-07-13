@@ -9,7 +9,7 @@ class Statut < ActiveRecord::Base
   N_('Active')    #2	Prise en compte #
   N_('Suspended') #3	Suspendue       #
   N_('Analysed')  #4	Analysée        #
-  N_('Workaround')#5 	Contournée      #
+  N_('Bypassed')  #5 	Contournée      #
   N_('Fixed')     #6	Corrigée        #
   N_('Closed')    #7	Clôturée        #
   N_('Cancelled') #8     Annulée        #

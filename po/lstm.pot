@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-13 18:46+0200\n"
+"POT-Creation-Date: 2007-07-13 18:48+0200\n"
 "PO-Revision-Date: 2007-04-30 09:55+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1032,8 +1032,8 @@ msgstr ""
 msgid "Analysed"
 msgstr ""
 
-#: app/models/statut.rb:12 app/views/reporting/_comex_cns.rhtml:20
-msgid "Workaround"
+#: app/models/statut.rb:12
+msgid "Bypassed"
 msgstr ""
 
 #: app/models/statut.rb:13
@@ -1895,6 +1895,10 @@ msgstr ""
 
 #: app/views/reporting/_comex_cns.rhtml:19
 msgid "Id"
+msgstr ""
+
+#: app/views/reporting/_comex_cns.rhtml:20
+msgid "Workaround"
 msgstr ""
 
 #: app/views/reporting/_comex_cns.rhtml:21

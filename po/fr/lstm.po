@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-13 18:46+0200\n"
-"PO-Revision-Date: 2007-07-13 18:39+0200\n"
+"POT-Creation-Date: 2007-07-13 18:48+0200\n"
+"PO-Revision-Date: 2007-07-13 19:01+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1042,8 +1042,8 @@ msgstr "Suspendue"
 msgid "Analysed"
 msgstr "Analysé"
 
-#: app/models/statut.rb:12 app/views/reporting/_comex_cns.rhtml:20
-msgid "Workaround"
+#: app/models/statut.rb:12
+msgid "Bypassed"
 msgstr "Contournée"
 
 #: app/models/statut.rb:13
@@ -1930,6 +1930,10 @@ msgstr ""
 #: app/views/reporting/_comex_cns.rhtml:19
 msgid "Id"
 msgstr "Id"
+
+#: app/views/reporting/_comex_cns.rhtml:20
+msgid "Workaround"
+msgstr "Contournée"
 
 #: app/views/reporting/_comex_cns.rhtml:21
 msgid "Correction"
