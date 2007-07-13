@@ -45,7 +45,7 @@ class BienvenueController < ApplicationController
         Notifier::deliver_bienvenue_suggestion(suggestion[:tosca],
                                                :tosca, session[:user])
       end
-      flash[:notice] = _("Thank for taking of your time to help us with improving this product. Your comments were well sent.")
+      flash[:notice] = _("Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.")
       redirect_to_home
     end
   end

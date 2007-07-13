@@ -27,17 +27,17 @@ class ReportingController < ApplicationController
 
   # utilisé avant l'affichage
   def configuration
-    _titres()
+    _titles()
     @contrats = (@beneficiaire ? @beneficiaire.client.contrats :
                  Contrat.find(:all, Contrat::OPTIONS))
   end
 
   def comex
-    _titres()
+    #_titles()
   end
 
   def comex_resultat
-    _titres()
+    #_titles()
     control = params[:control]
     results = params[:results]
     cns = params[:cns]
@@ -58,7 +58,7 @@ class ReportingController < ApplicationController
     if results[:first_day].blank? or results[:end_day].blank?
 
       if results[:week_num].blank?
-        flash[:notice]= _('You must indicate a period over which to carry out the report')
+        flash[:notice]= _('You must choose a period for the report')
         redirect_to comex_reporting_path and return
       else
         @date[:first_day] = Time.now.beginning_of_year +
@@ -88,7 +88,7 @@ class ReportingController < ApplicationController
 
 
   def general
-    _titres()
+    _titles()
     redirect_to configuration_reporting_path and return unless params[:reporting]
     init_class_var(params)
     redirect_to configuration_reporting_path and return unless
@@ -170,7 +170,7 @@ class ReportingController < ApplicationController
     return unless period > 0
     @contrat = Contrat.find(params[:reporting][:contrat_id].to_i)
     @data, @path, @report, @colors = {}, {}, {}, {}
-    @titres = @@titres
+    @titles = @@titles
     @report[:start_date] = [@contrat.ouverture.beginning_of_month, Time.now].min
     @report[:end_date] = [calendar2time(params[:end_date]),
     @contrat.cloture.beginning_of_month].min
@@ -213,28 +213,28 @@ class ReportingController < ApplicationController
     # Répartions par mois (StackedBar)
     # _terminees doit être en premier
     @data[:repartition]  =
-    [ [:informations_terminees], [:anomalies_terminees],
-    [:evolutions_terminees], [:informations_en_cours],
-    [:anomalies_en_cours], [:evolutions_en_cours] ]
+     [ [:informations_terminees], [:anomalies_terminees],
+     [:evolutions_terminees], [:informations_en_cours],
+     [:anomalies_en_cours], [:evolutions_en_cours] ]
     @data[:severite] =
-    [ [:bloquantes_terminees], [:majeures_terminees],
-    [:mineures_terminees], [:sans_objet_terminees],
-    [:bloquantes_en_cours], [:majeures_en_cours],
-    [:mineures_en_cours], [:sans_objet_en_cours] ]
+     [ [:bloquantes_terminees], [:majeures_terminees],
+     [:mineures_terminees], [:sans_objet_terminees],
+     [:bloquantes_en_cours], [:majeures_en_cours],
+     [:mineures_en_cours], [:sans_objet_en_cours] ]
     @data[:resolution] =
-    [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:en_cours] ]
+     [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:en_cours] ]
     @data[:evolution] =
-    [ [:'bénéficiaires'], [:logiciels], [:contributions] ] # TODO : [:interactions]
+     [ [:'bénéficiaires'], [:logiciels], [:contributions] ] # TODO : [:interactions]
     @data[:annulation] =
-    [ [:informations], [:anomalies], [:'évolutions'] ]
+     [ [:informations], [:anomalies], [:'évolutions'] ]
 
     # calcul des délais
     @data[:temps_de_rappel] =
-    [ [:'délais_respectés'], [:'hors_délai'] ]
+     [ [:'délais_respectés'], [:'hors_délai'] ]
     @data[:temps_de_contournement] =
-    [ [:'délais_respectés'], [:'hors_délai'] ]
+     [ [:'délais_respectés'], [:'hors_délai'] ]
     @data[:temps_de_correction] =
-    [ [:'délais_respectés'], [:'hors_délai'] ]
+     [ [:'délais_respectés'], [:'hors_délai'] ]
 
 
     # Camemberts nommé dynamiquement
@@ -534,7 +534,7 @@ class ReportingController < ApplicationController
   end
 
 
-  def _titres
+  def _titles
     @@titres = {
       :repartition => _('Distribution of your requests'),
       :repartition_cumulee => _('Distribution of your requests'),

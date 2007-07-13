@@ -14,7 +14,7 @@ module ReportingHelper
     result = ''
     return result unless size > 0
     result << '<tr>'
-    first = _('Période')
+    first = _('Period')
     if options[:with2rows]
       result << "<th rowspan=\"2\">#{first}</th>"  unless options[:without_firstcol]
       result << "<th nowrap colspan=\"#{size}\"><center>#{options[:with2rows]}</center></th>"
@@ -97,7 +97,7 @@ module ReportingHelper
     table << '  </td>'
     # cellule contenant le graphique depuis le début
     table << '  <td class="report_data" align="center">'
-    table << '  ' + _('Since the begining of the contract')
+    table << '  ' + _('Since the begining of your contract')
     table <<    report_graph(total, options)
     table << '  </td>'
     table << ' </tr>'

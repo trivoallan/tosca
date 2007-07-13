@@ -1,5 +1,5 @@
 <div class="content" id="content">
-  <h1><%= _('Activity OSSA per week') %></h1><br />
+  <h1><%= _('OSSA activity per week') %></h1><br />
   <% form_tag comex_resultat_reporting_url, :method => :get do %>
     <table class='show'>
       <tr>
@@ -14,8 +14,7 @@
         </td>
         <td rowspan='5'><%= box_clients(9)%></td>
       </tr>
-      <tr><th><%= _('Search by period') %></th></tr>
-      <tr><td><%= _("(not counting the week above)")%></td></tr>
+      <tr><th><%= _('Or search by period') %></th></tr>
       <tr>
         <td>
           <label for="first_day"><%= _('First day : ') %></label>
@@ -34,11 +33,11 @@
       </tr>
       <tr>
         <td align='center'>
-          <%= submit_tag _('See the reporting for this week'),
+          <%= submit_tag _('See the report for this week'),
             {:name => "reporting" } %>
         </td>
         <td align='center'>
-          <%= submit_tag _('See the progress report of the CNS'), {:name => "cns"}%>
+          <%= submit_tag _("See the report of requests' SLA"), {:name => "cns"}%>
         </td>
       </tr>
     </table>

@@ -1,5 +1,5 @@
 <% user = session[:user] %>
-<% connected = public_link_to(_('conected'), :action => 'login', :controller => 'account') %>
+<% connected = public_link_to(_('connected'), account_login_url) %>
 <table><tr><td rowspan="2"><%= logo_lstm %> </td><td><h2 class="spacer">Sommaire</h2></td></tr>
        <tr><td> Bienvenue sur l&lsquo;outil de gestion du 08000linux.</td></tr>
 </table>
@@ -29,7 +29,7 @@
             #{link_to('rapport d\'activité', general_reporting_url)} en ligne." %></p>
   <% else %>
     <p><%= _("When you are %s, you have access to an activity report") % connected %><br />
-       <%= _("dinamicaly showin the activity of owr service in real time.")%></p><br />
+       <%= _("dinamicaly showin the activity of our service in real time.")%></p><br />
     <p><%= _("You also have access to all the documents we")%><br />
        <%= _("deliver to you, and all this in a centralized and versioned way.")%></p>
   <% end %>
@@ -67,12 +67,12 @@
 
  <div class="sommaire show">
   <h3>Logiciels</h3>
-  <p><%= _("you can see the list of %s.") % public_link_to_softwares %>
+  <p><%= _("You can see the list of %s.") % public_link_to_softwares %>
      <%= _("This software is distributed by a precise and simple %s, by activity group.") % public_link_to_groupes %></p><br />
   <% #       ( @beneficiaire ? " dans le cadre de votre #{link_to_my_client} " : '.' ) +%>
   <% unless user %>
-    <p><%=_("We have assistance offers, also support and mantainance for")%>
-       <%=_("all this software, so don't hesitate to")%>
+    <p><%=_("We have a large range of offers for supporting you with a SLA. This Service Level Agreement can be very short and is guaranted by contract.")%>
+       <%=_("We have assistance offers, also support and mantainance for, so don't hesitate to")%>
        <%=mail_to('contact@08000linux.com',_('contact us'))%></p><br />
   <% end %>
   <p><%=_("You can also access to %s done by owr team.") % public_link_to_contributions  %></p>

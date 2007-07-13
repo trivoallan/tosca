@@ -10,8 +10,9 @@ ActionController::Routing::Routes.draw do |map|
   # it generates helper likes admin_bienvenue_url and admin_bienvenue_path
   # all those helpers only have GET method.
   # See overrides.rb for without_orm source code
-  map.bienvenue "", { :controller => 'bienvenue', :action => 'index',
+  sweet_home = { :controller => 'bienvenue', :action => 'index',
     :conditions => { :method => :get } }
+  map.bienvenue "", sweet_home
 
   map.without_orm('bienvenue', %w(admin plan selenium about))
   map.without_orm('reporting', %w(comex configuration general comex_resultat))
@@ -22,11 +23,11 @@ ActionController::Routing::Routes.draw do |map|
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
-  options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
-  map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
-  map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
-  map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
-  map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
+  # options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
+  # map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
+  # map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
+  # map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
+  # map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
 
 
 
@@ -59,10 +60,10 @@ ActionController::Routing::Routes.draw do |map|
   :collection => { :select => :get },
   :member => { :list => :get, :destroy => :delete }
   map.resources :export,
-    :collection => { :contributions => :get, :appels => :get,
-      :demandes_ods => :get, :appels_ods => :get,
-      :identifiants_ods => :get, :contributions_ods => :get
-    }
+  :collection => { :contributions => :get, :appels => :get,
+    :demandes_ods => :get, :appels_ods => :get,
+    :identifiants_ods => :get, :contributions_ods => :get
+  }
   map.resources :groupes
   map.resources :ingenieurs,
   :collection => { :list => :get }

@@ -2,9 +2,7 @@ require File.dirname(__FILE__) + "<%= '/..' * controller_class_name.split(\"::\"
 require "<%= parent_folder_for_require %><%= controller_file_name %>_controller"
 
 # Re-raise errors caught by the controller.
-class controller_class_name Controller
-
-def rescue_action(e) raise e end; end
+class controller_class_name Controller; def rescue_action(e) raise e end; end
 
 class controller_class_name ControllerTest < Test::Unit::TestCase
 

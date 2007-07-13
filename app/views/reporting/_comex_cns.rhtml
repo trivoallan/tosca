@@ -1,9 +1,9 @@
 <div class="content">
-<h1><%= _('CNS report') %> </h1>
-  <h2><%= _('Legend') %> </h2>
+<h1><%= _('SLA report') %> </h1>
+  <h2><%= _('Caption') %> </h2>
   <div>
     <p><%= _('The progressions bar represent the progress ratio of the contract: ') %></p><br />
-    <%=progress_bar( 0) %> <%= _('The contract has not yet been started') %>
+    <%=progress_bar( 0) %> <%= _('The contract has not been started yet') %>
     <%=progress_bar( 25) %> <%= _('25% de ready') %>
     <%=progress_bar( 50) %> <%= _('50% de ready') %>
     <%=progress_bar( 75) %> <%= _('75% de ready') %>
@@ -17,7 +17,7 @@
       <table class="show", width='100%'>
         <tr>
           <th><%= _('Id')%></th>
-          <th><%= _('Contournement')%></th>
+          <th><%= _('Workaround')%></th>
           <th><%= _('Correction')%></th>
           <th><%= _('Summary')%></th>
         </tr>

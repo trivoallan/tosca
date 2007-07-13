@@ -77,7 +77,7 @@ module LinksHelper
   @@contributions = nil
   def public_link_to_contributions
     @@contributions ||= public_link_to(_('Contributions'), contributions_path,
-       :title => _('Access to the list of contributions done on your graveyard.'))
+       :title => _('Access to the list of contributions.'))
   end
 
   @@administration = nil
@@ -90,7 +90,7 @@ module LinksHelper
   @@about = nil
   def public_link_to_about()
     @@about ||= public_link_to('?', about_bienvenue_path,
-       :title => _("Regarding %s") % Metadata::NOM_COURT_APPLICATION)
+       :title => _("About %s") % Metadata::NOM_COURT_APPLICATION)
   end
 
 

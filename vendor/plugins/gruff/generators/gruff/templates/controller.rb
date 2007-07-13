@@ -1,4 +1,4 @@
-class controller_class_name Controller < ApplicationController
+class <%= controller_class_name %>Controller < ApplicationController
 
   # To make caching easier, add a line like this to config/routes.rb:
   # map.graph "graph/:action/:id/image.png", :controller => "graph"
