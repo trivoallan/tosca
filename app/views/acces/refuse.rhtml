@@ -1,14 +1,15 @@
 
-<h1>Accés refusé</h1>
+<h1><%= _("Acces denied") %></h1>
 
 <div class="information error">
-<p>L'accés à cette page vous a été refusé.</p>
-<p>Vous pouvez reprendre votre navigation en cliquant sur accueil</p>
-<p>Vous pouvez aussi le cas échéant vous reconnecter avec un utilisateur ayant plus de droits :</p>
-
+<% text = "<p>" << _("This page is restricted.") << "</p>" <<
+          "<p>" << _("You can go to the homepage.") << "</p>" <<
+          "<p>" << _("You can login with a user who has more rights :") << "</p>"
+%>
+<%= text %>
 </div>
 
 
-<%= link_to("Revenir à l'accueil", bienvenue_url) %>
-<% # Ce lien est en dur car on n'a plus aucun droit en étant déconnecter. Donc les link_to marche pu %>
-<p><a href="http://<%= request.host_with_port%>/"%>Se reconnecter</a></p>
+<%= link_to(_("Link to the homepage"), bienvenue_url) %>
+<% # This is a hard link because you have no rigths when you are disconnected. So link_to is not functionnal %>
+<p><a href="http://<%= request.host_with_port%>/"><%= _("Reconnect") %></a></p>

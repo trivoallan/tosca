@@ -305,9 +305,11 @@ class DemandesController < ApplicationController
   def associer_contribution
     update_contribution( params[:id], params[:contribution_id] )
   end
+    
   def delete_contribution
     update_contribution params[:id], nil
   end
+  
   def update_contribution( demand_id , contribution_id )
     if contribution_id == nil
       flash_text = _('The demand has now no contribution')
