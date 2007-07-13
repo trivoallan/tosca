@@ -11,8 +11,8 @@ ActionController::Routing::Routes.draw do |map|
   # all those helpers only have GET method.
   # See overrides.rb for without_orm source code
   sweet_home = { :controller => 'bienvenue', :action => 'index',
-    :conditions => { :method => :get } }
-  map.bienvenue "", sweet_home
+                 :conditions => { :method => :get } }
+  map.bienvenue '/', sweet_home
 
   map.without_orm('bienvenue', %w(admin plan selenium about))
   map.without_orm('reporting', %w(comex configuration general comex_resultat))
@@ -23,11 +23,11 @@ ActionController::Routing::Routes.draw do |map|
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
-  # options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
-  # map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
-  # map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
-  # map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
-  # map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
+  options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
+  map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
+  map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
+  map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
+  map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')
 
 
 

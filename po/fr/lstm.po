@@ -1614,7 +1614,7 @@ msgid "Estimation in minutes"
 msgstr "Estimation en minutes"
 
 #: app/views/reporting/delai.rhtml:17
-msgid "Workaround time of the demands in working days"
+msgid "Workaround time of the requests in working days"
 msgstr "Temps de contournement des demandes en jours ouvrées"
 
 #: app/views/reporting/delai.rhtml:19
