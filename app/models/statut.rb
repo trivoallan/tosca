@@ -3,18 +3,18 @@
 #####################################################
 class Statut < ActiveRecord::Base
   has_many :demandes
-#########################
-# Pour mémoire :        #
-#1 	Enregistrée     #
-#2 	Prise en compte #
-#3 	Suspendue       #
-#4 	Analysée        #
-#5 	Contournée      #
-#6 	Corrigée        #
-#7 	Clôturée        #
-#8       Annulée        #
-#########################
 
+  #######################################
+  N_('Submitted') #1  	Enregistrée     #
+  N_('Active')    #2	Prise en compte #
+  N_('Suspended') #3	Suspendue       #
+  N_('Analysed')  #4	Analysée        #
+  N_('Workaround')#5 	Contournée      #
+  N_('Fixed')     #6	Corrigée        #
+  N_('Closed')    #7	Clôturée        #
+  N_('Cancelled') #8     Annulée        #
+  #######################################
+  
   SELECT = 'statuts.id, statuts.nom '
 
   def possible
