@@ -17,7 +17,7 @@ class Date
     
     ABBR_MONTHNAMES = [nil] + %w(Jan Fév Mar Avr Mai Juin Juil Aoû Sep Oct Nov Déc)
     ABBR_DAYNAMES = %w(dim lun mar mer jeu ven sam)
-    ABBR_MONTHS_LSTM = { 0 => 'jan', 1 => 'fév', 2 => 'mar', 3 => 'avr', 4 => 'mai', 5 => 'juin', 6 => 'juil', 7 => 'aoû', 8 => 'sep', 9 => 'oct', 10 => 'nov', 11 => 'déc' }
+    ABBR_MONTHS_LSTM = { 1 => 'jan', 2 => 'fév', 3 => 'mar', 4 => 'avr', 5 => 'mai', 6 => 'juin', 7 => 'juil', 8 => 'aoû', 9 => 'sep', 10  => 'oct', 11 => 'nov', 12 => 'déc' }
 end
 
 
