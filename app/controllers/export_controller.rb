@@ -169,6 +169,58 @@ class ExportController < ApplicationController
     report_out = report.as(type, options)
     render(:text =>report_out , :layout => false)
   end
+
+  #export the comex table in ods
+  def comex_ods
+    clients = flash[:clients]
+    requests= flash[:requests]
+    total = flash[:total]
+    data = []
+    row = ['', _('To be closed')+ '(I)=(IV)'+ _('"last week"'),'','','',
+      _('New Requests'),'','','',
+      _('Requests closed <br /> this week') + '(IV)','','','',
+      _('Total in progress <br /> end week') + '(V=I+III-IV)','','','', *
+      _('TOTAL')
+    ]
+    data << row
+    row = [_('client')]
+    4.times do
+      row += [_('Blocking'), _('Major'), _('Minor'), _('None')]
+    end
+    row << _('To close')
+    data << row
+    clients.each do |c|
+      name = c.nom.intern
+      row = [name]
+      repeat4times row,requests[:last_week][name],1
+      repeat4times row,requests[:new][name],1
+      repeat4times row,requests[:closed][name],1
+      repeat4times row, total[:active][name],0 
+      row << total[:final][name]
+      data << row
+    end
+
+    row = ['TOTALS']
+    repeat4times row, requests[:last_week][:total],0 
+    repeat4times row, requests[:new][:total],0 
+    repeat4times row, requests[:closed][:total],0 
+    repeat4times row, total[:active][:total],0 
+    row << total[:final][:total]
+    data << row
+
+    report = data.to_table 
+    generate_report(report, :ods, {})
+
+    flash[:clients]= flash[:clients]
+    flash[:requests]= flash[:requests]
+    flash[:total]= flash[:total]
+  end
+  def repeat4times( row, element, decalage)
+    4.times do |i|
+      row << element[i+decalage]
+    end
+  end
+  
   
 
   # TODO : le mettre dans les utils ?

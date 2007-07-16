@@ -26,13 +26,13 @@
       <td><%= c %></td>
         <% name = c.nom.intern %>
 	<% 4.times do |i| %>
-	  <td><%= @requests[:last_week][name][4][i+1] %></td>
+	  <td><%= @requests[:last_week][name][i+1] %></td>
         <% end %>
 	<% 4.times do |i| %>
-          <td><%= @requests[:new][name][4][i+1] %></td>
+          <td><%= @requests[:new][name][i+1] %></td>
         <% end %>
 	<% 4.times do |i| %>
-          <td><%= @requests[:closed][name][4][i+1] %></td>
+          <td><%= @requests[:closed][name][i+1] %></td>
         <% end %>
 	<% 4.times do |i| %>
           <td><%= @total[:active][name][i] %></td>
@@ -57,4 +57,5 @@
         <td><%= @total[:final][:total] %></td>
      </tr>
    </table>
+  <%= comex_export_link %>
 </div>

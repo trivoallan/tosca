@@ -9,9 +9,6 @@ module  ComexReporting
     @total = { :active=> {}, :final=> {} }
     @clients.each do |c|
       name = c.nom.intern
-      @requests[:last_week][name] = [0,0,0,0, []]
-      @requests[:new][name] = [0,0,0,0, []]
-      @requests[:closed][name] = [0,0,0,0, []]
       @total[:active][name] = [0,0,0,0, []]
       @total[:final][name] = 0
     end
@@ -38,24 +35,24 @@ module  ComexReporting
                        "(#{Demande::TERMINEES} AND " <<
                          "updated_on >= :first_day " <<
                        "))", values ]
-      @requests[:last_week][name][4] =
+      @requests[:last_week][name] = 
         Demande.count(:group=> 'severite_id',:conditions => clast_week)
 
       cnew = [ 'created_on BETWEEN :first_day AND :last_day',values]
-      @requests[:new][name][4] =
+      @requests[:new][name] =
         Demande.count(:group => 'severite_id', :conditions => cnew)
 
       cclosed = [ 'updated_on BETWEEN :first_day AND :last_day AND ' <<
                   "#{Demande::TERMINEES}", values ]
-      @requests[:closed][name][4] =
+      @requests[:closed][name] =
         Demande.count(:group => 'severite_id', :conditions => cclosed)
     }
 
     4.times do |i|
       last_week, closed, new = 0,0,0
-      last_week= @requests[:last_week][name][4][i+1] if @requests[:last_week][name][4][i+1]
-      closed = @requests[:closed][name][4][i+1] if @requests[:closed][name][4][i+1]
-      new = @requests[:new][name][4][i+1] if @requests[:new][name][4][i+1]
+      last_week= @requests[:last_week][name][i+1] if @requests[:last_week][name][i+1]
+      closed = @requests[:closed][name][i+1] if @requests[:closed][name][i+1]
+      new = @requests[:new][name][i+1] if @requests[:new][name][i+1]
 
       @total[:active][name][i] = last_week + new - closed
       @total[:final][name] += @total[:active][name][i]

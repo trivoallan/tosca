@@ -3,7 +3,7 @@
 #####################################################
 #
 class ReportingController < ApplicationController
-  helper :demandes
+  helper :demandes, :export
   include ComexReporting
 
   # Les couleurs par défauts sont dans l'ordre alphabétique des severités :
@@ -84,7 +84,10 @@ class ReportingController < ApplicationController
         compute_comex_report(client)
       end
     end
-  end
+    flash[:clients]= @clients
+    flash[:requests]= @requests
+    flash[:total]= @total
+end
 
 
   def general

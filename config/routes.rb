@@ -60,10 +60,11 @@ ActionController::Routing::Routes.draw do |map|
   :collection => { :select => :get },
   :member => { :list => :get, :destroy => :delete }
   map.resources :export,
-  :collection => { :contributions => :get, :appels => :get,
-    :demandes_ods => :get, :appels_ods => :get,
-    :identifiants_ods => :get, :contributions_ods => :get
-  }
+    :collection => { :contributions => :get, :appels => :get,
+      :demandes_ods => :get, :appels_ods => :get,
+      :identifiants_ods => :get, :contributions_ods => :get,
+      :comex_ods => :get
+    }
   map.resources :groupes
   map.resources :ingenieurs,
   :collection => { :list => :get }
