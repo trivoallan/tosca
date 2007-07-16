@@ -36,12 +36,13 @@ class RefactorDemandesHistory < ActiveRecord::Migration
           #Le commentaire appartient à celui qui l'a écrit
           if v.ingenieur_id.nil?
             #Demande déposée par un bénéficaire
+            puts "Processing demande " << d.id.to_s << " (versions : " << d.versions.size.to_s << ")" if d.versions.size != 0
             new_comment.identifiant_id = Beneficiaire.find(v.beneficiaire_id).identifiant_id
           else
             #Demande déposée par un ingé
             new_comment.identifiant_id = Ingenieur.find(v.ingenieur_id).identifiant_id
           end
-          puts "Création nouveau commentaire pour demande #{d.id}"
+#           puts "Création nouveau commentaire pour demande #{d.id}"
 #           new_comment.save
         else
           #On regarde si la version courante est raisonnablement la même que la version actuelle
@@ -55,9 +56,9 @@ class RefactorDemandesHistory < ActiveRecord::Migration
               equal_no_state = false and break if old_version.attributes[attr] != v.attributes[attr]
             end
             if equal_no_state #Pas de changement dans la demande. Ètrange...
-              puts "Processing demande " << d.id.to_s << " (versions : " << d.versions.size.to_s << ")" if d.versions.size != 0
+#               puts "Processing demande " << d.id.to_s << " (versions : " << d.versions.size.to_s << ")" if d.versions.size != 0
               if old_version.updated_on != v.updated_on
-                puts "Erreur : Les deux versions #{old_version.version} et #{v.version} sont presques pareilles"
+#                 puts "Erreur : Les deux versions #{old_version.version} et #{v.version} sont presques pareilles"
               else #Les deux versions sont rigoureusement identiques (modulo la version)
                 puts "Processing demande " << d.id.to_s << " (versions : " << d.versions.size.to_s << ")" if d.versions.size != 0
                 puts "Erreur : Les deux versions #{old_version.version} et #{v.version} sont rigoureusement identiques"
