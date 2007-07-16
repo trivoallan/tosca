@@ -24,7 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
   options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
-  map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejointe')
+  map.files 'piecejointe/file/:id/:filename', options.update(:file_type => 'piecejoint+e')
   map.files 'contribution/patch/:id/:filename', options.update(:file_type => 'contribution')
   map.files 'document/fichier/:id/:filename', options.update(:file_type => 'document')
   map.files 'binaire/archive/:id/:filename', options.update(:file_type => 'binaire')

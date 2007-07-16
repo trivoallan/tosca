@@ -7,11 +7,8 @@ class EngagementsController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
   def list
-    @engagement_pages, @engagements = paginate :engagements, 
+    @engagement_pages, @engagements = paginate :engagements,
     :per_page => 20, :order => "typedemande_id, severite_id",
     :include => [:typedemande,:severite]
   end

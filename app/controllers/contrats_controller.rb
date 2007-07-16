@@ -9,9 +9,6 @@ class ContratsController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
   def list
     @contrat_pages, @contrats = paginate :contrats, :per_page => 10,
     :include => [:client]

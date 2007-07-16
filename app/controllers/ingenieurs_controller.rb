@@ -7,10 +7,6 @@ class IngenieursController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def list
     @competences = Competence.find(:all)
     @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 20,
@@ -18,7 +14,7 @@ class IngenieursController < ApplicationController
   end
 
   def show
-    @ingenieur = Ingenieur.find(params[:id], 
+    @ingenieur = Ingenieur.find(params[:id],
                                 :include => [:identifiant,:competences])
   end
 
@@ -44,7 +40,7 @@ class IngenieursController < ApplicationController
 
   def update
     @ingenieur = Ingenieur.find(params[:id])
-    if @ingenieur.update_attributes(params[:ingenieur]) 
+    if @ingenieur.update_attributes(params[:ingenieur])
       flash[:notice] = 'Ingenieur was successfully updated.'
       redirect_to :action => 'list'
     else

@@ -9,11 +9,8 @@ class CommentairesController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :create, :update ],
-         :redirect_to => { :action => :list }
   def list
-    @commentaire_pages, @commentaires = paginate :commentaires, 
+    @commentaire_pages, @commentaires = paginate :commentaires,
     :per_page => 10, :include => [:demande]
   end
 
@@ -24,7 +21,7 @@ class CommentairesController < ApplicationController
   #utilisé par la vue "comment" de Demande pour en ajouter un
   def comment
     unless params[:id] and params[:commentaire]
-      return render_text('') 
+      return render_text('')
     end
 
     user = session[:user]
@@ -44,25 +41,25 @@ class CommentairesController < ApplicationController
 
     # public si on modifie le statut
     params[:commentaire][:prive]=false if statut_modifie
-    # TODO : avertir ??  
-    # 'Le statut a été modifié : le commentaire est <b>public</b>' 
+    # TODO : avertir ??
+    # 'Le statut a été modifié : le commentaire est <b>public</b>'
     @commentaire = Commentaire.new(params[:commentaire])
-    @commentaire.demande_id = demande.id 
+    @commentaire.demande_id = demande.id
     if params[:piecejointe] and params[:piecejointe][:file] != ''
-      @commentaire.piecejointe = Piecejointe.new(params[:piecejointe]) 
+      @commentaire.piecejointe = Piecejointe.new(params[:piecejointe])
     end
     @commentaire.identifiant_id = user.id
 
     # on vérifie et on envoie le courrier
     if @commentaire.corps.size < 5
-      @commentaire.errors.add_on_empty('corps') 
-      # Il ne faut _PAS_ de .now dans ce warn. Il est renvoyé au 
+      @commentaire.errors.add_on_empty('corps')
+      # Il ne faut _PAS_ de .now dans ce warn. Il est renvoyé au
       # contrôleur des demandes.
       flash[:warn] = 'Votre commentaire est trop court, veuillez recommencer'
     elsif @commentaire.save and demande.update_attributes(params[:demande])
       flash[:notice] = 'Le commentaire a bien été ajouté.'
       unless @commentaire.prive
-        options = {:demande => demande, :commentaire => @commentaire, 
+        options = {:demande => demande, :commentaire => @commentaire,
            :nom => user.nom, :controller => self,
            :request => @request, :statut_modifie => statut_modifie,
            :statut => demande.statut.nom }
@@ -72,7 +69,7 @@ class CommentairesController < ApplicationController
       flash[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
     end
 
-    options = { :action => 'comment', :controller => 
+    options = { :action => 'comment', :controller =>
       'demandes', :id => demande }
     redirect_to(url_for(options))
   end
@@ -86,7 +83,7 @@ class CommentairesController < ApplicationController
     else
       flash.now[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas été modifié"'
     end
-    redirect_to :controller => 'demandes', :action => 
+    redirect_to :controller => 'demandes', :action =>
       'comment', :id => @commentaire.demande_id
   end
 

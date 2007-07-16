@@ -3,19 +3,15 @@
 #####################################################
 class MachinesController < ApplicationController
   helper :socles
-  
+
   def index
     list
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def list
-    options = { :per_page => 250, :include => [:socle,:hote], :order => 
-        'machines.hote_id, machines.acces', :conditions => 
+    options = { :per_page => 250, :include => [:socle,:hote], :order =>
+        'machines.hote_id, machines.acces', :conditions =>
         'machines.hote_id IS NOT NULL' }
     @machine_pages, @machines = paginate :machines, options
   end
@@ -68,9 +64,9 @@ class MachinesController < ApplicationController
 
   private
   def _form
-    @socles = Socle.find(:all, :select => 'socles.nom, socles.id', 
+    @socles = Socle.find(:all, :select => 'socles.nom, socles.id',
                          :order => 'socles.nom')
-    conditions = ['machines.virtuelle = ?', 0] 
+    conditions = ['machines.virtuelle = ?', 0]
     @hotes = Machine.find(:all, :select => 'machines.acces, machines.id',
                           :conditions => conditions)
   end

@@ -7,9 +7,6 @@ class DependancesController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
 
   def list
     @dependance_pages, @dependances = paginate :dependances, :per_page => 10

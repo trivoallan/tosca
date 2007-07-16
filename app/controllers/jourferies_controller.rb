@@ -7,10 +7,6 @@ class JourferiesController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def list
     @jourferie_pages, @jourferies = paginate :jourferies, :per_page => 10
   end

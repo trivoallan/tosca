@@ -9,10 +9,6 @@ class SoclesController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def list
     @socle_pages, @socles = paginate :socles, :per_page => 250,
     :include => [:machine], :order=> 'socles.nom'
@@ -63,7 +59,7 @@ class SoclesController < ApplicationController
     redirect_to :action => 'list'
   end
 
-  private 
+  private
   def _form
     @machines = Machine.find_all
     @clients = Client.find(:all, :select => 'clients.nom, clients.id')

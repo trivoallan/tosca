@@ -4,10 +4,6 @@ class NewsController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def list
     @new_pages, @news = paginate :new, :per_page => 15
   end
@@ -18,7 +14,7 @@ class NewsController < ApplicationController
 
   def new
     @new = New.new
-    @new.ingenieur = @ingenieur 
+    @new.ingenieur = @ingenieur
     _form
   end
 
