@@ -1,9 +1,9 @@
 <h1>Editer une architecture</h1>
 
-<%= start_form_tag :action => 'update', :id => @arch %>
+<% form_tag(arch_url(@arch), :method => :put) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
 <br />
 <%= link_to_show_and_list(@arch) %>

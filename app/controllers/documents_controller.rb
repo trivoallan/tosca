@@ -5,6 +5,11 @@ class DocumentsController < ApplicationController
   helper :filters
 
   def index
+    select
+    render :action => "select"
+  end
+
+  def list
     flash[:notice]= flash[:notice]
     return redirect_to(:action => 'select') unless params[:id]
     unless params[:id] == 'all'

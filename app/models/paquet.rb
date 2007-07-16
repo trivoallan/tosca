@@ -15,12 +15,12 @@ class Paquet < ActiveRecord::Base
 
 
   def self.content_columns
-    @content_columns ||= columns.reject { |c| c.primary || 
-        c.name =~ /(_id|taille|_count)$/ || c.name == inheritance_column } 
+    @content_columns ||= columns.reject { |c| c.primary ||
+        c.name =~ /(_id|taille|_count)$/ || c.name == inheritance_column }
   end
-  
+
   def self.set_scope(contrat_ids)
-    self.scoped_methods << { :find => { :conditions => 
+    self.scoped_methods << { :find => { :conditions =>
         [ 'paquets.contrat_id IN (?)', contrat_ids ]} }
   end
 
@@ -39,9 +39,13 @@ class Paquet < ActiveRecord::Base
   end
 
   def to_s
-    "(#{conteneur.nom}) #{nom}-#{version}-#{release}"
+    if conteneur.nil?
+      "(unknown_name #{nom}-#{version}-#{release}"
+    else
+      "(#{conteneur.nom}) #{nom}-#{version}-#{release}"
+    end
   end
-  
+
   # TODO : virer TOUT les to_display et les surcharges de nom de tous les modèles
   alias_method :to_display, :to_s
 

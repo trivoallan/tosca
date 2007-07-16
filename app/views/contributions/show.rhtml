@@ -1,21 +1,21 @@
-<%= public_link_to _('Home'), bienvenue_url %> > 
- <%= public_link_to 'Contributions', :action => 'select', :id => nil %> > 
+<%= public_link_to _('Home'), bienvenue_url %> >
+ <%= public_link_to 'Contributions', :action => 'index' %> >
   <%= public_link_to @contribution.logiciel.nom, :action => 'index', :id => @contribution.logiciel_id %> >
 
 <h2>
   <%= public_link_to_file @contribution, 'patch', :image => true, :else => '' %>
-  <b><%=h @contribution.nom %></b> 
+  <b><%=h @contribution.nom %></b>
   <%= link_to_edit(@contribution) %>
 </h2>
 <div class="show">
     <%= @contribution.description_fonctionnelle %>
 
 <hr />
-    <%= link_to image_create('un reversement'), :controller => 'urlreversements', 
+    <%= link_to image_create('un reversement'), :controller => 'urlreversements',
                 :action => "new", :contribution_id => @contribution.id %>
-    <%= public_show_liste(@contribution.urlreversements, 'lien') { |u| 
+    <%= public_show_liste(@contribution.urlreversements, 'lien') { |u|
         link_to_edit_urlreversement(u).to_s +
-          " <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> " 
+          " <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
     } %>
     <% if @contribution.reverse_le %>
         <%= _('This contribution has been submitted on %s by <b>%s</b>') %
@@ -36,10 +36,10 @@
         <%=link_to_any_demande @contribution %></p>
   <% end %>
   <%= show_liste(@contribution.demandes, 'demande') { |d|
-        link_to_demande(d, :show_id => true, :icon_severite => true) 
+        link_to_demande(d, :show_id => true, :icon_severite => true)
       } %>
-  <%= show_liste(@contribution.paquets, 'paquet(s) sur lequel il a été appliqué') { |p| 
-        link_to_paquet(p) 
+  <%= show_liste(@contribution.paquets, 'paquet(s) sur lequel il a été appliqué') { |p|
+        link_to_paquet(p)
       } %>
 <% end %>
 

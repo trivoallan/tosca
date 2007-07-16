@@ -10,6 +10,11 @@ class ContributionsController < ApplicationController
   auto_complete_for :logiciel, :nom
 
   def index
+    select
+    render :action => "select"
+  end
+
+  def list
     unless params[:id]
       flash[:notice] = flash[:notice]
       return redirect_to(:action => 'select')
