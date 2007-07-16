@@ -176,14 +176,14 @@ class ExportController < ApplicationController
     requests= flash[:requests]
     total = flash[:total]
     data = []
-    row = ['', _('To be closed')+ '(I)=(IV)'+ _('"last week"'),'','','',
-      _('New Requests'),'','','',
-      _('Requests closed <br /> this week') + '(IV)','','','',
-      _('Total in progress <br /> end week') + '(V=I+III-IV)','','','', *
+    row = ['', _('To be closed')+ "(I)=(IV)\n"+ _('"last week"'),'','','',
+      _('New requests'),'','','',
+      _("Requests closed \n this week") + '(IV)','','','',
+      _("Total in progress \n end week") + '(V=I+III-IV)','','','', *
       _('TOTAL')
     ]
     data << row
-    row = [_('client')]
+    row = [_('Customer')]
     4.times do
       row += [_('Blocking'), _('Major'), _('Minor'), _('None')]
     end
@@ -200,7 +200,7 @@ class ExportController < ApplicationController
       data << row
     end
 
-    row = ['TOTALS']
+    row = [_('TOTALS')]
     repeat4times row, requests[:last_week][:total],0 
     repeat4times row, requests[:new][:total],0 
     repeat4times row, requests[:closed][:total],0 
