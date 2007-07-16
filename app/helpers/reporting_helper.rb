@@ -168,7 +168,7 @@ module ReportingHelper
     if options[:titre]
       out << image_tag(@path[nom], :alt => options[:titre])
     else
-      out << image_tag(@path[nom], :alt => @titres[nom])
+      out << image_tag(@path[nom], :alt => @titles[nom])
     end
     out
   end

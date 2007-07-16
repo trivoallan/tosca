@@ -538,7 +538,7 @@ end
 
 
   def _titles
-    @@titres = {
+    @@titles = {
       :repartition => _('Distribution of your requests'),
       :repartition_cumulee => _('Distribution of your requests'),
       :severite => _('Severity of the received requests'),
