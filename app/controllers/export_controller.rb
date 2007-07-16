@@ -179,7 +179,7 @@ class ExportController < ApplicationController
     row = ['', _('To be closed')+ "(I)=(IV)\n"+ _('"last week"'),'','','',
       _('New requests'),'','','',
       _("Requests closed \n this week") + '(IV)','','','',
-      _("Total in progress \n end week") + '(V=I+III-IV)','','','', *
+      _("Total in progress \n end week") + '(V=I+III-IV)','','','',
       _('TOTAL')
     ]
     data << row
