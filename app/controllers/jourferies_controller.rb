@@ -3,12 +3,8 @@
 #####################################################
 class JourferiesController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @jourferie_pages, @jourferies = paginate :jourferies, :per_page => 10
+    render :action => 'list'
   end
 
   def show

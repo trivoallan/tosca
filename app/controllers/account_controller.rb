@@ -16,7 +16,29 @@ class AccountController < ApplicationController
   before_filter :login_required, :except => [:login]
 
   def index
-    list
+    # init
+    options = { :per_page => 15, :order => 'identifiants.login', :include =>
+      [:beneficiaire,:ingenieur,:roles] }
+    conditions = []
+    @roles = Role.find_select
+
+    # Specification of a filter f :
+    # [ namespace, field, database field, operation ]
+    conditions = Filters.build_conditions(params, [
+       ['identifiant', 'nom', 'identifiants.nom', :like ],
+       ['filters', 'client_id', 'beneficiaires.client_id', :equal ],
+       ['filters', 'role_id', 'identifiants_roles.role_id', :equal ]
+     ])
+    flash[:conditions] = options[:conditions] = conditions
+
+    @user_pages, @users = paginate :identifiants, options
+    # panel on the left side
+    if request.xhr?
+      render :partial => 'users_list', :layout => false
+    else
+      _panel
+      @partial_for_summary = 'users_info'
+    end
     render :action => 'list'
   end
 
@@ -178,33 +200,6 @@ class AccountController < ApplicationController
       end
       redirect_back_or_default :action => "list"
     when :get
-    end
-  end
-
-  # Ajaxified list
-  def list
-    # init
-    options = { :per_page => 15, :order => 'identifiants.login', :include =>
-      [:beneficiaire,:ingenieur,:roles] }
-    conditions = []
-    @roles = Role.find_select
-
-    # Specification of a filter f :
-    # [ namespace, field, database field, operation ]
-    conditions = Filters.build_conditions(params, [
-       ['identifiant', 'nom', 'identifiants.nom', :like ],
-       ['filters', 'client_id', 'beneficiaires.client_id', :equal ],
-       ['filters', 'role_id', 'identifiants_roles.role_id', :equal ]
-     ])
-    flash[:conditions] = options[:conditions] = conditions
-
-    @user_pages, @users = paginate :identifiants, options
-    # panel on the left side
-    if request.xhr?
-      render :partial => 'users_list', :layout => false
-    else
-      _panel
-      @partial_for_summary = 'users_info'
     end
   end
 

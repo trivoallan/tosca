@@ -3,12 +3,8 @@
 #####################################################
 class SupportsController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @support_pages, @supports = paginate :supports, :per_page => 10
+    render :action => 'list'
   end
 
   def show

@@ -3,14 +3,10 @@
 #####################################################
 class EngagementsController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @engagement_pages, @engagements = paginate :engagements,
     :per_page => 20, :order => "typedemande_id, severite_id",
     :include => [:typedemande,:severite]
+    render :action => 'list'
   end
 
   def show

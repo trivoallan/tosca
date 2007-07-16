@@ -5,13 +5,9 @@ class SoclesController < ApplicationController
   helper :clients,:binaires,:machines,:paquets
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @socle_pages, @socles = paginate :socles, :per_page => 250,
     :include => [:machine], :order=> 'socles.nom'
+    render :action => 'list'
   end
 
   def show

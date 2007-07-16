@@ -3,13 +3,9 @@
 #####################################################
 class RolesController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @permissions = Permission.find(:all, :order => 'name', :include => [:roles])
     @roles = Role.find(:all)
+    render :action => 'list'
   end
 
   def show

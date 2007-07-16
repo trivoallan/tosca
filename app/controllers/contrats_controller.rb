@@ -5,13 +5,9 @@ class ContratsController < ApplicationController
   helper :clients,:engagements,:ingenieurs
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @contrat_pages, @contrats = paginate :contrats, :per_page => 10,
     :include => [:client]
+    render :action => 'list'
   end
 
   def show

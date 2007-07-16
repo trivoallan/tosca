@@ -4,12 +4,8 @@
 class SeveritesController < ApplicationController
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @severite_pages, @severites = paginate :severites, :per_page => 10
+    render :action => 'list'
   end
 
   def show

@@ -3,12 +3,8 @@
 #####################################################
 class LicensesController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @license_pages, @licenses = paginate :licenses, :per_page => 10
+    render :action => 'list'
   end
 
   def show

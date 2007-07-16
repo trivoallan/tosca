@@ -3,12 +3,8 @@
 #####################################################
 class MainteneursController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @mainteneur_pages, @mainteneurs = paginate :mainteneurs, :per_page => 10, :order => 'nom'
+    render :action => 'list'
   end
 
   def show

@@ -3,13 +3,8 @@
 #####################################################
 class DistributeursController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-
-  def list
     @distributeur_pages, @distributeurs = paginate :distributeurs, :per_page => 10
+    render :action => 'list'
   end
 
   def show

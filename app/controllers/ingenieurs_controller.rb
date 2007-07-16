@@ -3,14 +3,10 @@
 #####################################################
 class IngenieursController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @competences = Competence.find(:all)
     @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 20,
     :include => [:identifiant,:competences]
+    render :action => 'list'
   end
 
   def show

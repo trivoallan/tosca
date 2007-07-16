@@ -5,13 +5,9 @@ class BinairesController < ApplicationController
   helper :paquets
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @binaire_pages, @binaires = paginate :binaires, :per_page => 10,
     :include => [:socle, :arch, :paquet]
+    render :action => 'list'
   end
 
   def show

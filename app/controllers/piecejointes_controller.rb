@@ -3,13 +3,9 @@
 #####################################################
 class PiecejointesController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @piecejointe_pages, @piecejointes = paginate :piecejointes, :per_page => 10,
     :include => [:commentaire]
+    render :action => 'list'
   end
 
   def show

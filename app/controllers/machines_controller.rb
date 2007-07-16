@@ -5,15 +5,11 @@ class MachinesController < ApplicationController
   helper :socles
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     options = { :per_page => 250, :include => [:socle,:hote], :order =>
         'machines.hote_id, machines.acces', :conditions =>
         'machines.hote_id IS NOT NULL' }
     @machine_pages, @machines = paginate :machines, options
+    render :action => 'list'
   end
 
   def all

@@ -3,12 +3,8 @@
 #####################################################
 class PermissionsController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @permission_pages, @permissions = paginate :permissions, :order => 'name', :per_page => 100
+    render :action => 'list'
   end
 
   def show

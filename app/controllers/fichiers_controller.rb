@@ -3,12 +3,8 @@
 #####################################################
 class FichiersController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @fichier_pages, @fichiers = paginate :fichiers, :per_page => 10
+    render :action => 'list'
   end
 
   def show

@@ -10,20 +10,9 @@ class ContributionsController < ApplicationController
   auto_complete_for :logiciel, :nom
 
   def index
-    select and render :action => 'select'
-  end
-
-  # TODO : c'est pas très rails tout ça (mais c'est moins lent)
-  def select
-    options = { :conditions => 
-      'logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)' }
-    @logiciels = Logiciel.find(:all, options)
-  end
-
-  def list
     unless params[:id]
-      flash[:notice] = flash[:notice] 
-      return redirect_to(:action => 'select') 
+      flash[:notice] = flash[:notice]
+      return redirect_to(:action => 'select')
     end
     options = { :order => "created_on DESC" }
     unless params[:id] == 'all'
@@ -31,11 +20,19 @@ class ContributionsController < ApplicationController
       options[:conditions] = ['contributions.logiciel_id = ?', @logiciel.id]
     end
     @contribution_pages, @contributions = paginate :contributions, options
+    render :action => 'list'
+  end
+
+  # TODO : c'est pas très rails tout ça (mais c'est moins lent)
+  def select
+    options = { :conditions =>
+      'logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)' }
+    @logiciels = Logiciel.find(:all, options)
   end
 
   def admin
     conditions = []
-    options = { :per_page => 10, :order => 'contributions.updated_on DESC', 
+    options = { :per_page => 10, :order => 'contributions.updated_on DESC',
       :include => [:logiciel,:etatreversement,:demandes] }
 
     # Specification of a filter f :
@@ -46,11 +43,11 @@ class ContributionsController < ApplicationController
        ['filters', 'etatreversement_id', 'contributions.etatreversement_id', :equal ],
        ['filters', 'ingenieur_id', 'contributions.ingenieur_id', :equal ]
      ])
-    flash[:conditions] = options[:conditions] = conditions 
+    flash[:conditions] = options[:conditions] = conditions
 
     @contribution_pages, @contributions = paginate :contributions, options
     # panel on the left side
-    if request.xhr? 
+    if request.xhr?
       render :partial => 'contributions_admin', :layout => false
     else
       _panel
@@ -62,15 +59,15 @@ class ContributionsController < ApplicationController
     @contribution = Contribution.new
     @urlreversement = Urlreversement.new
     # pour préciser le type dès la création
-    @contribution.logiciel_id = params[:id] 
-    @contribution.ingenieur = @ingenieur 
+    @contribution.logiciel_id = params[:id]
+    @contribution.ingenieur = @ingenieur
     _form
   end
 
   def create
     @contribution = Contribution.new(params[:contribution])
     if @contribution.save
-      flash[:notice] = 'La contribution suivante a bien été créee : ' + 
+      flash[:notice] = 'La contribution suivante a bien été créee : ' +
         '</br><i>'+@contribution.description+'</i>'
       _update(@contribution)
       flash[:notice] << '</br>L\'url a également été enregistrée.'
@@ -92,7 +89,7 @@ class ContributionsController < ApplicationController
   def update
     @contribution = Contribution.find(params[:id])
     if @contribution.update_attributes(params[:contribution])
-      flash[:notice] = 'La contribution suivante a bien été mise à jour ' + 
+      flash[:notice] = 'La contribution suivante a bien été mise à jour ' +
         ': </br><i>'+@contribution.description+'</i>'
       _update(@contribution)
       redirect_to :action => 'show', :id => @contribution
@@ -118,7 +115,7 @@ class ContributionsController < ApplicationController
     @paquets = Paquet.find(:all, options)
     options = Binaire::OPTIONS
     options[:conditions] = clogiciel
-    @binaires = Binaire.find(:all, options) 
+    @binaires = Binaire.find(:all, options)
 
     render :partial => 'liste_paquets', :layout => false
   end

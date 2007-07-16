@@ -5,11 +5,6 @@ class DocumentsController < ApplicationController
   helper :filters
 
   def index
-    select
-    render :action => 'select'
-  end
-
-  def list
     flash[:notice]= flash[:notice]
     return redirect_to(:action => 'select') unless params[:id]
     unless params[:id] == 'all'
@@ -23,26 +18,26 @@ class DocumentsController < ApplicationController
       :include => [:identifiant]
 
     # panel on the left side
-    if request.xhr? 
+    if request.xhr?
       render :partial => 'documents_list', :layout => false
     else
       _panel
       @partial_for_summary = 'documents_info'
     end
-
+    render :action => 'list'
   end
 
   def select
     @typedocuments = Typedocument.find(:all)
     if @beneficiaire
-      @typedocuments.delete_if { |t| 
+      @typedocuments.delete_if { |t|
         Document.count(:conditions => "documents.typedocument_id = #{t.id}") == 0
       }
     end
 
     # TODO : fusionner avec la répétition dans 'list'
     # panel on the left side
-    if request.xhr? 
+    if request.xhr?
       render :partial => 'documents_list', :layout => false
     else
       _panel
@@ -103,7 +98,7 @@ class DocumentsController < ApplicationController
     @identifiants = Identifiant.find_all
   end
 
-  def _panel 
+  def _panel
     @count = {}
     @typedocuments = Typedocument.find_select
     @count[:documents] = Document.count

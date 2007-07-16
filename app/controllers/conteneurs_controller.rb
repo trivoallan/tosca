@@ -3,12 +3,8 @@
 #####################################################
 class ConteneursController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @conteneur_pages, @conteneurs = paginate :conteneurs, :per_page => 10
+    render :action => 'list'
   end
 
   def show

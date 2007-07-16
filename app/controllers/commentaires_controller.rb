@@ -5,13 +5,9 @@ class CommentairesController < ApplicationController
   helper :demandes
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @commentaire_pages, @commentaires = paginate :commentaires,
     :per_page => 10, :include => [:demande]
+    render :action => 'list'
   end
 
   def show

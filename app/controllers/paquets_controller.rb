@@ -7,40 +7,35 @@ class PaquetsController < ApplicationController
   # auto completion in 2 lines, yeah !
   auto_complete_for :paquet, :nom
 
-  def index
-    list
-    render :action => 'list'
-  end
-
   # TODO : filtres du panel à gauche
   # TODO : faire une interface à base de filtres ?
   # ou  pas d'interfaces du tout.
-  def list
-    options = { :per_page => 15, :order => 
+  def index
+    options = { :per_page => 15, :order =>
       'paquets.logiciel_id, paquets.version, paquets.release',
       :include => [:conteneur,:distributeur,:mainteneur,:logiciel] }
 
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]
     conditions = Filters.build_conditions(params, [
-       ['paquet', 'nom', 'paquets.nom', :like ] 
+       ['paquet', 'nom', 'paquets.nom', :like ]
      ])
-    flash[:conditions] = options[:conditions] = conditions 
+    flash[:conditions] = options[:conditions] = conditions
 
     @paquet_pages, @paquets = paginate :paquets, options
 
     # panel on the left side
-    if request.xhr? 
+    if request.xhr?
       render :partial => 'paquets_list', :layout => false
     else
       _panel
       @partial_for_summary = 'paquets_info'
     end
-
+    render :action => 'list'
   end
 
   def show
-    include =  [ :logiciel, :fournisseur, :distributeur, 
+    include =  [ :logiciel, :fournisseur, :distributeur,
       :contrat, :mainteneur, :conteneur ]
     paquet_id = params[:id]
     @paquet = Paquet.find(paquet_id, :include => include)
@@ -104,7 +99,7 @@ class PaquetsController < ApplicationController
     @contrats = Contrat.find(:all)
   end
 
-  def _panel 
+  def _panel
     @count = {}
     @clients = Client.find_select
     @count[:paquets] = Paquet.count

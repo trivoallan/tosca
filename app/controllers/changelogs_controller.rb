@@ -3,12 +3,8 @@
 #####################################################
 class ChangelogsController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @changelog_pages, @changelogs = paginate :changelogs, :per_page => 10
+    render :action => 'list'
   end
 
   def show

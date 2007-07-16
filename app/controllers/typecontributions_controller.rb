@@ -3,12 +3,8 @@
 #####################################################
 class TypecontributionsController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @typecontribution_pages, @typecontributions = paginate :typecontributions, :per_page => 10
+    render :action => 'list'
   end
 
   def show

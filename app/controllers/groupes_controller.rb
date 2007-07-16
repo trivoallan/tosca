@@ -8,16 +8,10 @@ class GroupesController < ApplicationController
 
   helper :logiciels
 
-
   def index
-    list
-    render :action => 'list'
-  end
-
-
-  def list
     @groupe_pages, @groupes = paginate :groupes, :per_page => 20,
     :order => 'groupes.nom'
+    render :action => 'list'
   end
 
   def show

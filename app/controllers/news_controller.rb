@@ -1,11 +1,7 @@
 class NewsController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @new_pages, @news = paginate :new, :per_page => 15
+    render :action => 'list'
   end
 
   def show

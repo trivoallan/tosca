@@ -3,13 +3,8 @@
 #####################################################
 class ImagesController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-
-  def list
     @image_pages, @images = paginate :images, :per_page => 10
+    render :action => 'list'
   end
 
   def show

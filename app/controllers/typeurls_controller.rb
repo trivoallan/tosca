@@ -3,12 +3,8 @@
 #####################################################
 class TypeurlsController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @typeurl_pages, @typeurls = paginate :typeurls, :per_page => 50
+    render :action => 'list'
   end
 
   def show

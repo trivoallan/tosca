@@ -3,12 +3,8 @@
 #####################################################
 class FournisseursController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @fournisseur_pages, @fournisseurs = paginate :fournisseurs, :per_page => 10
+    render :action => 'list'
   end
 
   def show

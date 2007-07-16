@@ -3,12 +3,8 @@
 #####################################################
 class CompetencesController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @competence_pages, @competences = paginate :competences, :per_page => 50
+    render :action => 'list'
   end
 
   def show

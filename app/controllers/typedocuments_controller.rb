@@ -3,12 +3,8 @@
 #####################################################
 class TypedocumentsController < ApplicationController
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @typedocument_pages, @typedocuments = paginate :typedocuments, :per_page => 10
+    render :action => 'list'
   end
 
   def show
