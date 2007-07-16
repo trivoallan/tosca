@@ -4,7 +4,6 @@
 class FichiersController < ApplicationController
   def index
     @fichier_pages, @fichiers = paginate :fichiers, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class FichiersController < ApplicationController
     @fichier = Fichier.new(params[:fichier])
     if @fichier.save
       flash[:notice] = 'Fichier was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class FichiersController < ApplicationController
 
   def destroy
     Fichier.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

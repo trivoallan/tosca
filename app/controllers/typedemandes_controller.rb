@@ -4,7 +4,6 @@
 class TypedemandesController < ApplicationController
   def index
     @typedemande_pages, @typedemandes = paginate :typedemandes, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class TypedemandesController < ApplicationController
     @typedemande = Typedemande.new(params[:typedemande])
     if @typedemande.save
       flash[:notice] = 'Typedemande was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class TypedemandesController < ApplicationController
 
   def destroy
     Typedemande.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

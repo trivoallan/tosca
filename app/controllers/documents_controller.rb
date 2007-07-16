@@ -24,7 +24,6 @@ class DocumentsController < ApplicationController
       _panel
       @partial_for_summary = 'documents_info'
     end
-    render :action => 'list'
   end
 
   def select
@@ -35,7 +34,7 @@ class DocumentsController < ApplicationController
       }
     end
 
-    # TODO : fusionner avec la répétition dans 'list'
+    # TODO : fusionner avec la répétition dans 'index'
     # panel on the left side
     if request.xhr?
       render :partial => 'documents_list', :layout => false

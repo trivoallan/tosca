@@ -7,7 +7,6 @@ class SoclesController < ApplicationController
   def index
     @socle_pages, @socles = paginate :socles, :per_page => 250,
     :include => [:machine], :order=> 'socles.nom'
-    render :action => 'list'
   end
 
   def show
@@ -27,7 +26,7 @@ class SoclesController < ApplicationController
     if @socle.save
       @socle.save
       flash[:notice] = 'Socle was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form
       render :action => 'new'
@@ -43,7 +42,7 @@ class SoclesController < ApplicationController
     @socle = Socle.find(params[:id])
     if @socle.update_attributes(params[:socle])
       flash[:notice] = 'Socle was successfully updated.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form
       render :action => 'edit'
@@ -52,7 +51,7 @@ class SoclesController < ApplicationController
 
   def destroy
     Socle.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   private

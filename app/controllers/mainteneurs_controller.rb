@@ -4,7 +4,6 @@
 class MainteneursController < ApplicationController
   def index
     @mainteneur_pages, @mainteneurs = paginate :mainteneurs, :per_page => 10, :order => 'nom'
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class MainteneursController < ApplicationController
     @mainteneur = Mainteneur.new(params[:mainteneur])
     if @mainteneur.save
       flash[:notice] = 'Mainteneur was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class MainteneursController < ApplicationController
 
   def destroy
     Mainteneur.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

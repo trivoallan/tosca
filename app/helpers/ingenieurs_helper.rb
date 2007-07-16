@@ -4,7 +4,7 @@
 module IngenieursHelper
 
   def link_to_ingenieurs
-    link_to 'Ingénieurs', :action => 'list', :controller => 'ingenieurs'
+    link_to 'Ingénieurs', :action => 'index', :controller => 'ingenieurs'
   end
 
   def link_to_ingenieur(inge)

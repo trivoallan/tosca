@@ -9,7 +9,6 @@ class MachinesController < ApplicationController
         'machines.hote_id, machines.acces', :conditions =>
         'machines.hote_id IS NOT NULL' }
     @machine_pages, @machines = paginate :machines, options
-    render :action => 'list'
   end
 
   def all
@@ -30,7 +29,7 @@ class MachinesController < ApplicationController
     @machine = Machine.new(params[:machine])
     if @machine.save
       flash[:notice] = 'Machine was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form
       render :action => 'new'
@@ -46,7 +45,7 @@ class MachinesController < ApplicationController
     @machine = Machine.find(params[:id])
     if @machine.update_attributes(params[:machine])
       flash[:notice] = 'Machine was successfully updated.'
-      redirect_to :action => 'list', :id => @machine
+      redirect_to :action => 'index', :id => @machine
     else
       _form
       render :action => 'edit'
@@ -55,7 +54,7 @@ class MachinesController < ApplicationController
 
   def destroy
     Machine.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   private

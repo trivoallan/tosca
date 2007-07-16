@@ -4,7 +4,6 @@
 class SupportsController < ApplicationController
   def index
     @support_pages, @supports = paginate :supports, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class SupportsController < ApplicationController
     @support = Support.new(params[:support])
     if @support.save
       flash[:notice] = 'Support was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class SupportsController < ApplicationController
 
   def destroy
     Support.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

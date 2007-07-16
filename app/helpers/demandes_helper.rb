@@ -183,7 +183,7 @@ module DemandesHelper
   # TODO : beaucoup trop de copier coller, c'est honteux !
   # TODO/MLO : me taper sur les doigts et faire une version propre
   # begining of factorisation in logiciels_helper
-  AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(:url => '../demandes/list')
+  AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(:url => '../demandes/index')
   def remote_link_to_active_request
     js_call = "document.forms['filters'].active.value=1; #{remote_function(AJAX_CALL)}"
     link_to_function(_('active requests'), js_call,

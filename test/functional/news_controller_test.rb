@@ -18,14 +18,14 @@ class NewsControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
   end
 
   def test_list
     get :list
 
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
 
     assert_not_nil assigns(:news)
   end
@@ -55,7 +55,7 @@ class NewsControllerTest < Test::Unit::TestCase
     post :create, :new => {}
 
     assert_response :redirect
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'index'
 
     assert_equal num_news + 1, New.count
   end
@@ -83,7 +83,7 @@ class NewsControllerTest < Test::Unit::TestCase
 
     post :destroy, :id => @first_id
     assert_response :redirect
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       New.find(@first_id)

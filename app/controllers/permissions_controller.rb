@@ -4,7 +4,6 @@
 class PermissionsController < ApplicationController
   def index
     @permission_pages, @permissions = paginate :permissions, :order => 'name', :per_page => 100
-    render :action => 'list'
   end
 
   def show

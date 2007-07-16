@@ -4,7 +4,6 @@
 class DistributeursController < ApplicationController
   def index
     @distributeur_pages, @distributeurs = paginate :distributeurs, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class DistributeursController < ApplicationController
     @distributeur = Distributeur.new(params[:distributeur])
     if @distributeur.save
       flash[:notice] = 'Distributeur was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class DistributeursController < ApplicationController
 
   def destroy
     Distributeur.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

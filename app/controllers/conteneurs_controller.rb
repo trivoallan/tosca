@@ -4,7 +4,6 @@
 class ConteneursController < ApplicationController
   def index
     @conteneur_pages, @conteneurs = paginate :conteneurs, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class ConteneursController < ApplicationController
     @conteneur = Conteneur.new(params[:conteneur])
     if @conteneur.save
       flash[:notice] = 'Conteneur was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class ConteneursController < ApplicationController
 
   def destroy
     Conteneur.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

@@ -4,14 +4,13 @@
 class GroupesController < ApplicationController
   # public access to the list
   skip_before_filter :login_required
-  before_filter :login_required, :except => [:list,:show]
+  before_filter :login_required, :except => [:index,:show]
 
   helper :logiciels
 
   def index
     @groupe_pages, @groupes = paginate :groupes, :per_page => 20,
     :order => 'groupes.nom'
-    render :action => 'list'
   end
 
   def show
@@ -26,7 +25,7 @@ class GroupesController < ApplicationController
     @groupe = Groupe.new(params[:groupe])
     if @groupe.save
       flash[:notice] = 'Groupe was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -48,6 +47,6 @@ class GroupesController < ApplicationController
 
   def destroy
     Groupe.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

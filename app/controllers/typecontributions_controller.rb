@@ -4,7 +4,6 @@
 class TypecontributionsController < ApplicationController
   def index
     @typecontribution_pages, @typecontributions = paginate :typecontributions, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class TypecontributionsController < ApplicationController
     @typecontribution = Typecontribution.new(params[:typecontribution])
     if @typecontribution.save
       flash[:notice] = 'Typecontribution was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class TypecontributionsController < ApplicationController
 
   def destroy
     Typecontribution.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

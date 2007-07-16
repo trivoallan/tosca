@@ -4,7 +4,6 @@
 class FournisseursController < ApplicationController
   def index
     @fournisseur_pages, @fournisseurs = paginate :fournisseurs, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class FournisseursController < ApplicationController
     @fournisseur = Fournisseur.new(params[:fournisseur])
     if @fournisseur.save
       flash[:notice] = 'Fournisseur was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class FournisseursController < ApplicationController
 
   def destroy
     Fournisseur.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

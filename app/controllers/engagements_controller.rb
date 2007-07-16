@@ -6,7 +6,6 @@ class EngagementsController < ApplicationController
     @engagement_pages, @engagements = paginate :engagements,
     :per_page => 20, :order => "typedemande_id, severite_id",
     :include => [:typedemande,:severite]
-    render :action => 'list'
   end
 
   def show
@@ -22,7 +21,7 @@ class EngagementsController < ApplicationController
     @engagement = Engagement.new(params[:engagement])
     if @engagement.save
       flash[:notice] = 'Engagement was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form
       render :action => 'new'
@@ -38,7 +37,7 @@ class EngagementsController < ApplicationController
     @engagement = Engagement.find(params[:id])
     if @engagement.update_attributes(params[:engagement])
       flash[:notice] = 'Engagement was successfully updated.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form and render :action => 'edit'
     end
@@ -46,7 +45,7 @@ class EngagementsController < ApplicationController
 
   def destroy
     Engagement.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   private

@@ -3,19 +3,19 @@
 
 <!--[form:document]-->
 <p><label for="document_client">Bénéficiaire</label><br/>
-<%= select("document", "client_id", 
+<%= select("document", "client_id",
 	@clients.collect{|l| [ l.nom, l.id]}) %>
 </p>
 
-<% if @action == :list %>
+<% if @action == :index %>
 <p><label for="document_identifiant">Auteur</label><br/>
-<%= select("document", "identifiant_id", 
+<%= select("document", "identifiant_id",
 	@identifiants.collect{|l| [ l.nom, l.id]}) %>
 </p>
 <% end %>
 
 <p><label for="document_typedocument">Type</label><br/>
-<%= select("document", "typedocument_id", 
+<%= select("document", "typedocument_id",
 	@typedocuments.collect{|l| [ l.nom, l.id]}) %>
 </p>
 

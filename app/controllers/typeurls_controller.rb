@@ -4,7 +4,6 @@
 class TypeurlsController < ApplicationController
   def index
     @typeurl_pages, @typeurls = paginate :typeurls, :per_page => 50
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class TypeurlsController < ApplicationController
     @typeurl = Typeurl.new(params[:typeurl])
     if @typeurl.save
       flash[:notice] = 'Typeurl was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class TypeurlsController < ApplicationController
 
   def destroy
     Typeurl.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

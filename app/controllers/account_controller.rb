@@ -39,7 +39,6 @@ class AccountController < ApplicationController
       _panel
       @partial_for_summary = 'users_info'
     end
-    render :action => 'list'
   end
 
   # NO_JAVASCRIPT = '<br/>Javascript n\'est pas activé sur votre navigateur'

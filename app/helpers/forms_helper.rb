@@ -109,8 +109,8 @@ module FormsHelper
   # Display a quick form field to go to a ticket
   # TODO : use yield to include what we want in the form
   # Call it like : 
-  #  if session[:user] && session[:user].authorized?('demandes/list')
-  #    out << form_tag(:controller => 'demandes', :action => 'list') 
+  #  if session[:user] && session[:user].authorized?('demandes/index')
+  #    out << form_tag(:controller => 'demandes', :action => 'index') 
   #    out <<  search_demande_field
   #    out << end_form_tag
   #  end

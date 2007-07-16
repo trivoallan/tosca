@@ -4,7 +4,6 @@
 class TypedocumentsController < ApplicationController
   def index
     @typedocument_pages, @typedocuments = paginate :typedocuments, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class TypedocumentsController < ApplicationController
     @typedocument = Typedocument.new(params[:typedocument])
     if @typedocument.save
       flash[:notice] = 'Typedocument was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,7 +40,7 @@ class TypedocumentsController < ApplicationController
 
   def destroy
     Typedocument.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
 end

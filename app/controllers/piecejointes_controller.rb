@@ -5,7 +5,6 @@ class PiecejointesController < ApplicationController
   def index
     @piecejointe_pages, @piecejointes = paginate :piecejointes, :per_page => 10,
     :include => [:commentaire]
-    render :action => 'list'
   end
 
   def show
@@ -20,7 +19,7 @@ class PiecejointesController < ApplicationController
     @piecejointe = Piecejointe.new(params[:piecejointe])
     if @piecejointe.save
       flash[:notice] = 'Piecejointe was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -42,6 +41,6 @@ class PiecejointesController < ApplicationController
 
   def destroy
     Piecejointe.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

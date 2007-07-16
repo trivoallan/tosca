@@ -38,7 +38,7 @@ Actions </div>
  > Caractéristiques</div>
  <ul class="menu" id="menu_caracteristiques">
   <li><b>Tâches </b>
-      <% form_tag(:controller => 'contributions', :action => 'list') do %>
+      <% form_tag(:controller => 'contributions', :action => 'index') do %>
        <%= show_help 'Marquer les reversements urgents en précisant le délais de reversement' %><br />
        <%= text_field('reversement','max_jours', :size => 5, 
            :value => 'TODO : '+@max_jours.to_s+' jours') %></li>

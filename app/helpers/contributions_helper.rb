@@ -25,7 +25,7 @@ module ContributionsHelper
   def public_link_to_contribution_logiciel(logiciel)
     return '-' unless logiciel 
     public_link_to logiciel.nom + ' (' + logiciel.contributions.size.to_s + ')', {
-      :action => 'list', :id => logiciel.id }
+      :action => 'index', :id => logiciel.id }
   end
 
   # call it like : 

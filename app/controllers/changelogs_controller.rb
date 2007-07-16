@@ -4,7 +4,6 @@
 class ChangelogsController < ApplicationController
   def index
     @changelog_pages, @changelogs = paginate :changelogs, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class ChangelogsController < ApplicationController
     @changelog = Changelog.new(params[:changelog])
     if @changelog.save
       flash[:notice] = 'Changelog was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,7 +40,7 @@ class ChangelogsController < ApplicationController
 
   def destroy
     Changelog.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end
 

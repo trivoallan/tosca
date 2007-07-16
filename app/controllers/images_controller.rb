@@ -4,7 +4,6 @@
 class ImagesController < ApplicationController
   def index
     @image_pages, @images = paginate :images, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class ImagesController < ApplicationController
     @image = Image.new(params[:image])
     if @image.save
       flash[:notice] = 'Image was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class ImagesController < ApplicationController
 
   def destroy
     Image.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

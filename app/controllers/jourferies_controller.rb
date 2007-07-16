@@ -4,7 +4,6 @@
 class JourferiesController < ApplicationController
   def index
     @jourferie_pages, @jourferies = paginate :jourferies, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -20,7 +19,7 @@ class JourferiesController < ApplicationController
     @jourferie.jour = @jourferie.jour.change(:hour => 0, :minute => 0, :second => 0)
     if @jourferie.save
       flash[:notice] = 'Jourferie was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -42,6 +41,6 @@ class JourferiesController < ApplicationController
 
   def destroy
     Jourferie.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

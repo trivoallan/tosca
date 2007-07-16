@@ -7,7 +7,6 @@ class ContratsController < ApplicationController
   def index
     @contrat_pages, @contrats = paginate :contrats, :per_page => 10,
     :include => [:client]
-    render :action => 'list'
   end
 
   def show
@@ -24,7 +23,7 @@ class ContratsController < ApplicationController
     @contrat = Contrat.new(params[:contrat])
     if @contrat.save
       flash[:notice] = 'Contrat was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form and render :action => 'new'
     end
@@ -47,7 +46,7 @@ class ContratsController < ApplicationController
 
   def destroy
     Contrat.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
 private

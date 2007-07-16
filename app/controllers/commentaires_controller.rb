@@ -7,7 +7,6 @@ class CommentairesController < ApplicationController
   def index
     @commentaire_pages, @commentaires = paginate :commentaires,
     :per_page => 10, :include => [:demande]
-    render :action => 'list'
   end
 
   def show
@@ -92,7 +91,7 @@ class CommentairesController < ApplicationController
     @commentaire = Commentaire.new(params[:commentaire])
     if @commentaire.save
       flash[:notice] = 'Le commentaire a bien été crée.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form
       render :action => 'new'

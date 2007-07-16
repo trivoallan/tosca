@@ -20,7 +20,6 @@ class ContributionsController < ApplicationController
       options[:conditions] = ['contributions.logiciel_id = ?', @logiciel.id]
     end
     @contribution_pages, @contributions = paginate :contributions, options
-    render :action => 'list'
   end
 
   # TODO : c'est pas très rails tout ça (mais c'est moins lent)
@@ -100,7 +99,7 @@ class ContributionsController < ApplicationController
 
   def destroy
     Contribution.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   def ajax_paquets

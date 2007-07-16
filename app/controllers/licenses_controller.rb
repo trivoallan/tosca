@@ -4,7 +4,6 @@
 class LicensesController < ApplicationController
   def index
     @license_pages, @licenses = paginate :licenses, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class LicensesController < ApplicationController
     @license = License.new(params[:license])
     if @license.save
       flash[:notice] = 'License was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class LicensesController < ApplicationController
 
   def destroy
     License.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

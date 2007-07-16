@@ -7,7 +7,6 @@ class ClientsController < ApplicationController
   def index
     @client_pages, @clients = paginate :clients, :per_page => 10,
     :order => 'clients.nom', :include => [:image,:support]
-    render :action => 'list'
   end
 
   def stats
@@ -32,7 +31,7 @@ class ClientsController < ApplicationController
     @client = Client.new(params[:client])
     if @client.save
       flash[:notice] = 'Client créé correctement.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form and render :action => 'new'
     end
@@ -55,7 +54,7 @@ class ClientsController < ApplicationController
 
   def destroy
     Client.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   private

@@ -17,7 +17,7 @@
       <% # on indique son nom et on le fait pointer vers la page principale du controller  %>
       <% if session[:user].authorized?(cname+'/index')%>
 	 <br/><b><%= link_to cname, :action => "index", :controller => cname %></b>
-      <% elsif session[:user].authorized?(cname+'/list')%>
+      <% elsif session[:user].authorized?(cname+'/index')%>
          <br/><b><%= link_to cname, :action => "list", :controller => cname  %></b>
       <% elsif cname == 'reporting' %>
          <br/><b><%= link_to 'reporting', :action => "configuration", :controller => cname  %></b>

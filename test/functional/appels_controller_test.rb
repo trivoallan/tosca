@@ -18,14 +18,14 @@ class AppelsControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
   end
 
   def test_list
     get :list
 
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
 
     assert_not_nil assigns(:appels)
   end
@@ -55,7 +55,7 @@ class AppelsControllerTest < Test::Unit::TestCase
     post :create, :appel => {}
 
     assert_response :redirect
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'index'
 
     assert_equal num_appels + 1, Appel.count
   end
@@ -83,7 +83,7 @@ class AppelsControllerTest < Test::Unit::TestCase
 
     post :destroy, :id => @first_id
     assert_response :redirect
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Appel.find(@first_id)

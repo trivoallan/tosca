@@ -7,7 +7,6 @@ class BinairesController < ApplicationController
   def index
     @binaire_pages, @binaires = paginate :binaires, :per_page => 10,
     :include => [:socle, :arch, :paquet]
-    render :action => 'list'
   end
 
   def show
@@ -24,7 +23,7 @@ class BinairesController < ApplicationController
     @binaire = Binaire.new(params[:binaire])
     if @binaire.save
       flash[:notice] = 'Binaire was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form
       render :action => 'new'
@@ -48,7 +47,7 @@ class BinairesController < ApplicationController
 
   def destroy
     Binaire.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   private

@@ -19,14 +19,14 @@ class EtapesControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
   end
 
   def test_list
     get :list
 
     assert_response :success
-    assert_template 'list'
+    assert_template 'index'
 
     assert_not_nil assigns(:etapes)
   end
@@ -56,7 +56,7 @@ class EtapesControllerTest < Test::Unit::TestCase
     post :create, :etape => {}
 
     assert_response :redirect
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'index'
 
     assert_equal num_etapes + 1, Etape.count
   end
@@ -82,7 +82,7 @@ class EtapesControllerTest < Test::Unit::TestCase
 
     post :destroy, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'list'
+    assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Etape.find(1)

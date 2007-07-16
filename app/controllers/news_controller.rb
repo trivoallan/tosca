@@ -1,7 +1,6 @@
 class NewsController < ApplicationController
   def index
     @new_pages, @news = paginate :new, :per_page => 15
-    render :action => 'list'
   end
 
   def show
@@ -18,7 +17,7 @@ class NewsController < ApplicationController
     @new = New.new(params[:new])
     if @new.save
       flash[:notice] = 'New was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form and render :action => 'new'
     end
@@ -41,7 +40,7 @@ class NewsController < ApplicationController
 
   def destroy
     New.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   private

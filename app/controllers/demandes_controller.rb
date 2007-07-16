@@ -9,7 +9,7 @@ class DemandesController < ApplicationController
   def auto_complete_for_logiciel_nom
     logiciel = params[:logiciel]
     unless logiciel and logiciel[:nom]
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     end
     options = '%' + logiciel[:nom] + '%'
 
@@ -100,7 +100,7 @@ class DemandesController < ApplicationController
       Notifier::deliver_demande_nouveau({:demande => @demande,
                                           :nom => @session[:user].nom,
                                           :controller => self}, flash)
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       _form @beneficiaire
       render :action => 'new'

@@ -5,7 +5,6 @@ class SeveritesController < ApplicationController
 
   def index
     @severite_pages, @severites = paginate :severites, :per_page => 10
-    render :action => 'list'
   end
 
   def show
@@ -20,7 +19,7 @@ class SeveritesController < ApplicationController
     @severite = Severite.new(params[:severite])
     if @severite.save
       flash[:notice] = 'Severite was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -42,6 +41,6 @@ class SeveritesController < ApplicationController
 
   def destroy
     Severite.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end

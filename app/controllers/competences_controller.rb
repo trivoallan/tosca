@@ -4,7 +4,6 @@
 class CompetencesController < ApplicationController
   def index
     @competence_pages, @competences = paginate :competences, :per_page => 50
-    render :action => 'list'
   end
 
   def show
@@ -19,7 +18,7 @@ class CompetencesController < ApplicationController
     @competence = Competence.new(params[:competence])
     if @competence.save
       flash[:notice] = 'Competence was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -41,6 +40,6 @@ class CompetencesController < ApplicationController
 
   def destroy
     Competence.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end
