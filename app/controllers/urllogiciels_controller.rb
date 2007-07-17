@@ -5,8 +5,8 @@ class UrllogicielsController < ApplicationController
   helper :logiciels
 
   def index
-    @urllogiciel_pages, @urllogiciels = paginate :urllogiciels, 
-     :per_page => 10, :include => [:logiciel,:typeurl], 
+    @urllogiciel_pages, @urllogiciels = paginate :urllogiciels,
+     :per_page => 10, :include => [:logiciel,:typeurl],
      :order => 'urllogiciels.logiciel_id'
   end
 
@@ -39,7 +39,7 @@ class UrllogicielsController < ApplicationController
     @urllogiciel = Urllogiciel.find(params[:id])
     if @urllogiciel.update_attributes(params[:urllogiciel])
       flash[:notice] = 'Urll mis à jour correctement.'
-      redirect_to :controller => 'logiciels' , :action => 'show', :id => 
+      redirect_to :controller => 'logiciels' , :action => 'show', :id =>
         @urllogiciel.logiciel
     else
       render :action => 'edit'

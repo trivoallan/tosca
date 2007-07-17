@@ -1,10 +1,10 @@
 <h1>Modifier la demande <%= @demande.id %>(administration)</h1>
 
 
-<%= start_form_tag  ({:action => 'update', :id => @demande.id}, 
-                     {:multipart => true, :id => 'demande_form', :name => 'demande_form' }) %>
+<% form_tag  ( demande_path(@demande.id), {:method => :put},
+                     {:multipart => true, :id => 'demande_form', :name => 'demande_form' }) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Modifier' %>
-<%= end_form_tag %>
+<% end %>
 
 <%= link_to_back %>

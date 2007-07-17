@@ -1,9 +1,9 @@
 <h1>Editing etatreversement</h1>
 
-<%= start_form_tag :action => 'update', :id => @etatreversement %>
+<% form_tag etatreversement_path(@etatreversement), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @etatreversement %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', etatreversement_path(@etatreversement) %> |
+<%= link_to_back %>

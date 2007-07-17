@@ -1,9 +1,9 @@
 <h1>Editing groupe</h1>
 
-<%= start_form_tag :action => 'update', :id => @groupe %>
+<% form_tag groupe_path(@groupe), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @groupe %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', groupe_path(@groupe) %> |
+<%= link_to_back %>

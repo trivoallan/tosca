@@ -1,9 +1,9 @@
 <h1>Editing socle</h1>
 
-<%= start_form_tag :action => 'update', :id => @socle %>
+<% form_tag socle_path(@socle), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Voir', :action => 'show', :id => @socle %> |
-<%= link_to 'Retour à la liste', :action => 'index' %>
+<%= link_to 'Voir', socle_path(@socle) %> |
+<%= link_to_back %>

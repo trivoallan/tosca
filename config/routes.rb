@@ -70,11 +70,13 @@ ActionController::Routing::Routes.draw do |map|
   :collection => { :list => :get }
   map.resources :logiciels
   map.resources :machines
+  map.resources :changelogs
   map.resources :paquets
   map.resources :permissions
   map.resources :roles
   map.resources :socles
   map.resources :statuts
+  map.resources :jourferies
   map.resources :urllogiciels
   map.resources :urlreversements
 

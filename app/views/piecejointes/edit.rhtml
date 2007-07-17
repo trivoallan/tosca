@@ -1,9 +1,9 @@
 <h1>Editing piecejointe</h1>
 
-<%= start_form_tag {:action => 'update', :id => @piecejointe}, :multipart => true %>
+<% form_tag piecejointe_path(@piecejointe), {:method => :put}, {:multipart => true} do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @piecejointe %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', piecejointe_path(@piecejointe) %> |
+<%= link_to_back %>

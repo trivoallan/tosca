@@ -22,7 +22,7 @@ class UrlreversementsController < ApplicationController
     @urlreversement = Urlreversement.new(params[:urlreversement])
     if @urlreversement.save
       flash[:notice] = _('Urlreversement was successfully created.')
-      redirect_to contribution_path(:id => @urlreversement.contribution_id)
+      redirect_to contribution_path(@urlreversement.contribution_id)
       
     else
       _form and render :action => 'new'
@@ -38,7 +38,7 @@ class UrlreversementsController < ApplicationController
     @urlreversement = Urlreversement.find(params[:id])
     if @urlreversement.update_attributes(params[:urlreversement])
       flash[:notice] = _('Urlreversement was successfully updated.')
-      redirect_to contribution_path(:id => @urlreversement.contribution_id)
+      redirect_to contribution_path(@urlreversement.contribution_id)
     else
       _form and render :action => 'edit'
     end

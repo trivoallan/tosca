@@ -14,8 +14,8 @@ class Date
 
     ABBR_MONTHS_LSTM = { 1 => 'jan', 2 => 'fév', 3 => 'mar', 4 => 'avr', 5 => 'mai', 6 => 'juin', 7 => 'juil', 8 => 'aoû', 9 => 'sep', 10  => 'oct', 11 => 'nov', 12 => 'déc' }
 
-  def self.translate_strings(controller) 
-    @action_controller = controller 
+  def self.translate_strings(controller)
+    @action_controller = controller
     eval %(
       def self._(string)
         @action_controller.instance_eval { gettext(string) }
@@ -31,8 +31,8 @@ class Date
      ]
 
      Date::ABBR_DAYNAMES.replace [
-       _("sun"), _("mon"), _("tue"),_("wed"), 
-       _("thu"), _("fri"),_("sat") 
+       _("sun"), _("mon"), _("tue"),_("wed"),
+       _("thu"), _("fri"),_("sat")
      ]
      Date::ABBR_MONTHNAMES.replace [
        _('Jan'), _('Feb'),_('Mar'), _('Apr'), _('May'), _('Jun'), _('Jul'),
@@ -45,7 +45,7 @@ end
 
 class Time
   alias :strftime_nolocale :strftime
-  
+
   def strftime(format)
     format = format.dup
     format.gsub!(/%a/, Date::ABBR_DAYNAMES[self.wday])
@@ -59,7 +59,7 @@ end
 class Array
    #   [ 4, 5 ].sum
    #      9
-   def sum 
+   def sum
     inject( nil ) { |sum,x| sum ? sum+x : x }
    end
 end
@@ -72,18 +72,18 @@ class String
   # It works with :
   #  "www.google.com"
   #  "http://www.google.com"
-  #  "toto tutu djdjdjd google.com" > 
+  #  "toto tutu djdjdjd google.com" >
   #  "toto tutu djdjdjd http://truc.machin.com/touo/sdqsd?tutu=1&machin google.com/toto/ddk?tr=1&machin"
   #TODO: A améliorer
   def urlize
     (self.gsub(/(\s+|^)[a-zA-Z]([\w-]{0,61}\w)?\.[a-zA-Z]([\w-]{0,61}\w)?(\.[a-zA-Z]([\w-]{0,61}\w)?)?/) { |s| " http://" + s.strip }).strip
   end
-  
+
   # Small convenience method which replace each space by its unbreakable html
   # equivalent.
   #
   # Call it like this :
-  #   "this is a test".unbreak 
+  #   "this is a test".unbreak
   #     this&nbsp;is&nbsp;a&nbsp;test"
   def unbreak
     self.gsub(' ', '&nbsp;')
@@ -94,8 +94,8 @@ end
 #Optimization des vues : plus '\n'
 ActionView::Base.erb_trim_mode = '>'
 
-# This module is overloaded in order to display link_to lazily 
-# and efficiently. It display links <b>only</b> if the user 
+# This module is overloaded in order to display link_to lazily
+# and efficiently. It display links <b>only</b> if the user
 # has the right access to the ressource.
 module ActionView::Helpers::UrlHelper
   # this link_to is a specialised one which only returns a link
@@ -110,7 +110,7 @@ module ActionView::Helpers::UrlHelper
       tag_options = nil
     end
     url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-    required_perm = '%s/%s' % [ options[:controller] || controller.controller_name, 
+    required_perm = '%s/%s' % [ options[:controller] || controller.controller_name,
                                 options[:action] || controller.action_name ]
     user = session[:user]
     if !user.nil? and user.authorized? required_perm then
@@ -119,7 +119,7 @@ module ActionView::Helpers::UrlHelper
       nil
     end
   end
-  
+
   # this link_to display a link whatever happens, to all the internet world
   def public_link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
     if html_options
@@ -173,7 +173,7 @@ module ActiveRecord
 end
 
 
-# This module is overloaded in order to have rails fitting more 
+# This module is overloaded in order to have rails fitting more
 # Tosca specific needs or specific improvments
 module ActionController::Routing
   class RouteSet
@@ -182,7 +182,7 @@ module ActionController::Routing
       def without_orm(controller, actions)
         actions.each { |action|
           self.send("#{action}_#{controller}", "#{controller};#{action}",
-                    { :controller => controller, :action => action, 
+                    { :controller => controller, :action => action,
                       :conditions => { :method => :get }})
         }
       end
@@ -194,13 +194,13 @@ module ActionController::Routing
       # url generation
       def define_url_helper(route, name, kind, options)
         selector = url_helper_name(name, kind)
-            
+
         # The segment keys used for positional paramters
         segment_keys = route.segments.collect do |segment|
           segment.key if segment.respond_to? :key
         end.compact
         hash_access_method = hash_access_name(name, kind)
-        
+
         @module.send :module_eval, <<-end_eval #We use module_eval to avoid leaks
           def #{selector}(*args)
             opts = if args.empty? || Hash === args.first

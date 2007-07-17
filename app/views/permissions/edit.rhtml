@@ -1,9 +1,9 @@
 <h1>Editing permission</h1>
 
-<% form_tag(permission_url(@permission), :method => :put) do %>
+<% form_tag(permission_path(@permission), :method => :put) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @permission %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', permission_path(@permission) %> |
+<%= link_to_back %>

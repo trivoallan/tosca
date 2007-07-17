@@ -1,9 +1,9 @@
 <h1>Editing severite</h1>
 
-<%= start_form_tag :action => 'update', :id => @severite %>
+<% form_tag severite_path(@severite), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @severite %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', severite_path(@severite) %> |
+<%= link_to_back %>

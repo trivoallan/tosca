@@ -1,9 +1,9 @@
 <h1>Editing typedemande</h1>
 
-<%= start_form_tag :action => 'update', :id => @typedemande %>
+<% form_tag typedemande_path(@typedemande), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @typedemande %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', typedemande_path(@typedemande) %> |
+<%= link_to_back %>

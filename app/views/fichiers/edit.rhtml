@@ -1,9 +1,9 @@
 <h1>Editing fichier</h1>
 
-<%= start_form_tag :action => 'update', :id => @fichier %>
+<% form_tag fichier_path(@fichier), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @fichier %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', fichier_path(@fichier) %> |
+<%= link_to_back %>

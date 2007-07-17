@@ -33,7 +33,7 @@ class AppelsController < ApplicationController
     if @appel.save
       flash[:notice] = 'l\'Appel a été créé.'
       if @appel.demande
-        redirect_to comment_demande_path(:id => @appel.demande)
+        redirect_to comment_demande_path(@appel.demande)
       else
         redirect_to appels_path
       end

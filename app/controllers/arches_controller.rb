@@ -32,7 +32,7 @@ class ArchesController < ApplicationController
     @arch = Arch.find(params[:id])
     if @arch.update_attributes(params[:arch])
       flash[:notice] = 'Arch was successfully updated.'
-      redirect_to arch_url(@arch)
+      redirect_to arch_path(@arch)
     else
       render :action => 'edit'
     end

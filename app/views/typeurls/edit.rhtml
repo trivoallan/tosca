@@ -1,9 +1,9 @@
 <h1>Editing typeurl</h1>
 
-<%= start_form_tag :action => 'update', :id => @typeurl %>
+<% form_tag typeurl_path(@typeurl), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @typeurl %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', typeurl_path(@typeurl) %> |
+<%= link_to_back %>

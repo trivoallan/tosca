@@ -1,9 +1,9 @@
 <h1>Editing typedocument</h1>
 
-<%= start_form_tag :action => 'update', :id => @typedocument %>
+<% form_tag typedocument_path(@typedocument), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @typedocument %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', typedocument_path(@typedocument) %> |
+<%= link_to_back %>

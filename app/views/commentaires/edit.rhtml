@@ -1,10 +1,10 @@
 <h1>Editing commentaire</h1>
 
-<%= start_form_tag :action => 'update', :id => @commentaire %>
+<% form_tag commentaire_path(@commentaire), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @commentaire %> |
-<%= link_to 'Retour à la liste', :action => 'index' %> |
+<%= link_to 'Show', commentaire_path(@commentaire) %> |
+<%= link_to_back %>
 <%= link_to_demande @commentaire.demande, :text => 'Retour à la demande' %>

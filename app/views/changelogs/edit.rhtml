@@ -1,9 +1,9 @@
 <h1>Editing changelog</h1>
 
-<%= start_form_tag :action => 'update', :id => @changelog %>
+<% form_tag changelog_path(@changelog), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @changelog %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', changelog_path(@changelog) %> |
+<%= link_to_back %>

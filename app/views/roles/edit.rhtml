@@ -1,6 +1,6 @@
 <h1><%= _('Edit a role')%></h1>
 
-<% form_tag(role_url(@role), :method => :put) do %>
+<% form_tag(role_path(@role), :method => :put) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Validate') %>
 <% end %>

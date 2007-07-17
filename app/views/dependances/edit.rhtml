@@ -1,9 +1,10 @@
 <h1>Editing dependance</h1>
 
-<%= start_form_tag :action => 'update', :id => @dependance %>
+<% form_tag dependance_path(@dependance), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @dependance %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', dependance_path(@dependance) %> |
+<%= link_to_back %>
+

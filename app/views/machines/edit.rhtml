@@ -1,9 +1,9 @@
 <h1>Editing machine</h1>
 
-<%= start_form_tag :action => 'update', :id => @machine %>
+<% form_tag machine_path(@machine), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @machine %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', machine_path(@machine) %> |
+<%= link_to_back %>

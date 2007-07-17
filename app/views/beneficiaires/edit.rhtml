@@ -1,6 +1,6 @@
 <h1>Editer un bénéficiaire</h1>
 
-<% form_tag(beneficiaire_url(@beneficiaire), :method => :put) do %>
+<% form_tag(beneficiaire_path(@beneficiaire), :method => :put) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <% end %>

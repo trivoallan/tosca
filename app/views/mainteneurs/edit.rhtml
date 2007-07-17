@@ -1,9 +1,9 @@
 <h1>Editing mainteneur</h1>
 
-<%= start_form_tag :action => 'update', :id => @mainteneur %>
+<% form_tag mainteneur_path(@mainteneur), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @mainteneur %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Show', mainteneur_path(@mainteneur) %> |
+<%= link_to_back %>

@@ -42,7 +42,7 @@ class BeneficiairesController < ApplicationController
     @beneficiaire = Beneficiaire.find(params[:id])
     if @beneficiaire.update_attributes(params[:beneficiaire])
       flash[:notice] = 'Beneficiaire was successfully updated.'
-      redirect_to beneficiaire_url(@beneficiaire)
+      redirect_to beneficiaire_path(@beneficiaire)
     else
       _form
       render :action => 'edit'
