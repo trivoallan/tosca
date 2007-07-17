@@ -1,4 +1,4 @@
-<% options = { :update => 'content', :url => appels_path, :method => :get
+<% options = { :update => 'content', :url => appels_path, :method => :get,
   :before => "Element.show('spinner')",:success => "Element.hide('spinner')" }
 %>
 
@@ -12,7 +12,7 @@
 > <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
  <li><%= link_to _('Add a call'), new_appel_path %></li>
- <li><%= calls_export_link %></li>
+ <li><%= appels_export_images %></li>
 </ul>
 
 

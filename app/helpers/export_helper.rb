@@ -21,12 +21,12 @@ module ExportHelper
   def contributions_export_link
     export_link contributions_ods_export_url
   end
-  
+
 
   private
   # create a link with the images coresponding to the type mime of the export
   def export_link(url)
-    style = {:class => 'nobackground'} 
+    style = {:class => 'nobackground'}
     link_to(_('Export in %s') % image_ods, url)
   end
 end

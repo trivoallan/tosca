@@ -1,8 +1,8 @@
 <h1>Ajouter un document</h1>
 
-<%= start_form_tag({:action => 'create'}, :multipart => true) %>
+<% form_tag( documents_path, :multipart => true) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Déposer" %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Retour aux dépôts', :action => 'select' %>
+<%= link_to_back %>

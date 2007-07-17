@@ -4,7 +4,7 @@
 
 <p><label for="binaire_paquet">Paquet</label><br/>
   <%= select('binaire', 'paquet_id',
-	@paquets.collect{|l| process_l(l) }
+	@paquets.collect{|l| [l.to_s, l.id] }
 	)
   %>
 </p>

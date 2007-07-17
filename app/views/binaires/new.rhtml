@@ -1,8 +1,8 @@
 <h1>Nouveau fichier binaire</h1>
 
-<%= start_form_tag({:action => 'create'}, :multipart => true) %>
+<% form_tag(binaires_path, :multipart => true) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Create" %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Liste des fichiers', :action => 'index' %>
+<%= link_to_back %>

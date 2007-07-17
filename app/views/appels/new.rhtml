@@ -1,6 +1,6 @@
 <h1><%= _('New phone call')%></h1>
 
-<% form_tag :action => 'create' do %>
+<% form_tag appels_path do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Create') %>
 <% end %>

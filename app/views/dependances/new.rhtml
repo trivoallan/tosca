@@ -1,8 +1,8 @@
 <h1>New dependance</h1>
 
-<%= start_form_tag :action => 'create' %>
+<% form_tag dependances_path do %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Create" %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to_back %>

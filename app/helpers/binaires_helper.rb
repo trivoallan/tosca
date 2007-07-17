@@ -9,12 +9,4 @@ module BinairesHelper
     link_to nom, :controller => 'binaires', :action => 'show', :id => binaire.id
   end
 
-  def process_l(l)
-    if l.nil?
-      return ["unknown name","unknown id"]
-    else
-      return [l.to_s, l.id]
-    end
-  end
-
 end

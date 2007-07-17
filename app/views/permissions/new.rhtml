@@ -1,8 +1,8 @@
 <h1>Ajouter une permission</h1>
 
-<%= start_form_tag :action => 'create' %>
+<% form_tag permissions_path do %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Ajouter" %>
-<%= end_form_tag %>
+<% end %>
 
-<%= link_to 'Retour', :action => 'index' %>
+<%= link_to_back %>

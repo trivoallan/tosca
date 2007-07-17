@@ -39,11 +39,9 @@ class Paquet < ActiveRecord::Base
   end
 
   def to_s
-    if conteneur.nil?
-      "(unknown_name #{nom}-#{version}-#{release}"
-    else
-      "(#{conteneur.nom}) #{nom}-#{version}-#{release}"
-    end
+    the_name = "unknown_name"
+    the_name = conteneur.nom unless conteneur.nil?
+    "%s %s-%s-%s" % [ the_name, nom, version, release]
   end
 
   # TODO : virer TOUT les to_display et les surcharges de nom de tous les modèles

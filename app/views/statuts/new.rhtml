@@ -1,6 +1,6 @@
 <h1>_('New status')</h1>
 
-<% form_tag statuts_path %>
+<% form_tag statuts_path do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Validate') %>
 <% end %>
