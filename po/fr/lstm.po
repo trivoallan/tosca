@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-17 12:13+0200\n"
+"POT-Creation-Date: 2007-07-17 17:22+0200\n"
 "PO-Revision-Date: 2007-07-13 19:01+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -1007,6 +1007,11 @@ msgstr "Socle"
 #: app/models/demande.rb:-
 msgid "Demande|Mail cc"
 msgstr "Mail cc"
+
+#: app/models/demande.rb:200
+# ne pas oublier l'espace au début
+msgid " of overrun"
+msgstr " de dépassement"
 
 #: app/models/dependance.rb:-
 msgid "dependance"
@@ -2460,149 +2465,153 @@ msgstr "une nouvelle urls"
 msgid "Contribution"
 msgstr "Contribution"
 
-#: lib/overrides.rb:30
+#: lib/overrides.rb:25
 msgid "Sunday"
 msgstr "Dimanche"
 
-#: lib/overrides.rb:30
+#: lib/overrides.rb:25
 msgid "Monday"
 msgstr "Lundi"
 
-#: lib/overrides.rb:30
+#: lib/overrides.rb:25
 msgid "Tuesday"
 msgstr "Mardi"
 
-#: lib/overrides.rb:30
+#: lib/overrides.rb:25
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: lib/overrides.rb:31
+#: lib/overrides.rb:26
 msgid "Thursday"
 msgstr "Jeudi"
 
-#: lib/overrides.rb:31
+#: lib/overrides.rb:26
 msgid "Friday"
 msgstr "Vendredi"
 
-#: lib/overrides.rb:34
+#: lib/overrides.rb:29
 msgid "January"
 msgstr "Janvier"
 
-#: lib/overrides.rb:34
+#: lib/overrides.rb:29
 msgid "February"
 msgstr "Février"
 
-#: lib/overrides.rb:34
+#: lib/overrides.rb:29
 msgid "March"
 msgstr "Mars"
 
-#: lib/overrides.rb:34
+#: lib/overrides.rb:29
 msgid "April"
 msgstr "Avril"
 
-#: lib/overrides.rb:34 lib/overrides.rb:43
+#: lib/overrides.rb:29 lib/overrides.rb:38
 msgid "May"
 msgstr "Mai"
 
-#: lib/overrides.rb:34
+#: lib/overrides.rb:29
 msgid "June"
 msgstr "Juin"
 
-#: lib/overrides.rb:34
+#: lib/overrides.rb:29
 msgid "July"
 msgstr "Juillet"
 
-#: lib/overrides.rb:35
+#: lib/overrides.rb:30
 msgid "August"
 msgstr "Août"
 
-#: lib/overrides.rb:35
+#: lib/overrides.rb:30
 msgid "September"
 msgstr "Septembre"
 
-#: lib/overrides.rb:35
+#: lib/overrides.rb:30
 msgid "October"
 msgstr "Octobre"
 
-#: lib/overrides.rb:35
+#: lib/overrides.rb:30
 msgid "November"
 msgstr "Novembre"
 
-#: lib/overrides.rb:35
+#: lib/overrides.rb:30
 msgid "December"
 msgstr "Décembre"
 
-#: lib/overrides.rb:39
+#: lib/overrides.rb:34
 msgid "sun"
 msgstr "dim"
 
-#: lib/overrides.rb:39
+#: lib/overrides.rb:34
 msgid "mon"
 msgstr "lun"
 
-#: lib/overrides.rb:39
+#: lib/overrides.rb:34
 msgid "tue"
 msgstr "mar"
 
-#: lib/overrides.rb:39
+#: lib/overrides.rb:34
 msgid "wed"
 msgstr "mer"
 
-#: lib/overrides.rb:40
+#: lib/overrides.rb:35
 msgid "thu"
 msgstr "jeu"
 
-#: lib/overrides.rb:40
+#: lib/overrides.rb:35
 msgid "fri"
 msgstr "ven"
 
-#: lib/overrides.rb:40
+#: lib/overrides.rb:35
 msgid "sat"
 msgstr "sam"
 
-#: lib/overrides.rb:43
+#: lib/overrides.rb:38
 msgid "Jan"
 msgstr "Jan"
 
-#: lib/overrides.rb:43
+#: lib/overrides.rb:38
 msgid "Feb"
 msgstr "Fév"
 
-#: lib/overrides.rb:43
+#: lib/overrides.rb:38
 msgid "Mar"
 msgstr "Mar"
 
-#: lib/overrides.rb:43
+#: lib/overrides.rb:38
 msgid "Apr"
 msgstr "Avr"
 
-#: lib/overrides.rb:43
+#: lib/overrides.rb:38
 msgid "Jun"
 msgstr "Juin"
 
-#: lib/overrides.rb:43
+#: lib/overrides.rb:38
 msgid "Jul"
 msgstr "Juil"
 
-#: lib/overrides.rb:44
+#: lib/overrides.rb:39
 msgid "Aug"
 msgstr "aoû"
 
-#: lib/overrides.rb:44
+#: lib/overrides.rb:39
 msgid "Sep"
 msgstr "Sep"
 
-#: lib/overrides.rb:44
+#: lib/overrides.rb:39
 msgid "Oct"
 msgstr "Oct"
 
-#: lib/overrides.rb:44
+#: lib/overrides.rb:39
 msgid "Nov"
 msgstr "Nov"
 
-#: lib/overrides.rb:44
+#: lib/overrides.rb:39
 msgid "Dec"
 msgstr "Dec"
+
+#, fuzzy
+#~ msgid " de dépassement"
+#~ msgstr "Mot de passe manquant"
 
 #, fuzzy
 #~ msgid "New Requests"

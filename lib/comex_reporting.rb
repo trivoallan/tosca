@@ -114,11 +114,13 @@ module  ComexReporting
         else
           percent_correction=(temps_reel/temps_prevu_correction )*100
           percent_contournement =(temps_reel/temps_prevu_contournement )*100
-          time= demand.distance_of_time_in_french_words(
+          time_correction = demand.distance_of_time_in_french_words(
             (temps_correction - temps_ecoule).abs , support)
+          time_contournement = demand.distance_of_time_in_french_words(
+            (temps_contournement - temps_ecoule).abs , support)
 
-            d[:mesg_correction]=  time
-            d[:mesg_contournement] = time
+          d[:mesg_correction]=  time_correction
+          d[:mesg_contournement] = time_contournement
 
           d[:correction]= (temps_reel/temps_prevu_correction )*100
           d[:contournement]= (temps_reel/temps_prevu_contournement )*100

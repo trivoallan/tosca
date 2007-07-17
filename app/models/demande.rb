@@ -179,7 +179,28 @@ class Demande < ActiveRecord::Base
   def affiche_temps_ecoule
     temps = temps_ecoule
     return "sans engagement" if temps == -1
-    distance_of_time_in_french_words(temps, client.support)
+
+    contrats = Contrat.find(:all)
+    # TODO : not very DRY: present in lib/comex_resultat too
+    contrats.delete_if { |contrat|
+      engagement= engagement(contrat.id)
+      engagement == nil or engagement.correction < 0 
+    }
+    support = client.support
+    amplitude = support.fermeture - support.ouverture
+    temps_correction = engagement( contrats[0].id ).correction.days
+
+    temps_reel=
+      distance_of_time_in_working_days(temps_ecoule, amplitude)
+    temps_prevu_correction=
+      distance_of_time_in_working_days(temps_correction,amplitude)
+    if temps_reel > temps_prevu_correction
+      distance_of_time_in_french_words(temps - temps_correction, 
+                                       support)<<
+      _(' of overrun')
+    else
+      distance_of_time_in_french_words(temps, support)
+    end
   end
 
 #  private
