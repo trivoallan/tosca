@@ -12,11 +12,6 @@ class Date
     ABBR_MONTHS = { 'Jan' => 1, 'Fév' => 2, 'Mar' => 3, 'Avr' => 4, 'Mai' => 5, 'Juin' => 6, 'Juil' => 7, 'Aoû' => 8, 'Sep' => 9, 'Oct' =>10, 'Nov' =>11, 'Déc' =>12 }
     ABBR_DAYS = {'dim' => 0, 'lun' => 1, 'mar' => 2, 'mer' => 3, 'jeu' => 4, 'ven' => 5, 'sam' => 6}
 
-    #MONTHNAMES = [nil] + %w(Janvier Février Mars Avril Mai Juin Juillet Août Septembre Octobre Novembre Décembre )
-    #DAYNAMES = %w(Dimanche Lundi Mardi Mercredi Jeudi Vendredi Samedi )
-    
-    #ABBR_MONTHNAMES = [nil] + %w(Jan Fév Mar Avr Mai Juin Juil Aoû Sep Oct Nov Déc)
-    #ABBR_DAYNAMES = %w(dim lun mar mer jeu ven sam)
     ABBR_MONTHS_LSTM = { 1 => 'jan', 2 => 'fév', 3 => 'mar', 4 => 'avr', 5 => 'mai', 6 => 'juin', 7 => 'juil', 8 => 'aoû', 9 => 'sep', 10  => 'oct', 11 => 'nov', 12 => 'déc' }
 
   def self.translate_strings(controller) 
