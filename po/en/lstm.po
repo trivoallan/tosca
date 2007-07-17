@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-16 11:41+0200\n"
+"POT-Creation-Date: 2007-07-17 12:13+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -35,14 +35,12 @@ msgid ""
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:315
-#, fuzzy
 msgid "The demand has now no contribution"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/controllers/demandes_controller.rb:317
-#, fuzzy
 msgid "This contribution is now linked"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/controllers/export_controller.rb:33
 #: app/controllers/export_controller.rb:60
@@ -57,9 +55,8 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:33
 #: app/controllers/export_controller.rb:120
-#, fuzzy
 msgid "software"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/controllers/export_controller.rb:33
 #: app/controllers/export_controller.rb:122
@@ -134,9 +131,8 @@ msgid "Call"
 msgstr ""
 
 #: app/controllers/export_controller.rb:83
-#, fuzzy
 msgid "End of the call"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/controllers/export_controller.rb:120 app/models/beneficiaire.rb:-
 msgid "beneficiaire"
@@ -175,9 +171,8 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:180
 #: app/views/reporting/_comex_tableaux.rhtml:10
-#, fuzzy
 msgid "New requests"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/controllers/export_controller.rb:181
 msgid ""
@@ -227,9 +222,8 @@ msgid "TOTALS"
 msgstr ""
 
 #: app/controllers/logiciels_controller.rb:18
-#, fuzzy
 msgid "List of softwares"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/controllers/logiciels_controller.rb:22
 msgid "List of your supported softwares"
@@ -262,9 +256,8 @@ msgstr ""
 
 #: app/controllers/reporting_controller.rb:505
 #: app/controllers/reporting_controller.rb:507
-#, fuzzy
 msgid "Distributed on "
-msgstr "contributionstate"
+msgstr ""
 
 #: app/controllers/reporting_controller.rb:505
 #: app/controllers/reporting_controller.rb:507
@@ -285,9 +278,8 @@ msgstr ""
 #: app/controllers/reporting_controller.rb:542
 #: app/controllers/reporting_controller.rb:543
 #: app/views/reporting/_sommaire.rhtml:7 app/views/reporting/general.rhtml:20
-#, fuzzy
 msgid "Distribution of your requests"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/controllers/reporting_controller.rb:544
 #: app/controllers/reporting_controller.rb:545
@@ -328,9 +320,8 @@ msgid "Workaround time"
 msgstr ""
 
 #: app/controllers/reporting_controller.rb:558
-#, fuzzy
 msgid "Correction time"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/controllers/statuts_controller.rb:25
 msgid "Status was successfully created."
@@ -409,9 +400,8 @@ msgid "New request"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:155
-#, fuzzy
 msgid "Unlink the contribution"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/helpers/demandes_helper.rb:189
 msgid "active requests"
@@ -469,16 +459,15 @@ msgstr ""
 msgid "Consulter les logiciels"
 msgstr ""
 
-#: app/helpers/links_helper.rb:79 app/views/contributions/select.rhtml:1
-#: app/views/contributions/index.rhtml:1 app/views/logiciels/show.rhtml:68
+#: app/helpers/links_helper.rb:79 app/views/contributions/list.rhtml:1
+#: app/views/contributions/select.rhtml:1 app/views/logiciels/show.rhtml:68
 #, fuzzy
 msgid "Contributions"
 msgstr "contributionstate"
 
 #: app/helpers/links_helper.rb:80
-#, fuzzy
 msgid "Access to the list of contributions."
-msgstr "contributionstate"
+msgstr ""
 
 #: app/helpers/links_helper.rb:85
 msgid "Administration"
@@ -1699,9 +1688,8 @@ msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
-#, fuzzy
 msgid "Recipient"
-msgstr "Description"
+msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:35
 msgid "From"
@@ -1764,9 +1752,8 @@ msgid "End of call"
 msgstr ""
 
 #: app/views/appels/_calls_list.rhtml:7
-#, fuzzy
 msgid "Duration"
-msgstr "Description"
+msgstr ""
 
 #: app/views/appels/_form.rhtml:5 app/views/appels/show.rhtml:8
 #: app/views/contributions/_contributions_admin.rhtml:7
@@ -1820,9 +1807,8 @@ msgid "Add a new processor architecture"
 msgstr ""
 
 #: app/views/beneficiaires/new.rhtml:1
-#, fuzzy
 msgid "Add a recipient"
-msgstr "Description"
+msgstr ""
 
 #: app/views/bienvenue/index.rhtml:2
 msgid "connected"
@@ -1894,14 +1880,12 @@ msgid "ajouter un logo"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:1
-#, fuzzy
 msgid "List of contributions"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:3
-#, fuzzy
 msgid "a contribution"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:9 app/views/urllogiciels/_form.rhtml:8
@@ -1948,9 +1932,8 @@ msgstr ""
 
 #: app/views/contributions/_contributions_info.rhtml:18
 #: app/views/contributions/select.rhtml:7
-#, fuzzy
 msgid "Submit a contribution"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/contributions/_contributions_info.rhtml:19
 msgid "Selection interface"
@@ -1961,9 +1944,8 @@ msgid "Impacted version"
 msgstr ""
 
 #: app/views/contributions/_form.rhtml:22
-#, fuzzy
 msgid "Kind of contribution"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/contributions/_form.rhtml:33
 msgid "Add an url for the community issue"
@@ -1974,62 +1956,55 @@ msgid "Synthesis"
 msgstr ""
 
 #: app/views/contributions/_form.rhtml:49
-#, fuzzy
 msgid "Description (public)"
-msgstr "Description"
+msgstr ""
 
 #: app/views/contributions/_form.rhtml:52
 msgid "Technical details (private)"
 msgstr ""
 
 #: app/views/contributions/edit.rhtml:1
-#, fuzzy
 msgid "Edit this contribution"
-msgstr "contributionstate"
+msgstr ""
+
+#: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
+msgid "Home"
+msgstr ""
+
+#: app/views/contributions/list.rhtml:1
+msgid "All"
+msgstr ""
+
+#: app/views/contributions/list.rhtml:3
+msgid "a new contribution"
+msgstr ""
 
 #: app/views/contributions/new.rhtml:1
-#, fuzzy
 msgid "Add a new contribution"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/contributions/select.rhtml:9
-#, fuzzy
 msgid "See all contributions"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/contributions/select.rhtml:10
-#, fuzzy
 msgid "Export all contributions"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/contributions/select.rhtml:12
 msgid "Access to interface of administration"
-msgstr ""
-
-#: app/views/contributions/show.rhtml:1 app/views/contributions/index.rhtml:1
-msgid "Home"
 msgstr ""
 
 #: app/views/contributions/show.rhtml:21
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr ""
 
-#: app/views/contributions/index.rhtml:1
-msgid "All"
-msgstr ""
-
-#: app/views/contributions/index.rhtml:3
-#, fuzzy
-msgid "a new contribution"
-msgstr "contributionstate"
-
 #: app/views/demandes/_tab_menu.rhtml:9 app/views/logiciels/_form.rhtml:10
 #: app/views/logiciels/_softwares_info.rhtml:40
 #: app/views/logiciels/_softwares_list.rhtml:6 app/views/roles/index.rhtml:4
 #: app/views/statuts/_form.rhtml:7
-#, fuzzy
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
 #: app/views/demandes/_tab_menu.rhtml:12
 msgid "Commentaires"
@@ -2131,9 +2106,8 @@ msgid "Update"
 msgstr ""
 
 #: app/views/logiciels/new.rhtml:1
-#, fuzzy
 msgid "Add a new software"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/logiciels/show.rhtml:1
 msgid "Software \"%s\""
@@ -2156,9 +2130,8 @@ msgid "SLA report"
 msgstr ""
 
 #: app/views/reporting/_comex_cns.rhtml:3
-#, fuzzy
 msgid "Caption"
-msgstr "Description"
+msgstr ""
 
 #: app/views/reporting/_comex_cns.rhtml:5
 msgid "The progressions bar represent the progress ratio of the contract: "
@@ -2199,9 +2172,8 @@ msgid "Workaround"
 msgstr ""
 
 #: app/views/reporting/_comex_cns.rhtml:21
-#, fuzzy
 msgid "Correction"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/reporting/_comex_tableaux.rhtml:2
 msgid "OSSA activity from "
@@ -2307,19 +2279,16 @@ msgid ""
 msgstr ""
 
 #: app/views/reporting/_sommaire.rhtml:5 app/views/reporting/general.rhtml:14
-#, fuzzy
 msgid "Introduction"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/reporting/_sommaire.rhtml:8 app/views/reporting/general.rhtml:21
-#, fuzzy
 msgid "distribution"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/reporting/_sommaire.rhtml:10 app/views/reporting/general.rhtml:27
-#, fuzzy
 msgid "resolution"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/reporting/_sommaire.rhtml:12 app/views/reporting/general.rhtml:32
 msgid "Various statistics"
@@ -2398,9 +2367,8 @@ msgid "Estimate made in working days"
 msgstr ""
 
 #: app/views/reporting/delai.rhtml:21
-#, fuzzy
 msgid "Requests correction time"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/reporting/delai.rhtml:23
 msgid "Estimation in working days"
@@ -2419,9 +2387,8 @@ msgid "Number"
 msgstr ""
 
 #: app/views/roles/_form.rhtml:8
-#, fuzzy
 msgid "Short description"
-msgstr "Description"
+msgstr ""
 
 #: app/views/roles/_form.rhtml:12
 msgid "Permissions"
@@ -2460,9 +2427,8 @@ msgid "Add a role"
 msgstr ""
 
 #: app/views/statuts/index.rhtml:1
-#, fuzzy
 msgid "List of status"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/urllogiciels/_form.rhtml:5
 msgid "Value"
@@ -2473,9 +2439,8 @@ msgid "Kind"
 msgstr ""
 
 #: app/views/urllogiciels/index.rhtml:1
-#, fuzzy
 msgid "List of softwares' links"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/urllogiciels/index.rhtml:6
 #: app/views/urlreversements/index.rhtml:6
@@ -2483,33 +2448,172 @@ msgid "Url"
 msgstr ""
 
 #: app/views/urllogiciels/new.rhtml:1
-#, fuzzy
 msgid "Add an url for a software"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/urlreversements/edit.rhtml:1
-#, fuzzy
 msgid "Edit this url"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/urlreversements/new.rhtml:1
-#, fuzzy
 msgid "Add an url to follow your contribution"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/urlreversements/index.rhtml:1
-#, fuzzy
 msgid "List of urls in contributions"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/urlreversements/index.rhtml:3
 msgid "a new url"
 msgstr ""
 
 #: app/views/urlreversements/index.rhtml:6
-#, fuzzy
 msgid "Contribution"
-msgstr "contributionstate"
+msgstr ""
+
+#: lib/overrides.rb:30
+msgid "Sunday"
+msgstr ""
+
+#: lib/overrides.rb:30
+msgid "Monday"
+msgstr ""
+
+#: lib/overrides.rb:30
+msgid "Tuesday"
+msgstr ""
+
+#: lib/overrides.rb:30
+msgid "Wednesday"
+msgstr ""
+
+#: lib/overrides.rb:31
+msgid "Thursday"
+msgstr ""
+
+#: lib/overrides.rb:31
+msgid "Friday"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "January"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "February"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "March"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "April"
+msgstr ""
+
+#: lib/overrides.rb:34 lib/overrides.rb:43
+msgid "May"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "June"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "July"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "August"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "September"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "October"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "November"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "December"
+msgstr ""
+
+#: lib/overrides.rb:39
+msgid "sun"
+msgstr ""
+
+#: lib/overrides.rb:39
+msgid "mon"
+msgstr ""
+
+#: lib/overrides.rb:39
+msgid "tue"
+msgstr ""
+
+#: lib/overrides.rb:39
+msgid "wed"
+msgstr ""
+
+#: lib/overrides.rb:40
+msgid "thu"
+msgstr ""
+
+#: lib/overrides.rb:40
+msgid "fri"
+msgstr ""
+
+#: lib/overrides.rb:40
+msgid "sat"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Jan"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Feb"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Mar"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Apr"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Jun"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Jul"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Aug"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Sep"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Oct"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Nov"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Dec"
+msgstr ""
 
 #, fuzzy
 #~ msgid "New Requests"

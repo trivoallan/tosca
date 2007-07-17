@@ -12,12 +12,38 @@ class Date
     ABBR_MONTHS = { 'Jan' => 1, 'Fév' => 2, 'Mar' => 3, 'Avr' => 4, 'Mai' => 5, 'Juin' => 6, 'Juil' => 7, 'Aoû' => 8, 'Sep' => 9, 'Oct' =>10, 'Nov' =>11, 'Déc' =>12 }
     ABBR_DAYS = {'dim' => 0, 'lun' => 1, 'mar' => 2, 'mer' => 3, 'jeu' => 4, 'ven' => 5, 'sam' => 6}
 
-    MONTHNAMES = [nil] + %w(Janvier Février Mars Avril Mai Juin Juillet Août Septembre Octobre Novembre Décembre )
-    DAYNAMES = %w(Dimanche Lundi Mardi Mercredi Jeudi Vendredi Samedi )
+    #MONTHNAMES = [nil] + %w(Janvier Février Mars Avril Mai Juin Juillet Août Septembre Octobre Novembre Décembre )
+    #DAYNAMES = %w(Dimanche Lundi Mardi Mercredi Jeudi Vendredi Samedi )
     
-    ABBR_MONTHNAMES = [nil] + %w(Jan Fév Mar Avr Mai Juin Juil Aoû Sep Oct Nov Déc)
-    ABBR_DAYNAMES = %w(dim lun mar mer jeu ven sam)
+    #ABBR_MONTHNAMES = [nil] + %w(Jan Fév Mar Avr Mai Juin Juil Aoû Sep Oct Nov Déc)
+    #ABBR_DAYNAMES = %w(dim lun mar mer jeu ven sam)
     ABBR_MONTHS_LSTM = { 1 => 'jan', 2 => 'fév', 3 => 'mar', 4 => 'avr', 5 => 'mai', 6 => 'juin', 7 => 'juil', 8 => 'aoû', 9 => 'sep', 10  => 'oct', 11 => 'nov', 12 => 'déc' }
+
+  def self.translate_strings(controller) 
+    @action_controller = controller 
+    eval %(
+      def self._(string)
+        @action_controller.instance_eval { gettext(string) }
+      end
+    )
+     Date::DAYNAMES.replace [
+       _('Sunday'), _('Monday'), _('Tuesday'), _('Wednesday'),
+       _('Thursday'), _('Friday'), ('Saturday')
+     ]
+     Date::MONTHNAMSE.replace [
+       _('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'),
+       _('August'), _('September'), _('October'), _('November'), _('December')
+     ]
+
+     Date::ABBR_DAYNAMES.replace [
+       _("sun"), _("mon"), _("tue"),_("wed"), 
+       _("thu"), _("fri"),_("sat") 
+     ]
+     Date::ABBR_MONTHNAMES.replace [
+       _('Jan'), _('Feb'),_('Mar'), _('Apr'), _('May'), _('Jun'), _('Jul'),
+       _('Aug'), _('Sep'), _('Oct'), _('Nov'), _('Dec')
+     ]
+  end
 end
 
 

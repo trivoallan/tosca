@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-16 11:41+0200\n"
+"POT-Creation-Date: 2007-07-17 12:13+0200\n"
 "PO-Revision-Date: 2007-07-16 11:39+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -459,8 +459,8 @@ msgstr ""
 msgid "Consulter les logiciels"
 msgstr ""
 
-#: app/helpers/links_helper.rb:79 app/views/contributions/select.rhtml:1
-#: app/views/contributions/index.rhtml:1 app/views/logiciels/show.rhtml:68
+#: app/helpers/links_helper.rb:79 app/views/contributions/list.rhtml:1
+#: app/views/contributions/select.rhtml:1 app/views/logiciels/show.rhtml:68
 msgid "Contributions"
 msgstr ""
 
@@ -1922,6 +1922,18 @@ msgstr ""
 msgid "Edit this contribution"
 msgstr ""
 
+#: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
+msgid "Home"
+msgstr ""
+
+#: app/views/contributions/list.rhtml:1
+msgid "All"
+msgstr ""
+
+#: app/views/contributions/list.rhtml:3
+msgid "a new contribution"
+msgstr ""
+
 #: app/views/contributions/new.rhtml:1
 msgid "Add a new contribution"
 msgstr ""
@@ -1938,20 +1950,8 @@ msgstr ""
 msgid "Access to interface of administration"
 msgstr ""
 
-#: app/views/contributions/show.rhtml:1 app/views/contributions/index.rhtml:1
-msgid "Home"
-msgstr ""
-
 #: app/views/contributions/show.rhtml:21
 msgid "This contribution has been submitted on %s by <b>%s</b>"
-msgstr ""
-
-#: app/views/contributions/index.rhtml:1
-msgid "All"
-msgstr ""
-
-#: app/views/contributions/index.rhtml:3
-msgid "a new contribution"
 msgstr ""
 
 #: app/views/demandes/_tab_menu.rhtml:9 app/views/logiciels/_form.rhtml:10
@@ -2423,4 +2423,148 @@ msgstr ""
 
 #: app/views/urlreversements/index.rhtml:6
 msgid "Contribution"
+msgstr ""
+
+#: lib/overrides.rb:30
+msgid "Sunday"
+msgstr ""
+
+#: lib/overrides.rb:30
+msgid "Monday"
+msgstr ""
+
+#: lib/overrides.rb:30
+msgid "Tuesday"
+msgstr ""
+
+#: lib/overrides.rb:30
+msgid "Wednesday"
+msgstr ""
+
+#: lib/overrides.rb:31
+msgid "Thursday"
+msgstr ""
+
+#: lib/overrides.rb:31
+msgid "Friday"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "January"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "February"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "March"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "April"
+msgstr ""
+
+#: lib/overrides.rb:34 lib/overrides.rb:43
+msgid "May"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "June"
+msgstr ""
+
+#: lib/overrides.rb:34
+msgid "July"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "August"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "September"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "October"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "November"
+msgstr ""
+
+#: lib/overrides.rb:35
+msgid "December"
+msgstr ""
+
+#: lib/overrides.rb:39
+msgid "sun"
+msgstr ""
+
+#: lib/overrides.rb:39
+msgid "mon"
+msgstr ""
+
+#: lib/overrides.rb:39
+msgid "tue"
+msgstr ""
+
+#: lib/overrides.rb:39
+msgid "wed"
+msgstr ""
+
+#: lib/overrides.rb:40
+msgid "thu"
+msgstr ""
+
+#: lib/overrides.rb:40
+msgid "fri"
+msgstr ""
+
+#: lib/overrides.rb:40
+msgid "sat"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Jan"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Feb"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Mar"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Apr"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Jun"
+msgstr ""
+
+#: lib/overrides.rb:43
+msgid "Jul"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Aug"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Sep"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Oct"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Nov"
+msgstr ""
+
+#: lib/overrides.rb:44
+msgid "Dec"
 msgstr ""

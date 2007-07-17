@@ -15,7 +15,14 @@ require_dependency 'filters'
 require_dependency 'lstm'
 
 class ApplicationController < ActionController::Base
+
+  before_filter :localize
   init_gettext 'lstm'
+
+  def localize
+    Date::translate_strings(self)
+  end
+
 
   # accès protégé et standardisé
   before_filter :set_global_shortcuts

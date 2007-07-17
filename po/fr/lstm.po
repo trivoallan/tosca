@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-16 11:41+0200\n"
+"POT-Creation-Date: 2007-07-17 12:13+0200\n"
 "PO-Revision-Date: 2007-07-13 19:01+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -335,14 +335,12 @@ msgid "Correction time"
 msgstr "Temps de correction"
 
 #: app/controllers/statuts_controller.rb:25
-#, fuzzy
 msgid "Status was successfully created."
-msgstr "L'utilisateur a été mis à jour avec succès."
+msgstr "Le statut a été crée."
 
 #: app/controllers/statuts_controller.rb:39
-#, fuzzy
 msgid "Statut was successfully updated."
-msgstr "L'utilisateur a été mis à jour avec succès."
+msgstr "Le Statut a été mis à jour avec succès."
 
 #: app/controllers/urllogiciels_controller.rb:25
 msgid "The url of \"%s\" has been created successfully."
@@ -472,8 +470,8 @@ msgstr "Logiciels"
 msgid "Consulter les logiciels"
 msgstr "Consulter les logiciels"
 
-#: app/helpers/links_helper.rb:79 app/views/contributions/select.rhtml:1
-#: app/views/contributions/index.rhtml:1 app/views/logiciels/show.rhtml:68
+#: app/helpers/links_helper.rb:79 app/views/contributions/list.rhtml:1
+#: app/views/contributions/select.rhtml:1 app/views/logiciels/show.rhtml:68
 msgid "Contributions"
 msgstr "Contributions"
 
@@ -1447,9 +1445,8 @@ msgid "Submitted"
 msgstr "Enregistré"
 
 #: app/models/statut.rb:9
-#, fuzzy
 msgid "Active"
-msgstr "Action"
+msgstr "Actif"
 
 #: app/models/statut.rb:10
 msgid "Suspended"
@@ -1632,9 +1629,8 @@ msgid "You can also login with a user who has more rights :"
 msgstr ""
 
 #: app/views/acces/refuse.rhtml:15
-#, fuzzy
 msgid "Reconnect"
-msgstr "connecté"
+msgstr "Reconnexion"
 
 #: app/views/account/_users_info.rhtml:16
 msgid "Export users"
@@ -1940,6 +1936,18 @@ msgstr "Détails techniques (privé)"
 msgid "Edit this contribution"
 msgstr "Modifier cette contribution"
 
+#: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
+msgid "Home"
+msgstr "Accueil"
+
+#: app/views/contributions/list.rhtml:1
+msgid "All"
+msgstr "Tous"
+
+#: app/views/contributions/list.rhtml:3
+msgid "a new contribution"
+msgstr "une nouvelle contribution"
+
 #: app/views/contributions/new.rhtml:1
 msgid "Add a new contribution"
 msgstr "Ajouter une nouvelle contribution"
@@ -1956,21 +1964,9 @@ msgstr "Exporter toutes les contributions"
 msgid "Access to interface of administration"
 msgstr "Accéder à l'interface d'admnistration"
 
-#: app/views/contributions/show.rhtml:1 app/views/contributions/index.rhtml:1
-msgid "Home"
-msgstr "Accueil"
-
 #: app/views/contributions/show.rhtml:21
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
-
-#: app/views/contributions/index.rhtml:1
-msgid "All"
-msgstr "Tous"
-
-#: app/views/contributions/index.rhtml:3
-msgid "a new contribution"
-msgstr "une nouvelle contribution"
 
 #: app/views/demandes/_tab_menu.rhtml:9 app/views/logiciels/_form.rhtml:10
 #: app/views/logiciels/_softwares_info.rhtml:40
@@ -2420,9 +2416,8 @@ msgid "Add a role"
 msgstr "Ajouter un rôle"
 
 #: app/views/statuts/index.rhtml:1
-#, fuzzy
 msgid "List of status"
-msgstr "Liste des logiciels"
+msgstr "Liste des statuts"
 
 #: app/views/urllogiciels/_form.rhtml:5
 msgid "Value"
@@ -2464,6 +2459,150 @@ msgstr "une nouvelle urls"
 #: app/views/urlreversements/index.rhtml:6
 msgid "Contribution"
 msgstr "Contribution"
+
+#: lib/overrides.rb:30
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: lib/overrides.rb:30
+msgid "Monday"
+msgstr "Lundi"
+
+#: lib/overrides.rb:30
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: lib/overrides.rb:30
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: lib/overrides.rb:31
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: lib/overrides.rb:31
+msgid "Friday"
+msgstr "Vendredi"
+
+#: lib/overrides.rb:34
+msgid "January"
+msgstr "Janvier"
+
+#: lib/overrides.rb:34
+msgid "February"
+msgstr "Février"
+
+#: lib/overrides.rb:34
+msgid "March"
+msgstr "Mars"
+
+#: lib/overrides.rb:34
+msgid "April"
+msgstr "Avril"
+
+#: lib/overrides.rb:34 lib/overrides.rb:43
+msgid "May"
+msgstr "Mai"
+
+#: lib/overrides.rb:34
+msgid "June"
+msgstr "Juin"
+
+#: lib/overrides.rb:34
+msgid "July"
+msgstr "Juillet"
+
+#: lib/overrides.rb:35
+msgid "August"
+msgstr "Août"
+
+#: lib/overrides.rb:35
+msgid "September"
+msgstr "Septembre"
+
+#: lib/overrides.rb:35
+msgid "October"
+msgstr "Octobre"
+
+#: lib/overrides.rb:35
+msgid "November"
+msgstr "Novembre"
+
+#: lib/overrides.rb:35
+msgid "December"
+msgstr "Décembre"
+
+#: lib/overrides.rb:39
+msgid "sun"
+msgstr "dim"
+
+#: lib/overrides.rb:39
+msgid "mon"
+msgstr "lun"
+
+#: lib/overrides.rb:39
+msgid "tue"
+msgstr "mar"
+
+#: lib/overrides.rb:39
+msgid "wed"
+msgstr "mer"
+
+#: lib/overrides.rb:40
+msgid "thu"
+msgstr "jeu"
+
+#: lib/overrides.rb:40
+msgid "fri"
+msgstr "ven"
+
+#: lib/overrides.rb:40
+msgid "sat"
+msgstr "sam"
+
+#: lib/overrides.rb:43
+msgid "Jan"
+msgstr "Jan"
+
+#: lib/overrides.rb:43
+msgid "Feb"
+msgstr "Fév"
+
+#: lib/overrides.rb:43
+msgid "Mar"
+msgstr "Mar"
+
+#: lib/overrides.rb:43
+msgid "Apr"
+msgstr "Avr"
+
+#: lib/overrides.rb:43
+msgid "Jun"
+msgstr "Juin"
+
+#: lib/overrides.rb:43
+msgid "Jul"
+msgstr "Juil"
+
+#: lib/overrides.rb:44
+msgid "Aug"
+msgstr "aoû"
+
+#: lib/overrides.rb:44
+msgid "Sep"
+msgstr "Sep"
+
+#: lib/overrides.rb:44
+msgid "Oct"
+msgstr "Oct"
+
+#: lib/overrides.rb:44
+msgid "Nov"
+msgstr "Nov"
+
+#: lib/overrides.rb:44
+msgid "Dec"
+msgstr "Dec"
 
 #, fuzzy
 #~ msgid "New Requests"
