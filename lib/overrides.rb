@@ -25,7 +25,7 @@ class Date
        _('Sunday'), _('Monday'), _('Tuesday'), _('Wednesday'),
        _('Thursday'), _('Friday'), ('Saturday')
      ]
-     Date::MONTHNAMSE.replace [
+     Date::MONTHNAMES.replace [
        _('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'),
        _('August'), _('September'), _('October'), _('November'), _('December')
      ]
