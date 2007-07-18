@@ -2166,7 +2166,7 @@ msgstr "Technologies"
 
 #: app/views/logiciels/_softwares_info.rhtml:22
 msgid "List of packages"
-msgstr "Liste des pacquets"
+msgstr "Liste des paquets"
 
 #: app/views/logiciels/_softwares_info.rhtml:32
 msgid "Client"
