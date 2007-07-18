@@ -94,7 +94,8 @@
 
   <% unless user %>
    <div id="login" style="display: none">
-     <%= render :file => "account/login" %>
+    <%= render :file => "account/login" %>
+    <div align="right"><%= link_to_close_redbox(_("Close")) %>&nbsp;&nbsp;&nbsp;</div>
    </div>
   <% end %>
 
