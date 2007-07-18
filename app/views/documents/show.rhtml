@@ -4,11 +4,11 @@
 </p>
 <% end %>
 
-<p><b>Fichier : </b><%= link_to_file @document, 'fichier' %></p>
-<p><b>Taille : </b><%= file_size(@document.fichier) %></p>
-<p><b>Dépositaire : </b><%= @document.identifiant.nom %></p>
+<p><b><%= _('File :') %></b><%= link_to_file @document, 'fichier' %></p>
+<p><b><%= _('Size : ')%></b><%= file_size(@document.fichier) %></p>
+<p><b><%= _('Recipient :' ) %></b><%= @document.identifiant.nom %></p>
 <br />
-<p><b>Màj le : </b><%= @document.updated_on_formatted %></p>
+<p><b><%= _('Updated on : ')%></b><%= @document.updated_on_formatted %></p>
 <br />
 
 <%= link_to_edit(@document) %> |

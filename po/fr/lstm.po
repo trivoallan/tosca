@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-17 17:22+0200\n"
+"POT-Creation-Date: 2007-07-18 17:04+0200\n"
 "PO-Revision-Date: 2007-07-13 19:01+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -48,6 +48,14 @@ msgstr "Le demande n'a pas de contributions pour l'instant"
 #: app/controllers/demandes_controller.rb:317
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
+
+#: app/controllers/documents_controller.rb:68
+msgid "Your document was successfully created"
+msgstr "Votre document a été crée avec succès."
+
+#: app/controllers/documents_controller.rb:83
+msgid "your document was successfully updated"
+msgstr "Votre document a été mis à jour avec succès."
 
 #: app/controllers/export_controller.rb:33
 #: app/controllers/export_controller.rb:60
@@ -398,7 +406,7 @@ msgstr "Mon&nbsp;Offre"
 msgid "Date"
 msgstr "Date"
 
-#: app/helpers/contributions_helper.rb:10
+#: app/helpers/contributions_helper.rb:10 app/views/documents/list.rhtml:7
 msgid "Version"
 msgstr "Version"
 
@@ -1008,8 +1016,8 @@ msgstr "Socle"
 msgid "Demande|Mail cc"
 msgstr "Mail cc"
 
-#: app/models/demande.rb:200
 # ne pas oublier l'espace au début
+#: app/models/demande.rb:200
 msgid " of overrun"
 msgstr " de dépassement"
 
@@ -1080,6 +1088,10 @@ msgstr "Mis à jour le"
 #: app/models/document.rb:-
 msgid "Document|Version"
 msgstr "Version"
+
+#: app/models/document.rb:-
+msgid "Document|Date delivery"
+msgstr "Date de livraison"
 
 #: app/models/engagement.rb:-
 msgid "engagement"
@@ -1642,6 +1654,7 @@ msgid "Export users"
 msgstr "Exporter les utilisateurs"
 
 #: app/views/appels/_calls_info.rhtml:12
+#: app/views/documents/_documents_info.rhtml:13
 msgid "Action"
 msgstr "Action"
 
@@ -1660,6 +1673,7 @@ msgstr "Expert"
 
 #: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
+#: app/views/documents/_form.rhtml:6
 msgid "Recipient"
 msgstr "Bénéficiaire"
 
@@ -1910,6 +1924,7 @@ msgid "Submit a contribution"
 msgstr "Déposer une contribution"
 
 #: app/views/contributions/_contributions_info.rhtml:19
+#: app/views/documents/_documents_info.rhtml:21
 msgid "Selection interface"
 msgstr "Interface de sélection"
 
@@ -1973,7 +1988,8 @@ msgstr "Accéder à l'interface d'admnistration"
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
 
-#: app/views/demandes/_tab_menu.rhtml:9 app/views/logiciels/_form.rhtml:10
+#: app/views/demandes/_tab_menu.rhtml:9 app/views/documents/list.rhtml:7
+#: app/views/documents/_form.rhtml:36 app/views/logiciels/_form.rhtml:10
 #: app/views/logiciels/_softwares_info.rhtml:40
 #: app/views/logiciels/_softwares_list.rhtml:6 app/views/roles/index.rhtml:4
 #: app/views/statuts/_form.rhtml:7
@@ -2000,6 +2016,129 @@ msgstr "Appels Téléphoniques"
 msgid "CNS"
 msgstr "CNS"
 
+#: app/views/documents/_documents_info.rhtml:15
+#: app/views/documents/new.rhtml:1
+msgid "Add a document"
+msgstr "Ajouter un document"
+
+#: app/views/documents/_documents_info.rhtml:19
+#: app/views/logiciels/_softwares_info.rhtml:16
+msgid "Consultation"
+msgstr "Consultation"
+
+#: app/views/documents/_documents_info.rhtml:25
+msgid "Search (non usable)"
+msgstr "Recherche ( non fonctionnel)"
+
+#: app/views/documents/_documents_info.rhtml:27
+msgid "Document Type"
+msgstr "Type de document"
+
+#: app/views/documents/_documents_info.rhtml:29
+#: app/views/documents/list.rhtml:7 app/views/documents/_form.rhtml:23
+msgid "Title"
+msgstr "Titre"
+
+#: app/views/documents/_documents_info.rhtml:31
+msgid "Filename"
+msgstr "Nom de fichier"
+
+#: app/views/documents/_documents_info.rhtml:36
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: app/views/documents/_documents_info.rhtml:38
+msgid "Documents"
+msgstr "Documents"
+
+#: app/views/documents/list.rhtml:1
+msgid "Documents available in "
+msgstr "Documents disponible dans"
+
+#: app/views/documents/list.rhtml:2
+msgid "All the directories"
+msgstr "Tous les dossiers"
+
+#: app/views/documents/list.rhtml:5 app/views/documents/list.rhtml:22
+msgid "a document"
+msgstr "un document"
+
+#: app/views/documents/list.rhtml:7
+msgid "Delivered on:"
+msgstr "Livré le "
+
+#: app/views/documents/list.rhtml:8 app/views/documents/_form.rhtml:26
+msgid "File"
+msgstr "Fichier"
+
+#: app/views/documents/list.rhtml:8
+msgid "Size"
+msgstr "Taille"
+
+#: app/views/documents/list.rhtml:24
+msgid "Return to the selection"
+msgstr "Retour à la sélection"
+
+#: app/views/documents/_form.rhtml:12
+msgid "Author"
+msgstr "Auteur"
+
+#: app/views/documents/_form.rhtml:18
+msgid "Type"
+msgstr "type"
+
+#: app/views/documents/_form.rhtml:29
+msgid "Delivery date"
+msgstr "Date de Livraison"
+
+#: app/views/documents/edit.rhtml:1
+msgid "Modify the document :"
+msgstr "Modifier le document"
+
+#: app/views/documents/edit.rhtml:6
+msgid "Modify"
+msgstr "Modifier"
+
+#: app/views/documents/edit.rhtml:9
+msgid "look"
+msgstr "Voir"
+
+#: app/views/documents/new.rhtml:5
+msgid "Submit"
+msgstr "Déposer"
+
+#: app/views/documents/select.rhtml:1
+msgid "Access to the repository"
+msgstr "Accès au dépôt"
+
+#: app/views/documents/select.rhtml:3
+msgid "Document type"
+msgstr "Type de document"
+
+#: app/views/documents/select.rhtml:7
+msgid "Submit a file"
+msgstr "Déposer un fichier"
+
+#: app/views/documents/select.rhtml:8
+msgid "a file"
+msgstr "un fichier"
+
+#: app/views/documents/show.rhtml:7
+msgid "File :"
+msgstr "Fichier :"
+
+#: app/views/documents/show.rhtml:8
+msgid "Size : "
+msgstr "Taille : "
+
+#: app/views/documents/show.rhtml:9
+msgid "Recipient :"
+msgstr "Bénéficiaire : "
+
+#: app/views/documents/show.rhtml:11
+msgid "Updated on : "
+msgstr "Mis à jour le :"
+
 #: app/views/layouts/standard-layout.rhtml:36
 msgid "Login"
 msgstr "Identification"
@@ -2024,10 +2163,6 @@ msgstr "Groupe"
 #: app/views/logiciels/show.rhtml:20
 msgid "Technologies"
 msgstr "Technologies"
-
-#: app/views/logiciels/_softwares_info.rhtml:16
-msgid "Consultation"
-msgstr "Consultation"
 
 #: app/views/logiciels/_softwares_info.rhtml:22
 msgid "List of packages"

@@ -1,39 +1,39 @@
 
 <%= error_messages_for 'document' %>
-<div class="show", style="width: 70%">
+<div class="show" style="width: 70%">
   <!--[form:document]-->
   <div style="float: left; margin-right: 30px; pasdding-right: 40px;">
-    <p><label for="document_client">Bénéficiaire</label><br/>
+    <p><label for="document_client_id"><%= _('Recipient') %></label><br/>
     <%= select("document", "client_id",
     @clients.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
     <% if @action == :index %>
-    <p><label for="document_identifiant">Auteur</label><br/>
+    <p><label for="document_identifiant"><%= _('Author') %></label><br/>
     <%= select("document", "identifiant_id",
     @identifiants.collect{|l| [ l.nom, l.id]}) %>
     </p>
     <% end %>
 
-    <p><label for="document_typedocument">Type</label><br/>
+    <p><label for="document_typedocument_id"><%= _('Type') %></label><br/>
     <%= select("document", "typedocument_id",
     @typedocuments.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
-    <p><label for="document_titre">Titre</label><br/>
+    <p><label for="document_titre"><%= _('Title') %></label><br/>
     <%= text_field 'document', 'titre'  %></p>
 
-    <p><label for="document_fichier">Fichier</label><br/>
+    <p><label for="document_fichier"><%= _('File') %></label><br/>
     <%= file_column_field 'document', 'fichier'  %></p>
 
-    <p><label for ="document_date_delivery">Date de Livraison</label><br />
+    <p><label for ="document_date_delivery"><%= _('Delivery date') %></label><br />
     <%= text_field :document, :date_delivery,  :size => 8 %>
     <span class="calendarPicker"><%= image_date_to %></span>
     <%= script_date('document_date_delivery', 'date_to') %><br /><br />
     </p>
   </div>
   <div style="float: left">
-    <p><label for="document_description">Description</label><br/>
+    <p><label for="document_description"><%= _('Description') %></label><br/>
     <%= text_area 'document', 'description'  %></p>
   </div>
   <!--[eoform:document]-->

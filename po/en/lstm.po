@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-17 17:22+0200\n"
+"POT-Creation-Date: 2007-07-18 17:04+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -40,6 +40,14 @@ msgstr ""
 
 #: app/controllers/demandes_controller.rb:317
 msgid "This contribution is now linked"
+msgstr ""
+
+#: app/controllers/documents_controller.rb:68
+msgid "Your document was successfully created"
+msgstr ""
+
+#: app/controllers/documents_controller.rb:83
+msgid "your document was successfully updated"
 msgstr ""
 
 #: app/controllers/export_controller.rb:33
@@ -387,7 +395,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: app/helpers/contributions_helper.rb:10
+#: app/helpers/contributions_helper.rb:10 app/views/documents/list.rhtml:7
 msgid "Version"
 msgstr ""
 
@@ -461,9 +469,8 @@ msgstr ""
 
 #: app/helpers/links_helper.rb:79 app/views/contributions/list.rhtml:1
 #: app/views/contributions/select.rhtml:1 app/views/logiciels/show.rhtml:68
-#, fuzzy
 msgid "Contributions"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/helpers/links_helper.rb:80
 msgid "Access to the list of contributions."
@@ -1059,54 +1066,48 @@ msgid "Distributeur|Nom"
 msgstr ""
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "document"
-msgstr "Description"
+msgstr ""
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Identifiant"
-msgstr "Description"
+msgstr "Login"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Typedocument"
-msgstr "Description"
+msgstr "Type document"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Client"
-msgstr "Description"
+msgstr "Customer"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Titre"
-msgstr "Description"
+msgstr "title"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Fichier"
-msgstr "Description"
+msgstr "File"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Description"
 msgstr "Description"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Created on"
-msgstr "Description"
+msgstr "Created on"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Updated on"
-msgstr "Description"
+msgstr "Updated on"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Version"
-msgstr "Description"
+msgstr "Version"
+
+#: app/models/document.rb:-
+msgid "Document|Date delivery"
+msgstr "Date delivery"
 
 #: app/models/engagement.rb:-
 msgid "engagement"
@@ -1133,7 +1134,6 @@ msgid "etatreversement"
 msgstr "contributionstate"
 
 #: app/models/etatreversement.rb:-
-#, fuzzy
 msgid "Etatreversement|Nom"
 msgstr "Name"
 
@@ -1674,6 +1674,7 @@ msgid "Export users"
 msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:12
+#: app/views/documents/_documents_info.rhtml:13
 msgid "Action"
 msgstr ""
 
@@ -1692,6 +1693,7 @@ msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
+#: app/views/documents/_form.rhtml:6
 msgid "Recipient"
 msgstr ""
 
@@ -1940,6 +1942,7 @@ msgid "Submit a contribution"
 msgstr ""
 
 #: app/views/contributions/_contributions_info.rhtml:19
+#: app/views/documents/_documents_info.rhtml:21
 msgid "Selection interface"
 msgstr ""
 
@@ -2003,7 +2006,8 @@ msgstr ""
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr ""
 
-#: app/views/demandes/_tab_menu.rhtml:9 app/views/logiciels/_form.rhtml:10
+#: app/views/demandes/_tab_menu.rhtml:9 app/views/documents/list.rhtml:7
+#: app/views/documents/_form.rhtml:36 app/views/logiciels/_form.rhtml:10
 #: app/views/logiciels/_softwares_info.rhtml:40
 #: app/views/logiciels/_softwares_list.rhtml:6 app/views/roles/index.rhtml:4
 #: app/views/statuts/_form.rhtml:7
@@ -2030,6 +2034,129 @@ msgstr ""
 msgid "CNS"
 msgstr ""
 
+#: app/views/documents/_documents_info.rhtml:15
+#: app/views/documents/new.rhtml:1
+msgid "Add a document"
+msgstr ""
+
+#: app/views/documents/_documents_info.rhtml:19
+#: app/views/logiciels/_softwares_info.rhtml:16
+msgid "Consultation"
+msgstr ""
+
+#: app/views/documents/_documents_info.rhtml:25
+msgid "Search (non usable)"
+msgstr ""
+
+#: app/views/documents/_documents_info.rhtml:27
+msgid "Document Type"
+msgstr ""
+
+#: app/views/documents/_documents_info.rhtml:29
+#: app/views/documents/list.rhtml:7 app/views/documents/_form.rhtml:23
+msgid "Title"
+msgstr ""
+
+#: app/views/documents/_documents_info.rhtml:31
+msgid "Filename"
+msgstr ""
+
+#: app/views/documents/_documents_info.rhtml:36
+msgid "Statistics"
+msgstr ""
+
+#: app/views/documents/_documents_info.rhtml:38
+msgid "Documents"
+msgstr ""
+
+#: app/views/documents/list.rhtml:1
+msgid "Documents available in "
+msgstr ""
+
+#: app/views/documents/list.rhtml:2
+msgid "All the directories"
+msgstr ""
+
+#: app/views/documents/list.rhtml:5 app/views/documents/list.rhtml:22
+msgid "a document"
+msgstr ""
+
+#: app/views/documents/list.rhtml:7
+msgid "Delivered on:"
+msgstr ""
+
+#: app/views/documents/list.rhtml:8 app/views/documents/_form.rhtml:26
+msgid "File"
+msgstr ""
+
+#: app/views/documents/list.rhtml:8
+msgid "Size"
+msgstr ""
+
+#: app/views/documents/list.rhtml:24
+msgid "Return to the selection"
+msgstr ""
+
+#: app/views/documents/_form.rhtml:12
+msgid "Author"
+msgstr ""
+
+#: app/views/documents/_form.rhtml:18
+msgid "Type"
+msgstr ""
+
+#: app/views/documents/_form.rhtml:29
+msgid "Delivery date"
+msgstr ""
+
+#: app/views/documents/edit.rhtml:1
+msgid "Modify the document :"
+msgstr ""
+
+#: app/views/documents/edit.rhtml:6
+msgid "Modify"
+msgstr ""
+
+#: app/views/documents/edit.rhtml:9
+msgid "look"
+msgstr ""
+
+#: app/views/documents/new.rhtml:5
+msgid "Submit"
+msgstr ""
+
+#: app/views/documents/select.rhtml:1
+msgid "Access to the repository"
+msgstr ""
+
+#: app/views/documents/select.rhtml:3
+msgid "Document type"
+msgstr ""
+
+#: app/views/documents/select.rhtml:7
+msgid "Submit a file"
+msgstr ""
+
+#: app/views/documents/select.rhtml:8
+msgid "a file"
+msgstr ""
+
+#: app/views/documents/show.rhtml:7
+msgid "File :"
+msgstr ""
+
+#: app/views/documents/show.rhtml:8
+msgid "Size : "
+msgstr ""
+
+#: app/views/documents/show.rhtml:9
+msgid "Recipient :"
+msgstr ""
+
+#: app/views/documents/show.rhtml:11
+msgid "Updated on : "
+msgstr ""
+
 #: app/views/layouts/standard-layout.rhtml:36
 msgid "Login"
 msgstr ""
@@ -2054,11 +2181,6 @@ msgstr ""
 #: app/views/logiciels/show.rhtml:20
 msgid "Technologies"
 msgstr ""
-
-#: app/views/logiciels/_softwares_info.rhtml:16
-#, fuzzy
-msgid "Consultation"
-msgstr "contributionstate"
 
 #: app/views/logiciels/_softwares_info.rhtml:22
 msgid "List of packages"

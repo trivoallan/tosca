@@ -23,12 +23,12 @@ class DocumentsController < ApplicationController
       :include => [:identifiant]
 
     # panel on the left side
-    if request.xhr?
-      render :partial => 'documents_list', :layout => false
-    else
-      _panel
-      @partial_for_summary = 'documents_info'
-    end
+#    if request.xhr?
+#      render :partial => 'documents_list', :layout => false
+#    else
+#      _panel
+#      @partial_for_summary = 'documents_info'
+#    end
   end
 
   def select
@@ -41,12 +41,12 @@ class DocumentsController < ApplicationController
 
     # TODO : fusionner avec la répétition dans 'index'
     # panel on the left side
-    if request.xhr?
-      render :partial => 'documents_list', :layout => false
-    else
-      _panel
-      @partial_for_summary = 'documents_info'
-    end
+#    if request.xhr?
+#      render :partial => 'documents_list', :layout => false
+#    else
+#      _panel
+#      @partial_for_summary = 'documents_info'
+#    end
 
   end
 
@@ -60,13 +60,12 @@ class DocumentsController < ApplicationController
     @document.typedocument_id = params[:id]
     _form
   end
-
   def create
     @document = Document.new(params[:document])
     @document.identifiant = @session[:user]
     _form
     if @document.save
-      flash[:notice] = 'Votre document a été correctement créé.'
+      flash[:notice] = _('Your document was successfully created')
       redirect_to :action => 'select'
     else
       render :action => 'new'
@@ -81,7 +80,7 @@ class DocumentsController < ApplicationController
   def update
     @document = Document.find(params[:id])
     if @document.update_attributes(params[:document])
-      flash[:notice] = 'Votre document a été correctement mis à jour.'
+      flash[:notice] = _('your document was successfully updated')
       redirect_to :action => 'show', :id => @document
     else
       _form and render :action => 'edit'

@@ -1,11 +1,11 @@
-<h1>Documents disponibles dans 
-    <%= @typedocument ?  @typedocument.nom : 'tous les répertoires' %></h1>
+<h1><%= _('Documents available in ')%>
+  <%= @typedocument ?  @typedocument.nom : _('All the directories') %></h1>
 <br />
 
-<%= show_pages_links(@document_pages, 'un document') %>
+<%= show_pages_links(@document_pages, _('a document') ) %>
 
-<% titres = [_('Title'),_('Description'), _('Livré le:'),_('Version'), 
-  _('Fichier'), _('Taille'), ] %>
+<% titres = [_('Title'),_('Description'), _('Delivered on:'),_('Version'), 
+  _('File'), _('Size'), ] %>
 <%= show_table(@documents, Document, titres, :total => false, 
     :content_columns => false) { |document| 
   result = ''
@@ -19,6 +19,6 @@
 }%>
 
 
-<%= show_pages_links(@document_pages, 'un document') %>
+<%= show_pages_links(@document_pages, _('a document') ) %>
 
-<%= link_to 'Retour à la sélection', :action => 'select' %>
+<%= link_to _('Return to the selection'), :action => 'select' %>
