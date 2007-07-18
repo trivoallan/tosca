@@ -19,7 +19,7 @@ class DocumentsController < ApplicationController
       conditions = nil
     end
     @document_pages, @documents = paginate :documents, :per_page => 10,
-      :order => "created_on DESC", :conditions => conditions,
+      :order => "date_delivery DESC", :conditions => conditions,
       :include => [:identifiant]
 
     # panel on the left side

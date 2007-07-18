@@ -202,10 +202,10 @@ module DemandesHelper
                      _('show all the requests'))
   end
 
-  #usage : <tr <%= tr_attributes(demand.id)%> >
-  def tr_attributes(demand_id)
+  #usage : <tr <%= tr_attributes("../demandes/comment/#{demand.id}")%> >
+  def tr_attributes(href)
    return "class=\"#{cycle('pair', 'impair')}\" " <<
-      "onclick=\"window.location.href='../demandes/comment/#{demand_id}'\""
+      "onclick=\"window.location.href='#{href}'\""
   end
 
 
