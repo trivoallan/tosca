@@ -1,9 +1,7 @@
 <% options = { :update => 'demande_tab',
-    :url => demandes_path,
+    :url => demande_path(@demande ? @demande.id : @demande_id),
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
-<% options[:url][:id] = @demande.id if @demande %>
-<% options[:url][:id] = @demande_id if @demande_id %>
 <ul class="demande_tabnav" id="demande_tabnav">
  <li>
    <%= link_to_remote_tab _('Description'), 'ajax_description', options %>

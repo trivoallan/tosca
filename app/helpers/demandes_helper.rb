@@ -123,7 +123,6 @@ module DemandesHelper
   #     :success => "Element.hide('spinner')" } %>
   #  <%= link_to_remote_tab('Description', 'ajax_description', options) %>
   def link_to_remote_tab(name, action_name, options)
-    options[:url][:action] = action_name
     if (action_name != controller.action_name)
       link_to_remote name, options
     else

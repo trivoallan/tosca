@@ -13,7 +13,8 @@ module PagesHelper
   end
 
   def link_to_show(ar)
-    link_to image_view, page_path(ar.id), { :class => 'nobackground' }
+    options = { :action => '', :id => ar.id }
+    link_to image_view, options, { :class => 'nobackground' }
   end
 
   def link_to_edit_and_list(ar)

@@ -57,12 +57,13 @@ ActionController::Routing::Routes.draw do |map|
   :member => { :list => :get }
   map.resources :demandes,
   :collection => { :auto_complete_for_logiciel_nom => :post,
-    :ajax_display_packages => :post,
-    :delete_contribution => :get,
+    :ajax_display_packages => :post },
+  :member => { :comment=> :any, 
     :associer_contribution => :get,
+    :delete_contribution => :get,
     :update_contribution => :get,
-    :pretty_print => :get},
-  :member => { :comment=> :any }
+    :changer_ingenieur => :get,
+    :pretty_print => :get }
   map.resources :documents,
   :collection => { :select => :get },
   :member => { :list => :get, :destroy => :delete }

@@ -7,7 +7,7 @@
 
   <h1>
     <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
-  <% options = { :controller => 'demandes', pretty_print_demande_path(@demande.id) %>
+  <% options = pretty_print_demande_path(@demande.id) %>
     <% html_options = { :class => 'no_hover' } %>
     <%= link_to(image_print, options, html_options) %>
   </h1>
