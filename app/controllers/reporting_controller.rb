@@ -92,10 +92,12 @@ end
 
   def general
     _titles()
-    redirect_to configuration_reporting_path and return unless params[:reporting]
+    redirect_to configuration_reporting_path and return unless 
+      params[:reporting]
+
     init_class_var(params)
     redirect_to configuration_reporting_path and return unless
-    @contrat and (@report[:start_date] < @report[:end_date])
+      @contrat and (@report[:start_date] < @report[:end_date])
     init_data_general
     fill_data_general
 

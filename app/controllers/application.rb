@@ -16,17 +16,17 @@ require_dependency 'lstm'
 
 class ApplicationController < ActionController::Base
 
-  before_filter :localize
   init_gettext 'lstm'
-
-  def localize
-    Date::translate_strings(self)
-  end
-
 
   # accès protégé et standardisé
   before_filter :set_global_shortcuts
   before_filter :login_required
+
+  ### MLO
+  # gettext_localize plugin, filter to set priority on methods to determine the current locale
+  
+  ### MLO
+  
 
   # périmètre limité pour certains profils
   around_filter :scope
@@ -78,14 +78,8 @@ protected
     redirect_back_or_default bienvenue_url
   end
 
-  # variables globales (beurk, mais tellement pratique ;))
-  # on en profite pour forcer une bonne en-tête.
-  # TODO : verifier si ce header est encore nécessaire.
+  # global variables (not pretty, but those two are really usefull)
   def set_global_shortcuts
-    # not needed since we use rgettext
-    # headers['Content-Type'] =
-    # ( request.xhr? ? 'text/javascript; charset=utf-8' :
-    # 'text/html; charset=utf-8' )
     @ingenieur = session[:ingenieur]
     @beneficiaire = session[:beneficiaire]
   end

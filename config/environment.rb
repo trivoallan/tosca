@@ -60,9 +60,20 @@ require 'config'
 require 'gettext/rails'
 require 'ruport'
 require 'ruport/util'
+require 'gettext_localize'
+require 'gettext_localize_rails'
+require 'gettext_localize_extend'
 
-#TimeZone française, nécessaire sur ces barbus trolleurs de debian
+#Franch TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'
+
+#conf gettextlocalize
+ if defined? GettextLocalize
+   GettextLocalize::app_name = 'lstm'
+   GettextLocalize::app_version = '0.5.3'
+   GettextLocalize::default_locale = 'en_US'
+   GettextLocalize::default_methods = [:header, :session, :param]
+ end
 
 # Add new inflection rules using the following format 
 # (all these examples are active by default):
