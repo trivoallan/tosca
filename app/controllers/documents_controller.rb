@@ -22,6 +22,9 @@ class DocumentsController < ApplicationController
       :order => "date_delivery DESC", :conditions => conditions,
       :include => [:identifiant]
 
+    # Disabled, beacause the search boxes in the panel don't work.
+    # It may be repaired in a future version.
+    #
     # panel on the left side
 #    if request.xhr?
 #      render :partial => 'documents_list', :layout => false
