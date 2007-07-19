@@ -176,19 +176,27 @@ class Demande < ActiveRecord::Base
   #Oui ces 2 fonctions n'ont rien à faire dans un modèle.
   # Mais l'affichage dépend du modèle (du support client)
   # donc en fait si ^_^
+  #
+  # if the demande is over, then return the overrun time
   def affiche_temps_ecoule
     temps = temps_ecoule
     return "sans engagement" if temps == -1
 
     contrats = Contrat.find(:all)
-    # TODO : not very DRY: present in lib/comex_resultat too
     contrats.delete_if { |contrat|
       engagement= engagement(contrat.id)
       engagement == nil or engagement.correction < 0 
     }
+    # A demand may have several contracts.
+    # I keep the more critical correction time
+    critical_contract = contrats[0]
+    contrats.each do |c|
+      critical_contract = c if  engagement(c.id).correction < engagement(critical_contract.id).correction
+    end
+    # Not very DRY: present in lib/comex_resultat too
     support = client.support
     amplitude = support.fermeture - support.ouverture
-    temps_correction = engagement( contrats[0].id ).correction.days
+    temps_correction = engagement( critical_contract.id ).correction.days
 
     temps_reel=
       distance_of_time_in_working_days(temps_ecoule, amplitude)

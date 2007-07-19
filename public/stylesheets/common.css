@@ -176,7 +176,7 @@ div.login, div.form, div.show, div.help, div.info {
 	width: 35em;
 }
 /* all lines are clickable */
-#demandes_list tr *:hover {
+#demandes_list, #cns tr *:hover {
 	cursor: pointer;
 }
 /* personnalisation du select des severites : non actif */

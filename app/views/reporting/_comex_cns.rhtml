@@ -14,7 +14,7 @@
   <% @percents.each do |c| %>
     <% c_id = @percents.index(c) %>
     <li><h2><%= @extra[c_id][:nom] %><h2></li>
-      <table class="show", width='100%'>
+      <table id="cns" class="show", width='100%'>
         <tr>
           <th><%= _('Id')%></th>
           <th><%= _('Workaround')%></th>
@@ -23,7 +23,7 @@
         </tr>
         <% @extra[c_id][:demandes_ids].each do |d_id| %>
         <% d= c[d_id] %>
-        <tr <%= tr_attributes(c.index(d)) %> >
+        <tr <%= tr_attributes("../demandes/comment/#{c.index(d)}") %> >
           <td><%= c.index(d) %></td>
           <td>
             <%= progress_bar( d[:contournement].to_i) unless

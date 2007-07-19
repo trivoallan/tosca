@@ -71,11 +71,8 @@ module  ComexReporting
 
     contrats= Contrat.find(:all, :order => 'id ASC')
     contrats.each do |contrat|
-      @percents[contrat.id]= []
-      c= @percents[contrat.id]
-
-      @extra[contrat.id] = {}
-      c_extra = @extra[contrat.id]
+      c = @percents[contrat.id]= []
+      c_extra = @extra[contrat.id] = {}
       c_extra[:nom] = contrat.nom
       c_extra[:demandes_ids]= []
 
@@ -83,8 +80,7 @@ module  ComexReporting
       amplitude = support.fermeture - support.ouverture
 
       demandes = Demande.find :all,
-             :conditions => Demande::EN_COURS,
-             :order=> 'updated_on ASC'
+        :conditions => Demande::EN_COURS, :order=> 'updated_on ASC'
       demandes.delete_if { |demand|
         engagement= demand.engagement(contrat.id)
         engagement == nil or
@@ -92,22 +88,18 @@ module  ComexReporting
       }
       demandes.each do |demand|
         c_extra[:demandes_ids].push( demand.id )
-        c[demand.id]= {}
-        d=c[demand.id]
+        d = c[demand.id]= {}
         d[:resume]= demand.resume
 
         temps_ecoule = demand.temps_ecoule
         temps_correction = demand.engagement( contrat.id ).correction.days
         temps_contournement= demand.engagement(contrat.id).contournement.days
-
         temps_reel=
           demand.distance_of_time_in_working_days(temps_ecoule, amplitude)
         temps_prevu_correction=
-          demand.distance_of_time_in_working_days(temps_correction,
-                                                  amplitude)
+          demand.distance_of_time_in_working_days(temps_correction,amplitude)
         temps_prevu_contournement =
-          demand.distance_of_time_in_working_days(temps_contournement,
-                                                  amplitude)
+          demand.distance_of_time_in_working_days(temps_contournement,amplitude)
         if temps_ecoule < 0
           d[:correction], d[:contournement] = 0,0
           d[:mesg_correction], d[:mesg_contournement] ='-', '-'
@@ -121,13 +113,11 @@ module  ComexReporting
 
           d[:mesg_correction]=  time_correction
           d[:mesg_contournement] = time_contournement
-
           d[:correction]= (temps_reel/temps_prevu_correction )*100
           d[:contournement]= (temps_reel/temps_prevu_contournement )*100
         end
       end
       c_extra[:demandes_ids].sort!{|a,b| c[a][:correction] <=> c[b][:correction] }.reverse!
-
     end
     @percents.compact!
     @extra.compact!
