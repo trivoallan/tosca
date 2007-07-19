@@ -1,21 +1,3 @@
-<% @page_title = _("Demostració gettext_localize") %>
-<%= GettextLocalize.country %>
-<%= GettextLocalize.locale %>
-<h1><%= _("Demo capacitats") %></h1>
-<ul>
-	<li><%= _("Time.now.to_s : ") + Time.now.to_s %>
-	<li><%= _("Time.now.to_s(:short) : ") + Time.now.to_s(:short) %>
-	<li><%= _("Time.now.to_s(:long):  ") + Time.now.to_s(:long) %>
-	<li><%= _("Time.now.strftime('%v') : ") + Time.now.strftime("%v") %>
-	<li><%= _("Time.now.strftime('%V') : ") + Time.now.strftime("%V") %>
-	<li><%= _("Time.now.strftime('%A, %v') : ") + Time.now.strftime('%A, %v') %>
-	<li><%= _("number_to_currency(1232323232) : ") + number_to_currency(1232323232) %>
-	<li><%= _("['1', '2', '3'].to_sentence : ") + ['1', '2', '3'].to_sentence %>
-</ul>
-
-<h1><%= _("Demo paràmetre") %></h1>
-
-
 <table class="sommaire"><tr><td>
  <div class="sommaire show">
   <h1><%= _('About') << " #{Metadata::NOM_COURT_APPLICATION} v#{Metadata::VERSION_APPLICATION}" %></h1>
