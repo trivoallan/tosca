@@ -15,12 +15,12 @@ ActionController::Routing::Routes.draw do |map|
   map.bienvenue '/', sweet_home
 
   map.without_orm('bienvenue',
-    %w(admin plan selenium about deroulement natures statut suggestions engagements declaration))
+    %w(admin plan selenium about deroulement natures statut suggestions engagements declaration severites statuts))
   map.without_orm('bienvenue', %w(suggestions), :post)
   map.without_orm('reporting', %w(comex configuration general comex_resultat))
   map.without_orm('export', %w(contributions demandes appels identifiants))
   map.without_orm('acces', %w(refuse))
-
+  map.without_orm('export', %w(contributions appels demandes_ods appels_ods identifiants_ods contributions_ods comex_ods) )
   # RESTful routes with ORM
 
   # routing files to prevent download from public access
@@ -66,12 +66,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :documents,
   :collection => { :select => :get },
   :member => { :list => :get, :destroy => :delete }
-  map.resources :export,
-    :collection => { :contributions => :get, :appels => :get,
-      :demandes_ods => :get, :appels_ods => :get,
-      :identifiants_ods => :get, :contributions_ods => :get,
-      :comex_ods => :get
-    }
   map.resources :groupes
   map.resources :ingenieurs,  :collection => { :list => :get }
   map.resources :logiciels
