@@ -1,18 +1,18 @@
 
 <small>
 
-  <%= link_to '"Comment se passe le traitement d\'une demande ?"', 
-      :action => 'deroulement' if controller.action_name == 'declaration'  %> 
+  <%= link_to '"Comment se passe le traitement d\'une demande ?"',
+      deroulement_bienvenue_path if controller.action_name == 'declaration'  %>
 
   <br/>
   <br/>
 
-  <%= link_to 'statut', :action => 'statuts' %> |
-  <%= link_to 'sévérité', :action => 'severites' %> |
-  <%= link_to 'type', :action => 'natures' %> <br/>
-  
-  <%= link_to '"Comment déclarer une demande ?"', 
-      :action => 'declaration' if controller.action_name != 'declaration'  %>
+  <%= link_to 'statut', statuts_bienvenue_path %> |
+  <%= link_to 'sévérité', severites_bienvenue_path %> |
+  <%= link_to 'type', natures_bienvenue_path' %> <br/>
+
+  <%= link_to '"Comment déclarer une demande ?"',
+      declaration_bienvenue_path if controller.action_name != 'declaration'  %>
 
 </small>
 

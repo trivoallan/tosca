@@ -1,5 +1,5 @@
 <% user = session[:user] %>
-<% connected = public_link_to(_('connected'), :action => 'login', :controller => 'account') %>
+<% connected = public_link_to(_('connected'), login_accounts_path) %>
 <table><tr><td rowspan="2"><%= logo_lstm %> </td><td><h2 class="spacer">Sommaire</h2></td></tr>
        <tr><td> Bienvenue sur l&lsquo;outil de gestion du 08000linux.</td></tr>
 </table>

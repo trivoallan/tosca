@@ -1,6 +1,6 @@
 
 <table><tr><td>
-<% form_tag :action => "list", :filter => @filter, :client => @client do %>
+<% form_tag reporting_path(:filter => @filter, :client => @client) do %>
   <p><label for="demande_resume"><%=_('Choose one year:')%></label>
   <%= text_field 'report', '', "mois" => @annee  %>
   <%= submit_tag _('Show') %></p>

@@ -8,6 +8,6 @@ module RolesHelper
   # [<%= link_to_edit_role role %>]
   def link_to_edit_role(role)
     return '-' unless role
-    link_to(role.nom, :controller => 'roles', :action => 'edit', :id => role)
+    link_to role.nom, edit_role_path(role)
   end
 end

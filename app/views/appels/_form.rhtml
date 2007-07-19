@@ -13,9 +13,9 @@
 %>
 <%= show_table_form fields, :class => 'form' %>
 
-<% options = { :before => "Element.show('spinner')", 
-  :success => "Element.hide('spinner')", :with => 'id', 
-  :update => 'beneficiaires', :url => { :action => 'ajax_beneficiaires' }} %>
+<% options = { :before => "Element.show('spinner')",
+  :success => "Element.hide('spinner')", :with => 'id',
+  :update => 'beneficiaires', :url => ajax_beneficiaires_appels_path } %>
 <%= observe_field 'appel_contrat_id', options %>
 
 <!--[eoform:appel]-->

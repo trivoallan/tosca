@@ -18,7 +18,7 @@ class FournisseursController < ApplicationController
     @fournisseur = Fournisseur.new(params[:fournisseur])
     if @fournisseur.save
       flash[:notice] = 'Fournisseur was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to fournisseurs_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class FournisseursController < ApplicationController
     @fournisseur = Fournisseur.find(params[:id])
     if @fournisseur.update_attributes(params[:fournisseur])
       flash[:notice] = 'Fournisseur was successfully updated.'
-      redirect_to :action => 'show', :id => @fournisseur
+      redirect_to fournisseur_path(@fournisseur)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class FournisseursController < ApplicationController
 
   def destroy
     Fournisseur.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to fournisseurs_path
   end
 end

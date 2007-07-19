@@ -1,9 +1,9 @@
 <% options = { :update => 'content',
-    :url => url_for(:action => 'index'),
+    :url => paquets_url),
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
-<% form_remote_tag( options.dup.update(:html => { 
+<% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
 
 <% # used for iteration in ajaxified list %>

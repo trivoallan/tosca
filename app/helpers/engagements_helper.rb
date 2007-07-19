@@ -3,16 +3,9 @@
 #####################################################
 module EngagementsHelper
 
-  # MLO : Pas terrible ce helper, on remove ?
-  # Call it : link_to_engagement('Voir','edit', engagement)
-  def link_to_engagement(name, action, engagement)
-    link_to name, :action => action, :id => engagement.id, :controller => 'engagements'
-  end
-
 
   def link_to_new_engagement()
-    link_to(image_create('engagement'), :action => 'new', 
-            :controller => 'engagements')
+    link_to(image_create('engagement'), new_engagement_path)
   end
 
   # Display form for choosing engagements;
@@ -35,16 +28,16 @@ module EngagementsHelper
       out << "<tr class=\"#{last_cycle}\">"
       out << '<td>'
       if e.typedemande_id != last_typedemande_id
-        out << "<strong>#{e.typedemande.nom}</strong>" 
+        out << "<strong>#{e.typedemande.nom}</strong>"
         last_typedemande_id = e.typedemande_id
       end
       out << '</td><td>'
       if e.severite_id != last_severite_id
-        out << e.severite.nom 
+        out << e.severite.nom
         last_severite_id = e.severite_id
       end
       out << '</td><td>'
-      out << "<input id=\"engagement_#{e.id}\" type=\"checkbox\" " 
+      out << "<input id=\"engagement_#{e.id}\" type=\"checkbox\" "
       out << "name=\"#{nom}[]\" value=\"#{e.id}\" "
       out << 'checked="checked" ' if object_engagement.include? e
       out << '/>'
@@ -61,10 +54,10 @@ module EngagementsHelper
   def show_table_engagements(engagements)
     result = ''
     titres = ['Demande','Sévérité','Contournement','Correction']
-    oldtypedemande = nil 
+    oldtypedemande = nil
     result << show_table(engagements, Engagement, titres) { |e|
       out = ''
-      out << (oldtypedemande == e.typedemande_id ? '<td></td>' : 
+      out << (oldtypedemande == e.typedemande_id ? '<td></td>' :
                 "<td>#{e.typedemande.nom}</td>" )
       out << "<td>#{e.severite.nom}</td>"
       out << "<td>#{Lstm.time_in_french_words(e.contournement.days, true)}</td>"
@@ -73,7 +66,7 @@ module EngagementsHelper
         out << "#{link_to_actions_table e}"
       end
       oldtypedemande = e.typedemande_id
-     out 
+     out
     }
     result
   end

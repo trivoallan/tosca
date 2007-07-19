@@ -1,6 +1,6 @@
 <h1>Liste des utilisateurs <%= image_spinner %></h1>
 
-<% links = show_pages_links(@user_pages, 'un nouvel utilisateur', 
+<% links = show_pages_links(@user_pages, 'un nouvel utilisateur',
                      :url => '../account/index') %>
 <%= links %>
 <table>
@@ -43,7 +43,7 @@
 
 
     <td><%= link_to_show user %></td>
-    <td><%= link_to_modify user %></td>
+    <td><%= link_to_edit user %></td>
    </tr>
   <% } %>
 </table>

@@ -18,7 +18,7 @@ class ImagesController < ApplicationController
     @image = Image.new(params[:image])
     if @image.save
       flash[:notice] = 'Image was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to images_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     if @image.update_attributes(params[:image])
       flash[:notice] = 'Image was successfully updated.'
-      redirect_to :action => 'show', :id => @image
+      redirect_to image_path(@image)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class ImagesController < ApplicationController
 
   def destroy
     Image.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to images_path
   end
 end

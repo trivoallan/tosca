@@ -18,7 +18,7 @@ class MainteneursController < ApplicationController
     @mainteneur = Mainteneur.new(params[:mainteneur])
     if @mainteneur.save
       flash[:notice] = 'Mainteneur was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to mainteneurs_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class MainteneursController < ApplicationController
     @mainteneur = Mainteneur.find(params[:id])
     if @mainteneur.update_attributes(params[:mainteneur])
       flash[:notice] = 'Mainteneur was successfully updated.'
-      redirect_to :action => 'show', :id => @mainteneur
+      redirect_to mainteneur_path(@mainteneur)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class MainteneursController < ApplicationController
 
   def destroy
     Mainteneur.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to mainteneurs_path
   end
 end

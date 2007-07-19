@@ -139,8 +139,7 @@ module DemandesHelper
 
   # Link to access a ticket
   def link_to_comment(ar)
-      link_to image_view, { :controller => 'demandes', :action => 'comment',
-        :id => ar}, { :class => 'nobackground' }
+      link_to image_view, comment_demande_path(ar), { :class => 'nobackground' }
   end
 
   #usage : link_to_help('state') to link to the help page
@@ -152,8 +151,7 @@ module DemandesHelper
   end
 
   def link_to_delete_contribution( demand_id )
-    link_to _('Unlink the contribution') ,:action => 'delete_contribution',
-      :id=> demand_id
+    link_to _('Unlink the contribution') ,delete_contribution_demande_path(demand_id)
   end
 
 

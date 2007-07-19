@@ -19,7 +19,7 @@ class PiecejointesController < ApplicationController
     @piecejointe = Piecejointe.new(params[:piecejointe])
     if @piecejointe.save
       flash[:notice] = 'Piecejointe was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to piecejointes_path
     else
       render :action => 'new'
     end
@@ -33,7 +33,7 @@ class PiecejointesController < ApplicationController
     @piecejointe = Piecejointe.find(params[:id])
     if @piecejointe.update_attributes(params[:piecejointe])
       flash[:notice] = 'Piecejointe was successfully updated.'
-      redirect_to :action => 'show', :id => @piecejointe
+      redirect_to piecejointe_path(@piecejointe)
     else
       render :action => 'edit'
     end
@@ -41,6 +41,6 @@ class PiecejointesController < ApplicationController
 
   def destroy
     Piecejointe.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to piecejointes_path
   end
 end

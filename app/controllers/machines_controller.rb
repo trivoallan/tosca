@@ -29,7 +29,7 @@ class MachinesController < ApplicationController
     @machine = Machine.new(params[:machine])
     if @machine.save
       flash[:notice] = 'Machine was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to machines_path
     else
       _form
       render :action => 'new'
@@ -45,7 +45,7 @@ class MachinesController < ApplicationController
     @machine = Machine.find(params[:id])
     if @machine.update_attributes(params[:machine])
       flash[:notice] = 'Machine was successfully updated.'
-      redirect_to :action => 'index', :id => @machine
+      redirect_to machine_path(@machine)
     else
       _form
       render :action => 'edit'
@@ -54,7 +54,7 @@ class MachinesController < ApplicationController
 
   def destroy
     Machine.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to machines_path
   end
 
   private

@@ -19,7 +19,7 @@ class SeveritesController < ApplicationController
     @severite = Severite.new(params[:severite])
     if @severite.save
       flash[:notice] = 'Severite was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to severites_path
     else
       render :action => 'new'
     end
@@ -33,7 +33,7 @@ class SeveritesController < ApplicationController
     @severite = Severite.find(params[:id])
     if @severite.update_attributes(params[:severite])
       flash[:notice] = 'Severite was successfully updated.'
-      redirect_to :action => 'show', :id => @severite
+      redirect_to severite_path(@severite)
     else
       render :action => 'edit'
     end
@@ -41,6 +41,6 @@ class SeveritesController < ApplicationController
 
   def destroy
     Severite.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to severites_path
   end
 end

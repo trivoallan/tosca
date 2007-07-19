@@ -25,7 +25,7 @@
 
 </div>
 <% # on rafraichit sans cesse %>
-<%= observe_form 'demande_form', :url => {:action => :deposer},
+<%= observe_form 'demande_form', :url => deposer_demandes_path,
   :update => :demande %>
 
 <!--[eoform:demande]-->

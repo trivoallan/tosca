@@ -39,8 +39,7 @@ class UrllogicielsController < ApplicationController
     @urllogiciel = Urllogiciel.find(params[:id])
     if @urllogiciel.update_attributes(params[:urllogiciel])
       flash[:notice] = 'Urll mis à jour correctement.'
-      redirect_to :controller => 'logiciels' , :action => 'show', :id =>
-        @urllogiciel.logiciel
+      redirect_to logiciel_path(@urllogiciel.logiciel)
     else
       render :action => 'edit'
     end

@@ -18,7 +18,7 @@ class LicensesController < ApplicationController
     @license = License.new(params[:license])
     if @license.save
       flash[:notice] = 'License was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to licenses_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class LicensesController < ApplicationController
     @license = License.find(params[:id])
     if @license.update_attributes(params[:license])
       flash[:notice] = 'License was successfully updated.'
-      redirect_to :action => 'show', :id => @license
+      redirect_to license_path(@license)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class LicensesController < ApplicationController
 
   def destroy
     License.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to licenses_path
   end
 end

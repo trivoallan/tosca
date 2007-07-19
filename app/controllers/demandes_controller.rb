@@ -9,7 +9,7 @@ class DemandesController < ApplicationController
   def auto_complete_for_logiciel_nom
     logiciel = params[:logiciel]
     unless logiciel and logiciel[:nom]
-      redirect_to :action => 'index'
+      redirect_to demandes_path
     end
     options = '%' + logiciel[:nom] + '%'
 
@@ -20,12 +20,12 @@ class DemandesController < ApplicationController
 
     render :partial => 'dem_auto_complete'
   end
-  
+
 
   def index
     #cas spécial : consultation directe
     if params['numero']
-      redirect_to :action => :comment, :id => params['numero']  and return
+      redirect_to comment_demande_path(params['numero']) and return
     end
 
     options = { :per_page => 10, :order => 'updated_on DESC',
@@ -100,7 +100,7 @@ class DemandesController < ApplicationController
       Notifier::deliver_demande_nouveau({:demande => @demande,
                                           :nom => @session[:user].nom,
                                           :controller => self}, flash)
-      redirect_to :action => 'index'
+      redirect_to demandes_path
     else
       _form @beneficiaire
       render :action => 'new'
@@ -275,7 +275,7 @@ class DemandesController < ApplicationController
     @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.update_attributes(params[:demande])
       flash[:notice] = 'La demande a bien été mise à jour.'
-      redirect_to :action => 'comment', :id => @demande
+      redirect_to comment_demande_path(@demande)
     else
       _form @beneficiaire
       render :action => 'edit'
@@ -305,11 +305,11 @@ class DemandesController < ApplicationController
   def associer_contribution
     update_contribution( params[:id], params[:contribution_id] )
   end
-    
+
   def delete_contribution
     update_contribution params[:id], nil
   end
-  
+
   def update_contribution( demand_id , contribution_id )
     if contribution_id == nil
       flash_text = _('The demand has now no contribution')
@@ -319,7 +319,7 @@ class DemandesController < ApplicationController
     @demande = Demande.find(demand_id) unless @demande
     @demande.update_attributes!(:contribution_id => contribution_id)
     flash[:notice] = flash_text
-    redirect_to :action => 'comment', :id => demand_id
+    redirect_to comment_demande_path(demand_id)
   end
 
   def pretty_print
@@ -360,7 +360,7 @@ class DemandesController < ApplicationController
   end
 
   def redirect_to_comment
-    redirect_to :action => 'comment', :id => @demande
+    redirect_to comment_demande_path(@demande)
   end
 
   def set_piecejointes(demande_id)

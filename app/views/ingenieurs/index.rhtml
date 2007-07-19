@@ -16,12 +16,12 @@
   result << "<td>#{i.domaine}</td>"
   @competences.each do |competence|
     result << "<td>#{'X' if i.competences.include? competence}</td>"
-  end 
+  end
 
   result << "#{link_to_actions_table i}"
 }%>
 
 <%= show_pages_links(@ingenieur_pages, 'un ingenieur') %>
 <%= link_to_new('une compétence', :controller => 'competences') %>
-<%= link_to ' Ajouter une compétence', :controller => 'competences', :action => 'new' %>
+<%= link_to ' Ajouter une compétence', new_competence_path %>
 

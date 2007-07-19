@@ -64,9 +64,7 @@ class CommentairesController < ApplicationController
       flash[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
     end
 
-    options = { :action => 'comment', :controller =>
-      'demandes', :id => demande }
-    redirect_to(url_for(options))
+    redirect_to( comment_demande_path(demande) )
   end
 
   def changer_etat
@@ -78,8 +76,7 @@ class CommentairesController < ApplicationController
     else
       flash.now[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas été modifié"'
     end
-    redirect_to :controller => 'demandes', :action =>
-      'comment', :id => @commentaire.demande_id
+    redirect_to comment_demande_path(@commentaire.demande_id)
   end
 
   def new
@@ -91,7 +88,7 @@ class CommentairesController < ApplicationController
     @commentaire = Commentaire.new(params[:commentaire])
     if @commentaire.save
       flash[:notice] = 'Le commentaire a bien été crée.'
-      redirect_to :action => 'index'
+      redirect_to commentaires_path
     else
       _form
       render :action => 'new'
@@ -107,7 +104,7 @@ class CommentairesController < ApplicationController
     @commentaire = Commentaire.find(params[:id])
     if @commentaire.update_attributes(params[:commentaire])
       flash[:notice] = 'Commentaire was successfully updated.'
-      redirect_to :action => 'show', :id => @commentaire
+      redirect_to commentaire_path(@commentaire)
     else
       _form and render :action => 'edit'
     end
@@ -119,7 +116,7 @@ class CommentairesController < ApplicationController
     demande = commentaire.demande_id
     commentaire.destroy
     flash[:notice] = 'Le commentaire a bien été supprimé.'
-    redirect_to(:action => 'comment', :controller => 'demandes', :id => demande)
+    redirect_to comment_demande_path(demande)
   end
 
   private

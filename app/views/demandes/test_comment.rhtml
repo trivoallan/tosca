@@ -1,5 +1,5 @@
-<% ############ infos demandes #########################  
-   # require : @demande, @contributions, @count 
+<% ############ infos demandes #########################
+   # require : @demande, @contributions, @count
    #           @identifiant_ingenieurs %>
 <div class="summary">
 <%= render_partial 'test_infos_demande' %>
@@ -14,15 +14,14 @@
  <% else %>
    <%=indent @demande.description %>
  <% end %>
-<% action = {:action => 'comment', :controller => 'commentaires', :id => @demande} %>
+<% action = comment_commentaire_path(@demande) %>
 <% form_tag(action, :multipart => true) do %>
   <%= render :partial => 'comment_form' %>
   <p>&nbsp;</p>
 <% end %>
 
 
-<% options = { :update => 'demande_tab',
-    :url => { :action => nil, :id => @demande.id } } %>
+<% options = { :update => 'demande_tab',  :url => demande_path(@demande.id) } %>
 <ul class="demande_tabnav" id="demande_tabnav">
  <li>
    <% options[:url][:action] = 'ajax_description' %>

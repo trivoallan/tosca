@@ -3,7 +3,7 @@
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
-<% form_remote_tag( options.dup.update(:html => { 
+<% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
 
 <% # used for iteration in ajaxified list %>
@@ -18,7 +18,7 @@ Actions </div>
  <li><%= link_to(_('Submit a contribution'), new_contribution_path)%></li>
  <li><%= link_to(_('Selection interface'), select_contributions_path)%></li>
  <li><%= contributions_export_link %></li>
- <%= "<li>#{link_to 'Interface d\'administration', :action => 'admin'}</li>" if controller.action_name != 'admin' %>
+ <%= "<li>#{link_to 'Interface d\'administration', admin_contributions_path}</li>" if controller.action_name != 'admin' %>
 </ul>
 
 
@@ -38,9 +38,9 @@ Actions </div>
  > Caractéristiques</div>
  <ul class="menu" id="menu_caracteristiques">
   <li><b>Tâches </b>
-      <% form_tag(:controller => 'contributions', :action => 'index') do %>
+      <% form_tag(contributions_path) do %>
        <%= show_help 'Marquer les reversements urgents en précisant le délais de reversement' %><br />
-       <%= text_field('reversement','max_jours', :size => 5, 
+       <%= text_field('reversement','max_jours', :size => 5,
            :value => 'TODO : '+@max_jours.to_s+' jours') %></li>
       <% end %>
  </ul>

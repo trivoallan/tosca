@@ -6,21 +6,21 @@
     <th><%= column.human_name %></th>
   <% end %>
   </tr>
-  
+
 <% for etatreversement in @etatreversements %>
   <tr>
   <% for column in Etatreversement.content_columns %>
     <td><%= etatreversement.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => etatreversement %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => etatreversement %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => etatreversement }, :confirm => 'Are you sure?', :post => true %></td>
+    <td><%= link_to 'Show', etatreversement_path(etatreversement) %></td>
+    <td><%= link_to 'Edit', edit_etatreversement_path(etatreversement) %></td>
+    <td><%= link_to 'Destroy', destroy_etatreversement_path(etatreversement), :confirm => 'Are you sure?', :post => true %></td>
   </tr>
 <% end %>
 </table>
 
 <%= link_to 'Previous page', { :page => @etatreversement_pages.current.previous } if @etatreversement_pages.current.previous %>
-<%= link_to 'Next page', { :page => @etatreversement_pages.current.next } if @etatreversement_pages.current.next %> 
+<%= link_to 'Next page', { :page => @etatreversement_pages.current.next } if @etatreversement_pages.current.next %>
 
 <br />
 

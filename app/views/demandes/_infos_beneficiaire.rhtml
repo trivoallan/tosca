@@ -20,7 +20,7 @@ function cacherCoordonnees() {
     <b><u>Coordonnées du Bénéficiaire</u></b>
      <a id='lien_montrer' href='#' onclick='montrerCoordonnees();'
   	<%= "style='display: none'" if @ingenieur %>>
-     <%= image_tag("expand_icon.png", :size => "11x14", :border => 0, 
+     <%= image_tag("expand_icon.png", :size => "11x14", :border => 0,
             :title => "Montrer", :alt => "Montrer", :align => 'baseline') %></a>
      <a id='lien_cacher' href='#' onclick='cacherCoordonnees();'
 	<%= "style='display: none'" if ! @ingenieur %>>
@@ -30,13 +30,12 @@ function cacherCoordonnees() {
 <tr><td>
    <div id='coordonnees' <%= "style='display: none'" if !@ingenieur %>>
    <table>
-     <tr><td><b>Client</b></td>       
-         <% client = @demande.beneficiaire.client %> 
-         <td><%= link_to client.nom, :controller => 'clients', 
-                         :action => 'show', :id => client %></td></tr>
-     <tr><td><b>Contact</b></td>       
+     <tr><td><b>Client</b></td>
+         <% client = @demande.beneficiaire.client %>
+         <td><%= link_to client.nom, client_path(client) %></td></tr>
+     <tr><td><b>Contact</b></td>
          <td><%= mail_to(@demande.beneficiaire.identifiant.email, @demande.beneficiaire.identifiant.nom) %></td></tr>
-     <tr><td><b>Téléphone</b></td>     
+     <tr><td><b>Téléphone</b></td>
          <td><%= @demande.beneficiaire.identifiant.telephone %></td></tr>
    </table>
    </div>

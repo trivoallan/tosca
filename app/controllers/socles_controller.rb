@@ -26,7 +26,7 @@ class SoclesController < ApplicationController
     if @socle.save
       @socle.save
       flash[:notice] = 'Socle was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to socles_path
     else
       _form
       render :action => 'new'
@@ -42,7 +42,7 @@ class SoclesController < ApplicationController
     @socle = Socle.find(params[:id])
     if @socle.update_attributes(params[:socle])
       flash[:notice] = 'Socle was successfully updated.'
-      redirect_to :action => 'index'
+      redirect_to socles_path
     else
       _form
       render :action => 'edit'
@@ -51,7 +51,7 @@ class SoclesController < ApplicationController
 
   def destroy
     Socle.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to socles_path
   end
 
   private

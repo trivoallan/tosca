@@ -18,7 +18,7 @@ class TypecontributionsController < ApplicationController
     @typecontribution = Typecontribution.new(params[:typecontribution])
     if @typecontribution.save
       flash[:notice] = 'Typecontribution was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to typecontributions_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class TypecontributionsController < ApplicationController
     @typecontribution = Typecontribution.find(params[:id])
     if @typecontribution.update_attributes(params[:typecontribution])
       flash[:notice] = 'Typecontribution was successfully updated.'
-      redirect_to :action => 'show', :id => @typecontribution
+      redirect_to typecontribution_path(@typecontribution)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class TypecontributionsController < ApplicationController
 
   def destroy
     Typecontribution.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to typecontributions_path
   end
 end

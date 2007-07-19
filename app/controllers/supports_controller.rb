@@ -18,7 +18,7 @@ class SupportsController < ApplicationController
     @support = Support.new(params[:support])
     if @support.save
       flash[:notice] = 'Support was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to supports_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class SupportsController < ApplicationController
     @support = Support.find(params[:id])
     if @support.update_attributes(params[:support])
       flash[:notice] = 'Support was successfully updated.'
-      redirect_to :action => 'show', :id => @support
+      redirect_to support_path(@support)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class SupportsController < ApplicationController
 
   def destroy
     Support.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to supports_path
   end
 end

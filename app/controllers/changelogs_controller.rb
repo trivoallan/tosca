@@ -18,7 +18,7 @@ class ChangelogsController < ApplicationController
     @changelog = Changelog.new(params[:changelog])
     if @changelog.save
       flash[:notice] = 'Changelog was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to changelogs_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class ChangelogsController < ApplicationController
     @changelog = Changelog.find(params[:id])
     if @changelog.update_attributes(params[:changelog])
       flash[:notice] = 'Changelog was successfully updated.'
-      redirect_to :action => 'show', :id => @changelog
+      redirect_to changelog_path(@changelog)
     else
       render :action => 'edit'
     end
@@ -40,7 +40,7 @@ class ChangelogsController < ApplicationController
 
   def destroy
     Changelog.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to changelogs_path
   end
 end
 

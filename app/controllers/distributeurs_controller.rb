@@ -18,7 +18,7 @@ class DistributeursController < ApplicationController
     @distributeur = Distributeur.new(params[:distributeur])
     if @distributeur.save
       flash[:notice] = 'Distributeur was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to distributeurs_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class DistributeursController < ApplicationController
     @distributeur = Distributeur.find(params[:id])
     if @distributeur.update_attributes(params[:distributeur])
       flash[:notice] = 'Distributeur was successfully updated.'
-      redirect_to :action => 'show', :id => @distributeur
+      redirect_to distributeur_path(@distributeur)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class DistributeursController < ApplicationController
 
   def destroy
     Distributeur.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to distributeurs_path
   end
 end

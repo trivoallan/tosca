@@ -1,6 +1,6 @@
 <%= error_messages_for 'identifiant' %><br />
 
-<% form_tag :action=> "modify" do %>
+<% form_tag account_path(@identifiant), :method => :put do %>
   <%= render :partial => "edit" %>
 <% end %>
 

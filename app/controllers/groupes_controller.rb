@@ -25,7 +25,7 @@ class GroupesController < ApplicationController
     @groupe = Groupe.new(params[:groupe])
     if @groupe.save
       flash[:notice] = 'Groupe was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to groupes_path
     else
       render :action => 'new'
     end
@@ -39,7 +39,7 @@ class GroupesController < ApplicationController
     @groupe = Groupe.find(params[:id])
     if @groupe.update_attributes(params[:groupe])
       flash[:notice] = 'Groupe was successfully updated.'
-      redirect_to :action => 'show', :id => @groupe
+      redirect_to groupe_path(@groupe)
     else
       render :action => 'edit'
     end
@@ -47,6 +47,6 @@ class GroupesController < ApplicationController
 
   def destroy
     Groupe.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to groupes_path
   end
 end

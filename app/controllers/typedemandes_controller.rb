@@ -18,7 +18,7 @@ class TypedemandesController < ApplicationController
     @typedemande = Typedemande.new(params[:typedemande])
     if @typedemande.save
       flash[:notice] = 'Typedemande was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to typedemandes_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class TypedemandesController < ApplicationController
     @typedemande = Typedemande.find(params[:id])
     if @typedemande.update_attributes(params[:typedemande])
       flash[:notice] = 'Typedemande was successfully updated.'
-      redirect_to :action => 'show', :id => @typedemande
+      redirect_to typedemande_path(@typedemande)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class TypedemandesController < ApplicationController
 
   def destroy
     Typedemande.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to typedemandes_path
   end
 end

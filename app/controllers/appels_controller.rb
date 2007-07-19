@@ -62,7 +62,7 @@ class AppelsController < ApplicationController
     @appel = Appel.find(params[:id])
     if @appel.update_attributes(params[:appel])
       flash[:notice] = 'l\'appel a été mis à jour.'
-      redirect_to :action => 'index'
+      redirect_to appels_path
     else
       _form and render :action => 'edit'
     end
@@ -87,7 +87,6 @@ class AppelsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     render_text '-'
   end
-
 
   private
   # conventions

@@ -13,8 +13,7 @@ module PagesHelper
   end
 
   def link_to_show(ar)
-    link_to image_view, { :action => 'show', :id => ar.id }, {
-      :class => 'nobackground' }
+    link_to image_view, page_path(ar.id), { :class => 'nobackground' }
   end
 
   def link_to_edit_and_list(ar)
@@ -32,21 +31,17 @@ module PagesHelper
     link_to image_edit, options, { :class => 'nobackground' }
   end
 
-  def link_to_modify(ar)
-    link_to_edit(ar, 'modify')
-  end
-
   # add_delete_link(demande)
   def link_to_delete(ar)
     desc = _('Delete')
-    link_to image_delete, { :action => 'destroy', :id => ar },
+    link_to image_delete,  { :action => 'destroy', :id => ar },
     { :class => 'nobackground',
       :confirm => "Voulez-vous vraiment supprimer ##{ar.id} ?",
       :method => :delete }
   end
 
   def link_to_back(desc='Retour à la liste')
-    link_to(image_back, { :action => nil, :id => nil })
+    link_to(image_back, pages_path)
   end
 
   # link_to_actions_table(demande)

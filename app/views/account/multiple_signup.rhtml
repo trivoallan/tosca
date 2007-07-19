@@ -1,6 +1,6 @@
 <%= error_messages_for 'identifiant' %><br />
 <div title="Account multiple signup" id="multiple_signupform" >
-<% form_tag :action=> "multiple_signup" do %>
+<% form_tag multiple_signup_new_account_path do %>
   <%= render :partial => "edit" %>
 <% end %>
 </div>

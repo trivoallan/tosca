@@ -31,7 +31,7 @@ class ClientsController < ApplicationController
     @client = Client.new(params[:client])
     if @client.save
       flash[:notice] = 'Client créé correctement.'
-      redirect_to :action => 'index'
+      redirect_to clients_path
     else
       _form and render :action => 'new'
     end
@@ -46,7 +46,7 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
     if @client.update_attributes(params[:client])
       flash[:notice] = 'Client mis à jour.'
-      redirect_to :action => 'show', :id => @client
+      redirect_to client_path(@client)
     else
       _form and render :action => 'edit'
     end
@@ -54,7 +54,7 @@ class ClientsController < ApplicationController
 
   def destroy
     Client.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to clients_path
   end
 
   private

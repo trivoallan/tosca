@@ -7,5 +7,5 @@
  <%= link_to "Download", url_for_file_column(@piecejointe, "file", :absolute => true) %>
 
 
-<%= link_to 'Edit', :action => 'edit', :id => @piecejointe %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Edit', edit_piecejointe_path(@piecejointe) %> |
+<%= link_to 'Back', piecejointes_path %>

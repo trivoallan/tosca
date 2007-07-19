@@ -18,7 +18,7 @@ class DependancesController < ApplicationController
     @dependance = Dependance.new(params[:dependance])
     if @dependance.save
       flash[:notice] = 'Dependance was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to dependances_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class DependancesController < ApplicationController
     @dependance = Dependance.find(params[:id])
     if @dependance.update_attributes(params[:dependance])
       flash[:notice] = 'Dependance was successfully updated.'
-      redirect_to :action => 'show', :id => @dependance
+      redirect_to dependances_path(@dependance)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class DependancesController < ApplicationController
 
   def destroy
     Dependance.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to dependances_path
   end
 end

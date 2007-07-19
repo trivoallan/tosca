@@ -15,13 +15,13 @@ module FormsHelper
   # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
   def hbtm_check_box( objectcollection, collection, nom , options={})
     return '' if collection.nil?
-    objectcollection ||= [] 
+    objectcollection ||= []
     out = '<table><tr>' and count = 1
     options_size = options[:size]
     length = collection.size
     nom_w3c = nom.gsub(/[^a-z1-9]+/i, '_')
     for donnee in collection
-      out << "<td><input id=\"#{nom_w3c}_#{donnee.id}\" type=\"checkbox\" " 
+      out << "<td><input id=\"#{nom_w3c}_#{donnee.id}\" type=\"checkbox\" "
       out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
       out << 'checked="checked" ' if objectcollection.include? donnee
       out << "/><label for=\"#{nom_w3c}_#{donnee.id}\">#{donnee}</label></td>"
@@ -63,7 +63,7 @@ module FormsHelper
     options[:name] ||= name
     collected = list.collect{|e| [e.nom, e.id] }.unshift([options[:title], ''])
     select = options_for_select(collected, default.to_i)
-    content_tag :select, select, options 
+    content_tag :select, select, options
   end
 
   def select_empty(list, default, name, options = {})
@@ -71,7 +71,7 @@ module FormsHelper
     options[:name] = name
     collected = list.collect{|e| [e.nom, e.id] }.unshift(title)
     select = options_for_select(collected, default.to_i)
-    content_tag :select, select, options 
+    content_tag :select, select, options
   end
 
 
@@ -80,7 +80,7 @@ module FormsHelper
   # mutualisé pour le formulaire et l'affichage
   # Les éléments doivent être affichable par to_s
   # si l'une des colonne est à nil, la ligne est fusionnée
-  # Call it like this : 
+  # Call it like this :
   # <% fields = [ lstm_text_field('Titre', 'identifiant', 'titre') ] %>
   # <%= show_table_form( fields) %>
   def show_table_form(fields, options = {})
@@ -108,14 +108,14 @@ module FormsHelper
 
   # Display a quick form field to go to a ticket
   # TODO : use yield to include what we want in the form
-  # Call it like : 
+  # Call it like :
   #  if session[:user] && session[:user].authorized?('demandes/index')
-  #    out << form_tag(:controller => 'demandes', :action => 'index') 
+  #    out << form_tag(demandes_path)
   #    out <<  search_demande_field
   #    out << end_form_tag
   #  end
   def search_demande_field(options = {})
-    text_field('numero', '', 'size' => 3) + 
+    text_field('numero', '', 'size' => 3) +
       '<script type="text/javascript">document.getElementById("numero_").focus()</script>'
   end
   alias_method :search_demande, :search_demande_field
@@ -131,7 +131,7 @@ module FormsHelper
       text_field(mmodel, field, options) ]
   end
 
-  def lstm_password_field(label, model, field, 
+  def lstm_password_field(label, model, field,
                           options = {:size => 16, :value => ''})
     [ "<label for=\"#{model}_#{field}\">#{label}</label>",
       password_field(model, field, options) ]
@@ -143,21 +143,21 @@ module FormsHelper
   end
 
   # Used for hiding field which will be displaye by ajax_*
-  # call it like this : 
+  # call it like this :
   #   lstm_ajax_field('Bénéficiaire', :appel, :beneficiaires),
   def lstm_ajax_field(label, model, field)
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>", 
+    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
       "<div id=\"#{field}\"></div>" ]
   end
 
   # put a select field in a lazy way
-  # call it like this : 
+  # call it like this :
   #  lstm_select_field('Contrat', :appel, :contrat, @contrats, :spinner => true)
-  # options : 
+  # options :
   #  * spinner : put the spinner for ajax stuff
   def lstm_select_field(label, model, field, collection, options = {})
     result = [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-               collection_select(model, field.to_s + '_id', collection, 
+               collection_select(model, field.to_s + '_id', collection,
                                  :id, :nom, PROMPT_SELECT)  ]
     result.last << ' ' + image_spinner if options[:spinner]
     result

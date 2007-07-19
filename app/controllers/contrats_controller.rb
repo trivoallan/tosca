@@ -23,7 +23,7 @@ class ContratsController < ApplicationController
     @contrat = Contrat.new(params[:contrat])
     if @contrat.save
       flash[:notice] = 'Contrat was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to contrats_path
     else
       _form and render :action => 'new'
     end
@@ -38,7 +38,7 @@ class ContratsController < ApplicationController
     @contrat = Contrat.find(params[:id])
     if @contrat.update_attributes(params[:contrat])
       flash[:notice] = 'Contrat mis à jour correctement.'
-      redirect_to :action => 'show', :id => @contrat
+      redirect_to contrat_path(@contrat)
     else
       _form and render :action => 'edit'
     end
@@ -46,7 +46,7 @@ class ContratsController < ApplicationController
 
   def destroy
     Contrat.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to contrats_path
   end
 
 private

@@ -8,5 +8,5 @@
   <%= contrat.client.nom %> <br />
 <% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @engagement %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Edit', edit_engagement_path(@engagement) %> |
+<%= link_to 'Back', engagements_path %>

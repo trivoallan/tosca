@@ -22,7 +22,7 @@ class IngenieursController < ApplicationController
     @ingenieur = Ingenieur.new(params[:ingenieur])
     if @ingenieur.save
       flash[:notice] = 'Ingenieur was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to ingenieurs_path
     else
       _form and render :action => 'new'
     end
@@ -37,7 +37,7 @@ class IngenieursController < ApplicationController
     @ingenieur = Ingenieur.find(params[:id])
     if @ingenieur.update_attributes(params[:ingenieur])
       flash[:notice] = 'Ingenieur was successfully updated.'
-      redirect_to :action => 'index'
+      redirect_to ingenieurs_path
     else
       _form and render :action => 'edit'
     end
@@ -50,7 +50,7 @@ class IngenieursController < ApplicationController
     identifiant = Identifiant.find(inge.identifiant_id)
     inge.destroy
     identifiant.destroy
-    redirect_to :action => 'index'
+    redirect_to ingenieurs_path
   end
 
   private

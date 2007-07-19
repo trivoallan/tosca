@@ -11,8 +11,8 @@
 <div class="menu_title" onclick="Element.toggle('menu_action')">
 > Action</div>
 <ul class="menu" id="menu_action">
- <li><%= link_to 'Ajouter un utilisateur', :action => 'signup' %></li>
- <li><%= link_to 'Ajouter plusieurs utilisateurs', :action => 'multiple_signup' %></li>
+ <li><%= link_to 'Ajouter un utilisateur', signup_new_account_path %></li>
+ <li><%= link_to 'Ajouter plusieurs utilisateurs', multiple_signup_new_account_path %></li>
  <li><%= link_to _("Export users"), identifiants_export_url %></li>
 </ul>
 

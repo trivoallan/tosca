@@ -3,11 +3,9 @@
 #####################################################
 module ClientsHelper
 
-  @@show_client = { :controller => 'clients', :action => 'show' }
   def link_to_client(c)
     return "N/A" unless c
-    @@show_client[:id] = c
-    link_to c.nom, @@show_client
+    link_to c.nom, client_path(c)
   end
 
   # lien vers mon offre / mon client
@@ -16,9 +14,8 @@ module ClientsHelper
   # :image image du client à afficher à la place
   def link_to_my_client(image = false)
     return nil unless @beneficiaire
-    @@show_client[:id] = @beneficiaire.client_id
     label = image ? logo_client(@beneficiaire.client) : _('My&nbsp;Offer')
-    link_to label, @@show_client
+    link_to label, client_path(@beneficiaire.client_id)
   end
 
 end

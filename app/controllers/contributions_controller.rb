@@ -17,7 +17,8 @@ class ContributionsController < ApplicationController
   def list
     unless params[:id]
       flash[:notice] = flash[:notice]
-      return redirect_to(:action => 'select')
+      redirect_to select_contributions_path
+      return
     end
     options = { :order => "created_on DESC" }
     unless params[:id] == 'all'
@@ -75,7 +76,7 @@ class ContributionsController < ApplicationController
         '</br><i>'+@contribution.description+'</i>'
       _update(@contribution)
       flash[:notice] << '</br>L\'url a également été enregistrée.'
-      redirect_to :action => 'show', :id => @contribution
+      redirect_to contribution_path(@contribution)
     else
       _form and render :action => 'new'
     end
@@ -96,7 +97,7 @@ class ContributionsController < ApplicationController
       flash[:notice] = 'La contribution suivante a bien été mise à jour ' +
         ': </br><i>'+@contribution.description+'</i>'
       _update(@contribution)
-      redirect_to :action => 'show', :id => @contribution
+      redirect_to contribution_path(@contribution)
     else
       _form and render :action => 'edit'
     end
@@ -104,7 +105,7 @@ class ContributionsController < ApplicationController
 
   def destroy
     Contribution.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to contributions_path
   end
 
   def ajax_paquets

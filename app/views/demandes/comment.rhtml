@@ -1,18 +1,17 @@
-<% ############ infos demandes #########################  
-   # require : @demande, @contributions, @count 
-   #           @identifiant_ingenieurs 
+<% ############ infos demandes #########################
+   # require : @demande, @contributions, @count
+   #           @identifiant_ingenieurs
 %>
 
 <div class="content">
 
   <h1>
     <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
-  <% options = { :controller => 'demandes', :action => 'pretty_print', 
-                  :id => @demande.id } %>
+  <% options = { :controller => 'demandes', pretty_print_demande_path(@demande.id) %>
     <% html_options = { :class => 'no_hover' } %>
     <%= link_to(image_print, options, html_options) %>
   </h1>
-  
+
   <div class="demande_tab_content">
   <% if @last_commentaire %>
      <%=render :partial => 'tab_comments' %>
@@ -21,9 +20,8 @@
   <% end %>
   </div>
 
-  <div>  
-    <% action = {:controller => 'commentaires', 
-                 :action => 'comment', :id => @demande } %>
+  <div>
+    <% action = comment_demande_path(@demande) %>
     <% form_tag(action, :multipart => true) do %>
       <%= render :partial => 'comment_form' %>
       <p>&nbsp;</p>

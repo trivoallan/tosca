@@ -6,7 +6,7 @@ module BinairesHelper
   def link_to_binaire(binaire)
     return 'N/A' unless binaire and binaire.paquet
     nom = "#{binaire.nom}-#{binaire.paquet.version}-#{binaire.paquet.release}"
-    link_to nom, :controller => 'binaires', :action => 'show', :id => binaire.id
+    link_to nom, binaire_path(binaire.id)
   end
 
 end

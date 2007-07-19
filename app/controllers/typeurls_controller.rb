@@ -18,7 +18,7 @@ class TypeurlsController < ApplicationController
     @typeurl = Typeurl.new(params[:typeurl])
     if @typeurl.save
       flash[:notice] = 'Typeurl was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to typeurls_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class TypeurlsController < ApplicationController
     @typeurl = Typeurl.find(params[:id])
     if @typeurl.update_attributes(params[:typeurl])
       flash[:notice] = 'Typeurl was successfully updated.'
-      redirect_to :action => 'show', :id => @typeurl
+      redirect_to typeurl_path(@typeurl)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class TypeurlsController < ApplicationController
 
   def destroy
     Typeurl.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to typeurls_path
   end
 end

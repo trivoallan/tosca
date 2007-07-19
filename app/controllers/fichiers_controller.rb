@@ -18,7 +18,7 @@ class FichiersController < ApplicationController
     @fichier = Fichier.new(params[:fichier])
     if @fichier.save
       flash[:notice] = 'Fichier was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to fichiers_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class FichiersController < ApplicationController
     @fichier = Fichier.find(params[:id])
     if @fichier.update_attributes(params[:fichier])
       flash[:notice] = 'Fichier was successfully updated.'
-      redirect_to :action => 'show', :id => @fichier
+      redirect_to fichier_path(@fichier)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class FichiersController < ApplicationController
 
   def destroy
     Fichier.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to fichiers_path
   end
 end

@@ -18,7 +18,7 @@ class CompetencesController < ApplicationController
     @competence = Competence.new(params[:competence])
     if @competence.save
       flash[:notice] = 'Competence was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to competences_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class CompetencesController < ApplicationController
     @competence = Competence.find(params[:id])
     if @competence.update_attributes(params[:competence])
       flash[:notice] = 'Competence was successfully updated.'
-      redirect_to :action => 'show', :id => @competence
+      redirect_to competence_path(@competence)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class CompetencesController < ApplicationController
 
   def destroy
     Competence.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to competences_path
   end
 end

@@ -5,7 +5,7 @@
 <% titres = ['Accordée à']%>
 <%= show_table(@permissions, Permission, titres, :content_columns => true) { |p|
   result = ''
-  result << "<td>#{p.roles.collect{|r| link_to(r.nom, :controller => 'roles', :action => 'edit', :id => r.id)}.join(', ')}</td>"
+  result << "<td>#{p.roles.collect{|r| link_to(r.nom, edit_role_path(r.id))}.join(', ')}</td>"
   result << "#{link_to_actions_table p}"
 }%>
 

@@ -19,7 +19,7 @@ class JourferiesController < ApplicationController
     @jourferie.jour = @jourferie.jour.change(:hour => 0, :minute => 0, :second => 0)
     if @jourferie.save
       flash[:notice] = 'Jourferie was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to jourferies_path
     else
       render :action => 'new'
     end
@@ -33,7 +33,7 @@ class JourferiesController < ApplicationController
     @jourferie = Jourferie.find(params[:id])
     if @jourferie.update_attributes(params[:jourferie])
       flash[:notice] = 'Jourferie was successfully updated.'
-      redirect_to :action => 'show', :id => @jourferie
+      redirect_to jourferie(@jourferie)
     else
       render :action => 'edit'
     end
@@ -41,6 +41,6 @@ class JourferiesController < ApplicationController
 
   def destroy
     Jourferie.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to jourferies_path
   end
 end

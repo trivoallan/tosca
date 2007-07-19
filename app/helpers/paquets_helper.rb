@@ -7,15 +7,13 @@ module PaquetsHelper
     return '-' unless paquet and paquet.is_a? Paquet
     nom = "#{paquet.nom}-#{paquet.version}-#{paquet.release}"
     nom = "<i>#{nom}</i>" unless paquet.active
-    link_to nom, :controller => 'paquets', 
-    :action => 'show', :id => paquet
+    link_to nom, paquet_path(paquet)
   end
 
-  # call it like : 
+  # call it like :
   # <%= link_to_new_contribution %>
   def link_to_new_paquet(logiciel_id = nil)
-    options = { :controller => 'paquets', :action => 'new', :id => logiciel_id }
-    link_to(image_create(_('un paquet')), options, LinksHelper::NO_HOVER)
+    link_to(image_create(_('un paquet')), new_paquet_path(logiciel_id), LinksHelper::NO_HOVER)
   end
 
 end

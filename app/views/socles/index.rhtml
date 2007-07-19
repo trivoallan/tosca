@@ -15,7 +15,7 @@
 }%>
 
 <%= show_pages_links(@socle_pages, 'un socle client') %>
-<%= [ link_to('machines', :action => 'index', :controller => 'machines'), 
-      link_to('clients', :action => 'index', :controller => 'clients')
+<%= [ link_to('machines', machines_path),
+      link_to('clients', clients_path)
     ].compact.join('|') %>
 

@@ -1,24 +1,20 @@
-<h1><%= _('Documents available in ')%>
-  <%= @typedocument ?  @typedocument.nom : _('All the directories') %></h1>
+<h1>Documents disponibles dans
+    <%= @typedocument ?  @typedocument.nom : 'tous les répertoires' %></h1>
 <br />
 
-<%= show_pages_links(@document_pages, _('a document') ) %>
+<%= show_pages_links(@document_pages, 'un document') %>
 
-<% titres = [_('Title'),_('Description'), _('Delivered on:'),_('Version'), 
-  _('File'), _('Size'), ] %>
-<%= show_table(@documents, Document, titres, :total => false, 
-    :content_columns => false) { |document| 
+<% titres = ['Fichier', 'Taille', 'Maj'] %>
+<%= show_table(@documents, Document, titres, :total => false,
+    :content_columns => true) { |document|
   result = ''
-  result << "<td>#{document.titre}</td>"
-  result << "<td>#{document.description}</td>"
-  result << "<td>#{document.date_delivery_on_formatted}</td>"
-  result << "<td>#{document.version}</td>"
   result << "<td>#{link_to_file document, 'fichier'}</td>"
   result << "<td>#{file_size(document.fichier)}</td>"
+  result << "<td>#{document.updated_on_formatted}</td>"
   result << "#{link_to_actions_table document}"
 }%>
 
 
-<%= show_pages_links(@document_pages, _('a document') ) %>
+<%= show_pages_links(@document_pages, 'un document') %>
 
-<%= link_to _('Return to the selection'), :action => 'select' %>
+<%= link_to _('Return to the selection'), select_documents_path %>

@@ -21,7 +21,7 @@ class EngagementsController < ApplicationController
     @engagement = Engagement.new(params[:engagement])
     if @engagement.save
       flash[:notice] = 'Engagement was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to engagements_path
     else
       _form
       render :action => 'new'
@@ -37,7 +37,7 @@ class EngagementsController < ApplicationController
     @engagement = Engagement.find(params[:id])
     if @engagement.update_attributes(params[:engagement])
       flash[:notice] = 'Engagement was successfully updated.'
-      redirect_to :action => 'index'
+      redirect_to engagements_path
     else
       _form and render :action => 'edit'
     end
@@ -45,7 +45,7 @@ class EngagementsController < ApplicationController
 
   def destroy
     Engagement.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to engagements_path
   end
 
   private

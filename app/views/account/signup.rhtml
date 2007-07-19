@@ -1,6 +1,6 @@
 <%= error_messages_for 'identifiant' %><br />
 <div title="Account signup" id="signupform" >
-<% form_tag :action=> "signup" do %>
+<% form_tag signup_new_account_path do %>
   <%= render :partial => "edit" %>
 <% end %>
 </div>

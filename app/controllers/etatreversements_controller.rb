@@ -19,7 +19,7 @@ class EtatreversementsController < ApplicationController
     @etatreversement = Etatreversement.new(params[:etatreversement])
     if @etatreversement.save
       flash[:notice] = 'Etatreversement was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to etatreversements_path
     else
       render :action => 'new'
     end
@@ -33,7 +33,7 @@ class EtatreversementsController < ApplicationController
     @etatreversement = Etatreversement.find(params[:id])
     if @etatreversement.update_attributes(params[:etatreversement])
       flash[:notice] = 'Etatreversement was successfully updated.'
-      redirect_to :action => 'show', :id => @etatreversement
+      redirect_to etatreversements_path(@etatreversement)
     else
       render :action => 'edit'
     end
@@ -41,6 +41,6 @@ class EtatreversementsController < ApplicationController
 
   def destroy
     Etatreversement.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to etatreversements_path
   end
 end

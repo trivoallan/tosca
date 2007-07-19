@@ -4,5 +4,5 @@
 </p>
 <% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @changelog %> |
-<%= link_to 'Back', :action => 'index' %>
+<%= link_to 'Edit', edit_changelog_path(@changelog) %> |
+<%= link_to 'Back', changelogs_path %>

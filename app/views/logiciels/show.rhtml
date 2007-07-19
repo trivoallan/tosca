@@ -21,26 +21,25 @@
     <td><%= @logiciel.competences.collect{|c| c.nom}.join(', ') %></td></tr>
 
 <tr><td><b><%=_('Group')%></b></td>
-    <td><%= public_link_to(@logiciel.groupe.nom, :controller => 'groupes',
-                      :action => 'show', :id => @logiciel.groupe_id ) if @logiciel.groupe %></td></tr>
+    <td><%= public_link_to(@logiciel.groupe.nom, groupe_path(@logiciel.groupe_id) ) if @logiciel.groupe %></td></tr>
 
 <tr><td><b><%=_('Links')%></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
-    <td><%= public_show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u| 
+    <td><%= public_show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u|
          result = ''
-         link = link_to(image_edit, edit_urllogiciel_path(u), edit_options) 
+         link = link_to(image_edit, edit_urllogiciel_path(u), edit_options)
          result << link if link
          result << " #{u.typeurl.nom} : "
          result << "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
          link = link_to(image_delete, urllogiciel_path(u), delete_options(u.valeur))
-         result << link if link 
+         result << link if link
          result } %>
     </td></tr>
 
 <tr><td colspan="2"><b><%=_('Requests')%></b> <%=link_to_new_request%> <br/>
    <% if @demandes.size > 0 %>
     <div class="bloc_scroll">
-     <%= show_liste(@demandes, 'Demande', {:no_title => true}) { |d| 
-       link_to_demande d 
+     <%= show_liste(@demandes, 'Demande', {:no_title => true}) { |d|
+       link_to_demande d
      } %>
     </div>
    <% end %>
@@ -48,7 +47,7 @@
 
 <tr><td><b><%=_('Package(s)')%></b><%= link_to_new_paquet(@logiciel.id) %></td>
   <td>
-  <%= 
+  <%=
     show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) do |paquet|
       result = ''
       link = link_to(image_edit, edit_paquet_path(paquet), LinksHelper::NO_HOVER)

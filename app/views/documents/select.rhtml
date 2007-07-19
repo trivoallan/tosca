@@ -1,8 +1,8 @@
-<h1><%= _('Access to the repository') %></h1>
+<h1>Accès aux dépôts</h1>
 
-<%= show_liste(@typedocuments, _('Document type') ) { |t| 
-      link_to_typedocument t 
+<%= show_liste(@typedocuments, _('Document type')) { |t|
+      link_to_typedocument t
 } %>
 
-<%= link_to _('Submit a file'), :action => 'new' %>
-<%= link_to_new( _('a file') ) %>
+<%= link_to 'Déposer un fichier', new_document_path %>
+<%= link_to_new('un fichier') %>

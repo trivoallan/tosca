@@ -6,21 +6,21 @@
     <th><%= column.human_name %></th>
   <% end %>
   </tr>
-  
+
 <% for typecontribution in @typecontributions %>
   <tr>
   <% for column in Typecontribution.content_columns %>
     <td><%= typecontribution.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => typecontribution %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => typecontribution %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => typecontribution }, :confirm => 'Are you sure?', :post => true %></td>
+    <td><%= link_to 'Show', typecontribution_path(typecontribution) %></td>
+    <td><%= link_to 'Edit', edit_typecontribution_path(typecontribution) %></td>
+    <td><%= link_to 'Destroy', destroy_typecontribution_path(typecontribution) , :confirm => 'Are you sure?', :post => true %></td>
   </tr>
 <% end %>
 </table>
 
 <%= link_to 'Previous page', { :page => @typecontribution_pages.current.previous } if @typecontribution_pages.current.previous %>
-<%= link_to 'Next page', { :page => @typecontribution_pages.current.next } if @typecontribution_pages.current.next %> 
+<%= link_to 'Next page', { :page => @typecontribution_pages.current.next } if @typecontribution_pages.current.next %>
 
 <br />
 

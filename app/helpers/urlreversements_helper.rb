@@ -5,7 +5,6 @@ module UrlreversementsHelper
 
   def link_to_edit_urlreversement(u)
     return '-' unless u
-    link_to(image_edit, :controller => 'urlreversements', 
-            :action => 'edit', :id => u.id)
+    link_to image_edit, edit_urlreversement_path(u.id)
   end
 end

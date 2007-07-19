@@ -12,15 +12,14 @@
     <td><%=h @logiciel.nom %></td></tr>
 
 <tr><td><b>Classification</b></td>
-    <td><%= link_to(@logiciel.groupe.nom, :controller => 'groupes',
-            :action => 'show', :id => @logiciel.groupe_id ) if @logiciel.groupe %></td></tr>
+    <td><%= link_to(@logiciel.groupe.nom, groupe_path(@logiciel.groupe_id) ) if @logiciel.groupe %></td></tr>
 
 <tr><td><b>Description courte</b></td>
     <td><%=h @logiciel.resume %></td></tr>
 
 <tr><td><b>Site(s)</b></td>
-    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 3), 'url', {:no_title => true}) {|u| 
-            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 3), 'url', {:no_title => true}) {|u|
+            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id}
             <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
 
 <tr><td><b>Version</b></td>
@@ -44,13 +43,13 @@
     <td>@logiciel.fonctionnalites</td></tr>
 
 <tr><td><b>Documentation</b></td>
-    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 7), 'url', {:no_title => true}) {|u| 
-            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 7), 'url', {:no_title => true}) {|u|
+            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id}
             <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
 
 <tr><td><b>Support en ligne</b></td>
-    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 0), 'url', {:no_title => true}) {|u| 
-            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 0), 'url', {:no_title => true}) {|u|
+            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id}
             <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
 
 <tr><td><b>OS</b></td>
@@ -83,14 +82,13 @@
     <td>@logiciel.patch_add_on </td></tr>
 
 <tr><td><b>Bug Tracker</b></td>
-    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 8), 'url', {:no_title => true}) {|u| 
-            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id} 
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 8), 'url', {:no_title => true}) {|u|
+            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id}
             <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
 
 <tr><td><b>Contributions</b></td>
-    <td><%= show_liste(@logiciel.contributions, 'Contribution', :no_title => true) { |c| 
-              link_to c.nom, :controller => 'contributions', 
-                             :action => 'show', :id => c.id
+    <td><%= show_liste(@logiciel.contributions, 'Contribution', :no_title => true) { |c|
+              link_to c.nom, contribution_path(c.id)
             } %></td></tr>
 
 <tr><td><b>Contact</b></td>

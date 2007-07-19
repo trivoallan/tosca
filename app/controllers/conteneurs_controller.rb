@@ -18,7 +18,7 @@ class ConteneursController < ApplicationController
     @conteneur = Conteneur.new(params[:conteneur])
     if @conteneur.save
       flash[:notice] = 'Conteneur was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to conteneurs_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class ConteneursController < ApplicationController
     @conteneur = Conteneur.find(params[:id])
     if @conteneur.update_attributes(params[:conteneur])
       flash[:notice] = 'Conteneur was successfully updated.'
-      redirect_to :action => 'show', :id => @conteneur
+      redirect_to conteneur_path(@conteneur)
     else
       render :action => 'edit'
     end
@@ -40,6 +40,6 @@ class ConteneursController < ApplicationController
 
   def destroy
     Conteneur.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to conteneurs_path
   end
 end

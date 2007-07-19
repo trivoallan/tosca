@@ -2,13 +2,13 @@
 > Action</div>
 <ul class="menu" id="menu_action">
   <% if @ingenieur %>
-  <li><% form_tag(:action => 'associer_contribution', :id => @demande.id) do %>
+  <li><% form_tag associer_contribution_demande_path(@demande.id) do %>
     <%= select_onchange @contributions, 'demande', 'contribution_id' %>
  <% end%></li>
   <li><%= link_to_delete_contribution @demande.id %></li>
    <li><%= link_to_add_call @demande.id %></li>
   <% end %>
-  <li><%= link_to "Imprimer", :controller => 'demandes', :action => 'pretty_print', :id => @demande.id %></li>
+  <li><%= link_to "Imprimer", pretty_print_demande_path(@demande.id) %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_resume')">
@@ -31,7 +31,7 @@
     <li><b>Resp. : </b><%= @demande.ingenieur.nom %></li>
   <% end %>
   <% if @ingenieur %>
-      <li><% form_tag(:action => 'changer_ingenieur', :id => @demande.id) do %>
+      <li><% form_tag changer_ingenieur_demande_path(@demande.id) do %>
             <%= select_onchange @ingenieurs, 'demande', 'ingenieur_id' %>
       <% end %></li>
   <% end %>
@@ -40,12 +40,11 @@
 <div class="menu_title" onclick="Element.toggle('menu_beneficiaire')">
 > Bénéficiaire</div>
 <ul class="menu" id="menu_beneficiaire">
-  <li><b>Contact : </b><%= mail_to(@demande.beneficiaire.identifiant.email, 
+  <li><b>Contact : </b><%= mail_to(@demande.beneficiaire.identifiant.email,
                              @demande.beneficiaire.nom)%></li>
   <li><b>Téléphone : </b><%= @demande.beneficiaire.identifiant.telephone %></li>
-  <% client = @demande.beneficiaire.client %> 
-  <li><b>Société : </b><%= link_to client.nom, :controller => 'clients', 
-                           :action => 'show', :id => client %></li>
+  <% client = @demande.beneficiaire.client %>
+  <li><b>Société : </b><%= link_to client.nom, client_path(client) %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_cns')" >
@@ -63,9 +62,8 @@
   <li><b>Corrigée en : </b><%= @demande.affiche_temps_correction %></li>
   <% if @demande.contribution %>
     <% contrib = @demande.contribution %>
-    <li><b>Livrable : </b> <br />Une    
-      <%= link_to('contribution', :controller => 'contributions', 
-        :action => 'show', :id => contrib.id) %>
+    <li><b>Livrable : </b> <br />Une
+      <%= link_to('contribution', contribution_path(contrib.id)) %>
       est disponible
          (<%= link_to_file contrib, 'patch' %>)
     </li>

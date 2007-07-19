@@ -17,7 +17,7 @@ class NewsController < ApplicationController
     @new = New.new(params[:new])
     if @new.save
       flash[:notice] = 'New was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to news_path
     else
       _form and render :action => 'new'
     end
@@ -32,7 +32,7 @@ class NewsController < ApplicationController
     @new = New.find(params[:id])
     if @new.update_attributes(params[:new])
       flash[:notice] = 'New was successfully updated.'
-      redirect_to :action => 'show', :id => @new
+      redirect_to new_path(@new)
     else
       _form and render :action => 'edit'
     end
@@ -40,7 +40,7 @@ class NewsController < ApplicationController
 
   def destroy
     New.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to news_path
   end
 
   private

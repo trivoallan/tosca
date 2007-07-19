@@ -18,7 +18,7 @@ class TypedocumentsController < ApplicationController
     @typedocument = Typedocument.new(params[:typedocument])
     if @typedocument.save
       flash[:notice] = 'Typedocument was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to typedocuments_path
     else
       render :action => 'new'
     end
@@ -32,7 +32,7 @@ class TypedocumentsController < ApplicationController
     @typedocument = Typedocument.find(params[:id])
     if @typedocument.update_attributes(params[:typedocument])
       flash[:notice] = 'Typedocument was successfully updated.'
-      redirect_to :action => 'show', :id => @typedocument
+      redirect_to typedocument_path(@typedocument)
     else
       render :action => 'edit'
     end
@@ -40,7 +40,7 @@ class TypedocumentsController < ApplicationController
 
   def destroy
     Typedocument.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to typedocuments_path
   end
 
 end

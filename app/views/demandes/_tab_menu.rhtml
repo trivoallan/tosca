@@ -1,5 +1,5 @@
 <% options = { :update => 'demande_tab',
-    :url => { :action => nil },
+    :url => demandes_path,
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 <% options[:url][:id] = @demande.id if @demande %>
@@ -26,4 +26,4 @@
  <li>
    <%= image_spinner %>
  </li>
-</ul>  
+</ul>

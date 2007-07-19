@@ -59,7 +59,7 @@ class PaquetsController < ApplicationController
     @paquet = Paquet.new(params[:paquet])
     if @paquet.save
       flash[:notice] = 'Le paquet '+@paquet.nom+' a bien été crée.'
-      redirect_to :action => 'index'
+      redirect_to paquets_path
     else
       _form
       render :action => 'new'
@@ -75,7 +75,7 @@ class PaquetsController < ApplicationController
     @paquet = Paquet.find(params[:id])
     if @paquet.update_attributes(params[:paquet])
       flash[:notice] = 'Le paquet '+@paquet.nom+' a bien été mis à jour.'
-      redirect_to :action => 'index', :id => @paquet
+      redirect_to paquet_path(@paquet)
     else
       _form and render :action => 'edit'
     end

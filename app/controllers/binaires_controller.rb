@@ -23,7 +23,7 @@ class BinairesController < ApplicationController
     @binaire = Binaire.new(params[:binaire])
     if @binaire.save
       flash[:notice] = 'Binaire was successfully created.'
-      redirect_to :action => 'index'
+      redirect_to binaries_path
     else
       _form
       render :action => 'new'
@@ -39,7 +39,7 @@ class BinairesController < ApplicationController
     @binaire = Binaire.find(params[:id])
     if @binaire.update_attributes(params[:binaire])
       flash[:notice] = 'Binaire was successfully updated.'
-      redirect_to :action => 'show', :id => @binaire
+      redirect_to binaire_path(@binaire)
     else
       _form and render :action => 'edit'
     end
@@ -47,7 +47,7 @@ class BinairesController < ApplicationController
 
   def destroy
     Binaire.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    redirect_to binaries_path
   end
 
   private

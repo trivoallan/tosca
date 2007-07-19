@@ -11,7 +11,7 @@ class DocumentsController < ApplicationController
 
   def list
     flash[:notice]= flash[:notice]
-    return redirect_to(:action => 'select') unless params[:id]
+    redirect_to select_documents_path and return unless params[:id]
     unless params[:id] == 'all'
       @typedocument = Typedocument.find(params[:id])
       conditions = ["typedocument_id = ?", @typedocument.id]
@@ -19,7 +19,7 @@ class DocumentsController < ApplicationController
       conditions = nil
     end
     @document_pages, @documents = paginate :documents, :per_page => 10,
-      :order => "date_delivery DESC", :conditions => conditions,
+      :order => "created_on DESC", :conditions => conditions,
       :include => [:identifiant]
 
     # Disabled, beacause the search boxes in the panel don't work.
@@ -42,7 +42,7 @@ class DocumentsController < ApplicationController
       }
     end
 
-    # TODO : fusionner avec la répétition dans 'index'
+    # TODO : fusionner avec la répétition dans l'index
     # panel on the left side
 #    if request.xhr?
 #      render :partial => 'documents_list', :layout => false
@@ -63,13 +63,14 @@ class DocumentsController < ApplicationController
     @document.typedocument_id = params[:id]
     _form
   end
+
   def create
     @document = Document.new(params[:document])
     @document.identifiant = @session[:user]
     _form
     if @document.save
       flash[:notice] = _('Your document was successfully created')
-      redirect_to :action => 'select'
+      redirect_to select_documents_path
     else
       render :action => 'new'
     end
@@ -84,7 +85,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     if @document.update_attributes(params[:document])
       flash[:notice] = _('your document was successfully updated')
-      redirect_to :action => 'show', :id => @document
+      redirect_to document_path(@document)
     else
       _form and render :action => 'edit'
     end

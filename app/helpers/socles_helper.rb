@@ -3,11 +3,11 @@
 #####################################################
 module SoclesHelper
 
-  # call it like : 
+  # call it like :
   # <%= link_to_socle @socle %>
   def link_to_socle(s)
     return '-' unless s
-    link_to s.nom, :controller => 'socles', :action => 'show', :id => s
+    link_to s.nom, socle_path(s)
   end
 
 end

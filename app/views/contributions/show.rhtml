@@ -1,6 +1,6 @@
 <%= public_link_to _('Home'), bienvenue_url %> >
- <%= public_link_to 'Contributions', :action => 'index' %> >
-  <%= public_link_to @contribution.logiciel.nom, :action => 'index', :id => @contribution.logiciel_id %> >
+ <%= public_link_to 'Contributions', contribution_path %> >
+  <%= public_link_to @contribution.logiciel.nom, contribution_path(@contribution.logiciel_id) %> >
 
 <h2>
   <%= public_link_to_file @contribution, 'patch', :image => true, :else => '' %>
@@ -11,8 +11,8 @@
     <%= @contribution.description_fonctionnelle %>
 
 <hr />
-    <%= link_to image_create('un reversement'), :controller => 'urlreversements',
-                :action => "new", :contribution_id => @contribution.id %>
+    <%= link_to image_create('un reversement'),
+                new_urlreversement_path(:contribution_id => @contribution.id) %>
     <%= public_show_liste(@contribution.urlreversements, 'lien') { |u|
         link_to_edit_urlreversement(u).to_s +
           " <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "

@@ -1,8 +1,7 @@
-<% url = url_for :only_path => false, :id => @demande.id, 
-            :controller => 'demandes', :action => 'comment' %>
+<% url = url_for :only_path => false, comment_demande_path(@demande.id) %>
 <% url_demande = "<a href=\"#{url}\">demande ##{@demande.id}</a>" %>
-La <%= url_demande %> a été commentée par <i><%=h @nom %></i> 
-<% if @statut_modifie%> 
+La <%= url_demande %> a été commentée par <i><%=h @nom %></i>
+<% if @statut_modifie%>
  et est désormais <b><%= @demande.statut.nom %></b>
 <% end %>
 :<br /><br />
