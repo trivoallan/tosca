@@ -1,16 +1,16 @@
 <table class="sommaire"><tr><td>
  <div class="sommaire show">
-  <h1>&Agrave; propos de <%= "#{Metadata::NOM_COURT_APPLICATION} v#{Metadata::VERSION_APPLICATION}" %></h1>
+  <h1><%= _('About') << " #{Metadata::NOM_COURT_APPLICATION} v#{Metadata::VERSION_APPLICATION}" %></h1>
 
-  <p>Cette application a été conçue, écrite et réalisée par <b>Michel Loiseleur</b> dans les locaux
-     de <a href="http://www.linagora.com">Linagora</a>. </p>
-  <p>Cette aventure n&lsquo;aurait été possible sans tous les <b>contributeurs</b> qui ont soutenus ce projet,
-  sans tous les <b>testeurs</b> qui ont contribués à assurer sa qualité et sans un grand nombre de <b>logiciel libre</b>
-  qui ont permis à son développement d&lsquo;être rapide et agile. Ils sont tous ici grandement remerciés.
-  <%=Metadata::NOM_COURT_APPLICATION%> ne serait rien sans eux.</p>
+  <p><%= _('This application was created by <b>Michel Loiseleur</b> at ') << 
+      '<a href="http://www.linagora.com">Linagora</a>.' %></p>
+      <p><%= _('This adventure would not have been possible whithout the <b>contributors</b> who have taken part to this project,
+      without the testers who have contributed to it quality and without quite a few <b>free softwares</b>
+      which have enable the developpment to be fast and agile. They are all thanks warmly.') <<
+      Metadata::NOM_COURT_APPLICATION << _(' would be nothing without them.') %></p>
  </div>
  <div class="sommaire show">
-  <h2>Contributeurs</h2>
+   <h2><%= _('contributors')%></h2>
   <ul>
     <li>Sébastien Bahloul</li>
     <li>Guillaume Dufloux</li>
@@ -20,14 +20,14 @@
   </ul>
  </div></td>
  <td><div class="sommaire show">
-  <h2>Testeurs</h2>
+     <h2><%= _('Testers') %></h2>
   <ul>
     <li>Richard Samson</li>
     <li>Jonathan Clarke</li>
     <li>Philippe Brière</li>
   </ul>
  </div><div class="sommaire show">
-  <h2>Logiciels libres utilisés par <%= Metadata::NOM_COURT_APPLICATION %></h2>
+  <h2><%= _('Free software used by') << Metadata::NOM_COURT_APPLICATION %></h2>
   <ul>
     <li><a href="http://www.ruby-lang.org">Ruby</a></li>
     <li><a href="http://www.rubyonrails.org">Ruby on Rails</a></li>

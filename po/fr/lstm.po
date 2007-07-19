@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-18 17:34+0200\n"
+"POT-Creation-Date: 2007-07-19 15:23+0200\n"
 "PO-Revision-Date: 2007-07-13 19:01+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -25,13 +25,9 @@ msgstr ""
 msgid "Connexion failure"
 msgstr "Erreur de connection"
 
-#: app/controllers/account_controller.rb:84
+#: app/controllers/account_controller.rb:91
 msgid "Edition succeeded"
 msgstr "Les modifications ont été éfectuées avec succès"
-
-#: app/controllers/account_controller.rb:98
-msgid "The user was successfully updated."
-msgstr "L'utilisateur a été mis à jour avec succès."
 
 #: app/controllers/bienvenue_controller.rb:44
 msgid ""
@@ -49,11 +45,11 @@ msgstr "Le demande n'a pas de contributions pour l'instant"
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/documents_controller.rb:68
+#: app/controllers/documents_controller.rb:72
 msgid "Your document was successfully created"
 msgstr "Votre document a été crée avec succès."
 
-#: app/controllers/documents_controller.rb:83
+#: app/controllers/documents_controller.rb:87
 msgid "your document was successfully updated"
 msgstr "Votre document a été mis à jour avec succès."
 
@@ -65,6 +61,7 @@ msgstr "id"
 
 #: app/controllers/export_controller.rb:33
 #: app/controllers/export_controller.rb:123
+#: app/views/bienvenue/_liens_declaration.rhtml:13
 msgid "type"
 msgstr "type"
 
@@ -154,6 +151,8 @@ msgid "beneficiaire"
 msgstr "bénéficiaire"
 
 #: app/controllers/export_controller.rb:121
+#: app/views/bienvenue/_liens_declaration.rhtml:12
+#: app/views/bienvenue/_liens_deroulement.rhtml:10
 #: app/views/reporting/_sommaire.rhtml:9 app/views/reporting/general.rhtml:24
 msgid "severity"
 msgstr "séverité"
@@ -171,6 +170,8 @@ msgid "update"
 msgstr "mettre à jour"
 
 #: app/controllers/export_controller.rb:123
+#: app/views/bienvenue/_liens_declaration.rhtml:11
+#: app/views/bienvenue/_liens_deroulement.rhtml:9
 msgid "status"
 msgstr "état"
 
@@ -286,7 +287,7 @@ msgstr " mois"
 
 #: app/controllers/reporting_controller.rb:512
 #: app/helpers/contributions_helper.rb:10 app/views/logiciels/_form.rhtml:7
-#: app/views/reporting/general.rhtml:7 app/views/reporting/_comex_cns.rhtml:22
+#: app/views/reporting/_comex_cns.rhtml:22 app/views/reporting/general.rhtml:7
 msgid "Summary"
 msgstr "Récapitulatif"
 
@@ -362,111 +363,6 @@ msgstr "Urlreversement a été crée avec succès."
 msgid "Urlreversement was successfully updated."
 msgstr "Urlreversement a été mis à jour avec succès."
 
-#: app/helpers/clients_helper.rb:20
-msgid "My&nbsp;Offer"
-msgstr "Mon&nbsp;Offre"
-
-#: app/helpers/contributions_helper.rb:10
-msgid "Date"
-msgstr "Date"
-
-#: app/helpers/contributions_helper.rb:10 app/views/documents/list.rhtml:7
-msgid "Version"
-msgstr "Version"
-
-#: app/helpers/contributions_helper.rb:35
-msgid "une contribution"
-msgstr "une contribution"
-
-#: app/helpers/demandes_helper.rb:136
-msgid "New request"
-msgstr "Nouvelle demande"
-
-#: app/helpers/demandes_helper.rb:155
-msgid "Unlink the contribution"
-msgstr "Délier la contribution"
-
-#: app/helpers/demandes_helper.rb:189
-msgid "active requests"
-msgstr "Demandes actives"
-
-#: app/helpers/demandes_helper.rb:190
-msgid "show the requests that are waiting to be processed"
-msgstr "montrez les demandes qui doivent être traitées"
-
-#: app/helpers/demandes_helper.rb:195
-msgid "finished requests"
-msgstr "Demandes terminées"
-
-#: app/helpers/demandes_helper.rb:196
-msgid "show the requests that were processed"
-msgstr "montrez les demandes qui ont déjà été traitées"
-
-#: app/helpers/demandes_helper.rb:201
-msgid "all the requests"
-msgstr "tout les demandes"
-
-#: app/helpers/demandes_helper.rb:202
-msgid "show all the requests"
-msgstr "montrez tout les demandes"
-
-#: app/helpers/links_helper.rb:50
-msgid "Do you really want to delete %s"
-msgstr "Étes vous sûr de vouloir éffacer %s"
-
-#: app/helpers/links_helper.rb:62
-msgid "Accueil"
-msgstr "Accueil"
-
-#: app/helpers/links_helper.rb:67
-msgid "Demandes"
-msgstr "Demandes"
-
-#: app/helpers/links_helper.rb:68
-msgid "Consulter vos demandes"
-msgstr "Consulter vos demandes"
-
-#: app/helpers/links_helper.rb:73
-msgid "Logiciels"
-msgstr "Logiciels"
-
-#: app/helpers/links_helper.rb:74
-msgid "Consulter les logiciels"
-msgstr "Consulter les logiciels"
-
-#: app/helpers/links_helper.rb:79 app/views/contributions/list.rhtml:1
-#: app/views/contributions/select.rhtml:1 app/views/logiciels/show.rhtml:68
-msgid "Contributions"
-msgstr "Contributions"
-
-#: app/helpers/links_helper.rb:80
-msgid "Access to the list of contributions."
-msgstr "Accès à la liste des contributions."
-
-#: app/helpers/links_helper.rb:85
-msgid "Administration"
-msgstr "Administration"
-
-#: app/helpers/links_helper.rb:86
-msgid "Administration interface"
-msgstr "Interface d'administration"
-
-#: app/helpers/links_helper.rb:93
-msgid "About %s"
-msgstr "Concernant %s"
-
-#: app/helpers/links_helper.rb:101
-msgid "My&nbsp;account"
-msgstr "Mon&nbsp;compte"
-
-#: app/helpers/export_helper.rb:30
-msgid "Export in %s"
-msgstr "Exporter en %s"
-
-#: app/helpers/groupes_helper.rb:8
-msgid "classification"
-msgstr "classification"
-
 #: app/helpers/images_helper.rb:72
 msgid "Page d'accueil"
 msgstr "Page d'accueil"
@@ -503,6 +399,107 @@ msgstr "Rendre privé"
 msgid "Imprimer"
 msgstr "Imprimer"
 
+#: app/helpers/clients_helper.rb:17
+msgid "My&nbsp;Offer"
+msgstr "Mon&nbsp;Offre"
+
+#: app/helpers/contributions_helper.rb:10
+msgid "Date"
+msgstr "Date"
+
+#: app/helpers/contributions_helper.rb:10
+msgid "Version"
+msgstr "Version"
+
+#: app/helpers/contributions_helper.rb:35
+msgid "une contribution"
+msgstr "une contribution"
+
+#: app/helpers/demandes_helper.rb:136
+msgid "New request"
+msgstr "Nouvelle demande"
+
+#: app/helpers/demandes_helper.rb:154
+msgid "Unlink the contribution"
+msgstr "Délier la contribution"
+
+#: app/helpers/demandes_helper.rb:187
+msgid "active requests"
+msgstr "Demandes actives"
+
+#: app/helpers/demandes_helper.rb:188
+msgid "show the requests that are waiting to be processed"
+msgstr "montrez les demandes qui doivent être traitées"
+
+#: app/helpers/demandes_helper.rb:193
+msgid "finished requests"
+msgstr "Demandes terminées"
+
+#: app/helpers/demandes_helper.rb:194
+msgid "show the requests that were processed"
+msgstr "montrez les demandes qui ont déjà été traitées"
+
+#: app/helpers/demandes_helper.rb:199
+msgid "all the requests"
+msgstr "tout les demandes"
+
+#: app/helpers/demandes_helper.rb:200
+msgid "show all the requests"
+msgstr "montrez tout les demandes"
+
+#: app/helpers/export_helper.rb:30
+msgid "Export in %s"
+msgstr "Exporter en %s"
+
+#: app/helpers/groupes_helper.rb:8
+msgid "classification"
+msgstr "classification"
+
+#: app/helpers/links_helper.rb:50
+msgid "Do you really want to delete %s"
+msgstr "Étes vous sûr de vouloir éffacer %s"
+
+#: app/helpers/links_helper.rb:62
+msgid "Accueil"
+msgstr "Accueil"
+
+#: app/helpers/links_helper.rb:67
+msgid "Demandes"
+msgstr "Demandes"
+
+#: app/helpers/links_helper.rb:68
+msgid "Consulter vos demandes"
+msgstr "Consulter vos demandes"
+
+#: app/helpers/links_helper.rb:73
+msgid "Logiciels"
+msgstr "Logiciels"
+
+#: app/helpers/links_helper.rb:74
+msgid "Consulter les logiciels"
+msgstr "Consulter les logiciels"
+
+#: app/helpers/links_helper.rb:79 app/views/contributions/list.rhtml:1
+#: app/views/contributions/select.rhtml:1 app/views/logiciels/show.rhtml:67
+msgid "Contributions"
+msgstr "Contributions"
+
+#: app/helpers/links_helper.rb:80
+msgid "Access to the list of contributions."
+msgstr "Accès à la liste des contributions."
+
+#: app/helpers/links_helper.rb:85
+msgid "Administration"
+msgstr "Administration"
+
+#: app/helpers/links_helper.rb:86
+msgid "Administration interface"
+msgstr "Interface d'administration"
+
+#: app/helpers/links_helper.rb:93
+msgid "About %s"
+msgstr "Concernant %s"
+
 #: app/helpers/logiciels_helper.rb:28
 msgid "My supported softwares"
 msgstr "Mew logiciels suportées"
@@ -519,39 +516,39 @@ msgstr "Tout les logiciels"
 msgid "Display all softwares"
 msgstr "Afficher tout les logiciels"
 
-#: app/helpers/pages_helper.rb:30
+#: app/helpers/pages_helper.rb:29
 msgid "Edit"
 msgstr "Modifier"
 
-#: app/helpers/pages_helper.rb:41
+#: app/helpers/pages_helper.rb:36
 msgid "Delete"
 msgstr "Effacer"
 
-#: app/helpers/pages_helper.rb:85
+#: app/helpers/pages_helper.rb:80
 msgid "First page"
 msgstr "Première page"
 
-#: app/helpers/pages_helper.rb:88
+#: app/helpers/pages_helper.rb:83
 msgid "Previous page"
 msgstr "Page précedente"
 
-#: app/helpers/pages_helper.rb:94
+#: app/helpers/pages_helper.rb:89
 msgid " to "
 msgstr " jusqu'au "
 
-#: app/helpers/pages_helper.rb:95
+#: app/helpers/pages_helper.rb:90
 msgid "&nbsp; on "
 msgstr "&nbsp; on "
 
-#: app/helpers/pages_helper.rb:98
+#: app/helpers/pages_helper.rb:93
 msgid "Next page"
 msgstr "Page suivante"
 
-#: app/helpers/pages_helper.rb:101
+#: app/helpers/pages_helper.rb:96
 msgid "Last page"
 msgstr "Dernière page"
 
-#: app/helpers/paquets_helper.rb:18
+#: app/helpers/paquets_helper.rb:16
 msgid "un paquet"
 msgstr "un paquet"
 
@@ -855,21 +852,6 @@ msgstr "Mis à jour le"
 msgid "Commentaire|Prive"
 msgstr "Privé"
 
-#: app/models/commentaire.rb:-
-#, fuzzy
-msgid "Commentaire|Severite"
-msgstr "Privé"
-
-#: app/models/commentaire.rb:-
-#, fuzzy
-msgid "Commentaire|Statut"
-msgstr "Privé"
-
-#: app/models/commentaire.rb:-
-#, fuzzy
-msgid "Commentaire|Ingenieur"
-msgstr "Demande"
-
 #: app/models/commentaire.rb:11
 msgid "Vous devez mettre un commentaire d'au moins 5 caractères"
 msgstr "Vous devez mettre un commentaire d'au moins 5 caractères"
@@ -999,6 +981,11 @@ msgid "Demande|Logiciel"
 msgstr "Logiciel"
 
 #: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Reproductible"
+msgstr "Socle"
+
+#: app/models/demande.rb:-
 msgid "Demande|Created on"
 msgstr "Créé le"
 
@@ -1027,7 +1014,7 @@ msgid "Demande|Mail cc"
 msgstr "Mail cc"
 
 # ne pas oublier l'espace au début
-#: app/models/demande.rb:200
+#: app/models/demande.rb:208
 msgid " of overrun"
 msgstr " de dépassement"
 
@@ -1099,6 +1086,10 @@ msgstr "Mis à jour le"
 msgid "Document|Version"
 msgstr "Version"
 
+#: app/models/document.rb:-
+msgid "Document|Date delivery"
+msgstr "Date de livraison"
+
 #: app/models/engagement.rb:-
 msgid "engagement"
 msgstr "engagement"
@@ -1118,18 +1109,6 @@ msgstr "Correction"
 #: app/models/engagement.rb:-
 msgid "Engagement|Typedemande"
 msgstr "Typedemande"
-
-#: app/models/image.rb:-
-msgid "image"
-msgstr "image"
-
-#: app/models/image.rb:-
-msgid "Image|Image"
-msgstr "Image"
-
-#: app/models/image.rb:-
-msgid "Image|Description"
-msgstr "Description"
 
 #: app/models/etatreversement.rb:-
 msgid "etatreversement"
@@ -1419,6 +1398,22 @@ msgstr "Name"
 msgid "Permission|Info"
 msgstr "Info"
 
+#: app/models/socle.rb:-
+msgid "socle"
+msgstr "socle"
+
+#: app/models/socle.rb:-
+msgid "Socle|Nom"
+msgstr "Nom"
+
+#: app/models/socle.rb:-
+msgid "Socle|Binaires count"
+msgstr "Comptage des binaires"
+
+#: app/models/socle.rb:-
+msgid "Socle|Client"
+msgstr "Client"
+
 #: app/models/piecejointe.rb:-
 msgid "piecejointe"
 msgstr "piecejointe"
@@ -1446,22 +1441,6 @@ msgstr "séverité"
 #: app/models/severite.rb:-
 msgid "Severite|Nom"
 msgstr "Nom"
-
-#: app/models/socle.rb:-
-msgid "socle"
-msgstr "socle"
-
-#: app/models/socle.rb:-
-msgid "Socle|Nom"
-msgstr "Nom"
-
-#: app/models/socle.rb:-
-msgid "Socle|Binaires count"
-msgstr "Comptage des binaires"
-
-#: app/models/socle.rb:-
-msgid "Socle|Client"
-msgstr "Client"
 
 #: app/models/statut.rb:-
 msgid "statut"
@@ -1611,6 +1590,18 @@ msgstr "Contribution"
 msgid "Urlreversement|Valeur"
 msgstr "Valeur"
 
+#: app/models/image.rb:-
+msgid "image"
+msgstr "image"
+
+#: app/models/image.rb:-
+msgid "Image|Image"
+msgstr "Image"
+
+#: app/models/image.rb:-
+msgid "Image|Description"
+msgstr "Description"
+
 #: app/models/preferences.rb:-
 msgid "preference"
 msgstr "preference"
@@ -1637,7 +1628,7 @@ msgstr "Digeste prêt"
 
 #: app/views/acces/refuse.rhtml:2
 msgid "Access denied"
-msgstr ""
+msgstr "Accès interdit"
 
 #: app/views/acces/refuse.rhtml:5
 msgid "This page is restricted."
@@ -1645,11 +1636,12 @@ msgstr ""
 
 #: app/views/acces/refuse.rhtml:6
 msgid "You can go to the homepage."
-msgstr ""
+msgstr "Vous pouvez allez sur la page d'accueil."
 
 #: app/views/acces/refuse.rhtml:7
 msgid "You can also login with a user who has more rights :"
 msgstr ""
+"Vous pouvez aussi vous connecté avec un utilisateurs qui a plus dedroit :"
 
 #: app/views/acces/refuse.rhtml:15
 msgid "Reconnect"
@@ -1660,7 +1652,6 @@ msgid "Export users"
 msgstr "Exporter les utilisateurs"
 
 #: app/views/appels/_calls_info.rhtml:12
-#: app/views/documents/_documents_info.rhtml:13
 msgid "Action"
 msgstr "Action"
 
@@ -1700,7 +1691,7 @@ msgstr "Périmètre"
 msgid "Calls"
 msgstr "Appels"
 
-#: app/views/appels/_calls_info.rhtml:51 app/views/logiciels/show.rhtml:39
+#: app/views/appels/_calls_info.rhtml:51 app/views/logiciels/show.rhtml:38
 #: app/views/reporting/general.rhtml:22 app/views/reporting/general.rhtml:23
 #: app/views/reporting/general.rhtml:25 app/views/reporting/general.rhtml:26
 #: app/views/reporting/general.rhtml:28 app/views/reporting/general.rhtml:29
@@ -1801,6 +1792,61 @@ msgstr "Ajouter une nouvelle architecture logicielle"
 #: app/views/beneficiaires/new.rhtml:1
 msgid "Add a recipient"
 msgstr "Ajouter un bénéficiaire"
+
+#: app/views/bienvenue/_liens_declaration.rhtml:4
+msgid "\"Comment se passe le traitement d'une demande ?\""
+msgstr ""
+
+#: app/views/bienvenue/_liens_declaration.rhtml:15
+#: app/views/bienvenue/_liens_deroulement.rhtml:3
+msgid "\"How to declare a demand ?\""
+msgstr "\"Comment déclarer une demande ?\""
+
+#: app/views/bienvenue/_liens_deroulement.rhtml:11
+msgid "recall on our commitment"
+msgstr "rappel sur nos engagements"
+
+#: app/views/bienvenue/about.rhtml:3
+msgid "About"
+msgstr "A propos de "
+
+#: app/views/bienvenue/about.rhtml:5
+msgid "This application was created by <b>Michel Loiseleur</b> at "
+msgstr ""
+"Cette application a été conçue, écrite et réalisée par <b>Michel Loiseleur</"
+"b> dans les locaux de "
+
+#: app/views/bienvenue/about.rhtml:7
+msgid ""
+"This adventure would not have been possible whithout the <b>contributors</b> "
+"who have taken part to this project,\n"
+"      without the testers who have contributed to it quality and without "
+"quite a few <b>free softwares</b>\n"
+"      which have enable the developpment to be fast and agile. They are all "
+"thanks warmly."
+msgstr ""
+"Cette aventure n'aurait été possible sans tous les <b>contributeurs</b> qui "
+"ont soutenu ce projet,\n"
+"     sans tous les <b>testeurs</b> qui ont contribués à assurer sa qualité "
+"et sans un grand nombre de <b>logiciel libre</b>\n"
+"     qui ont permis à son développement d'être rapide et agile. Ils sont "
+"tous ici grandement remerciés."
+
+#: app/views/bienvenue/about.rhtml:10
+msgid " would be nothing without them."
+msgstr " ne serait rien sans eux."
+
+#: app/views/bienvenue/about.rhtml:13
+msgid "contributors"
+msgstr "contributeurs"
+
+#: app/views/bienvenue/about.rhtml:23
+msgid "Testers"
+msgstr "Testeurs"
+
+#: app/views/bienvenue/about.rhtml:30
+msgid "Free software used by"
+msgstr "Logiciel libre utilisé par "
 
 #: app/views/bienvenue/index.rhtml:2
 msgid "connected"
@@ -1995,7 +2041,7 @@ msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
 
 #: app/views/demandes/_tab_menu.rhtml:9 app/views/documents/_form.rhtml:36
-#: app/views/documents/list.rhtml:7 app/views/logiciels/_form.rhtml:10
+#: app/views/logiciels/_form.rhtml:10
 #: app/views/logiciels/_softwares_info.rhtml:40
 #: app/views/logiciels/_softwares_list.rhtml:6 app/views/roles/index.rhtml:4
 #: app/views/statuts/_form.rhtml:7
@@ -2027,35 +2073,9 @@ msgstr "CNS"
 msgid "Add a document"
 msgstr "Ajouter un document"
 
-#: app/views/documents/_documents_info.rhtml:19
-#: app/views/logiciels/_softwares_info.rhtml:16
-msgid "Consultation"
-msgstr "Consultation"
-
-#: app/views/documents/_documents_info.rhtml:25
-msgid "Search (non usable)"
-msgstr "Recherche ( non fonctionnel)"
-
-#: app/views/documents/_documents_info.rhtml:27
-msgid "Document Type"
-msgstr "Type de document"
-
-#: app/views/documents/_documents_info.rhtml:29
-#: app/views/documents/_form.rhtml:23 app/views/documents/list.rhtml:7
-msgid "Title"
-msgstr "Titre"
-
-#: app/views/documents/_documents_info.rhtml:31
-msgid "Filename"
-msgstr "Nom de fichier"
-
-#: app/views/documents/_documents_info.rhtml:36
-msgid "Statistics"
-msgstr "Statistiques"
-
-#: app/views/documents/_documents_info.rhtml:38
-msgid "Documents"
-msgstr "Documents"
+#: app/views/documents/list.rhtml:20
+msgid "Return to the selection"
+msgstr "Retour à la sélection"
 
 #: app/views/documents/_form.rhtml:12
 msgid "Author"
@@ -2065,7 +2085,11 @@ msgstr "Auteur"
 msgid "Type"
 msgstr "type"
 
-#: app/views/documents/_form.rhtml:26 app/views/documents/list.rhtml:8
+#: app/views/documents/_form.rhtml:23
+msgid "Title"
+msgstr "Titre"
+
+#: app/views/documents/_form.rhtml:26
 msgid "File"
 msgstr "Fichier"
 
@@ -2085,49 +2109,13 @@ msgstr "Modifier"
 msgid "look"
 msgstr "Voir"
 
-#: app/views/documents/list.rhtml:1
-msgid "Documents available in "
-msgstr "Documents disponible dans"
-
-#: app/views/documents/list.rhtml:2
-msgid "All the directories"
-msgstr "Tous les dossiers"
-
-#: app/views/documents/list.rhtml:5 app/views/documents/list.rhtml:22
-msgid "a document"
-msgstr "un document"
-
-#: app/views/documents/list.rhtml:7
-msgid "Delivered on:"
-msgstr "Livré le "
-
-#: app/views/documents/list.rhtml:8
-msgid "Size"
-msgstr "Taille"
-
-#: app/views/documents/list.rhtml:24
-msgid "Return to the selection"
-msgstr "Retour à la sélection"
-
 #: app/views/documents/new.rhtml:5
 msgid "Submit"
 msgstr "Déposer"
 
-#: app/views/documents/select.rhtml:1
-msgid "Access to the repository"
-msgstr "Accès au dépôt"
-
 #: app/views/documents/select.rhtml:3
 msgid "Document type"
 msgstr "Type de document"
-
-#: app/views/documents/select.rhtml:7
-msgid "Submit a file"
-msgstr "Déposer un fichier"
-
-#: app/views/documents/select.rhtml:8
-msgid "a file"
-msgstr "un fichier"
 
 #: app/views/documents/show.rhtml:7
 msgid "File :"
@@ -2149,9 +2137,9 @@ msgstr "Mis à jour le :"
 msgid "Login"
 msgstr "Identification"
 
-#: app/views/layouts/standard-layout.rhtml:98
-msgid "Close"
-msgstr "Fermer"
+#: app/views/layouts/standard-layout.rhtml:97
+msgid "X"
+msgstr "X"
 
 #: app/views/logiciels/_form.rhtml:14
 msgid "Base name"
@@ -2173,6 +2161,10 @@ msgstr "Groupe"
 #: app/views/logiciels/show.rhtml:20
 msgid "Technologies"
 msgstr "Technologies"
+
+#: app/views/logiciels/_softwares_info.rhtml:16
+msgid "Consultation"
+msgstr "Consultation"
 
 #: app/views/logiciels/_softwares_info.rhtml:22
 msgid "List of packages"
@@ -2211,7 +2203,7 @@ msgid "Technologie(s)"
 msgstr "Technologie(s)"
 
 #: app/views/logiciels/_softwares_list.rhtml:7
-#: app/views/logiciels/show.rhtml:49
+#: app/views/logiciels/show.rhtml:48
 msgid "Package(s)"
 msgstr "Pacquet(s)"
 
@@ -2235,13 +2227,83 @@ msgstr "Logiciel \"%s\""
 msgid "Logo"
 msgstr "Logo"
 
-#: app/views/logiciels/show.rhtml:27
+#: app/views/logiciels/show.rhtml:26
 msgid "Links"
 msgstr "Liens"
 
 #: app/views/paquets/show.rhtml:31
 msgid " <i>on</i> "
 msgstr " <i>sur</i> "
+
+#: app/views/reporting/_comex_cns.rhtml:2
+msgid "SLA report"
+msgstr "rapport CNS"
+
+#: app/views/reporting/_comex_cns.rhtml:3
+msgid "Caption"
+msgstr "Légende"
+
+#: app/views/reporting/_comex_cns.rhtml:5
+msgid "The progressions bar represent the progress ratio of the contract: "
+msgstr "La bare de progression représente le taux de finition du contrat: "
+
+#: app/views/reporting/_comex_cns.rhtml:6
+msgid "The contract has not been started yet"
+msgstr "Le contrat n'a pas encore été démaré"
+
+#: app/views/reporting/_comex_cns.rhtml:7
+msgid "25% de ready"
+msgstr "25% fini"
+
+#: app/views/reporting/_comex_cns.rhtml:8
+msgid "50% de ready"
+msgstr "50% fini"
+
+#: app/views/reporting/_comex_cns.rhtml:9
+msgid "75% de ready"
+msgstr "75% fini"
+
+#: app/views/reporting/_comex_cns.rhtml:10
+msgid "The contract is outdated! "
+msgstr "Le contrat est dépassé! "
+
+#: app/views/reporting/_comex_cns.rhtml:11
+msgid ""
+"The indicated time is the remaining time until the end of the contract, or "
+"the time needed beyond the contract."
+msgstr ""
+"Le temps indiqué correspond au temps restant pour finir le contrat, ou le "
+"temps necessaire pour aller au dela du contrat"
+
+#: app/views/reporting/_comex_cns.rhtml:19
+msgid "Id"
+msgstr "Id"
+
+#: app/views/reporting/_comex_cns.rhtml:20
+msgid "Workaround"
+msgstr "Contournée"
+
+#: app/views/reporting/_comex_cns.rhtml:21
+msgid "Correction"
+msgstr "Correction"
+
+#: app/views/reporting/_comex_tableaux.rhtml:2
+msgid "OSSA activity from "
+msgstr "Activité OSSA du "
+
+#: app/views/reporting/_comex_tableaux.rhtml:3
+#: app/views/reporting/_entete.rhtml:10
+#: app/views/reporting/_introduction.rhtml:3
+msgid "to"
+msgstr "jusqu'au"
+
+#: app/views/reporting/_comex_tableaux.rhtml:11
+msgid "Requests closed <br /> this week"
+msgstr "Demandes closes <br /> cette semaine"
+
+#: app/views/reporting/_comex_tableaux.rhtml:12
+msgid "Total in progress <br /> end week"
+msgstr "Total en cours <br /> fin de semaine"
 
 #: app/views/reporting/_entete.rhtml:8
 msgid "Activity report of the "
@@ -2250,12 +2312,6 @@ msgstr "Rapport d'activité de l'"
 #: app/views/reporting/_entete.rhtml:9
 msgid "from"
 msgstr "du"
-
-#: app/views/reporting/_entete.rhtml:10
-#: app/views/reporting/_introduction.rhtml:3
-#: app/views/reporting/_comex_tableaux.rhtml:3
-msgid "to"
-msgstr "jusqu'au"
 
 #: app/views/reporting/_entete.rhtml:11 app/views/reporting/_form.rhtml:13
 msgid "months"
@@ -2377,110 +2433,6 @@ msgstr "évolution"
 msgid "canceled"
 msgstr "anulation"
 
-#: app/views/reporting/delai.rhtml:4
-msgid "Choose one year:"
-msgstr "Spécifier une année : "
-
-#: app/views/reporting/delai.rhtml:6
-msgid "Show"
-msgstr "Consulter"
-
-#: app/views/reporting/delai.rhtml:12
-msgid "History of %s for %s"
-msgstr "Historique du %s pour %s"
-
-#: app/views/reporting/delai.rhtml:13
-msgid "Time of taking into account the requests"
-msgstr "Temps de prise en copte des demandes"
-
-#: app/views/reporting/delai.rhtml:15
-msgid "Estimation in minutes"
-msgstr "Estimation en minutes"
-
-#: app/views/reporting/delai.rhtml:17
-msgid "Workaround time of the requests in working days"
-msgstr "Temps de contournement des demandes en jours ouvrées"
-
-#: app/views/reporting/delai.rhtml:19
-msgid "Estimate made in working days"
-msgstr "Estimation faite en jours ouvrés"
-
-#: app/views/reporting/delai.rhtml:21
-msgid "Requests correction time"
-msgstr "Temps de correction"
-
-#: app/views/reporting/delai.rhtml:23
-msgid "Estimation in working days"
-msgstr "Estimation en jours ouvrés"
-
-#: app/views/reporting/general.rhtml:34
-msgid "Number"
-msgstr "Nombre"
-
-#: app/views/reporting/_comex_cns.rhtml:2
-msgid "SLA report"
-msgstr "rapport CNS"
-
-#: app/views/reporting/_comex_cns.rhtml:3
-msgid "Caption"
-msgstr "Légende"
-
-#: app/views/reporting/_comex_cns.rhtml:5
-msgid "The progressions bar represent the progress ratio of the contract: "
-msgstr "La bare de progression représente le taux de finition du contrat: "
-
-#: app/views/reporting/_comex_cns.rhtml:6
-msgid "The contract has not been started yet"
-msgstr "Le contrat n'a pas encore été démaré"
-
-#: app/views/reporting/_comex_cns.rhtml:7
-msgid "25% de ready"
-msgstr "25% fini"
-
-#: app/views/reporting/_comex_cns.rhtml:8
-msgid "50% de ready"
-msgstr "50% fini"
-
-#: app/views/reporting/_comex_cns.rhtml:9
-msgid "75% de ready"
-msgstr "75% fini"
-
-#: app/views/reporting/_comex_cns.rhtml:10
-msgid "The contract is outdated! "
-msgstr "Le contrat est dépassé! "
-
-#: app/views/reporting/_comex_cns.rhtml:11
-msgid ""
-"The indicated time is the remaining time until the end of the contract, or "
-"the time needed beyond the contract."
-msgstr ""
-"Le temps indiqué correspond au temps restant pour finir le contrat, ou le "
-"temps necessaire pour aller au dela du contrat"
-
-#: app/views/reporting/_comex_cns.rhtml:19
-msgid "Id"
-msgstr "Id"
-
-#: app/views/reporting/_comex_cns.rhtml:20
-msgid "Workaround"
-msgstr "Contournée"
-
-#: app/views/reporting/_comex_cns.rhtml:21
-msgid "Correction"
-msgstr "Correction"
-
-#: app/views/reporting/_comex_tableaux.rhtml:2
-msgid "OSSA activity from "
-msgstr "Activité OSSA du "
-
-#: app/views/reporting/_comex_tableaux.rhtml:11
-msgid "Requests closed <br /> this week"
-msgstr "Demandes closes <br /> cette semaine"
-
-#: app/views/reporting/_comex_tableaux.rhtml:12
-msgid "Total in progress <br /> end week"
-msgstr "Total en cours <br /> fin de semaine"
-
 #: app/views/reporting/comex.rhtml:2
 msgid "OSSA activity per week"
 msgstr "Activité de l'OSSA par semaine"
@@ -2517,6 +2469,42 @@ msgstr "Voir le rapport pour cette semaine"
 msgid "See the report of requests' SLA"
 msgstr "Voir l'avancement du CNS"
 
+#: app/views/reporting/delai.rhtml:4
+msgid "Choose one year:"
+msgstr "Spécifier une année : "
+
+#: app/views/reporting/delai.rhtml:6
+msgid "Show"
+msgstr "Consulter"
+
+#: app/views/reporting/delai.rhtml:12
+msgid "History of %s for %s"
+msgstr "Historique du %s pour %s"
+
+#: app/views/reporting/delai.rhtml:13
+msgid "Time of taking into account the requests"
+msgstr "Temps de prise en copte des demandes"
+
+#: app/views/reporting/delai.rhtml:15
+msgid "Estimation in minutes"
+msgstr "Estimation en minutes"
+
+#: app/views/reporting/delai.rhtml:17
+msgid "Workaround time of the requests in working days"
+msgstr "Temps de contournement des demandes en jours ouvrées"
+
+#: app/views/reporting/delai.rhtml:19
+msgid "Estimate made in working days"
+msgstr "Estimation faite en jours ouvrés"
+
+#: app/views/reporting/delai.rhtml:21
+msgid "Requests correction time"
+msgstr "Temps de correction"
+
+#: app/views/reporting/delai.rhtml:23
+msgid "Estimation in working days"
+msgstr "Estimation en jours ouvrés"
+
 #: app/views/reporting/flux.rhtml:3
 msgid "a new request"
 msgstr "une nouvelle demande"
@@ -2524,6 +2512,10 @@ msgstr "une nouvelle demande"
 #: app/views/reporting/flux.rhtml:33
 msgid "No request declared."
 msgstr "Aucune demande declarée"
+
+#: app/views/reporting/general.rhtml:34
+msgid "Number"
+msgstr "Nombre"
 
 #: app/views/roles/_form.rhtml:8
 msgid "Short description"
@@ -2754,12 +2746,65 @@ msgstr "Nov"
 msgid "Dec"
 msgstr "Dec"
 
-#, fuzzy
-#~ msgid "Demande|Reproductible"
-#~ msgstr "Socle"
+#~ msgid "My&nbsp;account"
+#~ msgstr "Mon&nbsp;compte"
 
-#~ msgid "Document|Date delivery"
-#~ msgstr "Date de livraison"
+#~ msgid "Search (non usable)"
+#~ msgstr "Recherche ( non fonctionnel)"
+
+#~ msgid "Document Type"
+#~ msgstr "Type de document"
+
+#~ msgid "Filename"
+#~ msgstr "Nom de fichier"
+
+#~ msgid "Statistics"
+#~ msgstr "Statistiques"
+
+#~ msgid "Documents"
+#~ msgstr "Documents"
+
+#~ msgid "Documents available in "
+#~ msgstr "Documents disponible dans"
+
+#~ msgid "All the directories"
+#~ msgstr "Tous les dossiers"
+
+#~ msgid "a document"
+#~ msgstr "un document"
+
+#~ msgid "Delivered on:"
+#~ msgstr "Livré le "
+
+#~ msgid "Size"
+#~ msgstr "Taille"
+
+#~ msgid "Access to the repository"
+#~ msgstr "Accès au dépôt"
+
+#~ msgid "Submit a file"
+#~ msgstr "Déposer un fichier"
+
+#~ msgid "a file"
+#~ msgstr "un fichier"
+
+#~ msgid "The user was successfully updated."
+#~ msgstr "L'utilisateur a été mis à jour avec succès."
+
+#, fuzzy
+#~ msgid "Commentaire|Severite"
+#~ msgstr "Privé"
+
+#, fuzzy
+#~ msgid "Commentaire|Statut"
+#~ msgstr "Privé"
+
+#, fuzzy
+#~ msgid "Commentaire|Ingenieur"
+#~ msgstr "Demande"
+
+#~ msgid "Close"
+#~ msgstr "Fermer"
 
 #, fuzzy
 #~ msgid " de dépassement"
