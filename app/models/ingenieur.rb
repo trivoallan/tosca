@@ -13,14 +13,14 @@ class Ingenieur < ActiveRecord::Base
   INCLUDE = [:identifiant]
 
   def self.content_columns
-    @content_columns ||= columns.reject { |c| c.primary || 
-        c.name =~ /(_id|_on|_count|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }       
+    @content_columns ||= columns.reject { |c| c.primary ||
+        c.name =~ /(_id|_on|_count|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }
   end
 
 
   def self.find_ossa(*args)
     conditions = ['ingenieurs.expert_ossa = ?', 1 ]
-    Ingenieur.with_scope({:find => {:conditions => conditions }}) { 
+    Ingenieur.with_scope({:find => {:conditions => conditions }}) {
       Ingenieur.find(*args)
     }
   end
@@ -43,7 +43,7 @@ class Ingenieur < ActiveRecord::Base
          :select => 'client_id').collect {|c| c.client_id}
   end
 
-  # ne pas oublier de faire :include => [:identifiant] si vous 
+  # ne pas oublier de faire :include => [:identifiant] si vous
   # appeler cette fonction, durant le Ingenieur.find
   def nom
     identifiant.nom

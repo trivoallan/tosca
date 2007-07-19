@@ -266,7 +266,7 @@ private
   def set_account_links
     render_to_string :inline => <<-EOF
       <% infos = []
-         infos << link_to_modify_account(session[:user].id)
+         infos << link_to_edit(session[:user])
          infos << link_to('Déconnexion', logout_accounts_url, :method => :post)
       %>
       <%= build_simple_menu(infos.reverse, :class => 'account_menu') if session[:user] %>
