@@ -74,34 +74,27 @@ class AccountController < ApplicationController
     redirect_to_home
   end
 
-  def modify
-    _form
+  def edit
     @identifiant = Identifiant.find(params[:id])
-    if request.method == :post
-      if @identifiant.update_attributes(params[:identifiant])
-        #On a sauve le profil, on l'applique sur l'utilisateur courant
-        set_sessions  @identifiant if session[:user] == @identifiant
-        flash[:notice]  = _("Edition succeeded")
-        redirect_back
-      end
-    end
+    _form
   end
 
   def show
     @identifiant = Identifiant.find(params[:id])
   end
 
-  #utilisé dans account/list
   def update
-    @user = Identifiant.find(params[:id])
-    if @user.update_attributes(params[:identifiant])
-      flash[:notice] = _("The user was successfully updated.")
+    @identifiant = Identifiant.find(params[:id])
+    if @identifiant.update_attributes(params[:identifiant])
+      #On a sauve le profil, on l'applique sur l'utilisateur courant
+      set_sessions  @identifiant if session[:user] == @identifiant
+      flash[:notice]  = _("Edition succeeded")
+      redirect_to account_path(@identifiant)
     end
-    list
   end
 
   def new
-    redirect_to :action => 'signup'
+    redirect_to signup_new_account_path
   end
 
   # Create an account
@@ -121,7 +114,7 @@ class AccountController < ApplicationController
         options = { :identifiant => @identifiant, :controller => self,
           :password => @identifiant.pwd }
         Notifier::deliver_identifiant_nouveau(options, flash)
-        redirect_back_or_default :action => "list"
+        redirect_back_or_default accounts_path
       end
     when :get
       @identifiant = Identifiant.new
@@ -197,7 +190,7 @@ class AccountController < ApplicationController
         end
 
       end
-      redirect_back_or_default :action => "list"
+      redirect_back_or_default accounts_path
     when :get
     end
   end
@@ -273,7 +266,7 @@ private
   def set_account_links
     render_to_string :inline => <<-EOF
       <% infos = []
-         infos << link_to_modify_account(session[:user], _('Mon&nbsp;compte'))
+         infos << link_to_edit session[:user]
          infos << link_to('Déconnexion', logout_accounts_url, :method => :post)
       %>
       <%= build_simple_menu(infos.reverse, :class => 'account_menu') if session[:user] %>
