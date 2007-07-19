@@ -1,13 +1,13 @@
-<h1>Engagements du 08000Linux</h1>
+<h1><%= _('08000Linux commitment')%></h1>
 <br />
 <br />
 
-<p><b>Liste des engagements : </b></p>
+<p><b><%= _('Commitment list :')%></b></p>
 
 <table>
   <tr>   
-    <th>Support</th>
-    <th>Severite</th>
+    <th><%= _('Support')%></th>
+    <th><%= _('Severity')%></th>
 
   <% for column in Engagement.content_columns %>
     <th><%= column.human_name %></th>

@@ -1,22 +1,22 @@
-<h1>Comment déclarer une demande</h1>
+<h1><%= _('Howto declare a demand')%></h1>
 <br />
 <br />
 
-<p>Vous pouvez déclarer une demande :
+<div><%= _('You can declare a demand : ') %>
   <ul>
-    <li>soit par téléphone au 08000 54689 (LINUX) : un code identifiant vous sera alors demandé</li>
-    <li>soit sur la <%= link_to 'page en ligne', new_demande_path %> dédiée</li>
+    <li><%= _('Either by phone on 08000 54689 (LINUX) : you will be asked for a key-code')%></li>
+    <li><%= _("Either on the dedicate #{link_to 'web page', new_demande_path}") %></li>
   </ul>
-</p>
+</div>
 
-<p>La déclaration consiste à renseigner la cellule du 08000linux sur le <%= link_to 'type', natures_bienvenue_path %>, la <%= link_to 'severité', severites_bienvenue_path %> et le <%= link_to 'logiciel', logiciels_path %> concerné par votre demande.</p>
-<p>Vous pouvez ensuite préciser le résumé et la description de votre demande.</p>
-<p>Lors de la validation, le <%= link_to 'statut', statuts_bienvenue_path %> de la demande passe à <i>"déclaré"</i></p>
+<p><%= _("The declaration consist to inform the cell on 08000linux about the #{link_to 'type', natures_bienvenue_path}, la #{link_to 'severity', severites_bienvenue_path} and the #{link_to 'software', logiciels_path} concerned by your request.") %></p>
+<p><%= _('Next you can precise the summary and the description of your request.')%></p>
+<p><%= _("On the validation,the #{link_to 'status', statuts_bienvenue_path} become to <i>\"declared\"</i>")%></p>
 
 <br />
 
-<p>Un ingénieur du 08000linux vous rappelera en <b>moins d'une heure</b> (Voir nos <%= link_to 'engagements', engagements_bienvenue_path %>) et vous demandera si nécessaire de préciser votre demande</p>
-<p>A la fin de l'appel, le <%= link_to 'statut', statut_bienvenue_path %> de la demande passe à <i>"enregistré"</i></p>
+<p><%= _("An engineer from 08000linux will call back <b>to one hour</b> ( See our #{ link_to 'commitment', engagements_bienvenue_path} ) and will asked you if necessary to precise your demand<")%></p>
+<p><%= _("At the end of the call, the #{link_to 'status', statut_bienvenue_path} from the demand will become <i>\#chek in\"</i>")%></p>
 
 <br />
 <br />

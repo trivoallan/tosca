@@ -1,5 +1,5 @@
 <h1 class="spacer"><%= Metadata::NOM_COURT_APPLICATION %></h1>
-<h2 class="spacer">Plan / accés autorisés</h2>
+<h2 class="spacer"><%= _('Plan/access allowed') %></h2>
 
 <table class="sommaire" width="100%">
   <tr>
@@ -20,7 +20,7 @@
       <% elsif session[:user].authorized?(cname+'/index')%>
          <br/><b><%= link_to cname, :action => "list", :controller => cname  %></b>
       <% elsif cname == 'reporting' %>
-         <br/><b><%= link_to 'reporting', :action => "configuration", :controller => cname  %></b>
+         <br/><b><%= link_to _('reporting'), :action => "configuration", :controller => cname  %></b>
       <% else %>
          <br/><b><%= cname %></b>
       <% end %>
