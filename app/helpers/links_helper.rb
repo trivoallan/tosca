@@ -94,4 +94,12 @@ module LinksHelper
   end
 
 
+  # lien vers un compte existant
+  # DEPRECATED : préferer link_to_edit(id)
+  # TODO : passer id en options, avec @session[:user].id par défaut
+  # TODO : title en options, avec 'Le compte' par défaut
+  def link_to_modify_account(account_id, title=_('My&nbsp;account'))
+    return '' unless account_id
+    link_to title, account_path(account_id)
+  end
 end
