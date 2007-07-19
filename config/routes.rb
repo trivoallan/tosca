@@ -14,7 +14,9 @@ ActionController::Routing::Routes.draw do |map|
                  :conditions => { :method => :get } }
   map.bienvenue '/', sweet_home
 
-  map.without_orm('bienvenue', %w(admin plan selenium about))
+  map.without_orm('bienvenue',
+    %w(admin plan selenium about deroulement natures statut suggestions engagements declaration))
+  map.without_orm('bienvenue', %w(suggestions), :post)
   map.without_orm('reporting', %w(comex configuration general comex_resultat))
   map.without_orm('export', %w(contributions demandes appels identifiants))
   map.without_orm('acces', %w(refuse))
@@ -37,25 +39,30 @@ ActionController::Routing::Routes.draw do |map|
   #   link_to _('..'), accounts_path()
   map.resources :accounts,
   :controller => "account",
-  :member => { :modify => :any, :devenir => :post },
+  :member => { :devenir => :post },
   :collection => { :logout => :post, :login => :any,
     :auto_complete_for_identifiant_nom => :post,
     :auto_complete_for_identifiant_email => :post},
   :new => { :signup => :any, :multiple_signup => :any }
-  map.resources :appels
+  map.resources :appels,  :collection => { :ajax_beneficiaires => :get }
   map.resources :arches
   map.resources :beneficiaires
   map.resources :binaires
   map.resources :clients
   map.resources :competences
+#  map.resources :dependances, :collection => { :select => :get }
   map.resources :contrats
   map.resources :contributions,
   :collection => { :admin => :any, :select => :get },
   :member => { :list => :get }
   map.resources :demandes,
   :collection => { :auto_complete_for_logiciel_nom => :post,
-    :ajax_display_packages => :post},
-  :member => { :comment => :any }
+    :ajax_display_packages => :post,
+    :delete_contribution => :get,
+    :associer_contribution => :get,
+    :update_contribution => :get,
+    :pretty_print => :get},
+  :member => { :comment=> :any }
   map.resources :documents,
   :collection => { :select => :get },
   :member => { :list => :get, :destroy => :delete }
@@ -66,11 +73,12 @@ ActionController::Routing::Routes.draw do |map|
       :comex_ods => :get
     }
   map.resources :groupes
-  map.resources :ingenieurs,
-  :collection => { :list => :get }
+  map.resources :ingenieurs,  :collection => { :list => :get }
   map.resources :logiciels
+  map.resources :pages
   map.resources :machines
   map.resources :changelogs
+  map.resources :typecontributions,  :collection => { :destroy => :get }
   map.resources :paquets
   map.resources :permissions
   map.resources :roles
