@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-07-20 17:41+0200\n"
-"PO-Revision-Date: 2007-07-19 19:01+0200\n"
+"PO-Revision-Date: 2007-07-20 17:46+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -143,37 +143,33 @@ msgstr ""
 "remarques ont bien été transmis."
 
 #: app/controllers/binaires_controller.rb:26
-#, fuzzy
 msgid "Binary has beensuccessfully created."
-msgstr "Une image a bien été créée."
+msgstr "Un paquet binaire a bien été créée."
 
 #: app/controllers/binaires_controller.rb:42
-#, fuzzy
 msgid "Binary has been successfully updated."
-msgstr "Une image a bien été mise à jour."
+msgstr "Le paquet binaire a bien mis à jour."
 
 #: app/controllers/demandes_controller.rb:77
 msgid "file attached"
-msgstr ""
+msgstr "fichier attaché"
 
 #: app/controllers/demandes_controller.rb:80
-#, fuzzy
 msgid "Your request has been successfully submitted"
-msgstr "Votre document a été crée avec succès."
+msgstr "Votre demande a été bien soumise à nos services."
 
 #: app/controllers/demandes_controller.rb:125
 msgid " %s No Contract, No OSSA"
-msgstr ""
+msgstr " %s pas de contrat, pas d'ossa"
 
 #: app/controllers/demandes_controller.rb:142
-#, fuzzy
 msgid "We do not have any packages concerning"
-msgstr "Vous n'avez pas de code d'accès"
+msgstr "Nous n'avons aucun paquet concernant"
 
 #: app/controllers/demandes_controller.rb:145
 #: app/views/demandes/_packages.rhtml:2
 msgid "Specify here the packages impacted by the request :"
-msgstr ""
+msgstr "Spécifier ici les paquets impacté par la requête :"
 
 #: app/controllers/demandes_controller.rb:147 app/views/account/_menu.rhtml:21
 #: app/views/bienvenue/admin.rhtml:49 app/views/demandes/_packages.rhtml:9
@@ -197,14 +193,12 @@ msgid "Correction"
 msgstr "Correction"
 
 #: app/controllers/demandes_controller.rb:256
-#, fuzzy
 msgid "The request has been update successfully."
-msgstr "Le logiciel %s a été mis à jour avec succès."
+msgstr "La demande %s a bien été mise à jour."
 
 #: app/controllers/demandes_controller.rb:275
-#, fuzzy
 msgid "The request is correctly assigned"
-msgstr "Temps de correction"
+msgstr "La demande a bien été assignée"
 
 #: app/controllers/demandes_controller.rb:279
 #, fuzzy
@@ -2776,14 +2770,12 @@ msgid "Archive"
 msgstr "Actif"
 
 #: app/views/binaires/edit.rhtml:1
-#, fuzzy
 msgid "Edition of this binary"
-msgstr "Modifiez l'url"
+msgstr "Édition de ce binaire"
 
 #: app/views/binaires/new.rhtml:1
-#, fuzzy
 msgid "New binary package"
-msgstr "Pacquet binaire"
+msgstr "Nouveau Paquet binaire"
 
 #: app/views/binaires/show.rhtml:1 app/views/contributions/list.rhtml:1
 #: app/views/contributions/show.rhtml:1
@@ -2791,48 +2783,40 @@ msgid "Home"
 msgstr "Accueil"
 
 #: app/views/binaires/show.rhtml:7
-#, fuzzy
 msgid "Binary package"
-msgstr "Pacquet binaire"
+msgstr "Paquet binaire"
 
 #: app/views/binaires/show.rhtml:13 app/views/binaires/index.rhtml:6
-#, fuzzy
 msgid "Source"
 msgstr "Source"
 
 #: app/views/binaires/show.rhtml:16
-#, fuzzy
 msgid "Release"
-msgstr "rôles"
+msgstr "Release"
 
 #: app/views/binaires/show.rhtml:21
-#, fuzzy
 msgid "This package can be downloaded"
-msgstr "Le logiciel %s a été effacé avec succès"
+msgstr "Ce paquet peut être téléchargé"
 
 #: app/views/binaires/show.rhtml:27
 msgid "This package contains"
-msgstr ""
+msgstr "Ce paquet contient"
 
 #: app/views/binaires/show.rhtml:27
-#, fuzzy
 msgid "file"
 msgstr "Fichier"
 
 #: app/views/binaires/index.rhtml:1
-#, fuzzy
 msgid "List of binary packages"
-msgstr "Liste des paquets"
+msgstr "Liste des paquets binaires"
 
 #: app/views/binaires/index.rhtml:3
-#, fuzzy
 msgid "a binary archive"
-msgstr "Privé"
+msgstr "une archive binaire"
 
 #: app/views/binaires/index.rhtml:6 app/views/demandes/_form_binaires.rhtml:9
-#, fuzzy
 msgid "Binary"
-msgstr "Binaires"
+msgstr "Binaire"
 
 #: app/views/clients/index.rhtml:24
 msgid "ajouter un logo"
@@ -2962,9 +2946,8 @@ msgid "Your request impacts %s"
 msgstr "Demandes en cours"
 
 #: app/views/demandes/_cns.rhtml:7
-#, fuzzy
 msgid "source package"
-msgstr "Pacquets source"
+msgstr "Paquet source"
 
 #: app/views/demandes/_comment_form.rhtml:5
 #, fuzzy
@@ -3045,9 +3028,8 @@ msgid "Detailed description"
 msgstr "Description"
 
 #: app/views/demandes/_history.rhtml:7
-#, fuzzy
 msgid "Change(s)"
-msgstr "Pacquet(s)"
+msgstr "Changement(s)"
 
 #: app/views/demandes/_history.rhtml:18
 msgid "The request has no more <b/>person in charge</b>"
@@ -3340,11 +3322,11 @@ msgstr "Technologie"
 
 #: app/views/logiciels/_softwares_info.rhtml:52
 msgid "Source packages"
-msgstr "Pacquets source"
+msgstr "Paquets source"
 
 #: app/views/logiciels/_softwares_info.rhtml:53
 msgid "Binary packages"
-msgstr "Pacquet binaire"
+msgstr "Paquet binaire"
 
 #: app/views/logiciels/_softwares_list.rhtml:3
 msgid "a new software"
@@ -3357,7 +3339,7 @@ msgstr "Technologie(s)"
 #: app/views/logiciels/_softwares_list.rhtml:7
 #: app/views/logiciels/show.rhtml:48
 msgid "Package(s)"
-msgstr "Pacquet(s)"
+msgstr "Paquet(s)"
 
 #: app/views/logiciels/edit.rhtml:1
 msgid "Edit a software"
