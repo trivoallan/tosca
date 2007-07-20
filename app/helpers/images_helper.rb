@@ -1,21 +1,21 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-# This helpers is here to put in cache most of images 
+# This helpers is here to put in cache most of images
 # urls generation. The images do not moves after the
 # web server is launched, so there are computed only the
 # first time one needs it and saved in class variables.
-# 
+#
 # You need to restart server in order to reinitialize them
 # but you don't need to recompute them each time you want
 # to display a picture.
-# 
+#
 # All image_* follow this scheme :
 #   @@view = nil
 #   def image_view
 #     @@view ||= image_tag('icons/b_view.png', image_options('Consulter', '15x15'))
 #   end
-# 
+#
 module ImagesHelper
 
   # TODO : utiliser image_options (cf image_delete pour exemple)
@@ -74,7 +74,7 @@ module ImagesHelper
   @@home = nil
   def image_home
     desc = _("Home page")
-    @@home ||= image_tag("home.gif", image_options(desc, '17x18')) 
+    @@home ||= image_tag("home.gif", image_options(desc, '17x18'))
   end
 
   @@back = nil
@@ -86,7 +86,7 @@ module ImagesHelper
   @@first_page = nil
   def image_first_page
     desc = _("First page")
-    @@first_page ||= image_tag("first_page.png", image_options(desc, '14x14')) 
+    @@first_page ||= image_tag("first_page.png", image_options(desc, '14x14'))
   end
 
   @@previous_page = nil
@@ -156,12 +156,12 @@ module ImagesHelper
     @@logo_linagora ||= image_tag('logo_linagora.gif', image_options(desc, '176x44'))
   end
 
-  @@image_favicon_png = nil 
+  @@image_favicon_png = nil
   def image_favicon_png
     @@image_favicon_png ||= image_path("favicon.png")
   end
 
-  @@image_favicon_ico = nil 
+  @@image_favicon_ico = nil
   def image_favicon_ico
     @@image_favicon_ico ||= image_path("favicon.ico")
   end
@@ -211,7 +211,7 @@ module ImagesHelper
   end
 
 
-  @@date_opt = { :alt => _("Choose a date") :size => '16x16', 
+  @@date_opt = { :alt => _("Choose a date"), :size => '16x16',
     :title => _("Select a date"),
     :onmouseover => "this.className='calendar_over';", :class => 'calendar_out',
     :onmouseout => "this.className='calendar_out';", :style => 'cursor: pointer;'
@@ -232,14 +232,14 @@ module ImagesHelper
     if result.nil?
       desc = (d.respond_to?(:severites_nom) ? d.severites_nom : d.severite.nom)
       file_name = "severite_#{d.severite_id}.gif"
-      @@images_severite[d.severite_id] = image_tag(file_name, :title => 
+      @@images_severite[d.severite_id] = image_tag(file_name, :title =>
                                                    desc, :alt => desc)
       result = @@images_severite[d.severite_id]
     end
     result
   end
 
-  # used to generate js for calendar. It uses an array of 2 arguments. See 
+  # used to generate js for calendar. It uses an array of 2 arguments. See
   # link:"http://www.dynarch.com/projects/calendar/"
   #
   # first args : id of input field
