@@ -1,4 +1,4 @@
-<h1>Modifier la demande <%= @demande.id %>(administration)</h1>
+<h1><%= _("Modifier la demande %s (administration")) % @demande.id %></h1>
 
 
 <% form_tag  ( demande_path(@demande.id), {:method => :put},
