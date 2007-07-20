@@ -21,6 +21,7 @@ module DemandesHelper
     link_to text, comment_demande_url(:id => demande.id)
   end
 
+
   # Link to the inline help to post a request
   def public_link_to_help_new_request
     public_link_to('Déclaration d\'une demande',
@@ -177,7 +178,7 @@ module DemandesHelper
   # TODO : beaucoup trop de copier coller, c'est honteux !
   # TODO/MLO : me taper sur les doigts et faire une version propre
   # begining of factorisation in logiciels_helper
-  AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(:url => '../demandes/index')
+  AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(:url => '../demandes')
   def remote_link_to_active_request
     js_call = "document.forms['filters'].active.value=1; #{remote_function(AJAX_CALL)}"
     link_to_function(_('active requests'), js_call,
@@ -198,7 +199,7 @@ module DemandesHelper
 
   #usage : <tr <%= tr_attributes("../demandes/comment/#{demand.id}")%> >
   def tr_attributes(href)
-   return "class=\"#{cycle('pair', 'impair')}\" " <<
+    "class=\"#{cycle('pair', 'impair')}\" " <<
       "onclick=\"window.location.href='#{href}'\""
   end
 
