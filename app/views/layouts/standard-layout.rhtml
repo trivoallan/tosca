@@ -29,9 +29,6 @@
     public_link_to_contributions,
     public_link_to_about ]) %>
   <% #TODO : formulaire de login en haut ? %>
-  <% #@@links ||= build_simple_menu([
-      #  public_link_to(_("S'identifier"), login',
-       #      :controller => 'account')], :class => 'account_menu') %>
   <% @@links ||= build_simple_menu([
         link_to_redbox(_("Login"), 'login')], :class => 'account_menu') %>
   <% user = session[:user] %>

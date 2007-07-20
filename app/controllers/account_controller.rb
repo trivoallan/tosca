@@ -49,8 +49,8 @@ class AccountController < ApplicationController
                                                    params['user_password'],
                                                    params['user_crypt'])
           set_sessions
-          flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") % session[:user].titre,session[:user].nom.gsub(' ', '&nbsp;')
-          # flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
+          flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") % 
+            [ session[:user].titre, session[:user].nom.gsub(' ', '&nbsp;') ]
           redirect_to_home
         else
           flash.now[:warn]  = _("Connexion failure")
@@ -108,7 +108,7 @@ class AccountController < ApplicationController
         client = Client.find(params[:client][:id])
         flash[:notice] = _('Record successfully created, don\'t forget to vérify his profil<br />')
         @identifiant.create_person(client)
-        flash[:notice] += (@identifiant.client ?
+        flash[:notice] << (@identifiant.client ?
                            _('Recipient') : _('Engineer ') << _(' associate created'))
         # welcome mail
         options = { :identifiant => @identifiant, :controller => self,
@@ -266,8 +266,8 @@ private
   def set_account_links
     render_to_string :inline => <<-EOF
       <% infos = []
-         infos << link_to_edit(session[:user])
-         infos << link_to('Déconnexion', logout_accounts_url, :method => :post)
+         infos << link_to_modify_account(session[:user])
+         infos << link_to(_('Logout'), logout_accounts_url, :method => :post)
       %>
       <%= build_simple_menu(infos.reverse, :class => 'account_menu') if session[:user] %>
     EOF
