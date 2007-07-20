@@ -1,8 +1,8 @@
-<h1>Liste des images</h1>
+<h1><%= _("List of the images") %></h1>
 
-<%= show_pages_links(@image_pages, 'une image') %>
+<%= show_pages_links(@image_pages, _("an image")) %>
 
-<% titres = ['Formatté','Description']%>
+<% titres = [_("Formatted"), _("Description")]%>
 <%= show_table(@images, Image, titres) { |p|
   result = ''
   result << "<td>#{image_tag url_for_file_column(p, 'image', 'thumb')}</td>"
@@ -10,7 +10,4 @@
   result << "#{link_to_actions_table p}"
 }%>
 
-<%= show_pages_links(@image_pages, 'une image') %>
-
-
-
+<%= show_pages_links(@image_pages, _("an image")) %>
