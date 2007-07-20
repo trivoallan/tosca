@@ -46,11 +46,15 @@ class ExportController < ApplicationController
 
   # return the contents of identifiants in a table in ODS format
   # with Ruport
-  def identifiants_ods
-    compute_identifiants( :ods)
-  end
-  def identifiants_csv
-    compute_identifiants( :csv)
+  def identifiants
+    respond_to do |format|
+      format.html { redirect_to identifiants_path }
+      format.xml { 
+        # TODO : make an xml export : a finder + 
+        #  render :xml => @requests.to_xml should be enough) 
+      }
+      format.ods { compute_identifiants(:ods) }
+    end
   end
   def compute_identifiants(type)
     options = { :order => 'identifiants.login', :include => 
@@ -72,8 +76,15 @@ class ExportController < ApplicationController
   
 
   # with Ruport:
-  def appels_ods
-    compute_appels(:ods)
+  def appels
+    respond_to do |format|
+      format.html { redirect_to appels_path }
+      format.xml { 
+        # TODO : make an xml export : a finder + 
+        #  render :xml => @requests.to_xml should be enough) 
+      }
+      format.ods { compute_appels(:ods) }
+    end
   end
   def compute_appels(type)
     columns= ['contrat_nom', 'ingenieur_nom', 'beneficiaire_nom']
@@ -187,7 +198,7 @@ class ExportController < ApplicationController
   end
 
   #export the comex table in ods
-  def comex_ods
+  def comex
     clients = flash[:clients]
     requests= flash[:requests]
     total = flash[:total]
@@ -231,6 +242,7 @@ class ExportController < ApplicationController
     flash[:requests]= flash[:requests]
     flash[:total]= flash[:total]
   end
+  private
   def repeat4times( row, element, decalage)
     4.times do |i|
       row << element[i+decalage]

@@ -8,13 +8,13 @@ module ExportHelper
   end
 
   def appels_export_images
-    export_link appels_ods_export_url
+    export_link formatted_appels_export_path(:ods)
   end
   def identifiants_export_link
-    export_link identifiants_ods_export_url
+    export_link formatted_identifiants_export_path(:ods)
   end
   def comex_export_link
-    export_link comex_ods_export_url
+    export_link formatted_comex_export_path(:ods)
   end
   def contributions_export_link
     export_link formatted_contributions_export_path(:ods)

@@ -258,6 +258,6 @@ module ReportingHelper
       items << elt.nom
       items << '</option>'
     end
-    return '<select id=\'clients\' multiple=\'multiple\' name=\'clients[]\' size=' << number_items.to_s << '>' <<  items << '</select>'
+    return '<select id=\'clients\' multiple=\'multiple\' name=\'clients[]\' size="' << number_items.to_s << '">' <<  items << '</select>'
   end
 end

@@ -47,7 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('acces', %w(refuse))
   map.without_orm('export', %w(demandes_ods appels_ods identifiants_ods contributions_ods comex_ods) )
 
-  map.formatted_export(%w(requests))
+  map.formatted_export(%w(requests contributions identifiants appels comex))
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée

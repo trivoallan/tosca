@@ -267,7 +267,7 @@ module ApplicationHelper
       "<div id=\"information_notice\" class=\"information notice\">
          <div class=\"close_information\" onclick=\"Element.hide('information_notice')\">" + 
          image_hide_notice << "</div>
-         <p>" << flash[:notice] << "</p>  
+         <p>" << flash[:notice].inspect << "</p>  
        </div>"
   end
 
