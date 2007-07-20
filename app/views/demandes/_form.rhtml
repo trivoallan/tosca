@@ -40,7 +40,7 @@
 <tr>
   <td><p><label for="demande_socle">Système concerné</label></p></td>
   <td><%= select(:demande, :socle_id,
-	  @socles.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td>
+                  @socles.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td>
 </tr>
 <tr>
   <td><p><label for="demande_logiciel">Logiciel concerné</label></p></td>
@@ -49,12 +49,12 @@
 <tr>
   <td><p><label for="demande_typedemande">Type de la demande</label></p></td>
   <td><%= select(:demande, :typedemande_id,
-	  @typedemandes.collect{|l| [ l.nom, l.id]}) %></td>
+                  @typedemandes.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
 <tr>
   <td><p><label for="demande_severite">Sévérité de la demande</label></p></td>
   <td><%= select(:demande, :severite_id,
-	  @severites.collect{|l| [ l.nom, l.id]}) %></td>
+                  @severites.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
 <tr><td colspan="2"><hr /></td></tr>
 <tr>

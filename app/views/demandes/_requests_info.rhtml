@@ -3,9 +3,8 @@
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
-<% form_remote_tag( options.dup.update(:html => { 
+<% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
-
 
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
@@ -16,8 +15,8 @@
 <div class="menu_title" onclick="Element.toggle('menu_actions')">>
 <%=_('Actions')%></div>
 <ul class="menu" id="menu_actions">
- <li><%= link_to 'Déposer une demande', new_demande_path %></li>
- <li><%= link_to 'Rapport d\'activité', general_reporting_path %></li>
+ <li><%= link_to _("Submit a request"), new_demande_path %></li>
+ <li><%= link_to _("Activity report"), general_reporting_path %></li>
  <li><%= requests_export_link %></li>
 </ul>
 
@@ -50,8 +49,6 @@
   <li><%= remote_link_to_active_request %></li>
   <li><%= remote_link_to_dead_request %></li>
 </ul>
-
-
 
 <% end %>
 

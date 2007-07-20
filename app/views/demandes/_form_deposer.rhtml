@@ -2,24 +2,24 @@
 <%# = error_messages_for 'demande' %>
 
 <% if @ingenieur %>
- <p><label>Client : </label>
+ <p><label><%= _("Client :") %></label>
  <%= select('fake', 'client_id',
-	@clients.collect{|l| [ l.nom, l.id]}) %>
+            @clients.collect{|l| [ l.nom, l.id]}) %>
  </p>
 <% end %>
 
 <%= render :partial => 'form_client' %><br />
 
-<p><label>Paquets supportés pour <%= @demande.logiciel.nom if @demande.logiciel %> : </label>
+<p><label><%= _("Packages supported for  %s :") % @demande.logiciel.nom if @demande.logiciel %></label>
 <div class="bloc_scroll">
-<%= render :partial => 'form_binaires' %>
+  <%= render :partial => 'form_binaires' %>
 </div>
 </p>
 
-<p><label for="demande_resume">Resumé</label><br/>
+<p><label for="demande_resume"><%= _("Summary") %></label><br/>
 <%= text_field 'demande', 'resume', "size" => 40 %></p>
 
-<p><label for="demande_description">Description détaillée</label><br />
+<p><label for="demande_description"><%= _("Detailed description") %></label><br />
 <%= text_area 'demande', 'description', "cols" => 45, "rows" => 10 %></p>
 
 </div>

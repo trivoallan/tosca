@@ -8,23 +8,21 @@
 <% commentaires.each do |commentaire| %>
  <% options = { :controller => 'commentaires', :id => commentaire } %>
  <% id = commentaire.identifiant  %>
- <% #style au choix : "beau" ou "moche" %>
-
  <table class="commentaire">
    <tr <%= (commentaire.prive ? 'class="prive"' : 'class="public"' ) %>>
      <td class="infos" align="center">
-	<span class="small">Comment. <%= "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
+        <span class="small">Comment. <%= "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id %>
-	    <%= logo_08000 %>
+          <%= logo_08000 %>
         <% elsif id and id.beneficiaire %>
             <%= logo_img ||= logo_client(id.beneficiaire.client) %>
          <% end %><br/>
-	<%= id.nom if id %><br />
+        <%= id.nom if id %><br />
 
         <% if @ingenieur and not pretty_print %>
           <% options[:action] = 'edit' %>
          <%= link_to(image_edit, options, html_options) %>&nbsp;
-          <%  futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %>
+          <% futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %>
           <% options[:action] = 'changer_etat' %>
           <% limage = (commentaire.prive ? image_public : image_private) %>
          <%= link_to(limage, options, html_options) %>&nbsp;
