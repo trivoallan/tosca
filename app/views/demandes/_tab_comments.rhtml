@@ -11,7 +11,7 @@
  <table class="commentaire">
    <tr <%= (commentaire.prive ? 'class="prive"' : 'class="public"' ) %>>
      <td class="infos" align="center">
-        <span class="small">Comment. <%= "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
+        <span class="small"><%= _("Comment %s") % "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id %>
           <%= logo_08000 %>
         <% elsif id and id.beneficiaire %>
@@ -27,7 +27,7 @@
           <% limage = (commentaire.prive ? image_public : image_private) %>
          <%= link_to(limage, options, html_options) %>&nbsp;
           <% options[:action] = 'destroy' %>
-          <% html_options[:confirm] = "Voulez-vous vraiment supprimer le commentaire #{commentaire.id} ?" %>
+          <% html_options[:confirm] = _("Are you sure you want to delete the comment %s ?") % commentaire.id %>
          <%= link_to(image_delete, options, html_options) %>&nbsp;
          <br />
         <% end %>

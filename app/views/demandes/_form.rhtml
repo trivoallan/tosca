@@ -16,12 +16,12 @@
 </tr>
 <% end %>
 <tr>
-  <td colspan="2"><p><label for="demande_resume">Intitulé</label><br/>
+  <td colspan="2"><p><label for="demande_resume"><%= _("Label") %></label><br/>
     <%= text_field :demande, :resume, :size => 60 %></p></td>
 </tr>
 <tr><td colspan="2"><hr /></td></tr>
 <tr>
-  <td><p><label for="demande_beneficiaire">Bénéficiaire</label></p></td>
+  <td><p><label for="demande_beneficiaire"><%= _("Recipient") %></label></p></td>
   <td><select id="demande_beneficiaire_id" name="demande[beneficiaire_id]">
         <%= option_groups_from_collection_for_select(@clients, "beneficiaires",
             "nom", "id", "nom", @demande.beneficiaire_id ) %>
@@ -29,30 +29,30 @@
 </tr>
 <% if @ingenieurs %>
 <tr>
-  <td><p><label for="demande_ingenieur">Ingénieur assigné à la demande</label></p></td>
+  <td><p><label for="demande_ingenieur"><%= _("Engineer assigned to the request") %></label></p></td>
   <td><%= select_empty(@ingenieurs, @demande.ingenieur_id, 'demande[ingenieur_id]') %></td>
 </tr>
 <tr>
-  <td><p><label for="demande_mail_cc">Mails associés à la demande <br/>séparé par des virgules ','</label></p></td>
+  <td><p><label for="demande_mail_cc"><%= _("E-mails associated with the request<br/>seperate by commas %s") % "','" %></label></p></td>
   <td><%= text_field :demande, :mail_cc %></td>
 </tr>
 <% end %>
 <tr>
-  <td><p><label for="demande_socle">Système concerné</label></p></td>
+  <td><p><label for="demande_socle"><%= _("System") %></label></p></td>
   <td><%= select(:demande, :socle_id,
                   @socles.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td>
 </tr>
 <tr>
-  <td><p><label for="demande_logiciel">Logiciel concerné</label></p></td>
+  <td><p><label for="demande_logiciel"><%= _("Software") %></label></p></td>
   <td><%= select_empty(@logiciels, @demande.logiciel_id, 'demande[logiciel_id]')%></td>
 </tr>
 <tr>
-  <td><p><label for="demande_typedemande">Type de la demande</label></p></td>
+  <td><p><label for="demande_typedemande"><%= _("Type of the request") %></label></p></td>
   <td><%= select(:demande, :typedemande_id,
                   @typedemandes.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
 <tr>
-  <td><p><label for="demande_severite">Sévérité de la demande</label></p></td>
+  <td><p><label for="demande_severite"><%= _("Severity of the request") %></label></p></td>
   <td><%= select(:demande, :severite_id,
                   @severites.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
@@ -81,7 +81,7 @@
 </td><td valign="top">
 
 <table><% #colonne droite %>
-<tr><td><p><label for="demande_description">Description détaillée</label><br />
+<tr><td><p><label for="demande_description"><%= _("Detailed description") %></label><br />
    <%= text_area 'demande', 'description', :cols => 70, :rows =>22 %></p></td>
 </tr>
 </table>
@@ -90,8 +90,7 @@
 
 </table>
 <% if controller.action_name == "new" %>
-<% #TODO : Mettre un partial de commentaire pour la première pièce jointe %>
-  <label for="piecejointe_file">Adjoindre un fichier :   </label>
+  <label for="piecejointe_file"><%= _("Add a file") + " :" %></label>
   <%= file_column_field 'piecejointe', 'file', :size =>  100 %>
   <br /><br /><br />
 <% end %>
