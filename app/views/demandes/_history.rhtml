@@ -3,8 +3,8 @@
 <% old_statut_id, old_ingenieur_id = nil, nil %>
 <table>
   <tr>
-    <th>Date</th>
-    <th>Changement(s)</th>
+    <th><%= _("Date") %></th>
+    <th><%= _("Change(s)") %></th>
   </tr>
 
   <% @demande.versions.each_index do |i| %>
@@ -15,16 +15,16 @@
       <td>
         <% if old_ingenieur_id != demande.ingenieur_id %>
           <% if demande.ingenieur_id.nil? %>
-            La demande n'a plus de <b>responsable</b>
+            <%= _("The request has no more <b/>person in charge</b>") %>
           <% else %>
             <% ingenieur = Ingenieur.find(demande.ingenieur_id) %>
-            Le <b>responsable</b> de votre demande est devenu 
+            <%= _("The <b>person in charge</b> of your request now is") %>
             <b><%= ingenieur.nom %></b><br />
           <% end %>
         <% end %>
         <% if old_statut_id != demande.statut_id %>
           <% statut = Statut.find(demande.statut_id) %>
-          Le <b>statut</b> de votre demande est devenu <b><%= statut.nom %></b>
+          <%= _("The <b>status</b> of your request is now <b>%s</b>") % statut.nom%>
         <% end %>
       </td>
     </tr>

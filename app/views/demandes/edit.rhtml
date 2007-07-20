@@ -1,10 +1,10 @@
-<h1><%= _("Modifier la demande %s (administration")) % @demande.id %></h1>
+<h1><%= _("Update the request %s (administration")) % @demande.id %></h1>
 
 
 <% form_tag  ( demande_path(@demande.id), {:method => :put},
                      {:multipart => true, :id => 'demande_form', :name => 'demande_form' }) do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Modifier' %>
+  <%= submit_tag _("Update") %>
 <% end %>
 
 <%= link_to_back %>
