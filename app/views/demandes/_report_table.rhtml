@@ -7,23 +7,22 @@
   <% end %>
   </tr>
 
-
 <% for donnee in donnees %>
   <tr>
     <% for column in donnee.members %>
-     <td><%= display donnee, column %></td>
+      <td><%= display donnee, column %></td>
     <% end %>
   </tr>
 <% end %>
   <% cumul = @cumul.shift %>
   <% if cumul %>
-  <tr>
-   <td colspan='<%= donnees.first.members.size %>'><hr /></td>
-  </tr>
-  <tr>
-    <% cumul.each do |column| %>
-     <td><%= column %></td>
-    <% end %>
-  </tr>
+    <tr>
+      <td colspan='<%= donnees.first.members.size %>'><hr /></td>
+    </tr>
+    <tr>
+      <% cumul.each do |column| %>
+        <td><%= column %></td>
+      <% end %>
+    </tr>
   <% end %>
 </table>

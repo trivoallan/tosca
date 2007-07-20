@@ -1,65 +1,62 @@
 <script language="JavaScript" type="text/javascript">
 //<!--
 
-
-
 // apply tagOpen/tagClose to selection in textarea,
 // use sampleText instead of selection if there is none
 // copied and adapted from wikipedia
 function insertTags(tagOpen, tagClose, sampleText) {
-	var txtarea;
-    txtarea = document.getElementById('commentaire_corps');
+  var txtarea;
+  txtarea = document.getElementById('commentaire_corps');
 
-	// IE
-	if (document.selection  && !is_gecko) {
-		var theSelection = document.selection.createRange().text;
-		if (!theSelection) {
-			theSelection=sampleText;
-		}
-		txtarea.focus();
-		if (theSelection.charAt(theSelection.length - 1) == " ") { // exclude ending space char, if any
-			theSelection = theSelection.substring(0, theSelection.length - 1);
-			document.selection.createRange().text = tagOpen + theSelection + tagClose + " ";
-		} else {
-			document.selection.createRange().text = tagOpen + theSelection + tagClose;
-		}
-
-	// Mozilla
-	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
-		var replaced = false;
-		var startPos = txtarea.selectionStart;
-		var endPos = txtarea.selectionEnd;
-		if (endPos-startPos) {
-			replaced = true;
-		}
-		var scrollTop = txtarea.scrollTop;
-		var myText = (txtarea.value).substring(startPos, endPos);
-		if (!myText) {
-			myText=sampleText;
-		}
-		var subst;
-		if (myText.charAt(myText.length - 1) == " ") { // exclude ending space char, if any
-			subst = tagOpen + myText.substring(0, (myText.length - 1)) + tagClose + " ";
-		} else {
-			subst = tagOpen + myText + tagClose;
-		}
-		txtarea.value = txtarea.value.substring(0, startPos) + subst +
-			txtarea.value.substring(endPos, txtarea.value.length);
-		txtarea.focus();
-		//set new selection
-		if (replaced) {
-			var cPos = startPos+(tagOpen.length+myText.length+tagClose.length);
-			txtarea.selectionStart = cPos;
-			txtarea.selectionEnd = cPos;
-		} else {
-			txtarea.selectionStart = startPos+tagOpen.length;
-			txtarea.selectionEnd = startPos+tagOpen.length+myText.length;
-		}
-		txtarea.scrollTop = scrollTop;
-	}
-	if (txtarea.createTextRange) {
-		txtarea.caretPos = document.selection.createRange().duplicate();
-	}
+  // IE
+  if (document.selection  && !is_gecko) {
+    var theSelection = document.selection.createRange().text;
+    if (!theSelection) {
+      theSelection = sampleText;
+    }
+    txtarea.focus();
+    if (theSelection.charAt(theSelection.length - 1) == " ") { // exclude ending space char, if any
+      theSelection = theSelection.substring(0, theSelection.length - 1);
+      document.selection.createRange().text = tagOpen + theSelection + tagClose + " ";
+    } else {
+      document.selection.createRange().text = tagOpen + theSelection + tagClose;
+    }
+  // Mozilla
+  } else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
+    var replaced = false;
+    var startPos = txtarea.selectionStart;
+    var endPos = txtarea.selectionEnd;
+    if (endPos-startPos) {
+      replaced = true;
+    }
+    var scrollTop = txtarea.scrollTop;
+    var myText = (txtarea.value).substring(startPos, endPos);
+    if (!myText) {
+      myText=sampleText;
+    }
+    var subst;
+    if (myText.charAt(myText.length - 1) == " ") { // exclude ending space char, if any
+      subst = tagOpen + myText.substring(0, (myText.length - 1)) + tagClose + " ";
+    } else {
+      subst = tagOpen + myText + tagClose;
+    }
+    txtarea.value = txtarea.value.substring(0, startPos) + subst +
+            txtarea.value.substring(endPos, txtarea.value.length);
+    txtarea.focus();
+    //set new selection
+    if (replaced) {
+      var cPos = startPos+(tagOpen.length+myText.length+tagClose.length);
+      txtarea.selectionStart = cPos;
+      txtarea.selectionEnd = cPos;
+    } else {
+      txtarea.selectionStart = startPos+tagOpen.length;
+      txtarea.selectionEnd = startPos+tagOpen.length+myText.length;
+    }
+    txtarea.scrollTop = scrollTop;
+  }
+  if (txtarea.createTextRange) {
+    txtarea.caretPos = document.selection.createRange().duplicate();
+  }
 }
 
 
@@ -68,10 +65,10 @@ function addTBBtn(tbTR, id, title, onclick, x) {
   var tbTD = tbTR.insertCell(-1);
   tbTD.innerHTML = '<img class="RTE_btn_unsel" style="background-position: 0px -' + x + 
                    'px; background-image: url(/images/toolbar.gif);" ' +
-  			       ' title="' + title + '" onmousedown="' + onclick + '; return false" ' +
-  			       ' unselectable=on ondragstart="return false" id=' + id +
-  			       ' src="/images/blankdot.gif" height=16>';
-  return x + 18;  				  
+                   ' title="' + title + '" onmousedown="' + onclick + '; return false" ' +
+                   ' unselectable=on ondragstart="return false" id=' + id +
+                   ' src="/images/blankdot.gif" height=16>';
+  return x + 18;
 }
 
 function addTBBtnHTML(tbTR, html) {
@@ -80,8 +77,8 @@ function addTBBtnHTML(tbTR, html) {
   tbTD.className = "app";
   return tbTD;
 }
-function InitToolbar() {
 
+function InitToolbar() {
   var tbTR = document.getElementById("mainToolbarRow");
 
   var x = 0;
@@ -116,11 +113,9 @@ function InitToolbar() {
 
 }
 
-
-
 //-->
 </script>
-<table cellpadding="0" cellspacing="2" border="0">  
-  <tr id="mainToolbarRow"><td height="30"></td></tr>  
+<table cellpadding="0" cellspacing="2" border="0">
+  <tr id="mainToolbarRow"><td height="30"></td></tr>
 </table>
 <script type="text/javascript">InitToolbar();</script>

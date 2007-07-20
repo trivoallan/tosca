@@ -1,6 +1,6 @@
 <div id='demande_tab_content' class='demande_tab_content'>
- <% titres = ['Contrat','Responsable','Bénéficiaire','Appel',
-     'Fin de l\'appel','Durée'] %>
+ <% titres = [_("Contract"), _("Person in charge"), _("Recipient"), _("Phone call"),
+     _("End of phonecall"), _("Duration")] %>
  <%= show_table(@appels, Appel, titres) { |a|
   result = ''
   result << "<td>#{a.contrat.nom}</td>"

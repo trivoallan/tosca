@@ -1,26 +1,22 @@
 <%= error_messages_for 'commentaire' if @commentaire %>
 
-<!--[form:commentaire]-->
 <table width="100%"><tr>
   <td width="70%"><b><u>
-    <label for="commentaire_corps">Votre Réponse:</label>
+    <label for="commentaire_corps"><%= _("Your answer :") %></label>
     </u></b></td>
   <% if @ingenieur %>
   <td width="10%" align="right">
-    <label for="commentaire_prive">Privé ?</label>
+    <label for="commentaire_prive"><%= _("Private ?") %></label>
     <%= check_box("commentaire", "prive") %></td>
   <td width="20%" align="right">
-    <label for="demande_statut_id">Statut</label>
+    <label for="demande_statut_id"><%= _("Status") %></label>
     <%= select_empty(@statuts, nil, 'demande[statut_id]') %></td>
   <td><%= link_to_help('state') %></td>
   <% end %>
 </tr></table>
 
- <%= text_area 'commentaire', 'corps', :style => 'width:100%;', :rows => 15 %>
- <br/> <br/>
- <label for="piecejointe_file">Adjoindre un fichier : </label>
- <%= file_column_field 'piecejointe', 'file', :size => 59  %>
- <%= submit_tag 'Répondre' %>
-
-<!--[eoform:commentaire]-->
-
+<%= text_area 'commentaire', 'corps', :style => 'width:100%;', :rows => 15 %>
+<br/> <br/>
+<label for="piecejointe_file"><%= _("Add a file :") %></label>
+<%= file_column_field 'piecejointe', 'file', :size => 59  %>
+<%= submit_tag _("Answer") %>

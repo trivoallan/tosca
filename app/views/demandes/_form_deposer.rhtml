@@ -1,7 +1,6 @@
 <div id="demande">
 <%# = error_messages_for 'demande' %>
 
-<!--[form:demande]-->
 <% if @ingenieur %>
  <p><label>Client : </label>
  <%= select('fake', 'client_id',
@@ -27,5 +26,3 @@
 <% # on rafraichit sans cesse %>
 <%= observe_form 'demande_form', :url => deposer_demandes_path,
   :update => :demande %>
-
-<!--[eoform:demande]-->
