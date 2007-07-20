@@ -153,8 +153,6 @@ module DemandesHelper
     link_to _('Unlink the contribution') ,delete_contribution_demande_path(demand_id)
   end
 
-
-
   # Display a css bar for graphic representation of a ticket timeline
   # Options
   #  * (no options yet)
@@ -175,7 +173,6 @@ module DemandesHelper
     out << '  <div class="progress-restant tooltip" style="width: '+remains.to_s+'%;" title="'+remains.to_s+'%  restant"> </div>'
     out << '</span>'
   end
-
 
   # TODO : beaucoup trop de copier coller, c'est honteux !
   # TODO/MLO : me taper sur les doigts et faire une version propre
@@ -204,6 +201,5 @@ module DemandesHelper
    return "class=\"#{cycle('pair', 'impair')}\" " <<
       "onclick=\"window.location.href='#{href}'\""
   end
-
 
 end

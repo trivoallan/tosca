@@ -17,8 +17,8 @@ class DemandesController < ApplicationController
     # Specification of a filter f :
     special_cond = nil
     case params[:active]
-    when '1' : special_cond = Demande::EN_COURS
-    when '-1' : special_cond = Demande::TERMINEES
+      when '1' : special_cond = Demande::EN_COURS
+      when '-1' : special_cond = Demande::TERMINEES
     end
     # [ namespace, field, database field, operation ]
     conditions = Filters.build_conditions(params, [
@@ -74,10 +74,10 @@ class DemandesController < ApplicationController
     pj = params[:piecejointe]
     unless pj.blank?
       piecejointe = Piecejointe.create(:file => pj[:file])
-      commentaire = Commentaire.create(:corps => _('filed attached'), :piecejointe => piecejointe, :demande => @demande)
+      commentaire = Commentaire.create(:corps => _("file attached"), :piecejointe => piecejointe, :demande => @demande)
     end
     if @demande.save
-      flash[:notice] = _('Your request has been successfully submitted')
+      flash[:notice] = _("Your request has been successfully submitted")
       Notifier::deliver_demande_nouveau({:demande => @demande,
                                           :nom => @session[:user].nom,
                                           :controller => self}, flash)
@@ -87,7 +87,6 @@ class DemandesController < ApplicationController
       render :action => 'new'
     end
   end
-
 
   # Used when submitting new request, in order to select
   # packages which are subjects to SLA.
@@ -116,14 +115,14 @@ class DemandesController < ApplicationController
   # et virer ce vieux code legacy tout laid
   def ajax_update_delai
     demande = params[:demande]
-    return render_text('') unless request.xhr? and
+    return render(:nothing => true) unless request.xhr? and
       demande and (demande[:logiciel_id] != "")
     output = ''
 
     beneficiaire = Beneficiaire.find demande[:beneficiaire_id]
     contrat = Contrat.find :first, :conditions => ['client_id=?', beneficiaire.client.id ]
     unless contrat and beneficiaire
-      return render_text(' => pas de contrat, pas d&lsquo;ossa')
+      return render_text(_(" %s No Contract, No OSSA") % "=>")
     end
     logiciel = Logiciel.find(demande[:logiciel_id])
     # active = 1 : we only take supported packages.
@@ -140,21 +139,21 @@ class DemandesController < ApplicationController
 
     case paquets.size
     when 0
-      output << "<p>Nous ne disposons d'aucun paquet concernant " +
+      output << "<p>" + _("We do not have any packages concerning") +
         logiciel.nom  + "</p>"
     else
-      output << "<p>Précisez ici les paquets impactés par la demande :</p>"
+      output << "<p>" + _("Specify here the packages impacted by the request :") + "</p>"
       output << "<table>"
-      output << "<tr><td> <b>Paquets</b> </td>"
-      output << "<td> Contournement  </td><td> Correction  </td><tr>"
+      output << "<tr><td><b>" + _("Packages") + "</b></td>"
+      output << "<td>" + _("Workaround") + "</td><td>" + _("Correction") + "</td><tr>"
 
       paquets.each do |p|
         contrat = Contrat.find(p.contrat_id)
         engagement = contrat.engagements.find_by_typedemande_id_and_severite_id(typedemande.id, severite.id)
         output << "<tr><td>"
         #TODO : remplacer ce truc par un <%= check_box ... %>
-        output << "<input type=\"checkbox\" id=\"#{p.id}\""
-        output << " name=\"demande[paquet_ids][]\" value=\"#{p.id}\""
+        output << '<input type="checkbox" id="#{p.id}"'
+        output << ' name="demande[paquet_ids][]" value="#{p.id}"'
         output << ' checked="checked"' if selecteds and selecteds.include? p.id.to_s
         #output << ' disabled="disabled" ' unless p.active
         output << "> : "
@@ -254,7 +253,7 @@ class DemandesController < ApplicationController
     @demande = Demande.find(params[:id])
     @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.update_attributes(params[:demande])
-      flash[:notice] = _('The request has been update successfully.')
+      flash[:notice] = _("The request has been update successfully.")
       redirect_to comment_demande_path(@demande)
     else
       _form @beneficiaire
@@ -273,11 +272,11 @@ class DemandesController < ApplicationController
     @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
     @demande.save!
     if @demande.ingenieur
-      flash[:notice] = "La demande a été assignée correctement"
+      flash[:notice] = _("The request is correctly assigned")
       options = {:demande => @demande, :controller => self}
       Notifier::deliver_demande_assigner(options, flash)
     else
-      flash[:notice] = "La demande n'est plus assignée"
+      flash[:notice] = _("The request is no more assigned")
     end
     redirect_to_comment
   end
@@ -292,9 +291,9 @@ class DemandesController < ApplicationController
 
   def update_contribution( demand_id , contribution_id )
     if contribution_id == nil
-      flash_text = _('The demand has now no contribution')
+      flash_text = _("The demand has now no contribution")
     else
-      flash_text = _('This contribution is now linked')
+      flash_text = _("This contribution is now linked")
     end
     @demande = Demande.find(demand_id) unless @demande
     @demande.update_attributes!(:contribution_id => contribution_id)
@@ -307,7 +306,6 @@ class DemandesController < ApplicationController
     set_piecejointes(@demande.id)
     set_comments(@demande.id)
   end
-
 
   private
   def _panel
@@ -385,5 +383,3 @@ end
 # {:url => {:action => :ajax_update_paquets},
 #  :update => :demande_paquets,
 #  :with => "logiciel_id"} %>
-
-

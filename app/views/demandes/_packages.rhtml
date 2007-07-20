@@ -1,12 +1,12 @@
 <% if @paquets.size > 0 %>
-<p>Précisez ici les paquets impactés par la demande :</p>
+<p><%= _("Specify here the packages impacted by the request :") %></p>
 <table >
-  <tr><th colspan="2" align="center">Engagement</th><th colspan="2"></th></tr>
+  <tr><th colspan="2" align="center"><%= _("Commitment") %></th><th colspan="2"></th></tr>
   <tr>
-    <th> Contournement </th>
-    <th> Correction  </th>
-    <th> </th>
-    <th> Paquets </th>
+    <th><%= _("Workaround") %></th>
+    <th><%= _("Correction") %></th>
+    <th></th>
+    <th><%= _("Packages") %></th>
   </tr>
   <% selecteds = @demande[:paquet_ids] %>
   <% @paquets.each do |p| %>
