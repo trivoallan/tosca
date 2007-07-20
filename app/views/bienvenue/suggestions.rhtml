@@ -1,16 +1,16 @@
-<h1>Boîtes à idées</h1>
+<h1><%= _('Idea Box')%></h1>
 
-<p> Vous avez une idée pour améliorer nos services ? N'hésitez pas à remplir le formulaire ci-dessous !<br/>
-Chaque proposition sera étudiée avec beaucoup d'attention.</p>
+<p><%= _('Vous have an idea in order to improve our services ? Don\'t hesitate to fill in the form!<br />
+Every proposition will be consider with a lot of attention')%></p>
 
 <% form_tag suggestions_bienvenue_path do %>
 <table class="show">
   <tr>
     <td>
-      <h3>Vos suggestions sur notre service :</h3>
+      <h3><%=  _('Your suggestions on our service :')%></h3>
     </td>
     <td>
-      <h3>Vos suggestions sur notre outil :</h3>
+      <h3><%= _('Your suggestions on our tool : ')%></h3>
     </td>
   </tr>
   <tr>
@@ -22,6 +22,6 @@ Chaque proposition sera étudiée avec beaucoup d'attention.</p>
     </td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><%= submit_tag 'Envoyer' %></td>
+    <td colspan="2" align="center"><%= submit_tag _('Submit')%></td>
 </table>
 <% end %>

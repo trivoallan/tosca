@@ -1,7 +1,7 @@
 
 <small>
 
-  <%= link_to _('"Comment se passe le traitement d\'une demande ?"'),
+  <%= link_to _('"How are the request processing ?"'),
       deroulement_bienvenue_path if controller.action_name == 'declaration'  %>
 
   <br/>
@@ -12,7 +12,7 @@
   <%= link_to _('severity'), severites_bienvenue_path %> |
   <%= link_to _('type'), natures_bienvenue_path %> <br/>
 
-  <%= link_to _('"How to declare a demand ?"'), 
+  <%= link_to _('"How to submit a request ?"'), 
       declaration_bienvenue_path if controller.action_name != 'declaration'  %>
 
 </small>

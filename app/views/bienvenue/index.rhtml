@@ -1,7 +1,7 @@
 <% user = session[:user] %>
 <% connected = public_link_to(_('connected'), login_accounts_path) %>
 <table><tr><td rowspan="2"><%= logo_lstm %> </td><td><h2 class="spacer">Sommaire</h2></td></tr>
-  <tr><td><%= _('Welcome on management tool for 08000linux.')%></td></tr>
+  <tr><td><%= _('Welcome on the management tool for 08000linux.')%></td></tr>
 </table>
 
 <table class="sommaire"><tr><td>
@@ -16,16 +16,16 @@
           } %></p>
      <p><%= _("you can also %s.") % link_to(_("make a request"), new_demande_url) %></p>
   <% else %>
-    <p><%= html_wrap(_("You are not #{connected} you cannot have access to the request interface of our service"))%></p>
+    <p><%= html_wrap(_("You are not %s you cannot have access to the request interface of our service") % connected)%></p>
   <% end %>
  </div>
 
  <div class="sommaire show">
    <h3><%= _('Documents')%></h3>
   <% if user %>
-  <p><%= _("You can browse #{link_to('Your directory, select_documents_url')}. ")%>
+  <p><%= _('You can browse %s . ') % link_to(_('your directory'), select_documents_url)%>
   <%= _('You will find all the documents, which have been delivered by our service')%></p>
-  <p><%= _("You can alse consult you #{link_to('Activity report', general_reporting_url)} online.")%></p>
+  <p><%= _('You can also consult your %s online.') % link_to(_('Activity report'), general_reporting_url)%></p>
   <% else %>
     <p><%= _("When you are %s, you have access to an activity report") % connected %><br />
        <%= _("dinamicaly showin the activity of our service in real time.")%></p><br />
@@ -38,7 +38,7 @@
  <div class="sommaire show">
    <h3><%= _('Idea Box')%></h3>
    <p><%= _("You have an idea, which will improve our services ?<br />
-   Your comments and suggestions are welcome in #{link_to 'the idea box', 'suggestions'}") %></p>
+   Your comments and suggestions are welcome in %s") % link_to (_('the idea box'), suggestions_bienvenue_path) %></p>
  </div>
  <% end %>
 
@@ -49,14 +49,14 @@
    <h3><%= _('Offer')%></h3>
   <% client = @beneficiaire.client %>
   <table><tr><td rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>,
-    <%= _("You have access to one of our offers, which you can consult at every time the detail: #{link_to_my_client}")%></td></tr>
+    <%= _("You have access to one of our offers, which you can consult at every time the detail: %s") % link_to_my_client %></td></tr>
 <tr><td><%= _('You hope this tool wil give you an entire satisfaction.')%></ 
   </table>
   <% access_code = @beneficiaire.client.code_acces %>
   <% unless access_code.blank? %>
   <p><%= _('Your call number is')%>
   <b><%=Metadata::PREFIXE_TELEPHONE%>&nbsp;<%=Metadata::CODE_TELEPHONE %></b>,
-  <%= _("and your access code is #{access_code}")%></b></p>
+  <%= _("and your access code is %s") % access_code%></b></p>
   <% else %>
   <%= _('you don\'t have an access code')%>
   <% end %>

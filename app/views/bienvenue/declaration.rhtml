@@ -1,22 +1,24 @@
-<h1><%= _('Howto declare a demand')%></h1>
+<h1><%= _('Howto submit a request')%></h1>
 <br />
 <br />
 
-<div><%= _('You can declare a demand : ') %>
+<div><%= _('You can submit a request : ') %>
   <ul>
     <li><%= _('Either by phone on 08000 54689 (LINUX) : you will be asked for a key-code')%></li>
-    <li><%= _("Either on the dedicate #{link_to 'web page', new_demande_path}") %></li>
+    <li><%= _("Either on the dedicate %s") % link_to ( _('web page'), new_demande_path) %></li>
   </ul>
 </div>
 
-<p><%= _("The declaration consist to inform the cell on 08000linux about the #{link_to 'type', natures_bienvenue_path}, la #{link_to 'severity', severites_bienvenue_path} and the #{link_to 'software', logiciels_path} concerned by your request.") %></p>
+<p><%= _("The declaration consists to inform the cell on 08000linux about the %s, la %s and the %s concerned by your request.") %
+[link_to ('type', natures_bienvenue_path), link_to( _('severity'), severites_bienvenue_path), link_to( _('software'), logiciels_path)] %></p>
 <p><%= _('Next you can precise the summary and the description of your request.')%></p>
-<p><%= _("On the validation,the #{link_to 'status', statuts_bienvenue_path} become to <i>\"declared\"</i>")%></p>
+<p><%= _("On the validation,the %s become to <i>\"declared\"</i>") % link_to(_('status'), statuts_bienvenue_path)%></p>
 
 <br />
 
-<p><%= _("An engineer from 08000linux will call back <b>to one hour</b> ( See our #{ link_to 'commitment', engagements_bienvenue_path} ) and will asked you if necessary to precise your demand<")%></p>
-<p><%= _("At the end of the call, the #{link_to 'status', statut_bienvenue_path} from the demand will become <i>\#chek in\"</i>")%></p>
+<p><%= _("An engineer from 08000linux will call back <b>to one hour</b> ( See our %s ) and will asked you if necessary to precise your demand") %
+link_to (_('commitment'), engagements_bienvenue_path) %></p>
+<p><%= _("At the end of the call, the %s from the demand will become <i>\#chek in\"</i>") % link_to(_('status'), statut_bienvenue_path) %></p>
 
 <br />
 <br />
