@@ -61,6 +61,9 @@ ActionController::Routing::Routes.draw do |map|
   # Sample call :
   #   link_to _('..'), edit_account_path(:id => a.id)
   #   link_to _('..'), accounts_path()
+  # !!! CONVENTION !!!
+  # - It MUST be in alphabetical order -
+  # !!! CONVENTION !!!
   map.resources :accounts,
     :controller => "account",
     :member => { :devenir => :post },
@@ -72,9 +75,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :arches
   map.resources :beneficiaires
   map.resources :binaires
+  map.resources :changelogs
   map.resources :clients
   map.resources :competences
-#  map.resources :dependances, :collection => { :select => :get }
   map.resources :contrats
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get },
@@ -92,18 +95,18 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
   map.resources :groupes
+  map.resources :pictures
   map.resources :ingenieurs,  :collection => { :list => :get }
+  map.resources :jourferies
   map.resources :logiciels
-  map.resources :pages
   map.resources :machines
-  map.resources :changelogs
-  map.resources :typecontributions,  :collection => { :destroy => :get }
+  map.resources :pages
   map.resources :paquets
   map.resources :permissions
   map.resources :roles
   map.resources :socles
   map.resources :statuts
-  map.resources :jourferies
+  map.resources :typecontributions,  :collection => { :destroy => :get }
   map.resources :urllogiciels
   map.resources :urlreversements
 

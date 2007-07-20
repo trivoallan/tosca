@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
 
   def index
     @client_pages, @clients = paginate :clients, :per_page => 10,
-    :order => 'clients.nom', :include => [:image,:support]
+      :order => 'clients.nom', :include => [:image,:support]
   end
 
   def stats
@@ -30,7 +30,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(params[:client])
     if @client.save
-      flash[:notice] = 'Client créé correctement.'
+      flash[:notice] = _('Client created successfully.')
       redirect_to clients_path
     else
       _form and render :action => 'new'
@@ -45,7 +45,7 @@ class ClientsController < ApplicationController
   def update
     @client = Client.find(params[:id])
     if @client.update_attributes(params[:client])
-      flash[:notice] = 'Client mis à jour.'
+      flash[:notice] = _('Client updated successfully.')
       redirect_to client_path(@client)
     else
       _form and render :action => 'edit'

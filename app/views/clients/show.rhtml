@@ -5,7 +5,7 @@
 <table class="show">
 <% for column in Client.content_columns %>
 <tr>
-  <td><b><%= column.human_name %>:</b></td>
+  <td><b><%= _(column.human_name) %>:</b></td>
   <% if column.name=='adresse'%>
     </tr><tr>
   <% end %>
