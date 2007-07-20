@@ -9,15 +9,15 @@
 <%= hidden_field_tag 'page', '1' %>
 
 <div class="menu_title" onclick="Element.toggle('menu_action')">
-> Action</div>
+  > <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
- <li><%= link_to 'Ajouter un utilisateur', signup_new_account_path %></li>
- <li><%= link_to 'Ajouter plusieurs utilisateurs', multiple_signup_new_account_path %></li>
- <li><%= link_to _("Export users"), identifiants_export_url %></li>
+ <li><%= link_to _('Add a user'), signup_new_account_path %></li>
+ <li><%= link_to _('Add several users'), multiple_signup_new_account_path %></li>
+ <li><%= identifiants_export_link %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_consultation')">
-> Consultation</div>
+  > <%= _('Consultation')%></div>
 <ul class="menu" id="menu_consultation">
  <li><%= link_to_beneficiaires %></li>
  <li><%= link_to_ingenieurs %></li>
@@ -25,23 +25,23 @@
 
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
-> Recherche</div>
+  > <%= _('Search ')%></div>
 <ul class="menu" id="menu_recherche">
- <li><b>Nom </b></li>
+  <li><b><%= _('Name')%></b></li>
  <li><%= text_field_with_auto_complete :identifiant, :nom, {}, :skip_style => true  %></li>
- <li><b>Client </b></li>
+ <li><b><%= _('Customer ')%></b></li>
  <li><%=select_filter(@clients, 'client')%></li>
- <li><b>Rôles </b></li>
+ <li><b><%= _('Roles ')%> </b></li>
  <li><%=select_filter(@roles, 'role')%></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
-> Périmètre</div>
+  > <%=_('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
- <li><b>Identifiants: </b><%=@count[:identifiants]%></li>
- <li><b>Bénéficiaires: </b><%=@count[:beneficiaires]%></li>
- <li><b>Ingénieurs: </b><%=@count[:ingenieurs]%></li>
- <li><b>Inconsistances: </b><%=(@count[:identifiants] -
+  <li><b><%= _('Logins: ')%> </b><%=@count[:identifiants]%></li>
+  <li><b><%= _('Recipients: ')%></b><%=@count[:beneficiaires]%></li>
+  <li><b><%= _('Engineers: ')%></b><%=@count[:ingenieurs]%></li>
+  <li><b><%= _('Thin consistencies: ')%></b><%=(@count[:identifiants] -
   (@count[:beneficiaires] + @count[:ingenieurs])).to_s %></li>
 </ul>
 

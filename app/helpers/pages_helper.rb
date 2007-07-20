@@ -13,7 +13,7 @@ module PagesHelper
   end
 
   def link_to_show(ar)
-    options = { :action => '', :id => ar.id }
+    options = { :action => 'show', :id => ar.id }
     link_to image_view, options, { :class => 'nobackground' }
   end
 

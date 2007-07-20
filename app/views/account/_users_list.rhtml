@@ -1,19 +1,20 @@
-<h1>Liste des utilisateurs <%= image_spinner %></h1>
+<h1><%= _('User list') %><%= image_spinner %></h1>
 
-<% links = show_pages_links(@user_pages, 'un nouvel utilisateur',
+<% links = show_pages_links(@user_pages, _('A new user'),
                      :url => '../account/index') %>
 <%= links %>
 <table>
   <tr>
-    <th>Identifiant</th>
-  <th><% for role in @roles %>
-    <small> [<%=role.nom%>] </small>
-  <% end %></th>
-    <th>Ingénieur</th>
-    <th>Bénéficiaire</th>
-    <th>Mail</th>
-    <th>Téléphone</th>
-
+    <th><%= _('login')%></th>
+    <th>
+      <% for role in @roles %>
+      <small> [<%=role.nom%>] </small>
+      <% end %>
+    </th>
+    <th><%= _('engineer')%></th>
+    <th><%= _('recipient')%></th>
+    <th><%= _('Email')%></th>
+    <th><%= _('phone')%></th>
   </tr>
 
 
@@ -33,7 +34,7 @@
            &nbsp;&nbsp;<input type="checkbox" id="<%=user.login + role.id.to_s%>" name="identifiant[role_ids][]" value="<%=role.id%>"
            <%if user.roles.include? role%> checked="checked" <%end%> />&nbsp;&nbsp;
          <% end %>
-         <input type="submit" value="Valider &#187;" class="primary"/>
+         <input type="submit" value=<%= _('"Submit"')%> class="primary"/>
       <% end %></td>
       <td><center><%= "X" if ingenieur %></center></td>
       <td><center><%= "X" if beneficiaire %></center></td>

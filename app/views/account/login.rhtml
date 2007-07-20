@@ -2,12 +2,12 @@
 <% form_tag login_accounts_url do %>
 <table class="sommaire show">
   <tr>
-    <td colspan="2"><h1>Identification</h1></td>
+  <td colspan="2"><h1><%= _('Identification')%></h1></td>
   </tr><tr>
-    <td><label for="user_login">Identifiant :</label></td>
+    <td><label for="user_login"><%= _('Login :')%></label></td>
     <td><input type="text" name="user_login" id="user_login" size="16" value="" /></td>
   </tr><tr>
-    <td><label for="user_password">Mot de passe :</label></td>
+    <td><label for="user_password"><%= _('Password :')%></label></td>
     <td><input type="password" name="user_password" id="user_password" size="16"/>
         <input type="hidden" name="user_crypt" id="user_crypt" size="24" value="false"/></td>
   </tr><tr>

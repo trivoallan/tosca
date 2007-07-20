@@ -5,41 +5,41 @@
     <%# menu[:titles] << link_to('Accueil',bienvenue_url) %>
     <% menu[:links] << [
         (link_to_edit session[:user]),
-        (link_to 'Plan', plan_bienvenue_path),
-        (link_to 'Déconnexion', logout_account_path),
+        (link_to _('Plan'), plan_bienvenue_path),
+        (link_to _('Disconnect'), logout_account_path),
         (link_to_about),
       ] %>
-    <% menu[:titles] << link_to('Demandes', demandes_path) %>
+    <% menu[:titles] << link_to( _('Request'), demandes_path) %>
     <% menu[:links] << [
-        (link_to 'Liste des demandes', demandes_path),
-        (link_to 'Déposer une demande', new_demande_path),
+        (link_to _('Request list'), demandes_path),
+        (link_to _('Submit a request'), new_demande_path),
         (link_to 'Appels', appels_path),
       ] %>
-    <% menu[:titles] << link_to('Logiciels', logiciels_path) %>
+    <% menu[:titles] << link_to( _('Software'), logiciels_path) %>
     <% menu[:links] << [
-        (link_to 'Logiciels', logiciels_path),
-        (link_to 'Paquets', paquets_path),
+        (link_to _('Softwares'), logiciels_path),
+        (link_to _('Packages'), paquets_path),
         (link_to_contributions),
       ] %>
-    <% menu[:titles] << link_to('Répertoire', select_documents_path) %>
+    <% menu[:titles] << link_to(i _('Directory'), select_documents_path) %>
     <% out_table = []
          Typedocument.find(:all).each {|t| out_table << (link_to_typedocument t)}
          menu[:links] << out_table
         %>
-    <% menu[:titles] << link_to('Utilisateurs', accounts_path) %>
+    <% menu[:titles] << link_to( _('Users'), accounts_path) %>
     <% menu[:links] << [
          (link_to_edit session[:user]),
-         (link_to 'Liste des utilisateurs', accounts_path),
-         (link_to 'Ajouter un utilisateur', signup_new_account_path),
-         (link_to 'Gestion des rôles', roles_path)
+         (link_to _('User list'), accounts_path),
+         (link_to _('Add a user'), signup_new_account_path),
+         (link_to _('Role management'), roles_path)
       ] %>
-    <% menu[:titles] << link_to('Clients', clients_path) %>
+    <% menu[:titles] << link_to( _('Customers'), clients_path) %>
     <% menu[:links] << [
         (link_to_my_client),
-        (link_to 'Clients', clients_path),
-        (link_to "Rapport d\'activité", general_reporting_path),
+        (link_to _('Customers'), clients_path),
+        (link_to _('Activity report'), general_reporting_path),
       ] %>
-    <% menu[:titles] << 'Rechercher :' %>
+    <% menu[:titles] << _('Search') %>
     <% menu[:links] << [] %>
 
     <%= build_menu(menu) if session[:user]%>

@@ -2,33 +2,33 @@
 
 <div title="Visualisation du compte" id="showform" class="form">
 
-<% compte = ( session[:user].id == @identifiant.id ? 'mon compte' :
-              "le compte de #{@identifiant.nom}" ) %>
+<% compte = ( session[:user].id == @identifiant.id ? _('My account') :
+              _('Account of %s') % @identifiant.nom ) %>
 
 <% role_titre, role_champs = nil, nil
    if @ingenieur
-     role_titre = 'Rôle'
+     role_titre = _('Role')
      role_champs = @identifiant.roles
    end
 
    fields = [
      [ '<hr/>', nil ],
-     [ 'Nom complet', "<label>#{@identifiant.nom}</label>" ],
-     [ 'Titre', "<label>#{@identifiant.titre}</label>" ],
-     [ 'Email', mail_to(@identifiant.email, @identifiant.email) ],
-     [ 'Téléphone', "<label>#{@identifiant.telephone}</label>" ],
+     [ _('Full name'), "<label>#{@identifiant.nom}</label>" ],
+     [ _('Title'), "<label>#{@identifiant.titre}</label>" ],
+     [ _('Email'), mail_to(@identifiant.email, @identifiant.email) ],
+     [ _('Phone'), "<label>#{@identifiant.telephone}</label>" ],
      [ '<hr/>', nil ],
-     [ 'Identifiant', "<label>#{@identifiant.login}</label>" ],
+     [ _('login'), "<label>#{@identifiant.login}</label>" ],
      [ '<hr/>', nil ],
      [ role_titre, role_champs ],
-     [ 'Informations :', nil ],
+     [ _('Informations :'), nil ],
      [  nil, "<p>#{indent @identifiant.informations}</p>" ]
    ]
 
 %>
 
-<h1>Consulter <%=compte%></h1>
+<h1><%= _('Consult')%> <%=compte%></h1>
 <%= show_table_form fields %>
 </div>
 <br/>
-<%= link_to_back 'Retour à la liste des comptes' %>
+<%= link_to_back _('Return to the account list') %>

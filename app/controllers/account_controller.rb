@@ -49,7 +49,7 @@ class AccountController < ApplicationController
                                                    params['user_password'],
                                                    params['user_crypt'])
           set_sessions
-          flash[:notice] = _("Bienvenue&nbsp;#{session[:user].titre}&nbsp;#{session[:user].nom.gsub(' ', '&nbsp;')}")
+          flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") % session[:user].titre,session[:user].nom.gsub(' ', '&nbsp;')
           # flash[:notice] << NO_JAVASCRIPT unless session[:javascript]
           redirect_to_home
         else
@@ -65,12 +65,12 @@ class AccountController < ApplicationController
       benef = Beneficiaire.find(params[:id])
       set_sessions benef.identifiant
     else
-      flash[:warn] = 'Vous n\'êtes pas autoriser à changer d\'identité'
+      flash[:warn] = _('Vous are not allowed to change your identity')
     end
     redirect_to_home
     return
   rescue ActiveRecord::RecordNotFound
-    flash[:warn] = 'Personne inexistante'
+    flash[:warn] = _('Person not found')
     redirect_to_home
   end
 
@@ -106,10 +106,10 @@ class AccountController < ApplicationController
       @identifiant = Identifiant.new(params['identifiant'])
       if @identifiant.save
         client = Client.find(params[:client][:id])
-        flash[:notice] = "Enregistrement réussi, n'oubliez pas de vérifier son profil<br />"
+        flash[:notice] = _('Record successfully created, don\'t forget to vérify his profil<br />')
         @identifiant.create_person(client)
         flash[:notice] += (@identifiant.client ?
-                           'Bénéficiaire' : 'Ingénieur ') << ' associé créé'
+                           _('Recipient') : _('Engineer ') << _(' associate created'))
         # welcome mail
         options = { :identifiant => @identifiant, :controller => self,
           :password => @identifiant.pwd }
@@ -128,8 +128,8 @@ class AccountController < ApplicationController
   end
 
   # Format du fichier CSV
-  COLUMNS = [ 'Nom complet', 'Titre', 'Email', 'Téléphone',
-              'Identifiant', 'Mot de passe', 'Informations' ]
+  COLUMNS = [ _('Full name'), _('Title'), _('Email'), _('Phone'),
+              _('Login'), _('Password'), _('Informations') ]
 
   # Bulk import users
   # TODO : fonction trop grosse.
@@ -141,18 +141,18 @@ class AccountController < ApplicationController
     case request.method
     when :post
       if(params['textarea_csv'].to_s.empty?)
-        flash.now[:warn] = 'Veuillez rentrer un texte sous format CSV'
+        flash.now[:warn] = _('Enter under CSV format please')
       end
       COLUMNS.each { |key|
         unless row.include? key
-          flash.now[:warn] = 'Le fichier CSV n\'est pas bien formé'
+          flash.now[:warn] = _('The CSV file isn\t well formed')
         end
       }
       if params[:identifiant].nil? or params[:identifiant][:client].nil?
-        flash.now[:warn] = 'Vous n\'avez pas spécifié de client'
+        flash.now[:warn] = _('You don\'t have specified a customer')
       end
       if params[:identifiant][:role_ids].nil?
-        flash.now[:warn] = 'Vous devez spécifier un rôle'
+        flash.now[:warn] = _('Vous must specify a role')
       end
 
       return unless flash.now[:warn] == ''
@@ -163,30 +163,30 @@ class AccountController < ApplicationController
                       { :col_sep => ";", :headers => true }) do |row|
         identifiant = Identifiant.new do |i|
            logger.debug(row.inspect)
-           i.nom = row['Nom Complet'].to_s
-           i.titre = row['Titre'].to_s
-           i.email = row['Email'].to_s
-           i.telephone = row['Téléphone'].to_s
-           i.login = row['Identifiant'].to_s
-           i.password = row['Mot de passe'].to_s
-           i.password_confirmation = row['Mot de passe'].to_s
-           i.informations = row['Informations'].to_s
+           i.nom = row[_('Full name')].to_s
+           i.titre = row[_('Title')].to_s
+           i.email = row[_('Email')].to_s
+           i.telephone = row[_('Phone')].to_s
+           i.login = row[_('Login')].to_s
+           i.password = row[_('Password')].to_s
+           i.password_confirmation = row[_('Password')].to_s
+           i.informations = row[_('Informations')].to_s
            i.client = params[:identifiant][:client]
         end
         identifiant.roles = roles
         if identifiant.save
           client = Client.find(params[:client][:id])
-          flash[:notice] += "L'utilisateur #{row['Nom Complet']} a bien été créé.<br/>"
+          flash[:notice] += _("The user %s have been successfully created.<br/>") % row[_('Full name')]
           identifiant.create_person(client)
-          flash[:notice] += (@identifiant.client ? 'Bénéficiaire' : 'Ingénieur ') +
-            ' associé créé'
+          flash[:notice] += (@identifiant.client ? _('Recipient') : _('Engineer ') +
+            _('Associate created') )
           options = { :identifiant => identifiant, :controller => self,
-            :password => row['Mot de passe'].to_s }
+            :password => row[_('Password')].to_s }
           Notifier::deliver_identifiant_nouveau(options, flash)
           flash[:notice] += '<br/>'
         else
-          flash.now[:warn] += "L'utilisateur #{identifiant.nom} n'a " +
-            'pas été créé.<br/>'
+          flash.now[:warn] += _('The user %s  has not been successfully created.<br /> ') %
+            identifiant.nom
         end
 
       end

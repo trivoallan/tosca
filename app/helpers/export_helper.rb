@@ -12,7 +12,7 @@ module ExportHelper
   def appels_export_images
     export_link appels_ods_export_url
   end
-  def identifiants_export_images
+  def identifiants_export_link
     export_link identifiants_ods_export_url
   end
   def comex_export_link
