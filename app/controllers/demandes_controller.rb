@@ -22,8 +22,7 @@ class DemandesController < ApplicationController
     end
     # [ namespace, field, database field, operation ]
     conditions = Filters.build_conditions(params, [
-       ['logiciel', 'nom', 'logiciels.nom', :like ],
-       ['demande', 'resume', 'demandes.resume', :like ],
+       ['filters', 'text', 'logiciels.nom', 'demandes.resume', :dual_like ],
        ['filters', 'client_id', 'beneficiaires.client_id', :equal ],
        ['filters', 'ingenieur_id', 'ingenieurs.id', :equal ],
        ['filters', 'typedemande_id', 'demandes.typedemande_id', :equal ],

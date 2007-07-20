@@ -24,7 +24,7 @@
 <%=_('Search')%></div>
 <ul class="menu" id="menu_recherche">
  <li><b><%=_('By word')%></b><br/>
-     <%= text_field :filter, :text %></li>
+     <%= text_field :filters, :text %></li>
  <% if @ingenieur %>
   <li><b><%=_('By client')%></b><br/>
       <%= select_filter(@clients, :client) %></li>

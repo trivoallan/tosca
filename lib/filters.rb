@@ -20,24 +20,36 @@ module Filters
   # you MUST use it, if you don't want to burn in hell during your seven next lives
   # special_conditions allows to put additional conditions to the filters.
   # it must be a string !
+  # TODO : rework this helper in order to avoid the :dual_like hacks.
   def self.build_conditions(params, filters, special_conditions = nil)
     conditions = [[]]
     filters.each { |f|
       if params[f.first] 
         value = params[f.first][f[1]] 
         unless value.blank?
-          query = case f[3]
+          query = case f.last
                   when :equal
                     "#{f[2]}=?"
                   when :greater_than
                     "#{f[2]}>?"
                   when :lesser_than
                     "#{f[2]}<?"
+                  when :dual_like
+                    "(#{f[2]} LIKE (?) OR #{f[3]} LIKE (?))"
                   else
                     "#{f[2]} #{f[3]} (?)"
                   end
           conditions[0].push query 
-          conditions.push(f[3]==:like ? "%#{value}%" : value )
+          # now, fill in parameters of the query
+          case f.last
+          when :like
+            conditions.push "%#{value}%"
+          when :dual_like
+            temp = "%#{value}%"
+            conditions.push temp, temp
+          else
+            conditions.push value
+          end
         end
       end
     }
