@@ -16,7 +16,7 @@ class Logiciel < ActiveRecord::Base
   has_many :binaires, :through => :paquets, :dependent => :destroy
 
   validates_length_of :competences, :minimum => 1, :message => 
-    _('Vous devez spécifier au moins une compétence')
+    _('You have to specify at least one technology')
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions => 
@@ -34,7 +34,7 @@ class Logiciel < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| 
-      c.primary || c.name =~ /(_id|_count|Description)$/  
+      c.primary || c.name =~ /(_id|_count|referent|Description)$/  
     }
   end
 

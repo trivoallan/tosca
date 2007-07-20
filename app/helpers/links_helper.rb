@@ -59,19 +59,19 @@ module LinksHelper
   # and merge it dynamically in this module
   @@home = nil
   def public_link_to_home
-    @@home ||= public_link_to(_('Accueil'), bienvenue_path)
+    @@home ||= public_link_to(_('Home'), bienvenue_path)
   end
 
   @@requests = nil
   def link_to_requests
-    @@requests ||= link_to(_('Demandes'), demandes_path, :title =>
-                           _('Consulter vos demandes'))
+    @@requests ||= link_to(_('Requests'), demandes_path, :title =>
+                           _('Consult your requets'))
   end
 
   @@softwares = nil
   def public_link_to_softwares
-    @@softwares ||= public_link_to(_('Logiciels'), logiciels_path, :title =>
-                                   _('Consulter les logiciels'))
+    @@softwares ||= public_link_to(_('Softwares'), logiciels_path, :title =>
+                                   _('Access to the list of softwares'))
   end
 
   @@contributions = nil

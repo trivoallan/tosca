@@ -13,7 +13,7 @@ module PaquetsHelper
   # call it like :
   # <%= link_to_new_paquet %>
   def link_to_new_paquet(logiciel_id = nil)
-    link_to(image_create(_('a package')), new_paquet_path(logiciel_id), LinksHelper::NO_HOVER)
+    link_to(image_create(_('a package')), new_paquet_path(:logiciel_id => logiciel_id), LinksHelper::NO_HOVER)
   end
 
 end

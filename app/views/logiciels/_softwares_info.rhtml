@@ -26,23 +26,23 @@
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
 > <%= _('Search') %></div>
 <ul class="menu" id="menu_recherche">
- <li><b><%= _('Name') %></b></li>
- <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
+ <li><b><%= _('By name') %></b><br/>
+     <%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
  <% if @ingenieur %>
-  <li><b><%= _('Client') %> </b></li>
-  <li><%=select_filter(@clients, 'client') %></li>
+  <li><b><%= _('By client') %> </b><br/>
+      <%=select_filter(@clients, 'client') %></li>
  <% end %>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_caracteristique')">
 > <%=_('Characteristic')%></div>
 <ul class="menu" id="menu_caracteristique">
- <li><b><%=_('Description')%> </b></li>
- <li><%= text_field :logiciel, :description %></li>
- <li><b><%=_('Group')%> </b></li>
- <li><%=select_filter(@groupes, 'groupe')%></li>
- <li><b><%=_('Technology')%> </b></li>
- <li><%=select_filter(@technologies, 'competence')%></li>
+ <li><b><%=_('Description')%> </b><br/>
+     <%= text_field :logiciel, :description %></li>
+ <li><b><%=_('Group')%> </b><br/>
+     <%=select_filter(@groupes, 'groupe')%></li>
+ <li><b><%=_('Technology')%> </b><br/>
+     <%=select_filter(@technologies, 'competence')%></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">

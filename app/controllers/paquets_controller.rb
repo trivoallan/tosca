@@ -51,7 +51,7 @@ class PaquetsController < ApplicationController
     _form
     @paquet.mainteneur = Mainteneur.find_by_nom('Linagora')
     @paquet.distributeur = Distributeur.find_by_nom('(none)')
-    @paquet.logiciel_id = params[:id]
+    @paquet.logiciel_id = params[:logiciel_id]
     @paquet.active = true;
   end
 

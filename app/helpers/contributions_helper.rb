@@ -24,15 +24,15 @@ module ContributionsHelper
   # call it like : link_to_contribution_logiciel
   def public_link_to_contribution_logiciel(logiciel)
     return '-' unless logiciel
-    public_link_to logiciel.nom + ' (' + logiciel.contributions.size.to_s + ')',
-                            list_contribution_path(logiciel.id)
+    public_link_to "#{logiciel.nom} (#{logiciel.contributions.size})",
+      list_contribution_path(logiciel.id)
   end
 
   # call it like :
   # <%= link_to_new_contribution %>
   def link_to_new_contribution(logiciel_id = nil)
-    options = new_contribution_url(:id => logiciel_id)
-    link_to(image_create(_('une contribution')), options, LinksHelper::NO_HOVER)
+    options = new_contribution_path(:id => logiciel_id)
+    link_to(image_create(_('a contribution')), options, LinksHelper::NO_HOVER)
   end
 
   # call it like :
@@ -44,12 +44,7 @@ module ContributionsHelper
 
   def public_link_to_contribution(c)
     return '-' unless c
-    public_link_to(c.nom, contribution_url(c))
-  end
-
-
-  def link_to_all_contributions
-    link_to 'Voir toutes les contributions', contributions_url
+    public_link_to(c.nom, contribution_path(c))
   end
 
   # une contribution peut être liée à une demande externe
