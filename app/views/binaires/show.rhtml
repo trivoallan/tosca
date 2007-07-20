@@ -1,30 +1,30 @@
-<%= public_link_to 'Accueil', bienvenue_url%> >
- <%= public_link_to 'Logiciels', logiciels_path %> >
-  <%= public_link_to @binaire.paquet.logiciel.nom, logiciel_path(@binaire.paquet.logiciel_id) %> >
-   <%= link_to(@binaire.paquet.version + '-' << @binaire.paquet.release, :controller => 'paquets', :action => 'show', :id => @binaire.paquet_id ) %> >
+<%= public_link_to _('Home'), bienvenue_url%> >
+ <%= public_link_to _('Softwares'), logiciels_path %> >
+  <%= public_link_to_logiciel @binaire.paquet.logiciel %> >
+   <%= link_to_paquet(@binaire.paquet) %> >
      <%=h @binaire.nom %> <%= link_to_edit(@binaire) %>
 
-<h1>Paquet Binaire</h1>
+<h1><%=_('Binary package')%></h1>
 <div class="show">
- <p><b>Logiciel:</b> <%= @binaire.paquet.logiciel.nom %></p>
- <p><b>Contrat:</b> <%= @binaire.paquet.contrat.client.nom %></p>
- <p><b>Socle:</b> <%= @binaire.socle.nom if @binaire.socle %></p>
- <p><b>Arch:</b> <%= @binaire.arch.nom if @binaire.arch %></p>
- <p><b>Source:</b> <%= link_to_paquet(@binaire.paquet) %></p>
- <p><b>Nom:</b> <%= @binaire.nom %></p>
- <p><b>Version:</b> <%= @binaire.paquet.version %></p>
- <p><b>Release:</b> <%= @binaire.paquet.release %></p>
+ <p><b><%=_('Software')%>:</b> <%= @binaire.paquet.logiciel.nom %></p>
+ <p><b><%=_('Contract')%>:</b> <%= @binaire.paquet.contrat.client.nom %></p>
+ <p><b><%=_('System')%>:</b> <%= @binaire.socle.nom if @binaire.socle %></p>
+ <p><b><%=_('Arch')%>:</b> <%= @binaire.arch.nom if @binaire.arch %></p>
+ <p><b><%=_('Source')%>:</b> <%= link_to_paquet(@binaire.paquet) %></p>
+ <p><b><%=_('Name')%>:</b> <%= @binaire.nom %></p>
+ <p><b><%=_('Version')%>:</b> <%= @binaire.paquet.version %></p>
+ <p><b><%=_('Release')%>:</b> <%= @binaire.paquet.release %></p>
 </div>
 
 <% if @binaire.archive %>
 <br />
-<p><b>Ce paquet est téléchargeable : </b><%= link_to_file(@binaire, 'archive') %></p>
+<p><b><%=_('This package can be downloaded')%> : </b><%= link_to_file(@binaire, 'archive') %></p>
 <% end %>
 
 
 <br />
-<p>Ce paquet contient <b><%= pluralize(@binaire.fichierbinaires_count, 'fichier') %></b></p>
 <% if @binaire.fichierbinaires_count > 0 %>
+<p><%=_('This package contains')%> <b><%= pluralize(@binaire.fichierbinaires_count, _('file')) %></b></p>
 <div class="bloc_scroll">
   <%= show_liste(@fichierbinaires, 'fichier', :no_title => true) { |f| f.chemin } %>
 </div>

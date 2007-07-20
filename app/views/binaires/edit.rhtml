@@ -1,9 +1,9 @@
-<h1>Modification de la livraison du binaire</h1>
+<h1><%=_('Edition of this binary')%></h1>
 
 <% form_tag(binaire_path(@binaire), :method => :put, :multipart => true) do%>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
-<%= link_to 'Show', binaire_path(@binaire) %> |
-<%= link_to_back %>
+<%= link_to_show_and_list(@binaire) %> 
+
