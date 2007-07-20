@@ -18,7 +18,6 @@ ActionController::Routing::Routes.draw do |map|
     %w(admin plan selenium about deroulement natures statut suggestions engagements declaration severites statuts))
   map.without_orm('bienvenue', %w(suggestions), :post)
   map.without_orm('reporting', %w(comex configuration general comex_resultat))
-  map.without_orm('export', %w(contributions demandes appels identifiants))
   map.without_orm('acces', %w(refuse))
   map.without_orm('export', %w(demandes_ods appels_ods identifiants_ods contributions_ods comex_ods) )
 
