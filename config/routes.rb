@@ -20,8 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('reporting', %w(comex configuration general comex_resultat))
   map.without_orm('export', %w(contributions demandes appels identifiants))
   map.without_orm('acces', %w(refuse))
-  map.without_orm('export', %w(contributions appels demandes_ods appels_ods identifiants_ods contributions_ods comex_ods) )
-  # RESTful routes with ORM
+  map.without_orm('export', %w(demandes_ods appels_ods identifiants_ods contributions_ods comex_ods) )
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
@@ -58,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :demandes,
   :collection => { :auto_complete_for_logiciel_nom => :post,
     :ajax_display_packages => :post },
-  :member => { :comment=> :any, 
+  :member => { :comment=> :any,
     :associer_contribution => :get,
     :delete_contribution => :get,
     :update_contribution => :get,
