@@ -17,7 +17,7 @@ module ExportHelper
     export_link comex_ods_export_url
   end
   def contributions_export_link
-    export_link contributions_ods_export_url
+    export_link formatted_contributions_export_path(:ods)
   end
 
 

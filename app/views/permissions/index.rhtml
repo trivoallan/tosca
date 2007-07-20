@@ -1,8 +1,8 @@
-<h1>Liste des permissions</h1>
+<h1><%= _('Permission List')%></h1>
 
-<%= show_pages_links(@permission_pages, 'une permission') %>
+<%= show_pages_links(@permission_pages, _('a permission') ) %>
 
-<% titres = ['Accordée à']%>
+<% titres = [ _('Allow to')]%>
 <%= show_table(@permissions, Permission, titres, :content_columns => true) { |p|
   result = ''
   result << "<td>#{p.roles.collect{|r| link_to(r.nom, edit_role_path(r.id))}.join(', ')}</td>"
@@ -10,6 +10,6 @@
 }%>
 
 
-<%= show_pages_links(@permission_pages, 'une permission') %>
+<%= show_pages_links(@permission_pages, _('a permission') )%>
 
-<%= link_to 'Liste des rôles', :controller => 'roles' %>
+<%= link_to _('Role list'), roles_path %>

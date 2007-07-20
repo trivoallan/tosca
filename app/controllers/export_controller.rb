@@ -12,8 +12,15 @@ class ExportController < ApplicationController
   # with Ruport :
   # We can export to other formats : 
   # compute_contributions(:pdf) export to pdf
-  def contributions_ods
-    compute_contributions(:ods)
+  def contributions
+    respond_to do |format|
+      format.html { redirect_to contributions_path }
+      format.xml { 
+        # TODO : make an xml export : a finder + 
+        #  render :xml => @requests.to_xml should be enough) 
+      }
+      format.ods { compute_contributions(:ods) }
+    end
   end
   def compute_contributions(type)
     methods = ['pnom_typecontribution', 'pnom_logiciel', 'version_to_s',
@@ -85,7 +92,7 @@ class ExportController < ApplicationController
     generate_report(report, type, {})    
   end
   
-  # return the contents of a demande in a table in  ods
+  # return the contents of a request in a table in  ods
   def requests
     respond_to do |format|
       format.html { redirect_to demandes_path }
