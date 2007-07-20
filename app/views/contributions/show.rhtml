@@ -1,5 +1,5 @@
 <%= public_link_to _('Home'), bienvenue_url %> >
- <%= public_link_to 'Contributions', contribution_path %> >
+ <%= public_link_to _('Contributions'), contribution_path %> >
   <%= public_link_to @contribution.logiciel.nom, contribution_path(@contribution.logiciel_id) %> >
 
 <h2>
@@ -9,11 +9,10 @@
 </h2>
 <div class="show">
     <%= @contribution.description_fonctionnelle %>
-
 <hr />
     <%= link_to image_create('un reversement'),
                 new_urlreversement_path(:contribution_id => @contribution.id) %>
-    <%= public_show_liste(@contribution.urlreversements, 'lien') { |u|
+    <%= public_show_liste(@contribution.urlreversements, _('link')) { |u|
         link_to_edit_urlreversement(u).to_s +
           " <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
     } %>
@@ -21,7 +20,7 @@
         <%= _('This contribution has been submitted on %s by <b>%s</b>') %
               [ @contribution.reverse_le_formatted, @contribution.ingenieur.nom ] %>
         <% if @contribution.cloture_le %>
-             et elle a été acceptée le <%= @contribution.cloture_le_formatted %>
+           <%=_('and its has been approved on %s') % @contribution.cloture_le_formatted %>
         <% end %>
     <% else %>
         Cette contribution n&#146;est pas reversée
@@ -29,16 +28,16 @@
 
 <% if @ingenieur %>
 <hr />
-  <h2>Détails interne</h2>
+  <h2><%=_('Internal details')%></h2>
   <%= @contribution.description %>
   <% if @contribution.id_mantis %>
      <p><b>Demande du portail v1 : </b>
         <%=link_to_any_demande @contribution %></p>
   <% end %>
-  <%= show_liste(@contribution.demandes, 'demande') { |d|
+  <%= show_liste(@contribution.demandes, _('request')) { |d|
         link_to_demande(d, :show_id => true, :icon_severite => true)
       } %>
-  <%= show_liste(@contribution.paquets, 'paquet(s) sur lequel il a été appliqué') { |p|
+  <%= show_liste(@contribution.paquets, _('package(s) with the patch')) { |p|
         link_to_paquet(p)
       } %>
 <% end %>

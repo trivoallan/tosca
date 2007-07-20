@@ -3,9 +3,9 @@
 <% else %>
   <% paquets, binaires = [], [] %>
 <% end %>
-<p>Paquets sur lesquels il a été appliqué :</p>
+<p><%=_('Source packages with the patch')%> :</p>
 <%= hbtm_check_box( paquets, @paquets, 'contribution[paquet_ids]', :size => 3) %>
 <% if false  #désactivé pour l'instant. on verra plus tard. TODO : voir plus tard%>
-<p>Binaires résultants :</p>
+<p><%=_('Binary packages with the patch')%> :</p>
 <%= hbtm_check_box( binaires, @binaires, 'contribution[binaire_ids]', :size => 3) %>
 <% end %>

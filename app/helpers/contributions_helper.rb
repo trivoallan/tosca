@@ -25,7 +25,7 @@ module ContributionsHelper
   def public_link_to_contribution_logiciel(logiciel)
     return '-' unless logiciel
     public_link_to logiciel.nom + ' (' + logiciel.contributions.size.to_s + ')',
-                            contribution_path(logiciel.id)
+                            list_contribution_path(logiciel.id)
   end
 
   # call it like :

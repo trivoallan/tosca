@@ -72,10 +72,8 @@ class ContributionsController < ApplicationController
   def create
     @contribution = Contribution.new(params[:contribution])
     if @contribution.save
-      flash[:notice] = 'La contribution suivante a bien été créee : ' +
-        '</br><i>'+@contribution.description+'</i>'
+      flash[:notice] = _('The contribution has been created successfully.')
       _update(@contribution)
-      flash[:notice] << '</br>L\'url a également été enregistrée.'
       redirect_to contribution_path(@contribution)
     else
       _form and render :action => 'new'
@@ -94,8 +92,7 @@ class ContributionsController < ApplicationController
   def update
     @contribution = Contribution.find(params[:id])
     if @contribution.update_attributes(params[:contribution])
-      flash[:notice] = 'La contribution suivante a bien été mise à jour ' +
-        ': </br><i>'+@contribution.description+'</i>'
+      flash[:notice] = _('The contribution has been updated successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
     else
@@ -118,7 +115,7 @@ class ContributionsController < ApplicationController
     options = Paquet::OPTIONS.dup
     options[:conditions] = clogiciel
     @paquets = Paquet.find(:all, options)
-    options = Binaire::OPTIONS
+    options = Binaire::OPTIONS.dup
     options[:conditions] = clogiciel
     @binaires = Binaire.find(:all, options)
 
@@ -147,7 +144,7 @@ private
 
   def _update(contribution)
     urlreversement = params[:urlreversement]
-    if urlreversement != ''
+    unless urlreversement.blank?
       urlreverment[:contribution_id] = contribution.id
       Urlreversement.create(urlreversement)
     end

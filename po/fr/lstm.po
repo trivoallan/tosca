@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-20 17:41+0200\n"
+"POT-Creation-Date: 2007-07-20 18:04+0200\n"
 "PO-Revision-Date: 2007-07-20 17:46+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -50,7 +50,7 @@ msgstr "Enregistrement réussi, n'oubliez pas de vérifier son profil<br />"
 #: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
 #: app/views/bienvenue/admin.rhtml:31 app/views/demandes/_appels.rhtml:2
-#: app/views/documents/_form.rhtml:6
+#: app/views/demandes/_form.rhtml:24 app/views/documents/_form.rhtml:6
 msgid "Recipient"
 msgstr "Bénéficiaire"
 
@@ -149,6 +149,16 @@ msgstr "Un paquet binaire a bien été créée."
 #: app/controllers/binaires_controller.rb:42
 msgid "Binary has been successfully updated."
 msgstr "Le paquet binaire a bien mis à jour."
+
+#: app/controllers/contributions_controller.rb:75
+#, fuzzy
+msgid "The contribution has been created successfully."
+msgstr "Le logiciel %s a été crée avec succès"
+
+#: app/controllers/contributions_controller.rb:95
+#, fuzzy
+msgid "The contribution has been updated successfully."
+msgstr "La demande %s a bien été mise à jour."
 
 #: app/controllers/demandes_controller.rb:77
 msgid "file attached"
@@ -481,8 +491,10 @@ msgstr " mois"
 
 #: app/controllers/reporting_controller.rb:514
 #: app/helpers/contributions_helper.rb:10 app/views/bienvenue/admin.rhtml:2
-#: app/views/demandes/_form_deposer.rhtml:19 app/views/logiciels/_form.rhtml:7
-#: app/views/reporting/general.rhtml:7 app/views/reporting/_comex_cns.rhtml:22
+#: app/views/demandes/_form_deposer.rhtml:19
+#: app/views/demandes/_infos_demande.rhtml:15
+#: app/views/logiciels/_form.rhtml:7 app/views/reporting/general.rhtml:7
+#: app/views/reporting/_comex_cns.rhtml:22
 msgid "Summary"
 msgstr "Récapitulatif"
 
@@ -640,8 +652,8 @@ msgid "Consulter les logiciels"
 msgstr "Consulter les logiciels"
 
 #: app/helpers/links_helper.rb:79 app/views/binaires/_form.rhtml:30
-#: app/views/contributions/list.rhtml:1 app/views/contributions/select.rhtml:1
-#: app/views/logiciels/show.rhtml:67
+#: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
+#: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:67
 msgid "Contributions"
 msgstr "Contributions"
 
@@ -694,7 +706,7 @@ msgstr "Effacer"
 msgid "Hide"
 msgstr "Cacher"
 
-#: app/helpers/images_helper.rb:68
+#: app/helpers/images_helper.rb:68 app/views/demandes/_infos_demande.rhtml:84
 msgid "Help"
 msgstr "Aide"
 
@@ -744,7 +756,7 @@ msgstr "Rendre privé"
 msgid "OSSA on rails"
 msgstr "OSSA on Rails"
 
-#: app/helpers/images_helper.rb:171
+#: app/helpers/images_helper.rb:171 app/views/demandes/_infos_demande.rhtml:11
 msgid "Print"
 msgstr "Imprimer"
 
@@ -2024,9 +2036,9 @@ msgstr "Déposer une demande"
 
 #: app/views/account/_menu.rhtml:18 app/views/binaires/show.rhtml:9
 #: app/views/contributions/_contributions_admin.rhtml:7
-#: app/views/contributions/_form.rhtml:9 app/views/urllogiciels/index.rhtml:6
-#: app/views/urllogiciels/_form.rhtml:8 app/views/urllogiciels/show.rhtml:7
-#: app/views/urlreversements/index.rhtml:6
+#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:46
+#: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:8
+#: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
 msgid "Software"
 msgstr "Logiciel"
 
@@ -2076,6 +2088,7 @@ msgstr "Rechercher"
 
 #: app/views/account/_users_info.rhtml:12
 #: app/views/appels/_calls_info.rhtml:12
+#: app/views/demandes/_infos_demande.rhtml:2
 msgid "Action"
 msgstr "Action"
 
@@ -2571,6 +2584,7 @@ msgstr ""
 "denotre service"
 
 #: app/views/bienvenue/index.rhtml:24
+#: app/views/demandes/_infos_demande.rhtml:65
 msgid "Documents"
 msgstr "documents"
 
@@ -2749,7 +2763,7 @@ msgid "Package"
 msgstr "Paquets"
 
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/show.rhtml:11
-#: app/views/binaires/index.rhtml:6
+#: app/views/binaires/index.rhtml:6 app/views/demandes/_form.rhtml:41
 msgid "System"
 msgstr ""
 
@@ -2855,6 +2869,7 @@ msgid "Delay"
 msgstr "Délai"
 
 #: app/views/contributions/_contributions_admin.rhtml:8
+#: app/views/demandes/_infos_demande.rhtml:79
 msgid "Updated on"
 msgstr "Mis à jour le"
 
@@ -2892,15 +2907,26 @@ msgstr "Description  (public)"
 msgid "Technical details (private)"
 msgstr "Détails techniques (privé)"
 
+#: app/views/contributions/_liste_binaires.rhtml:1
+#: app/views/contributions/_liste_paquets.rhtml:9
+#, fuzzy
+msgid "Binary packages with the patch"
+msgstr "Paquet binaire"
+
+#: app/views/contributions/_liste_paquets.rhtml:6
+#, fuzzy
+msgid "Source packages with the patch"
+msgstr "Paquets source"
+
 #: app/views/contributions/edit.rhtml:1
 msgid "Edit this contribution"
 msgstr "Modifier cette contribution"
 
-#: app/views/contributions/list.rhtml:1
+#: app/views/contributions/list.rhtml:3
 msgid "All"
 msgstr "Tous"
 
-#: app/views/contributions/list.rhtml:3
+#: app/views/contributions/list.rhtml:5
 msgid "a new contribution"
 msgstr "une nouvelle contribution"
 
@@ -2913,12 +2939,35 @@ msgid "See all contributions"
 msgstr "Consulter toutes les contributions"
 
 #: app/views/contributions/select.rhtml:11
-msgid "Access to interface of administration"
-msgstr "Accéder à l'interface d'admnistration"
+#, fuzzy
+msgid "Access to administration interface"
+msgstr "Interface d'administration"
 
-#: app/views/contributions/show.rhtml:21
+#: app/views/contributions/show.rhtml:15
+#, fuzzy
+msgid "link"
+msgstr "Liens"
+
+#: app/views/contributions/show.rhtml:20
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
+
+#: app/views/contributions/show.rhtml:23
+msgid "and its has been approved on %s"
+msgstr ""
+
+#: app/views/contributions/show.rhtml:31
+msgid "Internal details"
+msgstr ""
+
+#: app/views/contributions/show.rhtml:37
+#, fuzzy
+msgid "request"
+msgstr "demandes"
+
+#: app/views/contributions/show.rhtml:40
+msgid "package(s) with the patch"
+msgstr ""
 
 #: app/views/demandes/_packages.rhtml:4
 #: app/views/demandes/_report_detail.rhtml:9
@@ -2974,6 +3023,38 @@ msgstr "Ajouter un rôle"
 msgid "Answer"
 msgstr "un nouvel utilisateur"
 
+#: app/views/demandes/_form.rhtml:19
+msgid "Label"
+msgstr ""
+
+#: app/views/demandes/_form.rhtml:32
+msgid "Engineer assigned to the request"
+msgstr ""
+
+#: app/views/demandes/_form.rhtml:36
+msgid "E-mails associated with the request<br/>seperate by commas %s"
+msgstr ""
+
+#: app/views/demandes/_form.rhtml:50
+#, fuzzy
+msgid "Type of the request"
+msgstr "tout les demandes"
+
+#: app/views/demandes/_form.rhtml:55
+#, fuzzy
+msgid "Severity of the request"
+msgstr "Sévérité des demandes reçues"
+
+#: app/views/demandes/_form.rhtml:84 app/views/demandes/_form_deposer.rhtml:22
+#, fuzzy
+msgid "Detailed description"
+msgstr "Description"
+
+#: app/views/demandes/_form.rhtml:93
+#, fuzzy
+msgid "Add a file"
+msgstr "Ajouter un rôle"
+
 #: app/views/demandes/_form_binaires.rhtml:6
 #, fuzzy
 msgid "Workarounded on"
@@ -2999,6 +3080,7 @@ msgid "Request type :"
 msgstr "Nature des demandes"
 
 #: app/views/demandes/_form_client.rhtml:24
+#: app/views/demandes/_infos_demande.rhtml:26
 #, fuzzy
 msgid "Severity :"
 msgstr "séverité"
@@ -3009,6 +3091,7 @@ msgid "Base :"
 msgstr "Socles"
 
 #: app/views/demandes/_form_client.rhtml:36
+#: app/views/demandes/_infos_demande.rhtml:21
 #, fuzzy
 msgid "Software :"
 msgstr "Logiciel"
@@ -3021,11 +3104,6 @@ msgstr "Client"
 #: app/views/demandes/_form_deposer.rhtml:13
 msgid "Packages supported for  %s :"
 msgstr ""
-
-#: app/views/demandes/_form_deposer.rhtml:22
-#, fuzzy
-msgid "Detailed description"
-msgstr "Description"
 
 #: app/views/demandes/_history.rhtml:7
 msgid "Change(s)"
@@ -3069,6 +3147,93 @@ msgstr "Contrat"
 msgid "Phone number"
 msgstr "Novembre"
 
+#: app/views/demandes/_infos_demande.rhtml:18
+msgid "Vm : "
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:20
+#, fuzzy
+msgid "System : "
+msgstr "Taille : "
+
+#: app/views/demandes/_infos_demande.rhtml:24
+#, fuzzy
+msgid "Status :"
+msgstr "état"
+
+#: app/views/demandes/_infos_demande.rhtml:25
+#, fuzzy
+msgid "Type :"
+msgstr "type"
+
+#: app/views/demandes/_infos_demande.rhtml:28
+msgid "Mail CC :"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:31
+msgid "Assign to :"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:41
+#, fuzzy
+msgid "Recipent"
+msgstr "Bénéficiaire"
+
+#: app/views/demandes/_infos_demande.rhtml:43
+#, fuzzy
+msgid "Contact :"
+msgstr "Contrat"
+
+#: app/views/demandes/_infos_demande.rhtml:45
+#, fuzzy
+msgid "Phone number :"
+msgstr "Novembre"
+
+#: app/views/demandes/_infos_demande.rhtml:47
+msgid "Compagny :"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:55
+msgid "Call back immediately"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:57
+msgid "Call back in"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:61
+#, fuzzy
+msgid "Workarouned in"
+msgstr "Contournée"
+
+#: app/views/demandes/_infos_demande.rhtml:62
+#, fuzzy
+msgid "Fixed in"
+msgstr "Corrigée"
+
+#: app/views/demandes/_infos_demande.rhtml:65
+msgid "A"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:67
+#, fuzzy
+msgid "is available"
+msgstr "Aucune donnée <br /> n'est disponible."
+
+#: app/views/demandes/_infos_demande.rhtml:74
+msgid "Life cycle"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:78
+#: app/views/demandes/_piecejointes.rhtml:3
+#, fuzzy
+msgid "Created on"
+msgstr "Créé le"
+
+#: app/views/demandes/_infos_demande.rhtml:80
+msgid "Past time"
+msgstr ""
+
 #: app/views/demandes/_piecejointes.rhtml:2
 msgid "Attachment"
 msgstr ""
@@ -3088,11 +3253,6 @@ msgstr "Liens"
 #, fuzzy
 msgid "Size"
 msgstr "Taille : "
-
-#: app/views/demandes/_piecejointes.rhtml:3
-#, fuzzy
-msgid "Created on"
-msgstr "Créé le"
 
 #: app/views/demandes/_piecejointes.rhtml:3
 msgid "By"
@@ -3142,6 +3302,16 @@ msgstr "séverité"
 #: app/views/demandes/_requests_info.rhtml:46
 msgid "Flow"
 msgstr ""
+
+#: app/views/demandes/_tab_comments.rhtml:14
+#, fuzzy
+msgid "Comment %s"
+msgstr "Privé"
+
+#: app/views/demandes/_tab_comments.rhtml:30
+#, fuzzy
+msgid "Are you sure you want to delete the comment %s ?"
+msgstr "Étes vous sûr de vouloir éffacer %s"
 
 #: app/views/demandes/_tab_menu.rhtml:7
 #: app/views/demandes/pretty_print.rhtml:1 app/views/documents/_form.rhtml:36
@@ -3282,10 +3452,6 @@ msgstr "une image"
 #: app/views/images/index.rhtml:5
 msgid "Formatted"
 msgstr "Formatté"
-
-#: app/views/layouts/standard-layout.rhtml:97
-msgid "X"
-msgstr "X"
 
 #: app/views/logiciels/_form.rhtml:14
 msgid "Base name"
@@ -3977,6 +4143,12 @@ msgstr "%e %b"
 #: lib/gettext_localize_extend.rb:160
 msgid "datetime|long|%B %e, %Y"
 msgstr "%B %e %Y"
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Access to interface of administration"
+#~ msgstr "Accéder à l'interface d'admnistration"
 
 #~ msgid "un paquet"
 #~ msgstr "un paquet"
