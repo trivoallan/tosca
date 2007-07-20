@@ -1,7 +1,33 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-require 'overrides'
+
+# A small overrides, in order to have shorter routes
+module ActionController::Routing
+  class RouteSet
+    # this overloads allows to have REST routes for non-orm controllers
+    class Mapper
+      # Mapper for non-resource controller
+      def without_orm(controller, actions, method = :get)
+        actions.each { |action|
+          self.send("#{action}_#{controller}", "#{controller};#{action}",
+                    { :controller => controller, :action => action,
+                      :conditions => { :method => method }})
+        }
+      end
+      
+      # Mapper for exporting with format, done in a special controller 'export'.
+      def formatted_export(actions)
+        actions.each { |action|
+          self.send('named_route', "formatted_#{action}_export", "export/#{action}.:format",
+                    { :controller => 'export', :action => action,
+                      :conditions => { :method => :get }})
+        }        
+      end
+    end
+  end
+end
+
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation:
   #   first created -> highest priority.
@@ -20,6 +46,8 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('reporting', %w(comex configuration general comex_resultat))
   map.without_orm('acces', %w(refuse))
   map.without_orm('export', %w(demandes_ods appels_ods identifiants_ods contributions_ods comex_ods) )
+
+  map.formatted_export(%w(requests))
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée

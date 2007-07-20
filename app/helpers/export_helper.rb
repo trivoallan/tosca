@@ -4,11 +4,9 @@
 module ExportHelper
 
   def requests_export_link
-    export_link demandes_ods_export_url
+    export_link formatted_requests_export_path(:ods)
   end
-  def demandes_export_link
-    export_link demandes_ods_export_url
-  end
+
   def appels_export_images
     export_link appels_ods_export_url
   end

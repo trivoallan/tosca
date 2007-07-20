@@ -57,6 +57,7 @@ CGI::Session.expire_after 1.month
 
 require 'utils'
 require 'config'
+require 'overrides'
 require 'gettext/rails'
 require 'ruport'
 require 'ruport/util'

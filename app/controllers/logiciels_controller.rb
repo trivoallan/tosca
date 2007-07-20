@@ -97,7 +97,7 @@ class LogicielsController < ApplicationController
   def update
     @logiciel = Logiciel.find(params[:id])
     if @logiciel.update_attributes(params[:logiciel])
-      flash[:notice] = _('The software %s been updated successfully.') % @logiciel.nom
+      flash[:notice] = _('The software %s has been updated successfully.') % @logiciel.nom
       redirect_to logiciels_path
     else
       _form and render :action => 'edit'

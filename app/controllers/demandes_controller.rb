@@ -2,28 +2,10 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DemandesController < ApplicationController
-  auto_complete_for :demande, :resume
-
   helper :filters, :contributions, :logiciels, :export, :appels, :socles
 
-  def auto_complete_for_logiciel_nom
-    logiciel = params[:logiciel]
-    unless logiciel and logiciel[:nom]
-      redirect_to demandes_path
-    end
-    options = '%' + logiciel[:nom] + '%'
-
-    @logiciels = Logiciel.find(:all, :select => 'nom',
-      :conditions => [ 'nom LIKE :recherche OR
-        LOWER(description) LIKE :recherche',{:recherche => options } ],
-      :order => 'nom ASC')
-
-    render :partial => 'dem_auto_complete'
-  end
-
-
   def index
-    #cas spécial : consultation directe
+    #special case : direct show
     if params['numero']
       redirect_to comment_demande_path(params['numero']) and return
     end
@@ -91,12 +73,12 @@ class DemandesController < ApplicationController
   def create
     @demande = Demande.new(params[:demande])
     pj = params[:piecejointe]
-    if pj != nil
+    unless pj.blank?
       piecejointe = Piecejointe.create(:file => pj[:file])
-      commentaire = Commentaire.create(:corps => "fichier attaché", :piecejointe => piecejointe, :demande => @demande)
+      commentaire = Commentaire.create(:corps => _('filed attached'), :piecejointe => piecejointe, :demande => @demande)
     end
     if @demande.save
-      flash[:notice] = 'La demande a bien été créée.'
+      flash[:notice] = _('Your request has been successfully submitted')
       Notifier::deliver_demande_nouveau({:demande => @demande,
                                           :nom => @session[:user].nom,
                                           :controller => self}, flash)
@@ -116,11 +98,10 @@ class DemandesController < ApplicationController
     begin
       beneficiaire = Beneficiaire.find @demande.beneficiaire_id
       contrat = Contrat.find :first, :conditions =>
-      ['contrats.client_id = ?', beneficiaire.client.id ]
+        ['contrats.client_id = ?', beneficiaire.client_id ]
       logiciel = Logiciel.find(@demande[:logiciel_id])
     rescue  ActiveRecord::RecordNotFound
       @paquets = []
-      flash[:warn] = "object not found ???"
     else
       # active = 1 : we only take supported packages.
       # MySQL doesn't support true/false so Rails use Tinyint...
@@ -274,7 +255,7 @@ class DemandesController < ApplicationController
     @demande = Demande.find(params[:id])
     @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.update_attributes(params[:demande])
-      flash[:notice] = 'La demande a bien été mise à jour.'
+      flash[:notice] = _('The request has been update successfully.')
       redirect_to comment_demande_path(@demande)
     else
       _form @beneficiaire

@@ -124,17 +124,6 @@ end
 # Tosca specific needs or specific improvments
 module ActionController::Routing
   class RouteSet
-    # this overloads allows to have REST routes for non-orm controllers
-    class Mapper
-      def without_orm(controller, actions, method = :get)
-        actions.each { |action|
-          self.send("#{action}_#{controller}", "#{controller};#{action}",
-                    { :controller => controller, :action => action,
-                      :conditions => { :method => method }})
-        }
-      end
-    end
-
 
     class NamedRouteCollection
       # This overload permits to gain a factor 7 in performance of

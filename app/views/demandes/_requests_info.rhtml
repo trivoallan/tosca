@@ -14,39 +14,37 @@
 <%= hidden_field_tag 'active', '0' %>
 
 <div class="menu_title" onclick="Element.toggle('menu_actions')">>
-Actions </div>
+<%=_('Actions')%></div>
 <ul class="menu" id="menu_actions">
  <li><%= link_to 'Déposer une demande', new_demande_path %></li>
  <li><%= link_to 'Rapport d\'activité', general_reporting_path %></li>
- <li><%= demandes_export_link %></li>
+ <li><%= requests_export_link %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>
-Recherche</div>
+<%=_('Search')%></div>
 <ul class="menu" id="menu_recherche">
- <li><b>Logiciel </b></li>
- <li><%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
+ <li><b><%=_('By word')%></b><br/>
+     <%= text_field :filter, :text %></li>
  <% if @ingenieur %>
-  <li><b>Client </b></li>
-  <li><%= select_filter(@clients, :client) %></li>
-  <li><b>Responsable </b></li>
-  <li><%= select_filter(@ingenieurs, :ingenieur) %></li>
+  <li><b><%=_('By client')%></b><br/>
+      <%= select_filter(@clients, :client) %></li>
  <% end %>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_caracteristiques')">>
-Caractéristiques</div>
+<%=_('Attributes')%></div>
 <ul class="menu" id="menu_caracteristiques">
- <li><b>Type </b></li>
- <li><%=select_filter(@typedemandes, :typedemande) %></li>
- <li><b>Sévérité </b></li>
- <li><%=select_filter(@severites, :severite) %></li>
- <li><b>Statuts </b></li>
- <li><%=select_filter(@statuts, :statut) %></li>
+ <li><b><%=_('Type')%> </b><br/>
+     <%=select_filter(@typedemandes, :typedemande) %></li>
+ <li><b><%=_('Severity')%></b><br/>
+     <%=select_filter(@severites, :severite) %></li>
+ <li><b><%=_('Status')%></b><br/>
+     <%=select_filter(@statuts, :statut) %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_flux')">>
-Flux</div>
+<%=_('Flow')%></div>
 <ul class="menu" id="menu_flux">
   <li><%= remote_link_to_all_request %></li>
   <li><%= remote_link_to_active_request %></li>
@@ -54,15 +52,6 @@ Flux</div>
 </ul>
 
 
-<div class="menu_title" onclick="Element.toggle('menu_aide')">>
-Aide</div>
-<ul class="menu" id="menu_aide">
- <li><%= link_to('Légende des couleurs', statuts_path) %></li>
- <li><%= public_link_to_help_new_request %></li>
- <li><%= public_link_to_howto_request %></li>
-</ul>
-<%# mandatory for seeing last link ... :/ %>
-<br />
 
 <% end %>
 

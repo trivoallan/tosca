@@ -86,9 +86,18 @@ class ExportController < ApplicationController
   end
   
   # return the contents of a demande in a table in  ods
-  def demandes_ods
-    compute_demandes(:ods, {})
+  def requests
+    respond_to do |format|
+      format.html { redirect_to demandes_path }
+      format.xml { 
+        # TODO : make an xml export : a finder + 
+        #  render :xml => @requests.to_xml should be enough) 
+      }
+      format.ods { compute_demandes(:ods, {}) }
+    end
   end
+
+
   def compute_demandes(type, options_generate)
     columns = ['id','logiciels_nom', 'beneficiaires_nom','clients_nom', 
       'ingenieurs_nom','severites_nom','version','created_on_formatted', 
