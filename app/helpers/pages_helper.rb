@@ -42,7 +42,7 @@ module PagesHelper
   end
 
   def link_to_back(desc='Retour à la liste')
-    link_to(image_back, pages_path)
+    link_to(image_back, :action =>'index')
   end
 
   # link_to_actions_table(demande)
