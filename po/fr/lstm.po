@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 09:08+0200\n"
+"POT-Creation-Date: 2007-07-23 10:14+0200\n"
 "PO-Revision-Date: 2007-07-20 17:46+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -468,6 +468,14 @@ msgstr "La permission a été crée avec succès."
 msgid "Permission was successfully updated."
 msgstr "La permissions a été mis à jour avec succès."
 
+#: app/controllers/socles_controller.rb:28
+msgid "Socle was successfully created."
+msgstr "Le système a été crée avec succès."
+
+#: app/controllers/socles_controller.rb:44
+msgid "Socle was successfully updated."
+msgstr "Le système a été mis à jour avec succès."
+
 #: app/controllers/reporting_controller.rb:61
 msgid "You must choose a period for the report"
 msgstr "Vous devez indiquer une période pour le rapport"
@@ -800,8 +808,8 @@ msgid "Display all softwares"
 msgstr "Afficher tout les logiciels"
 
 #: app/helpers/pages_helper.rb:30 app/views/permissions/edit.rhtml:5
-#: app/views/permissions/show.rhtml:7 app/views/images/edit.rhtml:5
-#: app/views/images/show.rhtml:10
+#: app/views/permissions/show.rhtml:7 app/views/socles/edit.rhtml:5
+#: app/views/images/edit.rhtml:5 app/views/images/show.rhtml:10
 msgid "Edit"
 msgstr "Modifier"
 
@@ -2090,7 +2098,7 @@ msgstr "Gestion des rôles"
 
 #: app/views/account/_menu.rhtml:36 app/views/account/_menu.rhtml:39
 #: app/views/bienvenue/admin.rhtml:27 app/views/bienvenue/admin.rhtml:30
-#: app/views/bienvenue/admin.rhtml:33
+#: app/views/bienvenue/admin.rhtml:33 app/views/socles/index.rhtml:5
 msgid "Customers"
 msgstr "Clients"
 
@@ -2131,7 +2139,7 @@ msgstr "Rechercher"
 #: app/views/demandes/_form_binaires.rhtml:4 app/views/logiciels/_form.rhtml:4
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/permissions/_form.rhtml:4 app/views/roles/_form.rhtml:5
-#: app/views/statuts/_form.rhtml:4
+#: app/views/socles/_form.rhtml:4 app/views/statuts/_form.rhtml:4
 msgid "Name"
 msgstr "Nom"
 
@@ -2298,7 +2306,7 @@ msgstr "Nouvel appel téléphonique"
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
 #: app/views/contributions/new.rhtml:5 app/views/roles/new.rhtml:5
-#: app/views/images/new.rhtml:5
+#: app/views/socles/new.rhtml:5 app/views/images/new.rhtml:5
 msgid "Create"
 msgstr "Créer"
 
@@ -2704,8 +2712,12 @@ msgid ""
 "You can consult and follow all the %s done by our team in Open Source "
 "communities."
 msgstr ""
-"Vous pouvez consulter et suivre toutes les %s faites par notre équipe"
-"dans les communautés Open Source."
+"Vous pouvez consulter et suivre toutes les %s faites par notre équipedans "
+"les communautés Open Source."
+
+#: app/views/bienvenue/natures.rhtml:1
+msgid "Type of the Request"
+msgstr "Type de la demande"
 
 #: app/views/bienvenue/natures.rhtml:5
 msgid "Request type list :"
@@ -2767,6 +2779,7 @@ msgstr "Paquet"
 
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/show.rhtml:11
 #: app/views/binaires/index.rhtml:6 app/views/demandes/_form.rhtml:41
+#: app/views/socles/_form.rhtml:10 app/views/socles/index.rhtml:5
 msgid "System"
 msgstr "Système"
 
@@ -2792,7 +2805,7 @@ msgstr "Édition de ce binaire"
 msgid "New binary package"
 msgstr "Nouveau Paquet binaire"
 
-#: app/views/binaires/show.rhtml:7
+#: app/views/binaires/show.rhtml:7 app/views/socles/show.rhtml:21
 msgid "Binary package"
 msgstr "Paquet binaire"
 
@@ -2979,7 +2992,7 @@ msgstr ""
 msgid "Your request impacts %s"
 msgstr "Demandes en cours"
 
-#: app/views/demandes/_cns.rhtml:7
+#: app/views/demandes/_cns.rhtml:7 app/views/socles/show.rhtml:15
 msgid "source package"
 msgstr "Paquet source"
 
@@ -3836,6 +3849,71 @@ msgstr "Liste des permissions"
 msgid "Add a role"
 msgstr "Ajouter un rôle"
 
+#: app/views/socles/_form.rhtml:7
+msgid "Machine :"
+msgstr "Machine :"
+
+#: app/views/socles/_form.rhtml:12
+msgid ""
+"Note : <br />\n"
+"The machine of the system takes its parameters strictly in the parameters of "
+"%s"
+msgstr ""
+"Note : <br />\n"
+"La machine du systeme ne se paramètre que dans les paramètres des %s"
+
+#: app/views/socles/_form.rhtml:13 app/views/socles/index.rhtml:18
+msgid "machines"
+msgstr "machines"
+
+#: app/views/socles/edit.rhtml:1
+msgid "Editing system"
+msgstr "Editer le système"
+
+#: app/views/socles/edit.rhtml:8
+msgid "Look"
+msgstr "Voir"
+
+#: app/views/socles/new.rhtml:1
+msgid "New system"
+msgstr "Nouveau système"
+
+#: app/views/socles/show.rhtml:9
+msgid "Machine:"
+msgstr "Machine:"
+
+#: app/views/socles/show.rhtml:13 app/views/socles/show.rhtml:19
+msgid "This system have "
+msgstr "Le système a "
+
+#: app/views/socles/show.rhtml:13
+msgid "source"
+msgstr "source"
+
+#: app/views/socles/show.rhtml:19
+msgid "binary"
+msgstr "inaire"
+
+#: app/views/socles/index.rhtml:1
+msgid "System list"
+msgstr "Liste des systèmes"
+
+#: app/views/socles/index.rhtml:3 app/views/socles/index.rhtml:17
+msgid "a customer system"
+msgstr "un système d'un client"
+
+#: app/views/socles/index.rhtml:5
+msgid "Machine"
+msgstr "Machine"
+
+#: app/views/socles/index.rhtml:5
+msgid "Virtual"
+msgstr "Virtuelle"
+
+#: app/views/socles/index.rhtml:19
+msgid "customers"
+msgstr "Clients"
+
 #: app/views/statuts/index.rhtml:1
 msgid "List of status"
 msgstr "Liste des statuts"
@@ -4141,6 +4219,10 @@ msgstr "%e %b"
 #: lib/gettext_localize_extend.rb:160
 msgid "datetime|long|%B %e, %Y"
 msgstr "%B %e %Y"
+
+#, fuzzy
+#~ msgid "clients"
+#~ msgstr "Client"
 
 #~ msgid "une contribution"
 #~ msgstr "une contribution"

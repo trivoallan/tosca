@@ -6,19 +6,19 @@
 
 <% if @ingenieur %>
 <p>
-  <b>Machine:</b> <%= link_to_machine(@socle.machine) %>
+<b><%= _('Machine:')%></b> <%= link_to_machine(@socle.machine) %>
 </p>
 <% end %>
 
-<p>Ce socle a <b><%= pluralize(@socle.paquets.size, 'source') %></b></p>
+<p><%= _('This system have ')%> <b><%= pluralize(@socle.paquets.size, _('source') ) %></b></p>
 <div class="bloc_scroll">
-<%= show_liste(@socle.paquets, 'paquet source', :no_title => true) {
+<%= show_liste(@socle.paquets, _('source package'), :no_title => true) {
   |p| link_to_paquet(p) } %>
 </div><br/>
 
-<p>Ce socle a <b><%= pluralize(@binaires.size, 'binaire') %></b></p>
+<p><%= _('This system have ')%><b><%= pluralize(@binaires.size, _('binary') ) %></b></p>
 <div class="bloc_scroll">
-<%= show_liste(@binaires, 'paquet binaire', :no_title => true) {
+<%= show_liste(@binaires, _('Binary package'), :no_title => true) {
   |b| link_to_binaire(b) } %>
 </div><br/>
 

@@ -1,19 +1,16 @@
 <%= error_messages_for 'socle' %>
 
 <!--[form:socle]-->
-<p><label for="socle_nom">Nom</label><br/>
+<p><label for="socle_nom"><%= _('Name')%></label><br/>
 <%= text_field 'socle', 'nom'  %></p>
 
-<p><label for="socle_machine">Machine : </label>
+<p><label for="socle_machine"><%= _('Machine :')%> </label>
 <%= @socle.machine.nom if @socle.machine %></p>
 
-<p><label for="socle_clients">Socles : </label><br />
+<div><label for="socle_clients_ids"><%= _('System')%></label><br />
 <%= hbtm_check_box(@socle.clients, @clients, 'socle[client_ids]', :size => 4) %>
-
-Note : <br />
-La machine du socle ne se paramètre que dans les paramètres des
-<%= link_to 'machines', machines_path %>
-
-<br />
+<%= _('Note : <br />
+The machine of the system takes its parameters strictly in the parameters of %s') % (link_to _('machines'), machines_path)%>
+<br /></div>
 <!--[eoform:socle]-->
 

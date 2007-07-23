@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 09:22+0200\n"
+"POT-Creation-Date: 2007-07-23 10:14+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -456,6 +456,14 @@ msgstr ""
 msgid "Permission was successfully updated."
 msgstr ""
 
+#: app/controllers/socles_controller.rb:28
+msgid "Socle was successfully created."
+msgstr ""
+
+#: app/controllers/socles_controller.rb:44
+msgid "Socle was successfully updated."
+msgstr ""
+
 #: app/controllers/reporting_controller.rb:61
 msgid "You must choose a period for the report"
 msgstr ""
@@ -788,8 +796,8 @@ msgid "Display all softwares"
 msgstr ""
 
 #: app/helpers/pages_helper.rb:30 app/views/permissions/edit.rhtml:5
-#: app/views/permissions/show.rhtml:7 app/views/images/edit.rhtml:5
-#: app/views/images/show.rhtml:10
+#: app/views/permissions/show.rhtml:7 app/views/socles/edit.rhtml:5
+#: app/views/images/edit.rhtml:5 app/views/images/show.rhtml:10
 msgid "Edit"
 msgstr ""
 
@@ -2061,7 +2069,7 @@ msgstr ""
 
 #: app/views/account/_menu.rhtml:36 app/views/account/_menu.rhtml:39
 #: app/views/bienvenue/admin.rhtml:27 app/views/bienvenue/admin.rhtml:30
-#: app/views/bienvenue/admin.rhtml:33
+#: app/views/bienvenue/admin.rhtml:33 app/views/socles/index.rhtml:5
 msgid "Customers"
 msgstr ""
 
@@ -2102,7 +2110,7 @@ msgstr ""
 #: app/views/demandes/_form_binaires.rhtml:4 app/views/logiciels/_form.rhtml:4
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/permissions/_form.rhtml:4 app/views/roles/_form.rhtml:5
-#: app/views/statuts/_form.rhtml:4
+#: app/views/socles/_form.rhtml:4 app/views/statuts/_form.rhtml:4
 msgid "Name"
 msgstr ""
 
@@ -2269,7 +2277,7 @@ msgstr ""
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
 #: app/views/contributions/new.rhtml:5 app/views/roles/new.rhtml:5
-#: app/views/images/new.rhtml:5
+#: app/views/socles/new.rhtml:5 app/views/images/new.rhtml:5
 msgid "Create"
 msgstr ""
 
@@ -2710,6 +2718,7 @@ msgstr ""
 
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/show.rhtml:11
 #: app/views/binaires/index.rhtml:6 app/views/demandes/_form.rhtml:41
+#: app/views/socles/_form.rhtml:10 app/views/socles/index.rhtml:5
 msgid "System"
 msgstr ""
 
@@ -2735,7 +2744,7 @@ msgstr ""
 msgid "New binary package"
 msgstr ""
 
-#: app/views/binaires/show.rhtml:7
+#: app/views/binaires/show.rhtml:7 app/views/socles/show.rhtml:21
 msgid "Binary package"
 msgstr ""
 
@@ -2916,7 +2925,7 @@ msgstr ""
 msgid "Your request impacts %s"
 msgstr ""
 
-#: app/views/demandes/_cns.rhtml:7
+#: app/views/demandes/_cns.rhtml:7 app/views/socles/show.rhtml:15
 msgid "source package"
 msgstr ""
 
@@ -3718,6 +3727,69 @@ msgstr ""
 msgid "Add a role"
 msgstr ""
 
+#: app/views/socles/_form.rhtml:7
+msgid "Machine :"
+msgstr ""
+
+#: app/views/socles/_form.rhtml:12
+msgid ""
+"Note : <br />\n"
+"The machine of the system takes its parameters strictly in the parameters of "
+"%s"
+msgstr ""
+
+#: app/views/socles/_form.rhtml:13 app/views/socles/index.rhtml:18
+msgid "machines"
+msgstr ""
+
+#: app/views/socles/edit.rhtml:1
+msgid "Editing system"
+msgstr ""
+
+#: app/views/socles/edit.rhtml:8
+msgid "Look"
+msgstr ""
+
+#: app/views/socles/new.rhtml:1
+msgid "New system"
+msgstr ""
+
+#: app/views/socles/show.rhtml:9
+msgid "Machine:"
+msgstr ""
+
+#: app/views/socles/show.rhtml:13 app/views/socles/show.rhtml:19
+msgid "This system have "
+msgstr ""
+
+#: app/views/socles/show.rhtml:13
+msgid "source"
+msgstr ""
+
+#: app/views/socles/show.rhtml:19
+msgid "binary"
+msgstr ""
+
+#: app/views/socles/index.rhtml:1
+msgid "System list"
+msgstr ""
+
+#: app/views/socles/index.rhtml:3 app/views/socles/index.rhtml:17
+msgid "a customer system"
+msgstr ""
+
+#: app/views/socles/index.rhtml:5
+msgid "Machine"
+msgstr ""
+
+#: app/views/socles/index.rhtml:5
+msgid "Virtual"
+msgstr ""
+
+#: app/views/socles/index.rhtml:19
+msgid "customers"
+msgstr ""
+
 #: app/views/statuts/index.rhtml:1
 msgid "List of status"
 msgstr ""
@@ -4022,6 +4094,10 @@ msgstr ""
 #: lib/gettext_localize_extend.rb:160
 msgid "datetime|long|%B %e, %Y"
 msgstr ""
+
+#, fuzzy
+#~ msgid "clients"
+#~ msgstr "Description"
 
 #, fuzzy
 #~ msgid "Identification"
