@@ -8,7 +8,7 @@ module DemandesHelper
   #  * :pre_text (deprecated) display before
   #  * :show_id display the id
   #  * :icon_severite display severity icon
-  def link_to_demande(demande, options={})
+  def link_to_demande(demande, options = {})
     return '-' unless demande
     text = options[:text]
     if text.nil?
@@ -21,7 +21,7 @@ module DemandesHelper
     link_to text, comment_demande_url(:id => demande.id)
   end
 
-
+  #Spécifique à l'OSSA donc on ne traduit pas
   # Link to the inline help to post a request
   def public_link_to_help_new_request
     public_link_to('Déclaration d\'une demande',
@@ -39,7 +39,6 @@ module DemandesHelper
         public_link_to('Explication détaillée des statuts',
           'http://www.08000linux.com/wiki/index.php/%C3%89tats_demande')
   end
-
 
   # Description of a demand
   # DEPRECATED : use instance method for 'to_s' Demande
@@ -65,12 +64,12 @@ module DemandesHelper
   # TODO : take the id and make the case on the id
   def short_severite(d)
     case d.severite_id
-    when 1 then 'Bl'
-    when 2 then 'Ma'
-    when 3 then 'mi'
-    when 4 then 'so'
+    when 1 then _("Bl")
+    when 2 then _("Ma")
+    when 3 then _("Mi")
+    when 4 then _("No")
     else
-      'wtf'
+      _("Wtf")
     end
   end
 
@@ -135,7 +134,6 @@ module DemandesHelper
     options = new_demande_url
     link_to(image_create(_('New request')), options, LinksHelper::NO_HOVER)
   end
-
 
   # Link to access a ticket
   def link_to_comment(ar)
