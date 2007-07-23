@@ -220,9 +220,8 @@ msgid "Correction"
 msgstr "Correction"
 
 #: app/controllers/demandes_controller.rb:256
-#, fuzzy
 msgid "The request has been updated successfully."
-msgstr "La demande %s a bien été mise à jour."
+msgstr "La demande a bien été mise à jour."
 
 #: app/controllers/demandes_controller.rb:275
 msgid "The request is correctly assigned"
@@ -454,14 +453,12 @@ msgid "TOTALS"
 msgstr "TOTAUX"
 
 #: app/controllers/groupes_controller.rb:27
-#, fuzzy
 msgid "Groupe was successfully created."
-msgstr "Le système a été crée avec succès."
+msgstr "Le groupe a été crée avec succès."
 
 #: app/controllers/groupes_controller.rb:41
-#, fuzzy
 msgid "Groupe was successfully updated."
-msgstr "Le système a été mis à jour avec succès."
+msgstr "Le groupe a été mis à jour avec succès."
 
 #: app/controllers/ingenieurs_controller.rb:24
 msgid "Ingenieur was successfully created."
@@ -2263,9 +2260,8 @@ msgid "Return to the account list"
 msgstr "Retour à la liste des comptes"
 
 #: app/views/account/login.rhtml:5
-#, fuzzy
 msgid "08000linux login"
-msgstr "engagements du 08000Linux"
+msgstr "Identifiant du 08000Linux"
 
 #: app/views/account/login.rhtml:16 app/views/appels/edit.rhtml:5
 #: app/views/beneficiaires/new.rhtml:5 app/views/binaires/edit.rhtml:5
@@ -2634,9 +2630,8 @@ msgid "connected"
 msgstr "connecté"
 
 #: app/views/bienvenue/index.rhtml:3
-#, fuzzy
 msgid "Contents"
-msgstr "Privé"
+msgstr "Contenu"
 
 #: app/views/bienvenue/index.rhtml:4
 msgid "Welcome in the management tool of the 08000linux."
@@ -2699,9 +2694,8 @@ msgid "When you are %s, you have access to an activity report"
 msgstr "Quand vous êtes %s, vous avez accès à un rapport d'activité"
 
 #: app/views/bienvenue/index.rhtml:31
-#, fuzzy
 msgid "dynamically showing the activity of our service for you in real time."
-msgstr "dynamique montrant l'activité de nôtre service en temps réel."
+msgstr "dynamique montrant l'activité de nOtre service en temps réel."
 
 #: app/views/bienvenue/index.rhtml:32
 msgid "You also have access to all the documents we"
@@ -2863,9 +2857,8 @@ msgstr "Système"
 
 #: app/views/binaires/_form.rhtml:16 app/views/binaires/show.rhtml:12
 #: app/views/binaires/index.rhtml:6
-#, fuzzy
 msgid "Arch"
-msgstr "arch"
+msgstr "Arch"
 
 #: app/views/binaires/_form.rhtml:23
 msgid "Configuration"
@@ -2920,9 +2913,8 @@ msgid "Binary"
 msgstr "Binaire"
 
 #: app/views/clients/index.rhtml:24
-#, fuzzy
 msgid "add a logo"
-msgstr "Ajouter un appel"
+msgstr "ajouter un logo"
 
 #: app/views/competences/edit.rhtml:1
 msgid "Editing skill"
@@ -3013,14 +3005,12 @@ msgstr "Détails techniques (privé)"
 
 #: app/views/contributions/_liste_binaires.rhtml:1
 #: app/views/contributions/_liste_paquets.rhtml:9
-#, fuzzy
 msgid "Binary packages with the patch"
-msgstr "Paquet binaire"
+msgstr "Paquet binaire avec le patch"
 
 #: app/views/contributions/_liste_paquets.rhtml:6
-#, fuzzy
 msgid "Source packages with the patch"
-msgstr "Paquets source"
+msgstr "Paquets source avec le patch"
 
 #: app/views/contributions/edit.rhtml:1
 msgid "Edit this contribution"
@@ -3043,14 +3033,12 @@ msgid "See all contributions"
 msgstr "Consulter toutes les contributions"
 
 #: app/views/contributions/select.rhtml:11
-#, fuzzy
 msgid "Access to administration interface"
 msgstr "Interface d'administration"
 
 #: app/views/contributions/show.rhtml:15
-#, fuzzy
 msgid "link"
-msgstr "Liens"
+msgstr "liens"
 
 #: app/views/contributions/show.rhtml:20
 msgid "This contribution has been submitted on %s by <b>%s</b>"
@@ -3180,7 +3168,6 @@ msgid "Client :"
 msgstr "Client :"
 
 #: app/views/demandes/_form_deposer.rhtml:13
-#, fuzzy
 msgid "Packages supported for  %s :"
 msgstr "Paquets supportés pour %s :"
 
@@ -3609,9 +3596,8 @@ msgid "List of packages"
 msgstr "Liste des paquets"
 
 #: app/views/logiciels/_softwares_info.rhtml:29
-#, fuzzy
 msgid "By name"
-msgstr "Nom de base"
+msgstr "Par bom"
 
 #: app/views/logiciels/_softwares_info.rhtml:38
 msgid "Characteristic"
@@ -3659,9 +3645,8 @@ msgid "Logo"
 msgstr "Logo"
 
 #: app/views/logiciels/show.rhtml:18
-#, fuzzy
 msgid "Reference"
-msgstr "preference"
+msgstr "Référence"
 
 #: app/views/logiciels/show.rhtml:31
 msgid "Links"
@@ -4004,9 +3989,8 @@ msgid "See the report of requests' SLA"
 msgstr "Voir l'avancement du CNS"
 
 #: app/views/reporting/flux.rhtml:3
-#, fuzzy
 msgid "a new request"
-msgstr "Nouvelle demande"
+msgstr "une nouvelle demande"
 
 #: app/views/reporting/flux.rhtml:33
 msgid "No request declared."
