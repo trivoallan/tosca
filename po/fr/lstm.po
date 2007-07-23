@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 10:14+0200\n"
+"POT-Creation-Date: 2007-07-23 10:41+0200\n"
 "PO-Revision-Date: 2007-07-20 17:46+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -103,6 +103,7 @@ msgstr "Mot de passe"
 
 #: app/controllers/account_controller.rb:132
 #: app/controllers/account_controller.rb:173 app/views/account/_edit.rhtml:78
+#: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr "Informations"
 
@@ -320,7 +321,8 @@ msgid "Person in charge"
 msgstr "Personne en charge"
 
 #: app/controllers/export_controller.rb:100
-#: app/controllers/export_controller.rb:213
+#: app/controllers/export_controller.rb:213 app/views/machines/all.rhtml:5
+#: app/views/machines/index.rhtml:5
 #: app/views/reporting/_comex_tableaux.rhtml:15
 msgid "Customer"
 msgstr "Client"
@@ -451,6 +453,14 @@ msgstr "Le logiciel %s a été mis à jour avec succès."
 #: app/controllers/logiciels_controller.rb:110
 msgid "The software %s has been successfully deleted."
 msgstr "Le logiciel %s a été effacé avec succès"
+
+#: app/controllers/machines_controller.rb:31
+msgid "Machine was successfully created."
+msgstr "La machine a été crée avec succès."
+
+#: app/controllers/machines_controller.rb:47
+msgid "Machine was successfully updated."
+msgstr "La machine a été mis à jour avec succès."
 
 #: app/controllers/paquets_controller.rb:61
 msgid "The package %s has been created."
@@ -618,8 +628,8 @@ msgstr "Aide"
 msgid "Home page"
 msgstr "Page d'Accueil"
 
-#: app/helpers/images_helper.rb:82 app/views/permissions/show.rhtml:8
-#: app/views/images/show.rhtml:11
+#: app/helpers/images_helper.rb:82 app/views/machines/show.rhtml:13
+#: app/views/permissions/show.rhtml:8 app/views/images/show.rhtml:11
 msgid "Back"
 msgstr "Retour"
 
@@ -807,7 +817,8 @@ msgstr "Tout les logiciels"
 msgid "Display all softwares"
 msgstr "Afficher tout les logiciels"
 
-#: app/helpers/pages_helper.rb:30 app/views/permissions/edit.rhtml:5
+#: app/helpers/pages_helper.rb:30 app/views/machines/edit.rhtml:5
+#: app/views/machines/show.rhtml:12 app/views/permissions/edit.rhtml:5
 #: app/views/permissions/show.rhtml:7 app/views/socles/edit.rhtml:5
 #: app/views/images/edit.rhtml:5 app/views/images/show.rhtml:10
 msgid "Edit"
@@ -2305,8 +2316,9 @@ msgid "New phone call"
 msgstr "Nouvel appel téléphonique"
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
-#: app/views/contributions/new.rhtml:5 app/views/roles/new.rhtml:5
-#: app/views/socles/new.rhtml:5 app/views/images/new.rhtml:5
+#: app/views/contributions/new.rhtml:5 app/views/machines/new.rhtml:5
+#: app/views/roles/new.rhtml:5 app/views/socles/new.rhtml:5
+#: app/views/images/new.rhtml:5
 msgid "Create"
 msgstr "Créer"
 
@@ -2716,7 +2728,7 @@ msgstr ""
 "les communautés Open Source."
 
 #: app/views/bienvenue/natures.rhtml:1
-msgid "Type of the Request"
+msgid "Type of requests"
 msgstr "Type de la demande"
 
 #: app/views/bienvenue/natures.rhtml:5
@@ -2779,6 +2791,8 @@ msgstr "Paquet"
 
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/show.rhtml:11
 #: app/views/binaires/index.rhtml:6 app/views/demandes/_form.rhtml:41
+#: app/views/machines/_form.rhtml:17 app/views/machines/all.rhtml:5
+#: app/views/machines/show.rhtml:8 app/views/machines/index.rhtml:5
 #: app/views/socles/_form.rhtml:10 app/views/socles/index.rhtml:5
 msgid "System"
 msgstr "Système"
@@ -3122,8 +3136,8 @@ msgstr ""
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:23
 #: app/views/demandes/_infos_beneficiaire.rhtml:27
-#: app/views/permissions/edit.rhtml:8 app/views/reporting/delai.rhtml:6
-#: app/views/images/edit.rhtml:8
+#: app/views/machines/edit.rhtml:8 app/views/permissions/edit.rhtml:8
+#: app/views/reporting/delai.rhtml:6 app/views/images/edit.rhtml:8
 msgid "Show"
 msgstr "Consulter"
 
@@ -3285,7 +3299,8 @@ msgstr "Étes vous sûr de vouloir éffacer %s"
 #: app/views/demandes/pretty_print.rhtml:1 app/views/documents/_form.rhtml:36
 #: app/views/logiciels/_form.rhtml:10
 #: app/views/logiciels/_softwares_info.rhtml:40
-#: app/views/logiciels/_softwares_list.rhtml:6 app/views/roles/index.rhtml:4
+#: app/views/logiciels/_softwares_list.rhtml:6
+#: app/views/machines/_form.rhtml:22 app/views/roles/index.rhtml:4
 #: app/views/statuts/_form.rhtml:7 app/views/images/_form.rhtml:6
 #: app/views/images/index.rhtml:5
 msgid "Description"
@@ -3513,6 +3528,48 @@ msgstr "preference"
 #: app/views/logiciels/show.rhtml:31
 msgid "Links"
 msgstr "Liens"
+
+#: app/views/machines/_form.rhtml:6
+msgid "Access : DNS (IP)"
+msgstr "accès :DNS (IP)"
+
+#: app/views/machines/_form.rhtml:9 app/views/machines/all.rhtml:5
+#: app/views/socles/index.rhtml:5
+msgid "Virtual"
+msgstr "Virtuelle"
+
+#: app/views/machines/_form.rhtml:12
+msgid "Host"
+msgstr "Hôte"
+
+#: app/views/machines/all.rhtml:1
+msgid "IT infrastructure of OSSA"
+msgstr "Parc informatique de l'OSSA"
+
+#: app/views/machines/all.rhtml:3 app/views/machines/all.rhtml:21
+#: app/views/machines/index.rhtml:3 app/views/machines/index.rhtml:19
+msgid "a machine"
+msgstr "une machine"
+
+#: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
+msgid "Access (IP)"
+msgstr "Accès (IP)"
+
+#: app/views/machines/all.rhtml:5
+msgid "Hosted on"
+msgstr "Hébergé sur"
+
+#: app/views/machines/edit.rhtml:1
+msgid "Editing machine"
+msgstr "Editer la machine"
+
+#: app/views/machines/new.rhtml:1
+msgid "New machine"
+msgstr "Nouvelle machine"
+
+#: app/views/machines/index.rhtml:1
+msgid "IT infrastructure of Virtual machines of OSSA"
+msgstr "Parc informatique des marchines virtuelles de l'OSSA"
 
 #: app/views/paquets/show.rhtml:31
 msgid " <i>on</i> "
@@ -3906,10 +3963,6 @@ msgstr "un système d'un client"
 msgid "Machine"
 msgstr "Machine"
 
-#: app/views/socles/index.rhtml:5
-msgid "Virtual"
-msgstr "Virtuelle"
-
 #: app/views/socles/index.rhtml:19
 msgid "customers"
 msgstr "Clients"
@@ -4219,6 +4272,9 @@ msgstr "%e %b"
 #: lib/gettext_localize_extend.rb:160
 msgid "datetime|long|%B %e, %Y"
 msgstr "%B %e %Y"
+
+#~ msgid "Type of the Request"
+#~ msgstr "Type de la demande"
 
 #, fuzzy
 #~ msgid "clients"

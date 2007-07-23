@@ -1,22 +1,29 @@
 <%= error_messages_for 'machine' %>
 
 <!--[form:machine]-->
-<p><label for="machine_acces">Acces :DNS (IP)</label><br/>
-<%= text_field 'machine', 'acces'  %></p>
+<div class="show" style="width: 70%">
+  <div style="float:left; margin_right: 30px; padding-right: 40px;">
+    <p><label for="machine_acces"><%= _('Access : DNS (IP)')%></label><br/>
+    <%= text_field 'machine', 'acces'  %></p>
 
-<p><label for="machine_virtuelle">Virtuelle ?</label> 
-<%= check_box 'machine', 'virtuelle'%></p>
+    <p><label for="machine_virtuelle"><%= _('Virtual') << '?' %></label> 
+    <%= check_box 'machine', 'virtuelle'%></p>
 
-<p><label for="machine_hote">Hôte </label> 
-<%= select('machine', 'hote_id', 
-      @hotes.collect{|h| [h.acces, h.id]}, :include_blank => true) %></p>
+    <p><label for="machine_hote"><%= _('Host')%></label> 
+    <%= select('machine', 'hote_id', 
+    @hotes.collect{|h| [h.acces, h.id]}, :include_blank => true) %></p>
 
 
-<p><label for="machine_socle">Socle</label><br/>
-  <%= select('machine', 'socle_id', 
-             @socles.collect{|l| [ l.nom, l.id]}) %></p>
+    <p><label for="machine_socle"><%= _('System')%></label><br/>
+    <%= select('machine', 'socle_id', 
+    @socles.collect{|l| [ l.nom, l.id]}) %></p>
+  </div>
+  <div style="float: left">
+    <p><label for="machine_description"><%= _('Description')%></label><br/>
+    <%= text_area 'machine', 'description'  %></p>
+  </div>
+  <div style="clear: both"></div>
 
-<p><label for="machine_description">Description</label><br/>
-<%= text_area 'machine', 'description'  %></p>
+</div>
 <!--[eoform:machine]-->
 

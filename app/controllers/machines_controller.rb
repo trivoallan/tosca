@@ -28,7 +28,7 @@ class MachinesController < ApplicationController
   def create
     @machine = Machine.new(params[:machine])
     if @machine.save
-      flash[:notice] = 'Machine was successfully created.'
+      flash[:notice] = _('Machine was successfully created.')
       redirect_to machines_path
     else
       _form
@@ -44,7 +44,7 @@ class MachinesController < ApplicationController
   def update
     @machine = Machine.find(params[:id])
     if @machine.update_attributes(params[:machine])
-      flash[:notice] = 'Machine was successfully updated.'
+      flash[:notice] = _('Machine was successfully updated.')
       redirect_to machine_path(@machine)
     else
       _form

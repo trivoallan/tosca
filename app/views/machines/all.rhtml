@@ -1,8 +1,8 @@
-<h1>Parc informatique de l'OSSA</h1>
+<h1><%= _('IT infrastructure of OSSA')%></h1>
 
-<%= show_pages_links(@machine_pages, 'une machine') %>
+<%= show_pages_links(@machine_pages, _('a machine') ) %>
 
-<% titres = ['Client','Socle','Accès (IP)','Virtuelle','Hébérgé sur','Informations']%>
+<% titres = [_('Customer'), _('System'), _('Access (IP)') , _('Virtual') , _('Hosted on') , _('Informations') ]%>
 <%= show_table(@machines, Machine, titres) { |m|
   result = ''
   result << '<td>'
@@ -18,4 +18,4 @@
   result << "#{link_to_actions_table m}"
 }%>
 
-<%= show_pages_links(@machine_pages, 'une machine') %>
+<%= show_pages_links(@machine_pages, _('a machine') ) %>

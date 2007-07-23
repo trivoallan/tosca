@@ -5,9 +5,9 @@
 <% end %>
 
 <p>
-  <b>Socle:</b> <%= @machine.socle.nom if @machine.socle %>
+<b><%= _('System') << ' :'%></b> <%= @machine.socle.nom if @machine.socle %>
 </p>
 
 
-<%= link_to 'Edit', edit_machine_path(@machine) %> |
-<%= link_to 'Back', machines_path %>
+<%= link_to _('Edit'), edit_machine_path(@machine) %> |
+<%= link_to _('Back'), machines_path %>

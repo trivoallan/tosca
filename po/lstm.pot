@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 10:14+0200\n"
+"POT-Creation-Date: 2007-07-23 10:41+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,6 +98,7 @@ msgstr ""
 
 #: app/controllers/account_controller.rb:132
 #: app/controllers/account_controller.rb:173 app/views/account/_edit.rhtml:78
+#: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr ""
 
@@ -312,7 +313,8 @@ msgid "Person in charge"
 msgstr ""
 
 #: app/controllers/export_controller.rb:100
-#: app/controllers/export_controller.rb:213
+#: app/controllers/export_controller.rb:213 app/views/machines/all.rhtml:5
+#: app/views/machines/index.rhtml:5
 #: app/views/reporting/_comex_tableaux.rhtml:15
 msgid "Customer"
 msgstr ""
@@ -438,6 +440,14 @@ msgstr ""
 
 #: app/controllers/logiciels_controller.rb:110
 msgid "The software %s has been successfully deleted."
+msgstr ""
+
+#: app/controllers/machines_controller.rb:31
+msgid "Machine was successfully created."
+msgstr ""
+
+#: app/controllers/machines_controller.rb:47
+msgid "Machine was successfully updated."
 msgstr ""
 
 #: app/controllers/paquets_controller.rb:61
@@ -606,8 +616,8 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: app/helpers/images_helper.rb:82 app/views/permissions/show.rhtml:8
-#: app/views/images/show.rhtml:11
+#: app/helpers/images_helper.rb:82 app/views/machines/show.rhtml:13
+#: app/views/permissions/show.rhtml:8 app/views/images/show.rhtml:11
 msgid "Back"
 msgstr ""
 
@@ -795,7 +805,8 @@ msgstr ""
 msgid "Display all softwares"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:30 app/views/permissions/edit.rhtml:5
+#: app/helpers/pages_helper.rb:30 app/views/machines/edit.rhtml:5
+#: app/views/machines/show.rhtml:12 app/views/permissions/edit.rhtml:5
 #: app/views/permissions/show.rhtml:7 app/views/socles/edit.rhtml:5
 #: app/views/images/edit.rhtml:5 app/views/images/show.rhtml:10
 msgid "Edit"
@@ -2241,8 +2252,9 @@ msgid "New phone call"
 msgstr ""
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
-#: app/views/contributions/new.rhtml:5 app/views/roles/new.rhtml:5
-#: app/views/socles/new.rhtml:5 app/views/images/new.rhtml:5
+#: app/views/contributions/new.rhtml:5 app/views/machines/new.rhtml:5
+#: app/views/roles/new.rhtml:5 app/views/socles/new.rhtml:5
+#: app/views/images/new.rhtml:5
 msgid "Create"
 msgstr ""
 
@@ -2622,7 +2634,7 @@ msgid ""
 msgstr ""
 
 #: app/views/bienvenue/natures.rhtml:1
-msgid "Type of the Request"
+msgid "Type of requests"
 msgstr ""
 
 #: app/views/bienvenue/natures.rhtml:5
@@ -2682,6 +2694,8 @@ msgstr ""
 
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/show.rhtml:11
 #: app/views/binaires/index.rhtml:6 app/views/demandes/_form.rhtml:41
+#: app/views/machines/_form.rhtml:17 app/views/machines/all.rhtml:5
+#: app/views/machines/show.rhtml:8 app/views/machines/index.rhtml:5
 #: app/views/socles/_form.rhtml:10 app/views/socles/index.rhtml:5
 msgid "System"
 msgstr ""
@@ -3004,8 +3018,8 @@ msgstr ""
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:23
 #: app/views/demandes/_infos_beneficiaire.rhtml:27
-#: app/views/permissions/edit.rhtml:8 app/views/reporting/delai.rhtml:6
-#: app/views/images/edit.rhtml:8
+#: app/views/machines/edit.rhtml:8 app/views/permissions/edit.rhtml:8
+#: app/views/reporting/delai.rhtml:6 app/views/images/edit.rhtml:8
 msgid "Show"
 msgstr ""
 
@@ -3149,7 +3163,8 @@ msgstr ""
 #: app/views/demandes/pretty_print.rhtml:1 app/views/documents/_form.rhtml:36
 #: app/views/logiciels/_form.rhtml:10
 #: app/views/logiciels/_softwares_info.rhtml:40
-#: app/views/logiciels/_softwares_list.rhtml:6 app/views/roles/index.rhtml:4
+#: app/views/logiciels/_softwares_list.rhtml:6
+#: app/views/machines/_form.rhtml:22 app/views/roles/index.rhtml:4
 #: app/views/statuts/_form.rhtml:7 app/views/images/_form.rhtml:6
 #: app/views/images/index.rhtml:5
 msgid "Description"
@@ -3366,6 +3381,48 @@ msgstr ""
 
 #: app/views/logiciels/show.rhtml:31
 msgid "Links"
+msgstr ""
+
+#: app/views/machines/_form.rhtml:6
+msgid "Access : DNS (IP)"
+msgstr ""
+
+#: app/views/machines/_form.rhtml:9 app/views/machines/all.rhtml:5
+#: app/views/socles/index.rhtml:5
+msgid "Virtual"
+msgstr ""
+
+#: app/views/machines/_form.rhtml:12
+msgid "Host"
+msgstr ""
+
+#: app/views/machines/all.rhtml:1
+msgid "IT infrastructure of OSSA"
+msgstr ""
+
+#: app/views/machines/all.rhtml:3 app/views/machines/all.rhtml:21
+#: app/views/machines/index.rhtml:3 app/views/machines/index.rhtml:19
+msgid "a machine"
+msgstr ""
+
+#: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
+msgid "Access (IP)"
+msgstr ""
+
+#: app/views/machines/all.rhtml:5
+msgid "Hosted on"
+msgstr ""
+
+#: app/views/machines/edit.rhtml:1
+msgid "Editing machine"
+msgstr ""
+
+#: app/views/machines/new.rhtml:1
+msgid "New machine"
+msgstr ""
+
+#: app/views/machines/index.rhtml:1
+msgid "IT infrastructure of Virtual machines of OSSA"
 msgstr ""
 
 #: app/views/paquets/show.rhtml:31
@@ -3734,10 +3791,6 @@ msgstr ""
 
 #: app/views/socles/index.rhtml:5
 msgid "Machine"
-msgstr ""
-
-#: app/views/socles/index.rhtml:5
-msgid "Virtual"
 msgstr ""
 
 #: app/views/socles/index.rhtml:19

@@ -1,9 +1,9 @@
-<h1>Editing machine</h1>
+<h1><%= _('Editing machine')%></h1>
 
 <% form_tag machine_path(@machine), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag _('Edit') %>
 <% end %>
 
-<%= link_to 'Show', machine_path(@machine) %> |
+<%= link_to _('Show'), machine_path(@machine) %> |
 <%= link_to_back %>
