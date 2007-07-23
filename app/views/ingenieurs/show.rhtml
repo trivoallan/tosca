@@ -1,9 +1,9 @@
-<p><b>Nom : </b><%= @ingenieur.nom %>
+<p><b><%= _('Name') + ' :'%></b><%= @ingenieur.nom %>
 
-<p><b>Chef de projet : </b>
+<p><b><%= _('Project manager') + ' : '%></b>
 <%= 'X' if @ingenieur.chef_de_projet %></p>
 
-<p><b>Expert OSSA :</b>
+<p><b><%= _('OSSA expert')%></b>
 <%= 'X' if @ingenieur.expert_ossa %></p>
 
 
@@ -14,7 +14,7 @@
 <% end %>
 
 <% if (@ingenieur.competences.size != 0) %>
- <p><b>Competences:</b>
+<p><b><%= _('Skills') + ' : '%></b>
     <%= @ingenieur.competences.collect{|c| c.nom}.join(', ') %>
  </p>
 <% end %>

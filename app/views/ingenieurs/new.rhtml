@@ -1,8 +1,8 @@
-<h1>New ingenieur</h1>
+<h1><%= _('New engineer')%></h1>
 
 <% form_tag ingenieurs_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
+  <%= submit_tag _('Create') %>
 <% end %>
 
 <%= link_to_back %>

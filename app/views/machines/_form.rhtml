@@ -9,12 +9,12 @@
     <p><label for="machine_virtuelle"><%= _('Virtual') << '?' %></label> 
     <%= check_box 'machine', 'virtuelle'%></p>
 
-    <p><label for="machine_hote"><%= _('Host')%></label> 
+    <p><label for="machine_hote_id"><%= _('Host')%></label> 
     <%= select('machine', 'hote_id', 
     @hotes.collect{|h| [h.acces, h.id]}, :include_blank => true) %></p>
 
 
-    <p><label for="machine_socle"><%= _('System')%></label><br/>
+    <p><label for="machine_socle_id"><%= _('System')%></label><br/>
     <%= select('machine', 'socle_id', 
     @socles.collect{|l| [ l.nom, l.id]}) %></p>
   </div>

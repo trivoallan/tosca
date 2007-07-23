@@ -1,24 +1,28 @@
 <%= error_messages_for 'ingenieur' %>
 
 <!--[form:ingenieur]-->
+<div class="show" style="width: 85%">
+  <div class="edit">
+    <p><label for="ingenieur_chef_de_projet"><%= _('Project manager') + ' ?'%></label>
+    <%= check_box 'ingenieur', 'chef_de_projet' %></p>
 
-<p><label for="ingenieur_domaine">Domaine</label><br />
-<%= text_area 'ingenieur', 'domaine'  %></p>
-
-<p><label for="ingenieur_chef_de_projet">Chef de projet ?</label>
-<%= check_box 'ingenieur', 'chef_de_projet' %></p>
-
-<p><label for="ingenieur_expert_ossa">Expert OSSA ?</label>
-<%= check_box 'ingenieur', 'expert_ossa' %></p>
+    <p><label for="ingenieur_expert_ossa"><%= _('OSSA expert') + ' ?'%></label>
+    <%= check_box 'ingenieur', 'expert_ossa' %></p>
 
 
-<p><label for="ingenieur_competences">Competences ?</label><br/>
-<%= hbtm_check_box( @ingenieur.competences, @competences, 'ingenieur[competence_ids]', :size => 6) %>
-</p>
+    <div><label for="ingenieur_competences"><%= _('Skills') + ' ?' %></label><br/>
+    <%= hbtm_check_box( @ingenieur.competences, @competences, 'ingenieur[competence_ids]', :size => 6) %>
+    </div>
 
-<p><label for="ingenieur_contrats">Contrats</label><br/>
-<%= hbtm_check_box( @ingenieur.contrats, @contrats, 'ingenieur[contrat_ids]', :size => 2) %>
-</p>
-
+    <div><label for="ingenieur_contrats"><%= _('Contracts')%></label><br/>
+    <%= hbtm_check_box( @ingenieur.contrats, @contrats, 'ingenieur[contrat_ids]', :size => 2) %>
+    </div>
+  </div>
+  <div style="float: left">
+    <p><label for="ingenieur_domaine"><%= _('Domain')%></label><br />
+    <%= text_area 'ingenieur', 'domaine'  %></p>
+  </div>
+  <div style="clear: both"></div>
+</div>
 <!--[eoform:ingenieur]-->
 

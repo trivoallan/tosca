@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 10:41+0200\n"
+"POT-Creation-Date: 2007-07-23 11:19+0200\n"
 "PO-Revision-Date: 2007-07-20 17:46+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -317,6 +317,7 @@ msgstr "Contrat"
 
 #: app/controllers/export_controller.rb:100
 #: app/controllers/export_controller.rb:148 app/views/demandes/_appels.rhtml:2
+#: app/views/demandes/_requests_list.rhtml:19
 msgid "Person in charge"
 msgstr "Personne en charge"
 
@@ -434,6 +435,14 @@ msgstr "À clore"
 msgid "TOTALS"
 msgstr "TOTAUX"
 
+#: app/controllers/ingenieurs_controller.rb:24
+msgid "Ingenieur was successfully created."
+msgstr "L'ingénieur a bien été créée."
+
+#: app/controllers/ingenieurs_controller.rb:39
+msgid "Ingenieur was successfully updated."
+msgstr "L'ingénieur a bien été mise à jour."
+
 #: app/controllers/logiciels_controller.rb:18
 msgid "List of softwares"
 msgstr "Liste des logiciels"
@@ -514,6 +523,7 @@ msgstr " mois"
 #: app/helpers/contributions_helper.rb:10 app/views/bienvenue/admin.rhtml:2
 #: app/views/demandes/_form_deposer.rhtml:19
 #: app/views/demandes/_infos_demande.rhtml:15
+#: app/views/demandes/_requests_list.rhtml:17
 #: app/views/logiciels/_form.rhtml:7 app/views/reporting/_comex_cns.rhtml:22
 #: app/views/reporting/general.rhtml:7
 msgid "Summary"
@@ -817,10 +827,11 @@ msgstr "Tout les logiciels"
 msgid "Display all softwares"
 msgstr "Afficher tout les logiciels"
 
-#: app/helpers/pages_helper.rb:30 app/views/machines/edit.rhtml:5
-#: app/views/machines/show.rhtml:12 app/views/permissions/edit.rhtml:5
-#: app/views/permissions/show.rhtml:7 app/views/socles/edit.rhtml:5
-#: app/views/images/edit.rhtml:5 app/views/images/show.rhtml:10
+#: app/helpers/pages_helper.rb:30 app/views/ingenieurs/edit.rhtml:5
+#: app/views/machines/edit.rhtml:5 app/views/machines/show.rhtml:12
+#: app/views/permissions/edit.rhtml:5 app/views/permissions/show.rhtml:7
+#: app/views/socles/edit.rhtml:5 app/views/images/edit.rhtml:5
+#: app/views/images/show.rhtml:10
 msgid "Edit"
 msgstr "Modifier"
 
@@ -2080,6 +2091,7 @@ msgstr "Déposer une demande"
 #: app/views/account/_menu.rhtml:18 app/views/binaires/show.rhtml:9
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:46
+#: app/views/demandes/_requests_list.rhtml:10
 #: app/views/urllogiciels/_form.rhtml:8 app/views/urllogiciels/index.rhtml:6
 #: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
 msgid "Software"
@@ -2147,7 +2159,8 @@ msgstr "Rechercher"
 #: app/views/binaires/show.rhtml:14
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:6
-#: app/views/demandes/_form_binaires.rhtml:4 app/views/logiciels/_form.rhtml:4
+#: app/views/demandes/_form_binaires.rhtml:4 app/views/ingenieurs/show.rhtml:1
+#: app/views/ingenieurs/index.rhtml:6 app/views/logiciels/_form.rhtml:4
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/permissions/_form.rhtml:4 app/views/roles/_form.rhtml:5
 #: app/views/socles/_form.rhtml:4 app/views/statuts/_form.rhtml:4
@@ -2316,9 +2329,9 @@ msgid "New phone call"
 msgstr "Nouvel appel téléphonique"
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
-#: app/views/contributions/new.rhtml:5 app/views/machines/new.rhtml:5
-#: app/views/roles/new.rhtml:5 app/views/socles/new.rhtml:5
-#: app/views/images/new.rhtml:5
+#: app/views/contributions/new.rhtml:5 app/views/ingenieurs/new.rhtml:5
+#: app/views/machines/new.rhtml:5 app/views/roles/new.rhtml:5
+#: app/views/socles/new.rhtml:5 app/views/images/new.rhtml:5
 msgid "Create"
 msgstr "Créer"
 
@@ -2431,6 +2444,7 @@ msgid "Skill management"
 msgstr "Gestion des compétences"
 
 #: app/views/bienvenue/admin.rhtml:22 app/views/bienvenue/admin.rhtml:23
+#: app/views/ingenieurs/_form.rhtml:13 app/views/ingenieurs/show.rhtml:17
 msgid "Skills"
 msgstr "Compétences"
 
@@ -2438,7 +2452,7 @@ msgstr "Compétences"
 msgid "Customer management"
 msgstr "Gestion des clients"
 
-#: app/views/bienvenue/admin.rhtml:32
+#: app/views/bienvenue/admin.rhtml:32 app/views/ingenieurs/_form.rhtml:17
 msgid "Contracts"
 msgstr "Contrats"
 
@@ -3136,12 +3150,14 @@ msgstr ""
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:23
 #: app/views/demandes/_infos_beneficiaire.rhtml:27
-#: app/views/machines/edit.rhtml:8 app/views/permissions/edit.rhtml:8
-#: app/views/reporting/delai.rhtml:6 app/views/images/edit.rhtml:8
+#: app/views/ingenieurs/edit.rhtml:8 app/views/machines/edit.rhtml:8
+#: app/views/permissions/edit.rhtml:8 app/views/reporting/delai.rhtml:6
+#: app/views/images/edit.rhtml:8
 msgid "Show"
 msgstr "Consulter"
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:32
+#: app/views/demandes/_requests_list.rhtml:14
 msgid "Client"
 msgstr "Client"
 
@@ -3248,6 +3264,7 @@ msgstr ""
 
 #: app/views/demandes/_piecejointes.rhtml:3
 #: app/views/demandes/_report_detail.rhtml:7
+#: app/views/demandes/_requests_list.rhtml:9
 #: app/views/reporting/_comex_cns.rhtml:19
 msgid "Id"
 msgstr "Id"
@@ -3284,6 +3301,26 @@ msgstr ""
 #: app/views/demandes/_report_detail.rhtml:13
 msgid "Passé"
 msgstr ""
+
+#: app/views/demandes/_requests_list.rhtml:11
+#: app/views/demandes/_requests_info.rhtml:37
+#: app/views/documents/_form.rhtml:18
+msgid "Type"
+msgstr "type"
+
+#: app/views/demandes/_requests_list.rhtml:16
+#, fuzzy
+msgid "Submitter"
+msgstr "Enregistré"
+
+#: app/views/demandes/_requests_list.rhtml:46
+msgid "There is no request that concerns you."
+msgstr ""
+
+#: app/views/demandes/_requests_list.rhtml:47
+#, fuzzy
+msgid "You can click here %s to submit a new request."
+msgstr "Vous pouvez déclader une demande :"
 
 #: app/views/demandes/_tab_comments.rhtml:14
 #, fuzzy
@@ -3387,11 +3424,6 @@ msgstr "Client"
 msgid "Attributes"
 msgstr "distributeur"
 
-#: app/views/demandes/_requests_info.rhtml:37
-#: app/views/documents/_form.rhtml:18
-msgid "Type"
-msgstr "type"
-
 #: app/views/demandes/_requests_info.rhtml:39
 msgid "Severity"
 msgstr "séverité"
@@ -3444,6 +3476,51 @@ msgstr "Taille : "
 #: app/views/documents/show.rhtml:11
 msgid "Updated on : "
 msgstr "Mis à jour le :"
+
+#: app/views/ingenieurs/_form.rhtml:6 app/views/ingenieurs/show.rhtml:3
+#: app/views/ingenieurs/index.rhtml:6
+msgid "Project manager"
+msgstr "Chef de projet"
+
+#: app/views/ingenieurs/_form.rhtml:9 app/views/ingenieurs/show.rhtml:6
+msgid "OSSA expert"
+msgstr "Expert OSSA"
+
+#: app/views/ingenieurs/_form.rhtml:22
+msgid "Domain"
+msgstr "Domaine"
+
+#: app/views/ingenieurs/edit.rhtml:1
+msgid "Editing engineer"
+msgstr "Editer l'ingénieur"
+
+#: app/views/ingenieurs/new.rhtml:1
+msgid "New engineer"
+msgstr "Nouvel ingénieur"
+
+#: app/views/ingenieurs/index.rhtml:1
+msgid "Engineer list"
+msgstr "Liste des ingénieurs"
+
+#: app/views/ingenieurs/index.rhtml:4 app/views/ingenieurs/index.rhtml:24
+msgid "an engineer"
+msgstr "un ingénieur"
+
+#: app/views/ingenieurs/index.rhtml:6
+msgid "OSSA"
+msgstr "OSSA"
+
+#: app/views/ingenieurs/index.rhtml:6
+msgid "domain"
+msgstr "domaine"
+
+#: app/views/ingenieurs/index.rhtml:25
+msgid "an skill"
+msgstr "une compétence"
+
+#: app/views/ingenieurs/index.rhtml:26
+msgid "Add a skill"
+msgstr "Ajouter une compétence"
 
 #: app/views/logiciels/_form.rhtml:14
 msgid "Base name"

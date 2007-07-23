@@ -21,7 +21,7 @@ class IngenieursController < ApplicationController
   def create
     @ingenieur = Ingenieur.new(params[:ingenieur])
     if @ingenieur.save
-      flash[:notice] = 'Ingenieur was successfully created.'
+      flash[:notice] = _('Ingenieur was successfully created.')
       redirect_to ingenieurs_path
     else
       _form and render :action => 'new'
@@ -36,7 +36,7 @@ class IngenieursController < ApplicationController
   def update
     @ingenieur = Ingenieur.find(params[:id])
     if @ingenieur.update_attributes(params[:ingenieur])
-      flash[:notice] = 'Ingenieur was successfully updated.'
+      flash[:notice] = _('Ingenieur was successfully updated.')
       redirect_to ingenieurs_path
     else
       _form and render :action => 'edit'

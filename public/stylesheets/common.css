@@ -166,6 +166,12 @@ table.pages td {
 .show tr td, tr th {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
+/*style for the left column in edit pages*/
+div.edit {
+  float: left; 
+  margin-right: 30px; 
+  padding-right: 20px;
+}
 
 /* predefined pretty width and 3D border just for DIV's */
 div.login, div.form, div.show, div.help, div.info {

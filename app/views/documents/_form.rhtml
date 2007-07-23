@@ -2,7 +2,7 @@
 <%= error_messages_for 'document' %>
 <div class="show" style="width: 70%">
   <!--[form:document]-->
-  <div style="float: left; margin-right: 30px; pasdding-right: 40px;">
+  <div class="edit">
     <p><label for="document_client_id"><%= _('Recipient') %></label><br/>
     <%= select("document", "client_id",
     @clients.collect{|l| [ l.nom, l.id]}) %>

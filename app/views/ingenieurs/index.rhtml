@@ -1,9 +1,9 @@
-<h1>Liste des ingenieurs</h1>
+<h1><%= _('Engineer list')%></h1>
 
 
-<%= show_pages_links(@ingenieur_pages, 'un ingenieur') %>
+<%= show_pages_links(@ingenieur_pages, _('an engineer') ) %>
 
-<% titres = ['Nom','Chef de Projet','OSSA','domaine'] %>
+<% titres = [ _('Name'), _('Project manager') , _('OSSA') , _('domain') ] %>
 <% addlines = [
      [ ['']*4, @competences.collect{|c| c.ingenieurs.count } ].flatten
    ] %>
@@ -21,7 +21,7 @@
   result << "#{link_to_actions_table i}"
 }%>
 
-<%= show_pages_links(@ingenieur_pages, 'un ingenieur') %>
-<%= link_to_new('une compétence', :controller => 'competences') %>
-<%= link_to ' Ajouter une compétence', new_competence_path %>
+<%= show_pages_links(@ingenieur_pages, _('an engineer') ) %>
+<%= link_to_new( _('an skill'), :controller => 'competences') %>
+<%= link_to _('Add a skill') , new_competence_path %>
 

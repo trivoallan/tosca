@@ -1,9 +1,9 @@
-<h1>Editing ingenieur</h1>
+<h1><%= _('Editing engineer')%></h1>
 
 <% form_tag ingenieur_path(@ingenieur), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag _('Edit') %>
 <% end %>
 
-<%= link_to 'Show', ingenieur_path(@ingenieur) %> |
+<%= link_to _('Show'), ingenieur_path(@ingenieur) %> |
 <%= link_to_back %>
