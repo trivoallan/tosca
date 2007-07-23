@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 14:27+0200\n"
+"POT-Creation-Date: 2007-07-23 14:33+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,7 +211,7 @@ msgid "Correction"
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:256
-msgid "The request %s has been update successfully."
+msgid "The request has been updated successfully."
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:275
@@ -437,6 +437,14 @@ msgstr ""
 #: app/controllers/export_controller.rb:230
 #: app/views/reporting/_comex_tableaux.rhtml:44
 msgid "TOTALS"
+msgstr ""
+
+#: app/controllers/groupes_controller.rb:27
+msgid "Groupe was successfully created."
+msgstr ""
+
+#: app/controllers/groupes_controller.rb:41
+msgid "Groupe was successfully updated."
 msgstr ""
 
 #: app/controllers/ingenieurs_controller.rb:24
@@ -773,9 +781,8 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: app/helpers/images_helper.rb:82 app/views/competences/show.rhtml:8
-#: app/views/images/show.rhtml:11 app/views/machines/show.rhtml:13
-#: app/views/permissions/show.rhtml:8
+#: app/helpers/images_helper.rb:82 app/views/images/show.rhtml:11
+#: app/views/machines/show.rhtml:13
 msgid "Back"
 msgstr ""
 
@@ -845,10 +852,9 @@ msgid "Display all softwares"
 msgstr ""
 
 #: app/helpers/pages_helper.rb:30 app/views/competences/edit.rhtml:5
-#: app/views/competences/show.rhtml:7 app/views/ingenieurs/edit.rhtml:5
-#: app/views/images/edit.rhtml:5 app/views/images/show.rhtml:10
-#: app/views/machines/edit.rhtml:5 app/views/machines/show.rhtml:12
-#: app/views/permissions/edit.rhtml:5 app/views/permissions/show.rhtml:7
+#: app/views/ingenieurs/edit.rhtml:5 app/views/images/edit.rhtml:5
+#: app/views/images/show.rhtml:10 app/views/machines/edit.rhtml:5
+#: app/views/machines/show.rhtml:12 app/views/permissions/edit.rhtml:5
 #: app/views/socles/edit.rhtml:5
 msgid "Edit"
 msgstr ""
@@ -1339,10 +1345,6 @@ msgstr ""
 
 #: app/models/demande.rb:207
 msgid " of overrun"
-msgstr ""
-
-#: app/models/demande.rb:216
-msgid "N/A"
 msgstr ""
 
 #: app/models/dependance.rb:-
@@ -3095,8 +3097,7 @@ msgstr ""
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:23
 #: app/views/demandes/_infos_beneficiaire.rhtml:27
-#: app/views/ingenieurs/edit.rhtml:8 app/views/images/edit.rhtml:8
-#: app/views/machines/edit.rhtml:8 app/views/permissions/edit.rhtml:8
+#: app/views/images/edit.rhtml:8 app/views/machines/edit.rhtml:8
 #: app/views/reporting/delai.rhtml:6
 msgid "Show"
 msgstr ""
@@ -3377,10 +3378,6 @@ msgstr ""
 
 #: app/views/documents/edit.rhtml:6
 msgid "Modify"
-msgstr ""
-
-#: app/views/documents/edit.rhtml:9
-msgid "look"
 msgstr ""
 
 #: app/views/documents/list.rhtml:20
@@ -3926,10 +3923,6 @@ msgstr ""
 
 #: app/views/socles/edit.rhtml:1
 msgid "Editing system"
-msgstr ""
-
-#: app/views/socles/edit.rhtml:8
-msgid "Look"
 msgstr ""
 
 #: app/views/socles/new.rhtml:1

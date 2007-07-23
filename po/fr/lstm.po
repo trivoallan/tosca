@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 14:27+0200\n"
+"POT-Creation-Date: 2007-07-23 14:33+0200\n"
 "PO-Revision-Date: 2007-07-20 17:46+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -220,7 +220,8 @@ msgid "Correction"
 msgstr "Correction"
 
 #: app/controllers/demandes_controller.rb:256
-msgid "The request %s has been update successfully."
+#, fuzzy
+msgid "The request has been updated successfully."
 msgstr "La demande %s a bien été mise à jour."
 
 #: app/controllers/demandes_controller.rb:275
@@ -451,6 +452,16 @@ msgstr "À clore"
 #: app/views/reporting/_comex_tableaux.rhtml:44
 msgid "TOTALS"
 msgstr "TOTAUX"
+
+#: app/controllers/groupes_controller.rb:27
+#, fuzzy
+msgid "Groupe was successfully created."
+msgstr "Le système a été crée avec succès."
+
+#: app/controllers/groupes_controller.rb:41
+#, fuzzy
+msgid "Groupe was successfully updated."
+msgstr "Le système a été mis à jour avec succès."
 
 #: app/controllers/ingenieurs_controller.rb:24
 msgid "Ingenieur was successfully created."
@@ -786,9 +797,8 @@ msgstr "Aide"
 msgid "Home page"
 msgstr "Page d'Accueil"
 
-#: app/helpers/images_helper.rb:82 app/views/competences/show.rhtml:8
-#: app/views/images/show.rhtml:11 app/views/machines/show.rhtml:13
-#: app/views/permissions/show.rhtml:8
+#: app/helpers/images_helper.rb:82 app/views/images/show.rhtml:11
+#: app/views/machines/show.rhtml:13
 msgid "Back"
 msgstr "Retour"
 
@@ -858,10 +868,9 @@ msgid "Display all softwares"
 msgstr "Afficher tout les logiciels"
 
 #: app/helpers/pages_helper.rb:30 app/views/competences/edit.rhtml:5
-#: app/views/competences/show.rhtml:7 app/views/ingenieurs/edit.rhtml:5
-#: app/views/images/edit.rhtml:5 app/views/images/show.rhtml:10
-#: app/views/machines/edit.rhtml:5 app/views/machines/show.rhtml:12
-#: app/views/permissions/edit.rhtml:5 app/views/permissions/show.rhtml:7
+#: app/views/ingenieurs/edit.rhtml:5 app/views/images/edit.rhtml:5
+#: app/views/images/show.rhtml:10 app/views/machines/edit.rhtml:5
+#: app/views/machines/show.rhtml:12 app/views/permissions/edit.rhtml:5
 #: app/views/socles/edit.rhtml:5
 msgid "Edit"
 msgstr "Modifier"
@@ -1390,10 +1399,6 @@ msgstr ""
 #: app/models/demande.rb:207
 msgid " of overrun"
 msgstr " de dépassement"
-
-#: app/models/demande.rb:216
-msgid "N/A"
-msgstr ""
 
 #: app/models/dependance.rb:-
 msgid "dependance"
@@ -3201,8 +3206,7 @@ msgstr "Corrdonnées du bénéficiaire"
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:23
 #: app/views/demandes/_infos_beneficiaire.rhtml:27
-#: app/views/ingenieurs/edit.rhtml:8 app/views/images/edit.rhtml:8
-#: app/views/machines/edit.rhtml:8 app/views/permissions/edit.rhtml:8
+#: app/views/images/edit.rhtml:8 app/views/machines/edit.rhtml:8
 #: app/views/reporting/delai.rhtml:6
 msgid "Show"
 msgstr "Consulter"
@@ -3489,10 +3493,6 @@ msgstr "Modifier le document"
 #: app/views/documents/edit.rhtml:6
 msgid "Modify"
 msgstr "Modifier"
-
-#: app/views/documents/edit.rhtml:9
-msgid "look"
-msgstr "Voir"
 
 #: app/views/documents/list.rhtml:20
 msgid "Return to the selection"
@@ -4065,10 +4065,6 @@ msgstr "machines"
 msgid "Editing system"
 msgstr "Editer le système"
 
-#: app/views/socles/edit.rhtml:8
-msgid "Look"
-msgstr "Voir"
-
 #: app/views/socles/new.rhtml:1
 msgid "New system"
 msgstr "Nouveau système"
@@ -4386,6 +4382,12 @@ msgstr "%e %b"
 #: lib/gettext_localize_extend.rb:160
 msgid "datetime|long|%B %e, %Y"
 msgstr "%B %e %Y"
+
+#~ msgid "look"
+#~ msgstr "Voir"
+
+#~ msgid "Look"
+#~ msgstr "Voir"
 
 #, fuzzy
 #~ msgid "Demande|Reproductible"

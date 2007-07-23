@@ -253,7 +253,7 @@ class DemandesController < ApplicationController
     @demande = Demande.find(params[:id])
     @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.update_attributes(params[:demande])
-      flash[:notice] = _("The request %s has been update successfully.")
+      flash[:notice] = _("The request has been updated successfully.")
       redirect_to comment_demande_path(@demande)
     else
       _form @beneficiaire
