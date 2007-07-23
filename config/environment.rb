@@ -65,8 +65,12 @@ require 'gettext_localize'
 require 'gettext_localize_rails'
 require 'gettext_localize_extend'
 
-#Franch TimeZone, mandatory coz' of debian nerds :/
+#French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'
+
+# Mime type needed for ods export with Ruport lib
+Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
+
 
 #conf gettextlocalize
  if defined? GettextLocalize

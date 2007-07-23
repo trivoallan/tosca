@@ -8,8 +8,6 @@
 # source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
 class ExportController < ApplicationController
 
-  Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
-
   # return the contents of identifiants in a table in ODS format
   # with Ruport :
   # We can export to other formats : 
