@@ -8,7 +8,7 @@ module  ComexReporting
     @requests[:closed] = {}
     @total = { :active=> {}, :final=> {} }
     @clients.each do |c|
-      name = c.nom.intern
+      name = c.nom
       @total[:active][name] = [0,0,0,0, []]
       @total[:final][name] = 0
     end
@@ -20,7 +20,7 @@ module  ComexReporting
   end
 
   def compute_comex_report(client)
-    name = client.nom.intern
+    name = client.nom
     values = {
       :first_day => @date[:first_day],
       :last_day=> @date[:end_day],

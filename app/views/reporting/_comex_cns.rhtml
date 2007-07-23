@@ -14,7 +14,7 @@
   <% @percents.each do |c| %>
     <% c_id = @percents.index(c) %>
     <li><h2><%= @extra[c_id][:nom] %></h2>
-      <table id="cns" class="show" width='100%'>
+    <table class="show" width='100%'>
         <tr>
           <th><%= _('Id')%></th>
           <th><%= _('Workaround')%></th>
