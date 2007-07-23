@@ -1,23 +1,25 @@
-<p><b><%= _('Name') + ' :'%></b><%= @ingenieur.nom %>
+<div class="show">
+  <p><b><%= _('Name') + ' :'%></b><%= @ingenieur.nom %></p>
 
-<p><b><%= _('Project manager') + ' : '%></b>
-<%= 'X' if @ingenieur.chef_de_projet %></p>
+  <p><b><%= _('Project manager') + ' : '%></b>
+  <%= 'X' if @ingenieur.chef_de_projet %></p>
 
-<p><b><%= _('OSSA expert')%></b>
-<%= 'X' if @ingenieur.expert_ossa %></p>
+  <p><b><%= _('OSSA expert')%></b>
+  <%= 'X' if @ingenieur.expert_ossa %></p>
 
 
-<% for column in Ingenieur.content_columns %>
-<p>
+  <% for column in Ingenieur.content_columns %>
+  <p>
   <b><%= column.human_name %>:</b> <%= @ingenieur.send(column.name) %>
-</p>
-<% end %>
+  </p>
+  <% end %>
 
-<% if (@ingenieur.competences.size != 0) %>
-<p><b><%= _('Skills') + ' : '%></b>
-    <%= @ingenieur.competences.collect{|c| c.nom}.join(', ') %>
- </p>
-<% end %>
+  <% if (@ingenieur.competences.size != 0) %>
+  <p><b><%= _('Skills') + ' : '%></b>
+  <%= @ingenieur.competences.collect{|c| c.nom}.join(', ') %>
+  </p>
+  <% end %>
 
-
-<%= link_to_edit(@ingenieur) %> | <%= link_to_back %>
+  <br />
+  <%= link_to_edit(@ingenieur) %> | <%= link_to_back %>
+</div>

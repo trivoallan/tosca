@@ -17,7 +17,7 @@ class CompetencesController < ApplicationController
   def create
     @competence = Competence.new(params[:competence])
     if @competence.save
-      flash[:notice] = 'Competence was successfully created.'
+      flash[:notice] = _('Skill was successfully created.')
       redirect_to competences_path
     else
       render :action => 'new'
@@ -31,7 +31,7 @@ class CompetencesController < ApplicationController
   def update
     @competence = Competence.find(params[:id])
     if @competence.update_attributes(params[:competence])
-      flash[:notice] = 'Competence was successfully updated.'
+      flash[:notice] = _('Skill was successfully updated.')
       redirect_to competence_path(@competence)
     else
       render :action => 'edit'

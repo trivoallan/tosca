@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 11:19+0200\n"
+"POT-Creation-Date: 2007-07-23 11:41+0200\n"
 "PO-Revision-Date: 2007-07-20 17:46+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -158,6 +158,14 @@ msgstr "Le client a été crée avec succès"
 #: app/controllers/clients_controller.rb:48
 msgid "Client updated successfully."
 msgstr "Le client bien été mis à jour."
+
+#: app/controllers/competences_controller.rb:20
+msgid "Skill was successfully created."
+msgstr "La compétence a été crée avec succès."
+
+#: app/controllers/competences_controller.rb:34
+msgid "Skill was successfully updated."
+msgstr "La compétence a été mis à jour avec succès."
 
 #: app/controllers/contributions_controller.rb:75
 msgid "The contribution has been created successfully."
@@ -638,8 +646,9 @@ msgstr "Aide"
 msgid "Home page"
 msgstr "Page d'Accueil"
 
-#: app/helpers/images_helper.rb:82 app/views/machines/show.rhtml:13
-#: app/views/permissions/show.rhtml:8 app/views/images/show.rhtml:11
+#: app/helpers/images_helper.rb:82 app/views/competences/show.rhtml:8
+#: app/views/machines/show.rhtml:13 app/views/permissions/show.rhtml:8
+#: app/views/images/show.rhtml:11
 msgid "Back"
 msgstr "Retour"
 
@@ -827,7 +836,8 @@ msgstr "Tout les logiciels"
 msgid "Display all softwares"
 msgstr "Afficher tout les logiciels"
 
-#: app/helpers/pages_helper.rb:30 app/views/ingenieurs/edit.rhtml:5
+#: app/helpers/pages_helper.rb:30 app/views/competences/edit.rhtml:5
+#: app/views/competences/show.rhtml:7 app/views/ingenieurs/edit.rhtml:5
 #: app/views/machines/edit.rhtml:5 app/views/machines/show.rhtml:12
 #: app/views/permissions/edit.rhtml:5 app/views/permissions/show.rhtml:7
 #: app/views/socles/edit.rhtml:5 app/views/images/edit.rhtml:5
@@ -2156,10 +2166,10 @@ msgid "Search "
 msgstr "Rechercher"
 
 #: app/views/account/_users_info.rhtml:30 app/views/binaires/_form.rhtml:20
-#: app/views/binaires/show.rhtml:14
+#: app/views/binaires/show.rhtml:14 app/views/competences/_form.rhtml:4
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:6
-#: app/views/demandes/_form_binaires.rhtml:4 app/views/ingenieurs/show.rhtml:1
+#: app/views/demandes/_form_binaires.rhtml:4 app/views/ingenieurs/show.rhtml:2
 #: app/views/ingenieurs/index.rhtml:6 app/views/logiciels/_form.rhtml:4
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/permissions/_form.rhtml:4 app/views/roles/_form.rhtml:5
@@ -2329,9 +2339,10 @@ msgid "New phone call"
 msgstr "Nouvel appel téléphonique"
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
-#: app/views/contributions/new.rhtml:5 app/views/ingenieurs/new.rhtml:5
-#: app/views/machines/new.rhtml:5 app/views/roles/new.rhtml:5
-#: app/views/socles/new.rhtml:5 app/views/images/new.rhtml:5
+#: app/views/competences/new.rhtml:5 app/views/contributions/new.rhtml:5
+#: app/views/ingenieurs/new.rhtml:5 app/views/machines/new.rhtml:5
+#: app/views/roles/new.rhtml:5 app/views/socles/new.rhtml:5
+#: app/views/images/new.rhtml:5
 msgid "Create"
 msgstr "Créer"
 
@@ -2444,7 +2455,7 @@ msgid "Skill management"
 msgstr "Gestion des compétences"
 
 #: app/views/bienvenue/admin.rhtml:22 app/views/bienvenue/admin.rhtml:23
-#: app/views/ingenieurs/_form.rhtml:13 app/views/ingenieurs/show.rhtml:17
+#: app/views/ingenieurs/_form.rhtml:13 app/views/ingenieurs/show.rhtml:18
 msgid "Skills"
 msgstr "Compétences"
 
@@ -2873,6 +2884,26 @@ msgstr "Binaire"
 #, fuzzy
 msgid "add a logo"
 msgstr "Ajouter un appel"
+
+#: app/views/competences/edit.rhtml:1
+msgid "Editing skill"
+msgstr "Editer la compétence"
+
+#: app/views/competences/new.rhtml:1
+msgid "New skill"
+msgstr "Nouvelle compétence"
+
+#: app/views/competences/index.rhtml:1
+msgid "Skill list"
+msgstr "Liste des compétences"
+
+#: app/views/competences/index.rhtml:3 app/views/competences/index.rhtml:13
+msgid "a skill"
+msgstr "une compétence"
+
+#: app/views/competences/index.rhtml:5
+msgid "Resources"
+msgstr "Ressources"
 
 #: app/views/contributions/_contributions_admin.rhtml:1
 msgid "List of contributions"
@@ -3477,12 +3508,12 @@ msgstr "Taille : "
 msgid "Updated on : "
 msgstr "Mis à jour le :"
 
-#: app/views/ingenieurs/_form.rhtml:6 app/views/ingenieurs/show.rhtml:3
+#: app/views/ingenieurs/_form.rhtml:6 app/views/ingenieurs/show.rhtml:4
 #: app/views/ingenieurs/index.rhtml:6
 msgid "Project manager"
 msgstr "Chef de projet"
 
-#: app/views/ingenieurs/_form.rhtml:9 app/views/ingenieurs/show.rhtml:6
+#: app/views/ingenieurs/_form.rhtml:9 app/views/ingenieurs/show.rhtml:7
 msgid "OSSA expert"
 msgstr "Expert OSSA"
 
@@ -4349,6 +4380,14 @@ msgstr "%e %b"
 #: lib/gettext_localize_extend.rb:160
 msgid "datetime|long|%B %e, %Y"
 msgstr "%B %e %Y"
+
+#, fuzzy
+#~ msgid "Competence was successfully created."
+#~ msgstr "Le système a été crée avec succès."
+
+#, fuzzy
+#~ msgid "Competence was successfully updated."
+#~ msgstr "Le système a été mis à jour avec succès."
 
 #~ msgid "Type of the Request"
 #~ msgstr "Type de la demande"

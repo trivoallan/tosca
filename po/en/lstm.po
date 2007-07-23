@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 11:19+0200\n"
+"POT-Creation-Date: 2007-07-23 11:41+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -150,6 +150,14 @@ msgstr ""
 
 #: app/controllers/clients_controller.rb:48
 msgid "Client updated successfully."
+msgstr ""
+
+#: app/controllers/competences_controller.rb:20
+msgid "Skill was successfully created."
+msgstr ""
+
+#: app/controllers/competences_controller.rb:34
+msgid "Skill was successfully updated."
 msgstr ""
 
 #: app/controllers/contributions_controller.rb:75
@@ -626,8 +634,9 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: app/helpers/images_helper.rb:82 app/views/machines/show.rhtml:13
-#: app/views/permissions/show.rhtml:8 app/views/images/show.rhtml:11
+#: app/helpers/images_helper.rb:82 app/views/competences/show.rhtml:8
+#: app/views/machines/show.rhtml:13 app/views/permissions/show.rhtml:8
+#: app/views/images/show.rhtml:11
 msgid "Back"
 msgstr ""
 
@@ -815,7 +824,8 @@ msgstr ""
 msgid "Display all softwares"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:30 app/views/ingenieurs/edit.rhtml:5
+#: app/helpers/pages_helper.rb:30 app/views/competences/edit.rhtml:5
+#: app/views/competences/show.rhtml:7 app/views/ingenieurs/edit.rhtml:5
 #: app/views/machines/edit.rhtml:5 app/views/machines/show.rhtml:12
 #: app/views/permissions/edit.rhtml:5 app/views/permissions/show.rhtml:7
 #: app/views/socles/edit.rhtml:5 app/views/images/edit.rhtml:5
@@ -2127,10 +2137,10 @@ msgid "Search "
 msgstr ""
 
 #: app/views/account/_users_info.rhtml:30 app/views/binaires/_form.rhtml:20
-#: app/views/binaires/show.rhtml:14
+#: app/views/binaires/show.rhtml:14 app/views/competences/_form.rhtml:4
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:6
-#: app/views/demandes/_form_binaires.rhtml:4 app/views/ingenieurs/show.rhtml:1
+#: app/views/demandes/_form_binaires.rhtml:4 app/views/ingenieurs/show.rhtml:2
 #: app/views/ingenieurs/index.rhtml:6 app/views/logiciels/_form.rhtml:4
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/permissions/_form.rhtml:4 app/views/roles/_form.rhtml:5
@@ -2300,9 +2310,10 @@ msgid "New phone call"
 msgstr ""
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
-#: app/views/contributions/new.rhtml:5 app/views/ingenieurs/new.rhtml:5
-#: app/views/machines/new.rhtml:5 app/views/roles/new.rhtml:5
-#: app/views/socles/new.rhtml:5 app/views/images/new.rhtml:5
+#: app/views/competences/new.rhtml:5 app/views/contributions/new.rhtml:5
+#: app/views/ingenieurs/new.rhtml:5 app/views/machines/new.rhtml:5
+#: app/views/roles/new.rhtml:5 app/views/socles/new.rhtml:5
+#: app/views/images/new.rhtml:5
 msgid "Create"
 msgstr ""
 
@@ -2407,7 +2418,7 @@ msgid "Skill management"
 msgstr ""
 
 #: app/views/bienvenue/admin.rhtml:22 app/views/bienvenue/admin.rhtml:23
-#: app/views/ingenieurs/_form.rhtml:13 app/views/ingenieurs/show.rhtml:17
+#: app/views/ingenieurs/_form.rhtml:13 app/views/ingenieurs/show.rhtml:18
 msgid "Skills"
 msgstr ""
 
@@ -2810,6 +2821,26 @@ msgstr ""
 
 #: app/views/clients/index.rhtml:24
 msgid "add a logo"
+msgstr ""
+
+#: app/views/competences/edit.rhtml:1
+msgid "Editing skill"
+msgstr ""
+
+#: app/views/competences/new.rhtml:1
+msgid "New skill"
+msgstr ""
+
+#: app/views/competences/index.rhtml:1
+msgid "Skill list"
+msgstr ""
+
+#: app/views/competences/index.rhtml:3 app/views/competences/index.rhtml:13
+msgid "a skill"
+msgstr ""
+
+#: app/views/competences/index.rhtml:5
+msgid "Resources"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:1
@@ -3377,12 +3408,12 @@ msgstr ""
 msgid "Updated on : "
 msgstr ""
 
-#: app/views/ingenieurs/_form.rhtml:6 app/views/ingenieurs/show.rhtml:3
+#: app/views/ingenieurs/_form.rhtml:6 app/views/ingenieurs/show.rhtml:4
 #: app/views/ingenieurs/index.rhtml:6
 msgid "Project manager"
 msgstr ""
 
-#: app/views/ingenieurs/_form.rhtml:9 app/views/ingenieurs/show.rhtml:6
+#: app/views/ingenieurs/_form.rhtml:9 app/views/ingenieurs/show.rhtml:7
 msgid "OSSA expert"
 msgstr ""
 
