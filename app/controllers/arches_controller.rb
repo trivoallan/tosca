@@ -13,7 +13,7 @@ class ArchesController < ApplicationController
   def create
     @arch = Arch.new(params[:arch])
     if @arch.save
-      flash[:notice] = 'Arch was successfully created.'
+      flash[:notice] = _('Arch was successfully created.')
       redirect_to arches_url
     else
       render :action => 'new'
@@ -31,7 +31,7 @@ class ArchesController < ApplicationController
   def update
     @arch = Arch.find(params[:id])
     if @arch.update_attributes(params[:arch])
-      flash[:notice] = 'Arch was successfully updated.'
+      flash[:notice] = _('Arch was successfully updated.')
       redirect_to arch_path(@arch)
     else
       render :action => 'edit'

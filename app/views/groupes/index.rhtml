@@ -1,15 +1,15 @@
-<h1>Liste des groupes</h1>
+<h1><%= _('Group list')%></h1>
 
-<%= show_pages_links(@groupe_pages, 'un groupe') %>
+<%= show_pages_links(@groupe_pages, _('a group') ) %>
 
-<% titres = ['Nom', 'Logiciels']%>
+<% titres = [_('Name') , _('Softwares') ]%>
 <%= show_table(@groupes, Groupe, titres) { |g|
   result = ''
-  result << "<td>#{public_link_to g.nom, groupes_path(g.id)}</td>"
+  result << "<td>#{g.nom }</td>"
   result << "<td>#{g.logiciels.compact.size}</td>"
   result << "#{link_to_actions_table g}"
 }%>
 
 
-<%= show_pages_links(@groupe_pages, 'un groupe') %>
+<%= show_pages_links(@groupe_pages, _('a group') ) %>
 
