@@ -15,14 +15,14 @@ module ActionController::Routing
                       :conditions => { :method => method }})
         }
       end
-      
+
       # Mapper for exporting with format, done in a special controller 'export'.
       def formatted_export(actions)
         actions.each { |action|
           self.send('named_route', "formatted_#{action}_export", "export/#{action}.:format",
                     { :controller => 'export', :action => action,
                       :conditions => { :method => :get }})
-        }        
+        }
       end
     end
   end
@@ -40,12 +40,12 @@ ActionController::Routing::Routes.draw do |map|
                  :conditions => { :method => :get } }
   map.bienvenue '/', sweet_home
 
-  map.without_orm('bienvenue', %w(admin plan selenium about deroulement 
+  map.without_orm('bienvenue', %w(admin plan selenium about deroulement
     natures statut suggestions engagements declaration severites statuts))
   map.without_orm('bienvenue', %w(suggestions), :post)
   map.without_orm('reporting', %w(comex configuration general comex_resultat))
   map.without_orm('acces', %w(refuse))
-  map.without_orm('export', %w(demandes_ods appels_ods identifiants_ods 
+  map.without_orm('export', %w(demandes_ods appels_ods identifiants_ods
     contributions_ods comex_ods) )
 
   map.formatted_export(%w(requests contributions identifiants appels comex))
@@ -106,7 +106,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :roles
   map.resources :socles
   map.resources :statuts
-  map.resources :typecontributions,  :collection => { :destroy => :get }
+  map.resources :typecontributions
   map.resources :urllogiciels
   map.resources :urlreversements
 
