@@ -8,13 +8,13 @@
     <%=progress_bar( 50) %> <%= _('50% de ready') %>
     <%=progress_bar( 75) %> <%= _('75% de ready') %>
     <%=progress_bar( 110) %> <%= _('The contract is outdated! ') %><br /><br />
-    </p><%= _('The indicated time is the remaining time until the end of the contract, or the time needed beyond the contract.') %></p>
+    <p><%= _('The indicated time is the remaining time until the end of the contract, or the time needed beyond the contract.') %></p>
   </div>
   <ul>
   <% @percents.each do |c| %>
     <% c_id = @percents.index(c) %>
-    <li><h2><%= @extra[c_id][:nom] %><h2></li>
-      <table id="cns" class="show", width='100%'>
+    <li><h2><%= @extra[c_id][:nom] %></h2>
+      <table id="cns" class="show" width='100%'>
         <tr>
           <th><%= _('Id')%></th>
           <th><%= _('Workaround')%></th>
@@ -38,7 +38,7 @@
           <td><%= d[:resume] %></td>
         </tr>
         <% end %>
-      </table>
+      </table></li>
   <%end %>
   </ul>
 </div>

@@ -245,7 +245,7 @@ module ReportingHelper
       return '<img alt="barre de progression" class="percentImage"
           src="/images/percentimage.png"
           style="background-position: ' << (1.23*percent).to_s << 'px ;
-          background-color: '<< color << ';">'
+          background-color: '<< color << ';" />'
   end
   #display a select box with all clients.
   #number_items defines the number of visible items in the drop-down list

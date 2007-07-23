@@ -8,7 +8,7 @@
       </tr>
       <tr>
         <td>
-          <label for="week_num"><%= _('Number of the week:')%></label>
+          <label for="results_week_num"><%= _('Number of the week:')%></label>
           <%= text_field :results, :week_num, :size => 2,
             :value => Time.now.strftime("%W") %>
         </td>
@@ -17,7 +17,7 @@
       <tr><th><%= _('Or search by period') %></th></tr>
       <tr>
         <td>
-          <label for="first_day"><%= _('First day : ') %></label>
+          <label for="results_first_day"><%= _('First day : ') %></label>
           <%= text_field :results, :first_day, :size =>8 %>
           <span class="calendarPicker"><%= image_date_from %></span>
           <%= script_date('results_first_day', 'date_from') %>
@@ -25,7 +25,7 @@
       </tr>
       <tr>
         <td>
-          <label for="end_day"><%= _('Last day : ') %></label>
+          <label for="results_end_day"><%= _('Last day : ') %></label>
           <%= text_field :results, :end_day,  :size => 8 %>
           <span class="calendarPicker"><%= image_date_to %></span>
           <%= script_date('results_end_day', 'date_to') %>
