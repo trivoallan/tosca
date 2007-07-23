@@ -41,20 +41,21 @@ module ApplicationHelper
 
   ### LISTES ET TABLES ##########################################################
 
-  # Affiche une liste depuis un tableau d'élements
-  # Un bloc permet de manipuler un tableau d'objet
+  # Display an Array of elements in a list manner
+  # It takes a bloc in order to know what to display
   # Options :
-  #  * :no_title : DEPRECATED permet de ne pas mettre de titre à la liste
-  #  * :title : mettre à false pour ne pas afficher le titre
-  #  * :puce : permet d'utiliser un caractère qcq à la place des balises <liste>
-  # If there is no yield given, the field is displayed as is, with 'to_s' method.
+  #  * :no_title : Set it to true for not displaying emphasis
+  #  * :title : Set it to false.
+  #  * :puce : allows to specify its own tag instead of '&lt;li&gt;'
+  #  * :edit : name of the controllers needed to decorate list with
+  #   an edit link and a delete link. Used widely in the show view of softwares.
+  # If there is no block given, the field is displayed as is, with 'to_s' method.
   # Call it like : 
   #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
   def show_liste(elements, nom = '', options = {}) 
-
     size = elements.size
     return '<u><b>' + _('No')+" #{nom}</b></u><br />" unless size > 0
-    if session[:user].nil? and options[:public].nil?
+    if session[:user].nil? and options[:public].blank?
       return "<u><b>#{pluralize(size, nom.capitalize)}"+ _(' to date')+'</b></u><br />' 
     end
     result = ''
@@ -73,9 +74,9 @@ module ApplicationHelper
       result << '</ul>'
       return result
     end
+
     # c'est lent mais c'est tellement beau ruby :
     # yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
-
     if options[:puce]
       puce = " #{options[:puce]} "
       elements.each { |e| 
@@ -84,9 +85,17 @@ module ApplicationHelper
       }
     else
       result << '<ul>' 
+      edit = options[:edit]
+      edit_call, delete_call = "edit_#{edit}_path","#{edit}_path" if edit
       elements.each { |e| 
         elt = yield(e)
-        result << '<li>' << elt << '</li>' unless elt.blank?
+        unless elt.blank?
+          result << '<li>' 
+          result << link_to_edit(send(edit_call, e)).to_s if edit
+          result << elt 
+          result << link_to_delete(send(delete_call, e)).to_s if edit
+          result << '</li>' 
+        end
       }
       result << '</ul>'
     end

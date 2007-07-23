@@ -12,10 +12,35 @@ module PagesHelper
     link_to(image_create(message), options, html_options)
   end
 
+  # 2 ways of use it
+  # First, within the good controller : 
+  #   <%= link_to_show(@request) %>
+  # Second, with an other controller : 
+  #   <%= link_to_show(edit_request_path(@request))%>  
   def link_to_show(ar)
-    options = { :action => 'show', :id => ar.id }
-    link_to image_view, options, { :class => 'nobackground' }
+    url = (ar.is_a?(String) ? ar : { :action => 'edit', :id => ar })
+    link_to image_view, url, { :class => 'nobackground' }
   end
+
+  # same behaviour as link_to_show
+  def link_to_edit(ar)
+    url = (ar.is_a?(String) ? ar : { :action => 'edit', :id => ar })
+    link_to image_edit, url, { :class => 'nobackground' }
+  end
+
+  # same behaviour as link_to_show
+  def link_to_delete(ar)
+    url = (ar.is_a?(String) ? ar : { :action => 'destroy', :id => ar })
+    link_to image_delete,  url,
+    { :class => 'nobackground',
+      :confirm => _('Do you really want to destroy this object ?'),
+      :method => :delete }
+  end
+
+  def link_to_back()
+    link_to(image_back, :action =>'index')
+  end
+
 
   def link_to_edit_and_list(ar)
     [ link_to_edit(ar), link_to_back ].compact.join('|')
@@ -25,25 +50,6 @@ module PagesHelper
     [ link_to_show(ar), link_to_back ].compact.join('|')
   end
 
-  # add_edit_link(demande)
-  def link_to_edit(ar, action = 'edit')
-    desc = _('Edit')
-    options = { :action => action, :id => ar }
-    link_to image_edit, options, { :class => 'nobackground' }
-  end
-
-  # add_delete_link(demande)
-  def link_to_delete(ar)
-    desc = _('Delete')
-    link_to image_delete,  { :action => 'destroy', :id => ar },
-    { :class => 'nobackground',
-      :confirm => "Voulez-vous vraiment supprimer ##{ar.id} ?",
-      :method => :delete }
-  end
-
-  def link_to_back(desc='Retour à la liste')
-    link_to(image_back, :action =>'index')
-  end
 
   # link_to_actions_table(demande)
   def link_to_actions_table(ar, options = {})
@@ -53,9 +59,6 @@ module PagesHelper
     return "<td>#{actions.join('</td><td>')}</td>"
   end
 
-
-  # Je veux voir ces commentaires dans l'email
-  # Nom di diou
 
   # call it like this :
   # <%= show_pages_links @demande_pages, 'déposer une nouvelle demande' %>

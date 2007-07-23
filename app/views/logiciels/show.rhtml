@@ -29,21 +29,19 @@
     <td><%= public_link_to(@logiciel.groupe.nom, groupe_path(@logiciel.groupe_id) ) if @logiciel.groupe %></td></tr>
 
 <tr><td><b><%=_('Links')%></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
-    <td><%= public_show_liste(@logiciel.urllogiciels, 'url', {:no_title => true}) {|u|
+    <% options = {:no_title => true, :edit => 'urllogiciel'} %>
+    <td><%= public_show_liste(@logiciel.urllogiciels, 'url', options) {|u|
          result = ''
-         link = link_to(image_edit, edit_urllogiciel_path(u), edit_options)
-         result << link if link
          result << " #{u.typeurl.nom} : "
-         result << "<a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
-         link = link_to(image_delete, urllogiciel_path(u), delete_options(u.valeur))
-         result << link if link
+         result << "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
          result } %>
     </td></tr>
 
 <tr><td colspan="2"><b><%=_('Requests')%></b> <%=link_to_new_request(:logiciel_id => @logiciel.id)%> <br/>
    <% if @demandes.size > 0 %>
     <div class="bloc_scroll">
-     <%= show_liste(@demandes, 'Demande', {:no_title => true}) { |d|
+     <% options[:edit] = 'demande' %>
+     <%= show_liste(@demandes, 'Demande', options) { |d|
        link_to_demande d
      } %>
     </div>
@@ -52,18 +50,9 @@
 
 <tr><td><b><%=_('Package(s)')%></b><%= link_to_new_paquet(@logiciel.id) %></td>
   <td>
-  <%=
-    show_liste(@logiciel.paquets, 'Paquet', {:no_title => true}) do |paquet|
-      result = ''
-      link = link_to(image_edit, edit_paquet_path(paquet), LinksHelper::NO_HOVER)
-      result << link if link
-      result << ' '
-      link = link_to_paquet paquet
-      result << link if link
-      result << ' '
-      link = link_to(image_delete, paquet_path(paquet), delete_options(paquet.to_s))
-      result << link if link
-      result
+  <% options[:edit] = 'paquet' %>
+  <%=  show_liste(@logiciel.paquets, 'Paquet', options) do |paquet|
+       link_to_paquet paquet
    end
   %>
   </td>

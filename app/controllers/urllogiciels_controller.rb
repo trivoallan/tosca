@@ -46,8 +46,10 @@ class UrllogicielsController < ApplicationController
   end
 
   def destroy
-    Urllogiciel.find(params[:id]).destroy
-    redirect_to urllogiciels_path
+    url = Urllogiciel.find(params[:id])
+    return_url = logiciel_path(url.logiciel)
+    url.destroy
+    redirect_to return_url
   end
 
 private
