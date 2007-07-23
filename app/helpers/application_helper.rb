@@ -53,9 +53,9 @@ module ApplicationHelper
   def show_liste(elements, nom = '', options = {}) 
 
     size = elements.size
-    return "<u><b>Aucun(e) #{nom}</b></u><br />" unless size > 0
+    return '<u><b>' + _('No')+" #{nom}</b></u><br />" unless size > 0
     if session[:user].nil? and options[:public].nil?
-      return "<u><b>#{pluralize(size, nom.capitalize)} à ce jour</b></u><br />" 
+      return "<u><b>#{pluralize(size, nom.capitalize)}"+ _(' to date')+'</b></u><br />' 
     end
     result = ''
     unless options[:title]==false or options[:no_title]
@@ -108,7 +108,7 @@ module ApplicationHelper
   #   :add_lines > affiche à la fin le tableau de lignes passé [[line1],[line2]]
   # TODO : intégrer width et style dans une seule option
   def show_table(elements, ar, titres, options = {})
-    return "<br/><p>Aucun #{ar.table_name.singularize} à ce jour</p>" unless elements and elements.size > 0
+    return '<br /><p>' + _('No %s  to') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width} class=\"show\">"
 
@@ -165,10 +165,10 @@ module ApplicationHelper
   def display_jours(temps)
     return temps unless temps.is_a? Numeric
     case temps
-    when -1 then "Sans objet"
-    when 1 then "1 jour ouvré"
-    when 0..1 then temps.to_s + " jour ouvré"
-    else temps.to_s + " jours ouvrés"
+    when -1 then _('None')
+    when 1 then _('1 workday')
+    when 0..1 then temps.to_s + _(' workday')
+    else temps.to_s + _(' workdays')
     end
   end
 
@@ -275,7 +275,7 @@ module ApplicationHelper
       "<div id=\"information_error\" class=\"information error\">
          <div class=\"close_information\" onclick=\"Element.hide('information_error')\">" <<
          image_hide_notice << "</div>
-         <h2>Une erreur s&#146;est produite</h2>
+         <h2>" + _('An error has occured') + "</h2>
          <ul><li>" << flash[:warn] << "</li></ul>
        </div>"
   end

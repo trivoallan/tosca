@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 15:48+0200\n"
+"POT-Creation-Date: 2007-07-23 16:24+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -426,6 +426,7 @@ msgid "Minor"
 msgstr ""
 
 #: app/controllers/export_controller.rb:215
+#: app/helpers/application_helper.rb:168
 #: app/views/reporting/_comex_tableaux.rhtml:20
 msgid "None"
 msgstr ""
@@ -706,6 +707,34 @@ msgstr ""
 msgid "Select a date"
 msgstr ""
 
+#: app/helpers/application_helper.rb:56 app/helpers/demandes_helper.rb:70
+msgid "No"
+msgstr ""
+
+#: app/helpers/application_helper.rb:58
+msgid " to date"
+msgstr ""
+
+#: app/helpers/application_helper.rb:111
+msgid "No %s  to"
+msgstr ""
+
+#: app/helpers/application_helper.rb:169
+msgid "1 workday"
+msgstr ""
+
+#: app/helpers/application_helper.rb:170
+msgid " workday"
+msgstr ""
+
+#: app/helpers/application_helper.rb:171
+msgid " workdays"
+msgstr ""
+
+#: app/helpers/application_helper.rb:278
+msgid "An error has occured"
+msgstr ""
+
 #: app/helpers/clients_helper.rb:17
 msgid "My&nbsp;Offer"
 msgstr ""
@@ -735,10 +764,6 @@ msgstr ""
 
 #: app/helpers/demandes_helper.rb:69
 msgid "Mi"
-msgstr ""
-
-#: app/helpers/demandes_helper.rb:70
-msgid "No"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:72
@@ -3675,6 +3700,10 @@ msgstr ""
 
 #: app/views/paquets/show.rhtml:1
 msgid "Homepage"
+msgstr ""
+
+#: app/views/paquets/show.rhtml:6
+msgid "Source package"
 msgstr ""
 
 #: app/views/paquets/show.rhtml:10

@@ -3,7 +3,7 @@
   <%= public_link_to @paquet.logiciel.nom, logiciel_path(@paquet.logiciel_id) %> >
    <%=@paquet.version%>-<%=@paquet.release%>  <%= link_to_edit(@paquet) %>
 
-<h1>Paquet source</h1>
+   <h1><%= _('Source package')%></h1>
 
 <% unless @paquet.active %>
 <div class="show">
