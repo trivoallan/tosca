@@ -36,9 +36,9 @@
 </td><td>
  <div class="sommaire show">
    <h3><%= _('Plateform')%></h3>
-   <p><%= _('Bases management')%><p>
+   <p><%= _('System management')%></p>
   <% links = [ 
-        link_to( _('Bases'), socles_path),
+        link_to( _('Systems'), socles_path),
         link_to( _('Machines'), machines_path),
         link_to( _('Architectures'), arches_path) ] %>
   <%= show_liste(links, _('Base management'), :title => false) %>
