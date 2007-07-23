@@ -15,7 +15,7 @@
       <td>
         <% if old_ingenieur_id != demande.ingenieur_id %>
           <% if demande.ingenieur_id.nil? %>
-            <%= _("The request has no more <b/>person in charge</b>") %>
+            <%= _("The request has no more <b>person in charge</b>") %>
           <% else %>
             <% ingenieur = Ingenieur.find(demande.ingenieur_id) %>
             <%= _("The <b>person in charge</b> of your request now is") %>

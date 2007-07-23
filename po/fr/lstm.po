@@ -220,7 +220,7 @@ msgid "Correction"
 msgstr "Correction"
 
 #: app/controllers/demandes_controller.rb:256
-msgid "The request has been update successfully."
+msgid "The request %s has been update successfully."
 msgstr "La demande %s a bien été mise à jour."
 
 #: app/controllers/demandes_controller.rb:275
@@ -228,9 +228,8 @@ msgid "The request is correctly assigned"
 msgstr "La demande a bien été assignée"
 
 #: app/controllers/demandes_controller.rb:279
-#, fuzzy
 msgid "The request is no more assigned"
-msgstr "Demandes en cours"
+msgstr "La demande n'est plus assignée"
 
 #: app/controllers/demandes_controller.rb:294
 msgid "The demand has now no contribution"
@@ -639,25 +638,23 @@ msgstr "une contribution"
 
 #: app/helpers/demandes_helper.rb:67
 msgid "Bl"
-msgstr ""
+msgstr "Bl"
 
 #: app/helpers/demandes_helper.rb:68
-#, fuzzy
 msgid "Ma"
-msgstr "Mar"
+msgstr "Ma"
 
 #: app/helpers/demandes_helper.rb:69
 msgid "Mi"
-msgstr ""
+msgstr "Mi"
 
 #: app/helpers/demandes_helper.rb:70
-#, fuzzy
 msgid "No"
-msgstr "Nov"
+msgstr "So"
 
 #: app/helpers/demandes_helper.rb:72
 msgid "Wtf"
-msgstr ""
+msgstr "Qlb"
 
 #: app/helpers/demandes_helper.rb:135
 msgid "New request"
@@ -669,7 +666,7 @@ msgstr "Délier la contribution"
 
 #: app/helpers/demandes_helper.rb:182
 msgid "active requests"
-msgstr "Demandes actives"
+msgstr "demandes actives"
 
 #: app/helpers/demandes_helper.rb:183
 msgid "show the requests that are waiting to be processed"
@@ -2562,11 +2559,11 @@ msgstr "rapport Comex"
 
 #: app/views/bienvenue/declaration.rhtml:1
 msgid "Howto submit a request"
-msgstr "faire une nouvelle demande"
+msgstr "Comment déposer une demande"
 
 #: app/views/bienvenue/declaration.rhtml:5
 msgid "You can submit a request : "
-msgstr "Vous pouvez déclader une demande :"
+msgstr "Vous pouvez déclader une demande : "
 
 #: app/views/bienvenue/declaration.rhtml:7
 msgid ""
@@ -3068,12 +3065,11 @@ msgstr "demande"
 
 #: app/views/contributions/show.rhtml:40
 msgid "package(s) with the patch"
-msgstr ""
+msgstr "paquet(s) avec le patch"
 
 #: app/views/demandes/_appels.rhtml:2
-#, fuzzy
 msgid "Phone call"
-msgstr "Nouvel appel téléphonique"
+msgstr "Appel"
 
 #: app/views/demandes/_appels.rhtml:3
 msgid "End of phonecall"
@@ -3081,140 +3077,126 @@ msgstr "Fin de l'appel"
 
 #: app/views/demandes/_cns.rhtml:5
 msgid "Your request does not impact your source package."
-msgstr ""
+msgstr "Votre demande n'impacte aucun paquet source"
 
 #: app/views/demandes/_cns.rhtml:7
-#, fuzzy
 msgid "Your request impacts %s"
-msgstr "Demandes en cours"
+msgstr "Demande impacte %s"
 
 #: app/views/demandes/_cns.rhtml:7 app/views/socles/show.rhtml:15
 msgid "source package"
 msgstr "Paquet source"
 
 #: app/views/demandes/_comment_form.rhtml:5
-#, fuzzy
 msgid "Your answer :"
-msgstr "Votre numéro d'appel est le "
+msgstr "Votre réponse :"
 
 #: app/views/demandes/_comment_form.rhtml:9
 msgid "Private ?"
-msgstr ""
+msgstr "Privé ?"
 
 #: app/views/demandes/_comment_form.rhtml:12
 #: app/views/demandes/_requests_info.rhtml:41
 msgid "Status"
-msgstr "état"
+msgstr "État"
 
 #: app/views/demandes/_comment_form.rhtml:20
 msgid "Add a file :"
-msgstr "Ajouter un fichier"
+msgstr "Ajouter un fichier:"
 
 #: app/views/demandes/_comment_form.rhtml:22
-#, fuzzy
 msgid "Answer"
-msgstr "un nouvel utilisateur"
+msgstr "Réponse"
 
 #: app/views/demandes/_form.rhtml:19
 msgid "Label"
-msgstr ""
+msgstr "Label"
 
 #: app/views/demandes/_form.rhtml:32
 msgid "Engineer assigned to the request"
-msgstr ""
+msgstr "Ingénieur assigné à la demande"
 
 #: app/views/demandes/_form.rhtml:36
 msgid "E-mails associated with the request<br/>seperate by commas %s"
-msgstr ""
+msgstr "E-mails associciés à la demande<br/>séparés par des virgule %s"
 
 #: app/views/demandes/_form.rhtml:50
 msgid "Type of the request"
 msgstr "Type de la demande"
 
 #: app/views/demandes/_form.rhtml:55
-#, fuzzy
 msgid "Severity of the request"
-msgstr "Sévérité des demandes reçues"
+msgstr "Sévérité de la demande"
 
 #: app/views/demandes/_form.rhtml:84 app/views/demandes/_form_deposer.rhtml:22
-#, fuzzy
 msgid "Detailed description"
-msgstr "Description"
+msgstr "Description détaillée"
 
 #: app/views/demandes/_form.rhtml:93
-#, fuzzy
 msgid "Add a file"
-msgstr "Ajouter un rôle"
+msgstr "Ajouter un fichier"
 
 #: app/views/demandes/_form_binaires.rhtml:6
-#, fuzzy
 msgid "Workarounded on"
-msgstr "Contournée"
+msgstr "Contournée en"
 
 #: app/views/demandes/_form_binaires.rhtml:7
-#, fuzzy
 msgid "Corrected on"
-msgstr "Correction"
+msgstr "Corrigée en"
 
 #: app/views/demandes/_form_client.rhtml:3 app/views/documents/show.rhtml:9
 msgid "Recipient :"
 msgstr "Bénéficiaire : "
 
 #: app/views/demandes/_form_client.rhtml:10
-#, fuzzy
 msgid "Engineer :"
-msgstr "Ingénieur"
+msgstr "Ingénieur :"
 
 #: app/views/demandes/_form_client.rhtml:18
-#, fuzzy
 msgid "Request type :"
-msgstr "Nature des demandes"
+msgstr "Nature de la demande :"
 
 #: app/views/demandes/_form_client.rhtml:24
 #: app/views/demandes/_infos_demande.rhtml:26
-#, fuzzy
 msgid "Severity :"
-msgstr "séverité"
+msgstr "Séverité :"
 
 #: app/views/demandes/_form_client.rhtml:30
-#, fuzzy
 msgid "Base :"
-msgstr "Socles"
+msgstr "Socle :"
 
 #: app/views/demandes/_form_client.rhtml:36
 #: app/views/demandes/_infos_demande.rhtml:21
-#, fuzzy
 msgid "Software :"
-msgstr "Logiciel"
+msgstr "Logiciel :"
 
 #: app/views/demandes/_form_deposer.rhtml:5
-#, fuzzy
 msgid "Client :"
-msgstr "Client"
+msgstr "Client :"
 
 #: app/views/demandes/_form_deposer.rhtml:13
-msgid "Packages supported for  %s :"
-msgstr ""
+msgid "Packages supported for %s :"
+msgstr "Paquets supportés pour %s :"
 
 #: app/views/demandes/_history.rhtml:7
 msgid "Change(s)"
 msgstr "Changement(s)"
 
 #: app/views/demandes/_history.rhtml:18
-msgid "The request has no more <b/>person in charge</b>"
-msgstr ""
+msgid "The request has no more <b>person in charge</b>"
+msgstr "Votre demande n'a plus de <b>responsable</b>"
 
 #: app/views/demandes/_history.rhtml:21
 msgid "The <b>person in charge</b> of your request now is"
-msgstr ""
+msgstr "La personne maintenant <b>responsable</b> de votre demande est"
 
 #: app/views/demandes/_history.rhtml:27
 msgid "The <b>status</b> of your request is now <b>%s</b>"
-msgstr ""
+msgstr "Le <b>statut</b> de votre demande est maintenant <b>%s</b>"
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:19
 msgid "Coordinates of the recipient"
-msgstr ""
+msgstr "Corrdonnées du bénéficiaire"
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:23
 #: app/views/demandes/_infos_beneficiaire.rhtml:27
@@ -3230,56 +3212,48 @@ msgid "Client"
 msgstr "Client"
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:35
-#, fuzzy
 msgid "Contact"
 msgstr "Contrat"
 
 #: app/views/demandes/_infos_beneficiaire.rhtml:37
-#, fuzzy
 msgid "Phone number"
-msgstr "Novembre"
+msgstr "Numéro de téléphone"
 
 #: app/views/demandes/_infos_demande.rhtml:18
 msgid "Vm : "
-msgstr ""
+msgstr "Vm : "
 
 #: app/views/demandes/_infos_demande.rhtml:20
-#, fuzzy
 msgid "System : "
-msgstr "Taille : "
+msgstr "Système : "
 
 #: app/views/demandes/_infos_demande.rhtml:24
-#, fuzzy
 msgid "Status :"
-msgstr "état"
+msgstr "État :"
 
 #: app/views/demandes/_infos_demande.rhtml:25
-#, fuzzy
 msgid "Type :"
-msgstr "type"
+msgstr "Type :"
 
 #: app/views/demandes/_infos_demande.rhtml:28
 msgid "Mail CC :"
-msgstr ""
+msgstr "Mail CC :"
 
 #: app/views/demandes/_infos_demande.rhtml:31
 msgid "Assign to :"
-msgstr ""
+msgstr "Assigné à :"
 
 #: app/views/demandes/_infos_demande.rhtml:41
-#, fuzzy
 msgid "Recipent"
 msgstr "Bénéficiaire"
 
 #: app/views/demandes/_infos_demande.rhtml:43
-#, fuzzy
 msgid "Contact :"
-msgstr "Contrat"
+msgstr "Contrat :"
 
 #: app/views/demandes/_infos_demande.rhtml:45
-#, fuzzy
 msgid "Phone number :"
-msgstr "Novembre"
+msgstr "Numéro de téléphone :"
 
 #: app/views/demandes/_infos_demande.rhtml:47
 msgid "Compagny :"
