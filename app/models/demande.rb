@@ -20,7 +20,7 @@ class Demande < ActiveRecord::Base
 
 
   validates_presence_of :resume,
-       :warn => "Vous devez indiquer un résumé de votre demande"
+       :warn => _("You must indicate a summary for your request")
   validates_length_of :resume, :within => 3..60
 
   #versioning, qui s'occupe de la table demandes_versions
@@ -35,7 +35,6 @@ class Demande < ActiveRecord::Base
   def demande_resume
     demande.resume
   end
-  
 
   # WARNING : you cannot use this scope with the optimisation hidden
   # in the model of Demande. You must then use get_scope_without_include
@@ -214,7 +213,7 @@ class Demande < ActiveRecord::Base
 #  private
   def affiche_delai(temps_passe, delai)
     value = calcul_delai(temps_passe, delai)
-    return "N/A" if value == 0
+    return _("N/A") if value == 0
     distance = distance_of_time_in_french_words(value.abs, client.support)
     if value >= 0
       "<p style=\"color: green\">#{distance}</p>"
