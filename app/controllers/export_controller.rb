@@ -8,6 +8,8 @@
 # source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
 class ExportController < ApplicationController
 
+  Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
+
   # return the contents of identifiants in a table in ODS format
   # with Ruport :
   # We can export to other formats : 
@@ -39,10 +41,8 @@ class ExportController < ApplicationController
     report.rename_columns columns,
       [_('id'), _('type'), _('software'), _('version'), _('state'),
         _('summary'), _('reported'), _('closed'), _('delay') ]
-    
     generate_report(report, type, {}) 
   end
-  
 
   # return the contents of identifiants in a table in ODS format
   # with Ruport
@@ -73,7 +73,6 @@ class ExportController < ApplicationController
 
     generate_report(report, type, {})    
   end
-  
 
   # with Ruport:
   def appels
@@ -86,6 +85,7 @@ class ExportController < ApplicationController
       format.ods { compute_appels(:ods) }
     end
   end
+
   def compute_appels(type)
     columns= ['contrat_nom', 'ingenieur_nom', 'beneficiaire_nom']
     options = { :order => 'appels.debut', :include => 
@@ -93,16 +93,16 @@ class ExportController < ApplicationController
       :conditions => flash[:conditions],
       :methods => columns }
     report = Appel.report_table(:all, options)
-    
+
     columns.push( 'debut','fin')
     report.reorder columns
     report.rename_columns columns,
       [_('Contract'), _('Person in charge'), _('Customer'), _('Call'), 
         _('End of the call') ]
 
-    generate_report(report, type, {})    
+    generate_report(report, type, {})
   end
-  
+
   # return the contents of a request in a table in  ods
   def requests
     respond_to do |format|
@@ -114,7 +114,6 @@ class ExportController < ApplicationController
       format.ods { compute_demandes(:ods, {}) }
     end
   end
-
 
   def compute_demandes(type, options_generate)
     columns = ['id','logiciels_nom', 'beneficiaires_nom','clients_nom', 
@@ -150,7 +149,6 @@ class ExportController < ApplicationController
         _('summary'), _('status'), _('type') ]
 
     generate_report(report, type, options_generate)
-    
   end
   
   # Generate and upload a report to the user with a predefined name.
