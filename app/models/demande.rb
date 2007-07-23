@@ -213,7 +213,7 @@ class Demande < ActiveRecord::Base
 #  private
   def affiche_delai(temps_passe, delai)
     value = calcul_delai(temps_passe, delai)
-    return _("N/A") if value == 0
+    return "-" if value == 0
     distance = distance_of_time_in_french_words(value.abs, client.support)
     if value >= 0
       "<p style=\"color: green\">#{distance}</p>"
