@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 14:33+0200\n"
+"POT-Creation-Date: 2007-07-23 15:22+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -128,6 +128,14 @@ msgstr ""
 
 #: app/controllers/account_controller.rb:188
 msgid "The user %s  has not been successfully created.<br /> "
+msgstr ""
+
+#: app/controllers/arches_controller.rb:16
+msgid "Arch was successfully created."
+msgstr ""
+
+#: app/controllers/arches_controller.rb:34
+msgid "Arch was successfully updated."
 msgstr ""
 
 #: app/controllers/bienvenue_controller.rb:45
@@ -440,11 +448,11 @@ msgid "TOTALS"
 msgstr ""
 
 #: app/controllers/groupes_controller.rb:27
-msgid "Groupe was successfully created."
+msgid "Group was successfully created."
 msgstr ""
 
 #: app/controllers/groupes_controller.rb:41
-msgid "Groupe was successfully updated."
+msgid "Group was successfully updated."
 msgstr ""
 
 #: app/controllers/ingenieurs_controller.rb:24
@@ -710,6 +718,7 @@ msgstr ""
 
 #: app/helpers/links_helper.rb:73 app/views/account/_menu.rhtml:20
 #: app/views/bienvenue/index.rhtml:68 app/views/binaires/show.rhtml:2
+#: app/views/groupes/index.rhtml:5
 #: app/views/logiciels/_softwares_info.rhtml:54
 msgid "Softwares"
 msgstr ""
@@ -807,7 +816,8 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: app/helpers/images_helper.rb:118 app/views/urlreversements/index.rhtml:6
+#: app/helpers/images_helper.rb:118 app/views/urlreversements/_form.rhtml:6
+#: app/views/urlreversements/index.rhtml:6
 msgid "Contribution"
 msgstr ""
 
@@ -851,7 +861,8 @@ msgstr ""
 msgid "Display all softwares"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:30 app/views/competences/edit.rhtml:5
+#: app/helpers/pages_helper.rb:30 app/views/arches/edit.rhtml:5
+#: app/views/competences/edit.rhtml:5 app/views/groupes/edit.rhtml:5
 #: app/views/ingenieurs/edit.rhtml:5 app/views/images/edit.rhtml:5
 #: app/views/images/show.rhtml:10 app/views/machines/edit.rhtml:5
 #: app/views/machines/show.rhtml:12 app/views/permissions/edit.rhtml:5
@@ -2171,11 +2182,13 @@ msgstr ""
 msgid "Search "
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:30 app/views/binaires/_form.rhtml:20
-#: app/views/binaires/show.rhtml:14 app/views/competences/_form.rhtml:4
+#: app/views/account/_users_info.rhtml:30 app/views/arches/_form.rhtml:4
+#: app/views/binaires/_form.rhtml:20 app/views/binaires/show.rhtml:14
+#: app/views/competences/_form.rhtml:4
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:6
-#: app/views/demandes/_form_binaires.rhtml:4 app/views/ingenieurs/show.rhtml:2
+#: app/views/demandes/_form_binaires.rhtml:4 app/views/groupes/_form.rhtml:4
+#: app/views/groupes/index.rhtml:5 app/views/ingenieurs/show.rhtml:2
 #: app/views/ingenieurs/index.rhtml:6 app/views/logiciels/_form.rhtml:4
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/permissions/_form.rhtml:4 app/views/roles/_form.rhtml:5
@@ -2346,9 +2359,9 @@ msgstr ""
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
 #: app/views/competences/new.rhtml:5 app/views/contributions/new.rhtml:5
-#: app/views/ingenieurs/new.rhtml:5 app/views/images/new.rhtml:5
-#: app/views/machines/new.rhtml:5 app/views/roles/new.rhtml:5
-#: app/views/socles/new.rhtml:5
+#: app/views/groupes/new.rhtml:5 app/views/ingenieurs/new.rhtml:5
+#: app/views/images/new.rhtml:5 app/views/machines/new.rhtml:5
+#: app/views/roles/new.rhtml:5 app/views/socles/new.rhtml:5
 msgid "Create"
 msgstr ""
 
@@ -2364,8 +2377,20 @@ msgstr ""
 msgid "Ended on"
 msgstr ""
 
+#: app/views/arches/edit.rhtml:1
+msgid "Edit an architecture"
+msgstr ""
+
 #: app/views/arches/new.rhtml:1
 msgid "Add a new processor architecture"
+msgstr ""
+
+#: app/views/arches/index.rhtml:1
+msgid "List of processor architecture"
+msgstr ""
+
+#: app/views/arches/index.rhtml:3 app/views/arches/index.rhtml:12
+msgid "A processor architecture"
 msgstr ""
 
 #: app/views/beneficiaires/new.rhtml:1
@@ -3447,6 +3472,22 @@ msgstr ""
 msgid "Updated on : "
 msgstr ""
 
+#: app/views/groupes/edit.rhtml:1
+msgid "Editing group"
+msgstr ""
+
+#: app/views/groupes/new.rhtml:1
+msgid "New group"
+msgstr ""
+
+#: app/views/groupes/index.rhtml:1
+msgid "Group list"
+msgstr ""
+
+#: app/views/groupes/index.rhtml:3 app/views/groupes/index.rhtml:14
+msgid "a group"
+msgstr ""
+
 #: app/views/ingenieurs/_form.rhtml:6 app/views/ingenieurs/show.rhtml:4
 #: app/views/ingenieurs/index.rhtml:6
 msgid "Project manager"
@@ -4034,12 +4075,12 @@ msgstr ""
 msgid "Add an url for a software"
 msgstr ""
 
-#: app/views/urlreversements/edit.rhtml:1
-msgid "Edit this url"
+#: app/views/urlreversements/_form.rhtml:3
+msgid "Valeur"
 msgstr ""
 
-#: app/views/urlreversements/new.rhtml:1
-msgid "Add an url to follow your contribution"
+#: app/views/urlreversements/edit.rhtml:1
+msgid "Edit this url"
 msgstr ""
 
 #: app/views/urlreversements/index.rhtml:1
@@ -4048,6 +4089,10 @@ msgstr ""
 
 #: app/views/urlreversements/index.rhtml:3
 msgid "a new url"
+msgstr ""
+
+#: app/views/urlreversements/new.rhtml:1
+msgid "Add an url to follow your contribution"
 msgstr ""
 
 #: lib/gettext_localize_extend.rb:6
