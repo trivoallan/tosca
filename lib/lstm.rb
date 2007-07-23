@@ -1,9 +1,6 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-
-
-
 module Lstm
 
   extend ActionView::Helpers::TextHelper

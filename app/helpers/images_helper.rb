@@ -17,7 +17,6 @@
 #   end
 #
 module ImagesHelper
-
   # TODO : utiliser image_options (cf image_delete pour exemple)
   # We cannot cache a parametered image
 

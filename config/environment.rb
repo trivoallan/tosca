@@ -58,9 +58,9 @@ CGI::Session.expire_after 1.month
 require 'utils'
 require 'config'
 require 'overrides'
-require 'gettext/rails'
 require 'ruport'
 require 'ruport/util'
+require 'gettext/rails'
 require 'gettext_localize'
 require 'gettext_localize_rails'
 require 'gettext_localize_extend'
@@ -73,12 +73,12 @@ Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
 
 
 #conf gettextlocalize
- if defined? GettextLocalize
-   GettextLocalize::app_name = 'lstm'
-   GettextLocalize::app_version = '0.5.3'
-   GettextLocalize::default_locale = 'en_US'
-   GettextLocalize::default_methods = [:header, :session, :param]
- end
+if defined? GettextLocalize
+  GettextLocalize::app_name = 'lstm'
+  GettextLocalize::app_version = '0.5.3'
+  GettextLocalize::default_locale = 'en_US'
+  GettextLocalize::default_methods = [:param, :header, :session]
+end
 
 # Add new inflection rules using the following format 
 # (all these examples are active by default):
