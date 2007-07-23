@@ -17,13 +17,14 @@ class ExportController < ApplicationController
   def contributions
     respond_to do |format|
       format.html { redirect_to contributions_path }
-      format.xml { 
+      format.xml {
         # TODO : make an xml export : a finder + 
         #  render :xml => @requests.to_xml should be enough) 
       }
       format.ods { compute_contributions(:ods) }
     end
   end
+
   def compute_contributions(type)
     methods = ['pnom_typecontribution', 'pnom_logiciel', 'version_to_s',
       'pnom_etatreversement', 'delai_in_french_words', 'clos_enhance', 
@@ -56,12 +57,12 @@ class ExportController < ApplicationController
       format.ods { compute_identifiants(:ods) }
     end
   end
+
   def compute_identifiants(type)
     options = { :order => 'identifiants.login', :include => 
       [:beneficiaire,:ingenieur,:roles], :conditions => flash[:conditions],
       :methods => ['beneficiaire_client_nom', 'roles_join']
     }
-    
     report = Identifiant.report_table(:all, options)
     columns = ['id','login','nom','email','telephone',
       'beneficiaire_client_nom', 'roles_join']
@@ -71,7 +72,7 @@ class ExportController < ApplicationController
       [_('id'), _('login'), _('name'), _('e-mail'), _('phone'),
         _('(customer)'), _('roles') ]
 
-    generate_report(report, type, {})    
+    generate_report(report, type, {})
   end
 
   # with Ruport:
@@ -141,8 +142,8 @@ class ExportController < ApplicationController
     Demande.with_exclusive_scope(escope) do
       report = Demande.report_table(:all, options)
     end
-    report.reorder columns 
-    report.rename_columns columns, 
+    report.reorder columns
+    report.rename_columns columns,
       [_('id'), _('software'), _('beneficiaire'), ('Customer') ,
         _('Person in charge') , _('severity'),
         _('version') , _('date de soumission') , _('plateform'), _('update'),
@@ -150,36 +151,35 @@ class ExportController < ApplicationController
 
     generate_report(report, type, options_generate)
   end
-  
+
   # Generate and upload a report to the user with a predefined name.
   #
   # Usage : generate_report(report, :csv) with report a Ruport Data Table
-  def generate_report(report, type, options )
-
+  def generate_report(report, type, options)
     #to keep the custom filters before the export :
     flash[:conditions] = flash[:conditions]
     case type
-    when :text
-      file_extension = '.txt'
-      content_type = 'text/plain'
-    when :csv
-      file_extension ='.csv'
-      content_type = 'text/csv'
-    when :pdf
-      file_extension = '.pdf'
-      content_type = 'application/pdf'
-    when :html
-      file_extension = '.html'
-      content_type = 'text/html'
-    when :ods
-      file_extension = '.ods'
-      content_type = 'application/vnd.oasis.opendocument.spreadsheet'
+      when :text
+        file_extension = '.txt'
+        content_type = 'text/plain'
+      when :csv
+        file_extension ='.csv'
+        content_type = 'text/csv'
+      when :pdf
+        file_extension = '.pdf'
+        content_type = 'application/pdf'
+      when :html
+        file_extension = '.html'
+        content_type = 'text/html'
+      when :ods
+        file_extension = '.ods'
+        content_type = 'application/vnd.oasis.opendocument.spreadsheet'
     end
     prefix = ( @beneficiaire ? @beneficiaire.client.nom : 'OSSA' )
     suffix = Time.now.strftime('%d_%m_%Y')
     filename = [ prefix, params[:action], suffix].join('_') + file_extension
 
-     #this is required if you want this to work with IE        
+     #this is required if you want this to work with IE
      if request.env['HTTP_USER_AGENT'] =~ /msie/i
        headers['Pragma'] = 'public'
        headers['Content-type'] = content_type
@@ -240,14 +240,13 @@ class ExportController < ApplicationController
     flash[:requests]= flash[:requests]
     flash[:total]= flash[:total]
   end
+
   private
   def repeat4times( row, element, decalage)
     4.times do |i|
       row << element[i+decalage]
     end
   end
-  
-  
 
   # TODO : le mettre dans les utils ?
   def pnom(object)
