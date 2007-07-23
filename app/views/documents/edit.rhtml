@@ -5,6 +5,5 @@
   <%= render :partial => 'form' %>
   <%= submit_tag _('Modify') %>
 <% end %>
-
-<%= link_to _('look'), document_path(@document) %> |
-<%= link_to_back %>
+<br />
+<%= link_to_show_and_list @document %>

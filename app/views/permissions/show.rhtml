@@ -3,6 +3,5 @@
   <b><%= column.human_name %>:</b> <%= @permission.send(column.name) %>
 </p>
 <% end %>
-
-<%= link_to _('Edit'), edit_permission_path(@permission) %> |
-<%= link_to _('Back'), permissions_path %>
+<br />
+<%= link_to_edit_and_list @permission %>

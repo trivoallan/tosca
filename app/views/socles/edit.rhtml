@@ -4,6 +4,5 @@
   <%= render :partial => 'form' %>
   <%= submit_tag _('Edit') %>
 <% end %>
-
-<%= link_to _('Look'), socle_path(@socle) %> |
-<%= link_to_back %>
+<br />
+<%= link_to_show_and_list @socle %>
