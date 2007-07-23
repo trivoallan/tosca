@@ -1,9 +1,8 @@
-<h1>Editer un paquet</h1>
+<h1><%= _('Editing a package')%></h1>
 
 <% form_tag paquet_path(@paquet), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Enregistrer' %>
+  <%= submit_tag _('Save') %>
 <% end %>
-
-<%= link_to 'Voir', paquet_path(@paquet) %> |
-<%= link_to_back %>
+<br />
+<%= link_to_show_and_list @paquet%>

@@ -1,8 +1,8 @@
-<h1>Ajouter un nouveau paquet</h1>
+<h1><%= _('Add a new package')%></h1>
 
 <% form_tag paquets_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Ajouter" %>
+  <%= submit_tag _('Add') %>
 <% end %>
 
 <%= link_to_back %>

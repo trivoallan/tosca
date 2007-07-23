@@ -39,7 +39,7 @@ class Paquet < ActiveRecord::Base
   end
 
   def to_s
-    the_name = "unknown_name"
+    the_name = _('unknown_name')
     the_name = conteneur.nom unless conteneur.nil?
     "%s %s-%s-%s" % [ the_name, nom, version, release]
   end
