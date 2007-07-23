@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 13:48+0200\n"
+"POT-Creation-Date: 2007-07-23 14:27+0200\n"
 "PO-Revision-Date: 2007-07-20 17:46+0200\n"
 "Last-Translator: Munteanu Olimpiu Andrei <omunteanu@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -3175,7 +3175,8 @@ msgid "Client :"
 msgstr "Client :"
 
 #: app/views/demandes/_form_deposer.rhtml:13
-msgid "Packages supported for %s :"
+#, fuzzy
+msgid "Packages supported for  %s :"
 msgstr "Paquets supportés pour %s :"
 
 #: app/views/demandes/_history.rhtml:7
@@ -3257,52 +3258,48 @@ msgstr "Numéro de téléphone :"
 
 #: app/views/demandes/_infos_demande.rhtml:47
 msgid "Compagny :"
-msgstr ""
+msgstr "Société :"
 
 #: app/views/demandes/_infos_demande.rhtml:55
 msgid "Call back immediately"
-msgstr ""
+msgstr "Rappelé immédiatement"
 
 #: app/views/demandes/_infos_demande.rhtml:57
 msgid "Call back in"
-msgstr ""
+msgstr "Rappelé en"
 
 #: app/views/demandes/_infos_demande.rhtml:61
-#, fuzzy
 msgid "Workarouned in"
-msgstr "Contournée"
+msgstr "Contournée en"
 
 #: app/views/demandes/_infos_demande.rhtml:62
-#, fuzzy
 msgid "Fixed in"
-msgstr "Corrigée"
+msgstr "Corrigée en"
 
 #: app/views/demandes/_infos_demande.rhtml:65
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: app/views/demandes/_infos_demande.rhtml:67
-#, fuzzy
 msgid "is available"
-msgstr "Aucune donnée <br /> n'est disponible."
+msgstr "n'est disponible"
 
 #: app/views/demandes/_infos_demande.rhtml:74
 msgid "Life cycle"
-msgstr ""
+msgstr "Cycle de vie"
 
 #: app/views/demandes/_infos_demande.rhtml:78
 #: app/views/demandes/_piecejointes.rhtml:3
-#, fuzzy
 msgid "Created on"
 msgstr "Créé le"
 
 #: app/views/demandes/_infos_demande.rhtml:80
 msgid "Past time"
-msgstr ""
+msgstr "Temps écoulé"
 
 #: app/views/demandes/_piecejointes.rhtml:2
 msgid "Attachment"
-msgstr ""
+msgstr "Fichier joint"
 
 #: app/views/demandes/_piecejointes.rhtml:3
 #: app/views/demandes/_report_detail.rhtml:7
@@ -3312,63 +3309,56 @@ msgid "Id"
 msgstr "Id"
 
 #: app/views/demandes/_piecejointes.rhtml:3
-#, fuzzy
 msgid "Link"
 msgstr "Liens"
 
 #: app/views/demandes/_piecejointes.rhtml:3
-#, fuzzy
 msgid "Size"
-msgstr "Taille : "
+msgstr "Taille"
 
 #: app/views/demandes/_piecejointes.rhtml:3
 msgid "By"
-msgstr ""
+msgstr "Par"
 
 #: app/views/demandes/_report_detail.rhtml:8
-#, fuzzy
 msgid "Time"
-msgstr "Titre"
+msgstr "Temps"
 
 #: app/views/demandes/_report_detail.rhtml:9
 #: app/views/demandes/_packages.rhtml:4
-#, fuzzy
 msgid "Commitment"
-msgstr "engagements"
+msgstr "Engagements"
 
 #: app/views/demandes/_report_detail.rhtml:10
 msgid "Respect of the delay"
-msgstr ""
+msgstr "Respect des délais"
 
 #: app/views/demandes/_report_detail.rhtml:13
 msgid "Passé"
-msgstr ""
+msgstr "Passé"
 
 #: app/views/demandes/_requests_info.rhtml:16
-#, fuzzy
 msgid "Actions"
-msgstr "Action"
+msgstr "Actions"
 
 #: app/views/demandes/_requests_info.rhtml:26
 msgid "By word"
-msgstr ""
+msgstr "Par mot"
 
 #: app/views/demandes/_requests_info.rhtml:29
 #: app/views/logiciels/_softwares_info.rhtml:32
-#, fuzzy
 msgid "By client"
-msgstr "Client"
+msgstr "Par client"
 
 #: app/views/demandes/_requests_info.rhtml:35
-#, fuzzy
 msgid "Attributes"
-msgstr "distributeur"
+msgstr "Attributs"
 
 #: app/views/demandes/_requests_info.rhtml:37
 #: app/views/demandes/_requests_list.rhtml:11
 #: app/views/documents/_form.rhtml:18
 msgid "Type"
-msgstr "type"
+msgstr "Type"
 
 #: app/views/demandes/_requests_info.rhtml:39
 msgid "Severity"
@@ -3376,42 +3366,36 @@ msgstr "séverité"
 
 #: app/views/demandes/_requests_info.rhtml:46
 msgid "Flow"
-msgstr ""
+msgstr "Flux"
 
 #: app/views/demandes/_requests_list.rhtml:16
-#, fuzzy
 msgid "Submitter"
-msgstr "Enregistré"
+msgstr "Déclarant"
 
 #: app/views/demandes/_requests_list.rhtml:46
 msgid "There is no request that concerns you."
-msgstr ""
+msgstr "Aucune demande ne vous concerne."
 
 #: app/views/demandes/_requests_list.rhtml:47
-#, fuzzy
 msgid "You can click here %s to submit a new request."
-msgstr "Vous pouvez déclader une demande :"
+msgstr "Vous pouvez cliquer ici %s pour déclarer une nouvelle demande."
 
 #: app/views/demandes/_tab_comment.rhtml:8
 #: app/views/demandes/_tab_comments.rhtml:14
-#, fuzzy
 msgid "Comment %s"
-msgstr "Privé"
+msgstr "Commentaire %s"
 
 #: app/views/demandes/_tab_comment.rhtml:31
-#, fuzzy
 msgid "private"
-msgstr "Rendre privé"
+msgstr "privé"
 
 #: app/views/demandes/_tab_comment.rhtml:37
-#, fuzzy
 msgid "Are you sure you want to delete comment %s ?"
-msgstr "Étes vous sûr de vouloir éffacer %s"
+msgstr "Étes vous sûr de vouloir éffacer le commentaire %s ?"
 
 #: app/views/demandes/_tab_comments.rhtml:30
-#, fuzzy
 msgid "Are you sure you want to delete the comment %s ?"
-msgstr "Étes vous sûr de vouloir éffacer %s"
+msgstr "Étes vous sûr de vouloir éffacer le commentaire %s ?"
 
 #: app/views/demandes/_tab_menu.rhtml:7
 #: app/views/demandes/pretty_print.rhtml:1 app/views/documents/_form.rhtml:36
@@ -3426,64 +3410,64 @@ msgstr "Description"
 
 #: app/views/demandes/_tab_menu.rhtml:10
 #: app/views/demandes/pretty_print.rhtml:5
-#, fuzzy
 msgid "Comments"
-msgstr "Privé"
+msgstr "Commentaires"
 
 #: app/views/demandes/_tab_menu.rhtml:13
 #: app/views/demandes/pretty_print.rhtml:9
-#, fuzzy
 msgid "History"
 msgstr "Historique"
 
 #: app/views/demandes/_tab_menu.rhtml:16
-#, fuzzy
 msgid "Attachments"
-msgstr "documents"
+msgstr "Documents"
 
 #: app/views/demandes/_tab_menu.rhtml:19
 #: app/views/demandes/pretty_print.rhtml:13
-#, fuzzy
 msgid "Phonecalls"
-msgstr "téléphone"
+msgstr "Appels"
 
 #: app/views/demandes/_tab_menu.rhtml:22
 #: app/views/demandes/pretty_print.rhtml:17
 msgid "SLA"
-msgstr ""
+msgstr "CNS"
 
 #: app/views/demandes/edit.rhtml:1
 msgid "Update the request %s (administration)"
-msgstr ""
+msgstr "Mise à jour de la requête %s (administrateur)"
 
 #: app/views/demandes/new.rhtml:4
 msgid ""
-"Inform the fields below. You will be able to attach a file after this stage ."
+"Inform the fields below. You will be able to attach a file after this stage."
 msgstr ""
+"Remplissez les champs suivants. Vous pourrez attacher un fichier lors de "
+"l'étape suivante."
 
 #: app/views/demandes/new.rhtml:5
 msgid "One of our consultants will then contact you in less than one hour."
-msgstr ""
+msgstr "Un de nos consultants vous contactera dans moins d'une heure."
 
 #: app/views/demandes/new.rhtml:13
-#, fuzzy
 msgid "Submit this request"
-msgstr "Déposer une demande"
+msgstr "Déposer cette demande"
 
 #: app/views/demandes/new.rhtml:18
 msgid "Back to the list"
-msgstr ""
+msgstr "Retour à la liste"
 
 #: app/views/demandes/new.rhtml:23
 msgid ""
 "Nota : One day wrought corresponds to the time of opening of the daily "
 "service defined in the OSSA contract %s : %s, that is to say %s hours."
 msgstr ""
+"Nota : Un jour ouvert correspond au temps d'ouverture quotidien du service "
+"défini dans le contract d'OSSA %s : %s, soit %s heures."
 
 #: app/views/demandes/new.rhtml:28
 msgid ""
 "The wrought days are Monday at Friday, except weekends and public holidays."
 msgstr ""
+"Les jours ouvrés sont du Lundi au Vendredi, sauf week-ends et jours fériés."
 
 #: app/views/documents/_documents_info.rhtml:15
 #: app/views/documents/new.rhtml:1

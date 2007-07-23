@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 13:48+0200\n"
+"POT-Creation-Date: 2007-07-23 14:27+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -211,7 +211,7 @@ msgid "Correction"
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:256
-msgid "The request has been update successfully."
+msgid "The request %s has been update successfully."
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:275
@@ -3120,7 +3120,7 @@ msgid "Change(s)"
 msgstr ""
 
 #: app/views/demandes/_history.rhtml:18
-msgid "The request has no more <b/>person in charge</b>"
+msgid "The request has no more <b>person in charge</b>"
 msgstr ""
 
 #: app/views/demandes/_history.rhtml:21
@@ -3379,7 +3379,7 @@ msgstr ""
 
 #: app/views/demandes/new.rhtml:4
 msgid ""
-"Inform the fields below. You will be able to attach a file after this stage ."
+"Inform the fields below. You will be able to attach a file after this stage."
 msgstr ""
 
 #: app/views/demandes/new.rhtml:5
