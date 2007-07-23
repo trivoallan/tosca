@@ -9,8 +9,12 @@ class Support < ActiveRecord::Base
     return (fermeture - ouverture) * 1.hour
   end
 
+  def interval
+    fermeture - ouverture
+  end
+
   def to_s
-    "Ouvert de #{ouverture}h à #{fermeture}h"
+    _("Open from %s to %s") % [ ouverture, fermeture ]
   end 
 
 end

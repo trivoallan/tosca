@@ -130,8 +130,8 @@ module DemandesHelper
     end
   end
 
-  def link_to_new_request
-    options = new_demande_url
+  def link_to_new_request(arg)
+    options = arg ? new_demande_path(arg) : new_demande_path
     link_to(image_create(_('New request')), options, LinksHelper::NO_HOVER)
   end
 

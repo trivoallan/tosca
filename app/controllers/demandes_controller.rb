@@ -65,6 +65,8 @@ class DemandesController < ApplicationController
     @demande.severite_id = 4
     # statut "prise en compte" si ingénieur, sinon : "enregistrée"
     @demande.statut_id = (@ingenieur ? 2 : 1)
+    # if we came from software view, it's sets automatically 
+    @demande.logiciel_id = params[:logiciel_id]
 
     @demande.beneficiaire_id = @beneficiaire.id if @beneficiaire
   end

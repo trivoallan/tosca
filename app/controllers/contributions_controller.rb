@@ -63,7 +63,7 @@ class ContributionsController < ApplicationController
   def new
     @contribution = Contribution.new
     @urlreversement = Urlreversement.new
-    # pour préciser le type dès la création
+    # pour préciser le type dèsl a création
     @contribution.logiciel_id = params[:id]
     @contribution.ingenieur = @ingenieur
     _form
