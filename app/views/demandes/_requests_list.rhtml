@@ -6,19 +6,19 @@
 
 <table id="demandes_list" class="show" width='100%'>
    <tr>
-      <th width='2%'>Id</th>
-        <th width='7%'>Logiciel</th>
-        <th width='7%' colspan="2">Type</th>
+      <th width='2%'><%= _("Id") %></th>
+        <th width='7%'><%= _("Software") %></th>
+        <th width='7%' colspan="2"><% _("Type") %></th>
         <!--<th>Sévérité</th>-->
         <% if @ingenieur %>
-          <th width='7%'>Client</th>
+          <th width='7%'><%= _("Client") %></th>
         <% end %>
-        <th width='10%'>Dépositaire</th>
-        <th>Résumé</th>
+        <th width='10%'><%= _("Submitter") %></th>
+        <th><%= _("Summary") %></th>
         <% if @ingenieur %>
-          <th width='9%'>Responsable</th>
+          <th width='9%'><%= _("Person in charge") %></th>
         <% end %>
-        <th width='8%'>A jour du</th>
+        <th width='8%'><%= ("Updated on") %></th>
         <th colspan="3" width='1%'></th>
    </tr>
 
@@ -43,8 +43,8 @@
 
 <% if @demandes.size == 0 %>
   <tr><td colspan="11">
-    <p>Aucune demande enregistrée ne vous concerne.</p>
-    <p>Cliquer ici <%= link_to_new() %> pour déposer une nouvelle demande </p>
+    <p><%= _("There is no request that concerns you.") %></p>
+    <p><%= _("You can click here %s to submit a new request.") % link_to_new %></p>
   </td></tr>
 <% end %>
 
