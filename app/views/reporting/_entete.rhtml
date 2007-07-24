@@ -5,7 +5,7 @@
 
 <h1 class="title">
   <%= display_name %><br/>
-  <%= _("Activity report of the ") + "#{Metadata::NOM_COURT_SERVICE}" %><br/>
+  <%= _(_("Activity report of the ")) + "#{Metadata::NOM_COURT_SERVICE}" %><br/>
   <%= _('from') %> <%= @report[:middle_date].strftime('%B %Y') %>
   <%= _('to') %> <%= @report[:end_date].strftime('%B %Y') %>
   (<%= @report[:middle_report] %> <%= _('months') %>)
