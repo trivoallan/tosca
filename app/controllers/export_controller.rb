@@ -25,22 +25,22 @@ class ExportController < ApplicationController
 
   def compute_contributions(type)
     methods = ['pnom_typecontribution', 'pnom_logiciel', 'version_to_s',
-      'pnom_etatreversement', 'delai_in_french_words', 'clos_enhance', 
+      'pnom_etatreversement', 'delai_in_french_words', 'clos_enhance',
       'reverse_le_formatted']
-    options = { :order => 'contributions.reverse_le ASC', 
-      :include => [:logiciel,:etatreversement,:demandes], 
+    options = { :order => 'contributions.reverse_le ASC',
+      :include => [:logiciel, :etatreversement, :demandes],
       :conditions => flash[:conditions],
       :methods => methods }
 
     report = Contribution.report_table(:all, options)
-    columns= ['id','pnom_typecontribution', 'pnom_logiciel', 
+    columns= ['id','pnom_typecontribution', 'pnom_logiciel',
       'version_to_s','pnom_etatreversement', 'synthese',
       'reverse_le_formatted','clos_enhance','delai_in_french_words']
     report.reorder columns
     report.rename_columns columns,
       [_('id'), _('type'), _('software'), _('version'), _('state'),
         _('summary'), _('reported'), _('closed'), _('delay') ]
-    generate_report(report, type, {}) 
+    generate_report(report, type, {})
   end
 
   # return the contents of identifiants in a table in ODS format
@@ -115,13 +115,13 @@ class ExportController < ApplicationController
   end
 
   def compute_demandes(type, options_generate)
-    columns = ['id','logiciels_nom', 'beneficiaires_nom','clients_nom', 
-      'ingenieurs_nom','severites_nom','version','created_on_formatted', 
+    columns = ['id','logiciels_nom', 'beneficiaires_nom','clients_nom',
+      'ingenieurs_nom','severites_nom','version','created_on_formatted',
       'socle', 'updated_on_formatted', 'resume', 'statuts_nom',
        'typedemandes_nom'
     ]
     options= { :order => 'updated_on DESC', :conditions => flash[:conditions],
-      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST, 
+      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST,
       :methods => columns
      }
      report = nil
@@ -142,7 +142,7 @@ class ExportController < ApplicationController
     end
     report.reorder columns
     report.rename_columns columns,
-      [_('id'), _('software'), _('beneficiaire'), ('Customer') ,
+      [_('id'), _('software'), _('beneficiaire'), ('Customer'),
         _('Person in charge') , _('severity'),
         _('version') , _('date de soumission') , _('plateform'), _('update'),
         _('summary'), _('status'), _('type') ]

@@ -37,11 +37,9 @@ class Client < ActiveRecord::Base
     result
   end
 
-
   def beneficiaire_ids
     @benefs ||= self.beneficiaires.find(:all, :select => 'id').collect{|c| c.id}
   end
-
 
   def ingenieurs
     return [] if contrats.empty?

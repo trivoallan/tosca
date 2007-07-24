@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class ClientsController < ApplicationController
-  helper :demandes,:socles,:engagements, :contrats
+  helper :demandes, :socles, :engagements, :contrats
 
   def index
     @client_pages, @clients = paginate :clients, :per_page => 10,

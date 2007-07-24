@@ -17,7 +17,7 @@ class TypeurlsController < ApplicationController
   def create
     @typeurl = Typeurl.new(params[:typeurl])
     if @typeurl.save
-      flash[:notice] = 'Typeurl was successfully created.'
+      flash[:notice] = _("A url type was successfully created.")
       redirect_to typeurls_path
     else
       render :action => 'new'
@@ -31,7 +31,7 @@ class TypeurlsController < ApplicationController
   def update
     @typeurl = Typeurl.find(params[:id])
     if @typeurl.update_attributes(params[:typeurl])
-      flash[:notice] = 'Typeurl was successfully updated.'
+      flash[:notice] = _("A url type was successfully updated.")
       redirect_to typeurl_path(@typeurl)
     else
       render :action => 'edit'

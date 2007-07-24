@@ -3,9 +3,8 @@
 #####################################################
 class AccesController < ApplicationController
   skip_before_filter :login_required
-
+  
   def refuse
   end
 
 end
-
