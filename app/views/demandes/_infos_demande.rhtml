@@ -59,7 +59,7 @@
   %>
   </li>
   <li><b><%= _("Workarouned in") + " : </b>#{@demande.affiche_temps_contournement}" %></li>
-  <li><b><%= _("Fixed in") + " : </b>#{demande.affiche_temps_correction}" %></li>
+  <li><b><%= _("Fixed in") + " : </b>#{@demande.affiche_temps_correction}" %></li>
   <% if @demande.contribution %>
     <% contrib = @demande.contribution %>
     <li><b><%= _("Documents") + ": </b> <br/>" + _("A") %>
