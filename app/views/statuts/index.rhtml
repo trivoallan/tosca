@@ -1,16 +1,16 @@
-<h1><%=_('List of status')%></h1>
+<h1><%= _('List of the status') %></h1>
 
 <% links = show_pages_links(@statut_pages, 'a new status') %>
 <%= links %>
 
 <table>
   <tr>
-    <th>id </th>
+    <th><%= _("Id") %></th>
   <% for column in Statut.content_columns %>
-    <th><%= _(column.human_name) %></th>
+    <th><%= column.human_name %></th>
   <% end %>
   </tr>
-  
+
 <% for statut in @statuts %>
   <tr class=<%= "demande_#{statut.id}" %>>
     <td><%= statut.id %>
@@ -23,5 +23,3 @@
 </table>
 
 <%= links %>
-
-

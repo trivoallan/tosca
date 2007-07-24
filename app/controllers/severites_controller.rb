@@ -18,7 +18,7 @@ class SeveritesController < ApplicationController
   def create
     @severite = Severite.new(params[:severite])
     if @severite.save
-      flash[:notice] = 'Severite was successfully created.'
+      flash[:notice] = _("Severity was successfully created.")
       redirect_to severites_path
     else
       render :action => 'new'
@@ -32,7 +32,7 @@ class SeveritesController < ApplicationController
   def update
     @severite = Severite.find(params[:id])
     if @severite.update_attributes(params[:severite])
-      flash[:notice] = 'Severite was successfully updated.'
+      flash[:notice] = _("Severity was successfully updated.")
       redirect_to severite_path(@severite)
     else
       render :action => 'edit'

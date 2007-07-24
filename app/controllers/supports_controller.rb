@@ -17,7 +17,7 @@ class SupportsController < ApplicationController
   def create
     @support = Support.new(params[:support])
     if @support.save
-      flash[:notice] = 'Support was successfully created.'
+      flash[:notice] = _("Support was successfully created.")
       redirect_to supports_path
     else
       render :action => 'new'
@@ -31,7 +31,7 @@ class SupportsController < ApplicationController
   def update
     @support = Support.find(params[:id])
     if @support.update_attributes(params[:support])
-      flash[:notice] = 'Support was successfully updated.'
+      flash[:notice] = _("Support was successfully updated.")
       redirect_to support_path(@support)
     else
       render :action => 'edit'

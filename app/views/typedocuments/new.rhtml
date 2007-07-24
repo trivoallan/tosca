@@ -1,8 +1,8 @@
-<h1>New typedocument</h1>
+<h1><%= _("Create a new type of documents") %></h1>
 
 <% form_tag typedocuments_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
+  <%= submit_tag _("Create") %>
 <% end %>
 
 <%= link_to_back %>

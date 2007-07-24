@@ -1,11 +1,11 @@
-<h1>Liste des types possibles de documents</h1>
+<h1><%= _("List of the types of documents") %></h1>
 
-<%= show_pages_links(@typedocument_pages, 'une nouveau type d\'url') %>
+<%= show_pages_links(@typedocument_pages, _("a new type of document") %>
 
-<% titres = []%>
+<% titres = [] %>
 <%= show_table(@typedocuments, Typedocument, titres, :content_columns => true) { |m|
   result = ''
   result << "#{link_to_actions_table m}"
 }%>
 
-<%= show_pages_links(@typedocument_pages, 'une nouvelle url') %>
+<%= show_pages_links(@typedocument_pages, _("a new type of document")) %>

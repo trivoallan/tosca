@@ -1,8 +1,8 @@
-<h1>Editing severite</h1>
+<h1><%= _("Editing a severity") %></h1>
 
 <% form_tag severite_path(@severite), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag _('Edit') %>
 <% end %>
 
 <%= link_to 'Show', severite_path(@severite) %> |

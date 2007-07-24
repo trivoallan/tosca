@@ -1,9 +1,9 @@
-<h1>Editing support</h1>
+<h1><%= _("Editing support") %></h1>
 
 <% form_tag support_path(@support), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag _("Edit") %>
 <% end %>
 
-<%= link_to 'Show', support_path(@support) %> |
+<%= link_to _("List"), support_path(@support) %> |
 <%= link_to_back %>

@@ -8,22 +8,20 @@
   result = ''
   result << "<td>#{link_to p.name, edit_permission_url(p) }</td>"
   result << "<td>#{p.info}</td>"
-  @roles.each {|r|
+  @roles.each { |r|
     if p.roles.include? r
       result << "<td>X</td>"
     else
-      result << '<td></td>'
+      result << "<td></td>"
     end
   }
   result << "#{link_to_actions_table p}"
   result
 }%>
 
-
-<%= link_to _('Permission list'), permissions_url %> | 
+<%= link_to _('Permission list'), permissions_url %> |
 <%= link_to _('Add a permission'), new_permission_url %>
 
 <p>&nbsp;</p>
 
 <%= link_to _('Add a role'), new_role_url %> <br/>
-

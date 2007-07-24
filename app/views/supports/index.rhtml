@@ -1,10 +1,10 @@
-<h1>Liste des offres de supports vendus</h1>
+<h1><%= _("List of Liste des offres de supports vendus") %></h1>
 
-<%= show_pages_links(@support_pages, 'une nouveau type d\'url') %>
+<%= show_pages_links(@support_pages, _("a new support") %>
 
-<% titres = ['Ouverture','Fermeture','Assistance<br />Téléphonique',
-             'Maintenance','Veille<br />Technologique','Newsletter', 
-             'Clients']%>
+<% titres = [ _("Open time"), _("Close time"), _("Telephonic <br/>assistance"),
+              _("Maintenance"), _("Technolofical <br/>survey"), _("Newsletter"),
+              _("Clients") ] %>
 <%= show_table(@supports, Support, titres) { |s|
   result = ''
   result << "<td>#{s.ouverture}h</td>"
@@ -13,10 +13,8 @@
   result << "<td>#{'X' if s.maintenance}</td>"
   result << "<td>#{'X' if s.veille_technologique}</td>"
   result << "<td>#{'X' if s.newsletter}</td>"
-result << "<td>#{s.clients.collect{|c| c.nom}.join(', ')}</td>"
+  result << "<td>#{s.clients.collect{|c| c.nom}.join(', ')}</td>"
   result << "#{link_to_actions_table s}"
 }%>
 
-<%= show_pages_links(@support_pages, 'une nouvelle url') %>
-
-
+<%= show_pages_links(@support_pages, _("a new support")) %>

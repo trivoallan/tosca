@@ -25,7 +25,7 @@ class SoclesController < ApplicationController
     @socle = Socle.new(params[:socle])
     if @socle.save
       @socle.save
-      flash[:notice] = _('Socle was successfully created.')
+      flash[:notice] = _('A System was successfully created.')
       redirect_to socles_path
     else
       _form
@@ -41,7 +41,7 @@ class SoclesController < ApplicationController
   def update
     @socle = Socle.find(params[:id])
     if @socle.update_attributes(params[:socle])
-      flash[:notice] = _('Socle was successfully updated.')
+      flash[:notice] = _('A System was successfully updated.')
       redirect_to socles_path
     else
       _form

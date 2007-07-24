@@ -1,8 +1,8 @@
-<h1>New typedemande</h1>
+<h1><%= _("A new type of request") %></h1>
 
 <% form_tag typedemandes_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
+  <%= submit_tag _("Create") %>
 <% end %>
 
 <%= link_to_back %>

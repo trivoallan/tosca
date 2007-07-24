@@ -1,8 +1,8 @@
-<h1>New severite</h1>
+<h1><%= _("New severity") %></h1>
 
 <% form_tag severites_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
+  <%= submit_tag _("Create") %>
 <% end %>
 
 <%= link_to_back %>

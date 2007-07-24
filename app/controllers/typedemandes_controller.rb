@@ -17,7 +17,7 @@ class TypedemandesController < ApplicationController
   def create
     @typedemande = Typedemande.new(params[:typedemande])
     if @typedemande.save
-      flash[:notice] = 'Typedemande was successfully created.'
+      flash[:notice] = _("A new type of request was successfully created.")
       redirect_to typedemandes_path
     else
       render :action => 'new'
@@ -31,7 +31,7 @@ class TypedemandesController < ApplicationController
   def update
     @typedemande = Typedemande.find(params[:id])
     if @typedemande.update_attributes(params[:typedemande])
-      flash[:notice] = 'Typedemande was successfully updated.'
+      flash[:notice] = _("A request type was successfully updated.")
       redirect_to typedemande_path(@typedemande)
     else
       render :action => 'edit'
