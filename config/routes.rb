@@ -110,6 +110,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :urllogiciels
   map.resources :urlreversements
   map.resources :commentaires, :member => { :changer_etat => :get }
+  map.resources :etatreversements
 
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'

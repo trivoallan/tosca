@@ -13,10 +13,10 @@ module PagesHelper
   end
 
   # 2 ways of use it
-  # First, within the good controller : 
+  # First, within the good controller :
   #   <%= link_to_show(@request) %>
-  # Second, with an other controller : 
-  #   <%= link_to_show(edit_request_path(@request))%>  
+  # Second, with an other controller :
+  #   <%= link_to_show(edit_request_path(@request))%>
   def link_to_show(ar)
     url = (ar.is_a?(String) ? ar : { :action => 'edit', :id => ar })
     link_to image_view, url, { :class => 'nobackground' }

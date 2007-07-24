@@ -14,7 +14,7 @@
   <% end %>
     <td><%= link_to 'Show', etatreversement_path(etatreversement) %></td>
     <td><%= link_to 'Edit', edit_etatreversement_path(etatreversement) %></td>
-    <td><%= link_to 'Destroy', destroy_etatreversement_path(etatreversement), :confirm => 'Are you sure?', :post => true %></td>
+    <td><%= link_to 'Destroy', etatreversement_path(etatreversement), { :method => :delete } , :confirm => 'Are you sure?' %></td>
   </tr>
 <% end %>
 </table>
@@ -24,4 +24,4 @@
 
 <br />
 
-<%= link_to 'New etatreversement', :action => 'new' %>
+<%= link_to 'New etatreversement', new_etatreversement_path %>
