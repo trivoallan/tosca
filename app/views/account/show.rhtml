@@ -1,6 +1,6 @@
 <%= error_messages_for 'identifiant' %><br />
 
-<div title="Visualisation du compte" id="showform" class="form">
+<div title="<%= _("Show an account") %>" id="showform" class="form">
 
 <% compte = ( session[:user].id == @identifiant.id ? _('My account') :
               _('Account of %s') % @identifiant.nom ) %>
@@ -27,7 +27,7 @@
 
 %>
 
-<h1><%= _('Consult')%> <%=compte%></h1>
+<h1><%= _('Consult') %> <%=compte%></h1>
 <%= show_table_form fields %>
 </div>
 <br/>
