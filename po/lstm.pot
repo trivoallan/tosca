@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-24 09:35+0200\n"
+"POT-Creation-Date: 2007-07-24 15:18+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,26 +60,26 @@ msgstr ""
 
 #: app/controllers/account_controller.rb:131
 #: app/controllers/account_controller.rb:166
-#: app/controllers/account_controller.rb:179 app/views/account/_edit.rhtml:58
-#: app/views/account/show.rhtml:16
+#: app/controllers/account_controller.rb:179 app/views/account/_edit.rhtml:56
+#: app/views/account/show.rhtml:20
 msgid "Full name"
 msgstr ""
 
 #: app/controllers/account_controller.rb:131
-#: app/controllers/account_controller.rb:167 app/views/account/_edit.rhtml:59
-#: app/views/account/show.rhtml:17 app/views/documents/_form.rhtml:23
+#: app/controllers/account_controller.rb:167 app/views/account/_edit.rhtml:57
+#: app/views/account/show.rhtml:21 app/views/documents/_form.rhtml:23
 msgid "Title"
 msgstr ""
 
 #: app/controllers/account_controller.rb:131
-#: app/controllers/account_controller.rb:168 app/views/account/_edit.rhtml:60
-#: app/views/account/_users_list.rhtml:16 app/views/account/show.rhtml:18
+#: app/controllers/account_controller.rb:168 app/views/account/_edit.rhtml:58
+#: app/views/account/_users_list.rhtml:16 app/views/account/show.rhtml:22
 msgid "Email"
 msgstr ""
 
 #: app/controllers/account_controller.rb:131
-#: app/controllers/account_controller.rb:169 app/views/account/_edit.rhtml:61
-#: app/views/account/show.rhtml:19
+#: app/controllers/account_controller.rb:169 app/views/account/_edit.rhtml:59
+#: app/views/account/show.rhtml:23
 msgid "Phone"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgid "Password"
 msgstr ""
 
 #: app/controllers/account_controller.rb:132
-#: app/controllers/account_controller.rb:173 app/views/account/_edit.rhtml:78
+#: app/controllers/account_controller.rb:173 app/views/account/_edit.rhtml:76
 #: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr ""
@@ -128,6 +128,10 @@ msgstr ""
 
 #: app/controllers/account_controller.rb:188
 msgid "The user %s  has not been successfully created.<br /> "
+msgstr ""
+
+#: app/controllers/account_controller.rb:267
+msgid "Logout"
 msgstr ""
 
 #: app/controllers/arches_controller.rb:16
@@ -299,7 +303,7 @@ msgid "delay"
 msgstr ""
 
 #: app/controllers/export_controller.rb:70
-#: app/views/account/_users_list.rhtml:8 app/views/account/show.rhtml:21
+#: app/views/account/_users_list.rhtml:8 app/views/account/show.rhtml:25
 msgid "login"
 msgstr ""
 
@@ -684,7 +688,7 @@ msgid " to date"
 msgstr ""
 
 #: app/helpers/application_helper.rb:120
-msgid "No %s  to"
+msgid "No %s  at the moment"
 msgstr ""
 
 #: app/helpers/application_helper.rb:178
@@ -882,12 +886,12 @@ msgid "First page"
 msgstr ""
 
 #: app/helpers/images_helper.rb:93 app/helpers/pages_helper.rb:87
-#: app/views/typecontributions/index.rhtml:22
+#: app/views/typecontributions/index.rhtml:20
 msgid "Previous page"
 msgstr ""
 
 #: app/helpers/images_helper.rb:99 app/helpers/pages_helper.rb:97
-#: app/views/typecontributions/index.rhtml:23
+#: app/views/typecontributions/index.rhtml:21
 msgid "Next page"
 msgstr ""
 
@@ -1681,6 +1685,10 @@ msgstr ""
 msgid "Ingenieur|Expert ossa"
 msgstr ""
 
+#: app/models/ingenieur.rb:-
+msgid "Ingenieur|Image"
+msgstr ""
+
 #: app/models/jourferie.rb:-
 msgid "jourferie"
 msgstr ""
@@ -2101,46 +2109,46 @@ msgstr ""
 msgid "Custom display of the request list"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:23
+#: app/views/account/_edit.rhtml:22
 msgid "<label for=\"identifiant_login\">Choose a login</label>"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:26
+#: app/views/account/_edit.rhtml:25
 msgid "<label>Roles</label>"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:34
+#: app/views/account/_edit.rhtml:33
 msgid "Is the user a customer of the service ?"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:37
+#: app/views/account/_edit.rhtml:35
 msgid "Are the users customer of the service ?"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:38
+#: app/views/account/_edit.rhtml:36
 msgid ""
 "<label>Text in CSV format (separator : tabulation)</label><br />\n"
 "                      Full name Title Email Phone Login Password  "
 "Informations"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:42
+#: app/views/account/_edit.rhtml:40
 msgid "<label>Customer </label>"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:44
+#: app/views/account/_edit.rhtml:42
 msgid "<label for=\"identifiant_client\">Customer</label> %s"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:64
+#: app/views/account/_edit.rhtml:62
 msgid "Choose a password"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:66
+#: app/views/account/_edit.rhtml:64
 msgid "Confirm this last"
 msgstr ""
 
-#: app/views/account/_edit.rhtml:92 app/views/account/_users_list.rhtml:37
+#: app/views/account/_edit.rhtml:90 app/views/account/_users_list.rhtml:37
 msgid "\"Submit\""
 msgstr ""
 
@@ -2165,6 +2173,10 @@ msgstr ""
 #: app/views/account/_menu.rhtml:15 app/views/demandes/_requests_info.rhtml:18
 #: app/views/demandes/new.rhtml:1
 msgid "Submit a request"
+msgstr ""
+
+#: app/views/account/_menu.rhtml:16 app/views/appels/_calls_info.rhtml:50
+msgid "Calls"
 msgstr ""
 
 #: app/views/account/_menu.rhtml:18 app/views/binaires/show.rhtml:9
@@ -2298,10 +2310,6 @@ msgstr ""
 msgid "recipient"
 msgstr ""
 
-#: app/views/account/edit.rhtml:9
-msgid "Return to the account list"
-msgstr ""
-
 #: app/views/account/login.rhtml:5
 msgid "08000linux login"
 msgstr ""
@@ -2327,6 +2335,10 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
+#: app/views/account/show.rhtml:3
+msgid "Show an account"
+msgstr ""
+
 #: app/views/account/show.rhtml:6
 msgid "Account of %s"
 msgstr ""
@@ -2335,11 +2347,11 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: app/views/account/show.rhtml:24
+#: app/views/account/show.rhtml:28
 msgid "Informations :"
 msgstr ""
 
-#: app/views/account/show.rhtml:30
+#: app/views/account/show.rhtml:34
 msgid "Consult"
 msgstr ""
 
@@ -2357,10 +2369,6 @@ msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:39
 msgid "To"
-msgstr ""
-
-#: app/views/appels/_calls_info.rhtml:50
-msgid "Calls"
 msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:52 app/views/bienvenue/admin.rhtml:21
@@ -2451,7 +2459,6 @@ msgstr ""
 #: app/views/supports/edit.rhtml:5 app/views/supports/show.rhtml:7
 #: app/views/typecontributions/edit.rhtml:5
 #: app/views/typecontributions/show.rhtml:7
-#: app/views/typecontributions/index.rhtml:16
 #: app/views/typedemandes/edit.rhtml:5 app/views/typedemandes/show.rhtml:7
 #: app/views/typedocuments/edit.rhtml:5 app/views/typedocuments/show.rhtml:7
 #: app/views/typeurls/show.rhtml:7
@@ -2555,7 +2562,7 @@ msgid "Skill management"
 msgstr ""
 
 #: app/views/bienvenue/admin.rhtml:22 app/views/bienvenue/admin.rhtml:23
-#: app/views/ingenieurs/_form.rhtml:13 app/views/ingenieurs/show.rhtml:18
+#: app/views/ingenieurs/_form.rhtml:12 app/views/ingenieurs/show.rhtml:18
 msgid "Skills"
 msgstr ""
 
@@ -2563,7 +2570,7 @@ msgstr ""
 msgid "Customer management"
 msgstr ""
 
-#: app/views/bienvenue/admin.rhtml:32 app/views/ingenieurs/_form.rhtml:17
+#: app/views/bienvenue/admin.rhtml:32 app/views/ingenieurs/_form.rhtml:16
 msgid "Contracts"
 msgstr ""
 
@@ -3240,7 +3247,6 @@ msgstr ""
 #: app/views/demandes/_infos_beneficiaire.rhtml:27
 #: app/views/images/edit.rhtml:8 app/views/machines/edit.rhtml:8
 #: app/views/reporting/delai.rhtml:6 app/views/typecontributions/edit.rhtml:8
-#: app/views/typecontributions/index.rhtml:15
 msgid "Show"
 msgstr ""
 
@@ -3561,16 +3567,16 @@ msgstr ""
 msgid "a group"
 msgstr ""
 
-#: app/views/ingenieurs/_form.rhtml:6 app/views/ingenieurs/show.rhtml:4
+#: app/views/ingenieurs/_form.rhtml:5 app/views/ingenieurs/show.rhtml:4
 #: app/views/ingenieurs/index.rhtml:6
 msgid "Project manager"
 msgstr ""
 
-#: app/views/ingenieurs/_form.rhtml:9 app/views/ingenieurs/show.rhtml:7
+#: app/views/ingenieurs/_form.rhtml:8 app/views/ingenieurs/show.rhtml:7
 msgid "OSSA expert"
 msgstr ""
 
-#: app/views/ingenieurs/_form.rhtml:22
+#: app/views/ingenieurs/_form.rhtml:21
 msgid "Domain"
 msgstr ""
 
@@ -4298,15 +4304,7 @@ msgstr ""
 msgid "List of the types of contribution"
 msgstr ""
 
-#: app/views/typecontributions/index.rhtml:17
-msgid "Destroy"
-msgstr ""
-
-#: app/views/typecontributions/index.rhtml:17
-msgid "Are you sure?"
-msgstr ""
-
-#: app/views/typecontributions/index.rhtml:27
+#: app/views/typecontributions/index.rhtml:25
 msgid "Create a new type of contribution"
 msgstr ""
 
