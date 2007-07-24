@@ -54,9 +54,9 @@ module ApplicationHelper
   #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
   def show_liste(elements, nom = '', options = {}) 
     size = elements.size
-    return '<u><b>' + _('No')+" #{nom}</b></u><br />" unless size > 0
-    if session[:user].nil? and options[:public].blank?
-      return "<u><b>#{pluralize(size, nom.capitalize)}"+ _(' to date')+'</b></u><br />' 
+    return '<u><b>' << _('No') << " #{nom}</b></u><br />" unless size > 0
+    if session[:user].nil? and options[:public].nil?
+      return "<u><b>#{pluralize(size, nom.capitalize)}" << _(' to date') << '</b></u><br />' 
     end
     result = ''
     unless options[:title]==false or options[:no_title]
@@ -117,7 +117,7 @@ module ApplicationHelper
   #   :add_lines > affiche à la fin le tableau de lignes passé [[line1],[line2]]
   # TODO : intégrer width et style dans une seule option
   def show_table(elements, ar, titres, options = {})
-    return '<br /><p>' + _('No %s  to') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
+    return '<br /><p>' << _('No %s  at the moment') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width} class=\"show\">"
 

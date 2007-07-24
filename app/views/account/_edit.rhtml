@@ -19,7 +19,6 @@
   help = {:affichage_perso => _('Custom display of the request list'), :client => nil }
 
   if @ingenieur
-    identifiant[:titre] = '<label for="identifiant_login">Choisissez un identifiant</label>'
     identifiant[:titre] = _('<label for="identifiant_login">Choose a login</label>')
     identifiant[:champ] = text_field("identifiant", "login", :size => 16)
     if @ingenieur and @ingenieur.expert_ossa
@@ -33,7 +32,6 @@
       when 'signup'
         help[:client] = _('Is the user a customer of the service ?')
       when 'multiple_signup'
-        help[:client] = 'Les utilisateurs sont-ils des clients du service ?'
         help[:client] = _('Are the users customer of the service ?')
         csv[:titre] = _('<label>Text in CSV format (separator : tabulation)</label><br />
                       Full name Title Email Phone Login Password  Informations')
