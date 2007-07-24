@@ -12,9 +12,10 @@
   <% for column in Typecontribution.content_columns %>
     <td><%= typecontribution.send(column.name) %></td>
   <% end %>
-    <td><%= link_to _("Show"), typecontribution_path(typecontribution) %></td>
-    <td><%= link_to _("Edit"), edit_typecontribution_path(typecontribution) %></td>
-    <td><%= link_to _("Destroy"), destroy_typecontribution_path(typecontribution) , :confirm => _("Are you sure?"), :post => true %></td>
+    <td><%= link_to _('Show'), typecontribution_path(typecontribution) %></td>
+    <td><%= link_to _('Edit'), edit_typecontribution_path(typecontribution) %></td>
+    <td><%= link_to _('Destroy'), typecontribution_path(typecontribution), {:method=>:delete} ,:confirm=>_('Are you sure?')
+         %> </td>
   </tr>
 <% end %>
 </table>
@@ -24,4 +25,4 @@
 
 <br />
 
-<%= link_to _("Create a new type of contribution"), :action => 'new' %>
+<%= link_to _("Create a new type of contribution"), new_typecontribution_path %>

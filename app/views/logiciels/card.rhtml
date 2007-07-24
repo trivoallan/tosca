@@ -18,9 +18,7 @@
     <td><%=h @logiciel.resume %></td></tr>
 
 <tr><td><b>Site(s)</b></td>
-    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 3), 'url', {:no_title => true}) {|u|
-            "#{link_to u.typeurl.nom+' : ', :controller => 'urllogiciels', :action => 'show', :id => u.id}
-            <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 3), 'url', {:no_title => true}) {|u| "#{link_to u.typeurl.nom+' : ',show_urllogiciel_path(u)} <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
 
 <tr><td><b>Version</b></td>
     <td><%=h '-' %></td></tr>
