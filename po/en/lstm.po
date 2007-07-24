@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-23 19:55+0200\n"
+"POT-Creation-Date: 2007-07-24 09:35+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -202,18 +202,18 @@ msgstr ""
 msgid "Packages"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:150
-#: app/views/demandes/_packages.rhtml:6 app/views/demandes/_cns.rhtml:12
+#: app/controllers/demandes_controller.rb:150 app/views/demandes/_cns.rhtml:12
 #: app/views/demandes/_report_detail.rhtml:14
 #: app/views/demandes/_report_detail.rhtml:16
+#: app/views/demandes/_packages.rhtml:6
 #: app/views/reporting/_comex_cns.rhtml:20
 msgid "Workaround"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:150
-#: app/views/demandes/_packages.rhtml:7 app/views/demandes/_cns.rhtml:13
+#: app/controllers/demandes_controller.rb:150 app/views/demandes/_cns.rhtml:13
 #: app/views/demandes/_report_detail.rhtml:15
 #: app/views/demandes/_report_detail.rhtml:17
+#: app/views/demandes/_packages.rhtml:7
 #: app/views/reporting/_comex_cns.rhtml:21
 msgid "Correction"
 msgstr ""
@@ -244,6 +244,14 @@ msgstr ""
 
 #: app/controllers/documents_controller.rb:87
 msgid "your document was successfully updated"
+msgstr ""
+
+#: app/controllers/images_controller.rb:20
+msgid "An image was successfully created."
+msgstr ""
+
+#: app/controllers/images_controller.rb:34
+msgid "An image was successfully updated."
 msgstr ""
 
 #: app/controllers/export_controller.rb:41
@@ -587,12 +595,28 @@ msgstr ""
 msgid "Correction time"
 msgstr ""
 
+#: app/controllers/roles_controller.rb:22
+msgid "The rule %s was succefully created."
+msgstr ""
+
+#: app/controllers/roles_controller.rb:37
+msgid "The rule %s was succefully updated."
+msgstr ""
+
+#: app/controllers/severites_controller.rb:21
+msgid "Severity was successfully created."
+msgstr ""
+
+#: app/controllers/severites_controller.rb:35
+msgid "Severity was successfully updated."
+msgstr ""
+
 #: app/controllers/socles_controller.rb:28
-msgid "Socle was successfully created."
+msgid "A System was successfully created."
 msgstr ""
 
 #: app/controllers/socles_controller.rb:44
-msgid "Socle was successfully updated."
+msgid "A System was successfully updated."
 msgstr ""
 
 #: app/controllers/statuts_controller.rb:25
@@ -603,8 +627,44 @@ msgstr ""
 msgid "Statut was successfully updated."
 msgstr ""
 
+#: app/controllers/supports_controller.rb:20
+msgid "Support was successfully created."
+msgstr ""
+
+#: app/controllers/supports_controller.rb:34
+msgid "Support was successfully updated."
+msgstr ""
+
+#: app/controllers/typecontributions_controller.rb:20
+msgid "A new type of contribution was successfully created."
+msgstr ""
+
+#: app/controllers/typecontributions_controller.rb:34
+msgid "A Type of contribution was successfully updated."
+msgstr ""
+
+#: app/controllers/typedemandes_controller.rb:20
+msgid "A new type of request was successfully created."
+msgstr ""
+
+#: app/controllers/typedemandes_controller.rb:34
+msgid "A request type was successfully updated."
+msgstr ""
+
+#: app/controllers/typeurls_controller.rb:20
+msgid "A url type was successfully created."
+msgstr ""
+
+#: app/controllers/typeurls_controller.rb:34
+msgid "A url type was successfully updated."
+msgstr ""
+
 #: app/controllers/urllogiciels_controller.rb:25
 msgid "The url of \"%s\" has been created successfully."
+msgstr ""
+
+#: app/controllers/urllogiciels_controller.rb:41
+msgid "The Url has bean updated successfully."
 msgstr ""
 
 #: app/controllers/urlreversements_controller.rb:24
@@ -613,14 +673,6 @@ msgstr ""
 
 #: app/controllers/urlreversements_controller.rb:40
 msgid "Urlreversement was successfully updated."
-msgstr ""
-
-#: app/controllers/images_controller.rb:20
-msgid "An image was successfully created."
-msgstr ""
-
-#: app/controllers/images_controller.rb:34
-msgid "An image was successfully updated."
 msgstr ""
 
 #: app/helpers/application_helper.rb:57 app/helpers/demandes_helper.rb:70
@@ -788,88 +840,109 @@ msgstr ""
 msgid "classification"
 msgstr ""
 
-#: app/helpers/images_helper.rb:34
+#: app/helpers/images_helper.rb:31
 msgid "Post %s"
 msgstr ""
 
-#: app/helpers/images_helper.rb:46
+#: app/helpers/images_helper.rb:43
 msgid "View"
 msgstr ""
 
-#: app/helpers/images_helper.rb:52 app/views/demandes/edit.rhtml:7
+#: app/helpers/images_helper.rb:49 app/views/demandes/edit.rhtml:7
 #: app/views/logiciels/edit.rhtml:5
 msgid "Update"
 msgstr ""
 
-#: app/helpers/images_helper.rb:58
+#: app/helpers/images_helper.rb:55
 msgid "Delete"
 msgstr ""
 
-#: app/helpers/images_helper.rb:64
+#: app/helpers/images_helper.rb:61
 msgid "Hide"
 msgstr ""
 
-#: app/helpers/images_helper.rb:70 app/views/demandes/_infos_demande.rhtml:84
+#: app/helpers/images_helper.rb:67 app/views/demandes/_infos_demande.rhtml:84
 msgid "Help"
 msgstr ""
 
-#: app/helpers/images_helper.rb:78 app/helpers/images_helper.rb:145
+#: app/helpers/images_helper.rb:75 app/helpers/images_helper.rb:142
 msgid "Home page"
 msgstr ""
 
-#: app/helpers/images_helper.rb:84 app/views/images/show.rhtml:11
-#: app/views/machines/show.rhtml:13
+#: app/helpers/images_helper.rb:81 app/views/images/show.rhtml:11
+#: app/views/machines/show.rhtml:13 app/views/severites/show.rhtml:8
+#: app/views/supports/show.rhtml:8 app/views/typecontributions/show.rhtml:8
+#: app/views/typedemandes/show.rhtml:8 app/views/typedocuments/show.rhtml:8
+#: app/views/typeurls/show.rhtml:8
 msgid "Back"
 msgstr ""
 
-#: app/helpers/images_helper.rb:90 app/helpers/pages_helper.rb:84
+#: app/helpers/images_helper.rb:87 app/helpers/pages_helper.rb:84
 msgid "First page"
 msgstr ""
 
-#: app/helpers/images_helper.rb:96 app/helpers/pages_helper.rb:87
+#: app/helpers/images_helper.rb:93 app/helpers/pages_helper.rb:87
+#: app/views/typecontributions/index.rhtml:22
 msgid "Previous page"
 msgstr ""
 
-#: app/helpers/images_helper.rb:102 app/helpers/pages_helper.rb:97
+#: app/helpers/images_helper.rb:99 app/helpers/pages_helper.rb:97
+#: app/views/typecontributions/index.rhtml:23
 msgid "Next page"
 msgstr ""
 
-#: app/helpers/images_helper.rb:108 app/helpers/pages_helper.rb:100
+#: app/helpers/images_helper.rb:105 app/helpers/pages_helper.rb:100
 msgid "Last page"
 msgstr ""
 
-#: app/helpers/images_helper.rb:114 app/views/binaires/index.rhtml:6
+#: app/helpers/images_helper.rb:111 app/views/binaires/index.rhtml:6
 #: app/views/documents/_form.rhtml:26
 msgid "File"
 msgstr ""
 
-#: app/helpers/images_helper.rb:120 app/views/urlreversements/index.rhtml:6
-#: app/views/urlreversements/_form.rhtml:6
+#: app/helpers/images_helper.rb:117 app/views/urlreversements/_form.rhtml:6
+#: app/views/urlreversements/index.rhtml:6
 msgid "Contribution"
 msgstr ""
 
-#: app/helpers/images_helper.rb:127
+#: app/helpers/images_helper.rb:124
 msgid "Make public"
 msgstr ""
 
-#: app/helpers/images_helper.rb:133
+#: app/helpers/images_helper.rb:130
 msgid "Make private"
 msgstr ""
 
-#: app/helpers/images_helper.rb:151 app/helpers/images_helper.rb:157
+#: app/helpers/images_helper.rb:148 app/helpers/images_helper.rb:154
 msgid "OSSA on rails"
 msgstr ""
 
-#: app/helpers/images_helper.rb:173 app/views/demandes/_infos_demande.rhtml:11
+#: app/helpers/images_helper.rb:170 app/views/demandes/_infos_demande.rhtml:11
 msgid "Print"
 msgstr ""
 
-#: app/helpers/images_helper.rb:216
+#: app/helpers/images_helper.rb:213
 msgid "Choose a date"
 msgstr ""
 
-#: app/helpers/images_helper.rb:217
+#: app/helpers/images_helper.rb:214
 msgid "Select a date"
+msgstr ""
+
+#: app/helpers/logiciels_helper.rb:28
+msgid "My supported softwares"
+msgstr ""
+
+#: app/helpers/logiciels_helper.rb:29
+msgid "Display only software supported by your contract"
+msgstr ""
+
+#: app/helpers/logiciels_helper.rb:32
+msgid "All softwares"
+msgstr ""
+
+#: app/helpers/logiciels_helper.rb:33
+msgid "Display all softwares"
 msgstr ""
 
 #: app/helpers/pages_helper.rb:36
@@ -906,62 +979,6 @@ msgstr ""
 
 #: app/helpers/reporting_helper.rb:147
 msgid "Running"
-msgstr ""
-
-#: app/helpers/logiciels_helper.rb:28
-msgid "My supported softwares"
-msgstr ""
-
-#: app/helpers/logiciels_helper.rb:29
-msgid "Display only software supported by your contract"
-msgstr ""
-
-#: app/helpers/logiciels_helper.rb:32
-msgid "All softwares"
-msgstr ""
-
-#: app/helpers/logiciels_helper.rb:33
-msgid "Display all softwares"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "news"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "new"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Subject"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Source"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Body"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Created on"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Updated on"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Ingenieur"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Client"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Logiciel"
 msgstr ""
 
 #: app/models/appel.rb:-
@@ -1086,46 +1103,6 @@ msgid "Changelog|Text modification"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
-msgid "client"
-msgstr "Description"
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Client|Nom"
-msgstr "Description"
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Client|Description"
-msgstr "Description"
-
-#: app/models/client.rb:-
-msgid "Client|Mailingliste"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Adresse"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Image"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Support"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Code acces"
-msgstr ""
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Client|Beneficiaires count"
-msgstr "Description"
-
-#: app/models/client.rb:-
 msgid "paquet"
 msgstr ""
 
@@ -1192,6 +1169,46 @@ msgid "Paquet|Active"
 msgstr ""
 
 #: app/models/client.rb:-
+#, fuzzy
+msgid "client"
+msgstr "Description"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Nom"
+msgstr "Description"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Description"
+msgstr "Description"
+
+#: app/models/client.rb:-
+msgid "Client|Mailingliste"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Adresse"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Image"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Support"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr ""
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Client|Beneficiaires count"
+msgstr "Description"
+
+#: app/models/client.rb:-
 msgid "contrat"
 msgstr ""
 
@@ -1256,6 +1273,21 @@ msgstr ""
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Prive"
 msgstr ""
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|Severite"
+msgstr "Description"
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|Statut"
+msgstr "Description"
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|Ingenieur"
+msgstr "Description"
 
 #: app/models/commentaire.rb:11
 msgid "Vous devez mettre un commentaire d'au moins 5 caractères"
@@ -1775,6 +1807,46 @@ msgstr ""
 msgid "Mainteneur|Nom"
 msgstr ""
 
+#: app/models/new.rb:-
+msgid "news"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "new"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Subject"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Source"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Body"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Created on"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Updated on"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Ingenieur"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Client"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Logiciel"
+msgstr ""
+
 #: app/models/paquet.rb:42
 msgid "unknown_name"
 msgstr ""
@@ -2135,7 +2207,7 @@ msgstr ""
 #: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:46
 #: app/views/demandes/_requests_list.rhtml:10 app/views/paquets/_form.rhtml:7
 #: app/views/paquets/_paquets_list.rhtml:7 app/views/paquets/show.rhtml:16
-#: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:8
+#: app/views/urllogiciels/_form.rhtml:6 app/views/urllogiciels/index.rhtml:6
 #: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
 msgid "Software"
 msgstr ""
@@ -2211,8 +2283,10 @@ msgstr ""
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/paquets/_form.rhtml:18 app/views/paquets/_paquets_info.rhtml:23
 #: app/views/paquets/_paquets_list.rhtml:7 app/views/permissions/_form.rhtml:4
-#: app/views/roles/_form.rhtml:5 app/views/socles/_form.rhtml:4
-#: app/views/statuts/_form.rhtml:4
+#: app/views/roles/_form.rhtml:3 app/views/socles/_form.rhtml:3
+#: app/views/statuts/_form.rhtml:3 app/views/supports/_form.rhtml:3
+#: app/views/typecontributions/_form.rhtml:3
+#: app/views/typedocuments/_form.rhtml:3 app/views/typeurls/_form.rhtml:3
 msgid "Name"
 msgstr ""
 
@@ -2260,7 +2334,7 @@ msgstr ""
 msgid "recipient"
 msgstr "Description"
 
-#: app/views/account/edit.rhtml:9 app/views/account/show.rhtml:34
+#: app/views/account/edit.rhtml:9
 msgid "Return to the account list"
 msgstr ""
 
@@ -2271,10 +2345,8 @@ msgstr ""
 #: app/views/account/login.rhtml:16 app/views/appels/edit.rhtml:5
 #: app/views/beneficiaires/new.rhtml:5 app/views/binaires/edit.rhtml:5
 #: app/views/binaires/new.rhtml:5 app/views/contributions/edit.rhtml:6
-#: app/views/logiciels/new.rhtml:5 app/views/roles/edit.rhtml:5
-#: app/views/statuts/edit.rhtml:5 app/views/statuts/new.rhtml:5
-#: app/views/urllogiciels/edit.rhtml:5 app/views/urllogiciels/new.rhtml:5
-#: app/views/urlreversements/edit.rhtml:5
+#: app/views/logiciels/new.rhtml:5 app/views/urllogiciels/edit.rhtml:5
+#: app/views/urllogiciels/new.rhtml:5 app/views/urlreversements/edit.rhtml:5
 #: app/views/urlreversements/new.rhtml:5
 msgid "Validate"
 msgstr ""
@@ -2383,7 +2455,10 @@ msgstr ""
 #: app/views/competences/new.rhtml:5 app/views/contributions/new.rhtml:5
 #: app/views/groupes/new.rhtml:5 app/views/ingenieurs/new.rhtml:5
 #: app/views/images/new.rhtml:5 app/views/machines/new.rhtml:5
-#: app/views/roles/new.rhtml:5 app/views/socles/new.rhtml:5
+#: app/views/roles/new.rhtml:5 app/views/severites/new.rhtml:5
+#: app/views/socles/new.rhtml:5 app/views/supports/new.rhtml:5
+#: app/views/typecontributions/new.rhtml:5 app/views/typedemandes/new.rhtml:5
+#: app/views/typedocuments/new.rhtml:5
 msgid "Create"
 msgstr ""
 
@@ -2399,14 +2474,6 @@ msgstr ""
 msgid "Ended on"
 msgstr ""
 
-#: app/views/arches/index.rhtml:1
-msgid "List of processor architecture"
-msgstr ""
-
-#: app/views/arches/index.rhtml:3 app/views/arches/index.rhtml:12
-msgid "A processor architecture"
-msgstr ""
-
 #: app/views/arches/edit.rhtml:1
 msgid "Edit an architecture"
 msgstr ""
@@ -2415,12 +2482,28 @@ msgstr ""
 #: app/views/groupes/edit.rhtml:5 app/views/ingenieurs/edit.rhtml:5
 #: app/views/images/edit.rhtml:5 app/views/images/show.rhtml:10
 #: app/views/machines/edit.rhtml:5 app/views/machines/show.rhtml:12
-#: app/views/permissions/edit.rhtml:5 app/views/socles/edit.rhtml:5
+#: app/views/permissions/edit.rhtml:5 app/views/severites/edit.rhtml:5
+#: app/views/severites/show.rhtml:7 app/views/socles/edit.rhtml:5
+#: app/views/supports/edit.rhtml:5 app/views/supports/show.rhtml:7
+#: app/views/typecontributions/edit.rhtml:5
+#: app/views/typecontributions/show.rhtml:7
+#: app/views/typecontributions/index.rhtml:16
+#: app/views/typedemandes/edit.rhtml:5 app/views/typedemandes/show.rhtml:7
+#: app/views/typedocuments/edit.rhtml:5 app/views/typedocuments/show.rhtml:7
+#: app/views/typeurls/show.rhtml:7
 msgid "Edit"
 msgstr ""
 
 #: app/views/arches/new.rhtml:1
 msgid "Add a new processor architecture"
+msgstr ""
+
+#: app/views/arches/index.rhtml:1
+msgid "List of processor architecture"
+msgstr ""
+
+#: app/views/arches/index.rhtml:3 app/views/arches/index.rhtml:12
+msgid "A processor architecture"
 msgstr ""
 
 #: app/views/beneficiaires/new.rhtml:1
@@ -2495,7 +2578,7 @@ msgid "Permission management"
 msgstr ""
 
 #: app/views/bienvenue/admin.rhtml:16 app/views/bienvenue/admin.rhtml:18
-#: app/views/roles/_form.rhtml:12
+#: app/views/roles/_form.rhtml:10
 msgid "Permissions"
 msgstr ""
 
@@ -2836,6 +2919,8 @@ msgid "Your suggestions on our tool : "
 msgstr ""
 
 #: app/views/bienvenue/suggestions.rhtml:25 app/views/documents/new.rhtml:5
+#: app/views/roles/edit.rhtml:5 app/views/statuts/edit.rhtml:5
+#: app/views/statuts/new.rhtml:5
 msgid "Submit"
 msgstr ""
 
@@ -2847,7 +2932,7 @@ msgstr ""
 #: app/views/binaires/index.rhtml:6 app/views/demandes/_form.rhtml:41
 #: app/views/machines/_form.rhtml:17 app/views/machines/all.rhtml:5
 #: app/views/machines/show.rhtml:8 app/views/machines/index.rhtml:5
-#: app/views/socles/_form.rhtml:10 app/views/socles/index.rhtml:5
+#: app/views/socles/_form.rhtml:9 app/views/socles/index.rhtml:5
 msgid "System"
 msgstr ""
 
@@ -3059,11 +3144,6 @@ msgstr ""
 msgid "package(s) with the patch"
 msgstr ""
 
-#: app/views/demandes/_packages.rhtml:4
-#: app/views/demandes/_report_detail.rhtml:9
-msgid "Commitment"
-msgstr ""
-
 #: app/views/demandes/_appels.rhtml:2
 msgid "Phone call"
 msgstr ""
@@ -3201,7 +3281,8 @@ msgstr ""
 #: app/views/demandes/_infos_beneficiaire.rhtml:23
 #: app/views/demandes/_infos_beneficiaire.rhtml:27
 #: app/views/images/edit.rhtml:8 app/views/machines/edit.rhtml:8
-#: app/views/reporting/delai.rhtml:6
+#: app/views/reporting/delai.rhtml:6 app/views/typecontributions/edit.rhtml:8
+#: app/views/typecontributions/index.rhtml:15
 msgid "Show"
 msgstr ""
 
@@ -3306,7 +3387,7 @@ msgstr ""
 #: app/views/demandes/_piecejointes.rhtml:3
 #: app/views/demandes/_report_detail.rhtml:7
 #: app/views/demandes/_requests_list.rhtml:9
-#: app/views/reporting/_comex_cns.rhtml:19
+#: app/views/reporting/_comex_cns.rhtml:19 app/views/statuts/index.rhtml:8
 msgid "Id"
 msgstr ""
 
@@ -3325,6 +3406,11 @@ msgstr ""
 
 #: app/views/demandes/_report_detail.rhtml:8
 msgid "Time"
+msgstr ""
+
+#: app/views/demandes/_report_detail.rhtml:9
+#: app/views/demandes/_packages.rhtml:4
+msgid "Commitment"
 msgstr ""
 
 #: app/views/demandes/_report_detail.rhtml:10
@@ -3403,7 +3489,8 @@ msgstr ""
 #: app/views/logiciels/_softwares_info.rhtml:40
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/machines/_form.rhtml:22 app/views/roles/index.rhtml:4
-#: app/views/statuts/_form.rhtml:7
+#: app/views/statuts/_form.rhtml:6 app/views/typecontributions/_form.rhtml:6
+#: app/views/typedocuments/_form.rhtml:6
 msgid "Description"
 msgstr ""
 
@@ -3812,7 +3899,7 @@ msgstr ""
 msgid "Editing permission"
 msgstr ""
 
-#: app/views/permissions/new.rhtml:1 app/views/roles/index.rhtml:24
+#: app/views/permissions/new.rhtml:1 app/views/roles/index.rhtml:23
 msgid "Add a permission"
 msgstr ""
 
@@ -3983,50 +4070,6 @@ msgstr ""
 msgid "Number"
 msgstr ""
 
-#: app/views/reporting/flux.rhtml:3
-msgid "a new request"
-msgstr ""
-
-#: app/views/reporting/flux.rhtml:33
-msgid "No request declared."
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:2
-msgid "OSSA activity per week"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:6
-msgid "Please select"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:7
-msgid "Select customer"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:11
-msgid "Number of the week:"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:17
-msgid "Or search by period"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:20
-msgid "First day : "
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:28
-msgid "Last day : "
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:36
-msgid "See the report for this week"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:40
-msgid "See the report of requests' SLA"
-msgstr ""
-
 #: app/views/reporting/_comex_cns.rhtml:2
 msgid "SLA report"
 msgstr ""
@@ -4077,12 +4120,56 @@ msgstr ""
 msgid "Total in progress <br /> end week"
 msgstr ""
 
-#: app/views/roles/_form.rhtml:8
+#: app/views/reporting/comex.rhtml:2
+msgid "OSSA activity per week"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:6
+msgid "Please select"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:7
+msgid "Select customer"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:11
+msgid "Number of the week:"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:17
+msgid "Or search by period"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:20
+msgid "First day : "
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:28
+msgid "Last day : "
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:36
+msgid "See the report for this week"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:40
+msgid "See the report of requests' SLA"
+msgstr ""
+
+#: app/views/reporting/flux.rhtml:3
+msgid "a new request"
+msgstr ""
+
+#: app/views/reporting/flux.rhtml:33
+msgid "No request declared."
+msgstr ""
+
+#: app/views/roles/_form.rhtml:6
 msgid "Short description"
 msgstr ""
 
 #: app/views/roles/edit.rhtml:1
-msgid "Edit a role"
+msgid "Edit a rule"
 msgstr ""
 
 #: app/views/roles/new.rhtml:1
@@ -4101,39 +4188,52 @@ msgstr ""
 msgid "Rule"
 msgstr ""
 
-#: app/views/roles/index.rhtml:23
+#: app/views/roles/index.rhtml:22
 msgid "Permission list"
 msgstr ""
 
-#: app/views/roles/index.rhtml:28
+#: app/views/roles/index.rhtml:27
 msgid "Add a role"
 msgstr ""
 
-#: app/views/socles/_form.rhtml:7
-msgid "Machine :"
+#: app/views/severites/_form.rhtml:3 app/views/typedemandes/_form.rhtml:3
+msgid "Nom"
 msgstr ""
 
-#: app/views/socles/_form.rhtml:12
+#: app/views/severites/edit.rhtml:1
+msgid "Editing a severity"
+msgstr ""
+
+#: app/views/severites/new.rhtml:1
+msgid "New severity"
+msgstr ""
+
+#: app/views/severites/index.rhtml:3 app/views/severites/index.rhtml:11
+#, fuzzy
+msgid "a new severity"
+msgstr "Description"
+
+#: app/views/socles/_form.rhtml:6 app/views/socles/show.rhtml:9
+msgid "Computer :"
+msgstr ""
+
+#: app/views/socles/_form.rhtml:11
 msgid ""
 "Note : <br />\n"
 "The machine of the system takes its parameters strictly in the parameters of "
 "%s"
 msgstr ""
 
-#: app/views/socles/_form.rhtml:13 app/views/socles/index.rhtml:18
+#: app/views/socles/_form.rhtml:12
 msgid "machines"
 msgstr ""
 
 #: app/views/socles/edit.rhtml:1
-msgid "Editing system"
+msgid "Editing a system"
 msgstr ""
 
 #: app/views/socles/new.rhtml:1
 msgid "New system"
-msgstr ""
-
-#: app/views/socles/show.rhtml:9
-msgid "Machine:"
 msgstr ""
 
 #: app/views/socles/show.rhtml:13 app/views/socles/show.rhtml:19
@@ -4153,37 +4253,186 @@ msgid "a customer system"
 msgstr ""
 
 #: app/views/socles/index.rhtml:5
-msgid "Machine"
+msgid "Computer"
+msgstr ""
+
+#: app/views/socles/index.rhtml:18
+msgid "computer"
 msgstr ""
 
 #: app/views/socles/index.rhtml:19
 msgid "customers"
 msgstr ""
 
+#: app/views/statuts/edit.rhtml:1
+msgid "Editing a statut"
+msgstr ""
+
+#: app/views/statuts/new.rhtml:1
+msgid "New status"
+msgstr ""
+
 #: app/views/statuts/index.rhtml:1
-msgid "List of status"
+msgid "List of the status"
+msgstr ""
+
+#: app/views/supports/_form.rhtml:6 app/views/supports/index.rhtml:5
+msgid "Open time"
+msgstr ""
+
+#: app/views/supports/_form.rhtml:9
+#, fuzzy
+msgid "Close tome"
+msgstr "Description"
+
+#: app/views/supports/_form.rhtml:12 app/views/supports/index.rhtml:6
+msgid "Maintenance"
+msgstr ""
+
+#: app/views/supports/_form.rhtml:15
+msgid "Telephonic assistance"
+msgstr ""
+
+#: app/views/supports/_form.rhtml:18
+msgid "Technological survey"
+msgstr ""
+
+#: app/views/supports/_form.rhtml:21 app/views/supports/index.rhtml:6
+msgid "Newsletter"
+msgstr ""
+
+#: app/views/supports/edit.rhtml:1
+msgid "Editing support"
+msgstr ""
+
+#: app/views/supports/edit.rhtml:8 app/views/typedemandes/edit.rhtml:8
+msgid "List"
+msgstr ""
+
+#: app/views/supports/new.rhtml:1
+msgid "New support"
+msgstr ""
+
+#: app/views/supports/index.rhtml:1
+msgid "List of Liste des offres de supports vendus"
+msgstr ""
+
+#: app/views/supports/index.rhtml:3 app/views/supports/index.rhtml:20
+msgid "a new support"
+msgstr ""
+
+#: app/views/supports/index.rhtml:5
+msgid "Close time"
+msgstr ""
+
+#: app/views/supports/index.rhtml:5
+msgid "Telephonic <br/>assistance"
+msgstr ""
+
+#: app/views/supports/index.rhtml:6
+msgid "Technolofical <br/>survey"
+msgstr ""
+
+#: app/views/supports/index.rhtml:7
+#, fuzzy
+msgid "Clients"
+msgstr "Description"
+
+#: app/views/typecontributions/edit.rhtml:1
+msgid "Editing a type of contribution"
+msgstr ""
+
+#: app/views/typecontributions/new.rhtml:1
+msgid "A new typeof contribution"
+msgstr ""
+
+#: app/views/typecontributions/index.rhtml:1
+msgid "List of the types of contribution"
+msgstr ""
+
+#: app/views/typecontributions/index.rhtml:17
+msgid "Destroy"
+msgstr ""
+
+#: app/views/typecontributions/index.rhtml:17
+msgid "Are you sure?"
+msgstr ""
+
+#: app/views/typecontributions/index.rhtml:27
+msgid "Create a new type of contribution"
+msgstr ""
+
+#: app/views/typedemandes/edit.rhtml:1
+msgid "Editing a demande type"
+msgstr ""
+
+#: app/views/typedemandes/new.rhtml:1
+msgid "A new type of request"
+msgstr ""
+
+#: app/views/typedemandes/index.rhtml:1
+msgid "List of the types of requests"
+msgstr ""
+
+#: app/views/typedemandes/index.rhtml:3 app/views/typedemandes/index.rhtml:11
+msgid "a new type of request"
+msgstr ""
+
+#: app/views/typedocuments/edit.rhtml:1
+#, fuzzy
+msgid "Editing typedocument"
+msgstr "Type document"
+
+#: app/views/typedocuments/new.rhtml:1
+msgid "Create a new type of documents"
+msgstr ""
+
+#: app/views/typedocuments/index.rhtml:1
+msgid "List of the types of documents"
+msgstr ""
+
+#: app/views/typedocuments/index.rhtml:3
+#: app/views/typedocuments/index.rhtml:11
+#, fuzzy
+msgid "a new type of document"
+msgstr "Type document"
+
+#: app/views/typeurls/edit.rhtml:1
+msgid "Editing typeurl"
+msgstr ""
+
+#: app/views/typeurls/new.rhtml:1
+msgid "Create a New typeurl"
+msgstr ""
+
+#: app/views/typeurls/index.rhtml:1
+msgid "List of the types for an software url"
+msgstr ""
+
+#: app/views/typeurls/index.rhtml:3
+msgid "a new type of url"
+msgstr ""
+
+#: app/views/typeurls/index.rhtml:11 app/views/urllogiciels/index.rhtml:3
+#: app/views/urlreversements/index.rhtml:3
+msgid "a new url"
+msgstr ""
+
+#: app/views/urllogiciels/_form.rhtml:3
+msgid "Value"
+msgstr ""
+
+#: app/views/urllogiciels/_form.rhtml:11 app/views/urllogiciels/index.rhtml:6
+msgid "Kind"
 msgstr ""
 
 #: app/views/urllogiciels/index.rhtml:1
 msgid "List of softwares' links"
 msgstr ""
 
-#: app/views/urllogiciels/index.rhtml:3
-#: app/views/urlreversements/index.rhtml:3
-msgid "a new url"
-msgstr ""
-
 #: app/views/urllogiciels/index.rhtml:6
 #: app/views/urlreversements/index.rhtml:6
 msgid "Url"
-msgstr ""
-
-#: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:13
-msgid "Kind"
-msgstr ""
-
-#: app/views/urllogiciels/_form.rhtml:5
-msgid "Value"
 msgstr ""
 
 #: app/views/urllogiciels/edit.rhtml:1
@@ -4194,16 +4443,16 @@ msgstr ""
 msgid "Add an url for a software"
 msgstr ""
 
-#: app/views/urlreversements/index.rhtml:1
-msgid "List of urls in contributions"
-msgstr ""
-
 #: app/views/urlreversements/_form.rhtml:3
 msgid "Valeur"
 msgstr ""
 
 #: app/views/urlreversements/edit.rhtml:1
 msgid "Edit this url"
+msgstr ""
+
+#: app/views/urlreversements/index.rhtml:1
+msgid "List of urls in contributions"
 msgstr ""
 
 #: app/views/urlreversements/new.rhtml:1
@@ -4455,23 +4704,7 @@ msgstr ""
 #~ msgstr "Customer"
 
 #, fuzzy
-#~ msgid "Commentaire|Severite"
-#~ msgstr "Description"
-
-#, fuzzy
-#~ msgid "Commentaire|Statut"
-#~ msgstr "Description"
-
-#, fuzzy
-#~ msgid "Commentaire|Ingenieur"
-#~ msgstr "Description"
-
-#, fuzzy
 #~ msgid "Demande|Reproductible"
-#~ msgstr "Description"
-
-#, fuzzy
-#~ msgid "clients"
 #~ msgstr "Description"
 
 #, fuzzy
