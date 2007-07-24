@@ -29,7 +29,7 @@ class Commentaire < ActiveRecord::Base
 
   private
   def delete_pj
-    self.piecejointe.destroy if self.piecejointe_id
+    self.piecejointe.destroy unless self.piecejointe.nil?
   end
 
 end
