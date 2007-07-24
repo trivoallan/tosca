@@ -15,20 +15,20 @@
 <% end %>
 
 <% if @ingenieur %>
-<tr><td><b><%=_('Reference')%></b></td>
+<tr><td><b><%= _('Reference') %></b></td>
     <td><%=h @logiciel.referent %></td></tr>
 <% end %>
 
-<tr><td><b><%=_('Copyright')%></b></td>
+<tr><td><b><%= _('Copyright') %></b></td>
     <td><%=h @logiciel.license.nom if @logiciel.license %></td></tr>
 
-<tr><td><b><%=_('Technologies')%></b></td>
+<tr><td><b><%= _('Technologies') %></b></td>
     <td><%= @logiciel.competences.collect{|c| c.nom}.join(', ') %></td></tr>
 
-<tr><td><b><%=_('Group')%></b></td>
+<tr><td><b><%= _('Group') %></b></td>
     <td><%= public_link_to(@logiciel.groupe.nom, groupe_path(@logiciel.groupe_id) ) if @logiciel.groupe %></td></tr>
 
-<tr><td><b><%=_('Links')%></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
+<tr><td><b><%= _('Links') %></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
     <% options = {:no_title => true, :edit => 'urllogiciel'} %>
     <td><%= public_show_liste(@logiciel.urllogiciels, 'url', options) {|u|
          result = ''
@@ -37,7 +37,7 @@
          result } %>
     </td></tr>
 
-<tr><td colspan="2"><b><%=_('Requests')%></b> <%=link_to_new_request(:logiciel_id => @logiciel.id)%> <br/>
+<tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:logiciel_id => @logiciel.id)%> <br/>
    <% if @demandes.size > 0 %>
     <div class="bloc_scroll">
      <% options[:edit] = 'demande' %>

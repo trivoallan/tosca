@@ -30,19 +30,19 @@
      <%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
  <% if @ingenieur %>
   <li><b><%= _('By client') %> </b><br/>
-      <%=select_filter(@clients, 'client') %></li>
+      <%= select_filter(@clients, 'client') %></li>
  <% end %>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_caracteristique')">
 > <%=_('Characteristic')%></div>
 <ul class="menu" id="menu_caracteristique">
- <li><b><%=_('Description')%> </b><br/>
+ <li><b><%= _('Description') %> </b><br/>
      <%= text_field :logiciel, :description %></li>
- <li><b><%=_('Group')%> </b><br/>
-     <%=select_filter(@groupes, 'groupe')%></li>
- <li><b><%=_('Technology')%> </b><br/>
-     <%=select_filter(@technologies, 'competence')%></li>
+ <li><b><%= _('Group') %> </b><br/>
+     <%= select_filter(@groupes, 'groupe') %></li>
+ <li><b><%= _('Technology') %> </b><br/>
+     <%= select_filter(@technologies, 'competence') %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
@@ -53,7 +53,6 @@
  <li><b><%=_('Binary packages')%>: </b><%=@count[:binaries]%></li>
  <li><b><%=_('Softwares')%>: </b><%=@count[:softwares]%></li>
 </ul>
-
 
 <% end %>
 <%= observe_form 'filters', options %>

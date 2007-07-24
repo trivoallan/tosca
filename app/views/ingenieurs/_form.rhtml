@@ -8,7 +8,6 @@
     <p><label for="ingenieur_expert_ossa"><%= _('OSSA expert') + ' ?'%></label>
     <%= check_box 'ingenieur', 'expert_ossa' %></p>
 
-
     <div><label for="ingenieur_competences"><%= _('Skills') + ' ?' %></label><br/>
     <%= hbtm_check_box( @ingenieur.competences, @competences, 'ingenieur[competence_ids]', :size => 6) %>
     </div>

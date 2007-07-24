@@ -265,9 +265,10 @@ private
   # Build account links
   def set_account_links
     logout = _("Logout")
+    my_account = _("My account")
     render_to_string :inline => <<-EOF
       <% infos = []
-         infos << link_to_modify_account(session[:user])
+         infos << link_to("#{my_account}", edit_account_path(session[:user]))
          infos << link_to("#{logout}", logout_accounts_url, :method => :post)
       %>
       <%= build_simple_menu(infos.reverse, :class => 'account_menu') if session[:user] %>

@@ -1,6 +1,5 @@
 <%= error_messages_for 'logiciel' %>
 
-<!--[form:logiciel]-->
 <p><label for="logiciel_nom"><%=_('Name')%></label><br/>
 <%= text_field 'logiciel', 'nom'  %></p>
 
@@ -24,6 +23,3 @@
 
 <p><label for="logiciel_competence_ids"><%=_('Technologies')%></label></p>
 <%= hbtm_check_box( @logiciel.competences, @competences, 'logiciel[competence_ids]', :size => 4) %>
-
-<!--[eoform:logiciel]-->
-
