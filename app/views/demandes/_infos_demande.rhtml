@@ -19,9 +19,8 @@
   <% end %>
   <li><b><%= _("System : ") %></b><%= link_to_socle @demande.socle %></li>
   <li><b><%= _("Software :") %></b><%= public_link_to_logiciel @demande.logiciel %></li>
-   <% options = { help_statut_path(@demande.statut_id) } %>
    <% html_options = { :popup => ['help_statut', 'height=300,width=600'] } %>
-  <li><b><%= _("Status :") %></b><%= link_to(@demande.statut.nom, options, html_options) %></li>
+  <li><b><%= _("Status :") %></b><%= link_to(@demande.statut.nom, help_statut_path(@demande.statut_id), html_options) %></li>
   <li><b><%= _("Type :") %></b><%= @demande.typedemande.nom %></li>
   <li><b><%= _("Severity :") %></b><%= @demande.severite.nom %></li>
   <% if @demande.mail_cc %>

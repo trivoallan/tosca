@@ -5,14 +5,14 @@
 <table class="commentaire_table">
   <tr <%= (commentaire.prive ? 'class="commentaire-prive"' : 'class="commentaire-public"' ) %>>
     <td class="commentaire_infos" align="center">
-	<span class="small"><%= _("Comment %s") "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
+        <span class="small"><%= _("Comment %s") "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id %>
-	    <%= logo_08000 %>
+            <%= logo_08000 %>
         <% elsif id and id.beneficiaire %>
             <%= image_tag url_for_file_column(id.beneficiaire.client.image, "image", "thumb") %>
          <% end %><br/>
-	<%= id.nom if id %><br />
-	<span class="small"><%= commentaire.created_on_formatted %></span><br />
+        <%= id.nom if id %><br />
+        <span class="small"><%= commentaire.created_on_formatted %></span><br />
     </td>
     <td class="commentaire_text">
       <%= commentaire.corps %>
@@ -24,18 +24,14 @@
     <% if @ingenieur and not pretty_print %>
      <td class="standard_infos" valign="middle" width="30" align="center">
         <% html_options = { :class => 'no_hover' } %>
-        <% options = { :controller => 'commentaires', :id => commentaire } %>
-        <% options[:action] = 'edit' %>
-       <%= link_to(image_edit, options, html_options) %>
+       <%= link_to(image_edit, edit_commentaire_path(commentaire)), html_options) %>
        <br/>
         <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private") ) %>
-        <% options[:action] = 'changer_etat' %>
         <% limage = (commentaire.prive ? image_public : image_private) %>
-       <%= link_to(limage, options, html_options) %>
+       <%= link_to(limage, changer_etat_commentaire_path(commentaire)), html_options) %>
        <br/>
-        <% options[:action] = 'destroy' %>
         <% html_options[:confirm] = _("Are you sure you want to delete comment %s ?") % commentaire.id %>
-       <%= link_to(image_delete, options, html_options) %>
+       <%= link_to(image_delete, commentaire_path(commentaire), { :method => :destroy }, html_options) %>
      </td>
     <% end %>
   </tr>

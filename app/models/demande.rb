@@ -184,7 +184,7 @@ class Demande < ActiveRecord::Base
     contrats = Contrat.find(:all)
     contrats.delete_if { |contrat|
       engagement= engagement(contrat.id)
-      engagement == nil or engagement.correction < 0 
+      engagement == nil or engagement.correction < 0
     }
     # A demand may have several contracts.
     # I keep the more critical correction time
@@ -195,14 +195,14 @@ class Demande < ActiveRecord::Base
     # Not very DRY: present in lib/comex_resultat too
     support = client.support
     amplitude = support.fermeture - support.ouverture
-    temps_correction = engagement( critical_contract.id ).correction.days
+    temps_correction = engagement( critical_contract.object_id ).correction.days
 
     temps_reel=
       distance_of_time_in_working_days(temps_ecoule, amplitude)
     temps_prevu_correction=
       distance_of_time_in_working_days(temps_correction,amplitude)
     if temps_reel > temps_prevu_correction
-      distance_of_time_in_french_words(temps - temps_correction, 
+      distance_of_time_in_french_words(temps - temps_correction,
                                        support)<<
       _(' of overrun')
     else
