@@ -20,18 +20,15 @@
         <%= id.nom if id %><br />
 
         <% if @ingenieur and not pretty_print %>
-          <% options[:action] = 'edit' %>
-         <%= link_to(image_edit, options, html_options) %>&nbsp;
+         <%= link_to(image_edit, edit_commentaire_path(commentaire), html_options) %>&nbsp;
           <% futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %>
-          <% options[:action] = 'changer_etat' %>
           <% limage = (commentaire.prive ? image_public : image_private) %>
-         <%= link_to(limage, options, html_options) %>&nbsp;
-          <% options[:action] = 'destroy' %>
+          <%= link_to(limage, changer_etat_commentaire_path(commentaire), html_options) %>&nbsp;
           <% html_options[:confirm] = _("Are you sure you want to delete the comment %s ?") % commentaire.id %>
-         <%= link_to(image_delete, options, html_options) %>&nbsp;
+         <%= link_to(image_delete, commentaire_path(commentaire), { :method => :destroy }, html_options) %>&nbsp;
          <br />
         <% end %>
-	<span class="small"><%= commentaire.created_on_formatted %></span><br />
+        <span class="small"><%= commentaire.created_on_formatted %></span><br />
      </td>
      <td class="text">
      <%= commentaire.corps %>
