@@ -3962,7 +3962,7 @@ msgstr "Info"
 
 #: app/views/permissions/edit.rhtml:1
 msgid "Editing permission"
-msgstr "Etider la permission"
+msgstr "Editer la permission"
 
 #: app/views/permissions/new.rhtml:1 app/views/roles/index.rhtml:23
 msgid "Add a permission"
