@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-07-25 16:13+0200\n"
-"PO-Revision-Date: 2007-07-25 16:26+0200\n"
+"PO-Revision-Date: 2007-07-25 16:27+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -958,7 +958,7 @@ msgstr "Étes vous sûr de vouloir éffacer cet objet ?"
 
 #: app/helpers/pages_helper.rb:91
 msgid " to "
-msgstr " jusqu'au "
+msgstr " à "
 
 #: app/helpers/pages_helper.rb:92
 msgid "&nbsp; on "
