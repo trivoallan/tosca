@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-07-25 16:13+0200\n"
-"PO-Revision-Date: 2007-07-25 16:16+0200\n"
+"PO-Revision-Date: 2007-07-25 16:19+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -2799,11 +2799,11 @@ msgstr ""
 #: app/views/bienvenue/index.rhtml:24
 #: app/views/demandes/_infos_demande.rhtml:64
 msgid "Documents"
-msgstr "documents"
+msgstr "Documents"
 
 #: app/views/bienvenue/index.rhtml:26
 msgid "You can browse %s . "
-msgstr "vous pouvez parcourir %s."
+msgstr "Vous pouvez parcourir %s."
 
 #: app/views/bienvenue/index.rhtml:26
 msgid "your directory"
@@ -2878,7 +2878,7 @@ msgstr "Vous n'avez pas de code d'accès"
 
 #: app/views/bienvenue/index.rhtml:70
 msgid "You can see the list of %s."
-msgstr "vous pouvez voir la liste des %s."
+msgstr "Vous pouvez consulter la liste des %s."
 
 #: app/views/bienvenue/index.rhtml:71
 msgid ""
