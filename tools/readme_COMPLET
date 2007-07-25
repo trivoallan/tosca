@@ -1,0 +1,15 @@
+
+le .emacs complet necessite un certain nombre de plugins emacs:
+
+le fichier /opt/emacs/snippet.el
+le fichier /opt/emacs/find-recursive.txt
+le fichier ~/.emacs.d/rrb/elisp/rrb.el
+le repertoire ~/.emacs.d/rails/ contenant les fichiers du plugin rails-mode pour emacs (le plus important)
+
+
+et aussi:
+
+le repertoire ~/.emacs.d/predictive/ contenant les fichiers du plugin predictive
+
+
+
