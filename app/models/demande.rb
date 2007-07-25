@@ -190,12 +190,17 @@ class Demande < ActiveRecord::Base
     # I keep the more critical correction time
     critical_contract = contrats[0]
     contrats.each do |c|
-      critical_contract = c if  engagement(c.id).correction < engagement(critical_contract.id).correction
+      critical_contract = c if engagement(c.id).correction < engagement(critical_contract.id).correction
     end
     # Not very DRY: present in lib/comex_resultat too
     support = client.support
     amplitude = support.fermeture - support.ouverture
-    temps_correction = engagement( critical_contract.object_id ).correction.days
+    if critical_contract.blank?
+      temps_correction = 0.days
+    else
+      temps_correction = engagement( critical_contract.id ).correction.days
+    end
+
 
     temps_reel=
       distance_of_time_in_working_days(temps_ecoule, amplitude)

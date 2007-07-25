@@ -90,7 +90,13 @@ ActionController::Routing::Routes.draw do |map|
     :delete_contribution => :get,
     :update_contribution => :get,
     :changer_ingenieur => :get,
-    :pretty_print => :get }
+    :pretty_print => :get,
+    :ajax_description => :get,
+    :ajax_comments => :get,
+    :ajax_history => :get,
+    :ajax_piecejointes => :get,
+    :ajax_appels => :get,
+    :ajax_cns => :get }
   map.resources :documents,
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }

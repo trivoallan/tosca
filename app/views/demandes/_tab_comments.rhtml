@@ -36,7 +36,7 @@
      <%= commentaire.corps %>
      <% piecejointe = commentaire.piecejointe %>
      <% unless piecejointe.blank? or piecejointe.file.blank? %>
-      <%= "<br /><br />#{image_folder} " << link_to_file(piecejointe, "file") <<
+     <%= "<br /><br />#{image_folder} " << link_to_file(piecejointe, "file") <<
            " (#{file_size(piecejointe.file)})"  %>
      <% end %>
     </td>

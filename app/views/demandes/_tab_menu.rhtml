@@ -1,24 +1,31 @@
 <% options = { :update => 'demande_tab',
-    :url => demande_path(@demande ? @demande.id : @demande_id),
     :before => "Element.show('spinner')",
-    :success => "Element.hide('spinner')" } %>
+    :success => "Element.hide('spinner')",
+    :method => :get }
+   the_id = @demande ? @demande.id : @demande_id %>
 <ul class="demande_tabnav" id="demande_tabnav">
  <li>
+   <% options[:url] = ajax_description_demande_path(the_id) %>
    <%= link_to_remote_tab _('Description'), 'ajax_description', options %>
  </li>
  <li>
+   <% options[:url] = ajax_comments_demande_path(the_id) %>
    <%= link_to_remote_tab _('Comments'), 'ajax_comments', options %>
  </li>
  <li>
+   <% options[:url] = ajax_history_demande_path(the_id) %>
    <%= link_to_remote_tab _('History'), 'ajax_history', options %>
  </li>
  <li>
+   <% options[:url] = ajax_piecejointes_demande_path(the_id) %>
    <%= link_to_remote_tab _('Attachments'), 'ajax_piecejointes', options %>
  </li>
  <li>
+   <% options[:url] = ajax_appels_demande_path(the_id) %>
    <%= link_to_remote_tab _('Phonecalls'), 'ajax_appels', options %>
  </li>
  <li>
+   <% options[:url] = ajax_cns_demande_path(the_id) %>
    <%= link_to_remote_tab _('SLA'), 'ajax_cns', options %>
  </li>
  <li>
