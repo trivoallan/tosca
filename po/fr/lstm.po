@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-07-25 16:13+0200\n"
-"PO-Revision-Date: 2007-07-25 16:19+0200\n"
+"PO-Revision-Date: 2007-07-25 16:26+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -962,7 +962,7 @@ msgstr " jusqu'au "
 
 #: app/helpers/pages_helper.rb:92
 msgid "&nbsp; on "
-msgstr "&nbsp; on "
+msgstr "&nbsp; sur "
 
 #: app/helpers/paquets_helper.rb:16
 msgid "a package"
@@ -4034,7 +4034,7 @@ msgstr "du"
 #: app/views/reporting/_introduction.rhtml:3
 #: app/views/reporting/_comex_tableaux.rhtml:3
 msgid "to"
-msgstr "jusqu'au"
+msgstr "à"
 
 #: app/views/reporting/_entete.rhtml:11 app/views/reporting/_form.rhtml:13
 msgid "months"
