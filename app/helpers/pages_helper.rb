@@ -31,10 +31,8 @@ module PagesHelper
   # same behaviour as link_to_show
   def link_to_delete(ar)
     url = (ar.is_a?(String) ? ar : { :action => 'destroy', :id => ar })
-    link_to image_delete,  url,
-    { :class => 'nobackground',
-      :confirm => _('Do you really want to destroy this object ?'),
-      :method => :delete }
+    link_to image_delete,  url, :class => 'nobackground', :method => :delete,
+        :confirm => _('Do you really want to destroy this object ?')
   end
 
   def link_to_back()

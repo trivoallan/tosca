@@ -31,7 +31,8 @@
        <%= link_to(limage, changer_etat_commentaire_path(commentaire)), html_options) %>
        <br/>
         <% html_options[:confirm] = _("Are you sure you want to delete comment %s ?") % commentaire.id %>
-       <%= link_to(image_delete, commentaire_path(commentaire), { :method => :destroy }, html_options) %>
+        <% html_options[:method] = :delete %>
+       <%= link_to(image_delete, commentaire_path(commentaire), html_options) %>
      </td>
     <% end %>
   </tr>
