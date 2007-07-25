@@ -1,8 +1,8 @@
-<h1>Ajouter un nouveau client</h1>
+<h1><%= _("Add a new client") %></h1>
 
 <% form_tag clients_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Valider" %>
+  <%= submit_tag _("Submit") %>
 <% end %>
 
 <%= link_to_back %>

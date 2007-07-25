@@ -1,7 +1,7 @@
-<h1>Liste des clients</h1>
+<h1><%= _("List of the clients") %></h1>
 
-<%= show_pages_links(@client_pages, 'un client') %>
-<% titres = ['Logo','Nom', 'Paquets', 'MailingListe','Code d\'accès','Support']%>
+<%= show_pages_links(@client_pages, _("a client")) %>
+<% titres = [ _("Logo"), _("Name"), _("Packages"), _("Mailing list"), _("Access code"), _("Support") ]%>
 <%= show_table(@clients, Client, titres) { |c|
   result = ''
   if c.image
@@ -21,7 +21,5 @@
   result << "#{link_to_actions_table c}"
 }%>
 
-<%= link_to _('add a logo'), new_picture_path %>
-<%= show_pages_links(@client_pages, 'un client') %>
-
-
+<%= link_to _('Add a logo'), new_picture_path %>
+<%= show_pages_links(@client_pages, _("a client ")) %>

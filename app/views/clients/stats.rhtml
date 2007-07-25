@@ -1,17 +1,19 @@
-<h1>Statistiques par client</h1>
+<h1><%= _("Statistics by clients") %></h1>
 
-<%= show_pages_links(@client_pages, 'un client') %>
-<% titres = ['Logo','Nom']%>
-<% @typedemandes.each{|t| titres << t.nom  } %>
-<% titres << 'TOTAL' %>
-<% total = 0 %>
-<% addline = ['', '',] %>
-<% @typedemandes.each{ |t|
+<%= show_pages_links(@client_pages, _("a client")) %>
+<% 
+  titres = [ _("Logo"), _("Name")]
+  @typedemandes.each { |t| titres << t.nom  }
+  titres << _("TOTAL")
+  total = 0
+  addline = ['', '',]
+  @typedemandes.each { |t|
     sub_total =  Demande.find_all_by_typedemande_id(t.id).size
     addline << "<b>#{sub_total}</b>"
     total += sub_total
-   } %>
-<% addline << "<b>#{total}</b>" %>
+  }
+  addline << "<b>#{total}</b>" 
+%>
 <%= show_table(@clients, Client, titres, :add_lines => [addline]) { |c|
   result = ''
   total = 0
@@ -29,6 +31,6 @@
   result << "<td><b>#{total}</b></td>"
 }%>
 
-<%= show_pages_links(@client_pages, 'un client') %>
+<%= show_pages_links(@client_pages, _("a client")) %>
 
 <%= link_to_back %>

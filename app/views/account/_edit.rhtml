@@ -1,6 +1,6 @@
 <%
   #On ne peut plus faire ça avec REST
-  #TODO : le changer 
+  #TODO : le changer
   case controller.action_name
   when 'modify'
     compte = ( session[:user].id == @identifiant.id ? _('My account') : 
@@ -21,10 +21,10 @@
   help = {:affichage_perso => _('Custom display of the request list'), :client => nil }
 
   if @ingenieur
-    identifiant[:titre] = _('<label for="identifiant_login">Choose a login</label>')
+    identifiant[:titre] = '<label for="identifiant_login">' + _('Choose a login') + '</label>'
     identifiant[:champ] = text_field("identifiant", "login", :size => 16)
     if @ingenieur and @ingenieur.expert_ossa
-      role[:titre] = _('<label>Roles</label>')
+      role[:titre] = '<label>' + _('Roles') + '</label>'
       role[:champ] = hbtm_check_box(@identifiant.roles, @roles, 'identifiant[role_ids]') 
     end
 
@@ -39,9 +39,9 @@
                       Full name Title Email Phone Login Password  Informations')
         csv[:champ] = text_area('textarea_csv', nil, :rows => 10, :cols => 58)
       end
-      type_client[:titre] = _('<label>Customer </label>')
+      type_client[:titre] = '<label>' + _('Customer') + '</label>'
       type_client[:champ] = collection_select(:client, :id, @clients, :id, :nom)
-      identifiant_client[:titre] = _('<label for="identifiant_client">Customer</label> %s') % show_help(help[:client])
+      identifiant_client[:titre] = '<label for="identifiant_client">' + _('Customer %s') % ('</label>' + show_help(help[:client]))
       identifiant_client[:champ] = check_box('identifiant', 'client')
     end
   end
@@ -86,7 +86,7 @@
     ])
 %>
 
-<h1><%=title%></h1>
-<% if subtitle %><h2><%=subtitle%></h2> <% end %>
+<h1><%= title %></h1>
+<% if subtitle %><h2><%= subtitle %></h2> <% end %>
 <%= show_table_form fields, :class => 'form' %>
-<input type="submit" value=<%=_('"Submit"')%> class="primary"/>
+<input type="submit" value=<%= _("Submit") %> class="primary"/>
