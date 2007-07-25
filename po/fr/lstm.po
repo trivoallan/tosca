@@ -2929,7 +2929,7 @@ msgid ""
 "You can consult and follow all the %s done by our team in Open Source "
 "communities."
 msgstr ""
-"Vous pouvez consulter et suivre toutes les %s faites par notre équipedans "
+"Vous pouvez consulter et suivre toutes les %s faites par notre équipe dans "
 "les communautés Open Source."
 
 #: app/views/bienvenue/natures.rhtml:1
