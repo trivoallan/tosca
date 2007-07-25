@@ -109,7 +109,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :typecontributions
   map.resources :urllogiciels
   map.resources :urlreversements
-  map.resources :commentaires, :member => { :changer_etat => :get }
+  map.resources :commentaires, :member => { :changer_etat => :post }
   map.resources :etatreversements
 
   # Sample of regular route:
