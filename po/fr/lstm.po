@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-07-25 16:13+0200\n"
-"PO-Revision-Date: 2007-07-25 16:27+0200\n"
+"PO-Revision-Date: 2007-07-25 16:29+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -2110,7 +2110,7 @@ msgstr "Accès interdit"
 
 #: app/views/acces/refuse.rhtml:5
 msgid "This page is restricted."
-msgstr "Cette page possède un accès restreint"
+msgstr "Cette page a un accès restreint aux personnes autorisées."
 
 #: app/views/acces/refuse.rhtml:6
 msgid "You can go to the homepage."
@@ -2118,8 +2118,7 @@ msgstr "Vous pouvez allez sur la page d'accueil."
 
 #: app/views/acces/refuse.rhtml:7
 msgid "You can also login with a user who has more rights :"
-msgstr ""
-"Vous pouvez aussi vous connecté avec un utilisateurs qui a plus de droit :"
+msgstr "Vous pouvez aussi vous connecter avec un utilisateurs qui a plus de droit :"
 
 #: app/views/acces/refuse.rhtml:15
 msgid "Reconnect"
