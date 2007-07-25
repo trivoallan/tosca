@@ -51,7 +51,7 @@
   <% client = @beneficiaire.client %>
   <table><tr><td rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>,
     <%= _("You have access to one of our offers, which you have the detail at your disposal : %s") % link_to_my_client %></td></tr>
-<tr><td><%= _('You hope this tool wil give you an entire satisfaction.')%></ 
+<tr><td><%= _('You hope this tool wil give you an entire satisfaction.')%> 
   </table>
   <% access_code = @beneficiaire.client.code_acces %>
   <% unless access_code.blank? %>
