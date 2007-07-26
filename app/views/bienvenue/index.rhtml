@@ -10,11 +10,11 @@
    <h3><%= _('Requests')%></h3>
   <% if user %>
     <% options = { :show_id => true, :icon_severite => true } %>
-    <div><%= _("You can see the list of %s :") % link_to(_("requests"), demandes_url) %>
+    <div><%= _("You can see the list of %s :") % link_to(_("requests"), demandes_path) %>
        <%= show_liste(@demandes, _('requests in process'), :title => false) { |d|
              link_to_demande(d, options)
           } %></div>
-     <p><%= _("you can also %s.") % link_to(_("make a request"), new_demande_url) %></p>
+     <p><%= _("you can also %s.") % link_to(_("make a request"), new_demande_path) %></p>
   <% else %>
     <p><%= html_wrap(_("You are not %s, so you do not have any access to the requests interface of our service") % connected)%></p>
   <% end %>
@@ -23,9 +23,9 @@
  <div class="sommaire show">
    <h3><%= _('Documents')%></h3>
   <% if user %>
-  <p><%= _('You can browse %s . ') % link_to(_('your directory'), select_documents_url)%>
+  <p><%= _('You can browse %s . ') % link_to(_('your directory'), select_documents_path)%>
   <%= _('You will find all the documents, which have been delivered by our service')%></p>
-  <p><%= _('You can also consult your %s online.') % link_to(_('Activity report'), general_reporting_url)%></p>
+  <p><%= _('You can also consult your %s online.') % link_to(_('Activity report'), general_reporting_path)%></p>
   <% else %>
     <p><%= _("When you are %s, you have access to an activity report") % connected %><br />
        <%= _("dynamically showing the activity of our service for you in real time.")%></p><br />

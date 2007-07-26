@@ -44,6 +44,7 @@ ActionView::Base.erb_trim_mode = '>'
 # This module is overloaded in order to display link_to lazily
 # and efficiently. It display links <b>only</b> if the user
 # has the right access to the ressource.
+require 'action_controller/test_process' 
 module ActionView::Helpers::UrlHelper
   # this link_to is a specialised one which only returns a link
   # if the user is connected and has the right access to the ressource
@@ -57,8 +58,19 @@ module ActionView::Helpers::UrlHelper
       tag_options = nil
     end
     url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-    required_perm = '%s/%s' % [ options[:controller] || controller.controller_name,
-                                options[:action] || controller.action_name ]
+    
+    # Not a really good way, we demux the url for reobtaining action & controller
+    # In order to keep features of obtaining nil link when users do not have rights.
+    # It's so silly. TODO : find a clever way, this is clearly a workaround.
+    request = ActionController::TestRequest.new({}, {}, nil)
+    method = ((html_options.nil? or html_options[:method].blank?) ? 'GET' : 
+                  html_options[:method].to_s.upper )
+    request.env["REQUEST_METHOD"] = method
+    request.path = url
+    ActionController::Routing::Routes.recognize(request)
+    path = request.path_parameters
+    required_perm = '%s/%s' % [ path[:controller], path[:action] ]
+
     user = session[:user]
     if !user.nil? and user.authorized? required_perm then
       "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
