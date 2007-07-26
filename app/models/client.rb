@@ -55,7 +55,7 @@ class Client < ActiveRecord::Base
   def logiciels
     return [] if contrats.empty?
     # Voici le hack pour permettre au client Linagora d'avoir tous les softs
-    return Logiciel.find_all if self.id == 4 
+    return Logiciel.find :all if self.id == 4 
     conditions = 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id FROM ' + 
       'paquets WHERE paquets.contrat_id IN (' + 
       contrats.collect{|c| c.id}.join(',') + '))'
