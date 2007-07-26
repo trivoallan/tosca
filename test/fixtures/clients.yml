@@ -1,5 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+toto:
   id: 1
-another:
+  description: "éééà @bonjour |« \" "
+  mailingliste: "toto@laposte.net"
+  adresse: "les champs Élysées 95000 Paris"
+  image_id: 1
+  code_acces: "lenomdemonchien"
+  beneficiaires_count: 21
+guy:
   id: 2
+  description: "un autre utilisateur"
+  mailingliste: "guy@lapsote.net"
+  adresse: "Rue de la paix, Paris"
+  image_id: 3
+  code_acces: "le nom de son chien"

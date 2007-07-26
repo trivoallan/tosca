@@ -66,5 +66,12 @@ class ClientTest < Test::Unit::TestCase
 
     assert c.destroy
   end
+  # Test if we can create a user, whith an id which is still used
+  def test_same_id
+    assert_raise( ActiveRecord::StatementInvalid) {
+      Client.new(:id => 1).save
+    }
+  end
+  
   
 end
