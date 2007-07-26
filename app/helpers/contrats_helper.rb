@@ -13,7 +13,7 @@ module ContratsHelper
   # call it like :
   # <%= link_to_new_contribution(@client.id) %>
   def link_to_new_contrat(client_id = nil)
-    link_to image_create('un contrat'), new_contrat_path(client_id)
+    link_to image_create('un contrat'), new_contrat_path(:client_id => client_id)
   end
 
   # call it like :

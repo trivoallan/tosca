@@ -18,7 +18,7 @@ module DemandesHelper
       text << "#{icon_severite(demande)} " if options[:icon_severite]
       text << truncate(demande.resume, limit)
     end
-    link_to text, comment_demande_url(:id => demande.id)
+    link_to text, demande_path(demande)
   end
 
   #Spécifique à l'OSSA donc on ne traduit pas

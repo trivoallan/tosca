@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
                               :theme_advanced_buttons2 => [],
                               :theme_advanced_buttons3 => [],
                               :plugins => %w{contextmenu paste},
-                              :language => 'fr',
+                              :language => fr,
                               :editor_deselector => 'mceNoEditor' }
 
 protected
@@ -62,13 +62,13 @@ protected
     if request.xhr?
       render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
-      redirect_to bienvenue_url
+      redirect_to bienvenue_path
     end
   end
 
   # redirection par défaut en cas d'erreur / de non droit
   def redirect_back
-    redirect_back_or_default bienvenue_url
+    redirect_back_or_default bienvenue_path
   end
 
   # global variables (not pretty, but those two are really usefull)
@@ -144,7 +144,7 @@ private
       render_text('<div class="information error">' + msg + '</div>')
     else
       flash[:warn] = msg
-      redirect_to bienvenue_url
+      redirect_to bienvenue_path
     end
 
   end
