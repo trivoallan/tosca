@@ -86,7 +86,7 @@ class Client < ActiveRecord::Base
   # TODO : à revoir, on pourrait envisager de moduler les sévérités selon 
   # les type de demandes
   def severites
-    Severite.find_all
+    Severite.find(:all)
   end
 
   def to_param
