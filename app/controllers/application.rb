@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
                               :theme_advanced_buttons2 => [],
                               :theme_advanced_buttons3 => [],
                               :plugins => %w{contextmenu paste},
-                              :language => fr,
+                              :language => 'fr',
                               :editor_deselector => 'mceNoEditor' }
 
 protected
