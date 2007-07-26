@@ -4,8 +4,8 @@
 <head>
  <%#precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
  <% locale = Locale.get.language.intern %>
- <% @@menu ||= {}; @@links ||= {} %>
- <% @@head ||=
+ <% @@menu ||= {}; @@links ||= {}; @@head ||= {} %>
+ <% @@head[locale] ||=
        '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
        "<link rel=\"shortcut icon\" href=\"#{image_favicon_ico}\" type=\"image/x-icon\" />" <<
        "<link rel=\"icon\" href=\"#{image_favicon_png}\" type=\"image/png\" />" <<
@@ -20,7 +20,7 @@
        javascript_include_tag(:defaults) <<
        javascript_include_tag('redbox')
  %>
- <%= @@head %>
+ <%= @@head[locale] %>
  <title>08000linux : <%=_(controller.controller_name)%></title>
 </head>
 <body>
