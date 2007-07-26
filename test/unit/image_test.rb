@@ -3,8 +3,8 @@
 #####################################################
 require File.dirname(__FILE__) + '/../test_helper'
 
-class PhotoTest < Test::Unit::TestCase
-  fixtures :photos
+class ImageTest < Test::Unit::TestCase
+  #fixtures :images ça n'existe pas
 
   # Replace this with your real tests.
   def test_truth
