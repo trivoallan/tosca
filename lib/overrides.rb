@@ -44,13 +44,12 @@ ActionView::Base.erb_trim_mode = '>'
 # This module is overloaded in order to display link_to lazily
 # and efficiently. It display links <b>only</b> if the user
 # has the right access to the ressource.
-require 'action_controller/test_process' 
 module ActionView::Helpers::UrlHelper
   # this link_to is a specialised one which only returns a link
   # if the user is connected and has the right access to the ressource
   # requested. See public_link_to for everyone links.
   def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
-    if html_options
+    if html_options and not options.nil?
       html_options = html_options.stringify_keys
       convert_options_to_javascript!(html_options)
       tag_options = tag_options(html_options)
@@ -59,20 +58,14 @@ module ActionView::Helpers::UrlHelper
     end
     url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
     
-    # Not a really good way, we demux the url for reobtaining action & controller
-    # In order to keep features of obtaining nil link when users do not have rights.
-    # It's so silly. TODO : find a clever way, this is clearly a workaround.
-    request = ActionController::TestRequest.new({}, {}, nil)
-    method = ((html_options.nil? or html_options[:method].blank?) ? 'GET' : 
-                  html_options[:method].to_s.upper )
-    request.env["REQUEST_METHOD"] = method
-    request.path = url
-    ActionController::Routing::Routes.recognize(request)
-    path = request.path_parameters
-    required_perm = '%s/%s' % [ path[:controller], path[:action] ]
+    # No more hack needed for urls.
+    # The hack is kept in release 1.39 in case we encounter problems
+    # TODO : erase the below comment in 0.7+ version
 
-    user = session[:user]
-    if !user.nil? and user.authorized? required_perm then
+    # With the hack on the named route, we have a nil url if authenticated user
+    # does not have access to the page. See the hack to define_url_helper 
+    # for more information
+    unless url.blank?
       "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
     else
       nil
@@ -141,6 +134,8 @@ module ActionController::Routing
     class NamedRouteCollection
       # This overload permits to gain a factor 7 in performance of
       # url generation
+      # This allows too to return a nil url in case of an 
+      # authenticated user without any right to the page
       def define_url_helper(route, name, kind, options)
         selector = url_helper_name(name, kind)
 
@@ -170,10 +165,17 @@ module ActionController::Routing
             end
 
             # return a cached version of the url for the default one
-            if opts.empty?
-              @@#{selector}_cache ||= url_for(#{hash_access_method}(opts))
+            url_options = #{hash_access_method}(opts)
+            required_perm = '%s/%s' % [ url_options[:controller], url_options[:action] ]
+            user = session[:user]
+            if user and not user.authorized? required_perm 
+              nil
             else
-              url_for(#{hash_access_method}(opts))
+              if opts.empty?
+                @@#{selector}_cache ||= url_for(url_options)
+              else
+                url_for(url_options)
+              end
             end
           end
         end_eval
