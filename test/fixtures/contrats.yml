@@ -1,5 +1,26 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+#
+# used for tests in clients
+contrat:
   id: 1
-another:
+  astreinte: 0
+  socle: 0
+  client_id: 1 # client "toto"
+  ouverture: "2005-10-26 10:20:00"
+  cloture: "2008-10-27 10:20:00"
+  paquets_count: nil
+contrat2:
   id: 2
+  astreinte: 0
+  socle: 1
+  client_id: 1 #client "toto"
+  ouverture: "2006-11-25 12:20:00"
+  cloture: "2007-11-12 14:23:00"
+  paquets_count: nil
+contratGuy:
+  id: 3
+  astreinte: 0
+  socle: 0
+  client_id: 2 # guy
+  ouverture: "2006-11-25 12:20:00"
+  cloture: "2007-11-12 14:23:00"

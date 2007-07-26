@@ -1,5 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+
+beneficiaire1:
   id: 1
-another:
-  id: 2
+  domaine: "Migreuse OOo "
+  client_id: 1
+  notifier_subalternes: 1
+  notifier_cc: 0
+  identifiant_id: 7
+  notifier: 1
