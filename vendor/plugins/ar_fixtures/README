@@ -17,3 +17,12 @@ Blog
 Author
 
 * Geoffrey Grosenbach boss [at] topfunky [dot] com
+
+== This plugin is used to dump/load some records .
+See script/config for more detail, and 
+http://nubyonrails.topfunky.com/articles/2005/12/27/dump-or-slurp-yaml-reference-data
+It's not the best solution, but it's on the way.
+TODO : Puts dump elsewhere than in test/fixtures.
+Fix maybe in the vendor/plugin/ar_fixture/lib/*.rb
+
+
