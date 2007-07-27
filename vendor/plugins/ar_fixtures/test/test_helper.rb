@@ -1,8 +1,10 @@
 $:.unshift(File.dirname(__FILE__) + '/../lib')
-RAILS_ROOT = File.dirname(__FILE__)
 
 require 'rubygems'
 require 'test/unit'
+require File.expand_path(File.join(File.dirname(__FILE__), '../../../../config/environment.rb'))
+# RAILS_ROOT definition must be redefine UNDER the previous line
+RAILS_ROOT = File.dirname(__FILE__)
 require 'active_record'
 require 'active_record/fixtures'
 require 'active_support/binding_of_caller'
