@@ -1,8 +1,8 @@
 Bonjour,<br/>
 
 <p>
-  <% url = url_for :only_path => false, comment_demande_path(@demande.id) %>
-&nbsp;&nbsp;Un nouveau ticket <%= "<a href=\"#{url}\">##{@demande.id}</a>" %> a été déclaré par <%=h @nom %>.
+  <% url = url_for :only_path => false, :id => @demande.id, :controller => 'demandes', :action => 'comment' %>
+&nbsp;&nbsp;Un nouveau ticket <%= "<a href=\"#{url}\">##{@demande.id}</a>" %> a été déclaré par <%= h @nom %>.
 </p>
 
 <hr noshade size="1px"/>
