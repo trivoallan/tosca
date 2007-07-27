@@ -4,7 +4,7 @@
 class Client < ActiveRecord::Base
   belongs_to :image
   has_many :beneficiaires, :dependent => :destroy
-  has_many :contrats, :dependent => :destroy, 
+  has_many :contrats, :dependent => :destroy,
     :include => Contrat::INCLUDE, :order => Contrat::ORDER
   belongs_to :support
   has_many :documents, :dependent => :destroy
@@ -17,7 +17,7 @@ class Client < ActiveRecord::Base
 
   # don't use this function outside of an around_filter
   def self.set_scope(client_ids)
-    self.scoped_methods << { :find => { :conditions => 
+    self.scoped_methods << { :find => { :conditions =>
         [ 'clients.id IN (?)', client_ids ]} }
   end
 
@@ -28,7 +28,7 @@ class Client < ActiveRecord::Base
   end
 
   # TODO : c'est lent et moche
-  # returns true if we have a contract to support an entire distribution 
+  # returns true if we have a contract to support an entire distribution
   # for this client, false otherwise.
   def support_distribution
     contrats = self.contrats.find(:all, :select => 'socle')
@@ -55,17 +55,17 @@ class Client < ActiveRecord::Base
   def logiciels
     return [] if contrats.empty?
     # Voici le hack pour permettre au client Linagora d'avoir tous les softs
-    return Logiciel.find :all if self.id == 4 
-    conditions = 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id FROM ' + 
-      'paquets WHERE paquets.contrat_id IN (' + 
+    return Logiciel.find(:all) if self.id == 4
+    conditions = 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id FROM ' +
+      'paquets WHERE paquets.contrat_id IN (' +
       contrats.collect{|c| c.id}.join(',') + '))'
     Logiciel.find(:all, :conditions => conditions, :order => 'logiciels.nom')
   end
 
   def contributions
     return [] if demandes.empty?
-    Contribution.find(:all, 
-                   :conditions => "contributions.id IN (" + 
+    Contribution.find(:all,
+                   :conditions => "contributions.id IN (" +
                      "SELECT DISTINCT demandes.contribution_id FROM demandes " +
                      "WHERE demandes.beneficiaire_id IN (" +
                      beneficiaires.collect{|c| c.id}.join(',') + "))"
@@ -77,13 +77,13 @@ class Client < ActiveRecord::Base
     joins << 'INNER JOIN contrats_engagements ON engagements.id = contrats_engagements.engagement_id'
     conditions = [ 'contrats_engagements.contrat_id IN (' +
         'SELECT contrats.id FROM contrats WHERE contrats.client_id = ?)', id ]
-    Typedemande.find(:all, 
+    Typedemande.find(:all,
                      :select => "DISTINCT typedemandes.*",
-                     :conditions => conditions, 
+                     :conditions => conditions,
                      :joins => joins)
   end
 
-  # TODO : à revoir, on pourrait envisager de moduler les sévérités selon 
+  # TODO : à revoir, on pourrait envisager de moduler les sévérités selon
   # les type de demandes
   def severites
     Severite.find(:all)
