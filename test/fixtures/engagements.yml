@@ -1,5 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+engagement1:
   id: 1
-another:
+  severite_id: 1
+  typedemande_id: 2
+  correction: 11
+  contournement: 0.16
+engagement_infini:
   id: 2
+  severite_id: 1
+  typedemande_id: 2
+  correction: 11
+  contournement: -1

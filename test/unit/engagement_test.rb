@@ -6,8 +6,19 @@ require File.dirname(__FILE__) + '/../test_helper'
 class EngagementTest < Test::Unit::TestCase
   fixtures :engagements
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_contourne
+    e = Engagement.find 1
+    e_inifite = Engagement.find 2
+    assert e.contourne(60)
+    assert !e.contourne(600)
+    assert e_inifite
   end
+  def test_corrige
+    e = Engagement.find 1
+    e_inifite = Engagement.find 2
+    assert e.corrige(60)
+    assert !e.corrige(6000000)
+    assert e_inifite
+  end
+
 end
