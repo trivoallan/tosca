@@ -24,3 +24,12 @@ contratGuy:
   client_id: 2 # guy
   ouverture: "2006-11-25 12:20:00"
   cloture: "2007-11-12 14:23:00"
+contrat_vide :
+  id: 4
+contrat_nom_vide: 
+  id: 5
+  astreinte: 0
+  socle: 0
+  client_id: 3 # guy
+  ouverture: "2006-11-25 12:20:00"
+  cloture: "2007-11-12 14:23:00"
