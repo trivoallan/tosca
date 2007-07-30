@@ -1,10 +1,14 @@
 <% logo_img = nil %>
-<% html_options = { :class => 'no_hover' } %>
 <% pretty_print = (controller.action_name == 'pretty_print') %>
 <% commentaires = @commentaires || [@last_commentaire] %>
 
-<%= render :partial => 'tab_menu' unless pretty_print or @last_commentaire %>
+<% edit_ho = { :class => 'no_hover' } %>
+<% change_state_ho = { :class => 'no_hover', :method => :post } %>
+<% delete_ho = { :class => 'no_hover', :method => :delete, :confirm => 
+  _("Are you sure you want to delete this comment ?") } %>
 
+<%= render :partial => 'tab_menu' unless pretty_print or @last_commentaire %>
+<div id="demande_tab_content" class="demande_tab_content">
 <% commentaires.each do |commentaire| %>
  <% options = { :controller => 'commentaires', :id => commentaire } %>
  <% id = commentaire.identifiant  %>
@@ -20,14 +24,11 @@
         <%= id.nom if id %><br />
 
         <% if @ingenieur and not pretty_print %>
-         <%= link_to(image_edit, edit_commentaire_path(commentaire), html_options) %>&nbsp;
-          <% futur_etat_commentaire = (commentaire.prive ? "public" : "privé") %>
+         <%= link_to(image_edit, edit_commentaire_path(commentaire), edit_ho) %>&nbsp;
+          <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private")) %>
           <% limage = (commentaire.prive ? image_public : image_private) %>
-          <% html_options[:method] = :post %>
-          <%= link_to(limage, changer_etat_commentaire_path(commentaire), html_options) %>&nbsp;
-          <% html_options[:confirm] = _("Are you sure you want to delete the comment %s ?") % commentaire.id %>
-          <% html_options[:method] = :delete %>
-         <%= link_to(image_delete, commentaire_path(commentaire), html_options) %>&nbsp;
+         <%= link_to(limage, changer_etat_commentaire_path(commentaire), change_state_ho) %>&nbsp;
+         <%= link_to(image_delete, commentaire_path(commentaire), delete_ho) %>&nbsp;
          <br />
         <% end %>
         <span class="small"><%= commentaire.created_on_formatted %></span><br />
@@ -44,3 +45,4 @@
 </table>
 <%= "<hr/>" if pretty_print %>
 <% end %>
+</div>
