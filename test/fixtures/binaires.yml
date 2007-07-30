@@ -1,5 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+cups_binaire:
   id: 1
-another:
-  id: 2
+  configuration: nil
+  nom: "cups"
+  archive: nil
+  arch_id: 1
+  paquet_id: 1
+  fichierbinaires_count: nil
+  socle_id: 1
+

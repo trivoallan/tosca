@@ -4,10 +4,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class BinaireTest < Test::Unit::TestCase
-  fixtures :binaires
+  fixtures :binaires, :paquets
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_s
+    bin = Binaire.find 1
+    assert_equal bin.to_s, 'cups-1.1.17-13.3.6'
   end
 end
