@@ -14,6 +14,11 @@ class Engagement < ActiveRecord::Base
     compute(delai, correction)
   end
 
+  def to_s
+    "#{self.typedemande.nom} | #{self.severite.nom} : " + 
+      "#{Lstm.time_in_french_words(self.contournement.days, true)} " + 
+      "/ #{Lstm.time_in_french_words(self.correction.days, true)}"
+  end
 
   private
   # note : -1 == Date infinie !
@@ -27,11 +32,6 @@ class Engagement < ActiveRecord::Base
   ORDER = 'engagements.typedemande_id, engagements.severite_id DESC, engagements.contournement DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
-  def to_s
-    "#{self.typedemande.nom} | #{self.severite.nom} : " + 
-      "#{Lstm.time_in_french_words(self.contournement.days, true)} " + 
-      "/ #{Lstm.time_in_french_words(self.correction.days, true)}"
-  end
 
   #affiche le nombre de jours ou un "sans engagement"
   # voir application_helper
