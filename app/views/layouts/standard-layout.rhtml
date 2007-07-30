@@ -18,12 +18,28 @@
        tiny_mce(@tiny_mce_options, locale) <<
        javascript_include_tag('calendar', "calendar-#{locale}", 'calendar-setup') <<
        javascript_include_tag(:defaults) <<
-       javascript_include_tag('redbox')
+       javascript_include_tag('redbox') <<
+       # Helpers in order to have a working back button in ajaxified list
+       '<script type="text/javascript">' <<
+         "function ajax_hide_content() {if(refresh=='true'){Element.hide('content');}}" <<
+         "function ajax_show_content() {if(refresh=='true'){Element.update('content', '#{image_spinner}');Element.show('content');}}" <<
+       '</script>'
  %>
  <%= @@head[locale] %>
  <title>08000linux : <%=_(controller.controller_name)%></title>
 </head>
 <body>
+  <% # Used to have a working back button 4 browser in ajaxified list %>
+  <% if defined? @partial_for_summary %>
+   <% testcall = PagesHelper::AJAX_OPTIONS.dup.update(:url => request.path) %>
+   <% js_call = remote_function(testcall) %>
+   <script type="text/javascript">
+     var refresh=TinyMCE_AdvancedTheme._getCookie("refresh");
+     function reload_last_ajax(){if(refresh=="true"){<%=js_call%>;}}
+     window.onload = reload_last_ajax;
+   </script>
+  <% end %>
+
   <% # All the menu are built during first rendering or during login, in account controller %>
   <% @@menu[locale] ||= build_simple_menu([
     public_link_to_home,
@@ -31,7 +47,7 @@
     public_link_to_contributions,
     public_link_to_about ]) %>
   <% #TODO : formulaire de login en haut ? %>
-  <% @@links[locale] = build_simple_menu([
+  <% @@links[locale] ||= build_simple_menu([
         link_to_redbox(_("Login"), 'login')], :class => 'account_menu') %>
   <% user = session[:user] %>
   <div id="header">

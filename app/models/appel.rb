@@ -10,10 +10,9 @@ class Appel < ActiveRecord::Base
 
   validate do |record|
     if record.fin < record.debut
-      record.errors.add _('The beginning of the call must be inferior to its end.')
+      record.errors.add _('The beginning of the call has to be before to its end.')
     end
   end
-
   validates_presence_of :ingenieur
   validates_presence_of :contrat
 

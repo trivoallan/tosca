@@ -32,11 +32,13 @@ class AccountController < ApplicationController
     flash[:conditions] = options[:conditions] = conditions
 
     @user_pages, @users = paginate :identifiants, options
-    # panel on the left side
+    # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
+      cookies['refresh'] = 'true'
       render :partial => 'users_list', :layout => false
     else
       _panel
+      cookies['refresh'] = 'false'
       @partial_for_summary = 'users_info'
     end
   end
@@ -232,11 +234,6 @@ private
     session[:user] = identifiant
     session[:beneficiaire] = session[:user].beneficiaire
     session[:ingenieur] = session[:user].ingenieur
-    # Just to remember if javascript activated on client browser
-    session[:javascript] = true
-    # TODO : à intégrer de manière propre avec le SSO du portail
-    # désactivé pour l'instant
-    # ( params['javascript'] == "true" ? true : false )
 
     # Account links in header
     session[:account_links] = set_account_links
@@ -250,7 +247,7 @@ private
       <% menu = []
          menu << public_link_to_home
          menu << link_to_requests
-         menu << (session[:user].authorized?('demandes') ? 'AAA<a class="no_hover">'+search_demande+'</a>' : nil )
+         menu << (session[:user].authorized?('demandes/comment') ? '<a class="no_hover">'+search_demande+'</a>' : nil )
          menu << public_link_to_softwares
          menu << public_link_to_contributions
          menu << link_to_admin

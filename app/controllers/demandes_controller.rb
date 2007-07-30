@@ -46,11 +46,13 @@ class DemandesController < ApplicationController
       @demande_pages, @demandes = paginate :demandes, options
     end
 
-    # panel on the left side
+    # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
+      cookies['refresh'] = 'true'
       render :partial => 'requests_list', :layout => false
     else
       _panel
+      cookies['refresh'] = 'false'
       @partial_for_summary = 'requests_info'
     end
   end

@@ -12,14 +12,14 @@
     <%= link_to(image_print, options, html_options) %>
   </h1>
 
-  <div class="demande_tab_content">
   <% if @last_commentaire %>
      <%=render :partial => 'tab_comments' %>
   <% else %>
+   <div class="demande_tab_content">
      <%= @demande.description %>
-  <% end %>
-  </div>
-
+   </div>
+ <% end %>
+ 
   <div>
     <% action = comment_demande_path(@demande) %>
     <% form_tag(action, :multipart => true) do %>

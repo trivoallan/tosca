@@ -1,5 +1,10 @@
 <%# 'contributions_info' setted in controller%>
 
 <div class="content" id="content">
+  <!-- this small trick allows to redo nicely the last ajax call 
+       see public/javascript/content.js and the first js part in 
+       the body of the layout -->
+  <script type="text/javascript">ajax_hide_content();</script>
   <%= render_partial 'contributions_admin' %>
+  <script type="text/javascript">ajax_show_content();</script>
 </div>
