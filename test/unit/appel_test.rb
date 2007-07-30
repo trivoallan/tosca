@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AppelTest < Test::Unit::TestCase
-  fixtures :appels, :ingenieurs, :contrats
+  fixtures :appels, :ingenieurs, :contrats, 
+    :beneficiaires, :identifiants, :clients
 
 #  def test_beginning_before_end
 #    a= Apple.new(
@@ -11,12 +12,51 @@ class AppelTest < Test::Unit::TestCase
 #  end
   
   def test_validates_presence_of_ingenieur_and_contrat_on_create
-    ing = Ingenieur.find :first
-    cont = Contrat.find :first
-    assert !Appel.new.save
-    assert !Appel.new(:ingenieur => ing).save
-    assert !Appel.new(:contrat => cont).save
-    assert Appel.new(:contrat => cont, :ingenieur => ing).save
+    ing = ingenieurs(:first)
+    cont = contrats(:contrat)
+    a= Appel.new( :debut=> "2007-03-16 22:41:00",
+                     :fin => "2007-03-17 22:42:00")
+    b= Appel.new( :debut=> "2007-03-16 22:41:00",
+                     :fin => "2007-03-17 22:42:00")
+    #neither engineer nor contrat
+    assert !a.save
+    # only an enginner
+    a.ingenieur = ing
+    assert !a.save
+    #only a contract
+    b.contrat = cont
+    assert !b.save
+    #both enginner and contract
+    a.contrat = cont
+    assert a.save
   end
+  def test_fin_formatted
+    a = Appel.find 1
+    assert_equal a.fin_formatted, "16.03.2007 at 22h41"
+  end
+  def test_debut_formatted
+    a = Appel.find 1
+    assert_equal a.debut_formatted, "16.03.2007 at 16h41"
+  end
+  def test_duree
+    a = Appel.find 1
+    duree = a.fin - a.debut
+    assert_equal duree, 21600
+  end
+  
+  def test_contrat_nom
+    a = Appel.find 1
+    assert_equal a.contrat_nom, "3 - guy"
+  end
+  def test_ingenieur_nom
+    a = Appel.find 1
+  end
+  def test_beneficiaire_nom
+    a = Appel.find 1
+    assert_equal a.beneficiaire_nom,"Hélène Parmentier"
+    b = Appel.find 2
+    assert_equal b.beneficiaire_nom, '-'
+  end
+   
   
 end
