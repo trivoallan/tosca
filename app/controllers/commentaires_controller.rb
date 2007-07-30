@@ -55,9 +55,8 @@ class CommentairesController < ApplicationController
       flash[:notice] = 'Le commentaire a bien été ajouté.'
       unless @commentaire.prive
         options = {:demande => demande, :commentaire => @commentaire,
-           :nom => user.nom, :controller => self,
-           :request => @request, :statut_modifie => statut_modifie,
-           :statut => demande.statut.nom }
+           :nom => user.nom, :statut_modifie => statut_modifie,
+           :statut => demande.statut.nom, :url_request => demande_url(demande) }
         Notifier::deliver_demande_nouveau_commentaire(options, flash)
       end
     else

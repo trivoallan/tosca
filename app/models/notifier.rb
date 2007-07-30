@@ -90,8 +90,7 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function require 5 parameters : :demande, :nom,
-  # :controller, :commentaire, :request
+  # This function needs 4 options : :demande, :nom, :commentaire, :url_request
   def demande_nouveau_commentaire(options, flash)
     demande = options[:demande]
 
