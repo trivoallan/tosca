@@ -7,7 +7,8 @@ class CompetenceTest < Test::Unit::TestCase
   fixtures :competences
 
   # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_s 
+    c = Competence.find 1
+    assert_equal c.to_s, 'C'
   end
 end
