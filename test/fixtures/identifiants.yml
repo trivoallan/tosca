@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+heleneParmentier:
+  id: 1
+  informations: ""
+  nom: "Hélène Parmentier"
+  client: 0
+  titre: "DSI"
+  telephone: "01424242424"
+  image_id: 0
+  password: "ca3a2705f30b1f2965d9a94a1e5e8108b63b86f4"
+  login: "hparmentier"
+  email: "mloiseleur@linagora.com"
+
