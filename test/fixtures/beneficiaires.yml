@@ -8,3 +8,10 @@ beneficiaire1:
   notifier_cc: 0
   identifiant_id: 1
   notifier: 1
+beneficiaire_without_identifiant_id:
+  id: 2
+  domaine: "Migreuse OOo "
+  client_id: 1
+  notifier_subalternes: 1
+  notifier_cc: 0
+  notifier: 1

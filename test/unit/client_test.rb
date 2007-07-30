@@ -80,7 +80,7 @@ class ClientTest < Test::Unit::TestCase
   end
   
   def test_beneficiaire_ids
-    assert_equal clients(:toto).beneficiaire_ids, [1]
+    assert_equal clients(:toto).beneficiaire_ids, [1,2]
     assert_equal clients(:linagorien).beneficiaire_ids, []
   end
   
