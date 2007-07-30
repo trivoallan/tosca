@@ -28,13 +28,18 @@ class ClientTest < Test::Unit::TestCase
     assert_not_nil c.code_acces
 
   end
-  # Id MUST be unique.
-  # Test if we can create a user with an id which is still used
-  def test_same_id
-    assert_raise( ActiveRecord::RecordNotSaved ) {
-      Client.new(:id => 1).save!
-    }
+  # Seems to retrun true, even if the record is not save
+  def test_not_same_id_on_create
+    assert !Client.new(:id => 1).save
   end
+  # Currently ersase c : 
+  def test_not_same_id_on_update
+    c = clients( :toto )
+    c1= clients(:guy)
+    c.update_attribute(:id, 1)
+    assert !c1.update_attribute(:id,1)
+  end
+  
 
   def test_update
     c = clients( :toto )

@@ -74,7 +74,7 @@ class AppelsController < ApplicationController
   end
 
   def ajax_beneficiaires
-    return render :nothing unless request.xml_http_request?
+    return render(:nothing) unless request.xml_http_request?
 
     # la magie de rails est cassé pour la 1.2.2, en mode production
     # donc je dois le faire manuellement

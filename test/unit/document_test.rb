@@ -44,12 +44,6 @@ class DocumentTest < Test::Unit::TestCase
     
   end
   
-  # Id MUST be unique
-  def test_same_id
-    assert_raise( ActiveRecord::RecordNotSaved ){
-      Document.new( :id => 1, :titre => "fdfdf").save!
-    }
-  end
   # Title MUST have between 3 and 60 characters
   def test_title
     assert_raise( ActiveRecord::RecordInvalid){

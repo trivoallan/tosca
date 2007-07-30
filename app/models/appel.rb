@@ -10,13 +10,15 @@ class Appel < ActiveRecord::Base
 
   validate do |record|
     if record.fin < record.debut
-      record.errors.add _('Le début de l\'appel doit être inférieure à sa fin.')
+      record.errors.add _('The beginning of the call must be inferior to its end.')
     end
   end
 
   validates_presence_of :ingenieur
   validates_presence_of :contrat
-  
+
+  attr_protected :id
+  def id=(ignored) end  
   # This reduced the scope of Calls to contract_ids in parameters.
   # With this, every Recipient only see what he is concerned of
   def self.set_scope(contrat_ids)
@@ -29,15 +31,15 @@ class Appel < ActiveRecord::Base
   # end of the phone call, formatted without the need to load Time.
   # See ActiveRecord::Base for more information
   def fin_formatted
-      d = @attributes['fin']
-      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+    d = @attributes[_('end')]
+    _("%s.%s.%s at %sh%s") % [ d[8,2], d[5,2], d[0,4], d[11,2], d[14,2] ]
   end
 
   # start of the phone call, formatted without the need to load Time.
   # See ActiveRecord::Base for more information
   def debut_formatted
-      d = @attributes['debut']
-      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+    d = @attributes[_('beginning')]
+    _("%s.%s.%s at %sh%s") % [ d[8,2], d[5,2], d[0,4], d[11,2], d[14,2] ]
   end
 
   def duree
