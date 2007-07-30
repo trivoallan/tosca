@@ -7,8 +7,11 @@ class ClientTest < Test::Unit::TestCase
   fixtures :clients, :typedemandes, :contrats, :beneficiaires
 
   def test_client_create
-    c= Client.new
-    assert c.save
+    # a customer must have a name
+    c= Client.new()
+    assert c.save == false
+    c= Client.new(:nom => 'Grellier Airlines')
+    assert c.save 
 
     # a customer must have an id
     assert_not_nil c.id
