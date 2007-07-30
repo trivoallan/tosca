@@ -14,6 +14,9 @@ class Client < ActiveRecord::Base
   has_many :paquets, :through => :contrats, :include => Paquet::INCLUDE
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
+  validates_presence_of :nom
+  validates_length_of :nom, :in => 3..50
+
   # don't use this function outside of an around_filter
   def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions =>
