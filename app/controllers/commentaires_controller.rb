@@ -54,9 +54,15 @@ class CommentairesController < ApplicationController
     elsif @commentaire.save and demande.update_attributes(params[:demande])
       flash[:notice] = 'Le commentaire a bien été ajouté.'
       unless @commentaire.prive
+        # TODO: This line is really ugly : find a better way. 
+        # maybe with an other plugin ?
+        url_attachment = render_to_string :inline => 
+          "<%=request.protocol%><%=request.host_with_port%><%=url_for_file_column(@commentaire.piecejointe, 'file', :absolute => true)%>"
         options = {:demande => demande, :commentaire => @commentaire,
            :nom => user.nom, :statut_modifie => statut_modifie,
-           :statut => demande.statut.nom, :url_request => demande_url(demande) }
+           :statut => demande.statut.nom, :url_request => demande_url(demande),
+           :url_attachment => url_attachment
+        }
         Notifier::deliver_demande_nouveau_commentaire(options, flash)
       end
     else

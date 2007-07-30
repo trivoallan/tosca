@@ -1,15 +1,14 @@
-<% if (@commentaire && @commentaire.piecejointe) %>
-  <% url = "https://#{@request.host_with_port}#{url_for_file_column(@commentaire.piecejointe, "file", :absolute => true)}" %>
+<% if defined? @url_attachment %>
   <p>
-    <a href="<%= url %>">Télécharger la pièce jointe.</a>
+    <a href="<%=@url_attachment%>">Télécharger la pièce jointe.</a>
   </p>
 <% end %>
 
-<p>
-  <font color="#909090">
-    --<br/>
-    <% url = "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande" %>
-    <a href="<%= url %>">Rappel sur les statuts et nos engagements.</a><br/>
-    Ceci est un mail automatique du <%= Metadata::SITE_INTERNET %>, <b>Merci de ne pas y répondre.</b>
-  </font>
-</p>
+<span>
+<font color="#909090">
+-- <br/>
+<% url = "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande" %>
+<a href="<%= url %>">Rappel sur les statuts et nos engagements.</a><br/>
+Ceci est un mail automatique du <%= Metadata::SITE_INTERNET %>, <b>Merci de ne pas y répondre.</b>
+</font>
+</span>

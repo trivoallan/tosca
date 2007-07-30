@@ -71,7 +71,7 @@ end
 #TODO : Faire la numérotation pour les listes numérotée
 def html2text(html)
   text = html.
-    gsub(/(&nbsp;|\n|\s)+/im, ' ').squeeze(' ').strip.
+    gsub(/(&nbsp;)+/im, ' ').squeeze(' ').strip.gsub("\n",'').
     gsub(/<([^\s]+)[^>]*(src|href)=\s*(.?)([^>\s]*)\3[^>]*>\4<\/\1>/i, '\4')
 
   links = []
@@ -85,7 +85,7 @@ def html2text(html)
     text.
       gsub(/<(script|style)[^>]*>.*<\/\1>/im, '').
       gsub(/<!--.*-->/m, '').
-      gsub(/<hr(| *[^>]*)>/i, "\n----------------------------\n").
+      gsub(/<hr(| *[^>]*)>/i, "----------------------------").
       gsub(/<li(| [^>]*)>/i, "\n * ").
       gsub(/<blockquote(| [^>]*)>/i, '> ').
       gsub(/<br(| *[^>]*)>/i, "\n").
@@ -100,5 +100,6 @@ def html2text(html)
   for i in (0...links.size).to_a
     text = text + "\n  [#{i+1}] <#{CGI.unescapeHTML(links[i])}>" unless links[i].nil?
   end
+
   text
 end
