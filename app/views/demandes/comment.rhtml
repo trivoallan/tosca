@@ -21,8 +21,8 @@
  <% end %>
  
   <div>
-    <% action = comment_demande_path(@demande) %>
-    <% form_tag(action, :multipart => true) do %>
+    <% action = comment_commentaire_path(@demande) %>
+    <% form_tag(action, :method => :post, :multipart => true) do %>
       <%= render :partial => 'comment_form' %>
       <p>&nbsp;</p>
     <% end %>
