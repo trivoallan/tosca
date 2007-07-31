@@ -18,3 +18,19 @@ cups_paquet:
   fichiers_count: nil
   distributeur_id: 1
 
+le_meilleur_paquet:
+  id: 2
+  configuration: ""
+  nom: "vim"
+  logiciel_id: 47
+  paquet_id: 0
+  mainteneur_id: 1
+  version: '1.7'
+  fournisseur_id: 0 
+  contrat_id: 1
+  release: "13.3.6"
+  changelogs_count: nil
+  taille: 3528875
+  active: 1
+  fichiers_count: nil
+  distributeur_id: 1

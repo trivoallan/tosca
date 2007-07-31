@@ -1,5 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+bloquante:
   id: 1
-another:
+  nom: 'Bloquante'
+majeure:
   id: 2
+  nom: 'Majeure'
+mineure:
+  id: 3
+  nom: 'Mineure'
+sans_objet:
+  id: 4
+  nom: 'Sans objet'
+
