@@ -1,33 +1,33 @@
 <div class="menu_title" onclick="Element.toggle('menu_action')">
-<%= ">" + _("Action") %></div>
+> <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
   <% if @ingenieur %>
-  <li><% form_tag associer_contribution_demande_path(@demande.id) do %>
-    <%= select_onchange @contributions, 'demande', 'contribution_id' %>
- <% end%></li>
-  <li><%= link_to_delete_contribution @demande.id %></li>
-   <li><%= link_to_add_call @demande.id %></li>
+    <li><% form_tag associer_contribution_demande_path(@demande.id) do %>
+      <%= select_onchange @contributions, 'demande', 'contribution_id' %>
+    <% end %></li>
+    <li><%= link_to_delete_contribution @demande.id %></li>
+    <li><%= link_to_add_call @demande.id %></li>
   <% end %>
   <li><%= link_to _("Print"), pretty_print_demande_path(@demande.id) %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_resume')">
-<%= ">" + _("Summary") %></div>
+> <%= _('Summary') %></div>
 <ul class="menu" id="menu_resume">
   <% if @ingenieur and @demande.socle %>
-     <li><b><%= _("Vm : ") %></b><%=h @demande.socle.machine %></li>
+     <li><b><%= _("Vm") %>: </b><%=h @demande.socle.machine %></li>
   <% end %>
-  <li><b><%= _("System : ") %></b><%= link_to_socle @demande.socle %></li>
-  <li><b><%= _("Software :") %></b><%= public_link_to_logiciel @demande.logiciel %></li>
+  <li><b><%= _("System") %>: </b><%= link_to_socle @demande.socle %></li>
+  <li><b><%= _("Software") %>: </b><%= public_link_to_logiciel @demande.logiciel %></li>
    <% html_options = { :popup => ['help_statut', 'height=300,width=600'] } %>
-  <li><b><%= _("Status :") %></b><%= link_to(@demande.statut.nom, help_statut_path(@demande.statut_id), html_options) %></li>
-  <li><b><%= _("Type :") %></b><%= @demande.typedemande.nom %></li>
-  <li><b><%= _("Severity :") %></b><%= @demande.severite.nom %></li>
-  <% if @demande.mail_cc %>
-     <li><b><%= _("Mail CC :") %></b><%= @demande.mail_cc.gsub(",", ",<br/>") %></li>
+  <li><b><%= _("Status")%>: </b><%= link_to(@demande.statut.nom, help_statut_path(@demande.statut_id), html_options) %></li>
+  <li><b><%= _("Type")%>: </b><%= @demande.typedemande.nom %></li>
+  <li><b><%= _("Severity")%>: </b><%= @demande.severite.nom %></li>
+  <% unless @demande.mail_cc.blank? %>
+     <li><b><%= _('Informed') %>: </b><%= @demande.mail_cc.gsub(',', ',<br/>') %></li>
   <% end %>
   <% if @demande.ingenieur %>
-    <li><b><%= _("Assign to :") %></b><%= @demande.ingenieur.nom %></li>
+    <li><b><%= _("Assigned to") %>: </b><%= @demande.ingenieur.nom %></li>
   <% end %>
   <% if @ingenieur %>
       <li><% form_tag changer_ingenieur_demande_path(@demande.id) do %>
@@ -37,50 +37,25 @@
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_beneficiaire')">
-<%= ">" + _("Recipent") %></div>
+> <%= _('Recipent') %></div>
 <ul class="menu" id="menu_beneficiaire">
-  <li><b><%= _("Contact :") %>: </b><%= mail_to(@demande.beneficiaire.identifiant.email,
+  <li><b><%= _("Contact") %>: </b><%= mail_to(@demande.beneficiaire.identifiant.email,
                              @demande.beneficiaire.nom)%></li>
-  <li><b><%= _("Phone number :") %></b><%= @demande.beneficiaire.identifiant.telephone %></li>
+  <li><b><%= _('Phone') %>: </b><%= @demande.beneficiaire.identifiant.telephone %></li>
   <% client = @demande.beneficiaire.client %>
-  <li><b><% _("Compagny :") %></b><%= link_to client.nom, client_path(client) %></li>
+  <li><b><% _('Company') %>: </b><%= link_to client.nom, client_path(client) %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_cns')" >
-<%= ">" + "SLA" %></div>
-<ul class="menu" id="menu_cns">
-  <li><b>
-  <%= if @demande.affiche_temps_rappel == "-"
-      _("Call back immediately") + "</b>"
-     else
-      _("Call back in") + " : </b> #{@demande.affiche_temps_rappel}"
-     end
-  %>
-  </li>
-  <li><b><%= _("Workarouned in") + " : </b>#{@demande.affiche_temps_contournement}" %></li>
-  <li><b><%= _("Fixed in") + " : </b>#{@demande.affiche_temps_correction}" %></li>
-  <% if @demande.contribution %>
-    <% contrib = @demande.contribution %>
-    <li><b><%= _("Documents") + ": </b> <br/>" + _("A") %>
-      <%= link_to('contribution', contribution_path(contrib.id)) %>
-      <%= _("is available") %>
-         (<%= link_to_file contrib, 'patch' %>)
-    </li>
-  <% end %>
-</ul>
-
-<div class="menu_title" onclick="Element.toggle('menu_cycle_de_vie')" >
-<%= ">" + _("Life cycle") %></div>
-<ul class="menu" id="menu_cycle_de_vie">
-  <%#= show_cns_bar(@demande) %>
-  <%#= '<li><b>Avancement : </b></li>' %>
-  <li><b><%= _("Created on") + ":" %></b><%= @demande.created_on_formatted %></li>
-  <li><b><%= _("Updated on") + ":" %></b> <%= @demande.updated_on_formatted %></li>
-  <li><b><%= _("Past time") + ":" %></b><%= @demande.affiche_temps_ecoule %></li>
+<div class="menu_title" onclick="Element.toggle('life_cycle_menu')" >
+> <%=_("Life cycle") %></div>
+<ul class="menu" id="life_cycle_menu">
+  <li><b><%= _("Created on") %>: </b><%= @demande.created_on_formatted %></li>
+  <li><b><%= _("Updated on") %>: </b> <%= @demande.updated_on_formatted %></li>
+  <li><b><%= _("Past time") %>: </b><%= @demande.affiche_temps_ecoule %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_aide')">>
-<%= ">" + _("Help") %></div>
+> <%= _("Help") %></div>
 <ul class="menu" id="menu_aide">
  <li><%= public_link_to_help_new_request %></li>
  <li><%= public_link_to_howto_request %></li>
