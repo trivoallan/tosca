@@ -6,8 +6,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PermissionTest < Test::Unit::TestCase
   fixtures :permissions
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_s
+    p = Permission.find 11
+    assert_equal p.to_s, '^documents/(select|list)'
   end
 end
