@@ -5,8 +5,10 @@ class Piecejointe < ActiveRecord::Base
   file_column :file, :fix_file_extensions => nil
   has_one :commentaire
 
+  validates_presence_of :file
+
   def nom
-    return file[/[._ \-a-zA-Z0-9]*$/] if file
+    return file[/[._ \-a-zA-Z0-9]*$/]
   end
 
   # special scope : only used for file downloads

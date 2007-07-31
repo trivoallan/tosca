@@ -1,5 +1,4 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+une_piece_jointe:
   id: 1
-another:
-  id: 2
+  file: SLL_FIV_mindi.odt
