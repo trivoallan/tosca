@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-07-30 10:47+0200\n"
+"POT-Creation-Date: 2007-07-31 12:01+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,32 +16,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/controllers/account_controller.rb:52
+#: app/controllers/account_controller.rb:54
 msgid "Welcome&nbsp;%s&nbsp;%s"
 msgstr ""
 
-#: app/controllers/account_controller.rb:56
+#: app/controllers/account_controller.rb:58
 msgid "Connexion failure"
 msgstr ""
 
-#: app/controllers/account_controller.rb:68
+#: app/controllers/account_controller.rb:70
 msgid "Vous are not allowed to change your identity"
 msgstr ""
 
-#: app/controllers/account_controller.rb:73
+#: app/controllers/account_controller.rb:75
 msgid "Person not found"
 msgstr ""
 
-#: app/controllers/account_controller.rb:91
+#: app/controllers/account_controller.rb:93
 msgid "Edition succeeded"
 msgstr ""
 
-#: app/controllers/account_controller.rb:109
+#: app/controllers/account_controller.rb:111
 msgid "Record successfully created, don't forget to vérify his profil<br />"
 msgstr ""
 
-#: app/controllers/account_controller.rb:112
-#: app/controllers/account_controller.rb:181
+#: app/controllers/account_controller.rb:114
+#: app/controllers/account_controller.rb:183
 #: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
 #: app/views/bienvenue/admin.rhtml:31 app/views/demandes/_appels.rhtml:2
@@ -49,92 +49,92 @@ msgstr ""
 msgid "Recipient"
 msgstr ""
 
-#: app/controllers/account_controller.rb:112
-#: app/controllers/account_controller.rb:181
+#: app/controllers/account_controller.rb:114
+#: app/controllers/account_controller.rb:183
 msgid "Engineer "
 msgstr ""
 
-#: app/controllers/account_controller.rb:112
+#: app/controllers/account_controller.rb:114
 msgid " associate created"
 msgstr ""
 
-#: app/controllers/account_controller.rb:131
-#: app/controllers/account_controller.rb:166
-#: app/controllers/account_controller.rb:179 app/views/account/_edit.rhtml:58
+#: app/controllers/account_controller.rb:133
+#: app/controllers/account_controller.rb:168
+#: app/controllers/account_controller.rb:181 app/views/account/_edit.rhtml:58
 #: app/views/account/show.rhtml:20
 msgid "Full name"
 msgstr ""
 
-#: app/controllers/account_controller.rb:131
-#: app/controllers/account_controller.rb:167 app/views/account/_edit.rhtml:59
+#: app/controllers/account_controller.rb:133
+#: app/controllers/account_controller.rb:169 app/views/account/_edit.rhtml:59
 #: app/views/account/show.rhtml:21 app/views/documents/_form.rhtml:23
 msgid "Title"
 msgstr ""
 
-#: app/controllers/account_controller.rb:131
-#: app/controllers/account_controller.rb:168 app/views/account/_edit.rhtml:60
+#: app/controllers/account_controller.rb:133
+#: app/controllers/account_controller.rb:170 app/views/account/_edit.rhtml:60
 #: app/views/account/_users_list.rhtml:16 app/views/account/show.rhtml:22
 msgid "Email"
 msgstr ""
 
-#: app/controllers/account_controller.rb:131
-#: app/controllers/account_controller.rb:169 app/views/account/_edit.rhtml:61
+#: app/controllers/account_controller.rb:133
+#: app/controllers/account_controller.rb:171 app/views/account/_edit.rhtml:61
 #: app/views/account/show.rhtml:23
 msgid "Phone"
 msgstr ""
 
-#: app/controllers/account_controller.rb:132
-#: app/controllers/account_controller.rb:170 app/views/account/login.rhtml:7
-#: app/views/layouts/standard-layout.rhtml:35
+#: app/controllers/account_controller.rb:134
+#: app/controllers/account_controller.rb:172 app/views/account/login.rhtml:7
+#: app/views/layouts/standard-layout.rhtml:51
 msgid "Login"
 msgstr ""
 
-#: app/controllers/account_controller.rb:132
-#: app/controllers/account_controller.rb:171
-#: app/controllers/account_controller.rb:172
-#: app/controllers/account_controller.rb:184 app/views/account/login.rhtml:10
+#: app/controllers/account_controller.rb:134
+#: app/controllers/account_controller.rb:173
+#: app/controllers/account_controller.rb:174
+#: app/controllers/account_controller.rb:186 app/views/account/login.rhtml:10
 msgid "Password"
 msgstr ""
 
-#: app/controllers/account_controller.rb:132
-#: app/controllers/account_controller.rb:173 app/views/account/_edit.rhtml:78
+#: app/controllers/account_controller.rb:134
+#: app/controllers/account_controller.rb:175 app/views/account/_edit.rhtml:78
 #: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr ""
 
-#: app/controllers/account_controller.rb:144
+#: app/controllers/account_controller.rb:146
 msgid "Enter under CSV format please"
 msgstr ""
 
-#: app/controllers/account_controller.rb:148
+#: app/controllers/account_controller.rb:150
 msgid "The CSV file isn\t well formed"
 msgstr ""
 
-#: app/controllers/account_controller.rb:152
+#: app/controllers/account_controller.rb:154
 msgid "You don't have specified a customer"
 msgstr ""
 
-#: app/controllers/account_controller.rb:155
+#: app/controllers/account_controller.rb:157
 msgid "Vous must specify a role"
 msgstr ""
 
-#: app/controllers/account_controller.rb:179
+#: app/controllers/account_controller.rb:181
 msgid "The user %s have been successfully created.<br/>"
 msgstr ""
 
-#: app/controllers/account_controller.rb:182
+#: app/controllers/account_controller.rb:184
 msgid "Associate created"
 msgstr ""
 
-#: app/controllers/account_controller.rb:188
+#: app/controllers/account_controller.rb:190
 msgid "The user %s  has not been successfully created.<br /> "
 msgstr ""
 
-#: app/controllers/account_controller.rb:267
+#: app/controllers/account_controller.rb:264
 msgid "Logout"
 msgstr ""
 
-#: app/controllers/account_controller.rb:268 app/views/account/_edit.rhtml:6
+#: app/controllers/account_controller.rb:265 app/views/account/_edit.rhtml:6
 #: app/views/account/show.rhtml:5
 msgid "My account"
 msgstr ""
@@ -177,42 +177,42 @@ msgstr ""
 msgid "Skill was successfully updated."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:75
+#: app/controllers/contributions_controller.rb:77
 msgid "The contribution has been created successfully."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:95
+#: app/controllers/contributions_controller.rb:97
 msgid "The contribution has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:79
+#: app/controllers/demandes_controller.rb:81
 msgid "file attached"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:82
+#: app/controllers/demandes_controller.rb:84
 msgid "Your request has been successfully submitted"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:127
+#: app/controllers/demandes_controller.rb:129
 msgid " %s No Contract, No OSSA"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:144
+#: app/controllers/demandes_controller.rb:146
 msgid "We do not have any packages concerning"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:147
+#: app/controllers/demandes_controller.rb:149
 #: app/views/demandes/_packages.rhtml:2
 msgid "Specify here the packages impacted by the request :"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:149 app/views/account/_menu.rhtml:21
+#: app/controllers/demandes_controller.rb:151 app/views/account/_menu.rhtml:21
 #: app/views/bienvenue/admin.rhtml:49 app/views/clients/index.rhtml:4
 #: app/views/demandes/_packages.rhtml:9
 msgid "Packages"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:150 app/views/clients/show.rhtml:33
+#: app/controllers/demandes_controller.rb:152 app/views/clients/show.rhtml:33
 #: app/views/demandes/_cns.rhtml:12 app/views/demandes/_report_detail.rhtml:14
 #: app/views/demandes/_report_detail.rhtml:16
 #: app/views/demandes/_packages.rhtml:6
@@ -220,7 +220,7 @@ msgstr ""
 msgid "Workaround"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:150 app/views/clients/show.rhtml:33
+#: app/controllers/demandes_controller.rb:152 app/views/clients/show.rhtml:33
 #: app/views/demandes/_cns.rhtml:13 app/views/demandes/_report_detail.rhtml:15
 #: app/views/demandes/_report_detail.rhtml:17
 #: app/views/demandes/_packages.rhtml:7
@@ -228,23 +228,23 @@ msgstr ""
 msgid "Correction"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:258
+#: app/controllers/demandes_controller.rb:260
 msgid "The request has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:277
+#: app/controllers/demandes_controller.rb:279
 msgid "The request is correctly assigned"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:281
+#: app/controllers/demandes_controller.rb:283
 msgid "The request is no more assigned"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:296
+#: app/controllers/demandes_controller.rb:298
 msgid "The demand has now no contribution"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:298
+#: app/controllers/demandes_controller.rb:300
 msgid "This contribution is now linked"
 msgstr ""
 
@@ -475,15 +475,15 @@ msgstr ""
 msgid "List of your supported softwares"
 msgstr ""
 
-#: app/controllers/logiciels_controller.rb:85
+#: app/controllers/logiciels_controller.rb:87
 msgid "The software %s has been created succesfully."
 msgstr ""
 
-#: app/controllers/logiciels_controller.rb:100
+#: app/controllers/logiciels_controller.rb:102
 msgid "The software %s has been updated successfully."
 msgstr ""
 
-#: app/controllers/logiciels_controller.rb:110
+#: app/controllers/logiciels_controller.rb:112
 msgid "The software %s has been successfully deleted."
 msgstr ""
 
@@ -1024,19 +1024,15 @@ msgid "Appel|Demande"
 msgstr ""
 
 #: app/models/appel.rb:13
-msgid "The beginning of the call must be inferior to its end."
+msgid "The beginning of the call has to be before to its end."
 msgstr ""
 
-#: app/models/appel.rb:34
-msgid "end"
+#: app/models/appel.rb:21
+msgid "beneficiaire.client_id and contrat_id.client are different"
 msgstr ""
 
-#: app/models/appel.rb:35 app/models/appel.rb:42
+#: app/models/appel.rb:38 app/models/appel.rb:45
 msgid "%s.%s.%s at %sh%s"
-msgstr ""
-
-#: app/models/appel.rb:41
-msgid "beginning"
 msgstr ""
 
 #: app/models/arch.rb:-
@@ -1296,6 +1292,7 @@ msgid "privé"
 msgstr ""
 
 #: app/models/commentaire.rb:24 app/views/demandes/_tab_comment.rhtml:29
+#: app/views/demandes/_tab_comments.rhtml:28
 msgid "public"
 msgstr ""
 
@@ -3496,11 +3493,12 @@ msgid "You can click here %s to submit a new request."
 msgstr ""
 
 #: app/views/demandes/_tab_comment.rhtml:8
-#: app/views/demandes/_tab_comments.rhtml:14
+#: app/views/demandes/_tab_comments.rhtml:18
 msgid "Comment %s"
 msgstr ""
 
 #: app/views/demandes/_tab_comment.rhtml:29
+#: app/views/demandes/_tab_comments.rhtml:28
 msgid "private"
 msgstr ""
 
@@ -3508,8 +3506,8 @@ msgstr ""
 msgid "Are you sure you want to delete comment %s ?"
 msgstr ""
 
-#: app/views/demandes/_tab_comments.rhtml:28
-msgid "Are you sure you want to delete the comment %s ?"
+#: app/views/demandes/_tab_comments.rhtml:8
+msgid "Are you sure you want to delete this comment ?"
 msgstr ""
 
 #: app/views/demandes/_tab_menu.rhtml:13

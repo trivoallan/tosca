@@ -1,5 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+m1:
   id: 1
-another:
+  virtuelle: 1
+  description: 'Socle du Minefi '
+  hote_id: 13
+  acces: 'socle2004.ossa (192.168.1.106)'
+  socle_id: 1
+m2:
   id: 2
+  virtuelle: 1
+  description: 'Socle du Minefi '
+  hote_id: 13
+  socle_id: 1
