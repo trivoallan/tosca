@@ -206,7 +206,7 @@ class DemandesController < ApplicationController
 
     @partial_for_summary = 'infos_demande'
     # render is mandatory becoz' of the alias with 'show'
-    render "demandes/comment"
+    render :template => 'demandes/comment'
   end
 
   alias_method :show, :comment
