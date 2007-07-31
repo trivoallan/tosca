@@ -15,6 +15,12 @@ class Appel < ActiveRecord::Base
   end
   validates_presence_of :ingenieur
   validates_presence_of :contrat
+  validate do |record|
+    if record.beneficiaire and
+      record.beneficiaire.client_id != record.contrat.client_id
+      record.errors.add _('beneficiaire.client_id and contrat_id.client are different')
+    end
+  end
 
   # This reduced the scope of Calls to contract_ids in parameters.
   # With this, every Recipient only see what he is concerned of

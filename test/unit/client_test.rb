@@ -35,14 +35,6 @@ class ClientTest < Test::Unit::TestCase
   def test_not_same_id_on_create
     assert !Client.new(:id => 1).save
   end
-  # Currently ersase c : 
-  def test_not_same_id_on_update
-    c = clients( :toto )
-    c1= clients(:guy)
-    c.update_attribute(:id, 1)
-    assert !c1.update_attribute(:id,1)
-  end
-  
 
   def test_update
     c = clients( :toto )
@@ -83,7 +75,7 @@ class ClientTest < Test::Unit::TestCase
   end
   
   def test_beneficiaire_ids
-    assert_equal clients(:toto).beneficiaire_ids, [1,2]
+    assert_equal clients(:toto).beneficiaire_ids, [1]
     assert_equal clients(:linagorien).beneficiaire_ids, []
   end
   

@@ -4,10 +4,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class IngenieurTest < Test::Unit::TestCase
-  fixtures :ingenieurs
+  fixtures :ingenieurs, :contrats
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_nom
+    engineer = Ingenieur.find 1
+    assert_equal engineer.nom, 'Guillaume Dufloux'
   end
 end

@@ -30,6 +30,16 @@ class AppelTest < Test::Unit::TestCase
     a.contrat = cont
     assert a.save
   end
+  def test_client_id
+    a = Appel.new( :id=> 3,
+      :debut => "2007-03-16 16:41:00",
+      :fin => "2007-03-16 22:41:00",
+      :demande_id => nil,
+      :ingenieur_id => 1,
+      :beneficiaire_id => 2,
+      :contrat_id => 1)
+    assert !a.save
+  end
   def test_fin_formatted
     a = Appel.find 1
     assert_equal a.fin_formatted, "16.03.2007 at 22h41"
