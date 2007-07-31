@@ -1,6 +1,10 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
+# Why do we have a special table for holidays ?
+# It's because some of them can be so arbitrary.
+# So we can have a quick way of adding and keeping 
+# an arbitrary holiday. Maybe there is a better way.
 class Jourferie < ActiveRecord::Base
   def jour_formatted
     d = @attributes['jour']
