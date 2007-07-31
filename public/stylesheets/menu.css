@@ -9,37 +9,41 @@
 /**
  * simple menu
  * http://collaboa.org/
- */
-
+*/
 .simple_menu {
+  vertical-align: middle;
   position: absolute;
   top: 0.2em;
-  left: 210px; 
+  left: 190px;
   z-index: 0;
 }
 .account_menu {
+  vertical-align: middle;
+  position: float;
+  top: 0.2em;
 }
 .simple_menu ul, .account_menu ul {
   margin: 0; padding: 0;
   list-style: none;
-  height: 24px;
 }
 .simple_menu li, .account_menu li {
   display: inline;
 }
 .simple_menu a, .account_menu a {
-  padding: 0 10px; 
+  padding: 0 9px; 
   margin: 0; 
   line-height: 200%;
   text-decoration: none;
   border-bottom: none;
 }
+
 .simple_menu a {
   float: left;
 }
 .account_menu a {
-  float: right;
+  float: right; 
 }
+
 .simple_menu a:hover, .account_menu a:hover{
   color: #eee;
   background-color: #1A5260;
@@ -48,6 +52,7 @@
 .simple_menu .no_hover:hover {
 	background: none;
 }
+ 
 
 /** 
  * advanced menu (NON YET USED)

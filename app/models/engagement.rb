@@ -27,7 +27,6 @@ class Engagement < ActiveRecord::Base
     (limite == -1 ? true : (delai < limite*3600))
   end
 
-
   INCLUDE = [:typedemande,:severite]
   ORDER = 'engagements.typedemande_id, engagements.severite_id DESC, engagements.contournement DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
