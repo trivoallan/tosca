@@ -6,8 +6,12 @@ require File.dirname(__FILE__) + '/../test_helper'
 class LogicielTest < Test::Unit::TestCase
   fixtures :logiciels
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_param
+    software = Logiciel.find 1
+    assert_equal software.to_param, '1-ANT'
+  end
+  def test_to_s
+    software = Logiciel.find 1
+    assert_equal software.to_s, 'ANT'
   end
 end

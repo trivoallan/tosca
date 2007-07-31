@@ -1,5 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+ant:
   id: 1
-another:
-  id: 2
+  nom: 'ANT'
+  groupe_id: 4
+  referent: 'ant'
+  description: 'Ant est un outil de compilation multi-plateformes pour java. Il est\r<br/>utilisé par les projets apache-jakarta et apache-xml.'
+  resume: 'Outil de compilation pour java'
+  license_id: 2
+  image_id: nil
