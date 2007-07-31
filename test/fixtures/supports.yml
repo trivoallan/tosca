@@ -1,5 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+support:
+  nom: "TM2L 7h-19h"
+  duree_intervention: nil
   id: 1
-another:
-  id: 2
+  ouverture: 7
+  veille_technologique: 1
+  newsletter: 0
+  maintenance: 1
+  fermeture: 19
+  assistance_tel: 1

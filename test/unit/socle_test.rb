@@ -6,8 +6,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class SocleTest < Test::Unit::TestCase
   fixtures :socles
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_s
+    assert_equal Socle.find(1).to_s, 'dgi2004-1.32'
   end
 end

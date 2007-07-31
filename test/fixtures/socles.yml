@@ -1,5 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+a_system:
   id: 1
-another:
-  id: 2
+  binaires_count: nil
+  nom: "dgi2004-1.32"
+  client_id: 1
