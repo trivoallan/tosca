@@ -1,12 +1,14 @@
 <%
   #On ne peut plus faire ça avec REST
   #TODO : le changer
+  create_account = false
   case controller.action_name
   when 'modify'
     compte = ( session[:user].id == @identifiant.id ? _('My account') : 
                _('The account of %s') % @identifiant.nom )
     title = _('Modify %s') % compte
   when 'signup'
+    create_account  = true
     title = _('create an account')
   when 'multiple_signup'
     title = _('Create several accounts')
@@ -61,8 +63,9 @@
        lstm_text_field( _('Phone'), 'identifiant', 'telephone'),
        [ '<hr/>', nil ],
        [ identifiant[:titre], identifiant[:champ] ],
-       lstm_password_field( _('Choose a password'), 'identifiant',
-          'pwd'),
+       lstm_password_field((create_account ? 
+            _('Choose a password') : _('Modify your password')), 
+         'identifiant', 'pwd'),
        lstm_password_field( _('Confirm this last'), 'identifiant',
           'pwd_confirmation'),
        [ '<hr/>', nil ]
