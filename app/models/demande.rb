@@ -13,22 +13,24 @@ class Demande < ActiveRecord::Base
   # TODO : à voir si c'est inutile. avec le socle, on a dejà la plateforme
   has_and_belongs_to_many :binaires
   has_many :appels
-#   has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
-  has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
   belongs_to :contribution
   belongs_to :socle
   has_many :piecejointes, :through => :commentaires
   belongs_to :first_comment, :class_name => "Commentaire", :foreign_key => "first_comment_id"
   
-  after_save :update_first_comment
-  after_create :create_first_comment
 
   validates_presence_of :resume,
        :warn => _("You must indicate a summary for your request")
   validates_length_of :resume, :within => 3..60
 
   #versioning, qui s'occupe de la table demandes_versions
-#   acts_as_versioned
+  acts_as_versioned
+  has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
+#  after_save :update_first_comment
+#  after_create :create_first_comment
+#  has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
+
+
   acts_as_reportable
 
   # Corrigées, Cloturées et Annulées

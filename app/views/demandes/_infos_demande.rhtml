@@ -38,7 +38,7 @@
   <li><b><%= _("Contact") %>: </b><%= mail_to(recipient.identifiant.email, recipient.nom)%></li>
   <li><b><%= _('Phone') %>: </b><%= recipient.identifiant.telephone %></li>
   <% client = recipient.client %>
-  <li><b><% _('Company') %>: </b><%= link_to client.nom, client_path(client) %></li>
+  <li><b><%= _('Company') %>: </b><%= link_to client.nom, client_path(client) %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('life_cycle_menu')" >
@@ -46,7 +46,10 @@
 <ul class="menu" id="life_cycle_menu">
   <li><b><%= _("Created on") %>: </b><%= @demande.created_on_formatted %></li>
   <li><b><%= _("Updated on") %>: </b> <%= @demande.updated_on_formatted %></li>
-  <li><b><%= _("Elapsed time") %>: </b><%#= Lstm.time_in_french_words(@demande.temps_ecoule, client.support.interval) %></li>
+  <% # deactivated until it's cached in the comments %>
+  <% if false %>
+    <li><b><%= _("Elapsed time") %> : </b><%#= Lstm.time_in_french_words(@demande.temps_ecoule, client.support.interval)%></li>
+  <% end %>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_aide')">
