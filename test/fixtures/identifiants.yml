@@ -21,3 +21,14 @@ Guillaume_dufloux:
   password: "f876646d4af609a6fead901e9d6ffae33f4593fc"
   login: "gdufloux"
   email: "mloiseleur@linagora.com"
+bob:
+  id: 3
+  login: 'bob'
+  password: <%= Identifiant.sha1('test')%>
+  informations: ""
+  nom: "Bob Dufloux"
+  client: 0
+  titre: "Expert"
+  telephone: "08000LINUX"
+  image_id: 0
+  email: "mloiseleur@linagora.com"

@@ -9,7 +9,7 @@ class AccountController; def rescue_action(e) raise e end; end
 
 class AccountControllerTest < Test::Unit::TestCase
   
-  fixtures :users
+  fixtures :identifiants
   
   def setup
     @controller = AccountController.new
@@ -20,8 +20,9 @@ class AccountControllerTest < Test::Unit::TestCase
   def test_auth_bob
     @request.session['return-to'] = "/bogus/location"
 
-    post :login, "user_login" => "bob", "user_password" => "test"
-    assert_session_has "user"
+    post :login, :user_login => 'bob', :user_password => 'test'
+    assert_session_has :user
+#    assert @response.has_session_object?('user')
 
     assert_equal @bob, @response.session["user"]
     

@@ -1,5 +1,18 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first:
   id: 1
-another:
-  id: 2
+  created_on: "2006-09-21 08:19:30"
+  logiciel_id: 127
+  updated_on: "2007-07-12 14:21:17"
+  ingenieur_id: 1
+  version: 48 
+  severite_id: 2
+  description: "Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
+  resume: 'Patch Binaire'
+  beneficiaire_id: 3
+  reproductible: 1
+  statut_id: 7
+  mail_cc: nil
+  socle_id: 0
+  typedemande_id: 1
+  contribution_id: 28

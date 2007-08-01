@@ -2,12 +2,12 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 require File.dirname(__FILE__) + '/../test_helper'
-require 'photos_controller'
+require 'images_controller'
 
 # Re-raise errors caught by the controller.
-class PhotosController; def rescue_action(e) raise e end; end
+class ImagesController; def rescue_action(e) raise e end; end
 
-class PhotosControllerTest < Test::Unit::TestCase
+class ImagesControllerTest < Test::Unit::TestCase
   fixtures :photos
 
   def setup

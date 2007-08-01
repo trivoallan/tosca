@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 require File.dirname(__FILE__) + '/../test_helper'
-require 'contribution_controller'
+require 'contributions_controller'
 
 # Re-raise errors caught by the controller.
 class ContributionController; def rescue_action(e) raise e end; end

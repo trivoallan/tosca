@@ -1,5 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+first:
   id: 1
-two:
-  id: 2
+  created_on: '2007-05-09 17:41:47'
+  logiciel_id: 7
+  body: 'Awstats vient d&#39;annoncer qu&#39;il proposera la prochaine version de son ECM sous licence GPL (GNU Public License). Alfresco continue ainsi de prendre le contre-pied des solutions ECM propri&eacute;taires. &nbsp;Alfresco propose toujours une licence commerciale OEM, mais ceux qui souhaitent utiliser Alfresco gratuitement dans le cadre de la licence GPL peuvent t&eacute;l&eacute;charger Alfresco Community.'
+  updated_on: '2007-05-09 17:43:01'
+  client_id: nil
+  ingenieur_id: 1
+  subject: 'Awstats se positionne sur le marché des ECM : il adopte la GPLfds'
+  source: 'www.lwn.net'

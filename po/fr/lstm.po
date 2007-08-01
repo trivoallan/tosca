@@ -797,7 +797,7 @@ msgstr " à ce jour"
 
 #: app/helpers/application_helper.rb:120
 msgid "No %s  at the moment"
-msgstr ""
+msgstr "Pas de %s pour le moment"
 
 #: app/helpers/application_helper.rb:178
 msgid "1 workday"

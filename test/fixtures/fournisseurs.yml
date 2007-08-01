@@ -1,5 +1,4 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+communaute:
   id: 1
-another:
-  id: 2
+  nom: 'Communauté'

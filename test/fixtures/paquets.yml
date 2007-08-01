@@ -4,11 +4,11 @@ cups_paquet:
   id: 1
   configuration: ""
   nom: "cups"
-  logiciel_id: 47
+  logiciel_id: 1
   paquet_id: 0
   mainteneur_id: 1
   version: '1.1.17'
-  fournisseur_id: 0 
+  fournisseur_id: 1
   contrat_id: 1
   release: "13.3.6"
   changelogs_count: nil
