@@ -23,7 +23,7 @@
 
 <% size = @demande.paquets.size %> 
 <% if size == 0 %>
-  <p><%= _("Your request does not impact your source package.") %></p>
+  <p><%= _("Your request is not subject to a SLA.") %></p>
 <% else %>
 <p><%= _("Your request impacts %s") % pluralize(size, _("source package")) %>.</p>
 <table>

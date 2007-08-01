@@ -10,11 +10,10 @@
 <div class="show">
     <%= @contribution.description_fonctionnelle %>
 <hr />
-    <%= link_to image_create('un reversement'),
-                new_urlreversement_path(:contribution_id => @contribution.id) %>
-    <%= public_show_liste(@contribution.urlreversements, _('link')) { |u|
-        link_to_edit_urlreversement(u).to_s +
-          " <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a> "
+    <%= link_to_new_urlreversement(@contribution.id) %>
+    <% options = { :edit => 'urlreversement' } %>
+    <%= public_show_liste(@contribution.urlreversements, _('link'), options) { |u|
+          " <a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
     } %>
     <% if @contribution.reverse_le %>
         <%= _('This contribution has been submitted on %s by <b>%s</b>') %
