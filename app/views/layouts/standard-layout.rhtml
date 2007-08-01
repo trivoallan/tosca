@@ -56,7 +56,7 @@
         <td valign="middle" width="145"><%= public_link_to logo_08000, bienvenue_url%>
         </td>
         <td align="right">
-           
+
           <%= (user ? session[:account_links] : @@links[locale]) %>
         </td>
       </tr>
@@ -96,9 +96,9 @@
        '<table>' <<
          '<tr>' <<
            '<td valign="middle" align="center">' <<
-  	      public_link_to(Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE) <<
+              public_link_to(Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE) <<
               '&nbsp;' <<
- 	      public_link_to(logo_ruby, 'http://rubyonrails.org/', :class => 'no_hover') <<
+              public_link_to(logo_ruby, 'http://rubyonrails.org/', :class => 'no_hover') <<
               '&nbsp;' <<
               public_link_to(Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE) <<
            '</td>' <<
@@ -109,10 +109,9 @@
   </div><!-- end of footer -->
 
   <% unless user %>
-   <div id="login" style="display: none">
-    <div align="right"><%= link_to_close_redbox(image_hide_notice) %>&nbsp;</div>
-    <%= render :file => "account/login" %>
-   </div>
+    <div id="login" style="display: none">
+      <%= render :file => "account/login" %>
+    </div>
   <% end %>
 
 </body>
