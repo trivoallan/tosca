@@ -5,7 +5,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PaquetTest < Test::Unit::TestCase
-  fixtures :paquets
+  fixtures :paquets, :contrats_engagements, :engagements
 
   def test_to_param
     p = Paquet.find 1
@@ -20,7 +20,11 @@ class PaquetTest < Test::Unit::TestCase
 
   def test_contournement
     p = Paquet.find 1
-    assert_equal p.contournement(1,1), 'rr'
+    assert_equal p.contournement(2,1), 0.16
+  end
+  def test_correction
+    p = Paquet.find 1
+    assert_equal p.correction(2,1), 11
   end
 
 end
