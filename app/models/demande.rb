@@ -13,28 +13,28 @@ class Demande < ActiveRecord::Base
   # TODO : à voir si c'est inutile. avec le socle, on a dejà la plateforme
   has_and_belongs_to_many :binaires
   has_many :appels
-  has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
+#   has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
+  has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
   belongs_to :contribution
   belongs_to :socle
   has_many :piecejointes, :through => :commentaires
-
+  belongs_to :first_comment, :class_name => "Commentaire", :foreign_key => "first_comment_id"
+  
+  after_save :update_first_comment
+  after_create :create_first_comment
 
   validates_presence_of :resume,
        :warn => _("You must indicate a summary for your request")
   validates_length_of :resume, :within => 3..60
 
   #versioning, qui s'occupe de la table demandes_versions
-  acts_as_versioned
+#   acts_as_versioned
   acts_as_reportable
 
   # Corrigées, Cloturées et Annulées
   # MLO : on met un '> 6' à la place du 'IN' ?
   TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
   EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
-
-  def demande_resume
-    demande.resume
-  end
 
   # WARNING : you cannot use this scope with the optimisation hidden
   # in the model of Demande. You must then use get_scope_without_include
@@ -58,6 +58,32 @@ class Demande < ActiveRecord::Base
 
   def to_s
     "#{typedemande.nom} (#{severite.nom}) : #{description}"
+  end
+  
+  def update_first_comment
+    if self.first_comment.corps != self.description
+      self.first_comment.corps = self.description
+      self.first_comment.save
+    end 
+  end
+
+  def create_first_comment
+    comment = Commentaire.new do |c|
+      #We use id's because it's quicker
+      c.corps = self.description
+      c.ingenieur_id = self.ingenieur_id
+      c.demande_id = self.id
+      c.severite_id = self.severite_id
+      c.statut_id = self.statut_id
+      if self.beneficiaire
+        c.identifiant_id = self.beneficiaire.identifiant_id
+      else
+        c.identifiant_id = self.ingenieur.identifiant_id
+      end
+    end
+    comment.save
+    self.first_comment_id = comment.id
+    self.save
   end
 
   # We use finder for overused view mainly (demandes/list)
@@ -89,7 +115,7 @@ class Demande < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
-      c.name =~ /(_id|_on|version|resume|description)$/ ||
+      c.name =~ /(_id|_on|resume|description)$/ ||
       c.name == inheritance_column }
   end
 
@@ -112,8 +138,10 @@ class Demande < ActiveRecord::Base
 
   def temps_correction
     result = 0
-    corrigee = self.versions.find(:first, :conditions => 'statut_id IN (6,7)',
-                                  :order => 'updated_on ASC')
+#     corrigee = self.versions.find(:first, :conditions => 'statut_id IN (6,7)',
+#                                   :order => 'updated_on ASC')
+    corrigee = self.commentaires.find(:first, :conditions => 'statut_id IN (6,7)',
+                                      :order => 'updated_on ASC')
     if corrigee and self.appellee()
       result = compute_temps_ecoule(corrigee.statut_id)
     end
@@ -124,10 +152,10 @@ class Demande < ActiveRecord::Base
   # TODO : validation MLO
   # TODO : inaffichable dans la liste des demandes > améliorer le calcul de ce délais
   def delais_correction
-    delais = paquets.compact.collect{|p|
-     p.correction(typedemande_id, severite_id) *
+    delais = paquets.compact.collect{ |p|
+      p.correction(typedemande_id, severite_id) *
       p.contrat.client.support.interval_in_seconds
-   }.min
+    }.min
   end
 
   def affiche_temps_contournement
@@ -136,8 +164,10 @@ class Demande < ActiveRecord::Base
 
   def temps_contournement
     result = 0
-    contournee = self.versions.find(:first, :conditions => 'statut_id=5',
-                                    :order => 'updated_on ASC')
+#     contournee = self.versions.find(:first, :conditions => 'statut_id=5',
+#                                     :order => 'updated_on ASC')
+    contournee = self.commentaires.find(:first, :conditions => 'statut_id=5',
+                                        :order => 'updated_on ASC')
     if contournee and self.appellee()
       result = compute_temps_ecoule(5)
     end
@@ -150,9 +180,9 @@ class Demande < ActiveRecord::Base
 
   def temps_rappel
     result = 0
-    first = self.versions[0]
-    if (self.versions.size > 2) and (first.statut_id == 1) and self.appellee()
-      result = compute_diff(first.updated_on, appellee().updated_on,
+#     if (self.versions.size > 2) and (first.statut_id == 1) and self.appellee()
+    if (self.first_comment.statut_id == 1) and self.appellee()
+      result = compute_diff(self.first_comment.updated_on, appellee().updated_on,
                             client.support)
     end
     result
@@ -201,7 +231,6 @@ class Demande < ActiveRecord::Base
       temps_correction = engagement( critical_contract.id ).correction.days
     end
 
-
     temps_reel=
       distance_of_time_in_working_days(temps_ecoule, amplitude)
     temps_prevu_correction=
@@ -233,9 +262,9 @@ class Demande < ActiveRecord::Base
   end
 
   def compute_temps_ecoule(to = nil)
-    return 0 unless self.versions.size > 0
+    return 0 unless commentaires.size > 0
     support = client.support
-    changes = self.versions # Demandechange.find(:all)
+    changes = commentaires # Demandechange.find(:all)
     statuts_sans_chrono = [ 3, 7, 8 ] #Suspendue, Cloture, Annulée, cf modele statut
     inf = { :date => self.created_on, :statut => changes.first.statut_id } #1er statut : enregistré !
     delai = 0
@@ -320,8 +349,10 @@ class Demande < ActiveRecord::Base
   protected
   # this method must be protected and cannot be private as Ruby 1.8.6
   def appellee
-    @appellee ||= self.versions.find(:first, :conditions => 'statut_id=2',
-                                    :order => 'updated_on ASC')
+#     @appellee ||= self.versions.find(:first, :conditions => 'statut_id=2',
+#                                     :order => 'updated_on ASC')
+    @appellee ||= self.commentaires.find(:first, :conditions => 'statut_id=2',
+                                         :order => 'updated_on ASC')
   end
 
 

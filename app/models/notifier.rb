@@ -74,22 +74,6 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function require 2 parameters : :demande, :controller
-  def demande_assigner(options, flash)
-    demande = options[:demande]
-
-    recipients  compute_recipients(demande)
-    cc          compute_copy(demande)
-    from        FROM
-    subject     "[OSSA:##{demande.id}] : #{demande.resume}"
-
-    html_and_text_body(options);
-
-    if flash and flash[:notice]
-      flash[:notice] << message_notice(@recipients, @cc) 
-    end
-  end
-
   # This function needs 4 options : :demande, :nom, :commentaire, :url_request
   def demande_nouveau_commentaire(options, flash)
     demande = options[:demande]
@@ -98,8 +82,8 @@ class Notifier < ActionMailer::Base
     cc         compute_copy(demande) 
     from       FROM
     subject    "[OSSA:##{demande.id}] : #{demande.resume}"
-
-    html_and_text_body(options);
+    
+    html_and_text_body(options)
 
     if flash and flash[:notice]
       flash[:notice] << message_notice(@recipients, @cc)
@@ -151,13 +135,15 @@ class Notifier < ActionMailer::Base
   SUFFIX_VIEW = ".multi.rhtml"
   def html_and_text_body(body)
     method = caller[0].slice(/`.+'/).delete("`'") + SUFFIX_VIEW
+    
+    message_html = render_message(method, body)
 
     content_type MULTIPART_CONTENT
     part :content_type => TEXT_CONTENT,
-      :body => html2text(render_message(method, body))
+      :body => html2text(message_html)
 
     part :content_type => HTML_CONTENT,
-      :body => render_message(method, body)
+      :body => message_html
   end
 
 end
