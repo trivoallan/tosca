@@ -22,20 +22,23 @@ class CommentairesController < ApplicationController
     user = session[:user]
     demande = Demande.find(params[:id])
 
-    if params[:demande]
-      # on regarde si le statut a changer
-      statut_modifie = true if params[:demande][:statut_id] != ''
-      params[:demande][:statut_id] = demande.statut_id unless statut_modifie
-      # à la 'prise en compte' : assignation auto à l'ingénieur
-      if params[:demande][:statut_id] == '2' and demande.ingenieur_id.nil?
-        demande.ingenieur_id = @ingenieur.id
+    modifications = {}
+    if params[:commentaire]
+      #on regarde si le statut a changer
+      %w{statut_id ingenieur_id severite_id}.each do |attr|
+        modifications[attr] = true unless params[:commentaire][attr].blank?
       end
+      #On en a besoin ? J'ai l'impression que ça sert à rien
+      # à la 'prise en compte' : assignation auto à l'ingénieur
+      #if params[:commentaire][:statut_id] == '2' and demande.ingenieur_id.nil?
+      #  demande.ingenieur_id = @ingenieur.id
+      #end
     else
-      params[:demande] = {}
+      params[:commentaire] = {}
     end
-
+    
     # public si on modifie le statut
-    params[:commentaire][:prive]=false if statut_modifie
+    params[:commentaire][:prive] = false if modifications[:statut_id]
     # TODO : avertir ??
     # 'Le statut a été modifié : le commentaire est <b>public</b>'
     @commentaire = Commentaire.new(params[:commentaire])
@@ -50,23 +53,26 @@ class CommentairesController < ApplicationController
       @commentaire.errors.add_on_empty('corps')
       # Il ne faut _PAS_ de .now dans ce warn. Il est renvoyé au
       # contrôleur des demandes.
-      flash[:warn] = 'Votre commentaire est trop court, veuillez recommencer'
-    elsif @commentaire.save and demande.update_attributes(params[:demande])
-      flash[:notice] = 'Le commentaire a bien été ajouté.'
+      flash[:warn] = _("Your comment is too short, please rewrite it.")
+    elsif @commentaire.save
+      flash[:notice] = _("Your comment was successfully added.")
       unless @commentaire.prive
-        # TODO: This line is really ugly : find a better way. 
+        # TODO: This line is really ugly : find a better way.
         # maybe with an other plugin ?
-        url_attachment = render_to_string :inline => 
-          "<%=request.protocol%><%=request.host_with_port%><%=url_for_file_column(@commentaire.piecejointe, 'file', :absolute => true)%>"
-        options = {:demande => demande, :commentaire => @commentaire,
-           :nom => user.nom, :statut_modifie => statut_modifie,
-           :statut => demande.statut.nom, :url_request => demande_url(demande),
-           :url_attachment => url_attachment
+        url_attachment = ""
+        if @commentaire.piecejointe
+          url_attachment = render_to_string :inline =>
+            "<%=request.protocol%><%=request.host_with_port%><%=url_for_file_column(@commentaire.piecejointe, 'file', :absolute => true)%>"
+        end
+        options = { :demande => demande, :commentaire => @commentaire,
+                    :nom => user.nom, :modifications => modifications,
+                    :url_request => demande_url(demande),
+                    :url_attachment => url_attachment
         }
         Notifier::deliver_demande_nouveau_commentaire(options, flash)
       end
     else
-      flash[:warn] = 'Votre commentaire n\'a pas été ajouté correctement'
+      flash[:warn] = _("Your comment was successfully added")
     end
 
     redirect_to( comment_demande_path(demande) )
@@ -77,9 +83,9 @@ class CommentairesController < ApplicationController
     @commentaire = Commentaire.find(params[:id])
     # toggle inverse un statut booleen
     if @commentaire.toggle!(:prive)
-      flash[:notice] = "Le commentaire ##{@commentaire.id} est désormais #{@commentaire.etat}"
+      flash[:notice] = _("The comment %s is now %s") % [ "##{@commentaire.id}", @commentaire.etat ]
     else
-      flash.now[:warn] = 'Une erreur s\'est produite : le commentaire n\'a pas été modifié"'
+      flash.now[:warn] = _("A error has occured : The comment was not modified")
     end
     redirect_to comment_demande_path(@commentaire.demande_id)
   end
@@ -92,7 +98,7 @@ class CommentairesController < ApplicationController
   def create
     @commentaire = Commentaire.new(params[:commentaire])
     if @commentaire.save
-      flash[:notice] = 'Le commentaire a bien été crée.'
+      flash[:notice] = _("Your comment was successfully added.")
       redirect_to commentaires_path
     else
       _form
@@ -108,7 +114,7 @@ class CommentairesController < ApplicationController
   def update
     @commentaire = Commentaire.find(params[:id])
     if @commentaire.update_attributes(params[:commentaire])
-      flash[:notice] = 'Commentaire was successfully updated.'
+      flash[:notice] = _("The comment was successfully updated.")
       redirect_to commentaire_path(@commentaire)
     else
       _form and render :action => 'edit'
@@ -120,7 +126,7 @@ class CommentairesController < ApplicationController
     commentaire = Commentaire.find(params[:id])
     demande = commentaire.demande_id
     commentaire.destroy
-    flash[:notice] = 'Le commentaire a bien été supprimé.'
+    flash[:notice] = _("The comment was successfully destroyed.")
     redirect_to comment_demande_path(demande)
   end
 

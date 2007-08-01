@@ -67,22 +67,22 @@ class DemandesController < ApplicationController
     @demande.severite_id = 4
     # statut "prise en compte" si ingénieur, sinon : "enregistrée"
     @demande.statut_id = (@ingenieur ? 2 : 1)
-    # if we came from software view, it's sets automatically 
+    # if we came from software view, it's sets automatically
     @demande.logiciel_id = params[:logiciel_id]
-
+    
     @demande.beneficiaire_id = @beneficiaire.id if @beneficiaire
   end
 
   def create
     @demande = Demande.new(params[:demande])
-    pj = params[:piecejointe]
-    unless pj.blank?
-      piecejointe = Piecejointe.create(:file => pj[:file])
-      commentaire = Commentaire.create(:corps => _("file attached"), :piecejointe => piecejointe, :demande => @demande)
-    end
+#     pj = params[:piecejointe]
+#     unless pj.blank?
+#       piecejointe = Piecejointe.create(:file => pj[:file])
+#       commentaire = Commentaire.create(:corps => _("file attached"), :piecejointe => piecejointe, :demande => @demande)
+#     end
     if @demande.save
       flash[:notice] = _("Your request has been successfully submitted")
-      Notifier::deliver_demande_nouveau({:demande => @demande,
+      Notifier::deliver_demande_nouveau({ :demande => @demande,
                                           :nom => @session[:user].nom,
                                           :controller => self}, flash)
       redirect_to demandes_path
@@ -182,7 +182,6 @@ class DemandesController < ApplicationController
   def comment
     @demande = Demande.find(params[:id]) unless @demande
     conditions = [ "logiciel_id = ?", @demande.logiciel_id ]
-    @count = Demande.count(:conditions => conditions)
     # TODO c'est pas dry, cf ajax_comments
     options = { :order => 'created_on DESC', :include => [:identifiant],
       :limit => 1, :conditions => { :demande_id => @demande.id } }
@@ -195,6 +194,7 @@ class DemandesController < ApplicationController
       ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
     @contributions = Contribution.find(:all, options)
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @severity = Severite.find(:all)
 
     # On va chercher les identifiants des ingénieurs assignés
     # C'est un héritage du passé
