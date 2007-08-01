@@ -24,11 +24,11 @@ class Demande < ActiveRecord::Base
   validates_length_of :resume, :within => 3..60
 
   #versioning, qui s'occupe de la table demandes_versions
-  acts_as_versioned
-  has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
-#  after_save :update_first_comment
-#  after_create :create_first_comment
-#  has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
+  # acts_as_versioned
+  # has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
+  after_save :update_first_comment
+  after_create :create_first_comment
+  has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
 
 
   acts_as_reportable

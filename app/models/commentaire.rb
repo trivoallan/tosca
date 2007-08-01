@@ -24,7 +24,7 @@ class Commentaire < ActiveRecord::Base
     ( prive ? _("private") : _("public") )
   end
 
-  # after_save :update_demande
+  after_save :update_demande
 
   before_destroy :delete_pj
 
