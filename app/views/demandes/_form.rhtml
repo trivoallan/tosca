@@ -11,7 +11,7 @@
 <table><% #colonne gauche %>
 <% if @demande.beneficiaire && @ingenieur %>
 <tr>
-  <td><p>Client</p></td>
+  <td><p><% _("Client") %></p></td>
   <td><%= @demande.beneficiaire.client.nom %></td>
 </tr>
 <% end %>
@@ -51,11 +51,15 @@
   <td><%= select(:demande, :typedemande_id,
                   @typedemandes.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
+
+<% if controller.action_name == "new" %>
 <tr>
   <td><p><label for="demande_severite"><%= _("Severity of the request") %></label></p></td>
   <td><%= select(:demande, :severite_id,
                   @severites.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
+<% end %>
+
 <tr><td colspan="2"><hr /></td></tr>
 <tr>
   <td colspan="2"><div id="demande_paquets"></div></td>

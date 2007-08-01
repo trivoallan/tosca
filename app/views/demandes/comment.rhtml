@@ -7,13 +7,13 @@
 
   <h1>
     <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
-  <% options = pretty_print_demande_path(@demande.id) %>
+    <% options = pretty_print_demande_path(@demande.id) %>
     <% html_options = { :class => 'no_hover' } %>
     <%= link_to(image_print, options, html_options) %>
   </h1>
 
   <% if @last_commentaire %>
-     <%=render :partial => 'tab_comments' %>
+     <%= render :partial => 'tab_comments' %>
   <% else %>
    <div class="demande_tab_content">
      <%= @demande.description %>

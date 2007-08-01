@@ -4,7 +4,7 @@ Bonjour,<br/>
   <p>
 &nbsp;&nbsp;Vous recevez ce courriel car vous avez été identifié(e) en tant que bénéficiaire du marché passé entre <%= Metadata::NOM_ENTREPRISE %> et <%= @identifiant.beneficiaire.client.nom %>.
   </p>
-  <%= render :partial => '../notifier/identifiant_canaux_acces'%>
+  <%= render :partial => '../notifier/identifiant_canaux_acces' %>
 <% else %>
   <p>
 &nbsp;&nbsp;Vous recevez ce courriel car vous avez désormais accès à notre outil de travail en ligne développé pour vous par <%= Metadata::NOM_ENTREPRISE %>.<br/><br/>

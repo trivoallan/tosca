@@ -23,16 +23,16 @@
     </td>
     <% if @ingenieur and not pretty_print %>
      <td class="standard_infos" valign="middle" width="30" align="center">
-        <% html_options = { :class => 'no_hover' } %>
+       <% html_options = { :class => 'no_hover' } %>
        <%= link_to(image_edit, edit_commentaire_path(commentaire)), html_options) %>
        <br/>
-        <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private") ) %>
-        <% limage = (commentaire.prive ? image_public : image_private) %>
+       <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private") ) %>
+       <% limage = (commentaire.prive ? image_public : image_private) %>
        <% html_options[:method] = :post %>
        <%= link_to(limage, changer_etat_commentaire_path(commentaire)), html_options) %>
        <br/>
-        <% html_options[:confirm] = _("Are you sure you want to delete comment %s ?") % commentaire.id %>
-        <% html_options[:method] = :delete %>
+       <% html_options[:confirm] = _("Are you sure you want to delete comment %s ?") % commentaire.id %>
+       <% html_options[:method] = :delete %>
        <%= link_to(image_delete, commentaire_path(commentaire), html_options) %>
      </td>
     <% end %>

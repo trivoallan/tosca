@@ -29,11 +29,6 @@
   <% if @demande.ingenieur %>
     <li><b><%=_("Assigned to")%>: </b><%= @demande.ingenieur.nom %></li>
   <% end %>
-  <% if @ingenieur %>
-      <li><% form_tag changer_ingenieur_demande_path(@demande.id) do %>
-            <%= select_onchange @ingenieurs, 'demande', 'ingenieur_id' %>
-      <% end %></li>
-  <% end %>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_beneficiaire')">

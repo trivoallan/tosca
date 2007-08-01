@@ -10,7 +10,7 @@
 
 <%= render :partial => 'form_client' %><br />
 
-<p><label><%= _("Packages supported for  %s :") % @demande.logiciel.nom if @demande.logiciel %></label>
+<p><label><%= _("Packages supported for %s :") % @demande.logiciel.nom if @demande.logiciel %></label>
 <div class="bloc_scroll">
   <%= render :partial => 'form_binaires' %>
 </div>

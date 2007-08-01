@@ -1,22 +1,32 @@
 <%= error_messages_for 'commentaire' if @commentaire %>
 
 <table width="100%"><tr>
-  <td width="70%"><b><u>
+  <td><b><u>
     <label for="commentaire_corps"><%= _("Your answer :") %></label>
     </u></b></td>
   <% if @ingenieur %>
-  <td width="10%" align="right">
+  <td align="center">
+    <label for="commentaire_severite_id"><%= _("Severity") %></label>
+    <%= select_empty(@severity, nil, 'commentaire[severite_id]') %>
+  </td>
+  <td align="center">
+    <label for="commentaire_statut_id"><%= _("Status") %></label>
+    <%= select_empty(@statuts, nil, 'commentaire[statut_id]') %>
+  </td>
+  <td align="center">
+    <label for="commentaire_ingenieur_id"><%= _("Assign") %></label>
+    <%= select_empty(@ingenieurs, nil, 'commentaire[ingenieur_id]') %>
+  </td>
+  <td align="center">
     <label for="commentaire_prive"><%= _("Private ?") %></label>
-    <%= check_box("commentaire", "prive") %></td>
-  <td width="20%" align="right">
-    <label for="demande_statut_id"><%= _("Status") %></label>
-    <%= select_empty(@statuts, nil, 'demande[statut_id]') %></td>
-  <td><%= link_to_help('state') %></td>
+    <%= check_box("commentaire", "prive") %>
+  </td>
+  <td align="center"><%= link_to_help('state') %></td>
   <% end %>
 </tr></table>
 
 <%= text_area 'commentaire', 'corps', :style => "width:100%;", :rows => 15 %>
 <br/> <br/>
 <label for="piecejointe_file"><%= _("Add a file :") %></label>
-<%= file_column_field 'piecejointe', 'file', :size => 59  %>
+<%= file_column_field 'piecejointe', 'file', :size => 59 %>
 <%= submit_tag _("Answer") %>
