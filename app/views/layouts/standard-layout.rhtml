@@ -55,13 +55,12 @@
       <tr valign="top">
         <td valign="middle" width="145"><%= public_link_to logo_08000, bienvenue_url%>
         </td>
+        <td><%= user ? session[:menu] : @@menu[locale] %></td>
         <td align="right">
-
           <%= (user ? session[:account_links] : @@links[locale]) %>
         </td>
       </tr>
     </table>
-    <%= user ? session[:menu] : @@menu[locale] %>
   </div><!-- end of header -->
 
   <div id="content_div">
