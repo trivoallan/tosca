@@ -10,7 +10,6 @@ table.commentaire tr.prive {
 }
 table.commentaire td.infos {
 	vertical-align: top;
-	align: center;
 	padding-right: 2px;
 	width: 20%;
 }

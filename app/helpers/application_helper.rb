@@ -209,11 +209,11 @@ module ApplicationHelper
     class_name = options[:class] ||= 'simple_menu'
     out = ''
     out << '<div class="'+ class_name +'">'
-    out << form_tag(demandes_url) if options[:form]
+    out << form_tag(demandes_url, :method => :get) if options[:form]
     out << ' <ul>'
     menu.each { |e| out << "<li>#{e}</li>" } 
     out << ' </ul>'
-    out << end_form_tag if options[:form]
+    out << '</form>' if options[:form]
     out << '</div>'
   end
 

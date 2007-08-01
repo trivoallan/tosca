@@ -1,15 +1,8 @@
 /** 
  * Copyright Linagora SA 2007 - Tous droits réservés.
- * menu.css
+ * made by Guillaume Dufloux, inspired from http://collaboa.org/
  */
 
-
-/******************* MENU ************************/
-
-/**
- * simple menu
- * http://collaboa.org/
-*/
 .simple_menu {
   vertical-align: middle;
   position: absolute;
@@ -17,6 +10,7 @@
   left: 190px;
   z-index: 0;
 }
+
 .account_menu {
   vertical-align: middle;
   position: float;

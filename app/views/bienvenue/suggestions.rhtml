@@ -6,23 +6,19 @@ Every proposition will be consider with a lot of attention')%></p>
 <% form_tag suggestions_bienvenue_path do %>
 <table class="show">
   <tr>
-    <td>
-      <h3><%=  _('Your suggestions on our service :')%></h3>
-    </td>
-    <td>
-      <h3><%= _('Your suggestions on our tool : ')%></h3>
-    </td>
+    <th><%=  _('Your suggestions on our service :')%></th>
   </tr>
   <tr>
-    <td>
-      <%= text_area :suggestion, :team, :cols => 80 %>
-    </td>
-    <td>
-      <%= text_area :suggestion, :tosca, :cols => 80 %>
-    </td>
+    <td><%= text_area :suggestion, :team, :cols => 80 %></td>
+  <td>
+  <tr>
+    <th><hr /><%= _('Your suggestions on our tool : ')%></th>
   </tr>
   <tr>
-    <td colspan="2" align="center"><%= submit_tag _('Submit')%></td>
+    <td><%= text_area :suggestion, :tosca, :cols => 80 %></td>
+  </tr>
+  <tr>
+    <td align="center"><%= submit_tag _('Submit')%></td>
   </tr>
 </table>
 <% end %>

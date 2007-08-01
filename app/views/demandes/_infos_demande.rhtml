@@ -51,7 +51,7 @@
 <ul class="menu" id="life_cycle_menu">
   <li><b><%= _("Created on") %>: </b><%= @demande.created_on_formatted %></li>
   <li><b><%= _("Updated on") %>: </b> <%= @demande.updated_on_formatted %></li>
-  <li><b><%= _("Elapsed time") %>: </b><%= Lstm.time_in_french_words(@demande.temps_ecoule, client.support.interval) %></li>
+  <li><b><%= _("Elapsed time") %>: </b><%#= Lstm.time_in_french_words(@demande.temps_ecoule, client.support.interval) %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_aide')">
