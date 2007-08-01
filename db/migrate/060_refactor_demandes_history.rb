@@ -5,6 +5,7 @@ class RefactorDemandesHistory < ActiveRecord::Migration
     ActiveRecord::Base.record_timestamps = false
     
     add_column(:demandes, :first_comment_id, :integer)
+    add_column(:demande_versions, :first_comment_id, :integer)
 
     add_column(:commentaires, :severite_id, :integer, :null => true)
     add_column(:commentaires, :statut_id, :integer, :null => true)
