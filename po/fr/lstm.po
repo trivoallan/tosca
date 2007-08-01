@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-01 17:36+0200\n"
-"PO-Revision-Date: 2007-08-01 17:38+0200\n"
+"PO-Revision-Date: 2007-08-01 17:41+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -838,7 +838,7 @@ msgstr "montrer les demandes qui ont déjà été traitées"
 
 #: app/helpers/demandes_helper.rb:194
 msgid "all the requests"
-msgstr "tout les demandes"
+msgstr "toutes les demandes"
 
 #: app/helpers/demandes_helper.rb:195
 msgid "show all the requests"
@@ -3370,7 +3370,7 @@ msgstr "Contrat"
 
 #: app/views/demandes/_infos_demande.rhtml:41
 msgid "Company"
-msgstr "Société :"
+msgstr "Société"
 
 #: app/views/demandes/_infos_demande.rhtml:45
 msgid "Life cycle"
