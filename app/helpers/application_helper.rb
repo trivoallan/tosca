@@ -59,7 +59,7 @@ module ApplicationHelper
       return "<u><b>#{pluralize(size, nom.capitalize)}" << _(' to date') << '</b></u><br />' 
     end
     result = ''
-    unless options[:title]==false or options[:no_title]
+    unless nom.blank? or options[:title]==false or options[:no_title]
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
     end
 
