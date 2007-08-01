@@ -108,10 +108,10 @@ class AccountController < ApplicationController
       @identifiant = Identifiant.new(params['identifiant'])
       if @identifiant.save
         client = Client.find(params[:client][:id])
-        flash[:notice] = _('Record successfully created, don\'t forget to vérify his profil<br />')
+        flash[:notice] = _("Account successfully created, don't forget to check his profile.")
         @identifiant.create_person(client)
         flash[:notice] << (@identifiant.client ?
-                           _('Recipient') : _('Engineer ') << _(' associate created'))
+                           _('Recipient') : _('Engineer ') << _(' created'))
         # welcome mail
         options = { :identifiant => @identifiant, :controller => self,
           :password => @identifiant.pwd }
@@ -143,15 +143,15 @@ class AccountController < ApplicationController
     case request.method
     when :post
       if(params['textarea_csv'].to_s.empty?)
-        flash.now[:warn] = _('Enter under CSV format please')
+        flash.now[:warn] = _('Enter data under CSV format please')
       end
       COLUMNS.each { |key|
         unless row.include? key
-          flash.now[:warn] = _('The CSV file isn\t well formed')
+          flash.now[:warn] = _('The CSV file is not correct')
         end
       }
       if params[:identifiant].nil? or params[:identifiant][:client].nil?
-        flash.now[:warn] = _('You don\'t have specified a customer')
+        flash.now[:warn] = _('You have to specify a customer')
       end
       if params[:identifiant][:role_ids].nil?
         flash.now[:warn] = _('Vous must specify a role')
@@ -187,7 +187,7 @@ class AccountController < ApplicationController
           Notifier::deliver_identifiant_nouveau(options, flash)
           flash[:notice] += '<br/>'
         else
-          flash.now[:warn] += _('The user %s  has not been successfully created.<br /> ') %
+          flash.now[:warn] += _('The user %s  has not been created.<br /> ') %
             identifiant.nom
         end
 

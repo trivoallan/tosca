@@ -37,15 +37,15 @@ class Identifiant < ActiveRecord::Base
   # not have the "pwd" prefix ... TODO : find a pretty way ?
   # TODO : check if gettext is an answer ?
   def validate
-    errors.add_to_base(_("Mot de passe manquant")) if password.blank?
+    errors.add_to_base(_("Password missing")) if password.blank?
     if pwd != pwd_confirmation
-      errors.add_to_base(_('Votre mot de passe ne correspond pas à la confirmation'))
+      errors.add_to_base(_('Password is different from its confirmation'))
     end
     unless pwd.blank?
       if pwd.length > 20
-        errors.add_to_base(_('Votre mot de passe est trop long (max. 20 caractères)'))
+        errors.add_to_base(_('Your password is too long (max. 20)'))
       elsif pwd.length < 5
-        errors.add_to_base(_('Votre mot de passe est trop court (min. 5 caractères)'))
+        errors.add_to_base(_('Your password is too short (min. 5)'))
       end
     end
   end

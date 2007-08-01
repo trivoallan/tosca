@@ -532,21 +532,22 @@ end
     g.hide_dots = true if g.respond_to? :hide_dots
     g.hide_legend = true
     # TODO : mettre ca dans les metadatas
-    g.no_data_message = _('No data available')
+    g.no_data_message = _('No data <br/>available')
 
     # this writes the file to the hard drive for caching
     g.write "#{RAILS_ROOT}/public/images/#{@path[nom]}"
   end
 
 
+  # todo : une variable de classe localise (@@titles[locale])
   def _titles
     @@titles = {
       :repartition => _('Distribution of your requests'),
-      :repartition_cumulee => _('Distribution of your requests'),
-      :severite => _('Severity of the received requests'),
-      :severite_cumulee => _('Severity of the received requests'),
-      :resolution => _('Resolution of the received requests'),
-      :resolution_cumulee => _('Resolution of the received requests'),
+      :repartition_cumulee => _('Distribution of requests'),
+      :severite => _('Severity of your requests'),
+      :severite_cumulee => _('Severity of your requests'),
+      :resolution => _('Resolution of your requests'),
+      :resolution_cumulee => _('Resolution of your requests'),
 
       :annulation => _('Cancelled requests'),
       :evolution => _('Evolution of the activity volume'),

@@ -19,7 +19,7 @@ class RolesController < ApplicationController
   def create
     @role = Role.new(params[:role])
     if @role.save
-      flash[:notice] = _("The rule %s was succefully created.") % "\"#{@role.nom}\""
+      flash[:notice] = _("The role %s was succefully created.") % "\"#{@role.nom}\""
       redirect_to roles_url
     else
       render :action => 'new'
@@ -34,7 +34,7 @@ class RolesController < ApplicationController
   def update
     @role = Role.find(params[:id])
     if @role.update_attributes(params[:role])
-      flash[:notice] = _("The rule %s was succefully updated.") % "\"#{@role.nom}\""
+      flash[:notice] = _("The role %s was succefully updated.") % "\"#{@role.nom}\""
       redirect_to roles_url
     else
       render :action => 'edit'

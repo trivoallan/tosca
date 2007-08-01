@@ -96,7 +96,7 @@ class ExportController < ApplicationController
     columns.push( 'debut','fin')
     report.reorder columns
     report.rename_columns columns,
-      [_('Contract'), _('Person in charge'), _('Customer'), _('Call'), 
+      [_('Contract'), _('Owner'), _('Customer'), _('Call'), 
         _('End of the call') ]
 
     generate_report(report, type, {})
@@ -142,10 +142,10 @@ class ExportController < ApplicationController
     end
     report.reorder columns
     report.rename_columns columns,
-      [_('id'), _('software'), _('beneficiaire'), ('Customer'),
-        _('Person in charge') , _('severity'),
-        _('version') , _('date de soumission') , _('plateform'), _('update'),
-        _('summary'), _('status'), _('type') ]
+      [_('Id'), _('Software'), _('Recipient'), ('Customer'),
+        _('Owner') , _('Severity'),
+        _('Version') , _('Submission date') , _('Platform'), _('Last update'),
+        _('Summary'), _('Status'), _('Type') ]
 
     generate_report(report, type, options_generate)
   end

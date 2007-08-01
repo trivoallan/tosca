@@ -28,7 +28,7 @@ module ImagesHelper
   end
 
   def image_create(message)
-    desc = _("Post %s") % message
+    desc = _("Create %s") % message
     image_tag("create_icon.png", image_options(desc, '16x16'))
   end
 

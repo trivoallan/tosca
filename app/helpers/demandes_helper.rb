@@ -180,13 +180,13 @@ module DemandesHelper
   def remote_link_to_active_request
     js_call = "document.forms['filters'].active.value=1; #{remote_function(AJAX_CALL)}"
     link_to_function(_('active requests'), js_call,
-                     _('show the requests that are waiting to be processed'))
+                     _('show requests waiting to be processed'))
   end
 
   def remote_link_to_dead_request
     js_call = "document.forms['filters'].active.value=-1; #{remote_function(AJAX_CALL)}"
     link_to_function(_('finished requests'), js_call,
-                     _('show the requests that were processed'))
+                     _('show requests that were processed'))
   end
 
   def remote_link_to_all_request

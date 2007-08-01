@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-01 14:51+0200\n"
+"POT-Creation-Date: 2007-08-01 16:30+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,11 +37,12 @@ msgid "Edition succeeded"
 msgstr ""
 
 #: app/controllers/account_controller.rb:111
-msgid "Record successfully created, don't forget to vérify his profil<br />"
+msgid "Account successfully created, don't forget to check his profile."
 msgstr ""
 
 #: app/controllers/account_controller.rb:114
 #: app/controllers/account_controller.rb:183
+#: app/controllers/export_controller.rb:145
 #: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
 #: app/views/bienvenue/admin.rhtml:31 app/views/demandes/_appels.rhtml:2
@@ -55,7 +56,7 @@ msgid "Engineer "
 msgstr ""
 
 #: app/controllers/account_controller.rb:114
-msgid " associate created"
+msgid " created"
 msgstr ""
 
 #: app/controllers/account_controller.rb:133
@@ -103,15 +104,15 @@ msgid "Informations"
 msgstr ""
 
 #: app/controllers/account_controller.rb:146
-msgid "Enter under CSV format please"
+msgid "Enter data under CSV format please"
 msgstr ""
 
 #: app/controllers/account_controller.rb:150
-msgid "The CSV file isn\t well formed"
+msgid "The CSV file is not correct"
 msgstr ""
 
 #: app/controllers/account_controller.rb:154
-msgid "You don't have specified a customer"
+msgid "You have to specify a customer"
 msgstr ""
 
 #: app/controllers/account_controller.rb:157
@@ -127,7 +128,7 @@ msgid "Associate created"
 msgstr ""
 
 #: app/controllers/account_controller.rb:190
-msgid "The user %s  has not been successfully created.<br /> "
+msgid "The user %s  has not been created.<br /> "
 msgstr ""
 
 #: app/controllers/account_controller.rb:264
@@ -258,24 +259,18 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:41
 #: app/controllers/export_controller.rb:70
-#: app/controllers/export_controller.rb:145
 msgid "id"
 msgstr ""
 
 #: app/controllers/export_controller.rb:41
-#: app/controllers/export_controller.rb:148
-#: app/views/bienvenue/_liens_declaration.rhtml:13
 msgid "type"
 msgstr ""
 
 #: app/controllers/export_controller.rb:41
-#: app/controllers/export_controller.rb:145
-#: app/views/bienvenue/declaration.rhtml:13
 msgid "software"
 msgstr ""
 
 #: app/controllers/export_controller.rb:41
-#: app/controllers/export_controller.rb:147
 msgid "version"
 msgstr ""
 
@@ -284,7 +279,6 @@ msgid "state"
 msgstr ""
 
 #: app/controllers/export_controller.rb:42
-#: app/controllers/export_controller.rb:148
 msgid "summary"
 msgstr ""
 
@@ -337,7 +331,7 @@ msgstr ""
 #: app/controllers/export_controller.rb:99
 #: app/controllers/export_controller.rb:146 app/views/demandes/_appels.rhtml:2
 #: app/views/demandes/_requests_list.rhtml:19
-msgid "Person in charge"
+msgid "Owner"
 msgstr ""
 
 #: app/controllers/export_controller.rb:99
@@ -356,36 +350,75 @@ msgstr ""
 msgid "End of the call"
 msgstr ""
 
-#: app/controllers/export_controller.rb:145 app/models/beneficiaire.rb:-
-msgid "beneficiaire"
+#: app/controllers/export_controller.rb:145
+#: app/views/demandes/_piecejointes.rhtml:3
+#: app/views/demandes/_report_detail.rhtml:7
+#: app/views/demandes/_requests_list.rhtml:9
+#: app/views/reporting/_comex_cns.rhtml:19 app/views/statuts/index.rhtml:8
+msgid "Id"
 msgstr ""
 
-#: app/controllers/export_controller.rb:146
-#: app/views/bienvenue/_liens_declaration.rhtml:12
-#: app/views/bienvenue/_liens_deroulement.rhtml:10
-#: app/views/bienvenue/declaration.rhtml:13
-#: app/views/reporting/_sommaire.rhtml:9 app/views/reporting/general.rhtml:24
-msgid "severity"
+#: app/controllers/export_controller.rb:145 app/views/account/_menu.rhtml:18
+#: app/views/binaires/show.rhtml:9
+#: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:46
+#: app/views/demandes/_infos_demande.rhtml:21
+#: app/views/demandes/_requests_list.rhtml:10 app/views/paquets/_form.rhtml:7
+#: app/views/paquets/_paquets_list.rhtml:7 app/views/paquets/show.rhtml:16
+#: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:6
+#: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
+msgid "Software"
+msgstr ""
+
+#: app/controllers/export_controller.rb:146 app/views/clients/show.rhtml:33
+#: app/views/demandes/_infos_demande.rhtml:25
+#: app/views/demandes/_requests_info.rhtml:39
+msgid "Severity"
 msgstr ""
 
 #: app/controllers/export_controller.rb:147
-msgid "date de soumission"
+#: app/helpers/contributions_helper.rb:10 app/views/binaires/show.rhtml:15
+#: app/views/demandes/_cns.rhtml:32 app/views/demandes/_form_binaires.rhtml:5
+#: app/views/paquets/_form.rhtml:21
+msgid "Version"
 msgstr ""
 
 #: app/controllers/export_controller.rb:147
-msgid "plateform"
+msgid "Submission date"
 msgstr ""
 
 #: app/controllers/export_controller.rb:147
-msgid "update"
+msgid "Platform"
+msgstr ""
+
+#: app/controllers/export_controller.rb:147
+msgid "Last update"
 msgstr ""
 
 #: app/controllers/export_controller.rb:148
-#: app/views/bienvenue/_liens_declaration.rhtml:11
-#: app/views/bienvenue/_liens_deroulement.rhtml:9
-#: app/views/bienvenue/declaration.rhtml:15
-#: app/views/bienvenue/declaration.rhtml:21
-msgid "status"
+#: app/controllers/reporting_controller.rb:514
+#: app/helpers/contributions_helper.rb:10 app/views/bienvenue/admin.rhtml:2
+#: app/views/demandes/_form_deposer.rhtml:19
+#: app/views/demandes/_infos_demande.rhtml:15
+#: app/views/demandes/_requests_list.rhtml:17
+#: app/views/logiciels/_form.rhtml:6 app/views/reporting/general.rhtml:7
+#: app/views/reporting/_comex_cns.rhtml:22
+msgid "Summary"
+msgstr ""
+
+#: app/controllers/export_controller.rb:148
+#: app/views/demandes/_comment_form.rhtml:12
+#: app/views/demandes/_infos_demande.rhtml:23
+#: app/views/demandes/_requests_info.rhtml:41
+msgid "Status"
+msgstr ""
+
+#: app/controllers/export_controller.rb:148
+#: app/views/demandes/_infos_demande.rhtml:24
+#: app/views/demandes/_requests_info.rhtml:37
+#: app/views/demandes/_requests_list.rhtml:11
+#: app/views/documents/_form.rhtml:18
+msgid "Type"
 msgstr ""
 
 #: app/controllers/export_controller.rb:202
@@ -535,74 +568,67 @@ msgstr ""
 msgid " months"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:514
-#: app/helpers/contributions_helper.rb:10 app/views/bienvenue/admin.rhtml:2
-#: app/views/demandes/_form_deposer.rhtml:19
-#: app/views/demandes/_infos_demande.rhtml:15
-#: app/views/demandes/_requests_list.rhtml:17
-#: app/views/logiciels/_form.rhtml:6 app/views/reporting/general.rhtml:7
-#: app/views/reporting/_comex_cns.rhtml:22
-msgid "Summary"
-msgstr ""
-
 #: app/controllers/reporting_controller.rb:535
-msgid "No data available"
+msgid "No data <br/>available"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:544
 #: app/controllers/reporting_controller.rb:545
 #: app/views/reporting/_sommaire.rhtml:7 app/views/reporting/general.rhtml:20
 msgid "Distribution of your requests"
 msgstr ""
 
 #: app/controllers/reporting_controller.rb:546
+msgid "Distribution of requests"
+msgstr ""
+
 #: app/controllers/reporting_controller.rb:547
-msgid "Severity of the received requests"
-msgstr ""
-
 #: app/controllers/reporting_controller.rb:548
-#: app/controllers/reporting_controller.rb:549
-msgid "Resolution of the received requests"
+msgid "Severity of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:551
-msgid "Cancelled requests"
+#: app/controllers/reporting_controller.rb:549
+#: app/controllers/reporting_controller.rb:550
+msgid "Resolution of your requests"
 msgstr ""
 
 #: app/controllers/reporting_controller.rb:552
+msgid "Cancelled requests"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:553
 msgid "Evolution of the activity volume"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:554
+#: app/controllers/reporting_controller.rb:555
 msgid "Top 5 of the most discussed requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:555
+#: app/controllers/reporting_controller.rb:556
 msgid "Top 5 of the most discussed software"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:557
+#: app/controllers/reporting_controller.rb:558
 msgid "Processing time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:558
+#: app/controllers/reporting_controller.rb:559
 msgid "Response time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:559
+#: app/controllers/reporting_controller.rb:560
 msgid "Workaround time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:560
+#: app/controllers/reporting_controller.rb:561
 msgid "Correction time"
 msgstr ""
 
 #: app/controllers/roles_controller.rb:22
-msgid "The rule %s was succefully created."
+msgid "The role %s was succefully created."
 msgstr ""
 
 #: app/controllers/roles_controller.rb:37
-msgid "The rule %s was succefully updated."
+msgid "The role %s was succefully updated."
 msgstr ""
 
 #: app/controllers/severites_controller.rb:21
@@ -725,12 +751,6 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: app/helpers/contributions_helper.rb:10 app/views/binaires/show.rhtml:15
-#: app/views/demandes/_cns.rhtml:32 app/views/demandes/_form_binaires.rhtml:5
-#: app/views/paquets/_form.rhtml:21
-msgid "Version"
-msgstr ""
-
 #: app/helpers/contributions_helper.rb:35
 #: app/views/contributions/_contributions_admin.rhtml:3
 msgid "a contribution"
@@ -765,7 +785,7 @@ msgid "active requests"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:183
-msgid "show the requests that are waiting to be processed"
+msgid "show requests waiting to be processed"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:188
@@ -773,7 +793,7 @@ msgid "finished requests"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:189
-msgid "show the requests that were processed"
+msgid "show requests that were processed"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:194
@@ -855,7 +875,7 @@ msgid "classification"
 msgstr ""
 
 #: app/helpers/images_helper.rb:31
-msgid "Post %s"
+msgid "Create %s"
 msgstr ""
 
 #: app/helpers/images_helper.rb:43 app/views/clients/show.rhtml:38
@@ -1073,7 +1093,7 @@ msgid "The beginning of the call has to be before to its end."
 msgstr ""
 
 #: app/models/appel.rb:21
-msgid "beneficiaire.client_id and contrat_id.client are different"
+msgid "recipient and client have to correspond."
 msgstr ""
 
 #: app/models/appel.rb:38 app/models/appel.rb:45
@@ -1086,6 +1106,10 @@ msgstr ""
 
 #: app/models/arch.rb:-
 msgid "Arch|Nom"
+msgstr ""
+
+#: app/models/beneficiaire.rb:-
+msgid "beneficiaire"
 msgstr ""
 
 #: app/models/beneficiaire.rb:-
@@ -1702,19 +1726,19 @@ msgid "Identifiant|Pwd confirmation"
 msgstr ""
 
 #: app/models/identifiant.rb:40
-msgid "Mot de passe manquant"
+msgid "Password missing"
 msgstr ""
 
 #: app/models/identifiant.rb:42
-msgid "Votre mot de passe ne correspond pas à la confirmation"
+msgid "Password is different from its confirmation"
 msgstr ""
 
 #: app/models/identifiant.rb:46
-msgid "Votre mot de passe est trop long (max. 20 caractères)"
+msgid "Your password is too long (max. 20)"
 msgstr ""
 
 #: app/models/identifiant.rb:48
-msgid "Votre mot de passe est trop court (min. 5 caractères)"
+msgid "Your password is too short (min. 5)"
 msgstr ""
 
 #: app/models/ingenieur.rb:-
@@ -2106,7 +2130,7 @@ msgid "Fill up the fileds which are common in all the accounts.<br /> please."
 msgstr ""
 
 #: app/views/account/_edit.rhtml:16
-msgid "Complete the rest in the last text fiel in CSV format."
+msgid "The last field must be fill with CSV format."
 msgstr ""
 
 #: app/views/account/_edit.rhtml:23
@@ -2187,17 +2211,6 @@ msgstr ""
 msgid "Calls"
 msgstr ""
 
-#: app/views/account/_menu.rhtml:18 app/views/binaires/show.rhtml:9
-#: app/views/contributions/_contributions_admin.rhtml:7
-#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:46
-#: app/views/demandes/_infos_demande.rhtml:21
-#: app/views/demandes/_requests_list.rhtml:10 app/views/paquets/_form.rhtml:7
-#: app/views/paquets/_paquets_list.rhtml:7 app/views/paquets/show.rhtml:16
-#: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:6
-#: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
-msgid "Software"
-msgstr ""
-
 #: app/views/account/_menu.rhtml:24
 msgid "Directory"
 msgstr ""
@@ -2270,10 +2283,11 @@ msgstr ""
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/paquets/_form.rhtml:18 app/views/paquets/_paquets_info.rhtml:23
 #: app/views/paquets/_paquets_list.rhtml:7 app/views/permissions/_form.rhtml:4
-#: app/views/roles/_form.rhtml:3 app/views/socles/_form.rhtml:3
-#: app/views/statuts/_form.rhtml:3 app/views/supports/_form.rhtml:3
-#: app/views/typecontributions/_form.rhtml:3
-#: app/views/typedocuments/_form.rhtml:3 app/views/typeurls/_form.rhtml:3
+#: app/views/roles/_form.rhtml:3 app/views/severites/_form.rhtml:3
+#: app/views/socles/_form.rhtml:3 app/views/statuts/_form.rhtml:3
+#: app/views/supports/_form.rhtml:3 app/views/typecontributions/_form.rhtml:3
+#: app/views/typedemandes/_form.rhtml:3 app/views/typedocuments/_form.rhtml:3
+#: app/views/typeurls/_form.rhtml:3
 msgid "Name"
 msgstr ""
 
@@ -2305,7 +2319,7 @@ msgid "Engineers: "
 msgstr ""
 
 #: app/views/account/_users_info.rhtml:44
-msgid "Thin consistencies: "
+msgid "Inconsistencies: "
 msgstr ""
 
 #: app/views/account/_users_list.rhtml:3
@@ -2498,19 +2512,6 @@ msgstr ""
 msgid "Add a recipient"
 msgstr ""
 
-#: app/views/bienvenue/_liens_declaration.rhtml:4
-msgid "\"How are the request processing ?\""
-msgstr ""
-
-#: app/views/bienvenue/_liens_declaration.rhtml:15
-#: app/views/bienvenue/_liens_deroulement.rhtml:3
-msgid "\"How to submit a request ?\""
-msgstr ""
-
-#: app/views/bienvenue/_liens_deroulement.rhtml:11
-msgid "recall on our commitment"
-msgstr ""
-
 #: app/views/bienvenue/about.rhtml:11
 msgid "About"
 msgstr ""
@@ -2638,63 +2639,16 @@ msgstr ""
 msgid "Comex report"
 msgstr ""
 
-#: app/views/bienvenue/declaration.rhtml:1
-msgid "Howto submit a request"
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:5
-msgid "You can submit a request : "
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:7
-msgid ""
-"Either by phone on 08000 54689 (LINUX) : you will be asked for a key-code"
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:8
-msgid "Either on the dedicate %s"
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:8
-msgid "web page"
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:12
-msgid ""
-"The declaration consists to inform the cell on 08000linux about the %s, la %"
-"s and the %s concerned by your request."
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:14
-msgid "Next you can precise the summary and the description of your request."
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:15
-msgid "On the validation,the %s become to <i>\"declared\"</i>"
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:19
-msgid ""
-"An engineer from 08000linux will call back <b>to one hour</b> ( See our %s ) "
-"and will asked you if necessary to precise your demand"
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:20
-#: app/views/bienvenue/deroulement.rhtml:10
-msgid "commitment"
-msgstr ""
-
-#: app/views/bienvenue/declaration.rhtml:21
-msgid ""
-"At the end of the call, the %s from the demand will become <i>#chek in\"</i>"
-msgstr ""
-
 #: app/views/bienvenue/deroulement.rhtml:1
 msgid "How are the request processing"
 msgstr ""
 
 #: app/views/bienvenue/deroulement.rhtml:5
 msgid "[Scheme with the arrows]"
+msgstr ""
+
+#: app/views/bienvenue/deroulement.rhtml:10
+msgid "commitment"
 msgstr ""
 
 #: app/views/bienvenue/index.rhtml:2
@@ -2824,9 +2778,7 @@ msgid ""
 msgstr ""
 
 #: app/views/bienvenue/index.rhtml:74
-msgid ""
-"We have assistance offers, also support and mantainance for, so don't "
-"hesitate to"
+msgid "Don't hesitate to"
 msgstr ""
 
 #: app/views/bienvenue/index.rhtml:75
@@ -2839,14 +2791,6 @@ msgid ""
 "communities."
 msgstr ""
 
-#: app/views/bienvenue/natures.rhtml:1
-msgid "Type of requests"
-msgstr ""
-
-#: app/views/bienvenue/natures.rhtml:5
-msgid "Request type list :"
-msgstr ""
-
 #: app/views/bienvenue/plan.rhtml:2
 msgid "Plan/access allowed"
 msgstr ""
@@ -2857,14 +2801,6 @@ msgstr ""
 
 #: app/views/bienvenue/selenium.rhtml:4
 msgid "test"
-msgstr ""
-
-#: app/views/bienvenue/severites.rhtml:1
-msgid "Severity of the Requests"
-msgstr ""
-
-#: app/views/bienvenue/severites.rhtml:5
-msgid "Severity list"
 msgstr ""
 
 #: app/views/bienvenue/statuts.rhtml:1
@@ -2978,7 +2914,7 @@ msgid "Mailing list"
 msgstr ""
 
 #: app/views/clients/_form.rhtml:14
-msgid "Adress"
+msgid "Address"
 msgstr ""
 
 #: app/views/clients/_form.rhtml:18 app/views/clients/index.rhtml:4
@@ -2998,11 +2934,9 @@ msgstr ""
 msgid "Edit the client %s"
 msgstr ""
 
-#: app/views/clients/edit.rhtml:8
-#: app/views/demandes/_infos_beneficiaire.rhtml:23
-#: app/views/demandes/_infos_beneficiaire.rhtml:27
-#: app/views/images/edit.rhtml:8 app/views/machines/edit.rhtml:8
-#: app/views/reporting/delai.rhtml:6 app/views/typecontributions/edit.rhtml:8
+#: app/views/clients/edit.rhtml:8 app/views/images/edit.rhtml:8
+#: app/views/machines/edit.rhtml:8 app/views/reporting/delai.rhtml:6
+#: app/views/typecontributions/edit.rhtml:8
 msgid "Show"
 msgstr ""
 
@@ -3028,11 +2962,6 @@ msgstr ""
 
 #: app/views/clients/show.rhtml:31
 msgid "and %s binaries :"
-msgstr ""
-
-#: app/views/clients/show.rhtml:33 app/views/demandes/_infos_demande.rhtml:25
-#: app/views/demandes/_requests_info.rhtml:39
-msgid "Severity"
 msgstr ""
 
 #: app/views/clients/show.rhtml:38
@@ -3242,12 +3171,6 @@ msgstr ""
 msgid "Private ?"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:12
-#: app/views/demandes/_infos_demande.rhtml:23
-#: app/views/demandes/_requests_info.rhtml:41
-msgid "Status"
-msgstr ""
-
 #: app/views/demandes/_comment_form.rhtml:20
 msgid "Add a file :"
 msgstr ""
@@ -3329,48 +3252,23 @@ msgid "Change(s)"
 msgstr ""
 
 #: app/views/demandes/_history.rhtml:18
-msgid "The request has no more <b>person in charge</b>"
+msgid "The request has no more <b>owner</b>"
 msgstr ""
 
 #: app/views/demandes/_history.rhtml:21
-msgid "The <b>person in charge</b> of your request is"
+msgid "The <b>owner</b> of your request is"
 msgstr ""
 
 #: app/views/demandes/_history.rhtml:27
 msgid "The <b>status</b> of your request is <b>%s</b>"
 msgstr ""
 
-#: app/views/demandes/_infos_beneficiaire.rhtml:19
-msgid "Coordinates of the recipient"
-msgstr ""
-
-#: app/views/demandes/_infos_beneficiaire.rhtml:32
-#: app/views/demandes/_requests_list.rhtml:14
-msgid "Client"
-msgstr ""
-
-#: app/views/demandes/_infos_beneficiaire.rhtml:35
-#: app/views/demandes/_infos_demande.rhtml:43
-msgid "Contact"
-msgstr ""
-
-#: app/views/demandes/_infos_beneficiaire.rhtml:37
-msgid "Phone number"
-msgstr ""
-
 #: app/views/demandes/_infos_demande.rhtml:18
 msgid "Vm"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:24
-#: app/views/demandes/_requests_info.rhtml:37
-#: app/views/demandes/_requests_list.rhtml:11
-#: app/views/documents/_form.rhtml:18
-msgid "Type"
-msgstr ""
-
 #: app/views/demandes/_infos_demande.rhtml:27
-msgid "Informed"
+msgid "CC"
 msgstr ""
 
 #: app/views/demandes/_infos_demande.rhtml:30
@@ -3379,6 +3277,10 @@ msgstr ""
 
 #: app/views/demandes/_infos_demande.rhtml:40
 msgid "Recipent"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:43
+msgid "Contact"
 msgstr ""
 
 #: app/views/demandes/_infos_demande.rhtml:46
@@ -3400,13 +3302,6 @@ msgstr ""
 
 #: app/views/demandes/_piecejointes.rhtml:2
 msgid "Attachment"
-msgstr ""
-
-#: app/views/demandes/_piecejointes.rhtml:3
-#: app/views/demandes/_report_detail.rhtml:7
-#: app/views/demandes/_requests_list.rhtml:9
-#: app/views/reporting/_comex_cns.rhtml:19 app/views/statuts/index.rhtml:8
-msgid "Id"
 msgstr ""
 
 #: app/views/demandes/_piecejointes.rhtml:3
@@ -3453,6 +3348,10 @@ msgstr ""
 
 #: app/views/demandes/_requests_info.rhtml:46
 msgid "Flow"
+msgstr ""
+
+#: app/views/demandes/_requests_list.rhtml:14
+msgid "Client"
 msgstr ""
 
 #: app/views/demandes/_requests_list.rhtml:16
@@ -3980,10 +3879,10 @@ msgstr ""
 
 #: app/views/reporting/_introduction.rhtml:13
 msgid ""
-"You will observe in particular that the numbers have sometimes at thier "
-"right a second number between brackets: the first corresponds to the number "
-"of requests, whereas the second indicates,  if needed, which requests are "
-"still “active”."
+"You will observe in particular that the numbers have sometimes on their "
+"right side a second number between brackets: the first corresponds to the "
+"number of requests, whereas the second indicates,  if needed, which requests "
+"are still “active”."
 msgstr ""
 
 #: app/views/reporting/_sommaire.rhtml:5 app/views/reporting/general.rhtml:14
@@ -3992,6 +3891,10 @@ msgstr ""
 
 #: app/views/reporting/_sommaire.rhtml:8 app/views/reporting/general.rhtml:21
 msgid "distribution"
+msgstr ""
+
+#: app/views/reporting/_sommaire.rhtml:9 app/views/reporting/general.rhtml:24
+msgid "severity"
 msgstr ""
 
 #: app/views/reporting/_sommaire.rhtml:10 app/views/reporting/general.rhtml:27
@@ -4172,10 +4075,6 @@ msgstr ""
 msgid "Add a role"
 msgstr ""
 
-#: app/views/severites/_form.rhtml:3 app/views/typedemandes/_form.rhtml:3
-msgid "Nom"
-msgstr ""
-
 #: app/views/severites/edit.rhtml:1
 msgid "Editing a severity"
 msgstr ""
@@ -4288,7 +4187,7 @@ msgid "New support"
 msgstr ""
 
 #: app/views/supports/index.rhtml:1
-msgid "List of Liste des offres de supports vendus"
+msgid "List of offers"
 msgstr ""
 
 #: app/views/supports/index.rhtml:3 app/views/supports/index.rhtml:20
@@ -4300,11 +4199,11 @@ msgid "Close time"
 msgstr ""
 
 #: app/views/supports/index.rhtml:5
-msgid "Telephonic <br/>assistance"
+msgid "Phone <br/>assistance"
 msgstr ""
 
 #: app/views/supports/index.rhtml:6
-msgid "Technolofical <br/>survey"
+msgid "Technological <br/>survey"
 msgstr ""
 
 #: app/views/supports/index.rhtml:7

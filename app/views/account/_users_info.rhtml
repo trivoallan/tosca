@@ -41,7 +41,7 @@
   <li><b><%= _('Logins: ')%> </b><%=@count[:identifiants]%></li>
   <li><b><%= _('Recipients: ')%></b><%=@count[:beneficiaires]%></li>
   <li><b><%= _('Engineers: ')%></b><%=@count[:ingenieurs]%></li>
-  <li><b><%= _('Thin consistencies: ')%></b><%=(@count[:identifiants] -
+  <li><b><%= _('Inconsistencies: ')%></b><%=(@count[:identifiants] -
   (@count[:beneficiaires] + @count[:ingenieurs])).to_s %></li>
 </ul>
 

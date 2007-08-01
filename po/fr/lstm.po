@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-01 14:51+0200\n"
-"PO-Revision-Date: 2007-07-25 16:29+0200\n"
+"POT-Creation-Date: 2007-08-01 16:30+0200\n"
+"PO-Revision-Date: 2007-08-01 16:45+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Erreur de connection"
 
 #: app/controllers/account_controller.rb:70
 msgid "Vous are not allowed to change your identity"
-msgstr "Vous n'êtes autorisé à changer votre identité"
+msgstr "Vous n'êtes pas autorisé à changer votre identité"
 
 #: app/controllers/account_controller.rb:75
 msgid "Person not found"
@@ -41,14 +41,15 @@ msgstr "Personne non trouvée"
 
 #: app/controllers/account_controller.rb:93
 msgid "Edition succeeded"
-msgstr "Les modifications ont été éfectuées avec succès"
+msgstr "Les modifications ont été effectuées avec succès"
 
 #: app/controllers/account_controller.rb:111
-msgid "Record successfully created, don't forget to vérify his profil<br />"
-msgstr "Enregistrement réussi, n'oubliez pas de vérifier son profil<br />"
+msgid "Account successfully created, don't forget to check his profile."
+msgstr "Compte créé correctement, n'oubliez pas de vérifier son profil."
 
 #: app/controllers/account_controller.rb:114
 #: app/controllers/account_controller.rb:183
+#: app/controllers/export_controller.rb:145
 #: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
 #: app/views/bienvenue/admin.rhtml:31 app/views/demandes/_appels.rhtml:2
@@ -62,8 +63,8 @@ msgid "Engineer "
 msgstr "Ingénieur"
 
 #: app/controllers/account_controller.rb:114
-msgid " associate created"
-msgstr "associer crée"
+msgid " created"
+msgstr "créé"
 
 #: app/controllers/account_controller.rb:133
 #: app/controllers/account_controller.rb:168
@@ -88,7 +89,7 @@ msgstr "Email"
 #: app/controllers/account_controller.rb:171 app/views/account/_edit.rhtml:63
 #: app/views/account/show.rhtml:23 app/views/demandes/_infos_demande.rhtml:44
 msgid "Phone"
-msgstr "téléphone"
+msgstr "Téléphone"
 
 #: app/controllers/account_controller.rb:134
 #: app/controllers/account_controller.rb:172 app/views/account/login.rhtml:7
@@ -110,20 +111,20 @@ msgid "Informations"
 msgstr "Informations"
 
 #: app/controllers/account_controller.rb:146
-msgid "Enter under CSV format please"
-msgstr "Veuillez entrer dans le format CSV"
+msgid "Enter data under CSV format please"
+msgstr "Veuillez entrer un texte au format CSV"
 
 #: app/controllers/account_controller.rb:150
-msgid "The CSV file isn\t well formed"
-msgstr "Le fichier CSV n'est pas formé"
+msgid "The CSV file is not correct"
+msgstr "Le fichier CSV n'est pas correct"
 
 #: app/controllers/account_controller.rb:154
-msgid "You don't have specified a customer"
-msgstr "Vous n'avez pas spécifé de client"
+msgid "You have to specify a customer"
+msgstr "Vous devez spécifié un client"
 
 #: app/controllers/account_controller.rb:157
 msgid "Vous must specify a role"
-msgstr "Vous devez spéficier un role"
+msgstr "Vous devez spéficier un rôle"
 
 #: app/controllers/account_controller.rb:181
 msgid "The user %s have been successfully created.<br/>"
@@ -134,7 +135,7 @@ msgid "Associate created"
 msgstr "Associé crée"
 
 #: app/controllers/account_controller.rb:190
-msgid "The user %s  has not been successfully created.<br /> "
+msgid "The user %s  has not been created.<br /> "
 msgstr "L'utilisateur %s n'a pas été crée avec succès.<br />"
 
 #: app/controllers/account_controller.rb:264
@@ -159,8 +160,8 @@ msgid ""
 "Thank your for taking time in order to help us to improve this product. Your "
 "comments has been sent successfully."
 msgstr ""
-"Merci de prendre de vôtre temps pour nous aider à améliorer ce produit. Vos "
-"remarques ont bien été transmis."
+"Merci de prendre de votre temps pour nous aider à améliorer ce produit. Vos "
+"remarques ont bien été transmises."
 
 #: app/controllers/binaires_controller.rb:26
 msgid "Binary has beensuccessfully created."
@@ -180,15 +181,15 @@ msgstr "Le client bien été mis à jour."
 
 #: app/controllers/competences_controller.rb:20
 msgid "Skill was successfully created."
-msgstr "La compétence a été crée avec succès."
+msgstr "La compétence a été créée avec succès."
 
 #: app/controllers/competences_controller.rb:34
 msgid "Skill was successfully updated."
-msgstr "La compétence a été mis à jour avec succès."
+msgstr "La compétence a été mise à jour avec succès."
 
 #: app/controllers/contributions_controller.rb:77
 msgid "The contribution has been created successfully."
-msgstr "La contribution a été crée avec succès"
+msgstr "La contribution a été créée avec succès"
 
 #: app/controllers/contributions_controller.rb:97
 msgid "The contribution has been updated successfully."
@@ -251,7 +252,7 @@ msgstr "La demande n'est plus assignée"
 
 #: app/controllers/demandes_controller.rb:298
 msgid "The demand has now no contribution"
-msgstr "Le demande n'a pas de contributions pour l'instant"
+msgstr "Le demande n'a plus de contributions"
 
 #: app/controllers/demandes_controller.rb:300
 msgid "This contribution is now linked"
@@ -259,7 +260,7 @@ msgstr "Cette contribution est maintenant liée"
 
 #: app/controllers/documents_controller.rb:72
 msgid "Your document was successfully created"
-msgstr "Votre document a été crée avec succès."
+msgstr "Votre document a été créé avec succès."
 
 #: app/controllers/documents_controller.rb:87
 msgid "your document was successfully updated"
@@ -267,24 +268,18 @@ msgstr "Votre document a été mis à jour avec succès."
 
 #: app/controllers/export_controller.rb:41
 #: app/controllers/export_controller.rb:70
-#: app/controllers/export_controller.rb:145
 msgid "id"
 msgstr "id"
 
 #: app/controllers/export_controller.rb:41
-#: app/controllers/export_controller.rb:148
-#: app/views/bienvenue/_liens_declaration.rhtml:13
 msgid "type"
 msgstr "type"
 
 #: app/controllers/export_controller.rb:41
-#: app/controllers/export_controller.rb:145
-#: app/views/bienvenue/declaration.rhtml:13
 msgid "software"
 msgstr "logiciel"
 
 #: app/controllers/export_controller.rb:41
-#: app/controllers/export_controller.rb:147
 msgid "version"
 msgstr "version"
 
@@ -293,7 +288,6 @@ msgid "state"
 msgstr "état"
 
 #: app/controllers/export_controller.rb:42
-#: app/controllers/export_controller.rb:148
 msgid "summary"
 msgstr "récapitulatif"
 
@@ -346,8 +340,8 @@ msgstr "Contrat"
 #: app/controllers/export_controller.rb:99
 #: app/controllers/export_controller.rb:146 app/views/demandes/_appels.rhtml:2
 #: app/views/demandes/_requests_list.rhtml:19
-msgid "Person in charge"
-msgstr "Personne en charge"
+msgid "Owner"
+msgstr "Responsable"
 
 #: app/controllers/export_controller.rb:99
 #: app/controllers/export_controller.rb:209 app/views/account/_edit.rhtml:44
@@ -365,37 +359,76 @@ msgstr "Appel"
 msgid "End of the call"
 msgstr "Fin de l'appel"
 
-#: app/controllers/export_controller.rb:145 app/models/beneficiaire.rb:-
-msgid "beneficiaire"
-msgstr "bénéficiaire"
+#: app/controllers/export_controller.rb:145
+#: app/views/demandes/_piecejointes.rhtml:3
+#: app/views/demandes/_report_detail.rhtml:7
+#: app/views/demandes/_requests_list.rhtml:9
+#: app/views/reporting/_comex_cns.rhtml:19 app/views/statuts/index.rhtml:8
+msgid "Id"
+msgstr "Id"
 
-#: app/controllers/export_controller.rb:146
-#: app/views/bienvenue/_liens_declaration.rhtml:12
-#: app/views/bienvenue/_liens_deroulement.rhtml:10
-#: app/views/bienvenue/declaration.rhtml:13
-#: app/views/reporting/_sommaire.rhtml:9 app/views/reporting/general.rhtml:24
-msgid "severity"
-msgstr "séverité"
+#: app/controllers/export_controller.rb:145 app/views/account/_menu.rhtml:18
+#: app/views/binaires/show.rhtml:9
+#: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:46
+#: app/views/demandes/_infos_demande.rhtml:21
+#: app/views/demandes/_requests_list.rhtml:10 app/views/paquets/_form.rhtml:7
+#: app/views/paquets/_paquets_list.rhtml:7 app/views/paquets/show.rhtml:16
+#: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:6
+#: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
+msgid "Software"
+msgstr "Logiciel"
+
+#: app/controllers/export_controller.rb:146 app/views/clients/show.rhtml:33
+#: app/views/demandes/_infos_demande.rhtml:25
+#: app/views/demandes/_requests_info.rhtml:39
+msgid "Severity"
+msgstr "Séverité"
 
 #: app/controllers/export_controller.rb:147
-msgid "date de soumission"
-msgstr "date de soumission"
+#: app/helpers/contributions_helper.rb:10 app/views/binaires/show.rhtml:15
+#: app/views/demandes/_cns.rhtml:32 app/views/demandes/_form_binaires.rhtml:5
+#: app/views/paquets/_form.rhtml:21
+msgid "Version"
+msgstr "Version"
 
 #: app/controllers/export_controller.rb:147
-msgid "plateform"
-msgstr "platforme"
+msgid "Submission date"
+msgstr "Date de déposition"
 
 #: app/controllers/export_controller.rb:147
-msgid "update"
-msgstr "mettre à jour"
+msgid "Platform"
+msgstr "Plateforme"
+
+#: app/controllers/export_controller.rb:147
+msgid "Last update"
+msgstr "Mise à jour"
 
 #: app/controllers/export_controller.rb:148
-#: app/views/bienvenue/_liens_declaration.rhtml:11
-#: app/views/bienvenue/_liens_deroulement.rhtml:9
-#: app/views/bienvenue/declaration.rhtml:15
-#: app/views/bienvenue/declaration.rhtml:21
-msgid "status"
-msgstr "état"
+#: app/controllers/reporting_controller.rb:514
+#: app/helpers/contributions_helper.rb:10 app/views/bienvenue/admin.rhtml:2
+#: app/views/demandes/_form_deposer.rhtml:19
+#: app/views/demandes/_infos_demande.rhtml:15
+#: app/views/demandes/_requests_list.rhtml:17
+#: app/views/logiciels/_form.rhtml:6 app/views/reporting/general.rhtml:7
+#: app/views/reporting/_comex_cns.rhtml:22
+msgid "Summary"
+msgstr "Résumé"
+
+#: app/controllers/export_controller.rb:148
+#: app/views/demandes/_comment_form.rhtml:12
+#: app/views/demandes/_infos_demande.rhtml:23
+#: app/views/demandes/_requests_info.rhtml:41
+msgid "Status"
+msgstr "État"
+
+#: app/controllers/export_controller.rb:148
+#: app/views/demandes/_infos_demande.rhtml:24
+#: app/views/demandes/_requests_info.rhtml:37
+#: app/views/demandes/_requests_list.rhtml:11
+#: app/views/documents/_form.rhtml:18
+msgid "Type"
+msgstr "Type"
 
 #: app/controllers/export_controller.rb:202
 #: app/views/reporting/_comex_tableaux.rhtml:9
@@ -466,7 +499,7 @@ msgstr "TOTAUX"
 
 #: app/controllers/groupes_controller.rb:27
 msgid "Group was successfully created."
-msgstr "Le groupe a été crée avec succès."
+msgstr "Le groupe a été créé avec succès."
 
 #: app/controllers/groupes_controller.rb:41
 msgid "Group was successfully updated."
@@ -478,7 +511,7 @@ msgstr "L'ingénieur a bien été créée."
 
 #: app/controllers/ingenieurs_controller.rb:39
 msgid "Ingenieur was successfully updated."
-msgstr "L'ingénieur a bien été mise à jour."
+msgstr "L'ingénieur a bien été mis à jour."
 
 #: app/controllers/logiciels_controller.rb:18
 msgid "List of softwares"
@@ -486,11 +519,11 @@ msgstr "Liste des logiciels"
 
 #: app/controllers/logiciels_controller.rb:22
 msgid "List of your supported softwares"
-msgstr "Liste de vos logiciels suportées"
+msgstr "Liste de vos logiciels supportés"
 
 #: app/controllers/logiciels_controller.rb:87
 msgid "The software %s has been created succesfully."
-msgstr "Le logiciel %s a été crée avec succès"
+msgstr "Le logiciel %s a été créé avec succès"
 
 #: app/controllers/logiciels_controller.rb:102
 msgid "The software %s has been updated successfully."
@@ -502,11 +535,11 @@ msgstr "Le logiciel %s a été effacé avec succès"
 
 #: app/controllers/machines_controller.rb:31
 msgid "Machine was successfully created."
-msgstr "La machine a été crée avec succès."
+msgstr "La machine a été créée avec succès."
 
 #: app/controllers/machines_controller.rb:47
 msgid "Machine was successfully updated."
-msgstr "La machine a été mis à jour avec succès."
+msgstr "La machine a été mise à jour avec succès."
 
 #: app/controllers/paquets_controller.rb:61
 msgid "The package %s has been created."
@@ -518,11 +551,11 @@ msgstr "Le paquet %s a été mis à jour avec succès"
 
 #: app/controllers/permissions_controller.rb:21
 msgid "Permission was successfully created."
-msgstr "La permission a été crée avec succès."
+msgstr "La permission a été créée avec succès."
 
 #: app/controllers/permissions_controller.rb:37
 msgid "Permission was successfully updated."
-msgstr "La permissions a été mis à jour avec succès."
+msgstr "La permissions a été mise à jour avec succès."
 
 #: app/controllers/reporting_controller.rb:61
 msgid "You must choose a period for the report"
@@ -540,7 +573,7 @@ msgstr "paramètres incorrects"
 #: app/controllers/reporting_controller.rb:507
 #: app/controllers/reporting_controller.rb:509
 msgid "Distributed on "
-msgstr "Répartition sur "
+msgstr "Répartie sur "
 
 #: app/controllers/reporting_controller.rb:507
 #: app/controllers/reporting_controller.rb:509
@@ -548,87 +581,80 @@ msgstr "Répartition sur "
 msgid " months"
 msgstr " mois"
 
-#: app/controllers/reporting_controller.rb:514
-#: app/helpers/contributions_helper.rb:10 app/views/bienvenue/admin.rhtml:2
-#: app/views/demandes/_form_deposer.rhtml:19
-#: app/views/demandes/_infos_demande.rhtml:15
-#: app/views/demandes/_requests_list.rhtml:17
-#: app/views/logiciels/_form.rhtml:6 app/views/reporting/general.rhtml:7
-#: app/views/reporting/_comex_cns.rhtml:22
-msgid "Summary"
-msgstr "Récapitulatif"
-
 #: app/controllers/reporting_controller.rb:535
-msgid "No data available"
-msgstr "Aucune donnée <br /> n'est disponible."
+msgid "No data <br/>available"
+msgstr "Aucune donnée <br />disponible"
 
-#: app/controllers/reporting_controller.rb:544
 #: app/controllers/reporting_controller.rb:545
 #: app/views/reporting/_sommaire.rhtml:7 app/views/reporting/general.rhtml:20
 msgid "Distribution of your requests"
 msgstr "Répartition de vos demandes"
 
 #: app/controllers/reporting_controller.rb:546
+msgid "Distribution of requests"
+msgstr "Répartition de vos demandes"
+
 #: app/controllers/reporting_controller.rb:547
-msgid "Severity of the received requests"
-msgstr "Sévérité des demandes reçues"
-
 #: app/controllers/reporting_controller.rb:548
-#: app/controllers/reporting_controller.rb:549
-msgid "Resolution of the received requests"
-msgstr "Résolution des demandes reçues"
+msgid "Severity of your requests"
+msgstr "Sévérité de vos demandes"
 
-#: app/controllers/reporting_controller.rb:551
+#: app/controllers/reporting_controller.rb:549
+#: app/controllers/reporting_controller.rb:550
+msgid "Resolution of your requests"
+msgstr "Répartition de vos demandes"
+
+#: app/controllers/reporting_controller.rb:552
 msgid "Cancelled requests"
 msgstr "Demandes annulées"
 
-#: app/controllers/reporting_controller.rb:552
+#: app/controllers/reporting_controller.rb:553
 msgid "Evolution of the activity volume"
 msgstr "Évolution du volume d'activité"
 
-#: app/controllers/reporting_controller.rb:554
+#: app/controllers/reporting_controller.rb:555
 msgid "Top 5 of the most discussed requests"
 msgstr "Top 5 des demandes les plus discutées"
 
-#: app/controllers/reporting_controller.rb:555
+#: app/controllers/reporting_controller.rb:556
 msgid "Top 5 of the most discussed software"
 msgstr "Top 5 des logiciels les plus discutées"
 
-#: app/controllers/reporting_controller.rb:557
+#: app/controllers/reporting_controller.rb:558
 msgid "Processing time"
 msgstr "Temps de traitement"
 
-#: app/controllers/reporting_controller.rb:558
+#: app/controllers/reporting_controller.rb:559
 msgid "Response time"
 msgstr "Temps de réponse"
 
-#: app/controllers/reporting_controller.rb:559
+#: app/controllers/reporting_controller.rb:560
 msgid "Workaround time"
 msgstr "Temps de contournement"
 
-#: app/controllers/reporting_controller.rb:560
+#: app/controllers/reporting_controller.rb:561
 msgid "Correction time"
 msgstr "Temps de correction"
 
 #: app/controllers/roles_controller.rb:22
-msgid "The rule %s was succefully created."
-msgstr "Le rôle %s a été crée avec succès."
+msgid "The role %s was succefully created."
+msgstr "Le rôle %s a été créé avec succès."
 
 #: app/controllers/roles_controller.rb:37
-msgid "The rule %s was succefully updated."
+msgid "The role %s was succefully updated."
 msgstr "Le rôle %s a été mis à jour avec succès."
 
 #: app/controllers/severites_controller.rb:21
 msgid "Severity was successfully created."
-msgstr "La sévérité a été crée avec succès."
+msgstr "La sévérité a été créée avec succès."
 
 #: app/controllers/severites_controller.rb:35
 msgid "Severity was successfully updated."
-msgstr "La sévérité a été mis à jour avec succès."
+msgstr "La sévérité a été mise à jour avec succès."
 
 #: app/controllers/socles_controller.rb:28
 msgid "A System was successfully created."
-msgstr "Le système a été crée avec succès."
+msgstr "Le système a été créé avec succès."
 
 #: app/controllers/socles_controller.rb:44
 msgid "A System was successfully updated."
@@ -640,11 +666,11 @@ msgstr "Le statut a été crée."
 
 #: app/controllers/statuts_controller.rb:40
 msgid "Statut was successfully updated."
-msgstr "Le Statut a été mis à jour avec succès."
+msgstr "Le statut a été mis à jour avec succès."
 
 #: app/controllers/supports_controller.rb:20
 msgid "Support was successfully created."
-msgstr "Le support a été crée avec succès."
+msgstr "Le support a été créé avec succès."
 
 #: app/controllers/supports_controller.rb:34
 msgid "Support was successfully updated."
@@ -652,7 +678,7 @@ msgstr "Le suport a été mis à jour avec succès."
 
 #: app/controllers/typecontributions_controller.rb:20
 msgid "A new type of contribution was successfully created."
-msgstr "Un nouveau type de contribution a été crée avec succès."
+msgstr "Un nouveau type de contribution a été créé avec succès."
 
 #: app/controllers/typecontributions_controller.rb:34
 msgid "A Type of contribution was successfully updated."
@@ -660,7 +686,7 @@ msgstr "Le type de contribution a été mis à jour avec succès."
 
 #: app/controllers/typedemandes_controller.rb:20
 msgid "A new type of request was successfully created."
-msgstr "A nouveau type de demande a bien été créée."
+msgstr "Un nouveau type de demande a bien été créé."
 
 #: app/controllers/typedemandes_controller.rb:34
 msgid "A request type was successfully updated."
@@ -676,7 +702,7 @@ msgstr "Un type d'url a été mis à jour avec succès."
 
 #: app/controllers/urllogiciels_controller.rb:25
 msgid "The url of \"%s\" has been created successfully."
-msgstr "L'url \"%s\" a été crée avec succès"
+msgstr "L'url \"%s\" a été créée avec succès"
 
 #: app/controllers/urllogiciels_controller.rb:41
 msgid "The Url has bean updated successfully."
@@ -731,19 +757,12 @@ msgid "My&nbsp;Offer"
 msgstr "Mon&nbsp;Offre"
 
 #: app/helpers/contrats_helper.rb:16
-#, fuzzy
 msgid "a contract"
-msgstr "Contrat"
+msgstr "un contrat"
 
 #: app/helpers/contributions_helper.rb:10 app/views/demandes/_history.rhtml:6
 msgid "Date"
 msgstr "Date"
-
-#: app/helpers/contributions_helper.rb:10 app/views/binaires/show.rhtml:15
-#: app/views/demandes/_cns.rhtml:32 app/views/demandes/_form_binaires.rhtml:5
-#: app/views/paquets/_form.rhtml:21
-msgid "Version"
-msgstr "Version"
 
 #: app/helpers/contributions_helper.rb:35
 #: app/views/contributions/_contributions_admin.rhtml:3
@@ -779,16 +798,16 @@ msgid "active requests"
 msgstr "demandes actives"
 
 #: app/helpers/demandes_helper.rb:183
-msgid "show the requests that are waiting to be processed"
-msgstr "montrez les demandes qui doivent être traitées"
+msgid "show requests waiting to be processed"
+msgstr "montrer les demandes qui attendent d'être traitées"
 
 #: app/helpers/demandes_helper.rb:188
 msgid "finished requests"
-msgstr "Demandes terminées"
+msgstr "demandes terminées"
 
 #: app/helpers/demandes_helper.rb:189
-msgid "show the requests that were processed"
-msgstr "montrez les demandes qui ont déjà été traitées"
+msgid "show requests that were processed"
+msgstr "montrer les demandes qui ont déjà été traitées"
 
 #: app/helpers/demandes_helper.rb:194
 msgid "all the requests"
@@ -796,11 +815,11 @@ msgstr "tout les demandes"
 
 #: app/helpers/demandes_helper.rb:195
 msgid "show all the requests"
-msgstr "montrez tout les demandes"
+msgstr "montrer tout les demandes"
 
 #: app/helpers/links_helper.rb:50
 msgid "Do you really want to delete %s"
-msgstr "Étes vous sûr de vouloir éffacer %s"
+msgstr "Étes vous sûr de vouloir effacer %s"
 
 #: app/helpers/links_helper.rb:62 app/views/binaires/show.rhtml:1
 #: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
@@ -869,8 +888,8 @@ msgid "classification"
 msgstr "classification"
 
 #: app/helpers/images_helper.rb:31
-msgid "Post %s"
-msgstr "Concernant %s"
+msgid "Create %s"
+msgstr "Créer %s"
 
 #: app/helpers/images_helper.rb:43 app/views/clients/show.rhtml:38
 msgid "View"
@@ -972,7 +991,7 @@ msgstr "&nbsp; sur "
 
 #: app/helpers/paquets_helper.rb:16
 msgid "a package"
-msgstr "un paquets"
+msgstr "un paquet"
 
 #: app/helpers/reporting_helper.rb:17 app/views/appels/_calls_info.rhtml:33
 msgid "Period"
@@ -988,24 +1007,23 @@ msgstr "Depuis le début du contrat"
 
 #: app/helpers/reporting_helper.rb:147
 msgid "Finished"
-msgstr "Finies"
+msgstr "Terminées"
 
 #: app/helpers/reporting_helper.rb:147
 msgid "Running"
 msgstr "En cours"
 
 #: app/helpers/urlreversements_helper.rb:14
-#, fuzzy
 msgid "new url"
 msgstr "une nouvelle urls"
 
 #: app/helpers/logiciels_helper.rb:28
 msgid "My supported softwares"
-msgstr "Mes logiciels suportées"
+msgstr "Mes logiciels supportés"
 
 #: app/helpers/logiciels_helper.rb:29
 msgid "Display only software supported by your contract"
-msgstr "Aficher seulement les logiciels suportés par vôtre contrat"
+msgstr "Aficher seulement les logiciels supportés par votre contrat"
 
 #: app/helpers/logiciels_helper.rb:32
 msgid "All softwares"
@@ -1060,12 +1078,10 @@ msgid "appel"
 msgstr "appel"
 
 #: app/models/appel.rb:-
-#, fuzzy
 msgid "Appel|Beneficiaire"
 msgstr "Bénéficiaire"
 
 #: app/models/appel.rb:-
-#, fuzzy
 msgid "Appel|Ingenieur"
 msgstr "Ingénieur"
 
@@ -1078,23 +1094,20 @@ msgid "Appel|Fin"
 msgstr ""
 
 #: app/models/appel.rb:-
-#, fuzzy
 msgid "Appel|Contrat"
 msgstr "Contrat"
 
 #: app/models/appel.rb:-
-#, fuzzy
 msgid "Appel|Demande"
-msgstr "Demandes"
+msgstr "Demande"
 
 #: app/models/appel.rb:13
-#, fuzzy
 msgid "The beginning of the call has to be before to its end."
-msgstr "Le début de l'appel doit être inférieur à sa fin."
+msgstr "Le début de l'appel doit précéder sa fin."
 
 #: app/models/appel.rb:21
-msgid "beneficiaire.client_id and contrat_id.client are different"
-msgstr "beneficiaire.client_id et contrat_id.client sont différent"
+msgid "recipient and client have to correspond."
+msgstr ""
 
 #: app/models/appel.rb:38 app/models/appel.rb:45
 msgid "%s.%s.%s at %sh%s"
@@ -1107,6 +1120,10 @@ msgstr "arch"
 #: app/models/arch.rb:-
 msgid "Arch|Nom"
 msgstr "Nom"
+
+#: app/models/beneficiaire.rb:-
+msgid "beneficiaire"
+msgstr "bénéficiaire"
 
 #: app/models/beneficiaire.rb:-
 msgid "Beneficiaire|Client"
@@ -1137,12 +1154,10 @@ msgid "Beneficiaire|Domaine"
 msgstr "Domaine"
 
 #: app/models/binaire.rb:-
-#, fuzzy
 msgid "binaire"
-msgstr "fichier binaire"
+msgstr "binaire"
 
 #: app/models/binaire.rb:-
-#, fuzzy
 msgid "Binaire|Paquet"
 msgstr "Paquet"
 
@@ -1159,19 +1174,16 @@ msgid "Binaire|Configuration"
 msgstr ""
 
 #: app/models/binaire.rb:-
-#, fuzzy
 msgid "Binaire|Archive"
-msgstr "Privé"
+msgstr "Archive"
 
 #: app/models/binaire.rb:-
-#, fuzzy
 msgid "Binaire|Socle"
 msgstr "Socle"
 
 #: app/models/binaire.rb:-
-#, fuzzy
 msgid "Binaire|Fichierbinaires count"
-msgstr "Comptage des binaires"
+msgstr "Nombre de fichiers binaires"
 
 #: app/models/changelog.rb:- app/views/paquets/show.rhtml:46
 msgid "changelog"
@@ -1194,24 +1206,20 @@ msgid "Changelog|Text modification"
 msgstr "Text modification"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "contrat"
-msgstr "Contrat"
+msgstr "contrat"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Client"
 msgstr "Client"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Ouverture"
 msgstr "Ouverture"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Cloture"
-msgstr "Cloture le"
+msgstr "Cloturé le"
 
 #: app/models/client.rb:-
 msgid "Contrat|Paquets count"
@@ -1222,21 +1230,18 @@ msgid "Contrat|Astreinte"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Socle"
-msgstr "Contrat"
+msgstr "Socle"
 
 #: app/models/client.rb:-
 msgid "client"
-msgstr "Client"
+msgstr "client"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Nom"
-msgstr "Client"
+msgstr "Nom"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Description"
 msgstr "Description"
 
@@ -1245,46 +1250,38 @@ msgid "Client|Mailingliste"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Adresse"
-msgstr "Client"
+msgstr "Adresse"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Image"
-msgstr "Client"
+msgstr "Image"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Support"
-msgstr "Client"
+msgstr "Support"
 
 #: app/models/client.rb:-
 msgid "Client|Code acces"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Beneficiaires count"
-msgstr "Comptage des binaires"
+msgstr "Nombre de bénéficiaires"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "paquet"
-msgstr "un paquet"
+msgstr "paquet"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Logiciel"
 msgstr "Logiciel"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Nom"
 msgstr "Nom"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Version"
 msgstr "Version"
 
@@ -1293,27 +1290,22 @@ msgid "Paquet|Release"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Conteneur"
 msgstr "conteneur"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Paquet"
 msgstr "Paquet"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Distributeur"
-msgstr "distributeur"
+msgstr "Distributeur"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Mainteneur"
-msgstr "mainteneur"
+msgstr "Mainteneur"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Contrat"
 msgstr "Contrat"
 
@@ -1322,14 +1314,12 @@ msgid "Paquet|Taille"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Fournisseur"
-msgstr "fournisseur"
+msgstr "Fournisseur"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Configuration"
-msgstr "Contribution"
+msgstr "Configuration"
 
 #: app/models/client.rb:-
 msgid "Paquet|Fichiers count"
@@ -1340,7 +1330,6 @@ msgid "Paquet|Changelogs count"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Active"
 msgstr "Actif"
 
@@ -1647,7 +1636,6 @@ msgid "etatreversement"
 msgstr "etatreversement"
 
 #: app/models/etatreversement.rb:-
-#, fuzzy
 msgid "Etatreversement|Nom"
 msgstr "Nom"
 
@@ -1704,78 +1692,68 @@ msgid "Groupe|Nom"
 msgstr "Nom"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "identifiant"
-msgstr "Client"
+msgstr "identifiant"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Login"
-msgstr "Client"
+msgstr "identifiant"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Password"
-msgstr "Client"
+msgstr "Mot de passe"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Titre"
-msgstr "Client"
+msgstr "Titre"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Nom"
-msgstr "Client"
+msgstr "Nom"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Email"
-msgstr "Client"
+msgstr "Email"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Telephone"
-msgstr "Client"
+msgstr "Téléphone"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Image"
-msgstr "Client"
+msgstr "Image"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Informations"
-msgstr "Pwd confirmation"
+msgstr "Informations"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Client"
 msgstr "Client"
 
 #: app/models/identifiant.rb:23
 msgid "Identifiant|Pwd"
-msgstr "Client"
+msgstr "Mot de passe"
 
 #: app/models/identifiant.rb:24
 msgid "Identifiant|Pwd confirmation"
-msgstr "Pwd confirmation"
+msgstr "Confirmation du mot de passe"
 
 #: app/models/identifiant.rb:40
-msgid "Mot de passe manquant"
+msgid "Password missing"
 msgstr "Mot de passe manquant"
 
 #: app/models/identifiant.rb:42
-msgid "Votre mot de passe ne correspond pas à la confirmation"
-msgstr "Votre mot de passe ne correspond pas à la confirmation"
+msgid "Password is different from its confirmation"
+msgstr "Mot de passe différent de sa confirmation"
 
 #: app/models/identifiant.rb:46
-msgid "Votre mot de passe est trop long (max. 20 caractères)"
+msgid "Your password is too long (max. 20)"
 msgstr "Votre mot de passe est trop long (max. 20 caractères)"
 
 #: app/models/identifiant.rb:48
-msgid "Votre mot de passe est trop court (min. 5 caractères)"
-msgstr "Votre mot de passe est trop court (min. 5 caractères)"
+msgid "Your password is too short (min. 5)"
+msgstr "Votre mot de passe est trop court (min. 5)"
 
 #: app/models/ingenieur.rb:-
 msgid "ingenieur"
@@ -2031,7 +2009,7 @@ msgstr "Duree de l'intervention"
 
 #: app/models/support.rb:17
 msgid "Open from %s to %s"
-msgstr ""
+msgstr "Ouvert de %s à %s"
 
 #: app/models/typecontribution.rb:-
 msgid "typecontribution"
@@ -2135,12 +2113,12 @@ msgstr "Cette page a un accès restreint aux personnes autorisées."
 
 #: app/views/acces/refuse.rhtml:6
 msgid "You can go to the homepage."
-msgstr "Vous pouvez allez sur la page d'accueil."
+msgstr "Vous pouvez aller sur la page d'accueil."
 
 #: app/views/acces/refuse.rhtml:7
 msgid "You can also login with a user who has more rights :"
 msgstr ""
-"Vous pouvez aussi vous connecter avec un utilisateurs qui a plus de droit :"
+"Vous pouvez aussi vous connecter avec un utilisateur qui a plus de droit :"
 
 #: app/views/acces/refuse.rhtml:15
 msgid "Reconnect"
@@ -2167,8 +2145,8 @@ msgid "Fill up the fileds which are common in all the accounts.<br /> please."
 msgstr "Veuillez remplir les champs qui sont commun à tous les comptes.<br />"
 
 #: app/views/account/_edit.rhtml:16
-msgid "Complete the rest in the last text fiel in CSV format."
-msgstr "Complétez le reste dans le dernier champs de texte au format CSV"
+msgid "The last field must be fill with CSV format."
+msgstr "Complétez le dernier champs au format CSV"
 
 #: app/views/account/_edit.rhtml:23
 msgid "Custom display of the request list"
@@ -2197,9 +2175,9 @@ msgid ""
 "                      Full name Title Email Phone Login Password  "
 "Informations"
 msgstr ""
-"<label>Text au format CSV ( séparateur :tabulation)<label><br />\n"
+"<label>Texte au format CSV ( séparateur :tabulation)<label><br />\n"
 "                       Nom Complet Titre Email Téléphone Identifiant Mot "
-"depasse Informatins"
+"depasse Informations"
 
 #: app/views/account/_edit.rhtml:46
 msgid "Customer %s"
@@ -2207,11 +2185,11 @@ msgstr "Client %s"
 
 #: app/views/account/_edit.rhtml:67
 msgid "Choose a password"
-msgstr "Coisir un mot de passe"
+msgstr "Choisissez un mot de passe"
 
 #: app/views/account/_edit.rhtml:67
 msgid "Modify your password"
-msgstr ""
+msgstr "Modifier votre mot de passe"
 
 #: app/views/account/_edit.rhtml:69
 msgid "Confirm this last"
@@ -2250,17 +2228,6 @@ msgstr "Déposer une demande"
 #: app/views/account/_menu.rhtml:16 app/views/appels/_calls_info.rhtml:50
 msgid "Calls"
 msgstr "Appels"
-
-#: app/views/account/_menu.rhtml:18 app/views/binaires/show.rhtml:9
-#: app/views/contributions/_contributions_admin.rhtml:7
-#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:46
-#: app/views/demandes/_infos_demande.rhtml:21
-#: app/views/demandes/_requests_list.rhtml:10 app/views/paquets/_form.rhtml:7
-#: app/views/paquets/_paquets_list.rhtml:7 app/views/paquets/show.rhtml:16
-#: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:6
-#: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
-msgid "Software"
-msgstr "Logiciel"
 
 #: app/views/account/_menu.rhtml:24
 msgid "Directory"
@@ -2334,10 +2301,11 @@ msgstr "Rechercher"
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/paquets/_form.rhtml:18 app/views/paquets/_paquets_info.rhtml:23
 #: app/views/paquets/_paquets_list.rhtml:7 app/views/permissions/_form.rhtml:4
-#: app/views/roles/_form.rhtml:3 app/views/socles/_form.rhtml:3
-#: app/views/statuts/_form.rhtml:3 app/views/supports/_form.rhtml:3
-#: app/views/typecontributions/_form.rhtml:3
-#: app/views/typedocuments/_form.rhtml:3 app/views/typeurls/_form.rhtml:3
+#: app/views/roles/_form.rhtml:3 app/views/severites/_form.rhtml:3
+#: app/views/socles/_form.rhtml:3 app/views/statuts/_form.rhtml:3
+#: app/views/supports/_form.rhtml:3 app/views/typecontributions/_form.rhtml:3
+#: app/views/typedemandes/_form.rhtml:3 app/views/typedocuments/_form.rhtml:3
+#: app/views/typeurls/_form.rhtml:3
 msgid "Name"
 msgstr "Nom"
 
@@ -2369,7 +2337,7 @@ msgid "Engineers: "
 msgstr "Ingénieurs: "
 
 #: app/views/account/_users_info.rhtml:44
-msgid "Thin consistencies: "
+msgid "Inconsistencies: "
 msgstr "Inconsistances: "
 
 #: app/views/account/_users_list.rhtml:3
@@ -2378,11 +2346,11 @@ msgstr "un nouvel utilisateur"
 
 #: app/views/account/_users_list.rhtml:14
 msgid "engineer"
-msgstr "Ingénieur"
+msgstr "ingénieur"
 
 #: app/views/account/_users_list.rhtml:15
 msgid "recipient"
-msgstr "Bénéficiaire"
+msgstr "bénéficiaire"
 
 #: app/views/account/_users_list.rhtml:37
 msgid "\"Submit\""
@@ -2533,11 +2501,11 @@ msgstr "Liste des processus des architectures"
 
 #: app/views/arches/index.rhtml:3 app/views/arches/index.rhtml:12
 msgid "A processor architecture"
-msgstr "Un processeur d'architecture"
+msgstr "Type d'instruction"
 
 #: app/views/arches/edit.rhtml:1
 msgid "Edit an architecture"
-msgstr "Éditer une architecture"
+msgstr "Modifier une architecture"
 
 #: app/views/arches/edit.rhtml:5 app/views/clients/edit.rhtml:5
 #: app/views/competences/edit.rhtml:5 app/views/groupes/edit.rhtml:5
@@ -2562,19 +2530,6 @@ msgstr "Ajouter une nouvelle architecture logicielle"
 msgid "Add a recipient"
 msgstr "Ajouter un bénéficiaire"
 
-#: app/views/bienvenue/_liens_declaration.rhtml:4
-msgid "\"How are the request processing ?\""
-msgstr "\"Comment se passe le traitement d'une demande ?\""
-
-#: app/views/bienvenue/_liens_declaration.rhtml:15
-#: app/views/bienvenue/_liens_deroulement.rhtml:3
-msgid "\"How to submit a request ?\""
-msgstr "\"Comment déclarer une demande ?\""
-
-#: app/views/bienvenue/_liens_deroulement.rhtml:11
-msgid "recall on our commitment"
-msgstr "rappel sur nos engagements"
-
 #: app/views/bienvenue/about.rhtml:11
 msgid "About"
 msgstr "A propos de "
@@ -2586,7 +2541,6 @@ msgstr ""
 "b> dans les locaux de "
 
 #: app/views/bienvenue/about.rhtml:15
-#, fuzzy
 msgid ""
 "This journey would not have been possible whithout the <b>contributors</b> "
 "who have taken part to this project, without the testers who have "
@@ -2595,14 +2549,12 @@ msgid ""
 "here warmly. %s would be nothing without them."
 msgstr ""
 "Cette aventure n'aurait été possible sans tous les <b>contributeurs</b> qui "
-"ont soutenu ce projet,\n"
-"     sans tous les <b>testeurs</b> qui ont contribués à assurer sa qualité "
-"et sans un grand nombre de <b>logiciels libre</b>\n"
-"     qui ont permis à son développement d'être rapide et agile. Ils sont "
-"tous ici grandement remerciés."
+"ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont contribués à "
+"assurer sa qualité et sans un grand nombre de <b>logiciels libre</b>  qui "
+"ont permis à son développement d'être rapide et agile. Ils sont tous ici "
+"grandement remerciés."
 
 #: app/views/bienvenue/about.rhtml:18
-#, fuzzy
 msgid "Contributors"
 msgstr "contributeurs"
 
@@ -2710,66 +2662,7 @@ msgstr "Comex"
 
 #: app/views/bienvenue/admin.rhtml:57 app/views/bienvenue/admin.rhtml:58
 msgid "Comex report"
-msgstr "rapport Comex"
-
-#: app/views/bienvenue/declaration.rhtml:1
-msgid "Howto submit a request"
-msgstr "Comment déposer une demande"
-
-#: app/views/bienvenue/declaration.rhtml:5
-msgid "You can submit a request : "
-msgstr "Vous pouvez déclader une demande : "
-
-#: app/views/bienvenue/declaration.rhtml:7
-msgid ""
-"Either by phone on 08000 54689 (LINUX) : you will be asked for a key-code"
-msgstr ""
-"Soit par téléphone au 08000 54689 (LINUX) : un code identifiant vous "
-"seraalors demandé"
-
-#: app/views/bienvenue/declaration.rhtml:8
-msgid "Either on the dedicate %s"
-msgstr "Soit sur la %s dédiée"
-
-#: app/views/bienvenue/declaration.rhtml:8
-msgid "web page"
-msgstr "Page Web"
-
-#: app/views/bienvenue/declaration.rhtml:12
-msgid ""
-"The declaration consists to inform the cell on 08000linux about the %s, la %"
-"s and the %s concerned by your request."
-msgstr ""
-"La décalration consiste à informer la cellule du 08000linux sur le %s, la %s,"
-"et le %s concerné par votre demande."
-
-#: app/views/bienvenue/declaration.rhtml:14
-msgid "Next you can precise the summary and the description of your request."
-msgstr ""
-"Vous pouvez ensuite préciser le résumé et la description de votredemande."
-
-#: app/views/bienvenue/declaration.rhtml:15
-msgid "On the validation,the %s become to <i>\"declared\"</i>"
-msgstr "A la validation, le %s devient <i>\"déclaré\"</i>"
-
-#: app/views/bienvenue/declaration.rhtml:19
-msgid ""
-"An engineer from 08000linux will call back <b>to one hour</b> ( See our %s ) "
-"and will asked you if necessary to precise your demand"
-msgstr ""
-"Un ingénieur du 08000linux vas vous rappeller dans <b>moins d'une heure</b> "
-"(voir nos %s) et vous demandera de préciser votre demande si nécessaire."
-
-#: app/views/bienvenue/declaration.rhtml:20
-#: app/views/bienvenue/deroulement.rhtml:10
-msgid "commitment"
-msgstr "engagements"
-
-#: app/views/bienvenue/declaration.rhtml:21
-msgid ""
-"At the end of the call, the %s from the demand will become <i>#chek in\"</i>"
-msgstr ""
-"A la fin de l'appel, le %s de votre demande deviendra <i>\"enregistrer\"</i>"
+msgstr "Rapport Comex"
 
 #: app/views/bienvenue/deroulement.rhtml:1
 msgid "How are the request processing"
@@ -2778,6 +2671,10 @@ msgstr "Comment se passe le traitement d'une demande"
 #: app/views/bienvenue/deroulement.rhtml:5
 msgid "[Scheme with the arrows]"
 msgstr "[Schéma avec les flèches]"
+
+#: app/views/bienvenue/deroulement.rhtml:10
+msgid "commitment"
+msgstr "engagements"
 
 #: app/views/bienvenue/index.rhtml:2
 msgid "connected"
@@ -2832,19 +2729,17 @@ msgid "your directory"
 msgstr "votre répertoire"
 
 #: app/views/bienvenue/index.rhtml:27
-#, fuzzy
 msgid "You will find there all the documents we delivered to you"
 msgstr ""
-"Vous avez aussi accès à l'ensemble des documents que nous pouvons vous "
-"délivrer"
+"Vous avez aussi accès à l'ensemble des documents que nous vous avons livré"
 
 #: app/views/bienvenue/index.rhtml:28
 msgid "You can also consult your %s online."
-msgstr "Vous pouvez aussi consulter votre %s en ligne "
+msgstr "Vous pouvez aussi consulter votre %s en ligne."
 
 #: app/views/bienvenue/index.rhtml:30
 msgid "When you are %s, you have access to an activity report"
-msgstr "Quand vous êtes %s, vous avez accès à un rapport d'activité"
+msgstr "Quand vous êtes %s, vous avez accès au rapport d'activité"
 
 #: app/views/bienvenue/index.rhtml:31
 msgid "dynamically showing the activity of our service for you in real time."
@@ -2854,7 +2749,7 @@ msgstr "dynamique montrant l'activité de notre service en temps réel."
 msgid "You also have access to all the documents we may deliver to you."
 msgstr ""
 "Vous avez aussi accès à l'ensemble des documents que nous pouvons vous "
-"délivrer"
+"livrer."
 
 #: app/views/bienvenue/index.rhtml:38 app/views/bienvenue/suggestions.rhtml:1
 msgid "Idea Box"
@@ -2870,7 +2765,7 @@ msgstr ""
 
 #: app/views/bienvenue/index.rhtml:41
 msgid "the idea box"
-msgstr "La Boite à idées"
+msgstr "la boite à idées"
 
 #: app/views/bienvenue/index.rhtml:49
 msgid "Offer"
@@ -2894,7 +2789,7 @@ msgstr "Votre numéro d'appel est le "
 
 #: app/views/bienvenue/index.rhtml:61
 msgid "and your access code is %s"
-msgstr "et votre code d'accès est  %s"
+msgstr "et votre code d'accès est %s"
 
 #: app/views/bienvenue/index.rhtml:63
 msgid "you don't have an access code"
@@ -2916,17 +2811,18 @@ msgstr ""
 msgid ""
 "We have a large range of offers for supporting you with a SLA. This Service "
 "Level Agreement can be very short and is guaranted by contract."
-msgstr "Nous avons des offres d'assistance, de support et de maintenance pour"
+msgstr ""
+"Nous avons une large gamme d'offres d'assistance, de support et de "
+"maintenance avec une CNS. Cette Convention de Niveau de Service peut être "
+"très courte et garantie par contrat."
 
 #: app/views/bienvenue/index.rhtml:74
-msgid ""
-"We have assistance offers, also support and mantainance for, so don't "
-"hesitate to"
-msgstr "l'ensemble de ces logiciels, n'hésitez pas à nous"
+msgid "Don't hesitate to"
+msgstr ""
 
 #: app/views/bienvenue/index.rhtml:75
 msgid "contact us"
-msgstr "contacter"
+msgstr "nous contacter"
 
 #: app/views/bienvenue/index.rhtml:77
 msgid ""
@@ -2935,14 +2831,6 @@ msgid ""
 msgstr ""
 "Vous pouvez consulter et suivre toutes les %s faites par notre équipe dans "
 "les communautés Open Source."
-
-#: app/views/bienvenue/natures.rhtml:1
-msgid "Type of requests"
-msgstr "Type de la demande"
-
-#: app/views/bienvenue/natures.rhtml:5
-msgid "Request type list :"
-msgstr "Liste des natures :"
 
 #: app/views/bienvenue/plan.rhtml:2
 msgid "Plan/access allowed"
@@ -2956,17 +2844,9 @@ msgstr "Reporting"
 msgid "test"
 msgstr "test"
 
-#: app/views/bienvenue/severites.rhtml:1
-msgid "Severity of the Requests"
-msgstr "Sévérité des demandes reçues"
-
-#: app/views/bienvenue/severites.rhtml:5
-msgid "Severity list"
-msgstr "Liste séverités"
-
 #: app/views/bienvenue/statuts.rhtml:1
 msgid "Status of the Requests"
-msgstr "Statuts des demandes reçues"
+msgstr "Statuts des demandes"
 
 #: app/views/bienvenue/statuts.rhtml:5
 msgid "Status list"
@@ -2978,8 +2858,8 @@ msgid ""
 "in the form!<br />\n"
 "Every proposition will be consider with a lot of attention"
 msgstr ""
-"Vous avez une idée pour améliorer nos services ? N'hésitez pas à remplir "
-"leformulaire ci-dessous !<br />\n"
+"Vous avez une idée pour améliorer nos services ? N'hésitez pas à remplir le "
+"formulaire ci-dessous !<br />\n"
 "Chaque proposition sera étudiée avec beaucoup d'attention."
 
 #: app/views/bienvenue/suggestions.rhtml:9
@@ -3047,7 +2927,7 @@ msgstr "Ce paquet contient"
 #: app/views/binaires/show.rhtml:27 app/views/paquets/show.rhtml:36
 #: app/views/paquets/show.rhtml:38
 msgid "file"
-msgstr "Fichier"
+msgstr "fichier"
 
 #: app/views/binaires/index.rhtml:1
 msgid "List of binary packages"
@@ -3078,7 +2958,7 @@ msgid "Mailing list"
 msgstr "Mailing liste"
 
 #: app/views/clients/_form.rhtml:14
-msgid "Adress"
+msgid "Address"
 msgstr "Adresse"
 
 #: app/views/clients/_form.rhtml:18 app/views/clients/index.rhtml:4
@@ -3096,13 +2976,11 @@ msgstr "Logo"
 
 #: app/views/clients/edit.rhtml:1
 msgid "Edit the client %s"
-msgstr "Eidter le client %s"
+msgstr "Modifier le client %s"
 
-#: app/views/clients/edit.rhtml:8
-#: app/views/demandes/_infos_beneficiaire.rhtml:23
-#: app/views/demandes/_infos_beneficiaire.rhtml:27
-#: app/views/images/edit.rhtml:8 app/views/machines/edit.rhtml:8
-#: app/views/reporting/delai.rhtml:6 app/views/typecontributions/edit.rhtml:8
+#: app/views/clients/edit.rhtml:8 app/views/images/edit.rhtml:8
+#: app/views/machines/edit.rhtml:8 app/views/reporting/delai.rhtml:6
+#: app/views/typecontributions/edit.rhtml:8
 msgid "Show"
 msgstr "Consulter"
 
@@ -3120,7 +2998,7 @@ msgstr "De %s à %s"
 
 #: app/views/clients/show.rhtml:28
 msgid " on your complete system : "
-msgstr " sur votre système complet : "
+msgstr " sur l'intégralité de votre système : "
 
 #: app/views/clients/show.rhtml:30
 msgid "concerning %s source packages "
@@ -3129,11 +3007,6 @@ msgstr "concernant %s paquets source "
 #: app/views/clients/show.rhtml:31
 msgid "and %s binaries :"
 msgstr "et %s binaires :"
-
-#: app/views/clients/show.rhtml:33 app/views/demandes/_infos_demande.rhtml:25
-#: app/views/demandes/_requests_info.rhtml:39
-msgid "Severity"
-msgstr "Séverité"
 
 #: app/views/clients/show.rhtml:38
 msgid " the %s "
@@ -3146,7 +3019,7 @@ msgstr "binaire"
 
 #: app/views/clients/stats.rhtml:1
 msgid "Statistics by clients"
-msgstr "Statistique par clients"
+msgstr "Statistiques par clients"
 
 #: app/views/clients/stats.rhtml:3 app/views/clients/stats.rhtml:34
 #: app/views/clients/index.rhtml:3
@@ -3246,7 +3119,7 @@ msgstr "Synthèse"
 
 #: app/views/contributions/_form.rhtml:49
 msgid "Description (public)"
-msgstr "Description  (public)"
+msgstr "Description (public)"
 
 #: app/views/contributions/_form.rhtml:52
 msgid "Technical details (private)"
@@ -3255,7 +3128,7 @@ msgstr "Détails techniques (privé)"
 #: app/views/contributions/_liste_binaires.rhtml:1
 #: app/views/contributions/_liste_paquets.rhtml:9
 msgid "Binary packages with the patch"
-msgstr "Paquet binaire avec le patch"
+msgstr "Paquets binaires avec le patch"
 
 #: app/views/contributions/_liste_paquets.rhtml:6
 msgid "Source packages with the patch"
@@ -3323,17 +3196,16 @@ msgid "End of phonecall"
 msgstr "Fin de l'appel"
 
 #: app/views/demandes/_cns.rhtml:26
-#, fuzzy
 msgid "Your request is not subject to a SLA."
-msgstr "Votre demande n'impacte aucun paquet source"
+msgstr "Votre demande n'est pas soumise à CNS."
 
 #: app/views/demandes/_cns.rhtml:28
 msgid "Your request impacts %s"
-msgstr "Demande impacte %s"
+msgstr "Votre demande impacte %s"
 
 #: app/views/demandes/_cns.rhtml:28 app/views/socles/show.rhtml:15
 msgid "source package"
-msgstr "Paquet source"
+msgstr "paquet source"
 
 #: app/views/demandes/_comment_form.rhtml:5
 msgid "Your answer :"
@@ -3342,12 +3214,6 @@ msgstr "Votre réponse :"
 #: app/views/demandes/_comment_form.rhtml:9
 msgid "Private ?"
 msgstr "Privé ?"
-
-#: app/views/demandes/_comment_form.rhtml:12
-#: app/views/demandes/_infos_demande.rhtml:23
-#: app/views/demandes/_requests_info.rhtml:41
-msgid "Status"
-msgstr "État"
 
 #: app/views/demandes/_comment_form.rhtml:20
 msgid "Add a file :"
@@ -3430,64 +3296,38 @@ msgid "Change(s)"
 msgstr "Changement(s)"
 
 #: app/views/demandes/_history.rhtml:18
-msgid "The request has no more <b>person in charge</b>"
+msgid "The request has no more <b>owner</b>"
 msgstr "Votre demande n'a plus de <b>responsable</b>"
 
 #: app/views/demandes/_history.rhtml:21
-#, fuzzy
-msgid "The <b>person in charge</b> of your request is"
+msgid "The <b>owner</b> of your request is"
 msgstr "La personne maintenant <b>responsable</b> de votre demande est"
 
 #: app/views/demandes/_history.rhtml:27
-#, fuzzy
 msgid "The <b>status</b> of your request is <b>%s</b>"
-msgstr "Le <b>statut</b> de votre demande est maintenant <b>%s</b>"
-
-#: app/views/demandes/_infos_beneficiaire.rhtml:19
-msgid "Coordinates of the recipient"
-msgstr "Corrdonnées du bénéficiaire"
-
-#: app/views/demandes/_infos_beneficiaire.rhtml:32
-#: app/views/demandes/_requests_list.rhtml:14
-msgid "Client"
-msgstr "Client"
-
-#: app/views/demandes/_infos_beneficiaire.rhtml:35
-#: app/views/demandes/_infos_demande.rhtml:43
-msgid "Contact"
-msgstr "Contrat"
-
-#: app/views/demandes/_infos_beneficiaire.rhtml:37
-msgid "Phone number"
-msgstr "Numéro de téléphone"
+msgstr "Le <b>statut</b> de votre demande est <b>%s</b>"
 
 #: app/views/demandes/_infos_demande.rhtml:18
 msgid "Vm"
-msgstr ""
-
-#: app/views/demandes/_infos_demande.rhtml:24
-#: app/views/demandes/_requests_info.rhtml:37
-#: app/views/demandes/_requests_list.rhtml:11
-#: app/views/documents/_form.rhtml:18
-msgid "Type"
-msgstr "Type"
+msgstr "Vm"
 
 #: app/views/demandes/_infos_demande.rhtml:27
-#, fuzzy
-msgid "Informed"
-msgstr "Info"
+msgid "CC"
+msgstr "CC"
 
 #: app/views/demandes/_infos_demande.rhtml:30
-#, fuzzy
 msgid "Assigned to"
-msgstr "Assigné à :"
+msgstr "Assigné à"
 
 #: app/views/demandes/_infos_demande.rhtml:40
 msgid "Recipent"
 msgstr "Bénéficiaire"
 
+#: app/views/demandes/_infos_demande.rhtml:43
+msgid "Contact"
+msgstr "Contrat"
+
 #: app/views/demandes/_infos_demande.rhtml:46
-#, fuzzy
 msgid "Company"
 msgstr "Société :"
 
@@ -3501,24 +3341,16 @@ msgid "Created on"
 msgstr "Créé le"
 
 #: app/views/demandes/_infos_demande.rhtml:54
-#, fuzzy
 msgid "Elapsed time"
-msgstr "Heure de fermeture"
+msgstr "Temps écoulé"
 
 #: app/views/demandes/_piecejointes.rhtml:2
 msgid "Attachment"
 msgstr "Fichier joint"
 
 #: app/views/demandes/_piecejointes.rhtml:3
-#: app/views/demandes/_report_detail.rhtml:7
-#: app/views/demandes/_requests_list.rhtml:9
-#: app/views/reporting/_comex_cns.rhtml:19 app/views/statuts/index.rhtml:8
-msgid "Id"
-msgstr "Id"
-
-#: app/views/demandes/_piecejointes.rhtml:3
 msgid "Link"
-msgstr "Liens"
+msgstr "Lien"
 
 #: app/views/demandes/_piecejointes.rhtml:3
 #: app/views/paquets/_paquets_list.rhtml:7
@@ -3562,6 +3394,10 @@ msgstr "Attributs"
 msgid "Flow"
 msgstr "Flux"
 
+#: app/views/demandes/_requests_list.rhtml:14
+msgid "Client"
+msgstr "Client"
+
 #: app/views/demandes/_requests_list.rhtml:16
 msgid "Submitter"
 msgstr "Déclarant"
@@ -3586,10 +3422,9 @@ msgstr "privé"
 
 #: app/views/demandes/_tab_comment.rhtml:34
 msgid "Are you sure you want to delete comment %s ?"
-msgstr "Étes vous sûr de vouloir éffacer le commentaire %s ?"
+msgstr "Étes vous sûr de vouloir effacer le commentaire %s ?"
 
 #: app/views/demandes/_tab_comments.rhtml:8
-#, fuzzy
 msgid "Are you sure you want to delete this comment ?"
 msgstr "Étes vous sûr de vouloir éffacer le commentaire %s ?"
 
@@ -3641,7 +3476,7 @@ msgid ""
 "Nota : One day work corresponds to the time of opening of the daily service "
 "defined in the OSSA contract %s : %s, that is to say %s hours."
 msgstr ""
-"Nota : Un jour ouvert correspond au temps d'ouverture quotidien du service "
+"Nota : Un jour ouvré correspond au temps d'ouverture quotidien du service "
 "défini dans le contract d'OSSA %s : %s, soit %s heures."
 
 #: app/views/demandes/new.rhtml:25
@@ -3783,7 +3618,7 @@ msgstr "Nom de base"
 
 #: app/views/logiciels/_form.rhtml:16 app/views/logiciels/show.rhtml:22
 msgid "Copyright"
-msgstr "Droits d'auteur"
+msgstr "License"
 
 #: app/views/logiciels/_form.rhtml:20
 #: app/views/logiciels/_softwares_info.rhtml:42
@@ -3804,7 +3639,7 @@ msgstr "Liste des paquets"
 
 #: app/views/logiciels/_softwares_info.rhtml:29
 msgid "By name"
-msgstr "Par bom"
+msgstr "Par nom"
 
 #: app/views/logiciels/_softwares_info.rhtml:38
 msgid "Characteristic"
@@ -3821,7 +3656,7 @@ msgstr "Paquets source"
 
 #: app/views/logiciels/_softwares_info.rhtml:53
 msgid "Binary packages"
-msgstr "Paquet binaire"
+msgstr "Paquets binaires"
 
 #: app/views/logiciels/_softwares_list.rhtml:3
 msgid "a new software"
@@ -3858,7 +3693,7 @@ msgstr "Liens"
 
 #: app/views/machines/_form.rhtml:6
 msgid "Access : DNS (IP)"
-msgstr "accès :DNS (IP)"
+msgstr "Accès :DNS (IP)"
 
 #: app/views/machines/_form.rhtml:9 app/views/machines/all.rhtml:5
 #: app/views/socles/index.rhtml:5
@@ -4080,7 +3915,7 @@ msgid ""
 "the first pie chart is a summary over the chosen period corresponding to the "
 "number of months you selected, "
 msgstr ""
-"le premier camembert concerne un récapitulatif sur la période considérée "
+"le premier camembert est un récapitulatif sur la période considérée "
 "correspondant au nombre de mois que vous avez sélectionné, "
 
 #: app/views/reporting/_introduction.rhtml:9
@@ -4097,8 +3932,8 @@ msgid ""
 "the third graph offers you another view of the summary through a bar chart "
 "showing the evolution of these data over the duration of the deal"
 msgstr ""
-"le troisième graphique vous offre une autre vision du récapitulatif à "
-"travers un histographe d'évolution de ces données sur la durée du marché "
+"le troisième graphique vous offre une autre vision de vos demandes à travers "
+"un histographe d'évolution de ces données sur la durée du marché "
 
 #: app/views/reporting/_introduction.rhtml:11
 msgid ""
@@ -4110,15 +3945,15 @@ msgstr ""
 
 #: app/views/reporting/_introduction.rhtml:13
 msgid ""
-"You will observe in particular that the numbers have sometimes at thier "
-"right a second number between brackets: the first corresponds to the number "
-"of requests, whereas the second indicates,  if needed, which requests are "
-"still “active”."
+"You will observe in particular that the numbers have sometimes on their "
+"right side a second number between brackets: the first corresponds to the "
+"number of requests, whereas the second indicates,  if needed, which requests "
+"are still “active”."
 msgstr ""
 "Vous observerez notamment que les nombres sont parfois accompagnés d'un "
-"second nombre entre parenthèses : le premier correspond au nombre de "
-"demandes, alors que le second indique, si cela est nécessaire, au sein de "
-"ces demandes, quelles sont celles qui sont toujours “en activité“. "
+"second nombre entre parenthèses. Le premier correspond au nombre de "
+"demandes, alors que le second indique, si cela est nécessaire, quelles sont "
+"les demandes encore “en activité“. "
 
 #: app/views/reporting/_sommaire.rhtml:5 app/views/reporting/general.rhtml:14
 msgid "Introduction"
@@ -4127,6 +3962,10 @@ msgstr "Introduction"
 #: app/views/reporting/_sommaire.rhtml:8 app/views/reporting/general.rhtml:21
 msgid "distribution"
 msgstr "répartition"
+
+#: app/views/reporting/_sommaire.rhtml:9 app/views/reporting/general.rhtml:24
+msgid "severity"
+msgstr "séverité"
 
 #: app/views/reporting/_sommaire.rhtml:10 app/views/reporting/general.rhtml:27
 msgid "resolution"
@@ -4142,7 +3981,7 @@ msgstr "évolution"
 
 #: app/views/reporting/_sommaire.rhtml:14 app/views/reporting/general.rhtml:35
 msgid "canceled"
-msgstr "anulation"
+msgstr "annulation"
 
 #: app/views/reporting/delai.rhtml:4
 msgid "Choose one year:"
@@ -4154,7 +3993,7 @@ msgstr "Historique du %s pour %s"
 
 #: app/views/reporting/delai.rhtml:13
 msgid "Time of taking into account the requests"
-msgstr "Temps de prise en copte des demandes"
+msgstr "Temps de prise en compte des demandes"
 
 #: app/views/reporting/delai.rhtml:15
 msgid "Estimation in minutes"
@@ -4234,11 +4073,11 @@ msgstr "Légende"
 
 #: app/views/reporting/_comex_cns.rhtml:5
 msgid "The progressions bar represent the progress ratio of the contract: "
-msgstr "La bare de progression représente le taux de finition du contrat: "
+msgstr "La barre de progression représente le taux de finition du contrat: "
 
 #: app/views/reporting/_comex_cns.rhtml:6
 msgid "The contract has not been started yet"
-msgstr "Le contrat n'a pas encore été démaré"
+msgstr "Le contrat n'a pas encore été démarré"
 
 #: app/views/reporting/_comex_cns.rhtml:7
 msgid "25% de ready"
@@ -4308,11 +4147,6 @@ msgstr "Liste des permissions"
 msgid "Add a role"
 msgstr "Ajouter un rôle"
 
-#: app/views/severites/_form.rhtml:3 app/views/typedemandes/_form.rhtml:3
-#, fuzzy
-msgid "Nom"
-msgstr "Aucun"
-
 #: app/views/severites/edit.rhtml:1
 msgid "Editing a severity"
 msgstr "Editer une sévérité"
@@ -4336,7 +4170,7 @@ msgid ""
 "%s"
 msgstr ""
 "Note : <br />\n"
-"La machine du systeme ne se paramètre que dans les paramètres des %s"
+"La machine du systeme ne se paramètre que dans les %s"
 
 #: app/views/socles/_form.rhtml:12
 msgid "machines"
@@ -4384,7 +4218,7 @@ msgstr "Liste des statuts"
 
 #: app/views/statuts/edit.rhtml:1
 msgid "Editing a statut"
-msgstr "Editer un statut"
+msgstr "Éditer un statut"
 
 #: app/views/statuts/new.rhtml:1
 msgid "New status"
@@ -4416,7 +4250,7 @@ msgstr "Lettre d'information"
 
 #: app/views/supports/edit.rhtml:1
 msgid "Editing support"
-msgstr "Editer un support"
+msgstr "Éditer un support"
 
 #: app/views/supports/edit.rhtml:8 app/views/typedemandes/edit.rhtml:8
 msgid "List"
@@ -4427,8 +4261,8 @@ msgid "New support"
 msgstr "Nouveau support"
 
 #: app/views/supports/index.rhtml:1
-msgid "List of Liste des offres de supports vendus"
-msgstr ""
+msgid "List of offers"
+msgstr "Liste des offres"
 
 #: app/views/supports/index.rhtml:3 app/views/supports/index.rhtml:20
 msgid "a new support"
@@ -4439,11 +4273,11 @@ msgid "Close time"
 msgstr "Heure de fermeture"
 
 #: app/views/supports/index.rhtml:5
-msgid "Telephonic <br/>assistance"
+msgid "Phone <br/>assistance"
 msgstr "Assistance <br/>téléphonique"
 
 #: app/views/supports/index.rhtml:6
-msgid "Technolofical <br/>survey"
+msgid "Technological <br/>survey"
 msgstr "Veille <br/>technologique"
 
 #: app/views/supports/index.rhtml:7
@@ -4505,7 +4339,7 @@ msgstr "Editer un type d'url"
 
 #: app/views/typeurls/new.rhtml:1
 msgid "Create a New typeurl"
-msgstr "Créer un nouveau type d'url"
+msgstr "Créér un nouveau type d'url"
 
 #: app/views/typeurls/index.rhtml:1
 msgid "List of the types for an software url"
@@ -4555,11 +4389,11 @@ msgstr "Valeur"
 
 #: app/views/urlreversements/edit.rhtml:1
 msgid "Edit this url"
-msgstr "Modifiez l'url"
+msgstr "Modifier l'url"
 
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
-msgstr "Ajouter une url pour suivre vôtre contribution"
+msgstr "Ajouter une url pour suivre votre contribution"
 
 #: lib/gettext_localize_extend.rb:6
 msgid "Sun"
@@ -4801,6 +4635,134 @@ msgstr "%e %b"
 #: lib/gettext_localize_extend.rb:160
 msgid "datetime|long|%B %e, %Y"
 msgstr "%B %e %Y"
+
+#~ msgid "\"How are the request processing ?\""
+#~ msgstr "\"Comment se passe le traitement d'une demande ?\""
+
+#~ msgid "status"
+#~ msgstr "état"
+
+#~ msgid "\"How to submit a request ?\""
+#~ msgstr "\"Comment déclarer une demande ?\""
+
+#~ msgid "recall on our commitment"
+#~ msgstr "rappel sur nos engagements"
+
+#~ msgid "Howto submit a request"
+#~ msgstr "Comment déposer une demande"
+
+#~ msgid "You can submit a request : "
+#~ msgstr "Vous pouvez déclader une demande : "
+
+#~ msgid ""
+#~ "Either by phone on 08000 54689 (LINUX) : you will be asked for a key-code"
+#~ msgstr ""
+#~ "Soit par téléphone au 08000 54689 (LINUX) : un code identifiant vous sera "
+#~ "alors demandé"
+
+#~ msgid "Either on the dedicate %s"
+#~ msgstr "Soit sur la %s dédiée"
+
+#~ msgid "web page"
+#~ msgstr "Page Web"
+
+#~ msgid ""
+#~ "The declaration consists to inform the cell on 08000linux about the %s, "
+#~ "la %s and the %s concerned by your request."
+#~ msgstr ""
+#~ "La décalration consiste à informer la cellule du 08000linux sur le %s, la "
+#~ "%s,et le %s concerné par votre demande."
+
+#~ msgid ""
+#~ "Next you can precise the summary and the description of your request."
+#~ msgstr ""
+#~ "Vous pouvez ensuite préciser le résumé et la description de votredemande."
+
+#~ msgid "On the validation,the %s become to <i>\"declared\"</i>"
+#~ msgstr "A la validation, le %s devient <i>\"déclaré\"</i>"
+
+#~ msgid ""
+#~ "An engineer from 08000linux will call back <b>to one hour</b> ( See our %"
+#~ "s ) and will asked you if necessary to precise your demand"
+#~ msgstr ""
+#~ "Un ingénieur du 08000linux vas vous rappeller dans <b>moins d'une heure</"
+#~ "b> (voir nos %s) et vous demandera de préciser votre demande si "
+#~ "nécessaire."
+
+#~ msgid ""
+#~ "At the end of the call, the %s from the demand will become <i>#chek in\"</"
+#~ "i>"
+#~ msgstr ""
+#~ "A la fin de l'appel, le %s de votre demande deviendra <i>\"enregistrer\"</"
+#~ "i>"
+
+#~ msgid ""
+#~ "We have assistance offers, also support and mantainance for, so don't "
+#~ "hesitate to"
+#~ msgstr "N'hésiter pas à"
+
+#~ msgid "Type of requests"
+#~ msgstr "Type de la demande"
+
+#~ msgid "Request type list :"
+#~ msgstr "Liste des natures :"
+
+#~ msgid "Severity of the Requests"
+#~ msgstr "Sévérité des demandes reçues"
+
+#~ msgid "Severity list"
+#~ msgstr "Liste des séverités"
+
+#~ msgid "Coordinates of the recipient"
+#~ msgstr "Corrdonnées du bénéficiaire"
+
+#~ msgid "Phone number"
+#~ msgstr "Numéro de téléphone"
+
+#~ msgid "Informed"
+#~ msgstr "CC"
+
+#~ msgid "Nom"
+#~ msgstr "Aucun"
+
+#~ msgid "List of Liste des offres de supports vendus"
+#~ msgstr "Liste des offres"
+
+#~ msgid "Person in charge"
+#~ msgstr "Responsable"
+
+#~ msgid "date de soumission"
+#~ msgstr "date de soumission"
+
+#~ msgid "plateform"
+#~ msgstr "platforme"
+
+#~ msgid "update"
+#~ msgstr "mettre à jour"
+
+#~ msgid "Severity of the received requests"
+#~ msgstr "Sévérité des demandes reçues"
+
+#~ msgid "Resolution of the received requests"
+#~ msgstr "Résolution des demandes reçues"
+
+#~ msgid "Post %s"
+#~ msgstr "Créer %s"
+
+#~ msgid "beneficiaire.client_id and contrat_id.client are different"
+#~ msgstr "Le bénéficiaire et le client ne correspondent pas."
+
+#~ msgid "Mot de passe manquant"
+#~ msgstr "Mot de passe manquant"
+
+#~ msgid "Votre mot de passe ne correspond pas à la confirmation"
+#~ msgstr "Votre mot de passe ne correspond pas à la confirmation"
+
+#~ msgid "Votre mot de passe est trop court (min. 5 caractères)"
+#~ msgstr "Votre mot de passe est trop court (min. 5 caractères)"
+
+#~ msgid " associate created"
+#~ msgstr "associer crée"
 
 #, fuzzy
 #~ msgid "Demande|Reproductible"

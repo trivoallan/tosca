@@ -18,7 +18,7 @@ class Appel < ActiveRecord::Base
   validate do |record|
     if record.beneficiaire and
       record.beneficiaire.client_id != record.contrat.client_id
-      record.errors.add _('beneficiaire.client_id and contrat_id.client are different')
+      record.errors.add _('recipient and client have to correspond.')
     end
   end
 
