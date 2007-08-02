@@ -160,15 +160,21 @@ table.pages td {
 	margin: 1em 0.5em 1em 0.5em;
 }
 
-
 .show tr td, tr th {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
+
 /*style for the left column in edit pages*/
 div.edit {
   float: left; 
   margin-right: 30px; 
   padding-right: 20px;
+}
+
+/* used mainly in show view, where we don't want 100% width */
+table.info  {
+    width: 30%;
+    min-width: 40em;
 }
 
 /* predefined pretty width and 3D border just for DIV's */
@@ -177,8 +183,8 @@ div.login, div.form, div.show, div.help, div.info {
 	border-top: 1px solid #ffffff;
 	border-right: 1px solid #999999;
 	border-bottom: 1px solid #999999;
-	max-width: 35em;
 }
+
 /* all lines are clickable */
 #demandes_list, #cns tr *:hover {
 	cursor: pointer;
