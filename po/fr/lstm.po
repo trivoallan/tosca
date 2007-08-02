@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-02 11:10+0200\n"
-"PO-Revision-Date: 2007-08-02 12:17+0200\n"
+"POT-Creation-Date: 2007-08-02 14:01+0200\n"
+"PO-Revision-Date: 2007-08-02 14:02+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -2216,7 +2216,7 @@ msgstr "Choissisez un identifiant"
 #: app/views/account/_edit.rhtml:29 app/views/bienvenue/admin.rhtml:17
 #: app/views/permissions/_form.rhtml:10
 msgid "Roles"
-msgstr "rôles"
+msgstr "Rôles"
 
 #: app/views/account/_edit.rhtml:37
 msgid "Is the user a customer of the service ?"
@@ -2758,8 +2758,8 @@ msgid "Welcome in the management tool of the 08000linux."
 msgstr "Bienvenue sur l'outil de gestion du 08000linux."
 
 #: app/views/bienvenue/index.rhtml:13
-msgid "You can see the list of %s :"
-msgstr "Vous pouvez voir la liste des %s"
+msgid "You can see the list of %s"
+msgstr "Vous pouvez consulter la liste des %s."
 
 #: app/views/bienvenue/index.rhtml:13
 msgid "requests"
@@ -3280,11 +3280,11 @@ msgstr "Assigné à"
 msgid "Private ?"
 msgstr "Privé ?"
 
-#: app/views/demandes/_comment_form.rhtml:30
+#: app/views/demandes/_comment_form.rhtml:29
 msgid "Add a file :"
 msgstr "Ajouter un fichier:"
 
-#: app/views/demandes/_comment_form.rhtml:32
+#: app/views/demandes/_comment_form.rhtml:31
 msgid "Answer"
 msgstr "Répondre"
 
@@ -4459,3 +4459,5 @@ msgstr "Modifier l'url"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
+#~ msgid "You can see the list of %s :"
+#~ msgstr "Vous pouvez consulter la liste des %s"

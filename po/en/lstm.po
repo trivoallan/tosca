@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-02 11:10+0200\n"
+"POT-Creation-Date: 2007-08-02 14:01+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -2770,7 +2770,7 @@ msgid "Welcome in the management tool of the 08000linux."
 msgstr ""
 
 #: app/views/bienvenue/index.rhtml:13
-msgid "You can see the list of %s :"
+msgid "You can see the list of %s"
 msgstr ""
 
 #: app/views/bienvenue/index.rhtml:13
@@ -3277,11 +3277,11 @@ msgstr ""
 msgid "Private ?"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:30
+#: app/views/demandes/_comment_form.rhtml:29
 msgid "Add a file :"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:32
+#: app/views/demandes/_comment_form.rhtml:31
 msgid "Answer"
 msgstr ""
 

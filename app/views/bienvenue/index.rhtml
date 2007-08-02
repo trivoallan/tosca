@@ -10,10 +10,10 @@
    <h3><%= _('Requests')%></h3>
   <% if user %>
     <% options = { :show_id => true, :icon_severite => true } %>
-    <div><%= _("You can see the list of %s :") % link_to(_("requests"), demandes_path) %>
+    <p><%= _("You can see the list of %s") % link_to(_("requests"), demandes_path) %></p>
        <%= show_liste(@demandes, _('requests in process'), :title => false) { |d|
              link_to_demande(d, options)
-          } %></div>
+          } %>
      <p><%= _("You can also %s.") % link_to(_("make a request"), new_demande_path) %></p>
   <% else %>
     <p><%= html_wrap(_("You are not %s, so you do not have any access to the requests interface of our service") % connected)%></p>
