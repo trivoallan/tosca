@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-02 08:32+0200\n"
-"PO-Revision-Date: 2007-08-02 08:33+0200\n"
+"PO-Revision-Date: 2007-08-02 09:14+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -753,7 +753,7 @@ msgstr "Une image a bien été mise à jour."
 
 #: app/helpers/application_helper.rb:57 app/helpers/demandes_helper.rb:74
 msgid "No"
-msgstr "Aucun"
+msgstr "Aucun(e)"
 
 #: app/helpers/application_helper.rb:59
 msgid " to date"
