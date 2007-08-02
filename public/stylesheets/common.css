@@ -158,7 +158,6 @@ table.pages td {
 	vertical-align: top;
 	padding: 1em 1em 1em 1em;
 	margin: 1em 0.5em 1em 0.5em;
-	max-width: 35em;
 }
 
 .show tr td, tr th {
@@ -175,7 +174,7 @@ div.edit {
 /* used mainly in show view, where we don't want 100% width */
 .info  {
     width: 30%;
-    min-width: 40em;
+    max-width: 40em;
 }
 
 /* predefined pretty width and 3D border just for DIV's */
