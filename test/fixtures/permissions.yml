@@ -73,7 +73,7 @@ permission_00047:
   id: 47
 permission_00037: 
   name: ^clients/show
-  info: Visualisation de l'offre OSSA
+  info: "Visualisation de l'offre OSSA"
   id: 37
 permission_00004: 
   name: ^account/(welcome|logout|modify)

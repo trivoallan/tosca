@@ -24,7 +24,7 @@ class IngenieurTest < Test::Unit::TestCase
     assert_equal i.client_ids, [1,2]
   end
   def test_nom
-    engineer = Ingenieur.find 1
+    engineer = Ingenieur.find 2
     assert_equal engineer.nom, 'Guillaume Dufloux'
   end
 end

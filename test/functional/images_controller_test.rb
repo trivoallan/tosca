@@ -8,10 +8,10 @@ require 'images_controller'
 class ImagesController; def rescue_action(e) raise e end; end
 
 class ImagesControllerTest < Test::Unit::TestCase
-  fixtures :photos
+  fixtures :images
 
   def setup
-    @controller = PhotosController.new
+    @controller = ImagesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
@@ -51,14 +51,14 @@ class ImagesControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    num_photos = Photo.count
+    num_images = Image.count
 
-    post :create, :photo => {}
+    post :create, :image => {}
 
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
-    assert_equal num_photos + 1, Photo.count
+    assert_equal num_images + 1, Image.count
   end
 
   def test_edit
@@ -78,14 +78,14 @@ class ImagesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Photo.find(1)
+    assert_not_nil Image.find(1)
 
     post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Photo.find(1)
+      Image.find(1)
     }
   end
 end

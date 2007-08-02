@@ -12,7 +12,8 @@ class NewsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = news(:first).id
+#   @first_id = news(:first).id
+    @first_id = New.find(:first).id
   end
 
   def test_index
