@@ -1,20 +1,20 @@
-<% if @modifications["severite_id"] %>
-Votre demande a été requalifiée en <b><%= @commentaire.severite.nom %></b>.<br/>
-<% end %>
-
-<% if @modifications["ingenieur_id"] %>
-<b><%= @commentaire.ingenieur.nom %></b> est désormais for interlocuteur pour cette demande.<br/>
-<% end %>
+<% modified = [] %>
+<% if @modifications["statut_id"]
+     modified << "<b>#{@commentaire.statut.nom}</b>"
+   end %>
+<% if @modifications["ingenieur_id"] 
+     modified << "assignée à <b>#{@commentaire.ingenieur.nom}</b>"
+   end %>
 
 <% url_demande = "<a href=\"#{@url_request}\">demande ##{@demande.id}</a>" %>
-La <%= url_demande %> a été commentée par <i><%= h @nom %></i>
-<% if @modifications["statut_id"] %>
- et est désormais <b><%= @commentaire.statut.nom %></b>
-<% end %>
+La <%= url_demande %> a été <%= modified.empty? ? 'commentée' : modified.join(' et ')%> par <i><%= h @nom %></i>
 :<br/>
 
 <hr noshade size="1px"/><br/>
 <%= @commentaire.corps %><br/>
 <hr noshade size="1px"/><br/>
+<% if @modifications["severite_id"] %>
+  La demande a été requalifiée avec une sévérité <b><%=@commentaire.severite.nom%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severite_demande">Cette page</a> présente en détail la signification de cette Sévérité.<br />
+<% end %>
 
 <%= render :partial => '../notifier/end_mail' %>
