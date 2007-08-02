@@ -4,12 +4,12 @@ cups_paquet:
   id: 1
   configuration: ""
   nom: "cups"
-  logiciel_id: 1
+  logiciel_id: 1 #ant
   paquet_id: 0
   mainteneur_id: 1
   version: '1.1.17'
   fournisseur_id: 1
-  contrat_id: 1
+  contrat_id: 3 #contrat pour le client guy
   release: "13.3.6"
   changelogs_count: nil
   conteneur_id: 1
@@ -21,13 +21,13 @@ cups_paquet:
 le_meilleur_paquet:
   id: 2
   configuration: ""
-  nom: "vim"
-  logiciel_id: 47
+  nom: "vim-full"
+  logiciel_id: 2 
   paquet_id: 0
   mainteneur_id: 1
   version: '1.7'
   fournisseur_id: 0 
-  contrat_id: 1
+  contrat_id: 3 # contrat avec guy
   release: "13.3.6"
   changelogs_count: nil
   taille: 3528875

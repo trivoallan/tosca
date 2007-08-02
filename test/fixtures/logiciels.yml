@@ -8,3 +8,21 @@ ant:
   resume: 'Outil de compilation pour java'
   license_id: 2
   image_id: nil
+vim:
+  id: 2
+  nom: 'VIM'
+  groupe_id: 4
+  referent: 'vim'
+  description: 'Vim est un outil de traitement de texte très puissant, utilisable en ligne de commande ou en mode graphique. Il surpasse allègrement Emacs'
+  resume: 'Editeur de texte'
+  license_id: 2
+  image_id: nil
+emacs:
+  id: 3
+  nom: 'EMACS'
+  groupe_id: 4
+  referent: 'emacs'
+  description: 'Vim est un outil de traitement de texte très puissant, utilisable en ligne de commande ou en mode graphique. Il surpasse allègrement Emacs'
+  resume: 'Editeur de texte'
+  license_id: 2
+  image_id: nil

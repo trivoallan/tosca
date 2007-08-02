@@ -15,6 +15,6 @@ class BeneficiaireTest < Test::Unit::TestCase
   
   def test_contrat_ids
     b = Beneficiaire.find 1
-    assert_equal b.contrat_ids, [1,2]
+    assert_equal b.contrat_ids, [1]
   end
 end

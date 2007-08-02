@@ -19,10 +19,17 @@ guy:
 vide:
   id: 3
   nom: nil
-# allow test for logiciels
 linagorien:
-  id: 4
+  id: 4 # must be id = 4 for test_logiciels in clients_test
   nom: 'linagorien'
+  description: "un autre utilisateur"
+  mailingliste: "guy@lapsote.net"
+  adresse: "Rue de Berri, Paris"
+  image_id: 3
+  code_acces: "linagora"
+no_contract:
+  id: 5
+  nom: 'noman'
   description: "un autre utilisateur"
   mailingliste: "guy@lapsote.net"
   adresse: "Rue de Berri, Paris"

@@ -15,7 +15,7 @@ class PaquetTest < Test::Unit::TestCase
     p = Paquet.find 1
     assert_equal p.to_s, 'rpm cups-1.1.17-13.3.6'
     p = Paquet.find 2
-    assert_equal p.to_s, 'unknown_name vim-1.7-13.3.6'
+    assert_equal p.to_s, 'unknown_name vim-full-1.7-13.3.6'
   end
 
   def test_contournement

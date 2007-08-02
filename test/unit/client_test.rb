@@ -4,7 +4,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
-  fixtures :clients, :typedemandes, :contrats, :beneficiaires
+  fixtures :clients, :typedemandes, :contrats, :beneficiaires, :paquets,
+    :logiciels, :engagements, :contrats_engagements
 
   def test_client_create
     # a customer must have a name
@@ -66,11 +67,11 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_contrat_ids
-    assert_equal clients(:toto).contrat_ids, "1,2"
-    assert_equal clients(:linagorien).contrat_ids, "0"
+    assert_equal Client.find(5).contrat_ids, '0'
+    assert_equal clients(:linagorien).contrat_ids, '2'
   end
   def test_support_distribution
-    assert_equal clients(:toto).support_distribution, true
+    assert_equal clients(:linagorien).support_distribution, true
     assert_equal clients(:guy).support_distribution, false
   end
   
@@ -81,19 +82,16 @@ class ClientTest < Test::Unit::TestCase
   
   def test_logiciels
     # case customer is Linagora
-    assert_equal Logiciel.find(:all), clients(:linagorien).logiciels
-    # TODO case customer isn't Linagora
+    assert_equal clients(:linagorien).logiciels, Logiciel.find(:all)
+    # case customer isn't Linagora
+    assert_equal Client.find(2).logiciels, Logiciel.find(1,2)
   end
   
-  # Need at least one request to test these tonctions
-  # TODO when request table will be migrated : improve these tests
   def test_typedemandes
-    assert clients(:toto).typedemandes
+    assert_equal clients(:guy).typedemandes, Typedemande.find(1,2).reverse
   end
   def test_contributions
     assert_equal clients(:toto).contributions, []
   end
   
-  
-
 end
