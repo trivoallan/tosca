@@ -63,7 +63,6 @@ require 'ruport/util'
 require 'gettext/rails'
 require 'gettext_localize'
 require 'gettext_localize_rails'
-require 'gettext_localize_extend'
 
 #French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'

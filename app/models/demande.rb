@@ -183,8 +183,9 @@ class Demande < ActiveRecord::Base
   def temps_rappel
     result = 0
 #     if (self.versions.size > 2) and (first.statut_id == 1) and self.appellee()
-    if (self.first_comment.statut_id == 1) and self.appellee()
-      result = compute_diff(self.first_comment.updated_on, appellee().updated_on,
+    first_comment = self.first_comment
+    if (first_comment and first_comment.statut_id == 1) and self.appellee()
+      result = compute_diff(first_comment.updated_on, appellee().updated_on,
                             client.support)
     end
     result

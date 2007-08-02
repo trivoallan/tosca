@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-02 08:32+0200\n"
-"PO-Revision-Date: 2007-08-02 09:14+0200\n"
+"POT-Creation-Date: 2007-08-02 10:06+0200\n"
+"PO-Revision-Date: 2007-08-02 10:07+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1575,7 +1575,7 @@ msgid "You must indicate a summary for your request"
 msgstr "Vous devez indiquer un résumé pour votre demande"
 
 # ne pas oublier l'espace au début
-#: app/models/demande.rb:243
+#: app/models/demande.rb:244
 msgid " of overrun"
 msgstr " de dépassement"
 
@@ -3913,10 +3913,9 @@ msgstr "Rapport d'activité de l'"
 
 #: app/views/reporting/_entete.rhtml:9
 msgid "from"
-msgstr "du"
+msgstr "de"
 
 #: app/views/reporting/_entete.rhtml:10
-#: app/views/reporting/_introduction.rhtml:3
 #: app/views/reporting/_comex_tableaux.rhtml:3
 msgid "to"
 msgstr "à"
@@ -3957,8 +3956,13 @@ msgstr ""
 "écoulée depuis le debut de votre contrat."
 
 #: app/views/reporting/_introduction.rhtml:2
-msgid "This report presents the state of the service from"
+#, fuzzy
+msgid "This report presents the state of the service from the"
 msgstr "Le présent rapport rend compte de l'exécution du service depuis le"
+
+#: app/views/reporting/_introduction.rhtml:3
+msgid "to the"
+msgstr "au"
 
 #: app/views/reporting/_introduction.rhtml:4
 msgid "including ("
@@ -3990,17 +3994,19 @@ msgstr ""
 "choisie, "
 
 #: app/views/reporting/_introduction.rhtml:10
+#, fuzzy
 msgid ""
-"the third graph offers you another view of the summary through a bar chart "
-"showing the evolution of these data over the duration of the deal"
+"the third graph show another view of the summary through a bar chart showing "
+"the evolution of these data over the duration of the deal"
 msgstr ""
 "le troisième graphique vous offre une autre vision de vos demandes à travers "
 "un histographe d'évolution de ces données sur la durée du marché "
 
 #: app/views/reporting/_introduction.rhtml:11
+#, fuzzy
 msgid ""
-"the last table offers to you a numerical view of the data used to draw the "
-"graphs, presented to you in the same zone. "
+"the last table show a numerical view of the data used to draw the graphs, "
+"presented to you in the same zone. "
 msgstr ""
 "le dernier tableau vous offre une vision numérique des données utilisées "
 "pour dessiner les graphiques qui vous sont présentés dans la même zone. "
@@ -4456,245 +4462,4 @@ msgstr "Modifier l'url"
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
-
-#: lib/gettext_localize_extend.rb:6
-msgid "Sun"
-msgstr "Dim"
-
-#: lib/gettext_localize_extend.rb:6
-msgid "Mon"
-msgstr "Lun"
-
-#: lib/gettext_localize_extend.rb:6
-msgid "Tue"
-msgstr "Mar"
-
-#: lib/gettext_localize_extend.rb:6
-msgid "Wed"
-msgstr "Mer"
-
-#: lib/gettext_localize_extend.rb:6
-msgid "Thu"
-msgstr "Jeu"
-
-#: lib/gettext_localize_extend.rb:6
-msgid "Fri"
-msgstr "Ven"
-
-#: lib/gettext_localize_extend.rb:6
-msgid "Sat"
-msgstr "Sam"
-
-#: lib/gettext_localize_extend.rb:12
-msgid "Sunday"
-msgstr "Dimanche"
-
-#: lib/gettext_localize_extend.rb:12
-msgid "Monday"
-msgstr "Lundi"
-
-#: lib/gettext_localize_extend.rb:12
-msgid "Tuesday"
-msgstr "Mardi"
-
-#: lib/gettext_localize_extend.rb:12
-msgid "Wednesday"
-msgstr "Mercredi"
-
-#: lib/gettext_localize_extend.rb:12
-msgid "Thursday"
-msgstr "Jeudi"
-
-#: lib/gettext_localize_extend.rb:12
-msgid "Friday"
-msgstr "Vendredi"
-
-#: lib/gettext_localize_extend.rb:12
-msgid "Saturday"
-msgstr "Samedi"
-
-#: lib/gettext_localize_extend.rb:18
-msgid "Jan"
-msgstr "Jan"
-
-#: lib/gettext_localize_extend.rb:18
-msgid "Feb"
-msgstr "Fév"
-
-#: lib/gettext_localize_extend.rb:18
-msgid "Mar"
-msgstr "Mar"
-
-#: lib/gettext_localize_extend.rb:18
-msgid "Apr"
-msgstr "Avr"
-
-#: lib/gettext_localize_extend.rb:18
-msgid "Abbr|May"
-msgstr "Mai"
-
-#: lib/gettext_localize_extend.rb:18
-msgid "Jun"
-msgstr "Juin"
-
-#: lib/gettext_localize_extend.rb:19
-msgid "Jul"
-msgstr "Juil"
-
-#: lib/gettext_localize_extend.rb:19
-msgid "Aug"
-msgstr "Aoû"
-
-#: lib/gettext_localize_extend.rb:19
-msgid "Sep"
-msgstr "Sep"
-
-#: lib/gettext_localize_extend.rb:19
-msgid "Oct"
-msgstr "Oct"
-
-#: lib/gettext_localize_extend.rb:19
-msgid "Nov"
-msgstr "Nov"
-
-#: lib/gettext_localize_extend.rb:19
-msgid "Dec"
-msgstr "Déc"
-
-#: lib/gettext_localize_extend.rb:25
-msgid "January"
-msgstr "Janvier"
-
-#: lib/gettext_localize_extend.rb:25
-msgid "February"
-msgstr "Février"
-
-#: lib/gettext_localize_extend.rb:25
-msgid "March"
-msgstr "Mars"
-
-#: lib/gettext_localize_extend.rb:25
-msgid "April"
-msgstr "Avril"
-
-#: lib/gettext_localize_extend.rb:25
-msgid "May"
-msgstr "Mai"
-
-#: lib/gettext_localize_extend.rb:25
-msgid "June"
-msgstr "Juin"
-
-#: lib/gettext_localize_extend.rb:26
-msgid "July"
-msgstr "Juillet"
-
-#: lib/gettext_localize_extend.rb:26
-msgid "August"
-msgstr "Août"
-
-#: lib/gettext_localize_extend.rb:26
-msgid "September"
-msgstr "Septembre"
-
-#: lib/gettext_localize_extend.rb:26
-msgid "October"
-msgstr "Octobre"
-
-#: lib/gettext_localize_extend.rb:26
-msgid "November"
-msgstr "Novembre"
-
-#: lib/gettext_localize_extend.rb:26
-msgid "December"
-msgstr "Décembre"
-
-#: lib/gettext_localize_extend.rb:35
-msgid "%s of January"
-msgstr "%s janvier"
-
-#: lib/gettext_localize_extend.rb:35
-msgid "%s of February"
-msgstr "%s février"
-
-#: lib/gettext_localize_extend.rb:35
-msgid "%s of March"
-msgstr "%s mars"
-
-#: lib/gettext_localize_extend.rb:35
-msgid "%s of April"
-msgstr "%s avril"
-
-#: lib/gettext_localize_extend.rb:35
-msgid "%s of May"
-msgstr "%s mai"
-
-#: lib/gettext_localize_extend.rb:35
-msgid "%s of June"
-msgstr "%s juin"
-
-#: lib/gettext_localize_extend.rb:36
-msgid "%s of July"
-msgstr "%s juin"
-
-#: lib/gettext_localize_extend.rb:36
-msgid "%s of August"
-msgstr "%s août"
-
-#: lib/gettext_localize_extend.rb:36
-msgid "%s of September"
-msgstr "%s septembre"
-
-#: lib/gettext_localize_extend.rb:36
-msgid "%s of October"
-msgstr "%s octobre"
-
-# ne pas oublier l'espace au début
-#: lib/gettext_localize_extend.rb:36
-msgid "%s of November"
-msgstr "%s novembre"
-
-#: lib/gettext_localize_extend.rb:36
-msgid "%s of December"
-msgstr "%s décembre"
-
-#: lib/gettext_localize_extend.rb:40
-msgid "and"
-msgstr "et"
-
-#: lib/gettext_localize_extend.rb:119
-msgid "date|default|%Y-%m-%d"
-msgstr "%d/%m/%Y"
-
-#: lib/gettext_localize_extend.rb:120
-msgid "date|short|%e %b"
-msgstr "%e %b"
-
-#: lib/gettext_localize_extend.rb:121
-msgid "date|long|%B %e, %Y"
-msgstr "%B %e %Y"
-
-#: lib/gettext_localize_extend.rb:139
-msgid "time|default|%a %b %d %H:%M:%S %Z %Y"
-msgstr "%d %b %b %Y à %H:%M:%S %Z"
-
-#: lib/gettext_localize_extend.rb:140
-msgid "time|short|%d %b %H:%M"
-msgstr "%d %b à %Hh%M"
-
-#: lib/gettext_localize_extend.rb:141
-msgid "time|long|%B %d, %Y %H:%M"
-msgstr "%d %B %Y à %Hh%M"
-
-#: lib/gettext_localize_extend.rb:158
-msgid "datetime|default|%a %b %d %H:%M:%S %Y"
-msgstr "%a %b %d %Y à %H:%M:%S"
-
-#: lib/gettext_localize_extend.rb:159
-msgid "datetime|short|%e %b"
-msgstr "%e %b"
-
-#: lib/gettext_localize_extend.rb:160
-msgid "datetime|long|%B %e, %Y"
-msgstr "%B %e %Y"
 

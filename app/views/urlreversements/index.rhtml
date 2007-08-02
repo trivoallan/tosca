@@ -9,7 +9,7 @@
   result << "<td>#{public_link_to_logiciel u.contribution.logiciel if u.contribution}</td>"
   result << "<td><a href=\"#{u.valeur}\">#{u.valeur}</a></td>"
   result << "<td>#{u.contribution.nom if u.contribution}</td>"
-  result << link_to_actions_table u
+  result << link_to_actions_table(u)
 }%>
 
 <%= links %>
