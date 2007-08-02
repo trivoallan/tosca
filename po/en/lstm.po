@@ -4678,21 +4678,3 @@ msgstr ""
 msgid "datetime|long|%B %e, %Y"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Demande|Reproductible"
-#~ msgstr "Description"
-
-#, fuzzy
-#~ msgid "Contact :"
-#~ msgstr "contributionstate"
-
-#, fuzzy
-#~ msgid "Identification"
-#~ msgstr "Description"
-
-#~ msgid "X"
-#~ msgstr "X"
-
-#, fuzzy
-#~ msgid "Identifiant"
-#~ msgstr "Description"
