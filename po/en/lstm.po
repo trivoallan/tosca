@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-02 10:06+0200\n"
+"POT-Creation-Date: 2007-08-02 11:00+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -240,17 +240,17 @@ msgid "Packages"
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:152 app/views/clients/show.rhtml:33
-#: app/views/demandes/_packages.rhtml:6 app/views/demandes/_cns.rhtml:33
-#: app/views/demandes/_report_detail.rhtml:14
+#: app/views/demandes/_cns.rhtml:33 app/views/demandes/_report_detail.rhtml:14
 #: app/views/demandes/_report_detail.rhtml:16
+#: app/views/demandes/_packages.rhtml:6
 #: app/views/reporting/_comex_cns.rhtml:20
 msgid "Workaround"
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:152 app/views/clients/show.rhtml:33
-#: app/views/demandes/_packages.rhtml:7 app/views/demandes/_cns.rhtml:34
-#: app/views/demandes/_report_detail.rhtml:15
+#: app/views/demandes/_cns.rhtml:34 app/views/demandes/_report_detail.rhtml:15
 #: app/views/demandes/_report_detail.rhtml:17
+#: app/views/demandes/_packages.rhtml:7
 #: app/views/reporting/_comex_cns.rhtml:21
 msgid "Correction"
 msgstr ""
@@ -281,6 +281,14 @@ msgstr ""
 
 #: app/controllers/documents_controller.rb:87
 msgid "your document was successfully updated"
+msgstr ""
+
+#: app/controllers/images_controller.rb:20
+msgid "An image was successfully created."
+msgstr ""
+
+#: app/controllers/images_controller.rb:34
+msgid "An image was successfully updated."
 msgstr ""
 
 #: app/controllers/export_controller.rb:41
@@ -391,7 +399,7 @@ msgstr ""
 #: app/views/demandes/_infos_demande.rhtml:21
 #: app/views/demandes/_requests_list.rhtml:9 app/views/paquets/_form.rhtml:7
 #: app/views/paquets/_paquets_list.rhtml:7 app/views/paquets/show.rhtml:16
-#: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:6
+#: app/views/urllogiciels/_form.rhtml:6 app/views/urllogiciels/index.rhtml:6
 #: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
 msgid "Software"
 msgstr ""
@@ -730,14 +738,6 @@ msgstr ""
 msgid "Urlreversement was successfully updated."
 msgstr ""
 
-#: app/controllers/images_controller.rb:20
-msgid "An image was successfully created."
-msgstr ""
-
-#: app/controllers/images_controller.rb:34
-msgid "An image was successfully updated."
-msgstr ""
-
 #: app/helpers/application_helper.rb:57 app/helpers/demandes_helper.rb:74
 msgid "No"
 msgstr ""
@@ -964,8 +964,8 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: app/helpers/images_helper.rb:117 app/views/urlreversements/index.rhtml:6
-#: app/views/urlreversements/_form.rhtml:6
+#: app/helpers/images_helper.rb:117 app/views/urlreversements/_form.rhtml:6
+#: app/views/urlreversements/index.rhtml:6
 msgid "Contribution"
 msgstr ""
 
@@ -991,6 +991,22 @@ msgstr ""
 
 #: app/helpers/images_helper.rb:214
 msgid "Select a date"
+msgstr ""
+
+#: app/helpers/logiciels_helper.rb:28
+msgid "My supported softwares"
+msgstr ""
+
+#: app/helpers/logiciels_helper.rb:29
+msgid "Display only software supported by your contract"
+msgstr ""
+
+#: app/helpers/logiciels_helper.rb:32
+msgid "All softwares"
+msgstr ""
+
+#: app/helpers/logiciels_helper.rb:33
+msgid "Display all softwares"
 msgstr ""
 
 #: app/helpers/pages_helper.rb:35
@@ -1031,62 +1047,6 @@ msgstr ""
 
 #: app/helpers/urlreversements_helper.rb:14
 msgid "new url"
-msgstr ""
-
-#: app/helpers/logiciels_helper.rb:28
-msgid "My supported softwares"
-msgstr ""
-
-#: app/helpers/logiciels_helper.rb:29
-msgid "Display only software supported by your contract"
-msgstr ""
-
-#: app/helpers/logiciels_helper.rb:32
-msgid "All softwares"
-msgstr ""
-
-#: app/helpers/logiciels_helper.rb:33
-msgid "Display all softwares"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "news"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "new"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Subject"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Source"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Body"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Created on"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Updated on"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Ingenieur"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Client"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Logiciel"
 msgstr ""
 
 #: app/models/appel.rb:-
@@ -1263,6 +1223,40 @@ msgid "Client|Beneficiaires count"
 msgstr "Description"
 
 #: app/models/client.rb:-
+msgid "contrat"
+msgstr ""
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Client"
+msgstr "contributionstate"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Ouverture"
+msgstr "contributionstate"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Cloture"
+msgstr "contributionstate"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Paquets count"
+msgstr "contributionstate"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Astreinte"
+msgstr "contributionstate"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Socle"
+msgstr "contributionstate"
+
+#: app/models/client.rb:-
 msgid "paquet"
 msgstr ""
 
@@ -1327,40 +1321,6 @@ msgstr ""
 #: app/models/client.rb:-
 msgid "Paquet|Active"
 msgstr ""
-
-#: app/models/client.rb:-
-msgid "contrat"
-msgstr ""
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Contrat|Client"
-msgstr "contributionstate"
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Contrat|Ouverture"
-msgstr "contributionstate"
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Contrat|Cloture"
-msgstr "contributionstate"
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Contrat|Paquets count"
-msgstr "contributionstate"
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Contrat|Astreinte"
-msgstr "contributionstate"
-
-#: app/models/client.rb:-
-#, fuzzy
-msgid "Contrat|Socle"
-msgstr "contributionstate"
 
 #: app/models/commentaire.rb:-
 msgid "commentaire"
@@ -1529,11 +1489,6 @@ msgstr "Description"
 
 #: app/models/demande.rb:-
 #, fuzzy
-msgid "Demande|Description"
-msgstr "Description"
-
-#: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Statut"
 msgstr "Description"
 
@@ -1564,11 +1519,6 @@ msgstr "Description"
 
 #: app/models/demande.rb:-
 #, fuzzy
-msgid "Demande|Version"
-msgstr "Description"
-
-#: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Contribution"
 msgstr "contributionstate"
 
@@ -1585,6 +1535,11 @@ msgstr "Description"
 #: app/models/demande.rb:-
 #, fuzzy
 msgid "Demande|First comment"
+msgstr "Description"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Description"
 msgstr "Description"
 
 #: app/models/demande.rb:23
@@ -1662,11 +1617,6 @@ msgstr "Updated on"
 #: app/models/document.rb:-
 msgid "Document|Version"
 msgstr "Version"
-
-#: app/models/document.rb:-
-#, fuzzy
-msgid "Document|Date delivery"
-msgstr "Customer"
 
 #: app/models/engagement.rb:-
 msgid "engagement"
@@ -1941,6 +1891,46 @@ msgstr ""
 
 #: app/models/mainteneur.rb:-
 msgid "Mainteneur|Nom"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "news"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "new"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Subject"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Source"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Body"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Created on"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Updated on"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Ingenieur"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Client"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Logiciel"
 msgstr ""
 
 #: app/models/paquet.rb:42
@@ -2544,12 +2534,12 @@ msgid "New phone call"
 msgstr ""
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
-#: app/views/news/new.rhtml:5 app/views/competences/new.rhtml:5
-#: app/views/contributions/new.rhtml:5 app/views/dependances/new.rhtml:5
-#: app/views/fichiers/new.rhtml:5 app/views/groupes/new.rhtml:5
-#: app/views/ingenieurs/new.rhtml:5 app/views/images/new.rhtml:5
-#: app/views/jourferies/new.rhtml:5 app/views/machines/new.rhtml:5
-#: app/views/mainteneurs/new.rhtml:5 app/views/roles/new.rhtml:5
+#: app/views/competences/new.rhtml:5 app/views/contributions/new.rhtml:5
+#: app/views/dependances/new.rhtml:5 app/views/fichiers/new.rhtml:5
+#: app/views/groupes/new.rhtml:5 app/views/ingenieurs/new.rhtml:5
+#: app/views/images/new.rhtml:5 app/views/jourferies/new.rhtml:5
+#: app/views/machines/new.rhtml:5 app/views/mainteneurs/new.rhtml:5
+#: app/views/news/new.rhtml:5 app/views/roles/new.rhtml:5
 #: app/views/severites/new.rhtml:5 app/views/socles/new.rhtml:5
 #: app/views/supports/new.rhtml:5 app/views/typecontributions/new.rhtml:5
 #: app/views/typedemandes/new.rhtml:5 app/views/typedocuments/new.rhtml:5
@@ -2567,14 +2557,6 @@ msgstr ""
 
 #: app/views/appels/show.rhtml:20
 msgid "Ended on"
-msgstr ""
-
-#: app/views/arches/index.rhtml:1
-msgid "List of processor architecture"
-msgstr ""
-
-#: app/views/arches/index.rhtml:3 app/views/arches/index.rhtml:12
-msgid "A processor architecture"
 msgstr ""
 
 #: app/views/arches/edit.rhtml:1
@@ -2598,6 +2580,14 @@ msgstr ""
 
 #: app/views/arches/new.rhtml:1
 msgid "Add a new processor architecture"
+msgstr ""
+
+#: app/views/arches/index.rhtml:1
+msgid "List of processor architecture"
+msgstr ""
+
+#: app/views/arches/index.rhtml:3 app/views/arches/index.rhtml:12
+msgid "A processor architecture"
 msgstr ""
 
 #: app/views/beneficiaires/new.rhtml:1
@@ -3240,11 +3230,6 @@ msgstr ""
 msgid "package(s) with the patch"
 msgstr ""
 
-#: app/views/demandes/_packages.rhtml:4
-#: app/views/demandes/_report_detail.rhtml:9
-msgid "Commitment"
-msgstr ""
-
 #: app/views/demandes/_appels.rhtml:2
 msgid "Phone call"
 msgstr ""
@@ -3437,6 +3422,11 @@ msgstr ""
 
 #: app/views/demandes/_report_detail.rhtml:8
 msgid "Time"
+msgstr ""
+
+#: app/views/demandes/_report_detail.rhtml:9
+#: app/views/demandes/_packages.rhtml:4
+msgid "Commitment"
 msgstr ""
 
 #: app/views/demandes/_report_detail.rhtml:10
@@ -4064,50 +4054,6 @@ msgstr ""
 msgid "Number"
 msgstr ""
 
-#: app/views/reporting/flux.rhtml:3
-msgid "a new request"
-msgstr ""
-
-#: app/views/reporting/flux.rhtml:33
-msgid "No request declared."
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:2
-msgid "OSSA activity per week"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:6
-msgid "Please select"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:7
-msgid "Select customer"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:11
-msgid "Number of the week:"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:17
-msgid "Or search by period"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:20
-msgid "First day : "
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:28
-msgid "Last day : "
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:36
-msgid "See the report for this week"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:40
-msgid "See the report of requests' SLA"
-msgstr ""
-
 #: app/views/reporting/_comex_cns.rhtml:2
 msgid "SLA report"
 msgstr ""
@@ -4156,6 +4102,50 @@ msgstr ""
 
 #: app/views/reporting/_comex_tableaux.rhtml:12
 msgid "Total in progress <br /> end week"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:2
+msgid "OSSA activity per week"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:6
+msgid "Please select"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:7
+msgid "Select customer"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:11
+msgid "Number of the week:"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:17
+msgid "Or search by period"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:20
+msgid "First day : "
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:28
+msgid "Last day : "
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:36
+msgid "See the report for this week"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:40
+msgid "See the report of requests' SLA"
+msgstr ""
+
+#: app/views/reporting/flux.rhtml:3
+msgid "a new request"
+msgstr ""
+
+#: app/views/reporting/flux.rhtml:33
+msgid "No request declared."
 msgstr ""
 
 #: app/views/roles/_form.rhtml:6
@@ -4254,16 +4244,16 @@ msgstr ""
 msgid "customers"
 msgstr ""
 
-#: app/views/statuts/index.rhtml:1
-msgid "List of the status"
-msgstr ""
-
 #: app/views/statuts/edit.rhtml:1
 msgid "Editing a statut"
 msgstr ""
 
 #: app/views/statuts/new.rhtml:1
 msgid "New status"
+msgstr ""
+
+#: app/views/statuts/index.rhtml:1
+msgid "List of the status"
 msgstr ""
 
 #: app/views/supports/_form.rhtml:6 app/views/supports/index.rhtml:5
@@ -4400,6 +4390,14 @@ msgstr ""
 msgid "a new url"
 msgstr ""
 
+#: app/views/urllogiciels/_form.rhtml:3
+msgid "Value"
+msgstr ""
+
+#: app/views/urllogiciels/_form.rhtml:11 app/views/urllogiciels/index.rhtml:6
+msgid "Kind"
+msgstr ""
+
 #: app/views/urllogiciels/index.rhtml:1
 msgid "List of softwares' links"
 msgstr ""
@@ -4407,14 +4405,6 @@ msgstr ""
 #: app/views/urllogiciels/index.rhtml:6
 #: app/views/urlreversements/index.rhtml:6
 msgid "Url"
-msgstr ""
-
-#: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:11
-msgid "Kind"
-msgstr ""
-
-#: app/views/urllogiciels/_form.rhtml:3
-msgid "Value"
 msgstr ""
 
 #: app/views/urllogiciels/edit.rhtml:1
@@ -4425,10 +4415,6 @@ msgstr ""
 msgid "Add an url for a software"
 msgstr ""
 
-#: app/views/urlreversements/index.rhtml:1
-msgid "List of urls in contributions"
-msgstr ""
-
 #: app/views/urlreversements/_form.rhtml:3
 msgid "Valeur"
 msgstr ""
@@ -4437,6 +4423,258 @@ msgstr ""
 msgid "Edit this url"
 msgstr ""
 
+#: app/views/urlreversements/index.rhtml:1
+msgid "List of urls in contributions"
+msgstr ""
+
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr ""
+
+#: lib/gettext_localize_extend.rb:6
+msgid "Sun"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:6
+msgid "Mon"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:6
+msgid "Tue"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:6
+msgid "Wed"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:6
+msgid "Thu"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:6
+msgid "Fri"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:6
+msgid "Sat"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:12
+msgid "Sunday"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:12
+msgid "Monday"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:12
+msgid "Tuesday"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:12
+msgid "Wednesday"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:12
+msgid "Thursday"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:12
+msgid "Friday"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:12
+msgid "Saturday"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:18
+msgid "Jan"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:18
+msgid "Feb"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:18
+msgid "Mar"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:18
+msgid "Apr"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:18
+msgid "Abbr|May"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:18
+msgid "Jun"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:19
+msgid "Jul"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:19
+msgid "Aug"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:19
+msgid "Sep"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:19
+msgid "Oct"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:19
+msgid "Nov"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:19
+msgid "Dec"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:25
+msgid "January"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:25
+msgid "February"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:25
+msgid "March"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:25
+msgid "April"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:25
+msgid "May"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:25
+msgid "June"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:26
+msgid "July"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:26
+msgid "August"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:26
+msgid "September"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:26
+msgid "October"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:26
+msgid "November"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:26
+msgid "December"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:35
+msgid "%s of January"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:35
+msgid "%s of February"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:35
+msgid "%s of March"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:35
+msgid "%s of April"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:35
+msgid "%s of May"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:35
+msgid "%s of June"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:36
+msgid "%s of July"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:36
+msgid "%s of August"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:36
+msgid "%s of September"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:36
+msgid "%s of October"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:36
+msgid "%s of November"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:36
+msgid "%s of December"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:40
+msgid "and"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:119
+msgid "date|default|%Y-%m-%d"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:120
+msgid "date|short|%e %b"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:121
+msgid "date|long|%B %e, %Y"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:139
+msgid "time|default|%a %b %d %H:%M:%S %Z %Y"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:140
+msgid "time|short|%d %b %H:%M"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:141
+msgid "time|long|%B %d, %Y %H:%M"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:158
+msgid "datetime|default|%a %b %d %H:%M:%S %Y"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:159
+msgid "datetime|short|%e %b"
+msgstr ""
+
+#: lib/gettext_localize_extend.rb:160
+msgid "datetime|long|%B %e, %Y"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Demande|Version"
+#~ msgstr "Description"
+
+#, fuzzy
+#~ msgid "Document|Date delivery"
+#~ msgstr "Customer"

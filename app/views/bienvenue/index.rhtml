@@ -14,7 +14,7 @@
        <%= show_liste(@demandes, _('requests in process'), :title => false) { |d|
              link_to_demande(d, options)
           } %></div>
-     <p><%= _("you can also %s.") % link_to(_("make a request"), new_demande_path) %></p>
+     <p><%= _("You can also %s.") % link_to(_("make a request"), new_demande_path) %></p>
   <% else %>
     <p><%= html_wrap(_("You are not %s, so you do not have any access to the requests interface of our service") % connected)%></p>
   <% end %>
@@ -37,7 +37,7 @@
  <div class="sommaire show">
    <h3><%= _('Idea Box')%></h3>
    <p><%= _("You have an idea, which can improve our services ?<br />
-    Your comments and suggestions are welcome in %s") % 
+    Your comments and suggestions are welcome in %s") %
     link_to(_('the idea box'), suggestions_bienvenue_path) %></p>
  </div>
  <% end %>
