@@ -2,6 +2,7 @@
 <b>Date : </b><%= Time.now %><br/>
 <b>Message : </b><%= @exception.message %><br/>
 <b>Location : </b><%= @env['REQUEST_URI'] %><br/>
+<b>Server : </b><%= @env['SERVER_NAME'] %><br/>
 <b>Action : </b><%= @params.delete('action') %><br/>
 <b>Controller : </b><%= @params.delete('controller') %><br/>
 <b>Query : </b><%= @env['QUERY_STRING'] %><br/>
