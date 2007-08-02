@@ -1,6 +1,6 @@
 <h1><%= _('Edit this contribution') %></h1>
 
-<% form_tag(edit_contribution_path(@contribution), 
+<% form_tag(contribution_path(@contribution), 
       :multipart => true, :method => :put ) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Validate') %>
