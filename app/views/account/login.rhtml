@@ -3,7 +3,7 @@
 <table class="sommaire show">
   <tr>
     <td colspan="2"><h1><%= _('08000linux login')%></h1></td>
-    <% unless controller.controller_name == "account"  %>
+    <% unless controller.is_a? AccountController %>
       <td><%= link_to_close_redbox(image_hide_notice) %></td>
     <% end %>
   </tr><tr>
