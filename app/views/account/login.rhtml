@@ -1,6 +1,5 @@
-
-<% form_tag login_accounts_url do %>
-<table class="sommaire show">
+<% form_tag login_accounts_path do %>
+ <table class="sommaire show">
   <tr>
     <td colspan="2"><h1><%= _('08000linux login')%></h1></td>
     <% unless controller.is_a? AccountController %>
@@ -21,14 +20,7 @@
       </center>
     </td>
   </tr>
-</table>
+ </table>
 <% end %>
-
-<script language="javascript">
-<!--
-  // used for ajaxified filters (session is set)
-  document.getElementById("javascript").value="true";
--->
-</script>
 
 

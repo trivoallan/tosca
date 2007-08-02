@@ -30,8 +30,10 @@
 </head>
 <body>
   <% # Used to have a working back button 4 browser in ajaxified list %>
-  <% if defined? @partial_for_summary %>
-   <% testcall = PagesHelper::AJAX_OPTIONS.dup.update(:url => request.path) %>
+  <% if @partial_for_summary %>
+   <% # As of rails 1.2.3, request.path does not return the full path, 
+      # so we need to get it directly %>
+   <% testcall = PagesHelper::AJAX_OPTIONS.dup.update(:url =>  request.env['REQUEST_PATH'])%>
    <% js_call = remote_function(testcall) %>
    <script type="text/javascript">
      var refresh=TinyMCE_AdvancedTheme._getCookie("refresh");
@@ -39,7 +41,7 @@
      window.onload = reload_last_ajax;
    </script>
   <% end %>
-
+   
   <% # All the menu are built during first rendering or during login, in account controller %>
   <% @@menu[locale] ||= build_simple_menu([
     public_link_to_home,
