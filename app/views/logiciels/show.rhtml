@@ -35,7 +35,7 @@
          result << " #{u.typeurl.nom} : "
          result << "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
          result } %>
-    </td><</tr>
+    </td></tr>
 
 <tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:logiciel_id => @logiciel.id)%> <br/>
    <% if @demandes.size > 0 %>
@@ -50,7 +50,7 @@
 
 <tr><td><b><%=_('Package(s)')%></b><%= link_to_new_paquet(@logiciel.id) %></td>
   <td>    
-     <% options[:edit] = 'paquet'; options[:public] = true %>
+     <% options[:edit] = 'paquet' %>
      <%=  show_liste(@logiciel.paquets, 'Paquet', options) do |paquet|
         link_to_paquet paquet
      end %>

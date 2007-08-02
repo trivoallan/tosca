@@ -4,8 +4,8 @@
       out = "<b>#{public_link_to_contribution_logiciel l }</b> : #{l.resume}"
 } %>
 
-<%= link_to _('Submit a contribution'), new_contribution_url %><br/>
+<%= link_to _('Submit a contribution'), new_contribution_path %><br/>
 <% #link_to_new('contribution') %><br/>
-<%= link_to _('See all contributions'), list_contribution_url(:id => 'all') %><br/>
+<%= link_to _('See all contributions'), list_contribution_path(:id => 'all') %><br/>
 <p><%= contributions_export_link %></p>
-<%= link_to _('Access to administration interface'), admin_contributions_url %>
+<%= link_to _('Access to administration interface'), admin_contributions_path %>

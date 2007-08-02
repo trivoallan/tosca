@@ -55,9 +55,10 @@ module ApplicationHelper
   def show_liste(elements, nom = '', options = {}) 
     size = elements.size
     return '<u><b>' << _('No') << " #{nom}</b></u><br />" unless size > 0
-    if session[:user].nil? and options[:public]
+    if session[:user].nil? and not options.has_key? :public
       return "<u><b>#{pluralize(size, nom.capitalize)}" << _(' to date') << '</b></u><br />' 
     end
+
     result = ''
     unless nom.blank? or options[:title]==false or options[:no_title]
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
