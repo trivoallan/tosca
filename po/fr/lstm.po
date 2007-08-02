@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-02 11:10+0200\n"
-"PO-Revision-Date: 2007-08-02 11:11+0200\n"
+"PO-Revision-Date: 2007-08-02 12:17+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3286,7 +3286,7 @@ msgstr "Ajouter un fichier:"
 
 #: app/views/demandes/_comment_form.rhtml:32
 msgid "Answer"
-msgstr "Réponse"
+msgstr "Répondre"
 
 #: app/views/demandes/_form.rhtml:14
 #: app/views/demandes/_requests_list.rhtml:12
