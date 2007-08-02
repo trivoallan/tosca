@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-02 11:10+0200\n"
-"PO-Revision-Date: 2007-08-02 11:07+0200\n"
+"PO-Revision-Date: 2007-08-02 11:11+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -185,7 +185,6 @@ msgstr "Votre commentaire est trop court. Merci d'en écrire un plus long."
 
 #: app/controllers/commentaires_controller.rb:58
 #: app/controllers/commentaires_controller.rb:101
-#, fuzzy
 msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
@@ -3956,7 +3955,6 @@ msgstr ""
 "écoulée depuis le debut de votre contrat."
 
 #: app/views/reporting/_introduction.rhtml:2
-#, fuzzy
 msgid "This report presents the state of the service from the"
 msgstr "Le présent rapport rend compte de l'exécution du service depuis le"
 
@@ -3994,7 +3992,6 @@ msgstr ""
 "choisie, "
 
 #: app/views/reporting/_introduction.rhtml:10
-#, fuzzy
 msgid ""
 "the third graph show another view of the summary through a bar chart showing "
 "the evolution of these data over the duration of the deal"
@@ -4003,7 +4000,6 @@ msgstr ""
 "un histographe d'évolution de ces données sur la durée du marché "
 
 #: app/views/reporting/_introduction.rhtml:11
-#, fuzzy
 msgid ""
 "the last table show a numerical view of the data used to draw the graphs, "
 "presented to you in the same zone. "
