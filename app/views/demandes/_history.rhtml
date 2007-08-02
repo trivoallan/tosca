@@ -22,11 +22,11 @@
         <% end %>
         <% if c.statut_id and old_statut_id != c.statut_id %>
           <% statut = Statut.find(c.statut_id) %>
-          <%= _("The <b>status</b> of your request is now <b>%s</b>") % statut.nom %><br/>
+          <%= _("The <b>status</b> of your request is <b>%s</b>") % statut.nom %><br/>
         <% end %>
         <% if c.severite_id and old_severite_id != c.severite_id %>
           <% severite = Severite.find(c.severite_id) %>
-          <%= _("The <b>severity</b> of your request has changed to <b>%s</b>") % severite.nom %>
+          <%= _("The <b>severity</b> of your request is <b>%s</b>") % severite.nom %>
         <% end %>
       </td>
     </tr>
