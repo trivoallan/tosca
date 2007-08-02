@@ -1,8 +1,8 @@
 <table class="sommaire"><tr><td>
  <div class="sommaire show">
   <h3><%=_('Help')%></h3>
-  <% links = [ public_link_to_help_new_request, 
-               public_link_to_howto_request, 
+  <% links = [ public_link_to_help_new_request,
+               public_link_to_howto_request,
                public_link_to_help_request_status ] %>
   <%= public_show_liste(links) %>
   <p><%=_("Don't hesitate to")%>
@@ -11,7 +11,7 @@
  </div>
 
  <div class="sommaire show">
-  <h1><%= _('About')%><%=Metadata::NOM_COURT_APPLICATION%> v<%=Metadata::VERSION_APPLICATION%></h1>
+  <h1><%= _('About')%> <%=Metadata::NOM_COURT_APPLICATION%> v<%=Metadata::VERSION_APPLICATION%></h1>
 
   <p><%= _('This application was created by <b>Michel Loiseleur</b> at ')%>
       <a href="http://www.linagora.com">Linagora</a>.</p>
