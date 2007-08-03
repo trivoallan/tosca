@@ -84,11 +84,7 @@ class Demande < ActiveRecord::Base
       c.demande_id = self.id
       c.severite_id = self.severite_id
       c.statut_id = self.statut_id
-      if self.beneficiaire
-        c.identifiant_id = self.beneficiaire.identifiant_id
-      else
-        c.identifiant_id = self.ingenieur.identifiant_id
-      end
+      c.identifiant_id = self.beneficiaire.identifiant_id
     end
     comment.save
     self.first_comment_id = comment.id
