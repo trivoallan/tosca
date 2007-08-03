@@ -84,7 +84,7 @@ class ClientTest < Test::Unit::TestCase
     # case customer is Linagora
     assert_equal clients(:linagorien).logiciels, Logiciel.find(:all)
     # case customer isn't Linagora
-    assert_equal Client.find(2).logiciels, Logiciel.find(1,2)
+    assert_equal Client.find(2).logiciels, [Logiciel.find(1)]
   end
   
   def test_typedemandes
