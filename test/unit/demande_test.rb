@@ -17,14 +17,13 @@ class DemandeTest < Test::Unit::TestCase
     assert !request.save
     request.resume ='resume'
 
-    # must have an identifiant
+    # must have an recipient
     assert !request.save
-    request.ingenieur_id = 1
+    request.beneficiaire_id = 1
     # must have a description
     assert !request.save
     request.description = 'hello request'
 
-    # TODO if enginner, must have statut and severite
     assert request.save
 
     # commentaire table must have things now ...
@@ -54,6 +53,10 @@ class DemandeTest < Test::Unit::TestCase
     c = Client.find 2
     assert_nil r[0].client
     assert_equal r[1].client, c
-    
+  end
+  def test_respect_contournement
+    r = Demande.find 1
+    c = Contrat.find 2
+    assert_equal r.respect_contournement(c.id), 'ee'
   end
 end
