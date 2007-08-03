@@ -254,7 +254,7 @@ module ImagesHelper
         button         :    "%s",  // trigger for the calendar (button ID)
         align          :    "Tl",         // alignment : Top left
         singleClick    :    true,
-             ifFormat       : "%%Y-%%m-%%d"  // our date only format
+        ifFormat       : "%%Y-%%m-%%d"  // our date only format
          });
    </script>' % args
   end

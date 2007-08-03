@@ -2,7 +2,24 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Piecejointe < ActiveRecord::Base
-  file_column :file, :fix_file_extensions => nil
+  file_column :file, :fix_file_extensions => nil, 
+    :uv => {
+      :theme => ""
+    },
+    :magick => {
+      :versions => {
+        :fit_size => {
+          :transformation => Proc.new { |image| 
+            if image.columns > 800 or image.rows > 600
+              image.resize_to_fit(800, 600)
+            else
+              image 
+            end 
+          }
+        }
+      }
+    }
+    
   has_one :commentaire
 
   validates_presence_of :file

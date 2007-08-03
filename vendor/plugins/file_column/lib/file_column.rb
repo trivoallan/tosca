@@ -8,7 +8,7 @@ module FileColumn # :nodoc:
     base.extend(ClassMethods)
   end
 
-  def self.create_state(instance,attr)
+  def self.create_state(instance, attr)
     filename = instance[attr]
     if filename.nil? or filename.empty?
       NoUploadedFile.new(instance,attr)
@@ -31,7 +31,7 @@ module FileColumn # :nodoc:
       end
     end
 
-    options
+      options
   end
 
   class BaseUploadedFile # :nodoc:
@@ -184,6 +184,21 @@ module FileColumn # :nodoc:
         File.join(relative_path_prefix, @filename)
       end
     end
+     
+    def get_content_type(fallback=nil)
+      if options[:file_exec]
+        begin
+          content_type = `#{options[:file_exec]} -bi "#{File.join(@dir,@filename)}"`.chomp
+          content_type = fallback unless $?.success?
+          content_type.gsub!(/;.+$/,"") if content_type
+          content_type
+        rescue
+          fallback
+        end
+      else
+        fallback
+      end
+    end
 
     private
 
@@ -318,21 +333,6 @@ module FileColumn # :nodoc:
 
     def delete_files
       FileUtils.rm_rf(File.join(tmp_base_dir, @tmp_dir))
-    end
-
-    def get_content_type(fallback=nil)
-      if options[:file_exec]
-        begin
-          content_type = `#{options[:file_exec]} -bi "#{File.join(@dir,@filename)}"`.chomp
-          content_type = fallback unless $?.success?
-          content_type.gsub!(/;.+$/,"") if content_type
-          content_type
-        rescue
-          fallback
-        end
-      else
-        fallback
-      end
     end
 
     private
@@ -548,12 +548,6 @@ module FileColumn # :nodoc:
     # default mapping of mime-types to file extensions. FileColumn will try to
     # rename a file to the correct extension if it detects a known mime-type
     MIME_EXTENSIONS = {
-      "image/gif" => "gif",
-      "image/jpeg" => "jpg",
-      "image/pjpeg" => "jpg",
-      "image/x-png" => "png",
-      "image/jpg" => "jpg",
-      "image/png" => "png",
       "application/x-shockwave-flash" => "swf",
       "application/pdf" => "pdf",
       "application/pgp-signature" => "sig",
@@ -587,16 +581,30 @@ module FileColumn # :nodoc:
       "video/x-ms-asf" => "asf",
       "video/x-ms-wmv" => "wmv"
     }
+    
+    IMAGE_MIME_EXTENSIONS = {
+      "image/gif" => "gif",
+      "image/jpeg" => "jpg",
+      "image/pjpeg" => "jpg",
+      "image/x-png" => "png",
+      "image/jpg" => "jpg",
+      "image/png" => "png"
+    }
 
+    IMAGE_EXTENSIONS = Set.new IMAGE_MIME_EXTENSIONS.values
+    IMAGE_EXTENSIONS.merge %w(jpeg)
+    
     EXTENSIONS = Set.new MIME_EXTENSIONS.values
-    EXTENSIONS.merge %w(jpeg)
+    EXTENSIONS.merge IMAGE_EXTENSIONS
 
     # default options. You can override these with +file_column+'s +options+ parameter
     DEFAULT_OPTIONS = {
       :root_path => File.join(RAILS_ROOT, "files"),
       :web_root => "",
       :mime_extensions => MIME_EXTENSIONS,
+      :image_mime_extentions => IMAGE_MIME_EXTENSIONS,
       :extensions => EXTENSIONS,
+      :image_extensions => IMAGE_EXTENSIONS,
       :fix_file_extensions => true,
       :permissions => 0644,
 
@@ -630,8 +638,8 @@ module FileColumn # :nodoc:
         end
         result
       end
-      
-      private state_method
+            
+      #private state_method
       
       define_method attr do |*args|
         send(state_method).absolute_path *args
@@ -667,6 +675,10 @@ module FileColumn # :nodoc:
         instance_variable_set state_attr, send(state_method).assign_temp(temp_path)
       end
       
+      define_method "#{attr}_mime_type" do 
+        send(state_method).get_content_type
+      end
+      
       after_save_method = "#{attr}_after_save".to_sym
       
       define_method after_save_method do
@@ -694,8 +706,14 @@ module FileColumn # :nodoc:
       end
 
       private after_save_method, after_destroy_method
-
-      FileColumn::MagickExtension::file_column(self, attr, my_options) if options[:magick]
+      
+      #We tranform only if it is an image  
+      if options[:magick]
+        FileColumn::MagickExtension::file_column(self, attr, my_options)
+      end
+      #if options[:uv]
+      #  FileColumn::UltraVioletExtension::file_column(self, attr, my_options)
+      #end
     end
     
   end

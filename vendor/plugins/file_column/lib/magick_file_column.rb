@@ -216,7 +216,9 @@ module FileColumn # :nodoc:
       after_assign_method = "#{attr}_magick_after_assign".to_sym
       
       klass.send(:define_method, after_assign_method) do
-        self.send(state_method).transform_with_magick
+        if send(state_method).get_content_type =~ /^image\//
+          self.send(state_method).transform_with_magick
+        end
       end
       
       options[:after_upload] ||= []

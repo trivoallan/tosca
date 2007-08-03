@@ -10,6 +10,8 @@
 #
 # It contains also general links in the header/footer part
 #
+require 'mime/types'
+
 module LinksHelper
 
   # this contains the hash for escaping hover effect for images
@@ -43,7 +45,44 @@ module LinksHelper
   def public_link_to_file(record, file, options={})
     link_to_file(record, file, options, true)
   end
-
+  
+  def link_to_file_redbox(record, method, options={}, public = false)
+    return '-' unless record
+    
+    file_exec = record.file_options[:file_exec]
+    return '-' unless file_exec
+    
+    method = method.to_sym if method.is_a? String
+    
+    filepath = record.file
+    unless filepath.blank? or not File.exist?(filepath)
+      mime_type = record.file_mime_type
+      #Image
+      if mime_type =~ /^image\//
+        redbox_div(record, image_tag(url_for_image_column(record, method, :fit_size )), :background_close => true)
+      #Text        
+      elsif mime_type =~ /^text\//
+        content = "" 
+        File.open(filepath) { |f| content = f.read } 
+        redbox_div(record, content)
+      end
+    end  
+  end
+  
+  #Print a redbox div for a piecejointe
+  def redbox_div(piecejointe, content, options = {})
+  	return '' if piecejointe.blank? or content.nil?
+  	content << '<div border="1" style="position: absolute;top: 0;right: 0;">' 
+  	content << link_to_close_redbox(image_hide_notice) << '</div>'
+  	content = link_to_close_redbox(content) if options[:background_close]
+    return <<EOS
+  	  <div id="#{piecejointe.file_relative_path}" style="display: none;">
+  	    #{content}
+    	</div>
+    	#{link_to_redbox(image_view, piecejointe.file_relative_path)}
+EOS
+  end
+  
   @@delete_options = { :class => 'nobackground', :method => :delete }
   def delete_options(objet_name)
     @@delete_options.update(:confirm =>
