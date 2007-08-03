@@ -22,14 +22,17 @@ class Demande < ActiveRecord::Base
   validates_presence_of :resume,
        :warn => _("You must indicate a summary for your request")
   validates_length_of :resume, :within => 3..60
-  validates_presence_of :beneficiaire_id,
-    :warn => _('You must indicate a recipient')
   validates_presence_of :description,
     :warn => _('You must indicate a description')
   validates_presence_of :statut_id, 
     :warn => _('You must indicate a status')
   validates_presence_of :severite_id,
     :warn => _('You must indicate a severity')
+  validate do |record|
+    if record.beneficiaire.nil?
+      record.errors.add _('You must indicate a recipient')
+    end
+  end
   #versioning, qui s'occupe de la table demandes_versions
   # acts_as_versioned
   # has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy

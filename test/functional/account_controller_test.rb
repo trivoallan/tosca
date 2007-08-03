@@ -46,8 +46,9 @@ class AccountControllerTest < Test::Unit::TestCase
     post :signup, "user" => { "login" => "newbob", "password" => "newpassword",
       "password_confirmation" => "wrong" }
     #TODO : virer cette ligne obsolète
-#    assert_invalid_column_on_record "user", "password"
-    assert @response.errors.invalid?(:user, :password)
+#   assert_invalid_column_on_record "user", "password"
+#    assert @response.errors.invalid?(:user, :password)
+    assert(find_record_in_template(:user).errors.invalid?(:password)) 
     assert_success
     
 #    post :signup, "user" => { "login" => "yo", "password" => "newpassword", "password_confirmation" => "newpassword" }

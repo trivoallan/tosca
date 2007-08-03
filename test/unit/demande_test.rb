@@ -54,9 +54,10 @@ class DemandeTest < Test::Unit::TestCase
     assert_nil r[0].client
     assert_equal r[1].client, c
   end
-  def test_respect_contournement
-    r = Demande.find 1
+  def test_respect_contournement_and_correction
+    r = Demande.find 2
     c = Contrat.find 2
-    assert_equal r.respect_contournement(c.id), 'ee'
+    assert_equal r.respect_contournement(c.id), '-'
+    assert_equal r.respect_correction(c.id), 'rr'
   end
 end

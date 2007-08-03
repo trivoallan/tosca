@@ -2,7 +2,7 @@
 first:
   id: 1
   logiciel_id: 1
-  beneficiaire_id: 3
+  beneficiaire_id: 3 # no client
   ingenieur_id: 1
   resume: 'Patch Binaire'
   description: "Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
