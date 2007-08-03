@@ -548,6 +548,12 @@ module FileColumn # :nodoc:
     # default mapping of mime-types to file extensions. FileColumn will try to
     # rename a file to the correct extension if it detects a known mime-type
     MIME_EXTENSIONS = {
+      "image/gif" => "gif",
+      "image/jpeg" => "jpg",
+      "image/pjpeg" => "jpg",
+      "image/x-png" => "png",
+      "image/jpg" => "jpg",
+      "image/png" => "png",
       "application/x-shockwave-flash" => "swf",
       "application/pdf" => "pdf",
       "application/pgp-signature" => "sig",
@@ -582,29 +588,17 @@ module FileColumn # :nodoc:
       "video/x-ms-wmv" => "wmv"
     }
     
-    IMAGE_MIME_EXTENSIONS = {
-      "image/gif" => "gif",
-      "image/jpeg" => "jpg",
-      "image/pjpeg" => "jpg",
-      "image/x-png" => "png",
-      "image/jpg" => "jpg",
-      "image/png" => "png"
-    }
-
-    IMAGE_EXTENSIONS = Set.new IMAGE_MIME_EXTENSIONS.values
-    IMAGE_EXTENSIONS.merge %w(jpeg)
+    IMAGE_EXTENSIONS.
     
     EXTENSIONS = Set.new MIME_EXTENSIONS.values
-    EXTENSIONS.merge IMAGE_EXTENSIONS
+    EXTENSIONS.merge %w(jpeg)
 
     # default options. You can override these with +file_column+'s +options+ parameter
     DEFAULT_OPTIONS = {
       :root_path => File.join(RAILS_ROOT, "files"),
       :web_root => "",
       :mime_extensions => MIME_EXTENSIONS,
-      :image_mime_extentions => IMAGE_MIME_EXTENSIONS,
       :extensions => EXTENSIONS,
-      :image_extensions => IMAGE_EXTENSIONS,
       :fix_file_extensions => true,
       :permissions => 0644,
 
