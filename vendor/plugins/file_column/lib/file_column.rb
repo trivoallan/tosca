@@ -588,8 +588,7 @@ module FileColumn # :nodoc:
       "video/x-ms-wmv" => "wmv"
     }
     
-    IMAGE_EXTENSIONS.
-    
+  
     EXTENSIONS = Set.new MIME_EXTENSIONS.values
     EXTENSIONS.merge %w(jpeg)
 
