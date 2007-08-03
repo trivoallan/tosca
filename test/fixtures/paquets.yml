@@ -5,7 +5,6 @@ cups_paquet:
   configuration: ""
   nom: "cups"
   logiciel_id: 1 #ant
-  paquet_id: 0
   mainteneur_id: 1
   version: '1.1.17'
   fournisseur_id: 1
@@ -23,7 +22,6 @@ le_meilleur_paquet:
   configuration: ""
   nom: "vim-full"
   logiciel_id: 2 
-  paquet_id: 0
   mainteneur_id: 1
   version: '1.7'
   fournisseur_id: 0 

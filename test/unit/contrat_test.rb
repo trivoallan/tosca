@@ -4,7 +4,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContratTest < Test::Unit::TestCase
-  fixtures :contrats, :clients
+  fixtures :contrats, :engagements,  :clients,
+    :demandes, :demandes_paquets, :paquets
 
   def test_ouverture_formatted
     c = Contrat.find 1
@@ -19,14 +20,18 @@ class ContratTest < Test::Unit::TestCase
     assert_equal c_empty.cloture_formatted, '00.00.0000'
   end
   def test_find_engagement
-    #TODO when demande/commentaire will be refactored
+    c = Contrat.find 1
+    request = Demande.find 1
+    e = Engagement.find 1
+    assert_equal c.find_engagement(request), e
   end
   def test_demandes
-    #TODO idem
+    c = Contrat.find 3
+    assert_equal c.demandes, [Demande.find(1)]
   end
   def test_typedemandes
     c = Contrat.find 1
-    assert_equal c.typedemandes,[]
+    assert_equal c.typedemandes, [Typedemande.find(2)]
   end
   
   def test_to_s 
