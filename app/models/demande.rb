@@ -361,6 +361,7 @@ class Demande < ActiveRecord::Base
   	Demande.find(:all).each do |d|
   	  demandes_out.push(d) if d.temps_rappel > 60*60
   	end
+  	demandes_out
   end
 
   protected
