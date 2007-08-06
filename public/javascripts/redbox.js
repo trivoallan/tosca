@@ -76,7 +76,7 @@ var RedBox = {
     var dimensions = Element.getDimensions($("RB_window"));
     var width = dimensions.width;
     var height = dimensions.height;        
-    var pageYoffset = 0;
+    var pageYOffset = 0;
 
     if (document.all)
     {
