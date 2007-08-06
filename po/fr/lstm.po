@@ -2820,8 +2820,7 @@ msgstr "votre répertoire"
 
 #: app/views/bienvenue/index.rhtml:27
 msgid "You will find there all the documents we delivered to you"
-msgstr ""
-"Vous avez aussi accès à l'ensemble des documents que nous vous avons livré"
+msgstr "Vous avez aussi accès à l'ensemble des documents que nous vous avons livré"
 
 #: app/views/bienvenue/index.rhtml:28
 msgid "You can also consult your %s online."
