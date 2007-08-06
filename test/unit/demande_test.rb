@@ -4,7 +4,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DemandeTest < Test::Unit::TestCase
-  fixtures :demandes, :typedemandes, :severites, :supports,
+  fixtures :demandes, :typedemandes, :severites, :statuts, :supports,
     :beneficiaires, :clients, :identifiants,
     :paquets
 
@@ -21,10 +21,14 @@ class DemandeTest < Test::Unit::TestCase
 
     # must have a recipient
     assert !request.save
-    request.beneficiaire_id = 1
+    request.beneficiaire = Beneficiaire.find 1
     # must have a description
     assert !request.save
     request.description = 'hello request'
+    # must have a status and a severity
+    assert !request.save
+    request.statut = Statut.find 1
+    request.severite = Severite.find 1
 
     assert request.save
 

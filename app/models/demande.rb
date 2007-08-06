@@ -24,13 +24,15 @@ class Demande < ActiveRecord::Base
   validates_length_of :resume, :within => 3..60
   validates_presence_of :description,
     :warn => _('You must indicate a description')
-  validates_presence_of :statut_id, 
-    :warn => _('You must indicate a status')
-  validates_presence_of :severite_id,
-    :warn => _('You must indicate a severity')
   validate do |record|
     if record.beneficiaire.nil?
       record.errors.add _('You must indicate a valid recipient')
+    end
+    if record.statut.nil?
+      record.errors.add _('You must indicate a valid status')
+    end
+    if record.severite.nil?
+      record.errors.add _('You must indicate a valid severity')
     end
   end
   #versioning, qui s'occupe de la table demandes_versions

@@ -1,1 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+#
+first:
+  id: 1
+  demande_id: 2
+  identifiant_id: 1
+  piecejointe_id: 1
+  corps: 'Voici le corps du commentaire'
+  prive: 1
+  created_on: "2006-09-21 08:19:30"
+  updated_on: "2007-07-12 14:21:17"
+  statut_id: 7
+  ingenieur_id: 1

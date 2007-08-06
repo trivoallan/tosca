@@ -10,7 +10,12 @@ class Commentaire < ActiveRecord::Base
   belongs_to :ingenieur
 
   validates_length_of :corps, :minimum => 5,
-          :warn => _("Vous devez mettre un commentaire d'au moins 5 caractères")
+    :warn => _('You must have a comment with at least 5 characters')
+  validate do |record|
+    if record.demande.nil?
+      record.errors.add _('You must indicate a valid request')
+    end
+  end
 
   # On détruit l'éventuelle pièce jointe
   # le belongs_to ne permet pas d'appeler :dependent :'(
