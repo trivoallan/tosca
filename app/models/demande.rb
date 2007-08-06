@@ -356,20 +356,12 @@ class Demande < ActiveRecord::Base
     distance_in_minutes.to_f / jo.to_f
   end
   
-  def self.demandes_hors_delais
-    demandes_hors_delais = []
-    Demande.find(:all).each do |d|
-      temps_ecoule = d.temps_ecoule/60/60/24
-      if d.client and d.client.contrats and d.client.contrats.size > 0
-        d.client.contrats.each do |c|
-          engagement = d.engagement(c.id)
-          demandes_hors_delais.push(d) and break if engagement and d.engagement(c.id).correction > temps_ecoule
-        end
-      end 
-    end
-    demandes_hors_delais
+  def self.demandes_rappels_hors_delais
+  	demandes_out = []
+  	Demande.find(:all).each do |d|
+  	  demandes_out.push(d) if d.temps_rappel > 60*60
+  	end
   end
-
 
   protected
   # this method must be protected and cannot be private as Ruby 1.8.6
