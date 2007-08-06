@@ -46,6 +46,7 @@ module LinksHelper
     link_to_file(record, file, options, true)
   end
   
+  #Call it like link_to_file
   def link_to_file_redbox(record, method, options={}, public = false)
     return '-' unless record
     
@@ -54,32 +55,38 @@ module LinksHelper
     
     method = method.to_sym if method.is_a? String
     
-    filepath = record.file
+    filepath = record.send(method)
     unless filepath.blank? or not File.exist?(filepath)
       mime_type = record.file_mime_type
+      relative_path = record.send(method.to_s + '_relative_path')
+      puts relative_path 
       #Image
       if mime_type =~ /^image\//
-        redbox_div(record, image_tag(url_for_image_column(record, method, :fit_size )), :background_close => true)
+        redbox_div(relative_path, image_tag(url_for_image_column(record, method, :fit_size )), :background_close => true)
       #Text        
       elsif mime_type =~ /^text\//
+        require 'uv'
         content = "" 
         File.open(filepath) { |f| content = f.read } 
-        redbox_div(record, content)
+        redbox_div(record, Uv.parse(content, "xhtml", "#{filepath.split('.').last}", true, "blackboard"))
+        #redbox_div(record, Uv.parse(content, "xhtml", "php", true, "blackboard"))
       end
     end  
   end
   
   #Print a redbox div for a piecejointe
-  def redbox_div(piecejointe, content, options = {})
-  	return '' if piecejointe.blank? or content.nil?
-  	content << '<div border="1" style="position: absolute;top: 0;right: 0;">' 
-  	content << link_to_close_redbox(image_hide_notice) << '</div>'
+  #Call it like : redbox_div("script/../config/../files/piecejointe/file/4/image.png", "toto")
+  #Only one option : background_close. If true you can click on the background of the div to close it
+  def redbox_div(relative_path, content, options = {})
+  	return '' if relative_path.blank? or content.nil?
+  	content << '<div style="position: absolute;top: 0;right: 0;">' 
+  	content << link_to_close_redbox(image_hide_notice, :class => 'no_hover') << '</div>'
   	content = link_to_close_redbox(content) if options[:background_close]
     return <<EOS
-  	  <div id="#{piecejointe.file_relative_path}" style="display: none;">
+  	  <div id="#{relative_path}" style="display: none;">
   	    #{content}
     	</div>
-    	#{link_to_redbox(image_view, piecejointe.file_relative_path)}
+    	#{link_to_redbox(image_view, relative_path, :class => 'no_hover')}
 EOS
   end
   
