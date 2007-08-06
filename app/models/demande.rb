@@ -30,7 +30,7 @@ class Demande < ActiveRecord::Base
     :warn => _('You must indicate a severity')
   validate do |record|
     if record.beneficiaire.nil?
-      record.errors.add _('You must indicate a recipient')
+      record.errors.add _('You must indicate a valid recipient')
     end
   end
   #versioning, qui s'occupe de la table demandes_versions

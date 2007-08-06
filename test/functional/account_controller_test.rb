@@ -47,17 +47,18 @@ class AccountControllerTest < Test::Unit::TestCase
       "password_confirmation" => "wrong" }
     #TODO : virer cette ligne obsolète
 #   assert_invalid_column_on_record "user", "password"
-#    assert @response.errors.invalid?(:user, :password)
     assert(find_record_in_template(:user).errors.invalid?(:password)) 
     assert_success
     
-#    post :signup, "user" => { "login" => "yo", "password" => "newpassword", "password_confirmation" => "newpassword" }
+    post :signup, "user" => { "login" => "yo", "password" => "newpassword", "password_confirmation" => "newpassword" }
 #    assert_invalid_column_on_record "user", "login"
-#    assert_success
-#
-#    post :signup, "user" => { "login" => "yo", "password" => "newpassword", "password_confirmation" => "wrong" }
+    assert(find_record_in_template(:user).errors.invalid?(:password)) 
+    assert_success
+
+    post :signup, "user" => { "login" => "yo", "password" => "newpassword", "password_confirmation" => "wrong" }
 #    assert_invalid_column_on_record "user", ["login", "password"]
-#    assert_success
+    assert(find_record_in_template(:user).errors.invalid?(:password)) 
+    assert_success
   end
 
   def test_invalid_login
@@ -68,7 +69,7 @@ class AccountControllerTest < Test::Unit::TestCase
     #TODO : virer cette ligne obsolète
 #   assert_template_has "message"
 #    assert_template_has "login"
-    assert @response.has_template_object?(:user)
+    assert @response.has_template_object?(:message)
     #assert @response.has_template_object?(:login)
   end
   

@@ -27,7 +27,7 @@ class ContratTest < Test::Unit::TestCase
   end
   def test_demandes
     c = Contrat.find 3
-    assert_equal c.demandes, [Demande.find(1)]
+    assert_equal c.demandes, [Demande.find(3)]
   end
   def test_typedemandes
     c = Contrat.find 1

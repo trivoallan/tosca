@@ -8,6 +8,7 @@ toto:
   image_id: 1
   code_acces: "lenomdemonchien"
   beneficiaires_count: 21
+  support_id: 1
 guy:
   id: 2
   nom: 'guy'
@@ -16,6 +17,7 @@ guy:
   adresse: "Rue de la paix, Paris"
   image_id: 
   code_acces: "guytarenbois"
+  support_id: 1
 vide:
   id: 3
   nom: nil
@@ -27,6 +29,7 @@ linagorien:
   adresse: "Rue de Berri, Paris"
   image_id: 3
   code_acces: "linagora"
+  support_id: 1
 no_contract:
   id: 5
   nom: 'noman'
@@ -35,3 +38,4 @@ no_contract:
   adresse: "Rue de Berri, Paris"
   image_id: 3
   code_acces: "linagora"
+  support_id: 1

@@ -4,7 +4,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DemandeTest < Test::Unit::TestCase
-  fixtures :demandes, :typedemandes, :severites
+  fixtures :demandes, :typedemandes, :severites, :supports,
+    :beneficiaires, :clients, :identifiants,
+    :paquets
 
   def test_presence_of_attributes
     request = Demande.new
@@ -17,7 +19,7 @@ class DemandeTest < Test::Unit::TestCase
     assert !request.save
     request.resume ='resume'
 
-    # must have an recipient
+    # must have a recipient
     assert !request.save
     request.beneficiaire_id = 1
     # must have a description
@@ -55,9 +57,40 @@ class DemandeTest < Test::Unit::TestCase
     assert_equal r[1].client, c
   end
   def test_respect_contournement_and_correction
-    r = Demande.find 2
+    r = Demande.find 3
     c = Contrat.find 2
-    assert_equal r.respect_contournement(c.id), '-'
-    assert_equal r.respect_correction(c.id), 'rr'
+    assert_equal r.respect_contournement(c.id),
+      '<p style="color: green">2 heures ouvrées</p>'
+    assert_equal r.respect_correction(c.id), 
+      '<p style="color: green">11 jours ouvrés</p>'
   end
+  def test_affiche_temps_correction_and_contournement
+    r = Demande.find 3
+    assert_equal r.affiche_temps_correction, '-'
+    assert_equal r.affiche_temps_contournement, '-'
+  end
+  def test_temps_correction
+    r = Demande.find 3
+    assert_equal r.temps_correction, 0
+    assert_equal r.temps_contournement, 0
+  end
+  def test_delais_correction
+    r = Demande.find 3
+    assert_equal r.delais_correction, 475200.0
+  end
+  def test_temps_rappel
+    r = Demande.find 3
+    assert_equal r.temps_rappel, 0
+    assert_equal r.affiche_temps_rappel, '-'
+  end
+  def test_engagement
+    r = Demande.find 3
+    e = Engagement.find 1
+    assert_equal r.engagement(3), e
+  end
+  def test_affiche_temps_ecoule
+    r = Demande.find 3
+    assert_equal r.affiche_temps_ecoule, '-'
+  end
+
 end
