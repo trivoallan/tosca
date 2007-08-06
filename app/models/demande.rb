@@ -28,10 +28,10 @@ class Demande < ActiveRecord::Base
     if record.beneficiaire.nil?
       record.errors.add _('You must indicate a valid recipient')
     end
-    if record.statut.nil?
+    if record.statut_id == 0
       record.errors.add _('You must indicate a valid status')
     end
-    if record.severite.nil?
+    if record.severite_id == 0
       record.errors.add _('You must indicate a valid severity')
     end
   end
@@ -355,14 +355,7 @@ class Demande < ActiveRecord::Base
     jo = period_in_hour * 60.0
     distance_in_minutes.to_f / jo.to_f
   end
-  
-  def self.demandes_rappels_hors_delais
-  	demandes_out = []
-  	Demande.find(:all).each do |d|
-  	  demandes_out.push(d) if d.temps_rappel > 60*60
-  	end
-  	demandes_out
-  end
+
 
   protected
   # this method must be protected and cannot be private as Ruby 1.8.6

@@ -25,7 +25,7 @@ class DemandeTest < Test::Unit::TestCase
     # must have a description
     assert !request.save
     request.description = 'hello request'
-    # must have a status and a severity
+    # must have a status and a severity != 0
     assert !request.save
     request.statut = Statut.find 1
     request.severite = Severite.find 1
