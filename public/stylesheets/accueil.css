@@ -3,8 +3,11 @@
 /* Nouvel accueil */
 
 div.sommaire {
-	margin-right: 30px;
 	vertical-align: top;
+}
+
+table.sommaire {
+	table-layout:fixed;
 }
 
 table.sommaire tr  { 

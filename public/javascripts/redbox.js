@@ -76,9 +76,17 @@ var RedBox = {
     var dimensions = Element.getDimensions($("RB_window"));
     var width = dimensions.width;
     var height = dimensions.height;        
-    
+    var pageYoffset = 0;
+
+    if (document.all)
+    {
+	pageYOffset=window.document.documentElement.scrollLeft;
+    }else{
+	pageYOffset=window.pageYOffset;
+    }
+
     $("RB_window").style['left'] = ((pagesize[0] - width)/2) + "px";
-    $("RB_window").style['top'] = (window.pageYOffset + ((pagesize[1] - height)/2)) + "px";
+    $("RB_window").style['top'] = (pageYOffset + ((pagesize[1] - height)/2)) + "px";
   },
 
 

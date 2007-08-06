@@ -6,6 +6,7 @@
 .simple_menu {
   vertical-align: middle;
   position: absolute;
+  width: 50em;
   top: 0.2em;
   left: 190px;
   z-index: 0;

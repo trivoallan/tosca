@@ -4,7 +4,7 @@
   <tr><td><%= _('Welcome in the management tool of the 08000linux.')%></td></tr>
 </table>
 
-<table class="sommaire"><tr><td>
+<table class="sommaire"><tr><td width="50%">
 
  <div class="sommaire show">
    <h3><%= _('Requests')%></h3>
@@ -16,7 +16,7 @@
           } %>
      <p><%= _("You can also %s.") % link_to(_("make a request"), new_demande_path) %></p>
   <% else %>
-    <p><%= html_wrap(_("You are not %s, so you do not have any access to the requests interface of our service") % connected)%></p>
+    <p><%= _("You are not %s, so you do not have any access to the requests interface of our service") % connected%></p>
   <% end %>
  </div>
 
@@ -42,7 +42,7 @@
  </div>
  <% end %>
 
- </td><td>
+ </td><td width="50%">
 
  <% if @beneficiaire %>
  <div class="sommaire show">
