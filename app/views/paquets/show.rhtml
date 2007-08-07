@@ -26,7 +26,7 @@
 </div>
 
 <% if @paquet.binaires.size > 0 %>
-<p><%= _('This source package has')%><b><%= pluralize(@paquet.binaires_count, _('binary') ) %></b></p>
+<p><%= _('This source package has')%><b> <%= pluralize(@paquet.binaires_count, _('binary') ) %></b></p>
   <%= show_liste(@binaires, _('binary'), :no_title => true) { |b|
         link_to_binaire(b) << _(' <i>on</i> ') << b.socle.nom } %>
 <% end %>
