@@ -76,8 +76,10 @@ module FileColumnHelper
     return nil unless relative_path
 
     url = ""
-    # MLO : ON N'ENLEVE PAS CET '@'. Ca casse les liens 
-    # des pieces jointes dans les emails
+    #####################################################
+    # MLO : ON N'ENLEVE PAS CET '@'. Ca casse les liens #
+    # des pieces jointes dans les emails                #
+    #####################################################
     url << @request.relative_url_root.to_s if absolute
     url << "/"
     url << object.send("#{method}_options")[:base_url] << "/"
