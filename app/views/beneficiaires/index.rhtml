@@ -1,7 +1,7 @@
 <h1>Liste des beneficiaires</h1>
 
-<%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
-
+<% links =  show_pages_links(@beneficiaire_pages, _('a recipient')) %>
+<%= links %>
 <% titres = ['Nom',
              "<form action=\"#{beneficiaires_path}\" method=\"get\">" +
              select_onchange(@clients, 0, 'client_id') + '</form>',
@@ -10,7 +10,7 @@
   clientname = (b.client.nil? ? '-' : b.client.nom)
   result = ''
   form = ''
-  form << "<form action=\"../account/devenir/#{b.id}\" method=\"post\">"
+  form << "<form action=\"#{devenir_account_path(b)}\" method=\"post\">"
   form << '<input name="commit" value="Devenir" type="submit" /></form>'
   result << "<td>#{b.nom}</td>"
   result << "<td>#{clientname}</td>"
@@ -22,6 +22,7 @@
   result
 }%>
 
-<%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
+<%= links %>
+
 
 
