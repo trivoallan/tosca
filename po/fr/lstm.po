@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-07 10:39+0200\n"
-"PO-Revision-Date: 2007-08-07 10:45+0200\n"
+"POT-Creation-Date: 2007-08-07 11:25+0200\n"
+"PO-Revision-Date: 2007-08-07 11:25+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,32 +23,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/account_controller.rb:54
+#: app/controllers/account_controller.rb:56
 msgid "Welcome&nbsp;%s&nbsp;%s"
 msgstr "Bienvenue&nbsp;%S&nbsp;%s"
 
-#: app/controllers/account_controller.rb:58
+#: app/controllers/account_controller.rb:60
 msgid "Connexion failure"
 msgstr "Erreur de connection"
 
-#: app/controllers/account_controller.rb:70
+#: app/controllers/account_controller.rb:72
 msgid "Vous are not allowed to change your identity"
 msgstr "Vous n'êtes pas autorisé à changer votre identité"
 
-#: app/controllers/account_controller.rb:75
+#: app/controllers/account_controller.rb:77
 msgid "Person not found"
 msgstr "Personne non trouvée"
 
-#: app/controllers/account_controller.rb:93
+#: app/controllers/account_controller.rb:95
 msgid "Edition succeeded"
 msgstr "Les modifications ont été effectuées avec succès"
 
-#: app/controllers/account_controller.rb:111
+#: app/controllers/account_controller.rb:113
 msgid "Account successfully created, don't forget to check his profile."
 msgstr "Compte créé correctement, n'oubliez pas de vérifier son profil."
 
-#: app/controllers/account_controller.rb:114
-#: app/controllers/account_controller.rb:183
+#: app/controllers/account_controller.rb:116
+#: app/controllers/account_controller.rb:185
 #: app/controllers/export_controller.rb:145
 #: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
@@ -57,92 +57,92 @@ msgstr "Compte créé correctement, n'oubliez pas de vérifier son profil."
 msgid "Recipient"
 msgstr "Bénéficiaire"
 
-#: app/controllers/account_controller.rb:114
-#: app/controllers/account_controller.rb:183
+#: app/controllers/account_controller.rb:116
+#: app/controllers/account_controller.rb:185
 msgid "Engineer "
 msgstr "Ingénieur"
 
-#: app/controllers/account_controller.rb:114
+#: app/controllers/account_controller.rb:116
 msgid " created"
 msgstr " créé"
 
-#: app/controllers/account_controller.rb:133
-#: app/controllers/account_controller.rb:168
-#: app/controllers/account_controller.rb:181 app/views/account/_edit.rhtml:60
+#: app/controllers/account_controller.rb:135
+#: app/controllers/account_controller.rb:170
+#: app/controllers/account_controller.rb:183 app/views/account/_edit.rhtml:60
 #: app/views/account/show.rhtml:20
 msgid "Full name"
 msgstr "Nom Complet"
 
-#: app/controllers/account_controller.rb:133
-#: app/controllers/account_controller.rb:169 app/views/account/_edit.rhtml:61
+#: app/controllers/account_controller.rb:135
+#: app/controllers/account_controller.rb:171 app/views/account/_edit.rhtml:61
 #: app/views/account/show.rhtml:21 app/views/documents/_form.rhtml:23
 msgid "Title"
 msgstr "Titre"
 
-#: app/controllers/account_controller.rb:133
-#: app/controllers/account_controller.rb:170 app/views/account/_edit.rhtml:62
+#: app/controllers/account_controller.rb:135
+#: app/controllers/account_controller.rb:172 app/views/account/_edit.rhtml:62
 #: app/views/account/_users_list.rhtml:16 app/views/account/show.rhtml:22
 msgid "Email"
 msgstr "Email"
 
-#: app/controllers/account_controller.rb:133
-#: app/controllers/account_controller.rb:171 app/views/account/_edit.rhtml:63
+#: app/controllers/account_controller.rb:135
+#: app/controllers/account_controller.rb:173 app/views/account/_edit.rhtml:63
 #: app/views/account/show.rhtml:23 app/views/demandes/_infos_demande.rhtml:39
 msgid "Phone"
 msgstr "Téléphone"
 
-#: app/controllers/account_controller.rb:134
-#: app/controllers/account_controller.rb:172 app/views/account/login.rhtml:9
+#: app/controllers/account_controller.rb:136
+#: app/controllers/account_controller.rb:174 app/views/account/login.rhtml:9
 #: app/views/layouts/standard-layout.rhtml:53
 msgid "Login"
 msgstr "Identification"
 
-#: app/controllers/account_controller.rb:134
-#: app/controllers/account_controller.rb:173
-#: app/controllers/account_controller.rb:174
-#: app/controllers/account_controller.rb:186 app/views/account/login.rhtml:12
+#: app/controllers/account_controller.rb:136
+#: app/controllers/account_controller.rb:175
+#: app/controllers/account_controller.rb:176
+#: app/controllers/account_controller.rb:188 app/views/account/login.rhtml:12
 msgid "Password"
 msgstr "Mot de passe"
 
-#: app/controllers/account_controller.rb:134
-#: app/controllers/account_controller.rb:175 app/views/account/_edit.rhtml:81
+#: app/controllers/account_controller.rb:136
+#: app/controllers/account_controller.rb:177 app/views/account/_edit.rhtml:81
 #: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr "Informations"
 
-#: app/controllers/account_controller.rb:146
+#: app/controllers/account_controller.rb:148
 msgid "Enter data under CSV format please"
 msgstr "Veuillez entrer un texte au format CSV"
 
-#: app/controllers/account_controller.rb:150
+#: app/controllers/account_controller.rb:152
 msgid "The CSV file is not correct"
 msgstr "Le fichier CSV n'est pas correct"
 
-#: app/controllers/account_controller.rb:154
+#: app/controllers/account_controller.rb:156
 msgid "You have to specify a customer"
 msgstr "Vous devez spécifié un client"
 
-#: app/controllers/account_controller.rb:157
+#: app/controllers/account_controller.rb:159
 msgid "Vous must specify a role"
 msgstr "Vous devez spéficier un rôle"
 
-#: app/controllers/account_controller.rb:181
+#: app/controllers/account_controller.rb:183
 msgid "The user %s have been successfully created.<br/>"
 msgstr "L'utilisateur %s a été crée avec succès<br />"
 
-#: app/controllers/account_controller.rb:184
+#: app/controllers/account_controller.rb:186
 msgid "Associate created"
 msgstr "Associé crée"
 
-#: app/controllers/account_controller.rb:190
+#: app/controllers/account_controller.rb:192
 msgid "The user %s  has not been created.<br /> "
 msgstr "L'utilisateur %s n'a pas été crée avec succès.<br />"
 
-#: app/controllers/account_controller.rb:264
+#: app/controllers/account_controller.rb:266
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/controllers/account_controller.rb:265 app/views/account/_edit.rhtml:7
+#: app/controllers/account_controller.rb:267 app/views/account/_edit.rhtml:7
 #: app/views/account/show.rhtml:5
 msgid "My account"
 msgstr "Mon&nbsp;compte"
@@ -224,7 +224,7 @@ msgstr "La contribution a été créée avec succès"
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:85
+#: app/controllers/demandes_controller.rb:80
 msgid "Your request has been successfully submitted"
 msgstr "Votre demande a été bien soumise à nos services."
 
@@ -398,7 +398,7 @@ msgstr "Mise à jour"
 #: app/controllers/export_controller.rb:148
 #: app/controllers/reporting_controller.rb:514
 #: app/helpers/contributions_helper.rb:10 app/views/bienvenue/admin.rhtml:2
-#: app/views/demandes/_form_deposer.rhtml:19
+#: app/views/demandes/_form.rhtml:19 app/views/demandes/_form_deposer.rhtml:19
 #: app/views/demandes/_infos_demande.rhtml:15
 #: app/views/demandes/_requests_list.rhtml:15
 #: app/views/logiciels/_form.rhtml:6 app/views/reporting/general.rhtml:7
@@ -3309,10 +3309,6 @@ msgstr "Répondre"
 msgid "Client"
 msgstr "Client"
 
-#: app/views/demandes/_form.rhtml:19
-msgid "Label"
-msgstr "Label"
-
 #: app/views/demandes/_form.rhtml:32
 msgid "Engineer assigned to the request"
 msgstr "Ingénieur assigné à la demande"
@@ -4462,5 +4458,4 @@ msgstr "Modifier l'url"
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
-
 

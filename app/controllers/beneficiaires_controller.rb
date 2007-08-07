@@ -52,11 +52,11 @@ class BeneficiairesController < ApplicationController
   def destroy
     benef = Beneficiaire.find(params[:id])
     identifiant = Identifiant.find(benef.identifiant_id)
-    transaction(benef, identifiant) do
+    Identifiant.transaction do
       benef.destroy
       identifiant.destroy
     end
-    redirect_to beneficiaires_url
+    redirect_to beneficiaires_path
   end
 private
   def _form
