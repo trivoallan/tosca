@@ -61,7 +61,7 @@ class Contrat < ActiveRecord::Base
   end
 
   INCLUDE = [:client]
-  ORDER = 'contrats.ouverture ASC'
+  ORDER = 'clients.nom ASC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
   def to_s
