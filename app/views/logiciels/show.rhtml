@@ -41,9 +41,10 @@
    <% options[:edit] = 'demande' %>
    <% bloc = show_liste(@demandes, _('Request'), options) { |d| 
                link_to_demande d } %>
-   <% if @demandes.size > 0 and not bloc.empty?%>
+   <%# if we do not have an empty list, we display it %>
+   <% if bloc != '<ul></ul>' %>
     <div class="bloc_scroll">
-       <%= bloc %>
+       <%=h bloc %>
     </div>
    <% end %>
 </tr>
@@ -51,7 +52,7 @@
 <tr><td><b><%=_('Package(s)')%></b><%= link_to_new_paquet(@logiciel.id) %></td>
   <td>    
      <% options[:edit] = 'paquet' %>
-     <%=  show_liste(@logiciel.paquets, 'Paquet', options) do |paquet|
+     <%=  show_liste(@logiciel.paquets, _('Package'), options) do |paquet|
         link_to_paquet paquet
      end %>
   </td>
