@@ -3,7 +3,7 @@
 <%= show_pages_links(@beneficiaire_pages, 'un bénéficiaire') %>
 
 <% titres = ['Nom',
-             '<form action="../beneficiaires" method="get">' +
+             '<form action="<%=beneficiaires_path%>" method="get">' +
              select_onchange(@clients, 0, 'client_id') + '</form>',
              '', 'Domaine']%>
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
