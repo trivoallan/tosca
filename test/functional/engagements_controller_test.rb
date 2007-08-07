@@ -8,7 +8,8 @@ require 'engagements_controller'
 class EngagementsController; def rescue_action(e) raise e end; end
 
 class EngagementsControllerTest < Test::Unit::TestCase
-  fixtures :engagements
+  fixtures :engagements, :typedemandes, :severites, 
+    :contournement, :corrections
 
   def setup
     @controller = EngagementsController.new

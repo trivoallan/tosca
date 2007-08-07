@@ -37,7 +37,7 @@ class ContratTest < Test::Unit::TestCase
   def test_to_s 
     c = Contrat.find 1
     c_empty = Contrat.find 4
-    c_name_empty = Contrat.new (
+    c_name_empty = Contrat.new(
       :astreinte => 0,
       :socle => 0,
       :client_id => 33, # vide,
