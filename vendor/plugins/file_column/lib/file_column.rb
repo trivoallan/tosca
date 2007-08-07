@@ -638,7 +638,7 @@ module FileColumn # :nodoc:
         result
       end
             
-     # private state_method
+      private state_method
       
       define_method attr do |*args|
         send(state_method).absolute_path *args
