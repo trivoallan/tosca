@@ -14,6 +14,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
     @controller = CommentairesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

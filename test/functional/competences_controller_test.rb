@@ -14,6 +14,7 @@ class CompetencesControllerTest < Test::Unit::TestCase
     @controller = CompetencesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

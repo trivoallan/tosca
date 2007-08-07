@@ -14,6 +14,7 @@ class RolesControllerTest < Test::Unit::TestCase
     @controller = RolesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

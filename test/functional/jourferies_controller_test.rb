@@ -14,6 +14,7 @@ class JourferiesControllerTest < Test::Unit::TestCase
     @controller = JourferiesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

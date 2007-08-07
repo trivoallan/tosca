@@ -14,6 +14,7 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
     @controller = UrllogicielsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

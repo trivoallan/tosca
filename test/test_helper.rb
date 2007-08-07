@@ -28,4 +28,12 @@ class Test::Unit::TestCase
   self.use_instantiated_fixtures  = false
 
   # Add more helper methods to be used by all tests here...
+
+  def login login, password
+    controller = @controller
+    @controller = AccountController.new
+    post :login, :user_login => login, :user_password => password,
+      :user_crypt => 'false'
+    @controller = controller
+  end
 end

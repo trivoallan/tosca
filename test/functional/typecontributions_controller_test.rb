@@ -14,6 +14,7 @@ class TypecontributionsControllerTest < Test::Unit::TestCase
     @controller = TypecontributionsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

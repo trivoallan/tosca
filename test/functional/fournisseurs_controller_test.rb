@@ -14,6 +14,7 @@ class FournisseursControllerTest < Test::Unit::TestCase
     @controller = FournisseursController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

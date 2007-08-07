@@ -14,6 +14,7 @@ class TypedemandesControllerTest < Test::Unit::TestCase
     @controller = TypedemandesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

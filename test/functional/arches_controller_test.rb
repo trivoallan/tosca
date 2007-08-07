@@ -14,17 +14,11 @@ class ArchesControllerTest < Test::Unit::TestCase
     @controller = ArchesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index
     get :index
-    assert_response :success
-    assert_template 'index'
-  end
-
-  def test_list
-    get :list
-
     assert_response :success
     assert_template 'index'
 

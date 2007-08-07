@@ -14,6 +14,7 @@ class EtatreversementsControllerTest < Test::Unit::TestCase
     @controller = EtatreversementsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

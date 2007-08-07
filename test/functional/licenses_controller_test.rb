@@ -14,6 +14,7 @@ class LicensesControllerTest < Test::Unit::TestCase
     @controller = LicensesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

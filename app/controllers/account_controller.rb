@@ -47,9 +47,11 @@ class AccountController < ApplicationController
   def login
     case request.method
       when :post
+        user_crypt = 'false'
+        user_crypt = params ['user_crypt'] if params['user_cryt']
         if session[:user] = Identifiant.authenticate(params['user_login'],
                                                    params['user_password'],
-                                                   params['user_crypt'])
+                                                   user_crypt)
           set_sessions
           flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") % 
             [ session[:user].titre, session[:user].nom.gsub(' ', '&nbsp;') ]

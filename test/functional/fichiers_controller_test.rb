@@ -14,6 +14,7 @@ class FichiersControllerTest < Test::Unit::TestCase
     @controller = FichiersController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

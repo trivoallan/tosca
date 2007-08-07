@@ -14,6 +14,7 @@ class StatutsControllerTest < Test::Unit::TestCase
     @controller = StatutsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

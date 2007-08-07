@@ -14,6 +14,7 @@ class PiecejointesControllerTest < Test::Unit::TestCase
     @controller = PiecejointesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

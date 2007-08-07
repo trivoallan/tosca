@@ -12,18 +12,12 @@ class AppelsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
+    login 'bob', 'test'
     @first_id = appels(:first).id
   end
 
   def test_index
     get :index
-    assert_response :success
-    assert_template 'index'
-  end
-
-  def test_list
-    get :list
-
     assert_response :success
     assert_template 'index'
 

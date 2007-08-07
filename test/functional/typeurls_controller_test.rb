@@ -14,6 +14,7 @@ class TypeurlsControllerTest < Test::Unit::TestCase
     @controller = TypeurlsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

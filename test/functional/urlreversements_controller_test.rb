@@ -14,6 +14,7 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
     @controller = UrlreversementsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

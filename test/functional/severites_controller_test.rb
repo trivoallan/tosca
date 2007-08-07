@@ -14,6 +14,7 @@ class SeveritesControllerTest < Test::Unit::TestCase
     @controller = SeveritesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    login 'bob', 'test'
   end
 
   def test_index

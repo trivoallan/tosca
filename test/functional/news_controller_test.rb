@@ -13,6 +13,7 @@ class NewsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
 #   @first_id = news(:first).id
+    login 'bob', 'test'
     @first_id = New.find(:first).id
   end
 

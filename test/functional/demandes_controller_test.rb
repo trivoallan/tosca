@@ -12,6 +12,7 @@ class DemandesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
+    login 'bob', 'test'
     @first_id = demandes(:first).id
   end
 
