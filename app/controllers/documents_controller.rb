@@ -66,7 +66,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(params[:document])
-    @document.identifiant = @session[:user]
+    @document.identifiant = session[:user]
     _form
     if @document.save
       flash[:notice] = _('Your document was successfully created')
@@ -100,9 +100,9 @@ class DocumentsController < ApplicationController
 
   private
   def _form
-    @clients = Client.find_all
-    @typedocuments = Typedocument.find_all
-    @identifiants = Identifiant.find_all
+    @clients = Client.find :all
+    @typedocuments = Typedocument.find :all
+    @identifiants = Identifiant.find :all
   end
 
   def _panel

@@ -14,5 +14,5 @@ end_before_beginning:
   fin: "2007-03-16 16:41:00"
   demande_id: nil
   ingenieur_id: 1
-  beneficiaire_id: nil
+  beneficiaire_id: 1
   contrat_id: 1

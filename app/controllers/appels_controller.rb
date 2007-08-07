@@ -103,8 +103,8 @@ class AppelsController < ApplicationController
     @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
 
     @count[:appels] = Appel.count
-    @count[:beneficiaires] = Appel.count('beneficiaire_id')
-    @count[:ingenieurs] = Appel.count('ingenieur_id')
+    @count[:beneficiaires] = Appel.count 'beneficiaire_id', {}
+    @count[:ingenieurs] = Appel.count('ingenieur_id', {})
     @count[:demandes] = Appel.count('demande_id', :distinct => true)
     diff = 'TIME_TO_SEC(TIMEDIFF(fin,debut))'
     @count[:somme] = Appel.sum(diff).to_i

@@ -24,7 +24,7 @@ class BinairesController < ApplicationController
     @binaire = Binaire.new(params[:binaire])
     if @binaire.save
       flash[:notice] = _('Binary has beensuccessfully created.')
-      redirect_to binaries_path
+      redirect_to binaires_path
     else
       _form
       render :action => 'new'
@@ -48,14 +48,14 @@ class BinairesController < ApplicationController
 
   def destroy
     Binaire.find(params[:id]).destroy
-    redirect_to binaries_path
+    redirect_to binaires_path
   end
 
   private
   def _form
-    @contributions = Contribution.find_all
+    @contributions = Contribution.find :all
     @paquets = Paquet.find(:all, Paquet::OPTIONS)
-    @arches = Arch.find_all
-    @socles = Socle.find_all
+    @arches = Arch.find :all
+    @socles = Socle.find :all
   end
 end
