@@ -78,6 +78,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :changelogs
   map.resources :clients
   map.resources :competences
+  map.resources :conteneurs
   map.resources :contrats
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get },
