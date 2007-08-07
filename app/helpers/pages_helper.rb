@@ -18,7 +18,7 @@ module PagesHelper
   # Second, with an other controller :
   #   <%= link_to_show(edit_request_path(@request))%>
   def link_to_show(ar)
-    url = (ar.is_a?(String) ? ar : { :action => 'edit', :id => ar })
+    url = (ar.is_a?(String) ? ar : { :action => 'show', :id => ar })
     link_to image_view, url, { :class => 'nobackground' }
   end
 
