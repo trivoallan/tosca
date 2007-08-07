@@ -54,36 +54,11 @@ module FileColumnHelper
   # If there is currently no uploaded file stored in the object's column this method will
   # return +nil+.
   def url_for_file_column(object, method, options=nil)
-    case object
-    when String, Symbol
-      object = instance_variable_get("@#{object.to_s}")
-    end
-
-    # parse options
-    subdir = nil
-    absolute = false
-    if options
-      case options
-      when Hash
-        subdir = options[:subdir]
-        absolute = options[:absolute]
-      when String, Symbol
-        subdir = options
-      end
-    end
-    
-    relative_path = object.send("#{method}_relative_path", subdir)
-    return nil unless relative_path
-
-    url = ""
-    #####################################################
-    # MLO : ON N'ENLEVE PAS CET '@'. Ca casse les liens #
-    # des pieces jointes dans les emails                #
-    #####################################################
-    url << @request.relative_url_root.to_s if absolute
-    url << "/"
-    url << object.send("#{method}_options")[:base_url] << "/"
-    url << relative_path
+    generic_url(object, method, "", options)
+  end
+  
+  def url_for_uv_file_column(object, method, options = nil)
+  	generic_url(object, method, "." + object.send("#{method}_options")[:uv][:theme] + ".html", options)
   end
 
   # Same as +url_for_file_colum+ but allows you to access different versions
@@ -150,5 +125,48 @@ module FileColumnHelper
     else
       url_for_file_column(object, method, subdir)
     end
+  end
+  
+  def method_name(object, method)
+  	case object
+      when String, Symbol
+        object = instance_variable_get("@#{object.to_s}")
+    end
+  end
+  
+  def relative_url_uv(object, method)
+    object.send("#{method}_options")[:base_url] << "/" << object.send("#{method}_relative_path", nil) << "." << object.send("#{method}_options")[:uv][:theme] << ".html"
+  end
+  
+  private
+  def generic_url(object, method, file_suffix, options = nil)
+  	case object
+    when String, Symbol
+      object = instance_variable_get("@#{object.to_s}")
+    end
+
+    # parse options
+    subdir = nil
+    absolute = false
+    if options
+      case options
+        when Hash
+          subdir = options[:subdir]
+          absolute = options[:absolute]
+        when String, Symbol
+          subdir = options
+      end
+    end
+    
+    relative_path = object.send("#{method}_relative_path", subdir)
+    return nil unless relative_path
+
+    #####################################################
+    # MLO : ON N'ENLEVE PAS CET '@'. Ca casse les liens #
+    # des pieces jointes dans les emails                #
+    #####################################################
+    url = ""
+    url = @request.relative_url_root.to_s if absolute
+    url = File.join(url, object.send("#{method}_options")[:base_url], relative_path + file_suffix)
   end
 end

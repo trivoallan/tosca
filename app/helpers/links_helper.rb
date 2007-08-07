@@ -56,6 +56,7 @@ module LinksHelper
     method = method.to_sym if method.is_a? String
     
     filepath = record.send(method)
+    filename = filepath[/[._ \-a-zA-Z0-9]*$/]
     unless filepath.blank? or not File.exist?(filepath)
       mime_type = record.file_mime_type
       #To be XHTML compliant
@@ -63,6 +64,9 @@ module LinksHelper
       #Image
       if mime_type =~ /^image\//
         redbox_div(relative_path, image_tag(url_for_image_column(record, method, :fit_size )), :background_close => true)
+      #Text        
+      elsif mime_type =~ /^text\//
+        link_to(image_view, { :controller => "piecejointes", :action => "uv", :id => record.id }, :popup => [filename, 'height=600,width=800,scrollbars=yes'])
       end
     end  
   end

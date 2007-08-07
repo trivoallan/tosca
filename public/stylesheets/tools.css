@@ -11,3 +11,9 @@ div.long_bloc_scroll {
 div.long_bloc_scroll {
       height: 40em;
 }
+
+div.redbox_scroll {
+  width: 100%;
+  max-height: 600px;
+  overflow: auto;
+}

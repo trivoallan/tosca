@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'tempfile'
 require 'magick_file_column'
+require 'ultraviolet_file_column'
 
 module FileColumn # :nodoc:
   def self.append_features(base)
@@ -185,22 +186,27 @@ module FileColumn # :nodoc:
       end
     end
      
-    def get_content_type(fallback=nil)
-      if options[:file_exec]
-        begin
+    def get_content_type(fallback = nil)
+      get_file_type(fallback).gsub!(/;.+$/,"")
+    end
+    
+    def get_charset()
+    	get_file_type().gsub!(/^.+; /, "")
+    end
+
+    private
+    
+    def get_file_type(fallback = nil)
+    	if options[:file_exec]
+    	  begin
           content_type = `#{options[:file_exec]} -bi "#{File.join(@dir,@filename)}"`.chomp
           content_type = fallback unless $?.success?
-          content_type.gsub!(/;.+$/,"") if content_type
           content_type
         rescue
           fallback
         end
-      else
-        fallback
       end
     end
-
-    private
 
     # regular expressions to try for identifying extensions
     EXT_REGEXPS = [ 
@@ -632,7 +638,7 @@ module FileColumn # :nodoc:
         result
       end
             
-      private state_method
+     # private state_method
       
       define_method attr do |*args|
         send(state_method).absolute_path *args
@@ -672,6 +678,10 @@ module FileColumn # :nodoc:
         send(state_method).get_content_type
       end
       
+      define_method "#{attr}_charset" do
+        send(state_method).get_charset
+      end
+      
       after_save_method = "#{attr}_after_save".to_sym
       
       define_method after_save_method do
@@ -704,9 +714,9 @@ module FileColumn # :nodoc:
       if options[:magick]
         FileColumn::MagickExtension::file_column(self, attr, my_options)
       end
-      #if options[:uv]
-      #  FileColumn::UltraVioletExtension::file_column(self, attr, my_options)
-      #end
+      if options[:uv]
+        FileColumn::UltraVioletExtension::file_column(self, attr, my_options)
+      end
     end
     
   end

@@ -4,7 +4,7 @@
 class Piecejointe < ActiveRecord::Base
   file_column :file, :fix_file_extensions => nil, 
     :uv => {
-      :theme => ""
+      :theme => "blackboard"
     },
     :magick => {
       :versions => {
