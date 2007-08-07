@@ -14,7 +14,7 @@ class Support < ActiveRecord::Base
   end
 
   def to_s
-    _("Open from %s to %s") % [ ouverture, fermeture ]
+    _("Open from %sh to %sh") % [ ouverture, fermeture ]
   end
 
 end

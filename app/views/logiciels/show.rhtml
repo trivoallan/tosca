@@ -7,10 +7,15 @@
 
 <table class="info">
 
-<% for column in Logiciel.content_columns %>
-<tr><td><b><%= _(column.human_name) %></b> </td>
-    <td><%= @logiciel.send(column.name) %></td></tr>
-<% end %>
+<tr><td><b><%= _('Name') %></b> </td>
+    <td><%= @logiciel.nom %></td></tr>
+
+<tr><td><b><%= _('Summary') %></b> </td>
+    <td><%= @logiciel.resume %></td></tr>
+
+<tr><td colspan="2"><hr /></td></tr>
+<tr><td colspan="2"><%= @logiciel.description %></td></tr>
+<tr><td colspan="2"><hr /></td></tr>
 
 <% if @ingenieur %>
 <tr><td><b><%= _('Reference') %></b></td>

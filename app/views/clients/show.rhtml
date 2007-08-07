@@ -6,30 +6,32 @@
 <% for column in Client.content_columns %>
 <tr>
   <td><b><%= _(column.human_name) %>:</b></td>
-  <% if column.name == 'adresse'%>
-</tr><tr>
-  <% end %>
   <td><%= @client.send(column.name) %></td>
 </tr>
 <% end %>
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td colspan="2"><%= @client.adresse %></td></tr>
+<tr><td colspan="2"><hr/></td></tr>
+
 <% if @client.support %>
-<tr><td><b><%= _("Support :") %></b></td>
+<tr><td><b><%= _("Service") %></b> :</td>
     <td><%= @client.support.to_s %></td></tr>
 <% end %>
 </table>
 
 <%= link_to_new_contrat(@client.id) %>
-<%= show_liste(@client.contrats, 'contrat') { |c|
+<%= show_liste(@client.contrats, _('contract')) { |c|
   result = ''
   edit = link_to_edit_contrat(c)
   result << "#{edit}&nbsp;" if edit
   result << _("From %s to %s") % [c.ouverture_formatted, c.cloture_formatted]
   if c.socle
-    result << _(" on your complete system : ")
+    result << _(" on your complete system")
   else
     result << _("concerning %s source packages ") % c.paquets_count
-    result << _("and %s binaries :") % c.binaires.size
+    result << _("and %s binaries") % c.binaires.size
   end
+  result << '.'
   titres = [ _("Request"), _("Severity"), _("Workaround"), _("Correction") ]
   oldtypedemande = nil
   result << show_table_engagements(c.engagements)
@@ -39,14 +41,14 @@
 
 </td><td>
 
-<%= show_liste(@client.socles, 'socle') {|s|
+<%= show_liste(@client.socles, _('system')) {|s|
     result = ''
     result << link_to_socle(s).to_s << ' : '
     result << pluralize(s.binaires.count, _("binary"))
  } %>
 
 <div class="long_bloc_scroll">
-<%= show_liste(@client.demandes, 'demande') {|d|
+<%= show_liste(@client.demandes, _('request')) {|d|
   link_to_demande(d) } %>
 </div>
 

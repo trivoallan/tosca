@@ -129,6 +129,8 @@ caption {
 hr {
 	color: #114188;
 	clear: both;
+	padding: 0em;
+	margin: 0em;
 }
 img {
 	border:0;

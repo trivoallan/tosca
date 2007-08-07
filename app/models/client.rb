@@ -18,6 +18,12 @@ class Client < ActiveRecord::Base
   validates_length_of :nom, :in => 3..50
 
 
+  def self.content_columns
+    @content_columns ||= columns.reject { |c| 
+      c.primary || c.name =~ /(_id|_count|adresse)$/  
+    }
+  end
+
   # don't use this function outside of an around_filter
   def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions =>
