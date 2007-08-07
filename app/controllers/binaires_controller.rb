@@ -11,7 +11,7 @@ class BinairesController < ApplicationController
 
   def show
     @binaire = Binaire.find(params[:id], :include => [:paquet,:socle,:arch])
-    options = { :conditions => {:binaire_id => @binaire.id } }
+    options = { :conditions => {:binaire_id => @binaire.id} }
     @fichierbinaires = Fichierbinaire.find(:all, options)
   end
 
@@ -53,9 +53,9 @@ class BinairesController < ApplicationController
 
   private
   def _form
-    @contributions = Contribution.find :all
+    @contributions = Contribution.find(:all)
     @paquets = Paquet.find(:all, Paquet::OPTIONS)
-    @arches = Arch.find :all
-    @socles = Socle.find :all
+    @arches = Arch.find_select
+    @socles = Socle.find_select
   end
 end
