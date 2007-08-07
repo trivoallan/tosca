@@ -67,8 +67,8 @@
 
   <div id="content_div">
     <div id="information">
-       <%= show_notice if flash.has_key? :notice %>
-       <%= show_warn if flash.has_key? :warn %>
+       <%= show_notice if flash[:notice] %>
+       <%= show_warn if flash[:warn] %>
     </div><!-- end of information -->
 
     <table id="content_table">

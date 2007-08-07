@@ -55,7 +55,7 @@ module ApplicationHelper
   def show_liste(elements, nom = '', options = {}) 
     size = elements.size
     return '<u><b>' << _('No') << " #{nom}</b></u><br />" unless size > 0
-    if session[:user].nil? and not options.has_key? :public
+    if !session.data.has_key?(:user) and !options.has_key?(:public)
       return "<u><b>#{pluralize(size, nom.capitalize)}" << _(' to date') << '</b></u><br />' 
     end
 
@@ -104,8 +104,9 @@ module ApplicationHelper
   end
 
   def public_show_liste(elements, nom = '', options = {}, &functor) 
-    options[:public] = true
-    show_liste(elements, nom, options, &functor)
+    public_options = options.dup
+    public_options[:public] = true
+    show_liste(elements, nom, public_options, &functor)
   end
 
   # Call it like :
@@ -118,7 +119,7 @@ module ApplicationHelper
   #   :add_lines > affiche à la fin le tableau de lignes passé [[line1],[line2]]
   # TODO : intégrer width et style dans une seule option
   def show_table(elements, ar, titres, options = {})
-    return '<br /><p>' << _('No %s  at the moment') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
+    return '<p>' << _('No %s  at the moment') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width} class=\"show\">"
     content_columns = options.has_key?(:content_columns)

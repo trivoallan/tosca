@@ -12,7 +12,7 @@
 <% commentaires.each do |commentaire| %>
  <% id = commentaire.identifiant  %>
  <table class="commentaire">
-   <tr <%= (commentaire.prive ? 'class="prive"' : 'class="public"' ) %>>
+   <tr class="<%=(commentaire.prive ? 'prive' : 'public')%>">
      <td class="infos" align="center">
         <span class="small"><%= _("Comment %s") % "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id.id %>

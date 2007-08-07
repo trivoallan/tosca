@@ -1,13 +1,11 @@
-<h1><%= _('Software "%s"') % @logiciel.nom %></h1>
+<table><tr>
+  <% unless @logiciel.image.blank? %>
+    <td><%= image_tag(url_for_file_column(@logiciel.image, 'image', 'thumb')) %></td>
+  <% end %>
+  <td><h1><%= _('Software "%s"') % @logiciel.nom %></h1></td>
+</tr></table>
 
 <table class="info">
-
-<% unless @logiciel.image.blank? %>
-<tr>
-  <td><b><%= _("Logo") %></b></td>
-  <td><%= image_tag(url_for_file_column(@logiciel.image, 'image', 'thumb')) %></td>
-</tr>
-<% end %>
 
 <% for column in Logiciel.content_columns %>
 <tr><td><b><%= _(column.human_name) %></b> </td>
@@ -31,10 +29,8 @@
 <tr><td><b><%= _('Links') %></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
     <% options = {:no_title => true, :edit => 'urllogiciel'} %>
     <td><%= public_show_liste(@logiciel.urllogiciels, 'url', options) {|u|
-         result = ''
-         result << " #{u.typeurl.nom} : "
-         result << "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
-         result } %>
+             " <a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.typeurl.nom}</a> "
+            } %>
     </td></tr>
 
 <tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:logiciel_id => @logiciel.id)%> <br/>
