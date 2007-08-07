@@ -7,11 +7,7 @@
              select_onchange(@clients, 0, 'client_id') + '</form>',
              '', 'Domaine']%>
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
-  if (b.client == nil)
-    clientname = "client inconnu"
-  else
-    clientname = b.client.nom
-  end
+  clientname = (b.client.nil? ? '-' : b.client.nom)
   result = ''
   form = ''
   form << "<form action=\"../account/devenir/#{b.id}\" method=\"post\">"
