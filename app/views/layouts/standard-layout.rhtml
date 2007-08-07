@@ -13,7 +13,6 @@
        stylesheet_link_tag('common', :media => "all") <<
        stylesheet_link_tag('common-printer', :media => "print") <<
        stylesheet_link_tag('redbox') <<
-       stylesheet_link_tag("syntax/blackboard.css") <<
        # Include TinyMCE with gzip before other JS to avoid problems
        javascript_include_tiny_mce <<
        tiny_mce(@tiny_mce_options, locale) <<
