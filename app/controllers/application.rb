@@ -123,6 +123,7 @@ private
     ensure
       SCOPE_CLIENT.each { |m| m.remove_scope() } if client_ids
       SCOPE_CONTRAT.each { |m| m.remove_scope() } if contrat_ids
+      Demande.remove_scope() unless session.data.has_key? :user
     end
   end
 
