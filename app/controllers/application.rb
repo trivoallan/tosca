@@ -117,7 +117,7 @@ private
     SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) } if contrat_ids
     SCOPE_CLIENT.each {|m| m.set_scope(client_ids) } if client_ids
     # Forbid access to request if we are not connected
-    Demande.set_scope([0]) if session[:user].nil?
+    Demande.set_scope([0]) unless session.data.has_key? :user
     begin
       yield
     ensure
