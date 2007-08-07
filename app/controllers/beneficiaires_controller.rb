@@ -18,14 +18,9 @@ class BeneficiairesController < ApplicationController
   end
 
   def create
-    @beneficiaire = Beneficiaire.new(params[:beneficiaire])
-    if @beneficiaire.save
-      flash[:notice] = 'Beneficiaire was successfully created.'
-      redirect_to beneficiaires_url
-    else
-      _form
-      render :action => 'new'
-    end
+    # should not be called, since the only way to create 
+    # user & recipient is from AccountController.
+    render :nothing 
   end
 
   def new
@@ -41,7 +36,7 @@ class BeneficiairesController < ApplicationController
   def update
     @beneficiaire = Beneficiaire.find(params[:id])
     if @beneficiaire.update_attributes(params[:beneficiaire])
-      flash[:notice] = 'Beneficiaire was successfully updated.'
+      flash[:notice] = _('The recipient was successfully updated.')
       redirect_to beneficiaire_path(@beneficiaire)
     else
       _form

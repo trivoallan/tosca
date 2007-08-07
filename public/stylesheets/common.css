@@ -173,7 +173,7 @@ div.edit {
   padding-right: 20px;
 }
 
-div.show { max-width: 40em; }
+div.show, div.form { max-width: 35em; }
 
 
 /* used mainly in show view, where we don't want 100% width */
