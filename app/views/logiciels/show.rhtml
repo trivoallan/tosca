@@ -39,12 +39,9 @@
 
 <tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:logiciel_id => @logiciel.id)%> <br/>
    <% options[:edit] = 'demande' %>
-   <% bloc = show_liste(@demandes, _('Request'), options) { |d| 
-               link_to_demande d } %>
-   <%# if we do not have an empty list, we display it %>
-   <% if bloc != '<ul></ul>' %>
+   <% if @demandes.size > 0  %>
     <div class="bloc_scroll">
-       <%=h bloc %>
+      <%=show_liste(@demandes, _('Request'), options) {|d| link_to_demande d}%>
     </div>
    <% end %>
 </tr>

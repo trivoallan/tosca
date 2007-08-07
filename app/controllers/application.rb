@@ -98,6 +98,7 @@ private
   # pour limiter ce que peuvent voir nos clients
   SCOPE_CLIENT = [ Client, Demande, Document, Socle ]
   SCOPE_CONTRAT = [ Appel, Binaire, Contrat, Paquet ]
+  
   # Cette fonction intègre un scope "maison", beaucoup plus rapide.
   # Il reste néanmoins intégralement safe
   # Le but est d'éviter les 15 imbrications de yield, trop couteuses
@@ -115,6 +116,8 @@ private
     end
     SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) } if contrat_ids
     SCOPE_CLIENT.each {|m| m.set_scope(client_ids) } if client_ids
+    # Forbid access to request if we are not connected
+    Demande.set_scope([0]) if session[:user].nil?
     begin
       yield
     ensure
