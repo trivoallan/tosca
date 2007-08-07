@@ -1,9 +1,10 @@
 <html>
 <head>
-  <%= stylesheet_link_tag("syntax/blackboard.css") %>
+  <% @@head_uv ||= stylesheet_link_tag("syntax/" << @pj.file_options[:uv][:theme] << ".css") %>
+  <%= @@head_uv %>
   <meta http-equiv="Content-Type" content="text/html; <%= @pj.file_charset %>"/>
 </head>
   <body>
-    <%= render :file => "../../files/piecejointe/" + relative_url_uv(@pj, :file), :use_full_path => true %>
+    <%= render :file => "../../files/" + relative_url_uv(@pj, :file), :use_full_path => true %>
   </body>
 </html>
