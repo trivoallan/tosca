@@ -10,13 +10,12 @@
 <%= render :partial => 'tab_menu' unless pretty_print or @last_commentaire %>
 <div id="demande_tab_content" class="demande_tab_content">
 <% commentaires.each do |commentaire| %>
- <% options = { :controller => 'commentaires', :id => commentaire } %>
  <% id = commentaire.identifiant  %>
  <table class="commentaire">
    <tr <%= (commentaire.prive ? 'class="prive"' : 'class="public"' ) %>>
      <td class="infos" align="center">
         <span class="small"><%= _("Comment %s") % "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
-        <% if @identifiants_ingenieurs.include? id %>
+        <% if @identifiants_ingenieurs.include? id.id %>
           <%= logo_08000 %>
         <% elsif id and id.beneficiaire %>
             <%= logo_img ||= logo_client(id.beneficiaire.client) %>

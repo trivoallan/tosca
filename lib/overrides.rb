@@ -106,7 +106,7 @@ module ActiveRecord
       options[:order] ||= "#{self.table_name}.nom ASC"
       self.find(:all, options)
     end
-
+    
     # this special method allows to gain a lot of performance
     # since it doesn't require to load Time or strftime in order
     # to display the date

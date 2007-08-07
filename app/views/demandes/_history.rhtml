@@ -1,6 +1,5 @@
 <div class="demande_tab_content" name="demande_tab_content">
 
-<% old_statut_id, old_ingenieur_id, old_severite_id = nil, nil, nil %>
 <table>
   <tr>
     <th><%= _("Date") %></th>
@@ -8,29 +7,13 @@
     <th><%= _("Change(s)") %></th>
   </tr>
 
-  <% @demande.commentaires.each do |c| %>
-    <% next if old_statut_id == c.statut_id and old_ingenieur_id == c.ingenieur_id and old_severite_id == c.severite_id%>
-    <% next if c.statut_id.nil? and c.ingenieur_id.nil? and c.severite_id.nil? %>
+  <% @commentaires.each do |c| %>
      <tr class="<%= cycle('pair', 'impair') %>">
        <td><%= c.created_on_formatted %></td>
        <td>&nbsp;</td>
-       <td>
-        <% if c.ingenieur_id and old_ingenieur_id != c.ingenieur_id %>
-          <% ingenieur = Ingenieur.find(c.ingenieur_id) %>
-          <%= _("The <b>owner</b> of your request is") %>
-          <b><%= ingenieur.nom %></b><br/>
-        <% end %>
-        <% if c.statut_id and old_statut_id != c.statut_id %>
-          <% statut = Statut.find(c.statut_id) %>
-          <%= _("The <b>status</b> of your request is <b>%s</b>") % statut.nom %><br/>
-        <% end %>
-        <% if c.severite_id and old_severite_id != c.severite_id %>
-          <% severite = Severite.find(c.severite_id) %>
-          <%= _("The <b>severity</b> of your request is <b>%s</b>") % severite.nom %>
-        <% end %>
+       <td><%= display_history c %>
       </td>
     </tr>
-  <% old_statut_id, old_ingenieur_id, old_severite_id = c.statut_id, c.ingenieur_id, c.severite_id %>
   <% end %>
 </table>
 </div>

@@ -2,7 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DemandesController < ApplicationController
-  helper :filters, :contributions, :logiciels, :export, :appels, :socles
+  helper :filters, :contributions, :logiciels, :export, :appels, 
+    :socles, :commentaires
 
   def index
     #special case : direct show
@@ -226,7 +227,8 @@ class DemandesController < ApplicationController
 
   def ajax_history
     return render_text('') unless request.xhr? and params[:id]
-    @demande = Demande.find(params[:id]) unless @demande
+    @demande_id = params[:id]
+    set_comments(@demande_id)
     render :partial => 'tab_history', :layout => false
   end
 
@@ -353,21 +355,22 @@ class DemandesController < ApplicationController
   end
 
   def set_comments(demande_id)
-    if @beneficiaire
+    if @ingenieur
+      @commentaires = Commentaire.find(:all, :conditions =>
+         [ 'commentaires.demande_id = ?', demande_id ],
+         :order => "created_on ASC", :include => [:identifiant,:statut,:severite])
+    else
       @commentaires = Commentaire.find(:all, :conditions =>
          [ 'commentaires.demande_id = ? AND commentaires.prive = ? ',
            demande_id, false ],
-         :order => 'created_on ASC', :include => [:identifiant])
-    elsif @ingenieur
-      @commentaires = Commentaire.find(:all, :conditions =>
-         [ 'commentaires.demande_id = ?', demande_id ],
-         :order => "created_on ASC", :include => [:identifiant])
+         :order => 'created_on ASC', :include => [:identifiant,:statut,:severite])
     end
+
     # On va chercher les identifiants des ingénieurs assignés
     # C'est un héritage du passé
     # TODO : s'en débarrasser avec une migration et un :include
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
-    select = "DISTINCT identifiants.* "
+    select = "DISTINCT identifiants.id "
     @identifiants_ingenieurs =
       Identifiant.find(:all, :select => select, :joins => joins)
   end
