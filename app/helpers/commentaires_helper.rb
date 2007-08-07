@@ -7,19 +7,19 @@ module CommentairesHelper
     out = []
     identifiant = comment.identifiant
     unless identifiant.nil?
-      out << _('The <b>owner</b> of your request is') << 
-        " <b>#{identifiant.nom}</b>"
+      out << (_('The <b>owner</b> of your request is') + 
+              " <b>#{identifiant.nom}</b>")
     end 
     statut = comment.statut
     unless statut.nil?
-      out << _('The <b>status</b> of your request is') << 
-        " <b>#{statut.nom}</b>"
+      out << (_('The <b>status</b> of your request is') + 
+              " <b>#{statut.nom}</b>")
     end 
     severite = comment.severite
     unless severite.nil?
-      out _('The <b>severity</b> of your request is') <<
-        "<b>#{severite.nom}</b>"
+      out << (_('The <b>severity</b> of your request is') +
+              "<b>#{severite.nom}</b>")
     end
-    '<span class="history">' << out.join('<br />') << '</span>'
+    '<div class="history">' << out.join('<br />') << '</div>'
   end
 end
