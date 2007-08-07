@@ -7,7 +7,7 @@ class DemandesController < ApplicationController
 
   def index
     #special case : direct show
-    if params['numero']
+    if params.has_key? 'numero'
       redirect_to comment_demande_path(params['numero']) and return
     end
 
@@ -49,11 +49,9 @@ class DemandesController < ApplicationController
 
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
-      cookies['refresh'] = 'true'
       render :partial => 'requests_list', :layout => false
     else
       _panel
-      cookies['refresh'] = 'false'
       @partial_for_summary = 'requests_info'
     end
   end

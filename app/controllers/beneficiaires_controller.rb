@@ -6,7 +6,7 @@ class BeneficiairesController < ApplicationController
 
   def index
     options = { :per_page => 10, :include => [:client,:identifiant] }
-    if params['client_id']
+    if params.has_key? 'client_id'
       options[:conditions] = ['beneficiaires.client_id=?', params['client_id'] ]
     end
     @clients = Client.find_select

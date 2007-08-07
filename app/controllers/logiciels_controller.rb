@@ -52,11 +52,9 @@ class LogicielsController < ApplicationController
 
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr? 
-      cookies['refresh'] = 'true'
       render :partial => 'softwares_list', :layout => false
     else
       _panel
-      cookies['refresh'] = 'false'
       @partial_for_summary = 'softwares_info'
     end
   end

@@ -15,7 +15,7 @@ class ContributionsController < ApplicationController
   end
 
   def list
-    unless params[:id]
+    unless params.has_key? :id
       flash[:notice] = flash[:notice]
       redirect_to select_contributions_path
       return
@@ -53,11 +53,9 @@ class ContributionsController < ApplicationController
     @contribution_pages, @contributions = paginate :contributions, options
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
-      cookies['refresh'] = 'true'
       render :partial => 'contributions_admin', :layout => false
     else
       _panel
-      cookies['refresh'] = 'false'
       @partial_for_summary = 'contributions_info'
     end
   end

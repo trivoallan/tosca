@@ -21,11 +21,9 @@ class AppelsController < ApplicationController
     @appel_pages, @appels = paginate :appels, options
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
-      cookies['refresh'] = 'true'
       render :partial => 'calls_list', :layout => false
     else
       _panel
-      cookies['refresh'] = 'false'
       @partial_for_summary = 'calls_info'
     end
   end

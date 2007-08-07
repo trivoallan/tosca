@@ -34,11 +34,9 @@ class AccountController < ApplicationController
     @user_pages, @users = paginate :identifiants, options
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
-      cookies['refresh'] = 'true'
       render :partial => 'users_list', :layout => false
     else
       _panel
-      cookies['refresh'] = 'false'
       @partial_for_summary = 'users_info'
     end
   end
@@ -48,10 +46,10 @@ class AccountController < ApplicationController
     case request.method
       when :post
         user_crypt = 'false'
-        user_crypt = params ['user_crypt'] if params['user_cryt']
+        user_crypt = params ['user_crypt'] if params.has_key? 'user_cryt'
         if session[:user] = Identifiant.authenticate(params['user_login'],
-                                                   params['user_password'],
-                                                   user_crypt)
+                                                     params['user_password'],
+                                                     user_crypt)
           set_sessions
           flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") % 
             [ session[:user].titre, session[:user].nom.gsub(' ', '&nbsp;') ]
@@ -144,7 +142,7 @@ class AccountController < ApplicationController
     @identifiant = Identifiant.new
     case request.method
     when :post
-      if(params['textarea_csv'].to_s.empty?)
+      if (params['textarea_csv'].to_s.empty?)
         flash.now[:warn] = _('Enter data under CSV format please')
       end
       COLUMNS.each { |key|
@@ -152,10 +150,10 @@ class AccountController < ApplicationController
           flash.now[:warn] = _('The CSV file is not correct')
         end
       }
-      if params[:identifiant].nil? or params[:identifiant][:client].nil?
+      if !params.has_key? :identifiant or params[:identifiant][:client].blank?
         flash.now[:warn] = _('You have to specify a customer')
       end
-      if params[:identifiant][:role_ids].nil?
+      if !params.has_key? :identifiant or params[:identifiant][:role_ids].blank?
         flash.now[:warn] = _('Vous must specify a role')
       end
 
