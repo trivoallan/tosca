@@ -42,13 +42,12 @@ class Demande < ActiveRecord::Base
   after_create :create_first_comment
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
 
-
+  # used for ruport. See plugins for more information
   acts_as_reportable
 
-  # Corrigées, Cloturées et Annulées
-  # MLO : on met un '> 6' à la place du 'IN' ?
+  # self-explanatory
   TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
-  EN_COURS = 'demandes.statut_id NOT IN (5,6,7,8)'
+  EN_COURS = 'demandes.statut_id IN (1,2,3,4)'
 
   # WARNING : you cannot use this scope with the optimisation hidden
   # in the model of Demande. You must then use get_scope_without_include

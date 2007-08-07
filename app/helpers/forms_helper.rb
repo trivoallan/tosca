@@ -26,7 +26,7 @@ module FormsHelper
       out << 'checked="checked" ' if objectcollection.include? donnee
       out << "/><label for=\"#{nom_w3c}_#{donnee.id}\">#{donnee}</label></td>"
       if options_size
-        out << '</tr><tr>' if count % options_size == 0 and length > count
+        out << '</tr><tr>' if (count % options_size == 0) and length > count
         count += 1
       end
     end
@@ -86,7 +86,7 @@ module FormsHelper
   def show_table_form(fields, options = {})
     fields.compact!
     result = ''
-    style = "class='#{options[:class]}'" if options[:class]
+    style = "class='#{options[:class]}'" if options.has_key? :class
     result << "<table #{style}>"
     fields.each { |f|
       title, field = f.first, f.last
@@ -159,7 +159,7 @@ module FormsHelper
     result = [ "<label for=\"#{model}_#{field}\">#{label}</label>",
                collection_select(model, field.to_s + '_id', collection,
                                  :id, :nom, PROMPT_SELECT)  ]
-    result.last << ' ' + image_spinner if options[:spinner]
+    result.last << ' ' + image_spinner if options.has_key? :spinner
     result
   end
 

@@ -73,7 +73,7 @@ module PagesHelper
     result = '<table class="pages"><tr><td>'
     result << "#{link_to_new(message)}</td>"
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
-    if options[:url]
+    if options.has_key? :url
       ajax_call =
         remote_function(AJAX_OPTIONS.dup.update(:url => options[:url]))
     end
@@ -96,7 +96,7 @@ module PagesHelper
                           image_next_page, ajax_call)
       result << "<td>#{link}</td>"
       link = link_to_page(pages, pages.last, _('Last page'),
-                          image_last_page,ajax_call)
+                          image_last_page, ajax_call)
       result << "<td>#{link}</td>"
     end
     result << '</tr></table>'

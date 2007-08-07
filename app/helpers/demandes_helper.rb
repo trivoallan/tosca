@@ -14,8 +14,8 @@ module DemandesHelper
     if text.nil?
       limit = options[:limit] || 50
       text = ''
-      text << "##{demande.id} " if options[:show_id]
-      text << "#{icon_severite(demande)} " if options[:icon_severite]
+      text << "##{demande.id} " if options.has_key? :show_id
+      text << "#{icon_severite(demande)} " if options.has_key? :icon_severite
       text << truncate(demande.resume, limit)
     end
     link_to text, demande_path(demande)

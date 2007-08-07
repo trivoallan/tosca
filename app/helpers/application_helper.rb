@@ -60,7 +60,7 @@ module ApplicationHelper
     end
 
     result = ''
-    unless nom.blank? or options[:title]==false or options[:no_title]
+    unless nom.blank? or options[:title]==false or options.has_key? :no_title
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
     end
 
@@ -78,7 +78,7 @@ module ApplicationHelper
 
     # c'est lent mais c'est tellement beau ruby :
     # yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
-    if options[:puce]
+    if options.has_key? :puce
       puce = " #{options[:puce]} "
       elements.each { |e| 
         elt = yield(e)
@@ -121,10 +121,11 @@ module ApplicationHelper
     return '<br /><p>' << _('No %s  at the moment') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width} class=\"show\">"
+    content_columns = options.has_key?(:content_columns)
 
     if titres.size > 0
       result << '<tr>'
-      if (options[:content_columns])
+      if (content_columns)
         ar.content_columns.each{|c| result <<  "<th>#{c.human_name}</th>"}
       end
       #On doit mettre nowrap="nowrap" pour que ça soit valide XHTML
@@ -134,7 +135,7 @@ module ApplicationHelper
 
     elements.each_index { |i|
       result << "<tr class=\"#{cycle('pair', 'impair')}\">"
-      if (options[:content_columns])
+      if (content_columns)
         ar.content_columns.each {|column|
           result << "<td>#{elements[i].send(column.name)}</td>"
         }
@@ -143,7 +144,7 @@ module ApplicationHelper
       result << '</tr>'
     }
 
-    if (options[:add_lines])
+    if (options.has_key? :add_lines)
       options[:add_lines].each {|line|
         result << "<tr>"
         line.each {|cell|
@@ -210,7 +211,7 @@ module ApplicationHelper
     class_name = options[:class] ||= 'simple_menu'
     out = ''
     out << '<div class="'+ class_name +'">'
-    out << form_tag(demandes_url, :method => :get) if options[:form]
+    out << form_tag(demandes_url, :method => :get) if options.has_key? :form
     out << ' <ul>'
     menu.each { |e| out << "<li>#{e}</li>" } 
     out << ' </ul>'

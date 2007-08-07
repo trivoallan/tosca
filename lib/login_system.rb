@@ -15,6 +15,8 @@ module LoginSystem
   #  def authorize?(user)
   #    user.login != "bob"
   #  end
+  # MLO : Not used for the moment. you can reactivate it 
+  # in 'login_required', just below
   def authorize?(user)
      true
   end
@@ -49,7 +51,8 @@ module LoginSystem
       return true  
     end
 
-    if session[:user] and authorize?(session[:user])
+    # we didn't see any use case for authorize? method
+    if session.data.has_key? :user # and authorize? session[:user]
       return true
     end
 
@@ -68,8 +71,8 @@ module LoginSystem
   # example use :
   # a popup window might just close itself for instance
   def access_denied
-    redirect_to :controller=>'acces', :action =>'refuse'
-  end  
+    redirect_to refuse_acces_path
+  end
   
   # store current uri in  the session.
   # we can return to this location by calling return_location

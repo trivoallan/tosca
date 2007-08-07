@@ -23,6 +23,7 @@ module Filters
   # TODO : rework this helper in order to avoid the :dual_like hacks.
   def self.build_conditions(params, filters, special_conditions = nil)
     conditions = [[]]
+    condition_0 = conditions.first
     filters.each { |f|
       if params[f.first] 
         value = params[f.first][f[1]] 
@@ -39,7 +40,7 @@ module Filters
                   else
                     "#{f[2]} #{f[3]} (?)"
                   end
-          conditions[0].push query 
+          condition_0.push query 
           # now, fill in parameters of the query
           case f.last
           when :like
@@ -53,11 +54,11 @@ module Filters
         end
       end
     }
-    conditions.first.push special_conditions if special_conditions.is_a? String
-    if conditions.first.empty?
+    condition_0.push special_conditions if special_conditions.is_a? String
+    if condition_0.empty?
       nil
     else
-      conditions[0] = conditions.first.join(' AND ') 
+      conditions[0] = condition_0.join(' AND ') 
       conditions
     end
   end

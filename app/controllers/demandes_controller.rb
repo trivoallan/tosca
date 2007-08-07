@@ -115,66 +115,6 @@ class DemandesController < ApplicationController
     end
   end
 
-  # TODO : refaire le formulaire associé.
-  # qui a besoin d'un petit check
-  # et virer ce vieux code legacy tout laid
-  def ajax_update_delai
-    demande = params[:demande]
-    return render(:nothing => true) unless request.xhr? and
-      demande and (demande[:logiciel_id] != "")
-    output = ''
-
-    beneficiaire = Beneficiaire.find demande[:beneficiaire_id]
-    contrat = Contrat.find :first, :conditions => ['client_id=?', beneficiaire.client.id ]
-    unless contrat and beneficiaire
-      return render_text(_(" %s No Contract, No OSSA") % "=>")
-    end
-    logiciel = Logiciel.find(demande[:logiciel_id])
-    # active = 1 : we only take supported packages.
-    # MySQL doesn't support true/false so Rails use Tinyint...
-    conditions = { :conditions =>
-      [ 'paquets.logiciel_id=? AND paquets.active=1', logiciel.id ],
-      :order => 'paquets.nom DESC' }
-    paquets = beneficiaire.client.paquets.find(:all, conditions)
-
-    severite = Severite.find(demande[:severite_id])
-    typedemande = Typedemande.find(demande[:typedemande_id])
-    return render_text('') unless paquets and severite and typedemande
-    selecteds = demande[:paquet_ids]
-
-    case paquets.size
-    when 0
-      output << "<p>" + _("We do not have any packages concerning") +
-        logiciel.nom  + "</p>"
-    else
-      output << "<p>" + _("Specify here the packages impacted by the request :") + "</p>"
-      output << "<table>"
-      output << "<tr><td><b>" + _("Packages") + "</b></td>"
-      output << "<td>" + _("Workaround") + "</td><td>" + _("Correction") + "</td><tr>"
-
-      paquets.each do |p|
-        contrat = Contrat.find(p.contrat_id)
-        engagement = contrat.engagements.find_by_typedemande_id_and_severite_id(typedemande.id, severite.id)
-        output << "<tr><td>"
-        #TODO : remplacer ce truc par un <%= check_box ... %>
-        output << '<input type="checkbox" id="#{p.id}"'
-        output << ' name="demande[paquet_ids][]" value="#{p.id}"'
-        output << ' checked="checked"' if selecteds and selecteds.include? p.id.to_s
-        #output << ' disabled="disabled" ' unless p.active
-        output << "> : "
-        output << "#{p.nom}-#{p.version}-#{p.release}</td>"
-        if engagement
-          output << "<td><%= Lstm.time_in_french_words(#{engagement.contournement}.days, true)%> </td>"
-          output << "<td><%= Lstm.time_in_french_words(#{engagement.correction}.days, true)%> </td>"
-        end
-        output << "</tr>"
-      end
-      output << "</table>"
-    end
-
-    render :inline => output
-  end
-
   def edit
     @demande = Demande.find(params[:id])
     _form @beneficiaire
@@ -213,27 +153,27 @@ class DemandesController < ApplicationController
   alias_method :show, :comment
 
   def ajax_description
-    return render_text('') unless request.xhr? and params[:id]
+    return render_text('') unless request.xhr? and params.has_key? :id
     @demande = Demande.find(params[:id]) unless @demande
     render :partial => 'tab_description', :layout => false
   end
 
   def ajax_comments
-   return render_text('') unless request.xhr? and params[:id]
+    return render_text('') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     set_comments(@demande_id)
     render :partial => "tab_comments", :layout => false
   end
 
   def ajax_history
-    return render_text('') unless request.xhr? and params[:id]
+    return render_text('') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     set_comments(@demande_id)
     render :partial => 'tab_history', :layout => false
   end
 
   def ajax_appels
-    return render_text('') unless request.xhr? and params[:id]
+    return render_text('') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     conditions = [ 'appels.demande_id = ? ', @demande_id ]
     options = { :conditions => conditions, :order => 'appels.debut',
@@ -243,14 +183,14 @@ class DemandesController < ApplicationController
   end
 
   def ajax_piecejointes
-    return render_text('') unless request.xhr? and params[:id]
+    return render_text('') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     set_piecejointes(@demande_id)
     render :partial => 'tab_piecejointes', :layout => false
   end
 
   def ajax_cns
-    return render_text('') unless request.xhr? and params[:id]
+    return render_text('') unless request.xhr? and params.has_key? :id
     @demande = Demande.find(params[:id]) unless @demande
     render :partial => 'tab_cns', :layout => false
   end
@@ -273,7 +213,7 @@ class DemandesController < ApplicationController
 
   # TODO : enlever cette méthode quand elle passera dans le commentaire.
   def changer_ingenieur
-    return render_text('') unless params[:id] and params[:ingenieur_id]
+    return render_text('') unless params.has_key? :id and params[:ingenieur_id]
     @demande = Demande.find(params[:id])
     @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
     @demande.save!
