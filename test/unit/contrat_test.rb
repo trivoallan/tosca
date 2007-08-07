@@ -37,9 +37,17 @@ class ContratTest < Test::Unit::TestCase
   def test_to_s 
     c = Contrat.find 1
     c_empty = Contrat.find 4
-    c_name_empty = Contrat.find 5
+    c_name_empty = Contrat.new (
+      :astreinte => 0,
+      :socle => 0,
+      :client_id => 33, # vide,
+      :ouverture => "2006-11-25 12:20:00",
+      :cloture => "2007-11-12 14:23:00"
+    )
+    assert c_name_empty.save
+
     assert_equal c.to_s, '1 - toto'
     assert_equal c_empty.to_s, '4 - unknown client'
-    assert_equal c_name_empty.to_s, '5 - nil'
+    assert_equal c_name_empty.to_s, '7 - unknown client'
   end
 end

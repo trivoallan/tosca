@@ -8,7 +8,7 @@ require 'commentaires_controller'
 class CommentairesController; def rescue_action(e) raise e end; end
 
 class CommentairesControllerTest < Test::Unit::TestCase
-  fixtures :commentaires
+  fixtures :commentaires, :demandes
 
   def setup
     @controller = CommentairesController.new
@@ -46,8 +46,19 @@ class CommentairesControllerTest < Test::Unit::TestCase
   def test_create
     num_commentaires = Commentaire.count
 
-    post :create, :commentaire => {}
+    post :create, :commentaire => {
+      :demande_id => 3,
+      :identifiant_id => 1,
+      :piecejointe_id => 1,
+      :corps => 'Voici le corps du commentaire',
+      :prive => 1,
+      :created_on => "2006-09-21 08:19:30",
+      :updated_on => "2007-07-12 14:21:17",
+      :statut_id => 7,
+      :ingenieur_id => 1
+    }
 
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
@@ -66,6 +77,8 @@ class CommentairesControllerTest < Test::Unit::TestCase
 
   def test_update
     post :update, :id => 1
+
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => 1
   end
@@ -74,6 +87,8 @@ class CommentairesControllerTest < Test::Unit::TestCase
     assert_not_nil Commentaire.find(1)
 
     post :destroy, :id => 1
+    
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'index'
 

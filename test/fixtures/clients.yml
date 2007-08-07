@@ -18,9 +18,9 @@ guy:
   image_id: 
   code_acces: "guytarenbois"
   support_id: 1
-vide:
-  id: 3
-  nom: nil
+#vide:
+#  id: 3
+#  nom: nil
 linagorien:
   id: 4 # must be id = 4 for test_logiciels in clients_test
   nom: 'linagorien'

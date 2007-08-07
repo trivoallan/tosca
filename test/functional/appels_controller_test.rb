@@ -5,7 +5,7 @@ require 'appels_controller'
 class AppelsController; def rescue_action(e) raise e end; end
 
 class AppelsControllerTest < Test::Unit::TestCase
-  fixtures :appels
+  fixtures :appels, :ingenieurs, :beneficiaires, :contrats
 
   def setup
     @controller = AppelsController.new
@@ -31,7 +31,7 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_template 'show'
 
     assert_not_nil assigns(:appel)
-    assert assigns(:appel).valid?
+    assert assigns(:appel)
   end
 
   def test_new
@@ -46,8 +46,15 @@ class AppelsControllerTest < Test::Unit::TestCase
   def test_create
     num_appels = Appel.count
 
-    post :create, :appel => {}
+    post :create, :appel => {
+      :debut => '2006-03-16 22:41:00',
+      :fin => '2007-03-16 16:41:00',
+      :ingenieur_id => 1,
+      :contrat_id => 1,
+      :beneficiaire_id => 1
+    }
 
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
@@ -61,13 +68,21 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_template 'edit'
 
     assert_not_nil assigns(:appel)
-    assert assigns(:appel).valid?
+    assert assigns(:appel)
   end
 
   def test_update
-    post :update, :id => @first_id
+    post :update, { :id => @first_id, 
+      :appel => { :debut => '2006-03-16 22:41:00',
+      :fin => '2007-03-16 16:41:00',
+      :ingenieur_id => 1,
+      :contrat_id => 1,
+      :beneficiaire_id => 1}
+    }
+
+    assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => @first_id
+    assert_redirected_to :action => 'index'
   end
 
   def test_destroy

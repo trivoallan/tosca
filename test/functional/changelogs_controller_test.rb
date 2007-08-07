@@ -46,8 +46,9 @@ class ChangelogsControllerTest < Test::Unit::TestCase
   def test_create
     num_changelogs = Changelog.count
 
-    post :create, :changelog => {}
+    post :create, :changelog => { :date_modification => '2005-10-26 10:20:00' }
 
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
@@ -66,6 +67,8 @@ class ChangelogsControllerTest < Test::Unit::TestCase
 
   def test_update
     post :update, :id => 1
+
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => 1
   end

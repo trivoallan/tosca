@@ -8,7 +8,7 @@ require 'contrats_controller'
 class ContratsController; def rescue_action(e) raise e end; end
 
 class ContratsControllerTest < Test::Unit::TestCase
-  fixtures :contrats
+  fixtures :contrats, :engagements, :clients
 
   def setup
     @controller = ContratsController.new
@@ -21,14 +21,6 @@ class ContratsControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-  end
-
-  def test_list
-    get :list
-
-    assert_response :success
-    assert_template 'index'
-
     assert_not_nil assigns(:contrats)
   end
 
@@ -54,8 +46,12 @@ class ContratsControllerTest < Test::Unit::TestCase
   def test_create
     num_contrats = Contrat.count
 
-    post :create, :contrat => {}
+    post :create, :contrat => {
+      :ouverture => '2005-10-26 10:20:00',
+      :cloture => '2007-10-26 10:20:00'
+    }
 
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
@@ -74,6 +70,8 @@ class ContratsControllerTest < Test::Unit::TestCase
 
   def test_update
     post :update, :id => 1
+
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => 1
   end
@@ -82,6 +80,7 @@ class ContratsControllerTest < Test::Unit::TestCase
     assert_not_nil Contrat.find(1)
 
     post :destroy, :id => 1
+
     assert_response :redirect
     assert_redirected_to :action => 'index'
 

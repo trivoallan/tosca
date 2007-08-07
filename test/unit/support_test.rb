@@ -7,7 +7,7 @@ class SupportTest < Test::Unit::TestCase
   fixtures :supports
 
   def test_to_s
-    assert_equal Support.find(1).to_s, 'Open from 7 to 19'
+    assert_equal Support.find(1).to_s, 'Open from 7h to 19h'
   end
   def test_interval
     s = Support.find(1)

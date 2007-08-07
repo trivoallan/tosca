@@ -8,7 +8,8 @@ require 'binaires_controller'
 class BinairesController; def rescue_action(e) raise e end; end
 
 class BinairesControllerTest < Test::Unit::TestCase
-  fixtures :binaires
+  fixtures :binaires, :paquets, :logiciels, :contrats, 
+    :clients, :socles, :arches
 
   def setup
     @controller = BinairesController.new
@@ -48,6 +49,7 @@ class BinairesControllerTest < Test::Unit::TestCase
 
     post :create, :binaire => {}
 
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
@@ -66,6 +68,8 @@ class BinairesControllerTest < Test::Unit::TestCase
 
   def test_update
     post :update, :id => 1
+
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => 1
   end

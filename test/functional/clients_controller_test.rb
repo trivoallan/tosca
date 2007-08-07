@@ -8,7 +8,7 @@ require 'clients_controller'
 class ClientsController; def rescue_action(e) raise e end; end
 
 class ClientsControllerTest < Test::Unit::TestCase
-  fixtures :clients
+  fixtures :clients, :supports
 
   def setup
     @controller = ClientsController.new
@@ -46,8 +46,9 @@ class ClientsControllerTest < Test::Unit::TestCase
   def test_create
     num_clients = Client.count
 
-    post :create, :client => {}
+    post :create, :client => { :nom => 'toto' }
 
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
@@ -66,8 +67,10 @@ class ClientsControllerTest < Test::Unit::TestCase
 
   def test_update
     post :update, :id => 1
+
+    assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'show', :id => '1-toto'
   end
 
   def test_destroy
