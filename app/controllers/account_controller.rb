@@ -87,11 +87,18 @@ class AccountController < ApplicationController
 
   def update
     @identifiant = Identifiant.find(params[:id])
+    # reset role when no case is selected
+    params[:identifiant] = { :role_ids => [] } unless params.has_key? :identifiant
     if @identifiant.update_attributes(params[:identifiant])
-      #On a sauve le profil, on l'applique sur l'utilisateur courant
-      set_sessions  @identifiant if session[:user] == @identifiant
-      flash[:notice]  = _("Edition succeeded")
-      redirect_to account_path(@identifiant)
+      # we can changes roles in 'index' view
+      if request.xhr? 
+        index
+      else
+        #update cached profile for logged user
+        set_sessions  @identifiant if session[:user] == @identifiant
+        flash[:notice]  = _("Edition succeeded")
+        redirect_to account_path(@identifiant)
+      end
     end
   end
 

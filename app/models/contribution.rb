@@ -34,7 +34,7 @@ class Contribution < ActiveRecord::Base
   end
 
   def to_s
-    return '' unless patch
+    return nom unless patch
     index = patch.rindex('/')+ 1
     patch[index..-1]
   end

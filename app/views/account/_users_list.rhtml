@@ -19,6 +19,7 @@
 
 
   <% options = PagesHelper::AJAX_OPTIONS.dup %>
+  <% options[:method] = :put %>
   <% @users.each_index {|i| %>
    <% user = @users[i] %>
    <% beneficiaire = user.beneficiaire %>
@@ -28,13 +29,13 @@
      <td><%=h user.login %></td>
      <td nowrap="nowrap">
       <% options[:html] = { :id => "form_#{user.id}", :name => "form_#{user.id}" } %>
-      <% options[:url] = "../account/update/#{user.id}" %>
+      <% options[:url] = account_path(user.id) %>
       <% form_remote_tag options do %>
          <% for role in @roles %>
            &nbsp;&nbsp;<input type="checkbox" id="<%=user.login + role.id.to_s%>" name="identifiant[role_ids][]" value="<%=role.id%>"
            <%if user.roles.include? role%> checked="checked" <%end%> />&nbsp;&nbsp;
          <% end %>
-         <input type="submit" value=<%= _('"Submit"')%> class="primary"/>
+         <input type="submit" value="<%= _('Validate')%>" class="primary"/>
       <% end %></td>
       <td><center><%= "X" if ingenieur %></center></td>
       <td><center><%= "X" if beneficiaire %></center></td>

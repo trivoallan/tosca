@@ -16,22 +16,20 @@
 
    fields = [
      [ avatar, nil ],
-     [ '<hr/>', nil ],
      [ _('Full name'), "<label>#{@identifiant.nom}</label>" ],
      [ _('Title'), "<label>#{@identifiant.titre}</label>" ],
      [ _('Email'), mail_to(@identifiant.email, @identifiant.email) ],
      [ _('Phone'), "<label>#{@identifiant.telephone}</label>" ],
      [ '<hr/>', nil ],
      [ _('login'), "<label>#{@identifiant.login}</label>" ],
-     [ '<hr/>', nil ],
      [ role_titre, role_champs ],
-     [ _('Informations :'), nil ],
+     [ '<hr/>', nil ],
      [  nil, "<p>#{indent @identifiant.informations}</p>" ]
    ]
 
 %>
 
-<h1><%= _('Consult') %> <%= compte %></h1>
+<h1><%= compte %></h1>
 <%= show_table_form fields %>
 </div>
 <br/>
