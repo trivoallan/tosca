@@ -58,18 +58,11 @@ module LinksHelper
     filepath = record.send(method)
     unless filepath.blank? or not File.exist?(filepath)
       mime_type = record.file_mime_type
-      relative_path = record.send("#{method}_relative_path")
-
+      #To be XHTML compliant
+      relative_path = "#{method}_" << record.send("#{method}_relative_path").tr!("/", "_")
       #Image
       if mime_type =~ /^image\//
         redbox_div(relative_path, image_tag(url_for_image_column(record, method, :fit_size )), :background_close => true)
-      #Text        
-      elsif mime_type =~ /^text\//
-        require 'uv'
-        content = "" 
-        File.open(filepath) { |f| content = f.read } 
-        redbox_div(record, Uv.parse(content, "xhtml", "#{filepath.split('.').last}", true, "blackboard"))
-        #redbox_div(record, Uv.parse(content, "xhtml", "php", true, "blackboard"))
       end
     end  
   end
@@ -81,12 +74,12 @@ module LinksHelper
     return '' if relative_path.blank? or content.nil?
     content << '<div style="position: absolute;top: 0;right: 0;">' 
     content << link_to_close_redbox(image_hide_notice, :class => 'no_hover') << '</div>'
-    content = link_to_close_redbox(content) if options[:background_close]
+    content = link_to_close_redbox(content) if options.has_key? :background_close
     return <<EOS
-       <div id="#{relative_path}" style="display: none;">
-  	  #{content}
-       </div>
-       #{link_to_redbox(image_view, relative_path, :class => 'no_hover')}
+  	  <div id="#{relative_path}" style="display: none;">
+  	    #{content}
+    	</div>
+    	#{link_to_redbox(image_view, relative_path, :class => 'no_hover')}
 EOS
   end
   
