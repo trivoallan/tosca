@@ -34,8 +34,7 @@ class FilesController < ApplicationController
               :binaire => Binaire }
     
     # building path
-    root_path = "#{RAILS_ROOT}/files"
-    root = [ root_path, file_type, map[file_type.intern] ] * '/'
+    root = [ Metadata::PATH_TO_FILES, file_type, map[file_type.intern] ] * '/'
     fullpath = [ root, params[:id], params[:filename] ] * '/'
 
     if session[:beneficiaire] and file_type == 'piecejointe'
@@ -51,7 +50,7 @@ class FilesController < ApplicationController
 
   rescue 
     # if error on finding target
-    flash.now[:warn] = 'Ce fichier n\'existe pas.'
+    flash.now[:warn] = _("This file does not exist.")
     redirect_to_home 
   end
 
