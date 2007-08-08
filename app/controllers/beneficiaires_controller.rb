@@ -20,7 +20,7 @@ class BeneficiairesController < ApplicationController
   def create
     # should not be called, since the only way to create 
     # user & recipient is from AccountController.
-    render :file => :nothing 
+    render :nothing => true
   end
 
   def new

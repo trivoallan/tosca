@@ -1,9 +1,9 @@
-<h1>Editing license</h1>
+<h1><%=_('Edit a copyright')%></h1>
 
 <% form_tag license_path(@license), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
-<%= link_to 'Show', license_path @license %> |
-<%= link_to_back %>
+<%= link_to_show_and_list(@license) %> 
+
