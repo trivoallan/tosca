@@ -110,7 +110,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :fichiers
   map.resources :fournisseurs
   map.resources :groupes
-  map.resources :pictures
+  # We cannot have 'image' for singular, coz' 
+  # image_path is used in ActionView::Helpers of Rails
+  map.resources :images, :singular => 'img'
   map.resources :ingenieurs,  :collection => { :list => :get }
   map.resources :jourferies
   map.resources :licenses
