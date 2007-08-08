@@ -22,6 +22,13 @@ module FileColumn # :nodoc:
         GC.start
       end
     end
+    
+    def create_uv_version_if_needed
+      path = absolute_path << "." << options[:uv][:theme] << ".html"
+      unless File.exists?(path)
+        transform_with_uv
+      end
+    end
 
     private
     

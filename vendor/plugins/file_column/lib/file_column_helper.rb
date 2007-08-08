@@ -135,6 +135,7 @@ module FileColumnHelper
   end
   
   def url_for_uv_column(object, method)
+    object.send("#{method}_state").create_uv_version_if_needed
     file_suffix = "." << object.send("#{method}_options")[:uv][:theme] << ".html"
     generic_url(object, method, file_suffix)
   end
