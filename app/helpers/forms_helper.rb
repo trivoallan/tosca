@@ -159,7 +159,7 @@ module FormsHelper
     result = [ "<label for=\"#{model}_#{field}\">#{label}</label>",
                collection_select(model, field.to_s + '_id', collection,
                                  :id, :nom, PROMPT_SELECT)  ]
-    result.last << ' ' + image_spinner if options.has_key? :spinner
+    result.last << ' ' + StaticImage::spinner if options.has_key? :spinner
     result
   end
 

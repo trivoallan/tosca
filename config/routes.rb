@@ -29,6 +29,8 @@ module ActionController::Routing
 end
 
 ActionController::Routing::Routes.draw do |map|
+  map.resources :static_images
+
   # The priority is based upon order of creation:
   #   first created -> highest priority.
 

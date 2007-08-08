@@ -7,7 +7,7 @@ module DemandesHelper
   # Options
   #  * :pre_text (deprecated) display before
   #  * :show_id display the id
-  #  * :icon_severite display severity icon
+  #  * icon_severite display severity icon
   def link_to_demande(demande, options = {})
     return '-' unless demande
     text = options[:text]
@@ -15,7 +15,7 @@ module DemandesHelper
       limit = options[:limit] || 50
       text = ''
       text << "##{demande.id} " if options.has_key? :show_id
-      text << "#{icon_severite(demande)} " if options.has_key? :icon_severite
+      text << "#{StaticImage::severite(demande)} " if options.has_key? :icon_severite #TODO
       text << truncate(demande.resume, limit)
     end
     link_to text, demande_path(demande)
@@ -141,13 +141,13 @@ module DemandesHelper
 
   # Link to access a ticket
   def link_to_comment(ar)
-      link_to image_view, comment_demande_path(ar), { :class => 'nobackground' }
+      link_to StaticImage::view, comment_demande_path(ar), { :class => 'nobackground' }
   end
 
   #usage : link_to_help('state') to link to the help page
   # for states demand
   def link_to_help( topic)
-      link_to image_help,
+      link_to StaticImage::help,
         'http://www.08000linux.com/wiki/index.php/%C3%89tats_demande',
         { :class => 'nobackground' }
   end

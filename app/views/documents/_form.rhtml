@@ -28,8 +28,8 @@
 
     <p><label for ="document_date_delivery"><%= _('Delivery date') %></label><br />
     <%= text_field :document, :date_delivery,  :size => 8 %>
-    <span class="calendarPicker"><%= image_date_to %></span>
-    <%= script_date('document_date_delivery', 'date_to') %><br /><br />
+    <span class="calendarPicker"><%= StaticScript::date_to %></span>
+    <%= StaticScript::script_date('document_date_delivery', 'date_to') %><br /><br />
     </p>
   </div>
   <div style="float: left">

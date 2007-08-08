@@ -9,7 +9,7 @@
     <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
     <% options = pretty_print_demande_path(@demande.id) %>
     <% html_options = { :class => 'no_hover' } %>
-    <%= link_to(image_print, options, html_options) %>
+    <%= link_to(StaticImage::print, options, html_options) %>
   </h1>
 
   <% if @last_commentaire %>
@@ -19,7 +19,7 @@
      <%= @demande.description %>
    </div>
  <% end %>
- 
+
   <div>
     <% action = comment_commentaire_path(@demande) %>
     <% form_tag(action, :method => :post, :multipart => true) do %>

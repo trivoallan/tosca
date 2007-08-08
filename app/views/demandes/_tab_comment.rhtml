@@ -7,7 +7,7 @@
     <td class="commentaire_infos" align="center">
         <span class="small"><%= _("Comment %s") "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id %>
-            <%= logo_08000 %>
+            <%= StaticImage::logo_08000 %>
         <% elsif id and id.beneficiaire %>
             <%= image_tag url_for_file_column(id.beneficiaire.client.image, "image", "thumb") %>
          <% end %><br/>
@@ -16,24 +16,24 @@
     </td>
     <td class="commentaire_text">
       <%= commentaire.corps %>
-      <%= '<br/><br/>' + image_folder + ' ' +
+      <%= '<br/><br/>' + StaticImage::folder + ' ' +
           link_to_file(commentaire.piecejointe, "file") +
           ' ('+ file_size(commentaire.piecejointe.file) +
           ')' if commentaire.piecejointe %>
     </td>
     <% if @ingenieur and not pretty_print %>
      <td class="standard_infos" valign="middle" width="30" align="center">
-       <% html_options = { :class => 'no_hover' } %>
-       <%= link_to(image_edit, edit_commentaire_path(commentaire)), html_options) %>
+        <% html_options = { :class => 'no_hover' } %>
+       <%= link_to(StaticImage::edit, edit_commentaire_path(commentaire)), html_options) %>
        <br/>
-       <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private") ) %>
-       <% limage = (commentaire.prive ? image_public : image_private) %>
+        <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private") ) %>
+        <% limage = (commentaire.prive ? StaticImage::public : StaticImage::private) %>
        <% html_options[:method] = :post %>
        <%= link_to(limage, changer_etat_commentaire_path(commentaire)), html_options) %>
        <br/>
-       <% html_options[:confirm] = _("Are you sure you want to delete comment %s ?") % commentaire.id %>
-       <% html_options[:method] = :delete %>
-       <%= link_to(image_delete, commentaire_path(commentaire), html_options) %>
+        <% html_options[:confirm] = _("Are you sure you want to delete comment %s ?") % commentaire.id %>
+        <% html_options[:method] = :delete %>
+       <%= link_to(StaticImage::delete, commentaire_path(commentaire), html_options) %>
      </td>
     <% end %>
   </tr>

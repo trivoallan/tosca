@@ -19,24 +19,24 @@ module PagesHelper
   #   <%= link_to_show(edit_request_path(@request))%>
   def link_to_show(ar)
     url = (ar.is_a?(String) ? ar : { :action => 'show', :id => ar })
-    link_to image_view, url, { :class => 'nobackground' }
+    link_to StaticImage::view, url, { :class => 'nobackground' }
   end
 
   # same behaviour as link_to_show
   def link_to_edit(ar)
     url = (ar.is_a?(String) ? ar : { :action => 'edit', :id => ar })
-    link_to image_edit, url, { :class => 'nobackground' }
+    link_to StaticImage::edit, url, { :class => 'nobackground' }
   end
 
   # same behaviour as link_to_show
   def link_to_delete(ar)
     url = (ar.is_a?(String) ? ar : { :action => 'destroy', :id => ar })
-    link_to image_delete,  url, :class => 'nobackground', :method => :delete,
+    link_to StaticImage::delete,  url, :class => 'nobackground', :method => :delete,
         :confirm => _('Do you really want to destroy this object ?')
   end
 
   def link_to_back()
-    link_to(image_back, :action =>'index')
+    link_to(StaticImage::back, :action =>'index')
   end
 
 
@@ -63,7 +63,7 @@ module PagesHelper
   # if you want ajax links, you must specificy the remote function this way :
   # <%= show_pages_links @demande_pages, 'déposer une demande',
   #        :url => '/demandes/update_list' %>
-  # (!) you will need an image_spinner too (!)
+  # (!) you will need an StaticImage::spinner too (!)
   AJAX_OPTIONS = {  :update => 'content', :method => :get,
     :with => "Form.serialize(document.forms['filters'])",
     :before => "Element.show('spinner')",
@@ -80,10 +80,10 @@ module PagesHelper
 
     if pages.current.previous
       link = link_to_page(pages, pages.first, _('First page'),
-                          image_first_page, ajax_call)
+                          StaticImage::first_page, ajax_call)
       result << "<td>#{link}</td>"
       link = link_to_page(pages, pages.current.previous, _('Previous page'),
-                          image_previous_page, ajax_call)
+                          StaticImage::previous_page, ajax_call)
       result << "<td>#{link}</td>"
     end
     if pages.current.last_item > 0
@@ -93,10 +93,10 @@ module PagesHelper
     end
     if pages.current.next
       link = link_to_page(pages, pages.current.next, _('Next page'),
-                          image_next_page, ajax_call)
+                          StaticImage::next_page, ajax_call)
       result << "<td>#{link}</td>"
       link = link_to_page(pages, pages.last, _('Last page'),
-                          image_last_page, ajax_call)
+                          StaticImage::last_page,ajax_call)
       result << "<td>#{link}</td>"
     end
     result << '</tr></table>'

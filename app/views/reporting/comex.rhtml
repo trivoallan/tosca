@@ -19,16 +19,16 @@
         <td>
           <label for="results_first_day"><%= _('First day : ') %></label>
           <%= text_field :results, :first_day, :size =>8 %>
-          <span class="calendarPicker"><%= image_date_from %></span>
-          <%= script_date('results_first_day', 'date_from') %>
+          <span class="calendarPicker"><%= StaticScript::date_from %></span>
+          <%= StaticScript::script_date('results_first_day', 'date_from') %>
         </td>
       </tr>
       <tr>
         <td>
           <label for="results_end_day"><%= _('Last day : ') %></label>
           <%= text_field :results, :end_day,  :size => 8 %>
-          <span class="calendarPicker"><%= image_date_to %></span>
-          <%= script_date('results_end_day', 'date_to') %>
+          <span class="calendarPicker"><%= StaticScript::date_to %></span>
+          <%= StaticScript::script_date('results_end_day', 'date_to') %>
           </td>
       </tr>
       <tr>

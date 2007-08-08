@@ -1,6 +1,6 @@
 <% user = session[:user] %>
 <% connected = public_link_to(_('connected'), login_accounts_path) %>
-<table><tr><td rowspan="2"><%= logo_lstm %> </td><td><h2 class="spacer"><%=_('Contents')%></h2></td></tr>
+<table><tr><td rowspan="2"><%= StaticImage::lstm %> </td><td><h2 class="spacer"><%=_('Contents')%></h2></td></tr>
   <tr><td><%= _('Welcome in the management tool of the 08000linux.')%></td></tr>
 </table>
 
@@ -10,7 +10,7 @@
    <h3><%= _('Requests')%></h3>
   <% if user %>
     <% options = { :show_id => true, :icon_severite => true } %>
-    <p><%= _("You can see the list of %s") % link_to(_("requests"), demandes_path) %></p>
+    <p><%= _("You can see the list of %s :") % link_to(_("requests"), demandes_path) %></p>
        <%= show_liste(@demandes, _('requests in process'), :title => false) { |d|
              link_to_demande(d, options)
           } %>
@@ -49,7 +49,7 @@
    <h3><%= _('Offer')%></h3>
   <% client = @beneficiaire.client %>
   <table>
-    <tr><td rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>,
+    <tr><td rowspan="2"><%=StaticImage::client client%> </td><td><%= user.titre + ' ' + user.nom%>,
       <%= _("You have access to one of our offers, which you have the detail at your disposal : %s") % link_to_my_client %></td>
     </tr>
     <tr><td><%= _('You hope this tool wil give you an entire satisfaction.')%></td></tr>

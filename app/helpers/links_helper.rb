@@ -29,7 +29,7 @@ module LinksHelper
     unless filepath.blank? or not File.exist?(filepath)
       filename = filepath[/[._ \-a-zA-Z0-9]*$/]
       if options.has_key? :image
-        show = image_patch and html_options = {:class => 'no_hover'}
+        show = StaticImage::patch and html_options = {:class => 'no_hover'}
       else
         show = filename and html_options = {}
       end
@@ -45,16 +45,16 @@ module LinksHelper
   def public_link_to_file(record, file, options={})
     link_to_file(record, file, options, true)
   end
-  
+
   #Call it like link_to_file
   def link_to_file_redbox(record, method, options={}, public = false)
     return '-' unless record
-    
+
     file_exec = record.file_options[:file_exec]
     return '-' unless file_exec
-    
+
     method = method.to_sym if method.is_a? String
-    
+
     filepath = record.send(method)
     filename = filepath[/[._ \-a-zA-Z0-9]*$/]
     unless filepath.blank? or not File.exist?(filepath)
@@ -68,25 +68,25 @@ module LinksHelper
       elsif mime_type =~ /^text\//
         link_to(image_view, { :controller => "piecejointes", :action => "uv", :id => record.id }, :popup => [filename, 'height=600,width=800,scrollbars=yes'])
       end
-    end  
+    end
   end
-  
+
   #Print a redbox div for a piecejointe
   #Call it like : redbox_div("script/../config/../files/piecejointe/file/4/image.png", "toto")
   #Only one option : background_close. If true you can click on the background of the div to close it
   def redbox_div(relative_path, content, options = {})
     return '' if relative_path.blank? or content.nil?
-    content << '<div style="position: absolute;top: 0;right: 0;">' 
+    content << '<div style="position: absolute;top: 0;right: 0;">'
     content << link_to_close_redbox(image_hide_notice, :class => 'no_hover') << '</div>'
     content = link_to_close_redbox(content) if options.has_key? :background_close
-    return <<EOS
-  	  <div id="#{relative_path}" style="display: none;">
-  	    #{content}
-    	</div>
-    	#{link_to_redbox(image_view, relative_path, :class => 'no_hover')}
+    return  <<EOS
+          <div id="#{relative_path}" style="display: none;">
+            #{content}
+       </div>
+        #{link_to_redbox(image_view, relative_path, :class => 'no_hover')}
 EOS
   end
-  
+
   @@delete_options = { :class => 'nobackground', :method => :delete }
   def delete_options(objet_name)
     @@delete_options.update(:confirm =>

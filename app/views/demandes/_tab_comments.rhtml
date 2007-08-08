@@ -1,4 +1,4 @@
-<% logo_img = nil %>
+<% simg = nil %>
 <% pretty_print = (controller.action_name == 'pretty_print') %>
 <% commentaires = @commentaires || [@last_commentaire] %>
 
@@ -16,18 +16,18 @@
      <td class="infos" align="center">
         <span class="small"><%= _("Comment %s") % "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
         <% if @identifiants_ingenieurs.include? id.id %>
-          <%= logo_08000 %>
+          <%= StaticImage::logo_08000 %>
         <% elsif id and id.beneficiaire %>
-            <%= logo_img ||= logo_client(id.beneficiaire.client) %>
+            <%= simg ||= StaticImage::client(id.beneficiaire.client) %>
          <% end %><br/>
         <%= id.nom if id %><br />
 
         <% if @ingenieur and not pretty_print %>
-         <%= link_to(image_edit, edit_commentaire_path(commentaire), edit_ho) %>&nbsp;
+         <%= link_to(StaticImage::edit, edit_commentaire_path(commentaire), edit_ho) %>&nbsp;
           <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private")) %>
-          <% limage = (commentaire.prive ? image_public : image_private) %>
+          <% limage = (commentaire.prive ? StaticImage::public : StaticImage::private) %>
          <%= link_to(limage, changer_etat_commentaire_path(commentaire), change_state_ho) %>&nbsp;
-         <%= link_to(image_delete, commentaire_path(commentaire), delete_ho) %>&nbsp;
+         <%= link_to(StaticImage::delete, commentaire_path(commentaire), delete_ho) %>&nbsp;
          <br />
         <% end %>
         <span class="small"><%= commentaire.created_on_formatted %></span><br />
@@ -36,7 +36,7 @@
       <%= commentaire.corps %>
      <% piecejointe = commentaire.piecejointe %>
      <% unless piecejointe.blank? or piecejointe.file.blank? %>
-       <%= "<br /><br />#{image_folder} " << link_to_file(piecejointe, "file").to_s <<
+     <%= "<br /><br />#{StaticImage::folder} " << link_to_file(piecejointe, "file").to_s <<
            " (#{file_size(piecejointe.file)})"  %>
        <%= link_to_file_redbox(piecejointe, :file) %>
      <% end %>

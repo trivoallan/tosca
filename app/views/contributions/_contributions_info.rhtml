@@ -10,8 +10,8 @@
 <%= hidden_field_tag 'page', '1' %>
 
 <div class="menu_title" onclick="Element.toggle('menu_actions');Element.toggle('test1');Element.toggle('test2');">
-<span id="test1"><%= image_expand %> </span>
-<span id="test2" style="display: none;"><%= image_hide %></span>
+<span id="test1"><%= StaticImage::expand %> </span>
+<span id="test2" style="display: none;"><%= StaticImage::hide %></span>
 Actions </div>
 
 <ul class="menu" id="menu_actions">

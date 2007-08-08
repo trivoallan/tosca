@@ -7,8 +7,8 @@
  <% @@menu ||= {}; @@links ||= {}; @@head ||= {} %>
  <% @@head[locale] ||=
        '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
-       "<link rel=\"shortcut icon\" href=\"#{image_favicon_ico}\" type=\"image/x-icon\" />" <<
-       "<link rel=\"icon\" href=\"#{image_favicon_png}\" type=\"image/png\" />" <<
+       "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
+       "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
        stylesheet_link_tag(*(%w(comments tools helper demandes info_box auto_complete accueil menu reporting calendar))) <<
        stylesheet_link_tag('common', :media => "all") <<
        stylesheet_link_tag('common-printer', :media => "print") <<
@@ -37,7 +37,7 @@
   <div id="header">
     <table>
       <tr valign="top">
-        <td valign="middle" width="145"><%= public_link_to logo_08000, bienvenue_url%>
+        <td valign="middle" width="145"><%= public_link_to StaticImage::logo_08000, bienvenue_url%>
         </td>
         <td><%= (user ? session[:menu] : @@menu[locale]) %></td>
         <td align="right">
@@ -81,7 +81,7 @@
            '<td valign="middle" align="center">' <<
               public_link_to(Metadata::NOM_LONG_SERVICE, Metadata::SITE_ENTREPRISE + Metadata::PATH_SERVICE) <<
               '&nbsp;' <<
-              public_link_to(logo_ruby, 'http://rubyonrails.org/', :class => 'no_hover') <<
+              public_link_to(StaticImage::ruby, 'http://rubyonrails.org/', :class => 'no_hover') <<
               '&nbsp;' <<
               public_link_to(Metadata::COPYRIGHT_APPLICATION, Metadata::SITE_ENTREPRISE) <<
            '</td>' <<

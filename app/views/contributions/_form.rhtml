@@ -8,7 +8,7 @@
 
 <p><label for="contribution_logiciel"><%=_('Software')%></label><br/>
 <%= collection_select(:contribution, :logiciel_id, @logiciels, :id, :nom) %>
-<%= image_spinner %></p>
+<%= StaticImage::spinner %></p>
 
 <p><label for="contribution_ingenieur"><%=_('Engineer')%></label><br/>
 <%= collection_select(:contribution, :ingenieur_id, @ingenieurs, :id, :nom) %></p>

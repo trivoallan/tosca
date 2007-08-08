@@ -2,7 +2,7 @@ module AppelsHelper
 
   # call it like : link_to_call call
   def link_to_call(appel)
-    link_to image_view, appel_url(:id => appel.id)
+    link_to StaticImage::view, appel_url(:id => appel.id)
   end
 
   # call it like : link_to_add_call demande.id

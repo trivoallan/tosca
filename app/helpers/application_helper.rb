@@ -2,21 +2,25 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-# Methods added to this helper will be available to all templates 
-# in the application. Don't ever add a method to this one without a really good 
+# Methods added to this helper will be available to all templates
+# in the application. Don't ever add a method to this one without a really good
 # reason. Anyway, this is a big helper, so find by keyword :
 # - TEXTE
 # - FILES
 # - LISTES ET TABLES
 # - TIME
+
+require 'static_image'
+require 'static_script'
+
 module ApplicationHelper
-  include ImagesHelper
   include PagesHelper
   include FormsHelper
   include LinksHelper
- 
-  ### TEXTE #####################################################################
+  include ImagesHelper
 
+
+  ### TEXTE #####################################################################
   # indente du texte et échappe les caractères html
   # à utiliser sur les descriptions, commentaires, etc
   def indent( text )
@@ -33,14 +37,12 @@ module ApplicationHelper
   end
 
   ### FILES #####################################################################
-
   def file_size( file )
     return '-' if file.blank? or not File.exists?(file)
     number_to_human_size(File.size(file))
   end
 
   ### LISTES ET TABLES ##########################################################
-
   # Display an Array of elements in a list manner
   # It takes a bloc in order to know what to display
   # Options :
@@ -50,13 +52,13 @@ module ApplicationHelper
   #  * :edit : name of the controllers needed to decorate list with
   #   an edit link and a delete link. Used widely in the show view of softwares.
   # If there is no block given, the field is displayed as is, with 'to_s' method.
-  # Call it like : 
+  # Call it like :
   #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
-  def show_liste(elements, nom = '', options = {}) 
+  def show_liste(elements, nom = '', options = {})
     size = elements.size
     return '<u><b>' << _('No') << " #{nom}</b></u><br />" unless size > 0
     if !session.data.has_key?(:user) and !options.has_key?(:public)
-      return "<u><b>#{pluralize(size, nom.capitalize)}" << _(' to date') << '</b></u><br />' 
+      return "<u><b>#{pluralize(size, nom.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
     result = ''
@@ -68,8 +70,8 @@ module ApplicationHelper
     # call "yield_or_default .call(e)" in spite of "yield(e)"
     # TODO : use it when yarv virtual machine is ready
     unless block_given?
-      result << '<ul>' 
-      elements.each { |e| 
+      result << '<ul>'
+      elements.each { |e|
         result << '<li>' << e << '</li>' unless e.blank?
       }
       result << '</ul>'
@@ -80,22 +82,22 @@ module ApplicationHelper
     # yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
     if options.has_key? :puce
       puce = " #{options[:puce]} "
-      elements.each { |e| 
+      elements.each { |e|
         elt = yield(e)
         result << puce << elt << '<br/>' unless elt.blank?
       }
     else
-      result << '<ul>' 
+      result << '<ul>'
       edit = options[:edit]
       edit_call, delete_call = "edit_#{edit}_path","#{edit}_path" if edit
-      elements.each { |e| 
+      elements.each { |e|
         elt = yield(e)
         unless elt.blank?
-          result << '<li>' 
+          result << '<li>'
           result << link_to_edit(send(edit_call, e)).to_s if edit
-          result << elt 
+          result << elt
           result << link_to_delete(send(delete_call, e)).to_s if edit
-          result << '</li>' 
+          result << '</li>'
         end
       }
       result << '</ul>'
@@ -103,7 +105,7 @@ module ApplicationHelper
     result
   end
 
-  def public_show_liste(elements, nom = '', options = {}, &functor) 
+  def public_show_liste(elements, nom = '', options = {}, &functor)
     public_options = options.dup
     public_options[:public] = true
     show_liste(elements, nom, public_options, &functor)
@@ -204,17 +206,17 @@ module ApplicationHelper
   # Display a simple menu (without submenu) from an array
   # a field may be add in the array, to select a ticket
   # Options
-  #  * :form include all in a form_tag 
+  #  * :form include all in a form_tag
   #  * :add_class specifie a class to overide .simple_menu style
   def build_simple_menu(menu, options={})
-    return unless menu.is_a? Array 
+    return unless menu.is_a? Array
     menu.compact!
     class_name = options[:class] ||= 'simple_menu'
     out = ''
     out << '<div class="'+ class_name +'">'
     out << form_tag(demandes_url, :method => :get) if options.has_key? :form
     out << ' <ul>'
-    menu.each { |e| out << "<li>#{e}</li>" } 
+    menu.each { |e| out << "<li>#{e}</li>" }
     out << ' </ul>'
     out << '</form>' if options[:form]
     out << '</div>'
@@ -222,15 +224,15 @@ module ApplicationHelper
 
   # Build a menu from a hash of 2 arrays : titles and links
   # TODO : move js to public/js folder
-  # Need common.css #menu part and following js :  
-  # Call it like : 
+  # Need common.css #menu part and following js :
+  # Call it like :
   # <% menu = {} %>
   #   <% menu[:titles], menu[:links] = [], [] %>
   #   <% menu[:titles] << 'Un groupe de lien' %>
   #   <% menu[:links] << [ link_to('Par ici'), link_to('Par là') ] %>
   # <%= build_menu(menu) %>
   def build_menu(menu, options = {})
-    return unless menu[:titles].is_a? Array 
+    return unless menu[:titles].is_a? Array
     return unless menu[:titles].size == menu[:links].size
     prefix = 'smenu'
     out = ''
@@ -247,12 +249,12 @@ module ApplicationHelper
     }
     //--></script>"
     out << '<div id="menu" onmouseout="javascript:montre(\'\');">'
-    menu[:titles].each_index {|i| 
+    menu[:titles].each_index {|i|
       id = prefix + i.to_s
       out << "<div class=\"liste_menu\" onmouseover=\"javascript:montre('#{id}');\">"
       out <<   show_liste_menu(id, menu[:links][i], menu[:titles][i])
       out << '</div>'
-    } 
+    }
     out << '</div>'
   end
 
@@ -278,15 +280,15 @@ module ApplicationHelper
   def show_notice
       "<div id=\"information_notice\" class=\"information notice\">
          <div class=\"close_information\" onclick=\"Element.hide('information_notice')\">" <<
-         image_hide_notice << "</div>
-         <p>" << flash[:notice] << "</p>  
+         StaticImage::hide_notice << "</div>
+         <p>" << flash[:notice] << "</p>
        </div>"
   end
 
   def show_warn
       "<div id=\"information_error\" class=\"information error\">
          <div class=\"close_information\" onclick=\"Element.hide('information_error')\">" <<
-         image_hide_notice << "</div>
+         StaticImage::hide_notice << "</div>
          <h2>" + _('An error has occured') + "</h2>
          <ul><li>" << flash[:warn] << "</li></ul>
        </div>"

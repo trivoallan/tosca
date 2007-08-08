@@ -13,14 +13,14 @@ module ContratsHelper
   # call it like :
   # <%= link_to_new_contribution(@client.id) %>
   def link_to_new_contrat(client_id = nil)
-    link_to image_create(_('a contract')), 
-                         new_contrat_path(:client_id => client_id) 
+    link_to image_create(_('a contract')),
+                         new_contrat_path(:client_id => client_id)
   end
 
   # call it like :
   # <%= link_to_edit_contrat(c) %>
   def link_to_edit_contrat(c)
     return '-' unless c
-    link_to image_edit, edit_contrat_path(c)
+    link_to StaticImage::edit, edit_contrat_path(c)
   end
 end

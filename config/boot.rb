@@ -46,3 +46,4 @@ unless defined?(Rails::Initializer)
 
   Rails::Initializer.run(:set_load_path)
 end
+

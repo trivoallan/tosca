@@ -5,7 +5,7 @@ module UrlreversementsHelper
 
   def link_to_edit_urlreversement(u)
     return '-' unless u
-    link_to image_edit, edit_urlreversement_path(u.id)
+    link_to StaticImage::edit, edit_urlreversement_path(u.id)
   end
 
   def link_to_new_urlreversement(contribution_id)
