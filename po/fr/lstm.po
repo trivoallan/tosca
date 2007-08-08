@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-07 11:55+0200\n"
-"PO-Revision-Date: 2007-08-07 12:01+0200\n"
+"POT-Creation-Date: 2007-08-08 13:52+0200\n"
+"PO-Revision-Date: 2007-08-08 13:57+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,16 +39,16 @@ msgstr "Vous n'êtes pas autorisé à changer votre identité"
 msgid "Person not found"
 msgstr "Personne non trouvée"
 
-#: app/controllers/account_controller.rb:93
+#: app/controllers/account_controller.rb:99
 msgid "Edition succeeded"
 msgstr "Les modifications ont été effectuées avec succès"
 
-#: app/controllers/account_controller.rb:111
+#: app/controllers/account_controller.rb:118
 msgid "Account successfully created, don't forget to check his profile."
 msgstr "Compte créé correctement, n'oubliez pas de vérifier son profil."
 
-#: app/controllers/account_controller.rb:114
-#: app/controllers/account_controller.rb:183
+#: app/controllers/account_controller.rb:121
+#: app/controllers/account_controller.rb:190
 #: app/controllers/export_controller.rb:145
 #: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
@@ -57,92 +57,92 @@ msgstr "Compte créé correctement, n'oubliez pas de vérifier son profil."
 msgid "Recipient"
 msgstr "Bénéficiaire"
 
-#: app/controllers/account_controller.rb:114
-#: app/controllers/account_controller.rb:183
+#: app/controllers/account_controller.rb:121
+#: app/controllers/account_controller.rb:190
 msgid "Engineer "
 msgstr "Ingénieur"
 
-#: app/controllers/account_controller.rb:114
+#: app/controllers/account_controller.rb:121
 msgid " created"
 msgstr " créé"
 
-#: app/controllers/account_controller.rb:133
-#: app/controllers/account_controller.rb:168
-#: app/controllers/account_controller.rb:181 app/views/account/_edit.rhtml:59
-#: app/views/account/show.rhtml:20
+#: app/controllers/account_controller.rb:140
+#: app/controllers/account_controller.rb:175
+#: app/controllers/account_controller.rb:188 app/views/account/_edit.rhtml:59
+#: app/views/account/show.rhtml:19
 msgid "Full name"
 msgstr "Nom Complet"
 
-#: app/controllers/account_controller.rb:133
-#: app/controllers/account_controller.rb:169 app/views/account/_edit.rhtml:60
-#: app/views/account/show.rhtml:21 app/views/documents/_form.rhtml:23
+#: app/controllers/account_controller.rb:140
+#: app/controllers/account_controller.rb:176 app/views/account/_edit.rhtml:60
+#: app/views/account/show.rhtml:20 app/views/documents/_form.rhtml:23
 msgid "Title"
 msgstr "Titre"
 
-#: app/controllers/account_controller.rb:133
-#: app/controllers/account_controller.rb:170 app/views/account/_edit.rhtml:61
-#: app/views/account/_users_list.rhtml:16 app/views/account/show.rhtml:22
+#: app/controllers/account_controller.rb:140
+#: app/controllers/account_controller.rb:177 app/views/account/_edit.rhtml:61
+#: app/views/account/_users_list.rhtml:16 app/views/account/show.rhtml:21
 msgid "Email"
 msgstr "Email"
 
-#: app/controllers/account_controller.rb:133
-#: app/controllers/account_controller.rb:171 app/views/account/_edit.rhtml:62
-#: app/views/account/show.rhtml:23 app/views/demandes/_infos_demande.rhtml:39
+#: app/controllers/account_controller.rb:140
+#: app/controllers/account_controller.rb:178 app/views/account/_edit.rhtml:62
+#: app/views/account/show.rhtml:22 app/views/demandes/_infos_demande.rhtml:39
 msgid "Phone"
 msgstr "Téléphone"
 
-#: app/controllers/account_controller.rb:134
-#: app/controllers/account_controller.rb:172 app/views/account/login.rhtml:9
+#: app/controllers/account_controller.rb:141
+#: app/controllers/account_controller.rb:179 app/views/account/login.rhtml:9
 #: app/views/layouts/standard-layout.rhtml:35
 msgid "Login"
 msgstr "Identification"
 
-#: app/controllers/account_controller.rb:134
-#: app/controllers/account_controller.rb:173
-#: app/controllers/account_controller.rb:174
-#: app/controllers/account_controller.rb:186 app/views/account/login.rhtml:12
+#: app/controllers/account_controller.rb:141
+#: app/controllers/account_controller.rb:180
+#: app/controllers/account_controller.rb:181
+#: app/controllers/account_controller.rb:193 app/views/account/login.rhtml:12
 msgid "Password"
 msgstr "Mot de passe"
 
-#: app/controllers/account_controller.rb:134
-#: app/controllers/account_controller.rb:175 app/views/account/_edit.rhtml:80
+#: app/controllers/account_controller.rb:141
+#: app/controllers/account_controller.rb:182 app/views/account/_edit.rhtml:80
 #: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr "Informations"
 
-#: app/controllers/account_controller.rb:146
+#: app/controllers/account_controller.rb:153
 msgid "Enter data under CSV format please"
 msgstr "Veuillez entrer un texte au format CSV"
 
-#: app/controllers/account_controller.rb:150
+#: app/controllers/account_controller.rb:157
 msgid "The CSV file is not correct"
 msgstr "Le fichier CSV n'est pas correct"
 
-#: app/controllers/account_controller.rb:154
+#: app/controllers/account_controller.rb:161
 msgid "You have to specify a customer"
 msgstr "Vous devez spécifié un client"
 
-#: app/controllers/account_controller.rb:157
+#: app/controllers/account_controller.rb:164
 msgid "Vous must specify a role"
 msgstr "Vous devez spéficier un rôle"
 
-#: app/controllers/account_controller.rb:181
+#: app/controllers/account_controller.rb:188
 msgid "The user %s have been successfully created.<br/>"
 msgstr "L'utilisateur %s a été crée avec succès<br />"
 
-#: app/controllers/account_controller.rb:184
+#: app/controllers/account_controller.rb:191
 msgid "Associate created"
 msgstr "Associé crée"
 
-#: app/controllers/account_controller.rb:190
+#: app/controllers/account_controller.rb:197
 msgid "The user %s  has not been created.<br /> "
 msgstr "L'utilisateur %s n'a pas été crée avec succès.<br />"
 
-#: app/controllers/account_controller.rb:264
+#: app/controllers/account_controller.rb:271
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/controllers/account_controller.rb:265 app/views/account/_edit.rhtml:7
+#: app/controllers/account_controller.rb:272 app/views/account/_edit.rhtml:7
 #: app/views/account/show.rhtml:5
 msgid "My account"
 msgstr "Mon&nbsp;compte"
@@ -154,6 +154,10 @@ msgstr "L'architecture a été crée avec succès."
 #: app/controllers/arches_controller.rb:34
 msgid "Arch was successfully updated."
 msgstr "L'architecture a été mis à jour avec succès."
+
+#: app/controllers/beneficiaires_controller.rb:39
+msgid "The recipient was successfully updated."
+msgstr "Le commentaire a été mis à jour avec succès."
 
 #: app/controllers/bienvenue_controller.rb:45
 msgid ""
@@ -184,7 +188,6 @@ msgid "Your comment is too short, please rewrite it."
 msgstr "Votre commentaire est trop court. Merci d'en écrire un plus long."
 
 #: app/controllers/commentaires_controller.rb:58
-#: app/controllers/commentaires_controller.rb:101
 msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
@@ -200,11 +203,11 @@ msgstr "Le commentaire %s est maintenant %s"
 msgid "A error has occured : The comment was not modified"
 msgstr "Une erreur est survenue : Le commentaire n'a pas été modifié"
 
-#: app/controllers/commentaires_controller.rb:117
+#: app/controllers/commentaires_controller.rb:110
 msgid "The comment was successfully updated."
 msgstr "Le commentaire a été mis à jour avec succès."
 
-#: app/controllers/commentaires_controller.rb:129
+#: app/controllers/commentaires_controller.rb:122
 msgid "The comment was successfully destroyed."
 msgstr "Le commentaire a été détruit avec succès."
 
@@ -294,7 +297,7 @@ msgid "delay"
 msgstr "délai"
 
 #: app/controllers/export_controller.rb:70
-#: app/views/account/_users_list.rhtml:8 app/views/account/show.rhtml:25
+#: app/views/account/_users_list.rhtml:8 app/views/account/show.rhtml:24
 msgid "login"
 msgstr "identification"
 
@@ -473,7 +476,7 @@ msgid "Minor"
 msgstr "Mineure"
 
 #: app/controllers/export_controller.rb:211
-#: app/helpers/application_helper.rb:180
+#: app/helpers/application_helper.rb:182
 #: app/views/reporting/_comex_tableaux.rhtml:20
 msgid "None"
 msgstr "Aucune"
@@ -715,31 +718,31 @@ msgstr "Une image a bien été créée."
 msgid "An image was successfully updated."
 msgstr "Une image a bien été mise à jour."
 
-#: app/helpers/application_helper.rb:57 app/helpers/demandes_helper.rb:74
+#: app/helpers/application_helper.rb:59 app/helpers/demandes_helper.rb:74
 msgid "No"
 msgstr "Aucun(e)"
 
-#: app/helpers/application_helper.rb:59
+#: app/helpers/application_helper.rb:61
 msgid " to date"
 msgstr " à ce jour"
 
-#: app/helpers/application_helper.rb:122
+#: app/helpers/application_helper.rb:124
 msgid "No %s  at the moment"
 msgstr "Pas de %s pour le moment"
 
-#: app/helpers/application_helper.rb:181
+#: app/helpers/application_helper.rb:183
 msgid "1 workday"
 msgstr "1 jour ouvré"
 
-#: app/helpers/application_helper.rb:182
+#: app/helpers/application_helper.rb:184
 msgid " workday"
 msgstr " jour ouvré"
 
-#: app/helpers/application_helper.rb:183
+#: app/helpers/application_helper.rb:185
 msgid " workdays"
 msgstr " jours ouvrés"
 
-#: app/helpers/application_helper.rb:290
+#: app/helpers/application_helper.rb:292
 msgid "An error has occured"
 msgstr "Une erreur est survenue"
 
@@ -820,16 +823,16 @@ msgstr "toutes les demandes"
 msgid "show all the requests"
 msgstr "montrer tout les demandes"
 
-#: app/helpers/links_helper.rb:96
+#: app/helpers/links_helper.rb:93
 msgid "Do you really want to delete %s"
 msgstr "Étes vous sûr de vouloir effacer %s"
 
-#: app/helpers/links_helper.rb:108 app/views/binaires/show.rhtml:1
+#: app/helpers/links_helper.rb:105 app/views/binaires/show.rhtml:1
 #: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
 msgid "Home"
 msgstr "Accueil"
 
-#: app/helpers/links_helper.rb:113 app/views/appels/_calls_info.rhtml:51
+#: app/helpers/links_helper.rb:110 app/views/appels/_calls_info.rhtml:51
 #: app/views/bienvenue/index.rhtml:10 app/views/logiciels/show.rhtml:41
 #: app/views/reporting/general.rhtml:22 app/views/reporting/general.rhtml:23
 #: app/views/reporting/general.rhtml:25 app/views/reporting/general.rhtml:26
@@ -841,44 +844,44 @@ msgstr "Accueil"
 msgid "Requests"
 msgstr "Demandes"
 
-#: app/helpers/links_helper.rb:114
+#: app/helpers/links_helper.rb:111
 msgid "Consult your requets"
 msgstr "Consultez vos demandes"
 
-#: app/helpers/links_helper.rb:119 app/views/account/_menu.rhtml:20
+#: app/helpers/links_helper.rb:116 app/views/account/_menu.rhtml:20
 #: app/views/bienvenue/index.rhtml:69 app/views/binaires/show.rhtml:2
 #: app/views/groupes/index.rhtml:5
 #: app/views/logiciels/_softwares_info.rhtml:54 app/views/paquets/show.rhtml:2
 msgid "Softwares"
 msgstr "Logiciels"
 
-#: app/helpers/links_helper.rb:120
+#: app/helpers/links_helper.rb:117
 msgid "Access to the list of softwares"
 msgstr "Accès à la liste des logiciels"
 
-#: app/helpers/links_helper.rb:125 app/views/binaires/_form.rhtml:30
+#: app/helpers/links_helper.rb:122 app/views/binaires/_form.rhtml:30
 #: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
 #: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:59
 msgid "Contributions"
 msgstr "Contributions"
 
-#: app/helpers/links_helper.rb:126
+#: app/helpers/links_helper.rb:123
 msgid "Access to the list of contributions."
 msgstr "Accès à la liste des contributions."
 
-#: app/helpers/links_helper.rb:131
+#: app/helpers/links_helper.rb:128
 msgid "Administration"
 msgstr "Administration"
 
-#: app/helpers/links_helper.rb:132
+#: app/helpers/links_helper.rb:129
 msgid "Administration interface"
 msgstr "Interface d'administration"
 
-#: app/helpers/links_helper.rb:139
+#: app/helpers/links_helper.rb:136
 msgid "About %s"
 msgstr "Concernant %s"
 
-#: app/helpers/links_helper.rb:147
+#: app/helpers/links_helper.rb:144
 msgid "My&nbsp;account"
 msgstr "Mon&nbsp;compte"
 
@@ -890,99 +893,22 @@ msgstr "Exporter en %s"
 msgid "classification"
 msgstr "classification"
 
-#: app/helpers/images_helper.rb:31
-msgid "Create %s"
-msgstr "Créer %s"
-
-#: app/helpers/images_helper.rb:43 app/views/clients/show.rhtml:40
-msgid "View"
-msgstr "Voir"
-
-#: app/helpers/images_helper.rb:49 app/views/demandes/edit.rhtml:7
-#: app/views/logiciels/edit.rhtml:5
-msgid "Update"
-msgstr "Mettre à jour"
-
-#: app/helpers/images_helper.rb:55
-msgid "Delete"
-msgstr "Effacer"
-
-#: app/helpers/images_helper.rb:61
-msgid "Hide"
-msgstr "Cacher"
-
-#: app/helpers/images_helper.rb:67 app/views/bienvenue/about.rhtml:3
-#: app/views/demandes/_infos_demande.rhtml:56
-msgid "Help"
-msgstr "Aide"
-
-#: app/helpers/images_helper.rb:75 app/helpers/images_helper.rb:142
-msgid "Home page"
-msgstr "Page d'Accueil"
-
-#: app/helpers/images_helper.rb:81 app/views/images/show.rhtml:11
-#: app/views/machines/show.rhtml:13 app/views/severites/show.rhtml:8
-#: app/views/supports/show.rhtml:8 app/views/typecontributions/show.rhtml:8
-#: app/views/typedemandes/show.rhtml:8 app/views/typedocuments/show.rhtml:8
-#: app/views/typeurls/show.rhtml:8
-msgid "Back"
-msgstr "Retour"
-
-#: app/helpers/images_helper.rb:87 app/helpers/pages_helper.rb:82
-msgid "First page"
-msgstr "Première page"
-
-#: app/helpers/images_helper.rb:93 app/helpers/pages_helper.rb:85
-#: app/views/typecontributions/index.rhtml:20
-msgid "Previous page"
-msgstr "Page précedente"
-
-#: app/helpers/images_helper.rb:99 app/helpers/pages_helper.rb:95
-#: app/views/typecontributions/index.rhtml:21
-msgid "Next page"
-msgstr "Page suivante"
-
-#: app/helpers/images_helper.rb:105 app/helpers/pages_helper.rb:98
-msgid "Last page"
-msgstr "Dernière page"
-
-#: app/helpers/images_helper.rb:111 app/views/binaires/index.rhtml:6
-#: app/views/documents/_form.rhtml:26
-msgid "File"
-msgstr "Fichier"
-
-#: app/helpers/images_helper.rb:117 app/views/urlreversements/index.rhtml:6
-#: app/views/urlreversements/_form.rhtml:6
-msgid "Contribution"
-msgstr "Contribution"
-
-#: app/helpers/images_helper.rb:124
-msgid "Make public"
-msgstr "Rendre public"
-
-#: app/helpers/images_helper.rb:130
-msgid "Make private"
-msgstr "Rendre privé"
-
-#: app/helpers/images_helper.rb:148 app/helpers/images_helper.rb:154
-msgid "OSSA on rails"
-msgstr "OSSA on Rails"
-
-#: app/helpers/images_helper.rb:170 app/views/demandes/_infos_demande.rhtml:11
-msgid "Print"
-msgstr "Imprimer"
-
-#: app/helpers/images_helper.rb:213
-msgid "Choose a date"
-msgstr "Spécifier une date"
-
-#: app/helpers/images_helper.rb:214
-msgid "Select a date"
-msgstr "Sélectionner une date"
+#: app/helpers/images_helper.rb:8
+msgid "Post %s"
+msgstr "Concernant %s"
 
 #: app/helpers/pages_helper.rb:35
 msgid "Do you really want to destroy this object ?"
 msgstr "Étes vous sûr de vouloir éffacer cet objet ?"
+
+#: app/helpers/pages_helper.rb:82 app/helpers/static_image.rb:83
+msgid "First page"
+msgstr "Première page"
+
+#: app/helpers/pages_helper.rb:85 app/helpers/static_image.rb:89
+#: app/views/typecontributions/index.rhtml:20
+msgid "Previous page"
+msgstr "Page précedente"
 
 #: app/helpers/pages_helper.rb:91
 msgid " to "
@@ -991,6 +917,15 @@ msgstr " à "
 #: app/helpers/pages_helper.rb:92
 msgid "&nbsp; on "
 msgstr "&nbsp; sur "
+
+#: app/helpers/pages_helper.rb:95 app/helpers/static_image.rb:95
+#: app/views/typecontributions/index.rhtml:21
+msgid "Next page"
+msgstr "Page suivante"
+
+#: app/helpers/pages_helper.rb:98 app/helpers/static_image.rb:101
+msgid "Last page"
+msgstr "Dernière page"
 
 #: app/helpers/paquets_helper.rb:16
 msgid "a package"
@@ -1035,6 +970,74 @@ msgstr "Tout les logiciels"
 #: app/helpers/logiciels_helper.rb:33
 msgid "Display all softwares"
 msgstr "Afficher tout les logiciels"
+
+#: app/helpers/static_image.rb:39 app/views/clients/show.rhtml:40
+msgid "View"
+msgstr "Voir"
+
+#: app/helpers/static_image.rb:45 app/views/demandes/edit.rhtml:7
+#: app/views/logiciels/edit.rhtml:5
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: app/helpers/static_image.rb:51
+msgid "Delete"
+msgstr "Effacer"
+
+#: app/helpers/static_image.rb:57
+msgid "Hide"
+msgstr "Cacher"
+
+#: app/helpers/static_image.rb:63 app/views/bienvenue/about.rhtml:3
+#: app/views/demandes/_infos_demande.rhtml:56
+msgid "Help"
+msgstr "Aide"
+
+#: app/helpers/static_image.rb:71 app/helpers/static_image.rb:138
+msgid "Home page"
+msgstr "Page d'Accueil"
+
+#: app/helpers/static_image.rb:77 app/views/images/show.rhtml:11
+#: app/views/machines/show.rhtml:13 app/views/severites/show.rhtml:8
+#: app/views/supports/show.rhtml:8 app/views/typecontributions/show.rhtml:8
+#: app/views/typedemandes/show.rhtml:8 app/views/typedocuments/show.rhtml:8
+#: app/views/typeurls/show.rhtml:8
+msgid "Back"
+msgstr "Retour"
+
+#: app/helpers/static_image.rb:107 app/views/binaires/index.rhtml:6
+#: app/views/documents/_form.rhtml:26
+msgid "File"
+msgstr "Fichier"
+
+#: app/helpers/static_image.rb:113 app/views/urlreversements/index.rhtml:6
+#: app/views/urlreversements/_form.rhtml:6
+msgid "Contribution"
+msgstr "Contribution"
+
+#: app/helpers/static_image.rb:120
+msgid "Make public"
+msgstr "Rendre public"
+
+#: app/helpers/static_image.rb:126
+msgid "Make private"
+msgstr "Rendre privé"
+
+#: app/helpers/static_image.rb:144 app/helpers/static_image.rb:150
+msgid "OSSA on rails"
+msgstr "OSSA on Rails"
+
+#: app/helpers/static_image.rb:166 app/views/demandes/_infos_demande.rhtml:11
+msgid "Print"
+msgstr "Imprimer"
+
+#: app/helpers/static_script.rb:12
+msgid "Choose a date"
+msgstr "Spécifier une date"
+
+#: app/helpers/static_script.rb:13
+msgid "Select a date"
+msgstr "Sélectionner une date"
 
 #: app/models/new.rb:-
 msgid "news"
@@ -1209,6 +1212,42 @@ msgid "Changelog|Text modification"
 msgstr "Text modification"
 
 #: app/models/client.rb:-
+msgid "client"
+msgstr "client"
+
+#: app/models/client.rb:-
+msgid "Client|Nom"
+msgstr "Nom"
+
+#: app/models/client.rb:-
+msgid "Client|Description"
+msgstr "Description"
+
+#: app/models/client.rb:-
+msgid "Client|Mailingliste"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Adresse"
+msgstr "Adresse"
+
+#: app/models/client.rb:-
+msgid "Client|Image"
+msgstr "Image"
+
+#: app/models/client.rb:-
+msgid "Client|Support"
+msgstr "Support"
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Beneficiaires count"
+msgstr "Nombre de bénéficiaires"
+
+#: app/models/client.rb:-
 msgid "paquet"
 msgstr "paquet"
 
@@ -1299,42 +1338,6 @@ msgstr ""
 #: app/models/client.rb:-
 msgid "Contrat|Socle"
 msgstr "Socle"
-
-#: app/models/client.rb:-
-msgid "client"
-msgstr "client"
-
-#: app/models/client.rb:-
-msgid "Client|Nom"
-msgstr "Nom"
-
-#: app/models/client.rb:-
-msgid "Client|Description"
-msgstr "Description"
-
-#: app/models/client.rb:-
-msgid "Client|Mailingliste"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Adresse"
-msgstr "Adresse"
-
-#: app/models/client.rb:-
-msgid "Client|Image"
-msgstr "Image"
-
-#: app/models/client.rb:-
-msgid "Client|Support"
-msgstr "Support"
-
-#: app/models/client.rb:-
-msgid "Client|Code acces"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Beneficiaires count"
-msgstr "Nombre de bénéficiaires"
 
 #: app/models/commentaire.rb:-
 msgid "commentaire"
@@ -2243,12 +2246,15 @@ msgstr "Modifier votre mot de passe"
 msgid "Confirm this last"
 msgstr "Confirmer ce dernier"
 
-#: app/views/account/_edit.rhtml:94 app/views/bienvenue/suggestions.rhtml:21
-#: app/views/clients/new.rhtml:5 app/views/documents/new.rhtml:5
-#: app/views/roles/edit.rhtml:5 app/views/statuts/edit.rhtml:5
-#: app/views/statuts/new.rhtml:5
-msgid "Submit"
-msgstr "Déposer"
+#: app/views/account/_edit.rhtml:94 app/views/account/_users_list.rhtml:38
+#: app/views/account/login.rhtml:18 app/views/appels/edit.rhtml:5
+#: app/views/beneficiaires/new.rhtml:5 app/views/binaires/edit.rhtml:5
+#: app/views/binaires/new.rhtml:5 app/views/contributions/edit.rhtml:6
+#: app/views/logiciels/new.rhtml:5 app/views/urllogiciels/edit.rhtml:5
+#: app/views/urllogiciels/new.rhtml:5 app/views/urlreversements/edit.rhtml:5
+#: app/views/urlreversements/new.rhtml:5
+msgid "Validate"
+msgstr "Valider"
 
 #: app/views/account/_menu.rhtml:8
 msgid "Plan"
@@ -2407,22 +2413,9 @@ msgstr "ingénieur"
 msgid "recipient"
 msgstr "bénéficiaire"
 
-#: app/views/account/_users_list.rhtml:37
-msgid "\"Submit\""
-msgstr "\"Déposer\""
-
 #: app/views/account/login.rhtml:4
 msgid "08000linux login"
 msgstr "Identifiant du 08000Linux"
-
-#: app/views/account/login.rhtml:18 app/views/appels/edit.rhtml:5
-#: app/views/beneficiaires/new.rhtml:5 app/views/binaires/edit.rhtml:5
-#: app/views/binaires/new.rhtml:5 app/views/contributions/edit.rhtml:6
-#: app/views/logiciels/new.rhtml:5 app/views/urllogiciels/edit.rhtml:5
-#: app/views/urllogiciels/new.rhtml:5 app/views/urlreversements/edit.rhtml:5
-#: app/views/urlreversements/new.rhtml:5
-msgid "Validate"
-msgstr "Valider"
 
 #: app/views/account/logout.rhtml:3
 msgid "Logout ..."
@@ -2447,14 +2440,6 @@ msgstr "Compte de %s"
 #: app/views/account/show.rhtml:10
 msgid "Role"
 msgstr "rôles"
-
-#: app/views/account/show.rhtml:28
-msgid "Informations :"
-msgstr "Informations :"
-
-#: app/views/account/show.rhtml:34
-msgid "Consult"
-msgstr "Consulter"
 
 #: app/views/appels/_calls_info.rhtml:14
 msgid "Add a call"
@@ -2580,6 +2565,10 @@ msgstr "Modifier"
 #: app/views/arches/new.rhtml:1
 msgid "Add a new processor architecture"
 msgstr "Ajouter une nouvelle architecture logicielle"
+
+#: app/views/beneficiaires/index.rhtml:3
+msgid "a recipient"
+msgstr "un bénéficiaire"
 
 #: app/views/beneficiaires/new.rhtml:1
 msgid "Add a recipient"
@@ -2756,8 +2745,8 @@ msgid "Welcome in the management tool of the 08000linux."
 msgstr "Bienvenue sur l'outil de gestion du 08000linux."
 
 #: app/views/bienvenue/index.rhtml:13
-msgid "You can see the list of %s"
-msgstr "Vous pouvez consulter la liste des %s."
+msgid "You can see the list of %s :"
+msgstr "Vous pouvez consulter la liste des %s :"
 
 #: app/views/bienvenue/index.rhtml:13
 msgid "requests"
@@ -2929,6 +2918,12 @@ msgstr "Vos suggestions sur notre service :"
 msgid "Your suggestions on our tool : "
 msgstr "Vos suggestion sur notre outil : "
 
+#: app/views/bienvenue/suggestions.rhtml:21 app/views/clients/new.rhtml:5
+#: app/views/documents/new.rhtml:5 app/views/roles/edit.rhtml:5
+#: app/views/statuts/edit.rhtml:5 app/views/statuts/new.rhtml:5
+msgid "Submit"
+msgstr "Déposer"
+
 #: app/views/binaires/_form.rhtml:5 app/views/demandes/_cns.rhtml:31
 #: app/views/logiciels/show.rhtml:53
 msgid "Package"
@@ -3099,7 +3094,7 @@ msgstr "système"
 msgid "binary"
 msgstr "binaire"
 
-#: app/views/clients/show.rhtml:51 app/views/contributions/show.rhtml:36
+#: app/views/clients/show.rhtml:51 app/views/contributions/show.rhtml:37
 msgid "request"
 msgstr "demande"
 
@@ -3244,23 +3239,23 @@ msgstr "Consulter toutes les contributions"
 msgid "Access to administration interface"
 msgstr "Interface d'administration"
 
-#: app/views/contributions/show.rhtml:15
+#: app/views/contributions/show.rhtml:16
 msgid "link"
 msgstr "liens"
 
-#: app/views/contributions/show.rhtml:19
+#: app/views/contributions/show.rhtml:20
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
 
-#: app/views/contributions/show.rhtml:22
+#: app/views/contributions/show.rhtml:23
 msgid "and its has been approved on %s"
 msgstr "et a été accepté par %s"
 
-#: app/views/contributions/show.rhtml:30
+#: app/views/contributions/show.rhtml:31
 msgid "Internal details"
 msgstr "Détails internes"
 
-#: app/views/contributions/show.rhtml:39
+#: app/views/contributions/show.rhtml:40
 msgid "package(s) with the patch"
 msgstr "paquet(s) avec le patch"
 
@@ -4437,6 +4432,7 @@ msgid "Url"
 msgstr "Url"
 
 #: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/_form.rhtml:11
+#: app/views/urllogiciels/show.rhtml:12
 msgid "Kind"
 msgstr "Kind"
 
@@ -4468,5 +4464,3 @@ msgstr "Modifier l'url"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "Support :"
-#~ msgstr "Support :"
