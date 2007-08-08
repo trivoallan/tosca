@@ -29,7 +29,7 @@ module LinksHelper
     unless filepath.blank? or not File.exist?(filepath)
       filename = filepath[/[._ \-a-zA-Z0-9]*$/]
       if options.has_key? :image
-        show = StaticImage::patch and html_options = {:class => 'no_hover'}
+        show = StaticImage::patch and html_options = NO_HOVER
       else
         show = filename and html_options = {}
       end
@@ -77,7 +77,7 @@ module LinksHelper
   def redbox_div(relative_path, content, options = {})
     return '' if relative_path.blank? or content.nil?
     content << '<div style="position: absolute;top: 0;right: 0;">'
-    content << link_to_close_redbox(image_hide_notice, :class => 'no_hover') << '</div>'
+    content << link_to_close_redbox(image_hide_notice, NO_HOVER) << '</div>'
     content = link_to_close_redbox(content) if options.has_key? :background_close
     return  <<EOS
           <div id="#{relative_path}" style="display: none;">

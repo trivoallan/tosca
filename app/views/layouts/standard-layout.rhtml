@@ -93,7 +93,7 @@
 
   <% unless user %>
     <div id="login" style="display: none">
-      <%= render :file => "account/login" %>
+      <%= render :file => "account/login", :locals => { :show_close_icon => true } %>
     </div>
   <% end %>
 
