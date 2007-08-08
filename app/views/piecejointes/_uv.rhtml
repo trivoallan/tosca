@@ -5,6 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; <%= @pj.file_charset %>"/>
 </head>
   <body>
-    <%= render :file => "../../files/" + relative_url_uv(@pj, :file), :use_full_path => true %>
+    <% #The ../../ are mandatory beacuse we are in the templates directory and not in RAILS_ROOT
+    <%= render :file => "../../" + path_to_uv(@pj, :file) %>
   </body>
 </html>

@@ -18,6 +18,7 @@ module ApplicationHelper
   include FormsHelper
   include LinksHelper
   include ImagesHelper
+  include FilesHelper
 
 
   ### TEXTE #####################################################################

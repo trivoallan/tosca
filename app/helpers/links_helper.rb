@@ -80,10 +80,10 @@ module LinksHelper
     content << link_to_close_redbox(image_hide_notice, NO_HOVER) << '</div>'
     content = link_to_close_redbox(content) if options.has_key? :background_close
     return  <<EOS
-          <div id="#{relative_path}" style="display: none;">
-            #{content}
-       </div>
-        #{link_to_redbox(StaticImage::view, relative_path, :class => 'no_hover')}
+      <div id="#{relative_path}" style="display: none;">
+        #{content}
+      </div>
+      #{link_to_redbox(image_view, relative_path, :class => 'no_hover')}
 EOS
   end
 

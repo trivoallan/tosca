@@ -13,6 +13,7 @@ module Metadata
   NOM_COURT_APPLICATION = "TOSCA"
   VERSION_APPLICATION = "0.5.4"
   COPYRIGHT_APPLICATION = " ©2007 Linagora SA".gsub(' ','&nbsp;')
+  PATH_TO_FILES = "#{RAILS_ROOT}/files/"
 
   # service
   NOM_COURT_SERVICE = "OSSA"

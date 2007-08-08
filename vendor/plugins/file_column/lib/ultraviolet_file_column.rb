@@ -1,12 +1,22 @@
 module FileColumn # :nodoc:
   
+  FILE_MODE_ASSOCIATION_UV = { :rb => "ruby" }
+  
   class BaseUploadedFile # :nodoc:
 
     def transform_with_uv
       if needs_transform?
         content = "" 
         File.open(absolute_path, "r+") { |f| content = f.read }
-        result = Uv.parse(content, "xhtml", "#{absolute_path.split('.').last}", true, options[:uv][:theme])
+        
+        file_extension = absolute_path.split('.').last
+        if FileColumn::FILE_MODE_ASSOCIATION_UV.has_key?(file_extension)
+          mode = FileColumn::FILE_MODE_ASSOCIATION_UV[file_extension.to_sym]
+        else
+          mode = file_extension
+        end
+        
+        result = Uv.parse(content, "xhtml", mode, true, options[:uv][:theme])
         path = absolute_path << "." << options[:uv][:theme] << ".html"
         File.open(path, "w+") { |f| f.write(result) }
         GC.start
