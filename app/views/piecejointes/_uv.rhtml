@@ -6,6 +6,6 @@
 </head>
   <body>
     <% #The ../../ are mandatory beacuse we are in the templates directory and not in RAILS_ROOT %>
-    <%= render :file => "../../" + path_to_uv(@pj, :file) %>
+    <%= render :file => "../../#{path_to_uv(@pj, :file)}", :use_full_path => true %>
   </body>
 </html>

@@ -6,14 +6,11 @@ module FileColumn # :nodoc:
 
     def transform_with_uv
       if needs_transform?
-        puts "----------------------"
-        puts "here"
-        puts "----------------------"
         content = "" 
         File.open(absolute_path, "r+") { |f| content = f.read }
         
         file_extension = absolute_path.split('.').last
-        if FileColumn::FILE_MODE_ASSOCIATION_UV.has_key?(file_extension)
+        if FileColumn::FILE_MODE_ASSOCIATION_UV.has_key?(file_extension.to_sym)
           mode = FileColumn::FILE_MODE_ASSOCIATION_UV[file_extension.to_sym]
         else
           mode = file_extension
