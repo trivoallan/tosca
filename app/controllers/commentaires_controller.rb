@@ -90,20 +90,13 @@ class CommentairesController < ApplicationController
     redirect_to comment_demande_path(@commentaire.demande_id)
   end
 
+  # We could only create a comment with comment method, from 
+  # request view
   def new
-    @commentaire = Commentaire.new
-    _form
+    render :nothing => true
   end
-
   def create
-    @commentaire = Commentaire.new(params[:commentaire])
-    if @commentaire.save
-      flash[:notice] = _("Your comment was successfully added.")
-      redirect_to commentaires_path
-    else
-      _form
-      render :action => 'new'
-    end
+    render :nothing => true
   end
 
   def edit

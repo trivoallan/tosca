@@ -98,6 +98,7 @@ class Client < ActiveRecord::Base
     Severite.find(:all)
   end
 
+  # pretty urls for client
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
   end

@@ -41,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   map.bienvenue '/', sweet_home
 
   map.without_orm('bienvenue', %w(admin plan selenium about deroulement
-    natures statut suggestions engagements declaration severites statuts))
+    natures statut suggestions declaration))
   map.without_orm('bienvenue', %w(suggestions), :post)
   map.without_orm('reporting', %w(comex configuration general comex_resultat))
   map.without_orm('acces', %w(refuse))
@@ -100,6 +100,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :documents,
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
+  map.resources :engagements
   map.resources :groupes
   map.resources :pictures
   map.resources :ingenieurs,  :collection => { :list => :get }
