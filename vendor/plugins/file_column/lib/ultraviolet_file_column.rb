@@ -6,6 +6,9 @@ module FileColumn # :nodoc:
 
     def transform_with_uv
       if needs_transform?
+        puts "----------------------"
+        puts "here"
+        puts "----------------------"
         content = "" 
         File.open(absolute_path, "r+") { |f| content = f.read }
         
@@ -17,23 +20,21 @@ module FileColumn # :nodoc:
         end
         
         result = Uv.parse(content, "xhtml", mode, true, options[:uv][:theme])
-        path = absolute_path << "." << options[:uv][:theme] << ".html"
+        path = absolute_path << get_file_suffix
         File.open(path, "w+") { |f| f.write(result) }
         GC.start
       end
     end
     
-    def create_uv_version_if_needed
-      path = absolute_path << "." << options[:uv][:theme] << ".html"
-      unless File.exists?(path)
-        transform_with_uv
-      end
+    def get_file_suffix
+      "." << options[:uv][:theme] << ".html"
     end
 
     private
     
     def needs_transform?
-      options.has_key?(:uv) and just_uploaded?
+      path = absolute_path << get_file_suffix
+      options.has_key?(:uv) and not File.exists?(path)
     end
 
   end
