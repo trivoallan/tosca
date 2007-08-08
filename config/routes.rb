@@ -97,23 +97,32 @@ ActionController::Routing::Routes.draw do |map|
       :ajax_piecejointes => :get,
       :ajax_appels => :get,
       :ajax_cns => :get }
+  map.resources :dependances
+  map.resources :distributeurs
   map.resources :documents,
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
   map.resources :engagements
+  map.resources :fichiers
+  map.resources :fournisseurs
   map.resources :groupes
   map.resources :pictures
   map.resources :ingenieurs,  :collection => { :list => :get }
   map.resources :jourferies
+  map.resources :licenses
   map.resources :logiciels
   map.resources :machines
+  map.resources :mainteneurs
+  map.resources :news
   map.resources :pages
   map.resources :paquets
   map.resources :permissions
   map.resources :roles
   map.resources :socles
   map.resources :statuts,  :member => { :help => :get }
+  map.resources :severites
   map.resources :typecontributions
+  map.resources :typeurls
   map.resources :urllogiciels
   map.resources :urlreversements
   map.resources :commentaires, :member => {

@@ -21,14 +21,6 @@ class SeveritesControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-  end
-
-  def test_list
-    get :list
-
-    assert_response :success
-    assert_template 'index'
-
     assert_not_nil assigns(:severites)
   end
 

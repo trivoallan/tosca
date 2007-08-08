@@ -44,17 +44,6 @@ class BeneficiairesControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:beneficiaire)
   end
 
-  def test_create
-    num_beneficiaires = Beneficiaire.count
-
-    post :create, :beneficiaire => {}
-
-    assert_response :redirect
-    assert_redirected_to :action => 'index'
-
-    assert_equal num_beneficiaires + 1, Beneficiaire.count
-  end
-
   def test_edit
     get :edit, :id => 1
 

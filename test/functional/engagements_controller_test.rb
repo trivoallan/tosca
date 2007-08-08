@@ -9,7 +9,7 @@ class EngagementsController; def rescue_action(e) raise e end; end
 
 class EngagementsControllerTest < Test::Unit::TestCase
   fixtures :engagements, :typedemandes, :severites, 
-    :contournement, :corrections
+    :corrections
 
   def setup
     @controller = EngagementsController.new
