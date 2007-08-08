@@ -34,37 +34,6 @@ class CommentairesControllerTest < Test::Unit::TestCase
     assert assigns(:commentaire)
   end
 
-  def test_new
-    get :new
-
-    assert_response :success
-    assert_template 'new'
-
-    assert_not_nil assigns(:commentaire)
-  end
-
-  def test_create
-    num_commentaires = Commentaire.count
-
-    post :create, :commentaire => {
-      :demande_id => 3,
-      :identifiant_id => 1,
-      :piecejointe_id => 1,
-      :corps => 'Voici le corps du commentaire',
-      :prive => 1,
-      :created_on => "2006-09-21 08:19:30",
-      :updated_on => "2007-07-12 14:21:17",
-      :statut_id => 7,
-      :ingenieur_id => 1
-    }
-
-    assert flash.has_key?(:notice)
-    assert_response :redirect
-    assert_redirected_to :action => 'index'
-
-    assert_equal num_commentaires + 1, Commentaire.count
-  end
-
   def test_edit
     get :edit, :id => 1
 
@@ -77,15 +46,18 @@ class CommentairesControllerTest < Test::Unit::TestCase
 
   def test_update
     post :update, { :id => 1,
-      :demande_id => 3,
-      :identifiant_id => 1,
-      :piecejointe_id => 1,
-      :corps => 'Voici un autre commentaire',
-      :prive => 1,
-      :created_on => "2006-09-21 08:19:30",
-      :updated_on => "2007-07-12 14:21:17",
-      :statut_id => 7,
-      :ingenieur_id => 1
+      :commentaire => {
+        :demande_id => 3,
+        :identifiant_id => 1,
+        :piecejointe_id => 1,
+        :corps => 'Voici un autre commentaire',
+        :prive => 1,
+        :created_on => '2006-09-21 08:19:30',
+        :updated_on => '2007-07-12 14:21:17',
+        :severite_id => 2,
+        :statut_id => 7,
+        :ingenieur_id => 1
+      }
     }
 
     assert flash.has_key?(:notice)

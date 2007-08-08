@@ -54,22 +54,4 @@ class AppelTest < Test::Unit::TestCase
   def test_ingenieur_nom
     a = Appel.find 1
   end
-  def test_beneficiaire_nom
-    a = Appel.find 1
-    assert_equal a.beneficiaire_nom,"Hélène Parmentier"
-    b = Beneficiaire.new (
-      :id => 1,
-      :domaine => "Migreuse OOo ",
-      :client_id => 1,
-      :notifier_subalternes => 1,
-      :notifier_cc => 0,
-      :identifiant_id => 1,
-      :notifier => 1,
-      :beneficiaire_id => 110
-    )
-    assert b.save
-    assert_equal b.beneficiaire_nom, '-'
-  end
-   
-  
 end

@@ -5,7 +5,7 @@ require 'demandes_controller'
 class DemandesController; def rescue_action(e) raise e end; end
 
 class DemandesControllerTest < Test::Unit::TestCase
-  fixtures :demandes
+  fixtures :demandes, :commentaires
 
   def setup
     @controller = DemandesController.new
@@ -13,7 +13,7 @@ class DemandesControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     login 'bob', 'test'
-    @first_id = demandes(:first).id
+   @first_id = demandes(:first).id
   end
 
   def test_index

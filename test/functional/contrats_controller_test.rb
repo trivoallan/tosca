@@ -8,7 +8,7 @@ require 'contrats_controller'
 class ContratsController; def rescue_action(e) raise e end; end
 
 class ContratsControllerTest < Test::Unit::TestCase
-  fixtures :contrats, :engagements, :clients
+  fixtures :contrats, :engagements, :clients, :severites, :typedemandes
 
   def setup
     @controller = ContratsController.new

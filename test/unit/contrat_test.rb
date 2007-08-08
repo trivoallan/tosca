@@ -7,17 +7,22 @@ class ContratTest < Test::Unit::TestCase
   fixtures :contrats, :engagements,  :clients,
     :demandes, :demandes_paquets, :paquets
 
+  def test_contrat_vide
+    c = Contrat.new
+    assert_raise(ActiveRecord::StatementInvalid){
+      c.save
+    }
+    c.ouverture = '2006-11-25 12:20:00'
+    c.cloture = '2007-11-12 14:23:00'
+    assert c.save
+  end
   def test_ouverture_formatted
     c = Contrat.find 1
-    c_empty = Contrat.find 4
     assert_equal c.ouverture_formatted, '26.10.2005'
-    assert_equal c_empty.ouverture_formatted, '00.00.0000'
   end
   def test_cloture_formatted
     c = Contrat.find 1
-    c_empty = Contrat.find 4
     assert_equal c.cloture_formatted, '27.10.2008'
-    assert_equal c_empty.cloture_formatted, '00.00.0000'
   end
   def test_find_engagement
     c = Contrat.find 1
@@ -36,7 +41,6 @@ class ContratTest < Test::Unit::TestCase
   
   def test_to_s 
     c = Contrat.find 1
-    c_empty = Contrat.find 4
     c_name_empty = Contrat.new(
       :astreinte => 0,
       :socle => 0,
@@ -47,7 +51,6 @@ class ContratTest < Test::Unit::TestCase
     assert c_name_empty.save
 
     assert_equal c.to_s, '1 - toto'
-    assert_equal c_empty.to_s, '4 - unknown client'
-    assert_equal c_name_empty.to_s, '7 - unknown client'
+    assert_equal c_name_empty.to_s, '8 - unknown client'
   end
 end
