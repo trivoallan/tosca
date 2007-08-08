@@ -18,8 +18,8 @@
         <% if @identifiants_ingenieurs.include? id.id %>
           <%= StaticImage::logo_08000 %>
         <% elsif id and id.beneficiaire %>
-            <%= simg ||= StaticImage::client(id.beneficiaire.client) %>
-         <% end %><br/>
+         <%= logo_img ||= logo_client(id.beneficiaire.client) %>
+        <% end %><br/>
         <%= id.nom if id %><br />
 
         <% if @ingenieur and not pretty_print %>

@@ -18,5 +18,17 @@ module ImagesHelper
     options
   end
 
+  def logo_client(client)
+    return '' if client.nil? or client.image.nil?
+    image_tag(url_for_file_column(client.image, 'image', 'thumb'),
+              image_options(client.nom))
+  end
+  
+  #TODO Merger avec StaticImage
+  def image_options(desc = '', size = nil )
+    options = { :alt => desc, :title => desc, :class => 'no_hover' }
+    options[:size] = size if size
+    options
+  end
 
 end
