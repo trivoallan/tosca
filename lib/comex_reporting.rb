@@ -27,7 +27,7 @@ module  ComexReporting
       :beneficiaire_ids => client.beneficiaire_ids
     }
     cscopeTest = { :find => { :conditions =>
-        [ 'beneficiaire_id IN (:beneficiaire_ids) ',values ] }
+        [ 'demandes.beneficiaire_id IN (:beneficiaire_ids) ',values ] }
     }
     Demande.with_scope(cscopeTest) {
       clast_week  = [ "created_on <= :first_day AND " <<
