@@ -135,7 +135,8 @@ module FileColumnHelper
   end
   
   def relative_url_uv(object, method)
-    object.send("#{method}_options")[:base_url] << "/" << object.send("#{method}_relative_path", nil) << "." << object.send("#{method}_options")[:uv][:theme] << ".html"
+    file_suffix = "." << object.send("#{method}_options")[:uv][:theme] << ".html"
+    generic_url(object, method, file_suffix)
   end
   
   private
