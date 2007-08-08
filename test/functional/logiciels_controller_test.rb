@@ -21,14 +21,6 @@ class LogicielsControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-  end
-
-  def test_list
-    get :list
-
-    assert_response :success
-    assert_template 'index'
-
     assert_not_nil assigns(:logiciels)
   end
 
@@ -39,7 +31,7 @@ class LogicielsControllerTest < Test::Unit::TestCase
     assert_template 'show'
 
     assert_not_nil assigns(:logiciel)
-    assert assigns(:logiciel).valid?
+    assert assigns(:logiciel)
   end
 
   def test_new
@@ -69,7 +61,7 @@ class LogicielsControllerTest < Test::Unit::TestCase
     assert_template 'edit'
 
     assert_not_nil assigns(:logiciel)
-    assert assigns(:logiciel).valid?
+    assert assigns(:logiciel)
   end
 
   def test_update

@@ -14,7 +14,7 @@
   <% end %>
     <td><%= link_to 'Show', dependance_path(dependance) %></td>
     <td><%= link_to 'Edit', edit_dependance_path(dependance) %></td>
-    <td><%= link_to 'Destroy', destroy_dependance_path(dependance) , :confirm => 'Are you sure?', :post => true %></td>
+    <td><%= link_to 'Destroy', destroy_dependance_path(dependance) , :confirm => 'Are you sure?', :method => :post %></td>
   </tr>
 <% end %>
 </table>

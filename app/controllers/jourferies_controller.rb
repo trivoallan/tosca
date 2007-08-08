@@ -33,7 +33,7 @@ class JourferiesController < ApplicationController
     @jourferie = Jourferie.find(params[:id])
     if @jourferie.update_attributes(params[:jourferie])
       flash[:notice] = 'Jourferie was successfully updated.'
-      redirect_to jourferie(@jourferie)
+      redirect_to jourferie_path(@jourferie)
     else
       render :action => 'edit'
     end

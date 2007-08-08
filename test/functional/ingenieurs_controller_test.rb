@@ -21,14 +21,6 @@ class IngenieursControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-  end
-
-  def test_list
-    get :list
-
-    assert_response :success
-    assert_template 'index'
-
     assert_not_nil assigns(:ingenieurs)
   end
 
@@ -75,7 +67,7 @@ class IngenieursControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'index'
   end
 
   def test_destroy

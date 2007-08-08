@@ -8,7 +8,7 @@ require 'paquets_controller'
 class PaquetsController; def rescue_action(e) raise e end; end
 
 class PaquetsControllerTest < Test::Unit::TestCase
-  fixtures :paquets
+  fixtures :paquets, :conteneurs, :distributeurs, :mainteneurs, :logiciels
 
   def setup
     @controller = PaquetsController.new
@@ -67,7 +67,7 @@ class PaquetsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'show', :id => '1-cups'
   end
 
   def test_destroy

@@ -65,7 +65,16 @@ class DependancesControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, :id => 1
+     post :update, { :id => 1,
+       :dependance => {
+         :paquet_id => 1,
+         :nom => 'kernel',
+         :sens => 'un autre sens',
+         :version => '1.7.18'
+       }
+     }
+
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => 1
   end
@@ -73,16 +82,7 @@ class DependancesControllerTest < Test::Unit::TestCase
   def test_destroy
     assert_not_nil Dependance.find(1)
 
-    post :destroy, { :id => 1,
-      :dependance => {
-        :id => 1,
-        :paquet_id => 1,
-        :nom => 'kernel',
-        :sens => 'un sens',
-        :version => '1.7.18'
-      }
-    }
-    assert flash.has_key?(:notice)
+    post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 

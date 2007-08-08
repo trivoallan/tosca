@@ -5,7 +5,7 @@ require 'demandes_controller'
 class DemandesController; def rescue_action(e) raise e end; end
 
 class DemandesControllerTest < Test::Unit::TestCase
-  fixtures :demandes, :commentaires
+  fixtures :demandes
 
   def setup
     @controller = DemandesController.new

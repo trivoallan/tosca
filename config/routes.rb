@@ -124,7 +124,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :permissions
   map.resources :roles
   map.resources :socles
-  map.resources :statuts,  :member => { :help => :get }
+  map.resources :statuts
   map.resources :severites
   map.resources :typecontributions
   map.resources :typeurls

@@ -8,7 +8,7 @@ require 'documents_controller'
 class DocumentsController; def rescue_action(e) raise e end; end
 
 class DocumentsControllerTest < Test::Unit::TestCase
-  fixtures :documents
+  fixtures :documents, :typedocuments
 
   def setup
     @controller = DocumentsController.new
@@ -20,14 +20,14 @@ class DocumentsControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
-    assert_template 'index'
+    assert_template 'select'
   end
 
   def test_list
-    get :list
+    get :list, :id => 1
 
     assert_response :success
-    assert_template 'index'
+    assert_template 'list'
 
     assert_not_nil assigns(:documents)
   end
@@ -54,8 +54,20 @@ class DocumentsControllerTest < Test::Unit::TestCase
   def test_create
     num_documents = Document.count
 
-    post :create, :document => {}
+    post :create, :document => {
+      :version => 1,
+      :created_on => "2006-09-05 18:08:49",
+      :updated_on => "2007-07-26 11:35:58",
+      :client_id => 1,
+      :description => "Etude réalisée pour SI2 dans le cadre de\r\nl'évaluation des solutions Open Source comme alternative à Lotus Notes",
+      :fichier => "MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip",
+      :titre => "Etude Migration Lotus (SI2)",
+      :identifiant_id => 1 ,
+      :date_delivery => nil,
+      :typedocument_id => 1
+    }
 
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
@@ -75,7 +87,8 @@ class DocumentsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'show', 
+      :id => '1-Etude-Migration-Lotus-SI2-'
   end
 
   def test_destroy
@@ -83,7 +96,7 @@ class DocumentsControllerTest < Test::Unit::TestCase
 
     post :destroy, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Document.find(1)
