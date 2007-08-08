@@ -7,7 +7,7 @@ module FileColumn # :nodoc:
         content = "" 
         File.open(absolute_path, "r+") { |f| content = f.read }
 
-        possible_mode = Uv.syntax_for_file("/home/rschermesser/tmp/tiny_prolog.rb")
+        possible_mode = Uv.syntax_for_file(absolute_path)
         
         mode = "plain_text"
         mode = possible_mode.first.first unless possible_mode.empty? 
