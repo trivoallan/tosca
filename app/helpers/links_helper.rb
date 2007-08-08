@@ -77,7 +77,7 @@ module LinksHelper
   def redbox_div(relative_path, content, options = {})
     return '' if relative_path.blank? or content.nil?
     content << '<div style="position: absolute;top: 0;right: 0;">'
-    content << link_to_close_redbox(image_hide_notice, NO_HOVER) << '</div>'
+    content << link_to_close_redbox(StaticImage::hide_notice, NO_HOVER) << '</div>'
     content = link_to_close_redbox(content) if options.has_key? :background_close
     return  <<EOS
       <div id="#{relative_path}" style="display: none;">
