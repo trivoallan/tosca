@@ -77,6 +77,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :binaires
   map.resources :changelogs
   map.resources :clients
+  map.resources :commentaires, :member => {
+     :changer_etat => :post,
+     :comment => :post }
   map.resources :competences
   map.resources :conteneurs
   map.resources :contrats
@@ -103,6 +106,7 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
   map.resources :engagements
+  map.resources :etatreversements
   map.resources :fichiers
   map.resources :fournisseurs
   map.resources :groupes
@@ -125,10 +129,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :typeurls
   map.resources :urllogiciels
   map.resources :urlreversements
-  map.resources :commentaires, :member => {
-     :changer_etat => :post,
-     :comment => :post }
-  map.resources :etatreversements
 
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
