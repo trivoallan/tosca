@@ -187,7 +187,10 @@ module FileColumn # :nodoc:
     end
      
     def get_content_type(fallback = nil)
-      get_file_type(fallback).gsub!(/;.+$/,"")
+      file_type = get_file_type(fallback)
+      mime_type = file_type.gsub!(/;.+$/,"")
+      mime_type = file_type unless mime_type
+      mime_type
     end
     
     def get_charset()

@@ -1,20 +1,16 @@
 module FileColumn # :nodoc:
   
-  FILE_MODE_ASSOCIATION_UV = { :rb => "ruby" }
-  
   class BaseUploadedFile # :nodoc:
 
     def transform_with_uv
       if needs_transform?
         content = "" 
         File.open(absolute_path, "r+") { |f| content = f.read }
+
+        possible_mode = Uv.syntax_for_file("/home/rschermesser/tmp/tiny_prolog.rb")
         
-        file_extension = absolute_path.split('.').last
-        if FileColumn::FILE_MODE_ASSOCIATION_UV.has_key?(file_extension.to_sym)
-          mode = FileColumn::FILE_MODE_ASSOCIATION_UV[file_extension.to_sym]
-        else
-          mode = file_extension
-        end
+        mode = "plain_text"
+        mode = possible_mode.first.first unless possible_mode.empty? 
         
         result = Uv.parse(content, "xhtml", mode, true, options[:uv][:theme])
         path = absolute_path << get_file_suffix

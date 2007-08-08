@@ -83,7 +83,7 @@ module LinksHelper
       <div id="#{relative_path}" style="display: none;">
         #{content}
       </div>
-      #{link_to_redbox(image_view, relative_path, :class => 'no_hover')}
+      #{link_to_redbox(StaticImage::view, relative_path, :class => 'no_hover')}
 EOS
   end
 
