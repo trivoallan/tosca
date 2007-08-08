@@ -3,7 +3,7 @@ module FileColumn # :nodoc:
   class BaseUploadedFile # :nodoc:
 
     def transform_with_uv
-      if needs_transform?
+      if needs_transform_uv?
         content = "" 
         File.open(absolute_path, "r+") { |f| content = f.read }
 
@@ -25,7 +25,7 @@ module FileColumn # :nodoc:
 
     private
     
-    def needs_transform?
+    def needs_transform_uv?
       path = absolute_path << get_file_suffix
       options.has_key?(:uv) and not File.exists?(path)
     end
