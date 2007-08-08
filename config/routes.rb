@@ -100,8 +100,7 @@ ActionController::Routing::Routes.draw do |map|
       :ajax_piecejointes => :get,
       :ajax_appels => :get,
       :ajax_cns => :get }
-  map.resources :dependances, 
-    :member => { :destroy => :delete }
+  map.resources :dependances
   map.resources :distributeurs
   map.resources :documents,
     :collection => { :select => :get },
@@ -124,7 +123,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :permissions
   map.resources :roles
   map.resources :socles
-  map.resources :statuts
+  map.resources :statuts, :member => { :help => :get }
   map.resources :severites
   map.resources :typecontributions
   map.resources :typeurls

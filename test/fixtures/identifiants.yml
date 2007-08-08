@@ -7,7 +7,7 @@ heleneParmentier:
   titre: "DSI"
   telephone: "01424242424"
   image_id: 0
-  password: "ca3a2705f30b1f2965d9a94a1e5e8108b63b86f4"
+  password: <%= Identifiant.sha1('test')%>
   login: "hparmentier"
   email: "mloiseleur@linagora.com"
 Guillaume_dufloux:
@@ -32,3 +32,36 @@ bob:
   telephone: "08000LINUX"
   image_id: 0
   email: "mloiseleur@linagora.com"
+admin:
+  id: 4
+  login: 'admin'
+  password: <%= Identifiant.sha1('admin') %>
+  informations: ""
+  nom: 'Admin'
+  client: 0
+  titre: 'Expert Ossa'
+  telephone: '08000LINUX'
+  image_id: 0
+  email: 'mloiseleur@linagora.com'
+super_presta:
+  id: 5
+  login: 'presta_ossa'
+  password: <%= Identifiant.sha1('presta_ossa') %>
+  informations: ""
+  nom: "Prestataire membre de l'OSSA"
+  client: 0
+  titre: 'Presa Ossa'
+  telephone: '08000LINUX'
+  image_id: 0
+  email: 'mloiseleur@linagora.com'
+presta:
+  id: 6
+  login: 'presta'
+  password: <%= Identifiant.sha1('presta') %>
+  informations: ""
+  nom: 'Presta'
+  client: 0
+  titre: 'Prestataire'
+  telephone: '08000Linux'
+  image_id: 0
+  email: 'mloiseleur@linagora.com'
