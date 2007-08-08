@@ -3,7 +3,7 @@
   <tr>
     <td colspan="2"><h1><%= _('08000linux login')%></h1></td>
     <% unless controller.is_a? AccountController %>
-      <td><%= link_to_close_redbox(image_hide_notice) %></td>
+      <td><%= link_to_close_redbox(StaticImage::hide_notice) %></td>
     <% end %>
   </tr><tr>
     <td><label for="user_login"><%= _('Login')%> :</label></td>
