@@ -51,12 +51,12 @@ class AccountController < ApplicationController
                                                      params['user_password'],
                                                      user_crypt)
           set_sessions
-          flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") % 
+          flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") %
             [ session[:user].titre, session[:user].nom.gsub(' ', '&nbsp;') ]
           redirect_to_home
         else
+          clear_sessions
           flash.now[:warn]  = _("Connexion failure")
-          redirect_to_home
         end
     end
   end
@@ -91,7 +91,7 @@ class AccountController < ApplicationController
     params[:identifiant] = { :role_ids => [] } unless params.has_key? :identifiant
     if @identifiant.update_attributes(params[:identifiant])
       # we can changes roles in 'index' view
-      if request.xhr? 
+      if request.xhr?
         index
       else
         #update cached profile for logged user
