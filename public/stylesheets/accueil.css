@@ -1,6 +1,7 @@
 /************************ sommaire ***********************/
 
 /* Nouvel accueil */
+/* used in index, admin & about views */
 
 div.sommaire {
 	vertical-align: top;
@@ -8,6 +9,7 @@ div.sommaire {
 
 table.sommaire {
 	table-layout:fixed;
+	width: 100%;
 }
 
 table.sommaire tr  { 
@@ -16,6 +18,8 @@ table.sommaire tr  {
 
 table.sommaire tr td { 
 	vertical-align: top;
+	/* we have a 2 columns layout */
+	width: 50%;
 }
 
 /* largeur des balises inputs */
