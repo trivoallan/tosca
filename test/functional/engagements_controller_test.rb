@@ -8,8 +8,7 @@ require 'engagements_controller'
 class EngagementsController; def rescue_action(e) raise e end; end
 
 class EngagementsControllerTest < Test::Unit::TestCase
-  fixtures :engagements, :typedemandes, :severites, 
-    :corrections
+  fixtures :engagements, :typedemandes, :severites
 
   def setup
     @controller = EngagementsController.new
@@ -68,7 +67,7 @@ class EngagementsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'index'
   end
 
   def test_destroy

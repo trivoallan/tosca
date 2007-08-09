@@ -21,7 +21,7 @@ class ImagesControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:photos)
+    assert_not_nil assigns(:images)
   end
 
   def test_show
@@ -30,8 +30,8 @@ class ImagesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:photo)
-    assert assigns(:photo).valid?
+    assert_not_nil assigns(:image)
+    assert assigns(:image).valid?
   end
 
   def test_new
@@ -40,7 +40,7 @@ class ImagesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:photo)
+    assert_not_nil assigns(:image)
   end
 
   def test_create
@@ -60,8 +60,8 @@ class ImagesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:photo)
-    assert assigns(:photo).valid?
+    assert_not_nil assigns(:image)
+    assert assigns(:image).valid?
   end
 
   def test_update

@@ -108,7 +108,7 @@ class LogicielsController < ApplicationController
     @logiciel = Logiciel.find(params[:id])
     @logiciel.destroy
     flash[:notice] = _('The software %s has been successfully deleted.') % @logiciel.nom
-    redirect_to logiciel_path
+    redirect_to logiciels_path
   end
 
 
