@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-09 12:23+0200\n"
+"POT-Creation-Date: 2007-08-09 12:37+0200\n"
 "PO-Revision-Date: 2007-08-09 10:57+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -3910,14 +3910,12 @@ msgid "Role list"
 msgstr "Liste des rôles"
 
 #: app/views/piecejointes/edit.rhtml:1
-#, fuzzy
-msgid "Editing piecejointe"
-msgstr "piecejointe"
+msgid "Editing attachment"
+msgstr "Éditer une pièce jointe"
 
 #: app/views/piecejointes/new.rhtml:1
-#, fuzzy
-msgid "New piecejointe"
-msgstr "piecejointe"
+msgid "New attachment"
+msgstr "Nouvelle pièce jointe"
 
 #: app/views/reporting/_comex_cns.rhtml:2
 msgid "SLA report"
@@ -4496,6 +4494,14 @@ msgstr "une image"
 #: app/views/images/index.rhtml:6
 msgid "Formatted"
 msgstr "Formatté"
+
+#, fuzzy
+#~ msgid "Editing piecejointe"
+#~ msgstr "piecejointe"
+
+#, fuzzy
+#~ msgid "New piecejointe"
+#~ msgstr "piecejointe"
 
 #~ msgid "Demande|Version"
 #~ msgstr "Version"

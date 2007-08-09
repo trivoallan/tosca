@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-09 12:23+0200\n"
+"POT-Creation-Date: 2007-08-09 12:37+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3855,11 +3855,11 @@ msgid "Role list"
 msgstr ""
 
 #: app/views/piecejointes/edit.rhtml:1
-msgid "Editing piecejointe"
+msgid "Editing attachment"
 msgstr ""
 
 #: app/views/piecejointes/new.rhtml:1
-msgid "New piecejointe"
+msgid "New attachment"
 msgstr ""
 
 #: app/views/reporting/_comex_cns.rhtml:2

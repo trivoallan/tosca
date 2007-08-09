@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-09 12:23+0200\n"
+"POT-Creation-Date: 2007-08-09 12:37+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -3915,11 +3915,11 @@ msgstr ""
 
 #: app/views/piecejointes/edit.rhtml:1
 #, fuzzy
-msgid "Editing piecejointe"
+msgid "Editing attachment"
 msgstr "Type document"
 
 #: app/views/piecejointes/new.rhtml:1
-msgid "New piecejointe"
+msgid "New attachment"
 msgstr ""
 
 #: app/views/reporting/_comex_cns.rhtml:2
@@ -4481,6 +4481,10 @@ msgstr ""
 #: app/views/images/index.rhtml:6
 msgid "Formatted"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Editing piecejointe"
+#~ msgstr "Type document"
 
 #, fuzzy
 #~ msgid "Demande|Version"
