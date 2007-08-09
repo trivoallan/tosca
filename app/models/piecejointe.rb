@@ -8,15 +8,7 @@ class Piecejointe < ActiveRecord::Base
     },
     :magick => {
       :versions => {
-        :fit_size => {
-          :transformation => Proc.new { |image| 
-            if image.columns > 800 or image.rows > 600
-              image.resize_to_fit(800, 600)
-            else
-              image 
-            end 
-          }
-        }
+        :fit_size => { :size => "800x600>" }
       }
     }
     
