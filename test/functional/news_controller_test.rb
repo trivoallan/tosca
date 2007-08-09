@@ -46,7 +46,9 @@ class NewsControllerTest < Test::Unit::TestCase
   def test_create
     num_news = New.count
 
-    post :create, :new => {}
+    post :create, :new => {
+      :logiciel_id => 1
+    }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'

@@ -4,8 +4,7 @@
 </p>
 <% end %>
 
- <%= link_to "Download", url_for_file_column(@piecejointe, "file", :absolute => true) %>
+<%= link_to "Download", url_for_file_column(@piecejointe, "file", :absolute => true) %>
 
-
-<%= link_to 'Edit', edit_piecejointe_path(@piecejointe) %> |
-<%= link_to 'Back', piecejointes_path %>
+<br /><br />
+<%= link_to_edit_and_list @piecejointe %>

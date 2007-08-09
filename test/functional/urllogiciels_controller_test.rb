@@ -8,7 +8,7 @@ require 'urllogiciels_controller'
 class UrllogicielsController; def rescue_action(e) raise e end; end
 
 class UrllogicielsControllerTest < Test::Unit::TestCase
-  fixtures :urllogiciels
+  fixtures :urllogiciels, :logiciels
 
   def setup
     @controller = UrllogicielsController.new

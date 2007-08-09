@@ -1,8 +1,9 @@
-<% for column in Support.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @support.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to _("Edit"), edit_support_path(@support) %> |
-<%= link_to _("Back"), supports_path %>
+<div class="show">
+  <% for column in Support.content_columns %>
+  <p>
+    <b><%= column.human_name %>:</b> <%= @support.send(column.name) %>
+  </p>
+  <% end %>
+  <br />
+  <%= link_to_edit_and_list @support %>
+</div>

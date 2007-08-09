@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-09 11:15+0200\n"
+"POT-Creation-Date: 2007-08-09 12:23+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -223,23 +223,23 @@ msgstr ""
 msgid "Your request has been successfully submitted"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:200
+#: app/controllers/demandes_controller.rb:199
 msgid "The request has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:219
+#: app/controllers/demandes_controller.rb:218
 msgid "The request is correctly assigned"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:223
+#: app/controllers/demandes_controller.rb:222
 msgid "The request is no more assigned"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:238
+#: app/controllers/demandes_controller.rb:237
 msgid "The demand has now no contribution"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:240
+#: app/controllers/demandes_controller.rb:239
 msgid "This contribution is now linked"
 msgstr ""
 
@@ -991,10 +991,8 @@ msgid "Home page"
 msgstr ""
 
 #: app/helpers/static_image.rb:77 app/views/machines/show.rhtml:13
-#: app/views/severites/show.rhtml:8 app/views/supports/show.rhtml:8
-#: app/views/typecontributions/show.rhtml:8
-#: app/views/typedemandes/show.rhtml:8 app/views/typedocuments/show.rhtml:8
-#: app/views/typeurls/show.rhtml:8
+#: app/views/severites/show.rhtml:8 app/views/typecontributions/show.rhtml:8
+#: app/views/typedocuments/show.rhtml:8 app/views/typeurls/show.rhtml:8
 msgid "Back"
 msgstr ""
 
@@ -2577,11 +2575,11 @@ msgstr ""
 #: app/views/machines/show.rhtml:12 app/views/permissions/edit.rhtml:5
 #: app/views/severites/edit.rhtml:5 app/views/severites/show.rhtml:7
 #: app/views/socles/edit.rhtml:5 app/views/supports/edit.rhtml:5
-#: app/views/supports/show.rhtml:7 app/views/typecontributions/edit.rhtml:5
+#: app/views/typecontributions/edit.rhtml:5
 #: app/views/typecontributions/show.rhtml:7
-#: app/views/typedemandes/edit.rhtml:5 app/views/typedemandes/show.rhtml:7
-#: app/views/typedocuments/edit.rhtml:5 app/views/typedocuments/show.rhtml:7
-#: app/views/typeurls/show.rhtml:7 app/views/images/edit.rhtml:5
+#: app/views/typedemandes/edit.rhtml:5 app/views/typedocuments/edit.rhtml:5
+#: app/views/typedocuments/show.rhtml:7 app/views/typeurls/show.rhtml:7
+#: app/views/images/edit.rhtml:5
 msgid "Edit"
 msgstr ""
 
@@ -3800,6 +3798,10 @@ msgstr ""
 msgid "IT infrastructure of Virtual machines of OSSA"
 msgstr ""
 
+#: app/views/news/new.rhtml:1
+msgid "New new"
+msgstr ""
+
 #: app/views/paquets/_form.rhtml:27 app/views/paquets/_paquets_list.rhtml:7
 #: app/views/paquets/show.rhtml:23
 #, fuzzy
@@ -3909,6 +3911,15 @@ msgstr ""
 
 #: app/views/permissions/index.rhtml:15
 msgid "Role list"
+msgstr ""
+
+#: app/views/piecejointes/edit.rhtml:1
+#, fuzzy
+msgid "Editing piecejointe"
+msgstr "Type document"
+
+#: app/views/piecejointes/new.rhtml:1
+msgid "New piecejointe"
 msgstr ""
 
 #: app/views/reporting/_comex_cns.rhtml:2
