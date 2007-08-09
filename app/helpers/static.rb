@@ -6,7 +6,7 @@
 module Static
 
   # Create an action view not bound to any controller
-  # usded to generate html tags from a static environement
+  # used to generate html tags from a static environement
   class ActionView
     include ::ActionView
     include ::ActionView::Helpers::AssetTagHelper
