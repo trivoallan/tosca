@@ -14,7 +14,7 @@ module ClientsHelper
   # :image image du client à afficher à la place
   def link_to_my_client(image = false)
     return nil unless @beneficiaire
-    label = image ? StaticImage::client(@beneficiaire.client) : _('My&nbsp;Offer')
+    label = image ? logo_client(@beneficiaire.client) : _('My&nbsp;Offer')
     link_to label, client_path(@beneficiaire.client_id)
   end
 
