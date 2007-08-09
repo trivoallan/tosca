@@ -29,6 +29,8 @@ class AccountControllerTest < Test::Unit::TestCase
   end
   
   def test_signup
+    post :login, :user_login => 'bob', :user_password => 'test',
+      :user_crypt => 'false'
     post :signup, {
       :client => { :id => 2},
       :identifiant => { 
@@ -38,45 +40,42 @@ class AccountControllerTest < Test::Unit::TestCase
       }
     }
     assert flash.has_key?(:notice)
-    assert_response :success
+    assert_redirected_to :action => 'index'
     assert @response.has_session_object?(:user)
     
   end
 
   def test_bad_signup
-#   @request.session['return-to'] = "/bogus/location"
+    num_identifiant = Identifiant.count
+    post :login, :user_login => 'bob', :user_password => 'test',
+      :user_crypt => 'false'
 
     post :signup, 'identifiant' => { "login" => "newbob", 
-      "password" => "newpassword", "password_confirmation" => "wrong" }
-    #TODO : virer cette ligne obsolète
-#   assert_invalid_column_on_record "user", "password"
+      "pwd" => "newpassword", "pwd_confirmation" => "wrong" }
     assert !flash.has_key?(:notice)
     assert_response :success
-    assert find_record_in_template('user').errors.invalid?(:password)
+#   assert find_record_in_template('user').errors.invalid?(:pwd)
+    assert_equal num_identifiant, Identifiant.count
     
     post :signup, "user" => { "login" => "yo", "password" => "newpassword", "password_confirmation" => "newpassword" }
-#    assert_invalid_column_on_record "user", "login"
-    assert(find_record_in_template(:user).errors.invalid?(:password)) 
-    #TODO deprecated
-    assert_success
+#   assert(find_record_in_template(:user).errors.invalid?(:password)) 
+    assert_response :success
+    assert_equal num_identifiant, Identifiant.count
 
     post :signup, "user" => { "login" => "yo", "password" => "newpassword", "password_confirmation" => "wrong" }
-#    assert_invalid_column_on_record "user", ["login", "password"]
-    assert(find_record_in_template(:user).errors.invalid?(:password)) 
-    #TODO deprecated
-    assert_success
+#   assert(find_record_in_template(:user).errors.invalid?(:password)) 
+    assert_response :success
+    assert_equal num_identifiant, Identifiant.count
   end
 
   def test_invalid_login
     post :login, "user_login" => "bob", "user_password" => "not_correct"
      
     assert !@response.has_session_object?(:user)
+    assert flash
     
-    #TODO : virer cette ligne obsolète
-#   assert_template_has "message"
-#    assert_template_has "login"
-    assert @response.has_template_object?(:message)
-    #assert @response.has_template_object?(:login)
+#   assert @response.has_template_object?(:message)
+#   assert @response.has_template_object?(:login)
   end
   
   def test_login_logoff
