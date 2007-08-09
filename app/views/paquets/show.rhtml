@@ -44,7 +44,7 @@
 <p><%= _('This package has been updated')%><b><%= pluralize(@paquet.changelogs_count, _('times') ) %></b></p>
  <div class="bloc_scroll">
    <%= show_liste(@changelogs, _('changelog'), :no_title => true) { |c|
-      indent c.to_s } %>
+      indent(c.to_s) } %>
  </div>
 <% end %>
 

@@ -63,7 +63,7 @@ class ContributionsController < ApplicationController
   def new
     @contribution = Contribution.new
     @urlreversement = Urlreversement.new
-    # pour préciser le type dèsl a création
+    # we can precise the software with this, see softwares/show for more info
     @contribution.logiciel_id = params[:id]
     @contribution.ingenieur = @ingenieur
     _form
@@ -145,7 +145,7 @@ private
   def _update(contribution)
     urlreversement = params[:urlreversement]
     unless urlreversement.blank?
-      urlreverment[:contribution_id] = contribution.id
+      urlreversement[:contribution_id] = contribution.id
       Urlreversement.create(urlreversement)
     end
     contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
