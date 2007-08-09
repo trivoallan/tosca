@@ -25,7 +25,7 @@ module Static
 
     # TODO -
     def compute_public_path(source,dir,ext)
-      "#{ActionController::Base.asset_host}#{relative_url_root}#{source}"
+      "#{relative_url_root}#{source}"
     end
 
     def relative_url_root

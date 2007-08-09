@@ -138,10 +138,9 @@ class DemandesController < ApplicationController
     # On va chercher les identifiants des ingénieurs assignés
     # C'est un héritage du passé
     # TODO : s'en débarrasser avec une migration et un :include'
-    joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
-    select = "DISTINCT identifiants.id "
+    select = "DISTINCT ingenieurs.identifiant_id "
     @identifiants_ingenieurs =
-      Identifiant.find(:all, :select => select, :joins => joins)
+      Ingenieur.find(:all, :select => select)
 
     @partial_for_summary = 'infos_demande'
     # render is mandatory becoz' of the alias with 'show'

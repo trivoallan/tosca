@@ -18,7 +18,7 @@ module CommentairesHelper
     severite = comment.severite
     unless severite.nil?
       out << (_('The <b>severity</b> of your request is') +
-              "<b>#{severite.nom}</b>")
+              " <b>#{severite.nom}</b>")
     end
     '<div class="history">' << out.join('<br />') << '</div>'
   end
