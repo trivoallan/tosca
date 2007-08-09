@@ -1,9 +1,9 @@
 <h1><%= _("Editing an image") %></h1>
 
-<% form_tag(image_path(@image), {:method => :put} , {:multipart => true}) do %>
+<% form_tag(img_path(@image), {:method => :put, :multipart => true}) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _("Edit") %>
 <% end %>
 
-<%= link_to _("Show"), image_path(@image) %> |
-<%= link_to_back %>
+<%= link_to_show_and_list(img_path(@image)) %>
+

@@ -7,5 +7,5 @@
 <%= image_tag url_for_file_column("image", "image", "medium") %><br />
 <%= image_tag url_for_file_column("image", "image") %><br />
 
-<%= link_to _("Edit"), edit_image_path(@image) %> |
-<%= link_to _("Back"), images_path %>
+<%= link_to_edit_and_list(@image)%>
+

@@ -32,7 +32,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     if @image.update_attributes(params[:image])
       flash[:notice] = _("An image was successfully updated.")
-      redirect_to image_path(@image)
+      redirect_to img_path(@image)
     else
       render :action => 'edit'
     end
