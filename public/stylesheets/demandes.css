@@ -107,7 +107,7 @@ option.severite_6 {
 	background: #FFD880; 
 }
 .demande_tabnav a:visited {
-	color: #B37B00; 
+	color: black; 
 }
 .demande_tabnav a.active:hover {
 	background: #FFB000;
