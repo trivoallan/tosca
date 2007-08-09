@@ -1,8 +1,9 @@
+<div class="show">
 <% for column in Jourferie.content_columns %>
 <p>
   <b><%= column.human_name %>:</b> <%= @jourferie.send(column.name) %>
 </p>
 <% end %>
-
-<%= link_to 'Edit', edit_jourferie_path(@jourferie) %> |
-<%= link_to 'Back', jourferies_path %>
+<br />
+<%= link_to_edit_and_list @jourferie %>
+</div>

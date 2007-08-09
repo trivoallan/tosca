@@ -65,7 +65,8 @@ class DependancesControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-     post :update, { :id => 1,
+     post :update, { 
+       :id => 1,
        :dependance => {
          :paquet_id => 1,
          :nom => 'kernel',

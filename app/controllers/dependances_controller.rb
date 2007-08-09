@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DependancesController < ApplicationController
+  helper :pages
   def index
     @dependance_pages, @dependances = paginate :dependances, :per_page => 10
   end

@@ -14,3 +14,6 @@ presta:
 beneficiaire_helene:
   identifiant_id: 1
   role_id: 2
+beneficiaire_martin:
+  identifiant_id: 2
+  role_id: 2

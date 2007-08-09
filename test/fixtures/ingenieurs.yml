@@ -4,13 +4,13 @@ first:
   id: 1
   domaine: "Niveau 4 : Développement, noyau, gestion des plateformes"
   expert_ossa: 1
-  identifiant_id: 4
+  identifiant_id: 4 #admin
   chef_de_projet: 0
-second_engineer:
+second_engineer: 
   id: 2
   domaine: "Niveau 4 : Développement, noyau, gestion des plateformes"
   expert_ossa: 1
-  identifiant_id: 3
+  identifiant_id: 3 # bob
   chef_de_projet: 0
 super_presta:
   id: 3
@@ -18,3 +18,9 @@ super_presta:
   expert_ossa: 1
   identifiant_id: 5
   chef_de_projet: 1
+presta:
+  id: 4
+  domaine: 'java'
+  expert_ossa: 0
+  identifiant_id: 6
+  chef_de_projet: 0

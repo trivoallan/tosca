@@ -1,9 +1,8 @@
-<h1>Editing jourferie</h1>
+<h1><%= _('Editing jourferie')%></h1>
 
 <% form_tag jourferie_path(@jourferie), :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <% end %>
 
-<%= link_to 'Show', jourferie_path(@jourferie) %> |
-<%= link_to_back %>
+<%= link_to_show_and_list @jourferie %>

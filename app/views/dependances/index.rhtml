@@ -12,9 +12,7 @@
   <% for column in Dependance.content_columns %>
     <td><%=h dependance.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', dependance_path(dependance) %></td>
-    <td><%= link_to 'Edit', edit_dependance_path(dependance) %></td>
-    <td><%= link_to 'Destroy', destroy_dependance_path(dependance) , :confirm => 'Are you sure?', :method => :post %></td>
+    <%= link_to_actions_table dependance %>
   </tr>
 <% end %>
 </table>

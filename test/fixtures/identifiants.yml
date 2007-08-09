@@ -10,17 +10,17 @@ heleneParmentier:
   password: <%= Identifiant.sha1('test')%>
   login: "hparmentier"
   email: "mloiseleur@linagora.com"
-Guillaume_dufloux:
+martinLaplace:
   id: 2
+  login: 'mlaplace'
+  password: <%= Identifiant.sha1('mlaplace')%>
   informations: ""
-  nom: "Guillaume Dufloux"
-  client: 0
-  titre: "Expert"
-  telephone: "08000LINUX"
+  nom: 'Martin Laplace'
+  client: 1
+  titre: 'DSI'
+  telephone: '0241455361'
   image_id: 0
-  password: "f876646d4af609a6fead901e9d6ffae33f4593fc"
-  login: "gdufloux"
-  email: "mloiseleur@linagora.com"
+  email: 'mloiseleur@linagora.com'
 bob:
   id: 3
   login: 'bob'

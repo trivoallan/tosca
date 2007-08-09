@@ -45,7 +45,8 @@ class CommentairesControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, { :id => 1,
+    post :update, { 
+      :id => 1,
       :commentaire => {
         :demande_id => 3,
         :identifiant_id => 1,

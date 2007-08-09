@@ -7,11 +7,11 @@ class IngenieurTest < Test::Unit::TestCase
   fixtures :ingenieurs, :contrats, :contrats_ingenieurs
 
   def test_find_ossa
-    i = Ingenieur.find 1
-    assert_equal Ingenieur.find_ossa(:all), [i]
+    i = Ingenieur.find 1,2,3
+    assert_equal Ingenieur.find_ossa(:all), i
   end
   def test_find_presta
-    i = Ingenieur.find 2
+    i = Ingenieur.find 4
     assert_equal Ingenieur.find_presta(:all), [i]
   end
 
@@ -25,6 +25,6 @@ class IngenieurTest < Test::Unit::TestCase
   end
   def test_nom
     engineer = Ingenieur.find 2
-    assert_equal engineer.nom, 'Guillaume Dufloux'
+    assert_equal engineer.nom, 'Bob Dufloux'
   end
 end

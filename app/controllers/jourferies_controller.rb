@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class JourferiesController < ApplicationController
+  helper :pages
   def index
     @jourferie_pages, @jourferies = paginate :jourferies, :per_page => 10
   end
