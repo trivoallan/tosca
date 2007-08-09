@@ -12,9 +12,7 @@
   <% for column in New.content_columns %>
     <td><%= new.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', new_path(new) %></td>
-    <td><%= link_to 'Edit', edit_new_path(new) %></td>
-    <td><%= link_to 'Destroy', destroy_new_path(new) , :confirm => 'Are you sure?', :method => :post %></td>
+  <%= link_to_actions_table @news %>
   </tr>
 <% end %>
 </table>

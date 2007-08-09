@@ -17,7 +17,7 @@
   <% for column in Statut.content_columns %>
     <td><%= statut.send(column.name) %></td>
   <% end %>
-  <%= link_to_actions_table u %>
+  <%= link_to_actions_table @statuts %>
   </tr>
 <% end %>
 </table>
