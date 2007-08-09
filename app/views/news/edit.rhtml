@@ -1,9 +1,9 @@
-<h1>Editing new</h1>
-
-<% form_tag new_path(@new), :method => :put do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Show', new_path(@new) %> |
-<%= link_to_back %>
+<h1><%= _('Editing new')%></h1>
+<div class="style">
+  <% form_tag new_path(@new), :method => :put do %>
+    <%= render :partial => 'form' %>
+    <%= submit_tag 'Edit' %>
+  <% end %>
+  <br />
+  <%= link_to_show_and_list @new %>
+</div>

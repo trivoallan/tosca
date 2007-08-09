@@ -46,8 +46,17 @@ class LogicielsControllerTest < Test::Unit::TestCase
   def test_create
     num_logiciels = Logiciel.count
 
-    post :create, :logiciel => {}
+    post :create, :logiciel => {
+      :id=> 1,
+      :nom=> 'ANT',
+      :groupe_id=> 4,
+      :referent=> 'ant',
+      :description=> 'un bon logiciel.',
+      :resume=> 'Outil de compilation pour java',
+      :license_id=> 2
+    }
 
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'index'
 

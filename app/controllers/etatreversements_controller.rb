@@ -33,7 +33,7 @@ class EtatreversementsController < ApplicationController
     @etatreversement = Etatreversement.find(params[:id])
     if @etatreversement.update_attributes(params[:etatreversement])
       flash[:notice] = 'Etatreversement was successfully updated.'
-      redirect_to etatreversements_path(@etatreversement)
+      redirect_to etatreversement_path(@etatreversement)
     else
       render :action => 'edit'
     end

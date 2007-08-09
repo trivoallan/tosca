@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-09 17:00+0200\n"
+"POT-Creation-Date: 2007-08-09 17:32+0200\n"
 "PO-Revision-Date: 2007-08-09 10:57+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -3800,6 +3800,10 @@ msgstr "Nouvelle machine"
 #: app/views/machines/index.rhtml:1
 msgid "IT infrastructure of Virtual machines of OSSA"
 msgstr "Parc informatique des marchines virtuelles de l'OSSA"
+
+#: app/views/news/edit.rhtml:1
+msgid "Editing new"
+msgstr "Éditer la nouvelle"
 
 #: app/views/news/new.rhtml:1
 msgid "New new"
