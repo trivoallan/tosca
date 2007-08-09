@@ -58,7 +58,7 @@ module FileColumnHelper
   end
   
   def url_for_uv_file_column(object, method, options = nil)
-  	generic_url(object, method, "." + object.send("#{method}_options")[:uv][:theme] + ".html", options)
+    generic_url(object, method, "." << object.send("#{method}_options")[:uv][:theme] << ".html", options)
   end
 
   # Same as +url_for_file_colum+ but allows you to access different versions
@@ -128,9 +128,9 @@ module FileColumnHelper
   end
   
   def method_name(object, method)
-  	case object
-      when String, Symbol
-        object = instance_variable_get("@#{object.to_s}")
+    case object
+    when String, Symbol
+      object = instance_variable_get("@#{object.to_s}")
     end
   end
   
@@ -142,7 +142,7 @@ module FileColumnHelper
   
   private
   def generic_url(object, method, file_suffix, options = nil)
-  	case object
+    case object
     when String, Symbol
       object = instance_variable_get("@#{object.to_s}")
     end
@@ -163,12 +163,7 @@ module FileColumnHelper
     relative_path = object.send("#{method}_relative_path", subdir)
     return nil unless relative_path
 
-    #####################################################
-    # MLO : ON N'ENLEVE PAS CET '@'. Ca casse les liens #
-    # des pieces jointes dans les emails                #
-    #####################################################
-    url = ""
-    url = @request.relative_url_root.to_s if absolute
+    url = (absolute ? self.request().relative_url_root.to_s : '')
     url = File.join(url, object.send("#{method}_options")[:base_url], relative_path + file_suffix)
   end
 end

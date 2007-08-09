@@ -9,8 +9,7 @@ module FileColumn # :nodoc:
 
         possible_mode = Uv.syntax_for_file(absolute_path)
         
-        mode = "plain_text"
-        mode = possible_mode.first.first unless possible_mode.empty? 
+        mode = possible_mode.empty? ? 'plain text' : possible_mode.first.first
         
         result = Uv.parse(content, "xhtml", mode, true, options[:uv][:theme])
         path = absolute_path << get_file_suffix
