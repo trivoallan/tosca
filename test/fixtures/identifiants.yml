@@ -3,7 +3,7 @@ heleneParmentier:
   id: 1
   informations: ""
   nom: "Hélène Parmentier"
-  client: 0
+  client: 1
   titre: "DSI"
   telephone: "01424242424"
   image_id: 0
@@ -45,12 +45,12 @@ admin:
   email: 'mloiseleur@linagora.com'
 super_presta:
   id: 5
-  login: 'presta_ossa'
-  password: <%= Identifiant.sha1('presta_ossa') %>
+  login: 'expert'
+  password: <%= Identifiant.sha1('expert') %>
   informations: ""
-  nom: "Prestataire membre de l'OSSA"
+  nom: "Expert de l'OSSA"
   client: 0
-  titre: 'Presa Ossa'
+  titre: 'ô magnifique'
   telephone: '08000LINUX'
   image_id: 0
   email: 'mloiseleur@linagora.com'
@@ -59,9 +59,9 @@ presta:
   login: 'presta'
   password: <%= Identifiant.sha1('presta') %>
   informations: ""
-  nom: 'Presta'
+  nom: 'Prestataire'
   client: 0
-  titre: 'Prestataire'
+  titre: 'vil'
   telephone: '08000Linux'
   image_id: 0
   email: 'mloiseleur@linagora.com'
