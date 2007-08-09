@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-09 12:37+0200\n"
+"POT-Creation-Date: 2007-08-09 17:00+0200\n"
 "PO-Revision-Date: 2007-04-30 10:50+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -2541,7 +2541,7 @@ msgstr ""
 
 #: app/views/appels/new.rhtml:5 app/views/arches/new.rhtml:5
 #: app/views/competences/new.rhtml:5 app/views/contributions/new.rhtml:5
-#: app/views/dependances/new.rhtml:5 app/views/fichiers/new.rhtml:5
+#: app/views/dependances/new.rhtml:6 app/views/fichiers/new.rhtml:5
 #: app/views/groupes/new.rhtml:5 app/views/ingenieurs/new.rhtml:5
 #: app/views/jourferies/new.rhtml:5 app/views/machines/new.rhtml:5
 #: app/views/mainteneurs/new.rhtml:5 app/views/news/new.rhtml:5
@@ -3564,6 +3564,15 @@ msgstr ""
 
 #: app/views/demandes/_requests_info.rhtml:46
 msgid "Flow"
+msgstr ""
+
+#: app/views/dependances/edit.rhtml:1
+#, fuzzy
+msgid "Editing dependency"
+msgstr "Type document"
+
+#: app/views/dependances/new.rhtml:1
+msgid "New dependency"
 msgstr ""
 
 #: app/views/documents/_documents_info.rhtml:15

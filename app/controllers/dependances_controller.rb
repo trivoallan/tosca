@@ -33,7 +33,7 @@ class DependancesController < ApplicationController
     @dependance = Dependance.find(params[:id])
     if @dependance.update_attributes(params[:dependance])
       flash[:notice] = 'Dependance was successfully updated.'
-      redirect_to dependances_path(@dependance)
+     redirect_to dependance_path(@dependance)
     else
       render :action => 'edit'
     end

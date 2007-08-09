@@ -8,7 +8,7 @@ require 'documents_controller'
 class DocumentsController; def rescue_action(e) raise e end; end
 
 class DocumentsControllerTest < Test::Unit::TestCase
-  fixtures :documents, :typedocuments
+  fixtures :documents, :typedocuments, :clients
 
   def setup
     @controller = DocumentsController.new
