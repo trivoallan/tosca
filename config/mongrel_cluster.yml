@@ -8,4 +8,3 @@ pid_file: log/mongrel.pid
 servers: 3
 user: www-data
 group: www-data
-

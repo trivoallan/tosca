@@ -23,7 +23,6 @@ module Static
 
     private
 
-    # TODO -
     def compute_public_path(source,dir,ext)
       "#{relative_url_root}#{source}"
     end

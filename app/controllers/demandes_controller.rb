@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DemandesController < ApplicationController
-  helper :filters, :contributions, :logiciels, :export, :appels, 
+  helper :filters, :contributions, :logiciels, :export, :appels,
     :socles, :commentaires
 
   def index
@@ -68,7 +68,7 @@ class DemandesController < ApplicationController
     @demande.statut_id = (@ingenieur ? 2 : 1)
     # if we came from software view, it's sets automatically
     @demande.logiciel_id = params[:logiciel_id]
-    
+
     @demande.beneficiaire_id = @beneficiaire.id if @beneficiaire
   end
 
