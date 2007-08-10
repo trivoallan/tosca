@@ -119,6 +119,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :logiciels
   map.resources :machines
   map.resources :mainteneurs
+  # 'news'.singularize == 'news' So problems comes
   map.resources :news, :singular => 'new'
   map.resources :pages
   map.resources :paquets

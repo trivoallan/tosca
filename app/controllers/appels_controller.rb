@@ -31,7 +31,7 @@ class AppelsController < ApplicationController
   def create
     @appel = Appel.new(params[:appel])
     if @appel.save
-      flash[:notice] = 'l\'Appel a été créé.'
+      flash[:notice] = _('The call was successfully created.')
       if @appel.demande
         redirect_to comment_demande_path(@appel.demande)
       else

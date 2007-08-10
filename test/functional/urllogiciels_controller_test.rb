@@ -52,7 +52,7 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
     }
 
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to logiciel_path('1-ANT')
 
     assert_equal num_urllogiciels + 1, Urllogiciel.count
   end
@@ -70,7 +70,7 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'show', :id => '1-ANT'
   end
 
   def test_destroy
