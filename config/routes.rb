@@ -119,15 +119,19 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :logiciels
   map.resources :machines
   map.resources :mainteneurs
-  map.resources :news
+  map.resources :news, :singular => 'new'
   map.resources :pages
   map.resources :paquets
   map.resources :permissions
+  map.resources :piecejointes
   map.resources :roles
   map.resources :socles
   map.resources :statuts, :member => { :help => :get }
   map.resources :severites
+  map.resources :supports
   map.resources :typecontributions
+  map.resources :typedemandes
+  map.resources :typedocuments
   map.resources :typeurls
   map.resources :urllogiciels
   map.resources :urlreversements

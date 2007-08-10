@@ -49,7 +49,7 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
     post :create, :urlreversement => {}
 
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to contribution_path(1)
 
     assert_equal num_urlreversements + 1, Urlreversement.count
   end
@@ -67,7 +67,7 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to contribution_path(1)
   end
 
   def test_destroy

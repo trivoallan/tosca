@@ -46,7 +46,9 @@ class PiecejointesControllerTest < Test::Unit::TestCase
   def test_create
     num_piecejointes = Piecejointe.count
 
-    post :create, :piecejointe => {}
+    post :create, :piecejointe => {
+      :file => 'un_fichier.odt'
+    }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'

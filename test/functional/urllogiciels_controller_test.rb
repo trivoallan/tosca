@@ -46,7 +46,10 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
   def test_create
     num_urllogiciels = Urllogiciel.count
 
-    post :create, :urllogiciel => {}
+    post :create, :urllogiciel => {
+      :logiciel_id => 1,
+      :typeurl_id => 1
+    }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'

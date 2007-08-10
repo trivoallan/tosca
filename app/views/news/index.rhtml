@@ -12,7 +12,7 @@
   <% for column in New.content_columns %>
     <td><%= new.send(column.name) %></td>
   <% end %>
-  <%= link_to_actions_table @news %>
+  <%= link_to_actions_table new %>
   </tr>
 <% end %>
 </table>
@@ -22,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New new', new_new_path %>
+<%= link_to _('New new'), new_new_path %>
