@@ -28,7 +28,7 @@ class BienvenueController < ApplicationController
   # About this software
   def about
   end
-  
+
 
   #nodoc
   def suggestions

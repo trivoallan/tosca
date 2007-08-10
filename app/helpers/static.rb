@@ -11,6 +11,7 @@ module Static
     include ::ActionView
     include ::ActionView::Helpers::AssetTagHelper
     include ::ActionView::Helpers::TagHelper
+    include Metadata
 
     @@av = ActionView.new
     def self.image_tag(path, op={})
@@ -28,8 +29,11 @@ module Static
     end
 
     def relative_url_root
-      #TODO
-      "/images/"
+      if PREFIX == ""
+        "/images/"
+      else
+        "/#{PREFIX}/images/"
+      end
     end
   end
 
