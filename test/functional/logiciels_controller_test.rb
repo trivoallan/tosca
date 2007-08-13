@@ -47,13 +47,13 @@ class LogicielsControllerTest < Test::Unit::TestCase
     num_logiciels = Logiciel.count
 
     post :create, :logiciel => {
-      :id=> 1,
       :nom=> 'ANT',
       :groupe_id=> 4,
       :referent=> 'ant',
       :description=> 'un bon logiciel.',
       :resume=> 'Outil de compilation pour java',
-      :license_id=> 2
+      :license_id=> 2,
+      :image_id => 1
     }
 
     assert flash.has_key?(:notice)
@@ -74,7 +74,18 @@ class LogicielsControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, :id => 1
+    options = {
+        :nom => 'ANT',
+        :groupe_id=> 4,
+        :referent=> 'ant',
+        :description=> 'un bon logiciel.',
+        :resume=> 'Outil de compilation pour java',
+        :license_id=> 2,
+        :image_id => 1
+    }
+    post :update, { :id => 1, :logiciel => options }
+
+    assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => 1
   end

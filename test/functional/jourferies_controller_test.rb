@@ -46,7 +46,9 @@ class JourferiesControllerTest < Test::Unit::TestCase
   def test_create
     num_jourferies = Jourferie.count
 
-    post :create, :jourferie => {}
+    post :create, :jourferie => {
+      :jour => '2007-12-25'
+    }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'

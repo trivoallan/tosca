@@ -60,7 +60,7 @@ class DocumentsControllerTest < Test::Unit::TestCase
       :updated_on => "2007-07-26 11:35:58",
       :client_id => 1,
       :description => "Etude réalisée pour SI2 dans le cadre de\r\nl'évaluation des solutions Open Source comme alternative à Lotus Notes",
-      :fichier => "MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip",
+      :fichier => "/home/MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip",
       :titre => "Etude Migration Lotus (SI2)",
       :identifiant_id => 1 ,
       :date_delivery => nil,

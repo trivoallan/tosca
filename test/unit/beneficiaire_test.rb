@@ -8,7 +8,12 @@ class BeneficiaireTest < Test::Unit::TestCase
 
   def test_nom
     b = Beneficiaire.find 1
-    b2 = Beneficiaire.find 2
+    b2 = Beneficiaire.new( 
+      :client_id => 1,
+      :beneficiaire_id => 1,
+      :identifiant_id => 44)
+    assert b2.save
+
     assert_equal b.nom, 'Hélène Parmentier'
     assert_equal b2.nom, ''
   end

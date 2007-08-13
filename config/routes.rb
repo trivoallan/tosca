@@ -114,7 +114,7 @@ ActionController::Routing::Routes.draw do |map|
   # image_path is used in ActionView::Helpers of Rails
   map.resources :images, :singular => 'img'
   map.resources :ingenieurs,  :collection => { :list => :get }
-  map.resources :jourferies
+  map.resources :jourferies, :singular => 'jourferie'
   map.resources :licenses
   map.resources :logiciels
   map.resources :machines

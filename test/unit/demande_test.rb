@@ -56,17 +56,17 @@ class DemandeTest < Test::Unit::TestCase
   end
   def test_client
     r = Demande.find 1,2
-    c = Client.find 2
-    assert_nil r[0].client
+    c = Client.find 1
+    assert_equal r[0].client, c
     assert_equal r[1].client, c
   end
   def test_respect_contournement_and_correction
     r = Demande.find 3
     c = Contrat.find 2
     assert_equal r.respect_contournement(c.id),
-      '<p style="color: green">2 heures ouvrées</p>'
+      '<p style="color: red">22 jours ouvrés</p>'
     assert_equal r.respect_correction(c.id), 
-      '<p style="color: green">11 jours ouvrés</p>'
+      '<p style="color: red">11 jours ouvrés</p>'
   end
   def test_affiche_temps_correction_and_contournement
     r = Demande.find 3
@@ -94,7 +94,7 @@ class DemandeTest < Test::Unit::TestCase
   end
   def test_affiche_temps_ecoule
     r = Demande.find 3
-    assert_equal r.affiche_temps_ecoule, '-'
+    assert r.affiche_temps_ecoule
   end
 
 end

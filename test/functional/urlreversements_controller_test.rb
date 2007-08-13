@@ -46,7 +46,10 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
   def test_create
     num_urlreversements = Urlreversement.count
 
-    post :create, :urlreversement => {}
+    post :create, :urlreversement => {
+      :valeur => 'une valeur',
+      :contribution_id => 1
+    }
 
     assert_response :redirect
     assert_redirected_to contribution_path(1)

@@ -78,7 +78,7 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
 
     post :destroy, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to logiciel_path('1-ANT')
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Urllogiciel.find(1)

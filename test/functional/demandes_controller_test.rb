@@ -3,16 +3,22 @@ require 'demandes_controller'
 
 # Re-raise errors caught by the controller.
 class DemandesController; def rescue_action(e) raise e end; end
-
 class DemandesControllerTest < Test::Unit::TestCase
-  fixtures :demandes
+ 
+  fixtures :demandes, :commentaires, :demandes_paquets, 
+    :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
+    :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles, 
+    :permissions_roles, :contrats, :contrats_engagements, :engagements, 
+    :contrats_ingenieurs, :identifiants, :identifiants_roles, :piecejointes,
+    :jourferies, :binaires, :binaires_demandes, :supports, :typedemandes
+
 
   def setup
     @controller = DemandesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    login 'bob', 'test'
+    login 'admin', 'admin'
     @first_id = demandes(:first).id
   end
 
@@ -27,7 +33,7 @@ class DemandesControllerTest < Test::Unit::TestCase
     get :show, :id => @first_id
 
     assert_response :success
-    assert_template 'show'
+    assert_template 'comment'
 
     assert_not_nil assigns(:demande)
     assert assigns(:demande).valid?

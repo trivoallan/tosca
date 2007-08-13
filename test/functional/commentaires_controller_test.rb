@@ -48,14 +48,14 @@ class CommentairesControllerTest < Test::Unit::TestCase
     post :update, { 
       :id => 1,
       :commentaire => {
-        :demande_id => 3,
-        :identifiant_id => 1,
+        :demande_id => 1,
+        :identifiant_id => 2,
         :piecejointe_id => 1,
         :corps => 'Voici un autre commentaire',
-        :prive => 1,
+        :prive => 0,
         :created_on => '2006-09-21 08:19:30',
         :updated_on => '2007-07-12 14:21:17',
-        :severite_id => 2,
+        :severite_id => 1,
         :statut_id => 7,
         :ingenieur_id => 1
       }

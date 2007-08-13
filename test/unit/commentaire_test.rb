@@ -23,6 +23,6 @@ class CommentaireTest < Test::Unit::TestCase
   end
   def test_etat
     c = Commentaire.find 1
-    assert_equal c.etat, 'private'
+    assert_equal c.etat, 'public'
   end
 end

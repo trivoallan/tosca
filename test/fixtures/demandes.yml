@@ -2,7 +2,7 @@
 first:
   id: 1
   logiciel_id: 1
-  beneficiaire_id: 3 # no recipient
+  beneficiaire_id: 1
   ingenieur_id: 1
   resume: 'Patch Binaire'
   description: "Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
@@ -20,7 +20,7 @@ first:
 second:
   id: 2
   logiciel_id: 1
-  beneficiaire_id: 2 # recipient without identifiant
+  beneficiaire_id: 1
   ingenieur_id: 1
   resume: 'une autre demandes'
   description: "Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
@@ -32,7 +32,7 @@ second:
   contribution_id: 28
   mail_cc: nil
   socle_id: 0
-  first_comment_id: 1
+  first_comment_id: 2
 third:
   id: 3
   logiciel_id: 1
@@ -48,4 +48,4 @@ third:
   contribution_id: 28
   mail_cc: nil
   socle_id: 0
-  first_comment_id: 1
+  first_comment_id: 3

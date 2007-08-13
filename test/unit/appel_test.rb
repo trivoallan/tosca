@@ -24,13 +24,13 @@ class AppelTest < Test::Unit::TestCase
     assert a.save
   end
   def test_client_id
-    a = Appel.new( :id=> 3,
+    a = Appel.new(
       :debut => "2007-03-16 16:41:00",
       :fin => "2007-03-16 22:41:00",
       :demande_id => nil,
       :ingenieur_id => 1,
-      :beneficiaire_id => 2,
-      :contrat_id => 1)
+      :beneficiaire_id => 1,
+      :contrat_id => 2)
     assert !a.save
   end
   def test_fin_formatted
