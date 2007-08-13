@@ -87,7 +87,7 @@ class LogicielsControllerTest < Test::Unit::TestCase
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'index'
   end
 
   def test_destroy
