@@ -5,15 +5,24 @@
 
 module Static
 
-  # Create an action view not bound to any controller
-  # used to generate html tags from a static environement
+  # This is a singleton ActionView, created on first request
+  # @see ApplicationController.set_global_shortcut
+  # It's used to generate some html tags only once,
+  # when asked. It's faster and do not uglify the code, 
+  # so it's ok ;). Heavily used for images, @see static_image.rb for instance
+  #
   class ActionView
     include ::ActionView
     include ::ActionView::Helpers::AssetTagHelper
     include ::ActionView::Helpers::TagHelper
-    include Metadata
 
-    @@av = ActionView.new
+    @@av = nil
+    @@relative_url_root = nil
+    def self.set_request(request)
+      @@relative_url_root = "#{request.relative_url_root}/images/"
+      @@av = ActionView.new
+    end
+
     def self.image_tag(path, op={})
       @@av.image_tag(path, op) || "O"
     end
@@ -25,15 +34,11 @@ module Static
     private
 
     def compute_public_path(source,dir,ext)
-      "#{relative_url_root}#{source}"
+      "#{@@relative_url_root}#{source}"
     end
 
     def relative_url_root
-      if PREFIX == ""
-        "/images/"
-      else
-        "/#{PREFIX}/images/"
-      end
+      @@relative_url_root
     end
   end
 

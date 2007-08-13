@@ -67,7 +67,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :accounts,
     :controller => "account",
     :member => { :devenir => :post },
-    :collection => { :logout => :post, :login => :any,
+    :collection => { :logout => :any, :login => :any,
       :auto_complete_for_identifiant_nom => :post,
       :auto_complete_for_identifiant_email => :post},
     :new => { :signup => :any, :multiple_signup => :any }

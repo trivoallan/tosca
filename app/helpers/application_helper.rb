@@ -10,8 +10,6 @@
 # - LISTES ET TABLES
 # - TIME
 
-require 'static_image'
-require 'static_script'
 
 module ApplicationHelper
   include PagesHelper

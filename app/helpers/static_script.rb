@@ -3,11 +3,7 @@
 #####################################################
 # this script is here to help with generating dates
 
-require 'static'
-
-module StaticScript
-
-  include Static
+class StaticScript < Static::ActionView
 
   @@date_opt = { :alt => _("Choose a date"), :size => '16x16',
     :title => _("Select a date"),
@@ -17,12 +13,12 @@ module StaticScript
 
   @@date_from = nil
   def self.date_from
-    @@date_from ||= ActionView::image_tag('cal.gif', @@date_opt.dup.update(:id => 'date_from'))
+    @@date_from ||= image_tag('cal.gif', @@date_opt.dup.update(:id => 'date_from'))
   end
 
   @@date_to = nil
   def self.date_to
-    @@date_to ||= ActionView::image_tag('cal.gif', @@date_opt.dup.update(:id => 'date_to'))
+    @@date_to ||= image_tag('cal.gif', @@date_opt.dup.update(:id => 'date_to'))
   end
 
   # used to generate js for calendar. It uses an array of 2 arguments. See

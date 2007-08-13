@@ -13,7 +13,7 @@ class AccountController < ApplicationController
   helper :filters, :ingenieurs, :beneficiaires, :roles, :export
 
   skip_before_filter :login_required
-  before_filter :login_required, :except => [:login]
+  before_filter :login_required, :except => [:login,:logout]
 
   def index
     # init
