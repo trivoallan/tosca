@@ -26,7 +26,7 @@ le_meilleur_paquet:
   conteneur_id: 1
   version: '1.7'
   fournisseur_id: 0 
-  contrat_id: 2 # contrat avec guy
+  contrat_id: 2 # contrat avec linagorien
   release: "13.3.6"
   changelogs_count: nil
   taille: 3528875
