@@ -119,8 +119,15 @@ module  ComexReporting
       end
       c_extra[:demandes_ids].sort!{|a,b| c[a][:correction] <=> c[b][:correction] }.reverse!
     end
+    delete_empty_contract
+  end
+  def delete_empty_contract
     @percents.compact!
     @extra.compact!
+    @percents.delete_if { |c| c.empty? }
+    @extra.delete_if { |c_extra|
+      c_extra[:demandes_ids].empty?
+    }
   end
 
 end
