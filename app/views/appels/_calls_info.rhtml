@@ -32,12 +32,13 @@
 <div class="menu_title" onclick="Element.toggle('menu_periode')">
 > <%=_('Period')%></div>
 <ul class="menu" id="menu_periode">
- <li><%= text_field :filters, :after, :onchange => submit_function %><br />
-   <b><%= _('From')%></b>
+ <li><b><%= _('From')%> </b>&nbsp;
+   <% options = { :style => "width: 7em;", :onchange => submit_function } %>
+   <%= text_field :filters, :after, options %>
    <span class="calendarPicker"><%= StaticScript::date_from %></span>
    <%= StaticScript::script_date('filters_after', 'date_from') %></li>
- <li><%= text_field :filters, :before, :onchange => submit_function %><br />
-   <b><%= _('To')%> </b>
+ <li><b><%= _('To')%> </b>&nbsp;
+   <%= text_field :filters, :before, options %>
    <span class="calendarPicker"><%= StaticScript::date_to %></span>
    <%= StaticScript::script_date('filters_before', 'date_to') %></li>
 </ul>
@@ -56,5 +57,4 @@
 </ul>
 
 <% end %>
-
 <%= observe_form 'filters', options %>
