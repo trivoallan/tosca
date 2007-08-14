@@ -27,22 +27,30 @@ class LogicielsController < ApplicationController
                 :include => [:groupe,:competences] }
     conditions = []
 
-    # Dirty Hack. TODO : faire mieux
-    filters = params['filters']
-    if @ingenieur and filters and not filters['client_id'].blank?
-      filters['client_id'] = scope_client(filters['client_id'])
-      options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id' 
+    if params.has_key? :filters
+      session[:softwares_filters] = Filters::Softwares.new(params[:filters])
     end
+    conditions = nil
+    if session.data.has_key? :softwares_filters
+      softwares_filters = session[:softwares_filters]
 
-    # Specification of a filter f :
-    # [ namespace, field, database field, operation ]
-    conditions = Filters.build_conditions(params, [
-       ['logiciel', 'nom', 'logiciels.nom', :like ],
-       ['logiciel', 'description', 'logiciels.description', :like ],
-       ['filters', 'groupe_id', 'logiciels.groupe_id', :equal ],
-       ['filters', 'competence_id', 'competences_logiciels.competence_id', :equal ],
-       ['filters', 'client_id', ' paquets.contrat_id', :in ] 
-     ])
+      # we do not want an include since it's only for filtering.
+      unless softwares_filters['contrat_id'].blank?
+        options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id' 
+      end
+
+      # Specification of a filter f :
+      #   [ field, database field, operation ]
+      # All the fields must be coherent with lib/filters.rb related Struct.
+      conditions = Filters.build_conditions(softwares_filters, [
+        [:software, 'logiciels.nom', :like ],
+        [:description, 'logiciels.description', :like ],
+        [:groupe_id, 'logiciels.groupe_id', :equal ],
+        [:competence_id, 'competences_logiciels.competence_id', :equal ],
+        [:contrat_id, ' paquets.contrat_id', :in ] 
+      ])
+      @filters = softwares_filters
+    end
     flash[:conditions] = options[:conditions] = conditions 
 
     # optional scope, for customers 
@@ -121,8 +129,7 @@ private
   end  
 
   def _panel 
-    @clients = Client.find_select if @ingenieur
-    @groupes = Groupe.find_select
+    @contrats = Contrat.find_select(Contrat::OPTIONS) if @ingenieur
     @technologies = Competence.find_select
     @groupes = Groupe.find_select
 

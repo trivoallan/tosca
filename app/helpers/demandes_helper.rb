@@ -182,22 +182,22 @@ module DemandesHelper
   # begining of factorisation in logiciels_helper
   def remote_link_to_active_request
     ajax_call =  PagesHelper::AJAX_OPTIONS.dup.update(:url => demandes_path)
-    js_call = "document.forms['filters'].active.value=1; #{remote_function(ajax_call)}"
-    link_to_function(_('active requests'), js_call,
+    js_call = "document.forms['filters'].elements['filters[active]'].value=1; #{remote_function(ajax_call)}"
+    link_to_function(_('Active requests'), js_call,
                      _('show requests waiting to be processed'))
   end
 
   def remote_link_to_dead_request
     ajax_call =  PagesHelper::AJAX_OPTIONS.dup.update(:url => demandes_path)
-    js_call = "document.forms['filters'].active.value=-1; #{remote_function(ajax_call)}"
-    link_to_function(_('finished requests'), js_call,
+    js_call = "document.forms['filters'].elements['filters[active]'].value=-1; #{remote_function(ajax_call)}"
+    link_to_function(_('Finished requests'), js_call,
                      _('show requests that were processed'))
   end
 
   def remote_link_to_all_request
     ajax_call =  PagesHelper::AJAX_OPTIONS.dup.update(:url => demandes_path)
-    js_call = "document.forms['filters'].active.value=0; #{remote_function(ajax_call)}"
-    link_to_function(_('all the requests'), js_call,
+    js_call = "document.forms['filters'].elements['filters[active]'].value=0; #{remote_function(ajax_call)}"
+    link_to_function(_('All the requests'), js_call,
                      _('show all the requests'))
   end
 

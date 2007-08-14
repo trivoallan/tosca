@@ -27,10 +27,10 @@
 > <%= _('Search') %></div>
 <ul class="menu" id="menu_recherche">
  <li><b><%= _('By name') %></b><br/>
-     <%= text_field_with_auto_complete :logiciel, :nom, {}, :skip_style => true %></li>
+     <%= text_field :filters, :software %></li>
  <% if @ingenieur %>
   <li><b><%= _('By client') %> </b><br/>
-      <%= select_filter(@clients, 'client') %></li>
+      <%= select_filter(@contrats, 'contrat') %></li>
  <% end %>
 </ul>
 
@@ -38,7 +38,7 @@
 > <%=_('Characteristic')%></div>
 <ul class="menu" id="menu_caracteristique">
  <li><b><%= _('Description') %> </b><br/>
-     <%= text_field :logiciel, :description %></li>
+     <%= text_field :filters, :description %></li>
  <li><b><%= _('Group') %> </b><br/>
      <%= select_filter(@groupes, 'groupe') %></li>
  <li><b><%= _('Technology') %> </b><br/>

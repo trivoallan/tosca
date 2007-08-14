@@ -1,5 +1,45 @@
 module Filters
 
+  module Shared
+    def self.extended(base)
+      base.class_eval do
+        define_method(:initialize) { |params, *args| 
+          if params.is_a? Hash
+            params.each {|key, value| 
+              if key =~ /_id/ and value.is_a? String and not value.blank?
+                send("#{key}=", value.to_i)
+              else
+                send("#{key}=", value)
+              end
+            }
+          else
+            super(*args.unshift(params))
+          end
+        }
+      end
+    end
+  end
+
+  class Contributions < Struct.new('Contributions', :software, :ingenieur_id, 
+                                   :contribution, :etatreversement_id)
+    extend Shared
+  end
+
+  class Softwares < Struct.new('Softwares', :software, :groupe_id, 
+                               :contrat_id, :description, :competence_id )
+    extend Shared
+  end
+
+  class Calls < Struct.new('Calls', :ingenieur_id, :beneficiaire_id, 
+                            :contrat_id, :after, :before)
+    extend Shared
+  end
+
+  class Requests < Struct.new('Requests', :text, :client_id, :ingenieur_id, 
+                              :typedemande_id, :severite_id, :statut_id, :active)
+    extend Shared
+  end
+
   # build the conditions query, from a well specified array of filters
   # Specification of a filter f :
   # [ namespace, field, database field, operation ]
@@ -25,32 +65,30 @@ module Filters
     conditions = [[]]
     condition_0 = conditions.first
     filters.each { |f|
-      if params[f.first] 
-        value = params[f.first][f[1]] 
-        unless value.blank?
-          query = case f.last
-                  when :equal
-                    "#{f[2]}=?"
-                  when :greater_than
-                    "#{f[2]}>?"
-                  when :lesser_than
-                    "#{f[2]}<?"
-                  when :dual_like
-                    "(#{f[2]} LIKE (?) OR #{f[3]} LIKE (?))"
-                  else
-                    "#{f[2]} #{f[3]} (?)"
-                  end
-          condition_0.push query 
-          # now, fill in parameters of the query
-          case f.last
-          when :like
-            conditions.push "%#{value}%"
-          when :dual_like
-            temp = "%#{value}%"
-            conditions.push temp, temp
-          else
-            conditions.push value
-          end
+      value = params[f.first] 
+      unless value.blank?
+        query = case f.last
+                when :equal
+                  "#{f[1]}=?"
+                when :greater_than
+                  "#{f[1]}>?"
+                when :lesser_than
+                  "#{f[1]}<?"
+                when :dual_like
+                  "(#{f[1]} LIKE (?) OR #{f[2]} LIKE (?))"
+                else
+                  "#{f[1]} #{f[2]} (?)"
+                end
+        condition_0.push query 
+        # now, fill in parameters of the query
+        case f.last
+        when :like
+          conditions.push "%#{value}%"
+        when :dual_like
+          temp = "%#{value}%"
+          conditions.push temp, temp
+        else
+          conditions.push value
         end
       end
     }

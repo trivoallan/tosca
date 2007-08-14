@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-13 18:48+0200\n"
+"POT-Creation-Date: 2007-08-14 16:10+0200\n"
 "PO-Revision-Date: 2007-08-13 17:59+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -131,16 +131,16 @@ msgstr ""
 msgid "The user %s  has not been created.<br /> "
 msgstr ""
 
-#: app/controllers/account_controller.rb:271
+#: app/controllers/account_controller.rb:274
 msgid "Logout"
 msgstr ""
 
-#: app/controllers/account_controller.rb:272 app/views/account/_edit.rhtml:7
+#: app/controllers/account_controller.rb:275 app/views/account/_edit.rhtml:7
 #: app/views/account/show.rhtml:5
 msgid "My account"
 msgstr ""
 
-#: app/controllers/appels_controller.rb:34
+#: app/controllers/appels_controller.rb:35
 msgid "The call was successfully created."
 msgstr ""
 
@@ -214,35 +214,50 @@ msgstr ""
 msgid "Skill was successfully updated."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:75
+#: app/controllers/contributions_controller.rb:86
 msgid "The contribution has been created successfully."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:95
+#: app/controllers/contributions_controller.rb:106
 msgid "The contribution has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:78
+#: app/controllers/demandes_controller.rb:33
+#: app/helpers/demandes_helper.rb:186
+msgid "Active requests"
+msgstr ""
+
+#: app/controllers/demandes_controller.rb:36
+#: app/helpers/demandes_helper.rb:193
+msgid "Finished requests"
+msgstr ""
+
+#: app/controllers/demandes_controller.rb:38
+#: app/helpers/demandes_helper.rb:200
+msgid "All the requests"
+msgstr ""
+
+#: app/controllers/demandes_controller.rb:100
 msgid "Your request has been successfully submitted"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:199
+#: app/controllers/demandes_controller.rb:221
 msgid "The request has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:218
+#: app/controllers/demandes_controller.rb:241
 msgid "The request is correctly assigned"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:222
+#: app/controllers/demandes_controller.rb:245
 msgid "The request is no more assigned"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:237
+#: app/controllers/demandes_controller.rb:260
 msgid "The demand has now no contribution"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:239
+#: app/controllers/demandes_controller.rb:262
 msgid "This contribution is now linked"
 msgstr ""
 
@@ -358,6 +373,7 @@ msgstr ""
 #: app/controllers/export_controller.rb:145 app/views/account/_menu.rhtml:18
 #: app/views/binaires/show.rhtml:9
 #: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_contributions_info.rhtml:28
 #: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:46
 #: app/views/demandes/_infos_demande.rhtml:21
 #: app/views/demandes/_requests_list.rhtml:9 app/views/paquets/_form.rhtml:7
@@ -395,8 +411,9 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:148
 #: app/controllers/reporting_controller.rb:514
-#: app/helpers/contributions_helper.rb:10 app/views/demandes/_form.rhtml:19
-#: app/views/demandes/_form_deposer.rhtml:19
+#: app/helpers/contributions_helper.rb:10
+#: app/views/contributions/_contributions_info.rhtml:39
+#: app/views/demandes/_form.rhtml:19 app/views/demandes/_form_deposer.rhtml:19
 #: app/views/demandes/_infos_demande.rhtml:15
 #: app/views/demandes/_requests_list.rhtml:15
 #: app/views/logiciels/_form.rhtml:6 app/views/logiciels/show.rhtml:13
@@ -518,15 +535,15 @@ msgstr ""
 msgid "List of your supported softwares"
 msgstr ""
 
-#: app/controllers/logiciels_controller.rb:85
+#: app/controllers/logiciels_controller.rb:92
 msgid "The software %s has been created succesfully."
 msgstr ""
 
-#: app/controllers/logiciels_controller.rb:100
+#: app/controllers/logiciels_controller.rb:107
 msgid "The software %s has been updated successfully."
 msgstr ""
 
-#: app/controllers/logiciels_controller.rb:110
+#: app/controllers/logiciels_controller.rb:117
 msgid "The software %s has been successfully deleted."
 msgstr ""
 
@@ -794,24 +811,12 @@ msgstr ""
 msgid "Unlink the contribution"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:186
-msgid "active requests"
-msgstr ""
-
 #: app/helpers/demandes_helper.rb:187
 msgid "show requests waiting to be processed"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:193
-msgid "finished requests"
-msgstr ""
-
 #: app/helpers/demandes_helper.rb:194
 msgid "show requests that were processed"
-msgstr ""
-
-#: app/helpers/demandes_helper.rb:200
-msgid "all the requests"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:201
@@ -857,6 +862,7 @@ msgstr ""
 
 #: app/helpers/links_helper.rb:116 app/views/account/_menu.rhtml:20
 #: app/views/bienvenue/index.rhtml:69 app/views/binaires/show.rhtml:2
+#: app/views/contributions/_contributions_info.rhtml:42
 #: app/views/groupes/index.rhtml:5
 #: app/views/logiciels/_softwares_info.rhtml:54 app/views/paquets/show.rhtml:2
 msgid "Softwares"
@@ -867,6 +873,7 @@ msgid "Access to the list of softwares"
 msgstr ""
 
 #: app/helpers/links_helper.rb:122 app/views/binaires/_form.rhtml:30
+#: app/views/contributions/_contributions_info.rhtml:41
 #: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
 #: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:59
 msgid "Contributions"
@@ -881,6 +888,7 @@ msgid "Administration"
 msgstr ""
 
 #: app/helpers/links_helper.rb:129
+#: app/views/contributions/_contributions_info.rhtml:21
 msgid "Administration interface"
 msgstr ""
 
@@ -999,7 +1007,9 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: app/helpers/static_image.rb:108 app/views/urlreversements/_form.rhtml:6
+#: app/helpers/static_image.rb:108
+#: app/views/contributions/_contributions_info.rhtml:30
+#: app/views/urlreversements/_form.rhtml:6
 #: app/views/urlreversements/index.rhtml:6
 msgid "Contribution"
 msgstr ""
@@ -2312,6 +2322,7 @@ msgid "Activity report"
 msgstr ""
 
 #: app/views/account/_menu.rhtml:42 app/views/appels/_calls_info.rhtml:20
+#: app/views/contributions/_contributions_info.rhtml:26
 #: app/views/demandes/_requests_info.rhtml:24
 #: app/views/logiciels/_softwares_info.rhtml:27
 #: app/views/paquets/_paquets_info.rhtml:21
@@ -3111,6 +3122,7 @@ msgid "Patch"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_contributions_info.rhtml:34
 #: app/views/contributions/_form.rhtml:30
 msgid "State"
 msgstr ""
@@ -3134,6 +3146,11 @@ msgstr ""
 msgid "Updated on"
 msgstr ""
 
+#: app/views/contributions/_contributions_info.rhtml:15
+#: app/views/demandes/_requests_info.rhtml:16
+msgid "Actions"
+msgstr ""
+
 #: app/views/contributions/_contributions_info.rhtml:18
 #: app/views/contributions/select.rhtml:7
 msgid "Submit a contribution"
@@ -3142,6 +3159,11 @@ msgstr ""
 #: app/views/contributions/_contributions_info.rhtml:19
 #: app/views/documents/_documents_info.rhtml:21
 msgid "Selection interface"
+msgstr ""
+
+#: app/views/contributions/_contributions_info.rhtml:32
+#: app/views/documents/_form.rhtml:12
+msgid "Author"
 msgstr ""
 
 #: app/views/contributions/_form.rhtml:19
@@ -3409,10 +3431,6 @@ msgstr ""
 msgid "Passé"
 msgstr ""
 
-#: app/views/demandes/_requests_info.rhtml:16
-msgid "Actions"
-msgstr ""
-
 #: app/views/demandes/_requests_info.rhtml:26
 msgid "By word"
 msgstr ""
@@ -3519,10 +3537,6 @@ msgstr ""
 #: app/views/documents/_documents_info.rhtml:15
 #: app/views/documents/new.rhtml:1
 msgid "Add a document"
-msgstr ""
-
-#: app/views/documents/_form.rhtml:12
-msgid "Author"
 msgstr ""
 
 #: app/views/documents/_form.rhtml:29

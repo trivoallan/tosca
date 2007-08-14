@@ -65,6 +65,9 @@ require 'gettext_localize'
 require 'gettext_localize_rails'
 require 'uv'
 
+require 'filters'
+
+
 #French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'
 

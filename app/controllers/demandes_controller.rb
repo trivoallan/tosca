@@ -16,20 +16,33 @@ class DemandesController < ApplicationController
     conditions = []
 
     # Specification of a filter f :
-    special_cond = nil
-    case params[:active]
-      when '1' : special_cond = Demande::EN_COURS
-      when '-1' : special_cond = Demande::TERMINEES
+
+    if params.has_key? :filters
+      session[:requests_filters] = Filters::Requests.new(params[:filters])
     end
-    # [ namespace, field, database field, operation ]
-    conditions = Filters.build_conditions(params, [
-       ['filters', 'text', 'logiciels.nom', 'demandes.resume', :dual_like ],
-       ['filters', 'client_id', 'beneficiaires.client_id', :equal ],
-       ['filters', 'ingenieur_id', 'ingenieurs.id', :equal ],
-       ['filters', 'typedemande_id', 'demandes.typedemande_id', :equal ],
-       ['filters', 'severite_id', 'demandes.severite_id', :equal ],
-       ['filters', 'statut_id', 'demandes.statut_id', :equal ]
-     ], special_cond)
+
+    conditions = nil
+    @title = _('All the requests')
+    if session.data.has_key? :requests_filters
+      requests_filters = session[:requests_filters]     
+
+      # Here is the trick for the "flow" part of the view
+      special_cond = active_filters(requests_filters[:active])
+
+      # Specification of a filter f :
+      #   [ field, database field, operation ]
+      # All the fields must be coherent with lib/filters.rb related Struct.
+      conditions = Filters.build_conditions(requests_filters, [
+        [:text, 'logiciels.nom', 'demandes.resume', :dual_like ],
+        [:client_id, 'beneficiaires.client_id', :equal ],
+        [:ingenieur_id, 'ingenieurs.id', :equal ],
+        [:typedemande_id, 'demandes.typedemande_id', :equal ],
+        [:severite_id, 'demandes.severite_id', :equal ],
+        [:statut_id, 'demandes.statut_id', :equal ]
+      ], special_cond)
+      @filters = requests_filters
+    end
+
     flash[:conditions] = options[:conditions] = conditions if conditions
 
     # DIRTY HACK : WARNING
@@ -311,6 +324,21 @@ class DemandesController < ApplicationController
     select = "DISTINCT identifiants.id "
     @identifiants_ingenieurs =
       Identifiant.find(:all, :select => select, :joins => joins)
+  end
+
+  # A small helper which set current flow filters
+  # for index view
+  def active_filters(value)
+    case value
+    when '1' 
+      @title = _('Active requests')
+      Demande::EN_COURS
+    when '-1'
+      @title = _('Finished requests')
+      Demande::TERMINEES
+    else
+      nil
+    end
   end
 
 end

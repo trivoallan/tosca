@@ -7,16 +7,27 @@ class AppelsController < ApplicationController
       [:beneficiaire,:ingenieur,:contrat,:demande] }
     conditions = []
 
-    # Specification of a filter f :
-    # [ namespace, field, database field, operation ]
-    conditions = Filters.build_conditions(params, [
-       ['filters', 'ingenieur_id', 'appels.ingenieur_id', :equal ],
-       ['filters', 'beneficiaire_id', 'appels.beneficiaire_id', :equal ],
-       ['filters', 'contrat_id', 'appels.contrat_id', :equal ],
-       ['date', 'after', 'appels.debut', :greater_than ],
-       ['date', 'before', 'appels.fin', :lesser_than ]
-     ])
-    flash[:conditions] = options[:conditions] = conditions
+
+    if params.has_key? :filters
+      session[:calls_filters] = Filters::Calls.new(params[:filters]) 
+    end
+
+    conditions = nil
+    if session.data.has_key? :calls_filters
+      calls_filters = session[:calls_filters]
+      # Specification of a filter f :
+      #   [ field, database field, operation ]
+      # All the fields must be coherent with lib/filters.rb related Struct.
+      conditions = Filters.build_conditions(calls_filters, [
+        [:ingenieur_id, 'appels.ingenieur_id', :equal ],
+        [:beneficiaire_id, 'appels.beneficiaire_id', :equal ],
+        [:contrat_id, 'appels.contrat_id', :equal ],
+        [:after, 'appels.debut', :greater_than ],
+        [:before, 'appels.fin', :lesser_than ]
+      ])
+      @filters = calls_filters
+      flash[:conditions] = options[:conditions] = conditions
+    end
 
     @appel_pages, @appels = paginate :appels, options
     # panel on the left side. cookies is here for a correct 'back' button
@@ -85,15 +96,14 @@ class AppelsController < ApplicationController
 
     render :partial => 'select_beneficiaires', :layout => false and return
   rescue ActiveRecord::RecordNotFound
-    render_text '-'
+    render :text => '-'
   end
 
   private
   # conventions
   def _form
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
-    options = { :include => Contrat::INCLUDE, :order => 'clients.nom' }
-    @contrats = Contrat.find_select(options)
+    @contrats = Contrat.find_select(Contrat::OPTIONS)
   end
 
   # variables utilisé par le panneau de gauche

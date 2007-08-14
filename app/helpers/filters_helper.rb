@@ -11,7 +11,9 @@ module FiltersHelper
     field = "#{property}_id"
     # disabling auto submit, there is an observer in filter form
     options[:onchange] = ''
-    out << select_onchange(list, nil, 
+    filters = instance_variable_get(:@filters)
+    default_value = (filters ? filters.send(field) : nil)
+    out << select_onchange(list, default_value, 
                            "filters[#{field}]", options)
   end
 

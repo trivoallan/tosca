@@ -40,14 +40,25 @@ class ContributionsController < ApplicationController
     options = { :per_page => 10, :order => 'contributions.updated_on DESC',
       :include => [:logiciel,:etatreversement,:demandes] }
 
-    # Specification of a filter f :
-    # [ namespace, field, database field, operation ]
-    conditions = Filters.build_conditions(params, [
-       ['logiciel', 'nom', 'logiciels.nom', :like ],
-       ['contribution', 'description', 'contributions.nom', :like ],
-       ['filters', 'etatreversement_id', 'contributions.etatreversement_id', :equal ],
-       ['filters', 'ingenieur_id', 'contributions.ingenieur_id', :equal ]
-     ])
+    if params.has_key? :filters
+      session[:contributions_filters] = 
+        Filters::Contributions.new(params[:filters]) 
+    end
+    conditions = nil
+    if session.data.has_key? :contributions_filters
+      contributions_filters = session[:contributions_filters]
+
+      # Specification of a filter f :
+      #   [ field, database field, operation ]
+      # All the fields must be coherent with lib/filters.rb related Struct.
+      conditions = Filters.build_conditions(contributions_filters, [
+        [:software, 'logiciels.nom', :like ],
+        [:contribution, 'contributions.nom', :like ],
+        [:etatreversement_id, 'contributions.etatreversement_id', :equal ],
+        [:ingenieur_id, 'contributions.ingenieur_id', :equal ]
+      ])
+      @filters = contributions_filters
+    end
     flash[:conditions] = options[:conditions] = conditions
 
     @contribution_pages, @contributions = paginate :contributions, options

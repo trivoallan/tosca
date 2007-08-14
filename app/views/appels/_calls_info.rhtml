@@ -32,14 +32,14 @@
 <div class="menu_title" onclick="Element.toggle('menu_periode')">
 > <%=_('Period')%></div>
 <ul class="menu" id="menu_periode">
- <li><b><%= _('From')%></b></li>
-   <li><%= text_field :date, :after, :onchange => submit_function %>
+ <li><%= text_field :filters, :after, :onchange => submit_function %><br />
+   <b><%= _('From')%></b>
    <span class="calendarPicker"><%= StaticScript::date_from %></span>
-   <%= StaticScript::script_date('date_after', 'date_from') %></li>
- <li><b><%= _('To')%> </b></li>
- <li><%= text_field :date, :before, :onchange => submit_function %>
+   <%= StaticScript::script_date('filters_after', 'date_from') %></li>
+ <li><%= text_field :filters, :before, :onchange => submit_function %><br />
+   <b><%= _('To')%> </b>
    <span class="calendarPicker"><%= StaticScript::date_to %></span>
-   <%= StaticScript::script_date('date_before', 'date_to') %></li>
+   <%= StaticScript::script_date('filters_before', 'date_to') %></li>
 </ul>
 
 
