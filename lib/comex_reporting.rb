@@ -83,7 +83,7 @@ module  ComexReporting
         :conditions => Demande::EN_COURS, :order=> 'updated_on ASC'
       demandes.delete_if { |demand|
         engagement= demand.engagement(contrat.id)
-        engagement == nil or
+        engagement == nil or demand.paquets.empty? or
         ( engagement.correction < 0 and engagement.contournement < 0 )
       }
       demandes.each do |demand|
