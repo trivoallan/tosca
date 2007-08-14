@@ -77,7 +77,7 @@ class DemandesController < ApplicationController
     if @demande.save
       flash[:notice] = _("Your request has been successfully submitted")
       Notifier::deliver_demande_nouveau({ :demande => @demande,
-                                          :nom => @session[:user].nom,
+                                          :nom => session[:user].nom,
                                           :controller => self}, flash)
       attachment = params[:piecejointe]
       unless attachment.blank?
@@ -150,27 +150,27 @@ class DemandesController < ApplicationController
   alias_method :show, :comment
 
   def ajax_description
-    return render_text('') unless request.xhr? and params.has_key? :id
+    return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande = Demande.find(params[:id]) unless @demande
     render :partial => 'tab_description', :layout => false
   end
 
   def ajax_comments
-    return render_text('') unless request.xhr? and params.has_key? :id
+    return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     set_comments(@demande_id)
     render :partial => "tab_comments", :layout => false
   end
 
   def ajax_history
-    return render_text('') unless request.xhr? and params.has_key? :id
+    return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     set_comments(@demande_id)
     render :partial => 'tab_history', :layout => false
   end
 
   def ajax_appels
-    return render_text('') unless request.xhr? and params.has_key? :id
+    return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     conditions = [ 'appels.demande_id = ? ', @demande_id ]
     options = { :conditions => conditions, :order => 'appels.debut',
@@ -180,14 +180,14 @@ class DemandesController < ApplicationController
   end
 
   def ajax_piecejointes
-    return render_text('') unless request.xhr? and params.has_key? :id
+    return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     set_piecejointes(@demande_id)
     render :partial => 'tab_piecejointes', :layout => false
   end
 
   def ajax_cns
-    return render_text('') unless request.xhr? and params.has_key? :id
+    return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande = Demande.find(params[:id]) unless @demande
     render :partial => 'tab_cns', :layout => false
   end
@@ -206,11 +206,12 @@ class DemandesController < ApplicationController
 
   def destroy
     Demande.find(params[:id]).destroy
+    redirect_to demandes_path
   end
 
   # TODO : enlever cette méthode quand elle passera dans le commentaire.
   def changer_ingenieur
-    return render_text('') unless params.has_key? :id and params[:ingenieur_id]
+    return render(:text => '') unless params.has_key? :id and params[:ingenieur_id]
     @demande = Demande.find(params[:id])
     @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
     @demande.save!

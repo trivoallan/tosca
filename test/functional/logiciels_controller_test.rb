@@ -53,7 +53,8 @@ class LogicielsControllerTest < Test::Unit::TestCase
       :description=> 'un bon logiciel.',
       :resume=> 'Outil de compilation pour java',
       :license_id=> 2,
-      :image_id => 1
+      :image_id => 1,
+      :competence_ids => [1]
     }
 
     assert flash.has_key?(:notice)
@@ -81,7 +82,8 @@ class LogicielsControllerTest < Test::Unit::TestCase
         :description=> 'un bon logiciel.',
         :resume=> 'Outil de compilation pour java',
         :license_id=> 2,
-        :image_id => 1
+        :image_id => 1,
+        :competence_ids => [1]
     }
     post :update, { :id => 1, :logiciel => options }
 

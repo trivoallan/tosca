@@ -51,7 +51,13 @@ class DemandesControllerTest < Test::Unit::TestCase
   def test_create
     num_demandes = Demande.count
 
-    post :create, :demande => {}
+    post :create, :demande => {
+      :resume => 'le résumé',
+      :description => 'une description',
+      :beneficiaire_id => 1,
+      :statut_id => 1,
+      :severite_id => 1
+    }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'
@@ -72,7 +78,7 @@ class DemandesControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => @first_id
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => @first_id
+    assert_redirected_to :action => 'comment', :id => '1-Patch-Binaire'
   end
 
   def test_destroy

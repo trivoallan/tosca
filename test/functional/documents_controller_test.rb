@@ -60,7 +60,7 @@ class DocumentsControllerTest < Test::Unit::TestCase
       :updated_on => "2007-07-26 11:35:58",
       :client_id => 1,
       :description => "Etude réalisée pour SI2 dans le cadre de\r\nl'évaluation des solutions Open Source comme alternative à Lotus Notes",
-      :fichier => "/home/MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip",
+      :fichier => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/upload_document.png"),
       :titre => "Etude Migration Lotus (SI2)",
       :identifiant_id => 1 ,
       :date_delivery => nil,
@@ -69,7 +69,7 @@ class DocumentsControllerTest < Test::Unit::TestCase
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'select'
 
     assert_equal num_documents + 1, Document.count
   end

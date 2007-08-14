@@ -47,7 +47,7 @@ class PiecejointesControllerTest < Test::Unit::TestCase
     num_piecejointes = Piecejointe.count
 
     post :create, :piecejointe => {
-      :file => 'un_fichier.odt'
+      :file => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/upload_document.png")
     }
 
     assert_response :redirect
