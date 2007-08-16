@@ -20,7 +20,8 @@
   <li><b><%= _("System") %>: </b><%= link_to_socle @demande.socle %></li>
   <li><b><%= _("Software") %>: </b><%= public_link_to_logiciel @demande.logiciel %></li>
    <% html_options = { :popup => ['help_statut', 'height=300,width=600'] } %>
-  <li><b><%= _("Status")%>: </b><%= link_to(@demande.statut.nom, help_statut_path(@demande.statut_id), html_options) %></li>
+  <li><b><%= _("Status")%>: </b><%= link_to(@demande.statut.nom, 
+      help_statut_path(@demande.statut_id), html_options) %></li>
   <li><b><%= _("Type")%>: </b><%= @demande.typedemande.nom %></li>
   <li><b><%= _("Severity")%>: </b><%= @demande.severite.nom %></li>
   <% unless @demande.mail_cc.blank? %>
@@ -35,7 +36,8 @@
 > <%= _('Recipent') %></div>
 <% recipient = @demande.beneficiaire %>
 <ul class="menu" id="menu_beneficiaire">
-  <li><b><%= _("Contact") %>: </b><%= mail_to(recipient.identifiant.email, recipient.nom)%></li>
+  <li><b><%= _("Contact") %>: </b><%= mail_to(recipient.identifiant.email, recipient.nom)%>
+    <%= link_to_show account_path(recipient.identifiant) %></li>
   <li><b><%= _('Phone') %>: </b><%= recipient.identifiant.telephone %></li>
   <% client = recipient.client %>
   <li><b><%= _('Company') %>: </b><%= link_to client.nom, client_path(client) %></li>
