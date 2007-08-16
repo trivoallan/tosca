@@ -84,6 +84,7 @@ module  ComexReporting
       demandes.delete_if { |demand|
         engagement= demand.engagement(contrat.id)
         engagement == nil or demand.paquets.empty? or
+        demand.paquets.first.contrat != contrat or
         ( engagement.correction < 0 and engagement.contournement < 0 )
       }
       demandes.each do |demand|
