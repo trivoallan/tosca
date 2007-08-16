@@ -3,7 +3,7 @@
 #####################################################
 class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :appels,
-    :socles, :commentaires
+    :socles, :commentaires, :account
 
   def index
     #special case : direct show

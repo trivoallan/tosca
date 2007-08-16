@@ -17,7 +17,6 @@
     <th><%= _('phone')%></th>
   </tr>
 
-
   <% options = PagesHelper::AJAX_OPTIONS.dup %>
   <% options[:method] = :put %>
   <% @users.each_index {|i| %>

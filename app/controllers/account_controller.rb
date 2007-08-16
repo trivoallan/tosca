@@ -22,14 +22,23 @@ class AccountController < ApplicationController
     conditions = []
     @roles = Role.find_select
 
-    # Specification of a filter f :
-    # [ namespace, field, database field, operation ]
-    conditions = Filters.build_conditions(params, [
-       ['identifiant', 'nom', 'identifiants.nom', :like ],
-       ['filters', 'client_id', 'beneficiaires.client_id', :equal ],
-       ['filters', 'role_id', 'identifiants_roles.role_id', :equal ]
-     ])
-    flash[:conditions] = options[:conditions] = conditions
+    if params.has_key? :filters
+      session[:accounts_filters] = Filters::Accounts.new(params[:filters])
+    end
+    conditions = nil
+    if session.data.has_key? :accounts_filters
+      accounts_filters = session[:accounts_filters]
+
+      # Specification of a filter f :
+      # [ namespace, field, database field, operation ]
+      conditions = Filters.build_conditions(accounts_filters, [
+        [:nom, 'identifiants.nom', :like ],
+        [:client_id, 'beneficiaires.client_id', :equal ],
+        [:role_id, 'identifiants_roles.role_id', :equal ]
+      ])
+      flash[:conditions] = options[:conditions] = conditions
+      @filters = accounts_filters
+    end
 
     @user_pages, @users = paginate :identifiants, options
     # panel on the left side. cookies is here for a correct 'back' button

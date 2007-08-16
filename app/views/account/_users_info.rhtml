@@ -1,6 +1,5 @@
-<% options = { :update => 'content', :url => '../account/index',
-  :before => "Element.show('spinner')",:success => "Element.hide('spinner')" }
-%>
+<% options = { :update => 'content', :url => accounts_path, :method => :get,
+  :before => "Element.show('spinner')",:success => "Element.hide('spinner')" } %>
 
 <% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
@@ -28,7 +27,7 @@
   > <%= _('Search ')%></div>
 <ul class="menu" id="menu_recherche">
   <li><b><%= _('Name')%></b></li>
- <li><%= text_field_with_auto_complete :identifiant, :nom, {}, :skip_style => true  %></li>
+ <li><%= text_field :filters, :nom %></li>
  <li><b><%= _('Customer ')%></b></li>
  <li><%=select_filter(@clients, 'client')%></li>
  <li><b><%= _('Roles ')%> </b></li>
