@@ -23,7 +23,7 @@
         </tr>
         <% @extra[c_id][:demandes_ids].each do |d_id| %>
         <% d= c[d_id] %>
-        <tr <%= tr_attributes("../demandes/comment/#{c.index(d)}") %> >
+        <tr <%= tr_attributes(demande_path d_id) %> >
           <td><%= c.index(d) %></td>
           <td>
             <%= progress_bar( d[:contournement].to_i) unless
