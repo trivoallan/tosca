@@ -1,6 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-a_system:
+socle2004:
   id: 1
   binaires_count: nil
   nom: "dgi2004-1.32"
-  client_id: 1
+socle2007:
+  id: 2
+  binaires_count: nil
+  nom: "dgi2007-0.24"
+windowsXP:
+  id: 3
+  binaires_count: nil
+  nom: "windowsXP"
+
+
