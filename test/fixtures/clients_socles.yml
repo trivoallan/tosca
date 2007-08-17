@@ -1,0 +1,10 @@
+---
+toto_socle2004:
+  client_id: 1
+  socle_id: 1
+guy_socle2007:
+  client_id: 2
+  socle_id: 2
+guy_windowsXP:
+  client_id: 2
+  socle_id: 3
