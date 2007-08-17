@@ -67,9 +67,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :accounts,
     :controller => "account",
     :member => { :devenir => :post },
-    :collection => { :logout => :any, :login => :any,
-      :auto_complete_for_identifiant_nom => :post,
-      :auto_complete_for_identifiant_email => :post},
+    :collection => { :logout => :any, :login => :any },
     :new => { :signup => :any, :multiple_signup => :any }
   map.resources :appels,  :collection => { :ajax_beneficiaires => :get }
   map.resources :arches
@@ -124,7 +122,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :pages
   map.resources :paquets
   map.resources :permissions
-  map.resources :piecejointes
+  map.resources :piecejointes, :member => { :uv => :get }
   map.resources :roles
   map.resources :socles
   map.resources :statuts, :member => { :help => :get }
@@ -147,6 +145,6 @@ ActionController::Routing::Routes.draw do |map|
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id'
+  # map.connect ':controller/:action/:id'
 
 end

@@ -15,7 +15,6 @@ first:
   mail_cc: nil
   socle_id: 0
   first_comment_id: 1
-  reproductible: 0
 
 second:
   id: 2
