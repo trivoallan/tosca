@@ -17,3 +17,52 @@ engagement2:
   typedemande_id: 2
   correction: 24
   contournement: 1.3
+engagement_blocking_information:
+  id: 4
+  severite_id: 1
+  typedemande_id: 1
+  correction: 5
+  contournement: 1
+engagement_major_information:
+  id: 5
+  severite_id: 2
+  typedemande_id: 1
+  correction: 10
+  contournement: 5
+engagement_minor_information:
+  id: 6
+  severite_id: 3
+  typedemande_id: 1
+  correction: 20
+  contournement: 10
+engagement_none_information:
+  id: 7
+  severite_id: 4
+  typedemande_id: 1
+  correction: -1
+  contournement: 20
+engagement_blocking_issue:
+  id: 8
+  severite_id: 1
+  typedemande_id: 2
+  correction: 5
+  contournement: 1
+engagement_major_issue:
+  id: 9
+  severite_id: 2
+  typedemande_id: 2
+  correction: 10
+  contournement: 5
+engagement_minor_issue:
+  id: 10
+  severite_id: 3
+  typedemande_id: 2
+  correction: 20
+  contournement: 10
+engagement_none_issue:
+  id: 11
+  severite_id: 4
+  typedemande_id: 2
+  correction: -1
+  contournement: 20
+
