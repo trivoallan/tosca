@@ -120,7 +120,8 @@ ActionController::Routing::Routes.draw do |map|
   # 'news'.singularize == 'news' So problems comes
   map.resources :news, :singular => 'new'
   map.resources :pages
-  map.resources :paquets
+  map.resources :paquets, :collection => 
+    { :auto_complete_for_paquet_nom => :get}
   map.resources :permissions
   map.resources :piecejointes, :member => { :uv => :get }
   map.resources :roles
