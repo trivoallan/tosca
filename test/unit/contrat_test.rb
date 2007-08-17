@@ -28,7 +28,7 @@ class ContratTest < Test::Unit::TestCase
     c = Contrat.find 1
     request = Demande.find 1
     e = Engagement.find 1
-    assert_equal c.find_engagement(request), e
+    assert_equal(c.find_engagement(request), e)
   end
   def test_demandes
     c = Contrat.find 3
