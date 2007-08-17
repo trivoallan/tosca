@@ -73,56 +73,42 @@ module  ComexReporting
     contrats.each do |contrat|
       c = @percents[contrat.id]= []
       c_extra = @extra[contrat.id] = {}
-      c_extra[:nom] = contrat.nom
-      c_extra[:demandes_ids]= []
-
-      support = contrat.client.support
-      amplitude = support.fermeture - support.ouverture
+      c_extra[:nom], c_extra[:demandes_ids] = contrat.nom, []
 
       demandes = Demande.find :all,
         :conditions => Demande::EN_COURS, :order=> 'updated_on ASC'
-      demandes.delete_if { |demand|
-        engagement= demand.engagement(contrat.id)
-        engagement == nil or demand.paquets.empty? or
-        demand.paquets.first.contrat != contrat or
+      demandes.delete_if { |request|
+        engagement= request.engagement(contrat.id)
+        engagement == nil or request.paquets.empty? or
+        request.paquets.first.contrat != contrat or
         ( engagement.correction < 0 and engagement.contournement < 0 )
       }
-      demandes.each do |demand|
-        c_extra[:demandes_ids].push( demand.id )
-        d = c[demand.id]= {}
-        d[:resume]= demand.resume
-
-        temps_ecoule = demand.temps_ecoule
-        temps_correction = demand.engagement( contrat.id ).correction.days
-        temps_contournement= demand.engagement(contrat.id).contournement.days
-        temps_reel=
-          demand.distance_of_time_in_working_days(temps_ecoule, amplitude)
-        temps_prevu_correction=
-          demand.distance_of_time_in_working_days(temps_correction,amplitude)
-        temps_prevu_contournement =
-          demand.distance_of_time_in_working_days(temps_contournement,amplitude)
+      demandes.each do |request|
+        c_extra[:demandes_ids].push( request.id )
+        d = c[request.id]= {}
+        d[:resume]= request.resume
+        # temps_ecoule en seconde mais prend en compte les horaire de travail
+        # temps_ecoule is in seconds, but take into consideration the working days
+        temps_ecoule = request.temps_ecoule
         if temps_ecoule < 0
           d[:correction], d[:contournement] = 0,0
           d[:mesg_correction], d[:mesg_contournement] ='-', '-'
         else
-          percent_correction=(temps_reel/temps_prevu_correction )*100
-          percent_contournement =(temps_reel/temps_prevu_contournement )*100
-          time_correction = demand.distance_of_time_in_french_words(
-            (temps_correction - temps_ecoule).abs , support)
-          time_contournement = demand.distance_of_time_in_french_words(
-            (temps_contournement - temps_ecoule).abs , support)
-
-          d[:mesg_correction]=  time_correction
-          d[:mesg_contournement] = time_contournement
-          d[:correction]= (temps_reel/temps_prevu_correction )*100
-          d[:contournement]= (temps_reel/temps_prevu_contournement )*100
+          # correction and contournement are in days in the database
+          # temps_correction in working days
+          temps_correction = request.temps_correction
+          temps_contournement= request.temps_contournement
+          d[:mesg_correction]=  Lstm.time_in_french_words( temps_correction - temps_ecoule)
+          d[:mesg_contournement] = Lstm.time_in_french_words( temps_contournement - temps_ecoule)
+          d[:correction]= temps_correction ? (temps_ecoule/temps_correction )*100 : 101
+          d[:contournement]= temps_contournement ? (temps_ecoule/temps_contournement )*100 : 101
         end
       end
       c_extra[:demandes_ids].sort!{|a,b| c[a][:correction] <=> c[b][:correction] }.reverse!
     end
-    delete_empty_contract
+    delete_empty_contracts
   end
-  def delete_empty_contract
+  def delete_empty_contracts
     @percents.compact!
     @extra.compact!
     @percents.delete_if { |c| c.empty? }

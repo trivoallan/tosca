@@ -68,12 +68,12 @@ class DemandeTest < Test::Unit::TestCase
   end
   def test_affiche_temps_correction_and_contournement
     r = Demande.find 3
-    assert_equal r.affiche_temps_correction, '-'
+    assert_equal r.affiche_temps_correction, '4 jours ouvrés'
     assert_equal r.affiche_temps_contournement, '-'
   end
   def test_temps_correction
     r = Demande.find 3
-    assert_equal r.temps_correction, 0
+    assert_kind_of Float, r.temps_correction
     assert_equal r.temps_contournement, 0
   end
   def test_delais_correction
