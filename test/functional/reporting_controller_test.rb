@@ -12,10 +12,31 @@ class ReportingControllerTest < Test::Unit::TestCase
     @controller = ReportingController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    
+    login 'admin', 'admin'
   end
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_comex
+    get :comex
+    assert_response :success
+    assert_template 'comex'
+  end
+  def test_comex_tableaux
+    get :comex_resultat, { 
+      :results => { :week_num => 33 },
+      :clients => ['all'],
+      :reporting => 'Voir le rapport pour cette semaine'
+    }
+    assert_response :success
+    assert_template 'comex_resultat'
+  end
+  def test_comex_cns
+    get :comex_resultat, {
+      :results => { :week_num => 33 },
+      :clients => ['all'],
+      :cns => 'Voir l\'avancement du CNS'
+    }
+    assert_response :success
+    assert_template 'comex_resultat'
   end
 end

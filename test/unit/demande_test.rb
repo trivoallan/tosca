@@ -70,7 +70,7 @@ class DemandeTest < Test::Unit::TestCase
   # because the display of the time may change
   def test_temps_correction
     r = Demande.find 3
-    assert_kind_of Float, r.temps_correction
+    assert_operator r.temps_correction, '>=', 0
     assert_equal r.temps_contournement, 0
   end
   def test_delais_correction

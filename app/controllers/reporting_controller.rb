@@ -44,8 +44,7 @@ class ReportingController < ApplicationController
     comex = params[:reporting]
 
     clients = '(' << params[:clients].join(',') << ')'
-    @date = {}
-    scope= {}
+    @date, scope = {}, {}
     if cns
       @cns= cns
       scope= { :conditions => "client_id IN #{clients}"} unless clients.include?('all')

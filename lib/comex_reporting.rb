@@ -94,14 +94,15 @@ module  ComexReporting
           d[:correction], d[:contournement] = 0,0
           d[:mesg_correction], d[:mesg_contournement] ='-', '-'
         else
-          # correction and contournement are in days in the database
-          # temps_correction is in second, and not null
+        # temps_correction and temps_contournement are in second, and not null
           temps_correction = request.engagement(contrat).correction.days
           temps_contournement= request.engagement(contrat).contournement.days
-          d[:mesg_correction]=  Lstm.time_in_french_words( (temps_correction - temps_ecoule).abs )
-          d[:mesg_contournement] = Lstm.time_in_french_words( (temps_contournement - temps_ecoule).abs )
-          d[:correction]= temps_correction ? (temps_ecoule/temps_correction )*100 : 101
-          d[:contournement]= temps_contournement ? (temps_ecoule/temps_contournement )*100 : 101
+          d[:mesg_correction]=  
+            Lstm.time_in_french_words( (temps_correction - temps_ecoule).abs )
+          d[:mesg_contournement] = 
+            Lstm.time_in_french_words( (temps_contournement-temps_ecoule).abs )
+          d[:correction]=  (temps_ecoule/temps_correction )*100
+          d[:contournement]= (temps_ecoule/temps_contournement )*100
         end
       end
       c_extra[:demandes_ids].sort!{|a,b| c[a][:correction] <=> c[b][:correction] }.reverse!
