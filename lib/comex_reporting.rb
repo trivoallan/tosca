@@ -97,10 +97,10 @@ module  ComexReporting
         # temps_correction and temps_contournement are in second, and not null
           temps_correction = request.engagement(contrat).correction.days
           temps_contournement= request.engagement(contrat).contournement.days
-          d[:mesg_correction]=  
-            Lstm.time_in_french_words( (temps_correction - temps_ecoule).abs )
-          d[:mesg_contournement] = 
-            Lstm.time_in_french_words( (temps_contournement-temps_ecoule).abs )
+          d[:mesg_correction]=  request.distance_of_time_in_french_words( 
+            (temps_correction - temps_ecoule).abs, request.client.support )
+          d[:mesg_contournement] = request.distance_of_time_in_french_words( 
+            (temps_contournement-temps_ecoule).abs, request.client.support )
           d[:correction]=  (temps_ecoule/temps_correction )*100
           d[:contournement]= (temps_ecoule/temps_contournement )*100
         end
