@@ -6,10 +6,8 @@ class Engagement < ActiveRecord::Base
   belongs_to :typedemande
   has_and_belongs_to_many :contrats
 
-  validate do |record|
-    unless record.correction != 0 and record.contournement != 0
-      record.errors.add _('You must indicate a non null correction and contournement')
-    end
+  validates_each :correction, :contournement do |record, attr, value|
+    record.errors.add attr, 'has to be different of 0' if value == 0
   end
 
   def contourne(delai)

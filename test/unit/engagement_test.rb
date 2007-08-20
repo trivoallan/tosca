@@ -11,7 +11,7 @@ class EngagementTest < Test::Unit::TestCase
     assert !e.save
     e.correction, e.contournement = 0,0
     assert !e.save
-    e.correction, e.contournement = 2, 0.16
+    e.correction, e.contournement = 2, 0.16 # 0.16 stands for 4 hours
     assert e.save
   end
 

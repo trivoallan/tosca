@@ -27,6 +27,9 @@ class DemandesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'index'
     assert_not_nil assigns(:demandes)
+
+    get :index, :filters => { :statut_id => 2 }
+    assert_response :success
   end
 
   def test_show

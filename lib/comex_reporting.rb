@@ -88,21 +88,21 @@ module  ComexReporting
         d = c[request.id]= {}
         d[:resume]= request.resume
         # temps_ecoule en seconde mais prend en compte les horaire de travail
-        # temps_ecoule is in seconds, but take into consideration the working days
-        temps_ecoule = request.temps_ecoule
-        if temps_ecoule < 0
+        # elapsed_time is in seconds, but take into consideration the working days
+        elapsed_time = request.temps_ecoule
+        if elapsed_time < 0
           d[:correction], d[:contournement] = 0,0
           d[:mesg_correction], d[:mesg_contournement] ='-', '-'
         else
-        # temps_correction and temps_contournement are in second, and not null
-          temps_correction = request.engagement(contrat).correction.days
-          temps_contournement= request.engagement(contrat).contournement.days
+        # correction_time and workaround_time are in second, and not null
+          correction_time = request.engagement(contrat).correction.days
+          workaround_time= request.engagement(contrat).contournement.days
           d[:mesg_correction]=  request.distance_of_time_in_french_words( 
-            (temps_correction - temps_ecoule).abs, request.client.support )
+            (correction_time - elapsed_time).abs, request.client.support )
           d[:mesg_contournement] = request.distance_of_time_in_french_words( 
-            (temps_contournement-temps_ecoule).abs, request.client.support )
-          d[:correction]=  (temps_ecoule/temps_correction )*100
-          d[:contournement]= (temps_ecoule/temps_contournement )*100
+            (workaround_time-elapsed_time).abs, request.client.support )
+          d[:correction]=  (elapsed_time/correction_time )*100
+          d[:contournement]= (elapsed_time/workaround_time )*100
         end
       end
       c_extra[:demandes_ids].sort!{|a,b| c[a][:correction] <=> c[b][:correction] }.reverse!
