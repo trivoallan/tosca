@@ -66,11 +66,8 @@ class DemandeTest < Test::Unit::TestCase
     assert_kind_of String, r.respect_contournement(c.id)
     assert_kind_of String, r.respect_correction(c.id)
   end
-  def test_affiche_temps_correction_and_contournement
-    r = Demande.find 3
-    assert_equal r.affiche_temps_correction, '4 jours ouvrés'
-    assert_equal r.affiche_temps_contournement, '-'
-  end
+  # No test for affiche_temps_ecoule and affiche_temps_correction
+  # because the display of the time may change
   def test_temps_correction
     r = Demande.find 3
     assert_kind_of Float, r.temps_correction
