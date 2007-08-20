@@ -30,6 +30,8 @@ class DemandesControllerTest < Test::Unit::TestCase
 
     get :index, :filters => { :statut_id => 2 }
     assert_response :success
+    d = Demande.find 2,3
+    assert_equal assigns(:demandes), d
   end
 
   def test_show
