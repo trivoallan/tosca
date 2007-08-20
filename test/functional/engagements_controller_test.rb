@@ -46,7 +46,10 @@ class EngagementsControllerTest < Test::Unit::TestCase
   def test_create
     num_engagements = Engagement.count
 
-    post :create, :engagement => {}
+    post :create, :engagement => {
+      :correction => 11,
+      :contournement => 0.16
+    }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'
