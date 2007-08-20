@@ -41,7 +41,7 @@ third:
   description: "Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
   statut_id: 2
   severite_id: 1
-  created_on: "2007-08-11 08:19:30"
+  created_on: "2007-08-14 08:19:30"
   updated_on: "2007-08-16 14:21:17"
   typedemande_id: 2
   contribution_id: 28

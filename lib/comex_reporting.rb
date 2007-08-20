@@ -95,11 +95,11 @@ module  ComexReporting
           d[:mesg_correction], d[:mesg_contournement] ='-', '-'
         else
           # correction and contournement are in days in the database
-          # temps_correction in working days
-          temps_correction = request.temps_correction
-          temps_contournement= request.temps_contournement
-          d[:mesg_correction]=  Lstm.time_in_french_words( temps_correction - temps_ecoule)
-          d[:mesg_contournement] = Lstm.time_in_french_words( temps_contournement - temps_ecoule)
+          # temps_correction is in seconds
+          temps_correction = request.engagement(contrat).correction.days
+          temps_contournement= request.engagement(contrat).contournement.days
+          d[:mesg_correction]=  Lstm.time_in_french_words( (temps_correction - temps_ecoule).abs )
+          d[:mesg_contournement] = Lstm.time_in_french_words( (temps_contournement - temps_ecoule).abs )
           d[:correction]= temps_correction ? (temps_ecoule/temps_correction )*100 : 101
           d[:contournement]= temps_contournement ? (temps_ecoule/temps_contournement )*100 : 101
         end

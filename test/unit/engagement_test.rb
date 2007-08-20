@@ -6,6 +6,15 @@ require File.dirname(__FILE__) + '/../test_helper'
 class EngagementTest < Test::Unit::TestCase
   fixtures :engagements
 
+  def test_presence_of_correction_and_contournement
+    e = Engagement.new
+    assert !e.save
+    e.correction, e.contournement = 0,0
+    assert !e.save
+    e.correction, e.contournement = 2, 0.16
+    assert e.save
+  end
+
   def test_contourne
     e = Engagement.find 1
     e_inifite = Engagement.find 2

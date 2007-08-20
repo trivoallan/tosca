@@ -52,7 +52,7 @@ request_3_statut_2:
   piecejointe_id: 1
   corps: 'Commentaire qui a un statut à 2'
   prive: 0
-  created_on: "2007-08-11 08:19:30"
-  updated_on: "2007-08-15 14:21:17"
+  created_on: "2007-08-14 08:19:30"
+  updated_on: "2007-08-16 14:21:17"
   statut_id: 2
   ingenieur_id: 1
