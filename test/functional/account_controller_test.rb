@@ -33,7 +33,7 @@ class AccountControllerTest < Test::Unit::TestCase
 
     get :index, :filters => { :role_id => 1 }
     assert_response :success
-    assigns(:users).each { |u| assert u.roles.include?( Role.find 1) }
+    assigns(:users).each { |u| assert u.roles.include?(Role.find(1)) }
   end
   
   def test_auth_bob

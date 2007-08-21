@@ -22,6 +22,19 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_template 'index'
 
     assert_not_nil assigns(:appels)
+    # tests for the ajax filters :
+    test_filter :ingenieur_id, 1
+    test_filter :beneficiaire_id, 1
+    test_filter :contrat_id, 1
+
+    get :index, :filters => { :after => '2006-03-01' }
+    assert_response :success
+    assigns(:appels).each { |a| assert_operator a.debut, '>', '2006-03-01'.to_time }
+
+    get :index, :filters => { :before => '2007-08-01' }
+    assert_response :success
+    assigns(:appels).each { |a| assert_operator a.fin, '<', '2008-08-01'.to_time }
+
 
   end
 
