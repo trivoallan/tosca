@@ -4,7 +4,7 @@
 module ClientsHelper
 
   def link_to_client(c)
-    return "N/A" unless c
+    return '-' unless c
     link_to c.nom, client_path(c)
   end
 

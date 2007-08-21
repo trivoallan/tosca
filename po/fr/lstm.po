@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-21 13:11+0200\n"
-"PO-Revision-Date: 2007-08-21 13:15+0200\n"
+"PO-Revision-Date: 2007-08-21 13:38+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -297,7 +297,7 @@ msgstr "version"
 
 #: app/controllers/export_controller.rb:41
 msgid "state"
-msgstr "état"
+msgstr "statut"
 
 #: app/controllers/export_controller.rb:42
 msgid "summary"
@@ -435,7 +435,7 @@ msgstr "Résumé"
 #: app/views/demandes/_infos_demande.rhtml:23
 #: app/views/demandes/_requests_info.rhtml:41
 msgid "Status"
-msgstr "État"
+msgstr "Statut"
 
 #: app/controllers/export_controller.rb:148
 #: app/views/demandes/_infos_demande.rhtml:25
@@ -4475,7 +4475,7 @@ msgstr "Valeur"
 #: app/views/urllogiciels/_form.rhtml:11 app/views/urllogiciels/index.rhtml:6
 #: app/views/urllogiciels/show.rhtml:12
 msgid "Kind"
-msgstr "Kind"
+msgstr "Type"
 
 #: app/views/urllogiciels/edit.rhtml:1
 msgid "Editing url of \"%s\""
