@@ -55,7 +55,7 @@ class AccountController < ApplicationController
     case request.method
       when :post
         user_crypt = 'false'
-        user_crypt = params ['user_crypt'] if params.has_key? 'user_cryt'
+        user_crypt = params['user_crypt'] if params.has_key?('user_crypt')
         if session[:user] = Identifiant.authenticate(params['user_login'],
                                                      params['user_password'],
                                                      user_crypt)
