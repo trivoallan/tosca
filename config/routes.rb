@@ -145,7 +145,9 @@ ActionController::Routing::Routes.draw do |map|
   # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
 
+  # kept in order to keep integration with original portal, in php.
+  map.connect 'account/login', :controller => 'account', :action => 'login'
+
   # Install the default route as the lowest priority.
   # map.connect ':controller/:action/:id'
-
 end
