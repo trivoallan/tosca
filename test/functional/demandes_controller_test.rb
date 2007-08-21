@@ -28,10 +28,19 @@ class DemandesControllerTest < Test::Unit::TestCase
     assert_template 'index'
     assert_not_nil assigns(:demandes)
 
-    #test of the ajax filters (cf test_helper) :
+    #test of the ajax filters :
     test_filter :statut_id, 4
     test_filter :severite_id, 2
     test_filter :typedemande_id, 1
+
+    get :index, :filters => { :client_id => 1 }
+    assert_response :success
+    assigns(:demandes).each do |d|
+      request = Demande.find d.id
+      assert_equal request.client.id, 1
+    end
+
+
   end
 
   def test_show
