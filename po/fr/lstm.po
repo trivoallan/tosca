@@ -4511,5 +4511,3 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "You must indicate a non null correction and contournement"
-#~ msgstr "Vous devez indiquer une correction et un contournement non nul"
