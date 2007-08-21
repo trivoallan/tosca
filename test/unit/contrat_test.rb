@@ -4,8 +4,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContratTest < Test::Unit::TestCase
-  fixtures :contrats, :engagements,  :clients,
-    :demandes, :demandes_paquets, :paquets
+  fixtures :contrats, :contrats_engagements,:engagements,  :clients,
+    :demandes, :demandes_paquets, :paquets, :typedemandes
 
   def test_contrat_vide
     c = Contrat.new
@@ -26,9 +26,9 @@ class ContratTest < Test::Unit::TestCase
   end
   def test_find_engagement
     c = Contrat.find 1
-    request = Demande.find 1
+    request = Demande.find 2
     e = Engagement.find 1
-    assert_equal(c.find_engagement(request), e)
+    assert_equal c.find_engagement(request), e
   end
   def test_demandes
     c = Contrat.find 3

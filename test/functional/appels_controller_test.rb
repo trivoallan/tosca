@@ -5,7 +5,7 @@ require 'appels_controller'
 class AppelsController; def rescue_action(e) raise e end; end
 
 class AppelsControllerTest < Test::Unit::TestCase
-  fixtures :appels, :ingenieurs, :beneficiaires, :contrats
+  fixtures :appels, :ingenieurs, :beneficiaires, :contrats, :identifiants
 
   def setup
     @controller = AppelsController.new

@@ -47,7 +47,7 @@ class DemandeTest < Test::Unit::TestCase
   end
   def test_to_s
     r = Demande.find 1
-    assert_equal r.to_s, "Anomalie (Bloquante) : Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
+    assert_equal r.to_s, "Information (Majeure) : Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
   end
   def test_created_and_updated_on_formatted
     r = Demande.find 1

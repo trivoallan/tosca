@@ -28,10 +28,10 @@ class DemandesControllerTest < Test::Unit::TestCase
     assert_template 'index'
     assert_not_nil assigns(:demandes)
 
-    get :index, :filters => { :statut_id => 2 }
-    assert_response :success
-    d = Demande.find 2,3
-    assert_equal assigns(:demandes), d
+    #test of the ajax filters (cf test_helper) :
+    test_filter :statut_id, 4
+    test_filter :severite_id, 2
+    test_filter :typedemande_id, 1
   end
 
   def test_show
@@ -98,5 +98,12 @@ class DemandesControllerTest < Test::Unit::TestCase
     assert_raise(ActiveRecord::RecordNotFound) {
       Demande.find(@first_id)
     }
+  end
+  # test the ajax filters
+  # example : test_filter :statut_id, 2
+  def test_filter attribute, value
+    get :index, :filters => { attribute => value }
+    assert_response :success
+    assigns(:demandes).each { |d| assert_equal d[attribute], value }
   end
 end

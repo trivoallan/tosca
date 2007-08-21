@@ -8,7 +8,7 @@ require 'logiciels_controller'
 class LogicielsController; def rescue_action(e) raise e end; end
 
 class LogicielsControllerTest < Test::Unit::TestCase
-  fixtures :logiciels
+  fixtures :logiciels, :competences
 
   def setup
     @controller = LogicielsController.new
