@@ -5,10 +5,10 @@ module CommentairesHelper
 
   def display_history(comment)
     out = []
-    identifiant = comment.identifiant
-    unless identifiant.nil?
+    ingenieur = comment.ingenieur
+    unless ingenieur.nil?
       out << (_('The <b>owner</b> of your request is') + 
-              " <b>#{identifiant.nom}</b>")
+              " <b>#{ingenieur.nom}</b>")
     end 
     statut = comment.statut
     unless statut.nil?
