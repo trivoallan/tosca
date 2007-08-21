@@ -22,6 +22,7 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_template 'index'
 
     assert_not_nil assigns(:appels)
+
   end
 
   def test_show
@@ -97,5 +98,13 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_raise(ActiveRecord::RecordNotFound) {
       Appel.find(@first_id)
     }
+  end
+  private
+  # test the ajax filters
+  # example : test_filter :statut_id, 2
+  def test_filter attribute, value
+    get :index, :filters => { attribute => value }
+    assert_response :success
+    assigns(:appels).each { |d| assert_equal d[attribute], value }
   end
 end

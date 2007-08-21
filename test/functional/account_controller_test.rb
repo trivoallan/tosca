@@ -17,6 +17,24 @@ class AccountControllerTest < Test::Unit::TestCase
     @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new
     @request.host = "localhost"
   end
+
+
+  def test_index
+    login 'admin', 'admin'
+    get :index
+    assert_response :success
+    assert_template 'index'
+    assert_not_nil assigns(:users)
+
+    #test the ajax filters :
+    get :index, :filters => { :client_id => 1 }
+    assert_response :success
+    assigns(:users).each { |u| assert_equal u.beneficiaire.client_id, 1 }
+
+    get :index, :filters => { :role_id => 1 }
+    assert_response :success
+    assigns(:users).each { |u| assert u.roles.include?( Role.find 1) }
+  end
   
   def test_auth_bob
 

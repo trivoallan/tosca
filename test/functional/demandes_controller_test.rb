@@ -108,6 +108,7 @@ class DemandesControllerTest < Test::Unit::TestCase
       Demande.find(@first_id)
     }
   end
+  private
   # test the ajax filters
   # example : test_filter :statut_id, 2
   def test_filter attribute, value
