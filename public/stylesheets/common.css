@@ -188,7 +188,7 @@ div.show, div.form { max-width: 35em; }
 }
 
 /* predefined pretty width and 3D border just for DIV's */
-div.login, div.form, div.show, div.help, div.info {
+div.login_box, div.form, div.show, div.help, div.info {
 	border-left: 1px solid #ffffff;
 	border-top: 1px solid #ffffff;
 	border-right: 1px solid #999999;

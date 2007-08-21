@@ -32,7 +32,7 @@
     public_link_to_about ]) %>
   <% #TODO : formulaire de login en haut ? %>
   <% @@links[locale] ||= build_simple_menu([
-        link_to_redbox(_("Login"), 'login')], :class => 'account_menu') %>
+        link_to_redbox(_('Log in'), 'login_box')], :class => 'account_menu') %>
   <% user = session.data.has_key? :user %>
   <div id="header">
     <table>
@@ -92,7 +92,7 @@
   </div><!-- end of footer -->
 
   <% unless user %>
-    <div id="login" style="display: none">
+    <div id="login_box" style="display: none">
       <%= render :file => "account/login", :locals => { :show_close_icon => true } %>
     </div>
   <% end %>
