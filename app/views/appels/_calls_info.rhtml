@@ -1,9 +1,7 @@
-<% options = { :update => 'content', :url => appels_path, :method => :get,
-  :before => "Element.show('spinner')",:success => "Element.hide('spinner')" }
-%>
+<% form_options = PagesHelper::AJAX_OPTIONS.dup.update(:url => appels_path) %>
 
-<% form_remote_tag( options.dup.update(:html => {
-    :id => 'filters', :name => 'filters'})) do %>
+<% form_remote_tag( form_options.dup.update(:html => { 
+     :id => 'filters', :name => 'filters', :method => :get})) do %>
 
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
@@ -28,17 +26,17 @@
 </ul>
 
 
-<% submit_function = remote_function(PagesHelper::AJAX_OPTIONS.dup.update(:url => appels_path)) %>
+<% submit_function = remote_function(form_options) %>
 <div class="menu_title" onclick="Element.toggle('menu_periode')">
 > <%=_('Period')%></div>
 <ul class="menu" id="menu_periode">
- <li><b><%= _('From')%> </b>&nbsp;
-   <% options = { :style => "width: 7em;", :onchange => submit_function } %>
-   <%= text_field :filters, :after, options %>
+<li><b><%= _('From')%> </b>&nbsp;
+   <% html_options = { :style => "width: 7em;", :onchange => submit_function } %>
+   <%= text_field :filters, :after, html_options %>
    <span class="calendarPicker"><%= StaticScript::date_from %></span>
    <%= StaticScript::script_date('filters_after', 'date_from') %></li>
  <li><b><%= _('To')%> </b>&nbsp;
-   <%= text_field :filters, :before, options %>
+   <%= text_field :filters, :before, html_options %>
    <span class="calendarPicker"><%= StaticScript::date_to %></span>
    <%= StaticScript::script_date('filters_before', 'date_to') %></li>
 </ul>
@@ -57,4 +55,4 @@
 </ul>
 
 <% end %>
-<%= observe_form 'filters', options %>
+<%= observe_form 'filters', form_options %>
