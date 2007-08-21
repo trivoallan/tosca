@@ -1,4 +1,6 @@
-<% if instance_variable_defined? :@url_attachment and not @url_attachment.blank? %>
+<% # TODO use instance_variable_defined? when debian will have a better
+<% # version of ruby ... :/
+<% if defined? @url_attachment and not @url_attachment.blank? %>
   <p>
     <a href="<%=@url_attachment%>">Télécharger la pièce jointe.</a>
   </p>
