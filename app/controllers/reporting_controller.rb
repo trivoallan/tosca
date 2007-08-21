@@ -531,7 +531,7 @@ end
     g.hide_dots = true if g.respond_to? :hide_dots
     g.hide_legend = true
     # TODO : mettre ca dans les metadatas
-    g.no_data_message = _('No data <br/>available')
+    g.no_data_message = _("No data \navailable")
 
     # this writes the file to the hard drive for caching
     g.write "#{RAILS_ROOT}/public/images/#{@path[nom]}"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-20 17:03+0200\n"
+"POT-Creation-Date: 2007-08-21 13:11+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -596,7 +596,9 @@ msgid " months"
 msgstr ""
 
 #: app/controllers/reporting_controller.rb:534
-msgid "No data <br/>available"
+msgid ""
+"No data \n"
+"available"
 msgstr ""
 
 #: app/controllers/reporting_controller.rb:544
@@ -962,11 +964,11 @@ msgstr ""
 msgid "Since the begining of your contract"
 msgstr ""
 
-#: app/helpers/reporting_helper.rb:147
+#: app/helpers/reporting_helper.rb:152
 msgid "Finished"
 msgstr ""
 
-#: app/helpers/reporting_helper.rb:147
+#: app/helpers/reporting_helper.rb:152
 msgid "Running"
 msgstr ""
 
@@ -1626,10 +1628,6 @@ msgstr ""
 
 #: app/models/engagement.rb:-
 msgid "Engagement|Typedemande"
-msgstr ""
-
-#: app/models/engagement.rb:11
-msgid "You must indicate a non null correction and contournement"
 msgstr ""
 
 #: app/models/etatreversement.rb:-

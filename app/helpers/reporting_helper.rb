@@ -123,6 +123,8 @@ module ReportingHelper
     table
   end
 
+
+
   def report_legend(nom)
     out = ''
     data = @data[nom].sort{|x,y| x[0].to_s <=> y[0].to_s}
@@ -131,7 +133,6 @@ module ReportingHelper
     return out unless colors and colors.size > 0
 
     out << '<table align="center">'
-#    out << '<tr>'
     if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
       twolines = true
       size = data.size / 2
@@ -139,6 +140,10 @@ module ReportingHelper
       twolines = false
       size = data.size
     end
+
+    # TODO : put backgrounded cells into the static image helper ?
+    # We can then remove the code below
+    relative_url_root = "#{Static::ActionView.relative_url_root}reporting/"
     size.times do |i|
       index = (twolines ? i*2 : i)
       name = data[index][0].to_s
@@ -148,13 +153,11 @@ module ReportingHelper
       out << '<tr>'
       color = colors[index]
       # un <td> quoiqu'il se passe
-      # TODO : passer ça dans les images helpers
-      # eventuellement avec un hashé sur les couleurs
-      out << "<td bgcolor=\"#{color}\"><img src=\"../images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
+      out << "<td bgcolor=\"#{color}\"><img src=\"#{relative_url_root}#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       # un autre si twolines
       if twolines
         color = colors[index+1]
-        out << "<td bgcolor=\"#{color}\"><img src=\"../images/reporting/#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
+        out << "<td bgcolor=\"#{color}\"><img src=\"#{relative_url_root}#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       end
       out << '</tr>'
     end

@@ -31,6 +31,10 @@ module Static
       @@av.image_path(path) || "O"
     end
 
+    def self.relative_url_root
+      @@relative_url_root
+    end
+
     private
 
     def compute_public_path(source,dir,ext)

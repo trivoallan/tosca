@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-20 17:03+0200\n"
-"PO-Revision-Date: 2007-08-20 17:03+0200\n"
+"POT-Creation-Date: 2007-08-21 13:11+0200\n"
+"PO-Revision-Date: 2007-08-21 13:15+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -609,8 +609,10 @@ msgid " months"
 msgstr " mois"
 
 #: app/controllers/reporting_controller.rb:534
-msgid "No data <br/>available"
-msgstr "Aucune donnée <br />disponible"
+msgid ""
+"No data \n"
+"available"
+msgstr "Aucune donnée \\ndisponible"
 
 #: app/controllers/reporting_controller.rb:544
 #: app/views/reporting/_sommaire.rhtml:7 app/views/reporting/general.rhtml:20
@@ -975,11 +977,11 @@ msgstr "Pendant la période considéré"
 msgid "Since the begining of your contract"
 msgstr "Depuis le début du contrat"
 
-#: app/helpers/reporting_helper.rb:147
+#: app/helpers/reporting_helper.rb:152
 msgid "Finished"
 msgstr "Terminées"
 
-#: app/helpers/reporting_helper.rb:147
+#: app/helpers/reporting_helper.rb:152
 msgid "Running"
 msgstr "En cours"
 
@@ -1641,10 +1643,6 @@ msgstr "Correction"
 #: app/models/engagement.rb:-
 msgid "Engagement|Typedemande"
 msgstr "Typedemande"
-
-#: app/models/engagement.rb:11
-msgid "You must indicate a non null correction and contournement"
-msgstr "Vous devez indiquer une correction et un contournement non nul"
 
 #: app/models/etatreversement.rb:-
 msgid "etatreversement"
@@ -4511,3 +4509,6 @@ msgstr "Liste des url dans contributions"
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
+
+#~ msgid "You must indicate a non null correction and contournement"
+#~ msgstr "Vous devez indiquer une correction et un contournement non nul"
