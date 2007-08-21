@@ -8,13 +8,14 @@ require 'logiciels_controller'
 class LogicielsController; def rescue_action(e) raise e end; end
 
 class LogicielsControllerTest < Test::Unit::TestCase
-  fixtures :logiciels, :competences
+  fixtures :logiciels, :competences, :demandes, :commentaires, :contrats,
+    :beneficiaires, :contributions, :identifiants
 
   def setup
     @controller = LogicielsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    login 'bob', 'test'
+    login 'admin', 'admin'
   end
 
   def test_index
@@ -22,6 +23,23 @@ class LogicielsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'index'
     assert_not_nil assigns(:logiciels)
+
+    # tests the ajax filters
+    get :index, :filters => { :contrat_id => 3}
+    assert_response :success
+    assigns(:logiciels).each do |l|
+      software = Logiciel.find l.id
+      assert_equal software.paquets.first.contrat.id, 3
+    end
+
+    get :index, :filters => { :groupe_id => 2 } 
+    assert_response :success
+    assigns(:logiciels).each { |l| assert_equal l.groupe_id, 2 }
+
+    get :index, :filters => { :competence_id => 1 }
+    assert_response :success
+    assigns(:logiciels).each { |l| assert l.competences.include?(1) }
+
   end
 
   def test_show
