@@ -12,7 +12,7 @@
 <% unless @client.adresse.blank? %>
   <tr><td colspan="2">
     <fieldset>
-     <legend><b><%= _('Address')%></b></legend><%= @client.adresse %>
+     <legend><%= _('Address')%></legend><%= @client.adresse %>
     </fieldset>
   </td></tr>
 <% end %>
@@ -26,7 +26,7 @@
 <%= link_to_new_contrat(@client.id) %>
 <%= show_liste(@client.contrats, _('contract')) { |c|
   result = ''
-  edit = link_to_edit_contrat(c)
+  edit = link_to_edit(edit_contrat_path(c))
   result << "#{edit}&nbsp;" if edit
   result << _("From %s to %s") % [c.ouverture_formatted, c.cloture_formatted]
   if c.socle

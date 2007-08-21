@@ -153,7 +153,9 @@ module DemandesHelper
   end
 
   def link_to_delete_contribution( demand_id )
-    link_to _('Unlink the contribution') ,delete_contribution_demande_path(demand_id)
+    link_to(_('Unlink the contribution'),
+            delete_contribution_demande_path(demand_id),
+            :method => :post)
   end
 
   # Display a css bar for graphic representation of a ticket timeline

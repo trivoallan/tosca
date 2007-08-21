@@ -65,20 +65,15 @@ module ApplicationHelper
       result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
     end
 
-    # Define a default bloc unless bloc is given
-    # call "yield_or_default .call(e)" in spite of "yield(e)"
-    # TODO : use it when yarv virtual machine is ready
-    unless block_given?
-      result << '<ul>'
-      elements.each { |e|
-        result << '<li>' << e << '</li>' unless e.blank?
-      }
-      result << '</ul>'
-      return result
-    end
+    # used mainly in bienvenue/about
+    return show_simple_list(result, elements) unless block_given?
 
-    # c'est lent mais c'est tellement beau ruby :
+    # It can really be pretty ruby. We keep it under the hand 
+    # until yarv comes and so this code will be reasonabily fast
     # yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
+
+    # TODO : remove this 'puce' option, change code using this options
+    # and use CSS class instead.
     if options.has_key? :puce
       puce = " #{options[:puce]} "
       elements.each { |e|
@@ -93,9 +88,9 @@ module ApplicationHelper
         elt = yield(e)
         unless elt.blank?
           result << '<li>'
-          result << link_to_edit(send(edit_call, e)).to_s if edit
+          result << link_to_edit(send(edit_call, e)).to_s << ' ' if edit
           result << elt
-          result << link_to_delete(send(delete_call, e)).to_s if edit
+          result << link_to_delete(send(delete_call, e)).to_s << ' ' if edit
           result << '</li>'
         end
       }
@@ -104,11 +99,21 @@ module ApplicationHelper
     result
   end
 
+  # Wrapper, allowing to have a consistent api with link_to_*
+  # Call it like exactly show_liste
   def public_show_liste(elements, nom = '', options = {}, &functor)
     public_options = options.dup
     public_options[:public] = true
     show_liste(elements, nom, public_options, &functor)
   end
+
+  # Private call, used by show_liste on certain simple case
+  def show_simple_list(result, elements)
+    result << '<ul>'
+    elements.each { |e| result << "<li>#{e}</li>" unless e.blank? }
+    result << '</ul>'
+  end
+  
 
   # Call it like :
   # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>

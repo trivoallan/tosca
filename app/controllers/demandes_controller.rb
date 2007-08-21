@@ -246,6 +246,13 @@ class DemandesController < ApplicationController
     update_contribution params[:id], nil
   end
 
+  def pretty_print
+    @demande ||= Demande.find(params[:id])
+    set_piecejointes(@demande.id)
+    set_comments(@demande.id)
+  end
+
+  private
   def update_contribution( demand_id , contribution_id )
     if contribution_id == nil
       flash_text = _("The demand has now no contribution")
@@ -258,13 +265,6 @@ class DemandesController < ApplicationController
     redirect_to comment_demande_path(demand_id)
   end
 
-  def pretty_print
-    @demande ||= Demande.find(params[:id])
-    set_piecejointes(@demande.id)
-    set_comments(@demande.id)
-  end
-
-  private
   def _panel
     @clients = Client.find_select()
     @statuts = Statut.find_select()

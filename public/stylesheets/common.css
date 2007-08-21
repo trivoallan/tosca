@@ -136,6 +136,11 @@ img {
 	border:0;
 }
 
+
+fieldset legend {
+	font-weight: bold;
+}
+
 /******************* A RANGER ********************/
 
 span.right {

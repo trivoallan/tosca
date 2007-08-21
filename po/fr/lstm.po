@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-21 13:11+0200\n"
-"PO-Revision-Date: 2007-08-21 13:38+0200\n"
+"PO-Revision-Date: 2007-08-21 13:58+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -852,7 +852,7 @@ msgstr "Concernant %s"
 
 #: app/helpers/links_helper.rb:93
 msgid "Do you really want to delete %s"
-msgstr "Étes vous sûr de vouloir effacer %s"
+msgstr "Êtes vous sûr de vouloir supprimer %s"
 
 #: app/helpers/links_helper.rb:105 app/views/binaires/show.rhtml:1
 #: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1

@@ -5,7 +5,9 @@
     <li><% form_tag associer_contribution_demande_path(@demande.id) do %>
       <%= select_onchange @contributions, 'demande', 'contribution_id' %>
     <% end %></li>
-    <li><%= link_to_delete_contribution @demande.id %></li>
+    <% if @demande.contribution %>
+       <li><%= link_to_delete_contribution(@demande.id) %></li>
+    <% end %>
     <li><%= link_to_add_call @demande.id %></li>
   <% end %>
   <li><%= link_to _("Print"), pretty_print_demande_path(@demande.id) %></li>
