@@ -39,6 +39,8 @@ ActionController::Routing::Routes.draw do |map|
   sweet_home = { :controller => 'bienvenue', :action => 'index',
                  :conditions => { :method => :get } }
   map.bienvenue '/', sweet_home
+  # nice to see welcome in url, and it's needed by official portal
+  map.bienvenue '/bienvenue', sweet_home
 
   map.without_orm('bienvenue', %w(admin plan selenium about deroulement
     natures statut suggestions declaration))
