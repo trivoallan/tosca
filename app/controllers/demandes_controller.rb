@@ -322,8 +322,8 @@ class DemandesController < ApplicationController
     # TODO : s'en débarrasser avec une migration et un :include
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
     select = "DISTINCT identifiants.id "
-    @identifiants_ingenieurs =
-      Identifiant.find(:all, :select => select, :joins => joins)
+    @identifiants_ingenieurs = Identifiant.find(:all, 
+       :select => select, :joins => joins).collect{|i| i.id }
   end
 
   # A small helper which set current flow filters

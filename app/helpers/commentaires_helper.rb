@@ -20,6 +20,7 @@ module CommentairesHelper
       out << (_('The <b>severity</b> of your request is') +
               " <b>#{severite.nom}</b>")
     end
+    return nil if out.empty?
     '<div class="history">' << out.join('<br />') << '</div>'
   end
 end

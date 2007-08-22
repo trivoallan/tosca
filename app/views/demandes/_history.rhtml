@@ -8,12 +8,14 @@
   </tr>
 
   <% @commentaires.each do |c| %>
-     <tr class="<%= cycle('pair', 'impair') %>">
-       <td><%= c.created_on_formatted %></td>
-       <td>&nbsp;</td>
-       <td><%= display_history c %>
-      </td>
-    </tr>
+     <% history = display_history(c) %> 
+     <% unless history.nil?
+      <tr class="<%= cycle('pair', 'impair') %>">
+        <td><%= c.created_on_formatted %></td>
+        <td>&nbsp;</td>
+        <td><%= history %></td>
+      </tr>
+     <% end %>
   <% end %>
 </table>
 </div>

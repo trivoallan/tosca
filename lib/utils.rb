@@ -11,7 +11,7 @@ module Metadata
 
   # application
   NOM_COURT_APPLICATION = "TOSCA"
-  VERSION_APPLICATION = "0.5.4"
+  VERSION_APPLICATION = "0.6"
   COPYRIGHT_APPLICATION = " ©2007 Linagora SA".gsub(' ','&nbsp;')
   PATH_TO_FILES = "#{RAILS_ROOT}/files/"
 

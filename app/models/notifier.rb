@@ -54,7 +54,7 @@ class Notifier < ActionMailer::Base
     html_and_text_body(options);
 
     if flash and flash[:notice]
-      flash[:notice] << message_notice(@recipients, nil)
+      flash[:notice] += message_notice(@recipients, nil)
     end
   end
 
@@ -70,7 +70,7 @@ class Notifier < ActionMailer::Base
     html_and_text_body(options);
 
     if flash and flash[:notice]
-      flash[:notice] << message_notice(@recipients, @cc)
+      flash[:notice] += message_notice(@recipients, @cc)
     end
   end
 
@@ -86,7 +86,7 @@ class Notifier < ActionMailer::Base
     html_and_text_body(options)
 
     if flash and flash[:notice]
-      flash[:notice] << message_notice(@recipients, @cc)
+      flash[:notice] += message_notice(@recipients, @cc)
     end
   end
 
@@ -113,7 +113,7 @@ class Notifier < ActionMailer::Base
   def compute_copy(demande)
     res = demande.beneficiaire.client.mailingliste
     if demande.mail_cc and demande.mail_cc.size > 4
-      res << ", " << demande.mail_cc
+      res += ", " << demande.mail_cc
     end
     res
   end

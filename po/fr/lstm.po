@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-21 15:14+0200\n"
-"PO-Revision-Date: 2007-08-21 15:15+0200\n"
+"PO-Revision-Date: 2007-08-21 18:21+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -932,7 +932,7 @@ msgstr "Afficher tout les logiciels"
 
 #: app/helpers/pages_helper.rb:35
 msgid "Do you really want to destroy this object ?"
-msgstr "Étes vous sûr de vouloir éffacer cet objet ?"
+msgstr "Êtes vous sûr de vouloir effacer cet objet ?"
 
 #: app/helpers/pages_helper.rb:82 app/helpers/static_image.rb:78
 msgid "First page"

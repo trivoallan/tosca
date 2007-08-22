@@ -116,7 +116,7 @@ class ExportController < ApplicationController
 
   def compute_demandes(type, options_generate)
     columns = ['id','logiciels_nom', 'beneficiaires_nom','clients_nom',
-      'ingenieurs_nom','severites_nom','version','created_on_formatted',
+      'ingenieurs_nom','severites_nom','created_on_formatted',
       'socle', 'updated_on_formatted', 'resume', 'statuts_nom',
        'typedemandes_nom'
     ]
@@ -144,7 +144,7 @@ class ExportController < ApplicationController
     report.rename_columns columns,
       [_('Id'), _('Software'), _('Recipient'), ('Customer'),
         _('Owner') , _('Severity'),
-        _('Version') , _('Submission date') , _('Platform'), _('Last update'),
+        _('Submission date') , _('Platform'), _('Last update'),
         _('Summary'), _('Status'), _('Type') ]
 
     generate_report(report, type, options_generate)

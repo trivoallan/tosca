@@ -21,8 +21,7 @@ module LogicielsHelper
   #  <%= remote_link_to_software(:all) %> to display all the softwares
   #TODO pas DRY : dans demandes_helpers il y a la même chose
   #     mais le AJAX_CALL est différent
-  AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(
-      :url => '../logiciels')
+  AJAX_CALL = PagesHelper::AJAX_OPTIONS.dup.update(:url => logiciels_path)
   def remote_link_to_software( param)
     if param == :supported
       text = _('My supported softwares')

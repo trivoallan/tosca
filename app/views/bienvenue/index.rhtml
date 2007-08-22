@@ -1,7 +1,13 @@
 <% user = session[:user] %>
 <% connected = public_link_to(_('connected'), login_accounts_path) %>
 <table><tr><td rowspan="2"><%= StaticImage::lstm %> </td><td><h2 class="spacer"><%=_('Contents')%></h2></td></tr>
-  <tr><td><%= _('Welcome in the management tool of the 08000linux.')%></td></tr>
+  <tr><td>
+     <%= _('Welcome in the management tool of the 08000linux')%>
+     <% if user %>
+       ,<%= user.titre %> <%=user.nom%>
+     <% end %>
+     .
+  </td></tr>
 </table>
 
 <table class="sommaire"><tr><td>
@@ -49,7 +55,7 @@
    <h3><%= _('Offer')%></h3>
   <% client = @beneficiaire.client %>
   <table>
-    <tr><td rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>,
+    <tr><td style="width: 1%;" rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>,
       <%= _("You have access to one of our offers, which you have the detail at your disposal : %s") % link_to_my_client %></td>
     </tr>
     <tr><td><%= _('You hope this tool wil give you an entire satisfaction.')%></td></tr>
@@ -59,8 +65,6 @@
   <p><%= _('Your call number is')%>
   <b><%=Metadata::PREFIXE_TELEPHONE%>&nbsp;<%=Metadata::CODE_TELEPHONE %></b>,
   <%= _("and your access code is %s") % access_code%></b></p>
-  <% else %>
-  <%= _('you don\'t have an access code')%>
   <% end %>
  </div>
  <% end %>
