@@ -1,0 +1,17 @@
+first:
+  id: 1
+  nom: patch KTDms
+  description: ceci est un patch pour KTDMS
+  patch: super.patch.diff
+  created_on: "2006-09-21 08:19:30"
+  updated_on: "2007-07-12 14:21:17"
+  id_mantis: nil
+  reverse_le: "2007-07-13 14:21:17"
+  description_fonctionnelle: Une description fonctionnelle
+  etatreversement_id: 3
+  cloture_le: "2007-14-13 14:21:17"
+  logiciel_id: 1
+  ingenieur_id: 1
+  typecontribution_id: 1
+  version: 1.2.3
+  synthese: la synthese
