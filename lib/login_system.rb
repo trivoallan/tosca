@@ -51,8 +51,7 @@ module LoginSystem
       return true  
     end
 
-    # we didn't see any use case for authorize? method
-    if session.data.has_key? :user # and authorize? session[:user]
+    if session.data.has_key?(:user) and authorize?(session[:user])
       return true
     end
 

@@ -17,8 +17,7 @@ class ApplicationController < ActionController::Base
   init_gettext 'lstm'
 
   # accès protégé et standardisé
-  before_filter :set_global_shortcuts
-  before_filter :login_required
+  before_filter :set_global_shortcuts, :login_required
 
   # périmètre limité pour certains profils
   around_filter :scope
@@ -83,6 +82,10 @@ protected
       Static::ActionView.set_request(request())
       @@first_time = false
     end
+    #    /!\
+    # don't forget to take a look at accout/clear_session method 
+    # if you add something here. And don't add something here too ;).
+    #    /!\
     @ingenieur = session[:ingenieur]
     @beneficiaire = session[:beneficiaire]
   end

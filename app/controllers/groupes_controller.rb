@@ -3,7 +3,6 @@
 #####################################################
 class GroupesController < ApplicationController
   # public access to the list
-  skip_before_filter :login_required
   before_filter :login_required, :except => [:index,:show]
 
   helper :logiciels

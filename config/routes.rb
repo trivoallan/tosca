@@ -2,31 +2,9 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-# A small overrides, in order to have shorter routes
-module ActionController::Routing
-  class RouteSet
-    # this overloads allows to have REST routes for non-orm controllers
-    class Mapper
-      # Mapper for non-resource controller
-      def without_orm(controller, actions, method = :get)
-        actions.each { |action|
-          self.send("#{action}_#{controller}", "#{controller};#{action}",
-                    { :controller => controller, :action => action,
-                      :conditions => { :method => method }})
-        }
-      end
-
-      # Mapper for exporting with format, done in a special controller 'export'.
-      def formatted_export(actions)
-        actions.each { |action|
-          self.send('named_route', "formatted_#{action}_export", "export/#{action}.:format",
-                    { :controller => 'export', :action => action,
-                      :conditions => { :method => :get }})
-        }
-      end
-    end
-  end
-end
+# special overrides, since routes can be reloaded 
+# in rails, even in production.
+require 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation:

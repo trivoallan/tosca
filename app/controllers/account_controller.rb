@@ -12,7 +12,6 @@ class AccountController < ApplicationController
 
   helper :filters, :ingenieurs, :beneficiaires, :roles, :export
 
-  skip_before_filter :login_required
   before_filter :login_required, :except => [:login,:logout]
 
   def index
@@ -59,7 +58,7 @@ class AccountController < ApplicationController
         if session[:user] = Identifiant.authenticate(params['user_login'],
                                                      params['user_password'],
                                                      user_crypt)
-          set_sessions
+          set_sessions(session[:user])
           flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") %
             [ session[:user].titre, session[:user].nom.gsub(' ', '&nbsp;') ]
           redirect_to_home
@@ -74,7 +73,7 @@ class AccountController < ApplicationController
   def devenir
     if @ingenieur
       benef = Beneficiaire.find(params[:id])
-      set_sessions benef.identifiant
+      set_sessions(benef.identifiant)
     else
       flash[:warn] = _('Vous are not allowed to change your identity')
     end
@@ -104,9 +103,9 @@ class AccountController < ApplicationController
         index
       else
         #update cached profile for logged user
-        set_sessions  @identifiant if session[:user] == @identifiant
+        set_sessions(@identifiant) if session[:user] == @identifiant
         flash[:notice]  = _("Edition succeeded")
-        redirect_to account_path(@identifiant)
+        redirect_to(account_path(@identifiant))
       end
     end
   end
@@ -241,10 +240,8 @@ private
   # penser à mettre à jour les pages statiques 404
   # et 500 en cas de modification
   # Le menu du layout est inclus pour des raisons de performances
-  def set_sessions(identifiant = nil)
-    return unless session[:user] or identifiant
+  def set_sessions(identifiant)
     # clear_session erase session[:user]
-    identifiant = session[:user] unless identifiant
     clear_sessions
     # Set user properties
     session[:user] = identifiant
@@ -269,7 +266,7 @@ private
          menu << link_to_admin
          menu << public_link_to_about
       %>
-      <%= build_simple_menu(menu, :form => true) if session[:user] %>
+      <%= build_simple_menu(menu, :form => true) %>
     EOF
     # for those who do want a complex menu
     #render_to_string :partial => 'menu'
@@ -284,15 +281,15 @@ private
          infos << link_to("#{my_account}", edit_account_path(session[:user]))
          infos << public_link_to("#{logout}", logout_accounts_path, :method => :post)
       %>
-      <%= build_simple_menu(infos.reverse, :class => 'account_menu') if session[:user] %>
+      <%= build_simple_menu(infos.reverse, :class => 'account_menu') %>
     EOF
   end
 
   # Efface les paramètres de session et les raccourcis
   def clear_sessions
-    reset_session
     @beneficiaire = nil
     @ingenieur = nil
+    reset_session
   end
 
 end

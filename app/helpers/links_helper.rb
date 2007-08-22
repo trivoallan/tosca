@@ -47,6 +47,7 @@ module LinksHelper
   end
 
   #Call it like link_to_file
+  # TODO : This method clearly needs more work.
   def link_to_file_redbox(record, method, options={}, public = false)
     return '-' unless record
 
@@ -60,13 +61,19 @@ module LinksHelper
     unless filepath.blank? or not File.exist?(filepath)
       mime_type = record.file_mime_type
       #To be XHTML compliant
-      relative_path = "#{method}_" << record.send("#{method}_relative_path").tr!("/", "_")
+      relative_path = "#{method}_" << 
+        record.send("#{method}_relative_path").tr!("/", "_")
       #Image
       if mime_type =~ /^image\//
-        redbox_div(relative_path, image_tag(url_for_image_column(record, method, :fit_size )), :background_close => true)
+        redbox_div(relative_path, 
+                   image_tag(url_for_image_column(record, method, :fit_size)),
+                   :background_close => true)
       #Text        
       elsif mime_type =~ /^text\//
-        link_to(StaticImage::view, { :controller => "piecejointes", :action => "uv", :id => record.id }, :popup => [filename, 'height=600,width=800,scrollbars=yes'])
+        link_to(StaticImage::view, uv_piecejointes(record), 
+          :popup => [filename, 'height=600,width=800,scrollbars=yes'])
+      else
+        '-'
       end
     end
   end
@@ -123,17 +130,17 @@ EOS
        :title => _('Access to the list of contributions.'))
   end
 
-  @@administration = nil
-  def link_to_admin
-    @@administration ||= link_to(_('Administration'), admin_bienvenue_path,
-                           :title => _('Administration interface'))
-  end
-
   # About page
   @@about = nil
   def public_link_to_about()
     @@about ||= public_link_to('?', about_bienvenue_path,
        :title => _("About %s") % Metadata::NOM_COURT_APPLICATION)
+  end
+
+  # No cache for this one. It's not a public link /!\
+  def link_to_admin
+    link_to(_('Administration'), admin_bienvenue_path,
+            :title => _('Administration interface'))
   end
 
 

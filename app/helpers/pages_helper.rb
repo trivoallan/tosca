@@ -18,18 +18,21 @@ module PagesHelper
   # Second, with an other controller :
   #   <%= link_to_show(edit_request_path(@request))%>
   def link_to_show(ar)
+    return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'show', :id => ar })
     link_to StaticImage::view, url, { :class => 'nobackground' }
   end
 
   # same behaviour as link_to_show
   def link_to_edit(ar)
+    return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'edit', :id => ar })
     link_to StaticImage::edit, url, { :class => 'nobackground' }
   end
 
   # same behaviour as link_to_show
   def link_to_delete(ar)
+    return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'destroy', :id => ar })
     link_to StaticImage::delete,  url, :class => 'nobackground', :method => :delete,
         :confirm => _('Do you really want to destroy this object ?')

@@ -1,7 +1,7 @@
 <h1><%= _('User list') %><%= StaticImage::spinner %></h1>
 
 <% links = show_pages_links(@user_pages, _('A new user'),
-                     :url => '../account/index') %>
+                     :url => accounts_path) %>
 <%= links %>
 <table>
   <tr>

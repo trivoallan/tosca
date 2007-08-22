@@ -6,7 +6,6 @@ class BienvenueController < ApplicationController
   # Includes somme helpers
   helper :demandes, :account, :contributions, :logiciels, :groupes, :documents, :clients
 
-  skip_before_filter :login_required
   before_filter :login_required, :except => [:index,:about]
 
   # Default page, redirect if necessary
