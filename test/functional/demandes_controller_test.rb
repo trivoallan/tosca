@@ -108,6 +108,13 @@ class DemandesControllerTest < Test::Unit::TestCase
       Demande.find(@first_id)
     }
   end
+  def test_pretty_print
+    get :pretty_print, :id => 1
+    assert_response :success
+    assert_template 'pretty_print'
+    assert_equal assigns(:demande), Demande.find(1)
+
+  end
   private
   # test the ajax filters
   # example : test_filter :statut_id, 2
