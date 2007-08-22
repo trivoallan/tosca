@@ -30,8 +30,8 @@ module LogicielsHelper
       description = _('Display all softwares')
       value = 0
     end
-    js_call = "document.forms['filters'].active.value=" << value.to_s << ";
-      #{remote_function(ajax_call)}"
+    js_call = "document.forms['filters'].active.value=#{value};" <<
+      remote_function(ajax_call)
     link_to_function(text, js_call, description)
   end
 

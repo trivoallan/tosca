@@ -39,7 +39,7 @@
 <% recipient = @demande.beneficiaire %>
 <ul class="menu" id="menu_beneficiaire">
   <li><b><%= _("Contact") %>: </b><%= mail_to(recipient.identifiant.email, recipient.nom)%>
-    <%= link_to_show account_path(recipient.identifiant) %></li>
+     <%= link_to_show(account_path(recipient.identifiant)) if @ingenieur %></li>
   <li><b><%= _('Phone') %>: </b><%= recipient.identifiant.telephone %></li>
   <% client = recipient.client %>
   <li><b><%= _('Company') %>: </b><%= link_to client.nom, client_path(client) %></li>

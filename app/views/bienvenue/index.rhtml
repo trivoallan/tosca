@@ -2,11 +2,7 @@
 <% connected = public_link_to(_('connected'), login_accounts_path) %>
 <table><tr><td rowspan="2"><%= StaticImage::lstm %> </td><td><h2 class="spacer"><%=_('Contents')%></h2></td></tr>
   <tr><td>
-     <%= _('Welcome in the management tool of the 08000linux')%>
-     <% if user %>
-       ,<%= user.titre %> <%=user.nom%>
-     <% end %>
-     .
+     <%= _('Welcome in the management tool of the 08000linux')%><%= user ? ", #{user.titre} #{user.nom}" : '.' %>
   </td></tr>
 </table>
 

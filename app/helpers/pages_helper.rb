@@ -65,7 +65,7 @@ module PagesHelper
   #        :url => '/demandes/update_list' %>
   # (!) you will need an StaticImage::spinner too (!)
   AJAX_OPTIONS = {  :update => 'content', :method => :get,
-    :with => "Form.serialize(document.forms[filters])",
+    :with => "Form.serialize(document.forms['filters'])",
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" }
 

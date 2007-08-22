@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-22 11:48+0200\n"
-"PO-Revision-Date: 2007-08-22 11:55+0200\n"
+"PO-Revision-Date: 2007-08-22 17:04+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -574,7 +574,7 @@ msgstr "La permission a été créée avec succès."
 
 #: app/controllers/permissions_controller.rb:37
 msgid "Permission was successfully updated."
-msgstr "La permissions a été mise à jour avec succès."
+msgstr "La permission a été mise à jour avec succès."
 
 #: app/controllers/reporting_controller.rb:60
 msgid "You must choose a period for the report"
