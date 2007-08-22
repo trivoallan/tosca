@@ -4506,5 +4506,3 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "you don't have an access code"
-#~ msgstr "vous n'avez pas de code d'accès"

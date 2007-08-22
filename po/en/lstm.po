@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-21 15:14+0200\n"
+"POT-Creation-Date: 2007-08-22 11:48+0200\n"
 "PO-Revision-Date: 2007-08-13 17:59+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: app/controllers/account_controller.rb:130
 #: app/controllers/account_controller.rb:199
 #: app/controllers/export_controller.rb:145
-#: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
+#: app/views/appels/_calls_info.rhtml:22 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
 #: app/views/bienvenue/admin.rhtml:31 app/views/demandes/_appels.rhtml:2
 #: app/views/demandes/_form.rhtml:24 app/views/documents/_form.rhtml:6
@@ -332,7 +332,7 @@ msgid "roles"
 msgstr ""
 
 #: app/controllers/export_controller.rb:99
-#: app/views/appels/_calls_info.rhtml:26 app/views/appels/_calls_list.rhtml:6
+#: app/views/appels/_calls_info.rhtml:24 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:6 app/views/binaires/show.rhtml:10
 #: app/views/demandes/_appels.rhtml:2 app/views/paquets/_form.rhtml:13
 #: app/views/paquets/show.rhtml:17
@@ -387,13 +387,6 @@ msgstr ""
 #: app/views/demandes/_infos_demande.rhtml:28
 #: app/views/demandes/_requests_info.rhtml:39
 msgid "Severity"
-msgstr ""
-
-#: app/controllers/export_controller.rb:147
-#: app/helpers/contributions_helper.rb:10 app/views/binaires/show.rhtml:15
-#: app/views/demandes/_cns.rhtml:32 app/views/demandes/_form_binaires.rhtml:5
-#: app/views/paquets/_form.rhtml:21
-msgid "Version"
 msgstr ""
 
 #: app/controllers/export_controller.rb:147
@@ -783,6 +776,12 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+#: app/helpers/contributions_helper.rb:10 app/views/binaires/show.rhtml:15
+#: app/views/demandes/_cns.rhtml:32 app/views/demandes/_form_binaires.rhtml:5
+#: app/views/paquets/_form.rhtml:21
+msgid "Version"
+msgstr ""
+
 #: app/helpers/contributions_helper.rb:35
 #: app/views/contributions/_contributions_admin.rhtml:3
 msgid "a contribution"
@@ -845,8 +844,8 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: app/helpers/links_helper.rb:110 app/views/appels/_calls_info.rhtml:52
-#: app/views/bienvenue/index.rhtml:10 app/views/logiciels/show.rhtml:43
+#: app/helpers/links_helper.rb:110 app/views/appels/_calls_info.rhtml:50
+#: app/views/bienvenue/index.rhtml:16 app/views/logiciels/show.rhtml:43
 #: app/views/reporting/general.rhtml:22 app/views/reporting/general.rhtml:23
 #: app/views/reporting/general.rhtml:25 app/views/reporting/general.rhtml:26
 #: app/views/reporting/general.rhtml:28 app/views/reporting/general.rhtml:29
@@ -862,7 +861,7 @@ msgid "Consult your requets"
 msgstr ""
 
 #: app/helpers/links_helper.rb:116 app/views/account/_menu.rhtml:20
-#: app/views/bienvenue/index.rhtml:69 app/views/binaires/show.rhtml:2
+#: app/views/bienvenue/index.rhtml:73 app/views/binaires/show.rhtml:2
 #: app/views/contributions/_contributions_info.rhtml:42
 #: app/views/groupes/index.rhtml:5
 #: app/views/logiciels/_softwares_info.rhtml:54 app/views/paquets/show.rhtml:2
@@ -901,19 +900,19 @@ msgstr ""
 msgid "My&nbsp;account"
 msgstr ""
 
-#: app/helpers/logiciels_helper.rb:28
+#: app/helpers/logiciels_helper.rb:27
 msgid "My supported softwares"
 msgstr ""
 
-#: app/helpers/logiciels_helper.rb:29
+#: app/helpers/logiciels_helper.rb:28
 msgid "Display only software supported by your contract"
 msgstr ""
 
-#: app/helpers/logiciels_helper.rb:32
+#: app/helpers/logiciels_helper.rb:31
 msgid "All softwares"
 msgstr ""
 
-#: app/helpers/logiciels_helper.rb:33
+#: app/helpers/logiciels_helper.rb:32
 msgid "Display all softwares"
 msgstr ""
 
@@ -951,7 +950,7 @@ msgstr ""
 msgid "a package"
 msgstr ""
 
-#: app/helpers/reporting_helper.rb:17 app/views/appels/_calls_info.rhtml:33
+#: app/helpers/reporting_helper.rb:17 app/views/appels/_calls_info.rhtml:31
 msgid "Period"
 msgstr ""
 
@@ -2315,7 +2314,7 @@ msgstr ""
 msgid "Submit a request"
 msgstr ""
 
-#: app/views/account/_menu.rhtml:16 app/views/appels/_calls_info.rhtml:51
+#: app/views/account/_menu.rhtml:16 app/views/appels/_calls_info.rhtml:49
 msgid "Calls"
 msgstr ""
 
@@ -2352,12 +2351,12 @@ msgstr ""
 msgid "Customers"
 msgstr ""
 
-#: app/views/account/_menu.rhtml:40 app/views/bienvenue/index.rhtml:28
+#: app/views/account/_menu.rhtml:40 app/views/bienvenue/index.rhtml:34
 #: app/views/demandes/_requests_info.rhtml:19
 msgid "Activity report"
 msgstr ""
 
-#: app/views/account/_menu.rhtml:42 app/views/appels/_calls_info.rhtml:20
+#: app/views/account/_menu.rhtml:42 app/views/appels/_calls_info.rhtml:18
 #: app/views/contributions/_contributions_info.rhtml:26
 #: app/views/demandes/_requests_info.rhtml:24
 #: app/views/logiciels/_softwares_info.rhtml:27
@@ -2366,7 +2365,7 @@ msgid "Search"
 msgstr ""
 
 #: app/views/account/_users_info.rhtml:11
-#: app/views/appels/_calls_info.rhtml:12
+#: app/views/appels/_calls_info.rhtml:10
 #: app/views/demandes/_infos_demande.rhtml:2
 msgid "Action"
 msgstr ""
@@ -2415,7 +2414,7 @@ msgid "Roles "
 msgstr ""
 
 #: app/views/account/_users_info.rhtml:38
-#: app/views/appels/_calls_info.rhtml:49
+#: app/views/appels/_calls_info.rhtml:47
 #: app/views/logiciels/_softwares_info.rhtml:49
 #: app/views/paquets/_paquets_info.rhtml:28
 msgid "Perimeter"
@@ -2478,35 +2477,35 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: app/views/appels/_calls_info.rhtml:14
+#: app/views/appels/_calls_info.rhtml:12
 msgid "Add a call"
 msgstr ""
 
-#: app/views/appels/_calls_info.rhtml:22
+#: app/views/appels/_calls_info.rhtml:20
 msgid "Expert"
 msgstr ""
 
-#: app/views/appels/_calls_info.rhtml:35
+#: app/views/appels/_calls_info.rhtml:33
 msgid "From"
 msgstr ""
 
-#: app/views/appels/_calls_info.rhtml:40
+#: app/views/appels/_calls_info.rhtml:38
 msgid "To"
 msgstr ""
 
-#: app/views/appels/_calls_info.rhtml:53 app/views/bienvenue/admin.rhtml:21
+#: app/views/appels/_calls_info.rhtml:51 app/views/bienvenue/admin.rhtml:21
 msgid "Engineers"
 msgstr ""
 
-#: app/views/appels/_calls_info.rhtml:54
+#: app/views/appels/_calls_info.rhtml:52
 msgid "Recipients"
 msgstr ""
 
-#: app/views/appels/_calls_info.rhtml:55
+#: app/views/appels/_calls_info.rhtml:53
 msgid "Total duration"
 msgstr ""
 
-#: app/views/appels/_calls_info.rhtml:56
+#: app/views/appels/_calls_info.rhtml:54
 msgid "Average duration"
 msgstr ""
 
@@ -2609,11 +2608,11 @@ msgstr ""
 msgid "Add a recipient"
 msgstr ""
 
-#: app/views/bienvenue/about.rhtml:8 app/views/bienvenue/index.rhtml:74
+#: app/views/bienvenue/about.rhtml:8 app/views/bienvenue/index.rhtml:78
 msgid "Don't hesitate to"
 msgstr ""
 
-#: app/views/bienvenue/about.rhtml:9 app/views/bienvenue/index.rhtml:75
+#: app/views/bienvenue/about.rhtml:9 app/views/bienvenue/index.rhtml:79
 msgid "contact us"
 msgstr ""
 
@@ -2768,125 +2767,121 @@ msgstr ""
 msgid "connected"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:4
-msgid "Welcome in the management tool of the 08000linux."
-msgstr ""
-
-#: app/views/bienvenue/index.rhtml:13
-msgid "You can see the list of %s :"
-msgstr ""
-
-#: app/views/bienvenue/index.rhtml:13
-msgid "requests"
-msgstr ""
-
-#: app/views/bienvenue/index.rhtml:14
-msgid "requests in process"
-msgstr ""
-
-#: app/views/bienvenue/index.rhtml:17
-msgid "You can also %s."
-msgstr ""
-
-#: app/views/bienvenue/index.rhtml:17
-msgid "make a request"
+#: app/views/bienvenue/index.rhtml:5
+msgid "Welcome in the management tool of the 08000linux"
 msgstr ""
 
 #: app/views/bienvenue/index.rhtml:19
+msgid "You can see the list of %s :"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:19
+msgid "requests"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:20
+msgid "requests in process"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:23
+msgid "You can also %s."
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:23
+msgid "make a request"
+msgstr ""
+
+#: app/views/bienvenue/index.rhtml:25
 msgid ""
 "You are not %s, so you do not have any access to the requests interface of "
 "our service"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:24
+#: app/views/bienvenue/index.rhtml:30
 msgid "Documents"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:26
+#: app/views/bienvenue/index.rhtml:32
 msgid "You can browse %s . "
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:26
+#: app/views/bienvenue/index.rhtml:32
 msgid "your directory"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:27
+#: app/views/bienvenue/index.rhtml:33
 msgid "You will find there all the documents we delivered to you"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:28
+#: app/views/bienvenue/index.rhtml:34
 msgid "You can also consult your %s online."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:30
+#: app/views/bienvenue/index.rhtml:36
 msgid "When you are %s, you have access to an activity report"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:31
+#: app/views/bienvenue/index.rhtml:37
 msgid "dynamically showing the activity of our service for you in real time."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:32
+#: app/views/bienvenue/index.rhtml:38
 msgid "You also have access to all the documents we may deliver to you."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:38 app/views/bienvenue/suggestions.rhtml:1
+#: app/views/bienvenue/index.rhtml:44 app/views/bienvenue/suggestions.rhtml:1
 msgid "Idea Box"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:39
+#: app/views/bienvenue/index.rhtml:45
 msgid ""
 "You have an idea, which can improve our services ?<br />\n"
 "    Your comments and suggestions are welcome in %s"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:41
+#: app/views/bienvenue/index.rhtml:47
 msgid "the idea box"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:49
+#: app/views/bienvenue/index.rhtml:55
 msgid "Offer"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:53
+#: app/views/bienvenue/index.rhtml:59
 msgid ""
 "You have access to one of our offers, which you have the detail at your "
 "disposal : %s"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:55
+#: app/views/bienvenue/index.rhtml:61
 msgid "You hope this tool wil give you an entire satisfaction."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:59
+#: app/views/bienvenue/index.rhtml:65
 msgid "Your call number is"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:61
+#: app/views/bienvenue/index.rhtml:67
 msgid "and your access code is %s"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:63
-msgid "you don't have an access code"
-msgstr ""
-
-#: app/views/bienvenue/index.rhtml:70
+#: app/views/bienvenue/index.rhtml:74
 msgid "You can see the list of %s."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:71
+#: app/views/bienvenue/index.rhtml:75
 msgid ""
 "This software is distributed by a precise and simple %s, distributed by "
 "activity group."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:73
+#: app/views/bienvenue/index.rhtml:77
 msgid ""
 "We have a large range of offers for supporting you with a SLA. This Service "
 "Level Agreement can be very short and is guaranted by contract."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:77
+#: app/views/bienvenue/index.rhtml:81
 msgid ""
 "You can consult and follow all the %s done by our team in Open Source "
 "communities."
