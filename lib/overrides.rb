@@ -61,7 +61,13 @@ module ActionView::Helpers::UrlHelper
     # With the hack on the named route, we have a nil url if authenticated user
     # does not have access to the page. See the hack to define_url_helper 
     # for more information
-    unless url.blank? or !session.data.has_key?(:user)
+    user = session[:user]
+    unless url.blank? or user.nil?
+      if options.is_a?(Hash) and options.has_key? :action 
+        required_perm = '%s/%s' % [ options[:controller] || controller.controller_name,
+                                    options[:action] ]
+        return nil unless user.authorized?(required_perm)
+      end
       "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
     else
       nil

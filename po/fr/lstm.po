@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-22 11:48+0200\n"
-"PO-Revision-Date: 2007-08-22 17:04+0200\n"
+"PO-Revision-Date: 2007-08-23 14:29+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -834,7 +834,7 @@ msgstr "montrer les demandes qui ont déjà été traitées"
 
 #: app/helpers/demandes_helper.rb:203
 msgid "show all the requests"
-msgstr "montrer tout les demandes"
+msgstr "montrer toutes les demandes"
 
 #: app/helpers/export_helper.rb:28
 msgid "Export in %s"
@@ -923,11 +923,11 @@ msgstr "Aficher seulement les logiciels supportés par votre contrat"
 
 #: app/helpers/logiciels_helper.rb:31
 msgid "All softwares"
-msgstr "Tout les logiciels"
+msgstr "Tous les logiciels"
 
 #: app/helpers/logiciels_helper.rb:32
 msgid "Display all softwares"
-msgstr "Afficher tout les logiciels"
+msgstr "Afficher tous les logiciels"
 
 #: app/helpers/pages_helper.rb:35
 msgid "Do you really want to destroy this object ?"
