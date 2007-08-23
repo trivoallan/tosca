@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'demandes_controller'
 
 # Re-raise errors caught by the controller.
-class DemandesController; def rescue_action(e) raise e end; end
+# class DemandesController; def rescue_action(e) raise e end; end
 class DemandesControllerTest < Test::Unit::TestCase
  
   fixtures :demandes, :commentaires, :demandes_paquets, 
@@ -108,10 +108,10 @@ class DemandesControllerTest < Test::Unit::TestCase
       Demande.find(@first_id)
     }
   end
-  def test_pretty_print
-    get :pretty_print, :id => 1
+  def test_print
+    get :print, :id => 1
     assert_response :success
-    assert_template 'pretty_print'
+    assert_template 'print'
     assert_equal assigns(:demande), Demande.find(1)
 
   end

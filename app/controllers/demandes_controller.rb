@@ -246,8 +246,8 @@ class DemandesController < ApplicationController
     update_contribution params[:id], nil
   end
 
-  def pretty_print
-    @demande ||= Demande.find(params[:id])
+  def print
+    @demande = Demande.find(params[:id])
     set_piecejointes(@demande.id)
     set_comments(@demande.id)
   end

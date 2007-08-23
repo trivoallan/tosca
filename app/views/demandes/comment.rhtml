@@ -7,7 +7,7 @@
 
   <h1>
     <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
-    <% options = pretty_print_demande_path(@demande.id) %>
+    <% options = print_demande_path(@demande.id) %>
     <% html_options = { :class => 'no_hover' } %>
     <%= link_to(StaticImage::print, options, html_options) %>
   </h1>
