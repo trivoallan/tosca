@@ -22,6 +22,7 @@ class Document < ActiveRecord::Base
     d = @attributes['updated_on']
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
   end
+
   def date_delivery_on_formatted
     return '-' unless date_delivery
     d = @attributes['date_delivery']
@@ -38,7 +39,7 @@ class Document < ActiveRecord::Base
 
   def self.content_columns 
     @content_columns ||= columns.reject { |c| c.primary || 
-        c.name =~ /(_id|_on|fichier)$/ || c.name == inheritance_column } 
+        c.name =~ /(_id|_on|date_delivery|fichier)$/ || c.name == inheritance_column } 
   end
 
 end
