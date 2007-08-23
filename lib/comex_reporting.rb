@@ -90,19 +90,22 @@ module  ComexReporting
         # temps_ecoule en seconde mais prend en compte les horaire de travail
         # elapsed_time is in seconds, but take into consideration the working days
         elapsed_time = request.temps_ecoule
-        if elapsed_time < 0
-          d[:correction], d[:contournement] = 0,0
-          d[:mesg_correction], d[:mesg_contournement] ='-', '-'
-        else
+        d[:correction], d[:contournement] = 0,0
+        d[:mesg_correction], d[:mesg_contournement] ='-', '-'
+        if elapsed_time >= 0
         # correction_time and workaround_time are in second, and not null
           correction_time = request.engagement(contrat).correction.days
-          workaround_time= request.engagement(contrat).contournement.days
-          d[:mesg_correction]=  request.distance_of_time_in_french_words( 
-            (correction_time - elapsed_time).abs, request.client.support )
-          d[:mesg_contournement] = request.distance_of_time_in_french_words( 
-            (workaround_time-elapsed_time).abs, request.client.support )
-          d[:correction]=  (elapsed_time/correction_time )*100
-          d[:contournement]= (elapsed_time/workaround_time )*100
+          workaround_time = request.engagement(contrat).contournement.days
+          unless correction_time == -1.day
+            d[:mesg_correction]=  request.distance_of_time_in_french_words( 
+              (correction_time - elapsed_time).abs, request.client.support )
+            d[:correction]=  (elapsed_time/correction_time )*100
+          end
+          unless workaround_time == -1.day
+            d[:mesg_contournement] = request.distance_of_time_in_french_words( 
+              (workaround_time-elapsed_time).abs, request.client.support )
+            d[:contournement]= (elapsed_time/workaround_time )*100
+          end
         end
       end
       c_extra[:demandes_ids].sort!{|a,b| c[a][:correction] <=> c[b][:correction] }.reverse!
