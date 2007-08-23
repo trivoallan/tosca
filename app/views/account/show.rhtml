@@ -24,7 +24,7 @@
      [ _('login'), "<label>#{@identifiant.login}</label>" ],
      [ role_titre, role_champs ],
      [ '<hr/>', nil ],
-     [  nil, "<p>#{indent @identifiant.informations}</p>" ]
+     [  nil, @identifiant.informations.to_s ]
    ]
 
 %>

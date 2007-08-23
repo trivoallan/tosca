@@ -139,6 +139,7 @@ class DemandesController < ApplicationController
       :limit => 1, :conditions => { :demande_id => @demande.id } }
     options[:conditions][:prive] = false if @beneficiaire
     @last_commentaire = Commentaire.find(:first, options)
+
     flash.now[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 
     @statuts = @demande.statut.possible(@beneficiaire)
@@ -148,12 +149,7 @@ class DemandesController < ApplicationController
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
     @severity = Severite.find(:all)
 
-    # On va chercher les identifiants des ingénieurs assignés
-    # C'est un héritage du passé
-    # TODO : s'en débarrasser avec une migration et un :include'
-    select = "DISTINCT ingenieurs.identifiant_id "
-    @identifiants_ingenieurs =
-      Ingenieur.find(:all, :select => select)
+    set_comments(@demande.id)
 
     @partial_for_summary = 'infos_demande'
     # render is mandatory becoz' of the alias with 'show'
@@ -306,15 +302,17 @@ class DemandesController < ApplicationController
   end
 
   def set_comments(demande_id)
-    if @ingenieur
-      @commentaires = Commentaire.find(:all, :conditions =>
+    unless @last_commentaire
+      if @ingenieur
+        @commentaires = Commentaire.find(:all, :conditions =>
          [ 'commentaires.demande_id = ?', demande_id ],
          :order => "created_on ASC", :include => [:identifiant,:statut,:severite])
-    else
-      @commentaires = Commentaire.find(:all, :conditions =>
+      else
+        @commentaires = Commentaire.find(:all, :conditions =>
          [ 'commentaires.demande_id = ? AND commentaires.prive = ? ',
            demande_id, false ],
          :order => 'created_on ASC', :include => [:identifiant,:statut,:severite])
+      end
     end
 
     # On va chercher les identifiants des ingénieurs assignés
