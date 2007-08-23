@@ -45,7 +45,7 @@ class PiecejointesController < ApplicationController
   end
   
   def uv
-  	@pj = Piecejointe.find(params[:id])
-  	render :partial => "uv"
+    @pj = Piecejointe.find(params[:id])
+    render :partial => "uv"
   end
 end
