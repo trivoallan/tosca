@@ -70,7 +70,7 @@ module LinksHelper
                    :background_close => true)
       #Text        
       elsif mime_type =~ /^text\//
-        link_to(StaticImage::view, uv_piecejointes(record), 
+        link_to(StaticImage::view, uv_piecejointe_path(record), 
           :popup => [filename, 'height=600,width=800,scrollbars=yes'])
       else
         '-'
