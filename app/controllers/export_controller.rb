@@ -142,7 +142,7 @@ class ExportController < ApplicationController
     end
     report.reorder columns
     report.rename_columns columns,
-      [_('Id'), _('Software'), _('Recipient'), ('Customer'),
+      [_('Id'), _('Software'), _('Recipient'), _('Customer'),
         _('Owner') , _('Severity'),
         _('Submission date') , _('Platform'), _('Last update'),
         _('Summary'), _('Status'), _('Type') ]
