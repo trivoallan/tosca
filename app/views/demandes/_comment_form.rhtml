@@ -4,14 +4,17 @@
   <td><b><u>
     <label for="commentaire_corps"><%= _("Your answer :") %></label>
     </u></b></td>
+
+  <% unless @statuts.empty? %>
+  <td align="center">
+    <label for="commentaire_statut_id"><%= _("Status") %></label>
+    <%= select_empty(@statuts, nil, 'commentaire[statut_id]') %>
+  </td>
+  <% end %>
   <% if @ingenieur %>
   <td align="center">
     <label for="commentaire_severite_id"><%= _("Severity") %></label>
     <%= select_empty(@severity, nil, 'commentaire[severite_id]') %>
-  </td>
-  <td align="center">
-    <label for="commentaire_statut_id"><%= _("Status") %></label>
-    <%= select_empty(@statuts, nil, 'commentaire[statut_id]') %>
   </td>
   <td align="center">
     <label for="commentaire_ingenieur_id"><%= _("Assign") %></label>

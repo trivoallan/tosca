@@ -126,7 +126,7 @@ class Notifier < ActionMailer::Base
   end
 
   def message_notice (recipients, cc)
-    result = "<br />Un email en informant <b>#{recipients}</b>, "
+    result = "<br />Un email en informant <b>#{recipients}</b> "
     result << "<br />avec en copie <b>#{cc}</b> " if cc
     result << "a été envoyé."
   end

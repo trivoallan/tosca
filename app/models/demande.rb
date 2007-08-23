@@ -74,9 +74,10 @@ class Demande < ActiveRecord::Base
   end
   
   def update_first_comment
-    if self.first_comment.corps != self.description
-      self.first_comment.corps = self.description
-      self.first_comment.save
+    first_comment = self.first_comment
+    if first_comment and first_comment.corps != self.description
+      first_comment.corps = self.description
+      first_comment.save
     end 
   end
 

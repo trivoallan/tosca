@@ -28,11 +28,11 @@ class CommentairesController < ApplicationController
       %w{statut_id ingenieur_id severite_id}.each do |attr|
         modifications[attr] = true unless params[:commentaire][attr].blank?
       end
-      #On en a besoin ? J'ai l'impression que ça sert à rien
-      # à la 'prise en compte' : assignation auto à l'ingénieur
-      #if params[:commentaire][:statut_id] == '2' and demande.ingenieur_id.nil?
-      #  demande.ingenieur_id = @ingenieur.id
-      #end
+
+      # when "taken into account", auto-assignment to ingénieur
+      if params[:commentaire][:statut_id] == '2' and demande.ingenieur_id.nil?
+        demande.ingenieur_id = @ingenieur.id
+      end
     else
       params[:commentaire] = {}
     end

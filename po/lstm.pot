@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-23 15:27+0200\n"
+"POT-Creation-Date: 2007-08-23 18:07+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -384,7 +384,7 @@ msgid "Software"
 msgstr ""
 
 #: app/controllers/export_controller.rb:146 app/views/clients/show.rhtml:39
-#: app/views/demandes/_comment_form.rhtml:9
+#: app/views/demandes/_comment_form.rhtml:16
 #: app/views/demandes/_infos_demande.rhtml:28
 #: app/views/demandes/_requests_info.rhtml:39
 msgid "Severity"
@@ -415,7 +415,7 @@ msgid "Summary"
 msgstr ""
 
 #: app/controllers/export_controller.rb:148
-#: app/views/demandes/_comment_form.rhtml:13
+#: app/views/demandes/_comment_form.rhtml:10
 #: app/views/demandes/_infos_demande.rhtml:25
 #: app/views/demandes/_requests_info.rhtml:41
 msgid "Status"
@@ -989,7 +989,7 @@ msgid "Hide"
 msgstr ""
 
 #: app/helpers/static_image.rb:58 app/views/bienvenue/about.rhtml:3
-#: app/views/demandes/_infos_demande.rhtml:60
+#: app/views/demandes/_infos_demande.rhtml:59
 msgid "Help"
 msgstr ""
 
@@ -1533,7 +1533,7 @@ msgstr ""
 msgid "You must indicate a valid severity"
 msgstr ""
 
-#: app/models/demande.rb:251
+#: app/models/demande.rb:252
 msgid " of overrun"
 msgstr ""
 
@@ -3262,19 +3262,19 @@ msgstr ""
 msgid "Your answer :"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:17
+#: app/views/demandes/_comment_form.rhtml:20
 msgid "Assign"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:21
+#: app/views/demandes/_comment_form.rhtml:24
 msgid "Private ?"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:29
+#: app/views/demandes/_comment_form.rhtml:32
 msgid "Add a file :"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:31
+#: app/views/demandes/_comment_form.rhtml:34
 msgid "Answer"
 msgstr ""
 
@@ -3384,8 +3384,8 @@ msgstr ""
 msgid "Created on"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:55
-msgid "Elapsed time"
+#: app/views/demandes/_infos_demande.rhtml:54
+msgid "Submitted upstream"
 msgstr ""
 
 #: app/views/demandes/_packages.rhtml:2

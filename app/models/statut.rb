@@ -17,6 +17,10 @@ class Statut < ActiveRecord::Base
   
   SELECT = 'statuts.id, statuts.nom '
 
+  # Give possible status for next step of a request
+  # It follows scheme on the 08000linux wiki
+  # Even recipient can change some status, 
+  # when it's for closed or cancelled a request.
   def possible(recipient = nil)
     search = 
       if recipient
