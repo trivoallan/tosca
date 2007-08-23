@@ -1,5 +1,5 @@
 <% simg = nil %>
-<% print_mode = (controller.action_name == 'pretty_print') %>
+<% print_mode = (controller.action_name == 'print') %>
 <% commentaires = @commentaires || [@last_commentaire] %>
 
 <% edit_ho = { :class => 'no_hover' } %>
@@ -18,7 +18,7 @@
         <% if @identifiants_ingenieurs.include? id.id %>
           <%= StaticImage::logo_08000 %>
         <% elsif id and id.beneficiaire %>
-         <%= logo_img ||= logo_client(id.beneficiaire.client) %>
+          <%= logo_img ||= logo_client(id.beneficiaire.client) %>
         <% end %><br/>
         <%= id.nom if id %><br />
 
