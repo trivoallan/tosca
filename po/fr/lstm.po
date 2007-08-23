@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-08-23 18:07+0200\n"
-"PO-Revision-Date: 2007-08-23 15:29+0200\n"
+"PO-Revision-Date: 2007-08-23 18:14+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3429,9 +3429,8 @@ msgid "Created on"
 msgstr "Créé le"
 
 #: app/views/demandes/_infos_demande.rhtml:54
-#, fuzzy
 msgid "Submitted upstream"
-msgstr "Déposé le"
+msgstr "Reversée"
 
 #: app/views/demandes/_packages.rhtml:2
 msgid "Specify here the packages impacted by the request :"
@@ -4532,5 +4531,3 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "Elapsed time"
-#~ msgstr "Temps écoulé"
