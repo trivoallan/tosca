@@ -43,7 +43,7 @@ class AccountControllerTest < Test::Unit::TestCase
 
     assert @response.has_session_object?(:user)
     assert_equal @bob, @response.session["user"]
-    assert_equal @response.redirect_url, 'http://localhost/'
+    assert_equal @response.redirect_url, 'http://localhost/bienvenue'
   end
   
   def test_signup
