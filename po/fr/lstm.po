@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-24 19:14+0200\n"
-"PO-Revision-Date: 2007-08-24 18:09+0200\n"
+"PO-Revision-Date: 2007-08-24 19:24+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1231,12 +1231,10 @@ msgid "Contrat|Socle"
 msgstr "Socle"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Nom"
-msgstr "Socle"
+msgstr "Nom"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Support"
 msgstr "Support"
 
@@ -1298,7 +1296,7 @@ msgstr "Nombre de fichiers"
 
 #: app/models/client.rb:-
 msgid "Paquet|Changelogs count"
-msgstr ""
+msgstr "Nombre de changelogs"
 
 #: app/models/client.rb:-
 msgid "Paquet|Active"
@@ -1547,9 +1545,8 @@ msgid "Demande|First comment"
 msgstr "Premier commentaire"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Contrat"
-msgstr "Contribution"
+msgstr "Contrat"
 
 #: app/models/demande.rb:23
 msgid "You must indicate a summary for your request"
@@ -3110,9 +3107,8 @@ msgid "From %s to %s"
 msgstr "De %s à %s"
 
 #: app/views/clients/show.rhtml:34
-#, fuzzy
 msgid "on your complete system"
-msgstr " sur l'intégralité de votre système"
+msgstr "sur l'intégralité de votre système"
 
 #: app/views/clients/show.rhtml:36
 msgid "concerning %s source packages "
@@ -3180,38 +3176,32 @@ msgid "New skill"
 msgstr "Nouvelle compétence"
 
 #: app/views/contrats/_form.rhtml:12
-#, fuzzy
 msgid "Opens at"
 msgstr "Heure d'ouverture"
 
 #: app/views/contrats/_form.rhtml:15
-#, fuzzy
 msgid "Closes at"
 msgstr "Heure de fermeture"
 
 #: app/views/contrats/_form.rhtml:18
 msgid "Night guard ?"
-msgstr ""
+msgstr "Astreinte ?"
 
 #: app/views/contrats/_form.rhtml:21
-#, fuzzy
 msgid "Entire system ?"
-msgstr "Éditer le système"
+msgstr "Système complet ?"
 
 #: app/views/contrats/_form.rhtml:24
-#, fuzzy
 msgid "Support ?"
-msgstr "Support"
+msgstr "Support ?"
 
 #: app/views/contrats/_form.rhtml:27
-#, fuzzy
 msgid "Commitments"
 msgstr "Engagements"
 
 #: app/views/contrats/_form.rhtml:32
-#, fuzzy
 msgid "Engineers assigned to this contract"
-msgstr "Ingénieur assigné à la demande"
+msgstr "Ingénieurs affiliés à ce contrat"
 
 #: app/views/contributions/_contributions_admin.rhtml:1
 msgid "List of contributions"
@@ -3390,9 +3380,8 @@ msgid "Client"
 msgstr "Client"
 
 #: app/views/demandes/_form.rhtml:32
-#, fuzzy
 msgid "Concerning "
-msgstr "Portant sur le contrat"
+msgstr "Concernant "
 
 #: app/views/demandes/_form.rhtml:41
 msgid "Engineer assigned to the request"
@@ -3547,9 +3536,8 @@ msgid "By client"
 msgstr "Par client"
 
 #: app/views/demandes/_requests_info.rhtml:31
-#, fuzzy
 msgid "By expert"
-msgstr "Expert OSSA"
+msgstr "Par expert"
 
 #: app/views/demandes/_requests_info.rhtml:37
 msgid "Attributes"
@@ -4075,7 +4063,7 @@ msgstr "Le contrat est dépassé! "
 
 #: app/views/reporting/_comex_cns.rhtml:12
 msgid "The indicated time is the one elapsed before the end of the SLA."
-msgstr ""
+msgstr "Le temps indiqué est celui restant avant la fin de la CNS"
 
 #: app/views/reporting/_comex_tableaux.rhtml:2
 msgid "OSSA activity from "
@@ -4591,12 +4579,3 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "unknown client"
-#~ msgstr "client inconnu"
-
-#~ msgid ""
-#~ "The indicated time is the remaining time until the end of the contract, "
-#~ "or the time needed beyond the contract."
-#~ msgstr ""
-#~ "Le temps indiqué correspond au temps restant pour finir le contrat, ou le "
-#~ "temps necessaire pour aller au dela du contrat"
