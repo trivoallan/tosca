@@ -3637,9 +3637,8 @@ msgid "Updated on : "
 msgstr "Mis à jour le :"
 
 #: app/views/engagements/edit.rhtml:1
-#, fuzzy
 msgid "Editing a commitment"
-msgstr "Éditer une pièce jointe"
+msgstr "Modifier un engagement"
 
 #: app/views/groupes/edit.rhtml:1
 msgid "Editing group"
@@ -4525,11 +4524,4 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "25% de ready"
-#~ msgstr "25% fini"
 
-#~ msgid "50% de ready"
-#~ msgstr "50% fini"
-
-#~ msgid "75% de ready"
-#~ msgstr "75% fini"
