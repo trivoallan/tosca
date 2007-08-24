@@ -1,9 +1,9 @@
-<h1>Editing engagement <b style="color:red"> >> migration vers delais en jours</b></h1>
+<h1><%=_('Editing a commitment')%></b></h1>
 
-<% form_tag document_path(@engagement), :method => :put do %>
+<% form_tag engagement_path(@engagement), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag 'Validate' %>
 <% end %>
 
-<%= link_to 'Show', document_path(@engagement) %> |
+<%= link_to 'Show', engagement_path(@engagement) %> |
 <%= link_to_back %>
