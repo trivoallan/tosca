@@ -1050,7 +1050,7 @@ h1.section {
 	text-align: center;
 }
 
-/* barre de progression */
+/* progress bar in the CNS view */
 .percentImage {
     background: white url(/images/percentimage_back2.png) no-repeat;
 }
