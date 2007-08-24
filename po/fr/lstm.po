@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-24 19:14+0200\n"
-"PO-Revision-Date: 2007-08-24 19:24+0200\n"
+"PO-Revision-Date: 2007-08-24 19:43+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3389,7 +3389,7 @@ msgstr "Ingénieur assigné à la demande"
 
 #: app/views/demandes/_form.rhtml:45
 msgid "E-mails associated with the request<br/>seperate by commas %s"
-msgstr "E-mails associciés à la demande<br/>séparés par des virgule %s"
+msgstr "E-mails associés à la demande<br/>séparés par des virgule %s"
 
 #: app/views/demandes/_form.rhtml:59
 msgid "Type of the request"
