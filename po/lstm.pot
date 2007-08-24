@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-23 18:07+0200\n"
+"POT-Creation-Date: 2007-08-24 14:34+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2245,9 +2245,10 @@ msgstr ""
 #: app/views/account/login.rhtml:18 app/views/appels/edit.rhtml:5
 #: app/views/beneficiaires/new.rhtml:5 app/views/binaires/edit.rhtml:5
 #: app/views/binaires/new.rhtml:5 app/views/contributions/edit.rhtml:6
-#: app/views/documents/edit.rhtml:6 app/views/licenses/edit.rhtml:5
-#: app/views/logiciels/new.rhtml:5 app/views/urllogiciels/edit.rhtml:5
-#: app/views/urllogiciels/new.rhtml:5 app/views/urlreversements/edit.rhtml:5
+#: app/views/documents/edit.rhtml:6 app/views/engagements/edit.rhtml:5
+#: app/views/licenses/edit.rhtml:5 app/views/logiciels/new.rhtml:5
+#: app/views/urllogiciels/edit.rhtml:5 app/views/urllogiciels/new.rhtml:5
+#: app/views/urlreversements/edit.rhtml:5
 #: app/views/urlreversements/new.rhtml:5
 msgid "Validate"
 msgstr ""
@@ -2423,7 +2424,7 @@ msgid "You are now logout"
 msgstr ""
 
 #: app/views/account/logout.rhtml:13
-#: app/views/layouts/standard-layout.rhtml:35
+#: app/views/layouts/standard-layout.rhtml:33
 msgid "Log in"
 msgstr ""
 
@@ -3586,6 +3587,10 @@ msgstr ""
 msgid "Updated on : "
 msgstr ""
 
+#: app/views/engagements/edit.rhtml:1
+msgid "Editing a commitment"
+msgstr ""
+
 #: app/views/groupes/edit.rhtml:1
 msgid "Editing group"
 msgstr ""
@@ -3934,7 +3939,7 @@ msgstr ""
 msgid "Caption"
 msgstr ""
 
-#: app/views/reporting/_comex_cns.rhtml:5
+#: app/views/reporting/_comex_cns.rhtml:4
 msgid "The progressions bar represent the progress ratio of the contract: "
 msgstr ""
 
@@ -3942,23 +3947,11 @@ msgstr ""
 msgid "The contract has not been started yet"
 msgstr ""
 
-#: app/views/reporting/_comex_cns.rhtml:7
-msgid "25% de ready"
-msgstr ""
-
-#: app/views/reporting/_comex_cns.rhtml:8
-msgid "50% de ready"
-msgstr ""
-
-#: app/views/reporting/_comex_cns.rhtml:9
-msgid "75% de ready"
-msgstr ""
-
 #: app/views/reporting/_comex_cns.rhtml:10
 msgid "The contract is outdated! "
 msgstr ""
 
-#: app/views/reporting/_comex_cns.rhtml:11
+#: app/views/reporting/_comex_cns.rhtml:12
 msgid ""
 "The indicated time is the remaining time until the end of the contract, or "
 "the time needed beyond the contract."
