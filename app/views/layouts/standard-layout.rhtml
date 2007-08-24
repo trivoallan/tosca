@@ -9,10 +9,8 @@
        '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
        "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
        "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
-       stylesheet_link_tag(*(%w(comments tools helper demandes info_box auto_complete accueil menu reporting calendar))) <<
        stylesheet_link_tag('common', :media => "all") <<
        stylesheet_link_tag('common-printer', :media => "print") <<
-       stylesheet_link_tag('redbox') <<
        # Include TinyMCE with gzip before other JS to avoid problems
        javascript_include_tiny_mce <<
        tiny_mce(@tiny_mce_options, locale) <<

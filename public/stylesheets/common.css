@@ -65,10 +65,6 @@ body {
 #footer table {
 	width: 100%;
 }
-.imgTete {
-	padding: 10px;
-	height: 80px;
-}
 
 
 /****************** balise html classiques ************/
@@ -107,10 +103,6 @@ a:hover {
 	background-color: #1A5260;
 }
 
-
-table {
-	border-collapse: collapse;
-}
 ul {
 	list-style-type: square;
 }
@@ -141,8 +133,6 @@ fieldset legend {
 	font-weight: bold;
 }
 
-/******************* A RANGER ********************/
-
 span.right {
 	float: right;
 }
@@ -156,77 +146,43 @@ table.pages td {
 	clear: both;
 }
 
-/***************** bloc standard ***************/
 
-/* it's applied to DIV's AND TABLE's */
-.form, .show, .help, .info {
-	background-color: #f2fff2; 
-	-moz-border-radius: 1em;
+
+/***********
+  * Tables *
+  **********/
+table { border-collapse: collapse; }
+/* used in comments */
+table.commentaire tr.public {
+	background: white;
+}
+table.commentaire tr.prive {
+	background: #E6E6E6;
+}
+table.commentaire td.infos {
 	vertical-align: top;
-	padding: 1em 1em 1em 1em;
-	margin: 1em 0.5em 1em 0.5em;
+	padding-right: 2px;
+	width: 20%;
 }
 
-.show tr td, tr th {
-	padding: 0.2em 0.5em 0.2em 0.5em;
+table.commentaire td.text {
+	border-left: 1px solid #999999;
+	padding-left: 13px;
+	width: 75%; 
 }
-
-/*style for the left column in edit pages*/
-div.edit {
-  float: left; 
-  margin-right: 30px; 
-  padding-right: 20px;
+table.commentaire {
+	border: 1px solid #999999;
+	margin: 0.5em;
+	width: 100%;
 }
-
-div.show, div.form { max-width: 35em; }
-
-
-/* used mainly in show view, where we don't want 100% width */
-.info  {
-    width: 33%;
-    max-width: 45em;
+/* used for error messages*/
+table.main td.error {
+	vertical-align : top;
+	padding : 150px 0 0 150px;
 }
-
-/* predefined pretty width and 3D border just for DIV's */
-div.login_box, div.form, div.show, div.help, div.info {
-	border-left: 1px solid #ffffff;
-	border-top: 1px solid #ffffff;
-	border-right: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-}
-
-/* all lines are clickable */
-#demandes_list, #cns tr *:hover {
-	cursor: pointer;
-}
-/* personnalisation du select des severites : non actif */
-#select_severite {
-	padding: 2px;
-	background-color: #fed;
-	border: 3px ridge #643;
-	font-size: 14pt;	
-}
-.severite_1 {
-	background-image: url(../images/severite_1.gif);
-	background-repeat: no-repeat;
-	background-position: left center;	
-}
-			
-
-
-/************************* listes **********************/
-
-.list {
-	margin:0;
-	position: relative;
-	z-index:0;
-}
-.list img {
-	vertical-align: middle;
-}
+/* used in common show views */
 .list table {
 	padding: 0;
-	border-collapse: collapse;
 	width: 100%;
 }
 .list table th {
@@ -284,6 +240,71 @@ div.login_box, div.form, div.show, div.help, div.info {
 }
 .list table .bold {
 	font-weight: bold;
+}
+
+/***************** bloc standard ***************/
+
+/* it's applied to DIV's AND TABLE's */
+.form, .show, .help, .info {
+	background-color: #f2fff2; 
+	-moz-border-radius: 1em;
+	vertical-align: top;
+	padding: 1em 1em 1em 1em;
+	margin: 1em 0.5em 1em 0.5em;
+}
+
+.show tr td, tr th {
+	padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+/*style for the left column in edit pages*/
+div.edit {
+  float: left; 
+  margin-right: 30px; 
+  padding-right: 20px;
+}
+
+div.show, div.form { max-width: 35em; }
+
+
+/* used mainly in show view, where we don't want 100% width */
+.info  {
+    width: 33%;
+    max-width: 45em;
+}
+
+/* predefined pretty width and 3D border just for DIV's */
+div.login_box, div.form, div.show, div.help, div.info {
+	border-left: 1px solid #ffffff;
+	border-top: 1px solid #ffffff;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+}
+
+/* personnalisation du select des severites : non actif */
+#select_severite {
+	padding: 2px;
+	background-color: #fed;
+	border: 3px ridge #643;
+	font-size: 14pt;	
+}
+.severite_1 {
+	background-image: url(../images/severite_1.gif);
+	background-repeat: no-repeat;
+	background-position: left center;	
+}
+			
+
+
+/************************* listes **********************/
+
+.list {
+	margin:0;
+	position: relative;
+	z-index:0;
+}
+.list img {
+	vertical-align: middle;
 }
 .list textarea {
 	width: 90%;
@@ -361,10 +382,6 @@ div.login_box, div.form, div.show, div.help, div.info {
  * ce sont les messages générées lors des validates des models
  * cf: ActionView::Helpers::ActiveRecordHelper (config/environment.rb)
  */
-table.main td.error {
-	vertical-align : top;
-	padding : 150px 0 0 150px;
-}
 td.error div.title {
 	color : red;
 	font-size : 120%;
@@ -476,3 +493,851 @@ a.nobackground {
 }
 
 
+/************************ sommaire ***********************/
+
+/* used in index, admin & about views */
+
+div.sommaire {
+	vertical-align: top;
+}
+
+table.sommaire {
+	table-layout:fixed;
+	width: 100%;
+}
+
+table.sommaire tr  { 
+	vertical-align: top;
+}
+
+table.sommaire tr td { 
+	vertical-align: top;
+	/* we have a 2 columns layout */
+	width: 50%;
+}
+
+/* largeur des balises inputs */
+.list input.text {
+	width: 250px;
+}
+
+
+/* comments.css
+ * Copyright Linagora SA 2006 - Tous droits réservés.
+ */
+
+#commentaire_corps { /* textarea  */
+	width: 100%; 
+}
+
+
+/*************************
+  * Bloc with scrollbars *
+  ************************/
+div.bloc_scroll, div.long_bloc_scroll {
+      width: 99%;
+      height: 10em;
+      overflow: auto;
+      border: 1px solid #000;
+      background-color: #f2fff2;
+}
+div.long_bloc_scroll { height: 40em; }
+div.redbox_scroll {
+  width: 100%;
+  max-height: 600px;
+  overflow: auto;
+}
+
+/*********************
+  *  Auto Completion *
+  ********************/
+div.auto_complete {
+  width: 350px;
+  background: #fff;
+}
+div.auto_complete ul {
+  border:1px solid #888;
+  margin:0;
+  padding:0;
+  width:100%;
+}
+div.auto_complete ul li {
+  margin-left: -1.5em;
+  margin-bottom: -2px;
+  margin:0;
+  padding:3px;
+  background-image: none;
+  list-style-type:none;
+  list-style-image:none;
+}
+div.auto_complete ul li.selected { 
+  background-color: #e2efe2; 
+}
+div.auto_complete ul strong.highlight { 
+  color: #800; 
+  margin:0;
+  padding:0;
+}
+
+
+/*
+ * Permet d'alterner la couleur des lignes des tableaux
+ */
+
+.pair { background-color: #f0f0f0; }
+.pair:hover { background-color: #e2efe2; }
+.impair { background-color: #e0e0e0; }
+.impair:hover {	background-color: #e2efe2; }
+
+
+/***************************************************
+ * demandes.css 
+ * style des demandes et de leurs propriétés
+ *
+ ****************************************************/
+
+/***************************************
+ * Statut d'une demande en couleur
+ ***************************************/
+
+/* enregistree */
+.demande_1 	{background: #f03730; /*red;*/}
+.demande_1:hover{background: #f03700;}
+
+/* priseencompte */
+.demande_2 	{background: #ffa26e; /*orange;*/}	
+.demande_2:hover{background: #ffa23e; }
+
+/* suspendue */
+.demande_3	{background: #ffffba; /*yellow;*/}
+.demande_3:hover{background: #ffff88; }
+
+/* analysee */
+.demande_4 	{background: #a0e0f0; /*cyan;*/}
+.demande_4:hover{background: #a0e0c0;}
+
+/* contournee */
+.demande_5 	{background: #90EEa0; /* lightgreen; */}
+.demande_5:hover{background: #90EE70; }
+
+/* corrigee */
+.demande_6 	{background: #67ccfd;}
+.demande_6:hover{background: #67cccd;}
+
+/* cloturee */
+.demande_7 	{background: #c9c9af; /*grey;*/}
+.demande_7:hover{background: #c9c97f; }
+
+/* annulee */
+.demande_8 	{background: #D3D3D3; /*lightgrey;*/}
+.demande_8:hover{background: #D3D3a3;}
+
+
+
+/* all lines are clickable */
+#demandes_list, #cns tr *:hover {
+	cursor: pointer;
+}
+
+
+/***************************************
+ *                severite
+ ***************************************/
+
+/* TODO : options du select severite en couleur  */
+option.severite_1 {
+ 	background-color: white;
+}
+option.severite_2 {
+ 	background-color: green;
+}
+option.severite_3 {
+ 	background-color: yellow;
+}
+option.severite_4 {
+ 	background-color: orange;
+}
+option.severite_5 {
+ 	background-color: red;
+}
+option.severite_6 {
+ 	background-color: black;
+}
+
+
+/******************************************
+ * Tabulations (onglets)
+ ******************************************/
+
+.demande_tab {
+	/*padding-bottom: 5em;*/
+}
+.demande_tabnav {
+	color: #000000;
+	margin: 12px 0px 0px 0px;
+	padding: 0px;
+	z-index: 2;
+	padding-left: 10px 
+}
+.demande_tabnav li {
+	display: inline;
+	overflow: hidden;
+	list-style-type: none; 
+}
+.demande_tabnav a, a.active {
+	color: #000000;
+	background:  #FFEBBF;
+	font: bold 1em "Trebuchet MS", Arial, sans-serif;
+	border: 2px solid #cfc8cf;
+	padding: 2px 5px 2px 5px;
+	margin: 0;
+	border-bottom: 0;
+	text-decoration: none; 
+	-moz-border-radius: .5em .5em 0 0;
+}
+.demande_tabnav a.active {
+	background: #cfc8cf;  
+}
+.demande_tabnav a:hover {
+	color: #FFFFFF;
+	background: #FFD880; 
+}
+.demande_tabnav a:visited {
+	color: black; 
+}
+.demande_tabnav a.active:hover {
+	background: #FFB000;
+	color: #FFEBBF; 
+}
+.demande_tab_content {
+	text-align: justify;
+	background: #DDDDDD;
+	padding: 0.5em;
+	margin: 0;
+	margin-top: 0px;
+	border: 1px solid #cfc8cf; 
+	z-index: -1;	
+}
+
+.demande_tab_content td {
+  margin-right: 1em;
+  padding-right: 1em;
+}
+
+/* history */
+.demande_tab_content .history {
+	font-size: 95%;
+	padding: 0.5em;
+}
+
+
+
+/******************************************
+ * Barre de progression 
+ ******************************************/
+
+.progress-border {
+  width: 70px; 
+  height: 15px;
+  background: #fff; 
+  border: 1px solid silver; 
+  margin: 1px; 
+  padding: 0px;
+  position: relative; 
+  float: right;
+}
+.progress-correction {
+  height: 100%; 
+  margin: 0; 
+  padding: 0; 
+  background: #f2ab99; 
+  float: left
+}
+.progress-restant {
+  height: 100%;  
+  margin: 0;  
+  padding: 0;  
+  background-color: #b0d295;  
+  float: left
+}
+.progress-contournement {
+  height: 100%; 
+  margin: 0;  
+  padding: 0;  
+  background-color:#e7e0c4;  
+  float: left
+}
+
+/**************************************
+ * Mise en page
+ **************************************/
+
+.content {
+}
+.summary {
+	width: 19em;
+	height: 100%; /*84%;*/
+	background-color: #EEEEEE;
+	border-right: 1px solid #dddddd; 
+	border-bottom: 1px solid #dddddd; 
+	margin-top: -1px;
+}
+.summary_toggle {
+	width: 4px;
+	height: 100%;
+        vertical-align: middle;
+	background-color: #DDDDDD; /* #eeeeee; /* #009C55; */
+	background-image: url(../images/transition.gif);
+	background-position: center; 
+	background-repeat: no-repeat; 
+	border-left: 1px dotted white;
+	border-right: 1px dotted white;
+	margin-top: -1px;
+	font-weight: bold;
+	cursor: pointer;
+	cursor: hand;
+}
+.summary_toggle:hover {
+	background-color: #ffffff;
+	border-left: 1px dotted #009C55; /* green */
+	border-right: 1px dotted #009C55; /* green */
+}
+.summary input, 
+.summary select {
+	/* width: 90%; *//* strange effect on IE */
+        width: 15em;
+}
+/* keep little space on the right 
+   of date input for js_calendar ~2em */
+#date_after,
+#date_before {
+        width: 13em;
+}
+.underline {
+	border-bottom: 1px solid #990066;
+	width: 100%;
+}
+.menu_title {
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #999999;
+	width: 100%;
+	background-color: #dddddd;
+	font-weight: bold;
+	cursor: pointer;
+	cursor: hand;
+}
+ul.menu li {
+	color: black;
+	list-style-image: url(../images/puce.png);
+	margin-left: -1.5em;
+	margin-bottom: -2px;
+}
+
+/** 
+ * Copyright Linagora SA 2007 - Tous droits réservés.
+ * made by Guillaume Dufloux, inspired from http://collaboa.org/
+ * Dynamic menu
+ */
+
+.simple_menu {
+  vertical-align: middle;
+  position: absolute;
+  width: 50em;
+  top: 0.2em;
+  left: 190px;
+  z-index: 0;
+}
+
+.account_menu {
+  vertical-align: middle;
+  position: float;
+  top: 0.2em;
+}
+.simple_menu ul, .account_menu ul {
+  margin: 0; padding: 0;
+  list-style: none;
+}
+.simple_menu li, .account_menu li {
+  display: inline;
+}
+.simple_menu a, .account_menu a {
+  padding: 0 9px; 
+  margin: 0; 
+  line-height: 200%;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.simple_menu a {
+  float: left;
+}
+.account_menu a {
+  float: right; 
+}
+
+.simple_menu a:hover, .account_menu a:hover{
+  color: #eee;
+  background-color: #1A5260;
+}
+
+.simple_menu .no_hover:hover {
+	background: none;
+}
+ 
+
+/** 
+ * advanced menu (NON YET USED)
+ * http://css.alsacreations.com/xmedia/exemples/deroulant/menu-horizontal2.htm 
+ */
+
+#menu .liste_menu, #menu .liste_title, #menu ul, #menu li {
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+#menu {
+position: absolute;
+top: 3em; 
+left: 50px;
+z-index:100; 
+}
+#menu .liste_menu{
+float: left;
+width: 8em; /* keep it for IE */
+margin: 0;
+background: #eee;
+}
+#menu .liste_title {
+height: 2em;
+cursor: pointer;
+text-align: center;
+font-weight: bold;
+}
+
+
+#menu a {
+  padding: 0 10px; 
+  margin: 0; 
+  font-size: 12px;
+  line-height: 200%;
+}
+#menu a:hover {
+  color: #eee;
+  background-color: #1A5260;
+}
+
+
+#menu .liste_items {
+display: none;
+padding: 1em;
+padding-top:0;
+}
+#menu li {
+text-align: left;
+}
+
+/* PB with IE : 
+   le hover ne s'applique qu'aux elements 'a href' 
+.liste_menu:hover {
+background: #eee;
+border: 1px solid #ccc;
+} /**/
+
+
+
+
+/** 
+ * Copyright Linagora SA 2007 - Tous droits réservés.
+ * reporting.css
+ */
+
+
+/******************** reporting *******************/
+
+
+table.report tr td {
+	text-align: center;
+}
+
+/* formulaire de saisie mois et ann� */
+.report_form {
+	background-color: #d2dfd2;
+	float:right;
+	padding: 1em;
+	margin-left: 2em;
+	border: 1px solid grey;
+}
+/* page de reporting */
+.report {
+	background-color: white;
+	padding: 3em; 
+}
+/* tableaux statistiques */
+.report_item, .report_sommaire {
+	width: 100%;
+	margin-top: 10px;
+}
+.report_graph {
+	width: 40%;
+}
+.report_legend {
+	text-align: center;	
+	text-align: center;
+	width: 20%;
+}
+.report_data {
+	/*background-color: #d2dfd2;*/
+	width: 40%;
+	vertical-align: top;
+}
+.report_data table tr td {
+	text-align: center;
+}
+
+
+/** titres du reporting **/
+
+h1.title {
+	font-size: 300%;
+	text-align: center;
+	line-height: normal;
+}
+
+h1.chapter {
+	font-size: 300%;
+	padding: 5pt;
+	line-height: normal;
+}
+
+h2.chapter {
+	font-size: 200%;
+	padding: 5pt;
+	line-height: normal;
+}
+
+h1.section {
+	font-size: 100%;
+	text-align: center;
+	padding: 20pt;
+	line-height: normal;
+}
+
+/** bandeau d'images du reporting **/
+
+.report_images {
+	margin: 2em;
+	text-align: center;
+}
+
+#left  {
+	margin: 2px;
+	float: left;
+	width: 40%;
+	text-align: center;
+}
+
+#right {
+	margin: 2px;
+	float: right;
+	width: 40%;
+	text-align: center;
+}
+
+#middle {
+	margin: 2px;
+	float: left;
+	width: 18%;
+	text-align: center;
+}
+
+/* barre de progression */
+.percentImage {
+    background: white url(/images/percentimage_back2.png) no-repeat;
+}
+
+
+/* Distributed as part of The Coolest DHTML Calendar
+   Author: Mihai Bazon, www.bazon.net/mishoo
+   Copyright Dynarch.com 2005, www.dynarch.com
+   Thanks jira for the pretty cloths
+*/
+
+/* Added by MLO : Hover on calendar images */
+.calendar_over {
+  margin: 0px;
+  border: 1px solid red;
+}
+
+.calendar_out {
+  margin: 1px;
+  border: none;
+}
+
+/* Real calendar stuff */
+.calendar, .calendar table {
+  border: 1px solid #bdb2bf;
+  font-size: 11px;
+  color: #000;
+  cursor: default;
+  background: url("../images/normal-bg.gif");
+  font-family: "trebuchet ms",verdana,tahoma,sans-serif;
+}
+
+.calendar {
+  border-color: #797979;
+}
+
+/* Header part -- contains navigation buttons and day names. */
+
+.calendar .button { /* "<<", "<", ">", ">>" buttons have this class */
+  text-align: center;    /* They are the navigation buttons */
+  padding: 2px;          /* Make the buttons seem like they're pressing */
+  background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000;
+  font-weight: bold;
+}
+
+.calendar .nav {
+  font-family: verdana,tahoma,sans-serif;
+}
+
+.calendar .nav div {
+  background: transparent url("../images/menuarrow.gif") no-repeat 100% 100%;
+}
+
+.calendar thead tr { background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000; }
+
+.calendar thead .title { /* This holds the current "month, year" */
+  font-weight: bold;      /* Pressing it will take you to the current date */
+  text-align: center;
+  padding: 2px;
+  background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000;
+}
+
+.calendar thead .headrow { /* Row <TR> containing navigation buttons */
+}
+
+.calendar thead .name { /* Cells <TD> containing the day names */
+  border-bottom: 1px solid #797979;
+  padding: 2px;
+  text-align: center;
+  color: #000;
+}
+
+.calendar thead .weekend { /* How a weekend day name shows in header */
+  color: #c44;
+}
+
+.calendar thead .hilite { /* How do the buttons in header appear when hover */
+  background: url("../images/hover-bg.gif");
+  border-bottom: 1px solid #797979;
+  padding: 2px 2px 1px 2px;
+}
+
+.calendar thead .active { /* Active (pressed) buttons in header */
+  background: url("../images/active-bg.gif"); color: #fff;
+  padding: 3px 1px 0px 3px;
+  border-bottom: 1px solid #797979;
+}
+
+.calendar thead .daynames { /* Row <TR> containing the day names */
+  background: url("../images/dark-bg.gif");
+}
+
+/* The body part -- contains all the days in month. */
+
+.calendar tbody .day { /* Cells <TD> containing month days dates */
+  font-family: verdana,tahoma,sans-serif;
+  width: 2em;
+  color: #000;
+  text-align: right;
+  padding: 2px 4px 2px 2px;
+}
+.calendar tbody .day.othermonth {
+  font-size: 80%;
+  color: #999;
+}
+.calendar tbody .day.othermonth.oweekend {
+  color: #f99;
+}
+
+.calendar table .wn {
+  padding: 2px 3px 2px 2px;
+  border-right: 1px solid #797979;
+  background: url("../images/dark-bg.gif");
+}
+
+.calendar tbody .rowhilite td,
+.calendar tbody .rowhilite td.wn {
+  background: url("../images/rowhover-bg.gif");
+}
+
+.calendar tbody td.today { font-weight: bold; /* background: url("../images/today-bg.gif") no-repeat 70% 50%; */ }
+
+.calendar tbody td.hilite { /* Hovered cells <TD> */
+  background: url("../images/hover-bg.gif");
+  padding: 1px 3px 1px 1px;
+  border: 1px solid #bbb;
+}
+
+.calendar tbody td.active { /* Active (pressed) cells <TD> */
+  padding: 2px 2px 0px 2px;
+}
+
+.calendar tbody td.weekend { /* Cells showing weekend days */
+  color: #c44;
+}
+
+.calendar tbody td.selected { /* Cell showing selected date */
+  font-weight: bold;
+  border: 1px solid #797979;
+  padding: 1px 3px 1px 1px;
+  background: url("../images/active-bg.gif"); color: #fff;
+}
+
+.calendar tbody .disabled { color: #999; }
+
+.calendar tbody .emptycell { /* Empty cells (the best is to hide them) */
+  visibility: hidden;
+}
+
+.calendar tbody .emptyrow { /* Empty row (some months need less than 6 rows) */
+  display: none;
+}
+
+/* The footer part -- status bar and "Close" button */
+
+.calendar tfoot .footrow { /* The <TR> in footer (only one right now) */
+  text-align: center;
+}
+
+.calendar tfoot .ttip { /* Tooltip (status bar) cell <TD> */
+  padding: 2px;
+  background: url("../images/status-bg.gif") repeat-x 0 0; 
+  color: #000;
+}
+
+.calendar tfoot .hilite { /* Hover style for buttons in footer */
+  background: #afa;
+  border: 1px solid #084;
+  color: #000;
+  padding: 1px;
+}
+
+.calendar tfoot .active { /* Active (pressed) style for buttons in footer */
+  background: #7c7;
+  padding: 2px 0px 0px 2px;
+}
+
+/* Combo boxes (menus that display months/years for direct selection) */
+
+.calendar .combo {
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 0px;
+  width: 4em;
+  cursor: default;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: #797979;
+  background: url("../images/normal-bg.gif"); color: #000;
+  z-index: 100;
+  font-size: 90%;
+}
+
+.calendar .combo .label,
+.calendar .combo .label-IEfix {
+  text-align: center;
+  padding: 1px;
+}
+
+.calendar .combo .label-IEfix {
+  width: 4em;
+}
+
+.calendar .combo .hilite {
+  background: url("../images/hover-bg.gif"); color: #000;
+}
+
+.calendar .combo .active {
+  background: url("../images/active-bg.gif"); color: #fff;
+  font-weight: bold;
+}
+
+.calendar td.time {
+  border-top: 1px solid #797979;
+  padding: 1px 0px;
+  text-align: center;
+  background: url("../images/dark-bg.gif");
+}
+
+.calendar td.time .hour,
+.calendar td.time .minute,
+.calendar td.time .ampm {
+  padding: 0px 5px 0px 6px;
+  font-weight: bold;
+  background: url("../images/normal-bg.gif"); color: #000;
+}
+
+.calendar td.time .hour,
+.calendar td.time .minute {
+  font-family: monospace;
+}
+
+.calendar td.time .ampm {
+  text-align: center;
+}
+
+.calendar td.time .colon {
+  padding: 0px 2px 0px 3px;
+  font-weight: bold;
+}
+
+.calendar td.time span.hilite {
+  background: url("../images/hover-bg.gif"); color: #000;
+}
+
+.calendar td.time span.active {
+  background: url("../images/active-bg.gif"); color: #fff;
+}
+
+/************************************
+  * RedBox : used for shadowed box, *
+  * like the login one              *
+  ***********************************/
+#RB_overlay {
+  position: absolute;
+  z-index:100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height:100%;
+  background-color: #000;
+  opacity: .6;
+  filter: alpha(opacity=60);
+}
+
+#RB_loading {
+  position: relative;
+  top: 200px;
+  z-index: 101;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  text-align: center;
+  background: #666 url(../images/redbox_spinner.gif) no-repeat center center;
+  border: 2px solid black;
+}
+#RB_window {
+  z-index: 102;
+  background-color: #FFFFFF;
+  display: block;
+  text-align: left;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+  position: absolute;
+  -moz-border-radius: 1em;
+}
