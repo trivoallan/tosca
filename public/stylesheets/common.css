@@ -1052,7 +1052,7 @@ h1.section {
 
 /* progress bar in the CNS view */
 .percentImage {
-    background: white url(/images/percentimage_back2.png) no-repeat;
+    background: url(../images/percentimage_back2.png) no-repeat;
 }
 
 
