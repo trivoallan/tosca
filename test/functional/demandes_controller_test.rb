@@ -70,7 +70,8 @@ class DemandesControllerTest < Test::Unit::TestCase
       :description => 'une description',
       :beneficiaire_id => 1,
       :statut_id => 1,
-      :severite_id => 1
+      :severite_id => 1,
+      :contrat_id => 1
     }
 
     assert_response :redirect

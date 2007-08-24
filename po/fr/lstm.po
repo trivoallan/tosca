@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-24 14:34+0200\n"
-"PO-Revision-Date: 2007-08-24 16:50+0200\n"
+"PO-Revision-Date: 2007-08-24 18:09+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1091,7 +1091,7 @@ msgstr "Le début de l'appel doit précéder sa fin."
 
 #: app/models/appel.rb:21
 msgid "recipient and client have to correspond."
-msgstr ""
+msgstr "bénéficiaires et le client doivent correspondre"
 
 #: app/models/appel.rb:38 app/models/appel.rb:45
 msgid "%s.%s.%s at %sh%s"
@@ -1363,7 +1363,7 @@ msgstr "Ingénieur"
 
 #: app/models/commentaire.rb:13
 msgid "You must have a comment with at least 5 characters"
-msgstr ""
+msgstr "Votre commentaire doit au moins avoir 5 caractères"
 
 #: app/models/commentaire.rb:16
 msgid "You must indicate a valid request"
@@ -3985,7 +3985,7 @@ msgstr "Nouvelle pièce jointe"
 
 #: app/views/reporting/_comex_cns.rhtml:2
 msgid "SLA report"
-msgstr "rapport CNS"
+msgstr "Rapport CNS"
 
 #: app/views/reporting/_comex_cns.rhtml:3
 msgid "Caption"

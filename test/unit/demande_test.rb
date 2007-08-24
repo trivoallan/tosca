@@ -26,10 +26,13 @@ class DemandeTest < Test::Unit::TestCase
     assert !request.save
     request.description = 'hello request'
     # must have a status and a severity != 0
-    assert !request.save
+    assert !request.save   
     request.statut = Statut.find 1
     request.severite = Severite.find 1
-
+    # must have a contrat_id
+    assert !request.save
+    request.contrat = Contrat.find 1
+  
     assert request.save
 
     # commentaire table must have things now ...

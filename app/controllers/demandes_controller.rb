@@ -73,10 +73,20 @@ class DemandesController < ApplicationController
     @demande = Demande.new unless @demande
     _form @beneficiaire
 
-    # si on est ingénieur, elle est pour nous par défaut
+    # check if the form can display
+    if @contrats.empty?
+      flash[:warn] = _("You are not linked to any contracts in our database.") +
+        '<br />' << _("If you think it's an error, contact us at %s or at %s.") %
+        [ Metadata::CONTACT_PHONE, Metadata::CONTACT_MAIL ]
+      redirect_to(demandes_path) and return
+    end
+
+    # self-assign by default
     @demande.ingenieur = @ingenieur
-    # sans objet par défaut
+    # without severity, by default
     @demande.severite_id = 4
+    # self-contract, by default
+    @demande.contrat_id = @contrats.first.id if @contrats.size == 1
     # statut "prise en compte" si ingénieur, sinon : "enregistrée"
     @demande.statut_id = (@ingenieur ? 2 : 1)
     # if we came from software view, it's sets automatically
@@ -272,6 +282,7 @@ class DemandesController < ApplicationController
   # todo à retravailler
   def _form(beneficiaire)
     @socles = Socle.find_select
+    @contrats = Contrat.find_select
     if beneficiaire
       client = beneficiaire.client
       if client.support_distribution

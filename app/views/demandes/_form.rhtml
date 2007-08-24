@@ -27,9 +27,18 @@
             "nom", "id", "nom", @demande.beneficiaire_id ) %>
       </select></td>
 </tr>
+<tr>
+  <% if @contrats.size > 1 %>
+   <td><p><label for="demande_contrat_id"><%= _("Concerning ") %></label></p></td>
+   <td><%= select(:demande, :contrat_id, 
+                 @contrats.collect{|l| [ l.nom, l.id]}) %></td>
+  <% else %>
+    <td colspan="2"><%= hidden_field :demande, :contrat_id %></td>
+  <% end %>
+</tr>
 <% if @ingenieurs %>
 <tr>
-  <td><p><label for="demande_ingenieur"><%= _("Engineer assigned to the request") %></label></p></td>
+  <td><p><label for="demande_ingenieur_id"><%= _("Engineer assigned to the request") %></label></p></td>
   <td><%= select_empty(@ingenieurs, @demande.ingenieur_id, 'demande[ingenieur_id]') %></td>
 </tr>
 <tr>
@@ -40,7 +49,7 @@
 <tr>
   <td><p><label for="demande_socle"><%= _("System") %></label></p></td>
   <td><%= select(:demande, :socle_id,
-                  @socles.collect{|l| [l.nom[0..25]+(l.nom.size>26 ? "...":""), l.id ]}) %></td>
+                  @socles.collect{|l| [l.nom , l.id ]}) %></td>
 </tr>
 <tr>
   <td><p><label for="demande_logiciel"><%= _("Software") %></label></p></td>
@@ -67,9 +76,7 @@
 <% # hidden lors de la création d'un demande et absent lors de son édition %>
 <% if controller.action_name != 'edit' %>
 <tr>
-  <td colspan="2">
-    <%= hidden_field(:demande, :statut_id) %>
-  </td>
+  <td colspan="2"><%= hidden_field(:demande, :statut_id) %></td>
 </tr>
 <% end %>
 

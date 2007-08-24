@@ -65,12 +65,7 @@ class Contrat < ActiveRecord::Base
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
   def to_s
-    #TODO voir pouquoi la base est corompue
-    if client.nil?
-      self.id.to_s + ' - ' + _('unknown client')
-    else
-      self.id.to_s + ' - ' + client.nom
-    end
+    nom
   end
-  alias_method :nom, :to_s
+  # alias_method :to_s, :nom
 end

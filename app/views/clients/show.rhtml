@@ -29,8 +29,9 @@
   edit = link_to_edit(edit_contrat_path(c))
   result << "#{edit}&nbsp;" if edit
   result << _("From %s to %s") % [c.ouverture_formatted, c.cloture_formatted]
+  result << ' '
   if c.socle
-    result << _(" on your complete system")
+    result << _("on your complete system")
   else
     result << _("concerning %s source packages ") % c.paquets_count
     result << _("and %s binaries") % c.binaires.size
@@ -41,7 +42,7 @@
   result << show_table_engagements(c.engagements)
   result } %>
 
-<b><%= _("View") %></b><%= _(" the %s ") % link_to('Rapport d\'activité', general_reporting_path) %>
+<b><%= _("View") %></b><%= _(" the %s ") % link_to(_('Activity report'), general_reporting_path) %>
 
 </td><td>
 

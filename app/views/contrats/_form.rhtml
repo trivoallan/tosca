@@ -3,26 +3,37 @@
 <!--[form:contrat]-->
 <table class="form">
   <tr>
-    <th><label for="contrat_client_id">Client</label></th>
+    <th><label for="contrat_client_id"><%=_('Customer')%></label></th>
     <td><%= collection_select(:contrat, :client_id, @clients, :id, :nom) %></td>
   </tr><tr>
-    <th><label for="contrat_ouverture">Ouverture</label></th>
+    <th><label for="contrat_nom"><%=_('Name')%></label></th>
+    <td><%= text_field 'contrat', 'nom'  %></td>
+  </tr><tr>
+    <th><label for="contrat_ouverture"><%=_('Opens at')%></label></th>
     <td><%= datetime_select 'contrat', 'ouverture'  %></td>
   </tr><tr>
-    <th><label for="contrat_cloture">Cloture</label></th>
+    <th><label for="contrat_cloture"><%=_('Closes at')%></label></th>
     <td><%= datetime_select 'contrat', 'cloture'  %></td>
   </tr><tr>
-    <th><label for="contrat_astreinte">Astreinte ?</label></th>
+    <th><label for="contrat_astreinte"><%=_('Night guard ?')%></label></th>
     <td><%= check_box :contrat, :astreinte %></td>
   </tr><tr>
-    <th><label for="contrat_socle">Socle Entier ?</label></th>
+    <th><label for="contrat_socle"><%=_('Entire system ?')%></label></th>
     <td><%= check_box :contrat, :socle %></td>
   </tr><tr>
-    <th><label>Engagements <%= link_to_new_engagement %></label></th>
+    <th><label for="contrat_socle"><%=_('Support ?')%></label></th>
+    <td><%= check_box :contrat, :support %></td>
+  </tr><tr>
+    <th><label><%=_('Commitments')%> <%= link_to_new_engagement %></label></th>
     <td><%= show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]' ) %></td>
   </tr><tr>
-    <th>Ingénieurs<br/> assignés</th>
-    <td><%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs, 'contrat[ingenieur_ids]', :size => 3) %></td>
+    <td>
+     <fieldset>
+      <legend><%=_('Engineers assigned to this contract')%></legend>
+      <%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs, 
+            'contrat[ingenieur_ids]', :size => 3) %>
+     </fieldset>
+    </td>
   </tr>
 </table>
 
