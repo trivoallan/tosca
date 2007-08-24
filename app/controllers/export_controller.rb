@@ -213,7 +213,7 @@ class ExportController < ApplicationController
     row << _('To close')
     data << row
     clients.each do |c|
-      name = c.nom.intern
+      name = c.nom
       row = [name]
       repeat4times row,requests[:last_week][name],1
       repeat4times row,requests[:new][name],1
