@@ -236,19 +236,20 @@ module ReportingHelper
   # usage : progress_bar(50) display a orange bar, which correspond to 50%
   def progress_bar( percent )
     return '' if (not percent.is_a? Numeric or percent == -1)
-      case percent
-        when percent < 0 then percent=0
-        when 0..50 then red , green=255*percent/50 , 255
-        when 50..100 then red , green = 255 , 255*(100-percent)/50
-        else red , green=0 , 0
-      end
+    case percent 
+    when percent < 0 
+      percent = 0
+    when 0..50 
+      red, green = 255*percent/50 , 255
+    when 50..100 
+      red , green = 255, 255*(100-percent)/50
+    else 
+      red, green = 0, 0
+    end
 
-      color = "rgb( #{red}, #{green},0)"
+    color = "rgb( #{red}, #{green},0)"
 
-      return '<img alt="barre de progression" class="percentImage"
-          src="/images/percentimage.png"
-          style="background-position: ' << (1.23*percent).to_s << 'px ;
-          background-color: '<< color << ';" />'
+    image_percent(1.23*percent, color)
   end
   #display a select box with all clients.
   #number_items defines the number of visible items in the drop-down list

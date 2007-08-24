@@ -8,7 +8,7 @@ module  ComexReporting
     @requests[:closed] = {}
     @total = { :active=> {}, :final=> {} }
     @clients.each do |c|
-      name = c.nom
+      name = c.nom.intern
       @total[:active][name] = [0,0,0,0, []]
       @total[:final][name] = 0
     end

@@ -31,4 +31,14 @@ module ImagesHelper
     options
   end
 
+  # See usage in reporting_helper#progress_bar
+  # It show a percentage of progression.
+  def image_percent(percent, color)
+    desc = _('progress bar')
+    style = "background-position: #{percent}px; background-color: #{color};"
+    options = { :alt => desc, :title => desc, :style => style }
+    image_tag('percentimage.png', options)
+  end
+
+
 end
