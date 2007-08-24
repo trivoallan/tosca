@@ -28,6 +28,8 @@
  <% if @ingenieur %>
   <li><b><%=_('By client')%></b><br/>
       <%= select_filter(@clients, :client) %></li>
+  <li><b><%=_('By expert')%></b><br/>
+      <%= select_filter(@ingenieurs, :ingenieur) %></li>
  <% end %>
 </ul>
 
