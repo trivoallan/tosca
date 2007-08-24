@@ -20,7 +20,7 @@ module  ComexReporting
   end
 
   def compute_comex_report(client)
-    name = client.nom
+    name = client.nom.intern
     values = {
       :first_day => @date[:first_day],
       :last_day=> @date[:end_day],
