@@ -15,14 +15,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-24 14:34+0200\n"
+"POT-Creation-Date: 2007-08-24 19:14+0200\n"
 "PO-Revision-Date: 2007-08-24 18:09+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: app/controllers/account_controller.rb:62
 msgid "Welcome&nbsp;%s&nbsp;%s"
@@ -236,36 +236,44 @@ msgstr "La contribution a bien été mise à jour."
 msgid "All the requests"
 msgstr "Toutes les demandes"
 
-#: app/controllers/demandes_controller.rb:91
+#: app/controllers/demandes_controller.rb:78
+msgid "You are not linked to any contracts in our database."
+msgstr ""
+
+#: app/controllers/demandes_controller.rb:79
+msgid "If you think it's an error, contact us at %s or at %s."
+msgstr ""
+
+#: app/controllers/demandes_controller.rb:101
 msgid "Your request has been successfully submitted"
 msgstr "Votre demande a été bien soumise à nos services."
 
-#: app/controllers/demandes_controller.rb:208
+#: app/controllers/demandes_controller.rb:218
 msgid "The request has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:228
+#: app/controllers/demandes_controller.rb:238
 msgid "The request is correctly assigned"
 msgstr "La demande a bien été assignée"
 
-#: app/controllers/demandes_controller.rb:232
+#: app/controllers/demandes_controller.rb:242
 msgid "The request is no more assigned"
 msgstr "La demande n'est plus assignée"
 
-#: app/controllers/demandes_controller.rb:254
+#: app/controllers/demandes_controller.rb:264
 msgid "The demand has now no contribution"
 msgstr "Le demande n'a plus de contributions"
 
-#: app/controllers/demandes_controller.rb:256
+#: app/controllers/demandes_controller.rb:266
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/demandes_controller.rb:332
+#: app/controllers/demandes_controller.rb:343
 #: app/helpers/demandes_helper.rb:188
 msgid "Active requests"
 msgstr "Demandes actives"
 
-#: app/controllers/demandes_controller.rb:335
+#: app/controllers/demandes_controller.rb:346
 #: app/helpers/demandes_helper.rb:195
 msgid "Finished requests"
 msgstr "Demandes terminées"
@@ -358,7 +366,8 @@ msgstr "Responsable"
 #: app/controllers/export_controller.rb:99
 #: app/controllers/export_controller.rb:145
 #: app/controllers/export_controller.rb:209 app/views/account/_edit.rhtml:44
-#: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
+#: app/views/contrats/_form.rhtml:6 app/views/machines/all.rhtml:5
+#: app/views/machines/index.rhtml:5
 #: app/views/reporting/_comex_tableaux.rhtml:15
 msgid "Customer"
 msgstr "Client"
@@ -384,7 +393,7 @@ msgstr "Id"
 #: app/views/binaires/show.rhtml:9
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_contributions_info.rhtml:28
-#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:46
+#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:55
 #: app/views/demandes/_infos_demande.rhtml:23
 #: app/views/demandes/_requests_list.rhtml:9 app/views/paquets/_form.rhtml:7
 #: app/views/paquets/_paquets_list.rhtml:7 app/views/paquets/show.rhtml:16
@@ -393,10 +402,10 @@ msgstr "Id"
 msgid "Software"
 msgstr "Logiciel"
 
-#: app/controllers/export_controller.rb:146 app/views/clients/show.rhtml:39
+#: app/controllers/export_controller.rb:146 app/views/clients/show.rhtml:40
 #: app/views/demandes/_comment_form.rhtml:16
 #: app/views/demandes/_infos_demande.rhtml:28
-#: app/views/demandes/_requests_info.rhtml:39
+#: app/views/demandes/_requests_info.rhtml:41
 msgid "Severity"
 msgstr "Séverité"
 
@@ -427,13 +436,13 @@ msgstr "Résumé"
 #: app/controllers/export_controller.rb:148
 #: app/views/demandes/_comment_form.rhtml:10
 #: app/views/demandes/_infos_demande.rhtml:25
-#: app/views/demandes/_requests_info.rhtml:41
+#: app/views/demandes/_requests_info.rhtml:43
 msgid "Status"
 msgstr "Statut"
 
 #: app/controllers/export_controller.rb:148
 #: app/views/demandes/_infos_demande.rhtml:27
-#: app/views/demandes/_requests_info.rhtml:37
+#: app/views/demandes/_requests_info.rhtml:39
 #: app/views/demandes/_requests_list.rhtml:10
 #: app/views/documents/_form.rhtml:18
 msgid "Type"
@@ -850,6 +859,10 @@ msgstr "classification"
 msgid "Post %s"
 msgstr "Concernant %s"
 
+#: app/helpers/images_helper.rb:37
+msgid "progress bar"
+msgstr ""
+
 #: app/helpers/links_helper.rb:100
 msgid "Do you really want to delete %s"
 msgstr "Êtes vous sûr de vouloir supprimer %s"
@@ -985,7 +998,7 @@ msgstr "Terminées"
 msgid "Running"
 msgstr "En cours"
 
-#: app/helpers/static_image.rb:34 app/views/clients/show.rhtml:44
+#: app/helpers/static_image.rb:34 app/views/clients/show.rhtml:45
 msgid "View"
 msgstr "Voir"
 
@@ -1190,6 +1203,44 @@ msgid "Changelog|Text modification"
 msgstr "Text modification"
 
 #: app/models/client.rb:-
+msgid "contrat"
+msgstr "contrat"
+
+#: app/models/client.rb:-
+msgid "Contrat|Client"
+msgstr "Client"
+
+#: app/models/client.rb:-
+msgid "Contrat|Ouverture"
+msgstr "Ouverture"
+
+#: app/models/client.rb:-
+msgid "Contrat|Cloture"
+msgstr "Cloturé le"
+
+#: app/models/client.rb:-
+msgid "Contrat|Paquets count"
+msgstr "Nombre de paquets"
+
+#: app/models/client.rb:-
+msgid "Contrat|Astreinte"
+msgstr "Astreinte"
+
+#: app/models/client.rb:-
+msgid "Contrat|Socle"
+msgstr "Socle"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Nom"
+msgstr "Socle"
+
+#: app/models/client.rb:-
+#, fuzzy
+msgid "Contrat|Support"
+msgstr "Support"
+
+#: app/models/client.rb:-
 msgid "paquet"
 msgstr "paquet"
 
@@ -1289,34 +1340,6 @@ msgstr "Code d'accès"
 msgid "Client|Beneficiaires count"
 msgstr "Nombre de bénéficiaires"
 
-#: app/models/client.rb:-
-msgid "contrat"
-msgstr "contrat"
-
-#: app/models/client.rb:-
-msgid "Contrat|Client"
-msgstr "Client"
-
-#: app/models/client.rb:-
-msgid "Contrat|Ouverture"
-msgstr "Ouverture"
-
-#: app/models/client.rb:-
-msgid "Contrat|Cloture"
-msgstr "Cloturé le"
-
-#: app/models/client.rb:-
-msgid "Contrat|Paquets count"
-msgstr "Nombre de paquets"
-
-#: app/models/client.rb:-
-msgid "Contrat|Astreinte"
-msgstr "Astreinte"
-
-#: app/models/client.rb:-
-msgid "Contrat|Socle"
-msgstr "Socle"
-
 #: app/models/commentaire.rb:-
 msgid "commentaire"
 msgstr "commentaire"
@@ -1394,10 +1417,6 @@ msgstr "conteneur"
 #: app/models/conteneur.rb:-
 msgid "Conteneur|Nom"
 msgstr "Nom"
-
-#: app/models/contrat.rb:70
-msgid "unknown client"
-msgstr "client inconnu"
 
 #: app/models/contribution.rb:- app/views/contributions/select.rhtml:3
 msgid "contribution"
@@ -1526,6 +1545,11 @@ msgstr "Mail cc"
 #: app/models/demande.rb:-
 msgid "Demande|First comment"
 msgstr "Premier commentaire"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Contrat"
+msgstr "Contribution"
 
 #: app/models/demande.rb:23
 msgid "You must indicate a summary for your request"
@@ -2281,7 +2305,7 @@ msgid "Disconnect"
 msgstr "Déconnexion"
 
 #: app/views/account/_menu.rhtml:12 app/views/appels/_form.rhtml:5
-#: app/views/appels/show.rhtml:8 app/views/clients/show.rhtml:39
+#: app/views/appels/show.rhtml:8 app/views/clients/show.rhtml:40
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/logiciels/show.rhtml:47
 msgid "Request"
@@ -2334,7 +2358,7 @@ msgid "Customers"
 msgstr "Clients"
 
 #: app/views/account/_menu.rhtml:40 app/views/bienvenue/index.rhtml:29
-#: app/views/demandes/_requests_info.rhtml:19
+#: app/views/clients/show.rhtml:45 app/views/demandes/_requests_info.rhtml:19
 msgid "Activity report"
 msgstr "Rapport d'activité "
 
@@ -2370,6 +2394,7 @@ msgstr "Rechercher"
 #: app/views/binaires/_form.rhtml:20 app/views/binaires/show.rhtml:14
 #: app/views/clients/_form.rhtml:6 app/views/clients/index.rhtml:4
 #: app/views/clients/stats.rhtml:5 app/views/competences/_form.rhtml:4
+#: app/views/contrats/_form.rhtml:9
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:6
 #: app/views/demandes/_form_binaires.rhtml:4 app/views/groupes/_form.rhtml:4
@@ -2942,7 +2967,7 @@ msgid "Package"
 msgstr "Paquet"
 
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/index.rhtml:6
-#: app/views/binaires/show.rhtml:11 app/views/demandes/_form.rhtml:41
+#: app/views/binaires/show.rhtml:11 app/views/demandes/_form.rhtml:50
 #: app/views/demandes/_infos_demande.rhtml:22
 #: app/views/machines/_form.rhtml:17 app/views/machines/all.rhtml:5
 #: app/views/machines/index.rhtml:5 app/views/machines/show.rhtml:8
@@ -3084,19 +3109,20 @@ msgstr "contrat"
 msgid "From %s to %s"
 msgstr "De %s à %s"
 
-#: app/views/clients/show.rhtml:33
-msgid " on your complete system"
+#: app/views/clients/show.rhtml:34
+#, fuzzy
+msgid "on your complete system"
 msgstr " sur l'intégralité de votre système"
 
-#: app/views/clients/show.rhtml:35
+#: app/views/clients/show.rhtml:36
 msgid "concerning %s source packages "
 msgstr "concernant %s paquets source "
 
-#: app/views/clients/show.rhtml:36
+#: app/views/clients/show.rhtml:37
 msgid "and %s binaries"
 msgstr "et %s binaires"
 
-#: app/views/clients/show.rhtml:39 app/views/demandes/_cns.rhtml:33
+#: app/views/clients/show.rhtml:40 app/views/demandes/_cns.rhtml:33
 #: app/views/demandes/_packages.rhtml:6
 #: app/views/demandes/_report_detail.rhtml:14
 #: app/views/demandes/_report_detail.rhtml:16
@@ -3104,7 +3130,7 @@ msgstr "et %s binaires"
 msgid "Workaround"
 msgstr "Contournée"
 
-#: app/views/clients/show.rhtml:39 app/views/demandes/_cns.rhtml:34
+#: app/views/clients/show.rhtml:40 app/views/demandes/_cns.rhtml:34
 #: app/views/demandes/_packages.rhtml:7
 #: app/views/demandes/_report_detail.rhtml:15
 #: app/views/demandes/_report_detail.rhtml:17
@@ -3112,20 +3138,20 @@ msgstr "Contournée"
 msgid "Correction"
 msgstr "Correction"
 
-#: app/views/clients/show.rhtml:44
+#: app/views/clients/show.rhtml:45
 msgid " the %s "
 msgstr " le %s "
 
-#: app/views/clients/show.rhtml:48
+#: app/views/clients/show.rhtml:49
 msgid "system"
 msgstr "système"
 
-#: app/views/clients/show.rhtml:51 app/views/paquets/show.rhtml:29
+#: app/views/clients/show.rhtml:52 app/views/paquets/show.rhtml:29
 #: app/views/paquets/show.rhtml:30 app/views/socles/show.rhtml:19
 msgid "binary"
 msgstr "binaire"
 
-#: app/views/clients/show.rhtml:55 app/views/contributions/show.rhtml:37
+#: app/views/clients/show.rhtml:56 app/views/contributions/show.rhtml:37
 msgid "request"
 msgstr "demande"
 
@@ -3152,6 +3178,40 @@ msgstr "Ressources"
 #: app/views/competences/new.rhtml:1
 msgid "New skill"
 msgstr "Nouvelle compétence"
+
+#: app/views/contrats/_form.rhtml:12
+#, fuzzy
+msgid "Opens at"
+msgstr "Heure d'ouverture"
+
+#: app/views/contrats/_form.rhtml:15
+#, fuzzy
+msgid "Closes at"
+msgstr "Heure de fermeture"
+
+#: app/views/contrats/_form.rhtml:18
+msgid "Night guard ?"
+msgstr ""
+
+#: app/views/contrats/_form.rhtml:21
+#, fuzzy
+msgid "Entire system ?"
+msgstr "Éditer le système"
+
+#: app/views/contrats/_form.rhtml:24
+#, fuzzy
+msgid "Support ?"
+msgstr "Support"
+
+#: app/views/contrats/_form.rhtml:27
+#, fuzzy
+msgid "Commitments"
+msgstr "Engagements"
+
+#: app/views/contrats/_form.rhtml:32
+#, fuzzy
+msgid "Engineers assigned to this contract"
+msgstr "Ingénieur assigné à la demande"
 
 #: app/views/contributions/_contributions_admin.rhtml:1
 msgid "List of contributions"
@@ -3330,26 +3390,31 @@ msgid "Client"
 msgstr "Client"
 
 #: app/views/demandes/_form.rhtml:32
+#, fuzzy
+msgid "Concerning "
+msgstr "Portant sur le contrat"
+
+#: app/views/demandes/_form.rhtml:41
 msgid "Engineer assigned to the request"
 msgstr "Ingénieur assigné à la demande"
 
-#: app/views/demandes/_form.rhtml:36
+#: app/views/demandes/_form.rhtml:45
 msgid "E-mails associated with the request<br/>seperate by commas %s"
 msgstr "E-mails associciés à la demande<br/>séparés par des virgule %s"
 
-#: app/views/demandes/_form.rhtml:50
+#: app/views/demandes/_form.rhtml:59
 msgid "Type of the request"
 msgstr "Type de la demande"
 
-#: app/views/demandes/_form.rhtml:57
+#: app/views/demandes/_form.rhtml:66
 msgid "Severity of the request"
 msgstr "Sévérité de la demande"
 
-#: app/views/demandes/_form.rhtml:88 app/views/demandes/_form_deposer.rhtml:22
+#: app/views/demandes/_form.rhtml:95 app/views/demandes/_form_deposer.rhtml:22
 msgid "Detailed description"
 msgstr "Description détaillée"
 
-#: app/views/demandes/_form.rhtml:97
+#: app/views/demandes/_form.rhtml:104
 msgid "Add a file"
 msgstr "Ajouter un fichier"
 
@@ -3481,11 +3546,16 @@ msgstr "Par mot"
 msgid "By client"
 msgstr "Par client"
 
-#: app/views/demandes/_requests_info.rhtml:35
+#: app/views/demandes/_requests_info.rhtml:31
+#, fuzzy
+msgid "By expert"
+msgstr "Expert OSSA"
+
+#: app/views/demandes/_requests_info.rhtml:37
 msgid "Attributes"
 msgstr "Attributs"
 
-#: app/views/demandes/_requests_info.rhtml:46
+#: app/views/demandes/_requests_info.rhtml:48
 msgid "Flow"
 msgstr "Flux"
 
@@ -4004,12 +4074,8 @@ msgid "The contract is outdated! "
 msgstr "Le contrat est dépassé! "
 
 #: app/views/reporting/_comex_cns.rhtml:12
-msgid ""
-"The indicated time is the remaining time until the end of the contract, or "
-"the time needed beyond the contract."
+msgid "The indicated time is the one elapsed before the end of the SLA."
 msgstr ""
-"Le temps indiqué correspond au temps restant pour finir le contrat, ou le "
-"temps necessaire pour aller au dela du contrat"
 
 #: app/views/reporting/_comex_tableaux.rhtml:2
 msgid "OSSA activity from "
@@ -4525,3 +4591,12 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
+#~ msgid "unknown client"
+#~ msgstr "client inconnu"
+
+#~ msgid ""
+#~ "The indicated time is the remaining time until the end of the contract, "
+#~ "or the time needed beyond the contract."
+#~ msgstr ""
+#~ "Le temps indiqué correspond au temps restant pour finir le contrat, ou le "
+#~ "temps necessaire pour aller au dela du contrat"
