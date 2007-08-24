@@ -2,8 +2,8 @@
 
 <% form_tag engagement_path(@engagement), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Validate' %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
-<%= link_to 'Show', engagement_path(@engagement) %> |
-<%= link_to_back %>
+<%= link_to_show_and_list(@engagement) %>
+
