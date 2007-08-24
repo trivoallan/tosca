@@ -9,6 +9,7 @@ class Demande < ActiveRecord::Base
   belongs_to :beneficiaire
   belongs_to :statut
   belongs_to :ingenieur
+  belongs_to :contrat
   has_and_belongs_to_many :paquets
   # TODO : à voir si c'est inutile. avec le socle, on a dejà la plateforme
   has_and_belongs_to_many :binaires
@@ -22,6 +23,7 @@ class Demande < ActiveRecord::Base
   validates_presence_of :resume,
        :warn => _("You must indicate a summary for your request")
   validates_length_of :resume, :within => 3..60
+  validates_presence_of :contrat
   validates_presence_of :description,
     :warn => _('You must indicate a description')
   validate do |record|

@@ -15,6 +15,7 @@ first:
   mail_cc: nil
   socle_id: 0
   first_comment_id: 1
+  contrat_id: 1
 
 second:
   id: 2
@@ -32,6 +33,7 @@ second:
   mail_cc: nil
   socle_id: 0
   first_comment_id: 2
+  contrat_id: 1
 third:
   id: 3
   logiciel_id: 1
@@ -48,3 +50,4 @@ third:
   mail_cc: nil
   socle_id: 0
   first_comment_id: 3
+  contrat_id: 1

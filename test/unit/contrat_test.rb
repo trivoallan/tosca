@@ -46,11 +46,11 @@ class ContratTest < Test::Unit::TestCase
       :socle => 0,
       :client_id => 33, # vide,
       :ouverture => "2006-11-25 12:20:00",
-      :cloture => "2007-11-12 14:23:00"
+      :cloture => "2007-11-12 14:23:00",
+      :nom => "OSSA - Guy - Intégral"                               
     )
     assert c_name_empty.save
 
-    assert_equal c.to_s, '1 - toto'
-    assert_equal c_name_empty.to_s, '8 - unknown client'
+    assert !c.to_s.blank?
   end
 end
