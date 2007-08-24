@@ -1,16 +1,16 @@
 <div class="content">
 <h1><%= _('SLA report') %> </h1>
-  <h2><%= _('Caption') %> </h2>
-  <div>
-    <p><%= _('The progressions bar represent the progress ratio of the contract: ') %></p><br />
-    <%=progress_bar( 0) %> <%= _('The contract has not been started yet') %>
-    <%=progress_bar( 25) %> <%= _('25% de ready') %>
-    <%=progress_bar( 50) %> <%= _('50% de ready') %>
-    <%=progress_bar( 75) %> <%= _('75% de ready') %>
-    <%=progress_bar( 110) %> <%= _('The contract is outdated! ') %><br /><br />
-    <p><%= _('The indicated time is the remaining time until the end of the contract, or the time needed beyond the contract.') %></p>
-  </div>
-  <ul>
+<h2><%= _('Caption') %> </h2>
+<p><%=_('The progressions bar represent the progress ratio of the contract: ')%></p><br />
+<ul>
+  <li><%=progress_bar(0)%><%=_('The contract has not been started yet') %></li>
+  <li><%=progress_bar( 25) %> 25%</li>
+  <li><%=progress_bar( 50) %> 50%</li>
+  <li><%=progress_bar( 75) %> 75%</li>
+  <li><%=progress_bar( 110) %> <%= _('The contract is outdated! ') %><br /><br /></li>
+</ul>
+ <p><%= _('The indicated time is the remaining time until the end of the contract, or the time needed beyond the contract.') %></p>
+ <ul>
   <% @percents.each do |c| %>
     <% c_id = @percents.index(c) %>
     <li><h2><%= @extra[c_id][:nom] %></h2>
