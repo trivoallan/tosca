@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-08-24 19:14+0200\n"
+"POT-Creation-Date: 2007-08-27 16:48+0200\n"
 "PO-Revision-Date: 2007-08-13 17:59+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -32,17 +32,19 @@ msgstr ""
 msgid "Person not found"
 msgstr ""
 
-#: app/controllers/account_controller.rb:107
+#: app/controllers/account_controller.rb:123
 msgid "Edition succeeded"
 msgstr ""
 
-#: app/controllers/account_controller.rb:126
+#: app/controllers/account_controller.rb:140
 msgid "Account successfully created, don't forget to check his profile."
 msgstr ""
 
-#: app/controllers/account_controller.rb:129
-#: app/controllers/account_controller.rb:198
+#: app/controllers/account_controller.rb:143
+#: app/controllers/account_controller.rb:212
 #: app/controllers/export_controller.rb:145
+#: app/views/account/_edit_recipient.rhtml:6
+#: app/views/account/_show_recipient.rhtml:6
 #: app/views/appels/_calls_info.rhtml:22 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
 #: app/views/demandes/_appels.rhtml:2 app/views/demandes/_form.rhtml:24
@@ -50,92 +52,100 @@ msgstr ""
 msgid "Recipient"
 msgstr ""
 
-#: app/controllers/account_controller.rb:129
-#: app/controllers/account_controller.rb:198
+#: app/controllers/account_controller.rb:143
+#: app/controllers/account_controller.rb:212
 msgid "Engineer "
 msgstr ""
 
-#: app/controllers/account_controller.rb:129
+#: app/controllers/account_controller.rb:143
 msgid " created"
 msgstr ""
 
-#: app/controllers/account_controller.rb:148
-#: app/controllers/account_controller.rb:183
-#: app/controllers/account_controller.rb:196 app/views/account/_edit.rhtml:59
-#: app/views/account/show.rhtml:19
+#: app/controllers/account_controller.rb:162
+#: app/controllers/account_controller.rb:197
+#: app/controllers/account_controller.rb:210
+#: app/views/account/_edit_account_informations.rhtml:46
+#: app/views/account/_show_account_information.rhtml:15
 msgid "Full name"
 msgstr ""
 
-#: app/controllers/account_controller.rb:148
-#: app/controllers/account_controller.rb:184 app/views/account/_edit.rhtml:60
-#: app/views/account/show.rhtml:20 app/views/documents/_form.rhtml:23
+#: app/controllers/account_controller.rb:162
+#: app/controllers/account_controller.rb:198
+#: app/views/account/_edit_account_informations.rhtml:47
+#: app/views/account/_show_account_information.rhtml:16
+#: app/views/documents/_form.rhtml:23
 msgid "Title"
 msgstr ""
 
-#: app/controllers/account_controller.rb:148
-#: app/controllers/account_controller.rb:185 app/views/account/_edit.rhtml:61
-#: app/views/account/_users_list.rhtml:16 app/views/account/show.rhtml:21
+#: app/controllers/account_controller.rb:162
+#: app/controllers/account_controller.rb:199
+#: app/views/account/_users_list.rhtml:12
+#: app/views/account/_edit_account_informations.rhtml:48
+#: app/views/account/_show_account_information.rhtml:17
 msgid "Email"
 msgstr ""
 
-#: app/controllers/account_controller.rb:148
-#: app/controllers/account_controller.rb:186 app/views/account/_edit.rhtml:62
-#: app/views/account/show.rhtml:22 app/views/demandes/_infos_demande.rhtml:43
+#: app/controllers/account_controller.rb:162
+#: app/controllers/account_controller.rb:200
+#: app/views/account/_edit_account_informations.rhtml:49
+#: app/views/account/_show_account_information.rhtml:18
+#: app/views/demandes/_infos_demande.rhtml:43
 msgid "Phone"
 msgstr ""
 
-#: app/controllers/account_controller.rb:149
-#: app/controllers/account_controller.rb:187 app/views/account/login.rhtml:9
+#: app/controllers/account_controller.rb:163
+#: app/controllers/account_controller.rb:201 app/views/account/login.rhtml:9
 msgid "Login"
 msgstr ""
 
-#: app/controllers/account_controller.rb:149
-#: app/controllers/account_controller.rb:188
-#: app/controllers/account_controller.rb:189
-#: app/controllers/account_controller.rb:201 app/views/account/login.rhtml:12
+#: app/controllers/account_controller.rb:163
+#: app/controllers/account_controller.rb:202
+#: app/controllers/account_controller.rb:203
+#: app/controllers/account_controller.rb:215 app/views/account/login.rhtml:12
 msgid "Password"
 msgstr ""
 
-#: app/controllers/account_controller.rb:149
-#: app/controllers/account_controller.rb:190 app/views/account/_edit.rhtml:80
+#: app/controllers/account_controller.rb:163
+#: app/controllers/account_controller.rb:204
+#: app/views/account/_edit_account_informations.rhtml:67
 #: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr ""
 
-#: app/controllers/account_controller.rb:161
+#: app/controllers/account_controller.rb:175
 msgid "Enter data under CSV format please"
 msgstr ""
 
-#: app/controllers/account_controller.rb:165
+#: app/controllers/account_controller.rb:179
 msgid "The CSV file is not correct"
 msgstr ""
 
-#: app/controllers/account_controller.rb:169
+#: app/controllers/account_controller.rb:183
 msgid "You have to specify a customer"
 msgstr ""
 
-#: app/controllers/account_controller.rb:172
+#: app/controllers/account_controller.rb:186
 msgid "Vous must specify a role"
 msgstr ""
 
-#: app/controllers/account_controller.rb:196
+#: app/controllers/account_controller.rb:210
 msgid "The user %s have been successfully created.<br/>"
 msgstr ""
 
-#: app/controllers/account_controller.rb:199
+#: app/controllers/account_controller.rb:213
 msgid "Associate created"
 msgstr ""
 
-#: app/controllers/account_controller.rb:205
+#: app/controllers/account_controller.rb:219
 msgid "The user %s  has not been created.<br /> "
 msgstr ""
 
-#: app/controllers/account_controller.rb:277
+#: app/controllers/account_controller.rb:293
 msgid "Logout"
 msgstr ""
 
-#: app/controllers/account_controller.rb:278 app/views/account/_edit.rhtml:7
-#: app/views/account/show.rhtml:5
+#: app/controllers/account_controller.rb:294 app/views/account/_edit.rhtml:7
+#: app/views/account/show.rhtml:3
 msgid "My account"
 msgstr ""
 
@@ -314,7 +324,8 @@ msgid "delay"
 msgstr ""
 
 #: app/controllers/export_controller.rb:70
-#: app/views/account/_users_list.rhtml:8 app/views/account/show.rhtml:24
+#: app/views/account/_users_list.rhtml:8
+#: app/views/account/_show_account_information.rhtml:20
 msgid "login"
 msgstr ""
 
@@ -327,7 +338,7 @@ msgid "e-mail"
 msgstr ""
 
 #: app/controllers/export_controller.rb:70
-#: app/views/account/_users_list.rhtml:17
+#: app/views/account/_users_list.rhtml:13
 msgid "phone"
 msgstr ""
 
@@ -355,7 +366,8 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:99
 #: app/controllers/export_controller.rb:145
-#: app/controllers/export_controller.rb:209 app/views/account/_edit.rhtml:44
+#: app/controllers/export_controller.rb:209
+#: app/views/account/_edit_account_informations.rhtml:31
 #: app/views/contrats/_form.rhtml:6 app/views/machines/all.rhtml:5
 #: app/views/machines/index.rhtml:5
 #: app/views/reporting/_comex_tableaux.rhtml:15
@@ -1190,6 +1202,42 @@ msgid "Changelog|Text modification"
 msgstr ""
 
 #: app/models/client.rb:-
+msgid "client"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Nom"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Description"
+msgstr "Description"
+
+#: app/models/client.rb:-
+msgid "Client|Mailingliste"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Adresse"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Image"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Support"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Beneficiaires count"
+msgstr ""
+
+#: app/models/client.rb:-
 msgid "contrat"
 msgstr ""
 
@@ -1293,42 +1341,6 @@ msgstr ""
 msgid "Paquet|Active"
 msgstr ""
 
-#: app/models/client.rb:-
-msgid "client"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Nom"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Description"
-msgstr "Description"
-
-#: app/models/client.rb:-
-msgid "Client|Mailingliste"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Adresse"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Image"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Support"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Code acces"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Beneficiaires count"
-msgstr ""
-
 #: app/models/commentaire.rb:-
 msgid "commentaire"
 msgstr ""
@@ -1384,12 +1396,12 @@ msgstr ""
 msgid "You must indicate a valid request"
 msgstr ""
 
-#: app/models/commentaire.rb:29 app/views/demandes/_tab_comment.rhtml:29
+#: app/models/commentaire.rb:26 app/views/demandes/_tab_comment.rhtml:29
 #: app/views/demandes/_tab_comments.rhtml:27
 msgid "private"
 msgstr ""
 
-#: app/models/commentaire.rb:29 app/views/demandes/_tab_comment.rhtml:29
+#: app/models/commentaire.rb:26 app/views/demandes/_tab_comment.rhtml:29
 #: app/views/demandes/_tab_comments.rhtml:27
 msgid "public"
 msgstr ""
@@ -1558,27 +1570,27 @@ msgstr "Description"
 msgid "Demande|Contrat"
 msgstr "Description"
 
-#: app/models/demande.rb:23
+#: app/models/demande.rb:24
 msgid "You must indicate a summary for your request"
 msgstr ""
 
-#: app/models/demande.rb:26
+#: app/models/demande.rb:28
 msgid "You must indicate a description"
 msgstr ""
 
-#: app/models/demande.rb:29
+#: app/models/demande.rb:31
 msgid "You must indicate a valid recipient"
 msgstr ""
 
-#: app/models/demande.rb:32
+#: app/models/demande.rb:34
 msgid "You must indicate a valid status"
 msgstr ""
 
-#: app/models/demande.rb:35
+#: app/models/demande.rb:37
 msgid "You must indicate a valid severity"
 msgstr ""
 
-#: app/models/demande.rb:252
+#: app/models/demande.rb:253
 msgid " of overrun"
 msgstr ""
 
@@ -2260,62 +2272,6 @@ msgstr ""
 msgid "The last field must be fill with CSV format."
 msgstr ""
 
-#: app/views/account/_edit.rhtml:23
-msgid "Custom display of the request list"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:26
-msgid "Choose a login"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:29 app/views/bienvenue/admin.rhtml:17
-#: app/views/permissions/_form.rhtml:10
-msgid "Roles"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:37
-msgid "Is the user a customer of the service ?"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:39
-msgid "Are the users customer of the service ?"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:40
-msgid ""
-"<label>Text in CSV format (separator : tabulation)</label><br />\n"
-"                      Full name Title Email Phone Login Password  "
-"Informations"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:46
-msgid "Customer %s"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:66
-msgid "Choose a password"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:66
-msgid "Modify your password"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:68
-msgid "Confirm this last"
-msgstr ""
-
-#: app/views/account/_edit.rhtml:94 app/views/account/_users_list.rhtml:37
-#: app/views/account/login.rhtml:18 app/views/appels/edit.rhtml:5
-#: app/views/beneficiaires/new.rhtml:5 app/views/binaires/edit.rhtml:5
-#: app/views/binaires/new.rhtml:5 app/views/contributions/edit.rhtml:6
-#: app/views/documents/edit.rhtml:6 app/views/engagements/edit.rhtml:5
-#: app/views/licenses/edit.rhtml:5 app/views/logiciels/new.rhtml:5
-#: app/views/urllogiciels/edit.rhtml:5 app/views/urllogiciels/new.rhtml:5
-#: app/views/urlreversements/edit.rhtml:5
-#: app/views/urlreversements/new.rhtml:5
-msgid "Validate"
-msgstr ""
-
 #: app/views/account/_menu.rhtml:8
 msgid "Plan"
 msgstr ""
@@ -2406,11 +2362,12 @@ msgstr ""
 msgid "Consultation"
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:27
+#: app/views/account/_users_info.rhtml:22
 msgid "Search "
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:29 app/views/arches/_form.rhtml:4
+#: app/views/account/_users_info.rhtml:24
+#: app/views/account/_show_engineer.rhtml:8 app/views/arches/_form.rhtml:4
 #: app/views/binaires/_form.rhtml:20 app/views/binaires/show.rhtml:14
 #: app/views/clients/_form.rhtml:6 app/views/clients/index.rhtml:4
 #: app/views/clients/stats.rhtml:5 app/views/competences/_form.rhtml:4
@@ -2432,34 +2389,34 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:31
+#: app/views/account/_users_info.rhtml:26
 msgid "Customer "
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:33
+#: app/views/account/_users_info.rhtml:28
 msgid "Roles "
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:38
+#: app/views/account/_users_info.rhtml:33
 #: app/views/appels/_calls_info.rhtml:47
 #: app/views/logiciels/_softwares_info.rhtml:49
 #: app/views/paquets/_paquets_info.rhtml:28
 msgid "Perimeter"
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:40
+#: app/views/account/_users_info.rhtml:35
 msgid "Logins: "
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:41
+#: app/views/account/_users_info.rhtml:36
 msgid "Recipients: "
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:42
+#: app/views/account/_users_info.rhtml:37
 msgid "Engineers: "
 msgstr ""
 
-#: app/views/account/_users_info.rhtml:43
+#: app/views/account/_users_info.rhtml:38
 msgid "Inconsistencies: "
 msgstr ""
 
@@ -2467,12 +2424,29 @@ msgstr ""
 msgid "A new user"
 msgstr ""
 
-#: app/views/account/_users_list.rhtml:14
+#: app/views/account/_users_list.rhtml:9
+#: app/views/account/_users_list.rhtml:27
+msgid "Become"
+msgstr ""
+
+#: app/views/account/_users_list.rhtml:10
 msgid "engineer"
 msgstr ""
 
-#: app/views/account/_users_list.rhtml:15
+#: app/views/account/_users_list.rhtml:11
 msgid "recipient"
+msgstr ""
+
+#: app/views/account/edit.rhtml:7 app/views/account/login.rhtml:18
+#: app/views/account/signup.rhtml:5 app/views/appels/edit.rhtml:5
+#: app/views/beneficiaires/new.rhtml:5 app/views/binaires/edit.rhtml:5
+#: app/views/binaires/new.rhtml:5 app/views/contributions/edit.rhtml:6
+#: app/views/documents/edit.rhtml:6 app/views/engagements/edit.rhtml:5
+#: app/views/licenses/edit.rhtml:5 app/views/logiciels/new.rhtml:5
+#: app/views/urllogiciels/edit.rhtml:5 app/views/urllogiciels/new.rhtml:5
+#: app/views/urlreversements/edit.rhtml:5
+#: app/views/urlreversements/new.rhtml:5
+msgid "Validate"
 msgstr ""
 
 #: app/views/account/login.rhtml:4
@@ -2492,16 +2466,105 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: app/views/account/show.rhtml:3
-msgid "Show an account"
-msgstr ""
-
-#: app/views/account/show.rhtml:6
+#: app/views/account/show.rhtml:4
 msgid "Account of %s"
 msgstr ""
 
-#: app/views/account/show.rhtml:10
+#: app/views/account/_edit_account_informations.rhtml:9
+msgid "Custom display of the request list"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:12
+#: app/views/bienvenue/admin.rhtml:17 app/views/permissions/_form.rhtml:10
+msgid "Roles"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:17
+msgid "Choose a login"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:24
+msgid "Is the user a customer of the service ?"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:26
+msgid "Are the users customer of the service ?"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:27
+msgid ""
+"<label>Text in CSV format (separator : tabulation)</label><br />\n"
+"                      Full name Title Email Phone Login Password  "
+"Informations"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:33
+msgid "Customer %s"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:53
+msgid "Choose a password"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:53
+msgid "Modify your password"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:55
+msgid "Confirm this last"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:5
+#: app/views/account/_show_engineer.rhtml:6 app/views/appels/_form.rhtml:7
+#: app/views/contributions/_form.rhtml:13
+msgid "Engineer"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:7
+#: app/views/account/_show_engineer.rhtml:10
+#: app/views/ingenieurs/_form.rhtml:5 app/views/ingenieurs/index.rhtml:6
+#: app/views/ingenieurs/show.rhtml:4
+msgid "Project manager"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:10
+#: app/views/account/_show_engineer.rhtml:13
+#: app/views/ingenieurs/_form.rhtml:8 app/views/ingenieurs/show.rhtml:7
+msgid "OSSA expert"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:14
+#: app/views/account/_show_engineer.rhtml:24
+#: app/views/bienvenue/admin.rhtml:22 app/views/bienvenue/admin.rhtml:23
+#: app/views/ingenieurs/_form.rhtml:11 app/views/ingenieurs/show.rhtml:18
+msgid "Skills"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:19
+#: app/views/bienvenue/admin.rhtml:32 app/views/ingenieurs/_form.rhtml:15
+msgid "Contracts"
+msgstr ""
+
+#: app/views/account/_edit_recipient.rhtml:12
+msgid "Notify subalterns"
+msgstr ""
+
+#: app/views/account/_edit_recipient.rhtml:15
+msgid "Notify at"
+msgstr ""
+
+#: app/views/account/_edit_recipient.rhtml:18
+msgid "Notify cc"
+msgstr ""
+
+#: app/views/account/_show_account_information.rhtml:4
 msgid "Role"
+msgstr ""
+
+#: app/views/account/_show_account_information.rhtml:28
+#: app/views/account/_show_engineer.rhtml:4
+#: app/views/account/_show_recipient.rhtml:4
+msgid "Show an account"
 msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:12
@@ -2554,10 +2617,6 @@ msgstr ""
 
 #: app/views/appels/_calls_list.rhtml:7 app/views/demandes/_appels.rhtml:3
 msgid "Duration"
-msgstr ""
-
-#: app/views/appels/_form.rhtml:7 app/views/contributions/_form.rhtml:13
-msgid "Engineer"
 msgstr ""
 
 #: app/views/appels/_form.rhtml:10
@@ -2709,17 +2768,8 @@ msgstr ""
 msgid "Skill management"
 msgstr ""
 
-#: app/views/bienvenue/admin.rhtml:22 app/views/bienvenue/admin.rhtml:23
-#: app/views/ingenieurs/_form.rhtml:11 app/views/ingenieurs/show.rhtml:18
-msgid "Skills"
-msgstr ""
-
 #: app/views/bienvenue/admin.rhtml:28
 msgid "Customer management"
-msgstr ""
-
-#: app/views/bienvenue/admin.rhtml:32 app/views/ingenieurs/_form.rhtml:15
-msgid "Contracts"
 msgstr ""
 
 #: app/views/bienvenue/admin.rhtml:38
@@ -3733,19 +3783,6 @@ msgstr ""
 msgid "New image"
 msgstr ""
 
-#: app/views/ingenieurs/_form.rhtml:5 app/views/ingenieurs/index.rhtml:6
-#: app/views/ingenieurs/show.rhtml:4
-msgid "Project manager"
-msgstr ""
-
-#: app/views/ingenieurs/_form.rhtml:8 app/views/ingenieurs/show.rhtml:7
-msgid "OSSA expert"
-msgstr ""
-
-#: app/views/ingenieurs/_form.rhtml:20
-msgid "Domain"
-msgstr ""
-
 #: app/views/ingenieurs/edit.rhtml:1
 msgid "Editing engineer"
 msgstr ""
@@ -3754,7 +3791,7 @@ msgstr ""
 msgid "Engineer list"
 msgstr ""
 
-#: app/views/ingenieurs/index.rhtml:4 app/views/ingenieurs/index.rhtml:24
+#: app/views/ingenieurs/index.rhtml:4 app/views/ingenieurs/index.rhtml:23
 msgid "an engineer"
 msgstr ""
 
@@ -3766,11 +3803,11 @@ msgstr ""
 msgid "domain"
 msgstr ""
 
-#: app/views/ingenieurs/index.rhtml:25
+#: app/views/ingenieurs/index.rhtml:24
 msgid "an skill"
 msgstr ""
 
-#: app/views/ingenieurs/index.rhtml:26
+#: app/views/ingenieurs/index.rhtml:25
 msgid "Add a skill"
 msgstr ""
 
