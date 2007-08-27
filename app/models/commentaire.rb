@@ -20,41 +20,48 @@ class Commentaire < ActiveRecord::Base
   # On détruit l'éventuelle pièce jointe
   # le belongs_to ne permet pas d'appeler :dependent :'(
 
-
-  # TODO scope sur les commentaires privés/public
-
   # permet de récuperer l'état du commentaire en texte
   # le booléen correspondant est :  prive = true || false
   def etat
     ( prive ? _("private") : _("public") )
   end
 
-  after_save :update_demande
-
-  before_destroy :delete_pj
-
   private
+  # We destroy attachment if appropriate
+  # belongs_to don't allow us to call :dependent :'(
+  before_destroy :delete_pj
   def delete_pj
     self.piecejointe.destroy unless self.piecejointe.nil?
   end
 
+  # update request attributes, when creating a comment
+  after_create :update_demande
   def update_demande
-    fields = %w{statut_id ingenieur_id severite_id}
+    fields = %w(statut_id ingenieur_id severite_id)
     modified = false
-    #On met à jour les champs demandeO
-    fields.each do |attr|
-      #On ne met à jour que si ça a changé
-      if self[attr] and self.demande[attr] != self[attr]
-        self.demande[attr] = self[attr]
-        modified = true
+
+    # don't update all attributes if we are on the first comment
+    if self.demande.first_comment_id != self.id
+      #On met à jour les champs demandeO
+      fields.each do |attr|
+        #On ne met à jour que si ça a changé
+        if self[attr] and self.demande[attr] != self[attr]
+          self.demande[attr] = self[attr]
+          modified = true
+        end
+      end
+      self.demande.save if modified
+    end
+  end
+
+  # update description only if it's the first comment
+  after_update :update_description
+  def update_description
+    if self.demande.first_comment_id == self.id
+      if self.demande.description != self.corps
+        self.demande.update_attribute(:description, self.corps)
       end
     end
-    #Dirty hack to update the request only when we are editing the first comment
-    if self.demande.first_comment_id == self.id and self.demande.description != self.corps
-      self.demande.description = self.corps
-      modified = true
-    end
-    self.demande.save if modified
   end
 
 end
