@@ -18,7 +18,7 @@ sudo urpmi ruby-devel mysql-devel libMagick-devel
 echo "After that, you'll need those gems :"
 
 echo sudo gem install rmagick mysql fastercsv
-sudo gem install rmagick mysql fastercsv gettext
+sudo gem install rmagick mysql fastercsv gettext ruport ruport-util
 
 echo "And you will need a small patch over action_controller gem
   (dependency of rails) :"
