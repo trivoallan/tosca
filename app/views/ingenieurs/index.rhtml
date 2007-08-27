@@ -13,7 +13,6 @@
   result << "<td>#{i.identifiant.nom}</td>"
   result << "<td>#{'X' if i.chef_de_projet}</td>"
   result << "<td>#{'X' if i.expert_ossa}</td>"
-  result << "<td>#{i.domaine}</td>"
   @competences.each do |competence|
     result << "<td>#{'X' if i.competences.include? competence}</td>"
   end

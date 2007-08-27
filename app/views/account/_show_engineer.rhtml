@@ -1,0 +1,33 @@
+
+<% if @ingenieur %>
+
+<div title="<%= _("Show an account") %>" id="showform" class="form">
+
+  <h1><b><%= _('Engineer') %></b></h1><br/>
+
+  <p><b><%= _('Name') + ' :'%></b><%= @ingenieur.nom %></p>
+
+  <p><b><%= _('Project manager') + ' : '%></b>
+  <%= 'X' if @ingenieur.chef_de_projet %></p>
+
+  <p><b><%= _('OSSA expert')%></b>
+  <%= 'X' if @ingenieur.expert_ossa %></p>
+
+
+  <% for column in Ingenieur.content_columns %>
+  <p>
+  <b><%= column.human_name %>:</b> <%= @ingenieur.send(column.name) %>
+  </p>
+  <% end %>
+
+  <% if (@ingenieur.competences.size != 0) %>
+  <p><b><%= _('Skills') + ' : '%></b>
+  <%= @ingenieur.competences.collect{|c| c.nom}.join(', ') %>
+  </p>
+  <% end %>
+
+</div>
+
+<% end %>
+
+

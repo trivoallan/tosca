@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-# special overrides, since routes can be reloaded 
+# special overrides, since routes can be reloaded
 # in rails, even in production.
 require 'routes_overrides'
 
@@ -51,7 +51,6 @@ ActionController::Routing::Routes.draw do |map|
     :new => { :signup => :any, :multiple_signup => :any }
   map.resources :appels,  :collection => { :ajax_beneficiaires => :get }
   map.resources :arches
-  map.resources :beneficiaires
   map.resources :binaires
   map.resources :changelogs
   map.resources :clients
@@ -86,10 +85,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :fichiers
   map.resources :fournisseurs
   map.resources :groupes
-  # We cannot have 'image' for singular, coz' 
+  map.resources :ingenieurs
+  map.resources :beneficiaires
+  # We cannot have 'image' for singular, coz'
   # image_path is used in ActionView::Helpers of Rails
   map.resources :images, :singular => 'img'
-  map.resources :ingenieurs,  :collection => { :list => :get }
   map.resources :jourferies, :singular => 'jourferie'
   map.resources :licenses
   map.resources :logiciels
@@ -98,7 +98,7 @@ ActionController::Routing::Routes.draw do |map|
   # 'news'.singularize == 'news' So problems comes
   map.resources :news, :singular => 'new'
   map.resources :pages
-  map.resources :paquets, :collection => 
+  map.resources :paquets, :collection =>
     { :auto_complete_for_paquet_nom => :get}
   map.resources :permissions
   map.resources :piecejointes, :member => { :uv => :get }

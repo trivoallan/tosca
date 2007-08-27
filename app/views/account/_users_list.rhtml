@@ -6,11 +6,7 @@
 <table>
   <tr>
     <th><%= _('login')%></th>
-    <th>
-      <% for role in @roles %>
-      <small> [<%=role.nom%>] </small>
-      <% end %>
-    </th>
+    <th> <%= _('Become') %> </th>
     <th><%= _('engineer')%></th>
     <th><%= _('recipient')%></th>
     <th><%= _('Email')%></th>
@@ -26,16 +22,11 @@
    <tr class="<%= cycle('pair', 'impair') %>">
 
      <td><%=h user.login %></td>
-     <td nowrap="nowrap">
-      <% options[:html] = { :id => "form_#{user.id}", :name => "form_#{user.id}" } %>
-      <% options[:url] = account_path(user.id) %>
-      <% form_remote_tag options do %>
-         <% for role in @roles %>
-           &nbsp;&nbsp;<input type="checkbox" id="<%=user.login + role.id.to_s%>" name="identifiant[role_ids][]" value="<%=role.id%>"
-           <%if user.roles.include? role%> checked="checked" <%end%> />&nbsp;&nbsp;
+     <td><% if beneficiaire %>
+           <form action=<%= '"' + devenir_account_path(beneficiaire) + '"' %> method="post">
+           <input name="commit" value=<%= '"' + _('Become') + '"' %> type="submit" /></form>
          <% end %>
-         <input type="submit" value="<%= _('Validate')%>" class="primary"/>
-      <% end %></td>
+     </td>
       <td><center><%= "X" if ingenieur %></center></td>
       <td><center><%= "X" if beneficiaire %></center></td>
       <td><%= mail_to user.email, user.email %></td>

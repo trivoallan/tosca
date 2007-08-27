@@ -86,28 +86,42 @@ class AccountController < ApplicationController
 
   def edit
     @identifiant = Identifiant.find(params[:id])
+    @ingenieur = @identifiant.ingenieur
+    @beneficiaire = @identifiant.beneficiaire
     _form
   end
 
   def show
     @identifiant = Identifiant.find(params[:id])
+    @ingenieur = @identifiant.ingenieur
+    @beneficiaire = @identifiant.beneficiaire
+    _form
   end
 
   def update
     @identifiant = Identifiant.find(params[:id])
+    @beneficiaire = @identifiant.beneficiaire
+    @ingenieur = @identifiant.ingenieur
+
     # reset role when no case is selected
     params[:identifiant] = { :role_ids => [] } unless params.has_key? :identifiant
-    if @identifiant.update_attributes(params[:identifiant])
-      # we can changes roles in 'index' view
-      if request.xhr?
-        index
-      else
-        #update cached profile for logged user
-        set_sessions(@identifiant) if session[:user] == @identifiant
-        flash[:notice]  = _("Edition succeeded")
-        redirect_to(account_path(@identifiant))
-      end
+
+    unless ((@identifiant.update_attributes(params[:identifiant])) and
+        ((not @beneficiaire) or
+         @beneficiaire.update_attributes(params[:beneficiaire])) and
+        ((not @ingenieur) or
+         @ingenieur.update_attributes(params[:ingenieur])))
+      _form and render :action => 'edit' and return
     end
+
+    # we can changes roles in 'index' view
+    index if request.xhr?
+
+    #update cached profile for logged user
+    set_sessions  @identifiant if session[:user] == @identifiant
+
+    flash[:notice]  = _("Edition succeeded")
+    redirect_to account_path(@identifiant)
   end
 
   def new
@@ -224,6 +238,8 @@ private
   def _form
     @roles = Role.find_select
     @clients = Client.find_select
+    @competences = Competence.find_select
+    @contrats = Contrat.find_select(Contrat::OPTIONS)
   end
 
   # Variables utilisé par le panneau de gauche

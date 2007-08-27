@@ -1,0 +1,79 @@
+
+<%
+  create_account = false
+%>
+
+<% # TODO : improve it, c'est encore tres peu lisible
+  #ESSAI : un peu mieux ? un chouilla ;)
+  identifiant, role, identifiant_client, type_client, csv = {}, {}, {}, {}, {}
+  help = {:affichage_perso => _('Custom display of the request list'), :client => nil }
+
+  if session[:user].ingenieur and session[:user].ingenieur.expert_ossa
+    role[:titre] = '<label>' + _('Roles') + '</label>'
+    role[:champ] = hbtm_check_box(@identifiant.roles, @roles, 'identifiant[role_ids]')
+  end
+
+  if @ingenieur
+    identifiant[:titre] = '<label for="identifiant_login">' + _('Choose a login') + '</label>'
+    identifiant[:champ] = text_field("identifiant", "login", :size => 16)
+
+    case controller.action_name
+    when 'signup', 'multiple_signup'
+      case controller.action_name
+      when 'signup'
+        help[:client] = _('Is the user a customer of the service ?')
+      when 'multiple_signup'
+        help[:client] = _('Are the users customer of the service ?')
+        csv[:titre] = _('<label>Text in CSV format (separator : tabulation)</label><br />
+                      Full name Title Email Phone Login Password  Informations')
+        csv[:champ] = text_area('textarea_csv', nil, :rows => 10, :cols => 58)
+      end
+      type_client[:titre] = '<label>' + _('Customer') + '</label>'
+      type_client[:champ] = collection_select(:client, :id, @clients, :id, :nom)
+      identifiant_client[:titre] = '<label for="identifiant_client">' + _('Customer %s') % ('</label>' + show_help(help[:client]))
+      identifiant_client[:champ] = check_box('identifiant', 'client')
+    end
+  end
+%>
+
+<% # TODO : faire un lstm_check_field et un lstm_newline
+   fields = [
+     [ type_client[:titre], type_client[:champ] ],
+     [ ( type_client[:titre]  ? '<hr/>' : nil ), nil ]
+   ]
+   unless (controller.action_name == 'multiple_signup')
+      fields.concat([
+       lstm_text_field( _('Full name'), 'identifiant', 'nom'),
+       lstm_text_field( _('Title'), 'identifiant', 'titre'),
+       lstm_text_field( _('Email'), 'identifiant', 'email'),
+       lstm_text_field( _('Phone'), 'identifiant', 'telephone'),
+       [ '<hr/>', nil ],
+       [ identifiant[:titre], identifiant[:champ] ],
+       lstm_password_field((create_account ?
+            _('Choose a password') : _('Modify your password')),
+         'identifiant', 'pwd'),
+       lstm_password_field( _('Confirm this last'), 'identifiant',
+          'pwd_confirmation'),
+       [ '<hr/>', nil ]
+      ])
+   end
+
+   fields.concat([
+      [ role[:titre], role[:champ] ],
+      [ identifiant_client[:titre], identifiant_client[:champ] ]
+   ])
+
+   if (controller.action_name != 'multiple_signup')
+     informations = lstm_text_area(_('Informations'), 'identifiant',
+                       'informations', :rows => 8, :cols => 58)
+     fields.concat([ [informations[0], nil] , [nil, informations[1]]])
+   end
+   fields.concat([
+      [ ( csv[:titre]  ? '<hr/>' : nil ), nil ],
+      [ csv[:titre], nil ],
+      [ nil , csv[:champ] ]
+    ])
+%>
+
+
+<%= show_table_form fields, :class => 'form' %>

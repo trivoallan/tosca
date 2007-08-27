@@ -1,0 +1,34 @@
+
+<%
+  role_titre, role_champs, avatar = nil, nil, nil
+  role_titre = _('Role')
+  role_champs = @identifiant.roles
+
+  if @ingenieur
+     unless @ingenieur.image_id.nil?
+       avatar = image_tag(url_for_file_column(@ingenieur.image, 'image', 'thumb'))
+     end
+  end
+
+  fields = [
+     [ avatar, nil ],
+     [ _('Full name'), "<label>#{@identifiant.nom}</label>" ],
+     [ _('Title'), "<label>#{@identifiant.titre}</label>" ],
+     [ _('Email'), mail_to(@identifiant.email, @identifiant.email) ],
+     [ _('Phone'), "<label>#{@identifiant.telephone}</label>" ],
+     [ '<hr/>', nil ],
+     [ _('login'), "<label>#{@identifiant.login}</label>" ],
+     [ role_titre, role_champs ],
+     [ '<hr/>', nil ],
+     [  nil, @identifiant.informations.to_s ]
+   ]
+%>
+
+
+<div title="<%= _("Show an account") %>" id="showform" class="form">
+  <%= show_table_form fields %>
+</div>
+
+
+
+

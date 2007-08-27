@@ -1,36 +1,28 @@
 <%= error_messages_for 'identifiant' %><br />
 
-<div title="<%= _("Show an account") %>" id="showform" class="form">
-
 <% compte = ( session[:user].id == @identifiant.id ? _('My account') :
               _('Account of %s') % @identifiant.nom ) %>
 
-<% role_titre, role_champs, avatar = nil, nil, nil
-   if @ingenieur
-     role_titre = _('Role')
-     role_champs = @identifiant.roles
-     unless @ingenieur.image_id.nil?
-       avatar = image_tag(url_for_file_column(@ingenieur.image, 'image', 'thumb'))
-     end
-   end
-
-   fields = [
-     [ avatar, nil ],
-     [ _('Full name'), "<label>#{@identifiant.nom}</label>" ],
-     [ _('Title'), "<label>#{@identifiant.titre}</label>" ],
-     [ _('Email'), mail_to(@identifiant.email, @identifiant.email) ],
-     [ _('Phone'), "<label>#{@identifiant.telephone}</label>" ],
-     [ '<hr/>', nil ],
-     [ _('login'), "<label>#{@identifiant.login}</label>" ],
-     [ role_titre, role_champs ],
-     [ '<hr/>', nil ],
-     [  nil, @identifiant.informations.to_s ]
-   ]
-
-%>
-
 <h1><%= compte %></h1>
-<%= show_table_form fields %>
-</div>
+
+<table border="0">
+<tr>
+<td>
+
+<%= render :partial => "show_account_information" %>
+
+</td>
+<td>
+
+<%= render :partial => "show_engineer" %>
+
+<%= render :partial => "show_recipient" %>
+
+</td>
+</tr>
+</table>
+
 <br/>
-<%= link_to_back %>
+
+<%= link_to_edit_and_list(@identifiant) %>
+

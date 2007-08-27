@@ -12,7 +12,7 @@
 <%= show_table_engagements @contrat.engagements %>
 
 
-<%= show_liste(@contrat.ingenieurs, 'ingénieurs affecté') {|i| link_to_ingenieur(i)}%>
+<%= show_liste(@contrat.ingenieurs, 'ingénieurs affecté') {|i| link_to i.nom, ingenieur_path(i)} %>
 
 
 <%= link_to_edit(@contrat) %> | <%= link_to_back %>

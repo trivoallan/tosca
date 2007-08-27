@@ -1,0 +1,24 @@
+
+<% if @beneficiaire # and not session[:user].beneficiaire %>
+
+<div class="show">
+
+<h1><b><%= _('Recipient') %></b></h1><br/>
+
+<p><label for="beneficiaire_client">Client</label><br/>
+  <%= collection_select(:beneficiaire, :client_id, @clients, :id, :nom) %>
+</p>
+
+<p><label for="beneficiaire_notifier_subalternes"> <%= _('Notify subalterns') %> </label><br/>
+<%= check_box 'beneficiaire', 'notifier_subalternes'  %></p>
+
+<p><label for="beneficiaire_notifier"> <%= _('Notify at') %> </label><br/>
+<%= check_box 'beneficiaire', 'notifier'  %></p>
+
+<p><label for="beneficiaire_notifier_cc"> <%= _('Notify cc') %> </label><br/>
+<%= check_box 'beneficiaire', 'notifier_cc'  %></p>
+
+</div>
+
+<% end %>
+
