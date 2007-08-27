@@ -1,67 +1,67 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-heleneParmentier:
-  id: 1
+--- 
+identifiant_00004: 
   informations: ""
-  nom: "Hélène Parmentier"
-  client: 1
-  titre: "DSI"
-  telephone: "01424242424"
-  image_id: 0
-  password: <%= Identifiant.sha1('test')%>
-  login: "hparmentier"
-  email: "mloiseleur@linagora.com"
-martinLaplace:
-  id: 2
-  login: 'mlaplace'
-  password: <%= Identifiant.sha1('mlaplace')%>
-  informations: ""
-  nom: 'Martin Laplace'
-  client: 1
-  titre: 'DSI'
-  telephone: '0241455361'
-  image_id: 0
-  email: 'mloiseleur@linagora.com'
-bob:
-  id: 3
-  login: 'bob'
-  password: <%= Identifiant.sha1('test')%>
-  informations: ""
-  nom: "Bob Dufloux"
-  client: 0
-  titre: "Expert"
-  telephone: "08000LINUX"
-  image_id: 0
-  email: "mloiseleur@linagora.com"
-admin:
+  nom: Admin
+  client: false
   id: 4
-  login: 'admin'
-  password: <%= Identifiant.sha1('admin') %>
-  informations: ""
-  nom: 'Admin'
-  client: 0
-  titre: 'Expert Ossa'
-  telephone: '08000LINUX'
+  titre: Expert Ossa
+  telephone: 08000LINUX
+  password: 47261c32a405a38d54806e4db0e64d1ca9862598
+  login: admin
   image_id: 0
-  email: 'mloiseleur@linagora.com'
-super_presta:
+  email: mloiseleur@linagora.com
+identifiant_00005: 
+  informations: ""
+  nom: Expert de l'OSSA
+  client: false
   id: 5
-  login: 'expert'
-  password: <%= Identifiant.sha1('expert') %>
-  informations: ""
-  nom: "Expert de l'OSSA"
-  client: 0
-  titre: 'ô magnifique'
-  telephone: '08000LINUX'
+  titre: "\xC3\xB4 magnifique"
+  telephone: 08000LINUX
+  password: d81674f38d5627bb3580afe45ee79cffafe0b539
+  login: expert
   image_id: 0
-  email: 'mloiseleur@linagora.com'
-presta:
+  email: mloiseleur@linagora.com
+identifiant_00006: 
+  informations: ""
+  nom: Prestataire
+  client: false
   id: 6
-  login: 'presta'
-  password: <%= Identifiant.sha1('presta') %>
-  informations: ""
-  nom: 'Prestataire'
-  client: 0
-  titre: 'vil'
-  telephone: '08000Linux'
+  titre: vil
+  telephone: 08000Linux
+  password: 63828c91e38ced7d310e861caa2cc0a98465db81
+  login: presta
   image_id: 0
-  email: 'mloiseleur@linagora.com'
+  email: mloiseleur@linagora.com
+identifiant_00001: 
+  informations: ""
+  nom: "H\xC3\xA9l\xC3\xA8ne Parmentier"
+  client: true
+  id: 1
+  titre: DSI
+  telephone: "01424242424"
+  password: 113ffe098f908431c8c5d5c960e6a291aaf202b2
+  login: hparmentier
+  image_id: 0
+  email: mloiseleur@linagora.com
+identifiant_00002: 
+  informations: ""
+  nom: Martin Laplace
+  client: true
+  id: 2
+  titre: DSI
+  telephone: "0241455361"
+  password: 92b033978307c31e8166cf768345bb5a30d3c67f
+  login: mlaplace
+  image_id: 0
+  email: mloiseleur@linagora.com
+identifiant_00003: 
+  informations: ""
+  nom: Bob Dufloux
+  client: false
+  id: 3
+  titre: Expert
+  telephone: 08000LINUX
+  password: 113ffe098f908431c8c5d5c960e6a291aaf202b2
+  login: bob
+  image_id: 0
+  email: mloiseleur@linagora.com

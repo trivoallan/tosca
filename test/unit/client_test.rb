@@ -38,7 +38,7 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_update
-    c = clients( :toto )
+    c = clients( :client_00001 )
     c.update_attributes(:nom => "titi", :support_id => 1, 
       :description => "la femme de toto", :mailingliste=> "titi@laposte.net",
       :adresse => "les champs Élysées 95000 Paris", :image_id => 1, 
@@ -54,44 +54,46 @@ class ClientTest < Test::Unit::TestCase
     assert_equal c.beneficiaires_count, 2
   end
   def test_destroy
-    assert clients( :toto).destroy
+    assert clients( :client_00001).destroy
   end
   
   def test_name
-    c = clients( :toto)
+    c = clients( :client_00001)
     assert_equal c.nom, c.to_s
     assert_equal c.to_param, "1-toto"
   end
   def test_severites
-    assert_equal clients(:toto).severites, Severite.find(:all)
+    assert_equal clients(:client_00001).severites, Severite.find(:all)
   end
 
   def test_contrat_ids
     assert_equal Client.find(5).contrat_ids, '0'
-    assert_equal clients(:linagorien).contrat_ids, '2'
+    # 00004 => linagorien
+    assert_equal clients(:client_00004).contrat_ids, '2' 
   end
   def test_support_distribution
-    assert_equal clients(:linagorien).support_distribution, true
-    assert_equal clients(:guy).support_distribution, false
+    assert_equal clients(:client_00004).support_distribution, true
+    assert_equal clients(:client_00002).support_distribution, false
   end
   
   def test_beneficiaire_ids
-    assert_equal clients(:toto).beneficiaire_ids, [1]
-    assert_equal clients(:linagorien).beneficiaire_ids, []
+    assert_equal clients(:client_00001).beneficiaire_ids, [1]
+    assert_equal clients(:client_00004).beneficiaire_ids, []
   end
   
   def test_logiciels
     # case customer is Linagora
-    assert_equal clients(:linagorien).logiciels, Logiciel.find(:all)
+    assert_equal clients(:client_00004).logiciels, Logiciel.find(:all)
     # case customer isn't Linagora
     assert_equal Client.find(2).logiciels, [Logiciel.find(1)]
   end
   
   def test_typedemandes
-    assert_equal clients(:guy).typedemandes, Typedemande.find(1,2).reverse
+    assert_equal clients(:client_00002).typedemandes, Typedemande.find(1,2).reverse
   end
+
   def test_contributions
-    assert_equal clients(:toto).contributions, []
+    assert_equal clients(:client_00001).contributions, []
   end
   
 end

@@ -1,19 +1,19 @@
----
-bob:
-  identifiant_id: 3
-  role_id: 1
-admin:
-  identifiant_id: 4
-  role_id: 1
-super_presta: 
-  identifiant_id: 5
-  role_id: 4
-presta:
-  identifiant_id: 6
-  role_id: 3
-beneficiaire_helene:
-  identifiant_id: 1
-  role_id: 2
-beneficiaire_martin:
-  identifiant_id: 2
-  role_id: 2
+--- 
+join_00002: 
+  role_id: "2"
+  identifiant_id: "1"
+join_00003: 
+  role_id: "1"
+  identifiant_id: "4"
+join_00004: 
+  role_id: "2"
+  identifiant_id: "2"
+join_00005: 
+  role_id: "1"
+  identifiant_id: "3"
+join_00000: 
+  role_id: "3"
+  identifiant_id: "6"
+join_00001: 
+  role_id: "4"
+  identifiant_id: "5"

@@ -1,41 +1,41 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-toto:
-  id: 1
-  nom: "toto"
-  description: "éééà @bonjour |« \" "
-  mailingliste: "toto@laposte.net"
-  adresse: "les champs Élysées 95000 Paris"
-  image_id: 1
-  code_acces: "lenomdemonchien"
-  beneficiaires_count: 21
+--- 
+client_00004: 
   support_id: 1
-guy:
-  id: 2
-  nom: 'guy'
-  description: "un gars«sympa»"
-  mailingliste: 'toscadevel@linagora.com'
-  adresse: "Rue de la paix, Paris"
-  image_id: 
-  code_acces: "guytarenbois"
-  support_id: 1
-#vide:
-#  id: 3
-#  nom: nil
-linagorien:
-  id: 4 # must be id = 4 for test_logiciels in clients_test
-  nom: 'linagorien'
-  description: "un autre utilisateur"
-  mailingliste: "guy@lapsote.net"
-  adresse: "Rue de Berri, Paris"
+  nom: linagorien
+  id: 4
+  beneficiaires_count: 
+  mailingliste: guy@lapsote.net
+  description: un autre utilisateur
+  code_acces: linagora
+  adresse: Rue de Berri, Paris
   image_id: 3
-  code_acces: "linagora"
+client_00005: 
   support_id: 1
-no_contract:
+  nom: noman
   id: 5
-  nom: 'noman'
-  description: "un autre utilisateur"
-  mailingliste: "guy@lapsote.net"
-  adresse: "Rue de Berri, Paris"
+  beneficiaires_count: 
+  mailingliste: guy@lapsote.net
+  description: un autre utilisateur
+  code_acces: linagora
+  adresse: Rue de Berri, Paris
   image_id: 3
-  code_acces: "linagora"
+client_00001: 
   support_id: 1
+  nom: toto
+  id: 1
+  beneficiaires_count: 21
+  mailingliste: toto@laposte.net
+  description: "\xC3\xA9\xC3\xA9\xC3\xA9\xC3\xA0 @bonjour |\xC2\xAB\xC2\xA0\" "
+  code_acces: lenomdemonchien
+  adresse: "les champs \xC3\x89lys\xC3\xA9es 95000 Paris"
+  image_id: 1
+client_00002: 
+  support_id: 1
+  nom: guy
+  id: 2
+  beneficiaires_count: 
+  mailingliste: toscadevel@linagora.com
+  description: "un gars\xC2\xABsympa\xC2\xBB"
+  code_acces: guytarenbois
+  adresse: Rue de la paix, Paris
+  image_id: 

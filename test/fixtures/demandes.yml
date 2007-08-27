@@ -1,53 +1,55 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+--- 
+demande_00001: 
+  created_on: 2006-09-21 08:19:30 +02:00
+  logiciel_id: 1
+  updated_on: 2007-07-12 14:21:17 +02:00
+  ingenieur_id: 1
   id: 1
-  logiciel_id: 1
-  beneficiaire_id: 1
-  ingenieur_id: 1
-  resume: 'Patch Binaire'
-  description: "Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
-  statut_id: 1
+  version: 
   severite_id: 2
-  created_on: "2006-09-21 08:19:30"
-  updated_on: "2007-07-12 14:21:17"
+  resume: Patch Binaire
+  description: Il faut trouver un moyen de patcher binairement OOo.<br/><br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.<br/>
+  beneficiaire_id: 1
+  statut_id: 1
+  contrat_id: 1
   typedemande_id: 1
-  contribution_id: 28
-  mail_cc: nil
   socle_id: 0
+  mail_cc: nil
   first_comment_id: 1
-  contrat_id: 1
-
-second:
+  contribution_id: 28
+demande_00002: 
+  created_on: 2007-08-20 08:49:30 +02:00
+  logiciel_id: 1
+  updated_on: 2007-08-20 11:21:17 +02:00
+  ingenieur_id: 1
   id: 2
-  logiciel_id: 1
-  beneficiaire_id: 1
-  ingenieur_id: 1
-  resume: 'une autre demandes'
-  description: "Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
-  statut_id: 2
+  version: 
   severite_id: 1
-  created_on: "2007-08-20 08:49:30"
-  updated_on: "2007-08-20 11:21:17"
+  resume: une autre demandes
+  description: Il faut trouver un moyen de patcher binairement OOo.<br/><br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.<br/>
+  beneficiaire_id: 1
+  statut_id: 2
+  contrat_id: 1
   typedemande_id: 2
-  contribution_id: 28
-  mail_cc: nil
   socle_id: 0
+  mail_cc: nil
   first_comment_id: 2
-  contrat_id: 1
-third:
-  id: 3
-  logiciel_id: 1
-  beneficiaire_id: 1
-  ingenieur_id: 1
-  resume: 'Patch Binaire'
-  description: "Il faut trouver un moyen de patcher binairement OOo.\r<br/>\r<br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.\r<br/>"
-  statut_id: 2
-  severite_id: 1
-  created_on: "2007-08-04 08:19:30"
-  updated_on: "2007-08-09 14:21:17"
-  typedemande_id: 2
   contribution_id: 28
-  mail_cc: nil
-  socle_id: 0
-  first_comment_id: 3
+demande_00003: 
+  created_on: 2007-08-04 08:19:30 +02:00
+  logiciel_id: 1
+  updated_on: 2007-08-09 14:21:17 +02:00
+  ingenieur_id: 1
+  id: 3
+  version: 
+  severite_id: 1
+  resume: Patch Binaire
+  description: Il faut trouver un moyen de patcher binairement OOo.<br/><br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.<br/>
+  beneficiaire_id: 1
+  statut_id: 2
   contrat_id: 1
+  typedemande_id: 2
+  socle_id: 0
+  mail_cc: nil
+  first_comment_id: 3
+  contribution_id: 28

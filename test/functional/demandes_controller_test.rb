@@ -19,7 +19,7 @@ class DemandesControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     login 'admin', 'admin'
-    @first_id = demandes(:first).id
+    @first_id = demandes(:demande_00001).id
   end
 
   def test_index
@@ -109,13 +109,14 @@ class DemandesControllerTest < Test::Unit::TestCase
       Demande.find(@first_id)
     }
   end
+
   def test_print
     get :print, :id => 1
     assert_response :success
     assert_template 'print'
     assert_equal assigns(:demande), Demande.find(1)
-
   end
+
   private
   # test the ajax filters
   # example : test_filter :statut_id, 2
