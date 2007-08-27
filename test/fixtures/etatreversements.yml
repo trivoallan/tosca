@@ -1,25 +1,17 @@
 --- 
 etatreversement_00003: 
-  nom: "soumis : en attente"
+  nom: "rejet\xC3\xA9e"
   id: 3
-  description: "Correctif soumis, en attente de r\xC3\xA9ponse de la communaut\xC3\xA9"
+  description: Cntribution soumise mais non accept&eacute;e
 etatreversement_00004: 
-  nom: "accept\xC3\xA9"
+  nom: "non revers\xC3\xA9e"
   id: 4
-  description: "Correctif soumis et accept\xC3\xA9"
+  description: Ce correctif n&#39;est pas revers&eacute; &agrave; la communaut&eacute;. C&#39;est souvent le cas des backport.
 etatreversement_00005: 
-  nom: "refus\xC3\xA9"
+  nom: "accept\xC3\xA9"
   id: 5
-  description: "Correctif soumis mais refus\xC3\xA9"
-etatreversement_00006: 
-  nom: "ne sera pas revers\xC3\xA9"
-  id: 6
-  description: "Correctif qui ne sera pas revers\xC3\xA9 \xC3\xA0 la communaut\xC3\xA9"
+  description: C&#39;est quand la contribution a &eacute;t&eacute; int&eacute;gr&eacute;e au code source communautaire.
 etatreversement_00001: 
-  nom: "\xC3\xA0 reverser"
+  nom: "propos\xC3\xA9e"
   id: 1
-  description: "Correctif r\xC3\xA9alis\xC3\xA9, \xC3\xA0 reverser \xC3\xA0 la communaut\xC3\xA9"
-etatreversement_00002: 
-  nom: en cours
-  id: 2
-  description: "Echanges en cours pour d\xC3\xA9terminer les modalit\xC3\xA9s de la soumission du correctif"
+  description: Echanges en cours pour d&eacute;terminer les modalit&eacute;s de la soumission du correctif.

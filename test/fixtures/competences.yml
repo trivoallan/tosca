@@ -1,13 +1,13 @@
 --- 
-competence_00001: 
-  nom: C
-  id: 1
-competence_00002: 
-  nom: C++
-  id: 2
+competence_00014: 
+  nom: Gestion
+  id: 14
 competence_00003: 
   nom: Java
   id: 3
+competence_00015: 
+  nom: Annuaires
+  id: 15
 competence_00004: 
   nom: J2ee
   id: 4
@@ -17,36 +17,30 @@ competence_00005:
 competence_00006: 
   nom: Python
   id: 6
-competence_00007: 
-  nom: Perl
-  id: 7
-competence_00008: 
-  nom: Php
-  id: 8
-competence_00009: 
-  nom: Shell
-  id: 9
-competence_00010: 
-  nom: Birt
-  id: 10
-competence_00013: 
-  nom: JavaScript
-  id: 13
-competence_00014: 
-  nom: Gestion
-  id: 14
-competence_00015: 
-  nom: Annuaires
-  id: 15
-competence_00016: 
-  nom: PL/SQL
-  id: 16
 competence_00017: 
   nom: SQL
   id: 17
+competence_00007: 
+  nom: Perl
+  id: 7
 competence_00018: 
   nom: OpenOffice
   id: 18
+competence_00008: 
+  nom: Php
+  id: 8
 competence_00019: 
   nom: "Syst\xC3\xA8me"
   id: 19
+competence_00020: 
+  nom: "R\xC3\xA9seau"
+  id: 20
+competence_00021: 
+  nom: C#/Mono
+  id: 21
+competence_00001: 
+  nom: C/C++
+  id: 1
+competence_00013: 
+  nom: Web
+  id: 13

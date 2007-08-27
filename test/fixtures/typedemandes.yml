@@ -6,7 +6,7 @@ typedemande_00002:
   nom: Anomalie
   id: 2
 typedemande_00005: 
-  nom: Evolution
+  nom: "\xC3\x89volution"
   id: 5
 typedemande_00006: 
   nom: Monitorat
@@ -15,5 +15,5 @@ typedemande_00007:
   nom: Intervention
   id: 7
 typedemande_00008: 
-  nom: Etude
+  nom: "\xC3\x89tude"
   id: 8

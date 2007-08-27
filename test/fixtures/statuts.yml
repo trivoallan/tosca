@@ -2,51 +2,32 @@
 statut_00003: 
   nom: Suspendue
   id: 3
-  description: "Nous attendons des informations pour pouvoir travailler correctement sur votre demande. \r\n\
-    Ce sont g\xC3\xA9n\xC3\xA9ralement des fiohiers de configuration, des num\xC3\xA9ros de version ou le r\xC3\xA9sultat de commande d'analys\xC3\xA9. \r\n\
-    La demande revient \xC3\xA0 \"prise en compte\" d\xC3\xA8s que vous nous fournissez ces informations.\r\n\
-    Nous attendons une validation de votre part sur nos propositions de solution. \r\n\
-    La demande devient alors \"contourn\xC3\xA9e\" ou \"corrig\xC3\xA9e\" "
+  description: "- Nous attendons des informations pour pouvoir travailler correctement sur votre demande. \r<br/>Ce sont g\xC3\xA9n\xC3\xA9ralement des fichiers de configuration, des num\xC3\xA9ros de version ou le r\xC3\xA9sultat de commandes d'analyse. \r<br/>La demande revient \xC3\xA0 \"Prise en compte\" d\xC3\xA8s que vous nous fournissez ces informations.\r<br/>- Nous attendons une validation de votre part sur nos propositions de solution. \r<br/>La demande prend alors le statut \"Contourn\xC3\xA9e\" ou le statut \"Corrig\xC3\xA9e\"."
 statut_00004: 
   nom: "Analys\xC3\xA9e"
   id: 4
-  description: "Nous avons tous les \xC3\xA9l\xC3\xA9ments n\xC3\xA9cessaire pour r\xC3\xA8gler votre anomalie. \r\n\
-    Vous ne serez plus sollicit\xC3\xA9s pour des informations compl\xC3\xA8mentaire \xC3\xA0 ce stade. \r\n\
-    Vous obtiendrez en un temps garantit des propositions de solution de contournement et de correction. \r\n\
-    Votre demande sera alors \"suspendue\", le temps pour vous de confirmer ou d'infirmer notre solution.\r\n\
-    Elle retournera \xC3\xA9ventuellement \xC3\xA0 \"Prise en compte\", s'il s'av\xC3\xA8re que nous sommes partis sur une mauvaise piste."
+  description: "Nous avons tous les \xC3\xA9l\xC3\xA9ments n\xC3\xA9cessaire pour r\xC3\xA8gler votre anomalie. \r<br/>A ce stade, vous ne devriez plus \xC3\xAAtre sollicit\xC3\xA9 pour des informations compl\xC3\xA9mentaires. \r<br/>Vous obtiendrez en un temps garanti des propositions de solution de contournement et de correction. \r<br/>Votre demande sera alors \"suspendue\", le temps pour vous de confirmer ou d'infirmer que le contournement ou la correction propos\xC3\xA9s vous conviennent.\r<br/>La demande prendra \xC3\xA9ventuellement de nouveau le statut \"Prise en compte\" s'il s'av\xC3\xA8re que nous sommes partis sur une mauvaise piste."
 statut_00005: 
   nom: "Contourn\xC3\xA9e"
   id: 5
-  description: "Vous avez accept\xC3\xA9 une de nos solutions de contournement. \r\n\
-    Nous continuons \xC3\xA0 travailler et la demande repasse en \"Suspendue\" d\xC3\xA8s que nous vous proposons une solution de correction\r\n"
+  description: "Vous avez accept\xC3\xA9 une de nos solutions de contournement. \r<br/>Nous continuons \xC3\xA0 travailler et la demande repasse en \"Suspendue\" d\xC3\xA8s que nous vous proposons une solution de correction\r<br/>"
 statut_00006: 
   nom: "Corrig\xC3\xA9e"
   id: 6
-  description: "Vous avez accept\xC3\xA9 une de nos solutions de correction. \r\n\
-    Nous soumettons maintenant notre correctif \xC3\xA0 la communaut\xC3\xA9, pour pouvoir cl\xC3\xB4turer la demande.\r\n\
-    \r\n"
+  description: "Vous avez accept\xC3\xA9 une de nos solutions de correction. \r<br/>Nous soumettons maintenant notre correctif \xC3\xA0 la communaut\xC3\xA9, pour pouvoir cl\xC3\xB4turer la demande."
 statut_00007: 
   nom: "Cl\xC3\xB4tur\xC3\xA9e"
   id: 7
-  description: "L'anomalie est consid\xC3\xA9r\xC3\xA9e comme d\xC3\xA9finitivement close, le correctif ayant \xC3\xA9t\xC3\xA9 soumis \xC3\xA0 la communaut\xC3\xA9.\r\n\
-    On est alors en droit d'esp\xC3\xA8rer que l'anomalie ne se reproduira plus sur les prochaines versions."
+  description: "L'anomalie est consid\xC3\xA9r\xC3\xA9e comme d\xC3\xA9finitivement close, le correctif ayant \xC3\xA9t\xC3\xA9 soumis \xC3\xA0 la communaut\xC3\xA9."
 statut_00008: 
   nom: "Annul\xC3\xA9e"
   id: 8
-  description: "Votre demande est li\xC3\xA9e \xC3\xA0 un probl\xC3\xA8me mat\xC3\xA9rielle ou est transform\xC3\xA9e en U.O. \r\n\
-    D'une mani\xC3\xA8re g\xC3\xA9n\xC3\xA9rale, une demande est annul\xC3\xA9e quand son traitement n'est pas du ressort de la cellule.\r\n"
+  description: "D'une mani\xC3\xA8re g\xC3\xA9n\xC3\xA9rale, une demande est annul\xC3\xA9e quand son traitement n'est pas du ressort de l'unit\xC3\xA9 OSSA.\r<br/>Les cas possibles d'annulation sont :\r<br/>- probl\xC3\xA8me dont la cause mat\xC3\xA9rielle,\r<br/>- probl\xC3\xA8me dont la cause est un logiciel ou un ensemble de logiciels non assur\xC3\xA9s,\r<br/>- demande n\xC3\xA9cessitant une \xC3\xA9volution du logiciel assur\xC3\xA9\r<br/>- cas d'exclusion pr\xC3\xA9vus contractuellement. \r<br/>"
 statut_00001: 
   nom: "Enregistr\xC3\xA9e"
   id: 1
-  description: "Votre demande vient d'\xC3\xAAtre d\xC3\xA9clar\xC3\xA9e dans notre outil. \r\n\
-    Nous vous rappelons dans l'heure pour r\xC3\xA9unir toutes les informations n\xC3\xA9cessaire\r\n et vous informer de la prise en compte effective de votre demande : \r\n\
-    son statut passera \xC3\xA0 \"prise en compte\""
+  description: "Votre demande vient d'\xC3\xAAtre d\xC3\xA9clar\xC3\xA9e dans notre outil. \r<br/>Nous vous rappelons dans l'heure pour r\xC3\xA9unir toutes les informations n\xC3\xA9cessaires\r<br/> et vous informer de la prise en compte effective de votre demande."
 statut_00002: 
   nom: Prise en compte
   id: 2
-  description: "Votre demande est prise en compte par nos ing\xC3\xA9nieurs, qui tentent de qualifier votre demande. \r\n\
-    Pour ce faire, ils vont p\xC3\xA9riodiquement vous demander des informations, \r\n\
-    ce qui arr\xC3\xAAtera le chronom\xC3\xA8tre de d\xC3\xA9compte du temps garanti (suspendue). \r\n\
-    Une fois cette analyse compl\xC3\xA8te, votre demande sera analys\xC3\xA9e. \r\n\
-    Si nous nous apercevons qu'elle est hors p\xC3\xA9rim\xC3\xA8tre, elle sera annul\xC3\xA9e, avec votre accord.\r\n"
+  description: "Votre demande est prise en compte par nos ing\xC3\xA9nieurs, qui font le n\xC3\xA9cessaire pour qualifier votre demande. \r<br/>Pour ce faire, ils vont p\xC3\xA9riodiquement vous demander des informations, ce qui suspendra le d\xC3\xA9compte du temps garanti. \r<br/>Une fois cette analyse compl\xC3\xA8te, votre demande prendra le statut \"Analys\xC3\xA9e\". \r<br/>Si nous nous apercevons que votre demande sort du p\xC3\xA9rim\xC3\xA8tre de votre contrat, elle sera annul\xC3\xA9e, avec votre accord.\r<br/>"

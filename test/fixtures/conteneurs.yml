@@ -17,3 +17,6 @@ conteneur_00005:
 conteneur_00006: 
   nom: nosrc
   id: 6
+conteneur_00007: 
+  nom: pkg
+  id: 7

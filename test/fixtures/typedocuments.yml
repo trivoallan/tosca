@@ -23,3 +23,11 @@ typedocument_00006:
   nom: Veilles
   id: 6
   description: Contient l'ensemble des rapports de veilles technologiques vous concernant
+typedocument_00007: 
+  nom: NewsLetters
+  id: 7
+  description: "Actualit\xC3\xA9s du Libre"
+typedocument_00008: 
+  nom: Audits
+  id: 8
+  description: Rapport d&#39;audit sur des &eacute;l&eacute;ments logiciels ou mat&eacute;riels pr&eacute;cis

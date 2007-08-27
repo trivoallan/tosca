@@ -5,18 +5,33 @@ typeurl_00012:
 typeurl_00001: 
   nom: blog
   id: 1
+typeurl_00013: 
+  nom: contact
+  id: 13
 typeurl_00002: 
   nom: sourceforge
   id: 2
+typeurl_00014: 
+  nom: traduction
+  id: 14
 typeurl_00003: 
   nom: homepage
   id: 3
+typeurl_00015: 
+  nom: dossiers
+  id: 15
 typeurl_00004: 
   nom: cvs
   id: 4
 typeurl_00005: 
   nom: svn
   id: 5
+typeurl_00016: 
+  nom: "Questions fr\xC3\xA9quentes"
+  id: 16
+typeurl_00017: 
+  nom: wiki
+  id: 17
 typeurl_00006: 
   nom: mailing-list
   id: 6

@@ -1,205 +1,177 @@
 --- 
-permission_00011: 
-  name: ^documents/(select|list)
-  info: "Acc\xC3\xA8s en consulation pour la GED"
-  id: 11
-permission_00044: 
-  name: ^groupes/(list|show)
-  info: "Acc\xC3\xA8s restreint aux groupes logiciels"
-  id: 44
-permission_00022: 
-  name: ^interactions/(?!destroy)
-  info: "Acc\xC3\xA8s aux interactions"
-  id: 22
 permission_00033: 
   name: ^groupes/(?!destroy)
   info: "Acc\xC3\xA8s \xC3\xA0 la liste des groupes logiciels"
   id: 33
-permission_00045: 
-  name: ^export/*
-  info: "Acc\xC3\xA9s aux exports csv"
-  id: 45
-permission_00012: 
-  name: ^reversements/show
-  info: "Acc\xC3\xA8s en consultation des reversements"
-  id: 12
-permission_00034: 
-  name: ^bouquets/(?!destroy)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des bouquets logiciels"
-  id: 34
+permission_00044: 
+  name: ^typedocuments/(?!destroy)
+  info: "Acc\xC3\xA8s \xC3\xA0 la liste des types de documents"
+  id: 44
+permission_00011: 
+  name: ^documents/(select|list|index)
+  info: "Acc\xC3\xA8s en consulation pour la GED"
+  id: 11
+permission_00056: 
+  name: ^acces/refuse
+  info: "Page de refus d'acc\xC3\xA8s"
+  id: 56
 permission_00001: 
   name: .*/.*
   info: "Acc\xC3\xA8s total"
   id: 1
+permission_00045: 
+  name: ^files/download
+  info: "Acc\xC3\xA8s aux fichiers"
+  id: 45
 permission_00023: 
   name: ^commentaires/(?!destroy)
   info: "Acc\xC3\xA8s aux commentaires"
   id: 23
+permission_00013: 
+  name: ^reporting/(general|configuration)
+  info: "Acc\xC3\xA8s au reporting"
+  id: 13
 permission_00035: 
   name: ^binaires/(?!destroy)
   info: "Acc\xC3\xA8s aux Binaires"
   id: 35
+permission_00046: 
+  name: ^groupes/(show|index)
+  info: "Acc\xC3\xA8s en lecture aux groupes"
+  id: 46
 permission_00024: 
   name: ^clients/(?!destroy)
   info: "Acc\xC3\xA8s aux clients"
   id: 24
-permission_00046: 
-  name: ^urllogiciels/(?!destroy)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des types d'url"
-  id: 46
-permission_00013: 
-  name: ^reporting/(general|delai|configuration)
-  info: "Acc\xC3\xA8s aux reportings"
-  id: 13
+permission_00003: 
+  name: ^bienvenue/(index|about|suggestions)
+  info: Accueil et informations diverses
+  id: 3
+permission_00036: 
+  name: ^binaires/(show|index)
+  info: "Acc\xC3\xA8s en lecture aux binaires"
+  id: 36
+permission_00047: 
+  name: ^export/
+  info: Export CSV
+  id: 47
 permission_00025: 
   name: ^contrats/(?!destroy)
   info: "Acc\xC3\xA8s aux contrats"
   id: 25
-permission_00014: 
-  name: ^taches/*
-  info: "Acc\xC3\xA8s aux t\xC3\xA2ches"
-  id: 14
-permission_00036: 
-  name: ^binaires/(show|list)
-  info: "Acc\xC3\xA8s en lecture aux binaires"
-  id: 36
-permission_00003: 
-  name: ^bienvenue/(index|list)
-  info: Accueil et informations diverses
-  id: 3
-permission_00047: 
-  name: ^typedemandes/(?!destroy)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des types de demandes"
-  id: 47
-permission_00037: 
-  name: ^clients/show
-  info: "Visualisation de l'offre OSSA"
-  id: 37
 permission_00004: 
-  name: ^account/(welcome|logout|modify)
+  name: ^account/(welcome|logout|edit|update|show)
   info: "Page d'authentification et sortie en beaut\xC3\xA9"
   id: 4
+permission_00037: 
+  name: ^clients/show
+  info: Visualisation de l'offre OSSA
+  id: 37
 permission_00048: 
-  name: ^engagements/(?!destroy)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des engagements"
+  name: ^statuts/(index|help)
+  info: "L\xC3\xA9gende des couleurs"
   id: 48
 permission_00026: 
   name: ^demandes/(?!destroy)
   info: "Acc\xC3\xA8s aux demandes"
   id: 26
-permission_00015: 
-  name: ^projets/*
-  info: "acc\xC3\xA8s aux projets"
-  id: 15
-permission_00027: 
-  name: ^roles/(?!destroy)
-  info: "Acc\xC3\xA8s aux r\xC3\xB4les"
-  id: 27
 permission_00038: 
   name: ^socles/show
   info: "Consulation d'un socle support\xC3\xA9"
   id: 38
-permission_00050: 
-  name: ^urlreversements/(?!destroy)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des urls de reversement"
-  id: 50
+permission_00049: 
+  name: /auto_complete
+  info: "Autorise l'autocompl\xC3\xA9tion pour tout le monde"
+  id: 49
 permission_00016: 
   name: ^documents/(?!destroy)
   info: "Acc\xC3\xA8s aux Documents"
   id: 16
-permission_00049: 
-  name: ^typecontributions/(?!destroy)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des types de contributions"
-  id: 49
-permission_00039: 
-  name: ^socles/(?!destroy)
-  info: "Acc\xC3\xA8s aux socles"
-  id: 39
-permission_00006: 
-  name: ^demandes/(list|new|create|comment|ajax)
-  info: Interface de gestion des demandes
-  id: 6
-permission_00040: 
-  name: ^etatreversements/(?!destroy)
-  info: "Liste des \xC3\xA9tats de reversement"
-  id: 40
-permission_00028: 
-  name: ^permissions/(?!destroy)
-  info: "Acc\xC3\xA8s aux permissions"
-  id: 28
 permission_00017: 
   name: ^paquets/(?!destroy)
   info: "Acc\xC3\xA8s aux paquets"
   id: 17
+permission_00039: 
+  name: ^socles/(?!destroy)
+  info: "Acc\xC3\xA8s aux socles"
+  id: 39
 permission_00051: 
-  name: ^severites/(index|list|show)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des s\xC3\xA9v\xC3\xA9rit\xC3\xA9s"
+  name: ^appels/(?!destroy)
+  info: "Acc\xC3\xA8s aux appels"
   id: 51
-permission_00029: 
-  name: ^bienvenue/plan
-  info: Plan du site
-  id: 29
-permission_00018: 
-  name: ^logiciels/(?!destroy)
-  info: "Acc\xC3\xA8s aux Logiciels"
-  id: 18
-permission_00052: 
-  name: ^filtres/(index|remove_filters)
-  info: Filtres de session
-  id: 52
-permission_00030: 
-  name: ^ingenieurs/(?!destroy)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des ing\xC3\xA9nieurs"
-  id: 30
+permission_00040: 
+  name: ^etatreversements/(?!destroy)
+  info: "Liste des \xC3\xA9tats de reversement"
+  id: 40
+permission_00006: 
+  name: ^demandes/(create|new|index|print|show|comment|ajax|export)
+  info: Interface de gestion des demandes
+  id: 6
 permission_00007: 
   name: ^commentaires/comment
   info: Ajout de commentaires
   id: 7
+permission_00029: 
+  name: ^bienvenue/(plan|admin)
+  info: Plan du site
+  id: 29
 permission_00041: 
-  name: ^supports/(?!destroy)
-  info: "Acc\xC3\xA9s \xC3\xA0 la liste des supports"
+  name: ^machines/
+  info: "Acc\xC3\xA9s \xC3\xA0 la liste des machines / SI"
   id: 41
+permission_00052: 
+  name: ^bienvenue/$
+  info: "Page d'information. Pas pour les b\xC3\xA9n\xC3\xA9ficiaires pour l'instant"
+  id: 52
+permission_00030: 
+  name: ^ingenieurs/(?!(destroy|new))
+  info: "Acc\xC3\xA8s \xC3\xA0 la liste des ing\xC3\xA9nieurs"
+  id: 30
+permission_00018: 
+  name: ^logiciels/(?!destroy)
+  info: "Acc\xC3\xA8s aux Logiciels"
+  id: 18
+permission_00053: 
+  name: ^reporting/(flux|comex|comex_resultat)
+  info: "Acc\xC3\xA8s au flux des demandes, tri\xC3\xA9 par date"
+  id: 53
+permission_00008: 
+  name: ^paquets/(index|show)
+  info: Voir les paquets
+  id: 8
 permission_00031: 
   name: ^competences/(?!destroy)
   info: "Acc\xC3\xA8s \xC3\xA0 la liste des comp\xC3\xA9tences"
   id: 31
-permission_00008: 
-  name: ^paquets/(list|show)
-  info: Voir les paquets
-  id: 8
 permission_00042: 
-  name: ^machines/(?!destroy)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des machines"
+  name: ^urllogiciels/(?!destroy)
+  info: "Acc\xC3\xA9s \xC3\xA0 la liste des Url's des logiciels"
   id: 42
-permission_00020: 
-  name: ^reversements/(?!destroy)
-  info: "Acc\xC3\xA8s aux reversements"
-  id: 20
 permission_00019: 
-  name: ^correctifs/(?!destroy)
+  name: ^contributions/(?!destroy)
   info: "Acc\xC3\xA8s aux correctifs"
   id: 19
-permission_00053: 
-  name: ^contributions/(select|list)
-  info: ""
-  id: 53
-permission_00043: 
-  name: ^classifications/(?!destroy)
-  info: "Acc\xC3\xA8s \xC3\xA0 la liste des classifications logiciels"
-  id: 43
 permission_00010: 
-  name: ^correctifs/(list|show)
+  name: ^contributions/(index|list|select|show)
   info: Voir les correctifs
   id: 10
 permission_00032: 
-  name: ^beneficiaires/(?!destroy)
+  name: ^beneficiaires/(show|edit|update|index)
   info: "Acc\xC3\xA8s \xC3\xA0 la liste des b\xC3\xA9n\xC3\xA9ficiaires"
   id: 32
-permission_00009: 
-  name: ^logiciels/(list|show|rpmlist)
-  info: Voir les logiciels
-  id: 9
+permission_00043: 
+  name: ^typeurls/(?!destroy)
+  info: "Acc\xC3\xA9s \xC3\xA0 la liste des types d'url"
+  id: 43
 permission_00021: 
   name: ^account/(?!destroy)
   info: "Acc\xC3\xA8s aux comptes"
   id: 21
+permission_00009: 
+  name: ^logiciels/(index|show)
+  info: Voir les logiciels
+  id: 9
+permission_00054: 
+  name: ^appels/(new|index)
+  info: Liste des appels
+  id: 54
