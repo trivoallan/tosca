@@ -1,0 +1,23 @@
+<div id="content" class="content">
+  <h1><%= _('The newsletter')%></h1>
+  <% form_tag newsletter_result_news_url,:method => :post do %>
+  <div style="float:left">
+    <div>
+      <label for="Edito"><%= _('Edito')%></label><br />
+      <%= box_news 'edito', :size => 5 %>
+    </div><br /><br />
+    <div >
+      <p><%= _('Long article :')%></p>
+      <%= box_news 'long_article', :size => 5 %>
+      <br /><br />
+    </div>
+  </div>
+  <div style="float:left">
+    <label for="first_article"><%= _('Little Article')%></label><br />
+    <%= box_news 'little_articles', { :size => 10, :multiple => true }%>
+  </div>
+  <div style="clear:both">&nbsp;</div> 
+  <%= submit_tag _('Generate the newsletter'),:name => 'newsletter_result'%>
+  <% end %>
+</div>
+

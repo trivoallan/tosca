@@ -5,7 +5,6 @@ demande_00001:
   updated_on: 2007-07-12 14:21:17 +02:00
   ingenieur_id: 1
   id: 1
-  version: 
   severite_id: 2
   resume: Patch Binaire
   description: Il faut trouver un moyen de patcher binairement OOo.<br/><br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.<br/>
@@ -23,7 +22,6 @@ demande_00002:
   updated_on: 2007-08-20 11:21:17 +02:00
   ingenieur_id: 1
   id: 2
-  version: 
   severite_id: 1
   resume: une autre demandes
   description: Il faut trouver un moyen de patcher binairement OOo.<br/><br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.<br/>
@@ -41,7 +39,6 @@ demande_00003:
   updated_on: 2007-08-09 14:21:17 +02:00
   ingenieur_id: 1
   id: 3
-  version: 
   severite_id: 1
   resume: Patch Binaire
   description: Il faut trouver un moyen de patcher binairement OOo.<br/><br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.<br/>

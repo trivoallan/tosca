@@ -67,6 +67,7 @@ require 'uv'
 
 require 'filters'
 
+require 'zip/zip'
 
 #French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'

@@ -86,4 +86,10 @@ class NewsControllerTest < Test::Unit::TestCase
       New.find(@first_id)
     }
   end
+
+  def test_newsletter
+    get :newsletter
+
+    assert_response :success
+  end
 end
