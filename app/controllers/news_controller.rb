@@ -63,7 +63,7 @@ class NewsController < ApplicationController
     #   If you want to use rectangle, you must change the fonction html2document and
     # initialize_newsletter
     template_path = 'public/newsletter_template.odp'
-    Tempfile.open 'toto.odp' do |temp_file|
+    Tempfile.open 'tosca_newsletter_tmp.odp' do |temp_file|
       FileUtils.cp template_path, temp_file.path
       compute_newsletter temp_file.path, options
       # send_file may create temporary file in /tmp, be don't delete them.
