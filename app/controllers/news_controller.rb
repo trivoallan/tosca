@@ -58,6 +58,7 @@ class NewsController < ApplicationController
     }
     # The template : 
     #   the fields should be empty ( I add and not replace)
+    #   We may modify in the content.xml the fields.
     #   a simple way is to use a text area and no rectangle.
     #   If you want to use rectangle, you must change the fonction html2document and
     # initialize_newsletter
@@ -65,7 +66,7 @@ class NewsController < ApplicationController
     Tempfile.open 'toto.odp' do |temp_file|
       FileUtils.cp template_path, temp_file.path
       compute_newsletter temp_file.path, options
-      # send_file creates temporary file in /tmp, be don't delete them.
+      # send_file may create temporary file in /tmp, be don't delete them.
       send_file temp_file.path, :filename => 'newsletter.odp'
     end
   end
@@ -75,22 +76,6 @@ class NewsController < ApplicationController
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
     @clients = Client.find_select
     @logiciels = Logiciel.find_select
-  end
-  # initialize the elements to be changed in the newsletter
-  def initialize_newsletter doc
-    newsletter_struct = Struct.new(:edito_title, :edito_body,
-                                   :long_article_title, :long_article_author, :long_article_body )
-    presentation = 
-      doc.elements['office:document-content/office:body/office:presentation']
-
-    elts = newsletter_struct.new(
-      presentation.elements["*/draw:frame[@draw:name='edito_title']/draw:text-box"],
-      presentation.elements["*/draw:frame[@draw:name='edito_body']/draw:text-box"],
-
-      presentation.elements["*/draw:frame[@draw:name='long_article_title']/draw:text-box"],
-      presentation.elements["*/draw:frame[@draw:name='long_article_author']/draw:text-box"],
-      presentation.elements["*/draw:frame[@draw:name='long_article_body']/draw:text-box"] )
-      return elts
   end
   # Modify the newsletter template given in argument
   # options = {
@@ -122,17 +107,27 @@ class NewsController < ApplicationController
             if options[:long_article][2]
               html2opendocument newsletter.long_article_body, options[:long_article][2], :long_article_body
             end
-=begin
-#         newsletter.author_long_article.text =
-#           options[:long_article][1] ? options[:long_article][1] : ''
-          newsletter.body_long_article.text =
-            options[:long_article][2] ? options[:long_article][2] : ''
-=end
         end
       end
 
       zip_file.get_output_stream('content.xml') { |f| f.puts doc }
     end
+  end
+  # initialize the elements to be changed in the newsletter
+  def initialize_newsletter doc
+    newsletter_struct = Struct.new(:edito_title, :edito_body,
+                                   :long_article_title, :long_article_author, :long_article_body )
+    presentation = 
+      doc.elements['office:document-content/office:body/office:presentation']
+
+    elts = newsletter_struct.new(
+      presentation.elements["*/draw:frame[@draw:name='edito_title']/draw:text-box"],
+      presentation.elements["*/draw:frame[@draw:name='edito_body']/draw:text-box"],
+
+      presentation.elements["*/draw:frame[@draw:name='long_article_title']/draw:text-box"],
+      presentation.elements["*/draw:frame[@draw:name='long_article_author']/draw:text-box"],
+      presentation.elements["*/draw:frame[@draw:name='long_article_body']/draw:text-box"] )
+      return elts
   end
   # puts the html to the openddocument template
   # argument : 
