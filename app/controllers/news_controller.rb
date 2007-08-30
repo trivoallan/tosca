@@ -48,11 +48,13 @@ class NewsController < ApplicationController
   def newsletter; end
   def newsletter_result
     edito = New.find params['edito']
+    long_article = New.find params['long_article']
 
     #TODO : verify the data from the user
     options = {
       :edito => [ edito.subject, edito.body],
-      :long_article => ['le titre', 'lautheur', 'corps <b>du</b> message<br /> retour à al ligne']
+      :long_article => [long_article.subject, long_article.ingenieur.nom,
+        long_article.body]
     }
     # The template : 
     #   the fields should be empty ( I add and not replace)
