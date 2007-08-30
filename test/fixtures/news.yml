@@ -1,11 +1,41 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-  created_on: '2007-05-09 17:41:47'
+--- 
+news_00001: 
+  created_on: 2007-05-09 17:41:47 +02:00
   logiciel_id: 7
-  body: 'Awstats vient d&#39;annoncer qu&#39;il proposera la prochaine version de son ECM sous licence GPL (GNU Public License). Alfresco continue ainsi de prendre le contre-pied des solutions ECM propri&eacute;taires. &nbsp;Alfresco propose toujours une licence commerciale OEM, mais ceux qui souhaitent utiliser Alfresco gratuitement dans le cadre de la licence GPL peuvent t&eacute;l&eacute;charger Alfresco Community.'
-  updated_on: '2007-05-09 17:43:01'
-  client_id: nil
+  body: Awstats vient d&#39;annoncer qu&#39;il proposera la prochaine version de son ECM sous licence GPL (GNU Public License). Alfresco continue ainsi de prendre le contre-pied des solutions ECM propri&eacute;taires. &nbsp;Alfresco propose toujours une licence commerciale OEM, mais ceux qui souhaitent utiliser Alfresco gratuitement dans le cadre de la licence GPL peuvent t&eacute;l&eacute;charger Alfresco Community.
+  updated_on: 2007-05-09 17:43:01 +02:00
   ingenieur_id: 1
-  subject: 'Awstats se positionne sur le marché des ECM : il adopte la GPLfds'
-  source: 'www.lwn.net'
+  client_id: 0
+  subject: "Awstats se positionne sur le march\xC3\xA9 des ECM : il adopte la GPLfds"
+  id: 1
+  source: www.lwn.net
+news_00002: 
+  created_on: 2007-08-28 17:50:26 +02:00
+  logiciel_id: 1
+  body: "<p>Une nouvelle fois l&#39;\xC3\xA9diteur de texte vim a \xC3\xA9t\xC3\xA9 \xC3\xA9lu produit de l&#39;ann\xC3\xA9e par un panel de consommateurs, repr\xC3\xA9sentatif de la population fran\xC3\xA7aise. </p><p>Cette \xC3\xA9tude a \xC3\xA9t\xC3\xA9 r\xC3\xA9alis\xC3\xA9e apr\xC3\xA8s la sortie de la version 7, qui apporte son lot de nouveaut\xC3\xA9 pour concurrencer son ennemi de toujours : Emacs.</p><p>\xC2\xA0Mais aujourd&#39;hui les temps changent : ces deux dinosaures de l&#39;\xC3\xA9dition de texte ont a faire face \xC3\xA0 de plus en plus de concurrence d&#39;\xC3\xA9diteur soit-disant plus &#39;user-friendly&#39; tels que notepad++, kate, ou encore gedit. </p>"
+  updated_on: 2007-08-28 17:50:26 +02:00
+  ingenieur_id: 1
+  client_id: 2
+  subject: "vim elu produit de l'ann\xC3\xA9e"
+  id: 2
+  source: www.chezmoi.fr
+news_00004: 
+  created_on: 2007-08-28 17:56:00 +02:00
+  logiciel_id: 1
+  body: "<p>Ruby le c\xC3\xA9l\xC3\xA8bre langage qui a conquis les foules depuis sa cr\xC3\xA9ation d\xC3\xA9passe en nombre d&#39;utilisateur python et perl r\xC3\xA9unit. Cette \xC3\xA9tude montre de plus que les performances de ces deux langages sont loin, tr\xC3\xA8s loin d&#39;\xC3\xA9galer celles de ruby.</p><p>Esp\xC3\xA9rons que la diversit\xC3\xA9 des langages de haut niveau restera \xC3\xA0 la m\xC3\xAAme apr\xC3\xA8s ruby, mais ce n&#39;est pas dit.</p><p>\xC2\xA0Ruby on Rails est le premier, apr\xC3\xA8s les d\xC3\xA9veloppeurs, \xC3\xA0 b\xC3\xA9n\xC3\xA9ficier de cette confiance en ce langage : Il y a eu la mode java, mais maintenant les DSI pl\xC3\xA9bicites en masse ce framework de d\xC3\xA9veloppement web. </p>"
+  updated_on: 2007-08-28 17:56:00 +02:00
+  ingenieur_id: 1
+  client_id: 
+  subject: "ruby d\xC3\xA9passe python dans certaines \xC3\xA9tudes"
+  id: 4
+  source: ""
+news_00005: 
+  created_on: 2007-08-28 18:04:56 +02:00
+  logiciel_id: 1
+  body: "<p>&nbsp;</p><p>Linus Torvalds a d\xC3\xA9cid\xC3\xA9 cet apr\xC3\xA8s midi m\xC3\xAAme d&#39;utiliser pour sa consommation personnelle Debian.</p><p>Cette distribution apparait d\xC3\xA8s lors incontournable, puisque Linus en personne l&#39;utilise. D&#39;apr\xC3\xA8s l&#39;int\xC3\xA9ress\xC3\xA9 cette distribution, parfaitement stable et libre, et qui de plus reste accessible pour les d\xC3\xA9butant a su alli\xC3\xA9 rapidit\xC3\xA9 de d\xC3\xA9veloppement et portabilit\xC3\xA9, avec pas moins de 15 architectures support\xC3\xA9es, ainsi que plusieurs noyau exp\xC3\xA9rimentaux tel que le hurd ou encore kfreeBSD.</p><p>&nbsp;</p><p>Linus a d&#39;ailleur \xC3\xA9mit le souhait d&#39;aider au d\xC3\xA9veloppement du hurd, car celui_ci repr\xC3\xA9sentait l&#39;avenir dans le d\xC3\xA9veloppement de noyau et dans la libert\xC3\xA9 offerte \xC3\xA0 l&#39;utilisateur, toujours avide de nouvelle sensation. </p>"
+  updated_on: 2007-08-28 18:04:56 +02:00
+  ingenieur_id: 1
+  client_id: 
+  subject: "Revirement de situation : Linus adopte finalement debian"
+  id: 5
+  source: www.kernelnoobie.org

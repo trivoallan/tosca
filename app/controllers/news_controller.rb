@@ -47,16 +47,23 @@ class NewsController < ApplicationController
 
   def newsletter; end
   def newsletter_result
-    edito, long_article = New.find params['edito'], params['long_article']
+    edito = New.find params['edito']
 
+    #TODO : verify the data from the user
     options = {
-      :edito => ['le titre', 'le corps</b> de ledito<br />retour à la ligne'],
+      :edito => [ edito.subject, edito.body],
       :long_article => ['le titre', 'lautheur', 'corps <b>du</b> message<br /> retour à al ligne']
     }
+    # The template : 
+    #   the fields should be empty ( I add and not replace)
+    #   a simple way is to use a text area and no rectangle.
+    #   If you want to use rectangle, you must change the fonction html2document and
+    # initialize_newsletter
     template_path = 'public/newsletter_template.odp'
     Tempfile.open 'toto.odp' do |temp_file|
       FileUtils.cp template_path, temp_file.path
       compute_newsletter temp_file.path, options
+      # send_file creates temporary file in /tmp, be don't delete them.
       send_file temp_file.path, :filename => 'newsletter.odp'
     end
   end
@@ -142,29 +149,23 @@ class NewsController < ApplicationController
       when :long_article_body then style_p = 'P14' and style_span = 'T9'
       else style_p = 'P10' and style_span = 'T5'
     end
-    # We must split de html according to <br /> (several bloc in opendoc)
+    # We must split html according to <p>...</p>
     i = 0
-    html.split('<br />').each do |bloc|
-      if i != 0
-        enter_p = Element.new 'text:p'
-        enter_p.add_attribute 'text:style-name', 'P9'
-        span_enter = Element.new 'text:span'
-        # Create a 'big' enter : text:style-name= T12 => '\n\n'
-        # For a 'soft' enter : text:style-name=T11 (=> '\n')
-        span_enter.add_attribute 'text:style-name', 'T12'
-        enter_p.add_element span_enter
-        parent[i] = enter_p
+    html.split(/<\/?p>/).each do |bloc|
+      if bloc != ''
+        text_p = Element.new 'text:p'
+        text_p.add_attribute 'text:style-name', style_p
+        span = Element.new 'text:span'
+        span.add_attribute 'text:style-name', style_span
+
+        bloc.gsub!(/(&nbsp;)+/im, ' ')
+        bloc.gsub!(/(&#39;)+/im, '\'')
+        span.text = bloc
+        text_p.add_element span
+        parent[i] = text_p
+
+        i += 1
       end
-
-      text_p = Element.new 'text:p'
-      text_p.add_attribute 'text:style-name', style_p
-      span = Element.new 'text:span'
-      span.add_attribute 'text:style-name', style_span
-      span.text = bloc
-      text_p.add_element span
-      parent[i+1] = text_p
-
-      i += 2
     end
 =begin
     text = html.

@@ -9,6 +9,6 @@ class PermissionTest < Test::Unit::TestCase
   def test_to_s
     p = Permission.find 11
     assert !p.to_s.blank?
-    assert p.to_s.is_a? String
+    assert p.to_s.is_a?(String)
   end
 end
