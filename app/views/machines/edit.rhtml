@@ -4,6 +4,6 @@
   <%= render :partial => 'form' %>
   <%= submit_tag _('Edit') %>
 <% end %>
+<br />
 
-<%= link_to _('Show'), machine_path(@machine) %> |
-<%= link_to_back %>
+<%= link_to_show_and_list @machine %>

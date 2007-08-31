@@ -1,3 +1,4 @@
+<div class="show">
 <% for column in Machine.content_columns %>
 <p>
   <b><%= column.human_name %>:</b> <%= @machine.send(column.name) %>
@@ -5,9 +6,9 @@
 <% end %>
 
 <p>
-<b><%= _('System') << ' :'%></b> <%= @machine.socle.nom if @machine.socle %>
+<b><%= _('System') + ' :'%></b> <%= @machine.socle.nom if @machine.socle %>
 </p>
+</div>
+<br />
 
-
-<%= link_to _('Edit'), edit_machine_path(@machine) %> |
-<%= link_to _('Back'), machines_path %>
+<%= link_to_edit_and_list @machine %>
