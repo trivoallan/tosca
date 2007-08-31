@@ -103,6 +103,7 @@ ActionController::Routing::Routes.draw do |map|
     { :auto_complete_for_paquet_nom => :get}
   map.resources :permissions
   map.resources :piecejointes, :member => { :uv => :get }
+  map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
   map.resources :socles
   map.resources :statuts, :member => { :help => :get }
