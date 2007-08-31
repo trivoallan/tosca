@@ -53,6 +53,7 @@ class NewsController < ApplicationController
     #TODO : verify the data from the user
     options = {
       :edito => [ edito.subject, edito.body],
+      :articles => ['et un', 'et deux'],
       :long_article => [long_article.subject, long_article.ingenieur.nom,
         long_article.body]
     }
@@ -80,9 +81,25 @@ class NewsController < ApplicationController
   # Modify the newsletter template given in argument
   # options = {
   #   :edito => ['title', 'body']
+  #   :articles => ['content on the left', 'content on the right'],
   #   :long_article => ['title', 'author', 'body']
   # }
   # for an empty newsletter : options = {}
+  # ***********************************
+  # Pour ajouter les petits articles: 
+  #
+  # 1. Nommer les éléments à remplir ( on peut le faire dans openoffice)
+  # ATTENTION : les fonctions ici sont faites pour remplir des zone de texte
+  #  ( <draw:text-box> ). Pour remplir autre chose, il faut modifier toutes ces
+  #  fonctions. 
+  #
+  # 2. Récupérér les éléments dans le initiaize_newsletter ci-dessus.
+  #
+  # 3. appliquer les styles avec html2opendocument. Attention aux styles ! Si on supprime des éléments dans le document,
+  # certains style disparaissent ... 
+  # Pour récupérer les styles, il faut éditer dézipper le odp, et aller chercher
+  # le style dans le content.xml directement.
+  # ***********************************
   def compute_newsletter file_path, options
     Zip::ZipFile.open(file_path) do |zip_file|
 
@@ -108,6 +125,9 @@ class NewsController < ApplicationController
               html2opendocument newsletter.long_article_body, options[:long_article][2], :long_article_body
             end
         end
+        if options[:articles]
+          
+        end
       end
 
       zip_file.get_output_stream('content.xml') { |f| f.puts doc }
@@ -116,6 +136,7 @@ class NewsController < ApplicationController
   # initialize the elements to be changed in the newsletter
   def initialize_newsletter doc
     newsletter_struct = Struct.new(:edito_title, :edito_body,
+                                   :articles_left, :articles_right,
                                    :long_article_title, :long_article_author, :long_article_body )
     presentation = 
       doc.elements['office:document-content/office:body/office:presentation']
@@ -124,8 +145,11 @@ class NewsController < ApplicationController
       presentation.elements["*/draw:frame[@draw:name='edito_title']/draw:text-box"],
       presentation.elements["*/draw:frame[@draw:name='edito_body']/draw:text-box"],
 
+      presentation.elements["*/draw:custom-shape[@draw:name='articles_left']"],
+      presentation.elements["*/draw:custome-shape[@draw:name='articles_right']"],
+
       presentation.elements["*/draw:frame[@draw:name='long_article_title']/draw:text-box"],
-      presentation.elements["*/draw:frame[@draw:name='long_article_author']/draw:text-box"],
+      presentation.elements["//draw:frame[@draw:name='long_article_author']/draw:text-box"],
       presentation.elements["*/draw:frame[@draw:name='long_article_body']/draw:text-box"] )
       return elts
   end
@@ -135,16 +159,18 @@ class NewsController < ApplicationController
   #   html is the text, in html because it comes from tiny_mce
   # Usage : 
   # html2opendocument newsletter.edito_title, options[:edito][0], :edito_title
-  # TODO : Support for bold, italic, div, ... all except <br /> :)
+  # TODO : Support for bold, italic, div, ... all except <p> :)
   def html2opendocument(parent, html, article)
     case article
       when :edito_title then style_p = 'P10' and style_span = 'T3'
-      when :edito_body then style_p = 'P10' and style_span = 'T5'
+      when :edito_body then style_p = 'P10' and style_span = 'T4'
 
+      when :articles_left then style_p = 'P10' and style_span ='T4'
+      when :articles_right then style_p = 'P10' and style_span ='T4'
       when :long_article_title then style_p = 'P13' and style_span = 'T11'
       when :long_article_author then style_p ='P14' and style_span = 'T10'
-      when :long_article_body then style_p = 'P14' and style_span = 'T9'
-      else style_p = 'P10' and style_span = 'T5'
+      when :long_article_body then style_p = 'P10' and style_span = 'T4'
+      else style_p = 'P10' and style_span = 'T4'
     end
     # We must split html according to <p>...</p>
     i = 0
@@ -155,8 +181,8 @@ class NewsController < ApplicationController
         span = Element.new 'text:span'
         span.add_attribute 'text:style-name', style_span
 
-        bloc.gsub!(/(&nbsp;)+/im, ' ')
-        bloc.gsub!(/(&#39;)+/im, '\'')
+        bloc.gsub!(/(&nbsp;)+/i, ' ')
+        bloc.gsub!(/(&#39;)+/i, '\'')
         span.text = bloc
         text_p.add_element span
         parent[i] = text_p
