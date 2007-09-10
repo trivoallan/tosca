@@ -61,12 +61,19 @@ module PagesHelper
   end
 
 
-  # call it like this :
-  # <%= show_pages_links @demande_pages, 'déposer une nouvelle demande' %>
-  # if you want ajax links, you must specificy the remote function this way :
-  # <%= show_pages_links @demande_pages, 'déposer une demande',
-  #        :url => '/demandes/update_list' %>
-  # (!) you will need an StaticImage::spinner too (!)
+=begin
+ call it like this :
+ <%= show_pages_links @demande_pages, 'déposer une nouvelle demande' %>
+ if you want ajax links, you must specificy the remote function this way :
+ <%= show_pages_links @demande_pages, 'déposer une demande',
+       :url => '/demandes/update_list' %>
+ (!) you will need an StaticImage::spinner too (!)
+ If you want to display a list of objects in a distant controller, 
+ e. g. : displaying the flow requests in reporting controller, then you 
+ need to precise the controller like this :
+ <%= show_pages_links @demande_pages, 'déposer une demande', 
+       :controller => 'demandes' %>
+=end
   AJAX_OPTIONS = {  :update => 'content', :method => :get,
     :with => "Form.serialize(document.forms['filters'])",
     :before => "Element.show('spinner')",
@@ -74,7 +81,7 @@ module PagesHelper
 
   def show_pages_links(pages, message, options = {} )
     result = '<table class="pages"><tr><td>'
-    result << "#{link_to_new(message)}</td>"
+    result << "#{link_to_new(message, options)}</td>"
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
     if options.has_key? :url
       ajax_call =

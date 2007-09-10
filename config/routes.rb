@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('bienvenue', %w(admin plan selenium about deroulement
     natures statut suggestions declaration))
   map.without_orm('bienvenue', %w(suggestions), :post)
-  map.without_orm('reporting', %w(comex configuration general comex_resultat))
+  map.without_orm('reporting', %w(comex comex_resultat configuration flux general))
   map.without_orm('acces', %w(refuse))
   map.without_orm('export', %w(demandes_ods appels_ods identifiants_ods
     contributions_ods comex_ods) )
@@ -100,7 +100,7 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :newsletter => :get, :newsletter_result => :post }
   map.resources :pages
   map.resources :paquets, :collection =>
-    { :auto_complete_for_paquet_nom => :get}
+    { :auto_complete_for_paquet_nom => :any}
   map.resources :permissions
   map.resources :piecejointes, :member => { :uv => :get }
   map.resources :reporting, :collection => { :flux => :get }

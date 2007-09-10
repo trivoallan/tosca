@@ -1,10 +1,10 @@
-<% options = { :update => 'content',
+<% options = { :update => 'content', :method => :get, 
     :url => paquets_url,
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
 <% form_remote_tag( options.dup.update(:html => {
-    :id => 'filters', :name => 'filters'})) do %>
+    :id => 'filters', :name => 'filters', :method => :get})) do %>
 
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>

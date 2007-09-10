@@ -17,9 +17,10 @@ class PaquetsController < ApplicationController
 
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]
-    conditions = Filters.build_conditions(params, [
-       ['paquet', 'nom', 'paquets.nom', :like ]
-     ])
+    params_paquet = params['paquet']
+    conditions = Filters.build_conditions(params_paquet, [
+       ['nom', 'paquets.nom', :like ]
+     ]) unless params_paquet.blank?
     flash[:conditions] = options[:conditions] = conditions
 
     @paquet_pages, @paquets = paginate :paquets, options

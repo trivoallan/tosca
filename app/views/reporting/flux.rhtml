@@ -1,6 +1,7 @@
 <div class="content" id="content">
 <h1>Flux <%= StaticImage::spinner %></h1>
-<% links = show_pages_links(@demande_pages, _('a new request')) %>
+<% links = show_pages_links(@demande_pages, _('a new request'),
+      :controller => 'demandes') %>
 <%= links %>
 
 <table id="demandes_list" class="show" width="80%">
