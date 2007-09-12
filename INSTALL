@@ -1,35 +1,26 @@
-#!/bin/bash
+Welcome aboard
 
-echo "Welcome aboard"
-  
+You need some devel packages before installing required gems.
+  ruby-devel mysql-devel libMagick-devel oniguruma-devel
 
-echo "You need ruby, ruby-devel and ruby-RubyGems in order to start.
-  After that, you'll need either packaged gem or to install them
-  yourself.
-  The gem needed are : rmagick mysql fastercsv
+After that, you need those gems :
+  sudo gem install rails rmagick mysql gettext ruport ruport-util ultraviolet -y
+In order to be able to : 
+* launch the rails app (rails)
+* resize image (rmagick)
+* connect to database (mysql)
+* having multilingual support (gettext)
+* generate ods report (ruport and ruport-util)
+* having cool js preview (ultraviolet)
 
-  To install it at hand, you'll need first devel package of mysql and
-  rmagick. CTRL+C to exit"
+And you will need a small patch over action_controller gem 
+(dependency of rails) :
+  sudo cp app/views/rescues/_trace.rhtml /usr/lib/ruby/gems/1.8/gems/actionpack-1.*/lib/action_controller/templates/rescues/
 
-echo sudo urpmi ruby-devel mysql-devel libMagick-devel
-sudo urpmi ruby-devel mysql-devel libMagick-devel
+If you encounter problems when editing fields, you'll need to patch the system's date.rb in (/usr/lib/ruby/1.8/date.rb for me), line 252:
+<code>
+  [MONTHNAMES, DAYNAMES, ABBR_MONTHNAMES, ABBR_DAYNAMES].each do |xs|
+    xs.each{|x| x.freeze}.freeze
+  end
+</code>
 
-
-echo "After that, you'll need those gems :"
-
-echo sudo gem install rmagick mysql fastercsv
-sudo gem install rmagick mysql fastercsv gettext ruport ruport-util
-
-echo "And you will need a small patch over action_controller gem
-  (dependency of rails) :"
-echo sudo cp app/views/rescues/_trace.rhtml
-  /usr/lib/ruby/gems/1.8/gems/actionpack-1.13.2/lib/action_controller/templates/rescues/
-sudo cp app/views/rescues/_trace.rhtml /usr/lib/ruby/gems/1.8/gems/actionpack-1.13.2/lib/action_controller/templates/rescues/
-
-echo "If you encounter problems when editing fields, you'll need to patch the system's date.rb"
-echo "in (/usr/lib/ruby/1.8/date.rb for me), line 252:"
-echo "<code>"
-echo "  [MONTHNAMES, DAYNAMES, ABBR_MONTHNAMES, ABBR_DAYNAMES].each do |xs|"
-echo "    xs.each{|x| x.freeze}.freeze"
-echo "  end"
-echo "</code>"

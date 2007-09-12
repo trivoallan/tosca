@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(:version => 63) do
     t.column "astreinte",     :boolean,  :default => false, :null => false
     t.column "socle",         :boolean,  :default => false, :null => false
     t.column "nom",           :string
+    t.column "support",       :boolean,  :default => false
   end
 
   add_index "contrats", ["client_id"], :name => "contrats_client_id_index"

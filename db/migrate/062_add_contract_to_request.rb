@@ -12,7 +12,7 @@ class AddContractToRequest < ActiveRecord::Migration
            "(SELECT co.id FROM contrats co INNER JOIN clients cl " <<
            "ON co.client_id=cl.id WHERE " << 
            "b.id=d.beneficiaire_id AND b.client_id=cl.id)")
-    # add_column :contrats, :support, :boolean, :default => false
+    add_column :contrats, :support, :boolean, :default => false
 
     contracts = Contrat.find(:all, :include => [:client])
     contracts.each do |c|
