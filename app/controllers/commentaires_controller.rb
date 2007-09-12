@@ -29,9 +29,9 @@ class CommentairesController < ApplicationController
         modifications[attr] = true unless params[:commentaire][attr].blank?
       end
 
-      # when "taken into account", auto-assignment to ingénieur
-      if params[:commentaire][:statut_id] == '2' and demande.ingenieur_id.nil?
-        demande.ingenieur_id = @ingenieur.id
+      # auto-assignment to current engineer
+      if demande.ingenieur_id.nil? and not @ingenieur.nil?
+        demande.update_attribute :ingenieur_id, @ingenieur.id
       end
     else
       params[:commentaire] = {}
