@@ -100,7 +100,7 @@ class DemandesController < ApplicationController
     if @demande.save
       flash[:notice] = _("Your request has been successfully submitted")
       Notifier::deliver_demande_nouveau({ :demande => @demande,
-      					  :url_request => demande_url(demande),
+      					  :url_request => demande_url(@demande),
                                           :nom => session[:user].nom,
                                           :controller => self}, flash)
       attachment = params[:piecejointe]
