@@ -15,6 +15,10 @@
          <%= text_area 'client', 'adresse'  %></p>
     </td>
     <td>
+      <% if @ingenieur %>
+      <p><label for="client_chrono"><%= _("Chrono") %></label><br/>
+         <%= text_field 'client', 'chrono'  %></p>
+      <% end %>
       <p><label for="client_support_id"><%= _("Support") %></label><br/>
          <%= collection_select(:client, :support_id, @supports, :id, :nom) %></p>
       <p><label for="client_code_acces"><%= _("Access code") %></label><br/>

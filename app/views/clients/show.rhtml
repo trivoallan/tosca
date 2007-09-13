@@ -3,7 +3,15 @@
 <table><tr valign="top"><td>
 
 <table class="show">
-<% for column in Client.content_columns %>
+
+<% if @ingenieur %>
+<tr><td><b><%= _("Chrono") %></b> :</td>
+    <td><%= @client.chrono.to_s %></td></tr>
+<% end %>
+
+<% columns = Client.content_columns %>
+<% columns.delete_if { |column| column.human_name == "Chrono" } %>
+<% for column in columns %>
 <tr>
   <td><b><%= _(column.human_name) %>:</b></td>
   <td><%= @client.send(column.name) %></td>
