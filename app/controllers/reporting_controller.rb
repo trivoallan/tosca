@@ -89,12 +89,12 @@ class ReportingController < ApplicationController
     flash[:clients]= @clients
     flash[:requests]= @requests
     flash[:total]= @total
-end
+  end
 
 
   def general
     _titles()
-    redirect_to configuration_reporting_path and return unless 
+    redirect_to configuration_reporting_path and return unless
       params[:reporting]
 
     init_class_var(params)

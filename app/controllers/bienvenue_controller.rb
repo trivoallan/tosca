@@ -34,11 +34,11 @@ class BienvenueController < ApplicationController
     suggestion = params[:suggestion]
     if suggestion
       unless suggestion[:team].blank?
-        Notifier::deliver_bienvenue_suggestion(suggestion[:team],
+        Notifier::deliver_welcome_idea(suggestion[:team],
                                                :team, session[:user])
       end
       unless suggestion[:tosca].blank?
-        Notifier::deliver_bienvenue_suggestion(suggestion[:tosca],
+        Notifier::deliver_welcome_idea(suggestion[:tosca],
                                                :tosca, session[:user])
       end
       flash[:notice] = _("Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.")

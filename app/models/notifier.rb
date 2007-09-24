@@ -44,7 +44,7 @@ class Notifier < ActionMailer::Base
 # end
 
   # This function require 3 parameters : :identifiant, :controller, :password
-  def identifiant_nouveau(options, flash)
+  def new_user(options, flash)
     demande = options[:demande]
 
     recipients  options[:identifiant].email
@@ -59,7 +59,7 @@ class Notifier < ActionMailer::Base
   end
 
   # This function require 3 parameters : :demande, :controller, :nom
-  def demande_nouveau(options, flash)
+  def request_new(options, flash)
     demande =  options[:demande]
 
     recipients  compute_recipients(demande)
@@ -75,14 +75,14 @@ class Notifier < ActionMailer::Base
   end
 
   # This function needs 4 options : :demande, :nom, :commentaire, :url_request
-  def demande_nouveau_commentaire(options, flash)
+  def request_new_comment(options, flash)
     demande = options[:demande]
 
     recipients compute_recipients(demande)
-    cc         compute_copy(demande) 
+    cc         compute_copy(demande)
     from       FROM
-    subject    "[OSSA:##{demande.id}] : #{demande.resume}"
-    
+    subject    "Re: [OSSA:##{demande.id}] : #{demande.resume}"
+
     html_and_text_body(options)
 
     if flash and flash[:notice]
@@ -90,7 +90,7 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def bienvenue_suggestion(text, to, from)
+  def welcome_idea(text, to, from)
     case to
       when :team :
         recipients MAIL_TEAM
@@ -135,7 +135,7 @@ class Notifier < ActionMailer::Base
   SUFFIX_VIEW = ".multi.rhtml"
   def html_and_text_body(body)
     method = caller[0].slice(/`.+'/).delete("`'") + SUFFIX_VIEW
-    
+
     message_html = render_message(method, body)
 
     content_type MULTIPART_CONTENT

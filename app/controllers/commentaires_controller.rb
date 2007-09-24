@@ -36,7 +36,7 @@ class CommentairesController < ApplicationController
     else
       params[:commentaire] = {}
     end
-    
+
     # public si on modifie le statut
     params[:commentaire][:prive] = false if modifications[:statut_id]
     # TODO : avertir ??
@@ -69,7 +69,7 @@ class CommentairesController < ApplicationController
                     :url_request => demande_url(demande),
                     :url_attachment => url_attachment
         }
-        Notifier::deliver_demande_nouveau_commentaire(options, flash)
+        Notifier::deliver_request_new_comment(options, flash)
       end
     else
       flash[:warn] = _("Your comment was successfully added")
@@ -90,7 +90,7 @@ class CommentairesController < ApplicationController
     redirect_to comment_demande_path(@commentaire.demande_id)
   end
 
-  # We could only create a comment with comment method, from 
+  # We could only create a comment with comment method, from
   # request view
   def new
     render :nothing => true

@@ -146,7 +146,7 @@ class AccountController < ApplicationController
         # welcome mail
         options = { :identifiant => @identifiant, :controller => self,
           :password => @identifiant.pwd }
-        Notifier::deliver_identifiant_nouveau(options, flash)
+        Notifier::deliver_new_user(options, flash)
         redirect_back_or_default accounts_path
       end
     when :get
@@ -215,7 +215,7 @@ class AccountController < ApplicationController
             _('Associate created') )
           options = { :identifiant => identifiant, :controller => self,
             :password => row[_('Password')].to_s }
-          Notifier::deliver_identifiant_nouveau(options, flash)
+          Notifier::deliver_new_user(options, flash)
           flash[:notice] += '<br/>'
         else
           flash.now[:warn] += _('The user %s  has not been created.<br /> ') %

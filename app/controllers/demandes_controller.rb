@@ -24,7 +24,7 @@ class DemandesController < ApplicationController
     conditions = nil
     @title = _('All the requests')
     if session.data.has_key? :requests_filters
-      requests_filters = session[:requests_filters]     
+      requests_filters = session[:requests_filters]
 
       # Here is the trick for the "flow" part of the view
       special_cond = active_filters(requests_filters[:active])
@@ -99,10 +99,10 @@ class DemandesController < ApplicationController
     @demande = Demande.new(params[:demande])
     if @demande.save
       flash[:notice] = _("Your request has been successfully submitted")
-      Notifier::deliver_demande_nouveau({ :demande => @demande,
-      					  :url_request => demande_url(@demande),
-                                          :nom => session[:user].nom,
-                                          :controller => self}, flash)
+      Notifier::deliver_request_new({ :demande => @demande,
+                                      :url_request => demande_url(@demande),
+                                      :nom => session[:user].nom,
+                                      :controller => self}, flash)
       attachment = params[:piecejointe]
       unless attachment.blank?
         piecejointe = Piecejointe.create(:file => attachment[:file])
@@ -230,20 +230,20 @@ class DemandesController < ApplicationController
   end
 
   # TODO : enlever cette méthode quand elle passera dans le commentaire.
-  def changer_ingenieur
-    return render(:text => '') unless params.has_key? :id and params[:ingenieur_id]
-    @demande = Demande.find(params[:id])
-    @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
-    @demande.save!
-    if @demande.ingenieur
-      flash[:notice] = _("The request is correctly assigned")
-      options = {:demande => @demande, :controller => self}
-      Notifier::deliver_demande_assigner(options, flash)
-    else
-      flash[:notice] = _("The request is no more assigned")
-    end
-    redirect_to_comment
-  end
+#   def changer_ingenieur
+#     return render(:text => '') unless params.has_key? :id and params[:ingenieur_id]
+#     @demande = Demande.find(params[:id])
+#     @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
+#     @demande.save!
+#     if @demande.ingenieur
+#       flash[:notice] = _("The request is correctly assigned")
+#       options = {:demande => @demande, :controller => self}
+#       Notifier::deliver_demande_assigner(options, flash)
+#     else
+#       flash[:notice] = _("The request is no more assigned")
+#     end
+#     redirect_to_comment
+#   end
 
   def associer_contribution
     update_contribution( params[:id], params[:contribution_id] )
@@ -332,7 +332,7 @@ class DemandesController < ApplicationController
     # TODO : s'en débarrasser avec une migration et un :include
     joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
     select = "DISTINCT identifiants.id "
-    @identifiants_ingenieurs = Identifiant.find(:all, 
+    @identifiants_ingenieurs = Identifiant.find(:all,
        :select => select, :joins => joins).collect{|i| i.id }
   end
 
@@ -340,7 +340,7 @@ class DemandesController < ApplicationController
   # for index view
   def active_filters(value)
     case value
-    when '1' 
+    when '1'
       @title = _('Active requests')
       Demande::EN_COURS
     when '-1'
