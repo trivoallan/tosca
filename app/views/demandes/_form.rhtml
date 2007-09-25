@@ -61,7 +61,7 @@
                   @typedemandes.collect{|l| [ l.nom, l.id]}) %></td>
 </tr>
 
-<% if controller.action_name == "new" %>
+<% unless hidden_on_create.blank? %>
 <tr>
   <td><p><label for="demande_severite"><%= _("Severity of the request") %></label></p></td>
   <td><%= select(:demande, :severite_id,
