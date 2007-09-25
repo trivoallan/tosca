@@ -5,8 +5,11 @@
 
 <% # TODO : improve it, c'est encore tres peu lisible
   #ESSAI : un peu mieux ? un chouilla ;)
-  identifiant, role, identifiant_client, type_client, csv = {}, {}, {}, {}, {}
+  identifiant, role, identifiant_client, type_client, csv, inactive = {}, {}, {}, {}, {}, {}
   help = {:affichage_perso => _('Custom display of the request list'), :client => nil }
+
+  inactive[:titre] = '<label>' + _('Inactive') + '</label>'
+  inactive[:champ] = check_box(:identifiant, :inactive)
 
   if session[:user].ingenieur and session[:user].ingenieur.expert_ossa
     role[:titre] = '<label>' + _('Roles') + '</label>'
@@ -47,6 +50,7 @@
        lstm_text_field( _('Title'), 'identifiant', 'titre'),
        lstm_text_field( _('Email'), 'identifiant', 'email'),
        lstm_text_field( _('Phone'), 'identifiant', 'telephone'),
+       [ inactive[:titre], inactive[:champ] ],
        [ '<hr/>', nil ],
        [ identifiant[:titre], identifiant[:champ] ],
        lstm_password_field((create_account ?

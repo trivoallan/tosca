@@ -5,7 +5,7 @@ require 'digest/sha1'
 
 class Identifiant < ActiveRecord::Base
   acts_as_reportable
-  belongs_to :image 
+  belongs_to :image
   has_many :piecejointes
   has_and_belongs_to_many :roles
   has_many :documents
@@ -50,10 +50,10 @@ class Identifiant < ActiveRecord::Base
     end
   end
 
-  # TODO : vérifier que l'email est valide, et 
+  # TODO : vérifier que l'email est valide, et
   # rattraper l'erreur si l'envoi de mail échoue !!!
   # TODO 2 : créer un ingénieur ossa ou presta selon le rôle choisi
-  def create_person(client) 
+  def create_person(client)
     if self.client
       Beneficiaire.create(:identifiant => self, :client => client)
     else
@@ -61,18 +61,16 @@ class Identifiant < ActiveRecord::Base
     end
   end
 
-  SELECT_OPTIONS = { :include => [:identifiant], 
+  SELECT_OPTIONS = { :include => [:identifiant],
     :order => 'identifiants.nom ASC' }
 
   def self.authenticate(login, pass, crypt)
     Identifiant.with_exclusive_scope() do
-      if crypt == 'false'
-        Identifiant.find(:first, :conditions => ['login = ? AND password = ?', 
-                                                 login, sha1(pass)])
-      else
-        Identifiant.find(:first, :conditions => ['login = ? AND password = ?',
-                                                 login, pass])
-      end
+      pass = sha1(pass) if crypt == 'false'
+      user = Identifiant.find(:first, :conditions => ['login = ? AND password = ?',
+                                                      login, pass])
+      return nil if user.inactive
+      user
     end
   end
 
@@ -90,7 +88,7 @@ class Identifiant < ActiveRecord::Base
     end
     return match
   end
- 
+
   # Load permission strings
   def permission_strings
     return @permissions if @permissions

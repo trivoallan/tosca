@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-25 14:47+0200\n"
+"POT-Creation-Date: 2007-09-25 18:31+0200\n"
 "PO-Revision-Date: 2007-08-27 16:51+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -33,7 +33,8 @@ msgid "Connexion failure"
 msgstr "Échec lors de la connexion"
 
 #: app/controllers/account_controller.rb:80
-msgid "Vous are not allowed to change your identity"
+#, fuzzy
+msgid "You are not allowed to change your identity"
 msgstr "Vous n'êtes pas autorisé à changer votre identité"
 
 #: app/controllers/account_controller.rb:85
@@ -72,31 +73,31 @@ msgstr " créé"
 #: app/controllers/account_controller.rb:164
 #: app/controllers/account_controller.rb:199
 #: app/controllers/account_controller.rb:212
-#: app/views/account/_edit_account_informations.rhtml:46
-#: app/views/account/_show_account_information.rhtml:15
+#: app/views/account/_edit_account_informations.rhtml:49
+#: app/views/account/_show_account_information.rhtml:14
 msgid "Full name"
 msgstr "Nom Complet"
 
 #: app/controllers/account_controller.rb:164
 #: app/controllers/account_controller.rb:200
-#: app/views/account/_edit_account_informations.rhtml:47
-#: app/views/account/_show_account_information.rhtml:16
+#: app/views/account/_edit_account_informations.rhtml:50
+#: app/views/account/_show_account_information.rhtml:15
 #: app/views/documents/_form.rhtml:23
 msgid "Title"
 msgstr "Titre"
 
 #: app/controllers/account_controller.rb:164
 #: app/controllers/account_controller.rb:201
-#: app/views/account/_edit_account_informations.rhtml:48
-#: app/views/account/_show_account_information.rhtml:17
+#: app/views/account/_edit_account_informations.rhtml:51
+#: app/views/account/_show_account_information.rhtml:16
 #: app/views/account/_users_list.rhtml:12
 msgid "Email"
 msgstr "Email"
 
 #: app/controllers/account_controller.rb:164
 #: app/controllers/account_controller.rb:202
-#: app/views/account/_edit_account_informations.rhtml:49
-#: app/views/account/_show_account_information.rhtml:18
+#: app/views/account/_edit_account_informations.rhtml:52
+#: app/views/account/_show_account_information.rhtml:17
 #: app/views/demandes/_infos_demande.rhtml:43
 msgid "Phone"
 msgstr "Téléphone"
@@ -115,7 +116,7 @@ msgstr "Mot de passe"
 
 #: app/controllers/account_controller.rb:165
 #: app/controllers/account_controller.rb:206
-#: app/views/account/_edit_account_informations.rhtml:67
+#: app/views/account/_edit_account_informations.rhtml:71
 #: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr "Informations"
@@ -369,7 +370,7 @@ msgstr "Responsable"
 #: app/controllers/export_controller.rb:99
 #: app/controllers/export_controller.rb:145
 #: app/controllers/export_controller.rb:209
-#: app/views/account/_edit_account_informations.rhtml:31
+#: app/views/account/_edit_account_informations.rhtml:34
 #: app/views/contrats/_form.rhtml:6 app/views/machines/all.rhtml:5
 #: app/views/machines/index.rhtml:5
 #: app/views/reporting/_comex_tableaux.rhtml:15
@@ -753,6 +754,7 @@ msgid "Urlreversement was successfully updated."
 msgstr "Urlreversement a été mis à jour avec succès."
 
 #: app/helpers/application_helper.rb:58 app/helpers/demandes_helper.rb:74
+#: app/views/account/_show_account_information.rhtml:18
 msgid "No"
 msgstr "Aucun(e)"
 
@@ -1758,6 +1760,11 @@ msgstr "Informations"
 msgid "Identifiant|Client"
 msgstr "Client"
 
+#: app/models/identifiant.rb:-
+#, fuzzy
+msgid "Identifiant|Inactive"
+msgstr "Image"
+
 #: app/models/identifiant.rb:23
 msgid "Identifiant|Pwd"
 msgstr "Mot de passe"
@@ -2239,24 +2246,30 @@ msgstr "Complétez le dernier champs au format CSV"
 msgid "Custom display of the request list"
 msgstr "Personnaliser l'affichage de la liste des demandes"
 
-#: app/views/account/_edit_account_informations.rhtml:12
+#: app/views/account/_edit_account_informations.rhtml:11
+#: app/views/account/_show_account_information.rhtml:18
+#, fuzzy
+msgid "Inactive"
+msgstr "Actif"
+
+#: app/views/account/_edit_account_informations.rhtml:15
 #: app/views/bienvenue/admin.rhtml:17 app/views/permissions/_form.rhtml:10
 msgid "Roles"
 msgstr "Rôles"
 
-#: app/views/account/_edit_account_informations.rhtml:17
+#: app/views/account/_edit_account_informations.rhtml:20
 msgid "Choose a login"
 msgstr "Choissisez un identifiant"
 
-#: app/views/account/_edit_account_informations.rhtml:24
+#: app/views/account/_edit_account_informations.rhtml:27
 msgid "Is the user a customer of the service ?"
 msgstr "L'utilisateur est-il un client du service ?"
 
-#: app/views/account/_edit_account_informations.rhtml:26
+#: app/views/account/_edit_account_informations.rhtml:29
 msgid "Are the users customer of the service ?"
 msgstr "Les utilisateurs sont-ils clients du service ?"
 
-#: app/views/account/_edit_account_informations.rhtml:27
+#: app/views/account/_edit_account_informations.rhtml:30
 msgid ""
 "<label>Text in CSV format (separator : tabulation)</label><br />\n"
 "                      Full name Title Email Phone Login Password  "
@@ -2266,19 +2279,19 @@ msgstr ""
 "                       Nom Complet Titre Email Téléphone Identifiant Mot "
 "depasse Informations"
 
-#: app/views/account/_edit_account_informations.rhtml:33
+#: app/views/account/_edit_account_informations.rhtml:36
 msgid "Customer %s"
 msgstr "Client %s"
 
-#: app/views/account/_edit_account_informations.rhtml:53
+#: app/views/account/_edit_account_informations.rhtml:57
 msgid "Choose a password"
 msgstr "Choisissez un mot de passe"
 
-#: app/views/account/_edit_account_informations.rhtml:53
+#: app/views/account/_edit_account_informations.rhtml:57
 msgid "Modify your password"
 msgstr "Modifier votre mot de passe"
 
-#: app/views/account/_edit_account_informations.rhtml:55
+#: app/views/account/_edit_account_informations.rhtml:59
 msgid "Confirm this last"
 msgstr "Confirmer ce dernier"
 
@@ -2399,11 +2412,15 @@ msgstr "Rapport d'activité "
 msgid "Search"
 msgstr "Rechercher"
 
-#: app/views/account/_show_account_information.rhtml:4
+#: app/views/account/_show_account_information.rhtml:3
 msgid "Role"
 msgstr "rôles"
 
-#: app/views/account/_show_account_information.rhtml:28
+#: app/views/account/_show_account_information.rhtml:18
+msgid "Yes"
+msgstr ""
+
+#: app/views/account/_show_account_information.rhtml:27
 #: app/views/account/_show_engineer.rhtml:4
 #: app/views/account/_show_recipient.rhtml:4
 msgid "Show an account"

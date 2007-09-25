@@ -1,4 +1,3 @@
-
 <%
   role_titre, role_champs, avatar = nil, nil, nil
   role_titre = _('Role')
@@ -16,6 +15,7 @@
      [ _('Title'), "<label>#{@identifiant.titre}</label>" ],
      [ _('Email'), mail_to(@identifiant.email, @identifiant.email) ],
      [ _('Phone'), "<label>#{@identifiant.telephone}</label>" ],
+     [ _("Inactive"), "<label>" << (@identifiant.inactive ? _("Yes") : _("No")) << "</label>" ],
      [ '<hr/>', nil ],
      [ _('login'), "<label>#{@identifiant.login}</label>" ],
      [ role_titre, role_champs ],
@@ -24,11 +24,6 @@
    ]
 %>
 
-
 <div title="<%= _("Show an account") %>" id="showform" class="form">
   <%= show_table_form fields %>
 </div>
-
-
-
-

@@ -77,7 +77,7 @@ class AccountController < ApplicationController
       benef = Beneficiaire.find(params[:id])
       set_sessions(benef.identifiant)
     else
-      flash[:warn] = _('Vous are not allowed to change your identity')
+      flash[:warn] = _('You are not allowed to change your identity')
     end
     redirect_to_home
     return

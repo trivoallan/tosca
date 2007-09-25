@@ -329,7 +329,7 @@ ActiveRecord::Schema.define(:version => 65) do
     t.column "image_id",     :integer
     t.column "informations", :text,                  :default => "",    :null => false
     t.column "client",       :boolean,               :default => false, :null => false
-    t.column "desactive",    :boolean,               :default => false
+    t.column "inactive",     :boolean,               :default => false
   end
 
   add_index "identifiants", ["image_id"], :name => "index_identifiants_on_image_id"
