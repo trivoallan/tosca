@@ -33,7 +33,6 @@ msgid "Connexion failure"
 msgstr "Échec lors de la connexion"
 
 #: app/controllers/account_controller.rb:80
-#, fuzzy
 msgid "You are not allowed to change your identity"
 msgstr "Vous n'êtes pas autorisé à changer votre identité"
 
@@ -2248,9 +2247,8 @@ msgstr "Personnaliser l'affichage de la liste des demandes"
 
 #: app/views/account/_edit_account_informations.rhtml:11
 #: app/views/account/_show_account_information.rhtml:18
-#, fuzzy
 msgid "Inactive"
-msgstr "Actif"
+msgstr "Inactif"
 
 #: app/views/account/_edit_account_informations.rhtml:15
 #: app/views/bienvenue/admin.rhtml:17 app/views/permissions/_form.rhtml:10
