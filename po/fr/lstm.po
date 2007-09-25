@@ -1951,9 +1951,8 @@ msgid "An e-mail informing"
 msgstr "Un e-mail informant"
 
 #: app/models/notifier.rb:135
-#, fuzzy
 msgid "with a copy to"
-msgstr "Modifier une license"
+msgstr "avec en copie"
 
 #: app/models/notifier.rb:136
 msgid "was sent."
@@ -3954,7 +3953,6 @@ msgid "New new"
 msgstr "Nouvelle news"
 
 #: app/views/news/newsletter.rhtml:2
-#, fuzzy
 msgid "The newsletter"
 msgstr "Lettre d'information"
 
