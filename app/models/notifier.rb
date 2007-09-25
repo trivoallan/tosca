@@ -43,6 +43,7 @@ class Notifier < ActionMailer::Base
 #   a.body = File.read(RAILS_ROOT + "/public/documents/piece_jointe.txt")
 # end
 
+  # This function require 3 parameters for options : :identifiant, :controller, :password
   def new_user(options, flash)
     demande = options[:demande]
 
@@ -57,6 +58,7 @@ class Notifier < ActionMailer::Base
     end
   end
 
+  # This function require 3 parameters for options : :demande, :controller, :nom
   def request_new(options, flash)
     demande =  options[:demande]
 
@@ -72,6 +74,7 @@ class Notifier < ActionMailer::Base
     end
   end
 
+  # This function needs 4 options for options :demande, :nom, :commentaire, :url_request
   def request_new_comment(options, flash)
     demande = options[:demande]
 
@@ -128,8 +131,8 @@ class Notifier < ActionMailer::Base
   end
 
   def message_notice(recipients, cc)
-    result = "<br/>" << _("An e-mail informing") << "<b>#{recipients}</b> "
-    result << "<br/>" << _("avec en copie") << "<b>#{cc}</b> " if cc
+    result = "<br/>" << _("An e-mail informing") << " <b>#{recipients}</b> "
+    result << "<br/>" << _("with a copy to") << " <b>#{cc}</b> " if cc
     result << _("was sent.")
   end
 

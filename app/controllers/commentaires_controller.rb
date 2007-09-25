@@ -56,7 +56,6 @@ class CommentairesController < ApplicationController
       flash[:warn] = _("Your comment is too short, please rewrite it.")
     elsif @commentaire.save
       flash[:notice] = _("Your comment was successfully added.")
-      #unless @commentaire.prive
       # TODO: This line is really ugly : find a better way.
       # maybe with an other plugin ?
       url_attachment = ""
@@ -70,7 +69,6 @@ class CommentairesController < ApplicationController
                   :url_attachment => url_attachment
       }
       Notifier::deliver_request_new_comment(options, flash)
-      #end
     else
       flash[:warn] = _("Your comment was successfully added")
     end

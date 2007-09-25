@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-25 11:51+0200\n"
+"POT-Creation-Date: 2007-09-25 14:47+0200\n"
 "PO-Revision-Date: 2007-08-27 16:51+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -205,23 +205,23 @@ msgstr "Votre commentaire est trop court. Merci d'en écrire un plus long."
 msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
-#: app/controllers/commentaires_controller.rb:75
+#: app/controllers/commentaires_controller.rb:73
 msgid "Your comment was successfully added"
 msgstr "Votre commentaire a été créé avec succès."
 
-#: app/controllers/commentaires_controller.rb:86
+#: app/controllers/commentaires_controller.rb:84
 msgid "The comment %s is now %s"
 msgstr "Le commentaire %s est maintenant %s"
 
-#: app/controllers/commentaires_controller.rb:88
+#: app/controllers/commentaires_controller.rb:86
 msgid "A error has occured : The comment was not modified"
 msgstr "Une erreur est survenue : Le commentaire n'a pas été modifié"
 
-#: app/controllers/commentaires_controller.rb:110
+#: app/controllers/commentaires_controller.rb:108
 msgid "The comment was successfully updated."
 msgstr "Le commentaire a été mis à jour avec succès."
 
-#: app/controllers/commentaires_controller.rb:122
+#: app/controllers/commentaires_controller.rb:120
 msgid "The comment was successfully destroyed."
 msgstr "Le commentaire a été détruit avec succès."
 
@@ -1946,15 +1946,16 @@ msgstr "Client"
 msgid "New|Logiciel"
 msgstr "Logiciel"
 
-#: app/models/notifier.rb:131
+#: app/models/notifier.rb:134
 msgid "An e-mail informing"
 msgstr "Un e-mail informant"
 
-#: app/models/notifier.rb:132
-msgid "avec en copie"
-msgstr "avec en copie"
+#: app/models/notifier.rb:135
+#, fuzzy
+msgid "with a copy to"
+msgstr "Modifier une license"
 
-#: app/models/notifier.rb:133
+#: app/models/notifier.rb:136
 msgid "was sent."
 msgstr "a été envoyé."
 
@@ -3953,7 +3954,8 @@ msgid "New new"
 msgstr "Nouvelle news"
 
 #: app/views/news/newsletter.rhtml:2
-msgid "Newsletter"
+#, fuzzy
+msgid "The newsletter"
 msgstr "Lettre d'information"
 
 #: app/views/news/newsletter.rhtml:8
@@ -4630,6 +4632,9 @@ msgstr "Liste des url dans contributions"
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
+
+#~ msgid "avec en copie"
+#~ msgstr "avec en copie"
 
 #~ msgid "The request is correctly assigned"
 #~ msgstr "La demande a bien été assignée"

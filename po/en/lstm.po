@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-09-21 16:06+0200\n"
+"POT-Creation-Date: 2007-09-25 14:47+0200\n"
 "PO-Revision-Date: 2007-08-13 17:59+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -195,23 +195,23 @@ msgstr ""
 msgid "Your comment was successfully added."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:75
+#: app/controllers/commentaires_controller.rb:73
 msgid "Your comment was successfully added"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:86
+#: app/controllers/commentaires_controller.rb:84
 msgid "The comment %s is now %s"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:88
+#: app/controllers/commentaires_controller.rb:86
 msgid "A error has occured : The comment was not modified"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:110
+#: app/controllers/commentaires_controller.rb:108
 msgid "The comment was successfully updated."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:122
+#: app/controllers/commentaires_controller.rb:120
 msgid "The comment was successfully destroyed."
 msgstr ""
 
@@ -250,14 +250,6 @@ msgstr ""
 
 #: app/controllers/demandes_controller.rb:219
 msgid "The request has been updated successfully."
-msgstr ""
-
-#: app/controllers/demandes_controller.rb:239
-msgid "The request is correctly assigned"
-msgstr ""
-
-#: app/controllers/demandes_controller.rb:243
-msgid "The request is no more assigned"
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:265
@@ -1273,11 +1265,6 @@ msgid "Contrat|Nom"
 msgstr "Customer"
 
 #: app/models/client.rb:-
-#, fuzzy
-msgid "Contrat|Support"
-msgstr "Customer"
-
-#: app/models/client.rb:-
 msgid "paquet"
 msgstr ""
 
@@ -1511,10 +1498,6 @@ msgid "Demande|Resume"
 msgstr "Description"
 
 #: app/models/demande.rb:-
-msgid "Demande|Description"
-msgstr "Description"
-
-#: app/models/demande.rb:-
 msgid "Demande|Statut"
 msgstr ""
 
@@ -1555,6 +1538,15 @@ msgstr "Description"
 #: app/models/demande.rb:-
 msgid "Demande|Mail cc"
 msgstr ""
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|First comment"
+msgstr "Description"
+
+#: app/models/demande.rb:-
+msgid "Demande|Description"
+msgstr "Description"
 
 #: app/models/demande.rb:-
 #, fuzzy
@@ -1653,11 +1645,6 @@ msgstr "Updated on"
 #: app/models/document.rb:-
 msgid "Document|Version"
 msgstr "Version"
-
-#: app/models/document.rb:-
-#, fuzzy
-msgid "Document|Date delivery"
-msgstr "Customer"
 
 #: app/models/engagement.rb:-
 msgid "engagement"
@@ -1974,6 +1961,18 @@ msgstr "Customer"
 
 #: app/models/new.rb:-
 msgid "New|Logiciel"
+msgstr ""
+
+#: app/models/notifier.rb:134
+msgid "An e-mail informing"
+msgstr ""
+
+#: app/models/notifier.rb:135
+msgid "with a copy to"
+msgstr ""
+
+#: app/models/notifier.rb:136
+msgid "was sent."
 msgstr ""
 
 #: app/models/paquet.rb:42
@@ -4600,9 +4599,13 @@ msgid "Add an url to follow your contribution"
 msgstr ""
 
 #, fuzzy
-#~ msgid "Demande|Version"
-#~ msgstr "Description"
+#~ msgid "Contrat|Support"
+#~ msgstr "Customer"
 
 #, fuzzy
-#~ msgid "Demande|First comment"
+#~ msgid "Document|Date delivery"
+#~ msgstr "Customer"
+
+#, fuzzy
+#~ msgid "Demande|Version"
 #~ msgstr "Description"
