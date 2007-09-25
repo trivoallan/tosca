@@ -56,21 +56,21 @@ class CommentairesController < ApplicationController
       flash[:warn] = _("Your comment is too short, please rewrite it.")
     elsif @commentaire.save
       flash[:notice] = _("Your comment was successfully added.")
-      unless @commentaire.prive
-        # TODO: This line is really ugly : find a better way.
-        # maybe with an other plugin ?
-        url_attachment = ""
-        if @commentaire.piecejointe
-          url_attachment = render_to_string :inline =>
-            "<%=request.protocol%><%=request.host_with_port%><%=url_for_file_column(@commentaire.piecejointe, 'file', :absolute => true)%>"
-        end
-        options = { :demande => demande, :commentaire => @commentaire,
-                    :nom => user.nom, :modifications => modifications,
-                    :url_request => demande_url(demande),
-                    :url_attachment => url_attachment
-        }
-        Notifier::deliver_request_new_comment(options, flash)
+      #unless @commentaire.prive
+      # TODO: This line is really ugly : find a better way.
+      # maybe with an other plugin ?
+      url_attachment = ""
+      if @commentaire.piecejointe
+        url_attachment = render_to_string :inline =>
+          "<%=request.protocol%><%=request.host_with_port%><%=url_for_file_column(@commentaire.piecejointe, 'file', :absolute => true)%>"
       end
+      options = { :demande => demande, :commentaire => @commentaire,
+                  :nom => user.nom, :modifications => modifications,
+                  :url_request => demande_url(demande),
+                  :url_attachment => url_attachment
+      }
+      Notifier::deliver_request_new_comment(options, flash)
+      #end
     else
       flash[:warn] = _("Your comment was successfully added")
     end

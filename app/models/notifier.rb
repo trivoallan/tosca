@@ -43,7 +43,6 @@ class Notifier < ActionMailer::Base
 #   a.body = File.read(RAILS_ROOT + "/public/documents/piece_jointe.txt")
 # end
 
-  # This function require 3 parameters : :identifiant, :controller, :password
   def new_user(options, flash)
     demande = options[:demande]
 
@@ -58,7 +57,6 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function require 3 parameters : :demande, :controller, :nom
   def request_new(options, flash)
     demande =  options[:demande]
 
@@ -74,14 +72,13 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function needs 4 options : :demande, :nom, :commentaire, :url_request
   def request_new_comment(options, flash)
     demande = options[:demande]
 
-    recipients compute_recipients(demande)
+    recipients compute_recipients(demande, options[:commentaire].prive)
     cc         compute_copy(demande)
     from       FROM
-    subject    "Re: [OSSA:##{demande.id}] : #{demande.resume}"
+    subject    "[OSSA:##{demande.id}] : #{demande.resume}"
 
     html_and_text_body(options)
 
@@ -118,17 +115,22 @@ class Notifier < ActionMailer::Base
     res
   end
 
-  def compute_recipients (demande)
-    result = demande.beneficiaire.identifiant.email
+  def compute_recipients(demande, private = false)
+    result = ""
+    #The client is not informed of private messages
+    result += demande.beneficiaire.identifiant.email if not private
     # l'ingénieur est non assigné initialement
-    result += ", " + demande.ingenieur.identifiant.email if demande.ingenieur
+    if demande.ingenieur
+      result += ", " if not private
+      result += demande.ingenieur.identifiant.email
+    end
     result
   end
 
-  def message_notice (recipients, cc)
-    result = "<br />Un email en informant <b>#{recipients}</b> "
-    result << "<br />avec en copie <b>#{cc}</b> " if cc
-    result << "a été envoyé."
+  def message_notice(recipients, cc)
+    result = "<br/>" << _("An e-mail informing") << "<b>#{recipients}</b> "
+    result << "<br/>" << _("avec en copie") << "<b>#{cc}</b> " if cc
+    result << _("was sent.")
   end
 
   MULTIPART_CONTENT = 'multipart/alternative'

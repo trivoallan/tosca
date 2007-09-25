@@ -2,13 +2,18 @@
 <% if @modifications["statut_id"]
      modified << "<b>#{@commentaire.statut.nom}</b>"
    end %>
-<% if @modifications["ingenieur_id"] 
+<% if @modifications["ingenieur_id"]
      modified << "assignée à <b>#{@commentaire.ingenieur.nom}</b>"
    end %>
 
 <% url_demande = "<a href=\"#{@url_request}\">demande ##{@demande.id}</a>" %>
+<% if @commentaire.prive %>
+<i><%= h @nom %></i> a écrit un commentaire <b>non visible</b> par le bénéficiaire pour la <%= url_demande %> :
+<% else %>
 La <%= url_demande %> a été <%= modified.empty? ? 'commentée' : modified.join(' et ')%> par <i><%= h @nom %></i>
-:<br/>
+:
+<% end %>
+<br/>
 
 <hr noshade size="1px"/>
 <%= @commentaire.corps %><br/>
