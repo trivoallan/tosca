@@ -3,11 +3,11 @@
 #####################################################
 class LogicielsController < ApplicationController
   # public access to the list
-  before_filter :login_required, :except => 
+  before_filter :login_required, :except =>
     [:index,:show,:auto_complete_for_logiciel_nom]
 
   helper :filters, :paquets, :demandes, :competences, :contributions
-  
+
   # auto completion in 2 lines, yeah !
   auto_complete_for :logiciel, :nom
 
@@ -21,7 +21,7 @@ class LogicielsController < ApplicationController
         @title = _('List of your supported softwares')
       end
     end
-    
+
     options = { :per_page => 10, :order => 'logiciels.nom',
                 :include => [:groupe,:competences] }
     conditions = []
@@ -35,7 +35,7 @@ class LogicielsController < ApplicationController
 
       # we do not want an include since it's only for filtering.
       unless softwares_filters['contrat_id'].blank?
-        options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id' 
+        options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id'
       end
 
       # Specification of a filter f :
@@ -46,19 +46,19 @@ class LogicielsController < ApplicationController
         [:description, 'logiciels.description', :like ],
         [:groupe_id, 'logiciels.groupe_id', :equal ],
         [:competence_id, 'competences_logiciels.competence_id', :equal ],
-        [:contrat_id, ' paquets.contrat_id', :in ] 
+        [:contrat_id, ' paquets.contrat_id', :in ]
       ])
       @filters = softwares_filters
     end
-    flash[:conditions] = options[:conditions] = conditions 
+    flash[:conditions] = options[:conditions] = conditions
 
-    # optional scope, for customers 
+    # optional scope, for customers
     Logiciel.set_scope(@beneficiaire.contrat_ids) if scope
     @logiciel_pages, @logiciels = paginate :logiciels, options
     Logiciel.remove_scope if scope
 
     # panel on the left side. cookies is here for a correct 'back' button
-    if request.xhr? 
+    if request.xhr?
       render :partial => 'softwares_list', :layout => false
     else
       _panel
@@ -69,10 +69,10 @@ class LogicielsController < ApplicationController
   def show
     @logiciel = Logiciel.find(params[:id])
     if @beneficiaire
-      @demandes = @beneficiaire.demandes.find(:all, :conditions => 
+      @demandes = @beneficiaire.demandes.find(:all, :conditions =>
                                               ['demandes.logiciel_id=?', params[:id]])
     else
-      @demandes = Demande.find(:all, :conditions => 
+      @demandes = Demande.find(:all, :conditions =>
                                ['demandes.logiciel_id=?',params[:id]])
     end
   end
@@ -125,9 +125,9 @@ private
     @competences = Competence.find(:all, order_by_name)
     @groupes = Groupe.find(:all, order_by_name)
     @licenses = License.find(:all, order_by_name)
-  end  
+  end
 
-  def _panel 
+  def _panel
     @contrats = Contrat.find_select(Contrat::OPTIONS) if @ingenieur
     @technologies = Competence.find_select
     @groupes = Groupe.find_select

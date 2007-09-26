@@ -1,0 +1,37 @@
+
+<%
+  the_contribution = nil
+  the_software = nil
+  the_typeurl = nil
+  if (@myurl.resource_type == 'Contribution')
+    the_contribution = @myurl.resource.id
+  elsif (@myurl.resource_type == 'Logiciel')
+    the_software = @myurl.resource.id
+    the_typeurl = @myurl.typeurl.id
+  end
+%>
+
+<%= error_messages_for 'urls' %>
+
+<p><label for="url_value"><%=_('Value')%></label><br/>
+<%= text_field 'urls', 'value', :value => @myurl.value  %></p>
+
+<p><label for="url_resource_type"><%=_('Type')%></label><br/>
+  <%= select("urls", "resource_type",
+             [[ 'Logiciel', 'Logiciel'],
+              [ 'Contribution', 'Contribution']],
+             :selected => @myurl.resource_type ) %></p>
+
+<p><label for="url_software"><%=_('Software')%></label><br/>
+  <%= select("urls", "software_id", @logiciels.collect{|l| [ l.nom, l.id]} ,
+                                         :selected => the_software ) %></p>
+
+<p><label for="url_typeurl"><%=_('Kind')%></label><br/>
+  <%= select("urls", "typeurl_id", @typeurls.collect{|t| [ t.nom, t.id]} ,
+                                         :selected => the_typeurl ) %></p>
+
+<p><label for="url_contribution"><%=_('Contributions')%></label><br/>
+  <%= select("urls", "contribution_id", @contributions.collect{|l| [ l.nom, l.id]} ,
+                                         :selected => the_contribution ) %></p>
+
+

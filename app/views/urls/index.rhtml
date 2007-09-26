@@ -1,0 +1,25 @@
+<h1><%=_("List of links")%></h1>
+
+<% links = show_pages_links(@url_pages, _('a new url')) %>
+<%= links %>
+
+<% titles = [_('Software'),_('Url'),_('Kind'), _('Contribution')]%>
+<%= show_table(@urls, Url, titles) { |u|
+  result = ''
+  if u.resource_type == 'Logiciel'
+    result << "<td>#{u.resource.nom if u.resource}</td>"
+    result << "<td><a href=\"#{u.value}\">#{u.value}</a></td>"
+    result << "<td>#{u.typeurl.nom}</td>"
+    result << "<td></td>"
+  elsif u.resource_type == 'Contribution'
+    result << "<td></td>"
+    result << "<td><a href=\"#{u.value}\">#{u.value}</a></td>"
+    result << "<td></td>"
+    result << "<td>#{u.resource.nom if u.resource}</td>"
+  else
+    result << "<td></td>" * 4
+  end
+  result << link_to_actions_table(u)
+}%>
+
+<%= links %>

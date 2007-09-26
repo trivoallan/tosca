@@ -59,7 +59,7 @@ class Paquet < ActiveRecord::Base
   private
   # mis en cache car rappelé souvent, notamment sur les binaires
   # d'un même paquet
-  # TODO : recoder, utiliser plus souvent. Et utiliser un engagement vide 
+  # TODO : recoder, utiliser plus souvent. Et utiliser un engagement vide
   # si il n'existe pas, grâce à rescue ..NotFoundException
   def engagement(typedemande_id, severite_id)
     @result = {} unless @result

@@ -1,7 +1,0 @@
-<% for column in Urlreversement.content_columns %>
-<p>
-  <b><%= _(column.human_name) %>:</b> <%= @urlreversement.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to_edit_and_list(@urlreversement) %>

@@ -13,7 +13,7 @@ class Binaire < ActiveRecord::Base
 
 
   def self.set_scope(contrat_ids)
-    self.scoped_methods << { :find => { :conditions => 
+    self.scoped_methods << { :find => { :conditions =>
         [ 'paquets.contrat_id IN (?)', contrat_ids ],
         :include => [:paquet]} }
   end
@@ -21,8 +21,8 @@ class Binaire < ActiveRecord::Base
   # belongs_to :contrat
 
   def self.content_columns
-    @content_columns ||= columns.reject { |c| c.primary || 
-        c.name =~ /(_id|^fichier)$/ || c.name == inheritance_column }     
+    @content_columns ||= columns.reject { |c| c.primary ||
+        c.name =~ /(_id|^fichier)$/ || c.name == inheritance_column }
   end
 
   def to_s

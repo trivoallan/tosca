@@ -1,8 +1,0 @@
-<h1><%=_('Edit this url')%></h1>
-
-<% form_tag(urlreversement_path(@urlreversement), :method => :put) do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _('Validate') %>
-<% end %>
-
-<%= link_to_back %>

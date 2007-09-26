@@ -10,9 +10,9 @@ module LogicielsHelper
   end
 
   # Link to create a new url for a Logiciel
-  def link_to_new_urllogiciel(logiciel_id)
+  def link_to_new_url(logiciel_id)
     return '-' unless logiciel_id
-    options = new_urllogiciel_path(:logiciel_id => logiciel_id)
+    options = new_url_path(:logiciel_id => logiciel_id)
     link_to(image_create('an url'), options, LinksHelper::NO_HOVER)
   end
 

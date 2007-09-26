@@ -573,5 +573,5 @@ class ReportingController < ApplicationController
     jo = period_in_hour * 60.0
     distance_in_minutes.to_f / jo.to_f
   end
-	"""
+        """
 end

@@ -9,7 +9,7 @@ class AppelsController < ApplicationController
 
 
     if params.has_key? :filters
-      session[:calls_filters] = Filters::Calls.new(params[:filters]) 
+      session[:calls_filters] = Filters::Calls.new(params[:filters])
     end
 
     conditions = nil
