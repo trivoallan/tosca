@@ -1,6 +1,6 @@
 class CreateUrls < ActiveRecord::Migration
   def self.up
-    create_table :urls do |t|
+    create_table :urls, :options => 'ENGINE=MyISAM DEFAULT CHARSET=utf8' do |t|
       t.column :resource_id, :integer
       t.column :resource_type, :string
       t.column :value, :string
