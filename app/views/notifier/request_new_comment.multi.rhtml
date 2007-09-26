@@ -3,20 +3,25 @@
      modified << "<b>#{@commentaire.statut.nom}</b>"
    end %>
 <% if @modifications["ingenieur_id"]
-     modified << "assignée à <b>#{@commentaire.ingenieur.nom}</b>"
+     nom = @commentaire.ingenieur.nom
+     if @nom == nom
+       modified << "prise en charge" # self-assignement
+     else
+       modified << "assignée à <b>#{nom}</b>"
+     end 
    end %>
 
 <% url_demande = "<a href=\"#{@url_request}\">demande ##{@demande.id}</a>" %>
 <% if @commentaire.prive %>
-<i><%= h @nom %></i> a écrit un commentaire <b>non visible</b> par le bénéficiaire pour la <%= url_demande %> :
+  <i><%= h @nom %></i> a écrit un commentaire <b>non visible</b> par le bénéficiaire pour la <%= url_demande %> :
 <% else %>
-La <%= url_demande %> a été <%= modified.empty? ? 'commentée' : modified.join(' et ')%> par <i><%= h @nom %></i>
-:
+  <% modified = modified.empty? ? 'commentée' : modified.join(' et ') %>
+  La <%= url_demande %> vient d'être <%=modified%> par <i><%= h @nom %></i> :
 <% end %>
 <br/>
 
 <hr noshade size="1px"/>
-<%= @commentaire.corps %><br/>
+<%= @commentaire.corps %><br />
 <hr noshade size="1px"/>
 <% if @modifications["severite_id"] %>
   La demande a été requalifiée avec une sévérité <b><%=@commentaire.severite.nom%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severite_demande">Cette page</a> présente en détail la signification de cette Sévérité.<br />

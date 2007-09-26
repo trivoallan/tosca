@@ -73,7 +73,7 @@ class CommentairesController < ApplicationController
       flash[:warn] = _("Your comment was successfully added")
     end
 
-    redirect_to( comment_demande_path(demande) )
+    redirect_to( demande_path(demande) )
   end
 
   def changer_etat
