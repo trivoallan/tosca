@@ -97,6 +97,7 @@ class Demande < ActiveRecord::Base
     self.save
   end
 
+  # /!\ Dirty Hack Warning /!\ 
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
