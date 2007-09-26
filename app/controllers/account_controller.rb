@@ -66,8 +66,9 @@ class AccountController < ApplicationController
           redirect_to_home
         else
           clear_sessions
+          id = Identifiant.find_by_login(params['user_login'])
           flash.now[:warn] = _("Connexion failure")
-          flash.now[:warn] << ", " << _("your account has been desactivated") if Identifiant.find_by_login(params['user_login']).inactive?
+          flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
         end
     end
   end
