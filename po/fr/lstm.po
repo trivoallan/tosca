@@ -34,7 +34,7 @@ msgstr "Échec lors de la connexion"
 
 #: app/controllers/account_controller.rb:70
 msgid "your account has been desactivated"
-msgstr ""
+msgstr "votre compte a été désactivé"
 
 #: app/controllers/account_controller.rb:81
 msgid "You are not allowed to change your identity"
