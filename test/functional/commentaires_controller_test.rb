@@ -75,7 +75,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
   def test_comment
     old_statut_id = Demande.find(1).statut_id
 
-    post(:comment, { :id => "2-une-autre-demande", 
+    post(:comment, { :id => "2-une-autre-demandes", 
       :commentaire => { 
         "corps" => "promenons nous dans les bois", 
         "prive" => "0", 
@@ -88,8 +88,9 @@ class CommentairesControllerTest < Test::Unit::TestCase
          })
 
     # TODO : why it's not a success ????
-    assert_response :success
-    assert_template 'comment'
+    assert_response :redirect
+    assert_redirected_to(:controller => "demandes", :action => "comment", 
+                         :id => "2-une-autre-demandes")
 
     assert(Demande.find(1).statut_id == old_statut_id)
   end

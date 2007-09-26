@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 65) do
+ActiveRecord::Schema.define(:version => 62) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -19,6 +19,21 @@ ActiveRecord::Schema.define(:version => 65) do
 
   create_table "arches", :force => true do |t|
     t.column "nom", :string, :default => "", :null => false
+  end
+
+  create_table "authors", :force => true do |t|
+    t.column "page_id", :integer
+    t.column "name",    :string
+  end
+
+  create_table "beers", :force => true do |t|
+    t.column "name",   :string
+    t.column "rating", :integer
+  end
+
+  create_table "beers_drunkards", :id => false, :force => true do |t|
+    t.column "beer_id",     :integer
+    t.column "drunkard_id", :integer
   end
 
   create_table "beneficiaires", :force => true do |t|
@@ -64,10 +79,10 @@ ActiveRecord::Schema.define(:version => 65) do
   add_index "binaires_demandes", ["demande_id"], :name => "binaires_demandes_demande_id_index"
 
   create_table "changelogs", :force => true do |t|
-    t.column "paquet_id",         :integer,   :default => 0,  :null => false
-    t.column "date_modification", :timestamp,                 :null => false
-    t.column "nom_modification",  :string,    :default => "", :null => false
-    t.column "text_modification", :text,      :default => "", :null => false
+    t.column "paquet_id",         :integer,  :default => 0,  :null => false
+    t.column "date_modification", :datetime,                 :null => false
+    t.column "nom_modification",  :string,   :default => "", :null => false
+    t.column "text_modification", :text,     :default => "", :null => false
   end
 
   add_index "changelogs", ["paquet_id"], :name => "changelogs_paquet_id_index"
@@ -154,6 +169,7 @@ ActiveRecord::Schema.define(:version => 65) do
     t.column "astreinte",     :boolean,  :default => false, :null => false
     t.column "socle",         :boolean,  :default => false, :null => false
     t.column "nom",           :string
+    t.column "support",       :boolean,  :default => false
   end
 
   add_index "contrats", ["client_id"], :name => "contrats_client_id_index"
@@ -202,6 +218,33 @@ ActiveRecord::Schema.define(:version => 65) do
 
   add_index "contributions_paquets", ["paquet_id"], :name => "correctifs_paquets_paquet_id_index"
   add_index "contributions_paquets", ["contribution_id"], :name => "correctifs_paquets_correctif_id_index"
+
+  create_table "correctifs_demandes", :id => false, :force => true do |t|
+    t.column "correctif_id", :integer, :null => false
+    t.column "demande_id",   :integer, :null => false
+  end
+
+  add_index "correctifs_demandes", ["correctif_id"], :name => "index_correctifs_demandes_on_correctif_id"
+  add_index "correctifs_demandes", ["demande_id"], :name => "index_correctifs_demandes_on_demande_id"
+
+  create_table "demande_versions", :force => true do |t|
+    t.column "demande_id",      :integer
+    t.column "version",         :integer
+    t.column "beneficiaire_id", :integer,  :default => 0
+    t.column "ingenieur_id",    :integer
+    t.column "resume",          :string,   :default => ""
+    t.column "description",     :text
+    t.column "statut_id",       :integer,  :default => 0
+    t.column "severite_id",     :integer,  :default => 0
+    t.column "socle_id",        :integer
+    t.column "logiciel_id",     :integer,  :default => 0
+    t.column "reproductible",   :boolean,  :default => false
+    t.column "created_on",      :datetime
+    t.column "updated_on",      :datetime
+    t.column "typedemande_id",  :integer,  :default => 0
+    t.column "contribution_id", :integer
+    t.column "mail_cc",         :string
+  end
 
   create_table "demandes", :force => true do |t|
     t.column "beneficiaire_id",  :integer,  :default => 0,  :null => false
@@ -258,23 +301,29 @@ ActiveRecord::Schema.define(:version => 65) do
     t.column "description",     :text
     t.column "created_on",      :datetime
     t.column "updated_on",      :datetime
+    t.column "date_delivery",   :datetime
   end
 
   create_table "documents", :force => true do |t|
-    t.column "identifiant_id",  :integer,   :default => 0,  :null => false
-    t.column "typedocument_id", :integer,   :default => 0,  :null => false
-    t.column "client_id",       :integer,   :default => 0,  :null => false
-    t.column "titre",           :string,    :default => "", :null => false
-    t.column "fichier",         :string,    :default => "", :null => false
-    t.column "description",     :text,      :default => "", :null => false
-    t.column "created_on",      :timestamp,                 :null => false
-    t.column "updated_on",      :timestamp,                 :null => false
+    t.column "identifiant_id",  :integer,  :default => 0,  :null => false
+    t.column "typedocument_id", :integer,  :default => 0,  :null => false
+    t.column "client_id",       :integer,  :default => 0,  :null => false
+    t.column "titre",           :string,   :default => "", :null => false
+    t.column "fichier",         :string,   :default => "", :null => false
+    t.column "description",     :text,     :default => "", :null => false
+    t.column "created_on",      :datetime,                 :null => false
+    t.column "updated_on",      :datetime,                 :null => false
     t.column "version",         :integer
+    t.column "date_delivery",   :datetime
   end
 
   add_index "documents", ["identifiant_id"], :name => "documents_identifiant_id_index"
   add_index "documents", ["typedocument_id"], :name => "documents_typedocument_id_index"
   add_index "documents", ["client_id"], :name => "documents_client_id_index"
+
+  create_table "drunkards", :force => true do |t|
+    t.column "name", :string
+  end
 
   create_table "engagements", :force => true do |t|
     t.column "severite_id",    :integer, :default => 0,   :null => false
@@ -313,6 +362,10 @@ ActiveRecord::Schema.define(:version => 65) do
 
   create_table "fournisseurs", :force => true do |t|
     t.column "nom", :string, :default => "", :null => false
+  end
+
+  create_table "glasses", :force => true do |t|
+    t.column "name", :string
   end
 
   create_table "groupes", :force => true do |t|
@@ -357,13 +410,27 @@ ActiveRecord::Schema.define(:version => 65) do
   add_index "ingenieurs", ["identifiant_id"], :name => "ingenieurs_identifiant_id_index"
 
   create_table "jourferies", :force => true do |t|
-    t.column "jour", :timestamp, :null => false
+    t.column "jour", :datetime, :null => false
   end
 
   create_table "licenses", :force => true do |t|
     t.column "nom",          :string,  :limit => 63, :default => "", :null => false
     t.column "url",          :string,                :default => "", :null => false
     t.column "certifie_osi", :boolean
+  end
+
+  create_table "locked_pages", :force => true do |t|
+    t.column "lock_version", :integer
+    t.column "title",        :string
+    t.column "type",         :string
+  end
+
+  create_table "locked_pages_revisions", :force => true do |t|
+    t.column "page_id",      :integer
+    t.column "version",      :integer
+    t.column "title",        :string
+    t.column "version_type", :string
+    t.column "updated_at",   :datetime
   end
 
   create_table "logiciels", :force => true do |t|
@@ -406,6 +473,36 @@ ActiveRecord::Schema.define(:version => 65) do
   add_index "news", ["ingenieur_id"], :name => "index_news_on_ingenieur_id"
   add_index "news", ["logiciel_id"], :name => "index_news_on_logiciel_id"
   add_index "news", ["subject"], :name => "index_news_on_subject"
+
+  create_table "old_bouquets", :force => true do |t|
+    t.column "nom", :string, :default => "", :null => false
+  end
+
+  create_table "old_classifications", :force => true do |t|
+    t.column "logiciel_id", :integer, :default => 0, :null => false
+    t.column "groupe_id",   :integer, :default => 0, :null => false
+    t.column "bouquet_id",  :integer, :default => 0, :null => false
+    t.column "client_id",   :integer, :default => 0, :null => false
+  end
+
+  create_table "page_versions", :force => true do |t|
+    t.column "page_id",    :integer
+    t.column "version",    :integer
+    t.column "title",      :string
+    t.column "body",       :text
+    t.column "updated_on", :datetime
+    t.column "author_id",  :integer
+    t.column "revisor_id", :integer
+  end
+
+  create_table "pages", :force => true do |t|
+    t.column "version",    :integer
+    t.column "title",      :string
+    t.column "body",       :text
+    t.column "updated_on", :datetime
+    t.column "author_id",  :integer
+    t.column "revisor_id", :integer
+  end
 
   create_table "paquets", :force => true do |t|
     t.column "logiciel_id",      :integer,               :default => 0,    :null => false

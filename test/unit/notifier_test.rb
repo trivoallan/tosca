@@ -18,7 +18,7 @@ class NotifierTest < Test::Unit::TestCase
     @expected = TMail::Mail.new
     @expected.set_content_type "text", "plain", { "charset" => CHARSET }
   end
-  def test_identifiant_nouveau
+  def test_new_user
     assert true
   end
   

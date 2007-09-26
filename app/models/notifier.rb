@@ -43,7 +43,8 @@ class Notifier < ActionMailer::Base
 #   a.body = File.read(RAILS_ROOT + "/public/documents/piece_jointe.txt")
 # end
 
-  # This function require 3 parameters for options : :identifiant, :controller, :password
+  # This method requires 3 symbols in options :
+  #   :identifiant, :controller, :password
   def new_user(options, flash)
     demande = options[:demande]
 
