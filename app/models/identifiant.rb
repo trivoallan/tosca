@@ -78,7 +78,7 @@ class Identifiant < ActiveRecord::Base
 
   # Return true/false if User is authorized for resource.
   def authorized?(resource)
-    match=false
+    match = false
 
     permission_strings.each do |r|
       if ((r =~ resource) != nil)
@@ -106,6 +106,7 @@ class Identifiant < ActiveRecord::Base
   def beneficiaire_client_nom
     beneficiaire.client.nom if beneficiaire
   end
+
   def roles_join
     roles.join(', ')
   end
