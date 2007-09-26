@@ -3387,7 +3387,7 @@ msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
 
 #: app/views/contributions/show.rhtml:23
 msgid "and its has been approved on %s"
-msgstr "et a été accepté par %s"
+msgstr "et a été accepté le %s"
 
 #: app/views/contributions/show.rhtml:31
 msgid "Internal details"
