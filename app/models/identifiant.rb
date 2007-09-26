@@ -69,7 +69,7 @@ class Identifiant < ActiveRecord::Base
       pass = sha1(pass) if crypt == 'false'
       user = Identifiant.find(:first, :conditions => ['login = ? AND password = ?',
                                                       login, pass])
-      return nil if user.inactive
+      return nil if user and user.inactive
       user
     end
   end
