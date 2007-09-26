@@ -1,4 +1,4 @@
-<h1><%= link_to_edit client_path(@client)%> <%= @client.nom %></h1>
+<h1><%= link_to_edit edit_client_path(@client)%> <%= @client.nom %></h1>
 
 <table><tr valign="top"><td>
 
@@ -9,9 +9,7 @@
     <td><%= @client.chrono.to_s %></td></tr>
 <% end %>
 
-<% columns = Client.content_columns %>
-<% columns.delete_if { |column| column.human_name == "Chrono" } %>
-<% for column in columns %>
+<% for column in Client.content_columns %>
 <tr>
   <td><b><%= _(column.human_name) %>:</b></td>
   <td><%= @client.send(column.name) %></td>

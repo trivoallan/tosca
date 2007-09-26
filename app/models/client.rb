@@ -20,7 +20,7 @@ class Client < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| 
-      c.primary || c.name =~ /(_id|_count|adresse)$/  
+      c.primary || c.name =~ /(_id|_count|adresse|photo)$/  
     }
   end
 
