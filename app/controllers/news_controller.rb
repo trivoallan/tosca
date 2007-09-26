@@ -50,7 +50,8 @@ class NewsController < ApplicationController
     edito = New.find params['edito']
     long_article = New.find params['long_article']
 
-    #TODO : verify the data from the user
+    # TODO : verify the data from the user
+    # TODO : add french strings into translation
     options = {
       :edito => [ edito.subject, edito.body],
       :articles => ['et un', 'et deux'],
@@ -191,6 +192,10 @@ class NewsController < ApplicationController
       end
     end
 =begin
+    Taken from the mail html2text converter. Kept here if we need to alter
+    other things into the html2odt converter. 
+    TODO : a merge in a converter plugin ?
+
     text = html.
       gsub(/(&nbsp;)+/im, ' ').squeeze(' ').strip.gsub("\n",'').
       gsub(/<([^\s]+)[^>]*(src|href)=\s*(.?)([^>\s]*)\3[^>]*>\4<\/\1>/i, '\4')

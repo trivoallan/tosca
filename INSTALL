@@ -4,7 +4,7 @@ You need some devel packages before installing required gems.
   ruby-devel mysql-devel libMagick-devel oniguruma-devel
 
 After that, you need those gems :
-  sudo gem install rails rmagick mysql gettext ruport ruport-util ultraviolet -y
+  sudo gem install rails rmagick mysql gettext ruport ruport-util ultraviolet rubyzip -y
 In order to be able to : 
 * launch the rails app (rails)
 * resize image (rmagick)
