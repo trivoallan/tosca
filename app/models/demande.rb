@@ -66,6 +66,20 @@ class Demande < ActiveRecord::Base
         [ 'beneficiaires.client_id IN (?)', client_ids]} }
   end
 
+  # DIRTY HACK : WARNING
+  # We need this hack for avoiding 7 includes
+  # TODO : find a better way
+  def self.without_include_scope(ingenieur, beneficiaire)
+    escope = {}
+    if beneficiaire
+      escope = Demande.get_scope_without_include([beneficiaire.client_id])
+    end
+    if ingenieur and not ingenieur.expert_ossa
+      escope = Demande.get_scope_without_include(ingenieur.client_ids)
+    end
+    self.with_exclusive_scope(escope) { yield }
+  end
+
   def to_param
     "#{id}-#{resume.gsub(/[^a-z1-9]+/i, '-')}"
   end

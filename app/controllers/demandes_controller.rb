@@ -5,6 +5,13 @@ class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :appels,
     :socles, :commentaires, :account
 
+  def flux
+    options = { :per_page => 10, :order => 'updated_on DESC',
+      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
+    conditions = []
+
+  end
+
   def index
     #special case : direct show
     if params.has_key? 'numero'
@@ -45,18 +52,7 @@ class DemandesController < ApplicationController
 
     flash[:conditions] = options[:conditions] = conditions if conditions
 
-    # DIRTY HACK : WARNING
-    # ALERT !!!! recopied in export/demandes !!!!
-    # We need this hack for avoiding 7 includes
-    # TODO : find a better way
-    escope = {}
-    if @beneficiaire
-      escope = Demande.get_scope_without_include([@beneficiaire.client_id])
-    end
-    if @ingenieur and not @ingenieur.expert_ossa
-      escope = Demande.get_scope_without_include(@ingenieur.client_ids)
-    end
-    Demande.with_exclusive_scope(escope) do
+    Demande.without_include_scope(@ingenieur, @beneficiaire) do
       @demande_pages, @demandes = paginate :demandes, options
     end
 
