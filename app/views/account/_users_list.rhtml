@@ -21,7 +21,7 @@
    <% ingenieur = user.ingenieur %>
    <tr class="<%= cycle('pair', 'impair') %>">
 
-     <td><%=h user.login %></td>
+     <td><%= user.login %></td>
      <td><% if beneficiaire %>
            <form action=<%= '"' + devenir_account_path(beneficiaire) + '"' %> method="post">
            <input name="commit" value=<%= '"' + _('Become') + '"' %> type="submit" /></form>
