@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 66) do
+ActiveRecord::Schema.define(:version => 67) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(:version => 66) do
     t.column "chrono",              :string
   end
 
-  add_index "clients", ["image_id"], :name => "clients_photo_id_index"
   add_index "clients", ["support_id"], :name => "clients_support_id_index"
   add_index "clients", ["image_id"], :name => "index_clients_on_image_id"
 
@@ -208,7 +207,6 @@ ActiveRecord::Schema.define(:version => 66) do
     t.column "beneficiaire_id",  :integer,  :default => 0,  :null => false
     t.column "ingenieur_id",     :integer
     t.column "resume",           :string,   :default => "", :null => false
-    t.column "description",      :text
     t.column "statut_id",        :integer,  :default => 0,  :null => false
     t.column "severite_id",      :integer,  :default => 0,  :null => false
     t.column "logiciel_id",      :integer,  :default => 0
@@ -219,6 +217,7 @@ ActiveRecord::Schema.define(:version => 66) do
     t.column "socle_id",         :integer,  :default => 0,  :null => false
     t.column "mail_cc",          :string
     t.column "first_comment_id", :integer
+    t.column "description",      :text
     t.column "contrat_id",       :integer,                  :null => false
   end
 
@@ -259,7 +258,6 @@ ActiveRecord::Schema.define(:version => 66) do
     t.column "description",     :text
     t.column "created_on",      :datetime
     t.column "updated_on",      :datetime
-    t.column "date_delivery",   :datetime
   end
 
   create_table "documents", :force => true do |t|
@@ -272,7 +270,6 @@ ActiveRecord::Schema.define(:version => 66) do
     t.column "created_on",      :timestamp,                 :null => false
     t.column "updated_on",      :timestamp,                 :null => false
     t.column "version",         :integer
-    t.column "date_delivery",   :datetime
   end
 
   add_index "documents", ["identifiant_id"], :name => "documents_identifiant_id_index"
@@ -332,6 +329,7 @@ ActiveRecord::Schema.define(:version => 66) do
     t.column "image_id",     :integer
     t.column "informations", :text,                  :default => "",    :null => false
     t.column "client",       :boolean,               :default => false, :null => false
+    t.column "inactive",     :boolean,               :default => false
   end
 
   add_index "identifiants", ["image_id"], :name => "index_identifiants_on_image_id"
@@ -409,6 +407,20 @@ ActiveRecord::Schema.define(:version => 66) do
   add_index "news", ["logiciel_id"], :name => "index_news_on_logiciel_id"
   add_index "news", ["subject"], :name => "index_news_on_subject"
 
+  create_table "old_urllogiciels", :force => true do |t|
+    t.column "logiciel_id", :integer, :default => 0,  :null => false
+    t.column "typeurl_id",  :integer, :default => 0,  :null => false
+    t.column "valeur",      :string,  :default => "", :null => false
+  end
+
+  add_index "old_urllogiciels", ["logiciel_id"], :name => "urllogiciels_logiciel_id_index"
+  add_index "old_urllogiciels", ["typeurl_id"], :name => "urllogiciels_typeurl_id_index"
+
+  create_table "old_urlreversements", :force => true do |t|
+    t.column "contribution_id", :integer
+    t.column "valeur",          :string,  :default => "", :null => false
+  end
+
   create_table "paquets", :force => true do |t|
     t.column "logiciel_id",      :integer,               :default => 0,    :null => false
     t.column "nom",              :string,  :limit => 60, :default => "",   :null => false
@@ -479,7 +491,7 @@ ActiveRecord::Schema.define(:version => 66) do
   add_index "sessions", ["session_id"], :name => "session_id_idx"
 
   create_table "severites", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "nom", :string
   end
 
   create_table "socles", :force => true do |t|
@@ -502,6 +514,19 @@ ActiveRecord::Schema.define(:version => 66) do
     t.column "newsletter",           :boolean
     t.column "duree_intervention",   :integer
   end
+
+  create_table "temp", :id => false, :force => true do |t|
+    t.column "contrat_id", :integer,                                :null => false
+    t.column "nom",        :string,  :limit => 105, :default => "", :null => false
+    t.column "version",    :string,  :limit => 55,  :default => "", :null => false
+    t.column "release",    :string,  :limit => 55,  :default => "", :null => false
+    t.column "chemin",     :string,                 :default => "", :null => false
+    t.column "taille",     :string,                 :default => "", :null => false
+    t.column "paquet_id",  :integer
+  end
+
+  add_index "temp", ["nom", "version", "release"], :name => "temp_nvr"
+  add_index "temp", ["paquet_id"], :name => "temp_pid"
 
   create_table "typecontributions", :force => true do |t|
     t.column "nom",         :string, :default => "", :null => false

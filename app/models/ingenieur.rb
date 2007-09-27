@@ -17,7 +17,6 @@ class Ingenieur < ActiveRecord::Base
         c.name =~ /(_id|_on|_count|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }
   end
 
-
   def self.find_ossa(*args)
     conditions = ['ingenieurs.expert_ossa = ?', 1 ]
     Ingenieur.with_scope({:find => {:conditions => conditions }}) {

@@ -29,10 +29,10 @@
        <% if @ingenieur %>
         <td><%= demande.clients_nom %></td>
        <% end %>
-        <td><%= demande.beneficiaires_nom %></td>
+        <td><%= demande.beneficiaire.nom %></td>
         <td class="wrapped"><b><%= link_to_demande demande %></b></td>
        <% if @ingenieur %>
-          <td><%= demande.ingenieurs_nom %></td>
+          <td><%= demande.ingenieur.nom %></td>
        <% end %>
         <td><span class="date"><%=h demande.updated_on_formatted %></span></td>
         <td><%= link_to_comment demande %></td>

@@ -57,13 +57,13 @@ module ActionView::Helpers::UrlHelper
       tag_options = nil
     end
     url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-    
+
     # With the hack on the named route, we have a nil url if authenticated user
-    # does not have access to the page. See the hack to define_url_helper 
+    # does not have access to the page. See the hack to define_url_helper
     # for more information
     user = session[:user]
     unless url.blank? or user.nil?
-      if options.is_a?(Hash) and options.has_key? :action 
+      if options.is_a?(Hash) and options.has_key? :action
         required_perm = '%s/%s' % [ options[:controller] || controller.controller_name,
                                     options[:action] ]
         return nil unless user.authorized?(required_perm)
@@ -108,7 +108,7 @@ module ActiveRecord
       options[:order] ||= "#{self.table_name}.nom ASC"
       self.find(:all, options)
     end
-    
+
     # this special method allows to gain a lot of performance
     # since it doesn't require to load Time or strftime in order
     # to display the date

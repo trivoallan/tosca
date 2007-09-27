@@ -75,8 +75,6 @@ module FormsHelper
     content_tag :select, select, options
   end
 
-
-
   # Fields est un tableau du formulaire, en 2 colonnes
   # mutualisé pour le formulaire et l'affichage
   # Les éléments doivent être affichable par to_s
@@ -116,7 +114,7 @@ module FormsHelper
   #    out << end_form_tag
   #  end
   def search_demande_field(options = {})
-    text_field('numero', '', 'size' => 3) 
+    text_field('numero', '', 'size' => 3)
   end
   alias_method :search_demande, :search_demande_field
 

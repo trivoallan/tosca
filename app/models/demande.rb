@@ -18,7 +18,6 @@ class Demande < ActiveRecord::Base
   belongs_to :socle
   has_many :piecejointes, :through => :commentaires
   belongs_to :first_comment, :class_name => "Commentaire", :foreign_key => "first_comment_id"
-  
 
   validates_presence_of :resume,
        :warn => _("You must indicate a summary for your request")
@@ -74,12 +73,12 @@ class Demande < ActiveRecord::Base
   def to_s
     "#{typedemande.nom} (#{severite.nom}) : #{description}"
   end
-  
+
   def update_first_comment
     first_comment = self.first_comment
     if first_comment and first_comment.corps != self.description
       first_comment.update_attribute(:corps, self.description)
-    end 
+    end
   end
 
   def create_first_comment
@@ -97,14 +96,13 @@ class Demande < ActiveRecord::Base
     self.save
   end
 
-  # /!\ Dirty Hack Warning /!\ 
+  # /!\ Dirty Hack Warning /!\
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
   SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' +
-    'logiciels.nom as logiciels_nom, id_benef.nom as beneficiaires_nom, ' +
-    'typedemandes.nom as typedemandes_nom, clients.nom as clients_nom, ' +
-    'id_inge.nom as ingenieurs_nom, statuts.nom as statuts_nom '
+    'logiciels.nom as logiciels_nom, typedemandes.nom as typedemandes_nom, ' +
+    'clients.nom as clients_nom, statuts.nom as statuts_nom '
   JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' +
     'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
     'INNER JOIN identifiants id_benef ON id_benef.id=beneficiaires.identifiant_id '+
