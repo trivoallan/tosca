@@ -5,12 +5,14 @@ class BeneficiairesController < ApplicationController
   helper :filters
 
   def index
-    options = { :per_page => 10, :include => [:client,:identifiant] }
+    options = { :per_page => 10, :include => [:client, :identifiant] }
     if params.has_key? 'client_id'
       options[:conditions] = ['beneficiaires.client_id=?', params['client_id'] ]
     end
     @clients = Client.find_select
-    @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, options
+    Beneficiaire.with_exclusive_scope do
+      @beneficiaire_pages, @beneficiaires = paginate :beneficiaires, options
+    end
   end
 
   def show

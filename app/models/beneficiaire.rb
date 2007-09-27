@@ -19,8 +19,14 @@ class Beneficiaire < ActiveRecord::Base
   end
 
   def contrat_ids
-    @cache ||=  Contrat.find(:all, :select => 'id', 
+    @cache ||=  Contrat.find(:all, :select => 'id',
       :conditions => ['client_id=?', self.client_id]).collect{|c| c.id}
+  end
+
+  def self.set_scope
+    scope = { :conditions => [ 'identifiants.inactive = 0' ],
+      :include => [:identifiant] }
+    self.scoped_methods << { :find => scope, :count => scope }
   end
 
   alias_method :to_s, :nom

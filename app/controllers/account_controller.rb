@@ -40,7 +40,6 @@ class AccountController < ApplicationController
       flash[:conditions] = options[:conditions] = conditions
       @filters = accounts_filters
     end
-
     @user_pages, @users = paginate :identifiants, options
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?

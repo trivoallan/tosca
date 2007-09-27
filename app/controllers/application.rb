@@ -73,7 +73,7 @@ protected
   @@first_time = true
   def set_global_shortcuts
     # this small hack allows to initialize the static url
-    # generator on the first request. We need it 'coz the prefix 
+    # generator on the first request. We need it 'coz the prefix
     # (e.g.: /tosca) cannot be known before a request go through.
     if @@first_time and not defined? Static
       require 'static'
@@ -83,7 +83,7 @@ protected
       @@first_time = false
     end
     #    /!\
-    # don't forget to take a look at accout/clear_session method 
+    # don't forget to take a look at accout/clear_session method
     # if you add something here. And don't add something here too ;).
     #    /!\
     @ingenieur = session[:ingenieur]
@@ -111,7 +111,7 @@ private
   # pour limiter ce que peuvent voir nos clients
   SCOPE_CLIENT = [ Client, Demande, Document, Socle ]
   SCOPE_CONTRAT = [ Appel, Binaire, Contrat, Paquet ]
-  
+
   # Cette fonction intègre un scope "maison", beaucoup plus rapide.
   # Il reste néanmoins intégralement safe
   # Le but est d'éviter les 15 imbrications de yield, trop couteuses
@@ -127,6 +127,7 @@ private
       contrat_ids = ingenieur.contrat_ids
       client_ids = ingenieur.client_ids
     end
+    Beneficiaire.set_scope
     SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) } if contrat_ids
     SCOPE_CLIENT.each {|m| m.set_scope(client_ids) } if client_ids
     # Forbid access to request if we are not connected
@@ -135,9 +136,10 @@ private
     begin
       yield
     ensure
-      SCOPE_CLIENT.each { |m| m.remove_scope() } if client_ids
-      SCOPE_CONTRAT.each { |m| m.remove_scope() } if contrat_ids
-      Demande.remove_scope() unless is_connected
+      SCOPE_CLIENT.each { |m| m.remove_scope } if client_ids
+      SCOPE_CONTRAT.each { |m| m.remove_scope } if contrat_ids
+      Beneficiaire.remove_scope
+      Demande.remove_scope unless is_connected
     end
   end
 

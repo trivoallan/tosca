@@ -5,17 +5,17 @@
 <%= links %>
 <table>
   <tr>
-    <th><%= _('login')%></th>
-    <th> <%= _('Become') %> </th>
-    <th><%= _('engineer')%></th>
-    <th><%= _('recipient')%></th>
+    <th><%= _('Login')%></th>
+    <th><%= _('Become') %></th>
+    <th><%= _('Engineer')%></th>
+    <th><%= _('Recipient')%></th>
     <th><%= _('Email')%></th>
-    <th><%= _('phone')%></th>
+    <th><%= _('Phone')%></th>
   </tr>
 
   <% options = PagesHelper::AJAX_OPTIONS.dup %>
   <% options[:method] = :put %>
-  <% @users.each_index {|i| %>
+  <% @users.each_index do |i| %>
    <% user = @users[i] %>
    <% beneficiaire = user.beneficiaire %>
    <% ingenieur = user.ingenieur %>
@@ -31,13 +31,11 @@
       <td><center><%= "X" if beneficiaire %></center></td>
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.telephone %></td>
+      <td><%= link_to_show user %></td>
+      <td><%= link_to_edit user %></td>
 
-
-
-    <td><%= link_to_show user %></td>
-    <td><%= link_to_edit user %></td>
-   </tr>
-  <% } %>
+    </tr>
+  <% end %>
 </table>
 
 <%= links %>
