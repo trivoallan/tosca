@@ -125,29 +125,17 @@ class ExportController < ApplicationController
       :methods => columns
      }
      report = nil
-    # DIRTY HACK : WARNING
-    # !!!! ALERT !!!! recopied from demandes/list
-    # We need this hack for avoiding 7 includes
-    # TODO : find a better way
-    escope = Hash.new
-    if @beneficiaire
-      escope = Demande.get_scope_without_include([@beneficiaire.client_id])
-    end
-    if @ingenieur and not @ingenieur.expert_ossa
-      escope = Demande.get_scope_without_include(@ingenieur.client_ids)
-    end
-    report = nil
-    Demande.with_exclusive_scope(escope) do
-      report = Demande.report_table(:all, options)
-    end
-    report.reorder columns
-    report.rename_columns columns,
-      [_('Id'), _('Software'), _('Recipient'), _('Customer'),
-        _('Owner') , _('Severity'),
-        _('Submission date') , _('Platform'), _('Last update'),
-        _('Summary'), _('Status'), _('Type') ]
+     Demande.without_include_scope(escope) do
+       report = Demande.report_table(:all, options)
+     end
+     report.reorder columns
+     report.rename_columns columns,
+       [_('Id'), _('Software'), _('Recipient'), _('Customer'),
+         _('Owner') , _('Severity'),
+         _('Submission date') , _('Platform'), _('Last update'),
+         _('Summary'), _('Status'), _('Type') ]
 
-    generate_report(report, type, options_generate)
+     generate_report(report, type, options_generate)
   end
 
   # Generate and upload a report to the user with a predefined name.
