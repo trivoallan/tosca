@@ -1,14 +1,13 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-bloquante:
+--- 
+severite_00001: 
+  nom: Bloquante
   id: 1
-  nom: 'Bloquante'
-majeure:
+severite_00002: 
+  nom: Majeure
   id: 2
-  nom: 'Majeure'
-mineure:
+severite_00003: 
+  nom: Mineure
   id: 3
-  nom: 'Mineure'
-sans_objet:
+severite_00004: 
+  nom: Sans objet
   id: 4
-  nom: 'Sans objet'
-

@@ -1,37 +1,37 @@
----
-cont1:
-  contrat_id: 3
-  engagement_id: 1
-cont2: 
-  contrat_id: 6
-  engagement_id: 3
-cont4:
-  contrat_id: 2
-  engagement_id: 1
-link_toto_blocking:
-  contrat_id: 1
-  engagement_id: 1
-link_guy_engagement4:
-  contrat_id: 3
-  engagement_id: 4
-link_guy_engagement5:
-  contrat_id: 3
-  engagement_id: 5
-link_guy_engagement6:
-  contrat_id: 3
-  engagement_id: 6
-link_guy_engagement7:
-  contrat_id: 3
-  engagement_id: 7
-link_guy_engagement8:
-  contrat_id: 3
-  engagement_id: 8
-link_guy_engagement9:
-  contrat_id: 3
-  engagement_id: 9
-link_guy_engagement10:
-  contrat_id: 3
-  engagement_id: 10
-link_guy_engagement11:
-  contrat_id: 3
-  engagement_id: 11
+--- 
+join_00002: 
+  engagement_id: "1"
+  contrat_id: "3"
+join_00003: 
+  engagement_id: "3"
+  contrat_id: "6"
+join_00004: 
+  engagement_id: "10"
+  contrat_id: "3"
+join_00005: 
+  engagement_id: "11"
+  contrat_id: "3"
+join_00006: 
+  engagement_id: "4"
+  contrat_id: "3"
+join_00007: 
+  engagement_id: "1"
+  contrat_id: "2"
+join_00008: 
+  engagement_id: "5"
+  contrat_id: "3"
+join_00010: 
+  engagement_id: "6"
+  contrat_id: "3"
+join_00009: 
+  engagement_id: "1"
+  contrat_id: "1"
+join_00011: 
+  engagement_id: "7"
+  contrat_id: "3"
+join_00000: 
+  engagement_id: "8"
+  contrat_id: "3"
+join_00001: 
+  engagement_id: "9"
+  contrat_id: "3"

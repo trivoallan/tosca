@@ -25,7 +25,7 @@ class DocumentTest < Test::Unit::TestCase
 
   end
   def test_update
-    d = documents(:migration_lotus)
+    d = documents(:document_00001)
     d.update_attributes( :identifiant_id => 1, :typedocument_id => 1,
       :client_id => 2, :titre => "bonjour (lemonde)",
       :description => "d fs fd àfi @ © àf«", 
@@ -41,9 +41,8 @@ class DocumentTest < Test::Unit::TestCase
     assert_kind_of Time, d.created_on
     assert_kind_of Time, d.updated_on
     assert_kind_of Time, d.date_delivery
-    
   end
-  
+
   # Title MUST have between 3 and 60 characters
   def test_title
     assert_raise( ActiveRecord::RecordInvalid){
@@ -56,19 +55,19 @@ class DocumentTest < Test::Unit::TestCase
     }
   end
   def test_nomfichier
-    assert_equal documents(:migration_lotus).nomfichier, 
+    assert_equal documents(:document_00001).nomfichier, 
       "MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip"
   end
   
   
   
   def test_updated_and_date_delivery_on_formatted
-    assert_equal documents(:migration_lotus).updated_on_formatted, "26.07.2007 11:35"
-    assert_equal documents(:doc_date_delivery).date_delivery_on_formatted, "29.07.2007 "
+    assert_equal documents(:document_00001).updated_on_formatted, "26.07.2007 11:35"
+    assert_equal documents(:document_00002).date_delivery_on_formatted, "29.07.2007 "
   end
   
   def test_to_param
-    assert_equal documents(:migration_lotus).to_param, "1-Etude-Migration-Lotus-SI2-"
+    assert_equal documents(:document_00001).to_param, "1-Etude-Migration-Lotus-SI2-"
   end
 
 end

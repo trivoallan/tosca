@@ -1,4 +1,16 @@
 --- 
+commentaire_00007: 
+  created_on: 2007-09-27 14:26:14 +02:00
+  corps: On m&#39;appelle Forget, Guy Forget. C&#39;est affreux, comment je change mon nom ?
+  updated_on: 2007-09-27 14:26:15 +02:00
+  prive: false
+  ingenieur_id: 1
+  demande_id: 4
+  id: 7
+  severite_id: 4
+  statut_id: 2
+  identifiant_id: 7
+  piecejointe_id: 
 commentaire_00001: 
   created_on: 2006-09-21 08:19:30 +02:00
   corps: Il faut trouver un moyen de patcher binairement OOo.<br/><br/>Pour ce faire, voir les posts sur le sujet dans la mailing liste OOo, plus les outils qu'utilisent les jeux videos, qui sont au point sur le sujet.<br/>

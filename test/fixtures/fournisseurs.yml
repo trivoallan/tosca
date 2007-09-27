@@ -1,4 +1,4 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-communaute:
+--- 
+fournisseur_00001: 
+  nom: "Communaut\xC3\xA9"
   id: 1
-  nom: 'Communauté'

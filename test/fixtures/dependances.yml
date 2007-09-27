@@ -1,7 +1,7 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
+--- 
+dependance_00001: 
+  sens: un sens
+  nom: kernel
   paquet_id: 1
-  nom: 'kernel'
-  sens: 'un sens'
-  version: '1.7.18'
+  id: 1
+  version: 1.7.18

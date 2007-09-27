@@ -1,10 +1,17 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-beneficiaire1:
-  id: 1
+--- 
+beneficiaire_00001: 
   client_id: 1
-  notifier_subalternes: 1
-  notifier_cc: 0
-  identifiant_id: 1
-  notifier: 1
+  id: 1
+  notifier_subalternes: true
   beneficiaire_id: 1
+  notifier_cc: false
+  identifiant_id: 1
+  notifier: true
+beneficiaire_00002: 
+  client_id: 2
+  id: 2
+  notifier_subalternes: true
+  beneficiaire_id: 
+  notifier_cc: true
+  identifiant_id: 7
+  notifier: true

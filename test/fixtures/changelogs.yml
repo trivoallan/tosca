@@ -1,7 +1,7 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
+--- 
+changelog_00001: 
   paquet_id: 1035
-  date_modification: "2005-05-11 12:00:00"
+  id: 1
+  date_modification: 2005-05-11 12:00:00 +02:00
   text_modification: "- Upgrade to 6.4"
-  nom_modification: "Thibaut LAURENT <thibaut.laurent@oxalya.com> 6.4-1.dgi"
+  nom_modification: Thibaut LAURENT <thibaut.laurent@oxalya.com> 6.4-1.dgi

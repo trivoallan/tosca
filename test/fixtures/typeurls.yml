@@ -1,22 +1,22 @@
 --- 
-typeurl_00012: 
-  nom: Development plans
-  id: 12
 typeurl_00001: 
   nom: blog
   id: 1
+typeurl_00012: 
+  nom: Development plans
+  id: 12
 typeurl_00013: 
   nom: contact
   id: 13
 typeurl_00002: 
   nom: sourceforge
   id: 2
-typeurl_00014: 
-  nom: traduction
-  id: 14
 typeurl_00003: 
   nom: homepage
   id: 3
+typeurl_00014: 
+  nom: traduction
+  id: 14
 typeurl_00015: 
   nom: dossiers
   id: 15

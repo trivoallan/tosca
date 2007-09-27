@@ -5,33 +5,33 @@ competence_00014:
 competence_00003: 
   nom: Java
   id: 3
-competence_00015: 
-  nom: Annuaires
-  id: 15
 competence_00004: 
   nom: J2ee
   id: 4
+competence_00015: 
+  nom: Annuaires
+  id: 15
 competence_00005: 
   nom: Ruby
   id: 5
-competence_00006: 
-  nom: Python
-  id: 6
 competence_00017: 
   nom: SQL
   id: 17
+competence_00006: 
+  nom: Python
+  id: 6
 competence_00007: 
   nom: Perl
   id: 7
 competence_00018: 
   nom: OpenOffice
   id: 18
-competence_00008: 
-  nom: Php
-  id: 8
 competence_00019: 
   nom: "Syst\xC3\xA8me"
   id: 19
+competence_00008: 
+  nom: Php
+  id: 8
 competence_00020: 
   nom: "R\xC3\xA9seau"
   id: 20

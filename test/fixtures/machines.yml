@@ -1,14 +1,15 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-m1:
+--- 
+machine_00001: 
+  virtuelle: true
   id: 1
-  virtuelle: 1
-  description: 'Socle du Minefi '
   hote_id: 13
-  acces: 'socle2004.ossa (192.168.1.106)'
+  description: "Socle du Minefi "
   socle_id: 1
-m2:
+  acces: socle2004.ossa (192.168.1.106)
+machine_00002: 
+  virtuelle: true
   id: 2
-  virtuelle: 1
-  description: 'Socle du Minefi '
   hote_id: 13
+  description: "Socle du Minefi "
   socle_id: 1
+  acces: 

@@ -1,4 +1,4 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-noel2006:
+--- 
+jourferie_00001: 
+  jour: 2006-12-25 00:00:00 +01:00
   id: 1
-  jour: "2006-12-25 00:00:00"

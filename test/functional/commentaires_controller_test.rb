@@ -16,7 +16,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
     @controller = CommentairesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    login 'bob', 'test'   
+    login 'bob', 'test'
   end
 
   def test_index
@@ -89,7 +89,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
 
     # TODO : why it's not a success ????
     assert_response :redirect
-    assert_redirected_to(:controller => "demandes", :action => "comment", 
+    assert_redirected_to(:controller => "demandes", :action => "show", 
                          :id => "2-une-autre-demandes")
 
     assert(Demande.find(1).statut_id == old_statut_id)

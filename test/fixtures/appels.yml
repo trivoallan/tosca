@@ -1,18 +1,17 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-  debut: "2007-03-16 16:41:00"
-  fin: "2007-03-16 22:41:00"
-  demande_id: nil
+--- 
+appel_00001: 
+  fin: 2007-03-16 22:41:00 +01:00
+  debut: 2007-03-16 16:41:00 +01:00
   ingenieur_id: 1
+  demande_id: 0
+  id: 1
   beneficiaire_id: 1
   contrat_id: 3
-
-end_before_beginning:
-  id: 2
-  debut: "2007-03-16 22:41:00"
-  fin: "2007-03-16 16:41:00"
-  demande_id: nil
+appel_00002: 
+  fin: 2007-03-16 16:41:00 +01:00
+  debut: 2007-03-16 22:41:00 +01:00
   ingenieur_id: 1
+  demande_id: 0
+  id: 2
   beneficiaire_id: 1
   contrat_id: 1

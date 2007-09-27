@@ -17,7 +17,7 @@ class IngenieurTest < Test::Unit::TestCase
 
   def test_contrat_ids
     i = Ingenieur.find 1
-    assert_equal i.contrat_ids, [2,3,1]
+    assert_equal i.contrat_ids, [1,2,3]
   end
   def test_client_ids
     i = Ingenieur.find 1

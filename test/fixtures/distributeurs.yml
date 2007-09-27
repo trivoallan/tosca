@@ -1,4 +1,4 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-red_hat:
+--- 
+distributeur_00001: 
+  nom: Red Hat, Inc
   id: 1
-  nom: 'Red Hat, Inc'

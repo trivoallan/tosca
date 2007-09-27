@@ -5,8 +5,8 @@ class AppelTest < Test::Unit::TestCase
     :beneficiaires, :identifiants, :clients
 
   def test_validates_presence_of_ingenieur_and_contrat_on_create
-    ing = ingenieurs(:first)
-    cont = contrats(:contrat)
+    ing = ingenieurs(:ingenieur_00001)
+    cont = contrats(:contrat_00001)
     a= Appel.new( :debut=> "2007-03-16 22:41:00",
                      :fin => "2007-03-17 22:42:00")
     b= Appel.new( :debut=> "2007-03-16 22:41:00",

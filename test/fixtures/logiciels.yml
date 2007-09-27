@@ -1,28 +1,28 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-ant:
+--- 
+logiciel_00001: 
+  nom: ANT
+  groupe_id: 4
+  referent: ant
   id: 1
-  nom: 'ANT'
-  groupe_id: 4
-  referent: 'ant'
-  description: 'Ant est un outil de compilation multi-plateformes pour java. Il est\r<br/>utilisé par les projets apache-jakarta et apache-xml.'
-  resume: 'Outil de compilation pour java'
+  resume: Outil de compilation pour java
+  description: "Ant est un outil de compilation multi-plateformes pour java. Il est\\r<br/>utilis\xC3\xA9 par les projets apache-jakarta et apache-xml."
   license_id: 2
-  image_id: nil
-vim:
+  image_id: 0
+logiciel_00002: 
+  nom: VIM
+  groupe_id: 4
+  referent: vim
   id: 2
-  nom: 'VIM'
-  groupe_id: 4
-  referent: 'vim'
-  description: 'Vim est un outil de traitement de texte très puissant, utilisable en ligne de commande ou en mode graphique. Il surpasse allègrement Emacs'
-  resume: 'Editeur de texte'
+  resume: Editeur de texte
+  description: "Vim est un outil de traitement de texte tr\xC3\xA8s puissant, utilisable en ligne de commande ou en mode graphique. Il surpasse all\xC3\xA8grement Emacs"
   license_id: 2
-  image_id: nil
-emacs:
+  image_id: 0
+logiciel_00003: 
+  nom: EMACS
+  groupe_id: 4
+  referent: emacs
   id: 3
-  nom: 'EMACS'
-  groupe_id: 4
-  referent: 'emacs'
-  description: 'Vim est un outil de traitement de texte très puissant, utilisable en ligne de commande ou en mode graphique. Il surpasse allègrement Emacs'
-  resume: 'Editeur de texte'
+  resume: Editeur de texte
+  description: "Vim est un outil de traitement de texte tr\xC3\xA8s puissant, utilisable en ligne de commande ou en mode graphique. Il surpasse all\xC3\xA8grement Emacs"
   license_id: 2
-  image_id: nil
+  image_id: 0

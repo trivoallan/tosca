@@ -2,6 +2,7 @@
 identifiant_00004: 
   informations: ""
   nom: Admin
+  inactive: false
   client: false
   id: 4
   titre: Expert Ossa
@@ -13,6 +14,7 @@ identifiant_00004:
 identifiant_00005: 
   informations: ""
   nom: Expert de l'OSSA
+  inactive: false
   client: false
   id: 5
   titre: "\xC3\xB4 magnifique"
@@ -24,6 +26,7 @@ identifiant_00005:
 identifiant_00006: 
   informations: ""
   nom: Prestataire
+  inactive: false
   client: false
   id: 6
   titre: vil
@@ -32,9 +35,22 @@ identifiant_00006:
   login: presta
   image_id: 0
   email: mloiseleur@linagora.com
+identifiant_00007: 
+  informations: ""
+  nom: Forget
+  inactive: false
+  client: true
+  id: 7
+  titre: M
+  telephone: "847"
+  password: 538009b9b91f423bd323235d3fa99413e0899359
+  login: forget
+  image_id: 
+  email: mloiseleur@linagora.com
 identifiant_00001: 
   informations: ""
   nom: "H\xC3\xA9l\xC3\xA8ne Parmentier"
+  inactive: false
   client: true
   id: 1
   titre: DSI
@@ -46,6 +62,7 @@ identifiant_00001:
 identifiant_00002: 
   informations: ""
   nom: Martin Laplace
+  inactive: false
   client: true
   id: 2
   titre: DSI
@@ -57,6 +74,7 @@ identifiant_00002:
 identifiant_00003: 
   informations: ""
   nom: Bob Dufloux
+  inactive: false
   client: false
   id: 3
   titre: Expert

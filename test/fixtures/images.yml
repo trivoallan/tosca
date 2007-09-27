@@ -1,5 +1,5 @@
----
-logo_bull:
+--- 
+image_00001: 
   id: 1
-  description: 'Logo Bull'
-  image: 'logo_bull.gif'
+  description: Logo Bull
+  image: logo_bull.gif

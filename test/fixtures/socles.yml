@@ -1,15 +1,13 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-socle2004:
+--- 
+socle_00001: 
+  nom: dgi2004-1.32
+  binaires_count: 0
   id: 1
-  binaires_count: nil
-  nom: "dgi2004-1.32"
-socle2007:
+socle_00002: 
+  nom: dgi2007-0.24
+  binaires_count: 0
   id: 2
-  binaires_count: nil
-  nom: "dgi2007-0.24"
-windowsXP:
+socle_00003: 
+  nom: windowsXP
+  binaires_count: 0
   id: 3
-  binaires_count: nil
-  nom: "windowsXP"
-
-

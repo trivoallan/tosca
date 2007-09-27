@@ -1,46 +1,41 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-#
-# used for tests in clients
-contrat:
-  id: 1
-  astreinte: 0
-  socle: 0
-  client_id: 1 # client "toto"
-  ouverture: "2005-10-26 10:20:00"
-  cloture: "2008-10-27 10:20:00"
-  paquets_count: nil
-  nom : "OSSA - toto"
-contrat2:
-  id: 2
-  astreinte: 0
-  socle: 1
-  client_id: 4 # linagorien
-  ouverture: "2006-11-25 12:20:00"
-  cloture: "2007-11-12 14:23:00"
-  paquets_count: nil
-  nom : "OSSA - linagora"
-contratGuy:
+--- 
+contrat_00003: 
+  astreinte: false
+  nom: OSSA - guy
+  socle: false
+  client_id: 2
   id: 3
-  astreinte: 0
-  socle: 0
-  client_id: 2 # guy
-  ouverture: "2006-11-25 12:20:00"
-  cloture: "2007-11-12 14:23:00"
-  nom : "OSSA - guy"
-#contrat_vide :
-#  id: 4
-#contrat_nom_vide: 
-#  id: 5
-#  astreinte: 0
-#  socle: 0
-#  client_id: 3 # vide
-#  ouverture: "2006-11-25 12:20:00"
-#  cloture: "2007-11-12 14:23:00"
-contratGuy2:
+  ouverture: 2006-11-25 12:20:00 +01:00
+  support: false
+  cloture: 2007-11-12 14:23:00 +01:00
+  paquets_count: 
+contrat_00006: 
+  astreinte: true
+  nom: OSSA - guy - 24h/24
+  socle: false
+  client_id: 2
   id: 6
-  astreinte: 1
-  socle: 0
-  client_id: 2 # guy
-  ouverture: "2006-11-25 12:20:00"
-  cloture: "2007-11-12 14:23:00"
-  nom : "OSSA - guy - 24h/24"
+  ouverture: 2006-11-25 12:20:00 +01:00
+  support: false
+  cloture: 2007-11-12 14:23:00 +01:00
+  paquets_count: 
+contrat_00001: 
+  astreinte: false
+  nom: OSSA - toto
+  socle: false
+  client_id: 1
+  id: 1
+  ouverture: 2005-10-26 10:20:00 +02:00
+  support: false
+  cloture: 2008-10-27 10:20:00 +01:00
+  paquets_count: 0
+contrat_00002: 
+  astreinte: false
+  nom: OSSA - linagora
+  socle: true
+  client_id: 4
+  id: 2
+  ouverture: 2006-11-25 12:20:00 +01:00
+  support: false
+  cloture: 2007-11-12 14:23:00 +01:00
+  paquets_count: 0

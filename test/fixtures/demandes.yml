@@ -50,3 +50,20 @@ demande_00003:
   mail_cc: nil
   first_comment_id: 3
   contribution_id: 28
+demande_00004: 
+  created_on: 2007-09-27 14:26:14 +02:00
+  logiciel_id: 3
+  updated_on: 2007-09-27 14:26:14 +02:00
+  ingenieur_id: 1
+  id: 4
+  severite_id: 4
+  resume: demande pour forget
+  description: On m&#39;appelle Forget, Guy Forget. C&#39;est affreux, comment je change mon nom ?
+  beneficiaire_id: 2
+  statut_id: 2
+  contrat_id: 3
+  typedemande_id: 2
+  socle_id: 3
+  mail_cc: ""
+  first_comment_id: 7
+  contribution_id: 

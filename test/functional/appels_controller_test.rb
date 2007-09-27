@@ -13,7 +13,7 @@ class AppelsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     login 'bob', 'test'
-    @first_id = appels(:first).id
+    @first_id = appels(:appel_00001).id
   end
 
   def test_index

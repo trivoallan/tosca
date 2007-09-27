@@ -1,26 +1,26 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-migration_lotus:
+--- 
+document_00001: 
+  created_on: 2006-09-05 18:08:49 +02:00
+  updated_on: 2007-07-26 11:35:58 +02:00
+  client_id: 1
   id: 1
   version: 1
-  created_on: "2006-09-05 18:08:49"
-  updated_on: "2007-07-26 11:35:58"
-  client_id: 1
-  description: "Etude réalisée pour SI2 dans le cadre de\r\nl'évaluation des solutions Open Source comme alternative à Lotus Notes"
-  fichier: "MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip"
-  titre: "Etude Migration Lotus (SI2)"
-  identifiant_id: 1 
-  date_delivery: nil
+  description: "Etude r\xC3\xA9alis\xC3\xA9e pour SI2 dans le cadre de\r\n\
+    l'\xC3\xA9valuation des solutions Open Source comme alternative \xC3\xA0 Lotus Notes"
+  titre: Etude Migration Lotus (SI2)
+  fichier: MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip
+  identifiant_id: 1
   typedocument_id: 1
-
-doc_date_delivery:
+  date_delivery: 
+document_00002: 
+  created_on: 2006-09-05 18:08:49 +02:00
+  updated_on: 2007-07-26 11:35:58 +02:00
+  client_id: 1
   id: 2
   version: 1
-  created_on: "2006-09-05 18:08:49"
-  updated_on: "2007-07-26 11:35:58"
-  client_id: 1
-  description: "Document pour tester le date delivery on formatted"
-  fichier: "MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip"
-  titre: "Etude Migration Lotus (SI2)"
-  identifiant_id: 1 
-  date_delivery: "2007-07-29 09:32:00"
+  description: Document pour tester le date delivery on formatted
+  titre: Etude Migration Lotus (SI2)
+  fichier: MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip
+  identifiant_id: 1
   typedocument_id: 1
+  date_delivery: 2007-07-29 09:32:00 +02:00

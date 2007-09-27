@@ -1,35 +1,35 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-cups_paquet:
+--- 
+paquet_00001: 
+  configuration: ""
+  nom: cups
+  logiciel_id: 1
+  paquet_id: 0
   id: 1
-  configuration: ""
-  nom: "cups"
-  logiciel_id: 1 #ant
+  version: 1.1.17
   mainteneur_id: 1
-  version: '1.1.17'
+  release: 13.3.6
   fournisseur_id: 1
-  contrat_id: 3 #contrat pour le client guy
-  release: "13.3.6"
-  changelogs_count: nil
+  contrat_id: 3
   conteneur_id: 1
+  changelogs_count: 0
   taille: 3528875
-  active: 1
-  fichiers_count: nil
+  fichiers_count: 0
   distributeur_id: 1
-
-le_meilleur_paquet:
-  id: 2
+  active: true
+paquet_00002: 
   configuration: ""
-  nom: "vim-full"
-  logiciel_id: 2 
+  nom: vim-full
+  logiciel_id: 2
+  paquet_id: 0
+  id: 2
+  version: "1.7"
   mainteneur_id: 1
+  release: 13.3.6
+  fournisseur_id: 0
+  contrat_id: 2
   conteneur_id: 1
-  version: '1.7'
-  fournisseur_id: 0 
-  contrat_id: 2 # contrat avec linagorien
-  release: "13.3.6"
-  changelogs_count: nil
+  changelogs_count: 0
   taille: 3528875
-  active: 1
-  fichiers_count: nil
+  fichiers_count: 0
   distributeur_id: 1
+  active: true

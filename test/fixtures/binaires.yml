@@ -1,11 +1,10 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-cups_binaire:
-  id: 1
+--- 
+binaire_00001: 
   configuration: nil
-  nom: "cups"
+  nom: cups
   archive: nil
-  arch_id: 1
   paquet_id: 1
-  fichierbinaires_count: nil
+  arch_id: 1
+  id: 1
   socle_id: 1
-
+  fichierbinaires_count: 0
