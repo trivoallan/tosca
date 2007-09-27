@@ -1,27 +1,21 @@
-<h1>Liste des beneficiaires</h1>
+<h1><%= _("List of the recipients") %></h1>
 
-<% links =  show_pages_links(@beneficiaire_pages, _('a recipient')) %>
+<% links = show_pages_links(@beneficiaire_pages, _('a recipient')) %>
 <%= links %>
-<% titres = ['Nom',
+<% titres = [_('Name'),
              "<form action=\"#{beneficiaires_path}\" method=\"get\">" +
              select_onchange(@clients, 0, 'client_id') + '</form>',
-             '', 'Domaine']%>
+             '', '']%>
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
   clientname = (b.client.nil? ? '-' : b.client.nom)
-  result = ''
-  form = ''
-  form << "<form action=\"#{devenir_account_path(b)}\" method=\"post\">"
-  form << '<input name="commit" value="Devenir" type="submit" /></form>'
-  result << "<td>#{b.nom}</td>"
+  result = "<td>#{b.nom}</td>"
   result << "<td>#{clientname}</td>"
   result << '<td>'
-  result << form
+  result << "<form action=\"#{devenir_account_path(b)}\" method=\"post\">"
+  result << '<input name="commit" value="Devenir" type="submit" /></form>'
   result << '</td>'
   result << "#{link_to_actions_table b}"
   result
 }%>
 
 <%= links %>
-
-
-
