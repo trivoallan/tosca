@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-09-26 13:44+0200\n"
+"POT-Creation-Date: 2007-09-27 13:48+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,32 +20,32 @@ msgstr ""
 msgid "Welcome&nbsp;%s&nbsp;%s"
 msgstr ""
 
-#: app/controllers/account_controller.rb:69
+#: app/controllers/account_controller.rb:70
 msgid "Connexion failure"
 msgstr ""
 
-#: app/controllers/account_controller.rb:70
+#: app/controllers/account_controller.rb:71
 msgid "your account has been desactivated"
 msgstr ""
 
-#: app/controllers/account_controller.rb:81
+#: app/controllers/account_controller.rb:82
 msgid "You are not allowed to change your identity"
 msgstr ""
 
-#: app/controllers/account_controller.rb:86
+#: app/controllers/account_controller.rb:87
 msgid "Person not found"
 msgstr ""
 
-#: app/controllers/account_controller.rb:126
+#: app/controllers/account_controller.rb:127
 msgid "Edition succeeded"
 msgstr ""
 
-#: app/controllers/account_controller.rb:143
+#: app/controllers/account_controller.rb:144
 msgid "Account successfully created, don't forget to check his profile."
 msgstr ""
 
-#: app/controllers/account_controller.rb:146
-#: app/controllers/account_controller.rb:215
+#: app/controllers/account_controller.rb:147
+#: app/controllers/account_controller.rb:216
 #: app/controllers/export_controller.rb:145
 #: app/views/account/_edit_recipient.rhtml:6
 #: app/views/account/_show_recipient.rhtml:6
@@ -56,99 +56,99 @@ msgstr ""
 msgid "Recipient"
 msgstr ""
 
-#: app/controllers/account_controller.rb:146
-#: app/controllers/account_controller.rb:215
+#: app/controllers/account_controller.rb:147
+#: app/controllers/account_controller.rb:216
 msgid "Engineer "
 msgstr ""
 
-#: app/controllers/account_controller.rb:146
+#: app/controllers/account_controller.rb:147
 msgid " created"
 msgstr ""
 
-#: app/controllers/account_controller.rb:165
-#: app/controllers/account_controller.rb:200
-#: app/controllers/account_controller.rb:213
+#: app/controllers/account_controller.rb:166
+#: app/controllers/account_controller.rb:201
+#: app/controllers/account_controller.rb:214
 #: app/views/account/_edit_account_informations.rhtml:49
 #: app/views/account/_show_account_information.rhtml:14
 msgid "Full name"
 msgstr ""
 
-#: app/controllers/account_controller.rb:165
-#: app/controllers/account_controller.rb:201
+#: app/controllers/account_controller.rb:166
+#: app/controllers/account_controller.rb:202
 #: app/views/account/_edit_account_informations.rhtml:50
 #: app/views/account/_show_account_information.rhtml:15
 #: app/views/documents/_form.rhtml:23
 msgid "Title"
 msgstr ""
 
-#: app/controllers/account_controller.rb:165
-#: app/controllers/account_controller.rb:202
+#: app/controllers/account_controller.rb:166
+#: app/controllers/account_controller.rb:203
 #: app/views/account/_edit_account_informations.rhtml:51
 #: app/views/account/_show_account_information.rhtml:16
 #: app/views/account/_users_list.rhtml:12
 msgid "Email"
 msgstr ""
 
-#: app/controllers/account_controller.rb:165
-#: app/controllers/account_controller.rb:203
+#: app/controllers/account_controller.rb:166
+#: app/controllers/account_controller.rb:204
 #: app/views/account/_edit_account_informations.rhtml:52
 #: app/views/account/_show_account_information.rhtml:17
 #: app/views/demandes/_infos_demande.rhtml:43
 msgid "Phone"
 msgstr ""
 
-#: app/controllers/account_controller.rb:166
-#: app/controllers/account_controller.rb:204 app/views/account/login.rhtml:9
+#: app/controllers/account_controller.rb:167
+#: app/controllers/account_controller.rb:205 app/views/account/login.rhtml:9
 msgid "Login"
 msgstr ""
 
-#: app/controllers/account_controller.rb:166
-#: app/controllers/account_controller.rb:205
+#: app/controllers/account_controller.rb:167
 #: app/controllers/account_controller.rb:206
-#: app/controllers/account_controller.rb:218 app/views/account/login.rhtml:12
+#: app/controllers/account_controller.rb:207
+#: app/controllers/account_controller.rb:219 app/views/account/login.rhtml:12
 msgid "Password"
 msgstr ""
 
-#: app/controllers/account_controller.rb:166
-#: app/controllers/account_controller.rb:207
+#: app/controllers/account_controller.rb:167
+#: app/controllers/account_controller.rb:208
 #: app/views/account/_edit_account_informations.rhtml:71
 #: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr ""
 
-#: app/controllers/account_controller.rb:178
+#: app/controllers/account_controller.rb:179
 msgid "Enter data under CSV format please"
 msgstr ""
 
-#: app/controllers/account_controller.rb:182
+#: app/controllers/account_controller.rb:183
 msgid "The CSV file is not correct"
 msgstr ""
 
-#: app/controllers/account_controller.rb:186
+#: app/controllers/account_controller.rb:187
 msgid "You have to specify a customer"
 msgstr ""
 
-#: app/controllers/account_controller.rb:189
+#: app/controllers/account_controller.rb:190
 msgid "Vous must specify a role"
 msgstr ""
 
-#: app/controllers/account_controller.rb:213
+#: app/controllers/account_controller.rb:214
 msgid "The user %s have been successfully created.<br/>"
 msgstr ""
 
-#: app/controllers/account_controller.rb:216
+#: app/controllers/account_controller.rb:217
 msgid "Associate created"
 msgstr ""
 
-#: app/controllers/account_controller.rb:222
+#: app/controllers/account_controller.rb:223
 msgid "The user %s  has not been created.<br /> "
 msgstr ""
 
-#: app/controllers/account_controller.rb:296
+#: app/controllers/account_controller.rb:297
 msgid "Logout"
 msgstr ""
 
-#: app/controllers/account_controller.rb:297 app/views/account/_edit.rhtml:7
+#: app/controllers/account_controller.rb:298 app/views/account/_edit.rhtml:7
 #: app/views/account/show.rhtml:3
 msgid "My account"
 msgstr ""
@@ -395,8 +395,8 @@ msgstr ""
 #: app/views/demandes/_infos_demande.rhtml:23
 #: app/views/demandes/_requests_list.rhtml:9 app/views/paquets/_form.rhtml:7
 #: app/views/paquets/_paquets_list.rhtml:7 app/views/paquets/show.rhtml:16
-#: app/views/urllogiciels/_form.rhtml:6 app/views/urllogiciels/index.rhtml:6
-#: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
+#: app/views/urls/_form.rhtml:25 app/views/urls/index.rhtml:6
+#: app/views/urls/show.rhtml:9
 msgid "Software"
 msgstr ""
 
@@ -442,7 +442,7 @@ msgstr ""
 #: app/views/demandes/_infos_demande.rhtml:27
 #: app/views/demandes/_requests_info.rhtml:39
 #: app/views/demandes/_requests_list.rhtml:10
-#: app/views/documents/_form.rhtml:18
+#: app/views/documents/_form.rhtml:18 app/views/urls/_form.rhtml:19
 msgid "Type"
 msgstr ""
 
@@ -726,20 +726,12 @@ msgstr ""
 msgid "A url type was successfully updated."
 msgstr ""
 
-#: app/controllers/urllogiciels_controller.rb:25
+#: app/controllers/urls_controller.rb:32
 msgid "The url of \"%s\" has been created successfully."
 msgstr ""
 
-#: app/controllers/urllogiciels_controller.rb:41
+#: app/controllers/urls_controller.rb:51
 msgid "The Url has bean updated successfully."
-msgstr ""
-
-#: app/controllers/urlreversements_controller.rb:24
-msgid "Urlreversement was successfully created."
-msgstr ""
-
-#: app/controllers/urlreversements_controller.rb:40
-msgid "Urlreversement was successfully updated."
 msgstr ""
 
 #: app/helpers/application_helper.rb:58 app/helpers/demandes_helper.rb:74
@@ -899,6 +891,7 @@ msgstr ""
 #: app/views/contributions/_contributions_info.rhtml:41
 #: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
 #: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:61
+#: app/views/urls/_form.rhtml:33
 msgid "Contributions"
 msgstr ""
 
@@ -1032,8 +1025,7 @@ msgstr ""
 
 #: app/helpers/static_image.rb:108
 #: app/views/contributions/_contributions_info.rhtml:30
-#: app/views/urlreversements/_form.rhtml:6
-#: app/views/urlreversements/index.rhtml:6
+#: app/views/urls/index.rhtml:6 app/views/urls/show.rhtml:20
 msgid "Contribution"
 msgstr ""
 
@@ -1059,10 +1051,6 @@ msgstr ""
 
 #: app/helpers/static_script.rb:9
 msgid "Select a date"
-msgstr ""
-
-#: app/helpers/urlreversements_helper.rb:14
-msgid "new url"
 msgstr ""
 
 #: app/models/appel.rb:-
@@ -1535,27 +1523,27 @@ msgstr ""
 msgid "Demande|Contrat"
 msgstr ""
 
-#: app/models/demande.rb:24
+#: app/models/demande.rb:23
 msgid "You must indicate a summary for your request"
 msgstr ""
 
-#: app/models/demande.rb:28
+#: app/models/demande.rb:27
 msgid "You must indicate a description"
 msgstr ""
 
-#: app/models/demande.rb:31
+#: app/models/demande.rb:30
 msgid "You must indicate a valid recipient"
 msgstr ""
 
-#: app/models/demande.rb:34
+#: app/models/demande.rb:33
 msgid "You must indicate a valid status"
 msgstr ""
 
-#: app/models/demande.rb:37
+#: app/models/demande.rb:36
 msgid "You must indicate a valid severity"
 msgstr ""
 
-#: app/models/demande.rb:253
+#: app/models/demande.rb:252
 msgid " of overrun"
 msgstr ""
 
@@ -1863,7 +1851,7 @@ msgstr ""
 msgid "Logiciel|Image"
 msgstr ""
 
-#: app/models/logiciel.rb:20
+#: app/models/logiciel.rb:18
 msgid "You have to specify at least one technology"
 msgstr ""
 
@@ -2155,32 +2143,24 @@ msgstr ""
 msgid "Typeurl|Nom"
 msgstr ""
 
-#: app/models/urllogiciel.rb:-
-msgid "urllogiciel"
+#: app/models/url.rb:-
+msgid "url"
 msgstr ""
 
-#: app/models/urllogiciel.rb:-
-msgid "Urllogiciel|Logiciel"
+#: app/models/url.rb:-
+msgid "Url|Resource"
 msgstr ""
 
-#: app/models/urllogiciel.rb:-
-msgid "Urllogiciel|Typeurl"
+#: app/models/url.rb:-
+msgid "Url|Resource type"
 msgstr ""
 
-#: app/models/urllogiciel.rb:-
-msgid "Urllogiciel|Valeur"
+#: app/models/url.rb:-
+msgid "Url|Value"
 msgstr ""
 
-#: app/models/urlreversement.rb:-
-msgid "urlreversement"
-msgstr ""
-
-#: app/models/urlreversement.rb:-
-msgid "Urlreversement|Contribution"
-msgstr ""
-
-#: app/models/urlreversement.rb:-
-msgid "Urlreversement|Valeur"
+#: app/models/url.rb:-
+msgid "Url|Typeurl"
 msgstr ""
 
 #: app/views/acces/refuse.rhtml:2
@@ -2409,10 +2389,10 @@ msgstr ""
 
 #: app/views/account/_show_engineer.rhtml:8
 #: app/views/account/_users_info.rhtml:24 app/views/arches/_form.rhtml:4
-#: app/views/binaires/_form.rhtml:20 app/views/binaires/show.rhtml:14
-#: app/views/clients/_form.rhtml:6 app/views/clients/index.rhtml:4
-#: app/views/clients/stats.rhtml:5 app/views/competences/_form.rhtml:4
-#: app/views/contrats/_form.rhtml:9
+#: app/views/beneficiaires/index.rhtml:5 app/views/binaires/_form.rhtml:20
+#: app/views/binaires/show.rhtml:14 app/views/clients/_form.rhtml:6
+#: app/views/clients/index.rhtml:4 app/views/clients/stats.rhtml:5
+#: app/views/competences/_form.rhtml:4 app/views/contrats/_form.rhtml:9
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:6
 #: app/views/demandes/_form_binaires.rhtml:4 app/views/groupes/_form.rhtml:4
@@ -2504,9 +2484,7 @@ msgstr ""
 #: app/views/binaires/new.rhtml:5 app/views/contributions/edit.rhtml:6
 #: app/views/documents/edit.rhtml:6 app/views/engagements/edit.rhtml:5
 #: app/views/licenses/edit.rhtml:5 app/views/logiciels/new.rhtml:5
-#: app/views/urllogiciels/edit.rhtml:5 app/views/urllogiciels/new.rhtml:5
-#: app/views/urlreversements/edit.rhtml:5
-#: app/views/urlreversements/new.rhtml:5
+#: app/views/urls/edit.rhtml:5 app/views/urls/new.rhtml:5
 msgid "Validate"
 msgstr ""
 
@@ -2648,6 +2626,10 @@ msgstr ""
 
 #: app/views/arches/new.rhtml:1
 msgid "Add a new processor architecture"
+msgstr ""
+
+#: app/views/beneficiaires/index.rhtml:1
+msgid "List of the recipients"
 msgstr ""
 
 #: app/views/beneficiaires/index.rhtml:3
@@ -3613,8 +3595,7 @@ msgid "Update the request %s (administration)"
 msgstr ""
 
 #: app/views/demandes/new.rhtml:4
-msgid ""
-"Inform the fields below. You will be able to attach a file after this stage."
+msgid "Inform the fields below."
 msgstr ""
 
 #: app/views/demandes/new.rhtml:5
@@ -4523,8 +4504,7 @@ msgstr ""
 msgid "a new type of url"
 msgstr ""
 
-#: app/views/typeurls/index.rhtml:11 app/views/urllogiciels/index.rhtml:3
-#: app/views/urlreversements/index.rhtml:3
+#: app/views/typeurls/index.rhtml:11 app/views/urls/index.rhtml:3
 msgid "a new url"
 msgstr ""
 
@@ -4532,44 +4512,27 @@ msgstr ""
 msgid "Create a New typeurl"
 msgstr ""
 
-#: app/views/urllogiciels/_form.rhtml:3
+#: app/views/urls/_form.rhtml:16
 msgid "Value"
 msgstr ""
 
-#: app/views/urllogiciels/_form.rhtml:11 app/views/urllogiciels/index.rhtml:6
-#: app/views/urllogiciels/show.rhtml:12
+#: app/views/urls/_form.rhtml:29 app/views/urls/index.rhtml:6
+#: app/views/urls/show.rhtml:14
 msgid "Kind"
 msgstr ""
 
-#: app/views/urllogiciels/edit.rhtml:1
-msgid "Editing url of \"%s\""
+#: app/views/urls/edit.rhtml:1
+msgid "Editing url"
 msgstr ""
 
-#: app/views/urllogiciels/index.rhtml:1
-msgid "List of softwares' links"
+#: app/views/urls/index.rhtml:1
+msgid "List of links"
 msgstr ""
 
-#: app/views/urllogiciels/index.rhtml:6
-#: app/views/urlreversements/index.rhtml:6
+#: app/views/urls/index.rhtml:6
 msgid "Url"
 msgstr ""
 
-#: app/views/urllogiciels/new.rhtml:1
-msgid "Add an url for a software"
-msgstr ""
-
-#: app/views/urlreversements/_form.rhtml:3
-msgid "Valeur"
-msgstr ""
-
-#: app/views/urlreversements/edit.rhtml:1
-msgid "Edit this url"
-msgstr ""
-
-#: app/views/urlreversements/index.rhtml:1
-msgid "List of urls in contributions"
-msgstr ""
-
-#: app/views/urlreversements/new.rhtml:1
-msgid "Add an url to follow your contribution"
+#: app/views/urls/new.rhtml:1
+msgid "Add an url"
 msgstr ""
