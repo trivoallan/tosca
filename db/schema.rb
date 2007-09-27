@@ -515,19 +515,6 @@ ActiveRecord::Schema.define(:version => 67) do
     t.column "duree_intervention",   :integer
   end
 
-  create_table "temp", :id => false, :force => true do |t|
-    t.column "contrat_id", :integer,                                :null => false
-    t.column "nom",        :string,  :limit => 105, :default => "", :null => false
-    t.column "version",    :string,  :limit => 55,  :default => "", :null => false
-    t.column "release",    :string,  :limit => 55,  :default => "", :null => false
-    t.column "chemin",     :string,                 :default => "", :null => false
-    t.column "taille",     :string,                 :default => "", :null => false
-    t.column "paquet_id",  :integer
-  end
-
-  add_index "temp", ["nom", "version", "release"], :name => "temp_nvr"
-  add_index "temp", ["paquet_id"], :name => "temp_pid"
-
   create_table "typecontributions", :force => true do |t|
     t.column "nom",         :string, :default => "", :null => false
     t.column "description", :text,   :default => "", :null => false
