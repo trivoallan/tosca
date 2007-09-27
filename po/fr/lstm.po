@@ -2161,9 +2161,8 @@ msgid "Typeurl|Nom"
 msgstr "Nom"
 
 #: app/models/url.rb:-
-#, fuzzy
 msgid "url"
-msgstr "Url"
+msgstr "url"
 
 #: app/models/url.rb:-
 #, fuzzy
@@ -2655,9 +2654,8 @@ msgid "Add a new processor architecture"
 msgstr "Ajouter une nouvelle architecture logicielle"
 
 #: app/views/beneficiaires/index.rhtml:1
-#, fuzzy
 msgid "List of the recipients"
-msgstr "Liste des clients"
+msgstr "Liste des bénéficiaires"
 
 #: app/views/beneficiaires/index.rhtml:3
 msgid "a recipient"
@@ -3649,7 +3647,7 @@ msgstr "Mise à jour de la requête %s (administrateur)"
 
 #: app/views/demandes/new.rhtml:4
 msgid "Inform the fields below."
-msgstr ""
+msgstr "Remplissez les champs ci-dessous."
 
 #: app/views/demandes/new.rhtml:5
 msgid "One of our consultants will then contact you in less than one hour."
@@ -3961,13 +3959,12 @@ msgid "The newsletter"
 msgstr "Lettre d'information"
 
 #: app/views/news/newsletter.rhtml:8
-#, fuzzy
 msgid "Edito"
-msgstr "Modifier"
+msgstr "Edito"
 
 #: app/views/news/newsletter.rhtml:12
 msgid "Long article :"
-msgstr "Article long"
+msgstr "Article long :"
 
 #: app/views/news/newsletter.rhtml:18
 msgid "Little Article"
@@ -4602,9 +4599,8 @@ msgid "Kind"
 msgstr "Type"
 
 #: app/views/urls/edit.rhtml:1
-#, fuzzy
 msgid "Editing url"
-msgstr "Éditer un type d'url"
+msgstr "Éditer une url"
 
 #: app/views/urls/index.rhtml:1
 #, fuzzy
