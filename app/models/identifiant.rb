@@ -62,7 +62,7 @@ class Identifiant < ActiveRecord::Base
   end
 
   SELECT_OPTIONS = { :include => [:identifiant],
-    :order => 'identifiants.nom ASC' }
+    :order => 'identifiants.nom ASC', :conditions => 'identifiants.inactive = 0' }
 
   def self.authenticate(login, pass, crypt)
     Identifiant.with_exclusive_scope() do
@@ -97,6 +97,14 @@ class Identifiant < ActiveRecord::Base
     @permissions
   end
 
+  def nom
+    strike(:nom)
+  end
+
+  def login
+    strike(:login)
+  end
+
   private
   def self.sha1(pass)
     Digest::SHA1.hexdigest("linagora--#{pass}--")
@@ -109,5 +117,11 @@ class Identifiant < ActiveRecord::Base
 
   def roles_join
     roles.join(', ')
+  end
+
+  def strike(attribute)
+    value = read_attribute(attribute)
+    return "<strike>" << attribute << "</strike>" if inactive?
+    value
   end
 end
