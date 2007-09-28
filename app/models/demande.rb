@@ -47,8 +47,8 @@ class Demande < ActiveRecord::Base
   acts_as_reportable
 
   # self-explanatory
-  TERMINEES = 'demandes.statut_id IN (5,6,7,8)'
-  EN_COURS = 'demandes.statut_id IN (1,2,3,4)'
+  TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})"
+  EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})"
 
   # WARNING : you cannot use this scope with the optimisation hidden
   # in the model of Demande. You must then use get_scope_without_include

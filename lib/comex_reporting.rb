@@ -19,6 +19,17 @@ module  ComexReporting
     @total[:final][:total]= 0
   end
 
+ 
+  # used internally by compute_comex_report 4 getting the
+  # good SELECT which returns the last status-changing comment
+  # you do NOT want to use it elsewhere.
+  def select_comex_report(date_condition)
+    "demandes.id, (SELECT c.statut_id FROM commentaires c WHERE " << 
+      "(#{date_condition}) AND c.demande_id = " << 
+      "demandes.id AND c.statut_id IS NOT NULL " << 
+      "ORDER BY c.created_on DESC LIMIT 1 ) statut_id"
+  end
+
   def compute_comex_report(client)
     name = client.nom.intern
     values = {
@@ -30,13 +41,16 @@ module  ComexReporting
         [ 'demandes.beneficiaire_id IN (:beneficiaire_ids) ',values ] }
     }
     Demande.with_scope(cscopeTest) {
-      clast_week  = [ "created_on <= :first_day AND " <<
-                      "(#{Demande::EN_COURS} OR " <<
-                       "(#{Demande::TERMINEES} AND " <<
-                         "updated_on >= :first_day " <<
-                       "))", values ]
-      @requests[:last_week][name] = 
-        Demande.count(:group=> 'severite_id',:conditions => clast_week)
+      cdate = "created_on <= '#{values[:first_day].to_formatted_s(:db)}'"
+      cselect = select_comex_report(cdate)
+      requests = Demande.find(:all, :select => cselect, :conditions => cdate)
+      # TODO : .include? is too slow. A hash or something better ?
+      requests = requests.delete_if { |d| Statut::CLOSED.include? d.statut_id }
+      last_week_ids = requests.collect { |d| d.id }
+      
+      clast_week = { :group => 'severite_id', 
+        :conditions => ["demandes.id IN (?)", last_week_ids ] }
+      @requests[:last_week][name] = Demande.count(clast_week)
 
       cnew = [ 'created_on BETWEEN :first_day AND :last_day',values]
       @requests[:new][name] =

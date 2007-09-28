@@ -14,6 +14,11 @@ class Statut < ActiveRecord::Base
   N_('Closed')    #7	Clôturée        #
   N_('Cancelled') #8     Annulée        #
   #######################################
+
+  # used in lib/comex_reporting and models/demande.rb
+  # Please be EXTREMELY cautious if you touch them.  
+  OPENED = [ 1, 2, 3, 4, 5] # We need to work on it
+  CLOSED = [ 6, 7, 8] # The time count is now less/not important
   
   SELECT = 'statuts.id, statuts.nom '
 
