@@ -323,8 +323,8 @@ ActiveRecord::Schema.define(:version => 68) do
   end
 
   create_table "identifiants", :force => true do |t|
-    t.column "login",        :string,  :limit => 80
-    t.column "password",     :string,  :limit => 40
+    t.column "login",        :string,  :limit => 20, :default => "",    :null => false
+    t.column "password",     :string,  :limit => 40, :default => "",    :null => false
     t.column "titre",        :string,                :default => "",    :null => false
     t.column "nom",          :string,                :default => "",    :null => false
     t.column "email",        :string,                :default => "",    :null => false
@@ -332,6 +332,7 @@ ActiveRecord::Schema.define(:version => 68) do
     t.column "image_id",     :integer
     t.column "informations", :text,                  :default => "",    :null => false
     t.column "client",       :boolean,               :default => false, :null => false
+    t.column "inactive",     :boolean,               :default => false, :null => false
   end
 
   add_index "identifiants", ["image_id"], :name => "index_identifiants_on_image_id"
