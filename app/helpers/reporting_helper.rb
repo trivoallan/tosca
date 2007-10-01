@@ -251,10 +251,17 @@ module ReportingHelper
 
     image_percent(1.23*percent, color)
   end
+
   #display a select box with all clients.
   #number_items defines the number of visible items in the drop-down list
+
+  # TODO : We need to put the find in the controller
+  #        and to rewrite this ugly method and put it into forms_helper
+  # call it like this :
+  # <%= box_clients(9) %> will show a multi-selection box 
+  #                       with 9 selectable items
   def box_clients(number_items)
-    elements = Client.find(:all, :select => 'id,nom')
+    elements = Client.find(:all, :select => 'id,nom', :order => 'nom')
     items='<option value=\'all\' selected=\'selected\'>»</option>'
 
     elements.each do |elt|
