@@ -20,14 +20,32 @@ module  ComexReporting
   end
 
  
-  # used internally by compute_comex_report 4 getting the
+  # used internally by get_condition4comex_report getting the
   # good SELECT which returns the last status-changing comment
   # you do NOT want to use it elsewhere.
+  # date_condition looks like : "created_on < '#{date.to_formatted_s(db)}'"
   def select_comex_report(date_condition)
     "demandes.id, (SELECT c.statut_id FROM commentaires c WHERE " << 
       "(#{date_condition}) AND c.demande_id = " << 
       "demandes.id AND c.statut_id IS NOT NULL " << 
       "ORDER BY c.created_on DESC LIMIT 1 ) statut_id"
+  end
+
+  # used internally by compute_comex_report 4 getting the
+  # good SELECT which returns the last status-changing comment
+  # you do NOT want to use it elsewhere.
+  # date_condition looks like : "created_on < '#{date.to_formatted_s(db)}'"
+  # remove_array : contains entries which will be removed if they matches
+  #                using <tt>.include?</tt> method
+  def get_condition4comex_report(cdate, remove_array)
+    cselect = select_comex_report(cdate)
+    requests = Demande.find(:all, :select => cselect, :conditions => cdate)
+    # TODO : .include? is too slow. A hash or something better ?
+    requests = requests.delete_if { |d| Statut::CLOSED.include? d.statut_id }
+    request_ids = requests.collect { |d| d.id }
+      
+    { :group => 'severite_id', 
+      :conditions => ["demandes.id IN (?)", request_ids ] }
   end
 
   def compute_comex_report(client)
@@ -37,29 +55,24 @@ module  ComexReporting
       :last_day=> @date[:end_day],
       :beneficiaire_ids => client.beneficiaire_ids
     }
-    cscopeTest = { :find => { :conditions =>
+    client_scope = { :find => { :conditions =>
         [ 'demandes.beneficiaire_id IN (:beneficiaire_ids) ',values ] }
     }
-    Demande.with_scope(cscopeTest) {
-      cdate = "created_on <= '#{values[:first_day].to_formatted_s(:db)}'"
-      cselect = select_comex_report(cdate)
-      requests = Demande.find(:all, :select => cselect, :conditions => cdate)
-      # TODO : .include? is too slow. A hash or something better ?
-      requests = requests.delete_if { |d| Statut::CLOSED.include? d.statut_id }
-      last_week_ids = requests.collect { |d| d.id }
-      
-      clast_week = { :group => 'severite_id', 
-        :conditions => ["demandes.id IN (?)", last_week_ids ] }
+    Demande.with_scope(client_scope) {
+      first_day = values[:first_day].to_formatted_s(:db)
+      last_day = values[:last_day].to_formatted_s(:db)
+
+      cdate = "created_on <= '#{first_day}'"
+      clast_week = get_condition4comex_report(cdate, Statut::CLOSED)
       @requests[:last_week][name] = Demande.count(clast_week)
 
       cnew = [ 'created_on BETWEEN :first_day AND :last_day',values]
       @requests[:new][name] =
         Demande.count(:group => 'severite_id', :conditions => cnew)
 
-      cclosed = [ 'updated_on BETWEEN :first_day AND :last_day AND ' <<
-                  "#{Demande::TERMINEES}", values ]
-      @requests[:closed][name] =
-        Demande.count(:group => 'severite_id', :conditions => cclosed)
+      cdate = "created_on BETWEEN '#{first_day}' AND '#{last_day}'"
+      cclosed = get_condition4comex_report(cdate, Statut::OPENED)
+      @requests[:closed][name] = Demande.count(cclosed)
     }
 
     4.times do |i|
