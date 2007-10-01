@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 68) do
+ActiveRecord::Schema.define(:version => 69) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -73,15 +73,16 @@ ActiveRecord::Schema.define(:version => 68) do
   add_index "changelogs", ["paquet_id"], :name => "changelogs_paquet_id_index"
 
   create_table "clients", :force => true do |t|
-    t.column "nom",                 :string,  :default => "", :null => false
-    t.column "description",         :text,    :default => "", :null => false
-    t.column "mailingliste",        :string,  :default => "", :null => false
-    t.column "adresse",             :text,    :default => "", :null => false
+    t.column "nom",                 :string,  :default => "",    :null => false
+    t.column "description",         :text,    :default => "",    :null => false
+    t.column "mailingliste",        :string,  :default => "",    :null => false
+    t.column "adresse",             :text,    :default => "",    :null => false
     t.column "image_id",            :integer
     t.column "support_id",          :integer
-    t.column "code_acces",          :string,  :default => "", :null => false
+    t.column "code_acces",          :string,  :default => "",    :null => false
     t.column "beneficiaires_count", :integer
     t.column "chrono",              :string
+    t.column "inactive",            :boolean, :default => false, :null => false
   end
 
   add_index "clients", ["image_id"], :name => "clients_photo_id_index"
@@ -259,7 +260,6 @@ ActiveRecord::Schema.define(:version => 68) do
     t.column "description",     :text
     t.column "created_on",      :datetime
     t.column "updated_on",      :datetime
-    t.column "date_delivery",   :datetime
   end
 
   create_table "documents", :force => true do |t|
@@ -272,7 +272,6 @@ ActiveRecord::Schema.define(:version => 68) do
     t.column "created_on",      :timestamp,                 :null => false
     t.column "updated_on",      :timestamp,                 :null => false
     t.column "version",         :integer
-    t.column "date_delivery",   :datetime
   end
 
   add_index "documents", ["identifiant_id"], :name => "documents_identifiant_id_index"

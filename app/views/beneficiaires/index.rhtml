@@ -11,11 +11,13 @@
   result = "<td>#{b.nom}</td>"
   result << "<td>#{clientname}</td>"
   result << '<td>'
-  result << "<form action=\"#{devenir_account_path(b)}\" method=\"post\">"
-  result << '<input name="commit" value="Devenir" type="submit" /></form>'
+  if not b.identifiant.inactive?
+    result << "<form action=\"#{devenir_account_path(b)}\" method=\"post\">"
+    result << '<input name="commit" value="' << _("Become") << '" type="submit"/></form>'
+  end
   result << '</td>'
   result << "#{link_to_actions_table b}"
   result
-}%>
+} %>
 
 <%= links %>

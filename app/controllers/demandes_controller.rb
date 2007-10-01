@@ -1,3 +1,4 @@
+
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
@@ -293,7 +294,7 @@ class DemandesController < ApplicationController
       @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
       @logiciels = Logiciel.find_select
       @typedemandes = Typedemande.find_select
-      @clients = Client.find(:all)
+      @clients = Client.find_select(Client::SELECT_OPTIONS)
     end
     @severites = Severite.find_select
   end

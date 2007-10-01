@@ -4,10 +4,7 @@
 
 <table class="show">
 
-<% if @ingenieur %>
-<tr><td><b><%= _("Chrono") %></b> :</td>
-    <td><%= @client.chrono.to_s %></td></tr>
-<% end %>
+
 
 <% for column in Client.content_columns %>
 <tr>
@@ -15,6 +12,18 @@
   <td><%= @client.send(column.name) %></td>
 </tr>
 <% end %>
+
+<% if @ingenieur %>
+<tr>
+  <td><b><%= _("Chrono") %></b> :</td>
+  <td><%= @client.chrono.to_s %></td>
+</tr>
+<tr>
+  <td><b><%= _("Inactive") %></b> :</td>
+  <td><%= (@client.inactive ? _("Yes") : _("No")) %></td>
+</tr>
+<% end %>
+
 <% unless @client.adresse.blank? %>
   <tr><td colspan="2">
     <fieldset>

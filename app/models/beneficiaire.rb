@@ -1,3 +1,4 @@
+
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
@@ -21,12 +22,6 @@ class Beneficiaire < ActiveRecord::Base
   def contrat_ids
     @cache ||=  Contrat.find(:all, :select => 'id',
       :conditions => ['client_id=?', self.client_id]).collect{|c| c.id}
-  end
-
-  def self.set_scope
-    scope = { :conditions => [ 'identifiants.inactive = 0' ],
-      :include => [:identifiant] }
-    self.scoped_methods << { :find => scope, :count => scope }
   end
 
   alias_method :to_s, :nom

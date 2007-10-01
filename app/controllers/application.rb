@@ -127,7 +127,6 @@ private
       contrat_ids = ingenieur.contrat_ids
       client_ids = ingenieur.client_ids
     end
-    Beneficiaire.set_scope
     SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) } if contrat_ids
     SCOPE_CLIENT.each {|m| m.set_scope(client_ids) } if client_ids
     # Forbid access to request if we are not connected
@@ -138,7 +137,6 @@ private
     ensure
       SCOPE_CLIENT.each { |m| m.remove_scope } if client_ids
       SCOPE_CONTRAT.each { |m| m.remove_scope } if contrat_ids
-      Beneficiaire.remove_scope
       Demande.remove_scope unless is_connected
     end
   end

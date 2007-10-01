@@ -1,16 +1,14 @@
-<h1><%= _('Engineer list')%></h1>
-
+<h1><%= _('Engineer list') %></h1>
 
 <%= show_pages_links(@ingenieur_pages, _('an engineer') ) %>
 
-<% titres = [ _('Name'), _('Project manager') , _('OSSA') , _('domain') ] %>
+<% titres = [ _('Name'), _('Project manager') , _('OSSA') ] %>
 <% addlines = [
      [ ['']*4, @competences.collect{|c| c.ingenieurs.count } ].flatten
    ] %>
 <% titres.concat(@competences.collect{|c| c.nom}).flatten %>
 <%= show_table(@ingenieurs, Ingenieur, titres, :add_lines => addlines) { |i|
-  result = ''
-  result << "<td>#{i.identifiant.nom}</td>"
+  result = "<td>#{i.identifiant.nom}</td>"
   result << "<td>#{'X' if i.chef_de_projet}</td>"
   result << "<td>#{'X' if i.expert_ossa}</td>"
   @competences.each do |competence|

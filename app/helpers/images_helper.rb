@@ -23,7 +23,7 @@ module ImagesHelper
     image_tag(url_for_file_column(client.image, 'image', 'thumb'),
               image_options(client.nom))
   end
-  
+
   #TODO Merger avec StaticImage
   def image_options(desc = '', size = nil )
     options = { :alt => desc, :title => desc, :class => 'no_hover' }
@@ -36,7 +36,7 @@ module ImagesHelper
   def image_percent(percent, color)
     desc = _('progress bar')
     style = "background-position: #{percent}px; background-color: #{color};"
-    options = { :alt => desc, :title => desc, :style => style, 
+    options = { :alt => desc, :title => desc, :style => style,
       :class => 'percentImage' }
     image_tag('percentimage.png', options)
   end

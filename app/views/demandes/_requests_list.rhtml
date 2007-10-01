@@ -27,9 +27,9 @@
         <td><%= demande.typedemandes_nom %></td>
         <td class="demande_<%=demande.statut_id%>"><%= StaticImage::severite(demande) %></td>
        <% if @ingenieur %>
-        <td><%= demande.clients_nom %></td>
+        <td><%= demande.client %></td>
        <% end %>
-        <td><%= demande.beneficiaire.nom %></td>
+        <td><%= demande.beneficiaire %></td>
         <td class="wrapped"><b><%= link_to_demande demande %></b></td>
         <% if @ingenieur %>
           <% ingenieur = demande.ingenieur %>

@@ -18,9 +18,24 @@ class Client < ActiveRecord::Base
   validates_length_of :nom, :in => 3..50
 
 
+  SELECT_OPTIONS = { :include => [:beneficiaires],
+    :conditions => 'clients.inactive = 0' }
+
+  after_save :desactivate_recipients
+
+  def desactivate_recipients
+    if inactive?
+      beneficiaires.each do |b|
+        id = b.identifiant
+        id.inactive = true
+        id.save
+      end
+    end
+  end
+
   def self.content_columns
-    @content_columns ||= columns.reject { |c| 
-      c.primary || c.name =~ /(_id|_count|adresse|photo)$/  
+    @content_columns ||= columns.reject { |c|
+      c.primary || c.name =~ /(_id|_count|adresse|photo|chrono|inactive)$/
     }
   end
 
@@ -100,7 +115,13 @@ class Client < ActiveRecord::Base
 
   # pretty urls for client
   def to_param
-    "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
+    "#{id}-#{read_attribute(:nom).gsub(/[^a-z1-9]+/i, '-')}"
+  end
+
+  def nom
+    value = read_attribute(:nom)
+    return "<strike>" << value << "</strike>" if read_attribute(:inactive)
+    value
   end
 
   def to_s
