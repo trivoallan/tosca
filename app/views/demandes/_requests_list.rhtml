@@ -31,12 +31,9 @@
        <% end %>
         <td><%= demande.beneficiaire.nom %></td>
         <td class="wrapped"><b><%= link_to_demande demande %></b></td>
-       <% if @ingenieur%>
-          <td><%= if demande.ingenieur
-                    demande.ingenieur.nom
-                  else
-                    _("Unknown")
-                  end %></td>
+        <% if @ingenieur %>
+          <% ingenieur = demande.ingenieur %>
+          <td><%= ingenieur ? ingenieur.nom : '' %></td>
        <% end %>
         <td><span class="date"><%=h demande.updated_on_formatted %></span></td>
         <td><%= link_to_comment demande %></td>
