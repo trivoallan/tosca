@@ -1,0 +1,13 @@
+<%= error_messages_for 'urllogiciel' %>
+
+<p><label for="urllogiciel_valeur"><%=_('Value')%></label><br/>
+<%= text_field 'urllogiciel', 'valeur'  %></p>
+
+<p><label for="urllogiciel_logiciel"><%=_('Software')%></label><br/>
+  <%= select("urllogiciel", "logiciel_id",
+             @logiciels.collect{|l| [ l.nom, l.id]},
+             :selected => params[:logiciel_id].to_i) %></p>
+
+<p><label for="urllogiciel_typeurl"><%=_('Kind')%></label><br/>
+  <%= select("urllogiciel", "typeurl_id",
+             @typeurls.collect{|t| [ t.nom, t.id]}) %></p>

@@ -1,0 +1,8 @@
+<h1><%=_('Add an url for a software')%></h1>
+
+<% form_tag urllogiciels_path do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Validate') %>
+<% end %>
+
+<%= link_to_back %>

@@ -1,0 +1,8 @@
+<h1><%= _('Editing url of "%s"') % @urllogiciel.logiciel.nom %></h1>
+
+<% form_tag(urllogiciel_path(@urllogiciel), :method => :put) do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Validate') %>
+<% end %>
+
+<%= link_to_show_and_list(@urllogiciel) %>
