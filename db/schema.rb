@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 69) do
+ActiveRecord::Schema.define(:version => 70) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -85,7 +85,6 @@ ActiveRecord::Schema.define(:version => 69) do
     t.column "inactive",            :boolean, :default => false, :null => false
   end
 
-  add_index "clients", ["image_id"], :name => "clients_photo_id_index"
   add_index "clients", ["support_id"], :name => "clients_support_id_index"
   add_index "clients", ["image_id"], :name => "index_clients_on_image_id"
 
@@ -114,6 +113,8 @@ ActiveRecord::Schema.define(:version => 69) do
   add_index "commentaires", ["piecejointe_id"], :name => "commentaires_piecejointe_id_index"
   add_index "commentaires", ["identifiant_id"], :name => "commentaires_identifiant_id_index"
   add_index "commentaires", ["ingenieur_id"], :name => "index_commentaires_on_ingenieur_id"
+  add_index "commentaires", ["created_on"], :name => "index_commentaires_on_created_on"
+  add_index "commentaires", ["updated_on"], :name => "index_commentaires_on_updated_on"
 
   create_table "communautes", :force => true do |t|
     t.column "nom",         :string,   :default => "", :null => false
@@ -209,7 +210,6 @@ ActiveRecord::Schema.define(:version => 69) do
     t.column "beneficiaire_id",  :integer,  :default => 0,  :null => false
     t.column "ingenieur_id",     :integer
     t.column "resume",           :string,   :default => "", :null => false
-    t.column "description",      :text
     t.column "statut_id",        :integer,  :default => 0,  :null => false
     t.column "severite_id",      :integer,  :default => 0,  :null => false
     t.column "logiciel_id",      :integer,  :default => 0
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(:version => 69) do
     t.column "socle_id",         :integer,  :default => 0,  :null => false
     t.column "mail_cc",          :string
     t.column "first_comment_id", :integer
+    t.column "description",      :text
     t.column "contrat_id",       :integer,                  :null => false
   end
 
@@ -229,6 +230,8 @@ ActiveRecord::Schema.define(:version => 69) do
   add_index "demandes", ["severite_id"], :name => "demandes_severite_id_index"
   add_index "demandes", ["typedemande_id"], :name => "demandes_typedemande_id_index"
   add_index "demandes", ["contrat_id"], :name => "index_demandes_on_contrat_id"
+  add_index "demandes", ["created_on"], :name => "index_demandes_on_created_on"
+  add_index "demandes", ["updated_on"], :name => "index_demandes_on_updated_on"
 
   create_table "demandes_paquets", :id => false, :force => true do |t|
     t.column "paquet_id",  :integer
@@ -322,8 +325,8 @@ ActiveRecord::Schema.define(:version => 69) do
   end
 
   create_table "identifiants", :force => true do |t|
-    t.column "login",        :string,  :limit => 20, :default => "",    :null => false
-    t.column "password",     :string,  :limit => 40, :default => "",    :null => false
+    t.column "login",        :string,  :limit => 80
+    t.column "password",     :string,  :limit => 40
     t.column "titre",        :string,                :default => "",    :null => false
     t.column "nom",          :string,                :default => "",    :null => false
     t.column "email",        :string,                :default => "",    :null => false
@@ -331,7 +334,7 @@ ActiveRecord::Schema.define(:version => 69) do
     t.column "image_id",     :integer
     t.column "informations", :text,                  :default => "",    :null => false
     t.column "client",       :boolean,               :default => false, :null => false
-    t.column "inactive",     :boolean,               :default => false, :null => false
+    t.column "inactive",     :boolean,               :default => false
   end
 
   add_index "identifiants", ["image_id"], :name => "index_identifiants_on_image_id"
@@ -409,6 +412,20 @@ ActiveRecord::Schema.define(:version => 69) do
   add_index "news", ["logiciel_id"], :name => "index_news_on_logiciel_id"
   add_index "news", ["subject"], :name => "index_news_on_subject"
 
+  create_table "old_urllogiciels", :force => true do |t|
+    t.column "logiciel_id", :integer, :default => 0,  :null => false
+    t.column "typeurl_id",  :integer, :default => 0,  :null => false
+    t.column "valeur",      :string,  :default => "", :null => false
+  end
+
+  add_index "old_urllogiciels", ["logiciel_id"], :name => "urllogiciels_logiciel_id_index"
+  add_index "old_urllogiciels", ["typeurl_id"], :name => "urllogiciels_typeurl_id_index"
+
+  create_table "old_urlreversements", :force => true do |t|
+    t.column "contribution_id", :integer
+    t.column "valeur",          :string,  :default => "", :null => false
+  end
+
   create_table "paquets", :force => true do |t|
     t.column "logiciel_id",      :integer,               :default => 0,    :null => false
     t.column "nom",              :string,  :limit => 60, :default => "",   :null => false
@@ -479,7 +496,7 @@ ActiveRecord::Schema.define(:version => 69) do
   add_index "sessions", ["session_id"], :name => "session_id_idx"
 
   create_table "severites", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "nom", :string
   end
 
   create_table "socles", :force => true do |t|

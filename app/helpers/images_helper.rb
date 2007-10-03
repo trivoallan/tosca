@@ -20,7 +20,9 @@ module ImagesHelper
 
   def logo_client(client)
     return '' if client.nil? or client.image.nil?
-    image_tag(url_for_file_column(client.image, 'image', 'thumb'),
+    version = 'thumb'
+    version = 'inactive_thumb' if client.inactive?
+    image_tag(url_for_file_column(client.image, 'image', version),
               image_options(client.nom))
   end
 
