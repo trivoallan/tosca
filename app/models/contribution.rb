@@ -5,7 +5,7 @@ class Contribution < ActiveRecord::Base
 
   acts_as_reportable
   has_many :demandes
-  has_many :urls, :as => :resource
+  has_many :urlreversements
 
   belongs_to :typecontribution
   belongs_to :etatreversement
@@ -19,17 +19,17 @@ class Contribution < ActiveRecord::Base
 
   validates_length_of :nom, :within => 3..100
   validates_presence_of :logiciel,
-      :warn => "Vous devez spécifier un logiciel"
+      :warn => "Vous devez spécifier un logiciel" 
 
   def self.content_columns
-    @content_columns ||= columns.reject { |c| c.primary ||
-        c.name =~ /(_id|_on|^patch)$/ || c.name == inheritance_column }
+    @content_columns ||= columns.reject { |c| c.primary || 
+        c.name =~ /(_id|_on|^patch)$/ || c.name == inheritance_column }     
   end
 
   # TODO : tout le monde doit pouvoir voir toutes les contributions.
   # Ca pose problème avec le scope logiciel ...
   def self.set_scope(contrat_ids)
-    self.scoped_methods << { :find => { :conditions =>
+    self.scoped_methods << { :find => { :conditions => 
         [ 'paquets.contrat_id IN (?)', contrat_ids ], :include => [:paquets] } }
   end
 
@@ -47,7 +47,7 @@ class Contribution < ActiveRecord::Base
     out << logiciel.nom
     out << " #{version}" if version
     out
-  end
+  end 
 
   def to_param
     "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
@@ -57,7 +57,7 @@ class Contribution < ActiveRecord::Base
   # sur plusieurs logiciels
   # TODO : a voir et a revoir
   def logiciels
-    @logiciels ||= Logiciel.find(self.paquets.find(:all, :select =>
+    @logiciels ||= Logiciel.find(self.paquets.find(:all, :select => 
       'DISTINCT paquets.logiciel_id').collect{|p| p.logiciel_id})
     @logiciels
   end
@@ -97,7 +97,7 @@ class Contribution < ActiveRecord::Base
     age = ((Time.now - reverse_le)/(60*60*24)).round
     if !clos && age > max_jours.to_i
       # non clos && non maj
-      return "mettre-à-jour"
+      return "mettre-à-jour" 
     elsif !reverse
       # non initialisé
       return "reverser"
@@ -125,7 +125,7 @@ class Contribution < ActiveRecord::Base
   # retourne true si le reversement est accepté
   def accepte
     return false unless etatreversement
-    etatreversement_id == 4
+    etatreversement_id == 4 
   end
 
   # For Ruport :
@@ -150,8 +150,8 @@ class Contribution < ActiveRecord::Base
   def version_to_s
     version.to_s
   end
-
-
+  
+  
 
 private
   def find_logiciels

@@ -6,11 +6,31 @@ class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :appels,
     :socles, :commentaires, :account
 
-  def flux
+  def en_attente
     options = { :per_page => 10, :order => 'updated_on DESC',
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
-    conditions = []
+    conditions = [ [ ] ]
 
+    options[:joins] += 'INNER JOIN commentaires ON commentaires.id = demandes.last_comment_id'
+    conditions.first << 'demandes.statut_id IN (?)'
+    conditions << Statut::OPENED
+
+    conditions.first << '(demandes.expected_on > NOW() OR (demandes.expected_on IS NULL AND commentaires.identifiant.id != ?))'
+    conditions << session[:user].id
+
+    if @ingenieur
+      conditions.first << 'ingenieurs.id = ? '
+      conditions << @ingenieur.id
+    elsif @beneficiaire
+      conditions.first << 'beneficiaire_id = ?'
+      conditions << @beneficiaire_id
+    end
+    conditions[0] = conditions.first.join(' AND ')
+    options[:conditions] = conditions
+    @demande_pages, @demandes = paginate :demandes, options
+
+    @title = N_('My pending request', 'My pending requests', @demandes.size)
+    render :partial => 'requests_list'
   end
 
   def index

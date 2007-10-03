@@ -30,8 +30,8 @@
 <p><label for="contribution_etatreversement"><%=_('State')%></label><br/>
 <%= collection_select(:contribution, :etatreversement_id, @etatreversements, :id, :nom) %></p>
 
-<p><label for="url_valeur"><%=_('Add an url for the community issue')%></label><br/>
-<%= text_field 'url', 'valeur' %></p>
+<p><label for="urlreversement_valeur"><%=_('Add an url for the community issue')%></label><br/>
+<%= text_field 'urlreversement', 'valeur' %></p>
 
 <p><label for="contribution_reverse"><%=_('Submitted on')%></label>
 <%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('reverse_le');"%>

@@ -11,10 +11,10 @@
     <%= @contribution.description_fonctionnelle %>
 <hr />
 
-    <%= link_to_new_url(@contribution.id) %>
-    <% options = { :edit => 'url' } %>
-    <%= public_show_liste(@contribution.urls, _('link'), options) { |u|
-          " <a href=\"#{u.value.urlize}\" target=\"_blank\">#{u.value}</a> "
+    <%= link_to_new_urlreversement(@contribution.id) %>
+    <% options = { :edit => 'urlreversement' } %>
+    <%= public_show_liste(@contribution.urlreversements, _('link'), options) { |u|
+          " <a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
     } %>
     <% if @contribution.reverse_le %>
         <%= _('This contribution has been submitted on %s by <b>%s</b>') %

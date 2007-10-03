@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(:version => 70) do
   add_index "binaires_demandes", ["demande_id"], :name => "binaires_demandes_demande_id_index"
 
   create_table "changelogs", :force => true do |t|
-    t.column "paquet_id",         :integer,   :default => 0,  :null => false
-    t.column "date_modification", :timestamp,                 :null => false
-    t.column "nom_modification",  :string,    :default => "", :null => false
-    t.column "text_modification", :text,      :default => "", :null => false
+    t.column "paquet_id",         :integer,  :default => 0,  :null => false
+    t.column "date_modification", :datetime,                 :null => false
+    t.column "nom_modification",  :string,   :default => "", :null => false
+    t.column "text_modification", :text,     :default => "", :null => false
   end
 
   add_index "changelogs", ["paquet_id"], :name => "changelogs_paquet_id_index"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(:version => 70) do
     t.column "astreinte",     :boolean,  :default => false, :null => false
     t.column "socle",         :boolean,  :default => false, :null => false
     t.column "nom",           :string
+    t.column "support",       :boolean,  :default => false
   end
 
   add_index "contrats", ["client_id"], :name => "contrats_client_id_index"
@@ -222,6 +223,7 @@ ActiveRecord::Schema.define(:version => 70) do
     t.column "first_comment_id", :integer
     t.column "description",      :text
     t.column "contrat_id",       :integer,                  :null => false
+    t.column "expected_on",      :datetime
   end
 
   add_index "demandes", ["contribution_id"], :name => "demandes_correctif_id_index"
@@ -266,14 +268,14 @@ ActiveRecord::Schema.define(:version => 70) do
   end
 
   create_table "documents", :force => true do |t|
-    t.column "identifiant_id",  :integer,   :default => 0,  :null => false
-    t.column "typedocument_id", :integer,   :default => 0,  :null => false
-    t.column "client_id",       :integer,   :default => 0,  :null => false
-    t.column "titre",           :string,    :default => "", :null => false
-    t.column "fichier",         :string,    :default => "", :null => false
-    t.column "description",     :text,      :default => "", :null => false
-    t.column "created_on",      :timestamp,                 :null => false
-    t.column "updated_on",      :timestamp,                 :null => false
+    t.column "identifiant_id",  :integer,  :default => 0,  :null => false
+    t.column "typedocument_id", :integer,  :default => 0,  :null => false
+    t.column "client_id",       :integer,  :default => 0,  :null => false
+    t.column "titre",           :string,   :default => "", :null => false
+    t.column "fichier",         :string,   :default => "", :null => false
+    t.column "description",     :text,     :default => "", :null => false
+    t.column "created_on",      :datetime,                 :null => false
+    t.column "updated_on",      :datetime,                 :null => false
     t.column "version",         :integer
   end
 
@@ -362,7 +364,7 @@ ActiveRecord::Schema.define(:version => 70) do
   add_index "ingenieurs", ["identifiant_id"], :name => "ingenieurs_identifiant_id_index"
 
   create_table "jourferies", :force => true do |t|
-    t.column "jour", :timestamp, :null => false
+    t.column "jour", :datetime, :null => false
   end
 
   create_table "licenses", :force => true do |t|

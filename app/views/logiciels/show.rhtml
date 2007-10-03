@@ -33,10 +33,10 @@
 <tr><td><b><%= _('Group') %></b></td>
     <td><%= public_link_to(@logiciel.groupe.nom, groupe_path(@logiciel.groupe_id) ) if @logiciel.groupe %></td></tr>
 
-<tr><td><b><%= _('Links') %></b> <%= link_to_new_url(@logiciel.id) %></td>
-    <% options = {:no_title => true, :edit => 'url'} %>
-    <td><%= public_show_liste(@logiciel.urls, 'url', options) {|u|
-             "<a href=\"#{u.value.urlize}\" target=\"_blank\">#{u.typeurl.nom}</a>"
+<tr><td><b><%= _('Links') %></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
+    <% options = {:no_title => true, :edit => 'urllogiciel'} %>
+    <td><%= public_show_liste(@logiciel.urllogiciels, 'url', options) {|u|
+             "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.typeurl.nom}</a>"
             } %>
     </td></tr>
 
@@ -50,7 +50,7 @@
 </tr>
 
 <tr><td><b><%=_('Package(s)')%></b><%= link_to_new_paquet(@logiciel.id) %></td>
-  <td>
+  <td>    
      <% options[:edit] = 'paquet' %>
      <%=  show_liste(@logiciel.paquets, _('Package'), options) do |paquet|
         link_to_paquet paquet

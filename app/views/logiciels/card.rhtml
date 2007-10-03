@@ -18,7 +18,7 @@
     <td><%=h @logiciel.resume %></td></tr>
 
 <tr><td><b>Site(s)</b></td>
-    <td><%= show_liste(Url.find_all_by_resource_id_and_typeurl_id(@logiciel.id, 3), 'url', {:no_title => true}) {|u| "#{link_to u.typeurl.nom+' : ',show_url_path(u)} <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 3), 'url', {:no_title => true}) {|u| "#{link_to u.typeurl.nom+' : ',show_urllogiciel_path(u)} <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
 
 <tr><td><b>Version</b></td>
     <td><%=h '-' %></td></tr>
@@ -41,13 +41,13 @@
     <td>@logiciel.fonctionnalites</td></tr>
 
 <tr><td><b>Documentation</b></td>
-    <td><%= show_liste(Url.find_all_by_resource_id_and_typeurl_id(@logiciel.id, 7), 'url', {:no_title => true}) {|u|
-            "#{link_to u.typeurl.nom+' : ', show_url_path(u)}
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 7), 'url', {:no_title => true}) {|u|
+            "#{link_to u.typeurl.nom+' : ', show_urllogiciel_path(u)}
             <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
 
 <tr><td><b>Support en ligne</b></td>
-    <td><%= show_liste(Url.find_all_by_resource_id_and_typeurl_id(@logiciel.id, 0), 'url', {:no_title => true}) {|u|
-            "#{link_to u.typeurl.nom+' : ', show_url_path(u)}
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 0), 'url', {:no_title => true}) {|u|
+            "#{link_to u.typeurl.nom+' : ', show_urllogiciel_path(u)}
             <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
 
 <tr><td><b>OS</b></td>
@@ -80,8 +80,8 @@
     <td>@logiciel.patch_add_on </td></tr>
 
 <tr><td><b>Bug Tracker</b></td>
-    <td><%= show_liste(Url.find_all_by_resource_id_and_typeurl_id(@logiciel.id, 8), 'url', {:no_title => true}) {|u|
-            "#{link_to u.typeurl.nom+' : ', show_url_path(u)}
+    <td><%= show_liste(Urllogiciel.find_all_by_logiciel_id_and_typeurl_id(@logiciel.id, 8), 'url', {:no_title => true}) {|u|
+            "#{link_to u.typeurl.nom+' : ', show_urllogiciel_path(u)}
             <a href=\"#{u.valeur.urlize}\">#{u.valeur}</a>" } %></td></tr>
 
 <tr><td><b>Contributions</b></td>

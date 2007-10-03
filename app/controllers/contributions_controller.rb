@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class ContributionsController < ApplicationController
-  helper :filters, :demandes, :paquets, :binaires, :export, :urls, :logiciels
+  helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
 
   before_filter :login_required, :except => [:index,:select,:show,:list]
 
@@ -41,8 +41,8 @@ class ContributionsController < ApplicationController
       :include => [:logiciel,:etatreversement,:demandes] }
 
     if params.has_key? :filters
-      session[:contributions_filters] =
-        Filters::Contributions.new(params[:filters])
+      session[:contributions_filters] = 
+        Filters::Contributions.new(params[:filters]) 
     end
     conditions = nil
     if session.data.has_key? :contributions_filters
@@ -73,7 +73,7 @@ class ContributionsController < ApplicationController
 
   def new
     @contribution = Contribution.new
-    @url = Url.new
+    @urlreversement = Urlreversement.new
     # we can precise the software with this, see softwares/show for more info
     @contribution.logiciel_id = params[:id]
     @contribution.ingenieur = @ingenieur
@@ -154,10 +154,10 @@ private
   end
 
   def _update(contribution)
-    url = params[:url]
-    unless url.blank?
-      url[:contribution_id] = contribution.id
-      Url.create(url)
+    urlreversement = params[:urlreversement]
+    unless urlreversement.blank?
+      urlreversement[:contribution_id] = contribution.id
+      Urlreversement.create(urlreversement)
     end
     contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
     contribution.cloture_le = nil if params[:contribution][:clos] == '0'

@@ -4,11 +4,11 @@ require 'demandes_controller'
 # Re-raise errors caught by the controller.
 # class DemandesController; def rescue_action(e) raise e end; end
 class DemandesControllerTest < Test::Unit::TestCase
-
-  fixtures :demandes, :commentaires, :demandes_paquets,
+ 
+  fixtures :demandes, :commentaires, :demandes_paquets, 
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
-    :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
-    :permissions_roles, :contrats, :contrats_engagements, :engagements,
+    :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles, 
+    :permissions_roles, :contrats, :contrats_engagements, :engagements, 
     :contrats_ingenieurs, :identifiants, :identifiants_roles, :piecejointes,
     :jourferies, :binaires, :binaires_demandes, :supports, :typedemandes
 
@@ -73,6 +73,9 @@ class DemandesControllerTest < Test::Unit::TestCase
       :severite_id => 1,
       :contrat_id => 1
     }
+
+    assert_response :redirect
+    assert_redirected_to :action => 'index'
 
     assert_equal num_demandes + 1, Demande.count
   end

@@ -144,23 +144,15 @@ class ExportController < ApplicationController
   def generate_report(report, type, options)
     #to keep the custom filters before the export :
     flash[:conditions] = flash[:conditions]
-    case type
-      when :text
-        file_extension = '.txt'
-        content_type = 'text/plain'
-      when :csv
-        file_extension ='.csv'
-        content_type = 'text/csv'
-      when :pdf
-        file_extension = '.pdf'
-        content_type = 'application/pdf'
-      when :html
-        file_extension = '.html'
-        content_type = 'text/html'
-      when :ods
-        file_extension = '.ods'
-        content_type = 'application/vnd.oasis.opendocument.spreadsheet'
-    end
+    MIME_EXTENSION = { 
+      :text => [ '.txt', 'text/plain' ],
+      :csv  => [ '.csv', 'text/csv' ],
+      :pdf  => [ '.pdf', 'application/pdf' ]
+      :html => [ '.html', 'text/html' ]
+      :ods  => [ '.ods', 'application/vnd.oasis.opendocument.spreadsheet']
+    }
+    file_extension = MIME_EXTENSION[type].first
+    content_type = MIME_EXTENSION[type].last
     prefix = ( @beneficiaire ? @beneficiaire.client.nom : 'OSSA' )
     suffix = Time.now.strftime('%d_%m_%Y')
     filename = [ prefix, params[:action], suffix].join('_') + file_extension
@@ -187,10 +179,10 @@ class ExportController < ApplicationController
     requests= flash[:requests]
     total = flash[:total]
     data = []
-    row = ['', _('To be closed')+ "(I)=(IV)\n"+ _('"last week"'),'','','',
+    row = ['', _('To be closed')+ " (I)",'','','',
       _('New requests'),'','','',
-      _("Requests closed \n this week") + '(IV)','','','',
-      _("Total in progress \n end week") + '(V=I+III-IV)','','','',
+      _("Requests closed \n this week") + ' (IV)','','','',
+      _("Total in progress \n end week") + ' (V=I+III-IV)','','','',
       _('TOTAL')
     ]
     data << row
@@ -220,6 +212,7 @@ class ExportController < ApplicationController
     data << row
 
     report = data.to_table 
+    puts report.inspect
     generate_report(report, :ods, {})
 
     flash[:clients]= flash[:clients]
@@ -230,7 +223,7 @@ class ExportController < ApplicationController
   private
   def repeat4times( row, element, decalage)
     4.times do |i|
-      row << element[i+decalage]
+      row << element[i+decalage].to_i
     end
   end
 

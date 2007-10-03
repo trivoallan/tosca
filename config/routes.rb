@@ -64,7 +64,8 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :admin => :any, :select => :get },
     :member => { :list => :get }
   map.resources :demandes,
-    :collection => { :ajax_display_packages => :post },
+    :collection => { :ajax_display_packages => :post,
+      :en_attente => :get },
     :member => { :comment=> :any,
       :associer_contribution => :post,
       :delete_contribution => :post,
@@ -113,7 +114,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :typedemandes
   map.resources :typedocuments
   map.resources :typeurls
-  map.resources :urls
+  map.resources :urllogiciels
+  map.resources :urlreversements
 
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
