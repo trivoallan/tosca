@@ -15,7 +15,7 @@ class DemandesController < ApplicationController
     conditions.first << 'demandes.statut_id IN (?)'
     conditions << Statut::OPENED
 
-    conditions.first << '(demandes.expected_on > NOW() OR (demandes.expected_on IS NULL AND commentaires.identifiant.id != ?))'
+    conditions.first << '(demandes.expected_on > NOW() OR (demandes.expected_on IS NULL AND commentaires.identifiant_id != ?))'
     conditions << session[:user].id
 
     if @ingenieur
@@ -29,8 +29,8 @@ class DemandesController < ApplicationController
     options[:conditions] = conditions
     @demande_pages, @demandes = paginate :demandes, options
 
-    @title = N_('My pending request', 'My pending requests', @demandes.size)
-    render :partial => 'requests_list'
+    @title = n_('My pending request', 'My pending requests', @demandes.size)
+    render :partial => 'requests_list', :layout => true
   end
 
   def index
