@@ -26,12 +26,23 @@ class Commentaire < ActiveRecord::Base
     ( prive ? _("private") : _("public") )
   end
 
+
+
   private
   # We destroy attachment if appropriate
   # belongs_to don't allow us to call :dependent :'(
   before_destroy :delete_pj
   def delete_pj
     self.piecejointe.destroy unless self.piecejointe.nil?
+    if self.demande.last_comment_id == self.id
+      # no check needed, coz a request MUST have at least one comment
+      # the first one, with the request description.
+      last_comment = self.demande.find_last_comment
+      self.demande.update_attribute :last_comment_id, last_comment_id.id
+    end
+    # We MUST have at least the first comment
+    return false if self.demande.first_comment_id == self.id
+    true
   end
 
   # update request attributes, when creating a comment
@@ -47,6 +58,7 @@ class Commentaire < ActiveRecord::Base
         self.demande[attr] = self[attr] if self[attr] and self.demande[attr] != self[attr]
       end
     end
+    self.demande.last_comment_id = self.id
     #To update the demande.updated_on
     self.demande.save
   end

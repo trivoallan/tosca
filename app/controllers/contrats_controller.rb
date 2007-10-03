@@ -51,7 +51,10 @@ class ContratsController < ApplicationController
 
 private
   def _form
-    @clients = Client.find_select
+    # Needed in order to be able to assiocate with it
+    Client.with_exclusive_scope do
+      @clients = Client.find_select
+    end
     @engagements = Engagement.find(:all, Engagement::OPTIONS)
     @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
   end
