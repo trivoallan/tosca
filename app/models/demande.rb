@@ -88,6 +88,11 @@ class Demande < ActiveRecord::Base
     "#{typedemande.nom} (#{severite.nom}) : #{description}"
   end
 
+  def find_last_comment
+    options = { :order => 'created_on ASC' }
+    self.commentaires.find(:first, options)
+  end
+
   def update_first_comment
     first_comment = self.first_comment
     if first_comment and first_comment.corps != self.description
