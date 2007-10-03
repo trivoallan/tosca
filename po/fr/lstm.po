@@ -249,11 +249,10 @@ msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
 #: app/controllers/demandes_controller.rb:32
-#, fuzzy
 msgid "My pending request"
 msgid_plural "My pending requests"
-msgstr[0] "une nouvelle demande"
-msgstr[1] "une nouvelle demande"
+msgstr[0] "Ma demande en attente"
+msgstr[1] "Mes demandes en attente"
 
 #: app/controllers/demandes_controller.rb:53
 #: app/helpers/demandes_helper.rb:202
@@ -4672,63 +4671,6 @@ msgstr "une nouvelle url"
 msgid "Create a New typeurl"
 msgstr "Créér un nouveau type d'url"
 
-#~ msgid "url"
-#~ msgstr "url"
-
-#, fuzzy
-#~ msgid "Url|Resource"
-#~ msgstr "Ressources"
-
-#, fuzzy
-#~ msgid "Url|Resource type"
-#~ msgstr "Ressources"
-
-#, fuzzy
-#~ msgid "Url|Value"
-#~ msgstr "Valeur"
-
-#, fuzzy
-#~ msgid "Url|Typeurl"
-#~ msgstr "Typeurl"
-
 #~ msgid "Are you sure you want to delete comment %s ?"
 #~ msgstr "Étes vous sûr de vouloir effacer le commentaire %s ?"
 
-#~ msgid "Editing url"
-#~ msgstr "Éditer une url"
-
-#, fuzzy
-#~ msgid "List of links"
-#~ msgstr "Liste des appels"
-
-#, fuzzy
-#~ msgid "Add an url"
-#~ msgstr "Ajouter un utilisateur"
-
-#~ msgid "domain"
-#~ msgstr "domaine"
-
-#~ msgid "engineer"
-#~ msgstr "ingénieur"
-
-#~ msgid "recipient"
-#~ msgstr "bénéficiaire"
-
-#~ msgid ""
-#~ "Inform the fields below. You will be able to attach a file after this "
-#~ "stage."
-#~ msgstr ""
-#~ "Remplissez les champs suivants. Vous pourrez attacher un fichier lors de "
-#~ "l'étape suivante."
-
-#, fuzzy
-#~ msgid "Demande|Reproductible"
-#~ msgstr "Socle"
-
-#, fuzzy
-#~ msgid "Identifiant|Affichage personnel"
-#~ msgstr "Téléphone"
-
-#, fuzzy
-#~ msgid "Socle|Client"
-#~ msgstr "Client"
