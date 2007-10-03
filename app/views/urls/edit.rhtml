@@ -1,8 +1,0 @@
-<h1><%= _('Editing url')%></h1>
-
-<% form_tag(url_path(@myurl), :method => :put ) do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _('Validate') %>
-<% end %>
-
-<%= link_to_show_and_list( @myurl ) %>
