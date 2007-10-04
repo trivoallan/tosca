@@ -72,9 +72,14 @@ class Commentaire < ActiveRecord::Base
     end
   end
 
-  before_validation :validate_status
-  def validate_status
-    not (self.demande.statut_id == self.statut_id)
-  end
+#   before_validation :validate_status
+#   def validate_status
+#     if self.statut_id and self.demande and self.demande.statut_id
+#       not (self.demande.statut_id == self.statut_id)
+#     else
+#       #Creation of the comment so all is nil so we this to return true
+#       true
+#     end
+#   end
 
 end
