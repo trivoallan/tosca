@@ -27,7 +27,6 @@ class Commentaire < ActiveRecord::Base
   end
 
 
-
   private
   # We destroy attachment if appropriate
   # belongs_to don't allow us to call :dependent :'(
@@ -71,6 +70,11 @@ class Commentaire < ActiveRecord::Base
         self.demande.update_attribute(:description, self.corps)
       end
     end
+  end
+
+  before_validation :validate_status
+  def validate_status
+    not (self.demande.statut_id == self.statut_id)
   end
 
 end

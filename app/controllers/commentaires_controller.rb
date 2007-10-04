@@ -49,10 +49,11 @@ class CommentairesController < ApplicationController
     @commentaire.identifiant_id = user.id
 
     # on vérifie et on envoie le courrier
+    # TODO : Le validate dans le model commentaire ne semble pas fonctionner, voir pourquoi
     if @commentaire.corps.size < 5
       @commentaire.errors.add_on_empty('corps')
-      # Il ne faut _PAS_ de .now dans ce warn. Il est renvoyé au
-      # contrôleur des demandes.
+#       Il ne faut _PAS_ de .now dans ce warn. Il est renvoyé au
+#       contrôleur des demandes.
       flash[:warn] = _("Your comment is too short, please rewrite it.")
     elsif @commentaire.save
       flash[:notice] = _("Your comment was successfully added.")
@@ -70,7 +71,7 @@ class CommentairesController < ApplicationController
       }
       Notifier::deliver_request_new_comment(options, flash)
     else
-      flash[:warn] = _("Your comment was successfully added")
+      flash[:warn] = _("Your comment <b>can not</b> be added.")
     end
 
     redirect_to( demande_path(demande) )

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-10-03 19:21+0200\n"
+"POT-Creation-Date: 2007-10-04 16:28+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,9 +47,9 @@ msgstr ""
 #: app/controllers/account_controller.rb:146
 #: app/controllers/account_controller.rb:215
 #: app/controllers/export_controller.rb:133
-#: app/views/account/_users_list.rhtml:11
 #: app/views/account/_edit_recipient.rhtml:6
 #: app/views/account/_show_recipient.rhtml:6
+#: app/views/account/_users_list.rhtml:11
 #: app/views/appels/_calls_info.rhtml:22 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
 #: app/views/demandes/_appels.rhtml:2 app/views/demandes/_form.rhtml:24
@@ -84,17 +84,17 @@ msgstr ""
 
 #: app/controllers/account_controller.rb:165
 #: app/controllers/account_controller.rb:202
-#: app/views/account/_users_list.rhtml:12
 #: app/views/account/_edit_account_informations.rhtml:51
 #: app/views/account/_show_account_information.rhtml:16
+#: app/views/account/_users_list.rhtml:12
 msgid "Email"
 msgstr ""
 
 #: app/controllers/account_controller.rb:165
 #: app/controllers/account_controller.rb:203
-#: app/views/account/_users_list.rhtml:13
 #: app/views/account/_edit_account_informations.rhtml:52
 #: app/views/account/_show_account_information.rhtml:17
+#: app/views/account/_users_list.rhtml:13
 #: app/views/demandes/_infos_demande.rhtml:43
 msgid "Phone"
 msgstr ""
@@ -194,31 +194,31 @@ msgstr ""
 msgid "Client updated successfully."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:56
+#: app/controllers/commentaires_controller.rb:57
 msgid "Your comment is too short, please rewrite it."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:58
+#: app/controllers/commentaires_controller.rb:59
 msgid "Your comment was successfully added."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:73
-msgid "Your comment was successfully added"
+#: app/controllers/commentaires_controller.rb:74
+msgid "Your comment <b>can not</b> be added."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:84
+#: app/controllers/commentaires_controller.rb:85
 msgid "The comment %s is now %s"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:86
+#: app/controllers/commentaires_controller.rb:87
 msgid "A error has occured : The comment was not modified"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:108
+#: app/controllers/commentaires_controller.rb:109
 msgid "The comment was successfully updated."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:120
+#: app/controllers/commentaires_controller.rb:121
 msgid "The comment was successfully destroyed."
 msgstr ""
 
@@ -395,15 +395,15 @@ msgid "Id"
 msgstr ""
 
 #: app/controllers/export_controller.rb:133 app/views/account/_menu.rhtml:18
-#: app/views/binaires/show.rhtml:9 app/views/contributions/_form.rhtml:9
+#: app/views/binaires/show.rhtml:9
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_contributions_info.rhtml:28
-#: app/views/urllogiciels/_form.rhtml:6 app/views/urllogiciels/index.rhtml:6
-#: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
-#: app/views/demandes/_form.rhtml:55
+#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:55
 #: app/views/demandes/_infos_demande.rhtml:23
 #: app/views/demandes/_requests_list.rhtml:9 app/views/paquets/_form.rhtml:7
 #: app/views/paquets/_paquets_list.rhtml:7 app/views/paquets/show.rhtml:16
+#: app/views/urllogiciels/_form.rhtml:6 app/views/urllogiciels/index.rhtml:6
+#: app/views/urllogiciels/show.rhtml:7 app/views/urlreversements/index.rhtml:6
 msgid "Software"
 msgstr ""
 
@@ -744,36 +744,6 @@ msgstr ""
 msgid "Urlreversement was successfully updated."
 msgstr ""
 
-#: app/helpers/pages_helper.rb:38
-msgid "Do you really want to destroy this object ?"
-msgstr ""
-
-#: app/helpers/pages_helper.rb:92 app/helpers/static_image.rb:78
-msgid "First page"
-msgstr ""
-
-#: app/helpers/pages_helper.rb:95 app/helpers/static_image.rb:84
-#: app/views/typecontributions/index.rhtml:20
-msgid "Previous page"
-msgstr ""
-
-#: app/helpers/pages_helper.rb:101
-msgid " to "
-msgstr ""
-
-#: app/helpers/pages_helper.rb:102
-msgid "&nbsp; on "
-msgstr ""
-
-#: app/helpers/pages_helper.rb:105 app/helpers/static_image.rb:90
-#: app/views/typecontributions/index.rhtml:21
-msgid "Next page"
-msgstr ""
-
-#: app/helpers/pages_helper.rb:108 app/helpers/static_image.rb:96
-msgid "Last page"
-msgstr ""
-
 #: app/helpers/application_helper.rb:58 app/helpers/demandes_helper.rb:74
 #: app/views/account/_show_account_information.rhtml:18
 #: app/views/clients/show.rhtml:23
@@ -896,7 +866,7 @@ msgid "Do you really want to delete %s"
 msgstr ""
 
 #: app/helpers/links_helper.rb:112 app/views/binaires/show.rhtml:1
-#: app/views/contributions/show.rhtml:1 app/views/contributions/list.rhtml:1
+#: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
 msgid "Home"
 msgstr ""
 
@@ -930,8 +900,8 @@ msgstr ""
 
 #: app/helpers/links_helper.rb:129 app/views/binaires/_form.rhtml:30
 #: app/views/contributions/_contributions_info.rhtml:41
-#: app/views/contributions/show.rhtml:2 app/views/contributions/list.rhtml:2
-#: app/views/contributions/select.rhtml:1 app/views/logiciels/show.rhtml:61
+#: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
+#: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:61
 msgid "Contributions"
 msgstr ""
 
@@ -970,6 +940,36 @@ msgstr ""
 
 #: app/helpers/logiciels_helper.rb:30
 msgid "Display all softwares"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:38
+msgid "Do you really want to destroy this object ?"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:92 app/helpers/static_image.rb:78
+msgid "First page"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:95 app/helpers/static_image.rb:84
+#: app/views/typecontributions/index.rhtml:20
+msgid "Previous page"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:101
+msgid " to "
+msgstr ""
+
+#: app/helpers/pages_helper.rb:102
+msgid "&nbsp; on "
+msgstr ""
+
+#: app/helpers/pages_helper.rb:105 app/helpers/static_image.rb:90
+#: app/views/typecontributions/index.rhtml:21
+msgid "Next page"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:108 app/helpers/static_image.rb:96
+msgid "Last page"
 msgstr ""
 
 #: app/helpers/paquets_helper.rb:16
@@ -1066,30 +1066,6 @@ msgstr ""
 
 #: app/helpers/urlreversements_helper.rb:14
 msgid "new url"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "preference"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "Preference|Identifiant"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "Preference|Mail text"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "Preference|All mail"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "Preference|Digest daily"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "Preference|Digest weekly"
 msgstr ""
 
 #: app/models/appel.rb:-
@@ -1265,6 +1241,42 @@ msgid "Client|Inactive"
 msgstr ""
 
 #: app/models/client.rb:-
+msgid "contrat"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Client"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Ouverture"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Cloture"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Paquets count"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Astreinte"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Socle"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Nom"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Contrat|Support"
+msgstr ""
+
+#: app/models/client.rb:-
 msgid "paquet"
 msgstr ""
 
@@ -1326,42 +1338,6 @@ msgstr ""
 
 #: app/models/client.rb:-
 msgid "Paquet|Active"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "contrat"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Client"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Ouverture"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Cloture"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Paquets count"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Astreinte"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Socle"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Nom"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Contrat|Support"
 msgstr ""
 
 #: app/models/commentaire.rb:-
@@ -2192,6 +2168,30 @@ msgstr ""
 msgid "Urllogiciel|Valeur"
 msgstr ""
 
+#: app/models/preference.rb:-
+msgid "preference"
+msgstr ""
+
+#: app/models/preference.rb:-
+msgid "Preference|Identifiant"
+msgstr ""
+
+#: app/models/preference.rb:-
+msgid "Preference|Mail text"
+msgstr ""
+
+#: app/models/preference.rb:-
+msgid "Preference|All mail"
+msgstr ""
+
+#: app/models/preference.rb:-
+msgid "Preference|Digest daily"
+msgstr ""
+
+#: app/models/preference.rb:-
+msgid "Preference|Digest weekly"
+msgstr ""
+
 #: app/models/urlreversement.rb:-
 msgid "urlreversement"
 msgstr ""
@@ -2246,6 +2246,100 @@ msgstr ""
 
 #: app/views/account/_edit.rhtml:16
 msgid "The last field must be fill with CSV format."
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:9
+msgid "Custom display of the request list"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:12
+#: app/views/bienvenue/admin.rhtml:17 app/views/permissions/_form.rhtml:10
+msgid "Roles"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:15
+#: app/views/account/_show_account_information.rhtml:18
+#: app/views/clients/_form.rhtml:20 app/views/clients/show.rhtml:22
+msgid "Inactive"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:20
+msgid "Choose a login"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:27
+msgid "Is the user a customer of the service ?"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:29
+msgid "Are the users customer of the service ?"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:30
+msgid ""
+"<label>Text in CSV format (separator : tabulation)</label><br />\n"
+"                      Full name Title Email Phone Login Password  "
+"Informations"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:36
+msgid "Customer %s"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:57
+msgid "Choose a password"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:57
+msgid "Modify your password"
+msgstr ""
+
+#: app/views/account/_edit_account_informations.rhtml:59
+msgid "Confirm this last"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:5
+#: app/views/account/_show_engineer.rhtml:6
+#: app/views/account/_users_list.rhtml:10 app/views/appels/_form.rhtml:7
+#: app/views/contributions/_form.rhtml:13
+msgid "Engineer"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:7
+#: app/views/account/_show_engineer.rhtml:10
+#: app/views/ingenieurs/_form.rhtml:5 app/views/ingenieurs/index.rhtml:5
+#: app/views/ingenieurs/show.rhtml:4
+msgid "Project manager"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:10
+#: app/views/account/_show_engineer.rhtml:13
+#: app/views/ingenieurs/_form.rhtml:8 app/views/ingenieurs/show.rhtml:7
+msgid "OSSA expert"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:14
+#: app/views/account/_show_engineer.rhtml:24
+#: app/views/bienvenue/admin.rhtml:22 app/views/bienvenue/admin.rhtml:23
+#: app/views/ingenieurs/_form.rhtml:11 app/views/ingenieurs/show.rhtml:18
+msgid "Skills"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:19
+#: app/views/bienvenue/admin.rhtml:32 app/views/ingenieurs/_form.rhtml:15
+msgid "Contracts"
+msgstr ""
+
+#: app/views/account/_edit_recipient.rhtml:12
+msgid "Notify subalterns"
+msgstr ""
+
+#: app/views/account/_edit_recipient.rhtml:15
+msgid "Notify at"
+msgstr ""
+
+#: app/views/account/_edit_recipient.rhtml:18
+msgid "Notify cc"
 msgstr ""
 
 #: app/views/account/_menu.rhtml:8
@@ -2322,6 +2416,44 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#: app/views/account/_show_account_information.rhtml:3
+msgid "Role"
+msgstr ""
+
+#: app/views/account/_show_account_information.rhtml:18
+#: app/views/clients/show.rhtml:23
+msgid "Yes"
+msgstr ""
+
+#: app/views/account/_show_account_information.rhtml:27
+#: app/views/account/_show_engineer.rhtml:4
+#: app/views/account/_show_recipient.rhtml:4
+msgid "Show an account"
+msgstr ""
+
+#: app/views/account/_show_engineer.rhtml:8
+#: app/views/account/_users_info.rhtml:24 app/views/arches/_form.rhtml:4
+#: app/views/beneficiaires/index.rhtml:5 app/views/binaires/_form.rhtml:20
+#: app/views/binaires/show.rhtml:14 app/views/clients/_form.rhtml:6
+#: app/views/clients/index.rhtml:4 app/views/clients/stats.rhtml:5
+#: app/views/competences/_form.rhtml:4 app/views/contrats/_form.rhtml:9
+#: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_form.rhtml:6
+#: app/views/demandes/_form_binaires.rhtml:4 app/views/groupes/_form.rhtml:4
+#: app/views/groupes/index.rhtml:5 app/views/ingenieurs/index.rhtml:5
+#: app/views/ingenieurs/show.rhtml:2 app/views/logiciels/_form.rhtml:3
+#: app/views/logiciels/_softwares_list.rhtml:6
+#: app/views/logiciels/show.rhtml:10 app/views/paquets/_form.rhtml:18
+#: app/views/paquets/_paquets_info.rhtml:23
+#: app/views/paquets/_paquets_list.rhtml:7 app/views/permissions/_form.rhtml:4
+#: app/views/roles/_form.rhtml:3 app/views/severites/_form.rhtml:3
+#: app/views/socles/_form.rhtml:3 app/views/statuts/_form.rhtml:3
+#: app/views/supports/_form.rhtml:3 app/views/typecontributions/_form.rhtml:3
+#: app/views/typedemandes/_form.rhtml:3 app/views/typedocuments/_form.rhtml:3
+#: app/views/typeurls/_form.rhtml:3
+msgid "Name"
+msgstr ""
+
 #: app/views/account/_users_info.rhtml:11
 #: app/views/appels/_calls_info.rhtml:10
 #: app/views/demandes/_infos_demande.rhtml:2
@@ -2340,29 +2472,6 @@ msgstr ""
 
 #: app/views/account/_users_info.rhtml:22
 msgid "Search "
-msgstr ""
-
-#: app/views/account/_users_info.rhtml:24
-#: app/views/account/_show_engineer.rhtml:8 app/views/arches/_form.rhtml:4
-#: app/views/beneficiaires/index.rhtml:5 app/views/binaires/_form.rhtml:20
-#: app/views/binaires/show.rhtml:14 app/views/clients/_form.rhtml:6
-#: app/views/clients/index.rhtml:4 app/views/clients/stats.rhtml:5
-#: app/views/competences/_form.rhtml:4 app/views/contrats/_form.rhtml:9
-#: app/views/contributions/_form.rhtml:6
-#: app/views/contributions/_contributions_admin.rhtml:7
-#: app/views/demandes/_form_binaires.rhtml:4 app/views/groupes/_form.rhtml:4
-#: app/views/groupes/index.rhtml:5 app/views/ingenieurs/index.rhtml:5
-#: app/views/ingenieurs/show.rhtml:2 app/views/logiciels/_form.rhtml:3
-#: app/views/logiciels/_softwares_list.rhtml:6
-#: app/views/logiciels/show.rhtml:10 app/views/paquets/_form.rhtml:18
-#: app/views/paquets/_paquets_info.rhtml:23
-#: app/views/paquets/_paquets_list.rhtml:7 app/views/permissions/_form.rhtml:4
-#: app/views/roles/_form.rhtml:3 app/views/severites/_form.rhtml:3
-#: app/views/socles/_form.rhtml:3 app/views/statuts/_form.rhtml:3
-#: app/views/supports/_form.rhtml:3 app/views/typecontributions/_form.rhtml:3
-#: app/views/typedemandes/_form.rhtml:3 app/views/typedocuments/_form.rhtml:3
-#: app/views/typeurls/_form.rhtml:3
-msgid "Name"
 msgstr ""
 
 #: app/views/account/_users_info.rhtml:26
@@ -2406,22 +2515,15 @@ msgstr ""
 msgid "Become"
 msgstr ""
 
-#: app/views/account/_users_list.rhtml:10
-#: app/views/account/_edit_engineer.rhtml:5
-#: app/views/account/_show_engineer.rhtml:6 app/views/appels/_form.rhtml:7
-#: app/views/contributions/_form.rhtml:13
-msgid "Engineer"
-msgstr ""
-
 #: app/views/account/edit.rhtml:7 app/views/account/login.rhtml:18
 #: app/views/account/signup.rhtml:5 app/views/appels/edit.rhtml:5
 #: app/views/beneficiaires/new.rhtml:5 app/views/binaires/edit.rhtml:5
 #: app/views/binaires/new.rhtml:5 app/views/contributions/edit.rhtml:6
+#: app/views/documents/edit.rhtml:6 app/views/engagements/edit.rhtml:5
+#: app/views/licenses/edit.rhtml:5 app/views/logiciels/new.rhtml:5
 #: app/views/urllogiciels/edit.rhtml:5 app/views/urllogiciels/new.rhtml:5
 #: app/views/urlreversements/edit.rhtml:5
-#: app/views/urlreversements/new.rhtml:5 app/views/documents/edit.rhtml:6
-#: app/views/engagements/edit.rhtml:5 app/views/licenses/edit.rhtml:5
-#: app/views/logiciels/new.rhtml:5
+#: app/views/urlreversements/new.rhtml:5
 msgid "Validate"
 msgstr ""
 
@@ -2444,108 +2546,6 @@ msgstr ""
 
 #: app/views/account/show.rhtml:4
 msgid "Account of %s"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:9
-msgid "Custom display of the request list"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:12
-#: app/views/bienvenue/admin.rhtml:17 app/views/permissions/_form.rhtml:10
-msgid "Roles"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:15
-#: app/views/account/_show_account_information.rhtml:18
-#: app/views/clients/_form.rhtml:20 app/views/clients/show.rhtml:22
-msgid "Inactive"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:20
-msgid "Choose a login"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:27
-msgid "Is the user a customer of the service ?"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:29
-msgid "Are the users customer of the service ?"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:30
-msgid ""
-"<label>Text in CSV format (separator : tabulation)</label><br />\n"
-"                      Full name Title Email Phone Login Password  "
-"Informations"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:36
-msgid "Customer %s"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:57
-msgid "Choose a password"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:57
-msgid "Modify your password"
-msgstr ""
-
-#: app/views/account/_edit_account_informations.rhtml:59
-msgid "Confirm this last"
-msgstr ""
-
-#: app/views/account/_edit_engineer.rhtml:7
-#: app/views/account/_show_engineer.rhtml:10
-#: app/views/ingenieurs/_form.rhtml:5 app/views/ingenieurs/index.rhtml:5
-#: app/views/ingenieurs/show.rhtml:4
-msgid "Project manager"
-msgstr ""
-
-#: app/views/account/_edit_engineer.rhtml:10
-#: app/views/account/_show_engineer.rhtml:13
-#: app/views/ingenieurs/_form.rhtml:8 app/views/ingenieurs/show.rhtml:7
-msgid "OSSA expert"
-msgstr ""
-
-#: app/views/account/_edit_engineer.rhtml:14
-#: app/views/account/_show_engineer.rhtml:24
-#: app/views/bienvenue/admin.rhtml:22 app/views/bienvenue/admin.rhtml:23
-#: app/views/ingenieurs/_form.rhtml:11 app/views/ingenieurs/show.rhtml:18
-msgid "Skills"
-msgstr ""
-
-#: app/views/account/_edit_engineer.rhtml:19
-#: app/views/bienvenue/admin.rhtml:32 app/views/ingenieurs/_form.rhtml:15
-msgid "Contracts"
-msgstr ""
-
-#: app/views/account/_edit_recipient.rhtml:12
-msgid "Notify subalterns"
-msgstr ""
-
-#: app/views/account/_edit_recipient.rhtml:15
-msgid "Notify at"
-msgstr ""
-
-#: app/views/account/_edit_recipient.rhtml:18
-msgid "Notify cc"
-msgstr ""
-
-#: app/views/account/_show_account_information.rhtml:3
-msgid "Role"
-msgstr ""
-
-#: app/views/account/_show_account_information.rhtml:18
-#: app/views/clients/show.rhtml:23
-msgid "Yes"
-msgstr ""
-
-#: app/views/account/_show_account_information.rhtml:27
-#: app/views/account/_show_engineer.rhtml:4
-#: app/views/account/_show_recipient.rhtml:4
-msgid "Show an account"
 msgstr ""
 
 #: app/views/appels/_calls_info.rhtml:12
@@ -3240,53 +3240,29 @@ msgstr ""
 msgid "Engineers assigned to this contract"
 msgstr ""
 
-#: app/views/contributions/_form.rhtml:16
+#: app/views/contributions/_contributions_admin.rhtml:1
+msgid "List of contributions"
+msgstr ""
+
 #: app/views/contributions/_contributions_admin.rhtml:7
+#: app/views/contributions/_form.rhtml:16
 msgid "Patch"
 msgstr ""
 
-#: app/views/contributions/_form.rhtml:19
-msgid "Impacted version"
-msgstr ""
-
-#: app/views/contributions/_form.rhtml:22
-msgid "Kind of contribution"
-msgstr ""
-
-#: app/views/contributions/_form.rhtml:30
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_contributions_info.rhtml:34
+#: app/views/contributions/_form.rhtml:30
 msgid "State"
 msgstr ""
 
-#: app/views/contributions/_form.rhtml:33
-msgid "Add an url for the community issue"
-msgstr ""
-
-#: app/views/contributions/_form.rhtml:36
 #: app/views/contributions/_contributions_admin.rhtml:8
+#: app/views/contributions/_form.rhtml:36
 msgid "Submitted on"
 msgstr ""
 
-#: app/views/contributions/_form.rhtml:40
 #: app/views/contributions/_contributions_admin.rhtml:8
+#: app/views/contributions/_form.rhtml:40
 msgid "Closed on"
-msgstr ""
-
-#: app/views/contributions/_form.rhtml:46
-msgid "Synthesis"
-msgstr ""
-
-#: app/views/contributions/_form.rhtml:49
-msgid "Description (public)"
-msgstr ""
-
-#: app/views/contributions/_form.rhtml:52
-msgid "Technical details (private)"
-msgstr ""
-
-#: app/views/contributions/_contributions_admin.rhtml:1
-msgid "List of contributions"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:8
@@ -3318,24 +3294,28 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: app/views/contributions/show.rhtml:16
-msgid "link"
+#: app/views/contributions/_form.rhtml:19
+msgid "Impacted version"
 msgstr ""
 
-#: app/views/contributions/show.rhtml:20
-msgid "This contribution has been submitted on %s by <b>%s</b>"
+#: app/views/contributions/_form.rhtml:22
+msgid "Kind of contribution"
 msgstr ""
 
-#: app/views/contributions/show.rhtml:23
-msgid "and its has been approved on %s"
+#: app/views/contributions/_form.rhtml:33
+msgid "Add an url for the community issue"
 msgstr ""
 
-#: app/views/contributions/show.rhtml:31
-msgid "Internal details"
+#: app/views/contributions/_form.rhtml:46
+msgid "Synthesis"
 msgstr ""
 
-#: app/views/contributions/show.rhtml:40
-msgid "package(s) with the patch"
+#: app/views/contributions/_form.rhtml:49
+msgid "Description (public)"
+msgstr ""
+
+#: app/views/contributions/_form.rhtml:52
+msgid "Technical details (private)"
 msgstr ""
 
 #: app/views/contributions/_liste_binaires.rhtml:1
@@ -3371,51 +3351,24 @@ msgstr ""
 msgid "Access to administration interface"
 msgstr ""
 
-#: app/views/urllogiciels/edit.rhtml:1
-msgid "Editing url of \"%s\""
+#: app/views/contributions/show.rhtml:16
+msgid "link"
 msgstr ""
 
-#: app/views/urllogiciels/_form.rhtml:3
-msgid "Value"
+#: app/views/contributions/show.rhtml:20
+msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr ""
 
-#: app/views/urllogiciels/_form.rhtml:11 app/views/urllogiciels/index.rhtml:6
-#: app/views/urllogiciels/show.rhtml:12
-msgid "Kind"
+#: app/views/contributions/show.rhtml:23
+msgid "and its has been approved on %s"
 msgstr ""
 
-#: app/views/urllogiciels/index.rhtml:1
-msgid "List of softwares' links"
+#: app/views/contributions/show.rhtml:31
+msgid "Internal details"
 msgstr ""
 
-#: app/views/urllogiciels/index.rhtml:3
-#: app/views/urlreversements/index.rhtml:3 app/views/typeurls/index.rhtml:11
-msgid "a new url"
-msgstr ""
-
-#: app/views/urllogiciels/index.rhtml:6
-#: app/views/urlreversements/index.rhtml:6
-msgid "Url"
-msgstr ""
-
-#: app/views/urllogiciels/new.rhtml:1
-msgid "Add an url for a software"
-msgstr ""
-
-#: app/views/urlreversements/edit.rhtml:1
-msgid "Edit this url"
-msgstr ""
-
-#: app/views/urlreversements/_form.rhtml:3
-msgid "Valeur"
-msgstr ""
-
-#: app/views/urlreversements/index.rhtml:1
-msgid "List of urls in contributions"
-msgstr ""
-
-#: app/views/urlreversements/new.rhtml:1
-msgid "Add an url to follow your contribution"
+#: app/views/contributions/show.rhtml:40
+msgid "package(s) with the patch"
 msgstr ""
 
 #: app/views/demandes/_appels.rhtml:2
@@ -3907,6 +3860,14 @@ msgstr ""
 msgid "Package(s)"
 msgstr ""
 
+#: app/views/logiciels/edit.rhtml:1
+msgid "Edit a software"
+msgstr ""
+
+#: app/views/logiciels/new.rhtml:1
+msgid "Add a new software"
+msgstr ""
+
 #: app/views/logiciels/show.rhtml:5
 msgid "Software \"%s\""
 msgstr ""
@@ -3917,14 +3878,6 @@ msgstr ""
 
 #: app/views/logiciels/show.rhtml:36
 msgid "Links"
-msgstr ""
-
-#: app/views/logiciels/edit.rhtml:1
-msgid "Edit a software"
-msgstr ""
-
-#: app/views/logiciels/new.rhtml:1
-msgid "Add a new software"
 msgstr ""
 
 #: app/views/machines/_form.rhtml:6
@@ -4113,14 +4066,6 @@ msgstr ""
 
 #: app/views/piecejointes/new.rhtml:1
 msgid "New attachment"
-msgstr ""
-
-#: app/views/reporting/flux.rhtml:3
-msgid "a new request"
-msgstr ""
-
-#: app/views/reporting/flux.rhtml:34
-msgid "No request declared."
 msgstr ""
 
 #: app/views/reporting/_comex_cns.rhtml:2
@@ -4351,6 +4296,14 @@ msgstr ""
 
 #: app/views/reporting/delai.rhtml:23
 msgid "Estimation in working days"
+msgstr ""
+
+#: app/views/reporting/flux.rhtml:3
+msgid "a new request"
+msgstr ""
+
+#: app/views/reporting/flux.rhtml:34
+msgid "No request declared."
 msgstr ""
 
 #: app/views/reporting/general.rhtml:34
@@ -4585,6 +4538,53 @@ msgstr ""
 msgid "a new type of url"
 msgstr ""
 
+#: app/views/typeurls/index.rhtml:11 app/views/urllogiciels/index.rhtml:3
+#: app/views/urlreversements/index.rhtml:3
+msgid "a new url"
+msgstr ""
+
 #: app/views/typeurls/new.rhtml:1
 msgid "Create a New typeurl"
+msgstr ""
+
+#: app/views/urllogiciels/_form.rhtml:3
+msgid "Value"
+msgstr ""
+
+#: app/views/urllogiciels/_form.rhtml:11 app/views/urllogiciels/index.rhtml:6
+#: app/views/urllogiciels/show.rhtml:12
+msgid "Kind"
+msgstr ""
+
+#: app/views/urllogiciels/edit.rhtml:1
+msgid "Editing url of \"%s\""
+msgstr ""
+
+#: app/views/urllogiciels/index.rhtml:1
+msgid "List of softwares' links"
+msgstr ""
+
+#: app/views/urllogiciels/index.rhtml:6
+#: app/views/urlreversements/index.rhtml:6
+msgid "Url"
+msgstr ""
+
+#: app/views/urllogiciels/new.rhtml:1
+msgid "Add an url for a software"
+msgstr ""
+
+#: app/views/urlreversements/_form.rhtml:3
+msgid "Valeur"
+msgstr ""
+
+#: app/views/urlreversements/edit.rhtml:1
+msgid "Edit this url"
+msgstr ""
+
+#: app/views/urlreversements/index.rhtml:1
+msgid "List of urls in contributions"
+msgstr ""
+
+#: app/views/urlreversements/new.rhtml:1
+msgid "Add an url to follow your contribution"
 msgstr ""
