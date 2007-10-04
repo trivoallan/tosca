@@ -213,9 +213,8 @@ msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
 #: app/controllers/commentaires_controller.rb:74
-#, fuzzy
 msgid "Your comment <b>can not</b> be added."
-msgstr "Votre commentaire a été créé avec succès."
+msgstr "Votre commentaire <b>n'a pas pu</b> être ajouté."
 
 #: app/controllers/commentaires_controller.rb:85
 msgid "The comment %s is now %s"
