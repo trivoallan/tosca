@@ -12,7 +12,7 @@ class ClientTest < Test::Unit::TestCase
     c= Client.new()
     assert c.save == false
     c= Client.new(:nom => 'Grellier Airlines')
-    assert c.save 
+    assert c.save
 
     # a customer must have an id
     assert_not_nil c.id
@@ -39,9 +39,9 @@ class ClientTest < Test::Unit::TestCase
 
   def test_update
     c = clients( :client_00001 )
-    c.update_attributes(:nom => "titi", :support_id => 1, 
+    c.update_attributes(:nom => "titi", :support_id => 1,
       :description => "la femme de toto", :mailingliste=> "titi@laposte.net",
-      :adresse => "les champs Élysées 95000 Paris", :image_id => 1, 
+      :adresse => "les champs Élysées 95000 Paris", :image_id => 1,
       :code_acces => "lenomdeleurchien", :beneficiaires_count => 2
       )
     assert_equal c.nom, "titi"
@@ -56,7 +56,7 @@ class ClientTest < Test::Unit::TestCase
   def test_destroy
     assert clients( :client_00001).destroy
   end
-  
+
   def test_name
     c = clients( :client_00001)
     assert_equal c.nom, c.to_s
@@ -69,25 +69,25 @@ class ClientTest < Test::Unit::TestCase
   def test_contrat_ids
     assert_equal Client.find(5).contrat_ids, '0'
     # 00004 => linagorien
-    assert_equal clients(:client_00004).contrat_ids, '2' 
+    assert_equal clients(:client_00004).contrat_ids, '2'
   end
   def test_support_distribution
     assert_equal clients(:client_00004).support_distribution, true
     assert_equal clients(:client_00002).support_distribution, false
   end
-  
+
   def test_beneficiaire_ids
     assert_equal clients(:client_00001).beneficiaire_ids, [1]
     assert_equal clients(:client_00004).beneficiaire_ids, []
   end
-  
+
   def test_logiciels
     # case customer is Linagora
     assert_equal clients(:client_00004).logiciels, Logiciel.find(:all)
     # case customer isn't Linagora
     assert_equal Client.find(2).logiciels, [Logiciel.find(1)]
   end
-  
+
   def test_typedemandes
     assert_equal clients(:client_00002).typedemandes, Typedemande.find(1,2).reverse
   end
@@ -95,5 +95,15 @@ class ClientTest < Test::Unit::TestCase
   def test_contributions
     assert_equal clients(:client_00001).contributions, []
   end
-  
+
+  def test_inactive
+    c = clients(:client_00001)
+    c.inactive = true
+    assert c.save
+    assert_equal c.nom , "<strike>toto</strike>"
+    c.beneficiaires.each do |b|
+      assert b.identifiant.inactive?
+    end
+  end
+
 end
