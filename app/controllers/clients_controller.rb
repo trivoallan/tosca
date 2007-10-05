@@ -61,7 +61,10 @@ class ClientsController < ApplicationController
   def _form
     @images = Image.find(:all)
     @supports = Support.find_select
-    @socles = Socle.find_select
+    # It's the only way to add new system to its own scope
+    Socle.with_exclusive_scope do
+      @socles = Socle.find_select
+    end
   end
 
 end
