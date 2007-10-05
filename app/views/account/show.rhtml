@@ -6,20 +6,17 @@
 <h1><%= compte %></h1>
 
 <table border="0">
-<tr>
-<td>
-
-<%= render :partial => "show_account_information" %>
-
-</td>
-<td>
-
-<%= render :partial => "show_engineer" %>
-
-<%= render :partial => "show_recipient" %>
-
-</td>
-</tr>
+  <tr>
+   <td>
+     <%= render :partial => "show_account_information" %>
+   </td>
+   <td>
+     <%= render :partial => "show_engineer" %>
+     <% if session[:user].ingenieur # do not display this part to customer, for now %>
+       <%= render :partial => "show_recipient" %>
+     <% end %>
+   </td>
+  </tr>
 </table>
 
 <br/>

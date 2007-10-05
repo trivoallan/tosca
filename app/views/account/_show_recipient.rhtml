@@ -7,14 +7,6 @@
 
 <p><b>Client :</b> <%= @beneficiaire.client.nom %></p>
 
-<% for column in Beneficiaire.content_columns %>
-<p>
-  <b><%= column.human_name %>
-   :</b>
-  <%= @beneficiaire.send(column.name) %>
-</p>
-<% end %>
-
 </div>
 
 <% end %>
