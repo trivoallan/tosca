@@ -16,7 +16,7 @@
 </tr>
 <% end %>
 <tr>
-  <td colspan="2"><p><label for="demande_resume"><%= _("Summary") %></label><br/>
+  <td colspan="2"><p><label for="demande_resume"><%= _("Summary") %></label><br />
     <%= text_field :demande, :resume, :size => 60 %></p></td>
 </tr>
 <tr><td colspan="2"><hr /></td></tr>
@@ -42,7 +42,7 @@
   <td><%= select_empty(@ingenieurs, @demande.ingenieur_id, 'demande[ingenieur_id]') %></td>
 </tr>
 <tr>
-  <td><p><label for="demande_mail_cc"><%= _("E-mails associated with the request<br/>seperate by commas %s") % "','" %></label></p></td>
+  <td><p><label for="demande_mail_cc"><%= _("E-mails associated with the request<br />seperate by commas %s") % "','" %></label></p></td>
   <td><%= text_field :demande, :mail_cc %></td>
 </tr>
 <% end %>

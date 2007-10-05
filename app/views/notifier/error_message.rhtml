@@ -1,24 +1,24 @@
-<b>User : </b><%= @user %><br/>
-<b>Date : </b><%= Time.now %><br/>
-<b>Message : </b><%= @exception.message %><br/>
-<b>Location : </b><%= @env['REQUEST_URI'] %><br/>
-<b>Server : </b><%= @env['SERVER_NAME'] %><br/>
-<b>Action : </b><%= @params.delete('action') %><br/>
-<b>Controller : </b><%= @params.delete('controller') %><br/>
-<b>Query : </b><%= @env['QUERY_STRING'] %><br/>
-<b>Method : </b><%= @env['REQUEST_METHOD'] %><br/>
-<b>SSL : </b><%= @env['REQUEST_PORT'].to_i == 443 %><br/>
-<b>Agent : </b><%= @env['REQUEST_HTTP_USER_AGENT'] %><br/>
+<b>User : </b><%= @user %><br />
+<b>Date : </b><%= Time.now %><br />
+<b>Message : </b><%= @exception.message %><br />
+<b>Location : </b><%= @env['REQUEST_URI'] %><br />
+<b>Server : </b><%= @env['SERVER_NAME'] %><br />
+<b>Action : </b><%= @params.delete('action') %><br />
+<b>Controller : </b><%= @params.delete('controller') %><br />
+<b>Query : </b><%= @env['QUERY_STRING'] %><br />
+<b>Method : </b><%= @env['REQUEST_METHOD'] %><br />
+<b>SSL : </b><%= @env['REQUEST_PORT'].to_i == 443 %><br />
+<b>Agent : </b><%= @env['REQUEST_HTTP_USER_AGENT'] %><br />
 
 <hr/>
 
-<b>Backtrace</b><br/>
-<%= @trace.to_a.join('<<br />') %><br/>
+<b>Backtrace</b><br />
+<%= @trace.to_a.join('<<br />') %><br />
 
 
 <hr/>
 
-<b>Params</b><br/>
+<b>Params</b><br />
 <ul>
 <% @params.each do |key, val| %>
   <li><%= key %> : <%= val %></li>
@@ -27,7 +27,7 @@
 
 <hr/>
 
-<b>Session</b><br/>
+<b>Session</b><br />
 <ul>
 <% @session.each do |key, val| %>
   <li><%= key %> : <%= val %></li>
@@ -36,7 +36,7 @@
 
 <hr/>
 
-<b>Environment</b><br/>
+<b>Environment</b><br />
 <ul>
 <% @env.each do |key, val| %>
   <li><%= key %> : <%= val %></li>

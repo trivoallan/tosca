@@ -1,13 +1,13 @@
 <%= error_messages_for 'permission' %>
 
 <!--[form:permission]-->
-<p><label for="permission_name"><%= _('Name')%></label><br/>
+<p><label for="permission_name"><%= _('Name')%></label><br />
 <%= text_field 'permission', 'name'  %></p>
 
-<p><label for="permission_info"><%= _('Info')%></label><br/>
+<p><label for="permission_info"><%= _('Info')%></label><br />
 <%= text_field 'permission', 'info'  %></p>
 
-<p><label for="role_permission"><%= _('Roles')%></label><br/>
+<p><label for="role_permission"><%= _('Roles')%></label><br />
 <%= hbtm_check_box(@permission.roles, @roles, 'permission[role_ids]', :size => 4) %>
 </p>
 

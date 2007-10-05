@@ -62,7 +62,7 @@ module ApplicationHelper
 
     result = ''
     unless nom.blank? or options[:title]==false or options.has_key? :no_title
-      result << "<b>#{pluralize(size, nom.capitalize)} : </b><br/>"
+      result << "<b>#{pluralize(size, nom.capitalize)} : </b><br />"
     end
 
     # used mainly in bienvenue/about
@@ -78,7 +78,7 @@ module ApplicationHelper
       puce = " #{options[:puce]} "
       elements.each { |e|
         elt = yield(e)
-        result << puce << elt << '<br/>' unless elt.blank?
+        result << puce << elt << '<br />' unless elt.blank?
       }
     else
       result << '<ul>'
@@ -160,7 +160,7 @@ module ApplicationHelper
         result << "</tr>"
       }
     end
-    result << '</table><br/>'
+    result << '</table><br />'
   end
 
   # show_total(elements.size, ar, options)

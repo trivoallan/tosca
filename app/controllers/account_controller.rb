@@ -50,7 +50,7 @@ class AccountController < ApplicationController
     end
   end
 
-  # NO_JAVASCRIPT = '<br/>Javascript n\'est pas activé sur votre navigateur'
+  # NO_JAVASCRIPT = '<br />Javascript n\'est pas activé sur votre navigateur'
   def login
     case request.method
       when :post
@@ -210,14 +210,14 @@ class AccountController < ApplicationController
         identifiant.roles = roles
         if identifiant.save
           client = Client.find(params[:client][:id])
-          flash[:notice] += _("The user %s have been successfully created.<br/>") % row[_('Full name')]
+          flash[:notice] += _("The user %s have been successfully created.<br />") % row[_('Full name')]
           identifiant.create_person(client)
           flash[:notice] += (@identifiant.client ? _('Recipient') : _('Engineer ') +
             _('Associate created') )
           options = { :identifiant => identifiant, :controller => self,
             :password => row[_('Password')].to_s }
           Notifier::deliver_new_user(options, flash)
-          flash[:notice] += '<br/>'
+          flash[:notice] += '<br />'
         else
           flash.now[:warn] += _('The user %s  has not been created.<br /> ') %
             identifiant.nom

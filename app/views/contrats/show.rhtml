@@ -3,10 +3,10 @@
 <% for column in Contrat.content_columns %>
   <p><b><%= column.human_name %>:</b> <%= @contrat.send(column.name) %></p>
 <% end %>
-<br/>
+<br />
 
 <p>Note : La consultation du client permet d'avoir une view globale de l'offre</p>
-<br/>
+<br />
 
 <p><b> Engagements contractuels : </b></p>
 <%= show_table_engagements @contrat.engagements %>

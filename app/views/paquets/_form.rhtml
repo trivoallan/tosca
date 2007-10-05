@@ -4,43 +4,43 @@
 
 <div class="show" style="width: 80%">
   <div class="edit">
-    <p><label for="paquet_logiciel_id"><%= _('Software')%></label><br/>
+    <p><label for="paquet_logiciel_id"><%= _('Software')%></label><br />
     <%= select("paquet", "logiciel_id", 
     @logiciels.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
 
-    <p><label for="paquet_contrat_id"><%= _('Contract')%></label><br/>
+    <p><label for="paquet_contrat_id"><%= _('Contract')%></label><br />
     <%= select("paquet", "contrat_id", 
     @contrats.collect{|c| [ c.client.nom, c.id]}) %>
     </p>
 
-    <p><label for="paquet_nom"><%= _('Name')%></label><br/>
+    <p><label for="paquet_nom"><%= _('Name')%></label><br />
     <%= text_field 'paquet', 'nom'  %></p>
 
-    <p><label for="paquet_version"><%= _('Version')%></label><br/>
+    <p><label for="paquet_version"><%= _('Version')%></label><br />
     <%= text_field 'paquet', 'version'  %></p>
 
-    <p><label for="paquet_release"><%= _('Release')%></label><br/>
+    <p><label for="paquet_release"><%= _('Release')%></label><br />
     <%= text_field 'paquet', 'release'  %></p>
 
-    <p><label for="paquet_conteneur_id"><%= _('Container')%></label><br/>
+    <p><label for="paquet_conteneur_id"><%= _('Container')%></label><br />
     <%= select("paquet", "conteneur_id", 
     @conteneurs.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
-    <p><label for="paquet_distributeur_id"><%= _('Distributor')%></label><br/>
+    <p><label for="paquet_distributeur_id"><%= _('Distributor')%></label><br />
     <%= select("paquet", "distributeur_id", 
     @distributeurs.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
-    <p><label for="paquet_mainteneur_id"><% _('Maintainer')%></label><br/>
+    <p><label for="paquet_mainteneur_id"><% _('Maintainer')%></label><br />
     <%= select("paquet", "mainteneur_id", 
     @mainteneurs.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
 
-    <p><label for="paquet_fournisseur_id"><%= _('Origin')%></label><br/>
+    <p><label for="paquet_fournisseur_id"><%= _('Origin')%></label><br />
     <%= select("paquet", "fournisseur_id", 
     @fournisseurs.collect{|l| [ l.nom, l.id]}) %>
     </p>
@@ -50,7 +50,7 @@
     <%= check_box( 'paquet' , 'active')%></p>
   </div>
   <div style="float: left">
-    <p><label for="paquet_configuration"><%= _('Specific additionnal configuration')%></label><br/>
+    <p><label for="paquet_configuration"><%= _('Specific additionnal configuration')%></label><br />
     <%= text_area 'paquet', 'configuration'  %>
     </p>
   </div>

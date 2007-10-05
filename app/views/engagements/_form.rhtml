@@ -2,20 +2,20 @@
 
 <!--[form:engagement]-->
 
-<p><label for="engagement_typedemande">Type de demande</label><br/>
+<p><label for="engagement_typedemande">Type de demande</label><br />
   <%= select("engagement", "typedemande_id", 
 	@typedemandes.collect{|t| [ t.nom, t.id]}) %>
 </p>
 
-<p><label for="engagement_severite">Severite</label><br/>
+<p><label for="engagement_severite">Severite</label><br />
   <%= select("engagement", "severite_id", 
 	@severites.collect{|t| [ t.nom, t.id]}) %>
 </p>	
 
-<p><label for="engagement_contournement">Contournement</label><br/>
+<p><label for="engagement_contournement">Contournement</label><br />
 <%= text_field 'engagement', 'contournement'  %></p>
 
-<p><label for="engagement_correction">Correction</label><br/>
+<p><label for="engagement_correction">Correction</label><br />
 <%= text_field 'engagement', 'correction'  %></p>
 <!--[eoform:engagement]-->
 

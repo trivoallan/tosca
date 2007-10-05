@@ -2,17 +2,17 @@
 
 <!--[form:beneficiaire]-->
 
-<p><label for="beneficiaire_client">Client</label><br/>
+<p><label for="beneficiaire_client">Client</label><br />
   <%= collection_select(:beneficiaire, :client_id, @clients, :id, :nom) %>
 </p>
 
-<p><label for="beneficiaire_notifier_subalternes">Notifier subalternes</label><br/>
+<p><label for="beneficiaire_notifier_subalternes">Notifier subalternes</label><br />
 <%= check_box 'beneficiaire', 'notifier_subalternes'  %></p>
 
-<p><label for="beneficiaire_notifier">Notifier a</label><br/>
+<p><label for="beneficiaire_notifier">Notifier a</label><br />
 <%= check_box 'beneficiaire', 'notifier'  %></p>
 
-<p><label for="beneficiaire_notifier_cc">Notifier cc</label><br/>
+<p><label for="beneficiaire_notifier_cc">Notifier cc</label><br />
 <%= check_box 'beneficiaire', 'notifier_cc'  %></p>
 
 <!--[eoform:beneficiaire]-->

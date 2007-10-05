@@ -18,7 +18,7 @@
   <% modified = modified.empty? ? 'commentée' : modified.join(' et ') %>
   La <%= url_demande %> vient d'être <%=modified%> par <i><%= h @nom %></i> :
 <% end %>
-<br/>
+<br />
 
 <hr noshade size="1px"/>
 <%= @commentaire.corps %><br />

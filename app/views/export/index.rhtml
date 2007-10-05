@@ -4,7 +4,7 @@
 <% cname = c.controller_name %>
 
 <% # on indique son nom et on le fait pointer vers la page principale du controller  %>
-<br/><b><%= link_to cname,  { :action => "index", :controller => cname }   %></b>
+<br /><b><%= link_to cname,  { :action => "index", :controller => cname }   %></b>
 
 <% # on prend maintenant chacune de ses actions  %>
 <% c.public_instance_methods(false).sort.each { |m|

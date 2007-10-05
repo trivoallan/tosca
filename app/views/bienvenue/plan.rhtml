@@ -16,13 +16,13 @@
 
       <% # on indique son nom et on le fait pointer vers la page principale du controller  %>
       <% if session[:user].authorized?(cname+'/index')%>
-	 <br/><b><%= link_to cname, :action => "index", :controller => cname %></b>
+	 <br /><b><%= link_to cname, :action => "index", :controller => cname %></b>
       <% elsif session[:user].authorized?(cname+'/index')%>
-         <br/><b><%= link_to cname, :action => "list", :controller => cname  %></b>
+         <br /><b><%= link_to cname, :action => "list", :controller => cname  %></b>
       <% elsif cname == 'reporting' %>
-         <br/><b><%= link_to _('reporting'), :action => "configuration", :controller => cname  %></b>
+         <br /><b><%= link_to _('reporting'), :action => "configuration", :controller => cname  %></b>
       <% else %>
-         <br/><b><%= cname %></b>
+         <br /><b><%= cname %></b>
       <% end %>
 
       <% # on prend maintenant chacune de ses actions  %>

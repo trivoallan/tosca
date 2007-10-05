@@ -3,27 +3,27 @@
 <table class="form">
   <tr>
     <td>
-      <p><label for="client_nom"><%= _("Name") %></label><br/>
+      <p><label for="client_nom"><%= _("Name") %></label><br />
          <%= text_field 'client', 'nom'  %></p>
-      <p><label for="client_description"><%= _("Description") %></label><br/>
+      <p><label for="client_description"><%= _("Description") %></label><br />
          <%= text_area 'client', 'description'  %></p>
     </td>
     <td>
-      <p><label for="client_mailingliste"><%= _("Mailing list") %></label><br/>
+      <p><label for="client_mailingliste"><%= _("Mailing list") %></label><br />
          <%= text_field 'client', 'mailingliste'  %></p>
-      <p><label for="client_adresse"><%= _("Address") %></label><br/>
+      <p><label for="client_adresse"><%= _("Address") %></label><br />
          <%= text_area 'client', 'adresse'  %></p>
     </td>
     <td>
-      <p><label for="client_chrono"><%= _("Chrono") %></label><br/>
+      <p><label for="client_chrono"><%= _("Chrono") %></label><br />
          <%= text_field :client, :chrono %></p>
-      <p><label for="client_chrono"><%= _("Inactive") %></label><br/>
+      <p><label for="client_chrono"><%= _("Inactive") %></label><br />
          <%= check_box :client, :inactive %></p>
-      <p><label for="client_support_id"><%= _("Support") %></label><br/>
+      <p><label for="client_support_id"><%= _("Support") %></label><br />
          <%= collection_select(:client, :support_id, @supports, :id, :nom) %></p>
-      <p><label for="client_code_acces"><%= _("Access code") %></label><br/>
+      <p><label for="client_code_acces"><%= _("Access code") %></label><br />
          <%= text_field 'client', 'code_acces' %></p>
-      <p><label for="client_image_id"><%= _("Logo") %></label><br/>
+      <p><label for="client_image_id"><%= _("Logo") %></label><br />
          <%= collection_select(:client, :image_id, @images, :id, :description) %></p>
       <p><label><%= _("Systems") %></label></p>
          <div class="bloc_scroll">

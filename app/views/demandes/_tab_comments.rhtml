@@ -19,7 +19,7 @@
           <%= StaticImage::logo_08000 %>
         <% elsif id and id.beneficiaire %>
           <%= logo_img ||= logo_client(id.beneficiaire.client) %>
-        <% end %><br/>
+        <% end %><br />
         <%= id.nom if id %><br />
 
         <% if @ingenieur and not print_mode %>

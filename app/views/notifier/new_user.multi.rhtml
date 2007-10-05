@@ -1,4 +1,4 @@
-Bonjour,<br/>
+Bonjour,<br />
 
 <% if @identifiant.client %>
   <p>
@@ -7,14 +7,14 @@ Bonjour,<br/>
   <%= render :partial => '../notifier/identifiant_canaux_acces' %>
 <% else %>
   <p>
-&nbsp;&nbsp;Vous recevez ce courriel car vous avez désormais accès à notre outil de travail en ligne développé pour vous par <%= Metadata::NOM_ENTREPRISE %>.<br/><br/>
+&nbsp;&nbsp;Vous recevez ce courriel car vous avez désormais accès à notre outil de travail en ligne développé pour vous par <%= Metadata::NOM_ENTREPRISE %>.<br /><br />
    <% #On doit faire ça car la méthode link_to ne semble pas fonctionner %>
    <% url = "http://www.08000linux.com/" %>
    Vous pouvez accéder au portail <%= "<a href=\"#{url}\">www.08000linux.com</a>" %>.
   </p>
 <% end %>
 <p>
-&nbsp;&nbsp;Vos codes d'accès sont :<br/>
+&nbsp;&nbsp;Vos codes d'accès sont :<br />
    <ul>
     <li>identifiant: <%= @identifiant.login %></li>
     <li>mot de passe: <%= @password %></li>

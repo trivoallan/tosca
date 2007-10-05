@@ -26,10 +26,10 @@
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
 > <%= _('Search') %></div>
 <ul class="menu" id="menu_recherche">
- <li><b><%= _('By name') %></b><br/>
+ <li><b><%= _('By name') %></b><br />
      <%= text_field :filters, :software %></li>
  <% if @ingenieur %>
-  <li><b><%= _('By client') %> </b><br/>
+  <li><b><%= _('By client') %> </b><br />
       <%= select_filter(@contrats, 'contrat') %></li>
  <% end %>
 </ul>
@@ -37,11 +37,11 @@
 <div class="menu_title" onclick="Element.toggle('menu_caracteristique')">
 > <%=_('Characteristic')%></div>
 <ul class="menu" id="menu_caracteristique">
- <li><b><%= _('Description') %> </b><br/>
+ <li><b><%= _('Description') %> </b><br />
      <%= text_field :filters, :description %></li>
- <li><b><%= _('Group') %> </b><br/>
+ <li><b><%= _('Group') %> </b><br />
      <%= select_filter(@groupes, 'groupe') %></li>
- <li><b><%= _('Technology') %> </b><br/>
+ <li><b><%= _('Technology') %> </b><br />
      <%= select_filter(@technologies, 'competence') %></li>
 </ul>
 

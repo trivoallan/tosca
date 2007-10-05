@@ -2,8 +2,8 @@
 
 <%= show_pages_links @support_pages, _("a new support") %>
 
-<% titres = [ _("Open time"), _("Close time"), _("Phone <br/>assistance"),
-              _("Maintenance"), _("Technological <br/>survey"), _("Newsletter"),
+<% titres = [ _("Open time"), _("Close time"), _("Phone <br />assistance"),
+              _("Maintenance"), _("Technological <br />survey"), _("Newsletter"),
               _("Clients") ] %>
 <%= show_table(@supports, Support, titres) { |s|
   result = ''

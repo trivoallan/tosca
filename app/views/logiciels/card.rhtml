@@ -33,8 +33,8 @@
 <tr><td colspan="2" align="center"><b>DESCRIPTION COMPLETE</b></td></tr>
 
 <tr><td><b>Historique</b></td>
-    <td>La première version de <%= @logiciel.nom %> est apparue le @logiciel.launched_on.<br/>
-        <%= @logiciel.description %><br/>
+    <td>La première version de <%= @logiciel.nom %> est apparue le @logiciel.launched_on.<br />
+        <%= @logiciel.description %><br />
         @logiciel.logo</td></tr>
 
 <tr><td><b>Fonctionnalités</b></td>
@@ -63,7 +63,7 @@
     <td>@logiciel.langages.collect{|l| l.nom} *', ' </td></tr>
 
 <tr><td><b>Taille de la communauté</b></td>
-    <td>@logiciel.communaute.nombre <br/>
+    <td>@logiciel.communaute.nombre <br />
         @logiciel.communaute.description </td></tr>
 
 <tr><td><b>Status</b></td>
@@ -73,7 +73,7 @@
 <tr><td colspan="2" align="center"><b>CONTRIBUER</b></td></tr>
 
 <tr><td><b>Copyright Assignment</b></td>
-    <td>@logiciel.copyright_assignement <br/>
+    <td>@logiciel.copyright_assignement <br />
         link_to_file(@logiciel.copyright_assignement)</td></tr>
 
 <tr><td><b>Appendice à ajouter au patch</b></td>

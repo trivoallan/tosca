@@ -3,27 +3,27 @@
 <div class="show" style="width: 70%">
   <!--[form:document]-->
   <div class="edit">
-    <p><label for="document_client_id"><%= _('Recipient') %></label><br/>
+    <p><label for="document_client_id"><%= _('Recipient') %></label><br />
     <%= select("document", "client_id",
     @clients.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
     <% if @action == :index %>
-    <p><label for="document_identifiant"><%= _('Author') %></label><br/>
+    <p><label for="document_identifiant"><%= _('Author') %></label><br />
     <%= select("document", "identifiant_id",
     @identifiants.collect{|l| [ l.nom, l.id]}) %>
     </p>
     <% end %>
 
-    <p><label for="document_typedocument_id"><%= _('Type') %></label><br/>
+    <p><label for="document_typedocument_id"><%= _('Type') %></label><br />
     <%= select("document", "typedocument_id",
     @typedocuments.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
-    <p><label for="document_titre"><%= _('Title') %></label><br/>
+    <p><label for="document_titre"><%= _('Title') %></label><br />
     <%= text_field 'document', 'titre'  %></p>
 
-    <p><label for="document_fichier"><%= _('File') %></label><br/>
+    <p><label for="document_fichier"><%= _('File') %></label><br />
     <%= file_column_field 'document', 'fichier'  %></p>
 
     <p><label for ="document_date_delivery"><%= _('Delivery date') %></label><br />
@@ -33,7 +33,7 @@
     </p>
   </div>
   <div style="float: left">
-    <p><label for="document_description"><%= _('Description') %></label><br/>
+    <p><label for="document_description"><%= _('Description') %></label><br />
     <%= text_area 'document', 'description'  %></p>
   </div>
   <!--[eoform:document]-->

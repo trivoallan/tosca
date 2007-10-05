@@ -27,7 +27,7 @@
   <li><b><%= _("Type")%>: </b><%= @demande.typedemande.nom %></li>
   <li><b><%= _("Severity")%>: </b><%= @demande.severite.nom %></li>
   <% unless @demande.mail_cc.blank? %>
-     <li><b><%= _('CC') %>: </b><%= @demande.mail_cc.gsub(',', ',<br/>') %></li>
+     <li><b><%= _('CC') %>: </b><%= @demande.mail_cc.gsub(',', ',<br />') %></li>
   <% end %>
   <% if @demande.ingenieur %>
     <li><b><%=_("Assigned to")%>: </b><%= @demande.ingenieur.nom %></li>
@@ -63,4 +63,4 @@
  <li><%= public_link_to_help_request_status %></li>
 </ul>
 <%# mandatory for seeing last link ... :/ %>
-<br/>
+<br />

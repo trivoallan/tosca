@@ -23,12 +23,12 @@
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>
 <%=_('Search')%></div>
 <ul class="menu" id="menu_recherche">
- <li><b><%=_('By word')%></b><br/>
+ <li><b><%=_('By word')%></b><br />
      <%= text_field :filters, :text %></li>
  <% if @ingenieur %>
-  <li><b><%=_('By client')%></b><br/>
+  <li><b><%=_('By client')%></b><br />
       <%= select_filter(@clients, :client) %></li>
-  <li><b><%=_('By expert')%></b><br/>
+  <li><b><%=_('By expert')%></b><br />
       <%= select_filter(@ingenieurs, :ingenieur) %></li>
  <% end %>
 </ul>
@@ -36,11 +36,11 @@
 <div class="menu_title" onclick="Element.toggle('menu_caracteristiques')">>
 <%=_('Attributes')%></div>
 <ul class="menu" id="menu_caracteristiques">
- <li><b><%=_('Type')%> </b><br/>
+ <li><b><%=_('Type')%> </b><br />
      <%=select_filter(@typedemandes, :typedemande) %></li>
- <li><b><%=_('Severity')%></b><br/>
+ <li><b><%=_('Severity')%></b><br />
      <%=select_filter(@severites, :severite) %></li>
- <li><b><%=_('Status')%></b><br/>
+ <li><b><%=_('Status')%></b><br />
      <%=select_filter(@statuts, :statut) %></li>
 </ul>
 
