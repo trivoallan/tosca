@@ -1,6 +1,6 @@
 <div id='demande_tab_content' class='demande_tab_content'>
   <% if @piecejointes.size > 0 %>
-    <b><u><%= pluralize(@piecejointes.size, _("Attachment")) %></u></b> 
+    <b><u><%= pluralize(@piecejointes.size, _("Attachment")) %></u></b>
   <% end %>
   <% titres = [_("Id"), _("Link"), _("Size"), _("Created on"), _("By") ] %>
   <%= show_table(@piecejointes, Piecejointe, titres, :total => false) { |pj|
@@ -11,6 +11,7 @@
       result << "<td>#{file_size(pj.file)}</td>"
       result << "<td>#{pj.commentaire.created_on_formatted}</td>"
       result << "<td>#{pj.commentaire.identifiant.nom}</td>"
+      result << "<td>#{link_to_file_redbox(pj, :file)}</td>"
     end
     result
   } %>
