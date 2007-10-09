@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-04 16:28+0200\n"
-"PO-Revision-Date: 2007-08-27 16:51+0200\n"
+"PO-Revision-Date: 2007-10-09 16:16+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -996,7 +996,7 @@ msgstr "Période"
 
 #: app/helpers/reporting_helper.rb:91
 msgid "During the chosen period"
-msgstr "Pendant la période considéré"
+msgstr "Pendant la période considérée"
 
 #: app/helpers/reporting_helper.rb:100
 msgid "Since the begining of your contract"
