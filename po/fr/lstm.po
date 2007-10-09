@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-09 16:56+0200\n"
-"PO-Revision-Date: 2007-10-09 16:16+0200\n"
+"PO-Revision-Date: 2007-10-09 16:58+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -234,9 +234,8 @@ msgid "The comment was successfully destroyed."
 msgstr "Le commentaire a été détruit avec succès."
 
 #: app/controllers/commentaires_controller.rb:117
-#, fuzzy
 msgid "You cannot delete the first comment"
-msgstr "Vous pouvez consulter la liste des %s."
+msgstr "Vous ne pouvez effacer le premier commentaire"
 
 #: app/controllers/competences_controller.rb:20
 msgid "Skill was successfully created."
