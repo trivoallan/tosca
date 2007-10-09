@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-04 16:28+0200\n"
+"POT-Creation-Date: 2007-10-09 16:56+0200\n"
 "PO-Revision-Date: 2007-10-09 16:16+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -144,7 +144,8 @@ msgid "Vous must specify a role"
 msgstr "Vous devez spéficier un rôle"
 
 #: app/controllers/account_controller.rb:213
-msgid "The user %s have been successfully created.<br/>"
+#, fuzzy
+msgid "The user %s have been successfully created.<br />"
 msgstr "L'utilisateur %s a été crée avec succès<br />"
 
 #: app/controllers/account_controller.rb:216
@@ -164,7 +165,7 @@ msgstr "Déconnexion"
 msgid "My account"
 msgstr "Mon&nbsp;compte"
 
-#: app/controllers/appels_controller.rb:45
+#: app/controllers/appels_controller.rb:44
 msgid "The call was successfully created."
 msgstr "L'appel a été créée avec succès."
 
@@ -212,25 +213,30 @@ msgstr "Votre commentaire est trop court. Merci d'en écrire un plus long."
 msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
-#: app/controllers/commentaires_controller.rb:74
+#: app/controllers/commentaires_controller.rb:68
 msgid "Your comment <b>can not</b> be added."
 msgstr "Votre commentaire <b>n'a pas pu</b> être ajouté."
 
-#: app/controllers/commentaires_controller.rb:85
+#: app/controllers/commentaires_controller.rb:79
 msgid "The comment %s is now %s"
 msgstr "Le commentaire %s est maintenant %s"
 
-#: app/controllers/commentaires_controller.rb:87
+#: app/controllers/commentaires_controller.rb:81
 msgid "A error has occured : The comment was not modified"
 msgstr "Une erreur est survenue : Le commentaire n'a pas été modifié"
 
-#: app/controllers/commentaires_controller.rb:109
+#: app/controllers/commentaires_controller.rb:103
 msgid "The comment was successfully updated."
 msgstr "Le commentaire a été mis à jour avec succès."
 
-#: app/controllers/commentaires_controller.rb:121
+#: app/controllers/commentaires_controller.rb:115
 msgid "The comment was successfully destroyed."
 msgstr "Le commentaire a été détruit avec succès."
+
+#: app/controllers/commentaires_controller.rb:117
+#, fuzzy
+msgid "You cannot delete the first comment"
+msgstr "Vous pouvez consulter la liste des %s."
 
 #: app/controllers/competences_controller.rb:20
 msgid "Skill was successfully created."
@@ -271,24 +277,24 @@ msgstr ""
 msgid "Your request has been successfully submitted"
 msgstr "Votre demande a été bien soumise à nos services."
 
-#: app/controllers/demandes_controller.rb:236
+#: app/controllers/demandes_controller.rb:238
 msgid "The request has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:282
+#: app/controllers/demandes_controller.rb:284
 msgid "The demand has now no contribution"
 msgstr "Le demande n'a plus de contributions"
 
-#: app/controllers/demandes_controller.rb:284
+#: app/controllers/demandes_controller.rb:286
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/demandes_controller.rb:361
+#: app/controllers/demandes_controller.rb:363
 #: app/helpers/demandes_helper.rb:188
 msgid "Active requests"
 msgstr "Demandes actives"
 
-#: app/controllers/demandes_controller.rb:364
+#: app/controllers/demandes_controller.rb:366
 #: app/helpers/demandes_helper.rb:195
 msgid "Finished requests"
 msgstr "Demandes terminées"
@@ -758,6 +764,36 @@ msgstr "Urlreversement a été crée avec succès."
 msgid "Urlreversement was successfully updated."
 msgstr "Urlreversement a été mis à jour avec succès."
 
+#: app/helpers/pages_helper.rb:38
+msgid "Do you really want to destroy this object ?"
+msgstr "Êtes vous sûr de vouloir effacer cet objet ?"
+
+#: app/helpers/pages_helper.rb:92 app/helpers/static_image.rb:78
+msgid "First page"
+msgstr "Première page"
+
+#: app/helpers/pages_helper.rb:95 app/helpers/static_image.rb:84
+#: app/views/typecontributions/index.rhtml:20
+msgid "Previous page"
+msgstr "Page précedente"
+
+#: app/helpers/pages_helper.rb:101
+msgid " to "
+msgstr " à "
+
+#: app/helpers/pages_helper.rb:102
+msgid "&nbsp; on "
+msgstr "&nbsp; sur "
+
+#: app/helpers/pages_helper.rb:105 app/helpers/static_image.rb:90
+#: app/views/typecontributions/index.rhtml:21
+msgid "Next page"
+msgstr "Page suivante"
+
+#: app/helpers/pages_helper.rb:108 app/helpers/static_image.rb:96
+msgid "Last page"
+msgstr "Dernière page"
+
 #: app/helpers/application_helper.rb:58 app/helpers/demandes_helper.rb:74
 #: app/views/account/_show_account_information.rhtml:18
 #: app/views/clients/show.rhtml:23
@@ -956,36 +992,6 @@ msgstr "Tous les logiciels"
 msgid "Display all softwares"
 msgstr "Afficher tous les logiciels"
 
-#: app/helpers/pages_helper.rb:38
-msgid "Do you really want to destroy this object ?"
-msgstr "Êtes vous sûr de vouloir effacer cet objet ?"
-
-#: app/helpers/pages_helper.rb:92 app/helpers/static_image.rb:78
-msgid "First page"
-msgstr "Première page"
-
-#: app/helpers/pages_helper.rb:95 app/helpers/static_image.rb:84
-#: app/views/typecontributions/index.rhtml:20
-msgid "Previous page"
-msgstr "Page précedente"
-
-#: app/helpers/pages_helper.rb:101
-msgid " to "
-msgstr " à "
-
-#: app/helpers/pages_helper.rb:102
-msgid "&nbsp; on "
-msgstr "&nbsp; sur "
-
-#: app/helpers/pages_helper.rb:105 app/helpers/static_image.rb:90
-#: app/views/typecontributions/index.rhtml:21
-msgid "Next page"
-msgstr "Page suivante"
-
-#: app/helpers/pages_helper.rb:108 app/helpers/static_image.rb:96
-msgid "Last page"
-msgstr "Dernière page"
-
 #: app/helpers/paquets_helper.rb:16
 msgid "a package"
 msgstr "un paquet"
@@ -1081,6 +1087,35 @@ msgstr "Sélectionner une date"
 #: app/helpers/urlreversements_helper.rb:14
 msgid "new url"
 msgstr "une nouvelle urls"
+
+#: app/models/preference.rb:-
+msgid "preference"
+msgstr "preference"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Identifiant"
+msgstr "Identifiant"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Mail text"
+msgstr "Mail text"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|All mail"
+msgstr "All mail"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Digest daily"
+msgstr "Digeste prêt"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Digest weekly"
+msgstr "Digeste prêt"
 
 #: app/models/appel.rb:-
 msgid "appel"
@@ -1257,42 +1292,6 @@ msgid "Client|Inactive"
 msgstr "Image"
 
 #: app/models/client.rb:-
-msgid "contrat"
-msgstr "contrat"
-
-#: app/models/client.rb:-
-msgid "Contrat|Client"
-msgstr "Client"
-
-#: app/models/client.rb:-
-msgid "Contrat|Ouverture"
-msgstr "Ouverture"
-
-#: app/models/client.rb:-
-msgid "Contrat|Cloture"
-msgstr "Cloturé le"
-
-#: app/models/client.rb:-
-msgid "Contrat|Paquets count"
-msgstr "Nombre de paquets"
-
-#: app/models/client.rb:-
-msgid "Contrat|Astreinte"
-msgstr "Astreinte"
-
-#: app/models/client.rb:-
-msgid "Contrat|Socle"
-msgstr "Socle"
-
-#: app/models/client.rb:-
-msgid "Contrat|Nom"
-msgstr "Nom"
-
-#: app/models/client.rb:-
-msgid "Contrat|Support"
-msgstr "Support"
-
-#: app/models/client.rb:-
 msgid "paquet"
 msgstr "paquet"
 
@@ -1355,6 +1354,42 @@ msgstr "Nombre de changelogs"
 #: app/models/client.rb:-
 msgid "Paquet|Active"
 msgstr "Actif"
+
+#: app/models/client.rb:-
+msgid "contrat"
+msgstr "contrat"
+
+#: app/models/client.rb:-
+msgid "Contrat|Client"
+msgstr "Client"
+
+#: app/models/client.rb:-
+msgid "Contrat|Ouverture"
+msgstr "Ouverture"
+
+#: app/models/client.rb:-
+msgid "Contrat|Cloture"
+msgstr "Cloturé le"
+
+#: app/models/client.rb:-
+msgid "Contrat|Paquets count"
+msgstr "Nombre de paquets"
+
+#: app/models/client.rb:-
+msgid "Contrat|Astreinte"
+msgstr "Astreinte"
+
+#: app/models/client.rb:-
+msgid "Contrat|Socle"
+msgstr "Socle"
+
+#: app/models/client.rb:-
+msgid "Contrat|Nom"
+msgstr "Nom"
+
+#: app/models/client.rb:-
+msgid "Contrat|Support"
+msgstr "Support"
 
 #: app/models/commentaire.rb:-
 msgid "commentaire"
@@ -1497,6 +1532,18 @@ msgid "Contribution|Synthese"
 msgstr "Synthese"
 
 #: app/models/demande.rb:-
+msgid "statut"
+msgstr "statut"
+
+#: app/models/demande.rb:-
+msgid "Statut|Nom"
+msgstr "Nom"
+
+#: app/models/demande.rb:-
+msgid "Statut|Description"
+msgstr "Description"
+
+#: app/models/demande.rb:-
 msgid "demande"
 msgstr "demande"
 
@@ -1570,40 +1617,28 @@ msgstr "Créé le"
 msgid "Demande|Last comment"
 msgstr "Premier commentaire"
 
-#: app/models/demande.rb:-
-msgid "statut"
-msgstr "statut"
-
-#: app/models/demande.rb:-
-msgid "Statut|Nom"
-msgstr "Nom"
-
-#: app/models/demande.rb:-
-msgid "Statut|Description"
-msgstr "Description"
-
-#: app/models/demande.rb:23
+#: app/models/demande.rb:29
 msgid "You must indicate a summary for your request"
 msgstr "Vous devez indiquer un résumé pour votre demande"
 
-#: app/models/demande.rb:27
+#: app/models/demande.rb:33
 msgid "You must indicate a description"
 msgstr "Vous devez indiquer une description"
 
-#: app/models/demande.rb:30
+#: app/models/demande.rb:36
 msgid "You must indicate a valid recipient"
 msgstr "Vous devez indiquer un bénéficiaire valide"
 
-#: app/models/demande.rb:33
+#: app/models/demande.rb:39
 msgid "You must indicate a valid status"
 msgstr "Vous devez indiquer un statut valide"
 
-#: app/models/demande.rb:36
+#: app/models/demande.rb:42
 msgid "You must indicate a valid severity"
 msgstr "Vous devez indiquer une sévérité valide"
 
 # ne pas oublier l'espace au début
-#: app/models/demande.rb:271
+#: app/models/demande.rb:277
 msgid " of overrun"
 msgstr " de dépassement"
 
@@ -1992,15 +2027,15 @@ msgstr "Client"
 msgid "New|Logiciel"
 msgstr "Logiciel"
 
-#: app/models/notifier.rb:135
+#: app/models/notifier.rb:139
 msgid "An e-mail informing"
 msgstr "Un e-mail informant"
 
-#: app/models/notifier.rb:136
+#: app/models/notifier.rb:140
 msgid "with a copy to"
 msgstr "avec en copie"
 
-#: app/models/notifier.rb:137
+#: app/models/notifier.rb:141
 msgid "was sent."
 msgstr "a été envoyé."
 
@@ -2188,35 +2223,6 @@ msgstr "Valeur"
 #: app/models/urllogiciel.rb:-
 msgid "Urllogiciel|Valeur"
 msgstr "Valeur"
-
-#: app/models/preference.rb:-
-msgid "preference"
-msgstr "preference"
-
-#: app/models/preference.rb:-
-#, fuzzy
-msgid "Preference|Identifiant"
-msgstr "Identifiant"
-
-#: app/models/preference.rb:-
-#, fuzzy
-msgid "Preference|Mail text"
-msgstr "Mail text"
-
-#: app/models/preference.rb:-
-#, fuzzy
-msgid "Preference|All mail"
-msgstr "All mail"
-
-#: app/models/preference.rb:-
-#, fuzzy
-msgid "Preference|Digest daily"
-msgstr "Digeste prêt"
-
-#: app/models/preference.rb:-
-#, fuzzy
-msgid "Preference|Digest weekly"
-msgstr "Digeste prêt"
 
 #: app/models/urlreversement.rb:-
 msgid "urlreversement"
@@ -3481,7 +3487,8 @@ msgid "Engineer assigned to the request"
 msgstr "Ingénieur assigné à la demande"
 
 #: app/views/demandes/_form.rhtml:45
-msgid "E-mails associated with the request<br/>seperate by commas %s"
+#, fuzzy
+msgid "E-mails associated with the request<br />seperate by commas %s"
 msgstr "E-mails associés à la demande<br/>séparés par des virgule %s"
 
 #: app/views/demandes/_form.rhtml:59
@@ -4544,11 +4551,13 @@ msgid "Close time"
 msgstr "Heure de fermeture"
 
 #: app/views/supports/index.rhtml:5
-msgid "Phone <br/>assistance"
+#, fuzzy
+msgid "Phone <br />assistance"
 msgstr "Assistance <br/>téléphonique"
 
 #: app/views/supports/index.rhtml:6
-msgid "Technological <br/>survey"
+#, fuzzy
+msgid "Technological <br />survey"
 msgstr "Veille <br/>technologique"
 
 #: app/views/supports/index.rhtml:7
