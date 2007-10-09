@@ -37,7 +37,7 @@ class Commentaire < ActiveRecord::Base
       # no check needed, coz a request MUST have at least one comment
       # the first one, with the request description.
       last_comment = self.demande.find_last_comment
-      self.demande.update_attribute :last_comment_id, last_comment_id.id
+      self.demande.update_attribute :last_comment_id, last_comment.id
     end
     # We MUST have at least the first comment
     return false if self.demande.first_comment_id == self.id
@@ -72,6 +72,20 @@ class Commentaire < ActiveRecord::Base
     end
   end
 
+  # reset the request to its previous status state
+  after_destroy :reset_request
+  def reset_request
+    request = self.demande
+    if self.id >= request.last_comment_id and not self.statut_id.nil?
+      options = { :order => "commentaires.created_on DESC",
+        :conditions => 'commentaires.statut_id IS NOT NULL' }
+      last_status_comment = request.commentaires.find(:first, options)
+      statut_id = (last_status_comment ? last_status_comment.statut_id : 1)
+      return request.update_attribute :statut_id, statut_id
+    end
+    true
+  end
+  
 #   before_validation :validate_status
 #   def validate_status
 #     if self.statut_id and self.demande and self.demande.statut_id

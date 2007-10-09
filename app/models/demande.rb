@@ -17,8 +17,14 @@ class Demande < ActiveRecord::Base
   belongs_to :contribution
   belongs_to :socle
   has_many :piecejointes, :through => :commentaires
-  belongs_to :first_comment, :class_name => "Commentaire", :foreign_key => "first_comment_id"
 
+  # Key pointers to the request history
+  belongs_to :first_comment, :class_name => "Commentaire", 
+    :foreign_key => "first_comment_id"
+  belongs_to :last_comment, :class_name => "Commentaire", 
+    :foreign_key => "last_comment_id"
+
+  # Validation
   validates_presence_of :resume,
        :warn => _("You must indicate a summary for your request")
   validates_length_of :resume, :within => 3..60

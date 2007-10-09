@@ -111,8 +111,11 @@ class CommentairesController < ApplicationController
     return redirect_to_home unless params[:id]
     commentaire = Commentaire.find(params[:id])
     demande = commentaire.demande_id
-    commentaire.destroy
-    flash[:notice] = _("The comment was successfully destroyed.")
+    if commentaire.destroy
+      flash[:notice] = _("The comment was successfully destroyed.")
+    else
+      flash[:warn] = _('You cannot delete the first comment')
+    end
     redirect_to comment_demande_path(demande)
   end
 
