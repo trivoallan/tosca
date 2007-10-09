@@ -2,7 +2,6 @@ class AppelsController < ApplicationController
   helper :filters, :export, :demandes, :clients
 
   def index
-    # init
     options = { :per_page => 15, :order => 'appels.debut', :include =>
       [:beneficiaire,:ingenieur,:contrat,:demande] }
     conditions = []

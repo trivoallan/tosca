@@ -1,0 +1,5 @@
+<%# used mainly when sending comment email, to have a correct and full url %>
+<% attachment = @commentaire.piecejointe %>
+<% if attachment %>
+<%=request.protocol%><%=request.host_with_port%><%=url_for_file_column(attachment, 'file', :absolute => true)%>
+<% end %>

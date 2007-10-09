@@ -116,15 +116,17 @@ class DemandesController < ApplicationController
     @demande = Demande.new(params[:demande])
     if @demande.save
       flash[:notice] = _("Your request has been successfully submitted")
-      Notifier::deliver_request_new({ :demande => @demande,
-                                      :url_request => demande_url(@demande),
-                                      :nom => session[:user].nom,
-                                      :controller => self}, flash)
       attachment = params[:piecejointe]
       unless attachment.blank?
         piecejointe = Piecejointe.create(:file => attachment[:file])
         @demande.first_comment.update_attribute(:piecejointe, piecejointe)
       end
+      @commentaire = @demande.first_comment
+      url_attachment = render_to_string(:layout => false, 
+                                        :template => '/attachment')
+      options = { :demande => @demande, :url_request => demande_url(@demande),
+        :nom => session[:user].nom, :url_attachment => url_attachment }
+      Notifier::deliver_request_new(options, flash)
       redirect_to demandes_path
     else
       _form @beneficiaire

@@ -57,13 +57,7 @@ class CommentairesController < ApplicationController
       flash[:warn] = _("Your comment is too short, please rewrite it.")
     elsif @commentaire.save
       flash[:notice] = _("Your comment was successfully added.")
-      # TODO: This line is really ugly : find a better way.
-      # maybe with an other plugin ?
-      url_attachment = ""
-      if @commentaire.piecejointe
-        url_attachment = render_to_string :inline =>
-          "<%=request.protocol%><%=request.host_with_port%><%=url_for_file_column(@commentaire.piecejointe, 'file', :absolute => true)%>"
-      end
+      url_attachment = render_to_string(:layout => false, :template => '/attachment')
       options = { :demande => demande, :commentaire => @commentaire,
                   :nom => user.nom, :modifications => modifications,
                   :url_request => demande_url(demande),

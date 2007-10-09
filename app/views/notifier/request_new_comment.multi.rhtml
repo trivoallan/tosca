@@ -16,7 +16,7 @@
   <i><%= h @nom %></i> a écrit un commentaire <b>non visible</b> par le bénéficiaire pour la <%= url_demande %> :
 <% else %>
   <% modified = modified.empty? ? 'commentée' : modified.join(' et ') %>
-  La <%= url_demande %> vient d'être <%=modified%> par <i><%= h @nom %></i> :
+  La <%= url_demande %> vient d&lsquo;être <%=modified%> par <i><%= h @nom %></i> :
 <% end %>
 <br />
 
@@ -24,7 +24,7 @@
 <%= @commentaire.corps %><br />
 <hr noshade size="1px"/>
 <% if @modifications["severite_id"] %>
-  La demande a été requalifiée avec une sévérité <b><%=@commentaire.severite.nom%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severite_demande">Cette page</a> présente en détail la signification de cette Sévérité.<br />
+  La demande a été requalifiée avec une sévérité <b><%=@commentaire.severite.nom%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severite_demande">Cette page</a> vous présente en détail la signification de ce changement.<br />
 <% end %>
 
 <%= render :partial => '../notifier/end_mail' %>
