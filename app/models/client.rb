@@ -24,12 +24,10 @@ class Client < ActiveRecord::Base
   after_save :desactivate_recipients
 
   def desactivate_recipients
-    if inactive?
-      beneficiaires.each do |b|
-        id = b.identifiant
-        id.inactive = true
-        id.save
-      end
+    beneficiaires.each do |b|
+      id = b.identifiant
+      id.inactive = inactive?
+      id.save
     end
   end
 
