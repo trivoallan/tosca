@@ -77,12 +77,16 @@ class Notifier < ActionMailer::Base
 
   # This function needs 4 options for options :demande, :nom, :commentaire, :url_request
   def request_new_comment(options, flash)
-    demande = options[:demande]
-
-    recipients compute_recipients(demande, options[:commentaire].prive)
-    cc         compute_copy(demande)
+    request = options[:demande]
+    # needed in order to have correct recipients
+    # for instance, send mail to the correct engineer 
+    # when reaffecting a request
+    request.reload 
+  
+    recipients compute_recipients(request, options[:commentaire].prive)
+    cc         compute_copy(request)
     from       FROM
-    subject    "[OSSA:##{demande.id}] : #{demande.resume}"
+    subject    "[OSSA:##{request.id}] : #{request.resume}"
 
     html_and_text_body(options)
 
@@ -121,9 +125,9 @@ class Notifier < ActionMailer::Base
 
   def compute_recipients(demande, private = false)
     result = ""
-    #The client is not informed of private messages
+    # The client is not informed of private messages
     result += demande.beneficiaire.identifiant.email if not private
-    # l'ingénieur est non assigné initialement
+    # Request are not assigned, by default
     if demande.ingenieur
       result += ", " if not private
       result += demande.ingenieur.identifiant.email
