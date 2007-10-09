@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-09 16:56+0200\n"
-"PO-Revision-Date: 2007-10-09 16:58+0200\n"
+"PO-Revision-Date: 2007-10-09 17:01+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -144,9 +144,8 @@ msgid "Vous must specify a role"
 msgstr "Vous devez spéficier un rôle"
 
 #: app/controllers/account_controller.rb:213
-#, fuzzy
 msgid "The user %s have been successfully created.<br />"
-msgstr "L'utilisateur %s a été crée avec succès<br />"
+msgstr "L'utilisateur %s a été créé avec succès<br />"
 
 #: app/controllers/account_controller.rb:216
 msgid "Associate created"
@@ -1092,29 +1091,24 @@ msgid "preference"
 msgstr "preference"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Identifiant"
 msgstr "Identifiant"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Mail text"
 msgstr "Mail text"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|All mail"
 msgstr "All mail"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Digest daily"
-msgstr "Digeste prêt"
+msgstr "Résumé journalier"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Digest weekly"
-msgstr "Digeste prêt"
+msgstr "Résumé hebdomadaire"
 
 #: app/models/appel.rb:-
 msgid "appel"
@@ -1281,14 +1275,12 @@ msgid "Client|Beneficiaires count"
 msgstr "Nombre de bénéficiaires"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Chrono"
-msgstr "Nom"
+msgstr "Numéro de chrono"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Inactive"
-msgstr "Image"
+msgstr "Inactif"
 
 #: app/models/client.rb:-
 msgid "paquet"
@@ -1607,14 +1599,12 @@ msgid "Demande|Contrat"
 msgstr "Contrat"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Expected on"
-msgstr "Créé le"
+msgstr "Attendu le"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Last comment"
-msgstr "Premier commentaire"
+msgstr "Dernier commentaire"
 
 #: app/models/demande.rb:29
 msgid "You must indicate a summary for your request"
@@ -1834,9 +1824,8 @@ msgid "Identifiant|Client"
 msgstr "Client"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Inactive"
-msgstr "Image"
+msgstr "Inactive"
 
 #: app/models/identifiant.rb:23
 msgid "Identifiant|Pwd"
@@ -2215,9 +2204,8 @@ msgid "Urllogiciel|Logiciel"
 msgstr "Logiciel"
 
 #: app/models/urllogiciel.rb:-
-#, fuzzy
 msgid "Urllogiciel|Typeurl"
-msgstr "Valeur"
+msgstr "Typeurl"
 
 #: app/models/urllogiciel.rb:-
 msgid "Urllogiciel|Valeur"
@@ -3486,9 +3474,8 @@ msgid "Engineer assigned to the request"
 msgstr "Ingénieur assigné à la demande"
 
 #: app/views/demandes/_form.rhtml:45
-#, fuzzy
 msgid "E-mails associated with the request<br />seperate by commas %s"
-msgstr "E-mails associés à la demande<br/>séparés par des virgule %s"
+msgstr "E-mails associés à la demande<br/>séparés par des virgules %s"
 
 #: app/views/demandes/_form.rhtml:59
 msgid "Type of the request"
@@ -4550,12 +4537,10 @@ msgid "Close time"
 msgstr "Heure de fermeture"
 
 #: app/views/supports/index.rhtml:5
-#, fuzzy
 msgid "Phone <br />assistance"
 msgstr "Assistance <br/>téléphonique"
 
 #: app/views/supports/index.rhtml:6
-#, fuzzy
 msgid "Technological <br />survey"
 msgstr "Veille <br/>technologique"
 
@@ -4679,8 +4664,4 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "Your comment was successfully added"
-#~ msgstr "Votre commentaire a été créé avec succès."
 
-#~ msgid "Are you sure you want to delete comment %s ?"
-#~ msgstr "Étes vous sûr de vouloir effacer le commentaire %s ?"
