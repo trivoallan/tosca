@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-10-09 16:56+0200\n"
-"PO-Revision-Date: 2007-08-13 17:59+0200\n"
+"PO-Revision-Date: 2007-10-09 17:05+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1077,23 +1077,20 @@ msgid "preference"
 msgstr ""
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Identifiant"
 msgstr "Login"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Mail text"
-msgstr "Login"
+msgstr ""
 
 #: app/models/preference.rb:-
 msgid "Preference|All mail"
 msgstr ""
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Digest daily"
-msgstr "Login"
+msgstr ""
 
 #: app/models/preference.rb:-
 msgid "Preference|Digest weekly"
@@ -1160,7 +1157,6 @@ msgid "Beneficiaire|Beneficiaire"
 msgstr ""
 
 #: app/models/beneficiaire.rb:-
-#, fuzzy
 msgid "Beneficiaire|Identifiant"
 msgstr "Login"
 
@@ -1265,14 +1261,12 @@ msgid "Client|Beneficiaires count"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Chrono"
-msgstr "Description"
+msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Inactive"
-msgstr "Customer"
+msgstr ""
 
 #: app/models/client.rb:-
 msgid "paquet"
@@ -1287,7 +1281,6 @@ msgid "Paquet|Nom"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Version"
 msgstr "Version"
 
@@ -1344,9 +1337,8 @@ msgid "contrat"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Client"
-msgstr "Customer"
+msgstr "Client"
 
 #: app/models/client.rb:-
 msgid "Contrat|Ouverture"
@@ -1369,14 +1361,12 @@ msgid "Contrat|Socle"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Nom"
-msgstr "Customer"
+msgstr "Name"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Support"
-msgstr "Customer"
+msgstr ""
 
 #: app/models/commentaire.rb:-
 msgid "commentaire"
@@ -1387,9 +1377,8 @@ msgid "Commentaire|Demande"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-#, fuzzy
 msgid "Commentaire|Identifiant"
-msgstr "Login"
+msgstr ""
 
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Piecejointe"
@@ -1400,12 +1389,10 @@ msgid "Commentaire|Corps"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-#, fuzzy
 msgid "Commentaire|Created on"
 msgstr "Created on"
 
 #: app/models/commentaire.rb:-
-#, fuzzy
 msgid "Commentaire|Updated on"
 msgstr "Updated on"
 
@@ -1466,7 +1453,6 @@ msgid "Contribution|Nom"
 msgstr ""
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Description"
 msgstr "Description"
 
@@ -1475,12 +1461,10 @@ msgid "Contribution|Patch"
 msgstr ""
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Created on"
 msgstr "Created on"
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Updated on"
 msgstr "Updated on"
 
@@ -1497,7 +1481,6 @@ msgid "Contribution|Description fonctionnelle"
 msgstr ""
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Etatreversement"
 msgstr "contributionstate"
 
@@ -1518,7 +1501,6 @@ msgid "Contribution|Typecontribution"
 msgstr ""
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Version"
 msgstr "Version"
 
@@ -1535,7 +1517,6 @@ msgid "Statut|Nom"
 msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Statut|Description"
 msgstr "Description"
 
@@ -1544,16 +1525,14 @@ msgid "demande"
 msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Beneficiaire"
-msgstr "Description"
+msgstr "Recipient"
 
 #: app/models/demande.rb:-
 msgid "Demande|Ingenieur"
 msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Resume"
 msgstr "Description"
 
@@ -1566,22 +1545,18 @@ msgid "Demande|Statut"
 msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Severite"
-msgstr "Description"
+msgstr "Severity"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Logiciel"
-msgstr "Description"
+msgstr "Software"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Created on"
 msgstr "Created on"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Updated on"
 msgstr "Updated on"
 
@@ -1590,38 +1565,32 @@ msgid "Demande|Typedemande"
 msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Contribution"
-msgstr "Description"
+msgstr "Contribution"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Socle"
-msgstr "Description"
+msgstr "System"
 
 #: app/models/demande.rb:-
 msgid "Demande|Mail cc"
 msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|First comment"
-msgstr "Description"
+msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Contrat"
-msgstr "Description"
+msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Expected on"
-msgstr "Created on"
+msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Last comment"
-msgstr "Description"
+msgstr ""
 
 #: app/models/demande.rb:29
 msgid "You must indicate a summary for your request"
@@ -1664,7 +1633,6 @@ msgid "Dependance|Sens"
 msgstr ""
 
 #: app/models/dependance.rb:-
-#, fuzzy
 msgid "Dependance|Version"
 msgstr "Version"
 
@@ -1717,9 +1685,8 @@ msgid "Document|Version"
 msgstr "Version"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Date delivery"
-msgstr "Customer"
+msgstr ""
 
 #: app/models/engagement.rb:-
 msgid "engagement"
@@ -1818,9 +1785,8 @@ msgid "Identifiant|Titre"
 msgstr ""
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Nom"
-msgstr "Login"
+msgstr "Nom"
 
 #: app/models/identifiant.rb:-
 msgid "Identifiant|Email"
@@ -1839,14 +1805,12 @@ msgid "Identifiant|Informations"
 msgstr ""
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Client"
 msgstr "Customer"
 
 #: app/models/identifiant.rb:-
-#, fuzzy
 msgid "Identifiant|Inactive"
-msgstr "Customer"
+msgstr "Inactive"
 
 #: app/models/identifiant.rb:23
 msgid "Identifiant|Pwd"
@@ -1881,7 +1845,6 @@ msgid "Image|Image"
 msgstr ""
 
 #: app/models/image.rb:-
-#, fuzzy
 msgid "Image|Description"
 msgstr "Description"
 
@@ -1890,7 +1853,6 @@ msgid "ingenieur"
 msgstr ""
 
 #: app/models/ingenieur.rb:-
-#, fuzzy
 msgid "Ingenieur|Identifiant"
 msgstr "Login"
 
@@ -1947,7 +1909,6 @@ msgid "Logiciel|Resume"
 msgstr ""
 
 #: app/models/logiciel.rb:-
-#, fuzzy
 msgid "Logiciel|Description"
 msgstr "Description"
 
@@ -1988,7 +1949,6 @@ msgid "Machine|Hote"
 msgstr ""
 
 #: app/models/machine.rb:-
-#, fuzzy
 msgid "Machine|Description"
 msgstr "Description"
 
@@ -2021,12 +1981,10 @@ msgid "New|Body"
 msgstr ""
 
 #: app/models/new.rb:-
-#, fuzzy
 msgid "New|Created on"
 msgstr "Created on"
 
 #: app/models/new.rb:-
-#, fuzzy
 msgid "New|Updated on"
 msgstr "Updated on"
 
@@ -2035,7 +1993,6 @@ msgid "New|Ingenieur"
 msgstr ""
 
 #: app/models/new.rb:-
-#, fuzzy
 msgid "New|Client"
 msgstr "Customer"
 
@@ -2192,7 +2149,6 @@ msgid "Typecontribution|Nom"
 msgstr ""
 
 #: app/models/typecontribution.rb:-
-#, fuzzy
 msgid "Typecontribution|Description"
 msgstr "Description"
 
@@ -2209,12 +2165,10 @@ msgid "typedocument"
 msgstr ""
 
 #: app/models/typedocument.rb:-
-#, fuzzy
 msgid "Typedocument|Nom"
-msgstr "Type document"
+msgstr ""
 
 #: app/models/typedocument.rb:-
-#, fuzzy
 msgid "Typedocument|Description"
 msgstr "Description"
 
@@ -2243,19 +2197,16 @@ msgid "Urllogiciel|Valeur"
 msgstr ""
 
 #: app/models/urlreversement.rb:-
-#, fuzzy
 msgid "urlreversement"
 msgstr "contributionstate"
 
 #: app/models/urlreversement.rb:-
-#, fuzzy
 msgid "Urlreversement|Contribution"
-msgstr "Description"
+msgstr ""
 
 #: app/models/urlreversement.rb:-
-#, fuzzy
 msgid "Urlreversement|Valeur"
-msgstr "contributionstate"
+msgstr ""
 
 #: app/views/acces/refuse.rhtml:2
 msgid "Access denied"
@@ -3735,14 +3686,12 @@ msgid "Documents available in %s"
 msgstr ""
 
 #: app/views/documents/list.rhtml:5
-#, fuzzy
 msgid "a document"
-msgstr "Type document"
+msgstr ""
 
 #: app/views/documents/list.rhtml:8
-#, fuzzy
 msgid "Delivered on"
-msgstr "Created on"
+msgstr ""
 
 #: app/views/documents/list.rhtml:21
 msgid "Return to selection"
@@ -4644,18 +4593,4 @@ msgstr ""
 msgid "Add an url to follow your contribution"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Demande|Reproductible"
-#~ msgstr "Description"
 
-#, fuzzy
-#~ msgid "Identifiant|Affichage personnel"
-#~ msgstr "Customer"
-
-#, fuzzy
-#~ msgid "Socle|Client"
-#~ msgstr "Customer"
-
-#, fuzzy
-#~ msgid "Demande|Version"
-#~ msgstr "Description"
