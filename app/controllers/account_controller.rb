@@ -294,9 +294,10 @@ private
     logout = _("Logout")
     my_account = _("My account")
     render_to_string :inline => <<-EOF
-      <% infos = []
-         infos << link_to("#{my_account}", edit_account_path(session[:user]))
-         infos << public_link_to("#{logout}", logout_accounts_path, :method => :post)
+      <% infos = [
+           link_to("#{my_account}", edit_account_path(session[:user])),
+           public_link_to("#{logout}", logout_accounts_path, :method => :post) 
+         ]
       %>
       <%= build_simple_menu(infos.reverse, :class => 'account_menu') %>
     EOF

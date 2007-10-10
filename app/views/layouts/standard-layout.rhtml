@@ -4,8 +4,10 @@
 <head>
  <%#precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
  <% locale = Locale.get.language.intern %>
- <% @@menu ||= {}; @@links ||= {}; @@head ||= {} %>
- <% @@head[locale] ||=
+ <% user = session.data.has_key? :user %>
+ <% role_localised = :"#{locale}#{session[:user].role_id}" if user %>
+ <% @@public_menu ||= {}; @@public_links ||= {}; @@public_head ||= {}; @@menu ||= {} %>
+ <% @@public_head[locale] ||=
        '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
        "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
        "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
@@ -18,28 +20,36 @@
        javascript_include_tag(:defaults) <<
        javascript_include_tag('redbox')
  %>
- <%= @@head[locale] %>
+ <%= @@public_head[locale] %>
  <title>08000linux : <%=_(controller.controller_name)%></title>
 </head>
 <body>
   <% # All the menu are built during first rendering or during login, in account controller %>
-  <% @@menu[locale] ||= build_simple_menu([
-    public_link_to_home,
-    public_link_to_softwares,
-    public_link_to_contributions,
-    public_link_to_about ]) %>
+  <% @@public_menu[locale] ||= build_simple_menu([
+       public_link_to_home,
+       public_link_to_softwares,
+       public_link_to_contributions,
+       public_link_to_about ]) %>
+  <% @@menu[role_localised] ||= build_simple_menu([ 
+        public_link_to_home,
+        link_to_requests,
+        '<a class="no_hover">'+search_demande+'</a>',
+        public_link_to_softwares,
+        public_link_to_contributions,
+        link_to_admin,
+        public_link_to_about 
+       ], :form => true) if user %>
   <% #TODO : formulaire de login en haut ? %>
-  <% @@links[locale] ||= build_simple_menu([
+  <% @@public_links[locale] ||= build_simple_menu([
         link_to_redbox(_('Log in'), 'login_box')], :class => 'account_menu') %>
-  <% user = session.data.has_key? :user %>
   <div id="header">
     <table>
       <tr valign="top">
         <td valign="middle" width="145"><%= public_link_to StaticImage::logo_08000, bienvenue_url%>
         </td>
-        <td><%= (user ? session[:menu] : @@menu[locale]) %></td>
+        <td><%= (user ? @@menu[role_localised] : @@public_menu[locale]) %></td>
         <td align="right">
-          <%= (user ? session[:account_links] : @@links[locale]) %>
+          <%= (user ? session[:account_links] : @@public_links[locale]) %>
         </td>
       </tr>
     </table>
