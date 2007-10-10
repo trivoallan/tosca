@@ -21,6 +21,7 @@ class CommentaireTest < Test::Unit::TestCase
 
     assert c.save
   end
+
   def test_etat
     c = Commentaire.find 1
     assert_equal c.etat, 'public'

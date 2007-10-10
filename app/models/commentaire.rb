@@ -81,19 +81,17 @@ class Commentaire < ActiveRecord::Base
         :conditions => 'commentaires.statut_id IS NOT NULL' }
       last_status_comment = request.commentaires.find(:first, options)
       statut_id = (last_status_comment ? last_status_comment.statut_id : 1)
-      return request.update_attribute :statut_id, statut_id
+      return request.update_attribute(:statut_id, statut_id)
     end
     true
   end
-  
-#   before_validation :validate_status
-#   def validate_status
-#     if self.statut_id and self.demande and self.demande.statut_id
-#       not (self.demande.statut_id == self.statut_id)
-#     else
-#       #Creation of the comment so all is nil so we this to return true
-#       true
-#     end
-#   end
+
+  before_validation :validate_status
+  def validate_status
+    return true if self.demande.nil?
+    return true if (self.demande.first_comment_id == self.id)
+    return (self.demande.statut_id != self.statut_id) if self.demande.statut
+    return true
+  end
 
 end
