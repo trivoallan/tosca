@@ -25,9 +25,7 @@ class Client < ActiveRecord::Base
 
   def desactivate_recipients
     beneficiaires.each do |b|
-      id = b.identifiant
-      id.inactive = inactive?
-      id.save
+      b.identifiant.update_attribute :inactive, inactive?
     end
   end
 
