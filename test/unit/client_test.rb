@@ -50,7 +50,6 @@ class ClientTest < Test::Unit::TestCase
     assert_equal c.adresse, "les champs Élysées 95000 Paris"
     assert_equal c.image_id, 1
     assert_equal c.code_acces, "lenomdeleurchien"
-    assert_equal c.beneficiaires_count, 1
   end
   def test_destroy
     assert clients( :client_00001).destroy

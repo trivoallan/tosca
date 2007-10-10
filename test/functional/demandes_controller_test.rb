@@ -9,7 +9,7 @@ class DemandesControllerTest < Test::Unit::TestCase
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles, 
     :permissions_roles, :contrats, :contrats_engagements, :engagements, 
-    :contrats_ingenieurs, :identifiants, :identifiants_roles, :piecejointes,
+    :contrats_ingenieurs, :identifiants, :piecejointes,
     :jourferies, :binaires, :binaires_demandes, :supports, :typedemandes
 
 

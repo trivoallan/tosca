@@ -9,8 +9,7 @@ class AccountController; def rescue_action(e) raise e end; end
 
 class AccountControllerTest < Test::Unit::TestCase
   
-  fixtures :identifiants, :identifiants_roles, :roles, 
-    :permissions_roles, :permissions, :clients
+  fixtures :identifiants, :roles, :permissions_roles, :permissions, :clients
   
   def setup
     @controller = AccountController.new
@@ -33,7 +32,7 @@ class AccountControllerTest < Test::Unit::TestCase
 
     get :index, :filters => { :role_id => 1 }
     assert_response :success
-    assigns(:users).each { |u| assert u.roles.include?(Role.find(1)) }
+    assigns(:users).each { |u| assert_equal u.role_id, 1 }
   end
   
   def test_auth_bob
