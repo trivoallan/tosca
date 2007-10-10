@@ -31,9 +31,6 @@ class ReportingController < ApplicationController
     @contrats = (@beneficiaire ? @beneficiaire.client.contrats :
                  Contrat.find(:all, Contrat::OPTIONS))
   end
-  def new
-    redirect_to :action => 'index', :controller => :demandes
-  end
 
   def comex
     #_titles()

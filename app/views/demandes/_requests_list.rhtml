@@ -3,6 +3,11 @@
 <% links = show_pages_links(@demande_pages, 'une nouvelle demande',:url => demandes_url) %>
 <%= links %>
 
+<% if controller.action_name == 'en_attente' %>
+  <%= _('This list contains only requests which needs your attention.') %>
+  <%= _('If you want to see all %s, consult all the %s.') % [ link_to_requests ] %>
+<% end %>
+
 <table id="demandes_list" class="show" width='100%'>
    <tr>
       <th width='2%'><%= _("Id") %></th>

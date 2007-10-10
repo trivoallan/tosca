@@ -30,6 +30,8 @@ class DemandesController < ApplicationController
     @demande_pages, @demandes = paginate :demandes, options
 
     @title = n_('My pending request', 'My pending requests', @demandes.size)
+    @description = ('This list contains only requests which needs an action from you.') <<
+      _("If you want to have a global view or to select a set of request, you'll need to go on the requests list.") 
     render :partial => 'requests_list', :layout => true
   end
 
@@ -51,6 +53,9 @@ class DemandesController < ApplicationController
 
     conditions = nil
     @title = _('All the requests')
+    @description = ('This list contains all requests, filtered with your choice on the left panel.') <<
+      _("If you want to see quickly which requests need you, use the requests 'to be done' link.") 
+
     if session.data.has_key? :requests_filters
       requests_filters = session[:requests_filters]
 

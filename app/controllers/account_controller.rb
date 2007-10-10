@@ -267,26 +267,6 @@ private
 
     # Account links in header
     session[:account_links] = set_account_links
-    # Navigation menu in header
-    session[:menu] = set_menu
-  end
-
-  # Build the header menu
-  def set_menu
-    render_to_string :inline => <<-EOF
-      <% menu = []
-         menu << public_link_to_home
-         menu << link_to_requests
-         menu << (session[:user].authorized?('demandes/comment') ? '<a class="no_hover">'+search_demande+'</a>' : nil )
-         menu << public_link_to_softwares
-         menu << public_link_to_contributions
-         menu << link_to_admin
-         menu << public_link_to_about
-      %>
-      <%= build_simple_menu(menu, :form => true) %>
-    EOF
-    # for those who do want a complex menu
-    #render_to_string :partial => 'menu'
   end
 
   # Build account links
