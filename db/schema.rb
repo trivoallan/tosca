@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 70) do
+ActiveRecord::Schema.define(:version => 71) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -341,17 +341,10 @@ ActiveRecord::Schema.define(:version => 70) do
     t.column "informations", :text,                  :default => "",    :null => false
     t.column "client",       :boolean,               :default => false, :null => false
     t.column "inactive",     :boolean,               :default => false, :null => false
+    t.column "role_id",      :integer,               :default => 0,     :null => false
   end
 
   add_index "identifiants", ["image_id"], :name => "index_identifiants_on_image_id"
-
-  create_table "identifiants_roles", :id => false, :force => true do |t|
-    t.column "identifiant_id", :integer, :limit => 10, :default => 0, :null => false
-    t.column "role_id",        :integer, :limit => 10, :default => 0, :null => false
-  end
-
-  add_index "identifiants_roles", ["role_id"], :name => "roles_identifiants_FKIndex1"
-  add_index "identifiants_roles", ["identifiant_id"], :name => "roles_identifiants_FKIndex2"
 
   create_table "images", :force => true do |t|
     t.column "image",       :string

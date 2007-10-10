@@ -1,8 +1,4 @@
-
-<%
-  create_account = false
-%>
-
+<% create_account = false %>
 <% # TODO : improve it, c'est encore tres peu lisible
   #ESSAI : un peu mieux ? un chouilla ;)
   identifiant, role, identifiant_client, type_client, csv, inactive = {}, {}, {}, {}, {}, {}
@@ -10,7 +6,7 @@
 
   if session[:user].ingenieur and session[:user].ingenieur.expert_ossa
     role[:titre] = '<label>' + _('Roles') + '</label>'
-    role[:champ] = hbtm_check_box(@identifiant.roles, @roles, 'identifiant[role_ids]')
+    role[:champ] = hm_radio_button('identifiant', 'role_id', @roles)
 
     inactive[:titre] = '<label>' + _('Inactive') + '</label>'
     inactive[:champ] = check_box(:identifiant, :inactive)

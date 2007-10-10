@@ -1,7 +1,7 @@
 <%
   role_titre, role_champs, avatar = nil, nil, nil
   role_titre = _('Role')
-  role_champs = @identifiant.roles
+  role_champs = @identifiant.role.nom
 
   if @ingenieur
      unless @ingenieur.image_id.nil?
@@ -17,8 +17,8 @@
      [ _('Phone'), "<label>#{@identifiant.telephone}</label>" ],
      [ _("Inactive"), "<label>" << (@identifiant.inactive ? _("Yes") : _("No")) << "</label>" ],
      [ '<hr/>', nil ],
-     [ _('login'), "<label>#{@identifiant.login}</label>" ],
-     [ role_titre, role_champs ],
+     [ _('Login'), "<label>#{@identifiant.login}</label>" ],
+     [ _('Role'), "<label>#{@identifiant.role.nom if @identifiant.role}</label>" ],
      [ '<hr/>', nil ],
      [  nil, @identifiant.informations.to_s ]
    ]

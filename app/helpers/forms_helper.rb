@@ -37,16 +37,12 @@ module FormsHelper
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
   # objectcollection contient le tableau des objects déjà présents
   # C'est la fonction to_s qui est utilisée pour le label
-  # Ex : hbtm_radio_button( @logiciel.competences, @competences, 'competence_ids')
-  def hbtm_radio_button( objectcollection, collection, nom )
-    return '' if collection.nil?
-    objectcollection ||= [] # TODO : changer la signature et faire le sed qui va bien
-    out = ""
-    for donnee in collection
-      out << '<input type="radio" '
-      out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
-      out << 'checked="checked" ' if objectcollection.include? donnee
-      out << "/>#{donnee}"
+  # Ex : hm_radio_button( 'identifiant', 'role_id', @roles)
+  def hm_radio_button( object, param, collection )
+    out = ''
+    return out if collection.nil?
+    for data in collection
+      out << radio_button(object, param, data.id) + data.to_s
     end
     out
   end

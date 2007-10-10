@@ -7,7 +7,7 @@ class Identifiant < ActiveRecord::Base
   acts_as_reportable
   belongs_to :image
   has_many :piecejointes
-  has_and_belongs_to_many :roles
+  belongs_to :role
   has_many :documents
 
   has_one :ingenieur
@@ -61,14 +61,14 @@ class Identifiant < ActiveRecord::Base
     end
   end
 
-  SELECT_OPTIONS = { :include => [:identifiant],
-    :order => 'identifiants.nom ASC', :conditions => 'identifiants.inactive = 0' }
+  SELECT_OPTIONS = { :include => [:identifiant], :order => 
+    'identifiants.nom ASC', :conditions => 'identifiants.inactive = 0' }
 
   def self.authenticate(login, pass, crypt)
     Identifiant.with_exclusive_scope() do
       pass = sha1(pass) if crypt == 'false'
-      user = Identifiant.find(:first, :conditions => ['login = ? AND password = ?',
-                                                      login, pass])
+      user = Identifiant.find(:first, :conditions => 
+                              ['login = ? AND password = ?', login, pass])
       return nil if user and user.inactive?
       user
     end
@@ -93,7 +93,7 @@ class Identifiant < ActiveRecord::Base
   def permission_strings
     return @permissions if @permissions
     @permissions = []
-    self.roles.each{|r| r.permissions.each{|p| @permissions << Regexp.new(p.name) }}
+    self.role.permissions.each{|p| @permissions << Regexp.new(p.name) }
     @permissions
   end
 
@@ -115,8 +115,8 @@ class Identifiant < ActiveRecord::Base
     beneficiaire.client.nom if beneficiaire
   end
 
-  def roles_join
-    roles.join(', ')
+  def role_nom
+    role.nom if role
   end
 
   def strike(attribute)

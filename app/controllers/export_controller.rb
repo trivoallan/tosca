@@ -59,11 +59,11 @@ class ExportController < ApplicationController
   def compute_identifiants(type)
     options = { :order => 'identifiants.login', :include => 
       [:beneficiaire,:ingenieur,:roles], :conditions => flash[:conditions],
-      :methods => ['beneficiaire_client_nom', 'roles_join']
+      :methods => ['beneficiaire_client_nom', 'role_nom']
     }
     report = Identifiant.report_table(:all, options)
     columns = ['id','login','nom','email','telephone',
-      'beneficiaire_client_nom', 'roles_join']
+      'beneficiaire_client_nom', 'role_nom']
 
     report.reorder columns
     report.rename_columns columns,

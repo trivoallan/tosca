@@ -19,7 +19,7 @@ class AccountController < ApplicationController
   def index
     # init
     options = { :per_page => 15, :order => 'identifiants.login', :include =>
-      [:beneficiaire,:ingenieur,:roles] }
+      [:beneficiaire,:ingenieur,:role] }
     conditions = []
     @roles = Role.find_select
 
@@ -35,7 +35,7 @@ class AccountController < ApplicationController
       conditions = Filters.build_conditions(accounts_filters, [
         [:nom, 'identifiants.nom', :like ],
         [:client_id, 'beneficiaires.client_id', :equal ],
-        [:role_id, 'identifiants_roles.role_id', :equal ]
+        [:role_id, 'identifiants.role_id', :equal ]
       ])
       flash[:conditions] = options[:conditions] = conditions
       @filters = accounts_filters
@@ -191,7 +191,6 @@ class AccountController < ApplicationController
 
       return unless flash.now[:warn] == ''
       flash[:notice] = ''
-      roles = Role.find(params[:identifiant][:role_ids])
 
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"),
                       { :col_sep => ";", :headers => true }) do |row|
@@ -207,7 +206,6 @@ class AccountController < ApplicationController
            i.informations = row[_('Informations')].to_s
            i.client = params[:identifiant][:client]
         end
-        identifiant.roles = roles
         if identifiant.save
           client = Client.find(params[:client][:id])
           flash[:notice] += _("The user %s have been successfully created.<br />") % row[_('Full name')]
