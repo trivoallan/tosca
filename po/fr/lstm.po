@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-11 15:55+0200\n"
-"PO-Revision-Date: 2007-10-11 11:10+0200\n"
+"PO-Revision-Date: 2007-10-11 16:03+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -928,19 +928,16 @@ msgid "Requests"
 msgstr "Demandes"
 
 #: app/helpers/links_helper.rb:118
-#, fuzzy
 msgid "Consult requests"
-msgstr "Consulter toutes les demandes"
+msgstr "Consulter les demandes"
 
 #: app/helpers/links_helper.rb:124
-#, fuzzy
 msgid "Consult all the requests"
 msgstr "Consulter toutes les demandes"
 
 #: app/helpers/links_helper.rb:129
-#, fuzzy
 msgid "Requests to be done"
-msgstr "Nature de la demande :"
+msgstr "Demandes à traiter"
 
 #: app/helpers/links_helper.rb:130
 msgid "Consult requests which are waiting an action from you"
@@ -3719,24 +3716,24 @@ msgstr ""
 #: app/views/demandes/lists/requests_tobd.rhtml:14
 #: app/views/demandes/lists/_requests_tobd.rhtml:14
 msgid "In technicals terms, the list is the set of requests where "
-msgstr ""
+msgstr "En termes techniques, cette liste est l'ensemble des demandes où "
 
 #: app/views/demandes/lists/requests_tobd.rhtml:16
 #: app/views/demandes/lists/_requests_tobd.rhtml:16
 msgid "our services have asked you for an information or a validation."
-msgstr ""
+msgstr "notre service vous a demandé une information ou une validation."
 
 #: app/views/demandes/lists/requests_tobd.rhtml:18
 msgid ""
 "customers didn't had an answer or where their answer was expected before "
 "today."
-msgstr ""
+msgstr "clients attendent une réponse ou leur réponse était attendu avant aujourd'hui."
 
 #: app/views/demandes/lists/requests_tobd.rhtml:21
 #: app/views/demandes/lists/_requests_tobd.rhtml:21
 msgid ""
 "Feel free to contact us at %s if you feel some requests should not be here."
-msgstr ""
+msgstr "N'hésitez pas à nous contacter à %s si vous pensez qu'une demande ne devrait pas être dans cette liste."
 
 #: app/views/demandes/lists/_requests_table.rhtml:9
 msgid "Submitter"
