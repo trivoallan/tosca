@@ -10,14 +10,14 @@
 <%= links %>
 
 <div class="show" style="margin: 0px auto">
-  <p><%= indent _('This list contains only requests which needs an action on your behalf.') %></p>
-  <% explanation =  _('In technicals terms, the list is the set of requests where ') %>
-   <% if @beneficiaire 
-        explanation += _('our services have asked you for an information or a validation.') 
-      elsif @ingenieur 
-       explanation += _("customers didn't had an answer or where their answer was expected before today.")
-      end %>
-  <p><%= indent(explanation) %></p>
+  <p><%= _('This list contains only requests which needs an action on your behalf.') %></p>
+  <%=  _('In technicals terms, the list is the set of requests where ') %>
+   <% if @beneficiaire %>
+       <%= _('our services have asked you for an information or a validation.') %>
+   <% elsif @ingenieur %>
+       <%= _("customers didn't had an answer or where their answer was expected before today.") %>
+   <% end %>
+  <br /><br /><hr />
   <p><%= auto_link(_('Feel free to inform us in %s if you feel some requests should not be here.') % 
            [ link_to(_('the idea box'), suggestions_bienvenue_path) ]) %></p>
 </div>
