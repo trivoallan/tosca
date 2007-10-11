@@ -103,7 +103,7 @@ module PagesHelper
       result << "<td>#{link}</td>"
     end
     if pages.current.last_item > 0
-      result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item}"
+      result << "<td valign='middle'><small>De&nbsp;#{pages.current.first_item}"
       result << _(' to ') << pages.current.last_item.to_s
       result << _('&nbsp; on ') << pages.last.last_item.to_s << '&nbsp;</small></td>'
     end
