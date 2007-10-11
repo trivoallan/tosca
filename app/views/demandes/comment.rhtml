@@ -13,7 +13,7 @@
   </h1>
 
   <% if @last_commentaire %>
-     <%= render :partial => 'tab_comments' %>
+     <%= render :partial => 'demandes/tabs/tab_comments' %>
   <% else %>
    <div class="demande_tab_content">
      <%= @demande.description %>
@@ -30,7 +30,7 @@
 
   <%# see tab_menu for ajax links %>
   <div class="demande_tab" id="demande_tab">
-    <%= render :partial => 'tab_description' %>
+    <%= render :partial => 'demandes/tabs/tab_description' %>
   </div>
 
 </div>

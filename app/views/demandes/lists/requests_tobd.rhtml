@@ -1,0 +1,23 @@
+<h1><%= (@demandes.empty? ? _('No pending request') :
+         n_('My pending request', 'My pending requests', @demandes.size)) %></h1>
+
+<% links = show_pages_links(@demande_pages, 'une nouvelle demande',
+                    :url => demandes_url, :no_new_links => true) %>
+<%= links %>
+
+<%=render( :partial => 'demandes/lists/requests_table' )%>
+
+<%= links %>
+
+<div class="show" style="margin: 0px auto">
+  <p><%= indent _('This list contains only requests which needs an action on your behalf.') %></p>
+  <% explanation =  _('In technicals terms, the list is the set of requests where ') %>
+   <% if @beneficiaire 
+        explanation += _('our services have asked you for an information or a validation.') 
+      elsif @ingenieur 
+       explanation += _("customers didn't had an answer or where their answer was expected before today.")
+      end %>
+  <p><%= indent(explanation) %></p>
+  <p><%= auto_link(_('Feel free to contact us at %s if you feel some requests should not be here.') % 
+           [ ActionMailer::Base::MAIL_TOSCA ]) %></p>
+</div>

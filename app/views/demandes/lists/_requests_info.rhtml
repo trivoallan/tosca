@@ -20,6 +20,14 @@
  <li><%= requests_export_link %></li>
 </ul>
 
+<div class="menu_title" onclick="Element.toggle('menu_flux')">>
+<%=_('Flow')%></div>
+<ul class="menu" id="menu_flux">
+  <li><%= remote_link_to_all_request %></li>
+  <li><%= remote_link_to_active_request %></li>
+  <li><%= remote_link_to_dead_request %></li>
+</ul>
+
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">>
 <%=_('Search')%></div>
 <ul class="menu" id="menu_recherche">
@@ -42,14 +50,6 @@
      <%=select_filter(@severites, :severite) %></li>
  <li><b><%=_('Status')%></b><br />
      <%=select_filter(@statuts, :statut) %></li>
-</ul>
-
-<div class="menu_title" onclick="Element.toggle('menu_flux')">>
-<%=_('Flow')%></div>
-<ul class="menu" id="menu_flux">
-  <li><%= remote_link_to_all_request %></li>
-  <li><%= remote_link_to_active_request %></li>
-  <li><%= remote_link_to_dead_request %></li>
 </ul>
 
 <% end %>

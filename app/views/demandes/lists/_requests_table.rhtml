@@ -1,13 +1,3 @@
-<h1><%= @title %><%= StaticImage::spinner %></h1>
-
-<% links = show_pages_links(@demande_pages, 'une nouvelle demande',:url => demandes_url) %>
-<%= links %>
-
-<% if controller.action_name == 'en_attente' %>
-  <%= _('This list contains only requests which needs your attention.') %>
-  <%= _('If you want to see all %s, consult all the %s.') % [ link_to_requests ] %>
-<% end %>
-
 <table id="demandes_list" class="show" width='100%'>
    <tr>
       <th width='2%'><%= _("Id") %></th>
@@ -47,11 +37,8 @@
 
 <% if @demandes.size == 0 %>
   <tr><td colspan="11">
-    <p><%= _("There is no request that concerns you.") %></p>
-    <p><%= _("You can click here %s to submit a new request.") % link_to_new %></p>
+    <p><%= _("No request found.") %></p>
   </td></tr>
 <% end %>
 
 </table>
-
-<%= links %>

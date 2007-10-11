@@ -23,7 +23,7 @@ module ApplicationHelper
   # indente du texte et échappe les caractères html
   # à utiliser sur les descriptions, commentaires, etc
   def indent( text )
-    (text.is_a? String) ? h(text).gsub(/[\n]/, '<br />') : text
+    (text.is_a? String) ? h(word_wrap(text)).gsub("\n", '<br />') : text
   end
 
 

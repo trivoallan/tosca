@@ -115,15 +115,20 @@ EOS
   @@requests = nil
   def link_to_requests
     @@requests ||= link_to(_('Requests'), demandes_path, :title =>
-                           _('Consult all requests'))
+                           _('Consult requests'))
   end
 
-  @@waiting_requests = nil
+  @@all_requests = nil
+  def link_to_all_requests
+    @@all_requests ||= link_to(_('All the requests'), demandes_path, :title =>
+                               _('Consult all the requests'))
+  end
+
+  @@tobd_requests = nil
   def link_to_tobd_requests
-    @@requests ||= link_to(_('To be done'), en_attente_demandes_path, :title =>
+    @@tobd_requests ||= link_to(_('Requests to be done'), en_attente_demandes_path, :title =>
                            _('Consult requests which are waiting an action from you'))
   end
-
 
   @@softwares = nil
   def public_link_to_softwares

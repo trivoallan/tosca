@@ -33,8 +33,8 @@ ActionController::Routing::Routes.draw do |map|
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
   options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
-  %w(piecejointe contribution document binaire).each { |file|
-    map.files "#{file}/file/:id/:filename", options.update(:file_type => file)
+  %w(file patch fichier archive).each { |file|
+    map.files(":file_type/patch/:id/:filename", options)
   }
 
   # RESTful routes with ORM

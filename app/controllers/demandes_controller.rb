@@ -19,7 +19,7 @@ class DemandesController < ApplicationController
     conditions << session[:user].id
 
     if @ingenieur
-      conditions.first << 'ingenieurs.id = ? '
+      conditions.first << '(ingenieurs.id = ? AND demandes.statut_id <> 3)'
       conditions << @ingenieur.id
     elsif @beneficiaire
       conditions.first << 'beneficiaire_id = ?'
@@ -29,10 +29,7 @@ class DemandesController < ApplicationController
     options[:conditions] = conditions
     @demande_pages, @demandes = paginate :demandes, options
 
-    @title = n_('My pending request', 'My pending requests', @demandes.size)
-    @description = ('This list contains only requests which needs an action from you.') <<
-      _("If you want to have a global view or to select a set of request, you'll need to go on the requests list.") 
-    render :partial => 'requests_list', :layout => true
+    render :template => 'demandes/lists/tobd' 
   end
 
   def index
@@ -53,8 +50,6 @@ class DemandesController < ApplicationController
 
     conditions = nil
     @title = _('All the requests')
-    @description = ('This list contains all requests, filtered with your choice on the left panel.') <<
-      _("If you want to see quickly which requests need you, use the requests 'to be done' link.") 
 
     if session.data.has_key? :requests_filters
       requests_filters = session[:requests_filters]
@@ -84,10 +79,11 @@ class DemandesController < ApplicationController
 
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
-      render :partial => 'requests_list', :layout => false
+      render :partial => 'demandes/lists/requests_list', :layout => false
     else
       _panel
-      @partial_for_summary = 'requests_info'
+      @partial_for_summary = 'demandes/lists/requests_info'
+      render :template => 'demandes/lists/index'
     end
   end
 
@@ -196,21 +192,21 @@ class DemandesController < ApplicationController
   def ajax_description
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande = Demande.find(params[:id]) unless @demande
-    render :partial => 'tab_description', :layout => false
+    render :partial => 'demandes/tabs/tab_description', :layout => false
   end
 
   def ajax_comments
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     set_comments(@demande_id)
-    render :partial => "tab_comments", :layout => false
+    render :partial => "demandes/tabs/tab_comments", :layout => false
   end
 
   def ajax_history
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     set_comments(@demande_id)
-    render :partial => 'tab_history', :layout => false
+    render :partial => 'demandes/tabs/tab_history', :layout => false
   end
 
   def ajax_appels
@@ -220,20 +216,20 @@ class DemandesController < ApplicationController
     options = { :conditions => conditions, :order => 'appels.debut',
       :include => [:beneficiaire,:ingenieur,:contrat,:demande] }
     @appels = Appel.find(:all, options)
-    render :partial => 'tab_appels', :layout => false
+    render :partial => 'demandes/tabs/tab_appels', :layout => false
   end
 
   def ajax_piecejointes
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     set_piecejointes(@demande_id)
-    render :partial => 'tab_piecejointes', :layout => false
+    render :partial => 'demandes/tabs/tab_piecejointes', :layout => false
   end
 
   def ajax_cns
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande = Demande.find(params[:id]) unless @demande
-    render :partial => 'tab_cns', :layout => false
+    render :partial => 'demandes/tabs/tab_cns', :layout => false
   end
 
   def update

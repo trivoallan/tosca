@@ -61,6 +61,11 @@ module PagesHelper
   end
 
 
+  AJAX_OPTIONS = {  :update => 'content', :method => :get,
+    :with => "Form.serialize(document.forms['filters'])",
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" }
+
 =begin
  call it like this :
  <%= show_pages_links @demande_pages, 'déposer une nouvelle demande' %>
@@ -73,15 +78,16 @@ module PagesHelper
  need to precise the controller like this :
  <%= show_pages_links @demande_pages, 'déposer une demande', 
        :controller => 'demandes' %>
+  You have 2 parameters in options :
+      :url : for ajaxified page links
+      :no_new_links : avoid '+' links to create new one 
+        (used in 'to be done' request, for isntance).
 =end
-  AJAX_OPTIONS = {  :update => 'content', :method => :get,
-    :with => "Form.serialize(document.forms['filters'])",
-    :before => "Element.show('spinner')",
-    :success => "Element.hide('spinner')" }
-
   def show_pages_links(pages, message, options = {} )
-    result = '<table class="pages"><tr><td>'
-    result << "#{link_to_new(message, options)}</td>"
+    result = '<table class="pages"><tr>'
+    unless options.has_key? :no_new_links
+      result << "<td>#{link_to_new(message, options)}</td>"
+    end
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
     if options.has_key? :url
       ajax_call =

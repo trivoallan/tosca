@@ -18,6 +18,7 @@
 
 class FilesController < ApplicationController
 
+  # TODO : review and shorten this method. Camelize should to the job.
   def download
     file_type = params[:file_type]
  
@@ -37,13 +38,13 @@ class FilesController < ApplicationController
     root = [ Metadata::PATH_TO_FILES, file_type, map[file_type.intern] ] * '/'
     fullpath = [ root, params[:id], params[:filename] ] * '/'
 
-    if session[:beneficiaire] and file_type == 'piecejointe'
-      client_id = session[:beneficiaire].client_id
-      Piecejointe.set_scope(client_id) 
+    # Attachment has to be restricted. 
+    if @beneficiaire and file_type == 'piecejointe'
+      Piecejointe.set_scope(@beneficiaire.client_id) 
     end
     # rescue unless item not found
     target = model[file_type.intern].find(params[:id])
-    if session[:beneficiaire] and file_type == 'piecejointe'
+    if @beneficiaire and file_type == 'piecejointe'
       Piecejointe.remove_scope()
     end
     send_file fullpath 

@@ -33,9 +33,8 @@
   <% @@menu[role_localised] ||= build_simple_menu([ 
         public_link_to_home,
         link_to_tobd_requests,
+        link_to_all_requests,
         '<a class="no_hover">'+search_demande+'</a>',
-        link_to_requests,
-        public_link_to_contributions,
         link_to_admin,
         public_link_to_about 
        ], :form => true) if user %>
