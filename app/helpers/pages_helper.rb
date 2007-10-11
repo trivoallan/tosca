@@ -8,7 +8,7 @@ module PagesHelper
   # permet de spécifier un controller
   def link_to_new(message='', options = {})
     options[:action] = 'new'
-    html_options = LinksHelper::NO_HOVER
+    html_options = LinksHelper::ALIGNED_PICTURE
     link_to(image_create(message), options, html_options)
   end
 

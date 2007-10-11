@@ -16,7 +16,9 @@ module LinksHelper
 
   # this contains the hash for escaping hover effect for images
   # this is put in every links with image
-  NO_HOVER = { :class => 'no_hover vertical_align' }
+  NO_HOVER = { :class => 'no_hover' }
+
+  ALIGNED_PICTURE = { :class => 'aligned_picture' }
 
   # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
   # don't forget to update his public alter ego just below

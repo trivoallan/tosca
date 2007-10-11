@@ -460,8 +460,12 @@ td.error div.link {
 	background: none;
 }
 
-.vertical_align {
+.aligned_picture {
   vertical-align: middle;
+}
+
+.aligned_picture:hover {
+  background: none;
 }
 
 /****************************************************/
