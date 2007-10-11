@@ -45,21 +45,23 @@ class Commentaire < ActiveRecord::Base
   end
 
   # update request attributes, when creating a comment
-  after_create :update_demande
-  def update_demande
+  after_create :update_request
+  def update_request
     fields = %w(statut_id ingenieur_id severite_id)
+    request = self.demande
 
     # don't update all attributes if we are on the first comment
-    if self.demande.first_comment_id != self.id
+    if request.first_comment_id != self.id
       #On met à jour les champs demandeO
       fields.each do |attr|
         #On ne met à jour que si ça a changé
-        self.demande[attr] = self[attr] if self[attr] and self.demande[attr] != self[attr]
+        request[attr] = self[attr] if self[attr] and request[attr] != self[attr]
       end
     end
-    self.demande.last_comment_id = self.id
+    request.last_comment_id = self.id
+    request.expected_on = Time.now + 15.days
     #To update the demande.updated_on
-    self.demande.save
+    request.save
   end
 
   # update description only if it's the first comment

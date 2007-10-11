@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-11 16:22+0200\n"
-"PO-Revision-Date: 2007-10-11 16:25+0200\n"
+"POT-Creation-Date: 2007-10-11 18:49+0200\n"
+"PO-Revision-Date: 2007-10-11 18:50+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -254,7 +254,7 @@ msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
 #: app/controllers/demandes_controller.rb:52
-#: app/helpers/demandes_helper.rb:202 app/helpers/links_helper.rb:123
+#: app/helpers/demandes_helper.rb:202 app/helpers/links_helper.rb:125
 msgid "All the requests"
 msgstr "Toutes les demandes"
 
@@ -906,16 +906,16 @@ msgstr "Concernant %s"
 msgid "progress bar"
 msgstr "barre de progression"
 
-#: app/helpers/links_helper.rb:100
+#: app/helpers/links_helper.rb:102
 msgid "Do you really want to delete %s"
 msgstr "Êtes vous sûr de vouloir supprimer %s"
 
-#: app/helpers/links_helper.rb:112 app/views/binaires/show.rhtml:1
+#: app/helpers/links_helper.rb:114 app/views/binaires/show.rhtml:1
 #: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
 msgid "Home"
 msgstr "Accueil"
 
-#: app/helpers/links_helper.rb:117 app/views/appels/_calls_info.rhtml:50
+#: app/helpers/links_helper.rb:119 app/views/appels/_calls_info.rhtml:50
 #: app/views/bienvenue/index.rhtml:11 app/views/logiciels/show.rhtml:43
 #: app/views/reporting/general.rhtml:22 app/views/reporting/general.rhtml:23
 #: app/views/reporting/general.rhtml:25 app/views/reporting/general.rhtml:26
@@ -927,23 +927,23 @@ msgstr "Accueil"
 msgid "Requests"
 msgstr "Demandes"
 
-#: app/helpers/links_helper.rb:118
+#: app/helpers/links_helper.rb:120
 msgid "Consult requests"
 msgstr "Consulter les demandes"
 
-#: app/helpers/links_helper.rb:124
+#: app/helpers/links_helper.rb:126
 msgid "Consult all the requests"
 msgstr "Consulter toutes les demandes"
 
-#: app/helpers/links_helper.rb:129
+#: app/helpers/links_helper.rb:131
 msgid "Requests to be done"
 msgstr "Demandes à traiter"
 
-#: app/helpers/links_helper.rb:130
+#: app/helpers/links_helper.rb:132
 msgid "Consult requests which are waiting an action from you"
 msgstr "Consulter les demandes qui nécessitent une action de votre part"
 
-#: app/helpers/links_helper.rb:135 app/views/account/_menu.rhtml:20
+#: app/helpers/links_helper.rb:137 app/views/account/_menu.rhtml:20
 #: app/views/bienvenue/index.rhtml:68 app/views/binaires/show.rhtml:2
 #: app/views/contributions/_contributions_info.rhtml:42
 #: app/views/groupes/index.rhtml:5
@@ -951,35 +951,35 @@ msgstr "Consulter les demandes qui nécessitent une action de votre part"
 msgid "Softwares"
 msgstr "Logiciels"
 
-#: app/helpers/links_helper.rb:136
+#: app/helpers/links_helper.rb:138
 msgid "Access to the list of softwares"
 msgstr "Accès à la liste des logiciels"
 
-#: app/helpers/links_helper.rb:141 app/views/binaires/_form.rhtml:30
+#: app/helpers/links_helper.rb:143 app/views/binaires/_form.rhtml:30
 #: app/views/contributions/_contributions_info.rhtml:41
 #: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
 #: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:61
 msgid "Contributions"
 msgstr "Contributions"
 
-#: app/helpers/links_helper.rb:142
+#: app/helpers/links_helper.rb:144
 msgid "Access to the list of contributions."
 msgstr "Accès à la liste des contributions."
 
-#: app/helpers/links_helper.rb:149
+#: app/helpers/links_helper.rb:151
 msgid "About %s"
 msgstr "Concernant %s"
 
-#: app/helpers/links_helper.rb:154
+#: app/helpers/links_helper.rb:156
 msgid "Administration"
 msgstr "Administration"
 
-#: app/helpers/links_helper.rb:155
+#: app/helpers/links_helper.rb:157
 #: app/views/contributions/_contributions_info.rhtml:21
 msgid "Administration interface"
 msgstr "Interface d'administration"
 
-#: app/helpers/links_helper.rb:163
+#: app/helpers/links_helper.rb:165
 msgid "My&nbsp;account"
 msgstr "Mon&nbsp;compte"
 
@@ -3725,12 +3725,16 @@ msgstr "notre service vous a demandé une information ou une validation."
 msgid ""
 "customers didn't had an answer or where their answer was expected before "
 "today."
-msgstr "les clients attendent une réponse ou leur réponse était attendu avant aujourd'hui."
+msgstr ""
+"les clients attendent une réponse ou leur réponse était attendu avant "
+"aujourd'hui."
 
 #: app/views/demandes/lists/tobd.rhtml:21
 msgid ""
 "Feel free to inform us in %s if you feel some requests should not be here."
-msgstr "N'hésitez pas à nous contacter dans %s si vous pensez qu'une demande ne devrait pas être dans cette liste."
+msgstr ""
+"N'hésitez pas à nous contacter dans %s si vous pensez qu'une demande ne "
+"devrait pas être dans cette liste."
 
 #: app/views/dependances/edit.rhtml:1
 msgid "Editing dependency"
@@ -4697,11 +4701,4 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "You can click here %s to submit a new request."
-#~ msgstr "Vous pouvez cliquer ici %s pour déclarer une nouvelle demande."
 
-#~ msgid "Passé"
-#~ msgstr "Passé"
-
-#~ msgid "There is no request that concerns you."
-#~ msgstr "Aucune demande ne vous concerne."
