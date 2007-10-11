@@ -1,4 +1,4 @@
-/** 
+/**
  * Copyright Linagora SA 2007 - Tous droits réservés.
  * common.css
  */
@@ -8,7 +8,7 @@ body {
 	padding: 0;
 	color: #000;
 	background-color: #eaeafa;
-	font-size: 1em; 
+	font-size: 1em;
         /* keep DRY : one font-family for all */
 	font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
   	font-size:   12px;
@@ -21,20 +21,20 @@ body {
 #header {
 	vertical-align: middle;
 	width: 100%;
-	background-color: #e2efe2; 
-	border-bottom: 1px solid #dddddd; 
-	height: 2.2em; 
+	background-color: #e2efe2;
+	border-bottom: 1px solid #dddddd;
+	height: 2.2em;
 	z-index: 1;
 }
 #header table{
 	vertical-align: middle;
-	width:100%; 
-	height:100%; 
+	width:100%;
+	height:100%;
 }
 #content_div {
 	/* uncomment when IE is dead :
 	position: relative;
-	top: 3.2em;                 */ 
+	top: 3.2em;                 */
 }
 #content_table{
 	width: 100%;
@@ -42,8 +42,8 @@ body {
 	text-align: left;
 	height: 85%;
 }
-#bodycontent { 
-	margin: 0; 
+#bodycontent {
+	margin: 0;
 	padding: 2em;
 	/* keep some space for positionned-fixed footer */
 	padding-bottom: 5em;
@@ -139,7 +139,7 @@ span.right {
 span.left {
 	float: left;
 }
-table.pages td { 
+table.pages td {
 	vertical-align: baseline;
 }
 .spacer {
@@ -168,7 +168,7 @@ table.commentaire td.infos {
 table.commentaire td.text {
 	border-left: 1px solid #999999;
 	padding-left: 13px;
-	width: 75%; 
+	width: 75%;
 }
 table.commentaire {
 	border: 1px solid #999999;
@@ -229,7 +229,7 @@ table.main td.error {
 	margin-bottom: 1em;
 	height: 20px;
 }
-.list table td.rightalign, 
+.list table td.rightalign,
 .list table th.rightalign {
 	text-align: right ! important;
 	padding-right: 0.5em;
@@ -246,7 +246,7 @@ table.main td.error {
 
 /* it's applied to DIV's AND TABLE's */
 .form, .show, .help, .info {
-	background-color: #f2fff2; 
+	background-color: #f2fff2;
 	-moz-border-radius: 1em;
 	vertical-align: top;
 	padding: 1em 1em 1em 1em;
@@ -259,8 +259,8 @@ table.main td.error {
 
 /*style for the left column in edit pages*/
 div.edit {
-  float: left; 
-  margin-right: 30px; 
+  float: left;
+  margin-right: 30px;
   padding-right: 20px;
 }
 
@@ -286,14 +286,14 @@ div.login_box, div.form, div.show, div.help, div.info {
 	padding: 2px;
 	background-color: #fed;
 	border: 3px ridge #643;
-	font-size: 14pt;	
+	font-size: 14pt;
 }
 .severite_1 {
 	background-image: url(../images/severite_1.gif);
 	background-repeat: no-repeat;
-	background-position: left center;	
+	background-position: left center;
 }
-			
+
 
 
 /************************* listes **********************/
@@ -323,7 +323,7 @@ div.login_box, div.form, div.show, div.help, div.info {
 	font-size: 150%;
 	font-weight: bolder;
 	padding: .5em .2em;
-	margin: 0;	
+	margin: 0;
 }
 .list fieldset > table{
 	border-top: 1px white solid;
@@ -343,11 +343,11 @@ div.login_box, div.form, div.show, div.help, div.info {
 }
 
 /** Messages d'informations
- * Tous les messages heritent de la classe .information 
+ * Tous les messages heritent de la classe .information
  * Ainsi, tous les messages sont homogènes au niveau du style
  * On précise *en plus* le type d'info concerné : error, notice ou rappel
  * Surcharger les classe de type pour préciser la couleur par exemple
- * Exemple : <div class="information notice"></div> 
+ * Exemple : <div class="information notice"></div>
  */
 .information {
 	font-weight: bold;
@@ -408,7 +408,7 @@ td.error div.link {
 	padding-bottom: 1em;
 	color:#114188;
 	font-weight: bolder;
-	text-align: center; 
+	text-align: center;
 }
 .stat_wrapper {
 	width: 500px;
@@ -454,10 +454,14 @@ td.error div.link {
 	margin: .5em 0 0 0;
 }
 /* Prevent from changing background when mouseover
-   often used for <a> tag or other that have modified 
+   often used for <a> tag or other that have modified
    behaviour when :hover  */
 .no_hover:hover {
 	background: none;
+}
+
+.vertical_align {
+  vertical-align: middle;
 }
 
 /****************************************************/
@@ -506,11 +510,11 @@ table.sommaire {
 	width: 100%;
 }
 
-table.sommaire tr  { 
+table.sommaire tr  {
 	vertical-align: top;
 }
 
-table.sommaire tr td { 
+table.sommaire tr td {
 	vertical-align: top;
 	/* we have a 2 columns layout */
 	width: 50%;
@@ -527,7 +531,7 @@ table.sommaire tr td {
  */
 
 #commentaire_corps { /* textarea  */
-	width: 100%; 
+	width: 100%;
 }
 
 
@@ -570,11 +574,11 @@ div.auto_complete ul li {
   list-style-type:none;
   list-style-image:none;
 }
-div.auto_complete ul li.selected { 
-  background-color: #e2efe2; 
+div.auto_complete ul li.selected {
+  background-color: #e2efe2;
 }
-div.auto_complete ul strong.highlight { 
-  color: #800; 
+div.auto_complete ul strong.highlight {
+  color: #800;
   margin:0;
   padding:0;
 }
@@ -591,7 +595,7 @@ div.auto_complete ul strong.highlight {
 
 
 /***************************************************
- * demandes.css 
+ * demandes.css
  * style des demandes et de leurs propriétés
  *
  ****************************************************/
@@ -605,7 +609,7 @@ div.auto_complete ul strong.highlight {
 .demande_1:hover{background: #f03700;}
 
 /* priseencompte */
-.demande_2 	{background: #ffa26e; /*orange;*/}	
+.demande_2 	{background: #ffa26e; /*orange;*/}
 .demande_2:hover{background: #ffa23e; }
 
 /* suspendue */
@@ -677,12 +681,12 @@ option.severite_6 {
 	margin: 12px 0px 0px 0px;
 	padding: 0px;
 	z-index: 2;
-	padding-left: 10px 
+	padding-left: 10px
 }
 .demande_tabnav li {
 	display: inline;
 	overflow: hidden;
-	list-style-type: none; 
+	list-style-type: none;
 }
 .demande_tabnav a, a.active {
 	color: #000000;
@@ -692,22 +696,22 @@ option.severite_6 {
 	padding: 2px 5px 2px 5px;
 	margin: 0;
 	border-bottom: 0;
-	text-decoration: none; 
+	text-decoration: none;
 	-moz-border-radius: .5em .5em 0 0;
 }
 .demande_tabnav a.active {
-	background: #cfc8cf;  
+	background: #cfc8cf;
 }
 .demande_tabnav a:hover {
 	color: #FFFFFF;
-	background: #FFD880; 
+	background: #FFD880;
 }
 .demande_tabnav a:visited {
-	color: black; 
+	color: black;
 }
 .demande_tabnav a.active:hover {
 	background: #FFB000;
-	color: #FFEBBF; 
+	color: #FFEBBF;
 }
 .demande_tab_content {
 	text-align: justify;
@@ -715,8 +719,8 @@ option.severite_6 {
 	padding: 0.5em;
 	margin: 0;
 	margin-top: 0px;
-	border: 1px solid #cfc8cf; 
-	z-index: -1;	
+	border: 1px solid #cfc8cf;
+	z-index: -1;
 }
 
 .demande_tab_content td {
@@ -733,38 +737,38 @@ option.severite_6 {
 
 
 /******************************************
- * Barre de progression 
+ * Barre de progression
  ******************************************/
 
 .progress-border {
-  width: 70px; 
+  width: 70px;
   height: 15px;
-  background: #fff; 
-  border: 1px solid silver; 
-  margin: 1px; 
+  background: #fff;
+  border: 1px solid silver;
+  margin: 1px;
   padding: 0px;
-  position: relative; 
+  position: relative;
   float: right;
 }
 .progress-correction {
-  height: 100%; 
-  margin: 0; 
-  padding: 0; 
-  background: #f2ab99; 
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f2ab99;
   float: left
 }
 .progress-restant {
-  height: 100%;  
-  margin: 0;  
-  padding: 0;  
-  background-color: #b0d295;  
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #b0d295;
   float: left
 }
 .progress-contournement {
-  height: 100%; 
-  margin: 0;  
-  padding: 0;  
-  background-color:#e7e0c4;  
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color:#e7e0c4;
   float: left
 }
 
@@ -778,8 +782,8 @@ option.severite_6 {
 	width: 19em;
 	height: 100%; /*84%;*/
 	background-color: #EEEEEE;
-	border-right: 1px solid #dddddd; 
-	border-bottom: 1px solid #dddddd; 
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
 	margin-top: -1px;
 }
 .summary_toggle {
@@ -788,8 +792,8 @@ option.severite_6 {
         vertical-align: middle;
 	background-color: #DDDDDD; /* #eeeeee; /* #009C55; */
 	background-image: url(../images/transition.gif);
-	background-position: center; 
-	background-repeat: no-repeat; 
+	background-position: center;
+	background-repeat: no-repeat;
 	border-left: 1px dotted white;
 	border-right: 1px dotted white;
 	margin-top: -1px;
@@ -802,12 +806,12 @@ option.severite_6 {
 	border-left: 1px dotted #009C55; /* green */
 	border-right: 1px dotted #009C55; /* green */
 }
-.summary input, 
+.summary input,
 .summary select {
 	/* width: 90%; *//* strange effect on IE */
         width: 15em;
 }
-/* keep little space on the right 
+/* keep little space on the right
    of date input for js_calendar ~2em */
 #date_after,
 #date_before {
@@ -833,7 +837,7 @@ ul.menu li {
 	margin-bottom: -2px;
 }
 
-/** 
+/**
  * Copyright Linagora SA 2007 - Tous droits réservés.
  * made by Guillaume Dufloux, inspired from http://collaboa.org/
  * Dynamic menu
@@ -861,8 +865,8 @@ ul.menu li {
   display: inline;
 }
 .simple_menu a, .account_menu a {
-  padding: 0 9px; 
-  margin: 0; 
+  padding: 0 9px;
+  margin: 0;
   line-height: 200%;
   text-decoration: none;
   border-bottom: none;
@@ -872,7 +876,7 @@ ul.menu li {
   float: left;
 }
 .account_menu a {
-  float: right; 
+  float: right;
 }
 
 .simple_menu a:hover, .account_menu a:hover{
@@ -883,11 +887,11 @@ ul.menu li {
 .simple_menu .no_hover:hover {
 	background: none;
 }
- 
 
-/** 
+
+/**
  * advanced menu (NON YET USED)
- * http://css.alsacreations.com/xmedia/exemples/deroulant/menu-horizontal2.htm 
+ * http://css.alsacreations.com/xmedia/exemples/deroulant/menu-horizontal2.htm
  */
 
 #menu .liste_menu, #menu .liste_title, #menu ul, #menu li {
@@ -897,9 +901,9 @@ list-style-type: none;
 }
 #menu {
 position: absolute;
-top: 3em; 
+top: 3em;
 left: 50px;
-z-index:100; 
+z-index:100;
 }
 #menu .liste_menu{
 float: left;
@@ -916,8 +920,8 @@ font-weight: bold;
 
 
 #menu a {
-  padding: 0 10px; 
-  margin: 0; 
+  padding: 0 10px;
+  margin: 0;
   font-size: 12px;
   line-height: 200%;
 }
@@ -936,8 +940,8 @@ padding-top:0;
 text-align: left;
 }
 
-/* PB with IE : 
-   le hover ne s'applique qu'aux elements 'a href' 
+/* PB with IE :
+   le hover ne s'applique qu'aux elements 'a href'
 .liste_menu:hover {
 background: #eee;
 border: 1px solid #ccc;
@@ -946,7 +950,7 @@ border: 1px solid #ccc;
 
 
 
-/** 
+/**
  * Copyright Linagora SA 2007 - Tous droits réservés.
  * reporting.css
  */
@@ -970,7 +974,7 @@ table.report tr td {
 /* page de reporting */
 .report {
 	background-color: white;
-	padding: 3em; 
+	padding: 3em;
 }
 /* tableaux statistiques */
 .report_item, .report_sommaire {
@@ -981,7 +985,7 @@ table.report tr td {
 	width: 40%;
 }
 .report_legend {
-	text-align: center;	
+	text-align: center;
 	text-align: center;
 	width: 20%;
 }
@@ -1212,7 +1216,7 @@ h1.section {
 
 .calendar tfoot .ttip { /* Tooltip (status bar) cell <TD> */
   padding: 2px;
-  background: url("../images/status-bg.gif") repeat-x 0 0; 
+  background: url("../images/status-bg.gif") repeat-x 0 0;
   color: #000;
 }
 

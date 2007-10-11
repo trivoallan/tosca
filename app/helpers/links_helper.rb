@@ -16,7 +16,7 @@ module LinksHelper
 
   # this contains the hash for escaping hover effect for images
   # this is put in every links with image
-  NO_HOVER = { :class => 'no_hover' }
+  NO_HOVER = { :class => 'no_hover vertical_align' }
 
   # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
   # don't forget to update his public alter ego just below
@@ -61,16 +61,16 @@ module LinksHelper
     unless filepath.blank? or not File.exist?(filepath)
       mime_type = record.file_mime_type
       #To be XHTML compliant
-      relative_path = "#{method}_" << 
+      relative_path = "#{method}_" <<
         record.send("#{method}_relative_path").tr!("/", "_")
       #Image
       if mime_type =~ /^image\//
-        redbox_div(relative_path, 
+        redbox_div(relative_path,
                    image_tag(url_for_image_column(record, method, :fit_size)),
                    :background_close => true)
-      #Text        
+      #Text
       elsif mime_type =~ /^text\//
-        link_to(StaticImage::view, uv_piecejointe_path(record), 
+        link_to(StaticImage::view, uv_piecejointe_path(record),
           :popup => [filename, 'height=600,width=800,scrollbars=yes'])
       else
         '-'

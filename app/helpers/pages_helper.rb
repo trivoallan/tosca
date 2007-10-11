@@ -73,14 +73,14 @@ module PagesHelper
  <%= show_pages_links @demande_pages, 'déposer une demande',
        :url => '/demandes/update_list' %>
  (!) you will need an StaticImage::spinner too (!)
- If you want to display a list of objects in a distant controller, 
- e. g. : displaying the flow requests in reporting controller, then you 
+ If you want to display a list of objects in a distant controller,
+ e. g. : displaying the flow requests in reporting controller, then you
  need to precise the controller like this :
- <%= show_pages_links @demande_pages, 'déposer une demande', 
+ <%= show_pages_links @demande_pages, 'déposer une demande',
        :controller => 'demandes' %>
   You have 2 parameters in options :
       :url : for ajaxified page links
-      :no_new_links : avoid '+' links to create new one 
+      :no_new_links : avoid '+' links to create new one
         (used in 'to be done' request, for isntance).
 =end
   def show_pages_links(pages, message, options = {} )
