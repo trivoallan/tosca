@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-11 16:22+0200\n"
-"PO-Revision-Date: 2007-10-11 16:21+0200\n"
+"PO-Revision-Date: 2007-10-11 16:25+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3725,17 +3725,12 @@ msgstr "notre service vous a demandé une information ou une validation."
 msgid ""
 "customers didn't had an answer or where their answer was expected before "
 "today."
-msgstr ""
-"clients attendent une réponse ou leur réponse était attendu avant "
-"aujourd'hui."
+msgstr "les clients attendent une réponse ou leur réponse était attendu avant aujourd'hui."
 
 #: app/views/demandes/lists/tobd.rhtml:21
-#, fuzzy
 msgid ""
 "Feel free to inform us in %s if you feel some requests should not be here."
-msgstr ""
-"N'hésitez pas à nous contacter à %s si vous pensez qu'une demande ne devrait "
-"pas être dans cette liste."
+msgstr "N'hésitez pas à nous contacter dans %s si vous pensez qu'une demande ne devrait pas être dans cette liste."
 
 #: app/views/dependances/edit.rhtml:1
 msgid "Editing dependency"
