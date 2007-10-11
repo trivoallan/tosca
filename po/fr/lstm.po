@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-11 16:03+0200\n"
-"PO-Revision-Date: 2007-10-11 16:04+0200\n"
+"PO-Revision-Date: 2007-10-11 16:07+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3738,9 +3738,8 @@ msgid "Submitter"
 msgstr "Déclarant"
 
 #: app/views/demandes/lists/_requests_table.rhtml:40
-#, fuzzy
 msgid "No request found."
-msgstr "Aucune demande declarée"
+msgstr "Aucune demande trouvée"
 
 #: app/views/dependances/edit.rhtml:1
 msgid "Editing dependency"
