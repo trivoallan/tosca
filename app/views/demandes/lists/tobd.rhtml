@@ -18,6 +18,6 @@
        explanation += _("customers didn't had an answer or where their answer was expected before today.")
       end %>
   <p><%= indent(explanation) %></p>
-  <p><%= auto_link(_('Feel free to inform us %s if you feel some requests should not be here.') % 
-           [ ActionMailer::Base::MAIL_TOSCA ]) %></p>
+  <p><%= auto_link(_('Feel free to inform us in %s if you feel some requests should not be here.') % 
+           [ link_to(_('the idea box'), suggestions_bienvenue_path) ]) %></p>
 </div>
