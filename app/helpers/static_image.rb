@@ -24,7 +24,7 @@ class StaticImage < Static::ActionView
 
   # por éviter la réaffection de desc à chaque coup
   def self.options(desc = '', size = nil )
-    options = { :alt => desc, :title => desc, :class => 'no_hover' }
+    options = { :alt => desc, :title => desc, :class => 'aligned_picture' }
     options[:size] = size if size
     options
   end
