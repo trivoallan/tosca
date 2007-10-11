@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-11 15:55+0200\n"
-"PO-Revision-Date: 2007-10-11 16:03+0200\n"
+"POT-Creation-Date: 2007-10-11 16:03+0200\n"
+"PO-Revision-Date: 2007-10-11 16:04+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3694,19 +3694,16 @@ msgid "You can click here %s to submit a new request."
 msgstr "Vous pouvez cliquer ici %s pour déclarer une nouvelle demande."
 
 #: app/views/demandes/lists/requests_tobd.rhtml:1
-#: app/views/demandes/lists/_requests_tobd.rhtml:1
 msgid "No pending request"
 msgstr "Aucune demande en attente"
 
 #: app/views/demandes/lists/requests_tobd.rhtml:2
-#: app/views/demandes/lists/_requests_tobd.rhtml:2
 msgid "My pending request"
 msgid_plural "My pending requests"
 msgstr[0] "Ma demande en attente"
 msgstr[1] "Mes demandes en attente"
 
 #: app/views/demandes/lists/requests_tobd.rhtml:13
-#: app/views/demandes/lists/_requests_tobd.rhtml:13
 #, fuzzy
 msgid "This list contains only requests which needs an action on your behalf."
 msgstr ""
@@ -3714,12 +3711,10 @@ msgstr ""
 "votre part."
 
 #: app/views/demandes/lists/requests_tobd.rhtml:14
-#: app/views/demandes/lists/_requests_tobd.rhtml:14
 msgid "In technicals terms, the list is the set of requests where "
 msgstr "En termes techniques, cette liste est l'ensemble des demandes où "
 
 #: app/views/demandes/lists/requests_tobd.rhtml:16
-#: app/views/demandes/lists/_requests_tobd.rhtml:16
 msgid "our services have asked you for an information or a validation."
 msgstr "notre service vous a demandé une information ou une validation."
 
@@ -3727,13 +3722,16 @@ msgstr "notre service vous a demandé une information ou une validation."
 msgid ""
 "customers didn't had an answer or where their answer was expected before "
 "today."
-msgstr "clients attendent une réponse ou leur réponse était attendu avant aujourd'hui."
+msgstr ""
+"clients attendent une réponse ou leur réponse était attendu avant "
+"aujourd'hui."
 
 #: app/views/demandes/lists/requests_tobd.rhtml:21
-#: app/views/demandes/lists/_requests_tobd.rhtml:21
 msgid ""
 "Feel free to contact us at %s if you feel some requests should not be here."
-msgstr "N'hésitez pas à nous contacter à %s si vous pensez qu'une demande ne devrait pas être dans cette liste."
+msgstr ""
+"N'hésitez pas à nous contacter à %s si vous pensez qu'une demande ne devrait "
+"pas être dans cette liste."
 
 #: app/views/demandes/lists/_requests_table.rhtml:9
 msgid "Submitter"
@@ -3743,11 +3741,6 @@ msgstr "Déclarant"
 #, fuzzy
 msgid "No request found."
 msgstr "Aucune demande declarée"
-
-#: app/views/demandes/lists/_requests_tobd.rhtml:18
-msgid ""
-"customers didn't had an answer or where the answer was expected before today."
-msgstr ""
 
 #: app/views/dependances/edit.rhtml:1
 msgid "Editing dependency"
@@ -4714,35 +4707,7 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid ""
-#~ "If you want to have a global view or to select a set of request, you'll "
-#~ "need to go on the requests list."
-#~ msgstr ""
-#~ "Si vous voulez avoir une vue globale ou sélectionner un ensemble de "
-#~ "demandes, vous devez aller consulter la liste des demandes."
 
-#~ msgid ""
-#~ "This list contains all requests, filtered with your choice on the left "
-#~ "panel."
-#~ msgstr ""
-#~ "Cette liste montre toute les demandes, filtrés selon vos choix sur le "
-#~ "panneau de gauche."
-
-#~ msgid ""
-#~ "If you want to see quickly which requests need you, use the requests 'to "
-#~ "be done' link."
-#~ msgstr ""
-#~ "Si vous voulez voir rapidement les demandes nécessitant votre attention, "
-#~ "utiliser le lien demandes \"à traiter\"."
-
-#~ msgid "To be done"
-#~ msgstr "À traiter"
-
-#~ msgid "Time"
-#~ msgstr "Temps"
-
-#~ msgid "Respect of the delay"
-#~ msgstr "Respect des délais"
 
 #~ msgid "Passé"
 #~ msgstr "Passé"

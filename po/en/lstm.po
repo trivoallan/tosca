@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-10-11 15:55+0200\n"
+"POT-Creation-Date: 2007-10-11 16:03+0200\n"
 "PO-Revision-Date: 2007-10-10 17:54+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -3645,29 +3645,24 @@ msgid "You can click here %s to submit a new request."
 msgstr ""
 
 #: app/views/demandes/lists/requests_tobd.rhtml:1
-#: app/views/demandes/lists/_requests_tobd.rhtml:1
 msgid "No pending request"
 msgstr ""
 
 #: app/views/demandes/lists/requests_tobd.rhtml:2
-#: app/views/demandes/lists/_requests_tobd.rhtml:2
 msgid "My pending request"
 msgid_plural "My pending requests"
 msgstr[0] ""
 msgstr[1] ""
 
 #: app/views/demandes/lists/requests_tobd.rhtml:13
-#: app/views/demandes/lists/_requests_tobd.rhtml:13
 msgid "This list contains only requests which needs an action on your behalf."
 msgstr ""
 
 #: app/views/demandes/lists/requests_tobd.rhtml:14
-#: app/views/demandes/lists/_requests_tobd.rhtml:14
 msgid "In technicals terms, the list is the set of requests where "
 msgstr ""
 
 #: app/views/demandes/lists/requests_tobd.rhtml:16
-#: app/views/demandes/lists/_requests_tobd.rhtml:16
 msgid "our services have asked you for an information or a validation."
 msgstr ""
 
@@ -3678,7 +3673,6 @@ msgid ""
 msgstr ""
 
 #: app/views/demandes/lists/requests_tobd.rhtml:21
-#: app/views/demandes/lists/_requests_tobd.rhtml:21
 msgid ""
 "Feel free to contact us at %s if you feel some requests should not be here."
 msgstr ""
@@ -3689,11 +3683,6 @@ msgstr ""
 
 #: app/views/demandes/lists/_requests_table.rhtml:40
 msgid "No request found."
-msgstr ""
-
-#: app/views/demandes/lists/_requests_tobd.rhtml:18
-msgid ""
-"customers didn't had an answer or where the answer was expected before today."
 msgstr ""
 
 #: app/views/dependances/edit.rhtml:1
