@@ -9,7 +9,7 @@
     title = _('Modify %s') % compte
   when 'signup'
     create_account  = true
-    title = _('create an account')
+    title = _('Create an account')
   when 'multiple_signup'
     title = _('Create several accounts')
     subtitle = _('Fill up the fileds which are common in all the accounts.<br /> please.')+
@@ -31,9 +31,10 @@
 </td>
 <td>
 
-<%= render :partial => "edit_engineer" %>
-
-<%= render :partial => "edit_recipient" %>
+<% if session[:user].ingenieur # do not display this part to customer, for now %>
+  <%= render :partial => "edit_engineer" %>
+  <%= render :partial => "edit_recipient" %>
+<% end %>
 
 </td>
 </tr>
