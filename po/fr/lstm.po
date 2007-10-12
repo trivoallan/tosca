@@ -2266,7 +2266,6 @@ msgid "Modify %s"
 msgstr "Modifier %s"
 
 #: app/views/account/_edit.rhtml:12
-#, fuzzy
 msgid "Create an account"
 msgstr "Créer un compte"
 
