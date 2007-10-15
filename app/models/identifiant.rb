@@ -61,13 +61,13 @@ class Identifiant < ActiveRecord::Base
     end
   end
 
-  SELECT_OPTIONS = { :include => [:identifiant], :order => 
+  SELECT_OPTIONS = { :include => [:identifiant], :order =>
     'identifiants.nom ASC', :conditions => 'identifiants.inactive = 0' }
 
   def self.authenticate(login, pass, crypt)
     Identifiant.with_exclusive_scope() do
       pass = sha1(pass) if crypt == 'false'
-      user = Identifiant.find(:first, :conditions => 
+      user = Identifiant.find(:first, :conditions =>
                               ['login = ? AND password = ?', login, pass])
       return nil if user and user.inactive?
       user

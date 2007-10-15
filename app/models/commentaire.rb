@@ -26,6 +26,9 @@ class Commentaire < ActiveRecord::Base
     ( prive ? _("private") : _("public") )
   end
 
+  def mail_id
+    return "#{self.demande_id}_#{self.id}"
+  end
 
   private
   # We destroy attachment if appropriate

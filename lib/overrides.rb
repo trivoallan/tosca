@@ -128,3 +128,14 @@ module ActiveRecord
 end
 
 
+#To have homemade message-id in mails
+module TMail
+  class Mail
+    def ready_to_send
+      delete_no_send_fields
+      #The only thing to comment.
+      #add_message_id
+      add_date
+    end
+  end
+end

@@ -67,6 +67,7 @@ class Notifier < ActionMailer::Base
     cc          compute_copy(demande)
     from        FROM
     subject     "[OSSA:##{demande.id}] : #{demande.resume}"
+    headers     headers_mail_request(demande.first_comment)
 
     html_and_text_body(options);
 
@@ -79,14 +80,15 @@ class Notifier < ActionMailer::Base
   def request_new_comment(options, flash)
     request = options[:demande]
     # needed in order to have correct recipients
-    # for instance, send mail to the correct engineer 
+    # for instance, send mail to the correct engineer
     # when reaffecting a request
-    request.reload 
-  
+    request.reload
+
     recipients compute_recipients(request, options[:commentaire].prive)
     cc         compute_copy(request)
     from       FROM
     subject    "[OSSA:##{request.id}] : #{request.resume}"
+    headers    headers_mail_request(options[:commentaire])
 
     html_and_text_body(options)
 
@@ -113,6 +115,27 @@ class Notifier < ActionMailer::Base
 
     html_and_text_body(options)
   end
+
+  #http://i.loveruby.net/en/projects/tmail/doc/mail.html$
+  #http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer
+#   def receive(email)
+#     logger.debug(email.subject)
+#     logger.debug(email.body)
+#     logger.debug(email.to)
+#     logger.debug(email.from)
+# #     Notifier::deliver_welcome_idea(email.subject, :tosca, "moi")
+# #     puts subject
+# #     page = Page.find_by_address(email.to.first)
+# #       page.emails.create(
+# #         :subject => email.subject,
+# #         :body => email.body
+# #       )
+#
+#     if email.has_attachments?
+# #       for attachment in email.attachments
+# #       end
+#     end
+#   end
 
   private
   def compute_copy(demande)
@@ -154,6 +177,19 @@ class Notifier < ActionMailer::Base
 
     part :content_type => HTML_CONTENT,
       :body => message_html
+  end
+
+  #For mail headers : http://www.expita.com/header1.html
+  def headers_mail_request(comment)
+    headers = Hash.new
+    headers["Message-Id"] = message_id(comment.mail_id)
+    #Refers to the request
+    headers["References"] = headers["In-Reply-To"] = message_id(comment.demande.first_comment.mail_id)
+    return headers
+  end
+
+  def message_id(id)
+    return "<#{id}@#{Metadata::NOM_COURT_APPLICATION}.#{Metadata::SITE_INTERNET}>"
   end
 
 end
