@@ -20,7 +20,7 @@
       def ingenieur.nom; ''; end %>
    <% for demande in @demandes %>
    <tr <%= tr_attributes(demande_path(demande)) %>>
-        <Td ><%= demande.id %></td>
+        <td ><%= demande.id %></td>
         <td><%= demande.respond_to?(:logiciels_nom) ? demande.logiciels_nom : Logiciel.not_found  %></td>
         <td><%= demande.typedemandes_nom %></td>
         <td class="demande_<%=demande.statut_id%>"><%= StaticImage::severite(demande) %></td>
