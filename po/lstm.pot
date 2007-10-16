@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-10-12 10:29+0200\n"
+"POT-Creation-Date: 2007-10-16 17:23+0200\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,9 +47,9 @@ msgstr ""
 #: app/controllers/account_controller.rb:146
 #: app/controllers/account_controller.rb:213
 #: app/controllers/export_controller.rb:133
-#: app/views/account/_edit_recipient.rhtml:6
 #: app/views/account/_show_recipient.rhtml:6
 #: app/views/account/_users_list.rhtml:12
+#: app/views/account/_edit_recipient.rhtml:6
 #: app/views/appels/_calls_info.rhtml:22 app/views/appels/_calls_list.rhtml:6
 #: app/views/appels/_form.rhtml:8 app/views/appels/show.rhtml:14
 #: app/views/demandes/tabs/_appels.rhtml:2 app/views/demandes/_form.rhtml:24
@@ -387,7 +387,7 @@ msgid "Last update"
 msgstr ""
 
 #: app/controllers/export_controller.rb:136
-#: app/controllers/reporting_controller.rb:513
+#: app/controllers/reporting_controller.rb:512
 #: app/helpers/contributions_helper.rb:10
 #: app/views/contributions/_contributions_info.rhtml:39
 #: app/views/demandes/lists/_requests_table.rhtml:10
@@ -543,84 +543,84 @@ msgstr ""
 msgid "Permission was successfully updated."
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:60
+#: app/controllers/reporting_controller.rb:59
 msgid "You must choose a period for the report"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:74
+#: app/controllers/reporting_controller.rb:73
 msgid "The first day must precede the last day"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:205
-#: app/controllers/reporting_controller.rb:210
+#: app/controllers/reporting_controller.rb:204
+#: app/controllers/reporting_controller.rb:209
 msgid "incorrect parameters"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:506
-#: app/controllers/reporting_controller.rb:508
+#: app/controllers/reporting_controller.rb:505
+#: app/controllers/reporting_controller.rb:507
 msgid "Distributed on "
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:506
-#: app/controllers/reporting_controller.rb:508
+#: app/controllers/reporting_controller.rb:505
+#: app/controllers/reporting_controller.rb:507
 #: app/views/reporting/_introduction.rhtml:4
 msgid " months"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:534
+#: app/controllers/reporting_controller.rb:533
 msgid ""
 "No data \n"
 "available"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:544
+#: app/controllers/reporting_controller.rb:543
 #: app/views/reporting/_sommaire.rhtml:7 app/views/reporting/general.rhtml:20
 msgid "Distribution of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:545
+#: app/controllers/reporting_controller.rb:544
 msgid "Distribution of requests"
 msgstr ""
 
+#: app/controllers/reporting_controller.rb:545
 #: app/controllers/reporting_controller.rb:546
-#: app/controllers/reporting_controller.rb:547
 msgid "Severity of your requests"
 msgstr ""
 
+#: app/controllers/reporting_controller.rb:547
 #: app/controllers/reporting_controller.rb:548
-#: app/controllers/reporting_controller.rb:549
 msgid "Resolution of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:551
+#: app/controllers/reporting_controller.rb:550
 msgid "Cancelled requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:552
+#: app/controllers/reporting_controller.rb:551
 msgid "Evolution of the activity volume"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:554
+#: app/controllers/reporting_controller.rb:553
 msgid "Top 5 of the most discussed requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:555
+#: app/controllers/reporting_controller.rb:554
 msgid "Top 5 of the most discussed software"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:557
+#: app/controllers/reporting_controller.rb:556
 msgid "Processing time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:558
+#: app/controllers/reporting_controller.rb:557
 msgid "Response time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:559
+#: app/controllers/reporting_controller.rb:558
 msgid "Workaround time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:560
+#: app/controllers/reporting_controller.rb:559
 msgid "Correction time"
 msgstr ""
 
@@ -688,41 +688,41 @@ msgstr ""
 msgid "A url type was successfully updated."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:52
+#: app/controllers/demandes_controller.rb:55
 #: app/helpers/demandes_helper.rb:202 app/helpers/links_helper.rb:125
 msgid "All the requests"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:96
+#: app/controllers/demandes_controller.rb:99
 msgid "You are not linked to any contracts in our database."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:97
+#: app/controllers/demandes_controller.rb:100
 msgid "If you think it's an error, contact us at %s or at %s."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:119
+#: app/controllers/demandes_controller.rb:122
 msgid "Your request has been successfully submitted"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:239
+#: app/controllers/demandes_controller.rb:242
 msgid "The request has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:285
+#: app/controllers/demandes_controller.rb:288
 msgid "The demand has now no contribution"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:287
+#: app/controllers/demandes_controller.rb:290
 msgid "This contribution is now linked"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:364
+#: app/controllers/demandes_controller.rb:369
 #: app/helpers/demandes_helper.rb:188
 msgid "Active requests"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:367
+#: app/controllers/demandes_controller.rb:372
 #: app/helpers/demandes_helper.rb:195
 msgid "Finished requests"
 msgstr ""
@@ -1536,7 +1536,7 @@ msgstr ""
 msgid "You must indicate a valid severity"
 msgstr ""
 
-#: app/models/demande.rb:277
+#: app/models/demande.rb:274
 msgid " of overrun"
 msgstr ""
 
@@ -1928,15 +1928,31 @@ msgstr ""
 msgid "New|Logiciel"
 msgstr ""
 
-#: app/models/notifier.rb:153
+#: app/models/notifier.rb:53
+msgid "Accès au Support Logiciel Libre"
+msgstr ""
+
+#: app/models/notifier.rb:160
+msgid "Possible error in your e-mail"
+msgstr ""
+
+#: app/models/notifier.rb:171
+msgid "Multiple accounts with the same e-mail"
+msgstr ""
+
+#: app/models/notifier.rb:183
+msgid "Mailing list does not exists"
+msgstr ""
+
+#: app/models/notifier.rb:227
 msgid "An e-mail informing"
 msgstr ""
 
-#: app/models/notifier.rb:154
+#: app/models/notifier.rb:228
 msgid "with a copy to"
 msgstr ""
 
-#: app/models/notifier.rb:155
+#: app/models/notifier.rb:229
 msgid "was sent."
 msgstr ""
 
@@ -2346,18 +2362,6 @@ msgstr ""
 msgid "Contracts"
 msgstr ""
 
-#: app/views/account/_edit_recipient.rhtml:12
-msgid "Notify subalterns"
-msgstr ""
-
-#: app/views/account/_edit_recipient.rhtml:15
-msgid "Notify at"
-msgstr ""
-
-#: app/views/account/_edit_recipient.rhtml:18
-msgid "Notify cc"
-msgstr ""
-
 #: app/views/account/_menu.rhtml:8
 msgid "Plan"
 msgstr ""
@@ -2556,6 +2560,18 @@ msgstr ""
 #: app/views/account/logout.rhtml:13
 #: app/views/layouts/standard-layout.rhtml:43
 msgid "Log in"
+msgstr ""
+
+#: app/views/account/_edit_recipient.rhtml:12
+msgid "Notify subalterns"
+msgstr ""
+
+#: app/views/account/_edit_recipient.rhtml:15
+msgid "Notify at"
+msgstr ""
+
+#: app/views/account/_edit_recipient.rhtml:18
+msgid "Notify cc"
 msgstr ""
 
 #: app/views/account/show.rhtml:4
@@ -3412,7 +3428,7 @@ msgstr ""
 msgid "Submitter"
 msgstr ""
 
-#: app/views/demandes/lists/_requests_table.rhtml:40
+#: app/views/demandes/lists/_requests_table.rhtml:43
 msgid "No request found."
 msgstr ""
 
