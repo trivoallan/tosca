@@ -19,15 +19,18 @@ class DemandesController < ApplicationController
     conditions << session[:user].id
 
     if @ingenieur
-      conditions.first << '(ingenieurs.id = ? AND demandes.statut_id <> 3)'
+      conditions.first << '(demandes.ingenieur_id = ? AND demandes.statut_id <> 3)'
       conditions << @ingenieur.id
     elsif @beneficiaire
-      conditions.first << 'beneficiaire_id = ?'
-      conditions << @beneficiaire_id
+      conditions.first << 'demandes.beneficiaire_id = ?'
+      conditions << @beneficiaire.id
     end
     conditions[0] = conditions.first.join(' AND ')
     options[:conditions] = conditions
-    @demande_pages, @demandes = paginate :demandes, options
+
+    Demande.without_include_scope(@ingenieur, @beneficiaire) do
+      @demande_pages, @demandes = paginate :demandes, options
+    end
 
     render :template => 'demandes/lists/tobd' 
   end
@@ -63,7 +66,7 @@ class DemandesController < ApplicationController
       conditions = Filters.build_conditions(requests_filters, [
         [:text, 'logiciels.nom', 'demandes.resume', :dual_like ],
         [:client_id, 'beneficiaires.client_id', :equal ],
-        [:ingenieur_id, 'ingenieurs.id', :equal ],
+        [:ingenieur_id, 'demandes.ingenieur_id', :equal ],
         [:typedemande_id, 'demandes.typedemande_id', :equal ],
         [:severite_id, 'demandes.severite_id', :equal ],
         [:statut_id, 'demandes.statut_id', :equal ]
@@ -293,11 +296,13 @@ class DemandesController < ApplicationController
   end
 
   def _panel
-    @clients = Client.find_select()
-    @statuts = Statut.find_select()
+    @statuts = Statut.find_select(:order => 'id')
     @typedemandes = Typedemande.find_select()
     @severites = Severite.find_select()
-    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    if @ingenieur
+      @clients = Client.find_select()
+      @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    end
   end
 
   # todo à retravailler

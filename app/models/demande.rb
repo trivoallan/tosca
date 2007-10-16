@@ -126,14 +126,11 @@ class Demande < ActiveRecord::Base
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
   SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' +
-    'logiciels.nom as logiciels_nom, typedemandes.nom as typedemandes_nom, ' +
-    'statuts.nom as statuts_nom '
+    'logiciels.nom as logiciels_nom, clients.nom as clients_nom, ' + 
+    'typedemandes.nom as typedemandes_nom, statuts.nom as statuts_nom '
   JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' +
     'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
-    'INNER JOIN identifiants id_benef ON id_benef.id=beneficiaires.identifiant_id '+
     'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
-    'LEFT OUTER JOIN ingenieurs ON ingenieurs.id = demandes.ingenieur_id ' +
-    'LEFT OUTER JOIN identifiants id_inge ON id_inge.id=ingenieurs.identifiant_id '+
     'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' +
     'INNER JOIN statuts ON statuts.id = demandes.statut_id ' +
     'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '

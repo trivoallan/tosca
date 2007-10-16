@@ -55,14 +55,13 @@ class ReportingController < ApplicationController
     end
      (redirect_to comex_reporting_path and return) unless results
     if results[:first_day].blank? or results[:end_day].blank?
-
       if results[:week_num].blank?
         flash[:notice]= _('You must choose a period for the report')
         redirect_to comex_reporting_path and return
       else
         @date[:first_day] = Time.now.beginning_of_year +
          (results[:week_num].to_i-1).week
-        @date[:end_day] = @date[:first_day] + 6.days
+        @date[:end_day] = @date[:first_day] + 7.days - 1.second
       end
     else
       @date[:first_day] = results[:first_day].to_time.beginning_of_day
