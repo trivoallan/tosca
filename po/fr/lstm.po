@@ -1950,16 +1950,15 @@ msgstr ""
 
 #: app/models/notifier.rb:160
 msgid "Possible error in your e-mail"
-msgstr ""
+msgstr "Erreur possible dans votre adresse e-mail"
 
 #: app/models/notifier.rb:171
 msgid "Multiple accounts with the same e-mail"
-msgstr ""
+msgstr "Plusieurs comptes avec le même e-mail"
 
 #: app/models/notifier.rb:183
-#, fuzzy
 msgid "Mailing list does not exists"
-msgstr "Le fichier CSV n'est pas correct."
+msgstr "Mailingliste inexistante"
 
 #: app/models/notifier.rb:227
 msgid "An e-mail informing"
