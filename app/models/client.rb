@@ -16,6 +16,7 @@ class Client < ActiveRecord::Base
 
   validates_presence_of :nom
   validates_length_of :nom, :in => 3..50
+  validates_uniqueness_of :mailingliste
 
 
   SELECT_OPTIONS = { :include => [:beneficiaires],
@@ -61,15 +62,16 @@ class Client < ActiveRecord::Base
     @benefs ||= self.beneficiaires.find(:all, :select => 'id').collect{|c| c.id}
   end
 
+  #WARNING : May return multiple times the same ingeneers
   def ingenieurs
     return [] if contrats.empty?
-    Ingenieur.find(:all,
-                   :conditions => 'contrats_ingenieurs.contrat_id IN ' +
-                     "(#{contrats.collect{|c| c.id}.join(',')})",
-                   :joins => 'INNER JOIN contrats_ingenieurs ON ' +
-                     'contrats_ingenieurs.ingenieur_id=ingenieurs.id',
-                   :include => [:identifiant]
-                   )
+    ingenieurs = Ingenieur.find(:all,
+                                :conditions => 'contrats_ingenieurs.contrat_id IN ' +
+                                  "(#{contrats.collect{|c| c.id}.join(',')})",
+                                :joins => 'INNER JOIN contrats_ingenieurs ON ' +
+                                  'contrats_ingenieurs.ingenieur_id=ingenieurs.id',
+                                :include => [:identifiant])
+    Ingenieur.find_ossa(:all, :include => [:identifiant]).concat(ingenieurs)
   end
 
   def logiciels

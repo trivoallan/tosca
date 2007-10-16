@@ -18,7 +18,7 @@ class Ingenieur < ActiveRecord::Base
   end
 
   def self.find_ossa(*args)
-    conditions = ['ingenieurs.expert_ossa = ?', 1 ]
+    conditions = 'ingenieurs.expert_ossa = 1'
     Ingenieur.with_scope({:find => {:conditions => conditions }}) {
       Ingenieur.find(*args)
     }
@@ -33,12 +33,12 @@ class Ingenieur < ActiveRecord::Base
 
   # mis en cache, car utilisé dans les scopes
   def contrat_ids
-    @contrat_ids ||=  self.contrats.find(:all, :select => 'id').collect {|c| c.id}
+    @contrat_ids ||= self.contrats.find(:all, :select => 'id').collect {|c| c.id}
   end
 
   # mis en cache, car utilisé dans les scopes
   def client_ids
-    @client_ids ||=  self.contrats.find(:all, :group => 'client_id',
+    @client_ids ||= self.contrats.find(:all, :group => 'client_id',
          :select => 'client_id').collect {|c| c.client_id}
   end
 

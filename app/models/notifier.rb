@@ -50,7 +50,7 @@ class Notifier < ActionMailer::Base
 
     recipients  options[:identifiant].email
     from        FROM
-    subject    "Accès au Support Logiciel Libre"
+    subject    _("Accès au Support Logiciel Libre")
 
     html_and_text_body(options);
 
@@ -118,26 +118,91 @@ class Notifier < ActionMailer::Base
 
   #http://i.loveruby.net/en/projects/tmail/doc/mail.html$
   #http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer
-#   def receive(email)
-#     logger.debug(email.subject)
-#     logger.debug(email.body)
-#     logger.debug(email.to)
-#     logger.debug(email.from)
-# #     Notifier::deliver_welcome_idea(email.subject, :tosca, "moi")
-# #     puts subject
-# #     page = Page.find_by_address(email.to.first)
-# #       page.emails.create(
-# #         :subject => email.subject,
-# #         :body => email.body
-# #       )
-#
+  def receive(email)
+    from = email.from.first
+
+    identifiants = Identifiant.find(:all, :conditions => [ "email = ?", from ])
+    return Notifier::deliver_email_not_exist(from) if identifiants.empty?
+    Notifier::deliver_email_multiple_account(from) if identifiants.size != 1
+
+    possible_clients = Array.new
+    adresses = email.cc.nil? ? email.to : email.to.concat(email.cc)
+    for adresse in adresses
+      clients = Client.find(:all, :conditions => [ "mailingliste = ?", adresse ])
+      possible_clients.concat(clients)
+    end
+
+    return Notifier::deliver_email_mailinglist_not_exist(from, adresses) if possible_clients.empty?
+    #We have a validate_uniqueness for Client.mailingliste so no need to test possible_clients.size > 1
+
+    user = identifiants.first
+    client = possible_clients.first
+
+    email[HEADER_LIST_ID] = list_id(client)
+    send_mail(client.mailingliste, client.ingenieurs.map { |e| e.identifiant.email }, email)
+
 #     if email.has_attachments?
-# #       for attachment in email.attachments
-# #       end
+#       for attachment in email.attachments
+#       end
 #     end
-#   end
+  end
+
 
   private
+
+  #Email when a received e-mail doe not exists in the database
+  def email_not_exist(to)
+    logger.info("E-mail #{to} does not exists in database")
+
+    from       FROM
+    recipients to
+    bcc        MAIL_TOSCA
+    subject    "#{Metadata::SITE_INTERNET} : " << _("Possible error in your e-mail")
+
+    html_and_text_body
+  end
+
+  #E-mail when multiple accounts have the same e-mail
+  def email_multiple_account(to)
+    logger.info("E-mail #{to} corresponds to multiple users")
+
+    from       FROM
+    recipients to
+    subject    "#{Metadata::SITE_INTERNET} : " << _("Multiple accounts with the same e-mail")
+
+    html_and_text_body
+  end
+
+  #E-mail when mailinglist does not exists
+  def email_mailinglist_not_exist(to, adresses)
+    mailinglist = adresses.grep(/#{Metadata::SITE_INTERNET$/)
+    logger.info("This(These) e-mail(s) #{mailinglist} does not correspond to a valid mailing-list")
+
+    from       FROM
+    recipients to
+    subject    "#{Metadata::SITE_INTERNET} : " << _("Mailing list does not exists")
+
+    options = Hash.new
+    options[:mailinglist] = mailinglist
+
+    html_and_text_body(options)
+  end
+
+  HEADER_MESSAGE_ID = "Message-Id"
+  HEADER_REFERENCES = "References"
+  HEADER_IN_REPLY_TO = "In-Reply-To"
+  HEADER_LIST_ID = "List-Id"
+
+  #Usage : send_mail("toto@toto.com", ["tutu@toto.com", "tata@toto.com"], email)
+  #The email param is a TMail::Mail
+  def send_mail(from, to, mail)
+    #See ActionMailer::Base::perform_delivery_smtp
+    Net::SMTP.start(smtp_settings[:address], smtp_settings[:port], smtp_settings[:domain],
+                    smtp_settings[:user_name], smtp_settings[:password], smtp_settings[:authentication]) do |smtp|
+      smtp.sendmail(mail.encoded, from, to)
+    end
+  end
+
   def compute_copy(demande)
     res = demande.beneficiaire.client.mailingliste
     if demande.mail_cc and demande.mail_cc.size > 4
@@ -166,7 +231,7 @@ class Notifier < ActionMailer::Base
 
   MULTIPART_CONTENT = 'multipart/alternative'
   SUFFIX_VIEW = ".multi.rhtml"
-  def html_and_text_body(body)
+  def html_and_text_body(body = Hash.new)
     method = caller[0].slice(/`.+'/).delete("`'") + SUFFIX_VIEW
 
     message_html = render_message(method, body)
@@ -182,14 +247,18 @@ class Notifier < ActionMailer::Base
   #For mail headers : http://www.expita.com/header1.html
   def headers_mail_request(comment)
     headers = Hash.new
-    headers["Message-Id"] = message_id(comment.mail_id)
+    headers[HEADER_MESSAGE_ID] = message_id(comment.mail_id)
     #Refers to the request
-    headers["References"] = headers["In-Reply-To"] = message_id(comment.demande.first_comment.mail_id)
+    headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id(comment.demande.first_comment.mail_id)
     return headers
   end
 
   def message_id(id)
-    return "<#{id}@#{Metadata::NOM_COURT_APPLICATION}.#{Metadata::SITE_INTERNET}>"
+    "<#{id}@#{Metadata::NOM_COURT_APPLICATION}.#{Metadata::SITE_INTERNET}>"
+  end
+
+  def list_id(client)
+    "#{client.nom} <#{client.mailingliste}>"
   end
 
 end
