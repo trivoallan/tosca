@@ -105,6 +105,11 @@ class Identifiant < ActiveRecord::Base
     strike(:login)
   end
 
+	#TODO : mettre en forme à l'insertion => faire migration pour modif la base
+  def telephone
+    number_to_phone(read_attribute(:telephone))
+  end
+
   private
   def self.sha1(pass)
     Digest::SHA1.hexdigest("linagora--#{pass}--")
