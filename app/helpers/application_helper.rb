@@ -68,7 +68,7 @@ module ApplicationHelper
     # used mainly in bienvenue/about
     return show_simple_list(result, elements) unless block_given?
 
-    # It can really be pretty ruby. We keep it under the hand 
+    # It can really be pretty ruby. We keep it under the hand
     # until yarv comes and so this code will be reasonabily fast
     # yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
 
@@ -113,7 +113,7 @@ module ApplicationHelper
     elements.each { |e| result << "<li>#{e}</li>" unless e.blank? }
     result << '</ul>'
   end
-  
+
 
   # Call it like :
   # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
@@ -296,6 +296,19 @@ module ApplicationHelper
          <h2>" + _('An error has occured') + "</h2>
          <ul><li>" << flash[:warn] << "</li></ul>
        </div>"
+  end
+
+  ### NUMBERS #########################################################
+
+  def number_to_phone(number)
+    number = number.to_s if number.is_a? Fixnum
+    number.upcase!
+    if number =~ /\d{10}/ #0140506070
+      number.gsub!(/(\d\d)/, '\1.').chop!
+    elsif number =~ /\d\d(\D\d\d){4}/ #01.40_50f60$70
+      number.gsub!(/\D/, ".")
+    end
+    number
   end
 
 end
