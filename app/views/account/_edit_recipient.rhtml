@@ -9,6 +9,7 @@
   <%= collection_select(:beneficiaire, :client_id, @clients, :id, :nom) %>
 </p>
 
+<% if false #deactivated for now. %>
 <p><label for="beneficiaire_notifier_subalternes"> <%= _('Notify subalterns') %> </label><br />
 <%= check_box 'beneficiaire', 'notifier_subalternes'  %></p>
 
@@ -17,6 +18,7 @@
 
 <p><label for="beneficiaire_notifier_cc"> <%= _('Notify cc') %> </label><br />
 <%= check_box 'beneficiaire', 'notifier_cc'  %></p>
+<% end %>
 
 </div>
 
