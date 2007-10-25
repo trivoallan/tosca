@@ -34,7 +34,7 @@ ActionController::Routing::Routes.draw do |map|
   # TODO : convertir en route nommée
   options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
   %w(file patch fichier archive).each { |file|
-    map.files(":file_type/patch/:id/:filename", options)
+    map.files(":file_type/#{file}/:id/:filename", options)
   }
 
   # RESTful routes with ORM
