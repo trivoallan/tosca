@@ -298,17 +298,4 @@ module ApplicationHelper
        </div>"
   end
 
-  ### NUMBERS #########################################################
-
-  def number_to_phone(number)
-    number = number.to_s if number.is_a? Fixnum
-    number.upcase!
-    if number =~ /\d{10}/ #0140506070
-      number.gsub!(/(\d\d)/, '\1.').chop!
-    elsif number =~ /\d\d(\D\d\d){4}/ #01.40_50f60$70
-      number.gsub!(/\D/, ".")
-    end
-    number
-  end
-
 end

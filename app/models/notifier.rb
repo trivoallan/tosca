@@ -175,7 +175,7 @@ class Notifier < ActionMailer::Base
 
   #E-mail when mailinglist does not exists
   def email_mailinglist_not_exist(to, adresses)
-    mailinglist = adresses.grep(/#{Metadata::SITE_INTERNET$/)
+    mailinglist = adresses.grep(/#{Metadata::SITE_INTERNET}$/)
     logger.info("This(These) e-mail(s) #{mailinglist} does not correspond to a valid mailing-list")
 
     from       FROM

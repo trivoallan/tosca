@@ -33,6 +33,21 @@ class Identifiant < ActiveRecord::Base
     self.password = Identifiant.sha1(pass)
   end
 
+  before_save do |record| 
+      ### NUMBERS #########################################################
+    number = record.telephone.to_s
+    number.upcase!
+    if number =~ /\d{10}/ #0140506070
+      number.gsub!(/(\d\d)/, '\1.').chop!
+    elsif number =~ /\d\d(\D\d\d){4}/ #01.40_50f60$70
+      number.gsub!(/\D/, ".")
+    end
+    record.telephone = number
+    # false will invalidate the save
+    true
+  end
+  
+
   # Eck ... We must add message manually in order to
   # not have the "pwd" prefix ... TODO : find a pretty way ?
   # TODO : check if gettext is an answer ?
@@ -103,11 +118,6 @@ class Identifiant < ActiveRecord::Base
 
   def login
     strike(:login)
-  end
-
-	#TODO : mettre en forme à l'insertion => faire migration pour modif la base
-  def telephone
-    number_to_phone(read_attribute(:telephone))
   end
 
   private
