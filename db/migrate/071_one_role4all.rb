@@ -6,7 +6,7 @@ class OneRole4all < ActiveRecord::Migration
            " ON r.id=ir.role_id WHERE ir.identifiant_id=i.id)")
 #     inactive clients were made with no role, initially.
     update("UPDATE identifiants i SET i.role_id = 2, i.inactive = 1 " <<
-           "WHERE i.role_id IS NULL")
+           "WHERE i.role_id IS NULL OR i.role_id = 0")
     drop_table :identifiants_roles
   end
 
