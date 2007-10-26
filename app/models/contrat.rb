@@ -9,7 +9,10 @@ class Contrat < ActiveRecord::Base
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
   has_and_belongs_to_many :ingenieurs, :order => 'contrat_id'
 
-  has_many :logiciels, :through => :paquets, :group =>
+  # used internally by wrapper : 
+  # /!\ DO NOT USE DIRECTLY /!\
+  # use : logiciels() call
+  has_many :_logiciels, :through => :paquets, :group =>
     'id', :order => 'logiciels.nom ASC'
   has_many :binaires, :through => :paquets
   has_many :appels
@@ -19,12 +22,17 @@ class Contrat < ActiveRecord::Base
         [ 'contrats.id IN (?)', contrat_ids ]} }
   end
 
+  # We have open clients which can declare
+  # requests on everything. It's with the "socle" field.
+  def logiciels
+    (self.socle ? Logiciel.find(:all) : self._logiciels)
+  end
+
 
   def ouverture_formatted
     d = @attributes['ouverture']
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
   end
-
 
   def cloture_formatted
     d = @attributes['cloture']
@@ -32,9 +40,9 @@ class Contrat < ActiveRecord::Base
   end
 
   def find_engagement(request)
-    cond = 'engagements.typedemande_id = ? AND severite_id = ?'
     options = { :conditions =>
-      [ cond, request.typedemande_id, request.severite_id ] }
+      [ 'engagements.typedemande_id = ? AND severite_id = ?', 
+        request.typedemande_id, request.severite_id ] }
     self.engagements.find(:first, options)
   end
 

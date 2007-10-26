@@ -39,14 +39,15 @@ class FilesController < ApplicationController
     fullpath = [ root, params[:id], params[:filename] ] * '/'
 
     # Attachment has to be restricted. 
-    if @beneficiaire and file_type == 'piecejointe'
-      Piecejointe.set_scope(@beneficiaire.client_id) 
-    end
+    scope_active = (@beneficiaire and file_type == 'piecejointe')
+    
+    Piecejointe.set_scope(@beneficiaire.client_id) if scope_active
+
     # rescue unless item not found
     target = model[file_type.intern].find(params[:id])
-    if @beneficiaire and file_type == 'piecejointe'
-      Piecejointe.remove_scope()
-    end
+
+    Piecejointe.remove_scope() if scope_active
+
     send_file fullpath 
 
   rescue 

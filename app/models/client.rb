@@ -42,10 +42,8 @@ class Client < ActiveRecord::Base
         [ 'clients.id IN (?)', client_ids ]} }
   end
 
-  # TODO : c'est pas DRY
   def contrat_ids
-    contrats = self.contrats.find(:all, :select => 'id').collect{|c| c.id}
-    return (contrats.empty? ? '0' : contrats.join(','))
+    self.contrats.find(:all, :select => 'id').collect{|c| c.id}
   end
 
   # TODO : c'est lent et moche
@@ -62,25 +60,26 @@ class Client < ActiveRecord::Base
     @benefs ||= self.beneficiaires.find(:all, :select => 'id').collect{|c| c.id}
   end
 
-  #WARNING : May return multiple times the same ingeneers
   def ingenieurs
     return [] if contrats.empty?
-    ingenieurs = Ingenieur.find(:all,
-                                :conditions => 'contrats_ingenieurs.contrat_id IN ' +
-                                  "(#{contrats.collect{|c| c.id}.join(',')})",
-                                :joins => 'INNER JOIN contrats_ingenieurs ON ' +
-                                  'contrats_ingenieurs.ingenieur_id=ingenieurs.id',
-                                :include => [:identifiant])
-    Ingenieur.find_ossa(:all, :include => [:identifiant]).concat(ingenieurs)
+    options = { :include => [:identifiant],
+      :conditions => [ 'contrats_ingenieurs.contrat_id IN (?)', contrat_ids ],
+      :joins => 'INNER JOIN contrats_ingenieurs ON contrats_ingenieurs.ingenieur_id=ingenieurs.id' }
+    ingenieurs = Ingenieur.find(:all, options)
+    ingenieurs.uniq! if contrats.size > 1
+    ingenieurs
   end
 
+  # TODO et le support socle entier ?
   def logiciels
     return [] if contrats.empty?
-    # Voici le hack pour permettre au client Linagora d'avoir tous les softs
-    return Logiciel.find(:all) if self.id == 4
-    conditions = 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id FROM ' +
-      'paquets WHERE paquets.contrat_id IN (' +
-      contrats.collect{|c| c.id}.join(',') + '))'
+    return contrats.first.logiciels if contrats.size == 1
+    # speedier if there is one openbar contract
+    contrats.each{|c| return Logiciel.find(:all) if c.socle }
+    # default case, when there is an association with packages stored.
+    conditions = [ 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id ' + 
+                   ' FROM paquets WHERE paquets.contrat_id IN (?)) ', 
+                   contrats.collect{ |c| c.id } ]
     Logiciel.find(:all, :conditions => conditions, :order => 'logiciels.nom')
   end
 
