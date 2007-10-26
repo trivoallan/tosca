@@ -9,11 +9,6 @@ class Contrat < ActiveRecord::Base
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
   has_and_belongs_to_many :ingenieurs, :order => 'contrat_id'
 
-  # used internally by wrapper : 
-  # /!\ DO NOT USE DIRECTLY /!\
-  # use : logiciels() call
-  has_many :_logiciels, :through => :paquets, :group =>
-    'id', :order => 'logiciels.nom ASC'
   has_many :binaires, :through => :paquets
   has_many :appels
 
@@ -25,7 +20,7 @@ class Contrat < ActiveRecord::Base
   # We have open clients which can declare
   # requests on everything. It's with the "socle" field.
   def logiciels
-    (self.socle ? Logiciel.find(:all) : self._logiciels)
+    (self.socle? ? Logiciel.find(:all) : self._logiciels)
   end
 
 
@@ -75,5 +70,12 @@ class Contrat < ActiveRecord::Base
   def to_s
     nom
   end
+
+  # used internally by wrapper : 
+  # /!\ DO NOT USE DIRECTLY /!\
+  # use : logiciels() call
+  has_many :_logiciels, :through => :paquets, :group =>
+    'id', :source => 'logiciel', :order => 'logiciels.nom ASC'
+
   # alias_method :to_s, :nom
 end

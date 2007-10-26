@@ -116,8 +116,10 @@ class Notifier < ActionMailer::Base
     html_and_text_body(options)
   end
 
-  #http://i.loveruby.net/en/projects/tmail/doc/mail.html$
-  #http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer
+  # http://i.loveruby.net/en/projects/tmail/doc/mail.html$
+  # http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer
+  # Kept In Order to have the code for generating recipients of a list
+=begin
   def receive(email)
     from = email.from.first
 
@@ -140,12 +142,8 @@ class Notifier < ActionMailer::Base
 
     email[HEADER_LIST_ID] = list_id(client)
     send_mail(client.mailingliste, client.ingenieurs.map { |e| e.identifiant.email }, email)
-
-#     if email.has_attachments?
-#       for attachment in email.attachments
-#       end
-#     end
   end
+=end
 
 
   private

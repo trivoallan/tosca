@@ -65,9 +65,9 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_contrat_ids
-    assert_equal Client.find(5).contrat_ids, '0'
+    assert_equal Client.find(5).contrat_ids, []
     # 00004 => linagorien
-    assert_equal clients(:client_00004).contrat_ids, '2'
+    assert_equal clients(:client_00004).contrat_ids, [ 2 ]
   end
   def test_support_distribution
     assert_equal clients(:client_00004).support_distribution, true
