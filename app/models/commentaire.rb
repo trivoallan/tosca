@@ -26,7 +26,7 @@ class Commentaire < ActiveRecord::Base
     ( prive ? _("private") : _("public") )
   end
 
-  # Used for the mailing list feature, to keep track of the request.
+  # Used for outgoing mails feature, to keep track of the request.
   def mail_id
     return "#{self.demande_id}_#{self.id}"
   end

@@ -5,7 +5,7 @@ client_00004:
   chrono:
   id: 4
   beneficiaires_count:
-  mailingliste: laposte@08000linux.com
+  mailingliste: client4@08000linux.com
   description: un autre utilisateur
   code_acces: linagora
   adresse: Rue de Berri, Paris
@@ -16,7 +16,7 @@ client_00005:
   chrono:
   id: 5
   beneficiaires_count:
-  mailingliste: laposte@08000linux.com
+  mailingliste: client5@08000linux.com
   description: un autre utilisateur
   code_acces: linagora
   adresse: Rue de Berri, Paris
@@ -27,7 +27,7 @@ client_00001:
   chrono:
   id: 1
   beneficiaires_count: 21
-  mailingliste: laposte@08000linux.com
+  mailingliste: client1@08000linux.com
   description: "\xC3\xA9\xC3\xA9\xC3\xA9\xC3\xA0 @bonjour |\xC2\xAB\xC2\xA0\" "
   code_acces: lenomdemonchien
   adresse: "les champs \xC3\x89lys\xC3\xA9es 95000 Paris"

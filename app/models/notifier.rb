@@ -253,6 +253,8 @@ class Notifier < ActionMailer::Base
     return headers
   end
 
+  # Used for outgoing mails, in order to get a Tree of messages
+  # in mail softwares
   def message_id(id)
     "<#{id}@#{Metadata::NOM_COURT_APPLICATION}.#{Metadata::SITE_INTERNET}>"
   end
