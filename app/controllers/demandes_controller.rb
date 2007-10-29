@@ -180,9 +180,9 @@ class DemandesController < ApplicationController
     options =  { :conditions =>
       ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
     @contributions = Contribution.find(:all, options)
-    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
     @severity = Severite.find(:all)
 
+    @ingenieurs = Ingenieur.find_select_by_contrat_id(contrat_id)
     set_comments(@demande.id)
 
     @partial_for_summary = 'infos_demande'

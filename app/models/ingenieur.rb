@@ -16,6 +16,15 @@ class Ingenieur < ActiveRecord::Base
     @content_columns ||= columns.reject { |c| c.primary ||
         c.name =~ /(_id|_on|_count|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }
   end
+  
+  def self.find_select_by_contrat_id(contrat_id)
+    conditions = [ 'ci.contrat_id = ?', contrat_id ]
+    joins = 'INNER JOIN contrats_ingenieurs ci ON ci.ingenieur_id=ingenieurs.id'
+    options = {:find => {:conditions => conditions, :joins => joins}}
+    Ingenieur.with_scope(options) do
+      Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    end
+  end
 
   def self.find_ossa(*args)
     conditions = 'ingenieurs.expert_ossa = 1'
