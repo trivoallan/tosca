@@ -139,11 +139,14 @@ class AccountController < ApplicationController
     when :post
       @identifiant = Identifiant.new(params['identifiant'])
       if @identifiant.save
-        client = Client.find(params[:client][:id])
-        flash[:notice] = _("Account successfully created, don't forget to check his profile.")
+        client_id = params[:client][:id].to_i
+        client = (client_id != 0 ? Client.find(client_id) : nil)
+        flash[:notice] = _("Account successfully created.")
         @identifiant.create_person(client)
-        flash[:notice] << (@identifiant.client ?
-                           _('Recipient') : _('Engineer ') << _(' created'))
+        benef, inge = @identifiant.beneficiaire, @identifiant.ingenieur
+        benef.update_attributes(params[:beneficiaire]) if benef
+        inge.update_attributes(params[:ingenieur]) if inge
+
         # welcome mail
         options = { :identifiant => @identifiant, :controller => self,
           :password => @identifiant.pwd }
@@ -204,14 +207,12 @@ class AccountController < ApplicationController
            i.password = row[_('Password')].to_s
            i.password_confirmation = row[_('Password')].to_s
            i.informations = row[_('Informations')].to_s
-           i.client = params[:identifiant][:client]
+           i.client = true
         end
         if identifiant.save
           client = Client.find(params[:client][:id])
           flash[:notice] += _("The user %s have been successfully created.<br />") % row[_('Full name')]
           identifiant.create_person(client)
-          flash[:notice] += (@identifiant.client ? _('Recipient') : _('Engineer ') +
-            _('Associate created') )
           options = { :identifiant => identifiant, :controller => self,
             :password => row[_('Password')].to_s }
           Notifier::deliver_new_user(options, flash)
@@ -238,7 +239,7 @@ private
   # Partial variables used in forms
   def _form
     @roles = Role.find_select
-    @clients = Client.find_select
+    @clients = [Client.new(:id => 0, :nom => '» ')].concat(Client.find_select)
     @competences = Competence.find_select
     @contrats = Contrat.find_select(Contrat::OPTIONS)
   end

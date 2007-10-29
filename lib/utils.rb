@@ -98,7 +98,7 @@ def html2text(html)
       gsub(/<\/pre(| [^>]*)>/i, "\n").
       gsub(/<\/?(b|strong)[^>]*>/i, "*").
       gsub(/<\/?(i|em)[^>]*>/i, "/").
-      gsub(/<\/?u[^>]*>/i, "_").
+      gsub(/<\/?u[^>]*>/i, "").
       gsub(/<[^>]*>/, '')
   )
   for i in (0...links.size).to_a

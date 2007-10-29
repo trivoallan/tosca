@@ -29,8 +29,6 @@
       end
       type_client[:titre] = '<label>' + _('Customer') + '</label>'
       type_client[:champ] = collection_select(:client, :id, @clients, :id, :nom)
-      identifiant_client[:titre] = '<label for="identifiant_client">' + _('Customer %s') % ('</label>' + show_help(help[:client]))
-      identifiant_client[:champ] = check_box('identifiant', 'client')
     end
   end
 %>
@@ -59,8 +57,7 @@
    end
 
    fields.concat([
-      [ role[:titre], role[:champ] ],
-      [ identifiant_client[:titre], identifiant_client[:champ] ]
+      [ role[:titre], role[:champ] ]
    ])
 
    if (controller.action_name != 'multiple_signup')

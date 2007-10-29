@@ -65,14 +65,14 @@ class Identifiant < ActiveRecord::Base
     end
   end
 
-  # TODO : vérifier que l'email est valide, et
-  # rattraper l'erreur si l'envoi de mail échoue !!!
-  # TODO 2 : créer un ingénieur ossa ou presta selon le rôle choisi
+  # Warning : this method update the current Identifiant object
   def create_person(client)
-    if self.client
+    if client
       Beneficiaire.create(:identifiant => self, :client => client)
+      self.update_attribute(:client, true)
     else
       Ingenieur.create(:identifiant => self)
+      self.update_attribute(:client, false)
     end
   end
 
