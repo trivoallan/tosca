@@ -28,6 +28,8 @@
     <td><%= show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]' ) %></td>
   </tr><tr>
     <td>
+      <label for="team_ossa"><%=_('Whole OSSA Team ?')%></label>
+      <td><%= check_box :team, :ossa %></td>
      <fieldset>
       <legend><%=_('Engineers assigned to this contract')%></legend>
       <%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs,

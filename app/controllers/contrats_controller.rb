@@ -21,8 +21,9 @@ class ContratsController < ApplicationController
 
   def create
     @contrat = Contrat.new(params[:contrat])
+    @contrat.ingenieurs << Ingenieur.find_ossa if params[:ossa][:team]
     if @contrat.save
-      flash[:notice] = 'Contrat was successfully created.'
+      flash[:notice] = _('Contract was successfully created.')
       redirect_to contrats_path
     else
       _form and render :action => 'new'
@@ -36,8 +37,9 @@ class ContratsController < ApplicationController
 
   def update
     @contrat = Contrat.find(params[:id])
+    @contrat.ingenieurs << Ingenieur.find_ossa if params[:ossa][:team]
     if @contrat.update_attributes(params[:contrat])
-      flash[:notice] = 'Contrat mis à jour correctement.'
+      flash[:notice] = _('Contrat was successfully updated.')
       redirect_to contrat_path(@contrat)
     else
       _form and render :action => 'edit'

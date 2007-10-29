@@ -53,9 +53,12 @@ class LogicielsController < ApplicationController
     flash[:conditions] = options[:conditions] = conditions
 
     # optional scope, for customers
-    Logiciel.set_scope(@beneficiaire.contrat_ids) if scope
-    @logiciel_pages, @logiciels = paginate :logiciels, options
-    Logiciel.remove_scope if scope
+    begin
+      Logiciel.set_scope(@beneficiaire.contrat_ids) if scope
+      @logiciel_pages, @logiciels = paginate :logiciels, options
+    ensure
+      Logiciel.remove_scope if scope
+    end
 
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?

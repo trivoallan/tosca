@@ -30,7 +30,7 @@
 <b>Session</b><br />
 <ul>
 <% @session.each do |key, val| %>
-  <li><%= key %> : <%= val %></li>
+  <li><%= key %> : <%=h val.inspect %></li>
 <% end %>
 </ul>
 

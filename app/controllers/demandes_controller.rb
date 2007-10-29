@@ -15,16 +15,24 @@ class DemandesController < ApplicationController
     conditions.first << 'demandes.statut_id IN (?)'
     conditions << Statut::OPENED
 
-    conditions.first << '(demandes.expected_on > NOW() OR (demandes.expected_on IS NULL AND commentaires.identifiant_id != ?))'
-    conditions << session[:user].id
+    conditions.first << '(demandes.expected_on > NOW() OR demandes.expected_on IS NULL)'
+    # find request where last comment was :
+    # 1. from the recipient where this is an engineer
+    # 2. from !the recipient when this is a recipient
+    conditions.first << ('commentaires.identifiant_id ' <<
+                         (@ingenieur ? '= ' : '<> ') <<
+                         'beneficiaires.identifiant_id' )
 
     if @ingenieur
-      conditions.first << '(demandes.ingenieur_id = ? AND demandes.statut_id <> 3)'
+      conditions.first << 'demandes.ingenieur_id = ?'
       conditions << @ingenieur.id
     elsif @beneficiaire
       conditions.first << 'demandes.beneficiaire_id = ?'
       conditions << @beneficiaire.id
+    else
+      throw Exception.new("unidentified")
     end
+
     conditions[0] = conditions.first.join(' AND ')
     options[:conditions] = conditions
 
@@ -251,22 +259,6 @@ class DemandesController < ApplicationController
     Demande.find(params[:id]).destroy
     redirect_to demandes_path
   end
-
-  # TODO : enlever cette méthode quand elle passera dans le commentaire.
-#   def changer_ingenieur
-#     return render(:text => '') unless params.has_key? :id and params[:ingenieur_id]
-#     @demande = Demande.find(params[:id])
-#     @demande.ingenieur = Ingenieur.find(params[:ingenieur_id].to_i)
-#     @demande.save!
-#     if @demande.ingenieur
-#       flash[:notice] = _("The request is correctly assigned")
-#       options = {:demande => @demande, :controller => self}
-#       Notifier::deliver_demande_assigner(options, flash)
-#     else
-#       flash[:notice] = _("The request is no more assigned")
-#     end
-#     redirect_to_comment
-#   end
 
   def associer_contribution
     update_contribution( params[:id], params[:contribution_id] )

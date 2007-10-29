@@ -41,12 +41,13 @@ class FilesController < ApplicationController
     # Attachment has to be restricted. 
     scope_active = (@beneficiaire and file_type == 'piecejointe')
     
-    Piecejointe.set_scope(@beneficiaire.client_id) if scope_active
-
-    # rescue unless item not found
-    target = model[file_type.intern].find(params[:id])
-
-    Piecejointe.remove_scope() if scope_active
+    # Ensure that we can remove scope
+    begin
+      Piecejointe.set_scope(@beneficiaire.client_id) if scope_active
+      target = model[file_type.intern].find(params[:id])
+    ensure
+      Piecejointe.remove_scope() if scope_active
+    end
 
     send_file fullpath 
 
