@@ -21,8 +21,11 @@ class ContratsController < ApplicationController
 
   def create
     @contrat = Contrat.new(params[:contrat])
-    @contrat.ingenieurs << Ingenieur.find_ossa if params[:ossa][:team]
     if @contrat.save
+      if params[:team][:ossa] == '1'
+        @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all)) 
+        @contrat.save
+      end
       flash[:notice] = _('Contract was successfully created.')
       redirect_to contrats_path
     else
@@ -37,8 +40,12 @@ class ContratsController < ApplicationController
 
   def update
     @contrat = Contrat.find(params[:id])
-    @contrat.ingenieurs << Ingenieur.find_ossa if params[:ossa][:team]
     if @contrat.update_attributes(params[:contrat])
+      if params[:team][:ossa] == '1'
+        puts params[:team][:ossa].inspect
+        @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all)) 
+        @contrat.save
+      end
       flash[:notice] = _('Contrat was successfully updated.')
       redirect_to contrat_path(@contrat)
     else
