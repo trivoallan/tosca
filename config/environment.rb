@@ -58,6 +58,9 @@ CGI::Session.expire_after 1.month
 require 'utils'
 require 'config'
 require 'overrides'
+
+
+XSendFile::Plugin.replace_send_file! if RAILS_ENV == 'production'
 require 'ruport'
 require 'ruport/util'
 require 'gettext/rails'
@@ -93,6 +96,13 @@ Inflector.inflections do |inflect|
   inflect.uncountable %w( fish sheep )
 end
 
-
-
-
+# Preload of controllers/models during boot.
+if RAILS_ENV == 'production'
+  require_dependency 'application'
+  Dir.foreach( "#{RAILS_ROOT}/app/models" ) { |f| 
+    $logger.d "r #{f}"; silence_warnings{require_dependency f
+    } if f =~ /\.rb$/}
+  Dir.foreach( "#{RAILS_ROOT}/app/controllers" ) { |f| 
+    $logger.d "r #{f}"; silence_warnings{require_dependency f
+    } if f =~ /\.rb$/}
+end
