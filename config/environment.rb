@@ -100,9 +100,9 @@ end
 if RAILS_ENV == 'production'
   require_dependency 'application'
   Dir.foreach( "#{RAILS_ROOT}/app/models" ) { |f| 
-    $logger.d "r #{f}"; silence_warnings{require_dependency f
+    silence_warnings{require_dependency f
     } if f =~ /\.rb$/}
   Dir.foreach( "#{RAILS_ROOT}/app/controllers" ) { |f| 
-    $logger.d "r #{f}"; silence_warnings{require_dependency f
+    silence_warnings{require_dependency f
     } if f =~ /\.rb$/}
 end
