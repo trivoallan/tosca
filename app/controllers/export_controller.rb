@@ -138,19 +138,21 @@ class ExportController < ApplicationController
      generate_report(report, type, options_generate)
   end
 
+
+  MIME_EXTENSION = { 
+    :text => [ '.txt', 'text/plain' ],
+    :csv  => [ '.csv', 'text/csv' ],
+    :pdf  => [ '.pdf', 'application/pdf' ],
+    :html => [ '.html', 'text/html' ],
+    :ods  => [ '.ods', 'application/vnd.oasis.opendocument.spreadsheet']
+  }
+
   # Generate and upload a report to the user with a predefined name.
   #
   # Usage : generate_report(report, :csv) with report a Ruport Data Table
   def generate_report(report, type, options)
     #to keep the custom filters before the export :
     flash[:conditions] = flash[:conditions]
-    MIME_EXTENSION = { 
-      :text => [ '.txt', 'text/plain' ],
-      :csv  => [ '.csv', 'text/csv' ],
-      :pdf  => [ '.pdf', 'application/pdf' ]
-      :html => [ '.html', 'text/html' ]
-      :ods  => [ '.ods', 'application/vnd.oasis.opendocument.spreadsheet']
-    }
     file_extension = MIME_EXTENSION[type].first
     content_type = MIME_EXTENSION[type].last
     prefix = ( @beneficiaire ? @beneficiaire.client.nom : 'OSSA' )
