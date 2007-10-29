@@ -182,7 +182,7 @@ class DemandesController < ApplicationController
     @contributions = Contribution.find(:all, options)
     @severity = Severite.find(:all)
 
-    @ingenieurs = Ingenieur.find_select_by_contrat_id(contrat_id)
+    @ingenieurs = Ingenieur.find_select_by_contrat_id(@demande.contrat_id)
     set_comments(@demande.id)
 
     @partial_for_summary = 'infos_demande'
