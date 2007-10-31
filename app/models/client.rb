@@ -18,7 +18,8 @@ class Client < ActiveRecord::Base
 
   validates_presence_of :nom
   validates_length_of :nom, :in => 3..50
-  validates_uniqueness_of :mailingliste
+  # We can have, for the moment, one ml for multiple clients.
+  # validates_uniqueness_of :mailingliste
 
 
   SELECT_OPTIONS = { :include => [:beneficiaires],
@@ -119,10 +120,16 @@ class Client < ActiveRecord::Base
     "#{id}-#{read_attribute(:nom).gsub(/[^a-z1-9]+/i, '-')}"
   end
 
+  # can return an htmled name if deactivated
   def nom
     value = read_attribute(:nom)
     return "<strike>" << value << "</strike>" if read_attribute(:inactive)
     value
+  end
+
+  # will always be clean
+  def nom_clean
+    read_attribute(:nom)
   end
 
   def to_s

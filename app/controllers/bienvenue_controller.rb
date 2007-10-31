@@ -10,7 +10,6 @@ class BienvenueController < ApplicationController
 
   # Default page, redirect if necessary
   def index
-    _request_list
   end
 
   # Display all method that user can access
@@ -61,15 +60,6 @@ protected
     end
     @classes = classes.sort {|a,b| a[0]<=>b[0]}
   end
-
-  # Pick some demands
-  # Used to be shown in the welcome page
-  def _request_list
-    @demandes = Demande.find(:all, :include => [:severite],
-       :limit => 5, :order => 'updated_on DESC ',
-       :conditions => Demande::EN_COURS)
-  end
-
 
 end
 

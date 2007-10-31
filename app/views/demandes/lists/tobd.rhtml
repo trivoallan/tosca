@@ -1,5 +1,5 @@
 <h1><%= (@demandes.empty? ? _('No pending request') :
-         n_('My pending request', 'My pending requests', @demandes.size)) %></h1>
+         n_('My pending request', 'My pending requests', @demandes.size)) %> (Beta)</h1>
 
 <% links = show_pages_links(@demande_pages, 'une nouvelle demande',
                     :no_new_links => true) %>
