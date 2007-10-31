@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-31 17:16+0100\n"
-"PO-Revision-Date: 2007-10-29 17:16+0100\n"
+"PO-Revision-Date: 2007-10-31 17:22+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -188,20 +188,18 @@ msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
 #: app/controllers/commentaires_controller.rb:68
-#, fuzzy
 msgid "A conflict has occured."
 msgstr "Une erreur est survenue"
 
 #: app/controllers/commentaires_controller.rb:69
 msgid "Please refresh your browser and try again."
-msgstr ""
+msgstr "Veuillez rafraichir votre navigateur et réessayer."
 
 #: app/controllers/commentaires_controller.rb:81
 msgid "The comment %s is now %s"
 msgstr "Le commentaire %s est maintenant %s"
 
 #: app/controllers/commentaires_controller.rb:83
-#, fuzzy
 msgid "An error has occured : The comment was not modified"
 msgstr "Une erreur est survenue : Le commentaire n'a pas été modifié"
 
