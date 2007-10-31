@@ -65,7 +65,9 @@ class CommentairesController < ApplicationController
       }
       Notifier::deliver_request_new_comment(options, flash)
     else
-      flash[:warn] = _("Your comment <b>can not</b> be added.")
+      flash[:warn] = _("A conflict has occured.") + '<br />' + 
+        _('Please refresh your browser and try again.')
+      flash[:old_body] = @commentaire.corps
     end
 
     redirect_to( demande_path(demande) )
@@ -78,7 +80,7 @@ class CommentairesController < ApplicationController
     if @commentaire.toggle!(:prive)
       flash[:notice] = _("The comment %s is now %s") % [ "##{@commentaire.id}", @commentaire.etat ]
     else
-      flash.now[:warn] = _("A error has occured : The comment was not modified")
+      flash.now[:warn] = _("An error has occured : The comment was not modified")
     end
     redirect_to comment_demande_path(@commentaire.demande_id)
   end

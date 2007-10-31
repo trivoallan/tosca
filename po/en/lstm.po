@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-10-29 17:14+0100\n"
+"POT-Creation-Date: 2007-10-31 17:16+0100\n"
 "PO-Revision-Date: 2007-10-10 17:54+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -73,7 +73,7 @@ msgstr ""
 #: app/views/account/_edit_account_informations.rhtml:46
 #: app/views/account/_show_account_information.rhtml:17
 #: app/views/account/_users_list.rhtml:14
-#: app/views/demandes/_infos_demande.rhtml:43
+#: app/views/demandes/_infos_demande.rhtml:44
 msgid "Phone"
 msgstr ""
 
@@ -147,7 +147,7 @@ msgstr ""
 msgid "The recipient was successfully updated."
 msgstr ""
 
-#: app/controllers/bienvenue_controller.rb:44
+#: app/controllers/bienvenue_controller.rb:43
 msgid ""
 "Thank your for taking time in order to help us to improve this product. Your "
 "comments has been sent successfully."
@@ -178,26 +178,30 @@ msgid "Your comment was successfully added."
 msgstr ""
 
 #: app/controllers/commentaires_controller.rb:68
-msgid "Your comment <b>can not</b> be added."
+msgid "A conflict has occured."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:79
-msgid "The comment %s is now %s"
+#: app/controllers/commentaires_controller.rb:69
+msgid "Please refresh your browser and try again."
 msgstr ""
 
 #: app/controllers/commentaires_controller.rb:81
-msgid "A error has occured : The comment was not modified"
+msgid "The comment %s is now %s"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:103
+#: app/controllers/commentaires_controller.rb:83
+msgid "An error has occured : The comment was not modified"
+msgstr ""
+
+#: app/controllers/commentaires_controller.rb:105
 msgid "The comment was successfully updated."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:115
+#: app/controllers/commentaires_controller.rb:117
 msgid "The comment was successfully destroyed."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:117
+#: app/controllers/commentaires_controller.rb:119
 msgid "You cannot delete the first comment"
 msgstr ""
 
@@ -242,24 +246,24 @@ msgstr ""
 msgid "Your request has been successfully submitted"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:250
+#: app/controllers/demandes_controller.rb:253
 msgid "The request has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:280
+#: app/controllers/demandes_controller.rb:283
 msgid "The demand has now no contribution"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:282
+#: app/controllers/demandes_controller.rb:285
 msgid "This contribution is now linked"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:361
+#: app/controllers/demandes_controller.rb:364
 #: app/helpers/demandes_helper.rb:188
 msgid "Active requests"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:364
+#: app/controllers/demandes_controller.rb:367
 #: app/helpers/demandes_helper.rb:195
 msgid "Finished requests"
 msgstr ""
@@ -379,7 +383,7 @@ msgstr ""
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_contributions_info.rhtml:28
 #: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:55
-#: app/views/demandes/_infos_demande.rhtml:23
+#: app/views/demandes/_infos_demande.rhtml:24
 #: app/views/demandes/lists/_requests_table.rhtml:4
 #: app/views/paquets/_form.rhtml:7 app/views/paquets/_paquets_list.rhtml:7
 #: app/views/paquets/show.rhtml:16 app/views/urllogiciels/_form.rhtml:6
@@ -401,7 +405,7 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:134 app/views/clients/show.rhtml:55
 #: app/views/demandes/_comment_form.rhtml:16
-#: app/views/demandes/_infos_demande.rhtml:28
+#: app/views/demandes/_infos_demande.rhtml:29
 #: app/views/demandes/lists/_requests_info.rhtml:49
 msgid "Severity"
 msgstr ""
@@ -423,7 +427,7 @@ msgstr ""
 #: app/helpers/contributions_helper.rb:10
 #: app/views/contributions/_contributions_info.rhtml:39
 #: app/views/demandes/_form.rhtml:19 app/views/demandes/_form_deposer.rhtml:19
-#: app/views/demandes/_infos_demande.rhtml:17
+#: app/views/demandes/_infos_demande.rhtml:18
 #: app/views/demandes/lists/_requests_table.rhtml:10
 #: app/views/logiciels/_form.rhtml:6 app/views/logiciels/show.rhtml:13
 #: app/views/reporting/_comex_cns.rhtml:22 app/views/reporting/general.rhtml:7
@@ -432,13 +436,13 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:136
 #: app/views/demandes/_comment_form.rhtml:10
-#: app/views/demandes/_infos_demande.rhtml:25
+#: app/views/demandes/_infos_demande.rhtml:26
 #: app/views/demandes/lists/_requests_info.rhtml:51
 msgid "Status"
 msgstr ""
 
 #: app/controllers/export_controller.rb:136
-#: app/views/demandes/_infos_demande.rhtml:27
+#: app/views/demandes/_infos_demande.rhtml:28
 #: app/views/demandes/lists/_requests_info.rhtml:47
 #: app/views/demandes/lists/_requests_table.rhtml:5
 #: app/views/documents/_form.rhtml:18
@@ -922,7 +926,7 @@ msgid "Consult requests which are waiting an action from you"
 msgstr ""
 
 #: app/helpers/links_helper.rb:137 app/views/account/_menu.rhtml:20
-#: app/views/bienvenue/index.rhtml:68 app/views/binaires/show.rhtml:2
+#: app/views/bienvenue/index.rhtml:65 app/views/binaires/show.rhtml:2
 #: app/views/contributions/_contributions_info.rhtml:42
 #: app/views/groupes/index.rhtml:5
 #: app/views/logiciels/_softwares_info.rhtml:54 app/views/paquets/show.rhtml:2
@@ -1019,7 +1023,7 @@ msgid "Hide"
 msgstr ""
 
 #: app/helpers/static_image.rb:58 app/views/bienvenue/about.rhtml:3
-#: app/views/demandes/_infos_demande.rhtml:59
+#: app/views/demandes/_infos_demande.rhtml:60
 msgid "Help"
 msgstr ""
 
@@ -2424,7 +2428,7 @@ msgstr ""
 msgid "Customers"
 msgstr ""
 
-#: app/views/account/_menu.rhtml:40 app/views/bienvenue/index.rhtml:29
+#: app/views/account/_menu.rhtml:40 app/views/bienvenue/index.rhtml:26
 #: app/views/clients/show.rhtml:60
 #: app/views/demandes/lists/_requests_info.rhtml:19
 msgid "Activity report"
@@ -2698,11 +2702,11 @@ msgstr ""
 msgid "Add a recipient"
 msgstr ""
 
-#: app/views/bienvenue/about.rhtml:8 app/views/bienvenue/index.rhtml:73
+#: app/views/bienvenue/about.rhtml:8 app/views/bienvenue/index.rhtml:70
 msgid "Don't hesitate to"
 msgstr ""
 
-#: app/views/bienvenue/about.rhtml:9 app/views/bienvenue/index.rhtml:74
+#: app/views/bienvenue/about.rhtml:9 app/views/bienvenue/index.rhtml:71
 msgid "contact us"
 msgstr ""
 
@@ -2861,108 +2865,104 @@ msgid "requests"
 msgstr ""
 
 #: app/views/bienvenue/index.rhtml:15
-msgid "requests in process"
-msgstr ""
-
-#: app/views/bienvenue/index.rhtml:18
 msgid "You can also %s."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:18
+#: app/views/bienvenue/index.rhtml:15
 msgid "make a request"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:20
+#: app/views/bienvenue/index.rhtml:17
 msgid ""
 "You are not %s, so you do not have any access to the requests interface of "
 "our service"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:25
+#: app/views/bienvenue/index.rhtml:22
 msgid "Documents"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:27
+#: app/views/bienvenue/index.rhtml:24
 msgid "You can browse %s . "
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:27
+#: app/views/bienvenue/index.rhtml:24
 msgid "your directory"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:28
+#: app/views/bienvenue/index.rhtml:25
 msgid "You will find there all the documents we delivered to you"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:29
+#: app/views/bienvenue/index.rhtml:26
 msgid "You can also consult your %s online."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:31
+#: app/views/bienvenue/index.rhtml:28
 msgid "When you are %s, you have access to an activity report"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:32
+#: app/views/bienvenue/index.rhtml:29
 msgid "dynamically showing the activity of our service for you in real time."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:33
+#: app/views/bienvenue/index.rhtml:30
 msgid "You also have access to all the documents we may deliver to you."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:39 app/views/bienvenue/suggestions.rhtml:1
+#: app/views/bienvenue/index.rhtml:36 app/views/bienvenue/suggestions.rhtml:1
 msgid "Idea Box"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:40
+#: app/views/bienvenue/index.rhtml:37
 msgid ""
 "You have an idea, which can improve our services ?<br />\n"
 "    Your comments and suggestions are welcome in %s"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:42 app/views/demandes/lists/tobd.rhtml:22
+#: app/views/bienvenue/index.rhtml:39 app/views/demandes/lists/tobd.rhtml:22
 msgid "the idea box"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:50
+#: app/views/bienvenue/index.rhtml:47
 msgid "Offer"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:54
+#: app/views/bienvenue/index.rhtml:51
 msgid ""
 "You have access to one of our offers, which you have the detail at your "
 "disposal : %s"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:56
+#: app/views/bienvenue/index.rhtml:53
 msgid "You hope this tool wil give you an entire satisfaction."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:60
+#: app/views/bienvenue/index.rhtml:57
 msgid "Your call number is"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:62
+#: app/views/bienvenue/index.rhtml:59
 msgid "and your access code is %s"
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:69
+#: app/views/bienvenue/index.rhtml:66
 msgid "You can see the list of %s."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:70
+#: app/views/bienvenue/index.rhtml:67
 msgid ""
 "This software is distributed by a precise and simple %s, distributed by "
 "activity group."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:72
+#: app/views/bienvenue/index.rhtml:69
 msgid ""
 "We have a large range of offers for supporting you with a SLA. This Service "
 "Level Agreement can be very short and is guaranted by contract."
 msgstr ""
 
-#: app/views/bienvenue/index.rhtml:76
+#: app/views/bienvenue/index.rhtml:73
 msgid ""
 "You can consult and follow all the %s done by our team in Open Source "
 "communities."
@@ -3016,7 +3016,7 @@ msgstr ""
 
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/index.rhtml:6
 #: app/views/binaires/show.rhtml:11 app/views/demandes/_form.rhtml:50
-#: app/views/demandes/_infos_demande.rhtml:22
+#: app/views/demandes/_infos_demande.rhtml:23
 #: app/views/machines/_form.rhtml:17 app/views/machines/all.rhtml:5
 #: app/views/machines/index.rhtml:5 app/views/machines/show.rhtml:9
 #: app/views/socles/_form.rhtml:9 app/views/socles/index.rhtml:5
@@ -3289,7 +3289,7 @@ msgid "Delay"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:8
-#: app/views/demandes/_infos_demande.rhtml:52
+#: app/views/demandes/_infos_demande.rhtml:53
 msgid "Updated on"
 msgstr ""
 
@@ -3459,7 +3459,7 @@ msgid "Size"
 msgstr ""
 
 #: app/views/demandes/tabs/_piecejointes.rhtml:5
-#: app/views/demandes/_infos_demande.rhtml:51
+#: app/views/demandes/_infos_demande.rhtml:52
 msgid "Created on"
 msgstr ""
 
@@ -3560,35 +3560,35 @@ msgstr ""
 msgid "Packages supported for %s :"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:20
+#: app/views/demandes/_infos_demande.rhtml:21
 msgid "Vm"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:30
+#: app/views/demandes/_infos_demande.rhtml:31
 msgid "CC"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:33
+#: app/views/demandes/_infos_demande.rhtml:34
 msgid "Assigned to"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:38
+#: app/views/demandes/_infos_demande.rhtml:39
 msgid "Recipent"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:41
+#: app/views/demandes/_infos_demande.rhtml:42
 msgid "Contact"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:45
+#: app/views/demandes/_infos_demande.rhtml:46
 msgid "Company"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:49
+#: app/views/demandes/_infos_demande.rhtml:50
 msgid "Life cycle"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:54
+#: app/views/demandes/_infos_demande.rhtml:55
 msgid "Submitted upstream"
 msgstr ""
 

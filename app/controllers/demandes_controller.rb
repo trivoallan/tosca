@@ -194,6 +194,9 @@ class DemandesController < ApplicationController
     set_comments(@demande.id)
 
     @partial_for_summary = 'infos_demande'
+
+    if flash.has_key? :old_body
+      @commentaire = Commentaire.new(:corps => flash[:old_body]) 
     # render is mandatory becoz' of the alias with 'show'
     render :action => 'comment'
   end
