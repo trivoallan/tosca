@@ -10,7 +10,8 @@
     <% end %>
     <li><%= link_to_add_call @demande.id %></li>
   <% end %>
-  <li><%= link_to _("Print"), print_demande_path(@demande.id) %></li>
+  <li><%= link_to _("Print"), print_demande_path(@demande.id), 
+            :target => '_blank' %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_resume')">
