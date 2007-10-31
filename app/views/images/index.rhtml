@@ -6,7 +6,7 @@
 <% titres = [_("Formatted"), _("Description")]%>
 <%= show_table(@images, Image, titres) { |p|
   result = ''
-  result << "<td>#{self.image_tag(url_for_file_column(p, 'image', 'thumb'))}</td>"
+  result << "<td>#{self.image_tag(url_for_file_column(p, 'image', 'thumb')) if p.image}</td>"
   result << "<td>#{p.description}</td>"
   result << "#{link_to_actions_table(p)}"
 }%>
