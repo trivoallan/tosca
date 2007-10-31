@@ -197,6 +197,7 @@ class DemandesController < ApplicationController
 
     if flash.has_key? :old_body
       @commentaire = Commentaire.new(:corps => flash[:old_body]) 
+    end
     # render is mandatory becoz' of the alias with 'show'
     render :action => 'comment'
   end
