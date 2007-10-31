@@ -1,7 +1,11 @@
 Welcome aboard
 
 You need some devel packages before installing required gems.
-  ruby-devel mysql-devel libMagick-devel oniguruma-devel
+  ruby-devel mysql-devel libMagick-devel oniguruma-devel mysql-ruby
+
+The first three are commonly available on linux distribution. Oniguruma and 
+ the C bindings to MySQL are commonly unavailable, so a tarball of sources is 
+provided in tools/ directory.
 
 After that, you need those gems :
   sudo gem install rails rmagick mysql gettext ruport ruport-util ultraviolet rubyzip -y

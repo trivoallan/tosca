@@ -186,7 +186,8 @@ test
   Unit and functional tests along with fixtures.
 
 tools
-  Small config files for common developer tools (.emacs, .irbrc & so on...)
+  Small config files for common developer tools (.emacs, .irbrc & so on...).
+  It contains also tarball archives of rarely packaged C library used by TOSCA.
 
 vendor
   External libraries that the application depends on. Also includes the plugins subdirectory.
