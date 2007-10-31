@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 73) do
+ActiveRecord::Schema.define(:version => 74) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(:version => 73) do
   add_index "binaires_demandes", ["demande_id"], :name => "binaires_demandes_demande_id_index"
 
   create_table "changelogs", :force => true do |t|
-    t.column "paquet_id",         :integer,  :default => 0,  :null => false
-    t.column "date_modification", :datetime,                 :null => false
-    t.column "nom_modification",  :string,   :default => "", :null => false
-    t.column "text_modification", :text,     :default => "", :null => false
+    t.column "paquet_id",         :integer,   :default => 0,  :null => false
+    t.column "date_modification", :timestamp,                 :null => false
+    t.column "nom_modification",  :string,    :default => "", :null => false
+    t.column "text_modification", :text,      :default => "", :null => false
   end
 
   add_index "changelogs", ["paquet_id"], :name => "changelogs_paquet_id_index"
@@ -226,6 +226,7 @@ ActiveRecord::Schema.define(:version => 73) do
     t.column "contrat_id",       :integer,                  :null => false
     t.column "expected_on",      :datetime
     t.column "last_comment_id",  :integer,  :default => 0,  :null => false
+    t.column "mantis_id",        :integer
   end
 
   add_index "demandes", ["contribution_id"], :name => "demandes_correctif_id_index"
@@ -271,14 +272,14 @@ ActiveRecord::Schema.define(:version => 73) do
   end
 
   create_table "documents", :force => true do |t|
-    t.column "identifiant_id",  :integer,  :default => 0,  :null => false
-    t.column "typedocument_id", :integer,  :default => 0,  :null => false
-    t.column "client_id",       :integer,  :default => 0,  :null => false
-    t.column "titre",           :string,   :default => "", :null => false
-    t.column "fichier",         :string,   :default => "", :null => false
-    t.column "description",     :text,     :default => "", :null => false
-    t.column "created_on",      :datetime,                 :null => false
-    t.column "updated_on",      :datetime,                 :null => false
+    t.column "identifiant_id",  :integer,   :default => 0,  :null => false
+    t.column "typedocument_id", :integer,   :default => 0,  :null => false
+    t.column "client_id",       :integer,   :default => 0,  :null => false
+    t.column "titre",           :string,    :default => "", :null => false
+    t.column "fichier",         :string,    :default => "", :null => false
+    t.column "description",     :text,      :default => "", :null => false
+    t.column "created_on",      :timestamp,                 :null => false
+    t.column "updated_on",      :timestamp,                 :null => false
     t.column "version",         :integer
     t.column "date_delivery",   :datetime
   end
@@ -362,7 +363,7 @@ ActiveRecord::Schema.define(:version => 73) do
   add_index "ingenieurs", ["identifiant_id"], :name => "ingenieurs_identifiant_id_index"
 
   create_table "jourferies", :force => true do |t|
-    t.column "jour", :datetime, :null => false
+    t.column "jour", :timestamp, :null => false
   end
 
   create_table "licenses", :force => true do |t|
@@ -411,20 +412,6 @@ ActiveRecord::Schema.define(:version => 73) do
   add_index "news", ["ingenieur_id"], :name => "index_news_on_ingenieur_id"
   add_index "news", ["logiciel_id"], :name => "index_news_on_logiciel_id"
   add_index "news", ["subject"], :name => "index_news_on_subject"
-
-  create_table "old_urllogiciels", :force => true do |t|
-    t.column "logiciel_id", :integer, :default => 0,  :null => false
-    t.column "typeurl_id",  :integer, :default => 0,  :null => false
-    t.column "valeur",      :string,  :default => "", :null => false
-  end
-
-  add_index "old_urllogiciels", ["logiciel_id"], :name => "urllogiciels_logiciel_id_index"
-  add_index "old_urllogiciels", ["typeurl_id"], :name => "urllogiciels_typeurl_id_index"
-
-  create_table "old_urlreversements", :force => true do |t|
-    t.column "contribution_id", :integer
-    t.column "valeur",          :string,  :default => "", :null => false
-  end
 
   create_table "paquets", :force => true do |t|
     t.column "logiciel_id",      :integer,               :default => 0,    :null => false
@@ -551,13 +538,6 @@ ActiveRecord::Schema.define(:version => 73) do
   create_table "urlreversements", :force => true do |t|
     t.column "contribution_id", :integer
     t.column "valeur",          :string,  :default => "", :null => false
-  end
-
-  create_table "urls", :force => true do |t|
-    t.column "resource_id",   :integer
-    t.column "resource_type", :string
-    t.column "value",         :string
-    t.column "typeurl_id",    :integer
   end
 
   create_table "users", :id => false, :force => true do |t|

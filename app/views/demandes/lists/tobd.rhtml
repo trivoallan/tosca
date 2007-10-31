@@ -2,7 +2,7 @@
          n_('My pending request', 'My pending requests', @demandes.size)) %></h1>
 
 <% links = show_pages_links(@demande_pages, 'une nouvelle demande',
-                    :url => demandes_url, :no_new_links => true) %>
+                    :no_new_links => true) %>
 <%= links %>
 
 <%=render( :partial => 'demandes/lists/requests_table' )%>
