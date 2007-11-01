@@ -22,7 +22,8 @@ class ContratsController < ApplicationController
   def create
     @contrat = Contrat.new(params[:contrat])
     if @contrat.save
-      if params[:team][:ossa] == '1'
+      team = params[:team]
+      if team and team[:ossa] == '1'
         @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all)) 
         @contrat.save
       end
@@ -41,8 +42,8 @@ class ContratsController < ApplicationController
   def update
     @contrat = Contrat.find(params[:id])
     if @contrat.update_attributes(params[:contrat])
-      if params[:team][:ossa] == '1'
-        puts params[:team][:ossa].inspect
+      team = params[:team]
+      if team and team[:ossa] == '1'
         @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all)) 
         @contrat.save
       end

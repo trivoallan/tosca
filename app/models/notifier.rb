@@ -50,7 +50,7 @@ class Notifier < ActionMailer::Base
 
     recipients  options[:identifiant].email
     from        FROM
-    subject    _("Access to Free Software Support")
+    subject     "Accès au Support Logiciel Libre"
 
     html_and_text_body(options);
 

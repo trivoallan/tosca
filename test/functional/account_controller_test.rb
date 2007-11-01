@@ -52,6 +52,7 @@ class AccountControllerTest < Test::Unit::TestCase
       :client => { :id => 2},
       :identifiant => { 
         :login => 'newbob',
+        :email => 'mloiseleur@linagora.com',
         :pwd => 'newpassword',
         :pwd_confirmation => 'newpassword'
       }
