@@ -58,7 +58,7 @@ class ExportController < ApplicationController
 
   def compute_identifiants(type)
     options = { :order => 'identifiants.login', :include => 
-      [:beneficiaire,:ingenieur,:roles], :conditions => flash[:conditions],
+      [:beneficiaire,:ingenieur,:role], :conditions => flash[:conditions],
       :methods => ['beneficiaire_client_nom', 'role_nom']
     }
     report = Identifiant.report_table(:all, options)
@@ -115,8 +115,8 @@ class ExportController < ApplicationController
   end
 
   def compute_demandes(type, options_generate)
-    columns = ['id','logiciels_nom', 'beneficiaires_nom','clients_nom',
-      'ingenieurs_nom','severites_nom','created_on_formatted',
+    columns = ['id','logiciels_nom', 'clients_nom',
+      'severites_nom','created_on_formatted',
       'socle', 'updated_on_formatted', 'resume', 'statuts_nom',
        'typedemandes_nom'
     ]
@@ -125,13 +125,12 @@ class ExportController < ApplicationController
       :methods => columns
      }
      report = nil
-     Demande.without_include_scope(escope) do
+     Demande.without_include_scope(@ingenieur, @beneficiaire) do
        report = Demande.report_table(:all, options)
      end
      report.reorder columns
      report.rename_columns columns,
-       [_('Id'), _('Software'), _('Recipient'), _('Customer'),
-         _('Owner') , _('Severity'),
+       [_('Id'), _('Software'), _('Customer'), _('Severity'),
          _('Submission date') , _('Platform'), _('Last update'),
          _('Summary'), _('Status'), _('Type') ]
 
