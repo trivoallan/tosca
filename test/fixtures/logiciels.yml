@@ -1,4 +1,13 @@
 --- 
+logiciel_00005: 
+  nom: OpenOffice.org
+  groupe_id: 16
+  referent: openoffice.org
+  id: 5
+  resume: OpenOffice.org comprehensive office suite.
+  description: "     OpenOffice.org is an Open Source, community-developed, multi-platform office productivity suite.  It includes the key desktop applications, such as a word processor, spreadsheet, presentation manager, formula editor and drawing program, with a user interface and feature set similar to other office suites.  Sophisticated and flexible, OpenOffice.org also works transparently with a variety of file formats, including Microsoft Office.  Usage: Simply type &quot;ooffice&quot; to run OpenOffice.org or select the requested component (Writer, Calc, Draw, Impress, etc.) from your desktop menu. The ooffice wrapper script will install a few files in the user&#39;s home, if necessary.  The OpenOffice.org team hopes you enjoy working with OpenOffice.org!  Note: Non-.vor templates covered under the GPL license."
+  license_id: 2
+  image_id: 
 logiciel_00001: 
   nom: ANT
   groupe_id: 4

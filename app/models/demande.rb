@@ -32,7 +32,7 @@ class Demande < ActiveRecord::Base
   validates_presence_of :description,
     :warn => _('You must indicate a description')
   validate do |record|
-    if record.contrat.client_id != record.beneficiaire.client_id
+    if record.contrat.nil? or (record.contrat.client_id != record.beneficiaire.client_id)
       record.errors.add _('The client of this contract is not consistant with the client of this recipient.')
     end
     if record.beneficiaire.nil?

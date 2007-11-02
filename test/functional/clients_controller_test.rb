@@ -22,6 +22,8 @@ class ClientsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'index'
     assert_not_nil assigns(:clients)
+    # client_8 is deactivated
+    assert !(assigns(:clients).include?(Client.find(8)))
   end
 
   def test_show

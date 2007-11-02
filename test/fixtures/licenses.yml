@@ -1,11 +1,11 @@
 --- 
 license_00001: 
-  nom: ""
-  url: ""
+  nom: GPL
+  url: www.gpl.com
   id: 1
-  certifie_osi: 
+  certifie_osi: false
 license_00002: 
-  nom: ""
-  url: ""
+  nom: LGPL
+  url: www.lgpl.com
   id: 2
-  certifie_osi: 
+  certifie_osi: false

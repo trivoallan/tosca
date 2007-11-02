@@ -1,2 +1,10 @@
---- {}
-
+--- 
+join_00002: 
+  logiciel_id: "5"
+  competence_id: "19"
+join_00000: 
+  logiciel_id: "5"
+  competence_id: "1"
+join_00001: 
+  logiciel_id: "5"
+  competence_id: "3"

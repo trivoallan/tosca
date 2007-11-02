@@ -35,6 +35,8 @@ class DemandesControllerTest < Test::Unit::TestCase
 
     get :index, :filters => { :client_id => 1 }
     assert_response :success
+    # client_8 is deactivated
+    assert !(assigns(:clients).include?(Client.find(8)))
     assigns(:demandes).each do |d|
       request = Demande.find d.id
       assert_equal request.client.id, 1
@@ -59,6 +61,10 @@ class DemandesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
+    # Client9 has one recipient activated and one not
+    assert assigns(:clients).include?(Client.find(9))
+    # Client8 is fully deactivated 
+    assert !assigns(:clients).include?(Client.find(8))
     assert_not_nil assigns(:demande)
   end
 

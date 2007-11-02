@@ -16,3 +16,20 @@ contribution_00001:
   typecontribution_id: 1
   synthese: la synthese
   etatreversement_id: 3
+contribution_00002: 
+  created_on: 2007-11-02 14:13:38 +01:00
+  patch: ""
+  nom: import date de Word
+  logiciel_id: 5
+  updated_on: 2007-11-02 14:13:39 +01:00
+  description_fonctionnelle: "<p>Fix l\xE2\x80\x99import des dates de Ms Office 2003 dans OOo 2.0.x<br />Correspond aux demandes 74 et 9 dans mantis.</p>   \t<p>Le correctif a \xC3\xA9t\xC3\xA9 adapt\xC3\xA9 en version communautaire en 2.1.x.</p>"
+  reverse_le: 2007-02-02 01:12:00 +01:00
+  ingenieur_id: 1
+  id: 2
+  version: 2.x
+  description: ""
+  id_mantis: 
+  cloture_le: 2007-06-02 14:12:00 +02:00
+  typecontribution_id: 1
+  synthese: "Corrige un probl\xC3\xA8me d'import de document Word dans OpenOffice, au niveau des dates."
+  etatreversement_id: 5
