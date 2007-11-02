@@ -5,8 +5,10 @@ class ClientsController < ApplicationController
   helper :demandes, :socles, :engagements, :contrats
 
   def index
-    @client_pages, @clients = paginate :clients, :per_page => 10,
-      :order => 'clients.nom', :include => [:image,:support]
+    active = 'clients.inactive = 0'
+    options = { :per_page => 10, :order => 'clients.nom', 
+      :include => [:image,:support], :conditions => active }
+    @client_pages, @clients = paginate :clients, options
   end
 
   def stats

@@ -296,7 +296,7 @@ class DemandesController < ApplicationController
     @typedemandes = Typedemande.find_select()
     @severites = Severite.find_select()
     if @ingenieur
-      @clients = Client.find_select()
+      @clients = Client.find_select(:conditions => 'clients.inactive = 0')
       @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
     end
   end
