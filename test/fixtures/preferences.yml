@@ -1,3 +1,8 @@
 --- 
-one_00001: 
+preference_00001: 
+  digest_daily: false
+  all_mail: true
   id: 1
+  digest_weekly: false
+  identifiant_id: 0
+  mail_text: false

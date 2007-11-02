@@ -2,6 +2,7 @@
 identifiant_00004: 
   informations: ""
   nom: Admin
+  role_id: 1
   inactive: false
   client: false
   id: 4
@@ -10,11 +11,11 @@ identifiant_00004:
   password: 47261c32a405a38d54806e4db0e64d1ca9862598
   login: admin
   image_id: 0
-  role_id: 1
   email: mloiseleur@linagora.com
 identifiant_00005: 
   informations: ""
   nom: Expert de l'OSSA
+  role_id: 4
   inactive: false
   client: false
   id: 5
@@ -23,11 +24,11 @@ identifiant_00005:
   password: d81674f38d5627bb3580afe45ee79cffafe0b539
   login: expert
   image_id: 0
-  role_id: 4
   email: mloiseleur@linagora.com
 identifiant_00006: 
   informations: ""
   nom: Prestataire
+  role_id: 3
   inactive: false
   client: false
   id: 6
@@ -36,11 +37,11 @@ identifiant_00006:
   password: 63828c91e38ced7d310e861caa2cc0a98465db81
   login: presta
   image_id: 0
-  role_id: 3
   email: mloiseleur@linagora.com
 identifiant_00007: 
   informations: ""
   nom: Forget
+  role_id: 2
   inactive: false
   client: true
   id: 7
@@ -49,11 +50,11 @@ identifiant_00007:
   password: 538009b9b91f423bd323235d3fa99413e0899359
   login: forget
   image_id: 
-  role_id: 2
   email: mloiseleur@linagora.com
 identifiant_00001: 
   informations: ""
   nom: "H\xC3\xA9l\xC3\xA8ne Parmentier"
+  role_id: 2
   inactive: false
   client: true
   id: 1
@@ -62,11 +63,11 @@ identifiant_00001:
   password: 113ffe098f908431c8c5d5c960e6a291aaf202b2
   login: hparmentier
   image_id: 0
-  role_id: 2
   email: mloiseleur@linagora.com
 identifiant_00002: 
   informations: ""
   nom: Martin Laplace
+  role_id: 2
   inactive: false
   client: true
   id: 2
@@ -75,11 +76,11 @@ identifiant_00002:
   password: 92b033978307c31e8166cf768345bb5a30d3c67f
   login: mlaplace
   image_id: 0
-  role_id: 2
   email: mloiseleur@linagora.com
 identifiant_00003: 
   informations: ""
   nom: Bob Dufloux
+  role_id: 1
   inactive: false
   client: false
   id: 3
@@ -88,5 +89,4 @@ identifiant_00003:
   password: 113ffe098f908431c8c5d5c960e6a291aaf202b2
   login: bob
   image_id: 0
-  role_id: 1
   email: mloiseleur@linagora.com

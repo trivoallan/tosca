@@ -1,30 +1,33 @@
----
-client_00004:
+--- 
+client_00004: 
   support_id: 1
   nom: linagorien
-  chrono:
+  chrono: 
+  inactive: false
   id: 4
-  beneficiaires_count:
+  beneficiaires_count: 
   mailingliste: client4@08000linux.com
   description: un autre utilisateur
   code_acces: linagora
   adresse: Rue de Berri, Paris
   image_id: 3
-client_00005:
+client_00005: 
   support_id: 1
   nom: noman
-  chrono:
+  chrono: 
+  inactive: false
   id: 5
-  beneficiaires_count:
+  beneficiaires_count: 
   mailingliste: client5@08000linux.com
   description: un autre utilisateur
   code_acces: linagora
   adresse: Rue de Berri, Paris
   image_id: 3
-client_00001:
+client_00001: 
   support_id: 1
   nom: toto
-  chrono:
+  chrono: 
+  inactive: false
   id: 1
   beneficiaires_count: 21
   mailingliste: client1@08000linux.com
@@ -32,14 +35,15 @@ client_00001:
   code_acces: lenomdemonchien
   adresse: "les champs \xC3\x89lys\xC3\xA9es 95000 Paris"
   image_id: 1
-client_00002:
+client_00002: 
   support_id: 1
   nom: guy
-  chrono:
+  chrono: 
+  inactive: false
   id: 2
-  beneficiaires_count:
+  beneficiaires_count: 
   mailingliste: toscadevel@linagora.com
   description: "un gars\xC2\xABsympa\xC2\xBB"
   code_acces: guytarenbois
   adresse: Rue de la paix, Paris
-  image_id:
+  image_id: 
