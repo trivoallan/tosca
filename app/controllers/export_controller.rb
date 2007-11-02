@@ -33,13 +33,15 @@ class ExportController < ApplicationController
       :methods => methods }
 
     report = Contribution.report_table(:all, options)
-    columns= ['id','pnom_typecontribution', 'pnom_logiciel',
+    columns= [ 'id','pnom_typecontribution', 'pnom_logiciel',
       'version_to_s','pnom_etatreversement', 'synthese',
-      'reverse_le_formatted','clos_enhance','delai_in_french_words']
-    report.reorder columns
-    report.rename_columns columns,
-      [_('id'), _('type'), _('software'), _('version'), _('state'),
-        _('summary'), _('reported'), _('closed'), _('delay') ]
+      'reverse_le_formatted','clos_enhance','delai_in_french_words' ]
+    unless report.column_names.empty?
+      report.reorder(columns) 
+      report.rename_columns columns,
+        [ _('id'), _('type'), _('software'), _('version'), _('state'),
+          _('summary'), _('reported'), _('closed'), _('delay') ]
+    end
     generate_report(report, type, {})
   end
 
@@ -94,11 +96,12 @@ class ExportController < ApplicationController
     report = Appel.report_table(:all, options)
 
     columns.push( 'debut','fin')
-    report.reorder columns
-    report.rename_columns columns,
-      [_('Contract'), _('Owner'), _('Customer'), _('Call'), 
-        _('End of the call') ]
-
+    unless report.column_names.empty?
+      report.reorder columns 
+      report.rename_columns columns,
+        [ _('Contract'), _('Owner'), _('Customer'), _('Call'), 
+          _('End of the call') ]
+    end
     generate_report(report, type, {})
   end
 
@@ -115,26 +118,27 @@ class ExportController < ApplicationController
   end
 
   def compute_demandes(type, options_generate)
-    columns = ['id','logiciels_nom', 'clients_nom',
-      'severites_nom','created_on_formatted',
-      'socle', 'updated_on_formatted', 'resume', 'statuts_nom',
-       'typedemandes_nom'
+    columns = [ 'id', 'logiciels_nom', 'clients_nom', 'severites_nom',
+      'created_on_formatted', 'socle', 'updated_on_formatted', 'resume', 
+      'statuts_nom', 'typedemandes_nom'
     ]
     options= { :order => 'updated_on DESC', :conditions => flash[:conditions],
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST,
       :methods => columns
      }
-     report = nil
-     Demande.without_include_scope(@ingenieur, @beneficiaire) do
-       report = Demande.report_table(:all, options)
-     end
-     report.reorder columns
-     report.rename_columns columns,
-       [_('Id'), _('Software'), _('Customer'), _('Severity'),
+    report = nil
+    Demande.without_include_scope(@ingenieur, @beneficiaire) do
+      report = Demande.report_table(:all, options)
+    end
+    unless report.column_names.empty?
+      report.reorder columns
+      report.rename_columns columns,
+       [ _('Id'), _('Software'), _('Customer'), _('Severity'),
          _('Submission date') , _('Platform'), _('Last update'),
          _('Summary'), _('Status'), _('Type') ]
+    end
 
-     generate_report(report, type, options_generate)
+    generate_report(report, type, options_generate)
   end
 
 
