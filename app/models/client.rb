@@ -22,8 +22,8 @@ class Client < ActiveRecord::Base
   # validates_uniqueness_of :mailingliste
 
 
-  SELECT_OPTIONS = { :include => [:beneficiaires],
-    :conditions => 'clients.inactive = 0' }
+  SELECT_OPTIONS = { :include => {:beneficiaires => [:identifiant]},
+    :conditions => 'clients.inactive = 0 AND identifiants.inactive = 0' }
 
   after_save :desactivate_recipients
 
