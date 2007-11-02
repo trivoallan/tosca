@@ -22,6 +22,7 @@ class DemandesController < ApplicationController
     conditions.first << ('commentaires.identifiant_id ' <<
                          (@ingenieur ? '= ' : '<> ') <<
                          'beneficiaires.identifiant_id' )
+    conditions.first << 'commentaires.prive = 0'
 
     if @ingenieur
       conditions.first << 'demandes.ingenieur_id = ?'
