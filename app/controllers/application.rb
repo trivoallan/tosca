@@ -60,7 +60,7 @@ protected
     if request.xhr?
       render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
-      redirect_to bienvenue_path
+      redirect_back_or_default bienvenue_path
     end
   end
 

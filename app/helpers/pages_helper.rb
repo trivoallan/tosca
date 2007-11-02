@@ -84,15 +84,17 @@ module PagesHelper
         (used in 'to be done' request, for isntance).
 =end
   def show_pages_links(pages, message, options = {} )
+    if options.has_key? :url
+      ajax_call =
+        remote_function(AJAX_OPTIONS.dup.update(:url => options[:url]))
+      options.delete :url
+    end
+
     result = '<table class="pages"><tr>'
     unless options.has_key? :no_new_links
       result << "<td>#{link_to_new(message, options)}</td>"
     end
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
-    if options.has_key? :url
-      ajax_call =
-        remote_function(AJAX_OPTIONS.dup.update(:url => options[:url]))
-    end
 
     if pages.current.previous
       link = link_to_page(pages, pages.first, _('First page'),
