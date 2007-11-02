@@ -23,6 +23,30 @@ client_00005:
   code_acces: linagora
   adresse: Rue de Berri, Paris
   image_id: 3
+client_00008: 
+  support_id: 1
+  nom: Client Inactif
+  chrono: "34565"
+  inactive: true
+  id: 8
+  beneficiaires_count: 
+  mailingliste: mloiseleur@linagora.com
+  description: ""
+  code_acces: ""
+  adresse: ""
+  image_id: 1
+client_00009: 
+  support_id: 1
+  nom: "Client avec un b\xC3\xA9n\xC3\xA9ficiaire Inactif"
+  chrono: "4789"
+  inactive: false
+  id: 9
+  beneficiaires_count: 
+  mailingliste: mloiseleur@linagora.com
+  description: ""
+  code_acces: "32569"
+  adresse: ""
+  image_id: 1
 client_00001: 
   support_id: 1
   nom: toto

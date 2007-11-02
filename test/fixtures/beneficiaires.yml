@@ -1,4 +1,12 @@
 --- 
+beneficiaire_00007: 
+  client_id: 8
+  id: 7
+  notifier_subalternes: true
+  beneficiaire_id: 
+  notifier_cc: true
+  identifiant_id: 11
+  notifier: true
 beneficiaire_00001: 
   client_id: 1
   id: 1
@@ -14,4 +22,20 @@ beneficiaire_00002:
   beneficiaire_id: 
   notifier_cc: true
   identifiant_id: 7
+  notifier: true
+beneficiaire_00005: 
+  client_id: 9
+  id: 5
+  notifier_subalternes: true
+  beneficiaire_id: 
+  notifier_cc: true
+  identifiant_id: 9
+  notifier: true
+beneficiaire_00006: 
+  client_id: 9
+  id: 6
+  notifier_subalternes: true
+  beneficiaire_id: 
+  notifier_cc: true
+  identifiant_id: 10
   notifier: true

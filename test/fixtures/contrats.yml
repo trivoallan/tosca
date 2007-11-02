@@ -19,6 +19,16 @@ contrat_00006:
   support: false
   cloture: 2007-11-12 14:23:00 +01:00
   paquets_count: 
+contrat_00010: 
+  astreinte: false
+  nom: OSSA - CInactif
+  socle: false
+  client_id: 9
+  id: 10
+  ouverture: 2007-11-02 11:40:00 +01:00
+  support: true
+  cloture: 2012-11-02 11:40:00 +01:00
+  paquets_count: 
 contrat_00001: 
   astreinte: false
   nom: OSSA - toto

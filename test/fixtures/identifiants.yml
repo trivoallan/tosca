@@ -51,6 +51,45 @@ identifiant_00007:
   login: forget
   image_id: 
   email: mloiseleur@linagora.com
+identifiant_00009: 
+  informations: ""
+  nom: Je suis actif
+  role_id: 2
+  inactive: false
+  client: true
+  id: 9
+  titre: ""
+  telephone: ""
+  password: c4a232253a9d328bbb8908b3752390bf18863604
+  login: jesuisactif
+  image_id: 
+  email: mloiseleur@linagora.com
+identifiant_00010: 
+  informations: ""
+  nom: Je suis inactif
+  role_id: 2
+  inactive: true
+  client: true
+  id: 10
+  titre: ""
+  telephone: ""
+  password: 1f952327c9a65c59edd5d16554c27a912e7c21f3
+  login: jesuisinactif
+  image_id: 
+  email: mloiseleur@linagora.com
+identifiant_00011: 
+  informations: ""
+  nom: Je suis totalement inactif
+  role_id: 2
+  inactive: true
+  client: true
+  id: 11
+  titre: ""
+  telephone: ""
+  password: 0049ba846f6532739cbbee5a95ccf4022294547b
+  login: totalinactif
+  image_id: 
+  email: mloiseleur@linagora.com
 identifiant_00001: 
   informations: ""
   nom: "H\xC3\xA9l\xC3\xA8ne Parmentier"

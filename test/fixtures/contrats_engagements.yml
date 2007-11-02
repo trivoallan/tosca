@@ -1,10 +1,19 @@
 --- 
+join_00013: 
+  engagement_id: "9"
+  contrat_id: "10"
 join_00002: 
   engagement_id: "10"
   contrat_id: "3"
+join_00014: 
+  engagement_id: "10"
+  contrat_id: "10"
 join_00003: 
   engagement_id: "11"
   contrat_id: "3"
+join_00015: 
+  engagement_id: "11"
+  contrat_id: "10"
 join_00004: 
   engagement_id: "4"
   contrat_id: "3"
@@ -32,6 +41,9 @@ join_00011:
 join_00000: 
   engagement_id: "1"
   contrat_id: "3"
+join_00012: 
+  engagement_id: "2"
+  contrat_id: "10"
 join_00001: 
   engagement_id: "3"
   contrat_id: "6"
