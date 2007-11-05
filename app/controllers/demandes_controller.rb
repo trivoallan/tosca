@@ -101,6 +101,7 @@ class DemandesController < ApplicationController
 
   def new
     @demande = Demande.new unless @demande
+    @demande = Demande.new(params[:demande]) if params.has_key? :demande
     _form @beneficiaire
 
     # check if the form can display
@@ -111,18 +112,20 @@ class DemandesController < ApplicationController
       redirect_to(demandes_path) and return
     end
 
-    # self-assign by default
-    @demande.ingenieur = @ingenieur
-    # without severity, by default
-    @demande.severite_id = 4
-    # self-contract, by default
-    @demande.contrat_id = @contrats.first.id if @contrats.size == 1
     # statut "prise en compte" si ingénieur, sinon : "enregistrée"
     @demande.statut_id = (@ingenieur ? 2 : 1)
-    # if we came from software view, it's sets automatically
-    @demande.logiciel_id = params[:logiciel_id]
+    unless params.has_key? :demande
+      # self-assign by default
+      @demande.ingenieur = @ingenieur
+      # without severity, by default
+      @demande.severite_id = 4
+      # self-contract, by default
+      @demande.contrat_id = @contrats.first.id if @contrats.size == 1
+      # if we came from software view, it's sets automatically
+      @demande.logiciel_id = params[:logiciel_id]
 
-    @demande.beneficiaire_id = @beneficiaire.id if @beneficiaire
+      @demande.beneficiaire_id = @beneficiaire.id if @beneficiaire
+    end
   end
 
   def create
@@ -140,7 +143,12 @@ class DemandesController < ApplicationController
       options = { :demande => @demande, :url_request => demande_url(@demande),
         :nom => session[:user].nom, :url_attachment => url_attachment }
       Notifier::deliver_request_new(options, flash)
-      redirect_to demandes_path
+      similar = params[:similar]
+      if similar and similar[:request] == '1'
+        redirect_to _similar_request
+      else
+        redirect_to demandes_path
+      end
     else
       _form @beneficiaire
       render :action => 'new'
@@ -371,6 +379,19 @@ class DemandesController < ApplicationController
     else
       nil
     end
+  end
+
+  # define what is a similar request. 
+  # Used during create.
+  # It _just_ returns a correct path.
+  def _similar_request
+    new_demande_path(:demande => { 
+                       :contrat_id => @demande.contrat_id,
+                       :beneficiaire_id => @demande.beneficiaire_id,
+                       :typedemande_id => @demande.typedemande_id,
+                       :severite_id => @demande.severite_id,
+                       :socle_id => @demande.socle_id,
+                       :logiciel_id => @demande.logiciel_id })
   end
 
 end
