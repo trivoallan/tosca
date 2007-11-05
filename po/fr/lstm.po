@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-05 16:23+0100\n"
-"PO-Revision-Date: 2007-11-02 12:18+0100\n"
+"PO-Revision-Date: 2007-11-05 16:26+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3668,9 +3668,8 @@ msgid "Submit this request"
 msgstr "Déposer cette demande"
 
 #: app/views/demandes/new.rhtml:13
-#, fuzzy
 msgid "Submit this request and make an other"
-msgstr "Déposer cette demande"
+msgstr "Déposer cette demande et en soumettre une similaire"
 
 #: app/views/demandes/new.rhtml:25
 msgid ""
