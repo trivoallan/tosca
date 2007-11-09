@@ -15,7 +15,7 @@ class Identifiant < ActiveRecord::Base
   has_one :preference
 
   validates_length_of :login, :within => 3..40
-  validates_presence_of :login, :password
+  validates_presence_of :login, :password, :role
   validates_uniqueness_of :login
 
   attr_accessor :pwd_confirmation
