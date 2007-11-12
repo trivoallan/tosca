@@ -27,8 +27,9 @@ class Demande < ActiveRecord::Base
   # Validation
   validates_presence_of :resume,
        :warn => _("You must indicate a summary for your request")
-  validates_length_of :resume, :within => 3..60
+  validates_length_of :resume, :within => 5..60
   validates_presence_of :contrat
+  validates_length_of :description, :minimum => 5
   validates_presence_of :description,
     :warn => _('You must indicate a description')
   validate do |record|
@@ -119,9 +120,13 @@ class Demande < ActiveRecord::Base
       c.statut_id = self.statut_id
       c.identifiant_id = self.beneficiaire.identifiant_id
     end
-    comment.save
-    self.first_comment_id = comment.id
-    self.save
+    if comment.save
+      self.first_comment_id = comment.id
+      self.save
+    else
+      self.destroy
+      throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
+    end
   end
 
   # /!\ Dirty Hack Warning /!\
