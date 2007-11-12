@@ -34,7 +34,7 @@
     @distributeurs.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
-    <p><label for="paquet_mainteneur_id"><% _('Maintainer')%></label><br />
+    <p><label for="paquet_mainteneur_id"><%= _('Maintainer')%></label><br />
     <%= select("paquet", "mainteneur_id", 
     @mainteneurs.collect{|l| [ l.nom, l.id]}) %>
     </p>
