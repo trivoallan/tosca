@@ -35,6 +35,11 @@ class DemandeTest < Test::Unit::TestCase
   
     assert request.save
 
+    # a request must have 5 letters in its description
+    request.description = 'test'
+    assert !request.save
+    request.description = 'hello request'
+
     # commentaire table must have things now ...
     c = Commentaire.find :first, :conditions => { :demande_id => request.id }
     assert_equal c.demande_id, request.id

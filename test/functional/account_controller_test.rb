@@ -54,7 +54,8 @@ class AccountControllerTest < Test::Unit::TestCase
         :login => 'newbob',
         :email => 'mloiseleur@linagora.com',
         :pwd => 'newpassword',
-        :pwd_confirmation => 'newpassword'
+        :pwd_confirmation => 'newpassword',
+        :role_id => 2 # client role
       }
     }
     assert flash.has_key?(:notice)

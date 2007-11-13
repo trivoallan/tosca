@@ -52,7 +52,7 @@ class ClientsControllerTest < Test::Unit::TestCase
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to new_contrat_path(:id => assigns(:client).id)
 
     assert_equal num_clients + 1, Client.count
   end
