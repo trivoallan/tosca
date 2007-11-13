@@ -1,0 +1,2 @@
+class ContratOssa < Contrat
+end

@@ -43,7 +43,8 @@
   result = ''
   edit = link_to_edit(edit_contrat_path(c))
   result << "#{edit}&nbsp;" if edit
-  result << _("From %s to %s") % [c.ouverture_formatted, c.cloture_formatted]
+  result << "<b>#{c.type_contrat}</b>"
+  result << _(" from %s to %s") % [c.ouverture_formatted, c.cloture_formatted]
   result << ' '
   if c.socle
     result << _("on your complete system")

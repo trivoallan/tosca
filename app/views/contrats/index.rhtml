@@ -1,13 +1,13 @@
-<h1>Liste des contrats</h1>
+<h1><%= _("List of the contracts") %></h1>
 
-<%= show_pages_links(@contrat_pages, 'un système de paquet') %>
+<%= show_pages_links(@contrat_pages, _('a contract')) %>
 
-<% titres = ['Nom','Astreinte','Logiciels','Paquets','Demandes',
-  'Ingénieurs','Ouverture','=>','Fermeture']%>
+<% titres = [ _('Name'), _('Type') , _('Softwares') , _('Packages') , _('Requests'),
+  _('Engineers'), _('Start') , _('=>'), _('End') ]%>
 <%= show_table(@contrats, Contrat, titres) { |c|
   result = ''
   result << "<td>#{link_to_contrat(c)}</td>"
-  result << "<td><center>#{'X' if c.astreinte}</center></td>"
+  result << "<td>#{c.type_contrat}</td>"
   result << "<td>#{c.logiciels.size}</td>"
   result << "<td>#{c.paquets.size}</td>"
   result << "<td>#{c.demandes.size}</td>"
@@ -19,5 +19,5 @@
 }%>
 
 
-<%= show_pages_links(@contrat_pages, 'un système de paquet') %>
+<%= show_pages_links(@contrat_pages, _('a contract')) %>
 

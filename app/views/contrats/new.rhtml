@@ -1,8 +1,8 @@
-<h1>New contrat</h1>
+<h1><%= _('New contrat') %></h1>
 
-<% form_tag contrats_path do %>
+<% form_tag( contrats_path, :id => 'contrat_form', :name => 'contrat_form' ) do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
+  <%= submit_tag _("Create") %>
 <% end %>
 
 <%= link_to_back %>

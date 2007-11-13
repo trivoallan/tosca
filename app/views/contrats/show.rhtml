@@ -1,18 +1,33 @@
-<b>Client:</b> <%= link_to_client(@contrat.client) %>
+<p><b><%= _('Client') %></b> : <%= link_to_client(@contrat.client) %></p>
+<p><b><%= _('Name') %></b> : <%= @contrat.nom %></p>
+<p><b><%= _('Type') %></b> : <%= @contrat.type_contrat %></p>
+<p><b><%= _('Start') %></b> : <%= @contrat.ouverture_formatted %></p>
+<p><b><%= _('End') %></b> : <%= @contrat.cloture_formatted %></p>
 
-<% for column in Contrat.content_columns %>
-  <p><b><%= column.human_name %>:</b> <%= @contrat.send(column.name) %></p>
+<% case @contrat[:type] %>
+<% when "ContratOssa" %>
+  <p><b><%= _('Obligation') %> : </b> <%= @contrat.astreinte? %></p>
+  <p><b><%= _('System') %> : </b> <%= @contrat.socle? %></p>
+
+<% when "ContratSupport" %>
+  <p><b><%= _('Number of tickets') %> : </b><%= @contrat.tickets_total %></p>
+  <p><b><%= _('Number of used tickets') %> : </b><%= @contrat.tickets_consommes %></p>
+                                          <% #We specify the plural for internationnalisation %>
+  <p><b><%= _('Time per ticket') %> : </b><%= pluralize(@contrat.ticket_temps, _("minute"), _("minutes")) %></p>
+
+<% else %>
+  <br/><h1><b><%= _("Error, wrong type of contract") %></b></h1>
 <% end %>
-<br />
 
+<br/>
 <p>Note : La consultation du client permet d'avoir une view globale de l'offre</p>
-<br />
+<br/>
 
 <p><b> Engagements contractuels : </b></p>
-<%= show_table_engagements @contrat.engagements %>
+<%= show_table_engagements @contrat.engagements %><br/>
 
 
-<%= show_liste(@contrat.ingenieurs, 'ingénieurs affecté') {|i| link_to i.nom, ingenieur_path(i)} %>
+<%= show_liste(@contrat.ingenieurs, 'ingénieurs affecté') {|i| link_to i.nom, ingenieur_path(i)} %><br/>
 
 
 <%= link_to_edit(@contrat) %> | <%= link_to_back %>

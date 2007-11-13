@@ -1,5 +1,5 @@
---- 
-contrat_00003: 
+---
+contrat_00003:
   astreinte: false
   nom: OSSA - guy
   socle: false
@@ -8,8 +8,9 @@ contrat_00003:
   ouverture: 2006-11-25 12:20:00 +01:00
   support: false
   cloture: 2007-11-12 14:23:00 +01:00
-  paquets_count: 
-contrat_00006: 
+  paquets_count:
+  type: ContratOssa
+contrat_00006:
   astreinte: true
   nom: OSSA - guy - 24h/24
   socle: false
@@ -18,8 +19,9 @@ contrat_00006:
   ouverture: 2006-11-25 12:20:00 +01:00
   support: false
   cloture: 2007-11-12 14:23:00 +01:00
-  paquets_count: 
-contrat_00010: 
+  paquets_count:
+  type: ContratOssa
+contrat_00010:
   astreinte: false
   nom: OSSA - CInactif
   socle: false
@@ -28,8 +30,9 @@ contrat_00010:
   ouverture: 2007-11-02 11:40:00 +01:00
   support: true
   cloture: 2012-11-02 11:40:00 +01:00
-  paquets_count: 
-contrat_00001: 
+  paquets_count:
+  type: ContratSupport
+contrat_00001:
   astreinte: false
   nom: OSSA - toto
   socle: false
@@ -39,7 +42,8 @@ contrat_00001:
   support: false
   cloture: 2008-10-27 10:20:00 +01:00
   paquets_count: 0
-contrat_00002: 
+  type: ContratOssa
+contrat_00002:
   astreinte: false
   nom: OSSA - linagora
   socle: true
@@ -49,3 +53,17 @@ contrat_00002:
   support: false
   cloture: 2007-11-12 14:23:00 +01:00
   paquets_count: 0
+  type: ContratOssa
+contrat_00004:
+  nom: Support - guy
+  client_id: 2
+  id: 4
+  ouverture: 2006-11-25 12:20:00 +01:00
+  support: true
+  cloture: 2007-11-12 14:23:00 +01:00
+  paquets_count: 0
+  tickets_total: 10
+  tickets_consommes: 5
+  ticket_temps: 15.0
+  type: ContratSupport
+

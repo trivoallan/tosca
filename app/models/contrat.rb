@@ -12,6 +12,20 @@ class Contrat < ActiveRecord::Base
   has_many :binaires, :through => :paquets
   has_many :appels
 
+  OSSA = "ContratOssa"
+  SUPPORT = "ContratSupport"
+  NAME_OSSA = _("Ossa")
+  NAME_SUPPORT = _("Support")
+
+  #To be sure we have a type for the contract
+  before_validation :validates_type
+  def validates_type
+    puts self.inspect
+    return true if self[:type] == OSSA or self[:type] == SUPPORT
+    errors.add_to_base _("Your contract must have a type")
+    false
+  end
+
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
         [ 'contrats.id IN (?)', contrat_ids ]} }
@@ -23,6 +37,9 @@ class Contrat < ActiveRecord::Base
     (self.socle? ? Logiciel.find(:all) : self._logiciels)
   end
 
+  def type_contrat
+    self[:type].sub(/Contrat/, "")
+  end
 
   def ouverture_formatted
     d = @attributes['ouverture']
@@ -36,7 +53,7 @@ class Contrat < ActiveRecord::Base
 
   def find_engagement(request)
     options = { :conditions =>
-      [ 'engagements.typedemande_id = ? AND severite_id = ?', 
+      [ 'engagements.typedemande_id = ? AND severite_id = ?',
         request.typedemande_id, request.severite_id ] }
     self.engagements.find(:first, options)
   end
@@ -71,7 +88,7 @@ class Contrat < ActiveRecord::Base
     nom
   end
 
-  # used internally by wrapper : 
+  # used internally by wrapper :
   # /!\ DO NOT USE DIRECTLY /!\
   # use : logiciels() call
   has_many :_logiciels, :through => :paquets, :group =>

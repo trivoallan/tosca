@@ -1,0 +1,2 @@
+class ContratSupport < Contrat
+end

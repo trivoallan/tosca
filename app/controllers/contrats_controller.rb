@@ -16,15 +16,32 @@ class ContratsController < ApplicationController
   def new
     @contrat = Contrat.new
     @contrat.client_id = params[:id]
+    @contrat[:type] = ''
     _form
+  end
+
+private
+    PREFIX_PARTIAL_INFORMATIONS = 'informations_'
+
+public
+  def ajax_display_attribut_contract
+    @type = PREFIX_PARTIAL_INFORMATIONS
+    case params[:contrat][:type]
+    when Contrat::OSSA
+      @type << "ossa"
+    when Contrat::SUPPORT
+      @type << "support"
+    end
   end
 
   def create
     @contrat = Contrat.new(params[:contrat])
+    #Type is not a visible attribute of contrat
+    @contrat[:type] = params[:contrat][:type]
     if @contrat.save
       team = params[:team]
       if team and team[:ossa] == '1'
-        @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all)) 
+        @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all))
         @contrat.save
       end
       flash[:notice] = _('Contract was successfully created.')
@@ -44,7 +61,7 @@ class ContratsController < ApplicationController
     if @contrat.update_attributes(params[:contrat])
       team = params[:team]
       if team and team[:ossa] == '1'
-        @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all)) 
+        @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all))
         @contrat.save
       end
       flash[:notice] = _('Contrat was successfully updated.')

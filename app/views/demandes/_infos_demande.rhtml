@@ -10,7 +10,7 @@
     <% end %>
     <li><%= link_to_add_call @demande.id %></li>
   <% end %>
-  <li><%= link_to _("Print"), print_demande_path(@demande.id), 
+  <li><%= link_to _("Print"), print_demande_path(@demande.id),
             :target => '_blank' %></li>
 </ul>
 
@@ -23,7 +23,7 @@
   <li><b><%= _("System") %>: </b><%= link_to_socle @demande.socle %></li>
   <li><b><%= _("Software") %>: </b><%= public_link_to_logiciel @demande.logiciel %></li>
    <% html_options = { :popup => ['help_statut', 'height=300,width=600'] } %>
-  <li><b><%= _("Status")%>: </b><%= link_to(@demande.statut.nom, 
+  <li><b><%= _("Status")%>: </b><%= link_to(@demande.statut.nom,
       help_statut_path(@demande.statut_id), html_options) %></li>
   <li><b><%= _("Type")%>: </b><%= @demande.typedemande.nom %></li>
   <li><b><%= _("Severity")%>: </b><%= @demande.severite.nom %></li>
@@ -53,6 +53,10 @@
   <li><b><%= _("Updated on") %>: </b> <%= @demande.updated_on_formatted %></li>
   <% if @demande.contribution %>
     <li><%=link_to(_('Submitted upstream'), contribution_path(@demande.contribution)) %></li>
+  <% end %>
+  <% if @demande.contrat[:type] == "ContratSupport" %>
+    <li><b><%= _("Tickets spent") %>: </b><%= @demande.temps_ecoule %></li>
+    <li><b><%= _("Tickets unused") %>: </b><%= @demande.contrat.tickets_total - @demande.contrat.tickets_consommes %></li>
   <% end %>
 </ul>
 
