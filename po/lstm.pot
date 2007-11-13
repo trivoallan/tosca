@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-11-05 16:23+0100\n"
+"POT-Creation-Date: 2007-11-13 10:51+0100\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -165,7 +165,11 @@ msgstr ""
 msgid "Client created successfully."
 msgstr ""
 
-#: app/controllers/clients_controller.rb:53
+#: app/controllers/clients_controller.rb:39
+msgid "You have now to create the associated contract."
+msgstr ""
+
+#: app/controllers/clients_controller.rb:54
 msgid "Client updated successfully."
 msgstr ""
 
@@ -1593,29 +1597,29 @@ msgstr ""
 msgid "You must indicate a summary for your request"
 msgstr ""
 
-#: app/models/demande.rb:33
+#: app/models/demande.rb:34
 msgid "You must indicate a description"
 msgstr ""
 
-#: app/models/demande.rb:36
+#: app/models/demande.rb:37
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
 msgstr ""
 
-#: app/models/demande.rb:39
+#: app/models/demande.rb:40
 msgid "You must indicate a valid recipient"
 msgstr ""
 
-#: app/models/demande.rb:42
+#: app/models/demande.rb:43
 msgid "You must indicate a valid status"
 msgstr ""
 
-#: app/models/demande.rb:45
+#: app/models/demande.rb:46
 msgid "You must indicate a valid severity"
 msgstr ""
 
-#: app/models/demande.rb:277
+#: app/models/demande.rb:282
 msgid " of overrun"
 msgstr ""
 

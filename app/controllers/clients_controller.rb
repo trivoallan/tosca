@@ -35,8 +35,9 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(params[:client])
     if @client.save
-      flash[:notice] = _('Client created successfully.')
-      redirect_to clients_path
+      flash[:notice] = _('Client created successfully.') + '<br />' +
+        _('You have now to create the associated contract.')
+      redirect_to new_contrat_path(:id => @client.id)
     else
       _form and render :action => 'new'
     end

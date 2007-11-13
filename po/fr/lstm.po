@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-05 16:23+0100\n"
+"POT-Creation-Date: 2007-11-13 10:51+0100\n"
 "PO-Revision-Date: 2007-11-05 16:26+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -175,7 +175,11 @@ msgstr "Le paquet binaire a bien mis à jour."
 msgid "Client created successfully."
 msgstr "Le client a été crée avec succès"
 
-#: app/controllers/clients_controller.rb:53
+#: app/controllers/clients_controller.rb:39
+msgid "You have now to create the associated contract."
+msgstr ""
+
+#: app/controllers/clients_controller.rb:54
 msgid "Client updated successfully."
 msgstr "Le client bien été mis à jour."
 
@@ -1608,30 +1612,30 @@ msgstr "Description"
 msgid "You must indicate a summary for your request"
 msgstr "Vous devez indiquer un résumé pour votre demande"
 
-#: app/models/demande.rb:33
+#: app/models/demande.rb:34
 msgid "You must indicate a description"
 msgstr "Vous devez indiquer une description"
 
-#: app/models/demande.rb:36
+#: app/models/demande.rb:37
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
 msgstr "Le client de ce contrat est incohérent avec le client du bénéficiaire."
 
-#: app/models/demande.rb:39
+#: app/models/demande.rb:40
 msgid "You must indicate a valid recipient"
 msgstr "Vous devez indiquer un bénéficiaire valide"
 
-#: app/models/demande.rb:42
+#: app/models/demande.rb:43
 msgid "You must indicate a valid status"
 msgstr "Vous devez indiquer un statut valide"
 
-#: app/models/demande.rb:45
+#: app/models/demande.rb:46
 msgid "You must indicate a valid severity"
 msgstr "Vous devez indiquer une sévérité valide"
 
 # ne pas oublier l'espace au début
-#: app/models/demande.rb:277
+#: app/models/demande.rb:282
 msgid " of overrun"
 msgstr " de dépassement"
 
