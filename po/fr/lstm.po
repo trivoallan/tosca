@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-13 11:22+0100\n"
-"PO-Revision-Date: 2007-11-13 10:54+0100\n"
+"PO-Revision-Date: 2007-11-13 11:23+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -824,9 +824,8 @@ msgid "The <b>severity</b> of your request is"
 msgstr "La <b>sévérité</b> de votre demande est"
 
 #: app/helpers/conteneurs_helper.rb:9
-#, fuzzy
 msgid "a container"
-msgstr "Conteneur"
+msgstr "un conteneur"
 
 #: app/helpers/contrats_helper.rb:16
 msgid "a contract"
@@ -885,9 +884,8 @@ msgid "show all the requests"
 msgstr "montrer toutes les demandes"
 
 #: app/helpers/distributeurs_helper.rb:8
-#, fuzzy
 msgid "a distributor"
-msgstr "Distributeur"
+msgstr "un distributeur"
 
 #: app/helpers/export_helper.rb:28
 msgid "Export in %s"
@@ -895,16 +893,15 @@ msgstr "Exporter en %s"
 
 #: app/helpers/fournisseurs_helper.rb:9
 msgid "a provider"
-msgstr ""
+msgstr "un fournisseur"
 
 #: app/helpers/groupes_helper.rb:8
 msgid "classification"
 msgstr "classification"
 
 #: app/helpers/images_helper.rb:8
-#, fuzzy
 msgid "Add %s"
-msgstr "Ajouter"
+msgstr "Ajouter %s"
 
 #: app/helpers/images_helper.rb:38
 msgid "progress bar"
@@ -1004,9 +1001,8 @@ msgid "Display all softwares"
 msgstr "Afficher tous les logiciels"
 
 #: app/helpers/mainteneurs_helper.rb:9
-#, fuzzy
 msgid "a maintainer"
-msgstr "Mainteneur"
+msgstr "un mainteneur"
 
 #: app/helpers/paquets_helper.rb:16
 msgid "a package"
@@ -4743,5 +4739,4 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "Post %s"
-#~ msgstr "Concernant %s"
+
