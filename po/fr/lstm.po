@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-13 15:24+0100\n"
-"PO-Revision-Date: 2007-11-13 11:23+0100\n"
+"POT-Creation-Date: 2007-11-13 15:26+0100\n"
+"PO-Revision-Date: 2007-11-13 15:33+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -812,24 +812,20 @@ msgid "My&nbsp;Offer"
 msgstr "Mon&nbsp;Offre"
 
 #: app/helpers/commentaires_helper.rb:13
-#, fuzzy
-msgid "This request has been taken into account by %s"
-msgstr "La demande a bien été mise à jour."
+msgid "This request has been taken into account by %s."
+msgstr "Cette demande a été prise en compte par %s."
 
 #: app/helpers/commentaires_helper.rb:15
-#, fuzzy
-msgid "This request has been assigned to %s by %s"
-msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
+msgid "This request has been assigned to %s by %s."
+msgstr "Cette demande a été prise en charge par %s."
 
 #: app/helpers/commentaires_helper.rb:21
-#, fuzzy
-msgid "This request has been changed in %s by %s"
-msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
+msgid "This request has been changed in %s by %s."
+msgstr "Cette demande a été changé en %s par %s."
 
 #: app/helpers/commentaires_helper.rb:26
-#, fuzzy
-msgid "This request has been requalified in %s by %s"
-msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
+msgid "This request has been requalified in %s by %s."
+msgstr "Cette demande a été requalifié en %s par %s."
 
 #: app/helpers/conteneurs_helper.rb:9
 msgid "a container"
@@ -4747,11 +4743,4 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
-#~ msgid "The <b>owner</b> of your request is"
-#~ msgstr "Le <b>responsable</b> de votre demande est"
 
-#~ msgid "The <b>status</b> of your request is"
-#~ msgstr "Le <b>statut</b> de votre demande est"
-
-#~ msgid "The <b>severity</b> of your request is"
-#~ msgstr "La <b>sévérité</b> de votre demande est"
