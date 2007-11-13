@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 74) do
+ActiveRecord::Schema.define(:version => 75) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 74) do
     t.column "severite_id",    :integer
     t.column "statut_id",      :integer
     t.column "ingenieur_id",   :integer
+    t.column "temps_ecoule",   :integer
   end
 
   add_index "commentaires", ["demande_id"], :name => "commentaires_demande_id_index"
@@ -151,14 +152,18 @@ ActiveRecord::Schema.define(:version => 74) do
   end
 
   create_table "contrats", :force => true do |t|
-    t.column "client_id",     :integer,  :default => 0,     :null => false
-    t.column "ouverture",     :datetime,                    :null => false
-    t.column "cloture",       :datetime,                    :null => false
-    t.column "paquets_count", :integer
-    t.column "astreinte",     :boolean,  :default => false, :null => false
-    t.column "socle",         :boolean,  :default => false, :null => false
-    t.column "nom",           :string
-    t.column "support",       :boolean,  :default => false
+    t.column "client_id",         :integer,  :default => 0,     :null => false
+    t.column "ouverture",         :datetime,                    :null => false
+    t.column "cloture",           :datetime,                    :null => false
+    t.column "paquets_count",     :integer
+    t.column "astreinte",         :boolean,  :default => false, :null => false
+    t.column "socle",             :boolean,  :default => false, :null => false
+    t.column "nom",               :string
+    t.column "support",           :boolean,  :default => false
+    t.column "type",              :string
+    t.column "tickets_total",     :integer,  :default => 0
+    t.column "tickets_consommes", :integer,  :default => 0
+    t.column "ticket_temps",      :float,    :default => 15.0
   end
 
   add_index "contrats", ["client_id"], :name => "contrats_client_id_index"
@@ -227,6 +232,7 @@ ActiveRecord::Schema.define(:version => 74) do
     t.column "expected_on",      :datetime
     t.column "last_comment_id",  :integer,  :default => 0,  :null => false
     t.column "mantis_id",        :integer
+    t.column "temps_ecoule",     :integer
   end
 
   add_index "demandes", ["contribution_id"], :name => "demandes_correctif_id_index"
