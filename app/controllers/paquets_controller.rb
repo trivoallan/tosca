@@ -2,7 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class PaquetsController < ApplicationController
-  helper :filters, :logiciels, :binaires
+  helper :filters, :logiciels, :binaires, :conteneurs, :distributeurs, 
+    :mainteneurs, :fournisseurs
 
   # auto completion in 2 lines, yeah !
   auto_complete_for :paquet, :nom
