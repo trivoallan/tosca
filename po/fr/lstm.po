@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-13 11:22+0100\n"
+"POT-Creation-Date: 2007-11-13 15:24+0100\n"
 "PO-Revision-Date: 2007-11-13 11:23+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -811,17 +811,25 @@ msgstr "Une erreur est survenue"
 msgid "My&nbsp;Offer"
 msgstr "Mon&nbsp;Offre"
 
-#: app/helpers/commentaires_helper.rb:10
-msgid "The <b>owner</b> of your request is"
-msgstr "Le <b>responsable</b> de votre demande est"
+#: app/helpers/commentaires_helper.rb:13
+#, fuzzy
+msgid "This request has been taken into account by %s"
+msgstr "La demande a bien été mise à jour."
 
 #: app/helpers/commentaires_helper.rb:15
-msgid "The <b>status</b> of your request is"
-msgstr "Le <b>statut</b> de votre demande est"
+#, fuzzy
+msgid "This request has been assigned to %s by %s"
+msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
 
-#: app/helpers/commentaires_helper.rb:20
-msgid "The <b>severity</b> of your request is"
-msgstr "La <b>sévérité</b> de votre demande est"
+#: app/helpers/commentaires_helper.rb:21
+#, fuzzy
+msgid "This request has been changed in %s by %s"
+msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
+
+#: app/helpers/commentaires_helper.rb:26
+#, fuzzy
+msgid "This request has been requalified in %s by %s"
+msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
 
 #: app/helpers/conteneurs_helper.rb:9
 msgid "a container"
@@ -4739,4 +4747,11 @@ msgstr "Liste des url dans contributions"
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
+#~ msgid "The <b>owner</b> of your request is"
+#~ msgstr "Le <b>responsable</b> de votre demande est"
 
+#~ msgid "The <b>status</b> of your request is"
+#~ msgstr "Le <b>statut</b> de votre demande est"
+
+#~ msgid "The <b>severity</b> of your request is"
+#~ msgstr "La <b>sévérité</b> de votre demande est"
