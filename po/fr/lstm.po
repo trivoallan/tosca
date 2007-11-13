@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-13 19:52+0100\n"
+"POT-Creation-Date: 2007-11-13 19:59+0100\n"
 "PO-Revision-Date: 2007-11-13 15:33+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -1317,24 +1317,20 @@ msgid "Contrat|Support"
 msgstr "Support"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Type"
-msgstr "Socle"
+msgstr "Type"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Tickets total"
-msgstr "Nombre de paquets"
+msgstr "Nombre de tickets"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Tickets consommes"
-msgstr "Nombre de paquets"
+msgstr "Tickets consommés"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Contrat|Ticket temps"
-msgstr "Client"
+msgstr "Temps par tickets"
 
 #: app/models/client.rb:-
 msgid "paquet"
@@ -1445,9 +1441,8 @@ msgid "Commentaire|Ingenieur"
 msgstr "Ingénieur"
 
 #: app/models/commentaire.rb:-
-#, fuzzy
 msgid "Commentaire|Temps ecoule"
-msgstr "Demande"
+msgstr "Temps écoulé"
 
 #: app/models/commentaire.rb:13
 msgid "You must have a comment with at least 5 characters"
@@ -1483,7 +1478,7 @@ msgstr "Nom"
 
 #: app/models/contrat.rb:17
 msgid "Ossa"
-msgstr ""
+msgstr "Ossa"
 
 #: app/models/contrat.rb:18 app/views/clients/_form.rhtml:22
 #: app/views/clients/index.rhtml:4
@@ -1492,7 +1487,7 @@ msgstr "Support"
 
 #: app/models/contrat.rb:25
 msgid "Your contract must have a type"
-msgstr ""
+msgstr "Votre contrat doit avoir un type"
 
 #: app/models/contribution.rb:- app/views/contributions/select.rhtml:3
 msgid "contribution"
@@ -1635,9 +1630,8 @@ msgid "Demande|Mantis"
 msgstr "Mantis"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Temps ecoule"
-msgstr "Résumé"
+msgstr "Temps écoulé"
 
 #: app/models/demande.rb:-
 msgid "statut"
@@ -3231,7 +3225,7 @@ msgstr "Adresse"
 #: app/views/clients/_form.rhtml:18 app/views/clients/index.rhtml:6
 #: app/views/clients/show.rhtml:18
 msgid "Chrono"
-msgstr ""
+msgstr "Chrono"
 
 #: app/views/clients/_form.rhtml:24 app/views/clients/index.rhtml:4
 msgid "Access code"
@@ -3281,9 +3275,8 @@ msgid "contract"
 msgstr "contrat"
 
 #: app/views/clients/show.rhtml:47
-#, fuzzy
 msgid " from %s to %s"
-msgstr "De %s à %s"
+msgstr " de %s à %s"
 
 #: app/views/clients/show.rhtml:50
 msgid "on your complete system"
@@ -3371,32 +3364,28 @@ msgid "Engineers assigned to this contract"
 msgstr "Ingénieurs affiliés à ce contrat"
 
 #: app/views/contrats/edit.rhtml:1
-#, fuzzy
 msgid "Edit a contract"
-msgstr "un contrat"
+msgstr "Éditer un contrat"
 
 #: app/views/contrats/index.rhtml:1
-#, fuzzy
 msgid "List of the contracts"
-msgstr "Liste des statuts"
+msgstr "Liste des contrats"
 
 #: app/views/contrats/index.rhtml:6 app/views/contrats/show.rhtml:4
-#, fuzzy
 msgid "Start"
-msgstr "Etat"
+msgstr "Début"
 
 #: app/views/contrats/index.rhtml:6
 msgid "=>"
-msgstr ""
+msgstr "=>"
 
 #: app/views/contrats/index.rhtml:6 app/views/contrats/show.rhtml:5
 msgid "End"
-msgstr ""
+msgstr "Fin"
 
 #: app/views/contrats/new.rhtml:1
-#, fuzzy
 msgid "New contrat"
-msgstr "contrat"
+msgstr "Nouveau contrat"
 
 #: app/views/contrats/show.rhtml:1
 #: app/views/demandes/lists/_requests_table.rhtml:7
@@ -3405,46 +3394,40 @@ msgid "Client"
 msgstr "Client"
 
 #: app/views/contrats/show.rhtml:9
-#, fuzzy
 msgid "Obligation"
-msgstr "Source"
+msgstr "Astreinte"
 
 #: app/views/contrats/show.rhtml:13
-#, fuzzy
 msgid "Number of tickets"
-msgstr "Numéro de la semaine:"
+msgstr "Nombre de tickets"
 
 #: app/views/contrats/show.rhtml:14
-#, fuzzy
 msgid "Number of used tickets"
-msgstr "Numéro de la semaine:"
+msgstr "Nombre de tickets inutilisés"
 
 #: app/views/contrats/show.rhtml:16
 msgid "Time per ticket"
-msgstr ""
+msgstr "Temps par ticket"
 
 #: app/views/contrats/show.rhtml:16
-#, fuzzy
 msgid "minute"
-msgstr "mainteneur"
+msgstr "minute"
 
 #: app/views/contrats/show.rhtml:16
-#, fuzzy
 msgid "minutes"
-msgstr "machines"
+msgstr "minutes"
 
 #: app/views/contrats/show.rhtml:19
-#, fuzzy
 msgid "Error, wrong type of contract"
-msgstr "Portant sur le contrat"
+msgstr "Erreur, mauvais type de contrat"
 
 #: app/views/contrats/_informations_support.rhtml:2
 msgid "Total tickets ?"
-msgstr ""
+msgstr "Total de tickets ?"
 
 #: app/views/contrats/_informations_support.rhtml:6
 msgid "Time per ticket ?"
-msgstr ""
+msgstr "Temps par ticket ?"
 
 #: app/views/contrats/_informations_ossa.rhtml:2
 msgid "Night guard ?"
@@ -3781,11 +3764,11 @@ msgstr "Reversée"
 
 #: app/views/demandes/_infos_demande.rhtml:58
 msgid "Tickets spent"
-msgstr ""
+msgstr "Tickets consommés"
 
 #: app/views/demandes/_infos_demande.rhtml:59
 msgid "Tickets unused"
-msgstr ""
+msgstr "Tickets inutilisés"
 
 #: app/views/demandes/_packages.rhtml:2
 msgid "Specify here the packages impacted by the request :"
