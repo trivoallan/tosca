@@ -1,7 +1,7 @@
-
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
+
 class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :appels,
     :socles, :commentaires, :account
@@ -41,7 +41,7 @@ class DemandesController < ApplicationController
       @demande_pages, @demandes = paginate :demandes, options
     end
 
-    render :template => 'demandes/lists/tobd' 
+    render :template => 'demandes/lists/tobd'
   end
 
   def index
@@ -138,7 +138,7 @@ class DemandesController < ApplicationController
         @demande.first_comment.update_attribute(:piecejointe, piecejointe)
       end
       @commentaire = @demande.first_comment
-      url_attachment = render_to_string(:layout => false, 
+      url_attachment = render_to_string(:layout => false,
                                         :template => '/attachment')
       options = { :demande => @demande, :url_request => demande_url(@demande),
         :nom => session[:user].nom, :url_attachment => url_attachment }
@@ -205,7 +205,7 @@ class DemandesController < ApplicationController
     @partial_for_summary = 'infos_demande'
 
     if flash.has_key? :old_body
-      @commentaire = Commentaire.new(:corps => flash[:old_body]) 
+      @commentaire = Commentaire.new(:corps => flash[:old_body])
     end
     # render is mandatory becoz' of the alias with 'show'
     render :action => 'comment'
@@ -381,11 +381,11 @@ class DemandesController < ApplicationController
     end
   end
 
-  # define what is a similar request. 
+  # define what is a similar request.
   # Used during create.
   # It _just_ returns a correct path.
   def _similar_request
-    new_demande_path(:demande => { 
+    new_demande_path(:demande => {
                        :contrat_id => @demande.contrat_id,
                        :beneficiaire_id => @demande.beneficiaire_id,
                        :typedemande_id => @demande.typedemande_id,
