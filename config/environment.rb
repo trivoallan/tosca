@@ -64,7 +64,7 @@ XSendFile::Plugin.replace_send_file! if RAILS_ENV == 'production'
 # Used to generate Ods Export. See ExportController.
  require 'ruport'
  # 0.9.0 does not work with TOSCA, for now.
- require_gem 'ruport-util', '<= 0.8.0'
+ gem 'ruport-util', '<= 0.8.0'
  require 'ruport/util'
 
 # Used to load gettext 4 rails and to localize Dates & Number
@@ -105,10 +105,10 @@ end
 # Preload of controllers/models during boot.
 if RAILS_ENV == 'production'
   require_dependency 'application'
-  Dir.foreach( "#{RAILS_ROOT}/app/models" ) { |f| 
+  Dir.foreach( "#{RAILS_ROOT}/app/models" ) { |f|
     silence_warnings{require_dependency f
     } if f =~ /\.rb$/}
-  Dir.foreach( "#{RAILS_ROOT}/app/controllers" ) { |f| 
+  Dir.foreach( "#{RAILS_ROOT}/app/controllers" ) { |f|
     silence_warnings{require_dependency f
     } if f =~ /\.rb$/}
 end
