@@ -48,7 +48,8 @@ class ContratsControllerTest < Test::Unit::TestCase
 
     post :create, :contrat => {
       :ouverture => '2005-10-26 10:20:00',
-      :cloture => '2007-10-26 10:20:00'
+      :cloture => '2007-10-26 10:20:00',
+      :type => Contrat::OSSA
     }
 
     assert flash.has_key?(:notice)

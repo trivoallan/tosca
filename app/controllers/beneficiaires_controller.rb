@@ -5,7 +5,7 @@ class BeneficiairesController < ApplicationController
   helper :filters
 
   def index
-    options = { :per_page => 10, :include => [:client, :identifiant] }
+    options = { :per_page => 10, :include => [:client, :user] }
     if params.has_key? 'client_id'
       options[:conditions] = ['beneficiaires.client_id=?', params['client_id'] ]
     end
@@ -48,10 +48,10 @@ class BeneficiairesController < ApplicationController
 
   def destroy
     benef = Beneficiaire.find(params[:id])
-    identifiant = Identifiant.find(benef.identifiant_id)
-    Identifiant.transaction do
+    user = User.find(benef.user_id)
+    User.transaction do
       benef.destroy
-      identifiant.destroy
+      user.destroy
     end
     redirect_to beneficiaires_path
   end

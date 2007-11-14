@@ -37,12 +37,12 @@
 
 <div class="menu_title" onclick="Element.toggle('menu_beneficiaire')">
 > <%= _('Recipent') %></div>
-<% recipient = @demande.beneficiaire %>
+<% user = @demande.beneficiaire.user %>
 <ul class="menu" id="menu_beneficiaire">
-  <li><b><%= _("Contact") %>: </b><%= mail_to(recipient.identifiant.email, recipient.nom)%>
-     <%= link_to_show(account_path(recipient.identifiant)) if @ingenieur %></li>
-  <li><b><%= _('Phone') %>: </b><%= recipient.identifiant.telephone %></li>
-  <% client = recipient.client %>
+  <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
+     <%= link_to_show(account_path(user)) if @ingenieur %></li>
+  <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
+  <% client = @demande.beneficiaire.client %>
   <li><b><%= _('Company') %>: </b><%= link_to client.nom, client_path(client) %></li>
 </ul>
 

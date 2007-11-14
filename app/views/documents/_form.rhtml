@@ -9,9 +9,9 @@
     </p>
 
     <% if @action == :index %>
-    <p><label for="document_identifiant"><%= _('Author') %></label><br />
-    <%= select("document", "identifiant_id",
-    @identifiants.collect{|l| [ l.nom, l.id]}) %>
+    <p><label for="document_user"><%= _('Author') %></label><br />
+    <%= select("document", "user_id",
+    @users.collect{|l| [ l.nom, l.id]}) %>
     </p>
     <% end %>
 

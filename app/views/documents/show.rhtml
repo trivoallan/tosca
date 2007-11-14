@@ -6,7 +6,7 @@
 
 <p><b><%= _('File :') %></b><%= link_to_file @document, 'fichier' %></p>
 <p><b><%= _('Size : ')%></b><%= file_size(@document.fichier) %></p>
-<p><b><%= _('Recipient :' ) %></b><%= @document.identifiant.nom %></p>
+<p><b><%= _('Recipient :' ) %></b><%= @document.user.name %></p>
 <br />
 <p><b><%= _('Updated on : ')%></b><%= @document.updated_on_formatted %></p>
 <br />

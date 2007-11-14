@@ -75,7 +75,7 @@ class NewsController < ApplicationController
 
   private
   def _form
-    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @clients = Client.find_select
     @logiciels = Logiciel.find_select
   end

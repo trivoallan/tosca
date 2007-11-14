@@ -91,7 +91,7 @@ class AppelsController < ApplicationController
     # TODO : vérifier pour les versions > 1.2.2 en _production_ (!)
     contrat = Contrat.find(params[:id])
     @beneficiaires =
-      contrat.client.beneficiaires.find_select(Identifiant::SELECT_OPTIONS)
+      contrat.client.beneficiaires.find_select(User::SELECT_OPTIONS)
 
     render :partial => 'select_beneficiaires', :layout => false and return
   rescue ActiveRecord::RecordNotFound
@@ -101,7 +101,7 @@ class AppelsController < ApplicationController
   private
   # conventions
   def _form
-    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @contrats = Contrat.find_select(Contrat::OPTIONS)
   end
 
@@ -109,7 +109,7 @@ class AppelsController < ApplicationController
   def _panel
     @count = {}
     _form
-    @beneficiaires = Beneficiaire.find_select(Identifiant::SELECT_OPTIONS)
+    @beneficiaires = Beneficiaire.find_select(User::SELECT_OPTIONS)
 
     @count[:appels] = Appel.count
     @count[:beneficiaires] = Appel.count 'beneficiaire_id', {}

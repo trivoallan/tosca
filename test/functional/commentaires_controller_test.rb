@@ -8,7 +8,7 @@ require 'commentaires_controller'
 class CommentairesController; def rescue_action(e) raise e end; end
 
 class CommentairesControllerTest < Test::Unit::TestCase
-  fixtures :commentaires, :demandes, :beneficiaires, :identifiants, 
+  fixtures :commentaires, :demandes, :beneficiaires, :users, 
   :permissions, :roles, :permissions_roles, :ingenieurs,
   :statuts, :clients
 
@@ -51,7 +51,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
       :id => 1,
       :commentaire => {
         :demande_id => 1,
-        :identifiant_id => 2,
+        :user_id => 2,
         :piecejointe_id => 1,
         :corps => 'Voici un autre commentaire',
         :prive => 0,

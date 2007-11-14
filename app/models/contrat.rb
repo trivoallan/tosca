@@ -20,7 +20,6 @@ class Contrat < ActiveRecord::Base
   #To be sure we have a type for the contract
   before_validation :validates_type
   def validates_type
-    puts self.inspect
     return true if self[:type] == OSSA or self[:type] == SUPPORT
     errors.add_to_base _("Your contract must have a type")
     false

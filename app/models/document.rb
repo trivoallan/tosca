@@ -4,7 +4,7 @@
 class Document < ActiveRecord::Base
   belongs_to :client
   belongs_to :typedocument
-  belongs_to :identifiant
+  belongs_to :user
   file_column :fichier, :fix_file_extensions => nil
 
 

@@ -9,7 +9,7 @@ class AccountController; def rescue_action(e) raise e end; end
 
 class AccountControllerTest < Test::Unit::TestCase
   
-  fixtures :identifiants, :roles, :permissions_roles, :permissions, :clients
+  fixtures :users, :roles, :permissions_roles, :permissions, :clients
   
   def setup
     @controller = AccountController.new
@@ -50,7 +50,7 @@ class AccountControllerTest < Test::Unit::TestCase
       :user_crypt => 'false'
     post :signup, {
       :client => { :id => 2},
-      :identifiant => { 
+      :user => { 
         :login => 'newbob',
         :email => 'mloiseleur@linagora.com',
         :pwd => 'newpassword',
@@ -65,26 +65,26 @@ class AccountControllerTest < Test::Unit::TestCase
   end
 
   def test_bad_signup
-    num_identifiant = Identifiant.count
+    num_user = User.count
     post :login, :user_login => 'bob', :user_password => 'test',
       :user_crypt => 'false'
 
-    post :signup, 'identifiant' => { "login" => "newbob", 
+    post :signup, 'user' => { "login" => "newbob", 
       "pwd" => "newpassword", "pwd_confirmation" => "wrong" }
     assert !flash.has_key?(:notice)
     assert_response :success
 #   assert find_record_in_template('user').errors.invalid?(:pwd)
-    assert_equal num_identifiant, Identifiant.count
+    assert_equal num_user, User.count
     
-    post :signup, "user" => { "login" => "yo", "password" => "newpassword", "password_confirmation" => "newpassword" }
+    post :signup, "user" => { "login" => "yo", "pwd" => "newpassword", "pwd_confirmation" => "newpassword", "role_id" => "1" }
 #   assert(find_record_in_template(:user).errors.invalid?(:password)) 
     assert_response :success
-    assert_equal num_identifiant, Identifiant.count
+    assert_equal num_user, User.count
 
-    post :signup, "user" => { "login" => "yo", "password" => "newpassword", "password_confirmation" => "wrong" }
+    post :signup, "user" => { "login" => "yo", "password" => "newpassword", "pwd_confirmation" => "wrong" }
 #   assert(find_record_in_template(:user).errors.invalid?(:password)) 
     assert_response :success
-    assert_equal num_identifiant, Identifiant.count
+    assert_equal num_user, User.count
   end
 
   def test_invalid_login

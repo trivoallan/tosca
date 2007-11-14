@@ -1,29 +1,27 @@
-<%
-  role_titre, role_champs, avatar = nil, nil, nil
-  role_titre = _('Role')
-  role_champs = @identifiant.role.nom
+<% # TODO : delete this method when it will be totally unused %>
+<% # = show_table_form fields %>
+<table class="show" id="show_account">
+  <tr>
+    <td colspan="2"><%= avatar(@user_recipient, @user_engineer) %></td>
+  </tr><tr>
+    <th><%= _('User|Login') %></th>
+    <td><%= @user.login %></td>
+  </tr><tr>
+    <th><%= _('User|Title') %></th>
+    <td><%= @user.title %></td>
+  </tr><tr>
+    <th><%= _('User|Name') %></th>
+    <td><%= @user.name %></td>
+  </tr><tr>
+    <th><%= _('User|Phone') %></th>
+    <td><%= @user.phone %></td>
+  </tr><tr>
+    <th><%= _('User|Role') %></th>
+    <td><%= @user.role.nom %></td>
+  </tr><tr>
+    <td colspan="2"><fieldset>
+     <legend><%= _('User|Information')%></legend><%= @user.information %>
+    </fieldset></td>
+  </tr>
+</table>
 
-  if @ingenieur
-     unless @ingenieur.image_id.nil?
-       avatar = image_tag(url_for_file_column(@ingenieur.image, 'image', 'thumb'))
-     end
-  end
-
-  fields = [
-     [ avatar, nil ],
-     [ _('Full name'), "<label>#{@identifiant.nom}</label>" ],
-     [ _('Title'), "<label>#{@identifiant.titre}</label>" ],
-     [ _('Email'), mail_to(@identifiant.email, @identifiant.email) ],
-     [ _('Phone'), "<label>#{@identifiant.telephone}</label>" ],
-     [ _("Inactive"), "<label>" << (@identifiant.inactive ? _("Yes") : _("No")) << "</label>" ],
-     [ '<hr/>', nil ],
-     [ _('Login'), "<label>#{@identifiant.login}</label>" ],
-     [ _('Role'), "<label>#{@identifiant.role.nom if @identifiant.role}</label>" ],
-     [ '<hr/>', nil ],
-     [  nil, @identifiant.informations.to_s ]
-   ]
-%>
-
-<div title="<%= _("Show an account") %>" id="showform" class="form">
-  <%= show_table_form fields %>
-</div>

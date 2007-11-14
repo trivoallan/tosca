@@ -20,7 +20,7 @@ class DocumentsController < ApplicationController
     end
     @document_pages, @documents = paginate :documents, :per_page => 10,
       :order => "documents.date_delivery DESC", :conditions => conditions,
-      :include => [:identifiant]
+      :include => [:user]
 
     # Disabled, beacause the search boxes in the panel don't work.
     # It may be repaired in a future version.
@@ -66,7 +66,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(params[:document])
-    @document.identifiant = session[:user]
+    @document.user = session[:user]
     _form
     if @document.save
       flash[:notice] = _('Your document was successfully created')
@@ -102,7 +102,7 @@ class DocumentsController < ApplicationController
   def _form
     @clients = Client.find :all
     @typedocuments = Typedocument.find :all
-    @identifiants = Identifiant.find :all
+    @users = User.find :all
   end
 
   def _panel

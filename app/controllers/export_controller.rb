@@ -2,13 +2,21 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-#require 'fastercsv'
-# generate CSV files for download
-# send formatted output directly to the HTTP response
-# source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
+=begin
+  send formatted output directly to the HTTP response
+  source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
+  All this controller see the same scheme.
+  For a model exported "me", you will have :
+  def me : 
+    which explains will format will be supported and how
+  def compute_me : 
+    which explains will datas will be exported in all of those formats
+ All those export finishes with the call to #generate_report,
+ which sets correct headers for the differents browser and send the file
+=end
 class ExportController < ApplicationController
 
-  # return the contents of identifiants in a table in ODS format
+  # return the contents of contributions in a table in ODS format
   # with Ruport :
   # We can export to other formats : 
   # compute_contributions(:pdf) export to pdf
@@ -45,25 +53,25 @@ class ExportController < ApplicationController
     generate_report(report, type, {})
   end
 
-  # return the contents of identifiants in a table in ODS format
+  # return the contents of users in a table in ODS format
   # with Ruport
-  def identifiants
+  def users
     respond_to do |format|
-      format.html { redirect_to identifiants_path }
+      format.html { redirect_to accounts_path }
       format.xml { 
         # TODO : make an xml export : a finder + 
         #  render :xml => @requests.to_xml should be enough) 
       }
-      format.ods { compute_identifiants(:ods) }
+      format.ods { compute_users(:ods) }
     end
   end
 
-  def compute_identifiants(type)
-    options = { :order => 'identifiants.login', :include => 
+  def compute_users(type)
+    options = { :order => 'users.login', :include => 
       [:beneficiaire,:ingenieur,:role], :conditions => flash[:conditions],
       :methods => ['beneficiaire_client_nom', 'role_nom']
     }
-    report = Identifiant.report_table(:all, options)
+    report = User.report_table(:all, options)
     columns = ['id','login','nom','email','telephone',
       'beneficiaire_client_nom', 'role_nom']
 

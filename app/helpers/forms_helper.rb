@@ -37,7 +37,7 @@ module FormsHelper
   # Collection doit contenir des objects qui ont un 'id' et un 'nom'
   # objectcollection contient le tableau des objects déjà présents
   # C'est la fonction to_s qui est utilisée pour le label
-  # Ex : hm_radio_button( 'identifiant', 'role_id', @roles)
+  # Ex : hm_radio_button( 'user', 'role_id', @roles)
   def hm_radio_button( object, param, collection )
     out = ''
     return out if collection.nil?
@@ -75,9 +75,7 @@ module FormsHelper
   # mutualisé pour le formulaire et l'affichage
   # Les éléments doivent être affichable par to_s
   # si l'une des colonne est à nil, la ligne est fusionnée
-  # Call it like this :
-  # <% fields = [ lstm_text_field('Titre', 'identifiant', 'titre') ] %>
-  # <%= show_table_form( fields) %>
+  # /!\ Do not call it anymore /!\
   def show_table_form(fields, options = {})
     fields.compact!
     result = ''
@@ -119,7 +117,7 @@ module FormsHelper
   # write the label with the field.
   # heavily used in account with show_table_form
   # call it like this :
-  # lstm_text_field('Téléphone', 'identifiant', 'telephone')
+  # lstm_text_field(_('User|phone'), 'user', 'phone')
   def lstm_text_field(label, mmodel, field, options = {})
     [ "<label for=\"#{mmodel}_#{field}\">#{label}</label>",
       text_field(mmodel, field, options) ]

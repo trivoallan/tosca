@@ -44,11 +44,11 @@ class Notifier < ActionMailer::Base
 # end
 
   # This method requires 3 symbols in options :
-  #   :identifiant, :controller, :password
+  #   :user, :controller, :password
   def new_user(options, flash)
     demande = options[:demande]
 
-    recipients  options[:identifiant].email
+    recipients  options[:user].email
     from        FROM
     subject     "Accès au Support Logiciel Libre"
 
@@ -123,9 +123,9 @@ class Notifier < ActionMailer::Base
   def receive(email)
     from = email.from.first
 
-    identifiants = Identifiant.find(:all, :conditions => [ "email = ?", from ])
-    return Notifier::deliver_email_not_exist(from) if identifiants.empty?
-    Notifier::deliver_email_multiple_account(from) if identifiants.size != 1
+    users = User.find(:all, :conditions => [ "email = ?", from ])
+    return Notifier::deliver_email_not_exist(from) if users.empty?
+    Notifier::deliver_email_multiple_account(from) if users.size != 1
 
     possible_clients = Array.new
     adresses = email.cc.nil? ? email.to : email.to.concat(email.cc)
@@ -137,11 +137,11 @@ class Notifier < ActionMailer::Base
     return Notifier::deliver_email_mailinglist_not_exist(from, adresses) if possible_clients.empty?
     #We have a validate_uniqueness for Client.mailingliste so no need to test possible_clients.size > 1
 
-    user = identifiants.first
+    user = users.first
     client = possible_clients.first
 
     email[HEADER_LIST_ID] = list_id(client)
-    send_mail(client.mailingliste, client.ingenieurs.map { |e| e.identifiant.email }, email)
+    send_mail(client.mailingliste, client.ingenieurs.map { |e| e.user.email }, email)
   end
 =end
 
@@ -212,11 +212,11 @@ class Notifier < ActionMailer::Base
   def compute_recipients(demande, private = false)
     result = ""
     # The client is not informed of private messages
-    result += demande.beneficiaire.identifiant.email if not private
+    result += demande.beneficiaire.user.email if not private
     # Request are not assigned, by default
     if demande.ingenieur
       result += ", " if not private
-      result += demande.ingenieur.identifiant.email
+      result += demande.ingenieur.user.email
     end
     result
   end

@@ -46,7 +46,7 @@ class CommentairesController < ApplicationController
     if params[:piecejointe] and params[:piecejointe][:file] != ''
       @commentaire.piecejointe = Piecejointe.new(params[:piecejointe])
     end
-    @commentaire.identifiant_id = user.id
+    @commentaire.user_id = user.id
 
     # on vérifie et on envoie le courrier
     # TODO : Le validate dans le model commentaire ne semble pas fonctionner, voir pourquoi
@@ -137,7 +137,8 @@ class CommentairesController < ApplicationController
   private
   def _form
     @demandes = Demande.find(:all)
-    @identifiants = Identifiant.find_select
+    options = { :select => 'id, name', :order => 'users.name ASC' }
+    @users = User.find(:all, options)
     @statuts = Statut.find_select
   end
 end

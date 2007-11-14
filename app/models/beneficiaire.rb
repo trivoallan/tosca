@@ -4,19 +4,19 @@
 #####################################################
 class Beneficiaire < ActiveRecord::Base
   acts_as_reportable
-  belongs_to :identifiant, :dependent => :destroy
+  belongs_to :user, :dependent => :destroy
   belongs_to :client, :counter_cache => true
 
   has_many :appels
 
-  INCLUDE = [:identifiant]
+  INCLUDE = [:user]
 
   #TODO : revoir la hiérarchie avec un nested tree (!)
   belongs_to :beneficiaire
   has_many :demandes, :dependent => :destroy
 
   def nom
-    (identifiant ? identifiant.nom : '')
+    (user ? user.name : '')
   end
 
   def contrat_ids

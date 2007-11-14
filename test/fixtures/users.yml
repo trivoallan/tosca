@@ -1,130 +1,130 @@
 --- 
-identifiant_00004: 
+user_00004: 
   informations: ""
-  nom: Admin
+  name: Admin
   role_id: 1
   inactive: false
   client: false
   id: 4
-  titre: Expert Ossa
-  telephone: 08000LINUX
+  title: Expert Ossa
+  phone: 08000LINUX
   password: 47261c32a405a38d54806e4db0e64d1ca9862598
   login: admin
   image_id: 0
   email: mloiseleur@linagora.com
-identifiant_00005: 
+user_00005: 
   informations: ""
-  nom: Expert de l'OSSA
+  name: Expert de l'OSSA
   role_id: 4
   inactive: false
   client: false
   id: 5
-  titre: "\xC3\xB4 magnifique"
-  telephone: 08000LINUX
+  title: "\xC3\xB4 magnifique"
+  phone: 08000LINUX
   password: d81674f38d5627bb3580afe45ee79cffafe0b539
   login: expert
   image_id: 0
   email: mloiseleur@linagora.com
-identifiant_00006: 
+user_00006: 
   informations: ""
-  nom: Prestataire
+  name: Prestataire
   role_id: 3
   inactive: false
   client: false
   id: 6
-  titre: vil
-  telephone: 08000Linux
+  title: vil
+  phone: 08000Linux
   password: 63828c91e38ced7d310e861caa2cc0a98465db81
   login: presta
   image_id: 0
   email: mloiseleur@linagora.com
-identifiant_00007: 
+user_00007: 
   informations: ""
-  nom: Forget
+  name: Forget
   role_id: 2
   inactive: false
   client: true
   id: 7
-  titre: M
-  telephone: "847"
+  title: M
+  phone: "847"
   password: 538009b9b91f423bd323235d3fa99413e0899359
   login: forget
   image_id: 
   email: mloiseleur@linagora.com
-identifiant_00009: 
+user_00009: 
   informations: ""
-  nom: Je suis actif
+  name: Je suis actif
   role_id: 2
   inactive: false
   client: true
   id: 9
-  titre: ""
-  telephone: ""
+  title: ""
+  phone: ""
   password: c4a232253a9d328bbb8908b3752390bf18863604
   login: jesuisactif
   image_id: 
   email: mloiseleur@linagora.com
-identifiant_00010: 
+user_00010: 
   informations: ""
-  nom: Je suis inactif
+  name: Je suis inactif
   role_id: 2
   inactive: true
   client: true
   id: 10
-  titre: ""
-  telephone: ""
+  title: ""
+  phone: ""
   password: 1f952327c9a65c59edd5d16554c27a912e7c21f3
   login: jesuisinactif
   image_id: 
   email: mloiseleur@linagora.com
-identifiant_00011: 
+user_00011: 
   informations: ""
-  nom: Je suis totalement inactif
+  name: Je suis totalement inactif
   role_id: 2
   inactive: true
   client: true
   id: 11
-  titre: ""
-  telephone: ""
+  title: ""
+  phone: ""
   password: 0049ba846f6532739cbbee5a95ccf4022294547b
   login: totalinactif
   image_id: 
   email: mloiseleur@linagora.com
-identifiant_00001: 
+user_00001: 
   informations: ""
-  nom: "H\xC3\xA9l\xC3\xA8ne Parmentier"
+  name: "H\xC3\xA9l\xC3\xA8ne Parmentier"
   role_id: 2
   inactive: false
   client: true
   id: 1
-  titre: DSI
-  telephone: "01424242424"
+  title: DSI
+  phone: "01424242424"
   password: 113ffe098f908431c8c5d5c960e6a291aaf202b2
   login: hparmentier
   image_id: 0
   email: mloiseleur@linagora.com
-identifiant_00002: 
+user_00002: 
   informations: ""
-  nom: Martin Laplace
+  name: Martin Laplace
   role_id: 2
   inactive: false
   client: true
   id: 2
-  titre: DSI
-  telephone: "0241455361"
+  title: DSI
+  phone: "0241455361"
   password: 92b033978307c31e8166cf768345bb5a30d3c67f
   login: mlaplace
   image_id: 0
   email: mloiseleur@linagora.com
-identifiant_00003: 
+user_00003: 
   informations: ""
-  nom: Bob Dufloux
+  name: Bob Dufloux
   role_id: 1
   inactive: false
   client: false
   id: 3
-  titre: Expert
-  telephone: 08000LINUX
+  title: Expert
+  phone: 08000LINUX
   password: 113ffe098f908431c8c5d5c960e6a291aaf202b2
   login: bob
   image_id: 0

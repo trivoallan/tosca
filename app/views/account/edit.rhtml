@@ -1,0 +1,10 @@
+<%= error_messages_for 'user' %><br />
+
+<h1><%= _('Modify %s') % get_title(@user) %></h1>
+<% form_tag(account_path(@user), :method => :put) do %>
+  <%= render :partial => "form" %>
+  <%= submit_tag _('Validate') %>
+<% end %>
+
+<br />
+<%= link_to_back %>

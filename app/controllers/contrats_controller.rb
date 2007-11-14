@@ -83,6 +83,6 @@ private
       @clients = Client.find_select
     end
     @engagements = Engagement.find(:all, Engagement::OPTIONS)
-    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
   end
 end

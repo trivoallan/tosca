@@ -8,7 +8,7 @@
    ] %>
 <% titres.concat(@competences.collect{|c| c.nom}).flatten %>
 <%= show_table(@ingenieurs, Ingenieur, titres, :add_lines => addlines) { |i|
-  result = "<td>#{i.identifiant.nom}</td>"
+  result = "<td>#{i.user.name}</td>"
   result << "<td>#{'X' if i.chef_de_projet}</td>"
   result << "<td>#{'X' if i.expert_ossa}</td>"
   @competences.each do |competence|

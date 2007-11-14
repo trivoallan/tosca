@@ -1,6 +1,10 @@
-<%= error_messages_for 'identifiant' %><br />
+<%= error_messages_for 'user' %><br />
+<h1><%= _('Create several accounts') %>
+<h2><%= _('Fill up the fileds which are common in all the accounts.<br /> please.') %>
+    <%= _('The last field must be fill with CSV format.')%></h2>
+
 <div title="Account multiple signup" id="multiple_signupform" >
 <% form_tag multiple_signup_new_account_path do %>
-  <%= render :partial => "edit" %>
+  <%= render :partial => "form" %>
 <% end %>
 </div>

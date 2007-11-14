@@ -3,14 +3,14 @@
 #####################################################
 class Ingenieur < ActiveRecord::Base
   acts_as_reportable
-  belongs_to :identifiant, :dependent => :destroy
+  belongs_to :user, :dependent => :destroy
   has_and_belongs_to_many :competences
   has_and_belongs_to_many :contrats
   has_many :demandes
   has_many :appels
 
 
-  INCLUDE = [:identifiant]
+  INCLUDE = [:user]
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
@@ -22,7 +22,7 @@ class Ingenieur < ActiveRecord::Base
     joins = 'INNER JOIN contrats_ingenieurs ci ON ci.ingenieur_id=ingenieurs.id'
     options = {:find => {:conditions => conditions, :joins => joins}}
     Ingenieur.with_scope(options) do
-      Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+      Ingenieur.find_select(User::SELECT_OPTIONS)
     end
   end
 
@@ -51,10 +51,10 @@ class Ingenieur < ActiveRecord::Base
          :select => 'client_id').collect {|c| c.client_id}
   end
 
-  # ne pas oublier de faire :include => [:identifiant] si vous
-  # appeler cette fonction, durant le Ingenieur.find
+  # Don't forget to make an :include => [:user] if you 
+  # use this small wrapper.
   def nom
-    identifiant.nom
+    user.name
   end
 
   alias_method :to_s, :nom

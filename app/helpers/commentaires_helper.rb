@@ -5,26 +5,26 @@ module CommentairesHelper
 
   def display_history(comment)
     out = []
-    nom = "<b>#{comment.identifiant.nom}</b>"
+    name = "<b>#{comment.user.name}</b>"
 
     ingenieur = comment.ingenieur
     unless ingenieur.nil?
-      if ingenieur.identifiant_id == comment.identifiant_id
-        out << (_('This request has been taken into account by %s.') % nom )
+      if ingenieur.user_id == comment.user_id
+        out << (_('This request has been taken into account by %s.') % name )
       else
         out << (_('This request has been assigned to %s by %s.') % 
-                [ "<b>#{ingenieur.nom}</b>", nom ])
+                [ "<b>#{ingenieur.nom}</b>", name ])
       end
     end 
     statut = comment.statut
     unless statut.nil?
       out << (_('This request has been changed in %s by %s.') % 
-              [ "<b>#{statut.nom}</b>", nom ])
+              [ "<b>#{statut.nom}</b>", name ])
     end 
     severite = comment.severite
     unless severite.nil?
       out << (_('This request has been requalified in %s by %s.') % 
-              [ "<b>#{severite.nom}</b>" , nom ])
+              [ "<b>#{severite.nom}</b>" , name ])
     end
     return nil if out.empty?
     '<div class="history">' << out.join('<br />') << '</div>'

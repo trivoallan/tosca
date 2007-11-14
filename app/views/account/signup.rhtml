@@ -1,7 +1,8 @@
-<%= error_messages_for 'identifiant' %><br />
+<%= error_messages_for 'user' %><br />
+<h1><%= _('Create an account') %></h1>
 <div title="Account signup" id="signupform" >
 <% form_tag signup_new_account_path do %>
-  <%= render :partial => "edit" %>
+  <%= render :partial => "form" %>
   <%= submit_tag _('Validate') %>
 <% end %>
 </div>

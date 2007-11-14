@@ -25,10 +25,10 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('bienvenue', %w(suggestions), :post)
   map.without_orm('reporting', %w(comex comex_resultat configuration flux general))
   map.without_orm('acces', %w(refuse))
-  map.without_orm('export', %w(demandes_ods appels_ods identifiants_ods
+  map.without_orm('export', %w(demandes_ods appels_ods users_ods
     contributions_ods comex_ods) )
 
-  map.formatted_export(%w(requests contributions identifiants appels comex))
+  map.formatted_export(%w(requests contributions users appels comex))
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée

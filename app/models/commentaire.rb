@@ -3,7 +3,7 @@
 #####################################################
 class Commentaire < ActiveRecord::Base
   belongs_to :demande
-  belongs_to :identifiant
+  belongs_to :user
   belongs_to :piecejointe
   belongs_to :statut
   belongs_to :severite
@@ -11,6 +11,8 @@ class Commentaire < ActiveRecord::Base
 
   validates_length_of :corps, :minimum => 5,
     :warn => _('You must have a comment with at least 5 characters')
+  validates_presence_of :user
+
   validate do |record|
     if record.demande.nil?
       record.errors.add _('You must indicate a valid request')

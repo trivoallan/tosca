@@ -5,7 +5,7 @@ beneficiaire_00007:
   notifier_subalternes: true
   beneficiaire_id: 
   notifier_cc: true
-  identifiant_id: 11
+  user_id: 11
   notifier: true
 beneficiaire_00001: 
   client_id: 1
@@ -13,7 +13,7 @@ beneficiaire_00001:
   notifier_subalternes: true
   beneficiaire_id: 1
   notifier_cc: false
-  identifiant_id: 1
+  user_id: 1
   notifier: true
 beneficiaire_00002: 
   client_id: 2
@@ -21,7 +21,7 @@ beneficiaire_00002:
   notifier_subalternes: true
   beneficiaire_id: 
   notifier_cc: true
-  identifiant_id: 7
+  user_id: 7
   notifier: true
 beneficiaire_00005: 
   client_id: 9
@@ -29,7 +29,7 @@ beneficiaire_00005:
   notifier_subalternes: true
   beneficiaire_id: 
   notifier_cc: true
-  identifiant_id: 9
+  user_id: 9
   notifier: true
 beneficiaire_00006: 
   client_id: 9
@@ -37,5 +37,5 @@ beneficiaire_00006:
   notifier_subalternes: true
   beneficiaire_id: 
   notifier_cc: true
-  identifiant_id: 10
+  user_id: 10
   notifier: true

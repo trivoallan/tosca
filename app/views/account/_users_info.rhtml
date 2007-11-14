@@ -12,7 +12,7 @@
 <ul class="menu" id="menu_action">
  <li><%= link_to _('Add a user'), signup_new_account_path %></li>
  <li><%= link_to _('Add several users'), multiple_signup_new_account_path %></li>
- <li><%= identifiants_export_link %></li>
+ <li><%= users_export_link %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
@@ -29,10 +29,10 @@
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
   > <%=_('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
-  <li><b><%= _('Logins: ')%> </b><%=@count[:identifiants]%></li>
+  <li><b><%= _('Logins: ')%> </b><%=@count[:users]%></li>
   <li><b><%= _('Recipients: ')%></b><%=@count[:beneficiaires]%></li>
   <li><b><%= _('Engineers: ')%></b><%=@count[:ingenieurs]%></li>
-  <li><b><%= _('Inconsistencies: ')%></b><%=(@count[:identifiants] -
+  <li><b><%= _('Inconsistencies: ')%></b><%=(@count[:users] -
   (@count[:beneficiaires] + @count[:ingenieurs])).to_s %></li>
 </ul>
 

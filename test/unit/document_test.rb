@@ -26,14 +26,14 @@ class DocumentTest < Test::Unit::TestCase
   end
   def test_update
     d = documents(:document_00001)
-    d.update_attributes( :identifiant_id => 1, :typedocument_id => 1,
+    d.update_attributes( :user_id => 1, :typedocument_id => 1,
       :client_id => 2, :titre => "bonjour (lemonde)",
       :description => "d fs fd àfi @ © àf«", 
       :created_on =>"2006-09-05 18:08:49", :updated_on=>"2006-09-05 18:43:02",
       :date_delivery => "2007-09-05 18:08:49"
     )
 
-    assert_equal d.identifiant_id, 1
+    assert_equal d.user_id, 1
     assert_equal d.typedocument_id, 1
     assert_equal d.client_id, 2
     assert_equal d.titre, "bonjour (lemonde)"

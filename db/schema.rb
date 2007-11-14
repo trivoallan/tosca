@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 76) do
   create_table "beneficiaires", :force => true do |t|
     t.column "client_id",            :integer, :default => 0,    :null => false
     t.column "beneficiaire_id",      :integer
-    t.column "identifiant_id",       :integer, :default => 0,    :null => false
+    t.column "user_id",              :integer
     t.column "notifier_subalternes", :boolean, :default => true, :null => false
     t.column "notifier",             :boolean, :default => true, :null => false
     t.column "notifier_cc",          :boolean, :default => true, :null => false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 76) do
 
   add_index "beneficiaires", ["client_id"], :name => "beneficiaires_client_id_index"
   add_index "beneficiaires", ["beneficiaire_id"], :name => "beneficiaires_beneficiaire_id_index"
-  add_index "beneficiaires", ["identifiant_id"], :name => "beneficiaires_identifiant_id_index"
+  add_index "beneficiaires", ["user_id"], :name => "beneficiaires_identifiant_id_index"
 
   create_table "binaires", :force => true do |t|
     t.column "paquet_id",             :integer, :default => 0, :null => false
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(:version => 76) do
 
   create_table "commentaires", :force => true do |t|
     t.column "demande_id",     :integer,  :default => 0,     :null => false
-    t.column "identifiant_id", :integer,  :default => 0,     :null => false
+    t.column "user_id",        :integer
     t.column "piecejointe_id", :integer
     t.column "corps",          :text
     t.column "created_on",     :datetime
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(:version => 76) do
 
   add_index "commentaires", ["demande_id"], :name => "commentaires_demande_id_index"
   add_index "commentaires", ["piecejointe_id"], :name => "commentaires_piecejointe_id_index"
-  add_index "commentaires", ["identifiant_id"], :name => "commentaires_identifiant_id_index"
+  add_index "commentaires", ["user_id"], :name => "commentaires_identifiant_id_index"
   add_index "commentaires", ["ingenieur_id"], :name => "index_commentaires_on_ingenieur_id"
   add_index "commentaires", ["created_on"], :name => "index_commentaires_on_created_on"
   add_index "commentaires", ["updated_on"], :name => "index_commentaires_on_updated_on"
@@ -159,7 +159,6 @@ ActiveRecord::Schema.define(:version => 76) do
     t.column "astreinte",         :boolean,  :default => false, :null => false
     t.column "socle",             :boolean,  :default => false, :null => false
     t.column "nom",               :string
-    t.column "support",           :boolean,  :default => false
     t.column "type",              :string
     t.column "tickets_total",     :integer,  :default => 0
     t.column "tickets_consommes", :integer,  :default => 0
@@ -233,7 +232,6 @@ ActiveRecord::Schema.define(:version => 76) do
     t.column "last_comment_id",  :integer,  :default => 0,  :null => false
     t.column "mantis_id",        :integer
     t.column "temps_ecoule",     :integer
-    t.column "temps_id",         :integer
   end
 
   add_index "demandes", ["contribution_id"], :name => "demandes_correctif_id_index"
@@ -267,7 +265,7 @@ ActiveRecord::Schema.define(:version => 76) do
   create_table "document_versions", :force => true do |t|
     t.column "document_id",     :integer
     t.column "version",         :integer
-    t.column "identifiant_id",  :integer,  :default => 0
+    t.column "user_id",         :integer
     t.column "typedocument_id", :integer,  :default => 0
     t.column "client_id",       :integer,  :default => 0
     t.column "titre",           :string,   :default => ""
@@ -279,7 +277,7 @@ ActiveRecord::Schema.define(:version => 76) do
   end
 
   create_table "documents", :force => true do |t|
-    t.column "identifiant_id",  :integer,  :default => 0,  :null => false
+    t.column "user_id",         :integer
     t.column "typedocument_id", :integer,  :default => 0,  :null => false
     t.column "client_id",       :integer,  :default => 0,  :null => false
     t.column "titre",           :string,   :default => "", :null => false
@@ -291,7 +289,7 @@ ActiveRecord::Schema.define(:version => 76) do
     t.column "date_delivery",   :datetime
   end
 
-  add_index "documents", ["identifiant_id"], :name => "documents_identifiant_id_index"
+  add_index "documents", ["user_id"], :name => "documents_identifiant_id_index"
   add_index "documents", ["typedocument_id"], :name => "documents_typedocument_id_index"
   add_index "documents", ["client_id"], :name => "documents_client_id_index"
 
@@ -338,36 +336,19 @@ ActiveRecord::Schema.define(:version => 76) do
     t.column "nom", :string, :limit => 80
   end
 
-  create_table "identifiants", :force => true do |t|
-    t.column "login",        :string,  :limit => 20, :default => "",    :null => false
-    t.column "password",     :string,  :limit => 40, :default => "",    :null => false
-    t.column "titre",        :string,                :default => "",    :null => false
-    t.column "nom",          :string,                :default => "",    :null => false
-    t.column "email",        :string,                :default => "",    :null => false
-    t.column "telephone",    :string,                :default => "",    :null => false
-    t.column "image_id",     :integer
-    t.column "informations", :text,                  :default => "",    :null => false
-    t.column "client",       :boolean,               :default => false, :null => false
-    t.column "inactive",     :boolean,               :default => false, :null => false
-    t.column "role_id",      :integer,               :default => 0,     :null => false
-  end
-
-  add_index "identifiants", ["image_id"], :name => "index_identifiants_on_image_id"
-  add_index "identifiants", ["email"], :name => "index_identifiants_on_email"
-
   create_table "images", :force => true do |t|
     t.column "image",       :string
     t.column "description", :string
   end
 
   create_table "ingenieurs", :force => true do |t|
-    t.column "identifiant_id", :integer, :default => 0,     :null => false
+    t.column "user_id",        :integer
     t.column "chef_de_projet", :boolean, :default => false, :null => false
     t.column "expert_ossa",    :boolean, :default => false, :null => false
     t.column "image_id",       :integer
   end
 
-  add_index "ingenieurs", ["identifiant_id"], :name => "ingenieurs_identifiant_id_index"
+  add_index "ingenieurs", ["user_id"], :name => "ingenieurs_identifiant_id_index"
 
   create_table "jourferies", :force => true do |t|
     t.column "jour", :datetime, :null => false
@@ -466,14 +447,14 @@ ActiveRecord::Schema.define(:version => 76) do
   end
 
   create_table "preferences", :force => true do |t|
-    t.column "identifiant_id", :integer,                    :null => false
-    t.column "mail_text",      :boolean, :default => false
-    t.column "all_mail",       :boolean, :default => true
-    t.column "digest_daily",   :boolean, :default => false
-    t.column "digest_weekly",  :boolean, :default => false
+    t.column "user_id",       :integer
+    t.column "mail_text",     :boolean, :default => false
+    t.column "all_mail",      :boolean, :default => true
+    t.column "digest_daily",  :boolean, :default => false
+    t.column "digest_weekly", :boolean, :default => false
   end
 
-  add_index "preferences", ["identifiant_id"], :name => "index_preferences_on_identifiant_id"
+  add_index "preferences", ["user_id"], :name => "index_preferences_on_identifiant_id"
 
   create_table "roles", :force => true do |t|
     t.column "nom",  :string, :limit => 40
@@ -514,13 +495,6 @@ ActiveRecord::Schema.define(:version => 76) do
     t.column "duree_intervention",   :integer
   end
 
-  create_table "temps", :force => true do |t|
-    t.column "contournement", :float
-    t.column "correction",    :float
-    t.column "ecoule",        :float
-    t.column "rappel",        :float
-  end
-
   create_table "typecontributions", :force => true do |t|
     t.column "nom",         :string, :default => "", :null => false
     t.column "description", :text,   :default => "", :null => false
@@ -554,32 +528,21 @@ ActiveRecord::Schema.define(:version => 76) do
     t.column "valeur",          :string,  :default => "", :null => false
   end
 
-  create_table "users", :id => false, :force => true do |t|
-    t.column "user_id",               :integer,  :limit => 10,                            :null => false
-    t.column "user_login",            :string,                 :default => "",            :null => false
-    t.column "user_password",         :string,   :limit => 32
-    t.column "user_nom",              :string,                 :default => "",            :null => false
-    t.column "user_prenom",           :string,                 :default => "",            :null => false
-    t.column "user_email",            :string,                 :default => "",            :null => false
-    t.column "user_cookie",           :string,   :limit => 32
-    t.column "user_session",          :string,   :limit => 32
-    t.column "user_ip",               :string,   :limit => 15
-    t.column "user_type",             :string,                 :default => "utilisateur", :null => false
-    t.column "user_actif",            :integer,  :limit => 4,  :default => 0,             :null => false
-    t.column "user_activation_code",  :string,   :limit => 32
-    t.column "user_dn",               :text
-    t.column "user_fax",              :string,   :limit => 30
-    t.column "user_mobilephone",      :string,   :limit => 30
-    t.column "user_telephone",        :string,   :limit => 30, :default => "",            :null => false
-    t.column "user_organisation",     :string,                 :default => "",            :null => false
-    t.column "user_service",          :string,                 :default => "",            :null => false
-    t.column "user_adresse",          :string,                 :default => "",            :null => false
-    t.column "user_send_email_alert", :integer,  :limit => 4,  :default => 0,             :null => false
-    t.column "created_on",            :datetime
-    t.column "updated_on",            :datetime
+  create_table "users", :force => true do |t|
+    t.column "login",        :string,  :limit => 20, :default => "",    :null => false
+    t.column "password",     :string,  :limit => 40, :default => "",    :null => false
+    t.column "title",        :string
+    t.column "name",         :string
+    t.column "email",        :string,                :default => "",    :null => false
+    t.column "phone",        :string
+    t.column "image_id",     :integer
+    t.column "informations", :text
+    t.column "client",       :boolean,               :default => false, :null => false
+    t.column "inactive",     :boolean,               :default => false, :null => false
+    t.column "role_id",      :integer,               :default => 0,     :null => false
   end
 
-  add_index "users", ["user_login"], :name => "user_login", :unique => true
-  add_index "users", ["user_nom"], :name => "users_index_nom"
+  add_index "users", ["image_id"], :name => "index_identifiants_on_image_id"
+  add_index "users", ["email"], :name => "index_identifiants_on_email"
 
 end

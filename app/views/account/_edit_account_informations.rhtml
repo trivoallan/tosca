@@ -1,20 +1,20 @@
 <% create_account = false %>
 <% # TODO : improve it, c'est encore tres peu lisible
   #ESSAI : un peu mieux ? un chouilla ;)
-  identifiant, role, identifiant_client, type_client, csv, inactive = {}, {}, {}, {}, {}, {}
+  user, role, user_client, type_client, csv, inactive = {}, {}, {}, {}, {}, {}
   help = {:affichage_perso => _('Custom display of the request list'), :client => nil }
 
   if session[:user].ingenieur and session[:user].ingenieur.expert_ossa
     role[:titre] = '<label>' + _('Roles') + '</label>'
-    role[:champ] = hm_radio_button('identifiant', 'role_id', @roles)
+    role[:champ] = hm_radio_button('user', 'role_id', @roles)
 
     inactive[:titre] = '<label>' + _('Inactive') + '</label>'
-    inactive[:champ] = check_box(:identifiant, :inactive)
+    inactive[:champ] = check_box(:user, :inactive)
   end
 
   if @ingenieur
-    identifiant[:titre] = '<label for="identifiant_login">' + _('Choose a login') + '</label>'
-    identifiant[:champ] = text_field("identifiant", "login", :size => 16)
+    user[:titre] = '<label for="user_login">' + _('Choose a login') + '</label>'
+    user[:champ] = text_field("user", "login", :size => 16)
 
     case controller.action_name
     when 'signup', 'multiple_signup'
@@ -40,17 +40,17 @@
    ]
    unless (controller.action_name == 'multiple_signup')
       fields.concat([
-       lstm_text_field( _('Full name'), 'identifiant', 'nom'),
-       lstm_text_field( _('Title'), 'identifiant', 'titre'),
-       lstm_text_field( _('Email'), 'identifiant', 'email'),
-       lstm_text_field( _('Phone'), 'identifiant', 'telephone'),
+       lstm_text_field( _('Full name'), 'user', 'name'),
+       lstm_text_field( _('Title'), 'user', 'title'),
+       lstm_text_field( _('Email'), 'user', 'email'),
+       lstm_text_field( _('Phone'), 'user', 'phone'),
        [ inactive[:titre], inactive[:champ] ],
        [ '<hr/>', nil ],
-       [ identifiant[:titre], identifiant[:champ] ],
+       [ user[:titre], user[:champ] ],
        lstm_password_field((create_account ?
             _('Choose a password') : _('Modify your password')),
-         'identifiant', 'pwd'),
-       lstm_password_field( _('Confirm this last'), 'identifiant',
+         'user', 'pwd'),
+       lstm_password_field( _('Confirm this last'), 'user',
           'pwd_confirmation'),
        [ '<hr/>', nil ]
       ])
@@ -61,7 +61,7 @@
    ])
 
    if (controller.action_name != 'multiple_signup')
-     informations = lstm_text_area(_('Informations'), 'identifiant',
+     informations = lstm_text_area(_('Informations'), 'user',
                        'informations', :rows => 8, :cols => 58)
      fields.concat([ [informations[0], nil] , [nil, informations[1]]])
    end

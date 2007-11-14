@@ -4,14 +4,14 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class BeneficiaireTest < Test::Unit::TestCase
-  fixtures :beneficiaires, :contrats, :identifiants
+  fixtures :beneficiaires, :contrats, :users
 
   def test_nom
     b = Beneficiaire.find 1
     b2 = Beneficiaire.new( 
       :client_id => 1,
       :beneficiaire_id => 1,
-      :identifiant_id => 44)
+      :user_id => 44)
     assert b2.save
 
     assert_equal b.nom, 'Hélène Parmentier'

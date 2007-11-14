@@ -5,12 +5,12 @@ class IngenieursController < ApplicationController
   def index
     @competences = Competence.find(:all)
     @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 20,
-    :include => [:identifiant,:competences]
+    :include => [:user,:competences]
   end
 
   def show
     @ingenieur = Ingenieur.find(params[:id],
-                                :include => [:identifiant,:competences])
+                                :include => [:user,:competences])
   end
 
   def new
@@ -47,9 +47,11 @@ class IngenieursController < ApplicationController
   # TODO : mettre dans le modèle, avec un before_destroy
   def destroy
     inge = Ingenieur.find(params[:id])
-    identifiant = Identifiant.find(inge.identifiant_id)
-    inge.destroy
-    identifiant.destroy
+    user = User.find(inge.user_id)
+    User.transaction do
+      inge.destroy
+      user.destroy
+    end
     redirect_to ingenieurs_path
   end
 

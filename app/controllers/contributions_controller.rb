@@ -139,13 +139,13 @@ private
     @paquets = @contribution.paquets || []
     @binaires = @contribution.binaires || []
     @etatreversements = Etatreversement.find_select
-    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @typecontributions = Typecontribution.find_select
   end
 
   def _panel
     @etatreversements = Etatreversement.find_select
-    @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @logiciels = Logiciel.find_select
     # count
     clogiciels = { :select => 'contributions.logiciel_id', :distinct => true }

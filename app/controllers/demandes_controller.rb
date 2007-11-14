@@ -19,9 +19,9 @@ class DemandesController < ApplicationController
     # find request where last comment was :
     # 1. from the recipient where this is an engineer
     # 2. from !the recipient when this is a recipient
-    conditions.first << ('commentaires.identifiant_id ' <<
+    conditions.first << ('commentaires.user_id ' <<
                          (@ingenieur ? '= ' : '<> ') <<
-                         'beneficiaires.identifiant_id' )
+                         'beneficiaires.user_id' )
     conditions.first << 'commentaires.prive = 0'
 
     if @ingenieur
@@ -186,7 +186,7 @@ class DemandesController < ApplicationController
     @demande = Demande.find(params[:id]) unless @demande
     conditions = [ "logiciel_id = ?", @demande.logiciel_id ]
     # TODO c'est pas dry, cf ajax_comments
-    options = { :order => 'created_on DESC', :include => [:identifiant],
+    options = { :order => 'created_on DESC', :include => [:user],
       :limit => 1, :conditions => { :demande_id => @demande.id } }
     options[:conditions][:prive] = false if @beneficiaire
     @last_commentaire = Commentaire.find(:first, options)
@@ -306,7 +306,7 @@ class DemandesController < ApplicationController
     @severites = Severite.find_select()
     if @ingenieur
       @clients = Client.find_select(:conditions => 'clients.inactive = 0')
-      @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+      @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     end
   end
 
@@ -324,7 +324,7 @@ class DemandesController < ApplicationController
       @typedemandes = client.typedemandes
       @clients = [ client ]
     else
-      @ingenieurs = Ingenieur.find_select(Identifiant::SELECT_OPTIONS)
+      @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
       @logiciels = Logiciel.find_select
       @typedemandes = Typedemande.find_select
       @clients = Client.find_select(Client::SELECT_OPTIONS)
@@ -348,21 +348,21 @@ class DemandesController < ApplicationController
       if @ingenieur
         @commentaires = Commentaire.find(:all, :conditions =>
          [ 'commentaires.demande_id = ?', demande_id ],
-         :order => "created_on ASC", :include => [:identifiant,:statut,:severite])
+         :order => "created_on ASC", :include => [:user,:statut,:severite])
       else
         @commentaires = Commentaire.find(:all, :conditions =>
          [ 'commentaires.demande_id = ? AND commentaires.prive = ? ',
            demande_id, false ],
-         :order => 'created_on ASC', :include => [:identifiant,:statut,:severite])
+         :order => 'created_on ASC', :include => [:user,:statut,:severite])
       end
     end
 
-    # On va chercher les identifiants des ingénieurs assignés
+    # On va chercher les users des ingénieurs assignés
     # C'est un héritage du passé
     # TODO : s'en débarrasser avec une migration et un :include
-    joins = 'INNER JOIN ingenieurs ON ingenieurs.identifiant_id=identifiants.id'
-    select = "DISTINCT identifiants.id "
-    @identifiants_ingenieurs = Identifiant.find(:all,
+    joins = 'INNER JOIN ingenieurs ON ingenieurs.user_id=users.id'
+    select = "DISTINCT users.id "
+    @users_ingenieurs = User.find(:all,
        :select => select, :joins => joins).collect{|i| i.id }
   end
 

@@ -9,7 +9,7 @@ class ExportControllerTest < Test::Unit::TestCase
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles, 
     :permissions_roles, :contrats, :contrats_engagements, :engagements, 
-    :contrats_ingenieurs, :identifiants, :piecejointes, :contributions,
+    :contrats_ingenieurs, :users, :piecejointes, :contributions,
     :jourferies, :binaires, :binaires_demandes, :supports, :typedemandes
 
 
@@ -27,8 +27,8 @@ class ExportControllerTest < Test::Unit::TestCase
     assert_response :success
   end
   
-  def test_identifiants
-    get :identifiants, :format => 'ods'
+  def test_users
+    get :users, :format => 'ods'
     assert_response :success
   end
 

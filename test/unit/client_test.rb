@@ -100,7 +100,7 @@ class ClientTest < Test::Unit::TestCase
     assert c.save
     assert_equal c.nom , "<strike>toto</strike>"
     c.beneficiaires.each do |b|
-      assert b.identifiant.inactive?
+      assert b.user.inactive?
     end
   end
 

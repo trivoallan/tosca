@@ -10,8 +10,8 @@ module ExportHelper
   def appels_export_images
     export_link formatted_appels_export_path(:ods)
   end
-  def identifiants_export_link
-    export_link formatted_identifiants_export_path(:ods)
+  def users_export_link
+    export_link formatted_users_export_path(:ods)
   end
   def comex_export_link
     export_link formatted_comex_export_path(:ods)

@@ -6,7 +6,6 @@ contrat_00003:
   client_id: 2
   id: 3
   ouverture: 2006-11-25 12:20:00 +01:00
-  support: false
   cloture: 2007-11-12 14:23:00 +01:00
   paquets_count:
   type: ContratOssa
@@ -17,7 +16,6 @@ contrat_00006:
   client_id: 2
   id: 6
   ouverture: 2006-11-25 12:20:00 +01:00
-  support: false
   cloture: 2007-11-12 14:23:00 +01:00
   paquets_count:
   type: ContratOssa
@@ -28,7 +26,6 @@ contrat_00010:
   client_id: 9
   id: 10
   ouverture: 2007-11-02 11:40:00 +01:00
-  support: true
   cloture: 2012-11-02 11:40:00 +01:00
   paquets_count:
   type: ContratSupport
@@ -39,7 +36,6 @@ contrat_00001:
   client_id: 1
   id: 1
   ouverture: 2005-10-26 10:20:00 +02:00
-  support: false
   cloture: 2008-10-27 10:20:00 +01:00
   paquets_count: 0
   type: ContratOssa
@@ -50,7 +46,6 @@ contrat_00002:
   client_id: 4
   id: 2
   ouverture: 2006-11-25 12:20:00 +01:00
-  support: false
   cloture: 2007-11-12 14:23:00 +01:00
   paquets_count: 0
   type: ContratOssa
@@ -59,7 +54,6 @@ contrat_00004:
   client_id: 2
   id: 4
   ouverture: 2006-11-25 12:20:00 +01:00
-  support: true
   cloture: 2007-11-12 14:23:00 +01:00
   paquets_count: 0
   tickets_total: 10

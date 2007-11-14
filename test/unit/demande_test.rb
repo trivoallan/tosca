@@ -5,7 +5,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class DemandeTest < Test::Unit::TestCase
   fixtures :demandes, :typedemandes, :severites, :statuts, :supports,
-    :beneficiaires, :clients, :identifiants,
+    :beneficiaires, :clients, :users,
     :paquets
 
   def test_presence_of_attributes

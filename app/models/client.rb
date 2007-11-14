@@ -22,16 +22,16 @@ class Client < ActiveRecord::Base
   # validates_uniqueness_of :mailingliste
 
 
-  SELECT_OPTIONS = { :include => {:beneficiaires => [:identifiant]},
-    :conditions => 'clients.inactive = 0 AND identifiants.inactive = 0' }
+  SELECT_OPTIONS = { :include => {:beneficiaires => [:user]},
+    :conditions => 'clients.inactive = 0 AND users.inactive = 0' }
 
   after_save :desactivate_recipients
 
   # TODO : rework: to slow /!\
-  # better : # UPDATE identifiants SET inactive = ? WHERE ... 
+  # better : # UPDATE users SET inactive = ? WHERE ... 
   def desactivate_recipients
     beneficiaires.each do |b|
-      b.identifiant.update_attribute :inactive, inactive?
+      b.user.update_attribute :inactive, inactive?
     end
   end
 
@@ -67,7 +67,7 @@ class Client < ActiveRecord::Base
 
   def ingenieurs
     return [] if contrats.empty?
-    options = { :include => [:identifiant],
+    options = { :include => [:user],
       :conditions => [ 'contrats_ingenieurs.contrat_id IN (?)', contrat_ids ],
       :joins => 'INNER JOIN contrats_ingenieurs ON contrats_ingenieurs.ingenieur_id=ingenieurs.id' }
     ingenieurs = Ingenieur.find(:all, options)

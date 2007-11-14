@@ -11,7 +11,7 @@
   result = "<td>#{b.nom}</td>"
   result << "<td>#{clientname}</td>"
   result << '<td>'
-  if not b.identifiant.inactive?
+  if not b.user.inactive?
     result << "<form action=\"#{devenir_account_path(b)}\" method=\"post\">"
     result << '<input name="commit" value="' << _("Become") << '" type="submit"/></form>'
   end

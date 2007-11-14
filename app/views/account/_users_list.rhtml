@@ -5,13 +5,13 @@
 <%= links %>
 <table class="show">
   <tr>
-    <th><%= _('Login')%></th>
-    <th><%= _('Name')%></th>
-    <th><%= _('Role')%></th>
+    <th><%= _('User|Login')%></th>
+    <th><%= _('User|Name')%></th>
+    <th><%= _('User|Role')%></th>
     <th><%= _('Engineer')%></th>
     <th><%= _('Recipient')%></th>
-    <th><%= _('Email')%></th>
-    <th><%= _('Phone')%></th>
+    <th><%= _('User|Email')%></th>
+    <th><%= _('User|Phone')%></th>
   </tr>
 
   <% options = PagesHelper::AJAX_OPTIONS.dup %>
@@ -22,12 +22,12 @@
    <% ingenieur = user.ingenieur %>
    <tr class="<%= cycle('pair', 'impair') %>">
       <td><%= user.login %></td>
-      <td><%= user.nom %></td>
+      <td><%= user.name %></td>
       <td><%= user.role.nom %></td>
       <td><center><%= "X" if ingenieur %></center></td>
       <td><center><%= "X" if beneficiaire %></center></td>
       <td><%= mail_to user.email, user.email %></td>
-      <td><%= user.telephone %></td>
+      <td><%= user.phone %></td>
      <td><% if beneficiaire and not user.inactive? %>
            <form action=<%= '"' + devenir_account_path(beneficiaire) + '"' %> method="post">
            <input name="commit" value=<%= '"' + _('Become') + '"' %> type="submit" /></form>

@@ -18,6 +18,9 @@ class CommentaireTest < Test::Unit::TestCase
     # must have de request
     assert !c.save
     c.demande = Demande.find 3
+    # must have an, author
+    assert !c.save
+    c.user = User.find(:first)
 
     assert c.save
   end

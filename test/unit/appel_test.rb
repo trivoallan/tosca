@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class AppelTest < Test::Unit::TestCase
   fixtures :appels, :ingenieurs, :contrats, 
-    :beneficiaires, :identifiants, :clients
+    :beneficiaires, :users, :clients
 
   def test_validates_presence_of_ingenieur_and_contrat_on_create
     ing = ingenieurs(:ingenieur_00001)

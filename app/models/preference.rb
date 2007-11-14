@@ -1,4 +1,4 @@
 class Preference < ActiveRecord::Base
-  belongs_to :identifiant, :dependent => :destroy
+  belongs_to :user, :dependent => :destroy
 
 end

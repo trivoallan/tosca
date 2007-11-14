@@ -6,10 +6,6 @@ class AccountController < ApplicationController
   # Pour l'import de plusieurs utilisateurs
   require 'fastercsv'
 
-  # Auto completion in 2 lines, yeah !
-  auto_complete_for :identifiant, :nom
-  auto_complete_for :identifiant, :email
-
   helper :filters, :ingenieurs, :beneficiaires, :roles, :export
 
   before_filter :login_required, :except => [:login,:logout]
@@ -18,7 +14,7 @@ class AccountController < ApplicationController
 
   def index
     # init
-    options = { :per_page => 15, :order => 'identifiants.login', :include =>
+    options = { :per_page => 15, :order => 'users.login', :include =>
       [:beneficiaire,:ingenieur,:role] }
     conditions = []
     @roles = Role.find_select
@@ -33,14 +29,14 @@ class AccountController < ApplicationController
       # Specification of a filter f :
       # [ namespace, field, database field, operation ]
       conditions = Filters.build_conditions(accounts_filters, [
-        [:nom, 'identifiants.nom', :like ],
+        [:nom, 'users.nom', :like ],
         [:client_id, 'beneficiaires.client_id', :equal ],
-        [:role_id, 'identifiants.role_id', :equal ]
+        [:role_id, 'users.role_id', :equal ]
       ])
       flash[:conditions] = options[:conditions] = conditions
       @filters = accounts_filters
     end
-    @user_pages, @users = paginate :identifiants, options
+    @user_pages, @users = paginate :users, options
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
       render :partial => 'users_list', :layout => false
@@ -56,16 +52,16 @@ class AccountController < ApplicationController
       when :post
         user_crypt = 'false'
         user_crypt = params['user_crypt'] if params.has_key?('user_crypt')
-        if session[:user] = Identifiant.authenticate(params['user_login'],
+        if session[:user] = User.authenticate(params['user_login'],
                                                      params['user_password'],
                                                      user_crypt)
           set_sessions(session[:user])
           flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") %
-            [ session[:user].titre, session[:user].nom.gsub(' ', '&nbsp;') ]
+            [ session[:user].title, session[:user].name.gsub(' ', '&nbsp;') ]
           redirect_to_home
         else
           clear_sessions
-          id = Identifiant.find_by_login(params['user_login'])
+          id = User.find_by_login(params['user_login'])
           flash.now[:warn] = _("Connexion failure")
           flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
         end
@@ -76,7 +72,7 @@ class AccountController < ApplicationController
   def devenir
     if @ingenieur
       benef = Beneficiaire.find(params[:id])
-      set_sessions(benef.identifiant)
+      set_sessions(benef.user)
     else
       flash[:warn] = _('You are not allowed to change your identity')
     end
@@ -88,28 +84,28 @@ class AccountController < ApplicationController
   end
 
   def edit
-    @identifiant = Identifiant.find(params[:id])
-    @ingenieur = @identifiant.ingenieur
-    @beneficiaire = @identifiant.beneficiaire
+    @user = User.find(params[:id])
+    @ingenieur = @user.ingenieur
+    @beneficiaire = @user.beneficiaire
     _form
   end
 
   def show
-    @identifiant = Identifiant.find(params[:id])
-    @ingenieur = @identifiant.ingenieur
-    @beneficiaire = @identifiant.beneficiaire
+    @user = User.find(params[:id])
+    @ingenieur = @user.ingenieur
+    @beneficiaire = @user.beneficiaire
     _form
   end
 
   def update
-    @identifiant = Identifiant.find(params[:id])
-    @beneficiaire = @identifiant.beneficiaire
-    @ingenieur = @identifiant.ingenieur
+    @user = User.find(params[:id])
+    @beneficiaire = @user.beneficiaire
+    @ingenieur = @user.ingenieur
 
     # reset role when no case is selected
-    params[:identifiant] = { :role_ids => [] } unless params.has_key? :identifiant
+    params[:user] = { :role_ids => [] } unless params.has_key? :user
 
-    unless ((@identifiant.update_attributes(params[:identifiant])) and
+    unless ((@user.update_attributes(params[:user])) and
         ((not @beneficiaire) or
          @beneficiaire.update_attributes(params[:beneficiaire])) and
         ((not @ingenieur) or
@@ -121,10 +117,10 @@ class AccountController < ApplicationController
     index if request.xhr?
 
     #update cached profile for logged user
-    set_sessions  @identifiant if session[:user] == @identifiant
+    set_sessions  @user if session[:user] == @user
 
     flash[:notice]  = _("Edition succeeded")
-    redirect_to account_path(@identifiant)
+    redirect_to account_path(@user)
   end
 
   def new
@@ -137,24 +133,24 @@ class AccountController < ApplicationController
     _form
     case request.method
     when :post
-      @identifiant = Identifiant.new(params['identifiant'])
-      if @identifiant.save
+      @user = User.new(params['user'])
+      if @user.save
         client_id = params[:client][:id].to_i
         client = (client_id != 0 ? Client.find(client_id) : nil)
         flash[:notice] = _("Account successfully created.")
-        @identifiant.create_person(client)
-        benef, inge = @identifiant.beneficiaire, @identifiant.ingenieur
+        @user.create_person(client)
+        benef, inge = @user.beneficiaire, @user.ingenieur
         benef.update_attributes(params[:beneficiaire]) if benef
         inge.update_attributes(params[:ingenieur]) if inge
 
         # welcome mail
-        options = { :identifiant => @identifiant, :controller => self,
-          :password => @identifiant.pwd }
+        options = { :user => @user, :controller => self,
+          :password => @user.pwd }
         Notifier::deliver_new_user(options, flash)
         redirect_back_or_default accounts_path
       end
     when :get
-      @identifiant = Identifiant.new
+      @user = User.new
     end
   end
 
@@ -174,7 +170,7 @@ class AccountController < ApplicationController
   # Needs 'fastercsv'
   def multiple_signup
     _form
-    @identifiant = Identifiant.new
+    @user = User.new
     case request.method
     when :post
       if (params['textarea_csv'].to_s.empty?)
@@ -185,10 +181,10 @@ class AccountController < ApplicationController
           flash.now[:warn] = _('The CSV file is not correct')
         end
       }
-      if !params.has_key? :identifiant or params[:identifiant][:client].blank?
+      if !params.has_key? :user or params[:user][:client].blank?
         flash.now[:warn] = _('You have to specify a customer')
       end
-      if !params.has_key? :identifiant or params[:identifiant][:role_ids].blank?
+      if !params.has_key? :user or params[:user][:role_ids].blank?
         flash.now[:warn] = _('Vous must specify a role')
       end
 
@@ -197,7 +193,7 @@ class AccountController < ApplicationController
 
       FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"),
                       { :col_sep => ";", :headers => true }) do |row|
-        identifiant = Identifiant.new do |i|
+        user = User.new do |i|
            logger.debug(row.inspect)
            i.nom = row[_('Full name')].to_s
            i.titre = row[_('Title')].to_s
@@ -209,17 +205,17 @@ class AccountController < ApplicationController
            i.informations = row[_('Informations')].to_s
            i.client = true
         end
-        if identifiant.save
+        if user.save
           client = Client.find(params[:client][:id])
           flash[:notice] += _("The user %s have been successfully created.<br />") % row[_('Full name')]
-          identifiant.create_person(client)
-          options = { :identifiant => identifiant, :controller => self,
+          user.create_person(client)
+          options = { :user => user, :controller => self,
             :password => row[_('Password')].to_s }
           Notifier::deliver_new_user(options, flash)
           flash[:notice] += '<br />'
         else
           flash.now[:warn] += _('The user %s  has not been created.<br /> ') %
-            identifiant.nom
+            user.nom
         end
 
       end
@@ -230,7 +226,7 @@ class AccountController < ApplicationController
 
   # Destroy a user (via object)
   def destroy
-    Identifiant.find(params[:id]).destroy
+    User.find(params[:id]).destroy
     redirect_to_home
   end
 
@@ -249,7 +245,7 @@ private
     @count = {}
     @clients = Client.find_select
 
-    @count[:identifiants] = Identifiant.count
+    @count[:users] = User.count
     @count[:beneficiaires] = Beneficiaire.count
     @count[:ingenieurs] = Ingenieur.count
   end
@@ -258,11 +254,11 @@ private
   # penser à mettre à jour les pages statiques 404
   # et 500 en cas de modification
   # Le menu du layout est inclus pour des raisons de performances
-  def set_sessions(identifiant)
+  def set_sessions(user)
     # clear_session erase session[:user]
     clear_sessions
     # Set user properties
-    session[:user] = identifiant
+    session[:user] = user
     session[:beneficiaire] = session[:user].beneficiaire
     session[:ingenieur] = session[:user].ingenieur
 
