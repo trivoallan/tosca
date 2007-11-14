@@ -38,7 +38,7 @@ class Contrat < ActiveRecord::Base
   end
 
   def type_contrat
-    self[:type].sub(/Contrat/, "")
+    self.class.name.sub(/Contrat/, "")
   end
 
   def ouverture_formatted
