@@ -61,16 +61,22 @@ require 'overrides'
 
 
 XSendFile::Plugin.replace_send_file! if RAILS_ENV == 'production'
-require 'ruport'
-require 'ruport/util'
-require 'gettext/rails'
-require 'gettext_localize'
-require 'gettext_localize_rails'
-require 'uv'
+# Used to generate Ods Export. See ExportController.
+ require 'ruport'
+ # 0.9.0 does not work with TOSCA, for now.
+ require_gem 'ruport-util', '<= 0.8.0'
+ require 'ruport/util'
 
-require 'filters'
+# Used to load gettext 4 rails and to localize Dates & Number
+ require 'gettext_localize'
+ require 'gettext_localize_rails'
 
-require 'zip/zip'
+# Used to have cool preview with attachments
+ require 'uv'
+
+# Used to generated OpenDocument file.
+ require 'filters'
+ require 'zip/zip'
 
 #French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'

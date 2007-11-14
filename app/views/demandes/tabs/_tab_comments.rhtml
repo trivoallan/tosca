@@ -12,6 +12,7 @@
 <% commentaires.each do |commentaire| %>
  <% id = commentaire.identifiant  %>
  <table class="commentaire">
+   <% cache("comments/#{id}") do %>
    <tr class="<%=(commentaire.prive ? 'prive' : 'public')%>">
      <td class="infos" align="center">
         <span class="small"><%= _("Comment %s") % "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
@@ -42,6 +43,7 @@
      <% end %>
     </td>
     </tr>
+    <% end %>
 </table>
 <%= "<hr/>" if print_mode %>
 <% end %>

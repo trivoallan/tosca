@@ -217,7 +217,6 @@ class ExportController < ApplicationController
     data << row
 
     report = data.to_table 
-    puts report.inspect
     generate_report(report, :ods, {})
 
     flash[:clients]= flash[:clients]
