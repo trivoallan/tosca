@@ -1,7 +1,7 @@
 class AddTicketForRequests < ActiveRecord::Migration
   def self.up
-    add_column :demandes, :temps_ecoule, :integer
-    add_column :commentaires, :temps_ecoule, :integer
+    add_column :demandes, :temps_ecoule, :integer, :default => 0
+    add_column :commentaires, :temps_ecoule, :integer, :default => 0
 
     #For single table inherance
     add_column :contrats, :type, :string
