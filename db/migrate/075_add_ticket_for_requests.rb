@@ -1,8 +1,5 @@
 class AddTicketForRequests < ActiveRecord::Migration
   def self.up
-    add_column :demandes, :temps_ecoule, :integer, :default => 0
-    add_column :commentaires, :temps_ecoule, :integer, :default => 0
-
     #For single table inherance
     add_column :contrats, :type, :string
 
@@ -19,8 +16,6 @@ class AddTicketForRequests < ActiveRecord::Migration
 
   def self.down
     add_column :contrats, :support, :boolean, :default => false
-    remove_column :demandes, :temps_ecoule
-    remove_column :commentaires, :temps_ecoule
     remove_column :contrats, :type
     remove_column :contrats, :tickets_total
     remove_column :contrats, :tickets_consommes
