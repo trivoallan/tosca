@@ -1,7 +1,7 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-class AddTemps < ActiveRecord::Migration
+class AddTemp < ActiveRecord::Migration
   def self.up
     create_table :temps do |t|
       t.column :contournement, :float, :null => true

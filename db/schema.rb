@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 76) do
+ActiveRecord::Schema.define(:version => 77) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -230,6 +230,7 @@ ActiveRecord::Schema.define(:version => 76) do
     t.column "expected_on",      :datetime
     t.column "last_comment_id",  :integer,  :default => 0,  :null => false
     t.column "mantis_id",        :integer
+    t.column "temps_id",         :integer
   end
 
   add_index "demandes", ["contribution_id"], :name => "demandes_correctif_id_index"
@@ -491,6 +492,13 @@ ActiveRecord::Schema.define(:version => 76) do
     t.column "fermeture",            :integer, :default => 0,     :null => false
     t.column "newsletter",           :boolean
     t.column "duree_intervention",   :integer
+  end
+
+  create_table "temps", :force => true do |t|
+    t.column "contournement", :float
+    t.column "correction",    :float
+    t.column "ecoule",        :float
+    t.column "rappel",        :float
   end
 
   create_table "typecontributions", :force => true do |t|
