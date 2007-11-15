@@ -2,11 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-<<<<<<< schema.rb
 ActiveRecord::Schema.define(:version => 79) do
-=======
-ActiveRecord::Schema.define(:version => 78) do
->>>>>>> 1.35
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -216,7 +212,6 @@ ActiveRecord::Schema.define(:version => 78) do
   add_index "contributions_paquets", ["contribution_id"], :name => "correctifs_paquets_correctif_id_index"
 
   create_table "demandes", :force => true do |t|
-<<<<<<< schema.rb
     t.column "beneficiaire_id",     :integer,  :default => 0,  :null => false
     t.column "ingenieur_id",        :integer
     t.column "resume",              :string,   :default => "", :null => false
@@ -235,32 +230,10 @@ ActiveRecord::Schema.define(:version => 78) do
     t.column "expected_on",         :datetime
     t.column "last_comment_id",     :integer,  :default => 0,  :null => false
     t.column "mantis_id",           :integer
-    t.column "temps_ecoule",        :integer
     t.column "cache_contournement", :float
     t.column "cache_correction",    :float
     t.column "cache_ecoule",        :float
     t.column "cache_rappel",        :float
-=======
-    t.column "beneficiaire_id",  :integer,  :default => 0,  :null => false
-    t.column "ingenieur_id",     :integer
-    t.column "resume",           :string,   :default => "", :null => false
-    t.column "description",      :text
-    t.column "statut_id",        :integer,  :default => 0,  :null => false
-    t.column "severite_id",      :integer,  :default => 0,  :null => false
-    t.column "logiciel_id",      :integer,  :default => 0
-    t.column "created_on",       :datetime
-    t.column "updated_on",       :datetime
-    t.column "typedemande_id",   :integer,  :default => 0,  :null => false
-    t.column "contribution_id",  :integer
-    t.column "socle_id",         :integer
-    t.column "mail_cc",          :string
-    t.column "first_comment_id", :integer
-    t.column "contrat_id",       :integer,                  :null => false
-    t.column "expected_on",      :datetime
-    t.column "last_comment_id",  :integer,  :default => 0,  :null => false
-    t.column "mantis_id",        :integer
-    t.column "temps_id",         :integer
->>>>>>> 1.35
   end
 
   add_index "demandes", ["contribution_id"], :name => "demandes_correctif_id_index"
