@@ -56,19 +56,7 @@ class CommentairesController < ApplicationController
 #       contrôleur des demandes.
       flash[:warn] = _("Your comment is too short, please rewrite it.")
     elsif @commentaire.save
-      if demande.temps_id.nil?
-        temps = Temps.new
-      else
-        temps = Temps.find(demande.temps_id)
-      end
-      temps.update_attributes({"rappel" => demande.temps_rappel,
-        "ecoule" => demande.temps_ecoule, "correction" => demande.temps_correction,
-        "contournement" => demande.temps_contournement})
-
-      temps.save
-      demande.update_attributes({"temps_id" => temps.id})
-      demande.save
-
+      #rollback#
       flash[:notice] = _("Your comment was successfully added.")
       url_attachment = render_to_string(:layout => false, :template => '/attachment')
       options = { :demande => demande, :commentaire => @commentaire,
