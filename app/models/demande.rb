@@ -21,6 +21,7 @@ class Demande < ActiveRecord::Base
   # Key pointers to the request history
   belongs_to :first_comment, :class_name => "Commentaire", 
     :foreign_key => "first_comment_id"
+  # /!\ It's the last _public_ comment /!\
   belongs_to :last_comment, :class_name => "Commentaire", 
     :foreign_key => "last_comment_id"
 
@@ -98,8 +99,9 @@ class Demande < ActiveRecord::Base
     "#{typedemande.nom} (#{severite.nom}) : #{description}"
   end
 
-  def find_last_comment
-    options = { :order => 'created_on ASC' }
+  def find_last_comment_before(comment_id)
+    options = { :order => 'created_on DESC', :conditions => 
+      [ 'commentaires.prive <> 1 AND commentaires.id <> ?', comment_id ]}
     self.commentaires.find(:first, options)
   end
 

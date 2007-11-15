@@ -38,15 +38,14 @@ class Commentaire < ActiveRecord::Base
   # belongs_to don't allow us to call :dependent :'(
   before_destroy :delete_pj
   def delete_pj
-    self.piecejointe.destroy unless self.piecejointe.nil?
-    if self.demande.last_comment_id == self.id
-      # no check needed, coz a request MUST have at least one comment
-      # the first one, with the request description.
-      last_comment = self.demande.find_last_comment
-      self.demande.update_attribute :last_comment_id, last_comment.id
-    end
     # We MUST have at least the first comment
     return false if self.demande.first_comment_id == self.id
+    if !self.prive and self.demande.last_comment_id == self.id
+      last_comment = self.demande.find_last_comment_before(self.id)
+      return false unless last_comment
+      self.demande.update_attribute :last_comment_id, last_comment.id
+    end
+    self.piecejointe.destroy unless self.piecejointe.nil?
     true
   end
 
@@ -64,7 +63,7 @@ class Commentaire < ActiveRecord::Base
         request[attr] = self[attr] if self[attr] and request[attr] != self[attr]
       end
     end
-    request.last_comment_id = self.id
+    request.last_comment_id = self.id unless self.prive
     request.expected_on = Time.now + 15.days
     #To update the demande.updated_on
     request.save

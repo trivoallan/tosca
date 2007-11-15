@@ -1,7 +1,6 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-
 class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :appels,
     :socles, :commentaires, :account
@@ -12,17 +11,19 @@ class DemandesController < ApplicationController
     conditions = [ [ ] ]
 
     options[:joins] += 'INNER JOIN commentaires ON commentaires.id = demandes.last_comment_id'
+
     conditions.first << 'demandes.statut_id IN (?)'
     conditions << Statut::OPENED
-
     conditions.first << '(demandes.expected_on > NOW() OR demandes.expected_on IS NULL)'
+
     # find request where last comment was :
     # 1. from the recipient where this is an engineer
-    # 2. from !the recipient when this is a recipient
-    conditions.first << ('commentaires.user_id ' <<
-                         (@ingenieur ? '= ' : '<> ') <<
-                         'beneficiaires.user_id' )
-    conditions.first << 'commentaires.prive = 0'
+    # 2. from !the recipient or when it's running when this is a recipient
+    if @ingenieur # 3 == Suspendue
+      conditions.first << '(demandes.statut_id <> 3 OR (demandes.statut_id = 3 AND commentaires.user_id = beneficiaires.user_id))'
+    else
+      conditions.first <<  'commentaires.user_id <> beneficiaires.user_id'
+    end
 
     if @ingenieur
       conditions.first << 'demandes.ingenieur_id = ?'
