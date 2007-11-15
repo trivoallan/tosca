@@ -1588,35 +1588,39 @@ msgstr ""
 msgid "Your comment is too short, please rewrite it."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:59
+#: app/controllers/commentaires_controller.rb:66
 msgid "Your comment was successfully added."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:68
+#: app/controllers/commentaires_controller.rb:75
+msgid "Unable to save working times."
+msgstr ""
+
+#: app/controllers/commentaires_controller.rb:80
 msgid "A conflict has occured."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:69
+#: app/controllers/commentaires_controller.rb:76+81
 msgid "Please refresh your browser and try again."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:81
+#: app/controllers/commentaires_controller.rb:93
 msgid "The comment %s is now %s"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:83
+#: app/controllers/commentaires_controller.rb:95
 msgid "An error has occured : The comment was not modified"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:105
+#: app/controllers/commentaires_controller.rb:117
 msgid "The comment was successfully updated."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:117
+#: app/controllers/commentaires_controller.rb:129
 msgid "The comment was successfully destroyed."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:119
+#: app/controllers/commentaires_controller.rb:131
 msgid "You cannot delete the first comment"
 msgstr ""
 

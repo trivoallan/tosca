@@ -1597,35 +1597,39 @@ msgstr "une contribution"
 msgid "Your comment is too short, please rewrite it."
 msgstr "Votre commentaire est trop court. Merci d'en écrire un plus long."
 
-#: app/controllers/commentaires_controller.rb:59
+#: app/controllers/commentaires_controller.rb:66
 msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
-#: app/controllers/commentaires_controller.rb:68
+#: app/controllers/commentaires_controller.rb:75
+msgid "Unable to save working times."
+msgstr "Impossible d'enregistrer les temps de travail."
+
+#: app/controllers/commentaires_controller.rb:80
 msgid "A conflict has occured."
 msgstr "Une erreur est survenue"
 
-#: app/controllers/commentaires_controller.rb:69
+#: app/controllers/commentaires_controller.rb:76+81
 msgid "Please refresh your browser and try again."
 msgstr "Veuillez rafraichir votre navigateur et réessayer."
 
-#: app/controllers/commentaires_controller.rb:81
+#: app/controllers/commentaires_controller.rb:93
 msgid "The comment %s is now %s"
 msgstr "Le commentaire %s est maintenant %s"
 
-#: app/controllers/commentaires_controller.rb:83
+#: app/controllers/commentaires_controller.rb:95
 msgid "An error has occured : The comment was not modified"
 msgstr "Une erreur est survenue : Le commentaire n'a pas été modifié"
 
-#: app/controllers/commentaires_controller.rb:105
+#: app/controllers/commentaires_controller.rb:117
 msgid "The comment was successfully updated."
 msgstr "Le commentaire a été mis à jour avec succès."
 
-#: app/controllers/commentaires_controller.rb:117
+#: app/controllers/commentaires_controller.rb:129
 msgid "The comment was successfully destroyed."
 msgstr "Le commentaire a été détruit avec succès."
 
-#: app/controllers/commentaires_controller.rb:119
+#: app/controllers/commentaires_controller.rb:131
 msgid "You cannot delete the first comment"
 msgstr "Vous ne pouvez effacer le premier commentaire"
 
