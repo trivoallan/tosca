@@ -1,7 +1,7 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-require_dependency "identifiant"
+require_dependency "user"
 
 module LoginSystem 
   
