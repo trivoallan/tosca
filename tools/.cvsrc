@@ -1,0 +1,5 @@
+cvs -z3 -q
+diff -upN 
+update -dP
+checkout -P
+status -v 
