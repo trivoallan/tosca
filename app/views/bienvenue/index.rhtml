@@ -47,7 +47,7 @@
    <h3><%= _('Offer')%></h3>
   <% client = @beneficiaire.client %>
   <table>
-    <tr><td style="width: 1%;" rowspan="2"><%=logo_client client%> </td><td><%= user.titre + ' ' + user.nom%>,
+    <tr><td style="width: 1%;" rowspan="2"><%=logo_client client%> </td><td><%= user.title + ' ' + user.name%>,
       <%= _("You have access to one of our offers, which you have the detail at your disposal : %s") % link_to_my_client %></td>
     </tr>
     <tr><td><%= _('You hope this tool wil give you an entire satisfaction.')%></td></tr>

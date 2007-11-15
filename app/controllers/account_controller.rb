@@ -29,7 +29,7 @@ class AccountController < ApplicationController
       # Specification of a filter f :
       # [ namespace, field, database field, operation ]
       conditions = Filters.build_conditions(accounts_filters, [
-        [:nom, 'users.nom', :like ],
+        [:nom, 'users.name', :like ],
         [:client_id, 'beneficiaires.client_id', :equal ],
         [:role_id, 'users.role_id', :equal ]
       ])
