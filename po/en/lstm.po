@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-11-16 17:45+0100\n"
-"PO-Revision-Date: 2007-11-16 16:48+0100\n"
+"PO-Revision-Date: 2007-11-16 17:49+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -76,12 +76,10 @@ msgid "User|Informations"
 msgstr ""
 
 #: app/models/user.rb:-
-#, fuzzy
 msgid "User|Client"
 msgstr "Customer"
 
 #: app/models/user.rb:-
-#, fuzzy
 msgid "User|Inactive"
 msgstr "Inactive"
 
@@ -187,9 +185,8 @@ msgid "ingenieur"
 msgstr ""
 
 #: app/models/ingenieur.rb:-
-#, fuzzy
 msgid "Ingenieur|User"
-msgstr "Login"
+msgstr "User"
 
 #: app/models/ingenieur.rb:-
 msgid "Ingenieur|Chef de projet"
@@ -448,17 +445,14 @@ msgid "Demande|Mantis"
 msgstr "Mantis"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Temps ecoule"
 msgstr "Description"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Cache contournement"
 msgstr "Created on"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Cache correction"
 msgstr "Description"
 
@@ -544,13 +538,11 @@ msgid "Document|Client"
 msgstr "Customer"
 
 #: app/models/document.rb:- app/views/documents/_form.rhtml:23
-#, fuzzy
 msgid "Document|Title"
-msgstr "title"
+msgstr "Title"
 
 #: app/models/document.rb:- app/views/documents/list.rhtml:9
 #: app/views/documents/show.rhtml:7 app/views/documents/_form.rhtml:26
-#, fuzzy
 msgid "Document|File"
 msgstr "File"
 
@@ -731,9 +723,8 @@ msgid "preference"
 msgstr ""
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|User"
-msgstr "Login"
+msgstr "User"
 
 #: app/models/preference.rb:-
 msgid "Preference|Mail text"
@@ -804,9 +795,8 @@ msgid "Commentaire|Demande"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-#, fuzzy
 msgid "Commentaire|User"
-msgstr "Updated on"
+msgstr "User"
 
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Piecejointe"
@@ -841,7 +831,6 @@ msgid "Commentaire|Ingenieur"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-#, fuzzy
 msgid "Commentaire|Temps ecoule"
 msgstr "Created on"
 
@@ -970,9 +959,8 @@ msgid "Contrat|Nom"
 msgstr "Name"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Type"
-msgstr "Name"
+msgstr "Type"
 
 #: app/models/contrat.rb:-
 #, fuzzy
@@ -1023,9 +1011,8 @@ msgid "Beneficiaire|Beneficiaire"
 msgstr ""
 
 #: app/models/beneficiaire.rb:-
-#, fuzzy
 msgid "Beneficiaire|User"
-msgstr "Login"
+msgstr "User"
 
 #: app/models/beneficiaire.rb:-
 msgid "Beneficiaire|Notifier subalternes"
@@ -4770,9 +4757,8 @@ msgid "a document"
 msgstr ""
 
 #: app/views/documents/list.rhtml:9
-#, fuzzy
 msgid "Document|Delivery_on"
-msgstr "Customer"
+msgstr "Delivered on"
 
 #: app/views/documents/list.rhtml:22
 msgid "Return to selection"
@@ -4783,14 +4769,12 @@ msgid "Submitted by"
 msgstr ""
 
 #: app/views/documents/show.rhtml:11
-#, fuzzy
 msgid "Document|Updated_on"
 msgstr "Updated on"
 
 #: app/views/documents/_form.rhtml:29
-#, fuzzy
 msgid "Document|Delivery_date"
-msgstr "Customer"
+msgstr "Date of delivery"
 
 #: app/views/documents/_documents_info.rhtml:15
 #: app/views/documents/new.rhtml:1

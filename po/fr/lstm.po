@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-16 17:45+0100\n"
-"PO-Revision-Date: 2007-11-16 16:48+0100\n"
+"PO-Revision-Date: 2007-11-16 17:47+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -544,13 +544,11 @@ msgid "Document|Client"
 msgstr "Client"
 
 #: app/models/document.rb:- app/views/documents/_form.rhtml:23
-#, fuzzy
 msgid "Document|Title"
 msgstr "Titre"
 
 #: app/models/document.rb:- app/views/documents/list.rhtml:9
 #: app/views/documents/show.rhtml:7 app/views/documents/_form.rhtml:26
-#, fuzzy
 msgid "Document|File"
 msgstr "Fichier"
 
@@ -4831,7 +4829,6 @@ msgid "a document"
 msgstr "un document"
 
 #: app/views/documents/list.rhtml:9
-#, fuzzy
 msgid "Document|Delivery_on"
 msgstr "Date de livraison"
 
@@ -4840,17 +4837,14 @@ msgid "Return to selection"
 msgstr "Retour à la sélection"
 
 #: app/views/documents/show.rhtml:9
-#, fuzzy
 msgid "Submitted by"
-msgstr "Enregistré"
+msgstr "Déposé par"
 
 #: app/views/documents/show.rhtml:11
-#, fuzzy
 msgid "Document|Updated_on"
 msgstr "Mis à jour le"
 
 #: app/views/documents/_form.rhtml:29
-#, fuzzy
 msgid "Document|Delivery_date"
 msgstr "Date de livraison"
 
@@ -4859,17 +4853,4 @@ msgstr "Date de livraison"
 msgid "Add a document"
 msgstr "Ajouter un document"
 
-#~ msgid "Delivered on"
-#~ msgstr "Livré le"
 
-#~ msgid "File :"
-#~ msgstr "Fichier :"
-
-#~ msgid "Size : "
-#~ msgstr "Taille : "
-
-#~ msgid "Updated on : "
-#~ msgstr "Mis à jour le :"
-
-#~ msgid "Delivery date"
-#~ msgstr "Date de Livraison"
