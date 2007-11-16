@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(:version => 79) do
   add_index "binaires_demandes", ["demande_id"], :name => "binaires_demandes_demande_id_index"
 
   create_table "changelogs", :force => true do |t|
-    t.column "paquet_id",         :integer,  :default => 0,  :null => false
-    t.column "date_modification", :datetime,                 :null => false
-    t.column "nom_modification",  :string,   :default => "", :null => false
-    t.column "text_modification", :text,     :default => "", :null => false
+    t.column "paquet_id",         :integer,   :default => 0,  :null => false
+    t.column "date_modification", :timestamp,                 :null => false
+    t.column "nom_modification",  :string,    :default => "", :null => false
+    t.column "text_modification", :text,      :default => "", :null => false
   end
 
   add_index "changelogs", ["paquet_id"], :name => "changelogs_paquet_id_index"
@@ -280,13 +280,13 @@ ActiveRecord::Schema.define(:version => 79) do
 
   create_table "documents", :force => true do |t|
     t.column "user_id",         :integer
-    t.column "typedocument_id", :integer,  :default => 0,  :null => false
-    t.column "client_id",       :integer,  :default => 0,  :null => false
-    t.column "titre",           :string,   :default => "", :null => false
-    t.column "fichier",         :string,   :default => "", :null => false
-    t.column "description",     :text,     :default => "", :null => false
-    t.column "created_on",      :datetime,                 :null => false
-    t.column "updated_on",      :datetime,                 :null => false
+    t.column "typedocument_id", :integer,   :default => 0,  :null => false
+    t.column "client_id",       :integer,   :default => 0,  :null => false
+    t.column "titre",           :string,    :default => "", :null => false
+    t.column "fichier",         :string,    :default => "", :null => false
+    t.column "description",     :text,      :default => "", :null => false
+    t.column "created_on",      :timestamp,                 :null => false
+    t.column "updated_on",      :timestamp,                 :null => false
     t.column "version",         :integer
     t.column "date_delivery",   :datetime
   end
@@ -353,7 +353,7 @@ ActiveRecord::Schema.define(:version => 79) do
   add_index "ingenieurs", ["user_id"], :name => "ingenieurs_identifiant_id_index"
 
   create_table "jourferies", :force => true do |t|
-    t.column "jour", :datetime, :null => false
+    t.column "jour", :timestamp, :null => false
   end
 
   create_table "licenses", :force => true do |t|
