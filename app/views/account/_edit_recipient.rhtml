@@ -1,12 +1,12 @@
 
-<% if @beneficiaire # and not session[:user].beneficiaire %>
+<% if @user_recipient # and not session[:user].beneficiaire %>
 
 <div class="show">
 
 <h1><b><%= _('Recipient') %></b></h1><br />
 
 <p><label for="beneficiaire_client">Client</label><br />
-  <%= collection_select(:beneficiaire, :client_id, @clients, :id, :nom) %>
+  <%= collection_select(:user_recipient, :client_id, @clients, :id, :nom) %>
 </p>
 
 <% if false #deactivated for now. %>

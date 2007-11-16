@@ -1,5 +1,5 @@
 
-<% if @ingenieur %>
+<% if @user_engineer %>
 
 <div class="show">
   <h1><b><%= _('Engineer') %></b></h1><br />
@@ -12,12 +12,12 @@
 
   <div>
    <label for="ingenieur_competences"><%= _('Skills') + ' ?' %></label><br />
-   <%= hbtm_check_box( @ingenieur.competences, @competences, 'ingenieur[competence_ids]', :size => 4) %>
+   <%= hbtm_check_box( @user_engineer.competences, @competences, 'ingenieur[competence_ids]', :size => 4) %>
   </div>
 
   <div>
    <label for="ingenieur_contrats"><%= _('Contracts')%></label><br />
-   <%= hbtm_check_box( @ingenieur.contrats, @contrats, 'ingenieur[contrat_ids]', :size => 2) %>
+   <%= hbtm_check_box( @user_engineer.contrats, @contrats, 'ingenieur[contrat_ids]', :size => 2) %>
   </div>
 
 </div>

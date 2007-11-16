@@ -37,13 +37,16 @@ class ApplicationController < ActionController::Base
   # L'option pour ne pas avoir de tinyMCE est la class "mceNoEditor".
   # TODO : mettre le bouton "image" et le plugin "advimage", quand on aura
   # fini la vue sur l'upload
+  TINY_BUTTONS = %w(formatselect bold italic underline strikethrough separator 
+                    bullist numlist forecolor separator link unlink separator 
+                    undo redo separator code)
   uses_tiny_mce :options => { :mode => 'textareas',
                               :entity_encoding => 'raw',
                               :theme => 'advanced',
                               :theme_advanced_toolbar_location => "top",
                               :theme_advanced_toolbar_align => "left",
                               :paste_auto_cleanup_on_paste => true,
-                              :theme_advanced_buttons1 => %w{formatselect bold italic underline strikethrough separator bullist numlist forecolor separator link unlink separator undo redo separator code},
+                              :theme_advanced_buttons1 => TINY_BUTTONS,
                               :theme_advanced_buttons2 => [],
                               :theme_advanced_buttons3 => [],
                               :plugins => %w{contextmenu paste},
@@ -86,8 +89,8 @@ protected
     # don't forget to take a look at accout/clear_session method
     # if you add something here. And don't add something here too ;).
     #    /!\
-    @ingenieur = session[:ingenieur]
-    @beneficiaire = session[:beneficiaire]
+    @ingenieur = session[:user].ingenieur
+    @beneficiaire = session[:user].beneficiaire
   end
 
   # Surcharge en attendant que ce soit fixé dans la branche officielle
