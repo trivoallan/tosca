@@ -1,33 +1,33 @@
 --- 
 typedocument_00001: 
-  nom: Bons de commande
+  name: Bons de commande
   id: 1
   description: "Bon des U.O. command\xC3\xA9es dans le cadre du march\xC3\xA9 SLL"
 typedocument_00002: 
-  nom: CR-CO
+  name: CR-CO
   id: 2
   description: "Compte-Rendu Comit\xC3\xA9-Op\xC3\xA9rationnel (bimensuel)"
 typedocument_00003: 
-  nom: CR-CSP
+  name: CR-CSP
   id: 3
   description: "Compte-Rendu des Comit\xC3\xA9s de Suivi des Projets (mensuel)"
 typedocument_00004: 
-  nom: CR-COPIL
+  name: CR-COPIL
   id: 4
   description: "Compte-rendu des COmit\xC3\xA9s de PILotage (trimestriel)"
 typedocument_00005: 
-  nom: Service
+  name: Service
   id: 5
   description: "Document qualit\xC3\xA9 sur le service fourni par  la cellule SLL"
 typedocument_00006: 
-  nom: Veilles
+  name: Veilles
   id: 6
   description: Contient l'ensemble des rapports de veilles technologiques vous concernant
 typedocument_00007: 
-  nom: NewsLetters
+  name: NewsLetters
   id: 7
   description: "Actualit\xC3\xA9s du Libre"
 typedocument_00008: 
-  nom: Audits
+  name: Audits
   id: 8
   description: Rapport d&#39;audit sur des &eacute;l&eacute;ments logiciels ou mat&eacute;riels pr&eacute;cis

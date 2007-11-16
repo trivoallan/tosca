@@ -3,7 +3,7 @@
 #####################################################
 class MainteneursController < ApplicationController
   def index
-    @mainteneur_pages, @mainteneurs = paginate :mainteneurs, :per_page => 10, :order => 'nom'
+    @mainteneur_pages, @mainteneurs = paginate :mainteneurs, :per_page => 10, :order => 'name'
   end
 
   def show

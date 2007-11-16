@@ -5,7 +5,7 @@
 <% titres = [_('Name') , _('Softwares') ]%>
 <%= show_table(@groupes, Groupe, titres) { |g|
   result = ''
-  result << "<td>#{g.nom }</td>"
+  result << "<td>#{g.name }</td>"
   result << "<td>#{g.logiciels.compact.size}</td>"
   result << "#{link_to_actions_table g}"
 }%>

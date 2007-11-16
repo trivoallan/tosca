@@ -5,7 +5,7 @@ module ClientsHelper
 
   def link_to_client(c)
     return '-' unless c
-    link_to c.nom, client_path(c)
+    link_to c.name, client_path(c)
   end
 
   # lien vers mon offre / mon client

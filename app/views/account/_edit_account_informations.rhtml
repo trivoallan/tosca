@@ -28,7 +28,7 @@
         csv[:champ] = text_area('textarea_csv', nil, :rows => 10, :cols => 58)
       end
       type_client[:titre] = '<label>' + _('Customer') + '</label>'
-      type_client[:champ] = collection_select(:client, :id, @clients, :id, :nom)
+      type_client[:champ] = collection_select(:client, :id, @clients, :id, :name)
     end
   end
 %>

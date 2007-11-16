@@ -1,13 +1,13 @@
 --- 
 typecontribution_00001: 
-  nom: Correction
+  name: Correction
   id: 1
   description: ""
 typecontribution_00002: 
-  nom: Evolution
+  name: Evolution
   id: 2
   description: ""
 typecontribution_00003: 
-  nom: Backport
+  name: Backport
   id: 3
   description: ""

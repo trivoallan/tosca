@@ -4,13 +4,13 @@
 <% if @ingenieur %>
  <p><label><%= _("Client :") %></label>
  <%= select('fake', 'client_id',
-            @clients.collect{|l| [ l.nom, l.id]}) %>
+            @clients.collect{|l| [ l.name, l.id]}) %>
  </p>
 <% end %>
 
 <%= render :partial => 'form_client' %><br />
 
-<p><label><%= _("Packages supported for %s :") % @demande.logiciel.nom if @demande.logiciel %></label>
+<p><label><%= _("Packages supported for %s :") % @demande.logiciel.name if @demande.logiciel %></label>
 <div class="bloc_scroll">
   <%= render :partial => 'form_binaires' %>
 </div>

@@ -1,7 +1,7 @@
 --- 
 mainteneur_00001: 
-  nom: "RedHat"
+  name: "RedHat"
   id: 1
 mainteneur_00002: 
-  nom: "Linagora"
+  name: "Linagora"
   id: 2

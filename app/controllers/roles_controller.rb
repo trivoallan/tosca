@@ -3,7 +3,8 @@
 #####################################################
 class RolesController < ApplicationController
   def index
-    @permissions = Permission.find(:all, :order => 'name', :include => [:roles])
+    options = { :order => 'permissions.name', :include => [:roles] }
+    @permissions = Permission.find(:all, options)
     @roles = Role.find(:all)
   end
 
@@ -19,7 +20,7 @@ class RolesController < ApplicationController
   def create
     @role = Role.new(params[:role])
     if @role.save
-      flash[:notice] = _("The role %s was succefully created.") % "\"#{@role.nom}\""
+      flash[:notice] = _("The role %s was succefully created.") % "\"#{@role.name}\""
       redirect_to roles_url
     else
       render :action => 'new'
@@ -34,7 +35,7 @@ class RolesController < ApplicationController
   def update
     @role = Role.find(params[:id])
     if @role.update_attributes(params[:role])
-      flash[:notice] = _("The role %s was succefully updated.") % "\"#{@role.nom}\""
+      flash[:notice] = _("The role %s was succefully updated.") % "\"#{@role.name}\""
       redirect_to roles_url
     else
       render :action => 'edit'

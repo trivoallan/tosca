@@ -16,7 +16,7 @@ class Piecejointe < ActiveRecord::Base
 
   validates_presence_of :file
 
-  def nom
+  def name
     return file[/[._ \-a-zA-Z0-9]*$/]
   end
 

@@ -6,7 +6,7 @@ class PaquetsController < ApplicationController
     :mainteneurs, :fournisseurs
 
   # auto completion in 2 lines, yeah !
-  auto_complete_for :paquet, :nom
+  auto_complete_for :paquet, :name
 
   # TODO : filtres du panel à gauche
   # TODO : faire une interface à base de filtres ?
@@ -20,7 +20,7 @@ class PaquetsController < ApplicationController
     # [ namespace, field, database field, operation ]
     params_paquet = params['paquet']
     conditions = Filters.build_conditions(params_paquet, [
-       ['nom', 'paquets.nom', :like ]
+       ['name', 'paquets.name', :like ]
      ]) unless params_paquet.blank?
     flash[:conditions] = options[:conditions] = conditions
 
@@ -51,8 +51,8 @@ class PaquetsController < ApplicationController
   def new
     @paquet = Paquet.new
     _form
-    @paquet.mainteneur = Mainteneur.find_by_nom('Linagora')
-    @paquet.distributeur = Distributeur.find_by_nom('(none)')
+    @paquet.mainteneur = Mainteneur.find_by_name('Linagora')
+    @paquet.distributeur = Distributeur.find_by_name('(none)')
     @paquet.logiciel_id = params[:logiciel_id]
     @paquet.active = true;
   end
@@ -60,7 +60,7 @@ class PaquetsController < ApplicationController
   def create
     @paquet = Paquet.new(params[:paquet])
     if @paquet.save
-      flash[:notice] = _('The package %s has been created.') % @paquet.nom
+      flash[:notice] = _('The package %s has been created.') % @paquet.name
       redirect_to paquets_path
     else
       _form
@@ -76,7 +76,7 @@ class PaquetsController < ApplicationController
   def update
     @paquet = Paquet.find(params[:id])
     if @paquet.update_attributes(params[:paquet])
-      flash[:notice] = _('The package %s has been updated.') % @paquet.nom
+      flash[:notice] = _('The package %s has been updated.') % @paquet.name
       redirect_to paquet_path(@paquet)
     else
       _form and render :action => 'edit'
@@ -90,7 +90,7 @@ class PaquetsController < ApplicationController
 
   private
   def _form
-    @logiciels = Logiciel.find(:all, :order => 'logiciels.nom')
+    @logiciels = Logiciel.find(:all, :order => 'logiciels.name')
     @groupes = Groupe.find_select
     @socles = Socle.find_select
     @conteneurs = Conteneur.find_select

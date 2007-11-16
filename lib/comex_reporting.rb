@@ -1,14 +1,14 @@
 module  ComexReporting
 
   def init_comex_report
-    @clients = Client.find(:all, :order => 'clients.nom')
+    @clients = Client.find(:all, :order => 'clients.name')
     @requests = {}
     @requests[:last_week] = {}
     @requests[:new] = {}
     @requests[:closed] = {}
     @total = { :active=> {}, :final=> {} }
     @clients.each do |c|
-      name = c.nom.intern
+      name = c.name.intern
       @total[:active][name] = [0,0,0,0, []]
       @total[:final][name] = 0
     end
@@ -82,7 +82,7 @@ module  ComexReporting
 
 
   def compute_comex_report(client)
-    name = client.nom.intern
+    name = client.name.intern
     values = {
       :first_day => @date[:first_day],
       :last_day=> @date[:end_day],
@@ -136,7 +136,7 @@ module  ComexReporting
     contrats.each do |contrat|
       c = @percents[contrat.id]= []
       c_extra = @extra[contrat.id] = {}
-      c_extra[:nom], c_extra[:demandes_ids] = contrat.nom, []
+      c_extra[:name], c_extra[:demandes_ids] = contrat.name, []
 
       demandes = Demande.find :all,
         :conditions => Demande::EN_COURS, :order=> 'updated_on ASC'

@@ -50,14 +50,14 @@ class Appel < ActiveRecord::Base
   end
 
   # For Ruport :
-  def contrat_nom
-    contrat.nom
+  def contrat_name
+    contrat.name
   end
-  def ingenieur_nom
-    ingenieur.nom
+  def ingenieur_name
+    ingenieur.name
   end
-  def beneficiaire_nom
-    beneficiaire ? beneficiaire.nom : '-'
+  def beneficiaire_name
+    beneficiaire ? beneficiaire.name : '-'
   end
   
 end

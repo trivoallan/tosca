@@ -23,8 +23,8 @@ class IngenieurTest < Test::Unit::TestCase
     i = Ingenieur.find 1
     assert_equal i.client_ids, [1,2,4,9]
   end
-  def test_nom
+  def test_name
     engineer = Ingenieur.find 2
-    assert_equal engineer.nom, 'Bob Dufloux'
+    assert_equal engineer.name, 'Bob Dufloux'
   end
 end

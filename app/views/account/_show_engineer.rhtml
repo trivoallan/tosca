@@ -5,7 +5,7 @@
 
   <h1><b><%= _('Engineer') %></b></h1><br />
 
-  <p><b><%= _('Name') + ' :'%></b><%= @user_engineer.nom %></p>
+  <p><b><%= _('Name') + ' :'%></b><%= @user_engineer.name %></p>
 
   <p><b><%= _('Project manager') + ' : '%></b>
   <%= 'X' if @user_engineer.chef_de_projet %></p>
@@ -22,7 +22,7 @@
 
   <% if (@user_engineer.competences.size != 0) %>
   <p><b><%= _('Skills') + ' : '%></b>
-  <%= @user_engineer.competences.collect{|c| c.nom}.join(', ') %>
+  <%= @user_engineer.competences.collect{|c| c.name}.join(', ') %>
   </p>
   <% end %>
 

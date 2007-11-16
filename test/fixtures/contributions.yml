@@ -2,7 +2,7 @@
 contribution_00001: 
   created_on: 2006-09-21 08:19:30 +02:00
   patch: super.patch.diff
-  nom: patch KTDms
+  name: patch KTDms
   logiciel_id: 1
   updated_on: 2007-07-12 14:21:17 +02:00
   description_fonctionnelle: Une description fonctionnelle
@@ -19,7 +19,7 @@ contribution_00001:
 contribution_00002: 
   created_on: 2007-11-02 14:13:38 +01:00
   patch: ""
-  nom: import date de Word
+  name: import date de Word
   logiciel_id: 5
   updated_on: 2007-11-02 14:13:39 +01:00
   description_fonctionnelle: "<p>Fix l\xE2\x80\x99import des dates de Ms Office 2003 dans OOo 2.0.x<br />Correspond aux demandes 74 et 9 dans mantis.</p>   \t<p>Le correctif a \xC3\xA9t\xC3\xA9 adapt\xC3\xA9 en version communautaire en 2.1.x.</p>"

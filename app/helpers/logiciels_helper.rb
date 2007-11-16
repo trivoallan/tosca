@@ -6,7 +6,7 @@ module LogicielsHelper
   # Display a link to a Logiciel (software)
   def public_link_to_logiciel(logiciel)
     return '-' unless logiciel and logiciel.is_a? Logiciel
-    public_link_to logiciel.nom, logiciel_path(logiciel)
+    public_link_to logiciel.name, logiciel_path(logiciel)
   end
 
   # Link to create a new url for a Logiciel

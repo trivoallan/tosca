@@ -8,5 +8,5 @@ class Machine < ActiveRecord::Base
   def to_s
     acces || '-'
   end
-  alias_method :nom, :to_s
+  alias_method :name, :to_s
 end

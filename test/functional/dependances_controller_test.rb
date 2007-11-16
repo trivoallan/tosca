@@ -69,7 +69,7 @@ class DependancesControllerTest < Test::Unit::TestCase
        :id => 1,
        :dependance => {
          :paquet_id => 1,
-         :nom => 'kernel',
+         :name => 'kernel',
          :sens => 'un autre sens',
          :version => '1.7.18'
        }

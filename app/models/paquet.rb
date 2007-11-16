@@ -6,7 +6,7 @@ class Paquet < ActiveRecord::Base
   belongs_to :fournisseur
   belongs_to :distributeur
   belongs_to :contrat, :counter_cache => true
-  belongs_to :mainteneur, :order => 'nom'
+  belongs_to :mainteneur, :order => 'name'
   belongs_to :conteneur
   has_many :fichiers, :dependent => :destroy
   has_many :changelogs, :dependent => :destroy
@@ -25,13 +25,13 @@ class Paquet < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
+    "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
   # (cf Conventions de développement : wiki)
   # INCLUDE à mettre pour chaque finders
   INCLUDE = [ :conteneur ]
-  ORDER = 'paquets.nom, paquets.version, paquets.release DESC'
+  ORDER = 'paquets.name, paquets.version, paquets.release DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
   def self.get_scoped_methods
@@ -40,13 +40,9 @@ class Paquet < ActiveRecord::Base
 
   def to_s
     the_name = _('unknown_name')
-    the_name = conteneur.nom unless conteneur.nil?
-    "%s %s-%s-%s" % [ the_name, nom, version, release]
+    the_name = conteneur.name unless conteneur.nil?
+    "%s %s-%s-%s" % [ the_name, name, version, release]
   end
-
-  # TODO : virer TOUT les to_display et les surcharges de nom de tous les modèles
-  alias_method :to_display, :to_s
-
 
   def contournement(typedemande_id, severite_id)
     engagement(typedemande_id, severite_id).contournement

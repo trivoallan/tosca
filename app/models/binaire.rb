@@ -26,10 +26,10 @@ class Binaire < ActiveRecord::Base
   end
 
   def to_s
-    "#{nom}-#{paquet.version}-#{paquet.release}"
+    "#{name}-#{paquet.version}-#{paquet.release}"
   end
 
-  ORDER = 'binaires.nom ASC'
+  ORDER = 'binaires.name ASC'
   INCLUDE = [:socle, :arch, :paquet]
   OPTIONS = {:order => ORDER, :include => INCLUDE }
 end

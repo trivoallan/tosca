@@ -15,7 +15,9 @@ class Beneficiaire < ActiveRecord::Base
   belongs_to :beneficiaire
   has_many :demandes, :dependent => :destroy
 
-  def nom
+  validates_presence_of :client
+
+  def name
     (user ? user.name : '')
   end
 
@@ -24,5 +26,5 @@ class Beneficiaire < ActiveRecord::Base
       :conditions => ['client_id=?', self.client_id]).collect{|c| c.id}
   end
 
-  alias_method :to_s, :nom
+  alias_method :to_s, :name
 end

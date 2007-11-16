@@ -29,7 +29,7 @@ class AccountController < ApplicationController
       # Specification of a filter f :
       # [ namespace, field, database field, operation ]
       conditions = Filters.build_conditions(accounts_filters, [
-        [:nom, 'users.name', :like ],
+        [:name, 'users.name', :like ],
         [:client_id, 'beneficiaires.client_id', :equal ],
         [:role_id, 'users.role_id', :equal ]
       ])
@@ -189,10 +189,10 @@ class AccountController < ApplicationController
                       { :col_sep => ";", :headers => true }) do |row|
         user = User.new do |i|
            logger.debug(row.inspect)
-           i.nom = row[_('Full name')].to_s
-           i.titre = row[_('Title')].to_s
+           i.name = row[_('Full name')].to_s
+           i.title = row[_('Title')].to_s
            i.email = row[_('Email')].to_s
-           i.telephone = row[_('Phone')].to_s
+           i.phone = row[_('Phone')].to_s
            i.login = row[_('Login')].to_s
            i.password = row[_('Password')].to_s
            i.password_confirmation = row[_('Password')].to_s
@@ -209,7 +209,7 @@ class AccountController < ApplicationController
           flash[:notice] += '<br />'
         else
           flash.now[:warn] += _('The user %s  has not been created.<br /> ') %
-            user.nom
+            user.name
         end
 
       end
@@ -229,7 +229,7 @@ private
   # Partial variables used in forms
   def _form
     @roles = Role.find_select
-    @clients = [Client.new(:id => 0, :nom => '» ')].concat(Client.find_select)
+    @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
     @competences = Competence.find_select
     @contrats = Contrat.find_select(Contrat::OPTIONS)
   end

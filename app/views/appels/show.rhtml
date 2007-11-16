@@ -9,10 +9,10 @@
     <td><%= link_to_demande @appel.demande %></td></tr>
 <% end %>
 <tr><td><b><%= _('Interlocutor')%></b></td>
-    <td><%= @appel.ingenieur.nom %></td></tr>
+    <td><%= @appel.ingenieur.name %></td></tr>
 
 <tr><td><b><%= _('Recipient')%></b></td>
-    <td><%= @appel.beneficiaire.nom if @appel.beneficiaire %></td></tr>
+    <td><%= @appel.beneficiaire.name if @appel.beneficiaire %></td></tr>
 
 <tr><td colspan="2"><hr/></td></tr>
 <tr><td><b><%= _('Started on')%></b></td>

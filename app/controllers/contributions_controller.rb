@@ -7,7 +7,7 @@ class ContributionsController < ApplicationController
   before_filter :login_required, :except => [:index,:select,:show,:list]
 
   # auto completion in 2 lines, yeah !
-  auto_complete_for :logiciel, :nom
+  auto_complete_for :logiciel, :name
 
   def index
     select
@@ -52,8 +52,8 @@ class ContributionsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(contributions_filters, [
-        [:software, 'logiciels.nom', :like ],
-        [:contribution, 'contributions.nom', :like ],
+        [:software, 'logiciels.name', :like ],
+        [:contribution, 'contributions.name', :like ],
         [:etatreversement_id, 'contributions.etatreversement_id', :equal ],
         [:ingenieur_id, 'contributions.ingenieur_id', :equal ]
       ])

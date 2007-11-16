@@ -7,7 +7,7 @@
   result = ''
   result << '<td>'
   m.socle.clients.each do |c| 
-    result << "#{c.nom}<br />"
+    result << "#{c.name}<br />"
   end if m.socle
   result << '</td>'
   result << "<td>#{link_to_socle(m.socle)}</td>"

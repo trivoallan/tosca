@@ -17,7 +17,7 @@ class Contribution < ActiveRecord::Base
 
   file_column :patch, :fix_file_extensions => nil
 
-  validates_length_of :nom, :within => 3..100
+  validates_length_of :name, :within => 3..100
   validates_presence_of :logiciel,
       :warn => "Vous devez spécifier un logiciel" 
 
@@ -34,23 +34,23 @@ class Contribution < ActiveRecord::Base
   end
 
   def to_s
-    return nom unless patch
+    return name unless patch
     index = patch.rindex('/')+ 1
     patch[index..-1]
   end
 
-  #alias_method :nom, :to_s
+  #alias_method :name, :to_s
 
   def summary
     out = ''
-    out << typecontribution.nom + ' sur ' if typecontribution
-    out << logiciel.nom
+    out << typecontribution.name + _(' on ') if typecontribution
+    out << logiciel.name
     out << " #{version}" if version
     out
   end 
 
   def to_param
-    "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
+    "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
   # Rien ne nous empeche, vue du mcd, d'avoir un contribution
@@ -129,17 +129,17 @@ class Contribution < ActiveRecord::Base
   end
 
   # For Ruport :
-  def pnom(object)
-    (object ? object.nom : '-')
+  def pname(object)
+    (object ? object.name : '-')
   end
-  def pnom_typecontribution
-    pnom(typecontribution)
+  def pname_typecontribution
+    pname(typecontribution)
   end
-  def pnom_logiciel
-    pnom(logiciel)
+  def pname_logiciel
+    pname(logiciel)
   end
-  def pnom_etatreversement
-    pnom(etatreversement)
+  def pname_etatreversement
+    pname(etatreversement)
   end
   def clos_enhance
     clos ? cloture_le_formatted : ''

@@ -6,12 +6,12 @@ class SoclesController < ApplicationController
 
   def index
     @socle_pages, @socles = paginate :socles, :per_page => 250,
-    :include => [:machine], :order=> 'socles.nom'
+    :include => [:machine], :order=> 'socles.name'
   end
 
   def show
     @socle = Socle.find(params[:id], :include => [:machine])
-    options = { :order => 'binaires.nom,paquets.version',
+    options = { :order => 'binaires.name,paquets.version',
       :include => [:paquet] }
     @binaires = Binaire.find_all_by_socle_id(@socle.id, options)
   end
@@ -57,7 +57,7 @@ class SoclesController < ApplicationController
   private
   def _form
     @machines = Machine.find :all
-    @clients = Client.find(:all, :select => 'clients.nom, clients.id')
+    @clients = Client.find(:all, :select => 'clients.name, clients.id')
   end
 
 end

@@ -100,27 +100,27 @@ class ReportingController < ApplicationController
     fill_data_general
 
     # TODO : trouver un bon moyen de faire un cache
-    @data.each_pair do |nom, data| # each_key do |nom|
-      #sha1 = Digest::SHA1.hexdigest("-#{qui}-#{nom}-")
-      @path[nom] = "reporting/#{nom}.png"
+    @data.each_pair do |name, data| # each_key do |name|
+      #sha1 = Digest::SHA1.hexdigest("-#{qui}-#{name}-")
+      @path[name] = "reporting/#{name}.png"
       size = data.size
       if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
         # cas d'une légende à deux colonnes : degradé obligatoire
-        if nom.to_s =~ /^severite/
-          @colors[nom] = @@couleurs_degradees[1..size]
-        elsif nom.to_s =~ /^repartition/
-          @colors[nom] = @@couleurs_types_degradees[1..size]
+        if name.to_s =~ /^severite/
+          @colors[name] = @@couleurs_degradees[1..size]
+        elsif name.to_s =~ /^repartition/
+          @colors[name] = @@couleurs_types_degradees[1..size]
         else
-          @colors[nom] = @@couleurs_degradees[1..size]
+          @colors[name] = @@couleurs_degradees[1..size]
         end
       else
         # cas d'une légende à une colonne : pas de degradé
-        if nom.to_s =~ /^temps/
-          @colors[nom] = @@couleurs_delais[1..size]
-        elsif nom.to_s =~ /^annulation/
-          @colors[nom] = @@couleurs_types[1..size]
+        if name.to_s =~ /^temps/
+          @colors[name] = @@couleurs_delais[1..size]
+        elsif name.to_s =~ /^annulation/
+          @colors[name] = @@couleurs_types[1..size]
         else
-          @colors[nom] = @@couleurs[1..size]
+          @colors[name] = @@couleurs[1..size]
         end
       end
     end
@@ -240,9 +240,6 @@ class ReportingController < ApplicationController
      [ [:'délais_respectés'], [:'hors_délai'] ]
 
 
-    # Camemberts nommé dynamiquement
-    #    @data[:top5_logiciels] = [ ]
-    #    @data[:top5_demandes] = [ ]
   end
 
   # Remplit un tableau avec la somme des données sur nb_month
@@ -383,8 +380,8 @@ class ReportingController < ApplicationController
     logiciels = logiciels.sort {|a,b| a[1]<=>b[1]}
     5.times do |i|
       values = logiciels.pop
-      nom = Logiciel.find(values[0]).nom
-      report.push [ nom.intern ]
+      name = Logiciel.find(values[0]).name
+      report.push [ name.intern ]
       report[i].push values[1]
     end
   end
@@ -397,8 +394,8 @@ class ReportingController < ApplicationController
     commentaires = commentaires.sort {|a,b| a[1]<=>b[1]}
     5.times do |i|
       values = commentaires.pop
-      nom = values[0].to_s # "##{values[0]} (#{values[1]})"
-      report.push [ nom.intern ]
+      name = values[0].to_s # "##{values[0]} (#{values[1]})"
+      report.push [ name.intern ]
       report[i].push values[1]
     end
   end
@@ -499,32 +496,32 @@ class ReportingController < ApplicationController
 
 
   # Lance l'écriture des _3_ graphes
-  def write3graph(nom, graph)
-    __write_graph(nom, graph)
-    middle = :"#{nom}_middle"
+  def write3graph(name, graph)
+    __write_graph(name, graph)
+    middle = :"#{name}_middle"
     __write_graph(middle, Gruff::Pie, _("Distributed on ") + "#{@report[:middle_report]}" + _(" months")) if @data[middle]
-    total = :"#{nom}_total"
+    total = :"#{name}_total"
     __write_graph(total, Gruff::Pie, _("Distributed on ") + "#{@report[:total_report]}" + _(" months")) if @data[total]
   end
-  # Ecrit le graphe en utilisant les données indexées par 'nom' dans @données
-  # grâce au chemin d'accès spécifié dans @path[nom]
+  # Ecrit le graphe en utilisant les données indexées par 'name' dans @données
+  # grâce au chemin d'accès spécifié dans @path[name]
   # graph sert à spécifier le type de graphe attendu
-  def __write_graph(nom, graph, title = _('Summary'))
-    return unless @data[nom]
+  def __write_graph(name, graph, title = _('Summary'))
+    return unless @data[name]
     g = graph.new(450)
 
     # Trop confus pour l'utilisateur et plus de place pour le graphe
     # if title; g.title = title; else g.hide_title = true; end
     g.hide_title = true
     g.theme = { #    g.theme_37signals légèrement modifié
-      :colors => @colors[nom],
+      :colors => @colors[name],
       :marker_color => 'black',
       :font_color => 'black',
       :background_colors => ['white', 'white']
     }
     g.sort = false
 
-    data = @data[nom].sort{|x,y| x[0].to_s <=> y[0].to_s}
+    data = @data[name].sort{|x,y| x[0].to_s <=> y[0].to_s}
     data.each {|value| g.data(value[0], value[1..-1]) }
     g.labels = @labels
     g.hide_dots = true if g.respond_to? :hide_dots
@@ -533,7 +530,7 @@ class ReportingController < ApplicationController
     g.no_data_message = _("No data \navailable")
 
     # this writes the file to the hard drive for caching
-    g.write "#{RAILS_ROOT}/public/images/#{@path[nom]}"
+    g.write "#{RAILS_ROOT}/public/images/#{@path[name]}"
   end
 
 

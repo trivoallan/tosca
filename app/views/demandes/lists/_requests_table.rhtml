@@ -17,22 +17,22 @@
 
    <% beneficiaire = Beneficiaire.new(:id => 0) %>
    <% ingenieur = Ingenieur.new(:id => 0)
-      def ingenieur.nom; ''; end %>
+      def ingenieur.name; ''; end %>
    <% for demande in @demandes %>
    <tr <%= tr_attributes(demande_path(demande)) %>>
         <td ><%= demande.id %></td>
-        <td><%= demande.respond_to?(:logiciels_nom) ? demande.logiciels_nom : Logiciel.not_found  %></td>
-        <td><%= demande.typedemandes_nom %></td>
+        <td><%= demande.respond_to?(:logiciels_name) ? demande.logiciels_name : Logiciel.not_found  %></td>
+        <td><%= demande.typedemandes_name %></td>
         <td class="demande_<%=demande.statut_id%>"><%= StaticImage::severite(demande) %></td>
        <% if @ingenieur %>
-        <td><%= demande.clients_nom %></td>
+        <td><%= demande.clients_name %></td>
        <% end %>
         <% beneficiaire = demande.beneficiaire if beneficiaire.id != demande.beneficiaire_id %>
         <td><%= beneficiaire %></td>
         <td class="wrapped"><b><%= link_to_demande demande %></b></td>
         <% if @ingenieur %>
           <% ingenieur = demande.ingenieur if ingenieur.id != demande.ingenieur_id %>
-          <td><%= ingenieur ? ingenieur.nom : '' %></td>
+          <td><%= ingenieur ? ingenieur.name : '' %></td>
        <% end %>
         <td><span class="date"><%=h demande.updated_on_formatted %></span></td>
    </tr>

@@ -9,7 +9,7 @@
 </td></tr></table>
 
 <% @clients.each do |c| %>
-  <h1><%= _('History of %s for %s') % [ c.nom, @annee ] %></h1>
+  <h1><%= _('History of %s for %s') % [ c.name, @annee ] %></h1>
    <h2><%=_('Time of taking into account the requests')%></h2>
    <%= report_table(:"temps_rappel_#{c.id}", :titre => @titres[:temps_rappel]) %>
    <label><%=_('Estimation in minutes')%></label><br />

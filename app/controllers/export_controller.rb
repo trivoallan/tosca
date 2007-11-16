@@ -32,8 +32,8 @@ class ExportController < ApplicationController
   end
 
   def compute_contributions(type)
-    methods = ['pnom_typecontribution', 'pnom_logiciel', 'version_to_s',
-      'pnom_etatreversement', 'delai_in_french_words', 'clos_enhance',
+    methods = ['pname_typecontribution', 'pname_logiciel', 'version_to_s',
+      'pname_etatreversement', 'delai_in_french_words', 'clos_enhance',
       'reverse_le_formatted']
     options = { :order => 'contributions.reverse_le ASC',
       :include => [:logiciel, :etatreversement, :demandes],
@@ -41,8 +41,8 @@ class ExportController < ApplicationController
       :methods => methods }
 
     report = Contribution.report_table(:all, options)
-    columns= [ 'id','pnom_typecontribution', 'pnom_logiciel',
-      'version_to_s','pnom_etatreversement', 'synthese',
+    columns= [ 'id','pname_typecontribution', 'pname_logiciel',
+      'version_to_s','pname_etatreversement', 'synthese',
       'reverse_le_formatted','clos_enhance','delai_in_french_words' ]
     unless report.column_names.empty?
       report.reorder(columns) 
@@ -69,11 +69,11 @@ class ExportController < ApplicationController
   def compute_users(type)
     options = { :order => 'users.login', :include => 
       [:beneficiaire,:ingenieur,:role], :conditions => flash[:conditions],
-      :methods => ['beneficiaire_client_nom', 'role_nom']
+      :methods => ['beneficiaire_client_name', 'role_name']
     }
     report = User.report_table(:all, options)
-    columns = ['id','login','nom','email','telephone',
-      'beneficiaire_client_nom', 'role_nom']
+    columns = ['id','login','name','email','telephone',
+      'beneficiaire_client_name', 'role_name']
 
     report.reorder columns
     report.rename_columns columns,
@@ -96,7 +96,7 @@ class ExportController < ApplicationController
   end
 
   def compute_appels(type)
-    columns= ['contrat_nom', 'ingenieur_nom', 'beneficiaire_nom']
+    columns= ['contrat_name', 'ingenieur_name', 'beneficiaire_name']
     options = { :order => 'appels.debut', :include => 
       [:beneficiaire,:ingenieur,:contrat,:demande], 
       :conditions => flash[:conditions],
@@ -126,9 +126,9 @@ class ExportController < ApplicationController
   end
 
   def compute_demandes(type, options_generate)
-    columns = [ 'id', 'logiciels_nom', 'clients_nom', 'severites_nom',
+    columns = [ 'id', 'logiciels_name', 'clients_name', 'severites_name',
       'created_on_formatted', 'socle', 'updated_on_formatted', 'resume', 
-      'statuts_nom', 'typedemandes_nom'
+      'statuts_name', 'typedemandes_name'
     ]
     options= { :order => 'updated_on DESC', :conditions => flash[:conditions],
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST,
@@ -166,7 +166,7 @@ class ExportController < ApplicationController
     flash[:conditions] = flash[:conditions]
     file_extension = MIME_EXTENSION[type].first
     content_type = MIME_EXTENSION[type].last
-    prefix = ( @beneficiaire ? @beneficiaire.client.nom : 'OSSA' )
+    prefix = ( @beneficiaire ? @beneficiaire.client.name : 'OSSA' )
     suffix = Time.now.strftime('%d_%m_%Y')
     filename = [ prefix, params[:action], suffix].join('_') + file_extension
 
@@ -206,7 +206,7 @@ class ExportController < ApplicationController
     row << _('To close')
     data << row
     clients.each do |c|
-      name = c.nom.intern
+      name = c.name.intern
       row = [name]
       repeat4times row,requests[:last_week][name],1
       repeat4times row,requests[:new][name],1
@@ -240,8 +240,8 @@ class ExportController < ApplicationController
   end
 
   # TODO : le mettre dans les utils ?
-  def pnom(object)
-    (object ? object.nom : '-')
+  def pname(object)
+    (object ? object.name : '-')
   end
 
 end

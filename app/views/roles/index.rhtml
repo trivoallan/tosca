@@ -2,7 +2,7 @@
 <small>[<%= link_to _('and associated permissions'), permissions_url %>]</small>
 
 <% titres = [ _('Rule'), _('Description') ] 
-  titres.concat(@roles.collect{|r| link_to(r.nom, edit_role_url(r))})
+  titres.concat(@roles.collect{|r| link_to(r.name, edit_role_url(r))})
 %>
 <%= show_table(@permissions, Permission, titres) { |p|
   result = ''

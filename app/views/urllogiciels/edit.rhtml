@@ -1,4 +1,4 @@
-<h1><%= _('Editing url of "%s"') % @urllogiciel.logiciel.nom %></h1>
+<h1><%= _('Editing url of "%s"') % @urllogiciel.logiciel.name %></h1>
 
 <% form_tag(urllogiciel_path(@urllogiciel), :method => :put) do %>
   <%= render :partial => 'form' %>

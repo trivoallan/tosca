@@ -1,61 +1,61 @@
 --- 
 groupe_00006: 
-  nom: "Frameworks de d\xC3\xA9veloppement"
+  name: "Frameworks de d\xC3\xA9veloppement"
   id: 6
 groupe_00017: 
-  nom: SIG
+  name: SIG
   id: 17
 groupe_00018: 
-  nom: Portail
+  name: Portail
   id: 18
 groupe_00007: 
-  nom: "S\xC3\xA9curit\xC3\xA9"
+  name: "S\xC3\xA9curit\xC3\xA9"
   id: 7
 groupe_00008: 
-  nom: "Syst\xC3\xA8mes d'exploitation"
+  name: "Syst\xC3\xA8mes d'exploitation"
   id: 8
 groupe_00019: 
-  nom: SGBD
+  name: SGBD
   id: 19
 groupe_00020: 
-  nom: Serveurs d'applications
+  name: Serveurs d'applications
   id: 20
 groupe_00010: 
-  nom: Collaboratif
+  name: Collaboratif
   id: 10
 groupe_00009: 
-  nom: Serveurs de fichiers
+  name: Serveurs de fichiers
   id: 9
 groupe_00011: 
-  nom: Supervision
+  name: Supervision
   id: 11
 groupe_00012: 
-  nom: Outils de tests
+  name: Outils de tests
   id: 12
 groupe_00001: 
-  nom: Publication
+  name: Publication
   id: 1
 groupe_00002: 
-  nom: Exploitation
+  name: Exploitation
   id: 2
 groupe_00013: 
-  nom: Infrastructure (proxies, annuaires, DNS)
+  name: Infrastructure (proxies, annuaires, DNS)
   id: 13
 groupe_00014: 
-  nom: "R\xC3\xA9seaux"
+  name: "R\xC3\xA9seaux"
   id: 14
 groupe_00003: 
-  nom: Messagerie
+  name: Messagerie
   id: 3
 groupe_00004: 
-  nom: Outils et langages
+  name: Outils et langages
   id: 4
 groupe_00015: 
-  nom: Administration
+  name: Administration
   id: 15
 groupe_00016: 
-  nom: Bureautique
+  name: Bureautique
   id: 16
 groupe_00005: 
-  nom: Serveurs web
+  name: Serveurs web
   id: 5

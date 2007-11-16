@@ -7,9 +7,9 @@
     _('End of call'),_('Duration') ] %>
 <%= show_table(@appels, Appel, titres) { |a|
   result = ''
-  result << "<td>#{a.contrat.nom if a.contrat}</td>"
-  result << "<td>#{a.ingenieur.nom if a.ingenieur}</td>"
-  result << "<td>#{a.beneficiaire ? a.beneficiaire.nom : '-' }</td>"
+  result << "<td>#{a.contrat.name if a.contrat}</td>"
+  result << "<td>#{a.ingenieur.name if a.ingenieur}</td>"
+  result << "<td>#{a.beneficiaire ? a.beneficiaire.name : '-' }</td>"
   result << "<td>#{a.debut_formatted}</td>"
   result << "<td>#{a.fin_formatted}</td>"
   result << "<td>#{Lstm.time_in_french_words(a.duree)}</td>"

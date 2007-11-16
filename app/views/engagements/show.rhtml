@@ -5,7 +5,7 @@
 <% end %>
 
 <% for contrat in @engagement.contrats %>
-  <%= contrat.client.nom %> <br />
+  <%= contrat.client.name %> <br />
 <% end %>
 
 <%= link_to 'Edit', edit_engagement_path(@engagement) %> |

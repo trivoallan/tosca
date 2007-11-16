@@ -5,8 +5,8 @@ module BinairesHelper
 
   def link_to_binaire(binaire)
     return '-' unless binaire and binaire.paquet
-    nom = "#{binaire.nom}-#{binaire.paquet.version}-#{binaire.paquet.release}"
-    link_to nom, binaire_path(binaire.id)
+    name = "#{binaire.name}-#{binaire.paquet.version}-#{binaire.paquet.release}"
+    link_to name, binaire_path(binaire.id)
   end
 
 end

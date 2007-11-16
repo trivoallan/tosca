@@ -4,12 +4,12 @@
 class LogicielsController < ApplicationController
   # public access to the list
   before_filter :login_required, :except =>
-    [:index,:show,:auto_complete_for_logiciel_nom]
+    [:index,:show,:auto_complete_for_logiciel_name]
 
   helper :filters, :paquets, :demandes, :competences, :contributions
 
   # auto completion in 2 lines, yeah !
-  auto_complete_for :logiciel, :nom
+  auto_complete_for :logiciel, :name
 
   # ajaxified list
   def index
@@ -22,7 +22,7 @@ class LogicielsController < ApplicationController
       end
     end
 
-    options = { :per_page => 10, :order => 'logiciels.nom',
+    options = { :per_page => 10, :order => 'logiciels.name',
                 :include => [:groupe,:competences] }
     conditions = []
 
@@ -42,7 +42,7 @@ class LogicielsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(softwares_filters, [
-        [:software, 'logiciels.nom', :like ],
+        [:software, 'logiciels.name', :like ],
         [:description, 'logiciels.description', :like ],
         [:groupe_id, 'logiciels.groupe_id', :equal ],
         [:competence_id, 'competences_logiciels.competence_id', :equal ],
@@ -92,7 +92,7 @@ class LogicielsController < ApplicationController
   def create
     @logiciel = Logiciel.new(params[:logiciel])
     if @logiciel.save
-      flash[:notice] = _('The software %s has been created succesfully.') % @logiciel.nom
+      flash[:notice] = _('The software %s has been created succesfully.') % @logiciel.name
       redirect_to logiciels_path
     else
       _form and render :action => 'new'
@@ -107,7 +107,7 @@ class LogicielsController < ApplicationController
   def update
     @logiciel = Logiciel.find(params[:id])
     if @logiciel.update_attributes(params[:logiciel])
-      flash[:notice] = _('The software %s has been updated successfully.') % @logiciel.nom
+      flash[:notice] = _('The software %s has been updated successfully.') % @logiciel.name
       redirect_to logiciels_path
     else
       _form and render :action => 'edit'
@@ -117,14 +117,14 @@ class LogicielsController < ApplicationController
   def destroy
     @logiciel = Logiciel.find(params[:id])
     @logiciel.destroy
-    flash[:notice] = _('The software %s has been successfully deleted.') % @logiciel.nom
+    flash[:notice] = _('The software %s has been successfully deleted.') % @logiciel.name
     redirect_to logiciels_path
   end
 
 
 private
   def _form
-    order_by_name = { :order => 'nom' }
+    order_by_name = { :order => 'name' }
     @competences = Competence.find(:all, order_by_name)
     @groupes = Groupe.find(:all, order_by_name)
     @licenses = License.find(:all, order_by_name)

@@ -1,7 +1,7 @@
 --- 
 paquet_00001: 
   configuration: ""
-  nom: cups
+  name: cups
   logiciel_id: 1
   paquet_id: 0
   id: 1
@@ -18,7 +18,7 @@ paquet_00001:
   active: true
 paquet_00002: 
   configuration: ""
-  nom: vim-full
+  name: vim-full
   logiciel_id: 2
   paquet_id: 0
   id: 2

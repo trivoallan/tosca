@@ -13,18 +13,18 @@ module CommentairesHelper
         out << (_('This request has been taken into account by %s.') % name )
       else
         out << (_('This request has been assigned to %s by %s.') % 
-                [ "<b>#{ingenieur.nom}</b>", name ])
+                [ "<b>#{ingenieur.name}</b>", name ])
       end
     end 
     statut = comment.statut
     unless statut.nil?
       out << (_('This request has been changed in %s by %s.') % 
-              [ "<b>#{statut.nom}</b>", name ])
+              [ "<b>#{statut.name}</b>", name ])
     end 
     severite = comment.severite
     unless severite.nil?
       out << (_('This request has been requalified in %s by %s.') % 
-              [ "<b>#{severite.nom}</b>" , name ])
+              [ "<b>#{severite.name}</b>" , name ])
     end
     return nil if out.empty?
     '<div class="history">' << out.join('<br />') << '</div>'

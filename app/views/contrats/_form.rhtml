@@ -5,10 +5,10 @@
     <table class="form">
       <tr>
         <th><label for="contrat_client_id"><%=_('Customer')%></label></th>
-        <td><%= collection_select(:contrat, :client_id, @clients, :id, :nom) %></td>
+        <td><%= collection_select(:contrat, :client_id, @clients, :id, :name) %></td>
       </tr><tr>
-        <th><label for="contrat_nom"><%=_('Name')%></label></th>
-        <td><%= text_field :contrat, :nom %></td>
+        <th><label for="contrat_name"><%=_('Name')%></label></th>
+        <td><%= text_field :contrat, :name %></td>
       </tr>
 
       <tr>

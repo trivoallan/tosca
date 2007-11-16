@@ -77,7 +77,7 @@ class DemandesController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(requests_filters, [
-        [:text, 'logiciels.nom', 'demandes.resume', :dual_like ],
+        [:text, 'logiciels.name', 'demandes.resume', :dual_like ],
         [:client_id, 'beneficiaires.client_id', :equal ],
         [:ingenieur_id, 'demandes.ingenieur_id', :equal ],
         [:typedemande_id, 'demandes.typedemande_id', :equal ],
@@ -145,7 +145,7 @@ class DemandesController < ApplicationController
       url_attachment = render_to_string(:layout => false,
                                         :template => '/attachment')
       options = { :demande => @demande, :url_request => demande_url(@demande),
-        :nom => session[:user].nom, :url_attachment => url_attachment }
+        :name => session[:user].name, :url_attachment => url_attachment }
       Notifier::deliver_request_new(options, flash)
       similar = params[:similar]
       if similar and similar[:request] == '1'
@@ -176,7 +176,7 @@ class DemandesController < ApplicationController
       # MySQL doesn't support true/false so Rails use Tinyint...
       conditions = { :conditions =>
         [ 'paquets.logiciel_id=? AND paquets.active=1', logiciel.id ],
-        :order => 'paquets.nom DESC' }
+        :order => 'paquets.name DESC' }
       @paquets = beneficiaire.client.paquets.find(:all, conditions)
     end
   end

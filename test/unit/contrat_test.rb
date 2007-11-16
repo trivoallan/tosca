@@ -38,7 +38,7 @@ class ContratTest < Test::Unit::TestCase
       :client_id => 33, # vide,
       :ouverture => "2006-11-25 12:20:00",
       :cloture => "2007-11-12 14:23:00",
-      :nom => "OSSA - Guy - Intégral"
+      :name => "OSSA - Guy - Intégral"
     )
     assert c_name_empty.save
 

@@ -1,7 +1,7 @@
 <%= error_messages_for 'logiciel' %>
 
-<p><label for="logiciel_nom"><%=_('Name')%></label><br />
-<%= text_field 'logiciel', 'nom'  %></p>
+<p><label for="logiciel_name"><%=_('Name')%></label><br />
+<%= text_field 'logiciel', 'name'  %></p>
 
 <p><label for="logiciel_resume"><%=_('Summary')%></label><br />
 <%= text_field 'logiciel', 'resume' %></p>
@@ -15,11 +15,11 @@
 
 <p><label for="logiciel_licence_id"><%=_('Copyright')%></label><br />
   <%= select("logiciel", "license_id",
-	@licenses.collect{|l| [ l.nom, l.id]}) %></p>
+	@licenses.collect{|l| [ l.name, l.id]}) %></p>
 
 <p><label for="logiciel_groupe_id"><%=_('Group')%></label><br />
  <%= select("logiciel", "groupe_id",
-	@groupes.collect{|l| [ l.nom, l.id]}) %></p>
+	@groupes.collect{|l| [ l.name, l.id]}) %></p>
 
 <p><label for="logiciel_competence_ids"><%=_('Technologies')%></label></p>
 <%= hbtm_check_box( @logiciel.competences, @competences, 'logiciel[competence_ids]', :size => 4) %>

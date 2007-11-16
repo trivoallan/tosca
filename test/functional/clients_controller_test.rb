@@ -48,7 +48,7 @@ class ClientsControllerTest < Test::Unit::TestCase
   def test_create
     num_clients = Client.count
 
-    post :create, :client => { :nom => 'toto' }
+    post :create, :client => { :name => 'toto' }
 
     assert flash.has_key?(:notice)
     assert_response :redirect

@@ -1,10 +1,10 @@
 <%= error_messages_for 'etatreversement' %>
 
 <!--[form:etatreversement]-->
-<p><label for="etatreversement_nom">Nom</label><br />
-<%= text_field 'etatreversement', 'nom'  %></p>
+<p><label for="etatreversement_name"><%=_('Etatreversement|Name')%></label><br />
+<%= text_field 'etatreversement', 'name'  %></p>
 
-<p><label for="etatreversement_description">Description</label><br />
+<p><label for="etatreversement_description"><%=_('Etatreversement|Description')%></label><br />
 <%= text_area 'etatreversement', 'description'  %></p>
 <!--[eoform:etatreversement]-->
 

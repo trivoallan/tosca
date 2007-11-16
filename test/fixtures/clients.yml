@@ -1,7 +1,7 @@
 --- 
 client_00004: 
   support_id: 1
-  nom: linagorien
+  name: linagorien
   chrono: 
   inactive: false
   id: 4
@@ -13,7 +13,7 @@ client_00004:
   image_id: 3
 client_00005: 
   support_id: 1
-  nom: noman
+  name: noman
   chrono: 
   inactive: false
   id: 5
@@ -25,7 +25,7 @@ client_00005:
   image_id: 3
 client_00008: 
   support_id: 1
-  nom: Client Inactif
+  name: Client Inactif
   chrono: "34565"
   inactive: true
   id: 8
@@ -37,7 +37,7 @@ client_00008:
   image_id: 1
 client_00009: 
   support_id: 1
-  nom: "Client avec un b\xC3\xA9n\xC3\xA9ficiaire Inactif"
+  name: "Client avec un b\xC3\xA9n\xC3\xA9ficiaire Inactif"
   chrono: "4789"
   inactive: false
   id: 9
@@ -49,7 +49,7 @@ client_00009:
   image_id: 1
 client_00001: 
   support_id: 1
-  nom: toto
+  name: toto
   chrono: 
   inactive: false
   id: 1
@@ -61,7 +61,7 @@ client_00001:
   image_id: 1
 client_00002: 
   support_id: 1
-  nom: guy
+  name: guy
   chrono: 
   inactive: false
   id: 2

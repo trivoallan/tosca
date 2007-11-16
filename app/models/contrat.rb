@@ -80,18 +80,18 @@ class Contrat < ActiveRecord::Base
   end
 
   INCLUDE = [:client]
-  ORDER = 'clients.nom ASC'
+  ORDER = 'clients.name ASC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
   def to_s
-    nom
+    name
   end
 
   # used internally by wrapper :
   # /!\ DO NOT USE DIRECTLY /!\
   # use : logiciels() call
   has_many :_logiciels, :through => :paquets, :group =>
-    'id', :source => 'logiciel', :order => 'logiciels.nom ASC'
+    'id', :source => 'logiciel', :order => 'logiciels.name ASC'
 
-  # alias_method :to_s, :nom
+  # alias_method :to_s, :name
 end

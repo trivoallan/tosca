@@ -16,7 +16,7 @@
 
     <p><label for="machine_socle_id"><%= _('System')%></label><br />
     <%= select('machine', 'socle_id', 
-    @socles.collect{|l| [ l.nom, l.id]}) %></p>
+    @socles.collect{|l| [ l.name, l.id]}) %></p>
   </div>
   <div style="float: left">
     <p><label for="machine_description"><%= _('Description')%></label><br />

@@ -53,9 +53,9 @@ class Ingenieur < ActiveRecord::Base
 
   # Don't forget to make an :include => [:user] if you 
   # use this small wrapper.
-  def nom
+  def name
     user.name
   end
 
-  alias_method :to_s, :nom
+  alias_method :to_s, :name
 end

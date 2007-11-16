@@ -39,7 +39,7 @@
 
   <% @demande.paquets.each_with_index do |p,i| %>
     <tr class="<%= cycle('pair', 'impair') %>">
-      <td><%= p.nom %></td>
+      <td><%= p.name %></td>
       <td><%= p.version %></td>
       <td><%= "#{ Lstm.time_in_french_words(p.contournement(type_id, severite_id).days, true) }" %></td>
       <td><%= "#{ Lstm.time_in_french_words(p.correction(type_id, severite_id).days, true) }" %></td>

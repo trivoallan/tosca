@@ -19,7 +19,7 @@ class Engagement < ActiveRecord::Base
   end
 
   def to_s
-    "#{self.typedemande.nom} | #{self.severite.nom} : " +
+    "#{self.typedemande.name} | #{self.severite.name} : " +
       "#{Lstm.time_in_french_words(self.contournement.days, true)} " +
       "/ #{Lstm.time_in_french_words(self.correction.days, true)}"
   end
@@ -34,18 +34,5 @@ class Engagement < ActiveRecord::Base
   INCLUDE = [:typedemande,:severite]
   ORDER = 'engagements.typedemande_id, engagements.severite_id DESC, engagements.contournement DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
-
-
-  #affiche le nombre de jours ou un "sans engagement"
-  # voir application_helper
-  #
-  #def display_jours(temps)
-  #  return temps unless temps.is_a? Numeric
-  #  case temps
-  #    when -1 then "sans engagement"
-  #    when 1 then "1 jour ouvré"
-  #    else temps.to_s + " jours ouvrés"
-  #  end
-  #end
 
 end

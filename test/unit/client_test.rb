@@ -11,7 +11,7 @@ class ClientTest < Test::Unit::TestCase
     # a customer must have a name
     c= Client.new()
     assert c.save == false
-    c= Client.new(:nom => 'Grellier Airlines')
+    c= Client.new(:name => 'Grellier Airlines')
     assert c.save
 
     # a customer must have an id
@@ -25,7 +25,7 @@ class ClientTest < Test::Unit::TestCase
     c.update_attribute :id, 1
 
     # Some attributes shouldn't be null :
-    assert_not_nil c.nom
+    assert_not_nil c.name
     assert_not_nil c.description
     assert_not_nil c.mailingliste
     assert_not_nil c.adresse
@@ -39,17 +39,17 @@ class ClientTest < Test::Unit::TestCase
 
   def test_update
     c = clients( :client_00001 )
-    c.update_attributes(:nom => "titi", :support_id => 1,
+    c.update_attributes(:name => "titi", :support_id => 1,
       :description => "la femme de toto", :mailingliste=> "titi@laposte.net",
       :adresse => "les champs Élysées 95000 Paris", :image_id => 1,
-      :code_acces => "lenomdeleurchien")
-    assert_equal c.nom, "titi"
+      :code_acces => "4242")
+    assert_equal c.name, "titi"
     assert_equal c.support_id, 1
     assert_equal c.description, "la femme de toto"
     assert_equal c.mailingliste, "titi@laposte.net"
     assert_equal c.adresse, "les champs Élysées 95000 Paris"
     assert_equal c.image_id, 1
-    assert_equal c.code_acces, "lenomdeleurchien"
+    assert_equal c.code_acces, "4242"
   end
   def test_destroy
     assert clients( :client_00001).destroy
@@ -57,7 +57,7 @@ class ClientTest < Test::Unit::TestCase
 
   def test_name
     c = clients( :client_00001)
-    assert_equal c.nom, c.to_s
+    assert_equal c.name, c.to_s
     assert_equal c.to_param, "1-toto"
   end
   def test_severites
@@ -98,7 +98,7 @@ class ClientTest < Test::Unit::TestCase
     c = clients(:client_00001)
     c.inactive = true
     assert c.save
-    assert_equal c.nom , "<strike>toto</strike>"
+    assert_equal c.name , "<strike>toto</strike>"
     c.beneficiaires.each do |b|
       assert b.user.inactive?
     end

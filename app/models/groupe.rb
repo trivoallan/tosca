@@ -14,7 +14,7 @@ class Groupe < ActiveRecord::Base
   end
 
   def to_s
-    nom
+    name
   end
 
 end

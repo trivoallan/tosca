@@ -18,6 +18,6 @@ class Socle < ActiveRecord::Base
 
 
   def to_s
-    nom
+    name
   end
 end

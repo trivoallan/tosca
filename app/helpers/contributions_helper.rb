@@ -24,7 +24,7 @@ module ContributionsHelper
   # call it like : link_to_contribution_logiciel
   def public_link_to_contribution_logiciel(logiciel)
     return '-' unless logiciel
-    public_link_to "#{logiciel.nom} (#{logiciel.contributions.size})",
+    public_link_to "#{logiciel.name} (#{logiciel.contributions.size})",
       list_contribution_path(logiciel.id)
   end
 
@@ -39,12 +39,12 @@ module ContributionsHelper
   # <%= link_to_contribution @contribution %>
   def link_to_contribution(c)
     return '-' unless c
-    link_to c.nom, contribution_url(c)
+    link_to c.name, contribution_url(c)
   end
 
   def public_link_to_contribution(c)
     return '-' unless c
-    public_link_to(c.nom, contribution_path(c))
+    public_link_to(c.name, contribution_path(c))
   end
 
   # une contribution peut être liée à une demande externe

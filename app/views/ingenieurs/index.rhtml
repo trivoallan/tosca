@@ -6,7 +6,7 @@
 <% addlines = [
      [ ['']*4, @competences.collect{|c| c.ingenieurs.count } ].flatten
    ] %>
-<% titres.concat(@competences.collect{|c| c.nom}).flatten %>
+<% titres.concat(@competences.collect{|c| c.name}).flatten %>
 <%= show_table(@ingenieurs, Ingenieur, titres, :add_lines => addlines) { |i|
   result = "<td>#{i.user.name}</td>"
   result << "<td>#{'X' if i.chef_de_projet}</td>"

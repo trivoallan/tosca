@@ -7,8 +7,8 @@
              select_onchange(@clients, 0, 'client_id') + '</form>',
              '', '']%>
 <%= show_table(@beneficiaires, Beneficiaire, titres) { |b|
-  clientname = (b.client.nil? ? '-' : b.client.nom)
-  result = "<td>#{b.nom}</td>"
+  clientname = (b.client.nil? ? '-' : b.client.name)
+  result = "<td>#{b.name}</td>"
   result << "<td>#{clientname}</td>"
   result << '<td>'
   if not b.user.inactive?

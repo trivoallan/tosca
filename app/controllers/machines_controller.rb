@@ -59,8 +59,8 @@ class MachinesController < ApplicationController
 
   private
   def _form
-    @socles = Socle.find(:all, :select => 'socles.nom, socles.id',
-                         :order => 'socles.nom')
+    @socles = Socle.find(:all, :select => 'socles.name, socles.id',
+                         :order => 'socles.name')
     conditions = ['machines.virtuelle = ?', 0]
     @hotes = Machine.find(:all, :select => 'machines.acces, machines.id',
                           :conditions => conditions)

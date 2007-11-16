@@ -9,7 +9,7 @@ module DocumentsHelper
     return '-' unless typedocument
     size = typedocument.documents.size
     return nil if typedocument.documents.size == 0
-    link_to "#{typedocument.nom} (#{size})",  
+    link_to "#{typedocument.name} (#{size})",  
       list_document_url(:id => typedocument.id) 
   end
 

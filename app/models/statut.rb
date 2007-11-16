@@ -26,7 +26,7 @@ class Statut < ActiveRecord::Base
   end
 
   
-  SELECT = 'statuts.id, statuts.nom '
+  SELECT = 'statuts.id, statuts.name '
 
   # Give possible status for next step of a request
   # It follows scheme on the 08000linux wiki

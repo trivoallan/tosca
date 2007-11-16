@@ -11,7 +11,7 @@
   result << "<td>#{public_link_to_logiciel l}</td>"
   result << "<td>#{l.resume}</td>"
   result << "<td>#{liste_competences l.competences}</td>"
-  result << "<td>#{l.groupe.nom if l.groupe}</td>"
+  result << "<td>#{l.groupe.name if l.groupe}</td>"
   result << "<td>#{l.paquets.size}</td>"
   result << "#{link_to_actions_table l}"
 }%>

@@ -9,7 +9,7 @@ class Arch < ActiveRecord::Base
     if id == 6
       '<b>src</b>'
     else
-      nom
+      name
     end
   end
 end

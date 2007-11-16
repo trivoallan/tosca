@@ -1,52 +1,52 @@
 --- 
 typeurl_00001: 
-  nom: blog
+  name: blog
   id: 1
 typeurl_00012: 
-  nom: Development plans
+  name: Development plans
   id: 12
 typeurl_00013: 
-  nom: contact
+  name: contact
   id: 13
 typeurl_00002: 
-  nom: sourceforge
+  name: sourceforge
   id: 2
 typeurl_00003: 
-  nom: homepage
+  name: homepage
   id: 3
 typeurl_00014: 
-  nom: traduction
+  name: traduction
   id: 14
 typeurl_00015: 
-  nom: dossiers
+  name: dossiers
   id: 15
 typeurl_00004: 
-  nom: cvs
+  name: cvs
   id: 4
 typeurl_00005: 
-  nom: svn
+  name: svn
   id: 5
 typeurl_00016: 
-  nom: "Questions fr\xC3\xA9quentes"
+  name: "Questions fr\xC3\xA9quentes"
   id: 16
 typeurl_00017: 
-  nom: wiki
+  name: wiki
   id: 17
 typeurl_00006: 
-  nom: mailing-list
+  name: mailing-list
   id: 6
 typeurl_00007: 
-  nom: documentation
+  name: documentation
   id: 7
 typeurl_00008: 
-  nom: bugtracker
+  name: bugtracker
   id: 8
 typeurl_00009: 
-  nom: changelog
+  name: changelog
   id: 9
 typeurl_00010: 
-  nom: sources
+  name: sources
   id: 10
 typeurl_00011: 
-  nom: darcs
+  name: darcs
   id: 11

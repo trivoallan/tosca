@@ -1,10 +1,10 @@
 <%= error_messages_for 'socle' %>
 
-<p><label for="socle_nom"><%= _('Name')%></label><br />
-<%= text_field 'socle', 'nom'  %></p>
+<p><label for="socle_name"><%= _('Name')%></label><br />
+<%= text_field 'socle', 'name'  %></p>
 
 <p><label for="socle_machine"><%= _('Computer :') %> </label>
-<%= @socle.machine.nom if @socle.machine %></p>
+<%= @socle.machine.name if @socle.machine %></p>
 
 <div><label for="socle_clients_ids"><%= _('System') %></label><br />
 <%= hbtm_check_box(@socle.clients, @clients, 'socle[client_ids]', :size => 4) %>

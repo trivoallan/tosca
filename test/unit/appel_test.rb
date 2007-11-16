@@ -47,11 +47,11 @@ class AppelTest < Test::Unit::TestCase
     assert_equal duree, 21600
   end
   
-  def test_contrat_nom
+  def test_contrat_name
     a = Appel.find 1
-    assert(!a.contrat_nom.blank?)
+    assert(!a.contrat_name.blank?)
   end
-  def test_ingenieur_nom
+  def test_ingenieur_name
     a = Appel.find 1
   end
 end

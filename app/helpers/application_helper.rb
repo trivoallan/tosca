@@ -52,17 +52,17 @@ module ApplicationHelper
   #   an edit link and a delete link. Used widely in the show view of softwares.
   # If there is no block given, the field is displayed as is, with 'to_s' method.
   # Call it like :
-  #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.nom} %>
-  def show_liste(elements, nom = '', options = {})
+  #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.name} %>
+  def show_liste(elements, name = '', options = {})
     size = elements.size
-    return '<u><b>' << _('No') << " #{nom}</b></u><br />" unless size > 0
+    return '<u><b>' << _('No') << " #{name}</b></u><br />" unless size > 0
     if !session.data.has_key?(:user) and !options.has_key?(:public)
-      return "<u><b>#{pluralize(size, nom.capitalize)}" << _(' to date') << '</b></u><br />'
+      return "<u><b>#{pluralize(size, name.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
     result = ''
-    unless nom.blank? or options[:title]==false or options.has_key? :no_title
-      result << "<b>#{pluralize(size, nom.capitalize)} : </b><br />"
+    unless name.blank? or options[:title]==false or options.has_key? :no_title
+      result << "<b>#{pluralize(size, name.capitalize)} : </b><br />"
     end
 
     # used mainly in bienvenue/about
@@ -101,10 +101,10 @@ module ApplicationHelper
 
   # Wrapper, allowing to have a consistent api with link_to_*
   # Call it like exactly show_liste
-  def public_show_liste(elements, nom = '', options = {}, &functor)
+  def public_show_liste(elements, name = '', options = {}, &functor)
     public_options = options.dup
     public_options[:public] = true
-    show_liste(elements, nom, public_options, &functor)
+    show_liste(elements, name, public_options, &functor)
   end
 
   # Private call, used by show_liste on certain simple case
@@ -117,7 +117,7 @@ module ApplicationHelper
 
   # Call it like :
   # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
-  # <%= show_table(@documents, Document, titres) { |e| "<td>#{e.nom}</td>" } %>
+  # <%= show_table(@documents, Document, titres) { |e| "<td>#{e.name}</td>" } %>
   # N'oubliez pas d'utiliser les <td></td>
   # 3 options
   #   :total > désactive le décompte total si positionné à false

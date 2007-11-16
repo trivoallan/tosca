@@ -14,7 +14,7 @@ module EngagementsHelper
   #   show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]' )
   # TODO : habiller et mettre des bordures pour que ca se distingue du reste
   #  cf /contrats/new pour le voir
-  def show_form_engagements(object_engagement, engagements, nom)
+  def show_form_engagements(object_engagement, engagements, name)
     out = '<table>'
     out << '<tr><th>Demande</th><th>Sévérité</th><th></th>'
     out << '<th>Contournement</th><th>Correction</th></tr>'
@@ -28,17 +28,17 @@ module EngagementsHelper
       out << "<tr class=\"#{last_cycle}\">"
       out << '<td>'
       if e.typedemande_id != last_typedemande_id
-        out << "<strong>#{e.typedemande.nom}</strong>"
+        out << "<strong>#{e.typedemande.name}</strong>"
         last_typedemande_id = e.typedemande_id
       end
       out << '</td><td>'
       if e.severite_id != last_severite_id
-        out << e.severite.nom
+        out << e.severite.name
         last_severite_id = e.severite_id
       end
       out << '</td><td>'
       out << "<input id=\"engagement_#{e.id}\" type=\"checkbox\" "
-      out << "name=\"#{nom}[]\" value=\"#{e.id}\" "
+      out << "name=\"#{name}[]\" value=\"#{e.id}\" "
       out << 'checked="checked" ' if object_engagement.include? e
       out << '/>'
       out << "</td><td align=\"center\"><label for=\"engagement_#{e.id}\">"
@@ -58,8 +58,8 @@ module EngagementsHelper
     result << show_table(engagements, Engagement, titres) { |e|
       out = ''
       out << (oldtypedemande == e.typedemande_id ? '<td></td>' :
-                "<td>#{e.typedemande.nom}</td>" )
-      out << "<td>#{e.severite.nom}</td>"
+                "<td>#{e.typedemande.name}</td>" )
+      out << "<td>#{e.severite.name}</td>"
       out << "<td>#{Lstm.time_in_french_words(e.contournement.days, true)}</td>"
       out << "<td>#{Lstm.time_in_french_words(e.correction.days, true)}</td>"
       if controller.controller_name == 'engagements'

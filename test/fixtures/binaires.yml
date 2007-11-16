@@ -1,7 +1,7 @@
 --- 
 binaire_00001: 
   configuration: nil
-  nom: cups
+  name: cups
   archive: nil
   paquet_id: 1
   arch_id: 1

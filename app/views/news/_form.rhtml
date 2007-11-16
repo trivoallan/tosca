@@ -5,15 +5,15 @@
   <tr>
     <th><label for="new_ingenieur_id">Ingénieur</label></th>  
     <td><%= collection_select(:new, 'ingenieur_id', @ingenieurs, 
-                              :id, :nom) %>
+                              :id, :name) %>
   </tr><tr>
     <th><label for="new_client_id">Client</label></th>  
     <td><%= collection_select(:new, 'client_id', @clients, 
-                              :id, :nom, FormsHelper::PROMPT_SELECT.dup) %>
+                              :id, :name, FormsHelper::PROMPT_SELECT.dup) %>
   </tr><tr>
     <th><label for="new_logiciel_id">Logiciel</label></th>  
     <td><%= collection_select(:new, 'logiciel_id', @logiciels, 
-                              :id, :nom) %>
+                              :id, :name) %>
   </tr><tr><td colspan="2"><hr /></td></tr><tr>
     <th><label for="new_subject">Subject</label></th>
     <td><%= text_field 'new', 'subject', :size => '60'  %></td>

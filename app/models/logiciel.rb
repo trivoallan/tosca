@@ -29,7 +29,7 @@ class Logiciel < ActiveRecord::Base
   # uniquement content_columns
   def self.list_columns 
     columns.reject { |c| c.primary || 
-        c.name =~ /(_id|nom|resume|description|referent)$/ || 
+        c.name =~ /(_id|name|resume|description|referent)$/ || 
           c.name == inheritance_column } 
   end
 
@@ -40,11 +40,11 @@ class Logiciel < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{nom.gsub(/[^a-z1-9]+/i, '-')}"
+    "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
   def to_s
-    nom
+    name
   end
   
   def self.not_found

@@ -23,7 +23,7 @@ class Notifier < ActionMailer::Base
     @subject = "Time to fix this one : #{env['REQUEST_URI']}"
     user = "Nobody"
     if session
-      user = session[:user].nom if session[:user] and session[:user].nom
+      user = session[:user].name if session[:user] and session[:user].name
     end
     @body = {
       :user => user,
@@ -59,7 +59,7 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function require 3 parameters for options : :demande, :controller, :nom
+  # This function require 3 parameters for options : :demande, :controller, :name
   def request_new(options, flash)
     demande =  options[:demande]
 
@@ -76,7 +76,7 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function needs 4 options for options :demande, :nom, :commentaire, :url_request
+  # This function needs 4 options for options :demande, :name, :commentaire, :url_request
   def request_new_comment(options, flash)
     request = options[:demande]
     # needed in order to have correct recipients
@@ -258,7 +258,7 @@ class Notifier < ActionMailer::Base
   end
 
   def list_id(client)
-    "#{client.nom} <#{client.mailingliste}>"
+    "#{client.name} <#{client.mailingliste}>"
   end
 
 end

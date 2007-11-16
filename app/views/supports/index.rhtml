@@ -13,7 +13,7 @@
   result << "<td>#{'X' if s.maintenance}</td>"
   result << "<td>#{'X' if s.veille_technologique}</td>"
   result << "<td>#{'X' if s.newsletter}</td>"
-  result << "<td>#{s.clients.collect{|c| c.nom}.join(', ')}</td>"
+  result << "<td>#{s.clients.collect{|c| c.name}.join(', ')}</td>"
   result << "#{link_to_actions_table s}"
 }%>
 

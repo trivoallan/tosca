@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
 
   def index
     active = 'clients.inactive = 0'
-    options = { :per_page => 10, :order => 'clients.nom', 
+    options = { :per_page => 10, :order => 'clients.name', 
       :include => [:image,:support], :conditions => active }
     @client_pages, @clients = paginate :clients, options
   end

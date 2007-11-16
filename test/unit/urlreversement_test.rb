@@ -14,8 +14,8 @@ class UrlreversementTest < Test::Unit::TestCase
     u.contribution_id = 1
     assert u.save
   end
-  def test_nom
-    assert_equal Urlreversement.find(1).nom, 
+  def test_name
+    assert_equal Urlreversement.find(1).name, 
       "http://openoffice.org/monbugestici.html"
   end
   def test_to_s

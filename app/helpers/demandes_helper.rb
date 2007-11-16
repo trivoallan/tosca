@@ -48,7 +48,7 @@ module DemandesHelper
   # DEPRECATED : use instance method for 'to_s' Demande
   def demande_description(d)
     return '-' unless d
-    "#{d.typedemande.nom} (#{d.severite.nom}) : #{d.description}"
+    "#{d.typedemande.name} (#{d.severite.name}) : #{d.description}"
   end
 
   # TODO : explain what does this function
@@ -112,7 +112,7 @@ module DemandesHelper
       if old_field and old_field == field
         '<center></center>'
       else
-        model.find(field).nom
+        model.find(field).name
       end
     else
       '<center>-</center>'

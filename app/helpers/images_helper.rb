@@ -22,7 +22,7 @@ module ImagesHelper
     return '' if client.nil? or client.image.nil?
     version = (client.inactive? ? 'inactive_thumb' : 'thumb')
     image_tag(url_for_file_column(client.image, 'image', version),
-              image_options(client.nom_clean))
+              image_options(client.name_clean))
   end
 
   #TODO Merger avec StaticImage

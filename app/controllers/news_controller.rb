@@ -55,7 +55,7 @@ class NewsController < ApplicationController
     options = {
       :edito => [ edito.subject, edito.body],
       :articles => ['et un', 'et deux'],
-      :long_article => [long_article.subject, long_article.ingenieur.nom,
+      :long_article => [long_article.subject, long_article.ingenieur.name,
         long_article.body]
     }
     # The template : 

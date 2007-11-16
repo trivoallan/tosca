@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 80) do
+ActiveRecord::Schema.define(:version => 81) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 80) do
   add_index "appels", ["contrat_id"], :name => "index_appels_on_contrat_id"
 
   create_table "arches", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "name", :string
   end
 
   create_table "beneficiaires", :force => true do |t|
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 80) do
   create_table "binaires", :force => true do |t|
     t.column "paquet_id",             :integer, :default => 0, :null => false
     t.column "arch_id",               :integer, :default => 0, :null => false
-    t.column "nom",                   :string
+    t.column "name",                  :string
     t.column "configuration",         :text
     t.column "archive",               :string
     t.column "socle_id",              :integer
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(:version => 80) do
   add_index "changelogs", ["paquet_id"], :name => "changelogs_paquet_id_index"
 
   create_table "clients", :force => true do |t|
-    t.column "nom",                 :string,  :default => "",    :null => false
+    t.column "name",                :string
     t.column "description",         :text,    :default => "",    :null => false
     t.column "mailingliste",        :string,  :default => "",    :null => false
     t.column "adresse",             :text,    :default => "",    :null => false
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(:version => 80) do
   add_index "commentaires", ["updated_on"], :name => "index_commentaires_on_updated_on"
 
   create_table "communautes", :force => true do |t|
-    t.column "nom",         :string,   :default => "", :null => false
+    t.column "name",        :string
     t.column "description", :text,     :default => "", :null => false
     t.column "url",         :string,   :default => "", :null => false
     t.column "created_on",  :datetime,                 :null => false
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(:version => 80) do
   end
 
   create_table "competences", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "name", :string
   end
 
   create_table "competences_ingenieurs", :id => false, :force => true do |t|
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(:version => 80) do
   add_index "competences_logiciels", ["competence_id"], :name => "competences_logiciels_competence_id_index"
 
   create_table "conteneurs", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "name", :string
   end
 
   create_table "contrats", :force => true do |t|
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(:version => 80) do
     t.column "paquets_count",     :integer
     t.column "astreinte",         :boolean,  :default => false, :null => false
     t.column "socle",             :boolean,  :default => false, :null => false
-    t.column "nom",               :string
+    t.column "name",              :string
     t.column "type",              :string
     t.column "tickets_total",     :integer,  :default => 0
     t.column "tickets_consommes", :integer,  :default => 0
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(:version => 80) do
   add_index "contrats_ingenieurs", ["contrat_id"], :name => "contrats_ingenieurs_contrat_id_index"
 
   create_table "contributions", :force => true do |t|
-    t.column "nom",                       :string,   :default => "", :null => false
+    t.column "name",                      :string
     t.column "description",               :text,     :default => "", :null => false
     t.column "patch",                     :string,   :default => "", :null => false
     t.column "created_on",                :datetime,                 :null => false
@@ -257,13 +257,13 @@ ActiveRecord::Schema.define(:version => 80) do
 
   create_table "dependances", :force => true do |t|
     t.column "paquet_id", :integer,               :default => 0,  :null => false
-    t.column "nom",       :string,                :default => "", :null => false
+    t.column "name",      :string
     t.column "sens",      :string,  :limit => 15, :default => "", :null => false
     t.column "version",   :string,                :default => "", :null => false
   end
 
   create_table "distributeurs", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "name", :string
   end
 
   create_table "document_versions", :force => true do |t|
@@ -306,13 +306,8 @@ ActiveRecord::Schema.define(:version => 80) do
 
   add_index "engagements", ["severite_id", "typedemande_id"], :name => "engagements_severite_id_index"
 
-  create_table "etapes", :force => true do |t|
-    t.column "nom",         :string, :default => "", :null => false
-    t.column "description", :text
-  end
-
   create_table "etatreversements", :force => true do |t|
-    t.column "nom",         :string, :default => "", :null => false
+    t.column "name",        :string
     t.column "description", :text,   :default => "", :null => false
   end
 
@@ -333,11 +328,11 @@ ActiveRecord::Schema.define(:version => 80) do
   add_index "fichiers", ["paquet_id"], :name => "fichiers_paquet_id"
 
   create_table "fournisseurs", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "name", :string
   end
 
   create_table "groupes", :force => true do |t|
-    t.column "nom", :string, :limit => 80
+    t.column "name", :string, :limit => 80
   end
 
   create_table "images", :force => true do |t|
@@ -359,13 +354,13 @@ ActiveRecord::Schema.define(:version => 80) do
   end
 
   create_table "licenses", :force => true do |t|
-    t.column "nom",          :string,  :limit => 63, :default => "", :null => false
+    t.column "name",         :string,  :limit => 63
     t.column "url",          :string,                :default => "", :null => false
     t.column "certifie_osi", :boolean
   end
 
   create_table "logiciels", :force => true do |t|
-    t.column "nom",         :string,  :default => "", :null => false
+    t.column "name",        :string
     t.column "referent",    :string
     t.column "resume",      :string,  :default => "", :null => false
     t.column "description", :text
@@ -387,7 +382,7 @@ ActiveRecord::Schema.define(:version => 80) do
   end
 
   create_table "mainteneurs", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "name", :string
   end
 
   create_table "news", :force => true do |t|
@@ -407,7 +402,7 @@ ActiveRecord::Schema.define(:version => 80) do
 
   create_table "paquets", :force => true do |t|
     t.column "logiciel_id",      :integer,               :default => 0,    :null => false
-    t.column "nom",              :string,  :limit => 60, :default => "",   :null => false
+    t.column "name",             :string,  :limit => 60
     t.column "version",          :string,  :limit => 60, :default => "",   :null => false
     t.column "release",          :string,  :limit => 60, :default => "",   :null => false
     t.column "conteneur_id",     :integer,               :default => 0,    :null => false
@@ -423,7 +418,7 @@ ActiveRecord::Schema.define(:version => 80) do
     t.column "active",           :boolean,               :default => true
   end
 
-  add_index "paquets", ["nom", "version", "release"], :name => "paquets_nvr"
+  add_index "paquets", ["name", "version", "release"], :name => "paquets_nvr"
   add_index "paquets", ["paquet_id"], :name => "paquets_paquet_id"
   add_index "paquets", ["logiciel_id"], :name => "paquets_logiciel_id_index"
   add_index "paquets", ["conteneur_id"], :name => "paquets_conteneur_id_index"
@@ -461,7 +456,7 @@ ActiveRecord::Schema.define(:version => 80) do
   add_index "preferences", ["user_id"], :name => "index_preferences_on_identifiant_id"
 
   create_table "roles", :force => true do |t|
-    t.column "nom",  :string, :limit => 40
+    t.column "name", :string, :limit => 40
     t.column "info", :string, :limit => 80
   end
 
@@ -475,21 +470,21 @@ ActiveRecord::Schema.define(:version => 80) do
   add_index "sessions", ["session_id"], :name => "session_id_idx"
 
   create_table "severites", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "name", :string
   end
 
   create_table "socles", :force => true do |t|
-    t.column "nom",            :string,  :default => "", :null => false
+    t.column "name",           :string
     t.column "binaires_count", :integer
   end
 
   create_table "statuts", :force => true do |t|
-    t.column "nom",         :string, :default => "", :null => false
+    t.column "name",        :string
     t.column "description", :text,   :default => "", :null => false
   end
 
   create_table "supports", :force => true do |t|
-    t.column "nom",                  :string,  :default => "",    :null => false
+    t.column "name",                 :string
     t.column "maintenance",          :boolean, :default => false
     t.column "assistance_tel",       :boolean, :default => false
     t.column "veille_technologique", :boolean, :default => false
@@ -500,21 +495,21 @@ ActiveRecord::Schema.define(:version => 80) do
   end
 
   create_table "typecontributions", :force => true do |t|
-    t.column "nom",         :string, :default => "", :null => false
+    t.column "name",        :string
     t.column "description", :text,   :default => "", :null => false
   end
 
   create_table "typedemandes", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "name", :string
   end
 
   create_table "typedocuments", :force => true do |t|
-    t.column "nom",         :string, :default => "", :null => false
+    t.column "name",        :string
     t.column "description", :text,   :default => "", :null => false
   end
 
   create_table "typeurls", :force => true do |t|
-    t.column "nom", :string, :default => "", :null => false
+    t.column "name", :string
   end
 
   create_table "urllogiciels", :force => true do |t|

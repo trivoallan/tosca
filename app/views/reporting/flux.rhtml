@@ -21,11 +21,11 @@
    <tr class="<%=cycle('pair', 'impair')%>">
         <td><%= demande.id %></td>
         <td><span class="date"><%=h demande.created_on_formatted %></span></td>
-        <td><%= demande.typedemandes_nom[0].chr %><%= short_severite(demande) %></td>
+        <td><%= demande.typedemandes_name[0].chr %><%= short_severite(demande) %></td>
        <% if @ingenieur %>
-        <td><%= demande.clients_nom %></td>
+        <td><%= demande.clients_name %></td>
        <% end %>
-        <td><%= demande.statuts_nom %></td>
+        <td><%= demande.statuts_name %></td>
         <td class="wrapped"><b><%= link_to_demande demande %></b></td>
    </tr>
    <% end %>

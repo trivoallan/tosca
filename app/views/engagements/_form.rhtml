@@ -4,12 +4,12 @@
 
 <p><label for="engagement_typedemande">Type de demande</label><br />
   <%= select("engagement", "typedemande_id", 
-	@typedemandes.collect{|t| [ t.nom, t.id]}) %>
+	@typedemandes.collect{|t| [ t.name, t.id]}) %>
 </p>
 
 <p><label for="engagement_severite">Severite</label><br />
   <%= select("engagement", "severite_id", 
-	@severites.collect{|t| [ t.nom, t.id]}) %>
+	@severites.collect{|t| [ t.name, t.id]}) %>
 </p>	
 
 <p><label for="engagement_contournement">Contournement</label><br />

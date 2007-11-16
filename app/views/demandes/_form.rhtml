@@ -12,7 +12,7 @@
 <% if @demande.beneficiaire && @ingenieur %>
 <tr>
   <td><p><% _("Client") %></p></td>
-  <td><%= @demande.beneficiaire.client.nom %></td>
+  <td><%= @demande.beneficiaire.client.name %></td>
 </tr>
 <% end %>
 <tr>
@@ -24,14 +24,14 @@
   <td><p><label for="demande_beneficiaire"><%= _("Recipient") %></label></p></td>
   <td><select id="demande_beneficiaire_id" name="demande[beneficiaire_id]">
         <%= option_groups_from_collection_for_select(@clients, "beneficiaires",
-            "nom", "id", "nom", @demande.beneficiaire_id ) %>
+            "name", "id", "name", @demande.beneficiaire_id ) %>
       </select></td>
 </tr>
 <tr>
   <% if @contrats.size > 1 %>
    <td><p><label for="demande_contrat_id"><%= _("Concerning ") %></label></p></td>
    <td><%= select(:demande, :contrat_id, 
-                 @contrats.collect{|l| [ l.nom, l.id]}) %></td>
+                 @contrats.collect{|l| [ l.name, l.id]}) %></td>
   <% else %>
     <td colspan="2"><%= hidden_field :demande, :contrat_id %></td>
   <% end %>
@@ -49,7 +49,7 @@
 <tr>
   <td><p><label for="demande_socle"><%= _("System") %></label></p></td>
   <td><%= select(:demande, :socle_id,
-                  @socles.collect{|l| [l.nom , l.id ]}) %></td>
+                  @socles.collect{|l| [l.name , l.id ]}) %></td>
 </tr>
 <tr>
   <td><p><label for="demande_logiciel"><%= _("Software") %></label></p></td>
@@ -58,14 +58,14 @@
 <tr>
   <td><p><label for="demande_typedemande"><%= _("Type of the request") %></label></p></td>
   <td><%= select(:demande, :typedemande_id,
-                  @typedemandes.collect{|l| [ l.nom, l.id]}) %></td>
+                  @typedemandes.collect{|l| [ l.name, l.id]}) %></td>
 </tr>
 
 <% unless hidden_on_create.blank? %>
 <tr>
   <td><p><label for="demande_severite"><%= _("Severity of the request") %></label></p></td>
   <td><%= select(:demande, :severite_id,
-                  @severites.collect{|l| [ l.nom, l.id]}) %></td>
+                  @severites.collect{|l| [ l.name, l.id]}) %></td>
 </tr>
 <% end %>
 

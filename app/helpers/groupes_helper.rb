@@ -10,7 +10,7 @@ module GroupesHelper
 
   # Lien vers la consultation d'UN groupe
   def link_to_groupe(groupe)
-      link_to groupe.nom, groupe_url(:id => groupe.id)
+      link_to groupe.name, groupe_url(:id => groupe.id)
   end
 
 

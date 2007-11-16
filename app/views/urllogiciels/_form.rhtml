@@ -5,9 +5,9 @@
 
 <p><label for="urllogiciel_logiciel"><%=_('Software')%></label><br />
   <%= select("urllogiciel", "logiciel_id",
-             @logiciels.collect{|l| [ l.nom, l.id]},
+             @logiciels.collect{|l| [ l.name, l.id]},
              :selected => params[:logiciel_id].to_i) %></p>
 
 <p><label for="urllogiciel_typeurl"><%=_('Kind')%></label><br />
   <%= select("urllogiciel", "typeurl_id",
-             @typeurls.collect{|t| [ t.nom, t.id]}) %></p>
+             @typeurls.collect{|t| [ t.name, t.id]}) %></p>

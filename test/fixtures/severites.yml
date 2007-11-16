@@ -1,13 +1,13 @@
 --- 
 severite_00001: 
-  nom: Bloquante
+  name: Bloquante
   id: 1
 severite_00002: 
-  nom: Majeure
+  name: Majeure
   id: 2
 severite_00003: 
-  nom: Mineure
+  name: Mineure
   id: 3
 severite_00004: 
-  nom: Sans objet
+  name: Sans objet
   id: 4

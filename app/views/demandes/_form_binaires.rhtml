@@ -20,14 +20,14 @@
       <% else %>
         <td><%= check_box_tag('demande[paquet_ids][]', b.paquet.id,
                   (@demande.paquets.include? b.paquet)) %></td>
-        <td><%= b.paquet.nom %></td>
+        <td><%= b.paquet.name %></td>
         <td><%= "#{b.paquet.version}-#{b.paquet.release}" %></td>
         <td><%= Lstm.time_in_french_words(b.paquet.contournement(@demande.typedemande_id, @demande.severite_id).days, true) %></td>
         <td><%= Lstm.time_in_french_words(b.paquet.correction(@demande.typedemande_id, @demande.severite_id).days, true) %></td>
       <% end %>
       <td><%= check_box_tag('demande[binaire_ids][]', b.id,
                 (@demande.binaires.include? b)) %></td>
-      <td><%= b.nom %></td>
+      <td><%= b.name %></td>
     </tr>
     <% old_paquet = b.paquet %>
   <% end %>

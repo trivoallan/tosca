@@ -8,33 +8,33 @@ module FormsHelper
 
   ### FORMULAIRES ##################################################
 
-  # Collection doit contenir des objects qui ont un 'id' et un 'nom'
+  # Collection doit contenir des objects qui ont un 'id' et un 'name'
   # objectcollection contient le tableau des objects déjà présents
   # C'est la fonction to_s qui est utilisée pour le label
   # L'option :size permet une mise en colonne
   # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
-  def hbtm_check_box( objectcollection, collection, nom , options={})
+  def hbtm_check_box( objectcollection, collection, name , options={})
     return '' if collection.nil?
     objectcollection ||= []
     out = '<table><tr>' and count = 1
     options_size = options[:size]
     length = collection.size
-    nom_w3c = nom.gsub(/[^a-z1-9]+/i, '_')
+    name_w3c = name.gsub(/[^a-z1-9]+/i, '_')
     for donnee in collection
-      out << "<td><input id=\"#{nom_w3c}_#{donnee.id}\" type=\"checkbox\" "
-      out << "name=\"#{nom}[]\" value=\"#{donnee.id}\" "
+      out << "<td><input id=\"#{name_w3c}_#{donnee.id}\" type=\"checkbox\" "
+      out << "name=\"#{name}[]\" value=\"#{donnee.id}\" "
       out << 'checked="checked" ' if objectcollection.include? donnee
-      out << "/><label for=\"#{nom_w3c}_#{donnee.id}\">#{donnee}</label></td>"
+      out << "/><label for=\"#{name_w3c}_#{donnee.id}\">#{donnee}</label></td>"
       if options_size
         out << '</tr><tr>' if (count % options_size == 0) and length > count
         count += 1
       end
     end
     out << '</tr></table>'
-    out << "<input type=\"hidden\" value=\"\" name=\"#{nom}[]\"/>"
+    out << "<input type=\"hidden\" value=\"\" name=\"#{name}[]\"/>"
   end
 
-  # Collection doit contenir des objects qui ont un 'id' et un 'nom'
+  # Collection doit contenir des objects qui ont un 'id' et un 'name'
   # objectcollection contient le tableau des objects déjà présents
   # C'est la fonction to_s qui est utilisée pour le label
   # Ex : hm_radio_button( 'user', 'role_id', @roles)
@@ -57,7 +57,7 @@ module FormsHelper
     options[:title] ||= '» '
     options[:onchange] ||= 'this.form.submit();'
     options[:name] ||= name
-    collected = [[options[:title], '']].concat(list.collect{|e| [e.nom, e.id] })
+    collected = [[options[:title], '']].concat(list.collect{|e| [e.name, e.id] })
     default_value = (default.is_a?(Numeric) ? default : 0)
     select = options_for_select(collected, default_value)
     content_tag :select, select, options
@@ -66,7 +66,7 @@ module FormsHelper
   def select_empty(list, default, name, options = {})
     title = [ '» ', '' ]
     options[:name] = name
-    collected = list.collect{|e| [e.nom, e.id] }.unshift(title)
+    collected = list.collect{|e| [e.name, e.id] }.unshift(title)
     select = options_for_select(collected, default.to_i)
     content_tag :select, select, options
   end
@@ -150,7 +150,7 @@ module FormsHelper
   def lstm_select_field(label, model, field, collection, options = {})
     result = [ "<label for=\"#{model}_#{field}\">#{label}</label>",
                collection_select(model, field.to_s + '_id', collection,
-                                 :id, :nom, PROMPT_SELECT)  ]
+                                 :id, :name, PROMPT_SELECT)  ]
     result.last << ' ' + StaticImage::spinner if options.has_key? :spinner
     result
   end

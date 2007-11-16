@@ -1,10 +1,10 @@
 <%= public_link_to _('Home'), bienvenue_path %> >
  <%= public_link_to _('Contributions'), contributions_path %> >
-  <%= public_link_to @contribution.logiciel.nom, list_contribution_path(@contribution.logiciel_id) %> >
+  <%= public_link_to @contribution.logiciel.name, list_contribution_path(@contribution.logiciel_id) %> >
 
 <h2>
   <%= public_link_to_file @contribution, 'patch', :image => true, :else => '' %>
-  <b><%=h @contribution.nom %></b>
+  <b><%=h @contribution.name %></b>
   <%= link_to_edit(@contribution) %>
 </h2>
 <div class="info">
@@ -18,7 +18,7 @@
     } %>
     <% if @contribution.reverse_le %>
         <%= _('This contribution has been submitted on %s by <b>%s</b>') %
-              [ @contribution.reverse_le_formatted, @contribution.ingenieur.nom ] %>
+              [ @contribution.reverse_le_formatted, @contribution.ingenieur.name ] %>
         <% if @contribution.cloture_le %>
            <%=_('and its has been approved on %s') % @contribution.cloture_le_formatted %>
         <% end %>

@@ -1,5 +1,5 @@
 <div class="show">
-  <p><b><%= _('Name') + ' :'%></b><%= @ingenieur.nom %></p>
+  <p><b><%= _('Name') + ' :'%></b><%= @ingenieur.name %></p>
 
   <p><b><%= _('Project manager') + ' : '%></b>
   <%= 'X' if @ingenieur.chef_de_projet %></p>
@@ -16,7 +16,7 @@
 
   <% if (@ingenieur.competences.size != 0) %>
   <p><b><%= _('Skills') + ' : '%></b>
-  <%= @ingenieur.competences.collect{|c| c.nom}.join(', ') %>
+  <%= @ingenieur.competences.collect{|c| c.name}.join(', ') %>
   </p>
   <% end %>
 

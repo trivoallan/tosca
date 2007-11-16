@@ -10,15 +10,15 @@
 </p>
 
 <p><label for="binaire_socle"><%=_('System')%></label><br />
-  <%= collection_select(:binaire, :socle_id, @socles, :id, :nom) %>
+  <%= collection_select(:binaire, :socle_id, @socles, :id, :name) %>
 </p>
 
 <p><label for="binaire_arch"><%=_('Arch')%></label><br />
-  <%= collection_select(:binaire, :arch_id, @arches, :id, :nom) %>
+  <%= collection_select(:binaire, :arch_id, @arches, :id, :name) %>
 </p>
 
-<p><label for="binaire_nom"><%=_('Name')%></label><br />
-<%= text_field 'binaire', 'nom'  %></p>
+<p><label for="binaire_name"><%=_('Name')%></label><br />
+<%= text_field 'binaire', 'name'  %></p>
 
 <p><label for="binaire_configuration"><%=_('Configuration')%></label><br />
 <%= text_area 'binaire', 'configuration'  %></p>

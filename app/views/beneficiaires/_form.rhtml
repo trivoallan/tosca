@@ -3,7 +3,7 @@
 <!--[form:beneficiaire]-->
 
 <p><label for="beneficiaire_client">Client</label><br />
-  <%= collection_select(:beneficiaire, :client_id, @clients, :id, :nom) %>
+  <%= collection_select(:beneficiaire, :client_id, @clients, :id, :name) %>
 </p>
 
 <p><label for="beneficiaire_notifier_subalternes">Notifier subalternes</label><br />

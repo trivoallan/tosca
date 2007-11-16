@@ -1,6 +1,6 @@
 <%= public_link_to _('Homepage') , bienvenue_url%> >
  <%= public_link_to _('Softwares') , logiciels_path %> >
-  <%= public_link_to @paquet.logiciel.nom, logiciel_path(@paquet.logiciel_id) %> >
+  <%= public_link_to @paquet.logiciel.name, logiciel_path(@paquet.logiciel_id) %> >
    <%=@paquet.version%>-<%=@paquet.release%>  <%= link_to_edit(@paquet) %>
 
    <h1><%= _('Source package')%></h1>
@@ -13,22 +13,22 @@
 <% end %>
 
 <div class="show">
-  <p><b><%= _('Software') + ' : '%></b> <%= @paquet.logiciel.nom %></p>
-  <p><b><%= _('Contract') + ' : '%></b> <%= @paquet.contrat.client.nom %></p>
+  <p><b><%= _('Software') + ' : '%></b> <%= @paquet.logiciel.name %></p>
+  <p><b><%= _('Contract') + ' : '%></b> <%= @paquet.contrat.client.name %></p>
 
  <% for column in Paquet.content_columns %>
    <p><b><%= column.human_name %>:</b> <%= @paquet.send(column.name) %></p>
  <% end %>
 
- <p><b><%= _('Container') + ' : '%></b> <%= @paquet.conteneur.nom %></p>
- <p><b><%= _('Distributor')+ ' : '%></b> <%=h @paquet.distributeur.nom %></p>
- <p><b><%= _('Maintainer')+' : '%></b> <%=h @paquet.mainteneur.nom %></p>
+ <p><b><%= _('Container') + ' : '%></b> <%= @paquet.conteneur.name %></p>
+ <p><b><%= _('Distributor')+ ' : '%></b> <%=h @paquet.distributeur.name %></p>
+ <p><b><%= _('Maintainer')+' : '%></b> <%=h @paquet.mainteneur.name %></p>
 </div>
 
 <% if @paquet.binaires.size > 0 %>
 <p><%= _('This source package has')%><b> <%= pluralize(@paquet.binaires.count, _('binary') ) %></b></p>
   <%= show_liste(@binaires, _('binary'), :no_title => true) { |b|
-        link_to_binaire(b) << _(' <i>on</i> ') << b.socle.nom } %>
+        link_to_binaire(b) << _(' <i>on</i> ') << b.socle.name } %>
 <% end %>
 
 

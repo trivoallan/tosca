@@ -2,7 +2,7 @@ Bonjour,<br />
 
 <% if @user.client %>
   <p>
-&nbsp;&nbsp;Vous recevez ce courriel car vous avez été identifié(e) en tant que bénéficiaire du marché passé entre <%= Metadata::NOM_ENTREPRISE %> et <%= @user.beneficiaire.client.nom %>.
+&nbsp;&nbsp;Vous recevez ce courriel car vous avez été identifié(e) en tant que bénéficiaire du marché passé entre <%= Metadata::NOM_ENTREPRISE %> et <%= @user.beneficiaire.client.name %>.
   </p>
   <%= render :partial => '../notifier/user_access' %>
 <% else %>

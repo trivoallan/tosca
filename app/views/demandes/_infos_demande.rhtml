@@ -24,15 +24,15 @@
   <li><b><%= _("System") %>: </b><%= link_to_socle @demande.socle %></li>
   <li><b><%= _("Software") %>: </b><%= public_link_to_logiciel @demande.logiciel %></li>
    <% html_options = { :popup => ['help_statut', 'height=300,width=600'] } %>
-  <li><b><%= _("Status")%>: </b><%= link_to(@demande.statut.nom,
+  <li><b><%= _("Status")%>: </b><%= link_to(@demande.statut.name,
       help_statut_path(@demande.statut_id), html_options) %></li>
-  <li><b><%= _("Type")%>: </b><%= @demande.typedemande.nom %></li>
-  <li><b><%= _("Severity")%>: </b><%= @demande.severite.nom %></li>
+  <li><b><%= _("Type")%>: </b><%= @demande.typedemande.name %></li>
+  <li><b><%= _("Severity")%>: </b><%= @demande.severite.name %></li>
   <% unless @demande.mail_cc.blank? %>
      <li><b><%= _('CC') %>: </b><%= @demande.mail_cc.gsub(',', ',<br />') %></li>
   <% end %>
   <% if @demande.ingenieur %>
-    <li><b><%=_("Assigned to")%>: </b><%= @demande.ingenieur.nom %></li>
+    <li><b><%=_("Assigned to")%>: </b><%= @demande.ingenieur.name %></li>
   <% end %>
 </ul>
 
@@ -44,7 +44,7 @@
      <%= link_to_show(account_path(user)) if @ingenieur %></li>
   <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
   <% client = @demande.beneficiaire.client %>
-  <li><b><%= _('Company') %>: </b><%= link_to client.nom, client_path(client) %></li>
+  <li><b><%= _('Company') %>: </b><%= link_to client.name, client_path(client) %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('life_cycle_menu')" >

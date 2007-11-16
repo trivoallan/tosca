@@ -103,7 +103,7 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :newsletter => :get, :newsletter_result => :post }
   map.resources :pages
   map.resources :paquets, :collection =>
-    { :auto_complete_for_paquet_nom => :any}
+    { :auto_complete_for_paquet_name => :any}
   map.resources :permissions
   map.resources :piecejointes, :member => { :uv => :get }
   map.resources :reporting, :collection => { :flux => :get }

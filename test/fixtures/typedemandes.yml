@@ -1,19 +1,19 @@
 --- 
 typedemande_00001: 
-  nom: Information
+  name: Information
   id: 1
 typedemande_00002: 
-  nom: Anomalie
+  name: Anomalie
   id: 2
 typedemande_00005: 
-  nom: "\xC3\x89volution"
+  name: "\xC3\x89volution"
   id: 5
 typedemande_00006: 
-  nom: Monitorat
+  name: Monitorat
   id: 6
 typedemande_00007: 
-  nom: Intervention
+  name: Intervention
   id: 7
 typedemande_00008: 
-  nom: "\xC3\x89tude"
+  name: "\xC3\x89tude"
   id: 8

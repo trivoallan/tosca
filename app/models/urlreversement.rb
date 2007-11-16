@@ -7,12 +7,12 @@ class Urlreversement < ActiveRecord::Base
   validates_presence_of :valeur
   validates_presence_of :contribution_id
 
-  def nom
+  def name
     valeur
   end
 
   def to_s
-    nom
+    name
   end
 
 end

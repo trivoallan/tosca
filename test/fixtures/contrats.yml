@@ -1,7 +1,7 @@
 ---
 contrat_00003:
   astreinte: false
-  nom: OSSA - guy
+  name: OSSA - guy
   socle: false
   client_id: 2
   id: 3
@@ -11,7 +11,7 @@ contrat_00003:
   type: ContratOssa
 contrat_00006:
   astreinte: true
-  nom: OSSA - guy - 24h/24
+  name: OSSA - guy - 24h/24
   socle: false
   client_id: 2
   id: 6
@@ -21,7 +21,7 @@ contrat_00006:
   type: ContratOssa
 contrat_00010:
   astreinte: false
-  nom: OSSA - CInactif
+  name: OSSA - CInactif
   socle: false
   client_id: 9
   id: 10
@@ -31,7 +31,7 @@ contrat_00010:
   type: ContratSupport
 contrat_00001:
   astreinte: false
-  nom: OSSA - toto
+  name: OSSA - toto
   socle: false
   client_id: 1
   id: 1
@@ -41,7 +41,7 @@ contrat_00001:
   type: ContratOssa
 contrat_00002:
   astreinte: false
-  nom: OSSA - linagora
+  name: OSSA - linagora
   socle: true
   client_id: 4
   id: 2
@@ -50,7 +50,7 @@ contrat_00002:
   paquets_count: 0
   type: ContratOssa
 contrat_00004:
-  nom: Support - guy
+  name: Support - guy
   client_id: 2
   id: 4
   ouverture: 2006-11-25 12:20:00 +01:00

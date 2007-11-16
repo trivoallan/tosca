@@ -1,6 +1,6 @@
 --- 
 logiciel_00005: 
-  nom: OpenOffice.org
+  name: OpenOffice.org
   groupe_id: 16
   referent: openoffice.org
   id: 5
@@ -9,7 +9,7 @@ logiciel_00005:
   license_id: 2
   image_id: 
 logiciel_00001: 
-  nom: ANT
+  name: ANT
   groupe_id: 4
   referent: ant
   id: 1
@@ -18,7 +18,7 @@ logiciel_00001:
   license_id: 2
   image_id: 0
 logiciel_00002: 
-  nom: VIM
+  name: VIM
   groupe_id: 4
   referent: vim
   id: 2
@@ -27,7 +27,7 @@ logiciel_00002:
   license_id: 2
   image_id: 0
 logiciel_00003: 
-  nom: EMACS
+  name: EMACS
   groupe_id: 4
   referent: emacs
   id: 3

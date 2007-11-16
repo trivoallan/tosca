@@ -24,7 +24,7 @@
     <% @clients.each do |c| %>
      <tr class="<%=cycle('pair','impair')%>">
       <td><%= c %></td>
-        <% name = c.nom.intern %>
+        <% name = c.name.intern %>
 	<% 4.times do |i| %>
 	  <td><%= @requests[:last_week][name][i+1] %></td>
         <% end %>

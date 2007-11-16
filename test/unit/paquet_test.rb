@@ -15,7 +15,7 @@ class PaquetTest < Test::Unit::TestCase
     p = Paquet.find 1
     assert_equal p.to_s, 'rpm cups-1.1.17-13.3.6'
     p = Paquet.new(
-      :nom => "vim-full", 
+      :name => "vim-full", 
       :logiciel_id => 2 ,
       :mainteneur_id => 1,
       :version => '1.7',

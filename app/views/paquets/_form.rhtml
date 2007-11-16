@@ -5,13 +5,13 @@
 <table class="show" style="width: 80%">
   <tr>
     <td><label for="paquet_logiciel_id"><%= _('Software')%></label></td>
-    <td><%= select("paquet", "logiciel_id", @logiciels.collect{|l| [ l.nom, l.id]}) %></td>
+    <td><%= select("paquet", "logiciel_id", @logiciels.collect{|l| [ l.name, l.id]}) %></td>
   </tr><tr>
     <td><label for="paquet_contrat_id"><%= _('Contract')%></label></td>
-    <td><%= select("paquet", "contrat_id", @contrats.collect{|c| [ c.nom, c.id]}) %></td>
+    <td><%= select("paquet", "contrat_id", @contrats.collect{|c| [ c.name, c.id]}) %></td>
   </tr><tr>
-    <td><label for="paquet_nom"><%= _('Name')%></label></td>
-    <td><%= text_field 'paquet', 'nom'  %></td>
+    <td><label for="paquet_name"><%= _('Name')%></label></td>
+    <td><%= text_field 'paquet', 'name'  %></td>
   </tr><tr>
     <td><label for="paquet_version"><%= _('Version')%></label></td>
     <td><%= text_field 'paquet', 'version'  %></td>
@@ -21,19 +21,19 @@
   </tr><tr>
     <td><label for="paquet_conteneur_id"><%= _('Container')%></label>
         <%= link_to_new_conteneur %></td>
-    <td><%= select("paquet", "conteneur_id", @conteneurs.collect{|l| [ l.nom, l.id]}) %></td>
+    <td><%= select("paquet", "conteneur_id", @conteneurs.collect{|l| [ l.name, l.id]}) %></td>
   </tr><tr>
     <td><label for="paquet_distributeur_id"><%= _('Distributor')%></label>
         <%= link_to_new_distributeur %></td>
-    <td><%= select("paquet", "distributeur_id", @distributeurs.collect{|l| [ l.nom, l.id]}) %></td>
+    <td><%= select("paquet", "distributeur_id", @distributeurs.collect{|l| [ l.name, l.id]}) %></td>
   </tr><tr>
     <td><label for="paquet_mainteneur_id"><%= _('Maintainer')%></label>
         <%= link_to_new_mainteneur %></td>
-    <td><%= select("paquet", "mainteneur_id", @mainteneurs.collect{|l| [ l.nom, l.id]}) %></td>
+    <td><%= select("paquet", "mainteneur_id", @mainteneurs.collect{|l| [ l.name, l.id]}) %></td>
   </tr><tr>
     <td><label for="paquet_fournisseur_id"><%= _('Origin')%></label>
         <%= link_to_new_fournisseur %></td>
-    <td><%= select("paquet", "fournisseur_id", @fournisseurs.collect{|l| [ l.nom, l.id]}) %></td>
+    <td><%= select("paquet", "fournisseur_id", @fournisseurs.collect{|l| [ l.name, l.id]}) %></td>
   </tr><tr>
     <td><label for="paquet_active"><%= _('Supported') + ' ?'%></label></td>
     <td><%= check_box( 'paquet' , 'active')%></td>

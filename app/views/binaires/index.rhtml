@@ -15,8 +15,8 @@
   end
 
   result << "<td>#{link_to_binaire(b)}</td>"
-  result << "<td>#{b.socle.nom if b.socle}</td>"
-  result << "<td>#{b.arch.nom if b.arch}</td>"
+  result << "<td>#{b.socle.name if b.socle}</td>"
+  result << "<td>#{b.arch.name if b.arch}</td>"
   result << "<td>#{b.fichierbinaires_count}</td>"
   result << "<td>#{link_to_file(b, 'archive') if b.archive}</td>"
   result << "#{link_to_actions_table b}"

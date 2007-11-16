@@ -96,7 +96,7 @@ class Demande < ActiveRecord::Base
   end
 
   def to_s
-    "#{typedemande.nom} (#{severite.nom}) : #{description}"
+    "#{typedemande.name} (#{severite.name}) : #{description}"
   end
 
   def find_last_comment_before(comment_id)
@@ -135,9 +135,9 @@ class Demande < ActiveRecord::Base
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
-  SELECT_LIST = 'demandes.*, severites.nom as severites_nom, ' +
-    'logiciels.nom as logiciels_nom, clients.nom as clients_nom, ' + 
-    'typedemandes.nom as typedemandes_nom, statuts.nom as statuts_nom '
+  SELECT_LIST = 'demandes.*, severites.name as severites_name, ' +
+    'logiciels.name as logiciels_name, clients.name as clients_name, ' + 
+    'typedemandes.name as typedemandes_name, statuts.name as statuts_name '
   JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' +
     'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
     'INNER JOIN clients ON clients.id = beneficiaires.client_id '+

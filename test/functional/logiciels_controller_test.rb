@@ -65,7 +65,7 @@ class LogicielsControllerTest < Test::Unit::TestCase
     num_logiciels = Logiciel.count
 
     post :create, :logiciel => {
-      :nom=> 'ANT',
+      :name=> 'ANT',
       :groupe_id=> 4,
       :referent=> 'ant',
       :description=> 'un bon logiciel.',
@@ -94,7 +94,7 @@ class LogicielsControllerTest < Test::Unit::TestCase
 
   def test_update
     options = {
-        :nom => 'ANT',
+        :name => 'ANT',
         :groupe_id=> 4,
         :referent=> 'ant',
         :description=> 'un bon logiciel.',

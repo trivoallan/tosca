@@ -1,13 +1,13 @@
 --- 
 socle_00001: 
-  nom: dgi2004-1.32
+  name: dgi2004-1.32
   binaires_count: 0
   id: 1
 socle_00002: 
-  nom: dgi2007-0.24
+  name: dgi2007-0.24
   binaires_count: 0
   id: 2
 socle_00003: 
-  nom: windowsXP
+  name: windowsXP
   binaires_count: 0
   id: 3

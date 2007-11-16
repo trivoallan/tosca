@@ -40,7 +40,7 @@ module Filters
     extend Shared
   end
 
-  class Accounts < Struct.new('Accounts', :nom, :client_id, :role_id)
+  class Accounts < Struct.new('Accounts', :name, :client_id, :role_id)
     extend Shared
   end
 
@@ -53,7 +53,7 @@ module Filters
   # :like, :in & :equal
   # Call it like : 
   # conditions = Filters.build_conditions(params, [
-  #   ['logiciel', 'nom', 'paquets.nom', :like ],
+  #   ['logiciel', 'name', 'paquets.name', :like ],
   #   ['logiciel', 'description', 'paquets.description', :like ],
   #   ['filters', 'groupe_id', 'logiciels.groupe_id', :equal ],
   #   ['filters', 'competence_id', 'competences_logiciels.competence_id', :equal ],

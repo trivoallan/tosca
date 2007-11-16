@@ -1,25 +1,25 @@
 --- 
 arch_00004: 
-  nom: noarch
+  name: noarch
   id: 4
 arch_00005: 
-  nom: ppc
+  name: ppc
   id: 5
 arch_00006: 
-  nom: src
+  name: src
   id: 6
 arch_00010: 
-  nom: sparc32
+  name: sparc32
   id: 10
 arch_00011: 
-  nom: sparc
+  name: sparc
   id: 11
 arch_00001: 
-  nom: i386
+  name: i386
   id: 1
 arch_00002: 
-  nom: i586
+  name: i586
   id: 2
 arch_00003: 
-  nom: i686
+  name: i686
   id: 3

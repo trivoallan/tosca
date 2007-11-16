@@ -9,7 +9,7 @@ class GroupesController < ApplicationController
 
   def index
     @groupe_pages, @groupes = paginate :groupes, :per_page => 20,
-    :order => 'groupes.nom'
+    :order => 'groupes.name'
   end
 
   def show

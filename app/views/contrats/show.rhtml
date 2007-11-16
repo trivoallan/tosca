@@ -1,5 +1,5 @@
 <p><b><%= _('Client') %></b> : <%= link_to_client(@contrat.client) %></p>
-<p><b><%= _('Name') %></b> : <%= @contrat.nom %></p>
+<p><b><%= _('Name') %></b> : <%= @contrat.name %></p>
 <p><b><%= _('Type') %></b> : <%= @contrat.type_contrat %></p>
 <p><b><%= _('Start') %></b> : <%= @contrat.ouverture_formatted %></p>
 <p><b><%= _('End') %></b> : <%= @contrat.cloture_formatted %></p>
@@ -27,7 +27,7 @@
 <%= show_table_engagements @contrat.engagements %><br/>
 
 
-<%= show_liste(@contrat.ingenieurs, 'ingénieurs affecté') {|i| link_to i.nom, ingenieur_path(i)} %><br/>
+<%= show_liste(@contrat.ingenieurs, 'ingénieurs affecté') {|i| link_to i.name, ingenieur_path(i)} %><br/>
 
 
 <%= link_to_edit(@contrat) %> | <%= link_to_back %>

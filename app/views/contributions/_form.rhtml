@@ -3,15 +3,15 @@
 <!--[form:contribution]-->
 <table class="form"><tr valign='top'><td>
 
-<p><label for="contribution_nom"><%=_('Name')%></label><br />
-<%= text_field 'contribution', 'nom', :size => 20 %></p>
+<p><label for="contribution_name"><%=_('Name')%></label><br />
+<%= text_field 'contribution', 'name', :size => 20 %></p>
 
 <p><label for="contribution_logiciel"><%=_('Software')%></label><br />
-<%= collection_select(:contribution, :logiciel_id, @logiciels, :id, :nom) %>
+<%= collection_select(:contribution, :logiciel_id, @logiciels, :id, :name) %>
 <%= StaticImage::spinner %></p>
 
 <p><label for="contribution_ingenieur"><%=_('Engineer')%></label><br />
-<%= collection_select(:contribution, :ingenieur_id, @ingenieurs, :id, :nom) %></p>
+<%= collection_select(:contribution, :ingenieur_id, @ingenieurs, :id, :name) %></p>
 
 <p><label for="contribution_patch"><%=_('Patch')%></label><br />
 <%= file_column_field 'contribution', 'patch'  %></p>
@@ -20,7 +20,7 @@
 <%= text_field 'contribution', 'version', :size => 10 %></p>
 
 <p><label for="contribution_typecontribution"><%=_('Kind of contribution')%></label><br />
-<%= collection_select(:contribution, :typecontribution_id, @typecontributions, :id, :nom) %></p>
+<%= collection_select(:contribution, :typecontribution_id, @typecontributions, :id, :name) %></p>
 
 <% if @ingenieur %>
 <p><label for="contribution_id_mantis">Id Mantis</label><br />
@@ -28,7 +28,7 @@
 <% end %>
 
 <p><label for="contribution_etatreversement"><%=_('State')%></label><br />
-<%= collection_select(:contribution, :etatreversement_id, @etatreversements, :id, :nom) %></p>
+<%= collection_select(:contribution, :etatreversement_id, @etatreversements, :id, :name) %></p>
 
 <p><label for="urlreversement_valeur"><%=_('Add an url for the community issue')%></label><br />
 <%= text_field 'urlreversement', 'valeur' %></p>

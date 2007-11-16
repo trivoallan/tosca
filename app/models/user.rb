@@ -33,11 +33,6 @@ class User < ActiveRecord::Base
     self.password = User.sha1(pass)
   end
 
-  # TODO remove this method, when all objects will use name by default.
-  def nom
-    name
-  end
-
   before_save do |record| 
       ### NUMBERS #########################################################
     number = record.phone.to_s
@@ -125,8 +120,8 @@ class User < ActiveRecord::Base
     @permissions
   end
 
-  def nom
-    strike(:nom)
+  def name
+    strike(:name)
   end
 
   def login
@@ -139,12 +134,12 @@ class User < ActiveRecord::Base
   end
 
   # For Ruport :
-  def beneficiaire_client_nom
-    beneficiaire.client.nom if beneficiaire
+  def beneficiaire_client_name
+    beneficiaire.client.name if beneficiaire
   end
 
-  def role_nom
-    role.nom if role
+  def role_name
+    role.name if role
   end
 
   def strike(attribute)

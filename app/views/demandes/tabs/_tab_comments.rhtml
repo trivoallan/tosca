@@ -1,4 +1,4 @@
-<% simg = nil %>
+<% logo_img = nil %>
 <% print_mode = (controller.action_name == 'print') %>
 <% commentaires = @commentaires || [@last_commentaire] %>
 
@@ -21,7 +21,7 @@
         <% elsif id and id.beneficiaire %>
           <%= logo_img ||= logo_client(id.beneficiaire.client) %>
         <% end %><br />
-        <%= id.nom if id %><br />
+        <%= id.name if id %><br />
 
         <% if @ingenieur and not print_mode %>
          <%= link_to(StaticImage::edit, edit_commentaire_path(commentaire), edit_ho) %>&nbsp;

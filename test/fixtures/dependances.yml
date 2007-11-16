@@ -1,7 +1,7 @@
 --- 
 dependance_00001: 
   sens: un sens
-  nom: kernel
+  name: kernel
   paquet_id: 1
   id: 1
   version: 1.7.18

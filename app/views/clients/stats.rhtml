@@ -3,7 +3,7 @@
 <%= show_pages_links(@client_pages, _("a client")) %>
 <% 
   titres = [ _("Logo"), _("Name")]
-  @typedemandes.each { |t| titres << t.nom  }
+  @typedemandes.each { |t| titres << t.name  }
   titres << _("TOTAL")
   total = 0
   addline = ['', '',]

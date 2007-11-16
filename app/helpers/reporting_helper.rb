@@ -37,8 +37,8 @@ module ReportingHelper
 
   # élément de reporting : 2 cellules
   # options : one_row, muli_row et titre
-  def report_evolution(nom, options={})
-    data = @data[nom]
+  def report_evolution(name, options={})
+    data = @data[name]
     if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
       options.update(:divise => true)
     end
@@ -49,20 +49,20 @@ module ReportingHelper
 
     # cellule contenant le graphique
     table << '  <td class="report_graph">'
-    table <<    report_graph(nom, options) unless nom.to_s =~ /^temps/
+    table <<    report_graph(name, options) unless name.to_s =~ /^temps/
     table << '  </td>'
 #    table << '</div>'
 
     # cellule avec la légende
 #    table << '<div id="middle">'
     table << '  <td class="report_legend">'
-    table <<    report_legend(nom)
+    table <<    report_legend(name)
     table << '  </td>'
 #    table << '</div>'
     # cellule contenant le tableau de données
 #    table << '<div id="right">'
     table << '  <td class="report_data">'
-    table <<    report_data(nom, options)
+    table <<    report_data(name, options)
     table << '  </td>'
 #    table << '</div>'
 
@@ -76,13 +76,13 @@ module ReportingHelper
   # - l'un concernant la periode considérée (à gauche)
   # - l'autre concernant la totalité depuis le début du contrat
   # TODO : style : center report_item tr td
-  def report_repartition(nom, options= {})
-    data = @data[nom]
+  def report_repartition(name, options= {})
+    data = @data[name]
     if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
       options.update(:divise => true)
     end
-    middle = :"#{nom}_middle"
-    total = :"#{nom}_total"
+    middle = :"#{name}_middle"
+    total = :"#{name}_total"
     table = ''
     table << '<table class="report_item">'
     table << ' <tr>'
@@ -93,7 +93,7 @@ module ReportingHelper
     table << '  </td>'
     # cellule avec la légende
     table << '  <td class="report_legend">'
-    table <<    report_legend(nom)
+    table <<    report_legend(name)
     table << '  </td>'
     # cellule contenant le graphique depuis le début
     table << '  <td class="report_data" align="center">'
@@ -104,7 +104,7 @@ module ReportingHelper
 
     # pas de deuxieme partie pour les calculs des delais
     # (% affichés dans la première)
-    unless (nom.to_s =~ /^temps/)
+    unless (name.to_s =~ /^temps/)
       options.update(:without_firstcol => true)
       table << ' <tr>'
       # cellule contenant le graphique
@@ -125,11 +125,11 @@ module ReportingHelper
 
 
 
-  def report_legend(nom)
+  def report_legend(name)
     out = ''
-    data = @data[nom].sort{|x,y| x[0].to_s <=> y[0].to_s}
+    data = @data[name].sort{|x,y| x[0].to_s <=> y[0].to_s}
     options = { :without_firstcol => true }
-    colors = @colors[nom]
+    colors = @colors[name]
     return out unless colors and colors.size > 0
 
     out << '<table align="center">'
@@ -166,28 +166,28 @@ module ReportingHelper
 
   # graphique
   # options : titre
-  def report_graph(nom, options={})
+  def report_graph(name, options={})
     out = ''
     if options[:titre]
-      out << image_tag(@path[nom], :alt => options[:titre])
+      out << image_tag(@path[name], :alt => options[:titre])
     else
-      out << image_tag(@path[nom], :alt => @titles[nom])
+      out << image_tag(@path[name], :alt => @titles[name])
     end
     out
   end
 
   # tableau de données
   # options : one_row, muli_row
-  def report_data(nom, options={})
+  def report_data(name, options={})
     out = ''
-    data = @data[nom]
+    data = @data[name]
     if options[:without_firstcol]
       first_col = [nil]
     else
       first_col = @first_col
     end
     options.update(:width => '5%')
-    out << show_report_table(first_col, nom,
+    out << show_report_table(first_col, name,
                              fill_titles(data, options),
                              options)
     out
@@ -202,8 +202,8 @@ module ReportingHelper
   # pour les tableaux contenant les informations des demandes
   # en cours et des demandes terminées
   # TODO : first_col, options[:without_firstcol] : à refactorer
-  def show_report_table(first_col, nom, titres, options = {})
-    elements = @data[nom]
+  def show_report_table(first_col, name, titres, options = {})
+    elements = @data[name]
     return 'aucune donnée' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width}>"
@@ -261,12 +261,12 @@ module ReportingHelper
   # <%= box_clients(9) %> will show a multi-selection box 
   #                       with 9 selectable items
   def box_clients(number_items)
-    elements = Client.find(:all, :select => 'id,nom', :order => 'nom')
+    elements = Client.find(:all, :select => 'id,name', :order => 'name')
     items='<option value=\'all\' selected=\'selected\'>»</option>'
 
     elements.each do |elt|
       items << '<option value=\'' << elt.id.to_s << '\'>'
-      items << elt.nom
+      items << elt.name
       items << '</option>'
     end
     return '<select id=\'clients\' multiple=\'multiple\' name=\'clients[]\' size="' << number_items.to_s << '">' <<  items << '</select>'

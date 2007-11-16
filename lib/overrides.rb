@@ -116,21 +116,21 @@ module ActiveRecord
     # It's the more common select applied, mainly for select box.
     # It returns the names and id, ready to be displayed
     def self.find_select(options = {})
-      options.update(:select => 'id, nom')
-      options[:order] ||= "#{self.table_name}.nom ASC"
+      options.update(:select => 'id, name')
+      options[:order] ||= "#{self.table_name}.name ASC"
       self.find(:all, options)
     end
 
     # Same as #find_select, but returns only active objects
     def self.find_active4select(options = {})
-      options[:select] = 'id, nom' 
+      options[:select] = 'id, name' 
       table_name = self.table_name
       if options.has_key? :conditions
         options[:conditions] += " AND #{table_name}.inactive = 0"
       else
         options[:conditions] = "#{table_name}.inactive = 0"
       end
-      options[:order] ||= "#{table_name}.nom ASC"
+      options[:order] ||= "#{table_name}.name ASC"
       self.find(:all, options)
     end
 

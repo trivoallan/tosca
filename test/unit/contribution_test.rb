@@ -6,7 +6,7 @@ class ContributionTest < Test::Unit::TestCase
   # Replace this with your real tests.
   def test_reverse_le
     c = Contribution.new(
-      :nom => "averylongname", 
+      :name => "averylongname", 
       :logiciel_id => 2 
     )
     assert_equal c.reverse_le_formatted, '' 

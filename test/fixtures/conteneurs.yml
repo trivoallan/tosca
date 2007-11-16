@@ -1,22 +1,22 @@
 --- 
 conteneur_00001: 
-  nom: rpm
+  name: rpm
   id: 1
 conteneur_00002: 
-  nom: deb
+  name: deb
   id: 2
 conteneur_00003: 
-  nom: hp-ux
+  name: hp-ux
   id: 3
 conteneur_00004: 
-  nom: tarball
+  name: tarball
   id: 4
 conteneur_00005: 
-  nom: CVS
+  name: CVS
   id: 5
 conteneur_00006: 
-  nom: nosrc
+  name: nosrc
   id: 6
 conteneur_00007: 
-  nom: pkg
+  name: pkg
   id: 7

@@ -16,8 +16,8 @@ class Client < ActiveRecord::Base
   has_many :paquets, :through => :contrats, :include => Paquet::INCLUDE
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
-  validates_presence_of :nom
-  validates_length_of :nom, :in => 3..50
+  validates_presence_of :name
+  validates_length_of :name, :in => 3..50
   # We can have, for the moment, one ml for multiple clients.
   # validates_uniqueness_of :mailingliste
 
@@ -85,7 +85,7 @@ class Client < ActiveRecord::Base
     conditions = [ 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id ' + 
                    ' FROM paquets WHERE paquets.contrat_id IN (?)) ', 
                    contrats.collect{ |c| c.id } ]
-    Logiciel.find(:all, :conditions => conditions, :order => 'logiciels.nom')
+    Logiciel.find(:all, :conditions => conditions, :order => 'logiciels.name')
   end
 
   def contributions
@@ -117,23 +117,23 @@ class Client < ActiveRecord::Base
 
   # pretty urls for client
   def to_param
-    "#{id}-#{read_attribute(:nom).gsub(/[^a-z1-9]+/i, '-')}"
+    "#{id}-#{read_attribute(:name).gsub(/[^a-z1-9]+/i, '-')}"
   end
 
   # can return an htmled name if deactivated
-  def nom
-    value = read_attribute(:nom)
+  def name
+    value = read_attribute(:name)
     return "<strike>" << value << "</strike>" if read_attribute(:inactive)
     value
   end
 
   # will always be clean
-  def nom_clean
-    read_attribute(:nom)
+  def name_clean
+    read_attribute(:name)
   end
 
   def to_s
-    nom
+    name
   end
 
 end

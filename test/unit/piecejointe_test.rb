@@ -10,8 +10,8 @@ class PiecejointeTest < Test::Unit::TestCase
     p = Piecejointe.new
     assert !p.save
   end
-  def test_nom
+  def test_name
     p = Piecejointe.find 1
-    assert_equal p.nom, 'SLL_FIV_mindi.odt'
+    assert_equal p.name, 'SLL_FIV_mindi.odt'
   end
 end

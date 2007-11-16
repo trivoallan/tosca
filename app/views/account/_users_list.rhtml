@@ -23,7 +23,7 @@
    <tr class="<%= cycle('pair', 'impair') %>">
       <td><%= user.login %></td>
       <td><%= user.name %></td>
-      <td><%= user.role.nom %></td>
+      <td><%= user.role.name %></td>
       <td><center><%= "X" if ingenieur %></center></td>
       <td><center><%= "X" if beneficiaire %></center></td>
       <td><%= mail_to user.email, user.email %></td>

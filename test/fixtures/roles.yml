@@ -1,17 +1,17 @@
 --- 
 role_00001: 
-  nom: admin
+  name: admin
   info: "R\xC3\xA9serv\xC3\xA9s aux priviligi\xC3\xA9s ;)"
   id: 1
 role_00002: 
-  nom: client
+  name: client
   info: "R\xC3\xB4les pour les b\xC3\xA9n\xC3\xA9ficiaires de l'OSSA"
   id: 2
 role_00003: 
-  nom: presta
+  name: presta
   info: "R\xC3\xB4le pour les prestataires de Linagora"
   id: 3
 role_00004: 
-  nom: ossa
+  name: ossa
   info: "R\xC3\xB4le parfait pour les ing\xC3\xA9nieurs de l'OSSA"
   id: 4
