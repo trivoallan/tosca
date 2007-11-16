@@ -139,8 +139,7 @@ class CommentairesController < ApplicationController
   private
   def _form
     @demandes = Demande.find(:all)
-    options = { :select => 'id, name', :order => 'users.name ASC' }
-    @users = User.find(:all, options)
+    @users = User.find_select
     @statuts = Statut.find_select
   end
 end
