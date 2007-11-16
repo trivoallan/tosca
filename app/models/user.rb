@@ -149,7 +149,7 @@ class User < ActiveRecord::Base
 
   def strike(attribute)
     value = read_attribute(attribute)
-    return "<strike>" << value << "</strike>" if inactive?
+    return "<strike>#{value}</strike>" if inactive?
     value
   end
 end

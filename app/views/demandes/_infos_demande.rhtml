@@ -1,3 +1,4 @@
+<% cache("#{@demande.id}/#{@ingenieur.nil?}/requests/info") do %>
 <div class="menu_title" onclick="Element.toggle('menu_action')">
 > <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
@@ -68,4 +69,4 @@
 </ul>
 <%# mandatory for seeing last link ... :/ %>
 <br />
-
+<% end %>

@@ -5,6 +5,9 @@ class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :appels,
     :socles, :commentaires, :account
 
+  cache_sweeper :demande_sweeper, :only => [:create, :edit, :destroy]
+
+
   def en_attente
     options = { :per_page => 10, :order => 'updated_on DESC',
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }

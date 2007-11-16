@@ -5,34 +5,36 @@
 
 <div class="content">
 
-  <h1>
+  <% cache("#{@demande.id}/#{@ingenieur.nil?}/requests/front") do %>
+   <h1>
     <% options = edit_demande_path(@demande.id) %>
     <% html_options = { :class => 'no_hover' } %>
     <%= link_to(StaticImage::edit, options, html_options) %>
     <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
     <% options = print_demande_path(@demande.id) %>
     <%= link_to(StaticImage::print, options, html_options) %>
-  </h1>
+   </h1>
 
-  <% if @last_commentaire %>
+   <% if @last_commentaire %>
      <%= render :partial => 'demandes/tabs/tab_comments' %>
-  <% else %>
-   <div class="demande_tab_content">
+   <% else %>
+    <div class="demande_tab_content">
      <%= @demande.description %>
-   </div>
- <% end %>
+    </div>
+   <% end %>
 
-  <div>
+   <div>
     <% action = comment_commentaire_path(@demande) %>
     <% form_tag(action, :method => :post, :multipart => true) do %>
       <%= render :partial => 'comment_form' %>
       <p>&nbsp;</p>
     <% end %>
-  </div>
+   </div>
 
-  <%# see tab_menu for ajax links %>
-  <div class="demande_tab" id="demande_tab">
+   <%# see tab_menu for ajax links %>
+   <div class="demande_tab" id="demande_tab">
     <%= render :partial => 'demandes/tabs/tab_description' %>
-  </div>
+   </div>
+  <% end %>
 
 </div>

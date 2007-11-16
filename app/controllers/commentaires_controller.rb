@@ -4,6 +4,8 @@
 class CommentairesController < ApplicationController
   helper :demandes
 
+  cache_sweeper :commentaire_sweeper, :only => [:comment, :update, :destroy]
+
   def index
     @commentaire_pages, @commentaires = paginate :commentaires,
     :per_page => 10, :include => [:demande]
@@ -108,6 +110,7 @@ class CommentairesController < ApplicationController
 
   def edit
     @commentaire = Commentaire.find(params[:id])
+    @commentaire.errors.clear
     _form
   end
 

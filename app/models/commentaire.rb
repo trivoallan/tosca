@@ -34,6 +34,13 @@ class Commentaire < ActiveRecord::Base
   end
 
   private
+  before_create :check_status
+  def check_status
+    request = self.demande
+    if (request.statut_id != self.statut_id)
+      request.errors.add_to_base _('The status of this request has already been changed by.')
+    end
+  end
   # We destroy attachment if appropriate
   # belongs_to don't allow us to call :dependent :'(
   before_destroy :delete_pj
@@ -42,7 +49,10 @@ class Commentaire < ActiveRecord::Base
     return false if self.demande.first_comment_id == self.id
     if !self.prive and self.demande.last_comment_id == self.id
       last_comment = self.demande.find_last_comment_before(self.id)
-      return false unless last_comment
+      if !last_comment
+        self.errors.add_to_base(_('This request seems to be unstable.'))
+        return false 
+      end
       self.demande.update_attribute :last_comment_id, last_comment.id
     end
     self.piecejointe.destroy unless self.piecejointe.nil?
@@ -91,14 +101,6 @@ class Commentaire < ActiveRecord::Base
       return request.update_attribute(:statut_id, statut_id)
     end
     true
-  end
-
-  before_validation :validate_status
-  def validate_status
-    return true if self.demande.nil?
-    return true if (self.demande.first_comment_id == self.id)
-    return (self.demande.statut_id != self.statut_id) if self.demande.statut
-    return true
   end
 
 end

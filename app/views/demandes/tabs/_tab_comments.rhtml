@@ -10,8 +10,9 @@
 <%= render :partial => 'demandes/tabs/tab_menu' unless print_mode or @last_commentaire %>
 <div class="demande_tab_content">
 <% commentaires.each do |commentaire| %>
- <% id = commentaire.user  %>
- <table class="commentaire">
+ <% cache("#{commentaire.id}/comments") do %>
+  <% id = commentaire.user  %>
+  <table class="commentaire">
    <tr class="<%=(commentaire.prive ? 'prive' : 'public')%>">
      <td class="infos" align="center">
         <span class="small"><%= _("Comment %s") % "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
@@ -42,7 +43,8 @@
      <% end %>
     </td>
     </tr>
-</table>
+  </table>
+ <% end %>
 <%= "<hr/>" if print_mode %>
 <% end %>
 </div>
