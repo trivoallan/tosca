@@ -20,20 +20,20 @@
     @typedocuments.collect{|l| [ l.nom, l.id]}) %>
     </p>
 
-    <p><label for="document_titre"><%= _('Title') %></label><br />
-    <%= text_field 'document', 'titre'  %></p>
+    <p><label for="document_title"><%= _('Document|Title') %></label><br />
+    <%= text_field 'document', 'title'  %></p>
 
-    <p><label for="document_fichier"><%= _('File') %></label><br />
-    <%= file_column_field 'document', 'fichier'  %></p>
+    <p><label for="document_file"><%= _('Document|File') %></label><br />
+    <%= file_column_field 'document', 'file'  %></p>
 
-    <p><label for ="document_date_delivery"><%= _('Delivery date') %></label><br />
+    <p><label for ="document_date_delivery"><%= _('Document|Delivery_date') %></label><br />
     <%= text_field :document, :date_delivery,  :size => 8 %>
     <span class="calendarPicker"><%= StaticScript::date_to %></span>
     <%= StaticScript::script_date('document_date_delivery', 'date_to') %><br /><br />
     </p>
   </div>
   <div style="float: left">
-    <p><label for="document_description"><%= _('Description') %></label><br />
+    <p><label for="document_description"><%= _('Document|Description') %></label><br />
     <%= text_area 'document', 'description'  %></p>
   </div>
   <!--[eoform:document]-->

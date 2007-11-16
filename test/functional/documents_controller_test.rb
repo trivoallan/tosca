@@ -60,8 +60,8 @@ class DocumentsControllerTest < Test::Unit::TestCase
       :updated_on => "2007-07-26 11:35:58",
       :client_id => 1,
       :description => "Etude réalisée pour SI2 dans le cadre de\r\nl'évaluation des solutions Open Source comme alternative à Lotus Notes",
-      :fichier => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/upload_document.png"),
-      :titre => "Etude Migration Lotus (SI2)",
+      :file => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/upload_document.png"),
+      :title => "Etude Migration Lotus (SI2)",
       :user_id => 1 ,
       :date_delivery => nil,
       :typedocument_id => 1

@@ -1,4 +1,4 @@
-<h1><%= _('Modify the document :')%> <%= @document.titre %></h1>
+<h1><%= _('Modify the document :')%> <%= @document.title %></h1>
 
 <% form_tag(document_path(@document.id), 
             {:method => :put, :multipart => true}) do %>

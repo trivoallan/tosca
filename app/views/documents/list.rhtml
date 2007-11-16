@@ -2,15 +2,16 @@
 <h1><%=_('Documents available in %s') % [ document_type ] %></h1>
 <br />
 
-<% links = show_pages_links(@document_pages, _('a document')) %>
+<% options = (@typedocument ? {:id => @typedocument.id} : {} )%>
+<% links = show_pages_links(@document_pages, _('a document'), options) %>
 <%= links %>
 
-<% titres = [_('File'), _('Size'), _('Delivered on')] %>
+<% titres = [_('Document|File'), _('Size'), _('Document|Delivery_on')] %>
 <%= show_table(@documents, Document, titres, :total => false,
     :content_columns => true) { |document|
   result = ''
-  result << "<td>#{link_to_file document, 'fichier'}</td>"
-  result << "<td>#{file_size(document.fichier)}</td>"
+  result << "<td>#{link_to_file document, 'file'}</td>"
+  result << "<td>#{file_size(document.file)}</td>"
   result << "<td>#{document.date_delivery_on_formatted}</td>"
   result << "#{link_to_actions_table document}"
 }%>

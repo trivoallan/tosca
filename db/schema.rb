@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 79) do
+ActiveRecord::Schema.define(:version => 80) do
 
   create_table "appels", :force => true do |t|
     t.column "beneficiaire_id", :integer
@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(:version => 79) do
   add_index "binaires_demandes", ["demande_id"], :name => "binaires_demandes_demande_id_index"
 
   create_table "changelogs", :force => true do |t|
-    t.column "paquet_id",         :integer,   :default => 0,  :null => false
-    t.column "date_modification", :timestamp,                 :null => false
-    t.column "nom_modification",  :string,    :default => "", :null => false
-    t.column "text_modification", :text,      :default => "", :null => false
+    t.column "paquet_id",         :integer,  :default => 0,  :null => false
+    t.column "date_modification", :datetime,                 :null => false
+    t.column "nom_modification",  :string,   :default => "", :null => false
+    t.column "text_modification", :text,     :default => "", :null => false
   end
 
   add_index "changelogs", ["paquet_id"], :name => "changelogs_paquet_id_index"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 79) do
     t.column "severite_id",    :integer
     t.column "statut_id",      :integer
     t.column "ingenieur_id",   :integer
+    t.column "temps_ecoule",   :integer
   end
 
   add_index "commentaires", ["demande_id"], :name => "commentaires_demande_id_index"
@@ -230,6 +231,7 @@ ActiveRecord::Schema.define(:version => 79) do
     t.column "expected_on",         :datetime
     t.column "last_comment_id",     :integer,  :default => 0,  :null => false
     t.column "mantis_id",           :integer
+    t.column "temps_ecoule",        :integer
     t.column "cache_contournement", :float
     t.column "cache_correction",    :float
     t.column "cache_ecoule",        :float
@@ -270,8 +272,8 @@ ActiveRecord::Schema.define(:version => 79) do
     t.column "user_id",         :integer
     t.column "typedocument_id", :integer,  :default => 0
     t.column "client_id",       :integer,  :default => 0
-    t.column "titre",           :string,   :default => ""
-    t.column "fichier",         :string,   :default => ""
+    t.column "title",           :string
+    t.column "file",            :string
     t.column "description",     :text
     t.column "created_on",      :datetime
     t.column "updated_on",      :datetime
@@ -280,13 +282,13 @@ ActiveRecord::Schema.define(:version => 79) do
 
   create_table "documents", :force => true do |t|
     t.column "user_id",         :integer
-    t.column "typedocument_id", :integer,   :default => 0,  :null => false
-    t.column "client_id",       :integer,   :default => 0,  :null => false
-    t.column "titre",           :string,    :default => "", :null => false
-    t.column "fichier",         :string,    :default => "", :null => false
-    t.column "description",     :text,      :default => "", :null => false
-    t.column "created_on",      :timestamp,                 :null => false
-    t.column "updated_on",      :timestamp,                 :null => false
+    t.column "typedocument_id", :integer,  :default => 0,  :null => false
+    t.column "client_id",       :integer,  :default => 0,  :null => false
+    t.column "title",           :string
+    t.column "file",            :string
+    t.column "description",     :text,     :default => "", :null => false
+    t.column "created_on",      :datetime,                 :null => false
+    t.column "updated_on",      :datetime,                 :null => false
     t.column "version",         :integer
     t.column "date_delivery",   :datetime
   end
@@ -353,7 +355,7 @@ ActiveRecord::Schema.define(:version => 79) do
   add_index "ingenieurs", ["user_id"], :name => "ingenieurs_identifiant_id_index"
 
   create_table "jourferies", :force => true do |t|
-    t.column "jour", :timestamp, :null => false
+    t.column "jour", :datetime, :null => false
   end
 
   create_table "licenses", :force => true do |t|
@@ -538,7 +540,7 @@ ActiveRecord::Schema.define(:version => 79) do
     t.column "email",        :string,                :default => "",    :null => false
     t.column "phone",        :string
     t.column "image_id",     :integer
-    t.column "informations", :text,                  :default => "",    :null => false
+    t.column "informations", :text
     t.column "client",       :boolean,               :default => false, :null => false
     t.column "inactive",     :boolean,               :default => false, :null => false
     t.column "role_id",      :integer,               :default => 0,     :null => false

@@ -1,13 +1,13 @@
 <% for column in Document.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%= @document.send(column.name) %>
+  <b><%= _(column.human_name) %> :</b> <%= @document.send(column.name) %>
 </p>
 <% end %>
 
-<p><b><%= _('File :') %></b><%= link_to_file @document, 'fichier' %></p>
-<p><b><%= _('Size : ')%></b><%= file_size(@document.fichier) %></p>
-<p><b><%= _('Recipient :' ) %></b><%= @document.user.name %></p>
+<p><b><%= _('Document|File') %> :</b><%= link_to_file @document, 'file' %></p>
+<p><b><%= _('Size')%> :</b> <%= file_size(@document.file) %></p>
+<p><b><%= _('Submitted by') %> :</b> <%= @document.user.name %></p>
 <br />
-<p><b><%= _('Updated on : ')%></b><%= @document.updated_on_formatted %></p>
+<p><b><%= _('Document|Updated_on')%> :</b> <%= @document.updated_on_formatted %></p>
 <br />
 <%= link_to_edit_and_list @document %>

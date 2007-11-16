@@ -7,8 +7,8 @@ document_00001:
   version: 1
   description: "Etude r\xC3\xA9alis\xC3\xA9e pour SI2 dans le cadre de\r\n\
     l'\xC3\xA9valuation des solutions Open Source comme alternative \xC3\xA0 Lotus Notes"
-  titre: Etude Migration Lotus (SI2)
-  fichier: MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip
+  title: Etude Migration Lotus (SI2)
+  file: MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip
   user_id: 1
   typedocument_id: 1
   date_delivery: 
@@ -19,8 +19,8 @@ document_00002:
   id: 2
   version: 1
   description: Document pour tester le date delivery on formatted
-  titre: Etude Migration Lotus (SI2)
-  fichier: MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip
+  title: Etude Migration Lotus (SI2)
+  file: MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip
   user_id: 1
   typedocument_id: 1
   date_delivery: 2007-07-29 09:32:00 +02:00

@@ -10,7 +10,7 @@ class DocumentTest < Test::Unit::TestCase
 
     # titre must have at least 3 characters.
     # If no titre is precised, I cannot save my document
-    d= Document.new( :titre => "document")
+    d= Document.new( :title => "document")
     assert d.save
 
     # id must exists
@@ -27,7 +27,7 @@ class DocumentTest < Test::Unit::TestCase
   def test_update
     d = documents(:document_00001)
     d.update_attributes( :user_id => 1, :typedocument_id => 1,
-      :client_id => 2, :titre => "bonjour (lemonde)",
+      :client_id => 2, :title => "bonjour (lemonde)",
       :description => "d fs fd àfi @ © àf«", 
       :created_on =>"2006-09-05 18:08:49", :updated_on=>"2006-09-05 18:43:02",
       :date_delivery => "2007-09-05 18:08:49"
@@ -36,7 +36,7 @@ class DocumentTest < Test::Unit::TestCase
     assert_equal d.user_id, 1
     assert_equal d.typedocument_id, 1
     assert_equal d.client_id, 2
-    assert_equal d.titre, "bonjour (lemonde)"
+    assert_equal d.title, "bonjour (lemonde)"
     assert_equal d.description, "d fs fd àfi @ © àf«"
     assert_kind_of Time, d.created_on
     assert_kind_of Time, d.updated_on
@@ -46,19 +46,14 @@ class DocumentTest < Test::Unit::TestCase
   # Title MUST have between 3 and 60 characters
   def test_title
     assert_raise( ActiveRecord::RecordInvalid){
-      Document.new(:titre => "dd").save!
+      Document.new(:title => "dd").save!
     }
     assert_raise( ActiveRecord::RecordInvalid){
-      Document.new(:titre => "lsdkfmj smlkf jmdklf msdklfj 
+      Document.new(:title => "lsdkfmj smlkf jmdklf msdklfj 
         msdkfj mqkld sjmfkl qsjmdfklqjmd kfjmqsd lfkjqmdlkfjmqsd 
         klfjmqsdklfjmqsdlkfj").save!
     }
   end
-  def test_nomfichier
-    assert_equal documents(:document_00001).nomfichier, 
-      "MINEFI_SLL_DLY_007_ETU_SI2_EtudeMigrationLotus_v1.0_pdf_.zip"
-  end
-  
   
   
   def test_updated_and_date_delivery_on_formatted

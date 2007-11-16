@@ -20,7 +20,7 @@ module LinksHelper
 
   ALIGNED_PICTURE = { :class => 'aligned_picture' }
 
-  # Call it like this : link_to_file(document, 'fichier', 'nomfichier')
+  # Call it like this : link_to_file(document, 'file')
   # don't forget to update his public alter ego just below
   # DO NOT EVER CALL this method with 'public' parameter set
   # to true, use <b>public_link_to_file</b> instead

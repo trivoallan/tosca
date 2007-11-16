@@ -5,12 +5,12 @@ class Document < ActiveRecord::Base
   belongs_to :client
   belongs_to :typedocument
   belongs_to :user
-  file_column :fichier, :fix_file_extensions => nil
+  file_column :file, :fix_file_extensions => nil
 
 
   #versioning, qui s'occupe de la table documents_versions
   acts_as_versioned
-  validates_length_of :titre, :within => 3..60
+  validates_length_of :title, :within => 3..60
 
 
   def self.set_scope(client_ids)
@@ -29,12 +29,8 @@ class Document < ActiveRecord::Base
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} "
   end
 
-  def nomfichier
-    return fichier[/[._ \-a-zA-Z0-9]*$/] if fichier
-  end
-
   def to_param
-    "#{id}-#{titre.gsub(/[^a-z1-9]+/i, '-')}"
+    "#{id}-#{title.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
   def self.content_columns 

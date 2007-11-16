@@ -121,6 +121,20 @@ module ActiveRecord
       self.find(:all, options)
     end
 
+    # Same as #find_select, but returns only active objects
+    def self.find_active4select(options = {})
+      options[:select] = 'id, nom' 
+      table_name = self.table_name
+      if options.has_key? :conditions
+        options[:conditions] += " AND #{table_name}.inactive = 0"
+      else
+        options[:conditions] = "#{table_name}.inactive = 0"
+      end
+      options[:order] ||= "#{table_name}.nom ASC"
+      self.find(:all, options)
+    end
+
+
     # this special method allows to gain a lot of performance
     # since it doesn't require to load Time or strftime in order
     # to display the date
