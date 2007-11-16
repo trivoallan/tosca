@@ -85,39 +85,33 @@ class AccountController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @ingenieur = @user.ingenieur
-    @beneficiaire = @user.beneficiaire
+    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
     _form
   end
 
   def show
     @user = User.find(params[:id])
-    @ingenieur = @user.ingenieur
-    @beneficiaire = @user.beneficiaire
+    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
     _form
   end
 
   def update
     @user = User.find(params[:id])
-    @beneficiaire = @user.beneficiaire
-    @ingenieur = @user.ingenieur
+    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
 
     # reset role when no case is selected
     params[:user] = { :role_ids => [] } unless params.has_key? :user
 
     unless ((@user.update_attributes(params[:user])) and
-        ((not @beneficiaire) or
-         @beneficiaire.update_attributes(params[:beneficiaire])) and
-        ((not @ingenieur) or
-         @ingenieur.update_attributes(params[:ingenieur])))
+        ((not @user_recipient) or
+         @user_recipient.update_attributes(params[:beneficiaire])) and
+        ((not @user_engineer) or
+         @user_engineer.update_attributes(params[:ingenieur])))
       _form and render :action => 'edit' and return
     end
 
-    # we can changes roles in 'index' view
-    index if request.xhr?
-
     #update cached profile for logged user
-    set_sessions  @user if session[:user] == @user
+    set_sessions @user if session[:user] == @user
 
     flash[:notice]  = _("Edition succeeded")
     redirect_to account_path(@user)
@@ -259,8 +253,6 @@ private
     clear_sessions
     # Set user properties
     session[:user] = user
-    session[:beneficiaire] = session[:user].beneficiaire
-    session[:ingenieur] = session[:user].ingenieur
 
     # Account links in header
     session[:account_links] = set_account_links
