@@ -29,4 +29,18 @@ module CommentairesHelper
     return nil if out.empty?
     '<div class="history">' << out.join('<br />') << '</div>'
   end
+
+
+  def display_comment(c)
+    result = ''
+    result << c.corps 
+    attachment = c.piecejointe 
+    unless attachment.blank? or attachment.file.blank? 
+      result << "<br /><br />#{StaticImage::folder} " 
+      result << link_to_file(attachment, "file").to_s 
+      result << " (#{file_size(attachment.file)})"  
+      result << link_to_file_redbox(attachment, :file).to_s
+    end
+    result
+  end
 end

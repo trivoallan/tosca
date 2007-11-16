@@ -187,7 +187,7 @@ class DemandesController < ApplicationController
   end
 
   def comment
-    @demande = Demande.find(params[:id]) unless @demande
+    @demande = Demande.find(params[:id], :include => [:first_comment]) unless @demande
     conditions = [ "logiciel_id = ?", @demande.logiciel_id ]
     # TODO c'est pas dry, cf ajax_comments
     options = { :order => 'created_on DESC', :include => [:user],

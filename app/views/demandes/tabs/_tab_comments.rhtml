@@ -32,16 +32,9 @@
          <br />
         <% end %>
         <span class="small"><%= commentaire.created_on_formatted %></span><br />
+     </td><td class="text">
+        <%= display_comment commentaire %>
      </td>
-     <td class="text">
-      <%= commentaire.corps %>
-     <% piecejointe = commentaire.piecejointe %>
-     <% unless piecejointe.blank? or piecejointe.file.blank? %>
-     <%= "<br /><br />#{StaticImage::folder} " << link_to_file(piecejointe, "file").to_s <<
-           " (#{file_size(piecejointe.file)})"  %>
-       <%= link_to_file_redbox(piecejointe, :file) %>
-     <% end %>
-    </td>
     </tr>
   </table>
  <% end %>
