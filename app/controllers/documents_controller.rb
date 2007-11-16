@@ -102,7 +102,7 @@ class DocumentsController < ApplicationController
   def _form
     @clients = Client.find_active4select 
     @typedocuments = Typedocument.find :all
-    @users = User.find(:all, :select => 'id, name', :order => 'users.name')
+    @users = User.find_active4select
   end
 
   def _panel
