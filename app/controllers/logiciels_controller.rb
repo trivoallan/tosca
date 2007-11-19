@@ -91,6 +91,11 @@ class LogicielsController < ApplicationController
 
   def create
     @logiciel = Logiciel.new(params[:logiciel])
+    unless params[:image][:image].instance_of?(String)
+      params[:image][:description] = @logiciel.name
+      img = Image.create(params[:image])
+      @logiciel.image = img unless img.nil?
+    end
     if @logiciel.save
       flash[:notice] = _('The software %s has been created succesfully.') % @logiciel.name
       redirect_to logiciels_path
@@ -106,6 +111,12 @@ class LogicielsController < ApplicationController
 
   def update
     @logiciel = Logiciel.find(params[:id])
+    unless params[:image][:image].instance_of?(String)
+      @logiciel.image.destroy unless @logiciel.image.nil?
+      params[:image][:description] = @logiciel.name
+      img = Image.create(params[:image])
+      @logiciel.image = img unless img.nil?
+    end
     if @logiciel.update_attributes(params[:logiciel])
       flash[:notice] = _('The software %s has been updated successfully.') % @logiciel.name
       redirect_to logiciels_path

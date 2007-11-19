@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Image < ActiveRecord::Base
+  has_one :logiciel
+
   file_column :image, :magick => {
     :versions => {
       :thumb => {:size => "150x50"},

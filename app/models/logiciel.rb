@@ -12,7 +12,7 @@ class Logiciel < ActiveRecord::Base
   #belongs_to :communaute
   belongs_to :license
   belongs_to :groupe
-  belongs_to :image, :dependent => :destroy
+  belongs_to :image
 
   has_many :binaires, :through => :paquets, :dependent => :destroy
 

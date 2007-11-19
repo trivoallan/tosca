@@ -1,6 +1,6 @@
 <h1><%= _('Edit a software')%></h1>
 
-<% form_tag(logiciel_path(@logiciel), :method => :put) do %>
+<% form_tag(logiciel_path(@logiciel), :multipart => true, :method => :put) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Update') %>
 <% end %>
