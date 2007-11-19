@@ -8,7 +8,8 @@ class Document2english < ActiveRecord::Migration
     rename_column :document_versions, :titre, :title
     rename_column :document_versions, :fichier, :file
 
-    File.rename(FICHIER, FILE)
+
+    File.rename(FICHIER, FILE) if File.exist? FICHIER
   end
 
   def self.down
@@ -18,6 +19,6 @@ class Document2english < ActiveRecord::Migration
     rename_column :document_versions, :title, :titre
     rename_column :document_versions, :file, :fichier
 
-    File.rename(FILE, FICHIER)
+    File.rename(FILE, FICHIER) if File.exist? FILE
   end
 end

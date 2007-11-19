@@ -1,6 +1,13 @@
 <h1><%= _('alert on submit') %><%= StaticImage::spinner %></h1>
 
+<%= text_to_flash_player("Remy Christophe Schermesser.Remy Christophe Schermesser.Remy Christophe Schermesser.Remy Christophe Schermesser.Remy Christophe Schermesser.Remy Christophe Schermesser.Remy Christophe Schermesser.Remy Christophe Schermesser.") %>
 
+<%= text_to_flash_player("A new issue has just been submitted. Please wake up and take it into account.") %>
+
+<%= text_to_flash_player("Caaapitaiine flaaaamme tu n'es pas de notre galaxie.") %>
+
+
+<% if false %>
 <div id="status">
   <%= render :partial => 'ajax_on_submit' %>
 </div>
@@ -8,3 +15,4 @@
     'status',  :before => "Element.show('spinner')",
                :success => "Element.hide('spinner')" } %>
 <%= periodically_call_remote(options) %>
+<% end %>

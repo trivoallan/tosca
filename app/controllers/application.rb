@@ -37,8 +37,8 @@ class ApplicationController < ActionController::Base
   # L'option pour ne pas avoir de tinyMCE est la class "mceNoEditor".
   # TODO : mettre le bouton "image" et le plugin "advimage", quand on aura
   # fini la vue sur l'upload
-  TINY_BUTTONS = %w(formatselect bold italic underline strikethrough separator 
-                    bullist numlist forecolor separator link unlink separator 
+  TINY_BUTTONS = %w(formatselect bold italic underline strikethrough separator
+                    bullist numlist forecolor separator link unlink separator
                     undo redo separator code)
   uses_tiny_mce :options => { :mode => 'textareas',
                               :entity_encoding => 'raw',
@@ -122,28 +122,34 @@ private
   # Il reste néanmoins intégralement safe
   # Le but est d'éviter les 15 imbrications de yield, trop couteuses
   def scope
-    beneficiaire = session[:beneficiaire]
-    ingenieur = session[:ingenieur]
-    client_ids, contrat_ids = nil, nil
-    if beneficiaire
-      client_ids = [ beneficiaire.client_id ]
-      contrat_ids = beneficiaire.contrat_ids
-    end
-    if ingenieur and not ingenieur.expert_ossa
-      contrat_ids = ingenieur.contrat_ids
-      client_ids = ingenieur.client_ids
-    end
-    SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) } if contrat_ids
-    SCOPE_CLIENT.each {|m| m.set_scope(client_ids) } if client_ids
-    # Forbid access to request if we are not connected
     is_connected = session.data.has_key? :user
-    Demande.set_scope([0]) unless is_connected
+    if is_connected
+      beneficiaire = session[:user].beneficiaire
+      ingenieur = session[:user].ingenieur
+      client_ids, contrat_ids = nil, nil
+      if beneficiaire
+        client_ids = [ beneficiaire.client_id ]
+        contrat_ids = beneficiaire.contrat_ids
+      end
+      if ingenieur and not ingenieur.expert_ossa
+        contrat_ids = ingenieur.contrat_ids
+        client_ids = ingenieur.client_ids
+      end
+      SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) } if contrat_ids
+      SCOPE_CLIENT.each {|m| m.set_scope(client_ids) } if client_ids
+    else
+      # Forbid access to request if we are not connected
+      Demande.set_scope([0])
+    end
     begin
       yield
     ensure
-      SCOPE_CLIENT.each { |m| m.remove_scope } if client_ids
-      SCOPE_CONTRAT.each { |m| m.remove_scope } if contrat_ids
-      Demande.remove_scope unless is_connected
+      if is_connected
+        SCOPE_CLIENT.each { |m| m.remove_scope } if client_ids
+        SCOPE_CONTRAT.each { |m| m.remove_scope } if contrat_ids
+      else
+        Demande.remove_scope
+      end
     end
   end
 
