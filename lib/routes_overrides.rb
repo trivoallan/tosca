@@ -6,7 +6,7 @@
 # This module is overloaded in order to have rails fitting more
 # Tosca specific needs or specific improvments
 #
-# It's not in the main 'overrides' file since rails code for routes 
+# It's not in the main 'overrides' file since rails code for routes
 # are loaded differently in production mode. So :
 # /!\ Do NOT merge overrides with overrides_routes /!\
 #
@@ -17,7 +17,7 @@ module ActionController::Routing
       # Mapper for non-resource controller
       def without_orm(controller, actions, method = :get)
         actions.each { |action|
-          self.send("#{action}_#{controller}", "#{controller};#{action}",
+          self.send("#{action}_#{controller}", "#{controller}/#{action}",
                     { :controller => controller, :action => action,
                       :conditions => { :method => method }})
         }
@@ -32,12 +32,12 @@ module ActionController::Routing
         }
       end
     end
-    
+
 
     class NamedRouteCollection
       # This overload permits to gain a factor 7 in performance of
       # url generation
-      # This allows too to return a nil url in case of an 
+      # This allows too to return a nil url in case of an
       # authenticated user without any right to the page
       def define_url_helper(route, name, kind, options)
         selector = url_helper_name(name, kind)
@@ -70,7 +70,7 @@ module ActionController::Routing
             url_options = #{hash_access_method}(opts)
             required_perm = '%s/%s' % [ url_options[:controller], url_options[:action] ]
             user = session[:user]
-            if user and not user.authorized? required_perm 
+            if user and not user.authorized? required_perm
               nil
             else
               if opts.empty?
@@ -87,4 +87,3 @@ module ActionController::Routing
     end # NamedRouteCollection
   end # RouteSet
 end
-

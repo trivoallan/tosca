@@ -25,6 +25,8 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('bienvenue', %w(suggestions), :post)
   map.without_orm('reporting', %w(comex comex_resultat configuration flux general))
   map.without_orm('acces', %w(refuse))
+  map.without_orm('alerts', %w(on_submit))
+  map.without_orm('alerts', %w(ajax_on_submit), :post)
   map.without_orm('export', %w(demandes_ods appels_ods users_ods
     contributions_ods comex_ods) )
 
