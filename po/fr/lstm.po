@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-16 17:45+0100\n"
-"PO-Revision-Date: 2007-11-16 17:47+0100\n"
+"PO-Revision-Date: 2007-11-20 17:40+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3894,7 +3894,7 @@ msgstr "Ajouter un fichier"
 
 #: app/views/demandes/_packages.rhtml:2
 msgid "Specify here the packages impacted by the request :"
-msgstr "Spécifier ici les paquets impactés par la requête :"
+msgstr "Spécifier ici les paquets impactés par la demande :"
 
 #: app/views/demandes/_packages.rhtml:4
 msgid "Commitment"
@@ -4860,5 +4860,3 @@ msgstr "Date de livraison"
 #: app/views/documents/new.rhtml:1
 msgid "Add a document"
 msgstr "Ajouter un document"
-
-
