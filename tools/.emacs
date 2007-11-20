@@ -14,38 +14,39 @@
 (setq load-path (cons "~/.emacs.d/rails" load-path))
 (setq load-path (cons "~/.emacs.d/mmm-mode" load-path))
 
-;; ruby
 (autoload 'ruby-mode "ruby-mode" "Load ruby-mode")
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-hook 'ruby-mode-hook 'turn-on-font-lock)
-
-;;rails
-;; See http://wiki.rubyonrails.org/rails/pages/HowToUseEmacsWithRails
-;; For all snippets
-;; See http://www.credmp.org/index.php/2006/11/28/ruby-on-rails-and-emacs/
-;; for a tutorial
-(defun try-complete-abbrev (old)
-  (if (expand-abbrev) t nil))
-(setq hippie-expand-try-functions-list
-      '(try-complete-abbrev
-        try-complete-file-name
-        try-expand-dabbrev))
-(require 'rails)
-(require 'snippet)
 (add-hook 'ruby-mode-hook
-          (lambda()
-            (add-hook 'local-write-file-hooks
-                      '(lambda()
-                         (save-excursion
-                           (untabify (point-min) (point-max))
-                           (delete-trailing-whitespace)
-                           )))
-            (set (make-local-variable 'indent-tabs-mode) 'nil)
-            (set (make-local-variable 'tab-width) 2)
-            (imenu-add-to-menubar "IMENU")
-            (require 'ruby-electric)
-            (ruby-electric-mode t)
-            ))
+		  'turn-on-font-lock
+		  (lambda()
+			(imenu-add-to-menubar "IMENU")
+			(require 'ruby-electric)
+			(ruby-electric-mode t)
+			))
+
+;; ruby
+(defvar my-ruby-path-regexp
+  "lstm"
+  "Regexp that matches paths for my rb files.")
+
+(defun my-ruby-hook ()
+  (when (string-match my-ruby-path-regexp buffer-file-name)
+      (message "Using Ruby code settings")
+	  ;;rails
+	  ;; See http://wiki.rubyonrails.org/rails/pages/HowToUseEmacsWithRails
+	  ;; For all snippets
+	  ;; See http://www.credmp.org/index.php/2006/11/28/ruby-on-rails-and-emacs/
+	  ;; for a tutorial
+	  (defun try-complete-abbrev (old)
+		(if (expand-abbrev) t nil))
+	  (setq hippie-expand-try-functions-list
+			'(try-complete-abbrev
+			  try-complete-file-name
+			  try-expand-dabbrev))
+	  (require 'rails)
+	  (require 'snippet)
+))
+
 ;; nXml, for multiple mode in rhtml
 (load "~/.emacs.d/nxml/autostart.el")
 ;; only special background in submode
@@ -60,18 +61,24 @@
   ;; define this dummy variable
   (make-local-variable 'cua-inhibit-cua-keys)
   (setq mumamo-current-chunk-family '("eRuby nXhtml Family" nxhtml-mode
-                                      (mumamo-chunk-eruby
-                                       mumamo-chunk-inlined-style
-                                       mumamo-chunk-inlined-script
-                                       mumamo-chunk-style=
-                                       mumamo-chunk-onjs=)))
+									  (mumamo-chunk-eruby
+									   mumamo-chunk-inlined-style
+									   mumamo-chunk-inlined-script
+									   mumamo-chunk-style=
+									   mumamo-chunk-onjs=)))
   (mumamo-mode)
   (rails-minor-mode t)
   (auto-fill-mode -1)
   (setq tab-width 2)
   (setq indent-tab-mode nil))
 
+(add-hook 'ruby-mode-hook 'my-ruby-hook)
+(add-hook 'kid-rhtml-mode-hook' 'my-ruby-hook)
 
+
+;;;;;;;;;;;;;;;;;
+;;; General   ;;;
+;;;;;;;;;;;;;;;;;
 ;; Clavier et affichage français (avec utf-8)
 (prefer-coding-system 'utf-8)
 ;; (standard-display-european t)
@@ -92,8 +99,6 @@
 
 ; Browse-url (utilisation de Firefox au lieu de Netscape)
 (setq browse-url-generic-program "firefox")
-
-
 
 ; Édition des feuilles de style CSS
 ; port www/css-mode.el
@@ -121,14 +126,6 @@
 		       ("\\.TeX$" . TeX-mode)
 		       ("\\.texinfo$" . texinfo-mode))
 			      auto-mode-alist))
-;(add-hook 'text-mode-hook
-;	  '(lambda ()
-;	     (setq require-final-newline 1)
-;	     (auto-fill-mode 1)
-;	     (ispell-minor-mode 1)
-;	     ))
-
-;; Pour un mode TeX intéressant
 
 ;; Profitons d'un ecran de plus de 80 colonnes
 (cond (window-system
@@ -143,7 +140,6 @@
 (autoload 'reftex-citation "reftex" "Do citation with RefTeX" t)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
 (add-hook 'latex-mode-hook 'turn-on-reftex)   ; with Emacs latex mode
-
 
 
 ;; Pour mettre en lumière les sources
