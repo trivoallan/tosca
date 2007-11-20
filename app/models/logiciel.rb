@@ -12,9 +12,12 @@ class Logiciel < ActiveRecord::Base
   #belongs_to :communaute
   belongs_to :license
   belongs_to :groupe
-  belongs_to :image
-
+  has_one :image, :dependent => :destroy
+  
   has_many :binaires, :through => :paquets, :dependent => :destroy
+
+  validates_presence_of :name, :message =>
+    _('You have to specify a name')
 
   validates_length_of :competences, :minimum => 1, :message => 
     _('You have to specify at least one technology')

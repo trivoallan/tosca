@@ -2,7 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Image < ActiveRecord::Base
-  has_one :logiciel
+  belongs_to :logiciel
+  validates_presence_of :image, :message => _('You must specify a file')
 
   file_column :image, :magick => {
     :versions => {

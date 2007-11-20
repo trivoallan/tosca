@@ -3,3 +3,4 @@ image_00001:
   id: 1
   description: Logo Bull
   image: logo_bull.gif
+  logiciel_id: NULL

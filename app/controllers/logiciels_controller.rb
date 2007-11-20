@@ -91,15 +91,11 @@ class LogicielsController < ApplicationController
 
   def create
     @logiciel = Logiciel.new(params[:logiciel])
-    unless params[:image][:image].instance_of?(String)
-      params[:image][:description] = @logiciel.name
-      img = Image.create(params[:image])
-      @logiciel.image = img unless img.nil?
-    end
-    if @logiciel.save
+    if @logiciel.save and add_logo
       flash[:notice] = _('The software %s has been created succesfully.') % @logiciel.name
       redirect_to logiciels_path
     else
+      add_image_errors
       _form and render :action => 'new'
     end
   end
@@ -111,16 +107,11 @@ class LogicielsController < ApplicationController
 
   def update
     @logiciel = Logiciel.find(params[:id])
-    unless params[:image][:image].instance_of?(String)
-      @logiciel.image.destroy unless @logiciel.image.nil?
-      params[:image][:description] = @logiciel.name
-      img = Image.create(params[:image])
-      @logiciel.image = img unless img.nil?
-    end
-    if @logiciel.update_attributes(params[:logiciel])
+    if @logiciel.update_attributes(params[:logiciel]) and add_logo
       flash[:notice] = _('The software %s has been updated successfully.') % @logiciel.name
       redirect_to logiciels_path
     else
+      add_image_errors
       _form and render :action => 'edit'
     end
   end
@@ -151,4 +142,22 @@ private
                        Binaire.count, Logiciel.count)
   end
 
+  def add_logo
+    image = params[:image]
+    unless image.nil? || image[:image].blank?
+      image[:description] = @logiciel.name
+      @logiciel.image = Image.new(image)
+      return @logiciel.image.save
+    end
+    return true
+  end
+
+  # because :save resets @logiciel.errors
+  def add_image_errors
+    unless @logiciel.image.nil?
+      @logiciel.image.errors.each do |attr, msg|
+        @logiciel.errors.add :image, msg
+      end
+    end
+  end
 end
