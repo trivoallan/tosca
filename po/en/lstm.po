@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-11-20 17:43+0100\n"
-"PO-Revision-Date: 2007-11-16 17:49+0100\n"
+"POT-Creation-Date: 2007-11-20 18:31+0100\n"
+"PO-Revision-Date: 2007-11-20 18:33+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -121,16 +121,14 @@ msgid "typedemande"
 msgstr ""
 
 #: app/models/typedemande.rb:-
-#, fuzzy
 msgid "Typedemande|Name"
-msgstr "Description"
+msgstr "Name"
 
 #: app/models/conteneur.rb:-
 msgid "conteneur"
 msgstr ""
 
 #: app/models/conteneur.rb:-
-#, fuzzy
 msgid "Conteneur|Name"
 msgstr "Name"
 
@@ -211,9 +209,8 @@ msgid "Dependance|Paquet"
 msgstr ""
 
 #: app/models/dependance.rb:-
-#, fuzzy
 msgid "Dependance|Name"
-msgstr "Version"
+msgstr "Name"
 
 #: app/models/dependance.rb:-
 msgid "Dependance|Sens"
@@ -236,7 +233,6 @@ msgid "etatreversement"
 msgstr "contributionstate"
 
 #: app/models/etatreversement.rb:- app/views/etatreversements/_form.rhtml:4
-#, fuzzy
 msgid "Etatreversement|Name"
 msgstr "Name"
 
@@ -305,9 +301,8 @@ msgid "logiciel"
 msgstr ""
 
 #: app/models/logiciel.rb:-
-#, fuzzy
 msgid "Logiciel|Name"
-msgstr "Description"
+msgstr "Name"
 
 #: app/models/logiciel.rb:-
 msgid "Logiciel|Referent"
@@ -530,9 +525,8 @@ msgid "document"
 msgstr ""
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|User"
-msgstr "File"
+msgstr "Author"
 
 #: app/models/document.rb:-
 msgid "Document|Typedocument"
@@ -784,9 +778,8 @@ msgid "typecontribution"
 msgstr ""
 
 #: app/models/typecontribution.rb:-
-#, fuzzy
 msgid "Typecontribution|Name"
-msgstr "Description"
+msgstr "Name"
 
 #: app/models/typecontribution.rb:-
 msgid "Typecontribution|Description"
@@ -873,9 +866,8 @@ msgid "Paquet|Logiciel"
 msgstr ""
 
 #: app/models/paquet.rb:-
-#, fuzzy
 msgid "Paquet|Name"
-msgstr "Version"
+msgstr "Name"
 
 #: app/models/paquet.rb:-
 msgid "Paquet|Version"
@@ -962,7 +954,6 @@ msgid "Contrat|Socle"
 msgstr ""
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Name"
 msgstr "Name"
 
@@ -1124,9 +1115,8 @@ msgid "typedocument"
 msgstr ""
 
 #: app/models/typedocument.rb:-
-#, fuzzy
 msgid "Typedocument|Name"
-msgstr "Description"
+msgstr "Name"
 
 #: app/models/typedocument.rb:-
 msgid "Typedocument|Description"
@@ -1193,9 +1183,8 @@ msgid "contribution"
 msgstr ""
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Name"
-msgstr "Version"
+msgstr "Name"
 
 #: app/models/contribution.rb:-
 msgid "Contribution|Description"
