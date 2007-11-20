@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-20 17:43+0100\n"
-"PO-Revision-Date: 2007-11-20 17:40+0100\n"
+"PO-Revision-Date: 2007-11-20 17:49+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,6 @@ msgid "distributeur"
 msgstr "distributeur"
 
 #: app/models/distributeur.rb:- app/views/distributeurs/_form.rhtml:4
-#, fuzzy
 msgid "Distributeur|Name"
 msgstr "Nom"
 
@@ -38,7 +37,6 @@ msgid "socle"
 msgstr "socle"
 
 #: app/models/socle.rb:-
-#, fuzzy
 msgid "Socle|Name"
 msgstr "Nom"
 
@@ -131,7 +129,6 @@ msgid "typedemande"
 msgstr "typedemande"
 
 #: app/models/typedemande.rb:-
-#, fuzzy
 msgid "Typedemande|Name"
 msgstr "Nom"
 
@@ -140,7 +137,6 @@ msgid "conteneur"
 msgstr "conteneur"
 
 #: app/models/conteneur.rb:-
-#, fuzzy
 msgid "Conteneur|Name"
 msgstr "Nom"
 
@@ -189,7 +185,6 @@ msgid "competence"
 msgstr "competence"
 
 #: app/models/competence.rb:-
-#, fuzzy
 msgid "Competence|Name"
 msgstr "Nom"
 
@@ -222,7 +217,6 @@ msgid "Dependance|Paquet"
 msgstr "Paquet"
 
 #: app/models/dependance.rb:-
-#, fuzzy
 msgid "Dependance|Name"
 msgstr "Nom"
 
@@ -239,7 +233,6 @@ msgid "arch"
 msgstr "arch"
 
 #: app/models/arch.rb:-
-#, fuzzy
 msgid "Arch|Name"
 msgstr "Nom"
 
@@ -248,7 +241,6 @@ msgid "etatreversement"
 msgstr "etatreversement"
 
 #: app/models/etatreversement.rb:- app/views/etatreversements/_form.rhtml:4
-#, fuzzy
 msgid "Etatreversement|Name"
 msgstr "Nom"
 
@@ -277,7 +269,6 @@ msgid "support"
 msgstr "support"
 
 #: app/models/support.rb:-
-#, fuzzy
 msgid "Support|Name"
 msgstr "Nom"
 
@@ -318,7 +309,6 @@ msgid "logiciel"
 msgstr "logiciel"
 
 #: app/models/logiciel.rb:-
-#, fuzzy
 msgid "Logiciel|Name"
 msgstr "Nom"
 
@@ -379,7 +369,6 @@ msgid "statut"
 msgstr "statut"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Statut|Name"
 msgstr "Nom"
 
@@ -519,7 +508,6 @@ msgid "typeurl"
 msgstr "typeurl"
 
 #: app/models/typeurl.rb:-
-#, fuzzy
 msgid "Typeurl|Name"
 msgstr "Nom"
 
@@ -609,7 +597,6 @@ msgid "license"
 msgstr "licence"
 
 #: app/models/license.rb:- app/views/licenses/_form.rhtml:4
-#, fuzzy
 msgid "License|Name"
 msgstr "Nom"
 
@@ -670,7 +657,6 @@ msgid "fournisseur"
 msgstr "fournisseur"
 
 #: app/models/fournisseur.rb:- app/views/fournisseurs/_form.rhtml:4
-#, fuzzy
 msgid "Fournisseur|Name"
 msgstr "Nom"
 
@@ -691,7 +677,6 @@ msgid "role"
 msgstr "rôle"
 
 #: app/models/role.rb:-
-#, fuzzy
 msgid "Role|Name"
 msgstr "Nom"
 
@@ -800,7 +785,6 @@ msgid "typecontribution"
 msgstr "typecontribution"
 
 #: app/models/typecontribution.rb:-
-#, fuzzy
 msgid "Typecontribution|Name"
 msgstr "Nom"
 
@@ -889,7 +873,6 @@ msgid "Paquet|Logiciel"
 msgstr "Logiciel"
 
 #: app/models/paquet.rb:-
-#, fuzzy
 msgid "Paquet|Name"
 msgstr "Nom"
 
@@ -978,7 +961,6 @@ msgid "Contrat|Socle"
 msgstr "Socle"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Name"
 msgstr "Nom"
 
@@ -1016,7 +998,6 @@ msgid "groupe"
 msgstr "groupe"
 
 #: app/models/groupe.rb:-
-#, fuzzy
 msgid "Groupe|Name"
 msgstr "Nom"
 
@@ -1081,21 +1062,18 @@ msgid "Image|Description"
 msgstr "Description"
 
 #: app/models/image.rb:-
-#, fuzzy
 msgid "Image|Logiciel"
 msgstr "Logiciel"
 
 #: app/models/image.rb:6
-#, fuzzy
 msgid "You must select a file to upload"
-msgstr "Vous devez spécifier un fichier"
+msgstr "Vous devez sélectionner un fichier à télécharger"
 
 #: app/models/client.rb:-
 msgid "client"
 msgstr "client"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Name"
 msgstr "Nom"
 
@@ -1140,7 +1118,6 @@ msgid "typedocument"
 msgstr "typedocument"
 
 #: app/models/typedocument.rb:-
-#, fuzzy
 msgid "Typedocument|Name"
 msgstr "Nom"
 
@@ -1161,7 +1138,6 @@ msgid "Binaire|Arch"
 msgstr "Architecture"
 
 #: app/models/binaire.rb:-
-#, fuzzy
 msgid "Binaire|Name"
 msgstr "Nom"
 
@@ -1202,7 +1178,6 @@ msgid "mainteneur"
 msgstr "mainteneur"
 
 #: app/models/mainteneur.rb:-
-#, fuzzy
 msgid "Mainteneur|Name"
 msgstr "Nom"
 
@@ -1211,7 +1186,6 @@ msgid "contribution"
 msgstr "contribution"
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Name"
 msgstr "Nom"
 
@@ -1272,7 +1246,6 @@ msgid "Contribution|Synthese"
 msgstr "Synthese"
 
 #: app/models/contribution.rb:46
-#, fuzzy
 msgid " on "
 msgstr " à "
 
@@ -1289,7 +1262,6 @@ msgid "severite"
 msgstr "séverité"
 
 #: app/models/severite.rb:-
-#, fuzzy
 msgid "Severite|Name"
 msgstr "Nom"
 
@@ -3625,13 +3597,12 @@ msgid "alert on submit"
 msgstr ""
 
 #: app/views/alerts/index.rhtml:1
-#, fuzzy
 msgid "Alerts"
-msgstr "Client"
+msgstr "Alertes"
 
 #: app/views/alerts/index.rhtml:3
 msgid "Please select the contracts you want to monitor"
-msgstr ""
+msgstr "Veuillez sélectionner les contrats que voulez surveiller"
 
 #: app/views/jourferies/edit.rhtml:1
 msgid "Editing jourferie"
@@ -4907,6 +4878,3 @@ msgstr "Date de livraison"
 #: app/views/documents/new.rhtml:1
 msgid "Add a document"
 msgstr "Ajouter un document"
-
-#~ msgid "Logiciel|Image"
-#~ msgstr "Image"
