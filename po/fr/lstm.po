@@ -337,6 +337,10 @@ msgid "Logiciel|Image"
 msgstr "Image"
 
 #: app/models/logiciel.rb:20
+msgid "You have to specify a name"
+msgstr "Vous devez spécifier un nom"
+
+#: app/models/logiciel.rb:23
 msgid "You have to specify at least one technology"
 msgstr "Vous devez spécifier au moins une technologie"
 
@@ -1060,6 +1064,10 @@ msgstr "Image"
 #: app/models/image.rb:-
 msgid "Image|Description"
 msgstr "Description"
+
+#: app/models/image.rb:-
+msgid "You must specify a file"
+msgstr "Vous devez spécifier un fichier"
 
 #: app/models/client.rb:-
 msgid "client"
@@ -2107,7 +2115,7 @@ msgstr "Le fichier CSV n'est pas correct"
 
 #: app/controllers/account_controller.rb:179
 msgid "You have to specify a customer"
-msgstr "Vous devez spécifié un client"
+msgstr "Vous devez spécifier un client"
 
 #: app/controllers/account_controller.rb:182
 msgid "Vous must specify a role"
@@ -3886,7 +3894,7 @@ msgstr "Ajouter un fichier"
 
 #: app/views/demandes/_packages.rhtml:2
 msgid "Specify here the packages impacted by the request :"
-msgstr "Spécifier ici les paquets impacté par la requête :"
+msgstr "Spécifier ici les paquets impactés par la requête :"
 
 #: app/views/demandes/_packages.rhtml:4
 msgid "Commitment"
