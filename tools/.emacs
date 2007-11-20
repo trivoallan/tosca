@@ -85,7 +85,7 @@
 (autoload 'nuke-trailing-whitespace "whitespace" nil t)
 (add-hook 'mail-send-hook 'nuke-trailing-whitespace)
 (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
-
+(setq nuke-trailing-whitespace-p t)
 
 ;; Taille maximale d'un buffer pour la couleur
 '(font-lock-maximum-size (t . 256000))
