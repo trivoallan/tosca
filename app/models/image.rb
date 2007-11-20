@@ -3,7 +3,7 @@
 #####################################################
 class Image < ActiveRecord::Base
   belongs_to :logiciel
-  validates_presence_of :image, :message => _('You must specify a file')
+  validates_presence_of :image, :message => _('You must select a file to upload')
 
   file_column :image, :magick => {
     :versions => {

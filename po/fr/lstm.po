@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-16 17:45+0100\n"
+"POT-Creation-Date: 2007-11-20 17:43+0100\n"
 "PO-Revision-Date: 2007-11-20 17:40+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -28,8 +28,9 @@ msgstr ""
 msgid "distributeur"
 msgstr "distributeur"
 
-#: app/models/distributeur.rb:-
-msgid "Distributeur|Nom"
+#: app/models/distributeur.rb:- app/views/distributeurs/_form.rhtml:4
+#, fuzzy
+msgid "Distributeur|Name"
 msgstr "Nom"
 
 #: app/models/socle.rb:-
@@ -37,7 +38,8 @@ msgid "socle"
 msgstr "socle"
 
 #: app/models/socle.rb:-
-msgid "Socle|Nom"
+#, fuzzy
+msgid "Socle|Name"
 msgstr "Nom"
 
 #: app/models/socle.rb:-
@@ -104,23 +106,23 @@ msgstr "Mot de passe"
 msgid "User|Pwd confirmation"
 msgstr "Confirmation du mot de passe"
 
-#: app/models/user.rb:60
+#: app/models/user.rb:55
 msgid "Password missing"
 msgstr "Mot de passe manquant"
 
-#: app/models/user.rb:62
+#: app/models/user.rb:57
 msgid "Password is different from its confirmation"
 msgstr "Mot de passe différent de sa confirmation"
 
-#: app/models/user.rb:66
+#: app/models/user.rb:61
 msgid "Your password is too long (max. 20)"
 msgstr "Votre mot de passe est trop long (max. 20 caractères)"
 
-#: app/models/user.rb:68
+#: app/models/user.rb:63
 msgid "Your password is too short (min. 5)"
 msgstr "Votre mot de passe est trop court (min. 5)"
 
-#: app/models/user.rb:72
+#: app/models/user.rb:67
 msgid "You must have specify a password."
 msgstr "Vous devez préciser un mot de passe"
 
@@ -129,7 +131,8 @@ msgid "typedemande"
 msgstr "typedemande"
 
 #: app/models/typedemande.rb:-
-msgid "Typedemande|Nom"
+#, fuzzy
+msgid "Typedemande|Name"
 msgstr "Nom"
 
 #: app/models/conteneur.rb:-
@@ -137,7 +140,8 @@ msgid "conteneur"
 msgstr "conteneur"
 
 #: app/models/conteneur.rb:-
-msgid "Conteneur|Nom"
+#, fuzzy
+msgid "Conteneur|Name"
 msgstr "Nom"
 
 #: app/models/new.rb:-
@@ -185,7 +189,8 @@ msgid "competence"
 msgstr "competence"
 
 #: app/models/competence.rb:-
-msgid "Competence|Nom"
+#, fuzzy
+msgid "Competence|Name"
 msgstr "Nom"
 
 #: app/models/ingenieur.rb:-
@@ -217,7 +222,8 @@ msgid "Dependance|Paquet"
 msgstr "Paquet"
 
 #: app/models/dependance.rb:-
-msgid "Dependance|Nom"
+#, fuzzy
+msgid "Dependance|Name"
 msgstr "Nom"
 
 #: app/models/dependance.rb:-
@@ -233,18 +239,20 @@ msgid "arch"
 msgstr "arch"
 
 #: app/models/arch.rb:-
-msgid "Arch|Nom"
+#, fuzzy
+msgid "Arch|Name"
 msgstr "Nom"
 
 #: app/models/etatreversement.rb:-
 msgid "etatreversement"
 msgstr "etatreversement"
 
-#: app/models/etatreversement.rb:-
-msgid "Etatreversement|Nom"
+#: app/models/etatreversement.rb:- app/views/etatreversements/_form.rhtml:4
+#, fuzzy
+msgid "Etatreversement|Name"
 msgstr "Nom"
 
-#: app/models/etatreversement.rb:-
+#: app/models/etatreversement.rb:- app/views/etatreversements/_form.rhtml:7
 msgid "Etatreversement|Description"
 msgstr "Description"
 
@@ -269,7 +277,8 @@ msgid "support"
 msgstr "support"
 
 #: app/models/support.rb:-
-msgid "Support|Nom"
+#, fuzzy
+msgid "Support|Name"
 msgstr "Nom"
 
 #: app/models/support.rb:-
@@ -309,7 +318,8 @@ msgid "logiciel"
 msgstr "logiciel"
 
 #: app/models/logiciel.rb:-
-msgid "Logiciel|Nom"
+#, fuzzy
+msgid "Logiciel|Name"
 msgstr "Nom"
 
 #: app/models/logiciel.rb:-
@@ -331,10 +341,6 @@ msgstr "Licence"
 #: app/models/logiciel.rb:-
 msgid "Logiciel|Groupe"
 msgstr "Groupe"
-
-#: app/models/logiciel.rb:-
-msgid "Logiciel|Image"
-msgstr "Image"
 
 #: app/models/logiciel.rb:20
 msgid "You have to specify a name"
@@ -373,7 +379,8 @@ msgid "statut"
 msgstr "statut"
 
 #: app/models/demande.rb:-
-msgid "Statut|Nom"
+#, fuzzy
+msgid "Statut|Name"
 msgstr "Nom"
 
 #: app/models/demande.rb:-
@@ -512,7 +519,8 @@ msgid "typeurl"
 msgstr "typeurl"
 
 #: app/models/typeurl.rb:-
-msgid "Typeurl|Nom"
+#, fuzzy
+msgid "Typeurl|Name"
 msgstr "Nom"
 
 #: app/models/urllogiciel.rb:-
@@ -600,8 +608,9 @@ msgstr "Typedemande"
 msgid "license"
 msgstr "licence"
 
-#: app/models/license.rb:-
-msgid "License|Nom"
+#: app/models/license.rb:- app/views/licenses/_form.rhtml:4
+#, fuzzy
+msgid "License|Name"
 msgstr "Nom"
 
 #: app/models/license.rb:-
@@ -660,8 +669,9 @@ msgstr "File"
 msgid "fournisseur"
 msgstr "fournisseur"
 
-#: app/models/fournisseur.rb:-
-msgid "Fournisseur|Nom"
+#: app/models/fournisseur.rb:- app/views/fournisseurs/_form.rhtml:4
+#, fuzzy
+msgid "Fournisseur|Name"
 msgstr "Nom"
 
 #: app/models/permission.rb:-
@@ -681,7 +691,8 @@ msgid "role"
 msgstr "rôle"
 
 #: app/models/role.rb:-
-msgid "Role|Nom"
+#, fuzzy
+msgid "Role|Name"
 msgstr "Nom"
 
 #: app/models/role.rb:-
@@ -789,7 +800,8 @@ msgid "typecontribution"
 msgstr "typecontribution"
 
 #: app/models/typecontribution.rb:-
-msgid "Typecontribution|Nom"
+#, fuzzy
+msgid "Typecontribution|Name"
 msgstr "Nom"
 
 #: app/models/typecontribution.rb:-
@@ -877,7 +889,8 @@ msgid "Paquet|Logiciel"
 msgstr "Logiciel"
 
 #: app/models/paquet.rb:-
-msgid "Paquet|Nom"
+#, fuzzy
+msgid "Paquet|Name"
 msgstr "Nom"
 
 #: app/models/paquet.rb:-
@@ -965,7 +978,8 @@ msgid "Contrat|Socle"
 msgstr "Socle"
 
 #: app/models/contrat.rb:-
-msgid "Contrat|Nom"
+#, fuzzy
+msgid "Contrat|Name"
 msgstr "Nom"
 
 #: app/models/contrat.rb:-
@@ -1002,7 +1016,8 @@ msgid "groupe"
 msgstr "groupe"
 
 #: app/models/groupe.rb:-
-msgid "Groupe|Nom"
+#, fuzzy
+msgid "Groupe|Name"
 msgstr "Nom"
 
 #: app/models/beneficiaire.rb:-
@@ -1066,7 +1081,13 @@ msgid "Image|Description"
 msgstr "Description"
 
 #: app/models/image.rb:-
-msgid "You must specify a file"
+#, fuzzy
+msgid "Image|Logiciel"
+msgstr "Logiciel"
+
+#: app/models/image.rb:6
+#, fuzzy
+msgid "You must select a file to upload"
 msgstr "Vous devez spécifier un fichier"
 
 #: app/models/client.rb:-
@@ -1074,7 +1095,8 @@ msgid "client"
 msgstr "client"
 
 #: app/models/client.rb:-
-msgid "Client|Nom"
+#, fuzzy
+msgid "Client|Name"
 msgstr "Nom"
 
 #: app/models/client.rb:-
@@ -1118,7 +1140,8 @@ msgid "typedocument"
 msgstr "typedocument"
 
 #: app/models/typedocument.rb:-
-msgid "Typedocument|Nom"
+#, fuzzy
+msgid "Typedocument|Name"
 msgstr "Nom"
 
 #: app/models/typedocument.rb:-
@@ -1138,7 +1161,8 @@ msgid "Binaire|Arch"
 msgstr "Architecture"
 
 #: app/models/binaire.rb:-
-msgid "Binaire|Nom"
+#, fuzzy
+msgid "Binaire|Name"
 msgstr "Nom"
 
 #: app/models/binaire.rb:-
@@ -1178,7 +1202,8 @@ msgid "mainteneur"
 msgstr "mainteneur"
 
 #: app/models/mainteneur.rb:-
-msgid "Mainteneur|Nom"
+#, fuzzy
+msgid "Mainteneur|Name"
 msgstr "Nom"
 
 #: app/models/contribution.rb:- app/views/contributions/select.rhtml:3
@@ -1186,7 +1211,8 @@ msgid "contribution"
 msgstr "contribution"
 
 #: app/models/contribution.rb:-
-msgid "Contribution|Nom"
+#, fuzzy
+msgid "Contribution|Name"
 msgstr "Nom"
 
 #: app/models/contribution.rb:-
@@ -1245,6 +1271,11 @@ msgstr "Version"
 msgid "Contribution|Synthese"
 msgstr "Synthese"
 
+#: app/models/contribution.rb:46
+#, fuzzy
+msgid " on "
+msgstr " à "
+
 #: app/models/jourferie.rb:-
 msgid "jourferie"
 msgstr "jour ferié"
@@ -1258,7 +1289,8 @@ msgid "severite"
 msgstr "séverité"
 
 #: app/models/severite.rb:-
-msgid "Severite|Nom"
+#, fuzzy
+msgid "Severite|Name"
 msgstr "Nom"
 
 #: app/helpers/fournisseurs_helper.rb:9
@@ -1645,7 +1677,7 @@ msgstr "Version"
 
 #: app/helpers/contributions_helper.rb:10
 #: app/controllers/export_controller.rb:146
-#: app/controllers/reporting_controller.rb:512
+#: app/controllers/reporting_controller.rb:509
 #: app/views/contributions/_contributions_info.rhtml:39
 #: app/views/demandes/lists/_requests_table.rhtml:10
 #: app/views/demandes/_infos_demande.rhtml:19
@@ -1976,11 +2008,11 @@ msgstr "Une image a bien été créée."
 msgid "An image was successfully updated."
 msgstr "Une image a bien été mise à jour."
 
-#: app/controllers/roles_controller.rb:22
+#: app/controllers/roles_controller.rb:23
 msgid "The role %s was succefully created."
 msgstr "Le rôle %s a été créé avec succès."
 
-#: app/controllers/roles_controller.rb:37
+#: app/controllers/roles_controller.rb:38
 msgid "The role %s was succefully updated."
 msgstr "Le rôle %s a été mis à jour avec succès."
 
@@ -2157,11 +2189,11 @@ msgstr "Liste de vos logiciels supportés"
 msgid "The software %s has been created succesfully."
 msgstr "Le logiciel %s a été créé avec succès"
 
-#: app/controllers/logiciels_controller.rb:110
+#: app/controllers/logiciels_controller.rb:111
 msgid "The software %s has been updated successfully."
 msgstr "Le logiciel %s a été mis à jour avec succès."
 
-#: app/controllers/logiciels_controller.rb:120
+#: app/controllers/logiciels_controller.rb:122
 msgid "The software %s has been successfully deleted."
 msgstr "Le logiciel %s a été effacé avec succès"
 
@@ -2194,71 +2226,71 @@ msgstr "Le premier jour doit précéder le dernier jour"
 msgid "incorrect parameters"
 msgstr "paramètres incorrects"
 
-#: app/controllers/reporting_controller.rb:505
-#: app/controllers/reporting_controller.rb:507
+#: app/controllers/reporting_controller.rb:502
+#: app/controllers/reporting_controller.rb:504
 msgid "Distributed on "
 msgstr "Répartie sur "
 
-#: app/controllers/reporting_controller.rb:505
-#: app/controllers/reporting_controller.rb:507
+#: app/controllers/reporting_controller.rb:502
+#: app/controllers/reporting_controller.rb:504
 #: app/views/reporting/_introduction.rhtml:4
 msgid " months"
 msgstr " mois"
 
-#: app/controllers/reporting_controller.rb:533
+#: app/controllers/reporting_controller.rb:530
 msgid ""
 "No data \n"
 "available"
 msgstr "Aucune donnée \\n disponible"
 
-#: app/controllers/reporting_controller.rb:543
+#: app/controllers/reporting_controller.rb:540
 #: app/views/reporting/_sommaire.rhtml:7 app/views/reporting/general.rhtml:20
 msgid "Distribution of your requests"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:544
+#: app/controllers/reporting_controller.rb:541
 msgid "Distribution of requests"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:545
-#: app/controllers/reporting_controller.rb:546
+#: app/controllers/reporting_controller.rb:542
+#: app/controllers/reporting_controller.rb:543
 msgid "Severity of your requests"
 msgstr "Sévérité de vos demandes"
 
-#: app/controllers/reporting_controller.rb:547
-#: app/controllers/reporting_controller.rb:548
+#: app/controllers/reporting_controller.rb:544
+#: app/controllers/reporting_controller.rb:545
 msgid "Resolution of your requests"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:550
+#: app/controllers/reporting_controller.rb:547
 msgid "Cancelled requests"
 msgstr "Demandes annulées"
 
-#: app/controllers/reporting_controller.rb:551
+#: app/controllers/reporting_controller.rb:548
 msgid "Evolution of the activity volume"
 msgstr "Évolution du volume d'activité"
 
-#: app/controllers/reporting_controller.rb:553
+#: app/controllers/reporting_controller.rb:550
 msgid "Top 5 of the most discussed requests"
 msgstr "Top 5 des demandes les plus discutées"
 
-#: app/controllers/reporting_controller.rb:554
+#: app/controllers/reporting_controller.rb:551
 msgid "Top 5 of the most discussed software"
 msgstr "Top 5 des logiciels les plus discutées"
 
-#: app/controllers/reporting_controller.rb:556
+#: app/controllers/reporting_controller.rb:553
 msgid "Processing time"
 msgstr "Temps de traitement"
 
-#: app/controllers/reporting_controller.rb:557
+#: app/controllers/reporting_controller.rb:554
 msgid "Response time"
 msgstr "Temps de réponse"
 
-#: app/controllers/reporting_controller.rb:558
+#: app/controllers/reporting_controller.rb:555
 msgid "Workaround time"
 msgstr "Temps de contournement"
 
-#: app/controllers/reporting_controller.rb:559
+#: app/controllers/reporting_controller.rb:556
 msgid "Correction time"
 msgstr "Temps de correction"
 
@@ -2360,18 +2392,20 @@ msgstr "un ingénieur"
 #: app/views/account/_show_engineer.rhtml:8
 #: app/views/account/_users_info.rhtml:21 app/views/socles/_form.rhtml:3
 #: app/views/groupes/index.rhtml:5 app/views/groupes/_form.rhtml:4
-#: app/views/beneficiaires/index.rhtml:5 app/views/supports/_form.rhtml:3
-#: app/views/binaires/show.rhtml:14 app/views/binaires/_form.rhtml:20
-#: app/views/contrats/index.rhtml:5 app/views/contrats/show.rhtml:2
-#: app/views/contrats/_form.rhtml:10 app/views/competences/_form.rhtml:4
-#: app/views/typedemandes/_form.rhtml:3 app/views/arches/_form.rhtml:4
-#: app/views/typeurls/_form.rhtml:3 app/views/demandes/_form_binaires.rhtml:4
+#: app/views/beneficiaires/index.rhtml:5 app/views/mainteneurs/_form.rhtml:4
+#: app/views/supports/_form.rhtml:3 app/views/binaires/show.rhtml:14
+#: app/views/binaires/_form.rhtml:20 app/views/contrats/index.rhtml:5
+#: app/views/contrats/show.rhtml:2 app/views/contrats/_form.rhtml:10
+#: app/views/competences/_form.rhtml:4 app/views/typedemandes/_form.rhtml:3
+#: app/views/arches/_form.rhtml:4 app/views/typeurls/_form.rhtml:3
+#: app/views/demandes/_form_binaires.rhtml:4
 #: app/views/paquets/_paquets_list.rhtml:7
 #: app/views/paquets/_paquets_info.rhtml:23 app/views/paquets/_form.rhtml:13
 #: app/views/logiciels/_softwares_list.rhtml:6
 #: app/views/logiciels/show.rhtml:10 app/views/logiciels/_form.rhtml:3
 #: app/views/typedocuments/_form.rhtml:3 app/views/roles/_form.rhtml:3
 #: app/views/severites/_form.rhtml:3 app/views/statuts/_form.rhtml:3
+#: app/views/conteneurs/_form.rhtml:4
 msgid "Name"
 msgstr "Nom"
 
@@ -2759,7 +2793,7 @@ msgid "a client"
 msgstr "un client"
 
 #: app/views/clients/index.rhtml:4 app/views/clients/_form.rhtml:26
-#: app/views/clients/stats.rhtml:5
+#: app/views/clients/stats.rhtml:5 app/views/logiciels/_form.rhtml:12
 msgid "Logo"
 msgstr "Logo"
 
@@ -3586,6 +3620,19 @@ msgstr "Éditer un type d'url"
 msgid "Create a New typeurl"
 msgstr "Créér un nouveau type d'url"
 
+#: app/views/alerts/on_submit.rhtml:1
+msgid "alert on submit"
+msgstr ""
+
+#: app/views/alerts/index.rhtml:1
+#, fuzzy
+msgid "Alerts"
+msgstr "Client"
+
+#: app/views/alerts/index.rhtml:3
+msgid "Please select the contracts you want to monitor"
+msgstr ""
+
 #: app/views/jourferies/edit.rhtml:1
 msgid "Editing jourferie"
 msgstr "Edition du jour ferié"
@@ -4297,7 +4344,7 @@ msgstr "Technologie(s)"
 #: app/views/logiciels/_softwares_list.rhtml:7
 #: app/views/logiciels/show.rhtml:33
 #: app/views/logiciels/_softwares_info.rhtml:42
-#: app/views/logiciels/_form.rhtml:20
+#: app/views/logiciels/_form.rhtml:22
 msgid "Group"
 msgstr "Groupe"
 
@@ -4318,13 +4365,13 @@ msgstr "Logiciel \"%s\""
 msgid "Reference"
 msgstr "Référence"
 
-#: app/views/logiciels/show.rhtml:27 app/views/logiciels/_form.rhtml:16
+#: app/views/logiciels/show.rhtml:27 app/views/logiciels/_form.rhtml:18
 msgid "Copyright"
 msgstr "License"
 
 #: app/views/logiciels/show.rhtml:30
 #: app/views/logiciels/_softwares_info.rhtml:51
-#: app/views/logiciels/_form.rhtml:24
+#: app/views/logiciels/_form.rhtml:26
 msgid "Technologies"
 msgstr "Technologies"
 
@@ -4352,7 +4399,7 @@ msgstr "Technologie"
 msgid "Binary packages"
 msgstr "Paquets binaires"
 
-#: app/views/logiciels/_form.rhtml:13
+#: app/views/logiciels/_form.rhtml:15
 msgid "Base name"
 msgstr "Nom de base"
 
@@ -4414,11 +4461,11 @@ msgstr "Permissions"
 msgid "New role"
 msgstr "Nouveau rôle"
 
-#: app/views/bienvenue/plan.rhtml:2
+#: app/views/bienvenue/plan.rhtml:5
 msgid "Plan/access allowed"
 msgstr "Plan/Accès autorisé"
 
-#: app/views/bienvenue/plan.rhtml:23
+#: app/views/bienvenue/plan.rhtml:26
 msgid "reporting"
 msgstr "reporting"
 
@@ -4716,11 +4763,11 @@ msgstr ""
 msgid "Contributors"
 msgstr "Contributeurs"
 
-#: app/views/bienvenue/about.rhtml:31
+#: app/views/bienvenue/about.rhtml:33
 msgid "Testers"
 msgstr "Testeurs"
 
-#: app/views/bienvenue/about.rhtml:38
+#: app/views/bienvenue/about.rhtml:40
 msgid "Free software used by %s"
 msgstr "Logiciel libre utilisé par %s"
 
@@ -4860,3 +4907,6 @@ msgstr "Date de livraison"
 #: app/views/documents/new.rhtml:1
 msgid "Add a document"
 msgstr "Ajouter un document"
+
+#~ msgid "Logiciel|Image"
+#~ msgstr "Image"
