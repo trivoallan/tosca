@@ -17,9 +17,15 @@ module ActionController::Routing
       # Mapper for non-resource controller
       def without_orm(controller, actions, method = :get)
         actions.each { |action|
-          self.send("#{action}_#{controller}", "#{controller}/#{action}",
-                    { :controller => controller, :action => action,
-                      :conditions => { :method => method }})
+          if action != 'index'
+            self.send("#{action}_#{controller}", "#{controller}/#{action}",
+                      { :controller => controller, :action => action,
+                        :conditions => { :method => method }})
+          else
+            self.send("#{controller}", "#{controller}",
+                      { :controller => controller, :action => action,
+                        :conditions => { :method => :get }})
+          end
         }
       end
 

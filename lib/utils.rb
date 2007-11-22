@@ -75,7 +75,7 @@ end
 #TODO : Faire la numérotation pour les listes numérotée
 def html2text(html)
   text = html.
-    gsub(/(&nbsp;)+/im, ' ').squeeze(' ').strip.gsub("\n",'').
+    gsub(/(&nbsp;)+/im, ' ').squeeze(' ').strip.gsub("\n",'').gsub(/(&lsquo;)+/, "'").
     gsub(/<([^\s]+)[^>]*(src|href)=\s*(.?)([^>\s]*)\3[^>]*>\4<\/\1>/i, '\4')
 
   links = []
