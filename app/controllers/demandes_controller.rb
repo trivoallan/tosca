@@ -54,7 +54,8 @@ class DemandesController < ApplicationController
       redirect_to comment_demande_path(params['numero']) and return
     end
 
-    options = { :per_page => 10, :order => 'updated_on DESC',
+    order = params[:sort] || 'updated_on DESC'
+    options = { :per_page => 10, :order => order,
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
     conditions = []
 

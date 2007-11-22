@@ -1,0 +1,14 @@
+= Sortable List
+
+See SortableListHelper for usage information.
+
+= Installation
+
+== Standard Method
+
+    ruby ./script/plugin install svn://rubyforge.org/var/svn/sortable-list/trunk
+    mv vendor/plugins/trunk vendor/plugins/sortable_list
+
+== Piston Method
+
+    piston import svn://rubyforge.org/var/svn/sortable-list vendor/plugins/sortable_list

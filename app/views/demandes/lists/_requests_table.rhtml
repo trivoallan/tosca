@@ -1,18 +1,18 @@
 <table id="demandes_list" class="show" width='100%'>
    <tr>
-      <th width='2%'><%= _("Id") %></th>
-      <th width='7%'><%= _("Software") %></th>
-      <th width='7%' colspan="2"><% _("Type") %></th>
+      <th width='2%'><%= sortable_header(:id, :label => _("Id")) %></th>
+      <th width='7%'><%= sortable_header(:logiciel_id, :label => _("Software")) %></th>
+      <th width='7%' colspan="2"><%= sortable_header(:typedemande_id, :label => _("Type")) %></th>
       <% if @ingenieur %>
-        <th width='7%'><%= _("Client") %></th>
+        <th width='7%'><%= sortable_header(:client_id , :label => _("Client")) %></th>
       <% end %>
-      <th width='10%'><%= _("Submitter") %></th>
-      <th><%= _("Summary") %></th>
+      <th width='10%'><%= sortable_header(:beneficiaire_id, :label => _("Submitter")) %></th>
+      <th><%= sortable_header(:description, :label => _("Summary")) %></th>
       <% if @ingenieur %>
-        <th width='9%'><%= _("Owner") %></th>
+        <th width='9%'><%= sortable_header(:ingenieur_id, :label => _("Owner")) %></th>
       <% end %>
-      <th width='8%'><%= _("Updated on") %></th>
-      <th colspan="3" width='1%'></th>
+      <th width='8%'><%= sortable_header(:updated_on, :label => _("Updated on"), :descend => true) %></th>
+      <!--<th colspan="3" width='1%'></th>-->
    </tr>
 
    <% beneficiaire = Beneficiaire.new(:id => 0) %>
@@ -20,7 +20,7 @@
       def ingenieur.name; ''; end %>
    <% for demande in @demandes %>
    <tr <%= tr_attributes(demande_path(demande)) %>>
-        <td ><%= demande.id %></td>
+        <td><%= demande.id %></td>
         <td><%= demande.respond_to?(:logiciels_name) ? demande.logiciels_name : Logiciel.not_found  %></td>
         <td><%= demande.typedemandes_name %></td>
         <td class="demande_<%=demande.statut_id%>"><%= StaticImage::severite(demande) %></td>
