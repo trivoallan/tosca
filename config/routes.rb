@@ -61,7 +61,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :conteneurs
   map.resources :contrats,
     :collection => {
-      :ajax_display_attribut_contract => :post }
+      :ajax_choose => :post }
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get },
     :member => { :list => :get }

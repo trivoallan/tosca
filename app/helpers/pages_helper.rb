@@ -2,7 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 module PagesHelper
-
   # add_create_link
   # options :
   # permet de spécifier un controller
@@ -61,10 +60,13 @@ module PagesHelper
   end
 
 
-  AJAX_OPTIONS = {  :update => 'content', :method => :get,
-    :with => "Form.serialize(document.forms['filters'])",
-    :before => "Element.show('spinner')",
+  SPINNER_OPTIONS = { :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" }
+
+  AJAX_OPTIONS =
+    SPINNER_OPTIONS.dup.update(:update => 'content', :method => :get,
+      :with => "Form.serialize(document.forms['filters'])"
+    )
 
 =begin
  call it like this :

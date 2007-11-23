@@ -50,6 +50,11 @@
      </tr>
     </table>
   </td></tr>
-</table>
+</table>contrat_class_type_0
 
-<%= observe_form 'contrat_form', :url => ajax_display_attribut_contract_contrats_path %>
+<% options = PagesHelper::SPINNER_OPTIONS.dup.update(
+    :with => "Form.serialize(document.forms['contrat_form'])",
+    :url => ajax_choose_contrats_path ) %>
+<% Contrat::List.each do |klass| %>
+  <%= observe_field "contrat_class_type_#{klass.id}", options %>
+<% end %>

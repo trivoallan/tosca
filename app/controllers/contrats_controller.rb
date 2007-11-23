@@ -19,7 +19,8 @@ class ContratsController < ApplicationController
   end
 
 public
-  def ajax_display_attribut_contract
+  def ajax_choose
+    render :nothing => true and return unless request.xhr?
     @type = nil
     begin
       klass = Contrat::List[params[:contrat][:class_type].to_i]

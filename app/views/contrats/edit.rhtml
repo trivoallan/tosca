@@ -1,4 +1,4 @@
-<h1><%= _('Edit a contract') %></h1> <%= StaticImage::spinner %>
+<h1><%= _('Edit a contract') %> <%= StaticImage::spinner %></h1>
 
 <% form_tag contrat_path(@contrat), :method => :put do %>
   <%= render :partial => 'form' %>
