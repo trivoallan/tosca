@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(:version => 82) do
     t.column "severite_id",    :integer
     t.column "statut_id",      :integer
     t.column "ingenieur_id",   :integer
-    t.column "temps_ecoule",   :integer
   end
 
   add_index "commentaires", ["demande_id"], :name => "commentaires_demande_id_index"
@@ -231,7 +230,6 @@ ActiveRecord::Schema.define(:version => 82) do
     t.column "expected_on",         :datetime
     t.column "last_comment_id",     :integer,  :default => 0,  :null => false
     t.column "mantis_id",           :integer
-    t.column "temps_ecoule",        :integer
     t.column "cache_contournement", :float
     t.column "cache_correction",    :float
     t.column "cache_ecoule",        :float
@@ -534,7 +532,7 @@ ActiveRecord::Schema.define(:version => 82) do
     t.column "email",        :string,                :default => "",    :null => false
     t.column "phone",        :string
     t.column "image_id",     :integer
-    t.column "informations", :text
+    t.column "informations", :text,                  :default => "",    :null => false
     t.column "client",       :boolean,               :default => false, :null => false
     t.column "inactive",     :boolean,               :default => false, :null => false
     t.column "role_id",      :integer,               :default => 0,     :null => false

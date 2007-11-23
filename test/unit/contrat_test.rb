@@ -29,10 +29,10 @@ class ContratTest < Test::Unit::TestCase
     c = Contrat.find 1
     assert_equal c.typedemandes, [Typedemande.find(2)]
   end
-  
-  def test_to_s 
+
+  def test_to_s
     c = Contrat.find 1
-    c_name_empty = ContratOssa.new(
+    c_name_empty = Contrat::Ossa.new(
       :astreinte => 0,
       :socle => 0,
       :client_id => 33, # vide,

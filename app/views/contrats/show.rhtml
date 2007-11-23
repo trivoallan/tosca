@@ -1,20 +1,18 @@
 <p><b><%= _('Client') %></b> : <%= link_to_client(@contrat.client) %></p>
 <p><b><%= _('Name') %></b> : <%= @contrat.name %></p>
-<p><b><%= _('Type') %></b> : <%= @contrat.type_contrat %></p>
+<p><b><%= _('Type') %></b> : <%= @contrat.class_type %></p>
 <p><b><%= _('Start') %></b> : <%= @contrat.ouverture_formatted %></p>
 <p><b><%= _('End') %></b> : <%= @contrat.cloture_formatted %></p>
 
-<% case @contrat[:type] %>
-<% when "ContratOssa" %>
+<% if @contrat.is_a? Contrat::Ossa %>
   <p><b><%= _('Obligation') %> : </b> <%= @contrat.astreinte? %></p>
   <p><b><%= _('System') %> : </b> <%= @contrat.socle? %></p>
-
-<% when "ContratSupport" %>
+<% end %>
+<% else if @contrat.is_a? Contrat::Support %>
   <p><b><%= _('Number of tickets') %> : </b><%= @contrat.tickets_total %></p>
   <p><b><%= _('Number of used tickets') %> : </b><%= @contrat.tickets_consommes %></p>
                                           <% #We specify the plural for internationnalisation %>
   <p><b><%= _('Time per ticket') %> : </b><%= pluralize(@contrat.ticket_temps, _("minute"), _("minutes")) %></p>
-
 <% else %>
   <br/><h1><b><%= _("Error, wrong type of contract") %></b></h1>
 <% end %>

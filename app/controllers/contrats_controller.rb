@@ -32,8 +32,9 @@ public
 
   def create
     class_name = "Contrat::#{params[:class_type]}"
+    @contrat = Contrat.new(params)
     begin
-      class_name.constantize.new(params)
+      @contrat = class_name.constantize.new(params)
     rescue
       _form and render :action => 'new' and return
     end
