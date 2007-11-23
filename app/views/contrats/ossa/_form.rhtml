@@ -1,8 +1,12 @@
-<tr>
+<fieldset>
+ <legend><%= Contrat::Ossa %></legend>
+<table>
+ <tr>
   <th><label for="contrat_astreinte"><%=_('Night guard ?')%></label></th>
   <td><%= check_box :contrat, :astreinte %></td>
-</tr>
-<tr>
+ </tr><tr>
   <th><label for="contrat_socle"><%=_('Entire system ?')%></label></th>
   <td><%= check_box :contrat, :socle %></td>
-</tr>
+ </tr>
+</table>
+</fieldset>

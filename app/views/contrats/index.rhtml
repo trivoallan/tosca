@@ -2,9 +2,9 @@
 
 <%= show_pages_links(@contrat_pages, _('a contract')) %>
 
-<% titres = [ _('Name'), _('Type') , _('Softwares') , _('Packages') , _('Requests'),
+<% titles = [ _('Name'), _('Type') , _('Softwares') , _('Packages') , _('Requests'),
   _('Engineers'), _('Start') , _('=>'), _('End') ]%>
-<%= show_table(@contrats, Contrat, titres) { |c|
+<%= show_table(@contrats, Contrat, titles) { |c|
   result = ''
   result << "<td>#{link_to_contrat(c)}</td>"
   result << "<td>#{c.type_contrat}</td>"
@@ -13,11 +13,10 @@
   result << "<td>#{c.demandes.size}</td>"
   result << "<td>#{c.ingenieurs.size}</td>"
   result << "<td>#{c.ouverture_formatted}</td>"
-  result << '<td></td>'
+  result << '<td></td>' # used for the arrow
   result << "<td>#{c.cloture_formatted}</td>"
   result << "#{link_to_actions_table c}"
 }%>
 
 
 <%= show_pages_links(@contrat_pages, _('a contract')) %>
-

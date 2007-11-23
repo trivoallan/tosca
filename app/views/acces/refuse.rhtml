@@ -1,4 +1,3 @@
-
 <h1><%= _("Access denied") %></h1>
 
 <div class="information error">
@@ -11,5 +10,6 @@
 
 
 <%= public_link_to_home %>
-<% # This is a hard link because you have no rigths when you are disconnected. So link_to is not functionnal %>
+<% # This is a hard link because it must point on the base url, not
+   home of TOSCA. %>
 <p><a href="http://<%= request.host_with_port%>/"><%= _("Reconnect") %></a></p>

@@ -1,6 +1,6 @@
 <%= error_messages_for 'contrat' %>
 
-<table>
+<table class="topbox">
   <tr><td>
     <table class="form">
       <tr>
@@ -20,32 +20,34 @@
       </tr>
 
       <tr>
-        <th><label><%= _("Type") %></label></th>
-        <td>
-          <label for="contrat_type_contratossa"><%= Contrat::NAME_OSSA %></label><%= radio_button(:contrat, :type, Contrat::OSSA) %>
-          <label for="contrat_type_contratsupport"><%= Contrat::NAME_SUPPORT %></label><%= radio_button(:contrat, :type, Contrat::SUPPORT) %>
-        </td>
-      </tr>
-
-      <tr>
         <th><label><%=_('Commitments')%> <%= link_to_new_engagement %></label></th>
         <td><%= show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]') %></td>
       </tr><tr>
         <th><label for="team_ossa"><%=_('Whole OSSA Team ?')%></label></th>
         <td><%= check_box :team, :ossa %></td>
-      </tr><tr>
-        <td colspan="2">
-         <fieldset>
-          <legend><%=_('Engineers assigned to this contract')%></legend>
-          <%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs,
-                'contrat[ingenieur_ids]', :size => 3) %>
-         </fieldset>
-        </td>
       </tr>
+
+
+
     </table>
   </td>
   <td>
-    <table class="form" id='informations_contrat' name='informations_contrat'>
+    <table class="form">
+     <tr>
+      <th><label><%= _("Type") %></label></th>
+      <td><%= hm_radio_button :contrat, :class_type, Contrat::List %></td>
+     </tr><tr>
+      <td colspan="2">
+       <div id="contrat_options">
+        <%= render :partial => "contrats/#{@contrat.class.to_s}/form" %>
+       </div>
+       <fieldset>
+        <legend><%=_('Engineers assigned to this contract')%></legend>
+        <%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs,
+                         'contrat[ingenieur_ids]', :size => 3) %>
+       </fieldset>
+      </td>
+     </tr>
     </table>
   </td></tr>
 </table>

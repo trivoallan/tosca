@@ -7,7 +7,7 @@ module ContratsHelper
   # fonctionner correctement
   def link_to_contrat(c)
     return '-' unless c
-    link_to c.client.name, contrat_path(c)
+    link_to c.name, contrat_path(c)
   end
 
   # call it like :

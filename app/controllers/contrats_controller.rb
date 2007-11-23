@@ -5,8 +5,7 @@ class ContratsController < ApplicationController
   helper :clients,:engagements,:ingenieurs
 
   def index
-    @contrat_pages, @contrats = paginate :contrats, :per_page => 10,
-    :include => [:client]
+    @contrat_pages, @contrats = paginate :contrats, :per_page => 25
   end
 
   def show
@@ -14,30 +13,29 @@ class ContratsController < ApplicationController
   end
 
   def new
-    @contrat = Contrat.new
+    @contrat = Contrat::Ossa.new
     @contrat.client_id = params[:id]
-    @contrat[:type] = ''
     _form
   end
 
-private
-    PREFIX_PARTIAL_INFORMATIONS = 'informations_'
-
 public
   def ajax_display_attribut_contract
-    @type = PREFIX_PARTIAL_INFORMATIONS
-    case params[:contrat][:type]
-    when Contrat::OSSA
-      @type << "ossa"
-    when Contrat::SUPPORT
-      @type << "support"
+    @type = nil
+    begin
+      klass = Contrat::List[params[:contrat][:class_type].to_i]
+      @contrat = klass.new(params[:contrat])
+      @type = "contrats/#{klass}/form"
+    rescue #if exception, an error message will be set by the rjs file.
     end
   end
 
   def create
-    @contrat = Contrat.new(params[:contrat])
-    #Type is not a visible attribute of contrat
-    @contrat[:type] = params[:contrat][:type]
+    class_name = "Contrat::#{params[:class_type]}"
+    begin
+      class_name.constantize.new(params)
+    rescue
+      _form and render :action => 'new' and return
+    end
     if @contrat.save
       team = params[:team]
       if team and team[:ossa] == '1'
@@ -78,7 +76,7 @@ public
 
 private
   def _form
-    # Needed in order to be able to assiocate with it
+    # Needed in order to be able to auto-associate with it
     Client.with_exclusive_scope do
       @clients = Client.find_select
     end

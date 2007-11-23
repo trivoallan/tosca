@@ -11,19 +11,9 @@ class Contrat < ActiveRecord::Base
 
   has_many :binaires, :through => :paquets
   has_many :appels
+  validates_presence_of :type
 
-  OSSA = "ContratOssa"
-  SUPPORT = "ContratSupport"
-  NAME_OSSA = _("Ossa")
-  NAME_SUPPORT = _("Support")
-
-  #To be sure we have a type for the contract
-  before_validation :validates_type
-  def validates_type
-    return true if self[:type] == OSSA or self[:type] == SUPPORT
-    errors.add_to_base _("Your contract must have a type")
-    false
-  end
+  List = [ Contrat::Ossa, Contrat::Support ]
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
@@ -34,10 +24,6 @@ class Contrat < ActiveRecord::Base
   # requests on everything. It's with the "socle" field.
   def logiciels
     (self.socle? ? Logiciel.find(:all) : self._logiciels)
-  end
-
-  def type_contrat
-    self.class.name.sub(/Contrat/, "")
   end
 
   def ouverture_formatted
@@ -86,6 +72,15 @@ class Contrat < ActiveRecord::Base
   def to_s
     name
   end
+
+  def class_type=(value)
+    self[:type] = value
+  end
+
+  def class_type
+    return self[:type]
+  end
+
 
   # used internally by wrapper :
   # /!\ DO NOT USE DIRECTLY /!\
