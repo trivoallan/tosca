@@ -25,7 +25,7 @@ class DemandesController < ApplicationController
     if @ingenieur # 3 == Suspendue
       conditions.first << '(demandes.statut_id <> 3 OR (demandes.statut_id = 3 AND commentaires.user_id = beneficiaires.user_id))'
     else
-      conditions.first <<  'commentaires.user_id <> beneficiaires.user_id'
+      conditions.first << '(demandes.statut_id = 3 AND commentaires.user_id <> beneficiaires.user_id)'
     end
 
     if @ingenieur
