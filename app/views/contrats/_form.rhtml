@@ -55,6 +55,8 @@
 <% options = PagesHelper::SPINNER_OPTIONS.dup.update(
     :with => "Form.serialize(document.forms['contrat_form'])",
     :url => ajax_choose_contrats_path ) %>
+<%# TODO : When #7895 is solved, removed this multi-field observer %>
+<%# See: http://dev.rubyonrails.org/ticket/7895 %>
 <% Contrat::List.each do |klass| %>
   <%= observe_field "contrat_class_type_#{klass.id}", options %>
 <% end %>
