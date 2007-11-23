@@ -10,12 +10,12 @@
 <%= links %>
 
 <div class="show" style="margin: 0px auto">
-  <p><%= _('This list contains only requests which needs an action on your behalf.') %></p>
-  <%=  _('In technicals terms, the list is the set of requests where ') %>
+  <p><%= _('This list only contains requests which require an action on your behalf.') %></p>
+  <%=  _('In technical terms, this list contains all requests ') %>
    <% if @beneficiaire %>
-       <%= _('our services have asked you for an information or a validation.') %>
+       <%= _('for which our services have requested further information or your validation.') %>
    <% elsif @ingenieur %>
-       <%= _("customers didn't had an answer or where their answer was expected before today.") %>
+       <%= _("that are active (SLA is running), and all suspended requests where the last comment is from a customer, or that are newly assigned to you.") %>
    <% end %>
   <br /><br /><hr />
   <p><%= auto_link(_('Feel free to inform us in %s if you feel some requests should not be here.') % 

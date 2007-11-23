@@ -9,20 +9,20 @@
 # Munteanu Olimpiu Andrei <omunteanu@linagora.com>, 2007.
 # Rémy-Christoph Schermesser <rschermesser@linagora.com>, 2007.
 # Adrien Grellier <agrellier@linagora.com>, 2007.
-#
-#
+# Jonathan Clarke <jclarke@linagora.com>, 2007.
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-23 18:11+0100\n"
-"PO-Revision-Date: 2007-11-23 17:54+0100\n"
+"PO-Revision-Date: 2007-11-23 18:24+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);"
 
 #: app/controllers/account_controller.rb:59
 msgid "Welcome&nbsp;%s&nbsp;%s"
@@ -3686,7 +3686,6 @@ msgstr[0] "Ma demande en attente"
 msgstr[1] "Mes demandes en attente"
 
 #: app/views/demandes/lists/tobd.rhtml:13
-#, fuzzy
 msgid ""
 "This list only contains requests which require an action on your behalf."
 msgstr ""
@@ -3694,21 +3693,19 @@ msgstr ""
 "votre part."
 
 #: app/views/demandes/lists/tobd.rhtml:14
-#, fuzzy
 msgid "In technical terms, this list contains all requests "
-msgstr "En termes techniques, cette liste est l'ensemble des demandes où "
+msgstr "En termes techniques, cette liste contient toutes les demandes "
 
 #: app/views/demandes/lists/tobd.rhtml:16
-#, fuzzy
 msgid ""
 "for which our services have requested further information or your validation."
-msgstr "notre service vous a demandé une information ou une validation."
+msgstr "pour lesquelles notre service vous a demandé des informations supplémentaires ou votre validation."
 
 #: app/views/demandes/lists/tobd.rhtml:18
 msgid ""
 "that are active (SLA is running), and all suspended requests where the last "
 "comment is from a customer, or that are newly assigned to you."
-msgstr ""
+msgstr "qui sont actives (la CNS court), et toutes les demandes suspendues où le dernier commentaire vient du client, ou qui vous sont nouvellement attribuées."
 
 #: app/views/demandes/lists/tobd.rhtml:21
 msgid ""
