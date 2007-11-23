@@ -139,9 +139,6 @@ span.right {
 span.left {
 	float: left;
 }
-table.pages td {
-	vertical-align: baseline;
-}
 .spacer {
 	clear: both;
 }
@@ -180,6 +177,15 @@ table.main td.error {
 	vertical-align : top;
 	padding : 150px 0 0 150px;
 }
+
+table.pages td {
+	vertical-align: baseline;
+}
+table.topbox td {
+	vertical-align: top;
+}
+
+
 /* used in common show views */
 .list table {
 	padding: 0;
