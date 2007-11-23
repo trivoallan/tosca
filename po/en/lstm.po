@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-11-23 17:51+0100\n"
-"PO-Revision-Date: 2007-11-20 18:33+0100\n"
+"PO-Revision-Date: 2007-11-23 17:54+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -4771,17 +4771,3 @@ msgstr ""
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Image|Logiciel"
-#~ msgstr "Software"
-
-#, fuzzy
-#~ msgid "Demande|Version"
-#~ msgstr "Version"
-
-#~ msgid "Demande|Temps ecoule"
-#~ msgstr "Description"
-
-#~ msgid "Commentaire|Temps ecoule"
-#~ msgstr "Created on"

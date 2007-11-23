@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-23 17:51+0100\n"
-"PO-Revision-Date: 2007-11-20 17:49+0100\n"
+"PO-Revision-Date: 2007-11-23 17:54+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1942,9 +1942,8 @@ msgid "Logiciel|Groupe"
 msgstr "Groupe"
 
 #: app/models/logiciel.rb:-
-#, fuzzy
 msgid "Logiciel|Image"
-msgstr "Nom"
+msgstr "Image"
 
 #: app/models/logiciel.rb:20
 msgid "You have to specify a name"
@@ -3383,7 +3382,6 @@ msgid "End"
 msgstr "Fin"
 
 #: app/views/contrats/new.rhtml:1
-#, fuzzy
 msgid "New contract"
 msgstr "Nouveau contrat"
 
@@ -3857,19 +3855,14 @@ msgstr[0] "Ma demande en attente"
 msgstr[1] "Mes demandes en attente"
 
 #: app/views/demandes/lists/tobd.rhtml:13
-#, fuzzy
 msgid "This list contains only requests which needs an action on your behalf."
-msgstr ""
-"Cette liste contient seulement les demandes qui attendent une action de "
-"votre part."
+msgstr "Cette liste contient seulement les demandes qui attendent une action de votre part."
 
 #: app/views/demandes/lists/tobd.rhtml:14
-#, fuzzy
 msgid "In technicals terms, the list is the set of requests where "
 msgstr "En termes techniques, cette liste est l'ensemble des demandes où "
 
 #: app/views/demandes/lists/tobd.rhtml:16
-#, fuzzy
 msgid "our services have asked you for an information or a validation."
 msgstr "notre service vous a demandé une information ou une validation."
 
@@ -4848,31 +4841,3 @@ msgstr "Liste des url dans contributions"
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
-
-#~ msgid "Image|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "Ossa"
-#~ msgstr "Ossa"
-
-#~ msgid "Your contract must have a type"
-#~ msgstr "Votre contrat doit avoir un type"
-
-#, fuzzy
-#~ msgid "Demande|Version"
-#~ msgstr "Version"
-
-#~ msgid "Demande|Temps ecoule"
-#~ msgstr "Temps écoulé"
-
-#~ msgid "Commentaire|Temps ecoule"
-#~ msgstr "Temps écoulé"
-
-#~ msgid "How are the request processing"
-#~ msgstr "Comment se passe le traitement d'une demande"
-
-#~ msgid "[Scheme with the arrows]"
-#~ msgstr "[Schéma avec les flèches]"
-
-#~ msgid "commitment"
-#~ msgstr "engagements"
