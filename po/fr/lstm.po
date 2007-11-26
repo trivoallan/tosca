@@ -10,13 +10,13 @@
 # Rémy-Christoph Schermesser <rschermesser@linagora.com>, 2007.
 # Adrien Grellier <agrellier@linagora.com>, 2007.
 # Jonathan Clarke <jclarke@linagora.com>, 2007.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-23 18:11+0100\n"
-"PO-Revision-Date: 2007-11-23 18:24+0100\n"
+"PO-Revision-Date: 2007-11-26 10:39+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1185,7 +1185,6 @@ msgid "Image|Description"
 msgstr "Description"
 
 #: app/models/image.rb:-
-#, fuzzy
 msgid "Image|Logiciel"
 msgstr "Logiciel"
 
@@ -1618,7 +1617,6 @@ msgid "Demande|Typedemande"
 msgstr "Type demande"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Version"
 msgstr "Version"
 
@@ -4847,13 +4845,3 @@ msgstr "Article court"
 #: app/views/news/newsletter.rhtml:22
 msgid "Generate the newsletter"
 msgstr "Générer la lettre d'information"
-
-#~ msgid "Logiciel|Image"
-#~ msgstr "Image"
-
-#~ msgid ""
-#~ "customers didn't had an answer or where their answer was expected before "
-#~ "today."
-#~ msgstr ""
-#~ "les clients attendent une réponse ou leur réponse était attendue avant "
-#~ "aujourd'hui."

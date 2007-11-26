@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2007-11-23 18:11+0100\n"
-"PO-Revision-Date: 2007-11-23 17:54+0100\n"
+"PO-Revision-Date: 2007-11-26 10:39+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -4776,7 +4776,3 @@ msgstr ""
 #: app/views/news/newsletter.rhtml:22
 msgid "Generate the newsletter"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Logiciel|Image"
-#~ msgstr "Name"
