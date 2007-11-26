@@ -32,7 +32,6 @@ public
 
   def create
     class_name = "Contrat::#{params[:class_type]}"
-    @contrat = Contrat.new(params)
     begin
       @contrat = class_name.constantize.new(params)
     rescue
