@@ -13,6 +13,7 @@ class Contrat < ActiveRecord::Base
   has_many :appels
   validates_presence_of :type
 
+  # The first contract in this list is the default one
   List = [ Contrat::Ossa, Contrat::Support ]
 
   def self.set_scope(contrat_ids)

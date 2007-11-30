@@ -13,7 +13,8 @@ class ContratsController < ApplicationController
   end
 
   def new
-    @contrat = Contrat::Ossa.new
+    # It is the default contract
+    @contrat = Contrat::List.first.new
     @contrat.client_id = params[:id]
     _form
   end
@@ -31,9 +32,9 @@ public
   end
 
   def create
-    class_name = "Contrat::#{params[:class_type]}"
+    klass = Contrat::List[params[:contrat][:class_type].to_i]
     begin
-      @contrat = class_name.constantize.new(params)
+      @contrat = class_name.constantize.new(params[:contrat])
     rescue
       _form and render :action => 'new' and return
     end

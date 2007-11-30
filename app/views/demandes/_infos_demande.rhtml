@@ -55,7 +55,7 @@
   <% if @demande.contribution %>
     <li><%=link_to(_('Submitted upstream'), contribution_path(@demande.contribution)) %></li>
   <% end %>
-  <% if @demande.contrat.class == ContratSupport %>
+  <% if @demande.contrat.class == Contrat::Support %>
     <li><b><%= _("Tickets unused") %>: </b><%= @demande.contrat.tickets_total - @demande.contrat.tickets_consommes %></li>
   <% end %>
 </ul>

@@ -46,7 +46,8 @@ class ImagesControllerTest < Test::Unit::TestCase
   def test_create
     num_images = Image.count
 
-    post :create, :image => {}
+    post :create, :image => { 
+      :image => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/logo_linagora.gif")}
 
     assert_response :redirect
     assert_redirected_to :action => 'index'

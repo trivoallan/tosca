@@ -32,7 +32,7 @@ class LogicielsControllerTest < Test::Unit::TestCase
       assert_equal software.paquets.first.contrat.id, 3
     end
 
-    get :index, :filters => { :groupe_id => 2 } 
+    get :index, :filters => { :groupe_id => 2 }
     assert_response :success
     assigns(:logiciels).each { |l| assert_equal l.groupe_id, 2 }
 
@@ -71,7 +71,6 @@ class LogicielsControllerTest < Test::Unit::TestCase
       :description=> 'un bon logiciel.',
       :resume=> 'Outil de compilation pour java',
       :license_id=> 2,
-      :image_id => 1,
       :competence_ids => [1]
     }
 
@@ -100,7 +99,6 @@ class LogicielsControllerTest < Test::Unit::TestCase
         :description=> 'un bon logiciel.',
         :resume=> 'Outil de compilation pour java',
         :license_id=> 2,
-        :image_id => 1,
         :competence_ids => [1]
     }
     post :update, { :id => 1, :logiciel => options }
