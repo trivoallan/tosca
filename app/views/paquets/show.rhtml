@@ -25,11 +25,16 @@
  <p><b><%= _('Maintainer')+' : '%></b> <%=h @paquet.mainteneur.name %></p>
 </div>
 
-<% if @paquet.binaires.size > 0 %>
-<p><%= _('This source package has')%><b> <%= pluralize(@paquet.binaires.count, _('binary') ) %></b></p>
-  <%= show_liste(@binaires, _('binary'), :no_title => true) { |b|
-        link_to_binaire(b) << _(' <i>on</i> ') << b.socle.name } %>
-<% end %>
+<p><b><%= pluralize(@paquet.binaires.count, _('binary') ) %></b> <%= link_to_new_binaire(@paquet.id) %></p>
+ <% options = {:no_title => true, :edit => 'binaire'} %>
+<p>
+  <% if @paquet.binaires.size > 0 %>
+     <%= public_show_liste(@binaires, _('binary'), options) {|b|
+         link_to_binaire(b) << _(' <i>on</i> ') << b.socle.nom 
+       } %>
+  <% end %>
+</p>
+ 
 
 
 <% if @paquet.fichiers_count > 0 %>

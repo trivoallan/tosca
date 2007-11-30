@@ -36,7 +36,10 @@ class FilesController < ApplicationController
     
     # building path
     root = [ Metadata::PATH_TO_FILES, file_type, map[file_type.intern] ] * '/'
-    fullpath = [ root, params[:id], params[:filename] ] * '/'
+    # TODO : FIXME
+    # the gsub on ' ' is needded, because url with '+' is weirdly reinterpreted.
+    fullpath = [ root, params[:id], params[:filename].gsub(' ','+') ] * '/'
+    
 
     # Attachment has to be restricted. 
     scope_active = (@beneficiaire and file_type == 'piecejointe')

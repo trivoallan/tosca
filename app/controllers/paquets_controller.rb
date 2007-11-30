@@ -97,12 +97,12 @@ class PaquetsController < ApplicationController
     @distributeurs = Distributeur.find_select
     @mainteneurs = Mainteneur.find_select
     @fournisseurs = Fournisseur.find_select
-    @contrats = Contrat.find(:all)
+    @contrats = Contrat.find(:all, :include => [:client], :conditions => 'clients.inactive = 0')
   end
 
   def _panel
     @count = {}
-    @clients = Client.find_select
+    @clients = Client.find_select(:conditions => 'clients.inactive = 0') 
     @count[:paquets] = Paquet.count
     @count[:binaires] = Binaire.count
   end

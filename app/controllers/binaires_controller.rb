@@ -17,6 +17,7 @@ class BinairesController < ApplicationController
 
   def new
     @binaire = Binaire.new
+    @binaire.paquet_id = params[:paquet_id]
     _form
   end
 
@@ -53,7 +54,11 @@ class BinairesController < ApplicationController
 
   private
   def _form
-    @contributions = Contribution.find(:all)
+    options = {} 
+    if @binaire.paquet
+      options = { :conditions => [ 'contributions.logiciel_id = ?', @binaire.paquet.logiciel_id ] }
+    end
+    @contributions = Contribution.find(:all, options)
     @paquets = Paquet.find(:all, Paquet::OPTIONS)
     @arches = Arch.find_select
     @socles = Socle.find_select

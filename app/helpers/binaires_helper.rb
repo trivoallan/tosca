@@ -9,4 +9,12 @@ module BinairesHelper
     link_to name, binaire_path(binaire.id)
   end
 
+  # Link to create a new url for a Logiciel
+  def link_to_new_binaire(paquet_id)
+    return '-' unless paquet_id
+    options = new_binaire_path(:paquet_id => paquet_id)
+    link_to(image_create(_('binary')), options, LinksHelper::NO_HOVER)
+  end
+
+
 end

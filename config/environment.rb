@@ -83,6 +83,7 @@ ENV['TZ'] = 'Europe/Paris'
 
 # Mime type needed for ods export with Ruport lib
 Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
+Mime::Type.register "text/csv", :csv
 
 
 #conf gettextlocalize

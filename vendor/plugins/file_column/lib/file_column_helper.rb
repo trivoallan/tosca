@@ -1,3 +1,4 @@
+
 # This module contains helper methods for displaying and uploading files
 # for attributes created by +FileColumn+'s +file_column+ method. It will be
 # automatically included into ActionView::Base, thereby making this module's
@@ -165,5 +166,7 @@ module FileColumnHelper
 
     url = (absolute ? self.request().relative_url_root.to_s : '')
     url = File.join(url, object.send("#{method}_options")[:base_url], relative_path + file_suffix)
+    url.gsub!('+', '%2b') # needed to download deb package file, with '+' sign
+    url
   end
 end
