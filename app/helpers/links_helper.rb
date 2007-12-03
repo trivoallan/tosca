@@ -109,46 +109,39 @@ EOS
   ### Header ###
   # TODO : put all those methods into another module
   # and merge it dynamically in this module
-  @@home = nil
   def public_link_to_home
-    @@home ||= public_link_to(_('Home'), bienvenue_path)
+    public_link_to(_('Home'), bienvenue_path)
   end
 
-  @@requests = nil
   def link_to_requests
-    @@requests ||= link_to(_('Requests'), demandes_path, :title =>
-                           _('Consult requests'))
+    link_to(_('Requests'), demandes_path, :title =>
+            _('Consult requests'))
   end
 
-  @@all_requests = nil
   def link_to_all_requests
-    @@all_requests ||= link_to(_('All the requests'), demandes_path, :title =>
-                               _('Consult all the requests'))
+    link_to(_('All the requests'), demandes_path, :title =>
+            _('Consult all the requests'))
   end
 
-  @@tobd_requests = nil
   def link_to_tobd_requests
-    @@tobd_requests ||= link_to(_('Requests to be done'), en_attente_demandes_path, :title =>
-                           _('Consult requests which are waiting an action from you'))
+    link_to(_('Requests to be done'), en_attente_demandes_path, :title =>
+            _('Consult requests which are waiting an action from you'))
   end
 
-  @@softwares = nil
   def public_link_to_softwares
-    @@softwares ||= public_link_to(_('Softwares'), logiciels_path, :title =>
-                                   _('Access to the list of softwares'))
+    public_link_to(_('Softwares'), logiciels_path, :title =>
+                   _('Access to the list of softwares'))
   end
 
-  @@contributions = nil
   def public_link_to_contributions
-    @@contributions ||= public_link_to(_('Contributions'), contributions_path,
-       :title => _('Access to the list of contributions.'))
+    public_link_to(_('Contributions'), contributions_path,
+                   :title => _('Access to the list of contributions.'))
   end
 
   # About page
-  @@about = nil
   def public_link_to_about()
-    @@about ||= public_link_to('?', about_bienvenue_path,
-       :title => _("About %s") % Metadata::NOM_COURT_APPLICATION)
+    public_link_to('?', about_bienvenue_path,
+                   :title => _("About %s") % Metadata::NOM_COURT_APPLICATION)
   end
 
   # No cache for this one. It's not a public link /!\
