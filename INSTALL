@@ -10,27 +10,20 @@ $ rake db:fixtures:load
 $ rake makemo
 $ sudo cp app/views/rescues/_trace.rhtml /usr/lib/ruby/gems/1.8/gems/actionpack-1.*/lib/action_controller/templates/rescues/
 
-If you encounter problems on date translation with "freeze", 
-you'll need to patch the system's date.rb in (/usr/lib/ruby/1.8/date.rb for me), line 252:
-<code>
-  [MONTHNAMES, DAYNAMES, ABBR_MONTHNAMES, ABBR_DAYNAMES].each do |xs|
-    xs.each{|x| x.freeze}.freeze
-  end
-</code>
 
 
-With Details 
+With Details
 ============
 *** You need some devel packages before installing required gems.
   ruby-devel mysql-devel libMagick-devel oniguruma-devel mysql-ruby
 
-The first three are commonly available on linux distribution. Oniguruma and 
- the C bindings to MySQL are commonly unavailable, so a tarball of sources is 
+The first three are commonly available on linux distribution. Oniguruma and
+ the C bindings to MySQL are commonly unavailable, so a tarball of sources is
 provided in tools/ directory.
 
 *** After that, you need those gems :
   sudo gem install rails rmagick mysql gettext ruport ruport-util ultraviolet rubyzip -y
-In order to be able to : 
+In order to be able to :
 * launch the rails app (rails)
 * resize image (rmagick)
 * connect to database (mysql)
@@ -38,10 +31,10 @@ In order to be able to :
 * generate ods report (ruport and ruport-util)
 * having cool js preview (ultraviolet)
 
-*** And you will need a small patch over action_controller gem 
+*** And you will need a small patch over action_controller gem
 (dependency of rails) :
   sudo cp app/views/rescues/_trace.rhtml /usr/lib/ruby/gems/1.8/gems/actionpack-1.*/lib/action_controller/templates/rescues/
-OR, if you are on f***ing Debian : 
+OR, if you are on f***ing Debian :
   sudo cp app/views/rescues/_trace.rhtml /var/lib/gems/1.8/gems/actionpack-1.*/lib/action_controller/templates/rescues/_trace.rhtml
 
 If you encounter problems when editing fields, you'll need to patch the system's date.rb in (/usr/lib/ruby/1.8/date.rb for me), line 252:
@@ -56,5 +49,3 @@ and the default translation :
 $ rake db:schema:load
 $ rake db:fixtures:load
 $ rake makemo
-
-
