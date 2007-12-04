@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   has_one :beneficiaire
   has_one :preference
 
-  validates_length_of :login, :within => 3..40
+  validates_length_of :login, :within => 3..20
+  validates_length_of :password, :within => 5..40
   validates_presence_of :login, :password, :role
   validates_uniqueness_of :login
 
@@ -29,11 +30,11 @@ class User < ActiveRecord::Base
 
   def pwd=(pass)
     @pwd = pass
-    return if pass.blank?
+    return if pass.blank? or pass.length < 5 or pass.length > 40
     self.password = User.sha1(pass)
   end
 
-  before_save do |record| 
+  before_save do |record|
       ### NUMBERS #########################################################
     number = record.phone.to_s
     number.upcase!
@@ -46,7 +47,7 @@ class User < ActiveRecord::Base
     # false will invalidate the save
     true
   end
-  
+
 
   # Eck ... We must add message manually in order to
   # not have the "pwd" prefix ... TODO : find a pretty way ?
@@ -56,8 +57,8 @@ class User < ActiveRecord::Base
     if pwd != pwd_confirmation
       errors.add_to_base(_('Password is different from its confirmation'))
     end
-    unless pwd.blank? 
-      if pwd.length > 20
+    unless pwd.blank?
+      if pwd.length > 40
         errors.add_to_base(_('Your password is too long (max. 20)'))
       elsif pwd.length < 5
         errors.add_to_base(_('Your password is too short (min. 5)'))
@@ -109,7 +110,7 @@ class User < ActiveRecord::Base
 
   # Load permission strings
   # TODO : cache this method. Since we have few roles, it's possible
-  # to use a table or a hash. 
+  # to use a table or a hash.
   # See app/helpers/static_image/rb#self.severite for a bad sample
   # See http://api.rubyonrails.com/classes/ActiveSupport/CachingTools/HashCaching.html#M000319 for a better way
   # See also http://api.rubyonrails.com/classes/ActiveSupport/CachingTools/HashCaching.html#M000319 for a complete overview

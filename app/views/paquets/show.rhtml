@@ -30,11 +30,11 @@
 <p>
   <% if @paquet.binaires.size > 0 %>
      <%= public_show_liste(@binaires, _('binary'), options) {|b|
-         link_to_binaire(b) << _(' <i>on</i> ') << b.socle.nom 
+         link_to_binaire(b) << _(' <i>on</i> ') << b.socle.name
        } %>
   <% end %>
 </p>
- 
+
 
 
 <% if @paquet.fichiers_count > 0 %>
