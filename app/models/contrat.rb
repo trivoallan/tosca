@@ -11,14 +11,14 @@ class Contrat < ActiveRecord::Base
 
   has_many :binaires, :through => :paquets
   has_many :appels
-  validates_presence_of :type
+  validates_presence_of :class_type, :client
 
   # The first contract in this list is the default one
   List = [ Contrat::Ossa, Contrat::Support ]
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'contrats.id IN (?)', contrat_ids ]} }
+        [ 'contrats.id IN (?)', contrat_ids ] } }
   end
 
   # We have open clients which can declare

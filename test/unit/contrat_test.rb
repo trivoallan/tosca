@@ -35,7 +35,7 @@ class ContratTest < Test::Unit::TestCase
     c_name_empty = Contrat::Ossa.new(
       :astreinte => 0,
       :socle => 0,
-      :client_id => 33, # vide,
+      :client_id => Client.find(:first).id, # vide,
       :ouverture => "2006-11-25 12:20:00",
       :cloture => "2007-11-12 14:23:00",
       :name => "OSSA - Guy - Intégral"

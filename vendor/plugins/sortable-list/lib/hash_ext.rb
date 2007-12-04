@@ -37,7 +37,7 @@ class Hash
       elsif value.respond_to?(:each) && !value.respond_to?(:to_str)
         memo << value.to_qs(escape, key)
       else
-        memo << "#{key}=#{CGI::escape value}" unless value.nil?
+        memo << "#{key}=#{CGI::escape value.to_s}" unless value.nil?
       end
       memo
     end.sort * (escape ? '&amp;' : '&')

@@ -4,11 +4,11 @@ require 'demandes_controller'
 # Re-raise errors caught by the controller.
 # class DemandesController; def rescue_action(e) raise e end; end
 class DemandesControllerTest < Test::Unit::TestCase
- 
-  fixtures :demandes, :commentaires, :demandes_paquets, 
+
+  fixtures :demandes, :commentaires, :demandes_paquets,
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
-    :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles, 
-    :permissions_roles, :contrats, :contrats_engagements, :engagements, 
+    :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
+    :permissions_roles, :contrats, :contrats_engagements, :engagements,
     :contrats_ingenieurs, :users, :piecejointes,
     :jourferies, :binaires, :binaires_demandes, :supports, :typedemandes
 
@@ -29,8 +29,8 @@ class DemandesControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:demandes)
 
     #test of the ajax filters :
-    test_filter :statut_id, 4
     test_filter :severite_id, 2
+    test_filter :statut_id, 4
     test_filter :typedemande_id, 1
 
     get :index, :filters => { :client_id => 1 }
@@ -63,7 +63,7 @@ class DemandesControllerTest < Test::Unit::TestCase
 
     # Client9 has one recipient activated and one not
     assert assigns(:clients).include?(Client.find(9))
-    # Client8 is fully deactivated 
+    # Client8 is fully deactivated
     assert !assigns(:clients).include?(Client.find(8))
     assert_not_nil assigns(:demande)
   end
@@ -127,7 +127,7 @@ class DemandesControllerTest < Test::Unit::TestCase
   # test the ajax filters
   # example : test_filter :statut_id, 2
   def test_filter attribute, value
-    get :index, :filters => { attribute => value }
+    xhr :get, :index, :filters => { attribute => value }
     assert_response :success
     assigns(:demandes).each { |d| assert_equal d[attribute], value }
   end
