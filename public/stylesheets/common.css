@@ -128,7 +128,6 @@ img {
 	border:0;
 }
 
-
 fieldset legend {
 	font-weight: bold;
 }
@@ -337,6 +336,25 @@ div.login_box, div.form, div.show, div.help, div.info {
 	border-right: #e4e4e4 1px solid;
 }
 ***************************************/
+
+pre {
+	padding: 5px;
+	overflow: auto;
+	width: 95%;
+	max-height: 450px;
+	margin: 0px auto;
+	line-height: 100%;
+	border:silver 2px dotted
+}
+.code {
+	padding: 5px;
+	overflow: auto;
+	width: 95%;
+	max-height: 450px;
+	margin: 0px auto;
+	line-height: 100%;
+	border: silver 2px dotted
+}
 
 
 /***************** aide et informations ***************/
