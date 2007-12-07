@@ -39,12 +39,11 @@ class ClientTest < Test::Unit::TestCase
 
   def test_update
     c = clients( :client_00001 )
-    c.update_attributes(:name => "titi", :support_id => 1,
-      :description => "la femme de toto", :mailingliste=> "titi@laposte.net",
+    c.update_attributes(:name => "titi", :description => "la femme de toto",
+      :mailingliste=> "titi@laposte.net",
       :adresse => "les champs Élysées 95000 Paris", :image_id => 1,
       :code_acces => "4242")
     assert_equal c.name, "titi"
-    assert_equal c.support_id, 1
     assert_equal c.description, "la femme de toto"
     assert_equal c.mailingliste, "titi@laposte.net"
     assert_equal c.adresse, "les champs Élysées 95000 Paris"

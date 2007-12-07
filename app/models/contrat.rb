@@ -21,6 +21,15 @@ class Contrat < ActiveRecord::Base
         [ 'contrats.id IN (?)', contrat_ids ] } }
   end
 
+
+  def interval_in_seconds
+    return (heure_fermeture - heure_ouverture) * 1.hour
+  end
+
+  def interval
+    heure_fermeture - heure_ouverture
+  end
+
   # We have open clients which can declare
   # requests on everything. It's with the "socle" field.
   def logiciels

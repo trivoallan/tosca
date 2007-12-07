@@ -8,7 +8,7 @@ require 'clients_controller'
 class ClientsController; def rescue_action(e) raise e end; end
 
 class ClientsControllerTest < Test::Unit::TestCase
-  fixtures :clients, :supports
+  fixtures :clients
 
   def setup
     @controller = ClientsController.new

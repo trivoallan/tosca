@@ -10,7 +10,7 @@ class ExportControllerTest < Test::Unit::TestCase
     :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
     :permissions_roles, :contrats, :contrats_engagements, :engagements,
     :contrats_ingenieurs, :users, :piecejointes, :contributions,
-    :jourferies, :binaires, :binaires_demandes, :supports, :typedemandes
+    :jourferies, :binaires, :binaires_demandes, :typedemandes
 
 
   def setup
@@ -43,6 +43,3 @@ class ExportControllerTest < Test::Unit::TestCase
   end
 
 end
-
-
-

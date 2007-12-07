@@ -19,31 +19,31 @@ module  ComexReporting
     @total[:final][:total]= 0
   end
 
- 
+
   # used internally by compute_comex_report 4 getting all request
-  # ids of previously opened request. There is some similarity with 
+  # ids of previously opened request. There is some similarity with
   # get_closed_condition4comex_report
   # /!\ you do NOT want to use it elsewhere. /!\
   # date_condition looks like : "created_on < '#{date.to_formatted_s(db)}'"
   # remove_array : contains entries which will be removed if they matches
   #                using <tt>.include?</tt> method
   def get_last_condition4comex_report(cdate, remove_array)
-    cselect = "demandes.id, (SELECT c.statut_id FROM commentaires c WHERE " << 
-      "(#{cdate}) AND c.demande_id = " << 
-      "demandes.id AND c.statut_id IS NOT NULL " << 
+    cselect = "demandes.id, (SELECT c.statut_id FROM commentaires c WHERE " <<
+      "(#{cdate}) AND c.demande_id = " <<
+      "demandes.id AND c.statut_id IS NOT NULL " <<
       "ORDER BY c.created_on DESC LIMIT 1 ) statut_id"
     requests = Demande.find(:all, :select => cselect, :conditions => cdate)
     # TODO : .include? is too slow. A hash or something better ?
     requests = requests.delete_if { |d| d.statut_id.nil? or remove_array.include? d.statut_id }
     request_ids = requests.collect { |d| d.id }
-      
-    { :group => 'severite_id', 
+
+    { :group => 'severite_id',
       :conditions => ["demandes.id IN (?)", request_ids ] }
   end
 
   # used internally by compute_comex_report 4 getting all request
-  # ids of closed req during com_date. req_date is used to reduce the 
-  # perimeter of possible requests. There is some similarity with 
+  # ids of closed req during com_date. req_date is used to reduce the
+  # perimeter of possible requests. There is some similarity with
   # get_last_condition4comex_report
   # /!\ you do NOT want to use it elsewhere. /!\
   # req_date : "created_on < '#{date.to_formatted_s(db)}'"
@@ -51,9 +51,9 @@ module  ComexReporting
   # remove_array : contains entries which will be removed if they matches
   #                using <tt>.include?</tt> method
   def get_closed_condition4comex_report(com_date, req_date, remove_array)
-    cselect = "demandes.id, (SELECT c.id FROM commentaires c WHERE " << 
-      "(#{com_date}) AND c.demande_id = " << 
-      "demandes.id AND c.statut_id IS NOT NULL " << 
+    cselect = "demandes.id, (SELECT c.id FROM commentaires c WHERE " <<
+      "(#{com_date}) AND c.demande_id = " <<
+      "demandes.id AND c.statut_id IS NOT NULL " <<
       "ORDER BY c.created_on DESC LIMIT 1 ) commentaire_id"
     requests = Demande.find(:all, :select => cselect, :conditions => req_date)
     # TODO : .include? is too slow. A hash or something better ?
@@ -66,8 +66,8 @@ module  ComexReporting
       # or a opened -> closed change
       # If you have a better idea, just do it and erase this crap.
       unless result
-        options = { :conditions => 
-          [ 'commentaires.demande_id = ? AND commentaires.created_on < ? AND commentaires.statut_id IS NOT NULL', 
+        options = { :conditions =>
+          [ 'commentaires.demande_id = ? AND commentaires.created_on < ? AND commentaires.statut_id IS NOT NULL',
             comm.demande_id, comm.created_on ], :order => 'created_on DESC' }
         previous_comm = Commentaire.find(:first, options)
         result = !remove_array.include?(previous_comm.statut_id)
@@ -75,8 +75,8 @@ module  ComexReporting
       result
     }
     request_ids = requests.collect { |d| d.id }
-      
-    { :group => 'severite_id', 
+
+    { :group => 'severite_id',
       :conditions => ["demandes.id IN (?)", request_ids ] }
   end
 
@@ -95,7 +95,7 @@ module  ComexReporting
       first_day = values[:first_day].to_formatted_s(:db)
       last_day = values[:last_day].to_formatted_s(:db)
 
-      # TODO : keep request_id when search closed request. It can be 
+      # TODO : keep request_id when search closed request. It can be
       # clearly faster, without forgetting to add newly created_request.
       before_date = "created_on <= '#{first_day}'"
       clast_week = get_last_condition4comex_report(before_date, Statut::CLOSED)
@@ -160,12 +160,12 @@ module  ComexReporting
           correction_time = request.engagement(contrat).correction.days
           workaround_time = request.engagement(contrat).contournement.days
           unless correction_time == -1.day
-            d[:mesg_correction]=  request.distance_of_time_in_french_words( 
-              (correction_time - elapsed_time).abs, request.client.support )
+            d[:mesg_correction]=  request.distance_of_time_in_french_words(
+              (correction_time - elapsed_time).abs, request.contrat )
             d[:correction]=  (elapsed_time/correction_time )*100
           end
           unless workaround_time == -1.day
-            d[:mesg_contournement] = request.distance_of_time_in_french_words( 
+            d[:mesg_contournement] = request.distance_of_time_in_french_words(
               (workaround_time-elapsed_time).abs, request.client.support )
             d[:contournement]= (elapsed_time/workaround_time )*100
           end

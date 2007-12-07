@@ -4,9 +4,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DemandeTest < Test::Unit::TestCase
-  fixtures :demandes, :typedemandes, :severites, :statuts, :supports,
-    :beneficiaires, :clients, :users,
-    :paquets
+  fixtures :demandes, :typedemandes, :severites, :statuts,
+    :beneficiaires, :clients, :users, :paquets
 
   def test_presence_of_attributes
     request = Demande.new
@@ -26,13 +25,13 @@ class DemandeTest < Test::Unit::TestCase
     assert !request.save
     request.description = 'hello request'
     # must have a status and a severity != 0
-    assert !request.save   
+    assert !request.save
     request.statut = Statut.find 1
     request.severite = Severite.find 1
     # must have a contrat_id
     assert !request.save
     request.contrat = Contrat.find 1
-  
+
     assert request.save
 
     # a request must have 5 letters in its description

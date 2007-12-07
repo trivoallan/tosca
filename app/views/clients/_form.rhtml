@@ -19,8 +19,6 @@
          <%= text_field :client, :chrono %></p>
       <p><label for="client_chrono"><%= _("Inactive") %></label><br />
          <%= check_box :client, :inactive %></p>
-      <p><label for="client_support_id"><%= _("Support") %></label><br />
-         <%= collection_select(:client, :support_id, @supports, :id, :name) %></p>
       <p><label for="client_code_acces"><%= _("Access code") %></label><br />
          <%= text_field 'client', 'code_acces' %></p>
       <p><label for="client_image_id"><%= _("Logo") %></label><br />

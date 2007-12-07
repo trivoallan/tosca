@@ -1,7 +1,7 @@
 <h1><%= _("List of the clients") %></h1>
 
 <%= show_pages_links(@client_pages, _("a client")) %>
-<% titles = [ _("Logo"), _("Name"), _("Packages"), _("Mailing list"), _("Access code"), _("Support") ]%>
+<% titles = [ _("Logo"), _("Name"), _("Packages"), _("Mailing list"), _("Access code") ]%>
 <% if @ingenieur %>
 <%   titles  = [ _("Chrono") ].concat(titles) %>
 <% end %>
@@ -21,7 +21,6 @@
   result << '</td>'
   result << "<td>#{mail_to(c.mailingliste)}</td>"
   result << "<td>#{c.code_acces}</td>"
-  result << "<td>#{c.support.name}</td>"
   result << "#{link_to_actions_table c}"
 }%>
 

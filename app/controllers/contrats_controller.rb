@@ -14,7 +14,7 @@ class ContratsController < ApplicationController
 
   def new
     # It is the default contract
-    @contrat = Contrat::List.first.new
+    @contrat = Contrat::Ossa.new
     @contrat.client_id = params[:id]
     _form
   end

@@ -175,7 +175,7 @@ class Demande < ActiveRecord::Base
   end
 
   def affiche_temps_correction
-    distance_of_time_in_french_words(self.temps_correction, client.support)
+    distance_of_time_in_french_words(self.temps_correction, self.contrat)
   end
 
   def temps_correction
@@ -196,12 +196,12 @@ class Demande < ActiveRecord::Base
   def delais_correction
     delais = paquets.compact.collect{ |p|
       p.correction(typedemande_id, severite_id) *
-      p.contrat.client.support.interval_in_seconds
+      p.contrat.interval_in_seconds
     }.min
   end
 
   def affiche_temps_contournement
-    distance_of_time_in_french_words(self.temps_contournement, client.support)
+    distance_of_time_in_french_words(self.temps_contournement, self.contrat)
   end
 
   def temps_contournement
@@ -217,7 +217,7 @@ class Demande < ActiveRecord::Base
   end
 
   def affiche_temps_rappel
-    self.distance_of_time_in_french_words(self.temps_rappel, client.support)
+    self.distance_of_time_in_french_words(self.temps_rappel, self.contrat)
   end
 
   def temps_rappel
@@ -226,7 +226,7 @@ class Demande < ActiveRecord::Base
     first_comment = self.first_comment
     if (first_comment and first_comment.statut_id == 1) and self.appellee()
       result = compute_diff(first_comment.updated_on, appellee().updated_on,
-                            client.support)
+                            self.contrat)
     end
     result
   end
@@ -266,8 +266,7 @@ class Demande < ActiveRecord::Base
       critical_contract = c if engagement(c.id).correction < engagement(critical_contract.id).correction
     end
     # Not very DRY: present in lib/comex_resultat too
-    support = client.support
-    amplitude = support.fermeture - support.ouverture
+    amplitude = self.contrat.heure_fermeture - self.contrat.heure_ouverture
     if critical_contract.blank?
       temps_correction = 0.days
     else
@@ -280,10 +279,10 @@ class Demande < ActiveRecord::Base
       distance_of_time_in_working_days(temps_correction,amplitude)
     if temps_reel > temps_prevu_correction
       distance_of_time_in_french_words(temps - temps_correction,
-                                       support)<<
+                                       self.contrat)<<
       _(' of overrun')
     else
-      distance_of_time_in_french_words(temps, support)
+      distance_of_time_in_french_words(temps, self.contrat)
     end
   end
 
@@ -291,7 +290,7 @@ class Demande < ActiveRecord::Base
   def affiche_delai(temps_passe, delai)
     value = calcul_delai(temps_passe, delai)
     return "-" if value == 0
-    distance = distance_of_time_in_french_words(value.abs, client.support)
+    distance = distance_of_time_in_french_words(value.abs, self.contrat)
     if value >= 0
       "<p style=\"color: green\">#{distance}</p>"
     else
@@ -301,12 +300,12 @@ class Demande < ActiveRecord::Base
 
   def calcul_delai(temps_passe, delai)
     return 0 if delai == -1
-    - (temps_passe - delai * client.support.interval_in_seconds)
+    - (temps_passe - delai * contrat.interval_in_seconds)
   end
 
   def compute_temps_ecoule(to = nil)
     return 0 unless commentaires.size > 0
-    support = client.support
+    contrat = self.contrat
     changes = commentaires # Demandechange.find(:all)
     statuts_sans_chrono = [ 3, 7, 8 ] #Suspendue, Cloture, Annulée, cf modele statut
     inf = { :date => self.created_on, :statut => changes.first.statut_id } #1er statut : enregistré !
@@ -316,7 +315,7 @@ class Demande < ActiveRecord::Base
       unless statuts_sans_chrono.include? inf[:statut]
         delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
                               Jourferie.get_dernier_jour_ouvre(sup[:date]),
-                              support)
+                              contrat)
       end
       inf = sup
       break if to == inf[:statut]
@@ -326,49 +325,49 @@ class Demande < ActiveRecord::Base
       sup = { :date => Time.now, :statut => self.statut_id }
       delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
                             Jourferie.get_dernier_jour_ouvre(sup[:date]),
-                            support)
+                            contrat)
     end
     delai
   end
 
   ##
   # Calcule le différentiel en secondes entre 2 jours,
-  # selon les horaires d'ouverture du 'support' et les jours fériés
-  def compute_diff(dateinf, datesup, support)
-    return 0 unless support
+  # selon les horaires d'ouverture du contrat et les jours fériés
+  def compute_diff(dateinf, datesup, contrat)
+    return 0 unless contrat
     borneinf = dateinf.beginning_of_day
     bornesup = datesup.beginning_of_day
     nb_jours = Jourferie.nb_jours_ouvres(borneinf, bornesup)
     result = 0
     if nb_jours == 0
-      return compute_diff_day(dateinf, datesup, support)
+      return compute_diff_day(dateinf, datesup, contrat)
 #       borneinf = dateinf
 #       bornesup = datesup.change(:mday => dateinf.day,
 #                                 :month => dateinf.month,
 #                                 :year => dateinf.year)
     else
-      result = ((nb_jours-1) * support.interval_in_seconds)
+      result = ((nb_jours-1) * contrat.interval_in_seconds)
     end
-    borneinf = borneinf.change(:hour => support.fermeture)
-    bornesup = bornesup.change(:hour => support.ouverture)
+    borneinf = borneinf.change(:hour => contrat.heure_fermeture)
+    bornesup = bornesup.change(:hour => contrat.heure_ouverture)
 
     # La durée d'un jour ouvré dépend des horaires d'ouverture
-    result += compute_diff_day(dateinf, borneinf, support)
-#     puts 'dateinf ' + dateinf.to_s + ' borneinf ' + borneinf.to_s + ' result 1 : ' + compute_diff_day(dateinf, borneinf, support).to_s
-    result += compute_diff_day(bornesup, datesup, support)
-#     puts 'bornesup ' + bornesup.to_s + ' datesup ' + datesup .to_s + ' result 2 : ' +  compute_diff_day(bornesup, datesup, support).to_s
+    result += compute_diff_day(dateinf, borneinf, contrat)
+#     puts 'dateinf ' + dateinf.to_s + ' borneinf ' + borneinf.to_s + ' result 1 : ' + compute_diff_day(dateinf, borneinf, contrat).to_s
+    result += compute_diff_day(bornesup, datesup, contrat)
+#     puts 'bornesup ' + bornesup.to_s + ' datesup ' + datesup .to_s + ' result 2 : ' +  compute_diff_day(bornesup, datesup, contrat).to_s
     result
   end
 
   ##
   # Calcule le temps en seconde qui est écoulé durant la même journée
-  # En temps ouvré, selon les horaires du 'support'
-  def compute_diff_day(jourinf, joursup, support)
+  # En temps ouvré, selon les horaires du contrat
+  def compute_diff_day(jourinf, joursup, contrat)
     # mise au minimum à 7h
-    borneinf = jourinf.change(:hour => support.ouverture)
+    borneinf = jourinf.change(:hour => contrat.heure_ouverture)
     jourinf = borneinf if jourinf < borneinf
     # mise au minimum à 19h
-    bornesup = joursup.change(:hour => support.fermeture)
+    bornesup = joursup.change(:hour => contrat.heure_fermeture)
     joursup = bornesup if joursup > bornesup
     #on reste dans les bornes
     return 0 unless jourinf < joursup
@@ -376,8 +375,8 @@ class Demande < ActiveRecord::Base
   end
 
   # FONCTION vers lib/lstm.rb:time_in_french_words
-  def distance_of_time_in_french_words(distance_in_seconds, support)
-    dayly_time = support.fermeture - support.ouverture # in hours
+  def distance_of_time_in_french_words(distance_in_seconds, contrat)
+    dayly_time = contrat.heure_fermeture - contrat.heure_ouverture # in hours
     Lstm.time_in_french_words(distance_in_seconds, dayly_time)
   end
 

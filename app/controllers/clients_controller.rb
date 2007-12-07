@@ -6,8 +6,8 @@ class ClientsController < ApplicationController
 
   def index
     active = 'clients.inactive = 0'
-    options = { :per_page => 10, :order => 'clients.name', 
-      :include => [:image,:support], :conditions => active }
+    options = { :per_page => 10, :order => 'clients.name',
+      :include => [:image], :conditions => active }
     @client_pages, @clients = paginate :clients, options
   end
 
@@ -66,7 +66,6 @@ class ClientsController < ApplicationController
   private
   def _form
     @images = Image.find(:all)
-    @supports = Support.find_select
     # It's the only way to add new system to its own scope
     Socle.with_exclusive_scope do
       @socles = Socle.find_select

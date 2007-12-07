@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 83) do
+ActiveRecord::Schema.define(:version => 84) do
 
   create_table "arches", :force => true do |t|
     t.column "name", :string
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(:version => 83) do
     t.column "mailingliste",        :string,  :default => "",    :null => false
     t.column "adresse",             :text,    :default => "",    :null => false
     t.column "image_id",            :integer
-    t.column "support_id",          :integer
     t.column "code_acces",          :string,  :default => "",    :null => false
     t.column "beneficiaires_count", :integer
     t.column "chrono",              :string
@@ -73,7 +72,6 @@ ActiveRecord::Schema.define(:version => 83) do
   end
 
   add_index "clients", ["image_id"], :name => "clients_photo_id_index"
-  add_index "clients", ["support_id"], :name => "clients_support_id_index"
   add_index "clients", ["image_id"], :name => "index_clients_on_image_id"
 
   create_table "clients_socles", :id => false, :force => true do |t|
@@ -138,17 +136,21 @@ ActiveRecord::Schema.define(:version => 83) do
   end
 
   create_table "contrats", :force => true do |t|
-    t.column "client_id",         :integer,  :default => 0,     :null => false
-    t.column "ouverture",         :datetime,                    :null => false
-    t.column "cloture",           :datetime,                    :null => false
-    t.column "paquets_count",     :integer
-    t.column "astreinte",         :boolean,  :default => false, :null => false
-    t.column "socle",             :boolean,  :default => false, :null => false
-    t.column "name",              :string
-    t.column "type",              :string
-    t.column "tickets_total",     :integer,  :default => 0
-    t.column "tickets_consommes", :integer,  :default => 0
-    t.column "ticket_temps",      :float,    :default => 15.0
+    t.column "client_id",            :integer,  :default => 0,     :null => false
+    t.column "ouverture",            :datetime,                    :null => false
+    t.column "cloture",              :datetime,                    :null => false
+    t.column "paquets_count",        :integer
+    t.column "astreinte",            :boolean,  :default => false, :null => false
+    t.column "socle",                :boolean,  :default => false, :null => false
+    t.column "name",                 :string
+    t.column "type",                 :string
+    t.column "tickets_total",        :integer,  :default => 0
+    t.column "tickets_consommes",    :integer,  :default => 0
+    t.column "ticket_temps",         :float,    :default => 15.0
+    t.column "veille_technologique", :boolean,  :default => false
+    t.column "newsletter",           :boolean,  :default => false
+    t.column "heure_ouverture",      :integer,  :default => 0,     :null => false
+    t.column "heure_fermeture",      :integer,  :default => 0,     :null => false
   end
 
   add_index "contrats", ["client_id"], :name => "contrats_client_id_index"
@@ -478,17 +480,6 @@ ActiveRecord::Schema.define(:version => 83) do
   create_table "statuts", :force => true do |t|
     t.column "name",        :string
     t.column "description", :text,   :default => "", :null => false
-  end
-
-  create_table "supports", :force => true do |t|
-    t.column "name",                 :string
-    t.column "maintenance",          :boolean, :default => false
-    t.column "assistance_tel",       :boolean, :default => false
-    t.column "veille_technologique", :boolean, :default => false
-    t.column "ouverture",            :integer, :default => 0,     :null => false
-    t.column "fermeture",            :integer, :default => 0,     :null => false
-    t.column "newsletter",           :boolean
-    t.column "duree_intervention",   :integer
   end
 
   create_table "typecontributions", :force => true do |t|

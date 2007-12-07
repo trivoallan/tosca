@@ -8,7 +8,7 @@ class AddTicketForRequests < ActiveRecord::Migration
     add_column :contrats, :ticket_temps,      :float, :default => 15
 
     Contrat.find(:all).each do |c|
-      c.support? ? c[:type] = "Contrat::Support" : c[:type] = "Contrat::Ossa"
+      c.support? ? c[:type] = "Support" : c[:type] = "Ossa"
       c.save
     end
     remove_column :contrats, :support

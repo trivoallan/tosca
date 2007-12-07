@@ -6,9 +6,8 @@ class Client < ActiveRecord::Base
   has_many :beneficiaires, :dependent => :destroy
   has_many :active_recipients, :class_name => 'Beneficiaire',
     :conditions => 'beneficiaires.inactive = 0'
-  has_many :contrats, :dependent => :destroy,
-    :include => Contrat::INCLUDE, :order => Contrat::ORDER
-  belongs_to :support
+  has_many :contrats, :class_name => 'Contrat',
+    :dependent => :destroy, :order => 'contrats.name'
   has_many :documents, :dependent => :destroy
 
   has_and_belongs_to_many :socles
@@ -28,7 +27,7 @@ class Client < ActiveRecord::Base
   after_save :desactivate_recipients
 
   # TODO : rework: to slow /!\
-  # better : # UPDATE users SET inactive = ? WHERE ... 
+  # better : # UPDATE users SET inactive = ? WHERE ...
   def desactivate_recipients
     beneficiaires.each do |b|
       b.user.update_attribute :inactive, inactive?
@@ -82,8 +81,8 @@ class Client < ActiveRecord::Base
     # speedier if there is one openbar contract
     contrats.each{|c| return Logiciel.find(:all) if c.socle? }
     # default case, when there is an association with packages stored.
-    conditions = [ 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id ' + 
-                   ' FROM paquets WHERE paquets.contrat_id IN (?)) ', 
+    conditions = [ 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id ' +
+                   ' FROM paquets WHERE paquets.contrat_id IN (?)) ',
                    contrats.collect{ |c| c.id } ]
     Logiciel.find(:all, :conditions => conditions, :order => 'logiciels.name')
   end

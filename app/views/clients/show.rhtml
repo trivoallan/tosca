@@ -32,10 +32,6 @@
   </td></tr>
 <% end %>
 
-<% if @client.support %>
-<tr><td><b><%= _("Service") %></b> :</td>
-    <td><%= @client.support.to_s %></td></tr>
-<% end %>
 </table>
 
 <%= link_to_new_contrat(@client.id) %>

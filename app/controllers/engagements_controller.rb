@@ -50,7 +50,6 @@ class EngagementsController < ApplicationController
 
   private
   def _form
-    @supports = Support.find(:all)
     @typedemandes = Typedemande.find_select
     @severites = Severite.find_select
   end

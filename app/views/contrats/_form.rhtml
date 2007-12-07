@@ -36,7 +36,7 @@
      </tr><tr>
       <td colspan="2">
        <div id="contrat_options">
-        <%= render :partial => "contrats/#{@contrat.class.to_s}/form" %>
+        <%= render :partial => "contrats/#{@contrat.class.to_s.downcase}/form" %>
        </div>
        <fieldset>
         <legend><%=_('Engineers assigned to this contract')%></legend>
