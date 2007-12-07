@@ -1,4 +1,4 @@
-# French translation of lstm.
+ls# French translation of lstm.
 # Copyright (C) 2007 LINAGORA
 # Rémy-Christophe Schermesser <rschermesser@linagora.com>, 2007.
 # French translations for lstm package
@@ -25,9 +25,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: app/helpers/phonecalls_helper.rb:11
-#, fuzzy
 msgid "Add a phone call"
-msgstr "Modifier un appel"
+msgstr "Ajouter un appel"
 
 #: app/helpers/demandes_helper.rb:71
 msgid "Bl"
@@ -243,7 +242,7 @@ msgid " to date"
 msgstr " à ce jour"
 
 #: app/helpers/application_helper.rb:128
-msgid "No %s  at the moment"
+msgid "No %s at the moment"
 msgstr "Pas de %s pour le moment"
 
 #: app/helpers/application_helper.rb:186
@@ -1123,9 +1122,8 @@ msgid "The call was successfully created."
 msgstr "L'appel a été créée avec succès."
 
 #: app/controllers/phonecalls_controller.rb:73
-#, fuzzy
 msgid "The phone call has been updated."
-msgstr "Le paquet %s a été mis à jour avec succès"
+msgstr "L'appel a été mis à jour avec succès"
 
 #: app/models/typeurl.rb:-
 msgid "typeurl"
@@ -1252,7 +1250,6 @@ msgid "New|Ingenieur"
 msgstr "Ingénieur"
 
 #: app/models/new.rb:-
-#, fuzzy
 msgid "New|Customer"
 msgstr "Client"
 
@@ -1577,9 +1574,8 @@ msgid "Contribution|Description fonctionnelle"
 msgstr "Description fonctionnelle"
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|contributionstate"
-msgstr "Type contribution"
+msgstr "Etat de la contribution"
 
 #: app/models/contribution.rb:-
 msgid "Contribution|Cloture le"
