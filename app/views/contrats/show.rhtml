@@ -7,8 +7,7 @@
 <% if @contrat.is_a? Contrat::Ossa %>
   <p><b><%= _('Obligation') %> : </b> <%= @contrat.astreinte? %></p>
   <p><b><%= _('System') %> : </b> <%= @contrat.socle? %></p>
-<% end %>
-<% else if @contrat.is_a? Contrat::Support %>
+<% elsif @contrat.is_a? Contrat::Support %>
   <p><b><%= _('Number of tickets') %> : </b><%= @contrat.tickets_total %></p>
   <p><b><%= _('Number of used tickets') %> : </b><%= @contrat.tickets_consommes %></p>
                                           <% #We specify the plural for internationnalisation %>

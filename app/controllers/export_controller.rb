@@ -7,9 +7,9 @@
   source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
   All this controller see the same scheme.
   For a model exported "me", you will have :
-  def me : 
+  def me :
     which explains will format will be supported and how
-  def compute_me : 
+  def compute_me :
     which explains will datas will be exported in all of those formats
  All those export finishes with the call to #generate_report,
  which sets correct headers for the differents browser and send the file
@@ -18,14 +18,14 @@ class ExportController < ApplicationController
 
   # return the contents of contributions in a table in ODS format
   # with Ruport :
-  # We can export to other formats : 
+  # We can export to other formats :
   # compute_contributions(:pdf) export to pdf
   def contributions
     respond_to do |format|
       format.html { redirect_to contributions_path }
       format.xml {
-        # TODO : make an xml export : a finder + 
-        #  render :xml => @requests.to_xml should be enough) 
+        # TODO : make an xml export : a finder +
+        #  render :xml => @requests.to_xml should be enough)
       }
       format.ods { compute_contributions(:ods) }
     end
@@ -45,7 +45,7 @@ class ExportController < ApplicationController
       'version_to_s','pname_etatreversement', 'synthese',
       'reverse_le_formatted','clos_enhance','delai_in_french_words' ]
     unless report.column_names.empty?
-      report.reorder(columns) 
+      report.reorder(columns)
       report.rename_columns columns,
         [ _('id'), _('type'), _('software'), _('version'), _('state'),
           _('summary'), _('reported'), _('closed'), _('delay') ]
@@ -58,16 +58,16 @@ class ExportController < ApplicationController
   def users
     respond_to do |format|
       format.html { redirect_to accounts_path }
-      format.xml { 
-        # TODO : make an xml export : a finder + 
-        #  render :xml => @requests.to_xml should be enough) 
+      format.xml {
+        # TODO : make an xml export : a finder +
+        #  render :xml => @requests.to_xml should be enough)
       }
       format.ods { compute_users(:ods) }
     end
   end
 
   def compute_users(type)
-    options = { :order => 'users.login', :include => 
+    options = { :order => 'users.login', :include =>
       [:beneficiaire,:ingenieur,:role], :conditions => flash[:conditions],
       :methods => ['beneficiaire_client_name', 'role_name']
     }
@@ -84,30 +84,30 @@ class ExportController < ApplicationController
   end
 
   # with Ruport:
-  def appels
+  def phonecalls
     respond_to do |format|
-      format.html { redirect_to appels_path }
-      format.xml { 
-        # TODO : make an xml export : a finder + 
-        #  render :xml => @requests.to_xml should be enough) 
+      format.html { redirect_to phonecalls_path }
+      format.xml {
+        # TODO : make an xml export : a finder +
+        #  render :xml => @requests.to_xml should be enough)
       }
-      format.ods { compute_appels(:ods) }
+      format.ods { compute_phonecalls(:ods) }
     end
   end
 
-  def compute_appels(type)
+  def compute_phonecalls(type)
     columns= ['contrat_name', 'ingenieur_name', 'beneficiaire_name']
-    options = { :order => 'appels.debut', :include => 
-      [:beneficiaire,:ingenieur,:contrat,:demande], 
+    options = { :order => 'phonecalls.start', :include =>
+      [:beneficiaire,:ingenieur,:contrat,:demande],
       :conditions => flash[:conditions],
       :methods => columns }
-    report = Appel.report_table(:all, options)
+    report = Phonecall.report_table(:all, options)
 
-    columns.push( 'debut','fin')
+    columns.push( 'start','end')
     unless report.column_names.empty?
-      report.reorder columns 
+      report.reorder columns
       report.rename_columns columns,
-        [ _('Contract'), _('Owner'), _('Customer'), _('Call'), 
+        [ _('Contract'), _('Owner'), _('Customer'), _('Call'),
           _('End of the call') ]
     end
     generate_report(report, type, {})
@@ -117,9 +117,9 @@ class ExportController < ApplicationController
   def requests
     respond_to do |format|
       format.html { redirect_to demandes_path }
-      format.xml { 
-        # TODO : make an xml export : a finder + 
-        #  render :xml => @requests.to_xml should be enough) 
+      format.xml {
+        # TODO : make an xml export : a finder +
+        #  render :xml => @requests.to_xml should be enough)
       }
       format.ods { compute_demandes(:ods, {}) }
     end
@@ -127,7 +127,7 @@ class ExportController < ApplicationController
 
   def compute_demandes(type, options_generate)
     columns = [ 'id', 'logiciels_name', 'clients_name', 'severites_name',
-      'created_on_formatted', 'socle', 'updated_on_formatted', 'resume', 
+      'created_on_formatted', 'socle', 'updated_on_formatted', 'resume',
       'statuts_name', 'typedemandes_name'
     ]
     options= { :order => 'updated_on DESC', :conditions => flash[:conditions],
@@ -150,7 +150,7 @@ class ExportController < ApplicationController
   end
 
 
-  MIME_EXTENSION = { 
+  MIME_EXTENSION = {
     :text => [ '.txt', 'text/plain' ],
     :csv  => [ '.csv', 'text/csv' ],
     :pdf  => [ '.pdf', 'application/pdf' ],
@@ -175,12 +175,12 @@ class ExportController < ApplicationController
        headers['Pragma'] = 'public'
        headers['Content-type'] = content_type
        headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
-       headers['Content-Disposition'] = "attachment; filename=\"#{filename}\"" 
-       headers['Expires'] = "0" 
+       headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+       headers['Expires'] = "0"
      else
        headers["Content-type"] ||= content_type
        headers['Pragma'] = 'public'
-       headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" 
+       headers["Content-Disposition"] = "attachment; filename=\"#{filename}\""
      end
     report_out = report.as(type, options)
     render(:text =>report_out , :layout => false)
@@ -211,20 +211,20 @@ class ExportController < ApplicationController
       repeat4times row,requests[:last_week][name],1
       repeat4times row,requests[:new][name],1
       repeat4times row,requests[:closed][name],1
-      repeat4times row, total[:active][name],0 
+      repeat4times row, total[:active][name],0
       row << total[:final][name]
       data << row
     end
 
     row = [_('TOTALS')]
-    repeat4times row, requests[:last_week][:total],0 
-    repeat4times row, requests[:new][:total],0 
-    repeat4times row, requests[:closed][:total],0 
-    repeat4times row, total[:active][:total],0 
+    repeat4times row, requests[:last_week][:total],0
+    repeat4times row, requests[:new][:total],0
+    repeat4times row, requests[:closed][:total],0
+    repeat4times row, total[:active][:total],0
     row << total[:final][:total]
     data << row
 
-    report = data.to_table 
+    report = data.to_table
     generate_report(report, :ods, {})
 
     flash[:clients]= flash[:clients]

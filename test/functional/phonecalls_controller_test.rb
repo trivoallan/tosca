@@ -1,19 +1,19 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'appels_controller'
+require 'phonecalls_controller'
 
 # Re-raise errors caught by the controller.
-class AppelsController; def rescue_action(e) raise e end; end
+class PhonecallsController; def rescue_action(e) raise e end; end
 
-class AppelsControllerTest < Test::Unit::TestCase
-  fixtures :appels, :ingenieurs, :beneficiaires, :contrats, :users
+class PhonecallsControllerTest < Test::Unit::TestCase
+  fixtures :phonecalls, :ingenieurs, :beneficiaires, :contrats, :users
 
   def setup
-    @controller = AppelsController.new
+    @controller = PhonecallsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
     login 'bob', 'test'
-    @first_id = appels(:appel_00001).id
+    @first_id = phonecalls(:phonecall_00001).id
   end
 
   def test_index
@@ -21,7 +21,7 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'index'
 
-    assert_not_nil assigns(:appels)
+    assert_not_nil assigns(:phonecalls)
     # tests for the ajax filters :
     test_filter :ingenieur_id, 1
     test_filter :beneficiaire_id, 1
@@ -29,12 +29,11 @@ class AppelsControllerTest < Test::Unit::TestCase
 
     get :index, :filters => { :after => '2006-03-01' }
     assert_response :success
-    assigns(:appels).each { |a| assert_operator a.debut, '>', '2006-03-01'.to_time }
+    assigns(:phonecalls).each { |a| assert_operator a.start, '>', '2006-03-01'.to_time }
 
     get :index, :filters => { :before => '2007-08-01' }
     assert_response :success
-    assigns(:appels).each { |a| assert_operator a.fin, '<', '2008-08-01'.to_time }
-
+    assigns(:phonecalls).each { |a| assert_operator a.end, '<', '2008-08-01'.to_time }
 
   end
 
@@ -44,8 +43,8 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:appel)
-    assert assigns(:appel)
+    assert_not_nil assigns(:phonecall)
+    assert assigns(:phonecall)
   end
 
   def test_new
@@ -54,15 +53,15 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:appel)
+    assert_not_nil assigns(:phonecall)
   end
 
   def test_create
-    num_appels = Appel.count
+    num_phonecalls = Phonecall.count
 
-    post :create, :appel => {
-      :debut => '2006-03-16 22:41:00',
-      :fin => '2007-03-16 16:41:00',
+    post :create, :phonecall => {
+      :start => '2006-03-16 22:41:00',
+      :end => '2007-03-16 16:41:00',
       :ingenieur_id => 1,
       :contrat_id => 1,
       :beneficiaire_id => 1
@@ -72,7 +71,7 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
-    assert_equal num_appels + 1, Appel.count
+    assert_equal num_phonecalls + 1, Phonecall.count
   end
 
   def test_edit
@@ -81,14 +80,14 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:appel)
-    assert assigns(:appel)
+    assert_not_nil assigns(:phonecall)
+    assert assigns(:phonecall)
   end
 
   def test_update
-    post :update, { :id => @first_id, 
-      :appel => { :debut => '2006-03-16 22:41:00',
-      :fin => '2007-03-16 16:41:00',
+    post :update, { :id => @first_id,
+      :phonecall => { :start => '2006-03-16 22:41:00',
+      :end => '2007-03-16 16:41:00',
       :ingenieur_id => 1,
       :contrat_id => 1,
       :beneficiaire_id => 1}
@@ -101,7 +100,7 @@ class AppelsControllerTest < Test::Unit::TestCase
 
   def test_destroy
     assert_nothing_raised {
-      Appel.find(@first_id)
+      Phonecall.find(@first_id)
     }
 
     post :destroy, :id => @first_id
@@ -109,7 +108,7 @@ class AppelsControllerTest < Test::Unit::TestCase
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Appel.find(@first_id)
+      Phonecall.find(@first_id)
     }
   end
   private
@@ -118,6 +117,6 @@ class AppelsControllerTest < Test::Unit::TestCase
   def test_filter attribute, value
     get :index, :filters => { attribute => value }
     assert_response :success
-    assigns(:appels).each { |d| assert_equal d[attribute], value }
+    assigns(:phonecalls).each { |d| assert_equal d[attribute], value }
   end
 end

@@ -25,10 +25,10 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('acces', %w(refuse))
   map.without_orm('alerts', %w(on_submit index))
   map.without_orm('alerts', %w(ajax_on_submit), :post)
-  map.without_orm('export', %w(demandes_ods appels_ods users_ods
+  map.without_orm('export', %w(demandes_ods phonecalls_ods users_ods
     contributions_ods comex_ods) )
 
-  map.formatted_export(%w(requests contributions users appels comex))
+  map.formatted_export(%w(requests contributions users phonecalls comex))
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
@@ -49,7 +49,7 @@ ActionController::Routing::Routes.draw do |map|
     :member => { :devenir => :post },
     :collection => { :logout => :any, :login => :any },
     :new => { :signup => :any, :multiple_signup => :any }
-  map.resources :appels,  :collection => { :ajax_beneficiaires => :get }
+  map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
   map.resources :arches
   map.resources :binaires
   map.resources :changelogs

@@ -2,20 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 82) do
-
-  create_table "appels", :force => true do |t|
-    t.column "beneficiaire_id", :integer
-    t.column "ingenieur_id",    :integer
-    t.column "debut",           :datetime
-    t.column "fin",             :datetime
-    t.column "contrat_id",      :integer,  :default => 0, :null => false
-    t.column "demande_id",      :integer
-  end
-
-  add_index "appels", ["beneficiaire_id"], :name => "index_appels_on_beneficiaire_id"
-  add_index "appels", ["ingenieur_id"], :name => "index_appels_on_ingenieur_id"
-  add_index "appels", ["contrat_id"], :name => "index_appels_on_contrat_id"
+ActiveRecord::Schema.define(:version => 83) do
 
   create_table "arches", :force => true do |t|
     t.column "name", :string
@@ -437,6 +424,19 @@ ActiveRecord::Schema.define(:version => 82) do
 
   add_index "permissions_roles", ["permission_id"], :name => "permissions_roles_FKIndex1"
   add_index "permissions_roles", ["role_id"], :name => "permissions_roles_FKIndex2"
+
+  create_table "phonecalls", :force => true do |t|
+    t.column "beneficiaire_id", :integer
+    t.column "ingenieur_id",    :integer
+    t.column "start",           :datetime
+    t.column "end",             :datetime
+    t.column "contrat_id",      :integer,  :default => 0, :null => false
+    t.column "demande_id",      :integer
+  end
+
+  add_index "phonecalls", ["beneficiaire_id"], :name => "index_appels_on_beneficiaire_id"
+  add_index "phonecalls", ["ingenieur_id"], :name => "index_appels_on_ingenieur_id"
+  add_index "phonecalls", ["contrat_id"], :name => "index_appels_on_contrat_id"
 
   create_table "piecejointes", :force => true do |t|
     t.column "file", :string, :default => "", :null => false

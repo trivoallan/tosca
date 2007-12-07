@@ -1,13 +1,13 @@
 <div id='demande_tab_content' class='demande_tab_content'>
- <% titres = [_("Contract"), _("Owner"), _("Recipient"), _("Phone call"),
+ <% titles = [_("Contract"), _("Owner"), _("Recipient"), _("Phone call"),
      _("End of phonecall"), _("Duration")] %>
- <%= show_table(@appels, Appel, titres) { |a|
+ <%= show_table(@phonecalls, Phonecall, titles) { |a|
   result = ''
   result << "<td>#{a.contrat.name}</td>"
   result << "<td>#{a.ingenieur.name if a.ingenieur}</td>"
   result << "<td>#{a.beneficiaire ? a.beneficiaire.name : '-' }</td>"
-  result << "<td>#{a.debut_formatted}</td>"
-  result << "<td>#{a.fin_formatted}</td>"
+  result << "<td>#{a.start_formatted}</td>"
+  result << "<td>#{a.end_formatted}</td>"
   result << "<td>#{Lstm.time_in_french_words(a.duree)}</td>"
   result << "#{link_to_call a}"
  }%>

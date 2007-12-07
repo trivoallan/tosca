@@ -13,16 +13,16 @@ class Demande < ActiveRecord::Base
   has_and_belongs_to_many :paquets
   # TODO : à voir si c'est inutile. avec le socle, on a dejà la plateforme
   has_and_belongs_to_many :binaires
-  has_many :appels
+  has_many :phonecalls
   belongs_to :contribution
   belongs_to :socle
   has_many :piecejointes, :through => :commentaires
 
   # Key pointers to the request history
-  belongs_to :first_comment, :class_name => "Commentaire", 
+  belongs_to :first_comment, :class_name => "Commentaire",
     :foreign_key => "first_comment_id"
   # /!\ It's the last _public_ comment /!\
-  belongs_to :last_comment, :class_name => "Commentaire", 
+  belongs_to :last_comment, :class_name => "Commentaire",
     :foreign_key => "last_comment_id"
 
   # Validation
@@ -100,7 +100,7 @@ class Demande < ActiveRecord::Base
   end
 
   def find_last_comment_before(comment_id)
-    options = { :order => 'created_on DESC', :conditions => 
+    options = { :order => 'created_on DESC', :conditions =>
       [ 'commentaires.prive <> 1 AND commentaires.id <> ?', comment_id ]}
     self.commentaires.find(:first, options)
   end
@@ -136,7 +136,7 @@ class Demande < ActiveRecord::Base
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
   SELECT_LIST = 'demandes.*, severites.name as severites_name, ' +
-    'logiciels.name as logiciels_name, clients.name as clients_name, ' + 
+    'logiciels.name as logiciels_name, clients.name as clients_name, ' +
     'typedemandes.name as typedemandes_name, statuts.name as statuts_name '
   JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' +
     'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+

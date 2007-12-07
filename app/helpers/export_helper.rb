@@ -7,8 +7,8 @@ module ExportHelper
     export_link formatted_requests_export_path(:ods)
   end
 
-  def appels_export_images
-    export_link formatted_appels_export_path(:ods)
+  def phonecalls_export_images
+    export_link formatted_phonecalls_export_path(:ods)
   end
   def users_export_link
     export_link formatted_users_export_path(:ods)

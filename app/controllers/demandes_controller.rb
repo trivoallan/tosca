@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class DemandesController < ApplicationController
-  helper :filters, :contributions, :logiciels, :export, :appels,
+  helper :filters, :contributions, :logiciels, :export, :phonecalls,
     :socles, :commentaires, :account
 
   cache_sweeper :demande_sweeper, :only => [:create, :edit, :destroy]
@@ -23,7 +23,7 @@ class DemandesController < ApplicationController
     # 1. Engineer : When SLA is running Or SLA is suspended  and ( a question from the recipient is not answered OR he just has been assigned )
     # 2. Recipient : When a question from the engineer is not answered
     if @ingenieur # 3 == Suspendue
-      conditions.first << ('(demandes.statut_id <> 3 OR (demandes.statut_id = 3 AND ' + 
+      conditions.first << ('(demandes.statut_id <> 3 OR (demandes.statut_id = 3 AND ' +
                '(commentaires.user_id = beneficiaires.user_id OR commentaires.ingenieur_id IS NOT NULL) ) )' )
     else
       conditions.first << '(demandes.statut_id = 3 AND commentaires.user_id <> beneficiaires.user_id)'
@@ -242,10 +242,10 @@ class DemandesController < ApplicationController
   def ajax_appels
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
-    conditions = [ 'appels.demande_id = ? ', @demande_id ]
-    options = { :conditions => conditions, :order => 'appels.debut',
+    conditions = [ 'phonecalls.demande_id = ? ', @demande_id ]
+    options = { :conditions => conditions, :order => 'phonecalls.start',
       :include => [:beneficiaire,:ingenieur,:contrat,:demande] }
-    @appels = Appel.find(:all, options)
+    @phonecalls = Phonecall.find(:all, options)
     render :partial => 'demandes/tabs/tab_appels', :layout => false
   end
 

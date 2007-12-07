@@ -7,7 +7,7 @@ class Ingenieur < ActiveRecord::Base
   has_and_belongs_to_many :competences
   has_and_belongs_to_many :contrats
   has_many :demandes
-  has_many :appels
+  has_many :phonecalls
 
 
   INCLUDE = [:user]
@@ -16,7 +16,7 @@ class Ingenieur < ActiveRecord::Base
     @content_columns ||= columns.reject { |c| c.primary ||
         c.name =~ /(_id|_on|_count|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }
   end
-  
+
   def self.find_select_by_contrat_id(contrat_id)
     conditions = [ 'ci.contrat_id = ?', contrat_id ]
     joins = 'INNER JOIN contrats_ingenieurs ci ON ci.ingenieur_id=ingenieurs.id'
@@ -51,7 +51,7 @@ class Ingenieur < ActiveRecord::Base
          :select => 'client_id').collect {|c| c.client_id}
   end
 
-  # Don't forget to make an :include => [:user] if you 
+  # Don't forget to make an :include => [:user] if you
   # use this small wrapper.
   def name
     user.name

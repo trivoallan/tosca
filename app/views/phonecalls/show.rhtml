@@ -1,0 +1,26 @@
+<h1><%= _('Call n°%s') % @phonecall.id %></h1>
+<%= logo_client(@phonecall.beneficiaire.client) if @phonecall.beneficiaire %>
+
+<table class="show">
+
+<tr><td colspan="2"></td></tr>
+<% if @phonecall.demande %>
+<tr><td><b><%= _('Request') %></b></td>
+    <td><%= link_to_demande @phonecall.demande %></td></tr>
+<% end %>
+<tr><td><b><%= _('Interlocutor')%></b></td>
+    <td><%= @phonecall.ingenieur.name %></td></tr>
+
+<tr><td><b><%= _('Recipient')%></b></td>
+    <td><%= @phonecall.beneficiaire.name if @phonecall.beneficiaire %></td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td><b><%= _('Started on')%></b></td>
+    <td><%= @phonecall.start_formatted %></td></tr>
+<tr><td><b><%= _('Ended on')%></b></td>
+    <td><%= @phonecall.end_formatted %></td></tr>
+
+</table>
+
+<%= link_to_edit_and_list(@phonecall.id) %>
+

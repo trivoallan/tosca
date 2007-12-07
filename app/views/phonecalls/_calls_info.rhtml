@@ -1,6 +1,6 @@
-<% form_options = PagesHelper::AJAX_OPTIONS.dup.update(:url => appels_path) %>
+<% form_options = PagesHelper::AJAX_OPTIONS.dup.update(:url => phonecalls_path) %>
 
-<% form_remote_tag( form_options.dup.update(:html => { 
+<% form_remote_tag( form_options.dup.update(:html => {
      :id => 'filters', :name => 'filters', :method => :get})) do %>
 
 <%# used for iteration in ajaxified list %>
@@ -9,8 +9,8 @@
 <div class="menu_title" onclick="Element.toggle('menu_action')">
 > <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
- <li><%= link_to _('Add a call'), new_appel_path %></li>
- <li><%= appels_export_images %></li>
+ <li><%= link_to _('Add a call'), new_phonecall_path %></li>
+ <li><%= phonecalls_export_images %></li>
 </ul>
 
 
@@ -46,7 +46,7 @@
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
 > <%= _('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
- <li><b><%=_('Calls')%>: </b><%=@count[:appels]%></li>
+ <li><b><%=_('Calls')%>: </b><%=@count[:phonecalls]%></li>
  <li><b><%=_('Requests')%>: </b><%=@count[:demandes] %></li>
  <li><b><%=_('Engineers')%>: </b><%=@count[:ingenieurs]%></li>
  <li><b><%=_('Recipients')%>: </b><%=@count[:beneficiaires]%></li>

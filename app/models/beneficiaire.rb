@@ -7,7 +7,7 @@ class Beneficiaire < ActiveRecord::Base
   belongs_to :user, :dependent => :destroy
   belongs_to :client, :counter_cache => true
 
-  has_many :appels
+  has_many :phonecalls
 
   INCLUDE = [:user]
 

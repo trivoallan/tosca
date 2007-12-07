@@ -1,0 +1,18 @@
+<%= error_messages_for 'phonecall' %>
+
+<% fields = [
+     lstm_text_field(_('Request'), :phonecall, :demande_id),
+     lstm_select_field(_('Contract'), :phonecall, :contrat, @contrats, :spinner => true),
+     lstm_select_field(_('Engineer'), :phonecall, :ingenieur, @ingenieurs),
+     lstm_ajax_field(_('Recipient'), :phonecall, :beneficiaires),
+     lstm_hline,
+     lstm_datetime_field(_('Start of call'), :phonecall, :start),
+     lstm_datetime_field(_('End of call'), :phonecall, :end)
+  ]
+%>
+<%= show_table_form fields, :class => 'form' %>
+
+<% options = { :before => "Element.show('spinner')",
+  :success => "Element.hide('spinner')", :with => 'id',
+  :update => 'beneficiaires', :url => ajax_beneficiaires_phonecalls_path, :method => :get } %>
+<%= observe_field 'phonecall_contrat_id', options %>

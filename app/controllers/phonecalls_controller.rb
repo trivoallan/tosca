@@ -1,11 +1,10 @@
-class AppelsController < ApplicationController
+class PhonecallsController < ApplicationController
   helper :filters, :export, :demandes, :clients
 
   def index
-    options = { :per_page => 15, :order => 'appels.debut', :include =>
+    options = { :per_page => 15, :order => 'phonecalls.start', :include =>
       [:beneficiaire,:ingenieur,:contrat,:demande] }
     conditions = []
-
 
     if params.has_key? :filters
       session[:calls_filters] = Filters::Calls.new(params[:filters])
@@ -18,17 +17,17 @@ class AppelsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(calls_filters, [
-        [:ingenieur_id, 'appels.ingenieur_id', :equal ],
-        [:beneficiaire_id, 'appels.beneficiaire_id', :equal ],
-        [:contrat_id, 'appels.contrat_id', :equal ],
-        [:after, 'appels.debut', :greater_than ],
-        [:before, 'appels.fin', :lesser_than ]
+        [:ingenieur_id, 'phonecalls.ingenieur_id', :equal ],
+        [:beneficiaire_id, 'phonecalls.beneficiaire_id', :equal ],
+        [:contrat_id, 'phonecalls.contrat_id', :equal ],
+        [:after, 'phonecalls.start', :greater_than ],
+        [:before, 'phonecalls.end', :lesser_than ]
       ])
       @filters = calls_filters
       flash[:conditions] = options[:conditions] = conditions
     end
 
-    @appel_pages, @appels = paginate :appels, options
+    @phonecall_pages, @phonecalls = paginate :phonecalls, options
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
       render :partial => 'calls_list', :layout => false
@@ -39,13 +38,13 @@ class AppelsController < ApplicationController
   end
 
   def create
-    @appel = Appel.new(params[:appel])
-    if @appel.save
+    @phonecall = Phonecall.new(params[:phonecall])
+    if @phonecall.save
       flash[:notice] = _('The call was successfully created.')
-      if @appel.demande
-        redirect_to comment_demande_path(@appel.demande)
+      if @phonecall.demande
+        redirect_to comment_demande_path(@phonecall.demande)
       else
-        redirect_to appels_path
+        redirect_to phonecalls_path
       end
     else
       _form and render :action => 'new'
@@ -53,34 +52,34 @@ class AppelsController < ApplicationController
   end
 
   def show
-    @appel = Appel.find(params[:id])
+    @phonecall = Phonecall.find(params[:id])
   end
 
   def new
-    @appel = Appel.new
-    @appel.ingenieur = @ingenieur
-    @appel.demande_id = params[:id]
+    @phonecall = Phonecall.new
+    @phonecall.ingenieur = @ingenieur
+    @phonecall.demande_id = params[:id]
     _form
   end
 
   def edit
-    @appel = Appel.find(params[:id])
+    @phonecall = Phonecall.find(params[:id])
     _form
   end
 
   def update
-    @appel = Appel.find(params[:id])
-    if @appel.update_attributes(params[:appel])
-      flash[:notice] = 'l\'appel a été mis à jour.'
-      redirect_to appels_path
+    @phonecall = Phonecall.find(params[:id])
+    if @phonecall.update_attributes(params[:phonecall])
+      flash[:notice] = _('The phone call has been updated.')
+      redirect_to phonecalls_path
     else
       _form and render :action => 'edit'
     end
   end
 
   def destroy
-    Appel.find(params[:id]).destroy
-    redirect_to appels_url
+    Phonecall.find(params[:id]).destroy
+    redirect_to phonecalls_url
   end
 
   def ajax_beneficiaires
@@ -111,14 +110,13 @@ class AppelsController < ApplicationController
     _form
     @beneficiaires = Beneficiaire.find_select(User::SELECT_OPTIONS)
 
-    @count[:appels] = Appel.count
-    @count[:beneficiaires] = Appel.count 'beneficiaire_id', {}
-    @count[:ingenieurs] = Appel.count('ingenieur_id', {})
-    @count[:demandes] = Appel.count('demande_id', :distinct => true)
-    diff = 'TIME_TO_SEC(TIMEDIFF(fin,debut))'
-    @count[:somme] = Appel.sum(diff).to_i
-    @count[:moyenne] = Appel.average(diff).to_i
+    @count[:phonecalls] = Phonecall.count
+    @count[:beneficiaires] = Phonecall.count 'beneficiaire_id', {}
+    @count[:ingenieurs] = Phonecall.count('ingenieur_id', {})
+    @count[:demandes] = Phonecall.count('demande_id', :distinct => true)
+    diff = 'TIME_TO_SEC(TIMEDIFF(end,start))'
+    @count[:somme] = Phonecall.sum(diff).to_i
+    @count[:moyenne] = Phonecall.average(diff).to_i
   end
-
 
 end
