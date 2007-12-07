@@ -15,7 +15,6 @@ Beneficiaire -> Client [arrowhead=dot,dir=both,arrowtail=crow]
 Beneficiaire -> Beneficiaire [arrowhead=dot,arrowtail=odot,dir=both]
 
 Client -> Image [arrowhead=dot,dir=both,arrowtail=crow]
-Client -> Support [arrowhead=dot,dir=both,arrowtail=crow]
 Client -> Socle [arrowhead=crow,dir=both,arrowtail=crow]
 
 Commentaire -> Demande [arrowhead=dot,dir=both,arrowtail=crow]
@@ -26,8 +25,8 @@ Commentaire -> Statut [arrowhead=dot]
 Contrat -> Client [arrowhead=dot,dir=both,arrowtail=crow]
 Contrat -> Ingenieur [arrowhead=crow,arrowtail=crow,dir=both]
 Contrat -> Engagement [arrowhead=crow,arrowtail=crow,dir=both]
-Contrat -> ContratOSSA [arrowhead=dot,arrowtail=crow]
-Contrat -> ContratSupport [arrowhead=dot,arrowtail=crow]
+Contrat -> Contrat::OSSA [arrowhead=dot,arrowtail=crow]
+Contrat -> Contrat::Support [arrowhead=dot,arrowtail=crow]
 
 Identifiant -> Image [arrowhead=dot,dir=both,arrowtail=crow]
 Identifiant -> Role [arrowhead=crow,arrowtail=crow,dir=both]
