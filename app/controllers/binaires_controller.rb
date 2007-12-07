@@ -26,6 +26,8 @@ class BinairesController < ApplicationController
       count = files.size
       connection = @binaire.connection
       begin
+        # This is called with low level methods, since we really needs perfs 
+        # here and it can easily take 10 minutes, for a package with 1k files.
         connection.begin_db_transaction 
         connection.delete "DELETE FROM fichierbinaires WHERE binaire_id = #{binaire_id}"
         files.each do |f| 
