@@ -51,7 +51,8 @@ ActionController::Routing::Routes.draw do |map|
     :new => { :signup => :any, :multiple_signup => :any }
   map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
   map.resources :arches
-  map.resources :binaires
+  map.resources :binaires, :member => {
+     :update_files => :post }
   map.resources :changelogs
   map.resources :clients
   map.resources :commentaires, :member => {

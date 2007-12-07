@@ -11,10 +11,14 @@ module BinairesHelper
 
   # Link to create a new url for a Logiciel
   def link_to_new_binaire(paquet_id)
-    return '-' unless paquet_id
+    return '-' if paquet_id.blank?
     options = new_binaire_path(:paquet_id => paquet_id)
     link_to(image_create(_('binary')), options, LinksHelper::NO_HOVER)
   end
 
-
+  def link_to_update_binary_files(binaire_id)
+    return '-' if binaire_id.blank?
+    link_to(_("Update files of this binary package"), 
+            update_files_binaire_path(:id => binaire_id), :method => :post)
+  end
 end

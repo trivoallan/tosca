@@ -19,6 +19,7 @@
 <% if @binaire.archive %>
 <br />
 <p><b><%=_('This package can be downloaded')%> : </b><%= link_to_file(@binaire, 'archive') %></p>
+<p><%= link_to_update_binary_files(@binaire.id) %></p>
 <% end %>
 
 

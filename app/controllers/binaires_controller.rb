@@ -11,8 +11,35 @@ class BinairesController < ApplicationController
 
   def show
     @binaire = Binaire.find(params[:id], :include => [:paquet,:socle,:arch])
-    options = { :conditions => {:binaire_id => @binaire.id} }
+    options = { :conditions => {:binaire_id => @binaire.id}, :order => 'chemin' }
     @fichierbinaires = Fichierbinaire.find(:all, options)
+  end
+
+  # updating files from an archive
+  def update_files
+    @binaire = Binaire.find(params[:id])
+    path = File.expand_path(@binaire.archive)
+    if File.exists? path
+      files = Extract.files_from(path) # array of [ filename, filesize ]
+      sql = ''
+      binaire_id = @binaire.id
+      count = files.size
+      connection = @binaire.connection
+      begin
+        connection.begin_db_transaction 
+        connection.delete "DELETE FROM fichierbinaires WHERE binaire_id = #{binaire_id}"
+        files.each do |f| 
+          connection.insert "INSERT INTO fichierbinaires(binaire_id, chemin, taille) VALUES (#{binaire_id}, '#{f.first}', #{f.last}); "
+        end
+        @binaire.update_attribute(:fichierbinaires_count, count)
+        connection.commit_db_transaction
+      rescue Exception => e
+        connection.rollback_db_transaction
+        flash[:warn] = e.message
+      end
+      flash[:info] = _("%d files has been attached to this package.") % count
+    end
+    redirect_to binaire_path(@binaire)
   end
 
   def new

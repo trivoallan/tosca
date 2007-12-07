@@ -52,15 +52,18 @@ ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.
 SqlSessionStore.session_class = MysqlSession
 
 # MLO : session duration is one month,
-# thanks to the plugin.: dynamic_session_expr
 CGI::Session.expire_after 1.month
 
+# MLO : It's faster to use X-Send-File module of Apache
+XSendFile::Plugin.replace_send_file! if RAILS_ENV == 'production'
+
+# Internal libs, located in lib/
 require 'utils'
 require 'config'
 require 'overrides'
+require 'extract'
 
-
-XSendFile::Plugin.replace_send_file! if RAILS_ENV == 'production'
+# External libs
 # Used to generate Ods Export. See ExportController.
  require 'ruport'
  # 0.9.0 does not work with TOSCA, for now.
@@ -82,11 +85,21 @@ XSendFile::Plugin.replace_send_file! if RAILS_ENV == 'production'
 ENV['TZ'] = 'Europe/Paris'
 
 # Mime type needed for ods export with Ruport lib
+# See app/controller/export_controller.rb
 Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
-Mime::Type.register "text/csv", :csv
+
+# Boot Check
+unless File.exists?(File.expand_path("locale/fr/LC_MESSAGES/lstm.mo", 
+                                     RAILS_ROOT))
+  puts "***********************"
+  puts "Missing traducted files. I am generating it for you with "
+  puts "$ rake makemo" 
+  %[#{"rake makemo"}]
+  puts "***********************"
+end
 
 
-#conf gettextlocalize
+# Default conf for gettextlocalize, used for Dates & Currency
 if defined? GettextLocalize
   GettextLocalize::app_name = 'lstm'
   GettextLocalize::app_version = '0.5.3'
