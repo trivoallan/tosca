@@ -11,6 +11,7 @@ class Binaire < ActiveRecord::Base
 
   file_column :archive, :fix_file_extensions => nil
 
+  validates_presence_of :paquet
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
@@ -26,7 +27,7 @@ class Binaire < ActiveRecord::Base
   end
 
   def to_s
-    "#{name}-#{paquet.version}-#{paquet.release}"
+    [ name, paquet.version, paquet.release ].compact.join('-')
   end
 
   ORDER = 'binaires.name ASC'

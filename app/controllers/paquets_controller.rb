@@ -2,7 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class PaquetsController < ApplicationController
-  helper :filters, :logiciels, :binaires, :conteneurs, :distributeurs, 
+  helper :filters, :logiciels, :binaires, :conteneurs, :distributeurs,
     :mainteneurs, :fournisseurs
 
   # auto completion in 2 lines, yeah !
@@ -61,7 +61,7 @@ class PaquetsController < ApplicationController
     @paquet = Paquet.new(params[:paquet])
     if @paquet.save
       flash[:notice] = _('The package %s has been created.') % @paquet.name
-      redirect_to paquets_path
+      redirect_to logiciel_path(@paquet.logiciel)
     else
       _form
       render :action => 'new'
@@ -102,7 +102,7 @@ class PaquetsController < ApplicationController
 
   def _panel
     @count = {}
-    @clients = Client.find_select(:conditions => 'clients.inactive = 0') 
+    @clients = Client.find_select(:conditions => 'clients.inactive = 0')
     @count[:paquets] = Paquet.count
     @count[:binaires] = Binaire.count
   end

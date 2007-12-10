@@ -13,6 +13,8 @@ class Paquet < ActiveRecord::Base
   has_many :dependances, :dependent => :destroy
   has_many :binaires, :dependent => :destroy
 
+  validates_presence_of :logiciel
+  validates_presence_of :conteneur
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
@@ -39,9 +41,7 @@ class Paquet < ActiveRecord::Base
   end
 
   def to_s
-    the_name = _('unknown_name')
-    the_name = conteneur.name unless conteneur.nil?
-    "%s %s-%s-%s" % [ the_name, name, version, release]
+    "#{conteneur.name} " << [ name, version, release ].compact.join('-')
   end
 
   def contournement(typedemande_id, severite_id)

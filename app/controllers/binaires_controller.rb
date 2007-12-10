@@ -54,7 +54,7 @@ class BinairesController < ApplicationController
     @binaire = Binaire.new(params[:binaire])
     if @binaire.save
       flash[:notice] = _('Binary has beensuccessfully created.')
-      redirect_to binaires_path
+      redirect_to paquet_path(@binaire.paquet)
     else
       _form
       render :action => 'new'
@@ -83,7 +83,7 @@ class BinairesController < ApplicationController
 
   private
   def _form
-    options = {} 
+    options = {}
     if @binaire.paquet
       options = { :conditions => [ 'contributions.logiciel_id = ?', @binaire.paquet.logiciel_id ] }
     end
