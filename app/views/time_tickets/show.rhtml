@@ -1,0 +1,7 @@
+<% for column in TimeTicket.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @time_ticket.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to_edit_and_list @time_ticket %>

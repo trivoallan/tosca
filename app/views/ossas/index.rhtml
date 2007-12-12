@@ -1,0 +1,13 @@
+<h1><%= _('List of offers for ossa contracts') %></h1>
+
+<% links = show_pages_links(@ossa_pages, _('an ossa rule')) %>
+<%= links %>
+
+<% titles = [_('Ossa|Name')] %>
+<%= show_table(@ossas, Ossa, titles) { |o|
+  result = ''
+  result << "<td>#{o.name}</td>"
+  result << link_to_actions_table(o)
+} %>
+
+<%= links %>

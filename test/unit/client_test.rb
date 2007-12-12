@@ -5,7 +5,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
   fixtures :clients, :typedemandes, :contrats, :beneficiaires, :paquets,
-    :logiciels, :engagements, :contrats_engagements
+    :logiciels, :engagements, :contrats_engagements, :ossas, :time_tickets
 
   def test_client_create
     # a customer must have a name

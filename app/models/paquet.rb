@@ -13,8 +13,7 @@ class Paquet < ActiveRecord::Base
   has_many :dependances, :dependent => :destroy
   has_many :binaires, :dependent => :destroy
 
-  validates_presence_of :logiciel
-  validates_presence_of :conteneur
+  validates_presence_of :logiciel, :conteneur
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||

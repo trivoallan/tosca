@@ -1,0 +1,13 @@
+<h1><%= _('List of offers with time tickets') %></h1>
+
+<% links = show_pages_links(@time_ticket_pages, _('an offer')) %>
+<%= links %>
+
+<% titles = [_('TimeTicket|Name')] %>
+<%= show_table(@time_tickets, TimeTicket, titles) { |tt|
+  result = ''
+  result << "<td>#{tt.name}</td>"
+  result << link_to_actions_table(tt)
+} %>
+
+<%= links %>

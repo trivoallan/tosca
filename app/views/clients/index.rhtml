@@ -2,12 +2,8 @@
 
 <%= show_pages_links(@client_pages, _("a client")) %>
 <% titles = [ _("Logo"), _("Name"), _("Packages"), _("Mailing list"), _("Access code") ]%>
-<% if @ingenieur %>
-<%   titles  = [ _("Chrono") ].concat(titles) %>
-<% end %>
 <%= show_table(@clients, Client, titles) { |c|
   result = ''
-  result << "<td>#{c.chrono}</td>" if @ingenieur
   if c.image
     result << "<td>#{logo_client(c)}</td>"
   else

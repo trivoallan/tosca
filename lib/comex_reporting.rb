@@ -166,7 +166,7 @@ module  ComexReporting
           end
           unless workaround_time == -1.day
             d[:mesg_contournement] = request.distance_of_time_in_french_words(
-              (workaround_time-elapsed_time).abs, request.client.support )
+              (workaround_time-elapsed_time).abs, request.contrat )
             d[:contournement]= (elapsed_time/workaround_time )*100
           end
         end

@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-07 12:07+0100\n"
-"PO-Revision-Date: 2007-11-26 10:39+0100\n"
+"PO-Revision-Date: 2007-12-11 18:04+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3104,11 +3104,11 @@ msgstr "Créer un nouveau type de documents"
 
 #: app/views/contrats/_form.rhtml:15
 msgid "Opens at"
-msgstr "Heure d'ouverture"
+msgstr "Du "
 
 #: app/views/contrats/_form.rhtml:18
 msgid "Closes at"
-msgstr "Heure de fermeture"
+msgstr "Au"
 
 #: app/views/contrats/_form.rhtml:23
 msgid "Commitments"

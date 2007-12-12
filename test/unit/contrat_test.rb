@@ -23,7 +23,7 @@ class ContratTest < Test::Unit::TestCase
   end
   def test_demandes
     c = Contrat.find 3
-    assert_equal c.demandes, [Demande.find(3)]
+    assert_equal c.demandes, [Demande.find(4)]
   end
   def test_typedemandes
     c = Contrat.find 1
@@ -32,13 +32,12 @@ class ContratTest < Test::Unit::TestCase
 
   def test_to_s
     c = Contrat.find 1
-    c_name_empty = Contrat::Ossa.new(
-      :astreinte => 0,
-      :socle => 0,
-      :client_id => Client.find(:first).id, # vide,
+    c_name_empty = Contrat.new(
+      :client_id => Client.find(:first).id,
       :ouverture => "2006-11-25 12:20:00",
       :cloture => "2007-11-12 14:23:00",
-      :name => "OSSA - Guy - Intégral"
+      :rule_type => 'TimeTicket',
+      :rule_id => 1
     )
     assert c_name_empty.save
 

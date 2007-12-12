@@ -94,6 +94,7 @@ protected
       @ingenieur = user.ingenieur
       @beneficiaire = user.beneficiaire
     end
+    true
   end
 
   # Surcharge en attendant que ce soit fixé dans la branche officielle

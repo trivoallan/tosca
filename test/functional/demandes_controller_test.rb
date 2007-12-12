@@ -19,7 +19,7 @@ class DemandesControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     login 'admin', 'admin'
-    @first_id = demandes(:demande_00001).id
+    @first_id = Demande.find(:first).id
   end
 
   def test_index
@@ -41,8 +41,6 @@ class DemandesControllerTest < Test::Unit::TestCase
       request = Demande.find d.id
       assert_equal request.client.id, 1
     end
-
-
   end
 
   def test_show

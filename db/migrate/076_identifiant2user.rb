@@ -1,5 +1,5 @@
 class Identifiant2user < ActiveRecord::Migration
-  COLUMNS = { 
+  COLUMNS = {
     :titre => :title,
     :nom => :name,
     :telephone => :phone
@@ -8,8 +8,8 @@ class Identifiant2user < ActiveRecord::Migration
   def self.up
     drop_table(:users) # an error of youth
     rename_table(:identifiants, :users)
-    COLUMNS.each { |key, value| 
-      rename_column(:users, key, value) 
+    COLUMNS.each { |key, value|
+      rename_column(:users, key, value)
     }
     rename_column :ingenieurs, :identifiant_id, :user_id
     rename_column :beneficiaires, :identifiant_id, :user_id
@@ -21,8 +21,8 @@ class Identifiant2user < ActiveRecord::Migration
 
   def self.down
     rename_table(:users, :identifiants)
-    COLUMNS.each { |key, value| 
-      rename_column(:identifiants, value, key) 
+    COLUMNS.each { |key, value|
+      rename_column(:identifiants, value, key)
     }
     rename_column :ingenieurs, :user_id, :identifiant_id
     rename_column :beneficiaires, :user_id, :identifiant_id

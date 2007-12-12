@@ -8,7 +8,7 @@ require 'binaires_controller'
 class BinairesController; def rescue_action(e) raise e end; end
 
 class BinairesControllerTest < Test::Unit::TestCase
-  fixtures :binaires, :paquets, :logiciels, :contrats, 
+  fixtures :binaires, :paquets, :logiciels, :contrats,
     :clients, :socles, :arches
 
   def setup
@@ -47,11 +47,11 @@ class BinairesControllerTest < Test::Unit::TestCase
   def test_create
     num_binaires = Binaire.count
 
-    post :create, :binaire => {}
+    post :create, :binaire => { :paquet_id => 1 }
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'show', :controller => 'paquets'
 
     assert_equal num_binaires + 1, Binaire.count
   end

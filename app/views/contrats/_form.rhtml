@@ -7,24 +7,23 @@
         <th><label for="contrat_client_id"><%=_('Customer')%></label></th>
         <td><%= collection_select(:contrat, :client_id, @clients, :id, :name) %></td>
       </tr><tr>
-        <th><label for="contrat_name"><%=_('Name')%></label></th>
-        <td><%= text_field :contrat, :name %></td>
-      </tr>
-
-      <tr>
-        <th><label for="contrat_ouverture"><%=_('Opens at')%></label></th>
+        <th><label for="contrat_chrono"><%= _("Contrat|Chrono") %></label></th>
+        <td><%= text_field :contrat, :chrono %></td>
+      </tr><tr>
+        <th><label for="contrat_ouverture"><%= _('Start') %></label></th>
         <td><%= datetime_select :contrat, :ouverture %></td>
       </tr><tr>
-        <th><label for="contrat_cloture"><%=_('Closes at')%></label></th>
+        <th><label for="contrat_cloture"><%=_('End')%></label></th>
         <td><%= datetime_select :contrat, :cloture %></td>
-      </tr>
-
-      <tr>
+      </tr><tr>
+        <th><label for="contrat_veille_technologique"><%= _("Technological survey") %></label></th>
+        <td><%= check_box :contrat, :veille_technologique %></td>
+      </tr><tr>
+        <th><label for="contrat_newsletter"><%= _("Newsletter") %></label></th>
+        <td><%= check_box :contrat, :newsletter  %></td>
+      </tr><tr>
         <th><label><%=_('Commitments')%> <%= link_to_new_engagement %></label></th>
         <td><%= show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]') %></td>
-      </tr><tr>
-        <th><label for="team_ossa"><%=_('Whole OSSA Team ?')%></label></th>
-        <td><%= check_box :team, :ossa %></td>
       </tr>
     </table>
   </td>
@@ -32,12 +31,26 @@
     <table class="form">
      <tr>
       <th><label><%= _("Type") %></label></th>
-      <td><%= hm_radio_button :contrat, :class_type, Contrat::List %></td>
+       <td><% Contrat::Rules.each do |r| %>
+               <%= radio_button(:contrat, :rule_type, r) %>
+               <%= _(r) %> <%= link_to_new_rule(r) %>
+           <% end %></td>
      </tr><tr>
-      <td colspan="2">
-       <div id="contrat_options">
-        <%= render :partial => "contrats/#{@contrat.class.to_s.downcase}/form" %>
-       </div>
+       <th><label for="contrat_rule_id"><%= _('Ruled by') %></label></th>
+       <td><div id="contrat_rules">
+          <%= render :partial => 'rules' %>
+	   </div></td>
+     </tr><tr>
+       <th><label for="contrat_heure_ouverture"><%= _("Open time") %></label></th>
+       <td><%= text_field :contrat, :heure_ouverture  %></td>
+     </tr><tr>
+       <th><label for="contrat_heure_fermeture"><%= _("Close time") %></label></th>
+       <td><%= text_field :contrat, :heure_fermeture  %></td>
+     </tr><tr>
+        <th><label for="team_ossa"><%=_('Whole OSSA Team ?')%></label></th>
+        <td><%= check_box :team, :ossa %></td>
+      </tr><tr>
+       <td colspan="2">
        <fieldset>
         <legend><%=_('Engineers assigned to this contract')%></legend>
         <%= hbtm_check_box(@contrat.ingenieurs, @ingenieurs,
@@ -48,12 +61,3 @@
     </table>
   </td></tr>
 </table>
-
-<% options = PagesHelper::SPINNER_OPTIONS.dup.update(
-    :with => "Form.serialize(document.forms['contrat_form'])",
-    :url => ajax_choose_contrats_path ) %>
-<%# TODO : When #7895 is solved, removed this multi-field observer %>
-<%# See: http://dev.rubyonrails.org/ticket/7895 %>
-<% Contrat::List.each do |klass| %>
-  <%= observe_field "contrat_class_type_#{klass.id}", options %>
-<% end %>

@@ -1,0 +1,12 @@
+<%= error_messages_for 'time_ticket' %>
+
+<!--[form:time_ticket]-->
+<p><label for="time_ticket_name"><%=_('TimeTicket|Name')%></label><br/>
+<%= text_field 'time_ticket', 'name'  %></p>
+
+<p><label for="time_ticket_max"><%=_('Maximum number of tickets')%></label><br/>
+<%= text_field 'time_ticket', 'max'  %></p>
+
+<p><label for="time_ticket_time"><%= _('Time of each ticket, expressed in hours')%></label><br/>
+<%= text_field 'time_ticket', 'time'  %></p>
+<!--[eoform:time_ticket]-->

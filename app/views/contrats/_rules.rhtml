@@ -1,0 +1,8 @@
+<%= collection_select(:contrat, :rule_id, @rules, :id, :name) %>
+<% options = PagesHelper::SPINNER_OPTIONS.dup.update(
+    :url => ajax_choose_contrats_path ) %>
+<%# TODO : When #7895 is solved, removed this multi-field observer %>
+<%# See: http://dev.rubyonrails.org/ticket/7895 %>
+<% Contrat::Rules.each do |r| %>
+   <%= observe_field "contrat_rule_type_#{r.downcase}", options %>
+<% end %>

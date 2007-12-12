@@ -1,7 +1,6 @@
 ---
 client_00004:
   name: linagorien
-  chrono:
   inactive: false
   id: 4
   beneficiaires_count:
@@ -12,7 +11,6 @@ client_00004:
   image_id: 3
 client_00005:
   name: noman
-  chrono:
   inactive: false
   id: 5
   beneficiaires_count:
@@ -23,7 +21,6 @@ client_00005:
   image_id: 3
 client_00008:
   name: Client Inactif
-  chrono: "34565"
   inactive: true
   id: 8
   beneficiaires_count:
@@ -34,7 +31,6 @@ client_00008:
   image_id: 1
 client_00009:
   name: "Client avec un b\xC3\xA9n\xC3\xA9ficiaire Inactif"
-  chrono: "4789"
   inactive: false
   id: 9
   beneficiaires_count:
@@ -45,7 +41,6 @@ client_00009:
   image_id: 1
 client_00001:
   name: toto
-  chrono:
   inactive: false
   id: 1
   beneficiaires_count: 21
@@ -56,7 +51,6 @@ client_00001:
   image_id: 1
 client_00002:
   name: guy
-  chrono:
   inactive: false
   id: 2
   beneficiaires_count:

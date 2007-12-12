@@ -319,7 +319,7 @@ class DemandesController < ApplicationController
   # todo à retravailler
   def _form(beneficiaire)
     @socles = Socle.find_select
-    @contrats = Contrat.find_select
+    @contrats = Contrat.find_select(Contrat::OPTIONS)
     if beneficiaire
       client = beneficiaire.client
       if client.support_distribution

@@ -14,30 +14,27 @@ class ContratsController < ApplicationController
 
   def new
     # It is the default contract
-    @contrat = Contrat::Ossa.new
+    @contrat = Contrat.new
     @contrat.client_id = params[:id]
+    @contrat.rule_type = 'Ossa'
     _form
   end
 
 public
   def ajax_choose
     render :nothing => true and return unless request.xhr?
-    @type = nil
-    begin
-      klass = Contrat::List[params[:contrat][:class_type].to_i]
-      @contrat = klass.new(params[:contrat])
-      @type = "contrats/#{klass}/form"
-    rescue #if exception, an error message will be set by the rjs file.
+    @rules = nil
+    if params.has_key? 'TimeTicket'
+      @rules = TimeTicket.find(:all)
     end
+    if params[:value] == 'Ossa'
+      @rules = Ossa.find(:all)
+    end
+    @type = 'rules' if @rules
   end
 
   def create
-    klass = Contrat::List[params[:contrat][:class_type].to_i]
-    begin
-      @contrat = klass.new(params[:contrat])
-    rescue
-      _form and render :action => 'new' and return
-    end
+    @contrat = Contrat.new(params[:contrat])
     if @contrat.save
       team = params[:team]
       if team and team[:ossa] == '1'
@@ -84,5 +81,11 @@ private
     end
     @engagements = Engagement.find(:all, Engagement::OPTIONS)
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
+    @rules = []
+    begin
+      @rules = @contrat.rule_type.constantize.find(:all)
+    rescue
+      flash[:warn] = _('Unknown rules for this contract.')
+    end
   end
 end

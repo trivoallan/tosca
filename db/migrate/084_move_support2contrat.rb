@@ -7,6 +7,9 @@ class MoveSupport2contrat < ActiveRecord::Migration
     belongs_to :support
     has_many :contrats
   end
+  class Contrat < ActiveRecord::Base
+    belongs_to :client
+  end
 
   def self.up
     add_column :contrats, :veille_technologique, :boolean, :default => false

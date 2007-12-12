@@ -46,10 +46,10 @@ class PaquetsControllerTest < Test::Unit::TestCase
   def test_create
     num_paquets = Paquet.count
 
-    post :create, :paquet => {}
+    post :create, :paquet => { :logiciel_id => 1, :conteneur_id => 1 }
 
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'show', :controller => 'logiciels'
 
     assert_equal num_paquets + 1, Paquet.count
   end

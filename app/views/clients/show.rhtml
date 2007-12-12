@@ -15,10 +15,6 @@
 
 <% if @ingenieur %>
 <tr>
-  <td><b><%= _("Chrono") %></b> :</td>
-  <td><%= @client.chrono.to_s %></td>
-</tr>
-<tr>
   <td><b><%= _("Inactive") %></b> :</td>
   <td><%= (@client.inactive ? _("Yes") : _("No")) %></td>
 </tr>
@@ -39,10 +35,11 @@
   result = ''
   edit = link_to_edit(edit_contrat_path(c))
   result << "#{edit}&nbsp;" if edit
-  result << "<b>#{c.class_type}</b>"
+  result << "(#{c.chrono})&nbsp;" if @ingenieur
+  result << "<b>#{c.rule.name}</b>"
   result << _(" from %s to %s") % [c.ouverture_formatted, c.cloture_formatted]
   result << ' '
-  if c.socle
+  if c.rule.max == -1
     result << _("on your complete system")
   else
     result << _("concerning %s source packages ") % c.paquets_count

@@ -11,10 +11,10 @@ class Contrat < ActiveRecord::Base
 
   has_many :binaires, :through => :paquets
   has_many :appels
-  validates_presence_of :class_type, :client
+  belongs_to :rule, :polymorphic => true
+  validates_presence_of :client, :rule
 
-  # The first contract in this list is the default one
-  List = [ Contrat::Ossa, Contrat::Support ]
+  Rules = [ 'TimeTicket', 'Ossa' ]
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
@@ -33,7 +33,10 @@ class Contrat < ActiveRecord::Base
   # We have open clients which can declare
   # requests on everything. It's with the "socle" field.
   def logiciels
-    (self.socle? ? Logiciel.find(:all) : self._logiciels)
+    if rule_type == 'Ossa' and rule.max == -1
+      return Logiciel.find(:all)
+    end
+    self._logiciels
   end
 
   def ouverture_formatted
@@ -54,15 +57,9 @@ class Contrat < ActiveRecord::Base
   end
 
   def demandes
-    joins = 'INNER JOIN demandes_paquets ON demandes.id = demandes_paquets.demande_id '
-    joins << 'INNER JOIN paquets ON paquets.id = demandes_paquets.paquet_id '
-    conditions = [ 'paquets.contrat_id = ?', id]
-    select = 'DISTINCT demandes.*'
+    conditions = [ 'demandes.contrat_id = ?', id]
     # WHERE (demandes_paquets.demande_id = 62 )
-    Demande.find(:all,
-                 :conditions => conditions,
-                 :joins => joins,
-                 :select => select)
+    Demande.find(:all, :conditions => conditions)
   end
 
   def typedemandes
@@ -83,14 +80,9 @@ class Contrat < ActiveRecord::Base
     name
   end
 
-  def class_type=(value)
-    self[:type] = value
+  def name
+    "#{client.name} - #{rule.name}"
   end
-
-  def class_type
-    return self[:type]
-  end
-
 
   # used internally by wrapper :
   # /!\ DO NOT USE DIRECTLY /!\

@@ -7,7 +7,7 @@
 <%= show_table(@contrats, Contrat, titles) { |c|
   result = ''
   result << "<td>#{link_to_contrat(c)}</td>"
-  result << "<td>#{c.class_type}</td>"
+  result << "<td>#{c.rule_type}</td>"
   result << "<td>#{c.logiciels.size}</td>"
   result << "<td>#{c.paquets.size}</td>"
   result << "<td>#{c.demandes.size}</td>"

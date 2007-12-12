@@ -1,5 +1,5 @@
 unless @type.blank?
-  page.replace_html("contrat_options", :partial => @type)
+  page.replace_html("contrat_rules", :partial => @type)
 else
-  page.replace_html("contrat_options", :text => 'Does not exist', :status => 404)
+  page.replace_html("contrat_rules", :text => 'Does not exist', :status => 404)
 end

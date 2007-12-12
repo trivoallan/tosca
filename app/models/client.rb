@@ -6,8 +6,8 @@ class Client < ActiveRecord::Base
   has_many :beneficiaires, :dependent => :destroy
   has_many :active_recipients, :class_name => 'Beneficiaire',
     :conditions => 'beneficiaires.inactive = 0'
-  has_many :contrats, :class_name => 'Contrat',
-    :dependent => :destroy, :order => 'contrats.name'
+  has_many :contrats, :class_name => 'Contrat', :include => [:client],
+    :dependent => :destroy, :order => 'clients.name'
   has_many :documents, :dependent => :destroy
 
   has_and_belongs_to_many :socles
@@ -56,7 +56,7 @@ class Client < ActiveRecord::Base
   def support_distribution
     contrats = self.contrats.find(:all, :select => 'socle')
     result = false
-    contrats.each { |c| result = true if c.socle }
+    contrats.each { |c| result = true if c.rule.max == -1 }
     result
   end
 
@@ -74,12 +74,12 @@ class Client < ActiveRecord::Base
     ingenieurs
   end
 
-  # TODO et le support socle entier ?
+
   def logiciels
     return [] if contrats.empty?
     return contrats.first.logiciels if contrats.size == 1
     # speedier if there is one openbar contract
-    contrats.each{|c| return Logiciel.find(:all) if c.socle? }
+    contrats.each{|c| return Logiciel.find(:all) if c.rule.max == -1 }
     # default case, when there is an association with packages stored.
     conditions = [ 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id ' +
                    ' FROM paquets WHERE paquets.contrat_id IN (?)) ',

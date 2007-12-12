@@ -1,0 +1,8 @@
+<h1><%=_('Editing a time ticket offer') %></h1>
+
+<% form_tag time_ticket_path(@time_ticket), :method => :put do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Validate') %>
+<% end %>
+
+<%= link_to_show_and_list(@time_ticket) %>

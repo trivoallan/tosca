@@ -9,7 +9,7 @@ module Lstm
   # Renvoi l'expression, en francais, d'une durée passee en seconde
   # Un deuxieme argument, optionnel, permet de préciser le temps ouvré d'un jour
   #
-  # Reports the approximate distance in time between two Time objects or integers. 
+  # Reports the approximate distance in time between two Time objects or integers.
   # For example, if the distance is 47 minutes, it'll return
   # "about 1 hour". See the source for the complete wording list.
   #
@@ -17,13 +17,13 @@ module Lstm
   # <tt>distance_of_time_in_words(50)</tt> returns "less than a minute".
   #
   # Set <tt>include_seconds</tt> to true if you want more detailed approximations if distance < 1 minute
-  # Le deuxième paramètre peut être un nombre ou un booléen. 
+  # Le deuxième paramètre peut être un nombre ou un booléen.
   #   Si c'est un nombre, ca indique le nombre d'heures dans une journée ouvrée
   #   Si c'est un booleén à true, ça indique que les journées font 24 heures et sont ouvrées
   #   Si il n'y a rien, les journées font 24 heures et ne sont pas ouvrées
   #
   # TODO : avoir un rake test
-  # en attendant : ca passe avec  
+  # en attendant : ca passe avec
   # Lstm.time_in_french_words(15.hours, 5)
   # Lstm.time_in_french_words(13.hours, 5)
   # Lstm.time_in_french_words(10.hours, 5)
@@ -31,12 +31,12 @@ module Lstm
   # Lstm.time_in_french_words(0.5.days, true)
   def self.time_in_french_words(distance_in_seconds, dayly_time = 24)
     return '-' unless distance_in_seconds.is_a? Numeric and distance_in_seconds > 0
+    return '-' unless dayly_time == true or (dayly_time > 0 and dayly_time < 25)
     ouvre = (dayly_time != 24 ? true : false)
     if (dayly_time == true)
       dayly_time = 24
       ouvre = true
     end
-
 
     distance_in_minutes = ((distance_in_seconds.abs)/60).round
     jo = dayly_time * 60 # jour ouvre en minutes
@@ -48,7 +48,7 @@ module Lstm
     male = false
 
     case distance_in_minutes
-    when 0..1 
+    when 0..1
       out << ((distance_in_minutes==0) ? "moins d'une minute" : '1 minute')
     when 2..45
       out << "#{distance_in_minutes} minutes"

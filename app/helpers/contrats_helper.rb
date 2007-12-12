@@ -18,4 +18,23 @@ module ContratsHelper
             LinksHelper::NO_HOVER)
   end
 
+  def link_to_new_rule(rule)
+    return '' unless rule
+    options = self.send("new_#{rule.underscore}_path")
+    link_to(image_create(_(rule.humanize)), options, LinksHelper::NO_HOVER)
+  end
+
+  def link_to_rule(rule)
+    return '' unless rule
+    options = self.send("#{rule.class.to_s.underscore}_path", rule)
+    link_to(StaticImage::view, options,  LinksHelper::NO_HOVER)
+  end
+
+  def link_to_edit_rule(rule)
+    return '' unless rule
+    options = self.send("#{rule.class.to_s.underscore}_path", rule)
+    link_to(StaticImage::edit, options,  LinksHelper::NO_HOVER)
+  end
+
+
 end

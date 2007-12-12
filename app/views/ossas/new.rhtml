@@ -1,0 +1,8 @@
+<h1><%=_('New ossa offer') %></h1>
+
+<% form_tag ossas_path do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _("Create") %>
+<% end %>
+
+<%= link_to_back %>

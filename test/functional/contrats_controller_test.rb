@@ -50,7 +50,8 @@ class ContratsControllerTest < Test::Unit::TestCase
       :ouverture => '2005-10-26 10:20:00',
       :cloture => '2007-10-26 10:20:00',
       :client_id => 1,
-      :class_type => Contrat::Ossa.id
+      :rule_type => 'Ossa',
+      :rule_id => 1
     }
 
     assert flash.has_key?(:notice)

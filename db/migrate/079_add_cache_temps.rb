@@ -1,7 +1,5 @@
 class AddCacheTemps < ActiveRecord::Migration
   def self.up
-    drop_table :temps
-    remove_column :demandes, :temps_id
     add_column :demandes, :cache_contournement, :float, :null=>true
     add_column :demandes, :cache_correction, :float, :null=>true
     add_column :demandes, :cache_ecoule, :float, :null=>true
