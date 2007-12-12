@@ -53,12 +53,13 @@ class AccountController < ApplicationController
         user_crypt = 'false'
         user_crypt = params['user_crypt'] if params.has_key?('user_crypt')
         if session[:user] = User.authenticate(params['user_login'],
-                                                     params['user_password'],
-                                                     user_crypt)
+                                              params['user_password'],
+                                              user_crypt)
           set_sessions(session[:user])
           flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") %
             [ session[:user].title, session[:user].name.gsub(' ', '&nbsp;') ]
-          redirect_to_home
+          session[:return_to] ||= request.env['HTTP_REFERER']
+          redirect_back
         else
           clear_sessions
           id = User.find_by_login(params['user_login'])
@@ -249,8 +250,13 @@ private
   # et 500 en cas de modification
   # Le menu du layout est inclus pour des raisons de performances
   def set_sessions(user)
+    return_to = session[:return_to]
     # clear_session erase session[:user]
     clear_sessions
+
+    # restoring previously consulted page
+    session[:return_to] = return_to
+
     # Set user properties
     session[:user] = user
 
