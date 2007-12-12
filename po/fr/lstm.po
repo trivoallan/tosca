@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-12 19:51+0100\n"
-"PO-Revision-Date: 2007-12-12 18:24+0100\n"
+"PO-Revision-Date: 2007-12-12 19:56+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -899,9 +899,8 @@ msgid "Unlink the contribution"
 msgstr "Délier la contribution"
 
 #: app/helpers/demandes_helper.rb:185
-#, fuzzy
 msgid "Submitted upstream on"
-msgstr "Reversée"
+msgstr "Reversée le"
 
 #: app/helpers/demandes_helper.rb:196
 msgid "show requests waiting to be processed"
@@ -3727,9 +3726,8 @@ msgid "Packages supported for %s :"
 msgstr "Paquets supportés pour %s :"
 
 #: app/views/demandes/_infos_demande.rhtml:6
-#, fuzzy
 msgid "Link to a contribution"
-msgstr "Type de contribution"
+msgstr "Lier à une contribution"
 
 #: app/views/demandes/_infos_demande.rhtml:23
 msgid "Vm"
