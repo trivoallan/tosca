@@ -3,6 +3,7 @@
 > <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
   <% if @ingenieur %>
+    <li><%= _('Link to a contribution')%></li>
     <li><% form_tag associer_contribution_demande_path(@demande.id) do %>
       <%= select_onchange @contributions, 'demande', 'contribution_id' %>
     <% end %></li>
@@ -51,9 +52,10 @@
 > <%=_("Life cycle") %></div>
 <ul class="menu" id="life_cycle_menu">
   <li><b><%= _("Created on") %>: </b><%= @demande.created_on_formatted %></li>
-  <li><b><%= _("Updated on") %>: </b> <%= @demande.updated_on_formatted %></li>
-  <% if @demande.contribution %>
-    <li><%=link_to(_('Submitted upstream'), contribution_path(@demande.contribution)) %></li>
+  <li><b><%= _("Updated on") %>: </b><%= @demande.updated_on_formatted %></li>
+  <% contribution = @demande.contribution %>
+  <% if contribution %>
+    <li><b><%= link_to_request_contribution(contribution) %>: </b><%= contribution.cloture_le_formatted %></li>
   <% end %>
 </ul>
 

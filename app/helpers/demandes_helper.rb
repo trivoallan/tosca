@@ -179,6 +179,13 @@ module DemandesHelper
     out << '</span>'
   end
 
+
+  def link_to_request_contribution(contribution)
+    return '' unless contribution
+    link_to(_('Submitted upstream on'),
+            contribution_path(contribution))
+  end
+
   # TODO : beaucoup trop de copier coller, c'est honteux !
   # TODO/MLO : me taper sur les doigts et faire une version propre
   # begining of factorisation in logiciels_helper

@@ -200,7 +200,7 @@ class DemandesController < ApplicationController
     flash.now[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
 
     @statuts = @demande.statut.possible(@beneficiaire)
-    options =  { :conditions =>
+    options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
       ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
     @contributions = Contribution.find(:all, options)
     @severity = Severite.find(:all)

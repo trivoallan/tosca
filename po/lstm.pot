@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-12-12 18:19+0100\n"
+"POT-Creation-Date: 2007-12-12 19:51+0100\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgstr ""
 #: app/controllers/account_controller.rb:158
 #: app/controllers/account_controller.rb:195
 #: app/views/account/_edit_account_informations.rhtml:46
-#: app/views/demandes/_infos_demande.rhtml:45
+#: app/views/demandes/_infos_demande.rhtml:46
 msgid "Phone"
 msgstr ""
 
@@ -243,7 +243,7 @@ msgid "The contribution has been updated successfully."
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:70
-#: app/helpers/demandes_helper.rb:202 app/helpers/links_helper.rb:122
+#: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:122
 msgid "All the requests"
 msgstr ""
 
@@ -271,13 +271,13 @@ msgstr ""
 msgid "This contribution is now linked"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:382
-#: app/helpers/demandes_helper.rb:188
+#: app/controllers/demandes_controller.rb:374
+#: app/helpers/demandes_helper.rb:195
 msgid "Active requests"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:385
-#: app/helpers/demandes_helper.rb:195
+#: app/controllers/demandes_controller.rb:377
+#: app/helpers/demandes_helper.rb:202
 msgid "Finished requests"
 msgstr ""
 
@@ -394,7 +394,7 @@ msgstr ""
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_contributions_info.rhtml:28
 #: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:55
-#: app/views/demandes/_infos_demande.rhtml:25
+#: app/views/demandes/_infos_demande.rhtml:26
 #: app/views/demandes/lists/_requests_table.rhtml:4
 #: app/views/paquets/_form.rhtml:7 app/views/paquets/_paquets_list.rhtml:7
 #: app/views/paquets/show.rhtml:16 app/views/urllogiciels/_form.rhtml:6
@@ -405,7 +405,7 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:144 app/views/clients/show.rhtml:49
 #: app/views/demandes/_comment_form.rhtml:16
-#: app/views/demandes/_infos_demande.rhtml:30
+#: app/views/demandes/_infos_demande.rhtml:31
 #: app/views/demandes/lists/_requests_info.rhtml:49
 msgid "Severity"
 msgstr ""
@@ -427,7 +427,7 @@ msgstr ""
 #: app/helpers/contributions_helper.rb:10
 #: app/views/contributions/_contributions_info.rhtml:39
 #: app/views/demandes/_form.rhtml:19 app/views/demandes/_form_deposer.rhtml:19
-#: app/views/demandes/_infos_demande.rhtml:19
+#: app/views/demandes/_infos_demande.rhtml:20
 #: app/views/demandes/lists/_requests_table.rhtml:10
 #: app/views/logiciels/_form.rhtml:6 app/views/logiciels/show.rhtml:13
 #: app/views/reporting/_comex_cns.rhtml:22 app/views/reporting/general.rhtml:7
@@ -436,14 +436,14 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:146
 #: app/views/demandes/_comment_form.rhtml:10
-#: app/views/demandes/_infos_demande.rhtml:27
+#: app/views/demandes/_infos_demande.rhtml:28
 #: app/views/demandes/lists/_requests_info.rhtml:51
 msgid "Status"
 msgstr ""
 
 #: app/controllers/export_controller.rb:146 app/views/contrats/index.rhtml:5
 #: app/views/contrats/_form.rhtml:33
-#: app/views/demandes/_infos_demande.rhtml:29
+#: app/views/demandes/_infos_demande.rhtml:30
 #: app/views/demandes/lists/_requests_info.rhtml:47
 #: app/views/demandes/lists/_requests_table.rhtml:5
 #: app/views/documents/_form.rhtml:18
@@ -883,15 +883,19 @@ msgstr ""
 msgid "Unlink the contribution"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:189
-msgid "show requests waiting to be processed"
+#: app/helpers/demandes_helper.rb:185
+msgid "Submitted upstream on"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:196
-msgid "show requests that were processed"
+msgid "show requests waiting to be processed"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:203
+msgid "show requests that were processed"
+msgstr ""
+
+#: app/helpers/demandes_helper.rb:210
 msgid "show all the requests"
 msgstr ""
 
@@ -1061,7 +1065,7 @@ msgid "Hide"
 msgstr ""
 
 #: app/helpers/static_image.rb:58 app/views/bienvenue/about.rhtml:3
-#: app/views/demandes/_infos_demande.rhtml:61
+#: app/views/demandes/_infos_demande.rhtml:63
 msgid "Help"
 msgstr ""
 
@@ -1098,7 +1102,7 @@ msgstr ""
 msgid "OSSA on rails"
 msgstr ""
 
-#: app/helpers/static_image.rb:161 app/views/demandes/_infos_demande.rhtml:14
+#: app/helpers/static_image.rb:161 app/views/demandes/_infos_demande.rhtml:15
 msgid "Print"
 msgstr ""
 
@@ -3049,7 +3053,7 @@ msgstr ""
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/index.rhtml:6
 #: app/views/binaires/show.rhtml:11 app/views/contrats/show.rhtml:15
 #: app/views/demandes/_form.rhtml:50
-#: app/views/demandes/_infos_demande.rhtml:24
+#: app/views/demandes/_infos_demande.rhtml:25
 #: app/views/machines/_form.rhtml:17 app/views/machines/all.rhtml:5
 #: app/views/machines/index.rhtml:5 app/views/machines/show.rhtml:9
 #: app/views/socles/_form.rhtml:9 app/views/socles/index.rhtml:5
@@ -3366,7 +3370,7 @@ msgid "Delay"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:8
-#: app/views/demandes/_infos_demande.rhtml:54
+#: app/views/demandes/_infos_demande.rhtml:55
 #: app/views/demandes/lists/_requests_table.rhtml:14
 msgid "Updated on"
 msgstr ""
@@ -3579,7 +3583,7 @@ msgid "Size"
 msgstr ""
 
 #: app/views/demandes/tabs/_piecejointes.rhtml:5
-#: app/views/demandes/_infos_demande.rhtml:53
+#: app/views/demandes/_infos_demande.rhtml:54
 msgid "Created on"
 msgstr ""
 
@@ -3675,36 +3679,36 @@ msgstr ""
 msgid "Packages supported for %s :"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:22
+#: app/views/demandes/_infos_demande.rhtml:6
+msgid "Link to a contribution"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:23
 msgid "Vm"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:32
+#: app/views/demandes/_infos_demande.rhtml:33
 msgid "CC"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:35
+#: app/views/demandes/_infos_demande.rhtml:36
 msgid "Assigned to"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:40
+#: app/views/demandes/_infos_demande.rhtml:41
 msgid "Recipent"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:43
+#: app/views/demandes/_infos_demande.rhtml:44
 msgid "Contact"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:47
+#: app/views/demandes/_infos_demande.rhtml:48
 msgid "Company"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:51
+#: app/views/demandes/_infos_demande.rhtml:52
 msgid "Life cycle"
-msgstr ""
-
-#: app/views/demandes/_infos_demande.rhtml:56
-msgid "Submitted upstream"
 msgstr ""
 
 #: app/views/demandes/_packages.rhtml:2
