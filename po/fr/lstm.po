@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-12 19:51+0100\n"
-"PO-Revision-Date: 2007-12-12 19:56+0100\n"
+"PO-Revision-Date: 2007-12-12 21:12+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -4197,7 +4197,7 @@ msgstr "Supporté"
 
 #: app/views/paquets/_form.rhtml:41
 msgid "Specific additionnal configuration"
-msgstr "configuration spécifique additionnelle"
+msgstr "Configuration spécifique additionnelle"
 
 #: app/views/paquets/_paquets_info.rhtml:16
 #: app/views/paquets/_paquets_list.rhtml:1
@@ -4210,7 +4210,7 @@ msgstr "un paquet virtuel"
 
 #: app/views/paquets/edit.rhtml:1
 msgid "Editing a package"
-msgstr "Éditer un paquet"
+msgstr "Modification d'un paquet"
 
 #: app/views/paquets/edit.rhtml:5
 msgid "Save"

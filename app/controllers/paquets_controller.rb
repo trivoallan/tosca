@@ -36,12 +36,12 @@ class PaquetsController < ApplicationController
   end
 
   def show
-    include =  [ :logiciel, :fournisseur, :distributeur,
-      :contrat, :mainteneur, :conteneur ]
+    include =  [ { :logiciel => :groupe }, :fournisseur, :distributeur,
+                 { :contrat => :client }, :mainteneur, :conteneur ]
     paquet_id = params[:id]
     @paquet = Paquet.find(paquet_id, :include => include)
     cond = [ 'binaires.paquet_id = ? ', paquet_id ]
-    options = { :conditions => cond, :include => [:socle] }
+    options = { :conditions => cond, :include => [:paquet,:socle,:arch] }
     @binaires = Binaire.find(:all, options)
     @fichiers = @paquet.fichiers.find(:all, :select => 'fichiers.chemin',
                                       :limit => 10000)

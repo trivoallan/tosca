@@ -1,3 +1,7 @@
+<%= public_link_to _('Homepage') , bienvenue_url%> >
+ <%= public_link_to _('Softwares') , logiciels_path %> >
+  <%= public_link_to @logiciel.groupe.name, logiciel_path(@logiciel.groupe_id) %>
+
 <table><tr>
   <% unless @logiciel.image.blank? %>
     <td><%= image_tag(url_for_file_column(@logiciel.image, 'image', 'thumb')) %></td>
@@ -50,7 +54,7 @@
 </tr>
 
 <tr><td><b><%=_('Package(s)')%></b><%= link_to_new_paquet(@logiciel.id) %></td>
-  <td>    
+  <td>
      <% options[:edit] = 'paquet' %>
      <%=  show_liste(@logiciel.paquets, _('Package'), options) do |paquet|
         link_to_paquet paquet

@@ -5,7 +5,7 @@ module PaquetsHelper
   # Il faut mettre un :include => [:arch,:conteneur] pour accélérer l'affichage
   def link_to_paquet(paquet)
     return '-' unless paquet and paquet.is_a? Paquet
-    name = "#{paquet.name}-#{paquet.version}-#{paquet.release}"
+    name = paquet.to_s
     name = "<i>#{name}</i>" unless paquet.active
     link_to name, paquet_path(paquet)
   end

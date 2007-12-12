@@ -93,7 +93,7 @@ class LogicielsController < ApplicationController
     @logiciel = Logiciel.new(params[:logiciel])
     if @logiciel.save and add_logo
       flash[:notice] = _('The software %s has been created succesfully.') % @logiciel.name
-      redirect_to logiciels_path
+      redirect_to logiciel_path(@logiciel)
     else
       add_image_errors
       _form and render :action => 'new'

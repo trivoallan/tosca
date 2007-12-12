@@ -10,7 +10,11 @@ class BinairesController < ApplicationController
   end
 
   def show
-    @binaire = Binaire.find(params[:id], :include => [:paquet,:socle,:arch])
+    options = { :include => [{:paquet => [:conteneur,
+                                          { :contrat => :client },
+                                          { :logiciel => :groupe}]},
+                            :socle,:arch] }
+    @binaire = Binaire.find(params[:id], options)
     options = { :conditions => {:binaire_id => @binaire.id}, :order => 'chemin' }
     @fichierbinaires = Fichierbinaire.find(:all, options)
   end
@@ -26,11 +30,11 @@ class BinairesController < ApplicationController
       count = files.size
       connection = @binaire.connection
       begin
-        # This is called with low level methods, since we really needs perfs 
+        # This is called with low level methods, since we really needs perfs
         # here and it can easily take 10 minutes, for a package with 1k files.
-        connection.begin_db_transaction 
+        connection.begin_db_transaction
         connection.delete "DELETE FROM fichierbinaires WHERE binaire_id = #{binaire_id}"
-        files.each do |f| 
+        files.each do |f|
           connection.insert "INSERT INTO fichierbinaires(binaire_id, chemin, taille) VALUES (#{binaire_id}, '#{f.first}', #{f.last}); "
         end
         @binaire.update_attribute(:fichierbinaires_count, count)

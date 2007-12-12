@@ -182,6 +182,7 @@ table.pages td {
 }
 table.topbox td {
 	vertical-align: top;
+	width: 50%;
 }
 
 
@@ -270,7 +271,7 @@ div.edit {
 }
 
 div.show, div.form { max-width: 35em; }
-
+div.info { width: 100%; }
 
 /* used mainly in show view, where we don't want 100% width */
 .info  {

@@ -1,10 +1,10 @@
 <% logiciel = @paquet.logiciel %>
 <%= public_link_to _('Homepage') , bienvenue_url%> >
- <%= public_link_to _('Groups'), groupes_path %> >
+ <%= public_link_to _('Softwares') , logiciels_path %> >
   <%= public_link_to logiciel.groupe.name, logiciel_path(logiciel.groupe_id) %> >
-   <%= public_link_to _('Softwares') , logiciels_path %> >
-    <%= public_link_to logiciel.name, logiciel_path(logiciel) %> >
-     <%=@paquet.version%>-<%=@paquet.release%>  <%= link_to_edit(@paquet) %>
+   <%= public_link_to logiciel.name, logiciel_path(logiciel) %> >
+    <%=@paquet.version%><%="-#{@paquet.release}" unless @paquet.release.blank? %>
+     <%= link_to_edit(@paquet) %>
 
    <h1><%= _('Source package')%></h1>
 
@@ -15,18 +15,31 @@
  </div>
 <% end %>
 
+<table class="topbox">
+  <tr><td>
 <div class="show">
   <p><b><%= _('Software') + ' : '%></b> <%= @paquet.logiciel.name %></p>
   <p><b><%= _('Contract') + ' : '%></b> <%= @paquet.contrat.client.name %></p>
 
  <% for column in Paquet.content_columns %>
-   <p><b><%= column.human_name %>:</b> <%= @paquet.send(column.name) %></p>
+   <p><b><%= _(column.human_name) %>:</b> <%= @paquet.send(column.name) %></p>
  <% end %>
 
  <p><b><%= _('Container') + ' : '%></b> <%= @paquet.conteneur.name %></p>
  <p><b><%= _('Distributor')+ ' : '%></b> <%=h @paquet.distributeur.name %></p>
  <p><b><%= _('Maintainer')+' : '%></b> <%=h @paquet.mainteneur.name %></p>
 </div>
+  </td><td>
+   <% unless @beneficiaire or @paquet.configuration.blank? %>
+   <div class="info">
+    <fieldset>
+    <legend><%=_('Configuration')%></legend>
+     <%= @paquet.configuration %>
+    </fieldset>
+   </div>
+   <% end %>
+  </td></tr>
+</table>
 
 <p><b><%= pluralize(@paquet.binaires.count, _('binary') ) %></b> <%= link_to_new_binaire(@paquet.id) %></p>
  <% options = {:no_title => true, :edit => 'binaire'} %>
@@ -37,8 +50,6 @@
        } %>
   <% end %>
 </p>
-
-
 
 <% if @paquet.fichiers_count > 0 %>
  <p>Ce paquet contient <b><%= pluralize(@paquet.fichiers_count, _('file') ) %></b></p>

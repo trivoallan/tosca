@@ -6,10 +6,9 @@
 <%= show_table(@groupes, Groupe, titres) { |g|
   result = ''
   result << "<td>#{g.name }</td>"
-  result << "<td>#{g.logiciels.compact.size}</td>"
+  result << "<td>#{g.logiciels.size}</td>"
   result << "#{link_to_actions_table g}"
 }%>
 
 
 <%= show_pages_links(@groupe_pages, _('a group') ) %>
-

@@ -27,7 +27,7 @@ class Binaire < ActiveRecord::Base
   end
 
   def to_s
-    [ name, paquet.version, paquet.release ].compact.join('-')
+    "(#{arch.name}) " << [ name, paquet.version, paquet.release ].compact.join('-')
   end
 
   ORDER = 'binaires.name ASC'

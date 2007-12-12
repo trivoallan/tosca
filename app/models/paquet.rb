@@ -17,7 +17,7 @@ class Paquet < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
-        c.name =~ /(_id|taille|_count)$/ || c.name == inheritance_column }
+        c.name =~ /(_id|taille|configuration|_count)$/ || c.name == inheritance_column }
   end
 
   def self.set_scope(contrat_ids)

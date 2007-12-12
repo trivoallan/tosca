@@ -5,8 +5,7 @@ module BinairesHelper
 
   def link_to_binaire(binaire)
     return '-' unless binaire and binaire.paquet
-    name = "#{binaire.name}-#{binaire.paquet.version}-#{binaire.paquet.release}"
-    link_to name, binaire_path(binaire.id)
+    link_to binaire.to_s, binaire_path(binaire.id)
   end
 
   # Link to create a new url for a Logiciel
@@ -18,7 +17,7 @@ module BinairesHelper
 
   def link_to_update_binary_files(binaire_id)
     return '-' if binaire_id.blank?
-    link_to(_("Update files of this binary package"), 
+    link_to(_("Update files of this binary package"),
             update_files_binaire_path(:id => binaire_id), :method => :post)
   end
 end

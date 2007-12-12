@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 87) do
+ActiveRecord::Schema.define(:version => 88) do
 
   create_table "arches", :force => true do |t|
     t.column "name", :string
@@ -389,8 +389,7 @@ ActiveRecord::Schema.define(:version => 87) do
   create_table "paquets", :force => true do |t|
     t.column "logiciel_id",      :integer,               :default => 0,    :null => false
     t.column "name",             :string,  :limit => 60
-    t.column "version",          :string,  :limit => 60, :default => "",   :null => false
-    t.column "release",          :string,  :limit => 60, :default => "",   :null => false
+    t.column "version",          :string,  :limit => 60, :default => "x",  :null => false
     t.column "conteneur_id",     :integer,               :default => 0,    :null => false
     t.column "paquet_id",        :integer,               :default => 0,    :null => false
     t.column "distributeur_id",  :integer,               :default => 0,    :null => false
@@ -402,9 +401,10 @@ ActiveRecord::Schema.define(:version => 87) do
     t.column "fichiers_count",   :integer
     t.column "changelogs_count", :integer
     t.column "active",           :boolean,               :default => true
+    t.column "release",          :string,  :limit => 60
   end
 
-  add_index "paquets", ["name", "version", "release"], :name => "paquets_nvr"
+  add_index "paquets", ["name", "version"], :name => "paquets_nvr"
   add_index "paquets", ["paquet_id"], :name => "paquets_paquet_id"
   add_index "paquets", ["logiciel_id"], :name => "paquets_logiciel_id_index"
   add_index "paquets", ["conteneur_id"], :name => "paquets_conteneur_id_index"
