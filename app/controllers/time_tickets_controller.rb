@@ -14,7 +14,7 @@ class TimeTicketsController < ApplicationController
   def create
     @time_ticket = TimeTicket.new(params[:time_ticket])
     if @time_ticket.save
-      flash[:notice] = _('TimeTicket was successfully created.')
+      flash[:notice] = _("'%s' was successfully created.") % @time_ticket.name
       redirect_to time_tickets_path
     else
       render :action => 'new'
@@ -28,7 +28,7 @@ class TimeTicketsController < ApplicationController
   def update
     @time_ticket = TimeTicket.find(params[:id])
     if @time_ticket.update_attributes(params[:time_ticket])
-      flash[:notice] = _('TimeTicket was successfully updated.')
+      flash[:notice] = _("'%s' was successfully updated.") % @time_ticket.name
       redirect_to time_ticket_path(@time_ticket)
     else
       render :action => 'edit'

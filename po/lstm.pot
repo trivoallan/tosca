@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-12-12 18:13+0100\n"
+"POT-Creation-Date: 2007-12-12 18:19+0100\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,11 +122,13 @@ msgid "My account"
 msgstr ""
 
 #: app/controllers/ossas_controller.rb:17
-msgid "Ossa was successfully created."
+#: app/controllers/time_tickets_controller.rb:17
+msgid "'%s' was successfully created."
 msgstr ""
 
 #: app/controllers/ossas_controller.rb:31
-msgid "Ossa was successfully updated."
+#: app/controllers/time_tickets_controller.rb:31
+msgid "'%s' was successfully updated."
 msgstr ""
 
 #: app/controllers/arches_controller.rb:16
@@ -721,14 +723,6 @@ msgstr ""
 
 #: app/controllers/urllogiciels_controller.rb:41
 msgid "The Url has bean updated successfully."
-msgstr ""
-
-#: app/controllers/time_tickets_controller.rb:17
-msgid "TimeTicket was successfully created."
-msgstr ""
-
-#: app/controllers/time_tickets_controller.rb:31
-msgid "TimeTicket was successfully updated."
 msgstr ""
 
 #: app/controllers/phonecalls_controller.rb:43

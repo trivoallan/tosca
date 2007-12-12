@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-12-12 18:13+0100\n"
-"PO-Revision-Date: 2007-11-26 10:39+0100\n"
+"POT-Creation-Date: 2007-12-12 18:19+0100\n"
+"PO-Revision-Date: 2007-12-12 18:28+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -122,11 +122,13 @@ msgid "My account"
 msgstr ""
 
 #: app/controllers/ossas_controller.rb:17
-msgid "Ossa was successfully created."
+#: app/controllers/time_tickets_controller.rb:17
+msgid "'%s' was successfully created."
 msgstr ""
 
 #: app/controllers/ossas_controller.rb:31
-msgid "Ossa was successfully updated."
+#: app/controllers/time_tickets_controller.rb:31
+msgid "'%s' was successfully updated."
 msgstr ""
 
 #: app/controllers/arches_controller.rb:16
@@ -723,14 +725,6 @@ msgstr ""
 msgid "The Url has bean updated successfully."
 msgstr ""
 
-#: app/controllers/time_tickets_controller.rb:17
-msgid "TimeTicket was successfully created."
-msgstr ""
-
-#: app/controllers/time_tickets_controller.rb:31
-msgid "TimeTicket was successfully updated."
-msgstr ""
-
 #: app/controllers/phonecalls_controller.rb:43
 msgid "The call was successfully created."
 msgstr ""
@@ -1154,7 +1148,6 @@ msgstr ""
 
 #: app/models/ossa.rb:- app/views/ossas/_form.rhtml:4
 #: app/views/ossas/index.rhtml:6
-#, fuzzy
 msgid "Ossa|Name"
 msgstr "Name"
 
@@ -1219,7 +1212,6 @@ msgid "Binaire|Arch"
 msgstr ""
 
 #: app/models/binaire.rb:-
-#, fuzzy
 msgid "Binaire|Name"
 msgstr "Name"
 
@@ -1232,7 +1224,6 @@ msgid "Binaire|Archive"
 msgstr ""
 
 #: app/models/binaire.rb:-
-#, fuzzy
 msgid "Binaire|Socle"
 msgstr "System"
 
@@ -1261,12 +1252,10 @@ msgid "Changelog|Text modification"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "client"
 msgstr "Customer"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Name"
 msgstr "Name"
 
@@ -1291,12 +1280,10 @@ msgid "Client|Code acces"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Beneficiaires count"
 msgstr "Recipient"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Inactive"
 msgstr "Inactive"
 
@@ -1305,7 +1292,6 @@ msgid "paquet"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Logiciel"
 msgstr "Software"
 
@@ -1318,50 +1304,42 @@ msgid "Paquet|Version"
 msgstr "Version"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Release"
-msgstr "Name"
+msgstr "Release"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Conteneur"
-msgstr "Name"
+msgstr "Conteneur"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Paquet"
-msgstr "Name"
+msgstr "Package"
 
 #: app/models/client.rb:-
 msgid "Paquet|Distributeur"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Mainteneur"
-msgstr "Name"
+msgstr "Mainteneur"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Contrat"
-msgstr "Version"
+msgstr "Contrat"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Taille"
-msgstr "Name"
+msgstr "Size"
 
 #: app/models/client.rb:-
 msgid "Paquet|Fournisseur"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Configuration"
-msgstr "Version"
+msgstr "Configuration"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Fichiers count"
 msgstr "Version"
 
@@ -1370,9 +1348,8 @@ msgid "Paquet|Changelogs count"
 msgstr ""
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Paquet|Active"
-msgstr "Name"
+msgstr "Active"
 
 #: app/models/commentaire.rb:-
 msgid "commentaire"
@@ -1459,50 +1436,42 @@ msgid "Conteneur|Name"
 msgstr "Name"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "contrat"
-msgstr "Name"
+msgstr "contract"
 
 #: app/models/contrat.rb:-
 msgid "Contrat|Client"
 msgstr "Client"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Ouverture"
-msgstr "Client"
+msgstr "Opens at"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Cloture"
-msgstr "Client"
+msgstr "Closes at"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Paquets count"
 msgstr "Client"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Astreinte"
 msgstr "Client"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Rule type"
 msgstr "Type"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Rule"
-msgstr "Client"
+msgstr "Rule"
 
 #: app/models/contrat.rb:-
 msgid "Contrat|Veille technologique"
 msgstr ""
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Newsletter"
 msgstr "Client"
 
@@ -1515,9 +1484,8 @@ msgid "Contrat|Heure fermeture"
 msgstr ""
 
 #: app/models/contrat.rb:- app/views/contrats/_form.rhtml:10
-#, fuzzy
 msgid "Contrat|Chrono"
-msgstr "Client"
+msgstr "Chrono"
 
 #: app/models/contribution.rb:- app/views/contributions/select.rhtml:3
 msgid "contribution"
@@ -1588,27 +1556,24 @@ msgid " on "
 msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "demande"
-msgstr "Name"
+msgstr "request"
 
 #: app/models/demande.rb:-
 msgid "Demande|Beneficiaire"
 msgstr "Recipient"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Ingenieur"
-msgstr "Severity"
+msgstr "engineer"
 
 #: app/models/demande.rb:-
 msgid "Demande|Resume"
 msgstr "Description"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Statut"
-msgstr "Mantis"
+msgstr "Status"
 
 #: app/models/demande.rb:-
 msgid "Demande|Severite"
@@ -1627,9 +1592,8 @@ msgid "Demande|Updated on"
 msgstr "Updated on"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Typedemande"
-msgstr "Description"
+msgstr "type request"
 
 #: app/models/demande.rb:-
 msgid "Demande|Contribution"
@@ -1640,29 +1604,24 @@ msgid "Demande|Socle"
 msgstr "System"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Mail cc"
-msgstr "Mantis"
+msgstr "Mail cc"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|First comment"
-msgstr "Created on"
+msgstr "First comment"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Contrat"
-msgstr "Contribution"
+msgstr "Contract"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Expected on"
-msgstr "Created on"
+msgstr "Expected on"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Last comment"
-msgstr "Created on"
+msgstr "Last comment"
 
 #: app/models/demande.rb:-
 msgid "Demande|Mantis"
@@ -1677,12 +1636,10 @@ msgid "Demande|Cache correction"
 msgstr "Description"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Cache ecoule"
 msgstr "Description"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Cache rappel"
 msgstr "Created on"
 
@@ -1691,7 +1648,6 @@ msgid "statut"
 msgstr ""
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Statut|Name"
 msgstr "Name"
 
@@ -1758,9 +1714,8 @@ msgid "Distributeur|Name"
 msgstr ""
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "document"
-msgstr "File"
+msgstr "document"
 
 #: app/models/document.rb:-
 msgid "Document|User"
@@ -1800,7 +1755,6 @@ msgid "Document|Version"
 msgstr "Version"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Date delivery"
 msgstr "Delivered on"
 
@@ -1897,7 +1851,6 @@ msgid "Image|Description"
 msgstr "Description"
 
 #: app/models/image.rb:-
-#, fuzzy
 msgid "Image|Logiciel"
 msgstr "Software"
 
@@ -2126,7 +2079,6 @@ msgid "socle"
 msgstr ""
 
 #: app/models/socle.rb:-
-#, fuzzy
 msgid "Socle|Name"
 msgstr "Name"
 
@@ -2238,9 +2190,8 @@ msgid "User|Phone"
 msgstr ""
 
 #: app/models/user.rb:-
-#, fuzzy
 msgid "User|Image"
-msgstr "Inactive"
+msgstr "Image"
 
 #: app/models/user.rb:- app/views/account/_show_account_information.rhtml:23
 msgid "User|Informations"
@@ -2293,7 +2244,6 @@ msgstr ""
 
 #: app/models/time_ticket.rb:- app/views/time_tickets/_form.rhtml:4
 #: app/views/time_tickets/index.rhtml:6
-#, fuzzy
 msgid "TimeTicket|Name"
 msgstr "Name"
 
@@ -2346,7 +2296,6 @@ msgid "phonecall"
 msgstr ""
 
 #: app/models/phonecall.rb:-
-#, fuzzy
 msgid "Phonecall|Beneficiaire"
 msgstr "Recipient"
 
@@ -4804,22 +4753,3 @@ msgstr ""
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Contribution|contributionstate"
-#~ msgstr "Description"
-
-#, fuzzy
-#~ msgid "Contrat|Tickets consommes"
-#~ msgstr "Client"
-
-#, fuzzy
-#~ msgid "Contrat|Ticket temps"
-#~ msgstr "Client"
-
-#~ msgid "Demande|Description"
-#~ msgstr "Description"
-
-#, fuzzy
-#~ msgid "Demande|Version"
-#~ msgstr "Version"

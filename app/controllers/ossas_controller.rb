@@ -14,7 +14,7 @@ class OssasController < ApplicationController
   def create
     @ossa = Ossa.new(params[:ossa])
     if @ossa.save
-      flash[:notice] = _('Ossa was successfully created.')
+      flash[:notice] = _("'%s' was successfully created.") % @ossa.name
       redirect_to ossas_path
     else
       render :action => 'new'
@@ -28,7 +28,7 @@ class OssasController < ApplicationController
   def update
     @ossa = Ossa.find(params[:id])
     if @ossa.update_attributes(params[:ossa])
-      flash[:notice] = _('Ossa was successfully updated.')
+      flash[:notice] = _("'%s' was successfully updated.") % @ossa.name
       redirect_to ossas_path
     else
       render :action => 'edit'
