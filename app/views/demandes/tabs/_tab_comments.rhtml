@@ -16,10 +16,10 @@
    <tr class="<%=(commentaire.prive ? 'prive' : 'public')%>">
      <td class="infos" align="center">
         <span class="small"><%= _("Comment %s") % "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
-        <% if @users_ingenieurs.include? id.id %>
-          <%= StaticImage::logo_08000 %>
-        <% elsif id and id.beneficiaire %>
+        <% if id and id.client? and id.beneficiaire %>
           <%= logo_img ||= logo_client(id.beneficiaire.client) %>
+        <% else %>
+          <%= StaticImage::logo_08000 %>
         <% end %><br />
         <%= id.name if id %><br />
 

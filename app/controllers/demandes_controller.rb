@@ -364,14 +364,6 @@ class DemandesController < ApplicationController
          :order => 'created_on ASC', :include => [:user,:statut,:severite])
       end
     end
-
-    # On va chercher les users des ingénieurs assignés
-    # C'est un héritage du passé
-    # TODO : s'en débarrasser avec une migration et un :include
-    joins = 'INNER JOIN ingenieurs ON ingenieurs.user_id=users.id'
-    select = "DISTINCT users.id "
-    @users_ingenieurs = User.find(:all,
-       :select => select, :joins => joins).collect{|i| i.id }
   end
 
   # A small helper which set current flow filters
