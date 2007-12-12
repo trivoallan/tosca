@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-12 19:51+0100\n"
-"PO-Revision-Date: 2007-12-12 21:12+0100\n"
+"POT-Creation-Date: 2007-12-12 21:42+0100\n"
+"PO-Revision-Date: 2007-12-12 21:43+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,104 +28,104 @@ msgstr ""
 msgid "Welcome&nbsp;%s&nbsp;%s"
 msgstr "Bienvenue&nbsp;%S&nbsp;%s"
 
-#: app/controllers/account_controller.rb:65
+#: app/controllers/account_controller.rb:66
 msgid "Connexion failure"
 msgstr "Échec lors de la connexion"
 
-#: app/controllers/account_controller.rb:66
+#: app/controllers/account_controller.rb:67
 msgid "your account has been desactivated"
 msgstr "votre compte a été désactivé"
 
-#: app/controllers/account_controller.rb:77
+#: app/controllers/account_controller.rb:78
 msgid "You are not allowed to change your identity"
 msgstr "Vous n'êtes pas autorisé à changer votre identité"
 
-#: app/controllers/account_controller.rb:82
+#: app/controllers/account_controller.rb:83
 msgid "Person not found"
 msgstr "Personne non trouvée"
 
-#: app/controllers/account_controller.rb:116
+#: app/controllers/account_controller.rb:117
 msgid "Edition succeeded"
 msgstr "Les modifications ont été effectuées avec succès"
 
-#: app/controllers/account_controller.rb:134
+#: app/controllers/account_controller.rb:135
 msgid "Account successfully created."
 msgstr "L'architecture a été crée avec succès."
 
-#: app/controllers/account_controller.rb:158
-#: app/controllers/account_controller.rb:192
-#: app/controllers/account_controller.rb:204
+#: app/controllers/account_controller.rb:159
+#: app/controllers/account_controller.rb:193
+#: app/controllers/account_controller.rb:205
 #: app/views/account/_edit_account_informations.rhtml:43
 msgid "Full name"
 msgstr "Nom Complet"
 
-#: app/controllers/account_controller.rb:158
-#: app/controllers/account_controller.rb:193
+#: app/controllers/account_controller.rb:159
+#: app/controllers/account_controller.rb:194
 #: app/views/account/_edit_account_informations.rhtml:44
 msgid "Title"
 msgstr "Titre"
 
-#: app/controllers/account_controller.rb:158
-#: app/controllers/account_controller.rb:194
+#: app/controllers/account_controller.rb:159
+#: app/controllers/account_controller.rb:195
 #: app/views/account/_edit_account_informations.rhtml:45
 msgid "Email"
 msgstr "Email"
 
-#: app/controllers/account_controller.rb:158
-#: app/controllers/account_controller.rb:195
+#: app/controllers/account_controller.rb:159
+#: app/controllers/account_controller.rb:196
 #: app/views/account/_edit_account_informations.rhtml:46
 #: app/views/demandes/_infos_demande.rhtml:46
 msgid "Phone"
 msgstr "Téléphone"
 
-#: app/controllers/account_controller.rb:159
-#: app/controllers/account_controller.rb:196 app/views/account/login.rhtml:9
+#: app/controllers/account_controller.rb:160
+#: app/controllers/account_controller.rb:197 app/views/account/login.rhtml:9
 msgid "Login"
 msgstr "Identifiant"
 
-#: app/controllers/account_controller.rb:159
-#: app/controllers/account_controller.rb:197
+#: app/controllers/account_controller.rb:160
 #: app/controllers/account_controller.rb:198
-#: app/controllers/account_controller.rb:207 app/views/account/login.rhtml:12
+#: app/controllers/account_controller.rb:199
+#: app/controllers/account_controller.rb:208 app/views/account/login.rhtml:12
 msgid "Password"
 msgstr "Mot de passe"
 
-#: app/controllers/account_controller.rb:159
-#: app/controllers/account_controller.rb:199
+#: app/controllers/account_controller.rb:160
+#: app/controllers/account_controller.rb:200
 #: app/views/account/_edit_account_informations.rhtml:64
 #: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr "Informations"
 
-#: app/controllers/account_controller.rb:171
+#: app/controllers/account_controller.rb:172
 msgid "Enter data under CSV format please"
 msgstr "Veuillez entrer un texte au format CSV"
 
-#: app/controllers/account_controller.rb:175
+#: app/controllers/account_controller.rb:176
 msgid "The CSV file is not correct"
 msgstr "Le fichier CSV n'est pas correct"
 
-#: app/controllers/account_controller.rb:179
+#: app/controllers/account_controller.rb:180
 msgid "You have to specify a customer"
 msgstr "Vous devez spécifier un client"
 
-#: app/controllers/account_controller.rb:182
+#: app/controllers/account_controller.rb:183
 msgid "Vous must specify a role"
 msgstr "Vous devez spéficier un rôle"
 
-#: app/controllers/account_controller.rb:204
+#: app/controllers/account_controller.rb:205
 msgid "The user %s have been successfully created.<br />"
 msgstr "L'utilisateur %s a été créé avec succès<br />"
 
-#: app/controllers/account_controller.rb:211
+#: app/controllers/account_controller.rb:212
 msgid "The user %s  has not been created.<br /> "
 msgstr "L'utilisateur %s n'a pas été crée avec succès.<br />"
 
-#: app/controllers/account_controller.rb:263
+#: app/controllers/account_controller.rb:269
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/controllers/account_controller.rb:264 app/helpers/account_helper.rb:21
+#: app/controllers/account_controller.rb:270 app/helpers/account_helper.rb:21
 msgid "My account"
 msgstr "Mon&nbsp;compte"
 
@@ -159,15 +159,15 @@ msgstr ""
 "Merci de prendre de votre temps pour nous aider à améliorer ce produit. Vos "
 "remarques ont bien été transmises."
 
-#: app/controllers/binaires_controller.rb:42
+#: app/controllers/binaires_controller.rb:46
 msgid "%d files has been attached to this package."
 msgstr "%d fichiers ont été attachés à ce paquet."
 
-#: app/controllers/binaires_controller.rb:56
+#: app/controllers/binaires_controller.rb:60
 msgid "Binary has beensuccessfully created."
 msgstr "Un paquet binaire a bien été créée."
 
-#: app/controllers/binaires_controller.rb:72
+#: app/controllers/binaires_controller.rb:76
 msgid "Binary has been successfully updated."
 msgstr "Le paquet binaire a bien mis à jour."
 
@@ -361,9 +361,9 @@ msgstr "(client)"
 msgid "roles"
 msgstr "rôles"
 
-#: app/controllers/export_controller.rb:110 app/views/binaires/show.rhtml:10
-#: app/views/demandes/tabs/_appels.rhtml:2 app/views/paquets/_form.rhtml:10
-#: app/views/paquets/show.rhtml:17 app/views/phonecalls/_calls_info.rhtml:24
+#: app/controllers/export_controller.rb:110 app/views/binaires/show.rhtml:13
+#: app/views/demandes/tabs/_appels.rhtml:2 app/views/paquets/_form.rhtml:14
+#: app/views/paquets/show.rhtml:22 app/views/phonecalls/_calls_info.rhtml:24
 #: app/views/phonecalls/_calls_list.rhtml:6 app/views/phonecalls/_form.rhtml:5
 msgid "Contract"
 msgstr "Contrat"
@@ -401,14 +401,14 @@ msgid "Id"
 msgstr "Id"
 
 #: app/controllers/export_controller.rb:144 app/views/account/_menu.rhtml:18
-#: app/views/binaires/show.rhtml:9
+#: app/views/binaires/show.rhtml:12
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_contributions_info.rhtml:28
 #: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:55
 #: app/views/demandes/_infos_demande.rhtml:26
 #: app/views/demandes/lists/_requests_table.rhtml:4
-#: app/views/paquets/_form.rhtml:7 app/views/paquets/_paquets_list.rhtml:7
-#: app/views/paquets/show.rhtml:16 app/views/urllogiciels/_form.rhtml:6
+#: app/views/paquets/_form.rhtml:11 app/views/paquets/_paquets_list.rhtml:7
+#: app/views/paquets/show.rhtml:21 app/views/urllogiciels/_form.rhtml:6
 #: app/views/urllogiciels/index.rhtml:6 app/views/urllogiciels/show.rhtml:7
 #: app/views/urlreversements/index.rhtml:6
 msgid "Software"
@@ -440,7 +440,7 @@ msgstr "Mise à jour"
 #: app/views/demandes/_form.rhtml:19 app/views/demandes/_form_deposer.rhtml:19
 #: app/views/demandes/_infos_demande.rhtml:20
 #: app/views/demandes/lists/_requests_table.rhtml:10
-#: app/views/logiciels/_form.rhtml:6 app/views/logiciels/show.rhtml:13
+#: app/views/logiciels/_form.rhtml:6 app/views/logiciels/show.rhtml:18
 #: app/views/reporting/_comex_cns.rhtml:22 app/views/reporting/general.rhtml:7
 msgid "Summary"
 msgstr "Résumé"
@@ -819,13 +819,13 @@ msgstr " jours ouvrés"
 msgid "An error has occured"
 msgstr "Une erreur est survenue"
 
-#: app/helpers/binaires_helper.rb:16 app/views/clients/show.rhtml:61
-#: app/views/paquets/show.rhtml:28 app/views/paquets/show.rhtml:32
+#: app/helpers/binaires_helper.rb:15 app/views/clients/show.rhtml:61
+#: app/views/paquets/show.rhtml:32 app/views/paquets/show.rhtml:36
 #: app/views/socles/show.rhtml:19
 msgid "binary"
 msgstr "binaire"
 
-#: app/helpers/binaires_helper.rb:21
+#: app/helpers/binaires_helper.rb:20
 msgid "Update files of this binary package"
 msgstr "Mise à jour des fichiers de ce paquet binaire"
 
@@ -863,9 +863,9 @@ msgstr "un contrat"
 msgid "Date"
 msgstr "Date"
 
-#: app/helpers/contributions_helper.rb:10 app/views/binaires/show.rhtml:15
+#: app/helpers/contributions_helper.rb:10 app/views/binaires/show.rhtml:18
 #: app/views/demandes/tabs/_cns.rhtml:32
-#: app/views/demandes/_form_binaires.rhtml:5 app/views/paquets/_form.rhtml:16
+#: app/views/demandes/_form_binaires.rhtml:5 app/views/paquets/_form.rhtml:20
 msgid "Version"
 msgstr "Version"
 
@@ -942,13 +942,13 @@ msgstr "barre de progression"
 msgid "Do you really want to delete %s"
 msgstr "Êtes vous sûr de vouloir supprimer %s"
 
-#: app/helpers/links_helper.rb:113 app/views/binaires/show.rhtml:1
+#: app/helpers/links_helper.rb:113 app/views/binaires/show.rhtml:3
 #: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
 msgid "Home"
 msgstr "Accueil"
 
 #: app/helpers/links_helper.rb:117 app/views/bienvenue/index.rhtml:11
-#: app/views/contrats/index.rhtml:5 app/views/logiciels/show.rhtml:43
+#: app/views/contrats/index.rhtml:5 app/views/logiciels/show.rhtml:47
 #: app/views/reporting/general.rhtml:22 app/views/reporting/general.rhtml:23
 #: app/views/reporting/general.rhtml:25 app/views/reporting/general.rhtml:26
 #: app/views/reporting/general.rhtml:28 app/views/reporting/general.rhtml:29
@@ -977,11 +977,12 @@ msgid "Consult requests which are waiting an action from you"
 msgstr "Consulter les demandes qui nécessitent une action de votre part"
 
 #: app/helpers/links_helper.rb:132 app/views/account/_menu.rhtml:20
-#: app/views/bienvenue/index.rhtml:65 app/views/binaires/show.rhtml:2
+#: app/views/bienvenue/index.rhtml:65 app/views/binaires/show.rhtml:4
 #: app/views/contrats/index.rhtml:5
 #: app/views/contributions/_contributions_info.rhtml:42
 #: app/views/groupes/index.rhtml:5
-#: app/views/logiciels/_softwares_info.rhtml:54 app/views/paquets/show.rhtml:2
+#: app/views/logiciels/_softwares_info.rhtml:54
+#: app/views/logiciels/show.rhtml:2 app/views/paquets/show.rhtml:3
 msgid "Softwares"
 msgstr "Logiciels"
 
@@ -992,7 +993,7 @@ msgstr "Accès à la liste des logiciels"
 #: app/helpers/links_helper.rb:137 app/views/binaires/_form.rhtml:30
 #: app/views/contributions/_contributions_info.rhtml:41
 #: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
-#: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:61
+#: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:65
 msgid "Contributions"
 msgstr "Contributions"
 
@@ -1250,7 +1251,7 @@ msgstr "Socle"
 msgid "Binaire|Fichierbinaires count"
 msgstr "Nombre de fichiers binaires"
 
-#: app/models/changelog.rb:- app/views/paquets/show.rhtml:51
+#: app/models/changelog.rb:- app/views/paquets/show.rhtml:65
 msgid "changelog"
 msgstr "changelog"
 
@@ -1323,10 +1324,6 @@ msgid "Paquet|Version"
 msgstr "Version"
 
 #: app/models/client.rb:-
-msgid "Paquet|Release"
-msgstr "Release"
-
-#: app/models/client.rb:-
 msgid "Paquet|Conteneur"
 msgstr "conteneur"
 
@@ -1369,6 +1366,10 @@ msgstr "Nombre de changelogs"
 #: app/models/client.rb:-
 msgid "Paquet|Active"
 msgstr "Actif"
+
+#: app/models/client.rb:-
+msgid "Paquet|Release"
+msgstr "Release"
 
 #: app/models/commentaire.rb:-
 msgid "commentaire"
@@ -2368,7 +2369,7 @@ msgid "You can also login with a user who has more rights :"
 msgstr ""
 "Vous pouvez aussi vous connecter avec un utilisateur qui a plus de droit :"
 
-#: app/views/acces/refuse.rhtml:15
+#: app/views/acces/refuse.rhtml:18
 msgid "Reconnect"
 msgstr "Reconnexion"
 
@@ -2484,7 +2485,7 @@ msgstr "Déconnexion"
 
 #: app/views/account/_menu.rhtml:12 app/views/clients/show.rhtml:49
 #: app/views/contributions/_contributions_admin.rhtml:7
-#: app/views/logiciels/show.rhtml:47 app/views/phonecalls/_form.rhtml:4
+#: app/views/logiciels/show.rhtml:51 app/views/phonecalls/_form.rhtml:4
 #: app/views/phonecalls/show.rhtml:8
 msgid "Request"
 msgstr "Demande"
@@ -2559,7 +2560,7 @@ msgstr "Voir un compte"
 #: app/views/account/_show_engineer.rhtml:8
 #: app/views/account/_users_info.rhtml:21 app/views/arches/_form.rhtml:4
 #: app/views/beneficiaires/index.rhtml:5 app/views/binaires/_form.rhtml:20
-#: app/views/binaires/show.rhtml:14 app/views/clients/_form.rhtml:6
+#: app/views/binaires/show.rhtml:17 app/views/clients/_form.rhtml:6
 #: app/views/clients/index.rhtml:4 app/views/clients/stats.rhtml:5
 #: app/views/competences/_form.rhtml:4 app/views/conteneurs/_form.rhtml:4
 #: app/views/contrats/index.rhtml:5 app/views/contrats/show.rhtml:2
@@ -2569,8 +2570,8 @@ msgstr "Voir un compte"
 #: app/views/groupes/index.rhtml:5 app/views/ingenieurs/index.rhtml:5
 #: app/views/ingenieurs/show.rhtml:2 app/views/logiciels/_form.rhtml:3
 #: app/views/logiciels/_softwares_list.rhtml:6
-#: app/views/logiciels/show.rhtml:10 app/views/mainteneurs/_form.rhtml:4
-#: app/views/paquets/_form.rhtml:13 app/views/paquets/_paquets_info.rhtml:23
+#: app/views/logiciels/show.rhtml:16 app/views/mainteneurs/_form.rhtml:4
+#: app/views/paquets/_form.rhtml:17 app/views/paquets/_paquets_info.rhtml:23
 #: app/views/paquets/_paquets_list.rhtml:7 app/views/permissions/_form.rhtml:4
 #: app/views/roles/_form.rhtml:3 app/views/severites/_form.rhtml:3
 #: app/views/socles/_form.rhtml:3 app/views/statuts/_form.rhtml:3
@@ -3091,13 +3092,8 @@ msgstr "Vos suggestion sur notre outil : "
 msgid "Submit"
 msgstr "Déposer"
 
-#: app/views/binaires/_form.rhtml:5 app/views/demandes/tabs/_cns.rhtml:31
-#: app/views/logiciels/show.rhtml:55
-msgid "Package"
-msgstr "Paquet"
-
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/index.rhtml:6
-#: app/views/binaires/show.rhtml:11 app/views/contrats/show.rhtml:15
+#: app/views/binaires/show.rhtml:14 app/views/contrats/show.rhtml:15
 #: app/views/demandes/_form.rhtml:50
 #: app/views/demandes/_infos_demande.rhtml:25
 #: app/views/machines/_form.rhtml:17 app/views/machines/all.rhtml:5
@@ -3107,11 +3103,11 @@ msgid "System"
 msgstr "Système"
 
 #: app/views/binaires/_form.rhtml:16 app/views/binaires/index.rhtml:6
-#: app/views/binaires/show.rhtml:12
+#: app/views/binaires/show.rhtml:15
 msgid "Arch"
 msgstr "Arch"
 
-#: app/views/binaires/_form.rhtml:23
+#: app/views/binaires/_form.rhtml:23 app/views/paquets/show.rhtml:45
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -3131,7 +3127,7 @@ msgstr "Liste des paquets binaires"
 msgid "a binary archive"
 msgstr "une archive binaire"
 
-#: app/views/binaires/index.rhtml:6 app/views/binaires/show.rhtml:13
+#: app/views/binaires/index.rhtml:6 app/views/binaires/show.rhtml:16
 msgid "Source"
 msgstr "Source"
 
@@ -3143,24 +3139,24 @@ msgstr "Binaire"
 msgid "New binary package"
 msgstr "Nouveau Paquet binaire"
 
-#: app/views/binaires/show.rhtml:7 app/views/socles/show.rhtml:21
+#: app/views/binaires/show.rhtml:10 app/views/socles/show.rhtml:21
 msgid "Binary package"
 msgstr "Paquet binaire"
 
-#: app/views/binaires/show.rhtml:16 app/views/paquets/_form.rhtml:19
+#: app/views/binaires/show.rhtml:20 app/views/paquets/_form.rhtml:23
 msgid "Release"
 msgstr "Release"
 
-#: app/views/binaires/show.rhtml:21
+#: app/views/binaires/show.rhtml:26
 msgid "This package can be downloaded"
 msgstr "Ce paquet peut être téléchargé"
 
-#: app/views/binaires/show.rhtml:28
+#: app/views/binaires/show.rhtml:33
 msgid "This package contains"
 msgstr "Ce paquet contient"
 
-#: app/views/binaires/show.rhtml:28 app/views/paquets/show.rhtml:41
-#: app/views/paquets/show.rhtml:43
+#: app/views/binaires/show.rhtml:33 app/views/paquets/show.rhtml:55
+#: app/views/paquets/show.rhtml:57
 msgid "file"
 msgstr "fichier"
 
@@ -3169,7 +3165,7 @@ msgstr "fichier"
 #: app/views/images/index.rhtml:6 app/views/logiciels/_form.rhtml:9
 #: app/views/logiciels/_softwares_info.rhtml:40
 #: app/views/logiciels/_softwares_list.rhtml:6
-#: app/views/logiciels/show.rhtml:17 app/views/machines/_form.rhtml:22
+#: app/views/logiciels/show.rhtml:21 app/views/machines/_form.rhtml:22
 #: app/views/roles/index.rhtml:4 app/views/statuts/_form.rhtml:6
 #: app/views/typecontributions/_form.rhtml:6
 #: app/views/typedocuments/_form.rhtml:6
@@ -4022,20 +4018,20 @@ msgstr "Modifier une license"
 msgid "Base name"
 msgstr "Nom de base"
 
-#: app/views/logiciels/_form.rhtml:18 app/views/logiciels/show.rhtml:27
+#: app/views/logiciels/_form.rhtml:18 app/views/logiciels/show.rhtml:29
 msgid "Copyright"
 msgstr "License"
 
 #: app/views/logiciels/_form.rhtml:22
 #: app/views/logiciels/_softwares_info.rhtml:42
 #: app/views/logiciels/_softwares_list.rhtml:7
-#: app/views/logiciels/show.rhtml:33
+#: app/views/logiciels/show.rhtml:35
 msgid "Group"
 msgstr "Groupe"
 
 #: app/views/logiciels/_form.rhtml:26
 #: app/views/logiciels/_softwares_info.rhtml:51
-#: app/views/logiciels/show.rhtml:30
+#: app/views/logiciels/show.rhtml:32
 msgid "Technologies"
 msgstr "Technologies"
 
@@ -4078,7 +4074,6 @@ msgid "Technologie(s)"
 msgstr "Technologie(s)"
 
 #: app/views/logiciels/_softwares_list.rhtml:7
-#: app/views/logiciels/show.rhtml:52
 msgid "Package(s)"
 msgstr "Paquet(s)"
 
@@ -4090,17 +4085,28 @@ msgstr "Modifier un logiciel"
 msgid "Add a new software"
 msgstr "Ajouter un nouveau logiciel"
 
-#: app/views/logiciels/show.rhtml:5
+#: app/views/logiciels/show.rhtml:1 app/views/paquets/show.rhtml:2
+msgid "Homepage"
+msgstr "Page d'Accueil"
+
+#: app/views/logiciels/show.rhtml:9
 msgid "Software \"%s\""
 msgstr "Logiciel \"%s\""
 
-#: app/views/logiciels/show.rhtml:23
+#: app/views/logiciels/show.rhtml:25
 msgid "Reference"
 msgstr "Référence"
 
-#: app/views/logiciels/show.rhtml:36
+#: app/views/logiciels/show.rhtml:38
 msgid "Links"
 msgstr "Liens"
+
+#: app/views/binaires/_form.rhtml:5 app/views/demandes/tabs/_cns.rhtml:31
+#: app/views/logiciels/show.rhtml:56 app/views/logiciels/show.rhtml:59
+msgid "Package"
+msgid_plural "Packages"
+msgstr[0] "Paquet"
+msgstr[1] "Paquets"
 
 #: app/views/machines/_form.rhtml:6
 msgid "Access : DNS (IP)"
@@ -4172,30 +4178,30 @@ msgstr "Article court"
 msgid "Generate the newsletter"
 msgstr "Générer la lettre d'information"
 
-#: app/views/paquets/_form.rhtml:22 app/views/paquets/_paquets_list.rhtml:7
-#: app/views/paquets/show.rhtml:23
+#: app/views/paquets/_form.rhtml:26 app/views/paquets/_paquets_list.rhtml:7
+#: app/views/paquets/show.rhtml:28
 msgid "Container"
 msgstr "Conteneur"
 
-#: app/views/paquets/_form.rhtml:26 app/views/paquets/_paquets_list.rhtml:7
-#: app/views/paquets/show.rhtml:24
+#: app/views/paquets/_form.rhtml:30 app/views/paquets/_paquets_list.rhtml:7
+#: app/views/paquets/show.rhtml:29
 msgid "Distributor"
 msgstr "Distributeur"
 
-#: app/views/paquets/_form.rhtml:30 app/views/paquets/_paquets_list.rhtml:7
-#: app/views/paquets/show.rhtml:25
+#: app/views/paquets/_form.rhtml:34 app/views/paquets/_paquets_list.rhtml:7
+#: app/views/paquets/show.rhtml:30
 msgid "Maintainer"
 msgstr "Mainteneur"
 
-#: app/views/paquets/_form.rhtml:34
+#: app/views/paquets/_form.rhtml:38
 msgid "Origin"
 msgstr "Source"
 
-#: app/views/paquets/_form.rhtml:38
+#: app/views/paquets/_form.rhtml:42
 msgid "Supported"
 msgstr "Supporté"
 
-#: app/views/paquets/_form.rhtml:41
+#: app/views/paquets/_form.rhtml:49
 msgid "Specific additionnal configuration"
 msgstr "Configuration spécifique additionnelle"
 
@@ -4224,15 +4230,11 @@ msgstr "Ajouter un nouveau paquet"
 msgid "Add"
 msgstr "Ajouter"
 
-#: app/views/paquets/show.rhtml:1
-msgid "Homepage"
-msgstr "Page d'Accueil"
-
-#: app/views/paquets/show.rhtml:6
+#: app/views/paquets/show.rhtml:9
 msgid "Source package"
 msgstr "Paquets source"
 
-#: app/views/paquets/show.rhtml:10
+#: app/views/paquets/show.rhtml:13
 msgid ""
 "<b>Note : </b>This package isn't from now on your perimeter.\n"
 "  It is preserved here only for historical reasons."
@@ -4240,15 +4242,15 @@ msgstr ""
 "<b>Note : </b>Ce paquet n'est désormais plus dans votre périmètre.\n"
 "Il est conservé ici uniquement à des fins historiques."
 
-#: app/views/paquets/show.rhtml:33
+#: app/views/paquets/show.rhtml:37
 msgid " <i>on</i> "
 msgstr " <i>sur</i> "
 
-#: app/views/paquets/show.rhtml:49
+#: app/views/paquets/show.rhtml:63
 msgid "This package has been updated"
 msgstr "Le paquet a été mis à jour avec succès"
 
-#: app/views/paquets/show.rhtml:49
+#: app/views/paquets/show.rhtml:63
 msgid "times"
 msgstr "fois"
 

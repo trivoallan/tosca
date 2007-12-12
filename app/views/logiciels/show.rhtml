@@ -1,71 +1,73 @@
 <%= public_link_to _('Homepage') , bienvenue_url%> >
  <%= public_link_to _('Softwares') , logiciels_path %> >
-  <%= public_link_to @logiciel.groupe.name, logiciel_path(@logiciel.groupe_id) %>
-
+  <%= public_link_to @logiciel.groupe.name, logiciel_path(@logiciel.groupe_id) %> >
+   <%= @logiciel.name %> <%= link_to_edit(@logiciel) %>
 <table><tr>
   <% unless @logiciel.image.blank? %>
-    <td><%= image_tag(url_for_file_column(@logiciel.image, 'image', 'thumb')) %></td>
+   <td><%= image_tag(url_for_file_column(@logiciel.image, 'image', 'thumb')) %></td>
   <% end %>
-  <td><h1><%= _('Software "%s"') % @logiciel.name %></h1></td>
+  <td><h2><%= _('Software "%s"') % @logiciel.name %></h2></td>
 </tr></table>
 
-<table class="info">
+<table class="topbox">
+ <tr>
+  <td>
+   <table class="show">
+     <tr><td><b><%= _('Name') %></b> </td>
+         <td><%= @logiciel.name %></td></tr>
+     <tr><td><b><%= _('Summary') %></b> </td>
+         <td><%= @logiciel.resume %></td></tr>
+     <tr><td colspan="2">
+          <fieldset><legend><%=_('Description')%></legend>
+           <%= @logiciel.description %>
+          </fieldset></td></tr>
+     <% if @ingenieur %>
+      <tr><td><b><%= _('Reference') %></b></td>
+          <td><%=h @logiciel.referent %></td></tr>
+     <% end %>
 
-<tr><td><b><%= _('Name') %></b> </td>
-    <td><%= @logiciel.name %></td></tr>
+     <tr><td><b><%= _('Copyright') %></b></td>
+         <td><%=h @logiciel.license.name if @logiciel.license %></td></tr>
 
-<tr><td><b><%= _('Summary') %></b> </td>
-    <td><%= @logiciel.resume %></td></tr>
+     <tr><td><b><%= _('Technologies') %></b></td>
+         <td><%= @logiciel.competences.collect{|c| c.name}.join(', ') %></td></tr>
 
-<tr><td colspan="2">
-  <fieldset><legend><%=_('Description')%></legend>
-    <%= @logiciel.description %>
-  </fieldset>
-</td></tr>
+     <tr><td><b><%= _('Group') %></b></td>
+         <td><%= public_link_to(@logiciel.groupe.name, groupe_path(@logiciel.groupe_id) ) if @logiciel.groupe %></td></tr>
 
-<% if @ingenieur %>
-<tr><td><b><%= _('Reference') %></b></td>
-    <td><%=h @logiciel.referent %></td></tr>
-<% end %>
-
-<tr><td><b><%= _('Copyright') %></b></td>
-    <td><%=h @logiciel.license.name if @logiciel.license %></td></tr>
-
-<tr><td><b><%= _('Technologies') %></b></td>
-    <td><%= @logiciel.competences.collect{|c| c.name}.join(', ') %></td></tr>
-
-<tr><td><b><%= _('Group') %></b></td>
-    <td><%= public_link_to(@logiciel.groupe.name, groupe_path(@logiciel.groupe_id) ) if @logiciel.groupe %></td></tr>
-
-<tr><td><b><%= _('Links') %></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
-    <% options = {:no_title => true, :edit => 'urllogiciel'} %>
-    <td><%= public_show_liste(@logiciel.urllogiciels, 'url', options) {|u|
+     <tr><td><b><%= _('Links') %></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
+         <% options = {:no_title => true, :edit => 'urllogiciel'} %>
+         <td><%= public_show_liste(@logiciel.urllogiciels, 'url', options) {|u|
              "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.typeurl.name}</a>"
             } %>
-    </td></tr>
+         </td></tr>
+   </table>
+  </td><td  >
+   <table class="show" style="width: 36em;">
+     <tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:logiciel_id => @logiciel.id)%> <br />
+        <% options[:edit] = nil %>
+        <% if @demandes.size > 0  %>
+         <div class="bloc_scroll">
+           <%=show_liste(@demandes, _('Request'), options) {|d| link_to_demande d}%>
+         </div>
+        <% end %>
+     </tr>
 
-<tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:logiciel_id => @logiciel.id)%> <br />
-   <% options[:edit] = nil %>
-   <% if @demandes.size > 0  %>
-    <div class="bloc_scroll">
-      <%=show_liste(@demandes, _('Request'), options) {|d| link_to_demande d}%>
-    </div>
-   <% end %>
-</tr>
+     <tr><td><b><%=n_('Package', 'Packages', @logiciel.paquets.size)%></b> <%= link_to_new_paquet(@logiciel) %></td>
+       <td>
+          <% options[:edit] = 'paquet' %>
+          <%=  show_liste(@logiciel.paquets, _('Package'), options) do |paquet|
+             link_to_paquet paquet
+          end %>
+       </td>
+     </tr>
 
-<tr><td><b><%=_('Package(s)')%></b><%= link_to_new_paquet(@logiciel.id) %></td>
-  <td>
-     <% options[:edit] = 'paquet' %>
-     <%=  show_liste(@logiciel.paquets, _('Package'), options) do |paquet|
-        link_to_paquet paquet
-     end %>
+     <tr><td colspan="2"><b><%=_('Contributions')%></b> <%= link_to_new_contribution(@logiciel.id)%><br />
+         <%= public_table_of_contributions(@logiciel.contributions) %> </td>
+     </tr>
+   </table>
   </td>
-</tr>
-
-<tr><td colspan="2"><b><%=_('Contributions')%></b> <%= link_to_new_contribution(@logiciel.id)%><br />
-    <%= public_table_of_contributions(@logiciel.contributions) %> </td>
-</tr>
-
+ </tr>
 </table>
 
 <%= link_to_edit_and_list @logiciel %>

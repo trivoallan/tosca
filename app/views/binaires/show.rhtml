@@ -7,7 +7,7 @@
     <%= link_to_paquet(paquet) %> >
      <%=h @binaire.name %> <%= link_to_edit(@binaire) %>
 
-<h1><%=_('Binary package')%></h1>
+<h2><%=_('Binary package')%></h2>
 <div class="show">
  <p><b><%=_('Software')%>:</b> <%= logiciel.name %></p>
  <p><b><%=_('Contract')%>:</b> <%= paquet.contrat.client.name %></p>
@@ -21,7 +21,7 @@
 <% end %>
 </div>
 
-<% if @binaire.archive %>
+<% if @binaire.archive and File.exist? @binaire.archive %>
 <br />
 <p><b><%=_('This package can be downloaded')%> : </b><%= link_to_file(@binaire, 'archive') %></p>
 <p><%= link_to_update_binary_files(@binaire.id) %></p>

@@ -82,7 +82,7 @@ class BinairesController < ApplicationController
 
   def destroy
     Binaire.find(params[:id]).destroy
-    redirect_to binaires_path
+    redirect_back
   end
 
   private

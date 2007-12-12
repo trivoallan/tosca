@@ -69,6 +69,7 @@ protected
 
   # redirection par défaut en cas d'erreur / de non droit
   def redirect_back
+    session[:return_to] ||= request.env['HTTP_REFERER']
     redirect_back_or_default bienvenue_path
   end
 

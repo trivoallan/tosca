@@ -54,6 +54,7 @@ class PaquetsController < ApplicationController
     @paquet.mainteneur = Mainteneur.find_by_name('Linagora')
     @paquet.distributeur = Distributeur.find_by_name('(none)')
     @paquet.logiciel_id = params[:logiciel_id]
+    @paquet.name = params[:referent]
     @paquet.active = true;
   end
 
@@ -85,7 +86,7 @@ class PaquetsController < ApplicationController
 
   def destroy
     Paquet.find(params[:id]).destroy
-    redirect_to paquets_path
+    redirect_back
   end
 
   private
