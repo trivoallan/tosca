@@ -17,7 +17,7 @@
 <% end %>
 <tr>
   <td colspan="2"><p><label for="demande_resume"><%= _("Summary") %></label><br />
-    <%= text_field :demande, :resume, :size => 60 %></p></td>
+    <%= text_field :demande, :resume, :size => 70, :maxlength => 70 %></p></td>
 </tr>
 <tr><td colspan="2"><hr /></td></tr>
 <tr>
@@ -30,7 +30,7 @@
 <tr>
   <% if @contrats.size > 1 %>
    <td><p><label for="demande_contrat_id"><%= _("Concerning ") %></label></p></td>
-   <td><%= select(:demande, :contrat_id, 
+   <td><%= select(:demande, :contrat_id,
                  @contrats.collect{|l| [ l.name, l.id]}) %></td>
   <% else %>
     <td colspan="2"><%= hidden_field :demande, :contrat_id %></td>

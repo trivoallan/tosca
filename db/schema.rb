@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 86) do
+ActiveRecord::Schema.define(:version => 87) do
 
   create_table "arches", :force => true do |t|
     t.column "name", :string
@@ -197,23 +197,22 @@ ActiveRecord::Schema.define(:version => 86) do
   add_index "contributions_paquets", ["contribution_id"], :name => "correctifs_paquets_correctif_id_index"
 
   create_table "demandes", :force => true do |t|
-    t.column "beneficiaire_id",     :integer,  :default => 0,  :null => false
+    t.column "beneficiaire_id",     :integer,                :default => 0,  :null => false
     t.column "ingenieur_id",        :integer
-    t.column "resume",              :string,   :default => "", :null => false
-    t.column "description",         :text
-    t.column "statut_id",           :integer,  :default => 0,  :null => false
-    t.column "severite_id",         :integer,  :default => 0,  :null => false
-    t.column "logiciel_id",         :integer,  :default => 0
+    t.column "resume",              :string,   :limit => 70, :default => ""
+    t.column "statut_id",           :integer,                :default => 0,  :null => false
+    t.column "severite_id",         :integer,                :default => 0,  :null => false
+    t.column "logiciel_id",         :integer,                :default => 0
     t.column "created_on",          :datetime
     t.column "updated_on",          :datetime
-    t.column "typedemande_id",      :integer,  :default => 0,  :null => false
+    t.column "typedemande_id",      :integer,                :default => 0,  :null => false
     t.column "contribution_id",     :integer
     t.column "socle_id",            :integer
     t.column "mail_cc",             :string
     t.column "first_comment_id",    :integer
-    t.column "contrat_id",          :integer,                  :null => false
+    t.column "contrat_id",          :integer,                                :null => false
     t.column "expected_on",         :datetime
-    t.column "last_comment_id",     :integer,  :default => 0,  :null => false
+    t.column "last_comment_id",     :integer,                :default => 0,  :null => false
     t.column "mantis_id",           :integer
     t.column "cache_contournement", :float
     t.column "cache_correction",    :float

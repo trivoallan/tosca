@@ -336,6 +336,8 @@ class DemandesController < ApplicationController
       @clients = Client.find_select(Client::SELECT_OPTIONS)
     end
     @severites = Severite.find_select
+    first_comment = @demande.first_comment
+    @demande.description = first_comment.corps if first_comment
   end
 
   def redirect_to_comment

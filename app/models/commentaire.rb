@@ -51,7 +51,7 @@ class Commentaire < ActiveRecord::Base
       last_comment = self.demande.find_last_comment_before(self.id)
       if !last_comment
         self.errors.add_to_base(_('This request seems to be unstable.'))
-        return false 
+        return false
       end
       self.demande.update_attribute :last_comment_id, last_comment.id
     end
@@ -77,16 +77,6 @@ class Commentaire < ActiveRecord::Base
     request.expected_on = Time.now + 15.days
     #To update the demande.updated_on
     request.save
-  end
-
-  # update description only if it's the first comment
-  after_update :update_description
-  def update_description
-    if self.demande.first_comment_id == self.id
-      if self.demande.description != self.corps
-        self.demande.update_attribute(:description, self.corps)
-      end
-    end
   end
 
   # reset the request to its previous status state

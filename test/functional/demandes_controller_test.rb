@@ -50,7 +50,6 @@ class DemandesControllerTest < Test::Unit::TestCase
     assert_template 'comment'
 
     assert_not_nil assigns(:demande)
-    assert assigns(:demande).valid?
   end
 
   def test_new
@@ -95,7 +94,9 @@ class DemandesControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, :id => @first_id
+    put :update, :id => @first_id, :demande => {
+      :description => 'une description'
+    }
     assert_response :redirect
     assert_redirected_to :action => 'comment', :id => '1-Patch-Binaire'
   end

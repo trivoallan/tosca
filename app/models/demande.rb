@@ -28,11 +28,13 @@ class Demande < ActiveRecord::Base
   # Validation
   validates_presence_of :resume,
        :warn => _("You must indicate a summary for your request")
-  validates_length_of :resume, :within => 5..60
+  validates_length_of :resume, :within => 5..70
   validates_presence_of :contrat
+  attr_accessor :description
   validates_length_of :description, :minimum => 5
   validates_presence_of :description,
     :warn => _('You must indicate a description')
+
   validate do |record|
     if record.contrat.nil? or (record.contrat.client_id != record.beneficiaire.client_id)
       record.errors.add _('The client of this contract is not consistant with the client of this recipient.')
@@ -96,7 +98,7 @@ class Demande < ActiveRecord::Base
   end
 
   def to_s
-    "#{typedemande.name} (#{severite.name}) : #{description}"
+    "#{typedemande.name} (#{severite.name}) : #{resume}"
   end
 
   def find_last_comment_before(comment_id)
@@ -157,7 +159,7 @@ class Demande < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
-      c.name =~ /(_id|_on|resume|description)$/ ||
+      c.name =~ /(_id|_on|resume)$/ ||
       c.name == inheritance_column }
   end
 

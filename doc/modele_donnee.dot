@@ -25,8 +25,8 @@ Commentaire -> Statut [arrowhead=dot]
 Contrat -> Client [arrowhead=dot,dir=both,arrowtail=crow]
 Contrat -> Ingenieur [arrowhead=crow,arrowtail=crow,dir=both]
 Contrat -> Engagement [arrowhead=crow,arrowtail=crow,dir=both]
-Contrat -> Contrat::OSSA [arrowhead=dot,arrowtail=crow]
-Contrat -> Contrat::Support [arrowhead=dot,arrowtail=crow]
+Contrat -> Ossa [arrowhead=dot,arrowtail=crow]
+Contrat -> TimeTicket [arrowhead=dot,arrowtail=crow]
 
 Identifiant -> Image [arrowhead=dot,dir=both,arrowtail=crow]
 Identifiant -> Role [arrowhead=crow,arrowtail=crow,dir=both]
@@ -85,4 +85,3 @@ Document -> Identifiant [arrowhead=dot,dir=both,arrowtail=crow]
 
 
 }
-

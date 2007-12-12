@@ -15,13 +15,7 @@
     <%= link_to(StaticImage::print, options, html_options) %>
    </h1>
 
-   <% if @last_commentaire %>
-     <%= render :partial => 'demandes/tabs/tab_comments' %>
-   <% else %>
-    <div class="demande_tab_content">
-     <%= @demande.description %>
-    </div>
-   <% end %>
+   <%= render :partial => 'demandes/tabs/tab_comments' %>
 
    <div>
     <% action = comment_commentaire_path(@demande) %>
