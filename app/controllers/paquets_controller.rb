@@ -55,6 +55,7 @@ class PaquetsController < ApplicationController
     @paquet.distributeur = Distributeur.find_by_name('(none)')
     @paquet.logiciel_id = params[:logiciel_id]
     @paquet.name = params[:referent]
+    @paquet.release = 'lng1'
     @paquet.active = true;
   end
 
