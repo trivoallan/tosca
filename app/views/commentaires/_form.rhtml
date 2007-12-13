@@ -5,8 +5,10 @@
 <p><label for="commentaire_description">Rédigez votre commentaire ici</label><br />
 <%= text_area 'commentaire', 'corps'  %></p>
 
-<p><label for="commentaire_prive">Ce commentaire est-il privé ?</label>
-<%= check_box("commentaire", "prive", {}) %></p>
+<% if @ingenieur %>
+  <p><label for="commentaire_prive">Ce commentaire est-il privé ?</label>
+  <%= check_box("commentaire", "prive", {}) %></p>
+<% end %>
 
 <p><label for="piecejointe_file">Vous pouvez également joindre un fichier</label><br />
 <%= file_column_field 'piecejointe', 'file'  %></p>

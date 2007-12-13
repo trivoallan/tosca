@@ -11,26 +11,27 @@
 <div class="demande_tab_content">
 <% commentaires.each do |commentaire| %>
  <% cache("#{commentaire.id}/comments") do %>
-  <% id = commentaire.user  %>
+  <% com_user = commentaire.user  %>
   <table class="commentaire">
    <tr class="<%=(commentaire.prive ? 'prive' : 'public')%>">
      <td class="infos" align="center">
         <span class="small"><%= _("Comment %s") % "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
-        <% if id and id.client? and id.beneficiaire %>
+        <% if com_user and com_user.client? and com_user.beneficiaire %>
           <%= logo_img ||= logo_client(id.beneficiaire.client) %>
         <% else %>
           <%= StaticImage::logo_08000 %>
         <% end %><br />
-        <%= id.name if id %><br />
+        <%= com_user.name if com_user %><br />
 
+        <% display_edit = (@ingenieur or (id and @beneficiaire.identifiant_id == com_user.id)) ? true : false %>
+        <%= link_to(StaticImage::edit, edit_commentaire_path(commentaire), edit_ho) if display_edit %>&nbsp;
         <% if @ingenieur and not print_mode %>
-         <%= link_to(StaticImage::edit, edit_commentaire_path(commentaire), edit_ho) %>&nbsp;
           <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private")) %>
           <% limage = (commentaire.prive ? StaticImage::public : StaticImage::private) %>
          <%= link_to(limage, changer_etat_commentaire_path(commentaire), change_state_ho) %>&nbsp;
          <%= link_to(StaticImage::delete, commentaire_path(commentaire), delete_ho) %>&nbsp;
-         <br />
         <% end %>
+        <%= '<br />' if display_edit %>
         <span class="small"><%= commentaire.created_on_formatted %></span><br />
      </td><td class="text">
         <%= display_comment commentaire %>

@@ -110,12 +110,14 @@ class CommentairesController < ApplicationController
 
   def edit
     @commentaire = Commentaire.find(params[:id])
+    return if _not_allowed?
     @commentaire.errors.clear
     _form
   end
 
   def update
     @commentaire = Commentaire.find(params[:id])
+    return if _not_allowed?
     if @commentaire.update_attributes(params[:commentaire])
       flash[:notice] = _("The comment was successfully updated.")
       redirect_to commentaire_path(@commentaire)
@@ -141,5 +143,14 @@ class CommentairesController < ApplicationController
     @demandes = Demande.find(:all)
     @users = User.find_select
     @statuts = Statut.find_select
+  end
+
+  def _not_allowed?
+    if @beneficiaire and @commentaire.identifiant_id != @beneficiaire.identifiant_id
+      flash[:warn] = _('You are not allowed to edit this comment')
+      redirect_to demande_path(@commentaire.demande)
+      return true
+    end
+    false
   end
 end
