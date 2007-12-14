@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
+
 class Demande < ActiveRecord::Base
   belongs_to :typedemande
   belongs_to :logiciel

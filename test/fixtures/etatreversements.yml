@@ -1,17 +1,17 @@
---- 
-etatreversement_00003: 
+---
+etatreversement_00003:
   name: "rejet\xC3\xA9e"
   id: 3
-  description: Cntribution soumise mais non accept&eacute;e
-etatreversement_00004: 
+  description: Contribution soumise mais non accept&eacute;e
+etatreversement_00004:
   name: "non revers\xC3\xA9e"
   id: 4
   description: Ce correctif n&#39;est pas revers&eacute; &agrave; la communaut&eacute;. C&#39;est souvent le cas des backport.
-etatreversement_00005: 
+etatreversement_00005:
   name: "accept\xC3\xA9"
   id: 5
   description: C&#39;est quand la contribution a &eacute;t&eacute; int&eacute;gr&eacute;e au code source communautaire.
-etatreversement_00001: 
+etatreversement_00001:
   name: "propos\xC3\xA9e"
   id: 1
   description: Echanges en cours pour d&eacute;terminer les modalit&eacute;s de la soumission du correctif.

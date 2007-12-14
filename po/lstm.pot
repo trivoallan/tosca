@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-12-13 19:36+0100\n"
+"POT-Creation-Date: 2007-12-14 14:19+0100\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,41 +246,41 @@ msgstr ""
 msgid "The contribution has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:70
+#: app/controllers/demandes_controller.rb:72
 #: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:122
 msgid "All the requests"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:115
+#: app/controllers/demandes_controller.rb:117
 msgid "You are not linked to any contracts in our database."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:116
+#: app/controllers/demandes_controller.rb:118
 msgid "If you think it's an error, contact us at %s or at %s."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:140
+#: app/controllers/demandes_controller.rb:142
 msgid "Your request has been successfully submitted"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:269
+#: app/controllers/demandes_controller.rb:271
 msgid "The request has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:299
+#: app/controllers/demandes_controller.rb:301
 msgid "The demand has now no contribution"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:301
+#: app/controllers/demandes_controller.rb:303
 msgid "This contribution is now linked"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:374
+#: app/controllers/demandes_controller.rb:376
 #: app/helpers/demandes_helper.rb:195
 msgid "Active requests"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:377
+#: app/controllers/demandes_controller.rb:379
 #: app/helpers/demandes_helper.rb:202
 msgid "Finished requests"
 msgstr ""
@@ -1664,33 +1664,33 @@ msgstr ""
 msgid "Statut|Description"
 msgstr ""
 
-#: app/models/demande.rb:30
+#: app/models/demande.rb:31
 msgid "You must indicate a summary for your request"
 msgstr ""
 
-#: app/models/demande.rb:36
+#: app/models/demande.rb:37
 msgid "You must indicate a description"
 msgstr ""
 
-#: app/models/demande.rb:40
+#: app/models/demande.rb:41
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
 msgstr ""
 
-#: app/models/demande.rb:43
+#: app/models/demande.rb:44
 msgid "You must indicate a valid recipient"
 msgstr ""
 
-#: app/models/demande.rb:46
+#: app/models/demande.rb:47
 msgid "You must indicate a valid status"
 msgstr ""
 
-#: app/models/demande.rb:49
+#: app/models/demande.rb:50
 msgid "You must indicate a valid severity"
 msgstr ""
 
-#: app/models/demande.rb:285
+#: app/models/demande.rb:286
 msgid " of overrun"
 msgstr ""
 
@@ -3221,7 +3221,7 @@ msgstr ""
 msgid "system"
 msgstr ""
 
-#: app/views/clients/show.rhtml:65 app/views/contributions/show.rhtml:37
+#: app/views/clients/show.rhtml:65 app/views/contributions/show.rhtml:43
 msgid "request"
 msgstr ""
 
@@ -3456,19 +3456,27 @@ msgstr ""
 msgid "link"
 msgstr ""
 
-#: app/views/contributions/show.rhtml:20
+#: app/views/contributions/show.rhtml:21
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr ""
 
-#: app/views/contributions/show.rhtml:23
+#: app/views/contributions/show.rhtml:24
 msgid "and its has been approved on %s"
 msgstr ""
 
+#: app/views/contributions/show.rhtml:27
+msgid "This patch was not submitted to the community"
+msgstr ""
+
 #: app/views/contributions/show.rhtml:31
+msgid "This contribution is now "
+msgstr ""
+
+#: app/views/contributions/show.rhtml:37
 msgid "Internal details"
 msgstr ""
 
-#: app/views/contributions/show.rhtml:40
+#: app/views/contributions/show.rhtml:46
 msgid "package(s) with the patch"
 msgstr ""
 

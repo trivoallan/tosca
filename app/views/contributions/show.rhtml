@@ -16,14 +16,20 @@
     <%= public_show_liste(@contribution.urlreversements, _('link'), options) { |u|
           " <a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
     } %>
+
     <% if @contribution.reverse_le %>
         <%= _('This contribution has been submitted on %s by <b>%s</b>') %
               [ @contribution.reverse_le_formatted, @contribution.ingenieur.name ] %>
         <% if @contribution.cloture_le %>
-           <%=_('and its has been approved on %s') % @contribution.cloture_le_formatted %>
-        <% end %>
+           <%= _('and its has been approved on %s') % @contribution.cloture_le_formatted %>
+        <% end %>.
     <% else %>
-        Cette contribution n&lsquo;est pas reversée
+        <%= _('This patch was not submitted to the community') %>.
+    <% end %><br />
+    <% reversement = @contribution.etatreversement %>
+    <% if reversement %>
+      <%= _('This contribution is now ')%>
+      <span title="<%=reversement.description%>"><%=reversement.name%></span>
     <% end %>
 
 <% if @ingenieur %>
@@ -46,4 +52,3 @@
 
 
 <%= link_to_edit_and_list @contribution %>
-

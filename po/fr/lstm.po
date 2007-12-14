@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-13 19:36+0100\n"
-"PO-Revision-Date: 2007-12-13 19:41+0100\n"
+"POT-Creation-Date: 2007-12-14 14:19+0100\n"
+"PO-Revision-Date: 2007-12-14 14:21+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -256,42 +256,42 @@ msgstr "La contribution a été créée avec succès"
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:70
+#: app/controllers/demandes_controller.rb:72
 #: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:122
 msgid "All the requests"
 msgstr "Toutes les demandes"
 
-#: app/controllers/demandes_controller.rb:115
+#: app/controllers/demandes_controller.rb:117
 msgid "You are not linked to any contracts in our database."
 msgstr "Vous n'êtes pas lié à un contrat dans notre base de données"
 
-#: app/controllers/demandes_controller.rb:116
+#: app/controllers/demandes_controller.rb:118
 msgid "If you think it's an error, contact us at %s or at %s."
 msgstr ""
 "Si vous penser que c'est une erreur, merci de nous contacter à %s ou à %s."
 
-#: app/controllers/demandes_controller.rb:140
+#: app/controllers/demandes_controller.rb:142
 msgid "Your request has been successfully submitted"
 msgstr "Votre demande a été bien soumise à nos services."
 
-#: app/controllers/demandes_controller.rb:269
+#: app/controllers/demandes_controller.rb:271
 msgid "The request has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:299
+#: app/controllers/demandes_controller.rb:301
 msgid "The demand has now no contribution"
 msgstr "Le demande n'a plus de contributions"
 
-#: app/controllers/demandes_controller.rb:301
+#: app/controllers/demandes_controller.rb:303
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/demandes_controller.rb:374
+#: app/controllers/demandes_controller.rb:376
 #: app/helpers/demandes_helper.rb:195
 msgid "Active requests"
 msgstr "Demandes actives"
 
-#: app/controllers/demandes_controller.rb:377
+#: app/controllers/demandes_controller.rb:379
 #: app/helpers/demandes_helper.rb:202
 msgid "Finished requests"
 msgstr "Demandes terminées"
@@ -1679,34 +1679,34 @@ msgstr "Nom"
 msgid "Statut|Description"
 msgstr "Description"
 
-#: app/models/demande.rb:30
+#: app/models/demande.rb:31
 msgid "You must indicate a summary for your request"
 msgstr "Vous devez indiquer un résumé pour votre demande"
 
-#: app/models/demande.rb:36
+#: app/models/demande.rb:37
 msgid "You must indicate a description"
 msgstr "Vous devez indiquer une description"
 
-#: app/models/demande.rb:40
+#: app/models/demande.rb:41
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
 msgstr "Le client de ce contrat est incohérent avec le client du bénéficiaire."
 
-#: app/models/demande.rb:43
+#: app/models/demande.rb:44
 msgid "You must indicate a valid recipient"
 msgstr "Vous devez indiquer un bénéficiaire valide"
 
-#: app/models/demande.rb:46
+#: app/models/demande.rb:47
 msgid "You must indicate a valid status"
 msgstr "Vous devez indiquer un statut valide"
 
-#: app/models/demande.rb:49
+#: app/models/demande.rb:50
 msgid "You must indicate a valid severity"
 msgstr "Vous devez indiquer une sévérité valide"
 
 # ne pas oublier l'espace au début
-#: app/models/demande.rb:285
+#: app/models/demande.rb:286
 msgid " of overrun"
 msgstr " de dépassement"
 
@@ -3267,7 +3267,7 @@ msgstr " le %s "
 msgid "system"
 msgstr "système"
 
-#: app/views/clients/show.rhtml:65 app/views/contributions/show.rhtml:37
+#: app/views/clients/show.rhtml:65 app/views/contributions/show.rhtml:43
 msgid "request"
 msgstr "demande"
 
@@ -3502,19 +3502,27 @@ msgstr "Interface d'administration"
 msgid "link"
 msgstr "liens"
 
-#: app/views/contributions/show.rhtml:20
+#: app/views/contributions/show.rhtml:21
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
 
-#: app/views/contributions/show.rhtml:23
+#: app/views/contributions/show.rhtml:24
 msgid "and its has been approved on %s"
 msgstr "et a été accepté le %s"
 
+#: app/views/contributions/show.rhtml:27
+msgid "This patch was not submitted to the community"
+msgstr "Ce correctif n'a pas été soumis à la communauté"
+
 #: app/views/contributions/show.rhtml:31
+msgid "This contribution is now "
+msgstr "Cette contribution est désormais "
+
+#: app/views/contributions/show.rhtml:37
 msgid "Internal details"
 msgstr "Détails internes"
 
-#: app/views/contributions/show.rhtml:40
+#: app/views/contributions/show.rhtml:46
 msgid "package(s) with the patch"
 msgstr "paquet(s) avec le patch"
 
