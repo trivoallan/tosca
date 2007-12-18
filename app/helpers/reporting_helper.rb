@@ -284,7 +284,7 @@ module ReportingHelper
       if client != r.beneficiaire.client
         result << '</li>' unless client.nil?
         client = r.beneficiaire.client
-        result << "<li><b>#{ client.nom}</b> :"
+        result << "<li><b>#{ client.name}</b> :"
       end
       result << ' ' << link_to(r.id.to_s, demande_path(r))
     end
