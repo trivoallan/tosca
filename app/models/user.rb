@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   belongs_to :role
   has_many :documents
 
-  has_one :ingenieur
-  has_one :beneficiaire
-  has_one :preference
+  has_one :ingenieur, :dependent => :destroy
+  has_one :beneficiaire, :dependent => :destroy
+  has_one :preference, :dependent => :destroy
 
   validates_length_of :login, :within => 3..20
   validates_length_of :password, :within => 5..40
