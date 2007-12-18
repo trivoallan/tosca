@@ -54,11 +54,9 @@ class ApplicationController < ActionController::Base
 
 
 protected
-  # redirection à l'accueil
-  # TODO : certain redirect_to_home devrait etre redirect_back
-  # TODO : faire une route nommée, c'est pas railsien cette fonction
-  # TODO : trouver une meilleure solution, comme surcharger (un peu)
-  # le redirect_to de l'ActionController::Base
+  # a small wrapper used in some controller to redirect to homepage,
+  # in case of errors : when we cannot know where to redirect
+  # TODO : find a faster solution, like overloading redirect_to ?
   def redirect_to_home
     if request.xhr?
       render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
@@ -67,7 +65,7 @@ protected
     end
   end
 
-  # redirection par défaut en cas d'erreur / de non droit
+  # Redirect back or default, if we can find it
   def redirect_back
     session[:return_to] ||= request.env['HTTP_REFERER']
     redirect_back_or_default bienvenue_path

@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-18 18:42+0100\n"
-"PO-Revision-Date: 2007-12-14 14:21+0100\n"
+"PO-Revision-Date: 2007-12-18 19:03+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -4330,18 +4330,16 @@ msgid "Last day : "
 msgstr "Dernier jour : "
 
 #: app/views/reporting/comex.rhtml:37
-#, fuzzy
 msgid "See the comex report"
-msgstr "Rapport Comex"
+msgstr "Consulter le rapport Comex"
 
 #: app/views/reporting/comex.rhtml:41
-#, fuzzy
 msgid "See the SLA report"
-msgstr "Rapport CNS"
+msgstr "Consulter le rapport CNS"
 
 #: app/views/reporting/comex.rhtml:47
 msgid "See the weekly report"
-msgstr ""
+msgstr "Consulter le rapport hebdomadaire"
 
 #: app/views/reporting/_comex_cns.rhtml:2
 msgid "SLA report"
@@ -4569,30 +4567,26 @@ msgid "Number"
 msgstr "Nombre"
 
 #: app/views/reporting/weekly.rhtml:2
-#, fuzzy
 msgid "Weekly activity from "
 msgstr "Activité OSSA du "
 
 #: app/views/reporting/weekly.rhtml:7
-#, fuzzy
 msgid "request created"
 msgid_plural "requests created"
-msgstr[0] "Aucune demande declarée"
-msgstr[1] "Aucune demande declarée"
+msgstr[0] "demande créée"
+msgstr[1] "demandes créées"
 
 #: app/views/reporting/weekly.rhtml:10
-#, fuzzy
 msgid "request closed"
 msgid_plural "requests closed"
-msgstr[0] "demandes"
-msgstr[1] "demandes"
+msgstr[0] "demande fermée"
+msgstr[1] "demandes fermées"
 
 #: app/views/reporting/weekly.rhtml:13
-#, fuzzy
 msgid "request cancelled"
 msgid_plural "requests cancelled"
-msgstr[0] "Aucune demande declarée"
-msgstr[1] "Aucune demande declarée"
+msgstr[0] "demande annulée"
+msgstr[1] "demandes annulées"
 
 #: app/views/phonecalls/_calls_info.rhtml:12
 msgid "Add a call"
@@ -4883,9 +4877,3 @@ msgstr "Liste des url dans contributions"
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
-
-#~ msgid "See the report for this week"
-#~ msgstr "Voir le rapport pour cette semaine"
-
-#~ msgid "See the report of requests' SLA"
-#~ msgstr "Voir l'avancement du CNS"

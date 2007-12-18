@@ -35,14 +35,6 @@ class Notifier < ActionMailer::Base
     }
   end
 
-#  part :content_type => "text/plain", :body => render_message('mailto', body)
-
-#  attachment "application/txt" do |a|
-#   ##erreur## a.disposition = "attachment"
-#   a.filename= "piece_jointe_renommee.txt"
-#   a.body = File.read(RAILS_ROOT + "/public/documents/piece_jointe.txt")
-# end
-
   # This method requires 3 symbols in options :
   #   :user, :controller, :password
   def new_user(options, flash)
@@ -59,7 +51,8 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function require 3 parameters for options : :demande, :controller, :name
+  # This function require 3 parameters for options :
+  #   :demande, :controller, :name
   def request_new(options, flash)
     demande =  options[:demande]
 
