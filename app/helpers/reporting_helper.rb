@@ -236,14 +236,14 @@ module ReportingHelper
   # usage : progress_bar(50) display a orange bar, which correspond to 50%
   def progress_bar( percent )
     return '' if (not percent.is_a? Numeric or percent == -1)
-    case percent 
-    when percent < 0 
+    case percent
+    when percent < 0
       percent = 0
-    when 0..50 
+    when 0..50
       red, green = 255*percent/50 , 255
-    when 50..100 
+    when 50..100
       red , green = 255, 255*(100-percent)/50
-    else 
+    else
       red, green = 0, 0
     end
 
@@ -258,7 +258,7 @@ module ReportingHelper
   # TODO : We need to put the find in the controller
   #        and to rewrite this ugly method and put it into forms_helper
   # call it like this :
-  # <%= box_clients(9) %> will show a multi-selection box 
+  # <%= box_clients(9) %> will show a multi-selection box
   #                       with 9 selectable items
   def box_clients(number_items)
     elements = Client.find(:all, :select => 'id,name', :order => 'name')
@@ -270,5 +270,26 @@ module ReportingHelper
       items << '</option>'
     end
     return '<select id=\'clients\' multiple=\'multiple\' name=\'clients[]\' size="' << number_items.to_s << '">' <<  items << '</select>'
+  end
+
+
+
+  # Display nicely the requests for the weekly report. See
+  # reporting/weekly.rhtml for more information.
+  # It takes a list of requests, where client and recipients are preloaded.
+  def display_weekly_requests(requests)
+    client = nil
+    result = '<ol>'
+    requests.each do |r|
+      if client != r.beneficiaire.client
+        result << '</li>' unless client.nil?
+        client = r.beneficiaire.client
+        result << "<li><b>#{ client.nom}</b> :"
+      end
+      result << ' ' << link_to(r.id.to_s, demande_path(r))
+    end
+    result << '</li>' if client
+    result << '</ol>'
+    result
   end
 end

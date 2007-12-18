@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-14 14:19+0100\n"
+"POT-Creation-Date: 2007-12-18 18:42+0100\n"
 "PO-Revision-Date: 2007-12-14 14:21+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -187,44 +187,43 @@ msgstr "Le client bien été mis à jour."
 msgid "Your comment is too short, please rewrite it."
 msgstr "Votre commentaire est trop court. Merci d'en écrire un plus long."
 
-#: app/controllers/commentaires_controller.rb:68
+#: app/controllers/commentaires_controller.rb:70
 msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
-#: app/controllers/commentaires_controller.rb:77
+#: app/controllers/commentaires_controller.rb:79
 msgid "Unable to save working times."
 msgstr "Impossible d'enregistrer les temps de travail."
 
-#: app/controllers/commentaires_controller.rb:78
 #: app/controllers/commentaires_controller.rb:83
-msgid "Please refresh your browser and try again."
-msgstr "Veuillez rafraichir votre navigateur et réessayer."
-
-#: app/controllers/commentaires_controller.rb:82
 msgid "A conflict has occured."
 msgstr "Une erreur est survenue"
 
-#: app/controllers/commentaires_controller.rb:95
+#: app/controllers/commentaires_controller.rb:84
+msgid "Please refresh your browser and try again."
+msgstr "Veuillez rafraichir votre navigateur et réessayer."
+
+#: app/controllers/commentaires_controller.rb:96
 msgid "The comment %s is now %s"
 msgstr "Le commentaire %s est maintenant %s"
 
-#: app/controllers/commentaires_controller.rb:97
+#: app/controllers/commentaires_controller.rb:98
 msgid "An error has occured : The comment was not modified"
 msgstr "Une erreur est survenue : Le commentaire n'a pas été modifié"
 
-#: app/controllers/commentaires_controller.rb:122
+#: app/controllers/commentaires_controller.rb:123
 msgid "The comment was successfully updated."
 msgstr "Le commentaire a été mis à jour avec succès."
 
-#: app/controllers/commentaires_controller.rb:134
+#: app/controllers/commentaires_controller.rb:135
 msgid "The comment was successfully destroyed."
 msgstr "Le commentaire a été détruit avec succès."
 
-#: app/controllers/commentaires_controller.rb:136
+#: app/controllers/commentaires_controller.rb:137
 msgid "You cannot delete the first comment"
 msgstr "Vous ne pouvez effacer le premier commentaire"
 
-#: app/controllers/commentaires_controller.rb:150
+#: app/controllers/commentaires_controller.rb:151
 msgid "You are not allowed to edit this comment"
 msgstr "Vous n'êtes pas autorisé à modifier ce commentaire"
 
@@ -257,7 +256,7 @@ msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
 #: app/controllers/demandes_controller.rb:72
-#: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:122
+#: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:123
 msgid "All the requests"
 msgstr "Toutes les demandes"
 
@@ -438,7 +437,7 @@ msgid "Last update"
 msgstr "Mise à jour"
 
 #: app/controllers/export_controller.rb:146
-#: app/controllers/reporting_controller.rb:509
+#: app/controllers/reporting_controller.rb:524
 #: app/helpers/contributions_helper.rb:10
 #: app/views/contributions/_contributions_info.rhtml:39
 #: app/views/demandes/_form.rhtml:19 app/views/demandes/_form_deposer.rhtml:19
@@ -599,84 +598,84 @@ msgstr "La permission a été créée avec succès."
 msgid "Permission was successfully updated."
 msgstr "La permission a été mise à jour avec succès."
 
-#: app/controllers/reporting_controller.rb:59
+#: app/controllers/reporting_controller.rb:63
 msgid "You must choose a period for the report"
 msgstr "Vous devez indiquer une période pour le rapport"
 
-#: app/controllers/reporting_controller.rb:73
+#: app/controllers/reporting_controller.rb:77
 msgid "The first day must precede the last day"
 msgstr "Le premier jour doit précéder le dernier jour"
 
-#: app/controllers/reporting_controller.rb:204
-#: app/controllers/reporting_controller.rb:209
+#: app/controllers/reporting_controller.rb:219
+#: app/controllers/reporting_controller.rb:224
 msgid "incorrect parameters"
 msgstr "paramètres incorrects"
 
-#: app/controllers/reporting_controller.rb:502
-#: app/controllers/reporting_controller.rb:504
+#: app/controllers/reporting_controller.rb:517
+#: app/controllers/reporting_controller.rb:519
 msgid "Distributed on "
 msgstr "Répartie sur "
 
-#: app/controllers/reporting_controller.rb:502
-#: app/controllers/reporting_controller.rb:504
+#: app/controllers/reporting_controller.rb:517
+#: app/controllers/reporting_controller.rb:519
 #: app/views/reporting/_introduction.rhtml:4
 msgid " months"
 msgstr " mois"
 
-#: app/controllers/reporting_controller.rb:530
+#: app/controllers/reporting_controller.rb:545
 msgid ""
 "No data \n"
 "available"
 msgstr "Aucune donnée \\n disponible"
 
-#: app/controllers/reporting_controller.rb:540
+#: app/controllers/reporting_controller.rb:555
 #: app/views/reporting/_sommaire.rhtml:7 app/views/reporting/general.rhtml:20
 msgid "Distribution of your requests"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:541
+#: app/controllers/reporting_controller.rb:556
 msgid "Distribution of requests"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:542
-#: app/controllers/reporting_controller.rb:543
+#: app/controllers/reporting_controller.rb:557
+#: app/controllers/reporting_controller.rb:558
 msgid "Severity of your requests"
 msgstr "Sévérité de vos demandes"
 
-#: app/controllers/reporting_controller.rb:544
-#: app/controllers/reporting_controller.rb:545
+#: app/controllers/reporting_controller.rb:559
+#: app/controllers/reporting_controller.rb:560
 msgid "Resolution of your requests"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:547
+#: app/controllers/reporting_controller.rb:562
 msgid "Cancelled requests"
 msgstr "Demandes annulées"
 
-#: app/controllers/reporting_controller.rb:548
+#: app/controllers/reporting_controller.rb:563
 msgid "Evolution of the activity volume"
 msgstr "Évolution du volume d'activité"
 
-#: app/controllers/reporting_controller.rb:550
+#: app/controllers/reporting_controller.rb:565
 msgid "Top 5 of the most discussed requests"
 msgstr "Top 5 des demandes les plus discutées"
 
-#: app/controllers/reporting_controller.rb:551
+#: app/controllers/reporting_controller.rb:566
 msgid "Top 5 of the most discussed software"
 msgstr "Top 5 des logiciels les plus discutées"
 
-#: app/controllers/reporting_controller.rb:553
+#: app/controllers/reporting_controller.rb:568
 msgid "Processing time"
 msgstr "Temps de traitement"
 
-#: app/controllers/reporting_controller.rb:554
+#: app/controllers/reporting_controller.rb:569
 msgid "Response time"
 msgstr "Temps de réponse"
 
-#: app/controllers/reporting_controller.rb:555
+#: app/controllers/reporting_controller.rb:570
 msgid "Workaround time"
 msgstr "Temps de contournement"
 
-#: app/controllers/reporting_controller.rb:556
+#: app/controllers/reporting_controller.rb:571
 msgid "Correction time"
 msgstr "Temps de correction"
 
@@ -942,16 +941,16 @@ msgstr "Ajouter %s"
 msgid "progress bar"
 msgstr "barre de progression"
 
-#: app/helpers/links_helper.rb:102
+#: app/helpers/links_helper.rb:103
 msgid "Do you really want to delete %s"
 msgstr "Êtes vous sûr de vouloir supprimer %s"
 
-#: app/helpers/links_helper.rb:113 app/views/binaires/show.rhtml:3
+#: app/helpers/links_helper.rb:114 app/views/binaires/show.rhtml:3
 #: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
 msgid "Home"
 msgstr "Accueil"
 
-#: app/helpers/links_helper.rb:117 app/views/bienvenue/index.rhtml:11
+#: app/helpers/links_helper.rb:118 app/views/bienvenue/index.rhtml:11
 #: app/views/contrats/index.rhtml:5 app/views/logiciels/show.rhtml:47
 #: app/views/reporting/general.rhtml:22 app/views/reporting/general.rhtml:23
 #: app/views/reporting/general.rhtml:25 app/views/reporting/general.rhtml:26
@@ -964,23 +963,23 @@ msgstr "Accueil"
 msgid "Requests"
 msgstr "Demandes"
 
-#: app/helpers/links_helper.rb:118
+#: app/helpers/links_helper.rb:119
 msgid "Consult requests"
 msgstr "Consulter les demandes"
 
-#: app/helpers/links_helper.rb:123
+#: app/helpers/links_helper.rb:124
 msgid "Consult all the requests"
 msgstr "Consulter toutes les demandes"
 
-#: app/helpers/links_helper.rb:127
+#: app/helpers/links_helper.rb:128
 msgid "Requests to be done"
 msgstr "Demandes à traiter"
 
-#: app/helpers/links_helper.rb:128
+#: app/helpers/links_helper.rb:129
 msgid "Consult requests which are waiting an action from you"
 msgstr "Consulter les demandes qui nécessitent une action de votre part"
 
-#: app/helpers/links_helper.rb:132 app/views/account/_menu.rhtml:20
+#: app/helpers/links_helper.rb:133 app/views/account/_menu.rhtml:20
 #: app/views/bienvenue/index.rhtml:65 app/views/binaires/show.rhtml:4
 #: app/views/contrats/index.rhtml:5
 #: app/views/contributions/_contributions_info.rhtml:42
@@ -990,35 +989,35 @@ msgstr "Consulter les demandes qui nécessitent une action de votre part"
 msgid "Softwares"
 msgstr "Logiciels"
 
-#: app/helpers/links_helper.rb:133
+#: app/helpers/links_helper.rb:134
 msgid "Access to the list of softwares"
 msgstr "Accès à la liste des logiciels"
 
-#: app/helpers/links_helper.rb:137 app/views/binaires/_form.rhtml:30
+#: app/helpers/links_helper.rb:138 app/views/binaires/_form.rhtml:30
 #: app/views/contributions/_contributions_info.rhtml:41
 #: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
 #: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:65
 msgid "Contributions"
 msgstr "Contributions"
 
-#: app/helpers/links_helper.rb:138
+#: app/helpers/links_helper.rb:139
 msgid "Access to the list of contributions."
 msgstr "Accès à la liste des contributions."
 
-#: app/helpers/links_helper.rb:144
+#: app/helpers/links_helper.rb:145
 msgid "About %s"
 msgstr "Concernant %s"
 
-#: app/helpers/links_helper.rb:149
+#: app/helpers/links_helper.rb:150
 msgid "Administration"
 msgstr "Administration"
 
-#: app/helpers/links_helper.rb:150
+#: app/helpers/links_helper.rb:151
 #: app/views/contributions/_contributions_info.rhtml:21
 msgid "Administration interface"
 msgstr "Interface d'administration"
 
-#: app/helpers/links_helper.rb:158
+#: app/helpers/links_helper.rb:159
 msgid "My&nbsp;account"
 msgstr "Mon&nbsp;compte"
 
@@ -4302,6 +4301,48 @@ msgstr "Éditer une pièce jointe"
 msgid "New attachment"
 msgstr "Nouvelle pièce jointe"
 
+#: app/views/reporting/comex.rhtml:2
+msgid "OSSA activity per week"
+msgstr "Activité de l'OSSA par semaine"
+
+#: app/views/reporting/comex.rhtml:6
+msgid "Please select"
+msgstr "Faites votre sélection"
+
+#: app/views/reporting/comex.rhtml:7
+msgid "Select customer"
+msgstr "Sélectionner un client"
+
+#: app/views/reporting/comex.rhtml:11
+msgid "Number of the week:"
+msgstr "Numéro de la semaine:"
+
+#: app/views/reporting/comex.rhtml:17
+msgid "Or search by period"
+msgstr "Ou rechercher par période"
+
+#: app/views/reporting/comex.rhtml:20
+msgid "First day : "
+msgstr "Premier jour : "
+
+#: app/views/reporting/comex.rhtml:28
+msgid "Last day : "
+msgstr "Dernier jour : "
+
+#: app/views/reporting/comex.rhtml:37
+#, fuzzy
+msgid "See the comex report"
+msgstr "Rapport Comex"
+
+#: app/views/reporting/comex.rhtml:41
+#, fuzzy
+msgid "See the SLA report"
+msgstr "Rapport CNS"
+
+#: app/views/reporting/comex.rhtml:47
+msgid "See the weekly report"
+msgstr ""
+
 #: app/views/reporting/_comex_cns.rhtml:2
 msgid "SLA report"
 msgstr "Rapport CNS"
@@ -4331,7 +4372,7 @@ msgid "OSSA activity from "
 msgstr "Activité OSSA du "
 
 #: app/views/reporting/_comex_tableaux.rhtml:3
-#: app/views/reporting/_entete.rhtml:10
+#: app/views/reporting/_entete.rhtml:10 app/views/reporting/weekly.rhtml:3
 msgid "to"
 msgstr "à"
 
@@ -4483,42 +4524,6 @@ msgstr "évolution"
 msgid "canceled"
 msgstr "annulation"
 
-#: app/views/reporting/comex.rhtml:2
-msgid "OSSA activity per week"
-msgstr "Activité de l'OSSA par semaine"
-
-#: app/views/reporting/comex.rhtml:6
-msgid "Please select"
-msgstr "Faites votre sélection"
-
-#: app/views/reporting/comex.rhtml:7
-msgid "Select customer"
-msgstr "Sélectionner un client"
-
-#: app/views/reporting/comex.rhtml:11
-msgid "Number of the week:"
-msgstr "Numéro de la semaine:"
-
-#: app/views/reporting/comex.rhtml:17
-msgid "Or search by period"
-msgstr "Ou rechercher par période"
-
-#: app/views/reporting/comex.rhtml:20
-msgid "First day : "
-msgstr "Premier jour : "
-
-#: app/views/reporting/comex.rhtml:28
-msgid "Last day : "
-msgstr "Dernier jour : "
-
-#: app/views/reporting/comex.rhtml:36
-msgid "See the report for this week"
-msgstr "Voir le rapport pour cette semaine"
-
-#: app/views/reporting/comex.rhtml:40
-msgid "See the report of requests' SLA"
-msgstr "Voir l'avancement du CNS"
-
 #: app/views/reporting/delai.rhtml:4
 msgid "Choose one year:"
 msgstr "Spécifier une année : "
@@ -4562,6 +4567,32 @@ msgstr "Aucune demande declarée"
 #: app/views/reporting/general.rhtml:34
 msgid "Number"
 msgstr "Nombre"
+
+#: app/views/reporting/weekly.rhtml:2
+#, fuzzy
+msgid "Weekly activity from "
+msgstr "Activité OSSA du "
+
+#: app/views/reporting/weekly.rhtml:7
+#, fuzzy
+msgid "request created"
+msgid_plural "requests created"
+msgstr[0] "Aucune demande declarée"
+msgstr[1] "Aucune demande declarée"
+
+#: app/views/reporting/weekly.rhtml:10
+#, fuzzy
+msgid "request closed"
+msgid_plural "requests closed"
+msgstr[0] "demandes"
+msgstr[1] "demandes"
+
+#: app/views/reporting/weekly.rhtml:13
+#, fuzzy
+msgid "request cancelled"
+msgid_plural "requests cancelled"
+msgstr[0] "Aucune demande declarée"
+msgstr[1] "Aucune demande declarée"
 
 #: app/views/phonecalls/_calls_info.rhtml:12
 msgid "Add a call"
@@ -4852,3 +4883,9 @@ msgstr "Liste des url dans contributions"
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
+
+#~ msgid "See the report for this week"
+#~ msgstr "Voir le rapport pour cette semaine"
+
+#~ msgid "See the report of requests' SLA"
+#~ msgstr "Voir l'avancement du CNS"

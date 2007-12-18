@@ -1,0 +1,16 @@
+<div class="content" id="content">
+  <h1><%= _('Weekly activity from ') %>
+    <span class="date"><%= @date[:first_day].strftime("%A %d %B %Y") %></span> <%= _('to') %>
+    <span class="date"><%= @date[:end_day].strftime("%A %d %B %Y") %></span></h1>
+  <br />
+  <h2>I. <%=@requests_created.size%>
+    <%=n_('request created', 'requests created', @requests_created.size)%></h2>
+  <%= display_weekly_requests(@requests_created) %>
+  <h2>II. <%=@requests_closed.size%>
+    <%=n_('request closed', 'requests closed', @requests_closed.size)%></h2>
+  <%= display_weekly_requests(@requests_closed) %>
+  <h2>III. <%=@requests_cancelled.size%>
+    <%=n_('request cancelled', 'requests cancelled', @requests_cancelled.size)%></h2>
+  <%= display_weekly_requests(@requests_cancelled) %>
+  </ol>
+</div>

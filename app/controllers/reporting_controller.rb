@@ -5,6 +5,7 @@
 class ReportingController < ApplicationController
   helper :demandes, :export
   include ComexReporting
+  include WeeklyReporting
 
   # Les couleurs par défauts sont dans l'ordre alphabétique des severités :
   # ( bloquante, majeure, mineure, sans objet )
@@ -36,12 +37,15 @@ class ReportingController < ApplicationController
     #_titles()
   end
 
+  # TODO : cut this method a lot, at minimum 3 pieces.
+  # The dispatcher could be separated from the date analyzer.
   def comex_resultat
     #_titles()
     control = params[:control]
     results = params[:results]
     cns = params[:cns]
     comex = params[:reporting]
+    weekly = params[:weekly]
 
     clients = '(' << params[:clients].join(',') << ')'
     @date, scope = {}, {}
@@ -85,6 +89,17 @@ class ReportingController < ApplicationController
     flash[:clients]= @clients
     flash[:requests]= @requests
     flash[:total]= @total
+    return if comex
+
+    if weekly
+      options = { :select => 'id' }
+      unless clients.include?('all')
+        options[:conditions] = "beneficiaires.client_id IN #{clients}"
+      end
+      recipient_ids = Beneficiaire.find(:all, options).collect{|b| b.id}
+      compute_weekly_report(recipient_ids)
+    end
+    render :template => 'reporting/weekly'
   end
 
 

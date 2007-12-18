@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2007-12-14 14:19+0100\n"
+"POT-Creation-Date: 2007-12-18 18:42+0100\n"
 "PO-Revision-Date: 2007-07-23 09:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,44 +177,43 @@ msgstr ""
 msgid "Your comment is too short, please rewrite it."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:68
+#: app/controllers/commentaires_controller.rb:70
 msgid "Your comment was successfully added."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:77
+#: app/controllers/commentaires_controller.rb:79
 msgid "Unable to save working times."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:78
 #: app/controllers/commentaires_controller.rb:83
-msgid "Please refresh your browser and try again."
-msgstr ""
-
-#: app/controllers/commentaires_controller.rb:82
 msgid "A conflict has occured."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:95
+#: app/controllers/commentaires_controller.rb:84
+msgid "Please refresh your browser and try again."
+msgstr ""
+
+#: app/controllers/commentaires_controller.rb:96
 msgid "The comment %s is now %s"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:97
+#: app/controllers/commentaires_controller.rb:98
 msgid "An error has occured : The comment was not modified"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:122
+#: app/controllers/commentaires_controller.rb:123
 msgid "The comment was successfully updated."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:134
+#: app/controllers/commentaires_controller.rb:135
 msgid "The comment was successfully destroyed."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:136
+#: app/controllers/commentaires_controller.rb:137
 msgid "You cannot delete the first comment"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:150
+#: app/controllers/commentaires_controller.rb:151
 msgid "You are not allowed to edit this comment"
 msgstr ""
 
@@ -247,7 +246,7 @@ msgid "The contribution has been updated successfully."
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:72
-#: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:122
+#: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:123
 msgid "All the requests"
 msgstr ""
 
@@ -427,7 +426,7 @@ msgid "Last update"
 msgstr ""
 
 #: app/controllers/export_controller.rb:146
-#: app/controllers/reporting_controller.rb:509
+#: app/controllers/reporting_controller.rb:524
 #: app/helpers/contributions_helper.rb:10
 #: app/views/contributions/_contributions_info.rhtml:39
 #: app/views/demandes/_form.rhtml:19 app/views/demandes/_form_deposer.rhtml:19
@@ -584,84 +583,84 @@ msgstr ""
 msgid "Permission was successfully updated."
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:59
+#: app/controllers/reporting_controller.rb:63
 msgid "You must choose a period for the report"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:73
+#: app/controllers/reporting_controller.rb:77
 msgid "The first day must precede the last day"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:204
-#: app/controllers/reporting_controller.rb:209
+#: app/controllers/reporting_controller.rb:219
+#: app/controllers/reporting_controller.rb:224
 msgid "incorrect parameters"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:502
-#: app/controllers/reporting_controller.rb:504
+#: app/controllers/reporting_controller.rb:517
+#: app/controllers/reporting_controller.rb:519
 msgid "Distributed on "
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:502
-#: app/controllers/reporting_controller.rb:504
+#: app/controllers/reporting_controller.rb:517
+#: app/controllers/reporting_controller.rb:519
 #: app/views/reporting/_introduction.rhtml:4
 msgid " months"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:530
+#: app/controllers/reporting_controller.rb:545
 msgid ""
 "No data \n"
 "available"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:540
+#: app/controllers/reporting_controller.rb:555
 #: app/views/reporting/_sommaire.rhtml:7 app/views/reporting/general.rhtml:20
 msgid "Distribution of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:541
+#: app/controllers/reporting_controller.rb:556
 msgid "Distribution of requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:542
-#: app/controllers/reporting_controller.rb:543
+#: app/controllers/reporting_controller.rb:557
+#: app/controllers/reporting_controller.rb:558
 msgid "Severity of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:544
-#: app/controllers/reporting_controller.rb:545
+#: app/controllers/reporting_controller.rb:559
+#: app/controllers/reporting_controller.rb:560
 msgid "Resolution of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:547
+#: app/controllers/reporting_controller.rb:562
 msgid "Cancelled requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:548
+#: app/controllers/reporting_controller.rb:563
 msgid "Evolution of the activity volume"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:550
+#: app/controllers/reporting_controller.rb:565
 msgid "Top 5 of the most discussed requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:551
+#: app/controllers/reporting_controller.rb:566
 msgid "Top 5 of the most discussed software"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:553
+#: app/controllers/reporting_controller.rb:568
 msgid "Processing time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:554
+#: app/controllers/reporting_controller.rb:569
 msgid "Response time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:555
+#: app/controllers/reporting_controller.rb:570
 msgid "Workaround time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:556
+#: app/controllers/reporting_controller.rb:571
 msgid "Correction time"
 msgstr ""
 
@@ -927,16 +926,16 @@ msgstr ""
 msgid "progress bar"
 msgstr ""
 
-#: app/helpers/links_helper.rb:102
+#: app/helpers/links_helper.rb:103
 msgid "Do you really want to delete %s"
 msgstr ""
 
-#: app/helpers/links_helper.rb:113 app/views/binaires/show.rhtml:3
+#: app/helpers/links_helper.rb:114 app/views/binaires/show.rhtml:3
 #: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
 msgid "Home"
 msgstr ""
 
-#: app/helpers/links_helper.rb:117 app/views/bienvenue/index.rhtml:11
+#: app/helpers/links_helper.rb:118 app/views/bienvenue/index.rhtml:11
 #: app/views/contrats/index.rhtml:5 app/views/logiciels/show.rhtml:47
 #: app/views/reporting/general.rhtml:22 app/views/reporting/general.rhtml:23
 #: app/views/reporting/general.rhtml:25 app/views/reporting/general.rhtml:26
@@ -949,23 +948,23 @@ msgstr ""
 msgid "Requests"
 msgstr ""
 
-#: app/helpers/links_helper.rb:118
+#: app/helpers/links_helper.rb:119
 msgid "Consult requests"
 msgstr ""
 
-#: app/helpers/links_helper.rb:123
+#: app/helpers/links_helper.rb:124
 msgid "Consult all the requests"
 msgstr ""
 
-#: app/helpers/links_helper.rb:127
+#: app/helpers/links_helper.rb:128
 msgid "Requests to be done"
 msgstr ""
 
-#: app/helpers/links_helper.rb:128
+#: app/helpers/links_helper.rb:129
 msgid "Consult requests which are waiting an action from you"
 msgstr ""
 
-#: app/helpers/links_helper.rb:132 app/views/account/_menu.rhtml:20
+#: app/helpers/links_helper.rb:133 app/views/account/_menu.rhtml:20
 #: app/views/bienvenue/index.rhtml:65 app/views/binaires/show.rhtml:4
 #: app/views/contrats/index.rhtml:5
 #: app/views/contributions/_contributions_info.rhtml:42
@@ -975,35 +974,35 @@ msgstr ""
 msgid "Softwares"
 msgstr ""
 
-#: app/helpers/links_helper.rb:133
+#: app/helpers/links_helper.rb:134
 msgid "Access to the list of softwares"
 msgstr ""
 
-#: app/helpers/links_helper.rb:137 app/views/binaires/_form.rhtml:30
+#: app/helpers/links_helper.rb:138 app/views/binaires/_form.rhtml:30
 #: app/views/contributions/_contributions_info.rhtml:41
 #: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
 #: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:65
 msgid "Contributions"
 msgstr ""
 
-#: app/helpers/links_helper.rb:138
+#: app/helpers/links_helper.rb:139
 msgid "Access to the list of contributions."
 msgstr ""
 
-#: app/helpers/links_helper.rb:144
+#: app/helpers/links_helper.rb:145
 msgid "About %s"
 msgstr ""
 
-#: app/helpers/links_helper.rb:149
+#: app/helpers/links_helper.rb:150
 msgid "Administration"
 msgstr ""
 
-#: app/helpers/links_helper.rb:150
+#: app/helpers/links_helper.rb:151
 #: app/views/contributions/_contributions_info.rhtml:21
 msgid "Administration interface"
 msgstr ""
 
-#: app/helpers/links_helper.rb:158
+#: app/helpers/links_helper.rb:159
 msgid "My&nbsp;account"
 msgstr ""
 
@@ -4242,6 +4241,46 @@ msgstr ""
 msgid "New attachment"
 msgstr ""
 
+#: app/views/reporting/comex.rhtml:2
+msgid "OSSA activity per week"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:6
+msgid "Please select"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:7
+msgid "Select customer"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:11
+msgid "Number of the week:"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:17
+msgid "Or search by period"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:20
+msgid "First day : "
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:28
+msgid "Last day : "
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:37
+msgid "See the comex report"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:41
+msgid "See the SLA report"
+msgstr ""
+
+#: app/views/reporting/comex.rhtml:47
+msgid "See the weekly report"
+msgstr ""
+
 #: app/views/reporting/_comex_cns.rhtml:2
 msgid "SLA report"
 msgstr ""
@@ -4271,7 +4310,7 @@ msgid "OSSA activity from "
 msgstr ""
 
 #: app/views/reporting/_comex_tableaux.rhtml:3
-#: app/views/reporting/_entete.rhtml:10
+#: app/views/reporting/_entete.rhtml:10 app/views/reporting/weekly.rhtml:3
 msgid "to"
 msgstr ""
 
@@ -4404,42 +4443,6 @@ msgstr ""
 msgid "canceled"
 msgstr ""
 
-#: app/views/reporting/comex.rhtml:2
-msgid "OSSA activity per week"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:6
-msgid "Please select"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:7
-msgid "Select customer"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:11
-msgid "Number of the week:"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:17
-msgid "Or search by period"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:20
-msgid "First day : "
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:28
-msgid "Last day : "
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:36
-msgid "See the report for this week"
-msgstr ""
-
-#: app/views/reporting/comex.rhtml:40
-msgid "See the report of requests' SLA"
-msgstr ""
-
 #: app/views/reporting/delai.rhtml:4
 msgid "Choose one year:"
 msgstr ""
@@ -4483,6 +4486,28 @@ msgstr ""
 #: app/views/reporting/general.rhtml:34
 msgid "Number"
 msgstr ""
+
+#: app/views/reporting/weekly.rhtml:2
+msgid "Weekly activity from "
+msgstr ""
+
+#: app/views/reporting/weekly.rhtml:7
+msgid "request created"
+msgid_plural "requests created"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/views/reporting/weekly.rhtml:10
+msgid "request closed"
+msgid_plural "requests closed"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/views/reporting/weekly.rhtml:13
+msgid "request cancelled"
+msgid_plural "requests cancelled"
+msgstr[0] ""
+msgstr[1] ""
 
 #: app/views/phonecalls/_calls_info.rhtml:12
 msgid "Add a call"

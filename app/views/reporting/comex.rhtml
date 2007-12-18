@@ -12,7 +12,7 @@
           <%= text_field :results, :week_num, :size => 2,
             :value => Time.now.strftime("%W") %>
         </td>
-        <td rowspan='5'><%= box_clients(9)%></td>
+        <td rowspan='4'><%= box_clients(9)%></td>
       </tr>
       <tr><th><%= _('Or search by period') %></th></tr>
       <tr>
@@ -30,14 +30,21 @@
           <span class="calendarPicker"><%= StaticScript::date_to %></span>
           <%= StaticScript::script_date('results_end_day', 'date_to') %>
           </td>
-      </tr>
-      <tr>
+      </tr><tr>
+        <td colspan="2"><hr /></td>
+      </tr><tr>
         <td align='center'>
-          <%= submit_tag _('See the report for this week'),
+          <%= submit_tag _('See the comex report'),
             {:name => "reporting" } %>
         </td>
         <td align='center'>
-          <%= submit_tag _("See the report of requests' SLA"), {:name => "cns"}%>
+          <%= submit_tag _("See the SLA report"), {:name => "cns"} %>
+        </td>
+      </tr><tr>
+        <td colspan="2"><hr /></td>
+      </tr><tr>
+        <td colspan="2" align="center">
+          <%= submit_tag _('See the weekly report'), {:name => "weekly" } %>
         </td>
       </tr>
     </table>
