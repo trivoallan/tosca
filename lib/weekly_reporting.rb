@@ -17,7 +17,7 @@ module WeeklyReporting
 
       options = { :conditions =>
         [ 'demandes.created_on BETWEEN :first_day AND :last_day', values ],
-        :order => 'clients.nom, demandes.id', :include => [{:beneficiaire => :client},
+        :order => 'clients.name, demandes.id', :include => [{:beneficiaire => :client},
                                                            :statut,:typedemande] }
       @requests_created = Demande.find(:all, options)
 
