@@ -76,7 +76,7 @@ class LogicielsControllerTest < Test::Unit::TestCase
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'show'
 
     assert_equal num_logiciels + 1, Logiciel.count
   end
