@@ -39,7 +39,6 @@ Logiciel -> License [arrowhead=dot,dir=both,arrowtail=crow]
 Logiciel -> Communaute [arrowhead=dot,dir=both,arrowtail=crow]
 Logiciel -> Groupe [arrowhead=dot,dir=both,arrowtail=crow]
 Logiciel -> Image [arrowhead=dot,dir=both,arrowtail=crow]
-Logiciel -> Contrat [arrowhead=dot,dir=both,arrowtail=crow]
 
 
 News -> Ingenieur [arrowhead=dot,dir=both,arrowtail=crow]

@@ -69,11 +69,12 @@ module LinksHelper
       if mime_type =~ /^image\//
         redbox_div(relative_path,
                    image_tag(url_for_image_column(record, method, :fit_size)),
-                   :background_close => true)
+                     NO_HOVER.dup.update(:background_close => true))
       #Text
       elsif mime_type =~ /^text\//
         link_to(StaticImage::view, uv_piecejointe_path(record),
-          :popup => [filename, 'height=600,width=800,scrollbars=yes'])
+                NO_HOVER.dup.update(:popup =>
+                  [filename, 'height=600,width=800,scrollbars=yes']))
       else
         '-'
       end

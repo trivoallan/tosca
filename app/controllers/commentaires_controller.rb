@@ -59,12 +59,14 @@ class CommentairesController < ApplicationController
       flash[:warn] = _("Your comment is too short, please rewrite it.")
     elsif @commentaire.save
       # Caching times in 'demande'
+=begin
       champs = {  :cache_contournement => demande.temps_contournement() ,
         :cache_correction => demande.temps_correction() ,
         :cache_ecoule => demande.temps_ecoule() ,
         :cache_rappel => demande.temps_rappel()
         }
-      if demande.update_attributes(champs)
+=end
+      if true # demande.update_attributes(champs)
         flash[:notice] = _("Your comment was successfully added.")
         url_attachment = render_to_string(:layout => false, :template => '/attachment')
         options = { :demande => demande, :commentaire => @commentaire,
@@ -73,17 +75,16 @@ class CommentairesController < ApplicationController
                     :url_attachment => url_attachment
         }
         Notifier::deliver_request_new_comment(options, flash)
-      else
-        flash[:warn] = _("Unable to save working times.") + '<br />' + 
-          _('Please refresh your browser and try again.')
+      else # TODO : rework
+        flash[:warn] = _("Unable to save working times.")
         flash[:old_body] = @commentaire.corps
       end
     else
-      flash[:warn] = _("A conflict has occured.") + '<br />' + 
+      flash[:warn] = _("A conflict has occured.") + '<br />' +
         _('Please refresh your browser and try again.')
       flash[:old_body] = @commentaire.corps
     end
-    
+
     redirect_to( demande_path(demande) )
   end
 
