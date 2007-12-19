@@ -12,7 +12,7 @@ module ContributionsHelper
     columns.each { |c| out << "<th>#{c}</th>" }
     out << '</tr>'
     contribs.each{|c|
-      out << "<tr class=\"#{cycle('pair', 'impair')}\">"
+      out << "<tr class=\"#{cycle('even', 'odd')}\">"
       out << "<td>#{c.reverse_le_formatted}</td>"
       out << "<td>#{c.version}</td>"
       out << "<td>#{public_link_to_contribution(c)}</td>"

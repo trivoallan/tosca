@@ -21,29 +21,30 @@ class FilesController < ApplicationController
   # TODO : review and shorten this method. Camelize should to the job.
   def download
     file_type = params[:file_type]
- 
+
     # mapping path
-    map = {:piecejointe => 'file', 
+    map = {:piecejointe => 'file',
            :contribution => 'patch',
            :document => 'fichier',
            :binaire => 'archive' }
 
     # TODO : get model name without hash
-    model = { :piecejointe => Piecejointe, 
+    model = { :piecejointe => Piecejointe,
               :contribution => Contribution,
               :document => Document,
               :binaire => Binaire }
-    
+
     # building path
     root = [ Metadata::PATH_TO_FILES, file_type, map[file_type.intern] ] * '/'
+    root = File.join(RAILS_ROOT, "test", "tmp", "file_column") if RAILS_ENV=='test'
+
     # TODO : FIXME
     # the gsub on ' ' is needded, because url with '+' is weirdly reinterpreted.
     fullpath = [ root, params[:id], params[:filename].gsub(' ','+') ] * '/'
-    
 
-    # Attachment has to be restricted. 
+    # Attachment has to be restricted.
     scope_active = (@beneficiaire and file_type == 'piecejointe')
-    
+
     # Ensure that we can remove scope
     begin
       Piecejointe.set_scope(@beneficiaire.client_id) if scope_active
@@ -52,12 +53,12 @@ class FilesController < ApplicationController
       Piecejointe.remove_scope() if scope_active
     end
 
-    send_file fullpath 
+    send_file fullpath
 
-  rescue 
+  rescue
     # if error on finding target
     flash.now[:warn] = _("This file does not exist.")
-    redirect_to_home 
+    redirect_to_home
   end
 
 end

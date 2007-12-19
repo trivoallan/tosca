@@ -16,17 +16,17 @@ module FormsHelper
   def hbtm_check_box( objectcollection, collection, name , options={})
     return '' if collection.nil?
     objectcollection ||= []
-    out = '<table><tr>' and count = 1
+    out = "<table class=\"list\"><tr>" and count = 1
     options_size = options[:size]
     length = collection.size
     name_w3c = name.gsub(/[^a-z1-9]+/i, '_')
     for donnee in collection
-      out << "<td><input id=\"#{name_w3c}_#{donnee.id}\" type=\"checkbox\" "
+      out << "<td class=\"#{cycle('odd', 'even')}\"><input id=\"#{name_w3c}_#{donnee.id}\" type=\"checkbox\" "
       out << "name=\"#{name}[]\" value=\"#{donnee.id}\" "
       out << 'checked="checked" ' if objectcollection.include? donnee
       out << "/><label for=\"#{name_w3c}_#{donnee.id}\">#{donnee}</label></td>"
       if options_size
-        out << '</tr><tr>' if (count % options_size == 0) and length > count
+        out << "</tr><tr>" if (count % options_size == 0) and length > count
         count += 1
       end
     end

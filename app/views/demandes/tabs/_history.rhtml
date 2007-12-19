@@ -8,9 +8,9 @@
   </tr>
 
   <% @commentaires.each do |c| %>
-     <% history = display_history(c) %> 
+     <% history = display_history(c) %>
      <% unless history.nil? %>
-      <tr class="<%= cycle('pair', 'impair') %>">
+      <tr class="<%= cycle('even', 'odd') %>">
         <td><%= c.created_on_formatted %></td>
         <td>&nbsp;</td>
         <td><%= history %></td>

@@ -11,17 +11,17 @@
 #   </li>
 #   <li><b><%= _("Workarounded in"): </b>@demande.affiche_temps_contournement"</li>
 #   <li><b><%= _("Fixed in"): </b>@demande.affiche_temps_correction</li>
-#   <% if @demande.contribution 
-#     <% contrib = @demande.contribution 
-#     <li><b><%= _("Documents") + ": </b> <br />" + _("A") 
-#       <%= link_to('contribution', contribution_path(contrib.id)) 
+#   <% if @demande.contribution
+#     <% contrib = @demande.contribution
+#     <li><b><%= _("Documents") + ": </b> <br />" + _("A")
+#       <%= link_to('contribution', contribution_path(contrib.id))
 #       <%= _("is available")
 #          (<%= link_to_file contrib, 'patch' )
 #     </li>
-#   <% end 
+#   <% end
 # </ul>%>
 
-<% size = @demande.paquets.size %> 
+<% size = @demande.paquets.size %>
 <% if size == 0 %>
   <p><%= _("Your request is not subject to a SLA.") %></p>
 <% else %>
@@ -38,7 +38,7 @@
   <% severite_id = @demande.severite_id %>
 
   <% @demande.paquets.each_with_index do |p,i| %>
-    <tr class="<%= cycle('pair', 'impair') %>">
+    <tr class="<%= cycle('even', 'odd') %>">
       <td><%= p.name %></td>
       <td><%= p.version %></td>
       <td><%= "#{ Lstm.time_in_french_words(p.contournement(type_id, severite_id).days, true) }" %></td>

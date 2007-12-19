@@ -168,15 +168,6 @@ class ReportingController < ApplicationController
     @first_col.each { |c| c.gsub!('\n','') }
   end
 
-  def flux
-    #cas spécial : consultation directe
-    options = { :per_page => 10, :order => 'created_on DESC',
-      :select => Demande::SELECT_LIST,
-      :joins => Demande::JOINS_LIST }
-    @demande_pages, @demandes = paginate :demandes, options
-  end
-
-
   private
 
   # initialise toutes les variables de classes nécessaire

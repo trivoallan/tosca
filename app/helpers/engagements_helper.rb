@@ -20,11 +20,11 @@ module EngagementsHelper
     out << '<th>Contournement</th><th>Correction</th></tr>'
     last_typedemande_id = 0
     last_severite_id = 0
-    last_cycle = cycle('pair', 'impair')
+    last_cycle = cycle('even', 'odd')
     e = engagements.pop
     while (e) do
       out << '<tr><td colspan="5"><hr/></td></tr>' if e.typedemande_id != last_typedemande_id
-      last_cycle = cycle('pair', 'impair') if e.severite_id != last_severite_id
+      last_cycle = cycle('even', 'odd') if e.severite_id != last_severite_id
       out << "<tr class=\"#{last_cycle}\">"
       out << '<td>'
       if e.typedemande_id != last_typedemande_id

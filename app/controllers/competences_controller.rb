@@ -3,7 +3,8 @@
 #####################################################
 class CompetencesController < ApplicationController
   def index
-    @competence_pages, @competences = paginate :competences, :per_page => 50
+    options = { :per_page => 50, :order => 'competences.name' }
+    @competence_pages, @competences = paginate :competences, options
   end
 
   def show

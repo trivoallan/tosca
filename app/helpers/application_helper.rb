@@ -141,7 +141,7 @@ module ApplicationHelper
     end
 
     elements.each_index { |i|
-      result << "<tr class=\"#{cycle('pair', 'impair')}\">"
+      result << "<tr class=\"#{cycle('even', 'odd')}\">"
       if (content_columns)
         ar.content_columns.each {|column|
           result << "<td>#{elements[i].send(column.name)}</td>"

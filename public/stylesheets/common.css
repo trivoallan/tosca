@@ -209,7 +209,9 @@ table.topbox td {
 	padding: 5px;
 	vertical-align: top;
 	border-bottom: #e4e4e4 1px solid;
+	white-space: nowrap;
 }
+
 .list table td.void {
 	border: 0;
 }
@@ -246,6 +248,15 @@ table.topbox td {
 .list table .bold {
 	font-weight: bold;
 }
+
+/* used by hbtm check box helper */
+table.list td {
+	padding: 5px;
+	vertical-align: top;
+	border-bottom: #e4e4e4 1px solid;
+	white-space: nowrap;
+}
+
 
 /***************** bloc standard ***************/
 
@@ -650,13 +661,13 @@ div.auto_complete ul strong.highlight {
 
 
 /*
- * Permet d'alterner la couleur des lignes des tableaux
+ * Alternate color between table lines or cells
  */
 
-.pair { background-color: #f0f0f0; }
-.pair:hover { background-color: #e2efe2; }
-.impair { background-color: #e0e0e0; }
-.impair:hover {	background-color: #e2efe2; }
+.even { background-color: #f0f0f0; }
+.even:hover { background-color: #e2efe2; }
+.odd { background-color: #e0e0e0; }
+.odd:hover {	background-color: #e2efe2; }
 
 
 /***************************************************

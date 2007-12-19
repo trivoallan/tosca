@@ -212,7 +212,7 @@ module DemandesHelper
 
   #usage : <tr <%= tr_attributes("../demandes/comment/#{demand.id}")%> >
   def tr_attributes(href)
-    "class=\"#{cycle('pair', 'impair')}\" " <<
+    "class=\"#{cycle('even', 'odd')}\" " <<
       "onclick=\"window.location.href='#{href}'\""
   end
 

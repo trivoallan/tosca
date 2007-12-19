@@ -22,7 +22,7 @@
 	<th colspan="4"><%= _('To close') %></th>
     </tr>
     <% @clients.each do |c| %>
-     <tr class="<%=cycle('pair','impair')%>">
+     <tr class="<%=cycle('even','odd')%>">
       <td><%= c %></td>
         <% name = c.name.intern %>
 	<% 4.times do |i| %>

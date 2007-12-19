@@ -12,16 +12,16 @@
   <% @paquets.each do |p| %>
      <% contrat = Contrat.find(p.contrat_id) %>
      <% engagement = contrat.find_engagement(@demande) %>
-     <tr class="<%=cycle('pair','impair')%>">
+     <tr class="<%=cycle('even','odd')%>">
        <td><% if engagement %>
-         <%= Lstm.time_in_french_words(engagement.contournement.days, true)%> 
+         <%= Lstm.time_in_french_words(engagement.contournement.days, true)%>
        <% end %></td>
        <td><% if engagement %>
          <%= Lstm.time_in_french_words(engagement.correction.days, true)%> </td>
        <% end %> </td>
        <td>
          <% #TODO : remplacer ce truc par un <%= check_box ... %>
-         <input type="checkbox" id="<%=p.id%>" name="demande[paquet_ids][]" 
+         <input type="checkbox" id="<%=p.id%>" name="demande[paquet_ids][]"
             value="<%=p.id%>" <%= ' checked="checked"' if selecteds and selecteds.include?(p.id.to_s) %>
          ></td>
        <td><%= p.to_s%></td>
