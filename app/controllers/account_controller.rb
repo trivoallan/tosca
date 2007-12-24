@@ -130,19 +130,31 @@ class AccountController < ApplicationController
     when :post
       @user = User.new(params['user'])
       if @user.save
-        client_id = params[:client][:id].to_i
-        client = (client_id != 0 ? Client.find(client_id) : nil)
-        flash[:notice] = _("Account successfully created.")
-        @user.create_person(client)
-        benef, inge = @user.beneficiaire, @user.ingenieur
-        benef.update_attributes(params[:beneficiaire]) if benef
-        inge.update_attributes(params[:ingenieur]) if inge
+        connection = @user.connection
+        begin
+          # This is called with low level methods, since we really needs perfs
+          # here and it can easily take 10 minutes, for a package with 1k files.
+          connection.begin_db_transaction
 
-        # welcome mail
-        options = { :user => @user, :controller => self,
-          :password => @user.pwd }
-        Notifier::deliver_new_user(options, flash)
-        redirect_back_or_default accounts_path
+          client_id = params[:client][:id].to_i
+          client = (client_id != 0 ? Client.find(client_id) : nil)
+          flash[:notice] = _("Account successfully created.")
+          @user.create_person(client)
+          benef, inge = @user.beneficiaire, @user.ingenieur
+          benef.update_attributes(params[:beneficiaire]) if benef
+          inge.update_attributes(params[:ingenieur]) if inge
+
+          # welcome mail
+          options = { :user => @user, :controller => self,
+            :password => @user.pwd }
+          Notifier::deliver_new_user(options, flash)
+          connection.commit_db_transaction
+
+          redirect_back_or_default accounts_path
+        rescue Exception => e
+          connection.rollback_db_transaction
+          flash[:warn] = e.message
+        end
       end
     when :get
       @user = User.new
