@@ -34,10 +34,11 @@ module FormsHelper
     out << "<input type=\"hidden\" value=\"\" name=\"#{name}[]\"/>"
   end
 
-  # Collection doit contenir des objects qui ont un 'id' et un 'name'
-  # objectcollection contient le tableau des objects déjà présents
-  # C'est la fonction to_s qui est utilisée pour le label
-  # Ex : hm_radio_button( 'user', 'role_id', @roles)
+  # Collection have to contain object which respond to 'id' and 'name'
+  # Object & Param allow to keep n' display the selected one
+  # In the options, you have :
+  #   * :size => Number of columns before an end of line (<br />)
+  # Ex : hm_radio_button( 'user', 'role_id', @roles, :size => 3)
   def hm_radio_button( object, param, collection, options = {})
     out = ''
     return out if collection.nil?
