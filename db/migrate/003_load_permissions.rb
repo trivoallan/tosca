@@ -98,7 +98,6 @@ class LoadPermissions < ActiveRecord::Migration
   end
 
   def self.down
-    Role.find([1,5]).each{|r| r.destroy }
     Permission.find(:all).each{|p| p.destroy }
   end
 end

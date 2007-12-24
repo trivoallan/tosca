@@ -7,9 +7,13 @@ class LoadAdminAccount < ActiveRecord::Migration
   def self.up
     # Admin account
     admin_id, manager_id, expert_id, customer_id, viewer_id = 1,2,3,4,5
-    Identifiant.create(:login => 'admin', :nom => 'admin', :role_id =>
-                       admin_id, :password =>
-                       Digest::SHA1.hexdigest("linagora--#{'admin'}--"))
+    # Id must be setted aside, unless it won't works as expected
+    ### as of Rails 1.2.x
+    user = Identifiant.new(:login => 'admin', :nom => 'admin', :role_id =>
+                           admin_id, :password =>
+                           Digest::SHA1.hexdigest("linagora--#{'admin'}--"))
+    user.id = 1
+    user.save
     Ingenieur.create(:identifiant_id => 1)
   end
 
