@@ -46,7 +46,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
                [ '^documents/(?!destroy)', 'Manage documents' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
-               [ '^socles/(?destroy)', "Manage systems" ],
+               [ '^socles/(?!destroy)', "Manage systems" ],
                [ '^urllogiciels/(?!destroy)', 'Manage urls of softwares' ],
                [ '^urlreversements/(?!destroy)',
                  'Manage urls of contributions' ],
