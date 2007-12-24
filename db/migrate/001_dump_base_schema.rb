@@ -319,10 +319,6 @@ class DumpBaseSchema < ActiveRecord::Migration
 
     add_index "fichiers", ["paquet_id"], :name => "fichiers_paquet_id"
 
-    create_table "fournisseurs", :force => true do |t|
-      t.column "nom", :string, :default => "", :null => false
-    end
-
     create_table "groupes", :force => true do |t|
       t.column "nom", :string, :limit => 80
     end
@@ -420,7 +416,6 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "mainteneur_id",    :integer,               :default => 0,    :null => false
       t.column "contrat_id",       :integer,               :default => 0,    :null => false
       t.column "taille",           :integer,               :default => 0,    :null => false
-      t.column "fournisseur_id",   :integer,               :default => 0,    :null => false
       t.column "configuration",    :text,                  :default => "",   :null => false
       t.column "fichiers_count",   :integer
       t.column "changelogs_count", :integer
@@ -435,7 +430,6 @@ class DumpBaseSchema < ActiveRecord::Migration
     add_index "paquets", ["distributeur_id"], :name => "paquets_distributeur_id_index"
     add_index "paquets", ["mainteneur_id"], :name => "paquets_mainteneur_id_index"
     add_index "paquets", ["contrat_id"], :name => "paquets_contrat_id_index"
-    add_index "paquets", ["fournisseur_id"], :name => "paquets_fournisseur_id_index"
 
     create_table "permissions", :force => true do |t|
       t.column "name", :string,               :default => "", :null => false
@@ -582,7 +576,6 @@ class DumpBaseSchema < ActiveRecord::Migration
     drop_table "etatreversements"
     drop_table "fichierbinaires"
     drop_table "fichiers"
-    drop_table "fournisseurs"
     drop_table "groupes"
     drop_table "identifiants"
     drop_table "images"

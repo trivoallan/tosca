@@ -3,9 +3,11 @@ class LoadRequestsType < ActiveRecord::Migration
 
   def self.up
     # Known kind of requests
+    id = 1
     %w(Information Anomalie Évolution Monitorat
        Intervention Étude Livraison).each{ |tr|
-      Typedemande.create(:nom => tr)
+      td = Typedemande.new(:nom => tr); td.id = id; td.save
+      id = id + 1
     }
   end
 
