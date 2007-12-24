@@ -450,18 +450,18 @@ class DumpBaseSchema < ActiveRecord::Migration
     add_index "permissions_roles", ["permission_id"], :name => "permissions_roles_FKIndex1"
     add_index "permissions_roles", ["role_id"], :name => "permissions_roles_FKIndex2"
 
-    create_table "phonecalls", :force => true do |t|
+    create_table "appels", :force => true do |t|
       t.column "beneficiaire_id", :integer
       t.column "ingenieur_id",    :integer
-      t.column "start",           :datetime
-      t.column "end",             :datetime
+      t.column "debut",           :datetime
+      t.column "fin",             :datetime
       t.column "contrat_id",      :integer,  :default => 0, :null => false
       t.column "demande_id",      :integer
     end
 
-    add_index "phonecalls", ["beneficiaire_id"], :name => "index_appels_on_beneficiaire_id"
-    add_index "phonecalls", ["ingenieur_id"], :name => "index_appels_on_ingenieur_id"
-    add_index "phonecalls", ["contrat_id"], :name => "index_appels_on_contrat_id"
+    add_index "appels", ["beneficiaire_id"], :name => "index_appels_on_beneficiaire_id"
+    add_index "appels", ["ingenieur_id"], :name => "index_appels_on_ingenieur_id"
+    add_index "appels", ["contrat_id"], :name => "index_appels_on_contrat_id"
 
     create_table "piecejointes", :force => true do |t|
       t.column "file", :string, :default => "", :null => false
@@ -596,7 +596,7 @@ class DumpBaseSchema < ActiveRecord::Migration
     drop_table "paquets"
     drop_table "permissions"
     drop_table "permissions_roles"
-    drop_table "phonecalls"
+    drop_table "appels"
     drop_table "piecejointes"
     drop_table "preferences"
     drop_table "roles"

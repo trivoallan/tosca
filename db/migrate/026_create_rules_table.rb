@@ -26,8 +26,8 @@ class CreateRulesTable < ActiveRecord::Migration
   def self.down
     drop_table :ossas
     drop_table :time_tickets
-    add_column :contrats, :support, :default => false, :null => false
-    add_column :contrats, :socle, :default => false, :null => false
+    add_column :contrats, :support, :boolean, :default => false, :null => false
+    add_column :contrats, :socle, :boolean, :default => false, :null => false
     add_column :contrats, :name, :string
   end
 end

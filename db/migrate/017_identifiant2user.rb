@@ -6,7 +6,11 @@ class Identifiant2user < ActiveRecord::Migration
   }
 
   def self.up
-    drop_table(:users) # an error of youth
+    begin
+      drop_table(:users) # an error of youth
+    rescue Exception => e
+    end
+
     rename_table(:identifiants, :users)
     COLUMNS.each { |key, value|
       rename_column(:users, key, value)
