@@ -14,7 +14,7 @@ class MachinesControllerTest < Test::Unit::TestCase
     @controller = MachinesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    login 'bob', 'test'
+    login 'admin', 'admin'
   end
 
   def test_index

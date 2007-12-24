@@ -12,7 +12,7 @@ class PhonecallsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    login 'bob', 'test'
+    login 'admin', 'admin'
     @first_id = phonecalls(:phonecall_00001).id
   end
 

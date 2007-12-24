@@ -15,7 +15,7 @@ class BinairesControllerTest < Test::Unit::TestCase
     @controller = BinairesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    login 'bob', 'test'
+    login 'admin', 'admin'
   end
 
   def test_index
