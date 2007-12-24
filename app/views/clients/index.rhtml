@@ -1,7 +1,7 @@
 <h1><%= _("List of the clients") %></h1>
 
 <%= show_pages_links(@client_pages, _("a client")) %>
-<% titles = [ _("Logo"), _("Name"), _("Packages"), _("Mailing list"), _("Access code") ]%>
+<% titles = [ _("Logo"), _("Name"), _("Packages"), _("Access code") ]%>
 <%= show_table(@clients, Client, titles) { |c|
   result = ''
   if c.image
@@ -15,7 +15,6 @@
     result << link_to_socle(s).to_s << '<br />'
   }
   result << '</td>'
-  result << "<td>#{mail_to(c.mailingliste)}</td>"
   result << "<td>#{c.code_acces}</td>"
   result << "#{link_to_actions_table c}"
 }%>

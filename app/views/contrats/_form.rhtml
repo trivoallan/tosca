@@ -10,6 +10,9 @@
         <th><label for="contrat_chrono"><%= _("Contrat|Chrono") %></label></th>
         <td><%= text_field :contrat, :chrono %></td>
       </tr><tr>
+        <th><label for="contrat_mailinglist"><%=_("Mailing list")%></label></th>
+        <td><%= text_field 'contrat', 'mailingliste'  %></td>
+      </tr><tr>
         <th><label for="contrat_ouverture"><%= _('Start') %></label></th>
         <td><%= datetime_select :contrat, :ouverture %></td>
       </tr><tr>

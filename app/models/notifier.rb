@@ -133,8 +133,8 @@ class Notifier < ActionMailer::Base
     user = users.first
     client = possible_clients.first
 
-    email[HEADER_LIST_ID] = list_id(client)
-    send_mail(client.mailingliste, client.ingenieurs.map { |e| e.user.email }, email)
+    email[HEADER_LIST_ID] = list_id(client.contrat)
+    send_mail(client.contrat.mailingliste, client.contrat.ingenieurs.map { |e| e.user.email }, email)
   end
 =end
 
@@ -195,8 +195,8 @@ class Notifier < ActionMailer::Base
   end
 
   def compute_copy(demande)
-    res = demande.beneficiaire.client.mailingliste
-    if demande.mail_cc and demande.mail_cc.size > 4
+    res = demande.contrat.mailingliste
+    if demande.mail_cc and demande.mail_cc.size > 4 and !res.blank?
       res += ", " << demande.mail_cc
     end
     res
@@ -250,8 +250,12 @@ class Notifier < ActionMailer::Base
     "<#{id}@#{Metadata::NOM_COURT_APPLICATION}.#{Metadata::SITE_INTERNET}>"
   end
 
-  def list_id(client)
-    "#{client.name} <#{client.mailingliste}>"
-  end
+=begin
+  # There is NO outgoing mails, sadly. #
+  ######################################
 
+  def list_id(contrat)
+    "#{contrat.name} <#{contrat.mailinglist}>"
+  end
+=end
 end

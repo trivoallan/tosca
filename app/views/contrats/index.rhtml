@@ -3,7 +3,7 @@
 <%= show_pages_links(@contrat_pages, _('a contract')) %>
 
 <% titles = [ _('Name'), _('Type') , _('Softwares') , _('Packages') , _('Requests'),
-  _('Engineers'), _('Start') , _('=>'), _('End') ]%>
+  _('Engineers'), _('Mailing list'), _('Start') , _('=>'), _('End') ]%>
 <%= show_table(@contrats, Contrat, titles) { |c|
   result = ''
   result << "<td>#{link_to_contrat(c)}</td>"
@@ -12,6 +12,7 @@
   result << "<td>#{c.paquets.size}</td>"
   result << "<td>#{c.demandes.size}</td>"
   result << "<td>#{c.ingenieurs.size}</td>"
+  result << "<td>#{mail_to(c.mailinglist)}</td>"
   result << "<td>#{c.ouverture_formatted}</td>"
   result << '<td></td>' # used for the arrow
   result << "<td>#{c.cloture_formatted}</td>"
