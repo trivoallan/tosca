@@ -9,7 +9,10 @@ class Identifiant2user < ActiveRecord::Migration
     # Two errors of youth. they are rescued because only present on
     # some old prod databases ;).
     begin; drop_table(:users); rescue; end
-    begin; drop_table(:fournisseurs); rescue; end
+    begin
+      drop_table(:fournisseurs)
+      remove_column :paquets, :fournisseur_id
+    rescue; end
 
     rename_table(:identifiants, :users)
     COLUMNS.each { |key, value|
