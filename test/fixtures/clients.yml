@@ -1,61 +1,61 @@
----
-client_00004:
+--- 
+client_00004: 
   name: linagorien
   inactive: false
   id: 4
-  beneficiaires_count:
+  beneficiaires_count: 
   mailingliste: client4@08000linux.com
   description: un autre utilisateur
   code_acces: linagora
   adresse: Rue de Berri, Paris
   image_id: 3
-client_00005:
+client_00005: 
   name: noman
   inactive: false
   id: 5
-  beneficiaires_count:
+  beneficiaires_count: 
   mailingliste: client5@08000linux.com
   description: un autre utilisateur
   code_acces: linagora
   adresse: Rue de Berri, Paris
   image_id: 3
-client_00008:
+client_00008: 
   name: Client Inactif
   inactive: true
   id: 8
-  beneficiaires_count:
+  beneficiaires_count: 
   mailingliste: mloiseleur@linagora.com
   description: ""
   code_acces: ""
   adresse: ""
   image_id: 1
-client_00009:
+client_00009: 
   name: "Client avec un b\xC3\xA9n\xC3\xA9ficiaire Inactif"
   inactive: false
   id: 9
-  beneficiaires_count:
+  beneficiaires_count: 
   mailingliste: mloiseleur@linagora.com
   description: ""
   code_acces: "32569"
   adresse: ""
   image_id: 1
-client_00001:
+client_00001: 
   name: toto
   inactive: false
   id: 1
-  beneficiaires_count: 21
+  beneficiaires_count: 20
   mailingliste: client1@08000linux.com
   description: "\xC3\xA9\xC3\xA9\xC3\xA9\xC3\xA0 @bonjour |\xC2\xAB\xC2\xA0\" "
   code_acces: lenomdemonchien
   adresse: "les champs \xC3\x89lys\xC3\xA9es 95000 Paris"
   image_id: 1
-client_00002:
+client_00002: 
   name: guy
   inactive: false
   id: 2
-  beneficiaires_count:
+  beneficiaires_count: 
   mailingliste: toscadevel@linagora.com
   description: "un gars\xC2\xABsympa\xC2\xBB"
   code_acces: guytarenbois
   adresse: Rue de la paix, Paris
-  image_id:
+  image_id: 

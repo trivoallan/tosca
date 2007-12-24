@@ -1,17 +1,17 @@
----
-phonecall_00001:
-  end: 2007-03-16 22:41:00 +01:00
-  start: 2007-03-16 16:41:00 +01:00
+--- 
+phonecall_00001: 
   ingenieur_id: 1
   demande_id: 0
   id: 1
+  end: 2007-03-16 22:41:00 +01:00
+  start: 2007-03-16 16:41:00 +01:00
   beneficiaire_id: 1
   contrat_id: 3
-phonecall_00002:
-  end: 2007-03-16 16:41:00 +01:00
-  start: 2007-03-16 22:41:00 +01:00
+phonecall_00002: 
   ingenieur_id: 1
   demande_id: 0
   id: 2
+  end: 2007-03-16 16:41:00 +01:00
+  start: 2007-03-16 22:41:00 +01:00
   beneficiaire_id: 1
   contrat_id: 1

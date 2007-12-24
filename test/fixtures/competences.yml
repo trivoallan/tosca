@@ -1,46 +1,43 @@
 --- 
+competence_00003: 
+  name: Java / J2ee
+  id: 3
 competence_00014: 
   name: Gestion
   id: 14
-competence_00003: 
-  name: Java
-  id: 3
-competence_00004: 
-  name: J2ee
-  id: 4
 competence_00015: 
   name: Annuaires
   id: 15
 competence_00005: 
   name: Ruby
   id: 5
-competence_00017: 
-  name: SQL
-  id: 17
 competence_00006: 
   name: Python
   id: 6
-competence_00007: 
-  name: Perl
-  id: 7
+competence_00017: 
+  name: SGBD / SQL
+  id: 17
 competence_00018: 
   name: OpenOffice
   id: 18
-competence_00019: 
-  name: "Syst\xC3\xA8me"
-  id: 19
+competence_00007: 
+  name: Perl
+  id: 7
 competence_00008: 
   name: Php
   id: 8
-competence_00020: 
-  name: "R\xC3\xA9seau"
-  id: 20
+competence_00019: 
+  name: C / C++
+  id: 19
 competence_00021: 
-  name: C#/Mono
+  name: C# / Mono
   id: 21
-competence_00001: 
-  name: C/C++
-  id: 1
+competence_00023: 
+  name: "Admin / Syst\xC3\xA8me"
+  id: 23
+competence_00024: 
+  name: "Admin / R\xC3\xA9seau"
+  id: 24
 competence_00013: 
   name: Web
   id: 13

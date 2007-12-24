@@ -1,7 +1,2 @@
---- 
-join_00000: 
-  demande_id: "2"
-  paquet_id: "2"
-join_00001: 
-  demande_id: "3"
-  paquet_id: "1"
+--- {}
+

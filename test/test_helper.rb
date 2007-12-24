@@ -36,6 +36,9 @@ class Test::Unit::TestCase
       :user_crypt => 'false'
       @controller = controller
   end
+
+  FILES_ROOT = "#{File.expand_path(RAILS_ROOT)}/test/fixtures/files"
+
   def uploaded_file(path, content_type="application/octet-stream", filename=nil)
     filename ||= File.basename(path)
     t = Tempfile.new(filename)
@@ -50,4 +53,8 @@ class Test::Unit::TestCase
   def uploaded_png(path, filename=nil)
     uploaded_file(path, 'image/png', filename)
   end
+  def uploaded_gif(path, filename=nil)
+    uploaded_file(path, 'image/gif', filename)
+  end
+
 end

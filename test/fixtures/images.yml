@@ -1,6 +1,6 @@
 --- 
 image_00001: 
+  logiciel_id: 
   id: 1
-  description: Logo Bull
-  image: logo_bull.gif
-  logiciel_id: NULL
+  description: Logo Linagora
+  image: logo_linagora.gif
