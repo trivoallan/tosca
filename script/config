@@ -31,7 +31,7 @@ options.parse!(ARGV)
 
 models = [ Arch, Conteneur, Etatreversement, Groupe, Ossa, Role, Statut,
            Typecontribution, Typedemande, Typedocument, Typeurl, Competence,
-           Permission, TimeTicket, ]
+           Permission, TimeTicket ]
 files = %w(arches conteneurs etatreversements groupes ossas roles
           permissions statuts typecontributions typedemandes
           typedocuments typeurls competences permissions
@@ -49,7 +49,13 @@ files = %w(arches conteneurs etatreversements groupes ossas roles
 action_name = @action.to_s.capitalize
 if @action == :dump or @action == :dumpall
   if @action == :dumpall
-    models = [ Arch,Beneficiaire,Binaire,Changelog,Client,Commentaire,Competence,Conteneur,Contrat,Contribution,Demande,Dependance,Distributeur,Document,Engagement,Etatreversement,Fichier,Fournisseur,Groupe,Identifiant,Image,Ingenieur,Jourferie,License,Logiciel,Machine,Mainteneur,New,Ossa,Paquet,Permission,Phonecall,Piecejointe,Preference,Role,Severite,Socle,Statut,TimeTicket,Typecontribution,Typedemande,Typedocument,Typeurl ]
+    models = [ Arch,Beneficiaire,Binaire,Changelog,Client,Commentaire,
+	  Competence,Conteneur,Contrat,Contribution,Demande,Dependance,
+	  Distributeur,Document,Engagement,Etatreversement,Fichier,Fournisseur,
+	  Groupe,Image,Ingenieur,Jourferie,License,Logiciel,Machine,Mainteneur,
+	  New,Ossa,Paquet,Permission,Phonecall,Piecejointe,Preference,Role,
+	  Severite,Socle,Statut,TimeTicket,Typecontribution,Typedemande,
+	  Typedocument,Typeurl,User ]
   end
   models.each do |m|
     puts "#{action_name} #{m}..." if $verbose

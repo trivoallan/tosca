@@ -46,7 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   # !!! CONVENTION !!!
   map.resources :accounts,
     :controller => "account",
-    :member => { :devenir => :post },
+    :member => { :become => :post },
     :collection => { :logout => :any, :login => :any },
     :new => { :signup => :any, :multiple_signup => :any }
   map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
@@ -90,7 +90,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :fournisseurs
   map.resources :groupes
   map.resources :ingenieurs
-  map.resources :beneficiaires
   # We cannot have 'image' for singular, coz'
   # image_path is used in ActionView::Helpers of Rails
   map.resources :images, :singular => 'img'

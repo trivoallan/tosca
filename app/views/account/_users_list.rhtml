@@ -29,7 +29,7 @@
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.phone %></td>
      <td><% if beneficiaire and not user.inactive? %>
-           <form action=<%= '"' + devenir_account_path(beneficiaire) + '"' %> method="post">
+           <form action=<%= '"' + become_account_path(beneficiaire) + '"' %> method="post">
            <input name="commit" value=<%= '"' + _('Become') + '"' %> type="submit" /></form>
          <% end %>
      </td>

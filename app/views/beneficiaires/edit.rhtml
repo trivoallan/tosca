@@ -1,8 +1,0 @@
-<h1>Editer un bénéficiaire</h1>
-
-<% form_tag(beneficiaire_path(@beneficiaire), :method => :put) do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to_edit_and_list(@beneficiaire) %>

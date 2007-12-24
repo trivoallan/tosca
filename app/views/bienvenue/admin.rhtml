@@ -6,18 +6,18 @@
 <div class="sommaire show">
   <h3><%= _('Users') %></h3>
   <p><%= _('User management')%></p>
-  <% links = [ 
+  <% links = [
         link_to( _('User list'), accounts_path),
         link_to(_('Add a user'), signup_new_account_path),
         link_to( _('Add user by bundle'), multiple_signup_new_account_path) ] %>
   <%= show_liste(links, _('users'), :title => false) %>
   <p><%= _('Permission management')%></p>
-  <% links = [ 
+  <% links = [
         link_to( _('Permissions'), permissions_path),
         link_to( _('Roles'), roles_path) ] %>
   <%= show_liste(links, _('Permissions'), :title => false) %>
   <p><%= _('Skill management')%></p>
-  <% links = [ 
+  <% links = [
         link_to(_('Engineers'), ingenieurs_path),
         link_to( _('Skills'), competences_path) ] %>
   <%= show_liste(links, _('Skills'), :title => false) %>
@@ -26,9 +26,8 @@
 <div class="sommaire show">
   <h3><%= _('Customers') %></h3>
   <p><%= _('Customer management')%></p>
-  <% links = [ 
+  <% links = [
         link_to( _('Customers'), clients_path),
-        link_to( _('Recipients'), beneficiaires_path), 
         link_to( _('Contracts'), contrats_path)  ] %>
   <%= show_liste(links, _('Customers'), :title => false) %>
 </div>
@@ -37,13 +36,13 @@
  <div class="sommaire show">
    <h3><%= _('Plateform')%></h3>
    <p><%= _('System management')%></p>
-  <% links = [ 
+  <% links = [
         link_to( _('Systems'), socles_path),
         link_to( _('Machines'), machines_path),
         link_to( _('Architectures'), arches_path) ] %>
   <%= show_liste(links, _('Base management'), :title => false) %>
   <p><%= _('Source management')%></p>
-  <% links = [ 
+  <% links = [
          link_to( _('Software list'), logiciels_path),
          link_to( _('Software categorization'), groupes_path),
          link_to( _('Packages'), paquets_path),
@@ -58,4 +57,3 @@
 	<%= show_liste(links, _('Comex report'), :title => false) %>
  </div>
 </td></tr></table>
-

@@ -70,7 +70,7 @@ class AccountController < ApplicationController
   end
 
   # Let an Engineer become a client user
-  def devenir
+  def become
     if @ingenieur
       benef = Beneficiaire.find(params[:id])
       set_sessions(benef.user)
@@ -218,13 +218,6 @@ class AccountController < ApplicationController
     when :get
     end
   end
-
-  # Destroy a user (via object)
-  def destroy
-    User.find(params[:id]).destroy
-    redirect_to_home
-  end
-
 
 private
   # Partial variables used in forms
