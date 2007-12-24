@@ -1,11 +1,11 @@
 class Nom2nameOverall < ActiveRecord::Migration
   TABLES = %w(arches binaires clients communautes competences
               conteneurs contrats contributions dependances
-              distributeurs etatreversements fournisseurs groupes 
-              licenses logiciels mainteneurs paquets roles severites statuts 
+              distributeurs etatreversements groupes
+              licenses logiciels mainteneurs paquets roles severites statuts
               socles supports typecontributions typedemandes
               typedocuments typeurls)
-  
+
   def self.up
     TABLES.each{|t| rename_column t, :nom, :name }
     drop_table 'etapes'

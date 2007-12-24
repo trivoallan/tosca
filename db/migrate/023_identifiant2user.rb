@@ -6,10 +6,10 @@ class Identifiant2user < ActiveRecord::Migration
   }
 
   def self.up
-    begin
-      drop_table(:users) # an error of youth
-    rescue Exception => e
-    end
+    # Two errors of youth. they are rescued because only present on
+    # some old prod databases ;).
+    begin; drop_table(:users); rescue; end
+    begin; drop_table(:fournisseurs); rescue; end
 
     rename_table(:identifiants, :users)
     COLUMNS.each { |key, value|
