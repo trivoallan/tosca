@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gettextlocalize 1.0.0\n"
 "POT-Creation-Date: 2007-08-02 09:31+0200\n"
-"PO-Revision-Date: 2007-08-02 09:59+0200\n"
+"PO-Revision-Date: 2007-12-24 11:23+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -234,7 +234,7 @@ msgstr "%B %e %Y"
 
 #: /home/mloiseleur/workspace/lstm-devel/vendor/plugins/gettextlocalize/lib/gettext_localize_extend.rb:139
 msgid "time|default|%a %b %d %H:%M:%S %Z %Y"
-msgstr "%d %b %b %Y à %H:%M:%S %Z"
+msgstr "%d %b %Y à %H:%M:%S %Z"
 
 #: /home/mloiseleur/workspace/lstm-devel/vendor/plugins/gettextlocalize/lib/gettext_localize_extend.rb:140
 msgid "time|short|%d %b %H:%M"
