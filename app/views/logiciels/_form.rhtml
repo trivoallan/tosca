@@ -15,9 +15,10 @@
 <p><label for="logiciel_referent"><%=_('Base name')%></label><br />
 <%= text_field 'logiciel', 'referent' %></p>
 
-<p><label for="logiciel_licence_id"><%=_('Copyright')%></label><br />
-  <%= select("logiciel", "license_id",
-	@licenses.collect{|l| [ l.name, l.id]}) %></p>
+<p><label for="logiciel_licence_id"><%=_('Copyright')%></label>
+   <%= link_to_new_license %><br />
+   <%= select("logiciel", "license_id",
+	 @licenses.collect{|l| [ l.name, l.id]}) %></p>
 
 <p><label for="logiciel_groupe_id"><%=_('Group')%></label><br />
  <%= select("logiciel", "groupe_id",

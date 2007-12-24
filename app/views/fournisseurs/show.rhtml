@@ -1,8 +1,0 @@
-<% for column in Fournisseur.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @fournisseur.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', edit_fournisseur_path(@fournisseur) %> |
-<%= link_to 'Back', fournisseurs_path %>

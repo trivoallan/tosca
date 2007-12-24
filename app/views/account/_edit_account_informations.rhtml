@@ -6,7 +6,7 @@
 
   if session[:user].ingenieur and session[:user].ingenieur.expert_ossa
     role[:titre] = '<label>' + _('Roles') + '</label>'
-    role[:champ] = hm_radio_button('user', 'role_id', @roles)
+    role[:champ] = hm_radio_button('user', 'role_id', @roles, :size => 3)
 
     inactive[:titre] = '<label>' + _('Inactive') + '</label>'
     inactive[:champ] = check_box(:user, :inactive)

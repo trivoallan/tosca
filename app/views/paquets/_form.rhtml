@@ -31,13 +31,9 @@
            <%= link_to_new_distributeur %></td>
        <td><%= select("paquet", "distributeur_id", @distributeurs.collect{|l| [ l.name, l.id]}) %></td>
      </tr><tr>
-       <td><label for="paquet_mainteneur_id"><%= _('Maintainer')%></label>
+       <td><label for="paquet_mainteneur_id"><%= _('Package author')%></label>
            <%= link_to_new_mainteneur %></td>
        <td><%= select("paquet", "mainteneur_id", @mainteneurs.collect{|l| [ l.name, l.id]}) %></td>
-     </tr><tr>
-       <td><label for="paquet_fournisseur_id"><%= _('Origin')%></label>
-           <%= link_to_new_fournisseur %></td>
-       <td><%= select("paquet", "fournisseur_id", @fournisseurs.collect{|l| [ l.name, l.id]}) %></td>
      </tr><tr>
        <td><label for="paquet_active"><%= _('Supported') + ' ?'%></label></td>
        <td><%= check_box( 'paquet' , 'active')%></td>

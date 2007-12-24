@@ -3,7 +3,7 @@
 #####################################################
 class PaquetsController < ApplicationController
   helper :filters, :logiciels, :binaires, :conteneurs, :distributeurs,
-    :mainteneurs, :fournisseurs
+    :mainteneurs
 
   # auto completion in 2 lines, yeah !
   auto_complete_for :paquet, :name
@@ -36,7 +36,7 @@ class PaquetsController < ApplicationController
   end
 
   def show
-    include =  [ { :logiciel => :groupe }, :fournisseur, :distributeur,
+    include =  [ { :logiciel => :groupe }, :distributeur,
                  { :contrat => :client }, :mainteneur, :conteneur ]
     paquet_id = params[:id]
     @paquet = Paquet.find(paquet_id, :include => include)
@@ -98,7 +98,6 @@ class PaquetsController < ApplicationController
     @conteneurs = Conteneur.find_select
     @distributeurs = Distributeur.find_select
     @mainteneurs = Mainteneur.find_select
-    @fournisseurs = Fournisseur.find_select
     @contrats = Contrat.find(:all, :include => [:client], :conditions => 'clients.inactive = 0')
   end
 

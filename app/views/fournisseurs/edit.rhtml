@@ -1,9 +1,0 @@
-<h1>Editing fournisseur</h1>
-
-<% form_tag fournisseur_path(@fournisseur), :method => :put do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Show', fournisseur_path(@fournisseur) %> |
-<%= link_to_back %>

@@ -7,7 +7,7 @@ class TimeTicket < ActiveRecord::Base
         Lstm.time_in_french_words(time.hours)
     else
       _('Up to %d tickets of %s') %
-        [ max, Lstm.time_in_french_words(hours) ]
+        [ max, Lstm.time_in_french_words(time.hours) ]
     end
   end
 

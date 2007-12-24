@@ -14,8 +14,8 @@ class MoveSupport2contrat < ActiveRecord::Migration
   def self.up
     add_column :contrats, :veille_technologique, :boolean, :default => false
     add_column :contrats, :newsletter, :boolean, :default => false
-    add_column :contrats, :heure_ouverture, :integer, :default => 0, :null => false
-    add_column :contrats, :heure_fermeture, :integer, :default => 0, :null => false
+    add_column :contrats, :heure_ouverture, :integer, :default => 9, :null => false
+    add_column :contrats, :heure_fermeture, :integer, :default => 18, :null => false
     Client.find(:all).each do |client|
       support = client.support
       client.contrats.each { |c|

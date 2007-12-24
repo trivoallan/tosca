@@ -3,7 +3,6 @@
 #####################################################
 class Paquet < ActiveRecord::Base
   belongs_to :logiciel
-  belongs_to :fournisseur
   belongs_to :distributeur
   belongs_to :contrat, :counter_cache => true
   belongs_to :mainteneur, :order => 'name'

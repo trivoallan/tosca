@@ -38,11 +38,18 @@ module FormsHelper
   # objectcollection contient le tableau des objects déjà présents
   # C'est la fonction to_s qui est utilisée pour le label
   # Ex : hm_radio_button( 'user', 'role_id', @roles)
-  def hm_radio_button( object, param, collection )
+  def hm_radio_button( object, param, collection, options = {})
     out = ''
     return out if collection.nil?
+    options_size = options[:size]
+    count = 1
     for data in collection
-      out << radio_button(object, param, data.id) + data.to_s
+      out << radio_button(object, param, data.id)
+      out << "<label for=\"#{object}_#{param}_#{data.id}\">#{data.to_s}</label> "
+      if options_size
+        out << '<br />' if (count % options_size == 0)
+        count += 1
+      end
     end
     out
   end

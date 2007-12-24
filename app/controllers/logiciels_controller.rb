@@ -6,10 +6,10 @@ class LogicielsController < ApplicationController
   before_filter :login_required, :except =>
     [:index,:show,:auto_complete_for_logiciel_name]
 
-  helper :filters, :paquets, :demandes, :competences, :contributions
+  helper :filters, :paquets, :demandes, :competences, :contributions, :licenses
 
-  # auto completion in 2 lines, yeah !
-  auto_complete_for :logiciel, :name
+  # Not used for the moment
+  # auto_complete_for :logiciel, :name
 
   # ajaxified list
   def index
