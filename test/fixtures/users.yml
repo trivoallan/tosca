@@ -1,14 +1,66 @@
 --- 
-user_00001: 
-  name: Admin
+user_00004: 
+  name: Customer
   informations: ""
-  title: Expert Ossa
+  title: the royal
+  role_id: 4
+  inactive: false
+  client: true
+  id: 4
+  phone: "666"
+  password: c921769f9e42e4876d204fcd51ba16124fb8477f
+  login: customer
+  image_id: 
+  email: mloiseleur@linagora.com
+user_00005: 
+  name: Viewer
+  informations: ""
+  title: the powerless
+  role_id: 5
+  inactive: false
+  client: true
+  id: 5
+  phone: "000"
+  password: 8b34fc039696a3815940c5672ba2efaa76ab51ac
+  login: viewer
+  image_id: 
+  email: mloiseleur@linagora.com
+user_00001: 
+  name: admin
+  informations: ""
+  title: "\xC3\xB4 r\xC3\xA9v\xC3\xA9r\xC3\xA9"
   role_id: 1
   inactive: false
   client: false
   id: 1
-  phone: 08000LINUX
+  phone: ""
   password: 47261c32a405a38d54806e4db0e64d1ca9862598
   login: admin
-  image_id: 0
+  image_id: 
+  email: mloiseleur@linagora.com
+user_00002: 
+  name: Manager
+  informations: ""
+  title: the lovely
+  role_id: 2
+  inactive: false
+  client: false
+  id: 2
+  phone: ""
+  password: 9d49c7773645ac6b2e7af68872074517e66c0e47
+  login: manager
+  image_id: 
+  email: mloiseleur@linagora.com
+user_00003: 
+  name: Expert
+  informations: ""
+  title: the handy
+  role_id: 3
+  inactive: false
+  client: false
+  id: 3
+  phone: "69"
+  password: d81674f38d5627bb3580afe45ee79cffafe0b539
+  login: expert
+  image_id: 
   email: mloiseleur@linagora.com

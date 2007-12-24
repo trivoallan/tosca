@@ -1,9 +1,5 @@
 --- 
 ossa_00001: 
-  name: "Ossa Illimit\xC3\xA9"
+  name: "Ossa Illimit\xC3\xA9e"
   max: -1
   id: 1
-ossa_00002: 
-  name: Ossa par composants
-  max: 25
-  id: 2

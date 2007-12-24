@@ -1,11 +1,2 @@
---- 
-fichier_00001: 
-  chemin: ""
-  paquet_id: 0
-  id: 1
-  taille: 0
-fichier_00002: 
-  chemin: ""
-  paquet_id: 0
-  id: 2
-  taille: 0
+--- {}
+

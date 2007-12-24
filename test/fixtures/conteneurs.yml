@@ -6,17 +6,11 @@ conteneur_00002:
   name: deb
   id: 2
 conteneur_00003: 
-  name: hp-ux
+  name: tarball
   id: 3
 conteneur_00004: 
-  name: tarball
+  name: nosrc
   id: 4
 conteneur_00005: 
-  name: CVS
-  id: 5
-conteneur_00006: 
-  name: nosrc
-  id: 6
-conteneur_00007: 
   name: pkg
-  id: 7
+  id: 5

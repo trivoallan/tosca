@@ -1,11 +1,21 @@
 --- 
 license_00001: 
-  name: GPL
-  url: www.gpl.com
+  name: BSD
+  url: http://www.edgewall.com/trac/license.html
   id: 1
-  certifie_osi: false
+  certifie_osi: true
 license_00002: 
-  name: LGPL
-  url: www.lgpl.com
+  name: GPL
+  url: http://www.gnu.org/copyleft/gpl.html
   id: 2
-  certifie_osi: false
+  certifie_osi: true
+license_00003: 
+  name: LGPL
+  url: http://www.gnu.org/copyleft/lgpl.html
+  id: 3
+  certifie_osi: true
+license_00004: 
+  name: MPL
+  url: http://www.mozilla.org/MPL/
+  id: 4
+  certifie_osi: true

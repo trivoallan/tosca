@@ -1,2 +1,37 @@
---- {}
-
+--- 
+join_00002: 
+  ingenieur_id: "3"
+  competence_id: "4"
+  niveau: 
+join_00003: 
+  ingenieur_id: "3"
+  competence_id: "5"
+  niveau: 
+join_00004: 
+  ingenieur_id: "3"
+  competence_id: "8"
+  niveau: 
+join_00005: 
+  ingenieur_id: "3"
+  competence_id: "9"
+  niveau: 
+join_00006: 
+  ingenieur_id: "3"
+  competence_id: "10"
+  niveau: 
+join_00007: 
+  ingenieur_id: "3"
+  competence_id: "12"
+  niveau: 
+join_00008: 
+  ingenieur_id: "3"
+  competence_id: "13"
+  niveau: 
+join_00000: 
+  ingenieur_id: "1"
+  competence_id: "6"
+  niveau: 
+join_00001: 
+  ingenieur_id: "2"
+  competence_id: "6"
+  niveau: 

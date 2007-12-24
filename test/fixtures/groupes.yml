@@ -1,61 +1,55 @@
 --- 
 groupe_00006: 
-  name: "Frameworks de d\xC3\xA9veloppement"
+  name: Infrastructure
   id: 6
 groupe_00017: 
-  name: SIG
+  name: Systeme
   id: 17
 groupe_00018: 
-  name: Portail
+  name: Test
   id: 18
 groupe_00007: 
-  name: "S\xC3\xA9curit\xC3\xA9"
+  name: Langage
   id: 7
 groupe_00008: 
-  name: "Syst\xC3\xA8mes d'exploitation"
+  name: Messagerie
   id: 8
-groupe_00019: 
-  name: SGBD
-  id: 19
-groupe_00020: 
-  name: Serveurs d'applications
-  id: 20
 groupe_00010: 
-  name: Collaboratif
+  name: Publication
   id: 10
 groupe_00009: 
-  name: Serveurs de fichiers
+  name: Portail
   id: 9
 groupe_00011: 
-  name: Supervision
+  name: "R\xC3\xA9seau"
   id: 11
 groupe_00012: 
-  name: Outils de tests
+  name: "S\xC3\xA9curit\xC3\xA9"
   id: 12
 groupe_00001: 
-  name: Publication
+  name: Administration
   id: 1
 groupe_00002: 
-  name: Exploitation
+  name: Bureautique
   id: 2
 groupe_00013: 
-  name: Infrastructure (proxies, annuaires, DNS)
+  name: Serveur
   id: 13
 groupe_00014: 
-  name: "R\xC3\xA9seaux"
+  name: SGBD
   id: 14
 groupe_00003: 
-  name: Messagerie
+  name: Collaboratif
   id: 3
 groupe_00004: 
-  name: Outils et langages
+  name: Exploitation
   id: 4
 groupe_00015: 
-  name: Administration
+  name: SIG
   id: 15
 groupe_00016: 
-  name: Bureautique
+  name: Supervision
   id: 16
 groupe_00005: 
-  name: Serveurs web
+  name: Frameworks
   id: 5

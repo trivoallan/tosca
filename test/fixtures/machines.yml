@@ -1,15 +1,2 @@
---- 
-machine_00001: 
-  virtuelle: true
-  id: 1
-  hote_id: 13
-  description: "Socle du Minefi "
-  socle_id: 1
-  acces: socle2004.ossa (192.168.1.106)
-machine_00002: 
-  virtuelle: true
-  id: 2
-  hote_id: 13
-  description: "Socle du Minefi "
-  socle_id: 1
-  acces: 
+--- {}
+

@@ -1,85 +1,46 @@
 --- 
 contrat_00003: 
-  heure_ouverture: 0
+  heure_ouverture: 8
   astreinte: false
   rule_id: 2
-  chrono: 0
-  heure_fermeture: 0
-  client_id: 2
+  mailinglist: mloiseleur@linagora.com
+  chrono: 71
+  heure_fermeture: 18
+  client_id: 1
   id: 3
   veille_technologique: false
-  ouverture: 2006-11-25 12:20:00 +01:00
-  rule_type: Ossa
-  newsletter: false
-  cloture: 2007-11-12 14:23:00 +01:00
-  paquets_count: 
-contrat_00004: 
-  heure_ouverture: 0
-  astreinte: false
-  rule_id: 1
-  chrono: 4789
-  heure_fermeture: 0
-  client_id: 2
-  id: 4
-  veille_technologique: false
-  ouverture: 2006-11-25 12:20:00 +01:00
+  ouverture: 2007-12-24 00:01:00 +01:00
   rule_type: TimeTicket
-  newsletter: false
-  cloture: 2007-11-12 14:23:00 +01:00
-  paquets_count: 0
-contrat_00006: 
-  heure_ouverture: 0
-  astreinte: true
-  rule_id: 2
-  chrono: 0
-  heure_fermeture: 0
-  client_id: 2
-  id: 6
-  veille_technologique: false
-  ouverture: 2006-11-25 12:20:00 +01:00
-  rule_type: Ossa
-  newsletter: false
-  cloture: 2007-11-12 14:23:00 +01:00
-  paquets_count: 
-contrat_00010: 
-  heure_ouverture: 0
-  astreinte: false
-  rule_id: 2
-  chrono: 0
-  heure_fermeture: 0
-  client_id: 9
-  id: 10
-  veille_technologique: false
-  ouverture: 2007-11-02 11:40:00 +01:00
-  rule_type: TimeTicket
-  newsletter: false
-  cloture: 2012-11-02 11:40:00 +01:00
+  newsletter: true
+  cloture: 2012-12-24 00:00:00 +01:00
   paquets_count: 
 contrat_00001: 
-  heure_ouverture: 0
+  heure_ouverture: 9
   astreinte: false
   rule_id: 1
-  chrono: 34565
-  heure_fermeture: 0
+  mailinglist: mloiseleur@linagora.com
+  chrono: 69
+  heure_fermeture: 18
   client_id: 1
   id: 1
-  veille_technologique: false
-  ouverture: 2005-10-26 10:20:00 +02:00
+  veille_technologique: true
+  ouverture: 2007-12-24 00:00:00 +01:00
   rule_type: Ossa
-  newsletter: false
-  cloture: 2008-10-27 10:20:00 +01:00
-  paquets_count: 0
+  newsletter: true
+  cloture: 2012-12-24 00:00:00 +01:00
+  paquets_count: 
 contrat_00002: 
-  heure_ouverture: 0
+  heure_ouverture: 7
   astreinte: false
   rule_id: 1
-  chrono: 0
-  heure_fermeture: 0
-  client_id: 4
+  mailinglist: mloiseleur@linagora.com
+  chrono: 70
+  heure_fermeture: 20
+  client_id: 1
   id: 2
-  veille_technologique: false
-  ouverture: 2006-11-25 12:20:00 +01:00
-  rule_type: Ossa
-  newsletter: false
-  cloture: 2007-11-12 14:23:00 +01:00
-  paquets_count: 0
+  veille_technologique: true
+  ouverture: 2007-12-24 00:00:00 +01:00
+  rule_type: TimeTicket
+  newsletter: true
+  cloture: 2012-12-24 00:00:00 +01:00
+  paquets_count: 

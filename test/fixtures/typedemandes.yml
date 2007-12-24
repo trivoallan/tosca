@@ -5,15 +5,18 @@ typedemande_00001:
 typedemande_00002: 
   name: Anomalie
   id: 2
-typedemande_00005: 
+typedemande_00003: 
   name: "\xC3\x89volution"
+  id: 3
+typedemande_00004: 
+  name: Monitorat
+  id: 4
+typedemande_00005: 
+  name: Intervention
   id: 5
 typedemande_00006: 
-  name: Monitorat
+  name: "\xC3\x89tude"
   id: 6
 typedemande_00007: 
-  name: Intervention
+  name: Livraison
   id: 7
-typedemande_00008: 
-  name: "\xC3\x89tude"
-  id: 8

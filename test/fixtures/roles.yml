@@ -1,17 +1,21 @@
 --- 
 role_00001: 
   name: admin
-  info: "R\xC3\xA9serv\xC3\xA9s aux priviligi\xC3\xA9s ;)"
+  info: One role to rule'em all
   id: 1
 role_00002: 
-  name: client
-  info: "R\xC3\xB4les pour les b\xC3\xA9n\xC3\xA9ficiaires de l'OSSA"
+  name: manager
+  info: One role for those who have the power and the knowledge
   id: 2
 role_00003: 
-  name: presta
-  info: "R\xC3\xB4le pour les prestataires de Linagora"
+  name: expert
+  info: One role for those who have the knowledge
   id: 3
 role_00004: 
-  name: ossa
-  info: "R\xC3\xB4le parfait pour les ing\xC3\xA9nieurs de l'OSSA"
+  name: customer
+  info: One role for the customer
   id: 4
+role_00005: 
+  name: viewer
+  info: One role with read-only customer
+  id: 5

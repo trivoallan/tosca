@@ -1,11 +1,11 @@
 --- 
 time_ticket_00001: 
-  name: Contrat Silver
+  name: Support Gold
   time: 0.25
-  max: 20
+  max: 160
   id: 1
 time_ticket_00002: 
-  name: Contrat Gold
-  time: 0.5
-  max: 25
+  name: Support Silver
+  time: 0.25
+  max: 80
   id: 2
