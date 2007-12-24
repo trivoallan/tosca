@@ -14,7 +14,7 @@ class ImagesControllerTest < Test::Unit::TestCase
     @controller = ImagesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    login 'bob', 'test'
+    login 'admin', 'admin'
   end
 
   def test_index
@@ -46,11 +46,12 @@ class ImagesControllerTest < Test::Unit::TestCase
   def test_create
     num_images = Image.count
 
-    post :create, :image => { 
-      :image => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/logo_linagora.gif")}
+    post :create, { :image => {
+        :image => fixture_file_upload('/files/logo_linagora.gif', 'image/gif')},
+      :html => { :multipart => true }}
 
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'show'
 
     assert_equal num_images + 1, Image.count
   end
