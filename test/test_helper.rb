@@ -61,7 +61,7 @@ class Test::Unit::TestCase
   def check_ids(ids, klass)
     assert ids.is_a?(Array)
     ids.each { |i|
-      assert i.is_a?(Integer)
+      assert_kind_of Integer, i
       assert klass.find(i)
     }
   end

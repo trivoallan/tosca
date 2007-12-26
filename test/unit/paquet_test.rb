@@ -13,11 +13,13 @@ class PaquetTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    paquets(:paquet_00001).destroy
-    assert Binaire.find_all_by_paquet_id().empty?
-    assert Fichier.find_all_by_paquet_id().empty?
-    assert Changelog.find_all_by_paquet_id().empty?
-    assert Dependance.find_all_by_paquet_id().empty?
+    Paquet.find(:all).each { |p|
+      p.destroy
+      assert Binaire.find_all_by_paquet_id(p.id).empty?
+      assert Fichier.find_all_by_paquet_id(p.id).empty?
+      assert Changelog.find_all_by_paquet_id(p.id).empty?
+      assert Dependance.find_all_by_paquet_id(p.id).empty?
+    }
   end
 
 =begin

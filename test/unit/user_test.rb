@@ -6,7 +6,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class UserTest < Test::Unit::TestCase
   self.use_instantiated_fixtures  = true
 
-  fixtures :users, :clients, :roles
+  fixtures :users, :clients, :roles, :permissions, :permissions_roles
 
   def test_to_strings
     check_strings User

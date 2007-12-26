@@ -5,7 +5,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
   fixtures :clients, :images, :severites, :beneficiaires, :users, :contrats,
-    :contributions, :logiciels
+    :contributions, :logiciels, :ossas, :time_tickets
 
   def test_to_strings
     check_strings Client
