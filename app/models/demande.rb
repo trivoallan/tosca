@@ -37,6 +37,7 @@ class Demande < ActiveRecord::Base
       record.errors.add _('The client of this contract is not consistant with the client of this recipient.')
     end
   end
+
   #versioning, qui s'occupe de la table demandes_versions
   # acts_as_versioned
   # has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy

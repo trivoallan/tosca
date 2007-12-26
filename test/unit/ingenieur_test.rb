@@ -11,16 +11,15 @@ class IngenieurTest < Test::Unit::TestCase
   end
 
   def test_find_select_by_contrat_id
-    ids = ingenieurs(:ingenieur_00001).find_select_by_contrat_id
-    ids.each { |i|
-      inge =  Ingenieur.find(i.id)
-      assert inge
-      assert_equal inge.name, i.name
+    Contrat.find(:all).each { |c|
+      Ingenieur.find_select_by_contrat_id(c.id).each { |i|
+        assert_equal i, Ingenieur.find(i.id)
+      }
     }
   end
 
 =begin
-  Deprecated
+  TODO : Deprecated
   def test_find_ossa
     i = Ingenieur.find 1,2,3
     assert_equal Ingenieur.find_ossa(:all), i
