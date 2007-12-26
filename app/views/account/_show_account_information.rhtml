@@ -18,10 +18,10 @@
   </tr><tr>
     <th><%= _('User|Role') %></th>
     <td><%= @user.role.name %></td>
-  </tr><tr>
-    <td colspan="2"><fieldset>
-     <legend><%= _('User|Informations')%></legend><%= @user.informations %>
-    </fieldset></td>
   </tr>
+   <% unless @user.informations.blank? %>
+    <tr><td colspan="2"><fieldset>
+     <legend><%=_('User|Informations')%></legend><%= @user.informations %>
+    </fieldset></td></tr>
+   <% end %>
 </table>
-
