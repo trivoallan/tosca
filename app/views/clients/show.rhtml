@@ -1,22 +1,14 @@
-<h1><%= link_to_edit edit_client_path(@client)%> <%= @client.name %></h1>
+<h1><%= (@client.image ? logo_client(@client) : @client.name) %>
+  <%= link_to_edit edit_client_path(@client)%> </h1>
 
 <table><tr valign="top"><td>
 
 <table class="show">
 
-
-
 <% for column in Client.content_columns %>
 <tr>
   <td><b><%= _(column.human_name) %>:</b></td>
   <td><%= @client.send(column.name) %></td>
-</tr>
-<% end %>
-
-<% if @ingenieur %>
-<tr>
-  <td><b><%= _("Inactive") %></b> :</td>
-  <td><%= (@client.inactive ? _("Yes") : _("No")) %></td>
 </tr>
 <% end %>
 
@@ -61,10 +53,12 @@
     result << pluralize(s.binaires.count, _("binary"))
  } %>
 
+<% unless @client.demandes.empty? %>
 <div class="long_bloc_scroll">
 <%= show_liste(@client.demandes, _('request')) {|d|
   link_to_demande(d) } %>
 </div>
+<% end %>
 
 </td></tr></table>
 

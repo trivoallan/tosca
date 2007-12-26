@@ -2,14 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Arch < ActiveRecord::Base
-  has_many :paquets
+  has_many :binaires
 
-
-  def to_s
-    if id == 6
-      '<b>src</b>'
-    else
-      name
-    end
-  end
+  validates_presence_of :name
 end

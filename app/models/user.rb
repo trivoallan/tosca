@@ -4,6 +4,9 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  # Small utils for inactive, located in /lib/inactive_record.rb
+  include InactiveRecord
+
   acts_as_reportable
   belongs_to :image
   has_many :piecejointes
@@ -34,8 +37,10 @@ class User < ActiveRecord::Base
     self.password = User.sha1(pass)
   end
 
+  # TODO : this formatting method has to be in an helper, a lib or a plugin.
+  # /!\ but NOT here /!\
   before_save do |record|
-      ### NUMBERS #########################################################
+    ### NUMBERS #########################################################
     number = record.phone.to_s
     number.upcase!
     if number =~ /\d{10}/ #0140506070
@@ -53,19 +58,19 @@ class User < ActiveRecord::Base
   # not have the "pwd" prefix ... TODO : find a pretty way ?
   # TODO : check if gettext is an answer ?
   def validate
-    errors.add_to_base(_("Password missing")) if password.blank?
+    errors.add(:pwd, _("Password missing")) if password.blank?
     if pwd != pwd_confirmation
-      errors.add_to_base(_('Password is different from its confirmation'))
+      errors.add(:pwd_confirmation, _('Password is different from its confirmation'))
     end
     unless pwd.blank?
       if pwd.length > 40
-        errors.add_to_base(_('Your password is too long (max. 20)'))
+        errors.add(:pwd, _('Your password is too long (max. 20)'))
       elsif pwd.length < 5
-        errors.add_to_base(_('Your password is too short (min. 5)'))
+        errors.add(:pwd, _('Your password is too short (min. 5)'))
       end
     end
     if pwd.blank? and self.password.blank?
-      errors.add_to_base(_('You must have specify a password.'))
+      errors.add(:pwd, _('You must have specify a password.'))
     end
   end
 
@@ -116,17 +121,12 @@ class User < ActiveRecord::Base
   # See also http://api.rubyonrails.com/classes/ActiveSupport/CachingTools/HashCaching.html#M000319 for a complete overview
   def permission_strings
     return @permissions if @permissions
-    @permissions = []
-    self.role.permissions.each{|p| @permissions << Regexp.new(p.name) }
+    @permissions = self.role.permissions.collect{|p| Regexp.new(p.name) }
     @permissions
   end
 
   def name
     strike(:name)
-  end
-
-  def login
-    strike(:login)
   end
 
   private
@@ -143,9 +143,4 @@ class User < ActiveRecord::Base
     role.name if role
   end
 
-  def strike(attribute)
-    value = read_attribute(attribute)
-    return "<strike>#{value}</strike>" if inactive?
-    value
-  end
 end

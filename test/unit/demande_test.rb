@@ -7,9 +7,13 @@ class DemandeTest < Test::Unit::TestCase
   fixtures :demandes, :typedemandes, :severites, :statuts,
     :beneficiaires, :clients, :users, :paquets
 
+  def test_to_strings
+    check_strings Demande, :resume, :description
+  end
+
   def test_presence_of_attributes
     request = Demande.new
-    assert !request.save
+    assert request.errors.on(:resume)
 
     #length of the resume : 3..60
     request.resume = 'gg'
@@ -20,15 +24,19 @@ class DemandeTest < Test::Unit::TestCase
 
     # must have a recipient
     assert !request.save
+    assert request.errors.on(:beneficiaire)
     request.beneficiaire = Beneficiaire.find 1
     # must have a description
     assert !request.save
+    assert request.errors.on(:description)
     request.description = 'hello request'
     # must have a status and a severity != 0
     assert !request.save
+    assert request.errors.on(:statut, :severite)
     request.statut = Statut.find 1
     request.severite = Severite.find 1
     # must have a contrat_id
+    assert request.errors.on(:contrat)
     assert !request.save
     request.contrat = Contrat.find 1
 
@@ -47,32 +55,22 @@ class DemandeTest < Test::Unit::TestCase
     assert_equal c.ingenieur, request.ingenieur
   end
 
-  def test_to_param
-    r = Demande.find 1
-    assert_equal r.to_param, '1-Patch-Binaire'
-  end
-
-  def test_to_s
-    r = Demande.find 1
-    assert !r.to_s.blank?
-  end
-  def test_created_and_updated_on_formatted
-    r = Demande.find 1
-    assert_equal r.updated_on_formatted, '12.07.2007 14:21'
-    assert_equal r.created_on_formatted, '21.09.2006 08:19'
-  end
+=begin
+  TODO : rework with rule contract model
   def test_client
     r = Demande.find 1,2
     c = Client.find 1
     assert_equal r[0].client, c
     assert_equal r[1].client, c
   end
+
   def test_respect_contournement_and_correction
     r = Demande.find 3
     c = Contrat.find 2
     assert_kind_of String, r.respect_contournement(c.id)
     assert_kind_of String, r.respect_correction(c.id)
   end
+
   # No test for affiche_temps_ecoule and affiche_temps_correction
   # because the display of the time may change
   def test_temps_correction
@@ -98,5 +96,6 @@ class DemandeTest < Test::Unit::TestCase
     r = Demande.find 3
     assert r.affiche_temps_ecoule
   end
+=end
 
 end

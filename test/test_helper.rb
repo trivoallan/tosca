@@ -66,4 +66,18 @@ class Test::Unit::TestCase
     }
   end
 
+
+  StringMethods = [ :to_s, :name, :to_param, :name_clean,
+                    :updated_on_formatted, :created_on_formatted ]
+  def check_strings(klass, *methods)
+    klass.find(:all).each { |o|
+      StringMethods.each { |m|
+        assert !o.send(m).blank? if o.respond_to? m
+      }
+      methods.each {|m|
+        assert !o.send(m).blank?
+      }
+    }
+  end
+
 end

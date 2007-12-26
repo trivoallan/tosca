@@ -6,8 +6,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class DependanceTest < Test::Unit::TestCase
   fixtures :dependances
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_strings
+    check_strings Dependance
   end
 end

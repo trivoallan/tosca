@@ -14,6 +14,15 @@ class Contrat < ActiveRecord::Base
   belongs_to :rule, :polymorphic => true
   validates_presence_of :client, :rule, :mailinglist
   validates_length_of :mailinglist, :in => 3..50
+  validates_numericality_of :heure_ouverture, :heure_fermeture,
+    :only_integer => true
+  validates_inclusion_of :heure_ouverture, :heure_fermeture, :in => 0..24
+
+  validate :must_open_before_close
+
+  def must_open_before_close
+    errors.add_to_base("The schedules of this contract are invalid.") unless heure_ouverture < heure_fermeture
+  end
 
   Rules = [ 'TimeTicket', 'Ossa' ]
 
@@ -76,10 +85,6 @@ class Contrat < ActiveRecord::Base
   INCLUDE = [:client]
   ORDER = 'clients.name ASC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
-
-  def to_s
-    name
-  end
 
   def name
     "#{client.name} - #{rule.name}"

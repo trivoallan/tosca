@@ -4,9 +4,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SocleTest < Test::Unit::TestCase
-  fixtures :socles
+  fixtures :socles, :clients, :clients_socles
 
-  def test_to_s
-    assert_equal Socle.find(1).to_s, 'dgi2004-1.32'
+  def test_to_strings
+    check_strings Socle
   end
+
 end

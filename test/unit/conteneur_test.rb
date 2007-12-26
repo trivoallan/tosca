@@ -6,8 +6,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class ConteneurTest < Test::Unit::TestCase
   fixtures :conteneurs
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_strings
+    check_strings Conteneur
   end
 end

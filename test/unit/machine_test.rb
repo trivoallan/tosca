@@ -4,12 +4,17 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class MachineTest < Test::Unit::TestCase
-  fixtures :machines
+  fixtures :machines, :socles
 
-  def test_to_s
-    m = Machine.find 1
-    m_without_acces = Machine.find 2
-    assert_equal m.to_s, 'socle2004.ossa (192.168.1.106)'
-    assert_equal m_without_acces.to_s, '-'
+  def test_to_strings
+    check_strings Machine
   end
+
+  def test_destroy
+    Machine.find(:all).each { |m|
+      m.destroy
+      assert Socle.find_all_by_machine_id(m.id).empty?
+    }
+  end
+
 end

@@ -6,6 +6,10 @@ class AccountController < ApplicationController
   # Pour l'import de plusieurs utilisateurs
   require 'fastercsv'
 
+  # No clear text password in the log.
+  # See http://api.rubyonrails.org/classes/ActionController/Base.html#M000441
+  filter_parameter_logging :password
+
   helper :filters, :ingenieurs, :beneficiaires, :roles, :export
 
   before_filter :login_required, :except => [:login,:logout]

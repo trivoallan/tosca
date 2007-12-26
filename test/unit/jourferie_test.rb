@@ -6,6 +6,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 class JourferieTest < Test::Unit::TestCase
   fixtures :jourferies
 
+  def test_to_strings
+    check_strings Jourferie, :jour_formatted
+  end
+
   # Replace this with your real tests.
   def test_jour_formatted
     christmas= Jourferie.find 1

@@ -45,6 +45,8 @@ module ActionController::Routing
       # url generation
       # This allows too to return a nil url in case of an
       # authenticated user without any right to the page
+      @@login_filter = nil
+
       def define_url_helper(route, name, kind, options)
         selector = url_helper_name(name, kind)
 
@@ -72,18 +74,26 @@ module ActionController::Routing
                 h
               end
             end
-            # return a cached version of the url for the default one
+            @@login_filter ||= ApplicationController.find_filter :login_required
             url_options = #{hash_access_method}(opts)
-            required_perm = '%s/%s' % [ url_options[:controller], url_options[:action] ]
+
             user = session[:user]
-            if user and not user.authorized? required_perm
-              nil
+            if user
+               kontroller_name = url_options[:controller]
+               action =  url_options[:action]
+               kontroller = ('%sController' % kontroller_name.camelize).constantize
+               # This check allows to be DRY :
+               #  One place to know if a permission is needed or not : in the controller.
+               unless kontroller.filter_excluded_from_action?(@@login_filter, action)
+                 required_perm = '%s/%s' % [ kontroller_name, action ]
+                 return nil if not user.authorized?(required_perm)
+               end
+            end
+            # no session, no problem :)
+            if opts.empty?
+              @@#{selector}_cache ||= url_for(url_options)
             else
-              if opts.empty?
-                @@#{selector}_cache ||= url_for(url_options)
-              else
-                url_for(url_options)
-              end
+              url_for(url_options)
             end
           end
         end_eval

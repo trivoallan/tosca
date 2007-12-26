@@ -46,12 +46,9 @@ class Logiciel < ActiveRecord::Base
     "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
-  def to_s
-    name
-  end
-
-  def self.not_found
-    '(Inconnu)'
+  # For ruport
+  def logiciels_name
+    logiciel ? logiciel.name : '-'
   end
 
 end

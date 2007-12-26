@@ -2,10 +2,13 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Client < ActiveRecord::Base
+  # Small utils for inactive, located in /lib/inactive_record.rb
+  include InactiveRecord
+
   belongs_to :image
   has_many :beneficiaires, :dependent => :destroy
   has_many :active_recipients, :class_name => 'Beneficiaire',
-    :conditions => 'beneficiaires.inactive = 0'
+    :conditions => 'beneficiaires.inactive = 0', :dependent => :destroy
   has_many :contrats, :class_name => 'Contrat', :include => [:client],
     :dependent => :destroy, :order => 'clients.name'
   has_many :documents, :dependent => :destroy
@@ -24,12 +27,18 @@ class Client < ActiveRecord::Base
 
   after_save :desactivate_recipients
 
-  # TODO : rework: to slow /!\
-  # better : # UPDATE users SET inactive = ? WHERE ...
   def desactivate_recipients
-    beneficiaires.each do |b|
-      b.user.update_attribute :inactive, inactive?
+    begin
+      connection.begin_db_transaction
+      value = (inactive? ? 1 : 0)
+      connection.update "UPDATE users u, beneficiaires b SET u.inactive = #{value} WHERE b.client_id=#{self.id} AND b.user_id=u.id"
+      connection.commit_db_transaction
+    rescue Exception => e
+      connection.rollback_db_transaction
+      errors.add_to_base(_('Cannot (de)activate associated recipients due to : "%s"') % e.message)
+      return false
     end
+    true
   end
 
   def self.content_columns
@@ -119,18 +128,12 @@ class Client < ActiveRecord::Base
 
   # can return an htmled name if deactivated
   def name
-    value = read_attribute(:name)
-    return "<strike>" << value << "</strike>" if read_attribute(:inactive)
-    value
+    strike(:name)
   end
 
   # will always be clean
   def name_clean
     read_attribute(:name)
-  end
-
-  def to_s
-    name
   end
 
 end

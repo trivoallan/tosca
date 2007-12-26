@@ -56,6 +56,4 @@ class Ingenieur < ActiveRecord::Base
   def name
     user.name
   end
-
-  alias_method :to_s, :name
 end

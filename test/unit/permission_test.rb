@@ -6,9 +6,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PermissionTest < Test::Unit::TestCase
   fixtures :permissions
 
-  def test_to_s
-    p = Permission.find 11
-    assert !p.to_s.blank?
-    assert p.to_s.is_a?(String)
+  def test_to_strings
+    check_strings Permission
   end
 end

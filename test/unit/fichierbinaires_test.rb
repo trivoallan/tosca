@@ -4,10 +4,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class FichierbinairesTest < Test::Unit::TestCase
-  #fixtures :fichierbinaires existe pas pour le moement
+  fixtures :fichierbinaires
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_strings
+    check_strings Fichierbinaire
   end
 end

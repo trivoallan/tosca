@@ -9,18 +9,17 @@ class Phonecall < ActiveRecord::Base
   belongs_to :contrat
 
   validate do |record|
+    # length consistency
     if record.end < record.start
-      record.errors.add _('The beginning of the call has to be before to its end.')
+      record.errors.add_to_base _('The beginning of the call has to be before to its end.')
     end
-  end
-  validates_presence_of :ingenieur
-  validates_presence_of :contrat
-  validate do |record|
+    # recipient consistency
     if record.beneficiaire and
       record.beneficiaire.client_id != record.contrat.client_id
-      record.errors.add _('recipient and client have to correspond.')
+      record.errors.add_to_base _('recipient and client have to correspond.')
     end
   end
+  validates_presence_of :ingenieur, :contrat
 
   # This reduced the scope of Calls to contract_ids in parameters.
   # With this, every Recipient only see what he is concerned of
@@ -47,7 +46,15 @@ class Phonecall < ActiveRecord::Base
 
   def length
     # end is a reserved word for ruby ...
-  self.end - self.start
+    self.end - self.start
+  end
+
+  def name
+    if demande
+      _("Phonecall of %s on '%s'") % [ Lstm.time_in_french_words(length), demande.resume ]
+    else
+      _("Phonecall of %s for %s") % [ ingenieur.name, contrat.name ]
+    end
   end
 
   # For Ruport :

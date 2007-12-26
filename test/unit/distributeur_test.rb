@@ -6,8 +6,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class DistributeurTest < Test::Unit::TestCase
   fixtures :distributeurs
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_strings
+    check_strings Distributeur
   end
 end

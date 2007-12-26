@@ -5,35 +5,26 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PaquetTest < Test::Unit::TestCase
-  fixtures :paquets, :contrats_engagements, :engagements
+  fixtures :paquets, :typedemandes, :severites, :contrats_engagements,
+    :engagements, :fichiers, :changelogs, :dependances, :binaires
 
-  def test_to_param
-    p = Paquet.find 1
-    assert_equal p.to_param, '1-cups'
+  def test_to_strings
+    check_strings Paquet
   end
-  def test_to_s
-    p = Paquet.find 1
-    assert_equal p.to_s, 'rpm cups-1.1.17-13.3.6'
-    p = Paquet.new(
-      :name => "vim-full",
-      :logiciel_id => 2 ,
-      :mainteneur_id => 1,
-      :version => '1.7',
-      :fournisseur_id => 0 ,
-      :contrat_id => 2, # contrat avec guy,
-      :conteneur_id => 2, # contrat avec guy,
-      :release => "13.3.6",
-      :taille => 3528875,
-      :active => 1,
-      :distributeur_id => 1
-    )
-    assert(p.to_s != '')
+
+  def test_destroy
+    paquets(:paquet_00001).destroy
+    assert Binaire.find_all_by_paquet_id().empty?
+    assert Fichier.find_all_by_paquet_id().empty?
+    assert Changelog.find_all_by_paquet_id().empty?
+    assert Dependance.find_all_by_paquet_id().empty?
   end
 
   def test_contournement
     p = Paquet.find 1
     assert_equal p.contournement(2,1), 0.16
   end
+
   def test_correction
     p = Paquet.find 1
     assert_equal p.correction(2,1), 11

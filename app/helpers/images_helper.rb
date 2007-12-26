@@ -19,10 +19,15 @@ module ImagesHelper
   end
 
   def logo_client(client)
-    return '' if client.nil? or client.image.nil?
+    return '' if client.nil? or client.image.blank?
     version = (client.inactive? ? 'inactive_thumb' : 'thumb')
     image_tag(url_for_file_column(client.image, 'image', version),
               image_options(client.name_clean))
+  end
+
+  def software_logo(software)
+    return '' if software.nil? or software.image.blank?
+    image_tag(url_for_file_column(software.image, 'image', 'thumb'))
   end
 
   #TODO Merger avec StaticImage

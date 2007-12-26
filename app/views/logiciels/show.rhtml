@@ -4,9 +4,11 @@
    <%= @logiciel.name %> <%= link_to_edit(@logiciel) %>
 <table><tr>
   <% unless @logiciel.image.blank? %>
-   <td><%= image_tag(url_for_file_column(@logiciel.image, 'image', 'thumb')) %></td>
+    <td><%= software_logo(@logiciel) %></td>
+  <% else %>
+    <td><h2><%= '"%s"' % @logiciel.name %></h2></td>
   <% end %>
-  <td><h2><%= _('Software "%s"') % @logiciel.name %></h2></td>
+
 </tr></table>
 
 <table class="topbox">

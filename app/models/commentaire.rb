@@ -33,6 +33,10 @@ class Commentaire < ActiveRecord::Base
     return "#{self.demande_id}_#{self.id}"
   end
 
+  def name
+    id.to_s
+  end
+
   private
   before_create :check_status
   def check_status

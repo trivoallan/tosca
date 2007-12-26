@@ -6,8 +6,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class TypeurlTest < Test::Unit::TestCase
   fixtures :typeurls
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_strings
+    check_strings Typeurl
   end
+
 end

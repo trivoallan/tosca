@@ -6,8 +6,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class FichierTest < Test::Unit::TestCase
   fixtures :fichiers
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_strings
+    check_strings Fichier
   end
 end

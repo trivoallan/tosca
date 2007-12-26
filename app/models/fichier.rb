@@ -3,4 +3,8 @@
 #####################################################
 class Fichier < ActiveRecord::Base
   belongs_to :paquet, :counter_cache => true
+
+  def name
+    chemin
+  end
 end

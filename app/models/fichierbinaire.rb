@@ -3,4 +3,8 @@
 #####################################################
 class Fichierbinaire < ActiveRecord::Base
   belongs_to :binaire, :counter_cache => true
+
+  def name
+    chemin
+  end
 end

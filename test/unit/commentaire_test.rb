@@ -6,7 +6,11 @@ require File.dirname(__FILE__) + '/../test_helper'
 class CommentaireTest < Test::Unit::TestCase
   fixtures :commentaires, :demandes
 
-  # Replace this with your real tests.
+  def test_to_strings
+    check_strings Commentaire
+  end
+
+=begin
   def test_create_commentaire
     c = Commentaire.new
 
@@ -29,4 +33,6 @@ class CommentaireTest < Test::Unit::TestCase
     c = Commentaire.find 1
     assert_equal c.etat, 'public'
   end
+=end
+
 end

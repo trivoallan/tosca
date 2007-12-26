@@ -18,7 +18,7 @@ class Beneficiaire < ActiveRecord::Base
   validates_presence_of :client
 
   def name
-    (user ? user.name : '')
+    (user ? user.name : '-')
   end
 
   def contrat_ids
@@ -26,5 +26,4 @@ class Beneficiaire < ActiveRecord::Base
       :conditions => ['client_id=?', self.client_id]).collect{|c| c.id}
   end
 
-  alias_method :to_s, :name
 end

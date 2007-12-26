@@ -6,10 +6,10 @@
 <% links = show_pages_links(@document_pages, _('a document'), options) %>
 <%= links %>
 
-<% titres = [_('Document|File'), _('Size'), _('Document|Delivery_on')] %>
-<%= show_table(@documents, Document, titres, :total => false,
-    :content_columns => true) { |document|
+<% titres = [_('Document|Title'), _('Document|File'), _('Size'), _('Document|Delivery_on')] %>
+<%= show_table(@documents, Document, titres, :total => false) { |document|
   result = ''
+  result << "<td>#{document.title}</td>"
   result << "<td>#{link_to_file document, 'file'}</td>"
   result << "<td>#{file_size(document.file)}</td>"
   result << "<td>#{document.date_delivery_on_formatted}</td>"

@@ -9,8 +9,8 @@ class Changelog < ActiveRecord::Base
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} "
   end
 
-  def to_s
-    self.date_modification_formatted + ' : ' << self.nom_modification << '\n' << 
+  def name
+    self.date_modification_formatted + ' : ' << self.nom_modification << '\n' <<
       self.text_modification
   end
 

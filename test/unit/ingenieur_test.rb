@@ -6,6 +6,21 @@ require File.dirname(__FILE__) + '/../test_helper'
 class IngenieurTest < Test::Unit::TestCase
   fixtures :ingenieurs, :contrats, :contrats_ingenieurs
 
+  def test_to_strings
+    check_strings Ingenieur
+  end
+
+  def test_find_select_by_contrat_id
+    ids = ingenieurs(:ingenieur_00001).find_select_by_contrat_id
+    ids.each { |i|
+      inge =  Ingenieur.find(i.id)
+      assert inge
+      assert_equal inge.name, i.name
+    }
+  end
+
+=begin
+  Deprecated
   def test_find_ossa
     i = Ingenieur.find 1,2,3
     assert_equal Ingenieur.find_ossa(:all), i
@@ -14,17 +29,11 @@ class IngenieurTest < Test::Unit::TestCase
     i = Ingenieur.find 4
     assert_equal Ingenieur.find_presta(:all), [i]
   end
-
+=end
   def test_contrat_ids
-    i = Ingenieur.find 1
-    assert_equal i.contrat_ids.sort, [1,2,3,10]
+    check_ids ingenieurs(:ingenieur_00001).contrat_ids, Contrat
   end
   def test_client_ids
-    i = Ingenieur.find 1
-    assert_equal i.client_ids, [1,2,4,9]
-  end
-  def test_name
-    engineer = Ingenieur.find 2
-    assert_equal engineer.name, 'Bob Dufloux'
+    check_ids ingenieurs(:ingenieur_00001).client_ids, Client
   end
 end

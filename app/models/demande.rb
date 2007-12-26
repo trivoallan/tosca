@@ -2,7 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-
 class Demande < ActiveRecord::Base
   belongs_to :typedemande
   belongs_to :logiciel
@@ -100,6 +99,10 @@ class Demande < ActiveRecord::Base
 
   def to_s
     "#{typedemande.name} (#{severite.name}) : #{resume}"
+  end
+
+  def name
+    to_s
   end
 
   def find_last_comment_before(comment_id)

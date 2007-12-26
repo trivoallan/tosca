@@ -25,7 +25,7 @@ class FilesController < ApplicationController
     # mapping path
     map = {:piecejointe => 'file',
            :contribution => 'patch',
-           :document => 'fichier',
+           :document => 'file',
            :binaire => 'archive' }
 
     # TODO : get model name without hash
@@ -36,10 +36,9 @@ class FilesController < ApplicationController
 
     # building path
     root = [ Metadata::PATH_TO_FILES, file_type, map[file_type.intern] ] * '/'
-    root = File.join(RAILS_ROOT, "test", "tmp", "file_column") if RAILS_ENV=='test'
 
     # TODO : FIXME
-    # the gsub on ' ' is needded, because url with '+' is weirdly reinterpreted.
+    # the dirty gsub hack on ' ' is needded, because urls with '+' are weirdly reinterpreted.
     fullpath = [ root, params[:id], params[:filename].gsub(' ','+') ] * '/'
 
     # Attachment has to be restricted.
@@ -52,7 +51,7 @@ class FilesController < ApplicationController
     ensure
       Piecejointe.remove_scope() if scope_active
     end
-
+    puts fullpath
     send_file fullpath
 
   rescue

@@ -4,7 +4,7 @@ class TimeTicketTest < Test::Unit::TestCase
   fixtures :time_tickets
 
   # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_to_strings
+    check_strings TimeTicket
   end
 end

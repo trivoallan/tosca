@@ -3,9 +3,12 @@
 #####################################################
 class Image < ActiveRecord::Base
   belongs_to :logiciel
+  has_one :client
   validates_presence_of :image, :message => _('You must select a file to upload')
 
-  file_column :image, :magick => {
+  # TODO : rename this column into 'file', with the appropriate migration
+  # /!\ do not forget to move Directory during this migration /!\
+  file_column :image, :fix_file_extensions => nil, :magick => {
     :versions => {
       :thumb => {:size => "150x50"},
       :medium => { :size => "640x480" },
@@ -19,5 +22,13 @@ class Image < ActiveRecord::Base
         }
       }
     }
-  }, :root_path => File.join(RAILS_ROOT, "public")
+  }, :root_path => File.expand_path(File.join(RAILS_ROOT, "public"))
+
+  def name
+    if logiciel
+      _("'%s' Logo") % logiciel.name
+    else
+      description
+    end
+  end
 end

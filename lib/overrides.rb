@@ -50,12 +50,13 @@ module ActionView::Helpers::UrlHelper
   # requested. See public_link_to for everyone links.
   def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
     action = nil
-    if html_options and not options.nil?
+    return nil unless options
+    if html_options
       case html_options[:method]
         when :delete
         action = 'destroy'
         when :put
-        action = 'update' 
+        action = 'update'
       end
       html_options = html_options.stringify_keys
       convert_options_to_javascript!(html_options)
@@ -64,10 +65,10 @@ module ActionView::Helpers::UrlHelper
       tag_options = nil
     end
     url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-
     # With the hack on the named route, we have a nil url if authenticated user
     # does not have access to the page. See the hack to define_url_helper
     # for more information
+
     user = session[:user]
     unless url.blank? or user.nil?
       if options.is_a?(Hash) and options.has_key? :action
@@ -77,7 +78,8 @@ module ActionView::Helpers::UrlHelper
       end
       if action and options.is_a? String
         # No '/' here, since we have it with the grepped part of the url.
-        required_perm = '%s%s' % [ url[1..-1][/.*\//], action ]
+        # [/[^\/]*\/\d+$/] => a string without a '/', a '/' and an id
+        required_perm = '%s%s' % [ url.scan(/([^\/]*)\/\d+$/).first.first, action ]
         return nil unless user.authorized?(required_perm)
       end
       "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
@@ -113,6 +115,14 @@ module ActiveRecord
       self.scoped_methods.pop
     end
 
+
+    # By convention, all tosca records have or implements a 'name' method,
+    # used mainly for displaying and selecting them. It's also their default
+    # to_s implementation, even if it's free to specialize it when needed.
+    def to_s
+      name
+    end
+
     # It's the more common select applied, mainly for select box.
     # It returns the names and id, ready to be displayed
     def self.find_select(options = {})
@@ -123,7 +133,7 @@ module ActiveRecord
 
     # Same as #find_select, but returns only active objects
     def self.find_active4select(options = {})
-      options[:select] = 'id, name' 
+      options[:select] = 'id, name'
       table_name = self.table_name
       if options.has_key? :conditions
         options[:conditions] += " AND #{table_name}.inactive = 0"

@@ -4,14 +4,24 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class LogicielTest < Test::Unit::TestCase
-  fixtures :logiciels
+  fixtures :logiciels, :competences, :images
 
-  def test_to_param
-    software = Logiciel.find 1
-    assert_equal software.to_param, '1-ANT'
+  def test_to_strings
+    check_strings Logiciel
   end
-  def test_to_s
-    software = Logiciel.find 1
-    assert_equal software.to_s, 'ANT'
+
+  def test_logo
+    image_file = fixture_file_upload('/files/Logo_OpenOffice.org.png', 'image/svg')
+    logiciel = Logiciel.new(:name => "OOo",
+                            :competence_ids => [4, 8])
+    assert logiciel.save
+
+    images(:image_00002).destroy
+    t = Image.new(:image => image_file, :logiciel => logiciel)
+    t.id = 2
+    t.save
+
+    software = Logiciel.find_by_name('OOo')
+    assert !software.image.image.blank?
   end
 end

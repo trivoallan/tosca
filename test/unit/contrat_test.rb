@@ -4,43 +4,56 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContratTest < Test::Unit::TestCase
-  fixtures :contrats, :contrats_engagements,:engagements,  :clients,
-    :demandes, :demandes_paquets, :paquets, :typedemandes
+  fixtures :contrats, :logiciels, :paquets, :contrats_engagements,:engagements,
+    :demandes
 
-  def test_ouverture_formatted
-    c = Contrat.find 1
-    assert_equal c.ouverture_formatted, '26.10.2005'
+  def test_to_strings
+    check_strings Contrat, :ouverture_formatted, :cloture_formatted
   end
-  def test_cloture_formatted
+
+  def test_dates
     c = Contrat.find 1
-    assert_equal c.cloture_formatted, '27.10.2008'
+    # Schedule check
+    assert c.heure_ouverture <= c.heure_fermeture
+    c.heure_ouverture = -1
+    assert !c.save
+    c.heure_ouverture = 25
+    assert !c.save
+    c.heure_ouverture = 12
+    c.heure_fermeture = 9
+    assert !c.save
+    c.heure_ouverture = 9
+    c.heure_fermeture = 12
+    assert c.save
   end
+
+  def test_invervals
+    c = Contrat.find(:first)
+    interval = c.interval
+    assert_equal c.interval_in_seconds, interval * 1.hour
+  end
+
+  def test_logiciels
+    Contrat.find(:first).logiciels.each{ |l| assert l.is_a?(Logiciel)}
+  end
+
   def test_find_engagement
-    c = Contrat.find 1
-    request = Demande.find 2
-    e = Engagement.find 1
+    c = Contrat.find :first
+    request = Demande.find :first
+    e = Engagement.find :first
     assert_equal c.find_engagement(request), e
   end
+
   def test_demandes
-    c = Contrat.find 3
-    assert_equal c.demandes, [Demande.find(4)]
+    c = Contrat.find :first
+    c.demandes.each{ |d|
+      assert d.is_a?(Demande)
+      assert_equal d.contrat_id, c.id
+    }
   end
+
   def test_typedemandes
-    c = Contrat.find 1
-    assert_equal c.typedemandes, [Typedemande.find(2)]
+    Contrat.find(:first).typedemandes.each{ |td| assert td.is_a?(Typedemande)}
   end
 
-  def test_to_s
-    c = Contrat.find 1
-    c_name_empty = Contrat.new(
-      :client_id => Client.find(:first).id,
-      :ouverture => "2006-11-25 12:20:00",
-      :cloture => "2007-11-12 14:23:00",
-      :rule_type => 'TimeTicket',
-      :rule_id => 1
-    )
-    assert c_name_empty.save
-
-    assert !c.to_s.blank?
-  end
 end
