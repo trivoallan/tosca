@@ -149,7 +149,7 @@ module ActiveRecord
     # since it doesn't require to load Time or strftime in order
     # to display the date
     def updated_on_formatted
-      d = read_attributes[:updated_on]
+      d = read_attribute :updated_on
       "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}" if d
     end
 
@@ -157,7 +157,7 @@ module ActiveRecord
     # since it doesn't require to load Time or strftime in order
     # to display the date
     def created_on_formatted
-      d = read_attributes[:created_on]
+      d = read_attribute :created_on
       "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}" if d
     end
   end
