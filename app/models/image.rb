@@ -25,10 +25,8 @@ class Image < ActiveRecord::Base
   }, :root_path => File.join(RAILS_ROOT, "public")
 
   def name
-    if logiciel
-      _("'%s' Logo") % logiciel.name
-    else
-      description
-    end
+    return _("'%s' Logo") % logiciel.name if logiciel
+    return _("'%s' Logo") % client.name if client
+    description
   end
 end
