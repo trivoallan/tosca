@@ -6,7 +6,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class UserTest < Test::Unit::TestCase
   self.use_instantiated_fixtures  = true
 
-  fixtures :users, :clients
+  fixtures :users, :clients, :roles
 
   def test_to_strings
     check_strings User
@@ -20,10 +20,13 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_create_person
-    u = User.create(:role_id => 1)
+    u = User.create(:role_id => 1, :login => "newu",
+                    :pwd => 'newpass', :pwd_confirmation => 'newpass')
     c = clients(:client_00001)
+    assert u.errors.empty?
 
     u.create_person(c)
+    assert u.beneficiaire
     assert_equal u.beneficiaire.client, c
     assert_equal u.client, true
 

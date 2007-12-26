@@ -10,11 +10,9 @@ class JourferieTest < Test::Unit::TestCase
     check_strings Jourferie, :jour_formatted
   end
 
-  # Replace this with your real tests.
-  def test_jour_formatted
-    christmas= Jourferie.find 1
-    assert_equal christmas.jour_formatted, '25.12.2006'
-  end
+
+=begin
+  TODO
   def test_get_premier_jour_ouvre
     day= Time.now
     christmas = Time.now.beginning_of_year - 7.days
@@ -38,4 +36,5 @@ class JourferieTest < Test::Unit::TestCase
       Jourferie.nb_jours_ouvres( christmas-4.days , christmas+4.days)
 
   end
+=end
 end
