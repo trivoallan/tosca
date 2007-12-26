@@ -79,7 +79,7 @@ module ActionView::Helpers::UrlHelper
       if action and options.is_a? String
         # No '/' here, since we have it with the grepped part of the url.
         # [/[^\/]*\/\d+$/] => a string without a '/', a '/' and an id
-        required_perm = '%s%s' % [ url.scan(/([^\/]*)\/\d+$/).first.first, action ]
+        required_perm = '%s%s' % [ url.scan(/([^\/]*)\/\d+/).first.first, action ]
         return nil unless user.authorized?(required_perm)
       end
       "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
