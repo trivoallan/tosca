@@ -45,7 +45,7 @@ class UrlreversementsController < ApplicationController
 
   def destroy
     url = Urlreversement.find(params[:id])
-    if @ingenieur.role_id != 1 and
+    if @session[:user].role_id != 1 and
         urlreversement.contribution.ingenieur_id != @ingenieur.id
       flash[:warn] = _('You are not the author of this one.')
       redirect_to contribution_path(url.contribution) and return

@@ -54,14 +54,14 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ manager_id ]
-    access = [ [ '^account/(index|new|create|become)', 'Manage account' ],
+    access = [ [ '^account/(index|signup|new|create|become)', 'Manage account' ],
                [ '^binaires/(?!destroy)', 'Manage binaries' ],
                [ '^clients/(?!destroy)', 'Manage clients' ],
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
                [ '^contrats/(?!destroy)', 'Manage contracts' ],
                [ '^demandes/(?!destroy)', 'Manage requests' ],
-               [ '^groupes/(?!destroy)$', 'Manage groups of softwares' ],
-               [ '^ingenieurs/(?!(destroy|new))$',
+               [ '^groupes/(?!destroy)', 'Manage groups of softwares' ],
+               [ '^ingenieurs/(?!(destroy|new))',
                  'List knowledges of human ressources' ],
                [ '^logiciels/(?!destroy)', 'Manage softwares' ],
                [ '^paquets/(?!destroy)', 'Manage packages' ],

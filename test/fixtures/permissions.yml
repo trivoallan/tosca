@@ -44,7 +44,7 @@ permission_00024:
   info: Manage requests
   id: 24
 permission_00025:
-  name: ^groupes/(?!destroy)$
+  name: ^groupes/(?!destroy)
   info: Manage groups of softwares
   id: 25
 permission_00003:
@@ -72,7 +72,7 @@ permission_00004:
   info: Viewing and editing its own account
   id: 4
 permission_00026:
-  name: ^ingenieurs/(?!(destroy|new))$
+  name: ^ingenieurs/(?!(destroy|new))
   info: List knowledges of human ressources
   id: 26
 permission_00027:
@@ -128,7 +128,7 @@ permission_00031:
   info: Read-only access to clients offers
   id: 31
 permission_00019:
-  name: ^account/(index|new|create|become)
+  name: ^account/(index|new|signup|create|become)
   info: Manage account
   id: 19
 permission_00008:
