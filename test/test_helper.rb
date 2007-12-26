@@ -58,6 +58,8 @@ class Test::Unit::TestCase
   end
 
 
+  # Check the validity of the ids with the klass
+  # call it like this : check_ids(@client.contrat_ids, Contrat)
   def check_ids(ids, klass)
     assert ids.is_a?(Array)
     ids.each { |i|
@@ -67,8 +69,13 @@ class Test::Unit::TestCase
   end
 
 
+  # List of all common methods used on an ActiveRecord to display (a part) of it
   StringMethods = [ :to_s, :name, :to_param, :name_clean,
                     :updated_on_formatted, :created_on_formatted ]
+  # Will call all common methods involved with strings on all instance of the klass
+  # You can add specific methods.
+  # Ex : check_strings(Document, :date_delivery_on_formatted)
+  # => will call all StringMethods and the additionnal date_delivery_on_formatted
   def check_strings(klass, *methods)
     klass.find(:all).each { |o|
       StringMethods.each { |m|
