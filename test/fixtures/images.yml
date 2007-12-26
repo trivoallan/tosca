@@ -4,3 +4,8 @@ image_00001:
   id: 1
   description: Logo Linagora
   image: logo_linagora.gif
+image_00002: 
+  logiciel_id: 1
+  id: 2
+  description: Logo OpenOffice
+  image: Logo_OpenOffice.org.png

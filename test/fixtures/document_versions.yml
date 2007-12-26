@@ -1,19 +1,21 @@
 --- 
-document_00001: 
+document_version_00001: 
   created_on: 2007-12-25 18:27:31 +01:00
   title: A Many-to-Many tutorial for Rails
-  updated_on: 2007-12-25 18:27:31 +01:00
+  document_id: 1
+  updated_on: 2007-12-25 18:28:07 +01:00
   client_id: 1
   id: 1
-  version: 1
+  version: 2
   description: Explain how to implements a n-n relationship
   user_id: 1
   typedocument_id: 7
   date_delivery: 2007-12-25 00:00:00 +01:00
   file: has_many_and_belongs_to_many.pdf
-document_00002: 
+document_version_00002: 
   created_on: 2007-12-25 18:31:49 +01:00
   title: Rails files cheatsheet
+  document_id: 2
   updated_on: 2007-12-25 18:31:49 +01:00
   client_id: 1
   id: 2
