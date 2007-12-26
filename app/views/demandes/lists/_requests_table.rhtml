@@ -21,7 +21,7 @@
    <% for demande in @demandes %>
    <tr <%= tr_attributes(demande_path(demande)) %>>
         <td><%= demande.id %></td>
-        <td><%= demande.respond_to?(:logiciels_name) ? demande.logiciels_name : Logiciel.not_found  %></td>
+        <td><%= demande.logiciels_name %></td>
         <td><%= demande.typedemandes_name %></td>
         <td class="demande_<%=demande.statut_id%>"><%= StaticImage::severite(demande) %></td>
        <% if @ingenieur %>
