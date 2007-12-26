@@ -32,6 +32,9 @@
   <% unless @demande.mail_cc.blank? %>
      <li><b><%= _('CC') %>: </b><%= @demande.mail_cc.gsub(',', ',<br />') %></li>
   <% end %>
+  <% if @demande.beneficiaire.user_id != @demande.submitter_id %>
+    <li><b><%=_("Declared by")%>: </b><%= @demande.submitter.name %></li>
+  <% end %>
   <% if @demande.ingenieur %>
     <li><b><%=_("Assigned to")%>: </b><%= @demande.ingenieur.name %></li>
   <% end %>

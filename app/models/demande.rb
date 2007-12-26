@@ -1,14 +1,20 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-
 class Demande < ActiveRecord::Base
   belongs_to :typedemande
   belongs_to :logiciel
   belongs_to :severite
-  belongs_to :beneficiaire
   belongs_to :statut
+  # 3 peoples involved in a request :
+  #  1. The submitter (The one who has filled the request)
+  #  2. The engineer (The one which is currently in charged of this request)
+  #  3. The recipient (The one which has the problem)
+  belongs_to :beneficiaire
   belongs_to :ingenieur
+  belongs_to :submitter, :class_name => 'User',
+    :foreign_key => 'submitter_id'
+
   belongs_to :contrat
   has_and_belongs_to_many :paquets
   # TODO : à voir si c'est inutile. avec le socle, on a dejà la plateforme
