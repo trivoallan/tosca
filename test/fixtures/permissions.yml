@@ -116,7 +116,7 @@ permission_00007:
   info: All kinds of download
   id: 7
 permission_00018:
-  name: ^urlreversements/(?!destroy)
+  name: ^urlreversements/
   info: Manage urls of contributions
   id: 18
 permission_00030:

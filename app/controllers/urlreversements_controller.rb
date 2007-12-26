@@ -5,7 +5,7 @@ class UrlreversementsController < ApplicationController
   helper :logiciels
 
   def index
-    @urlreversement_pages, @urlreversements = paginate :urlreversements, 
+    @urlreversement_pages, @urlreversements = paginate :urlreversements,
     :per_page => 10
   end
 
@@ -23,7 +23,6 @@ class UrlreversementsController < ApplicationController
     if @urlreversement.save
       flash[:notice] = _('Urlreversement was successfully created.')
       redirect_to contribution_path(@urlreversement.contribution_id)
-      
     else
       _form and render :action => 'new'
     end
@@ -45,15 +44,21 @@ class UrlreversementsController < ApplicationController
   end
 
   def destroy
-    Urlreversement.find(params[:id]).destroy
-    redirect_to urlreversements_path
+    url = Urlreversement.find(params[:id])
+    if @ingenieur.role_id != 1 and
+        urlreversement.contribution.ingenieur_id != @ingenieur.id
+      flash[:warn] = _('You has to be an admin or to be the author of this contribution')
+      redirect_to contribution_path(url.contribution)
+    end
+    url.destroy
+    redirect_to contributions_path
   end
 
 private
   def _form
     @contributions = Contribution.find(:all)
     if params[:contribution_id]
-      @urlreversement.contribution_id = params[:contribution_id].to_i 
+      @urlreversement.contribution_id = params[:contribution_id].to_i
     end
   end
 end
