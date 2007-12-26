@@ -26,27 +26,15 @@ class Demande < ActiveRecord::Base
     :foreign_key => "last_comment_id"
 
   # Validation
-  validates_presence_of :resume,
-       :warn => _("You must indicate a summary for your request")
+  validates_presence_of :resume, :contrat, :description, :beneficiaire,
+   :statut, :severite, :warn => _("You must indicate a %s for your request")
   validates_length_of :resume, :within => 5..70
-  validates_presence_of :contrat
   attr_accessor :description
   validates_length_of :description, :minimum => 5
-  validates_presence_of :description,
-    :warn => _('You must indicate a description')
 
   validate do |record|
     if record.contrat.nil? or (record.contrat.client_id != record.beneficiaire.client_id)
       record.errors.add _('The client of this contract is not consistant with the client of this recipient.')
-    end
-    if record.beneficiaire.nil?
-      record.errors.add _('You must indicate a valid recipient')
-    end
-    if record.statut_id == 0
-      record.errors.add _('You must indicate a valid status')
-    end
-    if record.severite_id == 0
-      record.errors.add _('You must indicate a valid severity')
     end
   end
   #versioning, qui s'occupe de la table demandes_versions

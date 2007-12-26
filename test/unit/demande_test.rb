@@ -13,6 +13,7 @@ class DemandeTest < Test::Unit::TestCase
 
   def test_presence_of_attributes
     request = Demande.new
+    assert !request.save
     assert request.errors.on(:resume)
 
     #length of the resume : 3..60
@@ -32,7 +33,8 @@ class DemandeTest < Test::Unit::TestCase
     request.description = 'hello request'
     # must have a status and a severity != 0
     assert !request.save
-    assert request.errors.on(:statut, :severite)
+    assert request.errors.on(:statut)
+    assert request.errors.on(:severite)
     request.statut = Statut.find 1
     request.severite = Severite.find 1
     # must have a contrat_id
