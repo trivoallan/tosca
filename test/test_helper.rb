@@ -57,4 +57,13 @@ class Test::Unit::TestCase
     uploaded_file(path, 'image/gif', filename)
   end
 
+
+  def check_ids(ids, klass)
+    assert ids.is_a?(Array)
+    ids.each { |i|
+      assert i.is_a?(Integer)
+      assert klass.find(i)
+    }
+  end
+
 end
