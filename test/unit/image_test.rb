@@ -10,7 +10,6 @@ class ImageTest < Test::Unit::TestCase
     check_strings Image
   end
 
-  # Replace this with your real tests.
   def test_image
     image_file = fixture_file_upload('/files/logo_linagora.gif', 'image/gif')
     images(:image_00001).destroy

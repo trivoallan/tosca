@@ -22,7 +22,7 @@ class Image < ActiveRecord::Base
         }
       }
     }
-  }, :root_path => File.expand_path(File.join(RAILS_ROOT, "public"))
+  }, :root_path => File.join(RAILS_ROOT, "public")
 
   def name
     if logiciel

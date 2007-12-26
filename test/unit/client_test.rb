@@ -14,16 +14,15 @@ class ClientTest < Test::Unit::TestCase
   def test_logo
     image_file = fixture_file_upload('/files/logo_linagora.gif', 'image/gif')
     client = Client.new(:name => "Linaragots")
-
     assert client.save
 
     images(:image_00001).destroy
-    t = Image.new(:image => image_file, :client => client)
-    t.id = 1
-    t.save
+    i = Image.new(:image => image_file, :client => client)
+    i.id = 1
+    i.save
 
     client = Client.find_by_name('Linaragots')
-    assert !client.image.image.blank?
+    assert_match /logo_linagora.gif$/, client.image.image.to_s
   end
 
   def test_destroy
@@ -56,23 +55,23 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_ingenieurs
-    Client.find(:all).each{|c| c.ingenieurs.each{|i| assert i.is_a?(Ingenieur)}}
+    Client.find(:all).each{|c| c.ingenieurs.each{|i| assert_instance_of(Ingenieur, i)}}
   end
 
   def test_logiciels
-    Client.find(:all).each{|c| c.logiciels.each{|i| assert i.is_a?(Logiciel)}}
+    Client.find(:all).each{|c| c.logiciels.each{|i| assert_instance_of(Logiciel, i)}}
   end
 
   def test_contributions
-    Client.find(:all).each{|c| c.contributions.each{|i| assert i.is_a?(Contribution)}}
+    Client.find(:all).each{|c| c.contributions.each{|i| assert_instance_of(Contribution, i)}}
   end
 
   def test_typedemandes
-    Client.find(:all).each{|c| c.typedemandes.each{|i| assert i.is_a?(Typedemande)}}
+    Client.find(:all).each{|c| c.typedemandes.each{|i| assert_instance_of(Typedemande, i)}}
   end
 
   def test_severites
-    Client.find(:all).each{|c| c.severites.each{|i| assert i.is_a?(Severite)}}
+    Client.find(:all).each{|c| c.severites.each{|i| assert_instance_of(Severite, i)}}
   end
 
   def test_inactive
