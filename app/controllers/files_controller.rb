@@ -51,7 +51,6 @@ class FilesController < ApplicationController
     ensure
       Piecejointe.remove_scope() if scope_active
     end
-    puts fullpath
     send_file fullpath
 
   rescue
