@@ -45,7 +45,7 @@ class ClientTest < Test::Unit::TestCase
   def test_support_distribution
     Client.find(:all).each { |c|
       res = c.support_distribution
-      assert res
+      assert !res.nil?
       assert(res == true || res == false)
 
     }

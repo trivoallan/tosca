@@ -7,8 +7,8 @@ class Client < ActiveRecord::Base
 
   belongs_to :image
   has_many :beneficiaires, :dependent => :destroy
-  has_many :active_recipients, :class_name => 'Beneficiaire',
-    :conditions => 'beneficiaires.inactive = 0', :dependent => :destroy
+  has_many :active_recipients, :class_name => 'Beneficiaire', :include => :user,
+    :conditions => 'users.inactive = 0', :dependent => :destroy
   has_many :contrats, :class_name => 'Contrat', :include => [:client],
     :dependent => :destroy, :order => 'clients.name'
   has_many :documents, :dependent => :destroy
