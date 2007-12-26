@@ -47,8 +47,8 @@ class UrlreversementsController < ApplicationController
     url = Urlreversement.find(params[:id])
     if @ingenieur.role_id != 1 and
         urlreversement.contribution.ingenieur_id != @ingenieur.id
-      flash[:warn] = _('You has to be an admin or to be the author of this contribution')
-      redirect_to contribution_path(url.contribution)
+      flash[:warn] = _('You are not the author of this one.')
+      redirect_to contribution_path(url.contribution) and return
     end
     url.destroy
     redirect_to contributions_path
