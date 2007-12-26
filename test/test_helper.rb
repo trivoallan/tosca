@@ -72,10 +72,19 @@ class Test::Unit::TestCase
   def check_strings(klass, *methods)
     klass.find(:all).each { |o|
       StringMethods.each { |m|
-        assert !o.send(m).blank? if o.respond_to? m
+        begin
+          assert !o.send(m).blank? if o.respond_to? m
+        rescue Exception => e
+          raise Exception.new("check strings failed on #{m} for an #{klass} (#{o.id})")
+        end
       }
       methods.each {|m|
-        assert !o.send(m).blank?
+        begin
+          assert !o.send(m).blank?
+        rescue Exception => e
+          raise Exception.new("check strings failed on #{m} for an #{klass} (#{o.id})")
+        end
+
       }
     }
   end

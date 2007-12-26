@@ -150,7 +150,7 @@ module ActiveRecord
     # to display the date
     def updated_on_formatted
       d = read_attribute :updated_on
-      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}" if d
+      (d ? "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}" : '-')
     end
 
     # this special method allows to gain a lot of performance
@@ -158,7 +158,7 @@ module ActiveRecord
     # to display the date
     def created_on_formatted
       d = read_attribute :created_on
-      "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}" if d
+      (d ? "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}" : '-')
     end
   end
 end
