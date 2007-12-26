@@ -4,7 +4,7 @@ require 'test/unit'
 # <tt>teardown_file_fixtures</tt> to the class Test::Unit::TestCase.
 class Test::Unit::TestCase
   # Returns a +Tempfile+ object as it would have been generated on file upload.
-  # Use this method to create the parameters when emulating form posts with 
+  # Use this method to create the parameters when emulating form posts with
   # file fields.
   #
   # === Example:
@@ -12,7 +12,7 @@ class Test::Unit::TestCase
   #    def test_file_column_post
   #      entry = { :title => 'foo', :file => upload('/tmp/foo.txt')}
   #      post :upload, :entry => entry
-  #  
+  #
   #      # ...
   #    end
   #
@@ -31,14 +31,14 @@ class Test::Unit::TestCase
     end
     uploaded_file(path, content_type, File.basename(path), type)
   end
-  
+
   # Copies the fixture files from "RAILS_ROOT/test/fixtures/file_column" into
   # the temporary storage directory used for testing
   # ("RAILS_ROOT/test/tmp/file_column"). Call this method in your
   # <tt>setup</tt> methods to get the file fixtures (images, for example) into
   # the directory used by file_column in testing.
   #
-  # Note that the files and directories in the "fixtures/file_column" directory 
+  # Note that the files and directories in the "fixtures/file_column" directory
   # must have the same structure as you would expect in your "/public" directory
   # after uploading with FileColumn.
   #
@@ -72,11 +72,11 @@ class Test::Unit::TestCase
   def setup_fixture_files
     tmp_path = File.join(RAILS_ROOT, "test", "tmp", "file_column")
     file_fixtures = Dir.glob File.join(RAILS_ROOT, "test", "fixtures", "file_column", "*")
-    
+
     FileUtils.mkdir_p tmp_path unless File.exists?(tmp_path)
     FileUtils.cp_r file_fixtures, tmp_path
   end
-  
+
   # Removes the directory "RAILS_ROOT/test/tmp/file_column/" so the files
   # copied on test startup are removed. Call this in your unit test's +teardown+
   # method.
@@ -91,9 +91,9 @@ class Test::Unit::TestCase
   def teardown_fixture_files
     FileUtils.rm_rf File.join(RAILS_ROOT, "test", "tmp", "file_column")
   end
-  
+
   private
-  
+
   def uploaded_file(path, content_type, filename, type=:tempfile) # :nodoc:
     if type == :tempfile
       t = Tempfile.new(File.basename(filename))
@@ -113,12 +113,4 @@ class Test::Unit::TestCase
     end
     return t
   end
-end
-
-# If we are running in the "test" environment, we overwrite the default 
-# settings for FileColumn so that files are not uploaded into "/public/"
-# in tests but rather into the directory "/test/tmp/file_column".
-if RAILS_ENV == "test"
-  FileColumn::ClassMethods::DEFAULT_OPTIONS[:root_path] =
-    File.join(RAILS_ROOT, "test", "tmp", "file_column")
 end
