@@ -27,6 +27,7 @@ class DemandeTest < Test::Unit::TestCase
     assert !request.save
     assert request.errors.on(:beneficiaire)
     request.beneficiaire = Beneficiaire.find 1
+    request.submitter = Beneficiaire.find(1).user
     # must have a description
     assert !request.save
     assert request.errors.on(:description)
