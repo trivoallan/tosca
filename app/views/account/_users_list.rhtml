@@ -24,8 +24,8 @@
       <td><%= user.login %></td>
       <td><%= user.name %></td>
       <td><%= user.role.name %></td>
-      <td><center><%= "X" if ingenieur %></center></td>
-      <td><center><%= "X" if beneficiaire %></center></td>
+      <td><%= '<center>X</center>' if ingenieur %></td>
+      <td><%= '<center>X</center>' if beneficiaire %></td>
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.phone %></td>
      <td><% if beneficiaire and not user.inactive? %>
