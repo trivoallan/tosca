@@ -1,76 +1,68 @@
-<% create_account = false %>
-<% # TODO : improve it, c'est encore tres peu lisible
-  #ESSAI : un peu mieux ? un chouilla ;)
-  user, role, user_client, type_client, csv, inactive = {}, {}, {}, {}, {}, {}
-  help = {:affichage_perso => _('Custom display of the request list'), :client => nil }
+<% create_account = (controller.action_name == 'signup') %>
+<table class="show" id="show_account">
+  <% if create_account %>
+  <tr>
+    <th><label><%= _('Customer') %></label></th>
+    <td><%= collection_select(:client, :id, @clients, :id, :name) %></td>
+  </tr><tr>
+    <td colspan="2"><hr /></td>
+  </tr>
+  <% end %>
+  <tr>
+    <th><label for="user_name"><%= _('User|Name') %></label></th>
+    <td><%= text_field :user, :name %></td>
+  </tr><tr>
+    <th><label for="user_title"><%= _('User|Title') %></label></th>
+    <td><%= text_field :user, :title %></td>
+  </tr><tr>
+    <th><label for="user_email"><%= _('User|Email') %></label></th>
+    <td><%= text_field :user, :email %></td>
+  </tr><tr>
+    <th><label for="user_phone"><%= _('User|Phone') %></label></th>
+    <td><%= text_field :user, :phone %></td>
+  </tr>
+  <% unless create_account %>
+   <tr>
+    <th><label for="user_inactive"><%= _('User|Inactive') %></label></th>
+    <td><%= check_box :user, :inactive %></td>
+   </tr>
+  <% end %>
+  <tr>
+    <td colspan="2"><hr /></td>
+  </tr><tr>
+    <th><label for="user_login"><%= _('User|Login') %></label></th>
+    <td><%= text_field :user, :login %></td>
+  </tr>
+  <% unless create_account %>
+   <tr>
+    <th><label for="user_pwd"><%= _('Modify your password') %></label></th>
+    <td><%= text_field :user, :pwd %></td>
+   </tr><tr>
+    <th><label for="user_pwd_confirmation"><%= _('Confirm this last') %></label></th>
+    <td><%= text_field :user, :pwd_confirmation %></td>
+   </tr>
+  <% end %>
+  <tr>
+    <td colspan="2"><hr /></td>
+  </tr><tr>
+    <th><label for="user_role"><%= _('User|Role') %></label></th>
+    <td><%= hm_radio_button(:user, :role_id, @roles, :size => 3) %></td>
+  </tr><tr>
+    <td colspan="2"><fieldset>
+     <legend><%=_('User|Informations')%></legend>
+     <% options = { :rows => 8, :cols => 58 } %>
+     <%= lstm_text_area(_('Informations'), :user, :informations, options) %>
+    </fieldset></td>
+  </tr>
+</table>
 
-  if session[:user].ingenieur and session[:user].ingenieur.expert_ossa
-    role[:titre] = '<label>' + _('Roles') + '</label>'
-    role[:champ] = hm_radio_button('user', 'role_id', @roles, :size => 3)
-
-    inactive[:titre] = '<label>' + _('Inactive') + '</label>'
-    inactive[:champ] = check_box(:user, :inactive)
-  end
-
-  if @ingenieur
-    user[:titre] = '<label for="user_login">' + _('Choose a login') + '</label>'
-    user[:champ] = text_field("user", "login", :size => 16)
-
-    case controller.action_name
-    when 'signup', 'multiple_signup'
-      case controller.action_name
-      when 'signup'
-        help[:client] = _('Is the user a customer of the service ?')
-      when 'multiple_signup'
+<%
+=begin
+ TODO : reactivate multiple_signup, when we have enough ressources
+    when 'multiple_signup'
         help[:client] = _('Are the users customer of the service ?')
         csv[:titre] = _('<label>Text in CSV format (separator : tabulation)</label><br />
                       Full name Title Email Phone Login Password  Informations')
         csv[:champ] = text_area('textarea_csv', nil, :rows => 10, :cols => 58)
-      end
-      type_client[:titre] = '<label>' + _('Customer') + '</label>'
-      type_client[:champ] = collection_select(:client, :id, @clients, :id, :name)
-    end
-  end
+=end
 %>
-
-<% # TODO : faire un lstm_check_field et un lstm_newline
-   fields = [
-     [ type_client[:titre], type_client[:champ] ],
-     [ ( type_client[:titre]  ? '<hr/>' : nil ), nil ]
-   ]
-   unless (controller.action_name == 'multiple_signup')
-      fields.concat([
-       lstm_text_field( _('Full name'), 'user', 'name'),
-       lstm_text_field( _('Title'), 'user', 'title'),
-       lstm_text_field( _('Email'), 'user', 'email'),
-       lstm_text_field( _('Phone'), 'user', 'phone'),
-       [ inactive[:titre], inactive[:champ] ],
-       [ '<hr/>', nil ],
-       [ user[:titre], user[:champ] ],
-       lstm_password_field((create_account ?
-            _('Choose a password') : _('Modify your password')),
-         'user', 'pwd'),
-       lstm_password_field( _('Confirm this last'), 'user',
-          'pwd_confirmation'),
-       [ '<hr/>', nil ]
-      ])
-   end
-
-   fields.concat([
-      [ role[:titre], role[:champ] ]
-   ])
-
-   if (controller.action_name != 'multiple_signup')
-     informations = lstm_text_area(_('Informations'), 'user',
-                       'informations', :rows => 8, :cols => 58)
-     fields.concat([ [informations[0], nil] , [nil, informations[1]]])
-   end
-   fields.concat([
-      [ ( csv[:titre]  ? '<hr/>' : nil ), nil ],
-      [ csv[:titre], nil ],
-      [ nil , csv[:champ] ]
-    ])
-%>
-
-
-<%= show_table_form fields, :class => 'form' %>
