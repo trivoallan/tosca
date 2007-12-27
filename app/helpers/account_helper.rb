@@ -20,10 +20,16 @@ module AccountHelper
     if session[:user].id == @user.id
       result << _('My account')
     else
-      result << _('Account of %s') % @user.name 
+      result << _('Account of %s') % @user.name
     end
     result << " (#{_('User|Inactive')})" if @user.inactive
     result
+  end
+
+  def observe_client_field
+    @@options ||= PagesHelper::SPINNER_OPTIONS.dup.\
+      update(:with => "client_id", :url => 'ajax_place')
+    observe_field "client_id", @@options
   end
 
 end

@@ -53,23 +53,22 @@ class AccountController < ApplicationController
   # NO_JAVASCRIPT = '<br />Javascript n\'est pas activé sur votre navigateur'
   def login
     case request.method
-      when :post
-        user_crypt = 'false'
-        user_crypt = params['user_crypt'] if params.has_key?('user_crypt')
-        if session[:user] = User.authenticate(params['user_login'],
-                                              params['user_password'],
-                                              user_crypt)
-          set_sessions(session[:user])
-          flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") %
-            [ session[:user].title, session[:user].name.gsub(' ', '&nbsp;') ]
-          session[:return_to] ||= request.env['HTTP_REFERER']
-          redirect_back
-        else
-          clear_sessions
-          id = User.find_by_login(params['user_login'])
-          flash.now[:warn] = _("Connexion failure")
-          flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
-        end
+    when :post
+      user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : false
+      if session[:user] = User.authenticate(params['user_login'],
+                                            params['user_password'],
+                                            user_crypt)
+        set_sessions(session[:user])
+        flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") %
+          [ session[:user].title, session[:user].name.gsub(' ', '&nbsp;') ]
+        session[:return_to] ||= request.env['HTTP_REFERER']
+        redirect_back_or_default
+      else
+        clear_sessions
+        id = User.find_by_login(params['user_login'])
+        flash.now[:warn] = _("Connexion failure")
+        flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
+      end
     end
   end
 
@@ -92,6 +91,21 @@ class AccountController < ApplicationController
     @user = User.find(params[:id])
     @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
     _form
+  end
+
+  def ajax_place
+    return render(:nothing => true) unless request.xhr? and params.has_key? :client_id
+    client_id = params[:client_id].to_i
+    if client_id == 0
+      @user_engineer = Ingenieur.new
+    else
+      @user_recipient = Beneficiaire.new(:client_id => client_id)
+      @clients = [@user_recipient.client]
+    end
+  end
+
+  def ajax_contracts
+    return render(:nothing => true) unless request.xhr? and params.has_key? :client_id
   end
 
   def show
@@ -160,6 +174,7 @@ class AccountController < ApplicationController
       end
     when :get
       @user = User.new
+      @user_engineer = Ingenieur.new
     end
   end
 

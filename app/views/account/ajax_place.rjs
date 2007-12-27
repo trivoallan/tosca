@@ -1,0 +1,2 @@
+page.replace_html("place", :partial => "edit_engineer") if @user_engineer
+page.replace_html("place", :partial => "edit_recipient") if @user_recipient

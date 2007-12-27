@@ -1,7 +1,5 @@
 
 <% if @user_engineer %>
-
-<div class="show">
   <h1><b><%= _('Engineer') %></b></h1><br />
 
   <p><label for="ingenieur_chef_de_projet"><%= _('Project manager') + ' ?'%></label>
@@ -10,15 +8,11 @@
   <p><label for="ingenieur_expert_ossa"><%= _('OSSA expert') + ' ?'%></label>
   <%= check_box 'ingenieur', 'expert_ossa' %></p>
 
-  <p>
-   <label for="ingenieur_competences"><%= _('Skills') + ' ?' %></label><br />
-   <%= hbtm_check_box( @user_engineer.competences, @competences, 'ingenieur[competence_ids]', :size => 4) %>
-  </p>
+  <p><label for="ingenieur_competences"><%= _('Skills') + ' ?' %></label><br />
+   <%= hbtm_check_box( @user_engineer.competences, @competences, 'ingenieur[competence_ids]', :size => 4) %></p>
 
-   <label for="ingenieur_contrats"><%= _('Contracts')%></label><br />
+  <label for="ingenieur_contrats"><%= _('Contracts')%></label><br />
    <%= hbtm_check_box( @user_engineer.contrats, @contrats, 'ingenieur[contrat_ids]', :size => 2) %>
 
-
-</div>
-
+   <%= observe_client_field %>
 <% end %>

@@ -88,9 +88,9 @@ class User < ActiveRecord::Base
   SELECT_OPTIONS = { :include => [:user], :order =>
     'users.name ASC', :conditions => 'users.inactive = 0' }
 
-  def self.authenticate(login, pass, crypt = 'false')
+  def self.authenticate(login, pass, crypt = false)
     User.with_exclusive_scope() do
-      pass = sha1(pass) if crypt == 'false'
+      pass = sha1(pass) if crypt == false
       user = User.find(:first, :conditions =>
                               ['login = ? AND password = ?', login, pass])
       return nil if user and user.inactive?
