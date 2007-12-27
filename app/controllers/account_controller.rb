@@ -54,7 +54,7 @@ class AccountController < ApplicationController
   def login
     case request.method
     when :post
-      user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : false
+      user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
       if session[:user] = User.authenticate(params['user_login'],
                                             params['user_password'],
                                             user_crypt)
@@ -62,7 +62,7 @@ class AccountController < ApplicationController
         flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s") %
           [ session[:user].title, session[:user].name.gsub(' ', '&nbsp;') ]
         session[:return_to] ||= request.env['HTTP_REFERER']
-        redirect_back_or_default
+        redirect_back_or_default bienvenue_path
       else
         clear_sessions
         id = User.find_by_login(params['user_login'])
@@ -98,9 +98,10 @@ class AccountController < ApplicationController
     client_id = params[:client_id].to_i
     if client_id == 0
       @user_engineer = Ingenieur.new
+      _form_engineer
     else
       @user_recipient = Beneficiaire.new(:client_id => client_id)
-      @clients = [@user_recipient.client]
+      _form_recipient
     end
   end
 
@@ -143,10 +144,10 @@ class AccountController < ApplicationController
   # Create an account
   # Depending on if is a client, create related beneficiaire or engineer
   def signup
-    _form
     case request.method
     when :post
       @user = User.new(params['user'])
+      @user.pwd, @user.pwd_confirmation = Array.new(%x[#{"echo '#{@user.login}' | mkpasswd -s"}], 2)
       if @user.save
         connection = @user.connection
         begin
@@ -176,6 +177,7 @@ class AccountController < ApplicationController
       @user = User.new
       @user_engineer = Ingenieur.new
     end
+    _form
   end
 
   # Exit gracefully
@@ -189,9 +191,10 @@ class AccountController < ApplicationController
               _('Login'), _('Password'), _('Informations') ]
 
   # Bulk import users
-  # TODO : fonction trop grosse.
-  #  proposal : un chtit module qu'on inclu ?
-  # Needs 'fastercsv'
+  # TODO : this method is too fat, unused, untested and have a lots
+  # of improvements possibility. It's deactivated for now, until we have sometime
+  # to work this cleanly
+=begin
   def multiple_signup
     _form
     @user = User.new
@@ -247,12 +250,24 @@ class AccountController < ApplicationController
     when :get
     end
   end
+=end
 
 private
   # Partial variables used in forms
   def _form
     @roles = Role.find_select
     @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
+    _form_recipient; _form_engineer
+  end
+
+  def _form_recipient
+    return unless @user_recipient and @user_recipient.client
+    client = @user_recipient.client
+    @clients = [client] and @contrats = client.contrats
+  end
+
+  def _form_engineer
+    return unless @user_engineer
     @competences = Competence.find_select
     @contrats = Contrat.find_select(Contrat::OPTIONS)
   end

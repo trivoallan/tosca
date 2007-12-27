@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
 
   def self.authenticate(login, pass, crypt = false)
     User.with_exclusive_scope() do
-      pass = sha1(pass) if crypt == false
+      pass = sha1(pass) if crypt == 'false'
       user = User.find(:first, :conditions =>
                               ['login = ? AND password = ?', login, pass])
       return nil if user and user.inactive?

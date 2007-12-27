@@ -6,6 +6,9 @@
     <%= collection_select(:user_recipient, :client_id, @clients, :id, :name) %>
   </p>
 
+  <label for="beneficiaire_contrats"><%= _('Contracts')%></label><br />
+  <%= hbtm_check_box( @user_recipient.contrats, @contrats, 'beneficiaire[contrat_ids]', :size => 2) %>
+
   <% if false #deactivated for now. %>
   <p><label for="beneficiaire_notifier_subalternes"> <%= _('Notify subalterns') %> </label><br />
   <%= check_box 'beneficiaire', 'notifier_subalternes'  %></p>
