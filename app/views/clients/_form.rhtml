@@ -17,7 +17,8 @@
          <%= check_box :client, :inactive %></p>
       <p><label for="client_code_acces"><%= _("Access code") %></label><br />
          <%= text_field 'client', 'code_acces' %></p>
-      <p><label for="client_image_id"><%= _("Logo") %></label><br />
+      <p><label for="client_image_id"><%= _("Logo") %>
+           <%= link_to_new_client_logo %></label><br />
          <%= collection_select(:client, :image_id, @images, :id, :description) %></p>
       <p><label><%= _("Systems") %></label></p>
          <div class="bloc_scroll" style="height: 17em;">

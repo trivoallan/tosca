@@ -47,5 +47,12 @@ module ImagesHelper
     image_tag('percentimage.png', options)
   end
 
+  # call it like :
+  # <%= link_to_new_paquet(@logiciel) %>
+  def link_to_new_client_logo()
+    options = LinksHelper::NO_HOVER.dup.update(:target => '_blank')
+    link_to(image_create(_('a logo')), new_img_path, options)
+  end
+
 
 end
