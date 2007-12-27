@@ -6,7 +6,7 @@ class Beneficiaire < ActiveRecord::Base
   acts_as_reportable
   belongs_to :user, :dependent => :destroy
   belongs_to :client, :counter_cache => true
-
+  has_and_belongs_to_many :contrats
   has_many :phonecalls
 
   INCLUDE = [:user]
