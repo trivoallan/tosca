@@ -136,8 +136,6 @@ class AccountController < ApplicationController
       if @user.save
         connection = @user.connection
         begin
-          # This is called with low level methods, since we really needs perfs
-          # here and it can easily take 10 minutes, for a package with 1k files.
           connection.begin_db_transaction
 
           client_id = params[:client][:id].to_i
@@ -154,7 +152,7 @@ class AccountController < ApplicationController
           Notifier::deliver_new_user(options, flash)
           connection.commit_db_transaction
 
-          redirect_back_or_default accounts_path
+          redirect_back_or_default account_path(@user)
         rescue Exception => e
           connection.rollback_db_transaction
           flash[:warn] = e.message

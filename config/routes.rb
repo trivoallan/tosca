@@ -67,8 +67,9 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :admin => :any, :select => :get },
     :member => { :list => :get }
   map.resources :demandes,
-    :collection => { :ajax_display_packages => :post,
-      :en_attente => :get },
+    :collection => { :en_attente => :get,
+      :ajax_display_packages => :post,
+      :ajax_display_contracts => :post },
     :member => { :comment=> :any,
       :associer_contribution => :post,
       :delete_contribution => :post,

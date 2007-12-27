@@ -138,6 +138,7 @@ class DemandesController < ApplicationController
 
   def create
     @demande = Demande.new(params[:demande])
+    @demande.submitter = session[:user] # it's the current user
     if @demande.save
       flash[:notice] = _("Your request has been successfully submitted")
       attachment = params[:piecejointe]
@@ -169,9 +170,7 @@ class DemandesController < ApplicationController
     @demande = Demande.new(params[:demande])
 
     begin
-      beneficiaire = Beneficiaire.find @demande.beneficiaire_id
-      contrat = Contrat.find :first, :conditions =>
-        ['contrats.client_id = ?', beneficiaire.client_id ]
+      contrat = Contrat.find @demande[:contrat_id]
       logiciel = Logiciel.find(@demande[:logiciel_id])
     rescue  ActiveRecord::RecordNotFound
       @paquets = []
@@ -183,6 +182,17 @@ class DemandesController < ApplicationController
         :order => 'paquets.name DESC' }
       @paquets = beneficiaire.client.paquets.find(:all, conditions)
     end
+  end
+
+  # Used when submitting new request, in order to select
+  # correct contracts
+  def ajax_display_contracts
+    return render(:nothing => true) unless params.has_key? :recipient_id
+    recipient = Beneficiaire.find(params[:recipient_id].to_i)
+    @contrats = Contrat.find(:all)
+    @contrats = [Contrat.find(1)] if recipient.id == 1
+    @contrats = [Contrat.find(2)] if recipient.id == 2
+    @socles = recipient.client.socles
   end
 
   def edit

@@ -28,13 +28,12 @@
       </select></td>
 </tr>
 <tr>
-  <% if @contrats.size > 1 %>
-   <td><p><label for="demande_contrat_id"><%= _("Concerning ") %></label></p></td>
-   <td><%= select(:demande, :contrat_id,
-                 @contrats.collect{|l| [ l.name, l.id]}) %></td>
-  <% else %>
-    <td colspan="2"><%= hidden_field :demande, :contrat_id %></td>
-  <% end %>
+ <% if @contrats.size > 1 %>
+  <td><p><label for="demande_contrat_id"><%= _("Concerning ") %></label></p></td>
+  <td><%= render :partial => 'contracts' %></td>
+ <% else %>
+   <td colspan="2"><%= hidden_field :demande, :contrat_id %></td>
+ <% end %>
 </tr>
 <% if @ingenieurs %>
 <tr>
@@ -48,8 +47,7 @@
 <% end %>
 <tr>
   <td><p><label for="demande_socle"><%= _("System") %></label></p></td>
-  <td><%= select(:demande, :socle_id,
-                  @socles.collect{|l| [l.name , l.id ]}) %></td>
+  <td><%= render :partial => 'systems'%></td>
 </tr>
 <tr>
   <td><p><label for="demande_logiciel"><%= _("Software") %></label></p></td>
@@ -86,8 +84,7 @@
 </tr>
 </table>
 
-<%= observe_form 'demande_form', :url => ajax_display_packages_demandes_path,
-                                 :with => 'demande_form' %>
+<%# = observe_form 'demande_form', :url => ajax_display_packages_demandes_path, :with => 'demande_form' %>
 
 </td><td valign="top">
 

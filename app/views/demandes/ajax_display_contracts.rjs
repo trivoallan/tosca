@@ -1,0 +1,2 @@
+page.replace_html("contracts", :partial => "contracts")
+page.replace_html("systems", :partial => "systems")
