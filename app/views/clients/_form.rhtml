@@ -9,19 +9,21 @@
          <%= text_area 'client', 'description'  %></p>
     </td>
     <td>
+      <p><label for="client_code_acces"><%= _("Access code") %></label><br />
+         <%= text_field 'client', 'code_acces' %></p>
       <p><label for="client_adresse"><%= _("Address") %></label><br />
          <%= text_area 'client', 'adresse'  %></p>
     </td>
     <td>
-      <p><label for="client_chrono"><%= _("Inactive") %></label><br />
+      <p><label for="client_chrono"><%= _("Inactive") %></label>
          <%= check_box :client, :inactive %></p>
-      <p><label for="client_code_acces"><%= _("Access code") %></label><br />
-         <%= text_field 'client', 'code_acces' %></p>
       <p><label for="client_image_id"><%= _("Logo") %>
            <%= link_to_new_client_logo %></label><br />
          <%= collection_select(:client, :image_id, @images, :id, :description) %></p>
       <p><label><%= _("Systems") %></label></p>
-         <div class="bloc_scroll" style="height: 17em;">
+         <%# as of Firefox 2.x, the px approach is scalable between %>
+         <%# different resolution, when em is not %>
+         <div class="bloc_scroll" style="height: 299px;">
          <%= hbtm_check_box(@client.socles, @socles, 'client[socle_ids]', :size => 1) %>
          </div>
     </td>
