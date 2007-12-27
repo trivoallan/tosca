@@ -51,7 +51,7 @@
     <td colspan="2"><fieldset>
      <legend><%=_('User|Informations')%></legend>
      <% options = { :rows => 8, :cols => 58 } %>
-     <%= lstm_text_area(_('Informations'), :user, :informations, options) %>
+     <%= text_area(:user, :informations, options) %>
     </fieldset></td>
   </tr>
 </table>
