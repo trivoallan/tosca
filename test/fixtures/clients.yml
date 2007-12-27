@@ -1,10 +1,19 @@
---- 
-client_00001: 
+---
+client_00001:
   name: Linagora
   inactive: false
   id: 1
-  beneficiaires_count: 
+  beneficiaires_count:
   description: http://www.linagora.com/<br />&quot;Ce n&#39;est pas le logiciel qui est libre, c&#39;est vous&quot;
   code_acces: ""
   adresse: "Groupe Linagora<br />27, rue de Berri / 75008 PARIS<br />Tel/Fax : 01 58 18 68 28 / 01 58 18 68 29"
   image_id: 1
+client_00002:
+  name: Aliasource
+  inactive: false
+  id: 2
+  beneficiaires_count:
+  description: Editeur de logiciel libre
+  code_acces: "2542"
+  adresse: "<p>Aliasource<br />20, rue Herm\xC3\xA8s, Parc Technologique du Canal 31520 RAMONVILLE SAINT AGNE</p><p><br />T\xC3\xA9l\xC3\xA9phone : +33 (0)5 62 19 24 91<br /></p>"
+  image_id: 3

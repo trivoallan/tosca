@@ -1,28 +1,34 @@
 --- 
 join_00002: 
-  ingenieur_id: "1"
-  contrat_id: "3"
+  ingenieur_id: "2"
+  contrat_id: "2"
 join_00003: 
   ingenieur_id: "2"
-  contrat_id: "1"
-join_00004: 
-  ingenieur_id: "2"
-  contrat_id: "2"
-join_00005: 
-  ingenieur_id: "2"
   contrat_id: "3"
+join_00004: 
+  ingenieur_id: "3"
+  contrat_id: "1"
+join_00005: 
+  ingenieur_id: "3"
+  contrat_id: "2"
 join_00006: 
   ingenieur_id: "3"
-  contrat_id: "1"
-join_00007: 
-  ingenieur_id: "3"
-  contrat_id: "2"
-join_00008: 
-  ingenieur_id: "3"
   contrat_id: "3"
+join_00007: 
+  ingenieur_id: "1"
+  contrat_id: "1"
+join_00008: 
+  ingenieur_id: "1"
+  contrat_id: "2"
+join_00010: 
+  ingenieur_id: "3"
+  contrat_id: "4"
+join_00009: 
+  ingenieur_id: "1"
+  contrat_id: "4"
 join_00000: 
   ingenieur_id: "1"
-  contrat_id: "1"
+  contrat_id: "3"
 join_00001: 
-  ingenieur_id: "1"
-  contrat_id: "2"
+  ingenieur_id: "2"
+  contrat_id: "1"

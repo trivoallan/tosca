@@ -9,3 +9,8 @@ image_00002:
   id: 2
   description: Logo OpenOffice
   image: Logo_OpenOffice.org.png
+image_00003: 
+  logiciel_id: 
+  id: 3
+  description: Logo AliaSource
+  image: logo_aliasource.jpg

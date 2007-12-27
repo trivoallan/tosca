@@ -17,6 +17,13 @@ class ImageTest < Test::Unit::TestCase
     image.id = 1
     assert image.save
 
+    image_file = fixture_file_upload('/files/logo_aliasource.jpg', 'image/jpg')
+    images(:image_00003).destroy
+    image = Image.new(:image => image_file)
+    image.id = 3
+    assert image.save
+
+
     # the file is mandatory
     image.update_attribute(:image, nil)
     assert !image.save
