@@ -20,7 +20,7 @@
       <p><label for="client_image_id"><%= _("Logo") %></label><br />
          <%= collection_select(:client, :image_id, @images, :id, :description) %></p>
       <p><label><%= _("Systems") %></label></p>
-         <div class="bloc_scroll">
+         <div class="bloc_scroll" style="height: 17em;">
          <%= hbtm_check_box(@client.socles, @socles, 'client[socle_ids]', :size => 1) %>
          </div>
     </td>
