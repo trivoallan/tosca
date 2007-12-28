@@ -10,19 +10,22 @@
   <%= check_box 'ingenieur', 'expert_ossa' %></p>
 
   <p><label for="ingenieur_competences"><%= _('Skills') + ' ?' %></label></p>
+  <hr />
    <%= hbtm_check_box( @user_engineer.competences, @competences, 'ingenieur[competence_ids]', :size => 4) %>
+  <hr />
 
   <table width="100%" border="0"><tr>
     <td><label for="user_contrats"><%= _('Contracts')%></label></td>
     <td style="text-align: right;">
        (<%= _('only') %>
-      <%= collection_select(:engineer, :client_id, @engineer_clients,
-      :id, :name) %>
+      <%= collection_select(:user_recipient, :client_id, @clients, :id, :name) %>
         <%= _('contracts') %>)
     </td>
   </tr></table>
-   <div id="engineer_contracts">
+  <hr />
+   <div id="contracts">
      <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 2) %>
    </div>
-  <%= observe_engineer_client_field %>
+  <%= observe_client_field %>
+  <%= observe_client_list %>
 <% end %>

@@ -13,7 +13,7 @@
   > <%= _('Action') %></div>
  <ul class="menu" id="menu_action">
   <li><%= link_to _('Add a user'), signup_new_account_path %></li>
-  <li><%= link_to _('Add several users'), multiple_signup_new_account_path %></li>
+  <% # deactivated TODO : <li><%= link_to _('Add several users'), multiple_signup_new_account_path </li> %>
   <li><%= users_export_link %></li>
  </ul>
 <% end %>

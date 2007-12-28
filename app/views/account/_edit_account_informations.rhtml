@@ -6,8 +6,11 @@
   <COLGROUP align="center" span="2">
   <% if create_account %>
    <tr>
-    <th><label><%= _('Customer') %></label></th>
-    <td><%= collection_select(:client, :id, @clients, :id, :name) %></td>
+    <th><label><%= _('Type') %></label></th>
+    <td>
+      <%= radio_button(:user, :client, 'true') %> <%= _('Recipient') %>
+      <%= radio_button(:user, :client, 'false') %> <%= _('Expert') %>
+    </td>
    </tr>
   <% else %>
    <tr>
@@ -60,7 +63,7 @@
     <td colspan="2"><hr /></td>
    </tr><tr>
     <th><label for="user_role"><%= _('User|Role') %></label></th>
-    <td><%= hm_radio_button(:user, :role_id, @roles, :size => 3) %></td>
+    <td><div id="roles"><%= hm_radio_button(:user, :role_id, @roles, :size => 3) %></div></td>
    </tr>
   <% end %>
   <tr>

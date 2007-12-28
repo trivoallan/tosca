@@ -5,18 +5,25 @@
   <p><label for="beneficiaire_client">Client</label>
     <%= collection_select(:user_recipient, :client_id, @clients, :id, :name) %>
   </p>
+  <hr />
 
-  <label for="user_contrats"><%= _('Contracts')%></label><br />
-  <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 2) %>
+  <div id="contracts">
+    <label for="user_contrats"><%= _('Contracts')%></label><br />
+    <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 2) %>
+  </div>
+
 
   <% if false #deactivated for now. %>
-  <p><label for="beneficiaire_notifier_subalternes"> <%= _('Notify subalterns') %> </label><br />
-  <%= check_box 'beneficiaire', 'notifier_subalternes'  %></p>
+   <p><label for="beneficiaire_notifier_subalternes"> <%= _('Notify subalterns') %> </label><br />
+   <%= check_box 'beneficiaire', 'notifier_subalternes'  %></p>
 
-  <p><label for="beneficiaire_notifier"> <%= _('Notify at') %> </label><br />
-  <%= check_box 'beneficiaire', 'notifier'  %></p>
+   <p><label for="beneficiaire_notifier"> <%= _('Notify at') %> </label><br />
+   <%= check_box 'beneficiaire', 'notifier'  %></p>
 
-  <p><label for="beneficiaire_notifier_cc"> <%= _('Notify cc') %> </label><br />
-  <%= check_box 'beneficiaire', 'notifier_cc'  %></p>
+   <p><label for="beneficiaire_notifier_cc"> <%= _('Notify cc') %> </label><br />
+   <%= check_box 'beneficiaire', 'notifier_cc'  %></p>
   <% end %>
+
+  <%= observe_client_field %>
+  <%= observe_client_list %>
 <% end %>

@@ -21,10 +21,14 @@ module FormsHelper
     length = collection.size
     name_w3c = name.gsub(/[^a-z1-9]+/i, '_')
     for donnee in collection
-      out << "<td class=\"#{cycle('odd', 'even')}\"><input id=\"#{name_w3c}_#{donnee.id}\" type=\"checkbox\" "
-      out << "name=\"#{name}[]\" value=\"#{donnee.id}\" "
-      out << 'checked="checked" ' if objectcollection.include? donnee
-      out << "/><label for=\"#{name_w3c}_#{donnee.id}\">#{donnee}</label></td>"
+      out << "<td class=\"#{cycle('odd', 'even')}\">"
+      out <<  "<label for=\"#{name_w3c}_#{donnee.id}\">"
+      out <<   "<input id=\"#{name_w3c}_#{donnee.id}\" type=\"checkbox\" "
+      out <<      "name=\"#{name}[]\" value=\"#{donnee.id}\" "
+      out <<      'checked="checked" ' if objectcollection.include? donnee
+      out <<   "/>#{donnee}"
+      out <<  "</label>"
+      out << "</td>"
       if options_size
         out << "</tr><tr>" if (count % options_size == 0) and length > count
         count += 1

@@ -98,23 +98,27 @@ class AccountController < ApplicationController
   end
 
   def ajax_place
-    return render(:nothing => true) unless request.xhr? and params.has_key? :client_id
-    client_id = params[:client_id].to_i
-    if client_id == 0
-      @user_engineer = Ingenieur.new
-      _form_engineer
+    return render(:nothing => true) unless request.xhr? and params.has_key? :client
+    if params[:client] == 'true'
+      @user_recipient = Beneficiaire.new
     else
-      @user_recipient = Beneficiaire.new(:client_id => client_id)
-      _form_recipient
+      @user_engineer = Ingenieur.new
     end
     @user = User.new
+    _form
   end
 
   def ajax_contracts
     return render(:nothing => true) unless request.xhr? and params.has_key? :client_id
-    options = Contrat::OPTIONS.dup.update(:conditions =>
-       ['contrats.client_id = ?', params[:client_id].to_i ])
-    @contrats = Contrat.find_select(options)
+    client_id = params[:client_id].to_i
+    options = Contrat::OPTIONS
+    if client_id == 0
+      @contrats = Contrat.find_select(options)
+    else
+      options = options.dup.update(:conditions =>
+        ['contrats.client_id = ?', client_id ])
+      @contrats = Contrat.find_select(options)
+    end
   end
 
   def show
@@ -150,6 +154,7 @@ class AccountController < ApplicationController
 
   # Create an account
   # Depending on if is a client, create related beneficiaire or engineer
+  # TODO : rework : it's too long !
   def signup
     case request.method
     when :post
@@ -160,7 +165,7 @@ class AccountController < ApplicationController
         begin
           connection.begin_db_transaction
 
-          client_id = params[:client][:id].to_i
+          client_id = params[:user_recipient][:client_id].to_i
           client = (client_id != 0 ? Client.find(client_id) : nil)
           flash[:notice] = _("Account successfully created.")
           @user.create_person(client)
@@ -181,7 +186,7 @@ class AccountController < ApplicationController
         end
       end
     when :get
-      @user = User.new
+      @user = User.new(:role_id => 4) # Default : customer
       @user_engineer = Ingenieur.new
     end
     _form
@@ -197,67 +202,6 @@ class AccountController < ApplicationController
   COLUMNS = [ _('Full name'), _('Title'), _('Email'), _('Phone'),
               _('Login'), _('Password'), _('Informations') ]
 
-  # Bulk import users
-  # TODO : this method is too fat, unused, untested and have a lots
-  # of improvements possibility. It's deactivated for now, until we have sometime
-  # to work this cleanly
-=begin
-  def multiple_signup
-    _form
-    @user = User.new
-    case request.method
-    when :post
-      if (params['textarea_csv'].to_s.empty?)
-        flash.now[:warn] = _('Enter data under CSV format please')
-      end
-      COLUMNS.each { |key|
-        unless row.include? key
-          flash.now[:warn] = _('The CSV file is not correct')
-        end
-      }
-      if !params.has_key? :user or params[:user][:client].blank?
-        flash.now[:warn] = _('You have to specify a customer')
-      end
-      if !params.has_key? :user or params[:user][:role_ids].blank?
-        flash.now[:warn] = _('Vous must specify a role')
-      end
-
-      return unless flash.now[:warn] == ''
-      flash[:notice] = ''
-
-      FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"),
-                      { :col_sep => ";", :headers => true }) do |row|
-        user = User.new do |i|
-           logger.debug(row.inspect)
-           i.name = row[_('Full name')].to_s
-           i.title = row[_('Title')].to_s
-           i.email = row[_('Email')].to_s
-           i.phone = row[_('Phone')].to_s
-           i.login = row[_('Login')].to_s
-           i.password = row[_('Password')].to_s
-           i.password_confirmation = row[_('Password')].to_s
-           i.informations = row[_('Informations')].to_s
-           i.client = true
-        end
-        if user.save
-          client = Client.find(params[:client][:id])
-          flash[:notice] += _("The user %s have been successfully created.<br />") % row[_('Full name')]
-          user.create_person(client)
-          options = { :user => user, :controller => self,
-            :password => row[_('Password')].to_s }
-          Notifier::deliver_new_user(options, flash)
-          flash[:notice] += '<br />'
-        else
-          flash.now[:warn] += _('The user %s  has not been created.<br /> ') %
-            user.name
-        end
-
-      end
-      redirect_back_or_default accounts_path
-    when :get
-    end
-  end
-=end
 
 private
   # Partial variables used in forms
@@ -265,27 +209,22 @@ private
     options = { :order => 'id', :conditions =>
       [ 'roles.id >= ? ', session[:user].role_id ] }
     @roles = Role.find_select(options)
-    @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
     _form_recipient; _form_engineer
   end
 
   def _form_recipient
-    return unless @user_recipient and @user_recipient.client
-    client = @user_recipient.client
-    @clients = [client] and @contrats = client.contrats
+    return unless @user_recipient
+    @clients = Client.find_select
+    @contrats = @clients.first.contrats
+    @user.role_id = 4 if @user.new_record?
   end
 
   def _form_engineer
     return unless @user_engineer
     @competences = Competence.find_select
     @contrats = Contrat.find_select(Contrat::OPTIONS)
-    if @client
-      @engineer_clients = @clients.dup
-      @engineer_clients.shift
-    else
-      @engineer_clients =  Client.find_select
-    end
-
+    @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
+    @user.role_id = 3 if @user.new_record?
   end
 
   # Variables utilisé par le panneau de gauche
@@ -350,5 +289,68 @@ private
     @ingenieur = nil
     reset_session
   end
+
+
+    # Bulk import users
+  # TODO : this method is too fat, unused, untested and have a lots
+  # of improvements possibility. It's deactivated for now, until we have sometime
+  # to work this cleanly
+=begin
+  def multiple_signup
+    _form
+    @user = User.new
+    case request.method
+    when :post
+      if (params['textarea_csv'].to_s.empty?)
+        flash.now[:warn] = _('Enter data under CSV format please')
+      end
+      COLUMNS.each { |key|
+        unless row.include? key
+          flash.now[:warn] = _('The CSV file is not correct')
+        end
+      }
+      if !params.has_key? :user or params[:user][:client].blank?
+        flash.now[:warn] = _('You have to specify a customer')
+      end
+      if !params.has_key? :user or params[:user][:role_ids].blank?
+        flash.now[:warn] = _('Vous must specify a role')
+      end
+
+      return unless flash.now[:warn] == ''
+      flash[:notice] = ''
+
+      FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"),
+                      { :col_sep => ";", :headers => true }) do |row|
+        user = User.new do |i|
+           logger.debug(row.inspect)
+           i.name = row[_('Full name')].to_s
+           i.title = row[_('Title')].to_s
+           i.email = row[_('Email')].to_s
+           i.phone = row[_('Phone')].to_s
+           i.login = row[_('Login')].to_s
+           i.password = row[_('Password')].to_s
+           i.password_confirmation = row[_('Password')].to_s
+           i.informations = row[_('Informations')].to_s
+           i.client = true
+        end
+        if user.save
+          client = Client.find(params[:client][:id])
+          flash[:notice] += _("The user %s have been successfully created.<br />") % row[_('Full name')]
+          user.create_person(client)
+          options = { :user => user, :controller => self,
+            :password => row[_('Password')].to_s }
+          Notifier::deliver_new_user(options, flash)
+          flash[:notice] += '<br />'
+        else
+          flash.now[:warn] += _('The user %s  has not been created.<br /> ') %
+            user.name
+        end
+
+      end
+      redirect_back_or_default accounts_path
+    when :get
+    end
+  end
+=end
 
 end
