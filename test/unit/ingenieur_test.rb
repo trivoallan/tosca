@@ -29,10 +29,4 @@ class IngenieurTest < Test::Unit::TestCase
     assert_equal Ingenieur.find_presta(:all), [i]
   end
 =end
-  def test_contrat_ids
-    check_ids ingenieurs(:ingenieur_00001).contrat_ids, Contrat
-  end
-  def test_client_ids
-    check_ids ingenieurs(:ingenieur_00001).client_ids, Client
-  end
 end

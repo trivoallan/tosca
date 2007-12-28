@@ -9,7 +9,7 @@ class Client < ActiveRecord::Base
   has_many :beneficiaires, :dependent => :destroy
   has_many :active_recipients, :class_name => 'Beneficiaire', :include => :user,
     :conditions => 'users.inactive = 0', :dependent => :destroy
-  has_many :contrats, :class_name => 'Contrat', :include => [:client],
+  has_many :contrats, :include => [:client],
     :dependent => :destroy, :order => 'clients.name'
   has_many :documents, :dependent => :destroy
 

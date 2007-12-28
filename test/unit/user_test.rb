@@ -19,12 +19,19 @@ class UserTest < Test::Unit::TestCase
     }
   end
 
-  def test_create_person
-    u = User.create(:role_id => 1, :login => "newu",
-                    :pwd => 'newpass', :pwd_confirmation => 'newpass')
-    c = clients(:client_00001)
-    assert u.errors.empty?
+  def test_generate_password
+    User.find(:all).each{  |u|
+      u.generate_password
+      assert u.save
+    }
+  end
 
+  def test_create_person
+    u = User.new(:role_id => 1, :login => "newu")
+    u.generate_password
+    assert u.save
+
+    c = clients(:client_00001)
     u.create_person(c)
     assert u.beneficiaire
     assert_equal u.beneficiaire.client, c
@@ -46,6 +53,14 @@ class UserTest < Test::Unit::TestCase
     assert manager.authorized?('contributions/edit')
   end
 
+  def test_contrat_ids
+    User.find(:all).each{ |u| check_ids u.contrat_ids, Contrat }
+  end
+
+  def test_client_ids
+    User.find(:all).each{ |u| check_ids u.client_ids, Client }
+  end
+
   def test_passwordchange
     @customer = User.find_by_login('customer')
     password = @customer.password
@@ -58,7 +73,6 @@ class UserTest < Test::Unit::TestCase
     assert @customer.save
     assert_equal @customer, User.authenticate("customer", "customer")
     assert_nil   User.authenticate("customer", "noncustomerpasswd")
-
   end
 
   def test_disallowed_passwords
@@ -99,7 +113,7 @@ class UserTest < Test::Unit::TestCase
   def test_login_collision
     u = User.new
     u.login = "admin"
-    u.pwd = u.pwd_confirmation = "very_secure_password"
+    u.generate_password
     assert !u.save
   end
 end

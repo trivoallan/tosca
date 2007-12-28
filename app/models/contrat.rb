@@ -12,7 +12,6 @@ class Contrat < ActiveRecord::Base
   has_many :binaires, :through => :paquets
   has_many :appels
   belongs_to :rule, :polymorphic => true
-  has_and_belongs_to_many :beneficiaires
 
   validates_presence_of :client, :rule, :mailinglist
   validates_length_of :mailinglist, :in => 3..50

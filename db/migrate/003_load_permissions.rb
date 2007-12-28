@@ -91,6 +91,10 @@ class LoadPermissions < ActiveRecord::Migration
              ]
     add_permission.call(roles, access)
 
+    roles = [ expert_id, customer_id, viewer_id ]
+    access = [ [ '^accounts/index$', 'List accounts' ] ]
+    add_permission.call(roles, access)
+
     roles = [ expert_id, customer_id ]
     access = [ [ '^commentaires/(comment|edit|update)$',
                  'Hability to comment a request' ] ]
