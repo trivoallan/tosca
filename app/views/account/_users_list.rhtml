@@ -1,7 +1,7 @@
 <h1><%= _('User list') %><%= StaticImage::spinner %></h1>
 
-<% links = show_pages_links(@user_pages, _('A new user'),
-                     :url => accounts_path) %>
+<% links = show_pages_links(@user_pages, _('a new user'),
+                             :url => accounts_path) %>
 <%= links %>
 <% manager = session[:user].role_id <= 2 %>
 <table class="show">
@@ -41,7 +41,7 @@
          <% end %>
      </td>
 
-     <% if manager %>
+     <% if manager or session[:user].id == user.id %>
       <td><%= link_to_show user %></td>
       <td><%= link_to_edit user %></td>
      <% end %>

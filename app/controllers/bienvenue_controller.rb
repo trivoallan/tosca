@@ -16,16 +16,9 @@ class BienvenueController < ApplicationController
     _plan
   end
 
-  # Functionnal testing
-  def selenium
-    _plan
-    render :layout => false
-  end
-
   # About this software
   def about
   end
-
 
   #nodoc
   def suggestions
@@ -33,11 +26,11 @@ class BienvenueController < ApplicationController
     if suggestion
       unless suggestion[:team].blank?
         Notifier::deliver_welcome_idea(suggestion[:team],
-                                               :team, session[:user])
+                                       :team, session[:user])
       end
       unless suggestion[:tosca].blank?
         Notifier::deliver_welcome_idea(suggestion[:tosca],
-                                               :tosca, session[:user])
+                                       :tosca, session[:user])
       end
       flash[:notice] = _("Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.")
       redirect_to_home

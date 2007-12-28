@@ -113,30 +113,25 @@ protected
   end
 
 private
-  # scope imposé sur toutes les vues,
-  # pour limiter ce que peuvent voir nos clients
+  # There is a global scope, on all finders, in order to
+  # preserve each user in his particular space.
   SCOPE_CLIENT = [ Client, Demande, Document, Socle ]
   SCOPE_CONTRAT = [ Binaire, Contrat, Paquet, Phonecall, User ]
 
-  # Cette fonction intègre un scope "maison", beaucoup plus rapide.
-  # Il reste néanmoins intégralement safe
-  # Le but est d'éviter les 15 imbrications de yield, trop couteuses
+  # This method has a 'handmade' scope, really faster and with no cost
+  # of safety. It was made in order to avoid 15 yields.
   def scope
     is_connected = session.data.has_key? :user
     if is_connected
-      beneficiaire = session[:user].beneficiaire
-      ingenieur = session[:user].ingenieur
-      client_ids, contrat_ids = nil, nil
-      if beneficiaire
-        client_ids = [ beneficiaire.client_id ]
-        contrat_ids = beneficiaire.contrat_ids
+      user = session[:user]
+      beneficiaire, ingenieur = user.beneficiaire, user.ingenieur
+      apply = ((ingenieur and not ingenieur.expert_ossa) || beneficiaire)
+      if apply
+        contrat_ids = user.contrat_ids
+        client_ids = user.client_ids
+        SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) }
+        SCOPE_CLIENT.each {|m| m.set_scope(client_ids) }
       end
-      if ingenieur and not ingenieur.expert_ossa
-        contrat_ids = ingenieur.contrat_ids
-        client_ids = ingenieur.client_ids
-      end
-      SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) } if contrat_ids
-      SCOPE_CLIENT.each {|m| m.set_scope(client_ids) } if client_ids
     else
       # Forbid access to request if we are not connected
       Demande.set_scope([0])
@@ -145,8 +140,10 @@ private
       yield
     ensure
       if is_connected
-        SCOPE_CLIENT.each { |m| m.remove_scope } if client_ids
-        SCOPE_CONTRAT.each { |m| m.remove_scope } if contrat_ids
+        if apply
+          SCOPE_CLIENT.each { |m| m.remove_scope }
+          SCOPE_CONTRAT.each { |m| m.remove_scope }
+        end
       else
         Demande.remove_scope
       end
