@@ -54,15 +54,16 @@ module ApplicationHelper
   # Call it like :
   #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.name} %>
   def show_liste(elements, name = '', options = {})
+    elements.compact!
     size = elements.size
-    return '<u><b>' << _('No') << " #{name}</b></u><br />" unless size > 0
+    result = ''
+    return '' unless size > 0
     if !session.data.has_key?(:user) and !options.has_key?(:public)
       return "<u><b>#{pluralize(size, name.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
-    result = ''
     unless name.blank? or options[:title]==false or options.has_key? :no_title
-      result << "<b>#{pluralize(size, name.capitalize)} : </b><br />"
+      result << "<b>#{name.capitalize} : </b><br />"
     end
 
     # used mainly in bienvenue/about

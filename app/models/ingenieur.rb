@@ -5,7 +5,6 @@ class Ingenieur < ActiveRecord::Base
   acts_as_reportable
   belongs_to :user, :dependent => :destroy
   has_and_belongs_to_many :competences
-  has_and_belongs_to_many :contrats
   has_many :demandes
   has_many :phonecalls
 
@@ -18,8 +17,8 @@ class Ingenieur < ActiveRecord::Base
   end
 
   def self.find_select_by_contrat_id(contrat_id)
-    conditions = [ 'ci.contrat_id = ?', contrat_id ]
-    joins = 'INNER JOIN contrats_ingenieurs ci ON ci.ingenieur_id=ingenieurs.id'
+    conditions = [ 'cu.contrat_id = ?', contrat_id ]
+    joins = 'INNER JOIN contrats_users cu ON cu.user_id=users.id'
     options = {:find => {:conditions => conditions, :joins => joins}}
     Ingenieur.with_scope(options) do
       Ingenieur.find_select(User::SELECT_OPTIONS)
@@ -38,17 +37,6 @@ class Ingenieur < ActiveRecord::Base
     Ingenieur.with_scope({:find => {:conditions => conditions }}) {
       Ingenieur.find(*args)
     }
-  end
-
-  # mis en cache, car utilisé dans les scopes
-  def contrat_ids
-    @contrat_ids ||= self.contrats.find(:all, :select => 'id').collect {|c| c.id}
-  end
-
-  # mis en cache, car utilisé dans les scopes
-  def client_ids
-    @client_ids ||= self.contrats.find(:all, :group => 'client_id',
-         :select => 'client_id').collect {|c| c.client_id}
   end
 
   # Don't forget to make an :include => [:user] if you

@@ -5,6 +5,7 @@
 class AccountController < ApplicationController
   # Pour l'import de plusieurs utilisateurs
   require 'fastercsv'
+  PasswordGenerator
 
   # No clear text password in the log.
   # See http://api.rubyonrails.org/classes/ActionController/Base.html#M000441
@@ -103,6 +104,7 @@ class AccountController < ApplicationController
       @user_recipient = Beneficiaire.new(:client_id => client_id)
       _form_recipient
     end
+    @user = User.new
   end
 
   def ajax_contracts
@@ -119,16 +121,14 @@ class AccountController < ApplicationController
     @user = User.find(params[:id])
     @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
 
-    # reset role when no case is selected
-    params[:user] = { :role_ids => [] } unless params.has_key? :user
-
-    unless ((@user.update_attributes(params[:user])) and
-        ((not @user_recipient) or
-         @user_recipient.update_attributes(params[:beneficiaire])) and
-        ((not @user_engineer) or
-         @user_engineer.update_attributes(params[:ingenieur])))
-      _form and render :action => 'edit' and return
+    res = @user.update_attributes(params[:user])
+    if res and @user_recipient
+      res &= @user_recipient.update_attributes(params[:beneficiaire])
     end
+    if res and @user_engineer
+      res &= @user_engineer.update_attributes(params[:ingenieur])
+    end
+    _form and return render(:action => 'edit')  unless res
 
     #update cached profile for logged user
     set_sessions @user if session[:user] == @user
@@ -147,7 +147,7 @@ class AccountController < ApplicationController
     case request.method
     when :post
       @user = User.new(params['user'])
-      @user.pwd, @user.pwd_confirmation = Array.new(%x[#{"echo '#{@user.login}' | mkpasswd -s"}], 2)
+      @user.generate_password # from PasswordGenerator, see lib/
       if @user.save
         connection = @user.connection
         begin
@@ -255,7 +255,9 @@ class AccountController < ApplicationController
 private
   # Partial variables used in forms
   def _form
-    @roles = Role.find_select
+    options = { :order => 'id', :conditions =>
+      [ 'roles.id >= ? ', session[:user].role_id ] }
+    @roles = Role.find_select(options)
     @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
     _form_recipient; _form_engineer
   end

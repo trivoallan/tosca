@@ -3,6 +3,7 @@
 <% links = show_pages_links(@user_pages, _('A new user'),
                      :url => accounts_path) %>
 <%= links %>
+<% manager = session[:user].role_id <= 2 %>
 <table class="show">
   <tr>
     <th><%= _('User|Login')%></th>
@@ -28,7 +29,7 @@
       <td><%= '<center>X</center>' if beneficiaire %></td>
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.phone %></td>
-     <td><% if beneficiaire and not user.inactive? %>
+      <td><% if manager && beneficiaire && !user.inactive? %>
            <form action=<%= '"' + become_account_path(beneficiaire) + '"' %> method="post">
            <input name="commit" value=<%= '"' + _('Become') + '"' %> type="submit" /></form>
          <% end %>

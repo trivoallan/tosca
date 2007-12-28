@@ -4,8 +4,9 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  # Small utils for inactive, located in /lib/inactive_record.rb
+  # Small utils for inactive & password, located in /lib/*.rb
   include InactiveRecord
+  include PasswordGenerator
 
   acts_as_reportable
   belongs_to :image
@@ -16,6 +17,8 @@ class User < ActiveRecord::Base
   has_one :ingenieur, :dependent => :destroy
   has_one :beneficiaire, :dependent => :destroy
   has_one :preference, :dependent => :destroy
+
+  has_and_belongs_to_many :contrats
 
   validates_length_of :login, :within => 3..20
   validates_length_of :password, :within => 5..40
@@ -74,6 +77,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  # This reduced the scope of User to allowed contracts of current user
+  def self.set_scope(contrat_ids)
+    if contrat_ids
+      self.scoped_methods << { :find => { :conditions =>
+          [ 'cu.contrat_id IN (?) ', contrat_ids ], :joins =>
+        'INNER JOIN contrats_users cu ON cu.user_id=users.id ' } }
+    end
+  end
+
+
   # Warning : this method update the current User object
   def create_person(client)
     if client
@@ -113,6 +126,24 @@ class User < ActiveRecord::Base
     return match
   end
 
+
+  def name
+    strike(:name)
+  end
+
+  # cached, coz' it's used in scopes
+  def contrat_ids
+    @contrat_ids ||= self.contrats.find(:all, :select => 'id').collect {|c| c.id}
+  end
+
+  # cached, coz' it's used in scopes
+  def client_ids
+    @client_ids ||= self.contrats.find(:all, :group => 'client_id',
+         :select => 'client_id').collect {|c| c.client_id}
+  end
+
+
+  private
   # Load permission strings
   # TODO : cache this method. Since we have few roles, it's possible
   # to use a table or a hash.
@@ -125,11 +156,6 @@ class User < ActiveRecord::Base
     @permissions
   end
 
-  def name
-    strike(:name)
-  end
-
-  private
   def self.sha1(pass)
     Digest::SHA1.hexdigest("linagora--#{pass}--")
   end

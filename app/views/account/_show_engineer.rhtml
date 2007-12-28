@@ -26,8 +26,13 @@
   </p>
   <% end %>
 
+  <ul>
+    <% @user.contrats.each do |c| %>
+      <li><%= c.name %></li>
+    <% end %>
+  </ul>
+
+
 </div>
 
 <% end %>
-
-

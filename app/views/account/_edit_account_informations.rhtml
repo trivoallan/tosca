@@ -1,14 +1,24 @@
 <% create_account = (controller.action_name == 'signup') %>
+<%# only Manager & Admin role can do all things with an account %>
+<%# See doc about roles for more information %>
+<% manager = (session[:user].role_id <= 2) %>
 <table class="show" id="show_account">
+  <COLGROUP align="center" span="2">
   <% if create_account %>
-  <tr>
+   <tr>
     <th><label><%= _('Customer') %></label></th>
     <td><%= collection_select(:client, :id, @clients, :id, :name) %></td>
-  </tr><tr>
-    <td colspan="2"><hr /></td>
-  </tr>
+   </tr>
+  <% else %>
+   <tr>
+    <td colspan="2" style="text-align: center;">
+      <%= avatar(@user_recipient, @user_engineer) %>
+    </td>
+   </tr>
   <% end %>
   <tr>
+    <td colspan="2"><hr /></td>
+  </tr><tr>
     <th><label for="user_name"><%= _('User|Name') %></label></th>
     <td><%= text_field :user, :name %></td>
   </tr><tr>
@@ -21,7 +31,7 @@
     <th><label for="user_phone"><%= _('User|Phone') %></label></th>
     <td><%= text_field :user, :phone %></td>
   </tr>
-  <% unless create_account or @beneficiaire %>
+  <% if manager && !create_account %>
    <tr>
     <th><label for="user_inactive"><%= _('User|Inactive') %></label></th>
     <td><%= check_box :user, :inactive %></td>
@@ -29,20 +39,23 @@
   <% end %>
   <tr>
     <td colspan="2"><hr /></td>
-  </tr><tr>
+  </tr>
+  <% if manager %>
+   <tr>
     <th><label for="user_login"><%= _('User|Login') %></label></th>
     <td><%= text_field :user, :login %></td>
-  </tr>
+   </tr>
+  <% end %>
   <% unless create_account %>
    <tr>
     <th><label for="user_pwd"><%= _('Modify your password') %></label></th>
-    <td><%= text_field :user, :pwd %></td>
+    <td><%= password_field :user, :pwd %></td>
    </tr><tr>
     <th><label for="user_pwd_confirmation"><%= _('Confirm this last') %></label></th>
-    <td><%= text_field :user, :pwd_confirmation %></td>
+    <td><%= password_field :user, :pwd_confirmation %></td>
    </tr>
   <% end %>
-  <% if session[:user].role_id <= 2 # admin & manager only %>
+  <% if manager %>
    <tr>
     <td colspan="2"><hr /></td>
    </tr><tr>

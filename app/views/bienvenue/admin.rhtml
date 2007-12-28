@@ -5,33 +5,28 @@
 <table class="sommaire"><tr><td>
 <div class="sommaire show">
   <h3><%= _('Users') %></h3>
-  <p><%= _('User management')%></p>
   <% links = [
-        link_to( _('User list'), accounts_path),
-        link_to(_('Add a user'), signup_new_account_path),
-        link_to( _('Add user by bundle'), multiple_signup_new_account_path) ] %>
-  <%= show_liste(links, _('users'), :title => false) %>
+        link_to(_('User list'), accounts_path),
+        link_to(_('Add a user'), signup_new_account_path) ] %>
+  <%= show_liste(links, _('User management')) %>
   <% if session[:user].role_id == 1 # admin %>
-   <p><%= _('Permission management')%></p>
    <% links = [
         link_to( _('Permissions'), permissions_path),
         link_to( _('Roles'), roles_path) ] %>
-   <%= show_liste(links, _('Permissions'), :title => false) %>
+   <%= show_liste(links, _('Permission management')) %>
   <% end %>
-  <p><%= _('Skill management')%></p>
   <% links = [
         link_to(_('Engineers'), ingenieurs_path),
         link_to( _('Skills'), competences_path) ] %>
-  <%= show_liste(links, _('Skills'), :title => false) %>
+  <%= show_liste(links, _('Skill management')) %>
 </div>
 
 <div class="sommaire show">
   <h3><%= _('Customers') %></h3>
-  <p><%= _('Customer management')%></p>
   <% links = [
         link_to( _('Customers'), clients_path),
         link_to( _('Contracts'), contrats_path)  ] %>
-  <%= show_liste(links, _('Customers'), :title => false) %>
+  <%= show_liste(links, _('Customer management')) %>
 </div>
 
 </td><td>

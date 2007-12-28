@@ -11,8 +11,8 @@
   <p><label for="ingenieur_competences"><%= _('Skills') + ' ?' %></label><br />
    <%= hbtm_check_box( @user_engineer.competences, @competences, 'ingenieur[competence_ids]', :size => 4) %></p>
 
-  <label for="ingenieur_contrats"><%= _('Contracts')%></label><br />
-   <%= hbtm_check_box( @user_engineer.contrats, @contrats, 'ingenieur[contrat_ids]', :size => 2) %>
+  <label for="user_contrats"><%= _('Contracts')%></label><br />
+   <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 2) %>
 
    <%= observe_client_field %>
 <% end %>

@@ -116,7 +116,7 @@ private
   # scope imposé sur toutes les vues,
   # pour limiter ce que peuvent voir nos clients
   SCOPE_CLIENT = [ Client, Demande, Document, Socle ]
-  SCOPE_CONTRAT = [ Phonecall, Binaire, Contrat, Paquet ]
+  SCOPE_CONTRAT = [ Binaire, Contrat, Paquet, Phonecall, User ]
 
   # Cette fonction intègre un scope "maison", beaucoup plus rapide.
   # Il reste néanmoins intégralement safe
