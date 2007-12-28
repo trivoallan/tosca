@@ -3,12 +3,12 @@
   <td>
     <%= render :partial => "edit_account_informations" %>
   </td><td>
-    <div class="show" id="place">
     <% if @ingenieur # do not display this part to customer, for now %>
+     <div class="show" id="place">
       <%= render :partial => "edit_engineer" %>
       <%= render :partial => "edit_recipient" %>
+     </div>
     <% end %>
-    </div>
   </td>
  </tr>
 </table>

@@ -5,10 +5,12 @@
 
 <h1><b><%= _('Recipient') %></b></h1><br />
 
-<p><b>Client :</b> <%= @user_recipient.client.name %></p>
+<ul>
+  <% @user_recipient.contrats.each do |c| %>
+    <li><%= c.name %></li>
+  <% end %>
+</ul>
 
 </div>
 
 <% end %>
-
-

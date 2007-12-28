@@ -21,7 +21,7 @@
     <th><label for="user_phone"><%= _('User|Phone') %></label></th>
     <td><%= text_field :user, :phone %></td>
   </tr>
-  <% unless create_account %>
+  <% unless create_account or @beneficiaire %>
    <tr>
     <th><label for="user_inactive"><%= _('User|Inactive') %></label></th>
     <td><%= check_box :user, :inactive %></td>
@@ -42,15 +42,18 @@
     <td><%= text_field :user, :pwd_confirmation %></td>
    </tr>
   <% end %>
-  <tr>
+  <% if session[:user].role_id <= 2 # admin & manager only %>
+   <tr>
     <td colspan="2"><hr /></td>
-  </tr><tr>
+   </tr><tr>
     <th><label for="user_role"><%= _('User|Role') %></label></th>
     <td><%= hm_radio_button(:user, :role_id, @roles, :size => 3) %></td>
-  </tr><tr>
+   </tr>
+  <% end %>
+  <tr>
     <td colspan="2"><fieldset>
      <legend><%=_('User|Informations')%></legend>
-     <% options = { :rows => 8, :cols => 58 } %>
+     <% options = { :rows => 12, :cols => 58 } %>
      <%= text_area(:user, :informations, options) %>
     </fieldset></td>
   </tr>
