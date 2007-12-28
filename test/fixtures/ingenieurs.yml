@@ -10,10 +10,10 @@ ingenieur_00002:
   expert_ossa: true
   user_id: 2
   image_id: 
-  chef_de_projet: true
+  chef_de_projet: false
 ingenieur_00003: 
   id: 3
-  expert_ossa: true
+  expert_ossa: false
   user_id: 3
   image_id: 
   chef_de_projet: false
