@@ -7,25 +7,31 @@
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
-<div class="menu_title" onclick="Element.toggle('menu_action')">
+<% manager = (session[:user].role_id <= 2) %>
+<% if manager %>
+ <div class="menu_title" onclick="Element.toggle('menu_action')">
   > <%= _('Action') %></div>
-<ul class="menu" id="menu_action">
- <li><%= link_to _('Add a user'), signup_new_account_path %></li>
- <li><%= link_to _('Add several users'), multiple_signup_new_account_path %></li>
- <li><%= users_export_link %></li>
-</ul>
+ <ul class="menu" id="menu_action">
+  <li><%= link_to _('Add a user'), signup_new_account_path %></li>
+  <li><%= link_to _('Add several users'), multiple_signup_new_account_path %></li>
+  <li><%= users_export_link %></li>
+ </ul>
+<% end %>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
   > <%= _('Search ')%></div>
 <ul class="menu" id="menu_recherche">
-  <li><b><%= _('Name')%></b></li>
- <li><%= text_field :filters, :name %></li>
- <li><b><%= _('Customer ')%></b></li>
- <li><%=select_filter(@clients, 'client')%></li>
- <li><b><%= _('Roles ')%> </b></li>
- <li><%=select_filter(@roles, 'role')%></li>
+ <li><b><%= _('Name')%></b><br />
+     <%= text_field :filters, :name %></li>
+ <% if manager %>
+  <li><b><%= _('Customer ')%></b><br />
+      <%=select_filter(@clients, 'client')%></li>
+  <li><b><%= _('Roles ')%> </b><br />
+      <%=select_filter(@roles, 'role')%></li>
+ <% end %>
 </ul>
 
+<% if manager %>
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
   > <%=_('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
@@ -33,11 +39,11 @@
   <li><b><%= _('Recipients: ')%></b><%=@count[:beneficiaires]%></li>
   <li><b><%= _('Engineers: ')%></b><%=@count[:ingenieurs]%></li>
   <li><b><%= _('Inconsistencies: ')%></b><%=(@count[:users] -
-  (@count[:beneficiaires] + @count[:ingenieurs])).to_s %></li>
+    (@count[:beneficiaires] + @count[:ingenieurs])).to_s %></li>
 </ul>
+<% end %>
 
 
 <% end %>
 
 <%= observe_form 'filters', options %>
-

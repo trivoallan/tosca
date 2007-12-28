@@ -2,8 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class BienvenueController < ApplicationController
-  caches_page :about
-
   # Includes somme helpers
   helper :demandes, :account, :contributions, :logiciels, :groupes, :documents, :clients
 
@@ -63,4 +61,3 @@ protected
   end
 
 end
-

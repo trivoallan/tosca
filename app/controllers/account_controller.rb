@@ -75,20 +75,23 @@ class AccountController < ApplicationController
 
   # Let an Engineer become a client user
   def become
-    if @ingenieur
-      benef = Beneficiaire.find(params[:id])
-      set_sessions(benef.user)
-    else
-      flash[:warn] = _('You are not allowed to change your identity')
+    begin
+      if @ingenieur
+        benef = Beneficiaire.find(params[:id])
+        set_sessions(benef.user)
+      else
+        flash[:warn] = _('You are not allowed to change your identity')
+      end
+      redirect_to_home
+      return_to
+    rescue ActiveRecord::RecordNotFound
+      flash[:warn] = _('Person not found')
+      redirect_to_home
     end
-    redirect_to_home
-    return
-  rescue ActiveRecord::RecordNotFound
-    flash[:warn] = _('Person not found')
-    redirect_to_home
   end
 
   def edit
+    return unless check_rights
     @user = User.find(params[:id])
     @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
     _form
@@ -118,6 +121,7 @@ class AccountController < ApplicationController
   end
 
   def update
+    return unless check_rights
     @user = User.find(params[:id])
     @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
 
@@ -276,12 +280,14 @@ private
 
   # Variables utilisé par le panneau de gauche
   def _panel
-    @count = {}
-    @clients = Client.find_select
+    if session[:user].role_id <= 2
+      @count = {}
+      @clients = Client.find_select
 
-    @count[:users] = User.count
-    @count[:beneficiaires] = Beneficiaire.count
-    @count[:ingenieurs] = Ingenieur.count
+      @count[:users] = User.count
+      @count[:beneficiaires] = Beneficiaire.count
+      @count[:ingenieurs] = Ingenieur.count
+    end
   end
 
   # variable utilisateurs; nécessite session[:user]
@@ -315,6 +321,17 @@ private
       %>
       <%= build_simple_menu(infos.reverse, :class => 'account_menu') %>
     EOF
+  end
+
+  # Return false if the current user cannot edit/update this account
+  def check_rights
+    user, id = session[:user], params[:id].to_i
+    if user.role_id > 2 && id != user.id
+      flash[:warn] = _('You cannot edit this account.')
+      redirect_back_or_default bienvenue_path
+      return false
+    end
+    true
   end
 
   # Efface les paramètres de session et les raccourcis
