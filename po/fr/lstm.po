@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-18 18:42+0100\n"
-"PO-Revision-Date: 2007-12-18 19:03+0100\n"
+"PO-Revision-Date: 2007-12-28 18:51+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Les modifications ont été effectuées avec succès"
 
 #: app/controllers/account_controller.rb:135
 msgid "Account successfully created."
-msgstr "L'architecture a été crée avec succès."
+msgstr "Le compte a été crée avec succès."
 
 #: app/controllers/account_controller.rb:159
 #: app/controllers/account_controller.rb:193
