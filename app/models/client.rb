@@ -74,11 +74,9 @@ class Client < ActiveRecord::Base
   def ingenieurs
     return [] if contrats.empty?
     options = { :include => [:user],
-      :conditions => [ 'contrats_ingenieurs.contrat_id IN (?)', contrat_ids ],
-      :joins => 'INNER JOIN contrats_ingenieurs ON contrats_ingenieurs.ingenieur_id=ingenieurs.id' }
-    ingenieurs = Ingenieur.find(:all, options)
-    ingenieurs.uniq! if contrats.size > 1
-    ingenieurs
+      :conditions => [ 'cu.contrat_id IN (?)', contrat_ids ],
+      :joins => 'INNER JOIN contrats_users cu ON cu.user_id=users.id' }
+    Ingenieur.find(:all, options)
   end
 
 
