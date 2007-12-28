@@ -11,7 +11,7 @@
         link_to(_('Add a user'), signup_new_account_path),
         link_to( _('Add user by bundle'), multiple_signup_new_account_path) ] %>
   <%= show_liste(links, _('users'), :title => false) %>
-  <% if @session[:user].role_id == 1 # admin %>
+  <% if session[:user].role_id == 1 # admin %>
    <p><%= _('Permission management')%></p>
    <% links = [
         link_to( _('Permissions'), permissions_path),
