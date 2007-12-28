@@ -1,6 +1,6 @@
 <h1><%=_('Repository access')%></h1>
 
-<%= show_liste(@typedocuments, _('Document type')) { |t|
+<%= show_liste(@typedocuments, nil) { |t|
       link_to_typedocument t
 } %>
 
