@@ -19,8 +19,8 @@ class AccountController < ApplicationController
 
   def index
     # init
-    options = { :per_page => 15, :order => 'users.login', :include =>
-      [:beneficiaire,:ingenieur,:role] }
+    options = { :per_page => 15, :order => 'users.role_id, users.login',
+      :include => [:beneficiaire,:ingenieur,:role] }
     conditions = []
     @roles = Role.find_select
 
