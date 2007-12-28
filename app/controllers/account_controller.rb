@@ -112,6 +112,9 @@ class AccountController < ApplicationController
 
   def ajax_contracts
     return render(:nothing => true) unless request.xhr? and params.has_key? :client_id
+    options = Contrat::OPTIONS.dup.update(:conditions =>
+       ['contrats.client_id = ?', params[:client_id].to_i ])
+    @contrats = Contrat.find_select(options)
   end
 
   def show
@@ -276,6 +279,13 @@ private
     return unless @user_engineer
     @competences = Competence.find_select
     @contrats = Contrat.find_select(Contrat::OPTIONS)
+    if @client
+      @engineer_clients = @clients.dup
+      @engineer_clients.shift
+    else
+      @engineer_clients =  Client.find_select
+    end
+
   end
 
   # Variables utilisé par le panneau de gauche

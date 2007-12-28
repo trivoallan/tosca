@@ -32,4 +32,10 @@ module AccountHelper
     observe_field "client_id", @@options
   end
 
+  def observe_engineer_client_field
+    @@contracts_options ||= PagesHelper::SPINNER_OPTIONS.dup.\
+      update(:with => "client_id", :url => 'ajax_contracts')
+    observe_field "engineer_client_id", @@contracts_options
+  end
+
 end
