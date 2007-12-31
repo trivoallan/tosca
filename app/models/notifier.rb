@@ -195,7 +195,7 @@ class Notifier < ActionMailer::Base
   end
 
   def compute_copy(demande)
-    res = demande.contrat.mailingliste
+    res = demande.contrat.mailinglist
     if demande.mail_cc and demande.mail_cc.size > 4 and !res.blank?
       res += ", " << demande.mail_cc
     end
