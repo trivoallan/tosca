@@ -43,12 +43,6 @@ Rails::Initializer.run do |config|
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
 
-  # Some plugins needs to be loaded after rails
-  config.after_initialize do
-    # Used to generate Ods Export. See ExportController.
-    require "ruport"
-    require 'ruport/util'
-  end
   # See Rails::Configuration for more options
 end
 
@@ -70,6 +64,12 @@ require 'overrides'
 require 'extract'
 
 # External libs
+ # Used to generate Ods Export. See ExportController.
+ gem 'ruport', '<= 1.2.2'
+ require 'ruport'
+ # 0.9.0 does not work with TOSCA, for now.
+ gem 'ruport-util', '<= 0.8.0'
+ require 'ruport/util'
 
 # Used to load gettext 4 rails and to localize Dates & Number
  require 'gettext_localize'
