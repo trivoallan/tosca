@@ -7,11 +7,7 @@ require 'jcode'
 # require gettext for ruby
 begin
   # requires correct gettext version if Rails 1.2
-  if Rails::VERSION::MAJOR >= 1 and Rails::VERSION::MINOR >=2
-    gem 'gettext', '>= 1.9'
-  else
-    gem 'gettext', '<= 1.8.0'
-  end
+  gem 'gettext', '>= 1.9'
   require 'gettext/rails'
   require 'gettext/utils'
 rescue

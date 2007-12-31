@@ -92,9 +92,9 @@ class Notifier < ActionMailer::Base
 
   def welcome_idea(text, to, from)
     case to
-      when :team :
+      when :team
         recipients MAIL_TEAM
-      when :tosca :
+      when :tosca
         recipients MAIL_TOSCA
       else
         recipients MAIL_MAINTENER

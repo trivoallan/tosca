@@ -1,7 +1,6 @@
 require 'active_record'
 require 'cgi'
 require 'cgi/session'
-require 'base64'
 
 # +SqlSessionStore+ is a stripped down, optimized for speed version of
 # class +ActiveRecordStore+.
@@ -67,11 +66,11 @@ class SqlSessionStore
 
   private
   def unmarshalize(data)
-    Marshal.load(Base64.decode64(data))
+    Marshal.load(data.unpack('m*').first)
   end
 
   def marshalize(data)
-    Base64.encode64(Marshal.dump(data))
+    [Marshal.dump(data)].pack 'm*'
   end
 
 end
@@ -100,4 +99,3 @@ __END__
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
