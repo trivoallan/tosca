@@ -8,7 +8,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.2.6'
+RAILS_GEM_VERSION = '2.0.2'
 $KCODE='u'
 require 'jcode'
 
@@ -64,7 +64,8 @@ require 'overrides'
 require 'extract'
 
 # External libs
-# Used to generate Ods Export. See ExportController.
+ # Used to generate Ods Export. See ExportController.
+ gem 'ruport', '<= 1.2.2'
  require 'ruport'
  # 0.9.0 does not work with TOSCA, for now.
  gem 'ruport-util', '<= 0.8.0'
@@ -89,11 +90,11 @@ ENV['TZ'] = 'Europe/Paris'
 Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
 
 # Boot Check
-unless File.exists?(File.expand_path("locale/fr/LC_MESSAGES/lstm.mo", 
+unless File.exists?(File.expand_path("locale/fr/LC_MESSAGES/lstm.mo",
                                      RAILS_ROOT))
   puts "***********************"
   puts "Missing traducted files. I am generating it for you with "
-  puts "$ rake makemo" 
+  puts "$ rake makemo"
   %[#{"rake makemo"}]
   puts "***********************"
 end

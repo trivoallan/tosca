@@ -8,7 +8,7 @@ module Static
   # This is a singleton ActionView, created on first request
   # @see ApplicationController.set_global_shortcut
   # It's used to generate some html tags only once,
-  # when asked. It's faster and do not uglify the code, 
+  # when asked. It's faster and do not uglify the code,
   # so it's ok ;). Heavily used for images, @see static_image.rb for instance
   #
   class ActionView
@@ -37,7 +37,7 @@ module Static
 
     private
 
-    def compute_public_path(source,dir,ext)
+    def compute_public_path(source,dir,ext=nil)
       "#{@@relative_url_root}#{source}"
     end
 
@@ -47,4 +47,3 @@ module Static
   end
 
 end
-
