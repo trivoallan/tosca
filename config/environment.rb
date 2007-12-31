@@ -64,12 +64,11 @@ require 'overrides'
 require 'extract'
 
 # External libs
- # Used to generate Ods Export. See ExportController.
- gem 'ruport', '<= 1.2.2'
- require 'ruport'
- # 0.9.0 does not work with TOSCA, for now.
- gem 'ruport-util', '<= 0.8.0'
- require 'ruport/util'
+ # Ruport is used to generate Ods Export. See ExportController.
+ # Their devs loves to break things, so versions are tightly fixed
+ gem 'ruport', '=1.4.0'
+ gem 'ruport-util', '=0.12.0'
+ require 'ruport', 'ruport/util'
 
 # Used to load gettext 4 rails and to localize Dates & Number
  require 'gettext_localize'

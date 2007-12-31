@@ -4,7 +4,7 @@ In Short
 ========
 
 $ sudo urpmi ruby-devel mysql-devel libMagick-devel oniguruma-devel mysql-ruby
-$ sudo gem install rails rmagick mysql gettext ruport ruport-util ultraviolet rubyzip -y
+$ sudo gem install rails rmagick mysql gettext ruport ruport-util acts_as_reportable ultraviolet rubyzip -y
 $ rake db:schema:load
 $ rake db:fixtures:load
 $ rake makemo
