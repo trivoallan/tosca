@@ -61,27 +61,29 @@ XSendFile::Plugin.replace_send_file! if RAILS_ENV == 'production'
 require 'utils'
 require 'config'
 require 'overrides'
-require 'extract'
 
 # External libs
- # Ruport is used to generate Ods Export. See ExportController.
- # Their devs loves to break things, so versions are tightly fixed
- gem 'ruport', '=1.4.0'
- gem 'ruport-util', '=0.12.0'
- require 'ruport', 'ruport/util'
+# Currently use this format : [ gem_name, gem_version, *needed_requires ]
+NeededGems = [# Used by Ruport
+              [ 'acts_as_reportable', '1.0.0' ],
+              # Used to i18n and l10n
+              [ 'gettext', '1.10.0', 'gettext_localize', 'gettext_localize_rails' ],
+              # Used to generate Ods
+              [ 'ruport', '1.4.0', 'ruport' ],
+              # Used by Ruport
+              [ 'ruport-util', '0.12', 'ruport/util' ],
+              # Used to generate graphs of activity report
+              [ 'rmagick', '2.0.0' ],
+              # Used to manipulate OpenDocument
+              [ 'rubyzip', '0.9.1' ],
+              # Used to be colorfull for attachment previews
+              [ 'ultraviolet', '0.10.1' ]
+             ]
+# Check and load all gems
+Utils::check_and_install_missing_gems(*NeededGems)
 
-# Used to load gettext 4 rails and to localize Dates & Number
- require 'gettext_localize'
- require 'gettext_localize_rails'
 
-# Used to have cool preview with attachments
- require 'uv'
-
-# Used to generated OpenDocument file.
- require 'filters'
- require 'zip/zip'
-
-#French TimeZone, mandatory coz' of debian nerds :/
+# French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'
 
 # Mime type needed for ods export with Ruport lib
@@ -94,7 +96,7 @@ unless File.exists?(File.expand_path("locale/fr/LC_MESSAGES/lstm.mo",
   puts "***********************"
   puts "Missing traducted files. I am generating it for you with "
   puts "$ rake makemo"
-  %[#{"rake makemo"}]
+  %x[#{"rake makemo"}]
   puts "***********************"
 end
 

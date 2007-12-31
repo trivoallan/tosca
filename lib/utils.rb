@@ -107,3 +107,29 @@ def html2text(html)
 
   text
 end
+
+
+module Utils
+  # This method check and install missing gems.
+  # It recursively relaunch in order to try to install all missing gems
+  # It exits nicefully if there was a failure during an installation try.
+  def self.check_and_install_missing_gems(*gems)
+    error = false
+    gems.each do |g|
+      begin
+        gem g[0], "=#{g[1]}"
+        g[2..-1].each { |r| require r }
+      rescue Exception => e
+        error = true
+        puts e.message
+        $stderr.puts "gem '#{g[0]} (#{g[1]})' cannot be found, trying to install it..."
+        command = "sudo gem install '#{g[0]}' -v '#{g[1]}'"
+        $stdout.puts command
+        %x[#{command}]
+        Kernel.exit(-1) if $? != 0
+      end
+    end
+    check_and_install_missing_gems(*gems) if error
+  end
+
+end

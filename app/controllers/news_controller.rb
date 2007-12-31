@@ -1,3 +1,6 @@
+# Used to manipulate OpenDocument.
+require 'zip/zip'
+
 class NewsController < ApplicationController
   include REXML
 
@@ -58,7 +61,7 @@ class NewsController < ApplicationController
       :long_article => [long_article.subject, long_article.ingenieur.name,
         long_article.body]
     }
-    # The template : 
+    # The template :
     #   the fields should be empty ( I add and not replace)
     #   We may modify in the content.xml the fields.
     #   a simple way is to use a text area and no rectangle.
@@ -87,17 +90,17 @@ class NewsController < ApplicationController
   # }
   # for an empty newsletter : options = {}
   # ***********************************
-  # Pour ajouter les petits articles: 
+  # Pour ajouter les petits articles:
   #
   # 1. Nommer les éléments à remplir ( on peut le faire dans openoffice)
   # ATTENTION : les fonctions ici sont faites pour remplir des zone de texte
   #  ( <draw:text-box> ). Pour remplir autre chose, il faut modifier toutes ces
-  #  fonctions. 
+  #  fonctions.
   #
   # 2. Récupérér les éléments dans le initiaize_newsletter ci-dessus.
   #
   # 3. appliquer les styles avec html2opendocument. Attention aux styles ! Si on supprime des éléments dans le document,
-  # certains style disparaissent ... 
+  # certains style disparaissent ...
   # Pour récupérer les styles, il faut éditer dézipper le odp, et aller chercher
   # le style dans le content.xml directement.
   # ***********************************
@@ -127,7 +130,7 @@ class NewsController < ApplicationController
             end
         end
         if options[:articles]
-          
+
         end
       end
 
@@ -139,7 +142,7 @@ class NewsController < ApplicationController
     newsletter_struct = Struct.new(:edito_title, :edito_body,
                                    :articles_left, :articles_right,
                                    :long_article_title, :long_article_author, :long_article_body )
-    presentation = 
+    presentation =
       doc.elements['office:document-content/office:body/office:presentation']
 
     elts = newsletter_struct.new(
@@ -155,10 +158,10 @@ class NewsController < ApplicationController
       return elts
   end
   # puts the html to the openddocument template
-  # argument : 
+  # argument :
   #   parent is the element in which we want to insert our text
   #   html is the text, in html because it comes from tiny_mce
-  # Usage : 
+  # Usage :
   # html2opendocument newsletter.edito_title, options[:edito][0], :edito_title
   # TODO : Support for bold, italic, div, ... all except <p> :)
   def html2opendocument(parent, html, article)
@@ -193,7 +196,7 @@ class NewsController < ApplicationController
     end
 =begin
     Taken from the mail html2text converter. Kept here if we need to alter
-    other things into the html2odt converter. 
+    other things into the html2odt converter.
     TODO : a merge in a converter plugin ?
 
     text = html.

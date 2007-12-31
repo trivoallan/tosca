@@ -5,10 +5,10 @@ In Short
 
 $ sudo urpmi ruby-devel mysql-devel libMagick-devel oniguruma-devel mysql-ruby
 $ sudo gem install rails rmagick mysql gettext ruport ruport-util acts_as_reportable ultraviolet rubyzip -y
-$ rake db:schema:load
-$ rake db:fixtures:load
+$ rake db:migrate
 $ rake makemo
-$ sudo cp app/views/rescues/_trace.rhtml /usr/lib/ruby/gems/1.8/gems/actionpack-1.*/lib/action_controller/templates/rescues/
+$ sudo cp app/views/rescues/_trace.erb /usr/lib/ruby/gems/1.8/gems/actionpack-2.0.2/lib/action_controller/templates/rescues/_trace.erb
+
 
 
 

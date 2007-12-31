@@ -24,7 +24,9 @@ class BinairesController < ApplicationController
     @binaire = Binaire.find(params[:id])
     path = File.expand_path(@binaire.archive)
     if File.exists? path
-      files = Extract.files_from(path) # array of [ filename, filesize ]
+      # Extract is in 'lib/extract.rb'
+      # it returns an array of [ filename, filesize ]
+      files = Extract.files_from(path)
       sql = ''
       binaire_id = @binaire.id
       count = files.size
