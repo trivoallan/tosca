@@ -7,7 +7,9 @@ class Contrat < ActiveRecord::Base
   belongs_to :client
   has_and_belongs_to_many :engagements, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
-  has_and_belongs_to_many :users, :order => 'contrat_id'
+  has_and_belongs_to_many :users, :order => 'users.name'
+  has_and_belongs_to_many :engineer_users, :class_name => 'User',
+    :conditions => 'users.client = 0'
 
   has_many :binaires, :through => :paquets
   has_many :appels
@@ -49,6 +51,7 @@ class Contrat < ActiveRecord::Base
     end
     self._logiciels
   end
+
 
   def ouverture_formatted
     d = @attributes['ouverture']

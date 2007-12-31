@@ -9,7 +9,7 @@ class ContratsController < ApplicationController
   end
 
   def show
-    @contrat = Contrat.find(params[:id], :include => [:ingenieurs])
+    @contrat = Contrat.find(params[:id])
   end
 
   def new

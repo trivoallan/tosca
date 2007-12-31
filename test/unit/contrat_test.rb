@@ -55,7 +55,18 @@ class ContratTest < Test::Unit::TestCase
   end
 
   def test_typedemandes
-    Contrat.find(:first).typedemandes.each{ |td| assert td.is_a?(Typedemande)}
+    Contrat.find(:all).each do |c|
+      typedemandes.each{ |td| assert_kind_of Typedemande, td }
+    end
+  end
+
+  def test_engineer_users
+    Contrat.find(:all).each do |c|
+      c.engineer_users.each{ |i|
+        assert_kind_of User, i
+        assert i.ingenieur
+      }
+    end
   end
 
 end

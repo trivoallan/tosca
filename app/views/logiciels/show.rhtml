@@ -1,6 +1,6 @@
 <%= public_link_to _('Homepage') , bienvenue_url%> >
  <%= public_link_to _('Softwares') , logiciels_path %> >
-  <%= public_link_to @logiciel.groupe.name, logiciel_path(@logiciel.groupe_id) %> >
+  <%= public_link_to @logiciel.groupe.name, groupe_path(@logiciel.groupe_id) %> >
    <%= @logiciel.name %> <%= link_to_edit(@logiciel) %>
 <table><tr>
   <% unless @logiciel.image.blank? %>

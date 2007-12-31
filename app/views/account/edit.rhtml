@@ -1,6 +1,6 @@
 <%= error_messages_for 'user' %><br />
 
-<h1><%= _('Modify %s') % get_title(@user) %></h1>
+<h1><%= _('Modify %s') % get_title(@user) %><%= StaticImage::spinner %></h1>
 <% form_tag(account_path(@user), :method => :put) do %>
   <%= render :partial => "form" %>
   <%= submit_tag _('Validate') %>
