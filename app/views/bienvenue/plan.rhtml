@@ -2,65 +2,25 @@
 <h2 class="spacer"><%= _('Plan/access allowed') %></h2>
 
 <table class="sommaire">
-    <%
-      @routes.each do |r|
-        controller = r.first
-        text = []
-        image = []
-        r.last.each do |a|
-          if session[:user].authorized?("#{r.first}/#{a}")
-            case a
-            when "destroy"
-              image.push StaticImage::delete
-            when "edit", "update"
-              image.push StaticImage::edit
-            when "index", "list", "show"
-              image.push StaticImage::view
-            when "new" #"create"
-              image.push link_to_new("", :controller => controller)
-            when "admin"
-              text.push link_to(_("has an administration interface"), :controller => controller, :action => a)
-            when "print"
-              text.push _("has a pretty print page")
-            when "suggestions"
-              text.push link_to(_("allows to post suggestions"), :controller => controller, :action => a)
-            when "about"
-              text.push link_to(_("displays informations"), :controller => controller, :action => a)
-            when "become"
-              text.push _("allows to become an other one")
-            when "login", "logout"
-              text.push _("allows to login in the application")
-            when "plan"
-              text.push link_to(_("has a map"), :controller => controller, :action => a)
-            when "comment"
-              text.push _("allows to comment")
-            when "deroulement"
-              text.push _("prints the life cycle of a request")
-            when /ajax/, /auto_complete/
-              text.push _("is ajaxified")
-            when /_ods/
-              text.push _("allows to export datas in ODS")
-            else
-              #text.push a unless a.empty?
-            end
-          end
-        end
-    %>
-      <% unless text.empty? %>
-        <% humanize_controller = controller.humanize %>
-        <% #We use named cycles so each one is independent from the others %>
-        <%= cycle('<tr><td style="vertical-align: middle">', '<td style="vertical-align: middle">', :name => "start_tags") %>
+ <% init_builder %>
+ <% @routes.each do |r|
+      texts, images = [], []
+      build_bloc(r, texts, images) %>
+      <% unless texts.empty? %>
+       <% humanize_controller = _(r.first.humanize) %>
+       <% # We use named cycles so each one is independent from the others %>
+       <%= cycle('<tr><td style="vertical-align: middle">', '<td style="vertical-align: middle">', :name => "start_tags") %>
         <div class="sommaire show">
-          <% header = r.last.include?("index") ? link_to(humanize_controller, :controller => controller) : humanize_controller %>
-          <h2><%= header %> <%= image.uniq.join(" ") unless image.empty? %></h2>
-          <%= _("This part of the application") %>
-          <ul>
-            <li>
-              <%= text.uniq.join("</li><li>") %>
-            </li>
-          </ul>
+         <% header = r.last.include?("index") ? link_to(humanize_controller, :controller => r.first) : humanize_controller %>
+         <h2><%= header %> <%= images.join(" ") unless images.empty? %></h2>
+         <%= _("This part of the application") %>
+         <ul>
+          <li>
+            <%= texts.join("</li><li>") %>
+          </li>
+         </ul>
         </div>
-        <%= cycle("</td>", "</td></tr>", :name => "end_tags") %>
+       <%= cycle("</td>", "</td></tr>", :name => "end_tags") %>
       <% end %>
-    <% end %>
+ <% end %>
 </table>

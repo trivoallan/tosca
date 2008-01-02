@@ -41,6 +41,14 @@ class StaticImage < Static::ActionView
     @@edit ||= image_tag('edit_icon.gif', options(desc, '15x15'))
   end
 
+  # You should prefer to use
+  # image_create(message) : with message being a good tooltip for the link
+  @@new = nil
+  def self.new
+    desc = _("New")
+    @@new ||= image_tag('create_icon.png', options(desc, '16x16'))
+  end
+
   @@delete = nil
   def self.delete
     desc = _("Delete")
@@ -220,5 +228,3 @@ class StaticImage < Static::ActionView
 
 
 end
-
-
