@@ -15,6 +15,15 @@ class AccountController < ApplicationController
 
   around_filter :scope, :except => [:login, :logout]
 
+  def authorize?(user)
+    if params.has_key? :id
+      id = params[:id].to_i
+      if user.role_id > 2 && id != user.id
+        return false
+      end
+    end
+    super(user)
+  end
 
   def index
     # init
@@ -90,7 +99,6 @@ class AccountController < ApplicationController
   end
 
   def edit
-    return unless check_rights
     @user = User.find(params[:id])
     @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
     _form
@@ -127,7 +135,6 @@ class AccountController < ApplicationController
   end
 
   def update
-    return unless check_rights
     @user = User.find(params[:id])
     @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
 
@@ -269,17 +276,6 @@ private
       %>
       <%= build_simple_menu(infos.reverse, :class => 'account_menu') %>
     EOF
-  end
-
-  # Return false if the current user cannot edit/update this account
-  def check_rights
-    user, id = session[:user], params[:id].to_i
-    if user.role_id > 2 && id != user.id
-      flash[:warn] = _('You cannot edit this account.')
-      redirect_back_or_default bienvenue_path
-      return false
-    end
-    true
   end
 
   # Efface les paramètres de session et les raccourcis

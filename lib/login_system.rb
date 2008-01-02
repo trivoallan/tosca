@@ -5,6 +5,11 @@ require_dependency "user"
 
 module LoginSystem
 
+  @@public_user = nil
+  def self.public_user
+    @@public_user ||= User.new(:role_id => 6)
+  end
+
   protected
 
   # overwrite this if you want to restrict access to only a few actions
@@ -21,21 +26,6 @@ module LoginSystem
      true
   end
 
-  # overwrite this method if you only want to protect certain actions of the controller
-  # example:
-  #
-  #  # don't protect the login and the about method
-  #  def protect?(action)
-  #    if ['action', 'about'].include?(action)
-  #       return false
-  #    else
-  #       return true
-  #    end
-  #  end
-  def protect?(action)
-    true
-  end
-
   # login_required filter. add
   #
   #   before_filter :login_required
@@ -45,22 +35,21 @@ module LoginSystem
   #
   #   def authorize?(user)
   #
-  def login_required
+  def login_required(redirect = true)
 
-    if not protect?(action_name)
-      return true
-    end
+    return true if authorize?(LoginSystem::public_user)
 
     if session.data.has_key?(:user) and authorize?(session[:user])
       return true
     end
 
-    # store current location so that we can
-    # come back after the user logged in
-    store_location
+    # This method may be called by routes helper, when redirection
+    # is not wished at all.
+    if redirect
+      store_location
+      access_denied
+    end
 
-    # call overwriteable reaction to unauthorized access
-    access_denied
     return false
   end
 

@@ -11,14 +11,13 @@
        '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
        "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
        "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
-       stylesheet_link_tag('common', :media => "all") <<
+       stylesheet_link_tag('common') <<
        stylesheet_link_tag('common-printer', :media => "print") <<
        # Include TinyMCE with gzip before other JS to avoid problems
-       javascript_include_tiny_mce <<
        tiny_mce(@tiny_mce_options, locale) <<
-       javascript_include_tag('calendar', "calendar-#{locale}", 'calendar-setup') <<
-       javascript_include_tag(:defaults) <<
-       javascript_include_tag('redbox')
+       javascript_include_tag('tiny_mce/tiny_mce.js', 'calendar',
+                              "calendar-#{locale}", 'calendar-setup', 'controls',
+						      'application.js', 'redbox', :cache => true)
  %>
  <%= @@public_head[locale] %>
  <title>08000linux : <%=_(controller.controller_name)%></title>
@@ -30,13 +29,13 @@
        public_link_to_softwares,
        public_link_to_contributions,
        public_link_to_about ]) %>
-  <% @@menu[role_localised] ||= build_simple_menu([ 
+  <% @@menu[role_localised] ||= build_simple_menu([
         public_link_to_home,
         link_to_tobd_requests,
         link_to_all_requests,
         '<a class="no_hover">'+search_demande+'</a>',
         link_to_admin,
-        public_link_to_about 
+        public_link_to_about
        ], :form => true) if user %>
   <% #TODO : formulaire de login en haut ? %>
   <% @@public_links[locale] ||= build_simple_menu([

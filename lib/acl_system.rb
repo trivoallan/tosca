@@ -1,7 +1,7 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-# This module is derived from the examples on Rails wiki. 
+# This module is derived from the examples on Rails wiki.
 # It's tosca implementation
 #
 # This module wires itself into the LoginSystem authorize? method.  You
@@ -13,7 +13,7 @@
 #
 #   before_filter :login_required, :except => [ :list, :show ]
 #
-# 
+#
 # See link:http://wiki.rubyonrails.com/rails/show/LoginGeneratorACLSystem
 # for more info.
 module ACLSystem
@@ -27,10 +27,9 @@ module ACLSystem
   # The LoginController loads the User object.
   def authorize?(user)
     required_perm = "%s/%s" % [ params['controller'], params['action'] ]
-    if user.authorized?(required_perm)
-      return true
-    end
-    return false
+    user.authorized?(required_perm)
   end
+
+
 
 end

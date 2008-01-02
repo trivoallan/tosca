@@ -100,6 +100,19 @@ module ActionView::Helpers::UrlHelper
     url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
     "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
   end
+
+  def authorize_url?(options)
+    perm = "#{options[:controller]}/#{options[:action]}"
+
+    result = LoginSystem::public_user.authorized?(perm)
+
+    unless result
+      if session.data.has_key? :user and session[:user].authorized?(perm)
+        return true
+      end
+    end
+    result
+  end
 end
 
 

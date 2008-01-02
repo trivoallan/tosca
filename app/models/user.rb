@@ -2,6 +2,7 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 require 'digest/sha1'
+require 'ruport'
 
 class User < ActiveRecord::Base
   # Small utils for inactive & password, located in /lib/*.rb

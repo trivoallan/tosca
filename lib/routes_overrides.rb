@@ -2,7 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-
 # This module is overloaded in order to have rails fitting more
 # Tosca specific needs or specific improvments
 #
@@ -55,7 +54,6 @@ module ActionController::Routing
           segment.key if segment.respond_to? :key
         end.compact
         hash_access_method = hash_access_name(name, kind)
-
         @module.send :module_eval, <<-end_eval #We use module_eval to avoid leaks
           def #{selector}(*args)
             opts = if args.empty? || Hash === args.first
@@ -74,21 +72,10 @@ module ActionController::Routing
                 h
               end
             end
-            @@login_filter ||= ApplicationController.find_filter :login_required
             url_options = #{hash_access_method}(opts)
 
-            user = session[:user]
-            if user
-               kontroller_name = url_options[:controller]
-               action =  url_options[:action]
-               kontroller = ('%sController' % kontroller_name.camelize).constantize
-               # This check allows to be DRY :
-               #  One place to know if a permission is needed or not : in the controller.
-               unless kontroller.filter_excluded_from_action?(@@login_filter, action)
-                 required_perm = '%s/%s' % [ kontroller_name, action ]
-                 return nil if not user.authorized?(required_perm)
-               end
-            end
+            return nil unless authorize_url?(url_options)
+
             # no session, no problem :)
             if opts.empty?
               @@#{selector}_cache ||= url_for(url_options)

@@ -103,9 +103,9 @@ class LoadPermissions < ActiveRecord::Migration
     roles = [ public_id ]
     access = [ [ '^account/(login|logout)$', 'Access to login system' ],
                [ '^bienvenue/(index|about|plan)$', 'Access to home pages' ],
-               [ '^contributions(index|select|show|list)',
+               [ '^contributions/(index|select|show|list)',
                  'Public read access to contributions' ],
-               [ 'groupes/(index|show)', 'Public read access to groups' ],
+               [ '^groupes/(index|show)', 'Public read access to groups' ],
                [ '^logiciels/(index|show)',
                  'Public read access to softwares' ],
                [ '^statuts/(index|help)$', 'Explanation of status' ] ]

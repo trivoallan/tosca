@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   around_filter :scope
 
   # systems d'authentification
-  include LoginSystem
   include ACLSystem
   # système de construction des filters
   include Filters

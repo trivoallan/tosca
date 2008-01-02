@@ -77,10 +77,17 @@ class ClientTest < Test::Unit::TestCase
   def test_inactive
     Client.find(:all).each { |c|
       name = c.name
-      c.update_attribute :inactive, true
+      assert c.update_attribute(:inactive, true)
       assert_equal c.name , "<strike>#{name}</strike>"
       c.beneficiaires.each do |b|
         assert b.user.inactive?
+      end
+
+      assert c.update_attribute(:inactive, false)
+      assert_equal c.name , name
+      # reload client, in order to avoid cache errors
+      Client.find(c.id).beneficiaires.each do |b|
+        assert !b.user.inactive?
       end
     }
   end
