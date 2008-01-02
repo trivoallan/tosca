@@ -39,6 +39,7 @@ class BienvenueController < ApplicationController
 
 protected
 
+  # Returns an array of a pair : [ 'controller', *actions ]
   def _plan
     #Sorting routes by controller name
     routes = ActionController::Routing::Routes.routes.sort do |a,b|
@@ -47,16 +48,18 @@ protected
 
     @routes = []
     last_controller = nil
-    #Get the routes only one time (we don't care if there is a post AND a get route for the same controller/action)
     routes.each do |r|
       if last_controller != r.requirements[:controller]
-        @routes.last.last.sort!.uniq! unless @routes.size.zero?
+        # sort actions list, in order to display'em nicely
+        # uniq is there coz' we can have multiple paths with different verbs
+        @routes.last.last.sort!.uniq! unless @routes.empty?
         @routes.push [ r.requirements[:controller], Array.new ]
-      else
-        @routes.last.last.push r.requirements[:action]
       end
+      @routes.last.last.push r.requirements[:action]
       last_controller = r.requirements[:controller]
     end
+    # do not forget the last one
+    @routes.last.last.sort!.uniq! unless @routes.empty?
   end
 
 end
