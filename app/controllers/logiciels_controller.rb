@@ -2,10 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class LogicielsController < ApplicationController
-  # public access to the list
-  before_filter :login_required, :except =>
-    [:index,:show,:auto_complete_for_logiciel_name]
-
   helper :filters, :paquets, :demandes, :competences, :contributions, :licenses
 
   # Not used for the moment

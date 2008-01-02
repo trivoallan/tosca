@@ -1,6 +1,5 @@
 class AlertsController < ApplicationController
   helper :demandes
-  before_filter :login_required, :except => [:on_submit]
 
   def on_submit
     flash[:contrat_ids] = [ 3 ]

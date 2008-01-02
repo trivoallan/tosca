@@ -4,11 +4,6 @@
 class ContributionsController < ApplicationController
   helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
 
-  before_filter :login_required, :except => [:index,:select,:show,:list]
-
-  # auto completion in 2 lines, yeah !
-  auto_complete_for :logiciel, :name
-
   def index
     select
     render :action => "select"
@@ -41,8 +36,8 @@ class ContributionsController < ApplicationController
       :include => [:logiciel,:etatreversement,:demandes] }
 
     if params.has_key? :filters
-      session[:contributions_filters] = 
-        Filters::Contributions.new(params[:filters]) 
+      session[:contributions_filters] =
+        Filters::Contributions.new(params[:filters])
     end
     conditions = nil
     if session.data.has_key? :contributions_filters
@@ -164,4 +159,3 @@ private
     contribution.save
   end
 end
-

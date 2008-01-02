@@ -19,3 +19,7 @@ role_00005:
   name: viewer
   info: One role with read-only customer
   id: 5
+role_00006: 
+  name: public
+  info: One role for the public access
+  id: 6

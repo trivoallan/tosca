@@ -20,6 +20,9 @@ class LoadRoles < ActiveRecord::Migration
                 "One role for the customer"), 4)
     save_role.call(Role.new(:nom => 'viewer', :info =>
                 "One role with read-only customer"), 5)
+    save_role.call(Role.new(:nom => 'public', :info =>
+                "One role for the public access"), 6)
+
   end
 
   def self.down

@@ -16,7 +16,7 @@ class UserTest < Test::Unit::TestCase
   def test_authenticate
     %w(admin manager expert customer viewer).each { |u|
       assert User.authenticate(u, u)
-      assert !User.authenticate(u, 'a wrong password')
+      assert_nil User.authenticate(u, 'a wrong password')
     }
   end
 

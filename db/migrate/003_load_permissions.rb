@@ -1,5 +1,5 @@
 class LoadPermissions < ActiveRecord::Migration
-   class Role < ActiveRecord::Base
+  class Role < ActiveRecord::Base
     has_and_belongs_to_many :permissions
   end
   class Permission < ActiveRecord::Base
@@ -13,6 +13,7 @@ class LoadPermissions < ActiveRecord::Migration
     expert_id = Role.find(3)
     customer_id = Role.find(4)
     viewer_id = Role.find(5)
+    public_id = Role.find(6)
 
     # Permission distribution
     add_permission = Proc.new do |roles, access|
@@ -34,7 +35,6 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^bienvenue/suggestions$', 'Allow comments on this software' ],
                [ '^export/', 'All kinds of export' ],
                [ '^files/download$', 'All kinds of download' ],
-               [ '^statuts/(index|help)$', 'Explanation of status' ],
                [ '^reporting/(configuration|general)$', 'Activity Report' ]
              ]
     add_permission.call(roles, access)
@@ -99,6 +99,18 @@ class LoadPermissions < ActiveRecord::Migration
     access = [ [ '^commentaires/(comment|edit|update)$',
                  'Hability to comment a request' ] ]
     add_permission.call(roles, access)
+
+    roles = [ public_id ]
+    access = [ [ '^account/(login|logout)$', 'Access to login system' ],
+               [ '^bienvenue/(index|about|plan)$', 'Access to home pages' ],
+               [ '^contributions(index|select|show|list)',
+                 'Public read access to contributions' ],
+               [ 'groupes/(index|show)', 'Public read access to groups' ],
+               [ '^logiciels/(index|show)',
+                 'Public read access to softwares' ],
+               [ '^statuts/(index|help)$', 'Explanation of status' ] ]
+    add_permission.call(roles, access)
+
   end
 
   def self.down

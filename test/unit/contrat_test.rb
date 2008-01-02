@@ -56,7 +56,7 @@ class ContratTest < Test::Unit::TestCase
 
   def test_typedemandes
     Contrat.find(:all).each do |c|
-      typedemandes.each{ |td| assert_kind_of Typedemande, td }
+      c.typedemandes.each{ |td| assert_kind_of Typedemande, td }
     end
   end
 

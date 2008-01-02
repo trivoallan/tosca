@@ -13,7 +13,6 @@ class AccountController < ApplicationController
 
   helper :filters, :ingenieurs, :beneficiaires, :roles, :export
 
-  before_filter :login_required, :except => [:login,:logout]
   around_filter :scope, :except => [:login, :logout]
 
 
