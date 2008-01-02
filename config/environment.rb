@@ -73,7 +73,7 @@ NeededGems = [# Used by Ruport
               # Used by Ruport
               [ 'ruport-util', '0.12', 'ruport/util' ],
               # Used to generate graphs of activity report
-              [ 'rmagick', '2.0.0' ],
+              #[ 'rmagick', '2.0.0' ],
               # Used to manipulate OpenDocument
               [ 'rubyzip', '0.9.1' ],
               # Used to be colorfull for attachment previews

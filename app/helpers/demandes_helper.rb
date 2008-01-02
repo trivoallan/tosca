@@ -25,21 +25,21 @@ module DemandesHelper
   # Link to the inline help to post a request
   NEW_WINDOW = { :target => '_blank' }
   def public_link_to_help_new_request
-    public_link_to('Déclaration d\'une demande',
+    public_link_to(_("Déclaration d'une demande"),
         "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_demande",
         NEW_WINDOW)
   end
 
   # Link to the the inline help about life cycle of a demand
   def public_link_to_howto_request
-    public_link_to('Déroulement d\'une demande',
+    public_link_to(_("The life cycle of a request"),
         "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_demande",
         NEW_WINDOW)
   end
 
   #Link to the inline help about the differents states of a demand
   def public_link_to_help_request_status
-    public_link_to('Explication détaillée des statuts',
+    public_link_to(_("Help on the status"),
         'http://www.08000linux.com/wiki/index.php/%C3%89tats_demande',
         NEW_WINDOW)
   end

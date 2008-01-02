@@ -39,18 +39,24 @@ class BienvenueController < ApplicationController
 
 protected
 
-  # Return all methods sorted by class name
   def _plan
-    classes = Hash.new;
-    require 'find'
-    Find.find(File.join(RAILS_ROOT, 'app/controllers'))  { |name|
-        require_dependency(name) if /_controller\.rb$/ =~ name
-    }
-    # définition de @classes[] : listes des controllers de l'application
-    ObjectSpace.subclasses_of(::ActionController::Base).each do |obj|
-      classes["#{obj.controller_name}"] = obj
+    #Sorting routes by controller name
+    routes = ActionController::Routing::Routes.routes.sort do |a,b|
+      result = (a.requirements[:controller] <=> b.requirements[:controller])
     end
-    @classes = classes.sort {|a,b| a[0]<=>b[0]}
+
+    @routes = []
+    last_controller = nil
+    #Get the routes only one time (we don't care if there is a post AND a get route for the same controller/action)
+    routes.each do |r|
+      if last_controller != r.requirements[:controller]
+        @routes.last.last.sort!.uniq! unless @routes.size.zero?
+        @routes.push [ r.requirements[:controller], Array.new ]
+      else
+        @routes.last.last.push r.requirements[:action]
+      end
+      last_controller = r.requirements[:controller]
+    end
   end
 
 end

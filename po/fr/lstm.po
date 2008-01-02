@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 11:00+0100\n"
+"POT-Creation-Date: 2008-01-02 09:09+0100\n"
 "PO-Revision-Date: 2007-12-28 18:51+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -27,6 +27,20 @@ msgstr ""
 #: app/helpers/phonecalls_helper.rb:11
 msgid "Add a phone call"
 msgstr "Ajouter un appel"
+
+#: app/helpers/demandes_helper.rb:28
+msgid "Déclaration d'une demande"
+msgstr ""
+
+#: app/helpers/demandes_helper.rb:35
+#, fuzzy
+msgid "The life cycle of a request"
+msgstr "un nouveaux type de demande"
+
+#: app/helpers/demandes_helper.rb:42
+#, fuzzy
+msgid "Help on the status"
+msgstr "Liste des statuts"
 
 #: app/helpers/demandes_helper.rb:71
 msgid "Bl"
@@ -368,7 +382,7 @@ msgstr "Accueil"
 #: app/views/reporting/general.rhtml:42 app/views/reporting/general.rhtml:43
 #: app/views/reporting/general.rhtml:45 app/views/reporting/general.rhtml:46
 #: app/views/reporting/general.rhtml:48 app/views/reporting/general.rhtml:49
-#: app/views/logiciels/show.rhtml:49 app/views/contrats/index.rhtml:5
+#: app/views/logiciels/show.rhtml:49 app/views/contrats/index.rhtml:6
 #: app/views/bienvenue/index.rhtml:11
 msgid "Requests"
 msgstr "Demandes"
@@ -492,15 +506,15 @@ msgstr "La contribution a été créée avec succès"
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
-#: app/controllers/binaires_controller.rb:46
+#: app/controllers/binaires_controller.rb:48
 msgid "%d files has been attached to this package."
 msgstr "%d fichiers ont été attachés à ce paquet."
 
-#: app/controllers/binaires_controller.rb:60
+#: app/controllers/binaires_controller.rb:62
 msgid "Binary has beensuccessfully created."
 msgstr "Un paquet binaire a bien été créée."
 
-#: app/controllers/binaires_controller.rb:76
+#: app/controllers/binaires_controller.rb:78
 msgid "Binary has been successfully updated."
 msgstr "Le paquet binaire a bien mis à jour."
 
@@ -1668,7 +1682,8 @@ msgstr "Inactif"
 
 #: app/models/client.rb:37
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
-msgstr "Ne peut pas (dés)activer les bénéficiaires associés à cause de : \"%s\""
+msgstr ""
+"Ne peut pas (dés)activer les bénéficiaires associés à cause de : \"%s\""
 
 #: app/models/conteneur.rb:-
 msgid "conteneur"
@@ -2642,7 +2657,7 @@ msgstr "Au"
 msgid "Calls"
 msgstr "Appels"
 
-#: app/views/phonecalls/_calls_info.rhtml:51 app/views/contrats/index.rhtml:6
+#: app/views/phonecalls/_calls_info.rhtml:51
 #: app/views/bienvenue/admin.rhtml:19
 msgid "Engineers"
 msgstr "Ingénieurs"
@@ -3523,6 +3538,11 @@ msgstr "Liste des contrats"
 msgid "Packages"
 msgstr "Paquets"
 
+#: app/views/contrats/index.rhtml:6 app/views/account/_menu.rhtml:29
+#: app/views/bienvenue/admin.rhtml:7
+msgid "Users"
+msgstr "Utilisateurs"
+
 #: app/views/contrats/index.rhtml:6
 msgid "=>"
 msgstr "=>"
@@ -4261,10 +4281,6 @@ msgstr "Liste des demandes"
 msgid "Directory"
 msgstr "Répertoire"
 
-#: app/views/account/_menu.rhtml:29 app/views/bienvenue/admin.rhtml:7
-msgid "Users"
-msgstr "Utilisateurs"
-
 #: app/views/account/_menu.rhtml:32 app/views/account/_users_list.rhtml:1
 #: app/views/bienvenue/admin.rhtml:9
 msgid "User list"
@@ -4503,13 +4519,60 @@ msgstr "Testeurs"
 msgid "Free software used by %s"
 msgstr "Logiciel libre utilisé par %s"
 
-#: app/views/bienvenue/plan.rhtml:5
+#: app/views/bienvenue/plan.rhtml:2
 msgid "Plan/access allowed"
 msgstr "Plan/Accès autorisé"
 
+#: app/views/bienvenue/plan.rhtml:22
+#, fuzzy
+msgid "has an administration interface"
+msgstr "Interface d'administration"
+
+#: app/views/bienvenue/plan.rhtml:24
+msgid "has a pretty print page"
+msgstr ""
+
 #: app/views/bienvenue/plan.rhtml:26
-msgid "reporting"
-msgstr "reporting"
+msgid "allows to post suggestions"
+msgstr ""
+
+#: app/views/bienvenue/plan.rhtml:28
+#, fuzzy
+msgid "displays informations"
+msgstr "Informations"
+
+#: app/views/bienvenue/plan.rhtml:30
+msgid "allows to become an other one"
+msgstr ""
+
+#: app/views/bienvenue/plan.rhtml:32
+msgid "allows to login in the application"
+msgstr ""
+
+#: app/views/bienvenue/plan.rhtml:34
+msgid "has a map"
+msgstr ""
+
+#: app/views/bienvenue/plan.rhtml:36
+msgid "allows to comment"
+msgstr ""
+
+#: app/views/bienvenue/plan.rhtml:38
+#, fuzzy
+msgid "prints the life cycle of a request"
+msgstr "Liste des types des demandes"
+
+#: app/views/bienvenue/plan.rhtml:40
+msgid "is ajaxified"
+msgstr ""
+
+#: app/views/bienvenue/plan.rhtml:42
+msgid "allows to export datas in ODS"
+msgstr ""
+
+#: app/views/bienvenue/plan.rhtml:56
+msgid "This part of the application"
+msgstr ""
 
 #: app/views/bienvenue/suggestions.rhtml:1 app/views/bienvenue/index.rhtml:36
 msgid "Idea Box"
@@ -4784,6 +4847,9 @@ msgstr "Nouvelle offre Ossa"
 #: app/views/licenses/edit.rhtml:1
 msgid "Edit a copyright"
 msgstr "Modifier une license"
+
+#~ msgid "reporting"
+#~ msgstr "reporting"
 
 #~ msgid "Enter data under CSV format please"
 #~ msgstr "Veuillez entrer un texte au format CSV"
