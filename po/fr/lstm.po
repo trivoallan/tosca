@@ -33,14 +33,12 @@ msgid "Déclaration d'une demande"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:35
-#, fuzzy
 msgid "The life cycle of a request"
-msgstr "un nouveaux type de demande"
+msgstr "Le cycle de vie d'une demande"
 
 #: app/helpers/demandes_helper.rb:42
-#, fuzzy
 msgid "Help on the status"
-msgstr "Liste des statuts"
+msgstr "Aide sur les statuts"
 
 #: app/helpers/demandes_helper.rb:71
 msgid "Bl"
@@ -4524,55 +4522,52 @@ msgid "Plan/access allowed"
 msgstr "Plan/Accès autorisé"
 
 #: app/views/bienvenue/plan.rhtml:22
-#, fuzzy
 msgid "has an administration interface"
-msgstr "Interface d'administration"
+msgstr "possède une interface d'administration"
 
 #: app/views/bienvenue/plan.rhtml:24
 msgid "has a pretty print page"
-msgstr ""
+msgstr "possède une page pour s'imprimer"
 
 #: app/views/bienvenue/plan.rhtml:26
 msgid "allows to post suggestions"
-msgstr ""
+msgstr "permet de faire des suggestion"
 
 #: app/views/bienvenue/plan.rhtml:28
-#, fuzzy
 msgid "displays informations"
-msgstr "Informations"
+msgstr "affiche des informations"
 
 #: app/views/bienvenue/plan.rhtml:30
 msgid "allows to become an other one"
-msgstr ""
+msgstr "permet de devenir un autre"
 
 #: app/views/bienvenue/plan.rhtml:32
 msgid "allows to login in the application"
-msgstr ""
+msgstr "permet de se connecter à l'application"
 
 #: app/views/bienvenue/plan.rhtml:34
 msgid "has a map"
-msgstr ""
+msgstr "possède un plan"
 
 #: app/views/bienvenue/plan.rhtml:36
 msgid "allows to comment"
-msgstr ""
+msgstr "permet de commenter"
 
 #: app/views/bienvenue/plan.rhtml:38
-#, fuzzy
 msgid "prints the life cycle of a request"
-msgstr "Liste des types des demandes"
+msgstr "affiche le cycle de vie d'une demande"
 
 #: app/views/bienvenue/plan.rhtml:40
 msgid "is ajaxified"
-msgstr ""
+msgstr "est Web 2.0 !"
 
 #: app/views/bienvenue/plan.rhtml:42
 msgid "allows to export datas in ODS"
-msgstr ""
+msgstr "permet de faire des exports ODS"
 
 #: app/views/bienvenue/plan.rhtml:56
 msgid "This part of the application"
-msgstr ""
+msgstr "Cette partie de l'application"
 
 #: app/views/bienvenue/suggestions.rhtml:1 app/views/bienvenue/index.rhtml:36
 msgid "Idea Box"
