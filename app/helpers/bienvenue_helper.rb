@@ -42,7 +42,7 @@ module BienvenueHelper
       ### Texts ###
       @@texts.each { |i| case action; when *(i.first)
           value = i.last
-          texts.push (value.is_a?(Array) ? link_to(value.first, options) : value)
+          texts.push((value.is_a?(Array) ? link_to(value.first, options) : value))
         end
       }
       ### Icons ###

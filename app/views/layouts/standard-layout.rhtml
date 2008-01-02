@@ -8,16 +8,15 @@
  <% role_localised = :"#{locale}#{session[:user].role_id}" if user %>
  <% @@public_menu ||= {}; @@public_links ||= {}; @@public_head ||= {}; @@menu ||= {} %>
  <% @@public_head[locale] ||=
-       '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
-       "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
-       "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
-       stylesheet_link_tag('common') <<
-       stylesheet_link_tag('common-printer', :media => "print") <<
-       # Include TinyMCE with gzip before other JS to avoid problems
-       tiny_mce(@tiny_mce_options, locale) <<
-       javascript_include_tag('tiny_mce/tiny_mce.js', 'calendar',
-                              "calendar-#{locale}", 'calendar-setup', 'controls',
-						      'application.js', 'redbox', :cache => true)
+      '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
+      "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
+      "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
+      stylesheet_link_tag(:all, :media => 'all', :cache => true) <<
+      # Include TinyMCE with gzip before other JS to avoid problems
+      tiny_mce(@tiny_mce_options, locale) <<
+      javascript_include_tag('tiny_mce/tiny_mce.js', 'calendar',
+         "calendar-#{locale}", 'calendar-setup', 'prototype', 'effects',
+         'controls', 'application', 'redbox', :cache => true)
  %>
  <%= @@public_head[locale] %>
  <title>08000linux : <%=_(controller.controller_name)%></title>
