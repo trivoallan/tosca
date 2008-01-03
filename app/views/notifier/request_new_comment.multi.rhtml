@@ -8,7 +8,7 @@
        modified << "prise en charge" # self-assignement
      else
        modified << "assignée à <b>#{name}</b>"
-     end 
+     end
    end %>
 
 <% url_demande = "<a href=\"#{@url_request}\">demande ##{@demande.id}</a>" %>
@@ -27,4 +27,4 @@
   La demande a été requalifiée avec une sévérité <b><%=@commentaire.severite.name%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severite_demande">Cette page</a> vous présente en détail la signification de ce changement.<br />
 <% end %>
 
-<%= render :partial => '../notifier/end_mail' %>
+<%= render :partial => 'end_mail' %>

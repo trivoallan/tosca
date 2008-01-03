@@ -4,7 +4,7 @@ Bonjour,<br />
   <p>
 &nbsp;&nbsp;Vous recevez ce courriel car vous avez été identifié(e) en tant que bénéficiaire du marché passé entre <%= Metadata::NOM_ENTREPRISE %> et <%= @user.beneficiaire.client.name %>.
   </p>
-  <%= render :partial => '../notifier/user_access' %>
+  <%= render :partial => 'user_access' %>
 <% else %>
   <p>
 &nbsp;&nbsp;Vous recevez ce courriel car vous avez désormais accès à notre outil de travail en ligne développé pour vous par <%= Metadata::NOM_ENTREPRISE %>.<br /><br />
@@ -21,4 +21,4 @@ Bonjour,<br />
    </ul>
 </p>
 &nbsp;&nbsp;Pensez à personnaliser votre mot de passe dès votre première connexion.<br />
-<%= render :partial => '../notifier/end_mail'%>
+<%= render :partial => 'end_mail'%>
