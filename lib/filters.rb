@@ -3,9 +3,9 @@ module Filters
   module Shared
     def self.extended(base)
       base.class_eval do
-        define_method(:initialize) { |params, *args| 
+        define_method(:initialize) { |params, *args|
           if params.is_a? Hash
-            params.each {|key, value| 
+            params.each {|key, value|
               if key =~ /_id/ and value.is_a? String and not value.blank?
                 send("#{key}=", value.to_i)
               else
@@ -20,22 +20,22 @@ module Filters
     end
   end
 
-  class Contributions < Struct.new('Contributions', :software, :ingenieur_id, 
-                                   :contribution, :etatreversement_id)
+  class Contributions < Struct.new('Contributions', :software, :ingenieur_id,
+                             :contribution, :etatreversement_id, :contrat_id)
     extend Shared
   end
 
-  class Softwares < Struct.new('Softwares', :software, :groupe_id, 
+  class Softwares < Struct.new('Softwares', :software, :groupe_id,
                                :contrat_id, :description, :competence_id )
     extend Shared
   end
 
-  class Calls < Struct.new('Calls', :ingenieur_id, :beneficiaire_id, 
+  class Calls < Struct.new('Calls', :ingenieur_id, :beneficiaire_id,
                             :contrat_id, :after, :before)
     extend Shared
   end
 
-  class Requests < Struct.new('Requests', :text, :client_id, :ingenieur_id, 
+  class Requests < Struct.new('Requests', :text, :client_id, :ingenieur_id,
                               :typedemande_id, :severite_id, :statut_id, :active)
     extend Shared
   end
@@ -51,15 +51,15 @@ module Filters
   # <hr />
   # There are 3 kind of operation, expressed in symbol
   # :like, :in & :equal
-  # Call it like : 
+  # Call it like :
   # conditions = Filters.build_conditions(params, [
   #   ['logiciel', 'name', 'paquets.name', :like ],
   #   ['logiciel', 'description', 'paquets.description', :like ],
   #   ['filters', 'groupe_id', 'logiciels.groupe_id', :equal ],
   #   ['filters', 'competence_id', 'competences_logiciels.competence_id', :equal ],
-  #   ['filters', 'client_id', ' paquets.contrat_id', :in ] 
+  #   ['filters', 'client_id', ' paquets.contrat_id', :in ]
   # ])
-  # flash[:conditions] = options[:conditions] = conditions 
+  # flash[:conditions] = options[:conditions] = conditions
   # This helpers is here mainly for avoiding SQL injection.
   # you MUST use it, if you don't want to burn in hell during your seven next lives
   # special_conditions allows to put additional conditions to the filters.
@@ -69,7 +69,7 @@ module Filters
     conditions = [[]]
     condition_0 = conditions.first
     filters.each { |f|
-      value = params[f.first] 
+      value = params[f.first]
       unless value.blank?
         query = case f.last
                 when :equal
@@ -83,7 +83,7 @@ module Filters
                 else
                   "#{f[1]} #{f[2]} (?)"
                 end
-        condition_0.push query 
+        condition_0.push query
         # now, fill in parameters of the query
         case f.last
         when :like
@@ -100,7 +100,7 @@ module Filters
     if condition_0.empty?
       nil
     else
-      conditions[0] = condition_0.join(' AND ') 
+      conditions[0] = condition_0.join(' AND ')
       conditions
     end
   end

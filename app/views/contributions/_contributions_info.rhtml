@@ -25,14 +25,16 @@
 <div class="menu_title" onclick="Element.toggle('menu_recherche');">
 > <%=_('Search')%></div>
 <ul class="menu" id="menu_recherche">
- <li><b><%=_('Software')%> </b></li>
- <li><%= text_field :filters, :software %></li>
- <li><b><%=_('Contribution')%> </b></li>
- <li><%= text_field :filters, :contribution %></li>
- <li><b><%=_('Author')%> </b></li>
- <li><%= select_filter(@ingenieurs, 'ingenieur') %></li>
- <li><b><%=_('State')%> </b></li>
- <li><%= select_filter(@etatreversements, 'etatreversement') %></li>
+ <li><b><%=_('Software')%> </b><br />
+     <%= text_field :filters, :software %></li>
+ <li><b><%=_('Contribution')%> </b><br />
+     <%= text_field :filters, :contribution %></li>
+ <li><b><%=_('Author')%> </b><br />
+     <%= select_filter(@ingenieurs, 'ingenieur') %></li>
+ <li><b><%=_('State')%> </b><br />
+     <%= select_filter(@etatreversements, 'etatreversement') %></li>
+ <li><b><%=_('Contract')%> </b><br />
+     <%= select_filter(@contrats, 'contrat') %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_synthese');">

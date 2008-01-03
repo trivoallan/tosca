@@ -50,7 +50,8 @@ class ContributionsController < ApplicationController
         [:software, 'logiciels.name', :like ],
         [:contribution, 'contributions.name', :like ],
         [:etatreversement_id, 'contributions.etatreversement_id', :equal ],
-        [:ingenieur_id, 'contributions.ingenieur_id', :equal ]
+        [:ingenieur_id, 'contributions.ingenieur_id', :equal ],
+        [:contrat_id, 'demandes.contrat_id', :equal ]
       ])
       @filters = contributions_filters
     end
@@ -142,6 +143,7 @@ private
     @etatreversements = Etatreversement.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @logiciels = Logiciel.find_select
+    @contrats = Contrat.find_select(Contrat::OPTIONS)
     # count
     clogiciels = { :select => 'contributions.logiciel_id', :distinct => true }
     @count = {:contributions => Contribution.count,
