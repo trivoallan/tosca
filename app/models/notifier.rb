@@ -76,12 +76,14 @@ class Notifier < ActionMailer::Base
     # for instance, send mail to the correct engineer
     # when reaffecting a request
     request.reload
+    comment = options[:commentaire]
 
-    recipients compute_recipients(request, options[:commentaire].prive)
-    cc         compute_copy(request)
+    recipients compute_recipients(request, comment.prive)
+    cc         compute_copy(request, comment.prive)
+    bcc        compute_bcc(request) if comment.prive
     from       FROM
     subject    "[OSSA:##{request.id}] : #{request.resume}"
-    headers    headers_mail_request(options[:commentaire])
+    headers    headers_mail_request(comment)
 
     html_and_text_body(options)
 
@@ -194,24 +196,29 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def compute_copy(demande)
-    res = demande.contrat.mailinglist
-    if demande.mail_cc and demande.mail_cc.size > 4 and !res.blank?
-      res += ", " << demande.mail_cc
-    end
-    res
+  # For now, we have bcc recipient only for private comments.
+  # It sends a mail to all experts of a contract.
+  def compute_bcc(request)
+    return '' if private
+    res = demande.contrat.engineer_users.find(:all, :select => 'email')
+    res.collect{ |r| r.email }.join(',')
+  end
+
+  def compute_copy(demande, private = false)
+    return '' if private
+    res = []
+    res << demande.contrat.mailinglist
+    res << demande.mail_cc unless demande.mail_cc.blank?
+    res.join(',')
   end
 
   def compute_recipients(demande, private = false)
-    result = ""
+    res = []
     # The client is not informed of private messages
-    result += demande.beneficiaire.user.email if not private
+    res << demande.beneficiaire.user.email unless private
     # Request are not assigned, by default
-    if demande.ingenieur
-      result += ", " if not private
-      result += demande.ingenieur.user.email
-    end
-    result
+    res << demande.ingenieur.user.email if demande.ingenieur
+    res.join(',')
   end
 
   def message_notice(recipients, cc)
