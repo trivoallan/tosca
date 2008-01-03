@@ -19,6 +19,7 @@ class Paquet < ActiveRecord::Base
         c.name =~ /(_id|taille|configuration|_count)$/ || c.name == inheritance_column }
   end
 
+  # See ApplicationController#scope
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
         [ 'paquets.contrat_id IN (?)', contrat_ids ]} }

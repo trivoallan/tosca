@@ -22,6 +22,7 @@ class Logiciel < ActiveRecord::Base
   validates_length_of :competences, :minimum => 1, :message =>
     _('You have to specify at least one technology')
 
+  # See ApplicationController#scope
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
         [ 'paquets.contrat_id IN (?)', contrat_ids ],

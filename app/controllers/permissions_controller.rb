@@ -3,7 +3,9 @@
 #####################################################
 class PermissionsController < ApplicationController
   def index
-    @permission_pages, @permissions = paginate :permissions, :order => 'name', :per_page => 100
+    options = { :order => 'permissions.name', :include => [:roles] }
+    options.update(:per_page => 100)
+    @permission_pages, @permissions = paginate :permissions, options
   end
 
   def show

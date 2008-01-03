@@ -135,9 +135,7 @@ class ExportController < ApplicationController
       :methods => columns
      }
     report = nil
-    Demande.without_include_scope(@ingenieur, @beneficiaire) do
-      report = Demande.report_table(:all, options)
-    end
+    report = Demande.report_table(:all, options)
     unless report.column_names.empty?
       report.reorder columns
       report.rename_columns columns,

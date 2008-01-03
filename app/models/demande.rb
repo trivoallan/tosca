@@ -56,34 +56,11 @@ class Demande < ActiveRecord::Base
   TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})"
   EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})"
 
-  # WARNING : you cannot use this scope with the optimisation hidden
-  # in the model of Demande. You must then use get_scope_without_include
-  def self.set_scope(client_ids)
-    scope = { :conditions => [ 'beneficiaires.client_id IN (?)', client_ids],
-      :include => [:beneficiaire] }
+  # See ApplicationController#scope
+  def self.set_scope(contract_ids)
+    scope = { :find => { :conditions =>
+        [ 'demandes.contrat_id IN (?)', contrat_ids ] } }
     self.scoped_methods << { :find => scope, :count => scope }
-  end
-
-  # return the condition of the scope.
-  # Used in controller demande for the speed n dirty hack finder
-  # on list actions
-  def self.get_scope_without_include(client_ids)
-    { :find => { :conditions =>
-        [ 'beneficiaires.client_id IN (?)', client_ids]} }
-  end
-
-  # DIRTY HACK : WARNING
-  # We need this hack for avoiding 7 includes
-  # TODO : find a better way
-  def self.without_include_scope(ingenieur, beneficiaire)
-    escope = {}
-    if beneficiaire
-      escope = Demande.get_scope_without_include([beneficiaire.client_id])
-    end
-    if ingenieur and not ingenieur.expert_ossa
-      escope = Demande.get_scope_without_include(ingenieur.client_ids)
-    end
-    self.with_exclusive_scope(escope) { yield }
   end
 
   def to_param

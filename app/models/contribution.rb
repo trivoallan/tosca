@@ -27,6 +27,7 @@ class Contribution < ActiveRecord::Base
 
   # TODO : tout le monde doit pouvoir voir toutes les contributions.
   # Ca pose problème avec le scope logiciel ...
+  # See ApplicationController#scope
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
         [ 'paquets.contrat_id IN (?)', contrat_ids ], :include => [:paquets] } }

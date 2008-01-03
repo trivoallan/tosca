@@ -114,8 +114,9 @@ protected
 private
   # There is a global scope, on all finders, in order to
   # preserve each user in his particular space.
-  SCOPE_CLIENT = [ Client, Demande, Document, Socle ]
-  SCOPE_CONTRAT = [ Binaire, Contrat, Paquet, Phonecall, User ]
+  # TODO : scope contract only ?? it seems coherent...
+  SCOPE_CLIENT = [ Client, Document, Socle ]
+  SCOPE_CONTRAT = [ Binaire, Contrat, Demande, Paquet, Phonecall, User ]
 
   # This method has a 'handmade' scope, really faster and with no cost
   # of safety. It was made in order to avoid 15 yields.
@@ -124,7 +125,7 @@ private
     if is_connected
       user = session[:user]
       beneficiaire, ingenieur = user.beneficiaire, user.ingenieur
-      apply = ((ingenieur and not ingenieur.expert_ossa) || beneficiaire)
+      apply = ((ingenieur and user.restricted?) || beneficiaire)
       if apply
         contrat_ids = user.contrat_ids
         client_ids = user.client_ids
@@ -132,7 +133,7 @@ private
         SCOPE_CLIENT.each {|m| m.set_scope(client_ids) }
       end
     else
-      # Forbid access to request if we are not connected
+      # Forbid access to request if we are not connected. It's just a paranoia.
       Demande.set_scope([0])
     end
     begin
@@ -155,7 +156,7 @@ private
   WARN_NOID = 'Veuillez préciser une adresse existante et valide. Nous ne ' +
     'considérons pas que c\'est une erreur. Si vous pensez le contraire, ' +
     'n\'hésitez pas à nous contacter.'
-  def rescue_action(exception)
+  def rescue_action_in_public(exception)
     if exception.is_a? ActiveRecord::RecordNotFound
       msg = WARN_NOID
     else

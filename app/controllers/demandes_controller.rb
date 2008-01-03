@@ -44,9 +44,7 @@ class DemandesController < ApplicationController
     conditions[0] = conditions.first.join(' AND ')
     options[:conditions] = conditions
 
-    Demande.without_include_scope(@ingenieur, @beneficiaire) do
-      @demande_pages, @demandes = paginate :demandes, options
-    end
+    @demande_pages, @demandes = paginate :demandes, options
 
     render :template => 'demandes/lists/tobd'
   end
@@ -93,9 +91,7 @@ class DemandesController < ApplicationController
 
     flash[:conditions] = options[:conditions] = conditions if conditions
 
-    Demande.without_include_scope(@ingenieur, @beneficiaire) do
-      @demande_pages, @demandes = paginate :demandes, options
-    end
+    @demande_pages, @demandes = paginate :demandes, options
 
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
