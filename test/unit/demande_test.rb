@@ -4,8 +4,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DemandeTest < Test::Unit::TestCase
-  fixtures :demandes, :typedemandes, :severites, :statuts,
-    :beneficiaires, :clients, :users, :paquets
+  fixtures :demandes, :typedemandes, :severites, :statuts, :contrats,
+    :beneficiaires, :clients, :users, :paquets, :commentaires,
+    :contrats_users
 
   def test_to_strings
     check_strings Demande, :resume, :description
@@ -41,7 +42,7 @@ class DemandeTest < Test::Unit::TestCase
     # must have a contrat_id
     assert request.errors.on(:contrat)
     assert !request.save
-    request.contrat = Contrat.find 1
+    request.contrat = contrats(:contrat_00001)
 
     assert request.save
 

@@ -1,2 +1,49 @@
---- {}
-
+---
+demande_00001:
+  created_on: 2008-01-01 00:00:01 +01:00
+  logiciel_id: 1
+  updated_on: 2008-01-01 00:00:01 +01:00
+  mantis_id:
+  last_comment_id: 0
+  ingenieur_id: 1
+  id: 1
+  cache_correction:
+  submitter_id: 1
+  severite_id: 3
+  resume: Retrait d'un fond de page impossible sous Writer
+  expected_on:
+  beneficiaire_id: 1
+  statut_id: 2
+  contrat_id: 1
+  cache_contournement:
+  typedemande_id: 2
+  socle_id: 17
+  mail_cc: ""
+  cache_rappel:
+  cache_ecoule:
+  first_comment_id: 1
+  contribution_id:
+demande_00002:
+  created_on: 2008-01-01 00:00:01 +01:00
+  logiciel_id: 1
+  updated_on: 2008-01-01 00:00:01 +01:00
+  mantis_id:
+  last_comment_id: 0
+  ingenieur_id: 3
+  id: 2
+  cache_correction:
+  submitter_id: 2
+  severite_id: 3
+  resume: Copie d'une question dans OOo
+  expected_on:
+  beneficiaire_id: 2
+  statut_id: 2
+  contrat_id: 3
+  cache_contournement:
+  typedemande_id: 2
+  socle_id: 17
+  mail_cc: ""
+  cache_rappel:
+  cache_ecoule:
+  first_comment_id: 2
+  contribution_id:
