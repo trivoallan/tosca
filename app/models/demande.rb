@@ -35,7 +35,6 @@ class Demande < ActiveRecord::Base
   validates_presence_of :resume, :contrat, :description, :beneficiaire,
    :statut, :severite, :warn => _("You must indicate a %s for your request")
   validates_length_of :resume, :within => 5..70
-  attr_accessor :description
   validates_length_of :description, :minimum => 5
 
   validate do |record|
@@ -48,7 +47,6 @@ class Demande < ActiveRecord::Base
   # acts_as_versioned
   # has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
   after_save :update_first_comment
-  after_create :create_first_comment
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
 
   # used for ruport. See plugins for more information
@@ -107,29 +105,33 @@ class Demande < ActiveRecord::Base
   end
 
   def update_first_comment
+    c = self.first_comment
+    c.ingenieur_id = self.ingenieur_id
+    c.demande_id = self.id
+    c.severite_id = self.severite_id
+    c.statut_id = self.statut_id
+    c.user_id = self.submitter_id
+    unless c.save
+      c.destroy
+      throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
+    end
+
+  end
+
+  def description
+    self.first_comment.corps unless self.first_comment.blank?
+  end
+
+  def description=(value)
     first_comment = self.first_comment
-    if first_comment and first_comment.corps != self.description
-      first_comment.update_attribute(:corps, self.description)
+    return create_first_comment(value) unless first_comment
+    if first_comment and first_comment.corps != value
+      first_comment.update_attribute(:corps, value)
     end
   end
 
-  def create_first_comment
-    comment = Commentaire.new do |c|
-      #We use id's because it's quicker
-      c.corps = self.description
-      c.ingenieur_id = self.ingenieur_id
-      c.demande_id = self.id
-      c.severite_id = self.severite_id
-      c.statut_id = self.statut_id
-      c.user_id = self.beneficiaire.user_id
-    end
-    if comment.save
-      self.first_comment_id = comment.id
-      self.save
-    else
-      self.destroy
-      throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
-    end
+  def create_first_comment(value)
+    self.first_comment = Commentaire.new(:corps => value, :demande => self)
   end
 
   # /!\ Dirty Hack Warning /!\

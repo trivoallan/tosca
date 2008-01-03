@@ -18,25 +18,21 @@ class CommentairesController < ApplicationController
   #utilisé par la vue "comment" de Demande pour en ajouter un
   def comment
     unless params[:id] and params[:commentaire]
-      return render_text('')
+      return render(:nothing => true)
     end
 
     user = session[:user]
     demande = Demande.find(params[:id])
 
     modifications = {}
-    if params[:commentaire]
-      #on regarde si le statut a changer
-      %w{statut_id ingenieur_id severite_id}.each do |attr|
-        modifications[attr] = true unless params[:commentaire][attr].blank?
-      end
+    #on regarde si le statut a changer
+    %w{statut_id ingenieur_id severite_id}.each do |attr|
+      modifications[attr] = true unless params[:commentaire][attr].blank?
+    end
 
-      # auto-assignment to current engineer
-      if demande.ingenieur_id.nil? and not @ingenieur.nil?
-        demande.update_attribute :ingenieur_id, @ingenieur.id
-      end
-    else
-      params[:commentaire] = {}
+    # auto-assignment to current engineer
+    if demande.ingenieur_id.nil? and not @ingenieur.nil?
+      demande.update_attribute :ingenieur_id, @ingenieur.id
     end
 
     # public si on modifie le statut
@@ -45,19 +41,11 @@ class CommentairesController < ApplicationController
     # 'Le statut a été modifié : le commentaire est <b>public</b>'
     @commentaire = Commentaire.new(params[:commentaire])
     @commentaire.demande_id = demande.id
-    if params[:piecejointe] and params[:piecejointe][:file] != ''
-      @commentaire.piecejointe = Piecejointe.new(params[:piecejointe])
-    end
+    @commentaire.add_attachment(params)
     @commentaire.user_id = user.id
 
     # on vérifie et on envoie le courrier
-    # TODO : Le validate dans le model commentaire ne semble pas fonctionner, voir pourquoi
-    if @commentaire.corps.size < 5
-      @commentaire.errors.add_on_empty('corps')
-#       Il ne faut _PAS_ de .now dans ce warn. Il est renvoyé au
-#       contrôleur des demandes.
-      flash[:warn] = _("Your comment is too short, please rewrite it.")
-    elsif @commentaire.save
+    if @commentaire.save
       # Caching times in 'demande'
 =begin
       champs = {  :cache_contournement => demande.temps_contournement() ,

@@ -141,11 +141,7 @@ class DemandesController < ApplicationController
     @demande.submitter = session[:user] # it's the current user
     if @demande.save
       flash[:notice] = _("Your request has been successfully submitted")
-      attachment = params[:piecejointe]
-      unless attachment.blank?
-        piecejointe = Piecejointe.create(:file => attachment[:file])
-        @demande.first_comment.update_attribute(:piecejointe, piecejointe)
-      end
+      @demande.first_comment.add_attachment(params)
       @commentaire = @demande.first_comment
       url_attachment = render_to_string(:layout => false,
                                         :template => '/attachment')
