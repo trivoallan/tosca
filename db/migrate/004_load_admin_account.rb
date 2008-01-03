@@ -13,7 +13,7 @@ class LoadAdminAccount < ActiveRecord::Migration
                            admin_id, :password =>
                            Digest::SHA1.hexdigest("linagora--#{'admin'}--"))
     user.id = 1
-    user.save
+    user.save!
     Ingenieur.create(:identifiant_id => 1)
   end
 

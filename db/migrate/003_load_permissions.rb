@@ -92,7 +92,7 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ expert_id, customer_id, viewer_id ]
-    access = [ [ '^accounts/index$', 'List accounts' ] ]
+    access = [ [ '^account/index$', 'List accounts' ] ]
     add_permission.call(roles, access)
 
     roles = [ expert_id, customer_id ]
@@ -101,7 +101,8 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ public_id ]
-    access = [ [ '^account/(login|logout)$', 'Access to login system' ],
+    access = [ [ '^acces/refuse$', 'Page for denying access' ],
+               [ '^account/(login|logout)$', 'Access to login system' ],
                [ '^bienvenue/(index|about|plan)$', 'Access to home pages' ],
                [ '^contributions/(index|select|show|list)',
                  'Public read access to contributions' ],

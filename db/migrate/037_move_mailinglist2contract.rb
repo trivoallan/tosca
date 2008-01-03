@@ -16,10 +16,10 @@ class MoveMailinglist2contract < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :contrats, :mailinglist
     add_column :clients, :mailingliste, :string, :limit => 50, :null => false
     Contrat.find(:all).each do |co|
       co.client.update_attribute :mailingliste, co.mailinglist
     end
+    remove_column :contrats, :mailinglist
   end
 end
