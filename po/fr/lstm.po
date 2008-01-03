@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-02 12:32+0100\n"
-"PO-Revision-Date: 2008-01-02 12:35+0100\n"
+"PO-Revision-Date: 2008-01-03 19:03+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -373,7 +373,7 @@ msgstr "Logiciel"
 #: app/views/demandes/_infos_demande.rhtml:31
 #: app/views/demandes/lists/_requests_info.rhtml:49
 msgid "Severity"
-msgstr "Séverité"
+msgstr "Sévérité"
 
 #: app/controllers/export_controller.rb:145
 msgid "Submission date"
