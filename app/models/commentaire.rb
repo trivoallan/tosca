@@ -37,6 +37,15 @@ class Commentaire < ActiveRecord::Base
     id.to_s
   end
 
+  # This method search, create and add an attachment to the comment
+  def add_attachment(params)
+    attachment = params[:piecejointe]
+    return false unless attachment and !attachment[:file].blank?
+    attachment = Piecejointe.new(attachment)
+    attachment.commentaire = self
+    attachment.save and self.update_attribute(:piecejointe_id, attachment.id)
+  end
+
   private
   before_create :check_status
   def check_status
