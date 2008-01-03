@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-02 12:32+0100\n"
-"PO-Revision-Date: 2008-01-03 19:03+0100\n"
+"PO-Revision-Date: 2008-01-03 19:27+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -2105,7 +2105,7 @@ msgstr "Info"
 
 #: app/models/severite.rb:-
 msgid "severite"
-msgstr "séverité"
+msgstr "sévérité"
 
 #: app/models/severite.rb:-
 msgid "Severite|Name"
@@ -3690,7 +3690,7 @@ msgstr "Nature de la demande :"
 
 #: app/views/demandes/_form_client.rhtml:24
 msgid "Severity :"
-msgstr "Séverité :"
+msgstr "Sévérité :"
 
 #: app/views/demandes/_form_client.rhtml:30
 msgid "Base :"
@@ -4475,7 +4475,7 @@ msgstr "répartition"
 
 #: app/views/reporting/_sommaire.rhtml:9 app/views/reporting/general.rhtml:24
 msgid "severity"
-msgstr "séverité"
+msgstr "sévérité"
 
 #: app/views/reporting/_sommaire.rhtml:10 app/views/reporting/general.rhtml:27
 msgid "resolution"
@@ -4658,7 +4658,7 @@ msgstr "une nouvelle sévérité"
 
 #: app/views/severites/new.rhtml:1
 msgid "New severity"
-msgstr "Nouvelle séverité"
+msgstr "Nouvelle sévérité"
 
 #: app/views/socles/_form.rhtml:6 app/views/socles/show.rhtml:9
 msgid "Computer :"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2008-01-02 12:32+0100\n"
-"PO-Revision-Date: 2007-12-13 19:41+0100\n"
+"PO-Revision-Date: 2008-01-03 19:23+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1519,9 +1519,8 @@ msgid "Contrat|Chrono"
 msgstr "Chrono"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Mailinglist"
-msgstr "Client"
+msgstr "Mailing list"
 
 #: app/models/contribution.rb:- app/views/contributions/select.rhtml:3
 msgid "contribution"
@@ -1680,9 +1679,8 @@ msgid "Demande|Cache rappel"
 msgstr "Created on"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Submitter"
-msgstr "Severity"
+msgstr "Submitter"
 
 #: app/models/demande.rb:-
 msgid "statut"
@@ -2452,9 +2450,8 @@ msgid "only"
 msgstr ""
 
 #: app/views/account/_edit_engineer.rhtml:22
-#, fuzzy
 msgid "contracts"
-msgstr "contract"
+msgstr "contracts"
 
 #: app/views/account/_edit_recipient.rhtml:17
 msgid "Notify subalterns"
