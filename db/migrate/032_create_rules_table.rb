@@ -1,4 +1,6 @@
 class CreateRulesTable < ActiveRecord::Migration
+  class Contrat < ActiveRecord::Base; end
+
   def self.up
     create_table :time_tickets do |t|
       t.column :name,   :string, :null => false
@@ -13,6 +15,7 @@ class CreateRulesTable < ActiveRecord::Migration
       # maximum number of components. -1 => all components of the earth
       t.column :max,            :integer, :default => -1
     end
+
     Contrat.find(:all).each do |c|
       c[:rule_type] = "Ossa"
       c[:rule_id] = 1

@@ -20,6 +20,7 @@ class Demande < ActiveRecord::Base
   # TODO : à voir si c'est inutile. avec le socle, on a dejà la plateforme
   has_and_belongs_to_many :binaires
   has_many :phonecalls
+  has_one :elapsed, :dependent => :destroy
   belongs_to :contribution
   belongs_to :socle
   has_many :piecejointes, :through => :commentaires
