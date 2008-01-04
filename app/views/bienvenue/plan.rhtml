@@ -2,25 +2,39 @@
 <h2 class="spacer"><%= _('Plan/access allowed') %></h2>
 
 <table class="sommaire">
- <% init_builder %>
- <% @routes.each do |r|
+  <% init_builder
+     image_only_bloc = [] %>
+
+  <% @routes.each do |r|
       texts, images = [], []
       build_bloc(r, texts, images) %>
-      <% unless texts.empty? %>
-       <% humanize_controller = _(r.first.humanize) %>
-       <% # We use named cycles so each one is independent from the others %>
-       <%= cycle('<tr><td style="vertical-align: middle">', '<td style="vertical-align: middle">', :name => "start_tags") %>
-        <div class="sommaire show">
-         <% header = r.last.include?("index") ? link_to(humanize_controller, :controller => r.first) : humanize_controller %>
-         <h2><%= header %> <%= images.join(" ") unless images.empty? %></h2>
-         <%= _("This part of the application") %>
-         <ul>
-          <li>
-            <%= texts.join("</li><li>") %>
-          </li>
-         </ul>
-        </div>
-       <%= cycle("</td>", "</td></tr>", :name => "end_tags") %>
+
+      <% if texts.empty? and not images.empty? %>
+        <% image_only_bloc.push([r.first, images]) %>
+      <% elsif not texts.empty? %>
+        <% humanize_controller = _(r.first.humanize) %>
+        <% # We use named cycles so each one is independent from the others %>
+        <%= cycle("<tr>", "", :name => "start") %>
+        <td><div class="sommaire show">
+          <% header = r.last.include?("index") ? link_to(humanize_controller, :controller => r.first) : humanize_controller %>
+          <h2><%= header %> <%= images.join(" ") unless images.empty? %></h2>
+            <%= _("This part of the application") %>
+            <ul>
+              <li><%= texts.join("</li><li>") %></li>
+            </ul>
+        </div></td>
+        <%= cycle("", "</tr>", :name => "end") %>
       <% end %>
- <% end %>
+  <% end %>
+
+  <tr><td>
+  <div class="sommaire show">
+    <h2><%= _("Others parts") %></h2>
+    <ul>
+    <% image_only_bloc.each do |i| %>
+      <li><%= link_to(i.first.humanize, :controller => i.first) %> : <%= i.last %></li>
+    <% end %>
+    </ul>
+  </div>
+  </td></tr>
 </table>
