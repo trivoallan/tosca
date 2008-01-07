@@ -11,12 +11,6 @@ engagement_00003:
   typedemande_id: 2
   correction: -1.0
   contournement: 5.0
-engagement_00004: 
-  id: 4
-  severite_id: 4
-  typedemande_id: 2
-  correction: -1.0
-  contournement: -1.0
 engagement_00005: 
   id: 5
   severite_id: 1
@@ -34,12 +28,6 @@ engagement_00007:
   severite_id: 3
   typedemande_id: 1
   correction: 1.0
-  contournement: -1.0
-engagement_00008: 
-  id: 8
-  severite_id: 4
-  typedemande_id: 1
-  correction: -1.0
   contournement: -1.0
 engagement_00001: 
   id: 1
