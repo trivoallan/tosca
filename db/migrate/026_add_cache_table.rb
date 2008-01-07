@@ -10,7 +10,6 @@ class AddCacheTable < ActiveRecord::Migration
     add_index :elapseds, :demande_id, :unique => true
 
     add_column :commentaires, :elapsed, :integer, :null => false, :default => 0
-    add_column :demandes, :elapsed_id, :integer, :null => false
   end
 
   def self.down

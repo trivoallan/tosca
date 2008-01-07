@@ -26,7 +26,7 @@ class Phonecall < ActiveRecord::Base
   def self.set_scope(contrat_ids)
     if contrat_ids
       self.scoped_methods << { :find => { :conditions =>
-          [ 'appels.contrat_id IN (?)', contrat_ids ] } }
+          [ 'phonecalls.contrat_id IN (?)', contrat_ids ] } }
     end
   end
 

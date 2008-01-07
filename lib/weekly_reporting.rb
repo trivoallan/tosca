@@ -11,7 +11,7 @@ module WeeklyReporting
     scope = { :find => { :conditions =>
         [ 'demandes.beneficiaire_id IN (:beneficiaire_ids) AND demandes.updated_on BETWEEN :first_day AND :last_day', values ] }
     }
-    Demande.with_scope(scope) {
+    Demande.send(:with_scope, scope) {
       first_day = values[:first_day].to_formatted_s(:db)
       last_day = values[:last_day].to_formatted_s(:db)
 
