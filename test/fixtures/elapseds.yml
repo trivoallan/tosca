@@ -1,7 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+elapsed_00001:
+  id: 1
+  demande_id: 1
+  taken_into_account: 0
+  workaround: 0
+  correction: 0
+  until_now: 0
+elapsed_00002:
+  id: 2
+  demande_id: 2
+  taken_into_account: 0
+  workaround: 0
+  correction: 0
+  until_now: 0
