@@ -64,19 +64,6 @@ module DemandesHelper
     end
   end
 
-  #Display the short way of severity
-  # TODO : take the id and make the case on the id
-  def short_severite(d)
-    case d.severite_id
-    when 1 then _("Bl")
-    when 2 then _("Ma")
-    when 3 then _("Mi")
-    when 4 then _("No")
-    else
-      _("Wtf")
-    end
-  end
-
   def render_table(options)
     render :partial => "report_table", :locals => options
   end
@@ -217,5 +204,16 @@ module DemandesHelper
   end
 
 
+  def display_commitment(req)
+    contract, severity, type = req.contrat, req.severite, req.typedemande
+    return '' unless contract && severity && type
+    commitment = req.engagement(contract)
+    res = ''
+  end
 
+
+  private
+  def one_element(title, value)
+    "<p><label>#{title}: </label> #{value}</p>"
+  end
 end

@@ -82,8 +82,8 @@ class User < ActiveRecord::Base
   def self.set_scope(contrat_ids)
     if contrat_ids
       self.scoped_methods << { :find => { :conditions =>
-          [ 'cu.contrat_id IN (?) ', contrat_ids ], :joins =>
-        'INNER JOIN contrats_users cu ON cu.user_id=users.id ' } }
+          [ 'contrats_users.contrat_id IN (?) ', contrat_ids ], :joins =>
+        'INNER JOIN contrats_users ON contrats_users.user_id=users.id ' } }
     end
   end
 
@@ -140,7 +140,7 @@ class User < ActiveRecord::Base
   # cached, coz' it's used in scopes
   def client_ids
     @client_ids ||= self.contrats.find(:all, :group => 'client_id',
-         :select => 'client_id').collect {|c| c.client_id}
+         :select => 'distinct client_id').collect {|c| c.client_id}
   end
 
 

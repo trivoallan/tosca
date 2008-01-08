@@ -1,6 +1,0 @@
-<div id="contracts"><%= select(:demande, :contrat_id,
-                          @contrats.collect{|l| [ l.name, l.id]}) %>
-   <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with => "recipient_id",
-        :url => ajax_display_contracts_demandes_path) %>
-   <%= observe_field "demande_beneficiaire_id", options %>
-</div>

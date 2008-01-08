@@ -12,7 +12,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :ingenieur
 
   has_and_belongs_to_many :paquets
-  has_and_belongs_to_many :binaires
+  has_and_belongs_to_many :binaires, :include => :paquet
 
   file_column :patch, :fix_file_extensions => nil
 

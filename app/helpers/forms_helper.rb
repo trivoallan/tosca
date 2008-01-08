@@ -66,21 +66,18 @@ module FormsHelper
   # :onchange action si changement
   # :size hauteur du select
   def select_onchange(list, default, name, options = {})
-    options[:title] ||= '» '
+    title = [[options[:title] || '» ', '' ]]
     options[:onchange] ||= 'this.form.submit();'
     options[:name] ||= name
-    collected = [[options[:title], '']].concat(list.collect{|e| [e.name, e.id] })
+    collected = title.concat(list)
     default_value = (default.is_a?(Numeric) ? default : 0)
     select = options_for_select(collected, default_value)
     content_tag :select, select, options
   end
 
-  def select_empty(list, default, name, options = {})
-    title = [ '» ', '' ]
-    options[:name] = name
-    collected = list.collect{|e| [e.name, e.id] }.unshift(title)
-    select = options_for_select(collected, default.to_i)
-    content_tag :select, select, options
+  def select_empty(object, method, choices, options = {}, html_options = {})
+    title = [[ '» ', '' ]]
+    select(object, method, title.concat(choices), options, html_options)
   end
 
   # Fields est un tableau du formulaire, en 2 colonnes

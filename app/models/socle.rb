@@ -4,7 +4,7 @@
 class Socle < ActiveRecord::Base
   acts_as_reportable
   has_one :machine
-  has_many :binaires
+  has_many :binaires, :include => :paquet
   has_many :paquets, :through => :binaires, :group => 'paquets.id'
 
   has_and_belongs_to_many :clients

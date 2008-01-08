@@ -16,9 +16,7 @@ class Demande < ActiveRecord::Base
     :foreign_key => 'submitter_id'
 
   belongs_to :contrat
-  has_and_belongs_to_many :paquets
-  # TODO : à voir si c'est inutile. avec le socle, on a dejà la plateforme
-  has_and_belongs_to_many :binaires
+  belongs_to :binaire, :include => :paquet
   has_many :phonecalls
   has_one :elapsed, :dependent => :destroy
   belongs_to :contribution
@@ -80,6 +78,22 @@ class Demande < ActiveRecord::Base
     options = { :order => 'created_on DESC', :conditions =>
       [ 'commentaires.prive <> 1 AND commentaires.id <> ?', comment_id ]}
     self.commentaires.find(:first, options)
+  end
+
+  # set the default for a new request
+  def set_defaults(expert, recipient, contracts, params)
+    return unless new_record?
+    self.statut_id = (expert ? 2 : 1)
+    # self-assignment
+    self.ingenieur = expert
+    # without severity, by default
+    self.severite_id = 4
+    # self-contract, by default
+    self.contrat_id = contracts.first.id if contracts.size == 1
+    # if we came from software view, it's sets automatically
+    self.logiciel_id = params[:logiciel_id]
+    # recipients
+    self.beneficiaire_id = recipient.id if recipient
   end
 
   def update_first_comment

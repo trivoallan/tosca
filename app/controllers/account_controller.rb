@@ -221,7 +221,7 @@ private
   def _form_recipient
     return unless @user_recipient
     @clients = Client.find_select
-    @contrats = @clients.first.contrats
+    @contrats = Client.find(@clients.first.last.to_i).contrats
     @user.role_id = 4 if @user.new_record?
   end
 

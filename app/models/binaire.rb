@@ -7,16 +7,15 @@ class Binaire < ActiveRecord::Base
   belongs_to :arch
   has_many :fichierbinaires, :dependent => :destroy
   has_and_belongs_to_many :contributions
-  has_and_belongs_to_many :demandes
 
   file_column :archive, :fix_file_extensions => nil
 
   validates_presence_of :paquet
 
+  # paquet association MUST be loaded by each reference on this model
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'paquets.contrat_id IN (?)', contrat_ids ],
-        :include => [:paquet]} }
+        [ 'paquets.contrat_id IN (?)', contrat_ids ] } }
   end
 
   # belongs_to :contrat

@@ -46,7 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   # !!! CONVENTION !!!
   map.resources :accounts,
     :controller => "account",
-    :member => { :become => :post },
+    :member => { :become => :post, :ajax_contracts => :post },
     :collection => { :logout => :any, :login => :any },
     :new => { :signup => :any, # TODO : reactive it :multiple_signup => :any,
       :ajax_place => :post, :ajax_contracts => :post }
@@ -69,8 +69,9 @@ ActionController::Routing::Routes.draw do |map|
     :member => { :list => :get }
   map.resources :demandes,
     :collection => { :en_attente => :get,
-      :ajax_display_packages => :post,
-      :ajax_display_contracts => :post },
+      :ajax_display_commitments => :post,
+      :ajax_display_version => :post,
+      :ajax_display_contract => :post },
     :member => { :comment=> :any,
       :associer_contribution => :post,
       :delete_contribution => :post,

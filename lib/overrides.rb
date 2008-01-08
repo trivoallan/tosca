@@ -77,25 +77,25 @@ class Time
       _('%d minutes') % distance
     when 45..half_day_inf, half_day_sup..day-60
       value = (distance.to_f / 60.0).round
-      n_(value,'%d hour', '%d hours') % value
+      n_('%d hour', '%d hours', value) % value
     when half_day_inf..half_day_sup
       (opened ? _('1 half a working day') : _('1 half day'))
     when (day-60)..(day+60), (day*2-60)..(day*2+60),
          (day*3-60)..(day*3), (3*day)..mo
       val = (distance / day).round
-      (opened ? n_(val, '%d working day', '%d working days') :
-                n_(val, '%d day', '%d days')) % val
+      (opened ? n_('%d working day', '%d working days', val) :
+                n_('%d day', '%d days', val)) % val
     when day..(3*day)
       days = (distance / day).floor
       hours = ((distance % 1.day)/60).round
-      out = ((opened ? n_(days, '%d working day', '%d working days') :
-                       n_(days, '%d day', '%d days')) % days)
-      out << ' and ' << n_(hours, '%d hour', '%d hours') % hours
+      out = ((opened ? n_('%d working day', '%d working days', days) :
+                       n_('%d day', '%d days', days)) % days)
+      out << ' and ' << n_('%d hour', '%d hours', hours) % hours
       out
     else
       val = (distance / mo).round
-      (opened ? n_(val, '%d working month', '%d working months') :
-                n_(val, '%d month', '%d months')) % val
+      (opened ? n_('%d working month', '%d working months', val) :
+                n_('%d month', '%d months', val)) % val
     end
   end
 

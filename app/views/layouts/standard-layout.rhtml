@@ -13,10 +13,10 @@
       "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
       stylesheet_link_tag(:all, :media => 'all', :cache => true) <<
       # Include TinyMCE with gzip before other JS to avoid problems
-      tiny_mce(@tiny_mce_options, locale) <<
       javascript_include_tag('tiny_mce/tiny_mce.js', 'calendar',
          "calendar-#{locale}", 'calendar-setup', 'prototype', 'effects',
-         'controls', 'application', 'redbox', :cache => true)
+         'controls', 'application', 'redbox', :cache => true) <<
+      tiny_mce(@tiny_mce_options, locale)
  %>
  <%= @@public_head[locale] %>
  <title>08000linux : <%=_(controller.controller_name)%></title>

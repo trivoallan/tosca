@@ -10,6 +10,8 @@ class Contrat < ActiveRecord::Base
   has_and_belongs_to_many :users, :order => 'users.name'
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
     :conditions => 'users.client = 0'
+  has_and_belongs_to_many :recipient_users, :class_name => 'User',
+    :conditions => 'users.client = 1', :include => :beneficiaire
 
   has_many :binaires, :through => :paquets
   has_many :appels
@@ -52,6 +54,11 @@ class Contrat < ActiveRecord::Base
     self._logiciels
   end
 
+  # TODO : I am sure it could be better. Rework model ???
+  def find_recipients_select
+    self.recipient_users.find(:all).collect{|u|
+      [  u.name, u.beneficiaire.id ] }
+  end
 
   def ouverture_formatted
     d = @attributes['ouverture']

@@ -43,5 +43,3 @@ class StaticScript < Static::ActionView
   end
 
 end
-
-

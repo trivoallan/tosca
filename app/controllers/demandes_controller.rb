@@ -104,31 +104,13 @@ class DemandesController < ApplicationController
   end
 
   def new
-    @demande = Demande.new unless @demande
-    @demande = Demande.new(params[:demande]) if params.has_key? :demande
+    unless @demande
+      @demande = Demande.new(params.has_key?(:demande) ? params[:demande] : nil)
+    end
     _form @beneficiaire
 
-    # check if the form can display
-    if @contrats.empty?
-      flash[:warn] = _("You are not linked to any contracts in our database.") +
-        '<br />' << _("If you think it's an error, contact us at %s or at %s.") %
-        [ Metadata::CONTACT_PHONE, Metadata::CONTACT_MAIL ]
-      redirect_to(demandes_path) and return
-    end
-
-    # statut "prise en compte" si ingénieur, sinon : "enregistrée"
-    @demande.statut_id = (@ingenieur ? 2 : 1)
     unless params.has_key? :demande
-      # self-assign by default
-      @demande.ingenieur = @ingenieur
-      # without severity, by default
-      @demande.severite_id = 4
-      # self-contract, by default
-      @demande.contrat_id = @contrats.first.id if @contrats.size == 1
-      # if we came from software view, it's sets automatically
-      @demande.logiciel_id = params[:logiciel_id]
-
-      @demande.beneficiaire_id = @beneficiaire.id if @beneficiaire
+      @demande.set_defaults(@ingenieur, @beneficiaire, @contrats, params)
     end
   end
 
@@ -158,34 +140,38 @@ class DemandesController < ApplicationController
 
   # Used when submitting new request, in order to select
   # packages which are subjects to SLA.
-  def ajax_display_packages
-    @demande = Demande.new(params[:demande])
+  def ajax_display_commitments
+    return render(:nothing => true) unless params.has_key? :demande
 
-    begin
-      contrat = Contrat.find @demande[:contrat_id]
-      logiciel = Logiciel.find(@demande[:logiciel_id])
-    rescue  ActiveRecord::RecordNotFound
-      @paquets = []
-    else
-      # active = 1 : we only take supported packages.
-      # MySQL doesn't support true/false so Rails use Tinyint...
-      conditions = { :conditions =>
-        [ 'paquets.logiciel_id=? AND paquets.active=1', logiciel.id ],
-        :order => 'paquets.name DESC' }
-      @paquets = beneficiaire.client.paquets.find(:all, conditions)
-    end
   end
 
   # Used when submitting new request, in order to select
   # correct contracts
-  def ajax_display_contracts
-    return render(:nothing => true) unless params.has_key? :recipient_id
-    recipient = Beneficiaire.find(params[:recipient_id].to_i)
-    @contrats = Contrat.find(:all)
-    @contrats = [Contrat.find(1)] if recipient.id == 1
-    @contrats = [Contrat.find(2)] if recipient.id == 2
-    @socles = recipient.client.socles
+  def ajax_display_contract
+    return render(:nothing => true) unless params.has_key? :contrat_id
+    contrat = Contrat.find(params[:contrat_id].to_i)
+    @beneficiaires = contrat.find_recipients_select
+    @socles = contrat.client.socles
+    @logiciels = contrat.logiciels.collect{|l| [l.name, l.id] }
   end
+
+  # Used when submitting new request, in order to select
+  # correct version of a software
+  def ajax_display_version
+    return render(:nothing => true) unless params.has_key? :demande
+    request = params[:demande]
+    logiciel_id = request[:logiciel_id]
+    socle_id = request[:socle_id]
+    if logiciel_id.blank? || socle_id.blank?
+      @binaires = []
+    else
+      logiciel = Logiciel.find(logiciel_id.to_i)
+      options = { :conditions => ['binaires.socle_id = ?', socle_id.to_i]}
+      bins = logiciel.binaires
+      @binaires = bins.find_select(options)
+    end
+  end
+
 
   def edit
     @demande = Demande.find(params[:id])
@@ -315,7 +301,7 @@ class DemandesController < ApplicationController
     @typedemandes = Typedemande.find_select()
     @severites = Severite.find_select()
     if @ingenieur
-      @clients = Client.find_select(:conditions => 'clients.inactive = 0')
+      @clients = Client.find_active4select()
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     end
   end
@@ -329,16 +315,18 @@ class DemandesController < ApplicationController
       if client.support_distribution
         @logiciels = Logiciel.find_select
       else
-        @logiciels = client.logiciels
+        @logiciels = client.logiciels.collect{|l| [l.name, l.id]}
       end
-      @typedemandes = client.typedemandes
-      @clients = [ client ]
+      @typedemandes = client.typedemandes.collect{|td| [td.name, td.id]}
     else
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
       @logiciels = Logiciel.find_select
       @typedemandes = Typedemande.find_select
-      @clients = Client.find_select(Client::SELECT_OPTIONS)
+      options = { :include => { :beneficiaires => :user}, :conditions =>
+        'clients.inactive = 0' }
     end
+    @beneficiaires = Contrat.find(@contrats.first.last.to_i).find_recipients_select
+    @binaires = []
     @severites = Severite.find_select
     first_comment = @demande.first_comment
     @demande.description = first_comment.corps if first_comment

@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-08 11:31+0100\n"
-"PO-Revision-Date: 2008-01-03 19:27+0100\n"
+"PO-Revision-Date: 2008-01-08 11:38+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1429,9 +1429,8 @@ msgid "Commentaire|Ingenieur"
 msgstr "Ingénieur"
 
 #: app/models/commentaire.rb:-
-#, fuzzy
 msgid "Commentaire|Elapsed"
-msgstr "Utilisateur"
+msgstr "Temps écoulé"
 
 #: app/models/commentaire.rb:13
 msgid "You must have a comment with at least 5 characters"
@@ -1670,18 +1669,16 @@ msgid "Demande|Mantis"
 msgstr "Mantis"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Elapsed"
-msgstr "Socle"
+msgstr "Temps écoulé"
 
 #: app/models/demande.rb:-
 msgid "Demande|Submitter"
 msgstr "Déclarant"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Binaire"
-msgstr "Bénéficiaire"
+msgstr "Binaire"
 
 #: app/models/demande.rb:-
 msgid "statut"
@@ -1849,9 +1846,8 @@ msgid "Fichierbinaire|Taille"
 msgstr "Taille"
 
 #: app/models/elapsed.rb:-
-#, fuzzy
 msgid "elapsed"
-msgstr "Release"
+msgstr "écoulé"
 
 #: app/models/elapsed.rb:-
 #, fuzzy
@@ -1859,23 +1855,20 @@ msgid "Elapsed|Demande"
 msgstr "typedemande"
 
 #: app/models/elapsed.rb:-
-#, fuzzy
 msgid "Elapsed|Taken into account"
-msgstr "Créer un compte"
+msgstr "Prise en compte"
 
 #: app/models/elapsed.rb:-
-#, fuzzy
 msgid "Elapsed|Workaround"
 msgstr "Contournée"
 
 #: app/models/elapsed.rb:-
-#, fuzzy
 msgid "Elapsed|Correction"
 msgstr "Correction"
 
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Until now"
-msgstr ""
+msgstr "À ce jour"
 
 #: app/models/groupe.rb:-
 msgid "groupe"
@@ -2270,9 +2263,8 @@ msgid "User|Role"
 msgstr "Rôle"
 
 #: app/models/user.rb:-
-#, fuzzy
 msgid "User|Restricted"
-msgstr "Titre"
+msgstr "Restreint"
 
 #: app/models/user.rb:31
 msgid "User|Pwd"
@@ -3059,7 +3051,7 @@ msgstr "Cette partie de l'application"
 
 #: app/views/bienvenue/plan.rhtml:32
 msgid "Others parts"
-msgstr ""
+msgstr "Autre composants"
 
 #: app/views/bienvenue/statuts.rhtml:1
 msgid "Status of the Requests"
@@ -4851,23 +4843,20 @@ msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
 
 #: lib/overrides.rb:75
-#, fuzzy
 msgid "less than a minute"
-msgstr "Estimation en minutes"
+msgstr "moins d'une minute"
 
 #: lib/overrides.rb:77
-#, fuzzy
 msgid "%d minutes"
-msgstr "minutes"
+msgstr "%d minutes"
 
 #: lib/overrides.rb:82
-#, fuzzy
 msgid "1 half a working day"
-msgstr "1 jour ouvré"
+msgstr "1 demi jour ouvré"
 
 #: lib/overrides.rb:82
 msgid "1 half day"
-msgstr ""
+msgstr "1 demie journée"
 
 #~ msgid "You cannot edit this account."
 #~ msgstr "Vous ne pouvez pas éditer ce compte."

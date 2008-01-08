@@ -1,105 +1,100 @@
 <%= error_messages_for 'demande' %>
 
 <% # hidden_on_create : à placer si on veut cacher un élément %>
-<% hidden_on_create = case controller.action_name
-     when 'new', 'create' : 'style="visibility:hidden"'
-     else ''
+<% new_request = case controller.action_name
+     when 'new', 'create' : true
+     else false
    end %>
 
-<table class="form" ><tr><td valign="top">
-
-<table><% #colonne gauche %>
-<% if @demande.beneficiaire && @ingenieur %>
-<tr>
-  <td><p><% _("Client") %></p></td>
-  <td><%= @demande.beneficiaire.client.name %></td>
-</tr>
-<% end %>
-<tr>
-  <td colspan="2"><p><label for="demande_resume"><%= _("Summary") %></label><br />
-    <%= text_field :demande, :resume, :size => 70, :maxlength => 70 %></p></td>
-</tr>
-<tr><td colspan="2"><hr /></td></tr>
-<tr>
-  <td><p><label for="demande_beneficiaire"><%= _("Recipient") %></label></p></td>
-  <td><select id="demande_beneficiaire_id" name="demande[beneficiaire_id]">
-        <%= option_groups_from_collection_for_select(@clients, "beneficiaires",
-            "name", "id", "name", @demande.beneficiaire_id ) %>
-      </select></td>
-</tr>
-<tr>
- <% if @contrats.size > 1 %>
-  <td><p><label for="demande_contrat_id"><%= _("Concerning ") %></label></p></td>
-  <td><%= render :partial => 'contracts' %></td>
- <% else %>
-   <td colspan="2"><%= hidden_field :demande, :contrat_id %></td>
- <% end %>
-</tr>
-<% if @ingenieurs %>
-<tr>
-  <td><p><label for="demande_ingenieur_id"><%= _("Engineer assigned to the request") %></label></p></td>
-  <td><%= select_empty(@ingenieurs, @demande.ingenieur_id, 'demande[ingenieur_id]') %></td>
-</tr>
-<tr>
-  <td><p><label for="demande_mail_cc"><%= _("E-mails associated with the request<br />seperate by commas %s") % "','" %></label></p></td>
-  <td><%= text_field :demande, :mail_cc %></td>
-</tr>
-<% end %>
-<tr>
-  <td><p><label for="demande_socle"><%= _("System") %></label></p></td>
-  <td><%= render :partial => 'systems'%></td>
-</tr>
-<tr>
-  <td><p><label for="demande_logiciel"><%= _("Software") %></label></p></td>
-  <td><%= select_empty(@logiciels, @demande.logiciel_id, 'demande[logiciel_id]')%></td>
-</tr>
-<tr>
-  <td><p><label for="demande_typedemande"><%= _("Type of the request") %></label></p></td>
-  <td><%= select(:demande, :typedemande_id,
-                  @typedemandes.collect{|l| [ l.name, l.id]}) %></td>
-</tr>
-
-<% unless hidden_on_create.blank? %>
-<tr>
-  <td><p><label for="demande_severite"><%= _("Severity of the request") %></label></p></td>
-  <td><%= select(:demande, :severite_id,
-                  @severites.collect{|l| [ l.name, l.id]}) %></td>
-</tr>
+<% if new_request %>
+  <%= hidden_field(:demande, :statut_id) %>
 <% end %>
 
-<tr><td colspan="2"><hr /></td></tr>
-<tr>
-  <td colspan="2"><div id="demande_paquets"></div></td>
-</tr>
-<% # hidden lors de la création d'un demande et absent lors de son édition %>
-<% if controller.action_name != 'edit' %>
-<tr>
-  <td colspan="2"><%= hidden_field(:demande, :statut_id) %></td>
-</tr>
-<% end %>
-
-<% # hidden lors de la création d'un demande %>
-<tr>
-  <td colspan="2"><div id="delai"></div></td>
-</tr>
+<table>
+ <tr>
+  <td valign="top"><div class="show">
+   <table>
+    <tr>
+     <th><label for="demande_typedemande_id"><%= _("Type") %></label></th>
+     <td><%= select(:demande, :typedemande_id, @typedemandes) %>
+         <% if new_request %>
+           <%= select(:demande, :severite_id, @severites) %>
+         <% end %></td>
+    </tr><tr>
+    <% if @contrats.size > 1 %>
+     <th><label for="demande_contrat_id"><%= _("Concerning ") %></label></th>
+     <td><%= select(:demande, :contrat_id, @contrats) %>
+         <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with => "contrat_id",
+             :url => ajax_display_contract_demandes_path) %>
+         <%= observe_field "demande_contrat_id", options %>
+         </td>
+    <% else %>
+     <td colspan="2"><%= hidden_field :demande, :contrat_id %></td>
+    <% end %>
+    </tr><tr>
+     <th><label for="demande_beneficiaire_id"><%= _("Recipient") %></label></th>
+     <td><%= render :partial => 'recipient' %></td>
+    </tr><tr>
+    <% if @ingenieur %>
+     <th><label for="demande_ingenieur_id"><%=_("Assigned to")%></label></th>
+     <td><%= select_empty(:demande, :ingenieur_id, @ingenieurs) %></td>
+    <% end %>
+    </tr><tr>
+     <td colspan="2"><hr /></td>
+    </tr><tr>
+     <th><label for="demande_socle_id"><%= _("System") %></label></th>
+     <td><%= render :partial => 'system'%></td>
+    </tr><tr>
+     <th><label for="demande_logiciel_id"><%= _("Software") %></label></th>
+     <td><%= render(:partial => 'logiciel') %></td>
+    </tr>
+     <%= render :partial => 'version' %>
+    <% if @ingenieur %>
+     <tr>
+      <td colspan="2"><hr /></td>
+     </tr><tr>
+      <th><label for="demande_mail_cc"><%= _("CC") %></label></th>
+      <td><%= text_field :demande, :mail_cc, :size => 20 %></td>
+     </tr>
+     <% unless new_request %>
+      <tr>
+       <th><label for="demande_expected_on"><%= _("Demande|Expected on") %></label></th>
+      <td>
+       <%= text_field :demande, :expected_on, :size => 20 %>
+       <span class="calendarPicker"><%= StaticScript::date_from %></span>
+       <%= StaticScript::script_date('demande_expected_on', 'date_from') %>
+      </td>
+     </tr>
+    <% end %>
+    <% end %>
+    <tr>
+     <td colspan="2"><hr /></td>
+    </tr><tr>
+     <th><%= _("Commitments") %></th>
+     <td></td>
+    </tr>
+   </table>
+  </div></td><td valign="top" class="show">
+   <table>
+    <tr>
+     <th><label for="demande_resume"><%= _("Summary") %></label></th>
+     <td><%= text_field :demande, :resume, :size => 70, :maxlength => 70 %></td>
+    </tr><tr>
+     <td colspan="2"><fieldset>
+      <legend><%=  _("Detailed description") %></legend>
+      <%= text_area 'demande', 'description', :cols => 75, :rows =>17 %>
+     </fieldset></td>
+    </tr><tr>
+    <% if new_request %>
+     <th><label for="piecejointe_file"><%= _("Add a file") + " :" %></label></th>
+     <td><%= file_column_field 'piecejointe', 'file', :size => 55 %></td>
+    <% end %>
+    </tr>
+   </table>
+  </td>
+ </tr>
 </table>
+
+
 
 <%# = observe_form 'demande_form', :url => ajax_display_packages_demandes_path, :with => 'demande_form' %>
-
-</td><td valign="top">
-
-<table><% #colonne droite %>
-<tr><td><p><label for="demande_description"><%= _("Detailed description") %></label><br />
-   <%= text_area 'demande', 'description', :cols => 70, :rows =>22 %></p></td>
-</tr>
-</table>
-
-</td></tr>
-
-</table>
-<% if controller.action_name == "new" %>
-  <label for="piecejointe_file"><%= _("Add a file") + " :" %></label>
-  <%= file_column_field 'piecejointe', 'file', :size =>  60 %><br />
-  <br /><br />
-<% end %>
-<%= hidden_field 'similar', 'request', :value => '0' %>
