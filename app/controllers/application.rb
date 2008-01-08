@@ -41,6 +41,8 @@ class ApplicationController < ActionController::Base
                     undo redo separator code)
   uses_tiny_mce :options => { :mode => 'textareas',
                               :entity_encoding => 'raw',
+                              :relative_urls => false,
+                              :remove_script_host => false,
                               :theme => 'advanced',
                               :theme_advanced_toolbar_location => "top",
                               :theme_advanced_toolbar_align => "left",
