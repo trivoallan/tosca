@@ -8,26 +8,26 @@
   <% unless @statuts.empty? %>
   <td align="center">
     <label for="commentaire_statut_id"><%= _("Status") %></label>
-    <%= select_empty(@statuts, nil, 'commentaire[statut_id]') %>
+    <%= select_empty(:commentaire, :statut_id, @statuts) %>
   </td>
   <% end %>
   <% if @ingenieur %>
   <td align="center">
     <label for="commentaire_severite_id"><%= _("Severity") %></label>
-    <%= select_empty(@severity, nil, 'commentaire[severite_id]') %>
+    <%= select_empty(:commentaire, :severite_id, @severity) %>
   </td>
   <td align="center">
     <label for="commentaire_ingenieur_id"><%= _("Assign") %></label>
-    <%= select_empty(@ingenieurs, nil, 'commentaire[ingenieur_id]') %>
+    <%= select_empty(:commentaire, :ingenieur_id, @ingenieurs) %>
   </td>
   <td align="center">
     <label for="commentaire_prive"><%= _("Private ?") %></label>
-    <%= check_box("commentaire", "prive") %>
+    <%= check_box(:commentaire, :prive) %>
   </td>
   <% end %>
 </tr></table>
 
-<%= text_area 'commentaire', 'corps', :style => "width:100%;", :rows => 15 %>
+<%= text_area :commentaire, :corps, :style => "width:100%;", :rows => 15 %>
 <br /> <br />
 <label for="piecejointe_file"><%= _("Add a file :") %></label>
 <%= file_column_field 'piecejointe', 'file', :size => 59 %>
