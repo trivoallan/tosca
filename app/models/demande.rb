@@ -23,6 +23,7 @@ class Demande < ActiveRecord::Base
   belongs_to :socle
   has_many :piecejointes, :through => :commentaires
 
+
   # Key pointers to the request history
   belongs_to :first_comment, :class_name => "Commentaire",
     :foreign_key => "first_comment_id"
@@ -226,7 +227,8 @@ class Demande < ActiveRecord::Base
     result
   end
 
-  def engagement(contrat_id)
+  def engagement
+    return nil unless contrat_id && severite_id && typedemande_id
     conditions = [" contrats_engagements.contrat_id = ? AND " +
       "engagements.severite_id = ? AND engagements.typedemande_id = ? ",
       contrat_id, severite_id, typedemande_id ]

@@ -140,9 +140,9 @@ class DemandesController < ApplicationController
 
   # Used when submitting new request, in order to select
   # packages which are subjects to SLA.
-  def ajax_display_commitments
+  def ajax_display_commitment
     return render(:nothing => true) unless params.has_key? :demande
-
+    @demande = Demande.new(params[:demande])
   end
 
   # Used when submitting new request, in order to select

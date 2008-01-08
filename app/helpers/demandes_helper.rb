@@ -205,15 +205,15 @@ module DemandesHelper
 
 
   def display_commitment(req)
-    contract, severity, type = req.contrat, req.severite, req.typedemande
-    return '' unless contract && severity && type
-    commitment = req.engagement(contract)
-    res = ''
+    return '-' unless req
+    commitment = req.engagement
+    if commitment
+      "<p><b>%s: </b> %s<br /><b>%s: </b> %s" %
+        [ _('Workaround'), Time.in_words(commitment.contournement),
+          _('Correction'), Time.in_words(commitment.correction) ]
+    else
+      '-'
+    end
   end
 
-
-  private
-  def one_element(title, value)
-    "<p><label>#{title}: </label> #{value}</p>"
-  end
 end
