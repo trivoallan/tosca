@@ -4,7 +4,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class IngenieurTest < Test::Unit::TestCase
-  fixtures :ingenieurs, :contrats, :competences, :competences_ingenieurs
+  fixtures :ingenieurs, :contrats, :competences, :competences_ingenieurs, :users, :contrats_users
 
   def test_to_strings
     check_strings Ingenieur
@@ -13,7 +13,7 @@ class IngenieurTest < Test::Unit::TestCase
   def test_find_select_by_contrat_id
     Contrat.find(:all).each { |c|
       Ingenieur.find_select_by_contrat_id(c.id).each { |i|
-        assert_equal i, Ingenieur.find(i.id)
+        assert c.users.include?(Ingenieur.find(i.last.to_i).user)
       }
     }
   end
