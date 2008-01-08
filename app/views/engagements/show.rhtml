@@ -8,5 +8,4 @@
   <%= contrat.client.name %> <br />
 <% end %>
 
-<%= link_to 'Edit', edit_engagement_path(@engagement) %> |
-<%= link_to 'Back', engagements_path %>
+<%= link_to_edit_and_list(@engagement) %>

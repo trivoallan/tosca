@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-08 11:31+0100\n"
-"PO-Revision-Date: 2008-01-08 11:38+0100\n"
+"POT-Creation-Date: 2008-01-08 11:43+0100\n"
+"PO-Revision-Date: 2008-01-08 11:45+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -201,7 +201,7 @@ msgid "Unknown rules for this contract."
 msgstr "Règles inconnu pour ce contrat."
 
 #: app/controllers/demandes_controller.rb:70
-#: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:123
+#: app/helpers/demandes_helper.rb:196 app/helpers/links_helper.rb:123
 msgid "All the requests"
 msgstr "Toutes les demandes"
 
@@ -222,12 +222,12 @@ msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
 #: app/controllers/demandes_controller.rb:366
-#: app/helpers/demandes_helper.rb:195
+#: app/helpers/demandes_helper.rb:182
 msgid "Active requests"
 msgstr "Demandes actives"
 
 #: app/controllers/demandes_controller.rb:369
-#: app/helpers/demandes_helper.rb:202
+#: app/helpers/demandes_helper.rb:189
 msgid "Finished requests"
 msgstr "Demandes terminées"
 
@@ -878,47 +878,27 @@ msgstr "Le cycle de vie d'une demande"
 msgid "Help on the status"
 msgstr "Aide sur les statuts"
 
-#: app/helpers/demandes_helper.rb:71
-msgid "Bl"
-msgstr "Bl"
-
-#: app/helpers/demandes_helper.rb:72
-msgid "Ma"
-msgstr "Ma"
-
-#: app/helpers/demandes_helper.rb:73
-msgid "Mi"
-msgstr "Mi"
-
-#: app/helpers/demandes_helper.rb:74
-msgid "No"
-msgstr "Aucun(e)"
-
-#: app/helpers/demandes_helper.rb:76
-msgid "Wtf"
-msgstr "Qlb"
-
-#: app/helpers/demandes_helper.rb:139
+#: app/helpers/demandes_helper.rb:126
 msgid "New request"
 msgstr "Nouvelle demande"
 
-#: app/helpers/demandes_helper.rb:156
+#: app/helpers/demandes_helper.rb:143
 msgid "Unlink the contribution"
 msgstr "Délier la contribution"
 
-#: app/helpers/demandes_helper.rb:185
+#: app/helpers/demandes_helper.rb:172
 msgid "Submitted upstream on"
 msgstr "Reversée le"
 
-#: app/helpers/demandes_helper.rb:196
+#: app/helpers/demandes_helper.rb:183
 msgid "show requests waiting to be processed"
 msgstr "montrer les demandes qui attendent d'être traitées"
 
-#: app/helpers/demandes_helper.rb:203
+#: app/helpers/demandes_helper.rb:190
 msgid "show requests that were processed"
 msgstr "montrer les demandes qui ont déjà été traitées"
 
-#: app/helpers/demandes_helper.rb:210
+#: app/helpers/demandes_helper.rb:197
 msgid "show all the requests"
 msgstr "montrer toutes les demandes"
 
@@ -4850,6 +4830,12 @@ msgstr "moins d'une minute"
 msgid "%d minutes"
 msgstr "%d minutes"
 
+#: lib/overrides.rb:80 lib/overrides.rb:93
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d heure"
+msgstr[1] "%d heures"
+
 #: lib/overrides.rb:82
 msgid "1 half a working day"
 msgstr "1 demi jour ouvré"
@@ -4857,6 +4843,30 @@ msgstr "1 demi jour ouvré"
 #: lib/overrides.rb:82
 msgid "1 half day"
 msgstr "1 demie journée"
+
+#: lib/overrides.rb:86 lib/overrides.rb:91
+msgid "%d working day"
+msgid_plural "%d working days"
+msgstr[0] "%d jour ouvré"
+msgstr[1] "%d jours ouvrés"
+
+#: lib/overrides.rb:87 lib/overrides.rb:92
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] "%d jour"
+msgstr[1] "%d jours"
+
+#: lib/overrides.rb:97
+msgid "%d working month"
+msgid_plural "%d working months"
+msgstr[0] "%d mois ouvré"
+msgstr[1] "%d mois ouvrés"
+
+#: lib/overrides.rb:98
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] "%d mois"
+msgstr[1] "%d mois"
 
 #~ msgid "You cannot edit this account."
 #~ msgstr "Vous ne pouvez pas éditer ce compte."
@@ -4870,18 +4880,6 @@ msgstr "1 demie journée"
 #~ msgid "If you think it's an error, contact us at %s or at %s."
 #~ msgstr ""
 #~ "Si vous penser que c'est une erreur, merci de nous contacter à %s ou à %s."
-
-#~ msgid "Demande|Cache contournement"
-#~ msgstr "Cache contournement"
-
-#~ msgid "Demande|Cache correction"
-#~ msgstr "Cache correction"
-
-#~ msgid "Demande|Cache ecoule"
-#~ msgstr "Cache du Temps écoulé"
-
-#~ msgid "Demande|Cache rappel"
-#~ msgstr "Cache du temps de rappel"
 
 #~ msgid "Engineer assigned to the request"
 #~ msgstr "Ingénieur assigné à la demande"

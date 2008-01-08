@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2008-01-08 11:31+0100\n"
+"POT-Creation-Date: 2008-01-08 11:43+0100\n"
 "PO-Revision-Date: 2008-01-03 19:23+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -191,7 +191,7 @@ msgid "Unknown rules for this contract."
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:70
-#: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:123
+#: app/helpers/demandes_helper.rb:196 app/helpers/links_helper.rb:123
 msgid "All the requests"
 msgstr ""
 
@@ -212,12 +212,12 @@ msgid "This contribution is now linked"
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:366
-#: app/helpers/demandes_helper.rb:195
+#: app/helpers/demandes_helper.rb:182
 msgid "Active requests"
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:369
-#: app/helpers/demandes_helper.rb:202
+#: app/helpers/demandes_helper.rb:189
 msgid "Finished requests"
 msgstr ""
 
@@ -864,47 +864,27 @@ msgstr ""
 msgid "Help on the status"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:71
-msgid "Bl"
-msgstr ""
-
-#: app/helpers/demandes_helper.rb:72
-msgid "Ma"
-msgstr ""
-
-#: app/helpers/demandes_helper.rb:73
-msgid "Mi"
-msgstr ""
-
-#: app/helpers/demandes_helper.rb:74
-msgid "No"
-msgstr ""
-
-#: app/helpers/demandes_helper.rb:76
-msgid "Wtf"
-msgstr ""
-
-#: app/helpers/demandes_helper.rb:139
+#: app/helpers/demandes_helper.rb:126
 msgid "New request"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:156
+#: app/helpers/demandes_helper.rb:143
 msgid "Unlink the contribution"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:185
+#: app/helpers/demandes_helper.rb:172
 msgid "Submitted upstream on"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:196
+#: app/helpers/demandes_helper.rb:183
 msgid "show requests waiting to be processed"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:203
+#: app/helpers/demandes_helper.rb:190
 msgid "show requests that were processed"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:210
+#: app/helpers/demandes_helper.rb:197
 msgid "show all the requests"
 msgstr ""
 
@@ -4776,6 +4756,12 @@ msgstr ""
 msgid "%d minutes"
 msgstr ""
 
+#: lib/overrides.rb:80 lib/overrides.rb:93
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
 #: lib/overrides.rb:82
 msgid "1 half a working day"
 msgstr ""
@@ -4783,6 +4769,30 @@ msgstr ""
 #: lib/overrides.rb:82
 msgid "1 half day"
 msgstr ""
+
+#: lib/overrides.rb:86 lib/overrides.rb:91
+msgid "%d working day"
+msgid_plural "%d working days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/overrides.rb:87 lib/overrides.rb:92
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/overrides.rb:97
+msgid "%d working month"
+msgid_plural "%d working months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/overrides.rb:98
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] ""
+msgstr[1] ""
 
 #~ msgid "Demande|Cache contournement"
 #~ msgstr "Created on"
