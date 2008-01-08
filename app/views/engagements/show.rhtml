@@ -1,6 +1,6 @@
 <% for column in Engagement.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%= Lstm.time_in_french_words(@engagement.send(column.name).days, true) %>
+  <b><%= column.human_name %>:</b> <%= Time.in_words(@engagement.send(column.name).days, true) %>
 </p>
 <% end %>
 

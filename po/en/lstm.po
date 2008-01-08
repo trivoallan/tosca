@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2008-01-08 11:43+0100\n"
-"PO-Revision-Date: 2008-01-03 19:23+0100\n"
+"PO-Revision-Date: 2008-01-08 11:46+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1394,9 +1394,8 @@ msgid "Commentaire|Ingenieur"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-#, fuzzy
 msgid "Commentaire|Elapsed"
-msgstr "User"
+msgstr "Elapsed"
 
 #: app/models/commentaire.rb:13
 msgid "You must have a comment with at least 5 characters"
@@ -1635,18 +1634,16 @@ msgid "Demande|Mantis"
 msgstr "Mantis"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Elapsed"
-msgstr "System"
+msgstr ""
 
 #: app/models/demande.rb:-
 msgid "Demande|Submitter"
 msgstr "Submitter"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Binaire"
-msgstr "Recipient"
+msgstr "Binary"
 
 #: app/models/demande.rb:-
 msgid "statut"
@@ -1817,9 +1814,8 @@ msgid "elapsed"
 msgstr ""
 
 #: app/models/elapsed.rb:-
-#, fuzzy
 msgid "Elapsed|Demande"
-msgstr "request"
+msgstr "Request"
 
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Taken into account"
@@ -1830,9 +1826,8 @@ msgid "Elapsed|Workaround"
 msgstr ""
 
 #: app/models/elapsed.rb:-
-#, fuzzy
 msgid "Elapsed|Correction"
-msgstr "Description"
+msgstr "Correction"
 
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Until now"
@@ -4793,12 +4788,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
-
-#~ msgid "Demande|Cache contournement"
-#~ msgstr "Created on"
-
-#~ msgid "Demande|Cache ecoule"
-#~ msgstr "Description"
-
-#~ msgid "Demande|Cache rappel"
-#~ msgstr "Created on"

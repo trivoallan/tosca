@@ -31,8 +31,8 @@ class Engagement < ActiveRecord::Base
 
   def to_s
     "#{self.typedemande.name} | #{self.severite.name} : " +
-      "#{Lstm.time_in_french_words(self.contournement.days, true)} " +
-      "/ #{Lstm.time_in_french_words(self.correction.days, true)}"
+      "#{Time.in_words(self.contournement.days, true)} " +
+      "/ #{Time.in_words(self.correction.days, true)}"
   end
 
   private

@@ -14,10 +14,10 @@
      <% engagement = contrat.find_engagement(@demande) %>
      <tr class="<%=cycle('even','odd')%>">
        <td><% if engagement %>
-         <%= Lstm.time_in_french_words(engagement.contournement.days, true)%>
+         <%= Time.in_words(engagement.contournement.days, true)%>
        <% end %></td>
        <td><% if engagement %>
-         <%= Lstm.time_in_french_words(engagement.correction.days, true)%> </td>
+         <%= Time.in_words(engagement.correction.days, true)%> </td>
        <% end %> </td>
        <td>
          <% #TODO : remplacer ce truc par un <%= check_box ... %>

@@ -41,8 +41,8 @@
     <tr class="<%= cycle('even', 'odd') %>">
       <td><%= p.name %></td>
       <td><%= p.version %></td>
-      <td><%= "#{ Lstm.time_in_french_words(p.contournement(type_id, severite_id).days, true) }" %></td>
-      <td><%= "#{ Lstm.time_in_french_words(p.correction(type_id, severite_id).days, true) }" %></td>
+      <td><%= "#{ Time.in_words(p.contournement(type_id, severite_id).days, true) }" %></td>
+      <td><%= "#{ Time.in_words(p.correction(type_id, severite_id).days, true) }" %></td>
     </tr>
   <% end %>
 </table>

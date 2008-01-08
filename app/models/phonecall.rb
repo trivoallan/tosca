@@ -51,7 +51,7 @@ class Phonecall < ActiveRecord::Base
 
   def name
     if demande
-      _("Phonecall of %s on '%s'") % [ Lstm.time_in_french_words(length), demande.resume ]
+      _("Phonecall of %s on '%s'") % [ Time.in_words(length), demande.resume ]
     else
       _("Phonecall of %s for %s") % [ ingenieur.name, contrat.name ]
     end

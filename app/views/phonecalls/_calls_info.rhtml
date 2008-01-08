@@ -50,8 +50,8 @@
  <li><b><%=_('Requests')%>: </b><%=@count[:demandes] %></li>
  <li><b><%=_('Engineers')%>: </b><%=@count[:ingenieurs]%></li>
  <li><b><%=_('Recipients')%>: </b><%=@count[:beneficiaires]%></li>
- <li><b><%=_('Total duration')%>: </b><%=Lstm.time_in_french_words @count[:somme]%></li>
- <li><b><%=_('Average duration')%>: </b><%=Lstm.time_in_french_words @count[:moyenne]%></li>
+ <li><b><%=_('Total duration')%>: </b><%=Time.in_words @count[:somme]%></li>
+ <li><b><%=_('Average duration')%>: </b><%=Time.in_words @count[:moyenne]%></li>
 </ul>
 
 <% end %>

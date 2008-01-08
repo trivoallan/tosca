@@ -12,7 +12,7 @@
   result << "<td>#{p.beneficiaire ? p.beneficiaire.name : '-' }</td>"
   result << "<td>#{p.start_formatted}</td>"
   result << "<td>#{p.end_formatted}</td>"
-  result << "<td>#{Lstm.time_in_french_words(p.length)}</td>"
+  result << "<td>#{Time.in_words(p.length)}</td>"
   result << "#{link_to_actions_table p}"
 } %>
 

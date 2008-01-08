@@ -143,7 +143,7 @@ class Contribution < ActiveRecord::Base
     clos ? cloture_le_formatted : ''
   end
   def delai_in_french_words
-    Lstm.time_in_french_words(delai)
+    Time.in_words(delai)
   end
   def version_to_s
     version.to_s

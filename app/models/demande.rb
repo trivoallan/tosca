@@ -372,7 +372,7 @@ class Demande < ActiveRecord::Base
   # FONCTION vers lib/lstm.rb:time_in_french_words
   def distance_of_time_in_french_words(distance_in_seconds, contrat)
     dayly_time = contrat.heure_fermeture - contrat.heure_ouverture # in hours
-    Lstm.time_in_french_words(distance_in_seconds, dayly_time)
+    Time.in_words(distance_in_seconds, dayly_time)
   end
 
   # Calcule en JO (jours ouvrés) le temps écoulé
