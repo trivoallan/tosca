@@ -8,8 +8,8 @@
 
 <% if new_request %>
   <%= hidden_field(:demande, :statut_id) %>
+  <%= hidden_field(:similar, :request) %>
 <% end %>
-
 <table>
  <tr>
   <td valign="top"><div class="show">
@@ -101,4 +101,6 @@
 <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
      "Form.serializeElements($('demande_typedemande_id','demande_severite_id','demande_contrat_id'))",
      :url => ajax_display_commitment_demandes_path) %>
-<%= observe_field "demande_typedemande_id", options %>
+<% %w(demande_typedemande_id demande_severite_id demande_contrat_id).each do |f| %>
+  <%= observe_field f, options %>
+<% end %>

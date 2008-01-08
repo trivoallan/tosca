@@ -109,6 +109,7 @@ class DemandesController < ApplicationController
     end
     _form @beneficiaire
 
+    @demande.statut_id = (@ingenieur ? 2 : 1)
     unless params.has_key? :demande
       @demande.set_defaults(@ingenieur, @beneficiaire, @contrats, params)
     end
@@ -118,7 +119,9 @@ class DemandesController < ApplicationController
     @demande = Demande.new(params[:demande])
     @demande.submitter = session[:user] # it's the current user
     if @demande.save
-      flash[:notice] = _("Your request has been successfully submitted")
+      options = { :conditions => [ 'demandes.submitter_id = ?', session[:user].id ]}
+      flash[:notice] = _("You have successfully submitted your %s request.") %
+        Demande.count(options).ordinalize
       @demande.first_comment.add_attachment(params)
       @commentaire = @demande.first_comment
       url_attachment = render_to_string(:layout => false,
@@ -150,9 +153,7 @@ class DemandesController < ApplicationController
   def ajax_display_contract
     return render(:nothing => true) unless params.has_key? :contrat_id
     contrat = Contrat.find(params[:contrat_id].to_i)
-    @beneficiaires = contrat.find_recipients_select
-    @socles = contrat.client.socles
-    @logiciels = contrat.logiciels.collect{|l| [l.name, l.id] }
+    _form4contract(contrat)
   end
 
   # Used when submitting new request, in order to select
@@ -306,30 +307,30 @@ class DemandesController < ApplicationController
     end
   end
 
+  def _form4contract(contrat)
+    @beneficiaires = contrat.find_recipients_select
+    @socles = contrat.client.socles
+    @logiciels = contrat.logiciels.collect{|l| [l.name, l.id] }
+  end
+
   # todo à retravailler
   def _form(beneficiaire)
-    @socles = Socle.find_select
     @contrats = Contrat.find_select(Contrat::OPTIONS)
     if beneficiaire
       client = beneficiaire.client
-      if client.support_distribution
-        @logiciels = Logiciel.find_select
-      else
-        @logiciels = client.logiciels.collect{|l| [l.name, l.id]}
-      end
       @typedemandes = client.typedemandes.collect{|td| [td.name, td.id]}
     else
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
-      @logiciels = Logiciel.find_select
       @typedemandes = Typedemande.find_select
       options = { :include => { :beneficiaires => :user}, :conditions =>
         'clients.inactive = 0' }
     end
-    @beneficiaires = Contrat.find(@contrats.first.last.to_i).find_recipients_select
     @binaires = []
     @severites = Severite.find_select
     first_comment = @demande.first_comment
     @demande.description = first_comment.corps if first_comment
+    contract = @demande.contrat || Contrat.find(:first)
+    _form4contract contract
   end
 
   def redirect_to_comment
@@ -377,13 +378,15 @@ class DemandesController < ApplicationController
   # Used during create.
   # It _just_ returns a correct path.
   def _similar_request
-    new_demande_path(:demande => {
-                       :contrat_id => @demande.contrat_id,
-                       :beneficiaire_id => @demande.beneficiaire_id,
-                       :typedemande_id => @demande.typedemande_id,
-                       :severite_id => @demande.severite_id,
-                       :socle_id => @demande.socle_id,
-                       :logiciel_id => @demande.logiciel_id })
+    options = { :demande => {
+        :contrat_id => @demande.contrat_id,
+        :beneficiaire_id => @demande.beneficiaire_id,
+        :typedemande_id => @demande.typedemande_id,
+        :severite_id => @demande.severite_id,
+        :socle_id => @demande.socle_id,
+        :logiciel_id => @demande.logiciel_id } }
+    options[:demande][:ingenieur_id] = @demande.ingenieur_id if @ingenieur
+    new_demande_path(options)
   end
 
 end

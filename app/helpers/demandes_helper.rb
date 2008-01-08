@@ -209,8 +209,8 @@ module DemandesHelper
     commitment = req.engagement
     if commitment
       "<p><b>%s: </b> %s<br /><b>%s: </b> %s" %
-        [ _('Workaround'), Time.in_words(commitment.contournement),
-          _('Correction'), Time.in_words(commitment.correction) ]
+        [ _('Workaround'), Time.in_words(commitment.contournement * 1.day, true),
+          _('Correction'), Time.in_words(commitment.correction * 1.day, true) ]
     else
       '-'
     end

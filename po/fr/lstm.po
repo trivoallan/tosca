@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-08 11:43+0100\n"
-"PO-Revision-Date: 2008-01-08 11:45+0100\n"
+"POT-Creation-Date: 2008-01-08 20:15+0100\n"
+"PO-Revision-Date: 2008-01-08 20:19+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -205,28 +205,28 @@ msgstr "Règles inconnu pour ce contrat."
 msgid "All the requests"
 msgstr "Toutes les demandes"
 
-#: app/controllers/demandes_controller.rb:121
-msgid "Your request has been successfully submitted"
-msgstr "Votre demande a été bien soumise à nos services."
+#: app/controllers/demandes_controller.rb:123
+msgid "You have successfully submitted your %s request"
+msgstr "Vous avez soumis avec succès votre %s demande"
 
-#: app/controllers/demandes_controller.rb:259
+#: app/controllers/demandes_controller.rb:260
 msgid "The request has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:289
+#: app/controllers/demandes_controller.rb:290
 msgid "The demand has now no contribution"
 msgstr "Le demande n'a plus de contributions"
 
-#: app/controllers/demandes_controller.rb:291
+#: app/controllers/demandes_controller.rb:292
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/demandes_controller.rb:366
+#: app/controllers/demandes_controller.rb:367
 #: app/helpers/demandes_helper.rb:182
 msgid "Active requests"
 msgstr "Demandes actives"
 
-#: app/controllers/demandes_controller.rb:369
+#: app/controllers/demandes_controller.rb:370
 #: app/helpers/demandes_helper.rb:189
 msgid "Finished requests"
 msgstr "Demandes terminées"
@@ -342,7 +342,7 @@ msgstr "Id"
 #: app/views/binaires/show.rhtml:12
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_contributions_info.rhtml:28
-#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:48
+#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:51
 #: app/views/demandes/_infos_demande.rhtml:26
 #: app/views/demandes/lists/_requests_table.rhtml:4
 #: app/views/paquets/_form.rhtml:11 app/views/paquets/_paquets_list.rhtml:7
@@ -375,7 +375,7 @@ msgstr "Mise à jour"
 #: app/controllers/reporting_controller.rb:515
 #: app/helpers/contributions_helper.rb:10
 #: app/views/contributions/_contributions_info.rhtml:41
-#: app/views/demandes/_form.rhtml:80 app/views/demandes/_form_deposer.rhtml:19
+#: app/views/demandes/_form.rhtml:83 app/views/demandes/_form_deposer.rhtml:19
 #: app/views/demandes/_infos_demande.rhtml:20
 #: app/views/demandes/lists/_requests_table.rhtml:10
 #: app/views/logiciels/_form.rhtml:6 app/views/logiciels/show.rhtml:20
@@ -393,7 +393,7 @@ msgstr "Statut"
 #: app/controllers/export_controller.rb:144
 #: app/views/account/_edit_account_informations.rhtml:9
 #: app/views/contrats/index.rhtml:5 app/views/contrats/_form.rhtml:36
-#: app/views/demandes/_form.rhtml:18
+#: app/views/demandes/_form.rhtml:19
 #: app/views/demandes/_infos_demande.rhtml:30
 #: app/views/demandes/lists/_requests_info.rhtml:47
 #: app/views/demandes/lists/_requests_table.rhtml:5
@@ -901,6 +901,18 @@ msgstr "montrer les demandes qui ont déjà été traitées"
 #: app/helpers/demandes_helper.rb:197
 msgid "show all the requests"
 msgstr "montrer toutes les demandes"
+
+#: app/helpers/demandes_helper.rb:212 app/views/clients/show.rhtml:41
+#: app/views/demandes/tabs/_cns.rhtml:33 app/views/demandes/_packages.rhtml:6
+#: app/views/reporting/_comex_cns.rhtml:20
+msgid "Workaround"
+msgstr "Contournée"
+
+#: app/helpers/demandes_helper.rb:213 app/views/clients/show.rhtml:41
+#: app/views/demandes/tabs/_cns.rhtml:34 app/views/demandes/_packages.rhtml:7
+#: app/views/reporting/_comex_cns.rhtml:21
+msgid "Correction"
+msgstr "Correction"
 
 #: app/helpers/distributeurs_helper.rb:8
 msgid "a distributor"
@@ -1577,6 +1589,18 @@ msgid " on "
 msgstr " à "
 
 #: app/models/demande.rb:-
+msgid "statut"
+msgstr "statut"
+
+#: app/models/demande.rb:-
+msgid "Statut|Name"
+msgstr "Nom"
+
+#: app/models/demande.rb:-
+msgid "Statut|Description"
+msgstr "Description"
+
+#: app/models/demande.rb:-
 msgid "demande"
 msgstr "demande"
 
@@ -1636,7 +1660,7 @@ msgstr "Premier commentaire"
 msgid "Demande|Contrat"
 msgstr "Contrat"
 
-#: app/models/demande.rb:- app/views/demandes/_form.rhtml:61
+#: app/models/demande.rb:- app/views/demandes/_form.rhtml:64
 msgid "Demande|Expected on"
 msgstr "Attendu le"
 
@@ -1649,10 +1673,6 @@ msgid "Demande|Mantis"
 msgstr "Mantis"
 
 #: app/models/demande.rb:-
-msgid "Demande|Elapsed"
-msgstr "Temps écoulé"
-
-#: app/models/demande.rb:-
 msgid "Demande|Submitter"
 msgstr "Déclarant"
 
@@ -1660,30 +1680,18 @@ msgstr "Déclarant"
 msgid "Demande|Binaire"
 msgstr "Binaire"
 
-#: app/models/demande.rb:-
-msgid "statut"
-msgstr "statut"
-
-#: app/models/demande.rb:-
-msgid "Statut|Name"
-msgstr "Nom"
-
-#: app/models/demande.rb:-
-msgid "Statut|Description"
-msgstr "Description"
-
-#: app/models/demande.rb:35
+#: app/models/demande.rb:36
 msgid "You must indicate a %s for your request"
 msgstr "Vous devez indiquer un %s pour votre demande"
 
-#: app/models/demande.rb:41
+#: app/models/demande.rb:43
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
 msgstr "Le client de ce contrat est incohérent avec le client du bénéficiaire."
 
 # ne pas oublier l'espace au début
-#: app/models/demande.rb:278
+#: app/models/demande.rb:281
 msgid " of overrun"
 msgstr " de dépassement"
 
@@ -2400,7 +2408,7 @@ msgstr "Reconnexion"
 #: app/views/account/_edit_recipient.rhtml:3
 #: app/views/account/_show_recipient.rhtml:6
 #: app/views/account/_users_list.rhtml:15
-#: app/views/demandes/tabs/_appels.rhtml:2 app/views/demandes/_form.rhtml:35
+#: app/views/demandes/tabs/_appels.rhtml:2 app/views/demandes/_form.rhtml:36
 #: app/views/documents/_form.rhtml:6 app/views/phonecalls/_calls_info.rhtml:22
 #: app/views/phonecalls/_calls_list.rhtml:6 app/views/phonecalls/_form.rhtml:7
 #: app/views/phonecalls/show.rhtml:14
@@ -3067,7 +3075,7 @@ msgstr "Déposer"
 
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/index.rhtml:6
 #: app/views/binaires/show.rhtml:14 app/views/contrats/show.rhtml:16
-#: app/views/demandes/_form.rhtml:45
+#: app/views/demandes/_form.rhtml:47
 #: app/views/demandes/_infos_demande.rhtml:25
 #: app/views/machines/_form.rhtml:17 app/views/machines/all.rhtml:5
 #: app/views/machines/index.rhtml:5 app/views/machines/show.rhtml:9
@@ -3212,18 +3220,6 @@ msgstr "concernant %s paquets source "
 msgid "and %s binaries"
 msgstr "et %s binaires"
 
-#: app/views/clients/show.rhtml:41 app/views/demandes/tabs/_cns.rhtml:33
-#: app/views/demandes/_packages.rhtml:6
-#: app/views/reporting/_comex_cns.rhtml:20
-msgid "Workaround"
-msgstr "Contournée"
-
-#: app/views/clients/show.rhtml:41 app/views/demandes/tabs/_cns.rhtml:34
-#: app/views/demandes/_packages.rhtml:7
-#: app/views/reporting/_comex_cns.rhtml:21
-msgid "Correction"
-msgstr "Correction"
-
 #: app/views/clients/show.rhtml:46
 msgid " the %s "
 msgstr " le %s "
@@ -3332,7 +3328,7 @@ msgstr "Veilles technologiques"
 msgid "Newsletter"
 msgstr "Lettre d'information"
 
-#: app/views/contrats/_form.rhtml:28 app/views/demandes/_form.rhtml:73
+#: app/views/contrats/_form.rhtml:28 app/views/demandes/_form.rhtml:76
 msgid "Commitments"
 msgstr "Engagements"
 
@@ -3635,25 +3631,25 @@ msgstr "Ajouter un fichier:"
 msgid "Answer"
 msgstr "Répondre"
 
-#: app/views/demandes/_form.rhtml:25
+#: app/views/demandes/_form.rhtml:26
 msgid "Concerning "
 msgstr "Concernant "
 
-#: app/views/demandes/_form.rhtml:39
+#: app/views/demandes/_form.rhtml:41
 #: app/views/demandes/_infos_demande.rhtml:39
 msgid "Assigned to"
 msgstr "Assigné à"
 
-#: app/views/demandes/_form.rhtml:56
+#: app/views/demandes/_form.rhtml:59
 #: app/views/demandes/_infos_demande.rhtml:33
 msgid "CC"
 msgstr "CC"
 
-#: app/views/demandes/_form.rhtml:84 app/views/demandes/_form_deposer.rhtml:22
+#: app/views/demandes/_form.rhtml:87 app/views/demandes/_form_deposer.rhtml:22
 msgid "Detailed description"
 msgstr "Description détaillée"
 
-#: app/views/demandes/_form.rhtml:89
+#: app/views/demandes/_form.rhtml:92
 msgid "Add a file"
 msgstr "Ajouter un fichier"
 
@@ -4867,6 +4863,9 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
+
+#~ msgid "Demande|Elapsed"
+#~ msgstr "Temps écoulé"
 
 #~ msgid "You cannot edit this account."
 #~ msgstr "Vous ne pouvez pas éditer ce compte."

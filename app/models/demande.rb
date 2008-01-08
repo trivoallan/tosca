@@ -38,7 +38,8 @@ class Demande < ActiveRecord::Base
   validates_length_of :description, :minimum => 5
 
   validate do |record|
-    if record.contrat.nil? or (record.contrat.client_id != record.beneficiaire.client_id)
+    if record.contrat.nil? || record.beneficiaire.nil? ||
+        (record.contrat.client_id != record.beneficiaire.client_id)
       record.errors.add _('The client of this contract is not consistant with the client of this recipient.')
     end
   end
@@ -83,8 +84,7 @@ class Demande < ActiveRecord::Base
 
   # set the default for a new request
   def set_defaults(expert, recipient, contracts, params)
-    return unless new_record?
-    self.statut_id = (expert ? 2 : 1)
+    return if self.statut_id
     # self-assignment
     self.ingenieur = expert
     # without severity, by default
