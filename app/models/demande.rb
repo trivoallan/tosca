@@ -162,6 +162,25 @@ class Demande < ActiveRecord::Base
     @client
   end
 
+  #Returns the state of a request at date t
+  def state_at(t)
+    return self if t >= self.last_comment.created_on or t == self.created_on
+    return Demande.new if t < self.created_on
+    statut_id, ingenieur_id, severite_id = nil, nil, nil
+    self.commentaires.find(:all, :order => "created_on ASC").each do |c|
+      break if c.created_on > t
+      #We get the new state only if it was modified
+      statut_id = c.statut_id if c.statut_id.zero
+      ingenieur_id = c.ingenieur_id if c.ingenieur_id
+      severite_id = c.severite_id if c.severite_id
+    end
+    result = self.clone
+    result.statut_id = statut_id
+    result.ingenieur_id = ingenieur_id
+    result.severite_id = severite_id
+    result
+  end
+
   def respect_contournement(contrat_id)
     affiche_delai(temps_ecoule, engagement(contrat_id).contournement)
   end
