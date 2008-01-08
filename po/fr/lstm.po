@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-02 12:32+0100\n"
+"POT-Creation-Date: 2008-01-08 11:31+0100\n"
 "PO-Revision-Date: 2008-01-03 19:27+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -24,75 +24,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/account_controller.rb:63
+#: app/controllers/account_controller.rb:71
 msgid "Welcome&nbsp;%s&nbsp;%s"
 msgstr "Bienvenue&nbsp;%S&nbsp;%s"
 
-#: app/controllers/account_controller.rb:70
+#: app/controllers/account_controller.rb:78
 msgid "Connexion failure"
 msgstr "Échec lors de la connexion"
 
-#: app/controllers/account_controller.rb:71
+#: app/controllers/account_controller.rb:79
 msgid "your account has been desactivated"
 msgstr "votre compte a été désactivé"
 
-#: app/controllers/account_controller.rb:83
+#: app/controllers/account_controller.rb:91
 msgid "You are not allowed to change your identity"
 msgstr "Vous n'êtes pas autorisé à changer votre identité"
 
-#: app/controllers/account_controller.rb:88
+#: app/controllers/account_controller.rb:96
 msgid "Person not found"
 msgstr "Personne non trouvée"
 
-#: app/controllers/account_controller.rb:147
+#: app/controllers/account_controller.rb:153
 msgid "Edition succeeded"
 msgstr "Les modifications ont été effectuées avec succès"
 
-#: app/controllers/account_controller.rb:170
+#: app/controllers/account_controller.rb:176
 msgid "Account successfully created."
 msgstr "Le compte a été crée avec succès."
 
-#: app/controllers/account_controller.rb:202
+#: app/controllers/account_controller.rb:208
 msgid "Full name"
 msgstr "Nom Complet"
 
-#: app/controllers/account_controller.rb:202
+#: app/controllers/account_controller.rb:208
 msgid "Title"
 msgstr "Titre"
 
-#: app/controllers/account_controller.rb:202
+#: app/controllers/account_controller.rb:208
 msgid "Email"
 msgstr "Email"
 
-#: app/controllers/account_controller.rb:202
+#: app/controllers/account_controller.rb:208
 #: app/views/demandes/_infos_demande.rhtml:49
 msgid "Phone"
 msgstr "Téléphone"
 
-#: app/controllers/account_controller.rb:203 app/views/account/login.rhtml:9
+#: app/controllers/account_controller.rb:209 app/views/account/login.rhtml:9
 msgid "Login"
 msgstr "Identifiant"
 
-#: app/controllers/account_controller.rb:203 app/views/account/login.rhtml:12
+#: app/controllers/account_controller.rb:209 app/views/account/login.rhtml:12
 msgid "Password"
 msgstr "Mot de passe"
 
-#: app/controllers/account_controller.rb:203 app/views/machines/all.rhtml:5
+#: app/controllers/account_controller.rb:209 app/views/machines/all.rhtml:5
 #: app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr "Informations"
 
-#: app/controllers/account_controller.rb:263
+#: app/controllers/account_controller.rb:269
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/controllers/account_controller.rb:264 app/helpers/account_helper.rb:21
+#: app/controllers/account_controller.rb:270 app/helpers/account_helper.rb:21
 msgid "My account"
 msgstr "Mon&nbsp;compte"
-
-#: app/controllers/account_controller.rb:279
-msgid "You cannot edit this account."
-msgstr "Vous ne pouvez pas éditer ce compte."
 
 #: app/controllers/ossas_controller.rb:17
 #: app/controllers/time_tickets_controller.rb:17
@@ -112,7 +108,7 @@ msgstr "L'architecture a été crée avec succès."
 msgid "Arch was successfully updated."
 msgstr "L'architecture a été mis à jour avec succès."
 
-#: app/controllers/bienvenue_controller.rb:35
+#: app/controllers/bienvenue_controller.rb:33
 msgid ""
 "Thank your for taking time in order to help us to improve this product. Your "
 "comments has been sent successfully."
@@ -144,47 +140,43 @@ msgstr "Vous devez désormais créer son contrat associé."
 msgid "Client updated successfully."
 msgstr "Le client bien été mis à jour."
 
-#: app/controllers/commentaires_controller.rb:59
-msgid "Your comment is too short, please rewrite it."
-msgstr "Votre commentaire est trop court. Merci d'en écrire un plus long."
-
-#: app/controllers/commentaires_controller.rb:70
+#: app/controllers/commentaires_controller.rb:58
 msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
-#: app/controllers/commentaires_controller.rb:79
+#: app/controllers/commentaires_controller.rb:67
 msgid "Unable to save working times."
 msgstr "Impossible d'enregistrer les temps de travail."
 
-#: app/controllers/commentaires_controller.rb:83
+#: app/controllers/commentaires_controller.rb:71
 msgid "A conflict has occured."
 msgstr "Une erreur est survenue"
 
-#: app/controllers/commentaires_controller.rb:84
+#: app/controllers/commentaires_controller.rb:72
 msgid "Please refresh your browser and try again."
 msgstr "Veuillez rafraichir votre navigateur et réessayer."
 
-#: app/controllers/commentaires_controller.rb:96
+#: app/controllers/commentaires_controller.rb:84
 msgid "The comment %s is now %s"
 msgstr "Le commentaire %s est maintenant %s"
 
-#: app/controllers/commentaires_controller.rb:98
+#: app/controllers/commentaires_controller.rb:86
 msgid "An error has occured : The comment was not modified"
 msgstr "Une erreur est survenue : Le commentaire n'a pas été modifié"
 
-#: app/controllers/commentaires_controller.rb:123
+#: app/controllers/commentaires_controller.rb:111
 msgid "The comment was successfully updated."
 msgstr "Le commentaire a été mis à jour avec succès."
 
-#: app/controllers/commentaires_controller.rb:135
+#: app/controllers/commentaires_controller.rb:123
 msgid "The comment was successfully destroyed."
 msgstr "Le commentaire a été détruit avec succès."
 
-#: app/controllers/commentaires_controller.rb:137
+#: app/controllers/commentaires_controller.rb:125
 msgid "You cannot delete the first comment"
 msgstr "Vous ne pouvez effacer le premier commentaire"
 
-#: app/controllers/commentaires_controller.rb:151
+#: app/controllers/commentaires_controller.rb:139
 msgid "You are not allowed to edit this comment"
 msgstr "Vous n'êtes pas autorisé à modifier ce commentaire"
 
@@ -208,42 +200,33 @@ msgstr "Le contrat a été mis à jour avec succès."
 msgid "Unknown rules for this contract."
 msgstr "Règles inconnu pour ce contrat."
 
-#: app/controllers/demandes_controller.rb:72
+#: app/controllers/demandes_controller.rb:70
 #: app/helpers/demandes_helper.rb:209 app/helpers/links_helper.rb:123
 msgid "All the requests"
 msgstr "Toutes les demandes"
 
-#: app/controllers/demandes_controller.rb:117
-msgid "You are not linked to any contracts in our database."
-msgstr "Vous n'êtes pas lié à un contrat dans notre base de données"
-
-#: app/controllers/demandes_controller.rb:118
-msgid "If you think it's an error, contact us at %s or at %s."
-msgstr ""
-"Si vous penser que c'est une erreur, merci de nous contacter à %s ou à %s."
-
-#: app/controllers/demandes_controller.rb:143
+#: app/controllers/demandes_controller.rb:121
 msgid "Your request has been successfully submitted"
 msgstr "Votre demande a été bien soumise à nos services."
 
-#: app/controllers/demandes_controller.rb:281
+#: app/controllers/demandes_controller.rb:259
 msgid "The request has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:311
+#: app/controllers/demandes_controller.rb:289
 msgid "The demand has now no contribution"
 msgstr "Le demande n'a plus de contributions"
 
-#: app/controllers/demandes_controller.rb:313
+#: app/controllers/demandes_controller.rb:291
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/demandes_controller.rb:386
+#: app/controllers/demandes_controller.rb:366
 #: app/helpers/demandes_helper.rb:195
 msgid "Active requests"
 msgstr "Demandes actives"
 
-#: app/controllers/demandes_controller.rb:389
+#: app/controllers/demandes_controller.rb:369
 #: app/helpers/demandes_helper.rb:202
 msgid "Finished requests"
 msgstr "Demandes terminées"
@@ -318,6 +301,7 @@ msgid "roles"
 msgstr "rôles"
 
 #: app/controllers/export_controller.rb:110 app/views/binaires/show.rhtml:13
+#: app/views/contributions/_contributions_info.rhtml:36
 #: app/views/demandes/tabs/_appels.rhtml:2 app/views/paquets/_form.rhtml:14
 #: app/views/paquets/show.rhtml:22 app/views/phonecalls/_calls_info.rhtml:24
 #: app/views/phonecalls/_calls_list.rhtml:6 app/views/phonecalls/_form.rhtml:5
@@ -331,8 +315,8 @@ msgid "Owner"
 msgstr "Responsable"
 
 #: app/controllers/export_controller.rb:110
-#: app/controllers/export_controller.rb:144
-#: app/controllers/export_controller.rb:202 app/views/contrats/_form.rhtml:7
+#: app/controllers/export_controller.rb:142
+#: app/controllers/export_controller.rb:200 app/views/contrats/_form.rhtml:7
 #: app/views/machines/all.rhtml:5 app/views/machines/index.rhtml:5
 #: app/views/reporting/_comex_tableaux.rhtml:15
 msgid "Customer"
@@ -347,18 +331,18 @@ msgstr "Appel"
 msgid "End of the call"
 msgstr "Fin de l'appel"
 
-#: app/controllers/export_controller.rb:144
+#: app/controllers/export_controller.rb:142
 #: app/views/demandes/tabs/_piecejointes.rhtml:5
 #: app/views/demandes/lists/_requests_table.rhtml:3
 #: app/views/reporting/_comex_cns.rhtml:19 app/views/statuts/index.rhtml:8
 msgid "Id"
 msgstr "Id"
 
-#: app/controllers/export_controller.rb:144 app/views/account/_menu.rhtml:18
+#: app/controllers/export_controller.rb:142 app/views/account/_menu.rhtml:18
 #: app/views/binaires/show.rhtml:12
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_contributions_info.rhtml:28
-#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:53
+#: app/views/contributions/_form.rhtml:9 app/views/demandes/_form.rhtml:48
 #: app/views/demandes/_infos_demande.rhtml:26
 #: app/views/demandes/lists/_requests_table.rhtml:4
 #: app/views/paquets/_form.rhtml:11 app/views/paquets/_paquets_list.rhtml:7
@@ -368,30 +352,30 @@ msgstr "Id"
 msgid "Software"
 msgstr "Logiciel"
 
-#: app/controllers/export_controller.rb:144 app/views/clients/show.rhtml:41
+#: app/controllers/export_controller.rb:142 app/views/clients/show.rhtml:41
 #: app/views/demandes/_comment_form.rhtml:16
 #: app/views/demandes/_infos_demande.rhtml:31
 #: app/views/demandes/lists/_requests_info.rhtml:49
 msgid "Severity"
 msgstr "Sévérité"
 
-#: app/controllers/export_controller.rb:145
+#: app/controllers/export_controller.rb:143
 msgid "Submission date"
 msgstr "Date de déposition"
 
-#: app/controllers/export_controller.rb:145
+#: app/controllers/export_controller.rb:143
 msgid "Platform"
 msgstr "Plateforme"
 
-#: app/controllers/export_controller.rb:145
+#: app/controllers/export_controller.rb:143
 msgid "Last update"
 msgstr "Mise à jour"
 
-#: app/controllers/export_controller.rb:146
+#: app/controllers/export_controller.rb:144
 #: app/controllers/reporting_controller.rb:515
 #: app/helpers/contributions_helper.rb:10
-#: app/views/contributions/_contributions_info.rhtml:39
-#: app/views/demandes/_form.rhtml:19 app/views/demandes/_form_deposer.rhtml:19
+#: app/views/contributions/_contributions_info.rhtml:41
+#: app/views/demandes/_form.rhtml:80 app/views/demandes/_form_deposer.rhtml:19
 #: app/views/demandes/_infos_demande.rhtml:20
 #: app/views/demandes/lists/_requests_table.rhtml:10
 #: app/views/logiciels/_form.rhtml:6 app/views/logiciels/show.rhtml:20
@@ -399,16 +383,17 @@ msgstr "Mise à jour"
 msgid "Summary"
 msgstr "Résumé"
 
-#: app/controllers/export_controller.rb:146
+#: app/controllers/export_controller.rb:144
 #: app/views/demandes/_comment_form.rhtml:10
 #: app/views/demandes/_infos_demande.rhtml:28
 #: app/views/demandes/lists/_requests_info.rhtml:51
 msgid "Status"
 msgstr "Statut"
 
-#: app/controllers/export_controller.rb:146
+#: app/controllers/export_controller.rb:144
 #: app/views/account/_edit_account_informations.rhtml:9
 #: app/views/contrats/index.rhtml:5 app/views/contrats/_form.rhtml:36
+#: app/views/demandes/_form.rhtml:18
 #: app/views/demandes/_infos_demande.rhtml:30
 #: app/views/demandes/lists/_requests_info.rhtml:47
 #: app/views/demandes/lists/_requests_table.rhtml:5
@@ -416,17 +401,17 @@ msgstr "Statut"
 msgid "Type"
 msgstr "Type"
 
-#: app/controllers/export_controller.rb:195
+#: app/controllers/export_controller.rb:193
 #: app/views/reporting/_comex_tableaux.rhtml:9
 msgid "To be closed"
 msgstr "Restant à clore"
 
-#: app/controllers/export_controller.rb:196
+#: app/controllers/export_controller.rb:194
 #: app/views/reporting/_comex_tableaux.rhtml:10
 msgid "New requests"
 msgstr "nouvelles demandes"
 
-#: app/controllers/export_controller.rb:197
+#: app/controllers/export_controller.rb:195
 msgid ""
 "Requests closed \n"
 " this week"
@@ -434,7 +419,7 @@ msgstr ""
 "Demandes closes \n"
 " cette semaine"
 
-#: app/controllers/export_controller.rb:198
+#: app/controllers/export_controller.rb:196
 msgid ""
 "Total in progress \n"
 " end week"
@@ -442,38 +427,38 @@ msgstr ""
 "Total en cours \n"
 " cette semaine"
 
-#: app/controllers/export_controller.rb:199 app/views/clients/stats.rhtml:7
+#: app/controllers/export_controller.rb:197 app/views/clients/stats.rhtml:7
 #: app/views/reporting/_comex_tableaux.rhtml:13
 msgid "TOTAL"
 msgstr "TOTAL"
 
-#: app/controllers/export_controller.rb:204
+#: app/controllers/export_controller.rb:202
 #: app/views/reporting/_comex_tableaux.rhtml:17
 msgid "Blocking"
 msgstr "Bloquante"
 
-#: app/controllers/export_controller.rb:204
+#: app/controllers/export_controller.rb:202
 #: app/views/reporting/_comex_tableaux.rhtml:18
 msgid "Major"
 msgstr "Majeure"
 
-#: app/controllers/export_controller.rb:204
+#: app/controllers/export_controller.rb:202
 #: app/views/reporting/_comex_tableaux.rhtml:19
 msgid "Minor"
 msgstr "Mineure"
 
-#: app/controllers/export_controller.rb:204
+#: app/controllers/export_controller.rb:202
 #: app/helpers/application_helper.rb:187
 #: app/views/reporting/_comex_tableaux.rhtml:20
 msgid "None"
 msgstr "Aucune"
 
-#: app/controllers/export_controller.rb:206
+#: app/controllers/export_controller.rb:204
 #: app/views/reporting/_comex_tableaux.rhtml:22
 msgid "To close"
 msgstr "À clore"
 
-#: app/controllers/export_controller.rb:219
+#: app/controllers/export_controller.rb:217
 #: app/views/reporting/_comex_tableaux.rhtml:44
 msgid "TOTALS"
 msgstr "TOTAUX"
@@ -482,11 +467,11 @@ msgstr "TOTAUX"
 msgid "This file does not exist."
 msgstr "Le fichier CSV n'est pas correct."
 
-#: app/controllers/contributions_controller.rb:86
+#: app/controllers/contributions_controller.rb:82
 msgid "The contribution has been created successfully."
 msgstr "La contribution a été créée avec succès"
 
-#: app/controllers/contributions_controller.rb:106
+#: app/controllers/contributions_controller.rb:102
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
@@ -514,23 +499,23 @@ msgstr "L'ingénieur a bien été créée."
 msgid "Ingenieur was successfully updated."
 msgstr "L'ingénieur a bien été mis à jour."
 
-#: app/controllers/logiciels_controller.rb:17
+#: app/controllers/logiciels_controller.rb:13
 msgid "List of softwares"
 msgstr "Liste des logiciels"
 
-#: app/controllers/logiciels_controller.rb:21
+#: app/controllers/logiciels_controller.rb:17
 msgid "List of your supported softwares"
 msgstr "Liste de vos logiciels supportés"
 
-#: app/controllers/logiciels_controller.rb:95
+#: app/controllers/logiciels_controller.rb:91
 msgid "The software %s has been created succesfully."
 msgstr "Le logiciel %s a été créé avec succès"
 
-#: app/controllers/logiciels_controller.rb:111
+#: app/controllers/logiciels_controller.rb:107
 msgid "The software %s has been updated successfully."
 msgstr "Le logiciel %s a été mis à jour avec succès."
 
-#: app/controllers/logiciels_controller.rb:122
+#: app/controllers/logiciels_controller.rb:118
 msgid "The software %s has been successfully deleted."
 msgstr "Le logiciel %s a été effacé avec succès"
 
@@ -550,11 +535,11 @@ msgstr "Le paquet %s a été crée avec succès"
 msgid "The package %s has been updated."
 msgstr "Le paquet %s a été mis à jour avec succès"
 
-#: app/controllers/permissions_controller.rb:21
+#: app/controllers/permissions_controller.rb:23
 msgid "Permission was successfully created."
 msgstr "La permission a été créée avec succès."
 
-#: app/controllers/permissions_controller.rb:37
+#: app/controllers/permissions_controller.rb:39
 msgid "Permission was successfully updated."
 msgstr "La permission a été mise à jour avec succès."
 
@@ -871,7 +856,8 @@ msgstr "Date"
 
 #: app/helpers/contributions_helper.rb:10 app/views/binaires/show.rhtml:18
 #: app/views/demandes/tabs/_cns.rhtml:32
-#: app/views/demandes/_form_binaires.rhtml:5 app/views/paquets/_form.rhtml:20
+#: app/views/demandes/_form_binaires.rhtml:5
+#: app/views/demandes/_version.rhtml:4 app/views/paquets/_form.rhtml:20
 msgid "Version"
 msgstr "Version"
 
@@ -1005,7 +991,7 @@ msgstr "Consulter les demandes qui nécessitent une action de votre part"
 #: app/helpers/links_helper.rb:133 app/views/account/_menu.rhtml:20
 #: app/views/bienvenue/index.rhtml:65 app/views/binaires/show.rhtml:4
 #: app/views/contrats/index.rhtml:5
-#: app/views/contributions/_contributions_info.rhtml:42
+#: app/views/contributions/_contributions_info.rhtml:44
 #: app/views/groupes/index.rhtml:5
 #: app/views/logiciels/_softwares_info.rhtml:54
 #: app/views/logiciels/show.rhtml:2 app/views/paquets/show.rhtml:3
@@ -1017,7 +1003,7 @@ msgid "Access to the list of softwares"
 msgstr "Accès à la liste des logiciels"
 
 #: app/helpers/links_helper.rb:138 app/views/binaires/_form.rhtml:30
-#: app/views/contributions/_contributions_info.rhtml:41
+#: app/views/contributions/_contributions_info.rhtml:43
 #: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
 #: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:67
 msgid "Contributions"
@@ -1442,6 +1428,11 @@ msgstr "Statut"
 msgid "Commentaire|Ingenieur"
 msgstr "Ingénieur"
 
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|Elapsed"
+msgstr "Utilisateur"
+
 #: app/models/commentaire.rb:13
 msgid "You must have a comment with at least 5 characters"
 msgstr "Votre commentaire doit au moins avoir 5 caractères"
@@ -1458,11 +1449,11 @@ msgstr "privé"
 msgid "public"
 msgstr "public"
 
-#: app/models/commentaire.rb:45
+#: app/models/commentaire.rb:54
 msgid "The status of this request has already been changed by."
 msgstr "Cette demande a été changé en %s par %s."
 
-#: app/models/commentaire.rb:57
+#: app/models/commentaire.rb:66
 msgid "This request seems to be unstable."
 msgstr "Cette demande semble être inconsistante."
 
@@ -1602,7 +1593,7 @@ msgstr "Version"
 msgid "Contribution|Synthese"
 msgstr "Synthese"
 
-#: app/models/contribution.rb:43
+#: app/models/contribution.rb:44
 msgid " on "
 msgstr " à "
 
@@ -1666,7 +1657,7 @@ msgstr "Premier commentaire"
 msgid "Demande|Contrat"
 msgstr "Contrat"
 
-#: app/models/demande.rb:-
+#: app/models/demande.rb:- app/views/demandes/_form.rhtml:61
 msgid "Demande|Expected on"
 msgstr "Attendu le"
 
@@ -1679,24 +1670,18 @@ msgid "Demande|Mantis"
 msgstr "Mantis"
 
 #: app/models/demande.rb:-
-msgid "Demande|Cache contournement"
-msgstr "Cache contournement"
-
-#: app/models/demande.rb:-
-msgid "Demande|Cache correction"
-msgstr "Cache correction"
-
-#: app/models/demande.rb:-
-msgid "Demande|Cache ecoule"
-msgstr "Cache du Temps écoulé"
-
-#: app/models/demande.rb:-
-msgid "Demande|Cache rappel"
-msgstr "Cache du temps de rappel"
+#, fuzzy
+msgid "Demande|Elapsed"
+msgstr "Socle"
 
 #: app/models/demande.rb:-
 msgid "Demande|Submitter"
 msgstr "Déclarant"
+
+#: app/models/demande.rb:-
+#, fuzzy
+msgid "Demande|Binaire"
+msgstr "Bénéficiaire"
 
 #: app/models/demande.rb:-
 msgid "statut"
@@ -1710,18 +1695,18 @@ msgstr "Nom"
 msgid "Statut|Description"
 msgstr "Description"
 
-#: app/models/demande.rb:36
+#: app/models/demande.rb:35
 msgid "You must indicate a %s for your request"
 msgstr "Vous devez indiquer un %s pour votre demande"
 
-#: app/models/demande.rb:43
+#: app/models/demande.rb:41
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
 msgstr "Le client de ce contrat est incohérent avec le client du bénéficiaire."
 
 # ne pas oublier l'espace au début
-#: app/models/demande.rb:284
+#: app/models/demande.rb:278
 msgid " of overrun"
 msgstr " de dépassement"
 
@@ -1862,6 +1847,35 @@ msgstr "Chemin"
 #: app/models/fichierbinaire.rb:-
 msgid "Fichierbinaire|Taille"
 msgstr "Taille"
+
+#: app/models/elapsed.rb:-
+#, fuzzy
+msgid "elapsed"
+msgstr "Release"
+
+#: app/models/elapsed.rb:-
+#, fuzzy
+msgid "Elapsed|Demande"
+msgstr "typedemande"
+
+#: app/models/elapsed.rb:-
+#, fuzzy
+msgid "Elapsed|Taken into account"
+msgstr "Créer un compte"
+
+#: app/models/elapsed.rb:-
+#, fuzzy
+msgid "Elapsed|Workaround"
+msgstr "Contournée"
+
+#: app/models/elapsed.rb:-
+#, fuzzy
+msgid "Elapsed|Correction"
+msgstr "Correction"
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Until now"
+msgstr ""
 
 #: app/models/groupe.rb:-
 msgid "groupe"
@@ -2047,27 +2061,27 @@ msgstr "Client"
 msgid "New|Logiciel"
 msgstr "Logiciel"
 
-#: app/models/notifier.rb:151
+#: app/models/notifier.rb:153
 msgid "Possible error in your e-mail"
 msgstr "Erreur possible dans votre adresse e-mail"
 
-#: app/models/notifier.rb:162
+#: app/models/notifier.rb:164
 msgid "Multiple accounts with the same e-mail"
 msgstr "Plusieurs comptes avec le même e-mail"
 
-#: app/models/notifier.rb:174
+#: app/models/notifier.rb:176
 msgid "Mailing list does not exists"
 msgstr "Mailingliste inexistante"
 
-#: app/models/notifier.rb:218
+#: app/models/notifier.rb:225
 msgid "An e-mail informing"
 msgstr "Un e-mail informant"
 
-#: app/models/notifier.rb:219
+#: app/models/notifier.rb:226
 msgid "with a copy to"
 msgstr "avec en copie"
 
-#: app/models/notifier.rb:220
+#: app/models/notifier.rb:227
 msgid "was sent."
 msgstr "a été envoyé."
 
@@ -2255,31 +2269,36 @@ msgstr "Inactif"
 msgid "User|Role"
 msgstr "Rôle"
 
-#: app/models/user.rb:30
+#: app/models/user.rb:-
+#, fuzzy
+msgid "User|Restricted"
+msgstr "Titre"
+
+#: app/models/user.rb:31
 msgid "User|Pwd"
 msgstr "Mot de passe"
 
-#: app/models/user.rb:31
+#: app/models/user.rb:32
 msgid "User|Pwd confirmation"
 msgstr "Confirmation du mot de passe"
 
-#: app/models/user.rb:64
+#: app/models/user.rb:65
 msgid "Password missing"
 msgstr "Mot de passe manquant"
 
-#: app/models/user.rb:66
+#: app/models/user.rb:67
 msgid "Password is different from its confirmation"
 msgstr "Mot de passe différent de sa confirmation"
 
-#: app/models/user.rb:70
+#: app/models/user.rb:71
 msgid "Your password is too long (max. 20)"
 msgstr "Votre mot de passe est trop long (max. 20 caractères)"
 
-#: app/models/user.rb:72
+#: app/models/user.rb:73
 msgid "Your password is too short (min. 5)"
 msgstr "Votre mot de passe est trop court (min. 5)"
 
-#: app/models/user.rb:76
+#: app/models/user.rb:77
 msgid "You must have specify a password."
 msgstr "Vous devez préciser un mot de passe"
 
@@ -2409,7 +2428,7 @@ msgstr "Reconnexion"
 #: app/views/account/_edit_recipient.rhtml:3
 #: app/views/account/_show_recipient.rhtml:6
 #: app/views/account/_users_list.rhtml:15
-#: app/views/demandes/tabs/_appels.rhtml:2 app/views/demandes/_form.rhtml:24
+#: app/views/demandes/tabs/_appels.rhtml:2 app/views/demandes/_form.rhtml:35
 #: app/views/documents/_form.rhtml:6 app/views/phonecalls/_calls_info.rhtml:22
 #: app/views/phonecalls/_calls_list.rhtml:6 app/views/phonecalls/_form.rhtml:7
 #: app/views/phonecalls/show.rhtml:14
@@ -2668,7 +2687,7 @@ msgid "You are now logout"
 msgstr "Vous êtes maintenant déconnecté"
 
 #: app/views/account/logout.rhtml:13
-#: app/views/layouts/standard-layout.rhtml:43
+#: app/views/layouts/standard-layout.rhtml:41
 msgid "Log in"
 msgstr "S'identifier"
 
@@ -3034,9 +3053,13 @@ msgstr ""
 msgid "Plan/access allowed"
 msgstr "Plan/Accès autorisé"
 
-#: app/views/bienvenue/plan.rhtml:16
+#: app/views/bienvenue/plan.rhtml:21
 msgid "This part of the application"
 msgstr "Cette partie de l'application"
+
+#: app/views/bienvenue/plan.rhtml:32
+msgid "Others parts"
+msgstr ""
 
 #: app/views/bienvenue/statuts.rhtml:1
 msgid "Status of the Requests"
@@ -3072,7 +3095,7 @@ msgstr "Déposer"
 
 #: app/views/binaires/_form.rhtml:12 app/views/binaires/index.rhtml:6
 #: app/views/binaires/show.rhtml:14 app/views/contrats/show.rhtml:16
-#: app/views/demandes/_form.rhtml:49
+#: app/views/demandes/_form.rhtml:45
 #: app/views/demandes/_infos_demande.rhtml:25
 #: app/views/machines/_form.rhtml:17 app/views/machines/all.rhtml:5
 #: app/views/machines/index.rhtml:5 app/views/machines/show.rhtml:9
@@ -3296,7 +3319,7 @@ msgstr "Fin"
 msgid "New contract"
 msgstr "Nouveau contrat"
 
-#: app/views/contrats/show.rhtml:1 app/views/demandes/_form.rhtml:14
+#: app/views/contrats/show.rhtml:1
 #: app/views/demandes/lists/_requests_table.rhtml:7
 msgid "Client"
 msgstr "Client"
@@ -3337,7 +3360,7 @@ msgstr "Veilles technologiques"
 msgid "Newsletter"
 msgstr "Lettre d'information"
 
-#: app/views/contrats/_form.rhtml:28
+#: app/views/contrats/_form.rhtml:28 app/views/demandes/_form.rhtml:73
 msgid "Commitments"
 msgstr "Engagements"
 
@@ -3640,31 +3663,25 @@ msgstr "Ajouter un fichier:"
 msgid "Answer"
 msgstr "Répondre"
 
-#: app/views/demandes/_form.rhtml:32
+#: app/views/demandes/_form.rhtml:25
 msgid "Concerning "
 msgstr "Concernant "
 
-#: app/views/demandes/_form.rhtml:40
-msgid "Engineer assigned to the request"
-msgstr "Ingénieur assigné à la demande"
+#: app/views/demandes/_form.rhtml:39
+#: app/views/demandes/_infos_demande.rhtml:39
+msgid "Assigned to"
+msgstr "Assigné à"
 
-#: app/views/demandes/_form.rhtml:44
-msgid "E-mails associated with the request<br />seperate by commas %s"
-msgstr "E-mails associés à la demande<br/>séparés par des virgules %s"
+#: app/views/demandes/_form.rhtml:56
+#: app/views/demandes/_infos_demande.rhtml:33
+msgid "CC"
+msgstr "CC"
 
-#: app/views/demandes/_form.rhtml:57
-msgid "Type of the request"
-msgstr "Type de la demande"
-
-#: app/views/demandes/_form.rhtml:64
-msgid "Severity of the request"
-msgstr "Sévérité de la demande"
-
-#: app/views/demandes/_form.rhtml:92 app/views/demandes/_form_deposer.rhtml:22
+#: app/views/demandes/_form.rhtml:84 app/views/demandes/_form_deposer.rhtml:22
 msgid "Detailed description"
 msgstr "Description détaillée"
 
-#: app/views/demandes/_form.rhtml:101
+#: app/views/demandes/_form.rhtml:89
 msgid "Add a file"
 msgstr "Ajouter un fichier"
 
@@ -3716,17 +3733,9 @@ msgstr "Lier à une contribution"
 msgid "Vm"
 msgstr "Vm"
 
-#: app/views/demandes/_infos_demande.rhtml:33
-msgid "CC"
-msgstr "CC"
-
 #: app/views/demandes/_infos_demande.rhtml:36
 msgid "Declared by"
 msgstr "Déclarée par"
-
-#: app/views/demandes/_infos_demande.rhtml:39
-msgid "Assigned to"
-msgstr "Assigné à"
 
 #: app/views/demandes/_infos_demande.rhtml:44
 msgid "Recipent"
@@ -4840,6 +4849,62 @@ msgstr "Liste des url dans contributions"
 #: app/views/urlreversements/new.rhtml:1
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
+
+#: lib/overrides.rb:75
+#, fuzzy
+msgid "less than a minute"
+msgstr "Estimation en minutes"
+
+#: lib/overrides.rb:77
+#, fuzzy
+msgid "%d minutes"
+msgstr "minutes"
+
+#: lib/overrides.rb:82
+#, fuzzy
+msgid "1 half a working day"
+msgstr "1 jour ouvré"
+
+#: lib/overrides.rb:82
+msgid "1 half day"
+msgstr ""
+
+#~ msgid "You cannot edit this account."
+#~ msgstr "Vous ne pouvez pas éditer ce compte."
+
+#~ msgid "Your comment is too short, please rewrite it."
+#~ msgstr "Votre commentaire est trop court. Merci d'en écrire un plus long."
+
+#~ msgid "You are not linked to any contracts in our database."
+#~ msgstr "Vous n'êtes pas lié à un contrat dans notre base de données"
+
+#~ msgid "If you think it's an error, contact us at %s or at %s."
+#~ msgstr ""
+#~ "Si vous penser que c'est une erreur, merci de nous contacter à %s ou à %s."
+
+#~ msgid "Demande|Cache contournement"
+#~ msgstr "Cache contournement"
+
+#~ msgid "Demande|Cache correction"
+#~ msgstr "Cache correction"
+
+#~ msgid "Demande|Cache ecoule"
+#~ msgstr "Cache du Temps écoulé"
+
+#~ msgid "Demande|Cache rappel"
+#~ msgstr "Cache du temps de rappel"
+
+#~ msgid "Engineer assigned to the request"
+#~ msgstr "Ingénieur assigné à la demande"
+
+#~ msgid "E-mails associated with the request<br />seperate by commas %s"
+#~ msgstr "E-mails associés à la demande<br/>séparés par des virgules %s"
+
+#~ msgid "Type of the request"
+#~ msgstr "Type de la demande"
+
+#~ msgid "Severity of the request"
+#~ msgstr "Sévérité de la demande"
 
 #~ msgid "You have to specify a customer"
 #~ msgstr "Vous devez spécifier un client"

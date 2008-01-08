@@ -41,6 +41,66 @@ end
 #Optimization des vues : plus '\n'
 ActionView::Base.erb_trim_mode = '>'
 
+class Time
+  # Integers are interpreted as seconds. So,
+  # <tt>Time.in_words(50)</tt> returns "less than a minute".
+  #
+  # Set <tt>include_seconds</tt> to true if you want more detailed approximations if distance < 1 minute
+  # Le deuxième paramètre peut être un nombre ou un booléen.
+  #   Si c'est un nombre, ca indique le nombre d'heures dans une journée ouvrée
+  #   Si c'est un booleén à true, ça indique que les journées font 24 heures et sont ouvrées
+  #   Si il n'y a rien, les journées font 24 heures et ne sont pas ouvrées
+  #
+  # TODO : avoir un rake test
+  # Call it like this :
+  # Time.in_words(15.hours, 5)
+  # Time.in_words(13.hours, 5)
+  # Time.in_words(10.hours, 5)
+  # Time.in_words(2.days + 10.hours)
+  # Time.in_words(0.5.days, true)
+  def self.in_words(distance_in_seconds, dayly_time = 24)
+    return '-' unless distance_in_seconds.is_a? Numeric and distance_in_seconds > 0
+    return '-' unless dayly_time == true or (dayly_time > 0 and dayly_time < 25)
+    opened = (dayly_time != 24 ? true : false)
+    dayly_time, opened = 24, true if (dayly_time == true)
+
+    distance = ((distance_in_seconds.abs)/60).round # in minutes
+    day = dayly_time * 60 # one day, in minutes
+    mo = 30 * day # one month, in minutes
+    half_day_inf = (day/2) - 60
+    half_day_sup = (day/2) + 60
+
+    case distance # in minutes
+    when 0..1
+      _('less than a minute')
+    when 1..45
+      _('%d minutes') % distance
+    when 45..half_day_inf, half_day_sup..day-60
+      value = (distance.to_f / 60.0).round
+      n_(value,'%d hour', '%d hours') % value
+    when half_day_inf..half_day_sup
+      (opened ? _('1 half a working day') : _('1 half day'))
+    when (day-60)..(day+60), (day*2-60)..(day*2+60),
+         (day*3-60)..(day*3), (3*day)..mo
+      val = (distance / day).round
+      (opened ? n_(val, '%d working day', '%d working days') :
+                n_(val, '%d day', '%d days')) % val
+    when day..(3*day)
+      days = (distance / day).floor
+      hours = ((distance % 1.day)/60).round
+      out = ((opened ? n_(days, '%d working day', '%d working days') :
+                       n_(days, '%d day', '%d days')) % days)
+      out << ' and ' << n_(hours, '%d hour', '%d hours') % hours
+      out
+    else
+      val = (distance / mo).round
+      (opened ? n_(val, '%d working month', '%d working months') :
+                n_(val, '%d month', '%d months')) % val
+    end
+  end
+
+end
+
 # This module is overloaded in order to display link_to lazily
 # and efficiently. It display links <b>only</b> if the user
 # has the right access to the ressource.
@@ -141,7 +201,7 @@ module ActiveRecord
     def self.find_select(options = {})
       options.update(:select => 'id, name')
       options[:order] ||= "#{self.table_name}.name ASC"
-      self.find(:all, options)
+      self.find(:all, options).collect{ |o| [o.name, o.id]}
     end
 
     # Same as #find_select, but returns only active objects
@@ -154,7 +214,7 @@ module ActiveRecord
         options[:conditions] = "#{table_name}.inactive = 0"
       end
       options[:order] ||= "#{table_name}.name ASC"
-      self.find(:all, options)
+      self.find(:all, options).collect{ |o| [o.name, o.id]}
     end
 
 
