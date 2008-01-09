@@ -101,6 +101,7 @@ class User < ActiveRecord::Base
 
   SELECT_OPTIONS = { :include => [:user], :order =>
     'users.name ASC', :conditions => 'users.inactive = 0' }
+  EXPERT_OPTIONS = { :conditions => 'users.client = 0', :order => 'users.name' }
 
   def self.authenticate(login, pass, crypt = 'false')
     User.with_exclusive_scope() do

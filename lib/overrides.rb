@@ -101,6 +101,41 @@ class Time
 
 end
 
+#############################################
+# Needed coz of f***ing Debian              #
+# We had to override this in order to fix   #
+# an issue when gettext_localize call this  #
+# interface                                 #
+#############################################
+class CGI
+  module QueryExtension
+    # Get the value for the parameter with a given key.
+    #
+    # If the parameter has multiple values, only the first will be 
+    # retrieved; use #params() to get the array of values.
+    def [](key)
+      params = @params[key]
+      return '' unless params
+      value = params[0]
+      if @multipart
+        if value
+          return value
+        elsif defined? StringIO
+          StringIO.new("")
+        else
+          Tempfile.new("CGI")
+        end
+      else
+        str = if value then value.dup else "" end
+        str.extend(Value)
+        str.set_params(params)
+        str
+      end
+    end
+  end
+end 
+
+
 # This module is overloaded in order to display link_to lazily
 # and efficiently. It display links <b>only</b> if the user
 # has the right access to the ressource.

@@ -26,6 +26,6 @@
 <p><b> Engagements contractuels : </b></p>
 <%= show_table_engagements @contrat.engagements %>
 
-<%= show_liste(@contrat.ingenieurs, 'ingénieurs affecté') {|i| link_to i.name, ingenieur_path(i)} %>
+<%= show_liste(@contrat.engineer_users, 'ingénieurs affecté') {|i| link_to i.name, ingenieur_path(i)} %>
 
 <%= link_to_edit_and_list(@contrat) %>

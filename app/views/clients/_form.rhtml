@@ -19,7 +19,7 @@
          <%= check_box :client, :inactive %></p>
       <p><label for="client_image_id"><%= _("Logo") %>
            <%= link_to_new_client_logo %></label><br />
-         <%= collection_select(:client, :image_id, @images, :id, :description) %></p>
+         <%= select(:client, :image_id, @images) %></p>
       <p><label><%= _("Systems") %></label></p>
          <%# as of Firefox 2.x, the px approach is scalable between %>
          <%# different resolution, when em is not %>

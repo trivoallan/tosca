@@ -68,8 +68,8 @@ class ClientsController < ApplicationController
     # only client picture.
     @images = Image.find(:all, :conditions => 'logiciel_id IS NULL')
     # It's the only way to add new system to its own scope
-    Socle.with_exclusive_scope do
-      @socles = Socle.find_select
+    Socle.send(:with_exclusive_scope) do
+      @socles = Socle.find(:all)
     end
   end
 

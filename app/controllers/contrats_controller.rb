@@ -38,7 +38,7 @@ public
     if @contrat.save
       team = params[:team]
       if team and team[:ossa] == '1'
-        @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all))
+        @contrat.users.concat(Ingenieur.find_ossa(:all))
         @contrat.save
       end
       flash[:notice] = _('Contract was successfully created.')
@@ -76,11 +76,11 @@ public
 private
   def _form
     # Needed in order to be able to auto-associate with it
-    Client.with_exclusive_scope do
+    Client.send(:with_exclusive_scope) do
       @clients = Client.find_select
     end
     @engagements = Engagement.find(:all, Engagement::OPTIONS)
-    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
+    @ingenieurs = User.find(:all, User::EXPERT_OPTIONS)
     @rules = []
     begin
       @rules = @contrat.rule_type.constantize.find(:all)
