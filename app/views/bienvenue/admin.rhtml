@@ -46,15 +46,11 @@
          link_to( _('Binaries'), binaires_path) ] %>
    <%= show_liste(links, _('Software management'), :title => false) %>
  </div>
- <div class="sommaire show">
-   <h3><%= _('Reporting')%></h3>
-   <p><%= _('Comex')%></p>
+  <div class="sommaire show">
+  <h3><%= _('Reporting')%></h3>
 	<% links = [
-		link_to( _('Comex report'), comex_reporting_path) ] %>
-	<%= show_liste(links, _('Comex report'), :title => false) %>
-  <p><%= _("Digest ") %></p>
-  <% links = [
+		link_to( _('Comex report'), comex_reporting_path),
     link_to( _('Digest report'), digest_reporting_path) ] %>
-  <%= show_liste(links, _('Digest report'), :title => false) %>
+	<%= show_liste(links, _('Comex report'), :title => false) %>
  </div>
 </td></tr></table>

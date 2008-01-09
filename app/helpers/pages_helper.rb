@@ -123,6 +123,9 @@ module PagesHelper
     result << '</tr></table>'
   end
 
+  #To have a nice toogle element
+  #Call it like this : toggle("my_id")
+  #You just need a html element with an id="my_id"
   def toggle(id)
     images = image_tag("next_page.png", :id => "plus_#{id}") + image_tag("next_task.png", :id => "moins_#{id}", :style => "display: none")
     link_to_function(images, nil, :class => "no_hover") do |page|
