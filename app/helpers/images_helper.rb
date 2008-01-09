@@ -1,3 +1,4 @@
+
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
@@ -19,9 +20,18 @@ module ImagesHelper
   end
 
   def logo_client(client)
-    return '' if client.nil? or client.image.blank?
     version = (client.inactive? ? 'inactive_thumb' : 'thumb')
-    image_tag(url_for_file_column(client.image, 'image', version),
+    logo_client(client, version)
+  end
+
+  def logo_client_small(client)
+    return logo_client(client, "small")
+  end
+
+  #Call if like logo_client(Client.find(1), "small')
+  def logo_client(client, size)
+    return '' if client.nil? or client.image.blank? or size.nil?
+    image_tag(url_for_file_column(client.image, 'image', size),
               image_options(client.name_clean))
   end
 

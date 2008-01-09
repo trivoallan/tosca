@@ -164,20 +164,22 @@ class Demande < ActiveRecord::Base
 
   #Returns the state of a request at date t
   def state_at(t)
-    return self if t >= self.last_comment.created_on or t == self.created_on
+    return self if t >= self.updated_on
     return Demande.new if t < self.created_on
-    statut_id, ingenieur_id, severite_id = nil, nil, nil
-    self.commentaires.find(:all, :order => "created_on ASC").each do |c|
-      break if c.created_on > t
-      #We get the new state only if it was modified
-      statut_id = c.statut_id if c.statut_id.zero
-      ingenieur_id = c.ingenieur_id if c.ingenieur_id
-      severite_id = c.severite_id if c.severite_id
-    end
+
+    statut_id = self.commentaires.find(:first,
+                                       :conditions => [ "statut_id IS NOT NULL AND created_on <= ?", t],
+                                       :order => "created_on DESC").statut_id
+    severite_id = self.commentaires.find(:first,
+                                         :conditions => [ "severite_id IS NOT NULL AND created_on <= ?", t],
+                                         :order => "created_on DESC").severite_id
+    com_ingenieur = self.commentaires.find(:first,
+                                           :conditions => [ "ingenieur_id IS NOT NULL AND created_on <= ?", t],
+                                           :order => "created_on DESC")
+    ingenieur_id = com_ingenieur ? com_ingenieur.ingenieur_id : nil
     result = self.clone
-    result.statut_id = statut_id
-    result.ingenieur_id = ingenieur_id
-    result.severite_id = severite_id
+    result.attributes = { :statut_id => statut_id, :ingenieur_id => ingenieur_id, :severite_id => severite_id }
+    result.readonly!
     result
   end
 

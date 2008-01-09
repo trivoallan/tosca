@@ -32,7 +32,7 @@
     <h2><%= _("Others parts") %></h2>
     <ul>
     <% image_only_bloc.each do |i| %>
-      <li><%= link_to(i.first.humanize, :controller => i.first) %> : <%= i.last %></li>
+      <li><%= link_to(i.first.humanize, :controller => i.first) %> : <%= i.last.join(' ') %></li>
     <% end %>
     </ul>
   </div>

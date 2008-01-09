@@ -52,5 +52,9 @@
 	<% links = [
 		link_to( _('Comex report'), comex_reporting_path) ] %>
 	<%= show_liste(links, _('Comex report'), :title => false) %>
+  <p><%= _("Digest ") %></p>
+  <% links = [
+    link_to( _('Digest report'), digest_reporting_path) ] %>
+  <%= show_liste(links, _('Digest report'), :title => false) %>
  </div>
 </td></tr></table>

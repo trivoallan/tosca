@@ -10,7 +10,8 @@ class Image < ActiveRecord::Base
   # /!\ do not forget to move Directory during this migration /!\
   file_column :image, :fix_file_extensions => nil, :magick => {
     :versions => {
-      :thumb => {:size => "150x50"},
+      :small => { :size => "75x25" },
+      :thumb => { :size => "150x50" },
       :medium => { :size => "640x480" },
       :inactive_thumb => { :size => "150x50",
         :transformation => Proc.new { |image|

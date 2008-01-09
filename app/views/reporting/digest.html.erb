@@ -1,0 +1,31 @@
+<div class="content" id="content">
+  <h1><%= _('The activity of your contracts') %></h1><br />
+  <% form_tag digest_resultat_reporting_url, :method => :get do %>
+    <table class='show'>
+      <tr>
+        <td>
+          <label for="results_first_day"><%= _('Choose a period :')%></label>
+        </td>
+        <td>
+          <%= radio_button(:digest, :period, "day") %><%= _("1 Day") %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <%= radio_button(:digest, :period, "week") %><%= _("1 Week") %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <%= radio_button(:digest, :period, "month") %><%= _("1 Month") %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <%= submit_tag _('See the digest') %>
+        </td>
+    </table>
+  <% end %>
+</div>

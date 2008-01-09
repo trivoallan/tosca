@@ -34,7 +34,6 @@ class ReportingController < ApplicationController
   end
 
   def comex
-    #_titles()
   end
 
   # TODO : cut this method a lot, at minimum 3 pieces.
@@ -102,6 +101,44 @@ class ReportingController < ApplicationController
     render :template => 'reporting/weekly'
   end
 
+  def digest
+  end
+
+  def digest_resultat
+    updated = ""
+    @period = ""
+    #It may seem we can do something like Time.now.send("beginning_of_#{params[:digest][:period]}")
+    #But we can not because of the internationnalization
+    case params[:digest][:period]
+    when "day"
+      updated = Time.now.beginning_of_day
+      @period = _("day")
+    when "week"
+    updated = Time.now.beginning_of_week
+      @period = _("week")
+    when "month"
+      updated = Time.now.beginning_of_month
+      @period = _("month")
+    else
+      updated = Time.now.beginning_of_year
+      @period = _("year")
+    end
+    contrat_ids = session[:user].contrats.collect { |c| c.id }
+    requests = Demande.find(:all, :conditions => [ "contrat_id IN (?) AND updated_on >= ? ", contrat_ids, updated ],
+                                  :order => "contrat_id ASC")
+
+    last_contrat = nil
+    #Another wierd RCS's struct
+    # @result = [ *[ contrat, [ *[ demande, demande.state_at(t), [*commentaires] ] ] ] ]
+    @result = Array.new
+    requests.each do |r|
+      if last_contrat != r.contrat_id
+        @result.push(Array.new.push(r.contrat, Array.new))
+      end
+      @result.last.last.push(Array.new.push(r, r.state_at(updated), r.commentaires.find(:all, :conditions => [ "created_on >= ? ", updated ])))
+      last_contrat = r.contrat_id
+    end
+  end
 
   def general
     _titles()

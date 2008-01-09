@@ -136,6 +136,11 @@ class StaticImage < Static::ActionView
     @@logo_08000 ||= image_tag('logo_08000.gif', options('08000 LINUX'))
   end
 
+  @@logo_08000_small = nil
+  def self.logo_08000_small
+    @@logo_08000_small ||= image_tag('logo_08000_small.gif', options('08000 LINUX'))
+  end
+
   @@lstm = nil
   def self.lstm
     desc = _("Home page")

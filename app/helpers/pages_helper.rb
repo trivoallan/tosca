@@ -1,6 +1,7 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
+
 module PagesHelper
   # add_create_link
   # options :
@@ -120,6 +121,16 @@ module PagesHelper
       result << "<td>#{link}</td>"
     end
     result << '</tr></table>'
+  end
+
+  def toggle(id)
+    images = image_tag("next_page.png", :id => "plus_#{id}") + image_tag("next_task.png", :id => "moins_#{id}", :style => "display: none")
+    link_to_function(images, nil, :class => "no_hover") do |page|
+      page[:"moins_#{id}"].toggle
+      page[:"plus_#{id}"].toggle
+      #page[:"#{id}"].visual_effect :blind_down
+      page[:"#{id}"].toggle
+    end
   end
 
   private
