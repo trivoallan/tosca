@@ -566,23 +566,20 @@ msgid "The first day must precede the last day"
 msgstr "Le premier jour doit précéder le dernier jour"
 
 #: app/controllers/reporting_controller.rb:115
-#, fuzzy
 msgid "day"
-msgstr "délai"
+msgstr "jour"
 
 #: app/controllers/reporting_controller.rb:118
 msgid "week"
-msgstr ""
+msgstr "semaine"
 
 #: app/controllers/reporting_controller.rb:121
-#, fuzzy
 msgid "month"
 msgstr "mois"
 
 #: app/controllers/reporting_controller.rb:124
-#, fuzzy
 msgid "year"
-msgstr "Rechercher"
+msgstr "année"
 
 #: app/controllers/reporting_controller.rb:247
 #: app/controllers/reporting_controller.rb:252
@@ -1068,7 +1065,6 @@ msgid "The role %s was succefully updated."
 msgstr "Le rôle %s a été mis à jour avec succès."
 
 #: app/controllers/demandes_controller.rb:123
-#, fuzzy
 msgid "You have successfully submitted your %s request."
 msgstr "Vous avez soumis avec succès votre %s demande"
 
@@ -1935,9 +1931,8 @@ msgid "elapsed"
 msgstr "écoulé"
 
 #: app/models/elapsed.rb:-
-#, fuzzy
 msgid "Elapsed|Demande"
-msgstr "typedemande"
+msgstr "Demande"
 
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Taken into account"
@@ -4802,12 +4797,11 @@ msgstr "Rapport Comex"
 
 #: app/views/bienvenue/admin.rhtml:55
 msgid "Digest "
-msgstr ""
+msgstr "Digest "
 
 #: app/views/bienvenue/admin.rhtml:57 app/views/bienvenue/admin.rhtml:58
-#, fuzzy
 msgid "Digest report"
-msgstr "Rapport d'activité "
+msgstr "Rapport d'activité"
 
 #: app/views/engagements/edit.rhtml:1
 msgid "Editing a commitment"
