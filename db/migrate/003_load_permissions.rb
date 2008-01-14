@@ -70,8 +70,8 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ expert_id, customer_id, viewer_id ]
-    access = [ [ '^binaires/(view|index)$', 'Read-only access to binaries' ],
-               [ '^clients/view$', 'Read-only access to clients offers' ] ,
+    access = [ [ '^binaires/(show|index)$', 'Read-only access to binaries' ],
+               [ '^clients/show$', 'Read-only access to clients offers' ] ,
                [ '^demandes/(new|create|index|print|show|comment|en_attente)$',                 'Read access to requests' ],
                [ '^logiciels/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
@@ -85,8 +85,7 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ customer_id, viewer_id ]
-    access = [ [ '^clients/view$', 'Read-only access to view client offer' ],
-               [ '^documents/(select|list|index)$',
+    access = [ [ '^documents/(select|list|index)$',
                  'Read-only access to documents' ]
              ]
     add_permission.call(roles, access)
