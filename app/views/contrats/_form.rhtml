@@ -45,11 +45,10 @@
           <%= render :partial => 'rules' %>
 	   </div></td>
      </tr><tr>
-       <th><label for="contrat_heure_ouverture"><%= _("Open time") %></label></th>
-       <td><%= text_field :contrat, :heure_ouverture  %></td>
-     </tr><tr>
-       <th><label for="contrat_heure_fermeture"><%= _("Close time") %></label></th>
-       <td><%= text_field :contrat, :heure_fermeture  %></td>
+     <% options = {:size => 1, :style => 'text-align: center;' } %>
+       <th><label for="contrat_heure_ouverture"><%= _("Schedules") %></label></th>
+       <td><%= text_field :contrat, :heure_ouverture, options  %> -
+           <%= text_field :contrat, :heure_fermeture, options  %></td>
      </tr><tr>
         <th><label for="team_ossa"><%=_('Whole OSSA Team ?')%></label></th>
         <td><%= check_box :team, :ossa %></td>
