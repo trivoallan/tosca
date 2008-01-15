@@ -49,7 +49,9 @@ class AccountController < ApplicationController
       flash[:conditions] = options[:conditions] = conditions
       @filters = accounts_filters
     end
-    @user_pages, @users = paginate :users, options
+    User.send(:with_scope, User.get_scope(session[:user].contrat_ids)) do
+      @user_pages, @users = paginate :users, options
+    end
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
       render :partial => 'users_list', :layout => false
@@ -91,7 +93,6 @@ class AccountController < ApplicationController
         flash[:warn] = _('You are not allowed to change your identity')
       end
       redirect_to_home
-      return_to
     rescue ActiveRecord::RecordNotFound
       flash[:warn] = _('Person not found')
       redirect_to_home

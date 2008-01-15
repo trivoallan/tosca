@@ -79,12 +79,10 @@ class User < ActiveRecord::Base
   end
 
   # This reduced the scope of User to allowed contracts of current user
-  def self.set_scope(contrat_ids)
-    if contrat_ids
-      self.scoped_methods << { :find => { :conditions =>
+  def self.get_scope(contrat_ids)
+    { :find => { :conditions =>
           [ 'contrats_users.contrat_id IN (?) ', contrat_ids ], :joins =>
         'INNER JOIN contrats_users ON contrats_users.user_id=users.id ' } }
-    end
   end
 
 
@@ -161,6 +159,12 @@ class User < ActiveRecord::Base
   def self.sha1(pass)
     Digest::SHA1.hexdigest("linagora--#{pass}--")
   end
+
+  # specialisation, since an Account can be <inactive>.
+  def find_select(options = { })
+    find_active4select(options)
+  end
+
 
   # For Ruport :
   def beneficiaire_client_name

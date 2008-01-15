@@ -118,7 +118,7 @@ private
   # preserve each user in his particular space.
   # TODO : scope contract only ?? it seems coherent...
   SCOPE_CLIENT = [ Client, Document, Socle ]
-  SCOPE_CONTRAT = [ Binaire, Contrat, Demande, Paquet, Phonecall, User ]
+  SCOPE_CONTRAT = [ Binaire, Contrat, Demande, Paquet, Phonecall ]
 
   # This method has a 'handmade' scope, really faster and with no cost
   # of safety. It was made in order to avoid 15 yields.

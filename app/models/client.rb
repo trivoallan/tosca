@@ -133,4 +133,9 @@ class Client < ActiveRecord::Base
     read_attribute(:name)
   end
 
+  # specialisation, since a Client can be "inactive".
+  def find_select(options = { })
+    find_active4select(options)
+  end
+
 end
