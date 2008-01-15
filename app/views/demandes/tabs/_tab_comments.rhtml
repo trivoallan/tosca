@@ -11,7 +11,7 @@
 <div class="demande_tab_content">
 <% commentaires.each do |commentaire| %>
  <% cache("#{commentaire.id}/comments") do %>
-  <% com_user = commentaire.user  %>
+  <% com_user = commentaire.user %>
   <table class="commentaire">
    <tr class="<%=(commentaire.prive ? 'prive' : 'public')%>">
      <td class="infos" align="center">
@@ -23,7 +23,7 @@
         <% end %><br />
         <%= com_user.name if com_user %><br />
 
-        <% display_edit = (@ingenieur or (com_user and @beneficiaire.identifiant_id == com_user.id)) ? true : false %>
+        <% display_edit = (@ingenieur or (com_user and @beneficiaire.user_id == com_user.id)) ? true : false %>
         <%= link_to(StaticImage::edit, edit_commentaire_path(commentaire), edit_ho) if display_edit %>&nbsp;
         <% if @ingenieur and not print_mode %>
           <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private")) %>
