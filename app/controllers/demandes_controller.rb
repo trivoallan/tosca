@@ -193,10 +193,11 @@ class DemandesController < ApplicationController
     @statuts = @demande.statut.possible(@beneficiaire)
     options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
       ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
-    @contributions = Contribution.find(:all, options)
-    @severity = Severite.find(:all)
-
-    @ingenieurs = Ingenieur.find_select_by_contrat_id(@demande.contrat_id)
+    @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]}
+    if @ingenieur
+      @severites = Severite.find(:all)
+      @ingenieurs = Ingenieur.find_select_by_contrat_id(@demande.contrat_id)
+    end
     set_comments(@demande.id)
 
     @partial_for_summary = 'infos_demande'
@@ -302,7 +303,7 @@ class DemandesController < ApplicationController
     @typedemandes = Typedemande.find_select()
     @severites = Severite.find_select()
     if @ingenieur
-      @clients = Client.find_active4select()
+      @clients = Client.find_select()
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     end
   end

@@ -100,9 +100,9 @@ class DocumentsController < ApplicationController
 
   private
   def _form
-    @clients = Client.find_active4select 
+    @clients = Client.find_select
     @typedocuments = Typedocument.find :all
-    @users = User.find_active4select
+    @users = User.find_select
   end
 
   def _panel

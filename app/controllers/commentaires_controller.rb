@@ -43,6 +43,7 @@ class CommentairesController < ApplicationController
     @commentaire.demande_id = demande.id
     @commentaire.add_attachment(params)
     @commentaire.user_id = user.id
+    @commentaire.elapsed ||= 0
 
     # on vérifie et on envoie le courrier
     if @commentaire.save
