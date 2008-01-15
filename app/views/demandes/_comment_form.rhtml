@@ -1,9 +1,7 @@
 <%= error_messages_for 'commentaire' if @commentaire %>
 
 <table width="100%"><tr>
-  <td><b><u>
-    <label for="commentaire_corps"><%= _("Your answer :") %></label>
-    </u></b></td>
+  <td><b><u><%= _("Your answer :") %></u></b></td>
 
   <% unless @statuts.empty? %>
   <td align="center">
@@ -14,21 +12,33 @@
   <% if @ingenieur %>
   <td align="center">
     <label for="commentaire_severite_id"><%= _("Severity") %></label>
-    <%= select_empty(:commentaire, :severite_id, @severity) %>
+    <%= select_empty(:commentaire, :severite_id, @severites) %>
   </td>
   <td align="center">
     <label for="commentaire_ingenieur_id"><%= _("Assign") %></label>
     <%= select_empty(:commentaire, :ingenieur_id, @ingenieurs) %>
   </td>
-  <td align="center">
-    <label for="commentaire_prive"><%= _("Private ?") %></label>
-    <%= check_box(:commentaire, :prive) %>
-  </td>
   <% end %>
 </tr></table>
 
-<%= text_area :commentaire, :corps, :style => "width:100%;", :rows => 15 %>
-<br /> <br />
-<label for="piecejointe_file"><%= _("Add a file :") %></label>
-<%= file_column_field 'piecejointe', 'file', :size => 59 %>
-<%= submit_tag _("Answer") %>
+
+<div class="demande_tab_content">
+<table width="100%" class="commentaire">
+ <tr class="public">
+  <td class="infos" align="center"><br />
+     <%= avatar(@beneficiaire, @ingenieur) %><br /><br />
+    <% if @ingenieur %>
+       <label for="commentaire_prive"><%= _("Private ?") %></label>
+     <%= check_box(:commentaire, :prive) %>
+     <br /><br /><br /><br /><br /><br /><br /><br /><br />
+     <label for="commentaire_elapsed"><%= _('Time elapsed') %></label>
+     <%= text_field :commentaire, :elapsed, :size => 9 %>
+    <% end %>
+  </td><td class="text" align="center" style="margin: 0; padding: 0;">
+   <%= text_area :commentaire, :corps, :style => "width:100%;", :rows => 15 %>
+     <%= file_column_field('piecejointe', 'file', :size => 65) %><br />
+     <%= submit_tag _("Answer") %>
+  </td>
+ </tr>
+</table>
+</div>

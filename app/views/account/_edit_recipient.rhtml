@@ -3,7 +3,7 @@
   <h1><b><%= _('Recipient') %></b></h1><br />
 
   <p><label for="beneficiaire_client">Client</label>
-    <%= collection_select(:user_recipient, :client_id, @clients, :id, :name) %>
+    <%= select(:user_recipient, :client_id, @clients) %>
   </p>
   <hr />
 

@@ -216,4 +216,34 @@ module DemandesHelper
     end
   end
 
+  @@help_on_status = nil
+  # Show the '?' icon with the link on status explanation on the wiki
+  # TODO : this implementation can be improved a LOT
+  def help_on_status
+    @@help_on_status ||= '<a href="http://www.08000linux.com/wiki/index.php/%C3%89tats_demande"' <<
+       'target="_blank" class="no_hover" style="vertical-align: top;">' <<
+      image_tag("question_mark.gif") <<
+    '</a>'
+  end
+
+
+  @@help_on_severity = nil
+  # Show the '?' icon with the link on severity explanation on the wiki
+  # TODO : this implementation can be improved a LOT
+  def help_on_severity
+    @@help_on_severity ||= '<a href="http://www.08000linux.com/wiki/index.php/Severite_demande"' <<
+       'target="_blank" class="no_hover" style="vertical-align: top;">' <<
+      image_tag("question_mark.gif") <<
+    '</a>'
+  end
+
+
+  # Shows a popup with the description of a status for the request.
+  # Ex: <%= link_to_box_on_status(@demande) %>
+  def link_to_box_on_status(request)
+    return '' unless request
+    options = { :popup => ['help_statut', 'height=300,width=600'] }
+    link_to(request.statut.name, help_statut_path(request.statut_id), options)
+  end
+
 end

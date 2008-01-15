@@ -18,7 +18,7 @@
     <td><label for="user_contrats"><%= _('Contracts')%></label></td>
     <td style="text-align: right;">
        (<%= _('only') %>
-      <%= collection_select(:user_recipient, :client_id, @clients, :id, :name) %>
+      <%= select(:user_recipient, :client_id, @clients) %>
         <%= _('contracts') %>)
     </td>
   </tr></table>
