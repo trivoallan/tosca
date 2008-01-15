@@ -103,6 +103,10 @@ a:hover {
 	background-color: #1A5260;
 }
 
+label {
+	font-weight: bold;
+}
+
 ul {
 	list-style-type: square;
 }
