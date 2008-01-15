@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-15 11:33+0100\n"
-"PO-Revision-Date: 2008-01-08 20:19+0100\n"
+"PO-Revision-Date: 2008-01-15 11:42+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3353,7 +3353,7 @@ msgstr "Régie par"
 
 #: app/views/contrats/_form.rhtml:49
 msgid "Schedules"
-msgstr ""
+msgstr "Horaires"
 
 #: app/views/contrats/_form.rhtml:53
 msgid "Whole OSSA Team ?"
@@ -3636,9 +3636,8 @@ msgstr "Privé ?"
 
 #: app/views/demandes/_comment_form.rhtml:34
 #: app/views/demandes/_infos_demande.rhtml:66
-#, fuzzy
 msgid "Time elapsed"
-msgstr "écoulé"
+msgstr "Temps écoulé"
 
 #: app/views/demandes/_comment_form.rhtml:40
 msgid "Answer"
@@ -3735,9 +3734,8 @@ msgid "Life cycle"
 msgstr "Cycle de vie"
 
 #: app/views/demandes/_infos_demande.rhtml:62
-#, fuzzy
 msgid "Expected on"
-msgstr "Attendu le"
+msgstr "Attendue le"
 
 #: app/views/demandes/_packages.rhtml:2
 msgid "Specify here the packages impacted by the request :"
@@ -4882,76 +4880,6 @@ msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
-#~ msgid "Demande|Elapsed"
-#~ msgstr "Temps écoulé"
-
-#~ msgid "Open time"
-#~ msgstr "Heure d'ouverture"
-
-#~ msgid "Close time"
-#~ msgstr "Heure de fermeture"
-
-#~ msgid "Add a file :"
-#~ msgstr "Ajouter un fichier:"
-
-#~ msgid "Comex"
-#~ msgstr "Comex"
-
-#~ msgid "Digest "
-#~ msgstr "Digest "
-
-#~ msgid "You cannot edit this account."
-#~ msgstr "Vous ne pouvez pas éditer ce compte."
-
-#~ msgid "Your comment is too short, please rewrite it."
-#~ msgstr "Votre commentaire est trop court. Merci d'en écrire un plus long."
-
-#~ msgid "You are not linked to any contracts in our database."
-#~ msgstr "Vous n'êtes pas lié à un contrat dans notre base de données"
-
-#~ msgid "If you think it's an error, contact us at %s or at %s."
-#~ msgstr ""
-#~ "Si vous penser que c'est une erreur, merci de nous contacter à %s ou à %s."
-
-#~ msgid "Engineer assigned to the request"
-#~ msgstr "Ingénieur assigné à la demande"
-
-#~ msgid "E-mails associated with the request<br />seperate by commas %s"
-#~ msgstr "E-mails associés à la demande<br/>séparés par des virgules %s"
-
-#~ msgid "Type of the request"
-#~ msgstr "Type de la demande"
-
-#~ msgid "Severity of the request"
-#~ msgstr "Sévérité de la demande"
-
-#~ msgid "You have to specify a customer"
-#~ msgstr "Vous devez spécifier un client"
-
-#~ msgid "Vous must specify a role"
-#~ msgstr "Vous devez spéficier un rôle"
-
-#~ msgid "The user %s have been successfully created.<br />"
-#~ msgstr "L'utilisateur %s a été créé avec succès<br />"
-
-#~ msgid "The user %s  has not been created.<br /> "
-#~ msgstr "L'utilisateur %s n'a pas été crée avec succès.<br />"
-
-#~ msgid "You must indicate a description"
-#~ msgstr "Vous devez indiquer une description"
-
-#~ msgid "You must indicate a valid recipient"
-#~ msgstr "Vous devez indiquer un bénéficiaire valide"
-
-#~ msgid "You must indicate a valid status"
-#~ msgstr "Vous devez indiquer un statut valide"
-
-#~ msgid "You must indicate a valid severity"
-#~ msgstr "Vous devez indiquer une sévérité valide"
-
-#~ msgid "Custom display of the request list"
-#~ msgstr "Personnaliser l'affichage de la liste des demandes"
-
 #~ msgid "Choose a login"
 #~ msgstr "Choissisez un identifiant"
 
@@ -4976,26 +4904,6 @@ msgstr[1] "%d mois"
 #~ msgid "Add several users"
 #~ msgstr "Ajouter plusieurs utilisateurs"
 
-#~ msgid "List of the recipients"
-#~ msgstr "Liste des bénéficiaires"
-
-#~ msgid "a recipient"
-#~ msgstr "un bénéficiaire"
-
-#~ msgid "Add a recipient"
-#~ msgstr "Ajouter un bénéficiaire"
-
-#~ msgid "Add user by bundle"
-#~ msgstr "Ajouter des utilisateurs par lots"
-
-#~ msgid "users"
-#~ msgstr "utilisateurs"
-
-#~ msgid "Yes"
-#~ msgstr "Oui"
-
-#~ msgid "Document type"
-#~ msgstr "Type de document"
 
 #~ msgid "a new request"
 #~ msgstr "une nouvelle demande"
