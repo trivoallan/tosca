@@ -31,10 +31,13 @@
        <label for="commentaire_prive"><%= _("Private ?") %></label>
      <%= check_box(:commentaire, :prive) %>
      <br /><br /><br /><br /><br /><br /><br /><br /><br />
-     <label for="commentaire_elapsed"><%= _('Time elapsed') %></label>
-     <%= text_field :commentaire, :elapsed, :size => 9 %>
+     <% if @demande.contrat.timeticket? %>
+      <%= text_field :commentaire, :elapsed, :size => 1 %>
+      <label for="commentaire_elapsed"><%= _('Tickets spent') %></label>
+     <% end %>
+
     <% end %>
-  </td><td class="text" align="center" style="margin: 0; padding: 0;">
+  </td><td class="text" align="center" style="margin: 0; padding: 2px;">
    <%= text_area :commentaire, :corps, :style => "width:100%;", :rows => 15 %>
      <%= file_column_field('piecejointe', 'file', :size => 65) %><br />
      <%= submit_tag _("Answer") %>

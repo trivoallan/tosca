@@ -37,6 +37,10 @@ class Contrat < ActiveRecord::Base
   end
 
 
+  def timeticket?
+    rule_type == 'TimeTicket'
+  end
+
   def interval_in_seconds
     return (heure_fermeture - heure_ouverture) * 1.hour
   end
