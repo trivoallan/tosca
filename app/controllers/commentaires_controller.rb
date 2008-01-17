@@ -23,6 +23,9 @@ class CommentairesController < ApplicationController
     user = session[:user]
     request = Demande.find(id)
 
+    return render(:nothing => true) unless user && request
+
+
     changed = {}
     # check on attributes change
     %w{statut_id ingenieur_id severite_id}.each do |attr|
@@ -32,6 +35,7 @@ class CommentairesController < ApplicationController
     # TODO : avertir ??
     # 'Le statut a été modifié : le commentaire est <b>public</b>'
     @comment = Commentaire.new(commentaire)
+    @comment.demande, @comment.user = request, user
     @comment.add_attachment(params)
 
     # on vérifie et on envoie le courrier
