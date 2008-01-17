@@ -200,10 +200,11 @@ class DemandesController < ApplicationController
 
     @partial_for_summary = 'infos_demande'
 
-    if flash.has_key? :old_body
-      @commentaire = Commentaire.new(:corps => flash[:old_body])
-    end
-    # render is mandatory becoz' of the alias with 'show'
+    @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande,
+                                   :user => session[:user])
+    @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
+
+    # render is mandatory coz' of the alias with 'show'
     render :action => 'comment'
   end
 

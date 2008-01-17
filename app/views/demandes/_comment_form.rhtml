@@ -1,5 +1,9 @@
 <%= error_messages_for 'commentaire' if @commentaire %>
 
+<%= hidden_field :commentaire, :demande_id %>
+<%= hidden_field :commentaire, :user_id %>
+
+
 <table width="100%"><tr>
   <td><b><u><%= _("Your answer :") %></u></b></td>
 
@@ -34,7 +38,7 @@
        <%= text_field :demande, :expected_on, :style => 'width: 6em;' %>
        <span class="calendarPicker"><%= StaticScript::date_to %></span>
        <%= StaticScript::script_date('demande_expected_on', 'date_to') %>
-     <br /><br /><br /><br /><br /><br /><br /><br /><br />
+     <br /><br /><br /><br /><br /><br /><br /><br />
      <% if @demande.contrat.timeticket? %>
       <%= text_field :commentaire, :elapsed, :size => 1 %>
       <label for="commentaire_elapsed"><%= _('Tickets spent') %></label>

@@ -17,64 +17,40 @@ class CommentairesController < ApplicationController
 
   #utilisé par la vue "comment" de Demande pour en ajouter un
   def comment
-    unless params[:id] and params[:commentaire]
-      return render(:nothing => true)
-    end
+    commentaire, id = params[:commentaire], params[:id]
+    return render(:nothing => true) unless id && commentaire
 
     user = session[:user]
-    demande = Demande.find(params[:id])
+    request = Demande.find(id)
 
-    modifications = {}
-    #on regarde si le statut a changer
+    changed = {}
+    # check on attributes change
     %w{statut_id ingenieur_id severite_id}.each do |attr|
-      modifications[attr] = true unless params[:commentaire][attr].blank?
+      changed[attr] = true unless commentaire[attr].blank?
     end
 
-    # auto-assignment to current engineer
-    if demande.ingenieur_id.nil? and not @ingenieur.nil?
-      demande.update_attribute :ingenieur_id, @ingenieur.id
-    end
-
-    # public si on modifie le statut
-    params[:commentaire][:prive] = false if modifications[:statut_id]
     # TODO : avertir ??
     # 'Le statut a été modifié : le commentaire est <b>public</b>'
-    @commentaire = Commentaire.new(params[:commentaire])
-    @commentaire.demande_id = demande.id
-    @commentaire.add_attachment(params)
-    @commentaire.user_id = user.id
-    @commentaire.elapsed ||= 0
+    @comment = Commentaire.new(commentaire)
+    @comment.add_attachment(params)
 
     # on vérifie et on envoie le courrier
-    if @commentaire.save
-      # Caching times in 'demande'
-=begin
-      champs = {  :cache_contournement => demande.temps_contournement() ,
-        :cache_correction => demande.temps_correction() ,
-        :cache_ecoule => demande.temps_ecoule() ,
-        :cache_rappel => demande.temps_rappel()
-        }
-=end
-      if true # demande.update_attributes(champs)
-        flash[:notice] = _("Your comment was successfully added.")
-        url_attachment = render_to_string(:layout => false, :template => '/attachment')
-        options = { :demande => demande, :commentaire => @commentaire,
-                    :name => user.name, :modifications => modifications,
-                    :url_request => demande_url(demande),
-                    :url_attachment => url_attachment
-        }
-        Notifier::deliver_request_new_comment(options, flash)
-      else # TODO : rework
-        flash[:warn] = _("Unable to save working times.")
-        flash[:old_body] = @commentaire.corps
-      end
+    if @comment.save
+      flash[:notice] = _("Your comment was successfully added.")
+      url_attachment = render_to_string(:layout => false, :template => '/attachment')
+      options = { :demande => request, :commentaire => @comment,
+        :name => user.name, :modifications => changed,
+        :url_request => demande_url(request),
+        :url_attachment => url_attachment
+      }
+      Notifier::deliver_request_new_comment(options, flash)
     else
       flash[:warn] = _("A conflict has occured.") + '<br />' +
         _('Please refresh your browser and try again.')
-      flash[:old_body] = @commentaire.corps
+      flash[:old_body] = @comment.corps
     end
 
-    redirect_to( demande_path(demande) )
+    redirect_to demande_path(request)
   end
 
   def changer_etat

@@ -50,10 +50,14 @@ class Commentaire < ActiveRecord::Base
   before_create :check_status
   def check_status
     request = self.demande
-    if (request.statut_id != self.statut_id)
-      request.errors.add_to_base _('The status of this request has already been changed by.')
+    if (request.statut_id == self.statut_id)
+      request.errors.add_to_base _('The status of this request has already been changed.')
+    end
+    if (self.statut_id && self.prive)
+      request.errors.add_to_base _('You cannot privately change the status')
     end
   end
+
   # We destroy attachment if appropriate
   # belongs_to don't allow us to call :dependent :'(
   before_destroy :delete_pj
@@ -85,14 +89,22 @@ class Commentaire < ActiveRecord::Base
         #On ne met à jour que si ça a changé
         request[attr] = self[attr] if self[attr] and request[attr] != self[attr]
       end
+    else
       unless request.elapsed
         data = { :demande => request, :until_now => self.elapsed }
         Elapsed.create(data)
       end
-
     end
+
+    # auto-assignment to current engineer
+    if request.ingenieur_id.nil? && self.user.ingenieur
+      request.ingenieur = self.user.ingenieur
+    end
+
+    # Update cache of elapsed time
+    request.elapsed.update_with(self)
+
     request.last_comment_id = self.id unless self.prive
-    request.expected_on = Time.now + 15.days
     #To update the demande.updated_on
     request.save
   end
