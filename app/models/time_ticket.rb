@@ -1,6 +1,14 @@
 class TimeTicket < ActiveRecord::Base
   has_one :contrat, :as => :rule
 
+  def elapsed_on_create
+    1
+  end
+
+  def formatted_elapsed(value)
+    n_('%d ticket spent', '%d tickets spent', value) % value
+  end
+
   def short_description
     if max == -1
       _('Illimited number of tickets of %s') %

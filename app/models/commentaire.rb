@@ -85,6 +85,11 @@ class Commentaire < ActiveRecord::Base
         #On ne met à jour que si ça a changé
         request[attr] = self[attr] if self[attr] and request[attr] != self[attr]
       end
+      unless request.elapsed
+        data = { :demande => request, :until_now => self.elapsed }
+        Elapsed.create(data)
+      end
+
     end
     request.last_comment_id = self.id unless self.prive
     request.expected_on = Time.now + 15.days

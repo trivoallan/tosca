@@ -35,12 +35,12 @@
      <th><label for="demande_beneficiaire_id"><%= _("Recipient") %></label></th>
      <% # Warning, the code of this cell is also in ajax_display_contract.rjs %>
      <td><div id="recipient"><%= select(:demande, :beneficiaire_id, @beneficiaires) %></div></td>
-    </tr><tr>
+    </tr>
     <% if @ingenieur %>
-     <th><label for="demande_ingenieur_id"><%=_("Assigned to")%></label></th>
-     <td><%= select_empty(:demande, :ingenieur_id, @ingenieurs) %></td>
+     <tr><th><label for="demande_ingenieur_id"><%=_("Assigned to")%></label></th>
+     <td><%= select_empty(:demande, :ingenieur_id, @ingenieurs) %></td></tr>
     <% end %>
-    </tr><tr>
+    <tr>
      <td colspan="2"><hr /></td>
     </tr><tr>
      <th><label for="demande_socle_id"><%= _("System") %></label></th>

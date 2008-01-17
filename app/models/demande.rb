@@ -76,6 +76,10 @@ class Demande < ActiveRecord::Base
     to_s
   end
 
+  def formatted_elapsed
+    contrat.rule.formatted_elapsed(self.elapsed.until_now)
+  end
+
   def find_last_comment_before(comment_id)
     options = { :order => 'created_on DESC', :conditions =>
       [ 'commentaires.prive <> 1 AND commentaires.id <> ?', comment_id ]}
@@ -97,6 +101,8 @@ class Demande < ActiveRecord::Base
     self.beneficiaire_id = recipient.id if recipient
   end
 
+  # This method is launched after save. It creates the first comment and
+  # the time elapsed object.
   def update_first_comment
     c = self.first_comment
     c.ingenieur_id = self.ingenieur_id
@@ -104,9 +110,9 @@ class Demande < ActiveRecord::Base
     c.severite_id = self.severite_id
     c.statut_id = self.statut_id
     c.user_id = self.submitter_id
+    c.elapsed = self.contrat.rule.elapsed_on_create
     unless c.save
-      c.destroy
-      throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
+      throw Exception.new("Error when saving first comment of #%d" % self.id)
     end
 
   end
