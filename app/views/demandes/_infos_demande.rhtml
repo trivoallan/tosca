@@ -17,7 +17,6 @@
             :target => '_blank' %></li>
 </ul>
 
-<% form_tag('/', :name => 'fields') do %>
 <div class="menu_title" onclick="Element.toggle('menu_resume')">
 > <%= _('Summary') %></div>
 <ul class="menu" id="menu_resume">
@@ -37,7 +36,7 @@
   <% if @demande.beneficiaire.user_id != @demande.submitter_id %>
     <li><b><%=_("Declared by")%>: </b><%= @demande.submitter.name %></li>
   <% end %>
-  <% if @demande.ingenieur || @ingenieurs %>
+  <% if @demande.ingenieur %>
     <li><label for="demande_ingenieur_id"><%=_("Assigned to")%>: </label>
          <%= @demande.ingenieur.name %> </li>
   <% end %>
@@ -54,17 +53,14 @@
   <li><b><%= _('Company') %>: </b><%= link_to client.name, client_path(client) %></li>
 </ul>
 
-<% options = { :style => 'width: 6em;' } %>
 <div class="menu_title" onclick="Element.toggle('life_cycle_menu')" >
 > <%=_("Life cycle") %></div>
 <ul class="menu" id="life_cycle_menu">
   <li><b><%= _("Created on") %>: </b><%= @demande.created_on_formatted %></li>
   <li><b><%= _("Updated on") %>: </b><%= @demande.updated_on_formatted %></li>
-  <li><label for="demande_expected_on"><%= _("Expected on") %>: </label>
-       <%= text_field :demande, :expected_on, options %>
-       <span class="calendarPicker"><%= StaticScript::date_to %></span>
-       <%= StaticScript::script_date('demande_expected_on', 'date_to') %></li>
-  <li><b><%= _("Time elapsed") %>: </b> <%= @demande.elapsed %></li>
+  <% if @demande.elapsed %>
+     <li><b><%= _("Time elapsed") %>: </b><%= @demande.formatted_elapsed %></li>
+  <% end %>
   <% contribution = @demande.contribution %>
   <% if contribution %>
     <li><b><%= link_to_request_contribution(contribution) %>: </b><%= contribution.cloture_le_formatted %></li>
@@ -79,6 +75,5 @@
 </ul>
 <%# mandatory for seeing last link ... :/ %>
 <br />
-<% end # Form %>
 
 <% end # Cache %>

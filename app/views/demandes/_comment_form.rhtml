@@ -29,7 +29,11 @@
      <%= avatar(@beneficiaire, @ingenieur) %><br /><br />
     <% if @ingenieur %>
        <label for="commentaire_prive"><%= _("Private ?") %></label>
-     <%= check_box(:commentaire, :prive) %>
+     <%= check_box(:commentaire, :prive) %><br />
+       <label for="demande_expected_on"><%= _("Answer expected on") %>: </label><br />
+       <%= text_field :demande, :expected_on, :style => 'width: 6em;' %>
+       <span class="calendarPicker"><%= StaticScript::date_to %></span>
+       <%= StaticScript::script_date('demande_expected_on', 'date_to') %>
      <br /><br /><br /><br /><br /><br /><br /><br /><br />
      <% if @demande.contrat.timeticket? %>
       <%= text_field :commentaire, :elapsed, :size => 1 %>
