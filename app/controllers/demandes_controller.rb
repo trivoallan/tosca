@@ -188,8 +188,6 @@ class DemandesController < ApplicationController
     options[:conditions][:prive] = false if @beneficiaire
     @last_commentaire = Commentaire.find(:first, options)
 
-    flash.now[:warn] = Metadata::DEMANDE_NOSTATUS unless @demande.statut
-
     @statuts = @demande.statut.possible(@beneficiaire)
     options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
       ['contributions.logiciel_id = ?', @demande.logiciel_id ] }

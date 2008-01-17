@@ -12,7 +12,7 @@ class Statut < ActiveRecord::Base
   N_('Bypassed')  #5 	Contournée      #
   N_('Fixed')     #6	Corrigée        #
   N_('Closed')    #7	Clôturée        #
-  N_('Cancelled') #8     Annulée        #
+  N_('Cancelled') #8    Annulée         #
   #######################################
 
   # used in lib/comex_reporting and models/demande.rb
@@ -35,7 +35,7 @@ class Statut < ActiveRecord::Base
   def possible(recipient = nil)
     search =
       if recipient
-        return [] unless id == 3
+        return [] unless id == 3 || id == 2
         'id IN (6,7,8)'
       else
         case id
@@ -44,7 +44,7 @@ class Statut < ActiveRecord::Base
         when 3 then 'id IN (2,5,6,7,8)'
         when 4 then 'id IN (3)'
         when 5 then 'id IN (3)'
-        when 6 then 'id IN (7)'
+        when 6 then 'id IN (7,2)'
         when 7 then 'id IN (2)'
         when 8 then 'id IN (2)'
         end

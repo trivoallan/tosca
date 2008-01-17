@@ -32,8 +32,11 @@ module ContributionsHelper
   # <%= link_to_new_contribution %>
   def link_to_new_contribution(logiciel_id = nil, text = nil)
     options = new_contribution_path(:id => logiciel_id)
-    text ||= image_create(_('a contribution'))
-    link_to(text, options, LinksHelper::NO_HOVER)
+    if text
+      link_to(text, options)
+    else
+      link_to(image_create(_('a contribution')), options, LinksHelper::NO_HOVER)
+    end
   end
 
   # call it like :
