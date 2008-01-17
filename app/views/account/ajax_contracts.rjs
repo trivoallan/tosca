@@ -1,4 +1,4 @@
 if @contrats
   page.replace_html("contracts",
-      hbtm_check_box( [], @contrats, 'user[contrat_ids]', :size => 2))
+      hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 2))
 end

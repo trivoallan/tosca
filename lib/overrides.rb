@@ -111,7 +111,7 @@ class CGI
   module QueryExtension
     # Get the value for the parameter with a given key.
     #
-    # If the parameter has multiple values, only the first will be 
+    # If the parameter has multiple values, only the first will be
     # retrieved; use #params() to get the array of values.
     def [](key)
       params = @params[key]
@@ -133,7 +133,7 @@ class CGI
       end
     end
   end
-end 
+end
 
 
 # This module is overloaded in order to display link_to lazily
@@ -232,11 +232,19 @@ module ActiveRecord
     end
 
     # It's the more common select applied, mainly for select box.
-    # It returns the names and id, ready to be displayed
-    def self.find_select(options = {})
-      options.update(:select => 'id, name')
+    # By default, it returns an array of [ name, id ].
+    # If 'collect' is false, it will return an array of ActiveRecord
+    # Call it like this :
+    #  User.find_select(:include => [:role]) =>
+    #  Recipient.find_select(:include => [:client], false)
+    # /!\ Beware of applying the collect!{|c| [ c.name, c.id ] } before
+    #     displaying it /!\
+    def self.find_select(options = {}, collect = true)
+      options[:select] = 'id, name'
       options[:order] ||= "#{self.table_name}.name ASC"
-      self.find(:all, options).collect{ |o| [o.name, o.id]}
+      res = self.find(:all, options)
+      res.collect!{ |o| [o.name, o.id]} if collect
+      res
     end
 
     # Same as #find_select, but returns only active objects

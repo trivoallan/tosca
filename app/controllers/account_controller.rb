@@ -117,16 +117,21 @@ class AccountController < ApplicationController
   end
 
   def ajax_contracts
-    return render(:nothing => true) unless request.xhr? and params.has_key? :client_id
+    if !request.xhr? || !params.has_key?(:client_id) || !params.has_key?(:id)
+      return render(:nothing => true)
+    end
+
     client_id = params[:client_id].to_i
+    user_id = params[:id].to_i
     options = Contrat::OPTIONS
     if client_id == 0
-      @contrats = Contrat.find_select(options)
+      @contrats = Contrat.find_select(options, false)
     else
       options = options.dup.update(:conditions =>
         ['contrats.client_id = ?', client_id ])
-      @contrats = Contrat.find_select(options)
+      @contrats = Contrat.find_select(options, false)
     end
+    @user = (user_id == 0 ? User.new : User.find(user_id))
   end
 
   def show
@@ -138,6 +143,12 @@ class AccountController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+
+    # Security Wall
+    if session[:user].role_id > 2 # Not a manager nor an admin
+      params[:user].delete :role_id
+      params[:user].delete :contrat_ids
+    end
 
     res = @user.update_attributes(params[:user])
     if res and @user_recipient
@@ -215,21 +226,22 @@ private
   def _form
     options = { :order => 'id', :conditions =>
       [ 'roles.id >= ? ', session[:user].role_id ] }
-    @roles = Role.find_select(options)
+    @roles = Role.find_select(options, false)
     _form_recipient; _form_engineer
   end
 
   def _form_recipient
     return unless @user_recipient
-    @clients = Client.find_select
-    @contrats = Client.find(@clients.first.last.to_i).contrats
+    @clients = Client.find_select({}, false)
+    @contrats = @user_recipient.client.contrats || @clients.first.contrats
+    @clients.collect!{|c| [c.name, c.id] }
     @user.role_id = 4 if @user.new_record?
   end
 
   def _form_engineer
     return unless @user_engineer
-    @competences = Competence.find_select
-    @contrats = Contrat.find_select(Contrat::OPTIONS)
+    @competences = Competence.find_select({}, false)
+    @contrats = Contrat.find_select(Contrat::OPTIONS, false)
     @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
     @user.role_id = 3 if @user.new_record?
   end
