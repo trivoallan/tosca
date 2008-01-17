@@ -44,6 +44,10 @@ module DemandesHelper
         NEW_WINDOW)
   end
 
+  def public_link_to_status_legend
+    public_link_to(_("Legend of statutes"), statuts_path, NEW_WINDOW)
+  end
+
   # Description of a demand
   # DEPRECATED : use instance method for 'to_s' Demande
   def demande_description(d)
