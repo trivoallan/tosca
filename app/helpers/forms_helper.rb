@@ -14,7 +14,7 @@ module FormsHelper
   # L'option :size permet une mise en colonne
   # Ex : hbtm_check_box( @logiciel.competences, @competences, 'competence_ids')
   def hbtm_check_box( objectcollection, collection, name , options={})
-    return '' if collection.nil?
+    return '' if collection.nil? || collection.empty?
     objectcollection ||= []
     out = "<table class=\"list\"><tr>" and count = 1
     options_size = options[:size]
