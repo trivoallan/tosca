@@ -1,7 +1,7 @@
 class Rules::CreditsController < ApplicationController
 
   def index
-    @credits_pages, @credits = paginate :credits, :per_page => 10
+    @credit_pages, @credits = paginate Rules::Credit, :per_page => 10
   end
 
   def show

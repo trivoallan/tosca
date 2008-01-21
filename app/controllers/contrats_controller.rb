@@ -22,15 +22,13 @@ class ContratsController < ApplicationController
 
 public
   def ajax_choose
-    render :nothing => true and return unless request.xhr?
-    @rules = nil
-    if params.has_key? 'TimeTicket'
-      @rules = TimeTicket.find(:all)
+    value = params[:value]
+    render :nothing => true and return unless request.xhr? && !value.blank?
+    @rules = []
+    if value.grep(/^Rules::/)
+      @rules = value.constantize.find(:all)
     end
-    if params[:value] == 'Ossa'
-      @rules = Ossa.find(:all)
-    end
-    @type = 'rules' if @rules
+    @type = 'rules' unless @rules.empty?
   end
 
   def create
@@ -84,8 +82,8 @@ private
     @rules = []
     begin
       @rules = @contrat.rule_type.constantize.find(:all)
-    rescue
-      flash[:warn] = _('Unknown rules for this contract.')
+    rescue Exception => e
+      flash[:warn] = _('Unknown rules for this contract.%s') % e.message
     end
   end
 end

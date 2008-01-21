@@ -7,10 +7,6 @@
 require 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
-  map.resources :credits
-
-  map.resources :components
-
   # The priority is based upon order of creation:
   #   first created -> highest priority.
 
@@ -116,6 +112,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :piecejointes, :member => { :uv => :get }
   map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
+
+  # Resources for rules/* controllers
+    map.resources :components, :controller => "Rules::Components",
+      :path_prefix => "/rules", :name_prefix => 'rules_'
+    map.resources :credits, :controller => "Rules::Credits",
+      :path_prefix => "/rules", :name_prefix => 'rules_'
+
   map.resources :socles
   map.resources :statuts, :member => { :help => :get }
   map.resources :severites

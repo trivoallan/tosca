@@ -1,7 +1,7 @@
 class Rules::ComponentsController < ApplicationController
 
   def index
-    @rules_components_pages, @rules_components = paginate :rules_components, :per_page => 10
+    @component_pages, @components = paginate Rules::Component, :per_page => 10
   end
 
   def show

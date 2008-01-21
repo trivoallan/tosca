@@ -15,6 +15,5 @@ class CreateRulesComponents < ActiveRecord::Migration
         c.update_attribute :rule_type, 'Ossa'
       end
     }
-
   end
 end
