@@ -22,7 +22,7 @@
           <li>
             <% com_user = com.user  %>
             <% if com_user and com_user.client? and com_user.beneficiaire %>
-              <%= logo_client_small(com_user.beneficiaire.client) %>
+              <%= logo_client(com_user.beneficiaire.client, "small") %>
             <% else %>
               <%= StaticImage::logo_08000_small %>
             <% end %> : <%= html2text(com.corps).gsub(/\n/, "").gsub(/(b|B)onjour./, "").gsub(/(c|C)ordialement/, "") %>

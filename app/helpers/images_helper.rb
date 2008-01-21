@@ -20,17 +20,12 @@ module ImagesHelper
   end
 
 
-  def logo_client_small(client)
-    return logo_client(client, "small")
-  end
-
   # Beware that the inactive thumb is only available for thumb size
   #Call like this :
   #  <%= logo_client(@client) %>
   #  <%= logo_client(@client, "small') %>
   def logo_client(client, size = :thumb)
     return '' if client.nil? or client.image.blank? or size.nil?
-    size = size.to_sym
     if size == :thumb
       size = (client.inactive? ? 'inactive_thumb' : 'thumb')
     end
