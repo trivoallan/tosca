@@ -10,11 +10,6 @@ class ContributionsController < ApplicationController
   end
 
   def list
-    unless params.has_key? :id
-      flash[:notice] = flash[:notice]
-      redirect_to select_contributions_path
-      return
-    end
     options = { :order => "created_on DESC" }
     unless params[:id] == 'all'
       @logiciel = Logiciel.find(params[:id])
