@@ -36,7 +36,7 @@
        <span class="calendarPicker"><%= StaticScript::date_to %></span>
        <%= StaticScript::script_date('demande_expected_on', 'date_to') %>
      <br /><br /><br /><br /><br /><br /><br /><br />
-     <% if @demande.contrat.timeticket? %>
+     <% if @demande.contrat.credit? %>
       <%= text_field :commentaire, :elapsed, :size => 1 %>
       <label for="commentaire_elapsed"><%= _('Tickets spent') %></label>
      <% end %>
