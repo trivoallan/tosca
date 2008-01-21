@@ -102,6 +102,9 @@ class Commentaire < ActiveRecord::Base
     end
 
     # Update cache of elapsed time
+    if request.elapsed.nil?
+      request.elapsed = Elapsed.new(:demande => request, :until_now => 0)
+    end
     request.elapsed.update_with(self)
 
     request.last_comment_id = self.id unless self.prive
