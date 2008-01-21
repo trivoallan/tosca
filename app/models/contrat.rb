@@ -29,7 +29,7 @@ class Contrat < ActiveRecord::Base
     errors.add_to_base("The schedules of this contract are invalid.") unless heure_ouverture < heure_fermeture
   end
 
-  Rules = [ 'TimeTicket', 'Ossa' ]
+  Rules = [ 'Rules::Credit', 'Rules::Component' ]
 
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
@@ -37,8 +37,8 @@ class Contrat < ActiveRecord::Base
   end
 
 
-  def timeticket?
-    rule_type == 'TimeTicket'
+  def credit?
+    rule_type == Rules.first
   end
 
   def interval_in_seconds

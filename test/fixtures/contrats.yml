@@ -10,7 +10,7 @@ contrat_00003:
   id: 3
   veille_technologique: false
   ouverture: 2007-12-24 00:01:00 +01:00
-  rule_type: TimeTicket
+  rule_type: Rules::Credit
   newsletter: true
   cloture: 2012-12-24 00:00:00 +01:00
   paquets_count:
@@ -25,7 +25,7 @@ contrat_00004:
   id: 4
   veille_technologique: false
   ouverture: 2007-12-25 09:59:00 +01:00
-  rule_type: Ossa
+  rule_type: Rules::Component
   newsletter: false
   cloture: 2012-12-25 10:00:00 +01:00
   paquets_count:
@@ -40,7 +40,7 @@ contrat_00001:
   id: 1
   veille_technologique: true
   ouverture: 2007-12-24 00:00:00 +01:00
-  rule_type: Ossa
+  rule_type: Rules::Component
   newsletter: true
   cloture: 2012-12-24 00:00:00 +01:00
   paquets_count:
@@ -55,7 +55,7 @@ contrat_00002:
   id: 2
   veille_technologique: true
   ouverture: 2007-12-24 00:00:00 +01:00
-  rule_type: TimeTicket
+  rule_type: Rules::Credit
   newsletter: true
   cloture: 2012-12-24 00:00:00 +01:00
   paquets_count:
