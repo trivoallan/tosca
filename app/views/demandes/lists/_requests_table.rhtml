@@ -17,7 +17,7 @@
 
    <% beneficiaire = Beneficiaire.new(:id => 0) %>
    <% ingenieur = Ingenieur.new(:id => 0)
-      def ingenieur.name; ''; end %>
+      def ingenieur.name; '-'; end %>
    <% for demande in @demandes %>
    <tr <%= tr_attributes(demande_path(demande)) %>>
         <td><%= demande.id %></td>
@@ -31,8 +31,10 @@
         <td><%= beneficiaire %></td>
         <td class="wrapped"><b><%= link_to_demande demande %></b></td>
         <% if @ingenieur %>
-          <% ingenieur = demande.ingenieur if ingenieur.id != demande.ingenieur_id %>
-          <td><%= ingenieur ? ingenieur.name : '' %></td>
+          <% if ingenieur.nil? || (ingenieur.id != demande.ingenieur_id)
+               ingenieur = demande.ingenieur
+             end %>
+          <td><%= ingenieur ? ingenieur.name : '-' %></td>
        <% end %>
         <td><span class="date"><%=h demande.updated_on_formatted %></span></td>
    </tr>
