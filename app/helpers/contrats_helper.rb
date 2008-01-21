@@ -26,13 +26,13 @@ module ContratsHelper
 
   def link_to_rule(rule)
     return '' unless rule
-    options = self.send("#{rule.class.to_s.underscore}_path", rule)
+    options = self.send("#{ActionController::RecordIdentifier.singular_class_name(rule)}_path", rule)
     link_to(StaticImage::view, options,  LinksHelper::NO_HOVER)
   end
 
   def link_to_edit_rule(rule)
     return '' unless rule
-    options = self.send("#{rule.class.to_s.underscore}_path", rule)
+    options = self.send("#{ActionController::RecordIdentifier.singular_class_name(rule)}_path", rule)
     link_to(StaticImage::edit, options,  LinksHelper::NO_HOVER)
   end
 
