@@ -34,7 +34,20 @@ class Test::Unit::TestCase
     @controller = AccountController.new
     post :login, :user_login => login, :user_password => password,
       :user_crypt => 'false'
-      @controller = controller
+    @controller = controller
+  end
+
+  def logout
+    controller = @controller
+    @controller = AccountController.new
+    post :logout
+    @controller = controller
+  end
+
+  def submit_with_name(object, value)
+    form = select_form 'main_form'
+    form.send(object).name = value
+    form.submit
   end
 
   FILES_ROOT = "#{File.expand_path(RAILS_ROOT)}/test/fixtures/files"
