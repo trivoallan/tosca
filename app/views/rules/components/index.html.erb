@@ -1,0 +1,13 @@
+<h1><%= _('List of components offers') %></h1>
+
+<% links = show_pages_links(@component_pages, _('an ossa offer')) %>
+<%= links %>
+
+<% titles = [_('Component|Name')] %>
+<%= show_table(@components, Rules::Component, titles) { |c|
+  result = ''
+  result << "<td>#{c.name}</td>"
+  result << link_to_actions_table(c)
+} %>
+
+<%= links %>

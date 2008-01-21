@@ -1,7 +1,0 @@
-<% for column in Ossa.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @ossa.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to_edit_and_list(@ossa) %>

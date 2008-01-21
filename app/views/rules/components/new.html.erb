@@ -1,0 +1,9 @@
+<h1><%= _('New component offer') %></h1>
+
+<% form_for(@component) do |f| %>
+  <%= render :partial => 'form' %>
+  <%= f.submit _('Create') %>
+  </p>
+<% end %>
+
+<%= link_to_back %>

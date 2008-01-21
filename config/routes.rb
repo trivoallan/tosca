@@ -7,6 +7,10 @@
 require 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
+  map.resources :credits
+
+  map.resources :components
+
   # The priority is based upon order of creation:
   #   first created -> highest priority.
 

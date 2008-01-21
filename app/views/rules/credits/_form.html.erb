@@ -1,0 +1,12 @@
+<%= error_messages_for 'credit' %>
+
+<!--[form:credit]-->
+<p><label for="credit_name"><%=_('Credit|Name')%></label><br/>
+<%= text_field 'credit', 'name'  %></p>
+
+<p><label for="credit_max"><%=_('Maximum number of time credits')%></label><br/>
+<%= text_field 'credit', 'max'  %></p>
+
+<p><label for="credit_time"><%= _('Time of one credit, expressed in hours')%></label><br/>
+<%= text_field 'credit', 'time'  %></p>
+<!--[eoform:credit]-->

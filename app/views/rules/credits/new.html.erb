@@ -1,0 +1,8 @@
+<h1><%=_('New offer based on time credits')%></h1>
+
+<% form_for(@credit) do |f| %>
+  <%= render :partial => 'form' %>
+  <%= f.submit "Create" %>
+<% end %>
+
+<%= link_to_back %>

@@ -1,8 +1,0 @@
-<h1><%=_('Editing an ossa offer') %></h1>
-
-<% form_tag ossa_path(@ossa), :method => :put do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _('Validate') %>
-<% end %>
-
-<%= link_to_show_and_list(@ossa) %>

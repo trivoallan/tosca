@@ -1,0 +1,13 @@
+<h1><%= _('List of offers with time credits') %></h1>
+
+<% links = show_pages_links(@credit_pages, _('an offer')) %>
+<%= links %>
+
+<% titles = [_('Credit|Name')] %>
+<%= show_table(@credits, Rules::Credit, titles) { |c|
+  result = ''
+  result << "<td>#{c.name}</td>"
+  result << link_to_actions_table(c)
+} %>
+
+<%= links %>

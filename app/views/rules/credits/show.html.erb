@@ -1,0 +1,6 @@
+<% for column in Rule::Credit.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @credit.send(column.name) %>
+</p>
+<% end %>
+<%= link_to_edit_and_list @credit %>

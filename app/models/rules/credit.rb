@@ -1,4 +1,4 @@
-class TimeTicket < ActiveRecord::Base
+class Rules::Credit < ActiveRecord::Base
   has_one :contrat, :as => :rule
 
   def elapsed_on_create

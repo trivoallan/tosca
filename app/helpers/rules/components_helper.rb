@@ -1,0 +1,2 @@
+module Rules::ComponentsHelper
+end

@@ -1,0 +1,2 @@
+module Rules::CreditsHelper
+end

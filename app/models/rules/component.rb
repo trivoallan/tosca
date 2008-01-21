@@ -1,4 +1,4 @@
-class Ossa < ActiveRecord::Base
+class Rules::Component < ActiveRecord::Base
   has_one :contrat, :as => :rule
 
   def elapsed_on_create
@@ -16,4 +16,5 @@ class Ossa < ActiveRecord::Base
       _('Illimited offer on a maximum of %d components') % max
     end
   end
+
 end
