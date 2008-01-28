@@ -22,6 +22,9 @@ class ApplicationController < ActionController::Base
   # périmètre limité pour certains profils
   around_filter :scope
 
+  # in order to escape conflict with other rails app
+  session :session_key => '_tosca_session_id'
+
   # systems d'authentification
   include ACLSystem
   # système de construction des filters

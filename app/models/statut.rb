@@ -26,8 +26,6 @@ class Statut < ActiveRecord::Base
   end
 
 
-  SELECT = 'statuts.id, statuts.name '
-
   # Give possible status for next step of a request
   # It follows scheme on the 08000linux wiki
   # Even recipient can change some status,
@@ -49,7 +47,7 @@ class Statut < ActiveRecord::Base
         when 8 then 'id IN (2)'
         end
       end
-    Statut.find(:all, :select => SELECT, :conditions => search)
+    Statut.find_select(:conditions => search)
   end
 
 end

@@ -193,16 +193,19 @@ class DemandesController < ApplicationController
       ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
     @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]}
     if @ingenieur
-      @severites = Severite.find(:all)
+      @severites = Severite.find_select
       @ingenieurs = Ingenieur.find_select_by_contrat_id(@demande.contrat_id)
     end
     set_comments(@demande.id)
 
     @partial_for_summary = 'infos_demande'
 
-    @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande,
+    if flash.has_key? :wrong_comment
+      @commentaire = YAML::load(flash[:wrong_comment])
+    else
+      @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande,
                                    :user => session[:user])
-    @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
+    end
 
     # render is mandatory coz' of the alias with 'show'
     render :action => 'comment'
@@ -338,24 +341,25 @@ class DemandesController < ApplicationController
   end
 
   def set_piecejointes(demande_id)
-    conditions = [ 'commentaires.demande_id = ? ', demande_id ]
-    options = { :conditions => conditions, :order =>
+    options = { :conditions => filter_comments(demande_id), :order =>
       'commentaires.updated_on DESC', :include => [:commentaire] }
     @piecejointes = Piecejointe.find(:all, options)
   end
 
   def set_comments(demande_id)
     unless @last_commentaire
-      if @ingenieur
-        @commentaires = Commentaire.find(:all, :conditions =>
-         [ 'commentaires.demande_id = ?', demande_id ],
-         :order => "created_on ASC", :include => [:user,:statut,:severite])
-      else
-        @commentaires = Commentaire.find(:all, :conditions =>
-         [ 'commentaires.demande_id = ? AND commentaires.prive = ? ',
-           demande_id, false ],
-         :order => 'created_on ASC', :include => [:user,:statut,:severite])
-      end
+      @commentaires = Commentaire.find(:all, :conditions =>
+        filter_comments(demande_id), :order => "created_on ASC",
+        :include => [:user,:statut,:severite])
+    end
+  end
+
+  # Private comments & attachments should not be read by recipients
+  def filter_comments(demande_id)
+    if @ingenieur
+      [ 'commentaires.demande_id = ?', demande_id ]
+    else
+      [ 'commentaires.demande_id = ? AND commentaires.prive = 0 ', demande_id ]
     end
   end
 
