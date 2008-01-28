@@ -200,12 +200,8 @@ class DemandesController < ApplicationController
 
     @partial_for_summary = 'infos_demande'
 
-    if flash.has_key? :wrong_comment
-      @commentaire = YAML::load(flash[:wrong_comment])
-    else
-      @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande,
-                                   :user => session[:user])
-    end
+    @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande)
+    @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
 
     # render is mandatory coz' of the alias with 'show'
     render :action => 'comment'

@@ -49,7 +49,9 @@ class CommentairesController < ApplicationController
       }
       Notifier::deliver_request_new_comment(options, flash)
     else
-      puts  @comment.to_yaml
+      flash[:warn] = _("A conflict has occured.") + '<br />' +
+        _('Please refresh your browser and try again.')
+      flash[:old_body] = @comment.corps
     end
 
     redirect_to demande_path(request)
