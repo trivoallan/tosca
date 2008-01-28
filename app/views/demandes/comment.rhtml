@@ -1,9 +1,11 @@
-<%= error_messages_for 'commentaire' if @commentaire %>
-<%=h @commentaire.errors.inspect %>
+<% ############ infos demandes #########################
+   # require : @demande, @contributions, @count
+   #           @users_ingenieurs
+%>
 
 <div class="content">
 
-  <% # cache("#{@demande.id}/#{@ingenieur.nil?}/requests/front") do %>
+  <% cache("#{@demande.id}/#{@ingenieur.nil?}/requests/front") do %>
    <h1>
     <% options = edit_demande_path(@demande.id) %>
     <% html_options = { :class => 'no_hover' } %>
@@ -27,6 +29,6 @@
    <div class="demande_tab" id="demande_tab">
     <%= render :partial => 'demandes/tabs/tab_description' %>
    </div>
-  <% # end %>
+  <% end %>
 
 </div>
