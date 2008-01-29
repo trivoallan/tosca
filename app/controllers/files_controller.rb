@@ -18,9 +18,11 @@
 
 class FilesController < ApplicationController
 
+  before_filter :login_required, :except => [:download]
+
   # TODO : review and shorten this method. Camelize should to the job.
   def download
-    file_type = params[:file_type]
+    file_type = params[:file_type].intern
 
     # mapping path
     map = {:piecejointe => 'file',
@@ -34,20 +36,23 @@ class FilesController < ApplicationController
               :document => Document,
               :binaire => Binaire }
 
+    # Login needed for anything but contribution
+    return if (file_type != :contribution && login_required() == false)
+
     # building path
-    root = [ Metadata::PATH_TO_FILES, file_type, map[file_type.intern] ] * '/'
+    root = [ Metadata::PATH_TO_FILES, params[:file_type], map[file_type] ] * '/'
 
     # TODO : FIXME
     # the dirty gsub hack on ' ' is needded, because urls with '+' are weirdly reinterpreted.
     fullpath = [ root, params[:id], params[:filename].gsub(' ','+') ] * '/'
 
     # Attachment has to be restricted.
-    scope_active = (@beneficiaire and file_type == 'piecejointe')
+    scope_active = (@beneficiaire and file_type == :piecejointe)
 
     # Ensure that we can remove scope
     begin
       Piecejointe.set_scope(@beneficiaire.client_id) if scope_active
-      target = model[file_type.intern].find(params[:id])
+      target = model[file_type].find(params[:id])
     ensure
       Piecejointe.remove_scope() if scope_active
     end
