@@ -19,7 +19,6 @@ module ImagesHelper
     options
   end
 
-
   # Beware that the inactive thumb is only available for thumb size
   #Call like this :
   #  <%= logo_client(@client) %>

@@ -5,7 +5,8 @@
 ActionMailer::Base.smtp_settings = {
   :address  => "mail.linagora.com",
   :port  => 25, 
-  :domain  => 'linagora.com'
+  :domain  => 'linagora.com',
+  :dev_mailto => "rschermesser@linagora.com"
 
   #:user_name  => "",
   #:password  => "",

@@ -108,6 +108,11 @@ def html2text(html)
   text
 end
 
+#This method clean a string from
+def cleanize(text)
+
+end
+
 
 module Utils
   # This method check and install missing gems.
