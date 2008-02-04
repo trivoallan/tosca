@@ -47,7 +47,7 @@ class Statut < ActiveRecord::Base
         when 8 then 'id IN (2)'
         end
       end
-    Statut.find_select(:conditions => search)
+    Statut.find_select(:conditions => search, :order => 'statuts.id')
   end
 
 end
