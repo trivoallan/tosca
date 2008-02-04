@@ -5,6 +5,8 @@ class CommentairesController < ApplicationController
   helper :demandes
 
   cache_sweeper :commentaire_sweeper, :only => [:comment, :update, :destroy]
+  # A comment is created only from the request interface
+  cache_sweeper :demande_sweeper, :only => [:comment]
 
   def index
     @commentaire_pages, @commentaires = paginate :commentaires,
@@ -49,8 +51,8 @@ class CommentairesController < ApplicationController
       }
       Notifier::deliver_request_new_comment(options, flash)
     else
-      flash[:warn] = _("A conflict has occured.") + '<br />' +
-        _('Please refresh your browser and try again.')
+      flash[:warn] = _("An error has occured.") + '<br />' +
+        @comment.errors.full_messages.join('<br />')
       flash[:old_body] = @comment.corps
     end
 

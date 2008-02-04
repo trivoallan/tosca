@@ -222,7 +222,7 @@ class ExportController < ApplicationController
     row << total[:final][:total]
     data << row
 
-    report = data.to_table
+    report =  Table(:column_names => data[1], :data => data[2..-1])
     generate_report(report, :ods, {})
 
     flash[:clients]= flash[:clients]
