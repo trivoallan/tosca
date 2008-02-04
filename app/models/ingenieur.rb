@@ -20,21 +20,21 @@ class Ingenieur < ActiveRecord::Base
     conditions = [ 'cu.contrat_id = ?', contrat_id ]
     joins = 'INNER JOIN contrats_users cu ON cu.user_id=users.id'
     options = {:find => {:conditions => conditions, :joins => joins}}
-    Ingenieur.with_scope(options) do
+    Ingenieur.send(:with_scope, options) do
       Ingenieur.find_select(User::SELECT_OPTIONS)
     end
   end
 
   def self.find_ossa(*args)
     conditions = 'ingenieurs.expert_ossa = 1'
-    Ingenieur.with_scope({:find => {:conditions => conditions }}) {
+    Ingenieur.send(:with_scope, {:find => {:conditions => conditions }}) {
       Ingenieur.find(*args)
     }
   end
 
   def self.find_presta(*args)
     conditions = ['ingenieurs.expert_ossa = ?', 0 ]
-    Ingenieur.with_scope({:find => {:conditions => conditions }}) {
+    Ingenieur.send(:with_scope, {:find => {:conditions => conditions }}) {
       Ingenieur.find(*args)
     }
   end

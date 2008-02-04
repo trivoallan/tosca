@@ -51,7 +51,7 @@ class ReportingController < ApplicationController
     if cns
       @cns= cns
       scope= { :conditions => "client_id IN #{clients}"} unless clients.include?('all')
-      Contrat.with_scope(:find => scope) {
+      Contrat.send(:with_scope, :find => scope) {
         cns_correction()
       }
       return
@@ -78,7 +78,7 @@ class ReportingController < ApplicationController
     end
     if comex
       scope= { :conditions => "id IN #{clients}"} unless clients.include?('all')
-      Client.with_scope(:find => scope) {
+      Client.send(:with_scope, :find => scope) {
         init_comex_report()
       }
       @clients.each do |client|
@@ -324,21 +324,21 @@ class ReportingController < ApplicationController
     # sur les demandes qui ont des contribs, non.
     cpaquets = ['paquets.contrat_id = ?', @contrat.id ]
     scontributions = {:find => {:conditions => cpaquets, :include => [:paquets]}}
-    Contribution.with_scope(scontributions) {
+    Contribution.send(:with_scope, scontributions) {
       until (start_date > end_date) do
         infdate = "#{start_date.strftime('%y-%m')}-01"
         start_date = start_date.advance(:months => 1)
         supdate = "#{start_date.strftime('%y-%m')}-01"
 
         demandes[1], demandes[2] = infdate, supdate
-        Demande.with_scope({ :find => { :conditions => demandes } }) do
+        Demande.send(:with_scope, { :find => { :conditions => demandes } }) do
           compute_repartition @data[:repartition]
           compute_severite @data[:severite]
           compute_resolution @data[:resolution]
           compute_annulation @data[:annulation]
           compute_temps @data
           contributions[1], contributions[2] = infdate, supdate
-          Contribution.with_scope({:find => {:conditions => contributions }}) do
+          Contribution.send(:with_scope, {:find => {:conditions => contributions }}) do
             compute_evolution @data[:evolution]
           end
         end
@@ -465,13 +465,13 @@ class ReportingController < ApplicationController
     anomalies = { :conditions => "typedemande_id = 2" }
     evolutions = { :conditions => "typedemande_id = 5" }
 
-    Demande.with_scope({ :find => { :conditions => Demande::TERMINEES } }) do
+    Demande.send(:with_scope, { :find => { :conditions => Demande::TERMINEES } }) do
       report[0].push Demande.count(informations)
       report[1].push Demande.count(anomalies)
       report[2].push Demande.count(evolutions)
     end
 
-    Demande.with_scope({ :find => { :conditions => Demande::EN_COURS } }) do
+    Demande.send(:with_scope, { :find => { :conditions => Demande::EN_COURS } }) do
       report[3].push Demande.count(informations)
       report[4].push Demande.count(anomalies)
       report[5].push Demande.count(evolutions)
@@ -487,12 +487,12 @@ class ReportingController < ApplicationController
       severites.concat [ { :conditions => "severite_id = #{i}" } ]
     end
 
-    Demande.with_scope({ :find => { :conditions => Demande::TERMINEES } }) do
+    Demande.send(:with_scope, { :find => { :conditions => Demande::TERMINEES } }) do
       4.times do |t|
         report[t].push Demande.count(severites[t])
       end
     end
-    Demande.with_scope({ :find => { :conditions => Demande::EN_COURS } }) do
+    Demande.send(:with_scope, { :find => { :conditions => Demande::EN_COURS } }) do
       4.times do |t|
         report[t+4].push Demande.count(severites[t])
       end
