@@ -5,7 +5,7 @@ class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :phonecalls,
     :socles, :commentaires, :account
 
-  cache_sweeper :demande_sweeper, :only => [:create, :edit, :destroy]
+  cache_sweeper :demande_sweeper, :only => [:create, :update, :destroy]
 
 
   def en_attente

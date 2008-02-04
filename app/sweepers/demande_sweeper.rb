@@ -10,8 +10,7 @@ class DemandeSweeper < ActionController::Caching::Sweeper
 
   # If our sweeper detects that a Request was created call this
   def after_create(record)
-    expire_fragment("#{record.id}/true/requests/info")
-    expire_fragment("#{record.id}/false/requests/info")
+    expire_cache_for(record)
   end
 
   # If our sweeper detects that a Request was updated call this

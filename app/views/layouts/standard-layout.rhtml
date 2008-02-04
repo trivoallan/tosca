@@ -11,11 +11,11 @@
       '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
       "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
       "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
-      stylesheet_link_tag(:all, :media => 'all', :cache => true) <<
+      stylesheet_link_tag(:all, :media => 'all') <<
       # Include TinyMCE with gzip before other JS to avoid problems
       javascript_include_tag('tiny_mce/tiny_mce.js', 'calendar',
          "calendar-#{locale}", 'calendar-setup', 'prototype', 'effects',
-         'controls', 'application', 'redbox', :cache => true) <<
+         'controls', 'application', 'redbox') <<
       tiny_mce(@tiny_mce_options, locale)
  %>
  <%= @@public_head[locale] %>
