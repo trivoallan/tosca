@@ -83,7 +83,7 @@ private
     begin
       @rules = @contrat.rule_type.constantize.find(:all)
     rescue Exception => e
-      flash[:warn] = _('Unknown rules for this contract.%s') % e.message
+      flash[:warn] = _('Unknown rules for contract "%s"') % e.message
     end
   end
 end

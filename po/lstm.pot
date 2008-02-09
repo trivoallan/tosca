@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
-"POT-Creation-Date: 2008-01-15 11:33+0100\n"
+"POT-Creation-Date: 2008-02-09 16:12+0100\n"
 "PO-Revision-Date: 2008-01-08 11:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,80 +15,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/controllers/account_controller.rb:73
+#: app/controllers/rules/components_controller.rb:22
+#: app/controllers/rules/credits_controller.rb:22
+msgid "'%s' was successfully created."
+msgstr ""
+
+#: app/controllers/rules/components_controller.rb:32
+#: app/controllers/rules/credits_controller.rb:32
+msgid "'%s' was successfully updated."
+msgstr ""
+
+#: app/controllers/account_controller.rb:75
 msgid "Welcome&nbsp;%s&nbsp;%s"
 msgstr ""
 
-#: app/controllers/account_controller.rb:80
+#: app/controllers/account_controller.rb:82
 msgid "Connexion failure"
 msgstr ""
 
-#: app/controllers/account_controller.rb:81
+#: app/controllers/account_controller.rb:83
 msgid "your account has been desactivated"
 msgstr ""
 
-#: app/controllers/account_controller.rb:93
+#: app/controllers/account_controller.rb:95
 msgid "You are not allowed to change your identity"
 msgstr ""
 
-#: app/controllers/account_controller.rb:97
+#: app/controllers/account_controller.rb:99
 msgid "Person not found"
 msgstr ""
 
-#: app/controllers/account_controller.rb:154
+#: app/controllers/account_controller.rb:167
 msgid "Edition succeeded"
 msgstr ""
 
-#: app/controllers/account_controller.rb:177
+#: app/controllers/account_controller.rb:190
 msgid "Account successfully created."
 msgstr ""
 
-#: app/controllers/account_controller.rb:209
+#: app/controllers/account_controller.rb:222
 msgid "Full name"
 msgstr ""
 
-#: app/controllers/account_controller.rb:209
+#: app/controllers/account_controller.rb:222
 msgid "Title"
 msgstr ""
 
-#: app/controllers/account_controller.rb:209
+#: app/controllers/account_controller.rb:222
 msgid "Email"
 msgstr ""
 
-#: app/controllers/account_controller.rb:209
+#: app/controllers/account_controller.rb:222
 #: app/views/demandes/_infos_demande.rhtml:51
 msgid "Phone"
 msgstr ""
 
-#: app/controllers/account_controller.rb:210 app/views/account/login.rhtml:9
+#: app/controllers/account_controller.rb:223 app/views/account/login.rhtml:9
 msgid "Login"
 msgstr ""
 
-#: app/controllers/account_controller.rb:210 app/views/account/login.rhtml:12
+#: app/controllers/account_controller.rb:223 app/views/account/login.rhtml:12
 msgid "Password"
 msgstr ""
 
-#: app/controllers/account_controller.rb:210 app/views/machines/all.rhtml:5
+#: app/controllers/account_controller.rb:223 app/views/machines/all.rhtml:5
 #: app/views/machines/index.rhtml:5
 msgid "Informations"
 msgstr ""
 
-#: app/controllers/account_controller.rb:270
+#: app/controllers/account_controller.rb:284
 msgid "Logout"
 msgstr ""
 
-#: app/controllers/account_controller.rb:271 app/helpers/account_helper.rb:21
+#: app/controllers/account_controller.rb:285 app/helpers/account_helper.rb:21
 msgid "My account"
-msgstr ""
-
-#: app/controllers/ossas_controller.rb:17
-#: app/controllers/time_tickets_controller.rb:17
-msgid "'%s' was successfully created."
-msgstr ""
-
-#: app/controllers/ossas_controller.rb:31
-#: app/controllers/time_tickets_controller.rb:31
-msgid "'%s' was successfully updated."
 msgstr ""
 
 #: app/controllers/arches_controller.rb:16
@@ -129,43 +129,39 @@ msgstr ""
 msgid "Client updated successfully."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:59
+#: app/controllers/commentaires_controller.rb:43
 msgid "Your comment was successfully added."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:68
-msgid "Unable to save working times."
-msgstr ""
-
-#: app/controllers/commentaires_controller.rb:72
+#: app/controllers/commentaires_controller.rb:52
 msgid "A conflict has occured."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:73
+#: app/controllers/commentaires_controller.rb:53
 msgid "Please refresh your browser and try again."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:85
+#: app/controllers/commentaires_controller.rb:65
 msgid "The comment %s is now %s"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:87
+#: app/controllers/commentaires_controller.rb:67
 msgid "An error has occured : The comment was not modified"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:112
+#: app/controllers/commentaires_controller.rb:92
 msgid "The comment was successfully updated."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:124
+#: app/controllers/commentaires_controller.rb:104
 msgid "The comment was successfully destroyed."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:126
+#: app/controllers/commentaires_controller.rb:106
 msgid "You cannot delete the first comment"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:140
+#: app/controllers/commentaires_controller.rb:120
 msgid "You are not allowed to edit this comment"
 msgstr ""
 
@@ -177,20 +173,20 @@ msgstr ""
 msgid "Skill was successfully updated."
 msgstr ""
 
-#: app/controllers/contrats_controller.rb:44
+#: app/controllers/contrats_controller.rb:42
 msgid "Contract was successfully created."
 msgstr ""
 
-#: app/controllers/contrats_controller.rb:64
+#: app/controllers/contrats_controller.rb:62
 msgid "Contrat was successfully updated."
 msgstr ""
 
-#: app/controllers/contrats_controller.rb:88
-msgid "Unknown rules for this contract."
+#: app/controllers/contrats_controller.rb:86
+msgid "Unknown rules for contract \"%s\""
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:70
-#: app/helpers/demandes_helper.rb:196 app/helpers/links_helper.rb:124
+#: app/helpers/demandes_helper.rb:200 app/helpers/links_helper.rb:123
 msgid "All the requests"
 msgstr ""
 
@@ -198,25 +194,25 @@ msgstr ""
 msgid "You have successfully submitted your %s request."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:261
+#: app/controllers/demandes_controller.rb:259
 msgid "The request has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:291
+#: app/controllers/demandes_controller.rb:289
 msgid "The demand has now no contribution"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:293
+#: app/controllers/demandes_controller.rb:291
 msgid "This contribution is now linked"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:368
-#: app/helpers/demandes_helper.rb:182
+#: app/controllers/demandes_controller.rb:367
+#: app/helpers/demandes_helper.rb:186
 msgid "Active requests"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:371
-#: app/helpers/demandes_helper.rb:189
+#: app/controllers/demandes_controller.rb:370
+#: app/helpers/demandes_helper.rb:193
 msgid "Finished requests"
 msgstr ""
 
@@ -342,7 +338,7 @@ msgid "Software"
 msgstr ""
 
 #: app/controllers/export_controller.rb:142 app/views/clients/show.rhtml:41
-#: app/views/demandes/_comment_form.rhtml:14
+#: app/views/demandes/_comment_form.rhtml:12
 #: app/views/demandes/_infos_demande.rhtml:31
 #: app/views/demandes/lists/_requests_info.rhtml:49
 msgid "Severity"
@@ -373,7 +369,7 @@ msgid "Summary"
 msgstr ""
 
 #: app/controllers/export_controller.rb:144
-#: app/views/demandes/_comment_form.rhtml:8
+#: app/views/demandes/_comment_form.rhtml:6
 #: app/views/demandes/_infos_demande.rhtml:28
 #: app/views/demandes/lists/_requests_info.rhtml:51
 msgid "Status"
@@ -452,11 +448,11 @@ msgstr ""
 msgid "This file does not exist."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:82
+#: app/controllers/contributions_controller.rb:77
 msgid "The contribution has been created successfully."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:102
+#: app/controllers/contributions_controller.rb:97
 msgid "The contribution has been updated successfully."
 msgstr ""
 
@@ -709,6 +705,14 @@ msgstr ""
 msgid "You are not the author of this one."
 msgstr ""
 
+#: app/controllers/knowledges_controller.rb:58
+msgid "Your knowledge was successfully created."
+msgstr ""
+
+#: app/controllers/knowledges_controller.rb:68
+msgid "Your knowledge was successfully updated."
+msgstr ""
+
 #: app/helpers/pages_helper.rb:38
 msgid "Do you really want to destroy this object ?"
 msgstr ""
@@ -862,7 +866,7 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#: app/helpers/contributions_helper.rb:35
+#: app/helpers/contributions_helper.rb:38
 #: app/views/contributions/_contributions_admin.rhtml:3
 msgid "a contribution"
 msgstr ""
@@ -879,37 +883,41 @@ msgstr ""
 msgid "Help on the status"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:126
+#: app/helpers/demandes_helper.rb:48
+msgid "Legend of statutes"
+msgstr ""
+
+#: app/helpers/demandes_helper.rb:130
 msgid "New request"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:143
+#: app/helpers/demandes_helper.rb:147
 msgid "Unlink the contribution"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:172
+#: app/helpers/demandes_helper.rb:176
 msgid "Submitted upstream on"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:183
+#: app/helpers/demandes_helper.rb:187
 msgid "show requests waiting to be processed"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:190
+#: app/helpers/demandes_helper.rb:194
 msgid "show requests that were processed"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:197
+#: app/helpers/demandes_helper.rb:201
 msgid "show all the requests"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:212 app/views/clients/show.rhtml:41
+#: app/helpers/demandes_helper.rb:216 app/views/clients/show.rhtml:41
 #: app/views/demandes/tabs/_cns.rhtml:33 app/views/demandes/_packages.rhtml:6
 #: app/views/reporting/_comex_cns.rhtml:20
 msgid "Workaround"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:213 app/views/clients/show.rhtml:41
+#: app/helpers/demandes_helper.rb:217 app/views/clients/show.rhtml:41
 #: app/views/demandes/tabs/_cns.rhtml:34 app/views/demandes/_packages.rhtml:7
 #: app/views/reporting/_comex_cns.rhtml:21
 msgid "Correction"
@@ -931,11 +939,11 @@ msgstr ""
 msgid "Add %s"
 msgstr ""
 
-#: app/helpers/images_helper.rb:56
+#: app/helpers/images_helper.rb:51
 msgid "progress bar"
 msgstr ""
 
-#: app/helpers/images_helper.rb:67
+#: app/helpers/images_helper.rb:62
 msgid "a logo"
 msgstr ""
 
@@ -943,16 +951,16 @@ msgstr ""
 msgid "a copyright"
 msgstr ""
 
-#: app/helpers/links_helper.rb:104
+#: app/helpers/links_helper.rb:103
 msgid "Do you really want to delete %s"
 msgstr ""
 
-#: app/helpers/links_helper.rb:115 app/views/binaires/show.rhtml:3
+#: app/helpers/links_helper.rb:114 app/views/binaires/show.rhtml:3
 #: app/views/contributions/list.rhtml:1 app/views/contributions/show.rhtml:1
 msgid "Home"
 msgstr ""
 
-#: app/helpers/links_helper.rb:119 app/views/bienvenue/index.rhtml:11
+#: app/helpers/links_helper.rb:118 app/views/bienvenue/index.rhtml:11
 #: app/views/contrats/index.rhtml:6 app/views/logiciels/show.rhtml:49
 #: app/views/reporting/general.rhtml:22 app/views/reporting/general.rhtml:23
 #: app/views/reporting/general.rhtml:25 app/views/reporting/general.rhtml:26
@@ -965,23 +973,23 @@ msgstr ""
 msgid "Requests"
 msgstr ""
 
-#: app/helpers/links_helper.rb:120
+#: app/helpers/links_helper.rb:119
 msgid "Consult requests"
 msgstr ""
 
-#: app/helpers/links_helper.rb:125
+#: app/helpers/links_helper.rb:124
 msgid "Consult all the requests"
 msgstr ""
 
-#: app/helpers/links_helper.rb:129
+#: app/helpers/links_helper.rb:128
 msgid "Requests to be done"
 msgstr ""
 
-#: app/helpers/links_helper.rb:130
+#: app/helpers/links_helper.rb:129
 msgid "Consult requests which are waiting an action from you"
 msgstr ""
 
-#: app/helpers/links_helper.rb:134 app/views/account/_menu.rhtml:20
+#: app/helpers/links_helper.rb:133 app/views/account/_menu.rhtml:20
 #: app/views/bienvenue/index.rhtml:65 app/views/binaires/show.rhtml:4
 #: app/views/contrats/index.rhtml:5
 #: app/views/contributions/_contributions_info.rhtml:44
@@ -991,35 +999,35 @@ msgstr ""
 msgid "Softwares"
 msgstr ""
 
-#: app/helpers/links_helper.rb:135
+#: app/helpers/links_helper.rb:134
 msgid "Access to the list of softwares"
 msgstr ""
 
-#: app/helpers/links_helper.rb:139 app/views/binaires/_form.rhtml:30
+#: app/helpers/links_helper.rb:138 app/views/binaires/_form.rhtml:30
 #: app/views/contributions/_contributions_info.rhtml:43
 #: app/views/contributions/list.rhtml:2 app/views/contributions/select.rhtml:1
 #: app/views/contributions/show.rhtml:2 app/views/logiciels/show.rhtml:67
 msgid "Contributions"
 msgstr ""
 
-#: app/helpers/links_helper.rb:140
+#: app/helpers/links_helper.rb:139
 msgid "Access to the list of contributions."
 msgstr ""
 
-#: app/helpers/links_helper.rb:146
+#: app/helpers/links_helper.rb:145
 msgid "About %s"
 msgstr ""
 
-#: app/helpers/links_helper.rb:151
+#: app/helpers/links_helper.rb:150
 msgid "Administration"
 msgstr ""
 
-#: app/helpers/links_helper.rb:152
+#: app/helpers/links_helper.rb:151
 #: app/views/contributions/_contributions_info.rhtml:21
 msgid "Administration interface"
 msgstr ""
 
-#: app/helpers/links_helper.rb:160
+#: app/helpers/links_helper.rb:159
 msgid "My&nbsp;account"
 msgstr ""
 
@@ -1090,7 +1098,8 @@ msgid "Hide"
 msgstr ""
 
 #: app/helpers/static_image.rb:66 app/views/bienvenue/about.rhtml:3
-#: app/views/demandes/_infos_demande.rhtml:75
+#: app/views/demandes/_infos_demande.rhtml:72
+#: app/views/demandes/lists/_requests_info.rhtml:56
 msgid "Help"
 msgstr ""
 
@@ -1127,7 +1136,7 @@ msgstr ""
 msgid "OSSA on rails"
 msgstr ""
 
-#: app/helpers/static_image.rb:174 app/views/demandes/_infos_demande.rhtml:15
+#: app/helpers/static_image.rb:174 app/views/demandes/_infos_demande.rhtml:16
 msgid "Print"
 msgstr ""
 
@@ -1169,27 +1178,6 @@ msgstr ""
 
 #: app/models/preference.rb:-
 msgid "Preference|Digest weekly"
-msgstr ""
-
-#: app/models/ossa.rb:-
-msgid "ossa"
-msgstr ""
-
-#: app/models/ossa.rb:- app/views/ossas/_form.rhtml:4
-#: app/views/ossas/index.rhtml:6
-msgid "Ossa|Name"
-msgstr ""
-
-#: app/models/ossa.rb:-
-msgid "Ossa|Max"
-msgstr ""
-
-#: app/models/ossa.rb:6
-msgid "Illimited offer on all components"
-msgstr ""
-
-#: app/models/ossa.rb:8
-msgid "Illimited offer on a maximum of %d components"
 msgstr ""
 
 #: app/models/arch.rb:-
@@ -1281,6 +1269,38 @@ msgid "Changelog|Text modification"
 msgstr ""
 
 #: app/models/client.rb:-
+msgid "client"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Name"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Description"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Adresse"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Image"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Beneficiaires count"
+msgstr ""
+
+#: app/models/client.rb:-
+msgid "Client|Inactive"
+msgstr ""
+
+#: app/models/client.rb:-
 msgid "paquet"
 msgstr ""
 
@@ -1338,38 +1358,6 @@ msgstr ""
 
 #: app/models/client.rb:-
 msgid "Paquet|Active"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "client"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Name"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Description"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Adresse"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Image"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Code acces"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Beneficiaires count"
-msgstr ""
-
-#: app/models/client.rb:-
-msgid "Client|Inactive"
 msgstr ""
 
 #: app/models/client.rb:37
@@ -1441,10 +1429,14 @@ msgid "public"
 msgstr ""
 
 #: app/models/commentaire.rb:54
-msgid "The status of this request has already been changed by."
+msgid "The status of this request has already been changed."
 msgstr ""
 
-#: app/models/commentaire.rb:66
+#: app/models/commentaire.rb:57
+msgid "You cannot privately change the status"
+msgstr ""
+
+#: app/models/commentaire.rb:70
 msgid "This request seems to be unstable."
 msgstr ""
 
@@ -1690,7 +1682,7 @@ msgid ""
 "recipient."
 msgstr ""
 
-#: app/models/demande.rb:301
+#: app/models/demande.rb:307
 msgid " of overrun"
 msgstr ""
 
@@ -2084,6 +2076,28 @@ msgstr ""
 msgid "Piecejointe|File"
 msgstr ""
 
+#: app/models/rules/component.rb:14
+msgid "Illimited offer on all components"
+msgstr ""
+
+#: app/models/rules/component.rb:16
+msgid "Illimited offer on a maximum of %d components"
+msgstr ""
+
+#: app/models/rules/credit.rb:9
+msgid "%d ticket spent"
+msgid_plural "%d tickets spent"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/models/rules/credit.rb:14
+msgid "Illimited number of tickets of %s"
+msgstr ""
+
+#: app/models/rules/credit.rb:17
+msgid "Up to %d tickets of %s"
+msgstr ""
+
 #: app/models/role.rb:-
 msgid "role"
 msgstr ""
@@ -2280,29 +2294,32 @@ msgstr ""
 msgid "You must have specify a password."
 msgstr ""
 
-#: app/models/time_ticket.rb:-
-msgid "time ticket"
+#: app/models/knowledge.rb:-
+msgid "knowledge"
 msgstr ""
 
-#: app/models/time_ticket.rb:- app/views/time_tickets/_form.rhtml:4
-#: app/views/time_tickets/index.rhtml:6
-msgid "TimeTicket|Name"
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Competence"
 msgstr ""
 
-#: app/models/time_ticket.rb:-
-msgid "TimeTicket|Max"
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Logiciel"
 msgstr ""
 
-#: app/models/time_ticket.rb:-
-msgid "TimeTicket|Time"
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Ingenieur"
 msgstr ""
 
-#: app/models/time_ticket.rb:6
-msgid "Illimited number of tickets of %s"
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Level"
 msgstr ""
 
-#: app/models/time_ticket.rb:9
-msgid "Up to %d tickets of %s"
+#: app/models/knowledge.rb:10
+msgid "You have to specify a software or a domain."
+msgstr ""
+
+#: app/models/knowledge.rb:13
+msgid "You cannot specify a software and a domain."
 msgstr ""
 
 #: app/models/urllogiciel.rb:-
@@ -2445,25 +2462,22 @@ msgstr ""
 msgid "OSSA expert"
 msgstr ""
 
-#: app/views/account/_edit_engineer.rhtml:12
-#: app/views/account/_show_engineer.rhtml:24
-#: app/views/bienvenue/admin.rhtml:20 app/views/ingenieurs/_form.rhtml:10
-#: app/views/ingenieurs/show.rhtml:18
-msgid "Skills"
-msgstr ""
-
-#: app/views/account/_edit_engineer.rhtml:18
-#: app/views/account/_edit_recipient.rhtml:11
-#: app/views/bienvenue/admin.rhtml:28 app/views/clients/index.rhtml:4
-#: app/views/ingenieurs/_form.rhtml:14
-msgid "Contracts"
-msgstr ""
-
-#: app/views/account/_edit_engineer.rhtml:20
-msgid "only"
+#: app/views/account/_edit_engineer.rhtml:15
+msgid "Knowledges"
 msgstr ""
 
 #: app/views/account/_edit_engineer.rhtml:22
+#: app/views/account/_edit_recipient.rhtml:11
+#: app/views/account/_show_engineer.rhtml:31
+#: app/views/bienvenue/admin.rhtml:28 app/views/clients/index.rhtml:4
+msgid "Contracts"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:24
+msgid "only"
+msgstr ""
+
+#: app/views/account/_edit_engineer.rhtml:26
 msgid "contracts"
 msgstr ""
 
@@ -2549,6 +2563,7 @@ msgstr ""
 
 #: app/views/account/_menu.rhtml:42
 #: app/views/contributions/_contributions_info.rhtml:26
+#: app/views/knowledges/_knowledges_info.rhtml:19
 #: app/views/demandes/lists/_requests_info.rhtml:32
 #: app/views/logiciels/_softwares_info.rhtml:27
 #: app/views/paquets/_paquets_info.rhtml:21
@@ -2570,6 +2585,7 @@ msgstr ""
 #: app/views/contrats/show.rhtml:2
 #: app/views/contributions/_contributions_admin.rhtml:7
 #: app/views/contributions/_form.rhtml:6
+#: app/views/knowledges/_knowledges_list.rhtml:6
 #: app/views/demandes/_form_binaires.rhtml:4 app/views/groupes/_form.rhtml:4
 #: app/views/groupes/index.rhtml:5 app/views/ingenieurs/index.rhtml:5
 #: app/views/ingenieurs/show.rhtml:2 app/views/logiciels/_form.rhtml:3
@@ -2583,6 +2599,12 @@ msgstr ""
 #: app/views/typedemandes/_form.rhtml:3 app/views/typedocuments/_form.rhtml:3
 #: app/views/typeurls/_form.rhtml:3
 msgid "Name"
+msgstr ""
+
+#: app/views/account/_show_engineer.rhtml:23
+#: app/views/bienvenue/admin.rhtml:20 app/views/ingenieurs/_form.rhtml:10
+#: app/views/ingenieurs/show.rhtml:18
+msgid "Skills"
 msgstr ""
 
 #: app/views/account/_users_info.rhtml:13
@@ -2639,10 +2661,9 @@ msgid "Modify %s"
 msgstr ""
 
 #: app/views/account/edit.rhtml:6 app/views/account/login.rhtml:18
-#: app/views/account/signup.rhtml:6 app/views/ossas/edit.rhtml:5
-#: app/views/binaires/edit.rhtml:5 app/views/binaires/new.rhtml:5
-#: app/views/contributions/edit.rhtml:6 app/views/alerts/index.rhtml:8
-#: app/views/time_tickets/edit.rhtml:5 app/views/documents/edit.rhtml:6
+#: app/views/account/signup.rhtml:6 app/views/binaires/edit.rhtml:5
+#: app/views/binaires/new.rhtml:5 app/views/contributions/edit.rhtml:6
+#: app/views/alerts/index.rhtml:8 app/views/documents/edit.rhtml:6
 #: app/views/engagements/edit.rhtml:5 app/views/licenses/edit.rhtml:5
 #: app/views/logiciels/new.rhtml:5 app/views/phonecalls/edit.rhtml:5
 #: app/views/urllogiciels/edit.rhtml:5 app/views/urllogiciels/new.rhtml:5
@@ -2684,41 +2705,6 @@ msgstr ""
 msgid "Create an account"
 msgstr ""
 
-#: app/views/ossas/_form.rhtml:7
-msgid "Maximum number of components"
-msgstr ""
-
-#: app/views/ossas/new.rhtml:1
-msgid "New ossa offer"
-msgstr ""
-
-#: app/views/ossas/new.rhtml:5 app/views/arches/new.rhtml:5
-#: app/views/competences/new.rhtml:5 app/views/contrats/new.rhtml:5
-#: app/views/contributions/new.rhtml:5 app/views/time_tickets/new.rhtml:5
-#: app/views/dependances/new.rhtml:6 app/views/fichiers/new.rhtml:5
-#: app/views/groupes/new.rhtml:5 app/views/images/new.rhtml:5
-#: app/views/ingenieurs/new.rhtml:5 app/views/jourferies/new.rhtml:5
-#: app/views/machines/new.rhtml:5 app/views/mainteneurs/new.rhtml:5
-#: app/views/news/new.rhtml:5 app/views/phonecalls/new.rhtml:5
-#: app/views/roles/new.rhtml:5 app/views/severites/new.rhtml:5
-#: app/views/socles/new.rhtml:5 app/views/typecontributions/new.rhtml:5
-#: app/views/typedemandes/new.rhtml:5 app/views/typedocuments/new.rhtml:5
-#: app/views/typeurls/new.rhtml:5
-msgid "Create"
-msgstr ""
-
-#: app/views/ossas/edit.rhtml:1
-msgid "Editing an ossa offer"
-msgstr ""
-
-#: app/views/ossas/index.rhtml:1
-msgid "List of offers for ossa contracts"
-msgstr ""
-
-#: app/views/ossas/index.rhtml:3
-msgid "an ossa rule"
-msgstr ""
-
 #: app/views/arches/edit.rhtml:1
 msgid "Edit an architecture"
 msgstr ""
@@ -2746,6 +2732,20 @@ msgstr ""
 
 #: app/views/arches/new.rhtml:1
 msgid "Add a new processor architecture"
+msgstr ""
+
+#: app/views/arches/new.rhtml:5 app/views/competences/new.rhtml:5
+#: app/views/contrats/new.rhtml:5 app/views/contributions/new.rhtml:5
+#: app/views/dependances/new.rhtml:6 app/views/fichiers/new.rhtml:5
+#: app/views/groupes/new.rhtml:5 app/views/images/new.rhtml:5
+#: app/views/ingenieurs/new.rhtml:5 app/views/jourferies/new.rhtml:5
+#: app/views/machines/new.rhtml:5 app/views/mainteneurs/new.rhtml:5
+#: app/views/news/new.rhtml:5 app/views/phonecalls/new.rhtml:5
+#: app/views/roles/new.rhtml:5 app/views/severites/new.rhtml:5
+#: app/views/socles/new.rhtml:5 app/views/typecontributions/new.rhtml:5
+#: app/views/typedemandes/new.rhtml:5 app/views/typedocuments/new.rhtml:5
+#: app/views/typeurls/new.rhtml:5
+msgid "Create"
 msgstr ""
 
 #: app/views/bienvenue/about.rhtml:8 app/views/bienvenue/index.rhtml:70
@@ -3349,7 +3349,7 @@ msgid "Delay"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.rhtml:8
-#: app/views/demandes/_infos_demande.rhtml:61
+#: app/views/demandes/_infos_demande.rhtml:60
 #: app/views/demandes/lists/_requests_table.rhtml:14
 msgid "Updated on"
 msgstr ""
@@ -3471,28 +3471,43 @@ msgstr ""
 msgid "alert on submit"
 msgstr ""
 
-#: app/views/time_tickets/_form.rhtml:7
-msgid "Maximum number of tickets"
+#: app/views/knowledges/_knowledges_info.rhtml:13
+#: app/views/logiciels/_softwares_info.rhtml:16
+#: app/views/paquets/_paquets_info.rhtml:13
+msgid "Consultation"
 msgstr ""
 
-#: app/views/time_tickets/_form.rhtml:10
-msgid "Time of each ticket, expressed in hours"
+#: app/views/knowledges/_knowledges_info.rhtml:15
+msgid "Add a knowledge"
 msgstr ""
 
-#: app/views/time_tickets/new.rhtml:1
-msgid "New offer based on time tickets"
+#: app/views/knowledges/_knowledges_info.rhtml:21
+#: app/views/logiciels/_softwares_info.rhtml:29
+msgid "By name"
 msgstr ""
 
-#: app/views/time_tickets/edit.rhtml:1
-msgid "Editing a time ticket offer"
+#: app/views/knowledges/_knowledges_info.rhtml:23
+msgid "By software"
 msgstr ""
 
-#: app/views/time_tickets/index.rhtml:1
-msgid "List of offers with time tickets"
+#: app/views/knowledges/_knowledges_info.rhtml:25
+msgid "By technology"
 msgstr ""
 
-#: app/views/time_tickets/index.rhtml:3
-msgid "an offer"
+#: app/views/knowledges/_knowledges_list.rhtml:1
+msgid "List of all knowledges"
+msgstr ""
+
+#: app/views/knowledges/_knowledges_list.rhtml:3
+msgid "a knowledge"
+msgstr ""
+
+#: app/views/knowledges/_knowledges_list.rhtml:6
+msgid "Level"
+msgstr ""
+
+#: app/views/knowledges/_knowledges_list.rhtml:6
+msgid "Knowledge"
 msgstr ""
 
 #: app/views/demandes/tabs/_tab_comments.rhtml:8
@@ -3570,7 +3585,7 @@ msgid "Size"
 msgstr ""
 
 #: app/views/demandes/tabs/_piecejointes.rhtml:5
-#: app/views/demandes/_infos_demande.rhtml:60
+#: app/views/demandes/_infos_demande.rhtml:59
 msgid "Created on"
 msgstr ""
 
@@ -3578,24 +3593,27 @@ msgstr ""
 msgid "By"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:4
+#: app/views/demandes/_comment_form.rhtml:2
 msgid "Your answer :"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:18
+#: app/views/demandes/_comment_form.rhtml:16
 msgid "Assign"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:31
+#: app/views/demandes/_comment_form.rhtml:29
 msgid "Private ?"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:34
-#: app/views/demandes/_infos_demande.rhtml:66
-msgid "Time elapsed"
+#: app/views/demandes/_comment_form.rhtml:31
+msgid "Answer expected on"
 msgstr ""
 
-#: app/views/demandes/_comment_form.rhtml:40
+#: app/views/demandes/_comment_form.rhtml:38
+msgid "Tickets spent"
+msgstr ""
+
+#: app/views/demandes/_comment_form.rhtml:45
 msgid "Answer"
 msgstr ""
 
@@ -3662,6 +3680,10 @@ msgid "Packages supported for %s :"
 msgstr ""
 
 #: app/views/demandes/_infos_demande.rhtml:6
+msgid "Add a contribution"
+msgstr ""
+
+#: app/views/demandes/_infos_demande.rhtml:7
 msgid "Link to a contribution"
 msgstr ""
 
@@ -3685,12 +3707,12 @@ msgstr ""
 msgid "Company"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.rhtml:58
+#: app/views/demandes/_infos_demande.rhtml:57
 msgid "Life cycle"
 msgstr ""
 
 #: app/views/demandes/_infos_demande.rhtml:62
-msgid "Expected on"
+msgid "Time elapsed"
 msgstr ""
 
 #: app/views/demandes/_packages.rhtml:2
@@ -3758,7 +3780,7 @@ msgstr ""
 msgid "Submitter"
 msgstr ""
 
-#: app/views/demandes/lists/_requests_table.rhtml:43
+#: app/views/demandes/lists/_requests_table.rhtml:45
 msgid "No request found."
 msgstr ""
 
@@ -3959,17 +3981,8 @@ msgstr ""
 msgid "Technologies"
 msgstr ""
 
-#: app/views/logiciels/_softwares_info.rhtml:16
-#: app/views/paquets/_paquets_info.rhtml:13
-msgid "Consultation"
-msgstr ""
-
 #: app/views/logiciels/_softwares_info.rhtml:22
 msgid "List of packages"
-msgstr ""
-
-#: app/views/logiciels/_softwares_info.rhtml:29
-msgid "By name"
 msgstr ""
 
 #: app/views/logiciels/_softwares_info.rhtml:38

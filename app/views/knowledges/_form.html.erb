@@ -1,0 +1,20 @@
+<%= error_messages_for 'knowledge' %>
+
+<!--[form:knowledge]-->
+<table class="form">
+ <tr>
+  <th><%= _('Expert')%></th>
+  <td><%= @ingenieur.name %></td>
+
+  <th colspan="4" align="center"><%= _('Choose a domain OR a software') %></th>
+ </tr><tr>
+  <th><label for="knowledge_level"><%= _('Level') %></label></th>
+  <td><%= text_field :knowledge, :level, :size => 1, :maxlength => 1 %></td>
+
+  <th><label for="knowledge_competence_id"><%= _('Domain') %></label></th>
+  <td><%= select_empty(:knowledge, :competence_id, @competences) %></td>
+  <th><label for="knowledge_logiciel_id"><%= _('Software') %></label></th>
+  <td><%= select_empty(:knowledge, :logiciel_id, @softwares) %></td>
+ </tr>
+</table>
+<!--[eoform:knowledge]-->

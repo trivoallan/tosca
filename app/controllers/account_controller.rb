@@ -3,6 +3,8 @@
 #####################################################
 
 class AccountController < ApplicationController
+  helper :knowledges
+
   # Pour l'import de plusieurs utilisateurs
   require 'fastercsv'
   PasswordGenerator

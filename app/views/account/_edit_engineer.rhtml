@@ -9,10 +9,14 @@
   <p><label for="ingenieur_expert_ossa"><%= _('OSSA expert') + ' ?'%></label>
   <%= check_box 'ingenieur', 'expert_ossa' %></p>
 
-  <p><label for="ingenieur_competences"><%= _('Skills') + ' ?' %></label></p>
+  <% unless @user_engineer.knowledges.empty? %>
   <hr />
-   <%= hbtm_check_box( @user_engineer.competences, @competences, 'ingenieur[competence_ids]', :size => 4) %>
+     <% options = {:title => true, :edit => 'knowledge'} %>
+     <%= show_liste(@user_engineer.knowledges, _('Knowledges'), options) do |k|
+        link_to_knowledge k
+      end %>
   <hr />
+  <% end %>
 
   <table width="100%" border="0"><tr>
     <td><label for="user_contrats"><%= _('Contracts')%></label></td>

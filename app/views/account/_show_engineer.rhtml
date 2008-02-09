@@ -15,17 +15,20 @@
 
 
   <% for column in Ingenieur.content_columns %>
-  <p>
-  <b><%= column.human_name %>:</b> <%= @user_engineer.send(column.name) %>
-  </p>
+   <p><b><%= column.human_name %>:</b> <%= @user_engineer.send(column.name) %>
+   </p>
   <% end %>
 
-  <% if (@user_engineer.competences.size != 0) %>
-  <p><b><%= _('Skills') + ' : '%></b>
-  <%= @user_engineer.competences.collect{|c| c.name}.join(', ') %>
-  </p>
+  <% unless @user_engineer.knowledges.empty? %>
+   <p><b><%= _('Skills') + ' : '%></b>
+   <ul>
+    <% @user_engineer.knowledges.each do |k| %>
+      <li><%= k.level %> - <%= k.name %></li>
+    <% end %>
+   </ul>
   <% end %>
 
+  <p><b><%= _('Contracts') %>:</b></p>
   <ul>
     <% @user.contrats.each do |c| %>
       <li><%= c.name %></li>

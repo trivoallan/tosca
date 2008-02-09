@@ -1,0 +1,30 @@
+<% options = { :update => 'content', :method => :get,
+    :url => knowledges_path,
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+
+<% form_remote_tag( options.dup.update(:html => {
+    :id => 'filters', :name => 'filters'})) do %>
+
+<% # used for iteration in ajaxified list %>
+<%= hidden_field_tag 'page', '1' %>
+
+ <div class="menu_title" onclick="Element.toggle('menu_consultation')">
+ > <%= _('Consultation') %></div>
+ <ul class="menu" id="menu_consultation">
+  <li><%= link_to _('Add a knowledge'), new_knowledge_path %></li>
+ </ul>
+
+<div class="menu_title" onclick="Element.toggle('menu_recherche')">
+> <%= _('Search') %></div>
+<ul class="menu" id="menu_recherche">
+  <li><b><%= _('By name') %> </b><br />
+      <%= select_filter(@experts, 'ingenieur') %></li>
+  <li><b><%= _('By software') %> </b><br />
+      <%= select_filter(@softwares, 'logiciel') %></li>
+  <li><b><%= _('By technology') %> </b><br />
+      <%= select_filter(@competences, 'competence') %></li>
+</ul>
+
+<% end %>
+<%= observe_form 'filters', options %>

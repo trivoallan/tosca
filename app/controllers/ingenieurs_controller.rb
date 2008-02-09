@@ -5,7 +5,7 @@ class IngenieursController < ApplicationController
   def index
     @competences = Competence.find(:all)
     @ingenieur_pages, @ingenieurs = paginate :ingenieurs, :per_page => 20,
-    :include => [:user,:competences]
+      :include => [:user,:competences]
   end
 
   def show
@@ -57,7 +57,6 @@ class IngenieursController < ApplicationController
 
   private
   def _form
-    @competences = Competence.find_select
-    @contrats = Contrat.find_select(Contrat::OPTIONS)
+    @competences = Competence.find(:all)
   end
 end

@@ -8,10 +8,8 @@
     <%= check_box 'ingenieur', 'expert_ossa' %></p>
 
     <p><label for="ingenieur_competences"><%= _('Skills') + ' ?' %></label><br />
-    <%= hbtm_check_box( @ingenieur.competences, @competences, 'ingenieur[competence_ids]', :size => 3) %></p>
+    <%= hbtm_check_box( @ingenieur.competences, @competences,
+	                    'ingenieur[competence_ids]', :size => 3) %></p>
 
-
-    <label for="ingenieur_contrats"><%= _('Contracts')%></label><br />
-    <%= hbtm_check_box( @ingenieur.contrats, @contrats, 'ingenieur[contrat_ids]', :size => 2) %>
   <div style="clear: both"></div>
 </div>

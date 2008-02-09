@@ -44,7 +44,7 @@ module PagesHelper
 
 
   def link_to_edit_and_list(ar)
-    [ link_to_edit(ar), link_to_back ].compact.join('|')
+    [ link_to_new, link_to_edit(ar), link_to_back ].compact.join(' | ')
   end
 
   def link_to_show_and_list(ar)

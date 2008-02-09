@@ -4,7 +4,7 @@
 class Ingenieur < ActiveRecord::Base
   acts_as_reportable
   belongs_to :user, :dependent => :destroy
-  has_and_belongs_to_many :competences
+  has_many :knowledges, :order => 'knowledges.level DESC'
   has_many :demandes
   has_many :phonecalls
 

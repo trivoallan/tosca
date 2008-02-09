@@ -20,6 +20,11 @@ module Filters
     end
   end
 
+  class Knowledges < Struct.new('Knowledges', :ingenieur_id,
+                                :logiciel_id, :competence_id)
+    extend Shared
+  end
+
   class Contributions < Struct.new('Contributions', :software, :ingenieur_id,
                              :contribution, :etatreversement_id, :contrat_id)
     extend Shared

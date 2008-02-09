@@ -2,7 +2,7 @@
 
 <%= show_pages_links(@competence_pages, _('a skill') ) %>
 
-<% titres = [ _('Resources')]%>
+<% titles = [ _('Resources')]%>
 <%= show_table(@competences, Competence, titres, :content_columns => true) { |c|
   result = ''
   result << "<td>#{c.ingenieurs.count}</td>"
@@ -11,5 +11,3 @@
 
 
 <%= show_pages_links @competence_pages, _('a skill') %>
-
-
