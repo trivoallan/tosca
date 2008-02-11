@@ -41,11 +41,8 @@ class PhonecallsController < ApplicationController
     @phonecall = Phonecall.new(params[:phonecall])
     if @phonecall.save
       flash[:notice] = _('The call was successfully created.')
-      if @phonecall.demande
-        redirect_to comment_demande_path(@phonecall.demande)
-      else
-        redirect_to phonecalls_path
-      end
+      request = @phonecall.demande
+      redirect_to(request ? comment_demande_path(request) : phonecalls_path)
     else
       _form and render :action => 'new'
     end
@@ -71,7 +68,8 @@ class PhonecallsController < ApplicationController
     @phonecall = Phonecall.find(params[:id])
     if @phonecall.update_attributes(params[:phonecall])
       flash[:notice] = _('The phone call has been updated.')
-      redirect_to phonecalls_path
+      request = @phonecall.demande
+      redirect_to(request ? comment_demande_path(request) : phonecalls_path)
     else
       _form and render :action => 'edit'
     end
