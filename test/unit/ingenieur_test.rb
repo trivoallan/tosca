@@ -4,7 +4,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class IngenieurTest < Test::Unit::TestCase
-  fixtures :ingenieurs, :contrats, :competences, :competences_ingenieurs, :users, :contrats_users
+  fixtures :ingenieurs, :contrats, :competences, :users, :contrats_users
 
   def test_to_strings
     check_strings Ingenieur
