@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :changelogs
   map.resources :clients
   map.resources :commentaires, :member => {
-     :changer_etat => :post,
+     :change_state => :post,
      :comment => :post }
   map.resources :competences
   map.resources :conteneurs

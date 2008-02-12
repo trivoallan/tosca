@@ -4,7 +4,8 @@
 class CommentairesController < ApplicationController
   helper :demandes
 
-  cache_sweeper :commentaire_sweeper, :only => [:comment, :update, :destroy]
+  cache_sweeper :commentaire_sweeper, :only =>
+    [:comment, :update, :change_state, :destroy]
   # A comment is created only from the request interface
   cache_sweeper :demande_sweeper, :only => [:comment]
 
@@ -59,14 +60,14 @@ class CommentairesController < ApplicationController
     redirect_to demande_path(request)
   end
 
-  def changer_etat
+  def change_state
     return render_text('') unless params[:id]
     @commentaire = Commentaire.find(params[:id])
-    # toggle inverse un statut booleen
+    # toggle is nice to change a booleen
     if @commentaire.toggle!(:prive)
       flash[:notice] = _("The comment %s is now %s") % [ "##{@commentaire.id}", @commentaire.etat ]
     else
-      flash.now[:warn] = _("An error has occured : The comment was not modified")
+      flash[:warn] = _("An error has occured : The comment was not modified")
     end
     redirect_to comment_demande_path(@commentaire.demande_id)
   end

@@ -5,7 +5,7 @@
 <% titres = [ _('Allow to')]%>
 <%= show_table(@permissions, Permission, titres, :content_columns => true) { |p|
   result = ''
-  result << "<td>#{p.roles.collect{|r| link_to(r.name, edit_role_path(r.id))}.join(', ')}</td>"
+  result << "<td>#{p.roles.sort!{|a,b| a.id <=> b.id}.collect{|r| link_to(r.name, edit_role_path(r.id))}.join(', ')}</td>"
   result << "#{link_to_actions_table p}"
 }%>
 
