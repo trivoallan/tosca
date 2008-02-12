@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lstm 0.3.3.4\n"
 "POT-Creation-Date: 2008-02-09 16:12+0100\n"
-"PO-Revision-Date: 2008-02-09 16:13+0100\n"
+"PO-Revision-Date: 2008-02-10 15:38+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3682,11 +3682,11 @@ msgstr ""
 
 #: app/views/demandes/_infos_demande.rhtml:6
 msgid "Add a contribution"
-msgstr "Contribution"
+msgstr ""
 
 #: app/views/demandes/_infos_demande.rhtml:7
 msgid "Link to a contribution"
-msgstr "Expected on<"
+msgstr ""
 
 #: app/views/demandes/_infos_demande.rhtml:24
 msgid "Vm"
