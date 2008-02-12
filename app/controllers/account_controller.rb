@@ -20,6 +20,7 @@ class AccountController < ApplicationController
   def authorize?(user)
     if params.has_key? :id
       id = params[:id].to_i
+      # Only admins & manager can edit other accounts
       if user.role_id > 2 && id != user.id
         return false
       end

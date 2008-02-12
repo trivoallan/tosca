@@ -8,17 +8,12 @@ class DemandeSweeper < ActionController::Caching::Sweeper
 
   observe Demande
 
-  # If our sweeper detects that a Request was created call this
-  def after_create(record)
+  # If sweeper detects that a Request was created or updated
+  def after_save(record)
     expire_cache_for(record)
   end
 
-  # If our sweeper detects that a Request was updated call this
-  def after_update(record)
-    expire_cache_for(record)
-  end
-
-  # If our sweeper detects that a Request was deleted call this
+  # If sweeper detects that a Request was deleted call this
   def after_destroy(record)
     expire_cache_for(record)
   end

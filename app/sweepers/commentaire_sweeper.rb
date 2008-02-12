@@ -4,12 +4,7 @@ class CommentaireSweeper < ActionController::Caching::Sweeper
   observe Commentaire
 
   # If our sweeper detects that a Comment was created call this
-  def after_create(comment)
-    expire_cache_for(comment)
-  end
-
-  # If our sweeper detects that a Comment was updated call this
-  def after_update(comment)
+  def after_save(comment)
     expire_cache_for(comment)
   end
 
