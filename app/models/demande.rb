@@ -332,7 +332,7 @@ class Demande < ActiveRecord::Base
     contrat = self.contrat
     changes = commentaires.find(:all, :conditions =>
                 "commentaires.statut_id IS NOT NULL")
-    statuts_sans_chrono = [ 3, 7, 8 ] #Suspendue, Cloture, Annulée, cf modele statut
+    statuts_sans_chrono = [ 3, 6, 7, 8 ] #Suspendue, Corrigée, Cloture, Annulée, cf modele statut
     inf = { :date => self.created_on, :statut => changes.first.statut_id } #1er statut : enregistré !
     delai = 0
     for c in changes
