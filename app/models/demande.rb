@@ -330,7 +330,8 @@ class Demande < ActiveRecord::Base
   def compute_temps_ecoule(to = nil)
     return 0 unless commentaires.size > 0
     contrat = self.contrat
-    changes = commentaires # Demandechange.find(:all)
+    changes = commentaires.find(:all, :conditions =>
+                "commentaires.statut_id IS NOT NULL")
     statuts_sans_chrono = [ 3, 7, 8 ] #Suspendue, Cloture, Annulée, cf modele statut
     inf = { :date => self.created_on, :statut => changes.first.statut_id } #1er statut : enregistré !
     delai = 0
