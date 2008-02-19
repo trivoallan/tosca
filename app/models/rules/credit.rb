@@ -1,3 +1,6 @@
+#########################################
+# The Rules' classes MUST stay coherent #
+#########################################
 class Rules::Credit < ActiveRecord::Base
   has_one :contrat, :as => :rule
 
@@ -7,6 +10,12 @@ class Rules::Credit < ActiveRecord::Base
 
   def formatted_elapsed(value)
     n_('%d ticket spent', '%d tickets spent', value) % value
+  end
+
+  # It's called like this :
+  # rule.compute_elapsed_between(last_status_comment, self)
+  # It won't do anything, since the credit spent are not computed
+  def compute_elapsed_between(last, current)
   end
 
   def short_description
