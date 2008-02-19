@@ -89,12 +89,6 @@ module DemandesHelper
     display_jours(engagement.correction)
   end
 
-  # Display (open) time spent to now
-  # TODO : rename it 'display_temps_ecoule'
-  def display_tempsecoule(demande)
-    "TODO" #distance_of_time_in_french_words compute_delai4paquet @demande
-  end
-
   # Display more nicely change to history table
   # Use it like :
   #  <%= display_history_changes(demande.ingenieur_id, old_ingenieur_id, Ingenieur) %>

@@ -38,10 +38,129 @@ class String
 
 end
 
-#Optimization des vues : plus '\n'
+# View Optimization : no '\n'
 ActionView::Base.erb_trim_mode = '>'
 
+# TODO : find a lib or a way to compute holidays
+# of other countries. It's only France, for now.
+# You can override Fixed & Variable Holidays in lib/config.rb
 class Time
+
+  # There's no year since comparison on FixedHolidays can be done
+  # only with day and month.
+  # They are stored in a hash in order to have a faster "include?"
+  FixedHolidays = {
+    Date.new(0, 1, 1) => true, # 1st january
+    Date.new(0, 5, 1) => true, # 1st may
+    Date.new(0, 5, 8) => true, # 8th may
+    Date.new(0, 7, 17) => true, #14th july
+    Date.new(0, 8, 15) => true, #15th august
+    Date.new(0, 11, 1) => true, # 1st november
+    Date.new(0, 11, 11) => true, #11th november
+    Date.new(0, 12, 25) => true #25th december
+  }
+
+  # Dynamic cache for variable holidays, for performance reason
+  @@variable_holidays = Hash.new
+  def self.VariableHolidays(year)
+    cache = @@variable_holidays[year]
+    return cache unless cache.nil?
+
+    # Easter computing is from
+    # http://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques#Algorithme_de_Thomas_O.E2.80.99Beirne
+    # It's valid only between 1900 and 2099.
+    # There is no need to name correctly those vars, since
+    # this algorithm is clearly not human readable.
+    n = year - 1900
+    a = n % 19
+    b = (a * 7 +1) / 19
+    c = ((11 * a) - b + 4) % 29
+    d = n / 4
+    e = (n - c + d + 31) % 7
+    p = 25 - c - e
+    easter_day = Date.new(year, 3, 31) + p
+    easter_monday = easter_day + 1
+    ascension_day = easter_day + 40
+    # 2 variable holidays in france
+    @@variable_holidays[year] = {easter_monday => true, ascension_day => true}
+  end
+end
+
+
+class Date
+  # Tell if the current date is worked or not.
+  # It's based on FixedHolidays & VariableHolidays(year) mechanism
+  # See lib/overrides.rb for more info on how to hook'em.
+  def working?
+    return false if self.cwday > 5 # 6,7 => Week End
+    saved_year = self.year
+    self.year = 0
+    return false if FixedHolidays.include? self
+    self.year = saved_year
+    return false if VariableHolidays(self.year).include? self
+    true
+  end
+end
+
+class Time
+  ##
+  # Compute the difference between <tt>start_date</tt> and
+  # <tt>end_date</tt> during Working Days, as define in Date::working?
+  # <tt>opens_at</tt> and <tt>closes_at</tt> are the hours when the service
+  # is open.
+  # The result is expressed in this unit. So if you call :
+  # <pre>
+  #   Time.working_diff(2.days.ago, 1.day.ago, 10, 18)
+  # </pre>
+  # It will return 8.hours, and not 24.hours
+  # It will return 0 if start_date > end_date or closes_at > opens_at
+  def self.working_diff(start_date, end_date, opens_at, closes_at)
+    ### check ###
+    return 0 if opens_at > closes_at || start_date > end_date
+    return 0 if opens_at < 0 || opens_at > 24
+    return 0 if closes_at < 0 || closes_at > 24
+
+    ### init ###
+    one_working_day = (closes_at - opens_at) * 1.hour
+    start_day = Date.new(start_date.year, start_date.month, start_date.day)
+    end_day = Date.new(end_date.year, end_date.month, end_date.day)
+    period = end_day - start_day - 2.days
+
+    # It will return 0 if end_time is before start_time.
+    @@diff_day ||= Proc.new do |start_time, end_time|
+      result = end_time - start_time
+      (result >= 0 ? result : 0)
+    end
+
+    ### compute ###
+    result = 0
+    # 1st day
+    result += @@diff_day.call(start_date, start_date.change(:hour => closes_at))
+    # Period
+    current_day = start_day
+    period.round.times do
+      result += one_working_day if current_day.working?
+      current_day = current_day.next
+    end
+    # Last day
+    result += @@diff_day.call(end_date.change(:hour => opens_at), end_date)
+    result
+  end
+
+  # FONCTION vers lib/lstm.rb:time_in_french_words
+  def distance_of_time_in_french_words(distance_in_seconds, contrat)
+    dayly_time = contrat.heure_fermeture - contrat.heure_ouverture # in hours
+    Time.in_words(distance_in_seconds, dayly_time)
+  end
+
+  # Calcule en JO (jours ouvrés) le temps écoulé
+  def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
+    distance_in_minutes = ((distance_in_seconds.abs)/60.0)
+    jo = period_in_hour * 60.0
+    distance_in_minutes.to_f / jo.to_f
+  end
+
+
   # Integers are interpreted as seconds. So,
   # <tt>Time.in_words(50)</tt> returns "less than a minute".
   #
@@ -51,7 +170,7 @@ class Time
   #   Si c'est un booleén à true, ça indique que les journées font 24 heures et sont ouvrées
   #   Si il n'y a rien, les journées font 24 heures et ne sont pas ouvrées
   #
-  # TODO : avoir un rake test
+  # TODO : There is no test for this important component
   # Call it like this :
   # Time.in_words(15.hours, 5)
   # Time.in_words(13.hours, 5)

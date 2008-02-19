@@ -193,7 +193,6 @@ module ApplicationHelper
 
   def display_seconds(temps)
     return temps #unless temps.is_a? Numeric
-    # temps==-1 ? "sans engagement" : distance_of_time_in_french_words(temps) + " "
   end
 
   # conversion secondes en jours

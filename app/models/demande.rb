@@ -21,13 +21,16 @@ class Demande < ActiveRecord::Base
   has_one :elapsed, :dependent => :destroy
   belongs_to :contribution
   belongs_to :socle
+
+  has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
   has_many :piecejointes, :through => :commentaires
 
 
   # Key pointers to the request history
+  # /!\ used to store the description /!\
   belongs_to :first_comment, :class_name => "Commentaire",
     :foreign_key => "first_comment_id"
-  # /!\ It's the last _public_ comment /!\
+  # /!\ the last _public_ comment /!\
   belongs_to :last_comment, :class_name => "Commentaire",
     :foreign_key => "last_comment_id"
 
@@ -43,12 +46,6 @@ class Demande < ActiveRecord::Base
       record.errors.add _('The client of this contract is not consistant with the client of this recipient.')
     end
   end
-
-  #versioning, qui s'occupe de la table demandes_versions
-  # acts_as_versioned
-  # has_many :commentaires, :order => "updated_on DESC", :dependent => :destroy
-  after_save :update_first_comment
-  has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
 
   # used for ruport. See plugins for more information
   acts_as_reportable
@@ -80,9 +77,15 @@ class Demande < ActiveRecord::Base
     contrat.rule.formatted_elapsed(self.elapsed.until_now)
   end
 
-  def find_last_comment_before(comment_id)
+  def find_other_comment(comment_id)
+    cond = [ 'commentaires.prive <> 1 AND commentaires.id <> ?', comment_id ]
+    self.commentaires.find(:first, :conditiions => cond)
+  end
+
+  def find_status_comment_before(comment)
     options = { :order => 'created_on DESC', :conditions =>
-      [ 'commentaires.prive <> 1 AND commentaires.id <> ?', comment_id ]}
+      [ 'commentaires.statut_id IS NOT NULL AND commentaires.created_on < ?',
+        comment.created_on ]}
     self.commentaires.find(:first, options)
   end
 
@@ -101,22 +104,6 @@ class Demande < ActiveRecord::Base
     self.beneficiaire_id = recipient.id if recipient
   end
 
-  # This method is launched after save. It creates the first comment and
-  # the time elapsed object.
-  def update_first_comment
-    c = self.first_comment
-    c.ingenieur_id = self.ingenieur_id
-    c.demande_id = self.id
-    c.severite_id = self.severite_id
-    c.statut_id = self.statut_id
-    c.user_id = self.submitter_id
-    c.elapsed = self.contrat.rule.elapsed_on_create
-    unless c.save
-      throw Exception.new("Error when saving first comment of #%d" % self.id)
-    end
-
-  end
-
   def description
     self.first_comment.corps unless self.first_comment.blank?
   end
@@ -130,7 +117,8 @@ class Demande < ActiveRecord::Base
   end
 
   def create_first_comment(value)
-    self.first_comment = Commentaire.new(:corps => value, :demande => self)
+    self.first_comment = Commentaire.create(:corps => value,
+                           :demande => self, :user_id => self.submitter_id)
   end
 
   # /!\ Dirty Hack Warning /!\
@@ -198,15 +186,13 @@ class Demande < ActiveRecord::Base
   end
 
   def affiche_temps_correction
-    distance_of_time_in_french_words(self.temps_correction, self.contrat)
+    Time.in_words(self.temps_correction, self.contrat.interval)
   end
 
   def temps_correction
     result = 0
-#     corrigee = self.versions.find(:first, :conditions => 'statut_id IN (6,7)',
-#                                   :order => 'updated_on ASC')
-    corrigee = self.commentaires.find(:first, :conditions => 'statut_id IN (6,7)',
-                                      :order => 'updated_on ASC')
+    options = {:conditions => 'statut_id IN (6,7)', :order => 'updated_on ASC'}
+    corrigee = self.commentaires.find(:first, options)
     if corrigee and self.appellee()
       result = compute_temps_ecoule(corrigee.statut_id)
     end
@@ -224,13 +210,11 @@ class Demande < ActiveRecord::Base
   end
 
   def affiche_temps_contournement
-    distance_of_time_in_french_words(self.temps_contournement, self.contrat)
+    Time.in_words(self.temps_contournement, self.contrat.interval)
   end
 
   def temps_contournement
     result = 0
-#     contournee = self.versions.find(:first, :conditions => 'statut_id=5',
-#                                     :order => 'updated_on ASC')
     contournee = self.commentaires.find(:first, :conditions => 'statut_id=5',
                                         :order => 'updated_on ASC')
     if contournee and self.appellee()
@@ -240,12 +224,11 @@ class Demande < ActiveRecord::Base
   end
 
   def affiche_temps_rappel
-    self.distance_of_time_in_french_words(self.temps_rappel, self.contrat)
+    Time.in_words(self.temps_rappel, self.contrat.interval)
   end
 
   def temps_rappel
     result = 0
-#     if (self.versions.size > 2) and (first.statut_id == 1) and self.appellee()
     first_comment = self.first_comment
     if (first_comment and first_comment.statut_id == 1) and self.appellee()
       result = compute_diff(first_comment.updated_on, appellee().updated_on,
@@ -274,6 +257,7 @@ class Demande < ActiveRecord::Base
   # donc en fait si ^_^
   #
   # if the demande is over, then return the overrun time
+  # TODO : blast this method, totally.
   def affiche_temps_ecoule
     temps = temps_ecoule
     return "sans engagement" if temps == -1
@@ -300,13 +284,12 @@ class Demande < ActiveRecord::Base
     temps_reel=
       distance_of_time_in_working_days(temps_ecoule, amplitude)
     temps_prevu_correction=
-      distance_of_time_in_working_days(temps_correction,amplitude)
+      distance_of_time_in_working_days(temps_correction, amplitude)
     if temps_reel > temps_prevu_correction
-      distance_of_time_in_french_words(temps - temps_correction,
-                                       self.contrat)<<
-      _(' of overrun')
+      Time.in_words(temps - temps_correction, self.contrat.interval) <<
+        _(' of overrun')
     else
-      distance_of_time_in_french_words(temps, self.contrat)
+      Time.in_words(temps, self.contrat.interval)
     end
   end
 
@@ -314,7 +297,7 @@ class Demande < ActiveRecord::Base
   def affiche_delai(temps_passe, delai)
     value = calcul_delai(temps_passe, delai)
     return "-" if value == 0
-    distance = distance_of_time_in_french_words(value.abs, self.contrat)
+    distance = Time.in_words(value.abs, self.contrat.interval)
     if value >= 0
       "<p style=\"color: green\">#{distance}</p>"
     else
@@ -338,9 +321,9 @@ class Demande < ActiveRecord::Base
     for c in changes
       sup = { :date => c.updated_on, :statut => c.statut_id }
       unless statuts_sans_chrono.include? inf[:statut]
-        delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
-                              Jourferie.get_dernier_jour_ouvre(sup[:date]),
-                              contrat)
+        delai += Time.working_diff(inf[:date], sup[:date],
+                                   contrat.heure_ouverture,
+                                   contrat.heure_fermeture)
       end
       inf = sup
       break if to == inf[:statut]
@@ -348,61 +331,11 @@ class Demande < ActiveRecord::Base
 
     unless statuts_sans_chrono.include? self.statut.id and to != nil
       sup = { :date => Time.now, :statut => self.statut_id }
-      delai += compute_diff(Jourferie.get_premier_jour_ouvre(inf[:date]),
-                            Jourferie.get_dernier_jour_ouvre(sup[:date]),
-                            contrat)
+      delai += Time.working_diff(inf[:date], sup[:date],
+                                 contrat.heure_ouverture,
+                                 contrat.heure_fermeture)
     end
     delai
-  end
-
-  ##
-  # Calcule le différentiel en secondes entre 2 jours,
-  # selon les horaires d'ouverture du contrat et les jours fériés
-  def compute_diff(dateinf, datesup, contrat)
-    return 0 unless contrat
-    borneinf = dateinf.beginning_of_day
-    bornesup = datesup.beginning_of_day
-    nb_jours = Jourferie.nb_jours_ouvres(borneinf, bornesup)
-    result = 0
-    if nb_jours == 0
-      return compute_diff_day(dateinf, datesup, contrat)
-#       borneinf = dateinf
-#       bornesup = datesup.change(:mday => dateinf.day,
-#                                 :month => dateinf.month,
-#                                 :year => dateinf.year)
-    else
-      result = ((nb_jours-1) * contrat.interval_in_seconds)
-    end
-    borneinf = borneinf.change(:hour => contrat.heure_fermeture)
-    bornesup = bornesup.change(:hour => contrat.heure_ouverture)
-
-    # La durée d'un jour ouvré dépend des horaires d'ouverture
-    result += compute_diff_day(dateinf, borneinf, contrat)
-#     puts 'dateinf ' + dateinf.to_s + ' borneinf ' + borneinf.to_s + ' result 1 : ' + compute_diff_day(dateinf, borneinf, contrat).to_s
-    result += compute_diff_day(bornesup, datesup, contrat)
-#     puts 'bornesup ' + bornesup.to_s + ' datesup ' + datesup .to_s + ' result 2 : ' +  compute_diff_day(bornesup, datesup, contrat).to_s
-    result
-  end
-
-  ##
-  # Calcule le temps en seconde qui est écoulé durant la même journée
-  # En temps ouvré, selon les horaires du contrat
-  def compute_diff_day(jourinf, joursup, contrat)
-    # mise au minimum à 7h
-    borneinf = jourinf.change(:hour => contrat.heure_ouverture)
-    jourinf = borneinf if jourinf < borneinf
-    # mise au minimum à 19h
-    bornesup = joursup.change(:hour => contrat.heure_fermeture)
-    joursup = bornesup if joursup > bornesup
-    #on reste dans les bornes
-    return 0 unless jourinf < joursup
-    (joursup - jourinf)
-  end
-
-  # FONCTION vers lib/lstm.rb:time_in_french_words
-  def distance_of_time_in_french_words(distance_in_seconds, contrat)
-    dayly_time = contrat.heure_fermeture - contrat.heure_ouverture # in hours
-    Time.in_words(distance_in_seconds, dayly_time)
   end
 
   # Calcule en JO (jours ouvrés) le temps écoulé

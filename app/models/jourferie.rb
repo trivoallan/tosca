@@ -3,7 +3,7 @@
 #####################################################
 # Why do we have a special table for holidays ?
 # It's because some of them can be so arbitrary.
-# So we can have a quick way of adding and keeping 
+# So we can have a quick way of adding and keeping
 # an arbitrary holiday. Maybe there is a better way.
 class Jourferie < ActiveRecord::Base
   def jour_formatted
@@ -49,7 +49,7 @@ class Jourferie < ActiveRecord::Base
     return result unless (result > 7) or (starting.wday > ending.wday)
     # on y soustrait les WE
     result -= ((result / 7.0).floor*2)
-    # sans oublier le dernier we 
+    # sans oublier le dernier we
     result -= 2 if (starting.wday > ending.wday)
     # logger.debug('**** result / 7 : ' + result.to_s)
     # ni les joursfériés de l'intervalle
@@ -59,18 +59,15 @@ class Jourferie < ActiveRecord::Base
     result
 #   ancienne version : lente mais garantie
 #     courant = debut.beginning_of_day
-#     logger.debug('****init : ' + courant.to_s + ' jusqua ' + fin.to_s)
 #     while(courant < fin)
 #       result += 1 if Jourferie.est_ouvre(courant)
 #       courant += 1
-#       logger.debug('***work : ' + courant.to_s + ' | ' + result.to_s)
 #     end
-#     logger.debug('***result : ' + courant.to_s + ' | ' + result.to_s)
     result
   end
 
   private
-  # C'est encore trop lent de faire une requête pour tester 
+  # C'est encore trop lent de faire une requête pour tester
   # chaque jour
   # TODO : faire une requête pour tester l'ensemble
   def self.est_ouvre(date)
