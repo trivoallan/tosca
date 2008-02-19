@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-19 15:33+0100\n"
-"PO-Revision-Date: 2008-02-19 15:41+0100\n"
+"POT-Creation-Date: 2008-02-19 15:48+0100\n"
+"PO-Revision-Date: 2008-02-19 16:04+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +147,6 @@ msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
 #: app/controllers/commentaires_controller.rb:55
-#, fuzzy
 msgid "An error has occured."
 msgstr "Une erreur est survenue"
 
@@ -2836,15 +2835,38 @@ msgstr "si besoin"
 msgid "About"
 msgstr "A propos de"
 
-#: app/views/bienvenue/about.html.erb:18
-#, fuzzy
-msgid ""
-"This application was created by <b>Michel Loiseleur</b> at\n"
-"      <a href=\"http://www.linagora.com\">Linagora</a>.</p>\n"
-"      <p><%= _("
+#: app/views/bienvenue/about.html.erb:16
+msgid "This application was created by <b>Michel Loiseleur</b> at "
 msgstr ""
 "Cette application a été conçue, écrite et réalisée par <b>Michel Loiseleur</"
 "b> dans les locaux de "
+
+#: app/views/bienvenue/about.html.erb:18
+msgid ""
+"This journey would not have been possible whithout\n"
+"      the <b>contributors</b> who have taken part to this project,\n"
+"      without the testers who have contributed to it quality and\n"
+"      without quite a few <b>free softwares</b> which have enable the\n"
+"      development to be fast and agile. They are all thanks here\n"
+"      warmly. %s would be nothing without them."
+msgstr ""
+"Cette aventure n'aurait été possible sans tous les <b>contributeurs</b> qui "
+"ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont contribués à "
+"assurer sa qualité et sans un grand nombre de <b>logiciels libre</b>  qui "
+"ont permis à son développement d'être rapide et agile. Ils sont tous ici "
+"grandement remerciés."
+
+#: app/views/bienvenue/about.html.erb:26
+msgid "Contributors"
+msgstr "Contributeurs"
+
+#: app/views/bienvenue/about.html.erb:37
+msgid "Testers"
+msgstr "Testeurs"
+
+#: app/views/bienvenue/about.html.erb:44
+msgid "Free software used by %s"
+msgstr "Logiciel libre utilisé par %s"
 
 #: app/views/bienvenue/index.html.erb:2
 msgid "connected"
@@ -3998,9 +4020,8 @@ msgid "Editing engineer"
 msgstr "Éditer l'ingénieur"
 
 #: app/views/knowledges/_form.html.erb:9
-#, fuzzy
 msgid "Choose a domain OR a software"
-msgstr "Spécifier une date"
+msgstr "Choisisser un domaine OU un logiciel"
 
 #: app/views/knowledges/_form.html.erb:11 app/views/knowledges/show.html.erb:6
 #: app/views/knowledges/_knowledges_list.html.erb:6
@@ -4008,17 +4029,14 @@ msgid "Level"
 msgstr "Niveau"
 
 #: app/views/knowledges/_form.html.erb:14
-#, fuzzy
 msgid "Domain"
-msgstr "machine"
+msgstr "Domaine"
 
 #: app/views/knowledges/edit.html.erb:1
-#, fuzzy
 msgid "Update your knowledge"
-msgstr "une connaissance"
+msgstr "Mise à jour de votre connaissance"
 
 #: app/views/knowledges/new.html.erb:1
-#, fuzzy
 msgid "Add a new knowledge"
 msgstr "Ajouter une connaissance"
 
@@ -4660,39 +4678,32 @@ msgstr[0] "demande annulée"
 msgstr[1] "demandes annulées"
 
 #: app/views/reporting/digest.html.erb:2
-#, fuzzy
 msgid "The activity of your contracts"
-msgstr "Depuis le début du contrat"
+msgstr "L'activité de vos contrats"
 
 #: app/views/reporting/digest.html.erb:7
-#, fuzzy
 msgid "Choose a period :"
-msgstr "Spécifier une date"
+msgstr "Sélectionner une date"
 
 #: app/views/reporting/digest.html.erb:10
-#, fuzzy
 msgid "1 Day"
-msgstr "Délai"
+msgstr "1 Jour"
 
 #: app/views/reporting/digest.html.erb:16
-#, fuzzy
 msgid "1 Week"
-msgstr "semaine"
+msgstr "1 Semaine"
 
 #: app/views/reporting/digest.html.erb:22
-#, fuzzy
 msgid "1 Month"
-msgstr " mois"
+msgstr "1 Mois"
 
 #: app/views/reporting/digest.html.erb:27
-#, fuzzy
 msgid "See the digest"
-msgstr "Consulter le rapport CNS"
+msgstr "Consulter le rapport synthétique"
 
 #: app/views/reporting/digest_resultat.html.erb:1
-#, fuzzy
-msgid "Requests of the %s"
-msgstr "Demandes à traiter"
+msgid "Requests of this %s"
+msgstr "Demandes de ce %s"
 
 #: app/views/reporting/digest_resultat.html.erb:6
 msgid "Contract : "
@@ -4760,7 +4771,6 @@ msgstr "Modifier un rôle"
 
 #: app/views/rules/components/_form.html.erb:4
 #: app/views/rules/components/index.html.erb:6
-#, fuzzy
 msgid "Component|Name"
 msgstr "Nom"
 
@@ -4806,14 +4816,12 @@ msgid "List of offers with time credits"
 msgstr "Liste des offres avec des crédits temps"
 
 #: app/views/rules/credits/index.html.erb:3
-#, fuzzy
 msgid "an offer"
-msgstr "Offre"
+msgstr "une offre"
 
 #: app/views/rules/credits/new.html.erb:1
-#, fuzzy
 msgid "New offer based on time credits"
-msgstr "Nombre de tickets inutilisés"
+msgstr "Nouvelle offre basé sur les crédits temps"
 
 #: app/views/severites/index.html.erb:3 app/views/severites/index.html.erb:11
 msgid "a new severity"
@@ -5056,43 +5064,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
-
-#~ msgid "A conflict has occured."
-#~ msgstr "Une erreur est survenue"
-
-#~ msgid "Please refresh your browser and try again."
-#~ msgstr "Veuillez rafraichir votre navigateur et réessayer."
-
-#~ msgid "jourferie"
-#~ msgstr "jour ferié"
-
-#~ msgid "Jourferie|Jour"
-#~ msgstr "Jour"
-
-#~ msgid ""
-#~ "This journey would not have been possible whithout the <b>contributors</"
-#~ "b> who have taken part to this project, without the testers who have "
-#~ "contributed to it quality and without quite a few <b>free softwares</b> "
-#~ "which have enable the development to be fast and agile. They are all "
-#~ "thanks here warmly. %s would be nothing without them."
-#~ msgstr ""
-#~ "Cette aventure n'aurait été possible sans tous les <b>contributeurs</b> "
-#~ "qui ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont "
-#~ "contribués à assurer sa qualité et sans un grand nombre de <b>logiciels "
-#~ "libre</b>  qui ont permis à son développement d'être rapide et agile. Ils "
-#~ "sont tous ici grandement remerciés."
-
-#~ msgid "Contributors"
-#~ msgstr "Contributeurs"
-
-#~ msgid "Testers"
-#~ msgstr "Testeurs"
-
-#~ msgid "Free software used by %s"
-#~ msgstr "Logiciel libre utilisé par %s"
-
-#~ msgid "Answer expected on"
-#~ msgstr "Réponse attendue le"
-
-#~ msgid "Editing jourferie"
-#~ msgstr "Edition du jour ferié"

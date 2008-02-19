@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-02-19 15:33+0100\n"
+"POT-Creation-Date: 2008-02-19 15:48+0100\n"
 "PO-Revision-Date: 2008-01-08 11:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2817,11 +2817,30 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+#: app/views/bienvenue/about.html.erb:16
+msgid "This application was created by <b>Michel Loiseleur</b> at "
+msgstr ""
+
 #: app/views/bienvenue/about.html.erb:18
 msgid ""
-"This application was created by <b>Michel Loiseleur</b> at\n"
-"      <a href=\"http://www.linagora.com\">Linagora</a>.</p>\n"
-"      <p><%= _("
+"This journey would not have been possible whithout\n"
+"      the <b>contributors</b> who have taken part to this project,\n"
+"      without the testers who have contributed to it quality and\n"
+"      without quite a few <b>free softwares</b> which have enable the\n"
+"      development to be fast and agile. They are all thanks here\n"
+"      warmly. %s would be nothing without them."
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:26
+msgid "Contributors"
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:37
+msgid "Testers"
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:44
+msgid "Free software used by %s"
 msgstr ""
 
 #: app/views/bienvenue/index.html.erb:2
@@ -4606,7 +4625,7 @@ msgid "See the digest"
 msgstr ""
 
 #: app/views/reporting/digest_resultat.html.erb:1
-msgid "Requests of the %s"
+msgid "Requests of this %s"
 msgstr ""
 
 #: app/views/reporting/digest_resultat.html.erb:6
