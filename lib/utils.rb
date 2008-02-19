@@ -7,33 +7,31 @@ require 'cgi'
 
 # Meta data ici :
 # ajouter par Lstm
-module Metadata
+module App
 
   # application
-  NOM_COURT_APPLICATION = "TOSCA"
-  VERSION_APPLICATION = "0.7"
-  COPYRIGHT_APPLICATION = " ©2008 Linagora SA".gsub(' ','&nbsp;')
-  PATH_TO_FILES = "#{RAILS_ROOT}/files/"
+  Name = "TOSCA"
+  Version = "0.7"
+  Copyright = " ©2008 Linagora SA".gsub(' ','&nbsp;')
+  FilesPath = "#{RAILS_ROOT}/files/"
 
   # service
-  NOM_COURT_SERVICE = "OSSA"
-  NOM_LONG_SERVICE = "Open Source Software Assurance".gsub(' ','&nbsp;')
-  NOM_ENTREPRISE = "Linagora"
-  SITE_ENTREPRISE = "http://www.linagora.com"
-  PATH_SERVICE = "/services/assistance"
+  ServiceName = "OSSA"
+  ServiceFullName = "Open Source Software Assurance".gsub(' ','&nbsp;')
+  CompanyName = "Linagora"
+  CompanySite = "http://www.linagora.com"
+  CompanySitePath = "/ossa"
 
   # contacts
-  PREFIXE_TELEPHONE = "08000"
-  CODE_TELEPHONE = "54689"
-  TEXTE_TELEPHONE = "LINUX"
-  SITE_INTERNET = "08000linux.com"
+  PhonePrefix = "08000"
+  PhoneCode = "54689"
+  PhoneText = "LINUX"
 
-  CONTACT_PHONE = "08000 54689"
-  CONTACT_MAIL = "team@08000linux.com"
+  InternetAddress = "08000linux.com"
 
-  # message d'erreur
-  DEMANDE_NOSTATUS = 'Cette demande n\'a pas de statut, ' +
-    'veuillez contacter la cellule'
+  ContactPhone = "08000 54689"
+  ContactMail = "team@08000linux.com"
+
 end
 
 # Converts the date value of a calendar into a Time object

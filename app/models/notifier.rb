@@ -150,7 +150,7 @@ class Notifier < ActionMailer::Base
     from       FROM
     recipients to
     bcc        MAIL_TOSCA
-    subject    "#{Metadata::SITE_INTERNET} : " << _("Possible error in your e-mail")
+    subject    "#{App::InternetAddress} : " << _("Possible error in your e-mail")
 
     html_and_text_body
   end
@@ -161,19 +161,19 @@ class Notifier < ActionMailer::Base
 
     from       FROM
     recipients to
-    subject    "#{Metadata::SITE_INTERNET} : " << _("Multiple accounts with the same e-mail")
+    subject    "#{App::InternetAddress} : " << _("Multiple accounts with the same e-mail")
 
     html_and_text_body
   end
 
   #E-mail when mailinglist does not exists
   def email_mailinglist_not_exist(to, adresses)
-    mailinglist = adresses.grep(/#{Metadata::SITE_INTERNET}$/)
+    mailinglist = adresses.grep(/#{App::InternetAddress}$/)
     logger.info("This(These) e-mail(s) #{mailinglist} does not correspond to a valid mailing-list")
 
     from       FROM
     recipients to
-    subject    "#{Metadata::SITE_INTERNET} : " << _("Mailing list does not exists")
+    subject    "#{App::InternetAddress} : " << _("Mailing list does not exists")
 
     options = Hash.new
     options[:mailinglist] = mailinglist
@@ -253,7 +253,7 @@ class Notifier < ActionMailer::Base
   # Used for outgoing mails, in order to get a Tree of messages
   # in mail softwares
   def message_id(id)
-    "<#{id}@#{Metadata::NOM_COURT_APPLICATION}.#{Metadata::SITE_INTERNET}>"
+    "<#{id}@#{App::Name}.#{App::InternetAddress}>"
   end
 
 =begin

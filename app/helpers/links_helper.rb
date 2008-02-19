@@ -142,7 +142,7 @@ EOS
   # About page
   def public_link_to_about()
     public_link_to('?', about_bienvenue_path,
-                   :title => _("About %s") % Metadata::NOM_COURT_APPLICATION)
+                   :title => _("About %s") % App::Name)
   end
 
   # No cache for this one. It's not a public link /!\

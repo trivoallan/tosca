@@ -40,7 +40,7 @@ class FilesController < ApplicationController
     return if (file_type != :contribution && login_required() == false)
 
     # building path
-    root = [ Metadata::PATH_TO_FILES, params[:file_type], map[file_type] ] * '/'
+    root = [ App::FilesPath, params[:file_type], map[file_type] ] * '/'
 
     # TODO : FIXME
     # the dirty gsub hack on ' ' is needded, because urls with '+' are weirdly reinterpreted.

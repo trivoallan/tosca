@@ -55,7 +55,7 @@
   <% access_code = @beneficiaire.client.code_acces %>
   <% unless access_code.blank? %>
   <p><%= _('Your call number is')%>
-  <b><%=Metadata::PREFIXE_TELEPHONE%>&nbsp;<%=Metadata::CODE_TELEPHONE %></b>,
+  <b><%=App::PhonePrefix%>&nbsp;<%=Phone.Code %></b>,
   <%= _("and your access code is %s") % access_code%></b></p>
   <% end %>
  </div>

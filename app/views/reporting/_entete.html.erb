@@ -1,11 +1,11 @@
 <% client = (@beneficiaire ? @beneficiaire.client : nil) %>
-<% display_name = (client ? client.name : Metadata::NOM_COURT_SERVICE) %>
+<% display_name = (client ? client.name : App::Name) %>
 
 <%#= render_partial 'form' %>
 
 <h1 class="title">
   <%= display_name %><br />
-  <%= _(_("Activity report of the ")) + "#{Metadata::NOM_COURT_SERVICE}" %><br />
+  <%= _(_("Activity report of the ")) + "#{App::Name}" %><br />
   <%= _('from') %> <%= @report[:middle_date].strftime('%B %Y') %>
   <%= _('to') %> <%= @report[:end_date].strftime('%B %Y') %>
   (<%= @report[:middle_report] %> <%= _('months') %>)

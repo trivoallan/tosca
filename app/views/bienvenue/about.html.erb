@@ -11,11 +11,16 @@
  </div>
 
  <div class="sommaire show">
-  <h1><%= _('About')%> <%=Metadata::NOM_COURT_APPLICATION%> v<%=Metadata::VERSION_APPLICATION%></h1>
+  <h1><%= _('About')%> <%=App::Name%> v<%=App::Version%></h1>
 
   <p><%= _('This application was created by <b>Michel Loiseleur</b> at ')%>
       <a href="http://www.linagora.com">Linagora</a>.</p>
-      <p><%= _('This journey would not have been possible whithout the <b>contributors</b> who have taken part to this project, without the testers who have contributed to it quality and without quite a few <b>free softwares</b> which have enable the development to be fast and agile. They are all thanks here warmly. %s would be nothing without them.') % Metadata::NOM_COURT_APPLICATION %></p>
+      <p><%= _('This journey would not have been possible whithout
+      the <b>contributors</b> who have taken part to this project,
+      without the testers who have contributed to it quality and
+      without quite a few <b>free softwares</b> which have enable the
+      development to be fast and agile. They are all thanks here
+      warmly. %s would be nothing without them.') % App::Name %></p>
  </div>
  <div class="sommaire show">
    <h2><%= _('Contributors')%></h2>
@@ -36,7 +41,7 @@
     <li>Mehdi Rande</li>
   </ul>
  </div><div class="sommaire show">
-  <h2><%= _('Free software used by %s') % Metadata::NOM_COURT_APPLICATION %></h2>
+  <h2><%= _('Free software used by %s') % App::Name %></h2>
   <ul>
     <li><a href="http://www.ruby-lang.org">Ruby</a>
       <ul>
