@@ -7,9 +7,9 @@ desc "Update pot/po files."
 task :updatepo do
   require 'gettext/utils'
   GetText.update_pofiles("lstm",
-	Dir.glob("{app,lib,bin}/**/*.{rb,rhtml}"), 
+	Dir.glob("{app,lib,bin}/**/*.{rb,rhtml,erb}"),
 	"lstm 0.3.3.4")
-  
+
 end
 
 desc "Create mo-files"
