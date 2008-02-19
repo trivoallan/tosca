@@ -96,7 +96,6 @@ ActionController::Routing::Routes.draw do |map|
   # We cannot have 'image' for singular, coz'
   # image_path is used in ActionView::Helpers of Rails
   map.resources :images, :singular => 'img'
-  map.resources :jourferies, :singular => 'jourferie'
   map.resources :knowledges
   map.resources :licenses
   map.resources :logiciels
