@@ -58,20 +58,24 @@ class Commentaire < ActiveRecord::Base
     end
   end
 
-  # We destroy attachment if appropriate
-  # belongs_to don't allow us to call :dependent :'(
-  before_destroy :delete_pj
-  def delete_pj
-    # We MUST have at least the first comment
-    return false if self.demande.first_comment_id == self.id
-    if !self.prive and self.demande.last_comment_id == self.id
-      last_comment = self.demande.find_last_comment_before(self.id)
-      if !last_comment
+  # We destroy a few things, if appropriate
+  # Attachments, Elapsed Time or Request coherence is checked
+  before_destroy :delete_dependancies
+  def delete_dependancies
+    request = self.demande
+
+    # We MUST have at least the first comment in a request
+    return false if request.first_comment_id == self.id
+    if !self.prive and request.last_comment_id == self.id
+      other_comment = request.find_other_comment(self.id)
+      if !other_comment
         self.errors.add_to_base(_('This request seems to be unstable.'))
         return false
       end
-      self.demande.update_attribute :last_comment_id, last_comment.id
+      request.update_attribute :last_comment_id, last_comment.id
     end
+
+    request.elapsed.remove(self)
     self.piecejointe.destroy unless self.piecejointe.nil?
     true
   end
@@ -82,18 +86,13 @@ class Commentaire < ActiveRecord::Base
     fields = %w(statut_id ingenieur_id severite_id)
     request = self.demande
 
-    # don't update all attributes if we are on the first comment
+    # Update all attributes
     if request.first_comment_id != self.id
-      #On met à jour les champs demandeO
       fields.each do |attr|
-        #On ne met à jour que si ça a changé
         request[attr] = self[attr] if self[attr] and request[attr] != self[attr]
       end
     else
-      unless request.elapsed
-        data = { :demande => request, :until_now => self.elapsed }
-        Elapsed.create(data)
-      end
+      fields.each { |attr| self[attr] = request[attr] }
     end
 
     # auto-assignment to current engineer
@@ -101,14 +100,20 @@ class Commentaire < ActiveRecord::Base
       request.ingenieur = self.user.ingenieur
     end
 
-    # Update cache of elapsed time
+    # update cache of elapsed time
+    rule = request.contrat.rule
     if request.elapsed.nil?
-      request.elapsed = Elapsed.new(:demande => request, :until_now => 0)
+      options = { :demande => request, :until_now => rule.elapsed_on_create }
+      request.elapsed = Elapsed.new(options)
     end
-    request.elapsed.update_with(self)
+    unless self.statut_id.nil?
+      last_status_comment = request.find_status_comment_before(self)
+      rule.compute_elapsed_between last_status_comment, self
+    end
+    request.elapsed.add(self)
 
     request.last_comment_id = self.id unless self.prive
-    #To update the demande.updated_on
+
     request.save
   end
 

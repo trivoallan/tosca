@@ -2,7 +2,8 @@ class Elapsed < ActiveRecord::Base
   belongs_to :demande
 
   # self-update with a comment
-  def update_with(comment)
+    # Please ensure that add() and remove() are consistent
+  def add(comment)
     self.until_now += comment.elapsed
 
     if self.taken_into_account.nil? && comment.statut_id == 2
@@ -18,6 +19,25 @@ class Elapsed < ActiveRecord::Base
     save
   end
 
+  # called when the comment is destroyed.
+  # Please ensure that add() and remove() are consistent
+  def remove(comment)
+    self.until_now -= comment.elapsed
+
+    if !self.taken_into_account.nil? && comment.statut_id == 2
+      self.taken_into_account = nil
+    end
+    if !self.workaround.nil? && comment.statut_id == 5
+      self.workaround = nil
+    end
+    if !self.correction.nil? && comment.statut_id == 6
+      self.correction = nil
+    end
+
+    save
+  end
+
+  # TODO
   def to_s
     '-'
   end
