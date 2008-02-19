@@ -67,7 +67,7 @@ require 'overrides'
 NeededGems = [# Used by Ruport
               [ 'acts_as_reportable', '1.0.0' ],
               # Used to i18n and l10n
-              [ 'gettext', '1.10.0', 'gettext_localize', 'gettext_localize_rails' ],
+              [ 'gettext', '1.90.0', 'gettext_localize', 'gettext_localize_rails' ],
               # Used to generate Ods
               [ 'ruport', '1.4.0', 'ruport' ],
               # Used by Ruport
@@ -91,7 +91,7 @@ ENV['TZ'] = 'Europe/Paris'
 Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
 
 # Boot Check
-unless File.exists?(File.expand_path("locale/fr/LC_MESSAGES/lstm.mo",
+unless File.exists?(File.expand_path("locale/fr/LC_MESSAGES/tosca.mo",
                                      RAILS_ROOT))
   puts "***********************"
   puts "Missing traducted files. I am generating it for you with "
@@ -103,8 +103,8 @@ end
 
 # Default conf for gettextlocalize, used for Dates & Currency
 if defined? GettextLocalize
-  GettextLocalize::app_name = 'lstm'
-  GettextLocalize::app_version = '0.5.3'
+  GettextLocalize::app_name = App::Name
+  GettextLocalize::app_version = App::Version
   GettextLocalize::default_locale = 'en_US'
   GettextLocalize::default_methods = [:param, :header, :session]
 end

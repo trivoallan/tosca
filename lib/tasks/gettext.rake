@@ -3,13 +3,11 @@
 # If you have inherited model classes, the gettext library cannot determine them because declaration line doesn't include ActiveRecord.
 # You'll need to explicitly add them like SomeModel_1 ...
 
+
 desc "Update pot/po files."
 task :updatepo do
   require 'gettext/utils'
-  GetText.update_pofiles("lstm",
-	Dir.glob("{app,lib,bin}/**/*.{rb,rhtml,erb}"),
-	"lstm 0.3.3.4")
-
+  GetText.update_pofiles("tosca", Dir.glob("{app,lib,bin}/**/*.{rb,erb,rjs}"), "tosca 0.7.5")
 end
 
 desc "Create mo-files"
