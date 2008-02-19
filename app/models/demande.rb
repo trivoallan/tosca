@@ -16,11 +16,12 @@ class Demande < ActiveRecord::Base
     :foreign_key => 'submitter_id'
 
   belongs_to :contrat
-  belongs_to :binaire, :include => :paquet
   has_many :phonecalls
   has_one :elapsed, :dependent => :destroy
   belongs_to :contribution
   belongs_to :socle
+  # TODO : there is no interface to this belongs_to /!\
+  belongs_to :binaire, :include => :paquet
 
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
   has_many :piecejointes, :through => :commentaires
@@ -104,6 +105,7 @@ class Demande < ActiveRecord::Base
     self.beneficiaire_id = recipient.id if recipient
   end
 
+  # Description was moved to first comment mainly for performance reason
   def description
     self.first_comment.corps unless self.first_comment.blank?
   end
@@ -116,11 +118,13 @@ class Demande < ActiveRecord::Base
     end
   end
 
+  private
   def create_first_comment(value)
     self.first_comment = Commentaire.create(:corps => value,
                            :demande => self, :user_id => self.submitter_id)
   end
 
+  public
   # /!\ Dirty Hack Warning /!\
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
@@ -156,23 +160,27 @@ class Demande < ActiveRecord::Base
     @client
   end
 
-  #Returns the state of a request at date t
+  # Returns the state of a request at date t
+  # The result is a READ ONLY clone with the 3 indicators
+  #   statut_id, ingenieur_id & severite_id
   def state_at(t)
     return self if t >= self.updated_on
     return Demande.new if t < self.created_on
 
-    statut_id = self.commentaires.find(:first,
-                                       :conditions => [ "statut_id IS NOT NULL AND created_on <= ?", t],
-                                       :order => "created_on DESC").statut_id
-    severite_id = self.commentaires.find(:first,
-                                         :conditions => [ "severite_id IS NOT NULL AND created_on <= ?", t],
-                                         :order => "created_on DESC").severite_id
-    com_ingenieur = self.commentaires.find(:first,
-                                           :conditions => [ "ingenieur_id IS NOT NULL AND created_on <= ?", t],
-                                           :order => "created_on DESC")
+    options = {:conditions => ["statut_id IS NOT NULL AND created_on <= ?", t],
+      :order => "created_on DESC" }
+    statut_id = self.commentaires.find(:first, options).statut_id
+
+    options[:conditions].first = "severite_id IS NOT NULL AND created_on <= ?"
+    severite_id = self.commentaires.find(:first, options).severite_id
+
+    options[:conditions].first = "ingenieur_id IS NOT NULL AND created_on <= ?"
+    com_ingenieur = self.commentaires.find(:first, options)
     ingenieur_id = com_ingenieur ? com_ingenieur.ingenieur_id : nil
+
     result = self.clone
-    result.attributes = { :statut_id => statut_id, :ingenieur_id => ingenieur_id, :severite_id => severite_id }
+    result.attributes = { :statut_id => statut_id,
+      :ingenieur_id => ingenieur_id, :severite_id => severite_id }
     result.readonly!
     result
   end
