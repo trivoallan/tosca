@@ -128,12 +128,12 @@ class AccountController < ApplicationController
     user_id = params[:id].to_i
     options = Contrat::OPTIONS
     if client_id == 0
-      @contrats = Contrat.find_select(options, false)
+      options = options.dup.update(:conditions => { :inactive => false })
     else
       options = options.dup.update(:conditions =>
-        ['contrats.client_id = ?', client_id ])
-      @contrats = Contrat.find_select(options, false)
+        ['contrats.client_id = ? AND contrats.inactive = 0', client_id ])
     end
+    @contrats = Contrat.find_select(options, false)
     @user = (user_id == 0 ? User.new : User.find(user_id))
   end
 
