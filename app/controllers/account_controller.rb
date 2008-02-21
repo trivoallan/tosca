@@ -17,6 +17,8 @@ class AccountController < ApplicationController
 
   around_filter :scope, :except => [:login, :logout]
 
+  # Used to restrict operation
+  #  One cannot edit account of everyone
   def authorize?(user)
     if params.has_key? :id
       id = params[:id].to_i
@@ -64,7 +66,6 @@ class AccountController < ApplicationController
     end
   end
 
-  # NO_JAVASCRIPT = '<br />Javascript n\'est pas activé sur votre navigateur'
   def login
     case request.method
     when :post
@@ -84,6 +85,13 @@ class AccountController < ApplicationController
         flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
       end
     end
+  end
+
+  # login with lemon-ldap technology.
+  # Administrator ensures that only authenticated client
+  #  can have access to this page, and provides some HTTP headers
+  #  in order to log in / create an engineer account.
+  def lemon
   end
 
   # Let an Engineer become a client user
@@ -108,6 +116,8 @@ class AccountController < ApplicationController
     _form
   end
 
+
+  # Used during creation to display engineer or recipient form
   def ajax_place
     return render(:nothing => true) unless request.xhr? and params.has_key? :client
     if params[:client] == 'true'
@@ -119,6 +129,7 @@ class AccountController < ApplicationController
     _form
   end
 
+  # Used to list contracts during creation/edition
   def ajax_contracts
     if !request.xhr? || !params.has_key?(:client_id) || !params.has_key?(:id)
       return render(:nothing => true)
