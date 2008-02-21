@@ -14,8 +14,9 @@ class Rules::Credit < ActiveRecord::Base
 
   # It's called like this :
   # rule.compute_elapsed_between(last_status_comment, self)
-  # It won't do anything, since the credit spent are not computed
+  # It won't do anything : the credit spent is filled manually, not computed
   def compute_elapsed_between(last, current)
+    current.elapsed
   end
 
   def short_description

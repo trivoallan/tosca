@@ -227,7 +227,7 @@ class Notifier < ActionMailer::Base
   end
 
   MULTIPART_CONTENT = 'multipart/alternative'
-  SUFFIX_VIEW = ".multi.rhtml"
+  SUFFIX_VIEW = ".multi.html.erb"
   def html_and_text_body(body = Hash.new)
     method = caller[0].slice(/`.+'/).delete("`'") + SUFFIX_VIEW
 

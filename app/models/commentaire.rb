@@ -108,7 +108,7 @@ class Commentaire < ActiveRecord::Base
     end
     unless self.statut_id.nil?
       last_status_comment = request.find_status_comment_before(self)
-      rule.compute_elapsed_between last_status_comment, self
+      self.elapsed = rule.compute_elapsed_between last_status_comment, self
     end
     request.elapsed.add(self)
 

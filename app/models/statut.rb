@@ -20,6 +20,8 @@ class Statut < ActiveRecord::Base
   OPENED = [ 1, 2, 3, 4, 5] # We need to work on it
   CLOSED = [ 6, 7, 8] # The time count is now less/not important
 
+  WithoutChrono = [ 3, 6, 7, 8 ]
+
   # We do not want in any case a modification on those ids
   [ OPENED, CLOSED ].each do |xs|
     xs.each{|x| x.freeze}.freeze
@@ -30,6 +32,7 @@ class Statut < ActiveRecord::Base
   # It follows scheme on the 08000linux wiki
   # Even recipient can change some status,
   # when it's for closed or cancelled a request.
+  # TODO : allow dynamic editing of this logic in Web Browser
   def possible(recipient = nil)
     search =
       if recipient
