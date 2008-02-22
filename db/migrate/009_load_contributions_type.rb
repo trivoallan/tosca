@@ -3,8 +3,8 @@ class LoadContributionsType < ActiveRecord::Migration
 
   def self.up
     # Known kind of contributions
-    %w(Correction Évolution Backport).each{|tc|
-      Typecontribution.create(:nom => tc)
+    %w(Correction Évolution Backport).each{ |tc|
+      Typecontribution.create(:nom => tc, :description => tc)
     }
   end
 

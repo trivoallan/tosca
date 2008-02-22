@@ -11,7 +11,8 @@ class LoadAdminAccount < ActiveRecord::Migration
     ### as of Rails 1.2.x
     user = Identifiant.new(:login => 'admin', :nom => 'Admin', :role_id =>
                            admin_id, :password =>
-                           Digest::SHA1.hexdigest("linagora--#{'admin'}--"))
+                           Digest::SHA1.hexdigest("linagora--#{'admin'}--"),
+                           :informations => "")
     user.id = 1
     user.save!
     Ingenieur.create(:identifiant_id => 1)
