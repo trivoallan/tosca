@@ -138,9 +138,9 @@ class AccountController < ApplicationController
     client_id = params[:client_id].to_i
     user_id = params[:id].to_i
     options = Contrat::OPTIONS
-    conditions = [ 'contrats.cloture <= ? ', Time.now]
+    conditions = [ 'contrats.cloture <= ?', Time.now]
     unless client_id == 0
-      conditions.first += 'AND contrats.client_id = ?'
+      conditions.first << ' AND contrats.client_id = ?'
       conditions.push(client_id)
     end  
     options = options.dup.update(:conditions => conditions)
