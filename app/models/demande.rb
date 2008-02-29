@@ -194,17 +194,7 @@ class Demande < ActiveRecord::Base
   end
 
   def affiche_temps_correction
-    Time.in_words(self.temps_correction, self.contrat.interval)
-  end
-
-  def temps_correction
-    result = 0
-    options = {:conditions => 'statut_id IN (6,7)', :order => 'updated_on ASC'}
-    corrigee = self.commentaires.find(:first, options)
-    if corrigee and self.appellee()
-      result = compute_temps_ecoule(corrigee.statut_id)
-    end
-    result
+    Time.in_words(self.elapsed.correction, self.contrat.interval)
   end
 
   # Retourne le délais imparti pour corriger la demande
@@ -218,31 +208,11 @@ class Demande < ActiveRecord::Base
   end
 
   def affiche_temps_contournement
-    Time.in_words(self.temps_contournement, self.contrat.interval)
-  end
-
-  def temps_contournement
-    result = 0
-    contournee = self.commentaires.find(:first, :conditions => 'statut_id=5',
-                                        :order => 'updated_on ASC')
-    if contournee and self.appellee()
-      result = compute_temps_ecoule(5)
-    end
-    result
+    Time.in_words(self.elapsed.workaround, self.contrat.interval)
   end
 
   def affiche_temps_rappel
-    Time.in_words(self.temps_rappel, self.contrat.interval)
-  end
-
-  def temps_rappel
-    result = 0
-    first_comment = self.first_comment
-    if (first_comment and first_comment.statut_id == 1) and self.appellee()
-      result = compute_diff(first_comment.updated_on, appellee().updated_on,
-                            self.contrat)
-    end
-    result
+    Time.in_words(self.elapsed.taken_into_account, self.contrat.interval)
   end
 
   def engagement
@@ -266,7 +236,8 @@ class Demande < ActiveRecord::Base
   #
   # if the demande is over, then return the overrun time
   # TODO : blast this method, totally.
-  def affiche_temps_ecoule
+  def time_spent_in_percent
+    return 0 if
     temps = temps_ecoule
     return "sans engagement" if temps == -1
 
@@ -301,6 +272,10 @@ class Demande < ActiveRecord::Base
     end
   end
 
+  def interval
+    self.contrat.interval
+  end
+
 #  private
   def affiche_delai(temps_passe, delai)
     value = calcul_delai(temps_passe, delai)
@@ -318,33 +293,6 @@ class Demande < ActiveRecord::Base
     - (temps_passe - delai * contrat.interval_in_seconds)
   end
 
-  def compute_temps_ecoule(to = nil)
-    return 0 unless commentaires.size > 0
-    contrat = self.contrat
-    changes = commentaires.find(:all, :conditions =>
-                "commentaires.statut_id IS NOT NULL")
-    statuts_sans_chrono = [ 3, 6, 7, 8 ] #Suspendue, Corrigée, Cloture, Annulée, cf modele statut
-    inf = { :date => self.created_on, :statut => changes.first.statut_id } #1er statut : enregistré !
-    delai = 0
-    for c in changes
-      sup = { :date => c.updated_on, :statut => c.statut_id }
-      unless statuts_sans_chrono.include? inf[:statut]
-        delai += Time.working_diff(inf[:date], sup[:date],
-                                   contrat.heure_ouverture,
-                                   contrat.heure_fermeture)
-      end
-      inf = sup
-      break if to == inf[:statut]
-    end
-
-    unless statuts_sans_chrono.include? self.statut.id and to != nil
-      sup = { :date => Time.now, :statut => self.statut_id }
-      delai += Time.working_diff(inf[:date], sup[:date],
-                                 contrat.heure_ouverture,
-                                 contrat.heure_fermeture)
-    end
-    delai
-  end
 
   # Calcule en JO (jours ouvrés) le temps écoulé
   def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)

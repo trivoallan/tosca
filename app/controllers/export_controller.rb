@@ -130,7 +130,7 @@ class ExportController < ApplicationController
       'created_on_formatted', 'socle', 'updated_on_formatted', 'resume',
       'statuts_name', 'typedemandes_name'
     ]
-    options= { :order => 'updated_on DESC', :conditions => flash[:conditions],
+    options= { :order => 'demandes.created_on', :conditions => flash[:conditions],
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST,
       :methods => columns
      }

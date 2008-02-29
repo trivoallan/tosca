@@ -3,7 +3,7 @@
 #####################################################
 class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :phonecalls,
-    :socles, :commentaires, :account
+    :socles, :commentaires, :account, :reporting
 
   cache_sweeper :demande_sweeper, :only => [:create, :update, :destroy]
 

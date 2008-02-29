@@ -305,7 +305,7 @@ private
     EOF
   end
 
-  # Efface les paramètres de session et les raccourcis
+  # Used during login and logout
   def clear_sessions
     @beneficiaire = nil
     @ingenieur = nil

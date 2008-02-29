@@ -1,50 +1,39 @@
 <div class="demande_tab_content" name="demande_tab_content">
 
-<%
-# TODO : rework after migration of comments !
-# if @demande.affiche_temps_rappel == "-"
-#       _("Call back immediately") + "</b>"
-#      else
-#       _("Call back in") + " : </b> #{@demande.affiche_temps_rappel}"
-#      end
-#
-#   </li>
-#   <li><b><%= _("Workarounded in"): </b>@demande.affiche_temps_contournement"</li>
-#   <li><b><%= _("Fixed in"): </b>@demande.affiche_temps_correction</li>
-#   <% if @demande.contribution
-#     <% contrib = @demande.contribution
-#     <li><b><%= _("Documents") + ": </b> <br />" + _("A")
-#       <%= link_to('contribution', contribution_path(contrib.id))
-#       <%= _("is available")
-#          (<%= link_to_file contrib, 'patch' )
-#     </li>
-#   <% end
-# </ul>%>
-
-<% size = @demande.paquets.size %>
-<% if size == 0 %>
+<% commitment = @demande.engagement %>
+<% elapsed = @demande.elapsed %>
+<% if commitment.nil? %>
   <p><%= _("Your request is not subject to a SLA.") %></p>
 <% else %>
-<p><%= _("Your request impacts %s") % pluralize(size, _("source package")) %>.</p>
-<table>
-  <tr>
-    <th><%= _("Package") %></th>
-    <th><%= _("Version") %></th>
-    <th><%= _("Workaround") %></th>
-    <th><%= _("Correction") %></th>
+ <table class="show">
+  <tr class="<%= cycle('pair', 'impair') %>">
+    <th><%= _("Taken into account") %></th>
+    <td><%= progress_bar(elapsed.taken_into_account / 1.hour) %></td>
+    <td><%= Time.in_words(elapsed.taken_into_account) %> /
+        <%= Time.in_words(1.hour) %></td>
   </tr>
-
-  <% type_id = @demande.typedemande_id %>
-  <% severite_id = @demande.severite_id %>
-
-  <% @demande.paquets.each_with_index do |p,i| %>
-    <tr class="<%= cycle('even', 'odd') %>">
-      <td><%= p.name %></td>
-      <td><%= p.version %></td>
-      <td><%= "#{ Time.in_words(p.contournement(type_id, severite_id).days, true) }" %></td>
-      <td><%= "#{ Time.in_words(p.correction(type_id, severite_id).days, true) }" %></td>
-    </tr>
-  <% end %>
-</table>
+  <% workaround = elapsed.workaround %>
+  <% workaround = elapsed.until_now if workaround == 0.0 %>
+   <tr class="<%= cycle('pair', 'impair') %>">
+    <th><%= _("Workaround") %></th>
+    <td><% if commitment.contournement > 0 %>
+       <%= progress_bar(workaround * 100 / commitment.contournement.days) %>
+    <% end %></td>
+    <td><%= Time.in_words(workaround, @demande.interval) %> (<%= workaround %>) /
+        <%= Time.in_words(commitment.contournement.days) %></td>
+   </tr>
+  <% correction = elapsed.correction %>
+  <% correction = elapsed.until_now if correction == 0.0 %>
+   <tr class="<%= cycle('pair', 'impair') %>">
+    <th><%= _("Correction") %></th>
+    <td><% if commitment.correction > 0 %>
+     <%= progress_bar(correction * 100 / commitment.correction.days) %>
+    <% end %></td>
+    <td><%= Time.in_words(correction, @demande.interval) %> /
+        <%= Time.in_words(commitment.correction.days) %></td>
+   </tr>
+ </table>
 <% end %>
+<%=h elapsed.inspect %>
+
 </div>
