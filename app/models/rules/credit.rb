@@ -9,7 +9,7 @@ class Rules::Credit < ActiveRecord::Base
   end
 
   def formatted_elapsed(value)
-    n_('%d ticket spent', '%d tickets spent', value) % value
+    n_('%d time-credit', '%d time-credits', value) % value
   end
 
   # It's called like this :

@@ -9,7 +9,7 @@ class Rules::Component < ActiveRecord::Base
   end
 
   def formatted_elapsed(value)
-    Time.in_words(value)
+    Time.in_words(value, contrat.interval)
   end
 
   # Call it like this :

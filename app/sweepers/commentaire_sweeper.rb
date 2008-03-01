@@ -22,5 +22,7 @@ class CommentaireSweeper < ActionController::Caching::Sweeper
     # Expire the right side, with the last comment
     expire_fragment("#{record.demande_id}/true/requests/front")
     expire_fragment("#{record.demande_id}/false/requests/front")
+    # Fragments for hsitory tab
+    expire_fragment("#{record.demande.id}/history")
   end
 end
