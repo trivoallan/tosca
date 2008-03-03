@@ -15,7 +15,10 @@ class AccountController < ApplicationController
 
   helper :filters, :ingenieurs, :beneficiaires, :roles, :export
 
-  around_filter :scope, :except => [:login, :logout]
+  around_filter :scope, :except => [:login, :logout, :lemon]
+
+  def lemon
+  end
 
   # Used to restrict operation
   #  One cannot edit account of everyone

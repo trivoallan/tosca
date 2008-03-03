@@ -4,6 +4,12 @@
 class ContributionsController < ApplicationController
   helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
 
+  # Show all contribs and who's done 'em
+  def experts
+    options = { :order => "contributions.ingenieur_id, contributions.etatreversement_id" }
+    @contributions = Contribution.find(:all, options)
+  end
+
   def index
     select
     render :action => "select"
