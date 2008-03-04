@@ -1,10 +1,11 @@
 <h1><%= _('Contributions') %></h1>
 
-<%= public_show_liste(@logiciels, _('contribution'), :no_title => true) { |l| 
+<%= public_show_liste(@logiciels, _('contribution'), :no_title => true) { |l|
       out = "<b>#{public_link_to_contribution_logiciel l }</b> : #{l.resume}"
 } %>
 
 <%= link_to _('Submit a contribution'), new_contribution_path %><br />
 <%= link_to _('See all contributions'), list_contribution_path(:id => 'all') %><br />
+<%= link_to _('RSS'), :action => 'feed', :controller => 'contributions' %><br />
 <p><%= contributions_export_link %></p>
 <%= link_to _('Access to administration interface'), admin_contributions_path %>

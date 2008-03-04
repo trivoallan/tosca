@@ -4,6 +4,8 @@
 class ContributionsController < ApplicationController
   helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
 
+  caches_page :feed
+
   # Show all contribs and who's done 'em
   def experts
     options = { :order => "contributions.ingenieur_id, contributions.etatreversement_id" }
@@ -130,6 +132,17 @@ class ContributionsController < ApplicationController
     render :partial => 'liste_paquets', :layout => false
   end
 
+  #Spa très REST tout ça !
+  # TODO : cache it on a page level
+  def feed
+    options = { :include => [:etatreversement], :order => "updated_on DESC", :limit => 20 }
+    @contributions = Contribution.find(:all, options)
+    @feed_description = @feed_title = "Les contributions du 08000Linux"
+    @feed_url = "http://" + request.host_with_port + request.request_uri
+    response.headers['Content-Type'] = 'application/rss+xml'
+    render :action => 'feed', :layout => false
+  end
+
 private
   def _form
     @logiciels = Logiciel.find_select
@@ -159,6 +172,7 @@ private
     end
     contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
     contribution.cloture_le = nil if params[:contribution][:clos] == '0'
+    expire_page :action => 'feed'
     contribution.save
   end
 end

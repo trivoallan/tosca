@@ -103,7 +103,7 @@ class LoadPermissions < ActiveRecord::Migration
     access = [ [ '^acces/refuse$', 'Page for denying access' ],
                [ '^account/(login|logout)$', 'Access to login system' ],
                [ '^bienvenue/(index|about|plan)$', 'Access to home pages' ],
-               [ '^contributions/(index|select|show|list)',
+               [ '^contributions/(index|select|show|list|feed)',
                  'Public read access to contributions' ],
                [ '^groupes/(index|show)', 'Public read access to groups' ],
                [ '^logiciels/(index|show)',

@@ -30,6 +30,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.formatted_export(%w(requests contributions users phonecalls comex))
 
+  #RSS !
+  map.connect 'contributions/feed.rss', :controller => 'contributions', :action => 'feed'
+
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
   options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }

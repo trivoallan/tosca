@@ -1,0 +1,19 @@
+xml.instruct!
+xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
+  xml.channel do
+    xml.title @feed_title
+    xml.link @feed_url
+    xml.description @feed_description
+    xml.language "fr-FR"
+
+    for contribution in @contributions
+      xml.item do
+        xml.pubDate contribution.created_on.rfc822
+        xml.title html2text(contribution.synthese + " : #{contribution.etatreversement.name}")
+        xml.link contribution_url(contribution)
+        xml.guid contribution.id
+        xml.description contribution.description_fonctionnelle
+      end
+    end
+  end
+end
