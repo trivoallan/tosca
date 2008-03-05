@@ -185,8 +185,8 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # on remplit
-    je_veux_mettre_a_jour_les_graphes = true
-    if (je_veux_mettre_a_jour_les_graphes)
+    i_want_to_draw_graphs = true
+    if (i_want_to_draw_graphs)
       write3graph(:repartition, Gruff::StackedBar)
       write3graph(:severite, Gruff::StackedBar)
       write3graph(:resolution, Gruff::StackedBar)
@@ -376,22 +376,18 @@ class ReportingController < ApplicationController
       corrections[i].push 0.0
     }
 
-    terminal = [6,7,8]
-    contrat_id = @contrat.id
-    support = @contrat.client.support
-    amplitude = support.fermeture - support.ouverture
     demandes.each do |d|
-      e = d.engagement(contrat_id)
+      e = d.engagement
+      interval = d.contrat.interval.hours
       next unless e
 
-      rappel = d.temps_rappel()
-      fill_one_report(rappels, rappel, 1.hour, last_index)
-
-      contournement = d.distance_of_time_in_working_days(d.temps_contournement, amplitude)
-      fill_one_report(contournements, contournement, e.contournement, last_index)
-
-      correction = d.distance_of_time_in_working_days(d.temps_correction, amplitude)
-      fill_one_report(corrections, correction, e.correction, last_index)
+      elapsed = d.elapsed
+      fill_one_report(rappels, elapsed.taken_into_account,
+                      1.hour, last_index)
+      fill_one_report(contournements, elapsed.workaround,
+                      e.contournement * interval, last_index)
+      fill_one_report(corrections, elapsed.correction,
+                      e.correction * interval, last_index)
     end
 
     size = demandes.size
@@ -407,7 +403,7 @@ class ReportingController < ApplicationController
 
   # Petit helper pour être dry, je sais pas trop comment l'appeler
   def fill_one_report(collection, value, max, last)
-    if ((value <= max) || (max == -1))
+    if ((value <= max) || (max < 0))
       collection[0][last] += 1
     else
       collection[1][last] += 1
@@ -600,14 +596,4 @@ class ReportingController < ApplicationController
     }
   end
 
-
-  # TODO : L'enlever de reporting
-  # il est dans models/demandes
-  # Calcule en JO le temps écoulé
-"""  def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
-    distance_in_minutes = ((distance_in_seconds.abs)/60.0)
-    jo = period_in_hour * 60.0
-    distance_in_minutes.to_f / jo.to_f
-  end
-        """
 end

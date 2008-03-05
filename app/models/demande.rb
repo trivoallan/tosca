@@ -235,41 +235,41 @@ class Demande < ActiveRecord::Base
   # donc en fait si ^_^
   #
   # if the demande is over, then return the overrun time
-  # TODO : blast this method, totally.
+  # TODO : blast this method, totally : one step done
   def time_spent_in_percent
-    return 0 if
-    temps = temps_ecoule
-    return "sans engagement" if temps == -1
+#     return 0 if
+#     temps = temps_ecoule
+#     return "sans engagement" if temps == -1
 
-    contrats = Contrat.find(:all)
-    contrats.delete_if { |contrat|
-      engagement= engagement(contrat.id)
-      engagement == nil or engagement.correction < 0
-    }
-    # A demand may have several contracts.
-    # I keep the more critical correction time
-    critical_contract = contrats[0]
-    contrats.each do |c|
-      critical_contract = c if engagement(c.id).correction < engagement(critical_contract.id).correction
-    end
-    # Not very DRY: present in lib/comex_resultat too
-    amplitude = self.contrat.heure_fermeture - self.contrat.heure_ouverture
-    if critical_contract.blank?
-      temps_correction = 0.days
-    else
-      temps_correction = engagement( critical_contract.id ).correction.days
-    end
+#     contrats = Contrat.find(:all)
+#     contrats.delete_if { |contrat|
+#       engagement= engagement(contrat.id)
+#       engagement == nil or engagement.correction < 0
+#     }
+#     # A demand may have several contracts.
+#     # I keep the more critical correction time
+#     critical_contract = contrats[0]
+#     contrats.each do |c|
+#       critical_contract = c if engagement(c.id).correction < engagement(critical_contract.id).correction
+#     end
+#     # Not very DRY: present in lib/comex_resultat too
+#     amplitude = self.contrat.heure_fermeture - self.contrat.heure_ouverture
+#     if critical_contract.blank?
+#       temps_correction = 0.days
+#     else
+#       temps_correction = engagement( critical_contract.id ).correction.days
+#     end
 
-    temps_reel=
-      distance_of_time_in_working_days(temps_ecoule, amplitude)
-    temps_prevu_correction=
-      distance_of_time_in_working_days(temps_correction, amplitude)
-    if temps_reel > temps_prevu_correction
-      Time.in_words(temps - temps_correction, self.contrat.interval) <<
-        _(' of overrun')
-    else
-      Time.in_words(temps, self.contrat.interval)
-    end
+#     temps_reel=
+#       distance_of_time_in_working_days(temps_ecoule, amplitude)
+#     temps_prevu_correction=
+#       distance_of_time_in_working_days(temps_correction, amplitude)
+#     if temps_reel > temps_prevu_correction
+#       Time.in_words(temps - temps_correction, self.contrat.interval) <<
+#         _(' of overrun')
+#     else
+#       Time.in_words(temps, self.contrat.interval)
+#     end
   end
 
   def interval
@@ -293,13 +293,6 @@ class Demande < ActiveRecord::Base
     - (temps_passe - delai * contrat.interval_in_seconds)
   end
 
-
-  # Calcule en JO (jours ouvrés) le temps écoulé
-  def distance_of_time_in_working_days(distance_in_seconds, period_in_hour)
-    distance_in_minutes = ((distance_in_seconds.abs)/60.0)
-    jo = period_in_hour * 60.0
-    distance_in_minutes.to_f / jo.to_f
-  end
 
 
   protected

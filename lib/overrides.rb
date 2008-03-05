@@ -134,8 +134,11 @@ class Time
 
     ### compute ###
     result = 0
-    # 1st day
-    result += @@diff_day.call(start_date, start_date.change(:hour => closes_at))
+    # 1st day : end_date can be on the same day
+    start_end_date = [ start_date.change(:hour => closes_at), end_date].min
+    if start_day.working?
+      result += @@diff_day.call(start_date, start_end_date)
+    end
     # Period
     current_day = start_day
     period.round.times do
@@ -143,7 +146,9 @@ class Time
       current_day = current_day.next
     end
     # Last day
-    result += @@diff_day.call(end_date.change(:hour => opens_at), end_date)
+    if start_day != end_day && end_day.working?
+      result += @@diff_day.call(end_date.change(:hour => opens_at), end_date)
+    end
     result
   end
 
