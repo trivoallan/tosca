@@ -1,16 +1,24 @@
 class CreateKnowledges < ActiveRecord::Migration
 
-  # TODO : Add a method to reduce this.
-  # For now, it's copied from migration 003
-  # accounts id
-  admin_id = Role.find(1)
-  manager_id = Role.find(2)
-  expert_id = Role.find(3)
+  class Role < ActiveRecord::Base
+    has_and_belongs_to_many :permissions
+  end
+  class Permission < ActiveRecord::Base
+    has_and_belongs_to_many :roles
+  end
 
-  @roles = [ admin_id, manager_id, expert_id ]
   @access = [ [ '^knowledges/', 'Full access' ] ]
-
   def self.up
+    # TODO : Add a method to reduce this.
+    # For now, it's copied from migration 003
+    # accounts id
+    admin_id = Role.find(1)
+    manager_id = Role.find(2)
+    expert_id = Role.find(3)
+
+    @roles = [ admin_id, manager_id, expert_id ]
+
+
     create_table :knowledges do |t|
       t.integer :competence_id, :null => true
       t.integer :logiciel_id, :null => true
