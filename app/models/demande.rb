@@ -48,6 +48,8 @@ class Demande < ActiveRecord::Base
     end
   end
 
+  after_save :update_first_comment
+
   # used for ruport. See plugins for more information
   acts_as_reportable
 
@@ -105,14 +107,28 @@ class Demande < ActiveRecord::Base
     self.beneficiaire_id = recipient.id if recipient
   end
 
+  def update_first_comment
+   c = self.first_comment
+   c.ingenieur_id = self.ingenieur_id
+   c.demande_id = self.id
+   c.severite_id = self.severite_id
+   c.statut_id = self.statut_id
+   c.user_id = self.submitter_id
+   unless c.save
+     c.destroy
+     throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
+   end
+  end
+
+
   # Description was moved to first comment mainly for performance reason
   def description
-    self.first_comment.corps unless self.first_comment.blank?
+    return self.first_comment.corps unless self.first_comment.blank?
+    @first_comment
   end
 
   def description=(value)
-    first_comment = self.first_comment
-    return create_first_comment(value) unless first_comment
+    return create_first_comment(value) unless self.first_comment
     if first_comment and first_comment.corps != value
       first_comment.update_attribute(:corps, value)
     end
@@ -120,8 +136,8 @@ class Demande < ActiveRecord::Base
 
   private
   def create_first_comment(value)
-    self.first_comment = Commentaire.create(:corps => value,
-                           :demande => self, :user_id => self.submitter_id)
+    fields = {:corps => value, :demande => self, :user_id => self.submitter_id}
+    self.first_comment = Commentaire.new(fields)
   end
 
   public
