@@ -7,7 +7,7 @@ module PasswordGenerator
     generated = ''
     seed = "--#{rand(10000)}--#{Time.now}--#{self.login}--"
     if @@mkpasswd
-      generated = %x[#{"echo '#{seed}' | /usr/bin/mkpasswd -s"}]
+      generated = %x[#{"echo '#{seed}' | /usr/bin/mkpasswd"}]
     else
       generated = Digest::SHA1.hexdigest(seed)[0,10]
     end
