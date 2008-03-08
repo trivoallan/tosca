@@ -2,6 +2,9 @@ class LoadDocumentsType < ActiveRecord::Migration
   class Typedocument < ActiveRecord::Base; end
 
   def self.up
+    # Do not erase existing kind of documents
+    return unless Typedocument.count == 0
+
     [ [ 'Bon de commande', "Bon des Unités d'Oeuvre commandés dans le cadre de marché Support Logiciel Libre." ],
       [ 'Compte-Rendu', 'Compte-Rendu des différentes réunions ayant eu lieu dans le cadre de votre contrat.' ],
       [ 'Service', 'Documents qualités sur notre fonctionnement.' ],

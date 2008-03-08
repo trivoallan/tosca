@@ -2,6 +2,9 @@ class LoadContributionState < ActiveRecord::Migration
   class Etatreversement < ActiveRecord::Base; end
 
   def self.up
+    # Do not erase existing states
+    return unless Etatreversement.count == 0
+
     # Known state for a contribution
     Etatreversement.create(:nom => 'rejetée', :description =>
                            'Correctif soumis mais non accepté par la communauté.')
@@ -11,7 +14,6 @@ class LoadContributionState < ActiveRecord::Migration
                            'Correctif accepté dans la branche principale du projet.')
     Etatreversement.create(:nom => 'proposée', :description =>
                            "Échanges en cours pour déterminer les modalités d'intégration du correctif.")
-
   end
 
   def self.down

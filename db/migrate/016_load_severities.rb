@@ -2,6 +2,9 @@ class LoadSeverities < ActiveRecord::Migration
   class Severite < ActiveRecord::Base; end
 
   def self.up
+    # Do not erase existing severities
+    return unless Severite.count == 0
+
     # known kind of urls for a software
     id = 1
     %w(Bloquante Majeure Mineure Aucune).each {|n|

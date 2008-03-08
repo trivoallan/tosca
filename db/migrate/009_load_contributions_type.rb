@@ -2,7 +2,9 @@ class LoadContributionsType < ActiveRecord::Migration
   class Typecontribution < ActiveRecord::Base; end
 
   def self.up
-    # Known kind of contributions
+    # Do not erase existing kind of contribution
+    return unless Typecontribution.count == 0
+
     %w(Correction Évolution Backport).each{ |tc|
       Typecontribution.create(:nom => tc, :description => tc)
     }

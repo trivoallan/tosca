@@ -2,6 +2,9 @@ class LoadRequestStatus < ActiveRecord::Migration
   class Statut < ActiveRecord::Base; end
 
   def self.up
+    # Do not erase existing status
+    return unless Statut.count == 0
+
     # Allowed status for a request
     [ [ 'Enregistrée', "Votre demande vient d'être déclarée dans notre outil.<br /> Nous vous rappelons dans l'heure pour réunir toutes les informations nécessaires et vous informer de la prise en compte effective de votre demande." ],
       [ 'Prise en compte', "Votre demande est prise en compte par nos experts, qui font le nécessaire pour qualifier votre demande.<br /> Pour ce faire, ils vont périodiquement vous demander des informations, ce qui suspendra le décompte du temps garanti. <br /> Une fois cette analyse complète, votre demande prendra le statut \"Analysée\". Si nous nous apercevons que votre demande sort du périmètre de votre contrat, elle sera annulée, avec votre accord." ],

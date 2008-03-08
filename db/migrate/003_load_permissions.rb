@@ -24,6 +24,8 @@ class LoadPermissions < ActiveRecord::Migration
       }
     end
 
+    Permission.destroy_all
+
     roles = [ admin_id ]
     access = [ [ '.*/.*', 'Full access' ] ]
     add_permission.call(roles, access)
@@ -114,6 +116,6 @@ class LoadPermissions < ActiveRecord::Migration
   end
 
   def self.down
-    Permission.find(:all).each{|p| p.destroy }
+    Permission.destroy_all
   end
 end

@@ -2,7 +2,9 @@ class LoadRequestsType < ActiveRecord::Migration
   class Typedemande < ActiveRecord::Base; end
 
   def self.up
-    # Known kind of requests
+    # Do not erase existing kind of requests
+    return unless Typedemande.count == 0
+
     id = 1
     %w(Information Anomalie Évolution Monitorat
        Intervention Étude Livraison).each{ |tr|

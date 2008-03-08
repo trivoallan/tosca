@@ -2,7 +2,10 @@ class LoadSystems < ActiveRecord::Migration
   class Socle < ActiveRecord::Base; end
 
   def self.up
-    # known systems
+    # Do not erase existing system
+    return unless Socle.count == 0
+
+    # sample known systems
     [ 'Ubuntu Dapper (6.04)', 'Ubuntu Dapper LTS (6.06)', 'Ubuntu Edgy (6.10)',
       'Ubuntu Feisty (7.04)', 'Ubuntu Gutsy (7.10)',
       'Mandriva Corporate 3', 'Mandriva Corporate 4',

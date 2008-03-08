@@ -5,7 +5,9 @@ class LoadAdminAccount < ActiveRecord::Migration
   class Ingenieur < ActiveRecord::Base; end
 
   def self.up
-    # Admin account
+    # Do not erase existing accounts
+    return unless Identifiant.count == 0
+
     admin_id, manager_id, expert_id, customer_id, viewer_id = 1,2,3,4,5
     # Id must be setted aside, unless it won't works as expected
     ### as of Rails 1.2.x
@@ -19,6 +21,7 @@ class LoadAdminAccount < ActiveRecord::Migration
   end
 
   def self.down
-    Identifiant.find(1).destroy
+    admin = Identifiant.find_by_login('admin')
+    admin.destroy if admin
   end
 end

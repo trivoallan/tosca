@@ -2,6 +2,9 @@ class LoadSkills < ActiveRecord::Migration
   class Competence < ActiveRecord::Base; end
 
   def self.up
+    # Do not erase existing Knowledges
+    return unless Competence.count == 0
+
     # All knowledges, severely reduced to an human size
     [ 'Admin / Réseau', 'Admin / Système', 'Annuaires', 'C / C++',
       'C# / Mono', 'Gestion', 'Java / J2ee', 'OpenOffice', 'Perl',

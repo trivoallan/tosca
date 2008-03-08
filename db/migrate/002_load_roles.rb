@@ -8,6 +8,7 @@ class LoadRoles < ActiveRecord::Migration
       role.save
     end
 
+    Role.destroy_all
 
     # Roles
     save_role.call(Role.new(:nom => 'admin', :info =>
@@ -26,6 +27,6 @@ class LoadRoles < ActiveRecord::Migration
   end
 
   def self.down
-    Role.find(:all).each{|r| r.destroy }
+    Role.destroy_all
   end
 end

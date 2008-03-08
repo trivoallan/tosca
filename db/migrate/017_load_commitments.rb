@@ -2,10 +2,13 @@ class LoadCommitments < ActiveRecord::Migration
   class Engagement < ActiveRecord::Base; end
 
   def self.up
+    # Do not erase existing Commitments
+    return unless Engagement.count == 0
+
+    # Sample commitments
     blocking, major, minor, none = 1, 2, 3, 4
     information, issue = 1, 2
 
-    # Commitment distribution
     add_commitment = Proc.new do |severity_id, typerequest_id, workaround, fix|
       attr = { :severite_id => severity_id, :typedemande_id => typerequest_id,
         :correction => fix, :contournement => workaround }
