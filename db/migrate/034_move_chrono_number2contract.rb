@@ -1,4 +1,12 @@
 class MoveChronoNumber2contract < ActiveRecord::Migration
+
+  class Client < ActiveRecord::Base
+    has_many :contrats
+  end
+  class Contrat < ActiveRecord::Base
+    belongs_to :client
+  end
+
   def self.up
     add_column :contrats, :chrono, :integer, :default => 0, :null => false
     Client.find(:all).each do |client|

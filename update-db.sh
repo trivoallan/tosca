@@ -4,7 +4,7 @@ mysql="mysql lstm"
 
 echo "UPDATE schema_info SET version = 1" | $mysql 
 
-rake db:migrate 
+RAILS_ENV=production rake db:migrate 
 
 # Swap role_id to the new model.
 # old client (2) => customer(4)

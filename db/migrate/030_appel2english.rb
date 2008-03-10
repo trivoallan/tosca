@@ -1,4 +1,7 @@
 class Appel2english < ActiveRecord::Migration
+  class Appel < ActiveRecord::Base
+  end
+
   def self.up
     rename_column :appels, :debut, :start
     rename_column :appels, :fin, :end
