@@ -102,10 +102,7 @@ class Commentaire < ActiveRecord::Base
 
     # update cache of elapsed time
     rule = request.contrat.rule
-    if request.elapsed.nil?
-      options = { :demande => request, :until_now => rule.elapsed_on_create }
-      request.elapsed = Elapsed.new(options)
-    end
+    request.elapsed = Elapsed.new(request, rule) unless request.elapsed
     unless self.statut_id.nil?
       last_status_comment = request.find_status_comment_before(self)
       elapsed = rule.compute_elapsed_between(last_status_comment, self)
@@ -125,7 +122,7 @@ class Commentaire < ActiveRecord::Base
     if self.id >= request.last_comment_id and not self.statut_id.nil?
       options = { :order => "commentaires.created_on DESC",
         :conditions => 'commentaires.statut_id IS NOT NULL' }
-      last_status_comment = request.commentaires.find(:first, options)
+      last_status_comment = request.find_status_comment_before(self)
       statut_id = (last_status_comment ? last_status_comment.statut_id : 1)
       return request.update_attribute(:statut_id, statut_id)
     end

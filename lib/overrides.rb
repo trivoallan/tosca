@@ -44,8 +44,7 @@ ActionView::Base.erb_trim_mode = '>'
 # TODO : find a lib or a way to compute holidays
 # of other countries. It's only France, for now.
 # You can override Fixed & Variable Holidays in lib/config.rb
-class Time
-
+class Date
   # There's no year since comparison on FixedHolidays can be done
   # only with day and month.
   # They are stored in a hash in order to have a faster "include?"
@@ -84,23 +83,19 @@ class Time
     # 2 variable holidays in france
     @@variable_holidays[year] = {easter_monday => true, ascension_day => true}
   end
-end
 
-
-class Date
   # Tell if the current date is worked or not.
   # It's based on FixedHolidays & VariableHolidays(year) mechanism
   # See lib/overrides.rb for more info on how to hook'em.
   def working?
     return false if self.cwday > 5 # 6,7 => Week End
-    saved_year = self.year
-    self.year = 0
-    return false if FixedHolidays.include? self
-    self.year = saved_year
-    return false if VariableHolidays(self.year).include? self
+    return false if FixedHolidays.include? Date.new(0, self.month, self.day)
+    return false if Date.VariableHolidays(self.year).include? self
     true
   end
+
 end
+
 
 class Time
   ##

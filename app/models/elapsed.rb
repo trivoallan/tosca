@@ -1,6 +1,12 @@
 class Elapsed < ActiveRecord::Base
   belongs_to :demande
 
+  # Ctor, which ask for the depending request and rule
+  # Call it like this : Elapsed.new(@request, @request.contrat.rule)
+  def initialize(request, rule)
+    super(:demande => request, :until_now => rule.elapsed_on_create)
+  end
+
   # self-update with a comment
     # Please ensure that add() and remove() are consistent
   def add(comment)

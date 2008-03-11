@@ -201,6 +201,29 @@ class Demande < ActiveRecord::Base
     result
   end
 
+  # Used for migration or if there is an issue on the computing of request
+  # It can be used on all request with a line like this in the console :
+  # <tt>Demande.find(:all).each{|r| r.reset_elapsed }</tt>
+  def reset_elapsed
+    Elapsed.destroy_all(['elapseds.demande_id = ?', self.id])
+
+    rule = self.contrat.rule
+    self.elapsed = Elapsed.new(self, rule)
+    options = { :conditions => 'commentaires.statut_id IS NOT NULL',
+      :order => "commentaires.created_on ASC" }
+    life_cycle = self.commentaires.find(:all, options)
+
+    total, first, previous = 0, life_cycle.first, nil
+    life_cycle.each do |step| # a step is a Commentaire object
+      if step != first && previous
+        step.elapsed = rule.compute_elapsed_between(previous, step)
+        self.elapsed.add step
+      end
+      previous = step
+    end
+    self.save
+  end
+
   def respect_contournement(contrat_id)
     affiche_delai(temps_ecoule, engagement(contrat_id).contournement)
   end
