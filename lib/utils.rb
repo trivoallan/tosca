@@ -142,4 +142,14 @@ module Utils
     end
   end
 
+  def self.check_files(path, error_msg)
+    if !File.exists? path
+      $stderr.puts error_msg
+      $stderr.puts "You have to specify one, you'll find an example in #{path}.sample."
+      $stderr.puts "You have to copy it to #{path} and adapt it to your configuration."
+      $stderr.puts "cp #{path}.sample #{path}"
+      exit(-1)
+    end
+  end
+
 end

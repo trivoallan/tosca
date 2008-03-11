@@ -15,6 +15,12 @@ require 'jcode'
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+# Needed for checking missing files
+require 'utils'
+
+Utils.check_files('config/database.yml', 'Your database is not configured')
+Utils.check_files('lib/config.rb', 'Your mail server is not configured')
+
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
 
@@ -57,19 +63,10 @@ CGI::Session.expire_after 1.month
 # MLO : It's faster to use X-Send-File module of Apache
 XSendFile::Plugin.replace_send_file! if RAILS_ENV == 'production'
 
-# Config Check
-if !File.exists? 'lib/config.rb'
-  $stderr.puts "Your mail server is not configured"
-  $stderr.puts "You have to specify one, you'll find an exemple in lib/config-dev.rb"
-  $stderr.puts "Just recopy it to lib/config.rb with the good stmp address."
-  exit(-1)
-end
-
 # Config file, mainly use for mail server
 require 'config'
 
 # Internal libs, located in lib/
-require 'utils'
 require 'overrides'
 
 # External libs
