@@ -48,7 +48,10 @@ class Demande < ActiveRecord::Base
     end
   end
 
-  after_save :update_first_comment
+  # You cannot put it after_save : it invalidates the first comment,
+  # If you do that, the first comment will receive the state of the request,
+  # not the initial state of the request
+  after_create :update_first_comment
 
   # used for ruport. See plugins for more information
   acts_as_reportable
@@ -76,8 +79,8 @@ class Demande < ActiveRecord::Base
     to_s
   end
 
-  def formatted_elapsed
-    contrat.rule.formatted_elapsed(self.elapsed.until_now)
+  def elapsed_formatted
+    contrat.rule.elapsed_formatted(self.elapsed.until_now, contrat)
   end
 
   def find_other_comment(comment_id)
@@ -109,8 +112,8 @@ class Demande < ActiveRecord::Base
 
   def update_first_comment
    c = self.first_comment
-   c.ingenieur_id = self.ingenieur_id
    c.demande_id = self.id
+   c.ingenieur_id = self.ingenieur_id
    c.severite_id = self.severite_id
    c.statut_id = self.statut_id
    c.user_id = self.submitter_id
@@ -213,12 +216,10 @@ class Demande < ActiveRecord::Base
       :order => "commentaires.created_on ASC" }
     life_cycle = self.commentaires.find(:all, options)
 
-    total, first, previous = 0, life_cycle.first, nil
+    total, previous, contrat = 0, life_cycle.first, self.contrat
     life_cycle.each do |step| # a step is a Commentaire object
-      if step != first && previous
-        step.elapsed = rule.compute_elapsed_between(previous, step)
-        self.elapsed.add step
-      end
+      step.update_attribute :elapsed, rule.compute_between(previous, step, contrat)
+      self.elapsed.add step
       previous = step
     end
     self.save
