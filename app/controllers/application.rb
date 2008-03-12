@@ -11,10 +11,9 @@ require_dependency 'login_system'
 # gestion des roles et des permissions
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency 'acl_system'
-require_dependency 'lstm'
 
 class ApplicationController < ActionController::Base
-  init_gettext 'lstm'
+  init_gettext 'tosca'
 
   # accès protégé et standardisé
   before_filter :login_required, :set_global_shortcuts
