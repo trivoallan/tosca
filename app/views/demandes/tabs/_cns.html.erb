@@ -13,27 +13,28 @@
         <%= Time.in_words(1.hour) %></td>
   </tr>
   <% workaround = elapsed.workaround %>
-  <% workaround = elapsed.until_now if workaround == 0.0 %>
+  <% workaround = elapsed.until_now if workaround == 0.0 || workaround.nil?%>
    <tr class="<%= cycle('pair', 'impair') %>">
     <th><%= _("Workaround") %></th>
     <td><% if commitment.contournement > 0 %>
-       <%= progress_bar(workaround * 100 / commitment.contournement.days) %>
+      <% progress = elapsed.progress(workaround, commitment.contournement, @demande.interval) %>
+      <%= progress_bar(progress) %> (<%= (progress * 100).round %> %)
     <% end %></td>
-    <td><%= Time.in_words(workaround, @demande.interval) %> (<%= workaround %>) /
+    <td><%= Time.in_words(workaround, @demande.interval) %> /
         <%= Time.in_words(commitment.contournement.days) %></td>
    </tr>
   <% correction = elapsed.correction %>
-  <% correction = elapsed.until_now if correction == 0.0 %>
+  <% correction = elapsed.until_now if correction == 0.0 || correction.nil? %>
    <tr class="<%= cycle('pair', 'impair') %>">
     <th><%= _("Correction") %></th>
     <td><% if commitment.correction > 0 %>
-     <%= progress_bar(correction * 100 / commitment.correction.days) %>
+     <% progress = elapsed.progress(correction, commitment.correction, @demande.interval) %>
+     <%= progress_bar(progress) %> (<%= (progress * 100).round %> %)
     <% end %></td>
     <td><%= Time.in_words(correction, @demande.interval) %> /
         <%= Time.in_words(commitment.correction.days) %></td>
    </tr>
  </table>
 <% end %>
-<%=h elapsed.inspect %>
 
 </div>
