@@ -59,7 +59,7 @@
   <li><b><%= _("Created on") %>: </b><%= @demande.created_on_formatted %></li>
   <li><b><%= _("Updated on") %>: </b><%= @demande.updated_on_formatted %></li>
   <% if @demande.elapsed %>
-     <li><b><%= _("Time elapsed") %>: </b><%= @demande.formatted_elapsed %></li>
+     <li><b><%= _("Time elapsed") %>: </b><%= @demande.elapsed_formatted %></li>
   <% end %>
   <% contribution = @demande.contribution %>
   <% if contribution %>
