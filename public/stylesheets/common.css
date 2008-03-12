@@ -277,6 +277,9 @@ table.list td {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
 
+.show tr td fieldset {
+	width: 35em;
+}
 /*style for the left column in edit pages*/
 div.edit {
   float: left;
