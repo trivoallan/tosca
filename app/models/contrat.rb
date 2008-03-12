@@ -99,7 +99,8 @@ class Contrat < ActiveRecord::Base
 
   INCLUDE = [:client]
   ORDER = 'clients.name ASC'
-  OPTIONS = { :include => INCLUDE, :order => ORDER }
+  OPTIONS = { :include => INCLUDE, :order => ORDER, :conditions =>
+    "clients.inactive = 0" }
 
   def name
     "#{client.name} - #{rule.name}"
