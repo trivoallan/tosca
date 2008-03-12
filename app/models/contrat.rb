@@ -17,8 +17,7 @@ class Contrat < ActiveRecord::Base
   has_many :appels
   belongs_to :rule, :polymorphic => true
 
-  validates_presence_of :client, :rule, :mailinglist
-  validates_length_of :mailinglist, :in => 3..50
+  validates_presence_of :client, :rule
   validates_numericality_of :heure_ouverture, :heure_fermeture,
     :only_integer => true
   validates_inclusion_of :heure_ouverture, :heure_fermeture, :in => 0..24
