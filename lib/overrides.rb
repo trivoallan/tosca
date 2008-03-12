@@ -119,7 +119,7 @@ class Time
     one_working_day = (closes_at - opens_at) * 1.hour
     start_day = Date.new(start_date.year, start_date.month, start_date.day)
     end_day = Date.new(end_date.year, end_date.month, end_date.day)
-    period = end_day - start_day - 2.days
+    period = end_day - start_day - 1
 
     # It will return 0 if end_time is before start_time.
     @@diff_day ||= Proc.new do |start_time, end_time|
@@ -130,7 +130,8 @@ class Time
     ### compute ###
     result = 0
     # 1st day : end_date can be on the same day
-    start_end_date = [ start_date.change(:hour => closes_at), end_date].min
+    start_close_time = (closes_at == 24 ? start_date.end_of_day : start_date.change(:hour => closes_at))
+    start_end_date = [ start_close_time, end_date ].min
     if start_day.working?
       result += @@diff_day.call(start_date, start_end_date)
     end
