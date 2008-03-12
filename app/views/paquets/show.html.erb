@@ -51,16 +51,16 @@
 </table>
 
 
-<% if @paquet.fichiers_count > 0 %>
- <p>Ce paquet contient <b><%= pluralize(@paquet.fichiers_count, _('file') ) %></b></p>
+<% unless @fichiers.empty? %>
+ <p>Ce paquet contient <b><%= pluralize(@fichiers.size, _('file') ) %></b></p>
  <div class="bloc_scroll">
   <%= show_liste(@fichiers, _('file'), :no_title => true) { |f| f.chemin } %>
  </div>
 <% end %>
 
 <br />
-<% if @paquet.changelogs_count > 0 %>
-<p><%= _('This package has been updated')%><b><%= pluralize(@paquet.changelogs_count, _('times') ) %></b></p>
+<% unless @changelogs.empty? %>
+<p><%= _('This package has been updated')%><b><%= pluralize(@changelogs.size, _('times') ) %></b></p>
  <div class="bloc_scroll">
    <%= show_liste(@changelogs, _('changelog'), :no_title => true) { |c|
       indent(c.to_s) } %>

@@ -29,8 +29,8 @@
 
 
 <br />
-<% if @binaire.fichierbinaires_count > 0 %>
-<p><%=_('This package contains')%> <b><%= pluralize(@binaire.fichierbinaires_count, _('file')) %></b></p>
+<% unless @fichierbinaires.empty? %>
+<p><%=_('This package contains')%> <b><%= pluralize(@fichierbinaires.size, _('file')) %></b></p>
 <div class="bloc_scroll">
   <%= show_liste(@fichierbinaires, 'fichier', :no_title => true) { |f| f.chemin } %>
 </div>
