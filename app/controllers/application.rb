@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
   include ACLSystem
   # système de construction des filters
   include Filters
-  include Lstm
 
   # layout standard
   layout "standard-layout"
