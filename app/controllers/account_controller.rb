@@ -134,21 +134,21 @@ class AccountController < ApplicationController
 
   # Used to list contracts during creation/edition
   def ajax_contracts
-    if !request.xhr? || !params.has_key?(:client_id) || !params.has_key?(:id)
+    if !request.xhr? || !params.has_key?(:client_id)
       return render(:nothing => true)
     end
 
     client_id = params[:client_id].to_i
-    user_id = params[:id].to_i
+    user_id = (params.has_key?(:id) ? params[:id].to_i : nil)
     options = Contrat::OPTIONS
-    conditions = [ 'contrats.cloture <= ?', Time.now]
+    conditions = [ 'contrats.cloture >= ?', Time.now]
     unless client_id == 0
       conditions.first << ' AND contrats.client_id = ?'
       conditions.push(client_id)
-    end  
+    end
     options = options.dup.update(:conditions => conditions)
     @contrats = Contrat.find_select(options, false)
-    @user = (user_id == 0 ? User.new : User.find(user_id))
+    @user = (user_id.blank? ? User.new : User.find(user_id))
   end
 
   def show
@@ -200,30 +200,31 @@ class AccountController < ApplicationController
         begin
           connection.begin_db_transaction
 
-          client_id = params[:user_recipient][:client_id].to_i
-          client = (client_id != 0 ? Client.find(client_id) : nil)
-          flash[:notice] = _("Account successfully created.")
-          @user.create_person(client)
+          @user.associate_person(params[:user_recipient][:client_id])
           benef, inge = @user.beneficiaire, @user.ingenieur
           benef.update_attributes(params[:beneficiaire]) if benef
           inge.update_attributes(params[:ingenieur]) if inge
 
           # welcome mail
-          options = { :user => @user, :controller => self,
-            :password => @user.pwd }
+          options = { :user => @user, :password => @user.pwd }
           Notifier::deliver_new_user(options, flash)
           connection.commit_db_transaction
 
+          flash[:notice] = _("Account successfully created.")
           redirect_back_or_default account_path(@user)
         rescue Exception => e
           connection.rollback_db_transaction
           flash[:warn] = e.message
         end
+      else
+        @user.associate_person(params[:user_recipient][:client_id]) if params.has_key? :user_recipient
+        @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
       end
     when :get
       @user = User.new(:role_id => 4) # Default : customer
       @user_engineer = Ingenieur.new
     end
+    # Those 2 lines are needed to keep all data, in case of error.
     _form
   end
 
@@ -250,7 +251,7 @@ private
   def _form_recipient
     return unless @user_recipient
     @clients = Client.find_select({}, false)
-    @contrats = @user_recipient.client.contrats || @clients.first.contrats
+    @contrats = (@user_recipient.client ? @user_recipient.client.contrats : nil ) || @clients.first.contrats
     @clients.collect!{|c| [c.name, c.id] }
     @user.role_id = 4 if @user.new_record?
   end
