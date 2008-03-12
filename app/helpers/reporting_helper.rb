@@ -236,14 +236,14 @@ module ReportingHelper
   # usage : progress_bar(50) display a orange bar, which correspond to 50%
   def progress_bar( percent )
     return '' if (not percent.is_a? Numeric or percent == -1)
-    percent = percent.round
+    percent = (percent * 100)
     case percent
     when percent < 0
       percent = 0
-    when 0..50
-      red, green = 255*percent/50 , 255
-    when 50..100
-      red , green = 255, 255*(100-percent)/50
+    when 0..50.0
+      red, green = (255*percent/50.0).round , 255
+    when 50.0..100.0
+      red , green = 255, (255*(100-percent)/50.0).round
     else
       red, green = 0, 0
     end
