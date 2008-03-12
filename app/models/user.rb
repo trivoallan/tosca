@@ -87,13 +87,12 @@ class User < ActiveRecord::Base
 
 
   # Warning : this method update the current User object
-  def create_person(client)
+  def associate_person(client_id)
+    client = (client_id.blank? ? nil : Client.find(client_id.to_i))
     if client
-      Beneficiaire.create(:user => self, :client => client)
-      self.update_attribute(:client, true)
+      self.beneficiaire = Beneficiaire.new(:user => self, :client => client)
     else
-      Ingenieur.create(:user => self)
-      self.update_attribute(:client, false)
+      self.ingenieur = Ingenieur.new(:user => self)
     end
   end
 

@@ -43,6 +43,10 @@ class Elapsed < ActiveRecord::Base
     save
   end
 
+  def progress(elapsed, commitment, interval)
+    elapsed / (commitment * interval).hours
+  end
+
   # TODO
   def to_s
     '-'
