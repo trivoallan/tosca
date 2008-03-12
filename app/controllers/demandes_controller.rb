@@ -123,7 +123,7 @@ class DemandesController < ApplicationController
       flash[:notice] = _("You have successfully submitted your %s request.") %
         Demande.count(options).ordinalize
       @demande.first_comment.add_attachment(params)
-      @commentaire = @demande.first_comment
+      @comment = @demande.first_comment
       url_attachment = render_to_string(:layout => false,
                                         :template => '/attachment')
       options = { :demande => @demande, :url_request => demande_url(@demande),
