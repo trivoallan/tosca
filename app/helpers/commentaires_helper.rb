@@ -3,9 +3,13 @@
 #####################################################
 module CommentairesHelper
 
-  def display_history(comment)
+  def display_history(comment, rule, contrat)
     out = []
-    name = "<b>#{comment.user.name}</b>"
+    if comment.user
+      name = "<b>#{comment.user.name}</b>"
+    else
+      name = "<b>-</b>"
+    end
 
     ingenieur = comment.ingenieur
     unless ingenieur.nil?
@@ -28,7 +32,7 @@ module CommentairesHelper
     end
     elapsed = comment.elapsed
     unless elapsed.nil? || elapsed == 0
-      elapsed = comment.demande.contrat.rule.formatted_elapsed(elapsed)
+      elapsed = rule.elapsed_formatted(elapsed, contrat)
       out << (_('%s has been spent by %s on this request.') %
               [ "<b>#{elapsed}</b>" , name ])
     end
