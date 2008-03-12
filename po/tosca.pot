@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-02-19 15:48+0100\n"
+"POT-Creation-Date: 2008-03-12 20:51+0100\n"
 "PO-Revision-Date: 2008-01-08 11:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,71 +25,71 @@ msgstr ""
 msgid "'%s' was successfully updated."
 msgstr ""
 
-#: app/controllers/account_controller.rb:76
-msgid "Welcome&nbsp;%s&nbsp;%s"
+#: app/controllers/account_controller.rb:80
+msgid "Welcome&nbsp;%s&nbsp;%s "
 msgstr ""
 
-#: app/controllers/account_controller.rb:83
+#: app/controllers/account_controller.rb:87
 msgid "Connexion failure"
 msgstr ""
 
-#: app/controllers/account_controller.rb:84
+#: app/controllers/account_controller.rb:88
 msgid "your account has been desactivated"
 msgstr ""
 
-#: app/controllers/account_controller.rb:96
+#: app/controllers/account_controller.rb:107
 msgid "You are not allowed to change your identity"
 msgstr ""
 
-#: app/controllers/account_controller.rb:100
+#: app/controllers/account_controller.rb:111
 msgid "Person not found"
 msgstr ""
 
-#: app/controllers/account_controller.rb:168
+#: app/controllers/account_controller.rb:182
 msgid "Edition succeeded"
 msgstr ""
 
-#: app/controllers/account_controller.rb:191
+#: app/controllers/account_controller.rb:213
 msgid "Account successfully created."
 msgstr ""
 
-#: app/controllers/account_controller.rb:223
+#: app/controllers/account_controller.rb:238
 msgid "Full name"
 msgstr ""
 
-#: app/controllers/account_controller.rb:223
+#: app/controllers/account_controller.rb:238
 msgid "Title"
 msgstr ""
 
-#: app/controllers/account_controller.rb:223
+#: app/controllers/account_controller.rb:238
 msgid "Email"
 msgstr ""
 
-#: app/controllers/account_controller.rb:223
+#: app/controllers/account_controller.rb:238
 #: app/views/demandes/_infos_demande.html.erb:51
 msgid "Phone"
 msgstr ""
 
-#: app/controllers/account_controller.rb:224
+#: app/controllers/account_controller.rb:239
 #: app/views/account/login.html.erb:9
 msgid "Login"
 msgstr ""
 
-#: app/controllers/account_controller.rb:224
+#: app/controllers/account_controller.rb:239
 #: app/views/account/login.html.erb:12
 msgid "Password"
 msgstr ""
 
-#: app/controllers/account_controller.rb:224 app/views/machines/all.html.erb:5
+#: app/controllers/account_controller.rb:239 app/views/machines/all.html.erb:5
 #: app/views/machines/index.html.erb:5
 msgid "Informations"
 msgstr ""
 
-#: app/controllers/account_controller.rb:285
+#: app/controllers/account_controller.rb:300
 msgid "Logout"
 msgstr ""
 
-#: app/controllers/account_controller.rb:286 app/helpers/account_helper.rb:21
+#: app/controllers/account_controller.rb:301 app/helpers/account_helper.rb:21
 msgid "My account"
 msgstr ""
 
@@ -363,7 +363,7 @@ msgid "Last update"
 msgstr ""
 
 #: app/controllers/export_controller.rb:144
-#: app/controllers/reporting_controller.rb:552
+#: app/controllers/reporting_controller.rb:548
 #: app/helpers/contributions_helper.rb:10
 #: app/views/contributions/_contributions_info.html.erb:41
 #: app/views/demandes/lists/_requests_table.html.erb:10
@@ -456,11 +456,11 @@ msgstr ""
 msgid "This file does not exist."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:77
+#: app/controllers/contributions_controller.rb:85
 msgid "The contribution has been created successfully."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:97
+#: app/controllers/contributions_controller.rb:105
 msgid "The contribution has been updated successfully."
 msgstr ""
 
@@ -561,72 +561,72 @@ msgstr ""
 msgid "incorrect parameters"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:545
-#: app/controllers/reporting_controller.rb:547
+#: app/controllers/reporting_controller.rb:541
+#: app/controllers/reporting_controller.rb:543
 msgid "Distributed on "
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:545
-#: app/controllers/reporting_controller.rb:547
+#: app/controllers/reporting_controller.rb:541
+#: app/controllers/reporting_controller.rb:543
 #: app/views/reporting/_introduction.html.erb:4
 msgid " months"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:573
+#: app/controllers/reporting_controller.rb:569
 msgid ""
 "No data \n"
 "available"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:583
+#: app/controllers/reporting_controller.rb:579
 #: app/views/reporting/_sommaire.html.erb:7
 #: app/views/reporting/general.html.erb:20
 msgid "Distribution of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:584
+#: app/controllers/reporting_controller.rb:580
 msgid "Distribution of requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:585
-#: app/controllers/reporting_controller.rb:586
+#: app/controllers/reporting_controller.rb:581
+#: app/controllers/reporting_controller.rb:582
 msgid "Severity of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:587
-#: app/controllers/reporting_controller.rb:588
+#: app/controllers/reporting_controller.rb:583
+#: app/controllers/reporting_controller.rb:584
 msgid "Resolution of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:590
+#: app/controllers/reporting_controller.rb:586
 msgid "Cancelled requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:591
+#: app/controllers/reporting_controller.rb:587
 msgid "Evolution of the activity volume"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:593
+#: app/controllers/reporting_controller.rb:589
 msgid "Top 5 of the most discussed requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:594
+#: app/controllers/reporting_controller.rb:590
 msgid "Top 5 of the most discussed software"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:596
+#: app/controllers/reporting_controller.rb:592
 msgid "Processing time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:597
+#: app/controllers/reporting_controller.rb:593
 msgid "Response time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:598
+#: app/controllers/reporting_controller.rb:594
 msgid "Workaround time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:599
+#: app/controllers/reporting_controller.rb:595
 msgid "Correction time"
 msgstr ""
 
@@ -838,20 +838,24 @@ msgstr ""
 msgid "My&nbsp;Offer"
 msgstr ""
 
-#: app/helpers/commentaires_helper.rb:13
+#: app/helpers/commentaires_helper.rb:17
 msgid "This request has been taken into account by %s."
 msgstr ""
 
-#: app/helpers/commentaires_helper.rb:15
+#: app/helpers/commentaires_helper.rb:19
 msgid "This request has been assigned to %s by %s."
 msgstr ""
 
-#: app/helpers/commentaires_helper.rb:21
+#: app/helpers/commentaires_helper.rb:25
 msgid "This request has been changed in %s by %s."
 msgstr ""
 
-#: app/helpers/commentaires_helper.rb:26
+#: app/helpers/commentaires_helper.rb:30
 msgid "This request has been requalified in %s by %s."
+msgstr ""
+
+#: app/helpers/commentaires_helper.rb:36
+msgid "%s has been spent by %s on this request."
 msgstr ""
 
 #: app/helpers/conteneurs_helper.rb:9
@@ -864,15 +868,13 @@ msgid "a contract"
 msgstr ""
 
 #: app/helpers/contributions_helper.rb:10
-#: app/views/demandes/tabs/_history.html.erb:5
+#: app/views/demandes/tabs/_history.html.erb:6
 msgid "Date"
 msgstr ""
 
 #: app/helpers/contributions_helper.rb:10 app/views/binaires/show.html.erb:18
 #: app/views/demandes/_form_binaires.html.erb:5
-#: app/views/demandes/_version.html.erb:4
-#: app/views/demandes/tabs/_cns.html.erb:32
-#: app/views/paquets/_form.html.erb:20
+#: app/views/demandes/_version.html.erb:4 app/views/paquets/_form.html.erb:20
 msgid "Version"
 msgstr ""
 
@@ -923,14 +925,14 @@ msgstr ""
 
 #: app/helpers/demandes_helper.rb:210 app/views/clients/show.html.erb:41
 #: app/views/demandes/_packages.html.erb:6
-#: app/views/demandes/tabs/_cns.html.erb:33
+#: app/views/demandes/tabs/_cns.html.erb:18
 #: app/views/reporting/_comex_cns.html.erb:20
 msgid "Workaround"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:211 app/views/clients/show.html.erb:41
 #: app/views/demandes/_packages.html.erb:7
-#: app/views/demandes/tabs/_cns.html.erb:34
+#: app/views/demandes/tabs/_cns.html.erb:29
 #: app/views/reporting/_comex_cns.html.erb:21
 msgid "Correction"
 msgstr ""
@@ -1606,6 +1608,18 @@ msgid " on "
 msgstr ""
 
 #: app/models/demande.rb:-
+msgid "statut"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Statut|Name"
+msgstr ""
+
+#: app/models/demande.rb:-
+msgid "Statut|Description"
+msgstr ""
+
+#: app/models/demande.rb:-
 msgid "demande"
 msgstr ""
 
@@ -1685,18 +1699,6 @@ msgstr ""
 msgid "Demande|Binaire"
 msgstr ""
 
-#: app/models/demande.rb:-
-msgid "statut"
-msgstr ""
-
-#: app/models/demande.rb:-
-msgid "Statut|Name"
-msgstr ""
-
-#: app/models/demande.rb:-
-msgid "Statut|Description"
-msgstr ""
-
 #: app/models/demande.rb:40
 msgid "You must indicate a %s for your request"
 msgstr ""
@@ -1705,10 +1707,6 @@ msgstr ""
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
-msgstr ""
-
-#: app/models/demande.rb:298
-msgid " of overrun"
 msgstr ""
 
 #: app/models/dependance.rb:-
@@ -2049,27 +2047,27 @@ msgstr ""
 msgid "New|Logiciel"
 msgstr ""
 
-#: app/models/notifier.rb:153
+#: app/models/notifier.rb:151
 msgid "Possible error in your e-mail"
 msgstr ""
 
-#: app/models/notifier.rb:164
+#: app/models/notifier.rb:162
 msgid "Multiple accounts with the same e-mail"
 msgstr ""
 
-#: app/models/notifier.rb:176
+#: app/models/notifier.rb:174
 msgid "Mailing list does not exists"
 msgstr ""
 
-#: app/models/notifier.rb:224
+#: app/models/notifier.rb:222
 msgid "An e-mail informing"
 msgstr ""
 
-#: app/models/notifier.rb:225
+#: app/models/notifier.rb:223
 msgid "with a copy to"
 msgstr ""
 
-#: app/models/notifier.rb:226
+#: app/models/notifier.rb:224
 msgid "was sent."
 msgstr ""
 
@@ -2093,25 +2091,25 @@ msgstr ""
 msgid "Piecejointe|File"
 msgstr ""
 
-#: app/models/rules/component.rb:25
+#: app/models/rules/component.rb:28
 msgid "Illimited offer on all components"
 msgstr ""
 
-#: app/models/rules/component.rb:27
+#: app/models/rules/component.rb:30
 msgid "Illimited offer on a maximum of %d components"
 msgstr ""
 
 #: app/models/rules/credit.rb:12
-msgid "%d ticket spent"
-msgid_plural "%d tickets spent"
+msgid "%d time-credit"
+msgid_plural "%d time-credits"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/models/rules/credit.rb:23
+#: app/models/rules/credit.rb:24
 msgid "Illimited number of tickets of %s"
 msgstr ""
 
-#: app/models/rules/credit.rb:26
+#: app/models/rules/credit.rb:27
 msgid "Up to %d tickets of %s"
 msgstr ""
 
@@ -3476,7 +3474,11 @@ msgstr ""
 msgid "See all contributions"
 msgstr ""
 
-#: app/views/contributions/select.html.erb:10
+#: app/views/contributions/select.html.erb:9
+msgid "RSS"
+msgstr ""
+
+#: app/views/contributions/select.html.erb:11
 msgid "Access to administration interface"
 msgstr ""
 
@@ -3702,29 +3704,29 @@ msgstr ""
 msgid "Update the request %s (administration)"
 msgstr ""
 
-#: app/views/demandes/new.html.erb:4
+#: app/views/demandes/new.html.erb:11
 msgid "Inform the fields below."
 msgstr ""
 
-#: app/views/demandes/new.html.erb:5
+#: app/views/demandes/new.html.erb:12
 msgid "One of our consultants will then contact you in less than one hour."
 msgstr ""
 
-#: app/views/demandes/new.html.erb:12
+#: app/views/demandes/new.html.erb:19
 msgid "Submit this request"
 msgstr ""
 
-#: app/views/demandes/new.html.erb:13
+#: app/views/demandes/new.html.erb:20
 msgid "Submit this request and make an other"
 msgstr ""
 
-#: app/views/demandes/new.html.erb:25
+#: app/views/demandes/new.html.erb:32
 msgid ""
 "Nota : One day work corresponds to the time of opening of the daily service "
 "defined in the OSSA contract %s : %s, that is to say %s hours."
 msgstr ""
 
-#: app/views/demandes/new.html.erb:26
+#: app/views/demandes/new.html.erb:33
 msgid ""
 "The working days are from Monday to Friday, except weekends and public "
 "holidays."
@@ -3743,19 +3745,15 @@ msgstr ""
 msgid "Duration"
 msgstr ""
 
-#: app/views/demandes/tabs/_cns.html.erb:26
+#: app/views/demandes/tabs/_cns.html.erb:6
 msgid "Your request is not subject to a SLA."
 msgstr ""
 
-#: app/views/demandes/tabs/_cns.html.erb:28
-msgid "Your request impacts %s"
+#: app/views/demandes/tabs/_cns.html.erb:10
+msgid "Taken into account"
 msgstr ""
 
-#: app/views/demandes/tabs/_cns.html.erb:28 app/views/socles/show.html.erb:15
-msgid "source package"
-msgstr ""
-
-#: app/views/demandes/tabs/_history.html.erb:7
+#: app/views/demandes/tabs/_history.html.erb:8
 msgid "Change(s)"
 msgstr ""
 
@@ -4081,9 +4079,8 @@ msgstr ""
 msgid "Links"
 msgstr ""
 
-#: app/views/binaires/_form.html.erb:5
-#: app/views/demandes/tabs/_cns.html.erb:31
-#: app/views/logiciels/show.html.erb:58 app/views/logiciels/show.html.erb:61
+#: app/views/binaires/_form.html.erb:5 app/views/logiciels/show.html.erb:58
+#: app/views/logiciels/show.html.erb:61
 msgid "Package"
 msgid_plural "Packages"
 msgstr[0] ""
@@ -4805,6 +4802,10 @@ msgstr ""
 msgid "source"
 msgstr ""
 
+#: app/views/socles/show.html.erb:15
+msgid "source package"
+msgstr ""
+
 #: app/views/socles/edit.html.erb:1
 msgid "Editing a system"
 msgstr ""
@@ -4940,47 +4941,47 @@ msgstr ""
 msgid "Edit this url"
 msgstr ""
 
-#: lib/overrides.rb:194
+#: lib/overrides.rb:195
 msgid "less than a minute"
 msgstr ""
 
-#: lib/overrides.rb:196
+#: lib/overrides.rb:197
 msgid "%d minutes"
 msgstr ""
 
-#: lib/overrides.rb:199 lib/overrides.rb:212
+#: lib/overrides.rb:200 lib/overrides.rb:213
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/overrides.rb:201
+#: lib/overrides.rb:202
 msgid "1 half a working day"
 msgstr ""
 
-#: lib/overrides.rb:201
+#: lib/overrides.rb:202
 msgid "1 half day"
 msgstr ""
 
-#: lib/overrides.rb:205 lib/overrides.rb:210
+#: lib/overrides.rb:206 lib/overrides.rb:211
 msgid "%d working day"
 msgid_plural "%d working days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/overrides.rb:206 lib/overrides.rb:211
+#: lib/overrides.rb:207 lib/overrides.rb:212
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/overrides.rb:216
+#: lib/overrides.rb:217
 msgid "%d working month"
 msgid_plural "%d working months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/overrides.rb:217
+#: lib/overrides.rb:218
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""

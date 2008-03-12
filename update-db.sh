@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-mysql="mysql lstm"
+mysql="mysql tosca"
 
 echo "UPDATE schema_info SET version = 1" | $mysql
 
