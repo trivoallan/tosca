@@ -88,7 +88,10 @@ class User < ActiveRecord::Base
 
   # Warning : this method update the current User object
   def associate_person(client_id)
-    client = (client_id.blank? ? nil : Client.find(client_id.to_i))
+    client = nil
+    begin
+      client = Client.find(client_id.to_i) unless client_id.nil?
+    rescue ActiveRecord::RecordNotFound; end
     if client
       self.beneficiaire = Beneficiaire.new(:user => self, :client => client)
     else
