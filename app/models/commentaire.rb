@@ -104,8 +104,8 @@ class Commentaire < ActiveRecord::Base
     rule = request.contrat.rule
     request.elapsed = Elapsed.new(request, rule) unless request.elapsed
     unless self.statut_id.nil?
-      last_status_comment = request.find_status_comment_before(self)
-      elapsed = rule.compute_elapsed_between(last_status_comment, self)
+      last_status_comment = request.find_status_comment_before(self) || self
+      elapsed = rule.compute_between(last_status_comment, self, request.contrat)
       self.update_attribute :elapsed, elapsed
     end
     request.elapsed.add(self)
