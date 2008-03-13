@@ -62,8 +62,8 @@ class Demande < ActiveRecord::Base
 
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
-    scope = { :find => { :conditions =>
-        [ 'demandes.contrat_id IN (?)', contract_ids ] } }
+    scope = { :conditions =>
+      [ 'demandes.contrat_id IN (?)', contract_ids ] }
     self.scoped_methods << { :find => scope, :count => scope }
   end
 
