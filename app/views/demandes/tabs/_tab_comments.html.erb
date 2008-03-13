@@ -10,7 +10,7 @@
 <%= render :partial => 'demandes/tabs/tab_menu' unless print_mode or @last_commentaire %>
 <div class="demande_tab_content">
 <% commentaires.each do |commentaire| %>
- <% cache("#{commentaire.id}/comments") do %>
+ <% cache("comments/#{commentaire.id}/#{session[:user].kind}") do %>
   <% com_user = commentaire.user %>
   <table class="commentaire">
    <tr class="<%=(commentaire.prive ? 'prive' : 'public')%>">
@@ -28,7 +28,6 @@
         <% if @ingenieur and not print_mode %>
           <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private")) %>
           <% limage = (commentaire.prive ? StaticImage::public : StaticImage::private) %>
-         <%= link_to(limage, change_state_commentaire_path(commentaire), change_state_ho) %>&nbsp;
          <%= link_to(StaticImage::delete, commentaire_path(commentaire), delete_ho) %>&nbsp;
         <% end %>
         <%= '<br />' if display_edit %>

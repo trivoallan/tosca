@@ -30,6 +30,9 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   config.load_paths += %W( #{RAILS_ROOT}/app/sweepers )
 
+  # Distinguish cache from normal pages
+  config.action_controller.page_cache_directory = RAILS_ROOT + "/public/cache/"
+
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug

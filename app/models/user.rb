@@ -144,6 +144,10 @@ class User < ActiveRecord::Base
          :select => 'distinct client_id').collect {|c| c.client_id}
   end
 
+  def kind
+    (client? ? 'recipient' : 'expert')
+  end
+
 
   private
   # Load permission strings

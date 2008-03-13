@@ -21,7 +21,7 @@ class DemandeSweeper < ActionController::Caching::Sweeper
   private
   def expire_cache_for(record)
     # Expire the left panel on a 'comment' action
-    expire_fragment("#{record.id}/true/requests/info")
-    expire_fragment("#{record.id}/false/requests/info")
+    expire_fragment("requests/#{record.id}/info-expert")
+    expire_fragment("requests/#{record.id}/info-recipient")
   end
 end

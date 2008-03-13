@@ -5,7 +5,7 @@
 
 <div class="content">
 
-  <% cache("#{@demande.id}/#{@ingenieur.nil?}/requests/front") do %>
+  <% cache("requests/#{@demande.id}/front-#{session[:user].kind}") do %>
    <h1>
     <% options = edit_demande_path(@demande.id) %>
     <% html_options = { :class => 'no_hover' } %>
