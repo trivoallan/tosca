@@ -170,6 +170,9 @@ table.commentaire td.text {
 	padding-left: 13px;
 	width: 75%;
 }
+table.commentaire td.text p {
+	margin: 6px;
+}
 table.commentaire {
 	border: 1px solid #999999;
 	margin: 0.5em;
@@ -804,6 +807,9 @@ option.severite_6 {
 	margin-top: 0px;
 	border: 1px solid #cfc8cf;
 	z-index: -1;
+}
+.demande_tab_content p {
+	margin: 6px;
 }
 
 .demande_tab_content td {
