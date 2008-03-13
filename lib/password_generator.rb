@@ -12,7 +12,6 @@ module PasswordGenerator
       generated = Digest::SHA1.hexdigest(seed)[0,10]
     end
     self.pwd, self.pwd_confirmation = Array.new(2, generated)
-    pwd
   end
 
 end
