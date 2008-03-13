@@ -7,7 +7,8 @@
 </table>
 
 
-<% cache("bienvenue/#{session[:user].kind}/#{@beneficiaire.client_id if @beneficiaire}") do %>
+<% kind = (user ? user.kind : 'nobody') %>
+<% cache("bienvenue/#{kind}/#{@beneficiaire.client_id if @beneficiaire}") do %>
 <table class="sommaire"><tr><td>
  <div class="sommaire show">
    <h3><%= _('Requests')%></h3>
