@@ -6,7 +6,7 @@ class AddUserRestricted < ActiveRecord::Migration
   def self.up
     add_column :users, :restricted, :boolean, :default => true
     User.find(:all).each { |u|
-      u.update_attribute(:restricted, false) if u.role_id = 1 # Admin
+      u.update_attribute(:restricted, false) if u.role_id == 1 # Admin
     }
   end
 
