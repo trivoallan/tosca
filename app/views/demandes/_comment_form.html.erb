@@ -24,11 +24,12 @@
 <table width="100%" class="commentaire">
  <tr class="public">
   <td class="infos" align="center"><br />
-     <%= avatar(@beneficiaire, @ingenieur) %><br /><br />
+     <%= avatar(@beneficiaire, @ingenieur) %><br />
+     <%= session[:user].name %><br /><br />
     <% if @ingenieur %>
        <label for="commentaire_prive"><%= _("Private ?") %></label>
      <%= check_box(:commentaire, :prive) %><br />
-     <br /><br /><br /><br /><br /><br /><br /><br />
+     <br /><br /><br /><br /><br /><br /><br />
      <% if @demande.contrat.credit? %>
       <%= text_field :commentaire, :elapsed, :size => 1 %>
       <label for="commentaire_elapsed"><%= _('Tickets spent') %></label>

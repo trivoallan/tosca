@@ -72,6 +72,7 @@ class Contribution < ActiveRecord::Base
   # voir lib/overrides.rb pour les dates auto created _on et updated_on
   def cloture_le_formatted
     d = @attributes['cloture_le']
+    return '' unless d
     "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
   end
 
