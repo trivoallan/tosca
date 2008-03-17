@@ -2,7 +2,7 @@
 
 <% form_tag commentaire_path(@commentaire), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
 <%= link_to 'Show', commentaire_path(@commentaire) %> |

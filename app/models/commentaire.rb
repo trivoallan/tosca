@@ -75,7 +75,7 @@ class Commentaire < ActiveRecord::Base
       request.update_attribute :last_comment_id, last_comment.id
     end
 
-    request.elapsed.remove(self)
+    request.elapsed.remove(self) if request.elapsed
     self.piecejointe.destroy unless self.piecejointe.nil?
     true
   end
