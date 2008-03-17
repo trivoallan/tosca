@@ -27,8 +27,8 @@
     </td>
   </tr></table>
   <hr />
-   <div id="contracts">
-     <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 2) %>
+   <div id="contracts" class="long_bloc_scroll">
+     <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 1) %>
    </div>
   <%= observe_client_field %>
   <%= observe_client_list %>
