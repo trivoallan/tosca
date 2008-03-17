@@ -38,7 +38,7 @@ class Demande < ActiveRecord::Base
   # Validation
   validates_presence_of :resume, :contrat, :description, :beneficiaire,
    :statut, :severite, :warn => _("You must indicate a %s for your request")
-  validates_length_of :resume, :within => 5..70
+  validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
 
   validate do |record|
@@ -127,7 +127,7 @@ class Demande < ActiveRecord::Base
   # Description was moved to first comment mainly for performance reason
   def description
     return self.first_comment.corps unless self.first_comment.blank?
-    @first_comment
+    ''
   end
 
   def description=(value)
@@ -208,7 +208,11 @@ class Demande < ActiveRecord::Base
   # It can be used on all request with a line like this in the console :
   # <tt>Demande.find(:all).each{|r| r.reset_elapsed }</tt>
   def reset_elapsed
+    # clean previous existing elapsed
     Elapsed.destroy_all(['elapseds.demande_id = ?', self.id])
+
+    # do not update timestamp for a reset
+    self.class.record_timestamps = false
 
     rule = self.contrat.rule
     self.elapsed = Elapsed.new(self, rule)
@@ -222,7 +226,9 @@ class Demande < ActiveRecord::Base
       self.elapsed.add step
       previous = step
     end
-    self.save
+    self.save!
+    # restore timestamp updater
+    self.class.record_timestamps = true
   end
 
   def respect_contournement(contrat_id)
