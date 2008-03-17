@@ -25,10 +25,10 @@
   <% end %>
   <li><b><%= _("System") %>: </b><%= link_to_socle @demande.socle %></li>
   <li><b><%= _("Software") %>: </b><%= public_link_to_logiciel @demande.logiciel %></li>
-  <li><label for="demande_statut_id"><%=_("Status")%>: </label>
+  <li><b><%=_("Status")%>: </b>
        <%= link_to_box_on_status(@demande) %> <%=help_on_status%></li>
   <li><b><%= _("Type")%>: </b><%= @demande.typedemande.name %></li>
-  <li><label for="demande_severite_id"><%= _("Severity")%>: </label>
+  <li><b><%= _("Severity")%>: </b>
        <%= @demande.severite.name %> <%=help_on_severity%></li>
   <% unless @demande.mail_cc.blank? %>
      <li><b><%= _('CC') %>: </b><%= @demande.mail_cc.gsub(',', ',<br />') %></li>
@@ -37,8 +37,7 @@
     <li><b><%=_("Declared by")%>: </b><%= @demande.submitter.name %></li>
   <% end %>
   <% if @demande.ingenieur %>
-    <li><label for="demande_ingenieur_id"><%=_("Assigned to")%>: </label>
-         <%= @demande.ingenieur.name %> </li>
+    <li><b><%=_("Assigned to")%>: </b> <%= @demande.ingenieur.name %> </li>
   <% end %>
 </ul>
 
