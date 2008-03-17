@@ -9,11 +9,10 @@ body {
 	color: #000;
 	background-color: #eaeafa;
 	font-size: 1em;
-        /* keep DRY : one font-family for all */
+    /* keep DRY : one font-family for all */
 	font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
   	font-size:   12px;
   	line-height: 18px;
-
 }
 
 /****************** structure/ layout ****************/
@@ -81,8 +80,7 @@ h2 {
 }
 p {
 	text-align:left;
-	/* color:#114188; */
-	margin: 0em;
+	margin: 0;
 }
 p img {
 	vertical-align: middle;
@@ -90,7 +88,8 @@ p img {
 
 a, a:active, a:visited, a:focus {
 	text-decoration: none;
-	color: #1A5260;
+	color: #1A5270;
+    font-size: 105%; /*weight: bold;*/
 }
 a:hover {
 	text-decoration: underline;
@@ -102,20 +101,16 @@ a:hover {
 	color: #eee;
 	background-color: #1A5260;
 }
+/* No hover for link with image */
+.no_hover:hover { background: none; }
 
 label {
 	font-weight: bold;
 }
 
-ul {
-	list-style-type: square;
-}
-li {
-	/*color:#114188;*/
-}
-li img {
-	vertical-align: middle;
-}
+ul { list-style-type: square; }
+li { /*color:#114188;*/ }
+li img { vertical-align: middle; }
 caption {
 	font-size: 80%;
 	color: #114188;
@@ -128,23 +123,17 @@ hr {
 	padding: 0em;
 	margin: 0em;
 }
-img {
-	border:0;
-}
+img { border:0;	}
+img:hover { background: none; }
 
-fieldset legend {
-	font-weight: bold;
-}
+fieldset legend { font-weight: bold; }
 
-span.right {
-	float: right;
-}
-span.left {
-	float: left;
-}
-.spacer {
-	clear: both;
-}
+span.right { float: right; }
+span.left {	float: left; }
+.spacer { clear: both; }
+
+input:focus { background-color: #ffffcc; }
+textarea:focus { background-color: #ffffcc; }
 
 
 
@@ -153,12 +142,8 @@ span.left {
   **********/
 table { border-collapse: collapse; }
 /* used in comments */
-table.commentaire tr.public {
-	background: white;
-}
-table.commentaire tr.prive {
-	background: #E6E6E6;
-}
+table.commentaire tr.public { background: white; }
+table.commentaire tr.prive  { background: #E6E6E6; }
 table.commentaire td.infos {
 	vertical-align: top;
 	padding-right: 2px;
@@ -170,9 +155,8 @@ table.commentaire td.text {
 	padding-left: 13px;
 	width: 75%;
 }
-table.commentaire td.text p {
-	margin: 6px;
-}
+table.commentaire td.text p { margin: 6px; }
+
 table.commentaire {
 	border: 1px solid #999999;
 	margin: 0.5em;
@@ -184,12 +168,8 @@ table.main td.error {
 	padding : 150px 0 0 150px;
 }
 
-table.pages td {
-	vertical-align: baseline;
-}
-table.topbox td {
-	vertical-align: top;
-}
+table.pages td { vertical-align: baseline; }
+table.topbox td { vertical-align: top; }
 
 
 /* used in common show views */
@@ -319,7 +299,6 @@ div.login_box, div.form, div.show, div.help, div.info {
 	background-repeat: no-repeat;
 	background-position: left center;
 }
-
 
 
 /************************* listes **********************/
@@ -535,20 +514,10 @@ td.error div.link {
 	text-align: center;
 	margin: .5em 0 0 0;
 }
-/* Prevent from changing background when mouseover
-   often used for <a> tag or other that have modified
-   behaviour when :hover  */
-.no_hover:hover {
-	background: none;
-}
 
-.aligned_picture {
-  vertical-align: middle;
-}
+.aligned_picture { vertical-align: middle; }
+.aligned_picture:hover { background: none; }
 
-.aligned_picture:hover {
-  background: none;
-}
 
 /****************************************************/
 
@@ -612,15 +581,6 @@ table.sommaire tr td {
 }
 
 
-/* comments.css
- * Copyright Linagora SA 2006 - Tous droits réservés.
- */
-
-#commentaire_corps { /* textarea  */
-	width: 100%;
-}
-
-
 /*************************
   * Bloc with scrollbars *
   ************************/
@@ -631,7 +591,7 @@ div.bloc_scroll, div.long_bloc_scroll {
       border: 1px solid #000;
       background-color: #f2fff2;
 }
-div.long_bloc_scroll { height: 40em; }
+div.long_bloc_scroll { height: 31em; }
 div.redbox_scroll {
   width: 100%;
   max-height: 600px;
@@ -1173,7 +1133,6 @@ h1.section {
   color: #000;
   cursor: default;
   background: url("../images/normal-bg.gif");
-  font-family: "trebuchet ms",verdana,tahoma,sans-serif;
 }
 
 .calendar {
@@ -1187,10 +1146,6 @@ h1.section {
   padding: 2px;          /* Make the buttons seem like they're pressing */
   background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000;
   font-weight: bold;
-}
-
-.calendar .nav {
-  font-family: verdana,tahoma,sans-serif;
 }
 
 .calendar .nav div {
@@ -1239,7 +1194,6 @@ h1.section {
 /* The body part -- contains all the days in month. */
 
 .calendar tbody .day { /* Cells <TD> containing month days dates */
-  font-family: verdana,tahoma,sans-serif;
   width: 2em;
   color: #000;
   text-align: right;
@@ -1374,7 +1328,7 @@ h1.section {
 
 .calendar td.time .hour,
 .calendar td.time .minute {
-  font-family: monospace;
+	font-family: monospace;
 }
 
 .calendar td.time .ampm {
