@@ -43,6 +43,19 @@ class Elapsed < ActiveRecord::Base
     save
   end
 
+  def taken_into_account
+    read_attribute(:taken_into_account) || 0
+  end
+
+  def workaround
+    read_attribute(:workaround) || 0
+  end
+
+  def correction
+    read_attribute(:correction) || 0
+  end
+
+
   def progress(elapsed, commitment, interval)
     elapsed / (commitment * interval).hours
   end
