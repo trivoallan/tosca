@@ -84,7 +84,7 @@ class CommentairesController < ApplicationController
   def edit
     @commentaire = Commentaire.find(params[:id])
     return if _not_allowed?
-    @commentaire.errors.clear
+    # @commentaire.errors.clear
     _form
   end
 
@@ -119,7 +119,7 @@ class CommentairesController < ApplicationController
   end
 
   def _not_allowed?
-    if @beneficiaire and @commentaire.identifiant_id != @beneficiaire.identifiant_id
+    if @beneficiaire and @commentaire.user_id != @beneficiaire.user_id
       flash[:warn] = _('You are not allowed to edit this comment')
       redirect_to demande_path(@commentaire.demande)
       return true

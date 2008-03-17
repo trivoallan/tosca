@@ -15,10 +15,10 @@
         <td><%= text_field 'contrat', 'mailinglist'  %></td>
       </tr><tr>
         <th><label for="contrat_ouverture"><%= _('Start') %></label></th>
-        <td><%= datetime_select :contrat, :ouverture %></td>
+        <td><%= date_select :contrat, :ouverture %></td>
       </tr><tr>
         <th><label for="contrat_cloture"><%=_('End')%></label></th>
-        <td><%= datetime_select :contrat, :cloture %></td>
+        <td><%= date_select :contrat, :cloture %></td>
       </tr><tr>
         <th><label for="contrat_veille_technologique"><%= _("Technological survey") %></label></th>
         <td><%= check_box :contrat, :veille_technologique %></td>
