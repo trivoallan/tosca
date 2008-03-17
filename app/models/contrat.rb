@@ -109,7 +109,7 @@ class Contrat < ActiveRecord::Base
   # /!\ DO NOT USE DIRECTLY /!\
   # use : logiciels() call
   has_many :_logiciels, :through => :paquets, :group =>
-    'id', :source => 'logiciel', :order => 'logiciels.name ASC'
+    'logiciels.id', :source => 'logiciel', :order => 'logiciels.name ASC'
 
   # alias_method :to_s, :name
 end
