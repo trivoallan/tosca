@@ -6,11 +6,15 @@
       <% if @ingenieur %>
         <th width='7%'><%= sortable_header(:client_id , :label => _("Client")) %></th>
       <% end %>
-      <th width='10%'><%= sortable_header(:beneficiaire_id, :label => _("Submitter")) %></th>
       <th><%= sortable_header(:description, :label => _("Summary")) %></th>
-      <% if @ingenieur %>
-        <th width='9%'><%= sortable_header(:ingenieur_id, :label => _("Owner")) %></th>
-      <% end %>
+      <th width='10%'>
+       <% if @ingenieur %>
+         <%= sortable_header(:ingenieur_id, :label => _("Owner")) %>
+       <% else %>
+         <%= sortable_header(:beneficiaire_id, :label => _("Submitter")) %>
+       <% end %>
+      </th>
+
       <th width='8%'><%= sortable_header(:updated_on, :label => _("Updated on"), :descend => true) %></th>
       <!--<th colspan="3" width='1%'></th>-->
    </tr>
@@ -22,20 +26,23 @@
    <tr <%= tr_attributes(demande_path(demande)) %>>
         <td><%= demande.id %></td>
         <td><%= demande.logiciels_name %></td>
-        <td><%= demande.typedemandes_name %></td>
-        <td class="demande_<%=demande.statut_id%>"><%= StaticImage::severite(demande) %></td>
+        <td></td>
+        <td nowrap="nowrap"><span class="demande_<%=demande.statut_id%>">&nbsp;<%= demande.typedemandes_name %><%= StaticImage::severite(demande) %></span></td>
        <% if @ingenieur %>
         <td><%= demande.clients_name %></td>
        <% end %>
         <% beneficiaire = demande.beneficiaire if beneficiaire.id != demande.beneficiaire_id %>
-        <td><%= beneficiaire %></td>
         <td class="wrapped"><b><%= link_to_demande demande %></b></td>
-        <% if @ingenieur %>
+        <td>
+         <% if @ingenieur %>
           <% if ingenieur.nil? || (ingenieur.id != demande.ingenieur_id)
                ingenieur = demande.ingenieur
              end %>
-          <td><%= ingenieur ? ingenieur.name : '-' %></td>
-       <% end %>
+          <%= ingenieur ? ingenieur.name : '-' %>
+         <% else %>
+		   <%= beneficiaire %>
+         <% end %>
+        </td>
         <td><span class="date"><%=h demande.updated_on_formatted %></span></td>
    </tr>
    <% end %>
