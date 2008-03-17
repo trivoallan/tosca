@@ -27,6 +27,8 @@ class MoveSupport2contrat < ActiveRecord::Migration
       }
     end
     drop_table :supports
+    # needed 4 sqlite
+    remove_index :clients, :support_id
     remove_column :clients, :support_id
   end
 

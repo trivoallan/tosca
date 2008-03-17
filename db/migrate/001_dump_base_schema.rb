@@ -9,9 +9,9 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "demande_id",      :integer
     end
 
-    add_index "appels", ["beneficiaire_id"], :name => "index_appels_on_beneficiaire_id"
-    add_index "appels", ["ingenieur_id"], :name => "index_appels_on_ingenieur_id"
-    add_index "appels", ["contrat_id"], :name => "index_appels_on_contrat_id"
+    add_index "appels", ["beneficiaire_id"]
+    add_index "appels", ["ingenieur_id"]
+    add_index "appels", ["contrat_id"]
 
     create_table "arches", :force => true do |t|
       t.column "nom", :string, :default => "", :null => false
@@ -26,9 +26,9 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "notifier_cc",          :boolean, :default => true, :null => false
     end
 
-    add_index "beneficiaires", ["client_id"], :name => "beneficiaires_client_id_index"
-    add_index "beneficiaires", ["beneficiaire_id"], :name => "beneficiaires_beneficiaire_id_index"
-    add_index "beneficiaires", ["identifiant_id"], :name => "beneficiaires_identifiant_id_index"
+    add_index "beneficiaires", ["client_id"]
+    add_index "beneficiaires", ["beneficiaire_id"]
+    add_index "beneficiaires", ["identifiant_id"]
 
     create_table "binaires", :force => true do |t|
       t.column "paquet_id",             :integer, :default => 0, :null => false
@@ -40,24 +40,24 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "fichierbinaires_count", :integer
     end
 
-    add_index "binaires", ["paquet_id"], :name => "paquets_binaires_paquet_id_index"
-    add_index "binaires", ["arch_id"], :name => "paquets_binaires_arch_id_index"
+    add_index "binaires", ["paquet_id"]
+    add_index "binaires", ["arch_id"]
 
     create_table "binaires_contributions", :id => false, :force => true do |t|
       t.column "binaire_id",      :integer
       t.column "contribution_id", :integer
     end
 
-    add_index "binaires_contributions", ["binaire_id"], :name => "binaires_correctifs_binaire_id_index"
-    add_index "binaires_contributions", ["contribution_id"], :name => "binaires_correctifs_correctif_id_index"
+    add_index "binaires_contributions", ["binaire_id"]
+    add_index "binaires_contributions", ["contribution_id"]
 
     create_table "binaires_demandes", :id => false, :force => true do |t|
       t.column "binaire_id", :integer
       t.column "demande_id", :integer
     end
 
-    add_index "binaires_demandes", ["binaire_id"], :name => "binaires_demandes_binaire_id_index"
-    add_index "binaires_demandes", ["demande_id"], :name => "binaires_demandes_demande_id_index"
+    add_index "binaires_demandes", ["binaire_id"]
+    add_index "binaires_demandes", ["demande_id"]
 
     create_table "changelogs", :force => true do |t|
       t.column "paquet_id",         :integer,   :default => 0,  :null => false
@@ -66,7 +66,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "text_modification", :text,      :default => "", :null => false
     end
 
-    add_index "changelogs", ["paquet_id"], :name => "changelogs_paquet_id_index"
+    add_index "changelogs", ["paquet_id"]
 
     create_table "clients", :force => true do |t|
       t.column "nom",                 :string,  :default => "",    :null => false
@@ -81,17 +81,16 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "inactive",            :boolean, :default => false, :null => false
     end
 
-    add_index "clients", ["image_id"], :name => "clients_photo_id_index"
-    add_index "clients", ["support_id"], :name => "clients_support_id_index"
-    add_index "clients", ["image_id"], :name => "index_clients_on_image_id"
+    add_index "clients", ["image_id"]
+    add_index "clients", ["support_id"]
 
     create_table "clients_socles", :id => false, :force => true do |t|
       t.column "client_id", :integer
       t.column "socle_id",  :integer
     end
 
-    add_index "clients_socles", ["client_id"], :name => "clients_socles_client_id_index"
-    add_index "clients_socles", ["socle_id"], :name => "clients_socles_socle_id_index"
+    add_index "clients_socles", ["client_id"]
+    add_index "clients_socles", ["socle_id"]
 
     create_table "commentaires", :force => true do |t|
       t.column "demande_id",     :integer,  :default => 0,     :null => false
@@ -106,12 +105,12 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "ingenieur_id",   :integer
     end
 
-    add_index "commentaires", ["demande_id"], :name => "commentaires_demande_id_index"
-    add_index "commentaires", ["piecejointe_id"], :name => "commentaires_piecejointe_id_index"
-    add_index "commentaires", ["identifiant_id"], :name => "commentaires_identifiant_id_index"
-    add_index "commentaires", ["ingenieur_id"], :name => "index_commentaires_on_ingenieur_id"
-    add_index "commentaires", ["created_on"], :name => "index_commentaires_on_created_on"
-    add_index "commentaires", ["updated_on"], :name => "index_commentaires_on_updated_on"
+    add_index "commentaires", ["demande_id"]
+    add_index "commentaires", ["piecejointe_id"]
+    add_index "commentaires", ["identifiant_id"]
+    add_index "commentaires", ["ingenieur_id"]
+    add_index "commentaires", ["created_on"]
+    add_index "commentaires", ["updated_on"]
 
     create_table "communautes", :force => true do |t|
       t.column "nom",         :string,   :default => "", :null => false
@@ -131,16 +130,16 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "niveau",        :integer
     end
 
-    add_index "competences_ingenieurs", ["ingenieur_id"], :name => "competences_ingenieurs_ingenieur_id_index"
-    add_index "competences_ingenieurs", ["competence_id"], :name => "competences_ingenieurs_competence_id_index"
+    add_index "competences_ingenieurs", ["ingenieur_id"]
+    add_index "competences_ingenieurs", ["competence_id"]
 
     create_table "competences_logiciels", :id => false, :force => true do |t|
       t.column "competence_id", :integer, :default => 0, :null => false
       t.column "logiciel_id",   :integer, :default => 0, :null => false
     end
 
-    add_index "competences_logiciels", ["logiciel_id"], :name => "competences_logiciels_logiciel_id_index"
-    add_index "competences_logiciels", ["competence_id"], :name => "competences_logiciels_competence_id_index"
+    add_index "competences_logiciels", ["logiciel_id"]
+    add_index "competences_logiciels", ["competence_id"]
 
     create_table "conteneurs", :force => true do |t|
       t.column "nom", :string, :default => "", :null => false
@@ -157,23 +156,23 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "support",       :boolean,  :default => false
     end
 
-    add_index "contrats", ["client_id"], :name => "contrats_client_id_index"
+    add_index "contrats", ["client_id"]
 
     create_table "contrats_engagements", :id => false, :force => true do |t|
       t.column "contrat_id",    :integer, :default => 0, :null => false
       t.column "engagement_id", :integer, :default => 0, :null => false
     end
 
-    add_index "contrats_engagements", ["contrat_id"], :name => "contrats_engagements_contrat_id_index"
-    add_index "contrats_engagements", ["engagement_id"], :name => "contrats_engagements_engagement_id_index"
+    add_index "contrats_engagements", ["contrat_id"]
+    add_index "contrats_engagements", ["engagement_id"]
 
     create_table "contrats_ingenieurs", :id => false, :force => true do |t|
       t.column "contrat_id",   :integer, :default => 0, :null => false
       t.column "ingenieur_id", :integer, :default => 0, :null => false
     end
 
-    add_index "contrats_ingenieurs", ["ingenieur_id"], :name => "contrats_ingenieurs_ingenieur_id_index"
-    add_index "contrats_ingenieurs", ["contrat_id"], :name => "contrats_ingenieurs_contrat_id_index"
+    add_index "contrats_ingenieurs", ["ingenieur_id"]
+    add_index "contrats_ingenieurs", ["contrat_id"]
 
     create_table "contributions", :force => true do |t|
       t.column "nom",                       :string,   :default => "", :null => false
@@ -193,16 +192,16 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "synthese",                  :text
     end
 
-    add_index "contributions", ["logiciel_id"], :name => "index_contributions_on_logiciel_id"
-    add_index "contributions", ["ingenieur_id"], :name => "index_contributions_on_ingenieur_id"
+    add_index "contributions", ["logiciel_id"]
+    add_index "contributions", ["ingenieur_id"]
 
     create_table "contributions_paquets", :id => false, :force => true do |t|
       t.column "contribution_id", :integer
       t.column "paquet_id",       :integer, :default => 0, :null => false
     end
 
-    add_index "contributions_paquets", ["paquet_id"], :name => "correctifs_paquets_paquet_id_index"
-    add_index "contributions_paquets", ["contribution_id"], :name => "correctifs_paquets_correctif_id_index"
+    add_index "contributions_paquets", ["paquet_id"]
+    add_index "contributions_paquets", ["contribution_id"]
 
     create_table "demandes", :force => true do |t|
       t.column "beneficiaire_id",  :integer,  :default => 0,  :null => false
@@ -225,22 +224,22 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "mantis_id",        :integer
     end
 
-    add_index "demandes", ["contribution_id"], :name => "demandes_correctif_id_index"
-    add_index "demandes", ["beneficiaire_id"], :name => "demandes_beneficiaire_id_index"
-    add_index "demandes", ["ingenieur_id"], :name => "demandes_ingenieur_id_index"
-    add_index "demandes", ["severite_id"], :name => "demandes_severite_id_index"
-    add_index "demandes", ["typedemande_id"], :name => "demandes_typedemande_id_index"
-    add_index "demandes", ["contrat_id"], :name => "index_demandes_on_contrat_id"
-    add_index "demandes", ["created_on"], :name => "index_demandes_on_created_on"
-    add_index "demandes", ["updated_on"], :name => "index_demandes_on_updated_on"
+    add_index "demandes", ["contribution_id"]
+    add_index "demandes", ["beneficiaire_id"]
+    add_index "demandes", ["ingenieur_id"]
+    add_index "demandes", ["severite_id"]
+    add_index "demandes", ["typedemande_id"]
+    add_index "demandes", ["contrat_id"]
+    add_index "demandes", ["created_on"]
+    add_index "demandes", ["updated_on"]
 
     create_table "demandes_paquets", :id => false, :force => true do |t|
       t.column "paquet_id",  :integer, :default => 0, :null => false
       t.column "demande_id", :integer, :default => 0, :null => false
     end
 
-    add_index "demandes_paquets", ["paquet_id"], :name => "demandes_paquets_paquet_id_index"
-    add_index "demandes_paquets", ["demande_id"], :name => "demandes_paquets_demande_id_index"
+    add_index "demandes_paquets", ["paquet_id"]
+    add_index "demandes_paquets", ["demande_id"]
 
     create_table "dependances", :force => true do |t|
       t.column "paquet_id", :integer,               :default => 0,  :null => false
@@ -280,9 +279,9 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "date_delivery",   :datetime
     end
 
-    add_index "documents", ["identifiant_id"], :name => "documents_identifiant_id_index"
-    add_index "documents", ["typedocument_id"], :name => "documents_typedocument_id_index"
-    add_index "documents", ["client_id"], :name => "documents_client_id_index"
+    add_index "documents", ["identifiant_id"]
+    add_index "documents", ["typedocument_id"]
+    add_index "documents", ["client_id"]
 
     create_table "engagements", :force => true do |t|
       t.column "severite_id",    :integer, :default => 0,   :null => false
@@ -291,7 +290,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "typedemande_id", :integer, :default => 0,   :null => false
     end
 
-    add_index "engagements", ["severite_id", "typedemande_id"], :name => "engagements_severite_id_index"
+    add_index "engagements", ["severite_id", "typedemande_id"]
 
     create_table "etapes", :force => true do |t|
       t.column "nom",         :string, :default => "", :null => false
@@ -309,7 +308,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "taille",     :integer
     end
 
-    add_index "fichierbinaires", ["binaire_id"], :name => "fichiers_binaires_paquet_binaire_id_index"
+    add_index "fichierbinaires", ["binaire_id"]
 
     create_table "fichiers", :force => true do |t|
       t.column "paquet_id", :integer, :default => 0,  :null => false
@@ -317,7 +316,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "taille",    :integer, :default => 0,  :null => false
     end
 
-    add_index "fichiers", ["paquet_id"], :name => "fichiers_paquet_id"
+    add_index "fichiers", ["paquet_id"]
 
     create_table "groupes", :force => true do |t|
       t.column "nom", :string, :limit => 80
@@ -337,8 +336,8 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "role_id",      :integer,               :default => 0,     :null => false
     end
 
-    add_index "identifiants", ["image_id"], :name => "index_identifiants_on_image_id"
-    add_index "identifiants", ["email"], :name => "index_identifiants_on_email"
+    add_index "identifiants", ["image_id"]
+    add_index "identifiants", ["email"]
 
     create_table "images", :force => true do |t|
       t.column "image",       :string
@@ -352,7 +351,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "image_id",       :integer
     end
 
-    add_index "ingenieurs", ["identifiant_id"], :name => "ingenieurs_identifiant_id_index"
+    add_index "ingenieurs", ["identifiant_id"]
 
     create_table "jourferies", :force => true do |t|
       t.column "jour", :timestamp, :null => false
@@ -374,9 +373,9 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "image_id",    :integer
     end
 
-    add_index "logiciels", ["referent"], :name => "logiciels_referent"
-    add_index "logiciels", ["license_id"], :name => "logiciels_license_id"
-    add_index "logiciels", ["image_id"], :name => "index_logiciels_on_image_id"
+    add_index "logiciels", ["referent"]
+    add_index "logiciels", ["license_id"]
+    add_index "logiciels", ["image_id"]
 
     create_table "machines", :force => true do |t|
       t.column "socle_id",    :integer, :default => 0, :null => false
@@ -401,9 +400,9 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "logiciel_id",  :integer,                  :null => false
     end
 
-    add_index "news", ["ingenieur_id"], :name => "index_news_on_ingenieur_id"
-    add_index "news", ["logiciel_id"], :name => "index_news_on_logiciel_id"
-    add_index "news", ["subject"], :name => "index_news_on_subject"
+    add_index "news", ["ingenieur_id"]
+    add_index "news", ["logiciel_id"]
+    add_index "news", ["subject"]
 
     create_table "paquets", :force => true do |t|
       t.column "logiciel_id",      :integer,               :default => 0,    :null => false
@@ -422,14 +421,13 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "active",           :boolean,               :default => true
     end
 
-    add_index "paquets", ["nom", "version", "release"], :name => "paquets_nvr"
-    add_index "paquets", ["paquet_id"], :name => "paquets_paquet_id"
-    add_index "paquets", ["logiciel_id"], :name => "paquets_logiciel_id_index"
-    add_index "paquets", ["conteneur_id"], :name => "paquets_conteneur_id_index"
-    add_index "paquets", ["paquet_id"], :name => "paquets_paquet_id_index"
-    add_index "paquets", ["distributeur_id"], :name => "paquets_distributeur_id_index"
-    add_index "paquets", ["mainteneur_id"], :name => "paquets_mainteneur_id_index"
-    add_index "paquets", ["contrat_id"], :name => "paquets_contrat_id_index"
+    add_index "paquets", ["nom", "version", "release"]
+    add_index "paquets", ["paquet_id"]
+    add_index "paquets", ["logiciel_id"]
+    add_index "paquets", ["conteneur_id"]
+    add_index "paquets", ["distributeur_id"]
+    add_index "paquets", ["mainteneur_id"]
+    add_index "paquets", ["contrat_id"]
 
     create_table "permissions", :force => true do |t|
       t.column "name", :string,               :default => "", :null => false
@@ -441,8 +439,8 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "permission_id", :integer, :limit => 10, :default => 0, :null => false
     end
 
-    add_index "permissions_roles", ["permission_id"], :name => "permissions_roles_FKIndex1"
-    add_index "permissions_roles", ["role_id"], :name => "permissions_roles_FKIndex2"
+    add_index "permissions_roles", ["permission_id"]
+    add_index "permissions_roles", ["role_id"]
 
     create_table "appels", :force => true do |t|
       t.column "beneficiaire_id", :integer
@@ -453,9 +451,9 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "demande_id",      :integer
     end
 
-    add_index "appels", ["beneficiaire_id"], :name => "index_appels_on_beneficiaire_id"
-    add_index "appels", ["ingenieur_id"], :name => "index_appels_on_ingenieur_id"
-    add_index "appels", ["contrat_id"], :name => "index_appels_on_contrat_id"
+    add_index "appels", ["beneficiaire_id"]
+    add_index "appels", ["ingenieur_id"]
+    add_index "appels", ["contrat_id"]
 
     create_table "piecejointes", :force => true do |t|
       t.column "file", :string, :default => "", :null => false
@@ -469,7 +467,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "digest_weekly",  :boolean, :default => false
     end
 
-    add_index "preferences", ["identifiant_id"], :name => "index_preferences_on_identifiant_id"
+    add_index "preferences", ["identifiant_id"]
 
     create_table "roles", :force => true do |t|
       t.column "nom",  :string, :limit => 40
@@ -483,7 +481,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "updated_at", :datetime
     end
 
-    add_index "sessions", ["session_id"], :name => "session_id_idx"
+    add_index "sessions", ["session_id"]
 
     create_table "severites", :force => true do |t|
       t.column "nom", :string, :default => "", :null => false
@@ -534,9 +532,8 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "valeur",      :string,  :default => "", :null => false
     end
 
-    add_index "urllogiciels", ["valeur"], :name => "urllogiciels_valeur"
-    add_index "urllogiciels", ["logiciel_id"], :name => "urllogiciels_logiciel_id_index"
-    add_index "urllogiciels", ["typeurl_id"], :name => "urllogiciels_typeurl_id_index"
+    add_index "urllogiciels", ["valeur"]
+    add_index "urllogiciels", ["logiciel_id"]
 
     create_table "urlreversements", :force => true do |t|
       t.column "contribution_id", :integer

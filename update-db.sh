@@ -14,4 +14,4 @@ echo "UPDATE users SET role_id = 2 WHERE role_id = 4" | $mysql
 echo "UPDATE users SET role_id = 4 WHERE role_id = 40" | $mysql
 
 
-echo "Demande.find(:all).each{|r| r.reset_elapsed }; puts" | RAILS_ENV=production ./script/console
+echo "ActiveRecord::Base.record_timestamps = false; Demande.find(:all).each{|r| r.reset_elapsed }; ActiveRecord::Base.record_timestamps = true" | RAILS_ENV=production ./script/console

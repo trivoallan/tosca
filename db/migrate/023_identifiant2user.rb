@@ -18,12 +18,15 @@ class Identifiant2user < ActiveRecord::Migration
     COLUMNS.each { |key, value|
       rename_column(:users, key, value)
     }
-    rename_column :ingenieurs, :identifiant_id, :user_id
-    rename_column :beneficiaires, :identifiant_id, :user_id
-    rename_column :commentaires, :identifiant_id, :user_id
+    tables = [ :ingenieurs, :beneficiaires, :commentaires,
+               :documents, :preferences ]
+    tables.each do |t|
+      remove_index t, :identifiant_id
+      rename_column t, :identifiant_id, :user_id
+      add_index t, :user_id
+    end
+
     rename_column :document_versions, :identifiant_id, :user_id
-    rename_column :documents, :identifiant_id, :user_id
-    rename_column :preferences, :identifiant_id, :user_id
   end
 
   def self.down
