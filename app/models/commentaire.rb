@@ -19,6 +19,7 @@ class Commentaire < ActiveRecord::Base
     end
   end
 
+
   # On détruit l'éventuelle pièce jointe
   # le belongs_to ne permet pas d'appeler :dependent :'(
 
@@ -50,7 +51,7 @@ class Commentaire < ActiveRecord::Base
   before_create :check_status
   def check_status
     request = self.demande
-    if (request.statut_id == self.statut_id)
+    if (request && request.statut_id == self.statut_id)
       request.errors.add_to_base _('The status of this request has already been changed.')
     end
     if (self.statut_id && self.prive)

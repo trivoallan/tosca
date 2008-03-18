@@ -13,43 +13,13 @@ class DemandeTest < Test::Unit::TestCase
   end
 
   def test_presence_of_attributes
-    request = Demande.new
-    assert !request.save
-    assert request.errors.on(:resume)
-
-    #length of the resume : 3..60
-    request.resume = 'gg'
-    assert !request.save
-    request.resume = 'ddfkljmdfklmdjsfl kjfml skfjmlsdkjmflqsdkjfmldmfjqlkdjmflskfjmlqskd fmjskdmfjqmsldkfjm'
-    assert !request.save
-    request.resume ='resume'
-
+    recipient = beneficiaires(:beneficiaire_00001)
+    request = Demande.new(:description => 'description', :resume => 'resume',
+        :beneficiaire => recipient, :submitter => recipient.user,
+        :statut => statuts(:statut_00001), :severite => severites(:severite_00001),
+        :contrat => recipient.user.contrats.first )
     # must have a recipient
-    assert !request.save
-    assert request.errors.on(:beneficiaire)
-    request.beneficiaire = Beneficiaire.find 1
-    request.submitter = Beneficiaire.find(1).user
-    # must have a description
-    assert !request.save
-    assert request.errors.on(:description)
-    request.description = 'hello request'
-    # must have a status and a severity != 0
-    assert !request.save
-    assert request.errors.on(:statut)
-    assert request.errors.on(:severite)
-    request.statut = Statut.find 1
-    request.severite = Severite.find 1
-    # must have a contrat_id
-    assert request.errors.on(:contrat)
-    assert !request.save
-    request.contrat = contrats(:contrat_00001)
-
     assert request.save
-
-    # a request must have 5 letters in its description
-    request.description = 'test'
-    assert !request.save
-    request.description = 'hello request'
 
     # commentaire table must have things now ...
     c = Commentaire.find :first, :conditions => { :demande_id => request.id }

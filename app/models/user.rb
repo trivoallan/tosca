@@ -94,8 +94,10 @@ class User < ActiveRecord::Base
     rescue ActiveRecord::RecordNotFound; end
     if client
       self.beneficiaire = Beneficiaire.new(:user => self, :client => client)
+      self.client = true
     else
       self.ingenieur = Ingenieur.new(:user => self)
+      self.client = false
     end
   end
 

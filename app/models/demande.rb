@@ -40,6 +40,7 @@ class Demande < ActiveRecord::Base
    :statut, :severite, :warn => _("You must indicate a %s for your request")
   validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
+  attr_accessor :description
 
   validate do |record|
     if record.contrat.nil? || record.beneficiaire.nil? ||
@@ -51,7 +52,8 @@ class Demande < ActiveRecord::Base
   # You cannot put it after_save : it invalidates the first comment,
   # If you do that, the first comment will receive the state of the request,
   # not the initial state of the request
-  after_create :update_first_comment
+  after_save :update_first_comment
+  after_create :create_first_comment
 
   # used for ruport. See plugins for more information
   acts_as_reportable
@@ -110,40 +112,46 @@ class Demande < ActiveRecord::Base
     self.beneficiaire_id = recipient.id if recipient
   end
 
+  private
   def update_first_comment
-   c = self.first_comment
-   c.demande_id = self.id
-   c.ingenieur_id = self.ingenieur_id
-   c.severite_id = self.severite_id
-   c.statut_id = self.statut_id
-   c.user_id = self.submitter_id
-   unless c.save
-     c.destroy
-     throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
-   end
-  end
-
-
-  # Description was moved to first comment mainly for performance reason
-  def description
-    return self.first_comment.corps unless self.first_comment.blank?
-    ''
-  end
-
-  def description=(value)
-    return create_first_comment(value) unless self.first_comment
-    if first_comment and first_comment.corps != value
-      first_comment.update_attribute(:corps, value)
+    first_comment = self.first_comment
+    if first_comment and first_comment.corps != self.description
+      first_comment.update_attribute(:corps, self.description)
     end
   end
 
-  private
-  def create_first_comment(value)
-    fields = {:corps => value, :demande => self, :user_id => self.submitter_id}
-    self.first_comment = Commentaire.new(fields)
+
+
+  def create_first_comment
+    comment = Commentaire.new do |c|
+      #We use id's because it's quicker
+      c.corps = self.description
+      c.ingenieur_id = self.ingenieur_id
+      c.demande_id = self.id
+      c.severite_id = self.severite_id
+      c.statut_id = self.statut_id
+      c.user_id = self.beneficiaire.user_id
+    end
+    if comment.save
+      self.first_comment = comment
+      self.save
+    else
+      self.destroy
+      puts comment.errors.inspect
+      throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
+    end
   end
 
+
   public
+  # Description was moved to first comment mainly for
+  # DB performance reason : it's easier to be fast without black hole
+  # like TEXT column
+  def description
+    (first_comment ? first_comment.corps : @description)
+  end
+
+
   # /!\ Dirty Hack Warning /!\
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
