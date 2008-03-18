@@ -1,5 +1,4 @@
 sudo chown -R mloiseleur:niveau3 *
-mkdir -p public/images/reporting public/cache
 rake tmp:clear
 cvs up
 rake makemo

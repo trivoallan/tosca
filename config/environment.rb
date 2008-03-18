@@ -92,6 +92,9 @@ NeededGems = [# Used by Ruport
 # Check and load all gems
 Utils::check_and_install_missing_gems(*NeededGems)
 
+# Check and create used dirs
+paths = [ "#{RAILS_ROOT}/public/cache" ]
+paths.each { |path| Dir.mkdir(path) unless File.exists? path }
 
 # French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'
