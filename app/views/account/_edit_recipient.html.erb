@@ -7,8 +7,7 @@
   </p>
   <hr />
 
-  <div id="contracts">
-    <label for="user_contrats"><%= _('Contracts')%></label><br />
+  <div id="contracts"><%= _('Contracts')%><br />
     <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 2) %>
   </div>
 
