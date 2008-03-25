@@ -56,7 +56,7 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ manager_id ]
-    access = [ [ '^account/(index|signup|new|create|become)', 'Manage account' ],
+    access = [ [ '^account/(signup|new|create|become)', 'Manage account' ],
                [ '^binaires/(?!destroy)', 'Manage binaries' ],
                [ '^clients/(?!destroy)', 'Manage clients' ],
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
@@ -92,7 +92,7 @@ class LoadPermissions < ActiveRecord::Migration
              ]
     add_permission.call(roles, access)
 
-    roles = [ expert_id, customer_id, viewer_id ]
+    roles = [ manager_id, expert_id, customer_id, viewer_id ]
     access = [ [ '^account/index$', 'List accounts' ] ]
     add_permission.call(roles, access)
 
@@ -102,7 +102,7 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ public_id ]
-    access = [ [ '^acces/refuse$', 'Page for denying access' ],
+    access = [ [ '^access/denied$', 'Page for denying access' ],
                [ '^account/(login|logout)$', 'Access to login system' ],
                [ '^bienvenue/(index|about|plan)$', 'Access to home pages' ],
                [ '^contributions/(index|select|show|list|feed)',

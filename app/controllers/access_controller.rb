@@ -1,12 +1,12 @@
 #####################################################
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
-class AccesController < ApplicationController
+class AccessController < ApplicationController
 
-  # Seems silly, but it helps to reduce size of stack :)
-  before_filter :login_required, :except => [:refuse]  
+  # No authentication is required for access denied page
+  skip_before_filter :login_required
 
-  def refuse
+  def denied
   end
 
 end

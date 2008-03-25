@@ -148,7 +148,7 @@ permission_00085:
   info: Hability to comment a request
   id: 85
 permission_00086:
-  name: ^acces/refuse$
+  name: ^access/denied$
   info: Page for denying access
   id: 86
 permission_00064:

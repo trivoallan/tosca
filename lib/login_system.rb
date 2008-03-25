@@ -59,7 +59,7 @@ module LoginSystem
   # example use :
   # a popup window might just close itself for instance
   def access_denied
-    redirect_to refuse_acces_path
+    redirect_to denied_access_path
   end
 
   # store current uri in  the session.
