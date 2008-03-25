@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-12 20:51+0100\n"
-"PO-Revision-Date: 2008-02-19 16:04+0100\n"
+"PO-Revision-Date: 2008-03-24 19:17+0100\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3119,7 +3119,7 @@ msgstr "Gestion des sources"
 #: app/views/bienvenue/admin.html.erb:43
 #: app/views/paquets/_paquets_info.html.erb:15
 msgid "Software list"
-msgstr "Listes des Logiciels"
+msgstr "Liste des Logiciels"
 
 #: app/views/bienvenue/admin.html.erb:44
 msgid "Software categorization"

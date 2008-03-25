@@ -1,4 +1,4 @@
-<% options = { :update => 'content', :method => :get, 
+<% options = { :update => 'content', :method => :get,
     :url => paquets_url,
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
@@ -21,7 +21,7 @@
   > <%= _('Search')%></div>
 <ul class="menu" id="menu_recherche">
   <li><b><%= _('Name')%> </b></li>
-  <li><%= text_field_with_auto_complete :paquet, :name, {}, :skip_style => true %></li>
+  <li><%= text_field :paquet, :name %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">

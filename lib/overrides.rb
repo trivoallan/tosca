@@ -256,6 +256,9 @@ class CGI
 end
 
 
+
+
+
 # This module is overloaded in order to display link_to lazily
 # and efficiently. It display links <b>only</b> if the user
 # has the right access to the ressource.
