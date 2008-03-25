@@ -3,18 +3,15 @@
 <!--[form:binaire]-->
 
 <p><label for="binaire_paquet"><%=_('Package')%></label><br />
-  <%= select('binaire', 'paquet_id',
-	@paquets.collect{|l| [l.to_s, l.id] }
-	)
-  %>
+  <%= select(:binaire, :paquet_id, @paquets) %>
 </p>
 
 <p><label for="binaire_socle"><%=_('System')%></label><br />
-  <%= collection_select(:binaire, :socle_id, @socles, :id, :name) %>
+  <%= select(:binaire, :socle_id, @socles) %>
 </p>
 
 <p><label for="binaire_arch"><%=_('Arch')%></label><br />
-  <%= collection_select(:binaire, :arch_id, @arches, :id, :name) %>
+  <%= select(:binaire, :arch_id, @arches) %>
 </p>
 
 <p><label for="binaire_name"><%=_('Name')%></label><br />
@@ -28,9 +25,8 @@
 <%= file_column_field 'binaire', 'archive'  %></p>
 
 <p><%=_('Contributions')%> :</p>
-<%= hbtm_check_box( @binaire.contributions, @contributions, 
+<%= hbtm_check_box( @binaire.contributions, @contributions,
                     'binaire[contribution_ids]', :size => 3) %>
 
 
 <!--[eoform:binaire]-->
-

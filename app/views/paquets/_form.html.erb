@@ -8,34 +8,34 @@
   <td>
    <table class="show">
      <tr>
-       <td><label for="paquet_logiciel_id"><%= _('Software')%></label></td>
-       <td><%= select("paquet", "logiciel_id", @logiciels.collect{|l| [ l.name, l.id]}) %></td>
+       <th><label for="paquet_logiciel_id"><%= _('Software')%></label></th>
+       <td><%= select(:paquet, :logiciel_id, @logiciels) %></td>
      </tr><tr>
-       <td><label for="paquet_contrat_id"><%= _('Contract')%></label></td>
-       <td><%= select("paquet", "contrat_id", @contrats.collect{|c| [ c.name, c.id]}) %></td>
+       <th><label for="paquet_contrat_id"><%= _('Contract')%></label></th>
+       <td><%= select(:paquet, :contrat_id, @contrats) %></td>
      </tr><tr>
-       <td><label for="paquet_name"><%= _('Name')%></label></td>
+       <th><label for="paquet_name"><%= _('Name')%></label></th>
        <td><%= text_field 'paquet', 'name'  %></td>
      </tr><tr>
-       <td><label for="paquet_version"><%= _('Version')%></label></td>
+       <th><label for="paquet_version"><%= _('Version')%></label></th>
        <td><%= text_field 'paquet', 'version'  %></td>
      </tr><tr>
-       <td><label for="paquet_release"><%= _('Release')%></label></td>
+       <th><label for="paquet_release"><%= _('Release')%></label></th>
        <td><%= text_field 'paquet', 'release'  %></td>
      </tr><tr>
-       <td><label for="paquet_conteneur_id"><%= _('Container')%></label>
-           <%= link_to_new_conteneur %></td>
-       <td><%= select("paquet", "conteneur_id", @conteneurs.collect{|l| [ l.name, l.id]}) %></td>
+       <th><label for="paquet_conteneur_id"><%= _('Container')%></label>
+           <%= link_to_new_conteneur %></th>
+       <td><%= select(:paquet, :conteneur_id, @conteneurs) %></td>
+     </tr>
+       <tr><th colspan="2"><label for="paquet_distributeur_id"><%= _('Distributor')%></label>
+           <%= link_to_new_distributeur %></th></tr>
+       <tr><td colspan="2"><%= select(:paquet, :distributeur_id, @distributeurs) %></td></tr>
+     <tr>
+       <th><label for="paquet_mainteneur_id"><%= _('Package author')%></label>
+           <%= link_to_new_mainteneur %></th>
+       <td><%= select(:paquet, :mainteneur_id, @mainteneurs) %></td>
      </tr><tr>
-       <td><label for="paquet_distributeur_id"><%= _('Distributor')%></label>
-           <%= link_to_new_distributeur %></td>
-       <td><%= select("paquet", "distributeur_id", @distributeurs.collect{|l| [ l.name, l.id]}) %></td>
-     </tr><tr>
-       <td><label for="paquet_mainteneur_id"><%= _('Package author')%></label>
-           <%= link_to_new_mainteneur %></td>
-       <td><%= select("paquet", "mainteneur_id", @mainteneurs.collect{|l| [ l.name, l.id]}) %></td>
-     </tr><tr>
-       <td><label for="paquet_active"><%= _('Supported') + ' ?'%></label></td>
+       <th><label for="paquet_active"><%= _('Supported') + ' ?'%></label></th>
        <td><%= check_box( 'paquet' , 'active')%></td>
      </tr>
    </table>
