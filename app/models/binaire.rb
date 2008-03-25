@@ -15,7 +15,7 @@ class Binaire < ActiveRecord::Base
   # paquet association MUST be loaded by each reference on this model
   def self.set_scope(contrat_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'paquets.contrat_id IN (?)', contrat_ids ] } }
+       [ 'paquets.contrat_id IN (?)', contrat_ids ], :include => [:paquet] } }
   end
 
   # belongs_to :contrat

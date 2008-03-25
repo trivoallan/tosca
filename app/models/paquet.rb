@@ -40,7 +40,7 @@ class Paquet < ActiveRecord::Base
   end
 
   def to_s
-    "#{conteneur.name} " << [ name, version, release ].compact.join('-')
+    [ name, version, release ].compact.join('-') << " (#{conteneur.name})"
   end
 
   def contournement(typedemande_id, severite_id)

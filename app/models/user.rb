@@ -23,8 +23,9 @@ class User < ActiveRecord::Base
 
   validates_length_of :login, :within => 3..20
   validates_length_of :password, :within => 5..40
-  validates_presence_of :login, :password, :role
+  validates_presence_of :login, :password, :role, :email, :name
   validates_uniqueness_of :login
+
 
   attr_accessor :pwd_confirmation
 
@@ -142,8 +143,8 @@ class User < ActiveRecord::Base
 
   # cached, coz' it's used in scopes
   def client_ids
-    @client_ids ||= self.contrats.find(:all, :group => 'client_id',
-         :select => 'distinct client_id').collect {|c| c.client_id}
+    @client_ids ||= self.contrats.find(:all, :select =>
+                      'distinct client_id').collect {|c| c.client_id}
   end
 
   def kind
