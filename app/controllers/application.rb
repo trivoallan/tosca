@@ -113,6 +113,10 @@ private
       if apply
         contrat_ids = user.contrat_ids
         client_ids = user.client_ids
+        if contrat_ids.empty?
+          contrat_ids = [ 0 ]
+          client_ids = [ beneficiaire.client_id ] if beneficiaire
+        end
         SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) }
         SCOPE_CLIENT.each {|m| m.set_scope(client_ids) }
       end
