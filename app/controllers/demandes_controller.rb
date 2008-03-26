@@ -52,7 +52,7 @@ class DemandesController < ApplicationController
   def index
     #special case : direct show
     if params.has_key? 'numero'
-      redirect_to comment_demande_path(params['numero']) and return
+      redirect_to demande_path(params['numero'].to_i) and return
     end
 
     order = params[:sort] || 'updated_on DESC'
@@ -179,7 +179,7 @@ class DemandesController < ApplicationController
     _form @beneficiaire
   end
 
-  def comment
+  def show
     @demande = Demande.find(params[:id], :include => [:first_comment]) unless @demande
     conditions = [ "logiciel_id = ?", @demande.logiciel_id ]
     # TODO c'est pas dry, cf ajax_comments
@@ -202,9 +202,6 @@ class DemandesController < ApplicationController
 
     @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande)
     @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
-
-    # render is mandatory coz' of the alias with 'show'
-    render :action => 'comment'
   end
 
   alias_method :show, :comment
@@ -257,7 +254,7 @@ class DemandesController < ApplicationController
     @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
     if @demande.update_attributes(params[:demande])
       flash[:notice] = _("The request has been updated successfully.")
-      redirect_to comment_demande_path(@demande)
+      redirect_to demande_path(@demande)
     else
       _form @beneficiaire
       render :action => 'edit'
@@ -293,7 +290,7 @@ class DemandesController < ApplicationController
     @demande = Demande.find(demand_id) unless @demande
     @demande.update_attributes!(:contribution_id => contribution_id)
     flash[:notice] = flash_text
-    redirect_to comment_demande_path(demand_id)
+    redirect_to demande_path(demand_id)
   end
 
   def _panel
@@ -333,7 +330,7 @@ class DemandesController < ApplicationController
   end
 
   def redirect_to_comment
-    redirect_to comment_demande_path(@demande)
+    redirect_to demande_path(@demande)
   end
 
   def set_piecejointes(demande_id)
