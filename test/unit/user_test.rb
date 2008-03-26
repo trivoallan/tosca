@@ -28,7 +28,7 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_create_person
-    u = User.new(:role_id => 1, :login => "newu")
+    u = User.new(:role_id => 1, :login => "newu", :email => "foo@bar.com", :name => "foo")
     u.generate_password
     assert u.save
 
@@ -77,7 +77,7 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_disallowed_passwords
-    u = User.new(:role_id => 1)
+    u = User.new(:role_id => 1, :email => "foo@bar.com", :name => "foo")
     u.login = "nobody"
 
     u.pwd = u.pwd_confirmation = "tiny"
@@ -96,7 +96,7 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_bad_logins
-    u = User.new(:role_id => 1)
+    u = User.new(:role_id => 1, :email => "foo@bar.com", :name => "foo")
     u.pwd = u.pwd_confirmation = "a_very_secure_password"
 
     [ "x",  "hugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhug", "" ].each { |p|
@@ -112,7 +112,7 @@ class UserTest < Test::Unit::TestCase
 
 
   def test_login_collision
-    u = User.new
+    u = User.new(:role_id => 1, :email => "foo@bar.com", :name => "foo")
     u.login = "admin"
     u.generate_password
     assert !u.save
