@@ -40,6 +40,10 @@ class Demande < ActiveRecord::Base
    :statut, :severite, :warn => _("You must indicate a %s for your request")
   validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
+
+  # Description was moved to first comment mainly for
+  # DB performance reason : it's easier to be fast without black hole
+  # like TEXT column. See #description for the trick around this field.
   attr_accessor :description
 
   validate do |record|
@@ -79,6 +83,15 @@ class Demande < ActiveRecord::Base
 
   def name
     to_s
+  end
+
+  def fragments
+    [ "requests/#{self.id}/front-expert", # Right side of the show view
+      "requests/#{self.id}/front-recipient",
+      "requests/#{self.id}/info-expert", # Left side of the show view
+      "requests/#{self.id}/info-recipient",
+      "requests/#{self.id}/history" # History Tab
+    ]
   end
 
   def elapsed_formatted

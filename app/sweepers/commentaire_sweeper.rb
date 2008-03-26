@@ -15,15 +15,8 @@ class CommentaireSweeper < ActionController::Caching::Sweeper
 
   private
   def expire_cache_for(record)
-    # Expire the 2 fragments used in 'demandes/comment'
-    # The 'true/false' parameter is used to have 2 caches
-    # depending the user profile (expert or recipient ?).
-    expire_fragment("comments/#{record.id}/expert")
-    expire_fragment("comments/#{record.id}/recipient")
-    # Expire the right side, with the last comment
-    expire_fragment("requests/#{record.demande_id}/front-expert")
-    expire_fragment("requests/#{record.demande_id}/front-recipient")
-    # Fragments for hsitory tab
-    expire_fragment("requests/#{record.demande.id}/history")
+    expire_fragments(record.fragments)
+    # Comments are displayed in request view
+    expire_fragments(record.demande.fragments)
   end
 end

@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :piecejointes
   belongs_to :role
   has_many :documents
+  has_many :commentaires
+
 
   has_one :ingenieur, :dependent => :destroy
   has_one :beneficiaire, :dependent => :destroy

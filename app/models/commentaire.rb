@@ -47,6 +47,11 @@ class Commentaire < ActiveRecord::Base
     attachment.save and self.update_attribute(:piecejointe_id, attachment.id)
   end
 
+  def fragments
+    [ "comments/#{self.id}/expert",
+      "comments/#{self.id}/recipient" ]
+  end
+
   private
   before_create :check_status
   def check_status
