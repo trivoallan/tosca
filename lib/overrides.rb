@@ -257,6 +257,13 @@ end
 
 
 
+class ActionController::Caching::Sweeper
+  # Helper, in order to expire fragments, see ActiveRecord#fragments()
+  # for more info
+  def expire_fragments(fragments)
+    fragments.each { |f| expire_fragement f }
+  end
+end
 
 
 # This module is overloaded in order to display link_to lazily
