@@ -13,7 +13,7 @@ module App
   Name = "TOSCA"
   Version = "0.7"
   Copyright = " ©2008 Linagora SA".gsub(' ','&nbsp;')
-  FilesPath = "#{RAILS_ROOT}/files/"
+  FilesPath = File.join RAILS_ROOT, 'files'
 
   # service
   ServiceName = "OSSA"
