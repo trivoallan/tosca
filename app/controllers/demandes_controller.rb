@@ -19,8 +19,6 @@ class DemandesController < ApplicationController
     conditions << Statut::OPENED
     conditions.first << '(demandes.expected_on > NOW() OR demandes.expected_on IS NULL)'
 
-
-
     # find request where :
     # 1. Engineer : When SLA is running Or SLA is suspended  and ( a question from the recipient is not answered OR he just has been assigned )
     # 2. Recipient : When a question from the engineer is not answered
@@ -118,23 +116,21 @@ class DemandesController < ApplicationController
   def create
     @demande = Demande.new(params[:demande])
     @demande.submitter = session[:user] # it's the current user
+    @demande.statut_id = (@ingenieur ? 2 : 1)
     if @demande.save
       options = { :conditions => [ 'demandes.submitter_id = ?', session[:user].id ]}
       flash[:notice] = _("You have successfully submitted your %s request.") %
         Demande.count(options).ordinalize
       @demande.first_comment.add_attachment(params)
       @comment = @demande.first_comment
+      # needed in order to send properly the email
+      @demande.first_comment.demande.reload
       url_attachment = render_to_string(:layout => false,
                                         :template => '/attachment')
       options = { :demande => @demande, :url_request => demande_url(@demande),
         :name => session[:user].name, :url_attachment => url_attachment }
       Notifier::deliver_request_new(options, flash)
-      similar = params[:similar]
-      if similar and similar[:request] == '1'
-        redirect_to _similar_request
-      else
-        redirect_to demandes_path
-      end
+      redirect_to _similar_request
     else
       _form @beneficiaire
       render :action => 'new'
