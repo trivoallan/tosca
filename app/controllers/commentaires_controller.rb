@@ -69,7 +69,7 @@ class CommentairesController < ApplicationController
     else
       flash[:warn] = _("An error has occured : The comment was not modified")
     end
-    redirect_to comment_demande_path(@commentaire.demande_id)
+    redirect_to demande_path(@commentaire.demande_id)
   end
 
   # We could only create a comment with comment method, from
@@ -108,7 +108,7 @@ class CommentairesController < ApplicationController
     else
       flash[:warn] = _('You cannot delete the first comment')
     end
-    redirect_to comment_demande_path(demande)
+    redirect_to demande_path(demande)
   end
 
   private

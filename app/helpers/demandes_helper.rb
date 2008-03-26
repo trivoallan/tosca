@@ -126,7 +126,7 @@ module DemandesHelper
 
   # Link to access a ticket
   def link_to_comment(ar)
-      link_to StaticImage::view, comment_demande_path(ar), { :class => 'nobackground' }
+      link_to StaticImage::view, demande_path(ar), { :class => 'nobackground' }
   end
 
   #usage : link_to_help('state') to link to the help page

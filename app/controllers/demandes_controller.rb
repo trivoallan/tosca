@@ -204,8 +204,6 @@ class DemandesController < ApplicationController
     @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
   end
 
-  alias_method :show, :comment
-
   def ajax_description
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande = Demande.find(params[:id]) unless @demande
