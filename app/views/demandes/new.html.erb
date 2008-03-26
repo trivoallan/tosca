@@ -13,8 +13,8 @@
 <p>&nbsp;</p>
 
 
-<% form_tag( demandes_path, {:multipart => true, :id => 'demande_form',
-             :name => 'demande_form' }) do %>
+<% form_tag( demandes_path, {:multipart => true, :id => 'main_form',
+             :name => 'main_form' }) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _("Submit this request") %>&nbsp;
   <%= submit_tag(_("Submit this request and make an other"),

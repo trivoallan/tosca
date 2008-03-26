@@ -2,7 +2,7 @@
 
 
 <% form_tag(demande_path(@demande.id), {:method => :put, :multipart => true,
-              :id => 'demande_form', :name => 'demande_form' }) do %>
+              :id => 'main_form', :name => 'main_form' }) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _("Update") %>
 <% end %>
