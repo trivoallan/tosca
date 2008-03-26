@@ -35,11 +35,11 @@
 
 <p><label for="contribution_reverse"><%=_('Submitted on')%></label>
 <%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('reverse_le');"%></p>
-<div id='reverse_le' <%unless @contribution.reverse%>style="display: none;"<%end%>><%= datetime_select 'contribution', 'reverse_le'  %></div>
+<div id='reverse_le' <%unless @contribution.reverse%>style="display: none;"<%end%>><%= date_select 'contribution', 'reverse_le', :start_year => 1995 %></div>
 
 <p><label for="contribution_clos"><%=_('Closed on')%></label>
 <%= check_box 'contribution', 'clos', :onchange => "Element.toggle('cloture_le');"%></p>
-<div id='cloture_le' <%unless @contribution.clos%>style="display: none;"<%end%>><%= datetime_select 'contribution', 'cloture_le'  %></div>
+<div id='cloture_le' <%unless @contribution.clos%>style="display: none;"<%end%>><%= date_select 'contribution', 'cloture_le', :start_year => 1995 %></div>
 
 </td><td>
 

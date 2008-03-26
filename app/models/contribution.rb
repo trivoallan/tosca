@@ -65,7 +65,7 @@ class Contribution < ActiveRecord::Base
   def reverse_le_formatted
     d = @attributes['reverse_le']
     return '' unless d
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
   end
 
   # date de cloture formattée
@@ -73,7 +73,7 @@ class Contribution < ActiveRecord::Base
   def cloture_le_formatted
     d = @attributes['cloture_le']
     return '' unless d
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}"
+    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
   end
 
   # délai (en secondes) entre la déclaration et l'acceptation
