@@ -18,8 +18,10 @@ require File.join(File.dirname(__FILE__), 'boot')
 # Needed for checking missing files
 require 'utils'
 
-Utils.check_files('config/database.yml', 'Your database is not configured')
-Utils.check_files('lib/config.rb', 'Your mail server is not configured')
+path = File.join RAILS_ROOT, 'config', 'database.yml'
+Utils.check_files(path, 'Your database is not configured')
+path = File.join RAILS_ROOT, 'lib', 'config.rb'
+Utils.check_files(path, 'Your mail server is not configured')
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
@@ -93,8 +95,8 @@ NeededGems = [ # Used by Ruport
 Utils::check_and_install_missing_gems(*NeededGems)
 
 # Check and create used dirs
-paths = [ "#{RAILS_ROOT}/public/cache" ]
-paths.each { |path| Dir.mkdir(path) unless File.exists? path }
+path = File.join RAILS_ROOT, 'public', 'cache'
+Dir.mkdir(path) unless File.exists? path
 
 # French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'
@@ -104,8 +106,8 @@ ENV['TZ'] = 'Europe/Paris'
 Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
 
 # Boot Check
-unless File.exists?(File.expand_path("locale/fr/LC_MESSAGES/tosca.mo",
-                                     RAILS_ROOT))
+path = File.join RAILS_ROOT, "locale", "fr", "LC_MESSAGES", "tosca.mo"
+unless File.exists? path
   puts "***********************"
   puts "Missing traducted files. I am generating it for you with "
   puts "$ rake makemo"
@@ -133,10 +135,12 @@ end
 # Preload of controllers/models during boot.
 if RAILS_ENV == 'production'
   require_dependency 'application'
-  Dir.foreach( "#{RAILS_ROOT}/app/models" ) { |f|
+  path = File.join RAILS_ROOT, 'app', 'models'
+  Dir.foreach( path ) { |f|
     silence_warnings{require_dependency f
     } if f =~ /\.rb$/}
-  Dir.foreach( "#{RAILS_ROOT}/app/controllers" ) { |f|
+  path = File.join RAILS_ROOT, 'app', 'controllers'
+  Dir.foreach( path ) { |f|
     silence_warnings{require_dependency f
     } if f =~ /\.rb$/}
 end
