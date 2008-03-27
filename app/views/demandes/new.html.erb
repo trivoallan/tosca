@@ -1,12 +1,5 @@
 <h1><%= _("Submit a request") %> <%= StaticImage::spinner %></h1>
 
-<h1>TODO : un seul bouton, on passe en mode toujours en faire une
-  autre.</h1>
-<h1>Lors des autres dépots, afficher les liens de consultations, avec
-  un target=_blank (nouvelle fenetre) </h1>
-
-
-
 <p>&nbsp;</p>
 <p><%= _("Inform the fields below.") %></p>
 <p><%= _("One of our consultants will then contact you in less than one hour.") %></p>
@@ -16,9 +9,7 @@
 <% form_tag( demandes_path, {:multipart => true, :id => 'main_form',
              :name => 'main_form' }) do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag _("Submit this request") %>&nbsp;
-  <%= submit_tag(_("Submit this request and make an other"),
-                 'onclick' => 'this.form.similar_request.value=1;this.form.submit();') %>
+  <%= submit_tag _("Submit this request") %>
 <% end %>
 
 <p>&nbsp;</p>

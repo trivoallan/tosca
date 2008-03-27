@@ -5,11 +5,6 @@
      when 'new', 'create' : true
      else false
    end %>
-
-<% if new_request %>
-  <%= hidden_field(:demande, :statut_id) %>
-  <%= hidden_field(:similar, :request) %>
-<% end %>
 <table>
  <tr>
   <td valign="top"><div class="show">

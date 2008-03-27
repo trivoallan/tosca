@@ -71,6 +71,12 @@ class Test::Unit::TestCase
   end
 
 
+  def check_filter(attribute, value, collection)
+    xhr :get, :index, :filters => { attribute => value }
+    assert_response :success
+    collection.each { |elt| assert_equal elt[attribute], value }
+  end
+
   # Check the validity of the ids with the klass
   # call it like this : check_ids(@client.contrat_ids, Contrat)
   def check_ids(ids, klass)
