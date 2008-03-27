@@ -1,133 +1,107 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'demandes_controller'
 
 # Re-raise errors caught by the controller.
 # class DemandesController; def rescue_action(e) raise e end; end
-class DemandesControllerTest < Test::Unit::TestCase
+class DemandesControllerTest < ActionController::TestCase
 
-  fixtures :demandes, :commentaires, :demandes_paquets,
+  fixtures :demandes, :commentaires, :users, :contrats_users,
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
     :permissions_roles, :contrats, :contrats_engagements, :engagements,
-    :contrats_ingenieurs, :users, :piecejointes,
-    :binaires, :binaires_demandes, :typedemandes
+    :piecejointes, :typedemandes
 
 
   def setup
-    @controller = DemandesController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-
     login 'admin', 'admin'
-    @first_id = Demande.find(:first).id
   end
+=begin
+  def test_should_get_index
+    %w(viewer customer expert manager admin).each { |l|
+      login l, l
 
-  def test_index
-    get :index
-    assert_response :success
-    assert_template 'index'
-    assert_not_nil assigns(:demandes)
+      get :index
+      assert_response :success
+      assert_not_nil assigns(:demandes)
 
-    #test of the ajax filters :
-    test_filter :severite_id, 2
-    test_filter :statut_id, 4
-    test_filter :typedemande_id, 1
-
-    get :index, :filters => { :client_id => 1 }
-    assert_response :success
-    # client_8 is deactivated
-    assert !(assigns(:clients).include?(Client.find(8)))
-    assigns(:demandes).each do |d|
-      request = Demande.find d.id
-      assert_equal request.client.id, 1
-    end
-  end
-
-  def test_show
-    get :show, :id => @first_id
-
-    assert_response :success
-    assert_template 'comment'
-
-    assert_not_nil assigns(:demande)
-  end
-
-  def test_new
-    get :new
-
-    assert_response :success
-    assert_template 'new'
-
-    # Client9 has one recipient activated and one not
-    assert assigns(:clients).include?(Client.find(9))
-    # Client8 is fully deactivated
-    assert !assigns(:clients).include?(Client.find(8))
-    assert_not_nil assigns(:demande)
-  end
-
-  def test_create
-    num_demandes = Demande.count
-
-    post :create, :demande => {
-      :resume => 'le résumé',
-      :description => 'une description',
-      :beneficiaire_id => 1,
-      :statut_id => 1,
-      :severite_id => 1,
-      :contrat_id => 1
-    }
-
-    assert_response :redirect
-    assert_redirected_to :action => 'index'
-
-    assert_equal num_demandes + 1, Demande.count
-  end
-
-  def test_edit
-    get :edit, :id => @first_id
-
-    assert_response :success
-    assert_template 'edit'
-
-    assert_not_nil assigns(:demande)
-    assert assigns(:demande).valid?
-  end
-
-  def test_update
-    put :update, :id => @first_id, :demande => {
-      :description => 'une description'
-    }
-    assert_response :redirect
-    assert_redirected_to :action => 'comment', :id => '1-Patch-Binaire'
-  end
-
-  def test_destroy
-    assert_nothing_raised {
-      Demande.find(@first_id)
-    }
-
-    post :destroy, :id => @first_id
-    assert_response :redirect
-    assert_redirected_to :action => 'index'
-
-    assert_raise(ActiveRecord::RecordNotFound) {
-      Demande.find(@first_id)
+      check_ajax_filter :severite_id, 2, :demandes
+      check_ajax_filter :statut_id, 4, :demandes
+      check_ajax_filter :typedemande_id, 1, :demandes
     }
   end
 
-  def test_print
-    get :print, :id => 1
-    assert_response :success
-    assert_template 'print'
-    assert_equal assigns(:demande), Demande.find(1)
+  def test_should_show_request
+    login 'admin', 'admin'
+    Demande.find(:all).each { |r|
+      get :show, :id => r.id
+      assert_response :success
+    }
+
+    login 'customer', 'customer'
+    u = User.find_by_login('customer')
+    Demande.find_all_by_beneficiaire_id(u.beneficiaire.id).each { |r|
+      get :show, :id => r.id
+      assert_response :success
+    }
+  end
+=end
+  def test_should_be_able_to_create
+    %w(admin manager expert customer).each {|l|
+      login l, l
+      get :new
+
+      assert_response :success
+      assert_template 'new'
+      u = session[:user]
+
+      form = select_form 'main_form'
+      # Those values are different from the default one, despite what it seems
+      fields = { :typedemande_id => 1, :severite_id => 1,
+        :contrat_id => u.contrats.first.id, :beneficiaire_id => 1, :ingenieur_id => 3 }
+
+      form.demande.resume = "there is a prob with foo"
+      form.demande.description = "it's a bar"
+      fields.each { |key, value| p key; form.demande.send(key).value = value }
+      form.submit
+
+      assert_response :redirect
+      assert_template 'attachment'
+      assert assigns(:demande).errors.empty?
+    }
+  end
+=begin
+  def test_should_be_able_to_update
+    login 'admin', 'admin'
+    Demande.find(:all).each { |r|
+      get :edit, :id => r.id
+
+      assert_response :success
+      assert_template 'edit'
+
+      assert_not_nil assigns(:demande)
+      assert assigns(:demande).valid?
+
+      form = select_form 'main_form'
+      form.demande.resume = "foo bar"
+      form.submit
+
+      assert_response :redirect
+      assert_redirected_to :action => 'show', :controller => 'demandes'
+      assert assigns(:demande).errors.empty?
+    }
   end
 
-  private
-  # test the ajax filters
-  # example : test_filter :statut_id, 2
-  def test_filter attribute, value
-    xhr :get, :index, :filters => { attribute => value }
-    assert_response :success
-    assigns(:demandes).each { |d| assert_equal d[attribute], value }
+
+  def test_should_be_able_to_print
+    %w(admin manager expert customer viewer).each {|l|
+      login l, l
+      Demande.find(:all).each {|r|
+        get :print, :id => r.id
+        assert_response :success
+        assert_template 'print'
+        assert assigns(:demande).errors.empty?
+      }
+    }
   end
+=end
+
 end

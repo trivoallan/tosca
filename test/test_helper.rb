@@ -71,10 +71,14 @@ class Test::Unit::TestCase
   end
 
 
-  def check_filter(attribute, value, collection)
+  # Call it like this :
+  #   check_ajax_filter :severite_id, 2, :demandes
+  # For testing an ajax filters for "severite_id" field on
+  # assigns(:demandes) collection, with a value of 2 for each of'em
+  def check_ajax_filter(attribute, value, collection_index)
     xhr :get, :index, :filters => { attribute => value }
     assert_response :success
-    collection.each { |elt| assert_equal elt[attribute], value }
+    assigns(collection_index).each { |elt| assert_equal elt[attribute], value }
   end
 
   # Check the validity of the ids with the klass

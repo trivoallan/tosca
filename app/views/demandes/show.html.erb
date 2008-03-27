@@ -1,0 +1,33 @@
+<% ############ infos demandes #########################
+   # require : @demande, @contributions, @count
+   #           @users_ingenieurs
+%>
+
+<div class="content">
+  <% cache("requests/#{@demande.id}/front-#{session[:user].kind}") do %>
+   <h1>
+    <% options = edit_demande_path(@demande.id) %>
+    <% html_options = { :class => 'no_hover' } %>
+    <%= link_to(StaticImage::edit, options, html_options) %>
+    <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
+    <% options = print_demande_path(@demande.id) %>
+    <%= link_to(StaticImage::print, options, html_options) %>
+   </h1>
+
+   <%= render :partial => 'demandes/tabs/tab_comments' %>
+
+   <div>
+    <% action = comment_commentaire_path(@demande) %>
+    <% form_tag(action, :method => :post, :multipart => true) do %>
+      <%= render :partial => 'comment_form' %>
+      <p>&nbsp;</p>
+    <% end %>
+   </div>
+
+   <%# see tab_menu for ajax links %>
+   <div class="demande_tab" id="demande_tab">
+    <%= render :partial => 'demandes/tabs/tab_description' %>
+   </div>
+  <% end %>
+
+</div>

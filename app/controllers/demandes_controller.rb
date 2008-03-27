@@ -369,14 +369,12 @@ class DemandesController < ApplicationController
   # Used during create.
   # It _just_ returns a correct path.
   def _similar_request
-    options = { :demande => {
-        :contrat_id => @demande.contrat_id,
-        :beneficiaire_id => @demande.beneficiaire_id,
-        :typedemande_id => @demande.typedemande_id,
-        :severite_id => @demande.severite_id,
-        :socle_id => @demande.socle_id,
-        :logiciel_id => @demande.logiciel_id } }
-    options[:demande][:ingenieur_id] = @demande.ingenieur_id if @ingenieur
+    options = { :demande => Hash.new }
+    request = options[:demande]
+    Demande.remanent_fields.each { |f|
+      value = @demande.send(f)
+      request[f] = value unless value.blank? || value == 0
+    }
     new_demande_path(options)
   end
 

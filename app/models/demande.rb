@@ -81,10 +81,18 @@ class Demande < ActiveRecord::Base
     "#{typedemande.name} (#{severite.name}) : #{resume}"
   end
 
+  # Remanent fields are those which persists after the first submit
+  # It /!\ MUST /!^ be an _id field. See DemandesController#create.
+  def self.remanent_fields
+    [ :contrat_id, :beneficiaire_id, :typedemande_id, :severite_id,
+      :socle_id, :logiciel_id, :ingenieur_id ]
+  end
+
   def name
     to_s
   end
 
+  # Used in the cache/sweeper system
   def fragments
     [ "requests/#{self.id}/front-expert", # Right side of the show view
       "requests/#{self.id}/front-recipient",
