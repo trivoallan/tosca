@@ -29,7 +29,8 @@ class ContributionsController < ApplicationController
   # TODO : c'est pas très rails tout ça (mais c'est moins lent)
   def select
     options = { :conditions =>
-      'logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)' }
+      'logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)',
+      :order => 'logiciels.name ASC' }
     @logiciels = Logiciel.find(:all, options)
   end
 
