@@ -9,10 +9,11 @@ xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
     for contribution in @contributions
       xml.item do
         xml.pubDate contribution.created_on.rfc822
-        xml.title html2text(contribution.synthese + " : #{contribution.etatreversement.name}")
+	 xml.title html2text("[#{contribution.logiciel.nom}] #{contribution.synthese}")
         xml.link contribution_url(contribution)
         xml.guid contribution.id
         xml.description contribution.description_fonctionnelle
+	xml.creator contribution.ingenieur.nom
       end
     end
   end
