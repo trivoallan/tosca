@@ -119,7 +119,7 @@ module Utils
   def self.check_and_install_missing_gems(*gems)
     gems.each do |g|
       begin
-        gem g[0], "=#{g[1]}"
+        gem g[0], ">=#{g[1]}"
         g[2..-1].each { |r| require r }
       rescue Exception => e
         puts e.message
