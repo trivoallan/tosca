@@ -38,6 +38,23 @@ class String
 
 end
 
+
+if defined? Mongrel::DirHandler
+  module Mongrel
+    class DirHandler
+      @@expires = (Time.now + 10.years).rfc2822
+      def send_file_with_expires(req_path, request, response, header_only=false)
+        response.header['Cache-Control'] = 'max-age=315360000'
+        response.header['Expires'] = @@expires
+        send_file_without_expires(req_path, request, response, header_only)
+      end
+      alias_method :send_file_without_expires, :send_file
+      alias_method :send_file, :send_file_with_expires
+    end
+  end
+end
+
+
 # View Optimization : no '\n'
 ActionView::Base.erb_trim_mode = '>'
 
