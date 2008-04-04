@@ -3,7 +3,7 @@ Welcome aboard
 In Short
 ========
 
-$ sudo urpmi ruby-devel mysql-devel libMagick-devel oniguruma-devel mysql-ruby
+$ sudo urpmi ruby-devel mysql-devel libMagick-devel libonig-devel ruby-mysql
 $ sudo gem install rails rmagick mysql gettext ruport ruport-util acts_as_reportable ultraviolet rubyzip -y
 $ rake db:migrate
 $ rake makemo
