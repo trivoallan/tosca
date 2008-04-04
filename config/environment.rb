@@ -77,13 +77,13 @@ require 'overrides'
 # External libs
 # Currently use this format : [ gem_name, gem_version, *needed_requires ]
 NeededGems = [ # Used by Ruport
-    [ 'acts_as_reportable', '1.0.0' ],
+    [ 'acts_as_reportable', '1.0.1' ],
     # Used to i18n and l10n
     [ 'gettext', '1.90.0', 'gettext_localize', 'gettext_localize_rails' ],
     # Used to generate Ods
     [ 'ruport', '1.4.0', 'ruport' ],
     # Used by Ruport
-    [ 'ruport-util', '0.12', 'ruport/util' ],
+    [ 'ruport-util', '0.13', 'ruport/util' ],
     # Used to generate graphs of activity report
     [ 'rmagick', '1.15.10' ],
     # Used to manipulate OpenDocument
