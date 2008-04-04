@@ -50,7 +50,7 @@ class DemandesController < ApplicationController
   def index
     #special case : direct show
     if params.has_key? 'numero'
-      redirect_to demande_path(params['numero'].to_i) and return
+      redirect_to demande_path(params['numero'].first.to_i) and return
     end
 
     order = params[:sort] || 'updated_on DESC'
