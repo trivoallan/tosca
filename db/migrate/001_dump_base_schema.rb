@@ -70,9 +70,9 @@ class DumpBaseSchema < ActiveRecord::Migration
 
     create_table "clients", :force => true do |t|
       t.column "nom",                 :string,  :default => "",    :null => false
-      t.column "description",         :text,    :default => "",    :null => false
+      t.column "description",         :text,    :default => "",    :null => true
       t.column "mailingliste",        :string,  :default => "",    :null => false
-      t.column "adresse",             :text,    :default => "",    :null => false
+      t.column "adresse",             :text,    :default => "",    :null => true
       t.column "image_id",            :integer
       t.column "support_id",          :integer
       t.column "code_acces",          :string,  :default => "",    :null => false
@@ -330,7 +330,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "email",        :string,                :default => "",    :null => false
       t.column "telephone",    :string,                :default => "",    :null => false
       t.column "image_id",     :integer
-      t.column "informations", :text,                  :default => "",    :null => false
+      t.column "informations", :text,                  :default => "",    :null => true
       t.column "client",       :boolean,               :default => false, :null => false
       t.column "inactive",     :boolean,               :default => false, :null => false
       t.column "role_id",      :integer,               :default => 0,     :null => false
