@@ -1,5 +1,5 @@
----
-contrat_00003:
+--- 
+contrat_00003: 
   heure_ouverture: 8
   astreinte: false
   rule_id: 2
@@ -13,8 +13,8 @@ contrat_00003:
   rule_type: Rules::Credit
   newsletter: true
   cloture: 2012-12-24 00:00:00 +01:00
-  paquets_count:
-contrat_00004:
+  paquets_count: 
+contrat_00004: 
   heure_ouverture: 9
   astreinte: false
   rule_id: 2
@@ -28,8 +28,8 @@ contrat_00004:
   rule_type: Rules::Component
   newsletter: false
   cloture: 2012-12-25 10:00:00 +01:00
-  paquets_count:
-contrat_00001:
+  paquets_count: 
+contrat_00001: 
   heure_ouverture: 9
   astreinte: false
   rule_id: 1
@@ -43,8 +43,8 @@ contrat_00001:
   rule_type: Rules::Component
   newsletter: true
   cloture: 2012-12-24 00:00:00 +01:00
-  paquets_count:
-contrat_00002:
+  paquets_count: 
+contrat_00002: 
   heure_ouverture: 7
   astreinte: false
   rule_id: 1
@@ -58,4 +58,4 @@ contrat_00002:
   rule_type: Rules::Credit
   newsletter: true
   cloture: 2012-12-24 00:00:00 +01:00
-  paquets_count:
+  paquets_count: 

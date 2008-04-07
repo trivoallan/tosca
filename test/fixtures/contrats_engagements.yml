@@ -1,28 +1,28 @@
 --- 
 join_00002: 
-  engagement_id: "6"
-  contrat_id: "1"
-join_00003: 
-  engagement_id: "3"
-  contrat_id: "4"
-join_00004: 
   engagement_id: "7"
   contrat_id: "1"
-join_00005: 
+join_00003: 
   engagement_id: "1"
   contrat_id: "1"
-join_00006: 
+join_00004: 
   engagement_id: "3"
   contrat_id: "1"
-join_00007: 
+join_00005: 
   engagement_id: "2"
   contrat_id: "1"
-join_00008: 
+join_00006: 
   engagement_id: "1"
   contrat_id: "4"
-join_00000: 
+join_00007: 
   engagement_id: "5"
   contrat_id: "1"
-join_00001: 
+join_00008: 
   engagement_id: "2"
+  contrat_id: "4"
+join_00000: 
+  engagement_id: "6"
+  contrat_id: "1"
+join_00001: 
+  engagement_id: "3"
   contrat_id: "4"

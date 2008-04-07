@@ -1,16 +1,15 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-elapsed_00001:
-  id: 1
+--- 
+elapsed_00003: 
+  until_now: 0
   demande_id: 1
+  id: 3
   taken_into_account: 0
-  workaround: 0
-  correction: 0
-  until_now: 0
-elapsed_00002:
-  id: 2
+  workaround: 
+  correction: 
+elapsed_00004: 
+  until_now: 2
   demande_id: 2
-  taken_into_account: 0
-  workaround: 0
-  correction: 0
-  until_now: 0
+  id: 4
+  taken_into_account: 1
+  workaround: 
+  correction: 

@@ -1,37 +1,40 @@
----
-commentaire_00001:
+--- 
+commentaire_00001: 
   created_on: 2008-01-01 00:00:01 +01:00
   corps: "Dans le document joint, le retrait du fond de page fonctionne bien mais apr\xC3\xA8s sauvegarde et r\xC3\xA9ouverture du fichier il appara\xC3\xAEt \xC3\xA0 nouveau. Cordialement.\r\n"
-  updated_on: 2008-01-01 00:00:01 +01:00
+  updated_on: 2008-04-07 11:18:02 +02:00
   prive: false
   ingenieur_id: 1
   demande_id: 1
   id: 1
   severite_id: 3
+  elapsed: 0
   statut_id: 2
   user_id: 4
   piecejointe_id: 1
-commentaire_00002:
+commentaire_00002: 
   created_on: 2008-01-01 00:00:01 +01:00
-  corps: "<p>Bonjour,</p><p>Lorsque l&#39;on fait un couper-coller d&#39;une question sur le site e l&#39;Assembléee vers Writer, le résultat est un tableau vide :</p><p>http://questions.assemblee-nationale.fr/q13/13-8502QE.htm</p><p>Pouvez-vous m&#39;indiquer la cause de ce comportement ?</p><p>Edit: Suite à la demande 537, on constate aussi un problème à similaire :  http://www.assemblee-nationale.fr/13/cri/2007-2008/20080017.asp#P189_8754</p><p>Cordialement. </p><p>&nbsp;</p>"
-  updated_on: 2008-01-01 00:00:01 +01:00
+  corps: "<p>Bonjour,</p><p>Lorsque l&#39;on fait un couper-coller d&#39;une question sur le site e l&#39;Assembl\xC3\xA9ee vers Writer, le r\xC3\xA9sultat est un tableau vide :</p><p>http://questions.assemblee-nationale.fr/q13/13-8502QE.htm</p><p>Pouvez-vous m&#39;indiquer la cause de ce comportement ?</p><p>Edit: Suite \xC3\xA0 la demande 537, on constate aussi un probl\xC3\xA8me \xC3\xA0 similaire :  http://www.assemblee-nationale.fr/13/cri/2007-2008/20080017.asp#P189_8754</p><p>Cordialement. </p><p>&nbsp;</p>"
+  updated_on: 2008-04-07 11:18:02 +02:00
   prive: false
   ingenieur_id: 2
   demande_id: 2
   id: 2
   severite_id: 3
+  elapsed: 1
   statut_id: 2
   user_id: 4
   piecejointe_id: 2
-commentaire_00003:
+commentaire_00003: 
   created_on: 2008-01-01 00:00:02 +01:00
-  corps: "le logo me semble un peu disproportionnee, par ailleurs."
+  corps: le logo me semble un peu disproportionnee, par ailleurs.
   updated_on: 2008-01-01 00:00:02 +01:00
   prive: false
   ingenieur_id: 2
   demande_id: 2
   id: 3
-  severite_id:
-  statut_id:
+  severite_id: 
+  elapsed: 0
+  statut_id: 
   user_id: 5
   piecejointe_id: 3

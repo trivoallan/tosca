@@ -1,11 +1,10 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
----
-credit_00001:
+--- 
+credit_00001: 
   name: Support Gold
   time: 0.25
   max: 160
   id: 1
-credit_00002:
+credit_00002: 
   name: Support Silver
   time: 0.25
   max: 80

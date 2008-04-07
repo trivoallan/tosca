@@ -1,5 +1,5 @@
----
-user_00004:
+--- 
+user_00004: 
   name: Customer
   informations: ""
   title: the royal
@@ -8,11 +8,12 @@ user_00004:
   client: true
   id: 4
   phone: "666"
+  restricted: true
   password: c921769f9e42e4876d204fcd51ba16124fb8477f
   login: customer
-  image_id:
+  image_id: 
   email: mloiseleur@linagora.com
-user_00005:
+user_00005: 
   name: Viewer
   informations: ""
   title: the powerless
@@ -21,11 +22,12 @@ user_00005:
   client: true
   id: 5
   phone: "000"
+  restricted: true
   password: 8b34fc039696a3815940c5672ba2efaa76ab51ac
   login: viewer
-  image_id:
+  image_id: 
   email: mloiseleur@linagora.com
-user_00001:
+user_00001: 
   name: Admin
   informations: ""
   title: "\xC3\xB4 r\xC3\xA9v\xC3\xA9r\xC3\xA9"
@@ -34,12 +36,12 @@ user_00001:
   client: false
   id: 1
   phone: ""
+  restricted: false
   password: 47261c32a405a38d54806e4db0e64d1ca9862598
   login: admin
-  image_id:
+  image_id: 
   email: mloiseleur@linagora.com
-  restricted: false
-user_00002:
+user_00002: 
   name: Manager
   informations: ""
   title: the lovely
@@ -48,11 +50,12 @@ user_00002:
   client: false
   id: 2
   phone: ""
+  restricted: true
   password: 9d49c7773645ac6b2e7af68872074517e66c0e47
   login: manager
-  image_id:
+  image_id: 
   email: mloiseleur@linagora.com
-user_00003:
+user_00003: 
   name: Expert
   informations: ""
   title: the handy
@@ -61,7 +64,8 @@ user_00003:
   client: false
   id: 3
   phone: "69"
+  restricted: true
   password: d81674f38d5627bb3580afe45ee79cffafe0b539
   login: expert
-  image_id:
+  image_id: 
   email: mloiseleur@linagora.com

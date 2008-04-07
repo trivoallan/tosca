@@ -1,7 +1,2 @@
---- 
-join_00000: 
-  logiciel_id: "1"
-  competence_id: "4"
-join_00001: 
-  logiciel_id: "1"
-  competence_id: "8"
+--- {}
+
