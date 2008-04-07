@@ -430,6 +430,60 @@ module ActiveRecord
 end
 
 
+module ActionView
+  module Helpers
+    module AssetTagHelper
+      public
+      def stylesheet_link_tag(*sources)
+        options = sources.extract_options!.stringify_keys
+        cache   = options.delete("cache")
+
+        if ActionController::Base.perform_caching && cache
+          joined_stylesheet_name = (cache == true ? "all" : cache) + ".css"
+          joined_stylesheet_path = File.join(STYLESHEETS_DIR, joined_stylesheet_name)
+
+          write_asset_file_contents(joined_stylesheet_path, compute_relative_stylesheet_paths(sources))
+          stylesheet_tag(joined_stylesheet_name, options)
+        else
+          expand_stylesheet_sources(sources).collect { |source| stylesheet_tag(source, options) }.join("\n")
+        end
+      end
+
+      def javascript_include_tag(*sources)
+        options = sources.extract_options!.stringify_keys
+        cache   = options.delete("cache")
+
+        if ActionController::Base.perform_caching && cache
+          joined_javascript_name = (cache == true ? "all" : cache) + ".js"
+          joined_javascript_path = File.join(JAVASCRIPTS_DIR, joined_javascript_name)
+
+          write_asset_file_contents(joined_javascript_path, compute_relative_javascript_paths(sources))
+          javascript_src_tag(joined_javascript_name, options)
+        else
+          expand_javascript_sources(sources).collect { |source| javascript_src_tag(source, options) }.join("\n")
+        end
+      end
+
+      private
+      def compute_relative_path(source, dir, ext = nil)
+        source += ".#{ext}" if File.extname(source).blank? && ext
+        # TODO : remove the '/' if possible
+        "#{dir}/#{source}"
+      end
+
+      def compute_relative_javascript_paths(sources)
+        expand_javascript_sources(sources).collect { |source| compute_relative_path(source, 'javascripts', 'js') }
+      end
+
+      def compute_relative_stylesheet_paths(sources)
+        expand_stylesheet_sources(sources).collect { |source| compute_relative_path(source, 'stylesheets', 'css') }
+      end
+    end
+  end
+end
+
+
+
 #To have homemade message-id in mails
 module TMail
   class Mail
