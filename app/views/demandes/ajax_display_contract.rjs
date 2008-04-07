@@ -1,3 +1,6 @@
 page.replace_html("recipient", select(:demande, :beneficiaire_id, @beneficiaires))
 page.replace_html("system", select(:demande, :socle_id, @socles) )
+if @ingenieur
+  page.replace_html("engineer", select(:demande, :ingenieur_id, @ingenieurs) )
+end
 page.replace_html("logiciel", :partial => "logiciel")

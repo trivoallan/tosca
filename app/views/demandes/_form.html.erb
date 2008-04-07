@@ -33,7 +33,7 @@
     </tr>
     <% if @ingenieur %>
      <tr><th><label for="demande_ingenieur_id"><%=_("Assigned to")%></label></th>
-     <td><%= select_empty(:demande, :ingenieur_id, @ingenieurs) %></td></tr>
+     <td><div id="engineer"><%= select_empty(:demande, :ingenieur_id, @ingenieurs) %></div></td></tr>
     <% end %>
     <tr>
      <td colspan="2"><hr /></td>
