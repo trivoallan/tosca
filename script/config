@@ -29,9 +29,9 @@ end
 args=ARGV
 options.parse!(ARGV)
 
-models = [ Arch, Conteneur, Etatreversement, Groupe, Ossa, Role, Statut,
-           Typecontribution, Typedemande, Typedocument, Typeurl, Competence,
-           Permission, TimeTicket ]
+models = [ Arch, Conteneur, Etatreversement, Groupe, Rules::Component,
+           Rules::Credit, Role, Statut, Typecontribution, Typedemande,
+           Typedocument, Typeurl, Competence, Permission ]
 files = %w(arches conteneurs etatreversements groupes ossas roles
           permissions statuts typecontributions typedemandes
           typedocuments typeurls competences permissions
@@ -51,11 +51,11 @@ if @action == :dump or @action == :dumpall
   if @action == :dumpall
     models = [ Arch,Beneficiaire,Binaire,Changelog,Client,Commentaire,
 	  Competence,Conteneur,Contrat,Contribution,Demande,Dependance,
-	  Distributeur,Document,Engagement,Etatreversement,Fichier,Fichierbinaire,
-	  Groupe,Image,Ingenieur,License,Logiciel,Machine,Mainteneur,
-	  New,Ossa,Paquet,Permission,Phonecall,Piecejointe,Preference,Role,
-	  Severite,Socle,Statut,TimeTicket,Typecontribution,Typedemande,
-	  Typedocument,Typeurl,User ]
+	  Distributeur,Document,Elapsed,Engagement,Etatreversement,Fichier,
+	  Fichierbinaire,Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
+      Mainteneur,New,Rules::Component,Rules::Credit,Paquet,Permission,Phonecall,
+      Piecejointe,Preference,Role,Severite,Socle,Statut,Typecontribution,
+      Typedemande,Typedocument,Typeurl,User ]
   end
   models.each do |m|
     puts "#{action_name} #{m}..." if $verbose

@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-07 11:17+0200\n"
-"PO-Revision-Date: 2008-03-24 19:17+0100\n"
+"PO-Revision-Date: 2008-04-07 11:30+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,6 @@ msgid "'%s' was successfully updated."
 msgstr "'%s' a été mis(e) à jour avec succès."
 
 #: app/controllers/account_controller.rb:80
-#, fuzzy
 msgid "Welcome&nbsp;%s&nbsp;%s "
 msgstr "Bienvenue&nbsp;%S&nbsp;%s"
 
@@ -872,7 +871,7 @@ msgstr "Cette demande a été requalifié en %s par %s."
 
 #: app/helpers/commentaires_helper.rb:36
 msgid "%s has been spent by %s on this request."
-msgstr ""
+msgstr "%s se sont écoulé(e)s par %s sur cette demande"
 
 #: app/helpers/conteneurs_helper.rb:9
 msgid "a container"
@@ -1117,9 +1116,8 @@ msgid "Running"
 msgstr "En cours"
 
 #: app/helpers/reporting_helper.rb:272
-#, fuzzy
 msgid "Exceedance"
-msgstr "déendance"
+msgstr "Dépassement"
 
 #: app/helpers/static_image.rb:34 app/views/clients/show.html.erb:46
 msgid "View"
@@ -1922,9 +1920,8 @@ msgid "You must select a file to upload"
 msgstr "Vous devez sélectionner un fichier à télécharger"
 
 #: app/models/image.rb:29 app/models/image.rb:30
-#, fuzzy
 msgid "Logo '%s'"
-msgstr "Logo"
+msgstr "Logo '%s'"
 
 #: app/models/ingenieur.rb:-
 msgid "ingenieur"
@@ -2125,8 +2122,8 @@ msgstr "Offre illimitée sur un maximum de %d composants"
 #: app/models/rules/credit.rb:12
 msgid "%d time-credit"
 msgid_plural "%d time-credits"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d crédit temps"
+msgstr[1] "%d crédits temps"
 
 #: app/models/rules/credit.rb:24
 msgid "Illimited number of tickets of %s"
@@ -3521,7 +3518,7 @@ msgstr "Consulter toutes les contributions"
 
 #: app/views/contributions/select.html.erb:9
 msgid "RSS"
-msgstr ""
+msgstr "RSS"
 
 #: app/views/contributions/select.html.erb:11
 msgid "Access to administration interface"
@@ -3804,21 +3801,19 @@ msgstr "Votre demande n'est pas soumise à CNS."
 
 #: app/views/demandes/tabs/_cns.html.erb:9
 msgid "Service Level Agreement"
-msgstr ""
+msgstr "Convention de Niveau de Services"
 
 #: app/views/demandes/tabs/_cns.html.erb:14
-#, fuzzy
 msgid "Taken into account"
 msgstr "Prise en compte"
 
 #: app/views/demandes/tabs/_cns.html.erb:21
 msgid "Your request has no commitment for workaround time"
-msgstr ""
+msgstr "Votre demande n'a pas d'engagement de contournement"
 
 #: app/views/demandes/tabs/_cns.html.erb:32
-#, fuzzy
 msgid "Your request has no commitment for correction time"
-msgstr "Temps de correction"
+msgstr "Votre demande n'a pas d'engagement de correction"
 
 #: app/views/demandes/tabs/_history.html.erb:8
 msgid "Change(s)"
@@ -4444,9 +4439,8 @@ msgid "Total in progress <br /> end week"
 msgstr "Total en cours <br /> fin de semaine"
 
 #: app/views/reporting/_entete.html.erb:8
-#, fuzzy
 msgid "Activity report of %s"
-msgstr "Rapport d'activité de l'"
+msgstr "Rapport d'activité de %s"
 
 #: app/views/reporting/_entete.html.erb:9
 msgid "from"
@@ -5034,7 +5028,7 @@ msgstr "Modifier l'url"
 
 #: lib/overrides.rb:201
 msgid "Immediate"
-msgstr ""
+msgstr "Immédiat"
 
 #: lib/overrides.rb:215
 msgid "less than a minute"
@@ -5081,19 +5075,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
-
-#~ msgid "'%s' Logo"
-#~ msgstr "'%s' Logo"
-
-#~ msgid "Become"
-#~ msgstr "Devenir"
-
-#~ msgid "Submit this request and make an other"
-#~ msgstr "Déposer cette demande et en soumettre une similaire"
-
-# ne pas oublier l'espace au début
-#~ msgid " of overrun"
-#~ msgstr " de dépassement"
-
-#~ msgid "Your request impacts %s"
-#~ msgstr "Votre demande impacte %s"
