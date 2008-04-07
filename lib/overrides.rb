@@ -153,7 +153,7 @@ class Time
       result += @@diff_day.call(start_date, start_end_date)
     end
     # Period
-    current_day = start_day
+    current_day = start_day.next
     period.round.times do
       result += one_working_day if current_day.working?
       current_day = current_day.next
@@ -196,7 +196,8 @@ class Time
   # Time.in_words(2.days + 10.hours)
   # Time.in_words(0.5.days, true)
   def self.in_words(distance_in_seconds, dayly_time = 24)
-    return '-' unless distance_in_seconds.is_a? Numeric and distance_in_seconds > 0
+    return _('Immediate') if distance_in_seconds == 0
+    return '-' unless distance_in_seconds.is_a?(Numeric) and distance_in_seconds > 0
     return '-' unless dayly_time == true or (dayly_time > 0 and dayly_time < 25)
     opened = (dayly_time != 24 ? true : false)
     dayly_time, opened = 24, true if (dayly_time == true)
@@ -278,7 +279,7 @@ class ActionController::Caching::Sweeper
   # Helper, in order to expire fragments, see ActiveRecord#fragments()
   # for more info
   def expire_fragments(fragments)
-    fragments.each { |f| expire_fragement f }
+    fragments.each { |f| expire_fragment f }
   end
 end
 
