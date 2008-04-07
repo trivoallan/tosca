@@ -274,35 +274,6 @@ class Demande < ActiveRecord::Base
     self.class.record_timestamps = true
   end
 
-  def respect_contournement(contrat_id)
-    affiche_delai(temps_ecoule, engagement(contrat_id).contournement)
-  end
-
-  def respect_correction(contrat_id)
-    affiche_delai(temps_ecoule, engagement(contrat_id).correction)
-  end
-
-  def affiche_temps_correction
-    Time.in_words(self.elapsed.correction, self.contrat.interval)
-  end
-
-  # Retourne le délais imparti pour corriger la demande
-  # TODO : validation MLO
-  # TODO : inaffichable dans la liste des demandes > améliorer le calcul de ce délais
-  def delais_correction
-    delais = paquets.compact.collect{ |p|
-      p.correction(typedemande_id, severite_id) *
-      p.contrat.interval_in_seconds
-    }.min
-  end
-
-  def affiche_temps_contournement
-    Time.in_words(self.elapsed.workaround, self.contrat.interval)
-  end
-
-  def affiche_temps_rappel
-    Time.in_words(self.elapsed.taken_into_account, self.contrat.interval)
-  end
 
   def engagement
     return nil unless contrat_id && severite_id && typedemande_id
@@ -313,54 +284,7 @@ class Demande < ActiveRecord::Base
     Engagement.find(:first, :conditions => conditions, :joins => joins)
   end
 
-  #on ne calcule qu'une fois par instance
-  def temps_ecoule
-    @temps_passe ||= compute_temps_ecoule
-    @temps_passe
-  end
-
-  #Oui ces 2 fonctions n'ont rien à faire dans un modèle.
-  # Mais l'affichage dépend du modèle (du support client)
-  # donc en fait si ^_^
-  #
-  # if the demande is over, then return the overrun time
-  # TODO : blast this method, totally : one step done
-  def time_spent_in_percent
-#     return 0 if
-#     temps = temps_ecoule
-#     return "sans engagement" if temps == -1
-
-#     contrats = Contrat.find(:all)
-#     contrats.delete_if { |contrat|
-#       engagement= engagement(contrat.id)
-#       engagement == nil or engagement.correction < 0
-#     }
-#     # A demand may have several contracts.
-#     # I keep the more critical correction time
-#     critical_contract = contrats[0]
-#     contrats.each do |c|
-#       critical_contract = c if engagement(c.id).correction < engagement(critical_contract.id).correction
-#     end
-#     # Not very DRY: present in lib/comex_resultat too
-#     amplitude = self.contrat.heure_fermeture - self.contrat.heure_ouverture
-#     if critical_contract.blank?
-#       temps_correction = 0.days
-#     else
-#       temps_correction = engagement( critical_contract.id ).correction.days
-#     end
-
-#     temps_reel=
-#       distance_of_time_in_working_days(temps_ecoule, amplitude)
-#     temps_prevu_correction=
-#       distance_of_time_in_working_days(temps_correction, amplitude)
-#     if temps_reel > temps_prevu_correction
-#       Time.in_words(temps - temps_correction, self.contrat.interval) <<
-#         _(' of overrun')
-#     else
-#       Time.in_words(temps, self.contrat.interval)
-#     end
-  end
-
+  # useful shortcul
   def interval
     self.contrat.interval
   end

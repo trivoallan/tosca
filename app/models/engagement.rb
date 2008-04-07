@@ -10,7 +10,7 @@ class Engagement < ActiveRecord::Base
     record.errors.add attr, 'must be >= 0.' if value < 0 and value != -1
   end
 
-  # No agreement is '-1' in the database.
+  # Our agreement for 0 SLA is '-1' in the database.
   # But the user does not need to learn this.
   def correction=(value)
     value = value.to_f
@@ -21,25 +21,10 @@ class Engagement < ActiveRecord::Base
     write_attribute(:contournement, (value == 0.0 ? -1 : value))
   end
 
-  def contourne(delai)
-    compute(delai, contournement)
-  end
-
-  def corrige(delai)
-    compute(delai, correction)
-  end
-
   def to_s
     "#{self.typedemande.name} | #{self.severite.name} : " +
       "#{Time.in_words(self.contournement.days, true)} " +
       "/ #{Time.in_words(self.correction.days, true)}"
-  end
-
-  private
-  # note : -1 == Date infinie !
-  def compute(delai, limite)
-    raise "Erreur dans le calcul du delai " unless delai.kind_of? Numeric
-    (limite == -1 ? true : (delai < limite*3600))
   end
 
   INCLUDE = [:typedemande,:severite]

@@ -51,7 +51,7 @@ class Contrat < ActiveRecord::Base
   # We have open clients which can declare
   # requests on everything. It's with the "socle" field.
   def logiciels
-    if rule_type == 'Ossa' and rule.max == -1
+    if rule_type == 'Rules::Component' and rule.max == -1
       return Logiciel.find(:all)
     end
     self._logiciels
