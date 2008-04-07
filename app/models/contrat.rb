@@ -59,7 +59,8 @@ class Contrat < ActiveRecord::Base
 
   # TODO : I am sure it could be better. Rework model ???
   def find_recipients_select
-    self.recipient_users.find(:all).collect{|u|
+    options = { :conditions => 'users.inactive = 0' }
+    self.recipient_users.find(:all, options).collect{|u|
       [  u.name, u.beneficiaire.id ] }
   end
 
