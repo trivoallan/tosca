@@ -2,7 +2,6 @@
 # The Rules' classes MUST stay coherent #
 #########################################
 class Rules::Credit < ActiveRecord::Base
-  has_one :contrat, :as => :rule
 
   def elapsed_on_create
     1

@@ -133,8 +133,8 @@ class Notifier < ActionMailer::Base
     user = users.first
     client = possible_clients.first
 
-    email[HEADER_LIST_ID] = list_id(client.contrat)
-    send_mail(client.contrat.mailingliste, client.contrat.ingenieurs.map { |e| e.user.email }, email)
+    email[HEADER_LIST_ID] = list_id(contrat)
+    send_mail(client.contrat.mailingliste, contrat.ingenieurs.map { |e| e.user.email }, email)
   end
 =end
 
