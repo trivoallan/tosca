@@ -123,7 +123,7 @@ class Commentaire < ActiveRecord::Base
     # update cache of elapsed time
     contrat = request.contrat
     rule = contrat.rule
-    if request.first_comment_id == self.id
+    if request.elapsed.nil?
       request.elapsed = Elapsed.new(request)
       self.update_attribute :elapsed, rule.elapsed_on_create
     elsif !self.statut_id.nil?
