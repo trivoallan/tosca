@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-04-07 11:17+0200\n"
+"POT-Creation-Date: 2008-04-07 11:35+0200\n"
 "PO-Revision-Date: 2008-01-08 11:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -884,7 +884,7 @@ msgid "a contribution"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:28
-msgid "Déclaration d'une demande"
+msgid "Submission of a request"
 msgstr ""
 
 #: app/helpers/demandes_helper.rb:35
@@ -1971,11 +1971,11 @@ msgstr ""
 msgid "Logiciel|Groupe"
 msgstr ""
 
-#: app/models/logiciel.rb:20
+#: app/models/logiciel.rb:21
 msgid "You have to specify a name"
 msgstr ""
 
-#: app/models/logiciel.rb:23
+#: app/models/logiciel.rb:24
 msgid "You have to specify at least one technology"
 msgstr ""
 

@@ -57,9 +57,12 @@ class AccountController < ApplicationController
       flash[:conditions] = options[:conditions] = conditions
       @filters = accounts_filters
     end
-    # User.send(:with_scope, User.get_scope(session[:user].contrat_ids)) do
+
+    scope = User.get_scope(session[:user].contrat_ids)
+    scope = {} unless session[:user].restricted?
+    User.send(:with_scope, scope) do
       @user_pages, @users = paginate :users, options
-    #end
+    end
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
       render :partial => 'users_list', :layout => false
