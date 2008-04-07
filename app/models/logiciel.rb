@@ -15,6 +15,7 @@ class Logiciel < ActiveRecord::Base
   has_one :image, :dependent => :destroy
 
   has_many :binaires, :through => :paquets, :dependent => :destroy
+  has_many :knowledges
 
   validates_presence_of :name, :message =>
     _('You have to specify a name')
