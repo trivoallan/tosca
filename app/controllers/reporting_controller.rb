@@ -315,35 +315,22 @@ class ReportingController < ApplicationController
 
     liste = @contrat.client.beneficiaires.collect{|b| b.id} # .join(',')
     demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.beneficiaire_id IN (?)',
-    nil, nil, liste ]
-    contributions = [ 'contributions.created_on BETWEEN ? AND ?', nil, nil ]
-    # (#{liste})" ]
+                 nil, nil, liste ]
+    until (start_date > end_date) do
+      infdate = "#{start_date.strftime('%y-%m')}-01"
+      start_date = start_date.advance(:months => 1)
+      supdate = "#{start_date.strftime('%y-%m')}-01"
 
-    # TODO : provient du scope de appication.rb
-    # TODO : Le scope des contribs devrait plutot porter
-    # sur les demandes qui ont des contribs, non.
-    cpaquets = ['paquets.contrat_id = ?', @contrat.id ]
-    scontributions = {:find => {:conditions => cpaquets, :include => [:paquets]}}
-    Contribution.send(:with_scope, scontributions) {
-      until (start_date > end_date) do
-        infdate = "#{start_date.strftime('%y-%m')}-01"
-        start_date = start_date.advance(:months => 1)
-        supdate = "#{start_date.strftime('%y-%m')}-01"
-
-        demandes[1], demandes[2] = infdate, supdate
-        Demande.send(:with_scope, { :find => { :conditions => demandes } }) do
-          compute_repartition @data[:repartition]
-          compute_severite @data[:severite]
-          compute_resolution @data[:resolution]
-          compute_annulation @data[:annulation]
-          compute_temps @data
-          contributions[1], contributions[2] = infdate, supdate
-          Contribution.send(:with_scope, {:find => {:conditions => contributions }}) do
-            compute_evolution @data[:evolution]
-          end
-        end
+      demandes[1], demandes[2] = infdate, supdate
+      Demande.send(:with_scope, { :find => { :conditions => demandes } }) do
+        compute_repartition @data[:repartition]
+        compute_severite @data[:severite]
+        compute_resolution @data[:resolution]
+        compute_annulation @data[:annulation]
+        compute_temps @data
+        compute_evolution @data[:evolution]
       end
-    }
+    end
     # on fais bien attention à ne merger avec @data
     # qu'APRES avoir calculé toutes les sommes
     middle_report = compute_data_period('middle', @report[:middle_report])
@@ -516,21 +503,9 @@ class ReportingController < ApplicationController
   ##
   # Calcule le nombre de beneficiaire, de logiciel et contribution distinct par mois
   def compute_evolution(report)
-    # TODO : corriger ça, maintenant on a le contrat
-    contributions = 0
-    if @beneficiaire
-      ids = @beneficiaire.client.contrats.collect{|c| c.id}.join(',')
-      conditions = [ "paquets.contrat_id IN (#{ids})" ]
-      joins= 'INNER JOIN contributions_paquets cp ON cp.contribution_id = contributions.id ' +
-        'INNER JOIN paquets ON cp.paquet_id = paquets.id '
-      contributions = Contribution.count(:conditions => conditions, :joins => joins)
-    else
-      contributions = Contribution.count()
-    end
-    # TODO : distinct ?
     report[0].push Demande.count('beneficiaire_id', :distinct => true)
     report[1].push Demande.count('logiciel_id', :distinct => true)
-    report[2].push contributions
+    report[2].push Demande.count('contribution_id', :distinct => true)
   end
 
 
