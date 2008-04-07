@@ -14,6 +14,7 @@ module EngagementsHelper
   #   show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]' )
   # TODO : habiller et mettre des bordures pour que ca se distingue du reste
   #  cf /contrats/new pour le voir
+  # TODO : a partial should be better
   def show_form_engagements(object_engagement, engagements, name)
     out = '<table>'
     out << '<tr><th>Demande</th><th>Sévérité</th><th></th>'
