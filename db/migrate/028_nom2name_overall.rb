@@ -8,9 +8,9 @@ class Nom2nameOverall < ActiveRecord::Migration
 
   def self.up
     # needed 4 sqlite ... :/
-    remove_index "paquets", ["nom", "version", "release"]
+    # remove_index "paquets", ["nom", "version", "release"]
     TABLES.each{|t| rename_column t, :nom, :name }
-    add_index "paquets", ["name", "version", "release"]
+    # add_index "paquets", ["name", "version", "release"]
 
     drop_table 'etapes'
   end

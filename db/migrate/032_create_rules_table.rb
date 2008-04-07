@@ -17,7 +17,11 @@ class CreateRulesTable < ActiveRecord::Migration
     end
 
     Contrat.find(:all).each do |c|
-      c[:rule_type] = "Ossa"
+      if c.support?
+        c[:rule_type] = 'Rules::Credit'
+      else
+        c[:rule_type] = "Ossa"
+      end
       c[:rule_id] = 1
       c.save
     end

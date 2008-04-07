@@ -21,9 +21,9 @@ class Identifiant2user < ActiveRecord::Migration
     tables = [ :ingenieurs, :beneficiaires, :commentaires,
                :documents, :preferences ]
     tables.each do |t|
-      remove_index t, :identifiant_id
+      # remove_index t, :identifiant_id
       rename_column t, :identifiant_id, :user_id
-      add_index t, :user_id
+      # add_index t, :user_id
     end
 
     rename_column :document_versions, :identifiant_id, :user_id
