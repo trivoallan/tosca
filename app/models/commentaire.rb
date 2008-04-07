@@ -72,6 +72,8 @@ class Commentaire < ActiveRecord::Base
 
     # We MUST have at least the first comment in a request
     return false if request.first_comment_id == self.id
+
+    # Updating last_comment pointer
     if !self.prive and request.last_comment_id == self.id
       other_comment = request.find_other_comment(self.id)
       if !other_comment
@@ -83,6 +85,18 @@ class Commentaire < ActiveRecord::Base
 
     request.elapsed.remove(self) if request.elapsed
     self.piecejointe.destroy unless self.piecejointe.nil?
+    true
+  end
+
+  after_destroy :update_status
+  def update_status
+    return true if self.statut_id.nil? || self.statut_id == 0
+
+    request = self.demande
+    options = { :order => 'created_on DESC', :conditions =>
+      'commentaires.statut_id IS NOT NULL' }
+    last_one = request.commentaires.find(:first, options)
+    return request.update_attribute(:statut_id, last_one.statut_id) if last_one
     true
   end
 
@@ -107,11 +121,14 @@ class Commentaire < ActiveRecord::Base
     end
 
     # update cache of elapsed time
-    rule = request.contrat.rule
-    request.elapsed = Elapsed.new(request, rule) unless request.elapsed
-    unless self.statut_id.nil?
-      last_status_comment = request.find_status_comment_before(self) || self
-      elapsed = rule.compute_between(last_status_comment, self, request.contrat)
+    contrat = request.contrat
+    rule = contrat.rule
+    if request.first_comment_id == self.id
+      request.elapsed = Elapsed.new(request)
+      self.update_attribute :elapsed, rule.elapsed_on_create
+    elsif !self.statut_id.nil?
+      last_status_comment = request.find_status_comment_before(self)
+      elapsed = rule.compute_between(last_status_comment, self, contrat)
       self.update_attribute :elapsed, elapsed
     end
     request.elapsed.add(self)
@@ -121,18 +138,6 @@ class Commentaire < ActiveRecord::Base
     request.save
   end
 
-  # reset the request to its previous status state
-  after_destroy :reset_request
-  def reset_request
-    request = self.demande
-    if self.id >= request.last_comment_id and not self.statut_id.nil?
-      options = { :order => "commentaires.created_on DESC",
-        :conditions => 'commentaires.statut_id IS NOT NULL' }
-      last_status_comment = request.find_status_comment_before(self)
-      statut_id = (last_status_comment ? last_status_comment.statut_id : 1)
-      return request.update_attribute(:statut_id, statut_id)
-    end
-    true
-  end
+
 
 end
