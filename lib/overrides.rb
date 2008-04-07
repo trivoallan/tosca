@@ -43,6 +43,8 @@ if defined? Mongrel::DirHandler
   module Mongrel
     class DirHandler
       @@expires = (Time.now + 10.years).rfc2822
+      # Ten years of caching, since Rails timestamp files
+      # It greatly improves loading of all pages
       def send_file_with_expires(req_path, request, response, header_only=false)
         response.header['Cache-Control'] = 'max-age=315360000'
         response.header['Expires'] = @@expires
