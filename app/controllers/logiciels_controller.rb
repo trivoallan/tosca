@@ -135,7 +135,7 @@ private
 
     stats = Struct.new(:technologies, :sources, :binaries, :softwares)
     @count = stats.new(Competence.count, Paquet.count,
-                       Binaire.count, Logiciel.count)
+                       Binaire.count(:include => :paquet), Logiciel.count)
   end
 
   def add_logo

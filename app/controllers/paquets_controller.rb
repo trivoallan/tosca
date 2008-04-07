@@ -105,7 +105,7 @@ class PaquetsController < ApplicationController
     @count = {}
     @clients = Client.find_select(:conditions => 'clients.inactive = 0')
     @count[:paquets] = Paquet.count
-    @count[:binaires] = Binaire.count
+    @count[:binaires] = Binaire.count(:include => :paquet)
   end
 
 end

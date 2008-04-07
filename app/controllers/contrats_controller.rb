@@ -81,7 +81,7 @@ private
     @ingenieurs = User.find(:all, User::EXPERT_OPTIONS)
     @rules = []
     begin
-      @rules = @contrat.rule_type.constantize.find(:all)
+      @rules = @contrat.rule_type.constantize.find_select
     rescue Exception => e
       flash[:warn] = _('Unknown rules for contract "%s"') % e.message
     end
