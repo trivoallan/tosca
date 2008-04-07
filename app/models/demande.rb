@@ -108,7 +108,7 @@ class Demande < ActiveRecord::Base
 
   def find_other_comment(comment_id)
     cond = [ 'commentaires.prive <> 1 AND commentaires.id <> ?', comment_id ]
-    self.commentaires.find(:first, :conditiions => cond)
+    self.commentaires.find(:first, :conditions => cond)
   end
 
   def find_status_comment_before(comment)
@@ -116,6 +116,16 @@ class Demande < ActiveRecord::Base
       [ 'commentaires.statut_id IS NOT NULL AND commentaires.created_on < ?',
         comment.created_on ]}
     self.commentaires.find(:first, options)
+  end
+
+  def last_status_comment
+    options = { :order => 'created_on DESC', :conditions =>
+      'commentaires.statut_id IS NOT NULL' }
+    self.commentaires.find(:first, options)
+  end
+
+  def time_running?
+    Statut::Running.include? self.statut_id
   end
 
   # set the default for a new request
@@ -244,11 +254,15 @@ class Demande < ActiveRecord::Base
     self.class.record_timestamps = false
 
     rule = self.contrat.rule
-    self.elapsed = Elapsed.new(self, rule)
+    self.elapsed = Elapsed.new(self)
     options = { :conditions => 'commentaires.statut_id IS NOT NULL',
       :order => "commentaires.created_on ASC" }
     life_cycle = self.commentaires.find(:all, options)
 
+    # first one is different
+    life_cycle.first.update_attribute :elapsed, rule.elapsed_on_create
+    self.elapsed.add life_cycle.first
+    # all the others
     total, previous, contrat = 0, life_cycle.first, self.contrat
     life_cycle.each do |step| # a step is a Commentaire object
       step.update_attribute :elapsed, rule.compute_between(previous, step, contrat)

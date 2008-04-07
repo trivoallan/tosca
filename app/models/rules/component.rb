@@ -17,7 +17,7 @@ class Rules::Component < ActiveRecord::Base
   # the 2 comments which MUST change the status
   def compute_between(last, current, contrat)
     return 0 unless last.statut_id != 0 && current.statut_id != 0
-    return 0 if Statut::WithoutChrono.include? last.statut_id
+    return 0 unless Statut::Running.include? last.statut_id
     Time.working_diff(last.created_on, current.created_on,
                       contrat.heure_ouverture,
                       contrat.heure_fermeture)
