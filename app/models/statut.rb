@@ -45,14 +45,14 @@ class Statut < ActiveRecord::Base
         'id IN (6,7,8)'
       else
         case id
-        when 1 then 'id IN (2)'
-        when 2 then 'id IN (4,3,6,7,8)'
-        when 3 then 'id IN (2,5,6,7,8)'
-        when 4 then 'id IN (3)'
-        when 5 then 'id IN (3)'
-        when 6 then 'id IN (7,2)'
-        when 7 then 'id IN (2)'
-        when 8 then 'id IN (2)'
+        when 1 then 'id IN (2)'            # Submitted -> Active
+        when 2 then 'id IN (3,4,5,6,7,8)'  # Active -> Suspended, Analysed, Bypassed, Fixed, Closed, Cancelled
+        when 3 then 'id IN (2,4,5,6,7,8)'  # Suspended -> Active, Analysed, Bypassed, Fixed, Closed, Cancelled
+        when 4 then 'id IN (3)'            # Analysed -> Suspended
+        when 5 then 'id IN (3,2)'          # Bypassed -> Suspended, Active
+        when 6 then 'id IN (7,2)'          # Fixed -> Closed, Active
+        when 7 then 'id IN (2)'            # Closed -> Active
+        when 8 then 'id IN (2)'            # Cancelled -> Active
         end
       end
     Statut.find_select(:conditions => search, :order => 'statuts.id')
