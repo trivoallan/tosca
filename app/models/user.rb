@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     self.password = User.sha1(pass)
   end
 
+  def manager?
+    role_id <= 2
+  end
+
   # TODO : this formatting method has to be in an helper, a lib or a plugin.
   # /!\ but NOT here /!\
   before_save do |record|

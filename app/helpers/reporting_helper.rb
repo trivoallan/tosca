@@ -231,6 +231,16 @@ module ReportingHelper
     result << '</table>'
   end
 
+  # TODO : find 3 images. Maybe include this helper in static image  ??
+  def progress_image( status, percent )
+    if status
+      return 'OK' if percent < 1.0
+      return 'KO'
+    else
+      return 'RUNNING'
+    end
+  end
+
   # Display a progress bar colored according to the percentage given in
   # argument. 0% correspond to green, 100% to red and > 100% to black
   # usage : progress_bar(50) display a orange bar, which correspond to 50%
@@ -250,7 +260,17 @@ module ReportingHelper
 
     color = "rgb( #{red}, #{green},0)"
 
-    image_percent(1.23*percent, color)
+    result = image_percent(1.23*percent, color)
+    result << " (#{(percent).round} %) " if @ingenieur
+    result
+  end
+
+  def progress_text(elapsed, total, interval)
+    result = Time.in_words(elapsed, interval)
+    return result if elapsed == 0
+    elapsed = Elapsed.relative2absolute(elapsed, interval)
+    return _('Exceedance') if @beneficiaire && elapsed > total
+    result << " / #{Time.in_words(total)}"
   end
 
   #display a select box with all clients.

@@ -2,39 +2,43 @@
 
 <% commitment = @demande.engagement %>
 <% elapsed = @demande.elapsed %>
+<% interval = @demande.interval %>
 <% if commitment.nil? %>
   <p><%= _("Your request is not subject to a SLA.") %></p>
 <% else %>
+ <h1><%= _('Service Level Agreement') %></h1>
  <table class="show">
+  <% progress = elapsed.taken_into_account_progress %>
   <tr class="<%= cycle('pair', 'impair') %>">
+    <td><%= progress_image(elapsed.taken_into_account?, progress) %></td>
     <th><%= _("Taken into account") %></th>
-    <td><%= progress_bar(elapsed.taken_into_account / 1.hour) %></td>
-    <td><%= Time.in_words(elapsed.taken_into_account) %> /
-        <%= Time.in_words(1.hour) %></td>
+    <td><%= progress_bar(progress) %></td>
+    <td><%= progress_text(elapsed.taken_into_account, 1.hour, interval) %></td>
   </tr>
-  <% workaround = elapsed.workaround %>
-  <% workaround = elapsed.until_now if workaround == 0.0 || workaround.nil?%>
+  <% progress = elapsed.workaround_progress %>
    <tr class="<%= cycle('pair', 'impair') %>">
-    <th><%= _("Workaround") %></th>
-    <td><% if commitment.contournement > 0 %>
-      <% progress = elapsed.progress(workaround, commitment.contournement, @demande.interval) %>
-      <%= progress_bar(progress) %> (<%= (progress * 100).round %> %)
-    <% end %></td>
-    <td><%= Time.in_words(workaround, @demande.interval) %> /
-        <%= Time.in_words(commitment.contournement.days) %></td>
+    <% if commitment.contournement <= 0 %>
+     <td colspan="4"><%= _("Your request has no commitment for workaround time") %></td>
+    <% else %>
+     <td><%= progress_image(elapsed.workaround?, progress) %></td>
+     <th><%= _("Workaround") %></th>
+     <td><%= progress_bar(elapsed.workaround_progress) %></td>
+     <td><%= progress_text(elapsed.workaround, commitment.contournement.days, interval) %></td>
+    <% end %>
    </tr>
-  <% correction = elapsed.correction %>
-  <% correction = elapsed.until_now if correction == 0.0 || correction.nil? %>
+  <% progress = elapsed.correction_progress %>
    <tr class="<%= cycle('pair', 'impair') %>">
-    <th><%= _("Correction") %></th>
-    <td><% if commitment.correction > 0 %>
-     <% progress = elapsed.progress(correction, commitment.correction, @demande.interval) %>
-     <%= progress_bar(progress) %> (<%= (progress * 100).round %> %)
-    <% end %></td>
-    <td><%= Time.in_words(correction, @demande.interval) %> /
-        <%= Time.in_words(commitment.correction.days) %></td>
+    <% if commitment.contournement <= 0 %>
+     <td colspan="4"><%= _("Your request has no commitment for correction time") %></td>
+    <% else %>
+     <td><%= progress_image(elapsed.correction?, progress) %></td>
+     <th><%= _("Correction") %></th>
+     <td><%= progress_bar(progress) %></td>
+     <td><%= progress_text(elapsed.correction, commitment.correction.days, @demande.interval) %></td>
+    <% end %>
    </tr>
  </table>
 <% end %>
+
 
 </div>
