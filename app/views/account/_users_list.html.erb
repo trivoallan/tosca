@@ -3,10 +3,9 @@
 <% links = show_pages_links(@user_pages, _('a new user'),
                              :url => accounts_path) %>
 <%= links %>
-<% manager = session[:user].role_id <= 2 %>
+<% manager = session[:user].manager? %>
 <table class="show">
   <tr>
-    <th><%= _('User|Login')%></th>
     <th><%= _('User|Title')%></th>
     <th><%= _('User|Name')%></th>
     <% if manager %>
@@ -25,7 +24,6 @@
    <% beneficiaire = user.beneficiaire %>
    <% ingenieur = user.ingenieur %>
    <tr class="<%= cycle('even', 'odd') %>">
-      <td><%= user.login %></td>
       <td><%= user.title %></td>
       <td><%= user.name %></td>
       <% if manager %>
@@ -35,15 +33,13 @@
       <% end %>
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.phone %></td>
-      <td><% if manager && beneficiaire && !user.inactive? %>
-           <form action=<%= '"' + become_account_path(beneficiaire) + '"' %> method="post">
-           <input name="commit" value=<%= '"' + _('Become') + '"' %> type="submit" /></form>
-         <% end %>
-     </td>
+      <td><%= form_become(user) %></td>
 
      <% if manager or session[:user].id == user.id %>
       <td><%= link_to_show user %></td>
       <td><%= link_to_edit user %></td>
+     <% else %>
+      <td></td><td></td>
      <% end %>
     </tr>
   <% end %>

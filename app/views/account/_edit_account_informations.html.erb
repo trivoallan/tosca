@@ -49,6 +49,12 @@
     <th><label for="user_login"><%= _('User|Login') %></label></th>
     <td><%= text_field :user, :login %></td>
    </tr>
+  <% elsif !@user.login.blank? %>
+   <tr>
+    <th><%= _('User|Login') %></th>
+    <td><%= @user.login %></td>
+   </tr>
+
   <% end %>
   <% unless create_account %>
    <tr>

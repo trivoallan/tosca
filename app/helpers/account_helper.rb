@@ -39,4 +39,15 @@ module AccountHelper
     observe_field "user_recipient_client_id", @@contracts_options
   end
 
+  def form_become(user)
+    manager = session[:user].manager?
+    recipient = user.beneficiaire
+    result = ''
+    if manager && recipient && !user.inactive?
+      result << %Q{<form action="#{become_account_path(recipient)}" method="post">}
+      result << %Q{<input name="commit" value='#{_('Become')}' type="submit" /></form>}
+    end
+    result
+  end
+
 end
