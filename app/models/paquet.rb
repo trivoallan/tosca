@@ -10,7 +10,7 @@ class Paquet < ActiveRecord::Base
   has_many :fichiers, :dependent => :destroy
   has_many :changelogs, :dependent => :destroy
   has_many :dependances, :dependent => :destroy
-  has_many :binaires, :dependent => :destroy
+  has_many :binaires, :dependent => :destroy, :include => :paquet
 
   validates_presence_of :logiciel, :conteneur
 
