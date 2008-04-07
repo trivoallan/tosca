@@ -301,6 +301,9 @@ class DemandesController < ApplicationController
     @beneficiaires = contrat.find_recipients_select
     @socles = contrat.client.socles
     @logiciels = contrat.logiciels.collect{|l| [l.name, l.id] }
+    if @ingenieur
+      @ingenieurs = Ingenieur.find_select_by_contrat_id(contrat.id)
+    end
   end
 
   # todo à retravailler
@@ -319,6 +322,7 @@ class DemandesController < ApplicationController
     @severites = Severite.find_select
     first_comment = @demande.first_comment
     @demande.description = first_comment.corps if first_comment
+    @demande.beneficiaire = beneficiaire
     contract = @demande.contrat || Contrat.find(:first)
     _form4contract contract
   end
