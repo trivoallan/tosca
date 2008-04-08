@@ -229,10 +229,10 @@ class Demande < ActiveRecord::Base
       :order => "created_on DESC" }
     statut_id = self.commentaires.find(:first, options).statut_id
 
-    options[:conditions].first = "severite_id IS NOT NULL AND created_on <= ?"
+    options[:conditions] = [ "severite_id IS NOT NULL AND created_on <= ?", t ]
     severite_id = self.commentaires.find(:first, options).severite_id
 
-    options[:conditions].first = "ingenieur_id IS NOT NULL AND created_on <= ?"
+    options[:conditions] = [ "ingenieur_id IS NOT NULL AND created_on <= ?", t ]
     com_ingenieur = self.commentaires.find(:first, options)
     ingenieur_id = com_ingenieur ? com_ingenieur.ingenieur_id : nil
 

@@ -80,8 +80,8 @@ class AccountController < ApplicationController
                                             params['user_password'],
                                             user_crypt)
         set_sessions(session[:user])
-        flash[:notice] = _("Welcome&nbsp;%s&nbsp;%s ") %
-          [ session[:user].title, session[:user].name.gsub(' ', '&nbsp;') ]
+        flash[:notice] = (_("Welcome %s %s") %
+          [ session[:user].title, session[:user].name]).gsub(' ', '&nbsp;')
         session[:return_to] ||= request.env['HTTP_REFERER']
         redirect_back_or_default bienvenue_path
       else
