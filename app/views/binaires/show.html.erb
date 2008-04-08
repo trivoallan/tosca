@@ -1,6 +1,6 @@
 <% paquet = @binaire.paquet %>
 <% logiciel = paquet.logiciel %>
-<%= public_link_to _('Home'), bienvenue_url%> >
+<%= public_link_to _('Home'), bienvenue_path%> >
  <%= public_link_to _('Softwares'), logiciels_path %> >
   <%= public_link_to logiciel.groupe.name, logiciel_path(logiciel.groupe_id) %> >
    <%= public_link_to_logiciel logiciel %> >

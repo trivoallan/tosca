@@ -1,10 +1,10 @@
 <h1><%= _('List of contributions') << StaticImage::spinner %></h1>
 
-<% links = show_pages_links(@contribution_pages, _('a contribution'), 
-                            :url => admin_contributions_url) %>
+<% links = show_pages_links(@contribution_pages, _('a contribution'),
+                            :url => admin_contributions_path) %>
 <%= links %>
 
-<% titres = [_('Software'), _('Patch'), _('Request'), _('State'), _('Name'), 
+<% titres = [_('Software'), _('Patch'), _('Request'), _('State'), _('Name'),
              _('Submitted on'), _('Closed on'), _('Delay'), _('Updated on')]%>
 <% form_tag(contributions_path) do %>
 <%= show_table(@contributions, Contribution, titres) { |c|
@@ -20,11 +20,11 @@
   result << "<td>#{c.etatreversement.name if c.etatreversement}</td>"
   result << "<td>#{link_to_contribution c}</td>"
   result << "<td style='color:green'><span class=\"date\">#{c.reverse_le_formatted}</span></td>"
-  
+
   result << "<td style='color:red'>"
   result << "<span class=\"date\">#{c.cloture_le_formatted}</span>" if c.clos
   result << "</td>"
-  
+
   result << "<td nowrap>#{Time.in_words(c.delai)}</td>"
   result << "<td><span class=\"date\">#{c.updated_on_formatted}</span></td>"
   result << "#{link_to_actions_table c}"
@@ -32,4 +32,3 @@
 <% end %>
 
 <%= links %>
-

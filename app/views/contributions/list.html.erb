@@ -1,5 +1,5 @@
-<%= public_link_to _('Home'), bienvenue_url %> > 
-  <%= public_link_to _('Contributions'), select_contributions_url %> > 
+<%= public_link_to _('Home'), bienvenue_path %> >
+  <%= public_link_to _('Contributions'), select_contributions_path %> >
     <%= @logiciel ? @logiciel.name : _('All') %></h1>
 
 <% links = show_pages_links(@contribution_pages, _('a new contribution')) %>
@@ -8,12 +8,10 @@
 <% @contributions.each do |contribution| %>
   <h2>
    <%= link_to_edit(contribution) %>
-   <%= public_link_to contribution.name, contribution_url(contribution) %>
+   <%= public_link_to contribution.name, contribution_path(contribution) %>
   </h2>
   <%= "#{contribution.synthese}<br />" %>
 <% end %>
 
 
 <%= links %>
-
-

@@ -1,6 +1,6 @@
 <h1><%=_('List of calls')%> <%= StaticImage::spinner %></h1>
 
-<% links = show_pages_links(@phonecall_pages, _('a call'), :url => phonecalls_url) %>
+<% links = show_pages_links(@phonecall_pages, _('a call'), :url => phonecalls_path) %>
 <%= links %>
 
 <% titles = [_('Contract'),_('Interlocutor'),_('Recipient'),_('Call'),
@@ -17,5 +17,3 @@
 } %>
 
 <%= links %>
-
-

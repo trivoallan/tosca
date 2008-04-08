@@ -2,7 +2,7 @@
 
 
 <% links = show_pages_links(@paquet_pages, _('a virtual package'),
-             :url => paquets_url) %>
+             :url => paquets_path) %>
 <%= links %>
 <% titres = [ _('Software'), _('Name'), _('Container'), _('Size'), _('Distributor'), _('Maintainer')] %>
 <%= show_table(@paquets, Paquet, titres) { |p|

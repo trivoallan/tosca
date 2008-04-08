@@ -1,12 +1,12 @@
 <h1><%= _('Roles list') %></h1>
-<small>[<%= link_to _('and associated permissions'), permissions_url %>]</small>
+<small>[<%= link_to _('and associated permissions'), permissions_path %>]</small>
 
-<% titres = [ _('Rule'), _('Description') ] 
-  titres.concat(@roles.collect{|r| link_to(r.name, edit_role_url(r))})
+<% titres = [ _('Rule'), _('Description') ]
+  titres.concat(@roles.collect{|r| link_to(r.name, edit_role_path(r))})
 %>
 <%= show_table(@permissions, Permission, titres) { |p|
   result = ''
-  result << "<td>#{link_to p.name, edit_permission_url(p) }</td>"
+  result << "<td>#{link_to p.name, edit_permission_path(p) }</td>"
   result << "<td>#{p.info}</td>"
   @roles.each { |r|
     if p.roles.include? r
@@ -19,9 +19,9 @@
   result
 }%>
 
-<%= link_to _('Permission list'), permissions_url %> |
-<%= link_to _('Add a permission'), new_permission_url %>
+<%= link_to _('Permission list'), permissions_path %> |
+<%= link_to _('Add a permission'), new_permission_path %>
 
 <p>&nbsp;</p>
 
-<%= link_to _('Add a role'), new_role_url %> <br />
+<%= link_to _('Add a role'), new_role_path %> <br />
