@@ -259,9 +259,9 @@ class Demande < ActiveRecord::Base
       :order => "commentaires.created_on ASC" }
     life_cycle = self.commentaires.find(:all, options)
 
-    # first one is different
+    # first one is different : it's the submission of the request
     life_cycle.first.update_attribute :elapsed, rule.elapsed_on_create
-    self.elapsed.add life_cycle.first
+
     # all the others
     total, previous, contrat = 0, life_cycle.first, self.contrat
     life_cycle.each do |step| # a step is a Commentaire object
