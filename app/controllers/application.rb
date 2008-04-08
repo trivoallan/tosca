@@ -144,7 +144,7 @@ private
   WARN_NOID = 'Veuillez préciser une adresse existante et valide. Nous ne ' +
     'considérons pas que c\'est une erreur. Si vous pensez le contraire, ' +
     'n\'hésitez pas à nous contacter.'
-  def rescue_action_in_public(exception)
+  def rescue_action(exception)
     if exception.is_a? ActiveRecord::RecordNotFound
       msg = WARN_NOID
     else
