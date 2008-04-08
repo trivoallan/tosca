@@ -117,6 +117,9 @@ class DemandesController < ApplicationController
     @demande = Demande.new(params[:demande])
     @demande.submitter = session[:user] # it's the current user
     @demande.statut_id = (@ingenieur ? 2 : 1)
+    if @demande.contrat.nil? && @demande.submitter.contrats.size == 1
+      @demande.contrat = session[:user].contrats.first
+    end
     if @demande.save
       options = { :conditions => [ 'demandes.submitter_id = ?', session[:user].id ]}
       flash[:notice] = _("You have successfully submitted your %s request.") %
