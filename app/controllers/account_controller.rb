@@ -75,6 +75,7 @@ class AccountController < ApplicationController
   def login
     case request.method
     when :post
+      # Used when an other web tool want to login
       user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
       if session[:user] = User.authenticate(params['user_login'],
                                             params['user_password'],
@@ -82,6 +83,7 @@ class AccountController < ApplicationController
         set_sessions(session[:user])
         flash[:notice] = (_("Welcome %s %s") %
           [ session[:user].title, session[:user].name]).gsub(' ', '&nbsp;')
+        # When logged from an other tool, the referer is not a valid page
         session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
         redirect_back_or_default bienvenue_path
       else
