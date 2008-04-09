@@ -6,6 +6,9 @@ class ContributionsController < ApplicationController
 
   caches_page :feed
 
+  cache_sweeper :contribution_sweeper, :only => [:create, :update]
+
+
   # Show all contribs and who's done 'em
   def experts
     options = { :order => "contributions.ingenieur_id, contributions.etatreversement_id" }

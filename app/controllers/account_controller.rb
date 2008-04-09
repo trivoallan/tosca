@@ -5,6 +5,8 @@
 class AccountController < ApplicationController
   helper :knowledges
 
+  cache_sweeper :user_sweeper, :only => [:signup, :update]
+
   # Pour l'import de plusieurs utilisateurs
   require 'fastercsv'
   PasswordGenerator
