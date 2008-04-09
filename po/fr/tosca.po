@@ -4706,11 +4706,11 @@ msgstr "Consulter le rapport synthétique"
 
 #: app/views/reporting/digest_resultat.html.erb:1
 msgid "Requests of this %s"
-msgstr "Demandes de ce %s"
+msgstr "Demandes de ce/cette %s"
 
 #: app/views/reporting/digest_resultat.html.erb:6
 msgid "Contract : "
-msgstr "Contrat"
+msgstr "Contrat : "
 
 #: app/views/reporting/digest_resultat.html.erb:18
 msgid "open since %s"
