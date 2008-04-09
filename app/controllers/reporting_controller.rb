@@ -104,39 +104,33 @@ class ReportingController < ApplicationController
   def digest
   end
 
+  # TODO : split this method in two
+  # When put it for mails, we'll need to log in or, at the least, scope to contrat_ids
   def digest_resultat
-    updated = ""
-    @period = ""
-    #It may seem we can do something like Time.now.send("beginning_of_#{params[:digest][:period]}")
-    #But we can not because of the internationnalization
-    case params[:digest][:period]
-    when "day"
-      updated = Time.now.beginning_of_day
-      @period = _("day")
-    when "week"
-    updated = Time.now.beginning_of_week
-      @period = _("week")
-    when "month"
-      updated = Time.now.beginning_of_month
-      @period = _("month")
-    else
-      updated = Time.now.beginning_of_year
-      @period = _("year")
-    end
-    contrat_ids = session[:user].contrats.collect { |c| c.id }
-    requests = Demande.find(:all, :conditions => [ "contrat_id IN (?) AND updated_on >= ? ", contrat_ids, updated ],
-                                  :order => "contrat_id ASC")
+    render :nothing => true and return unless params.has_key? :digest
+    @period = params[:digest][:period]
+    @period = "year" if @period.blank?
+    updated = Time.now.send("beginning_of_#{@period}")
+    # We must localise it after getting the (english) helper for the start date
+    @period = _(@period)
+                            
+    options = { :conditions => [ "updated_on >= ? ", updated ], 
+     :order => "contrat_id ASC", :include => [:typedemande,:severite,:statut]}
+    requests = Demande.find(:all, options)
 
-    last_contrat = nil
     #Another wierd RCS's struct
     # @result = [ *[ contrat, [ *[ demande, demande.state_at(t), [*commentaires] ] ] ] ]
+    # TODO : make a REAL and HUMAN-compliant struct/class/whatever
     @result = Array.new
+    last_contrat_id = nil
     requests.each do |r|
-      if last_contrat != r.contrat_id
-        @result.push(Array.new.push(r.contrat, Array.new))
-      end
-      @result.last.last.push(Array.new.push(r, r.state_at(updated), r.commentaires.find(:all, :conditions => [ "created_on >= ? ", updated ])))
-      last_contrat = r.contrat_id
+      @result.push([r.contrat, Array.new]) if last_contrat_id != r.contrat_id
+
+      options = { :conditions => [ "created_on >= ? ", updated ] }
+      digest_comments = r.commentaires.find(:all, options)
+      element = [ r, r.state_at(updated), digest_comments ]
+      @result.last.last.push(element)
+      last_contrat_id = r.contrat_id
     end
   end
 

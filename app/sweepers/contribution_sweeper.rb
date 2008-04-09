@@ -14,7 +14,7 @@ class ContributionSweeper < ActionController::Caching::Sweeper
 
   private
   def expire_cache_for(record)
-    # Refresh Contribution Info on each cache displaying it
+    # Refresh Contribution List on requests show
     record.demandes.each { |r| expire_fragments r.fragments }
   end
 end
