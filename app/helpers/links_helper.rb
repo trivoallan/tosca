@@ -125,7 +125,7 @@ EOS
   end
 
   def link_to_tobd_requests
-    link_to(_('Requests to be done'), en_attente_demandes_path, :title =>
+    link_to(_('Pending Requests'), en_attente_demandes_path, :title =>
             _('Consult requests which are waiting an action from you'))
   end
 

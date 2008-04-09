@@ -1019,7 +1019,7 @@ msgid "Consult all the requests"
 msgstr "Consulter toutes les demandes"
 
 #: app/helpers/links_helper.rb:128
-msgid "Requests to be done"
+msgid "Pending Requests"
 msgstr "Demandes à traiter"
 
 #: app/helpers/links_helper.rb:129
