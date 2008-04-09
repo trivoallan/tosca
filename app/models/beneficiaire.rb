@@ -24,4 +24,8 @@ class Beneficiaire < ActiveRecord::Base
     @cache ||=  user.contrat_ids
   end
 
+  def contrats
+    self.user.contrats
+  end
+
 end
