@@ -115,13 +115,15 @@ class DemandesController < ApplicationController
 
   def create
     @demande = Demande.new(params[:demande])
-    @demande.submitter = session[:user] # it's the current user
+    user = session[:user]
+    @demande.submitter = user # it's the current user
     @demande.statut_id = (@ingenieur ? 2 : 1)
-    if @demande.contrat.nil? && @demande.submitter.contrats.size == 1
-      @demande.contrat = session[:user].contrats.first
+    if @demande.contrat.nil?
+      contrats = @demande.beneficiaire.contrats
+      @demande.contrat = contrats.first if contrats.size == 1
     end
     if @demande.save
-      options = { :conditions => [ 'demandes.submitter_id = ?', session[:user].id ]}
+      options = { :conditions => [ 'demandes.submitter_id = ?', user.id ]}
       flash[:notice] = _("You have successfully submitted your %s request.") %
         Demande.count(options).ordinalize
       @demande.first_comment.add_attachment(params)
@@ -131,7 +133,7 @@ class DemandesController < ApplicationController
       url_attachment = render_to_string(:layout => false,
                                         :template => '/attachment')
       options = { :demande => @demande, :url_request => demande_url(@demande),
-        :name => session[:user].name, :url_attachment => url_attachment }
+        :name => user.name, :url_attachment => url_attachment }
       Notifier::deliver_request_new(options, flash)
       redirect_to _similar_request
     else
