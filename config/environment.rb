@@ -81,9 +81,9 @@ NeededGems = [ # Used by Ruport
     # Used to i18n and l10n
     [ 'gettext', '1.90.0', 'gettext_localize', 'gettext_localize_rails' ],
     # Used to generate Ods
-    [ 'ruport', '1.4.0', 'ruport' ],
+    [ 'ruport', '1.6.0', 'ruport' ],
     # Used by Ruport
-    [ 'ruport-util', '0.13', 'ruport/util' ],
+    [ 'ruport-util', '0.14.0', 'ruport/util' ],
     # Used to generate graphs of activity report
     [ 'rmagick', '1.15.10' ],
     # Used to manipulate OpenDocument
@@ -92,7 +92,7 @@ NeededGems = [ # Used by Ruport
     [ 'ultraviolet', '0.10.2' ]
    ]
 # Check and load all gems
-Utils::check_and_install_missing_gems(*NeededGems)
+#Utils::check_and_install_missing_gems(*NeededGems)
 
 # Check and create used dirs
 path = File.join RAILS_ROOT, 'public', 'cache'
