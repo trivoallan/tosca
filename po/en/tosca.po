@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-04-07 11:35+0200\n"
+"POT-Creation-Date: 2008-04-08 15:22+0200\n"
 "PO-Revision-Date: 2008-02-19 16:09+0100\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: English <traduc@traduc.org>\n"
@@ -20,71 +20,71 @@ msgstr ""
 msgid "'%s' was successfully updated."
 msgstr ""
 
-#: app/controllers/account_controller.rb:80
-msgid "Welcome&nbsp;%s&nbsp;%s "
+#: app/controllers/account_controller.rb:83
+msgid "Welcome %s %s"
 msgstr ""
 
-#: app/controllers/account_controller.rb:87
+#: app/controllers/account_controller.rb:90
 msgid "Connexion failure"
 msgstr ""
 
-#: app/controllers/account_controller.rb:88
+#: app/controllers/account_controller.rb:91
 msgid "your account has been desactivated"
 msgstr ""
 
-#: app/controllers/account_controller.rb:107
+#: app/controllers/account_controller.rb:110
 msgid "You are not allowed to change your identity"
 msgstr ""
 
-#: app/controllers/account_controller.rb:111
+#: app/controllers/account_controller.rb:114
 msgid "Person not found"
 msgstr ""
 
-#: app/controllers/account_controller.rb:182
+#: app/controllers/account_controller.rb:185
 msgid "Edition succeeded"
 msgstr ""
 
-#: app/controllers/account_controller.rb:213
+#: app/controllers/account_controller.rb:216
 msgid "Account successfully created."
 msgstr ""
 
-#: app/controllers/account_controller.rb:238
+#: app/controllers/account_controller.rb:241
 msgid "Full name"
 msgstr ""
 
-#: app/controllers/account_controller.rb:238
+#: app/controllers/account_controller.rb:241
 msgid "Title"
 msgstr ""
 
-#: app/controllers/account_controller.rb:238
+#: app/controllers/account_controller.rb:241
 msgid "Email"
 msgstr ""
 
-#: app/controllers/account_controller.rb:238
+#: app/controllers/account_controller.rb:241
 #: app/views/demandes/_infos_demande.html.erb:51
 msgid "Phone"
 msgstr ""
 
-#: app/controllers/account_controller.rb:239
+#: app/controllers/account_controller.rb:242
 #: app/views/account/login.html.erb:9
 msgid "Login"
 msgstr ""
 
-#: app/controllers/account_controller.rb:239
+#: app/controllers/account_controller.rb:242
 #: app/views/account/login.html.erb:12
 msgid "Password"
 msgstr ""
 
-#: app/controllers/account_controller.rb:239 app/views/machines/all.html.erb:5
+#: app/controllers/account_controller.rb:242 app/views/machines/all.html.erb:5
 #: app/views/machines/index.html.erb:5
 msgid "Informations"
 msgstr ""
 
-#: app/controllers/account_controller.rb:300
+#: app/controllers/account_controller.rb:303
 msgid "Logout"
 msgstr ""
 
-#: app/controllers/account_controller.rb:301 app/helpers/account_helper.rb:21
+#: app/controllers/account_controller.rb:304 app/helpers/account_helper.rb:21
 msgid "My account"
 msgstr ""
 
@@ -183,28 +183,28 @@ msgstr ""
 msgid "All the requests"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:122
+#: app/controllers/demandes_controller.rb:125
 msgid "You have successfully submitted your %s request."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:250
+#: app/controllers/demandes_controller.rb:253
 msgid "The request has been updated successfully."
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:280
+#: app/controllers/demandes_controller.rb:283
 msgid "The demand has now no contribution"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:282
+#: app/controllers/demandes_controller.rb:285
 msgid "This contribution is now linked"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:362
+#: app/controllers/demandes_controller.rb:365
 #: app/helpers/demandes_helper.rb:180
 msgid "Active requests"
 msgstr ""
 
-#: app/controllers/demandes_controller.rb:365
+#: app/controllers/demandes_controller.rb:368
 #: app/helpers/demandes_helper.rb:187
 msgid "Finished requests"
 msgstr ""
@@ -338,7 +338,7 @@ msgstr ""
 msgid "Software"
 msgstr ""
 
-#: app/controllers/export_controller.rb:142 app/views/clients/show.html.erb:41
+#: app/controllers/export_controller.rb:142 app/views/clients/show.html.erb:40
 #: app/views/demandes/lists/_requests_info.html.erb:49
 #: app/views/demandes/_infos_demande.html.erb:31
 #: app/views/demandes/_comment_form.html.erb:12
@@ -819,7 +819,7 @@ msgstr ""
 msgid "allows to export datas in ODS"
 msgstr ""
 
-#: app/helpers/binaires_helper.rb:15 app/views/clients/show.html.erb:53
+#: app/helpers/binaires_helper.rb:15 app/views/clients/show.html.erb:50
 #: app/views/paquets/show.html.erb:32 app/views/paquets/show.html.erb:36
 #: app/views/socles/show.html.erb:19
 msgid "binary"
@@ -918,14 +918,14 @@ msgstr ""
 msgid "show all the requests"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:210 app/views/clients/show.html.erb:41
+#: app/helpers/demandes_helper.rb:210 app/views/clients/show.html.erb:40
 #: app/views/demandes/_packages.html.erb:6
 #: app/views/demandes/tabs/_cns.html.erb:24
 #: app/views/reporting/_comex_cns.html.erb:20
 msgid "Workaround"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:211 app/views/clients/show.html.erb:41
+#: app/helpers/demandes_helper.rb:211 app/views/clients/show.html.erb:40
 #: app/views/demandes/_packages.html.erb:7
 #: app/views/demandes/tabs/_cns.html.erb:35
 #: app/views/reporting/_comex_cns.html.erb:21
@@ -1099,7 +1099,7 @@ msgstr ""
 msgid "Exceedance"
 msgstr ""
 
-#: app/helpers/static_image.rb:34 app/views/clients/show.html.erb:46
+#: app/helpers/static_image.rb:34 app/views/clients/show.html.erb:44
 msgid "View"
 msgstr ""
 
@@ -1178,30 +1178,6 @@ msgstr ""
 
 #: app/helpers/phonecalls_helper.rb:11
 msgid "Add a phone call"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "preference"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "Preference|User"
-msgstr "User"
-
-#: app/models/preference.rb:-
-msgid "Preference|Mail text"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "Preference|All mail"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "Preference|Digest daily"
-msgstr ""
-
-#: app/models/preference.rb:-
-msgid "Preference|Digest weekly"
 msgstr ""
 
 #: app/models/arch.rb:-
@@ -1782,6 +1758,30 @@ msgstr "Version"
 msgid "Document|Date delivery"
 msgstr "Delivered on"
 
+#: app/models/elapsed.rb:-
+msgid "elapsed"
+msgstr ""
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Demande"
+msgstr "Request"
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Taken into account"
+msgstr ""
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Workaround"
+msgstr ""
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Correction"
+msgstr "Correction"
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Until now"
+msgstr ""
+
 #: app/models/engagement.rb:-
 msgid "engagement"
 msgstr ""
@@ -1846,30 +1846,6 @@ msgstr ""
 msgid "Fichierbinaire|Taille"
 msgstr ""
 
-#: app/models/elapsed.rb:-
-msgid "elapsed"
-msgstr ""
-
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Demande"
-msgstr "Request"
-
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Taken into account"
-msgstr ""
-
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Workaround"
-msgstr ""
-
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Correction"
-msgstr "Correction"
-
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Until now"
-msgstr ""
-
 #: app/models/groupe.rb:-
 msgid "groupe"
 msgstr ""
@@ -1920,6 +1896,34 @@ msgstr ""
 
 #: app/models/ingenieur.rb:-
 msgid "Ingenieur|Image"
+msgstr ""
+
+#: app/models/knowledge.rb:-
+msgid "knowledge"
+msgstr ""
+
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Competence"
+msgstr "Knowledge"
+
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Logiciel"
+msgstr "Software"
+
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Ingenieur"
+msgstr "Engineer"
+
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Level"
+msgstr ""
+
+#: app/models/knowledge.rb:10
+msgid "You have to specify a software or a domain."
+msgstr ""
+
+#: app/models/knowledge.rb:13
+msgid "You cannot specify a software and a domain."
 msgstr ""
 
 #: app/models/license.rb:-
@@ -2082,6 +2086,54 @@ msgstr ""
 msgid "Permission|Info"
 msgstr ""
 
+#: app/models/phonecall.rb:-
+msgid "phonecall"
+msgstr ""
+
+#: app/models/phonecall.rb:-
+msgid "Phonecall|Beneficiaire"
+msgstr "Recipient"
+
+#: app/models/phonecall.rb:-
+msgid "Phonecall|Ingenieur"
+msgstr ""
+
+#: app/models/phonecall.rb:-
+msgid "Phonecall|Start"
+msgstr ""
+
+#: app/models/phonecall.rb:-
+msgid "Phonecall|End"
+msgstr ""
+
+#: app/models/phonecall.rb:-
+msgid "Phonecall|Contrat"
+msgstr ""
+
+#: app/models/phonecall.rb:-
+msgid "Phonecall|Demande"
+msgstr ""
+
+#: app/models/phonecall.rb:14
+msgid "The beginning of the call has to be before to its end."
+msgstr ""
+
+#: app/models/phonecall.rb:19
+msgid "recipient and client have to correspond."
+msgstr ""
+
+#: app/models/phonecall.rb:37 app/models/phonecall.rb:44
+msgid "%s.%s.%s at %sh%s"
+msgstr ""
+
+#: app/models/phonecall.rb:54
+msgid "Phonecall of %s on '%s'"
+msgstr ""
+
+#: app/models/phonecall.rb:56
+msgid "Phonecall of %s for %s"
+msgstr ""
+
 #: app/models/piecejointe.rb:-
 msgid "piecejointe"
 msgstr ""
@@ -2090,26 +2142,28 @@ msgstr ""
 msgid "Piecejointe|File"
 msgstr ""
 
-#: app/models/rules/component.rb:28
-msgid "Illimited offer on all components"
+#: app/models/preference.rb:-
+msgid "preference"
 msgstr ""
 
-#: app/models/rules/component.rb:30
-msgid "Illimited offer on a maximum of %d components"
+#: app/models/preference.rb:-
+msgid "Preference|User"
+msgstr "User"
+
+#: app/models/preference.rb:-
+msgid "Preference|Mail text"
 msgstr ""
 
-#: app/models/rules/credit.rb:12
-msgid "%d time-credit"
-msgid_plural "%d time-credits"
-msgstr[0] ""
-msgstr[1] ""
-
-#: app/models/rules/credit.rb:24
-msgid "Illimited number of tickets of %s"
+#: app/models/preference.rb:-
+msgid "Preference|All mail"
 msgstr ""
 
-#: app/models/rules/credit.rb:27
-msgid "Up to %d tickets of %s"
+#: app/models/preference.rb:-
+msgid "Preference|Digest daily"
+msgstr ""
+
+#: app/models/preference.rb:-
+msgid "Preference|Digest weekly"
 msgstr ""
 
 #: app/models/role.rb:-
@@ -2216,6 +2270,34 @@ msgstr ""
 msgid "Typeurl|Name"
 msgstr ""
 
+#: app/models/urllogiciel.rb:-
+msgid "urllogiciel"
+msgstr ""
+
+#: app/models/urllogiciel.rb:-
+msgid "Urllogiciel|Logiciel"
+msgstr ""
+
+#: app/models/urllogiciel.rb:-
+msgid "Urllogiciel|Typeurl"
+msgstr ""
+
+#: app/models/urllogiciel.rb:-
+msgid "Urllogiciel|Valeur"
+msgstr ""
+
+#: app/models/urlreversement.rb:-
+msgid "urlreversement"
+msgstr "contributionstate"
+
+#: app/models/urlreversement.rb:-
+msgid "Urlreversement|Contribution"
+msgstr ""
+
+#: app/models/urlreversement.rb:-
+msgid "Urlreversement|Valeur"
+msgstr ""
+
 #: app/models/user.rb:-
 msgid "user"
 msgstr ""
@@ -2312,108 +2394,26 @@ msgstr ""
 msgid "You must have specify a password."
 msgstr ""
 
-#: app/models/knowledge.rb:-
-msgid "knowledge"
+#: app/models/rules/component.rb:28
+msgid "Illimited offer on all components"
 msgstr ""
 
-#: app/models/knowledge.rb:-
-msgid "Knowledge|Competence"
-msgstr "Knowledge"
-
-#: app/models/knowledge.rb:-
-msgid "Knowledge|Logiciel"
-msgstr "Software"
-
-#: app/models/knowledge.rb:-
-msgid "Knowledge|Ingenieur"
-msgstr "Engineer"
-
-#: app/models/knowledge.rb:-
-msgid "Knowledge|Level"
+#: app/models/rules/component.rb:30
+msgid "Illimited offer on a maximum of %d components"
 msgstr ""
 
-#: app/models/knowledge.rb:10
-msgid "You have to specify a software or a domain."
+#: app/models/rules/credit.rb:11
+msgid "%d time-credit"
+msgid_plural "%d time-credits"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/models/rules/credit.rb:23
+msgid "Illimited number of tickets of %s"
 msgstr ""
 
-#: app/models/knowledge.rb:13
-msgid "You cannot specify a software and a domain."
-msgstr ""
-
-#: app/models/urllogiciel.rb:-
-msgid "urllogiciel"
-msgstr ""
-
-#: app/models/urllogiciel.rb:-
-msgid "Urllogiciel|Logiciel"
-msgstr ""
-
-#: app/models/urllogiciel.rb:-
-msgid "Urllogiciel|Typeurl"
-msgstr ""
-
-#: app/models/urllogiciel.rb:-
-msgid "Urllogiciel|Valeur"
-msgstr ""
-
-#: app/models/urlreversement.rb:-
-msgid "urlreversement"
-msgstr "contributionstate"
-
-#: app/models/urlreversement.rb:-
-msgid "Urlreversement|Contribution"
-msgstr ""
-
-#: app/models/urlreversement.rb:-
-msgid "Urlreversement|Valeur"
-msgstr ""
-
-#: app/models/phonecall.rb:-
-msgid "phonecall"
-msgstr ""
-
-#: app/models/phonecall.rb:-
-msgid "Phonecall|Beneficiaire"
-msgstr "Recipient"
-
-#: app/models/phonecall.rb:-
-msgid "Phonecall|Ingenieur"
-msgstr ""
-
-#: app/models/phonecall.rb:-
-msgid "Phonecall|Start"
-msgstr ""
-
-#: app/models/phonecall.rb:-
-msgid "Phonecall|End"
-msgstr ""
-
-#: app/models/phonecall.rb:-
-msgid "Phonecall|Contrat"
-msgstr ""
-
-#: app/models/phonecall.rb:-
-msgid "Phonecall|Demande"
-msgstr ""
-
-#: app/models/phonecall.rb:14
-msgid "The beginning of the call has to be before to its end."
-msgstr ""
-
-#: app/models/phonecall.rb:19
-msgid "recipient and client have to correspond."
-msgstr ""
-
-#: app/models/phonecall.rb:37 app/models/phonecall.rb:44
-msgid "%s.%s.%s at %sh%s"
-msgstr ""
-
-#: app/models/phonecall.rb:54
-msgid "Phonecall of %s on '%s'"
-msgstr ""
-
-#: app/models/phonecall.rb:56
-msgid "Phonecall of %s for %s"
+#: app/models/rules/credit.rb:26
+msgid "Up to %d tickets of %s"
 msgstr ""
 
 #: app/views/acces/refuse.html.erb:1 app/views/access/denied.html.erb:1
@@ -2509,7 +2509,7 @@ msgstr ""
 msgid "Disconnect"
 msgstr ""
 
-#: app/views/account/_menu.html.erb:12 app/views/clients/show.html.erb:41
+#: app/views/account/_menu.html.erb:12 app/views/clients/show.html.erb:40
 #: app/views/contributions/_contributions_admin.html.erb:7
 #: app/views/logiciels/show.html.erb:53 app/views/phonecalls/_form.html.erb:4
 #: app/views/phonecalls/show.html.erb:8
@@ -2568,7 +2568,7 @@ msgid "Customers"
 msgstr ""
 
 #: app/views/account/_menu.html.erb:40 app/views/bienvenue/index.html.erb:29
-#: app/views/clients/show.html.erb:46
+#: app/views/clients/show.html.erb:44
 #: app/views/demandes/lists/_requests_info.html.erb:19
 msgid "Activity report"
 msgstr ""
@@ -3216,35 +3216,35 @@ msgstr ""
 msgid "Add a new client"
 msgstr ""
 
-#: app/views/clients/show.html.erb:26
+#: app/views/clients/show.html.erb:25
 msgid "contract"
 msgstr "contracts"
 
-#: app/views/clients/show.html.erb:32
+#: app/views/clients/show.html.erb:31
 msgid " from %s to %s"
 msgstr ""
 
-#: app/views/clients/show.html.erb:35
+#: app/views/clients/show.html.erb:34
 msgid "on your complete system"
 msgstr ""
 
-#: app/views/clients/show.html.erb:37
+#: app/views/clients/show.html.erb:36
 msgid "concerning %s source packages "
 msgstr ""
 
-#: app/views/clients/show.html.erb:38
+#: app/views/clients/show.html.erb:37
 msgid "and %s binaries"
 msgstr ""
 
-#: app/views/clients/show.html.erb:46
+#: app/views/clients/show.html.erb:44
 msgid " the %s "
 msgstr ""
 
-#: app/views/clients/show.html.erb:50
+#: app/views/clients/show.html.erb:47
 msgid "system"
 msgstr ""
 
-#: app/views/clients/show.html.erb:58 app/views/contributions/show.html.erb:43
+#: app/views/clients/show.html.erb:55 app/views/contributions/show.html.erb:43
 msgid "request"
 msgstr ""
 
