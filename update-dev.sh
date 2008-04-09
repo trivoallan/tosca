@@ -7,12 +7,9 @@ rake makemo
 
 #! update-db.sh
 export RAILS_ENV=production
-
-echo "User.find(:all).each {|u| u.update_attribute :email, 'mloiseleur@linagora.com'}; puts" | ./script/console
-echo "Contrat.find(:all).each {|c| c.update_attribute :mailinglist, 'mloiseleur@linagora.com' }; puts" | ./script/console
-echo "Demande.find(:all).each {|d| d.update_attribute :mail_cc, nil }; puts" | ./script/console
-
+echo "Demande.connection.connection.query('UPDATE schema_info SET version = 1')" | ./script/console
 rake db:migrate
+./script/runner update-db.rb
+rake makemo
 sudo chown -R www-data:www-data *
-sudo /etc/init.d/mongrel_cluster restart 
-
+sudo /etc/init.d/mongrel_cluster restart
