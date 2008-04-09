@@ -73,7 +73,7 @@ module FileColumn # :nodoc:
 
     def needs_transform?
       options[:magick] and just_uploaded? and
-        (options[:magick][:size] or options[:magick][:versions] or options[:magick][:transformation] or options[:magick][:attributes])
+        (options[:magick][:size] or options[:magick][:versions] or options[:magick][:transformation] or options[:magick][:attributes]) and not File.exists?(absolute_path)
     end
 
     def transform_image(img, img_options, dest_path)

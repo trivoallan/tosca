@@ -22,13 +22,13 @@ module ImagesHelper
   # Beware that the inactive thumb is only available for thumb size
   #Call like this :
   #  <%= logo_client(@client) %>
-  #  <%= logo_client(@client, "small') %>
+  #  <%= logo_client(@client, :small) %>
   def logo_client(client, size = :thumb)
     return '' if client.nil? or client.image.blank? or size.nil?
     if size == :thumb
       size = (client.inactive? ? 'inactive_thumb' : 'thumb')
     end
-    image_tag(url_for_file_column(client.image, 'image', size),
+    image_tag(url_for_image_column(client.image, 'image', size),
               image_options(client.name_clean))
   end
 

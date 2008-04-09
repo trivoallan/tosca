@@ -252,7 +252,7 @@ class Demande < ActiveRecord::Base
 
     # do not update timestamp for a reset
     self.class.record_timestamps = false
-
+    puts self.id
     rule = self.contrat.rule
     self.elapsed = Elapsed.new(self)
     options = { :conditions => 'commentaires.statut_id IS NOT NULL',
