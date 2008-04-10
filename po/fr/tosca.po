@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-08 15:22+0200\n"
+"POT-Creation-Date: 2008-04-09 19:37+0200\n"
 "PO-Revision-Date: 2008-04-09 08:41+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -34,71 +34,71 @@ msgstr "'%s' a été créé avec succès."
 msgid "'%s' was successfully updated."
 msgstr "'%s' a été mis(e) à jour avec succès."
 
-#: app/controllers/account_controller.rb:83
+#: app/controllers/account_controller.rb:86
 msgid "Welcome %s %s"
 msgstr "Bienvenue %s %s"
 
-#: app/controllers/account_controller.rb:90
+#: app/controllers/account_controller.rb:94
 msgid "Connexion failure"
 msgstr "Échec lors de la connexion"
 
-#: app/controllers/account_controller.rb:91
+#: app/controllers/account_controller.rb:95
 msgid "your account has been desactivated"
 msgstr "votre compte a été désactivé"
 
-#: app/controllers/account_controller.rb:110
+#: app/controllers/account_controller.rb:114
 msgid "You are not allowed to change your identity"
 msgstr "Vous n'êtes pas autorisé à changer votre identité"
 
-#: app/controllers/account_controller.rb:114
+#: app/controllers/account_controller.rb:118
 msgid "Person not found"
 msgstr "Personne non trouvée"
 
-#: app/controllers/account_controller.rb:185
+#: app/controllers/account_controller.rb:189
 msgid "Edition succeeded"
 msgstr "Les modifications ont été effectuées avec succès"
 
-#: app/controllers/account_controller.rb:216
+#: app/controllers/account_controller.rb:220
 msgid "Account successfully created."
 msgstr "Le compte a été crée avec succès."
 
-#: app/controllers/account_controller.rb:241
+#: app/controllers/account_controller.rb:245
 msgid "Full name"
 msgstr "Nom Complet"
 
-#: app/controllers/account_controller.rb:241
+#: app/controllers/account_controller.rb:245
 msgid "Title"
 msgstr "Titre"
 
-#: app/controllers/account_controller.rb:241
+#: app/controllers/account_controller.rb:245
 msgid "Email"
 msgstr "Email"
 
-#: app/controllers/account_controller.rb:241
+#: app/controllers/account_controller.rb:245
 #: app/views/demandes/_infos_demande.html.erb:51
 msgid "Phone"
 msgstr "Téléphone"
 
-#: app/controllers/account_controller.rb:242
+#: app/controllers/account_controller.rb:246
 #: app/views/account/login.html.erb:9
 msgid "Login"
 msgstr "Identifiant"
 
-#: app/controllers/account_controller.rb:242
+#: app/controllers/account_controller.rb:246
 #: app/views/account/login.html.erb:12
 msgid "Password"
 msgstr "Mot de passe"
 
-#: app/controllers/account_controller.rb:242 app/views/machines/all.html.erb:5
+#: app/controllers/account_controller.rb:246 app/views/machines/all.html.erb:5
 #: app/views/machines/index.html.erb:5
 msgid "Informations"
 msgstr "Informations"
 
-#: app/controllers/account_controller.rb:303
+#: app/controllers/account_controller.rb:307
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/controllers/account_controller.rb:304 app/helpers/account_helper.rb:21
+#: app/controllers/account_controller.rb:308 app/helpers/account_helper.rb:21
 msgid "My account"
 msgstr "Mon&nbsp;compte"
 
@@ -199,28 +199,28 @@ msgstr "Règles inconnu pour le contrat \"%s\""
 msgid "All the requests"
 msgstr "Toutes les demandes"
 
-#: app/controllers/demandes_controller.rb:125
+#: app/controllers/demandes_controller.rb:127
 msgid "You have successfully submitted your %s request."
 msgstr "Vous avez soumis avec succès votre %s demande"
 
-#: app/controllers/demandes_controller.rb:253
+#: app/controllers/demandes_controller.rb:255
 msgid "The request has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:283
+#: app/controllers/demandes_controller.rb:285
 msgid "The demand has now no contribution"
 msgstr "Le demande n'a plus de contributions"
 
-#: app/controllers/demandes_controller.rb:285
+#: app/controllers/demandes_controller.rb:287
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/demandes_controller.rb:365
+#: app/controllers/demandes_controller.rb:367
 #: app/helpers/demandes_helper.rb:180
 msgid "Active requests"
 msgstr "Demandes actives"
 
-#: app/controllers/demandes_controller.rb:368
+#: app/controllers/demandes_controller.rb:370
 #: app/helpers/demandes_helper.rb:187
 msgid "Finished requests"
 msgstr "Demandes terminées"
@@ -374,7 +374,7 @@ msgid "Last update"
 msgstr "Mise à jour"
 
 #: app/controllers/export_controller.rb:144
-#: app/controllers/reporting_controller.rb:523
+#: app/controllers/reporting_controller.rb:517
 #: app/helpers/contributions_helper.rb:10
 #: app/views/contributions/_contributions_info.html.erb:41
 #: app/views/demandes/lists/_requests_table.html.erb:9
@@ -471,11 +471,11 @@ msgstr "TOTAUX"
 msgid "This file does not exist."
 msgstr "Le fichier CSV n'est pas correct."
 
-#: app/controllers/contributions_controller.rb:86
+#: app/controllers/contributions_controller.rb:89
 msgid "The contribution has been created successfully."
 msgstr "La contribution a été créée avec succès"
 
-#: app/controllers/contributions_controller.rb:106
+#: app/controllers/contributions_controller.rb:109
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
@@ -555,93 +555,77 @@ msgstr "Vous devez indiquer une période pour le rapport"
 msgid "The first day must precede the last day"
 msgstr "Le premier jour doit précéder le dernier jour"
 
-#: app/controllers/reporting_controller.rb:115
-msgid "day"
-msgstr "jour"
-
-#: app/controllers/reporting_controller.rb:118
-msgid "week"
-msgstr "semaine"
-
-#: app/controllers/reporting_controller.rb:121
-msgid "month"
-msgstr "mois"
-
-#: app/controllers/reporting_controller.rb:124
-msgid "year"
-msgstr "année"
-
-#: app/controllers/reporting_controller.rb:247
-#: app/controllers/reporting_controller.rb:252
+#: app/controllers/reporting_controller.rb:241
+#: app/controllers/reporting_controller.rb:246
 msgid "incorrect parameters"
 msgstr "paramètres incorrects"
 
-#: app/controllers/reporting_controller.rb:516
-#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:510
+#: app/controllers/reporting_controller.rb:512
 msgid "Distributed on "
 msgstr "Répartie sur "
 
-#: app/controllers/reporting_controller.rb:516
-#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:510
+#: app/controllers/reporting_controller.rb:512
 #: app/views/reporting/_introduction.html.erb:4
 msgid " months"
 msgstr " mois"
 
-#: app/controllers/reporting_controller.rb:544
+#: app/controllers/reporting_controller.rb:538
 msgid ""
 "No data \n"
 "available"
 msgstr "Aucune donnée \\n disponible"
 
-#: app/controllers/reporting_controller.rb:554
+#: app/controllers/reporting_controller.rb:548
 #: app/views/reporting/_sommaire.html.erb:7
 #: app/views/reporting/general.html.erb:20
 msgid "Distribution of your requests"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:555
+#: app/controllers/reporting_controller.rb:549
 msgid "Distribution of requests"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:556
-#: app/controllers/reporting_controller.rb:557
+#: app/controllers/reporting_controller.rb:550
+#: app/controllers/reporting_controller.rb:551
 msgid "Severity of your requests"
 msgstr "Sévérité de vos demandes"
 
-#: app/controllers/reporting_controller.rb:558
-#: app/controllers/reporting_controller.rb:559
+#: app/controllers/reporting_controller.rb:552
+#: app/controllers/reporting_controller.rb:553
 msgid "Resolution of your requests"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:561
+#: app/controllers/reporting_controller.rb:555
 msgid "Cancelled requests"
 msgstr "Demandes annulées"
 
-#: app/controllers/reporting_controller.rb:562
+#: app/controllers/reporting_controller.rb:556
 msgid "Evolution of the activity volume"
 msgstr "Évolution du volume d'activité"
 
-#: app/controllers/reporting_controller.rb:564
+#: app/controllers/reporting_controller.rb:558
 msgid "Top 5 of the most discussed requests"
 msgstr "Top 5 des demandes les plus discutées"
 
-#: app/controllers/reporting_controller.rb:565
+#: app/controllers/reporting_controller.rb:559
 msgid "Top 5 of the most discussed software"
 msgstr "Top 5 des logiciels les plus discutées"
 
-#: app/controllers/reporting_controller.rb:567
+#: app/controllers/reporting_controller.rb:561
 msgid "Processing time"
 msgstr "Temps de traitement"
 
-#: app/controllers/reporting_controller.rb:568
+#: app/controllers/reporting_controller.rb:562
 msgid "Response time"
 msgstr "Temps de réponse"
 
-#: app/controllers/reporting_controller.rb:569
+#: app/controllers/reporting_controller.rb:563
 msgid "Workaround time"
 msgstr "Temps de contournement"
 
-#: app/controllers/reporting_controller.rb:570
+#: app/controllers/reporting_controller.rb:564
 msgid "Correction time"
 msgstr "Temps de correction"
 
@@ -1289,38 +1273,6 @@ msgid "Changelog|Text modification"
 msgstr "Text modification"
 
 #: app/models/client.rb:-
-msgid "client"
-msgstr "client"
-
-#: app/models/client.rb:-
-msgid "Client|Name"
-msgstr "Nom"
-
-#: app/models/client.rb:-
-msgid "Client|Description"
-msgstr "Description"
-
-#: app/models/client.rb:-
-msgid "Client|Adresse"
-msgstr "Adresse"
-
-#: app/models/client.rb:-
-msgid "Client|Image"
-msgstr "Image"
-
-#: app/models/client.rb:-
-msgid "Client|Code acces"
-msgstr "Code d'accès"
-
-#: app/models/client.rb:-
-msgid "Client|Beneficiaires count"
-msgstr "Nombre de bénéficiaires"
-
-#: app/models/client.rb:-
-msgid "Client|Inactive"
-msgstr "Inactif"
-
-#: app/models/client.rb:-
 msgid "paquet"
 msgstr "paquet"
 
@@ -1379,6 +1331,38 @@ msgstr "Nombre de changelogs"
 #: app/models/client.rb:-
 msgid "Paquet|Active"
 msgstr "Actif"
+
+#: app/models/client.rb:-
+msgid "client"
+msgstr "client"
+
+#: app/models/client.rb:-
+msgid "Client|Name"
+msgstr "Nom"
+
+#: app/models/client.rb:-
+msgid "Client|Description"
+msgstr "Description"
+
+#: app/models/client.rb:-
+msgid "Client|Adresse"
+msgstr "Adresse"
+
+#: app/models/client.rb:-
+msgid "Client|Image"
+msgstr "Image"
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr "Code d'accès"
+
+#: app/models/client.rb:-
+msgid "Client|Beneficiaires count"
+msgstr "Nombre de bénéficiaires"
+
+#: app/models/client.rb:-
+msgid "Client|Inactive"
+msgstr "Inactif"
 
 #: app/models/client.rb:37
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
@@ -1604,18 +1588,6 @@ msgid " on "
 msgstr " à "
 
 #: app/models/demande.rb:-
-msgid "statut"
-msgstr "statut"
-
-#: app/models/demande.rb:-
-msgid "Statut|Name"
-msgstr "Nom"
-
-#: app/models/demande.rb:-
-msgid "Statut|Description"
-msgstr "Description"
-
-#: app/models/demande.rb:-
 msgid "demande"
 msgstr "demande"
 
@@ -1695,11 +1667,27 @@ msgstr "Déclarant"
 msgid "Demande|Binaire"
 msgstr "Binaire"
 
-#: app/models/demande.rb:40
+#: app/models/demande.rb:30
+msgid "year"
+msgstr "année"
+
+#: app/models/demande.rb:31
+msgid "month"
+msgstr "mois"
+
+#: app/models/demande.rb:32
+msgid "week"
+msgstr "semaine"
+
+#: app/models/demande.rb:33
+msgid "day"
+msgstr "jour"
+
+#: app/models/demande.rb:45
 msgid "You must indicate a %s for your request"
 msgstr "Vous devez indiquer un %s pour votre demande"
 
-#: app/models/demande.rb:52
+#: app/models/demande.rb:57
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
@@ -2218,6 +2206,18 @@ msgstr "Nom"
 #: app/models/socle.rb:-
 msgid "Socle|Binaires count"
 msgstr "Comptage des binaires"
+
+#: app/models/statut.rb:-
+msgid "statut"
+msgstr "statut"
+
+#: app/models/statut.rb:-
+msgid "Statut|Name"
+msgstr "Nom"
+
+#: app/models/statut.rb:-
+msgid "Statut|Description"
+msgstr "Description"
 
 #: app/models/statut.rb:8
 msgid "Submitted"
