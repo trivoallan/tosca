@@ -4,7 +4,7 @@
   <% contract = c.first %>
   <% c_id = "contract_#{contract.id}" %>
   <h2><%= toggle(c_id) %>&nbsp;<%= _("Contract : ") + contract.name %></h2>
-  <ul id="<%= c_id %>" style="display: none; list-style: none">
+  <ul id="<%= c_id %>" style="list-style-position: outside;">
 
   <% c.last.each do |d| %>
     <% request = d.first %>
@@ -16,7 +16,7 @@
       <%= request.severite %><%= " (#{old_request.severite})" if old_request.severite and old_request.severite != request.severite %>,
       <%= request.statut %><%= " (#{old_request.statut})" if old_request.statut and old_request.statut != request.statut %>,
       <%= _("open since %s") % distance_of_time_in_words_to_now(request.created_on) %><br/><br/>
-      <ul id="<%= d_id %>" style="display: none; list-style: none">
+      <ul id="<%= d_id %>" style="list-style-position: outside;">
 
         <% d.last.each do |com| %>
           <li>
