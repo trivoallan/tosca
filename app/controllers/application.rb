@@ -138,13 +138,14 @@ private
     end
   end
 
+  # TODO : put it elsewhere and not in a constant : it needs to be localisable
   ERROR_MESSAGE = 'Une erreur est survenue. Notre service a été prévenu' +
     ' et dispose des informations nécessaires pour corriger.<br />' +
     'N\'hésitez pas à nous contacter si le problème persiste.'
   WARN_NOID = 'Veuillez préciser une adresse existante et valide. Nous ne ' +
     'considérons pas que c\'est une erreur. Si vous pensez le contraire, ' +
     'n\'hésitez pas à nous contacter.'
-  def rescue_action(exception)
+  def rescue_action_in_public(exception)
     if exception.is_a? ActiveRecord::RecordNotFound
       msg = WARN_NOID
     else

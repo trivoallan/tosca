@@ -113,8 +113,8 @@ class ReportingController < ApplicationController
     updated = Time.now.send("beginning_of_#{@period}")
     # We must localise it after getting the (english) helper for the start date
     @period = _(@period)
-                            
-    options = { :conditions => [ "updated_on >= ? ", updated ], 
+
+    options = { :conditions => [ "updated_on >= ? ", updated ],
      :order => "contrat_id ASC", :include => [:typedemande,:severite,:statut]}
     requests = Demande.find(:all, options)
 
