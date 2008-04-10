@@ -213,6 +213,20 @@ class StaticImage < Static::ActionView
     @@hide ||= image_tag('navigation_hide.gif', options('hide'))
   end
 
+  @@sla_ok = nil
+  def self.sla_ok
+    @@sla_ok ||= image_tag 'sla_ok.png', options('sla ok', '16x16')
+  end
+
+  @@sla_running = nil
+  def self.sla_running
+    @@sla_running ||= image_tag 'sla_running.png', options('sla running', '16x16')
+  end
+
+  @@sla_exceeded = nil
+  def self.sla_exceeded
+    @@sla_exceeded ||= image_tag 'sla_exceeded.png', options('sla exceeded', '16x16')
+  end
   ##############################################
   # Severity
 

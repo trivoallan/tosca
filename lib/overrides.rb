@@ -2,7 +2,6 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-
 class Array
    #   [ 4, 5 ].sum
    #      9
@@ -197,7 +196,18 @@ class Time
   # Time.in_words(10.hours, 5)
   # Time.in_words(2.days + 10.hours)
   # Time.in_words(0.5.days, true)
+  @@first_time = true
   def self.in_words(distance_in_seconds, dayly_time = 24)
+    # Needed for putting libs into the tranlaste world of TOSCA
+    # We cannot load it into config/environnement.rb, current version
+    # of gettext bug with current version of gettext_localize
+    # as of 10/04/08
+    # TODO : find the bug or check it later
+    if @@first_time
+      GetText.bindtextdomain 'tosca'
+      @@first_time = nil
+    end
+
     return _('Immediate') if distance_in_seconds == 0
     return '-' unless distance_in_seconds.is_a?(Numeric) and distance_in_seconds > 0
     return '-' unless dayly_time == true or (dayly_time > 0 and dayly_time < 25)

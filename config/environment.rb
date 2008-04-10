@@ -74,6 +74,7 @@ require 'config'
 # Internal libs, located in lib/
 require 'overrides'
 
+
 # External libs
 # Currently use this format : [ gem_name, gem_version, *needed_requires ]
 NeededGems = [ # Used by Ruport
@@ -92,7 +93,7 @@ NeededGems = [ # Used by Ruport
     [ 'ultraviolet', '0.10.2' ]
    ]
 # Check and load all gems
-#Utils::check_and_install_missing_gems(*NeededGems)
+Utils::check_and_install_missing_gems(*NeededGems)
 
 # Check and create used dirs
 path = File.join RAILS_ROOT, 'public', 'cache'

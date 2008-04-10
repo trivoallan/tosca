@@ -15,7 +15,7 @@ require_dependency 'acl_system'
 class ApplicationController < ActionController::Base
   init_gettext 'tosca'
 
-  # accès protégé et standardisé
+  # access protected everywhere, See Wiki for more Info
   before_filter :login_required, :set_global_shortcuts
 
   # périmètre limité pour certains profils
