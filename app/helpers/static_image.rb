@@ -220,12 +220,12 @@ class StaticImage < Static::ActionView
 
   @@sla_running = nil
   def self.sla_running
-    @@sla_running ||= image_tag 'sla_running.png', options('Chrono is running', '16x16')
+    @@sla_running ||= image_tag 'sla_running.png', options('Time is running', '16x16')
   end
 
   @@sla_exceeded = nil
   def self.sla_exceeded
-    @@sla_exceeded ||= image_tag 'sla_exceeded.png', options('Warning : time exceeded', '16x16')
+    @@sla_exceeded ||= image_tag 'sla_exceeded.png', options('Time exceeded', '16x16')
   end
   ##############################################
   # Severity
