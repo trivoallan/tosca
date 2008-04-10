@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-09 19:37+0200\n"
+"POT-Creation-Date: 2008-04-10 17:36+0200\n"
 "PO-Revision-Date: 2008-04-09 08:41+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -194,33 +194,33 @@ msgstr "Le contrat a été mis à jour avec succès."
 msgid "Unknown rules for contract \"%s\""
 msgstr "Règles inconnu pour le contrat \"%s\""
 
-#: app/controllers/demandes_controller.rb:68
+#: app/controllers/demandes_controller.rb:70
 #: app/helpers/demandes_helper.rb:194 app/helpers/links_helper.rb:123
 msgid "All the requests"
 msgstr "Toutes les demandes"
 
-#: app/controllers/demandes_controller.rb:127
+#: app/controllers/demandes_controller.rb:129
 msgid "You have successfully submitted your %s request."
 msgstr "Vous avez soumis avec succès votre %s demande"
 
-#: app/controllers/demandes_controller.rb:255
+#: app/controllers/demandes_controller.rb:257
 msgid "The request has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:285
+#: app/controllers/demandes_controller.rb:287
 msgid "The demand has now no contribution"
 msgstr "Le demande n'a plus de contributions"
 
-#: app/controllers/demandes_controller.rb:287
+#: app/controllers/demandes_controller.rb:289
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/demandes_controller.rb:367
+#: app/controllers/demandes_controller.rb:369
 #: app/helpers/demandes_helper.rb:180
 msgid "Active requests"
 msgstr "Demandes actives"
 
-#: app/controllers/demandes_controller.rb:370
+#: app/controllers/demandes_controller.rb:372
 #: app/helpers/demandes_helper.rb:187
 msgid "Finished requests"
 msgstr "Demandes terminées"
@@ -924,14 +924,14 @@ msgstr "montrer toutes les demandes"
 
 #: app/helpers/demandes_helper.rb:210 app/views/clients/show.html.erb:40
 #: app/views/demandes/_packages.html.erb:6
-#: app/views/demandes/tabs/_cns.html.erb:24
+#: app/views/demandes/tabs/_cns.html.erb:33
 #: app/views/reporting/_comex_cns.html.erb:20
 msgid "Workaround"
 msgstr "Contournée"
 
 #: app/helpers/demandes_helper.rb:211 app/views/clients/show.html.erb:40
 #: app/views/demandes/_packages.html.erb:7
-#: app/views/demandes/tabs/_cns.html.erb:35
+#: app/views/demandes/tabs/_cns.html.erb:44
 #: app/views/reporting/_comex_cns.html.erb:21
 msgid "Correction"
 msgstr "Correction"
@@ -1273,6 +1273,38 @@ msgid "Changelog|Text modification"
 msgstr "Text modification"
 
 #: app/models/client.rb:-
+msgid "client"
+msgstr "client"
+
+#: app/models/client.rb:-
+msgid "Client|Name"
+msgstr "Nom"
+
+#: app/models/client.rb:-
+msgid "Client|Description"
+msgstr "Description"
+
+#: app/models/client.rb:-
+msgid "Client|Adresse"
+msgstr "Adresse"
+
+#: app/models/client.rb:-
+msgid "Client|Image"
+msgstr "Image"
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr "Code d'accès"
+
+#: app/models/client.rb:-
+msgid "Client|Beneficiaires count"
+msgstr "Nombre de bénéficiaires"
+
+#: app/models/client.rb:-
+msgid "Client|Inactive"
+msgstr "Inactif"
+
+#: app/models/client.rb:-
 msgid "paquet"
 msgstr "paquet"
 
@@ -1331,38 +1363,6 @@ msgstr "Nombre de changelogs"
 #: app/models/client.rb:-
 msgid "Paquet|Active"
 msgstr "Actif"
-
-#: app/models/client.rb:-
-msgid "client"
-msgstr "client"
-
-#: app/models/client.rb:-
-msgid "Client|Name"
-msgstr "Nom"
-
-#: app/models/client.rb:-
-msgid "Client|Description"
-msgstr "Description"
-
-#: app/models/client.rb:-
-msgid "Client|Adresse"
-msgstr "Adresse"
-
-#: app/models/client.rb:-
-msgid "Client|Image"
-msgstr "Image"
-
-#: app/models/client.rb:-
-msgid "Client|Code acces"
-msgstr "Code d'accès"
-
-#: app/models/client.rb:-
-msgid "Client|Beneficiaires count"
-msgstr "Nombre de bénéficiaires"
-
-#: app/models/client.rb:-
-msgid "Client|Inactive"
-msgstr "Inactif"
 
 #: app/models/client.rb:37
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
@@ -1586,6 +1586,18 @@ msgstr "Synthese"
 #: app/models/contribution.rb:44
 msgid " on "
 msgstr " à "
+
+#: app/models/demande.rb:-
+msgid "statut"
+msgstr "statut"
+
+#: app/models/demande.rb:-
+msgid "Statut|Name"
+msgstr "Nom"
+
+#: app/models/demande.rb:-
+msgid "Statut|Description"
+msgstr "Description"
 
 #: app/models/demande.rb:-
 msgid "demande"
@@ -2206,18 +2218,6 @@ msgstr "Nom"
 #: app/models/socle.rb:-
 msgid "Socle|Binaires count"
 msgstr "Comptage des binaires"
-
-#: app/models/statut.rb:-
-msgid "statut"
-msgstr "statut"
-
-#: app/models/statut.rb:-
-msgid "Statut|Name"
-msgstr "Nom"
-
-#: app/models/statut.rb:-
-msgid "Statut|Description"
-msgstr "Description"
 
 #: app/models/statut.rb:8
 msgid "Submitted"
@@ -3627,9 +3627,9 @@ msgid "By word"
 msgstr "Par mot"
 
 #: app/views/demandes/lists/_requests_info.html.erb:37
-#: app/views/logiciels/_softwares_info.html.erb:32
-msgid "By client"
-msgstr "Par client"
+#, fuzzy
+msgid "By contract"
+msgstr "un contrat"
 
 #: app/views/demandes/lists/_requests_info.html.erb:39
 msgid "By expert"
@@ -3748,6 +3748,7 @@ msgid "Specify here the packages impacted by the request :"
 msgstr "Spécifier ici les paquets impactés par la demande :"
 
 #: app/views/demandes/_packages.html.erb:4
+#: app/views/demandes/tabs/_cns.html.erb:16
 msgid "Commitment"
 msgstr "Engagements"
 
@@ -3804,14 +3805,24 @@ msgid "Service Level Agreement"
 msgstr "Convention de Niveau de Services"
 
 #: app/views/demandes/tabs/_cns.html.erb:14
+#, fuzzy
+msgid "Step"
+msgstr "Etat"
+
+#: app/views/demandes/tabs/_cns.html.erb:15
+#, fuzzy
+msgid "Progress"
+msgstr "barre de progression"
+
+#: app/views/demandes/tabs/_cns.html.erb:23
 msgid "Taken into account"
 msgstr "Prise en compte"
 
-#: app/views/demandes/tabs/_cns.html.erb:21
+#: app/views/demandes/tabs/_cns.html.erb:30
 msgid "Your request has no commitment for workaround time"
 msgstr "Votre demande n'a pas d'engagement de contournement"
 
-#: app/views/demandes/tabs/_cns.html.erb:32
+#: app/views/demandes/tabs/_cns.html.erb:41
 msgid "Your request has no commitment for correction time"
 msgstr "Votre demande n'a pas d'engagement de correction"
 
@@ -4151,6 +4162,10 @@ msgstr[1] "Paquets"
 #: app/views/logiciels/_softwares_info.html.erb:22
 msgid "List of packages"
 msgstr "Liste des paquets"
+
+#: app/views/logiciels/_softwares_info.html.erb:32
+msgid "By client"
+msgstr "Par client"
 
 #: app/views/logiciels/_softwares_info.html.erb:38
 msgid "Characteristic"
@@ -5026,51 +5041,51 @@ msgstr "Ajouter une url pour suivre votre contribution"
 msgid "Edit this url"
 msgstr "Modifier l'url"
 
-#: lib/overrides.rb:201
+#: lib/overrides.rb:211
 msgid "Immediate"
 msgstr "Immédiat"
 
-#: lib/overrides.rb:215
+#: lib/overrides.rb:225
 msgid "less than a minute"
 msgstr "moins d'une minute"
 
-#: lib/overrides.rb:217
+#: lib/overrides.rb:227
 msgid "%d minutes"
 msgstr "%d minutes"
 
-#: lib/overrides.rb:220 lib/overrides.rb:233
+#: lib/overrides.rb:230 lib/overrides.rb:243
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d heure"
 msgstr[1] "%d heures"
 
-#: lib/overrides.rb:222
+#: lib/overrides.rb:232
 msgid "1 half a working day"
 msgstr "1 demi jour ouvré"
 
-#: lib/overrides.rb:222
+#: lib/overrides.rb:232
 msgid "1 half day"
 msgstr "1 demie journée"
 
-#: lib/overrides.rb:226 lib/overrides.rb:231
+#: lib/overrides.rb:236 lib/overrides.rb:241
 msgid "%d working day"
 msgid_plural "%d working days"
 msgstr[0] "%d jour ouvré"
 msgstr[1] "%d jours ouvrés"
 
-#: lib/overrides.rb:227 lib/overrides.rb:232
+#: lib/overrides.rb:237 lib/overrides.rb:242
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] "%d jour"
 msgstr[1] "%d jours"
 
-#: lib/overrides.rb:237
+#: lib/overrides.rb:247
 msgid "%d working month"
 msgid_plural "%d working months"
 msgstr[0] "%d mois ouvré"
 msgstr[1] "%d mois ouvrés"
 
-#: lib/overrides.rb:238
+#: lib/overrides.rb:248
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
