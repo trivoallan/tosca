@@ -26,6 +26,11 @@ class Demande < ActiveRecord::Base
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
   has_many :piecejointes, :through => :commentaires
 
+  # Used for digest report see
+  N_('year')
+  N_('month')
+  N_('week')
+  N_('day')
 
   # Key pointers to the request history
   # /!\ used to store the description /!\
