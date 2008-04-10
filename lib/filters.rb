@@ -40,7 +40,7 @@ module Filters
     extend Shared
   end
 
-  class Requests < Struct.new('Requests', :text, :client_id, :ingenieur_id,
+  class Requests < Struct.new('Requests', :text, :contrat_id, :ingenieur_id,
                               :typedemande_id, :severite_id, :statut_id, :active)
     extend Shared
   end

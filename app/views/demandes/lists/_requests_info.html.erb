@@ -34,8 +34,8 @@
  <li><b><%=_('By word')%></b><br />
      <%= text_field :filters, :text %></li>
  <% if @ingenieur %>
-  <li><b><%=_('By client')%></b><br />
-      <%= select_filter(@clients, :client) %></li>
+  <li><b><%=_('By contract')%></b><br />
+      <%= select_filter(@contrats, :contrat) %></li>
   <li><b><%=_('By expert')%></b><br />
       <%= select_filter(@ingenieurs, :ingenieur) %></li>
  <% end %>

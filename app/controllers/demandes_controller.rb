@@ -47,6 +47,7 @@ class DemandesController < ApplicationController
     render :template => 'demandes/lists/tobd'
   end
 
+
   def index
     #special case : direct show
     if params.has_key? 'numero'
@@ -54,12 +55,13 @@ class DemandesController < ApplicationController
     end
 
     order = params[:sort] || 'updated_on DESC'
+    # TODO : See if, with cache, no include is faster or not.
+    # It has to be changed in the export controller too, for the request part
     options = { :per_page => 10, :order => order,
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
     conditions = []
 
     # Specification of a filter f :
-
     if params.has_key? :filters
       session[:requests_filters] = Filters::Requests.new(params[:filters])
     end
@@ -78,7 +80,7 @@ class DemandesController < ApplicationController
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(requests_filters, [
         [:text, 'logiciels.name', 'demandes.resume', :dual_like ],
-        [:client_id, 'beneficiaires.client_id', :equal ],
+        [:contrat_id, 'demandes.contrat_id', :equal ],
         [:ingenieur_id, 'demandes.ingenieur_id', :equal ],
         [:typedemande_id, 'demandes.typedemande_id', :equal ],
         [:severite_id, 'demandes.severite_id', :equal ],
@@ -297,7 +299,7 @@ class DemandesController < ApplicationController
     @typedemandes = Typedemande.find_select()
     @severites = Severite.find_select()
     if @ingenieur
-      @clients = Client.find_select()
+      @contrats = Contrat.find_select(Contrat::OPTIONS)
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     end
   end
