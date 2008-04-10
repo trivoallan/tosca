@@ -25,7 +25,7 @@
               <%= logo_client(com_user.beneficiaire.client, :small) %>
             <% else %>
               <%= StaticImage::logo_08000_small %>
-            <% end %> : <%= html2text(com.corps).gsub(/(b|B)onjour.*$/, "").gsub(/(c|C)ordialement.*$/, "").gsub(/\n/, "") %>
+            <% end %> : <%= digest_text(com.corps) %>
           </li>
         <% end %>
 

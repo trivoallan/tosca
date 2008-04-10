@@ -313,4 +313,16 @@ module ReportingHelper
     result << '</ol>'
     result
   end
+
+  # Remove some common pattern from a text, in order to reduce it
+  # as far as it is possible
+  def digest_text(text, size)
+    text = html2text(text)
+    text.gsub!(/(b|B)onjour.*$/, "")
+    text.gsub!(/(c|C)ordialement.*$/, "")
+    text.squeeze!(' ') # remove multiple successive whitespace
+    text.strip! # remove leading and trailing whitespace removed.
+    truncate(text, size)
+  end
+
 end
