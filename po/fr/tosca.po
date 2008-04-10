@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-10 17:36+0200\n"
-"PO-Revision-Date: 2008-04-09 08:41+0200\n"
+"PO-Revision-Date: 2008-04-10 17:38+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3627,9 +3627,8 @@ msgid "By word"
 msgstr "Par mot"
 
 #: app/views/demandes/lists/_requests_info.html.erb:37
-#, fuzzy
 msgid "By contract"
-msgstr "un contrat"
+msgstr "Par contrat"
 
 #: app/views/demandes/lists/_requests_info.html.erb:39
 msgid "By expert"
@@ -3805,14 +3804,12 @@ msgid "Service Level Agreement"
 msgstr "Convention de Niveau de Services"
 
 #: app/views/demandes/tabs/_cns.html.erb:14
-#, fuzzy
 msgid "Step"
-msgstr "Etat"
+msgstr "Étape"
 
 #: app/views/demandes/tabs/_cns.html.erb:15
-#, fuzzy
 msgid "Progress"
-msgstr "barre de progression"
+msgstr "Progression"
 
 #: app/views/demandes/tabs/_cns.html.erb:23
 msgid "Taken into account"
