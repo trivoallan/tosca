@@ -8,15 +8,24 @@
 <% else %>
  <h1><%= _('Service Level Agreement') %></h1>
  <table class="show">
-  <% progress = elapsed.taken_into_account_progress %>
-  <tr class="<%= cycle('pair', 'impair') %>">
+  <thead>
+   <tr>
+    <th></th>
+    <th><%= _('Step') %></th>
+    <th><%= _('Progress') %></th>
+    <th><%= _('Commitment') %></th>
+   </tr>
+   <tr><td colspan="4"><hr /></td></tr>
+  </thead><tbody>
+   <% progress = elapsed.taken_into_account_progress %>
+   <tr class="<%= cycle('even', 'odd') %>">
     <td><%= progress_image(elapsed.taken_into_account?, progress) %></td>
     <th><%= _("Taken into account") %></th>
     <td><%= progress_bar(progress) %></td>
     <td><%= progress_text(elapsed.taken_into_account, 1.hour, interval) %></td>
-  </tr>
-  <% progress = elapsed.workaround_progress %>
-   <tr class="<%= cycle('pair', 'impair') %>">
+   </tr>
+   <% progress = elapsed.workaround_progress %>
+   <tr class="<%= cycle('even', 'odd') %>">
     <% if commitment.contournement <= 0 %>
      <td colspan="4"><%= _("Your request has no commitment for workaround time") %></td>
     <% else %>
@@ -27,7 +36,7 @@
     <% end %>
    </tr>
   <% progress = elapsed.correction_progress %>
-   <tr class="<%= cycle('pair', 'impair') %>">
+   <tr class="<%= cycle('even', 'odd') %>">
     <% if commitment.contournement <= 0 %>
      <td colspan="4"><%= _("Your request has no commitment for correction time") %></td>
     <% else %>
@@ -37,6 +46,7 @@
      <td><%= progress_text(elapsed.correction, commitment.correction.days, @demande.interval) %></td>
     <% end %>
    </tr>
+  </tbody>
  </table>
 <% end %>
 </div>
