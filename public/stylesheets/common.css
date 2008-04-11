@@ -89,7 +89,8 @@ p img {
 a, a:active, a:visited, a:focus {
 	text-decoration: none;
 	color: #1A5270;
-  /*  font-size: 105%;*/ /*weight: bold;*/ 
+  /*  font-size: 105%;*/
+	font-weight: bold;
 }
 a:hover {
 	text-decoration: underline;
