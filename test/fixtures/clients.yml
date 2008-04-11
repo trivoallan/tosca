@@ -22,7 +22,7 @@ client_00003:
   inactive: false
   id: 3
   beneficiaires_count: 
-  description: 
+  description: Il faut une description
   code_acces: ""
-  adresse: 
+  adresse: "Encore une fois, ne peut pas etre vide"
   image_id: 1
