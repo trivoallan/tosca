@@ -173,7 +173,6 @@ class Demande < ActiveRecord::Base
       self.save
     else
       self.destroy
-      puts comment.errors.inspect
       throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
     end
   end
@@ -257,7 +256,6 @@ class Demande < ActiveRecord::Base
 
     # do not update timestamp for a reset
     self.class.record_timestamps = false
-    puts self.id
     rule = self.contrat.rule
     self.elapsed = Elapsed.new(self)
     options = { :conditions => 'commentaires.statut_id IS NOT NULL',
