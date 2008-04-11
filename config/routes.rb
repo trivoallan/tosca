@@ -53,7 +53,6 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :logout => :any, :login => :any, :lemon => :any },
     :new => { :signup => :any, # TODO : reactive it :multiple_signup => :any,
       :ajax_place => :post, :ajax_contracts => :post }
-  map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
   map.resources :arches
   map.resources :binaires, :member => {
      :update_files => :post }
@@ -94,7 +93,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :fichiers
   map.resources :fournisseurs
   map.resources :groupes
-  map.resources :ingenieurs
   # We cannot have 'image' for singular, coz'
   # image_path is used in ActionView::Helpers of Rails
   map.resources :images, :singular => 'img'
@@ -111,6 +109,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :paquets, :collection =>
     { :auto_complete_for_paquet_name => :any}
   map.resources :permissions
+  map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
   map.resources :piecejointes, :member => { :uv => :get }
   map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
