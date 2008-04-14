@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "POT-Creation-Date: 2008-04-10 17:36+0200\n"
-"PO-Revision-Date: 2008-02-19 16:09+0100\n"
+"PO-Revision-Date: 2008-04-14 19:07+0200\n"
 "Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
 "Language-Team: English <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3570,9 +3570,8 @@ msgid "By word"
 msgstr ""
 
 #: app/views/demandes/lists/_requests_info.html.erb:37
-#, fuzzy
 msgid "By contract"
-msgstr "contracts"
+msgstr ""
 
 #: app/views/demandes/lists/_requests_info.html.erb:39
 msgid "By expert"
