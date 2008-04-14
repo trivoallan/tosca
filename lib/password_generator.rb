@@ -5,7 +5,7 @@ module PasswordGenerator
     srand if @@mkpasswd.nil?
     @@mkpasswd ||= File.exist?('/usr/bin/mkpasswd')
     generated = ''
-    seed = "--#{rand(10000)}--#{Time.now}--#{self.login}--"
+    seed = "--#{rand(10000)}--#{Time.now}--#{self.login}--".hash
     if @@mkpasswd
       generated = %x[#{"echo '#{seed}' | /usr/bin/mkpasswd -s"}]
       generated.chomp!
