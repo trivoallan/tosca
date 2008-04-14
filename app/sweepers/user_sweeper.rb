@@ -16,6 +16,8 @@ class UserSweeper < ActionController::Caching::Sweeper
   def expire_cache_for(record)
     # Refresh User Info on each cache displaying it
     record.commentaires.each { |c| expire_fragments c.fragments }
-    record.beneficiaire.demandes.each { |r| expire_fragments r.fragments }
+		unless record.beneficiaire.nil?
+	  	record.beneficiaire.demandes.each { |r| expire_fragments r.fragments }
+		end
   end
 end
