@@ -5,6 +5,8 @@ module PasswordGenerator
     srand if @@mkpasswd.nil?
     @@mkpasswd ||= File.exist?('/usr/bin/mkpasswd')
     generated = ''
+    # mkpasswd bug with control characters
+    # so, we hash the string to resolve this problem
     seed = "--#{rand(10000)}--#{Time.now}--#{self.login}--".hash
     if @@mkpasswd
       generated = %x[#{"echo '#{seed}' | /usr/bin/mkpasswd -s"}]
