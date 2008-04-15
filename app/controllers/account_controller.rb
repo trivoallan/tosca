@@ -206,7 +206,9 @@ class AccountController < ApplicationController
         connection = @user.connection
         begin
           connection.begin_db_transaction
-
+          if params[:user][:client]=='false'
+            params[:user_recipient][:client_id] = ">>"
+          end
           @user.associate_person(params[:user_recipient][:client_id])
           benef, inge = @user.beneficiaire, @user.ingenieur
           benef.update_attributes(params[:beneficiaire]) if benef
@@ -228,7 +230,7 @@ class AccountController < ApplicationController
         @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
       end
     when :get
-      @user = User.new(:role_id => 4) # Default : customer
+      @user = User.new(:role_id => 3) # Default : expert
       @user_engineer = Ingenieur.new
     end
     # Those 2 lines are needed to keep all data, in case of error.
