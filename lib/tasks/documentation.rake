@@ -11,13 +11,14 @@ namespace :doc do
     rdoc.options << '--line-numbers' << '--inline-source'
     rdoc.options << '-c utf8 --quiet'
     rdoc.rdoc_files.include('doc/README')
-    rdoc.rdoc_files.include('app/helpers/**/*.rb')
     rdoc.rdoc_files.include('app/models/**/*.rb')
+    rdoc.rdoc_files.include('app/controllers/**/*.rb')
+    rdoc.rdoc_files.include('app/helpers/**/*.rb')
     rdoc.rdoc_files.include('lib/**/*.rb')
   }
 
 
-  namespace :tplugins do		    
+  namespace :tplugins do
     plugins = FileList['vendor/plugins/**'].collect { |plugin| File.basename(plugin) }
     task :all => plugins.collect { |plugin| "doc:tplugins:#{plugin}" }
 
@@ -36,7 +37,7 @@ namespace :doc do
 
         files.include("#{plugin_base}/lib/**/*.rb")
         if File.exists?("#{plugin_base}/README")
-          files.include("#{plugin_base}/README")    
+          files.include("#{plugin_base}/README")
           options << "--main '#{plugin_base}/README'"
         end
         files.include("#{plugin_base}/CHANGELOG") if File.exists?("#{plugin_base}/CHANGELOG")
