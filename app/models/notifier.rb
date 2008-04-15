@@ -37,7 +37,7 @@ class Notifier < ActionMailer::Base
 
   # This method requires 3 symbols in options :
   #   :user, :controller, :password
-  def new_user(options, flash)
+  def user_signup(options, flash)
     recipients  options[:user].email
     from        FROM
     subject     "Accès au Support Logiciel Libre"

@@ -35,6 +35,8 @@ class AccountController < ApplicationController
     super(user)
   end
 
+  # TODO : Change ajax filter from client_id to contrat_id, with
+  # adequate changes in the Finder and in the Test Suite
   def index
     # init
     options = { :per_page => 15, :order => 'users.role_id, users.login',
@@ -206,14 +208,8 @@ class AccountController < ApplicationController
         connection = @user.connection
         begin
           connection.begin_db_transaction
-          if params[:user][:client]=='false'
-            @user.associate_engineer!
-          else
-            @user.associate_recipient!(params[:user_recipient][:client_id])
-          end
-          benef, inge = @user.beneficiaire, @user.ingenieur
-          benef.update_attributes(params[:beneficiaire]) if benef
-          inge.update_attributes(params[:ingenieur]) if inge
+
+          associate_user!
 
           # welcome mail
           options = { :user => @user, :password => @user.pwd }
@@ -326,6 +322,18 @@ private
     reset_session
   end
 
+  # Used during signup
+  # Put in a separate method in order to improve readiblity of the code
+  def associate_user!
+    if params[:user][:client]=='false'
+      @user.associate_engineer!
+    else
+      @user.associate_recipient!(params[:user_recipient][:client_id])
+    end
+    benef, inge = @user.beneficiaire, @user.ingenieur
+    benef.update_attributes(params[:beneficiaire]) if benef
+    inge.update_attributes(params[:ingenieur]) if inge
+  end
 
     # Bulk import users
   # TODO : this method is too fat, unused, untested and have a lots
