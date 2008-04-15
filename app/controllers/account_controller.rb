@@ -204,27 +204,23 @@ class AccountController < ApplicationController
     when :post
       @user = User.new(params['user'])
       @user.generate_password # from PasswordGenerator, see lib/
-      if @user.save
-        connection = @user.connection
-        begin
-          connection.begin_db_transaction
-
+      connection = @user.connection
+      begin
+        connection.begin_db_transaction
+        if @user.save
           associate_user!
-
-          # welcome mail
-          options = { :user => @user, :password => @user.pwd }
-          Notifier::deliver_new_user(options, flash)
           connection.commit_db_transaction
 
+          Notifier::deliver_new_user({:user => @user}, flash)
           flash[:notice] = _("Account successfully created.")
-          redirect_back_or_default account_path(@user)
-        rescue Exception => e
-          connection.rollback_db_transaction
-          flash[:warn] = e.message
+          redirect_to account_path(@user)
+        else
+          @user.associate_person(params[:user_recipient][:client_id]) if params.has_key? :user_recipient
+          @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
         end
-      else
-        @user.associate_person(params[:user_recipient][:client_id]) if params.has_key? :user_recipient
-        @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+      rescue Exception => e
+        connection.rollback_db_transaction
+        flash[:warn] = e.message
       end
     when :get
       @user = User.new(:role_id => 4, :client => true) # Default : customer
