@@ -160,7 +160,7 @@ permission_00053:
   info: All kinds of download
   id: 53
 permission_00064: 
-  name: ^account/(index|signup|new|create|become)
+  name: ^account/(signup|new|create|become)
   info: Manage account
   id: 64
 permission_00065: 
