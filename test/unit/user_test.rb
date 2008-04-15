@@ -33,12 +33,12 @@ class UserTest < Test::Unit::TestCase
     assert u.save
 
     c = clients(:client_00001)
-    u.associate_person(c.id)
+    u.associate_recipient!(c.id)
     assert u.beneficiaire
     assert_equal u.beneficiaire.client, c
     assert_equal u.client?, true
 
-    u.associate_person(nil)
+    u.associate_engineer!
     assert u.ingenieur
     assert_equal u.client, false
   end
