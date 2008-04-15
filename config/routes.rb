@@ -50,7 +50,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :accounts,
     :controller => "account",
     :member => { :become => :post, :ajax_contracts => :post },
-    :collection => { :logout => :any, :login => :any, :lemon => :any },
+    :collection => { :logout => :any, :login => :post, :lemon => :any },
     :new => { :signup => :any, # TODO : reactive it :multiple_signup => :any,
       :ajax_place => :post, :ajax_contracts => :post }
   map.resources :arches

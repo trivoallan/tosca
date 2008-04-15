@@ -19,6 +19,40 @@ class AccountController < ApplicationController
 
   around_filter :scope, :except => [:login, :logout, :lemon]
 
+
+    # It's a bi-directionnal method, which display and process the form
+  def signup
+    case request.method
+    when :get # Display form
+      @user = User.new(:role_id => 4, :client => true) # Default : customer
+      @user_recipient = Beneficiaire.new
+    when :post # Process form
+      @user = User.new(params['user'])
+      @user.generate_password # from PasswordGenerator, see lib/
+      connection = @user.connection
+      begin
+        connection.begin_db_transaction
+        if @user.save
+          associate_user!
+          connection.commit_db_transaction
+
+          Notifier::deliver_new_user({:user => @user}, flash)
+          flash[:notice] = _("Account successfully created.")
+          redirect_to account_path(@user)
+        else
+          # Those variables are used by _form in order to display the correct form
+          @user.associate_person(params[:user_recipient][:client_id]) if params.has_key? :user_recipient
+          @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+        end
+      rescue Exception => e
+        connection.rollback_db_transaction
+        flash[:warn] = e.message
+      end
+    end
+    _form
+  end
+
+
   def lemon
   end
 
@@ -77,25 +111,22 @@ class AccountController < ApplicationController
   end
 
   def login
-    case request.method
-    when :post
-      # Used when an other web tool want to login
-      user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
-      if session[:user] = User.authenticate(params['user_login'],
-                                            params['user_password'],
-                                            user_crypt)
-        set_sessions(session[:user])
-        flash[:notice] = (_("Welcome %s %s") %
-          [ session[:user].title, session[:user].name]).gsub(' ', '&nbsp;')
-        # When logged from an other tool, the referer is not a valid page
-        session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
-        redirect_back_or_default bienvenue_path
-      else
-        clear_sessions
-        id = User.find_by_login(params['user_login'])
-        flash.now[:warn] = _("Connexion failure")
-        flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
-      end
+    # Used when an other web tool want to login
+    user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
+    if session[:user] = User.authenticate(params['user_login'],
+                                          params['user_password'],
+                                          user_crypt)
+      set_sessions(session[:user])
+      flash[:notice] = (_("Welcome %s %s") %
+        [ session[:user].title, session[:user].name]).gsub(' ', '&nbsp;')
+      # When logged from an other tool, the referer is not a valid page
+      session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
+      redirect_back_or_default bienvenue_path
+    else
+      clear_sessions
+      id = User.find_by_login(params['user_login'])
+      flash.now[:warn] = _("Connexion failure")
+      flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
     end
   end
 
@@ -196,39 +227,6 @@ class AccountController < ApplicationController
     redirect_to signup_new_account_path
   end
 
-  # Create an account
-  # Depending on if is a client, create related beneficiaire or engineer
-  # TODO : rework : it's too long !
-  def signup
-    case request.method
-    when :post
-      @user = User.new(params['user'])
-      @user.generate_password # from PasswordGenerator, see lib/
-      connection = @user.connection
-      begin
-        connection.begin_db_transaction
-        if @user.save
-          associate_user!
-          connection.commit_db_transaction
-
-          Notifier::deliver_new_user({:user => @user}, flash)
-          flash[:notice] = _("Account successfully created.")
-          redirect_to account_path(@user)
-        else
-          @user.associate_person(params[:user_recipient][:client_id]) if params.has_key? :user_recipient
-          @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
-        end
-      rescue Exception => e
-        connection.rollback_db_transaction
-        flash[:warn] = e.message
-      end
-    when :get
-      @user = User.new(:role_id => 4, :client => true) # Default : customer
-      @user_recipient = Beneficiaire.new
-    end
-    # Those 2 lines are needed to keep all data, in case of error.
-    _form
-  end
 
   # Exit gracefully
   def logout
