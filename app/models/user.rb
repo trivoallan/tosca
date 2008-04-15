@@ -93,19 +93,18 @@ class User < ActiveRecord::Base
   end
 
 
-  # Warning : this method update the current User object
-  def associate_person(client_id)
+  # Associate current User to a recipient profile
+  def associate_recipient!(client_id)
     client = nil
-    begin
-      client = Client.find(client_id.to_i) unless client_id.nil?
-    rescue ActiveRecord::RecordNotFound; end
-    if client
-      self.beneficiaire = Beneficiaire.new(:user => self, :client => client)
-      self.client = true
-    else
-      self.ingenieur = Ingenieur.new(:user => self)
-      self.client = false
-    end
+    client = Client.find(client_id.to_i) unless client_id.nil?
+    self.beneficiaire = Beneficiaire.new(:user => self, :client => client)
+    self.client = true
+  end
+
+  # Associate current User to an Engineer profile
+  def associate_engineer!()
+    self.ingenieur = Ingenieur.new(:user => self)
+    self.client = false
   end
 
   SELECT_OPTIONS = { :include => [:user], :order =>
