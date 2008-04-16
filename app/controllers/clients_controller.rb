@@ -12,7 +12,7 @@ class ClientsController < ApplicationController
   end
 
   def stats
-    list
+    index
     @typedemandes = Typedemande.find(:all)
   end
 

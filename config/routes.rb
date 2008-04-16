@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :binaires, :member => {
      :update_files => :post }
   map.resources :changelogs
-  map.resources :clients
+  map.resources :clients, :collection => { :stats => :get }
   map.resources :commentaires, :member => {
      :change_state => :post,
      :comment => :post }

@@ -1,28 +1,24 @@
 <h1><%= _("Statistics by clients") %></h1>
+<h1>THE CODE SOURCE OF THIS PAGE HAS TO BE REWRITTEN</h1>
 
 <%= show_pages_links(@client_pages, _("a client")) %>
-<% 
-  titres = [ _("Logo"), _("Name")]
+<%
+  titres = [ _("Name") ]
   @typedemandes.each { |t| titres << t.name  }
   titres << _("TOTAL")
   total = 0
-  addline = ['', '',]
+  addline = ['' ]
   @typedemandes.each { |t|
     sub_total =  Demande.find_all_by_typedemande_id(t.id).size
     addline << "<b>#{sub_total}</b>"
     total += sub_total
   }
-  addline << "<b>#{total}</b>" 
+  addline << "<b>#{total}</b>"
 %>
 <%= show_table(@clients, Client, titres, :add_lines => [addline]) { |c|
   result = ''
   total = 0
-  if c.image
-    result << "<td>#{image_tag(url_for_file_column(c.image, 'image', 'thumb'))}</td>"
-  else
-    result << '<td></td>'
-  end
-  result << "<td>#{link_to_client(c)}</td>"
+  result << "<td>#{link_to_no_hover logo_client(c), client_path(c)}</td>"
   @typedemandes.each{ |t|
     count = c.demandes.find_all_by_typedemande_id(t.id).size
     result << "<td>#{count}</td>"
