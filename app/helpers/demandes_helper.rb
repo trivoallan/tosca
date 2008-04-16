@@ -121,7 +121,7 @@ module DemandesHelper
 
   def link_to_new_request(arg)
     options = arg ? new_demande_path(arg) : new_demande_path
-    link_to(image_create(_('New request')), options, LinksHelper::NO_HOVER)
+    link_to_no_hover image_create(_('New request')), options
   end
 
   # Link to access a ticket

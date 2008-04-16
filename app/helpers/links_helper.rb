@@ -103,8 +103,13 @@ EOS
         _('Do you really want to delete %s') % objet_name)
   end
 
-  def edit_options
-    LinksHelper::NO_HOVER
+  # This short helper allows to make an image link
+  # It's different from the text link coz' the dynamic background is removed
+  # Call it like this :
+  #   <%= link_to_no_hover image_create(_('new url')), path %>
+  def link_to_no_hover(*args)
+    args << LinksHelper::NO_HOVER
+    link_to *args
   end
 
   ### Header ###

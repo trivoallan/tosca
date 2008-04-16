@@ -6,8 +6,7 @@ module ConteneursHelper
   # call it like :
   # <%= link_to_new_conteneur %>
   def link_to_new_conteneur()
-    link_to(image_create(_('a container')), new_conteneur_path, 
-            LinksHelper::NO_HOVER)
+    link_to_no_hover image_create(_('a container')), new_conteneur_path
   end
 
 end

@@ -12,7 +12,7 @@ module BinairesHelper
   def link_to_new_binaire(paquet_id)
     return '-' if paquet_id.blank?
     options = new_binaire_path(:paquet_id => paquet_id)
-    link_to(image_create(_('binary')), options, LinksHelper::NO_HOVER)
+    link_to_no_hover image_create(_('binary')), options
   end
 
   def link_to_update_binary_files(binaire_id)

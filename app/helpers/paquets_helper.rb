@@ -15,7 +15,7 @@ module PaquetsHelper
   def link_to_new_paquet(logiciel = nil)
     return '' unless logiciel
     path = new_paquet_path(:logiciel_id => logiciel.id,:referent => logiciel.referent)
-    link_to(image_create(_('a package')), path, LinksHelper::NO_HOVER)
+    link_to_no_hover(image_create(_('a package')), path)
   end
 
 end
