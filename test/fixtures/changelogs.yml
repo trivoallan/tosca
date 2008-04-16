@@ -1,2 +1,7 @@
---- {}
-
+--- 
+changelog_00001: 
+  paquet_id: 1
+  id: 1
+  date_modification: 2008-04-16 15:41:00 +02:00
+  text_modification: <p>it's a long description</p>
+  nom_modification: it's a short description
