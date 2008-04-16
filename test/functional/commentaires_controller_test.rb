@@ -7,8 +7,13 @@ require 'commentaires_controller'
 # Re-raise errors caught by the controller.
 class CommentairesController; def rescue_action(e) raise e end; end
 
+# TODO : As of Rails 2.0.2, the "setup" method is broken
+#
+# When it will be possible, this one can migrate into ActionController::TestCase
+# and validate within the test suite the _not_allowed? effect of the
+# CommentaireController
 class CommentairesControllerTest < Test::Unit::TestCase
-  fixtures :commentaires, :demandes, :beneficiaires, :users, 
+  fixtures :commentaires, :demandes, :beneficiaires, :users,
   :permissions, :roles, :permissions_roles, :ingenieurs,
   :statuts, :clients
 
@@ -17,6 +22,19 @@ class CommentairesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
+  end
+
+
+  def test_new
+    get :new
+    assert_response :success
+    assert_template nil
+  end
+
+  def test_create
+    get :create
+    assert_response :success
+    assert_template nil
   end
 
   def test_index
@@ -47,7 +65,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, { 
+    post :update, {
       :id => 1,
       :commentaire => {
         :demande_id => 1,
@@ -75,42 +93,24 @@ class CommentairesControllerTest < Test::Unit::TestCase
   def test_comment
     old_statut_id = Demande.find(1).statut_id
 
-    post(:comment, { :id => "2-une-autre-demandes", 
-      :commentaire => { 
-        "corps" => "promenons nous dans les bois", 
-        "prive" => "0", 
-        "ingenieur_id" => "", 
-        "severite_id" => "", 
+    post(:comment, { :id => "2-une-autre-demandes",
+      :commentaire => {
+        "corps" => "promenons nous dans les bois",
+        "prive" => "0",
+        "ingenieur_id" => "",
+        "severite_id" => "",
         "statut_id" => "3"
-      }, 
-      :mce_editor_0_formatSelect => "", 
+      },
+      :mce_editor_0_formatSelect => "",
       :piecejointe => { "file_temp" => "", "file" => "" }
          })
 
     # TODO : why it's not a success ????
     assert_response :redirect
-    assert_redirected_to(:controller => "demandes", :action => "show", 
-                         :id => "2-une-autre-demandes")
+    assert_redirected_to(:controller => "demandes", :action => "show",
+                         :id => "2-Copie-d-une-question-dans-OOo")
 
     assert(Demande.find(1).statut_id == old_statut_id)
   end
-
-=begin
-  TODO : refaire un test de destroy AVEC un create qui va bien
-  def test_destroy
-    assert_not_nil Commentaire.find(1)
-
-    post :destroy, :id => 1
-    
-    assert flash.has_key?(:notice)
-    assert_response :redirect
-    assert_redirected_to :action => 'comment'
-
-    assert_raise(ActiveRecord::RecordNotFound) {
-      Commentaire.find(1)
-    }
-  end
-=end
-
 
 end
