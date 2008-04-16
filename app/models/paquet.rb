@@ -7,12 +7,11 @@ class Paquet < ActiveRecord::Base
   belongs_to :contrat, :counter_cache => true
   belongs_to :mainteneur, :order => 'name'
   belongs_to :conteneur
-  has_many :fichiers, :dependent => :destroy
   has_many :changelogs, :dependent => :destroy
   has_many :dependances, :dependent => :destroy
   has_many :binaires, :dependent => :destroy, :include => :paquet
 
-  validates_presence_of :logiciel, :conteneur
+  validates_presence_of :logiciel, :conteneur, :contrat
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||

@@ -1,8 +1,0 @@
-<% for column in Fichier.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @fichier.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', edit_fichier_path(@fichier) %> |
-<%= link_to 'Back', fichiers_path %>
