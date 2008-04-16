@@ -1,5 +1,5 @@
---- 
-paquet_00001: 
+---
+paquet_00001:
   name: openoffice.org
   configuration: ""
   logiciel_id: 1
@@ -10,8 +10,7 @@ paquet_00001:
   release: lng1
   contrat_id: 1
   conteneur_id: 2
-  changelogs_count: 
+  changelogs_count:
   taille: 0
-  fichiers_count: 
   distributeur_id: 3
   active: true
