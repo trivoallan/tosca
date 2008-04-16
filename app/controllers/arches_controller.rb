@@ -14,7 +14,7 @@ class ArchesController < ApplicationController
     @arch = Arch.new(params[:arch])
     if @arch.save
       flash[:notice] = _('Arch was successfully created.')
-      redirect_to arches_url
+      redirect_to arches_path
     else
       render :action => 'new'
     end

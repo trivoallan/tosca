@@ -47,10 +47,10 @@ class ArchesControllerTest < Test::Unit::TestCase
   def test_create
     num_arches = Arch.count
 
-    post :create, :arch => {}
+    post :create, :arch => { :name => "x69" }
 
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to arches_path
 
     assert_equal num_arches + 1, Arch.count
   end
