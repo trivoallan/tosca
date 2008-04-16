@@ -98,7 +98,7 @@ class PaquetsController < ApplicationController
     @conteneurs = Conteneur.find_select
     @distributeurs = Distributeur.find_select
     @mainteneurs = Mainteneur.find_select
-    @contrats = Contrat.find(:all, :include => [:client], :conditions => 'clients.inactive = 0')
+    @contrats = Contrat.find_select(Contrat::OPTIONS)
   end
 
   def _panel
