@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
 
 
   # Associate current User to a recipient profile
-  def associate_recipient!(client_id)
+  def associate_recipient(client_id)
     client = nil
     client = Client.find(client_id.to_i) unless client_id.nil?
     self.beneficiaire = Beneficiaire.new(:user => self, :client => client)
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   end
 
   # Associate current User to an Engineer profile
-  def associate_engineer!()
+  def associate_engineer()
     self.ingenieur = Ingenieur.new(:user => self)
     self.client = false
   end

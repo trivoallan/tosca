@@ -19,8 +19,29 @@ class AccountController < ApplicationController
 
   around_filter :scope, :except => [:login, :logout, :lemon]
 
+  # Only available with POST, see config/routes.rb
+  def login
+    # For automatic login from an other web tool,
+    # password is provided already encrypted
+    user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
+    if session[:user] = User.authenticate(params['user_login'],
+                                          params['user_password'],
+                                          user_crypt)
+      set_sessions(session[:user])
+      flash[:notice] = (_("Welcome %s %s") %
+        [ session[:user].title, session[:user].name]).gsub(' ', '&nbsp;')
+      # When logged from an other tool, the referer is not a valid page
+      session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
+      redirect_back_or_default bienvenue_path
+    else
+      clear_sessions
+      id = User.find_by_login(params['user_login'])
+      flash.now[:warn] = _("Connexion failure")
+      flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
+    end
+  end
 
-    # It's a bi-directionnal method, which display and process the form
+  # It's a bi-directionnal method, which display and process the form
   def signup
     case request.method
     when :get # Display form
@@ -34,14 +55,14 @@ class AccountController < ApplicationController
         connection.begin_db_transaction
         if @user.save
           associate_user!
+          Notifier::deliver_user_signup({:user => @user}, flash)
+          # The commit has to be after sending email, not before
           connection.commit_db_transaction
-
-          Notifier::deliver_new_user({:user => @user}, flash)
           flash[:notice] = _("Account successfully created.")
           redirect_to account_path(@user)
         else
           # Those variables are used by _form in order to display the correct form
-          @user.associate_person(params[:user_recipient][:client_id]) if params.has_key? :user_recipient
+          associate_user
           @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
         end
       rescue Exception => e
@@ -110,25 +131,6 @@ class AccountController < ApplicationController
     end
   end
 
-  def login
-    # Used when an other web tool want to login
-    user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
-    if session[:user] = User.authenticate(params['user_login'],
-                                          params['user_password'],
-                                          user_crypt)
-      set_sessions(session[:user])
-      flash[:notice] = (_("Welcome %s %s") %
-        [ session[:user].title, session[:user].name]).gsub(' ', '&nbsp;')
-      # When logged from an other tool, the referer is not a valid page
-      session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
-      redirect_back_or_default bienvenue_path
-    else
-      clear_sessions
-      id = User.find_by_login(params['user_login'])
-      flash.now[:warn] = _("Connexion failure")
-      flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
-    end
-  end
 
   # login with lemon-ldap technology.
   # Administrator ensures that only authenticated client
@@ -316,18 +318,24 @@ private
     reset_session
   end
 
-  # Used during signup
+  # Used during signup, It saves the associated recipient/expert
   # Put in a separate method in order to improve readiblity of the code
   def associate_user!
-    if params[:user][:client]=='false'
-      @user.associate_engineer!
-    else
-      @user.associate_recipient!(params[:user_recipient][:client_id])
-    end
+    associate_user
     benef, inge = @user.beneficiaire, @user.ingenieur
     benef.update_attributes(params[:beneficiaire]) if benef
     inge.update_attributes(params[:ingenieur]) if inge
   end
+
+  # This one does not save anything, used when form was incorrectly setted
+  def associate_user
+    if params[:user][:client]=='false'
+      @user.associate_engineer
+    elsif params.has_key? :user_recipient
+      @user.associate_recipient(params[:user_recipient][:client_id])
+    end
+  end
+
 
     # Bulk import users
   # TODO : this method is too fat, unused, untested and have a lots
