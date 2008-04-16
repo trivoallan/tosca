@@ -46,7 +46,6 @@ module ApplicationHelper
   # It takes a bloc in order to know what to display
   # Options :
   #  * :no_title : Set it to true for not displaying emphasis
-  #  * :title : Set it to false.
   #  * :puce : allows to specify its own tag instead of '&lt;li&gt;'
   #  * :edit : name of the controllers needed to decorate list with
   #   an edit link and a delete link. Used widely in the show view of softwares.
@@ -62,7 +61,7 @@ module ApplicationHelper
       return "<u><b>#{pluralize(size, name.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
-    unless name.blank? or not options[:title] or options.has_key? :no_title
+    unless name.blank? or options.has_key? :no_title
       result << "<b>#{name.capitalize} : </b><br />"
     end
 

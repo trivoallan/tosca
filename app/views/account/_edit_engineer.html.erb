@@ -11,7 +11,7 @@
 
   <% unless @user_engineer.knowledges.empty? %>
   <hr />
-     <% options = {:title => true, :edit => 'knowledge'} %>
+     <% options = {:edit => 'knowledge'} %>
      <%= show_liste(@user_engineer.knowledges, _('Knowledges'), options) do |k|
         link_to_knowledge k
       end %>

@@ -50,7 +50,7 @@ class ContratsControllerTest < Test::Unit::TestCase
       :ouverture => '2005-10-26 10:20:00',
       :cloture => '2007-10-26 10:20:00',
       :client_id => 1,
-      :rule_type => 'Ossa',
+      :rule_type => 'Rules::Credit',
       :rule_id => 1
     }
 
