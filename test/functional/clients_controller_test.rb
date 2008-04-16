@@ -17,13 +17,18 @@ class ClientsControllerTest < Test::Unit::TestCase
     login 'admin', 'admin'
   end
 
+  def test_stats
+    get :stats
+    assert_response :success
+    assert_template 'stats'
+    assert_not_nil assigns(:clients)
+  end
+
   def test_index
     get :index
     assert_response :success
     assert_template 'index'
     assert_not_nil assigns(:clients)
-    # client_8 is deactivated
-    assert !(assigns(:clients).include?(Client.find(8)))
   end
 
   def test_show
@@ -72,7 +77,7 @@ class ClientsControllerTest < Test::Unit::TestCase
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => '1-toto'
+    assert_redirected_to :action => 'show', :id => '1-Linagora'
   end
 
   def test_destroy
