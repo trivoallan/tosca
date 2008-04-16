@@ -41,6 +41,16 @@ class AccountController < ApplicationController
     end
   end
 
+    # Exit gracefully
+  def logout
+    clear_sessions
+    redirect_to "/"
+  end
+
+  def new
+    redirect_to signup_new_account_path
+  end
+
   # It's a bi-directionnal method, which display and process the form
   def signup
     case request.method
@@ -73,25 +83,15 @@ class AccountController < ApplicationController
     _form
   end
 
-
-  def lemon
-  end
-
-  # Used to restrict operation
-  #  One cannot edit account of everyone
-  def authorize?(user)
-    if params.has_key? :id
-      id = params[:id].to_i
-      # Only admins & manager can edit other accounts
-      if user.role_id > 2 && id != user.id
-        return false
-      end
-    end
-    super(user)
+  def show
+    @user = User.find(params[:id])
+    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+    _form
   end
 
   # TODO : Change ajax filter from client_id to contrat_id, with
   # adequate changes in the Finder and in the Test Suite
+  # TODO : this method is too long
   def index
     # init
     options = { :per_page => 15, :order => 'users.role_id, users.login',
@@ -131,8 +131,39 @@ class AccountController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+    _form
+  end
 
-  # login with lemon-ldap technology.
+  def update
+    @user = User.find(params[:id])
+    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+
+    # Security Wall
+    if session[:user].role_id > 2 # Not a manager nor an admin
+      params[:user].delete :role_id
+      params[:user].delete :contrat_ids
+    end
+
+    res = @user.update_attributes(params[:user])
+    if res and @user_recipient
+      res &= @user_recipient.update_attributes(params[:beneficiaire])
+    end
+    if res and @user_engineer
+      res &= @user_engineer.update_attributes(params[:ingenieur])
+    end
+    _form and return render(:action => 'edit')  unless res
+
+    #update cached profile for logged user
+    set_sessions @user if session[:user] == @user
+
+    flash[:notice]  = _("Edition succeeded")
+    redirect_to account_path(@user)
+  end
+
+    # login with lemon-ldap technology.
   # Administrator ensures that only authenticated client
   #  can have access to this page, and provides some HTTP headers
   #  in order to log in / create an engineer account.
@@ -153,12 +184,6 @@ class AccountController < ApplicationController
       flash[:warn] = _('Person not found')
       redirect_to_home
     end
-  end
-
-  def edit
-    @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
-    _form
   end
 
 
@@ -193,48 +218,8 @@ class AccountController < ApplicationController
     @user = (user_id.blank? ? User.new : User.find(user_id))
   end
 
-  def show
-    @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
-    _form
-  end
-
-  def update
-    @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
-
-    # Security Wall
-    if session[:user].role_id > 2 # Not a manager nor an admin
-      params[:user].delete :role_id
-      params[:user].delete :contrat_ids
-    end
-
-    res = @user.update_attributes(params[:user])
-    if res and @user_recipient
-      res &= @user_recipient.update_attributes(params[:beneficiaire])
-    end
-    if res and @user_engineer
-      res &= @user_engineer.update_attributes(params[:ingenieur])
-    end
-    _form and return render(:action => 'edit')  unless res
-
-    #update cached profile for logged user
-    set_sessions @user if session[:user] == @user
-
-    flash[:notice]  = _("Edition succeeded")
-    redirect_to account_path(@user)
-  end
-
-  def new
-    redirect_to signup_new_account_path
-  end
 
 
-  # Exit gracefully
-  def logout
-    clear_sessions
-    redirect_to "/"
-  end
 
   # Format du fichier CSV
   COLUMNS = [ _('Full name'), _('Title'), _('Email'), _('Phone'),
@@ -242,6 +227,19 @@ class AccountController < ApplicationController
 
 
 private
+  # Used to restrict operation
+  #  One cannot edit account of everyone
+  def authorize?(user)
+    if params.has_key? :id
+      id = params[:id].to_i
+      # Only admins & manager can edit other accounts
+      if user.role_id > 2 && id != user.id
+        return false
+      end
+    end
+    super(user)
+  end
+
   # Partial variables used in forms
   def _form
     options = { :order => 'id', :conditions =>

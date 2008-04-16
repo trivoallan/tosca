@@ -7,7 +7,7 @@ module PasswordGenerator
     generated = ''
     # mkpasswd bug with control characters
     # so, we hash the string to resolve this problem
-    seed = "--#{rand(10000)}--#{Time.now}--#{self.login}--".hash
+    seed = "--#{rand(10000)}--#{Time.now}--#{self.login}--".hash.to_s
     if @@mkpasswd
       generated = %x[#{"echo '#{seed}' | /usr/bin/mkpasswd -s"}]
       generated.chomp!

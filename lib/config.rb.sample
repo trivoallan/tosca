@@ -4,16 +4,22 @@
 # Include your application configuration below
 ActionMailer::Base.smtp_settings = {
   :address  => "smtp",
-  :port  => 25, 
+  :port  => 25,
   :domain  => 'company.com',
   :dev_mailto => "dev@company.com"
 
   #:user_name  => "",
   #:password  => "",
 #  :authentication  => :login
-} 
+}
 ActionMailer::Base.default_charset = "UTF-8"
 
-ActionMailer::Base::MAIL_TEAM = "team@08000linux.com"
-ActionMailer::Base::MAIL_TOSCA = "lstm-devel@08000linux.com"
-ActionMailer::Base::MAIL_MAINTENER = "dev@company.com"
+# Used to send test emails. Put your own if you intend to develop on TOSCA
+module App
+  # Used for test on its local computer
+  MaintenerEmail = "mloiseleur@linagora.com"
+  # Used for feedback on service
+  TeamEmail		 = "team@08000linux.com"
+  # Used for feedback on this tool
+  DeveloppersEmail = "lstm-devel@08000linux.com"
+end

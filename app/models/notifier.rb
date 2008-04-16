@@ -93,11 +93,11 @@ class Notifier < ActionMailer::Base
   def welcome_idea(text, to, from)
     case to
       when :team
-        recipients MAIL_TEAM
+        recipients App::TeamEmail
       when :tosca
-        recipients MAIL_TOSCA
+        recipients App::DeveloppersEmail
       else
-        recipients MAIL_MAINTENER
+        recipients App::MaintenerEmail
     end
     from    FROM
     subject "[Suggestion] => #{to}"
