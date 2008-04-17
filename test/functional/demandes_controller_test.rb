@@ -56,7 +56,7 @@ class DemandesControllerTest < ActionController::TestCase
       form = select_form 'main_form'
       # Those values are different from the default one, despite what it seems
       fields = { :typedemande_id => 1, :severite_id => 1,
-        :contrat_id => u.contrats.first.id, :beneficiaire_id => 1, :ingenieur_id => 3 }
+        :contrat_id => u.contrats.first.id, :beneficiaire_id => 1, :ingenieur_id => 1 }
 
       form.demande.resume = "there is a prob with foo"
       form.demande.description = "it's a bar"

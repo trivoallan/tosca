@@ -306,6 +306,10 @@ class DemandesController < ApplicationController
 
   def _form4contract(contrat)
     @beneficiaires = contrat.find_recipients_select
+    puts "***********************"
+    p contrat
+    p contrat.client
+    puts "***********************"
     @socles = contrat.client.socles
     @logiciels = contrat.logiciels.collect{|l| [l.name, l.id] }
     if @ingenieur

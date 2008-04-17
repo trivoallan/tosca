@@ -154,16 +154,12 @@ class AccountController < ApplicationController
     if res and @user_engineer
       res &= @user_engineer.update_attributes(params[:ingenieur])
     end
-    unless res
-      _form 
-      render(:action => 'edit')
-    else
-
-      #update cached profile for logged user
+    if res # update of account fully ok
       set_sessions @user if session[:user] == @user
-
       flash[:notice]  = _("Edition succeeded")
       redirect_to account_path(@user)
+    else
+      _form and render(:action => 'edit')
     end
   end
 
