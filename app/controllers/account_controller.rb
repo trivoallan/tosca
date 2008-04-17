@@ -154,13 +154,17 @@ class AccountController < ApplicationController
     if res and @user_engineer
       res &= @user_engineer.update_attributes(params[:ingenieur])
     end
-    _form and return render(:action => 'edit')  unless res
+    unless res
+      _form 
+      render(:action => 'edit')
+    else
 
-    #update cached profile for logged user
-    set_sessions @user if session[:user] == @user
+      #update cached profile for logged user
+      set_sessions @user if session[:user] == @user
 
-    flash[:notice]  = _("Edition succeeded")
-    redirect_to account_path(@user)
+      flash[:notice]  = _("Edition succeeded")
+      redirect_to account_path(@user)
+    end
   end
 
     # login with lemon-ldap technology.
