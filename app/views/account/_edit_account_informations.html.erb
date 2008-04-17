@@ -59,7 +59,7 @@
   <% unless create_account %>
    <tr>
     <th><label for="user_pwd"><%= _('Modify your password') %></label></th>
-    <td><%= password_field :user, :pwd %></td>
+    <td><%= password_field :user, :pwd, :autocomplete => 'off' %></td>
    </tr><tr>
     <th><label for="user_pwd_confirmation"><%= _('Confirm this last') %></label></th>
     <td><%= password_field :user, :pwd_confirmation %></td>
