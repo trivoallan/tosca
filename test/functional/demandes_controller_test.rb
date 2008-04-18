@@ -11,9 +11,8 @@ class DemandesControllerTest < ActionController::TestCase
     :piecejointes, :typedemandes
 
 
-  LOGINS = %w(admin manager expert customer)
-  def test_pending
-    LOGINS.each do |l|
+  def atest_pending
+    %w(admin manager expert customer).each do |l|
       login l, l
       get :pending
       assert_response :success
@@ -21,7 +20,32 @@ class DemandesControllerTest < ActionController::TestCase
     end
   end
 
+  def atest_index
+    %w(admin manager expert customer viewer).each do |l|
+      login l, l
+      get :index
+      assert_response :success
+      assert_template 'index'
 
+      check_ajax_filter(:contrat_id, Contrat.find(:first).id, :demandes)
+      check_ajax_filter(:ingenieur_id, Ingenieur.find(:first).id, :demandes)
+      check_ajax_filter(:typedemande_id, Typedemande.find(:first).id, :demandes)
+      check_ajax_filter(:severite_id, Severite.find(:first).id, :demandes)
+      check_ajax_filter(:statut_id, Statut.find(:first).id, :demandes)
+      # The search box cannot be checked with the helper
+      xhr :get, :index, :filters => { :text => "openoffice" }
+      assert_response :success
+    end
+  end
+
+  def atest_new
+    %w(admin manager expert customer).each do |l|
+      login l, l
+      get :new
+      assert_response :success
+      assert_template 'new'
+    end
+  end
 =begin
   def test_should_get_index
     %w(viewer customer expert manager admin).each { |l|
@@ -52,7 +76,8 @@ class DemandesControllerTest < ActionController::TestCase
     }
   end
 =end
-  def atest_should_be_able_to_create
+
+  def test_should_be_able_to_create
     %w(admin manager expert customer).each {|l|
       login l, l
       get :new
@@ -62,20 +87,34 @@ class DemandesControllerTest < ActionController::TestCase
       u = session[:user]
 
       form = select_form 'main_form'
+      recipient = Beneficiaire.find(:first)
+      contract = recipient.user.contrats.first
+      p recipient
+      p contract
       # Those values are different from the default one, despite what it seems
       fields = { :typedemande_id => 1, :severite_id => 1,
-        :contrat_id => u.contrats.first.id, :beneficiaire_id => 1, :ingenieur_id => 1 }
+        :contrat_id => contract.id, :beneficiaire_id =>
+        recipient.id, :ingenieur_id =>
+        contract.engineer_users.first.ingenieur.id }
 
-      form.demande.resume = "there is a prob with foo"
-      form.demande.description = "it's a bar"
-      fields.each { |key, value| p key; form.demande.send(key).value = value }
+      p fields
+      request = form.demande
+      request.resume = "there is a prob with foo"
+      request.description = "it's a bar"
+      fields.each { |key, value|
+        puts "#{u} #{key}"
+        request.send(key).value = value if request.respond_to? key
+      }
       form.submit
 
-      assert_response :redirect
-      assert_template 'attachment'
+      assert_response :success
+      p u
+      p assigns(:demande)
+      p assigns(:demande).errors.full_messages
       assert assigns(:demande).errors.empty?
     }
   end
+
 =begin
   def test_should_be_able_to_update
     login 'admin', 'admin'
