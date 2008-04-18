@@ -23,8 +23,6 @@
              :url => ajax_display_contract_demandes_path) %>
          <%= observe_field "demande_contrat_id", options %>
          </td>
-    <% else %>
-     <td colspan="2"><%= hidden_field :demande, :contrat_id %></td>
     <% end %>
     </tr><tr>
      <th><label for="demande_beneficiaire_id"><%= _("Recipient") %></label></th>
