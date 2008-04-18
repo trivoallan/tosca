@@ -11,9 +11,17 @@ class DemandesControllerTest < ActionController::TestCase
     :piecejointes, :typedemandes
 
 
+  LOGINS = %w(admin manager expert customer)
   def test_pending
-
+    LOGINS.each do |l|
+      login l, l
+      get :pending
+      assert_response :success
+      assert_template 'pending'
+    end
   end
+
+
 =begin
   def test_should_get_index
     %w(viewer customer expert manager admin).each { |l|
@@ -44,7 +52,7 @@ class DemandesControllerTest < ActionController::TestCase
     }
   end
 =end
-  def test_should_be_able_to_create
+  def atest_should_be_able_to_create
     %w(admin manager expert customer).each {|l|
       login l, l
       get :new
