@@ -53,13 +53,11 @@ module LoginSystem
     return false
   end
 
-  # overwrite if you want to have special behavior in case the user is not authorized
-  # to access the current operation.
-  # the default action is to redirect to the login screen
-  # example use :
-  # a popup window might just close itself for instance
+  # overwrite if you want to have special behavior in case the user is not
+  # authorized to access the current operation.
+  # See http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
   def access_denied
-    redirect_to denied_access_path
+    render :template => 'access/denied', :status => 401 # unauthorized
   end
 
   # store current uri in  the session.
