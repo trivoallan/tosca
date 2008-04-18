@@ -47,8 +47,8 @@ class UserTest < Test::Unit::TestCase
     customer = users(:user_00004)
     manager  = users(:user_00002)
 
-    assert customer.authorized?('demandes/comment')
-    assert manager.authorized?('demandes/comment')
+    assert customer.authorized?('demandes/show')
+    assert manager.authorized?('demandes/show')
 
     assert !customer.authorized?('contributions/edit')
     assert manager.authorized?('contributions/edit')
