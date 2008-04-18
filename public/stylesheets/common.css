@@ -133,7 +133,8 @@ span.right { float: right; }
 span.left {	float: left; }
 .spacer { clear: both; }
 
-input:focus { background-color: #ffffcc; -moz-border-radius: .5em .5em 0 0; }
+input { -moz-border-radius: .5em .5em .5em .5em; }
+input:focus { background-color: #ffffcc; }
 textarea:focus { background-color: #ffffcc; }
 
 
