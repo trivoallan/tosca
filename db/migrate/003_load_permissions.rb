@@ -74,7 +74,7 @@ class LoadPermissions < ActiveRecord::Migration
     roles = [ expert_id, customer_id, viewer_id ]
     access = [ [ '^binaires/(show|index)$', 'Read-only access to binaries' ],
                [ '^clients/show$', 'Read-only access to clients offers' ] ,
-               [ '^demandes/(new|create|index|print|show|comment|en_attente)$',                 'Read access to requests' ],
+               [ '^demandes/(new|create|index|print|show|comment|pending)$',                 'Read access to requests' ],
                [ '^logiciels/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
                [ '^socles/show$', 'Read-only access to system' ]

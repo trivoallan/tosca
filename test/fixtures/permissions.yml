@@ -1,181 +1,181 @@
---- 
-permission_00088: 
+---
+permission_00088:
   name: ^bienvenue/(index|about|plan)$
   info: Access to home pages
   id: 88
-permission_00077: 
-  name: ^demandes/(new|create|index|print|show|comment|en_attente)$
+permission_00077:
+  name: ^demandes/(new|create|index|print|show|comment|pending)$
   info: Read access to requests
   id: 77
-permission_00055: 
+permission_00055:
   name: ^appels/(?!destroy)
   info: Manage calls
   id: 55
-permission_00066: 
+permission_00066:
   name: ^clients/(?!destroy)
   info: Manage clients
   id: 66
-permission_00090: 
+permission_00090:
   name: ^groupes/(index|show)
   info: Public read access to groups
   id: 90
-permission_00067: 
+permission_00067:
   name: ^competences/(?!destroy)
   info: Manage knowledge
   id: 67
-permission_00056: 
+permission_00056:
   name: ^bienvenue/admin$
   info: Administration page
   id: 56
-permission_00078: 
+permission_00078:
   name: ^logiciels/(index|show)$
   info: Read-only access to software
   id: 78
-permission_00089: 
+permission_00089:
   name: ^contributions/(index|select|show|list)
   info: Public read access to contributions
   id: 89
-permission_00079: 
+permission_00079:
   name: ^paquets/(index|show)$
   info: Read-only access to package
   id: 79
-permission_00057: 
+permission_00057:
   name: ^commentaires/(?!destroy)
   info: Manage comments
   id: 57
-permission_00068: 
+permission_00068:
   name: ^contrats/(?!destroy)
   info: Manage contracts
   id: 68
-permission_00080: 
+permission_00080:
   name: ^socles/show$
   info: Read-only access to system
   id: 80
-permission_00091: 
+permission_00091:
   name: ^logiciels/(index|show)
   info: Public read access to softwares
   id: 91
-permission_00092: 
+permission_00092:
   name: ^statuts/(index|help)$
   info: Explanation of status
   id: 92
-permission_00081: 
+permission_00081:
   name: ^clients/index$
   info: Read-only access to list clients offers
   id: 81
-permission_00069: 
+permission_00069:
   name: ^demandes/(?!destroy)
   info: Manage requests
   id: 69
-permission_00047: 
+permission_00047:
   name: .*/.*
   info: Full access
   id: 47
-permission_00058: 
+permission_00058:
   name: ^contributions/(?!destroy)
   info: Manage contributions
   id: 58
-permission_00070: 
+permission_00070:
   name: ^groupes/(?!destroy)
   info: Manage groups of softwares
   id: 70
-permission_00071: 
+permission_00071:
   name: ^ingenieurs/(?!(destroy|new))
   info: List knowledges of human ressources
   id: 71
-permission_00059: 
+permission_00059:
   name: ^documents/(?!destroy)
   info: Manage documents
   id: 59
-permission_00048: 
+permission_00048:
   name: /auto_complete
   info: All kinds of Auto completion
   id: 48
-permission_00060: 
+permission_00060:
   name: ^reporting/
   info: Access to all kinds of reporting
   id: 60
-permission_00061: 
+permission_00061:
   name: ^socles/(?!destroy)
   info: Manage systems
   id: 61
-permission_00049: 
+permission_00049:
   name: /ajax
   info: All kinds of ajax view
   id: 49
-permission_00050: 
+permission_00050:
   name: ^account/(edit|update|show)$
   info: Viewing and editing its own account
   id: 50
-permission_00072: 
+permission_00072:
   name: ^logiciels/(?!destroy)
   info: Manage softwares
   id: 72
-permission_00083: 
+permission_00083:
   name: ^documents/(select|list|index)$
   info: Read-only access to documents
   id: 83
-permission_00084: 
+permission_00084:
   name: ^account/index$
   info: List accounts
   id: 84
-permission_00073: 
+permission_00073:
   name: ^paquets/(?!destroy)
   info: Manage packages
   id: 73
-permission_00051: 
+permission_00051:
   name: ^bienvenue/suggestions$
   info: Allow comments on this software
   id: 51
-permission_00062: 
+permission_00062:
   name: ^urllogiciels/(?!destroy)
   info: Manage urls of softwares
   id: 62
-permission_00063: 
+permission_00063:
   name: ^urlreversements/
   info: Manage thier own urls of contributions
   id: 63
-permission_00052: 
+permission_00052:
   name: ^export/
   info: All kinds of export
   id: 52
-permission_00074: 
+permission_00074:
   name: ^machines/(?!destroy)
   info: Manage servers
   id: 74
-permission_00085: 
+permission_00085:
   name: ^commentaires/(comment|edit|update)$
   info: Hability to comment a request
   id: 85
-permission_00086: 
+permission_00086:
   name: ^access/denied$
   info: Page for denying access
   id: 86
-permission_00075: 
+permission_00075:
   name: ^binaires/(show|index)$
   info: Read-only access to binaries
   id: 75
-permission_00053: 
+permission_00053:
   name: ^files/download$
   info: All kinds of download
   id: 53
-permission_00064: 
+permission_00064:
   name: ^account/(signup|new|create|become)
   info: Manage account
   id: 64
-permission_00065: 
+permission_00065:
   name: ^binaires/(?!destroy)
   info: Manage binaries
   id: 65
-permission_00054: 
+permission_00054:
   name: ^reporting/(configuration|general)$
   info: Activity Report
   id: 54
-permission_00076: 
+permission_00076:
   name: ^clients/show$
   info: Read-only access to clients offers
   id: 76
-permission_00087: 
+permission_00087:
   name: ^account/(login|logout)$
   info: Access to login system
   id: 87
