@@ -159,7 +159,10 @@ class AccountController < ApplicationController
       flash[:notice]  = _("Edition succeeded")
       redirect_to account_path(@user)
     else
-      _form and render(:action => 'edit')
+      # Don't write this :  _form and render :action => 'edit'
+      # Else, tosca return an error. It don't find the template
+      _form 
+      render(:action => 'edit')
     end
   end
 
