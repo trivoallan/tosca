@@ -11,8 +11,8 @@ class DemandesControllerTest < ActionController::TestCase
     :piecejointes, :typedemandes
 
 
-  def setup
-    login 'admin', 'admin'
+  def test_pending
+
   end
 =begin
   def test_should_get_index

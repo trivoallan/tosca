@@ -8,7 +8,7 @@ class DemandesController < ApplicationController
   cache_sweeper :demande_sweeper, :only => [:create, :update, :destroy]
 
 
-  def en_attente
+  def pending
     options = { :per_page => 10, :order => 'updated_on DESC',
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
     conditions = [ [ ] ]
@@ -44,7 +44,7 @@ class DemandesController < ApplicationController
 
     @demande_pages, @demandes = paginate :demandes, options
 
-    render :template => 'demandes/lists/tobd'
+    render :template => 'demandes/lists/pending'
   end
 
 
