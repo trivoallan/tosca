@@ -3,7 +3,7 @@ contrat_00003:
   heure_ouverture: 8
   astreinte: false
   rule_id: 2
-  mailinglist: mloiseleur@linagora.com
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: 71
   heure_fermeture: 18
   client_id: 1
@@ -18,7 +18,7 @@ contrat_00004:
   heure_ouverture: 9
   astreinte: false
   rule_id: 2
-  mailinglist: mloiseleur@linagora.com
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: 72
   heure_fermeture: 18
   client_id: 2
@@ -33,7 +33,7 @@ contrat_00001:
   heure_ouverture: 9
   astreinte: false
   rule_id: 1
-  mailinglist: mloiseleur@linagora.com
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: 69
   heure_fermeture: 18
   client_id: 1
@@ -48,7 +48,7 @@ contrat_00002:
   heure_ouverture: 7
   astreinte: false
   rule_id: 1
-  mailinglist: mloiseleur@linagora.com
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: 70
   heure_fermeture: 20
   client_id: 1
