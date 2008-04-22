@@ -2,6 +2,8 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 class Demande < ActiveRecord::Base
+  # see lib/jabber_notifier.rb
+  include JabberNotifier
   belongs_to :typedemande
   belongs_to :logiciel
   belongs_to :severite

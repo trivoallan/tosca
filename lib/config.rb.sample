@@ -22,4 +22,7 @@ module App
   TeamEmail		 = "team@08000linux.com"
   # Used for feedback on this tool
   DeveloppersEmail = "lstm-devel@08000linux.com"
+  # Used for jabber notification
+  JabberAccount = "tosca@jabber.fr"
+  JabberPassword = "tosca"
 end

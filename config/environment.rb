@@ -90,7 +90,9 @@ NeededGems = [ # Used by Ruport
     # Used to manipulate OpenDocument
     [ 'rubyzip', '0.9.1' ],
     # Used to be colorfull for attachment previews
-    [ 'ultraviolet', '0.10.2' ]
+    [ 'ultraviolet', '0.10.2' ],
+    # User to send Jabber Notification
+    [ 'xmpp4r', '0.3.2' ]
    ]
 # Check and load all gems
 Utils::check_and_install_missing_gems(*NeededGems)

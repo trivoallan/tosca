@@ -136,6 +136,9 @@ class DemandesController < ApplicationController
                                         :template => '/attachment')
       options = { :demande => @demande, :url_request => demande_url(@demande),
         :name => user.name, :url_attachment => url_attachment }
+
+      @demande.send_jabber_notification()
+
       Notifier::deliver_request_new(options, flash)
       redirect_to _similar_request
     else
