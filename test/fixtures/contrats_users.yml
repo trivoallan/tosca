@@ -1,4 +1,10 @@
 ---
+join_00000:
+  contrat_id: "2"
+  user_id: "3"
+join_00001:
+  contrat_id: "2"
+  user_id: "2"
 join_00002:
   contrat_id: "1"
   user_id: "2"
@@ -11,9 +17,6 @@ join_00004:
 join_00005:
   contrat_id: "1"
   user_id: "1"
-join_00000:
-  contrat_id: "2"
-  user_id: "3"
-join_00001:
-  contrat_id: "2"
-  user_id: "2"
+join_00006:
+  contrat_id: "1"
+  user_id: "4"
