@@ -331,8 +331,6 @@ class DemandesController < ApplicationController
     else
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
       @typedemandes = Typedemande.find_select
-      options = { :include => { :beneficiaires => :user}, :conditions =>
-        'clients.inactive = 0' }
     end
     @binaires = []
     @severites = Severite.find_select
@@ -341,7 +339,7 @@ class DemandesController < ApplicationController
     @demande.beneficiaire = beneficiaire
     if @demande.contrat
       _form4contract(@demande.contrat)
-    elsif @contrats.size > 1
+    elsif !@contrats.empty?
       Contrat.find(:all).each { |c|
         if _form4contract(c)
           @demande.contrat = c

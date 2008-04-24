@@ -90,42 +90,22 @@ class DemandesControllerTest < ActionController::TestCase
       %w(admin manager expert customer).each {|l|
         login l, l
         get :new
-
         assert_response :success
         assert_template 'new'
-        u = session[:user]
-        p u.login
 
         form = select_form 'main_form'
-        contract = u.contrats.first
-        recipient = contract.recipient_users.first.beneficiaire
-        engineer = contract.engineer_users.first.ingenieur
-        # Those values are different from the default one, despite what it seems
-        fields = { :typedemande_id => 1, :severite_id => 1,
-          :contrat_id => contract.id, :beneficiaire_id =>
-          recipient.id, :ingenieur_id => engineer.id }
-
-        p fields
-        request = form.demande
-        request.resume = "there is a problem with foo"
-        request.description = "it's a bar"
-        fields.each { |key, value|
-          puts "#{u} #{key} : #{request.send(key)}"
-          if key == :contrat_id
-            puts "#{key} initial value #{request.send(key).initial_value}"
-            p request.contrat_id.options
-          end
-          # the respond_to? call do not work
-          # request.send("#{key}=", value) if form.field_names.grep(%r{#{key}})
-          # puts "#{u} #{request.send(key)}"
-        }
+        form.demande.resume = "there is a problem with foo"
+        form.demande.description = "it's a bar"
         form.submit
 
-        p assigns(:demande).errors.full_messages
+        # p assigns(:demande).errors.full_messages
         assert_response :redirect
         # TODO : I did not manage to test correctly :
         # redirected with an url starting with new_demandes_path
         assert assigns(:demande).errors.empty?
+        # It ensure that contract won't be passed between 2 logins
+        # since the controller is the same instance in test environnement
+        assigns(:demande).contrat = nil
       }
     end
 
