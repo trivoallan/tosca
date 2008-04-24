@@ -1,24 +1,24 @@
---- 
-contrat_00004: 
+---
+contrat_00001:
   heure_ouverture: 9
   astreinte: false
   rule_id: 2
-  mailinglist: mloiseleur@linagora.com
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: 72
   heure_fermeture: 18
   client_id: 2
-  id: 4
+  id: 1
   veille_technologique: false
   ouverture: 2007-12-25 09:59:00 +01:00
   rule_type: Rules::Component
   newsletter: false
   cloture: 2012-12-25 10:00:00 +01:00
-  paquets_count: 
-contrat_00002: 
+  paquets_count:
+contrat_00002:
   heure_ouverture: 7
   astreinte: false
   rule_id: 1
-  mailinglist: mloiseleur@linagora.com
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: 70
   heure_fermeture: 20
   client_id: 1
@@ -28,4 +28,4 @@ contrat_00002:
   rule_type: Rules::Credit
   newsletter: true
   cloture: 2012-12-24 00:00:00 +01:00
-  paquets_count: 
+  paquets_count:

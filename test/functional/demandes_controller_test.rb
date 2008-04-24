@@ -75,45 +75,59 @@ class DemandesControllerTest < ActionController::TestCase
       assert_response :success
     }
   end
+
+
+   Parameters: {"commit"=>"Déposer cette demande", "demande"=>{"logiciel_id"=>"1",
+      "ingenieur_id"=>"1", "beneficiaire_id"=>"1", "resume"=>"There is a problem",
+      "severite_id"=>"1", "description"=>"<p>I have to fill the description</p>",
+      "contrat_id"=>"1", "socle_id"=>"Linux", "mail_cc"=>"", "typedemande_id"=>"2"}
+    , "action"=>"create", "controller"=>"demandes", "piecejointe"=>
+    {"file_temp"=>"", "file"=>#<File:/home/mloiseleur/tmp/CGI.24290.12> }}
+
 =end
 
-  def test_should_be_able_to_create
-    %w(admin manager expert customer).each {|l|
-      login l, l
-      get :new
+    def test_should_be_able_to_create
+      %w(admin manager expert customer).each {|l|
+        login l, l
+        get :new
 
-      assert_response :success
-      assert_template 'new'
-      u = session[:user]
+        assert_response :success
+        assert_template 'new'
+        u = session[:user]
+        p u.login
 
-      form = select_form 'main_form'
-      recipient = Beneficiaire.find(:first)
-      contract = recipient.user.contrats.first
-      p recipient
-      p contract
-      # Those values are different from the default one, despite what it seems
-      fields = { :typedemande_id => 1, :severite_id => 1,
-        :contrat_id => contract.id, :beneficiaire_id =>
-        recipient.id, :ingenieur_id =>
-        contract.engineer_users.first.ingenieur.id }
+        form = select_form 'main_form'
+        contract = u.contrats.first
+        recipient = contract.recipient_users.first.beneficiaire
+        engineer = contract.engineer_users.first.ingenieur
+        # Those values are different from the default one, despite what it seems
+        fields = { :typedemande_id => 1, :severite_id => 1,
+          :contrat_id => contract.id, :beneficiaire_id =>
+          recipient.id, :ingenieur_id => engineer.id }
 
-      p fields
-      request = form.demande
-      request.resume = "there is a prob with foo"
-      request.description = "it's a bar"
-      fields.each { |key, value|
-        puts "#{u} #{key}"
-        request.send(key).value = value if request.respond_to? key
+        p fields
+        request = form.demande
+        request.resume = "there is a problem with foo"
+        request.description = "it's a bar"
+        fields.each { |key, value|
+          puts "#{u} #{key} : #{request.send(key)}"
+          if key == :contrat_id
+            puts "#{key} initial value #{request.send(key).initial_value}"
+            p request.contrat_id.options
+          end
+          # the respond_to? call do not work
+          # request.send("#{key}=", value) if form.field_names.grep(%r{#{key}})
+          # puts "#{u} #{request.send(key)}"
+        }
+        form.submit
+
+        p assigns(:demande).errors.full_messages
+        assert_response :redirect
+        # TODO : I did not manage to test correctly :
+        # redirected with an url starting with new_demandes_path
+        assert assigns(:demande).errors.empty?
       }
-      form.submit
-
-      assert_response :success
-      p u
-      p assigns(:demande)
-      p assigns(:demande).errors.full_messages
-      assert assigns(:demande).errors.empty?
-    }
-  end
+    end
 
 =begin
   def test_should_be_able_to_update

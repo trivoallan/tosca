@@ -142,8 +142,6 @@ class Demande < ActiveRecord::Base
     self.ingenieur = expert
     # without severity, by default
     self.severite_id = 4
-    # self-contract, by default
-    self.contrat_id = contracts.first.id if contracts.size == 1
     # if we came from software view, it's sets automatically
     self.logiciel_id = params[:logiciel_id]
     # recipients

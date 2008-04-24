@@ -1,10 +1,10 @@
---- 
-join_00002: 
+---
+join_00002:
   engagement_id: "3"
-  contrat_id: "4"
-join_00000: 
+  contrat_id: "1"
+join_00000:
   engagement_id: "1"
-  contrat_id: "4"
-join_00001: 
+  contrat_id: "1"
+join_00001:
   engagement_id: "2"
-  contrat_id: "4"
+  contrat_id: "1"

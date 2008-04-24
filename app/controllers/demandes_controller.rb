@@ -307,13 +307,19 @@ class DemandesController < ApplicationController
     end
   end
 
+  # Take an ActiveRecord Contrat in parameter
+  # Returns false if the Contract is not complete
+  # call it like this : _form4contract Contrat.find(:first)
   def _form4contract(contrat)
+    result = true
     @beneficiaires = contrat.find_recipients_select
+    result = false if @beneficiaires.empty?
     @socles = contrat.client.socles
     @logiciels = contrat.logiciels.collect{|l| [l.name, l.id] }
     if @ingenieur
       @ingenieurs = Ingenieur.find_select_by_contrat_id(contrat.id)
     end
+    result
   end
 
   # todo à retravailler
@@ -333,8 +339,16 @@ class DemandesController < ApplicationController
     first_comment = @demande.first_comment
     @demande.description = first_comment.corps if first_comment
     @demande.beneficiaire = beneficiaire
-    contract = @demande.contrat || Contrat.find(:first)
-    _form4contract contract
+    if @demande.contrat
+      _form4contract(@demande.contrat)
+    elsif @contrats.size > 1
+      Contrat.find(:all).each { |c|
+        if _form4contract(c)
+          @demande.contrat = c
+          break
+        end
+      }
+    end
   end
 
   def redirect_to_comment

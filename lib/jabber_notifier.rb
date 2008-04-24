@@ -8,8 +8,8 @@ module JabberNotifier
   @@jabbernotifier_logger = nil
 
   def send_jabber_notification()
-    Jabber::debug = true
-    to = self.ingenieur.user.email
+    return unless defined? App::JabberAccount
+    # Jabber::debug = true
     body = self.description
     subject = "[OSSA##{self.id}] : #{self.resume}"
     jid = Jabber::JID::new(App::JabberAccount)
@@ -20,8 +20,10 @@ module JabberNotifier
     rescue
       @@jabbernotifier_logger.info "Jabber : Error login"
     end
-    message = Jabber::Message::new(to, body).set_subject(subject)
-    cl.send message
+    self.contrat.engineer_users.each { |expert|
+      message = Jabber::Message::new(expert.email, body).set_subject(subject)
+      cl.send message
+    }
     cl.close
   end
 
