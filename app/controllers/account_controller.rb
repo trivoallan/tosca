@@ -152,10 +152,10 @@ class AccountController < ApplicationController
 
     res = @user.update_attributes(params[:user])
     if res and @user_recipient
-      res &= @user_recipient.update_attributes(params[:beneficiaire])
+      res &= @user_recipient.update_attributes(params[:user_recipient])
     end
     if res and @user_engineer
-      res &= @user_engineer.update_attributes(params[:ingenieur])
+      res &= @user_engineer.update_attributes(params[:user_engineer])
     end
     if res # update of account fully ok
       set_sessions @user if session[:user] == @user
