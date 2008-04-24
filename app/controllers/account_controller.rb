@@ -19,6 +19,9 @@ class AccountController < ApplicationController
 
   around_filter :scope, :except => [:login, :logout, :lemon]
 
+  skip_before_filter :login_required, :only => [:login, :logout]
+
+
   # Only available with POST, see config/routes.rb
   def login
     # For automatic login from an other web tool,
@@ -161,7 +164,7 @@ class AccountController < ApplicationController
     else
       # Don't write this :  _form and render :action => 'edit'
       # Else, tosca return an error. It don't find the template
-      _form 
+      _form
       render(:action => 'edit')
     end
   end
