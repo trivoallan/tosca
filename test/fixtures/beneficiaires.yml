@@ -1,17 +1,17 @@
---- 
-beneficiaire_00001: 
-  client_id: 1
+---
+beneficiaire_00001:
+  client_id: 2
   id: 1
   notifier_subalternes: true
-  beneficiaire_id: 
+  beneficiaire_id:
   notifier_cc: true
   user_id: 4
   notifier: true
-beneficiaire_00002: 
+beneficiaire_00002:
   client_id: 1
   id: 2
   notifier_subalternes: true
-  beneficiaire_id: 
+  beneficiaire_id:
   notifier_cc: true
   user_id: 5
   notifier: true
