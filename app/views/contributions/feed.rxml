@@ -12,9 +12,9 @@ xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
         xml.pubDate contribution.created_on.rfc822
         xml.link contribution_url(contribution)
         xml.guid contribution.id
-		xml.title html2text("[#{contribution.logiciel.nom}] #{contribution.synthese}")
+		xml.title html2text("[#{contribution.logiciel.name}] #{contribution.synthese}")
         xml.description contribution.description_fonctionnelle
-		xml.tag!("dc:creator", contribution.ingenieur.nom)
+		xml.tag!("dc:creator", contribution.ingenieur.name)
       end
     end
   end
