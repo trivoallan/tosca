@@ -8,6 +8,15 @@ class ContratsController < ApplicationController
     @contrat_pages, @contrats = paginate :contrats, :per_page => 25
   end
 
+  # Used to know which contracts need to be renewed
+  def actives
+    options = { :per_page => 10, :include => [:client], :order =>
+      'contrats.cloture', :conditions => 'clients.inactive = 0' }
+    @contrat_pages, @contrats = paginate :contrats, options
+    render :action => 'index'
+  end
+
+
   def show
     @contrat = Contrat.find(params[:id])
   end
@@ -20,7 +29,6 @@ class ContratsController < ApplicationController
     _form
   end
 
-public
   def ajax_choose
     value = params[:value]
     render :nothing => true and return unless request.xhr? && !value.blank?

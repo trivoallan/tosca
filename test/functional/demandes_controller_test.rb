@@ -20,6 +20,7 @@ class DemandesControllerTest < ActionController::TestCase
     end
   end
 
+
   def atest_index
     %w(admin manager expert customer viewer).each do |l|
       login l, l
@@ -38,6 +39,7 @@ class DemandesControllerTest < ActionController::TestCase
     end
   end
 
+
   def atest_new
     %w(admin manager expert customer).each do |l|
       login l, l
@@ -46,6 +48,8 @@ class DemandesControllerTest < ActionController::TestCase
       assert_template 'new'
     end
   end
+
+
 =begin
   def test_should_get_index
     %w(viewer customer expert manager admin).each { |l|
@@ -86,7 +90,16 @@ class DemandesControllerTest < ActionController::TestCase
 
 =end
 
-    def test_should_be_able_to_create
+    def test_new
+      login 'admin', 'admin'
+      get :new
+      assert_response :success
+      assert_template 'new'
+
+
+    end
+
+    def atest_create
       %w(admin manager expert customer).each {|l|
         login l, l
         get :new

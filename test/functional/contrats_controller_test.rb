@@ -24,6 +24,13 @@ class ContratsControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:contrats)
   end
 
+  def test_actives
+    get :actives
+    assert_response :success
+    assert_template 'index'
+    assert_not_nil assigns(:contrats)
+  end
+
   def test_show
     get :show, :id => 1
 

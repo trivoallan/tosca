@@ -19,5 +19,5 @@
   result << "#{link_to_actions_table c}"
 }%>
 
-
-<%= show_pages_links(@contrat_pages, _('a contract')) %>
+<%= show_pages_links(@contrat_pages, _('a contract')) %><br />
+<%= link_to _('Ordered by end date'), actives_contrat_path %>
