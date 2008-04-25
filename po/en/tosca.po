@@ -1013,6 +1013,14 @@ msgstr ""
 msgid "Contributions"
 msgstr ""
 
+#: app/views/contributions/show.html.erb:27
+msgid "This bug has been discovered in the version %s "
+msgstr ""
+
+#: app/views/contributions/show.html.erb:27
+msgid "and has been fixed in the version %s"
+msgstr ""
+
 #: app/helpers/links_helper.rb:139
 msgid "Access to the list of contributions."
 msgstr ""
@@ -3406,7 +3414,11 @@ msgid "Patch"
 msgstr ""
 
 #: app/views/contributions/_form.html.erb:19
-msgid "Impacted version"
+msgid "Affected version"
+msgstr ""
+
+#: app/views/contributions/_form.html.erb:22
+msgid "Integrate version"
 msgstr ""
 
 #: app/views/contributions/_form.html.erb:22

@@ -3454,8 +3454,12 @@ msgid "Patch"
 msgstr "Correctif"
 
 #: app/views/contributions/_form.html.erb:19
-msgid "Impacted version"
+msgid "Affected version"
 msgstr "Version concernée"
+
+#: app/views/contributions/_form.html.erb:22
+msgid "Fixed version"
+msgstr "Corrigé dans la version"
 
 #: app/views/contributions/_form.html.erb:22
 msgid "Kind of contribution"
@@ -3537,12 +3541,16 @@ msgid "and its has been approved on %s"
 msgstr "et a été accepté le %s"
 
 #: app/views/contributions/show.html.erb:27
+msgid "This bug has been discovered in the version %s "
+msgstr "Ce bug a été découvert dans la version %s"
+
+#: app/views/contributions/show.html.erb:27
+msgid "and has been fixed in the version %s"
+msgstr "et a été corrigé dans la version %s"
+
+#: app/views/contributions/show.html.erb:27
 msgid "This patch was not submitted to the community"
 msgstr "Ce correctif n'a pas été soumis à la communauté"
-
-#: app/views/contributions/show.html.erb:31
-msgid "This contribution is now "
-msgstr "Cette contribution est désormais "
 
 #: app/views/contributions/show.html.erb:37
 msgid "Internal details"

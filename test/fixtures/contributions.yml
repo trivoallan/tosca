@@ -9,7 +9,7 @@ contribution_00001:
   reverse_le: 2007-12-17 16:28:00 +01:00
   ingenieur_id: 1
   id: 1
-  version: "2.3"
+  affected_version: "2.3"
   description: ""
   id_mantis: 
   cloture_le: 2007-12-18 08:35:00 +01:00

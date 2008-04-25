@@ -22,15 +22,16 @@
               [ @contribution.reverse_le_formatted, @contribution.ingenieur.name ] %>
         <% if @contribution.cloture_le %>
            <%= _('and its has been approved on %s') % @contribution.cloture_le_formatted %>
-        <% end %>.
+        <% end %>.<br/>
+        <% unless @contribution.affected_version.blank? %>
+           <%= _('This bug has been discovered in the version %s ') % @contribution.affected_version %>
+        <% end %>
+        <% unless @contribution.fixed_version.blank? %>
+           <%= _('and has been fixed in the version %s') % @contribution.fixed_version %>
+        <% end %>
     <% else %>
         <%= _('This patch was not submitted to the community') %>.
     <% end %><br />
-    <% reversement = @contribution.etatreversement %>
-    <% if reversement %>
-      <%= _('This contribution is now ')%>
-      <span title="<%=reversement.description%>"><%=reversement.name%></span>
-    <% end %>
 
 <% if @ingenieur %>
 <hr />
