@@ -169,11 +169,8 @@ private
   end
 
   def _update(contribution)
-    urlreversement = params[:urlreversement]
-    unless urlreversement.blank?
-      urlreversement[:contribution_id] = contribution.id
-      Urlreversement.create(urlreversement)
-    end
+    url = params[:urlreversement]
+    contribution.urlreversements.create(url) unless url.blank?
     contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
     contribution.cloture_le = nil if params[:contribution][:clos] == '0'
     expire_page :action => 'feed'
