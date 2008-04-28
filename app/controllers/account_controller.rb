@@ -29,7 +29,7 @@ class AccountController < ApplicationController
       # For automatic login from an other web tool,
       # password is provided already encrypted
       user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
-      if session[:user_sweeper] = User.authenticate(params['user_login'],
+      if session[:user] = User.authenticate(params['user_login'],
                                                     params['user_password'],
                                                     user_crypt)
         set_sessions(session[:user])
