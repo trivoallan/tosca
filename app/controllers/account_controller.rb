@@ -24,23 +24,27 @@ class AccountController < ApplicationController
 
   # Only available with POST, see config/routes.rb
   def login
-    # For automatic login from an other web tool,
-    # password is provided already encrypted
-    user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
-    if session[:user] = User.authenticate(params['user_login'],
-                                          params['user_password'],
-                                          user_crypt)
-      set_sessions(session[:user])
-      flash[:notice] = (_("Welcome %s %s") %
-        [ session[:user].title, session[:user].name]).gsub(' ', '&nbsp;')
-      # When logged from an other tool, the referer is not a valid page
-      session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
-      redirect_back_or_default bienvenue_path
-    else
-      clear_sessions
-      id = User.find_by_login(params['user_login'])
-      flash.now[:warn] = _("Connexion failure")
-      flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
+    case request.method
+    when :post
+      # For automatic login from an other web tool,
+      # password is provided already encrypted
+      user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
+      if session[:user_sweeper] = User.authenticate(params['user_login'],
+                                                    params['user_password'],
+                                                    user_crypt)
+        set_sessions(session[:user])
+        flash[:notice] = (_("Welcome %s %s") %
+          [ session[:user].title, session[:user].name]).gsub(' ', '&nbsp;')
+        # When logged from an other tool, the referer is not a valid page
+        session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
+        redirect_back_or_default bienvenue_path
+      else
+        clear_sessions
+        id = User.find_by_login(params['user_login'])
+        flash.now[:warn] = _("Connexion failure")
+        flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
+      end
+    else # Display form
     end
   end
 
