@@ -421,20 +421,28 @@ module ActiveRecord
     end
 
 
-    # this special method allows to gain a lot of performance
-    # since it doesn't require to load Time or strftime in order
-    # to display the date
+    # format nicely a date
     def updated_on_formatted
-      d = @attributes['updated_on']
-      (d ? "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}" : '-')
+      display_time read_attribute(:updated_on)
     end
 
-    # this special method allows to gain a lot of performance
-    # since it doesn't require to load Time or strftime in order
-    # to display the date
+    # format nicely a date
     def created_on_formatted
-      d = @attributes['created_on']
-      (d ? "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} à #{d[11,2]}h#{d[14,2]}" : '-')
+      display_time read_attribute(:created_on)
+    end
+
+    # transforms (smartly) a Date or a Time into a localized stringify_keys
+    # call it like this :
+    #   display_time Time.now
+    #   display_time Date.today
+    def display_time(time)
+      res = '-'
+      if time
+        date = (time.is_a?(Date) ? time : time.to_date)
+        res = date.to_s
+        res = d.strftime('%Hh%M') if date == Date.today
+      end
+      res
     end
   end
 end

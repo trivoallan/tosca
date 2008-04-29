@@ -5,8 +5,7 @@ class Changelog < ActiveRecord::Base
   belongs_to :paquet, :counter_cache => true
 
   def date_modification_formatted
-    d = @attributes['date_modification']
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} "
+      display_time read_attribute(:date_modification)
   end
 
   def name

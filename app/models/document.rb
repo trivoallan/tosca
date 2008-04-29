@@ -18,15 +18,8 @@ class Document < ActiveRecord::Base
         [ 'documents.client_id IN (?)', client_ids ] } }
   end
 
-  def updated_on_formatted
-    d = @attributes['updated_on']
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} #{d[11,2]}:#{d[14,2]}"
-  end
-
   def date_delivery_on_formatted
-    return '-' unless date_delivery
-    d = @attributes['date_delivery']
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]} "
+    display_time read_attribute(:date_delivery)
   end
 
   def to_param

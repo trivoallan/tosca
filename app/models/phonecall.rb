@@ -33,15 +33,13 @@ class Phonecall < ActiveRecord::Base
   # end of the phone call, formatted without the need to load Time.
   # See ActiveRecord::Base for more information
   def end_formatted
-    d = @attributes['end']
-    _("%s.%s.%s at %sh%s") % [ d[8,2], d[5,2], d[0,4], d[11,2], d[14,2] ]
+    display_time read_attribute(:end)
   end
 
   # start of the phone call, formatted without the need to load Time.
   # See ActiveRecord::Base for more information
   def start_formatted
-    d = @attributes['start']
-    _("%s.%s.%s at %sh%s") % [ d[8,2], d[5,2], d[0,4], d[11,2], d[14,2] ]
+    display_time read_attribute(:start)
   end
 
   def length

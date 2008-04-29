@@ -63,17 +63,17 @@ class Contribution < ActiveRecord::Base
   # date de reversement formattée
   # voir lib/overrides.rb pour les dates auto created _on et updated_on
   def reverse_le_formatted
-    d = @attributes['reverse_le']
-    return '' unless d
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
+    contributed_on = read_attribute(:reverse_le)
+    return '' unless contributed_on
+    display_time contributed_on
   end
 
   # date de cloture formattée
   # voir lib/overrides.rb pour les dates auto created _on et updated_on
   def cloture_le_formatted
-    d = @attributes['cloture_le']
-    return '' unless d
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
+    closed_on = read_attribute(:cloture_le)
+    return '' unless closed_on
+    display_time closed_on
   end
 
   # délai (en secondes) entre la déclaration et l'acceptation
