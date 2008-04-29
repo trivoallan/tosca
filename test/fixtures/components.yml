@@ -1,9 +1,9 @@
---- 
-component_00001: 
-  name: "Ossa Illimit\xC3\xA9e"
+---
+component_00001:
+  name: "Ossa"
   max: -1
   id: 1
-component_00002: 
+component_00002:
   name: Ossa 10
   max: 10
   id: 2

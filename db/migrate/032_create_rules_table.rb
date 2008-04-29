@@ -27,7 +27,6 @@ class CreateRulesTable < ActiveRecord::Migration
     end
     remove_column :contrats, :support
     remove_column :contrats, :socle
-    remove_column :contrats, :name
   end
 
   def self.down
@@ -35,6 +34,5 @@ class CreateRulesTable < ActiveRecord::Migration
     drop_table :time_tickets
     add_column :contrats, :support, :boolean, :default => false, :null => false
     add_column :contrats, :socle, :boolean, :default => false, :null => false
-    add_column :contrats, :name, :string
   end
 end

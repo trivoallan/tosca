@@ -65,13 +65,11 @@ class Contrat < ActiveRecord::Base
   end
 
   def ouverture_formatted
-    d = @attributes['ouverture']
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
+    display_time read_attribute(:ouverture)
   end
 
   def cloture_formatted
-    d = @attributes['cloture']
-    "#{d[8,2]}.#{d[5,2]}.#{d[0,4]}"
+    display_time read_attribute(:cloture)
   end
 
   def find_engagement(request)
@@ -103,7 +101,10 @@ class Contrat < ActiveRecord::Base
     "clients.inactive = 0" }
 
   def name
-    "#{client.name} - #{rule.name}"
+    specialisation = read_attribute :name
+    res = "#{client.name} - #{rule.name}"
+    res << " - #{specialisation}" unless specialisation.blank?
+    res
   end
 
   # used internally by wrapper :

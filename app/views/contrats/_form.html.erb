@@ -26,6 +26,9 @@
         <th><label for="contrat_newsletter"><%= _("Newsletter") %></label></th>
         <td><%= check_box :contrat, :newsletter  %></td>
       </tr><tr>
+        <th><label for="contrat_name"><%= _("Domain") %></label></th>
+        <td><%= text_field :contrat, :name %></td>
+      </tr><tr>
         <th><label><%=_('Commitments')%> <%= link_to_new_engagement %></label></th>
         <td><%= show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]') %></td>
       </tr>

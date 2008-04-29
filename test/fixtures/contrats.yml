@@ -2,6 +2,7 @@
 contrat_00001:
   heure_ouverture: 9
   astreinte: false
+  name : Server
   rule_id: 2
   mailinglist: <%= App::MaintenerEmail %>
   chrono: 72
@@ -18,6 +19,7 @@ contrat_00002:
   heure_ouverture: 7
   astreinte: false
   rule_id: 1
+  name : Desktop
   mailinglist: <%= App::MaintenerEmail %>
   chrono: 70
   heure_fermeture: 20
