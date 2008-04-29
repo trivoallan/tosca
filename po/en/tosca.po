@@ -455,6 +455,10 @@ msgstr ""
 msgid "The contribution has been created successfully."
 msgstr ""
 
+#: app/controllers/contributions_controller.rb:92
+msgid "The associated request does not exist"
+msgstr ""
+
 #: app/controllers/contributions_controller.rb:109
 msgid "The contribution has been updated successfully."
 msgstr ""
@@ -3415,6 +3419,10 @@ msgstr ""
 
 #: app/views/contributions/_form.html.erb:19
 msgid "Affected version"
+msgstr ""
+
+#: app/views/contributions/_form.html.erb:19
+msgid "Request number"
 msgstr ""
 
 #: app/views/contributions/_form.html.erb:22

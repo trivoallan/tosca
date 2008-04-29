@@ -3,7 +3,7 @@
 #####################################################
 class Contribution < ActiveRecord::Base
   acts_as_reportable
-  has_many :demandes
+  has_one :demande
   has_many :urlreversements
 
   belongs_to :typecontribution

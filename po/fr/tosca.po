@@ -475,6 +475,10 @@ msgstr "Le fichier CSV n'est pas correct."
 msgid "The contribution has been created successfully."
 msgstr "La contribution a été créée avec succès"
 
+#: app/controllers/contributions_controller.rb:92
+msgid "The associated request does not exist"
+msgstr "La demande associée n'existe pas"
+
 #: app/controllers/contributions_controller.rb:109
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
@@ -3456,6 +3460,10 @@ msgstr "Correctif"
 #: app/views/contributions/_form.html.erb:19
 msgid "Affected version"
 msgstr "Version concernée"
+
+#: app/views/contributions/_form.html.erb:19
+msgid "Request number"
+msgstr "Numéro de demande"
 
 #: app/views/contributions/_form.html.erb:22
 msgid "Fixed version"

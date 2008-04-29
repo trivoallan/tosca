@@ -40,7 +40,7 @@ class ContributionsController < ApplicationController
   def admin
     conditions = []
     options = { :per_page => 10, :order => 'contributions.updated_on DESC',
-      :include => [:logiciel,:etatreversement,:demandes] }
+      :include => [:logiciel,:etatreversement,:demande] }
 
     if params.has_key? :filters
       session[:contributions_filters] =
@@ -85,6 +85,12 @@ class ContributionsController < ApplicationController
 
   def create
     @contribution = Contribution.new(params[:contribution])
+    begin
+      demande = Demande.find(params[:demande][:id]) unless params[:demande][:id].blank?
+      @contribution.demande = demande
+    rescue
+      flash[:warn] = _('The associated request does not exist')
+    end
     if @contribution.save
       flash[:notice] = _('The contribution has been created successfully.')
       _update(@contribution)
@@ -96,6 +102,7 @@ class ContributionsController < ApplicationController
 
   def edit
     @contribution = Contribution.find(params[:id])
+    @demande = @contribution.demande
     _form
   end
 
@@ -105,6 +112,12 @@ class ContributionsController < ApplicationController
 
   def update
     @contribution = Contribution.find(params[:id])
+    begin
+      demande = Demande.find(params[:demande][:id]) unless params[:demande][:id].blank?
+      @contribution.demande = demande
+    rescue
+      flash[:warn] = _('The associated request does not exist')
+    end
     if @contribution.update_attributes(params[:contribution])
       flash[:notice] = _('The contribution has been updated successfully.')
       _update(@contribution)
