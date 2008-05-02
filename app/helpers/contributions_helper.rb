@@ -14,7 +14,7 @@ module ContributionsHelper
     contribs.each{|c|
       out << "<tr class=\"#{cycle('even', 'odd')}\">"
       out << "<td>#{c.reverse_le_formatted}</td>"
-      out << "<td>#{c.version}</td>"
+      out << "<td>#{c.affected_version}</td>"
       out << "<td>#{public_link_to_contribution(c)}</td>"
       out << '</tr>'
     }
@@ -22,10 +22,13 @@ module ContributionsHelper
   end
 
   # call it like : link_to_contribution_logiciel
-  def public_link_to_contribution_logiciel(logiciel)
+  def public_link_to_contribution_logiciel(logiciel, options = {})
     return '-' unless logiciel
-    public_link_to "#{logiciel.name} (#{logiciel.contributions.size})",
-      list_contribution_path(logiciel.id)
+    path = list_contribution_path(logiciel.id)
+    if options.has_key? :client_id
+      path << "?client_id=#{options[:client_id]}"
+    end
+    public_link_to "#{logiciel.name} (#{logiciel.contributions.size})", path
   end
 
   # call it like :
