@@ -440,7 +440,7 @@ module ActiveRecord
       if time
         date = (time.is_a?(Date) ? time : time.to_date)
         res = date.to_s
-        res = d.strftime('%Hh%M') if date == Date.today
+        res = date.strftime('%Hh%M') if date == Date.today
       end
       res
     end
