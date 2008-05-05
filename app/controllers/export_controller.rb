@@ -36,7 +36,7 @@ class ExportController < ApplicationController
       'pname_etatreversement', 'delai_in_french_words', 'clos_enhance',
       'reverse_le_formatted']
     options = { :order => 'contributions.reverse_le ASC',
-      :include => [:logiciel, :etatreversement, :demandes],
+      :include => [:logiciel, :etatreversement, :demande],
       :conditions => flash[:conditions],
       :methods => methods }
 

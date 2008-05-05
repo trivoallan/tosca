@@ -147,7 +147,7 @@ class Contribution < ActiveRecord::Base
     Time.in_words(delai)
   end
   def version_to_s
-    version.to_s
+    affected_version.to_s
   end
 
 
