@@ -3520,6 +3520,10 @@ msgstr "Tous"
 msgid "a new contribution"
 msgstr "une nouvelle contribution"
 
+#: app/views/contributions/list.html.erb:12
+msgid "This recipient does not exist"
+msgstr "Ce client n'existe pas"
+
 #: app/views/contributions/new.html.erb:1
 msgid "Add a new contribution"
 msgstr "Ajouter une nouvelle contribution"

@@ -3480,6 +3480,10 @@ msgstr ""
 msgid "a new contribution"
 msgstr ""
 
+#: app/views/contributions/list.html.erb:12
+msgid "This recipient does not exist"
+msgstr ""
+
 #: app/views/contributions/new.html.erb:1
 msgid "Add a new contribution"
 msgstr ""
