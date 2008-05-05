@@ -21,19 +21,28 @@ class ContributionsController < ApplicationController
   end
 
   def list
-    options = { :order => "created_on DESC" }
+    options = { :order => "contributions.created_on DESC" }
+    options[:conditions] = { }
     unless params[:id] == 'all'
       @logiciel = Logiciel.find(params[:id])
-      options[:conditions] = ['contributions.logiciel_id = ?', @logiciel.id]
+      options[:conditions] = { :logiciel_id => @logiciel.id }
     end
+    unless params[:client_id].blank?
+      options[:conditions].merge!({'contrats.client_id' => params[:client_id]})
+      options[:include] = {:demande => :contrat}
+    end 
     @contribution_pages, @contributions = paginate :contributions, options
   end
 
   # TODO : c'est pas très rails tout ça (mais c'est moins lent)
   def select
-    options = { :conditions =>
-      'logiciels.id IN (SELECT DISTINCT logiciel_id FROM contributions)',
-      :order => 'logiciels.name ASC' }
+    options = { :order => 'logiciels.name ASC' }
+    options[:joins] = :contributions
+    options[:select] = 'DISTINCT logiciels.*'
+    unless params[:client_id].blank?
+      options[:conditions] = { 'contrats.client_id' => params[:client_id] }
+      options[:joins] = { :contributions => { :demande => :contrat } }
+    end
     @logiciels = Logiciel.find(:all, options)
   end
 

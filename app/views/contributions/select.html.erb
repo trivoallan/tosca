@@ -1,7 +1,7 @@
 <h1><%= _('Contributions') %></h1>
 
 <%= public_show_liste(@logiciels, _('contribution'), :no_title => true) { |l|
-      out = "<b>#{public_link_to_contribution_logiciel l }</b> : #{l.resume}"
+      out = "<b>#{public_link_to_contribution_logiciel l, params }</b> : #{l.resume}"
 } %>
 
 <%= link_to _('Submit a contribution'), new_contribution_path %><br />

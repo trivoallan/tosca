@@ -22,13 +22,19 @@ module ContributionsHelper
   end
 
   # call it like : link_to_contribution_logiciel
-  def public_link_to_contribution_logiciel(logiciel, options = {})
+  def public_link_to_contribution_logiciel(logiciel, params = {})
     return '-' unless logiciel
     path = list_contribution_path(logiciel.id)
-    if options.has_key? :client_id
-      path << "?client_id=#{options[:client_id]}"
+    unless params[:client_id].blank?
+      path << "?client_id=#{params[:client_id]}"
+      options = {:include => {:demande => :contrat} }
+      options[:conditions] = { :logiciel_id => logiciel.id }
+      options[:conditions].merge!({'contrats.client_id' => params[:client_id]})
+      count = Contribution.count(:all,options) 
+    else
+      count = logiciel.contributions.size
     end
-    public_link_to "#{logiciel.name} (#{logiciel.contributions.size})", path
+    public_link_to "#{logiciel.name} (#{count})", path
   end
 
   # call it like :
