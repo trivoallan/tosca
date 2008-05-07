@@ -91,9 +91,15 @@
 </table>
 
 
-<% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
+<% if @contrats.size > 1 %>
+ <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
      "Form.serializeElements($('demande_typedemande_id','demande_severite_id','demande_contrat_id'))",
      :url => ajax_display_commitment_demandes_path) %>
+<% else %>
+ <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
+     "Form.serializeElements($('demande_typedemande_id','demande_severite_id'))",
+     :url => ajax_display_commitment_demandes_path) %>
+<% end %>
 <% %w(demande_typedemande_id demande_severite_id demande_contrat_id).each do |f| %>
   <%= observe_field f, options %>
 <% end %>
