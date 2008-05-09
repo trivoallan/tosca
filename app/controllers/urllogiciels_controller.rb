@@ -16,6 +16,7 @@ class UrllogicielsController < ApplicationController
 
   def new
     @urllogiciel = Urllogiciel.new
+    @urllogiciel.logiciel_id = params[:logiciel_id]
     _form
   end
 
