@@ -23,6 +23,8 @@
              :url => ajax_display_contract_demandes_path) %>
          <%= observe_field "demande_contrat_id", options %>
          </td>
+    <% else %>
+     <td colspan="2"></td>
     <% end %>
     </tr><tr>
      <th><label for="demande_beneficiaire_id"><%= _("Recipient") %></label></th>
@@ -90,16 +92,11 @@
  </tr>
 </table>
 
-
-<% if @contrats.size > 1 %>
- <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
-     "Form.serializeElements($('demande_typedemande_id','demande_severite_id','demande_contrat_id'))",
+<% fields = %w(demande_typedemande_id demande_severite_id) %>
+<% fields << 'demande_contrat_id' if @contrats.size > 1 %>
+<% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
+     "Form.serializeElements($('#{fields.join("','")}'))",
      :url => ajax_display_commitment_demandes_path) %>
-<% else %>
- <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
-     "Form.serializeElements($('demande_typedemande_id','demande_severite_id'))",
-     :url => ajax_display_commitment_demandes_path) %>
-<% end %>
-<% %w(demande_typedemande_id demande_severite_id demande_contrat_id).each do |f| %>
-  <%= observe_field f, options %>
+<% fields.each do |field| %>
+  <%= observe_field field, options %>
 <% end %>
