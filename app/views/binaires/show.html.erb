@@ -28,15 +28,6 @@
 <% end %>
 
 
-<br />
-<% unless @fichierbinaires.empty? %>
-<p><%=_('This package contains')%> <b><%= pluralize(@fichierbinaires.size, _('file')) %></b></p>
-<div class="bloc_scroll">
-  <%= show_liste(@fichierbinaires, 'fichier', :no_title => true) { |f| f.chemin } %>
-</div>
-<% end %>
-
-
 <p>&nbsp;</p>
 
 <%= link_to_edit_and_list(@binaire) %>
