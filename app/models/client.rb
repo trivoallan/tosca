@@ -56,6 +56,12 @@ class Client < ActiveRecord::Base
     self.contrats.find(:all, :select => 'id').collect{|c| c.id}
   end
 
+
+  def find_socles_select
+    self.socles.find(:all).collect{|s| [  s.name, s.id ] }
+  end
+
+
   # TODO : c'est lent et moche
   # returns true if we have a contract to support an entire distribution
   # for this client, false otherwise.

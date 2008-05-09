@@ -314,7 +314,7 @@ class DemandesController < ApplicationController
     result = true
     @beneficiaires = contrat.find_recipients_select
     result = false if @beneficiaires.empty?
-    @socles = contrat.client.socles
+    @socles = contrat.client.find_socles_select
     @logiciels = contrat.logiciels.collect{|l| [l.name, l.id] }
     if @ingenieur
       @ingenieurs = Ingenieur.find_select_by_contrat_id(contrat.id)
