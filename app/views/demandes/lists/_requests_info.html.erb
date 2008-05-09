@@ -10,7 +10,7 @@
 <%= hidden_field_tag 'page', '1' %>
 <%# All request => 0, Active request => 1, Dead request => -1 %>
 <%# see remote_link_to_(dead|active|all)_request in demandes_helper %>
-<%= hidden_field_tag 'filters[active]', '0' %>
+<input id="filters_active" name="filters[active]" type="hidden" value="0" />
 
 <div class="menu_title" onclick="Element.toggle('menu_actions')">>
 <%=_('Actions')%></div>
