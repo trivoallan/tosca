@@ -50,14 +50,6 @@
   </td></tr>
 </table>
 
-
-<% unless @fichiers.empty? %>
- <p>Ce paquet contient <b><%= pluralize(@fichiers.size, _('file') ) %></b></p>
- <div class="bloc_scroll">
-  <%= show_liste(@fichiers, _('file'), :no_title => true) { |f| f.chemin } %>
- </div>
-<% end %>
-
 <br />
 <% unless @changelogs.empty? %>
 <p><%= _('This package has been updated')%><b><%= pluralize(@changelogs.size, _('times') ) %></b></p>

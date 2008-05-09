@@ -43,8 +43,6 @@ class PaquetsController < ApplicationController
     cond = [ 'binaires.paquet_id = ? ', paquet_id ]
     options = { :conditions => cond, :include => [:paquet,:socle,:arch] }
     @binaires = Binaire.find(:all, options)
-    @fichiers = @paquet.fichiers.find(:all, :select => 'fichiers.chemin',
-                                      :limit => 10000)
     @changelogs = @paquet.changelogs
   end
 

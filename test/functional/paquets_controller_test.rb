@@ -8,7 +8,7 @@ require 'paquets_controller'
 class PaquetsController; def rescue_action(e) raise e end; end
 
 class PaquetsControllerTest < Test::Unit::TestCase
-  fixtures :paquets, :conteneurs, :distributeurs, :mainteneurs, :logiciels
+  fixtures :paquets, :conteneurs, :distributeurs, :mainteneurs, :logiciels, :contrats
 
   def setup
     @controller = PaquetsController.new
@@ -46,10 +46,11 @@ class PaquetsControllerTest < Test::Unit::TestCase
   def test_create
     num_paquets = Paquet.count
 
-    post :create, :paquet => { :logiciel_id => 1, :conteneur_id => 1 }
+    post :create, :paquet => { :logiciel_id => 1,
+           :conteneur_id => 1, :contrat_id => 1, :configuration => '' }
 
     assert_response :redirect
-    assert_redirected_to :action => 'show', :controller => 'logiciels'
+    assert_redirected_to logiciel_path(assigns(:paquet).logiciel)
 
     assert_equal num_paquets + 1, Paquet.count
   end
@@ -67,7 +68,7 @@ class PaquetsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => '1-cups'
+    assert_redirected_to :action => 'show', :id => '1-openoffice-org'
   end
 
   def test_destroy

@@ -16,7 +16,6 @@ class BinairesController < ApplicationController
                             :socle,:arch] }
     @binaire = Binaire.find(params[:id], options)
     options = { :conditions => {:binaire_id => @binaire.id}, :order => 'chemin' }
-    @fichierbinaires = Fichierbinaire.find(:all, options)
   end
 
   def new
