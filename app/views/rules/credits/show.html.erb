@@ -1,4 +1,4 @@
-<% for column in Rule::Credit.content_columns %>
+<% for column in Rules::Credit.content_columns %>
 <p>
   <b><%= column.human_name %>:</b> <%=h @credit.send(column.name) %>
 </p>

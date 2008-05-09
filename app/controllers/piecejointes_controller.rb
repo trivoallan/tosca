@@ -19,7 +19,7 @@ class PiecejointesController < ApplicationController
     @piecejointe = Piecejointe.new(params[:piecejointe])
     if @piecejointe.save
       flash[:notice] = 'Piecejointe was successfully created.'
-      redirect_to piecejointes_path
+      redirect_to piecejointe_path(@piecejointe)
     else
       render :action => 'new'
     end
@@ -43,7 +43,7 @@ class PiecejointesController < ApplicationController
     Piecejointe.find(params[:id]).destroy
     redirect_to piecejointes_path
   end
-  
+
   def uv
     @pj = Piecejointe.find(params[:id])
     render :partial => "uv"

@@ -115,9 +115,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :roles
 
   # Resources for rules/* controllers
-    map.resources :components, :controller => "Rules::Components",
+    map.resources :components, :controller => "rules/components",
       :path_prefix => "/rules", :name_prefix => 'rules_'
-    map.resources :credits, :controller => "Rules::Credits",
+    map.resources :credits, :controller => "rules/credits",
       :path_prefix => "/rules", :name_prefix => 'rules_'
 
   map.resources :socles

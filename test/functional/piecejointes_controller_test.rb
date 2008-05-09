@@ -8,7 +8,7 @@ require 'piecejointes_controller'
 class PiecejointesController; def rescue_action(e) raise e end; end
 
 class PiecejointesControllerTest < Test::Unit::TestCase
-  fixtures :piecejointes
+  fixtures :piecejointes, :commentaires
 
   def setup
     @controller = PiecejointesController.new
@@ -47,11 +47,12 @@ class PiecejointesControllerTest < Test::Unit::TestCase
     num_piecejointes = Piecejointe.count
 
     post :create, :piecejointe => {
-      :file => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/upload_document.png")
+      :file => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/upload_document.png"),
+      :commentaire => Commentaire.find(:first)
     }
 
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to piecejointe_path(assigns(:piecejointe))
 
     assert_equal num_piecejointes + 1, Piecejointe.count
   end

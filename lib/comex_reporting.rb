@@ -129,6 +129,9 @@ module  ComexReporting
       @total[:final][:total] += @total[:final][name]
   end
 
+=begin
+    # Deactivated for now
+
   def cns_correction
     @percents, @extra = [], []
 
@@ -140,11 +143,9 @@ module  ComexReporting
 
       demandes = Demande.find :all,
         :conditions => Demande::EN_COURS, :order=> 'updated_on ASC'
-      demandes.delete_if { |request|
-        engagement= request.engagement(contrat.id)
-        engagement == nil or request.paquets.empty? or
-        request.paquets.first.contrat != contrat or
-        ( engagement.correction < 0 and engagement.contournement < 0 )
+      demandes.delete_if { |r|
+        r.engagement == nil or
+        ( r.engagement.correction < 0 and r.engagement.contournement < 0 )
       }
       demandes.each do |request|
         c_extra[:demandes_ids].push( request.id )
@@ -183,5 +184,5 @@ module  ComexReporting
       c_extra[:demandes_ids].empty?
     }
   end
-
+=end
 end
