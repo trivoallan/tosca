@@ -19,13 +19,12 @@
    </p>
   <% end %>
 
+   <p><b><%= _('Skills') %> <%= link_to_new_knowledge %> : </b>
   <% unless @user_engineer.knowledges.empty? %>
-   <p><b><%= _('Skills') + ' : '%></b>
-   <ul>
-    <% @user_engineer.knowledges.each do |k| %>
-      <li><%= k.level %> - <%= k.name %></li>
-    <% end %>
-   </ul>
+     <% options = {:edit => 'knowledge', :no_title => true } %>
+     <%= show_liste(@user_engineer.knowledges, '', options) do |k|
+        link_to_knowledge k
+      end %>
   <% end %>
 
   <p><b><%= _('Contracts') %>:</b></p>

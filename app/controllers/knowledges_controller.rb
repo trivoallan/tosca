@@ -56,7 +56,7 @@ class KnowledgesController < ApplicationController
 
     if @knowledge.save
       flash[:notice] = _('Your knowledge was successfully created.')
-      redirect_to(@knowledge)
+      redirect_to(account_path(@knowledge.ingenieur.user))
     else
       _form and render :action => "new"
     end
@@ -66,7 +66,7 @@ class KnowledgesController < ApplicationController
     @knowledge = Knowledge.find(params[:id])
     if @knowledge.update_attributes(params[:knowledge])
       flash[:notice] = _('Your knowledge was successfully updated.')
-      redirect_to(@knowledge)
+      redirect_to(account_path(@knowledge.ingenieur.user))
     else
       _form and render :action => "edit"
     end

@@ -9,10 +9,10 @@
   <p><label for="ingenieur_expert_ossa"><%= _('OSSA expert') + ' ?'%></label>
   <%= check_box 'ingenieur', 'expert_ossa' %></p>
 
+  <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b>
   <% unless @user_engineer.knowledges.empty? %>
-  <hr />
-     <% options = {:edit => 'knowledge'} %>
-     <%= show_liste(@user_engineer.knowledges, _('Knowledges'), options) do |k|
+     <% options = {:edit => 'knowledge', :no_title => true } %>
+     <%= show_liste(@user_engineer.knowledges, '', options) do |k|
         link_to_knowledge k
       end %>
   <hr />

@@ -8,4 +8,9 @@ module KnowledgesHelper
     link_to name, knowledge_path(k)
   end
 
+  def link_to_new_knowledge
+    options = new_knowledge_path
+    link_to(image_create('a knowledge'), options, LinksHelper::NO_HOVER)
+  end
+
 end
