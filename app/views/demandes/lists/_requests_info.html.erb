@@ -15,7 +15,10 @@
 <div class="menu_title" onclick="Element.toggle('menu_actions')">>
 <%=_('Actions')%></div>
 <ul class="menu" id="menu_actions">
- <li><%= link_to _("Submit a request"), new_demande_path %></li>
+ <% path = new_demande_path %>
+ <% if session[:user].authorized? path %>
+   <li><%= link_to _("Submit a request"), path %></li>
+ <% end %>
  <li><%= link_to _("Activity report"), general_reporting_path %></li>
  <li><%= requests_export_link %></li>
 </ul>
