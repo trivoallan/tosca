@@ -6,14 +6,8 @@ class MachinesController < ApplicationController
 
   def index
     options = { :per_page => 250, :include => [:socle,:hote], :order =>
-        'machines.hote_id, machines.acces', :conditions =>
-        'machines.hote_id IS NOT NULL' }
+        'machines.hote_id, machines.acces' }
     @machine_pages, @machines = paginate :machines, options
-  end
-
-  def all
-    @machine_pages, @machines = paginate :machines, :per_page => 250,
-    :include => [:socle,:hote], :order => 'machines.hote_id, machines.acces'
   end
 
   def show
