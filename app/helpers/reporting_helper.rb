@@ -267,7 +267,7 @@ module ReportingHelper
     return result if elapsed == 0
     elapsed = Elapsed.relative2absolute(elapsed, interval)
     return _('Exceedance') if @beneficiaire && elapsed > total
-    result << " / #{Time.in_words(total)}"
+    result += " / #{Time.in_words(total)}"
   end
 
   #display a select box with all clients.
