@@ -90,7 +90,7 @@ module ApplicationHelper
           result << '<li>'
           result << link_to_edit(send(edit_call, e)).to_s << ' ' if edit
           result << elt
-          result << link_to_delete(send(delete_call, e)).to_s << ' ' if edit
+          result << ' ' << link_to_delete(send(delete_call, e)).to_s if edit
           result << '</li>'
         end
       }
