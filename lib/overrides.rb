@@ -439,8 +439,9 @@ module ActiveRecord
       res = '-'
       if time
         date = (time.is_a?(Date) ? time : time.to_date)
+        time = (time.is_a?(Date) ? time.to_time : time)
         res = date.to_s
-        res = date.strftime('%Hh%M') if date == Date.today
+        res = time.strftime('%Hh%M') if date == Date.today
       end
       res
     end
