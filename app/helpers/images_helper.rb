@@ -28,7 +28,7 @@ module ImagesHelper
     if size == :thumb
       size = (client.inactive? ? :inactive_thumb : :thumb)
     end
-    image_tag(url_for_image_column(client.image, 'image', size),
+    image_tag(url_for_image_column(client.image, 'image', size) || client.name,
               image_options(client.name_clean))
   end
 
