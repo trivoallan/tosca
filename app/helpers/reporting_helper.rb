@@ -233,12 +233,9 @@ module ReportingHelper
 
   # TODO : find 3 images. Maybe include this helper in static image  ??
   def progress_image( status, percent )
-    if status
-      return StaticImage.sla_ok if percent < 1.0
-      return StaticImage.sla_exceeded
-    else
-      return StaticImage.sla_running
-    end
+    return StaticImage.sla_exceeded if percent > 1.0
+    return StaticImage.sla_ok if status
+    StaticImage.sla_running
   end
 
   # Display a progress bar colored according to the percentage given in
