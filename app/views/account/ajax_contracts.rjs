@@ -1,4 +1,4 @@
-if @contrats
+if @contrats && !@contrats.empty?
   page.replace_html("contracts",
       hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 2))
 else

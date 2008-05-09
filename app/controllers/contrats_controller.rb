@@ -34,7 +34,7 @@ class ContratsController < ApplicationController
     render :nothing => true and return unless request.xhr? && !value.blank?
     @rules = []
     if value.grep(/^Rules::/)
-      @rules = value.constantize.find(:all)
+      @rules = value.constantize.find_select
     end
     @type = 'rules' unless @rules.empty?
   end
@@ -44,7 +44,7 @@ class ContratsController < ApplicationController
     if @contrat.save
       team = params[:team]
       if team and team[:ossa] == '1'
-        @contrat.users.concat(Ingenieur.find_ossa(:all))
+        @contrat.users.concat(Ingenieur.find_ossa(:all).collect{ |i| i.user })
         @contrat.save
       end
       flash[:notice] = _('Contract was successfully created.')
