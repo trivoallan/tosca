@@ -159,7 +159,7 @@ module FormsHelper
   def lstm_select_field(label, model, field, collection, options = {})
     result = [ "<label for=\"#{model}_#{field}\">#{label}</label>",
                collection_select(model, field.to_s + '_id', collection,
-                                 :id, :name, PROMPT_SELECT)  ]
+                                 :last, :first, PROMPT_SELECT)  ]
     result.last << ' ' + StaticImage::spinner if options.has_key? :spinner
     result
   end

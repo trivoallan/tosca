@@ -96,7 +96,9 @@ class PhonecallsController < ApplicationController
   end
 
   private
-  # conventions
+  # TODO :
+  #  1. migrate form to the standard,
+  #  2. remove lstm_* helper
   def _form
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @contrats = Contrat.find_select(Contrat::OPTIONS)
