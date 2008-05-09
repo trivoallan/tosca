@@ -23,6 +23,7 @@ class CreateRulesTable < ActiveRecord::Migration
         c[:rule_type] = "Ossa"
       end
       c[:rule_id] = 1
+      c.name = '' # reset of their name, more easier since the state of the past
       c.save
     end
     remove_column :contrats, :support
