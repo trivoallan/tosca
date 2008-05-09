@@ -40,6 +40,7 @@
     </tr><tr>
      <th><label for="demande_socle_id"><%= _("System") %></label></th>
      <% # Warning, the code of this cell is also in ajax_display_contract.rjs %>
+     <% # And it's ajaxly observed within the "logiciel" partial %>
      <td><div id="system"><%= select(:demande, :socle_id, @socles) %></div></td>
     </tr><tr>
      <th><label for="demande_logiciel_id"><%= _("Software") %></label></th>
@@ -85,6 +86,8 @@
     <% if new_request %>
      <th><label for="piecejointe_file"><%= _("Add a file") + " :" %></label></th>
      <td><%= file_column_field 'piecejointe', 'file', :size => 55 %></td>
+    <% else %>
+     <td colspan="2"></td>
     <% end %>
     </tr>
    </table>
@@ -92,8 +95,9 @@
  </tr>
 </table>
 
-<% fields = %w(demande_typedemande_id demande_severite_id) %>
+<% fields = %w(demande_typedemande_id) %>
 <% fields << 'demande_contrat_id' if @contrats.size > 1 %>
+<% fields << 'demande_severite_id' if new_request %>
 <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
      "Form.serializeElements($('#{fields.join("','")}'))",
      :url => ajax_display_commitment_demandes_path) %>
