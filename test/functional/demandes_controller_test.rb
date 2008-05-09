@@ -90,13 +90,42 @@ class DemandesControllerTest < ActionController::TestCase
 
 =end
 
+    def test_edit
+      %w(admin manager expert customer).each do |l|
+        login l, l
+        puts l
+        get :edit, :id => Demande.find(:first).id
+        assert_response :success
+        assert_template 'edit'
+
+        _test_ajax_form_methods
+      end
+    end
+
+
     def test_new
-      login 'admin', 'admin'
-      get :new
+      %w(admin manager expert customer).each do |l|
+        login l, l
+        get :new
+        assert_response :success
+        assert_template 'new'
+
+        _test_ajax_form_methods
+      end
+    end
+
+    def _test_ajax_form_methods
+      # test the 3 ajax methods
+      xhr :get, :ajax_display_commitment, :demande => { :severite_id => '2',
+        :typedemande_id => '2' }
       assert_response :success
-      assert_template 'new'
 
+      xhr :get, :ajax_display_version, :demande => { :logiciel_id => "1",
+        :socle_id => "1"}
+      assert_response :success
 
+      xhr :get, :ajax_display_contract, :contrat_id => Contrat.find(:first).id
+      assert_response :success
     end
 
     def atest_create

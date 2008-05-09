@@ -83,7 +83,9 @@ class LoadPermissions < ActiveRecord::Migration
 
     roles = [ expert_id ]
     access = [ [ '^clients/index$',
-                 'Read-only access to list clients offers' ] ]
+                 'Read-only access to list clients offers' ],
+               [ '^demandes/(link|unlink)contribution$',
+                 'Link contribution with request' ] ]
     add_permission.call(roles, access)
 
     roles = [ customer_id, viewer_id ]

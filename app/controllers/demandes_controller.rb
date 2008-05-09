@@ -197,7 +197,7 @@ class DemandesController < ApplicationController
     @statuts = @demande.statut.possible(@beneficiaire)
     options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
       ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
-    @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]}
+    @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
     if @ingenieur
       @severites = Severite.find_select
       @ingenieurs = Ingenieur.find_select_by_contrat_id(@demande.contrat_id)
@@ -270,11 +270,11 @@ class DemandesController < ApplicationController
     redirect_to demandes_path
   end
 
-  def associer_contribution
+  def link_contribution
     update_contribution( params[:id], params[:contribution_id] )
   end
 
-  def delete_contribution
+  def unlink_contribution
     update_contribution params[:id], nil
   end
 

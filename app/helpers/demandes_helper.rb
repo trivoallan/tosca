@@ -137,7 +137,7 @@ module DemandesHelper
         { :class => 'aligned_picture' }
   end
 
-  def link_to_delete_contribution( demand_id )
+  def link_to_unlink_contribution( demand_id )
     link_to(_('Unlink the contribution'),
             delete_contribution_demande_path(demand_id),
             :method => :post)
