@@ -37,7 +37,7 @@
    </tr>
   <% progress = elapsed.correction_progress %>
    <tr class="<%= cycle('even', 'odd') %>">
-    <% if commitment.contournement <= 0 %>
+    <% if commitment.correction <= 0 %>
      <td colspan="4"><%= _("Your request has no commitment for correction time") %></td>
     <% else %>
      <td><%= progress_image(elapsed.correction?, progress) %></td>

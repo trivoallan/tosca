@@ -86,7 +86,7 @@ class Elapsed < ActiveRecord::Base
 
   # Convert a time relative to a commitment into an absolute time
   def self.relative2absolute(elapsed, interval)
-    (elapsed * interval.hours).days
+    (elapsed / interval.hours).days
   end
 
   # Compute progress from an 'elapsed' time in "interval" reference,
