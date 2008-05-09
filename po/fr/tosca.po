@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-09 19:07+0200\n"
-"PO-Revision-Date: 2008-05-09 19:09+0200\n"
+"POT-Creation-Date: 2008-05-09 19:18+0200\n"
+"PO-Revision-Date: 2008-05-09 19:57+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -831,15 +831,15 @@ msgstr "Cette demande a été prise en charge par %s."
 
 #: app/helpers/commentaires_helper.rb:25
 msgid "This request has been changed in %s by %s."
-msgstr "Cette demande a été changé en %s par %s."
+msgstr "Cette demande a été %s par %s."
 
 #: app/helpers/commentaires_helper.rb:30
 msgid "This request has been requalified in %s by %s."
-msgstr "Cette demande a été requalifié en %s par %s."
+msgstr "Cette demande a été requalifiée en %s par %s."
 
 #: app/helpers/commentaires_helper.rb:36
 msgid "%s has been spent by %s on this request."
-msgstr "%s se sont écoulé(e)s par %s sur cette demande"
+msgstr "%s se sont écoulé(e)s"
 
 #: app/helpers/conteneurs_helper.rb:9
 msgid "a container"

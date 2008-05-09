@@ -1,9 +1,23 @@
+# French translation of lstm.
+# Copyright (C) 2007 LINAGORA
+# Rémy-Christophe Schermesser <rschermesser@linagora.com>, 2007.
+# French translations for lstm package
+# Traductions françaises du paquet lstm.
+# Copyright (C) 2007 THE lstm'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the lstm package.
+# Loiseleur Michel <mloiseleur@linagora.com>, 2007.
+# Munteanu Olimpiu Andrei <omunteanu@linagora.com>, 2007.
+# Rémy-Christoph Schermesser <rschermesser@linagora.com>, 2007.
+# Adrien Grellier <agrellier@linagora.com>, 2007.
+# Jonathan Clarke <jclarke@linagora.com>, 2007.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-05-09 19:07+0200\n"
-"PO-Revision-Date: 2008-04-14 19:07+0200\n"
-"Last-Translator: Loiseleur Michel <mloiseleur@linagora.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-09 19:18+0200\n"
+"PO-Revision-Date: 2008-05-09 19:18+0200\n"
+"Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: English <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1443,7 +1457,6 @@ msgid "Contrat|Astreinte"
 msgstr "Client"
 
 #: app/models/contrat.rb:-
-#, fuzzy
 msgid "Contrat|Name"
 msgstr "Name"
 
@@ -1536,18 +1549,16 @@ msgid "Contribution|Typecontribution"
 msgstr ""
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Affected version"
-msgstr "Version"
+msgstr ""
 
 #: app/models/contribution.rb:-
 msgid "Contribution|Synthese"
 msgstr ""
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Fixed version"
-msgstr "Version"
+msgstr ""
 
 #: app/models/contribution.rb:44
 msgid " on "
@@ -4919,6 +4930,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
-
-#~ msgid "Paquet|Fichiers count"
-#~ msgstr "Version"
