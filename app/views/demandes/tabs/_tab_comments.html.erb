@@ -1,6 +1,5 @@
 <% logo_img = nil %>
 <% print_mode = (controller.action_name == 'print') %>
-<% commentaires = @commentaires || [@last_commentaire] %>
 
 <% edit_ho = { :class => 'no_hover' } %>
 <% delete_ho = { :class => 'no_hover', :method => :delete, :confirm =>
@@ -8,7 +7,7 @@
 
 <%= render :partial => 'demandes/tabs/tab_menu' unless print_mode or @last_commentaire %>
 <div class="demande_tab_content">
-<% commentaires.each do |commentaire| %>
+<% @commentaires.each do |commentaire| %>
  <% cache("comments/#{commentaire.id}/#{session[:user].kind}") do %>
   <% com_user = commentaire.user %>
   <table class="commentaire">

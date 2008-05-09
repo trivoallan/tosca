@@ -359,12 +359,12 @@ class DemandesController < ApplicationController
   end
 
   def set_comments(demande_id)
-    unless @last_commentaire
+    if @last_commentaire
+      @commentaires = [ @last_commentaire ]
+    else
       @commentaires = Commentaire.find(:all, :conditions =>
         filter_comments(demande_id), :order => "created_on ASC",
         :include => [:user,:statut,:severite])
-    else
-      @commentaires = []
     end
   end
 
