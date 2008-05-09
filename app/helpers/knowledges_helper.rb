@@ -9,6 +9,7 @@ module KnowledgesHelper
   end
 
   def link_to_new_knowledge
+    return '' if @user_engineer && @user_engineer.user_id != session[:user].id
     options = new_knowledge_path
     link_to(image_create('a knowledge'), options, LinksHelper::NO_HOVER)
   end

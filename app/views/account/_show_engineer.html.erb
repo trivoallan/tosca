@@ -19,7 +19,7 @@
    </p>
   <% end %>
 
-   <p><b><%= _('Skills') %> <%= link_to_new_knowledge %> : </b>
+   <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b>
   <% unless @user_engineer.knowledges.empty? %>
      <% options = {:edit => 'knowledge', :no_title => true } %>
      <%= show_liste(@user_engineer.knowledges, '', options) do |k|
