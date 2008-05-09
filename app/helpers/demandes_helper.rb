@@ -139,7 +139,7 @@ module DemandesHelper
 
   def link_to_unlink_contribution( demand_id )
     link_to(_('Unlink the contribution'),
-            delete_contribution_demande_path(demand_id),
+            unlink_contribution_demande_path(demand_id),
             :method => :post)
   end
 

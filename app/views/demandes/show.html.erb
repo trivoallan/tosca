@@ -17,10 +17,12 @@
    <%= render :partial => 'demandes/tabs/tab_comments' %>
 
    <div>
-    <% action = comment_commentaire_path(@demande) %>
-    <% form_tag(action, :method => :post, :multipart => true) do %>
+    <% if session[:user].authorized? "commentaires/comment" %>
+     <% action = comment_commentaire_path(@demande) %>
+     <% form_tag(action, :method => :post, :multipart => true) do %>
       <%= render :partial => 'comment_form' %>
       <p>&nbsp;</p>
+     <% end %>
     <% end %>
    </div>
 

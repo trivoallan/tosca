@@ -10,8 +10,7 @@ class DemandesControllerTest < ActionController::TestCase
     :permissions_roles, :contrats, :contrats_engagements, :engagements,
     :piecejointes, :typedemandes
 
-
-  def atest_pending
+  def test_pending
     %w(admin manager expert customer).each do |l|
       login l, l
       get :pending
@@ -20,8 +19,7 @@ class DemandesControllerTest < ActionController::TestCase
     end
   end
 
-
-  def atest_index
+  def test_index
     %w(admin manager expert customer viewer).each do |l|
       login l, l
       get :index
@@ -39,152 +37,132 @@ class DemandesControllerTest < ActionController::TestCase
     end
   end
 
+  def test_edit
+    %w(admin manager).each do |l|
+      login l, l
+      get :edit, :id => Demande.find(:first).id
+      assert_response :success
+      assert_template 'edit'
 
-  def atest_new
+      _test_ajax_form_methods
+      logout
+    end
+  end
+
+  def test_new
     %w(admin manager expert customer).each do |l|
       login l, l
       get :new
       assert_response :success
       assert_template 'new'
+
+      _test_ajax_form_methods
+      logout
     end
   end
 
-
-=begin
-  def test_should_get_index
-    %w(viewer customer expert manager admin).each { |l|
+  def test_create
+    %w(admin manager expert customer).each {|l|
       login l, l
-
-      get :index
+      get :new
       assert_response :success
-      assert_not_nil assigns(:demandes)
-
-      check_ajax_filter :severite_id, 2, :demandes
-      check_ajax_filter :statut_id, 4, :demandes
-      check_ajax_filter :typedemande_id, 1, :demandes
-    }
-  end
-
-  def test_should_show_request
-    login 'admin', 'admin'
-    Demande.find(:all).each { |r|
-      get :show, :id => r.id
-      assert_response :success
-    }
-
-    login 'customer', 'customer'
-    u = User.find_by_login('customer')
-    Demande.find_all_by_beneficiaire_id(u.beneficiaire.id).each { |r|
-      get :show, :id => r.id
-      assert_response :success
-    }
-  end
-
-
-   Parameters: {"commit"=>"Déposer cette demande", "demande"=>{"logiciel_id"=>"1",
-      "ingenieur_id"=>"1", "beneficiaire_id"=>"1", "resume"=>"There is a problem",
-      "severite_id"=>"1", "description"=>"<p>I have to fill the description</p>",
-      "contrat_id"=>"1", "socle_id"=>"Linux", "mail_cc"=>"", "typedemande_id"=>"2"}
-    , "action"=>"create", "controller"=>"demandes", "piecejointe"=>
-    {"file_temp"=>"", "file"=>#<File:/home/mloiseleur/tmp/CGI.24290.12> }}
-
-=end
-
-    def test_edit
-      %w(admin manager expert customer).each do |l|
-        login l, l
-        puts l
-        get :edit, :id => Demande.find(:first).id
-        assert_response :success
-        assert_template 'edit'
-
-        _test_ajax_form_methods
-      end
-    end
-
-
-    def test_new
-      %w(admin manager expert customer).each do |l|
-        login l, l
-        get :new
-        assert_response :success
-        assert_template 'new'
-
-        _test_ajax_form_methods
-      end
-    end
-
-    def _test_ajax_form_methods
-      # test the 3 ajax methods
-      xhr :get, :ajax_display_commitment, :demande => { :severite_id => '2',
-        :typedemande_id => '2' }
-      assert_response :success
-
-      xhr :get, :ajax_display_version, :demande => { :logiciel_id => "1",
-        :socle_id => "1"}
-      assert_response :success
-
-      xhr :get, :ajax_display_contract, :contrat_id => Contrat.find(:first).id
-      assert_response :success
-    end
-
-    def atest_create
-      %w(admin manager expert customer).each {|l|
-        login l, l
-        get :new
-        assert_response :success
-        assert_template 'new'
-
-        form = select_form 'main_form'
-        form.demande.resume = "there is a problem with foo"
-        form.demande.description = "it's a bar"
-        form.submit
-
-        # p assigns(:demande).errors.full_messages
-        assert_response :redirect
-        # TODO : I did not manage to test correctly :
-        # redirected with an url starting with new_demandes_path
-        assert assigns(:demande).errors.empty?
-        # It ensure that contract won't be passed between 2 logins
-        # since the controller is the same instance in test environnement
-        assigns(:demande).contrat = nil
-      }
-    end
-
-=begin
-  def test_should_be_able_to_update
-    login 'admin', 'admin'
-    Demande.find(:all).each { |r|
-      get :edit, :id => r.id
-
-      assert_response :success
-      assert_template 'edit'
-
-      assert_not_nil assigns(:demande)
-      assert assigns(:demande).valid?
+      assert_template 'new'
 
       form = select_form 'main_form'
-      form.demande.resume = "foo bar"
+      form.demande.resume = "there is a problem with foo"
+      form.demande.description = "it's a bar"
       form.submit
 
+      # p assigns(:demande).errors.full_messages
       assert_response :redirect
-      assert_redirected_to :action => 'show', :controller => 'demandes'
+      # TODO : I did not manage to test correctly :
+      # redirected with an url starting with new_demandes_path
       assert assigns(:demande).errors.empty?
+      # It ensure that contract won't be passed between 2 logins
+      # since the controller is the same instance in test environnement
+      assigns(:demande).contrat = nil
     }
   end
 
-
-  def test_should_be_able_to_print
+  def test_show
     %w(admin manager expert customer viewer).each {|l|
       login l, l
-      Demande.find(:all).each {|r|
-        get :print, :id => r.id
-        assert_response :success
-        assert_template 'print'
-        assert assigns(:demande).errors.empty?
-      }
+      request_id = session[:user].contrats.first.demandes.first.id
+      get :show, :id => request_id
+      assert_response :success
+      assert_template 'show'
+
+      xhr :get, :ajax_description, :id => request_id
+      assert_response :success
+      assert_template 'demandes/tabs/_tab_description'
+
+      xhr :get, :ajax_comments, :id => request_id
+      assert_response :success
+      assert_template 'demandes/tabs/_tab_comments'
+
+      xhr :get, :ajax_history, :id => request_id
+      assert_response :success
+      assert_template 'demandes/tabs/_tab_history'
+
+      xhr :get, :ajax_appels, :id => request_id
+      assert_response :success
+      assert_template 'demandes/tabs/_tab_appels'
+
+      xhr :get, :ajax_piecejointes, :id => request_id
+      assert_response :success
+      assert_template 'demandes/tabs/_tab_piecejointes'
+
+      xhr :get, :ajax_cns, :id => request_id
+      assert_response :success
+      assert_template 'demandes/tabs/_tab_cns'
     }
   end
-=end
+
+  def test_link_contribution
+    %w(admin manager expert).each { |l|
+      login l, l
+      request = session[:user].contrats.first.demandes.first
+      contribution_id = request.logiciel.contributions.first.id
+
+      post :link_contribution, :id => request.id, :contribution_id => contribution_id
+      assert_response :redirect
+      assert_redirected_to demande_path(request.id)
+      assert flash.has_key?(:notice)
+      assert !flash.has_key?(:warning)
+
+      post :unlink_contribution, :id => request.id
+      assert_response :redirect
+      assert_redirected_to demande_path(request.id)
+      assert flash.has_key?(:notice)
+      assert !flash.has_key?(:warning)
+    }
+  end
+
+  def test_print
+    %w(admin manager expert customer viewer).each {|l|
+      login l, l
+      request_id = session[:user].contrats.first.demandes.first.id
+      get :print, :id => request_id
+      assert_response :success
+      assert_template 'print'
+    }
+  end
+
+
+  private
+  def _test_ajax_form_methods
+    # test the 3 ajax methods
+    xhr :get, :ajax_display_commitment, :demande => { :severite_id => '2',
+      :typedemande_id => '2' }
+    assert_response :success
+
+    xhr :get, :ajax_display_version, :demande => { :logiciel_id => "1",
+      :socle_id => "1"}
+    assert_response :success
+
+    xhr :get, :ajax_display_contract, :contrat_id => session[:user].contrats.first.id
+    assert_response :success
+  end
+
 
 end

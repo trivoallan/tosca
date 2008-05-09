@@ -179,7 +179,6 @@ class DemandesController < ApplicationController
     end
   end
 
-
   def edit
     @demande = Demande.find(params[:id])
     _form @beneficiaire
@@ -364,6 +363,8 @@ class DemandesController < ApplicationController
       @commentaires = Commentaire.find(:all, :conditions =>
         filter_comments(demande_id), :order => "created_on ASC",
         :include => [:user,:statut,:severite])
+    else
+      @commentaires = []
     end
   end
 
