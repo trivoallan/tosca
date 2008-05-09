@@ -34,7 +34,7 @@ module ImagesHelper
 
   def software_logo(software)
     return '' if software.nil? or software.image.blank?
-    image_tag(url_for_image_column(software.image, 'image', :thumb))
+    image_tag(url_for_image_column(software.image, 'image', :thumb) || software.name)
   end
 
   #TODO Merger avec StaticImage
