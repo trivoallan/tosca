@@ -48,11 +48,13 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
 
     post :create, :urllogiciel => {
       :logiciel_id => 1,
-      :typeurl_id => 1
+      :typeurl_id => 1,
+      :valeur => "www.disney.fr"
+
     }
 
     assert_response :redirect
-    assert_redirected_to logiciel_path('1-ANT')
+    assert_redirected_to logiciel_path(assigns(:urllogiciel).logiciel)
 
     assert_equal num_urllogiciels + 1, Urllogiciel.count
   end
@@ -70,15 +72,16 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => '1-ANT'
+    assert_redirected_to logiciel_path(assigns(:urllogiciel).logiciel)
   end
 
   def test_destroy
-    assert_not_nil Urllogiciel.find(1)
+    url = Urllogiciel.find(1)
+    assert_not_nil url
 
     post :destroy, :id => 1
     assert_response :redirect
-    assert_redirected_to logiciel_path('1-ANT')
+    assert_redirected_to logiciel_path(url.logiciel)
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Urllogiciel.find(1)

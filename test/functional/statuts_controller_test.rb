@@ -46,7 +46,7 @@ class StatutsControllerTest < Test::Unit::TestCase
   def test_create
     num_statuts = Statut.count
 
-    post :create, :statut => {}
+    post :create, :statut => { :name => "annihilated", :description => "apocalypse"}
 
     assert_response :redirect
     assert_redirected_to :action => 'index'

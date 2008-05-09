@@ -46,7 +46,8 @@ class TypecontributionsControllerTest < Test::Unit::TestCase
   def test_create
     num_typecontributions = Typecontribution.count
 
-    post :create, :typecontribution => {}
+    post :create, :typecontribution => { :name => "buggy", :description =>
+      "a contribution in order to decrease qualitif of a FOSS" }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'

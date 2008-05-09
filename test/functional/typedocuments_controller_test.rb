@@ -46,7 +46,8 @@ class TypedocumentsControllerTest < Test::Unit::TestCase
   def test_create
     num_typedocuments = Typedocument.count
 
-    post :create, :typedocument => {}
+    post :create, :typedocument => { :name => "specification", :description =>
+      "the most hated type of document" }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'

@@ -57,9 +57,9 @@
 
   <% end %>
   <% unless create_account %>
-   <tr style="display:none;">   
+   <tr style="display:none;">
     <th><label>Prevent Firefox to autocomplete the true password field</label></th>
-    <td><input type='password' name="fake" id="fake"></td>
+    <td><input type='password' name="fake" id="fake" /></td>
    </tr><tr>
     <th><label for="user_pwd"><%= _('Modify your password') %></label></th>
     <td><%= password_field :user, :pwd %></td>

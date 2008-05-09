@@ -7,6 +7,8 @@ class NewsController; def rescue_action(e) raise e end; end
 class NewsControllerTest < Test::Unit::TestCase
   fixtures :news
 
+  def test_nothing
+  end
 =begin
 
   # It needs more love

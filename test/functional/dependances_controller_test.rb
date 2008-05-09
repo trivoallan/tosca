@@ -9,6 +9,9 @@ class DependancesController; def rescue_action(e) raise e end; end
 
 class DependancesControllerTest < Test::Unit::TestCase
   fixtures :dependances
+
+  def test_nothing
+  end
 =begin
 
   # This controller is not activated, it needs more love

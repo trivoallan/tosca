@@ -26,7 +26,7 @@ class UrllogicielsController < ApplicationController
         @urllogiciel.valeur
       redirect_to logiciel_path(@urllogiciel.logiciel)
     else
-      render :action => 'new'
+      _form and render :action => 'new'
     end
   end
 
@@ -41,7 +41,7 @@ class UrllogicielsController < ApplicationController
       flash[:notice] = _("The Url has bean updated successfully.")
       redirect_to logiciel_path(@urllogiciel.logiciel)
     else
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 

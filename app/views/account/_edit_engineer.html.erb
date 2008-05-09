@@ -1,3 +1,4 @@
+<% create_account = (controller.action_name == 'signup') %>
 
 <% if @user_engineer %>
 
@@ -9,7 +10,7 @@
   <p><label for="ingenieur_expert_ossa"><%= _('OSSA expert') + ' ?'%></label>
   <%= check_box 'ingenieur', 'expert_ossa' %></p>
 
-  <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b>
+  <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b></p>
   <% unless @user_engineer.knowledges.empty? %>
      <% options = {:edit => 'knowledge', :no_title => true } %>
      <%= show_liste(@user_engineer.knowledges, '', options) do |k|
@@ -30,6 +31,6 @@
    <div id="contracts" class="long_bloc_scroll">
      <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 1) %>
    </div>
-  <%= observe_client_field %>
+  <%= observe_client_field if create_account %>
   <%= observe_client_list %>
 <% end %>

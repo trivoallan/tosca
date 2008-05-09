@@ -225,6 +225,7 @@ class DemandesController < ApplicationController
   def ajax_history
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
+    @last_commentaire = nil # Prevents some insidious call with functionnal tests
     set_comments(@demande_id)
     render :partial => 'demandes/tabs/tab_history', :layout => false
   end
