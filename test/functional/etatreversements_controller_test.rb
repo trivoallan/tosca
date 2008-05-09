@@ -46,7 +46,8 @@ class EtatreversementsControllerTest < Test::Unit::TestCase
   def test_create
     num_etatreversements = Etatreversement.count
 
-    post :create, :etatreversement => {}
+    post :create, :etatreversement => { :name => "screwed",
+                                        :description =>  "self explanatory" }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'

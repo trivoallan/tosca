@@ -87,8 +87,8 @@ class DocumentsControllerTest < Test::Unit::TestCase
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to :action => 'show', 
-      :id => '1-Etude-Migration-Lotus-SI2-'
+    assert_redirected_to :action => 'show',
+      :id => '1-A-Many-to-Many-tutorial-for-Rails'
   end
 
   def test_destroy

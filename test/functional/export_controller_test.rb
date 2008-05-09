@@ -5,12 +5,12 @@ require 'demandes_controller'
 # class DemandesController; def rescue_action(e) raise e end; end
 class ExportControllerTest < Test::Unit::TestCase
 
-   fixtures :demandes, :commentaires, :demandes_paquets,
+   fixtures :demandes, :commentaires,
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
     :permissions_roles, :contrats, :contrats_engagements, :engagements,
-    :contrats_ingenieurs, :users, :piecejointes, :contributions,
-    :binaires, :binaires_demandes, :typedemandes
+    :contrats_users, :users, :piecejointes, :contributions,
+    :binaires, :typedemandes
 
 
   def setup
