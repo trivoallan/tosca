@@ -15,10 +15,13 @@ class Elapsed < ActiveRecord::Base
     if !self.taken_into_account? && comment.statut_id == 2
       self.taken_into_account = self.until_now
     end
-    if !self.workaround? && comment.statut_id == 5
+    # Some shortcuts can be taken within the status model. for memo :
+    # 5 Bypassed        6 Fixed
+    # 7 Closed          8 Cancelled
+    if !self.workaround? && [ 5, 6, 7, 8 ].include?(comment.statut_id)
       self.workaround = self.until_now
     end
-    if !self.correction? && comment.statut_id == 6
+    if !self.correction? && [ 6, 7, 8 ].include?(comment.statut_id)
       self.correction = self.until_now
     end
 
