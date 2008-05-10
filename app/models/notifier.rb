@@ -15,9 +15,8 @@ class Notifier < ActionMailer::Base
 
   # Notifie un état d'erreur
   def error_message(exception, trace, session, params, env)
-    @recipients = "mloiseleur@linagora.com"
-    #@recipients = "rschermesser@linagora.com"
-    #@cc = 'lstm-devel@08000linux.com'
+    @recipients = App::DeveloppersEmail
+    @cc = App::MaintenerEmail
     @from = FROM
     @content_type = HTML_CONTENT
     @subject = "Time to fix this one : #{env['REQUEST_URI']}"
