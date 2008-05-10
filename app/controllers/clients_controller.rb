@@ -66,7 +66,8 @@ class ClientsController < ApplicationController
   private
   def _form
     # only client picture.
-    @images = Image.find(:all, :include => [:client], :conditions => 'images.logiciel_id IS NULL AND clients.inactive = 0')
+    @images = Image.find(:all, :include => [:client], :conditions =>
+      'images.logiciel_id IS NULL')
     # It's the only way to add new system to its own scope
     Socle.send(:with_exclusive_scope) do
       @socles = Socle.find(:all, :order => 'name')

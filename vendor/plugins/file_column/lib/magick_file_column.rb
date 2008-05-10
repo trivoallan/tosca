@@ -72,8 +72,12 @@ module FileColumn # :nodoc:
     private
 
     def needs_transform?
-      options[:magick] and just_uploaded? and
-        (options[:magick][:size] or options[:magick][:versions] or options[:magick][:transformation] or options[:magick][:attributes]) and not File.exists?(absolute_path)
+      (options[:magick] and just_uploaded?)
+      # TODO : this code does NOT work. It was here in order to create
+      # automatically newer format of picture. But "absolute_path" is the
+      # current image, which always exist.
+      ########
+      # or ((options[:magick][:size] or options[:magick][:versions] or options[:magick][:transformation] or options[:magick][:attributes]) and not File.exists?(absolute_path))
     end
 
     def transform_image(img, img_options, dest_path)

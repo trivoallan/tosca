@@ -25,7 +25,7 @@ class ContratsController < ApplicationController
     # It is the default contract
     @contrat = Contrat.new
     @contrat.client_id = params[:id]
-    @contrat.rule_type = 'Ossa'
+    @contrat.rule_type = 'Rules::Component'
     _form
   end
 
