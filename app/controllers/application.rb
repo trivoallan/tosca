@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   init_gettext 'tosca'
 
   # access protected everywhere, See Wiki for more Info
-  before_filter :login_required, :set_global_shortcuts
+  before_filter :set_global_shortcuts, :login_required
 
   # périmètre limité pour certains profils
   around_filter :scope

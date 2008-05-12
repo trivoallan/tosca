@@ -61,12 +61,16 @@ class ContratsController < ApplicationController
 
   def update
     @contrat = Contrat.find(params[:id])
+    # TODO : this is a dirty fix, for recipients. We need a real solution,
+    # and not this dirty and slow hack.
+    recipients = @contrat.recipient_users
     if @contrat.update_attributes(params[:contrat])
       team = params[:team]
       if team and team[:ossa] == '1'
-        @contrat.ingenieurs.concat(Ingenieur.find_ossa(:all))
-        @contrat.save
+        @contrat.users.concat(Ingenieur.find_ossa(:all).collect{ |i| i.user })
       end
+      # Needed, otherwise, all recipients are deleted from the contract...
+      @contrat.users.concat(recipients)
       flash[:notice] = _('Contrat was successfully updated.')
       redirect_to contrat_path(@contrat)
     else
