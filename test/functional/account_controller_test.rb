@@ -6,7 +6,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 # Each Controller Test should test all _public_ methods
 class AccountControllerTest < ActionController::TestCase
   fixtures :users, :roles, :permissions_roles, :permissions, :clients,
-    :contrats_users, :contrats
+    :contrats_users, :contrats, :images, :beneficiaires, :credits,
+    :components, :clients, :ingenieurs
 
   def setup
     @controller = AccountController.new
@@ -32,6 +33,7 @@ class AccountControllerTest < ActionController::TestCase
       get :new
       assert_response :redirect
       assert_redirected_to signup_new_account_path
+      # TODO : test ajax things. See demandes_controller_test if you need sample
     }
   end
 
@@ -43,6 +45,7 @@ class AccountControllerTest < ActionController::TestCase
     form.user.name = "Recipient"
     form.user.email = App::MaintenerEmail
     form.user.login = "recipient"
+    form.user.contrat_ids.value = "1"
     form.submit
 
     user = assigns(:user)
@@ -68,6 +71,7 @@ class AccountControllerTest < ActionController::TestCase
     form.user.login = "engineer"
     # field used to indicate that's an expert account
     form.user.client = "false"
+    form.user.contrat_ids.value = "1"
     form.submit
 
     user = assigns(:user)
