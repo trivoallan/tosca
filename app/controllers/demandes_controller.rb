@@ -325,6 +325,10 @@ class DemandesController < ApplicationController
   # todo à retravailler
   def _form(beneficiaire)
     @contrats = Contrat.find_select(Contrat::OPTIONS)
+    if @contrats.empty?
+      flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling a request. Please contat %s if you think it's not normal") % App::TeamEmail
+      return redirect_to(bienvenue_path)
+    end
     if beneficiaire
       client = beneficiaire.client
       @typedemandes = client.typedemandes.collect{|td| [td.name, td.id]}
