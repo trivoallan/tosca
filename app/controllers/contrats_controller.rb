@@ -71,6 +71,7 @@ class ContratsController < ApplicationController
       end
       # Needed, otherwise, all recipients are deleted from the contract...
       @contrat.users.concat(recipients)
+      @contrat.save
       flash[:notice] = _('Contrat was successfully updated.')
       redirect_to contrat_path(@contrat)
     else
