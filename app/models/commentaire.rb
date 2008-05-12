@@ -15,7 +15,7 @@ class Commentaire < ActiveRecord::Base
 
   validate do |record|
     if record.demande.nil?
-      record.errors.add _('You must indicate a valid request')
+      record.errors.add_to_base _('You must indicate a valid request')
     end
   end
 

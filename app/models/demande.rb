@@ -56,7 +56,7 @@ class Demande < ActiveRecord::Base
   validate do |record|
     if record.contrat.nil? || record.beneficiaire.nil? ||
         (record.contrat.client_id != record.beneficiaire.client_id)
-      record.errors.add _('The client of this contract is not consistant with the client of this recipient.')
+      record.errors.add_to_base _('The client of this contract is not consistant with the client of this recipient.')
     end
   end
 

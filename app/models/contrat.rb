@@ -61,7 +61,7 @@ class Contrat < ActiveRecord::Base
   def find_recipients_select
     options = { :conditions => 'users.inactive = 0' }
     self.recipient_users.find(:all, options).collect{|u|
-      [  u.name, u.beneficiaire.id ] }
+      [  u.name, u.beneficiaire.id ] if u.beneficiaire }
   end
 
   def ouverture_formatted

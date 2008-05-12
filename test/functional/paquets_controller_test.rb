@@ -8,7 +8,8 @@ require 'paquets_controller'
 class PaquetsController; def rescue_action(e) raise e end; end
 
 class PaquetsControllerTest < Test::Unit::TestCase
-  fixtures :paquets, :conteneurs, :distributeurs, :mainteneurs, :logiciels, :contrats
+  fixtures :paquets, :conteneurs, :distributeurs, :mainteneurs, :logiciels,
+    :contrats, :clients, :credits, :components
 
   def setup
     @controller = PaquetsController.new

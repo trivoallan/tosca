@@ -5,7 +5,8 @@ require 'phonecalls_controller'
 class PhonecallsController; def rescue_action(e) raise e end; end
 
 class PhonecallsControllerTest < Test::Unit::TestCase
-  fixtures :phonecalls, :ingenieurs, :beneficiaires, :contrats, :users
+  fixtures :phonecalls, :ingenieurs, :beneficiaires, :contrats, :users,
+  :components, :credits, :clients
 
   def setup
     @controller = PhonecallsController.new
