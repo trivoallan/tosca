@@ -59,8 +59,8 @@
        <td colspan="2">
        <fieldset>
         <legend><%=_('Engineers assigned to this contract')%></legend>
-        <%= hbtm_check_box(@contrat.users, @ingenieurs,
-                         'contrat[user_ids]', :size => 3) %>
+        <%= hbtm_check_box(@contrat.engineer_users, @ingenieurs,
+                         'contrat[engineer_user_ids]', :size => 3) %>
        </fieldset>
       </td>
      </tr>

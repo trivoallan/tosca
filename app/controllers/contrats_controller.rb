@@ -42,11 +42,7 @@ class ContratsController < ApplicationController
   def create
     @contrat = Contrat.new(params[:contrat])
     if @contrat.save
-      team = params[:team]
-      if team and team[:ossa] == '1'
-        @contrat.users.concat(Ingenieur.find_ossa(:all).collect{ |i| i.user })
-        @contrat.save
-      end
+      set_team_ossa
       flash[:notice] = _('Contract was successfully created.')
       redirect_to contrats_path
     else
@@ -61,17 +57,8 @@ class ContratsController < ApplicationController
 
   def update
     @contrat = Contrat.find(params[:id])
-    # TODO : this is a dirty fix, for recipients. We need a real solution,
-    # and not this dirty and slow hack.
-    recipients = @contrat.recipient_users
     if @contrat.update_attributes(params[:contrat])
-      team = params[:team]
-      if team and team[:ossa] == '1'
-        @contrat.users.concat(Ingenieur.find_ossa(:all).collect{ |i| i.user })
-      end
-      # Needed, otherwise, all recipients are deleted from the contract...
-      @contrat.users.concat(recipients)
-      @contrat.save
+      set_team_ossa
       flash[:notice] = _('Contrat was successfully updated.')
       redirect_to contrat_path(@contrat)
     else
@@ -97,6 +84,16 @@ private
       @rules = @contrat.rule_type.constantize.find_select
     rescue Exception => e
       flash[:warn] = _('Unknown rules for contract "%s"') % e.message
+    end
+  end
+
+  def set_team_ossa
+    team = params[:team]
+    if team and team[:ossa] == '1'
+      team_ossa = Ingenieur.find_ossa(:all).collect{ |i| i.user }
+      users = @contrat.engineer_users.dup.concat(team_ossa)
+      users.uniq!
+      @contrat.update_attribute :engineer_users, users
     end
   end
 end
