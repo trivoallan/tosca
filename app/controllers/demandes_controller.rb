@@ -340,7 +340,7 @@ class DemandesController < ApplicationController
     @severites = Severite.find_select
     first_comment = @demande.first_comment
     @demande.description = first_comment.corps if first_comment
-    @demande.beneficiaire = beneficiaire
+    @demande.beneficiaire = beneficiaire if beneficiaire
     if @demande.contrat
       _form4contract(@demande.contrat)
     elsif !@contrats.empty?
