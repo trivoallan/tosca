@@ -1,7 +1,7 @@
 <h1><%= _('Modify the document :')%> <%= @document.title %></h1>
 
-<% form_tag(document_path(@document.id), 
-            {:method => :put, :multipart => true}) do %>
+<% form_tag(document_path(@document.id),
+            {:method => :put, :multipart => true, :id => 'main_form'}) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Validate') %>
 <% end %>

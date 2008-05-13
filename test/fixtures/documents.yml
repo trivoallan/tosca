@@ -1,5 +1,5 @@
---- 
-document_00001: 
+---
+document_00001:
   created_on: 2007-12-25 18:27:31 +01:00
   title: A Many-to-Many tutorial for Rails
   updated_on: 2007-12-25 18:27:31 +01:00
@@ -11,11 +11,11 @@ document_00001:
   typedocument_id: 7
   date_delivery: 2007-12-25 00:00:00 +01:00
   file: has_many_and_belongs_to_many.pdf
-document_00002: 
+document_00002:
   created_on: 2007-12-25 18:31:49 +01:00
   title: Rails files cheatsheet
   updated_on: 2007-12-25 18:31:49 +01:00
-  client_id: 1
+  client_id: 2
   id: 2
   version: 1
   description: Explain What Goes Where in a rails developped software.
