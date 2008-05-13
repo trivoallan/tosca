@@ -40,6 +40,10 @@ class ContributionsControllerTest < ActionController::TestCase
     get :list, :id => 'all', :client_id => 1
     assert_response :success
     assert_template 'list'
+    
+    get :list, :id => 1, :client_id => 1
+    assert_response :success
+    assert_template 'list'
   end
 
   def test_should_show_contribution
