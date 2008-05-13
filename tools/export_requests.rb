@@ -10,99 +10,99 @@ require 'fileutils'
 if ARGV[0]
   client_id = ARGV[0]
   client_name = Client.find(client_id).name
-  puts "Would you like export informations for this client : #{client_name}? (yes / no)"
+  puts "Would you like export informations for this client : #{client_name}? (y/ n)"
   reponse = $stdin.gets
-  if reponse[0] != 121
+  if reponse[0] == ?n
     puts "Cancel"
     exit
   end
 else
-  puts "You must specify the client id"
+  puts "Call it like this : "
+  puts "$ #{$0} client_id"
   exit
 end
 puts "Export running..."
 
+destdir = client_name
 
-Dir.mkdir("./#{client_name}")
+Dir.mkdir("./#{destdir}")
 
-demandes = Client.find(client_id).demandes
+requests = Client.find(client_id).demandes
 
-demandes_csv = []
-commentaires_csv = []
-pj_csv = []
+requests_csv = []
+comments_csv = []
+attachments_csv = []
 
-demandes_csv << ["id", "beneficiaire", "resume", "severite", "logiciel", "created_on", "typedemande", "statut de sortie"]
-commentaires_csv << ["id", "demande_id", "piecejointe_id", "corps", "created_on", "déposeur"]
-pj_csv << ["id", "name"]
+requests_csv << ["id", "beneficiaire", "resume", "severite", "logiciel", "created_on", "typedemande", "statut de sortie"]
+comments_csv << ["id", "demande_id", "piecejointe_id", "corps", "created_on", "déposeur"]
+attachments_csv << ["id", "name"]
 
-demandes.each do |d|
+requests.each do |d|
   name_logiciel = d.logiciel ? d.logiciel.name : ""
-  demandes_csv << [d.id, d.beneficiaire.user.name, d.resume, d.severite.name, name_logiciel, d.created_on, d.typedemande.name, d.statut.name]
+  requests_csv << [d.id, d.beneficiaire.user.name, d.resume, d.severite.name, name_logiciel, d.created_on, d.typedemande.name, d.statut.name]
 
   d.commentaires.find(:all, :conditions => { :prive => false }).each do |c|
     name_user = c.user.client? ? c.user.name : "Linagora"
-    commentaires_csv << [c.id, c.demande_id, c.piecejointe_id, c.corps, c.created_on, name_user]
+    comments_csv << [c.id, c.demande_id, c.piecejointe_id, c.corps, c.created_on, name_user]
   end
 
   d.piecejointes.each do |p|
-    pj_csv << [p.id, p.file_relative_path]
-    Dir.mkdir("./#{client_name}/#{p.file_relative_path.split('/')[0]}")
-    File.copy("files/piecejointe/file/#{p.file_relative_path}","#{client_name}/#{p.file_relative_path.split('/')[0]}")
+    attachments_csv << [p.id, p.file_relative_path]
+    Dir.mkdir("./#{destdir}/#{p.file_relative_path.split('/')[0]}")
+    File.copy("files/piecejointe/file/#{p.file_relative_path}","#{destdir}/#{p.file_relative_path.split('/')[0]}")
   end
 end
 
 
-demandes_csv_string = FasterCSV.generate do |csv|
-  demandes_csv.each do |d|
+requests_csv_string = FasterCSV.generate do |csv|
+  requests_csv.each do |d|
     csv << d
   end
 end
 
-commentaires_csv_string = FasterCSV.generate do |csv|
-  commentaires_csv.each do |c|
+comments_csv_string = FasterCSV.generate do |csv|
+  comments_csv.each do |c|
     csv << c
   end
 end
 
-pj_csv_string = FasterCSV.generate do |csv|
-  pj_csv.each do |p|
+attachments_csv_string = FasterCSV.generate do |csv|
+  attachments_csv.each do |p|
     csv << p
   end
 end
 
-myFile = File.open("#{client_name}/demandes.csv","w")
-myFile.write(demandes_csv_string)
-myFile.close
+File.open("#{destdir}/requests.csv","w") { |f|
+  f.write(requests_csv_string)
+}
 
+File.open("#{destdir}/comments.csv","w") { |f|
+  f.write(comments_csv_string)
+}
 
-myFile = File.open("#{client_name}/commentaires.csv","w")
-myFile.write(commentaires_csv_string)
-myFile.close
+File.open("#{destdir}/attachments.csv","w") { |f|
+  f.write(attachments_csv_string)
+}
 
+result = "#{destdir}.zip"
 
-myFile = File.open("#{client_name}/pjs.csv","w")
-myFile.write(pj_csv_string)
-myFile.close
-
-Dossier_save = "#{client_name}" 
-Fichier_zip = "#{client_name}.zip" 
-
-
-Zip::ZipFile.open( Fichier_zip, Zip::ZipFile::CREATE ){ |zipfile|
-  Find.find( Dossier_save ){ |find|
-    # get relative path for the zip 
-    dossier_base = find[ Dossier_save.length, find.length ] 
-    if dossier_base != ""  
-      if FileTest.directory?( find )  
-        zipfile.dir.mkdir( dossier_base ) 
-      else 
-        zipfile.file.open( dossier_base, 'w' ){ |f| 
-          f.write( File.open(find, 'rb').read ) 
+Zip::ZipFile.open( result, Zip::ZipFile::CREATE ){ |zipfile|
+  Find.find( destdir ){ |find|
+    # get relative path for the zip
+    base_path = find[ destdir.length, find.length ]
+    if base_path != ""
+      if FileTest.directory?( find )
+        zipfile.dir.mkdir( base_path )
+      else
+        zipfile.file.open( base_path, 'w' ){ |f|
+          f.write( File.open(find, 'rb').read )
         }
-      end 
-    end 
+      end
+    end
   }
   zipfile.close
 }
 
-FileUtils.remove_dir("#{client_name}")
+FileUtils.remove_dir("#{destdir}")
+
+puts "#{result} written"
