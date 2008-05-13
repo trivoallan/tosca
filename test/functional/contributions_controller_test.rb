@@ -36,6 +36,10 @@ class ContributionsControllerTest < ActionController::TestCase
     get :list, :id => 1
     assert_response :success
     assert_not_nil assigns(:contributions)
+    
+    get :list, :id => 'all', :client_id => 1
+    assert_response :success
+    assert_template 'list'
   end
 
   def test_should_show_contribution
