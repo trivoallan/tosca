@@ -101,7 +101,7 @@ class DocumentsController < ApplicationController
   private
   def _form
     @clients = Client.find_select
-    @typedocuments = Typedocument.find :all
+    @typedocuments = Typedocument.find_select
     @users = User.find_select
   end
 
