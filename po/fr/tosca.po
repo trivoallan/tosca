@@ -4966,7 +4966,7 @@ msgstr "Aucun contrat actuellement actif."
 
 #: app/views/contributions/list.atom.builder:2
 msgid "Contributions of 08000linux.com"
-msgstr ""
+msgstr "Les contributions du 08000linux.com"
 
 #: lib/overrides.rb:211
 msgid "Immediate"
