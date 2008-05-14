@@ -25,12 +25,22 @@ module ContributionsHelper
   def public_link_to_contribution_logiciel(logiciel, params = {})
     return '-' unless logiciel
     path = list_contribution_path(logiciel.id)
-    unless params[:client_id].blank?
+    client_id = params[:client_id]
+    count = 0
+    unless client_id.blank? 
       path << "?client_id=#{params[:client_id]}"
-      options = {:include => {:demande => :contrat} }
-      options[:conditions] = { :logiciel_id => logiciel.id }
-      options[:conditions].merge!({'contrats.client_id' => params[:client_id]})
-      count = Contribution.count(:all,options) 
+      options = { :conditions => { :logiciel_id => logiciel.id } }
+      unless client_id == '1' # Main client, with the old portal
+        options[:include] = { :demande => :contrat }
+        options[:conditions].merge!({'contrats.client_id' => params[:client_id]})
+      end
+      # Dirty hack in order to show main client' contributions
+      # TODO : remove it in september.
+      condition = (client_id == '1' ? "contributions.id_mantis IS NOT NULL" : '')
+      scope = { :find => { :conditions => condition } }
+      Contribution.send(:with_scope, scope) do
+        count = Contribution.count(:all,options) 
+      end
     else
       count = logiciel.contributions.size
     end

@@ -27,11 +27,18 @@ class ContributionsController < ApplicationController
       @logiciel = Logiciel.find(params[:id])
       options[:conditions] = { :logiciel_id => @logiciel.id }
     end
-    unless params[:client_id].blank?
+    client_id = params[:client_id].to_s
+    unless client_id.blank? || client_id == '1' # Main client
       options[:conditions].merge!({'contrats.client_id' => params[:client_id]})
       options[:include] = {:demande => :contrat}
-    end 
-    @contribution_pages, @contributions = paginate :contributions, options
+    end
+    # Dirty hack in order to show main client' contributions
+    # TODO : remove it in september.
+    condition = (client_id == '1' ? "contributions.id_mantis IS NOT NULL" : '')
+    scope = { :find => { :conditions => condition } }
+    Contribution.send(:with_scope, scope) do
+      @contribution_pages, @contributions = paginate :contributions, options
+    end
   end
 
   # TODO : c'est pas très rails tout ça (mais c'est moins lent)
@@ -39,11 +46,18 @@ class ContributionsController < ApplicationController
     options = { :order => 'logiciels.name ASC' }
     options[:joins] = :contributions
     options[:select] = 'DISTINCT logiciels.*'
-    unless params[:client_id].blank?
+    client_id = params[:client_id].to_s
+    unless client_id.blank? || client_id == '1'
       options[:conditions] = { 'contrats.client_id' => params[:client_id] }
       options[:joins] = { :contributions => { :demande => :contrat } }
     end
-    @logiciels = Logiciel.find(:all, options)
+    # Dirty hack in order to show main client' contributions
+    # TODO : remove it in september.
+    condition = (client_id == '1' ? "contributions.id_mantis IS NOT NULL" : '')
+    scope = { :find => { :conditions => condition } }
+    Logiciel.send(:with_scope, scope) do
+      @logiciels = Logiciel.find(:all, options)
+    end
   end
 
   def admin
