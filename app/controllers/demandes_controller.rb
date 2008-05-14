@@ -5,8 +5,8 @@ class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :phonecalls,
     :socles, :commentaires, :account, :reporting
 
-  cache_sweeper :demande_sweeper, :only => [:create, :update, :destroy]
-
+  cache_sweeper :demande_sweeper, :only =>
+    [:create, :update, :destroy, :link_contribution, :unlink_contribution]
 
   def pending
     options = { :per_page => 10, :order => 'updated_on DESC',
