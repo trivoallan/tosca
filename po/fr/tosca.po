@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-14 14:45+0200\n"
+"POT-Creation-Date: 2008-05-14 14:51+0200\n"
 "PO-Revision-Date: 2008-05-12 16:24+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -4963,6 +4963,10 @@ msgstr "Début de l'appel"
 #: app/views/account/ajax_contracts.rjs:5
 msgid "No contracts currently open."
 msgstr "Aucun contrat actuellement actif."
+
+#: app/views/contributions/list.atom.builder:2
+msgid "Contributions of 08000linux.com"
+msgstr ""
 
 #: lib/overrides.rb:211
 msgid "Immediate"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-05-14 14:45+0200\n"
+"POT-Creation-Date: 2008-05-14 14:51+0200\n"
 "PO-Revision-Date: 2008-01-08 11:30+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4881,6 +4881,10 @@ msgstr ""
 
 #: app/views/account/ajax_contracts.rjs:5
 msgid "No contracts currently open."
+msgstr ""
+
+#: app/views/contributions/list.atom.builder:2
+msgid "Contributions of 08000linux.com"
 msgstr ""
 
 #: lib/overrides.rb:211
