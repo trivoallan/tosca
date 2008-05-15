@@ -4980,6 +4980,10 @@ msgstr "moins d'une minute"
 msgid "%d minutes"
 msgstr "%d minutes"
 
+#: lib/overrides.rb:243
+msgid "and"
+msgstr "et"
+
 #: lib/overrides.rb:230 lib/overrides.rb:243
 msgid "%d hour"
 msgid_plural "%d hours"
