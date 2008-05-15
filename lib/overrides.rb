@@ -37,7 +37,7 @@ class String
 
 end
 
-
+# Used to put expiry caches on images/pictures
 if defined? Mongrel::DirHandler
   module Mongrel
     class DirHandler
@@ -240,7 +240,7 @@ class Time
       hours = ((distance % 1.day)/60).round
       out = ((opened ? n_('%d working day', '%d working days', days) :
                        n_('%d day', '%d days', days)) % days)
-      out << ' and ' << n_('%d hour', '%d hours', hours) % hours
+      out << ' ' << _('and') << ' ' << n_('%d hour', '%d hours', hours) % hours
       out
     else
       val = (distance / mo).round
@@ -300,12 +300,25 @@ end
 # and efficiently. It display links <b>only</b> if the user
 # has the right access to the ressource.
 module ActionView::Helpers::UrlHelper
+
+  # this link_to display a link whatever happens, to all the internet world
+  alias_method :public_link_to, :link_to
   # this link_to is a specialised one which only returns a link
   # if the user is connected and has the right access to the ressource
   # requested. See public_link_to for everyone links.
   def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
     action = nil
     return nil unless options
+
+    url = case options
+      when String
+        options
+      when :back
+        @controller.request.env["HTTP_REFERER"] || 'javascript:history.back()'
+      else
+        self.url_for(options)
+      end
+
     if html_options
       case html_options[:method]
         when :delete
@@ -314,51 +327,40 @@ module ActionView::Helpers::UrlHelper
         action = 'update'
       end
       html_options = html_options.stringify_keys
-      convert_options_to_javascript!(html_options)
+      href = html_options['href']
+      convert_options_to_javascript!(html_options, url)
       tag_options = tag_options(html_options)
     else
       tag_options = nil
     end
-    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
     # With the hack on the named route, we have a nil url if authenticated user
     # does not have access to the page. See the hack to define_url_helper
     # for more information
 
     user = session[:user]
-    unless url.blank? or user.nil?
+    unless user.nil? or url.blank?
+      required_perm = nil
       if options.is_a?(Hash) and options.has_key? :action
         required_perm = '%s/%s' % [ options[:controller] || controller.controller_name,
                                     options[:action] ]
-        return nil unless user.authorized?(required_perm)
       end
       if action and options.is_a? String
         # No '/' here, since we have it with the grepped part of the url.
         # [/[^\/]*\/\d+$/] => a string without a '/', a '/' and an id
         required_perm = '%s/%s' % [ url.scan(/([^\/]*)\/\d+/).first.first, action ]
-        return nil unless user.authorized?(required_perm)
       end
-      "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
+      return nil if required_perm && !user.authorized?(required_perm)
+      href_attr = "href=\"#{url}\"" unless href
+      "<a #{href_attr}#{tag_options}>#{name || url}</a>"
     else
       nil
     end
   end
 
-  # this link_to display a link whatever happens, to all the internet world
-  def public_link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
-    if html_options
-      html_options = html_options.stringify_keys
-      convert_options_to_javascript!(html_options)
-      tag_options = tag_options(html_options)
-    else
-      tag_options = nil
-    end
-    url = options.is_a?(String) ? options : self.url_for(options, *parameters_for_method_reference)
-    "<a href=\"#{url}\"#{tag_options}>#{name || url}</a>"
-  end
-
+  # Used to be called with the routes overrides. See acl_system.rb for more deeper
+  # explanation. It's used to allow public access.
   def authorize_url?(options)
     perm = "#{options[:controller]}/#{options[:action]}"
-
     result = LoginSystem::public_user.authorized?(perm)
 
     unless result
@@ -449,6 +451,8 @@ module ActiveRecord
 end
 
 
+# This one fix a bug encountered with cache + mongrel + prefix.
+# Url was badly rewritten
 module ActionView
   module Helpers
     module AssetTagHelper

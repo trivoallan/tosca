@@ -40,51 +40,47 @@ module ActionController::Routing
 
 
     class NamedRouteCollection
-      # This overload permits to gain a factor 7 in performance of
-      # url generation
-      # This allows too to return a nil url in case of an
+      # This override allows to return a nil url in case of an
       # authenticated user without any right to the page
-      @@login_filter = nil
-
       def define_url_helper(route, name, kind, options)
         selector = url_helper_name(name, kind)
 
-        # The segment keys used for positional paramters
-        segment_keys = route.segments.collect do |segment|
-          segment.key if segment.respond_to? :key
-        end.compact
         hash_access_method = hash_access_name(name, kind)
-        @module.send :module_eval, <<-end_eval #We use module_eval to avoid leaks
+        # allow ordered parameters to be associated with corresponding
+        # dynamic segments, so you can do
+        #
+        #   foo_url(bar, baz, bang)
+        #
+        # instead of
+        #
+        #   foo_url(:bar => bar, :baz => baz, :bang => bang)
+        #
+        # Also allow options hash, so you can do
+        #
+        #   foo_url(bar, baz, bang, :sort_by => 'baz')
+        #
+        @module.module_eval <<-end_eval #We use module_eval to avoid leaks
           def #{selector}(*args)
+            # See lib/{acl_system,overrides}.rb for implementation
+            return nil unless authorize_url?(#{route.defaults.inspect})
+
+            #{generate_optimisation_block(route, kind)}
+
             opts = if args.empty? || Hash === args.first
               args.first || {}
             else
-              # allow ordered parameters to be associated with corresponding
-              # dynamic segments, so you can do
-              #
-              #   foo_url(bar, baz, bang)
-              #
-              # instead of
-              #
-              #   foo_url(:bar => bar, :baz => baz, :bang => bang)
-              args.zip(#{segment_keys.inspect}).inject({}) do |h, (v, k)|
+              options = args.last.is_a?(Hash) ? args.pop : {}
+              args = args.zip(#{route.segment_keys.inspect}).inject({}) do |h, (v, k)|
                 h[k] = v
                 h
               end
+              options.merge(args)
             end
-            url_options = #{hash_access_method}(opts)
 
-            return nil unless authorize_url?(url_options)
-
-            # no session, no problem :)
-            if opts.empty?
-              @@#{selector}_cache ||= url_for(url_options)
-            else
-              url_for(url_options)
-            end
+            url_for(#{hash_access_method}(opts))
           end
+          protected :#{selector}
         end_eval
-        @module.send(:protected, selector)
         helpers << selector
       end
     end # NamedRouteCollection

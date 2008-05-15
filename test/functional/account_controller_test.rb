@@ -9,16 +9,12 @@ class AccountControllerTest < ActionController::TestCase
     :contrats_users, :contrats, :images, :beneficiaires, :credits,
     :components, :clients, :ingenieurs
 
-  def setup
-    @controller = AccountController.new
-    @request, @response = ActionController::TestRequest.new, ActionController::TestResponse.new
-    @request.host = "localhost"
-  end
-
   def test_login_and_logout
     %w(admin manager expert customer viewer).each { |l|
       login l, l
-      assert_redirected_to bienvenue_path
+      assert_response :redirect
+      # strange initialisation bug with bienvenue_path
+      assert_redirected_to({:action => "index", :controller => "bienvenue"})
       assert session[:user] == User.find_by_login(l)
 
       logout
