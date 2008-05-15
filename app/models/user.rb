@@ -140,6 +140,11 @@ class User < ActiveRecord::Base
     strike(:name)
   end
 
+  # will always be clean
+  def name_clean
+    read_attribute(:name)
+  end
+
   # cached, coz' it's used in scopes
   def contrat_ids
     @contrat_ids ||= self.contrats.find(:all, :select => 'id').collect {|c| c.id}
