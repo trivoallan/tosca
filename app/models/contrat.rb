@@ -52,7 +52,7 @@ class Contrat < ActiveRecord::Base
   # requests on everything. It's with the "socle" field.
   def logiciels
     if rule_type == 'Rules::Component' and rule.max == -1
-      return Logiciel.find(:all)
+      return Logiciel.find(:all, :order => 'logiciels.name ASC')
     end
     self._logiciels
   end
