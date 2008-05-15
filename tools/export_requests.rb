@@ -9,7 +9,7 @@ require 'fileutils'
 
 if ARGV[0]
   client_id = ARGV[0]
-  client_name = Client.find(client_id).name
+  client_name = Client.find(client_id).name_clean
   puts "Would you like export informations for this client : #{client_name}? (y/ n)"
   reponse = $stdin.gets
   if reponse[0] == ?n
@@ -25,6 +25,8 @@ puts "Export running..."
 
 destdir = client_name
 
+FileUtils.remove_dir("#{destdir}") if FileTest.exist?("#{destdir}")
+
 Dir.mkdir("./#{destdir}")
 
 requests = Client.find(client_id).demandes
@@ -39,7 +41,7 @@ attachments_csv << ["id", "name"]
 
 requests.each do |d|
   name_logiciel = d.logiciel ? d.logiciel.name : ""
-  requests_csv << [d.id, d.beneficiaire.user.name, d.resume, d.severite.name, name_logiciel, d.created_on, d.typedemande.name, d.statut.name]
+  requests_csv << [d.id, d.beneficiaire.user.name_clean, d.resume, d.severite.name, name_logiciel, d.created_on, d.typedemande.name, d.statut.name]
 
   d.commentaires.find(:all, :conditions => { :prive => false }).each do |c|
     name_user = c.user.client? ? c.user.name : "Linagora"
@@ -86,6 +88,8 @@ File.open("#{destdir}/attachments.csv","w") { |f|
 
 result = "#{destdir}.zip"
 
+FileUtils.remove_dir(result) if FileTest.exist?(result)
+
 Zip::ZipFile.open( result, Zip::ZipFile::CREATE ){ |zipfile|
   Find.find( destdir ){ |find|
     # get relative path for the zip
@@ -103,6 +107,6 @@ Zip::ZipFile.open( result, Zip::ZipFile::CREATE ){ |zipfile|
   zipfile.close
 }
 
-FileUtils.remove_dir("#{destdir}")
+FileUtils.remove_dir("#{destdir}") if FileTest.exist?("#{destdir}")
 
 puts "#{result} written"
