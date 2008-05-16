@@ -7,7 +7,7 @@
 desc "Update pot/po files."
 task :updatepo do
   require 'gettext/utils'
-  GetText.update_pofiles("tosca", Dir.glob("{app,lib,bin}/**/*.{rb,erb,rjs}"), "tosca 0.7.5")
+  GetText.update_pofiles("tosca", Dir.glob("{app,lib,bin}/**/*.{rb,erb,rjs,builder}"), "tosca 0.7.5")
 end
 
 desc "Create mo-files"

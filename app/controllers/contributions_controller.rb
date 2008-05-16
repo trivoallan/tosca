@@ -39,6 +39,10 @@ class ContributionsController < ApplicationController
     Contribution.send(:with_scope, scope) do
       @contribution_pages, @contributions = paginate :contributions, options
     end
+    respond_to do |format|
+      format.html
+      format.atom
+    end
   end
 
   # TODO : c'est pas très rails tout ça (mais c'est moins lent)
@@ -170,17 +174,6 @@ class ContributionsController < ApplicationController
     @binaires = Binaire.find(:all, options)
 
     render :partial => 'liste_paquets', :layout => false
-  end
-
-  #Spa très REST tout ça !
-  # TODO : cache it on a page level
-  def feed
-    options = { :include => [:etatreversement], :order => "updated_on DESC", :limit => 20 }
-    @contributions = Contribution.find(:all, options)
-    @feed_description = @feed_title = "Les contributions du 08000Linux"
-    @feed_url = "http://" + request.host_with_port + request.request_uri
-    response.headers['Content-Type'] = 'application/rss+xml'
-    render :action => 'feed', :layout => false
   end
 
 private
