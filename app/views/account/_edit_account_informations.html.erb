@@ -68,6 +68,23 @@
     <td><%= password_field :user, :pwd_confirmation %></td>
    </tr>
   <% end %>
+
+  <tr>
+    <td colspan="2"><hr/></td>
+  </tr>
+  <tr>
+    <th><%= _("Daily Digest") %></th>
+    <td><%= check_box :user, :preferred_digest_daily %></td>
+  </tr>
+  <tr>
+    <th><%= _("Weekly Digest") %></th>
+    <td><%= check_box :user, :preferred_digest_weekly %></td>
+  </tr>
+  <tr>
+    <th><%= _("Monthly Digest") %></th>
+    <td><%= check_box :user, :preferred_digest_monthly %></td>
+  </tr>
+
   <% if manager %>
    <tr>
     <td colspan="2"><hr /></td>

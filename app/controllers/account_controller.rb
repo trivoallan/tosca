@@ -48,7 +48,7 @@ class AccountController < ApplicationController
     end
   end
 
-    # Exit gracefully
+  # Exit gracefully
   def logout
     clear_sessions
     redirect_to "/"
@@ -173,7 +173,7 @@ class AccountController < ApplicationController
     end
   end
 
-    # login with lemon-ldap technology.
+  # login with lemon-ldap technology.
   # Administrator ensures that only authenticated client
   #  can have access to this page, and provides some HTTP headers
   #  in order to log in / create an engineer account.

@@ -28,3 +28,21 @@
     </fieldset></td></tr>
    <% end %>
 </table>
+
+<table class="show" id="show_account">
+  <tr>
+    <td colspan="2"><h2><%= _("Preferences") %></h2></td>
+  </tr>
+  <tr>
+    <th><%= _("Daily Digest") %></th>
+    <td><%= "X" if @user.prefers_digest_daily?%></td>
+  </tr>
+  <tr>
+    <th><%= _("Weekly Digest") %></th>
+    <td><%= "X" if @user.prefers_digest_weekly? %></td>
+  </tr>
+  <tr>
+    <th><%= _("Monthly Digest") %></th>
+    <td><%= "X" if @user.prefers_digest_monthly? %></td>
+  </tr>
+</table>
