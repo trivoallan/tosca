@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-19 07:20+0200\n"
-"PO-Revision-Date: 2008-05-09 19:18+0200\n"
+"PO-Revision-Date: 2008-05-19 07:22+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: English <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -4926,9 +4926,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: lib/overrides.rb:243
-#, fuzzy
 msgid "and"
-msgstr "request"
+msgstr ""
 
 #: lib/overrides.rb:247
 msgid "%d working month"

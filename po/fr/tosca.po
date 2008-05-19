@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-19 07:20+0200\n"
-"PO-Revision-Date: 2008-05-12 16:24+0200\n"
+"PO-Revision-Date: 2008-05-19 07:22+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3211,11 +3211,10 @@ msgid "and %s binaries"
 msgstr "et %s binaires"
 
 #: app/views/clients/show.html.erb:44 app/views/clients/show.html.erb:46
-#, fuzzy
 msgid "the"
 msgid_plural "the"
-msgstr[0] "au"
-msgstr[1] "au"
+msgstr[0] "le"
+msgstr[1] "les"
 
 #: app/views/clients/show.html.erb:51
 msgid "system"
@@ -5013,9 +5012,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
-
-#~ msgid "Update files of this binary package"
-#~ msgstr "Mise à jour des fichiers de ce paquet binaire"
-
-#~ msgid " the %s "
-#~ msgstr " le %s "
