@@ -41,8 +41,11 @@
     oldtypedemande = nil
     result << show_table_engagements(c.engagements)
     result } %>
-   <b><%= _("View") %></b><%= _(" the %s ") % link_to(_('Activity report'), general_reporting_path) %><br/>
-   <b><%= _("View") %></b><%= _(" the %s ") % link_to(_('Contributions'), :controller => 'contributions', :action => 'list', :id => 'all', :client_id => @client.id) %>
+   <b><%= _("View") %></b> <%=_("the")%>
+      <%= link_to(_('Activity report'), general_reporting_path) %><br/>
+   <b><%= _("View") %></b> <%=n_('the','the',2)%>
+      <%= link_to(_('Contributions'),
+            list_contribution_path(:id => 'all', :client_id => @client.id)) %>
   </td><td>
 
    <%= show_liste(@client.socles, _('system')) {|s|
