@@ -16,10 +16,8 @@ class User < ActiveRecord::Base
   has_many :documents
   has_many :commentaires
 
-
   has_one :ingenieur, :dependent => :destroy
   has_one :beneficiaire, :dependent => :destroy
-  has_one :preference, :dependent => :destroy
 
   has_and_belongs_to_many :contrats
 
@@ -32,6 +30,12 @@ class User < ActiveRecord::Base
 
   N_('User|Pwd')
   N_('User|Pwd confirmation')
+
+
+  #Preferences
+  preference :digest_daily, :default => false
+  preference :digest_weekly, :default => false
+  preference :digest_monthly, :default => false
 
   def pwd
     @pwd
