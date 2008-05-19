@@ -51,8 +51,7 @@ ActionController::Routing::Routes.draw do |map|
     :new => { :signup => :any, # TODO : reactive it :multiple_signup => :any,
       :ajax_place => :post, :ajax_contracts => :post }
   map.resources :arches
-  map.resources :binaires, :member => {
-     :update_files => :post }
+  map.resources :binaires
   map.resources :changelogs
   map.resources :clients, :collection => { :stats => :get }
   map.resources :commentaires, :member => {

@@ -15,9 +15,4 @@ module BinairesHelper
     link_to_no_hover image_create(_('binary')), options
   end
 
-  def link_to_update_binary_files(binaire_id)
-    return '-' if binaire_id.blank?
-    link_to(_("Update files of this binary package"),
-            update_files_binaire_path(:id => binaire_id), :method => :post)
-  end
 end
