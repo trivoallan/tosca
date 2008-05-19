@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-19 07:20+0200\n"
+"POT-Creation-Date: 2008-05-19 11:11+0200\n"
 "PO-Revision-Date: 2008-05-19 07:22+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -75,7 +75,7 @@ msgid "Email"
 msgstr "Email"
 
 #: app/controllers/account_controller.rb:235
-#: app/views/demandes/_infos_demande.html.erb:51
+#: app/views/demandes/_infos_demande.html.erb:52
 msgid "Phone"
 msgstr "Téléphone"
 
@@ -110,18 +110,17 @@ msgstr "L'architecture a été crée avec succès."
 msgid "Arch was successfully updated."
 msgstr "L'architecture a été mis à jour avec succès."
 
-#: app/controllers/contributions_controller.rb:119
-#: app/controllers/contributions_controller.rb:146
-msgid "The associated request does not exist"
-msgstr "La demande associée n'existe pas"
-
 #: app/controllers/contributions_controller.rb:122
 msgid "The contribution has been created successfully."
 msgstr "La contribution a été créée avec succès"
 
-#: app/controllers/contributions_controller.rb:149
+#: app/controllers/contributions_controller.rb:144
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
+
+#: app/controllers/contributions_controller.rb:209
+msgid "The associated request does not exist"
+msgstr "La demande associée n'existe pas"
 
 #: app/controllers/bienvenue_controller.rb:33
 msgid ""
@@ -139,15 +138,15 @@ msgstr "Un paquet binaire a bien été créée."
 msgid "Binary has been successfully updated."
 msgstr "Le paquet binaire a bien mis à jour."
 
-#: app/controllers/clients_controller.rb:38
+#: app/controllers/clients_controller.rb:46
 msgid "Client created successfully."
 msgstr "Le client a été crée avec succès"
 
-#: app/controllers/clients_controller.rb:39
+#: app/controllers/clients_controller.rb:47
 msgid "You have now to create the associated contract."
 msgstr "Vous devez désormais créer son contrat associé."
 
-#: app/controllers/clients_controller.rb:54
+#: app/controllers/clients_controller.rb:62
 msgid "Client updated successfully."
 msgstr "Le client bien été mis à jour."
 
@@ -352,7 +351,7 @@ msgstr "Id"
 #: app/views/contributions/_form.html.erb:9
 #: app/views/contributions/_contributions_admin.html.erb:7
 #: app/views/demandes/lists/_requests_table.html.erb:4
-#: app/views/demandes/_infos_demande.html.erb:27
+#: app/views/demandes/_infos_demande.html.erb:28
 #: app/views/demandes/_form.html.erb:46 app/views/knowledges/_form.html.erb:16
 #: app/views/paquets/_form.html.erb:11
 #: app/views/paquets/_paquets_list.html.erb:7
@@ -365,7 +364,7 @@ msgstr "Logiciel"
 
 #: app/controllers/export_controller.rb:142 app/views/clients/show.html.erb:40
 #: app/views/demandes/lists/_requests_info.html.erb:52
-#: app/views/demandes/_infos_demande.html.erb:31
+#: app/views/demandes/_infos_demande.html.erb:32
 #: app/views/demandes/_comment_form.html.erb:12
 msgid "Severity"
 msgstr "Sévérité"
@@ -388,7 +387,7 @@ msgstr "Mise à jour"
 #: app/views/contributions/_contributions_info.html.erb:41
 #: app/views/demandes/lists/_requests_table.html.erb:9
 #: app/views/demandes/_form_deposer.html.erb:19
-#: app/views/demandes/_infos_demande.html.erb:21
+#: app/views/demandes/_infos_demande.html.erb:22
 #: app/views/demandes/_form.html.erb:78 app/views/logiciels/_form.html.erb:6
 #: app/views/logiciels/show.html.erb:20 app/views/reporting/general.html.erb:7
 #: app/views/reporting/_comex_cns.html.erb:22
@@ -397,7 +396,7 @@ msgstr "Résumé"
 
 #: app/controllers/export_controller.rb:144
 #: app/views/demandes/lists/_requests_info.html.erb:54
-#: app/views/demandes/_infos_demande.html.erb:28
+#: app/views/demandes/_infos_demande.html.erb:29
 #: app/views/demandes/_comment_form.html.erb:6
 msgid "Status"
 msgstr "Statut"
@@ -407,7 +406,7 @@ msgstr "Statut"
 #: app/views/contrats/_form.html.erb:40 app/views/contrats/index.html.erb:5
 #: app/views/demandes/lists/_requests_table.html.erb:5
 #: app/views/demandes/lists/_requests_info.html.erb:50
-#: app/views/demandes/_infos_demande.html.erb:30
+#: app/views/demandes/_infos_demande.html.erb:31
 #: app/views/demandes/_form.html.erb:13 app/views/documents/_form.html.erb:16
 msgid "Type"
 msgstr "Type"
@@ -1115,7 +1114,7 @@ msgstr "Cacher"
 
 #: app/helpers/static_image.rb:66 app/views/bienvenue/about.html.erb:3
 #: app/views/demandes/lists/_requests_info.html.erb:59
-#: app/views/demandes/_infos_demande.html.erb:72
+#: app/views/demandes/_infos_demande.html.erb:73
 msgid "Help"
 msgstr "Aide"
 
@@ -1153,7 +1152,7 @@ msgid "OSSA on rails"
 msgstr "OSSA on Rails"
 
 #: app/helpers/static_image.rb:174
-#: app/views/demandes/_infos_demande.html.erb:16
+#: app/views/demandes/_infos_demande.html.erb:17
 msgid "Print"
 msgstr "Imprimer"
 
@@ -1258,38 +1257,6 @@ msgid "Changelog|Text modification"
 msgstr "Text modification"
 
 #: app/models/client.rb:-
-msgid "client"
-msgstr "client"
-
-#: app/models/client.rb:-
-msgid "Client|Name"
-msgstr "Nom"
-
-#: app/models/client.rb:-
-msgid "Client|Description"
-msgstr "Description"
-
-#: app/models/client.rb:-
-msgid "Client|Adresse"
-msgstr "Adresse"
-
-#: app/models/client.rb:-
-msgid "Client|Image"
-msgstr "Image"
-
-#: app/models/client.rb:-
-msgid "Client|Code acces"
-msgstr "Code d'accès"
-
-#: app/models/client.rb:-
-msgid "Client|Beneficiaires count"
-msgstr "Nombre de bénéficiaires"
-
-#: app/models/client.rb:-
-msgid "Client|Inactive"
-msgstr "Inactif"
-
-#: app/models/client.rb:-
 msgid "paquet"
 msgstr "paquet"
 
@@ -1344,6 +1311,38 @@ msgstr "Nombre de changelogs"
 #: app/models/client.rb:-
 msgid "Paquet|Active"
 msgstr "Actif"
+
+#: app/models/client.rb:-
+msgid "client"
+msgstr "client"
+
+#: app/models/client.rb:-
+msgid "Client|Name"
+msgstr "Nom"
+
+#: app/models/client.rb:-
+msgid "Client|Description"
+msgstr "Description"
+
+#: app/models/client.rb:-
+msgid "Client|Adresse"
+msgstr "Adresse"
+
+#: app/models/client.rb:-
+msgid "Client|Image"
+msgstr "Image"
+
+#: app/models/client.rb:-
+msgid "Client|Code acces"
+msgstr "Code d'accès"
+
+#: app/models/client.rb:-
+msgid "Client|Beneficiaires count"
+msgstr "Nombre de bénéficiaires"
+
+#: app/models/client.rb:-
+msgid "Client|Inactive"
+msgstr "Inactif"
 
 #: app/models/client.rb:37
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
@@ -3077,7 +3076,7 @@ msgstr "Rapport d'activité"
 
 #: app/views/binaires/_form.html.erb:9 app/views/binaires/index.html.erb:6
 #: app/views/binaires/show.html.erb:14 app/views/contrats/show.html.erb:16
-#: app/views/demandes/_infos_demande.html.erb:26
+#: app/views/demandes/_infos_demande.html.erb:27
 #: app/views/demandes/_form.html.erb:41 app/views/machines/_form.html.erb:17
 #: app/views/machines/index.html.erb:5 app/views/machines/show.html.erb:9
 #: app/views/socles/_form.html.erb:9 app/views/socles/index.html.erb:5
@@ -3179,10 +3178,15 @@ msgid "Add a logo"
 msgstr "Ajouter un logo"
 
 #: app/views/clients/index.html.erb:27
+#, fuzzy
+msgid "Inactive clients"
+msgstr "Inactif"
+
+#: app/views/clients/index.html.erb:28
 msgid "Stats"
 msgstr "Statut"
 
-#: app/views/clients/index.html.erb:28
+#: app/views/clients/index.html.erb:29
 msgid "a client "
 msgstr "un client "
 
@@ -3514,7 +3518,7 @@ msgstr "Délai"
 
 #: app/views/contributions/_contributions_admin.html.erb:8
 #: app/views/demandes/lists/_requests_table.html.erb:18
-#: app/views/demandes/_infos_demande.html.erb:60
+#: app/views/demandes/_infos_demande.html.erb:61
 msgid "Updated on"
 msgstr "Mis à jour le"
 
@@ -3635,54 +3639,54 @@ msgstr "Paquets supportés pour %s :"
 msgid "Detailed description"
 msgstr "Description détaillée"
 
-#: app/views/demandes/_infos_demande.html.erb:6
+#: app/views/demandes/_infos_demande.html.erb:7
 msgid "Add a contribution"
 msgstr "Ajouter une contribution"
 
-#: app/views/demandes/_infos_demande.html.erb:7
+#: app/views/demandes/_infos_demande.html.erb:8
 msgid "Link to a contribution"
 msgstr "Lier à une contribution"
 
-#: app/views/demandes/_infos_demande.html.erb:24
+#: app/views/demandes/_infos_demande.html.erb:25
 msgid "Vm"
 msgstr "Vm"
 
-#: app/views/demandes/_infos_demande.html.erb:34
+#: app/views/demandes/_infos_demande.html.erb:35
 #: app/views/demandes/_form.html.erb:54
 msgid "CC"
 msgstr "CC"
 
-#: app/views/demandes/_infos_demande.html.erb:38
+#: app/views/demandes/_infos_demande.html.erb:39
 msgid "Declared by"
 msgstr "Déclarée par"
 
-#: app/views/demandes/_infos_demande.html.erb:41
+#: app/views/demandes/_infos_demande.html.erb:42
 #: app/views/demandes/_form.html.erb:35
 msgid "Assigned to"
 msgstr "Assigné à"
 
-#: app/views/demandes/_infos_demande.html.erb:46
+#: app/views/demandes/_infos_demande.html.erb:47
 msgid "Recipent"
 msgstr "Bénéficiaire"
 
-#: app/views/demandes/_infos_demande.html.erb:49
+#: app/views/demandes/_infos_demande.html.erb:50
 msgid "Contact"
 msgstr "Contact"
 
-#: app/views/demandes/_infos_demande.html.erb:53
+#: app/views/demandes/_infos_demande.html.erb:54
 msgid "Company"
 msgstr "Société"
 
-#: app/views/demandes/_infos_demande.html.erb:57
+#: app/views/demandes/_infos_demande.html.erb:58
 msgid "Life cycle"
 msgstr "Cycle de vie"
 
-#: app/views/demandes/_infos_demande.html.erb:59
+#: app/views/demandes/_infos_demande.html.erb:60
 #: app/views/demandes/tabs/_piecejointes.html.erb:5
 msgid "Created on"
 msgstr "Créé le"
 
-#: app/views/demandes/_infos_demande.html.erb:62
+#: app/views/demandes/_infos_demande.html.erb:63
 msgid "Time elapsed"
 msgstr "Temps écoulé"
 
