@@ -27,7 +27,7 @@ module ContributionsHelper
     path = list_contribution_path(logiciel.id)
     client_id = params[:client_id]
     count = 0
-    unless client_id.blank? 
+    unless client_id.blank?
       path << "?client_id=#{params[:client_id]}"
       options = { :conditions => { :logiciel_id => logiciel.id } }
       unless client_id == '1' # Main client, with the old portal
@@ -39,7 +39,7 @@ module ContributionsHelper
       condition = (client_id == '1' ? "contributions.id_mantis IS NOT NULL" : '')
       scope = { :find => { :conditions => condition } }
       Contribution.send(:with_scope, scope) do
-        count = Contribution.count(:all,options) 
+        count = Contribution.count(:all,options)
       end
     else
       count = logiciel.contributions.size

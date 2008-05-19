@@ -4,7 +4,8 @@
 class ContributionsController < ApplicationController
   helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
 
-  caches_page :feed
+  # Cache on feeds for all clients, in order to avoid being hammered by RSS readers
+  caches_action :list, :cache_path => { :format => 'atom' }
 
   cache_sweeper :contribution_sweeper, :only => [:create, :update]
 
@@ -112,12 +113,7 @@ class ContributionsController < ApplicationController
 
   def create
     @contribution = Contribution.new(params[:contribution])
-    begin
-      demande = Demande.find(params[:demande][:id]) unless params[:demande][:id].blank?
-      @contribution.demande = demande
-    rescue
-      flash[:warn] = _('The associated request does not exist')
-    end
+    _link2request
     if @contribution.save
       flash[:notice] = _('The contribution has been created successfully.')
       _update(@contribution)
@@ -139,12 +135,7 @@ class ContributionsController < ApplicationController
 
   def update
     @contribution = Contribution.find(params[:id])
-    begin
-      demande = Demande.find(params[:demande][:id]) unless params[:demande][:id].blank?
-      @contribution.demande = demande
-    rescue
-      flash[:warn] = _('The associated request does not exist')
-    end
+    _link2request
     if @contribution.update_attributes(params[:contribution])
       flash[:notice] = _('The contribution has been updated successfully.')
       _update(@contribution)
@@ -202,7 +193,16 @@ private
     contribution.urlreversements.create(url) unless url.blank?
     contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
     contribution.cloture_le = nil if params[:contribution][:clos] == '0'
-    expire_page :action => 'feed'
+    expire_action  :action => 'list'
     contribution.save
+  end
+
+  def _link2request()
+    begin
+      demande = Demande.find(params[:demande][:id]) unless params[:demande][:id].blank?
+      @contribution.demande = demande
+    rescue
+      flash[:warn] = _('The associated request does not exist')
+    end
   end
 end

@@ -36,11 +36,11 @@ class ContributionsControllerTest < ActionController::TestCase
     get :list, :id => 1
     assert_response :success
     assert_not_nil assigns(:contributions)
-    
+
     get :list, :id => 'all', :client_id => 1
     assert_response :success
     assert_template 'list'
-    
+
     get :list, :id => 1, :client_id => 1
     assert_response :success
     assert_template 'list'
@@ -66,11 +66,15 @@ class ContributionsControllerTest < ActionController::TestCase
   def test_should_be_able_to_create
     login 'admin', 'admin' # setup method is broken as of Rails 2.0.2 ...
 
-    get :edit, :id => contributions(:contribution_00001).id
-    assert_template 'edit'
+    get :new, :id => Demande.find(:first).id
+    assert_template 'new'
     assert_response :success
 
-    submit_with_name :contribution, 'an other short description'
+    form = select_form 'main_form'
+    form.contribution.name = 'a new contribution'
+    form.urlreversement.valeur = 'http://www.tosca-project.net'
+    form.submit
+
     assert_response :redirect
     assert_redirected_to contribution_path(assigns(:contribution))
   end

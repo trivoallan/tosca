@@ -6,6 +6,6 @@
 
 <%= link_to _('Submit a contribution'), new_contribution_path %><br />
 <%= link_to _('See all contributions'), list_contribution_path(:id => 'all') %><br />
-<%= link_to _('RSS'), :action => 'list', :id => 'all', :controller => 'contributions', :client_id => params[:client_id], :format => 'atom' %><br />
+<%= link_to _('RSS'), formatted_list_contribution_path(:id => 'all', :client_id => params[:client_id], :format => 'atom') %><br />
 <p><%= contributions_export_link %></p>
 <%= link_to _('Access to administration interface'), admin_contributions_path %>
