@@ -11,7 +11,7 @@ module ContratsHelper
   end
 
   # call it like :
-  # <%= link_to_new_contribution(@client.id) %>
+  # <%= link_to_new_contrat(@client.id) %>
   def link_to_new_contrat(client_id = nil)
     link_to_no_hover(image_create(_('a contract')),
                      new_contrat_path(:client_id => client_id))

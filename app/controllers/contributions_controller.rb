@@ -106,7 +106,11 @@ class ContributionsController < ApplicationController
     @contribution = Contribution.new
     @urlreversement = Urlreversement.new
     # we can precise the software with this, see softwares/show for more info
-    @contribution.logiciel_id = params[:id]
+    @contribution.logiciel_id = params[:logiciel_id]
+    # submitted state, by default
+    @contribution.etatreversement_id = 4
+    @contribution.reverse_le = Date.today
+    @demande = Demande.new(); @demande.id = params[:request_id]
     @contribution.ingenieur = @ingenieur
     _form
   end

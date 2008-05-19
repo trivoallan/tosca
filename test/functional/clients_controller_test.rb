@@ -31,6 +31,13 @@ class ClientsControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:clients)
   end
 
+  def test_inactives
+    get :inactives
+    assert_response :success
+    assert_template 'index'
+    assert_not_nil assigns(:clients)
+  end
+
   def test_show
     get :show, :id => 1
 

@@ -64,7 +64,8 @@
        </td>
      </tr>
 
-     <tr><td colspan="2"><b><%=_('Contributions')%></b> <%= link_to_new_contribution(@logiciel.id)%><br />
+     <tr><td colspan="2"><b><%=_('Contributions')%></b>
+         <%= link_to_new_contribution(nil, :logiciel_id => @logiciel.id)%><br />
          <%= public_table_of_contributions(@logiciel.contributions) %> </td>
      </tr>
    </table>

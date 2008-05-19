@@ -49,8 +49,8 @@ module ContributionsHelper
 
   # call it like :
   # <%= link_to_new_contribution %>
-  def link_to_new_contribution(logiciel_id = nil, text = nil)
-    options = new_contribution_path(:id => logiciel_id)
+  def link_to_new_contribution(text = nil, options = { })
+    options = new_contribution_path(options)
     if text
       link_to(text, options)
     else

@@ -3,7 +3,8 @@
 > <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
   <% if @ingenieur %>
-    <li><%=link_to_new_contribution(@demande.logiciel_id,_('Add a contribution'))%></li>
+    <% options = { :logiciel_id => @demande.logiciel_id, :request_id => @demande.id } %>
+    <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
     <li><%= _('Link to a contribution')%><br />
         <% form_tag link_contribution_demande_path(@demande.id) do %>
       <%= select_onchange @contributions, 'demande', 'contribution_id' %>
