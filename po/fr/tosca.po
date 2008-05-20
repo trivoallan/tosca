@@ -1260,27 +1260,24 @@ msgid "Paquet|Active"
 msgstr "Actif"
 
 #: app/models/notifier.rb:119
-#, fuzzy
 msgid "Daily digest for "
-msgstr "Rapport d'activité"
+msgstr "Rapport d'activité pour "
 
 #: app/models/notifier.rb:121
-#, fuzzy
 msgid "Weekly digest for "
-msgstr "Activité OSSA du "
+msgstr "Activité hebdomadaire pour "
 
 #: app/models/notifier.rb:121
-#, fuzzy
 msgid " week of "
-msgstr "semaine"
+msgstr " semaine "
 
 #: app/models/notifier.rb:123
 msgid "Monthly digest for "
-msgstr ""
+msgstr "Activité mensuelle pour "
 
 #: app/models/notifier.rb:125
 msgid "Yearly digest for "
-msgstr ""
+msgstr "Activité annuelle pour "
 
 #: app/models/notifier.rb:168
 msgid "Possible error in your e-mail"
@@ -4425,24 +4422,23 @@ msgid "Inconsistencies: "
 msgstr "Inconsistances: "
 
 #: app/views/account/_show_account_information.html.erb:34
-#, fuzzy
 msgid "Preferences"
-msgstr "preference"
+msgstr "Préférences"
 
 #: app/views/account/_show_account_information.html.erb:37
 #: app/views/account/_edit_account_informations.html.erb:76
 msgid "Daily Digest"
-msgstr ""
+msgstr "Activité quotidienne"
 
 #: app/views/account/_show_account_information.html.erb:41
 #: app/views/account/_edit_account_informations.html.erb:80
 msgid "Weekly Digest"
-msgstr ""
+msgstr "Activité hebdomadaire"
 
 #: app/views/account/_show_account_information.html.erb:45
 #: app/views/account/_edit_account_informations.html.erb:84
 msgid "Monthly Digest"
-msgstr ""
+msgstr "Activité mensuelle"
 
 #: app/views/account/multiple_signup.html.erb:2
 msgid "Create several accounts"
