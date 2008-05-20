@@ -10,7 +10,7 @@
     <% request = d.request %>
     <% old_request = d.request_at %>
     <% d_id = "request_#{request.id}" %>
-    <li style="">
+    <li>
       <h3><%= toggle(d_id) %>&nbsp;<%= "##{request.id} " + link_to_demande(request) %></h3>
       <%= request.typedemande %>
       <%= request.severite %><%= " (#{old_request.severite})" if old_request.severite and old_request.severite != request.severite %>,
