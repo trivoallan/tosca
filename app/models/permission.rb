@@ -7,4 +7,6 @@
 
 class Permission < ActiveRecord::Base
   has_and_belongs_to_many :roles
+
+  after_save { User.reset_permission_strings }
 end
