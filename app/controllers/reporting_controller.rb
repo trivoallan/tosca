@@ -105,8 +105,6 @@ class ReportingController < ApplicationController
   def digest
   end
 
-  # TODO : split this method in two
-  # When put it for mails, we'll need to log in or, at the least, scope to contrat_ids
   def digest_resultat
     render :nothing => true and return unless params.has_key? :digest
     digest_result(params[:digest][:period], nil)

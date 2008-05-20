@@ -1,8 +1,9 @@
 module DigestReporting
 
-  #Global Structs
-  DigestContrats = Struct.new(:contract, :requests) #contract is a Contrat, requests is an array of DigestRequests
-  DigestRequests = Struct.new(:request, :request_at, :comments) #request is a Demande, request_at is a Demande, comments is an array of Commentaire
+  #contract is a Contrat, requests is an array of DigestRequests
+  DigestContrats = Struct.new(:contract, :requests)
+  #request is a Demande, request_at is a Demande, comments is an array of Commentaire
+  DigestRequests = Struct.new(:request, :request_at, :comments)
 
   # When put it for mails, we'll need to log in or, at the least, scope to contrat_ids
   def digest_result(period, user)
