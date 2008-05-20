@@ -11,6 +11,8 @@ require_dependency 'login_system'
 # gestion des roles et des permissions
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency 'acl_system'
+#Scope
+require_dependency 'scope_system'
 
 class ApplicationController < ActionController::Base
   init_gettext 'tosca'
@@ -28,6 +30,8 @@ class ApplicationController < ActionController::Base
   include ACLSystem
   # système de construction des filters
   include Filters
+  # Scope module
+  include Scope
 
   # layout standard
   layout "standard-layout"
@@ -79,6 +83,12 @@ protected
     true
   end
 
+  def scope(&block)
+    is_connected = session.data.has_key? :user
+    user = session[:user]
+    define_scope(user, is_connected, &block)
+  end
+
   # Surcharge en attendant que ce soit fixé dans la branche officielle
   def self.auto_complete_for(object, method, options = {})
     define_method("auto_complete_for_#{object}_#{method}") do
@@ -96,47 +106,6 @@ protected
   end
 
 private
-  # There is a global scope, on all finders, in order to
-  # preserve each user in his particular space.
-  # TODO : scope contract only ?? it seems coherent...
-  SCOPE_CLIENT = [ Client, Document, Socle ]
-  SCOPE_CONTRAT = [ Binaire, Contrat, Demande, Paquet, Phonecall ]
-
-  # This method has a 'handmade' scope, really faster and with no cost
-  # of safety. It was made in order to avoid 15 yields.
-  def scope
-    is_connected = session.data.has_key? :user
-    if is_connected
-      user = session[:user]
-      beneficiaire, ingenieur = user.beneficiaire, user.ingenieur
-      apply = ((ingenieur and user.restricted?) || beneficiaire)
-      if apply
-        contrat_ids = user.contrat_ids
-        client_ids = user.client_ids
-        if contrat_ids.empty?
-          contrat_ids = [ 0 ]
-          client_ids = [ beneficiaire.client_id ] if beneficiaire
-        end
-        SCOPE_CONTRAT.each {|m| m.set_scope(contrat_ids) }
-        SCOPE_CLIENT.each {|m| m.set_scope(client_ids) }
-      end
-    else
-      # Forbid access to request if we are not connected. It's just a paranoia.
-      Demande.set_scope([0])
-    end
-    begin
-      yield
-    ensure
-      if is_connected
-        if apply
-          SCOPE_CLIENT.each { |m| m.remove_scope }
-          SCOPE_CONTRAT.each { |m| m.remove_scope }
-        end
-      else
-        Demande.remove_scope
-      end
-    end
-  end
 
   # TODO : put it elsewhere and not in a constant : it needs to be localisable
   ERROR_MESSAGE = 'Une erreur est survenue. Notre service a été prévenu' +
