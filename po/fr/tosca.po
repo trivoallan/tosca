@@ -1,3 +1,18 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2008-05-20 16:32+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
 # French translation of lstm.
 # Copyright (C) 2007 LINAGORA
 # R√©my-Christophe Schermesser <rschermesser@linagora.com>, 2007.
@@ -1580,44 +1595,36 @@ msgid "preference"
 msgstr "preference"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Attribute"
-msgstr "Mail text"
+msgstr "Attribut"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Owner"
-msgstr "preference"
+msgstr "propri√©taire"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Owner type"
-msgstr "preference"
+msgstr "type de propri√©taire"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Preferenced"
-msgstr "preference"
+msgstr ""
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Preferenced type"
-msgstr "preference"
+msgstr ""
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Value"
-msgstr "Mail text"
+msgstr "Valeur"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Created at"
-msgstr "Mail text"
+msgstr "CrÈe le"
 
 #: app/models/preference.rb:-
-#, fuzzy
 msgid "Preference|Updated at"
-msgstr "Mail text"
+msgstr "Mis ‡ jour le"
 
 #: app/models/severite.rb:-
 msgid "severite"
