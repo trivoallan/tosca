@@ -186,27 +186,28 @@ class DemandesController < ApplicationController
 
   def show
     @demande = Demande.find(params[:id], :include => [:first_comment]) unless @demande
-    conditions = [ "logiciel_id = ?", @demande.logiciel_id ]
-    # TODO c'est pas dry, cf ajax_comments
-    options = { :order => 'created_on DESC', :include => [:user],
-      :limit => 1, :conditions => { :demande_id => @demande.id } }
-    options[:conditions][:prive] = false if @beneficiaire
-    @last_commentaire = Commentaire.find(:first, options)
-
-    @statuts = @demande.statut.possible(@beneficiaire)
-    options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
-      ['contributions.logiciel_id = ?', @demande.logiciel_id ] }
-    @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
-    if @ingenieur
-      @severites = Severite.find_select
-      @ingenieurs = Ingenieur.find_select_by_contrat_id(@demande.contrat_id)
-    end
-    set_comments(@demande.id)
-
     @partial_for_summary = 'infos_demande'
+    unless read_fragment "requests/#{@demande.id}/front-#{session[:user].kind}"
+      @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande)
+      @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
 
-    @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande)
-    @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
+      conditions = [ "logiciel_id = ?", @demande.logiciel_id ]
+      # TODO c'est pas dry, cf ajax_comments
+      options = { :order => 'created_on DESC', :include => [:user],
+        :limit => 1, :conditions => { :demande_id => @demande.id } }
+      options[:conditions][:prive] = false if @beneficiaire
+      @last_commentaire = Commentaire.find(:first, options)
+
+      @statuts = @demande.statut.possible(@beneficiaire)
+      options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
+        [ 'contributions.logiciel_id = ?', @demande.logiciel_id ] }
+      @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
+      if @ingenieur
+        @severites = Severite.find_select
+        @ingenieurs = Ingenieur.find_select_by_contrat_id(@demande.contrat_id)
+      end
+      set_comments(@demande.id)
+    end
   end
 
   def ajax_description
