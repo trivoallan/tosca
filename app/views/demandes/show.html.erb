@@ -15,7 +15,7 @@
    </h1>
 
    <%= render(:partial => 'demandes/tabs/comment', :locals =>
-         { :comment => @commentaires.first }) %>
+         { :comment => @last_commentaire }) %>
 
    <div>
     <% if session[:user].authorized? "commentaires/comment" %>

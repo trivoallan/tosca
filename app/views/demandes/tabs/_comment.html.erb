@@ -1,6 +1,3 @@
-<% logo_img = nil %>
-<% print_mode = (controller.action_name == 'print') %>
-
 <% edit_ho = { :class => 'no_hover' } %>
 <% delete_ho = { :class => 'no_hover', :method => :delete, :confirm =>
   _("Are you sure you want to delete this comment ?") } %>
@@ -10,7 +7,7 @@
    <td class="infos" align="center">
       <span class="small"><%= _("Comment %s") % "##{comment.id}" %> <%= "(#{comment.etat})" if comment.prive %></span><br />
       <% if user and user.client? and user.beneficiaire %>
-        <%= logo_img ||= logo_client(user.beneficiaire.client) %>
+        <%= logo_client(user.beneficiaire.client) %>
       <% else %>
         <%= StaticImage::logo_08000 %>
       <% end %><br />
@@ -18,8 +15,7 @@
 
       <% display_edit = (@ingenieur or (user and @beneficiaire.user_id == user.id)) ? true : false %>
       <%= link_to(StaticImage::edit, edit_commentaire_path(comment), edit_ho) if display_edit %>&nbsp;
-      <% if @ingenieur and not print_mode %>
-        <% futur_etat_commentaire = (comment.prive ? _("public") : _("private")) %>
+      <% if @ingenieur %>
         <% limage = (comment.prive ? StaticImage::public : StaticImage::private) %>
        <%= link_to(StaticImage::delete, commentaire_path(comment), delete_ho) %>&nbsp;
       <% end %>
@@ -29,7 +25,4 @@
       <%= display_comment comment %>
    </td>
   </tr>
-  <% if print_mode %>
-    <tr><td><hr /></td></tr>
-  <% end %>
 </table>

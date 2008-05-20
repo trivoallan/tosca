@@ -206,7 +206,6 @@ class DemandesController < ApplicationController
         @severites = Severite.find_select
         @ingenieurs = Ingenieur.find_select_by_contrat_id(@demande.contrat_id)
       end
-      set_comments(@demande.id)
     end
   end
 
@@ -368,14 +367,11 @@ class DemandesController < ApplicationController
   end
 
   def set_comments(demande_id)
-    if @last_commentaire
-      @commentaires = [ @last_commentaire ]
-    else
-      unless read_fragment "requests/#{demande_id}/comments-#{session[:user].kind}"
-        @commentaires = Commentaire.find(:all, :conditions =>
-          filter_comments(demande_id), :order => "created_on ASC",
-          :include => [:user,:statut,:severite])
-      end
+    fragment = "requests/#{demande_id}/comments-#{session[:user].kind}"
+    if action_name == 'print' || !read_fragment(fragment)
+      @commentaires = Commentaire.find(:all, :conditions =>
+        filter_comments(demande_id), :order => "created_on ASC",
+        :include => [:user,:statut,:severite])
     end
   end
 
