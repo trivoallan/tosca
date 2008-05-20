@@ -1,11 +1,13 @@
-<h1><%= _('Contributions') %></h1>
+ <h1><%= _('Contributions') %></h1>
 
-<%= public_show_liste(@logiciels, _('contribution'), :no_title => true) { |l|
+<% cache("contributions/select_#{params[:client_id] || 'all'}") do %>
+ <%= public_show_liste(@logiciels, _('contribution'), :no_title => true) { |l|
       out = "<b>#{public_link_to_contribution_logiciel l, params }</b> : #{l.resume}"
-} %>
+ } %>
+<% end %>
 
 <%= link_to _('Submit a contribution'), new_contribution_path %><br />
+<%= link_to _('Access to administration interface'), admin_contributions_path %>
 <%= link_to _('See all contributions'), list_contribution_path(:id => 'all') %><br />
 <%= link_to _('RSS'), formatted_list_contribution_path(:id => 'all', :client_id => params[:client_id], :format => 'atom') %><br />
 <p><%= contributions_export_link %></p>
-<%= link_to _('Access to administration interface'), admin_contributions_path %>

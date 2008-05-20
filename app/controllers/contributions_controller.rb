@@ -48,20 +48,22 @@ class ContributionsController < ApplicationController
 
   # TODO : c'est pas très rails tout ça (mais c'est moins lent)
   def select
-    options = { :order => 'logiciels.name ASC' }
-    options[:joins] = :contributions
-    options[:select] = 'DISTINCT logiciels.*'
     client_id = params[:client_id].to_s
-    unless client_id.blank? || client_id == '1'
-      options[:conditions] = { 'contrats.client_id' => params[:client_id] }
-      options[:joins] = { :contributions => { :demande => :contrat } }
-    end
-    # Dirty hack in order to show main client' contributions
-    # TODO : remove it in september.
-    condition = (client_id == '1' ? "contributions.id_mantis IS NOT NULL" : '')
-    scope = { :find => { :conditions => condition } }
-    Logiciel.send(:with_scope, scope) do
-      @logiciels = Logiciel.find(:all, options)
+    unless read_fragment "contributions/select_#{client_id || 'all'}"
+      options = { :order => 'logiciels.name ASC' }
+      options[:joins] = :contributions
+      options[:select] = 'DISTINCT logiciels.*'
+      unless client_id.blank? || client_id == '1'
+        options[:conditions] = { 'contrats.client_id' => params[:client_id] }
+        options[:joins] = { :contributions => { :demande => :contrat } }
+      end
+      # Dirty hack in order to show main client' contributions
+      # TODO : remove it in september.
+      condition = (client_id == '1' ? "contributions.id_mantis IS NOT NULL" : '')
+      scope = { :find => { :conditions => condition } }
+      Logiciel.send(:with_scope, scope) do
+        @logiciels = Logiciel.find(:all, options)
+      end
     end
   end
 

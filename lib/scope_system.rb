@@ -1,6 +1,6 @@
 module Scope
 
-private
+  private
   # There is a global scope, on all finders, in order to
   # preserve each user in his particular space.
   # TODO : scope contract only ?? it seems coherent...

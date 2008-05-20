@@ -39,6 +39,10 @@ class Contribution < ActiveRecord::Base
     patch[index..-1]
   end
 
+  def fragments
+    [ %r{contributions/select_(\d*|all)} ]
+  end
+
   def summary
     out = ''
     out << typecontribution.name + _(' on ') if typecontribution
