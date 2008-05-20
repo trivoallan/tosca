@@ -108,6 +108,25 @@ class Notifier < ActionMailer::Base
     html_and_text_body(options)
   end
 
+  def digest(to, mode)
+
+    from       FROM
+    recipients to
+
+    now = Time.now
+    case mode
+    when :daily
+      subject _("Daily digest for ") + now.strftime("%A %d %B %Y")
+    when :weekly
+      subject _("Weekly digest for ") + now.strftime("%U").to_i.ordinalize + _(" week of ") + now.year
+    when :monthly
+      subject _("Monthly digest for ") + now.strftime("%B of %Y")
+    else
+      subject _("Yearly digest for ") + now.year
+    end
+
+  end
+
   # http://i.loveruby.net/en/projects/tmail/doc/mail.html$
   # http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer
   # Kept In Order to have the code for generating recipients of a list
@@ -136,7 +155,6 @@ class Notifier < ActionMailer::Base
     send_mail(client.contrat.mailingliste, contrat.ingenieurs.map { |e| e.user.email }, email)
   end
 =end
-
 
   private
 

@@ -6,6 +6,7 @@ class ReportingController < ApplicationController
   helper :demandes, :export
   include ComexReporting
   include WeeklyReporting
+  include DigestReporting
 
   # Les couleurs par défauts sont dans l'ordre alphabétique des severités :
   # ( bloquante, majeure, mineure, sans objet )
@@ -108,30 +109,7 @@ class ReportingController < ApplicationController
   # When put it for mails, we'll need to log in or, at the least, scope to contrat_ids
   def digest_resultat
     render :nothing => true and return unless params.has_key? :digest
-    @period = params[:digest][:period]
-    @period = "year" if @period.blank?
-    updated = Time.now.send("beginning_of_#{@period}")
-    # We must localise it after getting the (english) helper for the start date
-    @period = _(@period)
-
-    options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contrat_id ASC", :include => [:typedemande,:severite,:statut]}
-    requests = Demande.find(:all, options)
-
-    #Another wierd RCS's struct
-    # @result = [ *[ contrat, [ *[ demande, demande.state_at(t), [*commentaires] ] ] ] ]
-    # TODO : make a REAL and HUMAN-compliant struct/class/whatever
-    @result = Array.new
-    last_contrat_id = nil
-    requests.each do |r|
-      @result.push([r.contrat, Array.new]) if last_contrat_id != r.contrat_id
-
-      options = { :conditions => [ "created_on >= ? ", updated ] }
-      digest_comments = r.commentaires.find(:all, options)
-      element = [ r, r.state_at(updated), digest_comments ]
-      @result.last.last.push(element)
-      last_contrat_id = r.contrat_id
-    end
+    digest_result(params[:digest][:period], nil)
   end
 
   def general
