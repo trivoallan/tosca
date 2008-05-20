@@ -41,7 +41,15 @@
         </td>
         <td><%= (user ? @@menu[role_localised] : @@public_menu[locale]) %></td>
         <td align="right">
-          <%= (user ? session[:account_links] : @@public_links[locale]) %>
+          <% if user %>
+            <% infos = [
+                 public_link_to(_("Logout"), logout_accounts_path),
+                 link_to(_("My account"), edit_account_path(user))
+		       ] %>
+            <%= build_simple_menu(infos, :class => 'account_menu') %>
+          <% else %>
+            <%= @@public_links[locale] %>
+          <% end %>
         </td>
       </tr>
     </table>

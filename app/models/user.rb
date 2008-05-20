@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
   def authorized?(resource)
     match = false
 
-    permission_strings.each do |r|
+    permission_strings(self.role_id).each do |r|
       if ((r =~ resource) != nil)
         match = true
         break
@@ -165,19 +165,18 @@ class User < ActiveRecord::Base
   end
 
 
-  private
-  # Load permission strings
-  # TODO : cache this method. Since we have few roles, it's possible
-  # to use a table or a hash.
-  # See app/helpers/static_image/rb#self.severite for a bad sample
-  # See http://api.rubyonrails.com/classes/ActiveSupport/CachingTools/HashCaching.html#M000319 for a better way
-  # See also http://api.rubyonrails.com/classes/ActiveSupport/CachingTools/HashCaching.html#M000319 for a complete overview
-  def permission_strings
-    return @permissions if @permissions
-    @permissions = self.role.permissions.collect{|p| Regexp.new(p.name) }
-    @permissions
+  def self.reset_permission_strings
+    @@permission_strings = Array.new(Role.count)
   end
 
+  # Cache permission strings, not the best way
+  @@permission_strings = Array.new(Role.count)
+  def permission_strings(role_id)
+    @@permission_strings[role_id] ||=
+      Role.find(role_id).permissions.collect{|p| Regexp.new(p.name) }
+  end
+
+  private
   def self.sha1(pass)
     Digest::SHA1.hexdigest("linagora--#{pass}--")
   end

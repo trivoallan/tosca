@@ -300,23 +300,6 @@ private
 
     # Set user properties
     session[:user] = user
-
-    # Account links in header
-    session[:account_links] = set_account_links
-  end
-
-  # Build account links
-  def set_account_links
-    logout = _("Logout")
-    my_account = _("My account")
-    render_to_string :inline => <<-EOF
-      <% infos = [
-           link_to("#{my_account}", edit_account_path(session[:user])),
-           public_link_to("#{logout}", logout_accounts_path, :method => :post)
-         ]
-      %>
-      <%= build_simple_menu(infos.reverse, :class => 'account_menu') %>
-    EOF
   end
 
   # Used during login and logout
