@@ -227,7 +227,10 @@ class DemandesController < ApplicationController
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
     @last_commentaire = nil # Prevents some insidious call with functionnal tests
-    set_comments(@demande_id)
+    conditions = filter_comments(@demande_id)
+    conditions[0] << " AND statut_id IS NOT NULL"
+    @commentaires = Commentaire.find(:all, :conditions => conditions,
+      :order => "created_on ASC", :include => [:user,:statut,:severite])
     render :partial => 'demandes/tabs/tab_history', :layout => false
   end
 
@@ -368,9 +371,11 @@ class DemandesController < ApplicationController
     if @last_commentaire
       @commentaires = [ @last_commentaire ]
     else
-      @commentaires = Commentaire.find(:all, :conditions =>
-        filter_comments(demande_id), :order => "created_on ASC",
-        :include => [:user,:statut,:severite])
+      unless read_fragment "requests/#{demande_id}/comments-#{session[:user].kind}"
+        @commentaires = Commentaire.find(:all, :conditions =>
+          filter_comments(demande_id), :order => "created_on ASC",
+          :include => [:user,:statut,:severite])
+      end
     end
   end
 

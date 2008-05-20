@@ -14,7 +14,8 @@
     <%= link_to(StaticImage::print, options, html_options) %>
    </h1>
 
-   <%= render :partial => 'demandes/tabs/tab_comments' %>
+   <%= render(:partial => 'demandes/tabs/comment', :locals =>
+         { :comment => @commentaires.first }) %>
 
    <div>
     <% if session[:user].authorized? "commentaires/comment" %>

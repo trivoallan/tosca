@@ -105,7 +105,9 @@ class Demande < ActiveRecord::Base
       "requests/#{self.id}/front-recipient",
       "requests/#{self.id}/info-expert", # Left side of the show view
       "requests/#{self.id}/info-recipient",
-      "requests/#{self.id}/history" # History Tab
+      "requests/#{self.id}/history", # History Tab
+      "requests/#{self.id}/comments-expert", # Comments Tab
+      "requests/#{self.id}/comments-recipient"
     ]
   end
 

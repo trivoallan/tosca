@@ -1,41 +1,7 @@
-<% logo_img = nil %>
 <% print_mode = (controller.action_name == 'print') %>
-
-<% edit_ho = { :class => 'no_hover' } %>
-<% delete_ho = { :class => 'no_hover', :method => :delete, :confirm =>
-  _("Are you sure you want to delete this comment ?") } %>
-
 <%= render :partial => 'demandes/tabs/tab_menu' unless print_mode or @last_commentaire %>
-<div class="demande_tab_content">
-<% @commentaires.each do |commentaire| %>
- <% cache("comments/#{commentaire.id}/#{session[:user].kind}") do %>
-  <% com_user = commentaire.user %>
-  <table class="commentaire">
-   <tr class="<%=(commentaire.prive ? 'prive' : 'public')%>">
-     <td class="infos" align="center">
-        <span class="small"><%= _("Comment %s") % "##{commentaire.id}" %> <%= "(#{commentaire.etat})" if commentaire.prive %></span><br />
-        <% if com_user and com_user.client? and com_user.beneficiaire %>
-          <%= logo_img ||= logo_client(com_user.beneficiaire.client) %>
-        <% else %>
-          <%= StaticImage::logo_08000 %>
-        <% end %><br />
-        <%= com_user.name if com_user %><br />
-
-        <% display_edit = (@ingenieur or (com_user and @beneficiaire.user_id == com_user.id)) ? true : false %>
-        <%= link_to(StaticImage::edit, edit_commentaire_path(commentaire), edit_ho) if display_edit %>&nbsp;
-        <% if @ingenieur and not print_mode %>
-          <% futur_etat_commentaire = (commentaire.prive ? _("public") : _("private")) %>
-          <% limage = (commentaire.prive ? StaticImage::public : StaticImage::private) %>
-         <%= link_to(StaticImage::delete, commentaire_path(commentaire), delete_ho) %>&nbsp;
-        <% end %>
-        <%= '<br />' if display_edit %>
-        <span class="small"><%= commentaire.created_on_formatted %></span><br />
-     </td><td class="text">
-        <%= display_comment commentaire %>
-     </td>
-    </tr>
-  </table>
- <% end %>
-<%= "<hr/>" if print_mode %>
+<% cache("requests/#{@demande_id || @demande.id}/comments-#{session[:user].kind}") do %>
+ <div class="demande_tab_content">
+  <%= render :partial => 'demandes/tabs/comment', :collection => @commentaires %>
+ </div>
 <% end %>
-</div>

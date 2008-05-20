@@ -48,8 +48,7 @@ class Commentaire < ActiveRecord::Base
   end
 
   def fragments
-    [ "comments/#{self.id}/expert",
-      "comments/#{self.id}/recipient" ]
+    [ ]
   end
 
   private
