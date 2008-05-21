@@ -1,4 +1,3 @@
-<tr id="version">
   <th>
    <% unless @binaires.empty? %>
     <label for="demande_binaire_id"><%= _("Version") %></label>
@@ -7,4 +6,3 @@
   <% unless @binaires.empty? %>
    <td><%= select_empty(:demande, :binaire_id, @binaires) %></td>
   <% end %>
-</tr>

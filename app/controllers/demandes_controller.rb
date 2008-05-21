@@ -173,9 +173,9 @@ class DemandesController < ApplicationController
       @binaires = []
     else
       logiciel = Logiciel.find(logiciel_id.to_i)
-      options = { :conditions => ['binaires.socle_id = ?', socle_id.to_i]}
-      bins = logiciel.binaires
-      @binaires = bins.find_select(options)
+      options = { :conditions => ['binaires.socle_id = ?', socle_id.to_i],
+        :include => [:paquet], :order => 'paquets.name' }
+      @binaires = logiciel.binaires.find(:all, options).collect{ |b| [b.paquet.version, b.id]}
     end
   end
 
