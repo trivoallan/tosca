@@ -3,7 +3,7 @@
    #           @users_ingenieurs
 %>
 
-<% cache("requests/#{@demande.id}/front-#{session[:user].kind}") do %>
+<% cache("requests/#{@demande.id}/up-comment-#{session[:user].kind}") do %>
  <div class="content">
    <h1>
     <% options = edit_demande_path(@demande.id) %>
@@ -16,7 +16,9 @@
 
    <%= render(:partial => 'demandes/tabs/comment', :locals =>
          { :comment => @last_commentaire }) %>
+<% end %>
 
+    <% #NO CACHE because we use sessions variables %>
    <div>
     <% if session[:user].authorized? "commentaires/comment" %>
      <% action = comment_commentaire_path(@demande) %>
@@ -27,6 +29,7 @@
     <% end %>
    </div>
 
+<% cache("requests/#{@demande.id}/tab-#{session[:user].kind}") do %>
    <%# see tab_menu for ajax links %>
    <div class="demande_tab" id="demande_tab">
     <%= render :partial => 'demandes/tabs/tab_description' %>

@@ -25,7 +25,7 @@
  <tr class="public">
   <td class="infos" align="center"><br />
      <%= avatar(@beneficiaire, @ingenieur) %><br />
-     <br /><br />
+     <%= session[:user].name %><br /><br />
     <% if @ingenieur %>
        <label for="commentaire_prive"><%= _("Private ?") %></label>
      <%= check_box(:commentaire, :prive) %><br />
