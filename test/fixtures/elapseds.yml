@@ -13,3 +13,53 @@ elapsed_00004:
   taken_into_account: 1
   workaround: 
   correction: 
+elapsed_00005: 
+  until_now: "300448"
+  demande_id: "991"
+  id: "1596"
+  taken_into_account: "36"
+  correction: 
+  workaround:
+elapsed_00006: 
+  until_now: "2580805"
+  demande_id: "662"
+  id: "1192"
+  taken_into_account: "77"
+  correction: 
+  workaround: 
+elapsed_00007: 
+  until_now: "1137987"
+  demande_id: "866"
+  id: "1480"
+  taken_into_account: "119"
+  correction: 
+  workaround: 
+elapsed_00008: 
+  until_now: "113039"
+  demande_id: "1008"
+  id: "1613"
+  taken_into_account: "208"
+  correction: 
+  workaround:
+elapsed_00009: 
+  until_now: "23314"
+  demande_id: "256"
+  id: "916"
+  taken_into_account: "97"
+  correction: "23314"
+  workaround: "23314"
+elapsed_00010: 
+  until_now: "317416"
+  demande_id: "254"
+  id: "914"
+  taken_into_account: "0"
+  correction: "317416"
+  workaround: "317416"
+elapsed_00011: 
+  until_now: "1650167"
+  demande_id: "353"
+  id: "1000"
+  taken_into_account: "46"
+  correction: "56033"
+  workaround: "56033"
+
