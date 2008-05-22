@@ -15,3 +15,6 @@ task :makemo do
   require 'gettext/utils'
   GetText.create_mofiles(true, "po", "locale")
 end
+
+desc "Do all the stuff"
+task :generate_trad => [:updatepo, :makemo]
