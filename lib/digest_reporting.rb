@@ -6,7 +6,7 @@ module DigestReporting
   DigestRequests = Struct.new(:request, :request_at, :comments)
 
   # When put it for mails, we'll need to log in or, at the least, scope to contrat_ids
-  def digest_result(period, user)
+  def digest_result(period)
     @period = period
     @period = "year" if period.blank?
     updated = Time.now.send("beginning_of_#{@period}")

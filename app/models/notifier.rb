@@ -108,23 +108,26 @@ class Notifier < ActionMailer::Base
     html_and_text_body(options)
   end
 
-  def digest(to, mode)
-
+  def reporting_digest(user, data, mode, now)
     from       FROM
-    recipients to
+    recipients user.email
 
-    now = Time.now
-    case mode
-    when :daily
-      subject _("Daily digest for ") + now.strftime("%A %d %B %Y")
-    when :weekly
-      subject _("Weekly digest for ") + now.strftime("%U").to_i.ordinalize + _(" week of ") + now.year
-    when :monthly
-      subject _("Monthly digest for ") + now.strftime("%B of %Y")
+    case mode.to_sym
+    when :day
+      time = now.strftime("%A %d %B %Y")
+      subject _("Daily digest for ") << time
+    when :week
+      time = now.strftime("%U").to_i.ordinalize.to_s << _(" week of ") << now.year.to_s
+      subject _("Weekly digest for ") << time
+    when :month
+      time = now.strftime("%B of %Y")
+      subject _("Monthly digest for ") << time
     else
-      subject _("Yearly digest for ") + now.year
+      time = now.year.to_s
+      subject _("Yearly digest for ") << time
     end
 
+    html_and_text_body({ :result => data, :time => time })
   end
 
   # http://i.loveruby.net/en/projects/tmail/doc/mail.html$

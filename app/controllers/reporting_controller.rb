@@ -107,7 +107,7 @@ class ReportingController < ApplicationController
 
   def digest_resultat
     render :nothing => true and return unless params.has_key? :digest
-    digest_result(params[:digest][:period], nil)
+    digest_result(params[:digest][:period])
   end
 
   def general
