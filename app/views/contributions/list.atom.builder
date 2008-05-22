@@ -1,4 +1,4 @@
-atom_feed(:schema_date => "2008-04-22") do |feed|
+atom_feed do |feed|
   feed.title(_('Contributions of 08000linux.com'))
   feed.link("http://" + request.host_with_port + request.request_uri)
   feed.updated(@contributions.first.updated_on)

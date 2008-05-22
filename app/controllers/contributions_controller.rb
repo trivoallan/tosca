@@ -4,8 +4,6 @@
 class ContributionsController < ApplicationController
   helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
 
-  # Cache on feeds for all clients, in order to avoid being hammered by RSS readers
-  caches_action :list, :cache_path => { :format => 'atom' }
 
   cache_sweeper :contribution_sweeper, :only => [:create, :update]
 
