@@ -1,1 +1,9 @@
-# See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
+# See http://www.robotstxt.org/wc/norobots.html for documentation on
+# how to use the robots.txt file
+
+User-agent: *
+# We don't know why, but some robots persits to ask for
+# .rss view on contributions
+Disallow: /contributions/*.rss
+Disallow: /lstm/contributions/*.rss
+Disallow: /tosca/contributions/*.rss
