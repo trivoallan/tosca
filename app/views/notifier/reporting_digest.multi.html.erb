@@ -1,0 +1,58 @@
+Bonjour,
+<p>
+<% if @result.size == 0 %>
+  Il n'y a eu aucun mouvement sur la période considérée.
+<% else %>
+  Voici le compte rendu de l'activité OSSA pour <%= @time %>.
+<% end %>
+</p>
+
+<% @result.each do |c| %>
+  <% contract = c.contract %>
+  <h4>Contrat : <%= contract.name %></h4>
+  <ul>
+  <% c.requests.each do |d| %>
+    <% request = d.request %>
+    <% old_request = d.request_at %>
+    <li>
+      <% severite = request.severite
+         severite = "sans sévérité"
+
+         type = request.typedemande.to_s
+         case type
+         when "Anomalie"
+           type = "L'" << type
+         else
+           type = "La demande de " << type
+         end
+      %>
+      <%= "##{request.id} : #{type} #{severite} #{request.statut}" %> ouverte depuis <%= distance_of_time_in_words_to_now(request.created_on) %>
+      <% if request.elapsed.workaround? %>
+        a été <i>contournée</i>
+      <% end %>
+      <% if request.elapsed.workaround? and request.elapsed.correction? %>
+        et
+      <% elsif request.elapsed.correction? and not request.elapsed.workaround? %>
+        a été
+      <% end %>
+      <% if request.elapsed.correction? %>
+        <i>corrigée</i>
+      <% end %>
+
+      <% if old_request.severite and old_request.severite != request.severite %>
+        a eu sa <strong>sévérité modifiée</strong> (anciennement : <%= old_request.severite %>)
+      <% end %>
+      <% if old_request.statut and old_request.statut != request.statut %>
+        a eu son <strong>statut modifié</strong> (anciennement : <%= old_request.statut %>)
+      <% end %>
+    </li>
+  <% end %>
+
+  </ul>
+<% end %>
+
+<p>
+Vous pouvez trouver un compte rendu de l'activité plus complet à cette adresse : <a href="https://www.08000linux.com/lstm/reporting/digest">https://www.08000linux.com/lstm/reporting/digest</a>
+</p>
+
+<%= render :partial => 'end_mail' %>
