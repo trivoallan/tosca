@@ -115,7 +115,8 @@ private
     'considérons pas que c\'est une erreur. Si vous pensez le contraire, ' +
     'n\'hésitez pas à nous contacter.'
   def rescue_action_in_public(exception)
-    if exception.is_a? ActiveRecord::RecordNotFound
+    case exception.class
+    when ActiveRecord::RecordNotFound, RoutingError then
       msg = WARN_NOID
     else
       msg = ERROR_MESSAGE
@@ -125,6 +126,7 @@ private
                                         params, request.env)
       end
     end
+
     if request.xhr?
       render_text('<div class="information error">' + msg + '</div>')
     else
