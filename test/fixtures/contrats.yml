@@ -33,13 +33,13 @@ contrat_00002:
   paquets_count:
 contrat_00003:
   heure_ouverture: "9"
-  name: ""
+  name: "Desktop"
   astreinte: "0"
   rule_id: "2"
   mailinglist: ""
   chrono: "0"
   heure_fermeture: "18"
-  client_id: "25"
+  client_id: "2"
   id: "26"
   veille_technologique: "0"
   ouverture: 2006-07-11 00:00:00
@@ -55,7 +55,7 @@ contrat_00004:
   mailinglist: ""
   chrono: "0"
   heure_fermeture: "18"
-  client_id: "35"
+  client_id: "3"
   id: "40"
   veille_technologique: "0"
   ouverture: 2007-10-26 00:00:00
@@ -65,13 +65,13 @@ contrat_00004:
   paquets_count: 
 contrat_00005:
   heure_ouverture: "7"
-  name: ""
+  name: "Server"
   astreinte: "0"
   rule_id: "2"
   mailinglist: "" 
   chrono: "0"
   heure_fermeture: "19"
-  client_id: "6"
+  client_id: "2"
   id: "6"
   veille_technologique: "1"
   ouverture: 2007-11-15 00:00:00
@@ -81,13 +81,13 @@ contrat_00005:
   paquets_count:
 contrat_00006:
   heure_ouverture: "9"
-  name: ""
+  name: "Server"
   astreinte: "0"
   rule_id: "2"
   mailinglist: ""
   chrono: "0"
   heure_fermeture: "18"
-  client_id: "9"
+  client_id: "2"
   id: "9"
   veille_technologique: "0"
   ouverture: 2006-12-06 14:19:00
@@ -97,13 +97,13 @@ contrat_00006:
   paquets_count: 
 contrat_00007:
   heure_ouverture: "9"
-  name: ""
+  name: "Desktop"
   astreinte: "0"
   rule_id: "1"
   mailinglist: ""
   chrono: "0"
   heure_fermeture: "18"
-  client_id: "18"
+  client_id: "2"
   id: "18"
   veille_technologique: "0"
   ouverture: 2007-04-11 00:00:00

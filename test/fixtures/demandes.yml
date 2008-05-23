@@ -75,7 +75,7 @@ demande_00004:
   expected_on: 2008-05-15 10:23:14
   severite_id: "2"
   resume: "Pb question et t\xC3\xA9l\xC3\xA9chargement"
-  beneficiaire_id: "2"
+  beneficiaire_id: "4"
   contrat_id: "26"
   statut_id: "3"
   mail_cc: 
@@ -96,7 +96,7 @@ demande_00005:
   expected_on: 2008-05-22 15:02:43
   severite_id: "3"
   resume: "Probleme avec fichier dont le chemin comporte des accents"
-  beneficiaire_id: "1"
+  beneficiaire_id: "5"
   contrat_id: "40"
   statut_id: "3"
   mail_cc: 

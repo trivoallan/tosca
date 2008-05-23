@@ -8,7 +8,7 @@ class DemandesControllerTest < ActionController::TestCase
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
     :permissions_roles, :contrats, :contrats_engagements, :engagements,
-    :piecejointes, :typedemandes
+    :piecejointes, :typedemandes, :elapseds
 
   def test_pending
     %w(admin manager expert customer).each do |l|
