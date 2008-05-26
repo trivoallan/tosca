@@ -69,6 +69,7 @@
    </tr>
   <% end %>
 
+  <% if @ingenieur %>
   <tr>
     <td colspan="2"><hr/></td>
   </tr>
@@ -84,6 +85,7 @@
     <th><%= _("Monthly Digest") %></th>
     <td><%= check_box :user, :preferred_digest_monthly %></td>
   </tr>
+  <% end %>
 
   <% if manager %>
    <tr>
