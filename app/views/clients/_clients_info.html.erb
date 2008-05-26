@@ -1,0 +1,30 @@
+<% options = { :update => 'content', :method => :get,
+    :url => clients_path,
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+
+<% form_remote_tag( options.dup.update(:html => {
+    :id => 'filters', :name => 'filters'})) do %>
+ <% # used for iteration in ajaxified list %>
+ <%= hidden_field_tag 'page', '1' %>
+ <%# used_by remote_link_to_clients %>
+ <input id="filters_active" name="filters[active]" type="hidden" value="0" />
+
+ <div class="menu_title" onclick="Element.toggle('menu_consultation')">
+ > <%= _('Consultation') %></div>
+ <ul class="menu" id="menu_consultation">
+  <li><%= remote_link_to_clients :actives %></li>
+  <li><%= remote_link_to_clients :all %></li>
+ </ul>
+
+ <div class="menu_title" onclick="Element.toggle('menu_recherche')">
+ > <%= _('Search') %></div>
+ <ul class="menu" id="menu_recherche">
+  <li><b><%= _('By name') %></b><br />
+     <%= text_field :filters, :text %></li>
+  <li><b><%= _('By system') %> </b><br />
+     <%= select_filter(@systems, 'system') %></li>
+ </ul>
+<% end %>
+
+<%= observe_form 'filters', options %>

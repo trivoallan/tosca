@@ -18,4 +18,24 @@ module ClientsHelper
     link_to label, client_path(@beneficiaire.client_id)
   end
 
+
+  # Create a link to modify the active value in the form filter
+  # Usage :
+  #  <%= remote_link_to_clients(:all) %> to display all the softwares
+  def remote_link_to_clients( param)
+    ajax_call = PagesHelper::AJAX_OPTIONS.dup.update(:url => clients_path)
+    if param == :actives
+      text = _('Active clients')
+      description = _('Display only active clients')
+      value = 1
+    else # :all
+      text = _('Inactive clients')
+      description = _('Display only inactive clients')
+      value = -1
+    end
+    js_call = "document.forms['filters'].elements['filters[active]'].value=#{value};" <<
+      remote_function(ajax_call)
+    link_to_function(text, js_call, description)
+  end
+
 end
