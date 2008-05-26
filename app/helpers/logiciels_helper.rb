@@ -6,7 +6,9 @@ module LogicielsHelper
   # Display a link to a Logiciel (software)
   def public_link_to_logiciel(logiciel)
     return '-' unless logiciel and logiciel.is_a? Logiciel
-    public_link_to logiciel.name, logiciel_path(logiciel)
+    text = software_logo(logiciel)
+    text = logiciel.name if text.blank?
+    public_link_to text, logiciel_path(logiciel)
   end
 
   # Link to create a new url for a Logiciel
@@ -34,6 +36,5 @@ module LogicielsHelper
       remote_function(ajax_call)
     link_to_function(text, js_call, description)
   end
-
 
 end

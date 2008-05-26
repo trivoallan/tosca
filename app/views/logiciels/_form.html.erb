@@ -17,12 +17,10 @@
 
 <p><label for="logiciel_licence_id"><%=_('Copyright')%></label>
    <%= link_to_new_license %><br />
-   <%= select("logiciel", "license_id",
-	 @licenses.collect{|l| [ l.name, l.id]}) %></p>
+   <%= select(:logiciel, :license_id, @licenses) %></p>
 
 <p><label for="logiciel_groupe_id"><%=_('Group')%></label><br />
- <%= select("logiciel", "groupe_id",
-	@groupes.collect{|l| [ l.name, l.id]}) %></p>
+ <%= select(:logiciel, :groupe_id, @groupes) %></p>
 
 <p><label for="logiciel_competence_ids"><%=_('Technologies')%></label></p>
 <%= hbtm_check_box( @logiciel.competences, @competences, 'logiciel[competence_ids]', :size => 4) %>

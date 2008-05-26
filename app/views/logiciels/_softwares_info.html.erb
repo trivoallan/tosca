@@ -3,12 +3,12 @@
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
-<% form_remote_tag( options.dup.update(:html => { 
+<% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
 
 <% # used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
-<%# used_by remote_link_to_software and remote_link_to_all_software%>
+<%# used_by remote_link_to_software %>
 <%= hidden_field_tag 'active', '1' %>
 
 <% if session[:user] %>

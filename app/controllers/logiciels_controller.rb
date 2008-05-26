@@ -11,11 +11,9 @@ class LogicielsController < ApplicationController
   def index
     scope = nil
     @title = _('List of softwares')
-    if @beneficiaire
-      unless params['active'] == '0'
-        scope = :supported
-        @title = _('List of your supported softwares')
-      end
+    if @beneficiaire && params['active'] != '0'
+      scope = :supported
+      @title = _('List of your supported softwares')
     end
 
     options = { :per_page => 10, :order => 'logiciels.name',
@@ -105,7 +103,7 @@ class LogicielsController < ApplicationController
     @logiciel = Logiciel.find(params[:id])
     if @logiciel.update_attributes(params[:logiciel]) and add_logo
       flash[:notice] = _('The software %s has been updated successfully.') % @logiciel.name
-      redirect_to logiciels_path
+      redirect_to logiciel_path(@logiciel)
     else
       add_image_errors
       _form and render :action => 'edit'
@@ -122,10 +120,9 @@ class LogicielsController < ApplicationController
 
 private
   def _form
-    order_by_name = { :order => 'name' }
-    @competences = Competence.find(:all, order_by_name)
-    @groupes = Groupe.find(:all, order_by_name)
-    @licenses = License.find(:all, order_by_name)
+    @competences = Competence.find_select({}, false)
+    @groupes = Groupe.find_select
+    @licenses = License.find_select
   end
 
   def _panel
