@@ -3,7 +3,7 @@
    #           @users_ingenieurs
 %>
 
-<% cache("requests/#{@demande.id}/up-comment-#{session[:user].kind}") do %>
+<% cache("requests/#{@demande.id}/front-#{session[:user].kind}") do %>
  <div class="content">
    <h1>
     <% options = edit_demande_path(@demande.id) %>
@@ -29,7 +29,6 @@
     <% end %>
    </div>
 
-<% cache("requests/#{@demande.id}/tab-#{session[:user].kind}") do %>
    <%# see tab_menu for ajax links %>
    <div class="demande_tab" id="demande_tab">
     <%= render :partial => 'demandes/tabs/tab_description' %>

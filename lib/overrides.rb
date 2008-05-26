@@ -440,10 +440,11 @@ module ActiveRecord
     def display_time(time)
       res = '-'
       if time
-        date = (time.is_a?(Date) ? time : time.to_date)
-        time = (time.is_a?(Date) ? time.to_time : time)
-        res = date.to_s
-        res = time.strftime('%Hh%M') if date == Date.today
+        if time.is_a? Date
+          res = time.to_s
+        else
+          res = time.strftime("%d/%m/%Y %Hh%M")
+        end
       end
       res
     end
