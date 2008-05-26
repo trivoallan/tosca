@@ -73,9 +73,11 @@ class Commentaire < ActiveRecord::Base
     return false if request.first_comment_id == self.id
 
     # Updating last_comment pointer
+    # TODO : Is this last_comment pointer really needed ?
+    # Since we have the view cache, it does not seem pertinent, now
     if !self.prive and request.last_comment_id == self.id
-      other_comment = request.find_other_comment(self.id)
-      if !other_comment
+      last_comment = request.find_other_comment(self.id)
+      if !last_comment
         self.errors.add_to_base(_('This request seems to be unstable.'))
         return false
       end

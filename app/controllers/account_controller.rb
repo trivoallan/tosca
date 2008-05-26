@@ -32,9 +32,7 @@ class AccountController < ApplicationController
       if session[:user] = User.authenticate(params['user_login'],
                                                     params['user_password'],
                                                     user_crypt)
-        set_sessions(session[:user])
-        flash[:notice] = (_("Welcome %s %s") %
-          [ session[:user].title, session[:user].name]).gsub(' ', '&nbsp;')
+        _login(session[:user])
         # When logged from an other tool, the referer is not a valid page
         session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
         redirect_back_or_default bienvenue_path
@@ -124,8 +122,12 @@ class AccountController < ApplicationController
       @filters = accounts_filters
     end
 
-    scope = User.get_scope(session[:user].contrat_ids)
-    scope = {} unless session[:user].restricted?
+    # Experts does not need to be scoped on accounts, but they can filter
+    # only on their contract.
+    scope = {}
+    if session[:user].restricted? || @beneficiaire
+      scope = User.get_scope(session[:user].contrat_ids)
+    end
     User.send(:with_scope, scope) do
       @user_pages, @users = paginate :users, options
     end
@@ -178,6 +180,24 @@ class AccountController < ApplicationController
   #  can have access to this page, and provides some HTTP headers
   #  in order to log in / create an engineer account.
   def lemon
+    [ [ 'HTTP_AUTH_CN', :name ],
+      [ 'HTTP_AUTH_MAIL', :email ],
+      [ 'HTTP_AUTH_MOBILE', :phone ],
+      [ 'HTTP_AUTH_O', :description ], # Company
+      # Unused : [ 'HTTP_AUTH_SN', :Cherif ],
+      [ 'HTTP_AUTH_USER',  :login ] # TODO : check this field with Bayrem
+    ]
+    redirect_to bienvenue_path
+    flash[:info] = "coucou"
+=begin
+    login = request.env['HTTP_AUTH_LOGIN']
+    return redirect_to(bienvenue_path) unless login
+    user = User.find(:first, :conditions => { :login => login })
+    if user
+      _login user
+    end
+    redirect_to(bienvenue_path)
+=end
   end
 
   # Let an Engineer become a client user
@@ -237,6 +257,12 @@ class AccountController < ApplicationController
 
 
 private
+  def _login(user)
+    set_sessions(user)
+    flash[:notice] = (_("Welcome %s %s") %
+                      [ user.title, user.name]).gsub(' ', '&nbsp;')
+  end
+
   # Used to restrict operation
   #  One cannot edit account of everyone
   def authorize?(user)
