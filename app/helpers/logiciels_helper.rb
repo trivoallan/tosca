@@ -8,7 +8,7 @@ module LogicielsHelper
     return '-' unless logiciel and logiciel.is_a? Logiciel
     text = software_logo(logiciel)
     text = logiciel.name if text.blank?
-    public_link_to text, logiciel_path(logiciel)
+    public_link_to text, logiciel_path(logiciel), LinksHelper::NO_HOVER
   end
 
   # Link to create a new url for a Logiciel
