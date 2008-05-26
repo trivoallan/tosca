@@ -18,32 +18,52 @@ Bonjour,
       <% severite = request.severite
          severite = "sans sévérité"
 
-         type = request.typedemande.to_s
-         case type
+         request_type = request.typedemande.to_s
+         type = ""
+         case request_type
          when "Anomalie"
-           type = "L'" << type
+           type = "L'" << request_type
          else
-           type = "La demande de " << type
+           type = "La demande "
+           case request_type
+           when "Évolution", "Information"
+             type << "d'"
+           else
+             type << "de "
+           end
+           type << request_type
          end
-      %>
-      <%= "##{request.id} : #{type} #{severite} #{request.statut}" %> ouverte depuis <%= distance_of_time_in_words_to_now(request.created_on) %>
-      <% if request.elapsed.workaround? %>
-        a été <i>contournée</i>
-      <% end %>
-      <% if request.elapsed.workaround? and request.elapsed.correction? %>
-        et
-      <% elsif request.elapsed.correction? and not request.elapsed.workaround? %>
-        a été
-      <% end %>
-      <% if request.elapsed.correction? %>
-        <i>corrigée</i>
-      <% end %>
 
-      <% if old_request.severite and old_request.severite != request.severite %>
-        a eu sa <strong>sévérité modifiée</strong> (anciennement : <%= old_request.severite %>)
-      <% end %>
-      <% if old_request.statut and old_request.statut != request.statut %>
-        a eu son <strong>statut modifié</strong> (anciennement : <%= old_request.statut %>)
+         logiciel = ""
+         logiciel = " (#{request.logiciel})" if request.logiciel
+      %>
+
+      <%= "##{request.id}#{logiciel} " %>
+
+      <% if request.statut_id == 7 #Clôturée %>
+        => <i>Clôturée</i>
+      <% else %>
+        <%= ": #{type} #{severite} est #{request.statut}" %>, ouverte depuis <%= distance_of_time_in_words_to_now(request.created_on) %>
+        <% if request.elapsed.workaround? and not request.statut_id == 5 #Contournée %>
+          a été <i>contournée</i>
+        <% end %>
+        <% if request.elapsed.workaround? and
+              request.elapsed.correction? and
+              ( not request.statut_id == 5 and not request.statut_id == 6 ) %>
+          et
+        <% elsif request.elapsed.correction? and not request.elapsed.workaround? %>
+          a été
+        <% end %>
+        <% if request.elapsed.correction? and not request.statut_id == 6 #Corrigée %>
+          <i>corrigée</i>
+        <% end %>
+
+        <% if old_request.severite and old_request.severite != request.severite %>
+          a eu sa <strong>sévérité modifiée</strong> (anciennement : <%= old_request.severite %>)
+        <% end %>
+        <% if old_request.statut and old_request.statut != request.statut %>
+          a eu son <strong>statut modifié</strong> (anciennement : <%= old_request.statut %>)
+        <% end %>
       <% end %>
     </li>
   <% end %>
