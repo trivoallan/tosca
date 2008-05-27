@@ -66,7 +66,7 @@ module FormsHelper
     title = [[options[:title] || '» ', '' ]]
     options[:onchange] ||= 'this.form.submit();'
     options[:name] ||= name
-    collected = title.concat(list)
+    collected = title.concat(list || [])
     default_value = (default.is_a?(Numeric) ? default : 0)
     select = options_for_select(collected, default_value)
     content_tag :select, select, options
