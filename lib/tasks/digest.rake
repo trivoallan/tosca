@@ -13,15 +13,15 @@ namespace :tosca do
       #Is tomorrow the first day of the next week ?
       #If yes, we are Sunday
       #The wday method is not safe (why Sunday.wday == 0 ???)
-      isSunday = ( (now + 1.day) == (now + 1.week).beginning_of_week )
+      #isSunday = ( (now + 1.day) == (now + 1.week).beginning_of_week )
+      isSunday = ( now.wday == 0)
 
       #Is the day after tomorrow the first day of the next week ?
       #If yes, we are Saturday
-      isSaturday = ( (now + 2.day) == (now + 1.week).beginning_of_week )
+      #isSaturday = ( (now + 2.day) == (now + 1.week).beginning_of_week )
+      isSaturday = ( now.wday == 6)
 
-      #Is tomorrow the first day of a month ?
-      #If yes, we are the last day of a month
-      isEndMonth = ( (now + 1.day).day == 1 )
+      isEndMonth = ( now.end_of_month.day == now.day )
       #u = User.find(73)
       User.find(:all).each do |u|
         define_scope(u, true) do
