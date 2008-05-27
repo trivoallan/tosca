@@ -222,11 +222,13 @@ class DemandesController < ApplicationController
   def ajax_history
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
-    @last_commentaire = nil # Prevents some insidious call with functionnal tests
-    conditions = filter_comments(@demande_id)
-    conditions[0] << " AND statut_id IS NOT NULL"
-    @commentaires = Commentaire.find(:all, :conditions => conditions,
-      :order => "created_on ASC", :include => [:user,:statut,:severite])
+    unless read_fragment "requests/#{@demande_id}/history"
+      @last_commentaire = nil # Prevents some insidious call with functionnal tests
+      conditions = filter_comments(@demande_id)
+      conditions[0] << " AND statut_id IS NOT NULL"
+      @commentaires = Commentaire.find(:all, :conditions => conditions,
+        :order => "created_on ASC", :include => [:user,:statut,:severite])
+    end
     render :partial => 'demandes/tabs/tab_history', :layout => false
   end
 
