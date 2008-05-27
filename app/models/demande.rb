@@ -150,44 +150,12 @@ class Demande < ActiveRecord::Base
     self.beneficiaire_id = recipient.id if recipient
   end
 
-  private
-  def update_first_comment
-    first_comment = self.first_comment
-    if first_comment and first_comment.corps != self.description
-      first_comment.update_attribute(:corps, self.description)
-    end
-  end
-
-
-
-  def create_first_comment
-    comment = Commentaire.new do |c|
-      #We use id's because it's quicker
-      c.corps = self.description
-      c.ingenieur_id = self.ingenieur_id
-      c.demande_id = self.id
-      c.severite_id = self.severite_id
-      c.statut_id = self.statut_id
-      c.user_id = self.beneficiaire.user_id
-    end
-    if comment.save
-      self.first_comment = comment
-      self.save
-    else
-      self.destroy
-      throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
-    end
-  end
-
-
-  public
   # Description was moved to first comment mainly for
   # DB performance reason : it's easier to be fast without black hole
   # like TEXT column
   def description
     (first_comment ? first_comment.corps : @description)
   end
-
 
   # /!\ Dirty Hack Warning /!\
   # We use finder for overused view mainly (demandes/list)
@@ -239,6 +207,20 @@ class Demande < ActiveRecord::Base
     result
   end
 
+  # A request is critical if :
+  # - The CNS for the workaround is > 50% and the request was never workarounded
+  # - The CNS for the correction is > 50% and the request was never corrected
+  # - The request is not suspended
+  # - The request has no comments for the past @param no_modifications
+  def critical?(no_modifications = 15.days.ago)
+    return true if self.time_running?
+    #We check for correction before, because a request that was corrected is workarounded in the model Elapse
+    return true if not self.elapsed.correction? and self.elapsed.correction_progress > 0.5
+    return true if not self.elapsed.workaround? and self.elapsed.workaround_progress > 0.5
+    return true if self.updated_on <= no_modifications
+    return false
+  end
+
   # Used for migration or if there is an issue on the computing of request
   # It can be used on all request with a line like this in the console :
   # <tt>Demande.find(:all).each{|r| r.reset_elapsed }</tt>
@@ -269,7 +251,6 @@ class Demande < ActiveRecord::Base
     self.class.record_timestamps = true
   end
 
-
   def engagement
     return nil unless contrat_id && severite_id && typedemande_id
     conditions = [" contrats_engagements.contrat_id = ? AND " +
@@ -279,7 +260,7 @@ class Demande < ActiveRecord::Base
     Engagement.find(:first, :conditions => conditions, :joins => joins)
   end
 
-  # useful shortcul
+  # useful shortcut
   def interval
     self.contrat.interval
   end
@@ -301,8 +282,6 @@ class Demande < ActiveRecord::Base
     - (temps_passe - delai * contrat.interval_in_seconds)
   end
 
-
-
   protected
   # this method must be protected and cannot be private as Ruby 1.8.6
   def appellee
@@ -312,5 +291,31 @@ class Demande < ActiveRecord::Base
                                          :order => 'updated_on ASC')
   end
 
+  private
+  def update_first_comment
+    first_comment = self.first_comment
+    if first_comment and first_comment.corps != self.description
+      first_comment.update_attribute(:corps, self.description)
+    end
+  end
+
+  def create_first_comment
+    comment = Commentaire.new do |c|
+      #We use id's because it's quicker
+      c.corps = self.description
+      c.ingenieur_id = self.ingenieur_id
+      c.demande_id = self.id
+      c.severite_id = self.severite_id
+      c.statut_id = self.statut_id
+      c.user_id = self.beneficiaire.user_id
+    end
+    if comment.save
+      self.first_comment = comment
+      self.save
+    else
+      self.destroy
+      throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
+    end
+  end
 
 end
