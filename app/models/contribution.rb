@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class Contribution < ActiveRecord::Base
   acts_as_reportable
   has_one :demande

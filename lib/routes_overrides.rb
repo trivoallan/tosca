@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 
 # This module is overloaded in order to have rails fitting more
 # Tosca specific needs or specific improvments

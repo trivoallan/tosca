@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 module DistributeursHelper
   # call it like :
   # <%= link_to_new_distributeur %>

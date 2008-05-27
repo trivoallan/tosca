@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 module PaquetsHelper
   # Il faut mettre un :include => [:arch,:conteneur] pour accélérer l'affichage
   def link_to_paquet(paquet)

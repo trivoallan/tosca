@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class BienvenueController < ApplicationController
   # Includes somme helpers
   helper :demandes, :account, :contributions, :logiciels, :groupes, :documents, :clients

@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class GroupesController < ApplicationController
   # public access to the list
   before_filter :login_required, :except => [:index,:show]

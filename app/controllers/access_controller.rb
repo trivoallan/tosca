@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class AccessController < ApplicationController
 
   # No authentication is required for access denied page

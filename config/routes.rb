@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 
 # special overrides, since routes can be reloaded
 # in rails, even in production.

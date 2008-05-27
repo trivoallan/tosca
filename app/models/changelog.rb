@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class Changelog < ActiveRecord::Base
   belongs_to :paquet, :counter_cache => true
 

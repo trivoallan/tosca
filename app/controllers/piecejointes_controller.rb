@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class PiecejointesController < ApplicationController
   def index
     @piecejointe_pages, @piecejointes = paginate :piecejointes, :per_page => 10,

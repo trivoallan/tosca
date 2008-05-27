@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class PaquetsController < ApplicationController
   helper :filters, :logiciels, :binaires, :conteneurs, :distributeurs,
     :mainteneurs

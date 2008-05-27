@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 module LogicielsHelper
 
   # Display a link to a Logiciel (software)

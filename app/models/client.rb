@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class Client < ActiveRecord::Base
   # Small utils for inactive, located in /lib/inactive_record.rb
   include InactiveRecord

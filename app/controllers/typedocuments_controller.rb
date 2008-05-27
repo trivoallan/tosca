@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class TypedocumentsController < ApplicationController
   def index
     @typedocument_pages, @typedocuments = paginate :typedocuments, :per_page => 10

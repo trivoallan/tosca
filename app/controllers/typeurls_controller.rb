@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class TypeurlsController < ApplicationController
   def index
     @typeurl_pages, @typeurls = paginate :typeurls, :per_page => 50

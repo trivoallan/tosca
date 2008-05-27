@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class LicensesController < ApplicationController
   def index
     @license_pages, @licenses = paginate :licenses, :per_page => 10

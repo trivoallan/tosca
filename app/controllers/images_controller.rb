@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class ImagesController < ApplicationController
   def index
     @image_pages, @images = paginate :images, :per_page => 10

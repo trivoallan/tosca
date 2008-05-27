@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class StatutsController < ApplicationController
   def index
     @statut_pages, @statuts = paginate :statuts, :per_page => 10, 

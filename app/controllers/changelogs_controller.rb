@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class ChangelogsController < ApplicationController
   def index
     @changelog_pages, @changelogs = paginate :changelogs, :per_page => 10

@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class RolesController < ApplicationController
   def index
     options = { :order => 'permissions.name', :include => [:roles] }

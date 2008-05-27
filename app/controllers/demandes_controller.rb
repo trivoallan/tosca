@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :phonecalls,
     :socles, :commentaires, :account, :reporting

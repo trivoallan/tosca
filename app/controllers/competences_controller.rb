@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class CompetencesController < ApplicationController
   def index
     options = { :per_page => 50, :order => 'competences.name' }

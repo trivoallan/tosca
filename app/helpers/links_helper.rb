@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 #
 # This helpers is here to put links helper not really
 # related to any model or controller.

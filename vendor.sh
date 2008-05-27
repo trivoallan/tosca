@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -name "*.rb" | grep -v "vendor" | xargs ./vendor.rb
+find test -name "*.rb" | xargs ./vendor.rb

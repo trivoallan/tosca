@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class EtatreversementsController < ApplicationController
   def index
     @etatreversement_pages, @etatreversements =

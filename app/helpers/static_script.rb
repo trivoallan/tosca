@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 # this script is here to help with generating dates
 
 class StaticScript < Static::ActionView

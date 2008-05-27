@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 
 # Controller general de l'application
 # Les filtres ajoutés à ce controller seront chargés pour tous les autres.

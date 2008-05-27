@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class Image < ActiveRecord::Base
   belongs_to :logiciel
   has_one :client

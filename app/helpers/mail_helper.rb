@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 module MailHelper
 
   # met en forme du texte sur [width] colonnes

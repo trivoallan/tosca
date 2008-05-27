@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class EngagementsController < ApplicationController
   def index
     @engagement_pages, @engagements = paginate :engagements,

@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class MainteneursController < ApplicationController
   def index
     @mainteneur_pages, @mainteneurs = paginate :mainteneurs, :per_page => 10, :order => 'name'

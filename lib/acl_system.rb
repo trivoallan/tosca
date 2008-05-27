@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 # This module is derived from the examples on Rails wiki.
 # It's tosca implementation
 #

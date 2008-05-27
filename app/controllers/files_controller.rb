@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 
 # UPLOAD > file_column.rb:l.596
 #  :root_path => File.join(RAILS_ROOT, "files"),

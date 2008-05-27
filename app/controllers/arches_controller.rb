@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class ArchesController < ApplicationController
   def index
     @arch_pages, @arches = paginate :arches, :per_page => 10

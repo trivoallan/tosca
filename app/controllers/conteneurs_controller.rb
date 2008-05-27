@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class ConteneursController < ApplicationController
   def index
     @conteneur_pages, @conteneurs = paginate :conteneurs, :per_page => 10

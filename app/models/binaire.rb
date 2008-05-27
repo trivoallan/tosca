@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class Binaire < ActiveRecord::Base
   belongs_to :paquet
   belongs_to :socle, :counter_cache => true

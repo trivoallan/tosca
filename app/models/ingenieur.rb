@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class Ingenieur < ActiveRecord::Base
   acts_as_reportable
   belongs_to :user, :dependent => :destroy

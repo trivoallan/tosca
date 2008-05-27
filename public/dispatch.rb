@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 #!/usr/bin/ruby1.8
 
 require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)

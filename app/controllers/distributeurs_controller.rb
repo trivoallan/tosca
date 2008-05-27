@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class DistributeursController < ApplicationController
   def index
     @distributeur_pages, @distributeurs = paginate :distributeurs, :per_page => 10

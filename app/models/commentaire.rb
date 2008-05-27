@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class Commentaire < ActiveRecord::Base
   belongs_to :demande
   belongs_to :user

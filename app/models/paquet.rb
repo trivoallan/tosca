@@ -1,6 +1,3 @@
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class Paquet < ActiveRecord::Base
   belongs_to :logiciel
   belongs_to :distributeur
