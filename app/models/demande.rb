@@ -211,7 +211,7 @@ class Demande < ActiveRecord::Base
   # - The request has no comments for the past @param no_modifications
   def critical?(no_modifications = 15.days.ago)
     return true if self.time_running?
-    #We check for correction before, because a request that was corrected is workarounded in the model Elapse
+    #We check for correction before, because a request that was corrected is workarounded in the Elapse model
     return true if not self.elapsed.correction? and self.elapsed.correction_progress > 0.5
     return true if not self.elapsed.workaround? and self.elapsed.workaround_progress > 0.5
     return true if self.updated_on <= no_modifications

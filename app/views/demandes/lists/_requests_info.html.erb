@@ -40,7 +40,7 @@
   <li><b><%=_('By contract')%></b><br />
       <%= select_filter(@contrats, :contrat) %></li>
   <li><b><%=_('By expert')%></b><br />
-      <%= select_filter(@ingenieurs, :ingenieur) %></li>
+  <%= select_filter(@ingenieurs, :ingenieur, { :first_value => @ingenieur, :first_name => _("[ Me ]") }) %></li>
  <% end %>
 </ul>
 
