@@ -46,7 +46,9 @@
      <th><label for="demande_logiciel_id"><%= _("Software") %></label></th>
      <td><%= render(:partial => 'logiciel') %></td>
     </tr>
+    <tr id="version">
      <%= render :partial => 'version' %>
+   </tr>
     <% if @ingenieur %>
      <tr>
       <td colspan="2"><hr /></td>
