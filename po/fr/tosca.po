@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-22 16:07+0200\n"
+"POT-Creation-Date: 2008-05-28 17:34+0200\n"
 "PO-Revision-Date: 2008-05-19 11:14+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -290,6 +290,23 @@ msgstr "un mainteneur"
 msgid "My&nbsp;Offer"
 msgstr "Mon&nbsp;Offre"
 
+#: app/helpers/clients_helper.rb:28 app/controllers/clients_controller.rb:132
+msgid "Active clients"
+msgstr "Clients actifs"
+
+#: app/helpers/clients_helper.rb:29
+msgid "Display only active clients"
+msgstr "N'afficher que les clients actifs"
+
+#: app/helpers/clients_helper.rb:32 app/controllers/clients_controller.rb:129
+#: app/views/clients/_clients_list.html.erb:28
+msgid "Inactive clients"
+msgstr "Clients inactifs"
+
+#: app/helpers/clients_helper.rb:33
+msgid "Display only inactive clients"
+msgstr "N'afficher que les clients inactifs"
+
 #: app/helpers/conteneurs_helper.rb:9
 msgid "a container"
 msgstr "un conteneur"
@@ -399,19 +416,19 @@ msgstr "Spécifier une date"
 msgid "Select a date"
 msgstr "Sélectionner une date"
 
-#: app/helpers/logiciels_helper.rb:25
+#: app/helpers/logiciels_helper.rb:27
 msgid "My supported softwares"
 msgstr "Mes logiciels supportés"
 
-#: app/helpers/logiciels_helper.rb:26
+#: app/helpers/logiciels_helper.rb:28
 msgid "Display only software supported by your contract"
 msgstr "Aficher seulement les logiciels supportés par votre contrat"
 
-#: app/helpers/logiciels_helper.rb:29
+#: app/helpers/logiciels_helper.rb:31
 msgid "All softwares"
 msgstr "Tous les logiciels"
 
-#: app/helpers/logiciels_helper.rb:30
+#: app/helpers/logiciels_helper.rb:32
 msgid "Display all softwares"
 msgstr "Afficher tous les logiciels"
 
@@ -561,15 +578,15 @@ msgstr "Le groupe a été créé avec succès."
 msgid "Group was successfully updated."
 msgstr "Le groupe a été mis à jour avec succès."
 
-#: app/controllers/contributions_controller.rb:124
+#: app/controllers/contributions_controller.rb:122
 msgid "The contribution has been created successfully."
 msgstr "La contribution a été créée avec succès"
 
-#: app/controllers/contributions_controller.rb:146
+#: app/controllers/contributions_controller.rb:144
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
-#: app/controllers/contributions_controller.rb:211
+#: app/controllers/contributions_controller.rb:209
 msgid "The associated request does not exist"
 msgstr "La demande associée n'existe pas"
 
@@ -707,65 +724,65 @@ msgstr "Vous ne pouvez effacer le premier commentaire"
 msgid "You are not allowed to edit this comment"
 msgstr "Vous n'êtes pas autorisé à modifier ce commentaire"
 
-#: app/controllers/account_controller.rb:36
-msgid "Welcome %s %s"
-msgstr "Bienvenue %s %s"
-
-#: app/controllers/account_controller.rb:44
+#: app/controllers/account_controller.rb:42
 msgid "Connexion failure"
 msgstr "Échec lors de la connexion"
 
-#: app/controllers/account_controller.rb:45
+#: app/controllers/account_controller.rb:43
 msgid "your account has been desactivated"
 msgstr "votre compte a été désactivé"
 
-#: app/controllers/account_controller.rb:78
+#: app/controllers/account_controller.rb:76
 msgid "Account successfully created."
 msgstr "Le compte a été crée avec succès."
 
-#: app/controllers/account_controller.rb:166
+#: app/controllers/account_controller.rb:168
 msgid "Edition succeeded"
 msgstr "Les modifications ont été effectuées avec succès"
 
-#: app/controllers/account_controller.rb:190
+#: app/controllers/account_controller.rb:210
 msgid "You are not allowed to change your identity"
 msgstr "Vous n'êtes pas autorisé à changer votre identité"
 
-#: app/controllers/account_controller.rb:194
+#: app/controllers/account_controller.rb:214
 msgid "Person not found"
 msgstr "Personne non trouvée"
 
-#: app/controllers/account_controller.rb:235
+#: app/controllers/account_controller.rb:255
 msgid "Full name"
 msgstr "Nom Complet"
 
-#: app/controllers/account_controller.rb:235
+#: app/controllers/account_controller.rb:255
 msgid "Title"
 msgstr "Titre"
 
-#: app/controllers/account_controller.rb:235
+#: app/controllers/account_controller.rb:255
 msgid "Email"
 msgstr "Email"
 
-#: app/controllers/account_controller.rb:235
+#: app/controllers/account_controller.rb:255
 #: app/views/demandes/_infos_demande.html.erb:52
 msgid "Phone"
 msgstr "Téléphone"
 
-#: app/controllers/account_controller.rb:236
+#: app/controllers/account_controller.rb:256
 #: app/views/account/login.html.erb:9
 msgid "Login"
 msgstr "Identifiant"
 
-#: app/controllers/account_controller.rb:236
+#: app/controllers/account_controller.rb:256
 #: app/views/account/login.html.erb:12
 msgid "Password"
 msgstr "Mot de passe"
 
-#: app/controllers/account_controller.rb:236
+#: app/controllers/account_controller.rb:256
 #: app/views/machines/index.html.erb:5
 msgid "Informations"
 msgstr "Informations"
+
+#: app/controllers/account_controller.rb:262
+msgid "Welcome %s %s"
+msgstr "Bienvenue %s %s"
 
 #: app/controllers/arches_controller.rb:16
 msgid "Arch was successfully created."
@@ -775,15 +792,15 @@ msgstr "L'architecture a été crée avec succès."
 msgid "Arch was successfully updated."
 msgstr "L'architecture a été mis à jour avec succès."
 
-#: app/controllers/clients_controller.rb:46
+#: app/controllers/clients_controller.rb:81
 msgid "Client created successfully."
 msgstr "Le client a été crée avec succès"
 
-#: app/controllers/clients_controller.rb:47
+#: app/controllers/clients_controller.rb:82
 msgid "You have now to create the associated contract."
 msgstr "Vous devez désormais créer son contrat associé."
 
-#: app/controllers/clients_controller.rb:62
+#: app/controllers/clients_controller.rb:97
 msgid "Client updated successfully."
 msgstr "Le client bien été mis à jour."
 
@@ -1148,19 +1165,19 @@ msgstr "Une image a bien été mise à jour."
 msgid "List of softwares"
 msgstr "Liste des logiciels"
 
-#: app/controllers/logiciels_controller.rb:17
+#: app/controllers/logiciels_controller.rb:16
 msgid "List of your supported softwares"
 msgstr "Liste de vos logiciels supportés"
 
-#: app/controllers/logiciels_controller.rb:91
+#: app/controllers/logiciels_controller.rb:89
 msgid "The software %s has been created succesfully."
 msgstr "Le logiciel %s a été créé avec succès"
 
-#: app/controllers/logiciels_controller.rb:107
+#: app/controllers/logiciels_controller.rb:105
 msgid "The software %s has been updated successfully."
 msgstr "Le logiciel %s a été mis à jour avec succès."
 
-#: app/controllers/logiciels_controller.rb:118
+#: app/controllers/logiciels_controller.rb:116
 msgid "The software %s has been successfully deleted."
 msgstr "Le logiciel %s a été effacé avec succès"
 
@@ -1590,11 +1607,11 @@ msgstr "type de propriétaire"
 
 #: app/models/preference.rb:-
 msgid "Preference|Preferenced"
-msgstr ""
+msgstr "préfère"
 
 #: app/models/preference.rb:-
 msgid "Preference|Preferenced type"
-msgstr ""
+msgstr "type de la préférence"
 
 #: app/models/preference.rb:-
 msgid "Preference|Value"
@@ -1688,7 +1705,7 @@ msgstr "Le statut de cette demande a déjà été changé."
 msgid "You cannot privately change the status"
 msgstr "Vous ne pouvez changer le statut avec un commentaire privé"
 
-#: app/models/commentaire.rb:79
+#: app/models/commentaire.rb:81
 msgid "This request seems to be unstable."
 msgstr "Cette demande semble être inconsistante."
 
@@ -2363,7 +2380,7 @@ msgstr "Image"
 
 #: app/models/user.rb:-
 #: app/views/account/_show_account_information.html.erb:27
-#: app/views/account/_edit_account_informations.html.erb:98
+#: app/views/account/_edit_account_informations.html.erb:100
 msgid "User|Informations"
 msgstr "Informations"
 
@@ -2379,7 +2396,7 @@ msgstr "Inactif"
 #: app/models/user.rb:-
 #: app/views/account/_show_account_information.html.erb:22
 #: app/views/account/_users_list.html.erb:12
-#: app/views/account/_edit_account_informations.html.erb:92
+#: app/views/account/_edit_account_informations.html.erb:94
 msgid "User|Role"
 msgstr "Rôle"
 
@@ -2509,8 +2526,8 @@ msgstr "Créer"
 #: app/views/demandes/_form_binaires.html.erb:4
 #: app/views/binaires/show.html.erb:17 app/views/binaires/_form.html.erb:17
 #: app/views/severites/_form.html.erb:3 app/views/statuts/_form.html.erb:3
-#: app/views/clients/stats.html.erb:6 app/views/clients/index.html.erb:4
-#: app/views/clients/_form.html.erb:8
+#: app/views/clients/_clients_list.html.erb:5
+#: app/views/clients/stats.html.erb:6 app/views/clients/_form.html.erb:8
 #: app/views/account/_show_engineer.html.erb:8
 #: app/views/account/_users_info.html.erb:24
 #: app/views/typedemandes/_form.html.erb:3 app/views/socles/_form.html.erb:3
@@ -2626,6 +2643,7 @@ msgstr "Configuration spécifique additionnelle"
 #: app/views/paquets/_paquets_info.html.erb:13
 #: app/views/knowledges/_knowledges_info.html.erb:13
 #: app/views/logiciels/_softwares_info.html.erb:16
+#: app/views/clients/_clients_info.html.erb:14
 msgid "Consultation"
 msgstr "Consultation"
 
@@ -2640,6 +2658,7 @@ msgstr "Liste des Logiciels"
 #: app/views/contributions/_contributions_info.html.erb:26
 #: app/views/logiciels/_softwares_info.html.erb:27
 #: app/views/demandes/lists/_requests_info.html.erb:35
+#: app/views/clients/_clients_info.html.erb:21
 #: app/views/account/_menu.html.erb:42
 msgid "Search"
 msgstr "Rechercher"
@@ -2873,6 +2892,7 @@ msgstr "Ajouter une connaissance"
 
 #: app/views/knowledges/_knowledges_info.html.erb:21
 #: app/views/logiciels/_softwares_info.html.erb:29
+#: app/views/clients/_clients_info.html.erb:23
 msgid "By name"
 msgstr "Par nom"
 
@@ -3547,14 +3567,14 @@ msgstr "License"
 
 #: app/views/logiciels/show.html.erb:34
 #: app/views/logiciels/_softwares_info.html.erb:51
-#: app/views/logiciels/_form.html.erb:27
+#: app/views/logiciels/_form.html.erb:25
 msgid "Technologies"
 msgstr "Technologies"
 
 #: app/views/logiciels/show.html.erb:37
 #: app/views/logiciels/_softwares_info.html.erb:42
 #: app/views/logiciels/_softwares_list.html.erb:7
-#: app/views/logiciels/_form.html.erb:23
+#: app/views/logiciels/_form.html.erb:22
 msgid "Group"
 msgstr "Groupe"
 
@@ -3605,7 +3625,8 @@ msgstr "Technologie(s)"
 msgid "Package(s)"
 msgstr "Paquet(s)"
 
-#: app/views/logiciels/_form.html.erb:12 app/views/clients/index.html.erb:4
+#: app/views/logiciels/_form.html.erb:12
+#: app/views/clients/_clients_list.html.erb:5
 #: app/views/clients/_form.html.erb:24
 msgid "Logo"
 msgstr "Logo"
@@ -3929,6 +3950,10 @@ msgstr "Par contrat"
 msgid "By expert"
 msgstr "Par expert"
 
+#: app/views/demandes/lists/_requests_info.html.erb:43
+msgid "[ Me ]"
+msgstr "[ Moi ]"
+
 #: app/views/demandes/lists/_requests_info.html.erb:48
 msgid "Attributes"
 msgstr "Attributs"
@@ -4242,25 +4267,17 @@ msgstr "Éditer un statut"
 msgid "New status"
 msgstr "Nouveau statut"
 
-#: app/views/clients/stats.html.erb:1
-msgid "Statistics by clients"
-msgstr "Statistiques par clients"
-
+#: app/views/clients/_clients_list.html.erb:3
 #: app/views/clients/stats.html.erb:4 app/views/clients/stats.html.erb:30
-#: app/views/clients/index.html.erb:3
 msgid "a client"
 msgstr "un client"
 
-#: app/views/clients/index.html.erb:1
-msgid "List of the clients"
-msgstr "Liste des clients"
-
-#: app/views/clients/index.html.erb:4 app/views/clients/_form.html.erb:32
-#: app/views/bienvenue/admin.html.erb:36
+#: app/views/clients/_clients_list.html.erb:5
+#: app/views/clients/_form.html.erb:32 app/views/bienvenue/admin.html.erb:36
 msgid "Systems"
 msgstr "Systèmes"
 
-#: app/views/clients/index.html.erb:4
+#: app/views/clients/_clients_list.html.erb:5
 #: app/views/account/_show_engineer.html.erb:30
 #: app/views/account/_edit_recipient.html.erb:10
 #: app/views/account/_edit_engineer.html.erb:23
@@ -4268,25 +4285,22 @@ msgstr "Systèmes"
 msgid "Contracts"
 msgstr "Contrats"
 
-#: app/views/clients/index.html.erb:4 app/views/clients/_form.html.erb:28
+#: app/views/clients/_clients_list.html.erb:5
+#: app/views/clients/_form.html.erb:28
 msgid "Access code"
 msgstr "Code d'accès"
 
-#: app/views/clients/index.html.erb:26
+#: app/views/clients/_clients_list.html.erb:27
 msgid "Add a logo"
 msgstr "Ajouter un logo"
 
-#: app/views/clients/index.html.erb:27
-msgid "Inactive clients"
-msgstr "Clients inactifs"
-
-#: app/views/clients/index.html.erb:28
+#: app/views/clients/_clients_list.html.erb:29
 msgid "Stats"
 msgstr "Statut"
 
-#: app/views/clients/index.html.erb:29
-msgid "a client "
-msgstr "un client "
+#: app/views/clients/stats.html.erb:1
+msgid "Statistics by clients"
+msgstr "Statistiques par clients"
 
 #: app/views/clients/edit.html.erb:1
 msgid "Edit the client %s"
@@ -4329,6 +4343,10 @@ msgstr "système"
 #: app/views/clients/show.html.erb:59
 msgid "request"
 msgstr "demande"
+
+#: app/views/clients/_clients_info.html.erb:25
+msgid "By system"
+msgstr "Par système"
 
 #: app/views/clients/new.html.erb:1
 msgid "Add a new client"
@@ -4413,17 +4431,17 @@ msgid "Preferences"
 msgstr "Préférences"
 
 #: app/views/account/_show_account_information.html.erb:37
-#: app/views/account/_edit_account_informations.html.erb:76
+#: app/views/account/_edit_account_informations.html.erb:77
 msgid "Daily Digest"
 msgstr "Activité quotidienne"
 
 #: app/views/account/_show_account_information.html.erb:41
-#: app/views/account/_edit_account_informations.html.erb:80
+#: app/views/account/_edit_account_informations.html.erb:81
 msgid "Weekly Digest"
 msgstr "Activité hebdomadaire"
 
 #: app/views/account/_show_account_information.html.erb:45
-#: app/views/account/_edit_account_informations.html.erb:84
+#: app/views/account/_edit_account_informations.html.erb:85
 msgid "Monthly Digest"
 msgstr "Activité mensuelle"
 
@@ -5072,6 +5090,12 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
+
+#~ msgid "List of the clients"
+#~ msgstr "Liste des clients"
+
+#~ msgid "a client "
+#~ msgstr "un client "
 
 #~ msgid "Preference|All mail"
 #~ msgstr "All mail"
