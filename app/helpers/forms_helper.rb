@@ -58,23 +58,24 @@ module FormsHelper
 
   # select_onchange(@clients, @current_client, 'client')
   # options
-  # :width limite la taille du texte en nb de caractères
-  # :title à afficher comme 1er élément de la liste (no value)
-  # :first_value première ligne à afficher, doit répondre à .name et .id
-  # :first_name libéllé de la 1ère ligne à afficher 
-  # :onchange action si changement
-  # :size hauteur du select
+  # :width limit size of displayed characters
+  # :title 1st element of the list. Default is the selector '» '
+  # :first_value, first_line :
+  #   1st content line to display, after the title.
+  #    It <strong>must</strong> respond_to? :name & :id
+  # :onchange javascript's action
+  # :size height of the select
   def select_onchange(list, default, name, options = {})
     title = [[options[:title] || '» ', '' ]]
     options[:onchange] ||= 'this.form.submit();'
     options[:name] ||= name
-    
+
     if options.has_key?(:first_value)
       options[:first_name] ||= options[:first_value].name
-      list = [[ options[:first_name] , options[:first_value].id ]].concat(list || []) 
+      title.push([options[:first_name] , options[:first_value].id ])
     end
     list = title.concat(list || [])
-    
+
     default_value = (default.is_a?(Numeric) ? default : 0)
     select = options_for_select(list, default_value)
     content_tag :select, select, options
