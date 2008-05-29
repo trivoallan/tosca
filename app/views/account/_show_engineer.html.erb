@@ -5,14 +5,15 @@
 
   <h1><b><%= _('Engineer') %></b></h1><br />
 
-  <p><b><%= _('Name') + ' :'%></b><%= @user_engineer.name %></p>
+ <p>
+  <% if @user_engineer.chef_de_projet? %>
+    <b><%= _('Project manager') %></b><br />
+  <% end %>
 
-  <p><b><%= _('Project manager') + ' : '%></b>
-  <%= 'X' if @user_engineer.chef_de_projet %></p>
-
-  <p><b><%= _('OSSA expert')%></b>
-  <%= 'X' if @user_engineer.expert_ossa %></p>
-
+  <% if @user_engineer.expert_ossa? %>
+    <b><%= _('OSSA expert')%></b><br />
+  <% end %>
+ </p>
 
   <% for column in Ingenieur.content_columns %>
    <p><b><%= column.human_name %>:</b> <%= @user_engineer.send(column.name) %>
