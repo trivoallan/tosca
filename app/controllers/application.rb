@@ -112,8 +112,7 @@ private
     'considérons pas que c\'est une erreur. Si vous pensez le contraire, ' +
     'n\'hésitez pas à nous contacter.'
   def rescue_action_in_public(exception)
-    case exception.class
-    when ActiveRecord::RecordNotFound, RoutingError then
+    if exception.is_a? ActiveRecord::RecordNotFound
       msg = WARN_NOID
     else
       msg = ERROR_MESSAGE
