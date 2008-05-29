@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-28 17:34+0200\n"
-"PO-Revision-Date: 2008-05-19 11:14+0200\n"
+"PO-Revision-Date: 2008-05-29 17:16+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -5090,18 +5090,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
-
-#~ msgid "List of the clients"
-#~ msgstr "Liste des clients"
-
-#~ msgid "a client "
-#~ msgstr "un client "
-
-#~ msgid "Preference|All mail"
-#~ msgstr "All mail"
-
-#~ msgid "Preference|Digest daily"
-#~ msgstr "Résumé journalier"
-
-#~ msgid "Preference|Digest weekly"
-#~ msgstr "Résumé hebdomadaire"
