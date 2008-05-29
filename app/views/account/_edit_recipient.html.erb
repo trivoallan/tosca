@@ -1,3 +1,5 @@
+<% create_account = (controller.action_name == 'signup' ||
+				     controller.action_name == 'ajax_place') %>
 
 <% if @user_recipient and not session[:user].beneficiaire %>
   <h1><b><%= _('Recipient') %></b></h1><br />
@@ -23,6 +25,6 @@
    <%= check_box 'beneficiaire', 'notifier_cc'  %></p>
   <% end %>
 
-  <%= observe_client_field %>
+  <%= observe_client_field if create_account %>
   <%= observe_client_list %>
 <% end %>
