@@ -275,8 +275,10 @@ private
 
   # Partial variables used in forms
   def _form
-    options = { :order => 'id', :conditions =>
-      [ 'roles.id >= ? ', session[:user].role_id ] }
+    conditions = (@user_engineer ?
+                  [ 'roles.id BETWEEN ? AND 3', session[:user].role_id ] :
+                  'roles.id BETWEEN 4 AND 5')
+    options = { :order => 'id', :conditions => conditions }
     @roles = Role.find_select(options, false)
     _form_recipient; _form_engineer
   end
