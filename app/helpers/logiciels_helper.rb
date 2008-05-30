@@ -1,9 +1,15 @@
 module LogicielsHelper
 
   # Display a link to a Logiciel (software)
-  def public_link_to_logiciel(logiciel)
+  # Options :
+  #   * :size => size of the picture,
+  #      (:small, :thumb & so on. See app/models/image.rb for full list)
+  # Call it like this
+  # public_link_to_logiciel @logiciel
+  # public_link_to_logiciel @logiciel, :size => :thumb
+  def public_link_to_logiciel(logiciel, options = {})
     return '-' unless logiciel and logiciel.is_a? Logiciel
-    text = software_logo(logiciel)
+    text = software_logo(logiciel, options)
     text = logiciel.name if text.blank?
     public_link_to text, logiciel_path(logiciel), LinksHelper::NO_HOVER
   end

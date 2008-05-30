@@ -4,7 +4,7 @@
    <%= @logiciel.name %> <%= link_to_edit(@logiciel) %>
 <table><tr>
   <% unless @logiciel.image.blank? %>
-    <td><%= software_logo(@logiciel) %></td>
+    <td><%= software_logo(@logiciel, :size => :thumb) %></td>
   <% else %>
     <td><h2><%= '"%s"' % @logiciel.name %></h2></td>
   <% end %>
