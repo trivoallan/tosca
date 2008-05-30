@@ -439,6 +439,8 @@ module ActiveRecord
       if time
         if time.is_a? Date
           res = time.to_s
+        elsif time.hour == 0 && time.min == 0
+          res = time.to_date.to_s
         else
           res = time.strftime("%d/%m/%Y %Hh%M")
         end
