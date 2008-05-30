@@ -122,7 +122,7 @@ class AccountController < ApplicationController
     # Experts does not need to be scoped on accounts, but they can filter
     # only on their contract.
     scope = {}
-    if session[:user].restricted? || @beneficiaire
+    if @beneficiaire
       scope = User.get_scope(session[:user].contrat_ids)
     end
     User.send(:with_scope, scope) do
