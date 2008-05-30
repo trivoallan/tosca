@@ -1,0 +1,11 @@
+<h1><%= _("Team %s") % @team.name %></h1>
+<p>
+  <b><%= _("Contact") %> : </b><%= @team.contact %>
+</p>
+<p>
+  <b><%= _("Motto") %> : </b><%= @team.motto %>
+</p>
+
+
+<%= link_to _('Edit'), edit_team_path(@team) %> |
+<%= link_to _('Back'), teams_path %>

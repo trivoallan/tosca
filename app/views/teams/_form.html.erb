@@ -1,0 +1,14 @@
+<%= error_messages_for :team %>
+
+<p>
+  <label for="team_name"><%= _("Name of the Team") %></label>
+  <%= text_field :team, :name %>
+</p>
+<p>
+  <label for="team_motto"><%= _("Motto of the Team") %></label>
+  <%= text_field :team, :motto %>
+</p>
+<p>
+  <label for="team_contact_id"><%= _("Manager of the Team") %></label>
+  <%= select :team, :contact_id, @users %>
+</p>
