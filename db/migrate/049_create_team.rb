@@ -5,17 +5,17 @@ class AddTeam < ActiveRecord::Migration
       t.integer :user_cache, :contact_id
     end
     
-    create_table :teams_users do |t|
+    create_table :users_teams do |t|
       t.integer :user_id, :team_id
     end
-    add_index :teams_users, :user_id
-    add_index :teams_users, :team_id
+    add_index :users_teams, :user_id
+    add_index :users_teams, :team_id
     
-    create_table :teams_contrats do |t|
+    create_table :contrats_teams do |t|
       t.integer :contrat_id, :team_id
     end
-    add_index :teams_contrats, :contrat_id
-    add_index :teams_contrats, :team_id
+    add_index :contrats_teams, :contrat_id
+    add_index :contrats_teams, :team_id
   end
 
   def self.down
