@@ -5,10 +5,6 @@ class ContributionsControllerTest < ActionController::TestCase
     :ingenieurs, :typecontributions, :beneficiaires
 
   def setup
-    @controller = ContributionController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-
     login 'admin', 'admin'
   end
 
@@ -52,8 +48,6 @@ class ContributionsControllerTest < ActionController::TestCase
   end
 
   def test_should_be_able_to_update
-    login 'admin', 'admin' # setup method is broken as of Rails 2.0.2 ...
-
     get :edit, :id => contributions(:contribution_00001).id
     assert_template 'edit'
     assert_response :success
@@ -64,8 +58,6 @@ class ContributionsControllerTest < ActionController::TestCase
   end
 
   def test_should_be_able_to_create
-    login 'admin', 'admin' # setup method is broken as of Rails 2.0.2 ...
-
     get :new, :id => Demande.find(:first).id
     assert_template 'new'
     assert_response :success
