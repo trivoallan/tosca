@@ -245,11 +245,11 @@ module ActionView
 
       # modify datetime_select to insert date order specified on
       # countries.yml file.
-      def datetime_select(object_name, method, options = {})
+      def datetime_select(object_name, method, options = {}, html_options = {})
         if GettextLocalize::date_order.respond_to? :merge
           options.reverse_merge!(GettextLocalize::date_order) unless options.include? :order
         end
-        orig_datetime_select(object_name, method, options)
+        orig_datetime_select(object_name, method, options, html_options)
       end
 
       alias_method :orig_select_datetime, :select_datetime
@@ -262,13 +262,13 @@ module ActionView
       end
 
     end
-    
+
     class InstanceTag
       alias_method :orig_to_datetime_select_tag , :to_datetime_select_tag
-    
-      def to_datetime_select_tag(options = {})
+
+      def to_datetime_select_tag(options = {}, html_options = {})
         options.reverse_merge!(GettextLocalize::date_order) unless options.include? :order
-        orig_to_datetime_select_tag(options)
+        orig_to_datetime_select_tag(options, html_options)
       end
     end
 
@@ -317,5 +317,3 @@ class Array
     orig_to_sentence(options)
   end
 end
-
-

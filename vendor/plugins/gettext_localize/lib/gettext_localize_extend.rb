@@ -168,8 +168,8 @@ module ActionView::Helpers::DateHelper
 
   # overwrite to set the monthnames in current locale
   # TODO: Look for a better way to do this
-  
-  def select_month(date, options = {})
+
+  def select_month(date, options = {}, html_options = {})
     val = date ? (date.kind_of?(Fixnum) ? date : date.month) : ''
     if options[:use_hidden]
       hidden_html(options[:field_name] || 'month', val, options)
@@ -185,14 +185,14 @@ module ActionView::Helpers::DateHelper
         else
           month_names[month_number]
         end
-  
+
         month_options << ((val == month_number) ?
           %(<option value="#{month_number}" selected="selected">#{month_name}</option>\n) :
           %(<option value="#{month_number}">#{month_name}</option>\n)
         )
       end
-      select_html(options[:field_name] || 'month', month_options, options)
+      select_html(options[:field_name] || 'month', month_options, options, html_options)
     end
   end
-  
+
 end
