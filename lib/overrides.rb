@@ -406,10 +406,10 @@ module ActiveRecord
     # /!\ Beware of applying the collect!{|c| [ c.name, c.id ] } before
     #     displaying it /!\
     def self.find_select(options = {}, collect = true)
-      options[:select] = 'id, name'
+      options[:select] = "#{self.table_name}.id, #{self.table_name}.name"
       options[:order] ||= "#{self.table_name}.name ASC"
       res = self.find(:all, options)
-      res.collect!{ |o| [o.name, o.id]} if collect
+      res.collect!{ |o| [o.name, o.id] } if collect
       res
     end
 

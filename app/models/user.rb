@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
 
   acts_as_reportable
   belongs_to :image
-  has_many :piecejointes
   belongs_to :role
+  belongs_to :team
+  
+  has_many :piecejointes
   has_many :documents
   has_many :commentaires
 
@@ -136,7 +138,6 @@ class User < ActiveRecord::Base
     return match
   end
 
-
   def name
     strike(:name)
   end
@@ -161,7 +162,6 @@ class User < ActiveRecord::Base
     (client? ? 'recipient' : 'expert')
   end
 
-
   def self.reset_permission_strings
     @@permission_strings = Array.new(Role.count)
   end
@@ -182,7 +182,6 @@ class User < ActiveRecord::Base
   def find_select(options = { })
     find_active4select(options)
   end
-
 
   # For Ruport :
   def beneficiaire_client_name

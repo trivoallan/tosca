@@ -4,6 +4,7 @@
 require 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
+
   # The priority is based upon order of creation:
   #   first created -> highest priority.
 
@@ -117,6 +118,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :statuts, :member => { :help => :get }
   map.resources :severites
   map.resources :supports
+  map.resources :teams
   map.resources :time_tickets
   map.resources :typecontributions
   map.resources :typedemandes

@@ -152,7 +152,7 @@ class ContributionsController < ApplicationController
   end
 
   def ajax_paquets
-    return render_text('') unless request.xml_http_request? and params[:id]
+    return render(:text => '') unless request.xml_http_request? and params[:id]
 
     # la magie de rails est cassé pour la 1.2.2, en mode production
     # donc je dois le faire manuellement
@@ -160,10 +160,10 @@ class ContributionsController < ApplicationController
     clogiciel = [ 'paquets.logiciel_id = ?', params[:id].to_i ]
     options = Paquet::OPTIONS.dup
     options[:conditions] = clogiciel
-    @paquets = Paquet.find(:all, options)
+    @paquets = Paquet.find_select(options)
     options = Binaire::OPTIONS.dup
     options[:conditions] = clogiciel
-    @binaires = Binaire.find(:all, options)
+    @binaires = Binaire.find_select(options)
 
     render :partial => 'liste_paquets', :layout => false
   end

@@ -32,7 +32,6 @@ class Contrat < ActiveRecord::Base
         [ 'contrats.id IN (?)', contrat_ids ] } }
   end
 
-
   def credit?
     rule_type == Rules.first
   end
@@ -110,5 +109,5 @@ class Contrat < ActiveRecord::Base
   has_many :_logiciels, :through => :paquets, :group =>
     'logiciels.id', :source => 'logiciel', :order => 'logiciels.name ASC'
 
-  # alias_method :to_s, :name
+#  alias_method :to_s, :name
 end

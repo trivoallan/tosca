@@ -6,7 +6,7 @@ class AlertsController < ApplicationController
 
     options = { :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
     conditions = 'demandes.contrat_id IN (?) AND demandes.statut_id = 1'
-    options[:conditions] = [ conditions, flash[:contrat_ids]]
+    options[:conditions] = [ conditions, flash[:contrat_ids] ]
     @request_found = nil
     Demande.without_include_scope(@ingenieur, @beneficiaire) do
       @request_found = Demande.find(:first, options)

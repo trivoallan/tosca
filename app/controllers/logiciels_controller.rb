@@ -117,7 +117,7 @@ class LogicielsController < ApplicationController
 
 private
   def _form
-    @competences = Competence.find_select({}, false)
+    @competences = Competence.find_select
     @groupes = Groupe.find_select
     @licenses = License.find_select
   end

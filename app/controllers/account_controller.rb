@@ -241,7 +241,7 @@ class AccountController < ApplicationController
       conditions.push(client_id)
     end
     options = options.dup.update(:conditions => conditions)
-    @contrats = Contrat.find_select(options, false)
+    @contrats = Contrat.find_select(options)
     @user = (user_id.blank? ? User.new : User.find(user_id))
   end
 
@@ -279,7 +279,7 @@ private
                   [ 'roles.id BETWEEN ? AND 3', session[:user].role_id ] :
                   'roles.id BETWEEN 4 AND 5')
     options = { :order => 'id', :conditions => conditions }
-    @roles = Role.find_select(options, false)
+    @roles = Role.find_select(options)
     _form_recipient; _form_engineer
   end
 
@@ -293,8 +293,8 @@ private
 
   def _form_engineer
     return unless @user_engineer
-    @competences = Competence.find_select({}, false)
-    @contrats = Contrat.find_select(Contrat::OPTIONS, false)
+    @competences = Competence.find_select
+    @contrats = Contrat.find_select(Contrat::OPTIONS)
     @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
     @user.role_id = 3 if @user.new_record?
   end

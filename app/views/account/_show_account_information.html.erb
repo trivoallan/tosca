@@ -22,6 +22,12 @@
     <th><%= _('User|Role') %></th>
     <td><%= @user.role.name %></td>
   </tr>
+   <% if @user.team %>  
+  <tr>
+    <th><%= _('User|Team') %></th>
+    <td><%= @user.team.name %></td>
+  </tr>
+   <% end %>
    <% unless @user.informations.blank? %>
     <tr><td colspan="2"><fieldset>
      <legend><%=_('User|Informations')%></legend><%= @user.informations %>

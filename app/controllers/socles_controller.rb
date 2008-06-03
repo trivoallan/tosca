@@ -54,7 +54,7 @@ class SoclesController < ApplicationController
   private
   def _form
     @machines = Machine.find :all
-    @clients = Client.find(:all, :select => 'clients.name, clients.id')
+    @clients = Client.find_select
   end
 
 end

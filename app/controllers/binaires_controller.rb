@@ -58,7 +58,7 @@ class BinairesController < ApplicationController
     if @binaire.paquet
       options = { :conditions => [ 'contributions.logiciel_id = ?', @binaire.paquet.logiciel_id ] }
     end
-    @contributions = Contribution.find(:all, options)
+    @contributions = Contribution.find_select(options)
     @paquets = Paquet.find_select(Paquet::OPTIONS)
     @arches = Arch.find_select
     @socles = Socle.find_select

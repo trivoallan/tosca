@@ -53,8 +53,7 @@
    <tr>
     <th><%= _('User|Login') %></th>
     <td><%= @user.login %></td>
-   </tr>
-
+  </tr>
   <% end %>
   <% unless create_account %>
    <tr style="display:none;">
@@ -67,6 +66,12 @@
     <th><label for="user_pwd_confirmation"><%= _('Confirm this last') %></label></th>
     <td><%= password_field :user, :pwd_confirmation %></td>
    </tr>
+  <% end %>
+  <% if @user.team %>  
+  <tr>
+    <th><%= _('User|Team') %></th>
+    <td><%= @user.team.name %></td>
+  </tr>
   <% end %>
 
   <% if @ingenieur %>

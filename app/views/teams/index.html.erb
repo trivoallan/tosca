@@ -1,22 +1,14 @@
 <h1><%= _("List of the teams") %></h1>
 
-<table>
-  <tr>
-    <td><%= _("Name") %></td>
-    <td><%= _("Contact") %></td>
-    <td><%= _("Motto") %></td>
-  </tr>
-<% for team in @teams %>
-  <tr>
-    <td><%= team.name %></td>
-    <td><%= team.contact %></td>
-    <td><%= team.motto %></td>
-    <td><%= link_to _('Show'), team %></td>
-    <td><%= link_to _('Edit'), edit_team_path(team) %></td>
-  </tr>
-<% end %>
-</table>
+<%= show_pages_links(@team_pages, _('a team')) %>
 
-<br />
+<% titles = [_('Name'), _('Contact'), _('Motto')]%>
+<%= show_table(@teams, Team, titles) { |t|
+  result = ''
+  result << "<td>#{t.name}</td>"
+  result << "<td>#{t.contact}</td>"
+  result << "<td>#{t.motto}</td>"
+  result << "#{link_to_actions_table t}"
+}%>
 
-<%= link_to _('New team'), new_team_path %>
+<%= show_pages_links(@team_pages, _('a team')) %><br />

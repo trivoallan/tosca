@@ -12,3 +12,17 @@
   <label for="team_contact_id"><%= _("Manager of the Team") %></label>
   <%= select :team, :contact_id, @users %>
 </p>
+<p>
+  <fieldset>
+    <legend><%=_('Team members')%></legend>
+    <%= hbtm_check_box(@team.users, @users,
+                         'team[user_ids]', :size => 3) %>
+  </fieldset>
+</p>
+<p>
+  <fieldset>
+    <legend><%=_('Contracts of the team')%></legend>
+    <%= hbtm_check_box(@team.contrats, @contracts,
+                         'team[contrat_ids]', :size => 3) %>
+  </fieldset>
+</p>

@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
 
   def index
-    @teams = Team.find(:all)
+    @team_pages, @teams = paginate :teams, :per_page => 25
   end
 
   def show
@@ -49,5 +49,6 @@ class TeamsController < ApplicationController
 private
   def _form
     @users = User.find_select
+    @contracts = Contrat.find_select(Contrat::OPTIONS)
   end
 end
