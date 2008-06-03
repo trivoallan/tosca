@@ -1,11 +1,4 @@
 
-class Array
-   #   [ 4, 5 ].sum
-   #      9
-   def sum
-    inject( nil ) { |sum,x| sum ? sum+x : x }
-   end
-end
 
 class String
   # this convenience method search an url in a string and add the "http://" needed
@@ -50,6 +43,21 @@ if defined? Mongrel::DirHandler
       alias_method :send_file, :send_file_with_expires
     end
   end
+end
+
+module Ruport::Reportable::InstanceMethods
+  # Overrides, since Ruport is not really active for supporting edge rails.
+  # Maybe we can remove it with a further version of acts_as_reportable
+  # It's broken as of version 1.1.0.
+  def get_attributes_with_options(options = {})
+        attrs = attributes()
+        attrs = attrs.inject({}) {|h,(k,v)|
+                  h["#{options[:qualify_attribute_names]}.#{k}"] = v; h
+                } if options[:qualify_attribute_names]
+        attrs
+      end
+
+
 end
 
 
@@ -361,9 +369,8 @@ module ActionView::Helpers::UrlHelper
     result = LoginSystem::public_user.authorized?(perm)
 
     unless result
-      if session.data.has_key? :user and session[:user].authorized?(perm)
-        return true
-      end
+      user = session[:user]
+      return true if user and user.authorized?(perm)
     end
     result
   end
