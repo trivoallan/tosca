@@ -105,9 +105,8 @@ class AccountController < ApplicationController
       session[:accounts_filters] = Filters::Accounts.new(params[:filters])
     end
     conditions = nil
-    if session.data.has_key? :accounts_filters
-      accounts_filters = session[:accounts_filters]
-
+    accounts_filters = session[:accounts_filters]
+    if accounts_filters
       # Specification of a filter f :
       # [ namespace, field, database field, operation ]
       conditions = Filters.build_conditions(accounts_filters, [

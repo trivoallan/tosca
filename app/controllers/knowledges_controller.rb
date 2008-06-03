@@ -11,9 +11,8 @@ class KnowledgesController < ApplicationController
         Filters::Knowledges.new(params[:filters])
     end
     conditions = nil
-    if session.data.has_key? :knowledges_filters
-      knowledges_filters = session[:knowledges_filters]
-
+    knowledges_filters = session[:knowledges_filters]
+    if knowledges_filters
       # Specification of a filter f :
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.

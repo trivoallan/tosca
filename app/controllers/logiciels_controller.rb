@@ -14,16 +14,16 @@ class LogicielsController < ApplicationController
     end
 
     options = { :per_page => 10, :order => 'logiciels.name',
-                :include => [:groupe,:competences] }
+      :include => [:groupe], :joins =>
+      "INNER JOIN competences_logiciels ON logiciels.id = competences_logiciels.logiciel_id" }
     conditions = []
 
     if params.has_key? :filters
       session[:softwares_filters] = Filters::Softwares.new(params[:filters])
     end
     conditions = nil
-    if session.data.has_key? :softwares_filters
-      softwares_filters = session[:softwares_filters]
-
+    softwares_filters = session[:softwares_filters]
+    if softwares_filters
       # we do not want an include since it's only for filtering.
       unless softwares_filters['contrat_id'].blank?
         options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id'

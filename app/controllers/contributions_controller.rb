@@ -72,9 +72,8 @@ class ContributionsController < ApplicationController
         Filters::Contributions.new(params[:filters])
     end
     conditions = nil
-    if session.data.has_key? :contributions_filters
-      contributions_filters = session[:contributions_filters]
-
+    contributions_filters = session[:contributions_filters]
+    if contributions_filters
       # Specification of a filter f :
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.

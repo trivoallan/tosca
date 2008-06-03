@@ -10,9 +10,8 @@ class ClientsController < ApplicationController
     end
 
     conditions = nil
-    if session.data.has_key? :clients_filters
-      clients_filters = session[:clients_filters]
-
+    clients_filters = session[:clients_filters]
+    if clients_filters
       # Here is the trick for the "active" part of the view
       special_cond = _active_filters(clients_filters[:active])
 

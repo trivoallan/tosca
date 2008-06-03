@@ -80,9 +80,10 @@ protected
     true
   end
 
+  # Todo : Why is there 2 times the same information in args of define_scope ???
   def scope(&block)
-    is_connected = session.data.has_key? :user
     user = session[:user]
+    is_connected = !user.nil?
     define_scope(user, is_connected, &block)
   end
 
@@ -104,18 +105,19 @@ protected
 
 private
 
-  # TODO : put it elsewhere and not in a constant : it needs to be localisable
-  ERROR_MESSAGE = 'Une erreur est survenue. Notre service a été prévenu' +
-    ' et dispose des informations nécessaires pour corriger.<br />' +
-    'N\'hésitez pas à nous contacter si le problème persiste.'
-  WARN_NOID = 'Veuillez préciser une adresse existante et valide. Nous ne ' +
-    'considérons pas que c\'est une erreur. Si vous pensez le contraire, ' +
-    'n\'hésitez pas à nous contacter.'
+  # This array contains all errors that we want to rescue nicely
+  # It's mainly for search engine bots, which seems to love
+  # hammering wrong address
+  RescuedErrors = [ ActiveRecord::RecordNotFound, ActionController::RoutingError ]
   def rescue_action_in_public(exception)
-    if exception.is_a? ActiveRecord::RecordNotFound
-      msg = WARN_NOID
-    else
-      msg = ERROR_MESSAGE
+    msg = nil
+    RescuedErrors.each{ |k| if exception.is_a? k
+        msg = _('This address is not valid. If you think this is an error, do not hesitate to contact us.')
+      end
+    }
+    if msg.nil?
+      msg = _('An error has occured. We are now advised of your issue and have all the required information to investigate in order to fix it.') +
+        '<br />' + _('Please contact us if your problem remains.')
       if ENV['RAILS_ENV'] == 'production'
         Notifier::deliver_error_message(exception, clean_backtrace(exception),
                                         session.instance_variable_get("@data"),

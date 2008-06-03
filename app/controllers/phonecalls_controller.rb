@@ -11,8 +11,8 @@ class PhonecallsController < ApplicationController
     end
 
     conditions = nil
-    if session.data.has_key? :calls_filters
-      calls_filters = session[:calls_filters]
+    calls_filters = session[:calls_filters]
+    if calls_filters
       # Specification of a filter f :
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.

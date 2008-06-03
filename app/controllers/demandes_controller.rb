@@ -66,9 +66,8 @@ class DemandesController < ApplicationController
     conditions = nil
     @title = _('All the requests')
 
-    if session.data.has_key? :requests_filters
-      requests_filters = session[:requests_filters]
-
+    requests_filters = session[:requests_filters]
+    if requests_filters
       # Here is the trick for the "flow" part of the view
       special_cond = active_filters(requests_filters[:active])
 
