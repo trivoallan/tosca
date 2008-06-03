@@ -5,8 +5,8 @@ class Client < ActiveRecord::Base
   belongs_to :image
   has_many :beneficiaires, :dependent => :destroy
   has_many :active_recipients, :class_name => 'Beneficiaire', :include => :user,
-    :conditions => 'users.inactive = 0', :dependent => :destroy
-  has_many :contrats, :dependent => :destroy, :include => [:client]
+    :conditions => 'users.inactive = 0'
+  has_many :contrats, :dependent => :destroy
   has_many :documents, :dependent => :destroy
 
   has_and_belongs_to_many :socles
@@ -55,17 +55,19 @@ class Client < ActiveRecord::Base
 
 
   def find_socles_select
-    self.socles.find(:all).collect{|s| [  s.name, s.id ] }
+    options = { :conditions => [ "clients_socles.client_id = ?", self.id ],
+      :joins =>
+      'INNER JOIN clients_socles ON clients_socles.socle_id=socles.id'}
+    Socle.find(:all, options).collect{|s| [ s.name, s.id ] }
   end
 
 
-  # TODO : c'est lent et moche
+  # TODO : it's slow & ugly
   # returns true if we have a contract to support an entire distribution
   # for this client, false otherwise.
   def support_distribution
-    contrats = self.contrats.find(:all, :select => 'socle')
     result = false
-    contrats.each { |c| result = true if c.rule.max == -1 }
+    self.contrats.each { |c| result = true if c.rule.max == -1 }
     result
   end
 

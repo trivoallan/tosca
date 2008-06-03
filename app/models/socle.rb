@@ -9,8 +9,7 @@ class Socle < ActiveRecord::Base
 
   def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'clients_socles.client_id IN (?)', client_ids ], :joins =>
-        'INNER JOIN clients_socles ON clients_socles.socle_id=socles.id'} }
+        [ 'clients_socles.client_id IN (?)', client_ids ], :include => [:clients] } }
   end
 
 end
