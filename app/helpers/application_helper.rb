@@ -54,7 +54,7 @@ module ApplicationHelper
     size = elements.size
     result = ''
     return '' unless size > 0
-    if !session.data.has_key?(:user) and !options.has_key?(:public)
+    if session[:user] && !options.has_key?(:public) && name
       return "<u><b>#{pluralize(size, name.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
@@ -214,7 +214,7 @@ module ApplicationHelper
     class_name = options[:class] ||= 'simple_menu'
     out = ''
     out << '<div class="'+ class_name +'">'
-    out << form_tag(demandes_url, :method => :get) if options.has_key? :form
+    out << form_tag(demandes_path || '', :method => :get) if options.has_key? :form
     out << ' <ul>'
     menu.each { |e| out << "<li>#{e}</li>" }
     out << ' </ul>'

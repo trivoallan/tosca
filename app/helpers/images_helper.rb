@@ -51,7 +51,7 @@ module ImagesHelper
     desc = _('progress bar')
     style = "background-position: #{percent}px; background-color: #{color};"
     options = { :alt => desc, :title => desc, :style => style,
-      :class => 'percentImage' }
+      :class => 'percentImage no_hover aligned_picture' }
     image_tag('percentimage.png', options)
   end
 

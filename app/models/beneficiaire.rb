@@ -1,10 +1,6 @@
-
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
 class Beneficiaire < ActiveRecord::Base
   acts_as_reportable
-  belongs_to :user, :dependent => :destroy
+  belongs_to :user
   belongs_to :client, :counter_cache => true
   has_many :phonecalls
 

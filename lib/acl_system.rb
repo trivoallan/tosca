@@ -33,7 +33,8 @@ module ACLSystem
     result = LoginSystem::public_user.authorized?(perm)
 
     unless result
-      if session.data.has_key? :user and session[:user].authorized?(perm)
+      user = session[:user]
+      if user and user.authorized?(perm)
         return true
       end
     end

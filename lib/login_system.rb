@@ -36,7 +36,8 @@ module LoginSystem
 
     return true if authorize?(LoginSystem::public_user)
 
-    if session.data.has_key?(:user) and authorize?(session[:user])
+    user = session[:user]
+    if user and authorize?(user)
       return true
     end
 
