@@ -67,7 +67,8 @@ class LoadPermissions < ActiveRecord::Migration
                  'List knowledges of human ressources' ],
                [ '^logiciels/(?!destroy)', 'Manage softwares' ],
                [ '^paquets/(?!destroy)', 'Manage packages' ],
-               [ '^machines/(?!destroy)', 'Manage servers' ]
+               [ '^machines/(?!destroy)', 'Manage servers' ],
+               [ '^teams/(?!destroy)', 'Manage teams' ]
              ]
     add_permission.call(roles, access)
 
@@ -77,7 +78,8 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^demandes/(index|print|show)$', 'Read access to requests' ],
                [ '^logiciels/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
-               [ '^socles/show$', 'Read-only access to system' ]
+               [ '^socles/show$', 'Read-only access to system' ],
+               [ '^socles/(index|show)$', 'Read-only access to the teams' ]
              ]
     add_permission.call(roles, access)
 
