@@ -4,8 +4,8 @@
 <head>
  <%#precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
  <% locale = Locale.get.language.intern %>
- <% user = session.data.has_key? :user %>
- <% role_localised = :"#{locale}#{session[:user].role_id}" if user %>
+ <% user = session[:user] %>
+ <% role_localised = :"#{locale}#{user.role_id}" if user %>
  <% @@public_menu ||= {}; @@public_links ||= {}; @@public_head ||= {}; @@menu ||= {} %>
  <% @@public_head[locale] =
       '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
@@ -44,7 +44,7 @@
           <% if user %>
             <% infos = [
                  public_link_to(_("Logout"), logout_accounts_path),
-                 link_to(_("My account"), edit_account_path(session[:user]))
+                 link_to(_("My account"), edit_account_path(user))
 		       ] %>
             <%= build_simple_menu(infos, :class => 'account_menu') %>
           <% else %>
@@ -113,6 +113,7 @@
 
   <!-- TinyMCE can be loaded after the page : -->
   <%= javascript_include_tag('tiny_mce/tiny_mce') %>
+  <%# Tuned according to the wiki : http://wiki.moxiecode.com/index.php/TinyMCE:Performance_tuning_TinyMCE %>
   <script type="text/javascript">
 	 //<![CDATA[
      tinyMCE.init({
@@ -123,6 +124,8 @@
         relative_urls : false,
         paste_auto_cleanup_on_paste : true,
         button_tile_map : true,
+		verify_html : false,
+		entity_encoding : "raw",
         remove_script_host : false,
         <%# content_css : "<%=stylesheet_path 'custom_tiny'", %>
         theme : 'advanced',
