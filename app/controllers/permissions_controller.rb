@@ -48,6 +48,6 @@ class PermissionsController < ApplicationController
 
   private
   def _form
-    @roles = Role.find(:all)
+    @roles = Role.find_select
   end
 end

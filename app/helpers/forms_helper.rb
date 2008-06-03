@@ -46,8 +46,8 @@ module FormsHelper
     options_size = options[:size]
     count = 1
     for data in collection
-      out << radio_button(object, param, data.id)
-      out << "<label for=\"#{object}_#{param}_#{data.id}\">#{data.to_s}</label> "
+      out << radio_button(object, param, data.last)
+      out << "<label for=\"#{object}_#{param}_#{data.last}\">#{data.first}</label> "
       if options_size
         out << '<br />' if (count % options_size == 0)
         count += 1

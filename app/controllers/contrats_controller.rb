@@ -75,7 +75,7 @@ private
       @clients = Client.find_select
     end
     @engagements = Engagement.find(:all, Engagement::OPTIONS)
-    @ingenieurs = User.find(:all, User::EXPERT_OPTIONS)
+    @ingenieurs = User.find_select(User::EXPERT_OPTIONS)
     @rules = []
     begin
       @rules = @contrat.rule_type.constantize.find_select

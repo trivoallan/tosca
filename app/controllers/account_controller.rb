@@ -285,7 +285,10 @@ private
   def _form_recipient
     return unless @user_recipient
     @clients = Client.find_select({}, false)
-    @contrats = (@user_recipient.client ? @user_recipient.client.contrats : nil ) || @clients.first.contrats
+    client_id = (@user_recipient.client ? @user_recipient.client_id : @clients.first.id)
+    options = { :conditions => ['contrats.client_id = ?', client_id ]}
+
+    @contrats = Contrat.find_select(Contrat::OPTIONS.merge(options))
     @clients.collect!{|c| [c.name, c.id] }
     @user.role_id = 4 if @user.new_record?
   end
