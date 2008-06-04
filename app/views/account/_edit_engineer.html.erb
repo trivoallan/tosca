@@ -13,25 +13,27 @@
 
   <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b></p>
   <% unless @user_engineer.knowledges.empty? %>
-     <% options = {:edit => 'knowledge', :no_title => true } %>
+     <% options = {:edit => 'knowledge', :no_title => true} %>
      <%= show_liste(@user_engineer.knowledges, '', options) do |k|
         link_to_knowledge k
       end %>
   <hr />
   <% end %>
-
-  <table width="100%" border="0"><tr>
-    <th><%= _('Contracts')%></th>
-    <td style="text-align: right;">
-       (<%= _('only') %>
-      <%= select(:user_recipient, :client_id, @clients) %>
-        <%= _('contracts') %>)
-    </td>
-  </tr></table>
-  <hr />
-   <div id="contracts" class="long_bloc_scroll">
-     <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 1) %>
-   </div>
+  
+  <p><label><%= _('Contracts')%></label></p>
+  <div id="contracts" class="long_bloc_scroll">
+    <% # We display only the contracts of the user %>
+    <%= hbtm_check_box( @user.own_contracts, @contrats, 'user[own_contract_ids]', :size => 1) %>
+  </div>
+  
+  <p><label><%= _('Contracts of the Team') %></label></p>
+  <div id="team_contracts" class="long_bloc_scroll">
+    <%= show_liste(@user.team.contrats, '', :public => true) do |c|
+           link_to c.name, contrat_path(c)
+        end if @user.team %>
+  </div>
+  <hr/>
+  
   <%= observe_client_field if create_account %>
   <%= observe_client_list %>
 <% end %>

@@ -212,7 +212,6 @@ class AccountController < ApplicationController
     end
   end
 
-
   # Used during creation to display engineer or recipient form
   def ajax_place
     return render(:nothing => true) unless request.xhr? and params.has_key? :client

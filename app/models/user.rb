@@ -17,12 +17,12 @@ class User < ActiveRecord::Base
 
   has_one :ingenieur, :dependent => :destroy
   has_one :beneficiaire, :dependent => :destroy
-
-  has_and_belongs_to_many :contrats
-
+  
+  has_and_belongs_to_many :own_contracts, :class_name => "Contrat"
+  
   validates_length_of :login, :within => 3..20
   validates_length_of :password, :within => 5..40
-  validates_presence_of :login, :password, :role, :email, :name, :contrats
+  validates_presence_of :login, :password, :role, :email, :name
   validates_uniqueness_of :login
 
   attr_accessor :pwd_confirmation
@@ -66,7 +66,6 @@ class User < ActiveRecord::Base
     true
   end
 
-
   # Eck ... We must add message manually in order to
   # not have the "pwd" prefix ... TODO : find a pretty way ?
   # TODO : check if gettext is an answer ?
@@ -93,8 +92,7 @@ class User < ActiveRecord::Base
           [ 'contrats_users.contrat_id IN (?) ', contrat_ids ], :joins =>
         'INNER JOIN contrats_users ON contrats_users.user_id=users.id ' } }
   end
-
-
+  
   # Associate current User to a recipient profile
   def associate_recipient(client_id)
     client = nil
@@ -146,7 +144,16 @@ class User < ActiveRecord::Base
   def name_clean
     read_attribute(:name)
   end
-
+  
+  # The contracts of a User = his contracts + the contracts of his team
+  def contrats
+    contracts = self.own_contracts.dup
+    if self.team
+      contracts.concat(self.team.contrats)
+    end
+    contracts
+  end
+  
   # cached, coz' it's used in scopes
   def contrat_ids
     @contrat_ids ||= self.contrats.find(:all, :select => 'id').collect {|c| c.id}
