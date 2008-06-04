@@ -237,7 +237,7 @@ class Demande < ActiveRecord::Base
     life_cycle.first.update_attribute :elapsed, rule.elapsed_on_create
 
     # all the others
-    total, previous, contrat = 0, life_cycle.first, self.contrat
+    previous, contrat = life_cycle.first, self.contrat
     life_cycle.each do |step| # a step is a Commentaire object
       step.update_attribute :elapsed, rule.compute_between(previous, step, contrat)
       self.elapsed.add step

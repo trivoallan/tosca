@@ -11,22 +11,22 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_authenticate
-    %w(admin manager expert customer viewer).each { |u|
+    %w(admin manager expert customer viewer).each do |u|
       assert User.authenticate(u, u)
       assert_nil User.authenticate(u, 'a wrong password')
-    }
+    end
   end
 
   def test_generate_password
-    User.find(:all).each{  |u|
+    User.find(:all).each do |u|
       u.generate_password
       assert u.save
-    }
+    end
   end
 
   def test_create_person
     u = User.new(:role_id => 1, :login => "newu", :email => "foo@bar.com",
-                 :name => "foo", :contrat_ids =>[1])
+                 :name => "foo")
     u.generate_password
     assert u.save
 
@@ -76,7 +76,7 @@ class UserTest < Test::Unit::TestCase
 
   def test_disallowed_passwords
     u = User.new(:role_id => 1, :email => "foo@bar.com",
-                 :name => "foo", :contrat_ids =>[1])
+                 :name => "foo")
     u.login = "nobody"
 
     u.pwd = u.pwd_confirmation = "tiny"
@@ -96,7 +96,7 @@ class UserTest < Test::Unit::TestCase
 
   def test_bad_logins
     u = User.new(:role_id => 1, :email => "foo@bar.com",
-                 :name => "foo", :contrat_ids =>[1])
+                 :name => "foo")
     u.pwd = u.pwd_confirmation = "a_very_secure_password"
 
     [ "x",  "hugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhug", "" ].each { |p|
@@ -110,10 +110,9 @@ class UserTest < Test::Unit::TestCase
     assert u.errors.empty?
   end
 
-
   def test_login_collision
     u = User.new(:role_id => 1, :email => "foo@bar.com",
-                 :name => "foo", :contrat_ids =>[1])
+                 :name => "foo")
     u.login = "admin"
     u.generate_password
     assert !u.save

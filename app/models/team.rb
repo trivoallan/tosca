@@ -8,6 +8,6 @@ class Team < ActiveRecord::Base
     :foreign_key => 'contact_id'
     
   validates_uniqueness_of :name
-  validates_presence_of :name
+  validates_presence_of :name, :contact
     
 end

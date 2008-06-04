@@ -295,7 +295,7 @@ private
   def _form_engineer
     return unless @user_engineer
     @competences = Competence.find_select
-    @contrats = Contrat.find_select(Contrat::OPTIONS)
+    @contrats = @user.all_contract_minus_team.collect { |c| [c.name, c.id ] }
     @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
     @user.role_id = 3 if @user.new_record?
   end

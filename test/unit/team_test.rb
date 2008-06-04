@@ -1,8 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TeamTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  fixtures :users, :contrats
+  
+  #I see no tests for this model (for the momentt
+  def test_true
+    true
   end
+  
 end

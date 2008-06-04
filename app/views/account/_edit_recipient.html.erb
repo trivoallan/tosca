@@ -10,9 +10,8 @@
   <hr />
 
   <div id="contracts"><%= _('Contracts')%><br />
-    <%= hbtm_check_box( @user.contrats, @contrats, 'user[contrat_ids]', :size => 2) %>
+    <%= hbtm_check_box( @user.contrats, @contrats, 'user[own_contract_ids]', :size => 2) %>
   </div>
-
 
   <% if false #deactivated for now. %>
    <p><label for="beneficiaire_notifier_subalternes"> <%= _('Notify subalterns') %> </label><br />

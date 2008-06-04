@@ -79,7 +79,7 @@ class Contribution < ActiveRecord::Base
 
   # délai (en secondes) entre la déclaration et l'acceptation
   # delai_to_s (texte)
-  # en jours : sec2jours(delai)
+  # en jours : sec2day(delai)
   def delai
     if cloture_le and reverse_le
       (cloture_le - reverse_le)

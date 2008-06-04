@@ -23,16 +23,20 @@
   <p><label><%= _('Contracts')%></label></p>
   <div id="contracts" class="long_bloc_scroll">
     <% # We display only the contracts of the user %>
-    <%= hbtm_check_box( @user.own_contracts, @contrats, 'user[own_contract_ids]', :size => 1) %>
+    <%= hbtm_check_box( @user.own_contracts, 
+                        @user.all_contract_minus_team.collect { |c| [ c.name, c.id ] }, 
+                        'user[own_contract_ids]', :size => 1) %>
   </div>
   
+  <% if @user.team %>
   <p><label><%= _('Contracts of the Team') %></label></p>
   <div id="team_contracts" class="long_bloc_scroll">
-    <%= show_liste(@user.team.contrats, '', :public => true) do |c|
+    <%= show_liste(@user.team.contrats, '') do |c|
            link_to c.name, contrat_path(c)
-        end if @user.team %>
+        end %>
   </div>
   <hr/>
+  <% end %>
   
   <%= observe_client_field if create_account %>
   <%= observe_client_list %>

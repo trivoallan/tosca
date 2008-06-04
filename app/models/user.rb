@@ -65,6 +65,15 @@ class User < ActiveRecord::Base
     # false will invalidate the save
     true
   end
+  
+  after_save do |record|
+    # To make sure we have only one time a contract
+    if record.team
+      record.own_contracts = record.own_contracts - record.team.contrats
+    end
+    # false will invalidate the save
+    true
+  end
 
   # Eck ... We must add message manually in order to
   # not have the "pwd" prefix ... TODO : find a pretty way ?
@@ -154,15 +163,23 @@ class User < ActiveRecord::Base
     contracts
   end
   
+  #Get all the contracts that is not of the team
+  def all_contract_minus_team
+    c = Contrat.find(:all)
+    if self.team
+      c = c - self.team.contrats
+    end
+    c
+  end
+  
   # cached, coz' it's used in scopes
   def contrat_ids
-    @contrat_ids ||= self.contrats.find(:all, :select => 'id').collect {|c| c.id}
+    @contrat_ids ||= self.contrats.collect {|c| c.id }
   end
 
   # cached, coz' it's used in scopes
   def client_ids
-    @client_ids ||= self.contrats.find(:all, :select =>
-                      'distinct client_id').collect {|c| c.client_id}
+    @client_ids ||= self.contrats.collect {|c| c.client_id }
   end
 
   def kind

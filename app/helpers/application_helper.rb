@@ -38,7 +38,7 @@ module ApplicationHelper
     number_to_human_size(File.size(file))
   end
 
-  ### LISTES ET TABLES ##########################################################
+  ### LISTS ET TABLES ##########################################################
   # Display an Array of elements in a list manner
   # It takes a bloc in order to know what to display
   # Options :
@@ -54,8 +54,9 @@ module ApplicationHelper
     size = elements.size
     result = ''
     return '' unless size > 0
-    if session[:user] && !options.has_key?(:public) && name
-      return "<u><b>#{pluralize(size, name.capitalize)}" << _(' to date') << '</b></u><br />'
+   
+    if session[:user] && options.has_key?(:public)
+      return "<u><b>#{pluralize(size, name.to_s.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
     unless name.blank? or options.has_key? :no_title
@@ -110,7 +111,6 @@ module ApplicationHelper
     elements.each { |e| result << "<li>#{e}</li>" unless e.blank? }
     result << '</ul>'
   end
-
 
   # Call it like :
   # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
@@ -192,7 +192,7 @@ module ApplicationHelper
   end
 
   # conversion secondes en jours
-  def sec2jour(seconds)
+  def sec2day(seconds)
     ((seconds.abs)/(60*60*24)).round
   end
   # conversion secondes en minutes
