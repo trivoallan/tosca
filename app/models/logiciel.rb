@@ -16,7 +16,8 @@ class Logiciel < ActiveRecord::Base
 
   validates_presence_of :name, :message =>
     _('You have to specify a name')
-
+  validates_presence_of :groupe, :message =>
+    _('You have to specify a group')
   validates_length_of :competences, :minimum => 1, :message =>
     _('You have to specify at least one technology')
 

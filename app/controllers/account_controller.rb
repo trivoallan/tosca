@@ -357,10 +357,10 @@ private
   end
 
 
-    # Bulk import users
+  # Bulk import users
   # TODO : this method is too fat, unused, untested and have a lots
-  # of improvements possibility. It's deactivated for now, until we have sometime
-  # to work this cleanly
+  # of improvements possibility. It's deactivated for now, until
+  # someone find some times in order have it work properly
 =begin
   def multiple_signup
     _form
