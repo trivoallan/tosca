@@ -38,7 +38,6 @@ class AccountControllerTest < ActionController::TestCase
     form.user.name = "Recipient"
     form.user.email = App::MaintenerEmail
     form.user.login = "recipient"
-    form.user.contrat_ids.value = "1"
     form.submit
 
     user = assigns(:user)
@@ -64,7 +63,6 @@ class AccountControllerTest < ActionController::TestCase
     form.user.login = "engineer"
     # field used to indicate that's an expert account
     form.user.client = "false"
-    form.user.contrat_ids.value = "1"
     form.submit
 
     user = assigns(:user)
