@@ -162,15 +162,6 @@ class User < ActiveRecord::Base
     contracts
   end
 
-  #Get all the contracts that is not of the team
-  def all_contract_minus_team
-    c = Contrat.find(:all)
-    if self.team
-      c = c - self.team.contrats
-    end
-    c
-  end
-
   # cached, coz' it's used in scopes
   def contrat_ids
     @contrat_ids ||= self.contrats.collect {|c| c.id }
