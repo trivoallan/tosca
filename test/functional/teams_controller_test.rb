@@ -27,11 +27,11 @@ class TeamsControllerTest < ActionController::TestCase
       assert_template 'new'
       
       assert_difference('Team.count') do
-        post :create, :team => { 
-          :name => "TestTeam#{l}",
-          :motto => "TestMotto",
-          :contact_id => 1
-        }
+        form = select_form 'form_team'
+        form.team.name = "TestTeam#{l}"
+        form.team.motto = "TestMotto"
+        form.team.contact_id = 1
+        form.submit
       end
       assert_redirected_to team_path(assigns(:team))
     end
