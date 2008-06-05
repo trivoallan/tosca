@@ -72,7 +72,10 @@ class ClientsController < ApplicationController
   end
 
   def create
-    @client = Client.new(params[:client])
+    Socle.send(:with_exclusive_scope) do
+      @client = Client.new(params[:client])
+    end
+    @client.creator = session[:user]
     if @client.save
       flash[:notice] = _('Client created successfully.') + '<br />' +
         _('You have now to create the associated contract.')

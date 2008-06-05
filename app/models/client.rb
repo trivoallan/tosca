@@ -14,7 +14,9 @@ class Client < ActiveRecord::Base
   has_many :paquets, :through => :contrats, :include => Paquet::INCLUDE
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
-  validates_presence_of :name
+  belongs_to :creator, :class_name => 'User'
+
+  validates_presence_of :name, :creator
   validates_length_of :name, :in => 3..50
 
 

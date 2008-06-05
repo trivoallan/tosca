@@ -14,8 +14,9 @@ class Contrat < ActiveRecord::Base
   has_many :binaires, :through => :paquets
   has_many :appels
   belongs_to :rule, :polymorphic => true
+  belongs_to :creator, :class_name => 'User'
 
-  validates_presence_of :client, :rule
+  validates_presence_of :client, :rule, :creator
   validates_numericality_of :heure_ouverture, :heure_fermeture,
     :only_integer => true
   validates_inclusion_of :heure_ouverture, :heure_fermeture, :in => 0..24

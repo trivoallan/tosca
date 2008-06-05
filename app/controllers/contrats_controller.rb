@@ -30,15 +30,19 @@ class ContratsController < ApplicationController
     value = params[:value]
     render :nothing => true and return unless request.xhr? && !value.blank?
     @rules = []
-    if value.grep(/^Rules::/)
+    if value.grep(/^Rules::/) # H@k3rz protection
       @rules = value.constantize.find_select
     end
     @type = 'rules' unless @rules.empty?
   end
 
   def create
-    @contrat = Contrat.new(params[:contrat])
+    Client.send(:with_exclusive_scope) do
+      @contrat = Contrat.new(params[:contrat])
+    end
+    @contrat.creator = session[:user]
     if @contrat.save
+      # TODO : now that we have the team notion, maybe we can remove this ?
       set_team_ossa
       flash[:notice] = _('Contract was successfully created.')
       redirect_to contrats_path

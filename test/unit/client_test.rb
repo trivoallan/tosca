@@ -10,7 +10,7 @@ class ClientTest < Test::Unit::TestCase
 
   def test_logo
     image_file = fixture_file_upload('/files/logo_linagora.gif', 'image/gif')
-    client = Client.new(:name => "Linaragots")
+    client = Client.new(:name => "Linaragots", :creator => User.find(:first))
     assert client.save
 
     images(:image_00001).destroy
