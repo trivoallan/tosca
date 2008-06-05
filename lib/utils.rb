@@ -110,35 +110,7 @@ end
 
 
 module Utils
-  # This method check and install missing gems.
-  # It recursively relaunch in order to try to install all missing gems
-  # It exits nicefully if there was a failure during an installation try.
-  def self.check_and_install_missing_gems(*gems)
-    gems.each do |g|
-      begin
-        gem g[0], ">=#{g[1]}"
-        g[2..-1].each { |r| require r }
-      rescue Exception => e
-        puts e.message
-        $stderr.puts "gem '#{g[0]} (#{g[1]})' cannot be found, " <<
-          "trying to install it..."
-        command = "sudo gem install '#{g[0]}' -v '#{g[1]}'"
-        $stdout.puts command
-        %x[#{command}]
-        Kernel.exit(-1) if $? != 0
-        # try to reload it after. Exit if it fails
-        begin
-          gem g[0], "=#{g[1]}"
-          g[2..-1].each { |r| require r }
-        rescue Exception => e
-          $stderr.puts "gem '#{g[0]} (#{g[1]})' was installed but " <<
-            "I cannot find it. Please restart me."
-          puts e.message
-        end
-      end
-    end
-  end
-
+  # Used to help a newcomer
   def self.check_files(path, error_msg)
     if !File.exists? path
       $stderr.puts error_msg

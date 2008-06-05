@@ -32,6 +32,25 @@ Rails::Initializer.run do |config|
   # Distinguish cache from normal pages
   config.action_controller.page_cache_directory = RAILS_ROOT + "/public/cache/"
 
+  ### External libs ###
+  # Used to i18n and l10n
+  config.gem 'gettext'
+  # Used to generate export in Ods Format
+  # Versions are enforced because ruport devs seems to love
+  # "the break everything at each release" mantra
+  config.gem 'acts_as_reportable', :lib => 'ruport/acts_as_reportable', :version => '1.1.0'
+  config.gem 'ruport', :version => '1.6.1'
+  config.gem 'ruport-util', :lib => 'ruport/util', :version => '0.14.0'
+  # Used to generate graphs of activity report & resize some pictures
+  # We keep 1.15.10 version, coz debian makes an old & staging distribution
+  config.gem 'rmagick', :lib => 'RMagick', :version => '1.15.10'
+  # Used to manipulate OpenDocument
+  config.gem 'rubyzip', :lib => 'zip/zip'
+  # Used to be colorfull for attachment previews
+  config.gem 'ultraviolet', :lib => 'uv'
+  # User to send Jabber Notification
+  config.gem 'xmpp4r'
+
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
@@ -72,29 +91,7 @@ require 'config'
 require 'overrides'
 
 
-# External libs
-# Currently use this format : [ gem_name, gem_version, *needed_requires ]
-NeededGems = [ # Used by Ruport
-    [ 'acts_as_reportable', '1.1.0' ],
-    # Used to i18n and l10n
-    [ 'gettext', '1.90.0', 'gettext_localize', 'gettext_localize_rails' ],
-    # Used to generate Ods
-    [ 'ruport', '1.6.0', 'ruport' ],
-    # Used by Ruport
-    [ 'ruport-util', '0.14.0', 'ruport/util' ],
-    # Used to generate graphs of activity report
-    [ 'rmagick', '1.15.10' ],
-    # Used to manipulate OpenDocument
-    [ 'rubyzip', '0.9.1' ],
-    # Used to be colorfull for attachment previews
-    [ 'ultraviolet', '0.10.2' ],
-    # User to send Jabber Notification
-    [ 'xmpp4r', '0.3.2' ]
-   ]
-# Check and load all gems
-Utils::check_and_install_missing_gems(*NeededGems)
-
-# Check and create used dirs
+# Check and create used dirs, which are not on the SCM
 path = File.join RAILS_ROOT, 'public', 'cache'
 Dir.mkdir(path) unless File.exists? path
 
