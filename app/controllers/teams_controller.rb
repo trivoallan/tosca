@@ -9,8 +9,8 @@ class TeamsController < ApplicationController
   end
 
   def new
+    _form
     @team = Team.new
-    @users = User.find(:all)
   end
 
   def edit
