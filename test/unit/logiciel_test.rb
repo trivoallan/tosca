@@ -10,7 +10,8 @@ class LogicielTest < Test::Unit::TestCase
   def test_logo
     image_file = fixture_file_upload('/files/Logo_OpenOffice.org.png', 'image/svg')
     logiciel = Logiciel.new(:name => "OOo",
-                            :competence_ids => [4, 8])
+                            :competence_ids => [4, 8],
+                            :groupe_id => 1)
     assert logiciel.save
 
     images(:image_00002).destroy
