@@ -48,9 +48,7 @@ class TeamsControllerTest < ActionController::TestCase
   def test_should_get_edit
     %w(admin manager).each do |l|
       login l, l
-      get :new
-      assert_response :success
-            
+      
       get :edit, :id => teams(:team_ossa).id
       assert_response :success
     end
@@ -59,8 +57,6 @@ class TeamsControllerTest < ActionController::TestCase
   def a_test_should_update_team
     %w(admin manager).each do |l|
       login l, l
-      get :new
-      assert_response :success
       
       put :update, :id => teams(:one).id, :team => { }
       assert_redirected_to team_path(assigns(:team))
