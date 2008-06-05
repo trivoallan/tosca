@@ -69,7 +69,7 @@ demande_00004:
   mantis_id: 
   last_comment_id: "7976"
   ingenieur_id: "2"
-  id: "991"
+  id: "4"
   binaire_id: 
   submitter_id: "2"
   expected_on: 2008-05-15 10:23:14
@@ -90,7 +90,7 @@ demande_00005:
   mantis_id: 
   last_comment_id: "7943"
   ingenieur_id: "1"
-  id: "662"
+  id: "5"
   binaire_id: 
   submitter_id: "2"
   expected_on: 2008-05-22 15:02:43
@@ -111,7 +111,7 @@ demande_00006:
   mantis_id: 
   last_comment_id: "7360"
   ingenieur_id: "2"
-  id: "866"
+  id: "6"
   binaire_id: 
   submitter_id: "2"
   expected_on: 2008-04-22 20:32:32
@@ -132,7 +132,7 @@ demande_00007:
   mantis_id: 
   last_comment_id: "7834"
   ingenieur_id: "3"
-  id: "1008"
+  id: "7"
   binaire_id: 
   submitter_id: "2"
   expected_on: 2008-05-14 16:47:35
@@ -153,7 +153,7 @@ demande_00008:
   mantis_id: 
   last_comment_id: "800"
   ingenieur_id: "3"
-  id: "256"
+  id: "8"
   binaire_id: 
   submitter_id: "2"
   expected_on: 
@@ -174,7 +174,7 @@ demande_00009:
   mantis_id: 
   last_comment_id: "897"
   ingenieur_id: "1"
-  id: "254"
+  id: "9"
   binaire_id: 
   submitter_id: "2"
   expected_on: 
