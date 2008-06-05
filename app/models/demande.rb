@@ -25,6 +25,15 @@ class Demande < ActiveRecord::Base
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
   has_many :piecejointes, :through => :commentaires
 
+  named_scope :actives, lambda { |contrat_ids| { :conditions =>
+      { :statut_id => Statut::OPENED, :contrat_id => contrat_ids }
+    }
+  }
+  named_scope :inactives, lambda { |contrat_ids| { :conditions =>
+      { :statut_id => Statut::CLOSED, :contrat_id => contrat_ids }
+    }
+  }
+
   # Used for digest report see
   N_('year')
   N_('month')

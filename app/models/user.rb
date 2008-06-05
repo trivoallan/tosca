@@ -1,5 +1,4 @@
 require 'digest/sha1'
-require 'ruport'
 
 class User < ActiveRecord::Base
   # Small utils for inactive & password, located in /lib/*.rb
@@ -10,16 +9,16 @@ class User < ActiveRecord::Base
   belongs_to :image
   belongs_to :role
   belongs_to :team
-  
+
   has_many :piecejointes
   has_many :documents
   has_many :commentaires
 
   has_one :ingenieur, :dependent => :destroy
   has_one :beneficiaire, :dependent => :destroy
-  
+
   has_and_belongs_to_many :own_contracts, :class_name => "Contrat"
-  
+
   validates_length_of :login, :within => 3..20
   validates_length_of :password, :within => 5..40
   validates_presence_of :login, :password, :role, :email, :name
@@ -65,7 +64,7 @@ class User < ActiveRecord::Base
     # false will invalidate the save
     true
   end
-  
+
   after_save do |record|
     # To make sure we have only one time a contract
     if record.team
@@ -101,7 +100,7 @@ class User < ActiveRecord::Base
           [ 'contrats_users.contrat_id IN (?) ', contrat_ids ], :joins =>
         'INNER JOIN contrats_users ON contrats_users.user_id=users.id ' } }
   end
-  
+
   # Associate current User to a recipient profile
   def associate_recipient(client_id)
     client = nil
@@ -153,7 +152,7 @@ class User < ActiveRecord::Base
   def name_clean
     read_attribute(:name)
   end
-  
+
   # The contracts of a User = his contracts + the contracts of his team
   def contrats
     contracts = self.own_contracts.dup
@@ -162,7 +161,7 @@ class User < ActiveRecord::Base
     end
     contracts
   end
-  
+
   #Get all the contracts that is not of the team
   def all_contract_minus_team
     c = Contrat.find(:all)
@@ -171,7 +170,7 @@ class User < ActiveRecord::Base
     end
     c
   end
-  
+
   # cached, coz' it's used in scopes
   def contrat_ids
     @contrat_ids ||= self.contrats.collect {|c| c.id }

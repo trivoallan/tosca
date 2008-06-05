@@ -1,6 +1,7 @@
 class Contrat < ActiveRecord::Base
   acts_as_reportable
   has_many :paquets, :dependent => :destroy
+  has_many :demandes
   belongs_to :client
   has_and_belongs_to_many :engagements, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
