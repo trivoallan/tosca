@@ -295,10 +295,10 @@ private
   def _form_engineer
     return unless @user_engineer
     @competences = Competence.find_select
-    @contrats = Contrat.find_select
+    @contrats = Contrat.find_select(Contrat::OPTIONS)
     # For usability matters, list of checkable own_contrats
     # won't contains any already available by the team.
-    @contrats -= @user.team.contrats.find_select if @user.team
+    @contrats -= @user.team.contrats.find_select(Contrat::OPTIONS) if @user.team
     @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
     @user.role_id = 3 if @user.new_record?
   end
