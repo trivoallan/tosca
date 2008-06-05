@@ -1,6 +1,6 @@
 <h1><%= _("Create a new team") %></h1>
 
-<% form_tag teams_path do %>
+<% form_tag teams_path, :id => 'form_team' do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _("Create") %>
 <% end %>

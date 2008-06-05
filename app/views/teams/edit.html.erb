@@ -1,6 +1,6 @@
 <h1><%= _("Editing a Team") %></h1>
 
-<% form_tag team_path(@team), :method => :put do %>
+<% form_tag team_path(@team), :id => 'form_team', :method => :put do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _("Edit") %>
 <% end %>

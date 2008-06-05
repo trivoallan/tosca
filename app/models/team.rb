@@ -9,5 +9,10 @@ class Team < ActiveRecord::Base
     
   validates_uniqueness_of :name
   validates_presence_of :name, :contact
+  
+  #Nice URL
+  def to_param
+    "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
+  end
     
 end
