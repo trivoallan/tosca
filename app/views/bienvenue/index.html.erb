@@ -54,13 +54,13 @@
     <tr><td style="width: 1%;" rowspan="2"><%=logo_client client%> </td><td>
       <%= _("You have access to one of our offers, which you have the detail at your disposal : %s") % link_to_my_client %></td>
     </tr>
-    <tr><td><%= _('You hope this tool wil give you an entire satisfaction.')%></td></tr>
   </table>
+  <p><%= _('We hope this tool wil give you an entire satisfaction.')%></p>
   <% access_code = @beneficiaire.client.code_acces %>
   <% unless access_code.blank? %>
-  <p><%= _('Your call number is')%>
-  <b><%=App::PhonePrefix%>&nbsp;<%=App::PhoneCode %></b>,
-  <%= _("and your access code is %s") % access_code%></b></p>
+   <p><%= _('Your call number is')%>
+   <b><%=App::PhonePrefix%>&nbsp;<%=App::PhoneCode %></b>,
+   <%= _("and your access code is %s") % access_code%></b></p>
   <% end %>
  </div>
  <% end %>
