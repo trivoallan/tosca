@@ -6,13 +6,13 @@
    <table class="show">
     <tr>
      <td><label for="client_name"><%= _("Name") %></label></td>
-     <td><%= text_field 'client', 'name'  %></td>
+     <td><%= text_field :client, :name  %></td>
     </tr><tr>
      <td colspan="2"><p><label for="client_description"><%= _("Description") %></label><br />
-        <%= text_area 'client', 'description', :rows => 10 %></p></td>
+        <%= text_area :client, :description, :rows => 10 %></p></td>
     </tr><tr>
      <td colspan="2"><label for="client_adresse"><%= _("Address") %></label><br />
-         <%= text_area 'client', 'adresse', :rows => 9 %></td>
+         <%= text_area :client, :adresse, :rows => 9 %></td>
     </tr>
    </table>
   </td><td  >
@@ -21,12 +21,11 @@
      <td><label for="client_inactive"><%= _("Inactive") %></label></td>
      <td><%= check_box :client, :inactive %></td>
     </tr><tr>
-     <td><label for="client_image_id"><%= _("Logo") %>
-           <%= link_to_new_client_logo %></label></td>
-     <td><%= select(:client, :image_id, @images) %></td>
+     <td><label for="client_image"><%= _("Logo") %></label></td>
+     <td><%= text_field :client, :image  %></td>
     </tr><tr>
      <td><label for="client_code_acces"><%= _("Access code") %></label></td>
-     <td><%= text_field 'client', 'code_acces', :size => 5 %></td>
+     <td><%= text_field :client, :code_acces, :size => 5 %></td>
     </tr><tr>
      <td colspan="2">
       <p><label><%= _("Systems") %></label></p>

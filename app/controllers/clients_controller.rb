@@ -76,7 +76,7 @@ class ClientsController < ApplicationController
       @client = Client.new(params[:client])
     end
     @client.creator = session[:user]
-    if @client.save
+    if @client.save and add_logo
       flash[:notice] = _('Client created successfully.') + '<br />' +
         _('You have now to create the associated contract.')
       redirect_to new_contrat_path(:id => @client.id)
@@ -92,7 +92,7 @@ class ClientsController < ApplicationController
 
   def update
     @client = Client.find(params[:id])
-    if @client.update_attributes(params[:client])
+    if @client.update_attributes(params[:client]) && add_logo
       flash[:notice] = _('Client updated successfully.')
       redirect_to client_path(@client)
     else
@@ -107,9 +107,6 @@ class ClientsController < ApplicationController
 
   private
   def _form
-    # only client picture.
-    @images = Image.find_select(:order => "clients.name", :include => [:client],
-      :conditions => 'images.logiciel_id IS NULL')
     # It's the only way to add new system to its own scope
     Socle.send(:with_exclusive_scope) do
       @socles = Socle.find_select
@@ -118,6 +115,17 @@ class ClientsController < ApplicationController
 
   def _panel
     @systems = Socle.find_select
+  end
+
+  def add_logo
+    image = params[:image]
+    unless image.nil? || image[:image].blank?
+      image[:description] = @client.name
+      @client.image = Image.new(image)
+      @client.image.save
+    else
+      true
+    end
   end
 
   # A small helper which set current flow filters
