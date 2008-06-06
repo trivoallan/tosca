@@ -42,7 +42,9 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ manager_id, expert_id ]
-    access = [ [ '^appels/(?!destroy)', 'Manage calls' ],
+    access = [ [ '^account/(show|become)$',
+                 'Read access and helper for customer account' ],
+               [ '^appels/(?!destroy)', 'Manage calls' ],
                [ '^bienvenue/admin$', 'Administration page' ],
                [ '^commentaires/(?!destroy)', 'Manage comments' ],
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
@@ -87,7 +89,6 @@ class LoadPermissions < ActiveRecord::Migration
     roles = [ expert_id ]
     access = [ [ '^clients/index$', 'Read-only access to list clients offers' ],
                [ '^demandes/(link|unlink)_contribution$', 'Link contribution with request' ],
-               [ '^account/(show|become)$', 'Read access and helper for customer account' ],
                [ '^contrats/(index|show)$', 'Read-only access to contracts'] ]
     add_permission.call(roles, access)
 
