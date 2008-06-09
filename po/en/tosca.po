@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-04 14:45+0200\n"
+"POT-Creation-Date: 2008-06-09 13:19+0200\n"
 "PO-Revision-Date: 2008-05-20 16:17+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: English <traduc@traduc.org>\n"
@@ -291,7 +291,7 @@ msgstr ""
 msgid "My&nbsp;Offer"
 msgstr ""
 
-#: app/helpers/clients_helper.rb:25 app/controllers/clients_controller.rb:128
+#: app/helpers/clients_helper.rb:25 app/controllers/clients_controller.rb:139
 #, fuzzy
 msgid "Active clients"
 msgstr "Customer"
@@ -300,7 +300,7 @@ msgstr "Customer"
 msgid "Display only active clients"
 msgstr ""
 
-#: app/helpers/clients_helper.rb:29 app/controllers/clients_controller.rb:125
+#: app/helpers/clients_helper.rb:29 app/controllers/clients_controller.rb:136
 #: app/views/clients/_clients_list.html.erb:28
 msgid "Inactive clients"
 msgstr ""
@@ -314,7 +314,7 @@ msgid "a container"
 msgstr ""
 
 #: app/helpers/account_helper.rb:18
-#: app/views/layouts/standard-layout.html.erb:47
+#: app/views/layouts/standard-layout.html.erb:72
 msgid "My account"
 msgstr ""
 
@@ -326,25 +326,25 @@ msgstr ""
 msgid " to date"
 msgstr ""
 
-#: app/helpers/application_helper.rb:125
+#: app/helpers/application_helper.rb:124
 msgid "No %s  at the moment"
 msgstr ""
 
-#: app/helpers/application_helper.rb:183
+#: app/helpers/application_helper.rb:182
 #: app/controllers/export_controller.rb:199
 #: app/views/reporting/_comex_tableaux.html.erb:20
 msgid "None"
 msgstr ""
 
-#: app/helpers/application_helper.rb:184
+#: app/helpers/application_helper.rb:183
 msgid "1 workday"
 msgstr ""
 
-#: app/helpers/application_helper.rb:185
+#: app/helpers/application_helper.rb:184
 msgid " workday"
 msgstr ""
 
-#: app/helpers/application_helper.rb:186
+#: app/helpers/application_helper.rb:185
 msgid " workdays"
 msgstr ""
 
@@ -552,15 +552,15 @@ msgstr ""
 msgid "Machine was successfully updated."
 msgstr ""
 
-#: app/controllers/contrats_controller.rb:43
+#: app/controllers/contrats_controller.rb:46
 msgid "Contract was successfully created."
 msgstr ""
 
-#: app/controllers/contrats_controller.rb:59
+#: app/controllers/contrats_controller.rb:62
 msgid "Contrat was successfully updated."
 msgstr ""
 
-#: app/controllers/contrats_controller.rb:83
+#: app/controllers/contrats_controller.rb:88
 msgid "Unknown rules for contract \"%s\""
 msgstr ""
 
@@ -794,23 +794,23 @@ msgstr ""
 msgid "Arch was successfully updated."
 msgstr ""
 
-#: app/controllers/teams_controller.rb:25
+#: app/controllers/teams_controller.rb:24
 msgid "Team %s was successfully created."
 msgstr ""
 
-#: app/controllers/teams_controller.rb:36
+#: app/controllers/teams_controller.rb:34
 msgid "Team %s was successfully updated."
 msgstr ""
 
-#: app/controllers/clients_controller.rb:77
+#: app/controllers/clients_controller.rb:80
 msgid "Client created successfully."
 msgstr ""
 
-#: app/controllers/clients_controller.rb:78
+#: app/controllers/clients_controller.rb:81
 msgid "You have now to create the associated contract."
 msgstr ""
 
-#: app/controllers/clients_controller.rb:93
+#: app/controllers/clients_controller.rb:96
 msgid "Client updated successfully."
 msgstr ""
 
@@ -1350,6 +1350,20 @@ msgstr "Name"
 msgid "Typecontribution|Description"
 msgstr "Description"
 
+#: app/models/role.rb:-
+#, fuzzy
+msgid "role"
+msgstr "Role"
+
+#: app/models/role.rb:-
+#, fuzzy
+msgid "Role|Name"
+msgstr "Name"
+
+#: app/models/role.rb:-
+msgid "Role|Info"
+msgstr ""
+
 #: app/models/statut.rb:5
 msgid "Submitted"
 msgstr ""
@@ -1574,7 +1588,7 @@ msgstr ""
 msgid "This request seems to be unstable."
 msgstr ""
 
-#: app/models/client.rb:34
+#: app/models/client.rb:36
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
 msgstr ""
 
@@ -1773,10 +1787,6 @@ msgid "Ingenieur|Chef de projet"
 msgstr ""
 
 #: app/models/ingenieur.rb:-
-msgid "Ingenieur|Expert ossa"
-msgstr ""
-
-#: app/models/ingenieur.rb:-
 msgid "Ingenieur|Image"
 msgstr ""
 
@@ -1907,31 +1917,35 @@ msgstr ""
 msgid "You have to specify a name"
 msgstr ""
 
-#: app/models/logiciel.rb:21
+#: app/models/logiciel.rb:20
+msgid "You have to specify a group"
+msgstr ""
+
+#: app/models/logiciel.rb:22
 msgid "You have to specify at least one technology"
 msgstr ""
 
-#: app/models/demande.rb:29
+#: app/models/demande.rb:38
 msgid "year"
 msgstr ""
 
-#: app/models/demande.rb:30
+#: app/models/demande.rb:39
 msgid "month"
 msgstr ""
 
-#: app/models/demande.rb:31
+#: app/models/demande.rb:40
 msgid "week"
 msgstr ""
 
-#: app/models/demande.rb:32
+#: app/models/demande.rb:41
 msgid "day"
 msgstr ""
 
-#: app/models/demande.rb:44
+#: app/models/demande.rb:53
 msgid "You must indicate a %s for your request"
 msgstr ""
 
-#: app/models/demande.rb:56
+#: app/models/demande.rb:65
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
@@ -1987,31 +2001,111 @@ msgstr ""
 msgid "Dependance|Version"
 msgstr "Version"
 
-#: app/models/user.rb:30
+#: app/models/user.rb:-
+msgid "user"
+msgstr ""
+
+#: app/models/user.rb:- app/views/account/_show_account_information.html.erb:7
+#: app/views/account/_edit_account_informations.html.erb:49
+#: app/views/account/_edit_account_informations.html.erb:54
+msgid "User|Login"
+msgstr "Login"
+
+#: app/models/user.rb:-
+msgid "User|Password"
+msgstr "Password"
+
+#: app/models/user.rb:-
+#: app/views/account/_show_account_information.html.erb:10
+#: app/views/account/_users_list.html.erb:9
+#: app/views/account/_edit_account_informations.html.erb:29
+msgid "User|Title"
+msgstr "Title"
+
+#: app/models/user.rb:-
+#: app/views/account/_show_account_information.html.erb:13
+#: app/views/account/_users_list.html.erb:10
+#: app/views/account/_edit_account_informations.html.erb:26
+msgid "User|Name"
+msgstr "Name"
+
+#: app/models/user.rb:-
+#: app/views/account/_show_account_information.html.erb:16
+#: app/views/account/_users_list.html.erb:16
+#: app/views/account/_edit_account_informations.html.erb:32
+msgid "User|Email"
+msgstr "Email"
+
+#: app/models/user.rb:-
+#: app/views/account/_show_account_information.html.erb:19
+#: app/views/account/_users_list.html.erb:17
+#: app/views/account/_edit_account_informations.html.erb:35
+msgid "User|Phone"
+msgstr "Phone"
+
+#: app/models/user.rb:-
+msgid "User|Image"
+msgstr "Image"
+
+#: app/models/user.rb:-
+#: app/views/account/_show_account_information.html.erb:33
+#: app/views/account/_edit_account_informations.html.erb:105
+msgid "User|Informations"
+msgstr "Informations"
+
+#: app/models/user.rb:-
+#, fuzzy
+msgid "User|Customer"
+msgstr "Name"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:40
+msgid "User|Inactive"
+msgstr "Inactive"
+
+#: app/models/user.rb:-
+#: app/views/account/_show_account_information.html.erb:22
+#: app/views/account/_users_list.html.erb:12
+#: app/views/account/_edit_account_informations.html.erb:99
+msgid "User|Role"
+msgstr "Role"
+
+#: app/models/user.rb:-
+msgid "User|Restricted"
+msgstr "Restricted"
+
+#: app/models/user.rb:-
+#: app/views/account/_show_account_information.html.erb:27
+#: app/views/account/_edit_account_informations.html.erb:72
+#, fuzzy
+msgid "User|Team"
+msgstr "Name"
+
+#: app/models/user.rb:29
 msgid "User|Pwd"
 msgstr "Password"
 
-#: app/models/user.rb:31
+#: app/models/user.rb:30
 msgid "User|Pwd confirmation"
 msgstr "Confirm your password"
 
-#: app/models/user.rb:82
+#: app/models/user.rb:83
 msgid "Password missing"
 msgstr ""
 
-#: app/models/user.rb:84
+#: app/models/user.rb:85
 msgid "Password is different from its confirmation"
 msgstr ""
 
-#: app/models/user.rb:88
+#: app/models/user.rb:89
 msgid "Your password is too long (max. 20)"
 msgstr ""
 
-#: app/models/user.rb:90
+#: app/models/user.rb:91
 msgid "Your password is too short (min. 5)"
 msgstr ""
 
-#: app/models/user.rb:94
+#: app/models/user.rb:95
 msgid "You must have specify a password."
 msgstr ""
 
@@ -3319,9 +3413,27 @@ msgstr ""
 msgid "Error, wrong type of contract"
 msgstr ""
 
+#: app/views/contrats/show.html.erb:26
+#, fuzzy
+msgid "Contractual commitments"
+msgstr "Client"
+
 #: app/views/contrats/show.html.erb:29
 msgid "expert"
 msgstr ""
+
+#: app/views/contrats/show.html.erb:31
+msgid "%s managing this contract"
+msgstr ""
+
+#: app/views/contrats/show.html.erb:31
+msgid "Teams"
+msgstr ""
+
+#: app/views/contrats/show.html.erb:31
+#, fuzzy
+msgid "Team"
+msgstr "Name"
 
 #: app/views/contrats/new.html.erb:1
 msgid "New contract"
@@ -3351,12 +3463,16 @@ msgstr ""
 msgid "Schedules"
 msgstr ""
 
-#: app/views/contrats/_form.html.erb:55
-msgid "Whole OSSA Team ?"
+#: app/views/contrats/_form.html.erb:52 app/views/contrats/_form.html.erb:53
+msgid "h"
 msgstr ""
 
-#: app/views/contrats/_form.html.erb:60
+#: app/views/contrats/_form.html.erb:57
 msgid "Engineers assigned to this contract"
+msgstr ""
+
+#: app/views/contrats/_form.html.erb:66
+msgid "Teams managing this contract"
 msgstr ""
 
 #: app/views/permissions/index.html.erb:1
@@ -3853,20 +3969,20 @@ msgid "a client"
 msgstr ""
 
 #: app/views/clients/_clients_list.html.erb:5
-#: app/views/clients/_form.html.erb:32 app/views/bienvenue/admin.html.erb:36
+#: app/views/clients/_form.html.erb:31 app/views/bienvenue/admin.html.erb:36
 msgid "Systems"
 msgstr ""
 
 #: app/views/clients/_clients_list.html.erb:5
-#: app/views/account/_show_engineer.html.erb:31
+#: app/views/account/_show_engineer.html.erb:21
 #: app/views/account/_edit_recipient.html.erb:12
-#: app/views/account/_edit_engineer.html.erb:23
+#: app/views/account/_edit_engineer.html.erb:18
 #: app/views/bienvenue/admin.html.erb:27 app/views/teams/show.html.erb:9
 msgid "Contracts"
 msgstr ""
 
 #: app/views/clients/_clients_list.html.erb:5
-#: app/views/clients/_form.html.erb:28
+#: app/views/clients/_form.html.erb:27
 msgid "Access code"
 msgstr ""
 
@@ -3941,18 +4057,8 @@ msgstr "Inactive"
 msgid "Show an account"
 msgstr ""
 
-#: app/views/account/_show_engineer.html.erb:10
+#: app/views/account/_show_engineer.html.erb:13
 #: app/views/account/_edit_engineer.html.erb:8
-msgid "Project manager"
-msgstr ""
-
-#: app/views/account/_show_engineer.html.erb:14
-#: app/views/account/_edit_engineer.html.erb:11
-msgid "OSSA expert"
-msgstr ""
-
-#: app/views/account/_show_engineer.html.erb:23
-#: app/views/account/_edit_engineer.html.erb:14
 msgid "Knowledges"
 msgstr ""
 
@@ -3969,7 +4075,7 @@ msgid "You are now logout"
 msgstr ""
 
 #: app/views/account/logout.html.erb:13
-#: app/views/layouts/standard-layout.html.erb:36
+#: app/views/layouts/standard-layout.html.erb:61
 msgid "Log in"
 msgstr ""
 
@@ -4005,53 +4111,6 @@ msgstr ""
 #: app/views/account/_users_info.html.erb:41
 msgid "Inconsistencies: "
 msgstr ""
-
-#: app/views/account/_show_account_information.html.erb:7
-#: app/views/account/_edit_account_informations.html.erb:49
-#: app/views/account/_edit_account_informations.html.erb:54
-msgid "User|Login"
-msgstr "Login"
-
-#: app/views/account/_show_account_information.html.erb:10
-#: app/views/account/_users_list.html.erb:9
-#: app/views/account/_edit_account_informations.html.erb:29
-msgid "User|Title"
-msgstr "Title"
-
-#: app/views/account/_show_account_information.html.erb:13
-#: app/views/account/_users_list.html.erb:10
-#: app/views/account/_edit_account_informations.html.erb:26
-msgid "User|Name"
-msgstr "Name"
-
-#: app/views/account/_show_account_information.html.erb:16
-#: app/views/account/_users_list.html.erb:16
-#: app/views/account/_edit_account_informations.html.erb:32
-msgid "User|Email"
-msgstr "Email"
-
-#: app/views/account/_show_account_information.html.erb:19
-#: app/views/account/_users_list.html.erb:17
-#: app/views/account/_edit_account_informations.html.erb:35
-msgid "User|Phone"
-msgstr "Phone"
-
-#: app/views/account/_show_account_information.html.erb:22
-#: app/views/account/_users_list.html.erb:12
-#: app/views/account/_edit_account_informations.html.erb:99
-msgid "User|Role"
-msgstr "Role"
-
-#: app/views/account/_show_account_information.html.erb:27
-#: app/views/account/_edit_account_informations.html.erb:72
-#, fuzzy
-msgid "User|Team"
-msgstr "Name"
-
-#: app/views/account/_show_account_information.html.erb:33
-#: app/views/account/_edit_account_informations.html.erb:105
-msgid "User|Informations"
-msgstr "Informations"
 
 #: app/views/account/_show_account_information.html.erb:40
 msgid "Preferences"
@@ -4097,21 +4156,17 @@ msgstr ""
 msgid "a new user"
 msgstr ""
 
-#: app/views/account/_edit_recipient.html.erb:18
+#: app/views/account/_edit_recipient.html.erb:17
 msgid "Notify subalterns"
 msgstr ""
 
-#: app/views/account/_edit_recipient.html.erb:21
+#: app/views/account/_edit_recipient.html.erb:20
 msgid "Notify at"
 msgstr ""
 
-#: app/views/account/_edit_recipient.html.erb:24
+#: app/views/account/_edit_recipient.html.erb:23
 msgid "Notify cc"
 msgstr ""
-
-#: app/views/account/_edit_account_informations.html.erb:40
-msgid "User|Inactive"
-msgstr "Inactive"
 
 #: app/views/account/_edit_account_informations.html.erb:63
 msgid "Modify your password"
@@ -4121,7 +4176,7 @@ msgstr ""
 msgid "Confirm this last"
 msgstr ""
 
-#: app/views/account/_edit_engineer.html.erb:29
+#: app/views/account/_edit_engineer.html.erb:28
 msgid "Contracts of the Team"
 msgstr ""
 
@@ -4230,7 +4285,7 @@ msgstr ""
 msgid "A new type of request"
 msgstr ""
 
-#: app/views/layouts/standard-layout.html.erb:46
+#: app/views/layouts/standard-layout.html.erb:71
 msgid "Logout"
 msgstr ""
 
@@ -4521,8 +4576,8 @@ msgid ""
 "disposal : %s"
 msgstr ""
 
-#: app/views/bienvenue/index.html.erb:57
-msgid "You hope this tool wil give you an entire satisfaction."
+#: app/views/bienvenue/index.html.erb:58
+msgid "We hope this tool wil give you an entire satisfaction."
 msgstr ""
 
 #: app/views/bienvenue/index.html.erb:61
@@ -4785,17 +4840,11 @@ msgstr[1] ""
 #~ msgid "Paquet|Active"
 #~ msgstr "Active"
 
-#~ msgid "Socle|Name"
-#~ msgstr "Name"
-
 #~ msgid "New|Client"
 #~ msgstr "Customer"
 
 #~ msgid "contrat"
 #~ msgstr "contract"
-
-#~ msgid "Contrat|Client"
-#~ msgstr "Client"
 
 #~ msgid "Contrat|Ouverture"
 #~ msgstr "Opens at"
@@ -4938,17 +4987,8 @@ msgstr[1] ""
 #~ msgid "Demande|Binaire"
 #~ msgstr "Binary"
 
-#~ msgid "User|Password"
-#~ msgstr "Password"
-
-#~ msgid "User|Image"
-#~ msgstr "Image"
-
 #~ msgid "User|Client"
 #~ msgstr "Customer"
-
-#~ msgid "User|Restricted"
-#~ msgstr "Restricted"
 
 #~ msgid "contracts"
 #~ msgstr "contracts"
