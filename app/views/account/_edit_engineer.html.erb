@@ -5,12 +5,6 @@
 
   <h1><b><%= _('Engineer') %></b></h1><br />
 
-  <p><label for="ingenieur_chef_de_projet"><%= _('Project manager') + ' ?'%></label>
-  <%= check_box 'user_engineer', 'chef_de_projet' %></p>
-
-  <p><label for="ingenieur_expert_ossa"><%= _('OSSA expert') + ' ?'%></label>
-  <%= check_box 'user_engineer', 'expert_ossa' %></p>
-
   <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b></p>
   <% unless @user_engineer.knowledges.empty? %>
      <% options = {:edit => 'knowledge', :no_title => true} %>

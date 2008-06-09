@@ -10,7 +10,7 @@ class Ingenieur < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
-        c.name =~ /(_id|_on|_count|chef_de_projet)$/ || c.name == inheritance_column }
+        c.name =~ /(_id|_on|_count)$/ || c.name == inheritance_column }
   end
 
   def self.find_select_by_contrat_id(contrat_id)
