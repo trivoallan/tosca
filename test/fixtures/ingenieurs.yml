@@ -1,19 +1,13 @@
 --- 
 ingenieur_00001: 
   id: 1
-  expert_ossa: true
   user_id: 1
   image_id: 
-  chef_de_projet: false
 ingenieur_00002: 
   id: 2
-  expert_ossa: true
   user_id: 2
   image_id: 
-  chef_de_projet: false
 ingenieur_00003: 
   id: 3
-  expert_ossa: false
   user_id: 3
   image_id: 
-  chef_de_projet: false
