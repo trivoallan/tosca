@@ -33,7 +33,7 @@
     <% options = {:no_title => true, :edit => 'binaire'} %>
    <p>
      <% if @paquet.binaires.size > 0 %>
-        <%= public_show_liste(@binaires, _('binary'), options) {|b|
+        <%= public_show_list(@binaires, _('binary'), options) {|b|
             link_to_binaire(b) << _(' <i>on</i> ') << b.socle.name
           } %>
      <% end %>
@@ -54,7 +54,7 @@
 <% unless @changelogs.empty? %>
 <p><%= _('This package has been updated')%><b><%= pluralize(@changelogs.size, _('times') ) %></b></p>
  <div class="bloc_scroll">
-   <%= show_liste(@changelogs, _('changelog'), :no_title => true) { |c|
+   <%= show_list(@changelogs, _('changelog'), :no_title => true) { |c|
       indent(c.to_s) } %>
  </div>
 <% end %>

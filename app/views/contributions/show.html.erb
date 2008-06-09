@@ -13,7 +13,7 @@
 
     <%= link_to_new_urlreversement(@contribution.id) %>
     <% options = { :edit => 'urlreversement' } %>
-    <%= public_show_liste(@contribution.urlreversements, _('link'), options) { |u|
+    <%= public_show_list(@contribution.urlreversements, _('link'), options) { |u|
           " <a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
     } %>
 
@@ -42,7 +42,7 @@
         <%=link_to_any_demande @contribution %></p>
   <% end %>
   <%= link_to_demande(@contribution.demande, :show_id => true, :icon_severite => true) %>
-  <%= show_liste(@contribution.paquets, _('package(s) with the patch')) { |p|
+  <%= show_list(@contribution.paquets, _('package(s) with the patch')) { |p|
         link_to_paquet(p)
       } %>
 <% end %>

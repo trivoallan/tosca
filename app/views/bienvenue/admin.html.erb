@@ -8,16 +8,16 @@
   <% links = [
         link_to(_('User list'), accounts_path),
         link_to(_('Add a user'), signup_new_account_path) ] %>
-  <%= show_liste(links, _('User management')) %>
+  <%= show_list(links, _('User management')) %>
   <% if session[:user].role_id == 1 # admin %>
    <% links = [
         link_to( _('Permissions'), permissions_path),
         link_to( _('Roles'), roles_path) ] %>
-   <%= show_liste(links, _('Permission management')) %>
+   <%= show_list(links, _('Permission management')) %>
   <% end %>
   <% links = [
         link_to( _('Skills'), knowledges_path) ] %>
-  <%= show_liste(links, _('Skill management')) %>
+  <%= show_list(links, _('Skill management')) %>
 </div>
 
 <div class="sommaire show">
@@ -25,7 +25,7 @@
   <% links = [
         link_to( _('Customers'), clients_path),
         link_to( _('Contracts'), contrats_path)  ] %>
-  <%= show_liste(links, _('Customer management')) %>
+  <%= show_list(links, _('Customer management')) %>
 </div>
 
 </td><td>
@@ -36,20 +36,20 @@
         link_to( _('Systems'), socles_path),
         link_to( _('Machines'), machines_path),
         link_to( _('Architectures'), arches_path) ] %>
-  <%= show_liste(links) %>
+  <%= show_list(links) %>
   <p><%= _('Source management')%></p>
   <% links = [
          link_to( _('Software list'), logiciels_path),
          link_to( _('Software categorization'), groupes_path),
          link_to( _('Packages'), paquets_path),
          link_to( _('Binaries'), binaires_path) ] %>
-   <%= show_liste(links) %>
+   <%= show_list(links) %>
  </div>
   <div class="sommaire show">
   <h3><%= _('Reporting')%></h3>
   <% links = [
       link_to( _('Comex report'), comex_reporting_path),
       link_to( _('Digest report'), digest_reporting_path) ] %>
-  <%= show_liste(links) %>
+  <%= show_list(links) %>
  </div>
 </td></tr></table>

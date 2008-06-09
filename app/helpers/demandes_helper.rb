@@ -59,7 +59,7 @@ module DemandesHelper
   def display(donnee, column)
     case column
     when 'contournement','correction'
-      display_jours donnee.send(column)
+      display_days donnee.send(column)
     else
       donnee.send(column)
     end
@@ -78,12 +78,12 @@ module DemandesHelper
 
   def display_engagement_contournement(demande, paquet)
     engagement = demande.engagement(paquet.contrat_id)
-    display_jours(engagement.contournement)
+    display_days(engagement.contournement)
   end
 
   def display_engagement_correction(demande, paquet)
     engagement = demande.engagement(paquet.contrat_id)
-    display_jours(engagement.correction)
+    display_days(engagement.correction)
   end
 
   # Display more nicely change to history table

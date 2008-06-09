@@ -2,9 +2,9 @@
 # Methods added to this helper will be available to all templates
 # in the application. Don't ever add a method to this one without a really good
 # reason. Anyway, this is a big helper, so find by keyword :
-# - TEXTE
+# - TEXT
 # - FILES
-# - LISTES ET TABLES
+# - LISTS ET TABLES
 # - TIME
 
 
@@ -16,24 +16,23 @@ module ApplicationHelper
   include FilesHelper
 
 
-  ### TEXTE #####################################################################
-  # indente du texte et échappe les caractères html
-  # à utiliser sur les descriptions, commentaires, etc
-  def indent( text )
+  ### TEXT #####################################################################
+  # indent text and escape HTML caracters
+  # Use on descriptions, comments, etc.
+  def indent(text)
     (text.is_a? String) ? h(word_wrap(text)).gsub("\n", '<br />') : text
   end
 
-
-  # affiche un message d'aide
-  # TODO : mettre une icône
-  # TODO : en mettre plus dans les formulaires
-  # TODO : changer le curseur en celui avec le '?'
+  # Show a help message
+  # TODO : add an icon
+  # TODO : use more on forms
+  # TODO : change the cursor to the one in ? shape
   def show_help( help_text )
     "<a title=\"#{help_text}\" >?</a>"
   end
 
   ### FILES #####################################################################
-  def file_size( file )
+  def file_size(file)
     return '-' if file.blank? or not File.exists?(file)
     number_to_human_size(File.size(file))
   end
@@ -48,8 +47,8 @@ module ApplicationHelper
   #   an edit link and a delete link. Used widely in the show view of softwares.
   # If there is no block given, the field is displayed as is, with 'to_s' method.
   # Call it like :
-  #   <%= show_liste(@contribution.binaires, 'contribution') {|e| e.name} %>
-  def show_liste(elements, name = '', options = {})
+  #   <%= show_list(@contribution.binaires, 'contribution') {|e| e.name} %>
+  def show_list(elements, name = '', options = {})
     elements.compact!
     size = elements.size
     result = ''
@@ -98,14 +97,14 @@ module ApplicationHelper
   end
 
   # Wrapper, allowing to have a consistent api with link_to_*
-  # Call it like exactly show_liste
-  def public_show_liste(elements, name = '', options = {}, &functor)
+  # Call it like exactly show_list
+  def public_show_list(elements, name = '', options = {}, &functor)
     public_options = options.dup
     public_options[:public] = true
-    show_liste(elements, name, public_options, &functor)
+    show_list(elements, name, public_options, &functor)
   end
 
-  # Private call, used by show_liste on certain simple case
+  # Private call, used by show_list on certain simple case
   def show_simple_list(result, elements)
     result << '<ul>'
     elements.each { |e| result << "<li>#{e}</li>" unless e.blank? }
@@ -176,26 +175,27 @@ module ApplicationHelper
 
   ### TIME ######################################################################
 
-  #affiche le nombre de jours ou un "Sans objet"
-  def display_jours(temps)
-    return temps unless temps.is_a? Numeric
-    case temps
+  #Prints the number of days or "None"
+  def display_days(time)
+    return time unless time.is_a? Numeric
+    case time
     when -1 then _('None')
     when 1 then _('1 workday')
-    when 0..1 then temps.to_s + _(' workday')
-    else temps.to_s + _(' workdays')
+    when 0..1 then time.to_s + _(' workday')
+    else time.to_s + _(' workdays')
     end
   end
 
-  def display_seconds(temps)
-    return temps #unless temps.is_a? Numeric
+  def display_seconds(time)
+    return time #unless temps.is_a? Numeric
   end
 
-  # conversion secondes en jours
+  # conversion seconds in days
   def sec2day(seconds)
     ((seconds.abs)/(60*60*24)).round
   end
-  # conversion secondes en minutes
+ 
+  # conversion seconds in minutes
   def sec2min(seconds)
     ((seconds.abs)/60).round
   end
@@ -231,7 +231,7 @@ module ApplicationHelper
   #   <% menu[:titles] << 'Un groupe de lien' %>
   #   <% menu[:links] << [ link_to('Par ici'), link_to('Par là') ] %>
   # <%= build_menu(menu) %>
-  def build_menu(menu, options = {})
+  def build_menu(menu)
     return unless menu[:titles].is_a? Array
     return unless menu[:titles].size == menu[:links].size
     prefix = 'smenu'
@@ -252,7 +252,7 @@ module ApplicationHelper
     menu[:titles].each_index {|i|
       id = prefix + i.to_s
       out << "<div class=\"liste_menu\" onmouseover=\"javascript:montre('#{id}');\">"
-      out <<   show_liste_menu(id, menu[:links][i], menu[:titles][i])
+      out << show_menu_list(id, menu[:links][i], menu[:titles][i])
       out << '</div>'
     }
     out << '</div>'
@@ -260,7 +260,7 @@ module ApplicationHelper
 
   # Display an menu item : a title + a link list
   # Called from build_menu
-  def show_liste_menu(id, elements, titre, options = {})
+  def show_menu_list(id, elements, titre)
     elements.compact!
     size = elements.size
     return '' unless titre.is_a? String

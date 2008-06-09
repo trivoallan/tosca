@@ -16,6 +16,7 @@ class ContratsController < ApplicationController
 
   def show
     @contrat = Contrat.find(params[:id])
+    @teams = Team.find(:all, :include => :contrats, :conditions => [ "contrats.id = ?", params[:id] ])
   end
 
   def new
@@ -80,6 +81,8 @@ private
     end
     @engagements = Engagement.find(:all, Engagement::OPTIONS)
     @ingenieurs = User.find_select(User::EXPERT_OPTIONS)
+    @teams = Team.find_select
+    @contract_team = Team.find(:all, :include => :contrats, :conditions => [ "contrats.id = ?", @contrat.id ])
     @rules = []
     begin
       @rules = @contrat.rule_type.constantize.find_select

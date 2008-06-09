@@ -39,7 +39,7 @@
 
      <tr><td><b><%= _('Links') %></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
          <% options = {:no_title => true, :edit => 'urllogiciel'} %>
-         <td><%= public_show_liste(@logiciel.urllogiciels, 'url', options) {|u|
+         <td><%= public_show_list(@logiciel.urllogiciels, 'url', options) {|u|
              "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.typeurl.name}</a>"
             } %>
          </td></tr>
@@ -50,7 +50,7 @@
         <% options[:edit] = nil %>
         <% if @demandes.size > 0  %>
          <div class="bloc_scroll">
-           <%=show_liste(@demandes, _('Request'), options) {|d| link_to_demande d}%>
+           <%=show_list(@demandes, _('Request'), options) {|d| link_to_demande d}%>
          </div>
         <% end %>
      </tr>
@@ -58,7 +58,7 @@
      <tr><td><b><%=n_('Package', 'Packages', @logiciel.paquets.size)%></b> <%= link_to_new_paquet(@logiciel) %></td>
        <td>
           <% options[:edit] = 'paquet' %>
-          <%=  show_liste(@logiciel.paquets, _('Package'), options) do |paquet|
+          <%=  show_list(@logiciel.paquets, _('Package'), options) do |paquet|
              link_to_paquet paquet
           end %>
        </td>

@@ -23,9 +23,12 @@
   <br/><h1><b><%= _("Error, wrong type of contract") %></b></h1>
 <% end %>
 
-<p><b> Engagements contractuels : </b></p>
+<p><b><%= _("Contractual commitments") %> : </b></p>
 <%= show_table_engagements @contrat.engagements %>
 
-<%= show_liste(@contrat.engineer_users, _('expert')) {|u| link_to u.name, account_path(u)} %>
+<%= show_list(@contrat.engineer_users, _('expert')) {|u| link_to u.name, account_path(u)} %>
+
+<% header = _("%s managing this contract") % ( @teams.size > 1 ? _("Teams") : _("Team") ) %>
+<%= show_list(@teams, header) { |t| link_to t.name, team_path(t) } %>
 
 <%= link_to_edit_and_list(@contrat) %>

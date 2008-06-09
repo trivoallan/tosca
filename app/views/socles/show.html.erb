@@ -12,13 +12,13 @@
 
 <p><%= _('This system have ')%> <b><%= pluralize(@socle.paquets.size, _('source') ) %></b></p>
 <div class="bloc_scroll">
-<%= show_liste(@socle.paquets, _('source package'), :no_title => true) {
+<%= show_list(@socle.paquets, _('source package'), :no_title => true) {
   |p| link_to_paquet(p) } %>
 </div><br />
 
 <p><%= _('This system have ')%><b><%= pluralize(@binaires.size, _('binary') ) %></b></p>
 <div class="bloc_scroll">
-<%= show_liste(@binaires, _('Binary package'), :no_title => true) {
+<%= show_list(@binaires, _('Binary package'), :no_title => true) {
   |b| link_to_binaire(b) } %>
 </div><br />
 

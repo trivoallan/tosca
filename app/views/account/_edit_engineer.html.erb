@@ -14,7 +14,7 @@
   <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b></p>
   <% unless @user_engineer.knowledges.empty? %>
      <% options = {:edit => 'knowledge', :no_title => true} %>
-     <%= show_liste(@user_engineer.knowledges, '', options) do |k|
+     <%= show_list(@user_engineer.knowledges, '', options) do |k|
         link_to_knowledge k
       end %>
   <hr />
@@ -33,7 +33,7 @@
   <% if @user.team %>
   <p><label><%= _('Contracts of the Team') %></label></p>
   <div id="team_contracts" class="long_bloc_scroll">
-    <%= show_liste(@user.team.contrats, '') do |c|
+    <%= show_list(@user.team.contrats, '') do |c|
            link_to c.name, contrat_path(c)
         end %>
   </div>

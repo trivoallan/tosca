@@ -5,8 +5,8 @@
 <p>
   <b><%= _("Motto") %> : </b><%= @team.motto %>
 </p>
-<%= show_liste(@team.users, _('Members')) {|u| link_to u.name, account_path(u)} %>
-<%= show_liste(@team.contrats, _('Contracts')) {|c| link_to c.name, contrat_path(c)} %>
+<%= show_list(@team.users, _('Members')) {|u| link_to u.name, account_path(u)} %>
+<%= show_list(@team.contrats, _('Contracts')) {|c| link_to c.name, contrat_path(c)} %>
 
 <%= link_to _('Edit'), edit_team_path(@team) %> |
 <%= link_to _('Back'), teams_path %>
