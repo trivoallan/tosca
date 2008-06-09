@@ -340,13 +340,13 @@ div.login_box, div.form, div.show, div.help, div.info {
 ***************************************/
 
 pre {
-	padding: 5px;
-	overflow: auto;
+	font-size:120%;
+	padding:0.5em;
+	border:1px dashed #8cacbb;
+	overflow:auto;
 	width: 95%;
 	max-height: 450px;
-	margin: 0px auto;
-	line-height: 100%;
-	border:silver 2px dotted
+	background-color:#dee7ec;
 }
 .code {
 	padding: 5px;
@@ -355,7 +355,7 @@ pre {
 	max-height: 450px;
 	margin: 0px auto;
 	line-height: 100%;
-	border: silver 2px dotted
+	border: silver 2px dotted;
 }
 
 

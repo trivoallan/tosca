@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-09 16:06+0200\n"
-"PO-Revision-Date: 2008-06-09 16:07+0200\n"
+"PO-Revision-Date: 2008-06-09 16:09+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -3268,11 +3268,10 @@ msgid "%s managing this contract"
 msgstr "%s gérant ce contrat"
 
 #: app/views/contrats/show.html.erb:31
-#, fuzzy
 msgid "Team"
 msgid_plural "Teams"
 msgstr[0] "Équipe"
-msgstr[1] "Équipe"
+msgstr[1] "Équipes"
 
 #: app/views/contrats/new.html.erb:1
 msgid "New contract"
@@ -4870,171 +4869,6 @@ msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
-#~ msgid "Teams"
-#~ msgstr "Équipes"
-
-#~ msgid "Whole OSSA Team ?"
-#~ msgstr "L'équipe OSSA ?"
-
-#~ msgid "Project manager"
-#~ msgstr "Chef de projet"
-
-#~ msgid "OSSA expert"
-#~ msgstr "Expert OSSA"
-
-#~ msgid "paquet"
-#~ msgstr "paquet"
-
-#~ msgid "Paquet|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "Paquet|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Paquet|Version"
-#~ msgstr "Version"
-
-#~ msgid "Paquet|Release"
-#~ msgstr "Release"
-
-#~ msgid "Paquet|Conteneur"
-#~ msgstr "conteneur"
-
-#~ msgid "Paquet|Paquet"
-#~ msgstr "Paquet"
-
-#~ msgid "Paquet|Distributeur"
-#~ msgstr "Distributeur"
-
-#~ msgid "Paquet|Mainteneur"
-#~ msgstr "Mainteneur"
-
-#~ msgid "Paquet|Contrat"
-#~ msgstr "Contrat"
-
-#~ msgid "Paquet|Taille"
-#~ msgstr "Taille"
-
-#~ msgid "Paquet|Configuration"
-#~ msgstr "Configuration"
-
-#~ msgid "Paquet|Changelogs count"
-#~ msgstr "Nombre de changelogs"
-
-#~ msgid "Paquet|Active"
-#~ msgstr "Actif"
-
-#~ msgid "socle"
-#~ msgstr "socle"
-
-#~ msgid "Socle|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Socle|Binaires count"
-#~ msgstr "Comptage des binaires"
-
-#~ msgid "New|Client"
-#~ msgstr "Client"
-
-#~ msgid "contrat"
-#~ msgstr "contrat"
-
-#~ msgid "Contrat|Ouverture"
-#~ msgstr "Ouverture"
-
-#~ msgid "Contrat|Cloture"
-#~ msgstr "Cloturé le"
-
-#~ msgid "Contrat|Paquets count"
-#~ msgstr "Nombre de paquets"
-
-#~ msgid "Contrat|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Contrat|Rule type"
-#~ msgstr "Type"
-
-#~ msgid "Contrat|Rule"
-#~ msgstr "Rule"
-
-#~ msgid "Contrat|Veille technologique"
-#~ msgstr "Veille technologique"
-
-#~ msgid "Contrat|Newsletter"
-#~ msgstr "Lettre d'information"
-
-#~ msgid "Contrat|Heure ouverture"
-#~ msgstr "Heure d'ouverture"
-
-#~ msgid "Contrat|Heure fermeture"
-#~ msgstr "Heure de fermeture"
-
-#~ msgid "Contrat|Mailinglist"
-#~ msgstr "Mailing liste"
-
-#~ msgid "statut"
-#~ msgstr "statut"
-
-#~ msgid "Statut|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Statut|Description"
-#~ msgstr "Description"
-
-#~ msgid "Image|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "client"
-#~ msgstr "client"
-
-#~ msgid "Client|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Client|Description"
-#~ msgstr "Description"
-
-#~ msgid "Client|Adresse"
-#~ msgstr "Adresse"
-
-#~ msgid "Client|Image"
-#~ msgstr "Image"
-
-#~ msgid "Client|Code acces"
-#~ msgstr "Code d'accès"
-
-#~ msgid "Client|Beneficiaires count"
-#~ msgstr "Nombre de bénéficiaires"
-
-#~ msgid "Client|Inactive"
-#~ msgstr "Inactif"
-
-#~ msgid "Contribution|Etatreversement"
-#~ msgstr "Etat reversement"
-
-#~ msgid "phonecall"
-#~ msgstr "appels"
-
-#~ msgid "Phonecall|Beneficiaire"
-#~ msgstr "Bénéficiaire"
-
-#~ msgid "Phonecall|Ingenieur"
-#~ msgstr "Ingénieur"
-
-#~ msgid "Phonecall|Start"
-#~ msgstr "Début"
-
-#~ msgid "Phonecall|End"
-#~ msgstr "Fin"
-
-#~ msgid "Phonecall|Contrat"
-#~ msgstr "Contrat"
-
-#~ msgid "Phonecall|Demande"
-#~ msgstr "Demande"
-
-#~ msgid "document"
-#~ msgstr "document"
-
 #~ msgid "Document|User"
 #~ msgstr "Utilisateur"
 
@@ -5056,11 +4890,6 @@ msgstr[1] "%d mois"
 #~ msgid "Document|Date delivery"
 #~ msgstr "Date de livraison"
 
-#~ msgid "binaire"
-#~ msgstr "binaire"
-
-#~ msgid "Binaire|Paquet"
-#~ msgstr "Paquet"
 
 #~ msgid "Binaire|Arch"
 #~ msgstr "Architecture"
@@ -5082,66 +4911,3 @@ msgstr[1] "%d mois"
 
 #~ msgid "demande"
 #~ msgstr "demande"
-
-#~ msgid "Demande|Beneficiaire"
-#~ msgstr "Bénéficiaire"
-
-#~ msgid "Demande|Ingenieur"
-#~ msgstr "Ingénieur"
-
-#~ msgid "Demande|Resume"
-#~ msgstr "Résumé"
-
-#~ msgid "Demande|Statut"
-#~ msgstr "Statut"
-
-#~ msgid "Demande|Severite"
-#~ msgstr "Severite"
-
-#~ msgid "Demande|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "Demande|Created on"
-#~ msgstr "Créé le"
-
-#~ msgid "Demande|Updated on"
-#~ msgstr "Mis à jour le"
-
-#~ msgid "Demande|Typedemande"
-#~ msgstr "Type demande"
-
-#~ msgid "Demande|Contribution"
-#~ msgstr "Contribution"
-
-#~ msgid "Demande|Socle"
-#~ msgstr "Socle"
-
-#~ msgid "Demande|Mail cc"
-#~ msgstr "Mail cc"
-
-#~ msgid "Demande|First comment"
-#~ msgstr "Premier commentaire"
-
-#~ msgid "Demande|Contrat"
-#~ msgstr "Contrat"
-
-#~ msgid "Demande|Last comment"
-#~ msgstr "Dernier commentaire"
-
-#~ msgid "Demande|Mantis"
-#~ msgstr "Mantis"
-
-#~ msgid "Demande|Submitter"
-#~ msgstr "Déclarant"
-
-#~ msgid "Demande|Binaire"
-#~ msgstr "Binaire"
-
-#~ msgid "User|Client"
-#~ msgstr "Client"
-
-#~ msgid "only"
-#~ msgstr "seulement"
-
-#~ msgid "contracts"
-#~ msgstr "contrats"

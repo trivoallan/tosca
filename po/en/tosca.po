@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-09 16:06+0200\n"
-"PO-Revision-Date: 2008-05-20 16:17+0200\n"
+"PO-Revision-Date: 2008-06-09 16:11+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: English <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -86,9 +86,8 @@ msgid "User|Informations"
 msgstr "Informations"
 
 #: app/models/user.rb:-
-#, fuzzy
 msgid "User|Customer"
-msgstr "Name"
+msgstr "Customer"
 
 #: app/models/user.rb:-
 #: app/views/account/_edit_account_informations.html.erb:40
@@ -109,17 +108,14 @@ msgstr "Restricted"
 #: app/models/user.rb:-
 #: app/views/account/_edit_account_informations.html.erb:72
 #: app/views/account/_show_account_information.html.erb:27
-#, fuzzy
 msgid "User|Team"
-msgstr "Name"
+msgstr "Team"
 
 #: app/models/user.rb:-
-#, fuzzy
 msgid "role"
-msgstr "Role"
+msgstr "role"
 
 #: app/models/user.rb:-
-#, fuzzy
 msgid "Role|Name"
 msgstr "Name"
 
@@ -232,9 +228,8 @@ msgid "Ingenieur|Chef de projet"
 msgstr ""
 
 #: app/models/ingenieur.rb:-
-#, fuzzy
 msgid "Ingenieur|Expert ossa"
-msgstr "User"
+msgstr ""
 
 #: app/models/ingenieur.rb:-
 msgid "Ingenieur|Image"
@@ -245,19 +240,16 @@ msgid "knowledge"
 msgstr ""
 
 #: app/models/knowledge.rb:-
-#, fuzzy
 msgid "Knowledge|Knowledge"
-msgstr "Software"
+msgstr ""
 
 #: app/models/knowledge.rb:-
-#, fuzzy
 msgid "Knowledge|Software"
-msgstr "Knowledge"
+msgstr ""
 
 #: app/models/knowledge.rb:-
-#, fuzzy
 msgid "Knowledge|Engineer"
-msgstr "Engineer"
+msgstr ""
 
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Level"
@@ -416,9 +408,8 @@ msgid "elapsed"
 msgstr ""
 
 #: app/models/elapsed.rb:-
-#, fuzzy
 msgid "Elapsed|Request"
-msgstr "Request"
+msgstr ""
 
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Taken into account"
@@ -467,7 +458,6 @@ msgid "team"
 msgstr ""
 
 #: app/models/team.rb:-
-#, fuzzy
 msgid "Team|Name"
 msgstr "Name"
 
@@ -480,7 +470,6 @@ msgid "Team|User cache"
 msgstr ""
 
 #: app/models/team.rb:-
-#, fuzzy
 msgid "Team|Contact"
 msgstr "Contract"
 
@@ -919,9 +908,8 @@ msgid "Contribution|Description fonctionnelle"
 msgstr ""
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|contributionstate"
-msgstr "Description"
+msgstr ""
 
 #: app/models/contribution.rb:-
 msgid "Contribution|Cloture le"
@@ -1173,9 +1161,8 @@ msgid "My&nbsp;Offer"
 msgstr ""
 
 #: app/helpers/clients_helper.rb:25 app/controllers/clients_controller.rb:139
-#, fuzzy
 msgid "Active clients"
-msgstr "Customer"
+msgstr ""
 
 #: app/helpers/clients_helper.rb:26
 msgid "Display only active clients"
@@ -3091,9 +3078,8 @@ msgid "Team members"
 msgstr ""
 
 #: app/views/teams/_form.html.erb:24
-#, fuzzy
 msgid "Contracts of the team"
-msgstr "Client"
+msgstr ""
 
 #: app/views/layouts/standard-layout.html.erb:71
 msgid "Logout"
@@ -3257,9 +3243,8 @@ msgid "Error, wrong type of contract"
 msgstr ""
 
 #: app/views/contrats/show.html.erb:26
-#, fuzzy
 msgid "Contractual commitments"
-msgstr "Client"
+msgstr ""
 
 #: app/views/contrats/show.html.erb:29
 msgid "expert"
@@ -3270,11 +3255,10 @@ msgid "%s managing this contract"
 msgstr ""
 
 #: app/views/contrats/show.html.erb:31
-#, fuzzy
 msgid "Team"
 msgid_plural "Teams"
-msgstr[0] "Name"
-msgstr[1] "Name"
+msgstr[0] ""
+msgstr[1] ""
 
 #: app/views/contrats/new.html.erb:1
 msgid "New contract"
@@ -4812,189 +4796,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
-
-#~ msgid "Paquet|Logiciel"
-#~ msgstr "Software"
-
-#~ msgid "Paquet|Name"
-#~ msgstr "Name"
-
-#~ msgid "Paquet|Version"
-#~ msgstr "Version"
-
-#~ msgid "Paquet|Release"
-#~ msgstr "Release"
-
-#~ msgid "Paquet|Conteneur"
-#~ msgstr "Conteneur"
-
-#~ msgid "Paquet|Paquet"
-#~ msgstr "Package"
-
-#~ msgid "Paquet|Mainteneur"
-#~ msgstr "Mainteneur"
-
-#~ msgid "Paquet|Contrat"
-#~ msgstr "Contrat"
-
-#~ msgid "Paquet|Taille"
-#~ msgstr "Size"
-
-#~ msgid "Paquet|Configuration"
-#~ msgstr "Configuration"
-
-#~ msgid "Paquet|Active"
-#~ msgstr "Active"
-
-#~ msgid "New|Client"
-#~ msgstr "Customer"
-
-#~ msgid "contrat"
-#~ msgstr "contract"
-
-#~ msgid "Contrat|Ouverture"
-#~ msgstr "Opens at"
-
-#~ msgid "Contrat|Cloture"
-#~ msgstr "Closes at"
-
-#~ msgid "Contrat|Paquets count"
-#~ msgstr "Client"
-
-#~ msgid "Contrat|Name"
-#~ msgstr "Name"
-
-#~ msgid "Contrat|Rule type"
-#~ msgstr "Type"
-
-#~ msgid "Contrat|Rule"
-#~ msgstr "Rule"
-
-#~ msgid "Contrat|Newsletter"
-#~ msgstr "Client"
-
-#~ msgid "Contrat|Heure ouverture"
-#~ msgstr "Opens at"
-
-#~ msgid "Contrat|Heure fermeture"
-#~ msgstr "Opens at"
-
-#~ msgid "Contrat|Mailinglist"
-#~ msgstr "Mailing list"
-
-#~ msgid "Statut|Name"
-#~ msgstr "Name"
-
-#~ msgid "Statut|Description"
-#~ msgstr "Description"
-
-#~ msgid "Image|Logiciel"
-#~ msgstr "Software"
-
-#~ msgid "Client|Name"
-#~ msgstr "Name"
-
-#~ msgid "Client|Description"
-#~ msgstr "Description"
-
-#~ msgid "Client|Beneficiaires count"
-#~ msgstr "Recipient"
-
-#~ msgid "Client|Inactive"
-#~ msgstr "Inactive"
-
-#~ msgid "Contribution|Etatreversement"
-#~ msgstr "contributionstate"
-
-#~ msgid "Phonecall|Beneficiaire"
-#~ msgstr "Recipient"
-
-#~ msgid "document"
-#~ msgstr "document"
-
-#~ msgid "Document|User"
-#~ msgstr "Author"
-
-#~ msgid "Document|Typedocument"
-#~ msgstr "Type document"
-
-#~ msgid "Document|Client"
-#~ msgstr "Customer"
-
-#~ msgid "Document|Created on"
-#~ msgstr "Created on"
-
-#~ msgid "Document|Updated on"
-#~ msgstr "Updated on"
-
-#~ msgid "Document|Version"
-#~ msgstr "Version"
-
-#~ msgid "Document|Date delivery"
-#~ msgstr "Delivered on"
-
-#~ msgid "Binaire|Name"
-#~ msgstr "Name"
-
-#~ msgid "Binaire|Socle"
-#~ msgstr "System"
-
-#~ msgid "demande"
-#~ msgstr "request"
-
-#~ msgid "Demande|Beneficiaire"
-#~ msgstr "Recipient"
-
-#~ msgid "Demande|Ingenieur"
-#~ msgstr "engineer"
-
-#~ msgid "Demande|Resume"
-#~ msgstr "Description"
-
-#~ msgid "Demande|Statut"
-#~ msgstr "Status"
-
-#~ msgid "Demande|Severite"
-#~ msgstr "Severity"
-
-#~ msgid "Demande|Logiciel"
-#~ msgstr "Software"
-
-#~ msgid "Demande|Created on"
-#~ msgstr "Created on"
-
-#~ msgid "Demande|Updated on"
-#~ msgstr "Updated on"
-
-#~ msgid "Demande|Typedemande"
-#~ msgstr "type request"
-
-#~ msgid "Demande|Contribution"
-#~ msgstr "Contribution"
-
-#~ msgid "Demande|Socle"
-#~ msgstr "System"
-
-#~ msgid "Demande|Mail cc"
-#~ msgstr "Mail cc"
-
-#~ msgid "Demande|First comment"
-#~ msgstr "First comment"
-
-#~ msgid "Demande|Last comment"
-#~ msgstr "Last comment"
-
-#~ msgid "Demande|Mantis"
-#~ msgstr "Mantis"
-
-#~ msgid "Demande|Submitter"
-#~ msgstr "Submitter"
-
-#~ msgid "Demande|Binaire"
-#~ msgstr "Binary"
-
-#~ msgid "User|Client"
-#~ msgstr "Customer"
-
-#~ msgid "contracts"
-#~ msgstr "contracts"
