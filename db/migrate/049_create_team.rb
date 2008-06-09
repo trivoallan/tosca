@@ -5,7 +5,8 @@ class CreateTeam < ActiveRecord::Migration
       t.integer :user_cache, :contact_id
     end
 
-    create_table :contrats_teams do |t|
+    #This is a table for has_and_belongs_to_many
+    create_table :contrats_teams, :id => false do |t|
       t.integer :contrat_id, :team_id
     end
     add_index :contrats_teams, :contrat_id
