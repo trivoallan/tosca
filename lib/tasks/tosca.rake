@@ -3,8 +3,8 @@
 =end
 
 namespace :tosca do
-  
+
   desc "Generate a default Database with default values."
-  task :generate => [ 'db:create', 'db:migrate', 'db:fixutres:load']
-  
+  task :generate => [ 'db:create', 'db:migrate', 'db:fixtures:load']
+
 end
