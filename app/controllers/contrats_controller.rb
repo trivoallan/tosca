@@ -16,7 +16,7 @@ class ContratsController < ApplicationController
 
   def show
     @contrat = Contrat.find(params[:id])
-    @teams = Team.find(:all, :include => :contrats, :conditions => [ "contrats.id = ?", params[:id] ])
+    @teams = @contrat.teams
   end
 
   def new
@@ -59,6 +59,7 @@ class ContratsController < ApplicationController
 
   def update
     @contrat = Contrat.find(params[:id])
+    @contrat.creator = session[:user] unless @contrat.creator
     if @contrat.update_attributes(params[:contrat])
       set_team_ossa
       flash[:notice] = _('Contrat was successfully updated.')
@@ -82,7 +83,7 @@ private
     @engagements = Engagement.find(:all, Engagement::OPTIONS)
     @ingenieurs = User.find_select(User::EXPERT_OPTIONS)
     @teams = Team.find_select
-    @contract_team = Team.find(:all, :include => :contrats, :conditions => [ "contrats.id = ?", @contrat.id ])
+    @contract_team = @contrat.teams
     @rules = []
     begin
       @rules = @contrat.rule_type.constantize.find_select

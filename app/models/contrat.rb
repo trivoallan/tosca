@@ -1,8 +1,15 @@
 class Contrat < ActiveRecord::Base
   acts_as_reportable
+  
+  belongs_to :client
+  belongs_to :rule, :polymorphic => true
+  belongs_to :creator, :class_name => 'User'
+  
   has_many :paquets, :dependent => :destroy
   has_many :demandes
-  belongs_to :client
+  has_many :binaires, :through => :paquets
+  has_many :appels
+  
   has_and_belongs_to_many :engagements, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
   has_and_belongs_to_many :users, :order => 'users.name'
@@ -10,11 +17,7 @@ class Contrat < ActiveRecord::Base
     :conditions => 'users.client = 0'
   has_and_belongs_to_many :recipient_users, :class_name => 'User',
     :conditions => 'users.client = 1', :include => :beneficiaire
-
-  has_many :binaires, :through => :paquets
-  has_many :appels
-  belongs_to :rule, :polymorphic => true
-  belongs_to :creator, :class_name => 'User'
+  has_and_belongs_to_many :teams, :order => 'teams.name'
 
   validates_presence_of :client, :rule, :creator
   validates_numericality_of :heure_ouverture, :heure_fermeture,

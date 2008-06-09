@@ -63,6 +63,15 @@
        </fieldset>
       </td>
      </tr>
+     <tr>
+       <td colspan="2">
+       <fieldset>
+        <legend><%=_('Teams managing this contract')%></legend>
+        <%= hbtm_check_box(@contract_team, @teams, 
+                         'contrat[team_ids]', :size => 3) %>
+       </fieldset>
+      </td>
+     </tr>
     </table>
   </td></tr>
 </table>

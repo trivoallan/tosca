@@ -19,7 +19,6 @@ class TeamsController < ApplicationController
   end
 
   def create
-    _form
     @team = Team.new(params[:team])
     if @team.save
       flash[:notice] = _('Team %s was successfully created.') % @team.name
@@ -30,7 +29,6 @@ class TeamsController < ApplicationController
   end
 
   def update
-    _form
     @team = Team.find(params[:id])
     if @team.update_attributes(params[:team])
       flash[:notice] = _('Team %s was successfully updated.') % @team.name
@@ -51,4 +49,5 @@ private
     @users = User.find_select
     @contracts = Contrat.find_select(Contrat::OPTIONS)
   end
+  
 end
