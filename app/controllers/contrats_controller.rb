@@ -43,8 +43,6 @@ class ContratsController < ApplicationController
     end
     @contrat.creator = session[:user]
     if @contrat.save
-      # TODO : now that we have the team notion, maybe we can remove this ?
-      set_team_ossa
       flash[:notice] = _('Contract was successfully created.')
       redirect_to contrats_path
     else
@@ -61,7 +59,6 @@ class ContratsController < ApplicationController
     @contrat = Contrat.find(params[:id])
     @contrat.creator = session[:user] unless @contrat.creator
     if @contrat.update_attributes(params[:contrat])
-      set_team_ossa
       flash[:notice] = _('Contrat was successfully updated.')
       redirect_to contrat_path(@contrat)
     else
@@ -92,13 +89,4 @@ private
     end
   end
 
-  def set_team_ossa
-    team = params[:team]
-    if team and team[:ossa] == '1'
-      team_ossa = Ingenieur.find_ossa(:all).collect{ |i| i.user }
-      users = @contrat.engineer_users.dup.concat(team_ossa)
-      users.uniq!
-      @contrat.update_attribute :engineer_users, users
-    end
-  end
 end
