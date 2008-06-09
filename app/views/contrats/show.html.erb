@@ -28,7 +28,7 @@
 
 <%= show_list(@contrat.engineer_users, _('expert')) {|u| link_to u.name, account_path(u)} %>
 
-<% header = _("%s managing this contract") % ( @teams.size > 1 ? _("Teams") : _("Team") ) %>
+<% header = _("%s managing this contract") % n_('Team','Teams', @teams.size ) %>
 <%= show_list(@teams, header) { |t| link_to t.name, team_path(t) } %>
 
 <%= link_to_edit_and_list(@contrat) %>
