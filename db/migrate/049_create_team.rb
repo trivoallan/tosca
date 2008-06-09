@@ -14,9 +14,13 @@ class CreateTeam < ActiveRecord::Migration
     
     add_column :users, :team_id, :integer
     add_index :users, :team_id
+    
+    remove_column :ingenieurs, :expert_ossa
   end
 
   def self.down
+    add_column :ingenieurs, :expert_ossa, :boolean, :default => false
+    
     drop_table :teams
     drop_table :contrats_teams
     

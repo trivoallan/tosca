@@ -10,7 +10,7 @@ class Ingenieur < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
-        c.name =~ /(_id|_on|_count|chef_de_projet|expert_ossa)$/ || c.name == inheritance_column }
+        c.name =~ /(_id|_on|_count|chef_de_projet)$/ || c.name == inheritance_column }
   end
 
   def self.find_select_by_contrat_id(contrat_id)
@@ -20,20 +20,6 @@ class Ingenieur < ActiveRecord::Base
     Ingenieur.send(:with_scope, options) do
       Ingenieur.find_select(User::SELECT_OPTIONS)
     end
-  end
-
-  def self.find_ossa(*args)
-    conditions = 'ingenieurs.expert_ossa = 1'
-    Ingenieur.send(:with_scope, {:find => {:conditions => conditions }}) {
-      Ingenieur.find(*args)
-    }
-  end
-
-  def self.find_presta(*args)
-    conditions = ['ingenieurs.expert_ossa = ?', 0 ]
-    Ingenieur.send(:with_scope, {:find => {:conditions => conditions }}) {
-      Ingenieur.find(*args)
-    }
   end
 
   # Don't forget to make an :include => [:user] if you

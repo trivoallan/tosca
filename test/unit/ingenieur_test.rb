@@ -15,15 +15,4 @@ class IngenieurTest < Test::Unit::TestCase
     }
   end
 
-=begin
-  TODO : Deprecated
-  def test_find_ossa
-    i = Ingenieur.find 1,2,3
-    assert_equal Ingenieur.find_ossa(:all), i
-  end
-  def test_find_presta
-    i = Ingenieur.find 4
-    assert_equal Ingenieur.find_presta(:all), [i]
-  end
-=end
 end
