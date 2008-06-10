@@ -5,7 +5,7 @@ digraph x {
 {rank=min; Distributeur Mainteneur Conteneur }
 {rank=min; Typedemande Severite Engagement } 
 {rank=min; Arch FichierBinaire Statut }
-{rank=same; Contrat Demande }
+{rank=same; Contract Demande }
 {rank=same; Beneficiaire Ingenieur }
 {rank=same; Logiciel Urllogiciel }
 
@@ -29,9 +29,9 @@ Commentaire -> User [arrowhead=dot,dir=both,arrowtail=crow]
 Commentaire -> Piecejointe [arrowhead=odot,dir=both,arrowtail=dot]
 Commentaire -> Statut [arrowhead=dot]
 
-Contrat -> User [arrowhead=crow,dir=both,arrowtail=crow]
-Contrat -> Engagement [arrowhead=crow,arrowtail=crow,dir=both]
-Contrat -> Rule [arrowhead=dot,arrowtail=crow]
+Contract -> User [arrowhead=crow,dir=both,arrowtail=crow]
+Contract -> Engagement [arrowhead=crow,arrowtail=crow,dir=both]
+Contract -> Rule [arrowhead=dot,arrowtail=crow]
 
 User -> Image [arrowhead=dot,dir=both,arrowtail=crow]
 User -> Role [arrowhead=dot,arrowtail=crow,dir=both]
@@ -47,7 +47,7 @@ Logiciel -> Image [arrowhead=dot,dir=both,arrowtail=crow]
 
 
 News -> Ingenieur [arrowhead=dot,dir=both,arrowtail=crow]
-News -> Contrat [arrowhead=crow,dir=both,arrowtail=crow]
+News -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
 News -> Logiciel [arrowhead=dot,dir=both,arrowtail=crow]
 
 Demande -> Typedemande [arrowhead=dot,dir=both,arrowtail=crow]
@@ -57,14 +57,14 @@ Demande -> Severite [arrowhead=dot,dir=both,arrowtail=crow]
 Demande -> Beneficiaire [arrowhead=dot,dir=both,arrowtail=crow]
 Demande -> Socle [arrowhead=dot,dir=both,arrowtail=crow]
 Demande -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
-Demande -> Contrat [arrowhead=dot,dir=both,arrowtail=crow]
+Demande -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
 Demande -> Statut [arrowhead=dot,dir=both,arrowtail=crow]
 Demande -> Ingenieur [arrowhead=dot,dir=both,arrowtail=crow]
 Demande -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
 
 Paquet -> Logiciel [arrowhead=dot,dir=both,arrowtail=crow]
 Paquet -> Fichier [arrowhead=crow,dir=both,arrowtail=dot]
-Paquet -> Contrat [arrowhead=dot,dir=both,arrowtail=crow]
+Paquet -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
 Paquet -> Changelog [arrowhead=crow,dir=both,arrowtail=dot]
 Paquet -> Distributeur [arrowhead=dot,dir=both,arrowtail=dot]
 Paquet -> Dependance [arrowhead=crow,dir=both,arrowtail=dot]

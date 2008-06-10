@@ -26,17 +26,17 @@ module Filters
   end
 
   class Contributions < Struct.new('Contributions', :software, :ingenieur_id,
-                             :contribution, :etatreversement_id, :contrat_id)
+                             :contribution, :etatreversement_id, :contract_id)
     extend Shared
   end
 
   class Softwares < Struct.new('Softwares', :software, :groupe_id,
-                               :contrat_id, :description, :competence_id )
+                               :contract_id, :description, :competence_id )
     extend Shared
   end
 
   class Calls < Struct.new('Calls', :ingenieur_id, :beneficiaire_id,
-                            :contrat_id, :after, :before)
+                            :contract_id, :after, :before)
     extend Shared
   end
 
@@ -44,7 +44,7 @@ module Filters
     extend Shared
   end
 
-  class Requests < Struct.new('Requests', :text, :contrat_id, :ingenieur_id,
+  class Requests < Struct.new('Requests', :text, :contract_id, :ingenieur_id,
                               :typedemande_id, :severite_id, :statut_id, :active)
     extend Shared
   end
@@ -66,7 +66,7 @@ module Filters
   #   ['logiciel', 'description', 'paquets.description', :like ],
   #   ['filters', 'groupe_id', 'logiciels.groupe_id', :equal ],
   #   ['filters', 'competence_id', 'competences_logiciels.competence_id', :equal ],
-  #   ['filters', 'client_id', ' paquets.contrat_id', :in ]
+  #   ['filters', 'client_id', ' paquets.contract_id', :in ]
   # ])
   # flash[:conditions] = options[:conditions] = conditions
   # This helpers is here mainly for avoiding SQL injection.

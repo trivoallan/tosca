@@ -135,11 +135,11 @@ module  ComexReporting
   def cns_correction
     @percents, @extra = [], []
 
-    contrats= Contrat.find(:all, :order => 'id ASC')
-    contrats.each do |contrat|
-      c = @percents[contrat.id]= []
-      c_extra = @extra[contrat.id] = {}
-      c_extra[:name], c_extra[:demandes_ids] = contrat.name, []
+    contracts= Contract.find(:all, :order => 'id ASC')
+    contracts.each do |contract|
+      c = @percents[contract.id]= []
+      c_extra = @extra[contract.id] = {}
+      c_extra[:name], c_extra[:demandes_ids] = contract.name, []
 
       demandes = Demande.find :all,
         :conditions => Demande::EN_COURS, :order=> 'updated_on ASC'
@@ -158,16 +158,16 @@ module  ComexReporting
         d[:mesg_correction], d[:mesg_contournement] ='-', '-'
         if elapsed_time >= 0
         # correction_time and workaround_time are in second, and not null
-          correction_time = request.engagement(contrat).correction.days
-          workaround_time = request.engagement(contrat).contournement.days
+          correction_time = request.engagement(contract).correction.days
+          workaround_time = request.engagement(contract).contournement.days
           unless correction_time == -1.day
             d[:mesg_correction]=  request.distance_of_time_in_french_words(
-              (correction_time - elapsed_time).abs, request.contrat )
+              (correction_time - elapsed_time).abs, request.contract )
             d[:correction]=  (elapsed_time/correction_time )*100
           end
           unless workaround_time == -1.day
             d[:mesg_contournement] = request.distance_of_time_in_french_words(
-              (workaround_time-elapsed_time).abs, request.contrat )
+              (workaround_time-elapsed_time).abs, request.contract )
             d[:contournement]= (elapsed_time/workaround_time )*100
           end
         end

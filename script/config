@@ -50,7 +50,7 @@ action_name = @action.to_s.capitalize
 if @action == :dump or @action == :dumpall
   if @action == :dumpall
     models = [ Arch,Beneficiaire,Binaire,Changelog,Client,Commentaire,
-	  Competence,Conteneur,Contrat,Contribution,Demande,Dependance,
+	  Competence,Conteneur,Contract,Contribution,Demande,Dependance,
 	  Distributeur,Document,Elapsed,Engagement,Etatreversement,Fichier,
 	  Fichierbinaire,Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
       Mainteneur,New,Rules::Component,Rules::Credit,Paquet,Permission,Phonecall,
