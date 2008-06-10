@@ -21,10 +21,10 @@
     <% end %>
    </table>
 
-   <%= link_to_new_contrat(@client.id) %>
-   <%= show_list(@client.contrats, _('contract')) { |c|
+   <%= link_to_new_contract(@client.id) %>
+   <%= show_list(@client.contracts, _('contract')) { |c|
     result = ''
-    edit = link_to_edit(edit_contrat_path(c))
+    edit = link_to_edit(edit_contract_path(c))
     result << "#{edit}&nbsp;" if edit
     result << "(#{c.chrono})&nbsp;" if @ingenieur
     result << "<b>#{c.rule.name}</b>"

@@ -4,8 +4,8 @@
 </p>
 <% end %>
 
-<% for contrat in @engagement.contrats %>
-  <%= contrat.client.name %> <br />
+<% for contract in @engagement.contracts %>
+  <%= contract.client.name %> <br />
 <% end %>
 
 <%= link_to_edit_and_list(@engagement) %>

@@ -38,7 +38,7 @@
      <%= text_field :filters, :text %></li>
  <% if @ingenieur %>
   <li><b><%=_('By contract')%></b><br />
-      <%= select_filter(@contrats, :contrat) %></li>
+      <%= select_filter(@contracts, :contract) %></li>
   <li><b><%=_('By expert')%></b><br />
   <%= select_filter(@ingenieurs, :ingenieur, { :first_value => @ingenieur, :first_name => _("[ Me ]") }) %></li>
  <% end %>

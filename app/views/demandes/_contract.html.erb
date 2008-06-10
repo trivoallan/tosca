@@ -1,5 +1,5 @@
 <div id="recipient"><%= select(:demande, :beneficiaire_id, @beneficiaires) %>
-   <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with => "contrat_id",
+   <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with => "contract_id",
         :url => ajax_display_contract_demandes_path) %>
-   <%= observe_field "demande_contrat_id", options %>
+   <%= observe_field "demande_contract_id", options %>
 </div>

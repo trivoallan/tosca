@@ -12,8 +12,8 @@
   <td><label for="reporting_period"> <%= _('Over a period of') %></label>
       <%= text_field 'reporting', 'period', :size => 3,:value => 3 %> <%= _('months') %></td>
 </tr><tr>
-  <td><label for="reporting_contrat_id"><%= _('Concerning the contract') %> </label>
-      <%= select("reporting", "contrat_id", @contrats.collect{|c| [ c.to_s, c.id]}) %></td>
+  <td><label for="reporting_contract_id"><%= _('Concerning the contract') %> </label>
+      <%= select("reporting", "contract_id", @contracts.collect{|c| [ c.to_s, c.id]}) %></td>
 </tr>
 </table>
 <p><small>

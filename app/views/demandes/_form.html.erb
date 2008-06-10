@@ -16,12 +16,12 @@
            <%= select(:demande, :severite_id, @severites) %>
          <% end %></td>
     </tr><tr>
-    <% if @contrats.size > 1 %>
-     <th><label for="demande_contrat_id"><%= _("Concerning ") %></label></th>
-     <td><%= select(:demande, :contrat_id, @contrats) %>
-         <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with => "contrat_id",
+    <% if @contracts.size > 1 %>
+     <th><label for="demande_contract_id"><%= _("Concerning ") %></label></th>
+     <td><%= select(:demande, :contract_id, @contracts) %>
+         <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with => "contract_id",
              :url => ajax_display_contract_demandes_path) %>
-         <%= observe_field "demande_contrat_id", options %>
+         <%= observe_field "demande_contract_id", options %>
          </td>
     <% else %>
      <td colspan="2"></td>
@@ -98,7 +98,7 @@
 </table>
 
 <% fields = %w(demande_typedemande_id) %>
-<% fields << 'demande_contrat_id' if @contrats.size > 1 %>
+<% fields << 'demande_contract_id' if @contracts.size > 1 %>
 <% fields << 'demande_severite_id' if new_request %>
 <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
      "Form.serializeElements($('#{fields.join("','")}'))",

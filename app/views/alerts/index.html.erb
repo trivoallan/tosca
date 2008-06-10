@@ -3,7 +3,7 @@
 <h2><%= _('Please select the contracts you want to monitor')%></h2>
 
 <% form_tag(on_submit_alerts_path, :method => :get) do %>
-  <% defaults = (@ingenieur ? @ingenieur.contrats : @beneficiaire.contrats) %>
-  <%= hbtm_check_box(defaults, @contracts, 'contrat_ids', :size => 3) %>
+  <% defaults = (@ingenieur ? @ingenieur.contracts : @beneficiaire.contracts) %>
+  <%= hbtm_check_box(defaults, @contracts, 'contract_ids', :size => 3) %>
   <%= submit_tag _('Validate') %>
 <% end %>

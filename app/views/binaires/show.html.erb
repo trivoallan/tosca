@@ -10,7 +10,7 @@
 <h2><%=_('Binary package')%></h2>
 <div class="show">
  <p><b><%=_('Software')%>:</b> <%= logiciel.name %></p>
- <p><b><%=_('Contract')%>:</b> <%= paquet.contrat.client.name %></p>
+ <p><b><%=_('Contract')%>:</b> <%= paquet.contract.client.name %></p>
  <p><b><%=_('System')%>:</b> <%= @binaire.socle.name if @binaire.socle %></p>
  <p><b><%=_('Arch')%>:</b> <%= @binaire.arch.name if @binaire.arch %></p>
  <p><b><%=_('Source')%>:</b> <%= link_to_paquet(@binaire.paquet) %></p>

@@ -8,11 +8,11 @@
     <th><%= _("Change(s)") %></th>
   </tr>
 
-  <% contrat, rule = nil, nil %>
+  <% contract, rule = nil, nil %>
   <% @commentaires.each do |c| %>
-     <% contrat ||= c.demande.contrat %>
-     <% rule ||= contrat.rule %>
-     <% history = display_history(c, rule, contrat) %>
+     <% contract ||= c.demande.contract %>
+     <% rule ||= contract.rule %>
+     <% history = display_history(c, rule, contract) %>
      <% unless history.nil? %>
       <tr class="<%= cycle('even', 'odd') %>">
         <td><%= c.created_on_formatted %></td>

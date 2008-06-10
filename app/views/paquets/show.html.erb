@@ -19,7 +19,7 @@
   <tr><td>
    <div class="show" style="min-width: 30em;">
     <p><b><%= _('Software') + ' : '%></b> <%= @paquet.logiciel.name %></p>
-    <p><b><%= _('Contract') + ' : '%></b> <%= @paquet.contrat.client.name %></p>
+    <p><b><%= _('Contract') + ' : '%></b> <%= @paquet.contract.client.name %></p>
 
     <% for column in Paquet.content_columns %>
      <p><b><%= _(column.human_name) %>:</b> <%= @paquet.send(column.name) %></p>

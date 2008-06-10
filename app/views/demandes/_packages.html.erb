@@ -10,8 +10,8 @@
   </tr>
   <% selecteds = @demande[:paquet_ids] %>
   <% @paquets.each do |p| %>
-     <% contrat = Contrat.find(p.contrat_id) %>
-     <% engagement = contrat.find_engagement(@demande) %>
+     <% contract = Contract.find(p.contract_id) %>
+     <% engagement = contract.find_engagement(@demande) %>
      <tr class="<%=cycle('even','odd')%>">
        <td><% if engagement %>
          <%= Time.in_words(engagement.contournement.days, true)%>
