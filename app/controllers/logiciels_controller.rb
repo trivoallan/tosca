@@ -14,8 +14,7 @@ class LogicielsController < ApplicationController
     end
 
     options = { :per_page => 10, :order => 'logiciels.name',
-      :include => [:groupe], :joins =>
-      "INNER JOIN competences_logiciels ON logiciels.id = competences_logiciels.logiciel_id" }
+      :include => [:groupe,:competences] }
     conditions = []
 
     if params.has_key? :filters
