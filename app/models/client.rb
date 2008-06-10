@@ -6,12 +6,12 @@ class Client < ActiveRecord::Base
   has_many :beneficiaires, :dependent => :destroy
   has_many :active_recipients, :class_name => 'Beneficiaire', :include => :user,
     :conditions => 'users.inactive = 0'
-  has_many :contrats, :dependent => :destroy
+  has_many :contracts, :dependent => :destroy
   has_many :documents, :dependent => :destroy
 
   has_and_belongs_to_many :socles
 
-  has_many :paquets, :through => :contrats, :include => Paquet::INCLUDE
+  has_many :paquets, :through => :contracts, :include => Paquet::INCLUDE
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
   belongs_to :creator, :class_name => 'User'
@@ -51,8 +51,8 @@ class Client < ActiveRecord::Base
         [ 'clients.id IN (?)', client_ids ]} }
   end
 
-  def contrat_ids
-    self.contrats.find(:all, :select => 'id').collect{|c| c.id}
+  def contract_ids
+    self.contracts.find(:all, :select => 'id').collect{|c| c.id}
   end
 
 
@@ -69,7 +69,7 @@ class Client < ActiveRecord::Base
   # for this client, false otherwise.
   def support_distribution
     result = false
-    self.contrats.each { |c| result = true if c.rule.max == -1 }
+    self.contracts.each { |c| result = true if c.rule.max == -1 }
     result
   end
 
@@ -78,23 +78,23 @@ class Client < ActiveRecord::Base
   end
 
   def ingenieurs
-    return [] if contrats.empty?
+    return [] if contracts.empty?
     options = { :include => [:user],
-      :conditions => [ 'cu.contrat_id IN (?)', contrat_ids ],
-      :joins => 'INNER JOIN contrats_users cu ON cu.user_id=users.id' }
+      :conditions => [ 'cu.contract_id IN (?)', contract_ids ],
+      :joins => 'INNER JOIN contracts_users cu ON cu.user_id=users.id' }
     Ingenieur.find(:all, options)
   end
 
 
   def logiciels
-    return [] if contrats.empty?
-    return contrats.first.logiciels if contrats.size == 1
+    return [] if contracts.empty?
+    return contracts.first.logiciels if contracts.size == 1
     # speedier if there is one openbar contract
-    contrats.each{|c| return Logiciel.find(:all) if c.rule.max == -1 }
+    contracts.each{|c| return Logiciel.find(:all) if c.rule.max == -1 }
     # default case, when there is an association with packages stored.
     conditions = [ 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id ' +
-                   ' FROM paquets WHERE paquets.contrat_id IN (?)) ',
-                   contrats.collect{ |c| c.id } ]
+                   ' FROM paquets WHERE paquets.contract_id IN (?)) ',
+                   contracts.collect{ |c| c.id } ]
     Logiciel.find(:all, :conditions => conditions, :order => 'logiciels.name')
   end
 
@@ -110,9 +110,9 @@ class Client < ActiveRecord::Base
 
   def typedemandes
     joins = 'INNER JOIN engagements ON engagements.typedemande_id = typedemandes.id '
-    joins << 'INNER JOIN contrats_engagements ON engagements.id = contrats_engagements.engagement_id'
-    conditions = [ 'contrats_engagements.contrat_id IN (' +
-        'SELECT contrats.id FROM contrats WHERE contrats.client_id = ?)', id ]
+    joins << 'INNER JOIN contracts_engagements ON engagements.id = contracts_engagements.engagement_id'
+    conditions = [ 'contracts_engagements.contract_id IN (' +
+        'SELECT contracts.id FROM contracts WHERE contracts.client_id = ?)', id ]
     Typedemande.find(:all,
                      :select => "DISTINCT typedemandes.*",
                      :conditions => conditions,

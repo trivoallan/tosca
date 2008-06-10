@@ -13,9 +13,9 @@ class Ingenieur < ActiveRecord::Base
         c.name =~ /(_id|_on|_count)$/ || c.name == inheritance_column }
   end
 
-  def self.find_select_by_contrat_id(contrat_id)
-    conditions = [ 'cu.contrat_id = ?', contrat_id ]
-    joins = 'INNER JOIN contrats_users cu ON cu.user_id=users.id'
+  def self.find_select_by_contract_id(contract_id)
+    conditions = [ 'cu.contract_id = ?', contract_id ]
+    joins = 'INNER JOIN contracts_users cu ON cu.user_id=users.id'
     options = {:find => {:conditions => conditions, :joins => joins}}
     Ingenieur.send(:with_scope, options) do
       Ingenieur.find_select(User::SELECT_OPTIONS)

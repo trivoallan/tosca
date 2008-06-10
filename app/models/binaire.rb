@@ -9,12 +9,12 @@ class Binaire < ActiveRecord::Base
   validates_presence_of :paquet
 
   # paquet association MUST be loaded by each reference on this model
-  def self.set_scope(contrat_ids)
+  def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-       [ 'paquets.contrat_id IN (?)', contrat_ids ] } }
+       [ 'paquets.contract_id IN (?)', contract_ids ] } }
   end
 
-  # belongs_to :contrat
+  # belongs_to :contract
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||

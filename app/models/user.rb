@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_one :ingenieur, :dependent => :destroy
   has_one :beneficiaire, :dependent => :destroy
 
-  has_and_belongs_to_many :own_contracts, :class_name => "Contrat"
+  has_and_belongs_to_many :own_contracts, :class_name => "Contract"
 
   validates_length_of :login, :within => 3..20
   validates_length_of :password, :within => 5..40
@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   after_save do |record|
     # To make sure we have only one time a contract
     if record.team
-      record.own_contracts = record.own_contracts - record.team.contrats
+      record.own_contracts = record.own_contracts - record.team.contracts
     end
     # false will invalidate the save
     true
@@ -97,10 +97,10 @@ class User < ActiveRecord::Base
   end
 
   # This reduced the scope of User to allowed contracts of current user
-  def self.get_scope(contrat_ids)
+  def self.get_scope(contract_ids)
     { :find => { :conditions =>
-          [ 'contrats_users.contrat_id IN (?) ', contrat_ids ], :joins =>
-        'INNER JOIN contrats_users ON contrats_users.user_id=users.id ' } }
+          [ 'contracts_users.contract_id IN (?) ', contract_ids ], :joins =>
+        'INNER JOIN contracts_users ON contracts_users.user_id=users.id ' } }
   end
 
   # Associate current User to a recipient profile
@@ -156,22 +156,22 @@ class User < ActiveRecord::Base
   end
 
   # The contracts of a User = his contracts + the contracts of his team
-  def contrats
+  def contracts
     contracts = self.own_contracts.dup
     if self.team
-      contracts.concat(self.team.contrats)
+      contracts.concat(self.team.contracts)
     end
     contracts
   end
 
   # cached, coz' it's used in scopes
-  def contrat_ids
-    @contrat_ids ||= self.contrats.collect {|c| c.id }
+  def contract_ids
+    @contract_ids ||= self.contracts.collect {|c| c.id }
   end
 
   # cached, coz' it's used in scopes
   def client_ids
-    @client_ids ||= self.contrats.collect {|c| c.client_id }
+    @client_ids ||= self.contracts.collect {|c| c.client_id }
   end
 
   def kind

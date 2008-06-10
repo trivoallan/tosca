@@ -6,7 +6,7 @@ class Phonecall < ActiveRecord::Base
   belongs_to :ingenieur
   belongs_to :beneficiaire
   belongs_to :demande
-  belongs_to :contrat
+  belongs_to :contract
 
   validate do |record|
     # length consistency
@@ -15,18 +15,18 @@ class Phonecall < ActiveRecord::Base
     end
     # recipient consistency
     if record.beneficiaire and
-      record.beneficiaire.client_id != record.contrat.client_id
+      record.beneficiaire.client_id != record.contract.client_id
       record.errors.add_to_base _('recipient and client have to correspond.')
     end
   end
-  validates_presence_of :ingenieur, :contrat
+  validates_presence_of :ingenieur, :contract
 
   # This reduced the scope of Calls to contract_ids in parameters.
   # With this, every Recipient only see what he is concerned of
-  def self.set_scope(contrat_ids)
-    if contrat_ids
+  def self.set_scope(contract_ids)
+    if contract_ids
       self.scoped_methods << { :find => { :conditions =>
-          [ 'phonecalls.contrat_id IN (?)', contrat_ids ] } }
+          [ 'phonecalls.contract_id IN (?)', contract_ids ] } }
     end
   end
 
@@ -51,13 +51,13 @@ class Phonecall < ActiveRecord::Base
     if demande
       _("Phonecall of %s on '%s'") % [ Time.in_words(length), demande.resume ]
     else
-      _("Phonecall of %s for %s") % [ ingenieur.name, contrat.name ]
+      _("Phonecall of %s for %s") % [ ingenieur.name, contract.name ]
     end
   end
 
   # For Ruport :
-  def contrat_name
-    contrat.name
+  def contract_name
+    contract.name
   end
   def ingenieur_name
     ingenieur.name

@@ -1,4 +1,4 @@
-class Contrat < ActiveRecord::Base
+class Contract < ActiveRecord::Base
   acts_as_reportable
   
   belongs_to :client
@@ -32,9 +32,9 @@ class Contrat < ActiveRecord::Base
 
   Rules = [ 'Rules::Credit', 'Rules::Component' ]
 
-  def self.set_scope(contrat_ids)
+  def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'contrats.id IN (?)', contrat_ids ] } }
+        [ 'contracts.id IN (?)', contract_ids ] } }
   end
 
   def credit?
@@ -81,15 +81,15 @@ class Contrat < ActiveRecord::Base
   end
 
   def demandes
-    conditions = [ 'demandes.contrat_id = ?', id]
+    conditions = [ 'demandes.contract_id = ?', id]
     # WHERE (demandes_paquets.demande_id = 62 )
     Demande.find(:all, :conditions => conditions)
   end
 
   def typedemandes
     joins = 'INNER JOIN engagements ON engagements.typedemande_id = typedemandes.id '
-    joins << 'INNER JOIN contrats_engagements ON engagements.id = contrats_engagements.engagement_id'
-    conditions = [ 'contrats_engagements.contrat_id = ? ', id ]
+    joins << 'INNER JOIN contracts_engagements ON engagements.id = contracts_engagements.engagement_id'
+    conditions = [ 'contracts_engagements.contract_id = ? ', id ]
     Typedemande.find(:all,
                      :select => "DISTINCT typedemandes.*",
                      :conditions => conditions,

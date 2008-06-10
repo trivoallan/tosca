@@ -22,10 +22,10 @@ class Logiciel < ActiveRecord::Base
     _('You have to specify at least one technology')
 
   # See ApplicationController#scope
-  def self.set_scope(contrat_ids)
+  def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'paquets.contrat_id IN (?)', contrat_ids ],
-        :include => [:paquets]} } if contrat_ids
+        [ 'paquets.contract_id IN (?)', contract_ids ],
+        :include => [:paquets]} } if contract_ids
   end
 
   # TODO : l'une des deux est de trop. Normalement c'est

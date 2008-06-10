@@ -7,14 +7,14 @@ class Rules::Credit < ActiveRecord::Base
     1
   end
 
-  def elapsed_formatted(value, contrat)
+  def elapsed_formatted(value, contract)
     n_('%d time-credit', '%d time-credits', value) % value
   end
 
   # It's called like this :
   # rule.compute_elapsed_between(last_status_comment, self)
   # It won't do anything : the credit spent is filled manually, not computed
-  def compute_between(last, current, contrat)
+  def compute_between(last, current, contract)
     current.elapsed
   end
 

@@ -1,14 +1,14 @@
 class Paquet < ActiveRecord::Base
   belongs_to :logiciel
   belongs_to :distributeur
-  belongs_to :contrat, :counter_cache => true
+  belongs_to :contract, :counter_cache => true
   belongs_to :mainteneur
   belongs_to :conteneur
   has_many :changelogs, :dependent => :destroy
   has_many :dependances, :dependent => :destroy
   has_many :binaires, :dependent => :destroy, :include => :paquet
 
-  validates_presence_of :logiciel, :conteneur, :contrat
+  validates_presence_of :logiciel, :conteneur, :contract
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
@@ -16,9 +16,9 @@ class Paquet < ActiveRecord::Base
   end
 
   # See ApplicationController#scope
-  def self.set_scope(contrat_ids)
+  def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'paquets.contrat_id IN (?)', contrat_ids ]} }
+        [ 'paquets.contract_id IN (?)', contract_ids ]} }
   end
 
   def to_param
@@ -55,7 +55,7 @@ class Paquet < ActiveRecord::Base
   def engagement(typedemande_id, severite_id)
     @result = {} unless @result
     if (typedemande_id != @result[:typedemande] or severite_id != @result[:severite])
-      @result[:engagement] = self.contrat.engagements.\
+      @result[:engagement] = self.contract.engagements.\
       find_by_typedemande_id_and_severite_id(typedemande_id,severite_id)
       @result[:typedemande], @result[:severite] = typedemande_id, severite_id
     end

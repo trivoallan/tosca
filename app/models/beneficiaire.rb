@@ -16,12 +16,12 @@ class Beneficiaire < ActiveRecord::Base
     (user ? user.name : '-')
   end
 
-  def contrat_ids
-    @cache ||=  user.contrat_ids
+  def contract_ids
+    @cache ||=  user.contract_ids
   end
 
-  def contrats
-    self.user.contrats
+  def contracts
+    self.user.contracts
   end
 
 end

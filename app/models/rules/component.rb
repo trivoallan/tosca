@@ -7,20 +7,20 @@ class Rules::Component < ActiveRecord::Base
     0
   end
 
-  def elapsed_formatted(value, contrat)
-    Time.in_words(value, contrat.interval)
+  def elapsed_formatted(value, contract)
+    Time.in_words(value, contract.interval)
   end
 
   # Call it like this :
-  # rule.compute_between(last_status_comment, self, contrat)
+  # rule.compute_between(last_status_comment, self, contract)
   # It will update "self.elapsed" with the elapsed time between
   # the 2 comments which MUST change the status
-  def compute_between(last, current, contrat)
+  def compute_between(last, current, contract)
     return 0 unless last.statut_id != 0 && current.statut_id != 0
     return 0 unless Statut::Running.include? last.statut_id
     Time.working_diff(last.created_on, current.created_on,
-                      contrat.heure_ouverture,
-                      contrat.heure_fermeture)
+                      contract.heure_ouverture,
+                      contract.heure_fermeture)
   end
 
   def short_description

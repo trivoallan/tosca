@@ -14,7 +14,7 @@ class Demande < ActiveRecord::Base
   belongs_to :submitter, :class_name => 'User',
     :foreign_key => 'submitter_id'
 
-  belongs_to :contrat
+  belongs_to :contract
   has_many :phonecalls
   has_one :elapsed, :dependent => :destroy
   belongs_to :contribution
@@ -25,12 +25,12 @@ class Demande < ActiveRecord::Base
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
   has_many :piecejointes, :through => :commentaires
 
-  named_scope :actives, lambda { |contrat_ids| { :conditions =>
-      { :statut_id => Statut::OPENED, :contrat_id => contrat_ids }
+  named_scope :actives, lambda { |contract_ids| { :conditions =>
+      { :statut_id => Statut::OPENED, :contract_id => contract_ids }
     }
   }
-  named_scope :inactives, lambda { |contrat_ids| { :conditions =>
-      { :statut_id => Statut::CLOSED, :contrat_id => contrat_ids }
+  named_scope :inactives, lambda { |contract_ids| { :conditions =>
+      { :statut_id => Statut::CLOSED, :contract_id => contract_ids }
     }
   }
 
@@ -49,7 +49,7 @@ class Demande < ActiveRecord::Base
     :foreign_key => "last_comment_id"
 
   # Validation
-  validates_presence_of :resume, :contrat, :description, :beneficiaire,
+  validates_presence_of :resume, :contract, :description, :beneficiaire,
    :statut, :severite, :warn => _("You must indicate a %s for your request")
   validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
@@ -60,8 +60,8 @@ class Demande < ActiveRecord::Base
   attr_accessor :description
 
   validate do |record|
-    if record.contrat.nil? || record.beneficiaire.nil? ||
-        (record.contrat.client_id != record.beneficiaire.client_id)
+    if record.contract.nil? || record.beneficiaire.nil? ||
+        (record.contract.client_id != record.beneficiaire.client_id)
       record.errors.add_to_base _('The client of this contract is not consistant with the client of this recipient.')
     end
   end
@@ -82,7 +82,7 @@ class Demande < ActiveRecord::Base
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
     scope = { :conditions =>
-      [ 'demandes.contrat_id IN (?)', contract_ids ] }
+      [ 'demandes.contract_id IN (?)', contract_ids ] }
     self.scoped_methods << { :find => scope, :count => scope }
   end
 
@@ -97,7 +97,7 @@ class Demande < ActiveRecord::Base
   # Remanent fields are those which persists after the first submit
   # It /!\ MUST /!^ be an _id field. See DemandesController#create.
   def self.remanent_fields
-    [ :contrat_id, :beneficiaire_id, :typedemande_id, :severite_id,
+    [ :contract_id, :beneficiaire_id, :typedemande_id, :severite_id,
       :socle_id, :logiciel_id, :ingenieur_id ]
   end
 
@@ -118,7 +118,7 @@ class Demande < ActiveRecord::Base
   end
 
   def elapsed_formatted
-    contrat.rule.elapsed_formatted(self.elapsed.until_now, contrat)
+    contract.rule.elapsed_formatted(self.elapsed.until_now, contract)
   end
 
   def find_other_comment(comment_id)
@@ -236,7 +236,7 @@ class Demande < ActiveRecord::Base
 
     # do not update timestamp for a reset
     self.class.record_timestamps = false
-    rule = self.contrat.rule
+    rule = self.contract.rule
     self.elapsed = Elapsed.new(self)
     options = { :conditions => 'commentaires.statut_id IS NOT NULL',
       :order => "commentaires.created_on ASC" }
@@ -246,9 +246,9 @@ class Demande < ActiveRecord::Base
     life_cycle.first.update_attribute :elapsed, rule.elapsed_on_create
 
     # all the others
-    previous, contrat = life_cycle.first, self.contrat
+    previous, contract = life_cycle.first, self.contract
     life_cycle.each do |step| # a step is a Commentaire object
-      step.update_attribute :elapsed, rule.compute_between(previous, step, contrat)
+      step.update_attribute :elapsed, rule.compute_between(previous, step, contract)
       self.elapsed.add step
       previous = step
     end
@@ -258,24 +258,24 @@ class Demande < ActiveRecord::Base
   end
 
   def engagement
-    return nil unless contrat_id && severite_id && typedemande_id
-    conditions = [" contrats_engagements.contrat_id = ? AND " +
+    return nil unless contract_id && severite_id && typedemande_id
+    conditions = [" contracts_engagements.contract_id = ? AND " +
       "engagements.severite_id = ? AND engagements.typedemande_id = ? ",
-      contrat_id, severite_id, typedemande_id ]
-    joins = " INNER JOIN contrats_engagements ON engagements.id = contrats_engagements.engagement_id"
+      contract_id, severite_id, typedemande_id ]
+    joins = " INNER JOIN contracts_engagements ON engagements.id = contracts_engagements.engagement_id"
     Engagement.find(:first, :conditions => conditions, :joins => joins)
   end
 
   # useful shortcut
   def interval
-    self.contrat.interval
+    self.contract.interval
   end
 
 #  private
   def affiche_delai(temps_passe, delai)
     value = calcul_delai(temps_passe, delai)
     return "-" if value == 0
-    distance = Time.in_words(value.abs, self.contrat.interval)
+    distance = Time.in_words(value.abs, self.contract.interval)
     if value >= 0
       "<p style=\"color: green\">#{distance}</p>"
     else
@@ -285,7 +285,7 @@ class Demande < ActiveRecord::Base
 
   def calcul_delai(temps_passe, delai)
     return 0 if delai == -1
-    - (temps_passe - delai * contrat.interval_in_seconds)
+    - (temps_passe - delai * contract.interval_in_seconds)
   end
 
   protected

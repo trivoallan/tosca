@@ -5,7 +5,7 @@ class Team < ActiveRecord::Base
     
   has_many :users
   
-  has_and_belongs_to_many :contrats
+  has_and_belongs_to_many :contracts
     
   validates_uniqueness_of :name
   validates_presence_of :name, :contact

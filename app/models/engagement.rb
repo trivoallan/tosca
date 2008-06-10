@@ -1,7 +1,7 @@
 class Engagement < ActiveRecord::Base
   belongs_to :severite
   belongs_to :typedemande
-  has_and_belongs_to_many :contrats
+  has_and_belongs_to_many :contracts
 
   validates_each :correction, :contournement do |record, attr, value|
     record.errors.add attr, 'must be >= 0.' if value < 0 and value != -1

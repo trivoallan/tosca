@@ -111,8 +111,8 @@ class Elapsed < ActiveRecord::Base
     return result unless request.time_running?
     current = Commentaire.new(:created_on => Time.now, :statut_id => request.statut_id)
     last = request.last_status_comment
-    contrat = request.contrat
-    result += contrat.rule.compute_between(last, current, contrat)
+    contract = request.contract
+    result += contract.rule.compute_between(last, current, contract)
   end
 
 

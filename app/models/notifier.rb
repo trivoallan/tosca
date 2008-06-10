@@ -124,7 +124,7 @@ class Notifier < ActionMailer::Base
       subject _("Yearly digest for ") << time
     end
 
-    html_and_text_body({ :result => data, :time => time })
+    html_and_text_body({ :result => data.other, :important => data.important, :time => time })
   end
 
   # http://i.loveruby.net/en/projects/tmail/doc/mail.html$
@@ -151,8 +151,8 @@ class Notifier < ActionMailer::Base
     user = users.first
     client = possible_clients.first
 
-    email[HEADER_LIST_ID] = list_id(contrat)
-    send_mail(client.contrat.mailingliste, contrat.ingenieurs.map { |e| e.user.email }, email)
+    email[HEADER_LIST_ID] = list_id(contract)
+    send_mail(client.contract.mailingliste, contract.ingenieurs.map { |e| e.user.email }, email)
   end
 =end
 
@@ -214,14 +214,14 @@ class Notifier < ActionMailer::Base
   # For now, we have bcc recipient only for private comments.
   # It sends a mail to all experts of a contract.
   def compute_bcc(request)
-    res = request.contrat.engineer_users.find(:all, :select => 'email')
+    res = request.contract.engineer_users.find(:all, :select => 'email')
     res.collect{ |r| r.email }.join(',')
   end
 
   def compute_copy(demande, private = false)
     return '' if private
     res = []
-    res << demande.contrat.mailinglist
+    res << demande.contract.mailinglist
     res << demande.mail_cc unless demande.mail_cc.blank?
     res.join(',')
   end
@@ -275,8 +275,8 @@ class Notifier < ActionMailer::Base
   # There is NO outgoing mails, sadly. #
   ######################################
 
-  def list_id(contrat)
-    "#{contrat.name} <#{contrat.mailinglist}>"
+  def list_id(contract)
+    "#{contract.name} <#{contract.mailinglist}>"
   end
 =end
 end

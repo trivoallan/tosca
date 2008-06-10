@@ -119,14 +119,14 @@ class Commentaire < ActiveRecord::Base
     end
 
     # update cache of elapsed time
-    contrat = request.contrat
-    rule = contrat.rule
+    contract = request.contract
+    rule = contract.rule
     if request.elapsed.nil?
       request.elapsed = Elapsed.new(request)
       self.update_attribute :elapsed, rule.elapsed_on_create
     elsif !self.statut_id.nil?
       last_status_comment = request.find_status_comment_before(self)
-      elapsed = rule.compute_between(last_status_comment, self, contrat)
+      elapsed = rule.compute_between(last_status_comment, self, contract)
       self.update_attribute :elapsed, elapsed
     end
     request.elapsed.add(self)
