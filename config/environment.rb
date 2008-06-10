@@ -107,8 +107,8 @@ path = File.join RAILS_ROOT, "locale", "fr", "LC_MESSAGES", "tosca.mo"
 unless File.exists? path
   puts "***********************"
   puts "Missing traducted files. I am generating it for you with "
-  puts "$ rake makemo"
-  %x[#{"rake makemo"}]
+  puts "$ rake l10n:mo"
+  %x[#{"rake l10n:mo"}]
   puts "***********************"
 end
 
