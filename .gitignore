@@ -1,0 +1,5 @@
+config/database.yml
+db/schema.rb
+lib/config.rb
+log/*.log
+
