@@ -91,7 +91,7 @@ class AccountController < ApplicationController
     _form
   end
 
-  # TODO : Change ajax filter from client_id to contrat_id, with
+  # TODO : Change ajax filter from client_id to contract_id, with
   # adequate changes in the Finder and in the Test Suite
   # TODO : this method is too long
   def index
@@ -122,7 +122,7 @@ class AccountController < ApplicationController
     # only on their contract.
     scope = {}
     if @beneficiaire
-      scope = User.get_scope(session[:user].contrat_ids)
+      scope = User.get_scope(session[:user].contract_ids)
     end
     User.send(:with_scope, scope) do
       @user_pages, @users = paginate :users, options
@@ -149,7 +149,7 @@ class AccountController < ApplicationController
     # Security Wall
     if session[:user].role_id > 2 # Not a manager nor an admin
       params[:user].delete :role_id
-      params[:user].delete :contrat_ids
+      params[:user].delete :contract_ids
     end
 
     res = @user.update_attributes(params[:user])
@@ -232,14 +232,14 @@ class AccountController < ApplicationController
 
     client_id = params[:client_id].to_i
     user_id = (params.has_key?(:id) ? params[:id].to_i : nil)
-    options = Contrat::OPTIONS
-    conditions = [ 'contrats.cloture >= ?', Time.now]
+    options = Contract::OPTIONS
+    conditions = [ 'contracts.cloture >= ?', Time.now]
     unless client_id == 0
-      conditions.first << ' AND contrats.client_id = ?'
+      conditions.first << ' AND contracts.client_id = ?'
       conditions.push(client_id)
     end
     options = options.dup.update(:conditions => conditions)
-    @contrats = Contrat.find_select(options)
+    @contracts = Contract.find_select(options)
     @user = (user_id.blank? ? User.new : User.find(user_id))
   end
 
@@ -285,9 +285,9 @@ private
     return unless @user_recipient
     @clients = Client.find_select({}, false)
     client_id = (@user_recipient.client ? @user_recipient.client_id : @clients.first.id)
-    options = { :conditions => ['contrats.client_id = ?', client_id ]}
+    options = { :conditions => ['contracts.client_id = ?', client_id ]}
 
-    @contrats = Contrat.find_select(Contrat::OPTIONS.merge(options))
+    @contracts = Contract.find_select(Contract::OPTIONS.merge(options))
     @clients.collect!{|c| [c.name, c.id] }
     @user.role_id = 4 if @user.new_record?
   end
@@ -295,10 +295,10 @@ private
   def _form_engineer
     return unless @user_engineer
     @competences = Competence.find_select
-    @contrats = Contrat.find_select(Contrat::OPTIONS)
-    # For usability matters, list of checkable own_contrats
+    @contracts = Contract.find_select(Contract::OPTIONS)
+    # For usability matters, list of checkable own_contracts
     # won't contains any already available by the team.
-    @contrats -= @user.team.contrats.find_select(Contrat::OPTIONS) if @user.team
+    @contracts -= @user.team.contracts.find_select(Contract::OPTIONS) if @user.team
     @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
     @user.role_id = 3 if @user.new_record?
   end

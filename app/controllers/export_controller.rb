@@ -93,9 +93,9 @@ class ExportController < ApplicationController
   end
 
   def compute_phonecalls(type)
-    columns= ['contrat_name', 'ingenieur_name', 'beneficiaire_name']
+    columns= ['contract_name', 'ingenieur_name', 'beneficiaire_name']
     options = { :order => 'phonecalls.start', :include =>
-      [:beneficiaire,:ingenieur,:contrat,:demande],
+      [:beneficiaire,:ingenieur,:contract,:demande],
       :conditions => flash[:conditions],
       :methods => columns }
     report = Phonecall.report_table(:all, options)

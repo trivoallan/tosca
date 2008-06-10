@@ -25,7 +25,7 @@ class LogicielsController < ApplicationController
     softwares_filters = session[:softwares_filters]
     if softwares_filters
       # we do not want an include since it's only for filtering.
-      unless softwares_filters['contrat_id'].blank?
+      unless softwares_filters['contract_id'].blank?
         options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id'
       end
 
@@ -37,7 +37,7 @@ class LogicielsController < ApplicationController
         [:description, 'logiciels.description', :like ],
         [:groupe_id, 'logiciels.groupe_id', :equal ],
         [:competence_id, 'competences_logiciels.competence_id', :equal ],
-        [:contrat_id, ' paquets.contrat_id', :in ]
+        [:contract_id, ' paquets.contract_id', :in ]
       ])
       @filters = softwares_filters
     end
@@ -45,7 +45,7 @@ class LogicielsController < ApplicationController
 
     # optional scope, for customers
     begin
-      Logiciel.set_scope(@beneficiaire.contrat_ids) if scope
+      Logiciel.set_scope(@beneficiaire.contract_ids) if scope
       @logiciel_pages, @logiciels = paginate :logiciels, options
     ensure
       Logiciel.remove_scope if scope
@@ -123,7 +123,7 @@ private
   end
 
   def _panel
-    @contrats = Contrat.find_select(Contrat::OPTIONS) if @ingenieur
+    @contracts = Contract.find_select(Contract::OPTIONS) if @ingenieur
     @technologies = Competence.find_select
     @groupes = Groupe.find_select
 

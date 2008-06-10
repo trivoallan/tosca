@@ -8,7 +8,7 @@ class BinairesController < ApplicationController
 
   def show
     options = { :include => [{:paquet => [:conteneur,
-                                          { :contrat => :client },
+                                          { :contract => :client },
                                           { :logiciel => :groupe}]},
                             :socle,:arch] }
     @binaire = Binaire.find(params[:id], options)

@@ -136,7 +136,7 @@ private
 
 
   # met le scope client en session
-  # ca permet de ne pas recharger les ids contrats
+  # ca permet de ne pas recharger les ids contracts
   # à chaque fois
   # call it like this : scope_client(params['filters']['client_id'])
   # TODO : virer cette horreur
@@ -146,7 +146,7 @@ private
     else
       conditions = { :client_id => value.to_i }
       options = { :select => 'id', :conditions => conditions }
-      Contrat.find(:all, options).collect{|c| c.id}
+      Contract.find(:all, options).collect{|c| c.id}
     end
   end
 end

@@ -34,7 +34,7 @@ class PaquetsController < ApplicationController
 
   def show
     include =  [ { :logiciel => :groupe }, :distributeur,
-                 { :contrat => :client }, :mainteneur, :conteneur ]
+                 { :contract => :client }, :mainteneur, :conteneur ]
     paquet_id = params[:id]
     @paquet = Paquet.find(paquet_id, :include => include)
     cond = [ 'binaires.paquet_id = ? ', paquet_id ]
@@ -93,7 +93,7 @@ class PaquetsController < ApplicationController
     @conteneurs = Conteneur.find_select
     @distributeurs = Distributeur.find_select
     @mainteneurs = Mainteneur.find_select
-    @contrats = Contrat.find_select(Contrat::OPTIONS)
+    @contracts = Contract.find_select(Contract::OPTIONS)
   end
 
   def _panel

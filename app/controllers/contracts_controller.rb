@@ -1,29 +1,29 @@
-class ContratsController < ApplicationController
+class ContractsController < ApplicationController
   helper :clients,:engagements,:ingenieurs
 
   def index
-    @contrat_pages, @contrats = paginate :contrats, :per_page => 25
+    @contract_pages, @contracts = paginate :contracts, :per_page => 25
   end
 
   # Used to know which contracts need to be renewed
   def actives
     options = { :per_page => 10, :include => [:client], :order =>
-      'contrats.cloture', :conditions => 'clients.inactive = 0' }
-    @contrat_pages, @contrats = paginate :contrats, options
+      'contracts.cloture', :conditions => 'clients.inactive = 0' }
+    @contract_pages, @contracts = paginate :contracts, options
     render :action => 'index'
   end
 
 
   def show
-    @contrat = Contrat.find(params[:id])
-    @teams = @contrat.teams
+    @contract = Contract.find(params[:id])
+    @teams = @contract.teams
   end
 
   def new
     # It is the default contract
-    @contrat = Contrat.new
-    @contrat.client_id = params[:id]
-    @contrat.rule_type = 'Rules::Component'
+    @contract = Contract.new
+    @contract.client_id = params[:id]
+    @contract.rule_type = 'Rules::Component'
     _form
   end
 
@@ -39,36 +39,36 @@ class ContratsController < ApplicationController
 
   def create
     Client.send(:with_exclusive_scope) do
-      @contrat = Contrat.new(params[:contrat])
+      @contract = Contract.new(params[:contract])
     end
-    @contrat.creator = session[:user]
-    if @contrat.save
+    @contract.creator = session[:user]
+    if @contract.save
       flash[:notice] = _('Contract was successfully created.')
-      redirect_to contrats_path
+      redirect_to contracts_path
     else
       _form and render :action => 'new'
     end
   end
 
   def edit
-    @contrat = Contrat.find(params[:id])
+    @contract = Contract.find(params[:id])
     _form
   end
 
   def update
-    @contrat = Contrat.find(params[:id])
-    @contrat.creator = session[:user] unless @contrat.creator
-    if @contrat.update_attributes(params[:contrat])
-      flash[:notice] = _('Contrat was successfully updated.')
-      redirect_to contrat_path(@contrat)
+    @contract = Contract.find(params[:id])
+    @contract.creator = session[:user] unless @contract.creator
+    if @contract.update_attributes(params[:contract])
+      flash[:notice] = _('Contract was successfully updated.')
+      redirect_to contract_path(@contract)
     else
       _form and render :action => 'edit'
     end
   end
 
   def destroy
-    Contrat.find(params[:id]).destroy
-    redirect_to contrats_path
+    Contract.find(params[:id]).destroy
+    redirect_to contracts_path
   end
 
 private
@@ -80,10 +80,10 @@ private
     @engagements = Engagement.find(:all, Engagement::OPTIONS)
     @ingenieurs = User.find_select(User::EXPERT_OPTIONS)
     @teams = Team.find_select
-    @contract_team = @contrat.teams
+    @contract_team = @contract.teams
     @rules = []
     begin
-      @rules = @contrat.rule_type.constantize.find_select
+      @rules = @contract.rule_type.constantize.find_select
     rescue Exception => e
       flash[:warn] = _('Unknown rules for contract "%s"') % e.message
     end

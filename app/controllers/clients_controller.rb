@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  helper :demandes, :socles, :engagements, :contrats, :filters
+  helper :demandes, :socles, :engagements, :contracts, :filters
 
   def index
     options = { :per_page => 10, :order => 'clients.name',
@@ -59,7 +59,7 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id], :include => [:socles])
     # allows to see only binaries of this client for all without scope
     begin
-      Binaire.set_scope(@client.contrat_ids) if @ingenieur
+      Binaire.set_scope(@client.contract_ids) if @ingenieur
       render
     ensure
       Binaire.remove_scope if @ingenieur
@@ -79,7 +79,7 @@ class ClientsController < ApplicationController
     if @client.save and add_logo
       flash[:notice] = _('Client created successfully.') + '<br />' +
         _('You have now to create the associated contract.')
-      redirect_to new_contrat_path(:id => @client.id)
+      redirect_to new_contract_path(:id => @client.id)
     else
       _form and render :action => 'new'
     end

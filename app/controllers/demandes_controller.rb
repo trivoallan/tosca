@@ -76,7 +76,7 @@ class DemandesController < ApplicationController
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(requests_filters, [
         [:text, 'logiciels.name', 'demandes.resume', :dual_like ],
-        [:contrat_id, 'demandes.contrat_id', :equal ],
+        [:contract_id, 'demandes.contract_id', :equal ],
         [:ingenieur_id, 'demandes.ingenieur_id', :equal ],
         [:typedemande_id, 'demandes.typedemande_id', :equal ],
         [:severite_id, 'demandes.severite_id', :equal ],
@@ -107,7 +107,7 @@ class DemandesController < ApplicationController
 
     @demande.statut_id = (@ingenieur ? 2 : 1)
     unless params.has_key? :demande
-      @demande.set_defaults(@ingenieur, @beneficiaire, @contrats, params)
+      @demande.set_defaults(@ingenieur, @beneficiaire, @contracts, params)
     end
   end
 
@@ -116,9 +116,9 @@ class DemandesController < ApplicationController
     user = session[:user]
     @demande.submitter = user # it's the current user
     @demande.statut_id = (@ingenieur ? 2 : 1)
-    if @demande.contrat.nil?
-      contrats = @demande.beneficiaire.contrats
-      @demande.contrat = contrats.first if contrats.size == 1
+    if @demande.contract.nil?
+      contracts = @demande.beneficiaire.contracts
+      @demande.contract = contracts.first if contracts.size == 1
     end
     if @demande.save
       options = { :conditions => [ 'demandes.submitter_id = ?', user.id ]}
@@ -153,9 +153,9 @@ class DemandesController < ApplicationController
   # Used when submitting new request, in order to select
   # correct contracts
   def ajax_display_contract
-    return render(:nothing => true) unless params.has_key? :contrat_id
-    contrat = Contrat.find(params[:contrat_id].to_i)
-    _form4contract(contrat)
+    return render(:nothing => true) unless params.has_key? :contract_id
+    contract = Contract.find(params[:contract_id].to_i)
+    _form4contract(contract)
   end
 
   # Used when submitting new request, in order to select
@@ -200,7 +200,7 @@ class DemandesController < ApplicationController
       @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
       if @ingenieur
         @severites = Severite.find_select
-        @ingenieurs = Ingenieur.find_select_by_contrat_id(@demande.contrat_id)
+        @ingenieurs = Ingenieur.find_select_by_contract_id(@demande.contract_id)
       end
     end
   end
@@ -236,7 +236,7 @@ class DemandesController < ApplicationController
     @demande_id = params[:id]
     conditions = [ 'phonecalls.demande_id = ? ', @demande_id ]
     options = { :conditions => conditions, :order => 'phonecalls.start',
-      :include => [:beneficiaire,:ingenieur,:contrat,:demande] }
+      :include => [:beneficiaire,:ingenieur,:contract,:demande] }
     @phonecalls = Phonecall.find(:all, options)
     render :partial => 'demandes/tabs/tab_appels', :layout => false
   end
@@ -303,30 +303,30 @@ class DemandesController < ApplicationController
     @typedemandes = Typedemande.find_select()
     @severites = Severite.find_select()
     if @ingenieur
-      @contrats = Contrat.find_select(Contrat::OPTIONS)
+      @contracts = Contract.find_select(Contract::OPTIONS)
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     end
   end
 
-  # Take an ActiveRecord Contrat in parameter
+  # Take an ActiveRecord Contract in parameter
   # Returns false if the Contract is not complete
-  # call it like this : _form4contract Contrat.find(:first)
-  def _form4contract(contrat)
+  # call it like this : _form4contract Contract.find(:first)
+  def _form4contract(contract)
     result = true
-    @beneficiaires = contrat.find_recipients_select
+    @beneficiaires = contract.find_recipients_select
     result = false if @beneficiaires.empty?
-    @socles = contrat.client.find_socles_select
-    @logiciels = contrat.logiciels.collect{|l| [l.name, l.id] }
+    @socles = contract.client.find_socles_select
+    @logiciels = contract.logiciels.collect{|l| [l.name, l.id] }
     if @ingenieur
-      @ingenieurs = Ingenieur.find_select_by_contrat_id(contrat.id)
+      @ingenieurs = Ingenieur.find_select_by_contract_id(contract.id)
     end
     result
   end
 
   # todo à retravailler
   def _form(beneficiaire)
-    @contrats = Contrat.find_select(Contrat::OPTIONS)
-    if @contrats.empty?
+    @contracts = Contract.find_select(Contract::OPTIONS)
+    if @contracts.empty?
       flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling a request. Please contat %s if you think it's not normal") % App::TeamEmail
       return redirect_to(bienvenue_path)
     end
@@ -342,12 +342,12 @@ class DemandesController < ApplicationController
     first_comment = @demande.first_comment
     @demande.description = first_comment.corps if first_comment
     @demande.beneficiaire = beneficiaire if beneficiaire
-    if @demande.contrat
-      _form4contract(@demande.contrat)
-    elsif !@contrats.empty?
-      Contrat.find(:all).each { |c|
+    if @demande.contract
+      _form4contract(@demande.contract)
+    elsif !@contracts.empty?
+      Contract.find(:all).each { |c|
         if _form4contract(c)
-          @demande.contrat = c
+          @demande.contract = c
           break
         end
       }

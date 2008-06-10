@@ -47,7 +47,7 @@ class TeamsController < ApplicationController
 private
   def _form
     @users = User.find_select
-    @contracts = Contrat.find_select(Contrat::OPTIONS)
+    @contracts = Contract.find_select(Contract::OPTIONS)
   end
   
 end

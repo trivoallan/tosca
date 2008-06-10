@@ -27,8 +27,8 @@ class ReportingController < ApplicationController
   # utilisé avant l'affichage
   def configuration
     _titles()
-    @contrats = (@beneficiaire ? @beneficiaire.client.contrats :
-                 Contrat.find(:all, Contrat::OPTIONS))
+    @contracts = (@beneficiaire ? @beneficiaire.client.contracts :
+                 Contract.find(:all, Contract::OPTIONS))
   end
 
   def comex
@@ -49,7 +49,7 @@ class ReportingController < ApplicationController
     if cns
       @cns= cns
       scope= { :conditions => "client_id IN #{clients}"} unless clients.include?('all')
-      Contrat.send(:with_scope, :find => scope) {
+      Contract.send(:with_scope, :find => scope) {
         cns_correction()
       }
       return
@@ -114,7 +114,7 @@ class ReportingController < ApplicationController
 
     init_class_var(params)
     redirect_to configuration_reporting_path and return unless
-      @contrat and (@report[:start_date] < @report[:end_date])
+      @contract and (@report[:start_date] < @report[:end_date])
     init_data_general
     fill_data_general
 
@@ -176,17 +176,17 @@ class ReportingController < ApplicationController
 
   # initialise toutes les variables de classes nécessaire
   # path stocke les chemins d'accès, @données les données
-  # @first_col contient la première colonne et @contrat le contrat
+  # @first_col contient la première colonne et @contract le contract
   # sélectionné
   def init_class_var(params)
     period =  params[:reporting][:period].to_i
     return unless period > 0
-    @contrat = Contrat.find(params[:reporting][:contrat_id].to_i)
+    @contract = Contract.find(params[:reporting][:contract_id].to_i)
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titles = @@titles
-    @report[:start_date] = [@contrat.ouverture.beginning_of_month, Time.now].min
+    @report[:start_date] = [@contract.ouverture.beginning_of_month, Time.now].min
     @report[:end_date] = [calendar2time(params[:end_date]),
-    @contrat.cloture.beginning_of_month].min
+    @contract.cloture.beginning_of_month].min
     @first_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
@@ -213,11 +213,11 @@ class ReportingController < ApplicationController
     else
       flash.now[:warn] = _('incorrect parameters')
       # condition de sortie
-      @contrat = nil
+      @contract = nil
     end
   rescue
     flash.now[:warn] = _('incorrect parameters')
-    @contrat = nil
+    @contract = nil
 
   end
 
@@ -280,7 +280,7 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     end_date = @report[:end_date]
 
-    liste = @contrat.client.beneficiaires.collect{|b| b.id} # .join(',')
+    liste = @contract.client.beneficiaires.collect{|b| b.id} # .join(',')
     demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.beneficiaire_id IN (?)',
                  nil, nil, liste ]
     until (start_date > end_date) do
@@ -332,7 +332,7 @@ class ReportingController < ApplicationController
 
     demandes.each do |d|
       e = d.engagement
-      interval = d.contrat.interval.hours
+      interval = d.contract.interval.hours
       next unless e
 
       elapsed = d.elapsed

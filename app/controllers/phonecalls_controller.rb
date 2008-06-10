@@ -3,7 +3,7 @@ class PhonecallsController < ApplicationController
 
   def index
     options = { :per_page => 15, :order => 'phonecalls.start', :include =>
-      [:beneficiaire,:ingenieur,:contrat,:demande] }
+      [:beneficiaire,:ingenieur,:contract,:demande] }
     conditions = []
 
     if params.has_key? :filters
@@ -19,7 +19,7 @@ class PhonecallsController < ApplicationController
       conditions = Filters.build_conditions(calls_filters, [
         [:ingenieur_id, 'phonecalls.ingenieur_id', :equal ],
         [:beneficiaire_id, 'phonecalls.beneficiaire_id', :equal ],
-        [:contrat_id, 'phonecalls.contrat_id', :equal ],
+        [:contract_id, 'phonecalls.contract_id', :equal ],
         [:after, 'phonecalls.start', :greater_than ],
         [:before, 'phonecalls.end', :lesser_than ]
       ])
@@ -86,9 +86,9 @@ class PhonecallsController < ApplicationController
     # la magie de rails est cassé pour la 1.2.2, en mode production
     # donc je dois le faire manuellement
     # TODO : vérifier pour les versions > 1.2.2 en _production_ (!)
-    contrat = Contrat.find(params[:id])
+    contract = Contract.find(params[:id])
     @beneficiaires =
-      contrat.client.beneficiaires.find_select(User::SELECT_OPTIONS)
+      contract.client.beneficiaires.find_select(User::SELECT_OPTIONS)
 
     render :partial => 'select_beneficiaires', :layout => false and return
   rescue ActiveRecord::RecordNotFound
@@ -101,7 +101,7 @@ class PhonecallsController < ApplicationController
   #  2. remove lstm_* helper
   def _form
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
-    @contrats = Contrat.find_select(Contrat::OPTIONS)
+    @contracts = Contract.find_select(Contract::OPTIONS)
   end
 
   # variables utilisé par le panneau de gauche

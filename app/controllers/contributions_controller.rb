@@ -25,8 +25,8 @@ class ContributionsController < ApplicationController
     end
     client_id = params[:client_id].to_s
     unless client_id.blank? || client_id == '1' # Main client
-      options[:conditions].merge!({'contrats.client_id' => params[:client_id]})
-      options[:include] = {:demande => :contrat}
+      options[:conditions].merge!({'contracts.client_id' => params[:client_id]})
+      options[:include] = {:demande => :contract}
     end
     # Dirty hack in order to show main client' contributions
     # TODO : remove it in september.
@@ -49,8 +49,8 @@ class ContributionsController < ApplicationController
       options[:joins] = :contributions
       options[:select] = 'DISTINCT logiciels.*'
       unless client_id.blank? || client_id == '1'
-        options[:conditions] = { 'contrats.client_id' => params[:client_id] }
-        options[:joins] = { :contributions => { :demande => :contrat } }
+        options[:conditions] = { 'contracts.client_id' => params[:client_id] }
+        options[:joins] = { :contributions => { :demande => :contract } }
       end
       # Dirty hack in order to show main client' contributions
       # TODO : remove it in september.
@@ -82,7 +82,7 @@ class ContributionsController < ApplicationController
         [:contribution, 'contributions.name', :like ],
         [:etatreversement_id, 'contributions.etatreversement_id', :equal ],
         [:ingenieur_id, 'contributions.ingenieur_id', :equal ],
-        [:contrat_id, 'demandes.contrat_id', :equal ]
+        [:contract_id, 'demandes.contract_id', :equal ]
       ])
       @filters = contributions_filters
     end
@@ -181,7 +181,7 @@ private
     @etatreversements = Etatreversement.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @logiciels = Logiciel.find_select
-    @contrats = Contrat.find_select(Contrat::OPTIONS)
+    @contracts = Contract.find_select(Contract::OPTIONS)
     # count
     clogiciels = { :select => 'contributions.logiciel_id', :distinct => true }
     @count = {:contributions => Contribution.count,
