@@ -24,3 +24,28 @@
 
 <p><label for="logiciel_competence_ids"><%=_('Technologies')%></label></p>
 <%= hbtm_check_box( @logiciel.competences, @competences, 'logiciel[competence_ids]', :size => 4) %>
+
+<p><label><%=_('Tags')%></label></p>
+  <% collection = Tag.get_generic_tag + Tag.get_competence_tag %>
+  <% out = "<table class=\"list\"><tr>" and count = 1 %>
+  <% options_size = 2 %>
+  <% length = collection.size %>
+  <% name = 'logiciel[tag_list]' %>
+  <% name_w3c = name.gsub(/[^a-z1-9]+/i, '_') %>
+  <% for donnee in collection %>
+    <% out << "<td class=\"#{cycle('odd', 'even')}\">" %>
+    <% out <<  "<label for=\"#{name_w3c}_#{donnee.id}\">" %>
+    <% out <<   "<input id=\"#{name_w3c}_#{donnee.id}\" type=\"checkbox\" " %>
+    <% out <<      "name=\"#{name}[]\" value=\"#{donnee.name}\" " %>
+    <% out <<      'checked="checked" ' if @logiciel.tags.include? donnee %>
+    <% out <<   "/>#{donnee}" %>
+    <% out <<  "</label>" %>
+    <% out << "</td>" %>
+    <% if options_size %>
+      <% out << "</tr><tr>" if (count % options_size == 0) and length > count %>
+      <% count += 1 %>
+    <% end %>
+  <% end %>
+  <% out << '</tr></table>' %>
+  <% out << "<input type=\"hidden\" value=\"\" name=\"#{name}[]\"/>" %>
+  <%= out%>

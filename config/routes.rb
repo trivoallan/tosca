@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
      :comment => :post }
   map.resources :competences
   map.resources :conteneurs
-  map.resources :contrats,
+  map.resources :contracts,
     :collection => {
       :ajax_choose => :post, :actives => :get }
   map.resources :contributions,
@@ -118,6 +118,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :statuts, :member => { :help => :get }
   map.resources :severites
   map.resources :supports
+  map.resources :tags
   map.resources :teams
   map.resources :time_tickets
   map.resources :typecontributions

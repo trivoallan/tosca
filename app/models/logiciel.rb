@@ -1,5 +1,6 @@
 class Logiciel < ActiveRecord::Base
   acts_as_reportable
+  acts_as_taggable
   has_many :contributions
   has_and_belongs_to_many :competences
   has_many :demandes

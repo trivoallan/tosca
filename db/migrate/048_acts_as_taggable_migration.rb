@@ -4,7 +4,7 @@ class ActsAsTaggableMigration < ActiveRecord::Migration
       t.column :name, :string
       t.column :user_id, :integer
       t.column :competence_id, :integer
-      t.column :demande_id, :integer
+      t.column :contract_id, :integer
     end
     
     create_table :taggings do |t|

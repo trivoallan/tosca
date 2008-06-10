@@ -68,6 +68,10 @@
          <%= link_to_new_contribution(nil, :logiciel_id => @logiciel.id)%><br />
          <%= public_table_of_contributions(@logiciel.contributions) %> </td>
      </tr>
+     
+     <tr><td><b><%=_('Tags')%></b></td>
+        <td><%= @logiciel.tag_list %></td>
+     </tr>
    </table>
   </td>
  </tr>
