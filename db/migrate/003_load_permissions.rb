@@ -62,7 +62,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^binaires/(?!destroy)', 'Manage binaries' ],
                [ '^clients/(?!destroy)', 'Manage clients' ],
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
-               [ '^contrats/(?!destroy)', 'Manage contracts' ],
+               [ '^contracts/(?!destroy)', 'Manage contracts' ],
                [ '^demandes/(?!destroy)', 'Manage requests' ],
                [ '^groupes/(?!destroy)', 'Manage groups of softwares' ],
                [ '^images/(?!destroy)', 'Manage logos of softwares & clients' ],
@@ -89,7 +89,7 @@ class LoadPermissions < ActiveRecord::Migration
     roles = [ expert_id ]
     access = [ [ '^clients/index$', 'Read-only access to list clients offers' ],
                [ '^demandes/(link|unlink)_contribution$', 'Link contribution with request' ],
-               [ '^contrats/(index|show)$', 'Read-only access to contracts'] ]
+               [ '^contracts/(index|show)$', 'Read-only access to contracts'] ]
     add_permission.call(roles, access)
 
     roles = [ customer_id, viewer_id ]

@@ -1,24 +1,24 @@
-class MoveSupport2contrat < ActiveRecord::Migration
+class MoveSupport2contract < ActiveRecord::Migration
 
   class Support < ActiveRecord::Base
     has_many :clients
   end
   class Client < ActiveRecord::Base
     belongs_to :support
-    has_many :contrats
+    has_many :contracts
   end
-  class Contrat < ActiveRecord::Base
+  class Contract < ActiveRecord::Base
     belongs_to :client
   end
 
   def self.up
-    add_column :contrats, :veille_technologique, :boolean, :default => false
-    add_column :contrats, :newsletter, :boolean, :default => false
-    add_column :contrats, :heure_ouverture, :integer, :default => 9, :null => false
-    add_column :contrats, :heure_fermeture, :integer, :default => 18, :null => false
+    add_column :contracts, :veille_technologique, :boolean, :default => false
+    add_column :contracts, :newsletter, :boolean, :default => false
+    add_column :contracts, :heure_ouverture, :integer, :default => 9, :null => false
+    add_column :contracts, :heure_fermeture, :integer, :default => 18, :null => false
     Client.find(:all).each do |client|
       support = client.support
-      client.contrats.each { |c|
+      client.contracts.each { |c|
         c.heure_ouverture = support.ouverture
         c.heure_fermeture = support.fermeture
         c.veille_technologique = support.veille_technologique
@@ -47,7 +47,7 @@ class MoveSupport2contrat < ActiveRecord::Migration
 
     Client.find(:all).each do |client|
       support = Support.new
-      client.contrats.each { |c|
+      client.contracts.each { |c|
         support.ouverture = c.heure_ouverture
         support.fermeture = c.heure_fermeture
         support.veille_technologique = c.veille_technologique
@@ -56,10 +56,10 @@ class MoveSupport2contrat < ActiveRecord::Migration
       }
       client.update_attribute(:support_id, support.id)
     end
-    remove_column :contrats, :veille_technologique
-    remove_column :contrats, :newsletter
-    remove_column :contrats, :heure_ouverture
-    remove_column :contrats, :heure_fermeture
+    remove_column :contracts, :veille_technologique
+    remove_column :contracts, :newsletter
+    remove_column :contracts, :heure_ouverture
+    remove_column :contracts, :heure_fermeture
 
   end
 

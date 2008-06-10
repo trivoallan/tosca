@@ -1,6 +1,6 @@
 class Nom2nameOverall < ActiveRecord::Migration
   TABLES = %w(arches binaires clients communautes competences
-              conteneurs contrats contributions dependances
+              conteneurs contracts contributions dependances
               distributeurs etatreversements groupes
               licenses logiciels mainteneurs paquets roles severites statuts
               socles supports typecontributions typedemandes

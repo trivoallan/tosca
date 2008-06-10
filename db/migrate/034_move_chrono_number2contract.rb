@@ -1,16 +1,16 @@
 class MoveChronoNumber2contract < ActiveRecord::Migration
 
   class Client < ActiveRecord::Base
-    has_many :contrats
+    has_many :contracts
   end
-  class Contrat < ActiveRecord::Base
+  class Contract < ActiveRecord::Base
     belongs_to :client
   end
 
   def self.up
-    add_column :contrats, :chrono, :integer, :default => 0, :null => false
+    add_column :contracts, :chrono, :integer, :default => 0, :null => false
     Client.find(:all).each do |client|
-      client.contrats.each {|c| c.update_attribute(:chrono, client.chrono)}
+      client.contracts.each {|c| c.update_attribute(:chrono, client.chrono)}
     end
     remove_column :clients, :chrono
   end
@@ -18,9 +18,9 @@ class MoveChronoNumber2contract < ActiveRecord::Migration
   def self.down
     add_column :clients, :chrono, :integer, :default => 0, :null => false
     Client.find(:all).each do |client|
-      client.contrats.each {|c| client.update_attribute(:chrono, c.chrono)}
+      client.contracts.each {|c| client.update_attribute(:chrono, c.chrono)}
     end
-    remove_column :contrats, :chrono
+    remove_column :contracts, :chrono
   end
 
 end

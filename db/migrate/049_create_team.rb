@@ -6,11 +6,11 @@ class CreateTeam < ActiveRecord::Migration
     end
 
     #This is a table for has_and_belongs_to_many
-    create_table :contrats_teams, :id => false do |t|
-      t.integer :contrat_id, :team_id
+    create_table :contracts_teams, :id => false do |t|
+      t.integer :contract_id, :team_id
     end
-    add_index :contrats_teams, :contrat_id
-    add_index :contrats_teams, :team_id
+    add_index :contracts_teams, :contract_id
+    add_index :contracts_teams, :team_id
     
     add_column :users, :team_id, :integer
     add_index :users, :team_id
@@ -22,7 +22,7 @@ class CreateTeam < ActiveRecord::Migration
     add_column :ingenieurs, :expert_ossa, :boolean, :default => false
     
     drop_table :teams
-    drop_table :contrats_teams
+    drop_table :contracts_teams
     
     remove_index :users, :team_id
     remove_column :users, :team_id

@@ -1,5 +1,5 @@
 class CreateRulesTable < ActiveRecord::Migration
-  class Contrat < ActiveRecord::Base; end
+  class Contract < ActiveRecord::Base; end
 
   def self.up
     create_table :time_tickets do |t|
@@ -16,7 +16,7 @@ class CreateRulesTable < ActiveRecord::Migration
       t.column :max,            :integer, :default => -1
     end
 
-    Contrat.find(:all).each do |c|
+    Contract.find(:all).each do |c|
       if c.support?
         c[:rule_type] = 'Rules::Credit'
       else
@@ -26,14 +26,14 @@ class CreateRulesTable < ActiveRecord::Migration
       c.name = '' # reset of their name, more easier since the state of the past
       c.save
     end
-    remove_column :contrats, :support
-    remove_column :contrats, :socle
+    remove_column :contracts, :support
+    remove_column :contracts, :socle
   end
 
   def self.down
     drop_table :ossas
     drop_table :time_tickets
-    add_column :contrats, :support, :boolean, :default => false, :null => false
-    add_column :contrats, :socle, :boolean, :default => false, :null => false
+    add_column :contracts, :support, :boolean, :default => false, :null => false
+    add_column :contracts, :socle, :boolean, :default => false, :null => false
   end
 end

@@ -5,13 +5,13 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "ingenieur_id",    :integer
       t.column "debut",           :datetime
       t.column "fin",             :datetime
-      t.column "contrat_id",      :integer,  :default => 0, :null => false
+      t.column "contract_id",      :integer,  :default => 0, :null => false
       t.column "demande_id",      :integer
     end
 
     add_index "appels", ["beneficiaire_id"]
     add_index "appels", ["ingenieur_id"]
-    add_index "appels", ["contrat_id"]
+    add_index "appels", ["contract_id"]
 
     create_table "arches", :force => true do |t|
       t.column "nom", :string, :default => "", :null => false
@@ -145,7 +145,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "nom", :string, :default => "", :null => false
     end
 
-    create_table "contrats", :force => true do |t|
+    create_table "contracts", :force => true do |t|
       t.column "client_id",     :integer,  :default => 0,     :null => false
       t.column "ouverture",     :datetime,                    :null => false
       t.column "cloture",       :datetime,                    :null => false
@@ -156,23 +156,23 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "support",       :boolean,  :default => false
     end
 
-    add_index "contrats", ["client_id"]
+    add_index "contracts", ["client_id"]
 
-    create_table "contrats_engagements", :id => false, :force => true do |t|
-      t.column "contrat_id",    :integer, :default => 0, :null => false
+    create_table "contracts_engagements", :id => false, :force => true do |t|
+      t.column "contract_id",    :integer, :default => 0, :null => false
       t.column "engagement_id", :integer, :default => 0, :null => false
     end
 
-    add_index "contrats_engagements", ["contrat_id"]
-    add_index "contrats_engagements", ["engagement_id"]
+    add_index "contracts_engagements", ["contract_id"]
+    add_index "contracts_engagements", ["engagement_id"]
 
-    create_table "contrats_ingenieurs", :id => false, :force => true do |t|
-      t.column "contrat_id",   :integer, :default => 0, :null => false
+    create_table "contracts_ingenieurs", :id => false, :force => true do |t|
+      t.column "contract_id",   :integer, :default => 0, :null => false
       t.column "ingenieur_id", :integer, :default => 0, :null => false
     end
 
-    add_index "contrats_ingenieurs", ["ingenieur_id"]
-    add_index "contrats_ingenieurs", ["contrat_id"]
+    add_index "contracts_ingenieurs", ["ingenieur_id"]
+    add_index "contracts_ingenieurs", ["contract_id"]
 
     create_table "contributions", :force => true do |t|
       t.column "nom",                       :string,   :default => "", :null => false
@@ -218,7 +218,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "socle_id",         :integer
       t.column "mail_cc",          :string
       t.column "first_comment_id", :integer
-      t.column "contrat_id",       :integer,                  :null => false
+      t.column "contract_id",       :integer,                  :null => false
       t.column "expected_on",      :datetime
       t.column "last_comment_id",  :integer,  :default => 0,  :null => false
       t.column "mantis_id",        :integer
@@ -229,7 +229,7 @@ class DumpBaseSchema < ActiveRecord::Migration
     add_index "demandes", ["ingenieur_id"]
     add_index "demandes", ["severite_id"]
     add_index "demandes", ["typedemande_id"]
-    add_index "demandes", ["contrat_id"]
+    add_index "demandes", ["contract_id"]
     add_index "demandes", ["created_on"]
     add_index "demandes", ["updated_on"]
 
@@ -413,7 +413,7 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "paquet_id",        :integer,               :default => 0,    :null => false
       t.column "distributeur_id",  :integer,               :default => 0,    :null => false
       t.column "mainteneur_id",    :integer,               :default => 0,    :null => false
-      t.column "contrat_id",       :integer,               :default => 0,    :null => false
+      t.column "contract_id",       :integer,               :default => 0,    :null => false
       t.column "taille",           :integer,               :default => 0,    :null => false
       t.column "configuration",    :text,                  :default => "",   :null => false
       t.column "fichiers_count",   :integer
@@ -427,7 +427,7 @@ class DumpBaseSchema < ActiveRecord::Migration
     add_index "paquets", ["conteneur_id"]
     add_index "paquets", ["distributeur_id"]
     add_index "paquets", ["mainteneur_id"]
-    add_index "paquets", ["contrat_id"]
+    add_index "paquets", ["contract_id"]
 
     create_table "permissions", :force => true do |t|
       t.column "name", :string,               :default => "", :null => false
@@ -447,13 +447,13 @@ class DumpBaseSchema < ActiveRecord::Migration
       t.column "ingenieur_id",    :integer
       t.column "debut",           :datetime
       t.column "fin",             :datetime
-      t.column "contrat_id",      :integer,  :default => 0, :null => false
+      t.column "contract_id",      :integer,  :default => 0, :null => false
       t.column "demande_id",      :integer
     end
 
     add_index "appels", ["beneficiaire_id"]
     add_index "appels", ["ingenieur_id"]
-    add_index "appels", ["contrat_id"]
+    add_index "appels", ["contract_id"]
 
     create_table "piecejointes", :force => true do |t|
       t.column "file", :string, :default => "", :null => false
@@ -557,9 +557,9 @@ class DumpBaseSchema < ActiveRecord::Migration
     drop_table "competences_ingenieurs"
     drop_table "competences_logiciels"
     drop_table "conteneurs"
-    drop_table "contrats"
-    drop_table "contrats_engagements"
-    drop_table "contrats_ingenieurs"
+    drop_table "contracts"
+    drop_table "contracts_engagements"
+    drop_table "contracts_ingenieurs"
     drop_table "contributions"
     drop_table "contributions_paquets"
     drop_table "demandes"
