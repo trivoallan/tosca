@@ -1,4 +1,4 @@
-class MoveSupport2contract < ActiveRecord::Migration
+class MoveSupport2contrat < ActiveRecord::Migration
 
   class Support < ActiveRecord::Base
     has_many :clients
