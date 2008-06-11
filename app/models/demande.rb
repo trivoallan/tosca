@@ -144,7 +144,7 @@ class Demande < ActiveRecord::Base
   end
 
   # set the default for a new request
-  def set_defaults(expert, recipient, contracts, params)
+  def set_defaults(expert, recipient, params)
     return if self.statut_id
     # self-assignment
     self.ingenieur = expert
