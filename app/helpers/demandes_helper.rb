@@ -77,12 +77,12 @@ module DemandesHelper
   # TODO : prendre en compte le type de la demande !!!
 
   def display_engagement_contournement(demande, paquet)
-    engagement = demande.engagement(paquet.contrat_id)
+    engagement = demande.engagement(paquet.contract_id)
     display_days(engagement.contournement)
   end
 
   def display_engagement_correction(demande, paquet)
-    engagement = demande.engagement(paquet.contrat_id)
+    engagement = demande.engagement(paquet.contract_id)
     display_days(engagement.correction)
   end
 

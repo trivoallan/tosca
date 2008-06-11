@@ -28,8 +28,8 @@ module ContributionsHelper
       path << "?client_id=#{params[:client_id]}"
       options = { :conditions => { :logiciel_id => logiciel.id } }
       unless client_id == '1' # Main client, with the old portal
-        options[:include] = { :demande => :contrat }
-        options[:conditions].merge!({'contrats.client_id' => params[:client_id]})
+        options[:include] = { :demande => :contract }
+        options[:conditions].merge!({'contracts.client_id' => params[:client_id]})
       end
       # Dirty hack in order to show main client' contributions
       # TODO : remove it in september.

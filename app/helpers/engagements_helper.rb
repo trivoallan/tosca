@@ -8,9 +8,9 @@ module EngagementsHelper
   # Display form for choosing engagements;
   # They MUST have been sort by the Engagement::ORDER options.
   # Call it like this :
-  #   show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]' )
+  #   show_form_engagements(@contract.engagements, @engagements, 'contract[engagement_ids]' )
   # TODO : habiller et mettre des bordures pour que ca se distingue du reste
-  #  cf /contrats/new pour le voir
+  #  cf /contracts/new pour le voir
   # TODO : a partial should be better
   def show_form_engagements(object_engagement, engagements, name)
     out = '<table>'
