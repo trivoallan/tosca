@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 # Each Controller Test should test all _public_ methods
 class AccountControllerTest < ActionController::TestCase
   fixtures :users, :roles, :permissions_roles, :permissions, :clients,
-    :contrats_users, :contrats, :images, :beneficiaires, :credits,
+    :contracts_users, :contracts, :images, :beneficiaires, :credits,
     :components, :clients, :ingenieurs
 
   def test_login_and_logout
@@ -163,7 +163,7 @@ class AccountControllerTest < ActionController::TestCase
       xhr :get, :ajax_contracts, params
       assert_response :success
       assert_template 'ajax_contracts'
-      assert_not_nil assigns(:contrats)
+      assert_not_nil assigns(:contracts)
       assert_not_nil assigns(:user)
     end
     # test on a new user, without id

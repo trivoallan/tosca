@@ -4,7 +4,7 @@ class UserTest < Test::Unit::TestCase
   self.use_instantiated_fixtures  = true
 
   fixtures :users, :clients, :roles, :permissions, :permissions_roles,
-    :contrats_users, :contrats
+    :contracts_users, :contracts
 
   def test_to_strings
     check_strings User
@@ -52,8 +52,8 @@ class UserTest < Test::Unit::TestCase
     assert manager.authorized?('contributions/edit')
   end
 
-  def test_contrat_ids
-    User.find(:all).each{ |u| check_ids u.contrat_ids, Contrat }
+  def test_contract_ids
+    User.find(:all).each{ |u| check_ids u.contract_ids, Contract }
   end
 
   def test_client_ids

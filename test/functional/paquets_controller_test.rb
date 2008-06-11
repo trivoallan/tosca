@@ -6,7 +6,7 @@ class PaquetsController; def rescue_action(e) raise e end; end
 
 class PaquetsControllerTest < Test::Unit::TestCase
   fixtures :paquets, :conteneurs, :distributeurs, :mainteneurs, :logiciels,
-    :contrats, :clients, :credits, :components
+    :contracts, :clients, :credits, :components
 
   def setup
     @controller = PaquetsController.new
@@ -45,7 +45,7 @@ class PaquetsControllerTest < Test::Unit::TestCase
     num_paquets = Paquet.count
 
     post :create, :paquet => { :logiciel_id => 1,
-           :conteneur_id => 1, :contrat_id => 1, :configuration => '' }
+           :conteneur_id => 1, :contract_id => 1, :configuration => '' }
 
     assert_response :redirect
     assert_redirected_to logiciel_path(assigns(:paquet).logiciel)

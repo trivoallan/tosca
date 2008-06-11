@@ -5,7 +5,7 @@ require 'clients_controller'
 class ClientsController; def rescue_action(e) raise e end; end
 
 class ClientsControllerTest < Test::Unit::TestCase
-  fixtures :clients, :contrats, :credits, :components
+  fixtures :clients, :contracts, :credits, :components
 
   def setup
     @controller = ClientsController.new
@@ -61,7 +61,7 @@ class ClientsControllerTest < Test::Unit::TestCase
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to new_contrat_path(:id => assigns(:client).id)
+    assert_redirected_to new_contract_path(:id => assigns(:client).id)
 
     assert_equal num_clients + 1, Client.count
   end

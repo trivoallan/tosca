@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
 class Rules::ComponentsControllerTest < ActionController::TestCase
-  fixtures :components, :contrats
+  fixtures :components, :contracts
 
   def test_should_get_index
     login 'admin', 'admin'

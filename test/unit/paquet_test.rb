@@ -5,7 +5,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PaquetTest < Test::Unit::TestCase
-  fixtures :paquets, :typedemandes, :severites, :contrats_engagements,
+  fixtures :paquets, :typedemandes, :severites, :contracts_engagements,
     :engagements, :changelogs, :dependances, :binaires
 
   def test_to_strings

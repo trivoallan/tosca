@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DemandeTest < Test::Unit::TestCase
-  fixtures :demandes, :typedemandes, :severites, :statuts, :contrats,
+  fixtures :demandes, :typedemandes, :severites, :statuts, :contracts,
     :beneficiaires, :clients, :users, :paquets, :commentaires,
-    :contrats_users
+    :contracts_users
 
   def test_to_strings
     check_strings Demande, :resume, :description
@@ -14,7 +14,7 @@ class DemandeTest < Test::Unit::TestCase
     request = Demande.new(:description => 'description', :resume => 'resume',
         :beneficiaire => recipient, :submitter => recipient.user,
         :statut => statuts(:statut_00001), :severite => severites(:severite_00001),
-        :contrat => recipient.user.contrats.first )
+        :contract => recipient.user.contracts.first )
     # must have a recipient
     assert request.save
 
@@ -37,7 +37,7 @@ class DemandeTest < Test::Unit::TestCase
 
   def test_respect_contournement_and_correction
     r = Demande.find 3
-    c = Contrat.find 2
+    c = Contract.find 2
     assert_kind_of String, r.respect_contournement(c.id)
     assert_kind_of String, r.respect_correction(c.id)
   end

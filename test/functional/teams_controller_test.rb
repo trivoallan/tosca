@@ -2,10 +2,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class TeamsControllerTest < ActionController::TestCase
   
-  fixtures :teams, :demandes, :commentaires, :users, :contrats_users,
+  fixtures :teams, :demandes, :commentaires, :users, :contracts_users,
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
-    :permissions_roles, :contrats, :contrats_engagements, :engagements,
+    :permissions_roles, :contracts, :contracts_engagements, :engagements,
     :piecejointes, :typedemandes, :elapseds
   
   def test_should_get_index
