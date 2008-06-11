@@ -8,7 +8,7 @@ paquet_00001:
   version: x
   mainteneur_id: 1
   release: lng1
-  contrat_id: 1
+  contract_id: 1
   conteneur_id: 2
   changelogs_count:
   taille: 0

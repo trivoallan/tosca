@@ -6,7 +6,7 @@ typedocument_00001:
 typedocument_00002: 
   name: Compte-Rendu
   id: 2
-  description: "Compte-Rendu des diff\xC3\xA9rentes r\xC3\xA9unions ayant eu lieu dans le cadre de votre contrat."
+  description: "Compte-Rendu des diff\xC3\xA9rentes r\xC3\xA9unions ayant eu lieu dans le cadre de votre contract."
 typedocument_00003: 
   name: Service
   id: 3
@@ -26,4 +26,4 @@ typedocument_00006:
 typedocument_00007: 
   name: Documentation
   id: 7
-  description: "Regroupe l'ensemble des livrables associ\xC3\xA9s \xC3\xA0 un d\xC3\xA9veloppement r\xC3\xA9alis\xC3\xA9 dans le cadre d'une Unit\xC3\xA9 d'Oeuvre ou de votre contrat."
+  description: "Regroupe l'ensemble des livrables associ\xC3\xA9s \xC3\xA0 un d\xC3\xA9veloppement r\xC3\xA9alis\xC3\xA9 dans le cadre d'une Unit\xC3\xA9 d'Oeuvre ou de votre contract."

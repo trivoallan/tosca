@@ -1,5 +1,5 @@
 ---
-contrat_00001:
+contract_00001:
   heure_ouverture: 9
   astreinte: false
   name : Server
@@ -16,7 +16,7 @@ contrat_00001:
   cloture: 2012-12-25 10:00:00 +01:00
   paquets_count:
   creator_id: 1
-contrat_00002:
+contract_00002:
   heure_ouverture: 7
   astreinte: false
   rule_id: 1
@@ -33,7 +33,7 @@ contrat_00002:
   cloture: 2012-12-24 00:00:00 +01:00
   paquets_count:
   creator_id: 1
-contrat_00003:
+contract_00003:
   heure_ouverture: "9"
   name: "Desktop"
   astreinte: "0"
@@ -50,7 +50,7 @@ contrat_00003:
   cloture: 2009-07-10 00:00:00
   paquets_count:
   creator_id: 1
-contrat_00004:
+contract_00004:
   heure_ouverture: "9"
   name: Desktop
   astreinte: "0"
@@ -67,7 +67,7 @@ contrat_00004:
   cloture: 2008-07-26 00:00:00
   paquets_count:
   creator_id: 1
-contrat_00005:
+contract_00005:
   heure_ouverture: "7"
   name: "Server"
   astreinte: "0"
@@ -84,7 +84,7 @@ contrat_00005:
   cloture: 2008-11-14 00:00:00
   paquets_count:
   creator_id: 1
-contrat_00006:
+contract_00006:
   heure_ouverture: "9"
   name: "Server"
   astreinte: "0"
@@ -101,7 +101,7 @@ contrat_00006:
   cloture: 2007-12-06 14:19:00
   paquets_count:
   creator_id: 1
-contrat_00007:
+contract_00007:
   heure_ouverture: "9"
   name: "Desktop"
   astreinte: "0"

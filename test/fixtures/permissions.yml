@@ -128,7 +128,7 @@ permission_00072:
   info: Manage account
   id: 72
 permission_00094: 
-  name: ^contrats/(index|show)$
+  name: ^contracts/(index|show)$
   info: Read-only access to contracts
   id: 94
 permission_00104: 
@@ -200,7 +200,7 @@ permission_00054:
   info: Full access
   id: 54
 permission_00076: 
-  name: ^contrats/(?!destroy)
+  name: ^contracts/(?!destroy)
   info: Manage contracts
   id: 76
 permission_00098: 

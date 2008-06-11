@@ -30,4 +30,4 @@ statut_00001:
 statut_00002: 
   name: Prise en compte
   id: 2
-  description: "Votre demande est prise en compte par nos experts, qui font le n\xC3\xA9cessaire pour qualifier votre demande.<br /> Pour ce faire, ils vont p\xC3\xA9riodiquement vous demander des informations, ce qui suspendra le d\xC3\xA9compte du temps garanti. <br /> Une fois cette analyse compl\xC3\xA8te, votre demande prendra le statut \"Analys\xC3\xA9e\". Si nous nous apercevons que votre demande sort du p\xC3\xA9rim\xC3\xA8tre de votre contrat, elle sera annul\xC3\xA9e, avec votre accord."
+  description: "Votre demande est prise en compte par nos experts, qui font le n\xC3\xA9cessaire pour qualifier votre demande.<br /> Pour ce faire, ils vont p\xC3\xA9riodiquement vous demander des informations, ce qui suspendra le d\xC3\xA9compte du temps garanti. <br /> Une fois cette analyse compl\xC3\xA8te, votre demande prendra le statut \"Analys\xC3\xA9e\". Si nous nous apercevons que votre demande sort du p\xC3\xA9rim\xC3\xA8tre de votre contract, elle sera annul\xC3\xA9e, avec votre accord."
