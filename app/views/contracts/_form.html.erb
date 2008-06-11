@@ -1,35 +1,35 @@
-<%= error_messages_for 'contrat' %>
+<%= error_messages_for 'contract' %>
 
 <table class="topbox">
   <tr><td>
     <table class="form">
       <tr>
-        <th><label for="contrat_client_id"><%=_('Customer')%></label></th>
-        <td><%= select(:contrat, :client_id, @clients) %></td>
+        <th><label for="contract_client_id"><%=_('Customer')%></label></th>
+        <td><%= select(:contract, :client_id, @clients) %></td>
       </tr><tr>
-        <th><label for="contrat_chrono"><%= _("Contrat|Chrono") %></label></th>
-        <td><%= text_field :contrat, :chrono %></td>
+        <th><label for="contract_chrono"><%= _("Contract|Chrono") %></label></th>
+        <td><%= text_field :contract, :chrono %></td>
       </tr><tr>
-        <th><label for="contrat_mailinglist"><%=_("Mailing list")%></label></th>
-        <td><%= text_field 'contrat', 'mailinglist'  %></td>
+        <th><label for="contract_mailinglist"><%=_("Mailing list")%></label></th>
+        <td><%= text_field 'contract', 'mailinglist'  %></td>
       </tr><tr>
-        <th><label for="contrat_ouverture"><%= _('Start') %></label></th>
-        <td><%= date_select :contrat, :ouverture %></td>
+        <th><label for="contract_ouverture"><%= _('Start') %></label></th>
+        <td><%= date_select :contract, :ouverture %></td>
       </tr><tr>
-        <th><label for="contrat_cloture"><%=_('End')%></label></th>
-        <td><%= date_select :contrat, :cloture %></td>
+        <th><label for="contract_cloture"><%=_('End')%></label></th>
+        <td><%= date_select :contract, :cloture %></td>
       </tr><tr>
-        <th><label for="contrat_veille_technologique"><%= _("Technological survey") %></label></th>
-        <td><%= check_box :contrat, :veille_technologique %></td>
+        <th><label for="contract_veille_technologique"><%= _("Technological survey") %></label></th>
+        <td><%= check_box :contract, :veille_technologique %></td>
       </tr><tr>
-        <th><label for="contrat_newsletter"><%= _("Newsletter") %></label></th>
-        <td><%= check_box :contrat, :newsletter  %></td>
+        <th><label for="contract_newsletter"><%= _("Newsletter") %></label></th>
+        <td><%= check_box :contract, :newsletter  %></td>
       </tr><tr>
-        <th><label for="contrat_name"><%= _("Domain") %></label></th>
-        <td><%= text_field :contrat, :name %></td>
+        <th><label for="contract_name"><%= _("Domain") %></label></th>
+        <td><%= text_field :contract, :name %></td>
       </tr><tr>
         <th><label><%=_('Commitments')%> <%= link_to_new_engagement %></label></th>
-        <td><%= show_form_engagements(@contrat.engagements, @engagements, 'contrat[engagement_ids]') %></td>
+        <td><%= show_form_engagements(@contract.engagements, @engagements, 'contract[engagement_ids]') %></td>
       </tr>
     </table>
   </td>
@@ -37,26 +37,26 @@
     <table class="form">
      <tr>
       <th><label><%= _("Type") %></label></th>
-       <td><% Contrat::Rules.each do |r| %>
-               <%= radio_button(:contrat, :rule_type, r) %>
+       <td><% Contract::Rules.each do |r| %>
+               <%= radio_button(:contract, :rule_type, r) %>
                <%= _(r) %> <%= link_to_new_rule(r) %>
            <% end %></td>
      </tr><tr>
-       <th><label for="contrat_rule_id"><%= _('Ruled by') %></label></th>
-       <td><div id="contrat_rules">
+       <th><label for="contract_rule_id"><%= _('Ruled by') %></label></th>
+       <td><div id="contract_rules">
           <%= render :partial => 'rules' %>
 	   </div></td>
      </tr><tr>
      <% options = {:size => 1, :style => 'text-align: center;' } %>
-       <th><label for="contrat_heure_ouverture"><%= _("Schedules") %></label></th>
-       <td><%= text_field :contrat, :heure_ouverture, options  %><%= _("h") %> -
-           <%= text_field :contrat, :heure_fermeture, options  %><%= _("h") %></td>
+       <th><label for="contract_heure_ouverture"><%= _("Schedules") %></label></th>
+       <td><%= text_field :contract, :heure_ouverture, options  %><%= _("h") %> -
+           <%= text_field :contract, :heure_fermeture, options  %><%= _("h") %></td>
      </tr><tr>
        <td colspan="2">
        <fieldset>
         <legend><%=_('Engineers assigned to this contract')%></legend>
-        <%= hbtm_check_box(@contrat.engineer_users, @ingenieurs,
-                         'contrat[engineer_user_ids]', :size => 3) %>
+        <%= hbtm_check_box(@contract.engineer_users, @ingenieurs,
+                         'contract[engineer_user_ids]', :size => 3) %>
        </fieldset>
       </td>
      </tr>
@@ -65,7 +65,7 @@
        <fieldset>
         <legend><%=_('Teams managing this contract')%></legend>
         <%= hbtm_check_box(@contract_team, @teams, 
-                         'contrat[team_ids]', :size => 3) %>
+                         'contract[team_ids]', :size => 3) %>
        </fieldset>
       </td>
      </tr>

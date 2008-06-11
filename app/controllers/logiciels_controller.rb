@@ -14,7 +14,7 @@ class LogicielsController < ApplicationController
     end
 
     options = { :per_page => 10, :order => 'logiciels.name',
-      :include => [:groupe,:competences] }
+      :include => [:groupe, :competences] }
     conditions = []
 
     if params.has_key? :filters

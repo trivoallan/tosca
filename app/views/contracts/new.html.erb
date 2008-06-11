@@ -1,6 +1,6 @@
 <h1><%= _('New contract') %> <%= StaticImage::spinner %></h1>
 
-<% form_tag( contrats_path, :id => 'contrat_form', :name => 'contrat_form' ) do %>
+<% form_tag( contracts_path, :id => 'contract_form', :name => 'contract_form' ) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _("Create") %>
 <% end %>
