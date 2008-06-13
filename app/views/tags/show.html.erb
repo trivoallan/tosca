@@ -1,0 +1,14 @@
+<%= public_link_to _('Home'), bienvenue_path%> >
+ <%= public_link_to _('Tags'), tags_path %> >
+  <%=h @tag.name %> <%= link_to_edit(@tag) %>
+
+<h2><%=_('Tag')%></h2>
+<div class="show">
+ <p><b><%=_('Name')%>:</b> <%= @tag.name %></p>
+ <p><b><%=_('Submitter')%>:</b> <%= @tag.user %></p>
+ <p><b><%=_('Competence')%>:</b> <%= @tag.competence %></p>
+ <p><b><%=_('Contract')%>:</b> <%= @tag.contract.name %></p>
+</div>
+
+
+<%= link_to_edit_and_list(@tag) %>

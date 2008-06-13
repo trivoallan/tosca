@@ -92,7 +92,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :images, :singular => 'img'
   map.resources :knowledges
   map.resources :licenses
-  map.resources :logiciels
+  map.resources :logiciels,
+    :collection => {:ajax_update_tags => :get}
   map.resources :machines
   map.resources :mainteneurs
   # 'news'.singularize == 'news' So problems comes
