@@ -114,8 +114,7 @@ class LogicielsController < ApplicationController
   end
 
   def ajax_update_tags 
-    #return render(:text => '') unless request.xhr? and params.has_key? :id
-    @logiciel = Logiciel.find(:all, :conditions => { :name => params["logiciel"]["name"] } ).first
+    @logiciel = Logiciel.find(:first, :conditions => { :name => params["logiciel"]["name"] } )
     @competences_check = Competence.find(params["logiciel"]["competence_ids"]) unless params["logiciel"]["competence_ids"] == [""]
     render :partial => 'logiciels/tags', :layout => false
   end

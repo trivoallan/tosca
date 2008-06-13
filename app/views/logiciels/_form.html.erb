@@ -27,9 +27,4 @@
 <%= hbtm_check_box( @logiciel.competences, @competences, 'logiciel[competence_ids]', :size => 4) %>
 </div>
 <%= render :partial => 'tags' %>
-<!--
-<% Competence.find(:all).each do |c| %>
-<%= observe_field("logiciel_competence_ids__#{c.id}", :update => 'tags', :url => {:controller => 'logiciels', :action => 'ajax_update_tags'}, :on => :click ) %>
-<% end %>
--->
-<%= observe_form("form_tags", :update => 'tags', :url => ajax_update_tags_logiciels_path, :on => :click,:method => :get ) %>
+<%= observe_form("form_softwares", :update => 'tags', :url => ajax_update_tags_logiciels_path, :on => :click, :method => :get ) %>
