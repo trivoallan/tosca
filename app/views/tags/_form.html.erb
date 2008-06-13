@@ -1,0 +1,15 @@
+<%= error_messages_for 'tag' %>
+
+<!--[form:tag]-->
+  <p><label for="tag_name"><%= _('Name')%></label><br />
+  <%= text_field 'tag', 'name'  %></p>
+  <!-- Set when tag is saved
+  <p><label for="tag_user_id"><%= _('Submitter')%></label><br />
+  -->
+  <% text_field 'tag', 'user_id'  %></p>
+  <p><label for="tag_competence_id"><%= _('Competence')%></label><br />
+  <%= select_empty(:tag, :competence_id, @competences) %></p>
+  <p><label for="tag_contract_id"><%= _('Contract')%></label><br />
+  <%= select_empty(:tag, :contract_id, @contracts) %></p>
+<!--[eoform:tag]-->
+

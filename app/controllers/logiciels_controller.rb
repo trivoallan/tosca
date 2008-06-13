@@ -113,6 +113,11 @@ class LogicielsController < ApplicationController
     redirect_to logiciels_path
   end
 
+  def ajax_update_tags 
+    @logiciel = Logiciel.find(:first, :conditions => { :name => params["logiciel"]["name"] } )
+    @competences_check = Competence.find(params["logiciel"]["competence_ids"]) unless params["logiciel"]["competence_ids"] == [""]
+    render :partial => 'logiciels/tags', :layout => false
+  end
 
 private
   def _form
@@ -149,4 +154,6 @@ private
       end
     end
   end
+
+
 end

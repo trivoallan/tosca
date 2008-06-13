@@ -1,0 +1,9 @@
+<h1><%= _('Editing tag')%></h1>
+
+<% form_tag tag_path(@tag), :method => :put do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Edit') %>
+<% end %>
+
+<br />
+<%= link_to_show_and_list @tag %>
