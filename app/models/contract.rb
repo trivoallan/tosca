@@ -37,6 +37,12 @@ class Contract < ActiveRecord::Base
     self.scoped_methods << { :find => { :conditions =>
         [ 'contracts.id IN (?)', contract_ids ] } }
   end
+  
+  def engineers
+    engineers = self.engineer_users 
+    engineers.concat(self.teams.collect { |t| t.users }.flatten).uniq!
+    engineers
+  end
 
   def credit?
     rule_type == Rules.first

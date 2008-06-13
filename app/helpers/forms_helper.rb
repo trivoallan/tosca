@@ -159,7 +159,7 @@ module FormsHelper
 
   # put a select field in a lazy way
   # call it like this :
-  #  lstm_select_field('Contrat', :appel, :contrat, @contrats, :spinner => true)
+  #  lstm_select_field('Contract', :appel, :contract, @contracts, :spinner => true)
   # options :
   #  * spinner : put the spinner for ajax stuff
   def lstm_select_field(label, model, field, collection, options = {})

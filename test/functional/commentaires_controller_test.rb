@@ -12,7 +12,7 @@ class CommentairesController; def rescue_action(e) raise e end; end
 class CommentairesControllerTest < Test::Unit::TestCase
   fixtures :commentaires, :demandes, :beneficiaires, :users,
   :permissions, :roles, :permissions_roles, :ingenieurs,
-  :statuts, :clients, :credits, :components, :contrats, :contrats_users
+  :statuts, :clients, :credits, :components, :contracts, :contracts_users
 
   def setup
     @controller = CommentairesController.new

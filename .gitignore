@@ -2,4 +2,5 @@ config/database.yml
 db/schema.rb
 lib/config.rb
 log/*.log
-
+public/stylesheets/all.css
+public/javascripts/all-fr.js

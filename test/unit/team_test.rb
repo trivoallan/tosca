@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TeamTest < ActiveSupport::TestCase
-  fixtures :users, :contrats
+  fixtures :users, :contracts
   
   #I see no tests for this model (for the momentt
   def test_true

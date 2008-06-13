@@ -71,7 +71,7 @@ module ReportingHelper
 
   # permet de comparer deux graphiques :
   # - l'un concernant la periode considérée (à gauche)
-  # - l'autre concernant la totalité depuis le début du contrat
+  # - l'autre concernant la totalité depuis le début du contract
   # TODO : style : center report_item tr td
   def report_repartition(name, options= {})
     data = @data[name]

@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
-  fixtures :clients, :images, :severites, :beneficiaires, :users, :contrats,
+  fixtures :clients, :images, :severites, :beneficiaires, :users, :contracts,
     :contributions, :logiciels, :components, :credits
 
   def test_to_strings
@@ -34,8 +34,8 @@ class ClientTest < Test::Unit::TestCase
     Client.find(:all).each {  |c| c.desactivate_recipients }
   end
 
-  def test_contrat_ids
-    Client.find(:all).each { |c| check_ids c.contrat_ids, Contrat }
+  def test_contract_ids
+    Client.find(:all).each { |c| check_ids c.contract_ids, Contract }
   end
 
   def test_support_distribution

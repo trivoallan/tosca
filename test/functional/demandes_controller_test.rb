@@ -4,10 +4,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 # class DemandesController; def rescue_action(e) raise e end; end
 class DemandesControllerTest < ActionController::TestCase
 
-  fixtures :demandes, :commentaires, :users, :contrats_users,
+  fixtures :demandes, :commentaires, :users, :contracts_users,
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
-    :permissions_roles, :contrats, :contrats_engagements, :engagements,
+    :permissions_roles, :contracts, :contracts_engagements, :engagements,
     :piecejointes, :typedemandes, :elapseds
 
   def test_pending
@@ -26,7 +26,7 @@ class DemandesControllerTest < ActionController::TestCase
       assert_response :success
       assert_template 'index'
 
-      check_ajax_filter(:contrat_id, Contrat.find(:first).id, :demandes)
+      check_ajax_filter(:contract_id, Contract.find(:first).id, :demandes)
       check_ajax_filter(:ingenieur_id, Ingenieur.find(:first).id, :demandes)
       check_ajax_filter(:typedemande_id, Typedemande.find(:first).id, :demandes)
       check_ajax_filter(:severite_id, Severite.find(:first).id, :demandes)
@@ -80,14 +80,14 @@ class DemandesControllerTest < ActionController::TestCase
       assert assigns(:demande).errors.empty?
       # It ensure that contract won't be passed between 2 logins
       # since the controller is the same instance in test environnement
-      assigns(:demande).contrat = nil
+      assigns(:demande).contract = nil
     }
   end
 
   def test_show
     %w(admin manager expert customer viewer).each {|l|
       login l, l
-      request_id = session[:user].contrats.first.demandes.first.id
+      request_id = session[:user].contracts.first.demandes.first.id
       get :show, :id => request_id
       assert_response :success
       assert_template 'show'
@@ -121,7 +121,7 @@ class DemandesControllerTest < ActionController::TestCase
   def test_link_contribution
     %w(admin manager expert).each { |l|
       login l, l
-      request = session[:user].contrats.first.demandes.first
+      request = session[:user].contracts.first.demandes.first
       contribution_id = request.logiciel.contributions.first.id
 
       post :link_contribution, :id => request.id, :contribution_id => contribution_id
@@ -141,7 +141,7 @@ class DemandesControllerTest < ActionController::TestCase
   def test_print
     %w(admin manager expert customer viewer).each {|l|
       login l, l
-      request_id = session[:user].contrats.first.demandes.first.id
+      request_id = session[:user].contracts.first.demandes.first.id
       get :print, :id => request_id
       assert_response :success
       assert_template 'print'
@@ -160,7 +160,7 @@ class DemandesControllerTest < ActionController::TestCase
       :socle_id => "1"}
     assert_response :success
 
-    xhr :get, :ajax_display_contract, :contrat_id => session[:user].contrats.first.id
+    xhr :get, :ajax_display_contract, :contract_id => session[:user].contracts.first.id
     assert_response :success
   end
 

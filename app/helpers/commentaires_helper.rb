@@ -1,6 +1,6 @@
 module CommentairesHelper
 
-  def display_history(comment, rule, contrat)
+  def display_history(comment, rule, contract)
     out = []
     if comment.user
       name = "<b>#{comment.user.name}</b>"
@@ -29,7 +29,7 @@ module CommentairesHelper
     end
     elapsed = comment.elapsed
     unless elapsed.nil? || elapsed == 0
-      elapsed = rule.elapsed_formatted(elapsed, contrat)
+      elapsed = rule.elapsed_formatted(elapsed, contract)
       out << (_('%s has been spent by %s on this request.') %
               [ "<b>#{elapsed}</b>" , name ])
     end

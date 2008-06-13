@@ -10,8 +10,6 @@ $ rake makemo
 $ sudo cp app/views/rescues/_trace.erb /usr/lib/ruby/gems/1.8/gems/actionpack-2.0.2/lib/action_controller/templates/rescues/_trace.erb
 
 
-
-
 With Details
 ============
 *** You need some devel packages before installing required gems.

@@ -107,7 +107,7 @@ class DemandesController < ApplicationController
 
     @demande.statut_id = (@ingenieur ? 2 : 1)
     unless params.has_key? :demande
-      @demande.set_defaults(@ingenieur, @beneficiaire, @contracts, params)
+      @demande.set_defaults(@ingenieur, @beneficiaire, params)
     end
   end
 

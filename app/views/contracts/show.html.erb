@@ -1,34 +1,34 @@
-<p><b><%= _('Client') %></b> : <%= link_to_client(@contrat.client) %></p>
-<p><b><%= _('Name') %></b> : <%= @contrat.name %></p>
-<% rule = @contrat.rule %>
+<p><b><%= _('Client') %></b> : <%= link_to_client(@contract.client) %></p>
+<p><b><%= _('Name') %></b> : <%= @contract.name %></p>
+<% rule = @contract.rule %>
 <% if rule %>
   <p>&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
     <%= rule.short_description %>
     <%= link_to_rule(rule) %></p>
 <% end %>
-<p><b><%= _('Mailing list') %></b> : <%= @contrat.mailinglist %></p>
-<p><b><%= _('Start') %></b> : <%= @contrat.ouverture_formatted %></p>
-<p><b><%= _('End') %></b> : <%= @contrat.cloture_formatted %></p>
+<p><b><%= _('Mailing list') %></b> : <%= @contract.mailinglist %></p>
+<p><b><%= _('Start') %></b> : <%= @contract.ouverture_formatted %></p>
+<p><b><%= _('End') %></b> : <%= @contract.cloture_formatted %></p>
 
 
 <% if false %>
-  <p><b><%= _('Obligation') %> : </b> <%= @contrat.astreinte? %></p>
-  <p><b><%= _('System') %> : </b> <%#= @contrat.socle? %></p>
+  <p><b><%= _('Obligation') %> : </b> <%= @contract.astreinte? %></p>
+  <p><b><%= _('System') %> : </b> <%#= @contract.socle? %></p>
 <% elsif false %>
-  <p><b><%= _('Number of tickets') %> : </b><%= @contrat.tickets_total %></p>
-  <p><b><%= _('Number of used tickets') %> : </b><%= @contrat.tickets_consommes %></p>
+  <p><b><%= _('Number of tickets') %> : </b><%= @contract.tickets_total %></p>
+  <p><b><%= _('Number of used tickets') %> : </b><%= @contract.tickets_consommes %></p>
                                           <% #We specify the plural for internationnalisation %>
-  <p><b><%= _('Time per ticket') %> : </b><%= pluralize(@contrat.ticket_temps, _("minute"), _("minutes")) %></p>
+  <p><b><%= _('Time per ticket') %> : </b><%= pluralize(@contract.ticket_temps, _("minute"), _("minutes")) %></p>
 
   <br/><h1><b><%= _("Error, wrong type of contract") %></b></h1>
 <% end %>
 
 <p><b><%= _("Contractual commitments") %> : </b></p>
-<%= show_table_engagements @contrat.engagements %>
+<%= show_table_engagements @contract.engagements %>
 
-<%= show_list(@contrat.engineer_users, _('expert')) {|u| link_to u.name, account_path(u)} %>
+<%= show_list(@contract.engineer_users, _('expert')) {|u| link_to u.name, account_path(u)} %>
 
 <% header = _("%s managing this contract") % n_('Team','Teams', @teams.size ) %>
 <%= show_list(@teams, header) { |t| link_to t.name, team_path(t) } %>
 
-<%= link_to_edit_and_list(@contrat) %>
+<%= link_to_edit_and_list(@contract) %>

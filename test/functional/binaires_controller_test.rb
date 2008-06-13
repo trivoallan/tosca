@@ -5,7 +5,7 @@ require 'binaires_controller'
 class BinairesController; def rescue_action(e) raise e end; end
 
 class BinairesControllerTest < Test::Unit::TestCase
-  fixtures :binaires, :paquets, :logiciels, :contrats,
+  fixtures :binaires, :paquets, :logiciels, :contracts,
     :clients, :socles, :arches
 
   def setup

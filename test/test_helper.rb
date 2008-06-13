@@ -79,7 +79,7 @@ class Test::Unit::TestCase
   end
 
   # Check the validity of the ids with the klass
-  # call it like this : check_ids(@client.contrat_ids, Contrat)
+  # call it like this : check_ids(@client.contract_ids, Contract)
   def check_ids(ids, klass)
     assert ids.is_a?(Array)
     ids.each { |i|
