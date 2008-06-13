@@ -1,6 +1,5 @@
 <div id='tags' class='tags'>
   <p><label><%=_('Tags')%></label></p>
-  <%= p @competences_check %>
   <% collection = Tag.get_generic_tag + Tag.get_competence_tag (@competences_check)%>
   <% out = "<table class=\"list\"><tr>" and count = 1 %>
   <% options_size = 2 %>
