@@ -4,6 +4,10 @@ In Short
 ========
 
 $ sudo urpmi ruby-devel mysql-devel libMagick-devel libonig-devel ruby-mysql
+OR
+$ sudo apt-get install libmysqlclient-dev libwmf-bin libmagick9-dev ruby1.8-dev libonig-dev
+
+
 $ sudo gem install rails rcov
 $ sudo rake gem:install
 $ rake tosca:generate
