@@ -9,6 +9,11 @@
         link_to(_('User list'), accounts_path),
         link_to(_('Add a user'), signup_new_account_path) ] %>
   <%= show_list(links, _('User management')) %>
+  <% if session[:user].role_id <= 2 # manager %>
+    <% links = [ 
+          link_to(_('Teams'), teams_path) ] %>
+    <%= show_list(links, _("Teams management")) %>
+  <% end %>
   <% if session[:user].role_id == 1 # admin %>
    <% links = [
         link_to( _('Permissions'), permissions_path),
