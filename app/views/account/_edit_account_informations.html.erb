@@ -35,6 +35,12 @@
     <th><label for="user_phone"><%= _('User|Phone') %></label></th>
     <td><%= text_field :user, :phone %></td>
   </tr>
+  <% if @user.team %>  
+  <tr>
+    <th><%= _('User|Team') %></th>
+    <td><%= @user.team.name %></td>
+  </tr>
+  <% end %>
   <% if manager && !create_account %>
    <tr>
     <th><label for="user_inactive"><%= _('User|Inactive') %></label></th>
@@ -66,12 +72,6 @@
     <th><label for="user_pwd_confirmation"><%= _('Confirm this last') %></label></th>
     <td><%= password_field :user, :pwd_confirmation %></td>
    </tr>
-  <% end %>
-  <% if @user.team %>  
-  <tr>
-    <th><%= _('User|Team') %></th>
-    <td><%= @user.team.name %></td>
-  </tr>
   <% end %>
 
   <% if @ingenieur %>
