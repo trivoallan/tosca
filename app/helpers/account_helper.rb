@@ -37,10 +37,9 @@ module AccountHelper
   end
 
   def form_become(user)
-    manager = session[:user].manager?
     recipient = user.beneficiaire
     result = ''
-    if manager && recipient && !user.inactive?
+    if @ingenieur && recipient && !user.inactive?
       result << %Q{<form action="#{become_account_path(recipient)}" method="post">}
       result << %Q{<input name="commit" value='#{_('Become')}' type="submit" /></form>}
     end

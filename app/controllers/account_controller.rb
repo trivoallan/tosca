@@ -264,7 +264,7 @@ private
     if params.has_key? :id
       id = params[:id].to_i
       # Only admins & manager can edit other accounts
-      if user.role_id > 2 && id != user.id
+      if user.role_id > 2 && id != user.id && action_name =~ /(edit|update)/
         return false
       end
     end
