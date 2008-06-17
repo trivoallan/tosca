@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-09 16:06+0200\n"
-"PO-Revision-Date: 2008-06-09 16:09+0200\n"
+"PO-Revision-Date: 2008-06-17 09:09+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1782,7 +1782,7 @@ msgstr "Cette adresse n'est pas valide. Si vous pensez que c'est une erreur, n'h
 msgid ""
 "An error has occured. We are now advised of your issue and have all the "
 "required information to investigate in order to fix it."
-msgstr ""
+msgstr "Une erreur est survenue. Nous avons été prevenu du problème et toutes les informations nécessaire à sa résolution ont été envoyé à l'équipe de développement."
 
 #: app/controllers/application.rb:120
 msgid "Please contact us if your problem remains."
@@ -4868,46 +4868,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
-
-#~ msgid "Document|User"
-#~ msgstr "Utilisateur"
-
-#~ msgid "Document|Typedocument"
-#~ msgstr "Type document"
-
-#~ msgid "Document|Client"
-#~ msgstr "Client"
-
-#~ msgid "Document|Created on"
-#~ msgstr "Créé le"
-
-#~ msgid "Document|Updated on"
-#~ msgstr "Mis à jour le"
-
-#~ msgid "Document|Version"
-#~ msgstr "Version"
-
-#~ msgid "Document|Date delivery"
-#~ msgstr "Date de livraison"
-
-
-#~ msgid "Binaire|Arch"
-#~ msgstr "Architecture"
-
-#~ msgid "Binaire|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Binaire|Configuration"
-#~ msgstr "Configuration"
-
-#~ msgid "Binaire|Archive"
-#~ msgstr "Archive"
-
-#~ msgid "Binaire|Socle"
-#~ msgstr "Socle"
-
-#~ msgid "Knowledge|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "demande"
-#~ msgstr "demande"
