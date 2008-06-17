@@ -7,7 +7,7 @@
  <p><b><%=_('Name')%>:</b> <%= @tag.name %></p>
  <p><b><%=_('Submitter')%>:</b> <%= @tag.user %></p>
  <p><b><%=_('Competence')%>:</b> <%= @tag.competence %></p>
- <p><b><%=_('Contract')%>:</b> <%= @tag.contract.name %></p>
+ <p><b><%=_('Contract')%>:</b> <%= @tag.contract.name unless @tag.contract.nil? %></p>
 </div>
 
 

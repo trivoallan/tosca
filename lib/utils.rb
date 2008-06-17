@@ -8,7 +8,7 @@ module App
 
   # application
   Name = "TOSCA"
-  Version = "0.7.2"
+  Version = "Development Version"
   Copyright = " ©2006-2008 Linagora SA".gsub(' ','&nbsp;')
   FilesPath = File.join RAILS_ROOT, 'files'
 

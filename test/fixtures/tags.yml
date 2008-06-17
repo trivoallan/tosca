@@ -1,7 +1,25 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+user_00001:
+  name: Ajax
+  id: "1"
+  competence_id: "14"
+  contract_id: 
+  user_id: "1"
+user_00002:
+  name: Eclipse
+  id: "2"
+  competence_id: "7"
+  contract_id: 
+  user_id: "1"
+user_00003:
+  name: Fun
+  id: "3"
+  competence_id: "12"
+  contract_id: 
+  user_id: "1"
+user_00004:
+  name: Difficile
+  id: "4"
+  competence_id: 
+  contract_id: 
+  user_id: "1"
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
