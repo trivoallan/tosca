@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-17 11:05+0200\n"
+"POT-Creation-Date: 2008-06-17 13:45+0200\n"
 "PO-Revision-Date: 2008-06-17 09:09+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -130,14 +130,14 @@ msgstr "montrer toutes les demandes"
 #: app/helpers/demandes_helper.rb:207
 #: app/views/reporting/_comex_cns.html.erb:20
 #: app/views/demandes/tabs/_cns.html.erb:33
-#: app/views/demandes/_packages.html.erb:6 app/views/clients/show.html.erb:40
+#: app/views/demandes/_packages.html.erb:6
 msgid "Workaround"
 msgstr "Contournée"
 
 #: app/helpers/demandes_helper.rb:208
 #: app/views/reporting/_comex_cns.html.erb:21
 #: app/views/demandes/tabs/_cns.html.erb:44
-#: app/views/demandes/_packages.html.erb:7 app/views/clients/show.html.erb:40
+#: app/views/demandes/_packages.html.erb:7
 msgid "Correction"
 msgstr "Correction"
 
@@ -170,8 +170,8 @@ msgstr "En cours"
 msgid "Exceedance"
 msgstr "Dépassement"
 
-#: app/helpers/static_image.rb:31 app/views/clients/show.html.erb:44
-#: app/views/clients/show.html.erb:46
+#: app/helpers/static_image.rb:31 app/views/clients/show.html.erb:42
+#: app/views/clients/show.html.erb:44
 msgid "View"
 msgstr "Voir"
 
@@ -257,7 +257,7 @@ msgid "Print"
 msgstr "Imprimer"
 
 #: app/helpers/binaires_helper.rb:12 app/views/paquets/show.html.erb:32
-#: app/views/paquets/show.html.erb:36 app/views/clients/show.html.erb:54
+#: app/views/paquets/show.html.erb:36 app/views/clients/show.html.erb:52
 #: app/views/socles/show.html.erb:19
 msgid "binary"
 msgstr "binaire"
@@ -503,7 +503,7 @@ msgstr "Accès à la liste des logiciels"
 #: app/views/contributions/_contributions_info.html.erb:43
 #: app/views/contributions/select.html.erb:1
 #: app/views/logiciels/show.html.erb:67 app/views/binaires/_form.html.erb:27
-#: app/views/clients/show.html.erb:47
+#: app/views/clients/show.html.erb:45
 msgid "Contributions"
 msgstr "Contributions"
 
@@ -846,7 +846,6 @@ msgid "Contract was successfully created."
 msgstr "Le contrat a été créé."
 
 #: app/controllers/contracts_controller.rb:62
-#, fuzzy
 msgid "Contract was successfully updated."
 msgstr "Le contrat a été mis à jour avec succès."
 
@@ -978,7 +977,6 @@ msgstr "Logiciel"
 #: app/views/demandes/_infos_demande.html.erb:32
 #: app/views/demandes/lists/_requests_info.html.erb:52
 #: app/views/demandes/_comment_form.html.erb:12
-#: app/views/clients/show.html.erb:40
 msgid "Severity"
 msgstr "Sévérité"
 
@@ -1350,7 +1348,6 @@ msgid "New|Ingenieur"
 msgstr "Ingénieur"
 
 #: app/models/new.rb:-
-#, fuzzy
 msgid "New|Client"
 msgstr "Client"
 
@@ -1455,7 +1452,6 @@ msgid "Image|Description"
 msgstr "Description"
 
 #: app/models/image.rb:-
-#, fuzzy
 msgid "Image|Logiciel"
 msgstr "Logiciel"
 
@@ -1673,7 +1669,6 @@ msgid "Contribution|Description fonctionnelle"
 msgstr "Description fonctionnelle"
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Etatreversement"
 msgstr "Reverse le"
 
@@ -1766,9 +1761,8 @@ msgid "elapsed"
 msgstr "écoulé"
 
 #: app/models/elapsed.rb:-
-#, fuzzy
 msgid "Elapsed|Demande"
-msgstr "typedemande"
+msgstr "Demande"
 
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Taken into account"
@@ -1815,17 +1809,14 @@ msgid "knowledge"
 msgstr "connaissance"
 
 #: app/models/knowledge.rb:-
-#, fuzzy
 msgid "Knowledge|Competence"
-msgstr "Niveau"
+msgstr "Compétence"
 
 #: app/models/knowledge.rb:-
-#, fuzzy
 msgid "Knowledge|Logiciel"
-msgstr "Niveau"
+msgstr "Logiciel"
 
 #: app/models/knowledge.rb:-
-#, fuzzy
 msgid "Knowledge|Ingenieur"
 msgstr "Ingénieur"
 
@@ -2026,8 +2017,8 @@ msgid "user"
 msgstr "utilisateur"
 
 #: app/models/user.rb:- app/views/account/_show_account_information.html.erb:7
-#: app/views/account/_edit_account_informations.html.erb:49
-#: app/views/account/_edit_account_informations.html.erb:54
+#: app/views/account/_edit_account_informations.html.erb:55
+#: app/views/account/_edit_account_informations.html.erb:60
 msgid "User|Login"
 msgstr "Identifiant"
 
@@ -2068,23 +2059,22 @@ msgid "User|Image"
 msgstr "Image"
 
 #: app/models/user.rb:-
-#: app/views/account/_show_account_information.html.erb:33
+#: app/views/account/_show_account_information.html.erb:34
 #: app/views/account/_edit_account_informations.html.erb:105
 msgid "User|Informations"
 msgstr "Informations"
 
 #: app/models/user.rb:-
-#, fuzzy
 msgid "User|Client"
 msgstr "Client"
 
 #: app/models/user.rb:-
-#: app/views/account/_edit_account_informations.html.erb:40
+#: app/views/account/_edit_account_informations.html.erb:46
 msgid "User|Inactive"
 msgstr "Inactif"
 
 #: app/models/user.rb:-
-#: app/views/account/_show_account_information.html.erb:22
+#: app/views/account/_show_account_information.html.erb:29
 #: app/views/account/_users_list.html.erb:12
 #: app/views/account/_edit_account_informations.html.erb:99
 msgid "User|Role"
@@ -2095,8 +2085,8 @@ msgid "User|Restricted"
 msgstr "Restreint"
 
 #: app/models/user.rb:-
-#: app/views/account/_show_account_information.html.erb:27
-#: app/views/account/_edit_account_informations.html.erb:72
+#: app/views/account/_show_account_information.html.erb:24
+#: app/views/account/_edit_account_informations.html.erb:40
 msgid "User|Team"
 msgstr "Équipe"
 
@@ -2153,9 +2143,8 @@ msgid "Team|User cache"
 msgstr "Cache"
 
 #: app/models/team.rb:-
-#, fuzzy
 msgid "Team|Contract"
-msgstr "Contact"
+msgstr "Contrat"
 
 #: app/views/roles/index.html.erb:1
 msgid "Roles list"
@@ -2398,9 +2387,8 @@ msgid "Alerts"
 msgstr "Alertes"
 
 #: app/views/alerts/index.html.erb:3
-#, fuzzy
 msgid "Please select the team you want to monitor"
-msgstr "Veuillez sélectionner les contrats que voulez surveiller"
+msgstr "Veuillez sélectionner les équipes que voulez surveiller"
 
 #: app/views/alerts/index.html.erb:8 app/views/phonecalls/edit.html.erb:5
 #: app/views/contributions/edit.html.erb:6 app/views/logiciels/new.html.erb:5
@@ -2418,14 +2406,12 @@ msgid "Validate"
 msgstr "Valider"
 
 #: app/views/alerts/on_submit.html.erb:1
-#, fuzzy
 msgid "Alert on submit"
-msgstr "alerte au dépôt"
+msgstr "Alerte sur dépôt"
 
 #: app/views/alerts/_ajax_on_submit.html.erb:15
-#, fuzzy
 msgid "There is no new request"
-msgstr "Le cycle de vie d'une demande"
+msgstr "Il n'y a pas de nouvelle demande"
 
 #: app/views/phonecalls/_calls_info.html.erb:10
 #: app/views/demandes/_infos_demande.html.erb:3
@@ -2495,8 +2481,7 @@ msgstr "Appel n°%s"
 
 #: app/views/phonecalls/show.html.erb:8 app/views/phonecalls/_form.html.erb:4
 #: app/views/contributions/_contributions_admin.html.erb:7
-#: app/views/logiciels/show.html.erb:53 app/views/clients/show.html.erb:40
-#: app/views/account/_menu.html.erb:12
+#: app/views/logiciels/show.html.erb:53 app/views/account/_menu.html.erb:12
 msgid "Request"
 msgstr "Demande"
 
@@ -2736,9 +2721,8 @@ msgid "Add a new processor architecture"
 msgstr "Ajouter une nouvelle architecture logicielle"
 
 #: app/views/tags/index.html.erb:1
-#, fuzzy
 msgid "Tags list"
-msgstr "Listes des Statuts"
+msgstr "Listes des tags"
 
 #: app/views/tags/index.html.erb:5 app/views/tags/show.html.erb:8
 #: app/views/tags/_form.html.erb:7
@@ -2748,33 +2732,29 @@ msgstr "Déclarant"
 
 #: app/views/tags/index.html.erb:5 app/views/tags/show.html.erb:9
 #: app/views/tags/_form.html.erb:10
-#, fuzzy
 msgid "Competence"
-msgstr "competence"
+msgstr "Compétence"
 
 #: app/views/tags/index.html.erb:5
-#, fuzzy
 msgid "Contrat"
 msgstr "Contrat"
 
 #: app/views/tags/edit.html.erb:1
-#, fuzzy
 msgid "Editing tag"
-msgstr "Éditer un groupe"
+msgstr "Éditer un tag"
 
 #: app/views/tags/show.html.erb:2 app/views/logiciels/show.html.erb:72
 #: app/views/logiciels/_tags.html.erb:2
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: app/views/tags/show.html.erb:5
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #: app/views/tags/new.html.erb:1
-#, fuzzy
 msgid "New tag"
-msgstr "Nouvelle image"
+msgstr "Nouveau tag"
 
 #: app/views/images/index.html.erb:1
 msgid "List of images"
@@ -3253,7 +3233,6 @@ msgid "New contract"
 msgstr "Nouveau contrat"
 
 #: app/views/contracts/_form.html.erb:10
-#, fuzzy
 msgid "Contract|Chrono"
 msgstr "Numéro de chrono"
 
@@ -3720,7 +3699,7 @@ msgid "Submit a request"
 msgstr "Déposer une demande"
 
 #: app/views/demandes/lists/_requests_info.html.erb:22
-#: app/views/clients/show.html.erb:45 app/views/account/_menu.html.erb:40
+#: app/views/clients/show.html.erb:43 app/views/account/_menu.html.erb:40
 #: app/views/bienvenue/index.html.erb:30
 msgid "Activity report"
 msgstr "Rapport d'activité "
@@ -4126,17 +4105,17 @@ msgstr "concernant %s paquets source "
 msgid "and %s binaries"
 msgstr "et %s binaires"
 
-#: app/views/clients/show.html.erb:44 app/views/clients/show.html.erb:46
+#: app/views/clients/show.html.erb:42 app/views/clients/show.html.erb:44
 msgid "the"
 msgid_plural "the"
 msgstr[0] "le"
 msgstr[1] "les"
 
-#: app/views/clients/show.html.erb:51
+#: app/views/clients/show.html.erb:49
 msgid "system"
 msgstr "système"
 
-#: app/views/clients/show.html.erb:59
+#: app/views/clients/show.html.erb:57
 msgid "request"
 msgstr "demande"
 
@@ -4212,21 +4191,21 @@ msgstr "Ingénieurs: "
 msgid "Inconsistencies: "
 msgstr "Inconsistances: "
 
-#: app/views/account/_show_account_information.html.erb:40
+#: app/views/account/_show_account_information.html.erb:41
 msgid "Preferences"
 msgstr "Préférences"
 
-#: app/views/account/_show_account_information.html.erb:43
+#: app/views/account/_show_account_information.html.erb:44
 #: app/views/account/_edit_account_informations.html.erb:82
 msgid "Daily Digest"
 msgstr "Recevoir un rapport d'activité quotidien"
 
-#: app/views/account/_show_account_information.html.erb:47
+#: app/views/account/_show_account_information.html.erb:48
 #: app/views/account/_edit_account_informations.html.erb:86
 msgid "Weekly Digest"
 msgstr "Recevoir un rapport d'activité hebdomadaire"
 
-#: app/views/account/_show_account_information.html.erb:51
+#: app/views/account/_show_account_information.html.erb:52
 #: app/views/account/_edit_account_informations.html.erb:90
 msgid "Monthly Digest"
 msgstr "Recevoir un rapport d'activité mensuel"
@@ -4268,11 +4247,11 @@ msgstr "Notifier à"
 msgid "Notify cc"
 msgstr "Notifier en copie"
 
-#: app/views/account/_edit_account_informations.html.erb:63
+#: app/views/account/_edit_account_informations.html.erb:69
 msgid "Modify your password"
 msgstr "Modifier votre mot de passe"
 
-#: app/views/account/_edit_account_informations.html.erb:66
+#: app/views/account/_edit_account_informations.html.erb:72
 msgid "Confirm this last"
 msgstr "Confirmer ce dernier"
 
@@ -4525,14 +4504,12 @@ msgid "User management"
 msgstr "Gestion des utilisateurs"
 
 #: app/views/bienvenue/admin.html.erb:14
-#, fuzzy
 msgid "Teams"
 msgstr "Équipe"
 
 #: app/views/bienvenue/admin.html.erb:15
-#, fuzzy
 msgid "Teams management"
-msgstr "Gestion des Systèmes"
+msgstr "Gestion des Équipes"
 
 #: app/views/bienvenue/admin.html.erb:21
 msgid "Permission management"
@@ -4812,12 +4789,12 @@ msgstr "Listes des Statuts"
 
 #: app/views/engagements/index.html.erb:1
 msgid "List of the possible contractual commitments of a contract"
-msgstr ""
+msgstr "Liste des engagaments contractuels possibles"
 
 #: app/views/engagements/index.html.erb:4
 #: app/views/engagements/index.html.erb:8
 msgid "a possible commitment"
-msgstr ""
+msgstr "un engagement possible"
 
 #: app/views/engagements/edit.html.erb:1
 msgid "Editing a commitment"
@@ -4845,7 +4822,7 @@ msgstr "Modifier une license"
 
 #: app/views/licenses/_form.html.erb:9
 msgid "OSI Certified"
-msgstr ""
+msgstr "Certifié OSI"
 
 #: app/views/teams/index.html.erb:1
 msgid "List of the teams"
