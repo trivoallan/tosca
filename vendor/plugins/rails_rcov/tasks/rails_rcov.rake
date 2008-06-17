@@ -28,8 +28,7 @@ if ARGV.grep(/--run-rake-task=/).empty?
   # Define all our Rake tasks
 
   require 'rake/clean'
-  require 'rcov/rcovtask'
-
+  
   def to_rcov_task_sym(s)
     s = s.gsub(/(test:)/,'')
     s.empty? ? nil : s.intern
@@ -41,12 +40,15 @@ if ARGV.grep(/--run-rake-task=/).empty?
   end
   
   def new_rcov_task(test_name)
+   
     output_dir = "./coverage/#{test_name.gsub('test:','')}"
     CLOBBER.include(output_dir)
   
     # Add a task to run the rcov process
     desc "Run all #{to_rcov_task_name(test_name)} tests with Rcov to measure coverage"
     task :rcov => [:clobber_rcov] do |t|
+      require 'rcov/rcovtask'
+        
       run_code = '"' << File.expand_path(__FILE__) << '"'
       run_code << " --run-rake-task=#{test_name}"
       
@@ -63,10 +65,14 @@ if ARGV.grep(/--run-rake-task=/).empty?
           reg_exp = []
           for show_type in show_only
             reg_exp << case show_type
-              when 'm', 'models' : 'app\/models'
-              when 'c', 'controllers' : 'app\/controllers'
-              when 'h', 'helpers' : 'app\/helpers'
-              when 'l', 'lib' : 'lib'
+              when 'm', 'models'
+                'app\/models'
+              when 'c', 'controllers'
+                'app\/controllers'
+              when 'h', 'helpers'
+                'app\/helpers'
+              when 'l', 'lib'
+                'lib'
               else
                 show_type
             end
@@ -103,10 +109,11 @@ if ARGV.grep(/--run-rake-task=/).empty?
       end
     end
   end
+  
 else
   # Load rake tasks, hijack ruby, and redirect the task through rcov
   require 'rubygems'
-  require 'rake'
+#  require 'rake'
   
   module RcovTestSettings
     class << self
