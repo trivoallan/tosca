@@ -18,16 +18,17 @@
   </tr><tr>
     <th><%= _('User|Phone') %></th>
     <td><%= @user.phone %></td>
-  </tr><tr>
-    <th><%= _('User|Role') %></th>
-    <td><%= @user.role.name %></td>
   </tr>
-   <% if @user.team %>  
+  <% if @user.team %>  
   <tr>
     <th><%= _('User|Team') %></th>
     <td><%= @user.team.name %></td>
   </tr>
    <% end %>
+  <tr>
+    <th><%= _('User|Role') %></th>
+    <td><%= @user.role.name %></td>
+  </tr>
    <% unless @user.informations.blank? %>
     <tr><td colspan="2"><fieldset>
      <legend><%=_('User|Informations')%></legend><%= @user.informations %>
