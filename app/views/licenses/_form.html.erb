@@ -1,13 +1,10 @@
 <%= error_messages_for 'license' %>
 
-<!--[form:license]-->
 <p><label for="license_name"><%=_('License|Name')%></label><br />
 <%= text_field 'license', 'name'  %></p>
 
-<p><label for="license_url">Url</label><br />
+<p><label for="license_url"><%= _("Url") %></label><br />
 <%= text_field 'license', 'url'  %></p>
 
-<p><label for="license_certifie_osi">Certifié OSI</label> 
+<p><label for="license_certifie_osi"><%= _("OSI Certified") %></label> 
 <%= check_box 'license', 'certifie_osi' %></p>
-<!--[eoform:license]-->
-
