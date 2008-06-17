@@ -50,6 +50,8 @@ Rails::Initializer.run do |config|
   config.gem 'ultraviolet', :lib => 'uv'
   # User to send Jabber Notification
   config.gem 'xmpp4r'
+  #For test coverage
+  config.gem 'rcov'
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)

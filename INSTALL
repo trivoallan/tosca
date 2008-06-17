@@ -8,7 +8,7 @@ OR
 $ sudo apt-get install libmysqlclient-dev libwmf-bin libmagick9-dev ruby1.8-dev libonig-dev
 
 
-$ sudo gem install rails rcov
+$ sudo gem install rails
 $ sudo rake gem:install
 $ rake db:create:all
 $ rake tosca:generate
