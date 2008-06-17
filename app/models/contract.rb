@@ -15,9 +15,11 @@ class Contract < ActiveRecord::Base
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
   has_and_belongs_to_many :users, :order => 'users.name'
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
-    :conditions => 'users.client = 0'
+    :conditions => 'users.client = 0',
+    :order => 'users.name ASC'
   has_and_belongs_to_many :recipient_users, :class_name => 'User',
-    :conditions => 'users.client = 1', :include => :beneficiaire
+    :conditions => 'users.client = 1', :include => :beneficiaire,
+    :order => 'users.name ASC'
   has_and_belongs_to_many :teams, :order => 'teams.name'
 
   validates_presence_of :client, :rule, :creator

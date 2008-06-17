@@ -323,7 +323,7 @@ class DemandesController < ApplicationController
     result
   end
 
-  # todo à retravailler
+  #TODO : redo 
   def _form(beneficiaire)
     @contracts = Contract.find_select(Contract::OPTIONS)
     if @contracts.empty?
