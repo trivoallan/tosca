@@ -26,7 +26,7 @@
     result = ''
     edit = link_to_edit(edit_contract_path(c))
     result << "#{edit}&nbsp;" if edit
-    result << "(#{c.chrono})&nbsp;" if @ingenieur
+    result << "(#{c.chrono})&nbsp;" if @ingenieur and c.chrono != 0
     result << "<b>#{c.rule.name}</b>"
     result << _(" from %s to %s") % [c.ouverture_formatted, c.cloture_formatted]
     result << ' '
@@ -37,8 +37,6 @@
       result << _("and %s binaries") % c.binaires.size
     end
     result << '.'
-    titres = [ _("Request"), _("Severity"), _("Workaround"), _("Correction") ]
-    oldtypedemande = nil
     result << show_table_engagements(c.engagements)
     result } %>
    <b><%= _("View") %></b> <%=_("the")%>
