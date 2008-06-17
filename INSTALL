@@ -10,6 +10,7 @@ $ sudo apt-get install libmysqlclient-dev libwmf-bin libmagick9-dev ruby1.8-dev 
 
 $ sudo gem install rails rcov
 $ sudo rake gem:install
+$ rake db:create:all
 $ rake tosca:generate
 $ rake l10n:mo
 This one is optional :
