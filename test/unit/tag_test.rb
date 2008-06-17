@@ -1,8 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TagTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  fixtures :tags
+
+  def test_to_strings
+    check_strings Tag 
   end
 end

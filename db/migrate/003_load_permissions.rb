@@ -42,8 +42,8 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ manager_id, expert_id ]
-    access = [ [ '^account/(show|become)$',
-                 'Read access and helper for customer account' ],
+    access = [ [ '^account/become$',
+                 'Helper for customer account' ],
                [ '^appels/(?!destroy)', 'Manage calls' ],
                [ '^bienvenue/admin$', 'Administration page' ],
                [ '^commentaires/(?!destroy)', 'Manage comments' ],
@@ -52,13 +52,13 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^reporting/', 'Access to all kinds of reporting' ],
                [ '^socles/(?!destroy)', "Manage systems" ],
                [ '^urllogiciels/(?!destroy)', 'Manage urls of softwares' ],
-               [ '^urlreversements/',
-                 'Manage thier own urls of contributions' ],
+               [ '^urlreversements/', 'Manage their own urls of contributions' ],
+               [ '^tags/', 'Manage tags' ]
              ]
     add_permission.call(roles, access)
 
     roles = [ manager_id ]
-    access = [ [ '^account/(signup|new|create|become)', 'Manage account' ],
+    access = [ [ '^account/(signup|new|create)', 'Manage account' ],
                [ '^binaires/(?!destroy)', 'Manage binaries' ],
                [ '^clients/(?!destroy)', 'Manage clients' ],
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
@@ -82,7 +82,8 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^logiciels/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
                [ '^socles/show$', 'Read-only access to system' ],
-               [ '^teams/(index|show)$', 'Read-only access to the teams' ]
+               [ '^teams/(index|show)$', 'Read-only access to the teams' ],
+               [ '^tags/(index|show|create)$', 'Read-only access to the tags' ]
              ]
     add_permission.call(roles, access)
 

@@ -20,7 +20,7 @@ module JabberNotifier
     rescue
       @@jabbernotifier_logger.info "Jabber : Error login"
     end
-    self.contract.engineer.each { |expert|
+    self.contract.engineer_users.each { |expert|
       message = Jabber::Message::new(expert.email, body).set_subject(subject)
       cl.send message
     }
