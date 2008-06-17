@@ -1,7 +1,7 @@
 module DigestReporting
 
-  #contract is a Contrat, requests is an array of DigestRequests
-  DigestContrats = Struct.new(:contract, :requests)
+  #contract is a Contract, requests is an array of DigestRequests
+  DigestContracts = Struct.new(:contract, :requests)
   #request is a Demande, request_at is a Demande, comments is an array of Commentaire
   DigestRequests = Struct.new(:request, :request_at, :comments)
 
@@ -13,15 +13,15 @@ module DigestReporting
     @period = _(@period)
 
     options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contrat_id ASC", :include => [:typedemande, :severite, :statut]}
+     :order => "contract_id ASC", :include => [:typedemande, :severite, :statut]}
     requests = Demande.find(:all, options)
 
     @result = Array.new
-    last_contrat_id = nil
+    last_contract_id = nil
     requests.each do |r|
-      if last_contrat_id != r.contrat_id
-        dc = DigestContrats.new
-        dc.contract = r.contrat
+      if last_contract_id != r.contract_id
+        dc = DigestContracts.new
+        dc.contract = r.contract
         dc.requests = Array.new
         @result.push(dc)
       end
@@ -34,11 +34,11 @@ module DigestReporting
       dr.comments = r.commentaires.find(:all, options)
       @result.last.requests.push(dr)
 
-      last_contrat_id = r.contrat_id
+      last_contract_id = r.contract_id
     end
   end
 
-  #important is an array of Demande, other is an array of DigestContrats
+  #important is an array of Demande, other is an array of DigestContracts
   DigestManagers = Struct.new(:important, :other)
 
   def digest_managers(period)
@@ -49,17 +49,17 @@ module DigestReporting
     @period = _(@period)
     
     options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contrat_id ASC", :include => [:typedemande, :severite, :statut]}
+     :order => "contract_id ASC", :include => [:typedemande, :severite, :statut]}
     requests = Demande.find(:all, options)
     
     @result = DigestManagers.new    
     @result.important = Array.new
     @result.other = Array.new
-    last_contrat_id = nil
+    last_contract_id = nil
     requests.each do |r|
-      if last_contrat_id != r.contrat_id and not r.critical?
-        dc = DigestContrats.new
-        dc.contract = r.contrat
+      if last_contract_id != r.contract_id and not r.critical?
+        dc = DigestContracts.new
+        dc.contract = r.contract
         dc.requests = Array.new
         @result.other.push(dc)
       end
@@ -77,7 +77,7 @@ module DigestReporting
         @result.other.last.requests.push(dr)
       end
 
-      last_contrat_id = r.contrat_id
+      last_contract_id = r.contract_id
     end
 
   end

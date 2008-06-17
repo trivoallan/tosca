@@ -1,6 +1,7 @@
 <h1><%= _("Team %s") % @team.name %></h1>
 <p>
-  <b><%= _("Contact") %> : </b><%= link_to @team.contact %>
+  <% manager = @team.contact %>
+  <b><%= _("Contact") %> : </b><%= link_to manager.name, account_path(manager) %>
 </p>
 <p>
   <b><%= _("Motto") %> : </b><%= @team.motto %>
