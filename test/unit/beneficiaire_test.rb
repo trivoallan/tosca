@@ -13,7 +13,7 @@ class BeneficiaireTest < Test::Unit::TestCase
 
   def test_contracts
     customer = beneficiaires(:beneficiaire_00001)
-    contracts = customer.user.contracts
+    contracts = customer.contracts
     
     assert_equal contracts.size, 1
     assert_equal contracts.first.id, 1
