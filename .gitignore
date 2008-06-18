@@ -4,3 +4,7 @@ lib/config.rb
 log/*.log
 public/stylesheets/all.css
 public/javascripts/all-fr.js
+locale/*
+files/*
+public/image/*
+nbproject/*
