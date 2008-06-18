@@ -8,3 +8,4 @@ locale/*
 files/*
 public/image/*
 nbproject/*
+test/coverage/*
