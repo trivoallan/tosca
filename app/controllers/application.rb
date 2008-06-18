@@ -43,7 +43,7 @@ protected
   # TODO : find a faster solution, like overloading redirect_to ?
   def redirect_to_home
     if request.xhr?
-      render_text('<div class="information error">' + ERROR_MESSAGE + '</div>')
+      render :text => ('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
       redirect_back_or_default bienvenue_path
     end
