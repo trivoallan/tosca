@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-06-17 17:25+0200\n"
+"POT-Creation-Date: 2008-06-18 14:21+0200\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2388,6 +2388,10 @@ msgstr ""
 msgid "a new user"
 msgstr ""
 
+#: app/views/account/ajax_contracts.rjs:5
+msgid "No contracts currently open."
+msgstr ""
+
 #: app/views/account/edit.html.erb:3
 msgid "Modify %s"
 msgstr ""
@@ -3224,6 +3228,10 @@ msgstr ""
 
 #: app/views/contributions/edit.html.erb:1
 msgid "Edit this contribution"
+msgstr ""
+
+#: app/views/contributions/list.atom.builder:2
+msgid "Contributions of 08000linux.com"
 msgstr ""
 
 #: app/views/contributions/list.html.erb:3
@@ -4788,14 +4796,6 @@ msgstr ""
 
 #: app/views/urlreversements/new.html.erb:1
 msgid "Add an url to follow your contribution"
-msgstr ""
-
-#: app/views/account/ajax_contracts.rjs:5
-msgid "No contracts currently open."
-msgstr ""
-
-#: app/views/contributions/list.atom.builder:2
-msgid "Contributions of 08000linux.com"
 msgstr ""
 
 #: lib/overrides.rb:216
