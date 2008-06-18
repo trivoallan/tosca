@@ -5,8 +5,8 @@
 <% titles = [_('Name'), _('Contact'), _('Motto')]%>
 <%= show_table(@teams, Team, titles) { |t|
   result = ''
-  result << "<td>#{t.name}</td>"
-  result << "<td>#{t.contact}</td>"
+  result << "<td>#{link_to t.name, team_path(t)}</td>"
+  result << "<td>#{link_to t.contact, account_path(t.contact)}</td>"
   result << "<td>#{t.motto}</td>"
   result << "#{link_to_actions_table t}"
 }%>

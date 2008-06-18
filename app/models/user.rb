@@ -177,6 +177,13 @@ class User < ActiveRecord::Base
   def kind
     (client? ? 'recipient' : 'expert')
   end
+  
+  def team_manager?
+    if self.team
+      return self.team.contact_id == self.id
+    end
+    false
+  end
 
   def self.reset_permission_strings
     @@permission_strings = Array.new(Role.count)

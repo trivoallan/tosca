@@ -24,7 +24,13 @@
     <th><%= _('User|Team') %></th>
     <td><%= @user.team.name %></td>
   </tr>
-   <% end %>
+  <% end %>
+  <% if @user.team_manager? %>
+  <tr>
+    <th><%= _('Manager of the team') %></th>
+    <td><%= @user.team.name %></td>
+  </tr>
+  <% end %>
   <tr>
     <th><%= _('User|Role') %></th>
     <td><%= @user.role.name %></td>
