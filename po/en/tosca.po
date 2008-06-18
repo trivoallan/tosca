@@ -15,13 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD:po/en/tosca.po
-"POT-Creation-Date: 2008-06-18 14:21+0200\n"
-"PO-Revision-Date: 2008-06-17 17:27+0200\n"
-=======
-"POT-Creation-Date: 2008-06-18 14:17+0200\n"
+"POT-Creation-Date: 2008-06-18 14:27+0200\n"
 "PO-Revision-Date: 2008-06-17 17:42+0200\n"
->>>>>>> origin/production:po/en/tosca.po
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: English <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -646,7 +641,6 @@ msgstr ""
 
 #: app/controllers/roles_controller.rb:20
 msgid "The role %s was succefully created."
-<<<<<<< HEAD:po/en/tosca.po
 msgstr ""
 
 #: app/controllers/roles_controller.rb:35
@@ -737,92 +731,43 @@ msgstr ""
 
 #: app/controllers/urlreversements_controller.rb:47
 msgid "You are not the author of this one."
-=======
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/account_helper.rb:18
 #: app/views/layouts/standard-layout.html.erb:72
 msgid "My account"
-=======
-#: app/controllers/roles_controller.rb:35
-msgid "The role %s was succefully updated."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/account_helper.rb:20
 msgid "Account of %s"
-=======
-#: app/controllers/rules/components_controller.rb:22
-#: app/controllers/rules/credits_controller.rb:22
-msgid "'%s' was successfully created."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/application_helper.rb:58
 msgid " to date"
-=======
-#: app/controllers/rules/components_controller.rb:32
-#: app/controllers/rules/credits_controller.rb:32
-msgid "'%s' was successfully updated."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/application_helper.rb:124
 msgid "No %s  at the moment"
-=======
-#: app/controllers/severites_controller.rb:18
-msgid "Severity was successfully created."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/application_helper.rb:183
 msgid "1 workday"
-=======
-#: app/controllers/severites_controller.rb:32
-msgid "Severity was successfully updated."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/application_helper.rb:184
 msgid " workday"
-=======
-#: app/controllers/socles_controller.rb:25
-msgid "A System was successfully created."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/application_helper.rb:185
 msgid " workdays"
-=======
-#: app/controllers/socles_controller.rb:41
-msgid "A System was successfully updated."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/application_helper.rb:292
 msgid "An error has occured"
-=======
-#: app/controllers/statuts_controller.rb:23
-msgid "Status was successfully created."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/bienvenue_helper.rb:20
 msgid "has an administration interface"
-=======
-#: app/controllers/statuts_controller.rb:37
-msgid "Statut was successfully updated."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/helpers/bienvenue_helper.rb:21
@@ -833,7 +778,6 @@ msgstr ""
 msgid "allows to post suggestions"
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/bienvenue_helper.rb:23
 msgid "displays informations"
 msgstr ""
@@ -856,17 +800,12 @@ msgstr ""
 
 #: app/helpers/bienvenue_helper.rb:28
 msgid "prints the life cycle of a request"
-=======
-#: app/controllers/typecontributions_controller.rb:17
-msgid "A new type of contribution was successfully created."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/helpers/bienvenue_helper.rb:29
 msgid "is ajaxified"
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/bienvenue_helper.rb:30
 msgid "allows to export datas in ODS"
 msgstr ""
@@ -952,164 +891,78 @@ msgstr ""
 
 #: app/helpers/demandes_helper.rb:121
 msgid "New request"
-=======
-#: app/controllers/typedemandes_controller.rb:17
-msgid "A new type of request was successfully created."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/demandes_helper.rb:138
 msgid "Unlink the contribution"
-=======
-#: app/controllers/typedemandes_controller.rb:31
-msgid "A request type was successfully updated."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/demandes_helper.rb:167
 msgid "Submitted upstream on"
-=======
-#: app/controllers/typeurls_controller.rb:17
-msgid "A url type was successfully created."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/demandes_helper.rb:178
 msgid "show requests waiting to be processed"
-=======
-#: app/controllers/typeurls_controller.rb:31
-msgid "A url type was successfully updated."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/demandes_helper.rb:185
 msgid "show requests that were processed"
-=======
-#: app/controllers/urllogiciels_controller.rb:23
-msgid "The url of \"%s\" has been created successfully."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/demandes_helper.rb:192
 msgid "show all the requests"
-=======
-#: app/controllers/urllogiciels_controller.rb:39
-msgid "The Url has bean updated successfully."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/demandes_helper.rb:207 app/views/demandes/_packages.html.erb:6
 #: app/views/demandes/tabs/_cns.html.erb:33
 #: app/views/reporting/_comex_cns.html.erb:20
 msgid "Workaround"
-=======
-#: app/controllers/urlreversements_controller.rb:21
-msgid "Urlreversement was successfully created."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/demandes_helper.rb:208 app/views/demandes/_packages.html.erb:7
 #: app/views/demandes/tabs/_cns.html.erb:44
 #: app/views/reporting/_comex_cns.html.erb:21
 msgid "Correction"
-=======
-#: app/controllers/urlreversements_controller.rb:36
-msgid "Urlreversement was successfully updated."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/distributeurs_helper.rb:5
 msgid "a distributor"
-=======
-#: app/controllers/urlreversements_controller.rb:47
-msgid "You are not the author of this one."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/export_helper.rb:25
 msgid "Export in %s"
-=======
-#: app/helpers/account_helper.rb:18
-#: app/views/layouts/standard-layout.html.erb:72
-msgid "My account"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/groupes_helper.rb:5
 msgid "classification"
-=======
-#: app/helpers/account_helper.rb:20
-msgid "Account of %s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/images_helper.rb:9
 msgid "Add %s"
-=======
-#: app/helpers/application_helper.rb:58
-msgid " to date"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/images_helper.rb:51
 msgid "progress bar"
-=======
-#: app/helpers/application_helper.rb:124
-msgid "No %s  at the moment"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/images_helper.rb:62
 msgid "a logo"
-=======
-#: app/helpers/application_helper.rb:183
-msgid "1 workday"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/licenses_helper.rb:5
 msgid "a copyright"
-=======
-#: app/helpers/application_helper.rb:184
-msgid " workday"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:100
 msgid "Do you really want to delete %s"
-=======
-#: app/helpers/application_helper.rb:185
-msgid " workdays"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:116 app/views/binaires/show.html.erb:3
 #: app/views/contributions/list.html.erb:1
 #: app/views/contributions/show.html.erb:1 app/views/tags/show.html.erb:1
 msgid "Home"
-=======
-#: app/helpers/application_helper.rb:292
-msgid "An error has occured"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:120 app/views/bienvenue/index.html.erb:15
 #: app/views/contracts/index.html.erb:6 app/views/logiciels/show.html.erb:49
 #: app/views/phonecalls/_calls_info.html.erb:50
@@ -1128,49 +981,24 @@ msgstr ""
 #: app/views/reporting/general.html.erb:48
 #: app/views/reporting/general.html.erb:49
 msgid "Requests"
-=======
-#: app/helpers/bienvenue_helper.rb:20
-msgid "has an administration interface"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:121
 msgid "Consult requests"
-=======
-#: app/helpers/bienvenue_helper.rb:21
-msgid "has a pretty print page"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:126
 msgid "Consult all the requests"
-=======
-#: app/helpers/bienvenue_helper.rb:22
-msgid "allows to post suggestions"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:130
 msgid "Pending Requests"
-=======
-#: app/helpers/bienvenue_helper.rb:23
-msgid "displays informations"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:131
 msgid "Consult requests which are waiting an action from you"
-=======
-#: app/helpers/bienvenue_helper.rb:24
-msgid "allows to become an other one"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:135 app/views/account/_menu.html.erb:20
 #: app/views/bienvenue/index.html.erb:69 app/views/binaires/show.html.erb:4
 #: app/views/contracts/index.html.erb:5
@@ -1179,22 +1007,12 @@ msgstr ""
 #: app/views/logiciels/_softwares_info.html.erb:54
 #: app/views/logiciels/show.html.erb:2 app/views/paquets/show.html.erb:3
 msgid "Softwares"
-=======
-#: app/helpers/bienvenue_helper.rb:25
-msgid "allows to log in in the application"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:136
 msgid "Access to the list of softwares"
-=======
-#: app/helpers/bienvenue_helper.rb:26
-msgid "display this map"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:140 app/views/binaires/_form.html.erb:27
 #: app/views/clients/show.html.erb:45
 #: app/views/contributions/_contributions_info.html.erb:43
@@ -1203,623 +1021,271 @@ msgstr ""
 #: app/views/contributions/show.html.erb:2
 #: app/views/logiciels/show.html.erb:67
 msgid "Contributions"
-=======
-#: app/helpers/bienvenue_helper.rb:27
-msgid "allows to comment"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:141
 msgid "Access to the list of contributions."
-=======
-#: app/helpers/bienvenue_helper.rb:28
-msgid "prints the life cycle of a request"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:147
 msgid "About %s"
-=======
-#: app/helpers/bienvenue_helper.rb:29
-msgid "is ajaxified"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:152
 msgid "Administration"
-=======
-#: app/helpers/bienvenue_helper.rb:30
-msgid "allows to export datas in ODS"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:153
 #: app/views/contributions/_contributions_info.html.erb:21
 msgid "Administration interface"
-=======
-#: app/helpers/binaires_helper.rb:12 app/views/clients/show.html.erb:52
-#: app/views/paquets/show.html.erb:32 app/views/paquets/show.html.erb:36
-#: app/views/socles/show.html.erb:19
-msgid "binary"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/links_helper.rb:161
 msgid "My&nbsp;account"
-=======
-#: app/helpers/clients_helper.rb:14
-msgid "My&nbsp;Offer"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/logiciels_helper.rb:30
 msgid "My supported softwares"
-=======
-#: app/helpers/clients_helper.rb:26
-msgid "Display only active clients"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/logiciels_helper.rb:31
 msgid "Display only software supported by your contract"
-=======
-#: app/helpers/clients_helper.rb:30
-msgid "Display only inactive clients"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/logiciels_helper.rb:34
 msgid "All softwares"
-=======
-#: app/helpers/commentaires_helper.rb:14
-msgid "This request has been taken into account by %s."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/logiciels_helper.rb:35
 msgid "Display all softwares"
-=======
-#: app/helpers/commentaires_helper.rb:16
-msgid "This request has been assigned to %s by %s."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/mainteneurs_helper.rb:6
 msgid "a maintainer"
-=======
-#: app/helpers/commentaires_helper.rb:22
-msgid "This request has been changed in %s by %s."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/pages_helper.rb:35
 msgid "Do you really want to destroy this object ?"
-=======
-#: app/helpers/commentaires_helper.rb:27
-msgid "This request has been requalified in %s by %s."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/pages_helper.rb:100 app/helpers/static_image.rb:83
 msgid "First page"
-=======
-#: app/helpers/commentaires_helper.rb:33
-msgid "%s has been spent by %s on this request."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/pages_helper.rb:103 app/helpers/static_image.rb:89
 #: app/views/typecontributions/index.html.erb:20
 msgid "Previous page"
-=======
-#: app/helpers/conteneurs_helper.rb:6
-msgid "a container"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/pages_helper.rb:109
 msgid " to "
-=======
-#: app/helpers/contracts_helper.rb:13 app/views/contracts/index.html.erb:3
-#: app/views/contracts/index.html.erb:22
-msgid "a contract"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/pages_helper.rb:110
 msgid "&nbsp; on "
-=======
-#: app/helpers/contributions_helper.rb:7
-#: app/views/demandes/tabs/_history.html.erb:6
-msgid "Date"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/pages_helper.rb:113 app/helpers/static_image.rb:95
 #: app/views/typecontributions/index.html.erb:21
 msgid "Next page"
-=======
-#: app/helpers/contributions_helper.rb:7 app/views/binaires/show.html.erb:18
-#: app/views/demandes/_form_binaires.html.erb:5
-#: app/views/demandes/_version.html.erb:3 app/views/paquets/_form.html.erb:20
-msgid "Version"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/pages_helper.rb:116 app/helpers/static_image.rb:101
 msgid "Last page"
-=======
-#: app/helpers/contributions_helper.rb:54
-#: app/views/contributions/_contributions_admin.html.erb:3
-msgid "a contribution"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/paquets_helper.rb:15
 msgid "a package"
-=======
-#: app/helpers/demandes_helper.rb:25
-msgid "Submission of a request"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/phonecalls_helper.rb:11
 msgid "Add a phone call"
-=======
-#: app/helpers/demandes_helper.rb:32
-msgid "The life cycle of a request"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/reporting_helper.rb:14
 #: app/views/phonecalls/_calls_info.html.erb:31
 msgid "Period"
-=======
-#: app/helpers/demandes_helper.rb:39
-msgid "Help on the status"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/reporting_helper.rb:88
 msgid "During the chosen period"
-=======
-#: app/helpers/demandes_helper.rb:45
-msgid "Legend of statutes"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/reporting_helper.rb:97
 msgid "Since the begining of your contract"
-=======
-#: app/helpers/demandes_helper.rb:121
-msgid "New request"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/reporting_helper.rb:149
 msgid "Finished"
-=======
-#: app/helpers/demandes_helper.rb:138
-msgid "Unlink the contribution"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/reporting_helper.rb:149
 msgid "Running"
-=======
-#: app/helpers/demandes_helper.rb:167
-msgid "Submitted upstream on"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/reporting_helper.rb:266
 msgid "Exceedance"
-=======
-#: app/helpers/demandes_helper.rb:178
-msgid "show requests waiting to be processed"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:31 app/views/clients/show.html.erb:42
 #: app/views/clients/show.html.erb:44
 msgid "View"
-=======
-#: app/helpers/demandes_helper.rb:185
-msgid "show requests that were processed"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:37 app/views/demandes/edit.html.erb:7
 #: app/views/knowledges/edit.html.erb:5 app/views/logiciels/edit.html.erb:5
 msgid "Update"
-=======
-#: app/helpers/demandes_helper.rb:192
-msgid "show all the requests"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:45
 msgid "New"
-=======
-#: app/helpers/demandes_helper.rb:207 app/views/demandes/_packages.html.erb:6
-#: app/views/demandes/tabs/_cns.html.erb:33
-#: app/views/reporting/_comex_cns.html.erb:20
-msgid "Workaround"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:51
 msgid "Delete"
-=======
-#: app/helpers/demandes_helper.rb:208 app/views/demandes/_packages.html.erb:7
-#: app/views/demandes/tabs/_cns.html.erb:44
-#: app/views/reporting/_comex_cns.html.erb:21
-msgid "Correction"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:57
 msgid "Hide"
-=======
-#: app/helpers/distributeurs_helper.rb:5
-msgid "a distributor"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:63 app/views/bienvenue/about.html.erb:3
 #: app/views/demandes/_infos_demande.html.erb:73
 #: app/views/demandes/lists/_requests_info.html.erb:59
 msgid "Help"
-=======
-#: app/helpers/export_helper.rb:25
-msgid "Export in %s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:71 app/helpers/static_image.rb:143
 msgid "Home page"
-=======
-#: app/helpers/groupes_helper.rb:5
-msgid "classification"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:77 app/views/severites/show.html.erb:8
 #: app/views/teams/new.html.erb:8 app/views/teams/show.html.erb:13
 #: app/views/typecontributions/show.html.erb:8
 #: app/views/typedocuments/show.html.erb:8 app/views/typeurls/show.html.erb:8
 msgid "Back"
-=======
-#: app/helpers/images_helper.rb:9
-msgid "Add %s"
 msgstr ""
 
-#: app/helpers/images_helper.rb:51
-msgid "progress bar"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:107
 msgid "File"
-=======
-#: app/helpers/images_helper.rb:62
-msgid "a logo"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:113
 #: app/views/contributions/_contributions_info.html.erb:30
 #: app/views/urlreversements/_form.html.erb:6
 #: app/views/urlreversements/index.html.erb:6
 msgid "Contribution"
-=======
-#: app/helpers/licenses_helper.rb:5
-msgid "a copyright"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:120
 msgid "Make public"
-=======
-#: app/helpers/links_helper.rb:100
-msgid "Do you really want to delete %s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:126
 msgid "Make private"
-=======
-#: app/helpers/links_helper.rb:116 app/views/binaires/show.html.erb:3
-#: app/views/contributions/list.html.erb:1
-#: app/views/contributions/show.html.erb:1 app/views/tags/show.html.erb:1
-msgid "Home"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:149 app/helpers/static_image.rb:155
 msgid "OSSA on rails"
-=======
-#: app/helpers/links_helper.rb:120 app/views/bienvenue/index.html.erb:15
-#: app/views/contracts/index.html.erb:6 app/views/logiciels/show.html.erb:49
-#: app/views/phonecalls/_calls_info.html.erb:50
-#: app/views/reporting/general.html.erb:22
-#: app/views/reporting/general.html.erb:23
-#: app/views/reporting/general.html.erb:25
-#: app/views/reporting/general.html.erb:26
-#: app/views/reporting/general.html.erb:28
-#: app/views/reporting/general.html.erb:29
-#: app/views/reporting/general.html.erb:36
-#: app/views/reporting/general.html.erb:37
-#: app/views/reporting/general.html.erb:42
-#: app/views/reporting/general.html.erb:43
-#: app/views/reporting/general.html.erb:45
-#: app/views/reporting/general.html.erb:46
-#: app/views/reporting/general.html.erb:48
-#: app/views/reporting/general.html.erb:49
-msgid "Requests"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_image.rb:171
 #: app/views/demandes/_infos_demande.html.erb:17
 msgid "Print"
-=======
-#: app/helpers/links_helper.rb:121
-msgid "Consult requests"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_script.rb:5
 msgid "Choose a date"
-=======
-#: app/helpers/links_helper.rb:126
-msgid "Consult all the requests"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/static_script.rb:6
 msgid "Select a date"
-=======
-#: app/helpers/links_helper.rb:130
-msgid "Pending Requests"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/helpers/urlreversements_helper.rb:10
 msgid "new url"
-=======
-#: app/helpers/links_helper.rb:131
-msgid "Consult requests which are waiting an action from you"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/arch.rb:-
 msgid "arch"
-=======
-#: app/helpers/links_helper.rb:135 app/views/account/_menu.html.erb:20
-#: app/views/bienvenue/index.html.erb:69 app/views/binaires/show.html.erb:4
-#: app/views/contracts/index.html.erb:5
-#: app/views/contributions/_contributions_info.html.erb:44
-#: app/views/groupes/index.html.erb:5
-#: app/views/logiciels/_softwares_info.html.erb:54
-#: app/views/logiciels/show.html.erb:2 app/views/paquets/show.html.erb:3
-msgid "Softwares"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/arch.rb:-
 msgid "Arch|Name"
-=======
-#: app/helpers/links_helper.rb:136
-msgid "Access to the list of softwares"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/beneficiaire.rb:-
 msgid "beneficiaire"
-=======
-#: app/helpers/links_helper.rb:140 app/views/binaires/_form.html.erb:27
-#: app/views/clients/show.html.erb:45
-#: app/views/contributions/_contributions_info.html.erb:43
-#: app/views/contributions/list.html.erb:2
-#: app/views/contributions/select.html.erb:1
-#: app/views/contributions/show.html.erb:2
-#: app/views/logiciels/show.html.erb:67
-msgid "Contributions"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/beneficiaire.rb:-
 msgid "Beneficiaire|Client"
-=======
-#: app/helpers/links_helper.rb:141
-msgid "Access to the list of contributions."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/beneficiaire.rb:-
 msgid "Beneficiaire|Beneficiaire"
-=======
-#: app/helpers/links_helper.rb:147
-msgid "About %s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/beneficiaire.rb:-
 msgid "Beneficiaire|User"
 msgstr "User"
 
 #: app/models/beneficiaire.rb:-
 msgid "Beneficiaire|Notifier subalternes"
-=======
-#: app/helpers/links_helper.rb:152
-msgid "Administration"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/beneficiaire.rb:-
 msgid "Beneficiaire|Notifier"
-=======
-#: app/helpers/links_helper.rb:153
-#: app/views/contributions/_contributions_info.html.erb:21
-msgid "Administration interface"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/beneficiaire.rb:-
 msgid "Beneficiaire|Notifier cc"
-=======
-#: app/helpers/links_helper.rb:161
-msgid "My&nbsp;account"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/changelog.rb:- app/views/paquets/show.html.erb:57
 msgid "changelog"
-=======
-#: app/helpers/logiciels_helper.rb:30
-msgid "My supported softwares"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/changelog.rb:-
 msgid "Changelog|Paquet"
-=======
-#: app/helpers/logiciels_helper.rb:31
-msgid "Display only software supported by your contract"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/changelog.rb:-
 msgid "Changelog|Date modification"
-=======
-#: app/helpers/logiciels_helper.rb:34
-msgid "All softwares"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/changelog.rb:-
 msgid "Changelog|Nom modification"
-=======
-#: app/helpers/logiciels_helper.rb:35
-msgid "Display all softwares"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/changelog.rb:-
 msgid "Changelog|Text modification"
-=======
-#: app/helpers/mainteneurs_helper.rb:6
-msgid "a maintainer"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/client.rb:36
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
-=======
-#: app/helpers/pages_helper.rb:35
-msgid "Do you really want to destroy this object ?"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:-
 msgid "commentaire"
-=======
-#: app/helpers/pages_helper.rb:100 app/helpers/static_image.rb:83
-msgid "First page"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Demande"
-=======
-#: app/helpers/pages_helper.rb:103 app/helpers/static_image.rb:89
-#: app/views/typecontributions/index.html.erb:20
-msgid "Previous page"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:-
 msgid "Commentaire|User"
 msgstr "User"
 
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Piecejointe"
-=======
-#: app/helpers/pages_helper.rb:109
-msgid " to "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Corps"
-=======
-#: app/helpers/pages_helper.rb:110
-msgid "&nbsp; on "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Created on"
 msgstr "Created on"
@@ -1830,282 +1296,118 @@ msgstr "Updated on"
 
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Prive"
-=======
-#: app/helpers/pages_helper.rb:113 app/helpers/static_image.rb:95
-#: app/views/typecontributions/index.html.erb:21
-msgid "Next page"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Severite"
-=======
-#: app/helpers/pages_helper.rb:116 app/helpers/static_image.rb:101
-msgid "Last page"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Statut"
-=======
-#: app/helpers/paquets_helper.rb:15
-msgid "a package"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Ingenieur"
-=======
-#: app/helpers/phonecalls_helper.rb:11
-msgid "Add a phone call"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Elapsed"
 msgstr "Elapsed"
 
 #: app/models/commentaire.rb:10
 msgid "You must have a comment with at least 5 characters"
-=======
-#: app/helpers/reporting_helper.rb:14
-#: app/views/phonecalls/_calls_info.html.erb:31
-msgid "Period"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:15
 msgid "You must indicate a valid request"
-=======
-#: app/helpers/reporting_helper.rb:88
-msgid "During the chosen period"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:26
 msgid "private"
-=======
-#: app/helpers/reporting_helper.rb:97
-msgid "Since the begining of your contract"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:26
 msgid "public"
-=======
-#: app/helpers/reporting_helper.rb:149
-msgid "Finished"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:56
 msgid "The status of this request has already been changed."
-=======
-#: app/helpers/reporting_helper.rb:149
-msgid "Running"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:59
 msgid "You cannot privately change the status"
-=======
-#: app/helpers/reporting_helper.rb:266
-msgid "Exceedance"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/commentaire.rb:78
 msgid "This request seems to be unstable."
-=======
-#: app/helpers/static_image.rb:31 app/views/clients/show.html.erb:42
-#: app/views/clients/show.html.erb:44
-msgid "View"
 msgstr ""
 
-#: app/helpers/static_image.rb:37 app/views/demandes/edit.html.erb:7
-#: app/views/knowledges/edit.html.erb:5 app/views/logiciels/edit.html.erb:5
-msgid "Update"
-msgstr ""
-
-#: app/helpers/static_image.rb:45
-msgid "New"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/competence.rb:-
 msgid "competence"
-=======
-#: app/helpers/static_image.rb:51
-msgid "Delete"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/competence.rb:-
 msgid "Competence|Name"
 msgstr "Name"
 
 #: app/models/conteneur.rb:-
 msgid "conteneur"
-=======
-#: app/helpers/static_image.rb:57
-msgid "Hide"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/conteneur.rb:-
 msgid "Conteneur|Name"
 msgstr "Name"
 
 #: app/models/contribution.rb:- app/views/contributions/select.html.erb:4
 msgid "contribution"
-=======
-#: app/helpers/static_image.rb:63 app/views/bienvenue/about.html.erb:3
-#: app/views/demandes/_infos_demande.html.erb:73
-#: app/views/demandes/lists/_requests_info.html.erb:59
-msgid "Help"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Name"
 msgstr "Name"
-=======
-#: app/helpers/static_image.rb:71 app/helpers/static_image.rb:143
-msgid "Home page"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Description"
 msgstr "Description"
-=======
-#: app/helpers/static_image.rb:77 app/views/severites/show.html.erb:8
-#: app/views/teams/new.html.erb:8 app/views/teams/show.html.erb:13
-#: app/views/typecontributions/show.html.erb:8
-#: app/views/typedocuments/show.html.erb:8 app/views/typeurls/show.html.erb:8
-msgid "Back"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Patch"
-=======
-#: app/helpers/static_image.rb:107
-msgid "File"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Created on"
 msgstr "Created on"
-=======
-#: app/helpers/static_image.rb:113
-#: app/views/contributions/_contributions_info.html.erb:30
-#: app/views/urlreversements/_form.html.erb:6
-#: app/views/urlreversements/index.html.erb:6
-msgid "Contribution"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Updated on"
 msgstr "Updated on"
-=======
-#: app/helpers/static_image.rb:120
-msgid "Make public"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Id mantis"
-=======
-#: app/helpers/static_image.rb:126
-msgid "Make private"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Reverse le"
-=======
-#: app/helpers/static_image.rb:149 app/helpers/static_image.rb:155
-msgid "OSSA on rails"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Description fonctionnelle"
-=======
-#: app/helpers/static_image.rb:171
-#: app/views/demandes/_infos_demande.html.erb:17
-msgid "Print"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/contribution.rb:-
-msgid "Contribution|Etatreversement"
-msgstr "Name"
-=======
-#: app/helpers/static_script.rb:5
-msgid "Choose a date"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Cloture le"
-=======
-#: app/helpers/static_script.rb:6
-msgid "Select a date"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Logiciel"
-=======
-#: app/helpers/urlreversements_helper.rb:10
-msgid "new url"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Ingenieur"
-=======
-#: app/models/arch.rb:-
-msgid "arch"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/contribution.rb:-
 msgid "Contribution|Typecontribution"
-=======
-#: app/models/arch.rb:-
-msgid "Arch|Name"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/contribution.rb:-
@@ -2132,147 +1434,38 @@ msgstr ""
 msgid "month"
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/demande.rb:40
 msgid "week"
-=======
-#: app/models/changelog.rb:- app/views/paquets/show.html.erb:57
-msgid "changelog"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/demande.rb:41
 msgid "day"
-=======
-#: app/models/changelog.rb:-
-msgid "Changelog|Paquet"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/demande.rb:53
 msgid "You must indicate a %s for your request"
-=======
-#: app/models/changelog.rb:-
-msgid "Changelog|Date modification"
 msgstr ""
 
-#: app/models/changelog.rb:-
-msgid "Changelog|Nom modification"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/demande.rb:65
 msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
-=======
-#: app/models/changelog.rb:-
-msgid "Changelog|Text modification"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/dependance.rb:-
 msgid "dependance"
-=======
-#: app/models/client.rb:36
-msgid "Cannot (de)activate associated recipients due to : \"%s\""
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/dependance.rb:-
 msgid "Dependance|Paquet"
-=======
-#: app/models/commentaire.rb:-
-msgid "commentaire"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/dependance.rb:-
 msgid "Dependance|Name"
 msgstr "Name"
-=======
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Demande"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/dependance.rb:-
 msgid "Dependance|Sens"
-=======
-#: app/models/commentaire.rb:-
-msgid "Commentaire|User"
-msgstr "User"
-
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Piecejointe"
-msgstr ""
-
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Corps"
-msgstr ""
-
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Created on"
-msgstr "Created on"
-
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Updated on"
-msgstr "Updated on"
-
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Prive"
-msgstr ""
-
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Severite"
-msgstr ""
-
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Statut"
-msgstr ""
-
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Ingenieur"
-msgstr ""
-
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Elapsed"
-msgstr "Elapsed"
-
-#: app/models/commentaire.rb:10
-msgid "You must have a comment with at least 5 characters"
-msgstr ""
-
-#: app/models/commentaire.rb:15
-msgid "You must indicate a valid request"
-msgstr ""
-
-#: app/models/commentaire.rb:26
-msgid "private"
-msgstr ""
-
-#: app/models/commentaire.rb:26
-msgid "public"
-msgstr ""
-
-#: app/models/commentaire.rb:56
-msgid "The status of this request has already been changed."
-msgstr ""
-
-#: app/models/commentaire.rb:59
-msgid "You cannot privately change the status"
-msgstr ""
-
-#: app/models/commentaire.rb:78
-msgid "This request seems to be unstable."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/dependance.rb:-
@@ -2287,121 +1480,50 @@ msgstr ""
 msgid "Distributeur|Name"
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/elapsed.rb:-
 msgid "elapsed"
-=======
-#: app/models/conteneur.rb:-
-msgid "conteneur"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Demande"
-=======
-#: app/models/conteneur.rb:-
-msgid "Conteneur|Name"
-msgstr "Name"
-
-#: app/models/contribution.rb:- app/views/contributions/select.html.erb:4
-msgid "contribution"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Taken into account"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Name"
-msgstr "Name"
-
-#: app/models/contribution.rb:-
-msgid "Contribution|Description"
-msgstr "Description"
-
-#: app/models/contribution.rb:-
-msgid "Contribution|Patch"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Workaround"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Created on"
-msgstr "Created on"
-
-#: app/models/contribution.rb:-
-msgid "Contribution|Updated on"
-msgstr "Updated on"
-
-#: app/models/contribution.rb:-
-msgid "Contribution|Id mantis"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Correction"
 msgstr "Correction"
 
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Until now"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Reverse le"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/engagement.rb:-
 msgid "engagement"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Description fonctionnelle"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/engagement.rb:-
 msgid "Engagement|Severite"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Etatreversement"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/engagement.rb:-
 msgid "Engagement|Contournement"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Cloture le"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/engagement.rb:-
 msgid "Engagement|Correction"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Logiciel"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/engagement.rb:-
 msgid "Engagement|Typedemande"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Ingenieur"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/etatreversement.rb:-
 msgid "etatreversement"
 msgstr "contributionstate"
@@ -2409,555 +1531,167 @@ msgstr "contributionstate"
 #: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:4
 msgid "Etatreversement|Name"
 msgstr "Name"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Typecontribution"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:7
 msgid "Etatreversement|Description"
 msgstr "Description"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Affected version"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/groupe.rb:-
 msgid "groupe"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Synthese"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/groupe.rb:-
 msgid "Groupe|Name"
-=======
-#: app/models/contribution.rb:-
-msgid "Contribution|Fixed version"
 msgstr ""
 
-#: app/models/contribution.rb:45
-msgid " on "
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/image.rb:-
 msgid "image"
-=======
-#: app/models/demande.rb:38
-msgid "year"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/image.rb:-
 msgid "Image|Image"
-=======
-#: app/models/demande.rb:39
-msgid "month"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/image.rb:-
 msgid "Image|Description"
 msgstr "Description"
-=======
-#: app/models/demande.rb:40
-msgid "week"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/image.rb:-
 msgid "Image|Logiciel"
-=======
-#: app/models/demande.rb:41
-msgid "day"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/image.rb:4
 msgid "You must select a file to upload"
-=======
-#: app/models/demande.rb:53
-msgid "You must indicate a %s for your request"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/image.rb:26 app/models/image.rb:27
 msgid "Logo '%s'"
-=======
-#: app/models/demande.rb:65
-msgid ""
-"The client of this contract is not consistant with the client of this "
-"recipient."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/ingenieur.rb:-
 msgid "ingenieur"
-=======
-#: app/models/dependance.rb:-
-msgid "dependance"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/ingenieur.rb:-
 msgid "Ingenieur|User"
 msgstr "User"
-=======
-#: app/models/dependance.rb:-
-msgid "Dependance|Paquet"
-msgstr ""
 
-#: app/models/dependance.rb:-
-msgid "Dependance|Name"
-msgstr "Name"
-
-#: app/models/dependance.rb:-
-msgid "Dependance|Sens"
-msgstr ""
-
-#: app/models/dependance.rb:-
-msgid "Dependance|Version"
-msgstr "Version"
-
-#: app/models/distributeur.rb:-
-msgid "distributeur"
-msgstr ""
-
-#: app/models/distributeur.rb:- app/views/distributeurs/_form.html.erb:4
-msgid "Distributeur|Name"
-msgstr ""
-
-#: app/models/elapsed.rb:-
-msgid "elapsed"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/ingenieur.rb:-
 msgid "Ingenieur|Chef de projet"
-=======
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Demande"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/ingenieur.rb:-
 msgid "Ingenieur|Image"
-=======
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Taken into account"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/knowledge.rb:-
 msgid "knowledge"
-=======
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Workaround"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Competence"
-=======
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Correction"
-msgstr "Correction"
-
-#: app/models/elapsed.rb:-
-msgid "Elapsed|Until now"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Logiciel"
-=======
-#: app/models/engagement.rb:-
-msgid "engagement"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Ingenieur"
-=======
-#: app/models/engagement.rb:-
-msgid "Engagement|Severite"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Level"
-=======
-#: app/models/engagement.rb:-
-msgid "Engagement|Contournement"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/knowledge.rb:10
 msgid "You have to specify a software or a domain."
-=======
-#: app/models/engagement.rb:-
-msgid "Engagement|Correction"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/knowledge.rb:13
 msgid "You cannot specify a software and a domain."
-=======
-#: app/models/engagement.rb:-
-msgid "Engagement|Typedemande"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/license.rb:-
 msgid "license"
-=======
-#: app/models/etatreversement.rb:-
-msgid "etatreversement"
-msgstr "contributionstate"
-
-#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:4
-msgid "Etatreversement|Name"
-msgstr "Name"
-
-#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:7
-msgid "Etatreversement|Description"
-msgstr "Description"
-
-#: app/models/groupe.rb:-
-msgid "groupe"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/license.rb:- app/views/licenses/_form.html.erb:3
 msgid "License|Name"
-=======
-#: app/models/groupe.rb:-
-msgid "Groupe|Name"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/license.rb:-
 msgid "License|Url"
-=======
-#: app/models/image.rb:-
-msgid "image"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/license.rb:-
 msgid "License|Certifie osi"
-=======
-#: app/models/image.rb:-
-msgid "Image|Image"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:-
 msgid "logiciel"
-=======
-#: app/models/image.rb:-
-msgid "Image|Description"
-msgstr "Description"
-
-#: app/models/image.rb:-
-msgid "Image|Logiciel"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:-
 msgid "Logiciel|Name"
 msgstr "Name"
-=======
-#: app/models/image.rb:4
-msgid "You must select a file to upload"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:-
 msgid "Logiciel|Referent"
-=======
-#: app/models/image.rb:26 app/models/image.rb:27
-msgid "Logo '%s'"
 msgstr ""
 
-#: app/models/ingenieur.rb:-
-msgid "ingenieur"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:-
 msgid "Logiciel|Resume"
 msgstr ""
-=======
-#: app/models/ingenieur.rb:-
-msgid "Ingenieur|User"
-msgstr "User"
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:-
 msgid "Logiciel|Description"
 msgstr "Description"
-=======
-#: app/models/ingenieur.rb:-
-msgid "Ingenieur|Chef de projet"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:-
 msgid "Logiciel|License"
-=======
-#: app/models/ingenieur.rb:-
-msgid "Ingenieur|Image"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:-
 msgid "Logiciel|Groupe"
-=======
-#: app/models/knowledge.rb:-
-msgid "knowledge"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:19
 msgid "You have to specify a name"
-=======
-#: app/models/knowledge.rb:-
-msgid "Knowledge|Competence"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:21
 msgid "You have to specify a group"
-=======
-#: app/models/knowledge.rb:-
-msgid "Knowledge|Logiciel"
 msgstr ""
 
-#: app/models/knowledge.rb:-
-msgid "Knowledge|Ingenieur"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/logiciel.rb:23
 msgid "You have to specify at least one technology"
-=======
-#: app/models/knowledge.rb:-
-msgid "Knowledge|Level"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/machine.rb:-
 msgid "machine"
-=======
-#: app/models/knowledge.rb:10
-msgid "You have to specify a software or a domain."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/machine.rb:-
 msgid "Machine|Socle"
-=======
-#: app/models/knowledge.rb:13
-msgid "You cannot specify a software and a domain."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/machine.rb:-
 msgid "Machine|Acces"
-=======
-#: app/models/license.rb:-
-msgid "license"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/machine.rb:-
 msgid "Machine|Virtuelle"
-=======
-#: app/models/license.rb:- app/views/licenses/_form.html.erb:3
-msgid "License|Name"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/machine.rb:-
 msgid "Machine|Hote"
-=======
-#: app/models/license.rb:-
-msgid "License|Url"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
 #: app/models/machine.rb:-
 msgid "Machine|Description"
 msgstr "Description"
-=======
-#: app/models/license.rb:-
-msgid "License|Certifie osi"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/mainteneur.rb:-
-msgid "mainteneur"
-=======
-#: app/models/logiciel.rb:-
-msgid "logiciel"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/mainteneur.rb:-
-msgid "Mainteneur|Name"
-=======
-#: app/models/logiciel.rb:-
-msgid "Logiciel|Name"
->>>>>>> origin/production:po/en/tosca.po
-msgstr "Name"
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/new.rb:-
-msgid "news"
-=======
-#: app/models/logiciel.rb:-
-msgid "Logiciel|Referent"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/new.rb:-
-msgid "new"
-=======
-#: app/models/logiciel.rb:-
-msgid "Logiciel|Resume"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/new.rb:-
-msgid "New|Subject"
-=======
-#: app/models/logiciel.rb:-
-msgid "Logiciel|Description"
-msgstr "Description"
-
-#: app/models/logiciel.rb:-
-msgid "Logiciel|License"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/new.rb:-
-msgid "New|Source"
-=======
-#: app/models/logiciel.rb:-
-msgid "Logiciel|Groupe"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/new.rb:-
-msgid "New|Body"
-=======
-#: app/models/logiciel.rb:19
-msgid "You have to specify a name"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/new.rb:-
-msgid "New|Created on"
-msgstr "Created on"
-=======
-#: app/models/logiciel.rb:21
-msgid "You have to specify a group"
-msgstr ""
->>>>>>> origin/production:po/en/tosca.po
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/new.rb:-
-msgid "New|Updated on"
-msgstr "Updated on"
-
-#: app/models/new.rb:-
-msgid "New|Ingenieur"
-=======
-#: app/models/logiciel.rb:23
-msgid "You have to specify at least one technology"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Client"
-msgstr ""
-
-#: app/models/new.rb:-
-msgid "New|Logiciel"
-msgstr ""
-
-#: app/models/notifier.rb:115
-msgid "Daily digest for "
-msgstr ""
-
-#: app/models/notifier.rb:117
-msgid " week of "
-msgstr ""
-
-#: app/models/notifier.rb:118
-msgid "Weekly digest for "
-msgstr ""
-
-#: app/models/notifier.rb:121
-msgid "Monthly digest for "
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/notifier.rb:124
-msgid "Yearly digest for "
-=======
 #: app/models/mainteneur.rb:-
 msgid "mainteneur"
 msgstr ""
@@ -3016,240 +1750,113 @@ msgstr ""
 
 #: app/models/notifier.rb:118
 msgid "Weekly digest for "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/notifier.rb:168
-msgid "Possible error in your e-mail"
-=======
 #: app/models/notifier.rb:121
 msgid "Monthly digest for "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/notifier.rb:179
-msgid "Multiple accounts with the same e-mail"
-=======
 #: app/models/notifier.rb:124
 msgid "Yearly digest for "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/notifier.rb:191
-msgid "Mailing list does not exists"
-=======
 #: app/models/notifier.rb:168
 msgid "Possible error in your e-mail"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/notifier.rb:239
-msgid "An e-mail informing"
-=======
 #: app/models/notifier.rb:179
 msgid "Multiple accounts with the same e-mail"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/notifier.rb:240
-msgid "with a copy to"
-=======
 #: app/models/notifier.rb:191
 msgid "Mailing list does not exists"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/notifier.rb:241
-msgid "was sent."
-=======
 #: app/models/notifier.rb:239
 msgid "An e-mail informing"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/permission.rb:-
-msgid "permission"
-=======
 #: app/models/notifier.rb:240
 msgid "with a copy to"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/permission.rb:-
-msgid "Permission|Name"
-=======
 #: app/models/notifier.rb:241
 msgid "was sent."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/permission.rb:-
-<<<<<<< HEAD:po/en/tosca.po
-msgid "Permission|Info"
-=======
 msgid "permission"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/phonecall.rb:14
-msgid "The beginning of the call has to be before to its end."
-=======
 #: app/models/permission.rb:-
 msgid "Permission|Name"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/phonecall.rb:19
-msgid "recipient and client have to correspond."
-=======
 #: app/models/permission.rb:-
 msgid "Permission|Info"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/phonecall.rb:52
-msgid "Phonecall of %s on '%s'"
-=======
 #: app/models/phonecall.rb:14
 msgid "The beginning of the call has to be before to its end."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/phonecall.rb:54
-msgid "Phonecall of %s for %s"
-=======
 #: app/models/phonecall.rb:19
 msgid "recipient and client have to correspond."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/piecejointe.rb:-
-msgid "piecejointe"
-=======
 #: app/models/phonecall.rb:52
 msgid "Phonecall of %s on '%s'"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/piecejointe.rb:-
-msgid "Piecejointe|File"
-=======
 #: app/models/phonecall.rb:54
 msgid "Phonecall of %s for %s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/preference.rb:-
-msgid "preference"
-=======
 #: app/models/piecejointe.rb:-
 msgid "piecejointe"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/preference.rb:-
-msgid "Preference|Attribute"
-=======
 #: app/models/piecejointe.rb:-
 msgid "Piecejointe|File"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/preference.rb:-
-<<<<<<< HEAD:po/en/tosca.po
-msgid "Preference|Owner"
-=======
 msgid "preference"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/preference.rb:-
-<<<<<<< HEAD:po/en/tosca.po
-msgid "Preference|Owner type"
-=======
 msgid "Preference|Attribute"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/preference.rb:-
-<<<<<<< HEAD:po/en/tosca.po
-msgid "Preference|Preferenced"
-=======
 msgid "Preference|Owner"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/preference.rb:-
-<<<<<<< HEAD:po/en/tosca.po
-msgid "Preference|Preferenced type"
-=======
 msgid "Preference|Owner type"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/preference.rb:-
-<<<<<<< HEAD:po/en/tosca.po
-msgid "Preference|Value"
-=======
 msgid "Preference|Preferenced"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/preference.rb:-
-<<<<<<< HEAD:po/en/tosca.po
-msgid "Preference|Created at"
-=======
 msgid "Preference|Preferenced type"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/models/preference.rb:-
-<<<<<<< HEAD:po/en/tosca.po
-msgid "Preference|Updated at"
-=======
 msgid "Preference|Value"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/role.rb:-
-msgid "role"
-msgstr "role"
-=======
 #: app/models/preference.rb:-
 msgid "Preference|Created at"
 msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/models/role.rb:-
-msgid "Role|Name"
-msgstr "Name"
-=======
 #: app/models/preference.rb:-
 msgid "Preference|Updated at"
 msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
 #: app/models/role.rb:-
-<<<<<<< HEAD:po/en/tosca.po
-=======
 msgid "role"
 msgstr "role"
 
@@ -3258,7 +1865,6 @@ msgid "Role|Name"
 msgstr "Name"
 
 #: app/models/role.rb:-
->>>>>>> origin/production:po/en/tosca.po
 msgid "Role|Info"
 msgstr ""
 
@@ -3461,11 +2067,7 @@ msgstr "Image"
 
 #: app/models/user.rb:-
 #: app/views/account/_edit_account_informations.html.erb:105
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_show_account_information.html.erb:34
-=======
 #: app/views/account/_show_account_information.html.erb:40
->>>>>>> origin/production:po/en/tosca.po
 msgid "User|Informations"
 msgstr "Informations"
 
@@ -3480,11 +2082,7 @@ msgstr "Inactive"
 
 #: app/models/user.rb:-
 #: app/views/account/_edit_account_informations.html.erb:99
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_show_account_information.html.erb:29
-=======
 #: app/views/account/_show_account_information.html.erb:35
->>>>>>> origin/production:po/en/tosca.po
 #: app/views/account/_users_list.html.erb:12
 msgid "User|Role"
 msgstr "Role"
@@ -3529,46 +2127,24 @@ msgstr ""
 
 #: app/views/acces/refuse.html.erb:1 app/views/access/denied.html.erb:1
 msgid "Access denied"
-<<<<<<< HEAD:po/en/tosca.po
-=======
 msgstr ""
 
 #: app/views/acces/refuse.html.erb:4 app/views/access/denied.html.erb:4
 msgid "This page is restricted."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/acces/refuse.html.erb:4 app/views/access/denied.html.erb:4
-msgid "This page is restricted."
-=======
 #: app/views/acces/refuse.html.erb:5 app/views/access/denied.html.erb:5
 msgid "You can go to the homepage."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/acces/refuse.html.erb:5 app/views/access/denied.html.erb:5
-msgid "You can go to the homepage."
-=======
 #: app/views/acces/refuse.html.erb:6 app/views/access/denied.html.erb:6
 msgid "You can also login with a user who has more rights :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/acces/refuse.html.erb:6 app/views/access/denied.html.erb:6
-msgid "You can also login with a user who has more rights :"
-=======
 #: app/views/acces/refuse.html.erb:18 app/views/access/denied.html.erb:16
 msgid "Reconnect"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/acces/refuse.html.erb:18 app/views/access/denied.html.erb:16
-msgid "Reconnect"
-=======
 #: app/views/account/_edit_account_informations.html.erb:11
 #: app/views/account/_edit_recipient.html.erb:5
 #: app/views/account/_show_recipient.html.erb:6
@@ -3580,327 +2156,147 @@ msgid "Reconnect"
 #: app/views/phonecalls/_calls_list.html.erb:6
 #: app/views/phonecalls/_form.html.erb:7 app/views/phonecalls/show.html.erb:14
 msgid "Recipient"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_account_informations.html.erb:11
-#: app/views/account/_edit_recipient.html.erb:5
-#: app/views/account/_show_recipient.html.erb:6
-#: app/views/account/_users_list.html.erb:14
-#: app/views/demandes/_form.html.erb:30
-#: app/views/demandes/tabs/_appels.html.erb:2
-#: app/views/documents/_form.html.erb:6
-#: app/views/phonecalls/_calls_info.html.erb:22
-#: app/views/phonecalls/_calls_list.html.erb:6
-#: app/views/phonecalls/_form.html.erb:7 app/views/phonecalls/show.html.erb:14
-msgid "Recipient"
-=======
 #: app/views/account/_edit_account_informations.html.erb:13
 #: app/views/knowledges/_form.html.erb:6 app/views/knowledges/show.html.erb:3
 #: app/views/phonecalls/_calls_info.html.erb:20
 msgid "Expert"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_account_informations.html.erb:13
-#: app/views/knowledges/_form.html.erb:6 app/views/knowledges/show.html.erb:3
-#: app/views/phonecalls/_calls_info.html.erb:20
-msgid "Expert"
-=======
 #: app/views/account/_edit_account_informations.html.erb:69
 msgid "Modify your password"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_account_informations.html.erb:69
-msgid "Modify your password"
-=======
 #: app/views/account/_edit_account_informations.html.erb:72
 msgid "Confirm this last"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_account_informations.html.erb:72
-msgid "Confirm this last"
-=======
 #: app/views/account/_edit_account_informations.html.erb:82
 #: app/views/account/_show_account_information.html.erb:50
 msgid "Daily Digest"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_account_informations.html.erb:82
-#: app/views/account/_show_account_information.html.erb:44
-msgid "Daily Digest"
-=======
 #: app/views/account/_edit_account_informations.html.erb:86
 #: app/views/account/_show_account_information.html.erb:54
 msgid "Weekly Digest"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_account_informations.html.erb:86
-#: app/views/account/_show_account_information.html.erb:48
-msgid "Weekly Digest"
-=======
 #: app/views/account/_edit_account_informations.html.erb:90
 #: app/views/account/_show_account_information.html.erb:58
 msgid "Monthly Digest"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_account_informations.html.erb:90
-#: app/views/account/_show_account_information.html.erb:52
-msgid "Monthly Digest"
-=======
 #: app/views/account/_edit_engineer.html.erb:6
 #: app/views/account/_show_engineer.html.erb:6
 #: app/views/account/_users_list.html.erb:13
 #: app/views/contributions/_form.html.erb:13
 #: app/views/phonecalls/_form.html.erb:6
 msgid "Engineer"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_engineer.html.erb:6
-#: app/views/account/_show_engineer.html.erb:6
-#: app/views/account/_users_list.html.erb:13
-#: app/views/contributions/_form.html.erb:13
-#: app/views/phonecalls/_form.html.erb:6
-msgid "Engineer"
-=======
 #: app/views/account/_edit_engineer.html.erb:8
 #: app/views/account/_show_engineer.html.erb:13
 msgid "Knowledges"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_engineer.html.erb:8
-#: app/views/account/_show_engineer.html.erb:13
-msgid "Knowledges"
-=======
 #: app/views/account/_edit_engineer.html.erb:18
 #: app/views/account/_edit_recipient.html.erb:12
 #: app/views/account/_show_engineer.html.erb:21
 #: app/views/bienvenue/admin.html.erb:32
 #: app/views/clients/_clients_list.html.erb:5 app/views/teams/show.html.erb:10
 msgid "Contracts"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_engineer.html.erb:18
-#: app/views/account/_edit_recipient.html.erb:12
-#: app/views/account/_show_engineer.html.erb:21
-#: app/views/bienvenue/admin.html.erb:32
-#: app/views/clients/_clients_list.html.erb:5 app/views/teams/show.html.erb:10
-msgid "Contracts"
-=======
 #: app/views/account/_edit_engineer.html.erb:28
 msgid "Contracts of the Team"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_engineer.html.erb:28
-msgid "Contracts of the Team"
-=======
 #: app/views/account/_edit_recipient.html.erb:17
 msgid "Notify subalterns"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_recipient.html.erb:17
-msgid "Notify subalterns"
-=======
 #: app/views/account/_edit_recipient.html.erb:20
 msgid "Notify at"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_recipient.html.erb:20
-msgid "Notify at"
-=======
 #: app/views/account/_edit_recipient.html.erb:23
 msgid "Notify cc"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_edit_recipient.html.erb:23
-msgid "Notify cc"
-=======
 #: app/views/account/_menu.html.erb:8
 msgid "Plan"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:8
-msgid "Plan"
-=======
 #: app/views/account/_menu.html.erb:9
 msgid "Disconnect"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:9
-msgid "Disconnect"
-=======
 #: app/views/account/_menu.html.erb:12
 #: app/views/contributions/_contributions_admin.html.erb:7
 #: app/views/logiciels/show.html.erb:53 app/views/phonecalls/_form.html.erb:4
 #: app/views/phonecalls/show.html.erb:8
 msgid "Request"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:12
-#: app/views/contributions/_contributions_admin.html.erb:7
-#: app/views/logiciels/show.html.erb:53 app/views/phonecalls/_form.html.erb:4
-#: app/views/phonecalls/show.html.erb:8
-msgid "Request"
-=======
 #: app/views/account/_menu.html.erb:14
 msgid "Request list"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:14
-msgid "Request list"
-=======
 #: app/views/account/_menu.html.erb:15
 #: app/views/demandes/lists/_requests_info.html.erb:20
 #: app/views/demandes/new.html.erb:1
 msgid "Submit a request"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:15
-#: app/views/demandes/lists/_requests_info.html.erb:20
-#: app/views/demandes/new.html.erb:1
-msgid "Submit a request"
-=======
 #: app/views/account/_menu.html.erb:16
 #: app/views/phonecalls/_calls_info.html.erb:49
 msgid "Calls"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:16
-#: app/views/phonecalls/_calls_info.html.erb:49
-msgid "Calls"
-=======
 #: app/views/account/_menu.html.erb:21 app/views/bienvenue/admin.html.erb:49
 #: app/views/contracts/index.html.erb:5
 #: app/views/demandes/_packages.html.erb:9
 msgid "Packages"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:21 app/views/bienvenue/admin.html.erb:49
-#: app/views/contracts/index.html.erb:5
-#: app/views/demandes/_packages.html.erb:9
-msgid "Packages"
-=======
 #: app/views/account/_menu.html.erb:24
 msgid "Directory"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:24
-msgid "Directory"
-=======
 #: app/views/account/_menu.html.erb:29 app/views/bienvenue/admin.html.erb:7
 #: app/views/contracts/index.html.erb:6
 msgid "Users"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:29 app/views/bienvenue/admin.html.erb:7
-#: app/views/contracts/index.html.erb:6
-msgid "Users"
-=======
 #: app/views/account/_menu.html.erb:32
 #: app/views/account/_users_list.html.erb:1
 #: app/views/bienvenue/admin.html.erb:9
 msgid "User list"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:32
-#: app/views/account/_users_list.html.erb:1
-#: app/views/bienvenue/admin.html.erb:9
-msgid "User list"
-=======
 #: app/views/account/_menu.html.erb:33
 #: app/views/account/_users_info.html.erb:15
 #: app/views/bienvenue/admin.html.erb:10
 msgid "Add a user"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:33
-#: app/views/account/_users_info.html.erb:15
-#: app/views/bienvenue/admin.html.erb:10
-msgid "Add a user"
-=======
 #: app/views/account/_menu.html.erb:34
 msgid "Role management"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:34
-msgid "Role management"
-=======
 #: app/views/account/_menu.html.erb:36 app/views/account/_menu.html.erb:39
 #: app/views/bienvenue/admin.html.erb:29 app/views/bienvenue/admin.html.erb:31
 #: app/views/socles/index.html.erb:5
 msgid "Customers"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:36 app/views/account/_menu.html.erb:39
-#: app/views/bienvenue/admin.html.erb:29 app/views/bienvenue/admin.html.erb:31
-#: app/views/socles/index.html.erb:5
-msgid "Customers"
-=======
 #: app/views/account/_menu.html.erb:40 app/views/bienvenue/index.html.erb:30
 #: app/views/clients/show.html.erb:43
 #: app/views/demandes/lists/_requests_info.html.erb:22
 msgid "Activity report"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:40 app/views/bienvenue/index.html.erb:30
-#: app/views/clients/show.html.erb:43
-#: app/views/demandes/lists/_requests_info.html.erb:22
-msgid "Activity report"
-=======
 #: app/views/account/_menu.html.erb:42
 #: app/views/clients/_clients_info.html.erb:21
 #: app/views/contributions/_contributions_info.html.erb:26
@@ -3910,30 +2306,13 @@ msgid "Activity report"
 #: app/views/paquets/_paquets_info.html.erb:21
 #: app/views/phonecalls/_calls_info.html.erb:18
 msgid "Search"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_menu.html.erb:42
-#: app/views/clients/_clients_info.html.erb:21
-#: app/views/contributions/_contributions_info.html.erb:26
-#: app/views/demandes/lists/_requests_info.html.erb:35
-#: app/views/knowledges/_knowledges_info.html.erb:19
-#: app/views/logiciels/_softwares_info.html.erb:27
-#: app/views/paquets/_paquets_info.html.erb:21
-#: app/views/phonecalls/_calls_info.html.erb:18
-msgid "Search"
-=======
 #: app/views/account/_show_account_information.html.erb:30
 msgid "Manager of the team"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/account/_show_account_information.html.erb:41
-=======
 #: app/views/account/_show_account_information.html.erb:47
->>>>>>> origin/production:po/en/tosca.po
 msgid "Preferences"
 msgstr ""
 
@@ -4451,198 +2830,93 @@ msgstr ""
 #: app/views/binaires/_form.html.erb:13 app/views/binaires/index.html.erb:6
 #: app/views/binaires/show.html.erb:15
 msgid "Arch"
-<<<<<<< HEAD:po/en/tosca.po
-=======
 msgstr ""
 
 #: app/views/binaires/_form.html.erb:20 app/views/paquets/show.html.erb:45
 msgid "Configuration"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/_form.html.erb:20 app/views/paquets/show.html.erb:45
-msgid "Configuration"
-=======
 #: app/views/binaires/_form.html.erb:24 app/views/binaires/index.html.erb:6
 msgid "Archive"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/_form.html.erb:24 app/views/binaires/index.html.erb:6
-msgid "Archive"
-=======
 #: app/views/binaires/edit.html.erb:1
 msgid "Edition of this binary"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/edit.html.erb:1
-msgid "Edition of this binary"
-=======
 #: app/views/binaires/index.html.erb:1
 msgid "List of binary packages"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/index.html.erb:1
-msgid "List of binary packages"
-=======
 #: app/views/binaires/index.html.erb:3
 msgid "a binary archive"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/index.html.erb:3
-msgid "a binary archive"
-=======
 #: app/views/binaires/index.html.erb:6 app/views/binaires/show.html.erb:16
 msgid "Source"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/index.html.erb:6 app/views/binaires/show.html.erb:16
-msgid "Source"
-=======
 #: app/views/binaires/index.html.erb:6
 #: app/views/demandes/_form_binaires.html.erb:9
 msgid "Binary"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/index.html.erb:6
-#: app/views/demandes/_form_binaires.html.erb:9
-msgid "Binary"
-=======
 #: app/views/binaires/new.html.erb:1
 msgid "New binary package"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/new.html.erb:1
-msgid "New binary package"
-=======
 #: app/views/binaires/show.html.erb:10 app/views/socles/show.html.erb:21
 msgid "Binary package"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/show.html.erb:10 app/views/socles/show.html.erb:21
-msgid "Binary package"
-=======
 #: app/views/binaires/show.html.erb:20 app/views/paquets/_form.html.erb:23
 msgid "Release"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/show.html.erb:20 app/views/paquets/_form.html.erb:23
-msgid "Release"
-=======
 #: app/views/binaires/show.html.erb:26
 msgid "This package can be downloaded"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/binaires/show.html.erb:26
-msgid "This package can be downloaded"
-=======
 #: app/views/clients/_clients_info.html.erb:14
 #: app/views/knowledges/_knowledges_info.html.erb:13
 #: app/views/logiciels/_softwares_info.html.erb:16
 #: app/views/paquets/_paquets_info.html.erb:13
 msgid "Consultation"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_clients_info.html.erb:14
-#: app/views/knowledges/_knowledges_info.html.erb:13
-#: app/views/logiciels/_softwares_info.html.erb:16
-#: app/views/paquets/_paquets_info.html.erb:13
-msgid "Consultation"
-=======
 #: app/views/clients/_clients_info.html.erb:23
 #: app/views/knowledges/_knowledges_info.html.erb:21
 #: app/views/logiciels/_softwares_info.html.erb:29
 msgid "By name"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_clients_info.html.erb:23
-#: app/views/knowledges/_knowledges_info.html.erb:21
-#: app/views/logiciels/_softwares_info.html.erb:29
-msgid "By name"
-=======
 #: app/views/clients/_clients_info.html.erb:25
 msgid "By system"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_clients_info.html.erb:25
-msgid "By system"
-=======
 #: app/views/clients/_clients_list.html.erb:3
 #: app/views/clients/stats.html.erb:4 app/views/clients/stats.html.erb:30
 msgid "a client"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_clients_list.html.erb:3
-#: app/views/clients/stats.html.erb:4 app/views/clients/stats.html.erb:30
-msgid "a client"
-=======
 #: app/views/clients/_clients_list.html.erb:5
 #: app/views/clients/_form.html.erb:24 app/views/logiciels/_form.html.erb:12
 msgid "Logo"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/views/clients/_clients_list.html.erb:5
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_form.html.erb:24 app/views/logiciels/_form.html.erb:12
-msgid "Logo"
-=======
 #: app/views/clients/_form.html.erb:27
 msgid "Access code"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_clients_list.html.erb:5
-#: app/views/clients/_form.html.erb:27
-msgid "Access code"
-=======
 #: app/views/clients/_clients_list.html.erb:27
 msgid "Add a logo"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_clients_list.html.erb:27
-msgid "Add a logo"
-=======
 #: app/views/clients/_clients_list.html.erb:29
 msgid "Stats"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_clients_list.html.erb:29
-msgid "Stats"
-=======
 #: app/views/clients/_form.html.erb:11 app/views/demandes/print.html.erb:5
 #: app/views/demandes/tabs/_tab_menu.html.erb:9
 #: app/views/images/_form.html.erb:6 app/views/images/index.html.erb:6
@@ -4658,109 +2932,45 @@ msgstr "Description"
 
 #: app/views/clients/_form.html.erb:14 app/views/clients/show.html.erb:18
 msgid "Address"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_form.html.erb:11 app/views/demandes/print.html.erb:5
-#: app/views/demandes/tabs/_tab_menu.html.erb:9
-#: app/views/images/_form.html.erb:6 app/views/images/index.html.erb:6
-#: app/views/logiciels/_form.html.erb:9
-#: app/views/logiciels/_softwares_info.html.erb:40
-#: app/views/logiciels/_softwares_list.html.erb:6
-#: app/views/logiciels/show.html.erb:23 app/views/machines/_form.html.erb:22
-#: app/views/roles/index.html.erb:4 app/views/statuts/_form.html.erb:6
-#: app/views/typecontributions/_form.html.erb:6
-#: app/views/typedocuments/_form.html.erb:6
-msgid "Description"
-msgstr "Description"
-=======
-#: app/views/clients/_form.html.erb:21
-msgid "Inactive"
-msgstr "Inactive"
->>>>>>> origin/production:po/en/tosca.po
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/_form.html.erb:14 app/views/clients/show.html.erb:18
-msgid "Address"
-=======
-#: app/views/clients/edit.html.erb:1
-msgid "Edit the client %s"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/views/clients/_form.html.erb:21
 msgid "Inactive"
 msgstr "Inactive"
 
 #: app/views/clients/edit.html.erb:1
 msgid "Edit the client %s"
-=======
+msgstr ""
+
 #: app/views/clients/edit.html.erb:8 app/views/reporting/delai.html.erb:6
 #: app/views/typecontributions/edit.html.erb:8
 msgid "Show"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/edit.html.erb:8 app/views/reporting/delai.html.erb:6
-#: app/views/typecontributions/edit.html.erb:8
-msgid "Show"
-=======
 #: app/views/clients/new.html.erb:1
 msgid "Add a new client"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/new.html.erb:1
-msgid "Add a new client"
-=======
 #: app/views/clients/show.html.erb:25
 msgid "contract"
 msgstr "contracts"
 
 #: app/views/clients/show.html.erb:31
 msgid " from %s to %s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/show.html.erb:25
-msgid "contract"
-msgstr "contracts"
-
-#: app/views/clients/show.html.erb:31
-msgid " from %s to %s"
-=======
 #: app/views/clients/show.html.erb:34
 msgid "on your complete system"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/show.html.erb:34
-msgid "on your complete system"
-=======
 #: app/views/clients/show.html.erb:36
 msgid "concerning %s source packages "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/show.html.erb:36
-msgid "concerning %s source packages "
-=======
 #: app/views/clients/show.html.erb:37
 msgid "and %s binaries"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/show.html.erb:37
-msgid "and %s binaries"
-=======
 #: app/views/clients/show.html.erb:42 app/views/clients/show.html.erb:44
 msgid "the"
 msgid_plural "the"
@@ -4769,98 +2979,42 @@ msgstr[1] ""
 
 #: app/views/clients/show.html.erb:49
 msgid "system"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/show.html.erb:42 app/views/clients/show.html.erb:44
-msgid "the"
-msgid_plural "the"
-msgstr[0] ""
-msgstr[1] ""
-
-#: app/views/clients/show.html.erb:49
-msgid "system"
-=======
 #: app/views/clients/show.html.erb:57
 msgid "request"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/show.html.erb:57
-msgid "request"
-=======
 #: app/views/clients/stats.html.erb:1
 msgid "Statistics by clients"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/clients/stats.html.erb:1
-msgid "Statistics by clients"
-=======
 #: app/views/competences/edit.html.erb:1
 msgid "Editing skill"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/competences/edit.html.erb:1
-msgid "Editing skill"
-=======
 #: app/views/competences/index.html.erb:1
 msgid "Skill list"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/competences/index.html.erb:1
-msgid "Skill list"
-=======
 #: app/views/competences/index.html.erb:3
 #: app/views/competences/index.html.erb:13 app/views/tags/index.html.erb:3
 #: app/views/tags/index.html.erb:20
 msgid "a skill"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/competences/index.html.erb:3
-#: app/views/competences/index.html.erb:13 app/views/tags/index.html.erb:3
-#: app/views/tags/index.html.erb:20
-msgid "a skill"
-=======
 #: app/views/competences/index.html.erb:5
 msgid "Resources"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/competences/index.html.erb:5
-msgid "Resources"
-=======
 #: app/views/competences/new.html.erb:1
 msgid "New skill"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/competences/new.html.erb:1
-msgid "New skill"
-=======
 #: app/views/contracts/_form.html.erb:10
 msgid "Contract|Chrono"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/contracts/_form.html.erb:10
-msgid "Contract|Chrono"
-msgstr "Chrono"
-
-=======
->>>>>>> origin/production:po/en/tosca.po
 #: app/views/contracts/_form.html.erb:13 app/views/contracts/index.html.erb:6
 #: app/views/contracts/show.html.erb:9
 msgid "Mailing list"
@@ -5022,7 +3176,6 @@ msgstr "Updated on"
 #: app/views/contributions/_contributions_info.html.erb:15
 #: app/views/demandes/lists/_requests_info.html.erb:16
 msgid "Actions"
-<<<<<<< HEAD:po/en/tosca.po
 msgstr ""
 
 #: app/views/contributions/_contributions_info.html.erb:18
@@ -5033,97 +3186,6 @@ msgstr ""
 #: app/views/contributions/_contributions_info.html.erb:19
 #: app/views/documents/_documents_info.html.erb:21
 msgid "Selection interface"
-msgstr ""
-
-#: app/views/contributions/_contributions_info.html.erb:32
-#: app/views/documents/_form.html.erb:11
-msgid "Author"
-msgstr ""
-
-#: app/views/contributions/_form.html.erb:16
-msgid "Request number"
-msgstr ""
-
-#: app/views/contributions/_form.html.erb:22
-msgid "Affected version"
-msgstr ""
-
-#: app/views/contributions/_form.html.erb:25
-msgid "Fixed version"
-msgstr ""
-
-#: app/views/contributions/_form.html.erb:28
-msgid "Kind of contribution"
-msgstr ""
-
-#: app/views/contributions/_form.html.erb:39
-msgid "Add an url for the community issue"
-msgstr ""
-
-#: app/views/contributions/_form.html.erb:52
-msgid "Synthesis"
-msgstr ""
-
-#: app/views/contributions/_form.html.erb:55
-msgid "Description (public)"
-msgstr ""
-
-#: app/views/contributions/_form.html.erb:58
-msgid "Technical details (private)"
-msgstr ""
-
-#: app/views/contributions/_liste_binaires.html.erb:1
-#: app/views/contributions/_liste_paquets.html.erb:9
-msgid "Binary packages with the patch"
-msgstr ""
-
-#: app/views/contributions/_liste_paquets.html.erb:6
-msgid "Source packages with the patch"
-=======
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-#: app/views/contributions/_contributions_info.html.erb:18
-#: app/views/contributions/select.html.erb:9
-msgid "Submit a contribution"
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/contributions/list.atom.builder:2
-msgid "Contributions of 08000linux.com"
-msgstr ""
-
-#: app/views/contributions/list.html.erb:3
-msgid "All"
-msgstr ""
-
-#: app/views/contributions/list.html.erb:5
-msgid "a new contribution"
-msgstr ""
-
-#: app/views/contributions/new.html.erb:1
-msgid "Add a new contribution"
-msgstr ""
-
-#: app/views/contributions/select.html.erb:10
-msgid "Access to administration interface"
-msgstr ""
-
-#: app/views/contributions/select.html.erb:11
-msgid "See all contributions"
-msgstr ""
-
-#: app/views/contributions/select.html.erb:12
-msgid "RSS"
-msgstr ""
-
-#: app/views/contributions/show.html.erb:16
-msgid "link"
-=======
-#: app/views/contributions/_contributions_info.html.erb:19
-#: app/views/documents/_documents_info.html.erb:21
-msgid "Selection interface"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
 #: app/views/contributions/_contributions_info.html.erb:32
@@ -5180,10 +3242,6 @@ msgstr ""
 msgid "Contributions of 08000linux.com"
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_comment_form.html.erb:2
-msgid "Your answer :"
-=======
 #: app/views/contributions/list.html.erb:3
 msgid "All"
 msgstr ""
@@ -5206,89 +3264,40 @@ msgstr ""
 
 #: app/views/contributions/select.html.erb:12
 msgid "RSS"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_comment_form.html.erb:16
-msgid "Assign"
-=======
 #: app/views/contributions/show.html.erb:16
 msgid "link"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_comment_form.html.erb:30
-msgid "Private ?"
-=======
 #: app/views/contributions/show.html.erb:21
 msgid "This contribution has been submitted on %s by <b>%s</b>"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_comment_form.html.erb:35
-msgid "Tickets spent"
-=======
 #: app/views/contributions/show.html.erb:24
 msgid "and its has been approved on %s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_comment_form.html.erb:42
-msgid "Answer"
-=======
 #: app/views/contributions/show.html.erb:27
 msgid "This bug has been discovered in the version %s "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form.html.erb:20
-msgid "Concerning "
-=======
 #: app/views/contributions/show.html.erb:30
 msgid "and has been fixed in the version %s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form.html.erb:35
-#: app/views/demandes/_infos_demande.html.erb:42
-msgid "Assigned to"
-=======
 #: app/views/contributions/show.html.erb:33
 msgid "This patch was not submitted to the community"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form.html.erb:56
-#: app/views/demandes/_infos_demande.html.erb:35
-msgid "CC"
-=======
 #: app/views/contributions/show.html.erb:38
 msgid "Internal details"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form.html.erb:61
-msgid "Demande|Expected on"
-msgstr "Expected on"
-=======
 #: app/views/contributions/show.html.erb:45
 msgid "package(s) with the patch"
 msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form.html.erb:84
-#: app/views/demandes/_form_deposer.html.erb:22
-msgid "Detailed description"
-=======
 #: app/views/demandes/_comment_form.html.erb:2
 msgid "Your answer :"
 msgstr ""
@@ -5316,23 +3325,13 @@ msgstr ""
 #: app/views/demandes/_form.html.erb:35
 #: app/views/demandes/_infos_demande.html.erb:42
 msgid "Assigned to"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form.html.erb:89
-msgid "Add a file"
-=======
 #: app/views/demandes/_form.html.erb:56
 #: app/views/demandes/_infos_demande.html.erb:35
 msgid "CC"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_binaires.html.erb:6
-msgid "Workarounded on"
-=======
 #: app/views/demandes/_form.html.erb:61
 msgid "Demande|Expected on"
 msgstr "Expected on"
@@ -5340,292 +3339,137 @@ msgstr "Expected on"
 #: app/views/demandes/_form.html.erb:84
 #: app/views/demandes/_form_deposer.html.erb:22
 msgid "Detailed description"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_binaires.html.erb:7
-msgid "Corrected on"
-=======
 #: app/views/demandes/_form.html.erb:89
 msgid "Add a file"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_client.html.erb:3
-msgid "Recipient :"
-=======
 #: app/views/demandes/_form_binaires.html.erb:6
 msgid "Workarounded on"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_client.html.erb:10
-msgid "Engineer :"
-=======
 #: app/views/demandes/_form_binaires.html.erb:7
 msgid "Corrected on"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_client.html.erb:18
-msgid "Request type :"
-=======
 #: app/views/demandes/_form_client.html.erb:3
 msgid "Recipient :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_client.html.erb:24
-msgid "Severity :"
-=======
 #: app/views/demandes/_form_client.html.erb:10
 msgid "Engineer :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_client.html.erb:30
-msgid "Base :"
-=======
 #: app/views/demandes/_form_client.html.erb:18
 msgid "Request type :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_client.html.erb:36
-msgid "Software :"
-=======
 #: app/views/demandes/_form_client.html.erb:24
 msgid "Severity :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_deposer.html.erb:5
-msgid "Client :"
-=======
 #: app/views/demandes/_form_client.html.erb:30
 msgid "Base :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_form_deposer.html.erb:13
-msgid "Packages supported for %s :"
-=======
 #: app/views/demandes/_form_client.html.erb:36
 msgid "Software :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:7
-msgid "Add a contribution"
-=======
 #: app/views/demandes/_form_deposer.html.erb:5
 msgid "Client :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:8
-msgid "Link to a contribution"
-=======
 #: app/views/demandes/_form_deposer.html.erb:13
 msgid "Packages supported for %s :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:25
-msgid "Vm"
-=======
 #: app/views/demandes/_infos_demande.html.erb:7
 msgid "Add a contribution"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:39
-msgid "Declared by"
-=======
 #: app/views/demandes/_infos_demande.html.erb:8
 msgid "Link to a contribution"
 msgstr ""
 
 #: app/views/demandes/_infos_demande.html.erb:25
 msgid "Vm"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:47
-msgid "Recipent"
-=======
 #: app/views/demandes/_infos_demande.html.erb:39
 msgid "Declared by"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:50
-#: app/views/teams/index.html.erb:5 app/views/teams/show.html.erb:4
-msgid "Contact"
-=======
 #: app/views/demandes/_infos_demande.html.erb:47
 msgid "Recipent"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:54
-msgid "Company"
-=======
 #: app/views/demandes/_infos_demande.html.erb:50
 #: app/views/teams/index.html.erb:5 app/views/teams/show.html.erb:4
 msgid "Contact"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:58
-msgid "Life cycle"
-=======
 #: app/views/demandes/_infos_demande.html.erb:54
 msgid "Company"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:60
-#: app/views/demandes/tabs/_piecejointes.html.erb:5
-msgid "Created on"
-=======
 #: app/views/demandes/_infos_demande.html.erb:58
 msgid "Life cycle"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_infos_demande.html.erb:63
-msgid "Time elapsed"
-=======
 #: app/views/demandes/_infos_demande.html.erb:60
 #: app/views/demandes/tabs/_piecejointes.html.erb:5
 msgid "Created on"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_packages.html.erb:2
-msgid "Specify here the packages impacted by the request :"
-=======
 #: app/views/demandes/_infos_demande.html.erb:63
 msgid "Time elapsed"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/_packages.html.erb:4
-#: app/views/demandes/tabs/_cns.html.erb:16
-msgid "Commitment"
-=======
 #: app/views/demandes/_packages.html.erb:2
 msgid "Specify here the packages impacted by the request :"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/edit.html.erb:1
-msgid "Update the request %s (administration)"
-=======
 #: app/views/demandes/_packages.html.erb:4
 #: app/views/demandes/tabs/_cns.html.erb:16
 msgid "Commitment"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/lists/_requests_info.html.erb:27
-msgid "Flow"
-=======
 #: app/views/demandes/edit.html.erb:1
 msgid "Update the request %s (administration)"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/lists/_requests_info.html.erb:37
-msgid "By word"
-=======
 #: app/views/demandes/lists/_requests_info.html.erb:27
 msgid "Flow"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/lists/_requests_info.html.erb:40
-msgid "By contract"
-=======
 #: app/views/demandes/lists/_requests_info.html.erb:37
 msgid "By word"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/lists/_requests_info.html.erb:42
-msgid "By expert"
-=======
 #: app/views/demandes/lists/_requests_info.html.erb:40
 msgid "By contract"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/lists/_requests_info.html.erb:43
-msgid "[ Me ]"
-=======
 #: app/views/demandes/lists/_requests_info.html.erb:42
 msgid "By expert"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/lists/_requests_info.html.erb:48
-msgid "Attributes"
-=======
 #: app/views/demandes/lists/_requests_info.html.erb:43
 msgid "[ Me ]"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/demandes/lists/_requests_table.html.erb:14
-#: app/views/tags/_form.html.erb:7 app/views/tags/index.html.erb:5
-#: app/views/tags/show.html.erb:8
-msgid "Submitter"
-msgstr "Submitter"
-=======
 #: app/views/demandes/lists/_requests_info.html.erb:48
 msgid "Attributes"
 msgstr ""
->>>>>>> origin/production:po/en/tosca.po
 
-<<<<<<< HEAD:po/en/tosca.po
-=======
 #: app/views/demandes/lists/_requests_table.html.erb:14
 #: app/views/tags/_form.html.erb:7 app/views/tags/index.html.erb:5
 #: app/views/tags/show.html.erb:8
 msgid "Submitter"
 msgstr "Submitter"
 
->>>>>>> origin/production:po/en/tosca.po
 #: app/views/demandes/lists/_requests_table.html.erb:52
 msgid "No request found."
 msgstr ""
@@ -6225,576 +4069,257 @@ msgstr ""
 
 #: app/views/permissions/new.html.erb:1 app/views/roles/index.html.erb:23
 msgid "Add a permission"
-<<<<<<< HEAD:po/en/tosca.po
-=======
 msgstr ""
 
 #: app/views/phonecalls/_calls_info.html.erb:12
 msgid "Add a call"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_info.html.erb:12
-msgid "Add a call"
-=======
 #: app/views/phonecalls/_calls_info.html.erb:33
 msgid "From"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_info.html.erb:33
-msgid "From"
-=======
 #: app/views/phonecalls/_calls_info.html.erb:38
 msgid "To"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_info.html.erb:38
-msgid "To"
-=======
 #: app/views/phonecalls/_calls_info.html.erb:51
 msgid "Engineers"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_info.html.erb:51
-msgid "Engineers"
-=======
 #: app/views/phonecalls/_calls_info.html.erb:52
 msgid "Recipients"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_info.html.erb:52
-msgid "Recipients"
-=======
 #: app/views/phonecalls/_calls_info.html.erb:53
 msgid "Total duration"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_info.html.erb:53
-msgid "Total duration"
-=======
 #: app/views/phonecalls/_calls_info.html.erb:54
 msgid "Average duration"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_info.html.erb:54
-msgid "Average duration"
-=======
 #: app/views/phonecalls/_calls_list.html.erb:1
 msgid "List of calls"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_list.html.erb:1
-msgid "List of calls"
-=======
 #: app/views/phonecalls/_calls_list.html.erb:3
 msgid "a call"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_list.html.erb:3
-msgid "a call"
-=======
 #: app/views/phonecalls/_calls_list.html.erb:6
 #: app/views/phonecalls/show.html.erb:11
 msgid "Interlocutor"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_list.html.erb:6
-#: app/views/phonecalls/show.html.erb:11
-msgid "Interlocutor"
-=======
 #: app/views/phonecalls/_calls_list.html.erb:7
 #: app/views/phonecalls/_form.html.erb:10
 msgid "End of call"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_calls_list.html.erb:7
-#: app/views/phonecalls/_form.html.erb:10
-msgid "End of call"
-=======
 #: app/views/phonecalls/_form.html.erb:9
 msgid "Start of call"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/_form.html.erb:9
-msgid "Start of call"
-=======
 #: app/views/phonecalls/edit.html.erb:1
 msgid "Edit a phone call"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/edit.html.erb:1
-msgid "Edit a phone call"
-=======
 #: app/views/phonecalls/new.html.erb:1
 msgid "New phone call"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/new.html.erb:1
-msgid "New phone call"
-=======
 #: app/views/phonecalls/show.html.erb:1
 msgid "Call n°%s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/show.html.erb:1
-msgid "Call n°%s"
-=======
 #: app/views/phonecalls/show.html.erb:18
 msgid "Started on"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/show.html.erb:18
-msgid "Started on"
-=======
 #: app/views/phonecalls/show.html.erb:20
 msgid "Ended on"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/phonecalls/show.html.erb:20
-msgid "Ended on"
-=======
 #: app/views/piecejointes/edit.html.erb:1
 msgid "Editing attachment"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/piecejointes/edit.html.erb:1
-msgid "Editing attachment"
-=======
 #: app/views/piecejointes/new.html.erb:1
 msgid "New attachment"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/piecejointes/new.html.erb:1
-msgid "New attachment"
-=======
 #: app/views/reporting/_comex_cns.html.erb:2
 msgid "SLA report"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_cns.html.erb:2
-msgid "SLA report"
-=======
 #: app/views/reporting/_comex_cns.html.erb:3
 msgid "Caption"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_cns.html.erb:3
-msgid "Caption"
-=======
 #: app/views/reporting/_comex_cns.html.erb:4
 msgid "The progressions bar represent the progress ratio of the contract: "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_cns.html.erb:4
-msgid "The progressions bar represent the progress ratio of the contract: "
-=======
 #: app/views/reporting/_comex_cns.html.erb:6
 msgid "The contract has not been started yet"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_cns.html.erb:6
-msgid "The contract has not been started yet"
-=======
 #: app/views/reporting/_comex_cns.html.erb:10
 msgid "The contract is outdated! "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_cns.html.erb:10
-msgid "The contract is outdated! "
-=======
 #: app/views/reporting/_comex_cns.html.erb:12
 msgid "The indicated time is the one elapsed before the end of the SLA."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_cns.html.erb:12
-msgid "The indicated time is the one elapsed before the end of the SLA."
-=======
 #: app/views/reporting/_comex_tableaux.html.erb:2
 msgid "OSSA activity from "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_tableaux.html.erb:2
-msgid "OSSA activity from "
-=======
 #: app/views/reporting/_comex_tableaux.html.erb:3
 #: app/views/reporting/_entete.html.erb:10
 #: app/views/reporting/weekly.html.erb:3
 msgid "to"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_tableaux.html.erb:3
-#: app/views/reporting/_entete.html.erb:10
-#: app/views/reporting/weekly.html.erb:3
-msgid "to"
-=======
 #: app/views/reporting/_comex_tableaux.html.erb:9
 msgid "\"last week\""
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_tableaux.html.erb:9
-msgid "\"last week\""
-=======
 #: app/views/reporting/_comex_tableaux.html.erb:11
 msgid "Requests closed <br /> this week"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_tableaux.html.erb:11
-msgid "Requests closed <br /> this week"
-=======
 #: app/views/reporting/_comex_tableaux.html.erb:12
 msgid "Total in progress <br /> end week"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_comex_tableaux.html.erb:12
-msgid "Total in progress <br /> end week"
-=======
 #: app/views/reporting/_entete.html.erb:8
 msgid "Activity report of %s"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_entete.html.erb:8
-msgid "Activity report of %s"
-=======
 #: app/views/reporting/_entete.html.erb:9
 msgid "from"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_entete.html.erb:9
-msgid "from"
-=======
 #: app/views/reporting/_entete.html.erb:11
 #: app/views/reporting/_form.html.erb:13
 msgid "months"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_entete.html.erb:11
-#: app/views/reporting/_form.html.erb:13
-msgid "months"
-=======
 #: app/views/reporting/_form.html.erb:2
 msgid "Configuration of the activity report"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_form.html.erb:2
-msgid "Configuration of the activity report"
-=======
 #: app/views/reporting/_form.html.erb:4
 msgid ""
 "The management report enables you to consult an overview of the activity."
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_form.html.erb:4
-msgid ""
-"The management report enables you to consult an overview of the activity."
-=======
 #: app/views/reporting/_form.html.erb:7
 msgid "End date"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_form.html.erb:7
-msgid "End date"
-=======
 #: app/views/reporting/_form.html.erb:12
 msgid "Over a period of"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_form.html.erb:12
-msgid "Over a period of"
-=======
 #: app/views/reporting/_form.html.erb:15
 msgid "Concerning the contract"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_form.html.erb:15
-msgid "Concerning the contract"
-=======
 #: app/views/reporting/_form.html.erb:20
 msgid ""
 "The report emphasizes the period considered compared to the period passed "
 "since the beginning of your contract. "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_form.html.erb:20
-msgid ""
-"The report emphasizes the period considered compared to the period passed "
-"since the beginning of your contract. "
-=======
 #: app/views/reporting/_introduction.html.erb:2
 msgid "This report presents the state of the service from the"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_introduction.html.erb:2
-msgid "This report presents the state of the service from the"
-=======
 #: app/views/reporting/_introduction.html.erb:3
 msgid "to the"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_introduction.html.erb:3
-msgid "to the"
-=======
 #: app/views/reporting/_introduction.html.erb:4
 msgid "including ("
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_introduction.html.erb:4
-msgid "including ("
-=======
 #: app/views/reporting/_introduction.html.erb:6
 msgid ""
 "The beginning of the report is organized in four regions for each type of "
 "information: "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_introduction.html.erb:6
-=======
 #: app/views/reporting/_introduction.html.erb:8
->>>>>>> origin/production:po/en/tosca.po
 msgid ""
-<<<<<<< HEAD:po/en/tosca.po
-"The beginning of the report is organized in four regions for each type of "
-"information: "
-=======
 "the first pie chart is a summary over the chosen period corresponding to the "
 "number of months you selected, "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_introduction.html.erb:8
-=======
 #: app/views/reporting/_introduction.html.erb:9
->>>>>>> origin/production:po/en/tosca.po
 msgid ""
-<<<<<<< HEAD:po/en/tosca.po
-"the first pie chart is a summary over the chosen period corresponding to the "
-"number of months you selected, "
-=======
 "the second pie chart draws all data since the begining of the deal: it thus "
 "doesn't change with the period you've chosen, "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_introduction.html.erb:9
-=======
 #: app/views/reporting/_introduction.html.erb:10
->>>>>>> origin/production:po/en/tosca.po
 msgid ""
-<<<<<<< HEAD:po/en/tosca.po
-"the second pie chart draws all data since the begining of the deal: it thus "
-"doesn't change with the period you've chosen, "
-=======
 "the third graph show another view of the summary through a bar chart showing "
 "the evolution of these data over the duration of the deal"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_introduction.html.erb:10
-=======
 #: app/views/reporting/_introduction.html.erb:11
->>>>>>> origin/production:po/en/tosca.po
 msgid ""
-<<<<<<< HEAD:po/en/tosca.po
-"the third graph show another view of the summary through a bar chart showing "
-"the evolution of these data over the duration of the deal"
-=======
 "the last table show a numerical view of the data used to draw the graphs, "
 "presented to you in the same zone. "
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_introduction.html.erb:11
-=======
-#: app/views/reporting/_introduction.html.erb:13
->>>>>>> origin/production:po/en/tosca.po
-msgid ""
-<<<<<<< HEAD:po/en/tosca.po
-"the last table show a numerical view of the data used to draw the graphs, "
-"presented to you in the same zone. "
-=======
-"You will observe in particular that the numbers have sometimes on their "
-"right side a second number between brackets: the first corresponds to the "
-"number of requests, whereas the second indicates,  if needed, which requests "
-"are still “active”."
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/views/reporting/_introduction.html.erb:13
 msgid ""
 "You will observe in particular that the numbers have sometimes on their "
 "right side a second number between brackets: the first corresponds to the "
 "number of requests, whereas the second indicates,  if needed, which requests "
 "are still “active”."
-=======
+msgstr ""
+
 #: app/views/reporting/_sommaire.html.erb:5
 #: app/views/reporting/general.html.erb:14
 msgid "Introduction"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_sommaire.html.erb:5
-#: app/views/reporting/general.html.erb:14
-msgid "Introduction"
-=======
 #: app/views/reporting/_sommaire.html.erb:8
 #: app/views/reporting/general.html.erb:21
 msgid "distribution"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_sommaire.html.erb:8
-#: app/views/reporting/general.html.erb:21
-msgid "distribution"
-=======
 #: app/views/reporting/_sommaire.html.erb:9
 #: app/views/reporting/general.html.erb:24
 msgid "severity"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_sommaire.html.erb:9
-#: app/views/reporting/general.html.erb:24
-msgid "severity"
-=======
 #: app/views/reporting/_sommaire.html.erb:10
 #: app/views/reporting/general.html.erb:27
 msgid "resolution"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_sommaire.html.erb:10
-#: app/views/reporting/general.html.erb:27
-msgid "resolution"
-=======
 #: app/views/reporting/_sommaire.html.erb:12
 #: app/views/reporting/general.html.erb:32
 msgid "Various statistics"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_sommaire.html.erb:12
-#: app/views/reporting/general.html.erb:32
-msgid "Various statistics"
-=======
 #: app/views/reporting/_sommaire.html.erb:13
 #: app/views/reporting/general.html.erb:33
 msgid "evolution"
->>>>>>> origin/production:po/en/tosca.po
 msgstr ""
 
-<<<<<<< HEAD:po/en/tosca.po
-#: app/views/reporting/_sommaire.html.erb:13
-#: app/views/reporting/general.html.erb:33
-msgid "evolution"
-=======
-#: app/views/reporting/_sommaire.html.erb:14
-#: app/views/reporting/general.html.erb:35
-msgid "canceled"
->>>>>>> origin/production:po/en/tosca.po
-msgstr ""
-
-<<<<<<< HEAD:po/en/tosca.po
 #: app/views/reporting/_sommaire.html.erb:14
 #: app/views/reporting/general.html.erb:35
 msgid "canceled"
 msgstr ""
 
-=======
->>>>>>> origin/production:po/en/tosca.po
 #: app/views/reporting/comex.html.erb:2
 msgid "OSSA activity per week"
 msgstr ""
