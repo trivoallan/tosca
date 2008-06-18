@@ -14,5 +14,9 @@ class IngenieurTest < Test::Unit::TestCase
       }
     }
   end
+  
+  def test_content_column
+    
+  end
 
 end

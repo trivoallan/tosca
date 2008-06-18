@@ -126,7 +126,7 @@ private
     end
 
     if request.xhr?
-      render_text('<div class="information error">' + msg + '</div>')
+      render :text => ('<div class="information error">' + msg + '</div>')
     else
       flash[:warn] = msg
       redirect_to(bienvenue_path, :status => :moved_permanently)
