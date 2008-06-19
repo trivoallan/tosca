@@ -26,9 +26,8 @@ class TagsControllerTest < ActionController::TestCase
       login l, l
       get :new
       assert_difference('Tag.count') do
-        #submit_with_name :tag, "Facile#{l}"
         form = select_form "main_form"
-        form.tag.name = "Facile #{l}"
+        form["tag[name]"] = "Facile #{l}"
         form.submit
       end
 
@@ -56,9 +55,8 @@ class TagsControllerTest < ActionController::TestCase
     %w(admin manager expert).each do |l|
       login l, l
       get :edit, :id => tags(:tag_00001).id
-      #submit_with_name :tag, "Facile#{l}"
-      form = select_form 'main_form'
-      form.tag.name = "Facile #{l}"
+      form = select_form "main_form"
+      form["tag[name]"] = "Facile #{l}"
       form.submit
       assert_redirected_to tag_path(assigns(:tag))
     end
