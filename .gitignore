@@ -4,8 +4,10 @@ lib/config.rb
 log/*.log
 public/stylesheets/all.css
 public/javascripts/all-fr.js
+public/festivaltts_mp3/*
 locale/*
 files/*
 public/image/*
+public/images/reporting/*
 nbproject/*
 test/coverage/*
