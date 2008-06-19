@@ -14,7 +14,7 @@ class LogicielsController < ApplicationController
     end
 
     options = { :per_page => 10, :order => 'logiciels.name',
-      :include => [:groupe, :competences] }
+      :include => [:groupe], :joins => "LEFT OUTER JOIN competences_logiciels ON competences_logiciels.logiciel_id=logiciels.id" }
     conditions = []
 
     if params.has_key? :filters
@@ -113,7 +113,7 @@ class LogicielsController < ApplicationController
     redirect_to logiciels_path
   end
 
-  def ajax_update_tags 
+  def ajax_update_tags
     @logiciel = Logiciel.find(:first, :conditions => { :name => params["logiciel"]["name"] } )
     @competences_check = Competence.find(params["logiciel"]["competence_ids"]) unless params["logiciel"]["competence_ids"] == [""]
     render :partial => 'logiciels/tags', :layout => false
