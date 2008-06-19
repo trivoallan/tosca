@@ -10,9 +10,9 @@ class ActiveRecord::Base
       opts = {}
       opts[:limit] = limit if limit
       path ||= "db/#{table_name}.yml"
-      write_file(File.expand_path(path, RAILS_ROOT), self.find(:all, opts).to_yaml)
+      write_file(File.expand_path(path, RAILS_ROOT), self.find(:all, opts).sort.to_yaml)
     end
-  
+
     # Delete existing data in database and load fresh from file in db/table_name.yml
     def load_from_file(path=nil)
       path ||= "db/#{table_name}.yml"
@@ -33,10 +33,10 @@ class ActiveRecord::Base
         if record[klass_col]
            record_copy.type = record[klass_col]
         end
-      
+
         record_copy.save
       end
- 
+
       if connection.respond_to?(:reset_pk_sequence!)
        connection.reset_pk_sequence!(table_name)
       end
@@ -50,9 +50,9 @@ class ActiveRecord::Base
       opts = {}
       opts[:limit] = limit if limit
 
-      write_file(File.expand_path("test/fixtures/#{table_name}.yml", RAILS_ROOT), 
-          self.find(:all, opts).inject({}) { |hsh, record| 
-              hsh.merge("#{table_name.singularize}_#{'%05i' % record.id}" => record.attributes) 
+      write_file(File.expand_path("test/fixtures/#{table_name}.yml", RAILS_ROOT),
+          self.find(:all, opts).inject({}) { |hsh, record|
+              hsh.merge("#{table_name.singularize}_#{'%05i' % record.id}" => record.attributes)
             }.to_yaml(:SortKeys => true))
       habtm_to_fixture
     end
@@ -70,7 +70,7 @@ class ActiveRecord::Base
         write_file(File.expand_path("test/fixtures/#{join.options[:join_table]}.yml", RAILS_ROOT), hsh.to_yaml(:SortKeys => true))
       end
     end
-    
+
     # Generates a basic fixture file in test/fixtures that lists the table's field names.
     #
     # You can use it as a starting point for your own fixtures.
@@ -84,7 +84,7 @@ class ActiveRecord::Base
     #
     # TODO Automatically add :id field if there is one.
     def to_skeleton
-      record = { 
+      record = {
           "record_1" => self.new.attributes,
           "record_2" => self.new.attributes
          }
