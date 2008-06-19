@@ -1,217 +1,217 @@
 --- 
-permission_00462: 
+permission_00517: 
   name: ^clients/show$
   info: Read-only access to clients offers
-  id: 462
-permission_00440: 
+  id: 517
+permission_00495: 
   name: ^commentaires/(?!destroy)
   info: Manage comments
-  id: 440
-permission_00429: 
+  id: 495
+permission_00484: 
   name: .*/.*
   info: Full access
-  id: 429
-permission_00451: 
+  id: 484
+permission_00506: 
   name: ^competences/(?!destroy)
   info: Manage knowledge
-  id: 451
-permission_00473: 
+  id: 506
+permission_00528: 
   name: ^account/index$
   info: List accounts
-  id: 473
-permission_00474: 
+  id: 528
+permission_00529: 
   name: ^commentaires/(comment|show|edit|update)$
   info: Hability to comment a request
-  id: 474
-permission_00452: 
+  id: 529
+permission_00507: 
   name: ^contracts/(?!destroy)
   info: Manage contracts
-  id: 452
-permission_00430: 
+  id: 507
+permission_00485: 
   name: /auto_complete
   info: All kinds of Auto completion
-  id: 430
-permission_00441: 
+  id: 485
+permission_00496: 
   name: ^contributions/(?!destroy)
   info: Manage contributions
-  id: 441
-permission_00463: 
+  id: 496
+permission_00518: 
   name: ^demandes/(index|print|show)$
   info: Read access to requests
-  id: 463
-permission_00464: 
+  id: 518
+permission_00519: 
   name: ^logiciels/(index|show)$
   info: Read-only access to software
-  id: 464
-permission_00442: 
+  id: 519
+permission_00497: 
   name: ^documents/(?!destroy)
   info: Manage documents
-  id: 442
-permission_00431: 
+  id: 497
+permission_00486: 
   name: /ajax
   info: All kinds of ajax view
-  id: 431
-permission_00453: 
+  id: 486
+permission_00508: 
   name: ^demandes/(?!destroy)
   info: Manage requests
-  id: 453
-permission_00475: 
+  id: 508
+permission_00530: 
   name: ^demandes/(new|create|pending)$
   info: Write access to requests & Pending View
-  id: 475
-permission_00476: 
+  id: 530
+permission_00531: 
   name: ^access/denied$
   info: Page for denying access
-  id: 476
-permission_00454: 
+  id: 531
+permission_00509: 
   name: ^groupes/(?!destroy)
   info: Manage groups of softwares
-  id: 454
-permission_00432: 
+  id: 509
+permission_00487: 
   name: ^account/(edit|update|show)$
   info: Viewing and editing its own account
-  id: 432
-permission_00443: 
+  id: 487
+permission_00498: 
   name: ^reporting/
   info: Access to all kinds of reporting
-  id: 443
-permission_00465: 
+  id: 498
+permission_00520: 
   name: ^paquets/(index|show)$
   info: Read-only access to package
-  id: 465
-permission_00466: 
+  id: 520
+permission_00521: 
   name: ^socles/show$
   info: Read-only access to system
-  id: 466
-permission_00444: 
+  id: 521
+permission_00499: 
   name: ^socles/(?!destroy)
   info: Manage systems
-  id: 444
-permission_00433: 
+  id: 499
+permission_00488: 
   name: ^bienvenue/suggestions$
   info: Allow comments on this software
-  id: 433
-permission_00455: 
+  id: 488
+permission_00510: 
   name: ^images/(?!destroy)
   info: Manage logos of softwares & clients
-  id: 455
-permission_00477: 
+  id: 510
+permission_00532: 
   name: ^account/(login|logout)$
   info: Access to login system
-  id: 477
-permission_00478: 
+  id: 532
+permission_00533: 
   name: ^bienvenue/(index|about|plan)$
   info: Access to home pages
-  id: 478
-permission_00456: 
+  id: 533
+permission_00511: 
   name: ^ingenieurs/(?!(destroy|new))
   info: List knowledges of human ressources
-  id: 456
-permission_00434: 
+  id: 511
+permission_00489: 
   name: ^export/
   info: All kinds of export
-  id: 434
-permission_00445: 
-  name: ^urllogiciels/(?!destroy)
-  info: Manage urls of softwares
-  id: 445
-permission_00467: 
-  name: ^teams/(index|show)$
-  info: Read-only access to the teams
-  id: 467
-permission_00480: 
-  name: ^groupes/(index|show)
-  info: Public read access to groups
-  id: 480
-permission_00468: 
-  name: ^tags/(index|show|create)$
-  info: Read-only access to the tags
-  id: 468
-permission_00446: 
-  name: ^urlreversements/
-  info: Manage thier own urls of contributions
-  id: 446
-permission_00435: 
+  id: 489
+permission_00490: 
   name: ^files/download$
   info: All kinds of download
-  id: 435
-permission_00457: 
-  name: ^logiciels/(?!destroy)
-  info: Manage softwares
-  id: 457
-permission_00479: 
-  name: ^contributions/(index|select|show|list|feed)
-  info: Public read access to contributions
-  id: 479
-permission_00470: 
-  name: ^demandes/(link|unlink)_contribution$
-  info: Link contribution with request
-  id: 470
-permission_00458: 
-  name: ^paquets/(?!destroy)
-  info: Manage packages
-  id: 458
-permission_00436: 
+  id: 490
+permission_00500: 
+  name: ^urllogiciels/(?!destroy)
+  info: Manage urls of softwares
+  id: 500
+permission_00522: 
+  name: ^teams/(index|show)$
+  info: Read-only access to the teams
+  id: 522
+permission_00523: 
+  name: ^tags/(index|show|create|new)$
+  info: Read-only access to the tags
+  id: 523
+permission_00501: 
+  name: ^urlreversements/
+  info: Manage thier own urls of contributions
+  id: 501
+permission_00491: 
   name: ^reporting/(configuration|general)$
   info: Activity Report
-  id: 436
-permission_00447: 
-  name: ^tags/
-  info: Manage tags
-  id: 447
-permission_00469: 
-  name: ^clients/index$
-  info: Read-only access to list clients offers
-  id: 469
-permission_00481: 
-  name: ^logiciels/(index|show)
-  info: Public read access to softwares
-  id: 481
-permission_00482: 
-  name: ^statuts/(index|help)$
-  info: Explanation of status
-  id: 482
-permission_00460: 
-  name: ^teams/(?!destroy)
-  info: Manage teams
-  id: 460
-permission_00448: 
-  name: ^account/(signup|new|create|become)
-  info: Manage account
-  id: 448
-permission_00437: 
+  id: 491
+permission_00512: 
+  name: ^logiciels/(?!destroy)
+  info: Manage softwares
+  id: 512
+permission_00534: 
+  name: ^contributions/(index|select|show|list|feed)
+  info: Public read access to contributions
+  id: 534
+permission_00535: 
+  name: ^groupes/(index|show)
+  info: Public read access to groups
+  id: 535
+permission_00513: 
+  name: ^paquets/(?!destroy)
+  info: Manage packages
+  id: 513
+permission_00492: 
   name: ^account/(show|become)$
   info: Read access and helper for customer account
-  id: 437
-permission_00459: 
-  name: ^machines/(?!destroy)
-  info: Manage servers
-  id: 459
-permission_00471: 
-  name: ^contracts/(index|show)$
-  info: Read-only access to contracts
-  id: 471
-permission_00472: 
-  name: ^documents/(select|list|index)$
-  info: Read-only access to documents
-  id: 472
-permission_00450: 
-  name: ^clients/(?!destroy)
-  info: Manage clients
-  id: 450
-permission_00438: 
+  id: 492
+permission_00502: 
+  name: ^tags/
+  info: Manage tags
+  id: 502
+permission_00524: 
+  name: ^clients/index$
+  info: Read-only access to list clients offers
+  id: 524
+permission_00525: 
+  name: ^demandes/(link|unlink)_contribution$
+  info: Link contribution with request
+  id: 525
+permission_00503: 
+  name: ^account/(signup|new|create|become)
+  info: Manage account
+  id: 503
+permission_00493: 
   name: ^appels/(?!destroy)
   info: Manage calls
-  id: 438
-permission_00449: 
-  name: ^binaires/(?!destroy)
-  info: Manage binaries
-  id: 449
-permission_00461: 
-  name: ^binaires/(show|index)$
-  info: Read-only access to binaries
-  id: 461
-permission_00439: 
+  id: 493
+permission_00514: 
+  name: ^machines/(?!destroy)
+  info: Manage servers
+  id: 514
+permission_00536: 
+  name: ^logiciels/(index|show)
+  info: Public read access to softwares
+  id: 536
+permission_00537: 
+  name: ^statuts/(index|help)$
+  info: Explanation of status
+  id: 537
+permission_00515: 
+  name: ^teams/(?!destroy)
+  info: Manage teams
+  id: 515
+permission_00494: 
   name: ^bienvenue/admin$
   info: Administration page
-  id: 439
+  id: 494
+permission_00504: 
+  name: ^binaires/(?!destroy)
+  info: Manage binaries
+  id: 504
+permission_00526: 
+  name: ^contracts/(index|show)$
+  info: Read-only access to contracts
+  id: 526
+permission_00527: 
+  name: ^documents/(select|list|index)$
+  info: Read-only access to documents
+  id: 527
+permission_00505: 
+  name: ^clients/(?!destroy)
+  info: Manage clients
+  id: 505
+permission_00516: 
+  name: ^binaires/(show|index)$
+  info: Read-only access to binaries
+  id: 516
