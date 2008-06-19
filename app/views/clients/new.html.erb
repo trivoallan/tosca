@@ -1,6 +1,6 @@
 <h1><%= _("Add a new client") %></h1>
 
-<% form_tag clients_path, :id => 'main_form' do %>
+<% form_tag clients_path, :multipart => true, :id => 'main_form' do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _("Submit") %>
 <% end %>

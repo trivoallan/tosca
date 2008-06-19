@@ -15,8 +15,8 @@ class ClientsControllerTest < ActionController::TestCase
   end
 
   def test_index
-    %w(admin manager expert).each { |l|
-      login l
+    %w(admin manager expert).each do |l|
+      login l, l
       get :index
       assert_response :success
       assert_template 'index'
@@ -26,13 +26,13 @@ class ClientsControllerTest < ActionController::TestCase
       # The search box cannot be checked with the helper
       xhr :get, :index, :filters => { :text => "linagora" }
       assert_response :success
-    }
+    end
   end
 
   def test_show
-    %w(admin manager expert customer viewer).each { |l|
-      login l
-      get :show, :id => Client.find(:first).id
+    %w(admin manager expert customer viewer).each {|l|
+      login l, l
+      get :show, :id => session[:user].client_ids.first
       assert_response :success
       assert_template 'show'
       assert_not_nil assigns(:client)
@@ -50,9 +50,8 @@ class ClientsControllerTest < ActionController::TestCase
     assert_template 'new'
     assert_not_nil assigns(:client)
 
-    form = select_form "main_form"
     assert_difference('Client.count') do
-      form.submit_with_name "this is an automatic test client"
+      submit_with_name :client, "this is an automatic test client"
     end
 
     assert flash.has_key?(:notice)
@@ -71,12 +70,11 @@ class ClientsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:client)
     assert assigns(:client).valid?
 
-    form = select_form "main_form"
-    form.submit_with_name "this is an automatic test client"
+    submit_with_name :client, "this is an automatic test client"
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => '1-Linagora'
+    assert_redirected_to :action => 'show', :id => '1-this-is-an-automatic-test-client'
     assert_not_nil assigns(:client)
     assert assigns(:client).valid?
   end
@@ -84,7 +82,7 @@ class ClientsControllerTest < ActionController::TestCase
   def test_destroy
     assert_not_nil Client.find(1)
 
-    assert_difference('Client.count') do
+    assert_difference('Client.count', -1) do
       post :destroy, :id => 1
     end
     assert_response :redirect
