@@ -47,7 +47,7 @@
           <%= render :partial => 'rules' %>
 	   </div></td>
      </tr><tr>
-     <% options = {:size => 1, :style => 'text-align: center;' } %>
+     <% options = {:size => 2, :style => 'text-align: center;' } %>
        <th><label for="contract_heure_ouverture"><%= _("Schedules") %></label></th>
        <td><%= text_field :contract, :heure_ouverture, options  %><%= _("h") %> -
            <%= text_field :contract, :heure_fermeture, options  %><%= _("h") %></td>
@@ -64,7 +64,7 @@
        <td colspan="2">
        <fieldset>
         <legend><%=_('Teams managing this contract')%></legend>
-        <%= hbtm_check_box(@contract_team, @teams, 
+        <%= hbtm_check_box(@contract_team, @teams,
                          'contract[team_ids]', :size => 3) %>
        </fieldset>
       </td>

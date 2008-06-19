@@ -4,9 +4,9 @@ class AlertsController < ApplicationController
   def index
     @teams = Team.find_select
   end
-  
+
   def on_submit
-    flash[:team_ids] = params[:team_ids]
+    flash[:team_ids] = params[:team][:ids]
     new_request
   end
 
@@ -18,8 +18,9 @@ class AlertsController < ApplicationController
 
   private
   def new_request
-    conditions = [ 'demandes.contract_id IN (?) AND demandes.statut_id = 1', flash[:team_ids]]
+    team = Team.find(flash[:team_ids])
+    conditions = [ 'demandes.contract_id IN (?) AND demandes.statut_id = 1', team.contract_ids ]
     @requests_found = Demande.find(:all, :conditions => conditions)
   end
-  
+
 end

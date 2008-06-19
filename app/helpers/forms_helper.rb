@@ -32,7 +32,6 @@ module FormsHelper
       end
     end
     out << '</tr></table>'
-    out << "<input type=\"hidden\" value=\"\" name=\"#{name}[]\"/>"
   end
 
   # Collection have to contain object which respond to 'id' and 'name'

@@ -14,11 +14,12 @@ module EngagementsHelper
   # TODO : a partial should be better
   def show_form_engagements(object_engagement, engagements, name)
     out = '<table>'
-    out << '<tr><th>Demande</th><th>Sévérité</th><th></th>'
-    out << '<th>Contournement</th><th>Correction</th></tr>'
+    out << '<tr><th>Demande</th><th>Sévérité</th>'
+    out << '<th>Contournement | Correction</th></tr>'
     last_typedemande_id = 0
     last_severite_id = 0
     last_cycle = cycle('even', 'odd')
+    selecteds = object_engagement.collect{|o| o.id }
     e = engagements.pop
     while (e) do
       out << '<tr><td colspan="5"><hr/></td></tr>' if e.typedemande_id != last_typedemande_id
@@ -35,14 +36,21 @@ module EngagementsHelper
         last_severite_id = e.severite_id
       end
       out << '</td><td>'
-      out << "<input id=\"engagement_#{e.id}\" type=\"checkbox\" "
-      out << "name=\"#{name}[]\" value=\"#{e.id}\" "
-      out << 'checked="checked" ' if object_engagement.include? e
-      out << '/>'
-      out << "</td><td align=\"center\"><label for=\"engagement_#{e.id}\">"
-      out << Time.in_words(e.contournement.days, true)
-      out << '</label></td><td align="center">'
-      out << Time.in_words(e.correction.days, true)
+      severities = { '» ' => 0 }
+      # selecteds = []
+      out << %Q{<select id="contract_engagement_ids"
+         name="contract[engagement_ids_#{last_typedemande_id}_#{last_severite_id}]">}
+      while (e) do
+        workaround = Time.in_words(e.contournement.days, true)
+        correction = Time.in_words(e.correction.days, true)
+        workaround = _('None') if workaround == '-'
+        correction = _('None') if correction == '-'
+        severities["#{workaround} | #{correction}"] = e.id
+        break if engagements.empty? || (engagements.last.severite_id != last_severite_id)
+        e = engagements.pop
+      end
+      out << options_for_select(severities, selecteds)
+      out << '</select>'
       out << '</td></tr>'
       e = engagements.pop
     end

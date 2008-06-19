@@ -10,7 +10,7 @@
         link_to(_('Add a user'), signup_new_account_path) ] %>
   <%= show_list(links, _('User management')) %>
   <% if session[:user].role_id <= 2 # manager %>
-    <% links = [ 
+    <% links = [
           link_to(_('Teams'), teams_path) ] %>
     <%= show_list(links, _("Teams management")) %>
   <% end %>
@@ -27,6 +27,7 @@
 
 <div class="sommaire show">
   <h3><%= _('Customers') %></h3>
+  <p><%= _('You have to create a client before creating a contract') %>.</p>
   <% links = [
         link_to( _('Customers'), clients_path),
         link_to( _('Contracts'), contracts_path)  ] %>
