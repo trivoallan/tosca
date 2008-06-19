@@ -42,21 +42,13 @@ class ClientsController < ApplicationController
     end
   end
 
-  def inactives
-    active = 'clients.inactive = 1'
-    options = { :per_page => 10, :order => 'clients.name',
-      :include => [:image], :conditions => active }
-    @client_pages, @clients = paginate :clients, options
-    render :action => 'index'
-  end
-
   def stats
     index
     @typedemandes = Typedemande.find(:all)
   end
 
   def show
-    @client = Client.find(params[:id], :include => [:socles])
+    @client = Client.find(params[:id])
     # allows to see only binaries of this client for all without scope
     begin
       Binaire.set_scope(@client.contract_ids) if @ingenieur
@@ -72,9 +64,7 @@ class ClientsController < ApplicationController
   end
 
   def create
-    Socle.send(:with_exclusive_scope) do
-      @client = Client.new(params[:client])
-    end
+    @client = Client.new(params[:client])
     @client.creator = session[:user]
     if @client.save and add_logo
       flash[:notice] = _('Client created successfully.') + '<br />' +
@@ -107,10 +97,7 @@ class ClientsController < ApplicationController
 
   private
   def _form
-    # It's the only way to add new system to its own scope
-    Socle.send(:with_exclusive_scope) do
-      @socles = Socle.find_select
-    end
+    @socles = Socle.find_select
   end
 
   def _panel

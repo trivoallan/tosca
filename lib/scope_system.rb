@@ -4,7 +4,7 @@ module Scope
   # There is a global scope, on all finders, in order to
   # preserve each user in his particular space.
   # TODO : scope contract only ?? it seems coherent...
-  SCOPE_CLIENT = [ Client, Document, Socle ]
+  SCOPE_CLIENT = [ Client, Document ]
   SCOPE_CONTRACT = [ Binaire, Contract, Demande, Paquet, Phonecall ]
 
   # This method has a 'handmade' scope, really faster and with no cost

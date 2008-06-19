@@ -1,16 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'clients_controller'
 
-# Re-raise errors caught by the controller.
-class ClientsController; def rescue_action(e) raise e end; end
-
-class ClientsControllerTest < Test::Unit::TestCase
-  fixtures :clients, :contracts, :credits, :components
+class ClientsControllerTest < ActionController::TestCase
+ fixtures :clients, :contracts, :credits, :components
 
   def setup
-    @controller = ClientsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 
@@ -22,72 +15,76 @@ class ClientsControllerTest < Test::Unit::TestCase
   end
 
   def test_index
-    get :index
-    assert_response :success
-    assert_template 'index'
-    assert_not_nil assigns(:clients)
-  end
+    %w(admin manager expert).each do |l|
+      login l, l
+      get :index
+      assert_response :success
+      assert_template 'index'
+      assert_not_nil assigns(:clients)
 
-  def test_inactives
-    get :inactives
-    assert_response :success
-    assert_template 'index'
-    assert_not_nil assigns(:clients)
+      check_ajax_filter(:system_id, Socle.find(:first).id, :clients)
+      # The search box cannot be checked with the helper
+      xhr :get, :index, :filters => { :text => "linagora" }
+      assert_response :success
+    end
   end
 
   def test_show
-    get :show, :id => 1
-
-    assert_response :success
-    assert_template 'show'
-
-    assert_not_nil assigns(:client)
-    assert assigns(:client).valid?
+    %w(admin manager expert customer viewer).each {|l|
+      login l, l
+      get :show, :id => session[:user].client_ids.first
+      assert_response :success
+      assert_template 'show'
+      assert_not_nil assigns(:client)
+      assert assigns(:client).valid?
+    }
   end
 
   def test_new
-    get :new
-
-    assert_response :success
-    assert_template 'new'
-
-    assert_not_nil assigns(:client)
+    # done in test_create
   end
 
   def test_create
-    num_clients = Client.count
+    get :new
+    assert_response :success
+    assert_template 'new'
+    assert_not_nil assigns(:client)
 
-    post :create, :client => { :name => 'toto' }
+    assert_difference('Client.count') do
+      submit_with_name :client, "this is an automatic test client"
+    end
 
     assert flash.has_key?(:notice)
     assert_response :redirect
     assert_redirected_to new_contract_path(:id => assigns(:client).id)
-
-    assert_equal num_clients + 1, Client.count
   end
 
   def test_edit
-    get :edit, :id => 1
-
-    assert_response :success
-    assert_template 'edit'
-
-    assert_not_nil assigns(:client)
-    assert assigns(:client).valid?
+    # done in test_update
   end
 
   def test_update
-    post :update, :id => 1
+    get :edit, :id => 1
+    assert_response :success
+    assert_template 'edit'
+    assert_not_nil assigns(:client)
+    assert assigns(:client).valid?
+
+    submit_with_name :client, "this is an automatic test client"
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => '1-Linagora'
+    assert_redirected_to :action => 'show', :id => '1-this-is-an-automatic-test-client'
+    assert_not_nil assigns(:client)
+    assert assigns(:client).valid?
   end
 
   def test_destroy
     assert_not_nil Client.find(1)
 
-    post :destroy, :id => 1
+    assert_difference('Client.count', -1) do
+      post :destroy, :id => 1
+    end
     assert_response :redirect
     assert_redirected_to :action => 'index'
 

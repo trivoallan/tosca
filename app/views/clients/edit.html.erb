@@ -1,6 +1,6 @@
 <h1><%= _("Edit the client %s") % @client.name %></h1>
 
-<% form_tag client_path(@client), :method => :put do %>
+<% form_tag client_path(@client), :multipart => true, :method => :put, :id => 'main_form' do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _("Edit") %>
 <% end %>
