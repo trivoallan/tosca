@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
       flash[:notice] = _('Team %s was successfully created.') % @team.name
       redirect_to(@team)
     else
-      render :action => "new"
+      _form && render :action => "new"
     end
   end
 
@@ -34,7 +34,7 @@ class TeamsController < ApplicationController
       flash[:notice] = _('Team %s was successfully updated.') % @team.name
       redirect_to(@team)
     else
-      render :action => "edit"
+      _form && render :action => "edit"
     end
   end
 
@@ -43,11 +43,11 @@ class TeamsController < ApplicationController
     @team.destroy
     redirect_to(teams_url)
   end
-  
+
 private
   def _form
     @users = User.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)
   end
-  
+
 end
