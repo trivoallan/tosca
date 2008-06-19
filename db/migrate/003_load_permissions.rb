@@ -83,7 +83,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
                [ '^socles/show$', 'Read-only access to system' ],
                [ '^teams/(index|show)$', 'Read-only access to the teams' ],
-               [ '^tags/(index|show|create)$', 'Read-only access to the tags' ]
+               [ '^tags/(index|show|create|new)$', 'Read-only access to the tags' ]
              ]
     add_permission.call(roles, access)
 
