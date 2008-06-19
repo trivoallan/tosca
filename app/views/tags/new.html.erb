@@ -1,6 +1,6 @@
 <h1><%= _('New tag')%></h1>
 
-<% form_tag tags_path do %>
+<% form_tag tags_path, :id => "main_form" do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Create') %>
 <% end %>
