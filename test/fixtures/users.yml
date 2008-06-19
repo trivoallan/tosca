@@ -1,5 +1,5 @@
 --- 
-user_00004: 
+user_customer: 
   name: Customer
   informations: ""
   title: the royal
@@ -13,7 +13,7 @@ user_00004:
   login: customer
   image_id: 
   email: <%= App::MaintenerEmail %>
-user_00005: 
+user_viewer: 
   name: Viewer
   informations: ""
   title: the powerless
@@ -27,7 +27,7 @@ user_00005:
   login: viewer
   image_id: 
   email: <%= App::MaintenerEmail %>
-user_00001: 
+user_admin: 
   name: Admin
   informations: ""
   title: "\xC3\xB4 r\xC3\xA9v\xC3\xA9r\xC3\xA9"
@@ -41,7 +41,8 @@ user_00001:
   login: admin
   image_id: 
   email: <%= App::MaintenerEmail %>
-user_00002: 
+  team_id: 2
+user_manager: 
   name: Manager
   informations: ""
   title: the lovely
@@ -55,7 +56,8 @@ user_00002:
   login: manager
   image_id: 
   email: <%= App::MaintenerEmail %>
-user_00003: 
+  team_id: 1
+user_expert: 
   name: Expert
   informations: ""
   title: the handy
@@ -69,3 +71,4 @@ user_00003:
   login: expert
   image_id: 
   email: <%= App::MaintenerEmail %>
+  team_id: 2

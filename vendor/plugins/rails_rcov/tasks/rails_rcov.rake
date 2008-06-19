@@ -41,7 +41,7 @@ if ARGV.grep(/--run-rake-task=/).empty?
   
   def new_rcov_task(test_name)
    
-    output_dir = "./coverage/#{test_name.gsub('test:','')}"
+    output_dir = "./test/coverage/#{test_name.gsub('test:','')}"
     CLOBBER.include(output_dir)
   
     # Add a task to run the rcov process
@@ -113,7 +113,7 @@ if ARGV.grep(/--run-rake-task=/).empty?
 else
   # Load rake tasks, hijack ruby, and redirect the task through rcov
   require 'rubygems'
-#  require 'rake'
+  require 'rake'
   
   module RcovTestSettings
     class << self
@@ -149,7 +149,7 @@ else
   unless (cmd_line = ARGV.grep(/--run-rake-task=/)).empty?
     test_name = cmd_line.first.gsub(/--run-rake-task=/,'')
     ARGV.clear; ARGV << test_name
-    RcovTestSettings.output_dir = File.expand_path("./coverage/#{test_name.gsub('test:','')}")
+    RcovTestSettings.output_dir = File.expand_path("./test/coverage/#{test_name.gsub('test:','')}")
     Rake.application.run
   else
     raise "No test to execute!"

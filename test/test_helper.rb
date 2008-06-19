@@ -47,7 +47,7 @@ class Test::Unit::TestCase
     form.submit
   end
 
-  FILES_ROOT = "#{File.expand_path(RAILS_ROOT)}/test/fixtures/files"
+#  FILES_ROOT = "#{File.expand_path(RAILS_ROOT)}/test/fixtures/files"
 
   def uploaded_file(path, content_type="application/octet-stream", filename=nil)
     filename ||= File.basename(path)

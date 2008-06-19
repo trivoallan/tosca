@@ -19,7 +19,7 @@ class ClientTest < Test::Unit::TestCase
     i.save
 
     client = Client.find_by_name('Linaragots')
-    assert_match /logo_linagora.gif$/, client.image.image.to_s
+    assert_match(/logo_linagora.gif$/, client.image.image.to_s)
   end
 
   def test_destroy
@@ -87,6 +87,13 @@ class ClientTest < Test::Unit::TestCase
         assert !b.user.inactive?
       end
     }
+  end
+  
+  def test_content_columns
+    columns = Client.content_columns.collect { |c| c.name }
+    columns.sort!
+    
+    assert_equal(["code_acces", "description", "name"], columns)
   end
 
 end

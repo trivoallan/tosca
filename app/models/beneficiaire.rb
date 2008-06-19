@@ -17,7 +17,7 @@ class Beneficiaire < ActiveRecord::Base
   end
 
   def contract_ids
-    @cache ||=  user.contract_ids
+    @cache ||= user.contract_ids
   end
 
   def contracts
