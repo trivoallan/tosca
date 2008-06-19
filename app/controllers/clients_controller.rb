@@ -42,14 +42,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  def inactives
-    active = 'clients.inactive = 1'
-    options = { :per_page => 10, :order => 'clients.name',
-      :include => [:image], :conditions => active }
-    @client_pages, @clients = paginate :clients, options
-    render :action => 'index'
-  end
-
   def stats
     index
     @typedemandes = Typedemande.find(:all)
