@@ -1,6 +1,6 @@
 <h1><%= _('Editing tag')%></h1>
 
-<% form_tag tag_path(@tag), :method => :put do %>
+<% form_tag tag_path(@tag), :method => :put, :id => "main_form" do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Edit') %>
 <% end %>
