@@ -119,7 +119,8 @@ class User < ActiveRecord::Base
 
   SELECT_OPTIONS = { :include => [:user], :order =>
     'users.name ASC', :conditions => 'users.inactive = 0' }
-  EXPERT_OPTIONS = { :conditions => 'users.client = 0', :order => 'users.name' }
+  EXPERT_OPTIONS = { :conditions => 'users.client = 0 AND users.inactive = 0',
+    :order => 'users.name' }
 
   def self.authenticate(login, pass, crypt = 'false')
     User.with_exclusive_scope() do
@@ -177,7 +178,7 @@ class User < ActiveRecord::Base
   def kind
     (client? ? 'recipient' : 'expert')
   end
-  
+
   def team_manager?
     if self.team
       return self.team.contact_id == self.id

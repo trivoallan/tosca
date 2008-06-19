@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-06-18 14:29+0200\n"
+"POT-Creation-Date: 2008-06-19 14:21+0200\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,24 +114,23 @@ msgstr ""
 msgid "Binary has been successfully updated."
 msgstr ""
 
-#: app/controllers/clients_controller.rb:80
+#: app/controllers/clients_controller.rb:70
 msgid "Client created successfully."
 msgstr ""
 
-#: app/controllers/clients_controller.rb:81
+#: app/controllers/clients_controller.rb:71
 msgid "You have now to create the associated contract."
 msgstr ""
 
-#: app/controllers/clients_controller.rb:96
+#: app/controllers/clients_controller.rb:86
 msgid "Client updated successfully."
 msgstr ""
 
-#: app/controllers/clients_controller.rb:136 app/helpers/clients_helper.rb:29
-#: app/views/clients/_clients_list.html.erb:28
+#: app/controllers/clients_controller.rb:123 app/helpers/clients_helper.rb:29
 msgid "Inactive clients"
 msgstr ""
 
-#: app/controllers/clients_controller.rb:139 app/helpers/clients_helper.rb:25
+#: app/controllers/clients_controller.rb:126 app/helpers/clients_helper.rb:25
 msgid "Active clients"
 msgstr ""
 
@@ -169,15 +168,15 @@ msgstr ""
 msgid "Skill was successfully updated."
 msgstr ""
 
-#: app/controllers/contracts_controller.rb:46
+#: app/controllers/contracts_controller.rb:47
 msgid "Contract was successfully created."
 msgstr ""
 
-#: app/controllers/contracts_controller.rb:62
+#: app/controllers/contracts_controller.rb:63
 msgid "Contract was successfully updated."
 msgstr ""
 
-#: app/controllers/contracts_controller.rb:88
+#: app/controllers/contracts_controller.rb:89
 msgid "Unknown rules for contract \"%s\""
 msgstr ""
 
@@ -1119,6 +1118,10 @@ msgstr ""
 msgid "Exceedance"
 msgstr ""
 
+#: app/helpers/socles_helper.rb:11
+msgid "a system"
+msgstr ""
+
 #: app/helpers/static_image.rb:31 app/views/clients/show.html.erb:42
 #: app/views/clients/show.html.erb:44
 msgid "View"
@@ -1890,6 +1893,18 @@ msgstr ""
 msgid "Severite|Name"
 msgstr ""
 
+#: app/models/socle.rb:-
+msgid "socle"
+msgstr ""
+
+#: app/models/socle.rb:-
+msgid "Socle|Name"
+msgstr ""
+
+#: app/models/socle.rb:-
+msgid "Socle|Binaires count"
+msgstr ""
+
 #: app/models/statut.rb:5
 msgid "Submitted"
 msgstr ""
@@ -2195,7 +2210,7 @@ msgstr ""
 #: app/views/account/_edit_engineer.html.erb:18
 #: app/views/account/_edit_recipient.html.erb:12
 #: app/views/account/_show_engineer.html.erb:21
-#: app/views/bienvenue/admin.html.erb:32
+#: app/views/bienvenue/admin.html.erb:33
 #: app/views/clients/_clients_list.html.erb:5 app/views/teams/show.html.erb:10
 msgid "Contracts"
 msgstr ""
@@ -2246,7 +2261,7 @@ msgstr ""
 msgid "Calls"
 msgstr ""
 
-#: app/views/account/_menu.html.erb:21 app/views/bienvenue/admin.html.erb:49
+#: app/views/account/_menu.html.erb:21 app/views/bienvenue/admin.html.erb:50
 #: app/views/contracts/index.html.erb:5
 #: app/views/demandes/_packages.html.erb:9
 msgid "Packages"
@@ -2278,7 +2293,7 @@ msgid "Role management"
 msgstr ""
 
 #: app/views/account/_menu.html.erb:36 app/views/account/_menu.html.erb:39
-#: app/views/bienvenue/admin.html.erb:29 app/views/bienvenue/admin.html.erb:31
+#: app/views/bienvenue/admin.html.erb:29 app/views/bienvenue/admin.html.erb:32
 #: app/views/socles/index.html.erb:5
 msgid "Customers"
 msgstr ""
@@ -2290,7 +2305,7 @@ msgid "Activity report"
 msgstr ""
 
 #: app/views/account/_menu.html.erb:42
-#: app/views/clients/_clients_info.html.erb:21
+#: app/views/clients/_clients_info.html.erb:29
 #: app/views/contributions/_contributions_info.html.erb:26
 #: app/views/demandes/lists/_requests_info.html.erb:35
 #: app/views/knowledges/_knowledges_info.html.erb:19
@@ -2314,6 +2329,7 @@ msgid "Show an account"
 msgstr ""
 
 #: app/views/account/_users_info.html.erb:13
+#: app/views/clients/_clients_info.html.erb:15
 #: app/views/demandes/_infos_demande.html.erb:3
 #: app/views/phonecalls/_calls_info.html.erb:10
 msgid "Action"
@@ -2590,58 +2606,62 @@ msgstr ""
 msgid "Skill management"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:33
+#: app/views/bienvenue/admin.html.erb:30
+msgid "You have to create a client before creating a contract"
+msgstr ""
+
+#: app/views/bienvenue/admin.html.erb:34
 msgid "Customer management"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:38
+#: app/views/bienvenue/admin.html.erb:39
 msgid "Plateform"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:39
+#: app/views/bienvenue/admin.html.erb:40
 msgid "System management"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:41
+#: app/views/bienvenue/admin.html.erb:42
 #: app/views/clients/_clients_list.html.erb:5
 #: app/views/clients/_form.html.erb:31
 msgid "Systems"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:42
+#: app/views/bienvenue/admin.html.erb:43
 msgid "Machines"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:43
+#: app/views/bienvenue/admin.html.erb:44
 msgid "Architectures"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:45
+#: app/views/bienvenue/admin.html.erb:46
 msgid "Source management"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:47
+#: app/views/bienvenue/admin.html.erb:48
 #: app/views/paquets/_paquets_info.html.erb:15
 msgid "Software list"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:48
+#: app/views/bienvenue/admin.html.erb:49
 msgid "Software categorization"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:50
+#: app/views/bienvenue/admin.html.erb:51
 msgid "Binaries"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:54
+#: app/views/bienvenue/admin.html.erb:55
 msgid "Reporting"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:56
+#: app/views/bienvenue/admin.html.erb:57
 msgid "Comex report"
 msgstr ""
 
-#: app/views/bienvenue/admin.html.erb:57
+#: app/views/bienvenue/admin.html.erb:58
 msgid "Digest report"
 msgstr ""
 
@@ -2869,20 +2889,24 @@ msgstr ""
 msgid "This package can be downloaded"
 msgstr ""
 
-#: app/views/clients/_clients_info.html.erb:14
+#: app/views/clients/_clients_info.html.erb:17
+msgid "Create a new client"
+msgstr ""
+
+#: app/views/clients/_clients_info.html.erb:22
 #: app/views/knowledges/_knowledges_info.html.erb:13
 #: app/views/logiciels/_softwares_info.html.erb:16
 #: app/views/paquets/_paquets_info.html.erb:13
 msgid "Consultation"
 msgstr ""
 
-#: app/views/clients/_clients_info.html.erb:23
+#: app/views/clients/_clients_info.html.erb:31
 #: app/views/knowledges/_knowledges_info.html.erb:21
 #: app/views/logiciels/_softwares_info.html.erb:29
 msgid "By name"
 msgstr ""
 
-#: app/views/clients/_clients_info.html.erb:25
+#: app/views/clients/_clients_info.html.erb:33
 msgid "By system"
 msgstr ""
 
@@ -2905,7 +2929,7 @@ msgstr ""
 msgid "Add a logo"
 msgstr ""
 
-#: app/views/clients/_clients_list.html.erb:29
+#: app/views/clients/_clients_list.html.erb:28
 msgid "Stats"
 msgstr ""
 

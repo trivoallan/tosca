@@ -38,6 +38,7 @@ class ContractsController < ApplicationController
   end
 
   def create
+    # It's needed because manager are scoped, at this point
     Client.send(:with_exclusive_scope) do
       @contract = Contract.new(params[:contract])
     end
