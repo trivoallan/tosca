@@ -2577,7 +2577,7 @@ msgstr "Testeurs"
 
 #: app/views/bienvenue/about.html.erb:45
 msgid "Free software used by %s"
-msgstr "Logiciel libre utilisé par %s"
+msgstr "Logiciels libre utilisé par %s"
 
 #: app/views/bienvenue/admin.html.erb:2 app/views/bienvenue/index.html.erb:3
 msgid "Contents"
