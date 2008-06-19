@@ -39,6 +39,7 @@ class ContractsController < ApplicationController
 
   def create
     # It's needed because manager are scoped, at this point
+    _aggregate_commitments
     Client.send(:with_exclusive_scope) do
       @contract = Contract.new(params[:contract])
     end
@@ -59,6 +60,7 @@ class ContractsController < ApplicationController
   def update
     @contract = Contract.find(params[:id])
     @contract.creator = session[:user] unless @contract.creator
+    _aggregate_commitments
     if @contract.update_attributes(params[:contract])
       flash[:notice] = _('Contract was successfully updated.')
       redirect_to contract_path(@contract)
@@ -88,6 +90,19 @@ private
     rescue Exception => e
       flash[:warn] = _('Unknown rules for contract "%s"') % e.message
     end
+  end
+
+  # Since Html lack of aggregation between multiple select, we have to do it
+  # manually. It's a shame, and it's quite slow.
+  # TODO : find a better way
+  def _aggregate_commitments
+    contract, ids = params[:contract], []
+    return unless contract
+    contract.keys.grep(/^engagement_ids/).each{|k|
+      value = contract.delete(k)
+      ids << value unless value == '0'
+    }
+    contract[:engagement_ids] = ids
   end
 
 end
