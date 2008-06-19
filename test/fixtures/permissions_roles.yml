@@ -1,340 +1,780 @@
 --- 
 join_00107: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "52"
+=======
+  permission_id: "535"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "6"
 join_00094: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "45"
+=======
+  permission_id: "528"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00073: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "36"
+=======
+  permission_id: "519"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00010: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "4"
+=======
+  permission_id: "487"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00008: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "3"
+=======
+  permission_id: "486"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00031: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "10"
+=======
+  permission_id: "493"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00029: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "9"
+=======
+  permission_id: "492"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00052: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "21"
+=======
+  permission_id: "504"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00110: 
   permission_id: "55"
   role_id: "1"
 join_00108: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "53"
+=======
+  permission_id: "536"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "6"
 join_00095: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "45"
+=======
+  permission_id: "528"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00074: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "36"
+=======
+  permission_id: "519"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00011: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "4"
+=======
+  permission_id: "487"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00009: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "4"
+=======
+  permission_id: "487"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00032: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "10"
+=======
+  permission_id: "493"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00053: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "22"
   role_id: "2"
 join_00111: 
   permission_id: "55"
+=======
+  permission_id: "505"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00109: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "54"
+=======
+  permission_id: "537"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "6"
 join_00096: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "45"
+=======
+  permission_id: "528"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00075: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "36"
+=======
+  permission_id: "519"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00012: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "4"
+=======
+  permission_id: "487"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00033: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "11"
+=======
+  permission_id: "494"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00054: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "23"
+=======
+  permission_id: "506"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00112: 
   permission_id: "55"
   role_id: "3"
 join_00097: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "46"
+=======
+  permission_id: "529"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00076: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "37"
+=======
+  permission_id: "520"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00034: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "11"
+=======
+  permission_id: "494"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00055: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "24"
+=======
+  permission_id: "507"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00013: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "5"
+=======
+  permission_id: "488"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00098: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "46"
+=======
+  permission_id: "529"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00077: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "37"
+=======
+  permission_id: "520"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00056: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "25"
+=======
+  permission_id: "508"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00014: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "5"
+=======
+  permission_id: "488"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00035: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "12"
+=======
+  permission_id: "495"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00099: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "46"
+=======
+  permission_id: "529"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00078: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "37"
+=======
+  permission_id: "520"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00015: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "5"
+=======
+  permission_id: "488"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00036: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "12"
+=======
+  permission_id: "495"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00057: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "26"
+=======
+  permission_id: "509"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00080: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "38"
+=======
+  permission_id: "521"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00079: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "38"
+=======
+  permission_id: "521"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00037: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "13"
+=======
+  permission_id: "496"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00058: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "27"
+=======
+  permission_id: "510"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00081: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "38"
+=======
+  permission_id: "521"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00016: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "5"
+=======
+  permission_id: "488"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00060: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "29"
+=======
+  permission_id: "512"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00059: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "28"
+=======
+  permission_id: "511"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00082: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "39"
+=======
+  permission_id: "522"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00017: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "6"
+=======
+  permission_id: "489"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00040: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "14"
+=======
+  permission_id: "497"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00038: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "13"
+=======
+  permission_id: "496"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00061: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "30"
+=======
+  permission_id: "513"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00083: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "39"
+=======
+  permission_id: "522"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00020: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "6"
+=======
+  permission_id: "489"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00018: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "6"
+=======
+  permission_id: "489"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00041: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "15"
+=======
+  permission_id: "498"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00039: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "14"
+=======
+  permission_id: "497"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00062: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "31"
+=======
+  permission_id: "514"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00084: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "39"
+=======
+  permission_id: "522"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00000: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "1"
+=======
+  permission_id: "484"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "1"
 join_00021: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "7"
+=======
+  permission_id: "490"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00019: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "6"
+=======
+  permission_id: "489"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00042: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "15"
+=======
+  permission_id: "498"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00063: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "32"
+=======
+  permission_id: "515"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00100: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "47"
+=======
+  permission_id: "530"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00085: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "40"
+=======
+  permission_id: "523"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00001: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "2"
+=======
+  permission_id: "485"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00022: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "7"
+=======
+  permission_id: "490"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00043: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "16"
+=======
+  permission_id: "499"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00064: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "33"
+=======
+  permission_id: "516"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00101: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "47"
+=======
+  permission_id: "530"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00086: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "40"
+=======
+  permission_id: "523"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00023: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "7"
+=======
+  permission_id: "490"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00044: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "16"
+=======
+  permission_id: "499"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00065: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "33"
+=======
+  permission_id: "516"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00002: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "2"
+=======
+  permission_id: "485"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00102: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "47"
+=======
+  permission_id: "530"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00087: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "40"
+=======
+  permission_id: "523"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00066: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "33"
+=======
+  permission_id: "516"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00045: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "17"
+=======
+  permission_id: "500"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00003: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "2"
+=======
+  permission_id: "485"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00024: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "7"
+=======
+  permission_id: "490"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00103: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "48"
+=======
+  permission_id: "531"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "6"
 join_00088: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "41"
+=======
+  permission_id: "524"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00067: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "34"
+=======
+  permission_id: "517"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00004: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "2"
+=======
+  permission_id: "485"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00025: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "8"
+=======
+  permission_id: "491"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00046: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "17"
+=======
+  permission_id: "500"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00090: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "43"
+=======
+  permission_id: "526"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00089: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "42"
+=======
+  permission_id: "525"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00068: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "34"
+=======
+  permission_id: "517"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00026: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "8"
+=======
+  permission_id: "491"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00047: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "18"
+=======
+  permission_id: "501"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00104: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "49"
+=======
+  permission_id: "532"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "6"
 join_00091: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "44"
+=======
+  permission_id: "527"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00070: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "35"
+=======
+  permission_id: "518"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00069: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "34"
+=======
+  permission_id: "517"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00005: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "3"
+=======
+  permission_id: "486"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00048: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "18"
+=======
+  permission_id: "501"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00105: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "50"
+=======
+  permission_id: "533"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "6"
 join_00092: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "44"
+=======
+  permission_id: "527"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00071: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "35"
+=======
+  permission_id: "518"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00006: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "3"
+=======
+  permission_id: "486"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00027: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "8"
+=======
+  permission_id: "491"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00050: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "19"
+=======
+  permission_id: "502"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00106: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "51"
+=======
+  permission_id: "534"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "6"
 join_00093: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "45"
+=======
+  permission_id: "528"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00072: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "35"
+=======
+  permission_id: "518"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00007: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "3"
+=======
+  permission_id: "486"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "4"
 join_00030: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "9"
+=======
+  permission_id: "492"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "3"
 join_00028: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "8"
+=======
+  permission_id: "491"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "5"
 join_00051: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "20"
+=======
+  permission_id: "503"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
 join_00049: 
+<<<<<<< HEAD:test/fixtures/permissions_roles.yml
   permission_id: "19"
+=======
+  permission_id: "502"
+>>>>>>> 22e13e5... Update tags permissions:test/fixtures/permissions_roles.yml
   role_id: "2"
