@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
       flash[:notice] = _('Team %s was successfully created.') % @team.name
       redirect_to(@team)
     else
-      _form && render :action => "new"
+      _form and render :action => "new"
     end
   end
 
@@ -34,7 +34,7 @@ class TeamsController < ApplicationController
       flash[:notice] = _('Team %s was successfully updated.') % @team.name
       redirect_to(@team)
     else
-      _form && render :action => "edit"
+      _form and render :action => "edit"
     end
   end
 
