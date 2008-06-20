@@ -1,16 +1,16 @@
-<% if @requests_found %>
- 
+<% if @requests_found && !@requests_found.empty?%>
+
   <% if @requests_found.size == 1 %>
     <% contract = @requests_found.first.contract.name %>
     <%= text_to_flash_player("The contract #{contract} has a new request.") %>
   <% else %>
     <%= text_to_flash_player("There is #{@requests_found.size} new requests.")%>
   <% end %>
-  
-  <%= show_list(@requests_found, _('New requests')) do |r| 
+
+  <%= show_list(@requests_found, _('New requests')) do |r|
         "##{r.id} #{r.contract} : #{r.resume}"
       end %>
-  
+
 <% else %>
   <h2><%= _("There is no new request") %></h2>
 <% end %>
