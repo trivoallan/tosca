@@ -202,6 +202,7 @@ class DemandesController < ApplicationController
       if @ingenieur
         @severites = Severite.find_select
         @ingenieurs = Ingenieur.find_select_by_contract_id(@demande.contract_id)
+        @teams = Team.on_contract_id(@demande.contract_id)
       end
     end
   end
@@ -320,11 +321,12 @@ class DemandesController < ApplicationController
     @logiciels = contract.logiciels.collect{|l| [l.name, l.id] }
     if @ingenieur
       @ingenieurs = Ingenieur.find_select_by_contract_id(contract.id)
+      @teams = Team.on_contract_id(contract.id)
     end
     result
   end
 
-  #TODO : redo 
+  #TODO : redo
   def _form(beneficiaire)
     @contracts = Contract.find_select(Contract::OPTIONS)
     if @contracts.empty?

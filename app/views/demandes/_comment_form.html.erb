@@ -14,7 +14,10 @@
   </td>
   <td align="center">
     <label for="commentaire_ingenieur_id"><%= _("Assign") %></label>
-    <%= select_empty(:commentaire, :ingenieur_id, @ingenieurs) %>
+    <select id="commentaire_ingenieur_id" name="commentaire[ingenieur_id]"><option value="">» </option>
+       <%= options_from_collection_for_select(@ingenieurs, :last, :first) %>
+       <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name) %>
+    </select>
   </td>
   <% end %>
 </tr></table>

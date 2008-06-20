@@ -1,6 +1,10 @@
 page.replace_html("recipient", select(:demande, :beneficiaire_id, @beneficiaires))
 page.replace_html("system", select(:demande, :socle_id, @socles) )
 if @ingenieur
-  page.replace_html("engineer", select(:demande, :ingenieur_id, @ingenieurs) )
+   out = %Q{<select id="demande_ingenieur_id" name="demande[ingenieur_id]"><option value="">» </option>}
+   out << options_from_collection_for_select(@ingenieurs, :last, :first)
+   out << option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name)
+   out << "</select>"
+   page.replace_html("engineer", out )
 end
 page.replace_html("logiciel", :partial => "logiciel")

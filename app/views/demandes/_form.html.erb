@@ -33,7 +33,13 @@
     </tr>
     <% if @ingenieur %>
      <tr><th><label for="demande_ingenieur_id"><%=_("Assigned to")%></label></th>
-     <td><div id="engineer"><%= select_empty(:demande, :ingenieur_id, @ingenieurs) %></div></td></tr>
+      <td><div id="engineer">
+          <select id="demande_ingenieur_id" name="demande[ingenieur_id]"><option value="">» </option>
+            <%= options_from_collection_for_select(@ingenieurs, :last, :first) %>
+            <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name) %>
+         </select>
+      </div></td>
+     </tr>
     <% end %>
     <tr>
      <td colspan="2"><hr /></td>
