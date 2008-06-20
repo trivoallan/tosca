@@ -33,7 +33,7 @@
     <% options = {:no_title => true, :edit => 'binaire'} %>
    <p>
      <% if @paquet.binaires.size > 0 %>
-        <%= public_show_list(@binaires, _('binary'), options) {|b|
+        <%= show_list(@binaires, _('binary'), options) {|b|
             link_to_binaire(b) << _(' <i>on</i> ') << b.socle.name
           } %>
      <% end %>

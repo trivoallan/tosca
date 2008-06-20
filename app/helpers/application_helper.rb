@@ -53,8 +53,8 @@ module ApplicationHelper
     size = elements.size
     result = ''
     return '' unless size > 0
-   
-    if session[:user] && options.has_key?(:public)
+
+    if !session[:user] && options.has_key?(:public_summarised5) )
       return "<u><b>#{pluralize(size, name.to_s.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
@@ -94,14 +94,6 @@ module ApplicationHelper
       result << '</ul>'
     end
     result
-  end
-
-  # Wrapper, allowing to have a consistent api with link_to_*
-  # Call it like exactly show_list
-  def public_show_list(elements, name = '', options = {}, &functor)
-    public_options = options.dup
-    public_options[:public] = true
-    show_list(elements, name, public_options, &functor)
   end
 
   # Private call, used by show_list on certain simple case
@@ -194,7 +186,7 @@ module ApplicationHelper
   def sec2day(seconds)
     ((seconds.abs)/(60*60*24)).round
   end
- 
+
   # conversion seconds in minutes
   def sec2min(seconds)
     ((seconds.abs)/60).round

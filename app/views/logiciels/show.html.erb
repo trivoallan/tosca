@@ -39,7 +39,7 @@
 
      <tr><td><b><%= _('Links') %></b> <%= link_to_new_urllogiciel(@logiciel.id) %></td>
          <% options = {:no_title => true, :edit => 'urllogiciel'} %>
-         <td><%= public_show_list(@logiciel.urllogiciels, 'url', options) {|u|
+         <td><%= show_list(@logiciel.urllogiciels, 'url', options) {|u|
              "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.typeurl.name}</a>"
             } %>
          </td></tr>
@@ -48,6 +48,7 @@
    <table class="show" style="width: 36em;">
      <tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:logiciel_id => @logiciel.id)%> <br />
         <% options[:edit] = nil %>
+        <% options[:public_summarized] = true %>
         <% if @demandes.size > 0  %>
          <div class="bloc_scroll">
            <%=show_list(@demandes, _('Request'), options) {|d| link_to_demande d}%>
@@ -68,7 +69,7 @@
          <%= link_to_new_contribution(nil, :logiciel_id => @logiciel.id)%><br />
          <%= public_table_of_contributions(@logiciel.contributions) %> </td>
      </tr>
-     
+
      <tr><td><b><%=_('Tags')%></b></td>
         <td><%= @logiciel.tag_list %></td>
      </tr>
