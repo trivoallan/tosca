@@ -182,6 +182,7 @@ class DemandesController < ApplicationController
 
   def show
     @demande = Demande.find(params[:id], :include => [:first_comment]) unless @demande
+    @page_title = @demande.resume
     @partial_for_summary = 'infos_demande'
     unless read_fragment "requests/#{@demande.id}/front-#{session[:user].kind}"
       @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande)

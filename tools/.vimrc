@@ -17,3 +17,7 @@ map <C-F1> :RVcontroller<CR>
 map <C-F2> :RVmodel<CR>
 map <C-F3> :RVview 
 map <C-F4> :RVhelper<CR>
+
+" Catch trailing whitespaces
+highlight WhitespaceEOL ctermbg=red guibg=red
+match WhitespaceEOL /\s\+$/

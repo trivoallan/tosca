@@ -39,7 +39,7 @@
         theme_advanced_toolbar_location : 'top'
      }); //]]> </script>
 
- <title><%=_(controller.controller_name)%></title>
+ <title><%= @page_title || _(controller.controller_name)%></title>
 </head>
 <body>
   <% # All the menu are built during first rendering or during login, in account controller %>
