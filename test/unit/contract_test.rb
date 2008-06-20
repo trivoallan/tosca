@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContractTest < Test::Unit::TestCase
-  fixtures :contracts, :logiciels, :paquets, :contracts_engagements,:engagements,
-    :demandes, :components, :credits, :clients
+  fixtures :contracts, :logiciels, :paquets, :contracts_engagements, :engagements,
+    :demandes, :components, :credits, :clients, :users, :contracts_users, :ingenieurs
 
   def test_to_strings
     check_strings Contract, :ouverture_formatted, :cloture_formatted
@@ -59,7 +59,7 @@ class ContractTest < Test::Unit::TestCase
 
   def test_engineer_users
     Contract.find(:all).each do |c|
-      c.engineer_users.each{ |i|
+      c.engineer_users.each { |i|
         assert_kind_of User, i
         assert i.ingenieur
       }
@@ -68,7 +68,7 @@ class ContractTest < Test::Unit::TestCase
   
   def test_engineers
     Contract.find(:all).each do |c|
-      c.engineers.each{ |i|
+      c.engineers.each { |i|
         assert_kind_of User, i
         assert i.ingenieur
       }

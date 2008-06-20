@@ -1,13 +1,14 @@
+# General controller for the application
+# The filters added here are loaded for the others controllers
+# All the methods from here are available everywhere
 
-# Controller general de l'application
-# Les filtres ajoutés à ce controller seront chargés pour tous les autres.
-# De même, toutes les méthodes ajoutées ici seront disponibles.
-
-# authentification
+# Authentification
 require_dependency 'login_system'
-# gestion des roles et des permissions
+
+# Manage roles and permissions
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency 'acl_system'
+
 #Scope
 require_dependency 'scope_system'
 
@@ -17,25 +18,26 @@ class ApplicationController < ActionController::Base
   # access protected everywhere, See Wiki for more Info
   before_filter :set_global_shortcuts, :login_required
 
-  # périmètre limité pour certains profils
+  # Limited perimeter for specific roles
   around_filter :scope
 
-  # in order to escape conflict with other rails app
+  # In order to escape conflict with other rails app
   session :session_key => '_tosca_session_id'
 
-  # systems d'authentification
+  # Authentification system
   include ACLSystem
-  # système de construction des filters
+  
+  # System for building filters
   include Filters
+  
   # Scope module
   include Scope
 
-  # layout standard
+  # Standard layout
   layout "standard-layout"
 
-  # Options pour tiny_mce
+  # Options for tiny_mce
   # http://wiki.moxiecode.com/index.php/TinyMCE:Configuration
-
 
 protected
   # a small wrapper used in some controller to redirect to homepage,
@@ -87,7 +89,7 @@ protected
     define_scope(user, is_connected, &block)
   end
 
-  # Surcharge en attendant que ce soit fixé dans la branche officielle
+  # Overload till there is a fix in rails
   def self.auto_complete_for(object, method, options = {})
     define_method("auto_complete_for_#{object}_#{method}") do
       column = object.to_s.pluralize + '.' + method.to_s
@@ -126,7 +128,7 @@ private
     end
 
     if request.xhr?
-      render_text('<div class="information error">' + msg + '</div>')
+      render :text => ('<div class="information error">' + msg + '</div>')
     else
       flash[:warn] = msg
       redirect_to(bienvenue_path, :status => :moved_permanently)
@@ -134,19 +136,4 @@ private
 
   end
 
-
-  # met le scope client en session
-  # ca permet de ne pas recharger les ids contracts
-  # à chaque fois
-  # call it like this : scope_client(params['filters']['client_id'])
-  # TODO : virer cette horreur
-  def scope_client(value)
-    if value == ''
-      nil
-    else
-      conditions = { :client_id => value.to_i }
-      options = { :select => 'id', :conditions => conditions }
-      Contract.find(:all, options).collect{|c| c.id}
-    end
-  end
 end

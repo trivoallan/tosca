@@ -1,6 +1,13 @@
----
-team_ossa:
-  id: 1
+--- 
+team_ossa: 
   name: OSSA
-  motto: "Given enough eyeballs, all bugs are shallow."
+  motto: Given enough eyeballs, all bugs are shallow.
   contact_id: 2
+  id: 1
+  user_cache: 
+team_support: 
+  name: Support
+  motto: One support to rule them all.
+  contact_id: 1
+  id: 2
+  user_cache: 

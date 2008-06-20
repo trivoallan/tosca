@@ -42,8 +42,8 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_authorized
-    customer = users(:user_00004)
-    manager  = users(:user_00002)
+    customer = users(:user_customer)
+    manager  = users(:user_manager)
 
     assert customer.authorized?('demandes/show')
     assert manager.authorized?('demandes/show')
@@ -116,5 +116,36 @@ class UserTest < Test::Unit::TestCase
     u.login = "admin"
     u.generate_password
     assert !u.save
+  end
+  
+  def test_manager?
+    viewer = users(:user_viewer)
+    customer = users(:user_customer)
+    expert = users(:user_expert)
+    manager  = users(:user_manager)
+    admin = users(:user_admin)
+    
+    assert_equal(viewer.manager?, false)
+    assert_equal(customer.manager?, false)
+    assert_equal(expert.manager?, false)
+    assert_equal(manager.manager?, true)
+    assert_equal(admin.manager?, true)
+  end
+  
+  def test_kind
+    viewer = users(:user_viewer)
+    customer = users(:user_customer)
+    expert = users(:user_expert)
+    manager  = users(:user_manager)
+    admin = users(:user_admin)
+    
+    kind_expert = 'expert'
+    kind_recipient = 'recipient'
+    
+    assert_equal(viewer.kind, kind_recipient)
+    assert_equal(customer.kind, kind_recipient)
+    assert_equal(expert.kind, kind_expert)
+    assert_equal(manager.kind, kind_expert)
+    assert_equal(admin.kind, kind_expert)
   end
 end

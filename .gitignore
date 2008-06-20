@@ -10,3 +10,4 @@ files/*
 public/image/*
 public/images/reporting/*
 nbproject/*
+test/coverage/*
