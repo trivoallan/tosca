@@ -10,8 +10,9 @@ module LogicielsHelper
   def public_link_to_logiciel(logiciel, options = {})
     return '-' unless logiciel and logiciel.is_a? Logiciel
     text = software_logo(logiciel, options)
-    text = logiciel.name if text.blank?
-    public_link_to text, logiciel_path(logiciel), LinksHelper::NO_HOVER
+    options = LinksHelper::NO_HOVER
+    text, options = logiciel.name, {} if text.blank?
+    public_link_to text, logiciel_path(logiciel), options
   end
 
   # Link to create a new url for a Logiciel
