@@ -54,7 +54,7 @@ module ApplicationHelper
     result = ''
     return '' unless size > 0
 
-    if !session[:user] && options.has_key?(:public_summarised5) )
+    if !session[:user] && options.has_key?(:public_summarised)
       return "<u><b>#{pluralize(size, name.to_s.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
