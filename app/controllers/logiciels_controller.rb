@@ -13,8 +13,7 @@ class LogicielsController < ApplicationController
       @title = _('List of your supported softwares')
     end
 
-    options = { :per_page => 10, :order => 'logiciels.name',
-      :joins => "LEFT OUTER JOIN competences_logiciels ON competences_logiciels.logiciel_id=logiciels.id" }
+    options = { :per_page => 10, :order => 'logiciels.name', :include => [:groupe] }
     conditions = []
 
     if params.has_key? :filters
@@ -35,7 +34,6 @@ class LogicielsController < ApplicationController
         [:software, 'logiciels.name', :like ],
         [:description, 'logiciels.description', :like ],
         [:groupe_id, 'logiciels.groupe_id', :equal ],
-        [:competence_id, 'competences_logiciels.competence_id', :equal ],
         [:contract_id, ' paquets.contract_id', :in ]
       ])
       @filters = softwares_filters

@@ -31,7 +31,7 @@ module Filters
   end
 
   class Softwares < Struct.new('Softwares', :software, :groupe_id,
-                               :contract_id, :description, :competence_id )
+                               :contract_id, :description )
     extend Shared
   end
 
