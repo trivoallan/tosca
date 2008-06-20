@@ -9,8 +9,7 @@ MP3_FOLDER_PATH = "#{RAILS_ROOT}/public" + MP3_FOLDER_URL
 # Generates the mp3 file and the javascript utility that shows the
 # voice player.
 def text_to_flash_player(text)
-  filename =  Digest::SHA1.hexdigest("--tosca--#{text}--tosca--") + ".mp3"
-
+  filename =  Digest::SHA1.hexdigest("--tosca--#{Locale.get.language}--#{text}--tosca--") + ".mp3"
   text.to_mp3(MP3_FOLDER_PATH + "/" + filename) unless File.exists?(MP3_FOLDER_PATH + "/" + filename)
   html_for_mp3_flash(MP3_FOLDER_URL + "/" + filename)
 end

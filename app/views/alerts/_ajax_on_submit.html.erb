@@ -2,9 +2,9 @@
 
   <% if @requests_found.size == 1 %>
     <% contract = @requests_found.first.contract.name %>
-    <%= text_to_flash_player("The contract #{contract} has a new request.") %>
+    <%= text_to_flash_player(_("The contract %s has a new request : %s") % [ contract, @request_found.first.resume ]) %>
   <% else %>
-    <%= text_to_flash_player("There is #{@requests_found.size} new requests.")%>
+    <%= text_to_flash_player(_("There is %d new requests.") % @requests_found.size)%>
   <% end %>
 
   <%= show_list(@requests_found, _('New requests')) do |r|
