@@ -33,10 +33,6 @@ class LogicielsControllerTest < Test::Unit::TestCase
     assert_response :success
     assigns(:logiciels).each { |l| assert_equal l.groupe_id, 2 }
 
-    get :index, :filters => { :competence_id => 1 }
-    assert_response :success
-    assigns(:logiciels).each { |l| assert l.competences.include?(1) }
-
   end
 
   def test_show
