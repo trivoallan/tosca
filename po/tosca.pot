@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-06-19 14:21+0200\n"
+"POT-Creation-Date: 2008-06-20 12:14+0200\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,19 +76,19 @@ msgstr ""
 msgid "Welcome %s %s"
 msgstr ""
 
-#: app/controllers/application.rb:115
+#: app/controllers/application.rb:117
 msgid ""
 "This address is not valid. If you think this is an error, do not hesitate to "
 "contact us."
 msgstr ""
 
-#: app/controllers/application.rb:119
+#: app/controllers/application.rb:121
 msgid ""
 "An error has occured. We are now advised of your issue and have all the "
 "required information to investigate in order to fix it."
 msgstr ""
 
-#: app/controllers/application.rb:120
+#: app/controllers/application.rb:122
 msgid "Please contact us if your problem remains."
 msgstr ""
 
@@ -168,15 +168,15 @@ msgstr ""
 msgid "Skill was successfully updated."
 msgstr ""
 
-#: app/controllers/contracts_controller.rb:47
+#: app/controllers/contracts_controller.rb:48
 msgid "Contract was successfully created."
 msgstr ""
 
-#: app/controllers/contracts_controller.rb:63
+#: app/controllers/contracts_controller.rb:65
 msgid "Contract was successfully updated."
 msgstr ""
 
-#: app/controllers/contracts_controller.rb:89
+#: app/controllers/contracts_controller.rb:91
 msgid "Unknown rules for contract \"%s\""
 msgstr ""
 
@@ -453,7 +453,8 @@ msgid "Minor"
 msgstr ""
 
 #: app/controllers/export_controller.rb:199
-#: app/helpers/application_helper.rb:182
+#: app/helpers/application_helper.rb:182 app/helpers/engagements_helper.rb:46
+#: app/helpers/engagements_helper.rb:47
 #: app/views/reporting/_comex_tableaux.html.erb:20
 msgid "None"
 msgstr ""
@@ -1390,6 +1391,10 @@ msgid "Contribution|Description fonctionnelle"
 msgstr ""
 
 #: app/models/contribution.rb:-
+msgid "Contribution|Etatreversement"
+msgstr ""
+
+#: app/models/contribution.rb:-
 msgid "Contribution|Cloture le"
 msgstr ""
 
@@ -2180,8 +2185,7 @@ msgid "Confirm this last"
 msgstr ""
 
 #: app/views/account/_edit_account_informations.html.erb:82
-#: app/views/account/_show_account_information.html.erb:50
-msgid "Daily Digest"
+msgid "Receive a summary of daily activities"
 msgstr ""
 
 #: app/views/account/_edit_account_informations.html.erb:86
@@ -2323,6 +2327,10 @@ msgstr ""
 msgid "Preferences"
 msgstr ""
 
+#: app/views/account/_show_account_information.html.erb:50
+msgid "Daily Digest"
+msgstr ""
+
 #: app/views/account/_show_engineer.html.erb:4
 #: app/views/account/_show_recipient.html.erb:4
 msgid "Show an account"
@@ -2459,6 +2467,14 @@ msgstr ""
 
 #: app/views/account/signup.html.erb:2
 msgid "Create an account"
+msgstr ""
+
+#: app/views/alerts/_ajax_on_submit.html.erb:5
+msgid "The contract %s has a new request : %s"
+msgstr ""
+
+#: app/views/alerts/_ajax_on_submit.html.erb:7
+msgid "There is %d new requests."
 msgstr ""
 
 #: app/views/alerts/_ajax_on_submit.html.erb:15
@@ -2917,6 +2933,7 @@ msgstr ""
 
 #: app/views/clients/_clients_list.html.erb:5
 #: app/views/clients/_form.html.erb:24 app/views/logiciels/_form.html.erb:12
+#: app/views/logiciels/_softwares_list.html.erb:6
 msgid "Logo"
 msgstr ""
 
@@ -3352,12 +3369,12 @@ msgstr ""
 msgid "Demande|Expected on"
 msgstr ""
 
-#: app/views/demandes/_form.html.erb:84
+#: app/views/demandes/_form.html.erb:85
 #: app/views/demandes/_form_deposer.html.erb:22
 msgid "Detailed description"
 msgstr ""
 
-#: app/views/demandes/_form.html.erb:89
+#: app/views/demandes/_form.html.erb:90
 msgid "Add a file"
 msgstr ""
 
@@ -3886,7 +3903,7 @@ msgstr ""
 msgid "a new software"
 msgstr ""
 
-#: app/views/logiciels/_softwares_list.html.erb:6
+#: app/views/logiciels/_softwares_list.html.erb:7
 msgid "Technologie(s)"
 msgstr ""
 

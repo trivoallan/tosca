@@ -14,7 +14,7 @@ class LogicielsController < ApplicationController
     end
 
     options = { :per_page => 10, :order => 'logiciels.name',
-      :include => [:groupe], :joins => "LEFT OUTER JOIN competences_logiciels ON competences_logiciels.logiciel_id=logiciels.id" }
+      :joins => "LEFT OUTER JOIN competences_logiciels ON competences_logiciels.logiciel_id=logiciels.id" }
     conditions = []
 
     if params.has_key? :filters
