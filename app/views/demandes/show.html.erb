@@ -3,7 +3,8 @@
    #           @users_ingenieurs
 %>
 
-<% cache("requests/#{@demande.id}/front-#{session[:user].kind}") do %>
+<% # It's separated by roles, since viewer & customer see different things %>
+<% cache("requests/#{@demande.id}/front-#{session[:user].role_id}") do %>
  <div class="content">
    <h1>
     <% options = edit_demande_path(@demande.id) %>

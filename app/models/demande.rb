@@ -107,7 +107,7 @@ class Demande < ActiveRecord::Base
 
   # Used in the cache/sweeper system
   def fragments
-    [ "requests/#{self.id}/front-expert", # Right side of the show view
+    [ %r{requests/#{self.id}/front-\d+}, # Right side of the show view
       "requests/#{self.id}/front-recipient",
       "requests/#{self.id}/info-expert", # Left side of the show view
       "requests/#{self.id}/info-recipient",
