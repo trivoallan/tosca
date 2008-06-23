@@ -26,10 +26,8 @@ class Paquet < ActiveRecord::Base
   end
 
   # (cf Conventions de développement : wiki)
-  # INCLUDE à mettre pour chaque finders
-  INCLUDE = [ :conteneur ]
   ORDER = 'paquets.name, paquets.version, paquets.release DESC'
-  OPTIONS = { :include => INCLUDE, :order => ORDER }
+  OPTIONS = { :order => ORDER }
 
   def self.get_scoped_methods
     scoped_methods
