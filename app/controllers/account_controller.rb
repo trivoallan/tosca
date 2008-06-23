@@ -45,7 +45,9 @@ class AccountController < ApplicationController
 
   # Exit gracefully
   def logout
+    last_user = session[:last_user]
     clear_sessions
+    _login(last_user) if last_user
     redirect_to "/"
   end
 
@@ -201,7 +203,9 @@ class AccountController < ApplicationController
     begin
       if @ingenieur
         benef = Beneficiaire.find(params[:id])
+        current_user = session[:user]
         set_sessions(benef.user)
+        session[:last_user] = current_user
       else
         flash[:warn] = _('You are not allowed to change your identity')
       end
