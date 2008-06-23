@@ -37,6 +37,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^bienvenue/suggestions$', 'Allow comments on this software' ],
                [ '^export/', 'All kinds of export' ],
                [ '^files/download$', 'All kinds of download' ],
+               [ '^piecejointes/uv$', 'Attachments preview' ],
                [ '^reporting/(configuration|general)$', 'Activity Report' ]
              ]
     add_permission.call(roles, access)
