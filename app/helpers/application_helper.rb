@@ -20,7 +20,7 @@ module ApplicationHelper
   # indent text and escape HTML caracters
   # Use on descriptions, comments, etc.
   def indent(text)
-    (text.is_a? String) ? h(word_wrap(text)).gsub("\n", '<br />') : text
+    (text.is_a? String) ? word_wrap(text).gsub("\n", '<br />') : text
   end
 
   # Show a help message

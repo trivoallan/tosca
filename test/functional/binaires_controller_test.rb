@@ -1,29 +1,22 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'binaires_controller'
 
-# Re-raise errors caught by the controller.
-class BinairesController; def rescue_action(e) raise e end; end
-
-class BinairesControllerTest < Test::Unit::TestCase
+class BinairesControllerTest < ActionController::TestCase
   fixtures :binaires, :paquets, :logiciels, :contracts,
     :clients, :socles, :arches
 
   def setup
-    @controller = BinairesController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 
-  def atest_index
+  def test_index
     get :index
     assert_response :success
     assert_template 'index'
     assert_not_nil assigns(:binaires)
   end
 
-  def atest_show
-    get :show, :id => 1
+  def test_show
+    get :show, :id => Binaire.find(:first).id
 
     assert_response :success
     assert_template 'show'
@@ -32,7 +25,7 @@ class BinairesControllerTest < Test::Unit::TestCase
     assert assigns(:binaire).valid?
   end
 
-  def atest_new
+  def test_new
     get :new
 
     assert_response :success
@@ -42,19 +35,19 @@ class BinairesControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    num_binaires = Binaire.count
+    get :new
 
-    post :create, :binaire => { :paquet_id => 1 }
+    assert_difference('Binaire.count') do
+      submit_with_name :binaire, "a new name"
+    end
 
     assert_response :redirect
     assert_redirected_to :action => 'show', :controller => 'paquets'
     assert flash.has_key?(:notice)
-
-    assert_equal num_binaires + 1, Binaire.count
   end
 
-  def atest_edit
-    get :edit, :id => 1
+  def test_edit
+    get :edit, :id => Binaire.find(:first).id
 
     assert_response :success
     assert_template 'edit'
@@ -63,23 +56,26 @@ class BinairesControllerTest < Test::Unit::TestCase
     assert assigns(:binaire).valid?
   end
 
-  def atest_update
-    post :update, :id => 1
+  def test_update
+    get :edit, :id => Binaire.find(:first).id
+
+    submit_with_name :binaire, "an updated name"
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'show', :id => 1
+    assert_redirected_to :action => 'show'
+    assert_not_nil assigns(:binaire)
+    assert assigns(:binaire).valid?
   end
 
-  def atest_destroy
-    assert_not_nil Binaire.find(1)
+  def test_destroy
+    assert_not_nil Binaire.find(:first)
 
-    post :destroy, :id => 1
+    assert_difference("Binaire.count", -1) do
+      delete :destroy, :id => Binaire.find(:first).id
+    end
+
     assert_response :redirect
-    assert_redirected_to :action => 'index'
-
-    assert_raise(ActiveRecord::RecordNotFound) {
-      Binaire.find(1)
-    }
+    assert_redirected_to bienvenue_path
   end
 end

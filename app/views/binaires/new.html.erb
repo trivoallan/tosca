@@ -1,6 +1,6 @@
 <h1><%=_('New binary package')%></h1>
 
-<% form_tag(binaires_path, :multipart => true) do %>
+<% form_tag(binaires_path, :multipart => true, :id => 'main_form') do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Validate') %>
 <% end %>
