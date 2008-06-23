@@ -1,0 +1,29 @@
+<tr id="<%= @logiciel.id %>">
+  <% if @paquet.nil? %>
+    <% paquet_version = "xx" %>
+    <% paquet_id = nil %>
+    <% paquet_active = "checked='yes'" %>
+  <% else %>
+    <% paquet_version = @paquet.version.to_s %>
+    <% paquet_id = @paquet.id.to_s %>
+    <% paquet_active = "" %>
+    <% paquet_active = "checked='yes'" if @paquet.active %>
+  <% end %>
+  <% time = Time.now.hash %>
+  <td><label for='softwares[<%= time %>][active]'> <%= @logiciel.name %></label></td>
+  <td>
+    <input id='softwares[<%= time %>][version]' name='softwares[<%= time %>][version]' type='text' value='<%= paquet_version%>'>
+  </td><td align='center'>
+    <input id='softwares[<%= time %>][active]' name='softwares[<%= time %>][active]' type='checkbox' <%= paquet_active %>>
+  </td><td>
+    <input name='softwares[<%= time %>][paquet_id]' type='hidden' value='<%= paquet_id %>'>
+    <input name='softwares[<%= time %>][software]' type='hidden' value='<%= @logiciel.id %>'>
+
+   <%= link_to_function(StaticImage::delete, :class => "no_hover" ) { |page|  page.remove @logiciel.id.to_s } %>
+  </td>
+</tr>
+<% if @paquet.nil? %>
+<script>
+  document.getElementById('softwares[<%= time %>][version]').focus()
+</script>
+<% end %>

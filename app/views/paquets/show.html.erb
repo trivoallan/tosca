@@ -25,9 +25,9 @@
      <p><b><%= _(column.human_name) %>:</b> <%= @paquet.send(column.name) %></p>
     <% end %>
 
-    <p><b><%= _('Container') + ' : '%></b> <%= @paquet.conteneur.name %></p>
-    <p><b><%= _('Distributor')+ ' : '%></b> <%=h @paquet.distributeur.name %></p>
-    <p><b><%= _('Maintainer')+' : '%></b> <%=h @paquet.mainteneur.name %></p>
+    <p><b><%= _('Container') + ' : '%></b> <%= @paquet.conteneur.name unless @paquet.conteneur.nil? %></p>
+    <p><b><%= _('Distributor')+ ' : '%></b> <%=h @paquet.distributeur.name unless @paquet.distributeur.nil? %></p>
+    <p><b><%= _('Maintainer')+' : '%></b> <%=h @paquet.mainteneur.name unless @paquet.mainteneur.nil? %></p>
    </div>
    <p><b><%= pluralize(@paquet.binaires.count, _('binary') ) %></b> <%= link_to_new_binaire(@paquet.id) %></p>
     <% options = {:no_title => true, :edit => 'binaire'} %>

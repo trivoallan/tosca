@@ -1,0 +1,34 @@
+<h1><%= _('Supported Softwares') %></h1>
+
+<% form_tag :action => "add_softwares", :method => :post, :id => @contract.id do %>
+<table class="topbox">
+<tr><td>
+  <table class="form">
+  <tr>
+    <td width="170">
+      <fieldset>
+        <legend><%=_('Softwares')%></legend>
+        <%= select "select", "softwares", Logiciel.find_select, :include_blank => true %> <%= StaticImage::spinner %>
+      </fieldset>
+    </td>
+  </tr>
+  <tr><td><%= submit_tag _('Validate') %></td></tr>
+  </table>
+</td><td width=50></td><td>
+  <table class="form" cellpadding=5 >
+  <tr><th width=70><%= _('Softwares') %></th><th><%= _('Version') %></th><th><%= _('Supported')+"?" %></th></tr>
+  <% @paquets.each do |p| %>
+    <% @logiciel = p.logiciel %>
+    <% @paquet = p %>
+    <%= render :partial => "contracts/logiciel" %> 
+  <% end %>
+  <tr id="end"></tr>
+  </table>
+</td></tr></table>
+<% options = { :before => "Element.show('spinner')",
+               :success => "Element.hide('spinner')",
+               :url => {:action => "ajax_add_software", :controller => "contracts" }, 
+               :with => "software", 
+               :on => "change" } %>
+<%= observe_field("select_softwares", options) %>
+<% end %>

@@ -11,8 +11,8 @@
   result << "<td>#{link_to_paquet p}</td>"
   result << "<td>#{p.conteneur.name}</td>"
   result << "<td>#{number_to_human_size p.taille}</td>"
-  result << "<td>#{p.distributeur.name}</td>"
-  result << "<td>#{p.mainteneur.name}</td>"
+  result << "<td>#{p.distributeur.name}</td>" unless p.distributeur.nil?
+  result << "<td>#{p.mainteneur.name}</td>" unless p.mainteneur.nil?
   result << "#{link_to_actions_table p}"
 }%>
 <%= links %>
