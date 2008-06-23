@@ -16,6 +16,7 @@ class ContractsController < ApplicationController
 
   def show
     @contract = Contract.find(params[:id])
+    @paquets = @contract.paquets.find(:all, :conditions => { :active => 1 })
     @teams = @contract.teams
   end
 
@@ -69,6 +70,55 @@ class ContractsController < ApplicationController
   def destroy
     Contract.find(params[:id]).destroy
     redirect_to contracts_path
+  end
+
+  def ajax_add_software
+    if params[:software].blank?
+      return render(:text => '')
+    end
+    @logiciel = Logiciel.find(params[:software])
+    render(:update) { |page| page.insert_html(:before, "end", :partial => "contracts/logiciel") }
+  end
+
+  def area
+    @contract = Contract.find(params[:id])
+    @paquets = @contract.paquets
+  end
+
+  def add_softwares
+    @contract = Contract.find(params[:id])
+    @contract.paquets.each do |p|
+      find = false
+      unless params['softwares'].nil?
+        params['softwares'].each do |s|
+          if s[1]['paquet_id'].to_s == p.id.to_s
+            find = true
+            p.version = s[1]['version']
+            p.active = s[1]['active'] == "on" ? 1 : 0
+            p.save
+          end
+        end
+      end
+      if find == false
+        p.destroy
+      end
+    end
+    unless params['softwares'].nil?
+      params['softwares'].each do |s|
+        if s[1]['paquet_id'].blank?
+          paquet = Paquet.new
+          paquet.contract_id = @contract.id
+          paquet.logiciel_id = s[1]['software']
+          paquet.name = Logiciel.find(s[1]['software']).name
+          paquet.version = s[1]['version']
+          paquet.active = s[1]['active'] == "on" ? 1 : 0
+          paquet.conteneur_id = 3
+          paquet.configuration = ""
+          paquet.save
+        end
+      end
+    end
+    redirect_to contract_path(@contract)
   end
 
 private
