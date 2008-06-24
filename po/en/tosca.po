@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-23 20:06+0200\n"
+"POT-Creation-Date: 2008-06-24 15:03+0200\n"
 "PO-Revision-Date: 2008-06-20 12:21+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: English <traduc@traduc.org>\n"
@@ -386,7 +386,7 @@ msgid "Last update"
 msgstr ""
 
 #: app/controllers/export_controller.rb:141
-#: app/controllers/reporting_controller.rb:490
+#: app/controllers/reporting_controller.rb:495
 #: app/helpers/contributions_helper.rb:7
 #: app/views/contributions/_contributions_info.html.erb:41
 #: app/views/demandes/_form.html.erb:86
@@ -570,72 +570,72 @@ msgstr ""
 msgid "incorrect parameters"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:483
-#: app/controllers/reporting_controller.rb:485
+#: app/controllers/reporting_controller.rb:488
+#: app/controllers/reporting_controller.rb:490
 msgid "Distributed on "
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:483
-#: app/controllers/reporting_controller.rb:485
+#: app/controllers/reporting_controller.rb:488
+#: app/controllers/reporting_controller.rb:490
 #: app/views/reporting/_introduction.html.erb:4
 msgid " months"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:511
+#: app/controllers/reporting_controller.rb:516
 msgid ""
 "No data \n"
 "available"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:521
+#: app/controllers/reporting_controller.rb:526
 #: app/views/reporting/_sommaire.html.erb:7
 #: app/views/reporting/general.html.erb:20
 msgid "Distribution of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:522
+#: app/controllers/reporting_controller.rb:527
 msgid "Distribution of requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:523
-#: app/controllers/reporting_controller.rb:524
+#: app/controllers/reporting_controller.rb:528
+#: app/controllers/reporting_controller.rb:529
 msgid "Severity of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:525
-#: app/controllers/reporting_controller.rb:526
+#: app/controllers/reporting_controller.rb:530
+#: app/controllers/reporting_controller.rb:531
 msgid "Resolution of your requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:528
+#: app/controllers/reporting_controller.rb:533
 msgid "Cancelled requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:529
+#: app/controllers/reporting_controller.rb:534
 msgid "Evolution of the activity volume"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:531
+#: app/controllers/reporting_controller.rb:536
 msgid "Top 5 of the most discussed requests"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:532
+#: app/controllers/reporting_controller.rb:537
 msgid "Top 5 of the most discussed software"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:534
+#: app/controllers/reporting_controller.rb:539
 msgid "Processing time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:535
+#: app/controllers/reporting_controller.rb:540
 msgid "Response time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:536
+#: app/controllers/reporting_controller.rb:541
 msgid "Workaround time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:537
+#: app/controllers/reporting_controller.rb:542
 msgid "Correction time"
 msgstr ""
 
@@ -1153,7 +1153,7 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: app/helpers/static_image.rb:63 app/views/bienvenue/about.html.erb:3
+#: app/helpers/static_image.rb:63 app/views/bienvenue/about.html.erb:4
 #: app/views/demandes/_infos_demande.html.erb:73
 #: app/views/demandes/lists/_requests_info.html.erb:59
 msgid "Help"
@@ -2549,27 +2549,27 @@ msgstr ""
 msgid "Create"
 msgstr ""
 
-#: app/views/bienvenue/about.html.erb:8 app/views/bienvenue/index.html.erb:74
+#: app/views/bienvenue/about.html.erb:9 app/views/bienvenue/index.html.erb:74
 msgid "Don't hesitate to"
 msgstr ""
 
-#: app/views/bienvenue/about.html.erb:9 app/views/bienvenue/index.html.erb:75
+#: app/views/bienvenue/about.html.erb:10 app/views/bienvenue/index.html.erb:75
 msgid "contact us"
 msgstr ""
 
-#: app/views/bienvenue/about.html.erb:10
+#: app/views/bienvenue/about.html.erb:11
 msgid "if needed"
 msgstr ""
 
-#: app/views/bienvenue/about.html.erb:14
+#: app/views/bienvenue/about.html.erb:15
 msgid "About"
 msgstr ""
 
-#: app/views/bienvenue/about.html.erb:16
+#: app/views/bienvenue/about.html.erb:17
 msgid "This application was created by <b>Michel Loiseleur</b> at "
 msgstr ""
 
-#: app/views/bienvenue/about.html.erb:18
+#: app/views/bienvenue/about.html.erb:19
 msgid ""
 "This journey would not have been possible without\n"
 "      the <b>developers</b> who have taken part to this project,\n"
@@ -2579,15 +2579,15 @@ msgid ""
 "      %s would be nothing without them."
 msgstr ""
 
-#: app/views/bienvenue/about.html.erb:26
+#: app/views/bienvenue/about.html.erb:27
 msgid "Developers"
 msgstr ""
 
-#: app/views/bienvenue/about.html.erb:36
+#: app/views/bienvenue/about.html.erb:37
 msgid "Quality Assurance"
 msgstr ""
 
-#: app/views/bienvenue/about.html.erb:44
+#: app/views/bienvenue/about.html.erb:45
 msgid "Free software used by %s"
 msgstr ""
 
@@ -3505,6 +3505,10 @@ msgstr ""
 
 #: app/views/demandes/lists/_requests_info.html.erb:48
 msgid "Attributes"
+msgstr ""
+
+#: app/views/demandes/lists/_requests_list.html.erb:3
+msgid "a new request"
 msgstr ""
 
 #: app/views/demandes/lists/_requests_table.html.erb:14
