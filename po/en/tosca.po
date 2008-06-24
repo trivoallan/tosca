@@ -38,7 +38,7 @@ msgstr ""
 
 #: app/controllers/account_controller.rb:166
 msgid "Edition succeeded"
-msgstr "désormais créer son contrat associé.<"
+msgstr ""
 
 #: app/controllers/account_controller.rb:210
 msgid "You are not allowed to change your identity"
