@@ -22,7 +22,7 @@ class PermissionsControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    get :show, :id => 1
+    get :show, :id => Permission.find(:first).id
 
     assert_response :success
     assert_template 'show'
@@ -62,7 +62,7 @@ class PermissionsControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, :id => 1
+    post :update, :id => Permission.find(:first).id
     assert_response :redirect
     assert_redirected_to :action => 'index'
   end
@@ -70,7 +70,7 @@ class PermissionsControllerTest < Test::Unit::TestCase
   def test_destroy
     assert_not_nil Permission.find(1)
 
-    post :destroy, :id => 1
+    post :destroy, :id => Permission.find(:first).id
     assert_response :redirect
     assert_redirected_to :action => 'index'
 

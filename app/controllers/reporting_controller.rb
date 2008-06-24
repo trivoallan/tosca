@@ -208,8 +208,8 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     if (middle_date > start_date and middle_date < end_date)
       @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
-      @report[:middle_report] = ((end_date.beginning_of_month - @report[:middle_date]) / 1.month).round + 1
-      @report[:total_report] = ((end_date.beginning_of_month - start_date.beginning_of_month) / 1.month).round + 1
+      @report[:middle_report] = compute_nb_month(@report[:middle_date], end_date)
+      @report[:total_report] = compute_nb_month(start_date, end_date)
     else
       flash.now[:warn] = _('incorrect parameters')
       # condition de sortie
@@ -218,7 +218,6 @@ class ReportingController < ApplicationController
   rescue
     flash.now[:warn] = _('incorrect parameters')
     @contract = nil
-
   end
 
   # initialisation de @data
@@ -250,6 +249,12 @@ class ReportingController < ApplicationController
      [ [:'délais_respectés'], [:'hors_délai'] ]
 
 
+  end
+
+  # It's damn hard to compute a difference of month
+  def compute_nb_month(start_date, end_date)
+    end_date.month - start_date.month + 1 +
+      (end_date.year - start_date.year) * 12
   end
 
   # Remplit un tableau avec la somme des données sur nb_month
@@ -367,7 +372,7 @@ class ReportingController < ApplicationController
 
   ##
   # TODO : le faire marcher si y a moins de 5 logiciels
-  # sort les 5 logiciels qui ont eu le plus de demandes
+  # Sort les 5 logiciels qui ont eu le plus de demandes
   def compute_top5_logiciels(report)
     logiciels = Demande.count(:group => "logiciel_id")
     logiciels = logiciels.sort {|a,b| a[1]<=>b[1]}
