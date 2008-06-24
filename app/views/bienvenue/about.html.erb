@@ -1,18 +1,6 @@
 <table class="sommaire"><tr><td>
  <div class="sommaire show">
-  <h3><%=_('Help')%></h3>
-  <p>
-    <%
-    joins = 'INNER JOIN contracts_teams ct ON ct.team_id=teams.id'
-    conditions = [ 'ct.contract_id = ?', 26 ]
-    teams = Team.find(:all, :conditions => conditions, :joins => joins)
-      %>
-    <select id="commentaire_ingenieur_id" name="commentaire[ingenieur_id]"><option value="">» </option>
-       <%= option_groups_from_collection_for_select(teams, :engineers_collection_select, :name, :id, :name) %>
-       <%= options_from_collection_for_select(Ingenieur.find(:all), :id, :name) %>
-    </select>
-  </p>
-
+  <h1><%=_('Help')%></h1>
   <% links = [ public_link_to_help_new_request,
                public_link_to_howto_request,
                public_link_to_help_request_status ] %>
