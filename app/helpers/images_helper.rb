@@ -35,7 +35,8 @@ module ImagesHelper
   def software_logo(software, options = {})
     return '' if software.nil? or software.image.blank?
     image_tag(url_for_image_column(software.image, 'image',
-                                   options[:size] || :small) || software.name)
+                                   options[:size] || :small) || software.name,
+              :class => "aligned_picture")
   end
 
   #TODO Merger avec StaticImage
