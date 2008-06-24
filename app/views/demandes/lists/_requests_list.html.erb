@@ -1,6 +1,6 @@
 <h1><%= @title %><%= StaticImage::spinner %></h1>
 
-<% links = show_pages_links(@demande_pages, 'une nouvelle demande',
+<% links = show_pages_links(@demande_pages, _('a new request'),
                     :url => demandes_path) %>
 <%= links %>
 
