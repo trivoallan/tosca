@@ -8,7 +8,7 @@
  <div class="content">
    <% if @demande.logiciel %>
      <div style="float: right">
-        <%= public_link_to software_logo(@demande.logiciel),
+        <%= public_link_to(software_logo(@demande.logiciel),
 	                       logiciel_path(@demande.logiciel),
                            :class => 'no_hover') %>
      </div>
