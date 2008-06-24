@@ -10,7 +10,7 @@
   <hr />
 
   <div id="contracts"><%= _('Contracts')%><br />
-    <%= hbtm_check_box( @user.contracts, @contracts, 'user[own_contract_ids]', :size => 2) %>
+    <%= hbtm_check_box( @user.own_contracts, @contracts, 'user[own_contract_ids]', :size => 2) %>
   </div>
 
   <% if false #deactivated for now. %>

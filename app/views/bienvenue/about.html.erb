@@ -1,18 +1,7 @@
 <table class="sommaire"><tr><td>
  <div class="sommaire show">
+<<<<<<< HEAD:app/views/bienvenue/about.html.erb
   <h3><%=_('Help')%></h3>
-  <p>
-    <%
-    joins = 'INNER JOIN contracts_teams ct ON ct.team_id=teams.id'
-    conditions = [ 'ct.contract_id = ?', 26 ]
-    teams = Team.find(:all, :conditions => conditions, :joins => joins)
-      %>
-    <select id="commentaire_ingenieur_id" name="commentaire[ingenieur_id]"><option value="">» </option>
-       <%= option_groups_from_collection_for_select(teams, :engineers_collection_select, :name, :id, :name) %>
-       <%= options_from_collection_for_select(Ingenieur.find(:all), :id, :name) %>
-    </select>
-  </p>
-
   <% links = [ public_link_to_help_new_request,
                public_link_to_howto_request,
                public_link_to_help_request_status ] %>
@@ -27,31 +16,30 @@
 
   <p><%= _('This application was created by <b>Michel Loiseleur</b> at ')%>
       <a href="http://www.linagora.com">Linagora</a>.</p>
-      <p><%= _('This journey would not have been possible whithout
-      the <b>contributors</b> who have taken part to this project,
-      without the testers who have contributed to it quality and
+      <p><%= _('This journey would not have been possible without
+      the <b>developers</b> who have taken part to this project,
+      without the testers who have contributed to its quality and
       without quite a few <b>free softwares</b> which have enable the
-      development to be fast and agile. They are all thanks here
-      warmly. %s would be nothing without them.') % App::Name %></p>
+      development to be fast and agile. They are all warmly thanked here.
+      %s would be nothing without them.') % App::Name %></p>
  </div>
  <div class="sommaire show">
-   <h2><%= _('Contributors')%></h2>
+   <h2><%= _('Developers')%></h2>
   <ul>
     <li>Adrien Grellier</li>
     <li>Guillaume Dufloux</li>
-    <li>Jonathan Clarke</li>
     <li>Julien Heyman</li>
     <li>Munteanu Olimpiu Andrei</li>
     <li>Rémy-Christophe Schermesser</li>
-    <li>Sébastien Bahloul</li>
   </ul>
  </div></td>
  <td><div class="sommaire show">
-     <h2><%= _('Testers') %></h2>
+     <h2><%= _('Quality Assurance') %></h2>
   <ul>
-    <li>Richard Samson</li>
-    <li>Philippe Brière</li>
+    <li>Jonathan Clarke</li>
     <li>Mehdi Rande</li>
+    <li>Philippe Brière</li>
+    <li>Richard Samson</li>
   </ul>
  </div><div class="sommaire show">
   <h2><%= _('Free software used by %s') % App::Name %></h2>

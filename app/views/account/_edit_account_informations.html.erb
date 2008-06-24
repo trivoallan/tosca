@@ -82,14 +82,14 @@
     <th><%= _("Receive a summary of daily activities") %></th>
     <td><%= check_box :user, :preferred_digest_daily %></td>
   </tr>
-  <!-- Only daily are implemented, for now. <tr>
-    <th><%= _("Weekly Digest") %></th>
+  <tr>
+    <th><%= _("Receive a summary of weekly activities") %></th>
     <td><%= check_box :user, :preferred_digest_weekly %></td>
   </tr>
   <tr>
-    <th><%= _("Monthly Digest") %></th>
+    <th><%= _("Receive a summary of monthly activities") %></th>
     <td><%= check_box :user, :preferred_digest_monthly %></td>
-  </tr>-->
+  </tr>
   <% end %>
 
   <% if manager %>
