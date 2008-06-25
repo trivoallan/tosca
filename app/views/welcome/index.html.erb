@@ -9,7 +9,7 @@
 <link rel="alternate" href="contributions/all/list.atom" title="" type="application/atom+xml" />
 
 <% kind = (user ? user.kind : 'nobody') %>
-<% cache("bienvenue/#{kind}/#{@beneficiaire.client_id if @beneficiaire}") do %>
+<% cache("welcome/#{kind}/#{@beneficiaire.client_id if @beneficiaire}") do %>
 <table class="sommaire"><tr><td>
  <div class="sommaire show">
    <h3><%= _('Requests')%></h3>
@@ -40,7 +40,7 @@
    <h3><%= _('Idea Box')%></h3>
    <p><%= _("You have an idea, which can improve our services ?<br />
     Your comments and suggestions are welcome in %s") %
-    link_to(_('the idea box'), suggestions_bienvenue_path) %></p>
+    link_to(_('the idea box'), suggestions_welcome_path) %></p>
  </div>
  <% end %>
 

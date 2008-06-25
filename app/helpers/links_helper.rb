@@ -113,7 +113,7 @@ EOS
   # TODO : put all those methods into another module
   # and merge it dynamically in this module
   def public_link_to_home
-    public_link_to(_('Home'), bienvenue_path)
+    public_link_to(_('Home'), welcome_path)
   end
 
   def link_to_requests
@@ -143,13 +143,13 @@ EOS
 
   # About page
   def public_link_to_about()
-    public_link_to('?', about_bienvenue_path,
+    public_link_to('?', about_welcome_path,
                    :title => _("About %s") % App::Name)
   end
 
   # No cache for this one. It's not a public link /!\
   def link_to_admin
-    link_to(_('Administration'), admin_bienvenue_path,
+    link_to(_('Administration'), admin_welcome_path,
             :title => _('Administration interface'))
   end
 

@@ -1,4 +1,4 @@
-class BienvenueController < ApplicationController
+class WelcomeController < ApplicationController
   # Includes somme helpers
   helper :demandes, :account, :contributions, :logiciels, :groupes, :documents, :clients
 

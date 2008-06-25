@@ -331,7 +331,7 @@ class DemandesController < ApplicationController
     @contracts = Contract.find_select(Contract::OPTIONS)
     if @contracts.empty?
       flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling a request. Please contat %s if you think it's not normal") % App::TeamEmail
-      return redirect_to(bienvenue_path)
+      return redirect_to(welcome_path)
     end
     if beneficiaire
       client = beneficiaire.client

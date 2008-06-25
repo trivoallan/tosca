@@ -76,6 +76,6 @@ class BinairesControllerTest < ActionController::TestCase
     end
 
     assert_response :redirect
-    assert_redirected_to bienvenue_path
+    assert_redirected_to welcome_path
   end
 end

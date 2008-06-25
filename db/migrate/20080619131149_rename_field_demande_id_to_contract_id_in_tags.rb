@@ -6,4 +6,4 @@ class RenameFieldDemandeIdToContractIdInTags < ActiveRecord::Migration
   def self.down
     rename_column :tags, :contract_id, :demande_id
   end
-end
+end 

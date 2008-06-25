@@ -6,7 +6,7 @@ config.cache_classes = true
 
 # Use a different logger for distributed setups
 =begin
-  Deactivated for now : we have on bienvenue;admin
+  Deactivated for now : we have on welcome;admin
  * 15 r/s with it
  * 80 r/s without it 
 # require 'hodel_3000_compliant_logger'

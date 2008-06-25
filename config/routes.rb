@@ -9,16 +9,16 @@ ActionController::Routing::Routes.draw do |map|
   #   first created -> highest priority.
 
   # RESTful routes without ORM
-  # it generates helper likes admin_bienvenue_url and admin_bienvenue_path
+  # it generates helper likes admin_welcome_url and admin_welcome_path
   # all those helpers only have GET method.
   # See overrides.rb for without_orm source code
-  sweet_home = { :controller => 'bienvenue', :action => 'index',
+  sweet_home = { :controller => 'welcome', :action => 'index',
                  :conditions => { :method => :get } }
-  map.bienvenue '/', sweet_home
+  map.welcome '/', sweet_home
 
-  map.without_orm('bienvenue', %w(admin plan about deroulement
+  map.without_orm('welcome', %w(admin plan about deroulement
     index natures statut suggestions declaration))
-  map.without_orm('bienvenue', %w(suggestions), :post)
+  map.without_orm('welcome', %w(suggestions), :post)
   map.without_orm('reporting', %w(comex comex_resultat configuration flux general digest digest_resultat))
   map.without_orm('access', %w(denied))
   map.without_orm('alerts', %w(on_submit index))
@@ -133,7 +133,7 @@ ActionController::Routing::Routes.draw do |map|
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
-  # map.connect '', :controller => "bienvenue"
+  # map.connect '', :controller => "welcome"
 
   # Sample of named route:
   # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'

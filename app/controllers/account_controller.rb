@@ -32,7 +32,7 @@ class AccountController < ApplicationController
         _login(session[:user])
         # When logged from an other tool, the referer is not a valid page
         session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
-        redirect_back_or_default bienvenue_path
+        redirect_back_or_default welcome_path
       else
         clear_sessions
         id = User.find_by_login(params['user_login'])
@@ -185,16 +185,16 @@ class AccountController < ApplicationController
       # Unused : [ 'HTTP_AUTH_SN', :Cherif ],
       [ 'HTTP_AUTH_USER',  :login ] # TODO : check this field with Bayrem
     ]
-    redirect_to bienvenue_path
+    redirect_to welcome_path
     flash[:info] = "coucou"
 =begin
     login = request.env['HTTP_AUTH_LOGIN']
-    return redirect_to(bienvenue_path) unless login
+    return redirect_to(welcome_path) unless login
     user = User.find(:first, :conditions => { :login => login })
     if user
       _login user
     end
-    redirect_to(bienvenue_path)
+    redirect_to(welcome_path)
 =end
   end
 

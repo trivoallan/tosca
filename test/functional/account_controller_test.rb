@@ -10,8 +10,8 @@ class AccountControllerTest < ActionController::TestCase
     %w(admin manager expert customer viewer).each { |l|
       login l, l
       assert_response :redirect
-      # strange initialisation bug with bienvenue_path
-      assert_redirected_to({:action => "index", :controller => "bienvenue"})
+      # strange initialisation bug with welcome_path
+      assert_redirected_to({:action => "index", :controller => "welcome"})
       assert session[:user] == User.find_by_login(l)
 
       logout
@@ -49,7 +49,7 @@ class AccountControllerTest < ActionController::TestCase
     # Test login of the new account, freshly created
     login user.login, user.pwd
     assert_response :redirect
-    assert_redirected_to bienvenue_path
+    assert_redirected_to welcome_path
     assert session[:user] == user
   end
 
@@ -73,7 +73,7 @@ class AccountControllerTest < ActionController::TestCase
     # Test login of the new account, freshly created
     login user.login, user.pwd
     assert_response :redirect
-    assert_redirected_to bienvenue_path
+    assert_redirected_to welcome_path
     assert session[:user] == user
   end
 
@@ -138,7 +138,7 @@ class AccountControllerTest < ActionController::TestCase
       login l, l
       post :become, :id => Beneficiaire.find(:first).id
       assert_response :redirect
-      assert_redirected_to bienvenue_path
+      assert_redirected_to welcome_path
     }
   end
 

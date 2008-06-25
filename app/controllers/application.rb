@@ -47,14 +47,14 @@ protected
     if request.xhr?
       render :text => ('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
-      redirect_back_or_default bienvenue_path
+      redirect_back_or_default welcome_path
     end
   end
 
   # Redirect back or default, if we can find it
   def redirect_back
     session[:return_to] ||= request.env['HTTP_REFERER']
-    redirect_back_or_default bienvenue_path
+    redirect_back_or_default welcome_path
   end
 
   # global variables (not pretty, but those two are really usefull)
@@ -131,7 +131,7 @@ private
       render :text => ('<div class="information error">' + msg + '</div>')
     else
       flash[:warn] = msg
-      redirect_to(bienvenue_path, :status => :moved_permanently)
+      redirect_to(welcome_path, :status => :moved_permanently)
     end
 
   end

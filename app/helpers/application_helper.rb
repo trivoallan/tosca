@@ -62,7 +62,7 @@ module ApplicationHelper
       result << "<b>#{name.capitalize} : </b><br />"
     end
 
-    # used mainly in bienvenue/about
+    # used mainly in welcome/about
     return show_simple_list(result, elements) unless block_given?
 
     # It can really be pretty ruby. We keep it under the hand

@@ -1,4 +1,4 @@
-module BienvenueHelper
+module WelcomeHelper
 
   def html_wrap(s, width=78)
     s.gsub!(/(.{1,#{width}})(\s+|\Z)/, "\\1<br />")
