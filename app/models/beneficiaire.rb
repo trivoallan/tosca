@@ -6,7 +6,7 @@ class Beneficiaire < ActiveRecord::Base
 
   INCLUDE = [:user]
 
-  #TODO : revoir la hiérarchie avec un nested tree (!)
+  # TODO : revoir la hiérarchie avec un nested tree (!)
   belongs_to :beneficiaire
   has_many :demandes, :dependent => :destroy
 

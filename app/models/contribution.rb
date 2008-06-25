@@ -1,5 +1,6 @@
 class Contribution < ActiveRecord::Base
   acts_as_reportable
+
   has_one :demande
   has_many :urlreversements
 
@@ -15,7 +16,7 @@ class Contribution < ActiveRecord::Base
 
   validates_length_of :name, :within => 3..100
   validates_presence_of :logiciel,
-      :warn => "Vous devez spécifier un logiciel"
+    :warn => _('You have to specify a software.')
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||

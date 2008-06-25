@@ -9,10 +9,7 @@ module LogicielsHelper
   # public_link_to_logiciel @logiciel, :size => :thumb
   def public_link_to_logiciel(logiciel, options = {})
     return '-' unless logiciel and logiciel.is_a? Logiciel
-    text = software_logo(logiciel, options)
-    options = LinksHelper::NO_HOVER
-    text, options = logiciel.name, {} if text.blank?
-    public_link_to text, logiciel_path(logiciel), options
+    public_link_to logiciel.name, logiciel_path(logiciel), options
   end
 
   # Link to create a new url for a Logiciel
