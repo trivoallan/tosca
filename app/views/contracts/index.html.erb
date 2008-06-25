@@ -2,7 +2,7 @@
 
 <%= show_pages_links(@contract_pages, _('a contract')) %>
 
-<% titles = [_('Name'), _('Type'), _('Softwares'), _('Packages'),
+<% titles = [_('Name'), _('Type'), _('Software'), _('Packages'),
  _('Requests'), _('Users'), _('Mailing list'), _('Start'), _('=>'), _('End')]%>
 <%= show_table(@contracts, Contract, titles) { |c|
   result = ''

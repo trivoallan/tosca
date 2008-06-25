@@ -44,7 +44,7 @@ module ApplicationHelper
   #  * :no_title : Set it to true for not displaying emphasis
   #  * :puce : allows to specify its own tag instead of '&lt;li&gt;'
   #  * :edit : name of the controllers needed to decorate list with
-  #   an edit link and a delete link. Used widely in the show view of softwares.
+  #   an edit link and a delete link. Used widely in the show view of software.
   # If there is no block given, the field is displayed as is, with 'to_s' method.
   # Call it like :
   #   <%= show_list(@contribution.binaires, 'contribution') {|e| e.name} %>

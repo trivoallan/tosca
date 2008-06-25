@@ -45,7 +45,7 @@
   <% # All the menu are built during first rendering or during login, in account controller %>
   <% @@public_menu[locale] ||= build_simple_menu([
        public_link_to_home,
-       public_link_to_softwares,
+       public_link_to_software,
        public_link_to_contributions,
        public_link_to_about ]) %>
   <% @@menu[role_localised] ||= build_simple_menu([

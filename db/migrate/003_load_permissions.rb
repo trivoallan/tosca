@@ -52,7 +52,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^documents/(?!destroy)', 'Manage documents' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
                [ '^socles/(?!destroy)', "Manage systems" ],
-               [ '^urllogiciels/(?!destroy)', 'Manage urls of softwares' ],
+               [ '^urllogiciels/(?!destroy)', 'Manage urls of software' ],
                [ '^urlreversements/', 'Manage their own urls of contributions' ],
                [ '^tags/', 'Manage tags' ]
              ]
@@ -65,11 +65,11 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
                [ '^contracts/(?!destroy)', 'Manage contracts' ],
                [ '^demandes/(?!destroy)', 'Manage requests' ],
-               [ '^groupes/(?!destroy)', 'Manage groups of softwares' ],
-               [ '^images/(?!destroy)', 'Manage logos of softwares & clients' ],
+               [ '^groupes/(?!destroy)', 'Manage groups of software' ],
+               [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
                [ '^ingenieurs/(?!(destroy|new))',
                  'List knowledges of human ressources' ],
-               [ '^logiciels/(?!destroy)', 'Manage softwares' ],
+               [ '^logiciels/(?!destroy)', 'Manage software' ],
                [ '^paquets/(?!destroy)', 'Manage packages' ],
                [ '^machines/(?!destroy)', 'Manage servers' ],
                [ '^teams/(?!destroy)', 'Manage teams' ]
@@ -119,7 +119,7 @@ class LoadPermissions < ActiveRecord::Migration
                  'Public read access to contributions' ],
                [ '^groupes/(index|show)', 'Public read access to groups' ],
                [ '^logiciels/(index|show)',
-                 'Public read access to softwares' ],
+                 'Public read access to software' ],
                [ '^statuts/(index|help)$', 'Explanation of status' ] ]
     add_permission.call(roles, access)
 

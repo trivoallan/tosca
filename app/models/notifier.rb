@@ -266,7 +266,7 @@ class Notifier < ActionMailer::Base
   end
 
   # Used for outgoing mails, in order to get a Tree of messages
-  # in mail softwares
+  # in mail software
   def message_id(id)
     "<#{id}@#{App::Name}.#{App::InternetAddress}>"
   end

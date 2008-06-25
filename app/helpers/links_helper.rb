@@ -131,9 +131,9 @@ EOS
             _('Consult requests which are waiting an action from you'))
   end
 
-  def public_link_to_softwares
-    public_link_to(_('Softwares'), logiciels_path, :title =>
-                   _('Access to the list of softwares'))
+  def public_link_to_software
+    public_link_to(_('Software'), logiciels_path, :title =>
+                   _('Access to the list of software'))
   end
 
   def public_link_to_contributions

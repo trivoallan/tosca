@@ -18,7 +18,7 @@ module ClientsHelper
 
   # Create a link to modify the active value in the form filter
   # Usage :
-  #  <%= remote_link_to_clients(:all) %> to display all the softwares
+  #  <%= remote_link_to_clients(:all) %> to display all the software
   def remote_link_to_clients( param)
     ajax_call = PagesHelper::AJAX_OPTIONS.dup.update(:url => clients_path)
     if param == :actives

@@ -101,7 +101,7 @@ class ContributionsController < ApplicationController
   def new
     @contribution = Contribution.new
     @urlreversement = Urlreversement.new
-    # we can precise the software with this, see softwares/show for more info
+    # we can precise the software with this, see software/show for more info
     @contribution.logiciel_id = params[:logiciel_id]
     # submitted state, by default
     @contribution.etatreversement_id = 4

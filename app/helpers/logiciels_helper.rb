@@ -24,16 +24,16 @@ module LogicielsHelper
 
   # Create a link to modify the active value in the form filter
   # Usage :
-  #  <%= remote_link_to_software(:all) %> to display all the softwares
+  #  <%= remote_link_to_software(:all) %> to display all the software
   def remote_link_to_software( param)
     ajax_call = PagesHelper::AJAX_OPTIONS.dup.update(:url => logiciels_path)
     if param == :supported
-      text = _('My supported softwares')
+      text = _('My supported software')
       description = _('Display only software supported by your contract')
       value = 1
     else
-      text = _('All softwares')
-      description = _('Display all softwares')
+      text = _('All software')
+      description = _('Display all software')
       value = 0
     end
     js_call = "document.forms['filters'].active.value=#{value};" <<

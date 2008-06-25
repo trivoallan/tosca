@@ -88,12 +88,12 @@ class ContractsController < ApplicationController
     @paquets = @contract.paquets
   end
 
-  def add_softwares
+  def add_software
     @contract = Contract.find(params[:id])
     @contract.paquets.each do |p|
       find = false
-      unless params['softwares'].nil?
-        params['softwares'].each do |s|
+      unless params['software'].nil?
+        params['software'].each do |s|
           if s[1]['paquet_id'].to_s == p.id.to_s
             find = true
             p.version = s[1]['version']
@@ -106,8 +106,8 @@ class ContractsController < ApplicationController
         p.destroy
       end
     end
-    unless params['softwares'].nil?
-      params['softwares'].each do |s|
+    unless params['software'].nil?
+      params['software'].each do |s|
         if s[1]['paquet_id'].blank?
           paquet = Paquet.new
           paquet.contract_id = @contract.id

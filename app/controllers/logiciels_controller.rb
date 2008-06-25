@@ -7,36 +7,36 @@ class LogicielsController < ApplicationController
   # ajaxified list
   def index
     scope = nil
-    @title = _('List of softwares')
+    @title = _('List of software')
     if @beneficiaire && params['active'] != '0'
       scope = :supported
-      @title = _('List of your supported softwares')
+      @title = _('List of your supported software')
     end
 
     options = { :per_page => 10, :order => 'logiciels.name', :include => [:groupe] }
     conditions = []
 
     if params.has_key? :filters
-      session[:softwares_filters] = Filters::Softwares.new(params[:filters])
+      session[:software_filters] = Filters::Software.new(params[:filters])
     end
     conditions = nil
-    softwares_filters = session[:softwares_filters]
-    if softwares_filters
+    software_filters = session[:software_filters]
+    if software_filters
       # we do not want an include since it's only for filtering.
-      unless softwares_filters['contract_id'].blank?
+      unless software_filters['contract_id'].blank?
         options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id'
       end
 
       # Specification of a filter f :
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
-      conditions = Filters.build_conditions(softwares_filters, [
+      conditions = Filters.build_conditions(software_filters, [
         [:software, 'logiciels.name', :like ],
         [:description, 'logiciels.description', :like ],
         [:groupe_id, 'logiciels.groupe_id', :equal ],
         [:contract_id, ' paquets.contract_id', :in ]
       ])
-      @filters = softwares_filters
+      @filters = software_filters
     end
     flash[:conditions] = options[:conditions] = conditions
 
@@ -50,10 +50,10 @@ class LogicielsController < ApplicationController
 
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
-      render :partial => 'softwares_list', :layout => false
+      render :partial => 'software_list', :layout => false
     else
       _panel
-      @partial_for_summary = 'softwares_info'
+      @partial_for_summary = 'software_info'
     end
   end
 
@@ -129,7 +129,7 @@ private
     @technologies = Competence.find_select
     @groupes = Groupe.find_select
 
-    stats = Struct.new(:technologies, :sources, :binaries, :softwares)
+    stats = Struct.new(:technologies, :sources, :binaries, :software)
     @count = stats.new(Competence.count, Paquet.count,
                        Binaire.count(:include => :paquet), Logiciel.count)
   end

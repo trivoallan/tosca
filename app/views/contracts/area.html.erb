@@ -1,14 +1,14 @@
-<h1><%= _('Supported Softwares') %></h1>
+<h1><%= _('Supported Software') %></h1>
 
-<% form_tag :action => "add_softwares", :method => :post, :id => @contract.id do %>
+<% form_tag :action => "add_software", :method => :post, :id => @contract.id do %>
 <table class="topbox">
 <tr><td>
   <table class="form">
   <tr>
     <td width="170">
       <fieldset>
-        <legend><%=_('Softwares')%></legend>
-        <%= select "select", "softwares", Logiciel.find_select, :include_blank => true %> <%= StaticImage::spinner %>
+        <legend><%=_('Software')%></legend>
+        <%= select "select", "software", Logiciel.find_select, :include_blank => true %> <%= StaticImage::spinner %>
       </fieldset>
     </td>
   </tr>
@@ -16,7 +16,7 @@
   </table>
 </td><td width=50></td><td>
   <table class="form" cellpadding=5 >
-  <tr><th width=70><%= _('Softwares') %></th><th><%= _('Version') %></th><th><%= _('Supported')+"?" %></th></tr>
+  <tr><th width=70><%= _('Software') %></th><th><%= _('Version') %></th><th><%= _('Supported')+"?" %></th></tr>
   <% @paquets.each do |p| %>
     <% @logiciel = p.logiciel %>
     <% @paquet = p %>
@@ -30,5 +30,5 @@
                :url => {:action => "ajax_add_software", :controller => "contracts" }, 
                :with => "software", 
                :on => "change" } %>
-<%= observe_field("select_softwares", options) %>
+<%= observe_field("select_software", options) %>
 <% end %>

@@ -2,7 +2,7 @@
 
 <%= show_pages_links(@groupe_pages, _('a group') ) %>
 
-<% titres = [_('Name') , _('Softwares') ]%>
+<% titres = [_('Name') , _('Software') ]%>
 <%= show_table(@groupes, Groupe, titres) { |g|
   result = ''
   result << "<td>#{g.name }</td>"
