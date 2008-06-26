@@ -1,0 +1,35 @@
+<h1><%= _("Supported Software") %></h1>
+
+<% options = { :before => "Element.show('spinner')",
+               :success => "Element.hide('spinner')",
+               :url => {:action => "ajax_add_software", :controller => "contracts"},
+               :with => "select_software.options[select_software.selectedIndex]"
+               } %>
+<% form_tag :action => "add_software", :method => :post, :id => @contract.id do %>
+<table class="form" cellpadding="5" >
+  <tr><th width="70"><%= _('Software') %></th><th><%= _('Version') %></th><th><%= _('Supported')+"?" %></th></tr>
+  <% @paquets.each do |p| %>
+    <% @logiciel = p.logiciel %>
+    <% @paquet = p %>
+    <%= render :partial => "contracts/software" %>
+  <% end %>
+  <tr id="end"></tr>
+</table>
+
+<table class="form" cellpadding="5">
+  <tr><td>
+    <fieldset><legend>Add Software</legend>
+    <table cellpadding="5">
+      <tr><td>
+        <label><%=_('Software')%></label></td><td><%= select_empty "select", "software", @logiciels, {}, { :onchange => remote_function(options) } %></td><td width="20"> <%= StaticImage::spinner %>
+      </td></tr>
+    </table>
+  </tr></td>
+</table>
+
+<table class="form" cellpadding="5">
+  <tr><td>
+    <%= submit_tag _('Validate') %>
+  </td></tr>
+</table>
+<% end %>

@@ -1,0 +1,28 @@
+<% time = Time.now.hash %>
+
+<% # Add this script to give the focus to the version field in the last software added. %>
+<% # Improve usability : allows to use easily this form without touching the mouse %>
+<% if @paquet.nil? %>
+<script>
+  document.getElementById('software[<%= time %>][version]').focus();
+  // Change the value to allow to choose successively the same option
+  document.getElementById('select_software').value = "";
+</script>
+<% end %>
+
+<tr id="<%= @logiciel.id %>">
+  <% # default values for a new package are set here %>
+  <% @paquet= Paquet.new( :version => "xx", :active => true ) if @paquet.nil?%>
+  <td><label for='software[<%= time %>][active]'> <%= @logiciel.name %></label></td>
+  <td>
+    <input id='software[<%= time %>][version]' name='software[<%= time %>][version]' type='text' value='<%= @paquet.version%>'>
+  </td><td align='center'>
+    <input id='software[<%= time %>][active]' name='software[<%= time %>][active]' type='checkbox' <%= "checked='yes'" if @paquet.active? %>>
+  </td><td>
+    <input name='software[<%= time %>][paquet_id]' type='hidden' value='<%= @paquet.id %>'>
+    <input name='software[<%= time %>][software]' type='hidden' value='<%= @logiciel.id %>'>
+
+   <%= link_to_function(StaticImage::delete, :class => "no_hover" ) { |page|  page.remove @logiciel.id.to_s } %>
+  </td>
+</tr>
+

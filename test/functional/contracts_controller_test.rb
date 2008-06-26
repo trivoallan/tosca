@@ -96,4 +96,25 @@ class ContractsControllerTest < Test::Unit::TestCase
       Contract.find(1)
     }
   end
+
+  def test_supported_software
+    get :supported_software, :id => 1
+    assert_response :success
+    assert_template 'supported_software'
+  end
+
+  def test_ajax_add_software
+    xhr :get, :ajax_add_software, :value => 2  
+    assert_response :success
+    assert_template 'contracts/_software'
+  end
+
+  def test_add_software
+    # post :add_software
+    paquets = Contract.find(1).paquets
+    assert_difference('paquets.count') do
+      post :add_software, :id => 1, :software => { "-933231574" => {"software"=>"1", "paquet_id"=>"", "version"=>"xx", "active"=>"on"}, "-932877093"=>{"software"=>"1", "paquet_id"=>"1", "version"=>"x", "active"=>"on"}}
+    end
+  end
+
 end

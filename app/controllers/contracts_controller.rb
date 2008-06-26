@@ -76,50 +76,45 @@ class ContractsController < ApplicationController
   end
 
   def ajax_add_software
-    if params[:software].blank?
+    if params[:value].blank?
       return render(:text => '')
     end
-    @logiciel = Logiciel.find(params[:software])
-    render(:update) { |page| page.insert_html(:before, "end", :partial => "contracts/logiciel") }
+    @logiciel = Logiciel.find(params[:value])
+    render(:update) { |page| page.insert_html(:before, "end", :partial => "contracts/software") }
   end
 
-  def area
+  def supported_software
     @contract = Contract.find(params[:id])
     @paquets = @contract.paquets
+    @logiciels = Logiciel.find_select
   end
 
   def add_software
     @contract = Contract.find(params[:id])
-    @contract.paquets.each do |p|
-      find = false
-      unless params['software'].nil?
-        params['software'].each do |s|
-          if s[1]['paquet_id'].to_s == p.id.to_s
-            find = true
-            p.version = s[1]['version']
-            p.active = s[1]['active'] == "on" ? 1 : 0
-            p.save
-          end
-        end
-      end
-      if find == false
-        p.destroy
-      end
-    end
+    new_paquet = []
     unless params['software'].nil?
       params['software'].each do |s|
-        if s[1]['paquet_id'].blank?
+        s = s[1] # access params which contain software informations
+        if s['paquet_id'].blank? #create paquet
           paquet = Paquet.new
           paquet.contract_id = @contract.id
-          paquet.logiciel_id = s[1]['software']
-          paquet.name = Logiciel.find(s[1]['software']).name
-          paquet.version = s[1]['version']
-          paquet.active = s[1]['active'] == "on" ? 1 : 0
+          paquet.logiciel_id = s['software']
+          paquet.name = Logiciel.find(s['software']).name
+          paquet.version = s['version']
+          paquet.active = s['active'] == "on" ? 1 : 0
           paquet.conteneur_id = 3
           paquet.configuration = ""
           paquet.save
+          new_paquet.push paquet
+        else #update paquet
+          paquet = Paquet.find(s['paquet_id'])
+          paquet.update_attributes :version => s['version'], :active => s['active'] == "on" ? 1 : 0
+          new_paquet.push paquet
         end
       end
+    end
+    @contract.paquets.each do |p|
+      p.destroy unless new_paquet.include? p
     end
     redirect_to contract_path(@contract)
   end
