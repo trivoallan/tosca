@@ -107,7 +107,7 @@ class Demande < ActiveRecord::Base
 
   # Used in the cache/sweeper system
   def fragments
-    [ %r{requests/#{self.id}/front-\d+}, # Right side of the show view
+    [ %r{requests/#{self.id}/front-\d*}, # Right side of the show view
       "requests/#{self.id}/front-recipient",
       "requests/#{self.id}/info-expert", # Left side of the show view
       "requests/#{self.id}/info-recipient",
@@ -291,8 +291,6 @@ class Demande < ActiveRecord::Base
   protected
   # this method must be protected and cannot be private as Ruby 1.8.6
   def appellee
-#     @appellee ||= self.versions.find(:first, :conditions => 'statut_id=2',
-#                                     :order => 'updated_on ASC')
     @appellee ||= self.commentaires.find(:first, :conditions => 'statut_id=2',
                                          :order => 'updated_on ASC')
   end

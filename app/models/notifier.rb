@@ -214,7 +214,7 @@ class Notifier < ActionMailer::Base
   # For now, we have bcc recipient only for private comments.
   # It sends a mail to all experts of a contract.
   def compute_bcc(request)
-    res = request.contract.engineer.find(:all, :select => 'email')
+    res = request.contract.engineers.find(:all, :select => 'email')
     res.collect{ |r| r.email }.join(',')
   end
 
