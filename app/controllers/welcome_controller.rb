@@ -37,8 +37,8 @@ protected
   # Returns an array of a pair : [ 'controller', *actions ]
   def _plan
     #Sorting routes by controller name
-    routes = ActionController::Routing::Routes.routes.sort do |a,b|
-      result = (a.requirements[:controller] <=> b.requirements[:controller])
+    routes = ActionController::Routing::Routes.routes.sort do |a, b|
+      a.requirements[:controller] <=> b.requirements[:controller]
     end
 
     @routes = []
