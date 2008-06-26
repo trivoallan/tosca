@@ -184,11 +184,10 @@ class DemandesController < ApplicationController
     @demande = Demande.find(params[:id], :include => [:first_comment]) unless @demande
     @page_title = @demande.resume
     @partial_for_summary = 'infos_demande'
-    unless read_fragment "requests/#{@demande.id}/front-#{session[:user].kind}"
+    unless read_fragment "requests/#{@demande.id}/front-#{session[:user].role_id}"
       @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande)
       @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
 
-      conditions = [ "logiciel_id = ?", @demande.logiciel_id ]
       # TODO c'est pas dry, cf ajax_comments
       options = { :order => 'created_on DESC', :include => [:user],
         :limit => 1, :conditions => { :demande_id => @demande.id } }

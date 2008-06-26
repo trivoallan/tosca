@@ -25,7 +25,6 @@
    <%= render(:partial => 'demandes/tabs/comment', :locals =>
          { :comment => @last_commentaire }) %>
 
-    <% #NO CACHE because we use sessions variables %>
    <div>
     <% if session[:user].authorized? "commentaires/comment" %>
      <% action = comment_commentaire_path(@demande) %>
