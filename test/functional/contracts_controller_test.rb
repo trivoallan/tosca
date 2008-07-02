@@ -110,8 +110,12 @@ class ContractsControllerTest < Test::Unit::TestCase
   end
 
   def test_add_software
-    # post :add_software
+    get :supported_software, :id => 1
     paquets = Contract.find(1).paquets
+    assert_no_difference('paquets.count') do
+      form = select_form "main_form"
+      form.submit
+    end
     assert_difference('paquets.count') do
       post :add_software, :id => 1, :software => { "-933231574" => {"software"=>"1", "paquet_id"=>"", "version"=>"xx", "active"=>"on"}, "-932877093"=>{"software"=>"1", "paquet_id"=>"1", "version"=>"x", "active"=>"on"}}
     end
