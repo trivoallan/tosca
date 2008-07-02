@@ -1,20 +1,20 @@
 class Logiciel < ActiveRecord::Base
   acts_as_reportable
   acts_as_taggable
+  
+  has_one :image, :dependent => :destroy
+  belongs_to :license
+  belongs_to :groupe
+  
   has_many :contributions
-  has_and_belongs_to_many :competences
+  has_many :knowledges
   has_many :demandes
   has_many :urllogiciels, :dependent => :destroy,
     :order => 'urllogiciels.typeurl_id'
-  has_many :paquets, :order => "version DESC", :dependent => :destroy
-  #belongs_to :communaute
-  belongs_to :license
-  belongs_to :groupe
-  has_one :image, :dependent => :destroy
-
-  has_many :binaires, :through => :paquets, :dependent => :destroy
-  has_many :knowledges
-
+  has_many :versions, :order => "version DESC", :dependent => :destroy
+  
+  has_and_belongs_to_many :competences
+  
   validates_presence_of :name, :message =>
     _('You have to specify a name')
   validates_presence_of :groupe, :message =>

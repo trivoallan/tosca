@@ -50,12 +50,12 @@ action_name = @action.to_s.capitalize
 if @action == :dump or @action == :dumpall
   if @action == :dumpall
     models = [ Arch,Beneficiaire,Binaire,Changelog,Client,Commentaire,
-	  Competence,Conteneur,Contract,Contribution,Demande,Dependance,
-	  Distributeur,Document,Elapsed,Engagement,Etatreversement,Fichier,
+	  Competence,Conteneur,Contract,Contribution,Demande,
+          Distributeur,Document,Elapsed,Engagement,Etatreversement,Fichier,
 	  Fichierbinaire,Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
-      Mainteneur,New,Rules::Component,Rules::Credit,Paquet,Permission,Phonecall,
-      Piecejointe,Preference,Role,Severite,Socle,Statut,Typecontribution,
-      Typedemande,Typedocument,Typeurl,User ]
+          Mainteneur,New,Rules::Component,Rules::Credit,Paquet,Permission,Phonecall,
+          Piecejointe,Preference,Role,Severite,Socle,Statut,Typecontribution,
+          Typedemande,Typedocument,Typeurl,User ]
   end
   models.each do |m|
     puts "#{action_name} #{m}..." if $verbose

@@ -6,8 +6,8 @@ class Contract < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   
   has_many :paquets, :dependent => :destroy
+  has_many :releases, :dependent => :destroy
   has_many :demandes
-  has_many :binaires, :through => :paquets
   has_many :appels
   has_many :tags
   

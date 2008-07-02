@@ -1,5 +1,5 @@
 class Changelog < ActiveRecord::Base
-  belongs_to :paquet, :counter_cache => true
+  belongs_to :release
 
   def date_modification_formatted
       display_time read_attribute(:date_modification)

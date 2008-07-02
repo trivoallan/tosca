@@ -6,7 +6,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class PaquetTest < Test::Unit::TestCase
   fixtures :paquets, :typedemandes, :severites, :contracts_engagements,
-    :engagements, :changelogs, :dependances, :binaires
+    :engagements, :changelogs, :binaires
 
   def test_to_strings
     check_strings Paquet
@@ -17,7 +17,6 @@ class PaquetTest < Test::Unit::TestCase
       p.destroy
       assert Binaire.find_all_by_paquet_id(p.id).empty?
       assert Changelog.find_all_by_paquet_id(p.id).empty?
-      assert Dependance.find_all_by_paquet_id(p.id).empty?
     }
   end
 

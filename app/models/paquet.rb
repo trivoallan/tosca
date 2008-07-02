@@ -1,12 +1,12 @@
 class Paquet < ActiveRecord::Base
   belongs_to :logiciel
-  belongs_to :distributeur
   belongs_to :contract, :counter_cache => true
   belongs_to :mainteneur
   belongs_to :conteneur
+  
   has_many :changelogs, :dependent => :destroy
-  has_many :dependances, :dependent => :destroy
   has_many :binaires, :dependent => :destroy, :include => :paquet
+  has_and_belongs_to_many :contributions
 
   validates_presence_of :logiciel, :conteneur, :contract
 

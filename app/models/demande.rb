@@ -19,8 +19,6 @@ class Demande < ActiveRecord::Base
   has_one :elapsed, :dependent => :destroy
   belongs_to :contribution
   belongs_to :socle
-  # TODO : there is no interface to this belongs_to /!\
-  belongs_to :binaire, :include => :paquet
 
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
   has_many :piecejointes, :through => :commentaires

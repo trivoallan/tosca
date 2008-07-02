@@ -112,7 +112,6 @@ unless File.exists? path
   puts "***********************"
 end
 
-
 # Default conf for gettextlocalize, used for Dates & Currency
 if defined? GettextLocalize
   GettextLocalize::app_name = App::Name
