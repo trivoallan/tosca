@@ -36,7 +36,8 @@ Rails::Initializer.run do |config|
 
   ### External libs ###
   # Used to i18n and l10n
-  config.gem 'gettext'
+  config.gem 'gettext', :version => '1.91.0'
+
   # Used to generate export in Ods Format
   # Versions are enforced because ruport devs seems to love
   # "the break everything at each release" mantra
