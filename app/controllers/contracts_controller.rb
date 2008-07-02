@@ -77,7 +77,7 @@ class ContractsController < ApplicationController
 
   def ajax_add_software
     if params[:value].blank?
-      return render(:text => '')
+      return render(:nothing => true)
     end
     @logiciel = Logiciel.find(params[:value])
     render(:update) { |page| page.insert_html(:before, "end", :partial => "contracts/software") }
