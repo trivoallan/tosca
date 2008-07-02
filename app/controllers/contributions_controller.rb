@@ -1,13 +1,11 @@
 class ContributionsController < ApplicationController
   helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
 
-
   cache_sweeper :contribution_sweeper, :only => [:create, :update]
-
 
   # Show all contribs and who's done 'em
   def experts
-    options = { :order => "contributions.ingenieur_id, contributions.etatreversement_id" }
+    options = { :order => 'contributions.ingenieur_id, contributions.etatreversement_id' }
     @contributions = Contribution.find(:all, options)
   end
 
