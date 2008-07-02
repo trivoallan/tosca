@@ -1,4 +1,4 @@
-module PaquetsHelper
+module VersionsHelper
   # Il faut mettre un :include => [:arch,:conteneur] pour accélérer l'affichage
   def link_to_version(version)
     return '-' unless version and version.is_a? Paquet

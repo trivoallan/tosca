@@ -106,6 +106,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :permissions
   map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
   map.resources :piecejointes, :member => { :uv => :get }
+  map.resources :releases
   map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
 
