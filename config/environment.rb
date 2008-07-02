@@ -85,7 +85,7 @@ SqlSessionStore.session_class = MysqlSession
 
 # MLO : Type of cache. See http://api.rubyonrails.org/classes/ActionController/Caching.html
 ActionController::Base.cache_store = :file_store, CachePath
-ActionController::Base.fragment_cache_store = :file_store, CachePath
+
 
 # MLO : session duration is one month,
 CGI::Session.expire_after 1.month
