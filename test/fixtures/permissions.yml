@@ -116,7 +116,7 @@ permission_00126:
   info: Access to all kinds of reporting
   id: 126
 permission_00148: 
-  name: ^paquets/(index|show)$
+  name: ^versions/(index|show)$
   info: Read-only access to package
   id: 148
 permission_00160: 
@@ -176,7 +176,7 @@ permission_00163:
   info: Public read access to groups
   id: 163
 permission_00141: 
-  name: ^paquets/(?!destroy)
+  name: ^versions/(?!destroy)
   info: Manage packages
   id: 141
 permission_00129: 

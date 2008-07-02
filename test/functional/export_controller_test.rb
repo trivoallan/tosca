@@ -7,7 +7,7 @@ class ExportControllerTest < Test::Unit::TestCase
 
    fixtures :demandes, :commentaires,
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
-    :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
+    :logiciels, :socles, :clients_socles, :versions, :permissions, :roles,
     :permissions_roles, :contracts, :contracts_engagements, :engagements,
     :contracts_users, :users, :piecejointes, :contributions,
     :binaires, :typedemandes

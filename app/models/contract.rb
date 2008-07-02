@@ -5,7 +5,7 @@ class Contract < ActiveRecord::Base
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
   
-  has_many :paquets, :dependent => :destroy
+  has_many :versions, :dependent => :destroy
   has_many :releases, :dependent => :destroy
   has_many :demandes
   has_many :appels
@@ -91,7 +91,7 @@ class Contract < ActiveRecord::Base
 
   def demandes
     conditions = [ 'demandes.contract_id = ?', id]
-    # WHERE (demandes_paquets.demande_id = 62 )
+    # WHERE (demandes_versions.demande_id = 62 )
     Demande.find(:all, :conditions => conditions)
   end
 
@@ -120,7 +120,7 @@ class Contract < ActiveRecord::Base
   # used internally by wrapper :
   # /!\ DO NOT USE DIRECTLY /!\
   # use : logiciels() call
-  has_many :_logiciels, :through => :paquets, :group =>
+  has_many :_logiciels, :through => :versions, :group =>
     'logiciels.id', :source => 'logiciel', :order => 'logiciels.name ASC'
 
 #  alias_method :to_s, :name

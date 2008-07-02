@@ -1,14 +1,14 @@
-<% logiciel = @paquet.logiciel %>
+<% logiciel = @version.logiciel %>
 <%= public_link_to _('Homepage') , welcome_url%> >
  <%= public_link_to _('Software') , logiciels_path %> >
   <%= public_link_to logiciel.groupe.name, logiciel_path(logiciel.groupe_id) %> >
    <%= public_link_to logiciel.name, logiciel_path(logiciel) %> >
-    <%=@paquet.version%><%="-#{@paquet.release}" unless @paquet.release.blank? %>
-     <%= link_to_edit(@paquet) %>
+    <%=@version.version%><%="-#{@version.release}" unless @version.release.blank? %>
+     <%= link_to_edit(@version) %>
 
    <h2><%= _('Source package')%></h2>
 
-<% unless @paquet.active %>
+<% unless @version.active %>
 <div class="show">
   <p><%= _('<b>Note : </b>This package isn\'t from now on your perimeter.
   It is preserved here only for historical reasons.')%></p>
@@ -18,38 +18,38 @@
 <table class="topbox">
   <tr><td>
    <div class="show" style="min-width: 30em;">
-    <p><b><%= _('Software') + ' : '%></b> <%= @paquet.logiciel.name %></p>
-    <p><b><%= _('Contract') + ' : '%></b> <%= @paquet.contract.client.name %></p>
+    <p><b><%= _('Software') + ' : '%></b> <%= @version.logiciel.name %></p>
+    <p><b><%= _('Contract') + ' : '%></b> <%= @version.contract.client.name %></p>
 
     <% for column in Paquet.content_columns %>
-     <p><b><%= _(column.human_name) %>:</b> <%= @paquet.send(column.name) %></p>
+     <p><b><%= _(column.human_name) %>:</b> <%= @version.send(column.name) %></p>
     <% end %>
 
-    <p><b><%= _('Container') + ' : '%></b> <%= @paquet.conteneur.name %></p>
+    <p><b><%= _('Container') + ' : '%></b> <%= @version.conteneur.name %></p>
     
-    <% unless @paquet.distributeur.nil? %>
-    <p><b><%= _('Distributor')+ ' : '%></b> <%=h @paquet.distributeur.name %></p>
+    <% unless @version.distributeur.nil? %>
+    <p><b><%= _('Distributor')+ ' : '%></b> <%=h @version.distributeur.name %></p>
     <% end %>
     
-    <% unless @paquet.mainteneur.nil? %>
-    <p><b><%= _('Maintainer')+' : '%></b> <%=h @paquet.mainteneur.name %></p>
+    <% unless @version.mainteneur.nil? %>
+    <p><b><%= _('Maintainer')+' : '%></b> <%=h @version.mainteneur.name %></p>
     <% end %>
    </div>
-   <p><b><%= pluralize(@paquet.binaires.count, _('binary') ) %></b> <%= link_to_new_binaire(@paquet.id) %></p>
+   <p><b><%= pluralize(@version.binaires.count, _('binary') ) %></b> <%= link_to_new_binaire(@version.id) %></p>
     <% options = {:no_title => true, :edit => 'binaire'} %>
    <p>
-     <% if @paquet.binaires.size > 0 %>
+     <% if @version.binaires.size > 0 %>
         <%= show_list(@binaires, _('binary'), options) {|b|
             link_to_binaire(b) << _(' <i>on</i> ') << b.socle.name
           } %>
      <% end %>
    </p>
   </td><td>
-   <% unless @beneficiaire or @paquet.configuration.blank? %>
+   <% unless @beneficiaire or @version.configuration.blank? %>
    <div class="info">
     <fieldset>
     <legend><%=_('Configuration')%></legend>
-     <%= @paquet.configuration %>
+     <%= @version.configuration %>
     </fieldset>
    </div>
    <% end %>
@@ -68,4 +68,4 @@
 
 <p>&nbsp;</p>
 
-<%= link_to_edit_and_list(@paquet) %>
+<%= link_to_edit_and_list(@version) %>

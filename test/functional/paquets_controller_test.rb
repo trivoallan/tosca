@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'paquets_controller'
+require 'versions_controller'
 
 # Re-raise errors caught by the controller.
 class PaquetsController; def rescue_action(e) raise e end; end
 
 class PaquetsControllerTest < Test::Unit::TestCase
-  fixtures :paquets, :conteneurs, :distributeurs, :mainteneurs, :logiciels,
+  fixtures :versions, :conteneurs, :distributeurs, :mainteneurs, :logiciels,
     :contracts, :clients, :credits, :components
 
   def setup
@@ -19,7 +19,7 @@ class PaquetsControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:paquets)
+    assert_not_nil assigns(:versions)
   end
 
   def test_show
@@ -28,8 +28,8 @@ class PaquetsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:paquet)
-    assert assigns(:paquet).valid?
+    assert_not_nil assigns(:version)
+    assert assigns(:version).valid?
   end
 
   def test_new
@@ -38,19 +38,19 @@ class PaquetsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:paquet)
+    assert_not_nil assigns(:version)
   end
 
   def test_create
-    num_paquets = Paquet.count
+    num_versions = Paquet.count
 
-    post :create, :paquet => { :logiciel_id => 1,
+    post :create, :version => { :logiciel_id => 1,
            :conteneur_id => 1, :contract_id => 1, :configuration => '' }
 
     assert_response :redirect
-    assert_redirected_to logiciel_path(assigns(:paquet).logiciel)
+    assert_redirected_to logiciel_path(assigns(:version).logiciel)
 
-    assert_equal num_paquets + 1, Paquet.count
+    assert_equal num_versions + 1, Paquet.count
   end
 
   def test_edit
@@ -59,8 +59,8 @@ class PaquetsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:paquet)
-    assert assigns(:paquet).valid?
+    assert_not_nil assigns(:version)
+    assert assigns(:version).valid?
   end
 
   def test_update

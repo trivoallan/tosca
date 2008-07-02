@@ -8,27 +8,27 @@
     <th></th>
     <th><%= _("Binary") %></th>
   </tr>
-  <% old_paquet = nil %>
+  <% old_version = nil %>
   <% @binaires.each do |b| %>
     <tr>
-      <% if old_paquet == b.paquet %>
+      <% if old_version == b.version %>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
       <% else %>
-        <td><%= check_box_tag('demande[paquet_ids][]', b.paquet.id,
-                  (@demande.paquets.include? b.paquet)) %></td>
-        <td><%= b.paquet.name %></td>
-        <td><%= "#{b.paquet.version}-#{b.paquet.release}" %></td>
-        <td><%= Time.in_words(b.paquet.contournement(@demande.typedemande_id, @demande.severite_id).days, true) %></td>
-        <td><%= Time.in_words(b.paquet.correction(@demande.typedemande_id, @demande.severite_id).days, true) %></td>
+        <td><%= check_box_tag('demande[version_ids][]', b.version.id,
+                  (@demande.versions.include? b.version)) %></td>
+        <td><%= b.version.name %></td>
+        <td><%= "#{b.version.version}-#{b.version.release}" %></td>
+        <td><%= Time.in_words(b.version.contournement(@demande.typedemande_id, @demande.severite_id).days, true) %></td>
+        <td><%= Time.in_words(b.version.correction(@demande.typedemande_id, @demande.severite_id).days, true) %></td>
       <% end %>
       <td><%= check_box_tag('demande[binaire_ids][]', b.id,
                 (@demande.binaires.include? b)) %></td>
       <td><%= b.name %></td>
     </tr>
-    <% old_paquet = b.paquet %>
+    <% old_version = b.version %>
   <% end %>
 </table>

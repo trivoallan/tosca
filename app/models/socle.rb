@@ -1,8 +1,8 @@
 class Socle < ActiveRecord::Base
   acts_as_reportable
   has_one :machine
-  has_many :binaires, :include => :paquet
-  has_many :paquets, :through => :binaires, :group => 'paquets.id'
+  has_many :binaires, :include => :version
+  has_many :versions, :through => :binaires, :group => 'versions.id'
 
   has_and_belongs_to_many :clients
 

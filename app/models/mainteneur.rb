@@ -1,3 +1,3 @@
 class Mainteneur < ActiveRecord::Base
-  has_many :paquets
+  has_many :versions
 end

@@ -1,6 +1,6 @@
-<h1>Liste des systèmes de paquets</h1>
+<h1>Liste des systèmes de versions</h1>
 
-<%= show_pages_links(@conteneur_pages, 'un système de paquet') %>
+<%= show_pages_links(@conteneur_pages, 'un système de version') %>
 
 <% titres = []%>
 <%= show_table(@conteneurs, Conteneur, titres, :content_columns => true) { |c|
@@ -9,5 +9,5 @@
 }%>
 
 
-<%= show_pages_links(@conteneur_pages, 'un système de paquet') %>
+<%= show_pages_links(@conteneur_pages, 'un système de version') %>
 

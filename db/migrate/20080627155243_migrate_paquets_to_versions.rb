@@ -13,6 +13,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
       t.integer :id, :logiciel_id
       t.string :version
     end
+    add_index :versions, :logiciel_id
     
     create_table :releases do |t|
       t.integer :id, :version_id, :changelog_id, :contract_id
@@ -20,10 +21,14 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
       t.boolean :packaged, :default => false
       t.boolean :active
     end
+    add_index :releases, :version_id
+    add_index :releases, :contract_id
     
     create_table :contributions_versions, :id => false do |t|
       t.integer :contribution_id, :version_id
     end
+    add_index :contributions_versions, :contribution_id
+    add_index :contributions_versions, :version_id
 
     package = Conteneur.find(:all, 
                               :conditions => [ "name = ? or name = ? or name = ?", "rpm", "deb", "pkg"]).collect { |c| c.id }
@@ -53,6 +58,6 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
   end
 
   def self.down
-#    ActiveRecord::IrreversibleMigration
+    ActiveRecord::IrreversibleMigration
   end
 end

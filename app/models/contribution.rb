@@ -9,10 +9,10 @@ class Contribution < ActiveRecord::Base
   belongs_to :logiciel
   belongs_to :ingenieur
 
-  has_and_belongs_to_many :paquets
+  has_and_belongs_to_many :versions
   has_and_belongs_to_many :versions
 
-  has_and_belongs_to_many :binaires, :include => :paquet
+  has_and_belongs_to_many :binaires, :include => :version
 
   file_column :patch, :fix_file_extensions => nil
 
@@ -30,7 +30,7 @@ class Contribution < ActiveRecord::Base
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'paquets.contract_id IN (?)', contract_ids ], :include => [:paquets] } }
+        [ 'versions.contract_id IN (?)', contract_ids ], :include => [:versions] } }
   end
 
   def to_s
@@ -59,8 +59,8 @@ class Contribution < ActiveRecord::Base
   # sur plusieurs logiciels
   # TODO : a voir et a revoir
   def logiciels
-    @logiciels ||= Logiciel.find(self.paquets.find(:all, :select =>
-      'DISTINCT paquets.logiciel_id').collect{|p| p.logiciel_id})
+    @logiciels ||= Logiciel.find(self.versions.find(:all, :select =>
+      'DISTINCT versions.logiciel_id').collect{|p| p.logiciel_id})
     @logiciels
   end
 
@@ -158,8 +158,8 @@ class Contribution < ActiveRecord::Base
 
 private
   def find_logiciels
-    paquets = self.paquets.find(:all, :select => 'DISTINCT paquets.logiciel_id')
-    ids = paquets
+    versions = self.versions.find(:all, :select => 'DISTINCT versions.logiciel_id')
+    ids = versions
     Logiciel.find(ids)
   end
 

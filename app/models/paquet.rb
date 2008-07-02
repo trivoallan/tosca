@@ -5,7 +5,7 @@ class Paquet < ActiveRecord::Base
   belongs_to :conteneur
   
   has_many :changelogs, :dependent => :destroy
-  has_many :binaires, :dependent => :destroy, :include => :paquet
+  has_many :binaires, :dependent => :destroy, :include => :version
   has_and_belongs_to_many :contributions
 
   validates_presence_of :logiciel, :conteneur, :contract
@@ -18,7 +18,7 @@ class Paquet < ActiveRecord::Base
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'paquets.contract_id IN (?)', contract_ids ]} }
+        [ 'versions.contract_id IN (?)', contract_ids ]} }
   end
 
   def to_param
@@ -26,7 +26,7 @@ class Paquet < ActiveRecord::Base
   end
 
   # (cf Conventions de développement : wiki)
-  ORDER = 'paquets.name, paquets.version, paquets.release DESC'
+  ORDER = 'versions.name, versions.version, versions.release DESC'
   OPTIONS = { :order => ORDER }
 
   def self.get_scoped_methods
@@ -47,7 +47,7 @@ class Paquet < ActiveRecord::Base
 
   private
   # mis en cache car rappelé souvent, notamment sur les binaires
-  # d'un même paquet
+  # d'un même version
   # TODO : recoder, utiliser plus souvent. Et utiliser un engagement vide
   # si il n'existe pas, grâce à rescue ..NotFoundException
   def engagement(typedemande_id, severite_id)

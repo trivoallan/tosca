@@ -33,7 +33,7 @@
     if c.rule.max == -1
       result << _("on your complete system")
     else
-      result << _("concerning %s source packages ") % c.paquets_count
+      result << _("concerning %s source packages ") % c.versions_count
       result << _("and %s binaries") % c.binaires.size
     end
     result << '.'

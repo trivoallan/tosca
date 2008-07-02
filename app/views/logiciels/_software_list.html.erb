@@ -13,7 +13,7 @@
   result << "<td>#{l.resume}</td>"
   result << "<td>#{liste_competences l.competences}</td>"
   result << "<td>#{l.groupe.name if l.groupe}</td>"
-  result << "<td>#{l.paquets.size}</td>"
+  result << "<td>#{l.versions.size}</td>"
   result << "#{link_to_actions_table l}"
 }%>
 

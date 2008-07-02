@@ -1,4 +1,4 @@
-<% if @paquets.size > 0 %>
+<% if @versions.size > 0 %>
 <p><%= _("Specify here the packages impacted by the request :") %></p>
 <table >
   <tr><th colspan="2" align="center"><%= _("Commitment") %></th><th colspan="2"></th></tr>
@@ -8,8 +8,8 @@
     <th></th>
     <th><%= _("Packages") %></th>
   </tr>
-  <% selecteds = @demande[:paquet_ids] %>
-  <% @paquets.each do |p| %>
+  <% selecteds = @demande[:version_ids] %>
+  <% @versions.each do |p| %>
      <% contract = Contract.find(p.contract_id) %>
      <% engagement = contract.find_engagement(@demande) %>
      <tr class="<%=cycle('even','odd')%>">
@@ -21,7 +21,7 @@
        <% end %> </td>
        <td>
          <% #TODO : remplacer ce truc par un <%= check_box ... %>
-         <input type="checkbox" id="<%=p.id%>" name="demande[paquet_ids][]"
+         <input type="checkbox" id="<%=p.id%>" name="demande[version_ids][]"
             value="<%=p.id%>" <%= ' checked="checked"' if selecteds and selecteds.include?(p.id.to_s) %>
          ></td>
        <td><%= p.to_s%></td>

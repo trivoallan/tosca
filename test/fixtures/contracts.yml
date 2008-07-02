@@ -14,7 +14,7 @@ contract_00001:
   rule_type: Rules::Component
   newsletter: false
   cloture: 2012-12-25 10:00:00 +01:00
-  paquets_count:
+  versions_count:
   creator_id: 1
 contract_00002:
   heure_ouverture: 7
@@ -31,7 +31,7 @@ contract_00002:
   rule_type: Rules::Credit
   newsletter: true
   cloture: 2012-12-24 00:00:00 +01:00
-  paquets_count:
+  versions_count:
   creator_id: 1
 contract_00003:
   heure_ouverture: "9"
@@ -48,7 +48,7 @@ contract_00003:
   newsletter: "0"
   rule_type: Rules::Component
   cloture: 2009-07-10 00:00:00
-  paquets_count:
+  versions_count:
   creator_id: 1
 contract_00004:
   heure_ouverture: "9"
@@ -65,7 +65,7 @@ contract_00004:
   newsletter: "0"
   rule_type: Rules::Component
   cloture: 2008-07-26 00:00:00
-  paquets_count:
+  versions_count:
   creator_id: 1
 contract_00005:
   heure_ouverture: "7"
@@ -82,7 +82,7 @@ contract_00005:
   newsletter: "0"
   rule_type: Rules::Component
   cloture: 2008-11-14 00:00:00
-  paquets_count:
+  versions_count:
   creator_id: 1
 contract_00006:
   heure_ouverture: "9"
@@ -99,7 +99,7 @@ contract_00006:
   newsletter:
   rule_type: Rules::Component
   cloture: 2007-12-06 14:19:00
-  paquets_count:
+  versions_count:
   creator_id: 1
 contract_00007:
   heure_ouverture: "9"
@@ -116,5 +116,5 @@ contract_00007:
   newsletter: "0"
   rule_type: Rules::Component
   cloture: 2008-06-10 00:00:00
-  paquets_count:
+  versions_count:
   creator_id: 1

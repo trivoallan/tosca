@@ -10,7 +10,7 @@
 <%= show_table(@contributions, Contribution, titres) { |c|
   result = ''
   # tache = c.todo(max_jours)
-  versions = nil # c.paquets.collect{|p| p.version } * ', '
+  versions = nil # c.versions.collect{|p| p.version } * ', '
   result << "<td>#{public_link_to_logiciel c.logiciel}"
   result << " (#{versions})" unless versions.blank?
   result << " </td>"

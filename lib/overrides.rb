@@ -1,5 +1,3 @@
-
-
 class String
   # this convenience method search an url in a string and add the "http://" needed
   # RFC sur les URLS : link:"http://rfc.net/rfc1738.html"
@@ -311,7 +309,8 @@ module ActionView::Helpers::UrlHelper
   # this link_to is a specialised one which only returns a link
   # if the user is connected and has the right access to the ressource
   # requested. See public_link_to for everyone links.
-  def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
+  
+  def link_to(name, options = {}, html_options = nil)
     action = nil
     return nil unless options
 

@@ -16,7 +16,7 @@ class ContractsController < ApplicationController
 
   def show
     @contract = Contract.find(params[:id])
-    @paquets = @contract.paquets.find(:all, :conditions => { :active => 1 })
+    @versions = @contract.versions.find(:all, :conditions => { :active => 1 })
     @teams = @contract.teams
   end
 
@@ -85,36 +85,36 @@ class ContractsController < ApplicationController
 
   def supported_software
     @contract = Contract.find(params[:id])
-    @paquets = @contract.paquets
+    @versions = @contract.versions
     @logiciels = Logiciel.find_select
   end
 
   def add_software
     @contract = Contract.find(params[:id])
-    new_paquet = []
+    new_version = []
     unless params['software'].nil?
       params['software'].each do |s|
         s = s[1] # access params which contain software informations
-        if s['paquet_id'].blank? #create paquet
-          paquet = Paquet.new
-          paquet.contract_id = @contract.id
-          paquet.logiciel_id = s['software']
-          paquet.name = Logiciel.find(s['software']).name
-          paquet.version = s['version']
-          paquet.active = s['active'] == "on" ? 1 : 0
-          paquet.conteneur_id = 3
-          paquet.configuration = ""
-          paquet.save
-          new_paquet.push paquet
-        else #update paquet
-          paquet = Paquet.find(s['paquet_id'])
-          paquet.update_attributes :version => s['version'], :active => s['active'] == "on" ? 1 : 0
-          new_paquet.push paquet
+        if s['version_id'].blank? #create version
+          version = Paquet.new
+          version.contract_id = @contract.id
+          version.logiciel_id = s['software']
+          version.name = Logiciel.find(s['software']).name
+          version.version = s['version']
+          version.active = s['active'] == "on" ? 1 : 0
+          version.conteneur_id = 3
+          version.configuration = ""
+          version.save
+          new_version.push version
+        else #update version
+          version = Paquet.find(s['version_id'])
+          version.update_attributes :version => s['version'], :active => s['active'] == "on" ? 1 : 0
+          new_version.push version
         end
       end
     end
-    @contract.paquets.each do |p|
-      p.destroy unless new_paquet.include? p
+    @contract.versions.each do |p|
+      p.destroy unless new_version.include? p
     end
     redirect_to contract_path(@contract)
   end

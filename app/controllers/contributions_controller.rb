@@ -1,5 +1,5 @@
 class ContributionsController < ApplicationController
-  helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
+  helper :filters, :demandes, :versions, :binaires, :export, :urlreversements, :logiciels
 
 
   cache_sweeper :contribution_sweeper, :only => [:create, :update]
@@ -150,27 +150,27 @@ class ContributionsController < ApplicationController
     redirect_to contributions_path
   end
 
-  def ajax_paquets
+  def ajax_versions
     return render(:text => '') unless request.xml_http_request? and params[:id]
 
     # la magie de rails est cassé pour la 1.2.2, en mode production
     # donc je dois le faire manuellement
     # TODO : vérifier pour les versions > 1.2.2 en _production_ (!)
-    clogiciel = [ 'paquets.logiciel_id = ?', params[:id].to_i ]
+    clogiciel = [ 'versions.logiciel_id = ?', params[:id].to_i ]
     options = Paquet::OPTIONS.dup
     options[:conditions] = clogiciel
-    @paquets = Paquet.find_select(options)
+    @versions = Paquet.find_select(options)
     options = Binaire::OPTIONS.dup
     options[:conditions] = clogiciel
     @binaires = Binaire.find_select(options)
 
-    render :partial => 'liste_paquets', :layout => false
+    render :partial => 'liste_versions', :layout => false
   end
 
 private
   def _form
     @logiciels = Logiciel.find_select
-    @paquets = @contribution.paquets || []
+    @versions = @contribution.versions || []
     @binaires = @contribution.binaires || []
     @etatreversements = Etatreversement.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)

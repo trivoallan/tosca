@@ -1,5 +1,5 @@
 class LogicielsController < ApplicationController
-  helper :filters, :paquets, :demandes, :competences, :contributions, :licenses
+  helper :filters, :versions, :demandes, :competences, :contributions, :licenses
 
   # Not used for the moment
   # auto_complete_for :logiciel, :name
@@ -24,7 +24,7 @@ class LogicielsController < ApplicationController
     if software_filters
       # we do not want an include since it's only for filtering.
       unless software_filters['contract_id'].blank?
-        options[:joins] = 'INNER JOIN paquets ON paquets.logiciel_id=logiciels.id'
+        options[:joins] = 'INNER JOIN versions ON versions.logiciel_id=logiciels.id'
       end
 
       # Specification of a filter f :
@@ -34,7 +34,7 @@ class LogicielsController < ApplicationController
         [:software, 'logiciels.name', :like ],
         [:description, 'logiciels.description', :like ],
         [:groupe_id, 'logiciels.groupe_id', :equal ],
-        [:contract_id, ' paquets.contract_id', :in ]
+        [:contract_id, ' versions.contract_id', :in ]
       ])
       @filters = software_filters
     end
@@ -131,7 +131,7 @@ private
 
     stats = Struct.new(:technologies, :sources, :binaries, :software)
     @count = stats.new(Competence.count, Paquet.count,
-                       Binaire.count(:include => :paquet), Logiciel.count)
+                       Binaire.count(:include => :version), Logiciel.count)
   end
 
   def add_logo

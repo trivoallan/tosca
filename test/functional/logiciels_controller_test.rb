@@ -26,7 +26,7 @@ class LogicielsControllerTest < Test::Unit::TestCase
     assert_response :success
     assigns(:logiciels).each do |l|
       software = Logiciel.find l.id
-      assert_equal software.paquets.first.contract.id, 3
+      assert_equal software.versions.first.contract.id, 3
     end
 
     get :index, :filters => { :groupe_id => 2 }

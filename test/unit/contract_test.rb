@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContractTest < Test::Unit::TestCase
-  fixtures :contracts, :logiciels, :paquets, :contracts_engagements, :engagements,
+  fixtures :contracts, :logiciels, :versions, :contracts_engagements, :engagements,
     :demandes, :components, :credits, :clients, :users, :contracts_users, :ingenieurs
 
   def test_to_strings

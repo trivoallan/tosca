@@ -1,9 +1,0 @@
---- 
-binaire_00007: 
-  name: openoffice.org-core
-  configuration: ""
-  archive: 
-  paquet_id: 1
-  arch_id: 6
-  id: 7
-  socle_id: 10

@@ -128,6 +128,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :typeurls
   map.resources :urllogiciels
   map.resources :urlreversements
+  map.resources :versions
 
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'

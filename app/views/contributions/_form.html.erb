@@ -59,15 +59,15 @@
 <%= text_area 'contribution', 'description', :cols => 100, :rows => 5  %></p>
 
 <% # deactivated : TO DO : think it a better a way %>
-<%# = observe_field 'contribution_logiciel_id', :update => 'paquets',
+<%# = observe_field 'contribution_logiciel_id', :update => 'versions',
   #       :before => "Element.show('spinner')", :success => "Element.hide('spinner')",
-  #       :url => ajax_paquets_contributions_path ,:with => 'id' %>
+  #       :url => ajax_versions_contributions_path ,:with => 'id' %>
 
 </td></tr>
 <tr><td colspan="2">
 
-<div id="paquets">
-  <%= render :partial => "liste_paquets" %>
+<div id="versions">
+  <%= render :partial => "liste_versions" %>
 </div>
 
 </td></tr>

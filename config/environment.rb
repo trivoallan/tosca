@@ -90,7 +90,6 @@ require 'config'
 # Internal libs, located in lib/
 require 'overrides'
 
-
 # Check and create used dirs, which are not on the SCM
 path = File.join RAILS_ROOT, 'public', 'cache'
 Dir.mkdir(path) unless File.exists? path
@@ -140,3 +139,5 @@ if RAILS_ENV == 'production'
     silence_warnings{require_dependency f
     } if f =~ /\.rb$/}
 end
+
+

@@ -17,9 +17,9 @@
 </td><td width=50></td><td>
   <table class="form" cellpadding=5 >
   <tr><th width=70><%= _('Software') %></th><th><%= _('Version') %></th><th><%= _('Supported')+"?" %></th></tr>
-  <% @paquets.each do |p| %>
+  <% @versions.each do |p| %>
     <% @logiciel = p.logiciel %>
-    <% @paquet = p %>
+    <% @version = p %>
     <%= render :partial => "contracts/logiciel" %> 
   <% end %>
   <tr id="end"></tr>

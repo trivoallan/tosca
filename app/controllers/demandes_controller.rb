@@ -170,8 +170,8 @@ class DemandesController < ApplicationController
     else
       logiciel = Logiciel.find(logiciel_id.to_i)
       options = { :conditions => ['binaires.socle_id = ?', socle_id.to_i],
-        :include => [:paquet], :order => 'paquets.name' }
-      @binaires = logiciel.binaires.find(:all, options).collect{ |b| [b.paquet.version, b.id]}
+        :include => [:version], :order => 'versions.name' }
+      @binaires = logiciel.binaires.find(:all, options).collect{ |b| [b.version.version, b.id]}
     end
   end
 
@@ -257,7 +257,7 @@ class DemandesController < ApplicationController
 
   def update
     @demande = Demande.find(params[:id])
-    @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
+    @demande.versions = Paquet.find(params[:version_ids]) if params[:version_ids]
     if @demande.update_attributes(params[:demande])
       flash[:notice] = _("The request has been updated successfully.")
       redirect_to demande_path(@demande)
@@ -424,6 +424,6 @@ end
 #  :with => "severite_id" }
 #%>
 #<%= observe_field "demande_logiciel_id",
-# {:url => {:action => :ajax_update_paquets},
-#  :update => :demande_paquets,
+# {:url => {:action => :ajax_update_versions},
+#  :update => :demande_versions,
 #  :with => "logiciel_id"} %>

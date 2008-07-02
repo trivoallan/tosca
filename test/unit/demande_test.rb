@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class DemandeTest < Test::Unit::TestCase
   fixtures :demandes, :typedemandes, :severites, :statuts, :contracts,
-    :beneficiaires, :clients, :users, :paquets, :commentaires,
+    :beneficiaires, :clients, :users, :versions, :commentaires,
     :contracts_users
 
   def test_to_strings

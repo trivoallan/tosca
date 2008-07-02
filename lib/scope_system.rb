@@ -5,7 +5,7 @@ module Scope
   # preserve each user in his particular space.
   # TODO : scope contract only ?? it seems coherent...
   SCOPE_CLIENT = [ Client, Document ]
-  SCOPE_CONTRACT = [ Binaire, Contract, Demande, Paquet, Phonecall ]
+  SCOPE_CONTRACT = [ Version, Release, Contract, Demande, Paquet, Phonecall ]
 
   # This method has a 'handmade' scope, really faster and with no cost
   # of safety. It was made in order to avoid 15 yields.

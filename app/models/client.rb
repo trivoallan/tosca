@@ -11,7 +11,7 @@ class Client < ActiveRecord::Base
 
   has_and_belongs_to_many :socles
 
-  has_many :paquets, :through => :contracts, :include => [:conteneur]
+  has_many :versions, :through => :contracts, :include => [:conteneur]
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
   belongs_to :creator, :class_name => 'User'
@@ -92,8 +92,8 @@ class Client < ActiveRecord::Base
     # speedier if there is one openbar contract
     contracts.each{|c| return Logiciel.find(:all) if c.rule.max == -1 }
     # default case, when there is an association with packages stored.
-    conditions = [ 'logiciels.id IN (SELECT DISTINCT paquets.logiciel_id ' +
-                   ' FROM paquets WHERE paquets.contract_id IN (?)) ',
+    conditions = [ 'logiciels.id IN (SELECT DISTINCT versions.logiciel_id ' +
+                   ' FROM versions WHERE versions.contract_id IN (?)) ',
                    contracts.collect{ |c| c.id } ]
     Logiciel.find(:all, :conditions => conditions, :order => 'logiciels.name')
   end

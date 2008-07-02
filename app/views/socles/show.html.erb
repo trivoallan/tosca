@@ -10,10 +10,10 @@
 </p>
 <% end %>
 
-<p><%= _('This system have ')%> <b><%= pluralize(@socle.paquets.size, _('source') ) %></b></p>
+<p><%= _('This system have ')%> <b><%= pluralize(@socle.versions.size, _('source') ) %></b></p>
 <div class="bloc_scroll">
-<%= show_list(@socle.paquets, _('source package'), :no_title => true) {
-  |p| link_to_paquet(p) } %>
+<%= show_list(@socle.versions, _('source package'), :no_title => true) {
+  |p| link_to_version(p) } %>
 </div><br />
 
 <p><%= _('This system have ')%><b><%= pluralize(@binaires.size, _('binary') ) %></b></p>

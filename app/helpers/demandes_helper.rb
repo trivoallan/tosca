@@ -76,13 +76,13 @@ module DemandesHelper
   # TODO : modifier le model : ajouter champs type demande aux engagements
   # TODO : prendre en compte le type de la demande !!!
 
-  def display_engagement_contournement(demande, paquet)
-    engagement = demande.engagement(paquet.contract_id)
+  def display_engagement_contournement(demande, version)
+    engagement = demande.engagement(version.contract_id)
     display_days(engagement.contournement)
   end
 
-  def display_engagement_correction(demande, paquet)
-    engagement = demande.engagement(paquet.contract_id)
+  def display_engagement_correction(demande, version)
+    engagement = demande.engagement(version.contract_id)
     display_days(engagement.correction)
   end
 

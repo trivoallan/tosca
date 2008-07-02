@@ -42,8 +42,8 @@
         <%=link_to_any_demande @contribution %></p>
   <% end %>
   <%= link_to_demande(@contribution.demande, :show_id => true, :icon_severite => true) %>
-  <%= show_list(@contribution.paquets, _('package(s) with the patch')) { |p|
-        link_to_paquet(p)
+  <%= show_list(@contribution.versions, _('package(s) with the patch')) { |p|
+        link_to_version(p)
       } %>
 <% end %>
 

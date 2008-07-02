@@ -49,11 +49,11 @@ files = %w(arches conteneurs etatreversements groupes ossas roles
 action_name = @action.to_s.capitalize
 if @action == :dump or @action == :dumpall
   if @action == :dumpall
-    models = [ Arch,Beneficiaire,Binaire,Changelog,Client,Commentaire,
+    models = [ Arch,Beneficiaire,Changelog,Client,Commentaire,
 	  Competence,Conteneur,Contract,Contribution,Demande,
           Distributeur,Document,Elapsed,Engagement,Etatreversement,Fichier,
 	  Fichierbinaire,Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
-          Mainteneur,New,Rules::Component,Rules::Credit,Paquet,Permission,Phonecall,
+          Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,
           Piecejointe,Preference,Role,Severite,Socle,Statut,Typecontribution,
           Typedemande,Typedocument,Typeurl,User ]
   end

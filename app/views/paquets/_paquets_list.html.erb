@@ -1,14 +1,14 @@
 <h1><%= _('Package list') %> <%=StaticImage::spinner%></h1>
 
 
-<% links = show_pages_links(@paquet_pages, _('a virtual package'),
-             :url => paquets_path) %>
+<% links = show_pages_links(@version_pages, _('a virtual package'),
+             :url => versions_path) %>
 <%= links %>
 <% titres = [ _('Software'), _('Name'), _('Container'), _('Size'), _('Distributor'), _('Maintainer')] %>
-<%= show_table(@paquets, Paquet, titres) { |p|
+<%= show_table(@versions, Paquet, titres) { |p|
   result = ''
   result << "<td>#{p.logiciel.name}</td>"
-  result << "<td>#{link_to_paquet p}</td>"
+  result << "<td>#{link_to_version p}</td>"
   result << "<td>#{p.conteneur.name}</td>"
   result << "<td>#{number_to_human_size p.taille}</td>"
   result << "<td>#{p.distributeur.name}</td>" unless p.distributeur.nil?

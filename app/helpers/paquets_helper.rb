@@ -1,17 +1,17 @@
 module PaquetsHelper
   # Il faut mettre un :include => [:arch,:conteneur] pour accélérer l'affichage
-  def link_to_paquet(paquet)
-    return '-' unless paquet and paquet.is_a? Paquet
-    name = paquet.to_s
-    name = "<i>#{name}</i>" unless paquet.active
-    link_to name, paquet_path(paquet)
+  def link_to_version(version)
+    return '-' unless version and version.is_a? Paquet
+    name = version.to_s
+    name = "<i>#{name}</i>" unless version.active
+    link_to name, version_path(version)
   end
 
   # call it like :
-  # <%= link_to_new_paquet(@logiciel) %>
-  def link_to_new_paquet(logiciel = nil)
+  # <%= link_to_new_version(@logiciel) %>
+  def link_to_new_version(logiciel = nil)
     return '' unless logiciel
-    path = new_paquet_path(:logiciel_id => logiciel.id,:referent => logiciel.referent)
+    path = new_version_path(:logiciel_id => logiciel.id,:referent => logiciel.referent)
     link_to_no_hover(image_create(_('a package')), path)
   end
 
