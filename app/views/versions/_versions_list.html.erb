@@ -4,7 +4,7 @@
              :url => versions_path) %>
 <%= links %>
 <% titres = [ _('Software'), _("Versions")] %>
-<%= show_table(@versions, Paquet, titres) { |v|
+<%= show_table(@versions, Version, titres) { |v|
   result = ''
   result << "<td>#{link_to v.logiciel, logiciel_path(v.logiciel)}</td>"
   result << "<td>#{v.version}</td>"

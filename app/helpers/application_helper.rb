@@ -1,4 +1,3 @@
-
 # Methods added to this helper will be available to all templates
 # in the application. Don't ever add a method to this one without a really good
 # reason. Anyway, this is a big helper, so find by keyword :

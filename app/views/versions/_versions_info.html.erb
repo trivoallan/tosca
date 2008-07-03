@@ -13,21 +13,21 @@
   > <%= _('Consultation')%></div>
 <ul class="menu" id="menu_consultation">
  <li><%= link_to _('Software list'), :controller => 'logiciels' %></li>
- <li><%= link_to _('Package list'), :controller => 'versions' %></li>
+ <li><%= link_to _('Versions list'), :controller => 'versions' %></li>
 </ul>
 
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
   > <%= _('Search')%></div>
 <ul class="menu" id="menu_recherche">
-  <li><b><%= _('Name')%> </b></li>
-  <li><%= text_field :version, :name %></li>
+  <li><b><%= _('Version')%> </b></li>
+  <li><%= text_field :version, :version %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
   > <%= _('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
-  <li><b><%= _('Source packages')%> </b><%=@count[:versions]%></li>
+  <li><b><%= _('Versions')%> : </b><%=@count[:versions]%></li>
 </ul>
 
 
