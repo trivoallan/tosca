@@ -1,7 +1,5 @@
 == Welcome to Tosca
 
-Je suis en production !!! Fuck You !!!
-
 Tosca is a Rails application. You can see the standard README below. For seeing tosca README, see doc/README. You can generate doc with :
 $ rake doc:tosca
 And plugins doc with
