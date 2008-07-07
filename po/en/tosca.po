@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-04 14:45+0200\n"
+"POT-Creation-Date: 2008-07-07 19:02+0200\n"
 "PO-Revision-Date: 2008-06-20 12:21+0200\n"
 "Last-Translator: Rémy-Christophe Schermesser <rschermesser@linagora.com>\n"
 "Language-Team: English <traduc@traduc.org>\n"
@@ -84,19 +84,19 @@ msgstr ""
 msgid "Welcome %s %s"
 msgstr ""
 
-#: app/controllers/application.rb:117
+#: app/controllers/application.rb:120
 msgid ""
 "This address is not valid. If you think this is an error, do not hesitate to "
 "contact us."
 msgstr ""
 
-#: app/controllers/application.rb:121
+#: app/controllers/application.rb:124
 msgid ""
 "An error has occured. We are now advised of your issue and have all the "
 "required information to investigate in order to fix it."
 msgstr ""
 
-#: app/controllers/application.rb:122
+#: app/controllers/application.rb:125
 msgid "Please contact us if your problem remains."
 msgstr ""
 
@@ -201,7 +201,7 @@ msgid "The associated request does not exist"
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:62
-#: app/helpers/demandes_helper.rb:191 app/helpers/links_helper.rb:125
+#: app/helpers/demandes_helper.rb:195 app/helpers/links_helper.rb:125
 msgid "All the requests"
 msgstr ""
 
@@ -228,12 +228,12 @@ msgid ""
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:397
-#: app/helpers/demandes_helper.rb:177
+#: app/helpers/demandes_helper.rb:181
 msgid "Active requests"
 msgstr ""
 
 #: app/controllers/demandes_controller.rb:400
-#: app/helpers/demandes_helper.rb:184
+#: app/helpers/demandes_helper.rb:188
 msgid "Finished requests"
 msgstr ""
 
@@ -545,7 +545,7 @@ msgstr ""
 msgid "Permission was successfully created."
 msgstr ""
 
-#: app/controllers/permissions_controller.rb:36
+#: app/controllers/permissions_controller.rb:35
 msgid "Permission was successfully updated."
 msgstr ""
 
@@ -897,29 +897,37 @@ msgstr ""
 msgid "Unlink the contribution"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:167
-msgid "Submitted upstream on"
+#: app/helpers/demandes_helper.rb:169
+msgid "patch"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:178
+#: app/helpers/demandes_helper.rb:171
+msgid "The %s has been accepted by the community"
+msgstr ""
+
+#: app/helpers/demandes_helper.rb:172
+msgid "The %s has been submitted by the community"
+msgstr ""
+
+#: app/helpers/demandes_helper.rb:182
 msgid "show requests waiting to be processed"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:185
+#: app/helpers/demandes_helper.rb:189
 msgid "show requests that were processed"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:192
+#: app/helpers/demandes_helper.rb:196
 msgid "show all the requests"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:207 app/views/demandes/_packages.html.erb:6
+#: app/helpers/demandes_helper.rb:211 app/views/demandes/_packages.html.erb:6
 #: app/views/demandes/tabs/_cns.html.erb:33
 #: app/views/reporting/_comex_cns.html.erb:20
 msgid "Workaround"
 msgstr ""
 
-#: app/helpers/demandes_helper.rb:208 app/views/demandes/_packages.html.erb:7
+#: app/helpers/demandes_helper.rb:212 app/views/demandes/_packages.html.erb:7
 #: app/views/demandes/tabs/_cns.html.erb:44
 #: app/views/reporting/_comex_cns.html.erb:21
 msgid "Correction"
@@ -2315,7 +2323,7 @@ msgid "Activity report"
 msgstr ""
 
 #: app/views/account/_menu.html.erb:42
-#: app/views/clients/_clients_info.html.erb:29
+#: app/views/clients/_clients_info.html.erb:28
 #: app/views/contributions/_contributions_info.html.erb:26
 #: app/views/demandes/lists/_requests_info.html.erb:35
 #: app/views/knowledges/_knowledges_info.html.erb:19
@@ -2923,20 +2931,20 @@ msgstr ""
 msgid "Create a new client"
 msgstr ""
 
-#: app/views/clients/_clients_info.html.erb:22
+#: app/views/clients/_clients_info.html.erb:21
 #: app/views/knowledges/_knowledges_info.html.erb:13
 #: app/views/logiciels/_softwares_info.html.erb:16
 #: app/views/paquets/_paquets_info.html.erb:13
 msgid "Consultation"
 msgstr ""
 
-#: app/views/clients/_clients_info.html.erb:31
+#: app/views/clients/_clients_info.html.erb:30
 #: app/views/knowledges/_knowledges_info.html.erb:21
 #: app/views/logiciels/_softwares_info.html.erb:29
 msgid "By name"
 msgstr ""
 
-#: app/views/clients/_clients_info.html.erb:33
+#: app/views/clients/_clients_info.html.erb:32
 msgid "By system"
 msgstr ""
 
