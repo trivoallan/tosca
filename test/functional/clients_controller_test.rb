@@ -64,7 +64,7 @@ class ClientsControllerTest < ActionController::TestCase
   end
 
   def test_update
-    get :edit, :id => 1
+    get :edit, :id => Client.find(:first).id
     assert_response :success
     assert_template 'edit'
     assert_not_nil assigns(:client)
@@ -80,16 +80,17 @@ class ClientsControllerTest < ActionController::TestCase
   end
 
   def test_destroy
-    assert_not_nil Client.find(1)
+    client = Client.find(:first).clone
+    client.save!
 
     assert_difference('Client.count', -1) do
-      post :destroy, :id => 1
+      post :destroy, :id => client.id
     end
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Client.find(1)
+      Client.find(client.id)
     }
   end
 end

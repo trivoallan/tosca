@@ -18,10 +18,9 @@ class PermissionsController < ApplicationController
     @permission = Permission.new(params[:permission])
     if @permission.save
       flash[:notice] = _('Permission was successfully created.')
-      redirect_to permissions_url
+      redirect_to permissions_path
     else
-      _form
-      render :action => 'new'
+      _form and render :action => 'new'
     end
   end
 
@@ -34,16 +33,15 @@ class PermissionsController < ApplicationController
     @permission = Permission.find(params[:id])
     if @permission.update_attributes(params[:permission])
       flash[:notice] = _('Permission was successfully updated.')
-      redirect_to permissions_url
+      redirect_to permissions_path
     else
-      _form
-      render :action => 'edit'
+      _form and render :action => 'edit'
     end
   end
 
   def destroy
     Permission.find(params[:id]).destroy
-    redirect_to permissions_url
+    redirect_to permissions_path
   end
 
   private
