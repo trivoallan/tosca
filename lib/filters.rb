@@ -45,7 +45,8 @@ module Filters
   end
 
   class Requests < Struct.new('Requests', :text, :contract_id, :ingenieur_id,
-                              :typedemande_id, :severite_id, :statut_id, :active)
+                              :typedemande_id, :severite_id, :statut_id,
+                              :active, :limit)
     extend Shared
   end
 
