@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-08 10:26+0200\n"
+"POT-Creation-Date: 2008-07-08 11:20+0200\n"
 "PO-Revision-Date: 2008-07-08 08:20+0200\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
@@ -184,7 +184,7 @@ msgstr "Le contrat a été créé."
 msgid "Contract was successfully updated."
 msgstr "Le contrat a été mis à jour avec succès."
 
-#: app/controllers/contracts_controller.rb:141
+#: app/controllers/contracts_controller.rb:136
 msgid "Unknown rules for contract \"%s\""
 msgstr "Règles inconnu pour le contrat \"%s\""
 
@@ -358,6 +358,8 @@ msgstr "Id"
 #: app/views/binaires/show.html.erb:4 app/views/binaires/show.html.erb:12
 #: app/views/contracts/area.html.erb:10 app/views/contracts/area.html.erb:19
 #: app/views/contracts/index.html.erb:5
+#: app/views/contracts/supported_software.html.erb:10
+#: app/views/contracts/supported_software.html.erb:24
 #: app/views/contributions/_contributions_admin.html.erb:7
 #: app/views/contributions/_contributions_info.html.erb:28
 #: app/views/contributions/_contributions_info.html.erb:44
@@ -366,7 +368,7 @@ msgstr "Id"
 #: app/views/demandes/_infos_demande.html.erb:28
 #: app/views/demandes/lists/_requests_table.html.erb:4
 #: app/views/groupes/index.html.erb:5 app/views/knowledges/_form.html.erb:16
-#: app/views/logiciels/_softwares_info.html.erb:52
+#: app/views/logiciels/_software_info.html.erb:52
 #: app/views/logiciels/show.html.erb:2 app/views/paquets/_form.html.erb:11
 #: app/views/paquets/_paquets_list.html.erb:7
 #: app/views/paquets/show.html.erb:3 app/views/paquets/show.html.erb:21
@@ -791,7 +793,7 @@ msgid "An error has occured"
 msgstr "Une erreur est survenue"
 
 #: app/helpers/binaires_helper.rb:12 app/views/clients/show.html.erb:52
-#: app/views/paquets/show.html.erb:32 app/views/paquets/show.html.erb:36
+#: app/views/paquets/show.html.erb:38 app/views/paquets/show.html.erb:42
 #: app/views/socles/show.html.erb:19
 msgid "binary"
 msgstr "binaire"
@@ -844,6 +846,7 @@ msgstr "Date"
 
 #: app/helpers/contributions_helper.rb:7 app/views/binaires/show.html.erb:18
 #: app/views/contracts/area.html.erb:19
+#: app/views/contracts/supported_software.html.erb:10
 #: app/views/demandes/_form_binaires.html.erb:5
 #: app/views/demandes/_version.html.erb:3 app/views/paquets/_form.html.erb:20
 msgid "Version"
@@ -1134,7 +1137,7 @@ msgstr "Cacher"
 
 #: app/helpers/static_image.rb:63
 #: app/views/demandes/_infos_demande.html.erb:73
-#: app/views/demandes/lists/_requests_info.html.erb:59
+#: app/views/demandes/lists/_requests_info.html.erb:66
 #: app/views/welcome/about.html.erb:3
 msgid "Help"
 msgstr "Aide"
@@ -1270,7 +1273,7 @@ msgstr "Notifier"
 msgid "Beneficiaire|Notifier cc"
 msgstr "Notifier cc"
 
-#: app/models/changelog.rb:- app/views/paquets/show.html.erb:57
+#: app/models/changelog.rb:- app/views/paquets/show.html.erb:63
 msgid "changelog"
 msgstr "changelog"
 
@@ -1294,6 +1297,61 @@ msgstr "Text modification"
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
 msgstr ""
 "Ne peut pas (dés)activer les bénéficiaires associés à cause de : \"%s\""
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "commentaire"
+msgstr "un conteneur"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Demande"
+msgstr ""
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|User"
+msgstr "Utilisateur"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Piecejointe"
+msgstr ""
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|Corps"
+msgstr "Commentaires"
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|Created on"
+msgstr "Créé le"
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|Updated on"
+msgstr "Mis à jour le"
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|Prive"
+msgstr "Conteneur"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Severite"
+msgstr ""
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Statut"
+msgstr ""
+
+#: app/models/commentaire.rb:-
+#, fuzzy
+msgid "Commentaire|Ingenieur"
+msgstr "Ingenieur"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Elapsed"
+msgstr ""
 
 #: app/models/commentaire.rb:10
 msgid "You must have a comment with at least 5 characters"
@@ -1323,9 +1381,25 @@ msgstr "Vous ne pouvez changer le statut avec un commentaire privé"
 msgid "This request seems to be unstable."
 msgstr "Cette demande semble être inconsistante."
 
-#: app/models/contribution.rb:19
-msgid "You have to specify a software."
-msgstr "Vous devez spécifier un logiciel"
+#: app/models/competence.rb:-
+#, fuzzy
+msgid "competence"
+msgstr "Compétence"
+
+#: app/models/competence.rb:-
+#, fuzzy
+msgid "Competence|Name"
+msgstr "Compétence"
+
+#: app/models/conteneur.rb:-
+#, fuzzy
+msgid "conteneur"
+msgstr "un conteneur"
+
+#: app/models/conteneur.rb:-
+#, fuzzy
+msgid "Conteneur|Name"
+msgstr "Nom"
 
 #: app/models/contribution.rb:- app/views/contributions/select.html.erb:4
 msgid "contribution"
@@ -1429,6 +1503,129 @@ msgid ""
 "recipient."
 msgstr "Le client de ce contrat est incohérent avec le client du bénéficiaire."
 
+#: app/models/dependance.rb:-
+#, fuzzy
+msgid "dependance"
+msgstr "Dépassement"
+
+#: app/models/dependance.rb:-
+#, fuzzy
+msgid "Dependance|Paquet"
+msgstr "Paquet"
+
+#: app/models/dependance.rb:-
+msgid "Dependance|Name"
+msgstr ""
+
+#: app/models/dependance.rb:-
+msgid "Dependance|Sens"
+msgstr ""
+
+#: app/models/dependance.rb:-
+msgid "Dependance|Version"
+msgstr ""
+
+#: app/models/distributeur.rb:-
+#, fuzzy
+msgid "distributeur"
+msgstr "un distributeur"
+
+#: app/models/distributeur.rb:- app/views/distributeurs/_form.html.erb:4
+msgid "Distributeur|Name"
+msgstr "Nom"
+
+#: app/models/elapsed.rb:-
+#, fuzzy
+msgid "elapsed"
+msgstr "Temps écoulé"
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Demande"
+msgstr ""
+
+#: app/models/elapsed.rb:-
+#, fuzzy
+msgid "Elapsed|Taken into account"
+msgstr "Prise en compte"
+
+#: app/models/elapsed.rb:-
+#, fuzzy
+msgid "Elapsed|Workaround"
+msgstr "Contournée"
+
+#: app/models/elapsed.rb:-
+#, fuzzy
+msgid "Elapsed|Correction"
+msgstr "Correction"
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Until now"
+msgstr ""
+
+#: app/models/engagement.rb:-
+#, fuzzy
+msgid "engagement"
+msgstr "Gestion des rôles"
+
+#: app/models/engagement.rb:-
+msgid "Engagement|Severite"
+msgstr ""
+
+#: app/models/engagement.rb:-
+msgid "Engagement|Contournement"
+msgstr ""
+
+#: app/models/engagement.rb:-
+#, fuzzy
+msgid "Engagement|Correction"
+msgstr "Correction"
+
+#: app/models/engagement.rb:-
+msgid "Engagement|Typedemande"
+msgstr ""
+
+#: app/models/etatreversement.rb:-
+#, fuzzy
+msgid "etatreversement"
+msgstr "Nom"
+
+#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:4
+msgid "Etatreversement|Name"
+msgstr "Nom"
+
+#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:7
+msgid "Etatreversement|Description"
+msgstr "Description"
+
+#: app/models/groupe.rb:-
+#, fuzzy
+msgid "groupe"
+msgstr "un groupe"
+
+#: app/models/groupe.rb:-
+#, fuzzy
+msgid "Groupe|Name"
+msgstr "Nom"
+
+#: app/models/image.rb:-
+#, fuzzy
+msgid "image"
+msgstr "image"
+
+#: app/models/image.rb:-
+#, fuzzy
+msgid "Image|Image"
+msgstr "image"
+
+#: app/models/image.rb:-
+#, fuzzy
+msgid "Image|Description"
+msgstr "Description"
+
+#: app/models/image.rb:-
+msgid "Image|Logiciel"
+msgstr ""
+
 #: app/models/image.rb:4
 msgid "You must select a file to upload"
 msgstr "Vous devez sélectionner un fichier à télécharger"
@@ -1437,6 +1634,47 @@ msgstr "Vous devez sélectionner un fichier à télécharger"
 msgid "Logo '%s'"
 msgstr "Logo '%s'"
 
+#: app/models/ingenieur.rb:-
+msgid "ingenieur"
+msgstr ""
+
+#: app/models/ingenieur.rb:-
+msgid "Ingenieur|User"
+msgstr ""
+
+#: app/models/ingenieur.rb:-
+msgid "Ingenieur|Chef de projet"
+msgstr ""
+
+#: app/models/ingenieur.rb:-
+msgid "Ingenieur|Image"
+msgstr ""
+
+#: app/models/knowledge.rb:-
+#, fuzzy
+msgid "knowledge"
+msgstr "une connaissance"
+
+#: app/models/knowledge.rb:-
+#, fuzzy
+msgid "Knowledge|Competence"
+msgstr "Compétence"
+
+#: app/models/knowledge.rb:-
+#, fuzzy
+msgid "Knowledge|Logiciel"
+msgstr "Connaissance"
+
+#: app/models/knowledge.rb:-
+#, fuzzy
+msgid "Knowledge|Ingenieur"
+msgstr "Connaissance"
+
+#: app/models/knowledge.rb:-
+#, fuzzy
+msgid "Knowledge|Level"
+msgstr "Connaissance"
+
 #: app/models/knowledge.rb:10
 msgid "You have to specify a software or a domain."
 msgstr "Vous devez spécifier un nom ou un domaine"
@@ -1444,6 +1682,55 @@ msgstr "Vous devez spécifier un nom ou un domaine"
 #: app/models/knowledge.rb:13
 msgid "You cannot specify a software and a domain."
 msgstr "Vous ne pouvez spécifier un logiciel et un domaine."
+
+#: app/models/license.rb:-
+#, fuzzy
+msgid "license"
+msgstr "Nom"
+
+#: app/models/license.rb:- app/views/licenses/_form.html.erb:3
+msgid "License|Name"
+msgstr "Nom"
+
+#: app/models/license.rb:-
+#, fuzzy
+msgid "License|Url"
+msgstr "Nom"
+
+#: app/models/license.rb:-
+msgid "License|Certifie osi"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+#, fuzzy
+msgid "logiciel"
+msgstr "identifiant"
+
+#: app/models/logiciel.rb:-
+#, fuzzy
+msgid "Logiciel|Name"
+msgstr "Nom"
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Referent"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Resume"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+#, fuzzy
+msgid "Logiciel|Description"
+msgstr "Description"
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|License"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Groupe"
+msgstr ""
 
 #: app/models/logiciel.rb:19
 msgid "You have to specify a name"
@@ -1456,6 +1743,90 @@ msgstr "Vous devez spécifier un groupe"
 #: app/models/logiciel.rb:23
 msgid "You have to specify at least one technology"
 msgstr "Vous devez spécifier au moins une technologie"
+
+#: app/models/machine.rb:-
+#, fuzzy
+msgid "machine"
+msgstr "machines"
+
+#: app/models/machine.rb:-
+#, fuzzy
+msgid "Machine|Socle"
+msgstr "Machines"
+
+#: app/models/machine.rb:-
+#, fuzzy
+msgid "Machine|Acces"
+msgstr "Machines"
+
+#: app/models/machine.rb:-
+msgid "Machine|Virtuelle"
+msgstr ""
+
+#: app/models/machine.rb:-
+#, fuzzy
+msgid "Machine|Hote"
+msgstr "Machines"
+
+#: app/models/machine.rb:-
+#, fuzzy
+msgid "Machine|Description"
+msgstr "Description"
+
+#: app/models/mainteneur.rb:-
+#, fuzzy
+msgid "mainteneur"
+msgstr "un mainteneur"
+
+#: app/models/mainteneur.rb:-
+#, fuzzy
+msgid "Mainteneur|Name"
+msgstr "Nom"
+
+#: app/models/new.rb:-
+msgid "news"
+msgstr ""
+
+#: app/models/new.rb:-
+#, fuzzy
+msgid "new"
+msgstr "nouveau"
+
+#: app/models/new.rb:-
+msgid "New|Subject"
+msgstr ""
+
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Source"
+msgstr "Source"
+
+#: app/models/new.rb:-
+msgid "New|Body"
+msgstr ""
+
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Created on"
+msgstr "Créé le"
+
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Updated on"
+msgstr "Mis à jour le"
+
+#: app/models/new.rb:-
+msgid "New|Ingenieur"
+msgstr ""
+
+#: app/models/new.rb:-
+#, fuzzy
+msgid "New|Client"
+msgstr "Client"
+
+#: app/models/new.rb:-
+msgid "New|Logiciel"
+msgstr ""
 
 #: app/models/notifier.rb:115
 msgid "Daily digest for "
@@ -1501,6 +1872,21 @@ msgstr "avec en copie"
 msgid "was sent."
 msgstr "a été envoyé."
 
+#: app/models/permission.rb:-
+#, fuzzy
+msgid "permission"
+msgstr "une permission"
+
+#: app/models/permission.rb:-
+#, fuzzy
+msgid "Permission|Name"
+msgstr "Permissions"
+
+#: app/models/permission.rb:-
+#, fuzzy
+msgid "Permission|Info"
+msgstr "Permissions"
+
 #: app/models/phonecall.rb:14
 msgid "The beginning of the call has to be before to its end."
 msgstr "Le début de l'appel doit précéder sa fin."
@@ -1516,6 +1902,74 @@ msgstr "Appels de %s on '%s'"
 #: app/models/phonecall.rb:54
 msgid "Phonecall of %s for %s"
 msgstr "Appels de %s pour %s"
+
+#: app/models/piecejointe.rb:-
+msgid "piecejointe"
+msgstr ""
+
+#: app/models/piecejointe.rb:-
+#, fuzzy
+msgid "Piecejointe|File"
+msgstr "Fichier"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "preference"
+msgstr "Préférences"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Attribute"
+msgstr "Préférences"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Owner"
+msgstr "Préférences"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Owner type"
+msgstr "Préférences"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Preferenced"
+msgstr "Préférences"
+
+#: app/models/preference.rb:-
+msgid "Preference|Preferenced type"
+msgstr ""
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Value"
+msgstr "Préférences"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Created at"
+msgstr "Préférences"
+
+#: app/models/preference.rb:-
+#, fuzzy
+msgid "Preference|Updated at"
+msgstr "Préférences"
+
+#: app/models/role.rb:-
+#, fuzzy
+msgid "role"
+msgstr "rôles"
+
+#: app/models/role.rb:-
+#, fuzzy
+msgid "Role|Name"
+msgstr "Nom"
+
+#: app/models/role.rb:-
+#, fuzzy
+msgid "Role|Info"
+msgstr "Info"
 
 #: app/models/rules/component.rb:28
 msgid "Illimited offer on all components"
@@ -1538,6 +1992,30 @@ msgstr "Nombre illimité de tickets de %s"
 #: app/models/rules/credit.rb:26
 msgid "Up to %d tickets of %s"
 msgstr "Jusqu'a %d ticket de %s"
+
+#: app/models/severite.rb:-
+#, fuzzy
+msgid "severite"
+msgstr "sévérité"
+
+#: app/models/severite.rb:-
+#, fuzzy
+msgid "Severite|Name"
+msgstr "Sévérité"
+
+#: app/models/socle.rb:-
+#, fuzzy
+msgid "socle"
+msgstr "source"
+
+#: app/models/socle.rb:-
+#, fuzzy
+msgid "Socle|Name"
+msgstr "Nom"
+
+#: app/models/socle.rb:-
+msgid "Socle|Binaires count"
+msgstr ""
 
 #: app/models/statut.rb:5
 msgid "Submitted"
@@ -1570,6 +2048,192 @@ msgstr "Fermée"
 #: app/models/statut.rb:12
 msgid "Cancelled"
 msgstr "Annulée"
+
+#: app/models/team.rb:-
+#, fuzzy
+msgid "team"
+msgstr "une équipe"
+
+#: app/models/team.rb:-
+#, fuzzy
+msgid "Team|Name"
+msgstr "Nom"
+
+#: app/models/team.rb:-
+#, fuzzy
+msgid "Team|Motto"
+msgstr "Devise"
+
+#: app/models/team.rb:-
+msgid "Team|User cache"
+msgstr ""
+
+#: app/models/team.rb:-
+#, fuzzy
+msgid "Team|Contact"
+msgstr "Contact"
+
+#: app/models/typecontribution.rb:-
+#, fuzzy
+msgid "typecontribution"
+msgstr "contribution"
+
+#: app/models/typecontribution.rb:-
+#, fuzzy
+msgid "Typecontribution|Name"
+msgstr "Nom"
+
+#: app/models/typecontribution.rb:-
+#, fuzzy
+msgid "Typecontribution|Description"
+msgstr "Description"
+
+#: app/models/typedemande.rb:-
+msgid "typedemande"
+msgstr ""
+
+#: app/models/typedemande.rb:-
+msgid "Typedemande|Name"
+msgstr ""
+
+#: app/models/typedocument.rb:-
+#, fuzzy
+msgid "typedocument"
+msgstr "Éditer un type de document"
+
+#: app/models/typedocument.rb:-
+#, fuzzy
+msgid "Typedocument|Name"
+msgstr "Nom"
+
+#: app/models/typedocument.rb:-
+#, fuzzy
+msgid "Typedocument|Description"
+msgstr "Description"
+
+#: app/models/typeurl.rb:-
+#, fuzzy
+msgid "typeurl"
+msgstr "type"
+
+#: app/models/typeurl.rb:-
+#, fuzzy
+msgid "Typeurl|Name"
+msgstr "Nom"
+
+#: app/models/urllogiciel.rb:-
+msgid "urllogiciel"
+msgstr ""
+
+#: app/models/urllogiciel.rb:-
+msgid "Urllogiciel|Logiciel"
+msgstr ""
+
+#: app/models/urllogiciel.rb:-
+msgid "Urllogiciel|Typeurl"
+msgstr ""
+
+#: app/models/urllogiciel.rb:-
+msgid "Urllogiciel|Valeur"
+msgstr ""
+
+#: app/models/urlreversement.rb:-
+#, fuzzy
+msgid "urlreversement"
+msgstr "Nom"
+
+#: app/models/urlreversement.rb:-
+#, fuzzy
+msgid "Urlreversement|Contribution"
+msgstr "Description"
+
+#: app/models/urlreversement.rb:-
+#, fuzzy
+msgid "Urlreversement|Valeur"
+msgstr "Nom"
+
+#: app/models/user.rb:-
+#, fuzzy
+msgid "user"
+msgstr "Client"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:55
+#: app/views/account/_edit_account_informations.html.erb:60
+#: app/views/account/_show_account_information.html.erb:7
+msgid "User|Login"
+msgstr "Identifiant"
+
+#: app/models/user.rb:-
+#, fuzzy
+msgid "User|Password"
+msgstr "Mot de passe"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:29
+#: app/views/account/_show_account_information.html.erb:10
+#: app/views/account/_users_list.html.erb:9
+msgid "User|Title"
+msgstr "Titre"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:26
+#: app/views/account/_show_account_information.html.erb:13
+#: app/views/account/_users_list.html.erb:10
+msgid "User|Name"
+msgstr "Nom"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:32
+#: app/views/account/_show_account_information.html.erb:16
+#: app/views/account/_users_list.html.erb:16
+msgid "User|Email"
+msgstr "Email"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:35
+#: app/views/account/_show_account_information.html.erb:19
+#: app/views/account/_users_list.html.erb:17
+msgid "User|Phone"
+msgstr "Téléphone"
+
+#: app/models/user.rb:-
+#, fuzzy
+msgid "User|Image"
+msgstr "Nom"
+
+#: app/models/user.rb:-
+#, fuzzy
+msgid "User|Information"
+msgstr "Informations"
+
+#: app/models/user.rb:-
+#, fuzzy
+msgid "User|Client"
+msgstr "Client"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:46
+msgid "User|Inactive"
+msgstr "Inactif"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:99
+#: app/views/account/_show_account_information.html.erb:35
+#: app/views/account/_users_list.html.erb:12
+msgid "User|Role"
+msgstr "Rôle"
+
+#: app/models/user.rb:-
+#, fuzzy
+msgid "User|Restricted"
+msgstr "Titre"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:40
+#: app/views/account/_show_account_information.html.erb:24
+msgid "User|Team"
+msgstr "Équipe"
 
 #: app/models/user.rb:29
 msgid "User|Pwd"
@@ -1639,45 +2303,6 @@ msgstr "Bénéficiaire"
 msgid "Expert"
 msgstr "Expert"
 
-#: app/views/account/_edit_account_informations.html.erb:26
-#: app/views/account/_show_account_information.html.erb:13
-#: app/views/account/_users_list.html.erb:10
-msgid "User|Name"
-msgstr "Nom"
-
-#: app/views/account/_edit_account_informations.html.erb:29
-#: app/views/account/_show_account_information.html.erb:10
-#: app/views/account/_users_list.html.erb:9
-msgid "User|Title"
-msgstr "Titre"
-
-#: app/views/account/_edit_account_informations.html.erb:32
-#: app/views/account/_show_account_information.html.erb:16
-#: app/views/account/_users_list.html.erb:16
-msgid "User|Email"
-msgstr "Email"
-
-#: app/views/account/_edit_account_informations.html.erb:35
-#: app/views/account/_show_account_information.html.erb:19
-#: app/views/account/_users_list.html.erb:17
-msgid "User|Phone"
-msgstr "Téléphone"
-
-#: app/views/account/_edit_account_informations.html.erb:40
-#: app/views/account/_show_account_information.html.erb:24
-msgid "User|Team"
-msgstr "Équipe"
-
-#: app/views/account/_edit_account_informations.html.erb:46
-msgid "User|Inactive"
-msgstr "Inactif"
-
-#: app/views/account/_edit_account_informations.html.erb:55
-#: app/views/account/_edit_account_informations.html.erb:60
-#: app/views/account/_show_account_information.html.erb:7
-msgid "User|Login"
-msgstr "Identifiant"
-
 #: app/views/account/_edit_account_informations.html.erb:69
 msgid "Modify your password"
 msgstr "Modifier votre mot de passe"
@@ -1697,12 +2322,6 @@ msgstr "Recevoir un résumé de l'activité hebdomadaire"
 #: app/views/account/_edit_account_informations.html.erb:90
 msgid "Receive a summary of monthly activities"
 msgstr "Recevoir un résumé de l'activité mensuelle"
-
-#: app/views/account/_edit_account_informations.html.erb:99
-#: app/views/account/_show_account_information.html.erb:35
-#: app/views/account/_users_list.html.erb:12
-msgid "User|Role"
-msgstr "Rôle"
 
 #: app/views/account/_edit_account_informations.html.erb:105
 #: app/views/account/_show_account_information.html.erb:40
@@ -1813,7 +2432,6 @@ msgstr "Clients"
 
 #: app/views/account/_menu.html.erb:40 app/views/clients/show.html.erb:43
 #: app/views/demandes/lists/_requests_info.html.erb:22
-#: app/views/welcome/index.html.erb:30
 msgid "Activity report"
 msgstr "Rapport d'activité "
 
@@ -1822,7 +2440,7 @@ msgstr "Rapport d'activité "
 #: app/views/contributions/_contributions_info.html.erb:26
 #: app/views/demandes/lists/_requests_info.html.erb:35
 #: app/views/knowledges/_knowledges_info.html.erb:19
-#: app/views/logiciels/_softwares_info.html.erb:27
+#: app/views/logiciels/_software_info.html.erb:27
 #: app/views/paquets/_paquets_info.html.erb:21
 #: app/views/phonecalls/_calls_info.html.erb:18
 msgid "Search"
@@ -1877,7 +2495,7 @@ msgstr "Rechercher"
 #: app/views/groupes/_form.html.erb:4 app/views/groupes/index.html.erb:5
 #: app/views/knowledges/_knowledges_list.html.erb:6
 #: app/views/logiciels/_form.html.erb:3
-#: app/views/logiciels/_softwares_list.html.erb:6
+#: app/views/logiciels/_software_list.html.erb:6
 #: app/views/logiciels/show.html.erb:18 app/views/mainteneurs/_form.html.erb:4
 #: app/views/paquets/_form.html.erb:17
 #: app/views/paquets/_paquets_info.html.erb:23
@@ -1903,7 +2521,7 @@ msgid "Roles "
 msgstr "Rôles"
 
 #: app/views/account/_users_info.html.erb:36
-#: app/views/logiciels/_softwares_info.html.erb:47
+#: app/views/logiciels/_software_info.html.erb:47
 #: app/views/paquets/_paquets_info.html.erb:28
 #: app/views/phonecalls/_calls_info.html.erb:47
 msgid "Perimeter"
@@ -1941,6 +2559,7 @@ msgstr "Modifier %s"
 #: app/views/account/signup.html.erb:6 app/views/alerts/index.html.erb:8
 #: app/views/binaires/edit.html.erb:5 app/views/binaires/new.html.erb:5
 #: app/views/commentaires/edit.html.erb:5 app/views/contracts/area.html.erb:15
+#: app/views/contracts/supported_software.html.erb:35
 #: app/views/contributions/edit.html.erb:6 app/views/documents/edit.html.erb:6
 #: app/views/engagements/edit.html.erb:5 app/views/licenses/edit.html.erb:5
 #: app/views/logiciels/new.html.erb:5 app/views/phonecalls/edit.html.erb:5
@@ -2066,334 +2685,12 @@ msgstr "Créer"
 msgid "System"
 msgstr "Système"
 
-#: app/views/bienvenue/about.html.erb:19
-msgid ""
-"This journey would not have been possible without\n"
-"      the <b>developers</b> who have taken part in this project,\n"
-"      without the testers who have contributed to it's quality and\n"
-"      without quite a bit of <b>free software</b> which has enabled the\n"
-"      development to be fast and agile. They are all warmly thanked here.\n"
-"      %s would be nothing without them."
-msgstr ""
-"Cette aventure n'aurait été possible sans tous les <b>développeurs</b> qui "
-"ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont contribué à "
-"assurer sa qualité et sans un grand nombre de <b>logiciels libre</b> qui ont "
-"permis à son développement d'être rapide et agile. Ils sont tous ici "
-"grandement remerciés."
-
-#: app/views/binaires/_form.html.erb:20 app/views/paquets/show.html.erb:45
-msgid "Configuration"
-msgstr "Configuration"
-
-#: app/views/binaires/_form.html.erb:24 app/views/binaires/index.html.erb:6
-msgid "Archive"
-msgstr "Archive"
-
-#: app/views/binaires/edit.html.erb:1
-msgid "Edition of this binary"
-msgstr "Édition de ce binaire"
-
-#: app/views/binaires/index.html.erb:1
-msgid "List of binary packages"
-msgstr "Liste des paquets binaires"
-
-#: app/views/binaires/index.html.erb:3
-msgid "a binary archive"
-msgstr "une archive binaire"
-
-#: app/views/binaires/index.html.erb:6 app/views/binaires/show.html.erb:16
-msgid "Source"
-msgstr "Source"
-
-#: app/views/binaires/index.html.erb:6
-#: app/views/demandes/_form_binaires.html.erb:9
-msgid "Binary"
-msgstr "Binaire"
-
-#: app/views/binaires/new.html.erb:1
-msgid "New binary package"
-msgstr "Nouveau Paquet binaire"
-
-#: app/views/binaires/show.html.erb:10 app/views/socles/show.html.erb:21
-msgid "Binary package"
-msgstr "Paquet binaire"
-
-#: app/views/binaires/show.html.erb:20 app/views/paquets/_form.html.erb:23
-msgid "Release"
-msgstr "Release"
-
-#: app/views/binaires/show.html.erb:26
-msgid "This package can be downloaded"
-msgstr "Ce paquet peut être téléchargé"
-
-#: app/views/clients/_clients_info.html.erb:17
-msgid "Create a new client"
-msgstr "Créér un nouveau client"
-
-#: app/views/clients/_clients_info.html.erb:22
-#: app/views/knowledges/_knowledges_info.html.erb:13
-#: app/views/logiciels/_softwares_info.html.erb:16
-#: app/views/paquets/_paquets_info.html.erb:13
-msgid "Consultation"
-msgstr "Consultation"
-
-#: app/views/clients/_clients_info.html.erb:31
-#: app/views/knowledges/_knowledges_info.html.erb:21
-#: app/views/logiciels/_softwares_info.html.erb:29
-msgid "By name"
-msgstr "Par nom"
-
-#: app/views/clients/_clients_info.html.erb:33
-msgid "By system"
-msgstr "Par système"
-
-#: app/views/clients/_clients_list.html.erb:3
-#: app/views/clients/stats.html.erb:4 app/views/clients/stats.html.erb:30
-msgid "a client"
-msgstr "un client"
-
-#: app/views/clients/_clients_list.html.erb:5
-#: app/views/clients/_form.html.erb:24 app/views/logiciels/_form.html.erb:12
-#: app/views/logiciels/_softwares_list.html.erb:6
-msgid "Logo"
-msgstr "Logo"
-
-#: app/views/clients/_clients_list.html.erb:5
-#: app/views/clients/_form.html.erb:31 app/views/welcome/admin.html.erb:42
-msgid "Systems"
-msgstr "Systèmes"
-
-#: app/views/clients/_clients_list.html.erb:5
-#: app/views/clients/_form.html.erb:27
-msgid "Access code"
-msgstr "Code d'accès"
-
-#: app/views/clients/_clients_list.html.erb:27
-msgid "Add a logo"
-msgstr "Ajouter un logo"
-
-<<<<<<< HEAD:po/fr/tosca.po
-=======
-#: app/views/bienvenue/admin.html.erb:51
-msgid "Binaries"
-msgstr "Binaires"
-
-#: app/views/bienvenue/admin.html.erb:55
-msgid "Reporting"
-msgstr "Reporting"
-
-#: app/views/bienvenue/admin.html.erb:57
-msgid "Comex report"
-msgstr "Rapport Comex"
-
-#: app/views/bienvenue/admin.html.erb:58
-msgid "Digest report"
-msgstr "Rapport d'activité"
-
-#: app/views/bienvenue/index.html.erb:2
-msgid "connected"
-msgstr "connecté"
-
-#: app/views/bienvenue/index.html.erb:5
-msgid "Welcome to the 08000LINUX management tool"
-msgstr "Bienvenue sur l'outil de gestion du 08000LINUX"
-
-#: app/views/bienvenue/index.html.erb:18
-msgid "You can see the list of %s:"
-msgstr "Vous pouvez consulter la liste des %s :"
-
-#: app/views/bienvenue/index.html.erb:18
-msgid "requests"
-msgstr "demandes"
-
-#: app/views/bienvenue/index.html.erb:19
-msgid "You can also %s."
-msgstr "Vous pouvez aussi %s."
-
-#: app/views/bienvenue/index.html.erb:19
-msgid "make a request"
-msgstr "faire une nouvelle demande"
-
-#: app/views/bienvenue/index.html.erb:21
-msgid ""
-"You are not %s, so you cannot access the requests interface of our service."
-msgstr ""
-"Vous n'êtes pas %s, donc vous ne pouvez pas accéder à l'interface des "
-"demandes de notre service."
-
-#: app/views/bienvenue/index.html.erb:26
-msgid "Documents"
-msgstr "Documents"
-
-#: app/views/bienvenue/index.html.erb:28
-msgid "You can browse %s. "
-msgstr "Vous pouvez parcourir %s. "
-
-#: app/views/bienvenue/index.html.erb:28
-msgid "your directory"
-msgstr "votre répertoire"
-
-#: app/views/bienvenue/index.html.erb:29
-msgid "You will find there all documents we have delivered to you"
-msgstr ""
-"Vous avez aussi accès à l'ensemble des documents que nous vous avons livrés"
-
-#: app/views/bienvenue/index.html.erb:30
-msgid "You can also consult your %s online."
-msgstr "Vous pouvez aussi consulter votre %s en ligne."
-
-#: app/views/bienvenue/index.html.erb:30
-msgid "activity report"
-msgstr "rapport d'activité "
-
-#: app/views/bienvenue/index.html.erb:32
-msgid "When you are %s, you can access an activity report"
-msgstr "Quand vous êtes %s, vous avez accès à un rapport d'activité"
-
-#: app/views/bienvenue/index.html.erb:33
-msgid "dynamically showing the activity of our service for you in real time."
-msgstr "dynamique montrant l'activité de notre service en temps réel."
-
-#: app/views/bienvenue/index.html.erb:34
-msgid "You also have access to all documents we may deliver to you."
-msgstr ""
-"Vous avez aussi accès à l'ensemble des documents que nous pouvons vous "
-"livrer."
-
-#: app/views/bienvenue/index.html.erb:40
-#: app/views/bienvenue/suggestions.html.erb:1
-msgid "Idea Box"
-msgstr "Boite à idées"
-
-#: app/views/bienvenue/index.html.erb:41
-msgid ""
-"You have an idea which can improve our services?<br />\n"
-"    Your comments and suggestions are welcome in %s."
-msgstr ""
-"Vous avez une idée pour améliorer nos services ?<br />\n"
-"   Vos commentaires et suggestions sont les bienvenues dans %s."
-
-#: app/views/bienvenue/index.html.erb:43
-#: app/views/demandes/lists/pending.html.erb:22
-msgid "the idea box"
-msgstr "la boite à idées"
-
-#: app/views/bienvenue/index.html.erb:51
-msgid "Offer"
-msgstr "Offre"
-
-#: app/views/bienvenue/index.html.erb:55
-msgid "You benefit from one of our offers, which detail is available here: %s"
-msgstr ""
-"Vous avez accès à une de nos offres, dont vous pouvez consulter le détail à "
-"tout moment : %s"
-
-#: app/views/bienvenue/index.html.erb:58
-msgid "We hope this tool wil give you entire satisfaction."
-msgstr "Nous espérons que cet outil vous donnera entière satisfaction."
-
-#: app/views/bienvenue/index.html.erb:61
-msgid "Your call number is"
-msgstr "Votre numéro d'appel est le "
-
-#: app/views/bienvenue/index.html.erb:63
-msgid "and your access code is %s"
-msgstr "et votre code d'accès est %s"
-
-#: app/views/bienvenue/index.html.erb:70
-msgid "You can see the list of %s."
-msgstr "Vous pouvez consulter la liste des %s."
-
-#: app/views/bienvenue/index.html.erb:71
-msgid ""
-"This software is sorted into a precise and simple %s, distributed by "
-"activity group."
-msgstr ""
-"Ces logiciels sont répartis selon une %s précise et simple, par groupe "
-"d'activité."
-
-#: app/views/bienvenue/index.html.erb:73
-msgid ""
-"We have a large range of offers for support with a SLA. This Service Level "
-"Agreement can be very strong and is guaranteed by contract."
-msgstr ""
-"Nous avons une large gamme d'offres d'assistance, de support et de "
-"maintenance avec une CNS. Cette Convention de Niveau de Service peut être "
-"très courte et garantie par contrat."
-
-#: app/views/bienvenue/index.html.erb:75
-msgid "contact us."
-msgstr "nous contacter."
-
-#: app/views/bienvenue/index.html.erb:77
-msgid ""
-"You can consult and follow all the %s done by our team in Open Source "
-"communities."
-msgstr ""
-"Vous pouvez consulter et suivre toutes les %s faites par notre équipe dans "
-"les communautés Open Source."
-
-#: app/views/bienvenue/plan.html.erb:2
-msgid "Plan/access allowed"
-msgstr "Plan/Accès autorisé"
-
-#: app/views/bienvenue/plan.html.erb:21
-msgid "This part of the application"
-msgstr "Cette partie de l'application"
-
-#: app/views/bienvenue/plan.html.erb:32
-msgid "Others parts"
-msgstr "Autre composants"
-
-#: app/views/bienvenue/statuts.html.erb:1
-msgid "Status of the Requests"
-msgstr "Statuts des demandes"
-
-#: app/views/bienvenue/statuts.html.erb:5
-msgid "Status list"
-msgstr "Listes des Statuts"
-
-#: app/views/bienvenue/suggestions.html.erb:3
-msgid ""
-"Vous have an idea in order to improve our services ? Don't hesitate to fill "
-"in the form!<br />\n"
-"Every proposition will be consider with a lot of attention"
-msgstr ""
-"Vous avez une idée pour améliorer nos services ? N'hésitez pas à remplir le "
-"formulaire ci-dessous !<br />\n"
-"Chaque proposition sera étudiée avec beaucoup d'attention."
-
-#: app/views/bienvenue/suggestions.html.erb:9
-msgid "Your suggestions on our service :"
-msgstr "Vos suggestions sur notre service :"
-
-#: app/views/bienvenue/suggestions.html.erb:15
-msgid "Your suggestions on our tool : "
-msgstr "Vos suggestion sur notre outil : "
-
-#: app/views/bienvenue/suggestions.html.erb:21
-#: app/views/clients/new.html.erb:5 app/views/documents/new.html.erb:5
-#: app/views/roles/edit.html.erb:5 app/views/statuts/edit.html.erb:5
-#: app/views/statuts/new.html.erb:5
-msgid "Submit"
-msgstr "Déposer"
-
-#: app/views/binaires/_form.html.erb:9 app/views/binaires/index.html.erb:6
-#: app/views/binaires/show.html.erb:14 app/views/contracts/show.html.erb:16
-#: app/views/demandes/_form.html.erb:47
-#: app/views/demandes/_infos_demande.html.erb:27
-#: app/views/machines/_form.html.erb:17 app/views/machines/index.html.erb:5
-#: app/views/machines/show.html.erb:9 app/views/socles/_form.html.erb:9
-#: app/views/socles/index.html.erb:5
-msgid "System"
-msgstr "Système"
-
 #: app/views/binaires/_form.html.erb:13 app/views/binaires/index.html.erb:6
 #: app/views/binaires/show.html.erb:15
 msgid "Arch"
 msgstr "Arch"
 
-#: app/views/binaires/_form.html.erb:20 app/views/paquets/show.html.erb:45
+#: app/views/binaires/_form.html.erb:20 app/views/paquets/show.html.erb:51
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -2444,14 +2741,14 @@ msgstr "Créér un nouveau client"
 
 #: app/views/clients/_clients_info.html.erb:21
 #: app/views/knowledges/_knowledges_info.html.erb:13
-#: app/views/logiciels/_softwares_info.html.erb:16
+#: app/views/logiciels/_software_info.html.erb:16
 #: app/views/paquets/_paquets_info.html.erb:13
 msgid "Consultation"
 msgstr "Consultation"
 
 #: app/views/clients/_clients_info.html.erb:30
 #: app/views/knowledges/_knowledges_info.html.erb:21
-#: app/views/logiciels/_softwares_info.html.erb:29
+#: app/views/logiciels/_software_info.html.erb:29
 msgid "By name"
 msgstr "Par nom"
 
@@ -2466,9 +2763,14 @@ msgstr "un client"
 
 #: app/views/clients/_clients_list.html.erb:5
 #: app/views/clients/_form.html.erb:24 app/views/logiciels/_form.html.erb:12
-#: app/views/logiciels/_softwares_list.html.erb:6
+#: app/views/logiciels/_software_list.html.erb:6
 msgid "Logo"
 msgstr "Logo"
+
+#: app/views/clients/_clients_list.html.erb:5
+#: app/views/clients/_form.html.erb:31 app/views/welcome/admin.html.erb:42
+msgid "Systems"
+msgstr "Systèmes"
 
 #: app/views/clients/_clients_list.html.erb:5
 #: app/views/clients/_form.html.erb:27
@@ -2479,7 +2781,6 @@ msgstr "Code d'accès"
 msgid "Add a logo"
 msgstr "Ajouter un logo"
 
->>>>>>> production:po/fr/tosca.po
 #: app/views/clients/_clients_list.html.erb:28
 msgid "Stats"
 msgstr "Statut"
@@ -2488,8 +2789,8 @@ msgstr "Statut"
 #: app/views/demandes/tabs/_tab_menu.html.erb:9
 #: app/views/images/_form.html.erb:6 app/views/images/index.html.erb:6
 #: app/views/logiciels/_form.html.erb:9
-#: app/views/logiciels/_softwares_info.html.erb:40
-#: app/views/logiciels/_softwares_list.html.erb:6
+#: app/views/logiciels/_software_info.html.erb:40
+#: app/views/logiciels/_software_list.html.erb:6
 #: app/views/logiciels/show.html.erb:23 app/views/machines/_form.html.erb:22
 #: app/views/roles/index.html.erb:4 app/views/statuts/_form.html.erb:6
 #: app/views/typecontributions/_form.html.erb:6
@@ -2641,10 +2942,13 @@ msgid "Teams managing this contract"
 msgstr "Équipes gérant ce contrat"
 
 #: app/views/contracts/area.html.erb:1 app/views/contracts/show.html.erb:34
+#: app/views/contracts/supported_software.html.erb:1
 msgid "Supported Software"
 msgstr "Mes logiciels supportés"
 
-#: app/views/contracts/area.html.erb:19 app/views/paquets/_form.html.erb:38
+#: app/views/contracts/area.html.erb:19
+#: app/views/contracts/supported_software.html.erb:10
+#: app/views/paquets/_form.html.erb:38
 msgid "Supported"
 msgstr "Supporté"
 
@@ -2834,10 +3138,6 @@ msgstr "une nouvelle contribution"
 #: app/views/contributions/new.html.erb:1
 msgid "Add a new contribution"
 msgstr "Ajouter une nouvelle contribution"
-
-#: app/views/contributions/select.html.erb:4
-msgid "contribution"
-msgstr "contribution"
 
 #: app/views/contributions/select.html.erb:10
 msgid "Access to administration interface"
@@ -3250,10 +3550,6 @@ msgstr "Éditer la dépendance"
 msgid "New dependency"
 msgstr "Nouvelle dépendance"
 
-#: app/views/distributeurs/_form.html.erb:4
-msgid "Distributeur|Name"
-msgstr "Nom"
-
 #: app/views/documents/_documents_info.html.erb:15
 #: app/views/documents/new.html.erb:1
 msgid "Add a document"
@@ -3332,14 +3628,6 @@ msgstr "Liste des engagements contractuels"
 #: app/views/engagements/index.html.erb:8
 msgid "a possible commitment"
 msgstr "un engagement possible"
-
-#: app/views/etatreversements/_form.html.erb:4
-msgid "Etatreversement|Name"
-msgstr "Nom"
-
-#: app/views/etatreversements/_form.html.erb:7
-msgid "Etatreversement|Description"
-msgstr "Description"
 
 #: app/views/groupes/edit.html.erb:1
 msgid "Editing group"
@@ -3433,10 +3721,6 @@ msgstr "Ajouter"
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/views/licenses/_form.html.erb:3
-msgid "License|Name"
-msgstr "Nom"
-
 #: app/views/licenses/_form.html.erb:6 app/views/urllogiciels/index.html.erb:6
 #: app/views/urlreversements/index.html.erb:6
 msgid "Url"
@@ -3459,48 +3743,48 @@ msgid "Copyright"
 msgstr "License"
 
 #: app/views/logiciels/_form.html.erb:22
-#: app/views/logiciels/_softwares_info.html.erb:42
-#: app/views/logiciels/_softwares_list.html.erb:7
+#: app/views/logiciels/_software_info.html.erb:42
+#: app/views/logiciels/_software_list.html.erb:7
 #: app/views/logiciels/show.html.erb:37
 msgid "Group"
 msgstr "Groupe"
 
 #: app/views/logiciels/_form.html.erb:25
-#: app/views/logiciels/_softwares_info.html.erb:49
+#: app/views/logiciels/_software_info.html.erb:49
 #: app/views/logiciels/show.html.erb:34
 msgid "Technologies"
 msgstr "Technologies"
 
-#: app/views/logiciels/_softwares_info.html.erb:22
+#: app/views/logiciels/_software_info.html.erb:22
 msgid "List of packages"
 msgstr "Liste des paquets"
 
-#: app/views/logiciels/_softwares_info.html.erb:32
+#: app/views/logiciels/_software_info.html.erb:32
 msgid "By client"
 msgstr "Par client"
 
-#: app/views/logiciels/_softwares_info.html.erb:38
+#: app/views/logiciels/_software_info.html.erb:38
 msgid "Characteristic"
 msgstr "Caracteristique"
 
-#: app/views/logiciels/_softwares_info.html.erb:50
+#: app/views/logiciels/_software_info.html.erb:50
 #: app/views/paquets/_paquets_info.html.erb:30
 msgid "Source packages"
 msgstr "Paquets source"
 
-#: app/views/logiciels/_softwares_info.html.erb:51
+#: app/views/logiciels/_software_info.html.erb:51
 msgid "Binary packages"
 msgstr "Paquets binaires"
 
-#: app/views/logiciels/_softwares_list.html.erb:3
+#: app/views/logiciels/_software_list.html.erb:3
 msgid "a new software"
 msgstr "un nouveau logiciel"
 
-#: app/views/logiciels/_softwares_list.html.erb:7
+#: app/views/logiciels/_software_list.html.erb:7
 msgid "Technologie(s)"
 msgstr "Technologie(s)"
 
-#: app/views/logiciels/_softwares_list.html.erb:7
+#: app/views/logiciels/_software_list.html.erb:7
 msgid "Package(s)"
 msgstr "Paquet(s)"
 
@@ -3604,7 +3888,7 @@ msgstr "Conteneur"
 
 #: app/views/paquets/_form.html.erb:30
 #: app/views/paquets/_paquets_list.html.erb:7
-#: app/views/paquets/show.html.erb:29
+#: app/views/paquets/show.html.erb:31
 msgid "Distributor"
 msgstr "Distributeur"
 
@@ -3631,7 +3915,7 @@ msgid "a virtual package"
 msgstr "un paquet virtuel"
 
 #: app/views/paquets/_paquets_list.html.erb:7
-#: app/views/paquets/show.html.erb:30
+#: app/views/paquets/show.html.erb:35
 msgid "Maintainer"
 msgstr "Mainteneur"
 
@@ -3659,21 +3943,17 @@ msgstr ""
 "<b>Note : </b>Ce paquet n'est désormais plus dans votre périmètre.\n"
 "Il est conservé ici uniquement à des fins historiques."
 
-#: app/views/paquets/show.html.erb:37
+#: app/views/paquets/show.html.erb:43
 msgid " <i>on</i> "
 msgstr " <i>sur</i> "
 
-#: app/views/paquets/show.html.erb:55
+#: app/views/paquets/show.html.erb:61
 msgid "This package has been updated"
 msgstr "Le paquet a été mis à jour avec succès"
 
-#: app/views/paquets/show.html.erb:55
+#: app/views/paquets/show.html.erb:61
 msgid "times"
 msgstr "fois"
-
-#: app/views/paquets/show.html.erb:57
-msgid "changelog"
-msgstr "changelog"
 
 #: app/views/permissions/_form.html.erb:7
 msgid "Info"
@@ -4472,7 +4752,7 @@ msgstr "Ajouter une url pour suivre votre contribution"
 msgid "Don't hesitate to"
 msgstr "N'hésitez pas à"
 
-#: app/views/welcome/about.html.erb:9 app/views/welcome/index.html.erb:75
+#: app/views/welcome/about.html.erb:9
 msgid "contact us"
 msgstr "nous contacter"
 
@@ -4493,16 +4773,16 @@ msgstr ""
 #: app/views/welcome/about.html.erb:18
 msgid ""
 "This journey would not have been possible without\n"
-"      the <b>developers</b> who have taken part to this project,\n"
-"      without the testers who have contributed to its quality and\n"
-"      without quite a few <b>free software</b> which have enable the\n"
+"      the <b>developers</b> who have taken part in this project,\n"
+"      without the testers who have contributed to it's quality and\n"
+"      without quite a bit of <b>free software</b> which has enabled the\n"
 "      development to be fast and agile. They are all warmly thanked here.\n"
 "      %s would be nothing without them."
 msgstr ""
 "Cette aventure n'aurait été possible sans tous les <b>développeurs</b> qui "
-"ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont contribués à "
-"assurer sa qualité et sans un grand nombre de <b>logiciels libre</b>  qui "
-"ont permis à son développement d'être rapide et agile. Ils sont tous ici "
+"ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont contribué à "
+"assurer sa qualité et sans un grand nombre de <b>logiciels libre</b> qui ont "
+"permis à son développement d'être rapide et agile. Ils sont tous ici "
 "grandement remerciés."
 
 #: app/views/welcome/about.html.erb:26
@@ -4602,11 +4882,11 @@ msgid "connected"
 msgstr "connecté"
 
 #: app/views/welcome/index.html.erb:5
-msgid "Welcome in the management tool of the 08000linux"
-msgstr "Bienvenue sur l'outil de gestion du 08000linux"
+msgid "Welcome to the 08000LINUX management tool"
+msgstr "Bienvenue sur l'outil de gestion du 08000LINUX"
 
 #: app/views/welcome/index.html.erb:18
-msgid "You can see the list of %s :"
+msgid "You can see the list of %s:"
 msgstr "Vous pouvez consulter la liste des %s :"
 
 #: app/views/welcome/index.html.erb:18
@@ -4623,43 +4903,46 @@ msgstr "faire une nouvelle demande"
 
 #: app/views/welcome/index.html.erb:21
 msgid ""
-"You are not %s, so you do not have any access to the requests interface of "
-"our service"
+"You are not %s, so you cannot access the requests interface of our service."
 msgstr ""
-"Vous n'êtes pas %s vous ne pouvez pas accéder à l'interface des demandes de "
-"notre service"
+"Vous n'êtes pas %s, donc vous ne pouvez pas accéder à l'interface des "
+"demandes de notre service."
 
 #: app/views/welcome/index.html.erb:26
 msgid "Documents"
 msgstr "Documents"
 
 #: app/views/welcome/index.html.erb:28
-msgid "You can browse %s . "
-msgstr "Vous pouvez parcourir %s."
+msgid "You can browse %s. "
+msgstr "Vous pouvez parcourir %s. "
 
 #: app/views/welcome/index.html.erb:28
 msgid "your directory"
 msgstr "votre répertoire"
 
 #: app/views/welcome/index.html.erb:29
-msgid "You will find there all the documents we delivered to you"
+msgid "You will find there all documents we have delivered to you"
 msgstr ""
-"Vous avez aussi accès à l'ensemble des documents que nous vous avons livré"
+"Vous avez aussi accès à l'ensemble des documents que nous vous avons livrés"
 
 #: app/views/welcome/index.html.erb:30
 msgid "You can also consult your %s online."
 msgstr "Vous pouvez aussi consulter votre %s en ligne."
 
+#: app/views/welcome/index.html.erb:30
+msgid "activity report"
+msgstr "rapport d'activité "
+
 #: app/views/welcome/index.html.erb:32
-msgid "When you are %s, you have access to an activity report"
-msgstr "Quand vous êtes %s, vous avez accès au rapport d'activité"
+msgid "When you are %s, you can access an activity report"
+msgstr "Quand vous êtes %s, vous avez accès à un rapport d'activité"
 
 #: app/views/welcome/index.html.erb:33
 msgid "dynamically showing the activity of our service for you in real time."
 msgstr "dynamique montrant l'activité de notre service en temps réel."
 
 #: app/views/welcome/index.html.erb:34
-msgid "You also have access to all the documents we may deliver to you."
+msgid "You also have access to all documents we may deliver to you."
 msgstr ""
 "Vous avez aussi accès à l'ensemble des documents que nous pouvons vous "
 "livrer."
@@ -4671,26 +4954,24 @@ msgstr "Boite à idées"
 
 #: app/views/welcome/index.html.erb:41
 msgid ""
-"You have an idea, which can improve our services ?<br />\n"
-"    Your comments and suggestions are welcome in %s"
+"You have an idea which can improve our services?<br />\n"
+"    Your comments and suggestions are welcome in %s."
 msgstr ""
 "Vous avez une idée pour améliorer nos services ?<br />\n"
-"   Vos commentaires et suggestions sont les bienvenues dans %s"
+"   Vos commentaires et suggestions sont les bienvenues dans %s."
 
 #: app/views/welcome/index.html.erb:51
 msgid "Offer"
 msgstr "Offre"
 
 #: app/views/welcome/index.html.erb:55
-msgid ""
-"You have access to one of our offers, which you have the detail at your "
-"disposal : %s"
+msgid "You benefit from one of our offers, which detail is available here: %s"
 msgstr ""
 "Vous avez accès à une de nos offres, dont vous pouvez consulter le détail à "
 "tout moment : %s"
 
 #: app/views/welcome/index.html.erb:58
-msgid "We hope this tool wil give you an entire satisfaction."
+msgid "We hope this tool wil give you entire satisfaction."
 msgstr "Nous espérons que cet outil vous donnera entière satisfaction."
 
 #: app/views/welcome/index.html.erb:61
@@ -4707,7 +4988,7 @@ msgstr "Vous pouvez consulter la liste des %s."
 
 #: app/views/welcome/index.html.erb:71
 msgid ""
-"This software is distributed by a precise and simple %s, distributed by "
+"This software is sorted into a precise and simple %s, distributed by "
 "activity group."
 msgstr ""
 "Ces logiciels sont répartis selon une %s précise et simple, par groupe "
@@ -4715,12 +4996,16 @@ msgstr ""
 
 #: app/views/welcome/index.html.erb:73
 msgid ""
-"We have a large range of offers for supporting you with a SLA. This Service "
-"Level Agreement can be very short and is guaranted by contract."
+"We have a large range of offers for support with a SLA. This Service Level "
+"Agreement can be very strong and is guaranteed by contract."
 msgstr ""
 "Nous avons une large gamme d'offres d'assistance, de support et de "
 "maintenance avec une CNS. Cette Convention de Niveau de Service peut être "
 "très courte et garantie par contrat."
+
+#: app/views/welcome/index.html.erb:75
+msgid "contact us."
+msgstr "nous contacter."
 
 #: app/views/welcome/index.html.erb:77
 msgid ""
@@ -4822,470 +5107,77 @@ msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
-#~ msgid "Softwares"
-#~ msgstr "Logiciels"
-=======
-#~ msgid "contributions"
-#~ msgstr "contributions"
-
-#~ msgid "arch"
-#~ msgstr "arch"
-
-#~ msgid "Arch|Name"
-#~ msgstr "Nom"
-
-#~ msgid "beneficiaire"
-#~ msgstr "bénéficiaire"
-
-#~ msgid "Beneficiaire|Client"
-#~ msgstr "Client"
-
-#~ msgid "Beneficiaire|Beneficiaire"
-#~ msgstr "Bénéficiaire"
-
-#~ msgid "Beneficiaire|User"
-#~ msgstr "Utilisateur"
-
-#~ msgid "Beneficiaire|Notifier subalternes"
-#~ msgstr "Notifier subalternes"
-
-#~ msgid "Beneficiaire|Notifier"
-#~ msgstr "Notifier"
-
-#~ msgid "Beneficiaire|Notifier cc"
-#~ msgstr "Notifier cc"
-
-#~ msgid "Changelog|Paquet"
-#~ msgstr "Paquet"
-
-#~ msgid "Changelog|Date modification"
-#~ msgstr "Date modification"
-
-#~ msgid "Changelog|Nom modification"
-#~ msgstr "Nom modification"
-
-#~ msgid "Changelog|Text modification"
-#~ msgstr "Text modification"
-
-#~ msgid "commentaire"
-#~ msgstr "commentaire"
-
-#~ msgid "Commentaire|Demande"
-#~ msgstr "Demande"
-
-#~ msgid "Commentaire|User"
-#~ msgstr "Utilisateur"
-
-#~ msgid "Commentaire|Piecejointe"
-#~ msgstr "Pièce jointe"
-
-#~ msgid "Commentaire|Corps"
-#~ msgstr "Corps"
-
-#~ msgid "Commentaire|Created on"
-#~ msgstr "Créé le"
-
-#~ msgid "Commentaire|Updated on"
-#~ msgstr "Mis à jour le"
-
-#~ msgid "Commentaire|Prive"
-#~ msgstr "Privé"
-
-#~ msgid "Commentaire|Severite"
-#~ msgstr "Sévérité"
-
-#~ msgid "Commentaire|Statut"
-#~ msgstr "Statut"
-
-#~ msgid "Commentaire|Ingenieur"
-#~ msgstr "Ingénieur"
-
-#~ msgid "Commentaire|Elapsed"
-#~ msgstr "Temps écoulé"
-
-#~ msgid "competence"
-#~ msgstr "competence"
-
-#~ msgid "Competence|Name"
-#~ msgstr "Nom"
-
-#~ msgid "conteneur"
-#~ msgstr "conteneur"
-
-#~ msgid "Conteneur|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Contribution|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Contribution|Description"
-#~ msgstr "Description"
-
-#~ msgid "Contribution|Patch"
-#~ msgstr "Correctif"
-
-#~ msgid "Contribution|Created on"
-#~ msgstr "Créé le"
-
-#~ msgid "Contribution|Updated on"
-#~ msgstr "Mis à jour le"
-
-#~ msgid "Contribution|Id mantis"
-#~ msgstr "Id mantis"
-
-#~ msgid "Contribution|Reverse le"
-#~ msgstr "Reverse le"
-
-#~ msgid "Contribution|Description fonctionnelle"
-#~ msgstr "Description fonctionnelle"
-
-#~ msgid "Contribution|Etatreversement"
-#~ msgstr "État reversement"
-
-#~ msgid "Contribution|Cloture le"
-#~ msgstr "Cloture le"
-
-#~ msgid "Contribution|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "Contribution|Ingenieur"
-#~ msgstr "Ingenieur"
-
-#~ msgid "Contribution|Typecontribution"
-#~ msgstr "Type contribution"
-
-#~ msgid "Contribution|Affected version"
-#~ msgstr "Version affectée"
-
-#~ msgid "Contribution|Synthese"
-#~ msgstr "Synthese"
-
-#~ msgid "Contribution|Fixed version"
-#~ msgstr "Version corrigée"
-
-#~ msgid "dependance"
-#~ msgstr "déendance"
-
-#~ msgid "Dependance|Paquet"
-#~ msgstr "Paquet"
-
-#~ msgid "Dependance|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Dependance|Sens"
-#~ msgstr "Sens"
-
-#~ msgid "Dependance|Version"
-#~ msgstr "Version"
-
-#~ msgid "distributeur"
-#~ msgstr "distributeur"
-
-#~ msgid "elapsed"
-#~ msgstr "écoulé"
-
-#~ msgid "Elapsed|Demande"
-#~ msgstr "Demande"
-
-#~ msgid "Elapsed|Taken into account"
-#~ msgstr "Prise en compte"
-
-#~ msgid "Elapsed|Workaround"
-#~ msgstr "Contournée"
-
-#~ msgid "Elapsed|Correction"
-#~ msgstr "Correction"
-
-#~ msgid "Elapsed|Until now"
-#~ msgstr "À ce jour"
-
-#~ msgid "engagement"
-#~ msgstr "engagement"
-
-#~ msgid "Engagement|Severite"
-#~ msgstr "Severité"
-
-#~ msgid "Engagement|Contournement"
-#~ msgstr "Contournement"
-
-#~ msgid "Engagement|Correction"
-#~ msgstr "Correction"
-
-#~ msgid "Engagement|Typedemande"
-#~ msgstr "Typedemande"
-
-#~ msgid "etatreversement"
-#~ msgstr "etatreversement"
-
-#~ msgid "groupe"
-#~ msgstr "groupe"
-
-#~ msgid "Groupe|Name"
-#~ msgstr "Nom"
-
-#~ msgid "image"
-#~ msgstr "image"
-
-#~ msgid "Image|Image"
-#~ msgstr "Image"
-
-#~ msgid "Image|Description"
-#~ msgstr "Description"
-
-#~ msgid "Image|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "ingenieur"
-#~ msgstr "ingenieur"
-
-#~ msgid "Ingenieur|User"
-#~ msgstr "Utilisateur"
-
-#~ msgid "Ingenieur|Image"
-#~ msgstr "Image"
-
-#~ msgid "knowledge"
-#~ msgstr "connaissance"
-
-#~ msgid "Knowledge|Competence"
-#~ msgstr "Competence"
-
-#~ msgid "Knowledge|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "Knowledge|Ingenieur"
-#~ msgstr "Ingénieur"
-
-#~ msgid "Knowledge|Level"
-#~ msgstr "Niveau"
-
-#~ msgid "license"
-#~ msgstr "licence"
-
-#~ msgid "License|Url"
-#~ msgstr "Url"
-
-#~ msgid "License|Certifie osi"
-#~ msgstr "Certifie osi"
-
-#~ msgid "logiciel"
-#~ msgstr "logiciel"
-
-#~ msgid "Logiciel|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Logiciel|Referent"
-#~ msgstr "Referent"
-
-#~ msgid "Logiciel|Resume"
-#~ msgstr "Résumé"
-
-#~ msgid "Logiciel|Description"
-#~ msgstr "Description"
-
-#~ msgid "Logiciel|License"
-#~ msgstr "Licence"
-
-#~ msgid "Logiciel|Groupe"
-#~ msgstr "Groupe"
-
-#~ msgid "machine"
-#~ msgstr "machine"
-
-#~ msgid "Machine|Socle"
-#~ msgstr "Socle"
-
-#~ msgid "Machine|Acces"
-#~ msgstr "Acces"
-
-#~ msgid "Machine|Virtuelle"
-#~ msgstr "Virtuelle"
-
-#~ msgid "Machine|Hote"
-#~ msgstr "Hote"
-
-#~ msgid "Machine|Description"
-#~ msgstr "Description"
-
-#~ msgid "mainteneur"
-#~ msgstr "mainteneur"
-
-#~ msgid "Mainteneur|Name"
-#~ msgstr "Nom"
-
-#~ msgid "news"
-#~ msgstr "infos"
-
-#~ msgid "new"
-#~ msgstr "nouveau"
-
-#~ msgid "New|Subject"
-#~ msgstr "Sujet"
-
-#~ msgid "New|Source"
-#~ msgstr "Source"
-
-#~ msgid "New|Body"
-#~ msgstr "Corp"
-
-#~ msgid "New|Created on"
-#~ msgstr "Créé le"
-
-#~ msgid "New|Updated on"
-#~ msgstr "Mis à jour le"
-
-#~ msgid "New|Ingenieur"
-#~ msgstr "Ingénieur"
-
-#~ msgid "New|Client"
-#~ msgstr "Client"
-
-#~ msgid "New|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "permission"
-#~ msgstr "permission"
-
-#~ msgid "Permission|Name"
-#~ msgstr "Name"
-
-#~ msgid "Permission|Info"
-#~ msgstr "Info"
-
-#~ msgid "piecejointe"
-#~ msgstr "piecejointe"
-
-#~ msgid "Piecejointe|File"
-#~ msgstr "File"
-
-#~ msgid "preference"
-#~ msgstr "preference"
-
-#~ msgid "Preference|Attribute"
-#~ msgstr "Attribut"
-
-#~ msgid "Preference|Owner"
-#~ msgstr "propriétaire"
-
-#~ msgid "Preference|Owner type"
-#~ msgstr "type de propriétaire"
-
-#~ msgid "Preference|Preferenced"
-#~ msgstr "préfère"
-
-#~ msgid "Preference|Preferenced type"
-#~ msgstr "type de la préférence"
-
-#~ msgid "Preference|Value"
-#~ msgstr "Valeur"
-
-#~ msgid "Preference|Created at"
-#~ msgstr "Crée le"
-
-#~ msgid "Preference|Updated at"
-#~ msgstr "Mis à jour le"
-
-#~ msgid "role"
-#~ msgstr "rôle"
-
-#~ msgid "Role|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Role|Info"
-#~ msgstr "Info"
-
-#~ msgid "severite"
-#~ msgstr "sévérité"
-
-#~ msgid "Severite|Name"
-#~ msgstr "Nom"
-
-#~ msgid "socle"
-#~ msgstr "systèmesource"
-
-#~ msgid "Socle|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Socle|Binaires count"
-#~ msgstr "Nombre de binaires"
-
-#~ msgid "team"
-#~ msgstr "équipe"
-
-#~ msgid "Team|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Team|Motto"
-#~ msgstr "Devise"
-
-#~ msgid "Team|User cache"
-#~ msgstr "Cache"
-
-#~ msgid "Team|Contact"
-#~ msgstr "Contact"
-
-#~ msgid "typecontribution"
-#~ msgstr "typecontribution"
-
-#~ msgid "Typecontribution|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Typecontribution|Description"
-#~ msgstr "Description"
-
-#~ msgid "typedemande"
-#~ msgstr "typedemande"
-
-#~ msgid "Typedemande|Name"
-#~ msgstr "Nom"
-
-#~ msgid "typedocument"
-#~ msgstr "typedocument"
-
-#~ msgid "Typedocument|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Typedocument|Description"
-#~ msgstr "Description"
-
-#~ msgid "typeurl"
-#~ msgstr "typeurl"
-
-#~ msgid "Typeurl|Name"
-#~ msgstr "Nom"
-
-#~ msgid "urllogiciel"
-#~ msgstr "urllogiciel"
-
-#~ msgid "Urllogiciel|Logiciel"
-#~ msgstr "Logiciel"
-
-#~ msgid "Urllogiciel|Typeurl"
-#~ msgstr "Typeurl"
-
-#~ msgid "Urllogiciel|Valeur"
-#~ msgstr "Valeur"
-
-#~ msgid "urlreversement"
-#~ msgstr "urlreversement"
-
-#~ msgid "Urlreversement|Contribution"
-#~ msgstr "Contribution"
-
-#~ msgid "Urlreversement|Valeur"
-#~ msgstr "Valeur"
-
-#~ msgid "user"
-#~ msgstr "utilisateur"
-
-#~ msgid "User|Password"
-#~ msgstr "Mot de passe"
-
-#~ msgid "User|Image"
-#~ msgstr "Image"
-
-#~ msgid "User|Client"
-#~ msgstr "Client"
-
-#~ msgid "User|Restricted"
-#~ msgstr "Restreint"
+#~ msgid ""
+#~ "This journey would not have been possible without\n"
+#~ "      the <b>developers</b> who have taken part to this project,\n"
+#~ "      without the testers who have contributed to its quality and\n"
+#~ "      without quite a few <b>free software</b> which have enable the\n"
+#~ "      development to be fast and agile. They are all warmly thanked "
+#~ "here.\n"
+#~ "      %s would be nothing without them."
+#~ msgstr ""
+#~ "Cette aventure n'aurait été possible sans tous les <b>développeurs</b> "
+#~ "qui ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont "
+#~ "contribués à assurer sa qualité et sans un grand nombre de <b>logiciels "
+#~ "libre</b>  qui ont permis à son développement d'être rapide et agile. Ils "
+#~ "sont tous ici grandement remerciés."
+
+#~ msgid "Welcome in the management tool of the 08000linux"
+#~ msgstr "Bienvenue sur l'outil de gestion du 08000linux"
+
+#~ msgid "You can see the list of %s :"
+#~ msgstr "Vous pouvez consulter la liste des %s :"
+
+#~ msgid ""
+#~ "You are not %s, so you do not have any access to the requests interface "
+#~ "of our service"
+#~ msgstr ""
+#~ "Vous n'êtes pas %s vous ne pouvez pas accéder à l'interface des demandes "
+#~ "de notre service"
+
+#~ msgid "You can browse %s . "
+#~ msgstr "Vous pouvez parcourir %s."
+
+#~ msgid "You will find there all the documents we delivered to you"
+#~ msgstr ""
+#~ "Vous avez aussi accès à l'ensemble des documents que nous vous avons livré"
+
+#~ msgid "When you are %s, you have access to an activity report"
+#~ msgstr "Quand vous êtes %s, vous avez accès au rapport d'activité"
+
+#~ msgid "You also have access to all the documents we may deliver to you."
+#~ msgstr ""
+#~ "Vous avez aussi accès à l'ensemble des documents que nous pouvons vous "
+#~ "livrer."
+
+#~ msgid ""
+#~ "You have an idea, which can improve our services ?<br />\n"
+#~ "    Your comments and suggestions are welcome in %s"
+#~ msgstr ""
+#~ "Vous avez une idée pour améliorer nos services ?<br />\n"
+#~ "   Vos commentaires et suggestions sont les bienvenues dans %s"
+
+#~ msgid ""
+#~ "You have access to one of our offers, which you have the detail at your "
+#~ "disposal : %s"
+#~ msgstr ""
+#~ "Vous avez accès à une de nos offres, dont vous pouvez consulter le détail "
+#~ "à tout moment : %s"
+
+#~ msgid "We hope this tool wil give you an entire satisfaction."
+#~ msgstr "Nous espérons que cet outil vous donnera entière satisfaction."
+
+#~ msgid ""
+#~ "This software is distributed by a precise and simple %s, distributed by "
+#~ "activity group."
+#~ msgstr ""
+#~ "Ces logiciels sont répartis selon une %s précise et simple, par groupe "
+#~ "d'activité."
+
+#~ msgid ""
+#~ "We have a large range of offers for supporting you with a SLA. This "
+#~ "Service Level Agreement can be very short and is guaranted by contract."
+#~ msgstr ""
+#~ "Nous avons une large gamme d'offres d'assistance, de support et de "
+#~ "maintenance avec une CNS. Cette Convention de Niveau de Service peut être "
+#~ "très courte et garantie par contrat."
