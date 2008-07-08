@@ -191,7 +191,6 @@ private
     contribution.urlreversements.create(url) unless url.blank?
     contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
     contribution.cloture_le = nil if params[:contribution][:clos] == '0'
-    expire_action  :action => 'list'
     contribution.save
   end
 
