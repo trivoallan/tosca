@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-07-08 08:28+0200\n"
+"POT-Creation-Date: 2008-07-08 10:26+0200\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1231,14 +1231,6 @@ msgstr ""
 
 #: app/models/commentaire.rb:78
 msgid "This request seems to be unstable."
-msgstr ""
-
-#: app/models/contribution.rb:19
-msgid "You have to specify a software."
-msgstr ""
-
-#: app/models/contribution.rb:-
-msgid "Contribution|Fixed version"
 msgstr ""
 
 #: app/models/contribution.rb:19
