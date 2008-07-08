@@ -26,10 +26,10 @@ class ApplicationController < ActionController::Base
 
   # Authentification system
   include ACLSystem
-  
+
   # System for building filters
   include Filters
-  
+
   # Scope module
   include Scope
 
@@ -110,7 +110,10 @@ private
   # This array contains all errors that we want to rescue nicely
   # It's mainly for search engine bots, which seems to love
   # hammering wrong address
-  RescuedErrors = [ ActiveRecord::RecordNotFound, ActionController::RoutingError ]
+  RescuedErrors =
+    [ ActiveRecord::RecordNotFound, ActionController::RoutingError
+    ] unless defined? RescuedErrors
+
   def rescue_action_in_public(exception)
     msg = nil
     RescuedErrors.each{ |k| if exception.is_a? k

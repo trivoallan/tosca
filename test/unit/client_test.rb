@@ -10,7 +10,7 @@ class ClientTest < Test::Unit::TestCase
 
   def test_logo
     image_file = fixture_file_upload('/files/logo_linagora.gif', 'image/gif')
-    client = Client.new(:name => "Linaragots", :creator => User.find(:first))
+    client = Client.new(:name => "Testing logo", :creator => User.find(:first))
     assert client.save
 
     images(:image_00001).destroy
@@ -18,8 +18,9 @@ class ClientTest < Test::Unit::TestCase
     i.id = 1
     i.save
 
-    client = Client.find_by_name('Linaragots')
+    client = Client.find_by_name('Testing logo')
     assert_match(/logo_linagora.gif$/, client.image.image.to_s)
+    client.destroy
   end
 
   def test_destroy
@@ -88,11 +89,11 @@ class ClientTest < Test::Unit::TestCase
       end
     }
   end
-  
+
   def test_content_columns
     columns = Client.content_columns.collect { |c| c.name }
     columns.sort!
-    
+
     assert_equal(["code_acces", "description", "name"], columns)
   end
 

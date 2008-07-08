@@ -64,7 +64,7 @@
   <% end %>
   <% contribution = @demande.contribution %>
   <% if contribution %>
-    <li><b><%= link_to_request_contribution(contribution) %>: </b><%= contribution.cloture_le_formatted %></li>
+    <li><%= link_to_request_contribution(contribution) %></li>
   <% end %>
 
 </ul>

@@ -1,6 +1,6 @@
 <h1><%= _('Editing permission')%></h1>
 
-<% form_tag(permission_path(@permission), :method => :put) do %>
+<% form_tag(permission_path(@permission), :method => :put, :id => 'main_form') do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Edit') %>
 <% end %>

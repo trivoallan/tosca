@@ -52,11 +52,6 @@ class DemandesController < ApplicationController
     end
 
     order = params[:sort] || 'updated_on DESC'
-    # TODO : See if, with cache, no include is faster or not.
-    # It has to be changed in the export controller too, for the request part
-    options = { :per_page => 10, :order => order,
-      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
-    conditions = []
 
     # Specification of a filter f :
     if params.has_key? :filters
@@ -67,9 +62,17 @@ class DemandesController < ApplicationController
     @title = _('All the requests')
 
     requests_filters = session[:requests_filters]
+
+    # TODO : See if, with cache, no include is faster or not.
+    # It has to be changed in the export controller too, for the request part
+    per_page, conditions = 10, []
     if requests_filters
       # Here is the trick for the "flow" part of the view
       special_cond = active_filters(requests_filters[:active])
+
+      # Asked by popular demande
+      limit = requests_filters[:limit].to_i
+      per_page = limit if limit > 0
 
       # Specification of a filter f :
       #   [ field, database field, operation ]
@@ -84,6 +87,8 @@ class DemandesController < ApplicationController
       ], special_cond)
       @filters = requests_filters
     end
+    options = { :per_page => per_page, :order => order,
+      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
 
     flash[:conditions] = options[:conditions] = conditions if conditions
 
