@@ -1,6 +1,6 @@
 <h1><%= _('Add a permission')%></h1>
 
-<% form_tag permissions_path do %>
+<% form_tag permissions_path, :id => 'main_form' do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Add') %>
 <% end %>

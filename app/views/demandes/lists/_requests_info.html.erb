@@ -55,6 +55,13 @@
      <%=select_filter(@statuts, :statut) %></li>
 </ul>
 
+<div class="menu_title" onclick="Element.toggle('menu_settings')">>
+<%=_('Settings')%></div>
+<ul class="menu" id="menu_settings" style="display: none">
+ <li><b><%=_('Limit')%></b><br />
+     <%= text_field :filters, :limit %></li>
+</ul>
+
 <div class="menu_title" onclick="Element.toggle('menu_aide')">
 > <%= _("Help") %></div>
 <ul class="menu" id="menu_aide">
