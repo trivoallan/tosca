@@ -132,8 +132,8 @@ EOS
   end
 
   def public_link_to_softwares
-    public_link_to(_('Softwares'), logiciels_path, :title =>
-                   _('Access to the list of softwares'))
+    public_link_to(_('Software'), logiciels_path, :title =>
+                   _('Access to the list of software'))
   end
 
   def public_link_to_contributions
