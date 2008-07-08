@@ -40,7 +40,7 @@
    <h3><%= _('Idea Box')%></h3>
    <p><%= _("You have an idea which can improve our services?<br />
     Your comments and suggestions are welcome in %s.") %
-    link_to(_('the idea box'), suggestions_bienvenue_path) %></p>
+    link_to(_('the idea box'), suggestions_welcome_path) %></p>
  </div>
  <% end %>
 
@@ -67,7 +67,7 @@
 
  <div class="sommaire show">
   <h3><%=_('Software')%></h3>
-  <p><%= _("You can see the list of %s.") % public_link_to_softwares %>
+  <p><%= _("You can see the list of %s.") % public_link_to_software %>
      <%= _("This software is sorted into a precise and simple %s, distributed by activity group.") % public_link_to_groupes %></p><br />
   <% unless user %>
     <p><%=_("We have a large range of offers for support with a SLA. This Service Level Agreement can be very strong and is guaranteed by contract.")%>
