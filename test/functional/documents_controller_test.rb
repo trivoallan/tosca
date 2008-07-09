@@ -28,7 +28,7 @@ class DocumentsControllerTest < ActionController::TestCase
   def test_show
     %w(admin manager expert).each { |l|
       login l, l
-      get :show, :id => 1
+      get :show, :id => Document.find(:first).id
 
       assert_response :success
       assert_template 'show'
@@ -65,7 +65,7 @@ class DocumentsControllerTest < ActionController::TestCase
   def test_update
     %w(admin manager expert).each { |l|
       login l, l
-      get :edit, :id => 1
+      get :edit, :id =>  Document.find(:first).id
       assert_response :success
       assert_template 'edit'
       assert_not_nil assigns(:document)
@@ -81,15 +81,16 @@ class DocumentsControllerTest < ActionController::TestCase
 
   def test_destroy
     login 'admin', 'admin'
-    document = Document.find(1)
+    document = Document.find(:first)
     assert_not_nil document
 
-    post :destroy, :id => 1
+    post :destroy, :id => document.id
     assert_response :redirect
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Document.find(1)
+      Document.find(document.id)
     }
+    document.save
   end
 end

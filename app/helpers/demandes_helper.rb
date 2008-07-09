@@ -162,10 +162,14 @@ module DemandesHelper
   end
 
 
+  # TODO : Some paztch can be refused by the community, and this
+  # method does not treat this case.
   def link_to_request_contribution(contribution)
     return '' unless contribution
-    link_to(_('Submitted upstream on'),
-            contribution_path(contribution))
+    link = link_to _('patch'), contribution_path(contribution)
+    text = (contribution.cloture_le? ?
+            _("The %s has been accepted by the community") % link :
+            _("The %s has been submitted by the community") % link)
   end
 
   # TODO : beaucoup trop de copier coller, c'est honteux !

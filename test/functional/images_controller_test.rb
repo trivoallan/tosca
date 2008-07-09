@@ -70,14 +70,18 @@ class ImagesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Image.find(1)
+    image = Image.find(:first)
+    assert_not_nil image
 
-    post :destroy, :id => 1
+    assert_difference('Image.count', -1) do
+      post :destroy, :id => 1
+    end
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Image.find(1)
+      Image.find(image.id)
     }
+    image.save
   end
 end

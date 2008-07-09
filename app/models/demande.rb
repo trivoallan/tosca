@@ -104,15 +104,15 @@ class Demande < ActiveRecord::Base
   end
 
   # Used in the cache/sweeper system
+  # TODO : it seems Regexp are not compatible with memcache.
+  # So we will need to find a way if we migrate.
   def fragments
-    [ %r{requests/#{self.id}/front-\d*}, # Right side of the show view
-      "requests/#{self.id}/front-recipient",
+    [ %r{requests/#{self.id}/front-\d+}, # Right side of the show view
       "requests/#{self.id}/info-expert", # Left side of the show view
       "requests/#{self.id}/info-recipient",
       "requests/#{self.id}/history", # History Tab
       "requests/#{self.id}/comments-expert", # Comments Tab
-      "requests/#{self.id}/comments-recipient"
-    ]
+      "requests/#{self.id}/comments-recipient" ]
   end
 
   def elapsed_formatted

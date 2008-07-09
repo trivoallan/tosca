@@ -24,6 +24,13 @@ class Test::Unit::TestCase
   # then set this back to true.
   self.use_instantiated_fixtures  = false
 
+ # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
+  #
+  # Note: You'll currently still have to declare fixtures explicitly in integration tests
+  # -- they do not yet inherit this setting
+  fixtures :all
+
+
   # Add more helper methods to be used by all tests here...
 
   def login login, password
@@ -91,7 +98,9 @@ class Test::Unit::TestCase
 
   # List of all common methods used on an ActiveRecord to display (a part) of it
   StringMethods = [ :to_s, :name, :to_param, :name_clean,
-                    :updated_on_formatted, :created_on_formatted ]
+                    :updated_on_formatted, :created_on_formatted
+                  ] unless defined? StringMethods
+
   # Will call all common methods involved with strings on all instance of the klass
   # You can add specific methods.
   # Ex : check_strings(Document, :date_delivery_on_formatted)

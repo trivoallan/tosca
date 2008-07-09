@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.1'
+RAILS_GEM_VERSION = '2.1' unless defined? RAILS_GEM_VERSION
 $KCODE='u'
 require 'jcode'
 
@@ -19,6 +19,8 @@ path = File.join RAILS_ROOT, 'config', 'database.yml'
 Utils.check_files(path, 'Your database is not configured')
 path = File.join RAILS_ROOT, 'lib', 'config.rb'
 Utils.check_files(path, 'Your mail server is not configured')
+
+CachePath = "#{RAILS_ROOT}/tmp/cache"
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
@@ -34,7 +36,8 @@ Rails::Initializer.run do |config|
 
   ### External libs ###
   # Used to i18n and l10n
-  config.gem 'gettext'
+  config.gem 'gettext', :version => '1.91.0'
+
   # Used to generate export in Ods Format
   # Versions are enforced because ruport devs seems to love
   # "the break everything at each release" mantra
@@ -54,6 +57,9 @@ Rails::Initializer.run do |config|
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
+
+  # Use the file store with a custom storage path (if the directory doesn’t already exist it will be created)
+  config.cache_store = :file_store, CachePath
 
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
@@ -77,6 +83,10 @@ end
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.
   update(:database_manager => SqlSessionStore)
 SqlSessionStore.session_class = MysqlSession
+
+# MLO : Type of cache. See http://api.rubyonrails.org/classes/ActionController/Caching.html
+ActionController::Base.cache_store = :file_store, CachePath
+
 
 # MLO : session duration is one month,
 CGI::Session.expire_after 1.month
