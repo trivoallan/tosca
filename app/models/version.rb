@@ -13,5 +13,5 @@ class Version < ActiveRecord::Base
   def to_s
     [ logiciel.name, version ].compact.join('-')
   end
-  
+    
 end
