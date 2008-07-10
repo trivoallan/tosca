@@ -1,5 +1,5 @@
 class VersionsController < ApplicationController
-  helper :filters, :logiciels, :conteneurs, :distributeurs,
+  helper :filters, :logiciels, :distributeurs,
     :mainteneurs, :releases
 
   # auto completion in 2 lines, yeah !
