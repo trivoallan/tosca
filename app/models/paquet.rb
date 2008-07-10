@@ -15,19 +15,9 @@ class Paquet < ActiveRecord::Base
         c.name =~ /(_id|taille|configuration|_count)$/ || c.name == inheritance_column }
   end
 
-  # See ApplicationController#scope
-  def self.set_scope(contract_ids)
-    self.scoped_methods << { :find => { :conditions =>
-        [ 'versions.contract_id IN (?)', contract_ids ]} }
-  end
-
   def to_param
     "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
   end
-
-  # (cf Conventions de développement : wiki)
-  ORDER = 'versions.name, versions.version, versions.release DESC'
-  OPTIONS = { :order => ORDER }
 
   def self.get_scoped_methods
     scoped_methods

@@ -19,7 +19,7 @@
    <li><%= remote_link_to_software :supported %></li>
    <li><%= remote_link_to_software :all %></li>
   <% end %>
-  <li><%= link_to _('List of packages'), versions_path %></li>
+  <li><%= link_to _('List of the versions'), versions_path %></li>
  </ul>
 <% end %>
 
@@ -47,9 +47,8 @@
 > <%=_('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
  <li><b><%=_('Technologies')%>: </b><%=@count[:technologies]%></li>
- <li><b><%=_('Source packages')%>: </b><%=@count[:sources]%></li>
- <li><b><%=_('Binary packages')%>: </b><%=@count[:binaries]%></li>
- <li><b><%=_('Software')%>: </b><%=@count[:software]%></li>
+ <li><b><%=_('Versions')%>: </b><%=@count[:versions]%></li>
+  <li><b><%=_('Software')%>: </b><%=@count[:software]%></li>
 </ul>
 
 <% end %>

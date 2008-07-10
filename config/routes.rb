@@ -101,8 +101,6 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :newsletter => :get, :newsletter_result => :post }
   map.resources :ossas
   map.resources :pages
-  map.resources :paquets, :collection =>
-    { :auto_complete_for_paquet_name => :any}
   map.resources :permissions
   map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
   map.resources :piecejointes, :member => { :uv => :get }

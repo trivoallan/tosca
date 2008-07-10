@@ -129,9 +129,8 @@ private
     @technologies = Competence.find_select
     @groupes = Groupe.find_select
 
-    stats = Struct.new(:technologies, :sources, :binaries, :software)
-    @count = stats.new(Competence.count, Paquet.count,
-                       Binaire.count(:include => :version), Logiciel.count)
+    stats = Struct.new(:technologies, :versions, :software)
+    @count = stats.new(Competence.count, Version.count, Logiciel.count)
   end
 
   def add_logo

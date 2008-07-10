@@ -2,15 +2,14 @@
 
 <%= show_pages_links(@contract_pages, _('a contract')) %>
 
-<% titles = [_('Name'), _('Type'), _('Software'), _('Packages'),
- _('Requests'), _('Users'), _('Mailing list'), _('Start'), _('=>'), _('End')]%>
+<% titles = [_('Name'), _('Type'), _('Requests'), _('Releasees'),
+  _('Users'), _('Mailing list'), _('Start'), _('=>'), _('End')] %>
 <%= show_table(@contracts, Contract, titles) { |c|
   result = ''
   result << "<td>#{link_to_contract(c)}</td>"
   result << "<td>#{c.rule_type}</td>"
-  result << "<td>#{c.logiciels.size}</td>"
-  result << "<td>#{c.versions.size}</td>"
   result << "<td>#{c.demandes.size}</td>"
+  result << "<td>#{c.releases.size}</td>"
   result << "<td>#{c.users.size}</td>"
   result << "<td>#{mail_to(c.mailinglist)}</td>"
   result << "<td>#{c.ouverture_formatted}</td>"

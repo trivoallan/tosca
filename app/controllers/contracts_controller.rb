@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  helper :clients,:engagements,:ingenieurs
+  helper :clients, :engagements, :ingenieurs
 
   def index
     @contract_pages, @contracts = paginate :contracts, :per_page => 25
@@ -13,10 +13,9 @@ class ContractsController < ApplicationController
     render :action => 'index'
   end
 
-
   def show
     @contract = Contract.find(params[:id])
-    @versions = @contract.versions.find(:all, :conditions => { :active => 1 })
+    @releases = @contract.releases.find(:all, :conditions => { :active => 1 })
     @teams = @contract.teams
   end
 

@@ -5,7 +5,6 @@ class Contract < ActiveRecord::Base
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
   
-  has_many :versions, :dependent => :destroy
   has_many :releases, :dependent => :destroy
   has_many :demandes
   has_many :appels
