@@ -1,0 +1,24 @@
+<h1><%=_('List of releases')%></h1>
+
+<% links = show_pages_links(@release_pages, _('a release')) %>
+<%= links %>
+
+<% titles = [_('Source'), _('Binary'), _('System'), _('Arch'), _('Archive')] %>
+<% old_paquet = nil %>
+<%= show_table(@releases, Release, titles) { |b|
+  result = ''
+  if old_paquet != b.paquet
+    result << "<td>#{link_to_paquet(b.paquet)}</td>"
+    old_paquet = b.paquet
+  else
+    result << '<td></td>'
+  end
+
+  result << "<td>#{link_to_binaire(b)}</td>"
+  result << "<td>#{b.socle.name if b.socle}</td>"
+  result << "<td>#{b.arch.name if b.arch}</td>"
+  result << "<td>#{link_to_file(b, 'archive') if b.archive}</td>"
+  result << "#{link_to_actions_table b}"
+}%>
+
+<%= links %>

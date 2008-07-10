@@ -1,0 +1,32 @@
+<%= error_messages_for 'binaire' %>
+
+<!--[form:binaire]-->
+
+<p><label for="binaire_paquet"><%=_('Package')%></label><br />
+  <%= select(:binaire, :paquet_id, @paquets) %>
+</p>
+
+<p><label for="binaire_socle"><%=_('System')%></label><br />
+  <%= select(:binaire, :socle_id, @socles) %>
+</p>
+
+<p><label for="binaire_arch"><%=_('Arch')%></label><br />
+  <%= select(:binaire, :arch_id, @arches) %>
+</p>
+
+<p><label for="binaire_name"><%=_('Name')%></label><br />
+<%= text_field 'binaire', 'name'  %></p>
+
+<p><label for="binaire_configuration"><%=_('Configuration')%></label><br />
+<%= text_area 'binaire', 'configuration'  %></p>
+
+
+<p><label for="binaire_archive"><%=_('Archive')%></label><br />
+<%= file_column_field 'binaire', 'archive'  %></p>
+
+<p><%=_('Contributions')%> :</p>
+<%= hbtm_check_box( @binaire.contributions, @contributions,
+                    'binaire[contribution_ids]', :size => 3) %>
+
+
+<!--[eoform:binaire]-->
