@@ -1,5 +1,5 @@
 class PaquetsController < ApplicationController
-  helper :filters, :logiciels, :binaires, :conteneurs, :distributeurs,
+  helper :filters, :logiciels, :binaires, :distributeurs,
     :mainteneurs
 
   # auto completion in 2 lines, yeah !
@@ -11,7 +11,7 @@ class PaquetsController < ApplicationController
   def index
     options = { :per_page => 15, :order =>
       'versions.logiciel_id, versions.version, versions.release',
-      :include => [:conteneur,:distributeur,:mainteneur,:logiciel] }
+      :include => [:distributeur,:mainteneur,:logiciel] }
 
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]

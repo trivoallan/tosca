@@ -88,6 +88,7 @@ class ContractsController < ApplicationController
     @logiciels = Logiciel.find_select
   end
 
+  # TODO : include version.packaged or not ?
   def add_software
     @contract = Contract.find(params[:id])
     new_version = []
@@ -101,7 +102,6 @@ class ContractsController < ApplicationController
           version.name = Logiciel.find(s['software']).name
           version.version = s['version']
           version.active = s['active'] == "on" ? 1 : 0
-          version.conteneur_id = 3
           version.configuration = ""
           version.save
           new_version.push version

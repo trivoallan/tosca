@@ -2,13 +2,12 @@ class Paquet < ActiveRecord::Base
   belongs_to :logiciel
   belongs_to :contract, :counter_cache => true
   belongs_to :mainteneur
-  belongs_to :conteneur
-  
+
   has_many :changelogs, :dependent => :destroy
   has_many :binaires, :dependent => :destroy, :include => :version
   has_and_belongs_to_many :contributions
 
-  validates_presence_of :logiciel, :conteneur, :contract
+  validates_presence_of :logiciel, :contract
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
@@ -24,7 +23,7 @@ class Paquet < ActiveRecord::Base
   end
 
   def to_s
-    [ name, version, release ].compact.join('-') << " (#{conteneur.name})"
+    [ name, version, release ].compact.join('-')
   end
 
   def contournement(typedemande_id, severite_id)

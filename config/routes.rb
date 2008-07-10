@@ -56,7 +56,6 @@ ActionController::Routing::Routes.draw do |map|
      :change_state => :post,
      :comment => :post }
   map.resources :competences
-  map.resources :conteneurs
   map.resources :contracts,
     :collection => {
       :ajax_choose => :post, :actives => :get, :ajax_add_software => :post, :add_software => :post },

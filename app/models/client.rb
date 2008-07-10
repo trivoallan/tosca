@@ -11,7 +11,7 @@ class Client < ActiveRecord::Base
 
   has_and_belongs_to_many :socles
 
-  has_many :versions, :through => :contracts, :include => [:conteneur]
+  has_many :versions, :through => :contracts
   has_many :demandes, :through => :beneficiaires # , :source => :demandes
 
   belongs_to :creator, :class_name => 'User'

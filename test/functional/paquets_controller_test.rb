@@ -5,7 +5,7 @@ require 'versions_controller'
 class PaquetsController; def rescue_action(e) raise e end; end
 
 class PaquetsControllerTest < Test::Unit::TestCase
-  fixtures :versions, :conteneurs, :distributeurs, :mainteneurs, :logiciels,
+  fixtures :versions, :distributeurs, :mainteneurs, :logiciels,
     :contracts, :clients, :credits, :components
 
   def setup
@@ -45,7 +45,7 @@ class PaquetsControllerTest < Test::Unit::TestCase
     num_versions = Paquet.count
 
     post :create, :version => { :logiciel_id => 1,
-           :conteneur_id => 1, :contract_id => 1, :configuration => '' }
+           :contract_id => 1, :configuration => '' }
 
     assert_response :redirect
     assert_redirected_to logiciel_path(assigns(:version).logiciel)
