@@ -7,25 +7,23 @@ class ReleasesController < ApplicationController
   end
 
   def show
-    options = { :include => [{:paquet => [:conteneur,
-                                          { :contract => :client },
-                                          { :logiciel => :groupe}]},
-                            :socle,:arch] }
-    @binaire = Binaire.find(params[:id], options)
-    options = { :conditions => {:binaire_id => @binaire.id}, :order => 'chemin' }
+    options = { :include => [ { :contract => :client },
+                              { :version => :logiciel } ] }
+    @release = Release.find(params[:id], options)
+    options = { :conditions => {:release_id => @release.id}, :order => 'chemin' }
   end
 
   def new
-    @binaire = Binaire.new
-    @binaire.paquet_id = params[:paquet_id]
+    @release = Release.new
+    @release.paquet_id = params[:paquet_id]
     _form
   end
 
   def create
-    @binaire = Binaire.new(params[:binaire])
-    if @binaire.save
+    @release = Release.new(params[:release])
+    if @release.save
       flash[:notice] = _('Binary has beensuccessfully created.')
-      redirect_to paquet_path(@binaire.paquet)
+      redirect_to paquet_path(@release.paquet)
     else
       _form
       render :action => 'new'
@@ -33,30 +31,30 @@ class ReleasesController < ApplicationController
   end
 
   def edit
-    @binaire = Binaire.find(params[:id])
+    @release = Release.find(params[:id])
     _form
   end
 
   def update
-    @binaire = Binaire.find(params[:id])
-    if @binaire.update_attributes(params[:binaire])
+    @release = Release.find(params[:id])
+    if @release.update_attributes(params[:release])
       flash[:notice] = _('Binary has been successfully updated.')
-      redirect_to binaire_path(@binaire)
+      redirect_to release_path(@release)
     else
       _form and render :action => 'edit'
     end
   end
 
   def destroy
-    Binaire.find(params[:id]).destroy
+    Release.find(params[:id]).destroy
     redirect_back
   end
 
   private
   def _form
     options = {}
-    if @binaire.paquet
-      options = { :conditions => [ 'contributions.logiciel_id = ?', @binaire.paquet.logiciel_id ] }
+    if @release.paquet
+      options = { :conditions => [ 'contributions.logiciel_id = ?', @release.paquet.logiciel_id ] }
     end
     @contributions = Contribution.find_select(options)
     @paquets = Paquet.find_select(Paquet::OPTIONS)
