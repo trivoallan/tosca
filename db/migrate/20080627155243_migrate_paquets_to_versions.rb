@@ -1,4 +1,8 @@
 class MigratePaquetsToVersions < ActiveRecord::Migration
+  
+  class Conteneur < ActiveRecord::Base
+  end
+  
   def self.up
     #There is no changelog in the database
     rename_column :changelogs, :paquet_id, :release_id
