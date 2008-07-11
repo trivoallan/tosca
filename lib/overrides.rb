@@ -1,29 +1,3 @@
-class String
-  # this convenience method search an url in a string and add the "http://" needed
-  # RFC sur les URLS : link:"http://rfc.net/rfc1738.html"
-  # Made from this regexp : link:"http://www.editeurjavascript.com/scripts/scripts_formulaires_3_250.php"
-  #
-  # It works with :
-  #  "www.google.com"
-  #  "http://www.google.com"
-  #  "toto tutu djdjdjd google.com" >
-  #  "toto tutu djdjdjd http://truc.machin.com/touo/sdqsd?tutu=1&machin google.com/toto/ddk?tr=1&machin"
-  #TODO: A améliorer
-  def urlize
-    (self.gsub(/(\s+|^)[a-zA-Z]([\w-]{0,61}\w)?\.[a-zA-Z]([\w-]{0,61}\w)?(\.[a-zA-Z]([\w-]{0,61}\w)?)?/) { |s| " http://" + s.strip }).strip
-  end
-
-  # Small convenience method which replace each space by its unbreakable html
-  # equivalent.
-  #
-  # Call it like this :
-  #   "this is a test".unbreak
-  #     this&nbsp;is&nbsp;a&nbsp;test"
-  def unbreak
-    self.gsub(' ', '&nbsp;')
-  end
-
-end
 
 # Used to put expiry caches on images/pictures
 if defined? Mongrel::DirHandler
@@ -309,7 +283,7 @@ module ActionView::Helpers::UrlHelper
   # this link_to is a specialised one which only returns a link
   # if the user is connected and has the right access to the ressource
   # requested. See public_link_to for everyone links.
-  
+
   def link_to(name, options = {}, html_options = nil)
     action = nil
     return nil unless options
@@ -525,9 +499,9 @@ module TMail
   end
 end
 
-#module Test 
-#  module Unit 
-#    class TestCase 
+#module Test
+#  module Unit
+#    class TestCase
 #      # Loads all fixture files (<tt>test/fixtures/*.yml</tt>)
 #      def self.load_all_fixtures
 #        all_fixtures = Dir.glob(File.join(Test::Unit::TestCase.fixture_path, "*.yml")).collect do |f|
