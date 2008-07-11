@@ -298,6 +298,21 @@ class ActionController::Caching::Sweeper
   end
 end
 
+#To not have an error if routes = nil
+module ActionController
+  class Base
+    def url_for(options = nil) #:doc:
+      case options || options={}
+        when String
+          options
+        when Hash
+          @url.rewrite(rewrite_options(options))
+        else
+          polymorphic_url(options)
+      end
+    end
+  end
+end
 
 # This module is overloaded in order to display link_to lazily
 # and efficiently. It display links <b>only</b> if the user
@@ -538,3 +553,4 @@ end
 #    end
 #  end
 #end
+
