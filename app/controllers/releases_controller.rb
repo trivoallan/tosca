@@ -10,20 +10,19 @@ class ReleasesController < ApplicationController
     options = { :include => [ { :contract => :client },
                               { :version => :logiciel } ] }
     @release = Release.find(params[:id], options)
-    options = { :conditions => {:release_id => @release.id}, :order => 'chemin' }
   end
 
   def new
     @release = Release.new
-    @release.paquet_id = params[:paquet_id]
+    @release.version_id = params[:version_id]
     _form
   end
 
   def create
     @release = Release.new(params[:release])
     if @release.save
-      flash[:notice] = _('Binary has beensuccessfully created.')
-      redirect_to paquet_path(@release.paquet)
+      flash[:notice] = _('Release has beensuccessfully created.')
+      redirect_to version_path(@release.version)
     else
       _form
       render :action => 'new'
@@ -38,7 +37,7 @@ class ReleasesController < ApplicationController
   def update
     @release = Release.find(params[:id])
     if @release.update_attributes(params[:release])
-      flash[:notice] = _('Binary has been successfully updated.')
+      flash[:notice] = _('This release has been successfully updated.')
       redirect_to release_path(@release)
     else
       _form and render :action => 'edit'
@@ -53,12 +52,12 @@ class ReleasesController < ApplicationController
   private
   def _form
     options = {}
-    if @release.paquet
-      options = { :conditions => [ 'contributions.logiciel_id = ?', @release.paquet.logiciel_id ] }
+    if @release.version
+      options = { :conditions => [ 'contributions.logiciel_id = ?', @release.version.logiciel_id ] }
     end
     @contributions = Contribution.find_select(options)
-    @paquets = Paquet.find_select(Paquet::OPTIONS)
-    @arches = Arch.find_select
-    @socles = Socle.find_select
+    @versions = Version.all.collect { |v| [ v.name, v.id ]}
+    @contracts = Contract.find_select(Contract::OPTIONS)
   end
+  
 end
