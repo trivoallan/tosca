@@ -10,18 +10,6 @@
 </p>
 <% end %>
 
-<p><%= _('This system have ')%> <b><%= pluralize(@socle.versions.size, _('source') ) %></b></p>
-<div class="bloc_scroll">
-<%= show_list(@socle.versions, _('source package'), :no_title => true) {
-  |p| link_to_version(p) } %>
-</div><br />
-
-<p><%= _('This system have ')%><b><%= pluralize(@binaires.size, _('binary') ) %></b></p>
-<div class="bloc_scroll">
-<%= show_list(@binaires, _('Binary package'), :no_title => true) {
-  |b| link_to_binaire(b) } %>
-</div><br />
-
 
 <%= link_to_edit_and_list(@socle) %>
 

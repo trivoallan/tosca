@@ -51,10 +51,10 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
     # allows to see only binaries of this client for all without scope
     begin
-      Binaire.set_scope(@client.contract_ids) if @ingenieur
+      Version.set_scope(@client.contract_ids) if @ingenieur
       render
     ensure
-      Binaire.remove_scope if @ingenieur
+      Version.remove_scope if @ingenieur
     end
   end
 

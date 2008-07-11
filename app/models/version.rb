@@ -9,4 +9,9 @@ class Version < ActiveRecord::Base
     "#{logiciel.name}-#{version}"
   end
   
+  def self.set_scope(contract_ids)
+    self.scoped_methods << { :find => { :conditions =>
+      [ 'versions.contract_id IN (?)', contract_ids ]} }
+  end
+  
 end

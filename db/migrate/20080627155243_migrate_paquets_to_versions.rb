@@ -9,7 +9,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     belongs_to :mainteneur
 
     has_many :changelogs, :dependent => :destroy
-    has_many :binaires, :dependent => :destroy, :include => :version
+    has_many :binaires, :dependent => :destroy, :include => :paquets
     has_and_belongs_to_many :contributions
   end
   
@@ -71,6 +71,8 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     drop_table :contributions_paquets
     drop_table :paquets
     drop_table :conteneurs
+    drop_table :binaires
+    drop_table :binaires_contributions
   end
 
   def self.down

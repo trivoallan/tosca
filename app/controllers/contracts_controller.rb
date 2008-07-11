@@ -15,7 +15,7 @@ class ContractsController < ApplicationController
 
   def show
     @contract = Contract.find(params[:id])
-    @releases = @contract.releases.find(:all, :conditions => { :active => 1 })
+    @releases = @contract.releases.find(:all, :conditions => { :inactive => false })
     @teams = @contract.teams
   end
 

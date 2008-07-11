@@ -1,4 +1,3 @@
-
 # UPLOAD > file_column.rb:l.596
 #  :root_path => File.join(RAILS_ROOT, "files"),
 
@@ -24,14 +23,12 @@ class FilesController < ApplicationController
     # mapping path
     map = {:piecejointe => 'file',
            :contribution => 'patch',
-           :document => 'file',
-           :binaire => 'archive' }
+           :document => 'file' }
 
     # TODO : get model name without hash
     model = { :piecejointe => Piecejointe,
               :contribution => Contribution,
-              :document => Document,
-              :binaire => Binaire }
+              :document => Document }
 
     # Login needed for anything but contribution
     return if (file_type != :contribution && login_required() == false)
