@@ -21,7 +21,7 @@ class ReleasesController < ApplicationController
   def create
     @release = Release.new(params[:release])
     if @release.save
-      flash[:notice] = _('Release has beensuccessfully created.')
+      flash[:notice] = _('This release has been successfully created.')
       redirect_to version_path(@release.version)
     else
       _form
