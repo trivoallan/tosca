@@ -1,3 +1,4 @@
+puts "OVERRIDES : COUCOU"
 
 # Used to put expiry caches on images/pictures
 if defined? Mongrel::DirHandler
@@ -16,6 +17,7 @@ if defined? Mongrel::DirHandler
     end
   end
 end
+
 
 module Ruport::Reportable::InstanceMethods
   # Overrides, since Ruport is not really active for supporting edge rails.

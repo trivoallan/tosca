@@ -22,7 +22,15 @@ Utils.check_files(path, 'Your mail server is not configured')
 
 CachePath = "#{RAILS_ROOT}/tmp/cache"
 
-Rails::Initializer.run do |config|
+require 'tosca/initializer'
+
+# Extensions to String Class
+# TODO : make an extension loader, which loads automatically all _extensions.rb
+# files
+require 'string_extensions'
+
+
+Tosca::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
 
   # Skip frameworks you're not going to use
@@ -100,10 +108,6 @@ require 'config'
 # Internal libs, located in lib/
 require 'overrides'
 
-# Extensions to String Class
-# TODO : make an extension loader, which loads automatically all _extensions.rb
-# files
-require_dependency 'string_extensions'
 
 # Check and create used dirs, which are not on the SCM
 path = File.join RAILS_ROOT, 'public', 'cache'
@@ -154,5 +158,3 @@ if RAILS_ENV == 'production'
     silence_warnings{require_dependency f
     } if f =~ /\.rb$/}
 end
-
-
