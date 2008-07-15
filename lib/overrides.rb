@@ -1,5 +1,3 @@
-puts "OVERRIDES : COUCOU"
-
 # Used to put expiry caches on images/pictures
 if defined? Mongrel::DirHandler
   module Mongrel
@@ -529,4 +527,3 @@ end
 #    end
 #  end
 #end
-
