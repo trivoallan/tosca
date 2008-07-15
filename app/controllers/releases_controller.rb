@@ -7,25 +7,22 @@ class ReleasesController < ApplicationController
   end
 
   def show
-    options = { :include => [{:paquet => [:conteneur,
-                                          { :contract => :client },
-                                          { :logiciel => :groupe}]},
-                            :socle,:arch] }
-    @binaire = Binaire.find(params[:id], options)
-    options = { :conditions => {:binaire_id => @binaire.id}, :order => 'chemin' }
+    options = { :include => [ { :contract => :client },
+                              { :version => :logiciel } ] }
+    @release = Release.find(params[:id], options)
   end
 
   def new
-    @binaire = Binaire.new
-    @binaire.paquet_id = params[:paquet_id]
+    @release = Release.new
+    @release.version_id = params[:version_id]
     _form
   end
 
   def create
-    @binaire = Binaire.new(params[:binaire])
-    if @binaire.save
-      flash[:notice] = _('Binary has beensuccessfully created.')
-      redirect_to paquet_path(@binaire.paquet)
+    @release = Release.new(params[:release])
+    if @release.save
+      flash[:notice] = _('This release has been successfully created.')
+      redirect_to version_path(@release.version)
     else
       _form
       render :action => 'new'
@@ -33,34 +30,34 @@ class ReleasesController < ApplicationController
   end
 
   def edit
-    @binaire = Binaire.find(params[:id])
+    @release = Release.find(params[:id])
     _form
   end
 
   def update
-    @binaire = Binaire.find(params[:id])
-    if @binaire.update_attributes(params[:binaire])
-      flash[:notice] = _('Binary has been successfully updated.')
-      redirect_to binaire_path(@binaire)
+    @release = Release.find(params[:id])
+    if @release.update_attributes(params[:release])
+      flash[:notice] = _('This release has been successfully updated.')
+      redirect_to release_path(@release)
     else
       _form and render :action => 'edit'
     end
   end
 
   def destroy
-    Binaire.find(params[:id]).destroy
+    Release.find(params[:id]).destroy
     redirect_back
   end
 
   private
   def _form
     options = {}
-    if @binaire.paquet
-      options = { :conditions => [ 'contributions.logiciel_id = ?', @binaire.paquet.logiciel_id ] }
+    if @release.version
+      options = { :conditions => [ 'contributions.logiciel_id = ?', @release.version.logiciel_id ] }
     end
     @contributions = Contribution.find_select(options)
-    @paquets = Paquet.find_select(Paquet::OPTIONS)
-    @arches = Arch.find_select
-    @socles = Socle.find_select
+    @versions = Version.all.collect { |v| [ v.name, v.id ]}
+    @contracts = Contract.find_select(Contract::OPTIONS)
   end
+  
 end

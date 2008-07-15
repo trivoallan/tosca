@@ -4,14 +4,14 @@ class Version < ActiveRecord::Base
   has_and_belongs_to_many :contributions
     
   validates_presence_of :logiciel, :version
+    
+  def name
+    "#{logiciel.name}-#{version}"
+  end
   
-  
-  # (cf Conventions de développement : wiki)
-  ORDER = 'versions.logiciel_id, versions.version DESC'
-  OPTIONS = { :order => ORDER }
-
-  def to_s
-    [ logiciel.name, version ].compact.join('-')
+  def self.set_scope(contract_ids)
+    self.scoped_methods << { :find => { :conditions =>
+      [ 'versions.contract_id IN (?)', contract_ids ]} }
   end
   
 end

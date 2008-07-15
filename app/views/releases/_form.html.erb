@@ -1,32 +1,21 @@
-<%= error_messages_for 'binaire' %>
+<%= error_messages_for 'release' %>
 
-<!--[form:binaire]-->
-
-<p><label for="binaire_paquet"><%=_('Package')%></label><br />
-  <%= select(:binaire, :paquet_id, @paquets) %>
+<p><label for="release_version"><%=  _('Version') %></label><br />
+  <%= select(:release, :version_id, @versions) %>
 </p>
 
-<p><label for="binaire_socle"><%=_('System')%></label><br />
-  <%= select(:binaire, :socle_id, @socles) %>
+<p><label for="release_release"><%=_('Release')%></label><br />
+  <%= text_field :release, :release %>
 </p>
 
-<p><label for="binaire_arch"><%=_('Arch')%></label><br />
-  <%= select(:binaire, :arch_id, @arches) %>
+<p><label for="release_contract"><%= _('Contract') %></label><br/>
+  <%= select(:release, :contract_id, @contracts) %>
 </p>
 
-<p><label for="binaire_name"><%=_('Name')%></label><br />
-<%= text_field 'binaire', 'name'  %></p>
+<p><label for="release_pakaged"><%= _("Is this release packaged ?") %></label><br/>
+  <%= check_box :release, :packaged %>
+</p>
 
-<p><label for="binaire_configuration"><%=_('Configuration')%></label><br />
-<%= text_area 'binaire', 'configuration'  %></p>
-
-
-<p><label for="binaire_archive"><%=_('Archive')%></label><br />
-<%= file_column_field 'binaire', 'archive'  %></p>
-
-<p><%=_('Contributions')%> :</p>
-<%= hbtm_check_box( @binaire.contributions, @contributions,
-                    'binaire[contribution_ids]', :size => 3) %>
-
-
-<!--[eoform:binaire]-->
+<p><label for="release_inactive"><%= _("Is this release inactive ?") %></label><br/>
+  <%= check_box :release, :inactive %>
+</p>

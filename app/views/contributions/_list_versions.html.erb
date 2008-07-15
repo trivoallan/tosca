@@ -1,0 +1,7 @@
+<% if @contribution %>
+  <% versions = @contribution.versions %>
+<% else %>
+  <% versions = [] %>
+<% end %>
+<p><%=_('Source packages with the patch')%> :</p>
+<%= hbtm_check_box( versions, @versions, 'contribution[version_ids]', :size => 3) %>

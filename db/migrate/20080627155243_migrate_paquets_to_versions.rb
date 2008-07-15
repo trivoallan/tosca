@@ -1,4 +1,18 @@
 class MigratePaquetsToVersions < ActiveRecord::Migration
+  
+  class Conteneur < ActiveRecord::Base
+  end
+  
+  class Paquet < ActiveRecord::Base
+    belongs_to :logiciel
+    belongs_to :contract, :counter_cache => true
+    belongs_to :mainteneur
+
+    has_many :changelogs, :dependent => :destroy
+    has_many :binaires, :dependent => :destroy, :include => :paquets
+    has_and_belongs_to_many :contributions
+  end
+  
   def self.up
     #There is no changelog in the database
     rename_column :changelogs, :paquet_id, :release_id
@@ -57,6 +71,8 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     drop_table :contributions_paquets
     drop_table :paquets
     drop_table :conteneurs
+    drop_table :binaires
+    drop_table :binaires_contributions
   end
 
   def self.down

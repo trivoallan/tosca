@@ -1,7 +1,7 @@
 class ContributionsController < ApplicationController
-  helper :filters, :demandes, :versions, :binaires, :export, :urlreversements, :logiciels
+  helper :filters, :demandes, :versions, :export, :urlreversements, :logiciels
 
-  cache_sweeper :contribution_sweeper, :only => [:create, :update]
+  cache_sweeper :contribution_sweeper, :only => [ :create, :update ]
 
   # Show all contribs and who's done 'em
   def experts
@@ -158,18 +158,14 @@ class ContributionsController < ApplicationController
     options = Paquet::OPTIONS.dup
     options[:conditions] = clogiciel
     @versions = Paquet.find_select(options)
-    options = Binaire::OPTIONS.dup
-    options[:conditions] = clogiciel
-    @binaires = Binaire.find_select(options)
 
-    render :partial => 'liste_versions', :layout => false
+    render :partial => 'list_versions', :layout => false
   end
 
 private
   def _form
     @logiciels = Logiciel.find_select
     @versions = @contribution.versions || []
-    @binaires = @contribution.binaires || []
     @etatreversements = Etatreversement.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @typecontributions = Typecontribution.find_select
@@ -191,7 +187,6 @@ private
     contribution.urlreversements.create(url) unless url.blank?
     contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
     contribution.cloture_le = nil if params[:contribution][:clos] == '0'
-    expire_action  :action => 'list'
     contribution.save
   end
 

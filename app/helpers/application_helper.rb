@@ -46,7 +46,7 @@ module ApplicationHelper
   #   an edit link and a delete link. Used widely in the show view of software.
   # If there is no block given, the field is displayed as is, with 'to_s' method.
   # Call it like :
-  #   <%= show_list(@contribution.binaires, 'contribution') {|e| e.name} %>
+  #   <%= show_list(@contribution.releases, 'contribution') {|e| e.name} %>
   def show_list(elements, name = '', options = {})
     elements.compact!
     size = elements.size

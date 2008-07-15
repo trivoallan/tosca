@@ -1,11 +1,8 @@
 class Socle < ActiveRecord::Base
   acts_as_reportable
   has_one :machine
-  has_many :binaires, :include => :version
-  has_many :versions, :through => :binaires, :group => 'versions.id'
-
+  
   has_and_belongs_to_many :clients
-
 
   def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions =>

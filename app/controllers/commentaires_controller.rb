@@ -25,15 +25,18 @@ class CommentairesController < ApplicationController
 
     return render(:nothing => true) unless user && request
 
-
     changed = {}
     # check on attributes change
     %w{statut_id ingenieur_id severite_id}.each do |attr|
       changed[attr] = true unless commentaire[attr].blank?
     end
+    
+    if (changed[:statut_id] or changed[:severite_id]) and params[:commentaire][:prive]
+      params[:commentaire][:prive] = false
+      flash[:warn] = _("A comment can not be private if there is a change in<br/>
+        the <b>status</b> or in the <b>severity</b>")
+    end
 
-    # TODO : avertir ??
-    # 'Le statut a été modifié : le commentaire est <b>public</b>'
     @comment = Commentaire.new(commentaire)
     @comment.demande, @comment.user = request, user
     @comment.add_attachment(params)

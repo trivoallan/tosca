@@ -1,4 +1,3 @@
-
 =begin
   send formatted output directly to the HTTP response
   source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV

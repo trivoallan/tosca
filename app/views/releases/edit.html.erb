@@ -1,8 +1,8 @@
-<h1><%=_('Edition of this binary')%></h1>
+<h1><%=_('Edition of this release')%></h1>
 
-<% form_tag(binaire_path(@binaire), :method => :put, :multipart => true, :id => 'main_form') do%>
+<% form_tag(binaire_path(@release), :method => :put, :multipart => true, :id => 'main_form') do%>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Validate') %>
 <% end %>
 
-<%= link_to_show_and_list(@binaire) %>
+<%= link_to_show_and_list(@release) %>
