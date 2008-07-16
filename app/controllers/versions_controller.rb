@@ -6,9 +6,7 @@ class VersionsController < ApplicationController
   auto_complete_for :version, :name
 
   def index
-    options = { :per_page => 15, :order =>
-      'versions.logiciel_id, versions.version',
-      :include => [:logiciel] }
+    options = { :per_page => 15 }
 
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]
@@ -30,9 +28,7 @@ class VersionsController < ApplicationController
   end
 
   def show
-    include =  [ { :logiciel => :groupe } ]
-    version_id = params[:id]
-    @version = Version.find(version_id, :include => include)
+    @version = Version.find(params[:id])
   end
 
   def new

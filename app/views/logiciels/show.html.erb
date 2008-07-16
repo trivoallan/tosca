@@ -56,10 +56,10 @@
         <% end %>
      </tr>
 
-     <tr><td><b><%=n_('Package', 'Packages', @logiciel.versions.size)%></b> <%= link_to_new_version(@logiciel) %></td>
+     <tr><td><b><%=n_('Version', 'Versions', @logiciel.versions.size)%></b> <%= link_to_new_version(@logiciel) %></td>
        <td>
           <% options[:edit] = 'version' %>
-          <%=  show_list(@logiciel.versions, _('Package'), options) do |version|
+          <%= show_list(@logiciel.versions, _('Version'), options) do |version|
              link_to_version version
           end %>
        </td>

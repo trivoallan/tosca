@@ -44,7 +44,6 @@ class DemandesController < ApplicationController
     render :template => 'demandes/lists/pending'
   end
 
-
   def index
     #special case : direct show
     if params.has_key? 'numero'

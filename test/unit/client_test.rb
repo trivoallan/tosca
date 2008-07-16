@@ -10,7 +10,10 @@ class ClientTest < Test::Unit::TestCase
 
   def test_logo
     image_file = fixture_file_upload('/files/logo_linagora.gif', 'image/gif')
-    client = Client.new(:name => "Testing logo", :creator => User.find(:first))
+    client = Client.new(:name => "Testing logo", 
+      :creator => User.find(:first),
+      :description => "I a client with a nice logo",
+      :adresse => "I live next door")
     assert client.save
 
     images(:image_00001).destroy
@@ -57,7 +60,7 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_logiciels
-    Client.find(:all).each{|c| c.logiciels.each{|i| assert_instance_of(Logiciel, i)}}
+    Client.find(:all).each{ |c| c.logiciels.each{ |i| assert_instance_of(Logiciel, i) } }
   end
 
   def test_contributions

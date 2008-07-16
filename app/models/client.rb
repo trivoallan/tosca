@@ -85,13 +85,13 @@ class Client < ActiveRecord::Base
     Ingenieur.find(:all, options)
   end
 
-
   def logiciels
     return [] if contracts.empty?
     return contracts.first.logiciels if contracts.size == 1
     # speedier if there is one openbar contract
-    contracts.each{|c| return Logiciel.find(:all) if c.rule.max == -1 }
-    # default case, when there is an association with packages stored.
+    contracts.each { |c| return Logiciel.find(:all) if c.rule.max == -1 }
+    
+    # default case, when there is an association with releases.
     conditions = [ 'logiciels.id IN (SELECT DISTINCT versions.logiciel_id ' +
                    ' FROM versions WHERE versions.contract_id IN (?)) ',
                    contracts.collect{ |c| c.id } ]

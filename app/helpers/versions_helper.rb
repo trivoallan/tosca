@@ -1,9 +1,9 @@
 module VersionsHelper
-  # Il faut mettre un :include => [:arch,:conteneur] pour accélérer l'affichage
+  
   def link_to_version(version)
-    return '-' unless version and version.is_a? Paquet
+    return '-' unless version and version.is_a? Version
     name = version.to_s
-    name = "<i>#{name}</i>" unless version.active
+    name = "<i>#{name}</i>"
     link_to name, version_path(version)
   end
 
