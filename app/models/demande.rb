@@ -69,7 +69,6 @@ class Demande < ActiveRecord::Base
   # You cannot put it after_save : it invalidates the first comment,
   # If you do that, the first comment will receive the state of the request,
   # not the initial state of the request
-  after_save :update_first_comment
   after_create :create_first_comment
 
   # used for ruport. See plugins for more information
@@ -296,13 +295,6 @@ class Demande < ActiveRecord::Base
   end
 
   private
-  def update_first_comment
-    first_comment = self.first_comment
-    if first_comment and first_comment.corps != self.description
-      first_comment.update_attribute(:corps, self.description)
-    end
-  end
-
   def create_first_comment
     comment = Commentaire.new do |c|
       #We use id's because it's quicker
