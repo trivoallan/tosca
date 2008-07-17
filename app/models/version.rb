@@ -7,7 +7,8 @@ class Version < ActiveRecord::Base
   validates_presence_of :logiciel, :version
     
   def name
-    "#{logiciel.name}-#{version}"
+    @name ||= "#{logiciel.name}-#{version}"
+    @name
   end
   
   def self.set_scope(contract_ids)

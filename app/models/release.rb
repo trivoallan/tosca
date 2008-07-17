@@ -6,7 +6,7 @@ class Release < ActiveRecord::Base
   has_one :changelog
   
   def name
-    "#{self.version.logiciel.name} v#{self.version.version} r#{self.release}"
+    "#{self.logiciel.name} v#{self.version.version} r#{self.release}"
   end
   
 end
