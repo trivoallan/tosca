@@ -36,7 +36,8 @@ module EngagementsHelper
         last_severite_id = e.severite_id
       end
       out << '</td><td>'
-      severities = { '» ' => 0 }
+      severities = []
+      severities.push ['» ',0]
       # selecteds = []
       out << %Q{<select id="contract_engagement_ids"
          name="contract[engagement_ids_#{last_typedemande_id}_#{last_severite_id}]">}
@@ -45,7 +46,7 @@ module EngagementsHelper
         correction = Time.in_words(e.correction.days, true)
         workaround = _('None') if workaround == '-'
         correction = _('None') if correction == '-'
-        severities["#{workaround} | #{correction}"] = e.id
+        severities.push ["#{workaround} | #{correction}", e.id]
         break if engagements.empty? || (engagements.last.severite_id != last_severite_id)
         e = engagements.pop
       end
