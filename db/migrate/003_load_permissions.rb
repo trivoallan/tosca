@@ -73,7 +73,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^paquets/(?!destroy)', 'Manage packages' ],
                [ '^machines/(?!destroy)', 'Manage servers' ],
                [ '^teams/(?!destroy)', 'Manage teams' ],
-               [ '^engagements/', 'Manage engagements' ]
+               [ '^engagements/(?!destroy)', 'Manage Service Level Agreement' ]
              ]
     add_permission.call(roles, access)
 
