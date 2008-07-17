@@ -186,7 +186,6 @@ class AccountController < ApplicationController
       [ 'HTTP_AUTH_USER',  :login ] # TODO : check this field with Bayrem
     ]
     redirect_to welcome_path
-    flash[:info] = "coucou"
 =begin
     login = request.env['HTTP_AUTH_LOGIN']
     return redirect_to(welcome_path) unless login
