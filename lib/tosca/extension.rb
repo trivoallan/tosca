@@ -1,7 +1,5 @@
 require 'annotatable'
 require 'simpleton'
-# require 'radiant/admin_ui'
-
 
 # This class is clearly inspired from the Radiant extension system.
 # Thanks to Daniel Sheppard and all the team of this project.
