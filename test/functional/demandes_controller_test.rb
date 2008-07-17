@@ -49,6 +49,27 @@ class DemandesControllerTest < ActionController::TestCase
     end
   end
 
+  def test_update
+    %w(admin manager).each do |l|
+      login l, l
+      get :edit, :id => Demande.find(:first).id
+      assert_response :success
+      assert_template 'edit'
+
+      new_descr = "edited by #{l}"
+      form = select_form 'main_form'
+      form.demande.description = new_descr
+      form.submit
+
+      assert_response :redirect
+      # p assigns(:demande).errors.full_messages
+      assert assigns(:demande).errors.empty?
+      assert_equal assigns(:demande).description, new_descr
+
+      logout
+    end
+  end
+
   def test_new
     %w(admin manager expert customer).each do |l|
       login l, l

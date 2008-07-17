@@ -260,7 +260,11 @@ class DemandesController < ApplicationController
   def update
     @demande = Demande.find(params[:id])
     @demande.versions = Paquet.find(params[:version_ids]) if params[:version_ids]
-    if @demande.update_attributes(params[:demande])
+    request = params[:demande]
+    # description is delocalized into the first comment, mainly for db perf.
+    description = request[:description]
+    if @demande.update_attributes(request) &&
+        @demande.first_comment.update_attribute(:corps, description)
       flash[:notice] = _("The request has been updated successfully.")
       redirect_to demande_path(@demande)
     else
