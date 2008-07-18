@@ -148,6 +148,7 @@ class ContributionsController < ApplicationController
     redirect_to contributions_path
   end
 
+  # TODO : there is "paquet" here
   def ajax_versions
     return render(:text => '') unless request.xml_http_request? and params[:id]
 
@@ -165,7 +166,6 @@ class ContributionsController < ApplicationController
 private
   def _form
     @logiciels = Logiciel.find_select
-    @versions = @contribution.versions || []
     @etatreversements = Etatreversement.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @typecontributions = Typecontribution.find_select

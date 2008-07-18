@@ -2,7 +2,7 @@ class Version < ActiveRecord::Base
   has_one :logiciel, :through => :releases
 
   has_many :releases, :dependent => :destroy
-  has_and_belongs_to_many :contributions
+  has_many :contributions
 
   validates_presence_of :logiciel, :version
 

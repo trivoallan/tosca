@@ -9,7 +9,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :logiciel
   belongs_to :ingenieur
 
-  has_and_belongs_to_many :versions
+  belongs_to :version
 
   file_column :patch, :fix_file_extensions => nil
 
@@ -50,15 +50,6 @@ class Contribution < ActiveRecord::Base
 
   def to_param
     "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
-  end
-
-  # Rien ne nous empeche, vue du mcd, d'avoir un contribution
-  # sur plusieurs logiciels
-  # TODO : a voir et a revoir
-  def logiciels
-    @logiciels ||= Logiciel.find(self.versions.find(:all, :select =>
-      'DISTINCT versions.logiciel_id').collect{|p| p.logiciel_id})
-    @logiciels
   end
 
   # date de reversement formattée
@@ -149,15 +140,6 @@ class Contribution < ActiveRecord::Base
   end
   def version_to_s
     affected_version.to_s
-  end
-
-
-
-private
-  def find_logiciels
-    versions = self.versions.find(:all, :select => 'DISTINCT versions.logiciel_id')
-    ids = versions
-    Logiciel.find(ids)
   end
 
 end
