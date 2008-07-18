@@ -1,20 +1,9 @@
 digraph x {
 
 //rotate=90;
+{rank=min; Statut Typedemande Statut }
 
-{rank=min; Distributeur Mainteneur Conteneur }
-{rank=min; Typedemande Severite Engagement } 
-{rank=min; Arch FichierBinaire Statut }
-{rank=same; Contract Demande }
-{rank=same; Beneficiaire Ingenieur }
-{rank=same; Logiciel Urllogiciel }
-
-Rule [label="Rule\nOssa|TimeTicket"]
-
-Binaire -> Paquet [arrowhead=dot,arrowtail=crow,dir=both]
-Binaire -> Socle [arrowhead=dot,dir=both,arrowtail=crow]
-Binaire -> Arch [arrowhead=dot,dir=both,arrowtail=crow]
-Binaire -> FichierBinaire [arrowhead=crow,dir=both,arrowtail=dot]
+Rule [label="Rule\nComponent\nTimeCredit"]
 
 Beneficiaire -> User [arrowhead=dot,arrowtail=odot,dir=both]
 Beneficiaire -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
@@ -27,7 +16,7 @@ Client -> Socle [arrowhead=crow,dir=both,arrowtail=crow]
 Commentaire -> Demande [arrowhead=dot,dir=both,arrowtail=crow]
 Commentaire -> User [arrowhead=dot,dir=both,arrowtail=crow]
 Commentaire -> Piecejointe [arrowhead=odot,dir=both,arrowtail=dot]
-Commentaire -> Statut [arrowhead=dot]
+Commentaire -> Statut [arrowhead=odot]
 
 Contract -> User [arrowhead=crow,dir=both,arrowtail=crow]
 Contract -> Engagement [arrowhead=crow,arrowtail=crow,dir=both]
@@ -38,13 +27,6 @@ User -> Role [arrowhead=dot,arrowtail=crow,dir=both]
 Ingenieur -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
 Ingenieur -> User [arrowhead=dot,arrowtail=odot,dir=both]
 Ingenieur -> Phonecall [arrowhead=crow,dir=both,arrowtail=dot]
-
-Logiciel -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
-Logiciel -> License [arrowhead=dot,dir=both,arrowtail=crow]
-Logiciel -> Communaute [arrowhead=dot,dir=both,arrowtail=crow]
-Logiciel -> Groupe [arrowhead=dot,dir=both,arrowtail=crow]
-Logiciel -> Image [arrowhead=dot,dir=both,arrowtail=crow]
-
 
 News -> Ingenieur [arrowhead=dot,dir=both,arrowtail=crow]
 News -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
@@ -62,14 +44,19 @@ Demande -> Statut [arrowhead=dot,dir=both,arrowtail=crow]
 Demande -> Ingenieur [arrowhead=dot,dir=both,arrowtail=crow]
 Demande -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
 
-Paquet -> Logiciel [arrowhead=dot,dir=both,arrowtail=crow]
-Paquet -> Fichier [arrowhead=crow,dir=both,arrowtail=dot]
-Paquet -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
-Paquet -> Changelog [arrowhead=crow,dir=both,arrowtail=dot]
-Paquet -> Distributeur [arrowhead=dot,dir=both,arrowtail=dot]
-Paquet -> Dependance [arrowhead=crow,dir=both,arrowtail=dot]
-Paquet -> Mainteneur [arrowhead=dot,dir=both,arrowtail=crow]
-Paquet -> Conteneur [arrowhead=dot,dir=both,arrowtail=crow]
+Logiciel -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
+Logiciel -> License [arrowhead=dot,dir=both,arrowtail=crow]
+Logiciel -> Communaute [arrowhead=dot,dir=both,arrowtail=crow]
+Logiciel -> Groupe [arrowhead=dot,dir=both,arrowtail=crow]
+Logiciel -> Image [arrowhead=dot,dir=both,arrowtail=crow]
+
+
+Version -> Logiciel [arrowhead=dot,dir=both,arrowtail=crow]
+
+Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
+
+
 Preference -> User [arrowhead=dot,arrowtail=dot,dir=both]
 Socle -> Machine [arrowhead=dot,dir=both,arrowtail=dot]
 Machine -> Machine [arrowhead=dot,dir=both,arrowtail=odot]
@@ -78,12 +65,12 @@ Urllogiciel -> Typeurl [arrowhead=dot,dir=both,arrowtail=crow]
 Engagement -> Severite [arrowhead=dot,dir=both,arrowtail=crow]
 Engagement -> Typedemande [arrowhead=dot,dir=both,arrowtail=crow]
 Role -> Permission [arrowhead=crow,arrowtail=crow,dir=both]
-Contribution -> Binaire [arrowhead=crow,arrowtail=crow,dir=both]
 Urlreversement -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
 
 Contribution -> Etatreversement [arrowhead=dot,dir=both,arrowtail=crow]
 Contribution -> Typecontribution [arrowhead=dot,dir=both,arrowtail=crow]
 Contribution -> Logiciel [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Version [arrowhead=dot,arrowtail=crow,dir=both]
 Contribution -> Ingenieur [arrowhead=dot,dir=both,arrowtail=crow]
 Piecejointe -> User [arrowtail=crow,dir=both,arrowhead=dot]
 Document -> Client [arrowhead=dot,dir=both,arrowtail=crow]
