@@ -1,14 +1,14 @@
 config/database.yml
 db/schema.rb
+files/*
 lib/config.rb
+locale/*
 log/*.log
+nbproject/*
 public/stylesheets/all.css
 public/javascripts/all-fr.js
 public/festivaltts_mp3/*
-locale/*
-files/*
 public/image/*
 public/images/reporting/*
-nbproject/*
 test/coverage/*
 tmp/*
