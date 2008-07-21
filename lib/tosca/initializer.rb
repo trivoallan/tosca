@@ -6,10 +6,8 @@ module Tosca
   class Configuration < Rails::Configuration
     attr_accessor :extension_paths
     attr_accessor :extensions
-    attr_accessor :view_paths
 
     def initialize
-      self.view_paths = []
       self.extension_paths = default_extension_path
       self.extensions = [ :all ]
       super
@@ -49,20 +47,18 @@ module Tosca
     def initialize_framework_views
       view_paths = returning [] do |arr|
         # Add the singular view path if it's not in the list
-        arr << configuration.view_path if !configuration.view_paths.include?(configuration.view_path)
-        # Add the default view paths
-        arr.concat configuration.view_paths
+        arr << configuration.view_path
         # Add the extension view paths
         arr.concat extension_loader.view_paths
         # Reverse the list so extensions come first
         arr.reverse!
       end
-      if configuration.frameworks.include?(:action_controller) || defined?(ActionController::Base)
-        view_paths.each do |vp|
-          unless ActionController::Base.view_paths.include?(vp)
-            ActionController::Base.prepend_view_path vp
-          end
-        end
+      if configuration.frameworks.include?(:action_mailer)
+        ActionMailer::Base.template_root ||= configuration.view_path
+      end
+      if configuration.frameworks.include?(:action_controller) &&
+         ActionController::Base.view_paths.empty?
+        ActionController::Base.view_paths = view_paths
       end
     end
 
