@@ -238,8 +238,8 @@ module ReportingHelper
   # Display a progress bar colored according to the percentage given in
   # argument. 0% correspond to green, 100% to red and > 100% to black
   # usage : progress_bar(50) display a orange bar, which correspond to 50%
-  def progress_bar( percent )
-    return '' if (not percent.is_a? Numeric or percent <= 0)
+  def progress_bar( percent, desc = _('progress bar') )
+    return '-' if (not percent.is_a? Numeric or percent <= 0)
     percent = (percent * 100)
     case percent
     when percent < 0
@@ -254,7 +254,7 @@ module ReportingHelper
 
     color = "rgb( #{red}, #{green},0)"
 
-    result = image_percent(1.23*percent, color)
+    result = image_percent(1.23*percent, color, desc)
     result << " (#{(percent).round} %) " if @ingenieur
     result
   end
