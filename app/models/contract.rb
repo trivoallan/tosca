@@ -1,15 +1,15 @@
 class Contract < ActiveRecord::Base
   acts_as_reportable
-  
+
   belongs_to :client
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
-  
+
   has_many :releases, :dependent => :destroy
   has_many :demandes
   has_many :appels
   has_many :tags
-  
+
   has_and_belongs_to_many :engagements, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
   has_and_belongs_to_many :users, :order => 'users.name'
@@ -38,9 +38,9 @@ class Contract < ActiveRecord::Base
     self.scoped_methods << { :find => { :conditions =>
         [ 'contracts.id IN (?)', contract_ids ] } }
   end
-  
+
   def engineers
-    engineers = self.engineer_users 
+    engineers = self.engineer_users
     engineers.concat(self.teams.collect { |t| t.users }.flatten).uniq!
     engineers
   end
@@ -119,7 +119,7 @@ class Contract < ActiveRecord::Base
   # used internally by wrapper :
   # /!\ DO NOT USE DIRECTLY /!\
   # use : logiciels() call
-  has_many :_logiciels, :through => :versions, :group =>
+  has_many :_logiciels, :through => :releases, :group =>
     'logiciels.id', :source => 'logiciel', :order => 'logiciels.name ASC'
 
 #  alias_method :to_s, :name
