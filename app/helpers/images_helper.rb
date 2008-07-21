@@ -32,11 +32,16 @@ module ImagesHelper
               image_options(client.name_clean))
   end
 
+  # Display the software's logo, if possible
+  # Possible options are those specified in image model.
+  # Currently :small, :thumb, :medium, :inactive_thumb
   def software_logo(software, options = {})
     return '' if software.nil? or software.image.blank?
-    image_tag(url_for_image_column(software.image, 'image',
-                                   options[:size] || :small) || software.name,
-              :class => "aligned_picture")
+    size = options[:size] || :small
+    path = url_for_image_column(software.image, 'image', size)
+    return '' if path.blank?
+    image_tag(path, :class => "aligned_picture",
+              :alt => software.name, :title => software.name)
   end
 
   #TODO Merger avec StaticImage
@@ -48,8 +53,7 @@ module ImagesHelper
 
   # See usage in reporting_helper#progress_bar
   # It show a percentage of progression.
-  def image_percent(percent, color)
-    desc = _('progress bar')
+  def image_percent(percent, color, desc)
     style = "background-position: #{percent}px; background-color: #{color};"
     options = { :alt => desc, :title => desc, :style => style,
       :class => 'percentImage no_hover aligned_picture' }
