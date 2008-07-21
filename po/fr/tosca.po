@@ -2750,15 +2750,23 @@ msgstr "Ingénieurs affiliés à ce contrat"
 msgid "Teams managing this contract"
 msgstr "Équipes gérant ce contrat"
 
-#: app/views/contracts/area.html.erb:1 app/views/contracts/show.html.erb:34
+#: app/views/contracts/area.html.erb:1
+#: app/views/contracts/show.html.erb:34
 #: app/views/contracts/supported_software.html.erb:1
-msgid "Supported Software"
-msgstr "Mes logiciels supportés"
+msgid "Supported software in this contract"
+msgstr "Logiciels supportés dans le cadre de ce contrat"
 
-#: app/views/contracts/area.html.erb:19
 #: app/views/contracts/supported_software.html.erb:10
 msgid "Supported"
 msgstr "Supporté"
+
+#: app/views/contracts/supported_software.html.erb:10
+msgid "Unsupported"
+msgstr "Non Supporté"
+
+#: app/views/contracts/supported_software.html.erb:21
+msgid "Add software"
+msgstr "Ajouter un logiciel"
 
 #: app/views/contracts/edit.html.erb:1
 msgid "Edit a contract"

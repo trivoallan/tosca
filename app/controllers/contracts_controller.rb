@@ -84,36 +84,42 @@ class ContractsController < ApplicationController
 
   def supported_software
     @contract = Contract.find(params[:id])
-    @versions = @contract.versions
+    @releases = @contract.releases
     @logiciels = Logiciel.find_select
   end
 
   # TODO : include version.packaged or not ?
   def add_software
     @contract = Contract.find(params[:id])
-    new_version = []
+    new_release = []
     unless params['software'].nil?
       params['software'].each do |s|
         s = s[1] # access params which contain software informations
-        if s['version_id'].blank? #create version
-          version = Paquet.new
-          version.contract_id = @contract.id
-          version.logiciel_id = s['software']
-          version.name = Logiciel.find(s['software']).name
+        if s['release_id'].blank? #create release
+          release = Release.new
+          release.contract_id = @contract.id
+          release.logiciel_id = s['software']
+          release.release = s['release']
+          release.inactive = s['inactive'] == "on" ? 1 : 0
+          # create or find the version
+          version = Logiciel.find(s['software']).versions.find(:all, :conditions => ["version = ?", s['version'] ]).first
+          version = Version.new if version.nil?
           version.version = s['version']
-          version.active = s['active'] == "on" ? 1 : 0
-          version.configuration = ""
+          version.logiciel_id = s['software']
+          # save version and release
           version.save
-          new_version.push version
-        else #update version
-          version = Paquet.find(s['version_id'])
-          version.update_attributes :version => s['version'], :active => s['active'] == "on" ? 1 : 0
-          new_version.push version
+          release.version = version
+          release.save
+          new_release.push release
+        else #update release
+          release = Release.find(s['release_id'])
+          release.update_attributes :release => s['release'], :inactive => s['inactive'] == "on" ? 1 : 0
+          new_release.push release
         end
       end
     end
-    @contract.versions.each do |p|
-      p.destroy unless new_version.include? p
+    @contract.releases.each do |r|
+      r.destroy unless new_release.include? r
     end
     redirect_to contract_path(@contract)
   end

@@ -1,4 +1,4 @@
-<h1><%= _("Supported Software") %></h1>
+<h1><%= _("Supported software in this contract") %></h1>
 
 <% options = { :before => "Element.show('spinner')",
                :success => "Element.hide('spinner')",
@@ -7,10 +7,10 @@
                } %>
 <% form_tag( {:action => "add_software"}, :id => "main_form")do %>
 <table class="form" cellpadding="5" >
-  <tr><th width="70"><%= _('Software') %></th><th><%= _('Version') %></th><th><%= _('Supported')+"?" %></th></tr>
-  <% @versions.each do |p| %>
-    <% @logiciel = p.logiciel %>
-    <% @version = p %>
+  <tr><th width="70"><%= _('Software') %></th><th><%= _('Version') %></th><th><%= _('Release') %></th><th><%= _('Unsupported')+"?" %></th></tr>
+  <% @releases.each do |r| %>
+    <% @logiciel = r.logiciel %>
+    <% @release = r %>
     <%= render :partial => "contracts/software" %>
   <% end %>
   <tr id="end"></tr>
@@ -18,7 +18,7 @@
 
 <table class="form" cellpadding="5">
   <tr><td>
-    <fieldset><legend>Add Software</legend>
+    <fieldset><legend><%= _('Add software') %></legend>
     <table cellpadding="5">
       <tr><td>
         <label><%=_('Software')%></label></td><td><%= select_empty "select", "software", @logiciels, {}, { :onchange => remote_function(options) } %></td><td width="20"> <%= StaticImage::spinner %>

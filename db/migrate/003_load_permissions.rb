@@ -65,15 +65,15 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
                [ '^contracts/(?!destroy)', 'Manage contracts' ],
                [ '^demandes/(?!destroy)', 'Manage requests' ],
+               [ '^engagements/(?!destroy)', 'Manage Service Level Agreement' ],
                [ '^groupes/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
                [ '^ingenieurs/(?!(destroy|new))',
                  'List knowledges of human ressources' ],
                [ '^logiciels/(?!destroy)', 'Manage software' ],
-               [ '^paquets/(?!destroy)', 'Manage packages' ],
                [ '^machines/(?!destroy)', 'Manage servers' ],
-               [ '^teams/(?!destroy)', 'Manage teams' ],
-               [ '^engagements/(?!destroy)', 'Manage Service Level Agreement' ]
+               [ '^releases/(?!destroy)', 'Manage releases' ],
+               [ '^teams/(?!destroy)', 'Manage teams' ]
              ]
     add_permission.call(roles, access)
 

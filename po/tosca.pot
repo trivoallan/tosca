@@ -2725,14 +2725,22 @@ msgstr ""
 msgid "Teams managing this contract"
 msgstr ""
 
-#: app/views/contracts/area.html.erb:1 app/views/contracts/show.html.erb:34
+#: app/views/contracts/show.html.erb:34
 #: app/views/contracts/supported_software.html.erb:1
-msgid "Supported Software"
+msgid "Supported software in this contract"
 msgstr ""
 
-#: app/views/contracts/area.html.erb:19
 #: app/views/contracts/supported_software.html.erb:10
 msgid "Supported"
+msgstr ""
+
+
+#: app/views/contracts/supported_software.html.erb:10
+msgid "Unsupported"
+msgstr ""
+
+#: app/views/contracts/supported_software.html.erb:21
+msgid "Add software"
 msgstr ""
 
 #: app/views/contracts/edit.html.erb:1
