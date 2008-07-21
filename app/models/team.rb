@@ -29,6 +29,12 @@ class Team < ActiveRecord::Base
     end
   end
 
+  def engineers_id
+    options = { :conditions => 'users.client = 0 AND users.inactive = 0',
+      :joins => 'INNER JOIN ingenieurs ON ingenieurs.user_id=users.id',
+      :order => 'users.name', :select => 'ingenieurs.id' }
+    self.users.find(:all, options).collect{|e| e.id}
+  end
 
   def engineers_collection_select
     options = { :conditions => 'users.client = 0 AND users.inactive = 0',

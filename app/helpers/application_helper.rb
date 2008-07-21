@@ -22,6 +22,11 @@ module ApplicationHelper
     (text.is_a? String) ? word_wrap(text).gsub("\n", '<br />') : text
   end
 
+  # Small helper which prints '-' if something is nil or something.name
+  def name(something)
+    something ? something.name : '-'
+  end
+
   # Show a help message
   # TODO : add an icon
   # TODO : use more on forms

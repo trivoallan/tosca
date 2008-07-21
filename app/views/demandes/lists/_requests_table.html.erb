@@ -38,9 +38,9 @@
           <% if ingenieur.nil? || (ingenieur.id != demande.ingenieur_id)
                ingenieur = demande.ingenieur
              end %>
-          <%= ingenieur ? ingenieur.name : '-' %>
+          <%= name(ingenieur) %>
          <% else %>
-		   <%= beneficiaire %>
+          <%= beneficiaire %>
          <% end %>
         </td>
         <td><span class="date"><%= demande.updated_on_formatted %></span></td>

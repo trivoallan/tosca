@@ -6,7 +6,7 @@ class DemandesController < ApplicationController
     [:create, :update, :destroy, :link_contribution, :unlink_contribution]
 
   def pending
-    options = { :per_page => 10, :order => 'updated_on DESC',
+    options = { :order => 'updated_on DESC',
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
     conditions = [ [ ] ]
 
@@ -27,19 +27,31 @@ class DemandesController < ApplicationController
     end
 
     if @ingenieur
-      conditions.first << 'demandes.ingenieur_id = ?'
-      conditions << @ingenieur.id
+      conditions.first << 'demandes.ingenieur_id IN (?)'
     elsif @beneficiaire
-      conditions.first << 'demandes.beneficiaire_id = ?'
-      conditions << @beneficiaire.id
-    else
-      throw Exception.new("unidentified")
+      conditions.first << 'demandes.beneficiaire_id = (?)'
     end
-
     conditions[0] = conditions.first.join(' AND ')
     options[:conditions] = conditions
 
-    @demande_pages, @demandes = paginate :demandes, options
+    own_id = (@ingenieur ? @ingenieur.id : @beneficiaire.id)
+    conditions << [ own_id ]
+    @own_requests = Demande.find(:all, options)
+
+    # Update last condition to the whole team
+    if @ingenieur
+      conditions[-1] = session[:user].team.engineers_id
+    elsif @beneficiaire
+      conditions[-1] = @beneficiaire.client.beneficiaire_ids
+    end
+    # It's better to not display twice same request
+    puts "********************"
+    puts own_id
+    p conditions[-1]
+    conditions[-1].delete(own_id)
+    p conditions[-1]
+
+    @team_requests = Demande.find(:all, options)
 
     render :template => 'demandes/lists/pending'
   end

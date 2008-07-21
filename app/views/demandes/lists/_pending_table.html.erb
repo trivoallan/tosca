@@ -1,0 +1,33 @@
+<% return if requests.empty? %>
+<table class="show">
+ <thead>
+   <tr>
+    <th><%= _('Id') %></th>
+    <th><%= _('Software') %></th>
+    <th><%= _('Summary') %></th>
+    <th><%= _('Workaround') %></th>
+    <th><%= _('Correction') %></th>
+   </tr>
+   <tr><td colspan="5"><hr /></td></tr>
+ </thead><tbody>
+  <% requests.each do |request| %>
+   <% elapsed = request.elapsed %>
+   <% interval = request.interval %>
+   <% commitment = request.engagement %>
+   <tr>
+    <td><%= request.id %></td>
+    <td><%= name(request.logiciel) %></td>
+    <td><%= request.resume %></td>
+    <% if commitment.nil? %>
+      <td colspan="2"><%= _("Your request is not subject to a SLA.") %></td>
+    <% else %>
+     <% desc = progress_text(elapsed.workaround, commitment.contournement.days, interval) %>
+     <td><%= progress_bar(elapsed.workaround_progress, desc) %></td>
+     <% desc = progress_text(elapsed.correction, commitment.correction.days, interval) %>
+     <td><%= progress_bar(elapsed.correction_progress, desc) %></td>
+    <% end %>
+   </tr>
+  <% end %>
+ </tbody>
+
+</table>
