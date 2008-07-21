@@ -31,7 +31,7 @@
 <% header = _("%s managing this contract") % n_('Team','Teams', @teams.size ) %>
 <%= show_list(@teams, header) { |t| link_to t.name, team_path(t) } %>
 
-<p><b><%= _('Supported Software') %> : <%= link_to StaticImage::edit, { :action => "supported_software", :controller => "contracts"} , :class => "no_hover" %></b></p>
+<p><b><%= _('Supported software in this contract') %> : <%= link_to StaticImage::edit, { :action => "supported_software", :controller => "contracts"} , :class => "no_hover" %></b></p>
 <%= show_list(@releases) { |r| link_to(r.to_s, release_path(r)) } %>
 
 <br/>

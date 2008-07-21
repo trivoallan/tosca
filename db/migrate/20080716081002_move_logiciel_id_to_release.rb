@@ -14,8 +14,6 @@ class MoveLogicielIdToRelease < ActiveRecord::Migration
         r.save
       end
     end
-    
-    remove_column :versions, :logiciel_id
   end
 
   def self.down

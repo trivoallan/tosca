@@ -6,7 +6,11 @@ class Release < ActiveRecord::Base
   has_one :changelog
   
   def name
-    "#{self.logiciel.name} v#{self.version.version} r#{self.release}"
+    "#{self.version} r#{self.release}"
   end
   
+  def self.set_scope(contract_ids)
+    self.scoped_methods << { :find => { :conditions =>
+          [ 'releases.contract_id IN (?)', contract_ids ]} }
+  end
 end
