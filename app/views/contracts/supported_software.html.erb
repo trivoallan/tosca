@@ -3,7 +3,7 @@
 <% options = { :before => "Element.show('spinner')",
                :success => "Element.hide('spinner')",
                :url => {:action => "ajax_add_software", :controller => "contracts"},
-               :with => "select_software.options[select_software.selectedIndex]"
+               :with => "Form.Element.serialize('select_software')"
                } %>
 <% form_tag( {:action => "add_software"}, :id => "main_form")do %>
 <table class="form" cellpadding="5" >
@@ -11,6 +11,7 @@
   <% @releases.each do |r| %>
     <% @logiciel = r.logiciel %>
     <% @release = r %>
+    <% @random_id = "s#{rand(10000)}_#{@logiciel.id}" %>
     <%= render :partial => "contracts/software" %>
   <% end %>
   <tr id="end"></tr>
@@ -20,9 +21,17 @@
   <tr><td>
     <fieldset><legend><%= _('Add software') %></legend>
     <table cellpadding="5">
-      <tr><td>
-        <label><%=_('Software')%></label></td><td><%= select_empty "select", "software", @logiciels, {}, { :onchange => remote_function(options) } %></td><td width="20"> <%= StaticImage::spinner %>
-      </td></tr>
+      <tr>
+        <td><label for="select_software"><%=_('Software')%></label></td>
+        <td>
+         <%= select_empty "select", "software", @logiciels, {},
+                          { :onchange => remote_function(options) } %>
+         <%= link_to(image_create('an url'), new_logiciel_path,
+                          LinksHelper::NO_HOVER) %>
+        </td>
+        <td width="20"> <%= StaticImage::spinner %></td>
+
+      </tr>
     </table>
     </fieldset>
  </td></tr>

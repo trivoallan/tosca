@@ -120,6 +120,9 @@ ENV['TZ'] = 'Europe/Paris'
 # See app/controller/export_controller.rb
 Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
 
+# Neeeded for making password, in other things
+srand
+
 # Boot Check
 path = File.join RAILS_ROOT, "locale", "fr", "LC_MESSAGES", "tosca.mo"
 unless File.exists? path

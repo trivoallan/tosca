@@ -1,35 +1,42 @@
 <% time = Time.now.hash %>
+<% random_field = "software[#{time}]" %>
 
 <% # Add this script to give the focus to the version field in the last software added. %>
 <% # Improve usability : allows to use easily this form without touching the mouse %>
 <% if @release.nil? %>
-<script>
-  document.getElementById('software[<%= time %>][version]').focus();
-  // Change the value to allow to choose successively the same option
-  document.getElementById('select_software').value = "";
-</script>
+  <script type="text/javascript">
+   <%= update_page do |page|
+         # allows to use this page as a cli
+         page.delay(0.5) { page["#{random_field}[version]"].focus() }
+         # allows to choose successively the same software
+         page["select_software"].value = "";
+       end %>
+  </script>
+ <% @release= Release.new( :release => " ", :inactive => false, :version => Version.new ) %>
 <% end %>
+<% new_record = @release.new_record? %>
 
-<tr id="<%= @logiciel.id %>">
+<tr id="<%=@random_id%>" class="<%=cycle('odd', 'even')%>"
+    <%=%Q{style="display: none} if new_record %> >
   <% # default values for a new package are set here %>
-  <% @release= Release.new( :release => " ", :inactive => false, :version => Version.new ) if @release.nil?%>
-  <td><label for='software[<%= time %>][active]'> <%= @logiciel.name %></label></td>
+  <td><label for="<%=random_field%>[active]"> <%= @logiciel.name %></label></td>
   <td>
-    <input id='software[<%= time %>][version]' name='software[<%= time %>][version]' type=<%= @release.id.nil? ? 'text' : 'hidden' %> value='<%= @release.version.version unless @release.version.nil? %>'>
-    <%= @release.version.version unless @release.id.nil? || @release.version.nil? %>
+    <%= (new_record ? text_field_tag("#{random_field}[version]") : @release.version) %>
   </td>
   <td>
-    <input id='software[<%= time %>][release]' name='software[<%= time %>][release]' type=<%= @release.id.nil? ? 'text' : 'hidden' %> value='<%= @release.release%>'>
-    <%= @release.release unless @release.id.nil? %>
+    <% # text_field_tag("#{random_field}[release]") ?? %>
+    <%= (new_record ? '1' : @release.release) %>
   </td>
   <td align='center'>
-    <input id='software[<%= time %>][inactive]' name='software[<%= time %>][inactive]' type='checkbox' <%= "checked='yes'" if @release.inactive? %>>
+    <%= check_box_tag("#{random_field}[inactive]", @release.inactive?) unless new_record %>
   </td>
   <td>
-    <input name='software[<%= time %>][release_id]' type='hidden' value='<%= @release.id %>'>
-    <input name='software[<%= time %>][software]' type='hidden' value='<%= @logiciel.id %>'>
+    <%= hidden_field_tag "#{random_field}[release_id]", @release.id %>
+    <%= hidden_field_tag "#{random_field}[software]", @logiciel.id %>
 
-   <%= link_to_function(StaticImage::delete, :class => "no_hover" ) { |page|  page.remove @logiciel.id.to_s } unless @release.id && session[:user].role_id != 1 %>
+   <% # Only admin can remove a software, since it can have a great impact on requests %>
+   <%= link_to_function(StaticImage::delete, :class => "no_hover" ) { |page|
+         page.visual_effect :fade, @random_id, :duration => 0.5
+       } unless new_record && session[:user].role_id != 1 %><br />
   </td>
 </tr>
-

@@ -75,11 +75,16 @@ class ContractsController < ApplicationController
   end
 
   def ajax_add_software
-    if params[:value].blank?
+    selected = params[:select]
+    if selected.blank? || !selected.has_key?(:software)
       return render(:nothing => true)
     end
-    @logiciel = Logiciel.find(params[:value])
-    render(:update) { |page| page.insert_html(:before, "end", :partial => "contracts/software") }
+    @logiciel = Logiciel.find(selected[:software])
+    @random_id = "s#{rand(10000)}_#{@logiciel.id}"
+    render(:update) { |page|
+      page.insert_html(:before, "end", :partial => "software")
+      page.visual_effect(:appear, @random_id)
+    }
   end
 
   def supported_software
