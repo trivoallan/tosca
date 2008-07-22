@@ -3885,8 +3885,8 @@ msgstr ""
 
 #: app/views/releases/show.html.erb:16
 #, fuzzy
-msgid "Inactive ?"
-msgstr "Inactive"
+msgid "Active ?"
+msgstr ""
 
 #: app/views/releases/show.html.erb:20
 msgid "Changelog"

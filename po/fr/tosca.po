@@ -3861,8 +3861,8 @@ msgid "Yes"
 msgstr "Oui"
 
 #: app/views/releases/show.html.erb:16
-msgid "Inactive ?"
-msgstr "Inactif ?"
+msgid "Active ?"
+msgstr "Actif ?"
 
 #: app/views/releases/show.html.erb:20
 msgid "Changelog"

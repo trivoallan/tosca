@@ -3824,7 +3824,7 @@ msgid "Yes"
 msgstr ""
 
 #: app/views/releases/show.html.erb:16
-msgid "Inactive ?"
+msgid "Active ?"
 msgstr ""
 
 #: app/views/releases/show.html.erb:20

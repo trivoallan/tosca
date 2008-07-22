@@ -34,12 +34,7 @@ class VersionsController < ApplicationController
   def new
     @version = Version.new
     _form
-    @version.mainteneur = Mainteneur.find_by_name('Linagora')
-    @version.distributeur = Distributeur.find_by_name('(none)')
     @version.logiciel_id = params[:logiciel_id]
-    @version.name = params[:referent]
-    @version.release = 'lng1'
-    @version.active = true;
   end
 
   def create
@@ -78,9 +73,6 @@ class VersionsController < ApplicationController
     @logiciels = Logiciel.find_select
     @groupes = Groupe.find_select
     @socles = Socle.find_select
-    @conteneurs = Conteneur.find_select
-    @distributeurs = Distributeur.find_select
-    @mainteneurs = Mainteneur.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)
   end
 
