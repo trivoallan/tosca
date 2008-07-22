@@ -20,7 +20,7 @@
    <p>
      <% if @version.releases.size > 0 %>
         <%= show_list(@version.releases, _('release'), options) {|r|
-            link_to "#{@version.logiciel.name} #{@version.version} #{r.release}", release_path(r)
+            link_to r.name, release_path(r)
           } %>
      <% end %>
    </p>

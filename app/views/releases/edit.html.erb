@@ -1,6 +1,6 @@
 <h1><%=_('Edition of this release')%></h1>
 
-<% form_tag(binaire_path(@release), :method => :put, :multipart => true, :id => 'main_form') do%>
+<% form_tag(release_path(@release), :method => :put, :multipart => true, :id => 'main_form') do%>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Validate') %>
 <% end %>

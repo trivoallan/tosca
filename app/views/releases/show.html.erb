@@ -12,8 +12,9 @@
  <p><b><%=_('Software')%>:</b> <%= public_link_to logiciel.name, logiciel_path(logiciel) %></p>
  <p><b><%=_('Contract')%>:</b> <%= link_to @release.contract.client.name, contract_path(@release.contract) %></p>
  <p><b><%=_('Version')%>:</b> <%= link_to version.version, version_path(version) %></p>
+ <p><b><%=_('Release')%>:</b> <%= @release.release %></p>
  <p><b><%=_('Packaged ?')%>:</b> <%= _('Yes') if @release.packaged? %></p>
- <p><b><%=_('Inactive ?')%>:</b> <%= _('Yes') unless @release.inactive? %></p>
+ <p><b><%=_('Active ?')%>:</b> <%= _('Yes') unless @release.inactive? %></p>
  
  <% if @release.changelog %>
  <fieldset>

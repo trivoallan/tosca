@@ -20,6 +20,7 @@ class ReleasesController < ApplicationController
 
   def create
     @release = Release.new(params[:release])
+    @release.logiciel_id = Version.find(@release.version_id).logiciel_id
     if @release.save
       flash[:notice] = _('This release has been successfully created.')
       redirect_to version_path(@release.version)
