@@ -3,7 +3,6 @@
 (global-set-key [f3] 'find-file)
 (global-set-key [f4] 'kill-this-buffer)
 (global-set-key [f9] 'compile)
-(global-set-key [(control z)] 'undo)
 (global-set-key [(control g)] 'goto-line)
 
 ;;;

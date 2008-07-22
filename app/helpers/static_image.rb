@@ -210,6 +210,11 @@ class StaticImage < Static::ActionView
     @@hide ||= image_tag('navigation_hide.gif', options('hide'))
   end
 
+  @@checkbox = nil
+  def self.checkbox
+    @@checkbox ||= image_tag 'checkbox.gif', options('Checkbox', '13x13')
+  end
+
   @@sla_ok = nil
   def self.sla_ok
     @@sla_ok ||= image_tag 'sla_ok.png', options('Time achieved', '16x16')

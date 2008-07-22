@@ -24,4 +24,9 @@ class Ingenieur < ActiveRecord::Base
   def name
     user.name
   end
+
+  def trigram
+    @trigram ||= user.login[0..2].upcase!
+  end
+
 end

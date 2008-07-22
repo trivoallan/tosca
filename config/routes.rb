@@ -64,10 +64,11 @@ ActionController::Routing::Routes.draw do |map|
     :member => { :list => :get }
   map.resources :demandes,
     :collection => { :pending => :get,
-      :ajax_display_commitment => :post,
-      :ajax_display_version => :post,
-      :ajax_display_contract => :post },
-    :member => { :print => :get,
+      :ajax_renew => :post, # in pending view
+      :ajax_display_commitment => :post, # in new/edit form
+      :ajax_display_version => :post, # in new/edit form
+      :ajax_display_contract => :post }, # in new/edit form
+    :member => { :print => :get, # All members are in show view
       :link_contribution => :post,
       :unlink_contribution => :post,
       :ajax_description => :get,

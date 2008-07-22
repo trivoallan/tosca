@@ -1,5 +1,6 @@
 <h1><%= (@own_requests.empty? ? _('No pending request') :
-         n_('My pending request', 'My pending requests', @own_requests.size)) %></h1>
+         n_('My pending request', 'My pending requests', @own_requests.size)) %>
+    <%= StaticImage::spinner %></h1>
 
 <div class="show" style="margin: 0px auto; display: none">
   <p><%= _('This list only contains requests which require an action on your behalf.') %></p>
@@ -15,8 +16,8 @@
 </div>
 
 <% unless @own_requests.empty? %>
-  <%= render(:partial => 'demandes/lists/pending_table',
-          :locals => { :requests => @own_requests }) %>
+  <%= render :partial => 'demandes/lists/pending_table',
+             :locals => { :requests => @own_requests } %>
 <% end %>
 
 <h1><%= (@team_requests.empty? ? _('My team has not any pending request') :
@@ -24,5 +25,5 @@
 
 <% unless @team_requests.empty? %>
   <%= render :partial => 'demandes/lists/pending_table',
-            :locals => { :requests => @team_requests } %>
+             :locals => { :requests => @team_requests } %>
 <% end %>

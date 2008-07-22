@@ -45,15 +45,22 @@ class DemandesController < ApplicationController
       conditions[-1] = @beneficiaire.client.beneficiaire_ids
     end
     # It's better to not display twice same request
-    puts "********************"
-    puts own_id
-    p conditions[-1]
     conditions[-1].delete(own_id)
-    p conditions[-1]
 
     @team_requests = Demande.find(:all, options)
 
     render :template => 'demandes/lists/pending'
+  end
+
+  # Track of renewed request is done with expected_on
+  # visual effects are in js.erb view
+  def ajax_renew
+    expected_on, @request_ids = params[:expected_on].to_i, params[:request_ids]
+    return if expected_on <= 0 || @request_ids.empty?
+    expected = Time.now + expected_on.days
+    Demande.find(@request_ids).each {|r|
+      r.update_attribute(:expected_on, :expected)
+    }
   end
 
   def index
