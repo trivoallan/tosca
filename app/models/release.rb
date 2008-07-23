@@ -5,8 +5,8 @@ class Release < ActiveRecord::Base
 
   has_one :changelog
 
-  def name
-    "#{self.version} r#{self.release}"
+  def full_name
+    @full_name ||= "#{self.version.full_name} r#{self.name}"
   end
 
   # See ApplicationController#scope

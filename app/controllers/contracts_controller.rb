@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  helper :clients, :engagements, :ingenieurs
+  helper :clients, :engagements, :ingenieurs, :releases
 
   def index
     @contract_pages, @contracts = paginate :contracts, :per_page => 25
@@ -101,25 +101,26 @@ class ContractsController < ApplicationController
       params['software'].each do |s|
         s = s[1] # access params which contain software informations
         if s['release_id'].blank? #create release
+          # create or find the version
+          version = Logiciel.find(s['software']).versions.find(:all, :conditions => { :name => s['version'] }).first
+          if version.nil?
+            version = Version.new 
+            version.name = s['version']
+            version.logiciel_id = s['software']
+            version.save
+          end
+          
           release = Release.new
           release.contract_id = @contract.id
-          release.logiciel_id = s['software']
-          release.release = s['release']
-          release.inactive = s['inactive'] == "on" ? 1 : 0
-          # create or find the version
-          version = Logiciel.find(s['software']).versions.find(:all, :conditions => ["version = ?", s['version'] ]).first
-          version = Version.new if version.nil?
-          version.version = s['version']
-          version.logiciel_id = s['software']
-          # save version and release
-          version.save
-          release.version = version
+          release.logiciel_id = version.logiciel_id
+          release.name = 1
+          release.inactive = ( s['inactive'] == "on" ? 1 : 0 )
+          release.version_id = version.id
           release.save
+          
           new_release.push release
-        else #update release
-          release = Release.find(s['release_id'])
-          release.update_attributes :release => s['release'], :inactive => s['inactive'] == "on" ? 1 : 0
-          new_release.push release
+        else 
+          new_release.push Release.find(s['release_id'])
         end
       end
     end

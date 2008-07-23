@@ -21,15 +21,14 @@
   > <%= _('Search')%></div>
 <ul class="menu" id="menu_recherche">
   <li><b><%= _('Version')%> </b></li>
-  <li><%= text_field :version, :version %></li>
+  <li><%= text_field :version, :name %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
   > <%= _('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
-  <li><b><%= _('Versions')%> : </b><%=@count[:versions]%></li>
+  <li><b><%= _('Versions')%> : </b><%=  @count[:versions] %></li>
 </ul>
-
 
 <% end %>
 <%= observe_form 'filters', options %>

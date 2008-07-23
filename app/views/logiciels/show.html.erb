@@ -1,12 +1,12 @@
 <%= public_link_to _('Homepage') , welcome_path %> >
  <%= public_link_to _('Software') , logiciels_path %> >
-  <%= public_link_to @logiciel.groupe.name, groupe_path(@logiciel.groupe_id) %> >
-   <%= @logiciel.name %> <%= link_to_edit(@logiciel) %>
+  <%= public_link_to @logiciel.groupe, groupe_path(@logiciel.groupe_id) %> >
+   <%= @logiciel %> <%= link_to_edit(@logiciel) %>
 <table><tr>
   <% unless @logiciel.image.blank? %>
     <td><%= software_logo(@logiciel, :size => :thumb) %></td>
   <% else %>
-    <td><h2><%= '"%s"' % @logiciel.name %></h2></td>
+    <td><h2><%= '"%s"' % @logiciel %></h2></td>
   <% end %>
 
 </tr></table>

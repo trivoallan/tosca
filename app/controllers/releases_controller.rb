@@ -8,7 +8,7 @@ class ReleasesController < ApplicationController
 
   def show
     options = { :include => [ { :contract => :client },
-                              { :version => :logiciel } ] }
+                              :version, :logiciel ] }
     @release = Release.find(params[:id], options)
   end
 

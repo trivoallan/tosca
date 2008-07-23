@@ -2,8 +2,8 @@
 <%= public_link_to _('Homepage') , welcome_url%> >
  <%= public_link_to _('Software') , logiciels_path %> >
   <%= public_link_to logiciel.groupe.name, logiciel_path(logiciel.groupe_id) %> >
-   <%= public_link_to logiciel.name, logiciel_path(logiciel) %> >
-    <%=  @version.version%>
+   <%= public_link_to logiciel, logiciel_path(logiciel) %> >
+    <%= @version %>
      <%= link_to_edit(@version) %>
 
    <h2><%= _('Version of a software')%></h2>
@@ -12,15 +12,15 @@
   <tr><td>
    <div class="show" style="min-width: 30em;">
     <p><b><%= _('Software') + ' : '%></b> <%= @version.logiciel.name %></p>
-    <p><b><%= _('Version') + ' : '%></b> <%= @version.version %></p>
+    <p><b><%= _('Version') + ' : '%></b> <%= @version %></p>
    </div>
 
    <p><b><%= pluralize(@version.releases.count, _('release') ) %></b> <%= link_to_new_release(@version.id) %></p>
-    <% options = {:no_title => true, :edit => 'release'} %>
    <p>
+     <% options = { :no_title => true, :edit => 'release'} %>
      <% if @version.releases.size > 0 %>
         <%= show_list(@version.releases, _('release'), options) {|r|
-            link_to r.name, release_path(r)
+            link_to r, release_path(r)
           } %>
      <% end %>
    </p>

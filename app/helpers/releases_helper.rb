@@ -2,7 +2,7 @@ module ReleasesHelper
 
   def link_to_release(release)
     return '-' unless release and release.version
-    link_to release.to_s, release_path(release.id)
+    link_to release.full_name, release_path(release.id)
   end
 
   # Link to create a new url for a release

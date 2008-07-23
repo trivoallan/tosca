@@ -90,7 +90,6 @@ class Contract < ActiveRecord::Base
 
   def demandes
     conditions = [ 'demandes.contract_id = ?', id]
-    # WHERE (demandes_versions.demande_id = 62 )
     Demande.find(:all, :conditions => conditions)
   end
 
@@ -122,5 +121,4 @@ class Contract < ActiveRecord::Base
   has_many :_logiciels, :through => :releases, :group =>
     'logiciels.id', :source => 'logiciel', :order => 'logiciels.name ASC'
 
-#  alias_method :to_s, :name
 end

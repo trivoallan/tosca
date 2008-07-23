@@ -2,9 +2,6 @@ class VersionsController < ApplicationController
   helper :filters, :logiciels, :distributeurs,
     :mainteneurs, :releases
 
-  # auto completion in 2 lines, yeah !
-  auto_complete_for :version, :name
-
   def index
     options = { :per_page => 15 }
 
@@ -12,7 +9,7 @@ class VersionsController < ApplicationController
     # [ namespace, field, database field, operation ]
     params_version = params['version']
     conditions = Filters.build_conditions(params_version, [
-       ['version', 'versions.version', :like ]
+       ['version', 'versions.name', :like ]
      ]) unless params_version.blank?
     flash[:conditions] = options[:conditions] = conditions
 
@@ -40,7 +37,7 @@ class VersionsController < ApplicationController
   def create
     @version = Version.new(params[:version])
     if @version.save
-      flash[:notice] = _('The package %s has been created.') % @version.name
+      flash[:notice] = _('The version %s has been created.') % @version.name
       redirect_to logiciel_path(@version.logiciel)
     else
       _form

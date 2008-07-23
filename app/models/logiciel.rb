@@ -12,7 +12,7 @@ class Logiciel < ActiveRecord::Base
   has_many :urllogiciels, :dependent => :destroy,
     :order => 'urllogiciels.typeurl_id'
   has_many :releases, :dependent => :destroy
-  has_many :versions, :order => "version DESC", :dependent => :destroy
+  has_many :versions, :order => "name DESC", :dependent => :destroy
   
   
   has_and_belongs_to_many :competences

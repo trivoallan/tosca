@@ -4,15 +4,10 @@ class Version < ActiveRecord::Base
   has_many :releases, :dependent => :destroy
   has_many :contributions
 
-  validates_presence_of :logiciel, :version
+  validates_presence_of :logiciel, :name
 
-  def name
-    @name ||= "#{logiciel.name} v#{version}"
-  end
-
-  def self.set_scope(contract_ids)
-    self.scoped_methods << { :find => { :conditions =>
-      [ 'versions.contract_id IN (?)', contract_ids ]} }
+  def full_name
+    @full_name ||= "#{logiciel.name} v#{self.name}"
   end
 
 end

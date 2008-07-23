@@ -1,5 +1,5 @@
 <p><b><%= _('Client') %></b> : <%= link_to_client(@contract.client) %></p>
-<p><b><%= _('Name') %></b> : <%= @contract.name %></p>
+<p><b><%= _('Name') %></b> : <%= @contract %></p>
 <% rule = @contract.rule %>
 <% if rule %>
   <p>&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
@@ -32,7 +32,7 @@
 <%= show_list(@teams, header) { |t| link_to t.name, team_path(t) } %>
 
 <p><b><%= _('Supported software in this contract') %> : <%= link_to StaticImage::edit, { :action => "supported_software", :controller => "contracts"} , :class => "no_hover" %></b></p>
-<%= show_list(@releases) { |r| link_to(r.to_s, release_path(r)) } %>
+<%= show_list(@releases) { |r| link_to_release(r) } %>
 
 <br/>
 <br/>

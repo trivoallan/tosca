@@ -36,15 +36,16 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
 
     create_table :versions do |t|
       t.integer :id, :logiciel_id
-      t.string :version
+      t.string :name
     end
     add_index :versions, :logiciel_id
 
     create_table :releases do |t|
       t.integer :id, :version_id, :contract_id, :logiciel_id
-      t.string :release, :default => '0'
+      t.string :name, :default => '0'
       t.boolean :packaged, :default => false
       t.boolean :inactive, :default => false
+      t.string :archive
     end
     add_index :releases, :version_id
     add_index :releases, :contract_id
@@ -62,7 +63,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     Paquet.find(:all, :order => "logiciel_id ASC, version ASC").each do |p|
       version = Version.new do |v|
         v.logiciel_id = p.logiciel_id
-        v.version = p.version
+        v.name = p.version
       end
       version.save
 
@@ -74,7 +75,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
         r.version_id = version.id
         r.contract_id = p.contract_id
         r.logiciel_id = p.logiciel_id
-        r.release = p.release ? p.release : '0'
+        r.name = p.release ? p.release : '0'
         r.packaged = true if package.include? p.conteneur_id
         r.inactive = !p.active
       end
