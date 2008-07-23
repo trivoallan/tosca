@@ -2,14 +2,18 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
 
   class Conteneur < ActiveRecord::Base
   end
+  
   class Release < ActiveRecord::Base
   end
+  
   class Contribution < ActiveRecord::Base
     has_many :versions
   end
+  
   class Version < ActiveRecord::Base
     belongs_to :contribution
   end
+  
   class Paquet < ActiveRecord::Base
     belongs_to :logiciel
     belongs_to :contract, :counter_cache => true
@@ -37,13 +41,14 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     add_index :versions, :logiciel_id
 
     create_table :releases do |t|
-      t.integer :id, :version_id, :contract_id
+      t.integer :id, :version_id, :contract_id, :logiciel_id
       t.string :release, :default => '0'
       t.boolean :packaged, :default => false
       t.boolean :inactive, :default => false
     end
     add_index :releases, :version_id
     add_index :releases, :contract_id
+    add_index :releases, :logiciel_id
 
     create_table :contributions_versions, :id => false do |t|
       t.integer :contribution_id, :version_id
@@ -68,6 +73,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
       release = Release.new do |r|
         r.version_id = version.id
         r.contract_id = p.contract_id
+        r.logiciel_id = p.logiciel_id
         r.release = p.release ? p.release : '0'
         r.packaged = true if package.include? p.conteneur_id
         r.inactive = !p.active
@@ -78,7 +84,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     drop_table :contributions_paquets
     drop_table :paquets
     drop_table :conteneurs
-    drop_table :binaires
+    #drop_table :binaires
     drop_table :binaires_contributions
   end
 
