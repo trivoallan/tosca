@@ -263,11 +263,11 @@ class DemandesController < ApplicationController
     render :partial => 'demandes/tabs/tab_appels', :layout => false
   end
 
-  def ajax_piecejointes
+  def ajax_attachments
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
-    set_piecejointes(@demande_id)
-    render :partial => 'demandes/tabs/tab_piecejointes', :layout => false
+    set_attachments(@demande_id)
+    render :partial => 'demandes/tabs/tab_attachments', :layout => false
   end
 
   def ajax_cns
@@ -307,7 +307,7 @@ class DemandesController < ApplicationController
 
   def print
     @demande = Demande.find(params[:id])
-    set_piecejointes(@demande.id)
+    set_attachments(@demande.id)
     set_comments(@demande.id)
   end
 
@@ -385,10 +385,10 @@ class DemandesController < ApplicationController
     redirect_to demande_path(@demande)
   end
 
-  def set_piecejointes(demande_id)
+  def set_attachments(demande_id)
     options = { :conditions => filter_comments(demande_id), :order =>
       'commentaires.updated_on DESC', :include => [:commentaire] }
-    @piecejointes = Piecejointe.find(:all, options)
+    @attachments = Attachment.find(:all, options)
   end
 
   def set_comments(demande_id)

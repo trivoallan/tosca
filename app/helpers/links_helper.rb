@@ -68,10 +68,8 @@ module LinksHelper
                    image_tag(url_for_image_column(record, method, :fit_size)),
                      NO_HOVER.dup.update(:background_close => true))
       #Text
-      elsif mime_type =~ /^text\//
-        link_to(StaticImage::view, uv_piecejointe_path(record),
-                NO_HOVER.dup.update(:popup =>
-                  [filename, 'height=600,width=800,scrollbars=yes']))
+      elsif mime_type =~ /^text\// && defined? UvHelper
+        link_to_uv(record, filename)
       else
         '-'
       end

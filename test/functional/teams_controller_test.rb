@@ -1,20 +1,20 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TeamsControllerTest < ActionController::TestCase
-  
+
   fixtures :teams, :demandes, :commentaires, :users, :contracts_users,
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :versions, :permissions, :roles,
     :permissions_roles, :contracts, :contracts_engagements, :engagements,
-    :piecejointes, :typedemandes, :elapseds
-  
+    :typedemandes, :elapseds
+
   def test_should_get_index
     %w(admin manager expert customer viewer).each do |l|
       login l, l
       get :index
       assert_response :success
       assert_template 'index'
-      
+
       assert_not_nil assigns(:teams)
     end
   end
@@ -25,7 +25,7 @@ class TeamsControllerTest < ActionController::TestCase
       get :new
       assert_response :success
       assert_template 'new'
-      
+
       assert_difference('Team.count') do
         form = select_form 'form_team'
         form.team.name = "TestTeam#{l}"
@@ -48,7 +48,7 @@ class TeamsControllerTest < ActionController::TestCase
   def test_should_get_edit
     %w(admin manager).each do |l|
       login l, l
-      
+
       get :edit, :id => teams(:team_ossa).id
       assert_response :success
     end
@@ -57,7 +57,7 @@ class TeamsControllerTest < ActionController::TestCase
   def a_test_should_update_team
     %w(admin manager).each do |l|
       login l, l
-      
+
       put :update, :id => teams(:one).id, :team => { }
       assert_redirected_to team_path(assigns(:team))
     end

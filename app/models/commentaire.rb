@@ -1,7 +1,7 @@
 class Commentaire < ActiveRecord::Base
   belongs_to :demande
   belongs_to :user
-  belongs_to :piecejointe
+  belongs_to :attachment
   belongs_to :statut
   belongs_to :severite
   belongs_to :ingenieur
@@ -37,11 +37,11 @@ class Commentaire < ActiveRecord::Base
 
   # This method search, create and add an attachment to the comment
   def add_attachment(params)
-    attachment = params[:piecejointe]
+    attachment = params[:attachment]
     return false unless attachment and !attachment[:file].blank?
-    attachment = Piecejointe.new(attachment)
+    attachment = Attachment.new(attachment)
     attachment.commentaire = self
-    attachment.save and self.update_attribute(:piecejointe_id, attachment.id)
+    attachment.save and self.update_attribute(:attachment_id, attachment.id)
   end
 
   def fragments
@@ -82,7 +82,7 @@ class Commentaire < ActiveRecord::Base
     end
 
     request.elapsed.remove(self) if request.elapsed
-    self.piecejointe.destroy unless self.piecejointe.nil?
+    self.attachment.destroy unless self.attachment.nil?
     true
   end
 

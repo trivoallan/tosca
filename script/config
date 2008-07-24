@@ -54,7 +54,7 @@ if @action == :dump or @action == :dumpall
           Distributeur,Document,Elapsed,Engagement,Etatreversement,Fichier,
           Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
           Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,
-          Piecejointe,Preference,Role,Severite,Socle,Statut,Typecontribution,
+          Attachment,Preference,Role,Severite,Socle,Statut,Typecontribution,
           Typedemande,Typedocument,Typeurl,User ]
   end
   models.each do |m|

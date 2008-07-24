@@ -19,7 +19,7 @@ class Demande < ActiveRecord::Base
   belongs_to :socle
 
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
-  has_many :piecejointes, :through => :commentaires
+  has_many :attachments, :through => :commentaires
 
   named_scope :actives, lambda { |contract_ids| { :conditions =>
       { :statut_id => Statut::OPENED, :contract_id => contract_ids }

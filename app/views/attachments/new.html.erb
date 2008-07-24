@@ -1,6 +1,6 @@
 <h1><%= _('New attachment') %></h1>
 
-<% form_tag( piecejointes_path, :multipart => true) do
+<% form_tag( attachments_path, :multipart => true) do
  %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Create" %>

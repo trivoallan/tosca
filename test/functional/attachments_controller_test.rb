@@ -1,14 +1,14 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'piecejointes_controller'
+require 'attachments_controller'
 
 # Re-raise errors caught by the controller.
-class PiecejointesController; def rescue_action(e) raise e end; end
+class AttachmentsController; def rescue_action(e) raise e end; end
 
-class PiecejointesControllerTest < Test::Unit::TestCase
-  fixtures :piecejointes, :commentaires
+class AttachmentsControllerTest < Test::Unit::TestCase
+  fixtures :attachments, :commentaires
 
   def setup
-    @controller = PiecejointesController.new
+    @controller = AttachmentsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -18,7 +18,7 @@ class PiecejointesControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:piecejointes)
+    assert_not_nil assigns(:attachments)
   end
 
   def test_show
@@ -27,8 +27,8 @@ class PiecejointesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:piecejointe)
-    assert assigns(:piecejointe).valid?
+    assert_not_nil assigns(:attachment)
+    assert assigns(:attachment).valid?
   end
 
   def test_new
@@ -37,21 +37,21 @@ class PiecejointesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:piecejointe)
+    assert_not_nil assigns(:attachment)
   end
 
   def test_create
-    num_piecejointes = Piecejointe.count
+    num_attachments = Attachment.count
 
-    post :create, :piecejointe => {
+    post :create, :attachment => {
       :file => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/upload_document.png"),
       :commentaire => Commentaire.find(:first)
     }
 
     assert_response :redirect
-    assert_redirected_to piecejointe_path(assigns(:piecejointe))
+    assert_redirected_to attachment_path(assigns(:attachment))
 
-    assert_equal num_piecejointes + 1, Piecejointe.count
+    assert_equal num_attachments + 1, Attachment.count
   end
 
   def test_edit
@@ -60,8 +60,8 @@ class PiecejointesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:piecejointe)
-    assert assigns(:piecejointe).valid?
+    assert_not_nil assigns(:attachment)
+    assert assigns(:attachment).valid?
   end
 
   def test_update
@@ -71,14 +71,14 @@ class PiecejointesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Piecejointe.find(1)
+    assert_not_nil Attachment.find(1)
 
     post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Piecejointe.find(1)
+      Attachment.find(1)
     }
   end
 end

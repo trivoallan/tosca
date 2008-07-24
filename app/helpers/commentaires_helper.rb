@@ -41,7 +41,7 @@ module CommentairesHelper
   def display_comment(c)
     result = ''
     result << c.corps
-    attachment = c.piecejointe
+    attachment = c.attachment
     unless attachment.blank? or attachment.file.blank?
       result << "<br /><br />#{StaticImage::folder} "
       result << link_to_file(attachment, "file").to_s

@@ -21,12 +21,12 @@ class FilesController < ApplicationController
     file_type = params[:file_type].intern
 
     # mapping path
-    map = {:piecejointe => 'file',
+    map = {:attachment => 'file',
            :contribution => 'patch',
            :document => 'file' }
 
     # TODO : get model name without hash
-    model = { :piecejointe => Piecejointe,
+    model = { :attachment => Attachment,
               :contribution => Contribution,
               :document => Document }
 
@@ -41,14 +41,14 @@ class FilesController < ApplicationController
     fullpath = [ root, params[:id], params[:filename].gsub(' ','+') ] * '/'
 
     # Attachment has to be restricted.
-    scope_active = (@beneficiaire and file_type == :piecejointe)
+    scope_active = (@beneficiaire and file_type == :attachment)
 
     # Ensure that we can remove scope
     begin
-      Piecejointe.set_scope(@beneficiaire.client_id) if scope_active
+      Attachment.set_scope(@beneficiaire.client_id) if scope_active
       target = model[file_type].find(params[:id])
     ensure
-      Piecejointe.remove_scope() if scope_active
+      Attachment.remove_scope() if scope_active
     end
     send_file fullpath
 

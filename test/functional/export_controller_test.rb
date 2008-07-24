@@ -9,7 +9,7 @@ class ExportControllerTest < Test::Unit::TestCase
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :versions, :permissions, :roles,
     :permissions_roles, :contracts, :contracts_engagements, :engagements,
-    :contracts_users, :users, :piecejointes, :contributions,
+    :contracts_users, :users, :attachments, :contributions,
     :typedemandes
 
 

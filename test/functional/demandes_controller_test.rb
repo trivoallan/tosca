@@ -8,7 +8,7 @@ class DemandesControllerTest < ActionController::TestCase
     :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :versions, :permissions, :roles,
     :permissions_roles, :contracts, :contracts_engagements, :engagements,
-    :piecejointes, :typedemandes, :elapseds
+    :attachments, :typedemandes, :elapseds
 
   def test_pending
     %w(admin manager expert customer).each do |l|
@@ -129,9 +129,9 @@ class DemandesControllerTest < ActionController::TestCase
       assert_response :success
       assert_template 'demandes/tabs/_tab_appels'
 
-      xhr :get, :ajax_piecejointes, :id => request_id
+      xhr :get, :ajax_attachments, :id => request_id
       assert_response :success
-      assert_template 'demandes/tabs/_tab_piecejointes'
+      assert_template 'demandes/tabs/_tab_attachments'
 
       xhr :get, :ajax_cns, :id => request_id
       assert_response :success

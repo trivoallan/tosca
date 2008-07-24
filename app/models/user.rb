@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   belongs_to :role
   belongs_to :team
 
-  has_many :piecejointes
+  has_many :attachments
   has_many :documents
   has_many :commentaires
 

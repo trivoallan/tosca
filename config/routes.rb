@@ -74,7 +74,7 @@ ActionController::Routing::Routes.draw do |map|
       :ajax_description => :get,
       :ajax_comments => :get,
       :ajax_history => :get,
-      :ajax_piecejointes => :get,
+      :ajax_attachments => :get,
       :ajax_appels => :get,
       :ajax_cns => :get }
   map.resources :distributeurs
@@ -102,7 +102,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :pages
   map.resources :permissions
   map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
-  map.resources :piecejointes, :member => { :uv => :get }
+  map.resources :attachments
   map.resources :releases
   map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
