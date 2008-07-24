@@ -16,14 +16,14 @@
 <% end %>
 <% new_record = @release.new_record? %>
 
+<% @random_id ||= "s#{time}_#{@logiciel.id}" %>
 <tr id="<%=@random_id%>" class="<%=cycle('odd', 'even')%>"
   <%= %Q{style="display: none"} if new_record %> >
-  <% # default values for a new package are set here %>
   <td><label for="<%=random_field%>[active]"><%= @logiciel %></label></td>
   <td>
     <%= (new_record ? text_field_tag("#{random_field}[version]") : @release.version) %>
   </td>
-  <td align='center'>
+  <td align="center">
     <%= check_box_tag("#{random_field}[inactive]", @release.inactive?) unless new_record %>
   </td>
   <td>
@@ -33,8 +33,8 @@
    <% # Only admin can remove a software, since it can have a great impact on requests %>
    <%= link_to_function(StaticImage::delete, :class => "no_hover" ) { |page|
          page.visual_effect :fade, @random_id, :duration => 0.5
-         #We wait for the nice effect to finish
+         # We wait for the nice effect to finish
          page.delay(0.5) { page.remove @random_id }
-       } unless new_record && session[:user].role_id != 1 %><br />
+       } unless new_record && session[:user].role_id != 1 %>
   </td>
 </tr>
