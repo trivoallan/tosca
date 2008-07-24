@@ -1,4 +1,4 @@
-require 'radiant/extension'
+require 'tosca/extension'
 require 'method_observer'
 
 module Tosca

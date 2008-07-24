@@ -41,6 +41,7 @@ module Tosca
 
     def after_initialize
       super
+      require 'tosca/extension_routes'
       extension_loader.activate_extensions
     end
 
@@ -56,8 +57,7 @@ module Tosca
       if configuration.frameworks.include?(:action_mailer)
         ActionMailer::Base.template_root ||= configuration.view_path
       end
-      if configuration.frameworks.include?(:action_controller) &&
-         ActionController::Base.view_paths.empty?
+      if configuration.frameworks.include?(:action_controller)
         ActionController::Base.view_paths = view_paths
       end
     end
