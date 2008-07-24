@@ -2,9 +2,6 @@ class PaquetsController < ApplicationController
   helper :filters, :logiciels, :binaires, :distributeurs,
     :mainteneurs
 
-  # auto completion in 2 lines, yeah !
-  auto_complete_for :version, :name
-
   # TODO : filtres du panel à gauche
   # TODO : faire une interface à base de filtres ?
   # ou  pas d'interfaces du tout.

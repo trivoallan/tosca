@@ -89,22 +89,6 @@ protected
     define_scope(user, is_connected, &block)
   end
 
-  # Overload till there is a fix in rails
-  def self.auto_complete_for(object, method, options = {})
-    define_method("auto_complete_for_#{object}_#{method}") do
-      column = object.to_s.pluralize + '.' + method.to_s
-      find_options = {
-        :conditions => [ "LOWER(#{column}) LIKE ?",
-                         '%' + params[object][method].downcase + '%' ],
-        :order => "#{column} ASC",
-        :limit => 10 }.merge!(options)
-
-      @items = object.to_s.camelize.constantize.find(:all, find_options)
-
-      render :inline => "<%= auto_complete_result @items, '#{method}' %>"
-    end
-  end
-
 private
 
   # This array contains all errors that we want to rescue nicely
