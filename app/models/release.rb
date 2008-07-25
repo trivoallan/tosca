@@ -1,9 +1,9 @@
 class Release < ActiveRecord::Base
   belongs_to :version
   belongs_to :contract
-  belongs_to :logiciel
 
   has_one :changelog
+  has_one :logiciel, :through => :version
 
   def full_name
     @full_name ||= "#{self.version.full_name} r#{self.name}"

@@ -20,6 +20,7 @@ class Contract < ActiveRecord::Base
     :conditions => 'users.client = 1', :include => :beneficiaire,
     :order => 'users.name ASC'
   has_and_belongs_to_many :teams, :order => 'teams.name'
+  has_and_belongs_to_many :versions
 
   validates_presence_of :client, :rule, :creator
   validates_numericality_of :heure_ouverture, :heure_fermeture,
