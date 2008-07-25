@@ -89,6 +89,11 @@ module Tosca
       # Reset the view paths after
       initializer.initialize_framework_views
       extensions.each &:activate
+      extensions.each { |e|
+        # There's no logger at this stage of rails.
+        msg = File.basename(e.root).humanize.titleize
+        STDERR.print "** [Extension] ", msg, " loaded\n"
+      }
     end
     alias :reactivate :activate_extensions
 

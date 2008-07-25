@@ -1,7 +1,6 @@
 require 'fileutils'
 require 'tempfile'
 require 'magick_file_column'
-require 'ultraviolet_file_column'
 
 module FileColumn # :nodoc:
   def self.append_features(base)
@@ -714,12 +713,9 @@ module FileColumn # :nodoc:
 
       private after_save_method, after_destroy_method
 
-      #We tranform only if it is an image
+      # We tranform only if it is an image
       if options[:magick]
         FileColumn::MagickExtension::file_column(self, attr, my_options)
-      end
-      if options[:uv]
-        FileColumn::UltraVioletExtension::file_column(self, attr, my_options)
       end
     end
 
