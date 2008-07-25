@@ -1,3 +1,10 @@
+require 'client'
+require 'document'
+require 'release'
+require 'contract'
+require 'demande'
+require 'phonecall'
+
 module Scope
 
   private

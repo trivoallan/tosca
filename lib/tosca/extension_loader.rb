@@ -17,7 +17,7 @@ module Tosca
 
       def after_clear(*args)
         ExtensionLoader.load_extensions
-        ExtensionLoader.activate_extensions
+        ExtensionLoader.instance.activate_extensions
       end
     end
 
