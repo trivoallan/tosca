@@ -1,3 +1,8 @@
+# For a smaller stack trace in dev
+require 'image'
+require 'demande'
+require 'contribution'
+
 class LogicielsController < ApplicationController
   helper :filters, :versions, :demandes, :competences, :contributions, :licenses
 

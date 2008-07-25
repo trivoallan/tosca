@@ -1,6 +1,5 @@
 class VersionsController < ApplicationController
-  helper :filters, :logiciels, :distributeurs,
-    :mainteneurs, :releases
+  helper :filters, :logiciels, :releases
 
   def index
     options = { :per_page => 15 }
@@ -53,7 +52,7 @@ class VersionsController < ApplicationController
   def update
     @version = Version.find(params[:id])
     if @version.update_attributes(params[:version])
-      flash[:notice] = _('The package %s has been updated.') % @version.name
+      flash[:notice] = _('The version %s has been updated.') % @version.full_name
       redirect_to version_path(@version)
     else
       _form and render :action => 'edit'

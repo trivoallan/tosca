@@ -1,3 +1,5 @@
+require 'contribution'
+
 class ReleasesController < ApplicationController
   helper :versions, :logiciels
 
@@ -7,8 +9,7 @@ class ReleasesController < ApplicationController
   end
 
   def show
-    options = { :include => [ { :contract => :client },
-                              :version, :logiciel ] }
+    options = { :include => [ :contract , :version ] }
     @release = Release.find(params[:id], options)
   end
 
@@ -57,7 +58,7 @@ class ReleasesController < ApplicationController
       options = { :conditions => [ 'contributions.logiciel_id = ?', @release.version.logiciel_id ] }
     end
     @contributions = Contribution.find_select(options)
-    @versions = Version.all.collect { |v| [ v.name, v.id ]}
+    @versions = Version.all.collect { |v| [ v.full_name, v.id ]}
     @contracts = Contract.find_select(Contract::OPTIONS)
   end
   

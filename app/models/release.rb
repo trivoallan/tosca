@@ -3,10 +3,13 @@ class Release < ActiveRecord::Base
   belongs_to :contract
 
   has_one :changelog
-  has_one :logiciel, :through => :version
 
   def full_name
     @full_name ||= "#{self.version.full_name} r#{self.name}"
+  end
+  
+  def logiciel
+    version.logiciel
   end
 
   # See ApplicationController#scope

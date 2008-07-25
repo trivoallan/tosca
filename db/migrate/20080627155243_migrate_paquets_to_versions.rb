@@ -131,6 +131,19 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     end
     puts "Remove duplicate Versions done"
     
+    #Remove duplicate releases
+    last_release = Release.new
+    Release.find(:all, :order => 'contract_id, version_id, name').each do |r|
+      if r.version_id == last_release.version_id and 
+          r.contract_id == last_release.contract_id and 
+          r.name == last_release.name
+        r.destroy
+      else
+        last_release = r
+      end
+    end
+    puts "Remove duplicate Releases done"
+    
     old_archive_path = File.join(RAILS_ROOT, "files", "binaire", "archive")
     new_archive_path = File.join(RAILS_ROOT, "files", "archive", "name")
     Binaire.find(:all, :conditions => "archive is not null").each do |b|

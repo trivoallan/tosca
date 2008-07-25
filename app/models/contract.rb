@@ -119,7 +119,7 @@ class Contract < ActiveRecord::Base
   # used internally by wrapper :
   # /!\ DO NOT USE DIRECTLY /!\
   # use : logiciels() call
-  has_many :_logiciels, :through => :releases, :group =>
+  has_many :_logiciels, :through => :versions, :group =>
     'logiciels.id', :source => 'logiciel', :order => 'logiciels.name ASC'
 
 end

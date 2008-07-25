@@ -1,6 +1,7 @@
 class Image < ActiveRecord::Base
   belongs_to :logiciel
   has_one :client
+  
   validates_presence_of :image, :message => _('You must select a file to upload')
 
   # TODO : rename this column into 'file', with the appropriate migration
