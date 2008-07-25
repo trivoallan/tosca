@@ -3,6 +3,8 @@ class Version < ActiveRecord::Base
   
   has_many :releases, :dependent => :destroy
   has_many :contributions
+  
+  has_and_belongs_to_many :contracts
 
   validates_presence_of :logiciel, :name
 

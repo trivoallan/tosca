@@ -229,7 +229,7 @@ class Time
 end
 
 #############################################
-# Needed coz of f***ing Debian              #
+# Needed for Debian                         #
 # We had to override this in order to fix   #
 # an issue when gettext_localize call this  #
 # interface                                 #
