@@ -147,14 +147,15 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     old_archive_path = File.join(RAILS_ROOT, "files", "binaire", "archive")
     new_archive_path = File.join(RAILS_ROOT, "files", "archive", "name")
     Binaire.find(:all, :conditions => "archive is not null").each do |b|
-      version = b.paquet.version 
       logiciel = Logiciel.find(b.paquet.logiciel_id)
       version = logiciel.versions.find(:all, :conditions => { :name => b.paquet.version })
       if version.size != 1
         puts "Too much versions #{logiciel.name}, ##{logiciel.id}, ##{b.id}"
       else
         version = version.first
-        release = version.releases.find(:all, :conditions => { :name => b.paquet.release })
+        release = version.releases.find(:all, :conditions => { :name => b.paquet.release, 
+          :contract_id => b.paquet.contract_id })
+        
         release.each do |r|
           archive = Archive.new do |a|
             a.name = b.archive
@@ -170,6 +171,10 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
         end
       end
     end
+    
+    toto
+    
+    puts "Archive #{Archive.count}"
     
     drop_table :contributions_paquets
     drop_table :paquets
