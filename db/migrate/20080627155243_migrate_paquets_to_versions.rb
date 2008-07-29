@@ -5,20 +5,20 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
 
   class Conteneur < ActiveRecord::Base
   end
-  
+
   class Release < ActiveRecord::Base
   end
-  
+
   class Contribution < ActiveRecord::Base
     has_many :versions
   end
-  
+
   class Version < ActiveRecord::Base
     belongs_to :contribution
     has_many :releases
     has_and_belongs_to_many :contracts
   end
-  
+
   class Paquet < ActiveRecord::Base
     belongs_to :logiciel
     belongs_to :contract, :counter_cache => true
@@ -28,16 +28,16 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     has_many :binaires, :dependent => :destroy, :include => :paquets
     has_and_belongs_to_many :contributions
   end
-  
+
   class Binaire < ActiveRecord::Base
     belongs_to :paquet
   end
-  
+
   class Release < ActiveRecord::Base
     belongs_to :version
     belongs_to :contract
   end
-  
+
   class Logiciel < ActiveRecord::Base
     has_many :versions, :order => "name DESC", :dependent => :destroy
   end
@@ -66,17 +66,17 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     end
     add_index :releases, :version_id
     add_index :releases, :contract_id
-    
+
     create_table :contracts_versions, :id => false do |t|
       t.integer :contract_id, :version_id
     end
-    
+
     create_table :contributions_versions, :id => false do |t|
       t.integer :contribution_id, :version_id
     end
     add_index :contributions_versions, :contribution_id
     add_index :contributions_versions, :version_id
-    
+
     create_table :archives do |t|
       t.string :name
       t.integer :size, :release_id
@@ -92,7 +92,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
         v.logiciel_id = p.logiciel_id
         v.name = p.version
       end
-      version.save
+      version.save!
 
       p.contributions.each do |c|
         c.versions << version
@@ -105,15 +105,18 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
         r.packaged = true if package.include? p.conteneur_id
         r.inactive = !p.active
       end
-      release.save
+      release.save!
     end
     puts "Migrating Paquet done"
-    
-    Release.find(:all).each do |r|
-      r.version.contracts << r.contract
+
+    Version.find(:all).each do |v|
+      v.releases.each { |r|
+        v.contracts << r.contract unless v.contracts.include? r.contract
+      }
+      v.save!
     end
     puts "Migrating contracts for release done"
-    
+
     #Remove duplicate versions
     last_version = Version.new
     Version.find(:all, :order => 'logiciel_id, name').each do |v|
@@ -161,7 +164,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
             a.release_id = release.id
           end
           archive.save
-          
+
           new_path = File.join(new_archive_path, archive.id.to_s)
           old_path = File.join(old_archive_path, b.id.to_s, "*")
           FileUtils.mkdir_p(new_path)
@@ -170,7 +173,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
         end
       end
     end
-    
+
     drop_table :contributions_paquets
     drop_table :paquets
     drop_table :conteneurs
