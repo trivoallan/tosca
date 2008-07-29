@@ -93,9 +93,13 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
         v.name = p.version
       end
       version.save!
+      # an id is needed before saving a n-n relationship
+      version.contracts << p.contract
+      version.save!
 
       p.contributions.each do |c|
         c.versions << version
+        c.save!
       end
 
       release = Release.new do |r|
@@ -109,14 +113,6 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     end
     puts "Migrating Paquet done"
 
-    Version.find(:all).each do |v|
-      v.releases.each { |r|
-        v.contracts << r.contract unless v.contracts.include? r.contract
-      }
-      v.save!
-    end
-    puts "Migrating contracts for release done"
-
     #Remove duplicate versions
     last_version = Version.new
     Version.find(:all, :order => 'logiciel_id, name').each do |v|
@@ -125,8 +121,8 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
           r.version_id = last_version.id
           r.save
         end
-        last_version.contracts << v.contracts
-        last_version.save
+        last_version.contracts.concat(v.contracts).uniq!
+        last_version.save!
         v.destroy
       else
         last_version = v
@@ -166,11 +162,15 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
           end
           archive.save
 
-          new_path = File.join(new_archive_path, archive.id.to_s)
-          old_path = File.join(old_archive_path, b.id.to_s, "*")
-          FileUtils.mkdir_p(new_path)
-          puts "Copy from #{old_path} to #{new_path}"
-          FileUtils.cp_r(old_path, new_path)
+          old_path = File.join(old_archive_path, b.id.to_s)
+          if File.exists? old_path
+            new_path = File.join(new_archive_path, archive.id.to_s)
+            FileUtils.mkdir_p(new_path)
+            puts "Copy from #{old_path} to #{new_path}"
+            FileUtils.cp_r(Dir.glob("#{old_path}/*"), new_path)
+          else
+            puts "archive not present on file system : #{b.archive}"
+          end
         end
       end
     end
