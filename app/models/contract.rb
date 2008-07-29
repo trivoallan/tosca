@@ -64,7 +64,9 @@ class Contract < ActiveRecord::Base
     if rule_type == 'Rules::Component' and rule.max == -1
       return Logiciel.find(:all, :order => 'logiciels.name ASC')
     end
-    self._logiciels
+    Logiciel.find(:all, :conditions => { "contracts.id" => self.id },
+      :joins => { :versions => :contracts },
+      :group => "versions.logiciel_id")
   end
 
   # TODO : I am sure it could be better. Rework model ???
@@ -115,11 +117,5 @@ class Contract < ActiveRecord::Base
     res << " - #{specialisation}" unless specialisation.blank?
     res
   end
-
-  # used internally by wrapper :
-  # /!\ DO NOT USE DIRECTLY /!\
-  # use : logiciels() call
-  has_many :_logiciels, :through => :versions, :group =>
-    'logiciels.id', :source => 'logiciel', :order => 'logiciels.name ASC'
 
 end

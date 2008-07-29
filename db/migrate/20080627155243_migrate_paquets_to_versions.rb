@@ -43,6 +43,12 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
   end
 
   def self.up
+    remove_column :demandes, :binaire_id
+    add_column :demandes, :version_id, :integer
+    add_column :demandes, :release_id, :integer
+    add_index :demandes, :version_id
+    add_index :demandes, :release_id
+    
     #There is no changelog in the database
     rename_column :changelogs, :paquet_id, :release_id
 
@@ -171,10 +177,6 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
         end
       end
     end
-    
-    toto
-    
-    puts "Archive #{Archive.count}"
     
     drop_table :contributions_paquets
     drop_table :paquets
