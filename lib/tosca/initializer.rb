@@ -68,7 +68,6 @@ module Tosca
           end
         end
       end
-      p ActionController::Base.view_paths
     end
 
     def initialize_routing
