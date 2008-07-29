@@ -13,6 +13,7 @@
    <div class="show" style="min-width: 30em;">
     <p><b><%= _('Software') + ' : '%></b> <%= @version.logiciel.name %></p>
     <p><b><%= _('Version') + ' : '%></b> <%= @version %></p>
+    <p><b><%= _('Generic ?') %></b> <%= @version.generic? ? _('Yes') : _('No')%></p>
    </div>
 
    <p><b><%= pluralize(@version.releases.count, _('release') ) %></b> <%= link_to_new_release(@version.id) %></p>

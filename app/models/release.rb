@@ -7,7 +7,11 @@ class Release < ActiveRecord::Base
   has_one :changelog
 
   def full_name
-    @full_name ||= "#{self.version.full_name} r#{self.name}"
+    @full_name ||= "#{self.version.full_name} #{self.release}"
+  end
+  
+  def full_software_name
+    @full_software_name ||= "#{self.version.full_software_name} #{self.release}"
   end
   
   def logiciel
@@ -26,6 +30,9 @@ class Release < ActiveRecord::Base
       } } if contract_ids
   end
   
-  
+  private
+  def release
+    "r#{self.name}"
+  end
 
 end

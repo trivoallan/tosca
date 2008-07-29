@@ -10,15 +10,17 @@ class Version < ActiveRecord::Base
 
   validates_presence_of :logiciel, :name
 
-  def full_name
-    @full_name ||= "v#{self.name}"
+  alias_method :full_name, :version
+  
+  def full_software_name
+    @full_software_name ||= "#{self.logiciel.name} #{self.full_name}"
   end
   
   def name
     return @name if @name
-    name = read_attribute(:name)
-    name += ".*" if self.generic?
-    @name = name
+    @name = read_attribute(:name)
+    @name << ".*" if self.generic?
+    @name
   end
   
   def <=>(other)
@@ -31,6 +33,11 @@ class Version < ActiveRecord::Base
     elsif not self.generic? and other.generic?
       return -1
     end
+  end
+  
+  private
+  def version
+    "v#{self.name}"
   end
 
 end

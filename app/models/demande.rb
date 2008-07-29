@@ -1,6 +1,8 @@
 class Demande < ActiveRecord::Base
   belongs_to :typedemande
   belongs_to :logiciel
+  belongs_to :version
+  belongs_to :release
   belongs_to :severite
   belongs_to :statut
   # 3 peoples involved in a request :
@@ -88,16 +90,20 @@ class Demande < ActiveRecord::Base
   def to_s
     "#{typedemande.name} (#{severite.name}) : #{resume}"
   end
+  
+  def full_software_name
+    result = ""
+    result = logiciel.name if self.logiciel
+    result = version.full_software_name if self.version
+    result = release.full_software_name if self.release
+    result
+  end
 
   # Remanent fields are those which persists after the first submit
   # It /!\ MUST /!^ be an _id field. See DemandesController#create.
   def self.remanent_fields
     [ :contract_id, :beneficiaire_id, :typedemande_id, :severite_id,
       :socle_id, :logiciel_id, :ingenieur_id ]
-  end
-
-  def name
-    to_s
   end
 
   # Used in the cache/sweeper system
