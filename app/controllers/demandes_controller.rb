@@ -184,18 +184,17 @@ class DemandesController < ApplicationController
   def ajax_display_version
     return render(:nothing => true) unless params.has_key? :demande
     request = params[:demande]
+    contract_id = request[:contract_id]
     logiciel_id = request[:logiciel_id]
-    socle_id = request[:socle_id]
-    if logiciel_id.blank? || socle_id.blank?
-      @binaires = []
+    if logiciel_id.blank? or contract_id.blank?
+      @versions = []
     else
-      logiciel = Logiciel.find(logiciel_id.to_i)
-      options = { :conditions => ['binaires.socle_id = ?', socle_id.to_i],
-        :include => [:version], :order => 'versions.name' }
-      @binaires = logiciel.binaires.find(:all, options).collect{ |b| [b.version.version, b.id]}
+      conditions = { "versions.logiciel_id" => logiciel_id, "contracts.id" => contract_id }
+      @versions = Version.find_select(:conditions => conditions,
+        :include => :contracts)
     end
   end
-
+  
   def edit
     @demande = Demande.find(params[:id])
     _form @beneficiaire
@@ -342,7 +341,7 @@ class DemandesController < ApplicationController
     @beneficiaires = contract.find_recipients_select
     result = false if @beneficiaires.empty?
     @socles = contract.client.find_socles_select
-    @logiciels = contract.logiciels.collect{|l| [l.name, l.id] }
+    @logiciels = contract.logiciels.collect { |l| [ l.name, l.id ] }
     if @ingenieur
       @ingenieurs = Ingenieur.find_select_by_contract_id(contract.id)
       @teams = Team.on_contract_id(contract.id)
@@ -354,7 +353,7 @@ class DemandesController < ApplicationController
   def _form(beneficiaire)
     @contracts = Contract.find_select(Contract::OPTIONS)
     if @contracts.empty?
-      flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling a request. Please contat %s if you think it's not normal") % App::TeamEmail
+      flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling a request. Please contact %s if you think it's not normal") % App::TeamEmail
       return redirect_to(welcome_path)
     end
     if beneficiaire
@@ -364,7 +363,7 @@ class DemandesController < ApplicationController
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
       @typedemandes = Typedemande.find_select
     end
-    @binaires = []
+    @versions = []
     @severites = Severite.find_select
     first_comment = @demande.first_comment
     @demande.description = first_comment.corps if first_comment
@@ -426,7 +425,7 @@ class DemandesController < ApplicationController
 
   # define what is a similar request.
   # Used during create.
-  # It _just_ returns a correct path.
+  # It *just* returns a correct path.
   def _similar_request
     options = { :demande => Hash.new }
     request = options[:demande]

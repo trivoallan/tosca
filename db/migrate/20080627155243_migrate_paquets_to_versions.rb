@@ -43,6 +43,12 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
   end
 
   def self.up
+    remove_column :demandes, :binaire_id
+    add_column :demandes, :version_id, :integer
+    add_column :demandes, :release_id, :integer
+    add_index :demandes, :version_id
+    add_index :demandes, :release_id
+
     #There is no changelog in the database
     rename_column :changelogs, :paquet_id, :release_id
 
@@ -88,11 +94,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     puts "Conteneur found"
 
     Paquet.find(:all, :order => "logiciel_id ASC, version ASC").each do |p|
-      version = Version.new do |v|
-        v.logiciel_id = p.logiciel_id
-        v.name = p.version
-      end
-      version.save!
+      version = Version.create(:logiciel_id => p.logiciel_id, :name => p.version)
       # an id is needed before saving a n-n relationship
       version.contracts << p.contract
       version.save!
@@ -156,11 +158,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
           :contract_id => b.paquet.contract_id })
 
         release.each do |r|
-          archive = Archive.new do |a|
-            a.name = b.archive
-            a.release_id = release.id
-          end
-          archive.save
+          archive = Archive.create(:name => b.archive, :release_id => release.id)
 
           old_path = File.join(old_archive_path, b.id.to_s)
           if File.exists? old_path

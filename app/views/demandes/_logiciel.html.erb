@@ -1,8 +1,7 @@
 <div id="logiciel">
   <%= select_empty(:demande, :logiciel_id, @logiciels) %>
   <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
-      "Form.serializeElements($('demande_logiciel_id','demande_socle_id'))",
+      "Form.serializeElements($('demande_logiciel_id','demande_contract_id'))",
       :url => ajax_display_version_demandes_path) %>
   <%= observe_field "demande_logiciel_id", options %>
-  <%= observe_field "demande_socle_id", options %>
 </div>

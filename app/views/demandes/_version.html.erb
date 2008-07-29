@@ -1,10 +1,10 @@
-  <th>
-   <% unless @binaires.empty? %>
-    <label for="demande_binaire_id"><%= _("Version") %></label>
-   <% end %>
-  </th>
-  <td>
-   <% unless @binaires.empty? %>
-    <%= select_empty(:demande, :binaire_id, @binaires) %>
-   <% end %>
-  </td>
+<th>
+  <% unless @versions.empty? %>
+    <label for="demande_version_id"><%= _("Version") %></label>
+  <% end %>
+</th>
+<td>
+  <% unless @versions.empty? %>
+    <%= select_empty(:demande, :version_id, @versions) %>
+  <% end %> 
+</td>
