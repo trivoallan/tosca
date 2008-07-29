@@ -1,3 +1,8 @@
+require 'demande'
+require 'beneficiaire'
+require 'ingenieur'
+require 'user'
+
 class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :phonecalls,
     :socles, :commentaires, :account, :reporting
@@ -194,7 +199,7 @@ class DemandesController < ApplicationController
         :include => :contracts)
     end
   end
-  
+
   def edit
     @demande = Demande.find(params[:id])
     _form @beneficiaire
