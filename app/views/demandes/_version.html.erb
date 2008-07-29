@@ -1,10 +1,10 @@
 <th>
   <% unless @versions.empty? %>
-    <label for="demande_version_id"><%= _("Version") %></label>
+    <label for="software_revision_id"><%= _("Version") %></label>
   <% end %>
 </th>
 <td>
   <% unless @versions.empty? %>
-    <%= select_empty(:demande, :version_id, @versions) %>
-  <% end %> 
+    <%= select_empty(:software, :revision_id, @versions) %>
+  <% end %>
 </td>

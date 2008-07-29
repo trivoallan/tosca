@@ -148,6 +148,15 @@ class DemandesController < ApplicationController
       contracts = @demande.beneficiaire.contracts
       @demande.contract = contracts.first if contracts.size == 1
     end
+    
+    id = params[:software][:revision_id][1, params[:software][:revision_id].length]
+    case params[:software][:revision_id].first
+    when "v"
+      @demande.version_id = Version.find(id)
+    when "r"
+      @demande.release_id = Release.find(id)
+    end
+    
     if @demande.save
       options = { :conditions => [ 'demandes.submitter_id = ?', user.id ]}
       flash[:notice] = _("You have successfully submitted your %s request.") %
@@ -194,9 +203,18 @@ class DemandesController < ApplicationController
     if logiciel_id.blank? or contract_id.blank?
       @versions = []
     else
-      conditions = { "versions.logiciel_id" => logiciel_id, "contracts.id" => contract_id }
-      @versions = Version.find_select(:conditions => conditions,
-        :include => :contracts)
+      logiciel = Logiciel.find(logiciel_id)
+      contract = Contract.find(contract_id)
+
+      @versions = logiciel.releases_contract(contract.id).collect do |r| 
+        #case...when seems not to work
+        if r.type == Version
+          id = "v#{r.id}"
+        elsif r.type == Release
+          id = "r#{r.id}"
+        end
+        [ r.name, id ]
+      end
     end
   end
 

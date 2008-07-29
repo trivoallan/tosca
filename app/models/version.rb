@@ -11,7 +11,14 @@ class Version < ActiveRecord::Base
   validates_presence_of :logiciel, :name
 
   def full_name
-    @full_name ||= "#{logiciel.name} v#{self.name}"
+    @full_name ||= "v#{self.name}"
+  end
+  
+  def name
+    return @name if @name
+    name = read_attribute(:name)
+    name += ".*" if self.generic?
+    @name = name
   end
   
   def <=>(other)
