@@ -1,0 +1,9 @@
+<tr id='<%="tr_#{@value}"%>' <%= %Q{style="display: none"} if @new_record %> >
+  <td>
+  <%= @button %>
+  </td>
+  <td>
+    <input name='<%=@name%>[]' value='<%=@value%>' type='hidden'>
+    <%=@content%>
+  </td>
+</tr>
