@@ -2,7 +2,7 @@
 
 <% # hidden_on_create : à placer si on veut cacher un élément %>
 <% new_request = case controller.action_name
-     when 'new', 'create' : true
+     when 'new', 'create' then true
      else false
    end %>
 <table>
@@ -44,11 +44,6 @@
     <tr>
      <td colspan="2"><hr /></td>
     </tr><tr>
-     <th><label for="demande_socle_id"><%= _("System") %></label></th>
-     <% # Warning, the code of this cell is also in ajax_display_contract.rjs %>
-     <% # And it's ajaxly observed within the "logiciel" partial %>
-     <td><div id="system"><%= select(:demande, :socle_id, @socles) %></div></td>
-    </tr><tr>
      <th><label for="demande_logiciel_id"><%= _("Software") %></label></th>
      <td><%= render(:partial => 'logiciel') %></td>
     </tr>
@@ -62,16 +57,16 @@
       <th><label for="demande_mail_cc"><%= _("CC") %></label></th>
       <td><%= text_field :demande, :mail_cc, :size => 20 %></td>
      </tr>
-     <% unless new_request %>
+      <% unless new_request %>
       <tr>
-       <th><label for="demande_expected_on"><%= _("Demande|Expected on") %></label></th>
-      <td>
-       <%= text_field :demande, :expected_on, :size => 20 %>
-       <span class="calendarPicker"><%= StaticScript::date_from %></span>
-       <%= StaticScript::script_date('demande_expected_on', 'date_from') %>
-      </td>
-     </tr>
-    <% end %>
+        <th><label for="demande_expected_on"><%= _("Demande|Expected on") %></label></th>
+        <td>
+         <%= text_field :demande, :expected_on, :size => 20 %>
+         <span class="calendarPicker"><%= StaticScript::date_from %></span>
+         <%= StaticScript::script_date('demande_expected_on', 'date_from') %>
+        </td>
+      </tr>
+      <% end %>
     <% end %>
     <tr>
      <td colspan="2"><hr /></td>

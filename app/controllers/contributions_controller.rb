@@ -39,7 +39,6 @@ class ContributionsController < ApplicationController
     end
   end
 
-  # TODO : c'est pas très rails tout ça (mais c'est moins lent)
   def select
     client_id = params[:client_id].to_s
     unless read_fragment "contributions/select_#{client_id || 'all'}"
