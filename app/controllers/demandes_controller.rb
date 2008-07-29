@@ -59,7 +59,7 @@ class DemandesController < ApplicationController
     return if expected_on <= 0 || @request_ids.empty?
     expected = Time.now + expected_on.days
     Demande.find(@request_ids).each {|r|
-      r.update_attribute(:expected_on, :expected)
+      r.update_attribute(:expected_on, expected)
     }
   end
 
@@ -340,7 +340,7 @@ class DemandesController < ApplicationController
     result = true
     @beneficiaires = contract.find_recipients_select
     result = false if @beneficiaires.empty?
-    @socles = contract.client.find_socles_select
+    @versions = []
     @logiciels = contract.logiciels.collect { |l| [ l.name, l.id ] }
     if @ingenieur
       @ingenieurs = Ingenieur.find_select_by_contract_id(contract.id)

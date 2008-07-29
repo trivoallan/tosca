@@ -1,4 +1,6 @@
 class Release < ActiveRecord::Base
+  include Comparable
+  
   belongs_to :version
   belongs_to :contract
 
@@ -11,6 +13,11 @@ class Release < ActiveRecord::Base
   def logiciel
     version.logiciel
   end
+  
+  def <=>(other)
+    return 1 if other.nil? or not other.is_a?(Release)
+    self.name <=> other.name
+  end
 
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
@@ -18,5 +25,7 @@ class Release < ActiveRecord::Base
         [ 'relases.contract_id IN (?)', contract_ids ]
       } } if contract_ids
   end
+  
+  
 
 end

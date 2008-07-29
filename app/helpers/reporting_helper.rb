@@ -120,8 +120,6 @@ module ReportingHelper
     table
   end
 
-
-
   def report_legend(name)
     out = ''
     data = @data[name].sort{|x,y| x[0].to_s <=> y[0].to_s}
@@ -189,7 +187,6 @@ module ReportingHelper
                              options)
     out
   end
-
 
   # Affiche les tableaux de reporting.
   # 2 options possible :

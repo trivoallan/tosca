@@ -47,6 +47,19 @@ class Logiciel < ActiveRecord::Base
   def to_param
     "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
   end
+  
+  ContractReleases = Struct.new(:name, :id, :type)
+  # Returns all the version and the last release of each version
+  # Returns Array of ContractReleases
+  def releases_contract(contract)
+    result = []
+    self.versions.find(:all, 
+      :conditions => { "contracts.id" =>  contract.id }, 
+      :joins => :contracts, :group => "versions.id").each do |v|
+      
+    end
+    result
+  end
 
   # For ruport
   def logiciels_name

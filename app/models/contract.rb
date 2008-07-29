@@ -5,7 +5,6 @@ class Contract < ActiveRecord::Base
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
 
-  has_many :releases, :dependent => :destroy
   has_many :demandes
   has_many :appels
   has_many :tags
@@ -20,7 +19,7 @@ class Contract < ActiveRecord::Base
     :conditions => 'users.client = 1', :include => :beneficiaire,
     :order => 'users.name ASC'
   has_and_belongs_to_many :teams, :order => 'teams.name'
-  has_and_belongs_to_many :versions
+  has_and_belongs_to_many :versions, :order => 'versions.name DESC'
 
   validates_presence_of :client, :rule, :creator
   validates_numericality_of :heure_ouverture, :heure_fermeture,
@@ -68,7 +67,7 @@ class Contract < ActiveRecord::Base
       :joins => { :versions => :contracts },
       :group => "versions.logiciel_id")
   end
-
+  
   # TODO : I am sure it could be better. Rework model ???
   def find_recipients_select
     options = { :conditions => 'users.inactive = 0' }

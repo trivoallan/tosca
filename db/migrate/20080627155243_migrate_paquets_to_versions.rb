@@ -61,6 +61,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     create_table :versions do |t|
       t.integer :id, :logiciel_id
       t.string :name
+      t.boolean :generic
     end
     add_index :versions, :logiciel_id
 
