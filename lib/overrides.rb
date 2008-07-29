@@ -16,6 +16,18 @@ if defined? Mongrel::DirHandler
   end
 end
 
+class Module
+  def include_all_modules_from(parent_module)
+    parent_module.constants.each do |const|
+      mod = parent_module.const_get(const)
+      if mod.class == Module && !defined? mod
+        send(:include, mod)
+        include_all_modules_from(mod)
+      end
+    end
+  end
+end
+
 
 module Ruport::Reportable::InstanceMethods
   # Overrides, since Ruport is not really active for supporting edge rails.
