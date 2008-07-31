@@ -11,7 +11,6 @@ demande_00001:
   severite_id: 3
   resume: "Retrait d'un fond de page impossible sous Writer"
   expected_on: 
-  binaire_id: 
   beneficiaire_id: 1
   statut_id: 2
   contract_id: 1
@@ -32,7 +31,6 @@ demande_00002:
   severite_id: 3
   resume: "Copie d'une question dans OOo"
   expected_on: 
-  binaire_id: 
   beneficiaire_id: 2
   statut_id: 2
   contract_id: 2
@@ -49,7 +47,6 @@ demande_00003:
   last_comment_id: "192"
   ingenieur_id: 
   id: "3"
-  binaire_id: 
   submitter_id: "12"
   expected_on: 
   severite_id: "1"
@@ -70,7 +67,6 @@ demande_00004:
   last_comment_id: "7976"
   ingenieur_id: "2"
   id: "4"
-  binaire_id: 
   submitter_id: "2"
   expected_on: 2008-05-15 10:23:14
   severite_id: "2"
@@ -91,7 +87,6 @@ demande_00005:
   last_comment_id: "7943"
   ingenieur_id: "1"
   id: "5"
-  binaire_id: 
   submitter_id: "2"
   expected_on: 2008-05-22 15:02:43
   severite_id: "3"
@@ -112,7 +107,6 @@ demande_00006:
   last_comment_id: "7360"
   ingenieur_id: "2"
   id: "6"
-  binaire_id: 
   submitter_id: "2"
   expected_on: 2008-04-22 20:32:32
   severite_id: "3"
@@ -133,7 +127,6 @@ demande_00007:
   last_comment_id: "7834"
   ingenieur_id: "3"
   id: "7"
-  binaire_id: 
   submitter_id: "2"
   expected_on: 2008-05-14 16:47:35
   severite_id: "2"
@@ -154,7 +147,6 @@ demande_00008:
   last_comment_id: "800"
   ingenieur_id: "3"
   id: "8"
-  binaire_id: 
   submitter_id: "2"
   expected_on: 
   severite_id: "3"
@@ -175,7 +167,6 @@ demande_00009:
   last_comment_id: "897"
   ingenieur_id: "1"
   id: "9"
-  binaire_id: 
   submitter_id: "2"
   expected_on: 
   severite_id: "2"
@@ -196,7 +187,6 @@ demande_00010:
   last_comment_id: "5996"
   ingenieur_id: "4"
   id: "10"
-  binaire_id: 
   submitter_id: "5"
   expected_on: 2008-02-12 19:49:43
   severite_id: "2"
