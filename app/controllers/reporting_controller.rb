@@ -1,4 +1,3 @@
-#
 class ReportingController < ApplicationController
   helper :demandes, :export
   include ComexReporting
@@ -489,6 +488,7 @@ class ReportingController < ApplicationController
     total = :"#{name}_total"
     __write_graph(total, Gruff::Pie, _("Distributed on ") + "#{@report[:total_report]}" + _(" months")) if @data[total]
   end
+  
   # Ecrit le graphe en utilisant les données indexées par 'name' dans @données
   # grâce au chemin d'accès spécifié dans @path[name]
   # graph sert à spécifier le type de graphe attendu

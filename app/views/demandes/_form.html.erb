@@ -5,100 +5,150 @@
      when 'new', 'create' then true
      else false
    end %>
-<table>
- <tr>
-  <td valign="top"><div class="show">
-   <table>
-    <tr>
-     <th><label for="demande_typedemande_id"><%= _("Type") %></label></th>
-     <td><%= select(:demande, :typedemande_id, @typedemandes) %>
-         <% if new_request %>
-           <%= select(:demande, :severite_id, @severites) %>
-         <% end %></td>
-    </tr><tr>
-    <% if @contracts.size > 1 %>
-     <th><label for="demande_contract_id"><%= _("Concerning ") %></label></th>
-     <td><%= select(:demande, :contract_id, @contracts) %>
-         <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with => "contract_id",
-             :url => ajax_display_contract_demandes_path) %>
-         <%= observe_field "demande_contract_id", options %>
-         </td>
-    <% else %>
-     <td colspan="2"></td>
-    <% end %>
-    </tr><tr>
-     <th><label for="demande_beneficiaire_id"><%= _("Recipient") %></label></th>
-     <% # Warning, the code of this cell is also in ajax_display_contract.rjs %>
-     <td><div id="recipient"><%= select(:demande, :beneficiaire_id, @beneficiaires) %></div></td>
-    </tr>
-    <% if @ingenieur %>
-     <tr><th><label for="demande_ingenieur_id"><%=_("Assigned to")%></label></th>
-      <td><div id="engineer">
-          <select id="demande_ingenieur_id" name="demande[ingenieur_id]"><option value="">» </option>
-            <%= options_from_collection_for_select(@ingenieurs, :last, :first) %>
-            <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name) %>
-         </select>
-      </div></td>
-     </tr>
-    <% end %>
-    <tr>
-     <td colspan="2"><hr /></td>
-    </tr><tr>
-     <th><label for="demande_logiciel_id"><%= _("Software") %></label></th>
-     <td><%= render(:partial => 'logiciel') %></td>
-    </tr>
-    <tr id="version">
-     <%= render :partial => 'version' %>
-   </tr>
-    <% if @ingenieur %>
-     <tr>
-      <td colspan="2"><hr /></td>
-     </tr><tr>
-      <th><label for="demande_mail_cc"><%= _("CC") %></label></th>
-      <td><%= text_field :demande, :mail_cc, :size => 20 %></td>
-     </tr>
+
+<table><tr>
+
+<td valign="top">
+  <div class="show">
+    <table>
+      
+      <tr>
+        <th><label for="demande_typedemande_id"><%= _("Type") %></label></th>
+        <td><%= select(:demande, :typedemande_id, @typedemandes) %>
+          <% if new_request %>
+            <%= select(:demande, :severite_id, @severites) %>
+          <% end %>
+        </td>
+      </tr>
+      
+      <tr>
+        <th><label for="demande_contract_id"><%= _("Concerning") %></label></th>
+        
+        <% if @contracts.size > 1 %>
+          <td>
+            <% if @ingenieur %>
+              <% #We have an empty to make sure YOU choose the contract %>
+              <%= select_empty(:demande, :contract_id, @contracts) %>
+            <% elsif @beneficiaire %>
+              <%= select(:demande, :contract_id, @contracts) %>
+            <% end %>
+
+            <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with => "contract_id",
+                 :url => ajax_display_contract_demandes_path) %>
+            <%= observe_field "demande_contract_id", options %>
+          </td>
+        <% elsif @contracts.size == 1 %>
+          <td colspan="2">
+            <%= @contracts.first.name %>
+            <%= hidden_field(:demande, :contract_id, :value => @contracts.first.last) %>
+          </td>
+        <% else %>
+          <td colspan="2"></td>
+        <% end %>
+      </tr>
+    
+      <tr>
+        <th><label for="demande_beneficiaire_id"><%= _("Recipient") %></label></th>
+        <% # Warning, the code of this cell is also in ajax_display_contract.rjs %>
+        <td><div id="recipient"><%= select_empty(:demande, :beneficiaire_id, @beneficiaires) %></div></td>
+      </tr>
+      
+      <% if @ingenieur %>
+      <tr>
+        <th><label for="demande_ingenieur_id"><%=_("Assigned to")%></label></th>
+        <td>
+          <div id="engineer">
+            <select id="demande_ingenieur_id" name="demande[ingenieur_id]"><option value="">» </option>
+              <%= options_from_collection_for_select(@ingenieurs, :last, :first) %>
+              <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name) %>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    
+      <tr>
+        <td colspan="2"><hr /></td>
+      </tr>
+      
+      <tr>
+        <th><label for="demande_logiciel_id"><%= _("Software") %></label></th>
+        <td><%= render :partial => 'logiciel' %></td>
+      </tr>
+      
+      <tr id="version">
+        <%= render :partial => 'version' %>
+      </tr>
+      
+      <% if @ingenieur %>
+      <tr>
+        <td colspan="2"><hr /></td>
+      </tr>
+      
+      <tr>
+        <th><label for="demande_mail_cc"><%= _("CC") %></label></th>
+        <td><%= text_field :demande, :mail_cc, :size => 20 %></td>
+      </tr>
+      
       <% unless new_request %>
       <tr>
         <th><label for="demande_expected_on"><%= _("Demande|Expected on") %></label></th>
         <td>
-         <%= text_field :demande, :expected_on, :size => 20 %>
-         <span class="calendarPicker"><%= StaticScript::date_from %></span>
-         <%= StaticScript::script_date('demande_expected_on', 'date_from') %>
+          <%= text_field :demande, :expected_on, :size => 20 %>
+          <span class="calendarPicker"><%= StaticScript::date_from %></span>
+          <%= StaticScript::script_date('demande_expected_on', 'date_from') %>
         </td>
       </tr>
       <% end %>
-    <% end %>
+      <% end %>
+
+      <tr>
+        <td colspan="2"><hr /></td>
+      </tr>
+    
+      <tr>
+        <th><%= _("Commitments") %></th>
+        <td><div id="commitment"><%= display_commitment(@demande)%></div></td>
+      </tr>
+    </table>
+  </div>
+</td>
+
+<td valign="top" class="show">
+  <table>
     <tr>
-     <td colspan="2"><hr /></td>
-    </tr><tr>
-     <th><%= _("Commitments") %></th>
-     <td><div id="commitment"><%= display_commitment(@demande)%></div></td>
+      <th colspan="2"><label for="demande_resume"><%= _("Summary") %></label></th>
     </tr>
-   </table>
-  </div></td><td valign="top" class="show">
-   <table>
+    
     <tr>
-     <th colspan="2"><label for="demande_resume"><%= _("Summary") %></label></th>
-    </tr><tr>
-     <td colspan="2"><%= text_field :demande, :resume, :size => 60, :maxlength => 70 %></td>
-    </tr><tr>
-     <td colspan="2"><fieldset style="width: 45em;">
-      <legend><%=  _("Detailed description") %></legend>
-      <%= text_area 'demande', 'description', :cols => 75, :rows =>17 %>
-     </fieldset></td>
-    </tr><tr>
+      <td colspan="2"><%= text_field :demande, :resume, :size => 60, :maxlength => 70 %></td>
+    </tr>
+    
+    <tr>
+      <td colspan="2">
+        <fieldset style="width: 45em;">
+          <legend><%=  _("Detailed description") %></legend>
+          <%= text_area 'demande', 'description', :cols => 75, :rows =>17 %>
+        </fieldset>
+      </td>
+    </tr>
+    
+    <tr>
     <% if new_request %>
-     <th colspan="2"><label for="attachment_file"><%= _("Add a file") %></label></th>
-   </tr><tr>
-     <td colspan="2"><%= file_column_field 'attachment', 'file', :size => 55 %></td>
+      <th colspan="2"><label for="attachment_file"><%= _("Add a file") %></label></th>
+    </tr>
+    
+    <tr>
+      <td colspan="2"><%= file_column_field 'attachment', 'file', :size => 55 %></td>
     <% else %>
-     <td colspan="2"></td>
+      <td colspan="2"></td>
     <% end %>
     </tr>
-   </table>
-  </td>
- </tr>
-</table>
+    
+  </table>
+</td>
+  
+</tr></table>
 
 <% fields = %w(demande_typedemande_id) %>
 <% fields << 'demande_contract_id' if @contracts.size > 1 %>

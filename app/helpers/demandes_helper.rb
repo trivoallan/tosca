@@ -44,12 +44,16 @@ module DemandesHelper
   def public_link_to_status_legend
     public_link_to(_("Legend of statutes"), statuts_path, NEW_WINDOW)
   end
-
-  # Description of a demand
-  # DEPRECATED : use instance method for 'to_s' Demande
-  def demande_description(d)
-    return '-' unless d
-    "#{d.typedemande.name} (#{d.severite.name}) : #{d.description}"
+  
+  # Display a link to the software or version or release
+  # of a request
+  def link_to_request_software(request)
+    return '-' unless request
+    path = ""
+    path = logiciel_path(request.logiciel) if request.logiciel
+    path = version_path(request.version) if request.version
+    path = release_path(request.release) if request.release
+    link_to request.full_software_name, path
   end
 
   # TODO : explain what does this function
@@ -128,7 +132,7 @@ module DemandesHelper
 
   #usage : link_to_help('state') to link to the help page
   # for states demand
-  def link_to_help( topic)
+  def link_to_help(topic)
       link_to StaticImage::help,
         'http://www.08000linux.com/wiki/index.php/%C3%89tats_demande',
         { :class => 'aligned_picture' }

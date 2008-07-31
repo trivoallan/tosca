@@ -31,10 +31,6 @@
     <%= hidden_field_tag "#{random_field}[software]", @logiciel.id %>
 
    <% # Only admin can remove a software, since it can have a great impact on requests %>
-   <%= link_to_function(StaticImage::delete, :class => "no_hover" ) { |page|
-         page.visual_effect :fade, @random_id, :duration => 0.5
-         # We wait for the nice effect to finish
-         page.delay(0.5) { page.remove @random_id }
-       } unless new_record && session[:user].role_id != 1 %>
+   <%= delete_button @random_id unless new_record && session[:user].role_id != 1 %>
   </td>
 </tr>

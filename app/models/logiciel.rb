@@ -12,7 +12,7 @@ class Logiciel < ActiveRecord::Base
   has_many :urllogiciels, :dependent => :destroy,
     :order => 'urllogiciels.typeurl_id'
   has_many :releases, :through => :versions
-  has_many :versions, :order => "name DESC", :dependent => :destroy
+  has_many :versions, :order => "versions.name DESC", :dependent => :destroy
   
   has_and_belongs_to_many :competences
   
@@ -46,6 +46,26 @@ class Logiciel < ActiveRecord::Base
 
   def to_param
     "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
+  end
+  
+  ReleasesContract = Struct.new(:name, :id, :type)
+  # Returns all the version and the last release of each version
+  # Returns Array of ContractReleases
+  # Call it like : Logiciel.first.releases_contract(Contract.first.id)
+  def releases_contract(contract_id)
+    result = []
+    self.versions.find(:all, 
+      :conditions => { "contracts.id" =>  contract_id }, 
+      :joins => :contracts, :group => "versions.id").each do |v|
+      releases = v.releases
+      if releases.empty?
+        result.push ReleasesContract.new(v.full_name, v.id, Version)
+      else
+       r = releases.sort!.first
+       result.push ReleasesContract.new(r.full_name, r.id, Release)
+      end
+    end
+    result
   end
 
   # For ruport
