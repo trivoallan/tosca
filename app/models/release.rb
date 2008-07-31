@@ -7,11 +7,11 @@ class Release < ActiveRecord::Base
   has_one :changelog
 
   def full_name
-    @full_name ||= "#{self.version.full_name} #{self.release}"
+    @full_name ||= "#{self.version.full_name} r#{self.name}"
   end
   
   def full_software_name
-    @full_software_name ||= "#{self.version.full_software_name} #{self.release}"
+    @full_software_name ||= "#{self.version.full_software_name} r#{self.name}"
   end
   
   def logiciel
@@ -28,11 +28,6 @@ class Release < ActiveRecord::Base
     self.scoped_methods << { :find => { :conditions =>
         [ 'relases.contract_id IN (?)', contract_ids ]
       } } if contract_ids
-  end
-  
-  private
-  def release
-    "r#{self.name}"
   end
 
 end

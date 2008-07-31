@@ -8,6 +8,7 @@ class Contract < ActiveRecord::Base
   has_many :demandes
   has_many :appels
   has_many :tags
+  has_many :releases
 
   has_and_belongs_to_many :engagements, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]

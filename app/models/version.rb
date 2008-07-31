@@ -10,7 +10,9 @@ class Version < ActiveRecord::Base
 
   validates_presence_of :logiciel, :name
 
-  alias_method :full_name, :version
+  def full_name
+    "v#{self.name}"
+  end
   
   def full_software_name
     @full_software_name ||= "#{self.logiciel.name} #{self.full_name}"
@@ -35,9 +37,4 @@ class Version < ActiveRecord::Base
     end
   end
   
-  private
-  def version
-    "v#{self.name}"
-  end
-
 end

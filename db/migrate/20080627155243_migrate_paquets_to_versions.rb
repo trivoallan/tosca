@@ -132,6 +132,21 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
       end
     end
     puts "Remove duplicate Versions done"
+    
+    #Generic versions
+    Version.all.each do |v|
+      case v.name
+      when /\.[xX]/
+        v.name = v.name.gsub(/\.[xX]/, "")
+        v.generic = true
+      when /^[xX]/
+        v.name = ""
+        v.generic = true
+      else
+        #Something to do ?
+      end
+      v.save!
+    end
 
     #Remove duplicate releases
     last_release = Release.new
