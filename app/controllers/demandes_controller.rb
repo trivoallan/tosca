@@ -1,8 +1,3 @@
-require 'demande'
-require 'beneficiaire'
-require 'ingenieur'
-require 'user'
-
 class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :export, :phonecalls,
     :socles, :commentaires, :account, :reporting
@@ -148,7 +143,7 @@ class DemandesController < ApplicationController
       contracts = @demande.beneficiaire.contracts
       @demande.contract = contracts.first if contracts.size == 1
     end
-    
+
     id = params[:software][:revision_id][1, params[:software][:revision_id].length]
     case params[:software][:revision_id].first
     when "v"
@@ -156,7 +151,7 @@ class DemandesController < ApplicationController
     when "r"
       @demande.release_id = Release.find(id)
     end
-    
+
     if @demande.save
       options = { :conditions => [ 'demandes.submitter_id = ?', user.id ]}
       flash[:notice] = _("You have successfully submitted your %s request.") %
@@ -206,7 +201,7 @@ class DemandesController < ApplicationController
       logiciel = Logiciel.find(logiciel_id)
       contract = Contract.find(contract_id)
 
-      @versions = logiciel.releases_contract(contract.id).collect do |r| 
+      @versions = logiciel.releases_contract(contract.id).collect do |r|
         #case...when seems not to work
         if r.type == Version
           id = "v#{r.id}"
