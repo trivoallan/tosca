@@ -22,7 +22,6 @@
 <p>
   <fieldset>
     <legend><%=_('Contracts of the team')%></legend>
-    <%= hbtm_check_box(@team.contracts, @contracts,
-                         'team[contract_ids]', :size => 3) %>
+    <%= auto_complete_list :contract, :name, @team.contracts, "team[contract_ids]" %>
   </fieldset>
 </p>

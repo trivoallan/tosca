@@ -118,7 +118,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :severites
   map.resources :supports
   map.resources :tags
-  map.resources :teams
+  map.resources :teams, :collection => { :auto_complete_for_contract_name => :post }
   map.resources :time_tickets
   map.resources :typecontributions
   map.resources :typedemandes
