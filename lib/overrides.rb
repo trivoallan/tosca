@@ -45,8 +45,6 @@ module Ruport::Reportable::InstanceMethods
 end
 
 
-# View Optimization : no '\n'
-ActionView::Base.erb_trim_mode = '>'
 
 # TODO : find a lib or a way to compute holidays
 # of other countries. It's only France, for now.

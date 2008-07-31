@@ -26,3 +26,6 @@ config.log_level = :info
 
 # Disable delivery errors if you bad email addresses should just be ignored
 config.action_mailer.raise_delivery_errors = false
+
+# View Optimization : no '\n'
+ActionView::Base.erb_trim_mode = '>'
