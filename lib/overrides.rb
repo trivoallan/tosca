@@ -526,6 +526,35 @@ module TMail
   end
 end
 
+module AutoComplete
+  module ClassMethods
+    def auto_complete_for(object, method, model = nil, field = nil, options = {})
+      define_method("auto_complete_for_#{object}_#{method}") do
+        if object.to_s.camelize.constantize.methods.include? method.to_s
+          search = params[object][method]
+          collection = object.to_s.camelize.constantize.find(:all)
+          result = []
+          collection.each do |c|
+            result.push c if c.send(method).downcase.include? search.downcase or search == "*"
+          end
+          limit = 10
+          if options.key? :limit
+            limit = options[:limit]
+          end
+          @items = result.sort_by {|r| r.send(method)}[0..limit]
+        else
+          find_options = {
+            :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ], 
+            :order => "#{method} ASC",
+            :limit => 10 }.merge!(options)
+          @items = object.to_s.camelize.constantize.find(:all, find_options)
+        end
+        render :inline => "<%= auto_complete_choice('#{object}', '#{method}', @items, '#{model}[#{field}_ids]') %>"
+      end
+    end
+  end
+end
+
 #module Test
 #  module Unit
 #    class TestCase
