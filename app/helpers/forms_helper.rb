@@ -180,6 +180,7 @@ module FormsHelper
   end
 
   def auto_complete(object, method, tag_options = {}, completion_options = {})
+    completion_options[:skip_style] = true
     text_field_with_auto_complete(object, method, tag_options)
   end
 
@@ -187,12 +188,14 @@ module FormsHelper
     @object = object
     @method = method
     @name =  name
-    @button = delete_button "tr_#{@object}_#{@method}_#{@value}"
     out = "<table>"
     out << "<tr><td>"
     tag_options[:value]=""
+    completion_options[:skip_style] = true
+    completion_options[:indicator] = "spinner_#{@object}_#{@method}"
     out << text_field_with_auto_complete(object, method, tag_options, completion_options)
-    out << "</td><td>"
+    out << "</td><td>#{image_tag("spinner.gif", :id => "spinner_#{@object}_#{@method}",:style=> "display: none;")}</td></tr>"
+    out << "</table>"
     out << "<table>"
     objectcollection.each do |c|
       @content = c.name
@@ -200,12 +203,11 @@ module FormsHelper
       @button = delete_button "tr_#{@object}_#{@method}_#{@value}"
       out << "#{render :partial => 'applications/auto_complete_insert'}"
     end
+    # We need an empty one, which is used to insert
     @content = ""
     @value = ""
     @button = ""
     out << "#{render :partial => 'applications/auto_complete_insert'}"
-    out << "</table>"
-    out << "</td></tr>"
     out << "</table>"
   end
 
@@ -219,15 +221,11 @@ module FormsHelper
       @content = c.name
       @button = delete_button "tr_#{@object}_#{@method}_#{@value}"
       @new_record = true
-      out = ""
-      out << "<div "
-      out <<   "name=\"#{name}\" value=\"#{c.id}\">#{c}"
-      out << "</div>"
-      out = link_to_function(out, :class => "no_hover") { |page| 
-        page.insert_html :before, "tr_#{@object}_#{@method}_", :partial => 'applications/auto_complete_insert'
-        page.visual_effect(:appear, "tr_#{@object}_#{@method}_#{@value}")
-        page.delay(0.001) { page["#{object}_#{method}"].value = "" }
-      }
+      tr_id = "tr_#{@object}_#{@method}_#{@value}"
+      out = link_to_function(c.name, "if ($('#{tr_id}')==null){" << update_page { |page| 
+          page.insert_html :before, "tr_#{@object}_#{@method}_", :partial => 'applications/auto_complete_insert'
+          page.visual_effect(:appear, tr_id)
+        } << "}"<< update_page { |page| page.delay(0.001) { page["#{object}_#{method}"].value = "" }}, :class => :no_hover)
       content_tag(:li, out) 
     end )
   end

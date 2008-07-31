@@ -576,19 +576,22 @@ div.redbox_scroll {
   *  Auto Completion *
   ********************/
 div.auto_complete {
+  z-index:1;
+  border:1px solid #888;
+  -moz-border-radius: .5em .5em .5em .5em;
   width: 350px;
   background: #fff;
 }
 div.auto_complete ul {
-  border:1px solid #888;
-  margin:0;
+  margin-top:-1px;
+  margin-bottom:-1px;
   padding:0;
   width:100%;
 }
 div.auto_complete ul li {
-  margin-left: -1.5em;
-  margin-bottom: -2px;
-  margin:0;
+  margin-top:1px;
+  margin-bottom:1px;
+  -moz-border-radius: .5em .5em .5em .5em;
   padding:3px;
   background-image: none;
   list-style-type:none;
@@ -601,6 +604,9 @@ div.auto_complete ul strong.highlight {
   color: #800;
   margin:0;
   padding:0;
+}
+div.auto_complete a:hover {
+	color: #1A5270;
 }
 
 

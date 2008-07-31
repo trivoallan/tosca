@@ -537,7 +537,11 @@ module AutoComplete
           collection.each do |c|
             result.push c if c.send(method).downcase.include? search.downcase or search == "*"
           end
-          @items = result
+          limit = 10
+          if options.key? :limit
+            limit = options[:limit]
+          end
+          @items = result.sort_by {|r| r.send(method)}[0..limit]
         else
           find_options = {
             :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ], 
