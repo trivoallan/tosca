@@ -9,9 +9,6 @@ require_dependency 'login_system'
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency 'acl_system'
 
-#Scope
-require_dependency 'scope_system'
-
 class ApplicationController < ActionController::Base
   init_gettext 'tosca'
 
