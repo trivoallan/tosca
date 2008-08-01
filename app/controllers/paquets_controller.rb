@@ -1,6 +1,5 @@
 class PaquetsController < ApplicationController
-  helper :filters, :logiciels, :binaires, :distributeurs,
-    :mainteneurs
+  helper :filters, :logiciels, :binaires, :mainteneurs
 
   # TODO : filtres du panel à gauche
   # TODO : faire une interface à base de filtres ?
@@ -8,7 +7,7 @@ class PaquetsController < ApplicationController
   def index
     options = { :per_page => 15, :order =>
       'versions.logiciel_id, versions.version, versions.release',
-      :include => [:distributeur,:mainteneur,:logiciel] }
+      :include => [:mainteneur,:logiciel] }
 
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]
@@ -30,7 +29,7 @@ class PaquetsController < ApplicationController
   end
 
   def show
-    include =  [ { :logiciel => :groupe }, :distributeur,
+    include =  [ { :logiciel => :groupe },
                  { :contract => :client }, :mainteneur, :conteneur ]
     version_id = params[:id]
     @version = Paquet.find(version_id, :include => include)
@@ -44,7 +43,6 @@ class PaquetsController < ApplicationController
     @version = Paquet.new
     _form
     @version.mainteneur = Mainteneur.find_by_name('Linagora')
-    @version.distributeur = Distributeur.find_by_name('(none)')
     @version.logiciel_id = params[:logiciel_id]
     @version.name = params[:referent]
     @version.release = 'lng1'
@@ -88,7 +86,6 @@ class PaquetsController < ApplicationController
     @groupes = Groupe.find_select
     @socles = Socle.find_select
     @conteneurs = Conteneur.find_select
-    @distributeurs = Distributeur.find_select
     @mainteneurs = Mainteneur.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)
   end
