@@ -190,7 +190,10 @@ module FormsHelper
     @name =  name
     out = "<table>"
     out << "<tr><td>"
-    tag_options[:value]=""
+    tag_options[:value]= _("Search") + "..."
+    tag_options[:onfocus] = "$('#{object}_#{method}').value = \"\" "
+    #tag_options[:onblur] = "if ($('#{object}_#{method}').value ==\"\") { $('#{object}_#{method}').value = \"#{_("Search")}\"}"
+    tag_options[:onblur] = "$('#{object}_#{method}').value = \"#{_("Search") + "..."}\""
     completion_options[:skip_style] = true
     completion_options[:indicator] = "spinner_#{@object}_#{@method}"
     out << "<label>" << _("Add")<< " "<< _(object.to_s) << "      </label>"
