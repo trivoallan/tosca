@@ -20,27 +20,26 @@ Utils.check_files(path, 'Your database is not configured')
 path = File.join RAILS_ROOT, 'lib', 'config.rb'
 Utils.check_files(path, 'Your mail server is not configured')
 
-CachePath = "#{RAILS_ROOT}/tmp/cache"
+cache_path = File.join RAILS_ROOT, 'tmp', 'cache'
+page_cache_path = File.join RAILS_ROOT, 'public', 'cache'
 
-require 'tosca/initializer'
+# Used to have extension
+require 'desert'
 
-# Extensions to String Class
-# TODO : make an extension loader, which loads automatically all _extensions.rb
-# files
-require 'string_extensions'
-
-
-Tosca::Initializer.run do |config|
+Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
 
   # Skip frameworks you're not going to use
   config.frameworks -= [ :action_web_service ] # , :action_mailer ]
 
-  # Add additional load paths for your own custom dirs
+  # Extension are like rails plugins
+  config.plugin_paths += %W( #{RAILS_ROOT}/vendor/extensions )
+
+  # Sweepers are used to cleanup cache nicely
   config.load_paths += %W( #{RAILS_ROOT}/app/sweepers )
 
   # Distinguish cache from normal pages
-  config.action_controller.page_cache_directory = RAILS_ROOT + "/public/cache/"
+  config.action_controller.page_cache_directory = page_cache_path
 
   ### External libs ###
   # Used to i18n and l10n
@@ -57,17 +56,15 @@ Tosca::Initializer.run do |config|
   config.gem 'rmagick', :lib => 'RMagick', :version => '1.15.10'
   # Used to manipulate OpenDocument
   config.gem 'rubyzip', :lib => 'zip/zip'
-  # Used to be colorfull for attachment previews
-  config.gem 'ultraviolet', :lib => 'uv'
-  # User to send Jabber Notification
-  config.gem 'xmpp4r'
+  # Used to load the extension mechanism
+  config.gem 'desert', :version => '0.2.1'
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
 
   # Use the file store with a custom storage path (if the directory doesn’t already exist it will be created)
-  config.cache_store = :file_store, CachePath
+  config.cache_store = :file_store, cache_path
 
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
@@ -93,7 +90,7 @@ ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.
 SqlSessionStore.session_class = MysqlSession
 
 # MLO : Type of cache. See http://api.rubyonrails.org/classes/ActionController/Caching.html
-ActionController::Base.cache_store = :file_store, CachePath
+ActionController::Base.cache_store = :file_store, cache_path
 
 
 # MLO : session duration is one month,
@@ -108,10 +105,16 @@ require 'config'
 # Internal libs, located in lib/
 require 'overrides'
 
+# Extensions to String Class
+# TODO : make an extension loader, which loads automatically all _extensions.rb
+# files
+require 'string_extensions'
+
 
 # Check and create used dirs, which are not on the SCM
-path = File.join RAILS_ROOT, 'public', 'cache'
-Dir.mkdir(path) unless File.exists? path
+log_path = File.join RAILS_ROOT, 'log'
+paths = [ log_path, page_cache_path, cache_path ]
+paths.each { |path| Dir.mkdir(path) unless File.exists? path }
 
 # French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'

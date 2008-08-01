@@ -35,6 +35,11 @@ ActionController::Routing::Routes.draw do |map|
     map.files(":file_type/#{file}/:id/:filename", options)
   }
 
+
+  # Extensions Routes
+  map.routes_from_plugin(:colored_text_files)
+
+
   # RESTful routes with ORM
   # Sample call :
   #   link_to _('..'), edit_account_path(:id => a.id)
@@ -102,7 +107,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :pages
   map.resources :permissions
   map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
-  map.resources :attachments, :collection => { :tachatte => :get }
+  map.resources :attachments
   map.resources :releases
   map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
