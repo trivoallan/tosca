@@ -530,15 +530,12 @@ module AutoComplete
       define_method("auto_complete_for_#{object}_#{method}") do
         if object.to_s.camelize.constantize.methods.include? method.to_s
           search = params[object][method]
-          collection = object.to_s.camelize.constantize.find(:all)
+          collection = object.to_s.camelize.constantize.find(:all, options)
           result = []
           collection.each do |c|
             result.push c if c.send(method).downcase.include? search.downcase or search == "*"
           end
-          limit = 10
-          if options.key? :limit
-            limit = options[:limit]
-          end
+          limit = options[:limit].nil? ? 10 : options[:limit]
           @items = result.sort_by {|r| r.send(method)}[0..limit]
         else
           find_options = {

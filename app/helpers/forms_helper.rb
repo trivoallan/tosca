@@ -189,16 +189,17 @@ module FormsHelper
     @method = method
     @name =  name
     out = "<table>"
-    out << "<tr><td>"
+    out << "<tr><td cilspan=\"2\">"
     tag_options[:value]= _("Search") + "..."
     tag_options[:onfocus] = "$('#{object}_#{method}').value = \"\" "
     #tag_options[:onblur] = "if ($('#{object}_#{method}').value ==\"\") { $('#{object}_#{method}').value = \"#{_("Search")}\"}"
     tag_options[:onblur] = "$('#{object}_#{method}').value = \"#{_("Search") + "..."}\""
     completion_options[:skip_style] = true
     completion_options[:indicator] = "spinner_#{@object}_#{@method}"
-    out << "<label>" << _("Add")<< " "<< _(object.to_s) << "      </label>"
+    out << "<label>" << _("Add")<< " "<< _(object.to_s) << "</label>"
+    out << "</td></tr><tr><td>"
     out << text_field_with_auto_complete(object, method, tag_options, completion_options)
-    out << "</td><td>#{image_tag("spinner.gif", :id => "spinner_#{@object}_#{@method}",:style=> "display: none;")}</td></tr>"
+    out << "</td><td width=\"20\">#{image_tag("spinner.gif", :id => "spinner_#{@object}_#{@method}",:style=> "display: none;")}</td></tr>"
     out << "</table>"
     out << "<ul>"
     objectcollection.each do |c|
