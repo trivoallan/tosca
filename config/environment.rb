@@ -24,6 +24,7 @@ cache_path = File.join RAILS_ROOT, 'tmp', 'cache'
 page_cache_path = File.join RAILS_ROOT, 'public', 'cache'
 
 # Used to have extension
+# See http://github.com/pivotal/desert/tree/master for more info
 require 'desert'
 
 Rails::Initializer.run do |config|
@@ -54,8 +55,6 @@ Rails::Initializer.run do |config|
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
   config.gem 'rmagick', :lib => 'RMagick', :version => '1.15.10'
-  # Used to manipulate OpenDocument
-  config.gem 'rubyzip', :lib => 'zip/zip'
   # Used to load the extension mechanism
   config.gem 'desert', :version => '0.2.1'
 
