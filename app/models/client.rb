@@ -41,7 +41,7 @@ class Client < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c|
-      c.primary || c.name =~ /(_id|_count|adresse|photo|chrono|inactive)$/
+      c.primary || c.name =~ /(_id|_count|address|image|inactive)$/
     }
   end
 
@@ -90,7 +90,7 @@ class Client < ActiveRecord::Base
     return contracts.first.logiciels if contracts.size == 1
     # speedier if there is one openbar contract
     contracts.each { |c| return Logiciel.find(:all) if c.rule.max == -1 }
-    
+
     # default case, when there is an association with releases.
     conditions = [ 'logiciels.id IN (SELECT DISTINCT versions.logiciel_id ' +
                    ' FROM versions WHERE versions.contract_id IN (?)) ',

@@ -12,7 +12,7 @@
         <%= text_area :client, :description, :rows => 10 %></p></td>
     </tr><tr>
      <td colspan="2"><label for="client_adresse"><%= _("Address") %></label><br />
-         <%= text_area :client, :adresse, :rows => 9 %></td>
+         <%= text_area :client, :address, :rows => 9 %></td>
     </tr>
    </table>
   </td><td  >
@@ -24,8 +24,8 @@
      <td><label for="client_image"><%= _("Logo") %></label></td>
      <td><%=  file_column_field 'image', 'image'  %></td>
     </tr><tr>
-     <td><label for="client_code_acces"><%= _("Access code") %></label></td>
-     <td><%= text_field :client, :code_acces, :size => 5 %></td>
+     <td><label for="client_access_code"><%= _("Access code") %></label></td>
+     <td><%= text_field :client, :access_code, :size => 5 %></td>
     </tr><tr>
      <td colspan="2">
       <p><label><%= _("Systems") %></label> <%= link_to_new_socle %></p>

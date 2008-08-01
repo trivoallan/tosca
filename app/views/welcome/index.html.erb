@@ -56,11 +56,11 @@
     </tr>
   </table>
   <p><%= _('We hope this tool wil give you entire satisfaction.')%></p>
-  <% access_code = @beneficiaire.client.code_acces %>
+  <% access_code = @beneficiaire.client.access_code %>
   <% unless access_code.blank? %>
    <p><%= _('Your call number is')%>
    <b><%=App::PhonePrefix%>&nbsp;<%=App::PhoneCode %></b>,
-   <%= _("and your access code is %s") % access_code%></b></p>
+   <%= _("and your access code is %s") % access_code %></b></p>
   <% end %>
  </div>
  <% end %>
