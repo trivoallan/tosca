@@ -27,6 +27,10 @@ module ApplicationHelper
     something ? something.name : '-'
   end
 
+  def hide_unless(condition)
+    (condition ? %Q{style="display: none;"} : '')
+  end
+
   # Show a help message
   # TODO : add an icon
   # TODO : use more on forms
