@@ -90,7 +90,7 @@ class Demande < ActiveRecord::Base
   def to_s
     "#{typedemande.name} (#{severite.name}) : #{resume}"
   end
-  
+
   def full_software_name
     result = ""
     result = logiciel.name if self.logiciel
@@ -99,12 +99,31 @@ class Demande < ActiveRecord::Base
     result
   end
 
+  # It associates request with the correct id since
+  # we maintain both the 2 cases.
+  # See _form of request for more details
+  def associate_software(revisions)
+    id = revisions[1..-1].to_i # revisions is a String, not an Array
+    case revisions.first
+    when 'v'
+      self.version_id = id
+    when 'r'
+      self.release_id = id
+    end
+  end
+
   # Remanent fields are those which persists after the first submit
   # It /!\ MUST /!^ be an _id field. See DemandesController#create.
   def self.remanent_fields
     [ :contract_id, :beneficiaire_id, :typedemande_id, :severite_id,
       :socle_id, :logiciel_id, :ingenieur_id ]
   end
+
+
+  def name
+    to_s
+  end
+
 
   # Used in the cache/sweeper system
   # TODO : it seems Regexp are not compatible with memcache.

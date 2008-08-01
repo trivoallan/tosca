@@ -144,13 +144,8 @@ class DemandesController < ApplicationController
       @demande.contract = contracts.first if contracts.size == 1
     end
 
-    id = params[:software][:revision_id][1, params[:software][:revision_id].length]
-    case params[:software][:revision_id].first
-    when "v"
-      @demande.version_id = Version.find(id)
-    when "r"
-      @demande.release_id = Release.find(id)
-    end
+    revisions = params[:software][:revision_id] if params[:software]
+    @demande.associate_software(revisions)
 
     if @demande.save
       options = { :conditions => [ 'demandes.submitter_id = ?', user.id ]}
