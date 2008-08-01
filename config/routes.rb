@@ -38,8 +38,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # Extensions Routes
   extension_path = "#{RAILS_ROOT}/vendor/extensions"
-  Dir.foreach( extension_path ) { |ex|
-    map.routes_from_plugin(ex.to_sym) if File.exists? "#{ex}/config/routes.rb"
+  Dir.foreach( extension_path ) { |ext|
+    next if ext == '.'
+    map.routes_from_plugin(ext.to_sym) if File.exists? "#{ext}/config/routes.rb"
   } if File.exists? extension_path
 
   # RESTful routes with ORM
