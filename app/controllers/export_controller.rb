@@ -29,17 +29,17 @@ class ExportController < ApplicationController
 
   def compute_contributions(type)
     methods = ['pname_typecontribution', 'pname_logiciel', 'version_to_s',
-      'pname_etatreversement', 'delai_in_french_words', 'clos_enhance',
-      'reverse_le_formatted']
-    options = { :order => 'contributions.reverse_le ASC',
+      'pname_etatreversement', 'delay_in_words', 'clos_enhance',
+      'contributed_on_formatted']
+    options = { :order => 'contributions.contributed_on ASC',
       :include => [:logiciel, :etatreversement, :demande],
       :conditions => flash[:conditions],
       :methods => methods }
 
     report = Contribution.report_table(:all, options)
     columns= [ 'id','pname_typecontribution', 'pname_logiciel',
-      'version_to_s','pname_etatreversement', 'synthese',
-      'reverse_le_formatted','clos_enhance','delai_in_french_words' ]
+      'version_to_s','pname_etatreversement', 'synthesis',
+      'contributed_on_formatted','clos_enhance','delay_in_words' ]
     unless report.column_names.empty?
       report.reorder(columns)
       report.rename_columns columns,

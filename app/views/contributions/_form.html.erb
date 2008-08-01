@@ -39,23 +39,20 @@
 <%= text_field 'urlreversement', 'valeur' %></p>
 
 <p><label for="contribution_reverse"><%=_('Submitted on')%></label>
-<%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('reverse_le');"%></p>
-<div id='reverse_le' <%unless @contribution.reverse%>style="display: none;"<%end%>><%= date_select 'contribution', 'reverse_le', :start_year => 1995 %></div>
+<%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('contributed_on');"%></p>
+<div id='contributed_on' <%unless @contribution.reverse%>style="display: none;"<%end%>><%= date_select :contribution, :contributed_on, :start_year => 1995 %></div>
 
 <p><label for="contribution_clos"><%=_('Closed on')%></label>
-<%= check_box 'contribution', 'clos', :onchange => "Element.toggle('cloture_le');"%></p>
-<div id='cloture_le' <%unless @contribution.clos%>style="display: none;"<%end%>><%= date_select 'contribution', 'cloture_le', :start_year => 1995 %></div>
+<%= check_box 'contribution', 'clos', :onchange => "Element.toggle('closed_on');"%></p>
+<div id='closed_on' <%unless @contribution.clos%>style="display: none;"<%end%>><%= date_select :contribution, :closed_on, :start_year => 1995 %></div>
 
 </td><td>
 
-<p><label for="contribution_synthese"><%=_('Synthesis')%></label><br />
-<%= text_field 'contribution', 'synthese', :size => 87 %></p>
+<p><label for="contribution_synthesis"><%=_('Synthesis')%></label><br />
+<%= text_field :contribution, :synthesis, :size => 87 %></p>
 
-<p><label for="contribution_description_fonctionnelle"><%=_('Description (public)')%></label><br />
-<%= text_area 'contribution', 'description_fonctionnelle', :cols => 100, :rows => 20  %></p>
-
-<p><label for="contribution_description"><%=_('Technical details (private)')%></label><br />
-<%= text_area 'contribution', 'description', :cols => 100, :rows => 5  %></p>
+<p><label for="contribution_description"><%=_('Description')%></label><br />
+<%= text_area :contribution, :description, :cols => 100, :rows => 20  %></p>
 
 <% # deactivated : TO DO : think it a better a way %>
 <%# = observe_field 'contribution_logiciel_id', :update => 'versions',
@@ -71,4 +68,3 @@
 
 </td></tr>
 </table>
-

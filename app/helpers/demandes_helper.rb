@@ -44,7 +44,7 @@ module DemandesHelper
   def public_link_to_status_legend
     public_link_to(_("Legend of statutes"), statuts_path, NEW_WINDOW)
   end
-  
+
   # Display a link to the software or version or release
   # of a request
   def link_to_request_software(request)
@@ -171,7 +171,7 @@ module DemandesHelper
   def link_to_request_contribution(contribution)
     return '' unless contribution
     link = link_to _('patch'), contribution_path(contribution)
-    text = (contribution.cloture_le? ?
+    text = (contribution.closed_on? ?
             _("The %s has been accepted by the community") % link :
             _("The %s has been submitted by the community") % link)
   end

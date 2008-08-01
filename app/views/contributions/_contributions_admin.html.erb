@@ -19,10 +19,10 @@
   # result << "<td " + (tache ? "style='background-color:orange'>#{tache}" : ">") +"</td>"
   result << "<td>#{c.etatreversement.name if c.etatreversement}</td>"
   result << "<td>#{link_to_contribution c}</td>"
-  result << "<td style='color:green'><span class=\"date\">#{c.reverse_le_formatted}</span></td>"
+  result << "<td style='color:green'><span class=\"date\">#{c.contributed_on_formatted}</span></td>"
 
   result << "<td style='color:red'>"
-  result << "<span class=\"date\">#{c.cloture_le_formatted}</span>" if c.clos
+  result << "<span class=\"date\">#{c.closed_on_formatted}</span>" if c.clos
   result << "</td>"
 
   result << "<td nowrap>#{Time.in_words(c.delai)}</td>"

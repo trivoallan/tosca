@@ -54,16 +54,16 @@ class Contribution < ActiveRecord::Base
 
   # date de reversement formattée
   # voir lib/overrides.rb pour les dates auto created _on et updated_on
-  def reverse_le_formatted
-    contributed_on = read_attribute(:reverse_le)
+  def contributed_on_formatted
+    contributed_on = read_attribute(:contributed_on)
     return '' unless contributed_on
     display_time contributed_on
   end
 
   # date de cloture formattée
   # voir lib/overrides.rb pour les dates auto created _on et updated_on
-  def cloture_le_formatted
-    closed_on = read_attribute(:cloture_le)
+  def closed_on_formatted
+    closed_on = read_attribute(:closed_on)
     return '' unless closed_on
     display_time closed_on
   end
@@ -71,9 +71,9 @@ class Contribution < ActiveRecord::Base
   # délai (en secondes) entre la déclaration et l'acceptation
   # delai_to_s (texte)
   # en jours : sec2day(delai)
-  def delai
-    if cloture_le and reverse_le
-      (cloture_le - reverse_le)
+  def delay
+    if closed_on? and contributed_on?
+      (closed_on - contributed_on)
     else
       -1
     end
@@ -83,9 +83,9 @@ class Contribution < ActiveRecord::Base
   # + "non clos" ET (updated_on > 1 mois)
   # + OU "à reverser"
   def todo(max_jours)
-    return false unless reverse_le
+    return false unless contributed_on
     # TODO : vérifier max_jours is integer
-    age = ((Time.now - reverse_le)/(60*60*24)).round
+    age = ((Time.now - contributed_on)/(60*60*24)).round
     if !clos && age > max_jours.to_i
       # non clos && non maj
       return "mettre-à-jour"
@@ -97,23 +97,13 @@ class Contribution < ActiveRecord::Base
     return false
   end
 
-  # retourne true si le reversement a commencé
-  def reverse
-    (reverse_le ? true : false)
-  end
+  # Fake fields, used to prettify _form WUI
+  def reverse; contributed_on?; end
+  def clos; closed_on?; end
+  def clos=(fake); end
+  def reverse=(fake); end
 
-  # retourne true si l'état du reversement est final
-  # "accepté", "refusé", "ne sera pas reversé"
-  def clos
-    (cloture_le ? true : false)
-  end
-
-  def clos=(fake)
-  end
-  def reverse=(fake)
-  end
-
-  # retourne true si le reversement est accepté
+  # return true if contribution was accepted
   def accepte
     return false unless etatreversement
     etatreversement_id == 4
@@ -133,10 +123,10 @@ class Contribution < ActiveRecord::Base
     pname(etatreversement)
   end
   def clos_enhance
-    clos ? cloture_le_formatted : ''
+    clos ? closed_on_formatted : ''
   end
-  def delai_in_french_words
-    Time.in_words(delai)
+  def delay_in_words
+    Time.in_words(delay)
   end
   def version_to_s
     affected_version.to_s

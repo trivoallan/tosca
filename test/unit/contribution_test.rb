@@ -4,7 +4,7 @@ class ContributionTest < Test::Unit::TestCase
   fixtures :contributions
 
   def test_to_strings
-    check_strings Contribution, :reverse_le_formatted
+    check_strings Contribution, :contributed_on_formatted, :closed_on_formatted
   end
 
 end

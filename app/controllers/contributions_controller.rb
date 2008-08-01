@@ -102,7 +102,7 @@ class ContributionsController < ApplicationController
     @contribution.logiciel_id = params[:logiciel_id]
     # submitted state, by default
     @contribution.etatreversement_id = 4
-    @contribution.reverse_le = Date.today
+    @contribution.contributed_on = Date.today
     @demande = Demande.new(); @demande.id = params[:request_id]
     @contribution.ingenieur = @ingenieur
     _form
@@ -184,8 +184,8 @@ private
   def _update(contribution)
     url = params[:urlreversement]
     contribution.urlreversements.create(url) unless url.blank?
-    contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
-    contribution.cloture_le = nil if params[:contribution][:clos] == '0'
+    contribution.contributed_on = nil if params[:contribution][:reverse] == '0'
+    contribution.closed_on = nil if params[:contribution][:clos] == '0'
     contribution.save
   end
 

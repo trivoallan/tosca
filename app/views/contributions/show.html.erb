@@ -4,7 +4,7 @@
 
 <h2>
   <%= public_link_to_file @contribution, 'patch', :image => true, :else => '' %>
-  <b><%=h @contribution.name %></b>
+  <b><%= @contribution.name %></b>
   <%= link_to_edit(@contribution) %>
 </h2>
 <div class="info">
@@ -17,11 +17,11 @@
           " <a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
     } %>
 
-    <% if @contribution.reverse_le %>
+    <% if @contribution.contributed_on %>
         <%= _('This contribution has been submitted on %s by <b>%s</b>') %
-              [ @contribution.reverse_le_formatted, @contribution.ingenieur.name ] %>
-        <% if @contribution.cloture_le %>
-           <%= _('and its has been approved on %s') % @contribution.cloture_le_formatted %>
+              [ @contribution.contributed_on_formatted, @contribution.ingenieur.name ] %>
+        <% if @contribution.closed_on %>
+           <%= _('and its has been approved on %s') % @contribution.closed_on_formatted %>
         <% end %>.<br/>
         <% unless @contribution.affected_version.blank? %>
            <%= _('This bug has been discovered in the version %s ') % @contribution.affected_version %>
