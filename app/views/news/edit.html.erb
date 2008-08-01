@@ -1,9 +1,0 @@
-<h1><%= _('Editing new')%></h1>
-<div class="style">
-  <% form_tag new_path(@new), :method => :put do %>
-    <%= render :partial => 'form' %>
-    <%= submit_tag 'Edit' %>
-  <% end %>
-  <br />
-  <%= link_to_show_and_list @new %>
-</div>
