@@ -5,7 +5,7 @@ class Contribution2english < ActiveRecord::Migration
     rename_column :contributions, :synthese, :synthesis
     # this field was not used
     update("UPDATE contributions SET description = description_fonctionnelle")
-    remove_column :contributions, :description_fontionnelle
+    remove_column :contributions, :description_fonctionnelle
   end
 
   def self.down
