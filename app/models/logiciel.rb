@@ -1,11 +1,10 @@
 class Logiciel < ActiveRecord::Base
-  acts_as_reportable
   acts_as_taggable
-  
+
   has_one :image, :dependent => :destroy
   belongs_to :license
   belongs_to :groupe
-  
+
   has_many :contributions
   has_many :knowledges
   has_many :demandes
@@ -13,9 +12,9 @@ class Logiciel < ActiveRecord::Base
     :order => 'urllogiciels.typeurl_id'
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
-  
+
   has_and_belongs_to_many :competences
-  
+
   validates_presence_of :name, :message =>
     _('You have to specify a name')
   validates_presence_of :groupe, :message =>
@@ -47,15 +46,15 @@ class Logiciel < ActiveRecord::Base
   def to_param
     "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
   end
-  
+
   ReleasesContract = Struct.new(:name, :id, :type)
   # Returns all the version and the last release of each version
   # Returns Array of ContractReleases
   # Call it like : Logiciel.first.releases_contract(Contract.first.id)
   def releases_contract(contract_id)
     result = []
-    self.versions.find(:all, 
-      :conditions => { "contracts.id" =>  contract_id }, 
+    self.versions.find(:all,
+      :conditions => { "contracts.id" =>  contract_id },
       :joins => :contracts, :group => "versions.id").each do |v|
       releases = v.releases
       if releases.empty?
@@ -66,11 +65,6 @@ class Logiciel < ActiveRecord::Base
       end
     end
     result
-  end
-
-  # For ruport
-  def logiciels_name
-    logiciel ? logiciel.name : '-'
   end
 
 end

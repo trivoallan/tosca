@@ -46,12 +46,6 @@ Rails::Initializer.run do |config|
   # Used to i18n and l10n
   config.gem 'gettext', :version => '1.91.0'
 
-  # Used to generate export in Ods Format
-  # Versions are enforced because ruport devs seems to love
-  # "the break everything at each release" mantra
-  config.gem 'acts_as_reportable', :lib => 'ruport/acts_as_reportable', :version => '1.1.0'
-  config.gem 'ruport', :version => '1.6.1'
-  config.gem 'ruport-util', :lib => 'ruport/util', :version => '0.14.0'
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
   config.gem 'rmagick', :lib => 'RMagick', :version => '1.15.10'
@@ -101,13 +95,13 @@ XSendFile::Plugin.replace_send_file! if RAILS_ENV == 'production'
 # Config file, mainly use for mail server
 require 'config'
 
-# Internal libs, located in lib/
-require 'overrides'
-
 # Extensions to String Class
 # TODO : make an extension loader, which loads automatically all _extensions.rb
 # files
 require 'string_extensions'
+
+# Internal libs, located in lib/
+require 'overrides'
 
 
 # Check and create used dirs, which are not on the SCM

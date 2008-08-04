@@ -69,9 +69,6 @@ class Demande < ActiveRecord::Base
   # not the initial state of the request
   after_create :create_first_comment
 
-  # used for ruport. See plugins for more information
-  acts_as_reportable
-
   # self-explanatory
   TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})"
   EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})"

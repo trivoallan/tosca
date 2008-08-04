@@ -20,7 +20,9 @@
    <li><%= link_to _("Submit a request"), path %></li>
  <% end %>
  <li><%= link_to _("Activity report"), general_reporting_path %></li>
- <li><%= requests_export_link %></li>
+ <% Demande::actions.each do |a| %>
+   <li><%= send(a) %></li>
+ <% end %>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_flux')">>

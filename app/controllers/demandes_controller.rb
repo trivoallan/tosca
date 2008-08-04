@@ -1,5 +1,5 @@
 class DemandesController < ApplicationController
-  helper :filters, :contributions, :logiciels, :export, :phonecalls,
+  helper :filters, :contributions, :logiciels, :phonecalls,
     :socles, :commentaires, :account, :reporting
 
   cache_sweeper :demande_sweeper, :only =>

@@ -10,7 +10,9 @@
 > <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
  <li><%= link_to _('Add a call'), new_phonecall_path %></li>
- <li><%= phonecalls_export_images %></li>
+ <% Phonecall::actions.each do |a| %>
+   <li><%= send(a) %></li>
+ <% end %>
 </ul>
 
 

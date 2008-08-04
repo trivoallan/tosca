@@ -1,6 +1,4 @@
 class Contract < ActiveRecord::Base
-  acts_as_reportable
-
   belongs_to :client
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
@@ -68,7 +66,7 @@ class Contract < ActiveRecord::Base
       :joins => { :versions => :contracts },
       :group => "versions.logiciel_id")
   end
-  
+
   # TODO : I am sure it could be better. Rework model ???
   def find_recipients_select
     options = { :conditions => 'users.inactive = 0' }

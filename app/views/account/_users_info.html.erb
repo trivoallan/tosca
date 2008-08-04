@@ -14,8 +14,10 @@
  <ul class="menu" id="menu_action">
   <li><%= link_to _('Add a user'), signup_new_account_path %></li>
   <% # deactivated TODO : <li><%= link_to _('Add several users'), multiple_signup_new_account_path </li> %>
-  <li><%= users_export_link %></li>
- </ul>
+  <% User::actions.each do |a| %>
+    <li><%= send(a) %></li>
+  <% end %>
+</ul>
 <% end %>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">

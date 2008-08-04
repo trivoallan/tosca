@@ -1,0 +1,29 @@
+ArActions
+=========
+
+This small plugin, developped by Tosca Team directly, allows to include a list of actions into an Active Record.
+
+This is mainly used to plug dynamically action into views. This is a
+must-to-have with an extension system.
+
+Example
+=======
+
+In your extension Model :
+<code>
+class MyModel < ActiveRecord::Base
+  register_action 'link_to_my_action'
+end
+</code>
+
+In your helper :
+<code>
+module MyActionHelper
+  def link_to_my_action
+    // link_to _('launch my action')
+  end
+end
+</code>
+
+
+Copyright (c) 2008 [Michel Loiseleur], released under the MIT license

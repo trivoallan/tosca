@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   include InactiveRecord
   include PasswordGenerator
 
-  acts_as_reportable
   belongs_to :image
   belongs_to :role
   belongs_to :team
@@ -205,15 +204,6 @@ class User < ActiveRecord::Base
   # specialisation, since an Account can be <inactive>.
   def find_select(options = { })
     find_active4select(options)
-  end
-
-  # For Ruport :
-  def recipient_client_name
-    recipient.client.name if recipient
-  end
-
-  def role_name
-    role.name if role
   end
 
 end

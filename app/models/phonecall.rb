@@ -2,7 +2,6 @@
 # an Engineer. There's also a link to the contract, because those phones
 # calls can be in the 24/24 contract.
 class Phonecall < ActiveRecord::Base
-  acts_as_reportable
   belongs_to :ingenieur
   belongs_to :recipient
   belongs_to :demande
@@ -53,17 +52,6 @@ class Phonecall < ActiveRecord::Base
     else
       _("Phonecall of %s for %s") % [ ingenieur.name, contract.name ]
     end
-  end
-
-  # For Ruport :
-  def contract_name
-    contract.name
-  end
-  def ingenieur_name
-    ingenieur.name
-  end
-  def recipient_name
-    recipient ? recipient.name : '-'
   end
 
 end

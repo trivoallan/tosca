@@ -1,5 +1,4 @@
 class Recipient < ActiveRecord::Base
-  acts_as_reportable
   belongs_to :user
   belongs_to :client, :counter_cache => true
   has_many :phonecalls

@@ -1,6 +1,4 @@
 class Ingenieur < ActiveRecord::Base
-  acts_as_reportable
-
   belongs_to :user, :dependent => :destroy
 
   has_many :knowledges, :order => 'knowledges.level DESC'

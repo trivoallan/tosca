@@ -387,7 +387,6 @@ module ActiveRecord
       self.scoped_methods.pop
     end
 
-
     # By convention, all tosca records have or implements a 'name' method,
     # used mainly for displaying and selecting them. It's also their default
     # to_s implementation, even if it's free to specialize it when needed.
@@ -539,7 +538,7 @@ module AutoComplete
           @items = result.sort_by {|r| r.send(method)}[0..limit]
         else
           find_options = {
-            :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ], 
+            :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ],
             :order => "#{method} ASC",
             :limit => 10 }.merge!(options)
           @items = object.to_s.camelize.constantize.find(:all, find_options)

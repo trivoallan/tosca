@@ -4,7 +4,6 @@
 require 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
-
   # The priority is based upon order of creation:
   #   first created -> highest priority.
 
@@ -23,10 +22,6 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('access', %w(denied))
   map.without_orm('alerts', %w(on_submit index))
   map.without_orm('alerts', %w(ajax_on_submit), :post)
-  map.without_orm('export', %w(demandes_ods phonecalls_ods users_ods
-    contributions_ods comex_ods) )
-
-  map.formatted_export(%w(requests contributions users phonecalls comex))
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
@@ -35,12 +30,12 @@ ActionController::Routing::Routes.draw do |map|
     map.files(":file_type/#{file}/:id/:filename", options)
   }
 
-
-  # Extensions Routes
+  # Autoloading Extensions Routes
   extension_path = "#{RAILS_ROOT}/vendor/extensions"
   Dir.foreach( extension_path ) { |ext|
     next if ext == '.'
-    map.routes_from_plugin(ext.to_sym) if File.exists? "#{ext}/config/routes.rb"
+    route_path = File.join extension_path, ext, 'config', 'routes.rb'
+    map.routes_from_plugin(ext.to_sym) if File.exists? route_path
   } if File.exists? extension_path
 
   # RESTful routes with ORM

@@ -17,8 +17,10 @@
 <ul class="menu" id="menu_actions">
  <li><%= link_to(_('Submit a contribution'), new_contribution_path)%></li>
  <li><%= link_to(_('Selection interface'), select_contributions_path)%></li>
- <li><%= contributions_export_link %></li>
  <li><%= link_to _('Administration interface'), admin_contributions_path %></li>
+ <% Contribution::actions.each do |a| %>
+   <li><%= send(a) %></li>
+ <% end %>
 </ul>
 
 

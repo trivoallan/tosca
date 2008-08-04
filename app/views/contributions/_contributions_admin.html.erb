@@ -25,7 +25,7 @@
   result << "<span class=\"date\">#{c.closed_on_formatted}</span>" if c.clos
   result << "</td>"
 
-  result << "<td nowrap>#{Time.in_words(c.delai)}</td>"
+  result << "<td nowrap>#{Time.in_words(c.delay)}</td>"
   result << "<td><span class=\"date\">#{c.updated_on_formatted}</span></td>"
   result << "#{link_to_actions_table c}"
 }%>
