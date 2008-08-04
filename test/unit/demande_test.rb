@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class DemandeTest < Test::Unit::TestCase
   fixtures :demandes, :typedemandes, :severites, :statuts, :contracts,
-    :beneficiaires, :clients, :users, :versions, :commentaires,
+    :recipients, :clients, :users, :versions, :commentaires,
     :contracts_users
 
   def test_to_strings
@@ -10,9 +10,9 @@ class DemandeTest < Test::Unit::TestCase
   end
 
   def test_presence_of_attributes
-    recipient = beneficiaires(:beneficiaire_00001)
+    recipient = recipients(:recipient_00001)
     request = Demande.new(:description => 'description', :resume => 'resume',
-        :beneficiaire => recipient, :submitter => recipient.user,
+        :recipient => recipient, :submitter => recipient.user,
         :statut => statuts(:statut_00001), :severite => severites(:severite_00001),
         :contract => recipient.user.contracts.first )
     # must have a recipient

@@ -109,7 +109,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :ossas
   map.resources :pages
   map.resources :permissions
-  map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
+  map.resources :phonecalls,  :collection => { :ajax_recipients => :get }
   map.resources :attachments
   map.resources :releases
   map.resources :reporting, :collection => { :flux => :get }

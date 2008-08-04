@@ -29,7 +29,7 @@
             <% if @ingenieur %>
               <% #We have an empty to make sure YOU choose the contract %>
               <%= select_empty(:demande, :contract_id, @contracts) %>
-            <% elsif @beneficiaire %>
+            <% elsif @recipient %>
               <%= select(:demande, :contract_id, @contracts) %>
             <% end %>
 
@@ -48,9 +48,9 @@
       </tr>
     
       <tr>
-        <th><label for="demande_beneficiaire_id"><%= _("Recipient") %></label></th>
+        <th><label for="demande_recipient_id"><%= _("Recipient") %></label></th>
         <% # Warning, the code of this cell is also in ajax_display_contract.rjs %>
-        <td><div id="recipient"><%= select_empty(:demande, :beneficiaire_id, @beneficiaires) %></div></td>
+        <td><div id="recipient"><%= select_empty(:demande, :recipient_id, @recipients) %></div></td>
       </tr>
       
       <% if @ingenieur %>

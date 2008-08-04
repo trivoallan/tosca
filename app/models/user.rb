@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :commentaires
 
   has_one :ingenieur, :dependent => :destroy
-  has_one :beneficiaire, :dependent => :destroy
+  has_one :recipient, :dependent => :destroy
 
   has_and_belongs_to_many :own_contracts, :class_name => "Contract"
 
@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
   def associate_recipient(client_id)
     client = nil
     client = Client.find(client_id.to_i) unless client_id.nil?
-    self.beneficiaire = Beneficiaire.new(:user => self, :client => client)
+    self.recipient = Recipient.new(:user => self, :client => client)
     self.client = true
   end
 
@@ -208,8 +208,8 @@ class User < ActiveRecord::Base
   end
 
   # For Ruport :
-  def beneficiaire_client_name
-    beneficiaire.client.name if beneficiaire
+  def recipient_client_name
+    recipient.client.name if recipient
   end
 
   def role_name

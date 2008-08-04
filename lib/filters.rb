@@ -35,7 +35,7 @@ module Filters
     extend Shared
   end
 
-  class Calls < Struct.new('Calls', :ingenieur_id, :beneficiaire_id,
+  class Calls < Struct.new('Calls', :ingenieur_id, :recipient_id,
                             :contract_id, :after, :before)
     extend Shared
   end

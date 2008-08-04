@@ -21,28 +21,28 @@ class DemandesController < ApplicationController
     # 2. Recipient : When a question from the engineer is not answered
     if @ingenieur # 3 == Suspendue
       conditions.first << ('(demandes.statut_id <> 3 OR (demandes.statut_id = 3 AND ' +
-               '(commentaires.user_id = beneficiaires.user_id OR commentaires.ingenieur_id IS NOT NULL) ) )' )
+               '(commentaires.user_id = recipients.user_id OR commentaires.ingenieur_id IS NOT NULL) ) )' )
     else
-      conditions.first << '(demandes.statut_id = 3 AND commentaires.user_id <> beneficiaires.user_id)'
+      conditions.first << '(demandes.statut_id = 3 AND commentaires.user_id <> recipients.user_id)'
     end
 
     if @ingenieur
       conditions.first << 'demandes.ingenieur_id IN (?)'
-    elsif @beneficiaire
-      conditions.first << 'demandes.beneficiaire_id = (?)'
+    elsif @recipient
+      conditions.first << 'demandes.recipient_id = (?)'
     end
     conditions[0] = conditions.first.join(' AND ')
     options[:conditions] = conditions
 
-    own_id = (@ingenieur ? @ingenieur.id : @beneficiaire.id)
+    own_id = (@ingenieur ? @ingenieur.id : @recipient.id)
     conditions << [ own_id ]
     @own_requests = Demande.find(:all, options)
 
     # Update last condition to the whole team
     if @ingenieur
       conditions[-1] = session[:user].team.engineers_id
-    elsif @beneficiaire
-      conditions[-1] = @beneficiaire.client.beneficiaire_ids
+    elsif @recipient
+      conditions[-1] = @recipient.client.recipient_ids
     end
     # It's better to not display twice same request
     conditions[-1].delete(own_id)
@@ -126,11 +126,11 @@ class DemandesController < ApplicationController
     unless @demande
       @demande = Demande.new(params.has_key?(:demande) ? params[:demande] : nil)
     end
-    _form @beneficiaire
+    _form @recipient
 
     @demande.statut_id = (@ingenieur ? 2 : 1)
     unless params.has_key? :demande
-      @demande.set_defaults(@ingenieur, @beneficiaire, params)
+      @demande.set_defaults(@ingenieur, @recipient, params)
     end
   end
 
@@ -140,7 +140,7 @@ class DemandesController < ApplicationController
     @demande.submitter = user # it's the current user
     @demande.statut_id = (@ingenieur ? 2 : 1)
     if @demande.contract.nil?
-      contracts = @demande.beneficiaire.contracts
+      contracts = @demande.recipient.contracts
       @demande.contract = contracts.first if contracts.size == 1
     end
 
@@ -163,7 +163,7 @@ class DemandesController < ApplicationController
       Notifier::deliver_request_new(options, flash)
       redirect_to _similar_request
     else
-      _form @beneficiaire
+      _form @recipient
       render :action => 'new'
     end
   end
@@ -210,7 +210,7 @@ class DemandesController < ApplicationController
 
   def edit
     @demande = Demande.find(params[:id])
-    _form @beneficiaire
+    _form @recipient
   end
 
   def show
@@ -224,10 +224,10 @@ class DemandesController < ApplicationController
       # TODO c'est pas dry, cf ajax_comments
       options = { :order => 'created_on DESC', :include => [:user],
         :limit => 1, :conditions => { :demande_id => @demande.id } }
-      options[:conditions][:prive] = false if @beneficiaire
+      options[:conditions][:prive] = false if @recipient
       @last_commentaire = Commentaire.find(:first, options)
 
-      @statuts = @demande.statut.possible(@beneficiaire)
+      @statuts = @demande.statut.possible(@recipient)
       options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
         [ 'contributions.logiciel_id = ?', @demande.logiciel_id ] }
       @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
@@ -270,7 +270,7 @@ class DemandesController < ApplicationController
     @demande_id = params[:id]
     conditions = [ 'phonecalls.demande_id = ? ', @demande_id ]
     options = { :conditions => conditions, :order => 'phonecalls.start',
-      :include => [:beneficiaire,:ingenieur,:contract,:demande] }
+      :include => [:recipient,:ingenieur,:contract,:demande] }
     @phonecalls = Phonecall.find(:all, options)
     render :partial => 'demandes/tabs/tab_appels', :layout => false
   end
@@ -299,7 +299,7 @@ class DemandesController < ApplicationController
       flash[:notice] = _("The request has been updated successfully.")
       redirect_to demande_path(@demande)
     else
-      _form @beneficiaire
+      _form @recipient
       render :action => 'edit'
     end
   end
@@ -351,8 +351,8 @@ class DemandesController < ApplicationController
   # call it like this : _form4contract Contract.find(:first)
   def _form4contract(contract)
     result = true
-    @beneficiaires = contract.find_recipients_select
-    result = false if @beneficiaires.empty?
+    @recipients = contract.find_recipients_select
+    result = false if @recipients.empty?
     @versions = []
     @logiciels = contract.logiciels.collect { |l| [ l.name, l.id ] }
     if @ingenieur
@@ -363,14 +363,14 @@ class DemandesController < ApplicationController
   end
 
   #TODO : redo
-  def _form(beneficiaire)
+  def _form(recipient)
     @contracts = Contract.find_select(Contract::OPTIONS)
     if @contracts.empty?
       flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling a request. Please contact %s if you think it's not normal") % App::TeamEmail
       return redirect_to(welcome_path)
     end
-    if beneficiaire
-      client = beneficiaire.client
+    if recipient
+      client = recipient.client
       @typedemandes = client.typedemandes.collect{|td| [td.name, td.id]}
     else
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
@@ -380,7 +380,7 @@ class DemandesController < ApplicationController
     @severites = Severite.find_select
     first_comment = @demande.first_comment
     @demande.description = first_comment.corps if first_comment
-    @demande.beneficiaire = beneficiaire if beneficiaire
+    @demande.recipient = recipient if recipient
     if @demande.contract
       _form4contract(@demande.contract)
     elsif !@contracts.empty?

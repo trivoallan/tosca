@@ -2,9 +2,9 @@
 
 <p><label><%= _("Recipient :") %></label>
 <% if client %>
-<%= select('demande', 'beneficiaire_id',
-      client.beneficiaires.collect{|l| [ l.name, l.id]}) %>
-<% #collection_select(:demande, :beneficiaire_id, client, :id, :name, PROMPT_SELECT) %></p>
+<%= select('demande', 'recipient_id',
+      client.recipients.collect{|l| [ l.name, l.id]}) %>
+<% #collection_select(:demande, :recipient_id, client, :id, :name, PROMPT_SELECT) %></p>
 <% end %>
 
 <p><label><%= _("Engineer :") %></label>

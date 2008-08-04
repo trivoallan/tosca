@@ -35,7 +35,7 @@
      <li><b><%= _('CC') %>: </b><%= @demande.mail_cc.gsub(',', ',<br />') %></li>
   <% end %>
   <% submitter_id = @demande.submitter_id %>
-  <% if submitter_id != 0 && @demande.beneficiaire.user_id != submitter_id %>
+  <% if submitter_id != 0 && @demande.recipient.user_id != submitter_id %>
     <li><b><%=_("Declared by")%>: </b><%= @demande.submitter.name %></li>
   <% end %>
   <% if @demande.ingenieur %>
@@ -43,14 +43,14 @@
   <% end %>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_beneficiaire')">
+<div class="menu_title" onclick="Element.toggle('menu_recipient')">
 > <%= _('Recipent') %></div>
-<% user = @demande.beneficiaire.user %>
-<ul class="menu" id="menu_beneficiaire">
+<% user = @demande.recipient.user %>
+<ul class="menu" id="menu_recipient">
   <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
      <%= link_to_show(account_path(user)) if @ingenieur %></li>
   <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
-  <% client = @demande.beneficiaire.client %>
+  <% client = @demande.recipient.client %>
   <li><b><%= _('Company') %>: </b><%= link_to client.name, client_path(client) %></li>
 </ul>
 

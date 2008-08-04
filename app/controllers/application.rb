@@ -74,7 +74,7 @@ protected
     user = session[:user]
     if user
       @ingenieur = user.ingenieur
-      @beneficiaire = user.beneficiaire
+      @recipient = user.recipient
     end
     true
   end

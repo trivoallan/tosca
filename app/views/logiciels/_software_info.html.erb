@@ -15,7 +15,7 @@
  <div class="menu_title" onclick="Element.toggle('menu_consultation')">
  > <%= _('Consultation') %></div>
  <ul class="menu" id="menu_consultation">
-  <% if @beneficiaire %>
+  <% if @recipient %>
    <li><%= remote_link_to_software :supported %></li>
    <li><%= remote_link_to_software :all %></li>
   <% end %>

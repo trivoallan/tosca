@@ -151,7 +151,7 @@ module FormsHelper
 
   # Used for hiding field which will be displaye by ajax_*
   # call it like this :
-  #   lstm_ajax_field('Bénéficiaire', :appel, :beneficiaires),
+  #   lstm_ajax_field('Bénéficiaire', :appel, :recipients),
   def lstm_ajax_field(label, model, field)
     [ "<label for=\"#{model}_#{field}\">#{label}</label>",
       "<div id=\"#{field}\"></div>" ]

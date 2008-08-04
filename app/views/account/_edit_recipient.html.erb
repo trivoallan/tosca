@@ -1,10 +1,10 @@
 <% create_account = (controller.action_name == 'signup' ||
 				     controller.action_name == 'ajax_place') %>
 
-<% if @user_recipient and not session[:user].beneficiaire %>
+<% if @user_recipient and not session[:user].recipient %>
   <h1><b><%= _('Recipient') %></b></h1><br />
 
-  <p><label for="beneficiaire_client">Client</label>
+  <p><label for="recipient_client">Client</label>
     <%= select(:user_recipient, :client_id, @clients) %>
   </p>
   <hr />
@@ -12,17 +12,6 @@
   <div id="contracts"><%= _('Contracts')%><br />
     <%= hbtm_check_box( @user.own_contracts, @contracts, 'user[own_contract_ids]', :size => 2) %>
   </div>
-
-  <% if false #deactivated for now. %>
-   <p><label for="beneficiaire_notifier_subalternes"> <%= _('Notify subalterns') %> </label><br />
-   <%= check_box 'beneficiaire', 'notifier_subalternes'  %></p>
-
-   <p><label for="beneficiaire_notifier"> <%= _('Notify at') %> </label><br />
-   <%= check_box 'beneficiaire', 'notifier'  %></p>
-
-   <p><label for="beneficiaire_notifier_cc"> <%= _('Notify cc') %> </label><br />
-   <%= check_box 'beneficiaire', 'notifier_cc'  %></p>
-  <% end %>
 
   <%= observe_client_field if create_account %>
   <%= observe_client_list %>

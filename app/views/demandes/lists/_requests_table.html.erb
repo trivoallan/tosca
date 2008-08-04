@@ -11,14 +11,14 @@
        <% if @ingenieur %>
          <%=_('Owner')%><%#= sortable_header(:ingenieur_id, :label => _("Owner")) %>
        <% else %>
-         <%=_('Submitter')%><%#= sortable_header(:beneficiaire_id, :label => _("Submitter")) %>
+         <%=_('Submitter')%><%#= sortable_header(:recipient_id, :label => _("Submitter")) %>
        <% end %>
       </th>
 
       <th width='8%'><%=_('Updated on')%><%#= sortable_header(:updated_on, :label => _("Updated on"), :descend => true) %></th>
    </tr>
 
-   <% beneficiaire = Beneficiaire.new(:id => 0) %>
+   <% recipient = Recipient.new(:id => 0) %>
    <% ingenieur = Ingenieur.new(:id => 0)
       def ingenieur.name; '-'; end %>
    <% for demande in @demandes %>
@@ -30,7 +30,7 @@
        <% if @ingenieur %>
         <td><%= demande.clients_name %></td>
        <% end %>
-        <% beneficiaire = demande.beneficiaire if beneficiaire.id != demande.beneficiaire_id %>
+        <% recipient = demande.recipient if recipient.id != demande.recipient_id %>
         <td class="wrapped"><b><%= link_to_demande demande %></b></td>
         <td>
          <% if @ingenieur %>
@@ -39,7 +39,7 @@
              end %>
           <%= name(ingenieur) %>
          <% else %>
-          <%= beneficiaire %>
+          <%= recipient %>
          <% end %>
         </td>
         <td><span class="date"><%= demande.updated_on_formatted %></span></td>

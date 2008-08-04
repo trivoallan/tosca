@@ -6,7 +6,7 @@ class LogicielsController; def rescue_action(e) raise e end; end
 
 class LogicielsControllerTest < Test::Unit::TestCase
   fixtures :logiciels, :competences, :demandes, :commentaires, :contracts,
-    :beneficiaires, :contributions, :users, :clients, :credits, :components
+    :recipients, :contributions, :users, :clients, :credits, :components
 
   def setup
     @controller = LogicielsController.new

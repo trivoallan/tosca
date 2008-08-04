@@ -21,7 +21,7 @@
   <% options[:method] = :put %>
   <% @users.each_index do |i| %>
    <% user = @users[i] %>
-   <% beneficiaire = user.beneficiaire %>
+   <% recipient = user.recipient %>
    <% ingenieur = user.ingenieur %>
    <tr class="<%= cycle('even', 'odd') %>">
       <td><%= user.title %></td>
@@ -29,7 +29,7 @@
       <% if manager %>
        <td><%= user.role.name %></td>
        <td><%= '<center>X</center>' if ingenieur %></td>
-       <td><%= '<center>X</center>' if beneficiaire %></td>
+       <td><%= '<center>X</center>' if recipient %></td>
       <% end %>
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.phone %></td>

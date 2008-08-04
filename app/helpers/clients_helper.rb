@@ -10,9 +10,9 @@ module ClientsHelper
   # :text texte du lien à afficher
   # :image image du client à afficher à la place
   def link_to_my_client(image = false)
-    return nil unless @beneficiaire
-    label = image ? logo_client(@beneficiaire.client) : _('My&nbsp;Offer')
-    link_to label, client_path(@beneficiaire.client_id)
+    return nil unless @recipient
+    label = image ? logo_client(@recipient.client) : _('My&nbsp;Offer')
+    link_to label, client_path(@recipient.client_id)
   end
 
 

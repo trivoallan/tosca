@@ -41,11 +41,11 @@ class FilesController < ApplicationController
     fullpath = [ root, params[:id], params[:filename].gsub(' ','+') ] * '/'
 
     # Attachment has to be restricted.
-    scope_active = (@beneficiaire and file_type == :attachment)
+    scope_active = (@recipient and file_type == :attachment)
 
     # Ensure that we can remove scope
     begin
-      Attachment.set_scope(@beneficiaire.client_id) if scope_active
+      Attachment.set_scope(@recipient.client_id) if scope_active
       target = model[file_type].find(params[:id])
     ensure
       Attachment.remove_scope() if scope_active

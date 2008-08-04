@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
-  fixtures :clients, :images, :severites, :beneficiaires, :users, :contracts,
+  fixtures :clients, :images, :severites, :recipients, :users, :contracts,
     :contributions, :logiciels, :components, :credits
 
   def test_to_strings
@@ -29,7 +29,7 @@ class ClientTest < Test::Unit::TestCase
   def test_destroy
     Client.find(:all).each {  |c|
       c.destroy
-      assert Beneficiaire.find_all_by_client_id(c.id).empty?
+      assert Recipient.find_all_by_client_id(c.id).empty?
       assert Document.find_all_by_client_id(c.id).empty?
     }
   end
@@ -51,8 +51,8 @@ class ClientTest < Test::Unit::TestCase
     }
   end
 
-  def test_beneficiaire_ids
-    Client.find(:all).each { |c| check_ids c.beneficiaire_ids, Beneficiaire }
+  def test_recipient_ids
+    Client.find(:all).each { |c| check_ids c.recipient_ids, Recipient }
   end
 
   def test_ingenieurs
@@ -80,14 +80,14 @@ class ClientTest < Test::Unit::TestCase
       name = c.name
       assert c.update_attribute(:inactive, true)
       assert_equal c.name , "<strike>#{name}</strike>"
-      c.beneficiaires.each do |b|
+      c.recipients.each do |b|
         assert b.user.inactive?
       end
 
       assert c.update_attribute(:inactive, false)
       assert_equal c.name , name
       # reload client, in order to avoid cache errors
-      Client.find(c.id).beneficiaires.each do |b|
+      Client.find(c.id).recipients.each do |b|
         assert !b.user.inactive?
       end
     }

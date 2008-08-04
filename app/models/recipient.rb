@@ -1,4 +1,4 @@
-class Beneficiaire < ActiveRecord::Base
+class Recipient < ActiveRecord::Base
   acts_as_reportable
   belongs_to :user
   belongs_to :client, :counter_cache => true
@@ -7,7 +7,7 @@ class Beneficiaire < ActiveRecord::Base
   INCLUDE = [:user]
 
   # TODO : revoir la hiérarchie avec un nested tree (!)
-  belongs_to :beneficiaire
+  belongs_to :recipient
   has_many :demandes, :dependent => :destroy
 
   validates_presence_of :client

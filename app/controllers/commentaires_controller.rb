@@ -107,7 +107,7 @@ class CommentairesController < ApplicationController
   end
 
   def _not_allowed?
-    if @beneficiaire and @commentaire.user_id != @beneficiaire.user_id
+    if @recipient and @commentaire.user_id != @recipient.user_id
       flash[:warn] = _('You are not allowed to edit this comment')
       redirect_to demande_path(@commentaire.demande)
       return true

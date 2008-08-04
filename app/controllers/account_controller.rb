@@ -12,7 +12,7 @@ class AccountController < ApplicationController
   # See http://api.rubyonrails.org/classes/ActionController/Base.html#M000441
   filter_parameter_logging :password
 
-  helper :filters, :ingenieurs, :beneficiaires, :roles, :export
+  helper :filters, :ingenieurs, :recipients, :roles, :export
 
   around_filter :scope, :except => [:login, :logout, :lemon]
 
@@ -60,7 +60,7 @@ class AccountController < ApplicationController
     case request.method
     when :get # Display form
       @user = User.new(:role_id => 4, :client => true) # Default : customer
-      @user_recipient = Beneficiaire.new
+      @user_recipient = Recipient.new
     when :post # Process form
       @user = User.new(params['user'])
       @user.generate_password # from PasswordGenerator, see lib/
@@ -77,7 +77,7 @@ class AccountController < ApplicationController
         else
           # Those variables are used by _form in order to display the correct form
           associate_user
-          @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+          @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
         end
       rescue Exception => e
         connection.rollback_db_transaction
@@ -89,7 +89,7 @@ class AccountController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+    @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
     _form
   end
 
@@ -99,7 +99,7 @@ class AccountController < ApplicationController
   def index
     # init
     options = { :per_page => 15, :order => 'users.role_id, users.login',
-      :include => [:beneficiaire,:ingenieur,:role] }
+      :include => [:recipient,:ingenieur,:role] }
     conditions = []
     @roles = Role.find_select
 
@@ -113,7 +113,7 @@ class AccountController < ApplicationController
       # [ namespace, field, database field, operation ]
       conditions = Filters.build_conditions(accounts_filters, [
         [:name, 'users.name', :like ],
-        [:client_id, 'beneficiaires.client_id', :equal ],
+        [:client_id, 'recipients.client_id', :equal ],
         [:role_id, 'users.role_id', :equal ]
       ])
       flash[:conditions] = options[:conditions] = conditions
@@ -123,7 +123,7 @@ class AccountController < ApplicationController
     # Experts does not need to be scoped on accounts, but they can filter
     # only on their contract.
     scope = {}
-    if @beneficiaire
+    if @recipient
       scope = User.get_scope(session[:user].contract_ids)
     end
     User.send(:with_scope, scope) do
@@ -140,13 +140,13 @@ class AccountController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+    @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
     _form
   end
 
   def update
     @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+    @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
 
     # Security Wall
     if session[:user].role_id > 2 # Not a manager nor an admin
@@ -201,9 +201,8 @@ class AccountController < ApplicationController
   def become
     begin
       if @ingenieur
-        benef = Beneficiaire.find(params[:id])
         current_user = session[:user]
-        set_sessions(benef.user)
+        set_sessions(Recipient.find(params[:id]).user)
         session[:last_user] = current_user
       else
         flash[:warn] = _('You are not allowed to change your identity')
@@ -219,7 +218,7 @@ class AccountController < ApplicationController
   def ajax_place
     return render(:nothing => true) unless request.xhr? and params.has_key? :client
     if params[:client] == 'true'
-      @user_recipient = Beneficiaire.new
+      @user_recipient = Recipient.new
     else
       @user_engineer = Ingenieur.new
     end
@@ -313,7 +312,7 @@ private
       @clients = Client.find_select
 
       @count[:users] = User.count
-      @count[:beneficiaires] = Beneficiaire.count
+      @count[:recipients] = Recipient.count
       @count[:ingenieurs] = Ingenieur.count
     end
   end
@@ -336,7 +335,7 @@ private
 
   # Used during login and logout
   def clear_sessions
-    @beneficiaire = nil
+    @recipient = nil
     @ingenieur = nil
     reset_session
   end
@@ -345,8 +344,8 @@ private
   # Put in a separate method in order to improve readiblity of the code
   def associate_user!
     associate_user
-    benef, inge = @user.beneficiaire, @user.ingenieur
-    benef.update_attributes(params[:beneficiaire]) if benef
+    benef, inge = @user.recipient, @user.ingenieur
+    benef.update_attributes(params[:recipient]) if benef
     inge.update_attributes(params[:ingenieur]) if inge
   end
 

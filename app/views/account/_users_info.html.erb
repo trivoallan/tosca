@@ -36,10 +36,10 @@
   > <%=_('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
   <li><b><%= _('Logins: ')%> </b><%=@count[:users]%></li>
-  <li><b><%= _('Recipients: ')%></b><%=@count[:beneficiaires]%></li>
+  <li><b><%= _('Recipients: ')%></b><%=@count[:recipients]%></li>
   <li><b><%= _('Engineers: ')%></b><%=@count[:ingenieurs]%></li>
   <li><b><%= _('Inconsistencies: ')%></b><%=(@count[:users] -
-    (@count[:beneficiaires] + @count[:ingenieurs])).to_s %></li>
+    (@count[:recipients] + @count[:ingenieurs])).to_s %></li>
 </ul>
 <% end %>
 

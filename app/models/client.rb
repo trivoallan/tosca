@@ -3,8 +3,8 @@ class Client < ActiveRecord::Base
   include InactiveRecord
 
   belongs_to :image
-  has_many :beneficiaires, :dependent => :destroy
-  has_many :active_recipients, :class_name => 'Beneficiaire', :include => :user,
+  has_many :recipients, :dependent => :destroy
+  has_many :active_recipients, :class_name => 'Recipient', :include => :user,
     :conditions => 'users.inactive = 0'
   has_many :contracts, :dependent => :destroy
   has_many :documents, :dependent => :destroy
@@ -12,7 +12,7 @@ class Client < ActiveRecord::Base
   has_and_belongs_to_many :socles
 
   has_many :versions, :through => :contracts
-  has_many :demandes, :through => :beneficiaires # , :source => :demandes
+  has_many :demandes, :through => :recipients # , :source => :demandes
 
   belongs_to :creator, :class_name => 'User'
 
@@ -20,7 +20,7 @@ class Client < ActiveRecord::Base
   validates_length_of :name, :in => 3..50
 
 
-  SELECT_OPTIONS = { :include => {:beneficiaires => [:user]},
+  SELECT_OPTIONS = { :include => {:recipients => [:user]},
     :conditions => 'clients.inactive = 0 AND users.inactive = 0' }
 
   after_save :desactivate_recipients
@@ -29,7 +29,7 @@ class Client < ActiveRecord::Base
     begin
       connection.begin_db_transaction
       value = (inactive? ? 1 : 0)
-      connection.update "UPDATE users u, beneficiaires b SET u.inactive = #{value} WHERE b.client_id=#{self.id} AND b.user_id=u.id"
+      connection.update "UPDATE users u, recipients b SET u.inactive = #{value} WHERE b.client_id=#{self.id} AND b.user_id=u.id"
       connection.commit_db_transaction
     rescue Exception => e
       connection.rollback_db_transaction
@@ -73,8 +73,8 @@ class Client < ActiveRecord::Base
     result
   end
 
-  def beneficiaire_ids
-    @benefs ||= self.beneficiaires.find(:all, :select => 'id').collect{|c| c.id}
+  def recipient_ids
+    @recipient_ids ||= self.recipients.find(:all, :select => 'id').collect{|c| c.id}
   end
 
   def ingenieurs
@@ -103,8 +103,8 @@ class Client < ActiveRecord::Base
     Contribution.find(:all,
                    :conditions => "contributions.id IN (" +
                      "SELECT DISTINCT demandes.contribution_id FROM demandes " +
-                     "WHERE demandes.beneficiaire_id IN (" +
-                     beneficiaires.collect{|c| c.id}.join(',') + "))"
+                     "WHERE demandes.recipient_id IN (" +
+                     recipients.collect{|c| c.id}.join(',') + "))"
                    )
   end
 

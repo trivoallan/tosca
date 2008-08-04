@@ -1,4 +1,4 @@
-page.replace_html("recipient", select(:demande, :beneficiaire_id, @beneficiaires))
+page.replace_html("recipient", select(:demande, :recipient_id, @recipients))
 if @ingenieur
    out = %Q{<select id="demande_ingenieur_id" name="demande[ingenieur_id]"><option value="">» </option>}
    out << options_from_collection_for_select(@ingenieurs, :last, :first)

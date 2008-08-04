@@ -260,7 +260,7 @@ module ReportingHelper
     result = Time.in_words(elapsed, interval)
     return result if elapsed == 0
     elapsed = Elapsed.relative2absolute(elapsed, interval)
-    return _('Exceedance') if @beneficiaire && elapsed > total
+    return _('Exceedance') if @recipient && elapsed > total
     result += " / #{Time.in_words(total)}"
   end
 
@@ -293,9 +293,9 @@ module ReportingHelper
     client = nil
     result = '<ol>'
     requests.each do |r|
-      if client != r.beneficiaire.client
+      if client != r.recipient.client
         result << '</li>' unless client.nil?
-        client = r.beneficiaire.client
+        client = r.recipient.client
         result << "<li><b>#{ client.name}</b> :"
       end
       result << ' ' << link_to(r.id.to_s, demande_path(r))

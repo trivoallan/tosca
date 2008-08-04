@@ -11,14 +11,14 @@ module Scope
   # of safety. It was made in order to avoid 15 yields.
   def define_scope(user, is_connected)
     if is_connected
-      beneficiaire, ingenieur = user.beneficiaire, user.ingenieur
-      apply = ((ingenieur and user.restricted?) || beneficiaire)
+      recipient, ingenieur = user.recipient, user.ingenieur
+      apply = ((ingenieur and user.restricted?) || recipient)
       if apply
         contract_ids = user.contract_ids
         client_ids = user.client_ids
         if contract_ids.empty?
           contract_ids = [ 0 ]
-          client_ids = [ beneficiaire.client_id ] if beneficiaire
+          client_ids = [ recipient.client_id ] if recipient
         end
         SCOPE_CONTRACT.each {|m| m.set_scope(contract_ids) }
         SCOPE_CLIENT.each {|m| m.set_scope(client_ids) }

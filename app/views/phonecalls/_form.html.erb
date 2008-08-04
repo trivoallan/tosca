@@ -4,7 +4,7 @@
      lstm_text_field(_('Request'), :phonecall, :demande_id),
      lstm_select_field(_('Contract'), :phonecall, :contract, @contracts, :spinner => true),
      lstm_select_field(_('Engineer'), :phonecall, :ingenieur, @ingenieurs),
-     lstm_ajax_field(_('Recipient'), :phonecall, :beneficiaires),
+     lstm_ajax_field(_('Recipient'), :phonecall, :recipients),
      lstm_hline,
      lstm_datetime_field(_('Start of call'), :phonecall, :start),
      lstm_datetime_field(_('End of call'), :phonecall, :end)
@@ -14,5 +14,5 @@
 
 <% options = { :before => "Element.show('spinner')",
   :success => "Element.hide('spinner')", :with => 'id',
-  :update => 'beneficiaires', :url => ajax_beneficiaires_phonecalls_path, :method => :get } %>
+  :update => 'recipients', :url => ajax_recipients_phonecalls_path, :method => :get } %>
 <%= observe_field 'phonecall_contract_id', options %>

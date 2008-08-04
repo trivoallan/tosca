@@ -26,7 +26,7 @@ class ReportingController < ApplicationController
   # utilisé avant l'affichage
   def configuration
     _titles()
-    @contracts = (@beneficiaire ? @beneficiaire.client.contracts :
+    @contracts = (@recipient ? @recipient.client.contracts :
                  Contract.find(:all, Contract::OPTIONS))
   end
 
@@ -90,9 +90,9 @@ class ReportingController < ApplicationController
     if weekly
       options = { :select => 'id' }
       unless clients.include?('all')
-        options[:conditions] = "beneficiaires.client_id IN #{clients}"
+        options[:conditions] = "recipients.client_id IN #{clients}"
       end
-      recipient_ids = Beneficiaire.find(:all, options).collect{|b| b.id}
+      recipient_ids = Recipient.find(:all, options).collect{|b| b.id}
       compute_weekly_report(recipient_ids)
     end
     render :template => 'reporting/weekly'
@@ -284,8 +284,8 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     end_date = @report[:end_date]
 
-    liste = @contract.client.beneficiaires.collect{|b| b.id} # .join(',')
-    demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.beneficiaire_id IN (?)',
+    liste = @contract.client.recipients.collect{|b| b.id} # .join(',')
+    demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.recipient_id IN (?)',
                  nil, nil, liste ]
     until (start_date > end_date) do
       infdate = "#{start_date.strftime('%y-%m')}-01"
@@ -472,9 +472,9 @@ class ReportingController < ApplicationController
 
 
   ##
-  # Calcule le nombre de beneficiaire, de logiciel et contribution distinct par mois
+  # Calcule le nombre de recipient, de logiciel et contribution distinct par mois
   def compute_evolution(report)
-    report[0].push Demande.count('beneficiaire_id', :distinct => true)
+    report[0].push Demande.count('recipient_id', :distinct => true)
     report[1].push Demande.count('logiciel_id', :distinct => true)
     report[2].push Demande.count('contribution_id', :distinct => true)
   end

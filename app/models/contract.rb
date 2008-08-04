@@ -17,7 +17,7 @@ class Contract < ActiveRecord::Base
     :conditions => 'users.client = 0',
     :order => 'users.name ASC'
   has_and_belongs_to_many :recipient_users, :class_name => 'User',
-    :conditions => 'users.client = 1', :include => :beneficiaire,
+    :conditions => 'users.client = 1', :include => :recipient,
     :order => 'users.name ASC'
   has_and_belongs_to_many :teams, :order => 'teams.name'
   has_and_belongs_to_many :versions, :order => 'versions.name DESC'
@@ -73,7 +73,7 @@ class Contract < ActiveRecord::Base
   def find_recipients_select
     options = { :conditions => 'users.inactive = 0' }
     self.recipient_users.find(:all, options).collect{|u|
-      [  u.name, u.beneficiaire.id ] if u.beneficiaire }
+      [  u.name, u.recipient.id ] if u.recipient }
   end
 
   def ouverture_formatted

@@ -32,8 +32,8 @@ class UserTest < Test::Unit::TestCase
 
     c = clients(:client_00001)
     u.associate_recipient(c.id)
-    assert u.beneficiaire
-    assert_equal u.beneficiaire.client, c
+    assert u.recipient
+    assert_equal u.recipient.client, c
     assert_equal u.client?, true
 
     u.associate_engineer

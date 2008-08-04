@@ -10,7 +10,7 @@ class CommentairesController; def rescue_action(e) raise e end; end
 # and validate within the test suite the _not_allowed? effect of the
 # CommentaireController
 class CommentairesControllerTest < Test::Unit::TestCase
-  fixtures :commentaires, :demandes, :beneficiaires, :users,
+  fixtures :commentaires, :demandes, :recipients, :users,
   :permissions, :roles, :permissions_roles, :ingenieurs,
   :statuts, :clients, :credits, :components, :contracts, :contracts_users
 

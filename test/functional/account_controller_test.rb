@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 # Each Controller Test should test all _public_ methods
 class AccountControllerTest < ActionController::TestCase
   fixtures :users, :roles, :permissions_roles, :permissions, :clients,
-    :contracts_users, :contracts, :images, :beneficiaires, :credits,
+    :contracts_users, :contracts, :images, :recipients, :credits,
     :components, :clients, :ingenieurs
 
   def test_login_and_logout
@@ -41,7 +41,7 @@ class AccountControllerTest < ActionController::TestCase
     form.submit
 
     user = assigns(:user)
-    assert_not_nil user.beneficiaire
+    assert_not_nil user.recipient
     assert_redirected_to account_path(user)
     assert flash.has_key?(:notice)
     assert !flash.has_key?(:warning)
@@ -98,7 +98,7 @@ class AccountControllerTest < ActionController::TestCase
       # We cannot user check_ajax_filters, since it's a distant field
       xhr :get, :index, :filters => { :client_id => 1 }
       assert_response :success
-      assigns(:users).each { |u| assert_equal u.beneficiaire.client_id, 1 }
+      assigns(:users).each { |u| assert_equal u.recipient.client_id, 1 }
 
       xhr :get, :index, :filters => { :role_id => 1 }
       assert_response :success
@@ -136,7 +136,7 @@ class AccountControllerTest < ActionController::TestCase
   def test_become
     %w(admin manager expert).each { |l|
       login l, l
-      post :become, :id => Beneficiaire.find(:first).id
+      post :become, :id => Recipient.find(:first).id
       assert_response :redirect
       assert_redirected_to welcome_path
     }

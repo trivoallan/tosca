@@ -5,7 +5,7 @@
   result = ''
   result << "<td>#{a.contract.name}</td>"
   result << "<td>#{a.ingenieur.name if a.ingenieur}</td>"
-  result << "<td>#{a.beneficiaire ? a.beneficiaire.name : '-' }</td>"
+  result << "<td>#{a.recipient ? a.recipient.name : '-' }</td>"
   result << "<td>#{a.start_formatted}</td>"
   result << "<td>#{a.end_formatted}</td>"
   result << "<td>#{Time.in_words(a.length)}</td>"

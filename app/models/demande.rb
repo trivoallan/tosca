@@ -9,7 +9,7 @@ class Demande < ActiveRecord::Base
   #  1. The submitter (The one who has filled the request)
   #  2. The engineer (The one which is currently in charged of this request)
   #  3. The recipient (The one which has the problem)
-  belongs_to :beneficiaire
+  belongs_to :recipient
   belongs_to :ingenieur
   belongs_to :submitter, :class_name => 'User',
     :foreign_key => 'submitter_id'
@@ -47,7 +47,7 @@ class Demande < ActiveRecord::Base
     :foreign_key => "last_comment_id"
 
   # Validation
-  validates_presence_of :resume, :contract, :description, :beneficiaire,
+  validates_presence_of :resume, :contract, :description, :recipient,
    :statut, :severite, :warn => _("You must indicate a %s for your request")
   validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
@@ -58,8 +58,8 @@ class Demande < ActiveRecord::Base
   attr_accessor :description
 
   validate do |record|
-    if record.contract.nil? || record.beneficiaire.nil? ||
-        (record.contract.client_id != record.beneficiaire.client_id)
+    if record.contract.nil? || record.recipient.nil? ||
+        (record.contract.client_id != record.recipient.client_id)
       record.errors.add_to_base _('The client of this contract is not consistant with the client of this recipient.')
     end
   end
@@ -115,7 +115,7 @@ class Demande < ActiveRecord::Base
   # Remanent fields are those which persists after the first submit
   # It /!\ MUST /!^ be an _id field. See DemandesController#create.
   def self.remanent_fields
-    [ :contract_id, :beneficiaire_id, :typedemande_id, :severite_id,
+    [ :contract_id, :recipient_id, :typedemande_id, :severite_id,
       :socle_id, :logiciel_id, :ingenieur_id ]
   end
 
@@ -173,7 +173,7 @@ class Demande < ActiveRecord::Base
     # if we came from software view, it's sets automatically
     self.logiciel_id = params[:logiciel_id]
     # recipients
-    self.beneficiaire_id = recipient.id if recipient
+    self.recipient_id = recipient.id if recipient
   end
 
   # Description was moved to first comment mainly for
@@ -191,8 +191,8 @@ class Demande < ActiveRecord::Base
     'logiciels.name as logiciels_name, clients.name as clients_name, ' +
     'typedemandes.name as typedemandes_name, statuts.name as statuts_name '
   JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' +
-    'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
-    'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
+    'INNER JOIN recipients ON recipients.id=demandes.recipient_id '+
+    'INNER JOIN clients ON clients.id = recipients.client_id '+
     'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' +
     'INNER JOIN statuts ON statuts.id = demandes.statut_id ' +
     'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
@@ -204,7 +204,7 @@ class Demande < ActiveRecord::Base
   end
 
   def client
-    @client ||= ( beneficiaire ? beneficiaire.client : nil )
+    @client ||= ( recipient ? recipient.client : nil )
     @client
   end
 
@@ -324,7 +324,7 @@ class Demande < ActiveRecord::Base
       c.demande_id = self.id
       c.severite_id = self.severite_id
       c.statut_id = self.statut_id
-      c.user_id = self.beneficiaire.user_id
+      c.user_id = self.recipient.user_id
     end
     if comment.save
       self.first_comment = comment

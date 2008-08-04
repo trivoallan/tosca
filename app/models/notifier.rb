@@ -229,7 +229,7 @@ class Notifier < ActionMailer::Base
   def compute_recipients(demande, private = false)
     res = []
     # The client is not informed of private messages
-    res << demande.beneficiaire.user.email unless private
+    res << demande.recipient.user.email unless private
     # Request are not assigned, by default
     res << demande.ingenieur.user.email if demande.ingenieur
     res.join(',')

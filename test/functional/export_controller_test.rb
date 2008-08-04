@@ -6,7 +6,7 @@ require 'demandes_controller'
 class ExportControllerTest < Test::Unit::TestCase
 
    fixtures :demandes, :commentaires,
-    :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
+    :recipients, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :versions, :permissions, :roles,
     :permissions_roles, :contracts, :contracts_engagements, :engagements,
     :contracts_users, :users, :attachments, :contributions,

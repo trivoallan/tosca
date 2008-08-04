@@ -13,7 +13,7 @@ class LogicielsController < ApplicationController
   def index
     scope = nil
     @title = _('List of software')
-    if @beneficiaire && params['active'] != '0'
+    if @recipient && params['active'] != '0'
       scope = :supported
       @title = _('List of your supported software')
     end
@@ -47,7 +47,7 @@ class LogicielsController < ApplicationController
 
     # optional scope, for customers
     begin
-      Logiciel.set_scope(@beneficiaire.contract_ids) if scope
+      Logiciel.set_scope(@recipient.contract_ids) if scope
       @logiciel_pages, @logiciels = paginate :logiciels, options
     ensure
       Logiciel.remove_scope if scope
@@ -64,8 +64,8 @@ class LogicielsController < ApplicationController
 
   def show
     @logiciel = Logiciel.find(params[:id])
-    if @beneficiaire
-      @demandes = @beneficiaire.demandes.find(:all, :conditions =>
+    if @recipient
+      @demandes = @recipient.demandes.find(:all, :conditions =>
                                               ['demandes.logiciel_id=?', params[:id]])
     else
       @demandes = Demande.find(:all, :conditions =>

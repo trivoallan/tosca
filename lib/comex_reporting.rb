@@ -86,10 +86,10 @@ module  ComexReporting
     values = {
       :first_day => @date[:first_day],
       :last_day=> @date[:end_day],
-      :beneficiaire_ids => client.beneficiaire_ids
+      :recipient_ids => client.recipient_ids
     }
     client_scope = { :find => { :conditions =>
-        [ 'demandes.beneficiaire_id IN (:beneficiaire_ids) ',values ] }
+        [ 'demandes.recipient_id IN (:recipient_ids) ',values ] }
     }
     Demande.send(:with_scope, client_scope) {
       first_day = values[:first_day].to_formatted_s(:db)
