@@ -10,10 +10,10 @@ class ClientTest < Test::Unit::TestCase
 
   def test_logo
     image_file = fixture_file_upload('/files/logo_linagora.gif', 'image/gif')
-    client = Client.new(:name => "Testing logo", 
+    client = Client.new(:name => "Testing logo",
       :creator => User.find(:first),
       :description => "I a client with a nice logo",
-      :adresse => "I live next door")
+      :address => "I live next door")
     assert client.save
 
     images(:image_00001).destroy
@@ -97,7 +97,7 @@ class ClientTest < Test::Unit::TestCase
     columns = Client.content_columns.collect { |c| c.name }
     columns.sort!
 
-    assert_equal(["code_acces", "description", "name"], columns)
+    assert_equal(["access_code", "description", "name"], columns)
   end
 
 end
