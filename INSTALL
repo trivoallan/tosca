@@ -25,7 +25,7 @@ The first three are commonly available on linux distribution. Oniguruma and
 provided in tools/ directory.
 
 *** After that, you need those gems :
-  sudo gem install rails rmagick mysql gettext ruport ruport-util -y
+  sudo gem install rails rmagick mysql gettext -y
 In order to be able to :
 * launch the rails app (rails)
 * resize image (rmagick)

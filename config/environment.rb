@@ -107,7 +107,7 @@ require 'overrides'
 # Check and create used dirs, which are not on the SCM
 log_path = File.join RAILS_ROOT, 'log'
 paths = [ log_path, page_cache_path, cache_path ]
-paths.each { |path| Dir.mkdir(path) unless File.exists? path }
+paths.each { |path| FileUtils.mkdir_p(path) unless File.exists? path }
 
 # French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'
