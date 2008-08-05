@@ -10,6 +10,18 @@ class UserTest < Test::Unit::TestCase
     check_strings User
   end
 
+  def test_scope
+    assert !User.get_scope([Contract.find(:first).id]).empty?
+  end
+
+  def test_reset_permission_strings
+    User.reset_permission_strings
+  end
+
+  def test_team_manager
+    User.find(:all).each { |u| u.team_manager? }
+  end
+
   def test_authenticate
     %w(admin manager expert customer viewer).each do |u|
       assert User.authenticate(u, u)
@@ -120,31 +132,31 @@ class UserTest < Test::Unit::TestCase
     u.generate_password
     assert !u.save
   end
-  
+
   def test_manager?
     viewer = users(:user_viewer)
     customer = users(:user_customer)
     expert = users(:user_expert)
     manager  = users(:user_manager)
     admin = users(:user_admin)
-    
+
     assert_equal(viewer.manager?, false)
     assert_equal(customer.manager?, false)
     assert_equal(expert.manager?, false)
     assert_equal(manager.manager?, true)
     assert_equal(admin.manager?, true)
   end
-  
+
   def test_kind
     viewer = users(:user_viewer)
     customer = users(:user_customer)
     expert = users(:user_expert)
     manager  = users(:user_manager)
     admin = users(:user_admin)
-    
+
     kind_expert = 'expert'
     kind_recipient = 'recipient'
-    
+
     assert_equal(viewer.kind, kind_recipient)
     assert_equal(customer.kind, kind_recipient)
     assert_equal(expert.kind, kind_expert)
