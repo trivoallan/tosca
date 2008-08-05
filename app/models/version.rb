@@ -28,14 +28,15 @@ class Version < ActiveRecord::Base
   def <=>(other)
     return 1 if other.nil? or not other.is_a?(Version)
     
+    #ri Comparable for more info
     if self.generic? and not other.generic?
       return 1
     elsif not self.generic? and other.generic?
       return -1
-    else
-      #If both are generic or both are not
-      return self.name <=> other.name
     end
+    
+    #If both are generic or both are not
+    self.name <=> other.name
   end
   
 end

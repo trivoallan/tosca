@@ -1,7 +1,31 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+release_ff_2_0_0_13_r_1:
+  id: 1
+  name: "1"
+  version_id: 2
+  contract_id: 2
+  packaged: false
+  inactive: false
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+release_ff_2_0_0_13_r_2:
+  id: 2
+  name: "2"
+  version_id: 2
+  contract_id: 2
+  packaged: false
+  inactive: false
+
+release_ff_2_0_0_12_r_1:
+  id: 3
+  name: "1"
+  version_id: 4
+  contract_id: 2
+  packaged: false
+  inactive: false
+
+release_ff_2_0_0_12_r_2:
+  id: 4
+  name: "2"
+  version_id: 4
+  contract_id: 2
+  packaged: false
+  inactive: false
