@@ -33,7 +33,7 @@ class Notifier < ActionMailer::Base
 
   # This method requires 3 symbols in options :
   #   :user, :controller, :password
-  def user_signup(options, flash)
+  def user_signup(options, flash = nil)
     recipients  options[:user].email
     from        FROM
     subject     "Accès au Support Logiciel Libre"
@@ -45,9 +45,10 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function require 3 parameters for options :
-  #   :demande, :controller, :name
-  def request_new(options, flash)
+  # This function require 4 parameters for options :
+  #   :demande, :url_request
+  #   :name => user.name, :url_attachment
+  def request_new(options, flash = nil)
     demande =  options[:demande]
 
     recipients  compute_recipients(demande)
@@ -63,8 +64,11 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function needs 4 options for options :demande, :name, :commentaire, :url_request
-  def request_new_comment(options, flash)
+  # This function needs too much options :
+  #  { :demande, :name, :url_request, :url_attachment, :commentaire }
+  # And an optional
+  #  :modifications => {:statut_id, :ingenieur_id, :severite_id }
+  def request_new_comment(options, flash = nil)
     request = options[:demande]
     # needed in order to have correct recipients
     # for instance, send mail to the correct engineer
