@@ -1,16 +1,11 @@
-# French translation of Tosca.
-# Copyright (C) 2007 LINAGORA
-# Rémy-Christophe Schermesser <rschermesser@linagora.com>, 2007.
 # French translations for Tosca package
 # Traductions françaises du paquet Tosca.
-# Copyright (C) 2007 THE TOSCA'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the lstm package.
+# This file is distributed under the same license as the Tosca package.
 # Michel Loiseleur <mloiseleur@linagora.com>, 2007.
 # Munteanu Olimpiu Andrei <omunteanu@linagora.com>, 2007.
 # Rémy-Christophe Schermesser <rschermesser@linagora.com>, 2007.
 # Adrien Grellier <agrellier@linagora.com>, 2007.
 # Jonathan Clarke <jclarke@linagora.com>, 2007.
-# Rémy-Christophe Schermesser <rschermesser@linagora.com>, 2008.
 #
 #
 msgid ""
@@ -751,9 +746,8 @@ msgid "The version %s has been created."
 msgstr "La version %s a été crée avec succès"
 
 #: app/controllers/versions_controller.rb:55
-#, fuzzy
 msgid "The version %s has been updated."
-msgstr "Le paquet %s a été mis à jour avec succès"
+msgstr "La version %s a été mis à jour avec succès"
 
 #: app/controllers/welcome_controller.rb:30
 msgid ""
@@ -1250,31 +1244,26 @@ msgid "Arch|Name"
 msgstr "Nom"
 
 #: app/models/archive.rb:-
-#, fuzzy
 msgid "archive"
-msgstr "arch"
+msgstr "archive"
 
 #: app/models/archive.rb:-
-#, fuzzy
 msgid "Archive|Name"
 msgstr "Nom"
 
 #: app/models/archive.rb:-
 msgid "Archive|Size"
-msgstr ""
+msgstr "Taille"
 
 #: app/models/archive.rb:-
-#, fuzzy
 msgid "Archive|Release"
-msgstr "release"
+msgstr "Release"
 
 #: app/models/attachment.rb:-
-#, fuzzy
 msgid "attachment"
 msgstr "Fichier joint"
 
 #: app/models/attachment.rb:-
-#, fuzzy
 msgid "Attachment|File"
 msgstr "Fichier joint"
 
@@ -1299,49 +1288,40 @@ msgid "Changelog|Text modification"
 msgstr "Text modification"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "client"
 msgstr "un client"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Name"
 msgstr "Nom"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Description"
 msgstr "Description"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Address"
 msgstr "Adresse"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Image"
-msgstr "Client"
+msgstr "Image"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Access code"
 msgstr "Code d'accès"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Recipients count"
-msgstr "Bénéficiaires: "
+msgstr "Nombre de bénéficiaires"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Inactive"
 msgstr "Inactif"
 
 #: app/models/client.rb:-
-#, fuzzy
 msgid "Client|Creator"
-msgstr "Créé le"
+msgstr "Créateur"
 
 #: app/models/client.rb:36
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
@@ -1361,9 +1341,8 @@ msgid "Commentaire|User"
 msgstr "Utilisateur"
 
 #: app/models/commentaire.rb:-
-#, fuzzy
 msgid "Commentaire|Attachment"
-msgstr "Statut"
+msgstr "Fichier joint"
 
 #: app/models/commentaire.rb:-
 msgid "Commentaire|Corps"
@@ -1438,70 +1417,60 @@ msgid "contract"
 msgstr "contrat"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Client"
-msgstr "Numéro de chrono"
+msgstr "Client"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Ouverture"
-msgstr "Contrat"
+msgstr "Ouverture"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Cloture"
-msgstr "Cloture le"
+msgstr "Cloture"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Astreinte"
-msgstr "Contrats"
+msgstr "Astreinte"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Name"
-msgstr "Contrat"
+msgstr "Name"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Rule type"
-msgstr "Engagements contractuels"
+msgstr "Type de contrat"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Rule"
-msgstr "Contrat"
+msgstr "Type de Contrat"
 
 #: app/models/contract.rb:-
 msgid "Contract|Veille technologique"
-msgstr ""
+msgstr "Veille technologique"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Newsletter"
 msgstr "Lettre d'information"
 
 #: app/models/contract.rb:-
 msgid "Contract|Heure ouverture"
-msgstr ""
+msgstr "Heure d'ouverture"
 
 #: app/models/contract.rb:-
 msgid "Contract|Heure fermeture"
-msgstr ""
+msgstr "Heure de fermeture"
 
 #: app/models/contract.rb:- app/views/contracts/_form.html.erb:10
 msgid "Contract|Chrono"
 msgstr "Numéro de chrono"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Mailinglist"
 msgstr "Mailing liste"
 
 #: app/models/contract.rb:-
-#, fuzzy
 msgid "Contract|Creator"
-msgstr "Numéro de chrono"
+msgstr "Créateur"
 
 #: app/models/contribution.rb:- app/views/contributions/select.html.erb:4
 msgid "contribution"
@@ -1532,7 +1501,6 @@ msgid "Contribution|Id mantis"
 msgstr "Id mantis"
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Contributed on"
 msgstr "Créé le"
 
@@ -1541,9 +1509,8 @@ msgid "Contribution|Etatreversement"
 msgstr "État reversement"
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Closed on"
-msgstr "Créé le"
+msgstr "Clôturée le"
 
 #: app/models/contribution.rb:-
 msgid "Contribution|Logiciel"
@@ -1562,16 +1529,14 @@ msgid "Contribution|Affected version"
 msgstr "Version affectée"
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Synthesis"
-msgstr "Synthese"
+msgstr "Synthèse"
 
 #: app/models/contribution.rb:-
 msgid "Contribution|Fixed version"
 msgstr "Version corrigée"
 
 #: app/models/contribution.rb:-
-#, fuzzy
 msgid "Contribution|Version"
 msgstr "Version corrigée"
 
@@ -1584,119 +1549,98 @@ msgid " on "
 msgstr " à "
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "demande"
-msgstr "type de demande"
+msgstr "demande"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Recipient"
 msgstr "Bénéficiaire"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Ingenieur"
 msgstr "Ingénieur"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Resume"
-msgstr "Attendu le"
+msgstr "Résumé"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Statut"
 msgstr "Statut"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Severite"
 msgstr "Sévérité"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Logiciel"
 msgstr "Logiciel"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Created on"
-msgstr "Attendu le"
+msgstr "Créé le"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Updated on"
-msgstr "Attendu le"
+msgstr "Mise à jour le"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Typedemande"
 msgstr "Type de demande"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Contribution"
 msgstr "Contribution"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Socle"
 msgstr "Machine"
 
 #: app/models/demande.rb:-
 msgid "Demande|Mail cc"
-msgstr ""
+msgstr "Mail en copie"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|First comment"
-msgstr "Attendu le"
+msgstr "Premier commentaire"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Contract"
-msgstr "Contact"
+msgstr "Contrat"
 
 #: app/models/demande.rb:- app/views/demandes/_form.html.erb:95
 msgid "Demande|Expected on"
 msgstr "Attendu le"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Last comment"
-msgstr "Attendu le"
+msgstr "Dernier commentaire"
 
 #: app/models/demande.rb:-
 msgid "Demande|Mantis"
-msgstr ""
+msgstr "Mantis"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Submitter"
 msgstr "Déclarant"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Version"
 msgstr "Version"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Demande|Release"
 msgstr "Release"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "statut"
 msgstr "statut"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Statut|Name"
-msgstr "Etat"
+msgstr "Nom"
 
 #: app/models/demande.rb:-
-#, fuzzy
 msgid "Statut|Description"
 msgstr "Description"
 
@@ -1731,24 +1675,20 @@ msgid "Fatal Error when creating the first comment of this request."
 msgstr ""
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "document"
 msgstr "un document"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|User"
-msgstr "Documents"
+msgstr "Utilisateur"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Typedocument"
-msgstr "type de document"
+msgstr "Type de document"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Client"
-msgstr "Fichier"
+msgstr "Client"
 
 #: app/models/document.rb:- app/views/documents/_form.html.erb:20
 #: app/views/documents/list.html.erb:9
@@ -1765,22 +1705,18 @@ msgid "Document|Description"
 msgstr "Description"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Created on"
-msgstr "Mis à jour le"
+msgstr "Créé le"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Updated on"
 msgstr "Mis à jour le"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Version"
-msgstr "Description"
+msgstr "Version"
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Date delivery"
 msgstr "Date de livraison"
 
@@ -2057,39 +1993,32 @@ msgid "Permission|Info"
 msgstr "Informations"
 
 #: app/models/phonecall.rb:-
-#, fuzzy
 msgid "phonecall"
 msgstr "Appels"
 
 #: app/models/phonecall.rb:-
-#, fuzzy
 msgid "Phonecall|Recipient"
 msgstr "Bénéficiaire"
 
 #: app/models/phonecall.rb:-
-#, fuzzy
 msgid "Phonecall|Ingenieur"
 msgstr "Ingénieur"
 
 #: app/models/phonecall.rb:-
-#, fuzzy
 msgid "Phonecall|Start"
-msgstr "Appels"
+msgstr "Début"
 
 #: app/models/phonecall.rb:-
-#, fuzzy
 msgid "Phonecall|End"
-msgstr "Appels"
+msgstr "End"
 
 #: app/models/phonecall.rb:-
-#, fuzzy
 msgid "Phonecall|Contract"
 msgstr "Contact"
 
 #: app/models/phonecall.rb:-
-#, fuzzy
 msgid "Phonecall|Demande"
-msgstr "Appels"
+msgstr "Demande"
 
 #: app/models/phonecall.rb:13
 msgid "The beginning of the call has to be before to its end."
@@ -2144,42 +2073,34 @@ msgid "Preference|Updated at"
 msgstr "Mise à jour le"
 
 #: app/models/recipient.rb:-
-#, fuzzy
 msgid "recipient"
 msgstr "Bénéficiaire"
 
 #: app/models/recipient.rb:-
-#, fuzzy
 msgid "Recipient|Client"
-msgstr "Bénéficiaire"
+msgstr "Client"
 
 #: app/models/recipient.rb:-
-#, fuzzy
 msgid "Recipient|User"
-msgstr "Bénéficiaires"
+msgstr "Utilisateur"
 
 #: app/models/release.rb:-
-#, fuzzy
 msgid "Release|Version"
-msgstr "Releases"
+msgstr "Version"
 
 #: app/models/release.rb:-
-#, fuzzy
 msgid "Release|Contract"
 msgstr "Contact"
 
 #: app/models/release.rb:-
-#, fuzzy
 msgid "Release|Name"
 msgstr "Nom"
 
 #: app/models/release.rb:-
-#, fuzzy
 msgid "Release|Packaged"
 msgstr "Packagé"
 
 #: app/models/release.rb:-
-#, fuzzy
 msgid "Release|Inactive"
 msgstr "Inactif"
 
@@ -2405,7 +2326,6 @@ msgid "User|Image"
 msgstr "Image"
 
 #: app/models/user.rb:-
-#, fuzzy
 msgid "User|Information"
 msgstr "Informations"
 
@@ -2468,14 +2388,12 @@ msgid "Version|Logiciel"
 msgstr "Logiciel"
 
 #: app/models/version.rb:-
-#, fuzzy
 msgid "Version|Name"
 msgstr "Nom"
 
 #: app/models/version.rb:-
-#, fuzzy
 msgid "Version|Generic"
-msgstr "Version"
+msgstr "Générique"
 
 #: app/views/acces/refuse.html.erb:1 app/views/access/denied.html.erb:1
 msgid "Access denied"
@@ -3329,9 +3247,8 @@ msgid "Answer"
 msgstr "Répondre"
 
 #: app/views/demandes/_form.html.erb:25
-#, fuzzy
 msgid "Concerning"
-msgstr "Concernant "
+msgstr "Concernant"
 
 #: app/views/demandes/_form.html.erb:58
 #: app/views/demandes/_infos_demande.html.erb:42
@@ -3422,24 +3339,20 @@ msgid "Update the request %s (administration)"
 msgstr "Mise à jour de la requête %s (administrateur)"
 
 #: app/views/demandes/lists/_pending_table.html.erb:11
-#, fuzzy
 msgid "Resp."
-msgstr "Rôles"
+msgstr "Resp."
 
 #: app/views/demandes/lists/_pending_table.html.erb:44
-#, fuzzy
 msgid "Selected requests can wait"
-msgstr "La demande associée n'existe pas"
+msgstr "Les demandes sélectionnées peuvent attendre"
 
 #: app/views/demandes/lists/_pending_table.html.erb:45
-#, fuzzy
 msgid "days"
-msgstr "jour"
+msgstr "jours"
 
 #: app/views/demandes/lists/_pending_table.html.erb:46
-#, fuzzy
 msgid "before renewal"
-msgstr "Référence"
+msgstr "avant renouvellement"
 
 #: app/views/demandes/lists/_requests_info.html.erb:29
 msgid "Flow"
@@ -3537,19 +3450,16 @@ msgid "the idea box"
 msgstr "la boite à idées"
 
 #: app/views/demandes/lists/pending.html.erb:23
-#, fuzzy
 msgid "My team has not any pending request"
-msgstr "Ma demande en attente"
+msgstr "Mon équipe n'a pas de demande en attente"
 
 #: app/views/demandes/lists/pending.html.erb:24
-#, fuzzy
 msgid "My team has %d pending request"
 msgid_plural "My team has %d pending requests"
-msgstr[0] "Ma demande en attente"
-msgstr[1] "Mes demandes en attente"
+msgstr[0] "Mon équipe à %d demande en attente"
+msgstr[1] "Mon équipe à %d demandes en attente"
 
 #: app/views/demandes/new.html.erb:4
-#, fuzzy
 msgid "Please fill in the fields below."
 msgstr "Remplissez les champs ci-dessous."
 
@@ -3890,9 +3800,8 @@ msgid "Technologie(s)"
 msgstr "Technologie(s)"
 
 #: app/views/logiciels/_software_list.html.erb:7
-#, fuzzy
 msgid "Version(s)"
-msgstr "Versions"
+msgstr "Version(s)"
 
 #: app/views/logiciels/_tags.html.erb:2 app/views/logiciels/show.html.erb:73
 #: app/views/tags/show.html.erb:2
@@ -3926,11 +3835,10 @@ msgstr "Liens"
 #: app/views/releases/show.html.erb:14 app/views/versions/_form.html.erb:11
 #: app/views/versions/_versions_info.html.erb:23
 #: app/views/versions/show.html.erb:15
-#, fuzzy
 msgid "Version"
 msgid_plural "Versions"
 msgstr[0] "Version"
-msgstr[1] "Version"
+msgstr[1] "Versions"
 
 #: app/views/machines/_form.html.erb:6
 msgid "Access : DNS (IP)"
@@ -4045,9 +3953,8 @@ msgid "End of call"
 msgstr "Fin de l'appel"
 
 #: app/views/phonecalls/_form.html.erb:7
-#, fuzzy
 msgid "Request Id"
-msgstr "Demande"
+msgstr "ID de la demande"
 
 #: app/views/phonecalls/_form.html.erb:21
 msgid "Start of call"
@@ -4828,12 +4735,11 @@ msgstr "Versiond d'un logiciel"
 
 #: app/views/versions/show.html.erb:16
 msgid "Generic ?"
-msgstr ""
+msgstr "Générique ?"
 
 #: app/views/versions/show.html.erb:16
-#, fuzzy
 msgid "No"
-msgstr "Aucune"
+msgstr "Non"
 
 #: app/views/welcome/about.html.erb:8 app/views/welcome/index.html.erb:74
 msgid "Don't hesitate to"
