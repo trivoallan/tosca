@@ -7,9 +7,14 @@
      <tr>
        <th><label for="version_logiciel_id"><%= _('Software')%></label></th>
        <td><%= select(:version, :logiciel_id, @logiciels) %></td>
-     </tr><tr>
-       <th><label for="version_version"><%= _('Version')%></label></th>
+     </tr>
+     <tr>
+       <th><label for="version_name"><%= _('Version')%></label></th>
        <td><%= text_field :version, :name  %></td>
+     </tr>
+     <tr>
+       <th><label for="version_generic"><%= _('Generic ?')%></label></th>
+       <td><%= check_box :version, :generic %></td>
      </tr>
    </table>
   </td>
