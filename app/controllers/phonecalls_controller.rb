@@ -96,18 +96,19 @@ class PhonecallsController < ApplicationController
   end
 
   private
-  # TODO :
-  #  1. migrate form to the standard,
-  #  2. remove lstm_* helper
   def _form
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @contracts = Contract.find_select(Contract::OPTIONS)
+    contract = @phonecall.contract || @contracts.first
+    @recipients =
+      contract.client.recipients.find_select(User::SELECT_OPTIONS)
   end
 
   # variables utilisé par le panneau de gauche
   def _panel
     @count = {}
-    _form
+    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
+    @contracts = Contract.find_select(Contract::OPTIONS)
     @recipients = Recipient.find_select(User::SELECT_OPTIONS)
 
     @count[:phonecalls] = Phonecall.count
