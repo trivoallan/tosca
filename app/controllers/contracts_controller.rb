@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  helper :clients, :engagements, :ingenieurs, :releases
+  helper :clients, :commitments, :ingenieurs, :releases
 
   def index
     @contract_pages, @contracts = paginate :contracts, :per_page => 25
@@ -136,7 +136,7 @@ private
     Client.send(:with_exclusive_scope) do
       @clients = Client.find_select
     end
-    @engagements = Engagement.find(:all, Engagement::OPTIONS)
+    @commitments = Commitment.find(:all, Commitment::OPTIONS)
     @ingenieurs = User.find_select(User::EXPERT_OPTIONS)
     @teams = Team.find_select
     @contract_team = @contract.teams
@@ -154,11 +154,11 @@ private
   def _aggregate_commitments
     contract, ids = params[:contract], []
     return unless contract
-    contract.keys.grep(/^engagement_ids/).each{|k|
+    contract.keys.grep(/^commitment_ids/).each{|k|
       value = contract.delete(k)
       ids << value unless value == '0'
     }
-    contract[:engagement_ids] = ids
+    contract[:commitment_ids] = ids
   end
 
 end

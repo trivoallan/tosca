@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  helper :demandes, :socles, :engagements, :contracts, :filters
+  helper :demandes, :socles, :commitments, :contracts, :filters
 
   def index
     options = { :per_page => 10, :order => 'clients.name',
