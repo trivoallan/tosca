@@ -127,58 +127,6 @@ module FormsHelper
   end
   alias_method :search_demande, :search_demande_field
 
-
-
-  # write the label with the field.
-  # heavily used in account with show_table_form
-  # call it like this :
-  # lstm_text_field(_('User|phone'), 'user', 'phone')
-  def lstm_text_field(label, mmodel, field, options = {})
-    [ "<label for=\"#{mmodel}_#{field}\">#{label}</label>",
-      text_field(mmodel, field, options) ]
-  end
-
-  def lstm_password_field(label, model, field,
-                          options = {:size => 16, :value => ''})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      password_field(model, field, options) ]
-  end
-
-  def lstm_text_area(label, model, field, options = {})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      text_area(model, field, options) ]
-  end
-
-  # Used for hiding field which will be displaye by ajax_*
-  # call it like this :
-  #   lstm_ajax_field('Bénéficiaire', :appel, :recipients),
-  def lstm_ajax_field(label, model, field)
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      "<div id=\"#{field}\"></div>" ]
-  end
-
-  # put a select field in a lazy way
-  # call it like this :
-  #  lstm_select_field('Contract', :appel, :contract, @contracts, :spinner => true)
-  # options :
-  #  * spinner : put the spinner for ajax stuff
-  def lstm_select_field(label, model, field, collection, options = {})
-    result = [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-               collection_select(model, field.to_s + '_id', collection,
-                                 :last, :first, PROMPT_SELECT)  ]
-    result.last << ' ' + StaticImage::spinner if options.has_key? :spinner
-    result
-  end
-
-  def lstm_datetime_field(label, model, field, options={})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      datetime_select(model, field) ]
-  end
-
-  def lstm_hline
-    [ '<hr/>', nil ]
-  end
-
   def auto_complete(object, method, tag_options = {}, completion_options = {})
     completion_options[:skip_style] = true
     text_field_with_auto_complete(object, method, tag_options)
@@ -231,11 +179,11 @@ module FormsHelper
       @html_id_empty = "li_#{@object}_#{@method}_"
       @button = delete_button @html_id
       @new_record = true
-      out = link_to_function(c.name, "if ($('#{@html_id}')==null){" << update_page { |page| 
+      out = link_to_function(c.name, "if ($('#{@html_id}')==null){" << update_page { |page|
           page.insert_html :before, @html_id_empty, :partial => 'applications/auto_complete_insert'
           page.visual_effect(:appear, @html_id)
         } << "}"<< update_page { |page| page.delay(0.001) { page["#{object}_#{method}"].value = "" }}, :class => :no_hover)
-      content_tag(:li, out) 
+      content_tag(:li, out)
     end )
   end
 
