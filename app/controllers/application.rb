@@ -91,13 +91,11 @@ private
   # This array contains all errors that we want to rescue nicely
   # It's mainly for search engine bots, which seems to love
   # hammering wrong address
-  RescuedErrors =
-    [ ActiveRecord::RecordNotFound, ActionController::RoutingError
-    ] unless defined? RescuedErrors
-
   def rescue_action_in_public(exception)
+    @@rescued_errors ||= [ ActiveRecord::RecordNotFound,
+                           ActionController::RoutingError ]
     msg = nil
-    RescuedErrors.each{ |k| if exception.is_a? k
+    @@rescued_errors.each{ |k| if exception.is_a? k
         msg = _('This address is not valid. If you think this is an error, do not hesitate to contact us.')
       end
     }

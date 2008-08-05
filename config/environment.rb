@@ -137,14 +137,6 @@ if defined? GettextLocalize
   GettextLocalize::default_methods = [:param, :header, :session]
 end
 
-# Add new inflection rules using the following format
-# (all these examples are active by default):
-Inflector.inflections do |inflect|
-  inflect.plural(/^(ox)$/i, '\1en')
-  inflect.singular(/^(ox)en/i, '\1')
-  inflect.uncountable %w( fish sheep )
-end
-
 # Preload of controllers/models during boot.
 if RAILS_ENV == 'production'
   require_dependency 'application'

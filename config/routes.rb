@@ -1,7 +1,7 @@
 
 # special overrides, since routes can be reloaded
 # in rails, even in production.
-require 'routes_overrides'
+require_dependency 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation:
