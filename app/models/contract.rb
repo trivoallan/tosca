@@ -82,13 +82,6 @@ class Contract < ActiveRecord::Base
     display_time read_attribute(:cloture)
   end
 
-  def find_engagement(request)
-    options = { :conditions =>
-      [ 'engagements.typedemande_id = ? AND severite_id = ?',
-        request.typedemande_id, request.severite_id ] }
-    self.engagements.find(:first, options)
-  end
-
   def demandes
     conditions = [ 'demandes.contract_id = ?', id]
     Demande.find(:all, :conditions => conditions)

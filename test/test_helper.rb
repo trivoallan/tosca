@@ -126,4 +126,28 @@ class Test::Unit::TestCase
     }
   end
 
+
+  ArrayMethods = [ :content_columns ]
+  # Will call all common methods involved with arrays
+  # You can add specific methods.
+  # Ex : check_strings(Demande, :remanent_fields)
+  # => will call all ArrayMethods and the additionnal remanent_fields
+  # Note : All test methods are instance ones.
+  def check_arrays(klass, *methods)
+    ArrayMethods.each { |m|
+      begin
+        assert !klass.send(m).empty? if klass.respond_to? m
+      rescue Exception => e
+        raise Exception.new("check arrays failed on #{m} for model #{klass}")
+      end
+    }
+    methods.each { |m|
+      begin
+        assert !klass.send(m).empty?
+      rescue Exception => e
+        raise Exception.new("check arrays failed on #{m} for model #{klass}")
+      end
+    }
+  end
+
 end

@@ -48,7 +48,7 @@ class Demande < ActiveRecord::Base
 
   # Validation
   validates_presence_of :resume, :contract, :description, :recipient,
-   :statut, :severite, :warn => _("You must indicate a %s for your request")
+    :statut, :severite, :warn => _("You must indicate a %s for your request")
   validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
 
@@ -67,7 +67,7 @@ class Demande < ActiveRecord::Base
   # You cannot put it after_save : it invalidates the first comment,
   # If you do that, the first comment will receive the state of the request,
   # not the initial state of the request
-  after_create :create_first_comment
+  before_create :create_first_comment
 
   # self-explanatory
   TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})"
@@ -100,6 +100,7 @@ class Demande < ActiveRecord::Base
   # we maintain both the 2 cases.
   # See _form of request for more details
   def associate_software(revisions)
+    return unless revisions
     id = revisions[1..-1].to_i # revisions is a String, not an Array
     case revisions.first
     when 'v'
@@ -202,7 +203,6 @@ class Demande < ActiveRecord::Base
 
   def client
     @client ||= ( recipient ? recipient.client : nil )
-    @client
   end
 
   # Returns the state of a request at date t
@@ -274,6 +274,8 @@ class Demande < ActiveRecord::Base
     self.class.record_timestamps = true
   end
 
+  # TODO : add a commitment_id to Request Table. This helper method
+  # clearly slows uselessly Tosca.
   def engagement
     return nil unless contract_id && severite_id && typedemande_id
     conditions = [" contracts_engagements.contract_id = ? AND " +
@@ -288,47 +290,23 @@ class Demande < ActiveRecord::Base
     self.contract.interval
   end
 
-#  private
-  def affiche_delai(temps_passe, delai)
-    value = calcul_delai(temps_passe, delai)
-    return "-" if value == 0
-    distance = Time.in_words(value.abs, self.contract.interval)
-    if value >= 0
-      "<p style=\"color: green\">#{distance}</p>"
-    else
-      "<p style=\"color: red\">#{distance}</p>"
-    end
-  end
-
-  def calcul_delai(temps_passe, delai)
-    return 0 if delai == -1
-    - (temps_passe - delai * contract.interval_in_seconds)
-  end
-
-  protected
-  # this method must be protected and cannot be private as Ruby 1.8.6
-  def appellee
-    @appellee ||= self.commentaires.find(:first, :conditions => 'statut_id=2',
-                                         :order => 'updated_on ASC')
-  end
-
   private
   def create_first_comment
     comment = Commentaire.new do |c|
       #We use id's because it's quicker
       c.corps = self.description
       c.ingenieur_id = self.ingenieur_id
-      c.demande_id = self.id
+      c.demande = self
       c.severite_id = self.severite_id
       c.statut_id = self.statut_id
       c.user_id = self.recipient.user_id
     end
     if comment.save
       self.first_comment = comment
-      self.save
+      return true
     else
       self.destroy
-      throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
+      throw Exception.new(_('Fatal Error when creating the first comment of this request.'))
     end
   end
 

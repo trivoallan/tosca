@@ -55,15 +55,6 @@ class Client < ActiveRecord::Base
     self.contracts.find(:all, :select => 'id').collect{|c| c.id}
   end
 
-
-  def find_socles_select
-    options = { :conditions => [ "clients_socles.client_id = ?", self.id ],
-      :joins =>
-      'INNER JOIN clients_socles ON clients_socles.socle_id=socles.id'}
-    Socle.find(:all, options).collect{|s| [ s.name, s.id ] }
-  end
-
-
   # TODO : it's slow & ugly
   # returns true if we have a contract to support an entire distribution
   # for this client, false otherwise.
