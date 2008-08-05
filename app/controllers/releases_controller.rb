@@ -21,13 +21,18 @@ class ReleasesController < ApplicationController
 
   def create
     @release = Release.new(params[:release])
-    @release.logiciel_id = Version.find(@release.version_id).logiciel_id
-    if @release.save
-      flash[:notice] = _('This release has been successfully created.')
-      redirect_to version_path(@release.version)
+    if @release.version.generic?
+      flash[:warn] = _("This release can not be created, because it is associated 
+        with a generic version.<br/>Please create a specific version below.")
+      redirect_to new_version_path(:version_id => @release.version_id)
     else
-      _form
-      render :action => 'new'
+      if @release.save
+        flash[:notice] = _('This release has been successfully created.')
+        redirect_to version_path(@release.version)
+      else
+        _form
+        render :action => 'new'
+      end
     end
   end
 

@@ -28,9 +28,20 @@ class VersionsController < ApplicationController
   end
 
   def new
-    @version = Version.new
+    if params[:version_id]
+      #We come from the creation of a new release from a version which is generic
+      @version = Version.find(params[:version_id])
+      @version.generic = false
+    else
+      @version = Version.new
+    end
     _form
-    @version.logiciel_id = params[:logiciel_id]
+    @version.logiciel_id = params[:logiciel_id] if params[:logiciel_id]
+  end
+  
+  def new_specific
+    @version = Version.find(params[:id])
+    _form
   end
 
   def create

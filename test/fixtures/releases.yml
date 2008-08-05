@@ -1,7 +1,7 @@
 release_ff_2_0_0_13_r_1:
   id: 1
   name: "1"
-  version_id: 2
+  version_id: 1
   contract_id: 2
   packaged: false
   inactive: false
@@ -9,7 +9,7 @@ release_ff_2_0_0_13_r_1:
 release_ff_2_0_0_13_r_2:
   id: 2
   name: "2"
-  version_id: 2
+  version_id: 1
   contract_id: 2
   packaged: false
   inactive: false
