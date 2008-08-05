@@ -11,9 +11,17 @@ class Commentaire < ActiveRecord::Base
   validates_presence_of :user
 
   validate do |record|
+    request = record.demande
     if record.demande.nil?
       record.errors.add_to_base _('You must indicate a valid request')
     end
+    if (request && !request.new_record? && request.statut_id == self.statut_id)
+      record.errors.add_to_base _('The status of this request has already been changed.')
+    end
+    if (self.statut_id && self.prive)
+      record.errors.add_to_base _('You cannot privately change the status')
+    end
+
   end
 
 
@@ -49,16 +57,6 @@ class Commentaire < ActiveRecord::Base
   end
 
   private
-  before_create :check_status
-  def check_status
-    request = self.demande
-    if (request && request.statut_id == self.statut_id)
-      request.errors.add_to_base _('The status of this request has already been changed.')
-    end
-    if (self.statut_id && self.prive)
-      request.errors.add_to_base _('You cannot privately change the status')
-    end
-  end
 
   # We destroy a few things, if appropriate
   # Attachments, Elapsed Time or Request coherence is checked
@@ -94,8 +92,8 @@ class Commentaire < ActiveRecord::Base
     options = { :order => 'created_on DESC', :conditions =>
       'commentaires.statut_id IS NOT NULL' }
     last_one = request.commentaires.find(:first, options)
-    return request.update_attribute(:statut_id, last_one.statut_id) if last_one
-    true
+    return true unless last_one
+    request.update_attribute(:statut_id, last_one.statut_id)
   end
 
   # update request attributes, when creating a comment

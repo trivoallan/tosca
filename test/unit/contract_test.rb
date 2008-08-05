@@ -2,7 +2,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ContractTest < Test::Unit::TestCase
   fixtures :contracts, :logiciels, :versions, :contracts_commitments, :commitments,
-    :demandes, :components, :credits, :clients, :users, :contracts_users, :ingenieurs
+    :demandes, :components, :credits, :clients, :users, :contracts_users, :ingenieurs,
+    :recipients
 
   def test_to_strings
     check_strings Contract, :ouverture_formatted, :cloture_formatted
@@ -34,6 +35,7 @@ class ContractTest < Test::Unit::TestCase
     Contract.find(:first).logiciels.each{ |l| assert l.is_a?(Logiciel)}
   end
 
+<<<<<<< HEAD:test/unit/contract_test.rb
 =begin TODO
   def test_find_commitment
     c = Contract.find :first
@@ -43,6 +45,8 @@ class ContractTest < Test::Unit::TestCase
   end
 =end
 
+=======
+>>>>>>> 6f482b2d8fb7febeeeaab8cc82d10eff260b6f90:test/unit/contract_test.rb
   def test_demandes
     c = Contract.find :first
     c.demandes.each{ |d|
@@ -57,6 +61,22 @@ class ContractTest < Test::Unit::TestCase
     end
   end
 
+  def test_credit?
+    Contract.find(:first).credit?
+  end
+
+  def test_find_recipients_select
+    recipients = Contract.find(:first).find_recipients_select
+    assert !recipients.empty?
+  end
+
+  def test_scope
+    Contract.set_scope([Contract.find(:first).id])
+    Contract.find(:all)
+    Contract.remove_scope
+  end
+
+
   def test_engineer_users
     Contract.find(:all).each do |c|
       c.engineer_users.each { |i|
@@ -65,7 +85,7 @@ class ContractTest < Test::Unit::TestCase
       }
     end
   end
-  
+
   def test_engineers
     Contract.find(:all).each do |c|
       c.engineers.each { |i|

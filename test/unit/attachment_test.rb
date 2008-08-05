@@ -1,10 +1,16 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AttachmentTest < Test::Unit::TestCase
-  fixtures :attachments, :commentaires
+  fixtures :attachments, :commentaires, :clients, :demandes, :recipients
 
   def test_to_strings
     check_strings Attachment
+  end
+
+  def test_scope
+    Attachment.set_scope(Client.find(:first).id)
+    Attachment.find(:all)
+    Attachment.remove_scope
   end
 
   def test_magick_attachments

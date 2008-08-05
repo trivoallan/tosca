@@ -42,12 +42,21 @@ class ClientTest < Test::Unit::TestCase
     Client.find(:all).each { |c| check_ids c.contract_ids, Contract }
   end
 
+  def test_scope
+    Client.set_scope([Client.find(:first).id])
+    Client.find(:all)
+    Client.remove_scope
+  end
+
+  def test_overloaded_find_select
+    assert !Client.find_select.empty?
+  end
+
   def test_support_distribution
     Client.find(:all).each { |c|
       res = c.support_distribution
       assert !res.nil?
       assert(res == true || res == false)
-
     }
   end
 

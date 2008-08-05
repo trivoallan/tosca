@@ -67,7 +67,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
                [ '^contracts/(?!destroy)', 'Manage contracts' ],
                [ '^demandes/(?!destroy)', 'Manage requests' ],
-               [ '^engagements/(?!destroy)', 'Manage Service Level Agreement' ],
+               [ '^commitments/(?!destroy)', 'Manage Service Level Agreement' ],
                [ '^groupes/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
                [ '^ingenieurs/(?!(destroy|new))',

@@ -20,14 +20,6 @@ class Contribution < ActiveRecord::Base
         c.name =~ /(_id|_on|^patch)$/ || c.name == inheritance_column }
   end
 
-  # TODO : tout le monde doit pouvoir voir toutes les contributions.
-  # Ca pose problème avec le scope logiciel ...
-  # See ApplicationController#scope
-  def self.set_scope(contract_ids)
-    self.scoped_methods << { :find => { :conditions =>
-        [ 'versions.contract_id IN (?)', contract_ids ], :include => [:versions] } }
-  end
-
   def to_s
     return name unless patch
     index = patch.rindex('/')+ 1
@@ -77,34 +69,10 @@ class Contribution < ActiveRecord::Base
     end
   end
 
-  # conditions de mise à jour d'un reversement
-  # + "non clos" ET (updated_on > 1 mois)
-  # + OU "à reverser"
-  def todo(max_jours)
-    return false unless contributed_on
-    # TODO : vérifier max_jours is integer
-    age = ((Time.now - contributed_on)/(60*60*24)).round
-    if !clos && age > max_jours.to_i
-      # non clos && non maj
-      return "mettre-à-jour"
-    elsif !reverse
-      # non initialisé
-      return "reverser"
-    end
-      # rien à faire
-    return false
-  end
-
   # Fake fields, used to prettify _form WUI
   def reverse; contributed_on?; end
   def clos; closed_on?; end
   def clos=(fake); end
   def reverse=(fake); end
-
-  # return true if contribution was accepted
-  def accepte
-    return false unless etatreversement
-    etatreversement_id == 4
-  end
 
 end

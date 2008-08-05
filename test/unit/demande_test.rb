@@ -6,15 +6,15 @@ class DemandeTest < Test::Unit::TestCase
     :contracts_users
 
   def test_to_strings
-    check_strings Demande, :resume, :description
+    check_strings Demande, :resume, :description, :full_software_name, :elapsed_formatted
   end
 
   def test_presence_of_attributes
     recipient = recipients(:recipient_00001)
-    request = Demande.new(:description => 'description', :resume => 'resume',
+    request = Demande.new({:description => 'description', :resume => 'resume',
         :recipient => recipient, :submitter => recipient.user,
         :statut => statuts(:statut_00001), :severite => severites(:severite_00001),
-        :contract => recipient.user.contracts.first )
+        :contract => recipient.user.contracts.first })
     # must have a recipient
     assert request.save
 
@@ -24,6 +24,52 @@ class DemandeTest < Test::Unit::TestCase
     assert_equal c.severite, request.severite
     assert_equal c.statut, request.statut
     assert_equal c.ingenieur, request.ingenieur
+  end
+
+  def test_scope
+    Demande.set_scope([Contract.find(:first).id])
+    Demande.find(:all)
+    Demande.remove_scope
+  end
+
+  def test_arrays
+    check_arrays Demande, :remanent_fields
+  end
+
+  def test_fragments
+    assert !Demande.find(:first).fragments.empty?
+  end
+
+  def test_finder
+    request = demandes(:demande_00010)
+    comment = request.find_status_comment_before(request.last_status_comment)
+    assert_not_nil comment
+  end
+
+  def test_helpers_function
+    Demande.find(:all).each { |r|
+      r.time_running?
+      result = r.state_at(Time.now)
+      assert_instance_of Demande, result
+      assert result.statut_id?
+      assert result.ingenieur_id?
+      assert result.severite_id?
+      r.critical?
+      assert_not_nil r.client
+      assert_not_nil r.engagement
+      assert_instance_of Fixnum, r.interval
+    }
+  end
+
+  def test_reset_elapsed
+    Demande.find(:first).reset_elapsed
+  end
+
+  def test_set_defaults
+    request = Demande.find(:first)
+    request.statut_id = nil
+    request.set_defaults(nil, request.recipient, {})
+    request.set_defaults(request.ingenieur, nil, {})
   end
 
 =begin
