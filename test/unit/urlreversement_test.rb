@@ -13,7 +13,7 @@ class UrlreversementTest < Test::Unit::TestCase
     assert u.errors.on(:valeur)
     assert u.errors.on(:contribution)
 
-    contrib = contributions(:contribution_00001)
+    contrib = contributions(:contribution_0001)
     u.update_attributes(:valeur => 'rubyonrails.org', :contribution => contrib)
     assert u.save
   end

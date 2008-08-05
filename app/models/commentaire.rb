@@ -15,7 +15,9 @@ class Commentaire < ActiveRecord::Base
     if record.demande.nil?
       record.errors.add_to_base _('You must indicate a valid request')
     end
-    if (request && !request.new_record? && request.statut_id == record.statut_id)
+    if (request && request.new_record? != true &&
+        request.first_comment_id != record.id &&
+        request.statut_id == record.statut_id)
       record.errors.add_to_base _('The status of this request has already been changed.')
     end
     if (record.statut_id && record.prive)

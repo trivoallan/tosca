@@ -273,10 +273,10 @@ class Demande < ActiveRecord::Base
   # TODO : add a commitment_id to Request Table. This helper method
   # clearly slows uselessly Tosca.
     return nil unless contract_id && severite_id && typedemande_id
-    conditions = [" contracts_commitments.contract_id = ? AND " +
+    conditions = [" commitments_contracts.contract_id = ? AND " +
       "commitments.severite_id = ? AND commitments.typedemande_id = ? ",
       contract_id, severite_id, typedemande_id ]
-    joins = " INNER JOIN contracts_commitments ON commitments.id = contracts_commitments.commitment_id"
+    joins = " INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id"
     Commitment.find(:first, :conditions => conditions, :joins => joins)
   end
 
