@@ -98,7 +98,7 @@ class Contract < ActiveRecord::Base
   def typedemandes
     joins = 'INNER JOIN commitments ON commitments.typedemande_id = typedemandes.id '
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
-    conditions = [ 'commitments_commitments.contract_id = ? ', id ]
+    conditions = [ 'commitments_contracts.contract_id = ? ', id ]
     Typedemande.find(:all,
                      :select => "DISTINCT typedemandes.*",
                      :conditions => conditions,
