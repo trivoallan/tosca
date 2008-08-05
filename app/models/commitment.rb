@@ -1,4 +1,4 @@
-class Engagement < ActiveRecord::Base
+class Commitment < ActiveRecord::Base
   belongs_to :severite
   belongs_to :typedemande
   has_and_belongs_to_many :contracts
@@ -25,7 +25,7 @@ class Engagement < ActiveRecord::Base
   end
 
   INCLUDE = [:typedemande,:severite]
-  ORDER = 'engagements.typedemande_id, engagements.severite_id DESC, engagements.contournement DESC'
+  ORDER = 'commitments.typedemande_id, commitments.severite_id DESC, commitments.contournement DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
 end
