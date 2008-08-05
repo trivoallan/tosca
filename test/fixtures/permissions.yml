@@ -120,7 +120,7 @@ permission_00005:
   info: Allow comments on this software
   id: 5
 permission_00027: 
-  name: ^engagements/(?!destroy)
+  name: ^commitments/(?!destroy)
   info: Manage Service Level Agreement
   id: 27
 permission_00049: 

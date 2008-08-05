@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContractTest < Test::Unit::TestCase
-  fixtures :contracts, :logiciels, :versions, :contracts_engagements, :engagements,
+  fixtures :contracts, :logiciels, :versions, :contracts_commitments, :commitments,
     :demandes, :components, :credits, :clients, :users, :contracts_users, :ingenieurs
 
   def test_to_strings
@@ -35,11 +35,11 @@ class ContractTest < Test::Unit::TestCase
   end
 
 =begin TODO
-  def test_find_engagement
+  def test_find_commitment
     c = Contract.find :first
     request = Demande.find :first
-    e = Engagement.find :first
-    assert_equal c.find_engagement(request), e
+    e = Commitment.find :first
+    assert_equal c.find_commitment(request), e
   end
 =end
 

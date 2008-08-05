@@ -7,7 +7,7 @@ class DemandesControllerTest < ActionController::TestCase
   fixtures :demandes, :commentaires, :users, :contracts_users,
     :recipients, :clients, :statuts, :ingenieurs, :severites,
     :logiciels, :socles, :clients_socles, :versions, :permissions, :roles,
-    :permissions_roles, :contracts, :contracts_engagements, :engagements,
+    :permissions_roles, :contracts, :contracts_commitments, :commitments,
     :attachments, :typedemandes, :elapseds
 
   def test_pending
