@@ -24,7 +24,7 @@
 <% end %>
 
 <p><b><%= _("Contractual commitments") %> : </b></p>
-<%= show_table_engagements @contract.engagements %>
+<%= show_table_commitments @contract.commitments %>
 
 <%= show_list(@contract.engineer_users, _('expert')) {|u| link_to u.name, account_path(u)} %>
 

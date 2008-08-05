@@ -11,13 +11,13 @@
   <% selecteds = @demande[:version_ids] %>
   <% @versions.each do |p| %>
      <% contract = Contract.find(p.contract_id) %>
-     <% engagement = contract.find_engagement(@demande) %>
+     <% commitment = contract.find_commitment(@demande) %>
      <tr class="<%=cycle('even','odd')%>">
-       <td><% if engagement %>
-         <%= Time.in_words(engagement.contournement.days, true)%>
+       <td><% if commitment %>
+         <%= Time.in_words(commitment.contournement.days, true)%>
        <% end %></td>
-       <td><% if engagement %>
-         <%= Time.in_words(engagement.correction.days, true)%> </td>
+       <td><% if commitment %>
+         <%= Time.in_words(commitment.correction.days, true)%> </td>
        <% end %> </td>
        <td>
          <% #TODO : remplacer ce truc par un <%= check_box ... %>

@@ -36,7 +36,7 @@
       result << _("concerning %s releases") % c.releases.size
     end
     result << '.'
-    result << show_table_engagements(c.engagements)
+    result << show_table_commitments(c.commitments)
     result } %>
    <b><%= _("View") %></b> <%=_("the")%>
       <%= link_to(_('Activity report'), general_reporting_path) %><br/>

@@ -18,7 +18,7 @@
   <% requests.each do |request| %>
    <% elapsed = request.elapsed %>
    <% interval = request.interval %>
-   <% commitment = request.engagement %>
+   <% commitment = request.commitment %>
    <tr class="<%=cycle('odd', 'even')%>" id="request_<%=request.id%>">
     <td><%= check_box_tag 'request_ids[]', request.id, false, :id => "request_ids_#{request.id}" %></td>
     <td><label for="request_ids_<%=request.id%>"><%= request.id %></label></td>

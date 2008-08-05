@@ -1,0 +1,11 @@
+<% for column in Commitment.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%= Time.in_words(@commitment.send(column.name).days, true) %>
+</p>
+<% end %>
+
+<% for contract in @commitment.contracts %>
+  <%= contract.client.name %> <br />
+<% end %>
+
+<%= link_to_edit_and_list(@commitment) %>
