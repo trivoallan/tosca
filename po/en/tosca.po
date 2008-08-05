@@ -1,13 +1,8 @@
-# English translation of lstm.
-# Copyright (C) 2007 LINAGORA
-# Rémy-Christophe Schermesser <rschermesser@linagora.com>, 2007.
-# French translations for lstm package
-# Traductions françaises du paquet lstm.
-# Copyright (C) 2007 THE lstm'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the lstm package.
-# Loiseleur Michel <mloiseleur@linagora.com>, 2007.
+# English translations for Tosca package
+# This file is distributed under the same license as the Tosca package.
+# Michel Loiseleur <mloiseleur@linagora.com>, 2007.
 # Munteanu Olimpiu Andrei <omunteanu@linagora.com>, 2007.
-# Rémy-Christoph Schermesser <rschermesser@linagora.com>, 2007.
+# Rémy-Christophe Schermesser <rschermesser@linagora.com>, 2007.
 # Adrien Grellier <agrellier@linagora.com>, 2007.
 # Jonathan Clarke <jclarke@linagora.com>, 2007.
 #
