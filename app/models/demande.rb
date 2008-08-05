@@ -64,11 +64,6 @@ class Demande < ActiveRecord::Base
     end
   end
 
-  # You cannot put it after_save : it invalidates the first comment,
-  # If you do that, the first comment will receive the state of the request,
-  # not the initial state of the request
-  before_create :create_first_comment
-
   # self-explanatory
   TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})"
   EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})"
@@ -290,9 +285,14 @@ class Demande < ActiveRecord::Base
     self.contract.interval
   end
 
+  # We have to make it in two steps, coz of the whole validation. If you
+  # manage to cover all the case in one method, MLO will offer you a beer ;)
+  before_create :create_first_comment
+  after_create :finish_first_comment
+
   private
   def create_first_comment
-    comment = Commentaire.new do |c|
+    self.first_comment = Commentaire.new do |c|
       #We use id's because it's quicker
       c.corps = self.description
       c.ingenieur_id = self.ingenieur_id
@@ -301,13 +301,10 @@ class Demande < ActiveRecord::Base
       c.statut_id = self.statut_id
       c.user_id = self.recipient.user_id
     end
-    if comment.save
-      self.first_comment = comment
-      return true
-    else
-      self.destroy
-      throw Exception.new(_('Fatal Error when creating the first comment of this request.'))
-    end
+  end
+
+  def finish_first_comment
+    self.first_comment.update_attribute :demande_id, self.id
   end
 
 end

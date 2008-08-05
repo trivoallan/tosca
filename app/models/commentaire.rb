@@ -15,10 +15,10 @@ class Commentaire < ActiveRecord::Base
     if record.demande.nil?
       record.errors.add_to_base _('You must indicate a valid request')
     end
-    if (request && !request.new_record? && request.statut_id == self.statut_id)
+    if (request && !request.new_record? && request.statut_id == record.statut_id)
       record.errors.add_to_base _('The status of this request has already been changed.')
     end
-    if (self.statut_id && self.prive)
+    if (record.statut_id && record.prive)
       record.errors.add_to_base _('You cannot privately change the status')
     end
 
