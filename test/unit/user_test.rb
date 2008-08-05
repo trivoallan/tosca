@@ -22,6 +22,10 @@ class UserTest < Test::Unit::TestCase
     User.find(:all).each { |u| u.team_manager? }
   end
 
+  def test_find_select
+    assert !User.find_select().empty?
+  end
+
   def test_authenticate
     %w(admin manager expert customer viewer).each do |u|
       assert User.authenticate(u, u)
