@@ -335,7 +335,7 @@ class ReportingController < ApplicationController
     }
 
     demandes.each do |d|
-      e = d.engagement
+      e = d.commitment
       interval = d.contract.interval.hours
       next unless e
 

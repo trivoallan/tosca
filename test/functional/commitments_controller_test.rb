@@ -1,14 +1,14 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'engagements_controller'
+require 'commitments_controller'
 
 # Re-raise errors caught by the controller.
-class EngagementsController; def rescue_action(e) raise e end; end
+class CommitmentsController; def rescue_action(e) raise e end; end
 
-class EngagementsControllerTest < Test::Unit::TestCase
-  fixtures :engagements, :typedemandes, :severites
+class CommitmentsControllerTest < Test::Unit::TestCase
+  fixtures :commitments, :typedemandes, :severites
 
   def setup
-    @controller = EngagementsController.new
+    @controller = CommitmentsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -18,7 +18,7 @@ class EngagementsControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:engagements)
+    assert_not_nil assigns(:commitments)
   end
 
   def test_show
@@ -27,8 +27,8 @@ class EngagementsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:engagement)
-    assert assigns(:engagement).valid?
+    assert_not_nil assigns(:commitment)
+    assert assigns(:commitment).valid?
   end
 
   def test_new
@@ -37,13 +37,13 @@ class EngagementsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:engagement)
+    assert_not_nil assigns(:commitment)
   end
 
   def test_create
-    num_engagements = Engagement.count
+    num_commitments = Commitment.count
 
-    post :create, :engagement => {
+    post :create, :commitment => {
       :correction => 11,
       :contournement => 0.16 # 0.16 stands for 4 hours
     }
@@ -51,7 +51,7 @@ class EngagementsControllerTest < Test::Unit::TestCase
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
-    assert_equal num_engagements + 1, Engagement.count
+    assert_equal num_commitments + 1, Commitment.count
   end
 
   def test_edit
@@ -60,8 +60,8 @@ class EngagementsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:engagement)
-    assert assigns(:engagement).valid?
+    assert_not_nil assigns(:commitment)
+    assert assigns(:commitment).valid?
   end
 
   def test_update
@@ -71,14 +71,14 @@ class EngagementsControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Engagement.find(1)
+    assert_not_nil Commitment.find(1)
 
     post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Engagement.find(1)
+      Commitment.find(1)
     }
   end
 end

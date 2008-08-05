@@ -100,9 +100,9 @@ class Client < ActiveRecord::Base
   end
 
   def typedemandes
-    joins = 'INNER JOIN engagements ON engagements.typedemande_id = typedemandes.id '
-    joins << 'INNER JOIN contracts_engagements ON engagements.id = contracts_engagements.engagement_id'
-    conditions = [ 'contracts_engagements.contract_id IN (' +
+    joins = 'INNER JOIN commitments ON commitments.typedemande_id = typedemandes.id '
+    joins << 'INNER JOIN contracts_commitments ON commitments.id = contracts_commitments.commitment_id'
+    conditions = [ 'contracts_commitments.contract_id IN (' +
         'SELECT contracts.id FROM contracts WHERE contracts.client_id = ?)', id ]
     Typedemande.find(:all,
                      :select => "DISTINCT typedemandes.*",

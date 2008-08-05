@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContractTest < Test::Unit::TestCase
-  fixtures :contracts, :logiciels, :versions, :contracts_engagements, :engagements,
-    :demandes, :components, :credits, :clients, :users, :contracts_users,
-    :ingenieurs, :recipients
+  fixtures :contracts, :logiciels, :versions, :contracts_commitments, :commitments,
+    :demandes, :components, :credits, :clients, :users, :contracts_users, :ingenieurs,
+    :recipients
 
   def test_to_strings
     check_strings Contract, :ouverture_formatted, :cloture_formatted
@@ -35,6 +35,18 @@ class ContractTest < Test::Unit::TestCase
     Contract.find(:first).logiciels.each{ |l| assert l.is_a?(Logiciel)}
   end
 
+<<<<<<< HEAD:test/unit/contract_test.rb
+=begin TODO
+  def test_find_commitment
+    c = Contract.find :first
+    request = Demande.find :first
+    e = Commitment.find :first
+    assert_equal c.find_commitment(request), e
+  end
+=end
+
+=======
+>>>>>>> 6f482b2d8fb7febeeeaab8cc82d10eff260b6f90:test/unit/contract_test.rb
   def test_demandes
     c = Contract.find :first
     c.demandes.each{ |d|

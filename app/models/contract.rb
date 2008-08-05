@@ -8,7 +8,7 @@ class Contract < ActiveRecord::Base
   has_many :tags
   has_many :releases
 
-  has_and_belongs_to_many :engagements, :order =>
+  has_and_belongs_to_many :commitments, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
   has_and_belongs_to_many :users, :order => 'users.name'
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
@@ -82,15 +82,22 @@ class Contract < ActiveRecord::Base
     display_time read_attribute(:cloture)
   end
 
+  def find_commitment(request)
+    options = { :conditions =>
+      [ 'commitments.typedemande_id = ? AND severite_id = ?',
+        request.typedemande_id, request.severite_id ] }
+    self.commitments.find(:first, options)
+  end
+
   def demandes
     conditions = [ 'demandes.contract_id = ?', id]
     Demande.find(:all, :conditions => conditions)
   end
 
   def typedemandes
-    joins = 'INNER JOIN engagements ON engagements.typedemande_id = typedemandes.id '
-    joins << 'INNER JOIN contracts_engagements ON engagements.id = contracts_engagements.engagement_id'
-    conditions = [ 'contracts_engagements.contract_id = ? ', id ]
+    joins = 'INNER JOIN commitments ON commitments.typedemande_id = typedemandes.id '
+    joins << 'INNER JOIN contracts_commitments ON commitments.id = contracts_commitments.commitment_id'
+    conditions = [ 'contracts_commitments.contract_id = ? ', id ]
     Typedemande.find(:all,
                      :select => "DISTINCT typedemandes.*",
                      :conditions => conditions,

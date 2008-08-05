@@ -104,10 +104,10 @@ class DemandeTest < Test::Unit::TestCase
     assert_equal r.temps_rappel, 0
     assert_equal r.affiche_temps_rappel, '-'
   end
-  def test_engagement
+  def test_commitment
     r = Demande.find 3
-    e = Engagement.find 1
-    assert_equal r.engagement(3), e
+    e = Commitment.find 1
+    assert_equal r.commitment(3), e
   end
   def test_affiche_temps_ecoule
     r = Demande.find 3

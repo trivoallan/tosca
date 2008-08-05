@@ -28,8 +28,8 @@
         <th><label for="contract_name"><%= _("Domain") %></label></th>
         <td><%= text_field :contract, :name %></td>
       </tr><tr>
-        <th><label><%=_('Commitments')%> <%= link_to_new_engagement %></label></th>
-        <td><%= show_form_engagements(@contract.engagements, @engagements, 'contract[engagement_ids]') %></td>
+        <th><label><%=_('Commitments')%> <%= link_to_new_commitment %></label></th>
+        <td><%= show_form_commitments(@contract.commitments, @commitments, 'contract[commitment_ids]') %></td>
       </tr>
     </table>
   </td>

@@ -77,17 +77,17 @@ module DemandesHelper
     render :partial => "report_detail", :locals => options
   end
 
-  # TODO : modifier le model : ajouter champs type demande aux engagements
+  # TODO : modifier le model : ajouter champs type demande aux commitments
   # TODO : prendre en compte le type de la demande !!!
 
-  def display_engagement_contournement(demande, version)
-    engagement = demande.engagement(version.contract_id)
-    display_days(engagement.contournement)
+  def display_commitment_contournement(demande, version)
+    commitment = demande.commitment(version.contract_id)
+    display_days(commitment.contournement)
   end
 
-  def display_engagement_correction(demande, version)
-    engagement = demande.engagement(version.contract_id)
-    display_days(engagement.correction)
+  def display_commitment_correction(demande, version)
+    commitment = demande.commitment(version.contract_id)
+    display_days(commitment.correction)
   end
 
   # Display more nicely change to history table
@@ -209,7 +209,7 @@ module DemandesHelper
 
   def display_commitment(req)
     return '-' unless req
-    commitment = req.engagement
+    commitment = req.commitment
     if commitment
       "<p><b>%s: </b> %s<br /><b>%s: </b> %s</p>" %
         [ _('Workaround'), Time.in_words(commitment.contournement * 1.day, true),
