@@ -39,7 +39,7 @@
           </td>
         <% elsif @contracts.size == 1 %>
           <td colspan="2">
-            <%= @contracts.first.name %>
+            <%= @contracts.first.first %>
             <%= hidden_field(:demande, :contract_id, :value => @contracts.first.last) %>
           </td>
         <% else %>

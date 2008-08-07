@@ -7,7 +7,7 @@
 #
 # It contains also general links in the header/footer part
 #
-require 'mime/types'
+# require 'mime/types'
 
 module LinksHelper
 
