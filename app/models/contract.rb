@@ -1,16 +1,17 @@
 class Contract < ActiveRecord::Base
   acts_as_reportable
-  
+
   belongs_to :client
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
-  
+  belongs_to :commercial, :class_name => 'Ingenieur'
+
   has_many :paquets, :dependent => :destroy
   has_many :demandes
   has_many :binaires, :through => :paquets
   has_many :appels
   has_many :tags
-  
+
   has_and_belongs_to_many :engagements, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
   has_and_belongs_to_many :users, :order => 'users.name'
@@ -33,15 +34,16 @@ class Contract < ActiveRecord::Base
     errors.add_to_base("The schedules of this contract are invalid.") unless heure_ouverture < heure_fermeture
   end
 
+
   Rules = [ 'Rules::Credit', 'Rules::Component' ]
 
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
         [ 'contracts.id IN (?)', contract_ids ] } }
   end
-  
+
   def engineers
-    engineers = self.engineer_users 
+    engineers = self.engineer_users
     engineers.concat(self.teams.collect { |t| t.users }.flatten).uniq!
     engineers
   end

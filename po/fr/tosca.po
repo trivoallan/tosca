@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-08 10:26+0200\n"
-"PO-Revision-Date: 2008-07-08 13:56+0200\n"
+"POT-Creation-Date: 2008-08-07 11:51+0200\n"
+"PO-Revision-Date: 2008-08-07 11:53+0200\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -204,7 +204,7 @@ msgstr "La contribution a été créée avec succès"
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
-#: app/controllers/contributions_controller.rb:203
+#: app/controllers/contributions_controller.rb:202
 msgid "The associated request does not exist"
 msgstr "La demande associée n'existe pas"
 
@@ -217,19 +217,19 @@ msgstr "Toutes les demandes"
 msgid "You have successfully submitted your %s request."
 msgstr "Vous avez soumis avec succès votre %s demande"
 
-#: app/controllers/demandes_controller.rb:267
+#: app/controllers/demandes_controller.rb:271
 msgid "The request has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
-#: app/controllers/demandes_controller.rb:297
+#: app/controllers/demandes_controller.rb:301
 msgid "The demand has now no contribution"
 msgstr "Le demande n'a plus de contributions"
 
-#: app/controllers/demandes_controller.rb:299
+#: app/controllers/demandes_controller.rb:303
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/demandes_controller.rb:337
+#: app/controllers/demandes_controller.rb:341
 msgid ""
 "It seems that you are not associated to a contract, which prevents you from "
 "filling a request. Please contat %s if you think it's not normal"
@@ -238,12 +238,12 @@ msgstr ""
 "de déposer une demande. Veuillez contacter %s si vous pensez que ce n'est "
 "pas normal."
 
-#: app/controllers/demandes_controller.rb:397
+#: app/controllers/demandes_controller.rb:401
 #: app/helpers/demandes_helper.rb:181
 msgid "Active requests"
 msgstr "Demandes actives"
 
-#: app/controllers/demandes_controller.rb:400
+#: app/controllers/demandes_controller.rb:404
 #: app/helpers/demandes_helper.rb:188
 msgid "Finished requests"
 msgstr "Demandes terminées"
@@ -420,7 +420,7 @@ msgstr "Statut"
 
 #: app/controllers/export_controller.rb:141
 #: app/views/account/_edit_account_informations.html.erb:8
-#: app/views/contracts/_form.html.erb:39 app/views/contracts/index.html.erb:5
+#: app/views/contracts/_form.html.erb:46 app/views/contracts/index.html.erb:5
 #: app/views/demandes/_form.html.erb:13
 #: app/views/demandes/_infos_demande.html.erb:31
 #: app/views/demandes/lists/_requests_info.html.erb:50
@@ -477,8 +477,8 @@ msgid "Minor"
 msgstr "Mineure"
 
 #: app/controllers/export_controller.rb:199
-#: app/helpers/application_helper.rb:174 app/helpers/engagements_helper.rb:46
-#: app/helpers/engagements_helper.rb:47
+#: app/helpers/application_helper.rb:174 app/helpers/engagements_helper.rb:47
+#: app/helpers/engagements_helper.rb:48
 #: app/views/reporting/_comex_tableaux.html.erb:20
 msgid "None"
 msgstr "Aucune"
@@ -1167,7 +1167,7 @@ msgstr "Effacer"
 msgid "Hide"
 msgstr "Cacher"
 
-#: app/helpers/static_image.rb:63 app/views/bienvenue/about.html.erb:4
+#: app/helpers/static_image.rb:63 app/views/bienvenue/about.html.erb:3
 #: app/views/demandes/_infos_demande.html.erb:73
 #: app/views/demandes/lists/_requests_info.html.erb:66
 msgid "Help"
@@ -1224,10 +1224,114 @@ msgstr "Sélectionner une date"
 msgid "new url"
 msgstr "une nouvelle urls"
 
+#: app/models/arch.rb:-
+msgid "arch"
+msgstr "architecture"
+
+#: app/models/arch.rb:-
+msgid "Arch|Name"
+msgstr "Nom"
+
+#: app/models/beneficiaire.rb:-
+msgid "beneficiaire"
+msgstr ""
+
+#: app/models/beneficiaire.rb:-
+msgid "Beneficiaire|Client"
+msgstr ""
+
+#: app/models/beneficiaire.rb:-
+msgid "Beneficiaire|Beneficiaire"
+msgstr ""
+
+#: app/models/beneficiaire.rb:-
+msgid "Beneficiaire|User"
+msgstr ""
+
+#: app/models/beneficiaire.rb:-
+msgid "Beneficiaire|Notifier subalternes"
+msgstr "Notifier subalternes"
+
+#: app/models/beneficiaire.rb:-
+msgid "Beneficiaire|Notifier"
+msgstr ""
+
+#: app/models/beneficiaire.rb:-
+msgid "Beneficiaire|Notifier cc"
+msgstr ""
+
+#: app/models/changelog.rb:- app/views/paquets/show.html.erb:57
+msgid "changelog"
+msgstr "changelog"
+
+#: app/models/changelog.rb:-
+msgid "Changelog|Paquet"
+msgstr "Paquet"
+
+#: app/models/changelog.rb:-
+msgid "Changelog|Date modification"
+msgstr ""
+
+#: app/models/changelog.rb:-
+msgid "Changelog|Nom modification"
+msgstr ""
+
+#: app/models/changelog.rb:-
+msgid "Changelog|Text modification"
+msgstr ""
+
 #: app/models/client.rb:36
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
 msgstr ""
 "Ne peut pas (dés)activer les bénéficiaires associés à cause de : \"%s\""
+
+#: app/models/commentaire.rb:-
+msgid "commentaire"
+msgstr "commentaire"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Demande"
+msgstr ""
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|User"
+msgstr "Utilisateur"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Piecejointe"
+msgstr ""
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Corps"
+msgstr "Corps"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Created on"
+msgstr "Créé le"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Updated on"
+msgstr "Mis à jour le"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Prive"
+msgstr "Privé"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Severite"
+msgstr ""
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Statut"
+msgstr ""
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Ingenieur"
+msgstr "Ingénieur"
+
+#: app/models/commentaire.rb:-
+msgid "Commentaire|Elapsed"
+msgstr ""
 
 #: app/models/commentaire.rb:10
 msgid "You must have a comment with at least 5 characters"
@@ -1256,6 +1360,90 @@ msgstr "Vous ne pouvez changer le statut avec un commentaire privé"
 #: app/models/commentaire.rb:78
 msgid "This request seems to be unstable."
 msgstr "Cette demande semble être inconsistante."
+
+#: app/models/competence.rb:-
+msgid "competence"
+msgstr "compétence"
+
+#: app/models/competence.rb:-
+msgid "Competence|Name"
+msgstr "Nom"
+
+#: app/models/conteneur.rb:-
+msgid "conteneur"
+msgstr "un conteneur"
+
+#: app/models/conteneur.rb:-
+msgid "Conteneur|Name"
+msgstr "Nom"
+
+#: app/models/contribution.rb:- app/views/contributions/select.html.erb:4
+msgid "contribution"
+msgstr "contribution"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Name"
+msgstr "Nom"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Description"
+msgstr "Description"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Patch"
+msgstr "Correctif"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Created on"
+msgstr "Créé le"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Updated on"
+msgstr "Mise à jour le"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Id mantis"
+msgstr "Id mantis"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Reverse le"
+msgstr "Reversée le"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Description fonctionnelle"
+msgstr ""
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Etatreversement"
+msgstr "État reversement"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Cloture le"
+msgstr "Clôturée le"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Logiciel"
+msgstr "Logiciel"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Ingenieur"
+msgstr "Ingénieur"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Typecontribution"
+msgstr "Type de contribution"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Affected version"
+msgstr "Version concernée"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Synthese"
+msgstr "Synthèse"
+
+#: app/models/contribution.rb:-
+msgid "Contribution|Fixed version"
+msgstr "Version corrigée"
 
 #: app/models/contribution.rb:19
 msgid "You have to specify a software."
@@ -1291,6 +1479,114 @@ msgid ""
 "recipient."
 msgstr "Le client de ce contrat est incohérent avec le client du bénéficiaire."
 
+#: app/models/dependance.rb:-
+msgid "dependance"
+msgstr "dépendance"
+
+#: app/models/dependance.rb:-
+msgid "Dependance|Paquet"
+msgstr ""
+
+#: app/models/dependance.rb:-
+msgid "Dependance|Name"
+msgstr ""
+
+#: app/models/dependance.rb:-
+msgid "Dependance|Sens"
+msgstr ""
+
+#: app/models/dependance.rb:-
+msgid "Dependance|Version"
+msgstr ""
+
+#: app/models/distributeur.rb:-
+msgid "distributeur"
+msgstr "distributeur"
+
+#: app/models/distributeur.rb:- app/views/distributeurs/_form.html.erb:4
+msgid "Distributeur|Name"
+msgstr "Nom"
+
+#: app/models/elapsed.rb:-
+msgid "elapsed"
+msgstr "écoulé"
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Demande"
+msgstr ""
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Taken into account"
+msgstr "Prise en compte"
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Workaround"
+msgstr "Contournée"
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Correction"
+msgstr "Correction"
+
+#: app/models/elapsed.rb:-
+msgid "Elapsed|Until now"
+msgstr ""
+
+#: app/models/engagement.rb:-
+msgid "engagement"
+msgstr "engagement"
+
+#: app/models/engagement.rb:-
+msgid "Engagement|Severite"
+msgstr ""
+
+#: app/models/engagement.rb:-
+msgid "Engagement|Contournement"
+msgstr ""
+
+#: app/models/engagement.rb:-
+msgid "Engagement|Correction"
+msgstr "Correction"
+
+#: app/models/engagement.rb:-
+msgid "Engagement|Typedemande"
+msgstr ""
+
+#: app/models/etatreversement.rb:-
+msgid "etatreversement"
+msgstr "état reversement"
+
+#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:4
+msgid "Etatreversement|Name"
+msgstr "Nom"
+
+#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:7
+msgid "Etatreversement|Description"
+msgstr "Description"
+
+#: app/models/groupe.rb:-
+msgid "groupe"
+msgstr "groupe"
+
+#: app/models/groupe.rb:-
+msgid "Groupe|Name"
+msgstr "Nom"
+
+#: app/models/image.rb:-
+msgid "image"
+msgstr "image"
+
+#: app/models/image.rb:-
+msgid "Image|Image"
+msgstr "image"
+
+#: app/models/image.rb:-
+msgid "Image|Description"
+msgstr "Description"
+
+#: app/models/image.rb:-
+msgid "Image|Logiciel"
+msgstr ""
+
 #: app/models/image.rb:4
 msgid "You must select a file to upload"
 msgstr "Vous devez sélectionner un fichier à télécharger"
@@ -1299,6 +1595,38 @@ msgstr "Vous devez sélectionner un fichier à télécharger"
 msgid "Logo '%s'"
 msgstr "Logo '%s'"
 
+#: app/models/ingenieur.rb:-
+msgid "ingenieur"
+msgstr ""
+
+#: app/models/ingenieur.rb:-
+msgid "Ingenieur|User"
+msgstr ""
+
+#: app/models/ingenieur.rb:-
+msgid "Ingenieur|Image"
+msgstr ""
+
+#: app/models/knowledge.rb:-
+msgid "knowledge"
+msgstr "connaissance"
+
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Competence"
+msgstr "Compétence"
+
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Logiciel"
+msgstr "Logiciel"
+
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Ingenieur"
+msgstr "Ingénieur"
+
+#: app/models/knowledge.rb:-
+msgid "Knowledge|Level"
+msgstr "Niveau"
+
 #: app/models/knowledge.rb:10
 msgid "You have to specify a software or a domain."
 msgstr "Vous devez spécifier un nom ou un domaine"
@@ -1306,6 +1634,50 @@ msgstr "Vous devez spécifier un nom ou un domaine"
 #: app/models/knowledge.rb:13
 msgid "You cannot specify a software and a domain."
 msgstr "Vous ne pouvez spécifier un logiciel et un domaine."
+
+#: app/models/license.rb:-
+msgid "license"
+msgstr "licence"
+
+#: app/models/license.rb:- app/views/licenses/_form.html.erb:3
+msgid "License|Name"
+msgstr "Nom"
+
+#: app/models/license.rb:-
+msgid "License|Url"
+msgstr "Url"
+
+#: app/models/license.rb:-
+msgid "License|Certifie osi"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "logiciel"
+msgstr "logiciel"
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Name"
+msgstr "Nom"
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Referent"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Resume"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Description"
+msgstr "Description"
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|License"
+msgstr ""
+
+#: app/models/logiciel.rb:-
+msgid "Logiciel|Groupe"
+msgstr ""
 
 #: app/models/logiciel.rb:19
 msgid "You have to specify a name"
@@ -1319,49 +1691,133 @@ msgstr "Vous devez spécifier un groupe"
 msgid "You have to specify at least one technology"
 msgstr "Vous devez spécifier au moins une technologie"
 
-#: app/models/notifier.rb:115
+#: app/models/machine.rb:-
+msgid "machine"
+msgstr "machines"
+
+#: app/models/machine.rb:-
+msgid "Machine|Socle"
+msgstr "Socle"
+
+#: app/models/machine.rb:-
+msgid "Machine|Acces"
+msgstr "Accès"
+
+#: app/models/machine.rb:-
+msgid "Machine|Virtuelle"
+msgstr ""
+
+#: app/models/machine.rb:-
+msgid "Machine|Hote"
+msgstr "Hôte"
+
+#: app/models/machine.rb:-
+msgid "Machine|Description"
+msgstr "Description"
+
+#: app/models/mainteneur.rb:-
+msgid "mainteneur"
+msgstr "mainteneur"
+
+#: app/models/mainteneur.rb:-
+msgid "Mainteneur|Name"
+msgstr "Nom"
+
+#: app/models/new.rb:-
+msgid "news"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "new"
+msgstr "nouveau"
+
+#: app/models/new.rb:-
+msgid "New|Subject"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Source"
+msgstr "Source"
+
+#: app/models/new.rb:-
+msgid "New|Body"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Created on"
+msgstr "Créé le"
+
+#: app/models/new.rb:-
+msgid "New|Updated on"
+msgstr "Mis à jour le"
+
+#: app/models/new.rb:-
+msgid "New|Ingenieur"
+msgstr ""
+
+#: app/models/new.rb:-
+msgid "New|Client"
+msgstr "Client"
+
+#: app/models/new.rb:-
+msgid "New|Logiciel"
+msgstr ""
+
+#: app/models/notifier.rb:114
 msgid "Daily digest for "
 msgstr "Rapport d'activité pour "
 
-#: app/models/notifier.rb:117
+#: app/models/notifier.rb:116
 msgid " week of "
 msgstr " semaine "
 
-#: app/models/notifier.rb:118
+#: app/models/notifier.rb:117
 msgid "Weekly digest for "
 msgstr "Activité hebdomadaire pour "
 
-#: app/models/notifier.rb:121
+#: app/models/notifier.rb:120
 msgid "Monthly digest for "
 msgstr "Activité mensuelle pour "
 
-#: app/models/notifier.rb:124
+#: app/models/notifier.rb:123
 msgid "Yearly digest for "
 msgstr "Activité annuelle pour "
 
-#: app/models/notifier.rb:168
+#: app/models/notifier.rb:167
 msgid "Possible error in your e-mail"
 msgstr "Erreur possible dans votre adresse e-mail"
 
-#: app/models/notifier.rb:179
+#: app/models/notifier.rb:178
 msgid "Multiple accounts with the same e-mail"
 msgstr "Plusieurs comptes avec le même e-mail"
 
-#: app/models/notifier.rb:191
+#: app/models/notifier.rb:190
 msgid "Mailing list does not exists"
 msgstr "Mailingliste inexistante"
 
-#: app/models/notifier.rb:239
+#: app/models/notifier.rb:237
 msgid "An e-mail informing"
 msgstr "Un e-mail informant"
 
-#: app/models/notifier.rb:240
+#: app/models/notifier.rb:238
 msgid "with a copy to"
 msgstr "avec en copie"
 
-#: app/models/notifier.rb:241
+#: app/models/notifier.rb:239
 msgid "was sent."
 msgstr "a été envoyé."
+
+#: app/models/permission.rb:-
+msgid "permission"
+msgstr "permission"
+
+#: app/models/permission.rb:-
+msgid "Permission|Name"
+msgstr "Nom"
+
+#: app/models/permission.rb:-
+msgid "Permission|Info"
+msgstr "Info"
 
 #: app/models/phonecall.rb:14
 msgid "The beginning of the call has to be before to its end."
@@ -1378,6 +1834,62 @@ msgstr "Appels de %s on '%s'"
 #: app/models/phonecall.rb:54
 msgid "Phonecall of %s for %s"
 msgstr "Appels de %s pour %s"
+
+#: app/models/piecejointe.rb:-
+msgid "piecejointe"
+msgstr ""
+
+#: app/models/piecejointe.rb:-
+msgid "Piecejointe|File"
+msgstr "Fichier"
+
+#: app/models/preference.rb:-
+msgid "preference"
+msgstr "préférence"
+
+#: app/models/preference.rb:-
+msgid "Preference|Attribute"
+msgstr "Attribut"
+
+#: app/models/preference.rb:-
+msgid "Preference|Owner"
+msgstr "Propriétaire"
+
+#: app/models/preference.rb:-
+msgid "Preference|Owner type"
+msgstr "Type de propriétaire"
+
+#: app/models/preference.rb:-
+msgid "Preference|Preferenced"
+msgstr "Préférences"
+
+#: app/models/preference.rb:-
+msgid "Preference|Preferenced type"
+msgstr ""
+
+#: app/models/preference.rb:-
+msgid "Preference|Value"
+msgstr "Valeur"
+
+#: app/models/preference.rb:-
+msgid "Preference|Created at"
+msgstr "Créée le"
+
+#: app/models/preference.rb:-
+msgid "Preference|Updated at"
+msgstr "Mise à jour le"
+
+#: app/models/role.rb:-
+msgid "role"
+msgstr "rôle"
+
+#: app/models/role.rb:-
+msgid "Role|Name"
+msgstr "Nom"
+
+#: app/models/role.rb:-
+msgid "Role|Info"
+msgstr "Info"
 
 #: app/models/rules/component.rb:28
 msgid "Illimited offer on all components"
@@ -1400,6 +1912,26 @@ msgstr "Nombre illimité de tickets de %s"
 #: app/models/rules/credit.rb:26
 msgid "Up to %d tickets of %s"
 msgstr "Jusqu'a %d ticket de %s"
+
+#: app/models/severite.rb:-
+msgid "severite"
+msgstr "sévérité"
+
+#: app/models/severite.rb:-
+msgid "Severite|Name"
+msgstr "Nom"
+
+#: app/models/socle.rb:-
+msgid "socle"
+msgstr "socle"
+
+#: app/models/socle.rb:-
+msgid "Socle|Name"
+msgstr "Nom"
+
+#: app/models/socle.rb:-
+msgid "Socle|Binaires count"
+msgstr ""
 
 #: app/models/statut.rb:5
 msgid "Submitted"
@@ -1432,6 +1964,171 @@ msgstr "Fermée"
 #: app/models/statut.rb:12
 msgid "Cancelled"
 msgstr "Annulée"
+
+#: app/models/team.rb:-
+msgid "team"
+msgstr "équipe"
+
+#: app/models/team.rb:-
+msgid "Team|Name"
+msgstr "Nom"
+
+#: app/models/team.rb:-
+msgid "Team|Motto"
+msgstr "Devise"
+
+#: app/models/team.rb:-
+msgid "Team|User cache"
+msgstr ""
+
+#: app/models/team.rb:-
+msgid "Team|Contact"
+msgstr "Contact"
+
+#: app/models/typecontribution.rb:-
+msgid "typecontribution"
+msgstr "type de contribution"
+
+#: app/models/typecontribution.rb:-
+msgid "Typecontribution|Name"
+msgstr "Nom"
+
+#: app/models/typecontribution.rb:-
+msgid "Typecontribution|Description"
+msgstr "Description"
+
+#: app/models/typedemande.rb:-
+msgid "typedemande"
+msgstr ""
+
+#: app/models/typedemande.rb:-
+msgid "Typedemande|Name"
+msgstr ""
+
+#: app/models/typedocument.rb:-
+msgid "typedocument"
+msgstr "type de document"
+
+#: app/models/typedocument.rb:-
+msgid "Typedocument|Name"
+msgstr "Nom"
+
+#: app/models/typedocument.rb:-
+msgid "Typedocument|Description"
+msgstr "Description"
+
+#: app/models/typeurl.rb:-
+msgid "typeurl"
+msgstr "type d'url"
+
+#: app/models/typeurl.rb:-
+msgid "Typeurl|Name"
+msgstr "Nom"
+
+#: app/models/urllogiciel.rb:-
+msgid "urllogiciel"
+msgstr ""
+
+#: app/models/urllogiciel.rb:-
+msgid "Urllogiciel|Logiciel"
+msgstr ""
+
+#: app/models/urllogiciel.rb:-
+msgid "Urllogiciel|Typeurl"
+msgstr ""
+
+#: app/models/urllogiciel.rb:-
+msgid "Urllogiciel|Valeur"
+msgstr ""
+
+#: app/models/urlreversement.rb:-
+msgid "urlreversement"
+msgstr "url du reversement"
+
+#: app/models/urlreversement.rb:-
+msgid "Urlreversement|Contribution"
+msgstr "Contribution"
+
+#: app/models/urlreversement.rb:-
+msgid "Urlreversement|Valeur"
+msgstr "Valeur"
+
+#: app/models/user.rb:-
+msgid "user"
+msgstr "utilisateur"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:55
+#: app/views/account/_edit_account_informations.html.erb:60
+#: app/views/account/_show_account_information.html.erb:7
+msgid "User|Login"
+msgstr "Identifiant"
+
+#: app/models/user.rb:-
+msgid "User|Password"
+msgstr "Mot de passe"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:29
+#: app/views/account/_show_account_information.html.erb:10
+#: app/views/account/_users_list.html.erb:9
+msgid "User|Title"
+msgstr "Titre"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:26
+#: app/views/account/_show_account_information.html.erb:13
+#: app/views/account/_users_list.html.erb:10
+msgid "User|Name"
+msgstr "Nom"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:32
+#: app/views/account/_show_account_information.html.erb:16
+#: app/views/account/_users_list.html.erb:16
+msgid "User|Email"
+msgstr "Email"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:35
+#: app/views/account/_show_account_information.html.erb:19
+#: app/views/account/_users_list.html.erb:17
+msgid "User|Phone"
+msgstr "Téléphone"
+
+#: app/models/user.rb:-
+msgid "User|Image"
+msgstr "Image"
+
+#: app/models/user.rb:-
+msgid "User|Information"
+msgstr "Information"
+
+#: app/models/user.rb:-
+msgid "User|Client"
+msgstr "Client"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:46
+msgid "User|Inactive"
+msgstr "Inactif"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:99
+#: app/views/account/_show_account_information.html.erb:35
+#: app/views/account/_users_list.html.erb:12
+msgid "User|Role"
+msgstr "Rôle"
+
+#: app/models/user.rb:-
+msgid "User|Restricted"
+msgstr "Restreint"
+
+#: app/models/user.rb:-
+#: app/views/account/_edit_account_informations.html.erb:40
+#: app/views/account/_show_account_information.html.erb:24
+msgid "User|Team"
+msgstr "Équipe"
 
 #: app/models/user.rb:29
 msgid "User|Pwd"
@@ -1501,45 +2198,6 @@ msgstr "Bénéficiaire"
 msgid "Expert"
 msgstr "Expert"
 
-#: app/views/account/_edit_account_informations.html.erb:26
-#: app/views/account/_show_account_information.html.erb:13
-#: app/views/account/_users_list.html.erb:10
-msgid "User|Name"
-msgstr "Nom"
-
-#: app/views/account/_edit_account_informations.html.erb:29
-#: app/views/account/_show_account_information.html.erb:10
-#: app/views/account/_users_list.html.erb:9
-msgid "User|Title"
-msgstr "Titre"
-
-#: app/views/account/_edit_account_informations.html.erb:32
-#: app/views/account/_show_account_information.html.erb:16
-#: app/views/account/_users_list.html.erb:16
-msgid "User|Email"
-msgstr "Email"
-
-#: app/views/account/_edit_account_informations.html.erb:35
-#: app/views/account/_show_account_information.html.erb:19
-#: app/views/account/_users_list.html.erb:17
-msgid "User|Phone"
-msgstr "Téléphone"
-
-#: app/views/account/_edit_account_informations.html.erb:40
-#: app/views/account/_show_account_information.html.erb:24
-msgid "User|Team"
-msgstr "Équipe"
-
-#: app/views/account/_edit_account_informations.html.erb:46
-msgid "User|Inactive"
-msgstr "Inactif"
-
-#: app/views/account/_edit_account_informations.html.erb:55
-#: app/views/account/_edit_account_informations.html.erb:60
-#: app/views/account/_show_account_information.html.erb:7
-msgid "User|Login"
-msgstr "Identifiant"
-
 #: app/views/account/_edit_account_informations.html.erb:69
 msgid "Modify your password"
 msgstr "Modifier votre mot de passe"
@@ -1559,12 +2217,6 @@ msgstr "Recevoir un résumé de l'activité hebdomadaire"
 #: app/views/account/_edit_account_informations.html.erb:90
 msgid "Receive a summary of monthly activities"
 msgstr "Recevoir un résumé de l'activité mensuelle"
-
-#: app/views/account/_edit_account_informations.html.erb:99
-#: app/views/account/_show_account_information.html.erb:35
-#: app/views/account/_users_list.html.erb:12
-msgid "User|Role"
-msgstr "Rôle"
 
 #: app/views/account/_edit_account_informations.html.erb:105
 #: app/views/account/_show_account_information.html.erb:40
@@ -1928,29 +2580,29 @@ msgstr "Ajouter une nouvelle architecture logicielle"
 msgid "Create"
 msgstr "Créer"
 
-#: app/views/bienvenue/about.html.erb:9 app/views/bienvenue/index.html.erb:74
+#: app/views/bienvenue/about.html.erb:8 app/views/bienvenue/index.html.erb:74
 msgid "Don't hesitate to"
 msgstr "N'hésitez pas à"
 
-#: app/views/bienvenue/about.html.erb:10
+#: app/views/bienvenue/about.html.erb:9
 msgid "contact us"
 msgstr "nous contacter"
 
-#: app/views/bienvenue/about.html.erb:11
+#: app/views/bienvenue/about.html.erb:10
 msgid "if needed"
 msgstr "si besoin"
 
-#: app/views/bienvenue/about.html.erb:15
+#: app/views/bienvenue/about.html.erb:14
 msgid "About"
 msgstr "A propos de"
 
-#: app/views/bienvenue/about.html.erb:17
+#: app/views/bienvenue/about.html.erb:16
 msgid "This application was created by <b>Michel Loiseleur</b> at "
 msgstr ""
 "Cette application a été conçue, écrite et réalisée par <b>Michel Loiseleur</"
 "b> dans les locaux de "
 
-#: app/views/bienvenue/about.html.erb:19
+#: app/views/bienvenue/about.html.erb:18
 msgid ""
 "This journey would not have been possible without\n"
 "      the <b>developers</b> who have taken part in this project,\n"
@@ -1965,15 +2617,15 @@ msgstr ""
 "permis à son développement d'être rapide et agile. Ils sont tous ici "
 "grandement remerciés."
 
-#: app/views/bienvenue/about.html.erb:27
+#: app/views/bienvenue/about.html.erb:26
 msgid "Developers"
 msgstr "Développeurs"
 
-#: app/views/bienvenue/about.html.erb:37
+#: app/views/bienvenue/about.html.erb:36
 msgid "Quality Assurance"
 msgstr "Assurance Qualité"
 
-#: app/views/bienvenue/about.html.erb:45
+#: app/views/bienvenue/about.html.erb:44
 msgid "Free software used by %s"
 msgstr "Logiciels libre utilisés par %s"
 
@@ -2266,7 +2918,7 @@ msgid "Submit"
 msgstr "Déposer"
 
 #: app/views/binaires/_form.html.erb:9 app/views/binaires/index.html.erb:6
-#: app/views/binaires/show.html.erb:14 app/views/contracts/show.html.erb:16
+#: app/views/binaires/show.html.erb:14 app/views/contracts/show.html.erb:20
 #: app/views/demandes/_form.html.erb:47
 #: app/views/demandes/_infos_demande.html.erb:27
 #: app/views/machines/_form.html.erb:17 app/views/machines/index.html.erb:5
@@ -2464,59 +3116,66 @@ msgstr "Ressources"
 msgid "New skill"
 msgstr "Nouvelle compétence"
 
-#: app/views/contracts/_form.html.erb:10
+#: app/views/contracts/_form.html.erb:10 app/views/contracts/show.html.erb:10
+msgid "Commercial Contact"
+msgstr ""
+
+#: app/views/contracts/_form.html.erb:13
 msgid "Contract|Chrono"
 msgstr "Numéro de chrono"
 
-#: app/views/contracts/_form.html.erb:13 app/views/contracts/index.html.erb:6
-#: app/views/contracts/show.html.erb:9
-msgid "Mailing list"
-msgstr "Mailing liste"
+#: app/views/contracts/_form.html.erb:16 app/views/contracts/show.html.erb:12
+msgid "Internal mailing list"
+msgstr "Mailing liste interne"
 
-#: app/views/contracts/_form.html.erb:16 app/views/contracts/index.html.erb:6
-#: app/views/contracts/show.html.erb:10
+#: app/views/contracts/_form.html.erb:19 app/views/contracts/show.html.erb:13
+msgid "Customer mailing list"
+msgstr "Mailing liste cliente"
+
+#: app/views/contracts/_form.html.erb:23 app/views/contracts/index.html.erb:6
+#: app/views/contracts/show.html.erb:14
 msgid "Start"
 msgstr "Début"
 
-#: app/views/contracts/_form.html.erb:19 app/views/contracts/index.html.erb:6
-#: app/views/contracts/show.html.erb:11
+#: app/views/contracts/_form.html.erb:26 app/views/contracts/index.html.erb:6
+#: app/views/contracts/show.html.erb:15
 msgid "End"
 msgstr "Fin"
 
-#: app/views/contracts/_form.html.erb:22
+#: app/views/contracts/_form.html.erb:29
 msgid "Technological survey"
 msgstr "Veilles technologiques"
 
-#: app/views/contracts/_form.html.erb:25
+#: app/views/contracts/_form.html.erb:32
 msgid "Newsletter"
 msgstr "Lettre d'information"
 
-#: app/views/contracts/_form.html.erb:28
+#: app/views/contracts/_form.html.erb:35
 #: app/views/knowledges/_form.html.erb:14
 msgid "Domain"
 msgstr "Domaine"
 
-#: app/views/contracts/_form.html.erb:31 app/views/demandes/_form.html.erb:79
+#: app/views/contracts/_form.html.erb:38 app/views/demandes/_form.html.erb:79
 msgid "Commitments"
 msgstr "Engagements"
 
-#: app/views/contracts/_form.html.erb:45
+#: app/views/contracts/_form.html.erb:52
 msgid "Ruled by"
 msgstr "Régie par"
 
-#: app/views/contracts/_form.html.erb:51
+#: app/views/contracts/_form.html.erb:58
 msgid "Schedules"
 msgstr "Horaires"
 
-#: app/views/contracts/_form.html.erb:52 app/views/contracts/_form.html.erb:53
+#: app/views/contracts/_form.html.erb:59 app/views/contracts/_form.html.erb:60
 msgid "h"
 msgstr "h"
 
-#: app/views/contracts/_form.html.erb:57
+#: app/views/contracts/_form.html.erb:64
 msgid "Engineers assigned to this contract"
 msgstr "Ingénieurs affiliés à ce contrat"
 
-#: app/views/contracts/_form.html.erb:66
+#: app/views/contracts/_form.html.erb:73
 msgid "Teams managing this contract"
 msgstr "Équipes gérant ce contrat"
 
@@ -2527,6 +3186,10 @@ msgstr "Éditer un contrat"
 #: app/views/contracts/index.html.erb:1
 msgid "List of contracts"
 msgstr "Liste des contrats"
+
+#: app/views/contracts/index.html.erb:6
+msgid "Mailing list"
+msgstr "Mailing liste"
 
 #: app/views/contracts/index.html.erb:6
 msgid "=>"
@@ -2545,47 +3208,47 @@ msgstr "Nouveau contrat"
 msgid "Client"
 msgstr "Client"
 
-#: app/views/contracts/show.html.erb:15
+#: app/views/contracts/show.html.erb:19
 msgid "Obligation"
 msgstr "Astreinte"
 
-#: app/views/contracts/show.html.erb:18
+#: app/views/contracts/show.html.erb:22
 msgid "Number of tickets"
 msgstr "Nombre de tickets"
 
-#: app/views/contracts/show.html.erb:19
+#: app/views/contracts/show.html.erb:23
 msgid "Number of used tickets"
 msgstr "Nombre de tickets inutilisés"
 
-#: app/views/contracts/show.html.erb:21
+#: app/views/contracts/show.html.erb:25
 msgid "Time per ticket"
 msgstr "Temps par ticket"
 
-#: app/views/contracts/show.html.erb:21
+#: app/views/contracts/show.html.erb:25
 msgid "minute"
 msgstr "minute"
 
-#: app/views/contracts/show.html.erb:21
+#: app/views/contracts/show.html.erb:25
 msgid "minutes"
 msgstr "minutes"
 
-#: app/views/contracts/show.html.erb:23
+#: app/views/contracts/show.html.erb:27
 msgid "Error, wrong type of contract"
 msgstr "Erreur, mauvais type de contrat"
 
-#: app/views/contracts/show.html.erb:26
+#: app/views/contracts/show.html.erb:30
 msgid "Contractual commitments"
 msgstr "Engagements contractuels"
 
-#: app/views/contracts/show.html.erb:29
+#: app/views/contracts/show.html.erb:33
 msgid "expert"
 msgstr "expert"
 
-#: app/views/contracts/show.html.erb:31
+#: app/views/contracts/show.html.erb:35
 msgid "%s managing this contract"
 msgstr "%s gérant ce contrat"
 
-#: app/views/contracts/show.html.erb:31
+#: app/views/contracts/show.html.erb:35
 msgid "Team"
 msgid_plural "Teams"
 msgstr[0] "Équipe"
@@ -2706,10 +3369,6 @@ msgstr "une nouvelle contribution"
 #: app/views/contributions/new.html.erb:1
 msgid "Add a new contribution"
 msgstr "Ajouter une nouvelle contribution"
-
-#: app/views/contributions/select.html.erb:4
-msgid "contribution"
-msgstr "contribution"
 
 #: app/views/contributions/select.html.erb:10
 msgid "Access to administration interface"
@@ -3117,10 +3776,6 @@ msgstr "Éditer la dépendance"
 msgid "New dependency"
 msgstr "Nouvelle dépendance"
 
-#: app/views/distributeurs/_form.html.erb:4
-msgid "Distributeur|Name"
-msgstr "Nom"
-
 #: app/views/documents/_documents_info.html.erb:15
 #: app/views/documents/new.html.erb:1
 msgid "Add a document"
@@ -3199,14 +3854,6 @@ msgstr "Liste des engagements contractuels"
 #: app/views/engagements/index.html.erb:8
 msgid "a possible commitment"
 msgstr "un engagement possible"
-
-#: app/views/etatreversements/_form.html.erb:4
-msgid "Etatreversement|Name"
-msgstr "Nom"
-
-#: app/views/etatreversements/_form.html.erb:7
-msgid "Etatreversement|Description"
-msgstr "Description"
 
 #: app/views/groupes/edit.html.erb:1
 msgid "Editing group"
@@ -3299,10 +3946,6 @@ msgstr "Ajouter"
 #: app/views/layouts/standard-layout.html.erb:71
 msgid "Logout"
 msgstr "Déconnexion"
-
-#: app/views/licenses/_form.html.erb:3
-msgid "License|Name"
-msgstr "Nom"
 
 #: app/views/licenses/_form.html.erb:6 app/views/urllogiciels/index.html.erb:6
 #: app/views/urlreversements/index.html.erb:6
@@ -3536,10 +4179,6 @@ msgstr "Le paquet a été mis à jour avec succès"
 #: app/views/paquets/show.html.erb:55
 msgid "times"
 msgstr "fois"
-
-#: app/views/paquets/show.html.erb:57
-msgid "changelog"
-msgstr "changelog"
 
 #: app/views/permissions/_form.html.erb:7
 msgid "Info"
