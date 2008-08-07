@@ -33,10 +33,10 @@ contract_00002:
   creator_id: 1
 contract_00003:
   heure_ouverture: "9"
-  name: "Desktop"
+  name: "Desktop 2"
   astreinte: "0"
   rule_id: "2"
-  mailinglist: ""
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: "0"
   heure_fermeture: "18"
   client_id: "2"
@@ -49,10 +49,10 @@ contract_00003:
   creator_id: 1
 contract_00004:
   heure_ouverture: "9"
-  name: Desktop
+  name: "Desktop 2"
   astreinte: "0"
   rule_id: "1"
-  mailinglist: ""
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: "0"
   heure_fermeture: "18"
   client_id: "3"
@@ -65,10 +65,10 @@ contract_00004:
   creator_id: 1
 contract_00005:
   heure_ouverture: "7"
-  name: "Server"
+  name: "Server 2"
   astreinte: "0"
   rule_id: "2"
-  mailinglist: ""
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: "0"
   heure_fermeture: "19"
   client_id: "2"
@@ -81,10 +81,10 @@ contract_00005:
   creator_id: 1
 contract_00006:
   heure_ouverture: "9"
-  name: "Server"
+  name: "Server 3"
   astreinte: "0"
   rule_id: "2"
-  mailinglist: ""
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: "0"
   heure_fermeture: "18"
   client_id: "2"
@@ -97,10 +97,10 @@ contract_00006:
   creator_id: 1
 contract_00007:
   heure_ouverture: "9"
-  name: "Desktop"
+  name: "Desktop 3"
   astreinte: "0"
   rule_id: "1"
-  mailinglist: ""
+  mailinglist: <%= App::MaintenerEmail %>
   chrono: "0"
   heure_fermeture: "18"
   client_id: "2"
