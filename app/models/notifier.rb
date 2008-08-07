@@ -78,7 +78,6 @@ class Notifier < ActionMailer::Base
 
     recipients compute_recipients(request, comment.prive)
     cc         compute_copy(request, comment.prive)
-    bcc        compute_bcc(request) if comment.prive
     from       FROM
     subject    "[OSSA:##{request.id}] : #{request.resume}"
     headers    headers_mail_request(comment)
@@ -215,19 +214,18 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # For now, we have bcc recipient only for private comments.
-  # It sends a mail to all experts of a contract.
-  def compute_bcc(request)
-    res = request.contract.engineers.find(:all, :select => 'email')
-    res.collect{ |r| r.email }.join(',')
-  end
-
+  # private indicates if it's reserved for internal use or not
   def compute_copy(demande, private = false)
-    return '' if private
-    res = []
-    res << demande.contract.mailinglist
-    res << demande.mail_cc unless demande.mail_cc.blank?
-    res.join(',')
+    if private
+      demande.contract.internal_ml
+    else
+      res = []
+      contract = demande.contract
+      [ contract.internal_ml, contract.customer_ml, demande.mail_cc ].each { |m|
+        res << m unless m.blank?
+      }
+      res.join(',')
+    end
   end
 
   def compute_recipients(demande, private = false)
@@ -280,7 +278,7 @@ class Notifier < ActionMailer::Base
   ######################################
 
   def list_id(contract)
-    "#{contract.name} <#{contract.mailinglist}>"
+    "#{contract.name} <#{contract.internal_ml}>"
   end
 =end
 end

@@ -7,11 +7,18 @@
         <th><label for="contract_client_id"><%=_('Customer')%></label></th>
         <td><%= select(:contract, :client_id, @clients) %></td>
       </tr><tr>
+        <th><label for="contract_commercial_id"><%= _("Commercial Contact") %></label></th>
+        <td><%= select_empty :contract, :commercial_id, @ingenieurs %></td>
+      </tr><tr>
         <th><label for="contract_chrono"><%= _("Contract|Chrono") %></label></th>
         <td><%= text_field :contract, :chrono %></td>
       </tr><tr>
-        <th><label for="contract_mailinglist"><%=_("Mailing list")%></label></th>
-        <td><%= text_field 'contract', 'mailinglist'  %></td>
+        <th><label for="contract_mailinglist"><%=_("Internal Mailing list")%></label></th>
+        <td><%= text_field 'contract', 'internal_ml'  %></td>
+      </tr><tr>
+        <th><label for="contract_customer_ml"><%=_("Customer Mailing list")%></label></th>
+        <td><%= text_field 'contract', 'customer_ml'  %></td>
+      </tr>
       </tr><tr>
         <th><label for="contract_ouverture"><%= _('Start') %></label></th>
         <td><%= date_select :contract, :ouverture %></td>

@@ -11,7 +11,7 @@
   result << "<td>#{c.demandes.size}</td>"
   result << "<td>#{c.releases.size}</td>"
   result << "<td>#{c.users.size}</td>"
-  result << "<td>#{mail_to(c.mailinglist)}</td>"
+  result << "<td>#{mail_to(c.internal_ml)}</td>"
   result << "<td>#{c.ouverture_formatted}</td>"
   result << '<td></td>' # used for the arrow
   result << "<td>#{c.cloture_formatted}</td>"
