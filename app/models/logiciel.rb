@@ -25,8 +25,8 @@ class Logiciel < ActiveRecord::Base
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'versions.contract_id IN (?)', contract_ids ],
-        :include => [:versions]} } if contract_ids
+        [ 'contracts.id IN (?)', contract_ids ],
+        :include => [:versions => :contracts]} } if contract_ids
   end
 
   # TODO : l'une des deux est de trop. Normalement c'est

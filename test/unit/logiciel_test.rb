@@ -9,6 +9,7 @@ class LogicielTest < Test::Unit::TestCase
 
   def test_scope
     Logiciel.set_scope([Contract.find(:first).id])
+    Logiciel.remove_scope
   end
 
   def test_arrays

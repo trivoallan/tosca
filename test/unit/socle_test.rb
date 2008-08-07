@@ -9,6 +9,7 @@ class SocleTest < Test::Unit::TestCase
 
   def test_scope
     Socle.set_scope([Client.find(:first).id])
+    Socle.remove_scope
   end
 
 end

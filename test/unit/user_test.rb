@@ -4,7 +4,7 @@ class UserTest < Test::Unit::TestCase
   self.use_instantiated_fixtures  = true
 
   fixtures :users, :clients, :roles, :permissions, :permissions_roles,
-    :contracts_users, :contracts
+    :contracts_users, :contracts, :socles
 
   def test_to_strings
     check_strings User
