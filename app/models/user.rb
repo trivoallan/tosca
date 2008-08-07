@@ -202,7 +202,7 @@ class User < ActiveRecord::Base
   end
 
   # specialisation, since an Account can be <inactive>.
-  def find_select(options = { })
+  def self.find_select(options = { })
     find_active4select(options)
   end
 

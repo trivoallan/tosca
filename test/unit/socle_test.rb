@@ -7,4 +7,8 @@ class SocleTest < Test::Unit::TestCase
     check_strings Socle
   end
 
+  def test_scope
+    Socle.set_scope([Client.find(:first).id])
+  end
+
 end

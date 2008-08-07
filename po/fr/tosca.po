@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-05 16:28+0200\n"
-"PO-Revision-Date: 2008-08-05 16:28+0200\n"
+"PO-Revision-Date: 2008-08-05 19:11+0200\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -743,7 +743,7 @@ msgstr "Vous n'êtes pas l'auteur de celui-ci."
 
 #: app/controllers/versions_controller.rb:39
 msgid "The version %s has been created."
-msgstr "La version %s a été crée avec succès"
+msgstr "La version %s a été créée avec succès"
 
 #: app/controllers/versions_controller.rb:55
 msgid "The version %s has been updated."

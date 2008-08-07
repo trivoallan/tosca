@@ -6,7 +6,7 @@ class DemandeTest < Test::Unit::TestCase
     :contracts_users
 
   def test_to_strings
-    check_strings Demande, :resume, :description, :full_software_name, :elapsed_formatted
+    check_strings Demande, :resume, :description
   end
 
   def test_presence_of_attributes
@@ -51,13 +51,14 @@ class DemandeTest < Test::Unit::TestCase
       r.time_running?
       result = r.state_at(Time.now)
       assert_instance_of Demande, result
-      assert result.statut_id?
-      assert result.ingenieur_id?
-      assert result.severite_id?
       r.critical?
       assert_not_nil r.client
       assert_not_nil r.commitment 
       assert_instance_of Fixnum, r.interval
+      # they can be nil, but we need to check'em too
+      r.commitment
+      r.elapsed_formatted
+      r.full_software_name
     }
   end
 

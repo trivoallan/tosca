@@ -2,14 +2,14 @@ demande_00001:
   created_on: 2008-01-01 00:00:01 +01:00
   logiciel_id: 1
   updated_on: 2008-01-01 00:00:01 +01:00
-  mantis_id: 
+  mantis_id:
   last_comment_id: 0
   ingenieur_id: 1
   id: 1
   submitter_id: 1
   severite_id: 3
   resume: "Retrait d'un fond de page impossible sous Writer"
-  expected_on: 
+  expected_on:
   recipient_id: 1
   statut_id: 2
   contract_id: 1
@@ -18,18 +18,18 @@ demande_00001:
   mail_cc: ""
   first_comment_id: 1
   contribution_id: 1
-demande_00002: 
+demande_00002:
   created_on: 2008-01-01 00:00:01 +01:00
   logiciel_id: 1
   updated_on: 2008-01-01 00:00:01 +01:00
-  mantis_id: 
+  mantis_id:
   last_comment_id: 0
   ingenieur_id: 3
   id: 2
   submitter_id: 2
   severite_id: 3
   resume: "Copie d'une question dans OOo"
-  expected_on: 
+  expected_on:
   recipient_id: 2
   statut_id: 2
   contract_id: 2
@@ -131,58 +131,58 @@ demande_00007:
   severite_id: "2"
   resume: "Nom de groupes non affich\xC3\xA9s"
   recipient_id: "1"
-  contract_id: "40"
+  contract_id: "1"
   statut_id: "3"
-  mail_cc: 
+  mail_cc:
   socle_id: "3"
   typedemande_id: "1"
   first_comment_id: "7736"
-  contribution_id: 
+  contribution_id:
 demande_00008:
   created_on: 2007-01-17 18:10:47
   logiciel_id: 2
   updated_on: 2007-08-27 10:35:12
-  mantis_id: 
+  mantis_id:
   last_comment_id: "800"
   ingenieur_id: "3"
   id: "8"
   submitter_id: "2"
-  expected_on: 
+  expected_on:
   severite_id: "3"
   resume: "Rechargement configuration Apache"
   recipient_id: "1"
   contract_id: "6"
   statut_id: "7"
-  mail_cc: 
-  socle_id: 
+  mail_cc:
+  socle_id:
   typedemande_id: "1"
   first_comment_id: "2212"
-  contribution_id: 
+  contribution_id:
 demande_00009:
   created_on: 2007-01-11 15:22:33
   logiciel_id: 3
   updated_on: 2007-08-27 10:35:12
-  mantis_id: 
+  mantis_id:
   last_comment_id: "897"
   ingenieur_id: "1"
   id: "9"
   submitter_id: "2"
-  expected_on: 
+  expected_on:
   severite_id: "2"
   resume: Faire une iso custom CentOS
   recipient_id: "2"
-  contract_id: "9"
+  contract_id: "2"
   statut_id: "7"
-  mail_cc: 
-  socle_id: 
+  mail_cc:
+  socle_id:
   typedemande_id: "2"
   first_comment_id: "2208"
-  contribution_id: 
+  contribution_id:
 demande_00010:
   created_on: 2007-06-18 15:11:19
   logiciel_id: 2
   updated_on: 2008-01-28 19:49:43
-  mantis_id: 
+  mantis_id:
   last_comment_id: "5996"
   ingenieur_id: "4"
   id: "10"
@@ -191,11 +191,10 @@ demande_00010:
   severite_id: "2"
   resume: "Cr\xC3\xA9ation d'un document sur le bureau"
   recipient_id: "2"
-  contract_id: "18"
+  contract_id: "2"
   statut_id: "6"
-  mail_cc: 
+  mail_cc:
   socle_id: "28"
   typedemande_id: "2"
   first_comment_id: "2391"
-  contribution_id: 
-
+  contribution_id:

@@ -127,7 +127,7 @@ class Test::Unit::TestCase
   end
 
 
-  ArrayMethods = [ :content_columns ]
+  ArrayMethods = [ :content_columns ] unless defined? ArrayMethods
   # Will call all common methods involved with arrays
   # You can add specific methods.
   # Ex : check_strings(Demande, :remanent_fields)
