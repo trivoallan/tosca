@@ -56,7 +56,7 @@ class DemandeTest < Test::Unit::TestCase
       assert result.severite_id?
       r.critical?
       assert_not_nil r.client
-      assert_not_nil r.engagement
+      assert_not_nil r.commitment 
       assert_instance_of Fixnum, r.interval
     }
   end
