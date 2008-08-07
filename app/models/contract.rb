@@ -2,6 +2,7 @@ class Contract < ActiveRecord::Base
   belongs_to :client
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
+  belongs_to :commercial, :class_name => 'Ingenieur'
 
   has_many :demandes
   has_many :appels

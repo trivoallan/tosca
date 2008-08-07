@@ -6,7 +6,11 @@
     <%= rule.short_description %>
     <%= link_to_rule(rule) %></p>
 <% end %>
-<p><b><%= _('Mailing list') %></b> : <%= @contract.mailinglist %></p>
+<% if @contract.commercial %>
+ <p><b><%= _('Commercial Contact') %></b> : <%= @contract.commercial.name %></p>
+<% end %>
+<p><b><%= _('Internal Mailing List') %></b> : <%= @contract.internal_ml %></p>
+<p><b><%= _('Customer Mailing List') %></b> : <%= @contract.customer_ml %></p>
 <p><b><%= _('Start') %></b> : <%= @contract.ouverture_formatted %></p>
 <p><b><%= _('End') %></b> : <%= @contract.cloture_formatted %></p>
 
