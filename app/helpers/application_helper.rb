@@ -13,7 +13,7 @@ module ApplicationHelper
   include LinksHelper
   include ImagesHelper
   include FilesHelper
-
+  include DatesHelper
 
   ### TEXT #####################################################################
   # indent text and escape HTML caracters

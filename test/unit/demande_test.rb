@@ -1,9 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DemandeTest < Test::Unit::TestCase
-  fixtures :demandes, :typedemandes, :severites, :statuts, :contracts,
-    :recipients, :clients, :users, :versions, :commentaires,
-    :contracts_users
+  fixtures :all
 
   def test_to_strings
     check_strings Demande, :resume, :description
