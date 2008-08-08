@@ -39,11 +39,6 @@ class VersionsController < ApplicationController
     @version.logiciel_id = params[:logiciel_id] if params[:logiciel_id]
   end
   
-  def new_specific
-    @version = Version.find(params[:id])
-    _form
-  end
-
   def create
     @version = Version.new(params[:version])
     if @version.save

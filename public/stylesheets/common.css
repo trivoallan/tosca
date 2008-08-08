@@ -1380,7 +1380,7 @@ h1.section {
     border-style: solid;
     border-color: #007062;
     float: left;
-    margin-right: 10px;
+    margin-right: 10px; 
 }
 
 .datestamp {

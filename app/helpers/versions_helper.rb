@@ -2,8 +2,7 @@ module VersionsHelper
   
   def link_to_version(version)
     return '-' unless version and version.is_a? Version
-    name = version.to_s
-    name = "<i>#{name}</i>"
+    name = "<i>#{version}</i>"
     link_to name, version_path(version)
   end
 

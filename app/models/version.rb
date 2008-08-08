@@ -21,7 +21,7 @@ class Version < ActiveRecord::Base
   def name
     return @name if @name
     @name = read_attribute(:name)
-    @name << ".*" if self.generic?
+    @name = "#{@name}.*" if self.generic?
     @name
   end
   
