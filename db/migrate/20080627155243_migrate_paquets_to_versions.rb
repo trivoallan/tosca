@@ -85,7 +85,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     add_index :contributions_versions, :version_id
 
     create_table :archives do |t|
-      t.string :name
+      t.string :file
       t.integer :size, :release_id
     end
     add_index :archives, :release_id
@@ -162,7 +162,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     puts "Remove duplicate Releases done"
 
     old_archive_path = File.join(RAILS_ROOT, "files", "binaire", "archive")
-    new_archive_path = File.join(RAILS_ROOT, "files", "archive", "name")
+    new_archive_path = File.join(RAILS_ROOT, "files", "archive", "file")
     Binaire.find(:all, :conditions => "archive is not null").each do |b|
       logiciel = Logiciel.find(b.paquet.logiciel_id)
       version = logiciel.versions.find(:all, :conditions => { :name => b.paquet.version })
@@ -174,7 +174,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
           :contract_id => b.paquet.contract_id })
 
         release.each do |r|
-          archive = Archive.create(:name => b.archive, :release_id => release.id)
+          archive = Archive.create(:file => b.archive, :release_id => release.id)
 
           old_path = File.join(old_archive_path, b.id.to_s)
           if File.exists? old_path

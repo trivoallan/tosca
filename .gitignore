@@ -13,3 +13,4 @@ public/images/reporting/*
 test/coverage/*
 tmp/*
 .dotest/
+doc/*

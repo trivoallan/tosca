@@ -265,6 +265,10 @@ module FileColumn # :nodoc:
         File.rename(local_file_path, new_local_file_path) unless new_local_file_path == local_file_path
         local_file_path = new_local_file_path
       end
+      
+      if options[:size]
+        @instance['size'] = File.size(local_file_path)
+      end
 
       @instance[@attr] = @filename
       @just_uploaded = true
@@ -353,7 +357,7 @@ module FileColumn # :nodoc:
 
   class PermanentUploadedFile < RealUploadedFile # :nodoc:
     def initialize(*args)
-      super *args
+      super(*args)
       @dir = File.join(store_dir, relative_path_prefix)
       @filename = @instance[@attr]
       @filename = nil if @filename.empty?
@@ -612,7 +616,10 @@ module FileColumn # :nodoc:
 
       # path to the unix "file" executable for
       # guessing the content-type of files
-      :file_exec => "file"
+      :file_exec => "file",
+      
+      #To add size of the file in db
+      :size => false
     }
 
     # handle the +attr+ attribute as a "file-upload" column, generating additional methods as explained
@@ -644,11 +651,11 @@ module FileColumn # :nodoc:
       private state_method
 
       define_method attr do |*args|
-        send(state_method).absolute_path *args
+        send(state_method).absolute_path(*args)
       end
 
       define_method "#{attr}_relative_path" do |*args|
-        send(state_method).relative_path *args
+        send(state_method).relative_path(*args)
       end
 
       define_method "#{attr}_dir" do
