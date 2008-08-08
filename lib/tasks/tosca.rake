@@ -35,10 +35,15 @@ desc "Configure a new Tosca instance"
   desc "Generate tarballs for public distribution"
   task :dist do
     sh "git archive --format=tar --prefix=tosca/ HEAD > tosca.tar"
-    sh %q{sed -i -e "s/require 'desert'/#require 'desert'/"
-                 -e "s/gem 'gettext'/#gem 'gettext'/"
-                 -e "s/config.gem/#config.gem/"
-                    tosca.tar}
+    print "update tosca code for working without gem & extensions"
+    sh %q{sed -i -e "s/require 'desert'/#require 'desert'/" \
+                 -e "s/config.gem/#config.gem/" config/environment.rb}
+    sh %q{sed -i -e "s/gem 'gettext'/#gem 'gettext'/" \
+                    vendor/plugins/gettext_localize/init.rb}
+    sh %q{cd ..; tar -uf tosca/tosca.tar tosca/config/environment.rb \
+                        tosca/vendor/plugins/gettext_localize/init.rb; cd -}
+    sh %q{git checkout config/environment.rb \
+              vendor/plugins/gettext_localize/init.rb}
     Rake::Task['rails:freeze:gems'].invoke
     sh "cd ..; tar -rf tosca/tosca.tar tosca/vendor/rails; cd -"
     Rake::Task['rails:unfreeze'].invoke
