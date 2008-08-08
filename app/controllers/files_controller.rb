@@ -27,10 +27,10 @@ class FilesController < ApplicationController
            :archive => 'file' }
 
     # TODO : get model name without hash
-#    model = { :attachment => Attachment,
-#              :contribution => Contribution,
-#              :document => Document,
-#              :archive => Archive }
+    model = { :attachment => Attachment,
+              :contribution => Contribution,
+              :document => Document,
+              :archive => Archive }
 
     # Login needed for anything but contribution
     return if (file_type != :contribution && login_required() == false)
@@ -48,7 +48,8 @@ class FilesController < ApplicationController
     # Ensure that we can remove scope
     begin
       Attachment.set_scope(@recipient.client_id) if scope_active
-#      target = model[file_type].find(params[:id])
+      #Check if you have the right
+      model[file_type].find(params[:id])
     ensure
       Attachment.remove_scope() if scope_active
     end
