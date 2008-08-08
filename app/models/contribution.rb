@@ -7,7 +7,8 @@ class Contribution < ActiveRecord::Base
   belongs_to :logiciel
   belongs_to :ingenieur
 
-  belongs_to :version
+  belongs_to :affected_version, :class_name => "Version"
+  belongs_to :fixed_version, :class_name => "Version"
 
   file_column :patch, :fix_file_extensions => nil
 
@@ -68,7 +69,7 @@ class Contribution < ActiveRecord::Base
       -1
     end
   end
-
+  
   # Fake fields, used to prettify _form WUI
   def reverse; contributed_on?; end
   def clos; closed_on?; end

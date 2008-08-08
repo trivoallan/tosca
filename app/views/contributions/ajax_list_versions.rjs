@@ -1,0 +1,1 @@
+page.replace_html("versions", :partial => "list_versions")

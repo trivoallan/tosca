@@ -8,9 +8,6 @@
   <%= link_to_edit(@contribution) %>
 </h2>
 <div class="info">
-    <%= @contribution.description_fonctionnelle %>
-<hr />
-
     <%= link_to_new_urlreversement(@contribution.id) %>
     <% options = { :edit => 'urlreversement' } %>
     <%= show_list(@contribution.urlreversements, _('link'), options) { |u|
@@ -23,14 +20,14 @@
         <% if @contribution.closed_on %>
            <%= _('and its has been approved on %s') % @contribution.closed_on_formatted %>
         <% end %>.<br/>
-        <% unless @contribution.affected_version.blank? %>
-           <%= _('This bug has been discovered in the version %s ') % @contribution.affected_version %>
+        <% if @contribution.affected_version %>
+           <%= _('This bug has been discovered in the version %s ') % link_to_version(@contribution.affected_version) %>
         <% end %>
-        <% unless @contribution.fixed_version.blank? %>
-           <%= _('and has been fixed in the version %s') % @contribution.fixed_version %>
+        <% if @contribution.fixed_version %>
+           <%= _('and has been fixed in the version %s') % link_to_version(@contribution.fixed_version) %>
         <% end %>
     <% else %>
-        <%= _('This patch was not submitted to the community') %>.
+        <%= _('This patch was not submitted to the community') %>
     <% end %><br />
 
 <% if @ingenieur %>
@@ -41,12 +38,8 @@
      <p><b>Demande du portail v1 : </b>
         <%=link_to_any_demande @contribution %></p>
   <% end %>
-  <%= link_to_demande(@contribution.demande, :show_id => true, :icon_severite => true) %>
-  <%= show_list(@contribution.versions, _('package(s) with the patch')) { |p|
-        link_to_version(p)
-      } %>
+  <%= link_to_demande(@contribution.demande, :show_id => true, :icon_severite => true) %><br/>
 <% end %>
-
 </div>
 
 
