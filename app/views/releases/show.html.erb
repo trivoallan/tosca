@@ -21,8 +21,21 @@
    <legend><%=_('Changelog') %></legend>
    <p><%= @release.changelog %></p>
  </fieldset>
- <% end %>  
+ <% end %>
 </div>
+
+
+<div class="show">
+<p><b><%= pluralize(@release.archives.count, _('archive') ) %></b> <%= link_to_new_archive(@release.id) %></p>
+  <p>
+  <% if @release.archives.count > 0 %>
+    <% options = { :no_title => true, :edit => 'archive'} %>
+    <%= show_list(@release.archives, _('archive'), options) { |a| 
+      link_to a.name, archive_path(a)
+    } %>
+  <% end %>
+</div>
+
 
 <p>&nbsp;</p>
 

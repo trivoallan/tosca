@@ -5,6 +5,8 @@ class Release < ActiveRecord::Base
   belongs_to :contract
 
   has_one :changelog
+  
+  has_many :archives
 
   def full_name
     @full_name ||= "#{self.version.full_name} r#{self.name}"

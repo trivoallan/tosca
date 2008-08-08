@@ -1,0 +1,11 @@
+<%= error_messages_for 'archive' %>
+
+<p><label for="archive_release"><%=_('Release')%></label><br />
+  <%= select(:archive, :release_id, @releases) %>
+</p>
+
+<p><label for="archive_name"><%= _('Archive') %></label><br />
+<%= file_column_field 'archive', 'name' %>
+</p>
+
+<br/>
