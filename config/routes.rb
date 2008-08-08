@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('welcome', %w(admin plan about deroulement
     index natures statut suggestions declaration))
   map.without_orm('welcome', %w(suggestions), :post)
-  map.without_orm('reporting', %w(comex comex_resultat configuration flux general digest digest_resultat))
+  map.without_orm('reporting', %w(configuration flux general digest digest_resultat))
   map.without_orm('access', %w(denied))
   map.without_orm('alerts', %w(on_submit index))
   map.without_orm('alerts', %w(ajax_on_submit), :post)
