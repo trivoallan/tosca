@@ -21,7 +21,7 @@
      <% options = { :no_title => true, :edit => 'release'} %>
      <% if @version.releases.size > 0 %>
         <%= show_list(@version.releases, _('release'), options) {|r|
-            link_to r, release_path(r)
+            link_to r.full_name, release_path(r)
           } %>
      <% end %>
    </p>
