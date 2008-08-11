@@ -132,8 +132,8 @@ class Client < ActiveRecord::Base
   end
 
   # specialisation, since a Client can be "inactive".
-  def self.find_select(options = { })
-    find_active4select(options)
+  def self.find_select(options = { }, collect = true)
+    find_active4select(options, collect)
   end
 
 end

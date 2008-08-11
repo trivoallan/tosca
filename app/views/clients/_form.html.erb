@@ -21,8 +21,9 @@
      <td><label for="client_inactive"><%= _("Inactive") %></label></td>
      <td><%= check_box :client, :inactive %></td>
     </tr><tr>
-     <td><label for="client_image"><%= _("Logo") %></label></td>
-     <td><%=  file_column_field 'image', 'image'  %></td>
+     <td colspan="2"><label for="client_image"><%= _("Logo") %></label></td>
+    </tr><tr>
+     <td colspan="2"><%=  file_column_field 'image', 'image'  %></td>
     </tr><tr>
      <td><label for="client_access_code"><%= _("Access code") %></label></td>
      <td><%= text_field :client, :access_code, :size => 5 %></td>

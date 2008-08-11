@@ -4,8 +4,6 @@ class AccountController < ApplicationController
 
   cache_sweeper :user_sweeper, :only => [:signup, :update]
 
-  # Pour l'import de plusieurs utilisateurs
-  require 'fastercsv'
   PasswordGenerator
 
   # No clear text password in the log.
@@ -363,6 +361,7 @@ private
   # TODO : this method is too fat, unused, untested and have a lots
   # of improvements possibility. It's deactivated for now, until
   # someone find some times in order have it work properly
+  # require 'fastercsv'
 =begin
   def multiple_signup
     _form

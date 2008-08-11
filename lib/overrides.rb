@@ -390,7 +390,7 @@ module ActiveRecord
     end
 
     # Same as #find_select, but returns only active objects
-    def self.find_active4select(options = {})
+    def self.find_active4select(options = {}, collect = true)
       options[:select] = 'id, name'
       table_name = self.table_name
       if options.has_key? :conditions
@@ -399,7 +399,9 @@ module ActiveRecord
         options[:conditions] = "#{table_name}.inactive = 0"
       end
       options[:order] ||= "#{table_name}.name ASC"
-      self.find(:all, options).collect{ |o| [o.name, o.id]}
+      res = self.find(:all, options)
+      res.collect!{ |o| [o.name, o.id] } if collect
+      res
     end
 
 

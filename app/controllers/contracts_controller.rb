@@ -38,13 +38,19 @@ class ContractsController < ApplicationController
   end
 
   def create
-    # It's needed because manager are scoped, at this point
     _aggregate_commitments
+    # It's needed because manager are scoped, at this point
     Client.send(:with_exclusive_scope) do
       @contract = Contract.new(params[:contract])
     end
     @contract.creator = session[:user]
+    # Due to a limitation of Rails <= 2.1, we cannot create a full
+    # association in one pass.
+    # TODO : review this problem on a > Rails
+    engineers =  @contract.engineer_users.dup
+    @contract.engineer_users = []
     if @contract.save
+      @contract.update_attribute :engineer_users, engineers
       flash[:notice] = _('Contract was successfully created.')
       redirect_to contracts_path
     else
@@ -104,22 +110,21 @@ class ContractsController < ApplicationController
           # create or find the version
           version = Logiciel.find(s['software']).versions.find(:all, :conditions => { :name => s['version'] }).first
           if version.nil?
-            version = Version.new 
+            version = Version.new
             version.name = s['version']
             version.logiciel_id = s['software']
             version.save
           end
-          
+
           release = Release.new
           release.contract_id = @contract.id
-          release.logiciel_id = version.logiciel_id
           release.name = 1
           release.inactive = ( s['inactive'] == "on" ? 1 : 0 )
           release.version_id = version.id
           release.save
-          
+
           new_release.push release
-        else 
+        else
           new_release.push Release.find(s['release_id'])
         end
       end
