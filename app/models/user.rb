@@ -186,11 +186,11 @@ class User < ActiveRecord::Base
   end
 
   def self.reset_permission_strings
-    @@permission_strings = Array.new(Role.count)
+    @@permission_strings = Array.new(7)
   end
 
   # Cache permission strings, not the best way
-  @@permission_strings = Array.new(Role.count)
+  @@permission_strings = Array.new(7)
   def permission_strings(role_id)
     @@permission_strings[role_id] ||=
       Role.find(role_id).permissions.collect{|p| Regexp.new(p.name) }
