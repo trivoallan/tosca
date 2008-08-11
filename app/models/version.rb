@@ -21,7 +21,7 @@ class Version < ActiveRecord::Base
   end
 
   def full_software_name
-    @full_software_name ||= "#{self.logiciel.name} #{self.full_name}"
+    @full_software_name ||= "#{self.logiciel.name} #{self.name}"
   end
 
   def name

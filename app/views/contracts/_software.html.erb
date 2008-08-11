@@ -1,36 +1,28 @@
-<% time = Time.now.hash.abs %>
-<% random_field = "software[#{time}]" %>
+<% time = Time.now.hash.abs
+   # A random field is mandatory for sending nicefully
+   # multiple versions of the same software
+   random_field = "software[#{time}]" %>
 
-<% # Add this script to give the focus to the version field in the last software added. %>
-<% # Improve usability : allows to use easily this form without touching the mouse %>
-<% if @release.nil? %>
+<% if @version.nil? %>
   <script type="text/javascript">
-   <%= update_page do |page|
-         # allows to use this page as a cli
-         page.delay(0.5) { page["#{random_field}[version]"].focus() }
-         # allows to choose successively the same software
-         page["select_software"].value = "";
-       end %>
+  <%= update_page do |page|
+        # allows to use this page as a cli
+        page.delay(0.5) { page["#{random_field}[name]"].focus() }
+        # allows to choose successively the same software
+        page["select_software"].value = "";
+      end %>
   </script>
-  <% @release= Release.new( :name => " ", :inactive => false, :version => Version.new ) %>
+  <% @version= Version.new(:name => " ", :logiciel => @logiciel) %>
 <% end %>
-<% new_record = @release.new_record? %>
 
+<% new_record = @version.new_record? %>
 <% @random_id ||= "s#{time}_#{@logiciel.id}" %>
 <tr id="<%=@random_id%>" class="<%=cycle('odd', 'even')%>"
-  <%= %Q{style="display: none"} if new_record %> >
-  <td><label for="<%=random_field%>[active]"><%= @logiciel %></label></td>
+  <%= hide_unless new_record %> >
+  <td><%= hidden_field_tag "#{random_field}[logiciel_id]", @logiciel.id %><%= @logiciel %></td>
+  <td><%= (new_record ? text_field_tag("#{random_field}[name]") : @version) %></td>
   <td>
-    <%= (new_record ? text_field_tag("#{random_field}[version]") : @release.version) %>
-  </td>
-  <td align="center">
-    <%= check_box_tag("#{random_field}[inactive]", @release.inactive?) unless new_record %>
-  </td>
-  <td>
-    <%= hidden_field_tag "#{random_field}[release_id]", @release.id %>
-    <%= hidden_field_tag "#{random_field}[software]", @logiciel.id %>
-
    <% # Only admin can remove a software, since it can have a great impact on requests %>
-   <%= delete_button @random_id unless new_record && session[:user].role_id != 1 %>
+   <%= delete_button @random_id if new_record || session[:user].role_id == 1 %>
   </td>
 </tr>

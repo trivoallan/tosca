@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  helper :clients, :commitments, :ingenieurs, :releases
+  helper :clients, :commitments, :ingenieurs, :versions
 
   def index
     @contract_pages, @contracts = paginate :contracts, :per_page => 25
@@ -15,7 +15,6 @@ class ContractsController < ApplicationController
 
   def show
     @contract = Contract.find(params[:id])
-    @releases = @contract.releases.find(:all, :conditions => { :inactive => false })
     @teams = @contract.teams
   end
 
@@ -102,37 +101,21 @@ class ContractsController < ApplicationController
   # TODO : include version.packaged or not ?
   def add_software
     @contract = Contract.find(params[:id])
-    new_release = []
-    unless params['software'].nil?
-      params['software'].each do |s|
-        s = s[1] # access params which contain software informations
-        if s['release_id'].blank? #create release
-          # create or find the version
-          version = Logiciel.find(s['software']).versions.find(:all, :conditions => { :name => s['version'] }).first
-          if version.nil?
-            version = Version.new
-            version.name = s['version']
-            version.logiciel_id = s['software']
-            version.save
-          end
-
-          release = Release.new
-          release.contract_id = @contract.id
-          release.name = 1
-          release.inactive = ( s['inactive'] == "on" ? 1 : 0 )
-          release.version_id = version.id
-          release.save
-
-          new_release.push release
-        else
-          new_release.push Release.find(s['release_id'])
-        end
-      end
-    end
-    @contract.releases.each do |r|
-      r.destroy unless new_release.include? r
-    end
     redirect_to contract_path(@contract)
+    softs = params['software']
+    return unless softs
+    softs.each do |s|
+      # get rid of the random_field hack
+      s = s[1]
+      next unless s.is_a? Hash
+      # It's 2 lines but fast find_or_create call
+      version = Version.find(:first, :conditions => s)
+      version = Version.create(s) unless version
+      unless version.contract_ids.include?(@contract.id)
+        version.contracts << @contract
+      end
+      version.save
+    end
   end
 
 private
