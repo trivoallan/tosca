@@ -1,0 +1,8 @@
+<h1><%=_('New archive')%></h1>
+
+<% form_tag(archives_path, :multipart => true, :id => 'main_form') do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Validate') %>
+<% end %>
+
+<%= link_to_back %>

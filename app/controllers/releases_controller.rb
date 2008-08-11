@@ -1,7 +1,7 @@
 require 'contribution'
 
 class ReleasesController < ApplicationController
-  helper :versions, :logiciels
+  helper :versions, :logiciels, :archives
 
   def index
     @release_pages, @releases = paginate :releases, :per_page => 10,

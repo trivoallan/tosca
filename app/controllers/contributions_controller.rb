@@ -147,19 +147,9 @@ class ContributionsController < ApplicationController
     redirect_to contributions_path
   end
 
-  # TODO : there is "paquet" here
-  def ajax_versions
-    return render(:text => '') unless request.xml_http_request? and params[:id]
-
-    # la magie de rails est cassé pour la 1.2.2, en mode production
-    # donc je dois le faire manuellement
-    # TODO : vérifier pour les versions > 1.2.2 en _production_ (!)
-    clogiciel = [ 'versions.logiciel_id = ?', params[:id].to_i ]
-    options = Paquet::OPTIONS.dup
-    options[:conditions] = clogiciel
-    @versions = Paquet.find_select(options)
-
-    render :partial => 'list_versions', :layout => false
+  def ajax_list_versions
+    return render(:nothing => true) unless request.xml_http_request? and params[:logiciel_id]
+    @versions = Logiciel.find(params[:logiciel_id]).versions.collect { |v| [v.full_software_name, v.id] }
   end
 
 private
@@ -168,6 +158,11 @@ private
     @etatreversements = Etatreversement.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @typecontributions = Typecontribution.find_select
+    if @contribution.logiciel_id
+      @versions = @contribution.logiciel.versions.find_select
+    else
+      @versions = Version.all.collect { |v| [v.full_software_name, v.id] }
+    end
   end
 
   def _panel

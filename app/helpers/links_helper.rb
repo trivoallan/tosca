@@ -25,6 +25,7 @@ module LinksHelper
   def link_to_file(record, file, options={}, public = false)
     return '-' unless record
     filepath = record.send(file)
+   
     unless filepath.blank? or not File.exist?(filepath)
       filename = filepath[/[._ \-a-zA-Z0-9]*$/]
       if options.has_key? :image
@@ -104,7 +105,7 @@ EOS
   #   <%= link_to_no_hover image_create(_('new url')), path %>
   def link_to_no_hover(*args)
     args << LinksHelper::NO_HOVER
-    link_to *args
+    link_to(*args)
   end
 
   ### Header ###
