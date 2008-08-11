@@ -8,40 +8,48 @@
     <tr>
      <td style="vertical-align: middle"><b><%= _('Client') %></b></td>
      <td><%= link_to logo_client(@contract.client), @contract.client %></td>
-    </tr><tr>
+    </tr>
+    <tr>
      <td><b><%= _('Name') %></b></td>
      <td><%= @contract %></td>
     <% rule = @contract.rule %>
     <% if rule %>
- 	</tr><tr>
+    </tr>
+    <tr>
      <td colspan="2">&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
        <i><%= rule.short_description %> <%= link_to_rule(rule) %></i></td>
     <% end %>
-    </tr><tr>
+    </tr>
+    <tr>
     <% if @contract.commercial %>
      <td><b><%= _('Commercial Contact') %></b></td>
      <td><%= @contract.commercial.name %></td>
-    </tr><tr>
+    </tr>
+    <tr>
     <% end %>
      <td><b><%= _('Internal mailing list') %></b></td>
      <td><%= @contract.internal_ml %></td>
-    </tr><tr>
+    </tr>
+    <tr>
      <td><b><%= _('Customer mailing list') %></b></td>
      <td><%= @contract.customer_ml %></td>
-    </tr><tr>
+    </tr>
+    <tr>
      <td><b><%= _('Start') %></b></td>
-     <td><%= @contract.ouverture_formatted %></td>
-    </tr><tr>
+     <td><%= complete_date(@contract.ouverture) %></td>
+    </tr>
+    <tr>
 	 <td><b><%= _('End') %></b></td>
-     <td><%= @contract.cloture_formatted %></td>
-    </tr><tr>
+     <td><%= complete_date(@contract.cloture) %></td>
+    </tr>
+    <tr>
      <td colspan="2">
       <fieldset>
        <legend><%= _("Contractual commitments") %></legend>
        <%= show_table_commitments @contract.commitments %>
       </fieldset>
      </td>
-    </tr>
+    </tr><tr>
      <td colspan="2">
       <fieldset>
        <legend><%= _("Human ressources") %></legend>
@@ -54,7 +62,7 @@
          <% title = n_('Team','Teams', @teams.size ) %>
          <%= show_list(@teams, title) { |t| link_to t.name, team_path(t) } %>
         </td>
-       </tr></table
+    </tr></table>
       </fieldset>
      </td>
     </tr>
@@ -75,7 +83,7 @@
    </table>
   </td>
  </tr>
-<table>
+</table>
 
 
 
