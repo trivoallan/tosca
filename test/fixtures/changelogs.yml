@@ -2,6 +2,6 @@
 changelog_00001: 
   release_id: 1
   id: 1
-  date_modification: 2008-04-16 15:41:00 +02:00
-  text_modification: <p>it's a long description</p>
-  nom_modification: it's a short description
+  modification_date: 2008-04-16 15:41:00 +02:00
+  modification_text: <p>it's a long description</p>
+  name: it's a short description

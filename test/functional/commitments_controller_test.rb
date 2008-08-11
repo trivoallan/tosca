@@ -45,7 +45,7 @@ class CommitmentsControllerTest < Test::Unit::TestCase
 
     post :create, :commitment => {
       :correction => 11,
-      :contournement => 0.16 # 0.16 stands for 4 hours
+      :workaround => 0.16 # 0.16 stands for 4 hours
     }
 
     assert_response :redirect

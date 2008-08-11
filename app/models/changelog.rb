@@ -1,13 +1,13 @@
 class Changelog < ActiveRecord::Base
   belongs_to :release
 
-  def date_modification_formatted
-      display_time read_attribute(:date_modification)
+  def modification_date_formatted
+      display_time read_attribute(:modification_date)
   end
 
   def name
-    self.date_modification_formatted + ' : ' << self.nom_modification << '\n' <<
-      self.text_modification
+    self.modification_date_formatted + ' : ' << self.name << '\n' <<
+      self.modification_text
   end
 
 end

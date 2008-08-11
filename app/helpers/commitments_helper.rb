@@ -15,7 +15,7 @@ module CommitmentsHelper
   def show_form_commitments(object_commitment, commitments, name)
     out = '<table>'
     out << '<tr><th>Demande</th><th>Sévérité</th>'
-    out << '<th>Contournement | Correction</th></tr>'
+    out << '<th>workaround | Correction</th></tr>'
     last_typedemande_id = 0
     last_severite_id = 0
     last_cycle = cycle('even', 'odd')
@@ -42,7 +42,7 @@ module CommitmentsHelper
       out << %Q{<select id="contract_commitment_ids"
          name="contract[commitment_ids_#{last_typedemande_id}_#{last_severite_id}]">}
       while (e) do
-        workaround = Time.in_words(e.contournement.days, true)
+        workaround = Time.in_words(e.workaround.days, true)
         correction = Time.in_words(e.correction.days, true)
         workaround = _('None') if workaround == '-'
         correction = _('None') if correction == '-'
@@ -60,14 +60,14 @@ module CommitmentsHelper
 
   def show_table_commitments(commitments)
     result = ''
-    titres = ['Demande','Sévérité','Contournement','Correction']
+    titres = ['Demande','Sévérité','workaround','Correction']
     oldtypedemande = nil
     result << show_table(commitments, Commitment, titres) { |e|
       out = ''
       out << (oldtypedemande == e.typedemande_id ? '<td></td>' :
                 "<td>#{e.typedemande.name}</td>" )
       out << "<td>#{e.severite.name}</td>"
-      out << "<td>#{Time.in_words(e.contournement.days, true)}</td>"
+      out << "<td>#{Time.in_words(e.workaround.days, true)}</td>"
       out << "<td>#{Time.in_words(e.correction.days, true)}</td>"
       if controller.controller_name == 'commitments'
         out << "#{link_to_actions_table e}"
