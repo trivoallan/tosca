@@ -281,10 +281,18 @@ module ActionController
   end
 end
 
+module ActionView
+  class Base
+    include PermissionCache
+  end
+end
+
 # This module is overloaded in order to display link_to lazily
 # and efficiently. It display links <b>only</b> if the user
 # has the right access to the ressource.
 module ActionView::Helpers::UrlHelper
+  include PermissionCache
+
 
   # this link_to display a link whatever happens, to all the internet world
   alias_method :public_link_to, :link_to
@@ -343,18 +351,6 @@ module ActionView::Helpers::UrlHelper
     end
   end
 
-  # Used to be called with the routes overrides. See acl_system.rb for more deeper
-  # explanation. It's used to allow public access.
-  def authorize_url?(options)
-    perm = "#{options[:controller]}/#{options[:action]}"
-    result = LoginSystem::public_user.authorized?(perm)
-
-    unless result
-      user = session[:user]
-      return true if user and user.authorized?(perm)
-    end
-    result
-  end
 end
 
 
