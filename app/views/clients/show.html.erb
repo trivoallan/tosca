@@ -1,4 +1,4 @@
-<h1><%= (@client.image ? logo_client(@client) : @client.name) %>
+<h1><%= logo_client(@client) %>
   <%= link_to_edit edit_client_path(@client)%> </h1>
 
 <table class="topbox">
@@ -44,17 +44,19 @@
       <%= link_to(_('Contributions'),
             list_contribution_path(:id => 'all', :client_id => @client.id)) %>
   </td><td>
-
-   <%= show_list(@client.socles, _('system')) { |s|
-      link_to_socle(s).to_s
-   } %>
-
-   <% unless @client.demandes.empty? %>
-    <div class="long_bloc_scroll">
-    <%= show_list(@client.demandes, _('request')) {|d|
-      link_to_demande(d) } %>
-    </div>
-   <% end %>
+   <table class="show">
+    <tr><td>
+     <%= show_list(@client.socles, _('system')) do |s|
+           link_to_socle(s).to_s
+         end %>
+     <% unless @client.demandes.empty? %>
+      <b><%= n_('Request', 'Requests', @client.demandes.size) %></b>
+      <div class="long_bloc_scroll">
+       <%= show_list(@client.demandes) {|d| link_to_demande(d) } %>
+      </div>
+     <% end %>
+    </td></tr>
+   </table>
   </td>
  </tr>
 </table>

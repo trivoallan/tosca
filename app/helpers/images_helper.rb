@@ -24,7 +24,8 @@ module ImagesHelper
   #  <%= logo_client(@client) %>
   #  <%= logo_client(@client, :small) %>
   def logo_client(client, size = :thumb)
-    return '' if client.nil? or client.image.blank? or size.nil?
+    return '' if client.nil? or size.nil?
+    return client.name if client.image.blank?
     if size == :thumb
       size = (client.inactive? ? :inactive_thumb : :thumb)
     end

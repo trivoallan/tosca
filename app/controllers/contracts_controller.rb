@@ -16,6 +16,7 @@ class ContractsController < ApplicationController
   def show
     @contract = Contract.find(params[:id])
     @teams = @contract.teams
+    @versions = @contract.versions
   end
 
   def new

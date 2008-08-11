@@ -562,7 +562,6 @@ div.bloc_scroll, div.long_bloc_scroll {
       width: 99%;
       height: 10em;
       overflow: auto;
-      border: 1px solid #000;
       background-color: #f2fff2;
 }
 div.long_bloc_scroll { height: 31em; }
@@ -1380,7 +1379,7 @@ h1.section {
     border-style: solid;
     border-color: #007062;
     float: left;
-    margin-right: 10px; 
+    margin-right: 10px;
 }
 
 .datestamp {

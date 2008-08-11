@@ -4,7 +4,7 @@ module PermissionCache
   @@permissions_cache = nil
   def authorize_url?(options)
     # first call
-    @@permissions_cache = Array.new(6, Hash.new) if @@permissions_cache.nil?
+    @@permissions_cache = Array.new(7, Hash.new) if @@permissions_cache.nil?
 
     # testing cache
     perm = "#{options[:controller]}/#{options[:action]}"
