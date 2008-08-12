@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class VersionTest < ActiveSupport::TestCase
-  load_all_fixtures
+  fixtures :all
   
   def test_full_name
     v = versions(:version_ff_2_0_0_13)

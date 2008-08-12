@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ReleaseTest < ActiveSupport::TestCase
-  load_all_fixtures
+  fixtures :all
   
   def test_full_name
     release_ff_2_0_0_13_r_1 = releases(:release_ff_2_0_0_13_r_1)

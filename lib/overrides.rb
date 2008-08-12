@@ -529,17 +529,3 @@ module AutoComplete
     end
   end
 end
-
-module Test
-  module Unit
-    class TestCase
-      # Loads all fixture files (<tt>test/fixtures/*.yml</tt>)
-      def self.load_all_fixtures
-        all_fixtures = Dir.glob(File.join(Test::Unit::TestCase.fixture_path, "*.yml")).collect do |f|
-          File.basename(f, '.yml').to_sym
-        end
-        fixtures *all_fixtures
-      end
-    end
-  end
-end
