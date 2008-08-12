@@ -14,8 +14,15 @@ module CommitmentsHelper
   # TODO : a partial should be better
   def show_form_commitments(object_commitment, commitments, name)
     out = '<table>'
-    out << '<tr><th>Demande</th><th>Sévérité</th>'
-    out << '<th>workaround | Correction</th></tr>'
+    out << '<tr><th>'
+    out << _('Request')
+    out << '</th><th>'
+    out << _('Severity')
+    out << '</th><th>'
+    out << _('Workaround')
+    out << ' | ' 
+    out << _('Correction')
+    out << '</th></tr>'
     last_typedemande_id = 0
     last_severite_id = 0
     last_cycle = cycle('even', 'odd')
@@ -55,12 +62,12 @@ module CommitmentsHelper
       out << '</td></tr>'
       e = commitments.pop
     end
-    out << '</table'
+    out << '</table>'
   end
 
   def show_table_commitments(commitments)
     result = ''
-    titres = ['Demande','Sévérité','workaround','Correction']
+    titres = [_('Request'), _('Severity'), _('Workaround'), _('Correction')]
     oldtypedemande = nil
     result << show_table(commitments, Commitment, titres) { |e|
       out = ''
