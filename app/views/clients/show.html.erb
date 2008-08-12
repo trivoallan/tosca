@@ -26,9 +26,8 @@
     result = ''
     edit = link_to_edit(edit_contract_path(c))
     result << "#{edit}&nbsp;" if edit
-    result << "(#{c.chrono})&nbsp;" if @ingenieur and c.chrono != 0
     result << "<b>#{link_to c.rule.name, contract_path(c)}</b>"
-    result << _(" from %s to %s") % [c.ouverture_formatted, c.cloture_formatted]
+    result << _(" from %s to %s") % [c.start_date_formatted, c.end_date_formatted]
     result << ' '
     if c.rule.max == -1
       result << _("on your complete system")

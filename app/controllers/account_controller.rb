@@ -233,7 +233,7 @@ class AccountController < ApplicationController
     client_id = params[:client_id].to_i
     user_id = (params.has_key?(:id) ? params[:id].to_i : nil)
     options = Contract::OPTIONS
-    conditions = [ 'contracts.cloture >= ?', Time.now]
+    conditions = [ 'contracts.end_date >= ?', Time.now]
     unless client_id == 0
       conditions.first << ' AND contracts.client_id = ?'
       conditions.push(client_id)

@@ -21,9 +21,9 @@
     <% end %>
     </tr>
     <tr>
-    <% if @contract.commercial %>
-     <td><b><%= _('Commercial Contact') %></b></td>
-     <td><%= @contract.commercial.name %></td>
+    <% if @contract.salesman %>
+     <td><b><%= _('salesman Contact') %></b></td>
+     <td><%= @contract.salesman.name %></td>
     </tr>
     <tr>
     <% end %>
@@ -36,11 +36,11 @@
     </tr>
     <tr>
      <td><b><%= _('Start') %></b></td>
-     <td><%= complete_date(@contract.ouverture) %></td>
+     <td><%= complete_date(@contract.start_date) %></td>
     </tr>
     <tr>
 	 <td><b><%= _('End') %></b></td>
-     <td><%= complete_date(@contract.cloture) %></td>
+     <td><%= complete_date(@contract.end_date) %></td>
     </tr>
     <tr>
      <td colspan="2">
@@ -96,7 +96,7 @@
 <%# TODO : before next release : aggregation of all time credits %>
 <%# left panel seems to be a good place for those informations %>
 <% if false %>
-  <p><b><%= _('Obligation') %> : </b> <%= @contract.astreinte? %></p>
+  <p><b><%= _('Obligation') %> : </b> <%= @contract.obligation? %></p>
   <p><b><%= _('System') %> : </b> <%#= @contract.socle? %></p>
 <% elsif false %>
   <p><b><%= _('Number of tickets') %> : </b><%= @contract.tickets_total %></p>

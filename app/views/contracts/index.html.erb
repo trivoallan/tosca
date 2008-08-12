@@ -12,9 +12,9 @@
   result << "<td>#{c.releases.size}</td>"
   result << "<td>#{c.users.size}</td>"
   result << "<td>#{mail_to(c.internal_ml)}</td>"
-  result << "<td>#{c.ouverture_formatted}</td>"
+  result << "<td>#{c.start_date_formatted}</td>"
   result << '<td></td>' # used for the arrow
-  result << "<td>#{c.cloture_formatted}</td>"
+  result << "<td>#{c.end_date_formatted}</td>"
   result << "#{link_to_actions_table c}"
 }%>
 

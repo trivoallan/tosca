@@ -19,8 +19,8 @@ class Rules::Component < ActiveRecord::Base
     return 0 unless last.statut_id != 0 && current.statut_id != 0
     return 0 unless Statut::Running.include? last.statut_id
     Time.working_diff(last.created_on, current.created_on,
-                      contract.heure_ouverture,
-                      contract.heure_fermeture)
+                      contract.opening_time,
+                      contract.closing_time)
   end
 
   def short_description

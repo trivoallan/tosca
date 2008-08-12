@@ -46,7 +46,6 @@ Demande -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
 
 Logiciel -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
 Logiciel -> License [arrowhead=dot,dir=both,arrowtail=crow]
-Logiciel -> Communaute [arrowhead=dot,dir=both,arrowtail=crow]
 Logiciel -> Groupe [arrowhead=dot,dir=both,arrowtail=crow]
 Logiciel -> Image [arrowhead=dot,dir=both,arrowtail=crow]
 
