@@ -156,7 +156,7 @@ module ApplicationHelper
         result << "</tr>"
       }
     end
-    result << '</table><br />'
+    result << '</table>'
   end
 
   # show_total(elements.size, ar, options)

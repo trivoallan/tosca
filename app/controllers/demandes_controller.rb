@@ -14,7 +14,7 @@ class DemandesController < ApplicationController
 
     conditions.first << 'demandes.statut_id IN (?)'
     conditions << Statut::OPENED
-    conditions.first << '(demandes.expected_on > NOW() OR demandes.expected_on IS NULL)'
+    conditions.first << '(demandes.expected_on < NOW() OR demandes.expected_on IS NULL)'
 
     # find request where :
     # 1. Engineer : When SLA is running Or SLA is suspended  and ( a question from the recipient is not answered OR he just has been assigned )
