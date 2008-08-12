@@ -13,7 +13,7 @@ module PermissionCache
 
     if !@@permissions_cache[role_id].has_key?(perm)
       result = LoginSystem::public_user.authorized?(perm)
-      result = user.authorized?(perm) unless result
+      result = user.authorized?(perm) if !result && user
       @@permissions_cache[role_id][perm] = result
     end
     @@permissions_cache[role_id][perm]
