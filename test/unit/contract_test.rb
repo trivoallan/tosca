@@ -62,7 +62,6 @@ class ContractTest < Test::Unit::TestCase
     Contract.remove_scope
   end
 
-
   def test_engineer_users
     Contract.find(:all).each do |c|
       c.engineer_users.each { |i|

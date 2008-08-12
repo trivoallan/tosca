@@ -92,12 +92,6 @@ class Contract < ActiveRecord::Base
     self.commitments.find(:first, options)
   end
 
-  def demandes
-    conditions = [ 'demandes.contract_id = ?', id]
-    Demande.find(:all, :conditions => conditions)
-  end
-
-  # TODO : Use Rails 2.x features, like :joins => [:commitments]
   def typedemandes
     joins = 'INNER JOIN commitments ON commitments.typedemande_id = typedemandes.id '
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
@@ -114,7 +108,7 @@ class Contract < ActiveRecord::Base
     "clients.inactive = 0" }
 
   def name
-    specialisation = read_attribute :name
+    specialisation = read_attribute(:name)
     res = "#{client.name} - #{rule.name}"
     res << " - #{specialisation}" unless specialisation.blank?
     res
