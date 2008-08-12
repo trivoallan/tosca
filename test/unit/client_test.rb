@@ -108,5 +108,5 @@ class ClientTest < Test::Unit::TestCase
 
     assert_equal(["access_code", "description", "name"], columns)
   end
-
+  
 end

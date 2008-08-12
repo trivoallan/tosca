@@ -95,7 +95,6 @@ class AccountController < ApplicationController
   # adequate changes in the Finder and in the Test Suite
   # TODO : this method is too long
   def index
-    # init
     options = { :per_page => 15, :order => 'users.role_id, users.login',
       :include => [:recipient,:ingenieur,:role] }
     conditions = []
@@ -243,9 +242,6 @@ class AccountController < ApplicationController
     @user = (user_id.blank? ? User.new : User.find(user_id))
   end
 
-
-
-
   # Format du fichier CSV
   COLUMNS = [ _('Full name'), _('Title'), _('Email'), _('Phone'),
               _('Login'), _('Password'), _('Informations') ]
@@ -256,6 +252,17 @@ private
     set_sessions(user)
     flash[:notice] = (_("Welcome %s %s") %
                       [ user.title, user.name]).gsub(' ', '&nbsp;')
+    
+    if user.client?
+      user.contracts.each do |c|
+        if (c.end_date - Time.now).between?(0.month, 1.month)
+          flash[:notice] << '<br/><strong>'
+          flash[:notice] << (_('Your contract %s is near its end. (end date : %s)') % 
+            [c.name, complete_date(c.end_date)])
+          flash[:notice] << '</strong>'
+        end
+      end
+    end
   end
 
   # Used to restrict operation
