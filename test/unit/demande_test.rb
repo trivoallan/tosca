@@ -51,10 +51,9 @@ class DemandeTest < Test::Unit::TestCase
       assert_instance_of Demande, result
       r.critical?
       assert_not_nil r.client
-      assert_not_nil r.commitment 
+      assert_not_nil r.commitment
       assert_instance_of Fixnum, r.interval
       # they can be nil, but we need to check'em too
-      r.commitment
       r.elapsed_formatted
       r.full_software_name
     }

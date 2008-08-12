@@ -6,13 +6,6 @@ class Changelog < ActiveRecord::Base
   end
 
   def name
-    puts "---"
-    puts self.modification_date_formatted
-    puts "---"
-    puts read_attribute(:name)
-    puts "---"
-    puts self.modification_text
-    puts "---"
     self.modification_date_formatted + ' : ' << read_attribute(:name) << '\n' <<
       self.modification_text
   end

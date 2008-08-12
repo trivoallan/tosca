@@ -35,7 +35,7 @@ class Contribution < ActiveRecord::Base
     out = ''
     out << typecontribution.name + _(' on ') if typecontribution
     out << logiciel.name
-    out << " #{version}" if version
+    out << " #{affected_version}" if affected_version
     out
   end
 

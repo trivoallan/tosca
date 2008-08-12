@@ -10,7 +10,7 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_dates
-    c = Contract.find 1
+    c = Contract.find(1)
     # Schedule check
     assert c.opening_time <= c.closing_time
     c.opening_time = -1
