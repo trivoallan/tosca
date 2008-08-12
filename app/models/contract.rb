@@ -2,7 +2,7 @@ class Contract < ActiveRecord::Base
   belongs_to :client
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
-  belongs_to :commercial, :class_name => 'Ingenieur'
+  belongs_to :salesman, :class_name => 'Ingenieur'
 
   has_many :demandes
   has_many :appels
@@ -22,14 +22,14 @@ class Contract < ActiveRecord::Base
   has_and_belongs_to_many :versions, :order => 'versions.name DESC'
 
   validates_presence_of :client, :rule, :creator
-  validates_numericality_of :heure_ouverture, :heure_fermeture,
+  validates_numericality_of :opening_time, :closing_time,
     :only_integer => true
-  validates_inclusion_of :heure_ouverture, :heure_fermeture, :in => 0..24
+  validates_inclusion_of :opening_time, :closing_time, :in => 0..24
 
   validate :must_open_before_close
 
   def must_open_before_close
-    if heure_ouverture > heure_fermeture
+    if opening_time > closing_time
       errors.add_to_base("The schedules of this contract are invalid.")
     end
   end
@@ -52,11 +52,11 @@ class Contract < ActiveRecord::Base
   end
 
   def interval_in_seconds
-    return (heure_fermeture - heure_ouverture) * 1.hour
+    return (closing_time - opening_time) * 1.hour
   end
 
   def interval
-    heure_fermeture - heure_ouverture
+    closing_time - opening_time
   end
 
   # We have open clients which can declare
@@ -77,12 +77,12 @@ class Contract < ActiveRecord::Base
       [  u.name, u.recipient.id ] if u.recipient }
   end
 
-  def ouverture_formatted
-    display_time read_attribute(:ouverture)
+  def start_date_formatted
+    display_time read_attribute(:start_date)
   end
 
-  def cloture_formatted
-    display_time read_attribute(:cloture)
+  def end_date_formatted
+    display_time read_attribute(:end_date)
   end
 
   def find_commitment(request)

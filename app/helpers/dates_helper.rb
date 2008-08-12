@@ -14,4 +14,14 @@ module DatesHelper
     result << '</div>'
   end
   
+  def complete_date(date)
+     result = _(date.strftime("%A"))            #day of the week : Monday
+     result << " "
+     result << date.strftime("%d")              #day of the month : 10
+     result << " "
+     result << _(date.strftime("%B"))           #month : December
+     result << " "
+     result << date.strftime("%Y")              #Year : 2007
+  end
+  
 end

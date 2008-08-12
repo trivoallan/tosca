@@ -79,7 +79,7 @@ class Demande < ActiveRecord::Base
     "#{id}-#{resume.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
-  def to_s
+  def name
     "#{typedemande.name} (#{severite.name}) : #{resume}"
   end
 
@@ -111,12 +111,6 @@ class Demande < ActiveRecord::Base
     [ :contract_id, :recipient_id, :typedemande_id, :severite_id,
       :socle_id, :logiciel_id, :ingenieur_id ]
   end
-
-
-  def name
-    to_s
-  end
-
 
   # Used in the cache/sweeper system
   # TODO : it seems Regexp are not compatible with memcache.
@@ -273,11 +267,8 @@ class Demande < ActiveRecord::Base
   # clearly slows uselessly Tosca.
   def commitment
     return nil unless contract_id && severite_id && typedemande_id
-    conditions = [" commitments_contracts.contract_id = ? AND " +
-      "commitments.severite_id = ? AND commitments.typedemande_id = ? ",
-      contract_id, severite_id, typedemande_id ]
-    joins = " INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id"
-    Commitment.find(:first, :conditions => conditions, :joins => joins)
+    self.contract.commitments.find(:first, :conditions => 
+        {:typedemande_id => self.typedemande_id, :severite_id => self.severite_id})
   end
 
   # useful shortcut

@@ -138,7 +138,7 @@ class Time
 
   # FONCTION vers lib/lstm.rb:time_in_french_words
   def distance_of_time_in_french_words(distance_in_seconds, contract)
-    dayly_time = contract.heure_fermeture - contract.heure_ouverture # in hours
+    dayly_time = contract.closing_time - contract.opening_time # in hours
     Time.in_words(distance_in_seconds, dayly_time)
   end
 

@@ -8,40 +8,48 @@
     <tr>
      <td style="vertical-align: middle"><b><%= _('Client') %></b></td>
      <td><%= link_to logo_client(@contract.client), @contract.client %></td>
-    </tr><tr>
+    </tr>
+    <tr>
      <td><b><%= _('Name') %></b></td>
      <td><%= @contract %></td>
     <% rule = @contract.rule %>
     <% if rule %>
- 	</tr><tr>
+    </tr>
+    <tr>
      <td colspan="2">&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
        <i><%= rule.short_description %> <%= link_to_rule(rule) %></i></td>
     <% end %>
-    </tr><tr>
-    <% if @contract.commercial %>
-     <td><b><%= _('Commercial Contact') %></b></td>
-     <td><%= @contract.commercial.name %></td>
-    </tr><tr>
+    </tr>
+    <tr>
+    <% if @contract.salesman %>
+     <td><b><%= _('Salesman Contact') %></b></td>
+     <td><%= @contract.salesman.name %></td>
+    </tr>
+    <tr>
     <% end %>
      <td><b><%= _('Internal mailing list') %></b></td>
      <td><%= @contract.internal_ml %></td>
-    </tr><tr>
+    </tr>
+    <tr>
      <td><b><%= _('Customer mailing list') %></b></td>
      <td><%= @contract.customer_ml %></td>
-    </tr><tr>
+    </tr>
+    <tr>
      <td><b><%= _('Start') %></b></td>
-     <td><%= @contract.ouverture_formatted %></td>
-    </tr><tr>
+     <td><%= complete_date(@contract.start_date) %></td>
+    </tr>
+    <tr>
 	 <td><b><%= _('End') %></b></td>
-     <td><%= @contract.cloture_formatted %></td>
-    </tr><tr>
+     <td><%= complete_date(@contract.end_date) %></td>
+    </tr>
+    <tr>
      <td colspan="2">
       <fieldset>
        <legend><%= _("Contractual commitments") %></legend>
        <%= show_table_commitments @contract.commitments %>
       </fieldset>
      </td>
-    </tr>
+    </tr><tr>
      <td colspan="2">
       <fieldset>
        <legend><%= _("Human ressources") %></legend>
@@ -54,7 +62,7 @@
          <% title = n_('Team','Teams', @teams.size ) %>
          <%= show_list(@teams, title) { |t| link_to t.name, team_path(t) } %>
         </td>
-       </tr></table
+    </tr></table>
       </fieldset>
      </td>
     </tr>
@@ -63,9 +71,9 @@
    <table class="show">
     <tr>
      <td style="width: 36em;">
-      <p><b><%= _('Supported software') %> :
+       <p><b><%= _('Supported software') %> :
             <%= link_to StaticImage::edit, { :action => "supported_software", :controller => "contracts"} , :class => "no_hover" %></b></p>
-      <% unless @versions.empty? %>
+       <% unless @versions.empty? %>
        <div class="long_bloc_scroll">
        <%= show_list(@contract.versions) { |v| link_to v.full_software_name, v } %>
        </div>
@@ -75,7 +83,7 @@
    </table>
   </td>
  </tr>
-<table>
+</table>
 
 
 
@@ -88,7 +96,7 @@
 <%# TODO : before next release : aggregation of all time credits %>
 <%# left panel seems to be a good place for those informations %>
 <% if false %>
-  <p><b><%= _('Obligation') %> : </b> <%= @contract.astreinte? %></p>
+  <p><b><%= _('Obligation') %> : </b> <%= @contract.obligation? %></p>
   <p><b><%= _('System') %> : </b> <%#= @contract.socle? %></p>
 <% elsif false %>
   <p><b><%= _('Number of tickets') %> : </b><%= @contract.tickets_total %></p>

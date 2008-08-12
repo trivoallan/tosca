@@ -62,7 +62,7 @@ module DemandesHelper
   # TODO : think about replacing case/when by if/else
   def display(donnee, column)
     case column
-    when 'contournement','correction'
+    when 'workaround','correction'
       display_days donnee.send(column)
     else
       donnee.send(column)
@@ -80,9 +80,9 @@ module DemandesHelper
   # TODO : modifier le model : ajouter champs type demande aux commitments
   # TODO : prendre en compte le type de la demande !!!
 
-  def display_commitment_contournement(demande, version)
+  def display_commitment_workaround(demande, version)
     commitment = demande.commitment(version.contract_id)
-    display_days(commitment.contournement)
+    display_days(commitment.workaround)
   end
 
   def display_commitment_correction(demande, version)
@@ -159,21 +159,20 @@ module DemandesHelper
     progress = (100*(done.to_f / limit.to_f)).round
     remains = (100 - progress)
     out << '<span class="progress-border">'
-    #out << '  <div class="progress-contournement tooltip" style="width: 20%;" title="20% (0/2)  Low Priority "> </div>'
     out << '  <div class="progress-correction tooltip" style="width: '+progress.to_s+'%;" title="'+progress.to_s+'%  écoulé"> </div>'
     out << '  <div class="progress-restant tooltip" style="width: '+remains.to_s+'%;" title="'+remains.to_s+'%  restant"> </div>'
     out << '</span>'
   end
 
 
-  # TODO : Some paztch can be refused by the community, and this
+  # TODO : Some patches can be refused by the community, and this
   # method does not treat this case.
   def link_to_request_contribution(contribution)
     return '' unless contribution
     link = link_to _('patch'), contribution_path(contribution)
-    text = (contribution.closed_on? ?
-            _("The %s has been accepted by the community") % link :
-            _("The %s has been submitted by the community") % link)
+    (contribution.closed_on? ?
+        _("The %s has been accepted by the community") % link :
+        _("The %s has been submitted by the community") % link)
   end
 
   # TODO : beaucoup trop de copier coller, c'est honteux !
@@ -212,7 +211,7 @@ module DemandesHelper
     commitment = req.commitment
     if commitment
       "<p><b>%s: </b> %s<br /><b>%s: </b> %s</p>" %
-        [ _('Workaround'), Time.in_words(commitment.contournement * 1.day, true),
+        [ _('Workaround'), Time.in_words(commitment.workaround * 1.day, true),
           _('Correction'), Time.in_words(commitment.correction * 1.day, true) ]
     else
       '-'

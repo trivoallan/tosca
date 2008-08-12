@@ -114,9 +114,9 @@ class ReportingController < ApplicationController
     @contract = Contract.find(params[:reporting][:contract_id].to_i)
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titles = @@titles
-    @report[:start_date] = [@contract.ouverture.beginning_of_month, Time.now].min
+    @report[:start_date] = [@contract.start_date.beginning_of_month, Time.now].min
     @report[:end_date] = [calendar2time(params[:end_date]),
-    @contract.cloture.beginning_of_month].min
+    @contract.end_date.beginning_of_month].min
     @first_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]

@@ -8,7 +8,7 @@ class ContractsController < ApplicationController
   # Used to know which contracts need to be renewed
   def actives
     options = { :per_page => 10, :include => [:client], :order =>
-      'contracts.cloture', :conditions => 'clients.inactive = 0' }
+      'contracts.end_date', :conditions => 'clients.inactive = 0' }
     @contract_pages, @contracts = paginate :contracts, options
     render :action => 'index'
   end

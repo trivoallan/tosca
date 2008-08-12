@@ -7,11 +7,8 @@
         <th><label for="contract_client_id"><%=_('Customer')%></label></th>
         <td><%= select(:contract, :client_id, @clients) %></td>
       </tr><tr>
-        <th><label for="contract_commercial_id"><%= _("Commercial Contact") %></label></th>
-        <td><%= select_empty :contract, :commercial_id, @ingenieurs %></td>
-      </tr><tr>
-        <th><label for="contract_chrono"><%= _("Contract|Chrono") %></label></th>
-        <td><%= text_field :contract, :chrono %></td>
+        <th><label for="contract_salesman_id"><%= _("Sshwalesman Contact") %></label></th>
+        <td><%= select_empty :contract, :salesman_id, @ingenieurs %></td>
       </tr><tr>
         <th><label for="contract_mailinglist"><%=_("Internal mailing list")%></label></th>
         <td><%= text_field 'contract', 'internal_ml'  %></td>
@@ -19,15 +16,15 @@
         <th><label for="contract_customer_ml"><%=_("Customer mailing list")%></label></th>
         <td><%= text_field 'contract', 'customer_ml'  %></td>
       </tr>
+      <tr>
+        <th><label for="contract_start_date"><%= _('Start') %></label></th>
+        <td><%= date_select :contract, :start_date %></td>
       </tr><tr>
-        <th><label for="contract_ouverture"><%= _('Start') %></label></th>
-        <td><%= date_select :contract, :ouverture %></td>
+        <th><label for="contract_end_date"><%=_('End')%></label></th>
+        <td><%= date_select :contract, :end_date %></td>
       </tr><tr>
-        <th><label for="contract_cloture"><%=_('End')%></label></th>
-        <td><%= date_select :contract, :cloture %></td>
-      </tr><tr>
-        <th><label for="contract_veille_technologique"><%= _("Technological survey") %></label></th>
-        <td><%= check_box :contract, :veille_technologique %></td>
+        <th><label for="contract_technological_survey"><%= _("Technological survey") %></label></th>
+        <td><%= check_box :contract, :technological_survey %></td>
       </tr><tr>
         <th><label for="contract_newsletter"><%= _("Newsletter") %></label></th>
         <td><%= check_box :contract, :newsletter  %></td>
@@ -55,9 +52,9 @@
 	   </div></td>
      </tr><tr>
      <% options = {:size => 2, :style => 'text-align: center;' } %>
-       <th><label for="contract_heure_ouverture"><%= _("Schedules") %></label></th>
-       <td><%= text_field :contract, :heure_ouverture, options  %><%= _("h") %> -
-           <%= text_field :contract, :heure_fermeture, options  %><%= _("h") %></td>
+       <th><label for="contract_opening_time"><%= _("Schedules") %></label></th>
+       <td><%= text_field :contract, :opening_time, options  %><%= _("h") %> -
+           <%= text_field :contract, :closing_time, options  %><%= _("h") %></td>
      </tr><tr>
        <td colspan="2">
        <fieldset>

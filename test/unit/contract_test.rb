@@ -1,27 +1,25 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContractTest < Test::Unit::TestCase
-  fixtures :contracts, :logiciels, :versions, :commitments_contracts, :commitments,
-    :demandes, :components, :credits, :clients, :users, :contracts_users, :ingenieurs,
-    :recipients
+  fixtures :all
 
   def test_to_strings
-    check_strings Contract, :ouverture_formatted, :cloture_formatted
+    check_strings Contract, :start_date_formatted, :end_date_formatted
   end
 
   def test_dates
-    c = Contract.find 1
+    c = Contract.find(1)
     # Schedule check
-    assert c.heure_ouverture <= c.heure_fermeture
-    c.heure_ouverture = -1
+    assert c.opening_time <= c.closing_time
+    c.opening_time = -1
     assert !c.save
-    c.heure_ouverture = 25
+    c.opening_time = 25
     assert !c.save
-    c.heure_ouverture = 12
-    c.heure_fermeture = 9
+    c.opening_time = 12
+    c.closing_time = 9
     assert !c.save
-    c.heure_ouverture = 9
-    c.heure_fermeture = 12
+    c.opening_time = 9
+    c.closing_time = 12
     assert c.save
   end
 

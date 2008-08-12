@@ -1,12 +1,11 @@
----
-join_00002:
-  commitment_id: "3"
-  contract_id: "1"
 join_00000:
   commitment_id: "1"
   contract_id: "1"
 join_00001:
   commitment_id: "2"
+  contract_id: "1"
+join_00002:
+  commitment_id: "3"
   contract_id: "1"
 join_00003:
   commitment_id: "44"
@@ -56,3 +55,18 @@ join_00017:
 join_00018:
   commitment_id: "2"
   contract_id: "18"
+join_00019:
+  commitment_id: "3"
+  contract_id: "2"
+join_00020:
+  commitment_id: "1"
+  contract_id: "2"
+join_00021:
+  commitment_id: "2"
+  contract_id: "2"
+join_00022:
+  commitment_id: 6
+  contract_id: 1
+join_00023:
+  commitment_id: 7
+  contract_id: 6

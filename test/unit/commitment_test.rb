@@ -8,12 +8,12 @@ class CommitmentTest < Test::Unit::TestCase
   end
 
 =begin
-  def test_presence_of_correction_and_contournement
+  def test_presence_of_correction_and_workaround
     e = Commitment.new
     assert !e.save
-    e.correction, e.contournement = 0,0
+    e.correction, e.workaround = 0,0
     assert !e.save
-    e.correction, e.contournement = 2, 0.16 # 0.16 stands for 4 hours
+    e.correction, e.workaround = 2, 0.16 # 0.16 stands for 4 hours
     assert e.save
   end
 

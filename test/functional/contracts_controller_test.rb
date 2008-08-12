@@ -52,8 +52,8 @@ class ContractsControllerTest < Test::Unit::TestCase
     num_contracts = Contract.count
 
     post :create, :contract => {
-      :ouverture => '2005-10-26 10:20:00',
-      :cloture => '2007-10-26 10:20:00',
+      :start_date => '2005-10-26 10:20:00',
+      :end_date => '2007-10-26 10:20:00',
       :client_id => 1,
       :rule_type => 'Rules::Credit',
       :rule_id => 1

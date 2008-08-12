@@ -1,113 +1,105 @@
----
 contract_00001:
-  heure_ouverture: 9
-  astreinte: false
+  opening_time: 9
+  obligation: false
   name : Server
   rule_id: 2
   internal_ml: <%= App::MaintenerEmail %>
-  chrono: 72
-  heure_fermeture: 18
+  closing_time: 18
   client_id: 2
   id: 1
-  veille_technologique: false
-  ouverture: 2007-12-25 09:59:00 +01:00
+  technological_survey: false
+  start_date: 2007-12-25 09:59:00 +01:00
   rule_type: Rules::Component
   newsletter: false
-  cloture: 2012-12-25 10:00:00 +01:00
+  end_date: 2012-12-25 10:00:00 +01:00
   creator_id: 1
 contract_00002:
-  heure_ouverture: 7
-  astreinte: false
+  opening_time: 7
+  obligation: false
   rule_id: 1
   name : Desktop
   internal_ml: <%= App::MaintenerEmail %>
-  chrono: 70
-  heure_fermeture: 20
+  closing_time: 20
   client_id: 1
   id: 2
-  veille_technologique: true
-  ouverture: 2007-12-24 00:00:00 +01:00
+  technological_survey: true
+  start_date: 2007-12-24 00:00:00 +01:00
   rule_type: Rules::Credit
   newsletter: true
-  cloture: 2012-12-24 00:00:00 +01:00
+  end_date: 2012-12-24 00:00:00 +01:00
   creator_id: 1
 contract_00003:
-  heure_ouverture: "9"
+  opening_time: "9"
   name: "Desktop 2"
-  astreinte: "0"
+  obligation: "0"
   rule_id: "2"
   internal_ml: <%= App::MaintenerEmail %>
-  chrono: "0"
-  heure_fermeture: "18"
+  closing_time: "18"
   client_id: "2"
   id: "26"
-  veille_technologique: "0"
-  ouverture: 2006-07-11 00:00:00
+  technological_survey: "0"
+  start_date: 2006-07-11 00:00:00
   newsletter: "0"
   rule_type: Rules::Component
-  cloture: 2009-07-10 00:00:00
+  end_date: 2009-07-10 00:00:00
   creator_id: 1
 contract_00004:
-  heure_ouverture: "9"
+  opening_time: "9"
   name: "Desktop 2"
-  astreinte: "0"
+  obligation: "0"
   rule_id: "1"
   internal_ml: <%= App::MaintenerEmail %>
-  chrono: "0"
-  heure_fermeture: "18"
+  closing_time: "18"
   client_id: "3"
   id: "40"
-  veille_technologique: "0"
-  ouverture: 2007-10-26 00:00:00
+  technological_survey: "0"
+  start_date: 2007-10-26 00:00:00
   newsletter: "0"
   rule_type: Rules::Component
-  cloture: 2008-07-26 00:00:00
+  end_date: 2008-07-26 00:00:00
   creator_id: 1
 contract_00005:
-  heure_ouverture: "7"
+  opening_time: "7"
   name: "Server 2"
-  astreinte: "0"
+  obligation: "0"
   rule_id: "2"
   internal_ml: <%= App::MaintenerEmail %>
-  chrono: "0"
-  heure_fermeture: "19"
+  closing_time: "19"
   client_id: "2"
   id: "6"
-  veille_technologique: "1"
-  ouverture: 2007-11-15 00:00:00
+  technological_survey: "1"
+  start_date: 2007-11-15 00:00:00
   newsletter: "0"
   rule_type: Rules::Component
-  cloture: 2008-11-14 00:00:00
+  end_date: 2008-11-14 00:00:00
   creator_id: 1
 contract_00006:
-  heure_ouverture: "9"
+  opening_time: "9"
   name: "Server 3"
-  astreinte: "0"
+  obligation: "0"
   rule_id: "2"
   internal_ml: <%= App::MaintenerEmail %>
-  chrono: "0"
-  heure_fermeture: "18"
+  closing_time: "18"
   client_id: "2"
   id: "9"
-  veille_technologique: "0"
-  ouverture: 2006-12-06 14:19:00
+  technological_survey: "0"
+  start_date: 2006-12-06 14:19:00
   newsletter:
   rule_type: Rules::Component
-  cloture: 2007-12-06 14:19:00
+  end_date: 2007-12-06 14:19:00
   creator_id: 1
 contract_00007:
-  heure_ouverture: "9"
+  opening_time: "9"
   name: "Desktop 3"
-  astreinte: "0"
+  obligation: "0"
   rule_id: "1"
   internal_ml: <%= App::MaintenerEmail %>
-  chrono: "0"
-  heure_fermeture: "18"
+  closing_time: "18"
   client_id: "2"
   id: "18"
-  veille_technologique: "0"
-  ouverture: 2007-04-11 00:00:00
+  technological_survey: "0"
+  start_date: 2007-04-11 00:00:00
   newsletter: "0"
   rule_type: Rules::Component
-  cloture: 2008-06-10 00:00:00
+  end_date: 2008-06-10 00:00:00
   creator_id: 1

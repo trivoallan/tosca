@@ -18,6 +18,7 @@ demande_00001:
   mail_cc: ""
   first_comment_id: 1
   contribution_id: 1
+
 demande_00002:
   created_on: 2008-01-01 00:00:01 +01:00
   logiciel_id: 1
@@ -38,26 +39,7 @@ demande_00002:
   mail_cc: ""
   first_comment_id: 2
   contribution_id: 2 
-demande_00003:
-  created_on: 2006-10-25 08:32:56
-  logiciel_id: 3
-  updated_on: 2006-10-25 15:14:28
-  mantis_id: 
-  last_comment_id: 192
-  ingenieur_id: 
-  id: 3
-  submitter_id: 12
-  expected_on: 
-  severite_id: 1
-  resume: "(PBR) Plantage record not found"
-  recipient_id: 3
-  contract_id: 1
-  statut_id: 8
-  mail_cc: 
-  socle_id: 
-  typedemande_id: 1
-  first_comment_id: 3
-  contribution_id: 3 
+
 demande_00004:
   created_on: 2008-04-16 16:55:46
   logiciel_id: 2
@@ -78,6 +60,8 @@ demande_00004:
   typedemande_id: 2
   first_comment_id: 7572
   contribution_id: 
+  recipient_id: 2
+
 demande_00005:
   created_on: 2007-12-04 08:49:26
   logiciel_id: 2
@@ -90,7 +74,7 @@ demande_00005:
   expected_on: 2008-05-22 15:02:43
   severite_id: 3
   resume: "Probleme avec fichier dont le chemin comporte des accents"
-  recipient_id: 5
+  recipient_id: 1
   contract_id: 40
   statut_id: 3
   mail_cc: 
@@ -98,6 +82,7 @@ demande_00005:
   typedemande_id: 2
   first_comment_id: 4739
   contribution_id: 
+
 demande_00006:
   created_on: 2008-02-18 10:26:04
   logiciel_id: 3
@@ -118,6 +103,7 @@ demande_00006:
   typedemande_id: 2
   first_comment_id: 6406
   contribution_id: 
+
 demande_00007:
   created_on: 2008-04-23 16:37:53
   logiciel_id: 150
@@ -138,6 +124,7 @@ demande_00007:
   typedemande_id: "1"
   first_comment_id: "7736"
   contribution_id:
+
 demande_00008:
   created_on: 2007-01-17 18:10:47
   logiciel_id: 2
@@ -158,6 +145,7 @@ demande_00008:
   typedemande_id: "1"
   first_comment_id: "2212"
   contribution_id:
+
 demande_00009:
   created_on: 2007-01-11 15:22:33
   logiciel_id: 3
@@ -178,6 +166,7 @@ demande_00009:
   typedemande_id: "2"
   first_comment_id: "2208"
   contribution_id:
+
 demande_00010:
   created_on: 2007-06-18 15:11:19
   logiciel_id: 2

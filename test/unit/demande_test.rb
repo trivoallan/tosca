@@ -51,10 +51,9 @@ class DemandeTest < Test::Unit::TestCase
       assert_instance_of Demande, result
       r.critical?
       assert_not_nil r.client
-      assert_not_nil r.commitment 
+      assert_not_nil r.commitment
       assert_instance_of Fixnum, r.interval
       # they can be nil, but we need to check'em too
-      r.commitment
       r.elapsed_formatted
       r.full_software_name
     }
@@ -80,10 +79,10 @@ class DemandeTest < Test::Unit::TestCase
     assert_equal r[1].client, c
   end
 
-  def test_respect_contournement_and_correction
+  def test_respect_workaround_and_correction
     r = Demande.find 3
     c = Contract.find 2
-    assert_kind_of String, r.respect_contournement(c.id)
+    assert_kind_of String, r.respect_workaround(c.id)
     assert_kind_of String, r.respect_correction(c.id)
   end
 
@@ -92,7 +91,7 @@ class DemandeTest < Test::Unit::TestCase
   def test_temps_correction
     r = Demande.find 3
     assert_operator r.temps_correction, '>=', 0
-    assert_equal r.temps_contournement, 0
+    assert_equal r.temps_workaround, 0
   end
   def test_delais_correction
     r = Demande.find 3
