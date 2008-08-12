@@ -7,7 +7,7 @@ atom_feed do |feed|
                 :updated => contribution.updated_on }
     feed.entry(contribution, options) do |entry|
       entry.title("[#{contribution.logiciel.name}] #{contribution.synthesis}")
-      entry.content(contribution.description_fonctionnelle, :type => 'html')
+      entry.content(contribution.description, :type => 'html')
       entry.author do |author|
         author.name(contribution.ingenieur.name)
       end
