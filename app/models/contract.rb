@@ -29,7 +29,7 @@ class Contract < ActiveRecord::Base
   validate :must_open_before_close
 
   def must_open_before_close
-    if opening_time < closing_time
+    if opening_time > closing_time
       errors.add_to_base("The schedules of this contract are invalid.")
     end
   end
