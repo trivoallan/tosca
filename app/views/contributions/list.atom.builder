@@ -1,7 +1,7 @@
 atom_feed do |feed|
   feed.title(_('Contributions of 08000linux.com'))
   feed.link("http://" + request.host_with_port + request.request_uri)
-  feed.updated(@contributions.first.updated_on)
+  feed.updated(@contributions.first.updated_on) unless @contributions.blank?
   for contribution in @contributions
     options = { :published => contribution.created_on,
                 :updated => contribution.updated_on }
