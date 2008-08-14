@@ -7,10 +7,15 @@
                } %>
 <% form_tag( {:action => "add_software"}, :id => "main_form") do %>
 <table class="form" cellpadding="5" >
-  <tr><th width="70"><%= _('Software') %></th><th><%= _('Version') %></th><th><%= _("Generic ?") %></th><th></th></tr>
-  <% @versions.each do |r| %>
-    <% @logiciel = r.logiciel %>
-    <% @version = r %>
+  <tr>
+    <th width="70"><%= _('Software') %></th>
+    <th><%= _('Version') %></th>
+	<th><%= _("Generic ?") %></th>
+    <th></th>
+  </tr>
+  <% @versions.each do |v| %>
+    <% @logiciel = v.logiciel %>
+    <% @version = v %>
     <%= render :partial => "contracts/software" %>
   <% end %>
   <tr id="end"></tr>
