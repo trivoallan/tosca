@@ -6,7 +6,7 @@ class Release < ActiveRecord::Base
 
   has_one :changelog
   
-  has_many :archives
+  has_many :archives, :dependent => :destroy
 
   def full_name
     @full_name ||= "#{self.version.full_name} r#{self.name}"

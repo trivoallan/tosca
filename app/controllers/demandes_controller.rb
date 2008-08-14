@@ -216,7 +216,7 @@ class DemandesController < ApplicationController
   def show
     @demande = Demande.find(params[:id], :include => [:first_comment]) unless @demande
     @page_title = @demande.resume
-    @partial_for_summary = 'infos_demande'
+    @partial_for_summary = 'infos_request'
     unless read_fragment "requests/#{@demande.id}/front-#{session[:user].role_id}"
       @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande)
       @commentaire.corps = flash[:old_body] if flash.has_key? :old_body

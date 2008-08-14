@@ -124,13 +124,31 @@ module PagesHelper
   #Call it like this : toggle("my_id")
   #You just need a html element with an id="my_id"
   def toggle(id)
-    images = image_tag("next_page.png", :id => "plus_#{id}") + image_tag("next_task.png", :id => "moins_#{id}", :style => "display: none")
+    images = image_tag("navigation_expand.gif", :id => "show_#{id}") + image_tag("navigation_hide.gif", :id => "hide_#{id}", :style => "display: none")
     link_to_function(images, nil, :class => "no_hover") do |page|
-      page[:"moins_#{id}"].toggle
-      page[:"plus_#{id}"].toggle
-      #page[:"#{id}"].visual_effect :blind_down
+      page[:"hide_#{id}"].toggle
+      page[:"show_#{id}"].toggle
       page[:"#{id}"].toggle
     end
+  end
+  
+  def div_toogle(value, id, options = {})
+    options[:onclick] = update_page do |page|
+      page[:"hide_#{id}"].toggle
+      page[:"show_#{id}"].toggle
+      page.visual_effect :toggle_blind, id, :duration => 0.5
+    end
+    
+    style_hide, style_show = "", ""
+    style_hide = "display: none" unless options.has_key?(:hide)
+    style_show = "display: none" if options[:hide] 
+    options.delete(:hide)
+    
+    result = tag('div', options, true)
+    result << image_tag("navigation_hide.gif", :id => "show_#{id}", :style => style_show)
+    result << image_tag("navigation_expand.gif", :id => "hide_#{id}", :style => style_hide)
+    result << "&nbsp;#{value}"
+    result << '</div>'
   end
 
   private
@@ -140,12 +158,11 @@ module PagesHelper
     html_options = {:title => title }
     if ajax_call
       page = "document.forms['filters'].page.value=#{page.number}; #{ajax_call}"
-      link = link_to_function(image, page, html_options)
+      link_to_function(image, page, html_options)
     else
       page = { :page => page }
-      link = public_link_to(image, page, html_options)
+      public_link_to(image, page, html_options)
     end
   end
-
-
+  
 end
