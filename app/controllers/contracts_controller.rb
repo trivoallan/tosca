@@ -86,7 +86,6 @@ class ContractsController < ApplicationController
       return render(:nothing => true)
     end
     @logiciel = Logiciel.find(selected[:software])
-    @random_id = "s#{rand(10000)}_#{@logiciel.id}"
     render(:update) { |page|
       page.insert_html(:before, "end", :partial => "software")
       page.visual_effect(:appear, @random_id)
@@ -99,12 +98,12 @@ class ContractsController < ApplicationController
     @logiciels = Logiciel.find_select
   end
 
-  # TODO : include version.packaged or not ?
   def add_software
     @contract = Contract.find(params[:id])
     redirect_to contract_path(@contract)
     software = params['software']
     return unless software
+    versions = Array.new
     software.each do |s|
       # get rid of the random_field hack
       s = s[1]
@@ -112,11 +111,10 @@ class ContractsController < ApplicationController
       # It's 2 lines but fast find_or_create call
       version = Version.find(:first, :conditions => s)
       version = Version.create(s) unless version
-      unless version.contract_ids.include?(@contract.id)
-        version.contracts << @contract
-      end
-      version.save
+      versions << version
     end
+    @contract.versions = versions
+    @contract.save
   end
 
 private
