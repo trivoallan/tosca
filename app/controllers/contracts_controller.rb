@@ -103,9 +103,9 @@ class ContractsController < ApplicationController
   def add_software
     @contract = Contract.find(params[:id])
     redirect_to contract_path(@contract)
-    softs = params['software']
-    return unless softs
-    softs.each do |s|
+    software = params['software']
+    return unless software
+    software.each do |s|
       # get rid of the random_field hack
       s = s[1]
       next unless s.is_a? Hash

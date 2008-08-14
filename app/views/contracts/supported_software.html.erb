@@ -5,11 +5,13 @@
                :url => {:action => "ajax_add_software", :controller => "contracts"},
                :with => "Form.Element.serialize('select_software')"
                } %>
-<% form_tag( {:action => "add_software"}, :id => "main_form")do %>
+<% form_tag( {:action => "add_software"}, :id => "main_form") do %>
 <table class="form" cellpadding="5" >
+<<<<<<< HEAD:app/views/contracts/supported_software.html.erb
   <tr>
     <th width="70"><%= _('Software') %></th>
     <th><%= _('Version') %></th>
+	<th><%= _("Generic ?") %></th>
     <th></th>
   </tr>
   <% @versions.each do |v| %>
@@ -29,8 +31,8 @@
         <td>
          <%= select_empty "select", "software", @logiciels, {},
                           { :onchange => remote_function(options) } %>
-         <%= link_to(image_create('an url'), new_logiciel_path,
-                          LinksHelper::NO_HOVER) %>
+         <%= link_to image_create(_('a software')), new_logiciel_path,
+                          LinksHelper::NO_HOVER %>
         </td>
         <td width="20"> <%= StaticImage::spinner %></td>
 
