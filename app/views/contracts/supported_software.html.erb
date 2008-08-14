@@ -5,12 +5,12 @@
                :url => {:action => "ajax_add_software", :controller => "contracts"},
                :with => "Form.Element.serialize('select_software')"
                } %>
-<% form_tag( {:action => "add_software"}, :id => "main_form")do %>
+<% form_tag( {:action => "add_software"}, :id => "main_form") do %>
 <table class="form" cellpadding="5" >
-  <tr><th width="70"><%= _('Software') %></th><th><%= _('Version') %></th><th><%= _('Unsupported')+"?" %></th></tr>
-  <% @releases.each do |r| %>
+  <tr><th width="70"><%= _('Software') %></th><th><%= _('Version') %></th><th><%= _("Generic ?") %></th><th></th></tr>
+  <% @versions.each do |r| %>
     <% @logiciel = r.logiciel %>
-    <% @release = r %>
+    <% @version = r %>
     <%= render :partial => "contracts/software" %>
   <% end %>
   <tr id="end"></tr>
@@ -25,8 +25,8 @@
         <td>
          <%= select_empty "select", "software", @logiciels, {},
                           { :onchange => remote_function(options) } %>
-         <%= link_to(image_create('an url'), new_logiciel_path,
-                          LinksHelper::NO_HOVER) %>
+         <%= link_to image_create(_('a software')), new_logiciel_path,
+                          LinksHelper::NO_HOVER %>
         </td>
         <td width="20"> <%= StaticImage::spinner %></td>
 
