@@ -101,7 +101,7 @@
 <% elsif false %>
   <p><b><%= _('Number of tickets') %> : </b><%= @contract.tickets_total %></p>
   <p><b><%= _('Number of used tickets') %> : </b><%= @contract.tickets_consommes %></p>
-                                          <% #We specify the plural for internationnalisation %>
+                                          <%#We specify the plural for internationnalisation %>
   <p><b><%= _('Time per ticket') %> : </b><%= pluralize(@contract.ticket_temps, _("minute"), _("minutes")) %></p>
 
   <br/><h1><b><%= _("Error, wrong type of contract") %></b></h1>

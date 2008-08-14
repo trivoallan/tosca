@@ -1,6 +1,5 @@
 <%= error_messages_for 'demande' %>
 
-<% # hidden_on_create : à placer si on veut cacher un élément %>
 <% new_request = case controller.action_name
      when 'new', 'create' then true
      else false
@@ -27,7 +26,7 @@
         <% if @contracts.size > 1 %>
           <td>
             <% if @ingenieur %>
-              <% #We have an empty to make sure YOU choose the contract %>
+              <%# We have an empty to make sure YOU choose the contract %>
               <%= select_empty(:demande, :contract_id, @contracts) %>
             <% elsif @recipient %>
               <%= select(:demande, :contract_id, @contracts) %>
@@ -49,7 +48,7 @@
     
       <tr>
         <th><label for="demande_recipient_id"><%= _("Recipient") %></label></th>
-        <% # Warning, the code of this cell is also in ajax_display_contract.rjs %>
+        <%# Warning, the code of this cell is also in ajax_display_contract.rjs %>
         <td><div id="recipient"><%= select_empty(:demande, :recipient_id, @recipients) %></div></td>
       </tr>
       

@@ -13,7 +13,7 @@
         <% image_only_bloc.push([r.first, images]) %>
       <% elsif not texts.empty? %>
         <% humanize_controller = _(r.first.humanize) %>
-        <% # We use named cycles so each one is independent from the others %>
+        <%# We use named cycles so each one is independent from the others %>
         <%= cycle("<tr>", "", :name => "start") %>
         <td><div class="sommaire show">
           <% header = r.last.include?("index") ? link_to(humanize_controller, :controller => r.first) : humanize_controller %>

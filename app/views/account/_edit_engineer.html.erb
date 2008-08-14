@@ -17,7 +17,7 @@
   <% unless @contracts.empty? %>
    <p><label><%= _('Contracts')%></label></p>
    <div id="contracts" class="long_bloc_scroll">
-    <% # We display only the contracts of the user %>
+    <%# We display only the contracts of the user %>
     <%= hbtm_check_box( @user.own_contracts,
                         @contracts,
                         'user[own_contract_ids]', :size => 1) %>

@@ -2,7 +2,7 @@
   <% if @logiciels.size > 1 %>
     <%= select_empty(:demande, :logiciel_id, @logiciels) %>
   <% elsif @logiciels.size == 1 %>
-    <% #We have a collect [logiciel.name, logiciel.id ] %>
+    <%# We have a collect [logiciel.name, logiciel.id ] %>
     <%= @logiciels.first.first %>
     <%= hidden_field(:demande, :logiciel_id, :value => @logiciels.first.last) %>
   <% end %>

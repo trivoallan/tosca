@@ -22,7 +22,7 @@
   <td><%= hidden_field_tag "#{random_field}[logiciel_id]", @logiciel.id %><%= @logiciel %></td>
   <td><%= (new_record ? text_field_tag("#{random_field}[name]") : @version) %></td>
   <td>
-   <% # Only admin can remove a software, since it can have a great impact on requests %>
+   <%# Only admin can remove a software, since it can have a great impact on requests %>
    <%= delete_button @random_id if new_record || session[:user].role_id == 1 %>
   </td>
 </tr>
