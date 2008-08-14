@@ -28,7 +28,7 @@ class Release < ActiveRecord::Base
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-        [ 'relases.contract_id IN (?)', contract_ids ]
+        [ 'releases.contract_id IN (?)', contract_ids ]
       } } if contract_ids
   end
 
