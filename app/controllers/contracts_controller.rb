@@ -86,7 +86,6 @@ class ContractsController < ApplicationController
       return render(:nothing => true)
     end
     @logiciel = Logiciel.find(selected[:software])
-    @random_id = "s#{rand(10000)}_#{@logiciel.id}"
     render(:update) { |page|
       page.insert_html(:before, "end", :partial => "software")
       page.visual_effect(:appear, @random_id)

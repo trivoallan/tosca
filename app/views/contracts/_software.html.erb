@@ -16,7 +16,7 @@
 <% end %>
 
 <% new_record = @version.new_record? %>
-<% @random_id ||= "s#{time}_#{@logiciel.id}" %>
+<% @random_id = "s#{time}_#{@logiciel.id}" %>
 <tr id="<%=@random_id%>" class="<%=cycle('odd', 'even', :name => "software")%>"
   <%= hide_unless new_record %> >
   <td><%= hidden_field_tag "#{random_field}[logiciel_id]", @logiciel.id %><%= @logiciel %></td>
