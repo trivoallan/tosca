@@ -95,7 +95,7 @@ class ContractsController < ApplicationController
 
   def supported_software
     @contract = Contract.find(params[:id])
-    @releases = @contract.releases
+    @versions = @contract.versions
     @logiciels = Logiciel.find_select
   end
 
