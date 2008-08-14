@@ -20,11 +20,17 @@
 <tr id="<%=@random_id%>" class="<%=cycle('odd', 'even', :name => "software")%>"
   <%= hide_unless new_record %> >
   <td><%= hidden_field_tag "#{random_field}[logiciel_id]", @logiciel.id %><%= @logiciel %></td>
-  <td><%= (new_record ? text_field_tag("#{random_field}[name]") : @version) %></td>
-  <td><%= (new_record ? check_box_tag("#{random_field}[generic]") : 
-    (@version.generic? ? _('Yes') : _('No') ) ) %></td>
+  <% if new_record %>
+    <td><%= text_field_tag("#{random_field}[name]") %></td>
+    <td><%= check_box_tag("#{random_field}[generic]") %><td>
+  <% else %>
+    <td><%= @version.name %><%= hidden_field_tag "#{random_field}[name]", @version.read_attribute(:name) %></td>
+    <td><%= @version.generic? ? _('Yes') : _('No') %><%= hidden_field_tag "#{random_field}[generic]", @version.generic %></td>
+  <% end %>
   <td>
    <%# Only admin can remove a software, since it can have a great impact on requests %>
    <%= delete_button @random_id if new_record || session[:user].role_id == 1 %>
   </td>
 </tr>
+
+
