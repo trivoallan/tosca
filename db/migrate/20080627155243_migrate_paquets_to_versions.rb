@@ -132,7 +132,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
       end
     end
     puts "Remove duplicate Versions done"
-    
+
     #Generic versions
     Version.all.each do |v|
       case v.name
@@ -174,16 +174,8 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
           :contract_id => b.paquet.contract_id })
 
         release.each do |r|
-          archive = Archive.create(:file => b.archive, :release_id => release.id)
-
-          old_path = File.join(old_archive_path, b.id.to_s)
-          if File.exists? old_path
-            new_path = File.join(new_archive_path, archive.id.to_s)
-            FileUtils.mkdir_p(new_path)
-            puts "Copy from #{old_path} to #{new_path}"
-            FileUtils.cp_r(Dir.glob("#{old_path}/*"), new_path)
-          else
-            puts "archive not present on file system : #{b.archive}"
+          File.open(File.join(old_archive_path, b.id.to_s, b.archive)) do |f|
+            Archive.create(:file => f, :release_id => release.id)
           end
         end
       end

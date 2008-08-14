@@ -1,5 +1,4 @@
 ENV["RAILS_ENV"] = "test"
-require 'extension_fixture_test_helper'
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 
