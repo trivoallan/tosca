@@ -8,38 +8,35 @@
   <%= link_to_edit(@contribution) %>
 </h2>
 <div class="info">
-    <%= link_to_new_urlreversement(@contribution.id) %>
-    <% options = { :edit => 'urlreversement' } %>
-    <%= show_list(@contribution.urlreversements, _('link'), options) { |u|
-          " <a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
-    } %>
-
-    <% if @contribution.contributed_on %>
-        <%= _('This contribution has been submitted on %s by <b>%s</b>') %
-              [ @contribution.contributed_on_formatted, @contribution.ingenieur.name ] %>
-        <% if @contribution.closed_on %>
-           <%= _('and its has been approved on %s') % @contribution.closed_on_formatted %>
-        <% end %>.<br/>
-        <% if @contribution.affected_version %>
-           <%= _('This bug has been discovered in the version %s ') % link_to_version(@contribution.affected_version) %>
-        <% end %>
-        <% if @contribution.fixed_version %>
-           <%= _('and has been fixed in the version %s') % link_to_version(@contribution.fixed_version) %>
-        <% end %>
-    <% else %>
-        <%= _('This patch was not submitted to the community') %>
-    <% end %><br />
-
-<% if @ingenieur %>
-<hr />
-  <h2><%=_('Internal details')%></h2>
   <%= @contribution.description %>
-  <% if @contribution.id_mantis %>
+  <% if @contribution.id_mantis && @ingenieur %>
      <p><b>Demande du portail v1 : </b>
         <%=link_to_any_demande @contribution %></p>
   <% end %>
   <%= link_to_demande(@contribution.demande, :show_id => true, :icon_severite => true) %><br/>
-<% end %>
+
+  <%= link_to_new_urlreversement(@contribution.id) %>
+  <% options = { :edit => 'urlreversement' } %>
+  <%= show_list(@contribution.urlreversements, _('link'), options) do |u|
+        " <a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
+  end %>
+
+  <% if @contribution.contributed_on %>
+      <%= _('This contribution has been submitted on %s by <b>%s</b>') %
+            [ @contribution.contributed_on_formatted, @contribution.ingenieur.name ] %>
+      <% if @contribution.closed_on %>
+         <%= _('and its has been approved on %s') % @contribution.closed_on_formatted %>
+      <% end %>.<br/>
+      <% if @contribution.affected_version %>
+         <%= _('This bug has been discovered in the version %s ') % link_to_version(@contribution.affected_version) %>
+      <% end %>
+      <% if @contribution.fixed_version %>
+         <%= _('and has been fixed in the version %s') % link_to_version(@contribution.fixed_version) %>
+      <% end %>
+  <% else %>
+      <%= _('This patch was not submitted to the community') %>
+  <% end %><br />
+
 </div>
 
 
