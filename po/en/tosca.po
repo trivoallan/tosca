@@ -57,7 +57,7 @@ msgid "Email"
 msgstr ""
 
 #: app/controllers/account_controller.rb:246
-#: app/views/demandes/_infos_demande.html.erb:52
+#: app/views/demandes/_infos_request.html.erb:52
 msgid "Phone"
 msgstr ""
 
@@ -359,7 +359,7 @@ msgstr ""
 #: app/views/contributions/_contributions_info.html.erb:46
 #: app/views/contributions/_form.html.erb:8
 #: app/views/demandes/_form.html.erb:75
-#: app/views/demandes/_infos_demande.html.erb:28
+#: app/views/demandes/_infos_request.html.erb:28
 #: app/views/demandes/lists/_requests_table.html.erb:4
 #: app/views/groupes/index.html.erb:5 app/views/knowledges/_form.html.erb:16
 #: app/views/logiciels/_software_info.html.erb:51
@@ -378,7 +378,7 @@ msgstr ""
 #: app/controllers/export_controller.rb:138
 #: app/helpers/commitments_helper.rb:20 app/helpers/commitments_helper.rb:70
 #: app/views/demandes/_comment_form.html.erb:12
-#: app/views/demandes/_infos_demande.html.erb:32
+#: app/views/demandes/_infos_request.html.erb:32
 #: app/views/demandes/lists/_requests_info.html.erb:54
 msgid "Severity"
 msgstr ""
@@ -400,7 +400,7 @@ msgstr ""
 #: app/helpers/contributions_helper.rb:7
 #: app/views/contributions/_contributions_info.html.erb:43
 #: app/views/demandes/_form.html.erb:120
-#: app/views/demandes/_infos_demande.html.erb:22
+#: app/views/demandes/_infos_request.html.erb:22
 #: app/views/demandes/lists/_pending_table.html.erb:12
 #: app/views/demandes/lists/_requests_table.html.erb:9
 #: app/views/logiciels/_form.html.erb:6 app/views/logiciels/show.html.erb:20
@@ -411,7 +411,7 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:140
 #: app/views/demandes/_comment_form.html.erb:6
-#: app/views/demandes/_infos_demande.html.erb:29
+#: app/views/demandes/_infos_request.html.erb:29
 #: app/views/demandes/lists/_requests_info.html.erb:56
 msgid "Status"
 msgstr ""
@@ -420,7 +420,7 @@ msgstr ""
 #: app/views/account/_edit_account_informations.html.erb:8
 #: app/views/contracts/_form.html.erb:43 app/views/contracts/index.html.erb:5
 #: app/views/demandes/_form.html.erb:16
-#: app/views/demandes/_infos_demande.html.erb:31
+#: app/views/demandes/_infos_request.html.erb:31
 #: app/views/demandes/lists/_requests_info.html.erb:52
 #: app/views/demandes/lists/_requests_table.html.erb:5
 #: app/views/documents/_form.html.erb:16
@@ -1140,7 +1140,7 @@ msgid "Hide"
 msgstr ""
 
 #: app/helpers/static_image.rb:63
-#: app/views/demandes/_infos_demande.html.erb:73
+#: app/views/demandes/_infos_request.html.erb:73
 #: app/views/demandes/lists/_requests_info.html.erb:68
 #: app/views/welcome/about.html.erb:3
 msgid "Help"
@@ -1181,7 +1181,7 @@ msgid "OSSA on rails"
 msgstr ""
 
 #: app/helpers/static_image.rb:171
-#: app/views/demandes/_infos_demande.html.erb:17
+#: app/views/demandes/_infos_request.html.erb:17
 msgid "Print"
 msgstr ""
 
@@ -2293,7 +2293,7 @@ msgstr ""
 
 #: app/views/account/_users_info.html.erb:13
 #: app/views/clients/_clients_info.html.erb:15
-#: app/views/demandes/_infos_demande.html.erb:3
+#: app/views/demandes/_infos_request.html.erb:3
 #: app/views/phonecalls/_calls_info.html.erb:10
 msgid "Action"
 msgstr ""
@@ -2834,7 +2834,7 @@ msgid "Obligation"
 msgstr ""
 
 #: app/views/contracts/show.html.erb:100
-#: app/views/demandes/_infos_demande.html.erb:27
+#: app/views/demandes/_infos_request.html.erb:27
 #: app/views/machines/_form.html.erb:17 app/views/machines/index.html.erb:5
 #: app/views/machines/show.html.erb:9 app/views/socles/_form.html.erb:9
 #: app/views/socles/index.html.erb:5
@@ -2907,7 +2907,7 @@ msgid "Delay"
 msgstr ""
 
 #: app/views/contributions/_contributions_admin.html.erb:8
-#: app/views/demandes/_infos_demande.html.erb:61
+#: app/views/demandes/_infos_request.html.erb:61
 #: app/views/demandes/lists/_requests_table.html.erb:18
 msgid "Updated on"
 msgstr ""
@@ -3049,12 +3049,12 @@ msgid "Concerning"
 msgstr ""
 
 #: app/views/demandes/_form.html.erb:58
-#: app/views/demandes/_infos_demande.html.erb:42
+#: app/views/demandes/_infos_request.html.erb:42
 msgid "Assigned to"
 msgstr ""
 
 #: app/views/demandes/_form.html.erb:89
-#: app/views/demandes/_infos_demande.html.erb:35
+#: app/views/demandes/_infos_request.html.erb:35
 msgid "CC"
 msgstr ""
 
@@ -3094,45 +3094,45 @@ msgstr ""
 msgid "Software :"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:7
+#: app/views/demandes/_infos_request.html.erb:7
 msgid "Add a contribution"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:8
+#: app/views/demandes/_infos_request.html.erb:8
 msgid "Link to a contribution"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:25
+#: app/views/demandes/_infos_request.html.erb:25
 msgid "Vm"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:39
+#: app/views/demandes/_infos_request.html.erb:39
 msgid "Declared by"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:47
+#: app/views/demandes/_infos_request.html.erb:47
 msgid "Recipent"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:50
+#: app/views/demandes/_infos_request.html.erb:50
 #: app/views/teams/index.html.erb:5 app/views/teams/show.html.erb:4
 msgid "Contact"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:54
+#: app/views/demandes/_infos_request.html.erb:54
 msgid "Company"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:58
+#: app/views/demandes/_infos_request.html.erb:58
 msgid "Life cycle"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:60
+#: app/views/demandes/_infos_request.html.erb:60
 #: app/views/demandes/tabs/_attachments.html.erb:5
 msgid "Created on"
 msgstr ""
 
-#: app/views/demandes/_infos_demande.html.erb:63
+#: app/views/demandes/_infos_request.html.erb:63
 msgid "Time elapsed"
 msgstr ""
 

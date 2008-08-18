@@ -12,8 +12,7 @@
 <%# see remote_link_to_(dead|active|all)_request in demandes_helper %>
 <input id="filters_active" name="filters[active]" type="hidden" value="0" />
 
-<div class="menu_title" onclick="Element.toggle('menu_actions')">>
-<%=_('Actions')%></div>
+<%= div_toogle _('Actions'), 'menu_actions', :class => "menu_title" %>
 <ul class="menu" id="menu_actions">
  <% path = new_demande_path %>
  <% if session[:user].authorized? path %>
@@ -25,17 +24,15 @@
  <% end %>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_flux')">>
-<%=_('Flow')%></div>
-<ul class="menu" id="menu_flux">
+<%= div_toogle _('Flow'), 'menu_flow', :class => "menu_title" %>
+<ul class="menu" id="menu_flow">
   <li><%= remote_link_to_all_request %></li>
   <li><%= remote_link_to_active_request %></li>
   <li><%= remote_link_to_dead_request %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_recherche')">>
-<%=_('Search')%></div>
-<ul class="menu" id="menu_recherche">
+<%= div_toogle _('Search'), 'menu_search', :class => "menu_title" %>
+<ul class="menu" id="menu_search">
  <li><b><%=_('By word')%></b><br />
      <%= text_field :filters, :text %></li>
  <% if @ingenieur %>
@@ -46,9 +43,8 @@
  <% end %>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_caracteristiques')">>
-<%=_('Attributes')%></div>
-<ul class="menu" id="menu_caracteristiques">
+<%= div_toogle _('Attributes'), 'menu_attributes', :class => "menu_title" %>
+<ul class="menu" id="menu_attributes">
  <li><b><%=_('Type')%> </b><br />
      <%=select_filter(@typedemandes, :typedemande) %></li>
  <li><b><%=_('Severity')%></b><br />
@@ -57,16 +53,14 @@
      <%=select_filter(@statuts, :statut) %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_settings')">>
-<%=_('Settings')%></div>
+<%= div_toogle _('Settings'), 'menu_settings', :class => "menu_title", :hide => true %>
 <ul class="menu" id="menu_settings" style="display: none">
  <li><b><%=_('Limit')%></b><br />
      <%= text_field :filters, :limit %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_aide')">
-> <%= _("Help") %></div>
-<ul class="menu" id="menu_aide">
+<%= div_toogle _('Help'), 'menu_help', :class => "menu_title" %>
+<ul class="menu" id="menu_help">
  <li><%= public_link_to_help_new_request %></li>
  <li><%= public_link_to_howto_request %></li>
  <li><%= public_link_to_help_request_status %></li>
