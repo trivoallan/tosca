@@ -99,7 +99,7 @@ class PhonecallsController < ApplicationController
   def _form
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @contracts = Contract.find_select(Contract::OPTIONS)
-    contract = @phonecall.contract || @contracts.first
+    contract = @phonecall.contract || Contract.find(@contracts.first.last.to_i)
     @recipients =
       contract.client.recipients.find_select(User::SELECT_OPTIONS)
   end
