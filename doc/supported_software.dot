@@ -1,0 +1,21 @@
+digraph supported_software {
+
+//rotate=90;
+
+
+Request -> Software [arrowhead=odot]
+Request -> Release [arrowhead=odot]
+Request -> Version [arrowhead=odot]
+
+Version -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+Version -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
+Contribution -> Version [arrowhead=dot,dir=both,arrowtail=crow]
+
+Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
+Archives -> Release [arrowhead=dot,dir=both,arrowtail=crow]
+
+
+
+
+}
