@@ -3,9 +3,9 @@ digraph supported_software {
 //rotate=90;
 
 
-Request -> Software [arrowhead=odot]
-Request -> Release [arrowhead=odot]
-Request -> Version [arrowhead=odot]
+Request -> Software [arrowhead=odot,dir=both,arrowtail=crow]
+Request -> Release [arrowhead=odot,dir=both,arrowtail=crow]
+Request -> Version [arrowhead=odot,dir=both,arrowtail=crow]
 
 Version -> Software [arrowhead=dot,dir=both,arrowtail=crow]
 Version -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
