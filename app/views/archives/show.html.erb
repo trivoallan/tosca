@@ -12,10 +12,10 @@
 <h2><%=_('Archive')%></h2>
 <div class="show">
  <p><b><%=_('Name')%>:</b> <%= link_to_file(@archive, 'file') %></p>
- <p><b><%=_('Size')%>:</b> <%= size_in_megabytes(@archive.size) %></p>
+ <p><b><%=_('Size')%>:</b> <%= number_to_human_size(@archive.size) %></p>
  <p><b><%=_('Release')%>:</b> <%= link_to_release(@archive.release) %></p>
 </div>
- 
+
 <p>&nbsp;</p>
 
 <%= link_to_edit_and_list(@archive) %>
