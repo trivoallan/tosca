@@ -254,12 +254,14 @@ private
                       [ user.title, user.name]).gsub(' ', '&nbsp;')
 
     if user.client?
-      user.contracts.each do |c|
-        if !c.inactive? && (c.end_date - Time.now).between?(0.month, 1.month)
-          flash[:notice] << '<br/><strong>'
-          flash[:notice] << (_("Your contract '%s' is near its end date : %s") %
+      options = { :conditions => { :inactive => false } }
+      contracts = user.contracts.find(:all, options).each do |c|
+        if (c.end_date - Time.now).between?(0.month, 1.month)
+          message = '<br/><strong>'
+          message << '</strong>'
+          message << (_("Your contract '%s' is near its end date : %s") %
             [c.name, complete_date(c.end_date)])
-          flash[:notice] << '</strong>'
+          flash[:notice] << message
         end
       end
     end
