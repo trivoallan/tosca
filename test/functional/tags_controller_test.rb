@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TagsControllerTest < ActionController::TestCase
-  fixtures :tags
-  
+  fixtures :tags, :users, :contracts, :contracts_users
+
   def test_should_get_index
     %w(admin manager expert customer viewer).each do |l|
       login l, l

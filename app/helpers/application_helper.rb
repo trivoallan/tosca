@@ -277,20 +277,16 @@ module ApplicationHelper
   ### INFORMATIONS #########################################################
 
   def show_notice
-      "<div id=\"information_notice\" class=\"information notice\">
-         <div class=\"close_information\" onclick=\"Element.hide('information_notice')\">" <<
-         StaticImage::hide_notice << "</div>
-         <p>" << flash[:notice] << "</p>
-       </div>"
+    @@notice ||= "<div id=\"information_notice\" class=\"information notice\">
+       <div class=\"close_information\">#{delete_button('information_notice')}</div>"
+    @@notice += "<p>" << flash[:notice] << "</p></div>"
   end
 
   def show_warn
-      "<div id=\"information_error\" class=\"information error\">
-         <div class=\"close_information\" onclick=\"Element.hide('information_error')\">" <<
-         StaticImage::hide_notice << "</div>
-         <h2>" + _('An error has occured') + "</h2>
-         <ul><li>" << flash[:warn] << "</li></ul>
-       </div>"
+    @@warn ||= "<div id=\"information_error\" class=\"information error\">
+       <div class=\"close_information\">#{delete_button('information_error')}</div>"
+    @@warn += "<h2>" + _('An error has occured') + "</h2>
+       <ul><li>" << flash[:warn] << "</li></ul></div>"
   end
 
 end

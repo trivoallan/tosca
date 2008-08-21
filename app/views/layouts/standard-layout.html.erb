@@ -80,15 +80,18 @@
   </div><!-- end of header -->
 
   <div id="content_div">
-    <div id="information">
-       <%= show_notice if flash[:notice] %>
-       <%= show_warn if flash[:warn] %>
-    </div><!-- end of information -->
-
     <!-- Javascript starts to be used here : -->
     <%= javascript_include_tag('calendar', "calendar-#{locale}",
          'calendar-setup', 'prototype', 'effects', 'controls',
          'application', 'redbox', :cache => "all-#{locale}") %>
+
+    <div id="information">
+       <%= show_notice if flash[:notice] %>
+       <%= show_warn if flash[:warn] %>
+       <script type="text/javascript">
+       </script>
+    </div><!-- end of information -->
+
 
     <table id="content_table">
       <tr valign="top">

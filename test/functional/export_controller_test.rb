@@ -5,13 +5,7 @@ require 'demandes_controller'
 # class DemandesController; def rescue_action(e) raise e end; end
 class ExportControllerTest < Test::Unit::TestCase
 
-   fixtures :demandes, :commentaires,
-    :recipients, :clients, :statuts, :ingenieurs, :severites,
-    :logiciels, :socles, :clients_socles, :versions, :permissions, :roles,
-    :permissions_roles, :contracts, :contracts_commitments, :commitments,
-    :contracts_users, :users, :attachments, :contributions,
-    :typedemandes
-
+   fixtures :all
 
   def setup
     @controller = ExportController.new

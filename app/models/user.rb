@@ -158,10 +158,15 @@ class User < ActiveRecord::Base
   # The contracts of a User = his contracts + the contracts of his team
   def contracts
     contracts = self.own_contracts.dup
-    if self.team
-      contracts.concat(self.team.contracts)
-    end
+    contracts.concat(self.team.contracts) if self.team
     contracts
+  end
+
+  def active_contracts
+    options = { :conditions => { :inactive => false } }
+    result = self.own_contracts.find(:all, options)
+    result.concat(self.team.contracts.find(:all, options)) if self.team
+    result
   end
 
   # cached, coz' it's used in scopes

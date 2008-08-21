@@ -254,8 +254,7 @@ private
                       [ user.title, user.name]).gsub(' ', '&nbsp;')
 
     if user.client?
-      options = { :conditions => { :inactive => false } }
-      contracts = user.contracts.find(:all, options).each do |c|
+      user.active_contracts.each do |c|
         if (c.end_date - Time.now).between?(0.month, 1.month)
           message = '<br/><strong>'
           message << '</strong>'
