@@ -2,11 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class TeamsControllerTest < ActionController::TestCase
 
-  fixtures :teams, :demandes, :commentaires, :users, :contracts_users,
-    :recipients, :clients, :statuts, :ingenieurs, :severites,
-    :logiciels, :socles, :clients_socles, :versions, :permissions, :roles,
-    :permissions_roles, :contracts, :contracts_commitments, :commitments,
-    :typedemandes, :elapseds
+  fixtures :all
 
   def test_should_get_index
     %w(admin manager expert customer viewer).each do |l|

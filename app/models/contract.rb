@@ -29,9 +29,12 @@ class Contract < ActiveRecord::Base
   validate :must_open_before_close
 
   def must_open_before_close
-    if opening_time > closing_time
-      errors.add_to_base("The schedules of this contract are invalid.")
+    valid = true
+    if self.opening_time > self.closing_time
+      self.errors.add_to_base("The schedules of this contract are invalid.")
+      valid = false
     end
+    valid
   end
 
   Rules = [ 'Rules::Credit', 'Rules::Component' ]

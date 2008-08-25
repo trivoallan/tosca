@@ -100,9 +100,7 @@ class ContractsController < ApplicationController
 
   def add_software
     @contract = Contract.find(params[:id])
-    redirect_to contract_path(@contract)
-    software = params['software']
-    return unless software
+    software = params['software'] || []
     versions = Array.new
     software.each do |s|
       # get rid of the random_field hack
@@ -113,8 +111,14 @@ class ContractsController < ApplicationController
       version = Version.create(s) unless version
       versions << version
     end
+    # This ***ing line is mandatory as of Rails 2.1
+    # There's a buggy updater cache in it.
+    # Use case : try to update with 2 versions, same name but distinct software.
+    # TODO : try this use case on superior versions of Rails
+    @contract.versions = []
     @contract.versions = versions
     @contract.save
+    redirect_to contract_path(@contract)
   end
 
 private

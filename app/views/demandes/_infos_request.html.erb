@@ -47,8 +47,8 @@
   <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
      <%= link_to_show(account_path(user)) if @ingenieur %></li>
   <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
-  <% client = @demande.recipient.client %>
-  <li><b><%= _('Company') %>: </b><%= link_to client.name, client_path(client) %></li>
+  <% contract = @demande.contract %>
+  <li><b><%= _('Concerning') %>: </b><%= link_to contract, contract_path(contract) %></li>
 </ul>
 
 <%= div_toogle _("Life cycle"), 'life_cycle_menu', :class => "menu_title" %>

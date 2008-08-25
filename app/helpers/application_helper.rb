@@ -12,7 +12,6 @@ module ApplicationHelper
   include FormsHelper
   include LinksHelper
   include ImagesHelper
-  include FilesHelper
   include DatesHelper
 
   ### TEXT #####################################################################
@@ -278,20 +277,24 @@ module ApplicationHelper
   ### INFORMATIONS #########################################################
 
   def show_notice
-      "<div id=\"information_notice\" class=\"information notice\">
-         <div class=\"close_information\" onclick=\"Element.hide('information_notice')\">" <<
-         StaticImage::hide_notice << "</div>
-         <p>" << flash[:notice] << "</p>
-       </div>"
+    @@notice ||= %Q{<div id="information_notice" class="information notice">
+       <div class="close_information">#{delete_button('information_notice')}</div>
+       <script type="text/javascript">
+          setTimeout(function() { new Effect.Fade("information_notice",{duration:1});
+                                }, 3000);
+       </script>}
+    @@notice.dup << "<p>" << flash[:notice] << "</p></div>"
   end
 
   def show_warn
-      "<div id=\"information_error\" class=\"information error\">
-         <div class=\"close_information\" onclick=\"Element.hide('information_error')\">" <<
-         StaticImage::hide_notice << "</div>
-         <h2>" + _('An error has occured') + "</h2>
-         <ul><li>" << flash[:warn] << "</li></ul>
-       </div>"
+    @@warn ||= %Q{<div id="information_error" class="information error">
+       <div class="close_information">#{delete_button('information_error')}</div>
+       <script type="text/javascript">
+          setTimeout(function() { new Effect.Fade("information_error",{duration:1});
+                                }, 3000);
+       </script>}
+    @@warn.dup << "<h2>" + _('An error has occured') + "</h2>
+       <ul><li>" << flash[:warn] << "</li></ul></div>"
   end
 
 end

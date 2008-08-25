@@ -2,9 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 # Each Controller Test should test all _public_ methods
 class AccountControllerTest < ActionController::TestCase
-  fixtures :users, :roles, :permissions_roles, :permissions, :clients,
-    :contracts_users, :contracts, :images, :recipients, :credits,
-    :components, :clients, :ingenieurs
+  fixtures :all
 
   def test_login_and_logout
     %w(admin manager expert customer viewer).each { |l|

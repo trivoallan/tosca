@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class DocumentsControllerTest < ActionController::TestCase
   fixtures :documents, :typedocuments, :clients, :roles, :permissions,
-    :permissions_roles, :users
+    :permissions_roles, :users, :contracts, :contracts_users
 
   def test_index
     %w(admin manager expert customer viewer).each { |l|

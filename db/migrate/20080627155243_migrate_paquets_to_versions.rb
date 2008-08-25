@@ -42,6 +42,10 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     has_many :versions, :order => "name DESC", :dependent => :destroy
   end
 
+  class Contract < ActiveRecord::Base
+     has_and_belongs_to_many :versions
+  end
+
   def self.up
     remove_column :demandes, :binaire_id
     add_column :demandes, :version_id, :integer
@@ -132,6 +136,19 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
       end
     end
     puts "Remove duplicate Versions done"
+
+    # We are forced to make it in two pass, since there's a strange caching
+    # model for saving in rails 2.1
+    Contract.all.each do |c|
+      # /!\ DO _NOT_ OPTIMIZE THOSE LINES /!\
+      versions = c.versions
+      c.versions = []
+      versions.uniq!
+      c.save
+      c.versions = versions
+      c.save!
+    end
+    puts "Remove duplicate versions of Contracts"
 
     #Generic versions
     Version.all.each do |v|

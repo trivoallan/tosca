@@ -238,9 +238,9 @@ class Notifier < ActionMailer::Base
   end
 
   def message_notice(recipients, cc)
-    result = "<br />" << _("An e-mail informing") << " <b>#{recipients}</b> "
-    result << "<br />" << _("with a copy to") << " <b>#{cc}</b> " if cc
-    result << _("was sent.")
+    result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
+    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc
+    result << '.'
   end
 
   MULTIPART_CONTENT = 'multipart/alternative'

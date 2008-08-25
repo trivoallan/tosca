@@ -1,7 +1,7 @@
 
 <h2 class="spacer"><%= _('Contents')%></h2>
 
-<%= _('You are administrator of the Portal 08000linux.com')%>
+<%= _('You have %s rights on this portal') % session[:user].role %>
 <table class="sommaire"><tr><td>
 <div class="sommaire show">
   <h3><%= _('Users') %></h3>

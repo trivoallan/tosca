@@ -114,9 +114,10 @@ class ReportingController < ApplicationController
     @contract = Contract.find(params[:reporting][:contract_id].to_i)
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titles = @@titles
-    @report[:start_date] = [@contract.start_date.beginning_of_month, Time.now].min
-    @report[:end_date] = [calendar2time(params[:end_date]),
-    @contract.end_date.beginning_of_month].min
+    @report[:start_date] = [ @contract.start_date.beginning_of_month,
+                             Time.now ].min
+    @report[:end_date] = [ calendar2time(params[:end_date]),
+                           @contract.end_date.beginning_of_month].min
     @first_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
@@ -130,11 +131,7 @@ class ReportingController < ApplicationController
       @labels[i] = c if ((i % 2) == 0)
       i += 1
     end
-    if period == 1
-      middle_date = end_date.beginning_of_month
-    else
-      middle_date = end_date.months_ago(period - 1)
-    end
+    middle_date = end_date.months_ago(period)
     start_date = @report[:start_date]
     if (middle_date > start_date and middle_date < end_date)
       @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
@@ -215,9 +212,8 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     end_date = @report[:end_date]
 
-    liste = @contract.client.recipients.collect{|b| b.id} # .join(',')
-    demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.recipient_id IN (?)',
-                 nil, nil, liste ]
+    demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.contract_id = ?',
+                 nil, nil, @contract.id ]
     until (start_date > end_date) do
       infdate = "#{start_date.strftime('%y-%m')}-01"
       start_date = start_date.advance(:months => 1)
@@ -265,6 +261,7 @@ class ReportingController < ApplicationController
       corrections[i].push 0.0
     }
 
+    size = 0
     demandes.each do |d|
       e = d.commitment
       interval = d.contract.interval.hours
@@ -277,9 +274,9 @@ class ReportingController < ApplicationController
                       e.contournement * interval, last_index)
       fill_one_report(corrections, elapsed.correction,
                       e.correction * interval, last_index)
+      size += 1
     end
 
-    size = demandes.size
     if size > 0
       size = size.to_f
       2.times {|i|
