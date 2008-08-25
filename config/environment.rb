@@ -44,7 +44,8 @@ Rails::Initializer.run do |config|
 
   ### External libs ###
   # Used to i18n and l10n
-  config.gem 'gettext', :version => '1.91.0'
+  config.gem 'gettext', :lib => 'gettext/rails'
+  config.gem 'gettext', :lib => 'gettext/utils' # needed by gettext_localize
 
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
