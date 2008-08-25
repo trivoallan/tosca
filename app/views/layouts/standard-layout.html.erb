@@ -83,7 +83,7 @@
     <!-- Javascript starts to be used here : -->
     <%= javascript_include_tag('calendar', "calendar-#{locale}",
          'calendar-setup', 'prototype', 'effects', 'controls',
-         'application', 'redbox', :cache => "all-#{locale}") %>
+         'application', 'redbox', 'tosca', :cache => "all-#{locale}") %>
 
     <div id="information">
        <%= show_notice if flash[:notice] %>
