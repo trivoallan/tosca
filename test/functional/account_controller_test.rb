@@ -127,9 +127,8 @@ class AccountControllerTest < ActionController::TestCase
   def test_lemon
     login 'admin', 'admin'
     get :lemon
-    assert_response :success
+    assert_response :redirect
   end
-
 
   def test_become
     %w(admin manager expert).each { |l|
@@ -153,7 +152,6 @@ class AccountControllerTest < ActionController::TestCase
     test.call(:client => 'false')
     assert_not_nil assigns(:user_engineer)
   end
-
 
   def test_ajax_contracts
     login 'manager', 'manager'

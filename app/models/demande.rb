@@ -65,8 +65,8 @@ class Demande < ActiveRecord::Base
   end
 
   # self-explanatory
-  TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})"
-  EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})"
+  TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})" unless defined? TERMINEES
+  EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})" unless defined? EN_COURS
 
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
@@ -174,15 +174,15 @@ class Demande < ActiveRecord::Base
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
-  SELECT_LIST = 'demandes.*, severites.name as severites_name, ' +
-    'logiciels.name as logiciels_name, clients.name as clients_name, ' +
-    'typedemandes.name as typedemandes_name, statuts.name as statuts_name '
-  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' +
-    'INNER JOIN recipients ON recipients.id=demandes.recipient_id '+
-    'INNER JOIN clients ON clients.id = recipients.client_id '+
-    'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' +
-    'INNER JOIN statuts ON statuts.id = demandes.statut_id ' +
-    'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
+  SELECT_LIST = 'demandes.*, severites.name as severites_name, 
+    logiciels.name as logiciels_name, clients.name as clients_name, 
+    typedemandes.name as typedemandes_name, statuts.name as statuts_name' unless defined? SELECT_LIST
+  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id
+    INNER JOIN recipients ON recipients.id=demandes.recipient_id
+    INNER JOIN clients ON clients.id = recipients.client_id
+    INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id 
+    INNER JOIN statuts ON statuts.id = demandes.statut_id 
+    LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id ' unless defined? JOINS_LIST
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||

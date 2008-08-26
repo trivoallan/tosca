@@ -150,7 +150,7 @@ class ExportController < ApplicationController
     :pdf  => [ '.pdf', 'application/pdf' ],
     :html => [ '.html', 'text/html' ],
     :ods  => [ '.ods', 'application/vnd.oasis.opendocument.spreadsheet']
-  }
+  } unless defined? MIME_EXTENSION
 
   # Generate and upload a report to the user with a predefined name.
   #
