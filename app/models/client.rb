@@ -9,7 +9,7 @@ class Client < ActiveRecord::Base
   has_many :contracts, :dependent => :destroy
   has_many :documents, :dependent => :destroy
 
-  has_and_belongs_to_many :socles
+  has_and_belongs_to_many :socles, :uniq => true
 
   has_many :versions, :through => :contracts
   has_many :demandes, :through => :recipients # , :source => :demandes

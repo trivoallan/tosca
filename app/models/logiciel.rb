@@ -13,7 +13,7 @@ class Logiciel < ActiveRecord::Base
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
 
-  has_and_belongs_to_many :competences
+  has_and_belongs_to_many :competences, :uniq => true
 
   validates_presence_of :name, :message =>
     _('You have to specify a name')

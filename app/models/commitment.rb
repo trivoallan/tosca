@@ -1,7 +1,7 @@
 class Commitment < ActiveRecord::Base
   belongs_to :severite
   belongs_to :typedemande
-  has_and_belongs_to_many :contracts
+  has_and_belongs_to_many :contracts, :uniq => true
 
   validates_each :correction, :workaround do |record, attr, value|
     record.errors.add attr, 'must be >= 0.' if value < 0 and value != -1

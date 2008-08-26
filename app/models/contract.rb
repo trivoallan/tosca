@@ -9,9 +9,10 @@ class Contract < ActiveRecord::Base
   has_many :tags
   has_many :releases
 
-  has_and_belongs_to_many :commitments, :order =>
+  has_and_belongs_to_many :commitments, :uniq => true, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
-  has_and_belongs_to_many :users, :order => 'users.name'
+  has_and_belongs_to_many :users, :order => 'users.name', :uniq => true
+  # Those 2 ones are helpers, not _real_ relation ship
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
     :conditions => 'users.client = 0',
     :order => 'users.name ASC'
@@ -19,7 +20,7 @@ class Contract < ActiveRecord::Base
     :conditions => 'users.client = 1', :include => :recipient,
     :order => 'users.name ASC'
   has_and_belongs_to_many :teams, :order => 'teams.name', :uniq => true
-  has_and_belongs_to_many :versions, :order => 'versions.name DESC'
+  has_and_belongs_to_many :versions, :order => 'versions.name DESC', :uniq => true
 
   validates_presence_of :client, :rule, :creator
   validates_numericality_of :opening_time, :closing_time,
