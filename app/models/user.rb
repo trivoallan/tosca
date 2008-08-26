@@ -59,8 +59,6 @@ class User < ActiveRecord::Base
       number.gsub!(/(\d\d)/, '\1.').chop!
     elsif number =~ /\d\d(\D\d\d){4}/ #01.40_50f60$70
       number.gsub!(/\D/, ".")
-    else
-      number.gsub(/(\d\d)/, '\1.').chop
     end
     record.phone = number
     # false will invalidate the save

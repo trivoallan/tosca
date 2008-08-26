@@ -9,7 +9,7 @@ class Team < ActiveRecord::Base
       :joins => 'INNER JOIN contracts_teams ct ON ct.team_id=teams.id'}
   }
 
-  has_and_belongs_to_many :contracts
+  has_and_belongs_to_many :contracts, :uniq => true
 
   validates_uniqueness_of :name
   validates_presence_of :name, :contact
