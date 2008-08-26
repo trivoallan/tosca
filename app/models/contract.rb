@@ -18,7 +18,7 @@ class Contract < ActiveRecord::Base
   has_and_belongs_to_many :recipient_users, :class_name => 'User',
     :conditions => 'users.client = 1', :include => :recipient,
     :order => 'users.name ASC'
-  has_and_belongs_to_many :teams, :order => 'teams.name'
+  has_and_belongs_to_many :teams, :order => 'teams.name', :uniq => true
   has_and_belongs_to_many :versions, :order => 'versions.name DESC'
 
   validates_presence_of :client, :rule, :creator
