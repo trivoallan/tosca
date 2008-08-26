@@ -23,15 +23,15 @@ class Commentaire < ActiveRecord::Base
     if (record.statut_id && record.prive)
       record.errors.add_to_base _('You cannot privately change the status')
     end
-
+  end
+  
+  before_validation do |record|
+    if not Statut::NEED_COMMENT.include? record.statut_id and html2text(record.corps).strip.empty?
+      record.corps = _("The request is now %s.") % record.statut
+    end
   end
 
-
-  # On détruit l'éventuelle pièce jointe
-  # le belongs_to ne permet pas d'appeler :dependent :'(
-
-  # permet de récuperer l'état du commentaire en texte
-  # le booléen correspondant est :  prive = true || false
+  # State in words of the comment (private or public)
   def etat
     ( prive ? _("private") : _("public") )
   end
@@ -135,7 +135,5 @@ class Commentaire < ActiveRecord::Base
 
     request.save
   end
-
-
 
 end

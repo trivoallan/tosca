@@ -15,7 +15,7 @@ class CommentairesController < ApplicationController
     @commentaire = Commentaire.find(params[:id])
   end
 
-  #utilisé par la vue "comment" de Demande pour en ajouter un
+  #Used by the comment view of a request to add one
   def comment
     commentaire, id = params[:commentaire], params[:id]
     return render(:nothing => true) unless id && commentaire
@@ -36,12 +36,12 @@ class CommentairesController < ApplicationController
       flash[:warn] = _("A comment can not be private if there is a change in<br/>
         the <b>status</b> or in the <b>severity</b>")
     end
-
+    
     @comment = Commentaire.new(commentaire)
     @comment.demande, @comment.user = request, user
     @comment.add_attachment(params)
 
-    # on vérifie et on envoie le courrier
+    #We verify and send an email
     if @comment.save
       flash[:notice] = _("Your comment was successfully added.")
       url_attachment = render_to_string(:layout => false, :template => '/attachment')
@@ -52,8 +52,8 @@ class CommentairesController < ApplicationController
       }
       Notifier::deliver_request_new_comment(options, flash)
     else
-      flash[:warn] = _("An error has occured.") + '<br />' +
-        @comment.errors.full_messages.join('<br />')
+      flash[:warn] = _("An error has occured.") + '<br/>' +
+        @comment.errors.full_messages.join('<br/>')
       flash[:old_body] = @comment.corps
     end
 
