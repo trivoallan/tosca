@@ -66,15 +66,6 @@ class User < ActiveRecord::Base
     true
   end
 
-  after_save do |record|
-    # To make sure we have only one time a contract
-    if record.team
-      record.own_contracts = record.own_contracts - record.team.contracts
-    end
-    # false will invalidate the save
-    true
-  end
-
   # Eck ... We must add message manually in order to
   # not have the "pwd" prefix ... TODO : find a pretty way ?
   # TODO : check if gettext is an answer ?

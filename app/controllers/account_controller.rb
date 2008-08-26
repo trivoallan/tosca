@@ -164,7 +164,7 @@ class AccountController < ApplicationController
       redirect_to account_path(@user)
     else
       # Don't write this :  _form and render :action => 'edit'
-      # Else, tosca return an error. It don't find the template
+      # Else, tosca returns an error. It don't find the template
       _form
       render(:action => 'edit')
     end

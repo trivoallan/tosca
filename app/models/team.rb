@@ -9,11 +9,11 @@ class Team < ActiveRecord::Base
       :joins => 'INNER JOIN contracts_teams ct ON ct.team_id=teams.id'}
   }
 
-  has_and_belongs_to_many :contracts
+  has_and_belongs_to_many :contracts, :uniq => true
 
   validates_uniqueness_of :name
   validates_presence_of :name, :contact
-
+  
   # Nice URL
   def to_param
     "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
@@ -23,7 +23,6 @@ class Team < ActiveRecord::Base
     joins = 'INNER JOIN contracts_users cu ON cu.user_id=users.id'
     conditions = [ 'cu.contract_id = ?', contract_id ]
     options = {:find => {:conditions => conditions, :joins => joins}}
-    result = []
     Ingenieur.send(:with_scope, options) do
       Ingenieur.find_select(User::SELECT_OPTIONS)
     end
