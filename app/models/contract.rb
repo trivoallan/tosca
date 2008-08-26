@@ -37,6 +37,12 @@ class Contract < ActiveRecord::Base
     end
     valid
   end
+  
+  after_save do |record|
+    # To make sure we have only one time a engineer
+    record.engineer_users = record.engineer_users - (record.teams.collect { |t| t.users }.flatten)
+    true
+  end
 
   Rules = [ 'Rules::Credit', 'Rules::Component' ]
 

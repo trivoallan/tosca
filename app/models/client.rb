@@ -19,7 +19,6 @@ class Client < ActiveRecord::Base
   validates_presence_of :name, :creator
   validates_length_of :name, :in => 3..50
 
-
   SELECT_OPTIONS = { :include => {:recipients => [:user]},
     :conditions => 'clients.inactive = 0 AND users.inactive = 0' }
 

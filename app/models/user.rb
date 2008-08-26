@@ -65,6 +65,14 @@ class User < ActiveRecord::Base
     # false will invalidate the save
     true
   end
+  
+  after_save do |record|
+    # To make sure we have only one time a engineer
+    if record.team
+      record.own_contracts = record.own_contracts - record.team.contracts
+    end
+    true
+  end
 
   # Eck ... We must add message manually in order to
   # not have the "pwd" prefix ... TODO : find a pretty way ?
