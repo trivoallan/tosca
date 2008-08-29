@@ -127,11 +127,13 @@ module FormsHelper
   end
   alias_method :search_demande, :search_demande_field
 
+  # Create the original auto_complete field 
   def auto_complete(object, method, tag_options = {}, completion_options = {})
     completion_options[:skip_style] = true
     text_field_with_auto_complete(object, method, tag_options)
   end
 
+  # Create the auto_complete field wich insert the choice after click to the table.
   def auto_complete_list(object, method, objectcollection, name, tag_options = {}, completion_options = {})
     @name =  name
     out = "<table>"
@@ -165,6 +167,7 @@ module FormsHelper
     out << "</ul>"
   end
 
+  # Create the choice list for auto_compete
   def auto_complete_choice( object, method, collection, name , options={})
     return '' if collection.nil? || collection.empty?
     @field = "#{object}_#{method}"
@@ -184,6 +187,7 @@ module FormsHelper
     end )
   end
 
+  # Apply a fade effect and delete the html element
   def delete_button(id)
     link_to_function(StaticImage::delete, %Q{tosca_remove("#{id}")}, :class => :no_hover)
   end

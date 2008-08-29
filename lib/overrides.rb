@@ -504,6 +504,7 @@ module TMail
   end
 end
 
+# Add the possibility to create an aut_complete on methods
 module AutoComplete
   module ClassMethods
     def auto_complete_for(object, method, model = nil, field = nil, options = {})
