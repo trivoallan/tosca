@@ -70,12 +70,13 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^commitments/(?!destroy)', 'Manage Service Level Agreement' ],
                [ '^groupes/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
-               [ '^ingenieurs/(?!(destroy|new))',
-                 'List knowledges of human ressources' ],
+               [ '^ingenieurs/(?!(destroy|new))', 'Manage human ressources' ],
                [ '^logiciels/(?!destroy)', 'Manage software' ],
                [ '^machines/(?!destroy)', 'Manage servers' ],
                [ '^releases/(?!destroy)', 'Manage releases' ],
-               [ '^teams/(?!destroy)', 'Manage teams' ]
+               [ '^teams/(?!destroy)', 'Manage teams' ],
+               [ '^releases/(?!destroy)', 'Manage release' ],
+               [ '^versions/(?!destroy)', 'Manage version' ]
              ]
     add_permission.call(roles, access)
 
@@ -86,8 +87,10 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^logiciels/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
                [ '^socles/show$', 'Read-only access to system' ],
-               [ '^teams/(index|show)$', 'Read-only access to the teams' ],
-               [ '^tags/(index|show|create|new)$', 'Read-only access to the tags' ]
+               [ '^teams/(index|show)$', 'Read-only access to teams' ],
+               [ '^releases/(index|show)$', 'Read-only access to versions' ],
+               [ '^tags/(index|show|create|new)$', 'Read-only access to the tags' ],
+               [ '^versions/(index|show)$', 'Read-only access to versions' ]
              ]
     add_permission.call(roles, access)
 

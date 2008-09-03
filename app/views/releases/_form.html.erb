@@ -1,5 +1,6 @@
 <%= error_messages_for 'release' %>
 
+
 <p><label for="release_version"><%=  _('Version') %></label><br />
   <%= select(:release, :version_id, @versions) %>
 </p>
@@ -12,10 +13,10 @@
   <%= select(:release, :contract_id, @contracts) %>
 </p>
 
-<p><label for="release_pakaged"><%= _("Is this release packaged ?") %></label><br/>
+<p><label for="release_packaged"><%= _("Is this release packaged ?") %></label>
   <%= check_box :release, :packaged %>
 </p>
 
-<p><label for="release_inactive"><%= _("Is this release inactive ?") %></label><br/>
+<p><label for="release_inactive"><%= _("Is this release inactive ?") %></label>
   <%= check_box :release, :inactive %>
 </p>
