@@ -186,7 +186,7 @@ private
 
   def _link2request()
     begin
-      demande = Demande.find(params[:demande][:id]) unless params[:demande][:id].blank?
+      demande = Demande.find(params[:demande][:id].to_i) unless params[:demande][:id].blank?
       @contribution.demande = demande
     rescue
       flash[:warn] = _('The associated request does not exist')

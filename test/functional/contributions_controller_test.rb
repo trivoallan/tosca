@@ -43,12 +43,12 @@ class ContributionsControllerTest < ActionController::TestCase
   end
 
   def test_should_show_contribution
-    get :show, :id => contributions(:contribution_00001).id
+    get :show, :id => contributions(:contribution_0001).id
     assert_response :success
   end
 
   def test_should_be_able_to_update
-    get :edit, :id => contributions(:contribution_00001).id
+    get :edit, :id => contributions(:contribution_0001).id
     assert_template 'edit'
     assert_response :success
 
@@ -58,7 +58,8 @@ class ContributionsControllerTest < ActionController::TestCase
   end
 
   def test_should_be_able_to_create
-    get :new, :id => Demande.find(:first).id
+    get :new, :request_id => Demande.find(:first).id,
+              :logiciel_id => Logiciel.find(:first).id
     assert_template 'new'
     assert_response :success
 
