@@ -142,7 +142,7 @@ module FormsHelper
     tag_options[:onfocus] = "$('#{object}_#{method}').value = \"\" "
     tag_options[:onblur] = "$('#{object}_#{method}').value = \"#{_("Search") + "..."}\""
     completion_options[:skip_style] = true
-    completion_options[:indicator] = "spinner_#{@object}_#{@method}"
+    completion_options[:indicator] = "spinner_#{object}_#{method}"
     out << "<label>" << _("Add")<< " "<< _(object.to_s) << "</label>"
     out << "</td></tr><tr><td>"
     out << text_field_with_auto_complete(object, method, tag_options, completion_options)
@@ -154,7 +154,7 @@ module FormsHelper
     out << "<ul>"
     objectcollection.each do |c|
       @value = c.id
-      @html_id = "li_#{@object}_#{@method}_#{@value}"
+      @html_id = "li_#{@field}_#{@value}"
       @content = "#{c.name} #{delete_button(@html_id)}"
       out << "#{render :partial => 'applications/auto_complete_insert'}"
     end
@@ -174,8 +174,8 @@ module FormsHelper
     @name = name
     content_tag(:ul, collection.map do |c|
       @value = c.id
-      @content = "#{c.name} #{delete_button(@html_id)}"
       @html_id = "li_#{@field}_#{@value}"
+      @content = "#{c.name} #{delete_button(@html_id)}"
       html_id_empty = "li_#{@field}_"
       @new_record = true
       js_call = "if ($('#{@html_id}')==null){" << update_page do |page|
