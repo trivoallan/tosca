@@ -31,13 +31,13 @@ class Contract < ActiveRecord::Base
 
   def must_open_before_close
     valid = true
-    if self.opening_time > self.closing_time
+    if self.opening_time.to_i > self.closing_time.to_i
       self.errors.add_to_base("The schedules of this contract are invalid.")
       valid = false
     end
     valid
   end
-  
+
   after_save do |record|
     # To make sure we have only one time a engineer
     record.engineer_users = record.engineer_users - (record.teams.collect { |t| t.users }.flatten)

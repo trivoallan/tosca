@@ -93,7 +93,7 @@ class ContractsController < ApplicationController
   end
 
   def supported_software
-    @contract = Contract.find(params[:id])
+    @contract = Contract.find(params[:id]) unless @contract
     @versions = @contract.versions
     @logiciels = Logiciel.find_select
   end
@@ -107,18 +107,16 @@ class ContractsController < ApplicationController
       s = s[1]
       next unless s.is_a? Hash
       # It's 2 lines but fast find_or_create call
-      version = Version.find(:first, :conditions => s)
+      version = Version.find(:first, :conditions => s, :include => :logiciel)
       version = Version.create(s) unless version
-      versions << version
+      versions << version if version.valid?
     end
-    # This ***ing line is mandatory as of Rails 2.1
-    # There's a buggy updater cache in it.
-    # Use case : try to update with 2 versions, same name but distinct software.
-    # TODO : try this use case on superior versions of Rails
-    @contract.versions = []
     @contract.versions = versions
-    @contract.save
-    redirect_to contract_path(@contract)
+    if @contract.save
+      redirect_to contract_path(@contract)
+    else
+      supported_software and render :action => supported_software
+    end
   end
 
 private

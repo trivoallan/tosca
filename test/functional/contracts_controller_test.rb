@@ -1,17 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'contracts_controller'
 
-# Re-raise errors caught by the controller.
-class ContractsController; def rescue_action(e) raise e end; end
+class ContractsControllerTest < ActionController::TestCase
 
-class ContractsControllerTest < Test::Unit::TestCase
   fixtures :contracts, :commitments, :clients, :severites, :typedemandes,
-    :credits, :components
+    :credits, :components, :logiciels
 
   def setup
-    @controller = ContractsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 
@@ -49,21 +43,16 @@ class ContractsControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    num_contracts = Contract.count
-
-    post :create, :contract => {
-      :start_date => '2005-10-26 10:20:00',
-      :end_date => '2007-10-26 10:20:00',
-      :client_id => 1,
-      :rule_type => 'Rules::Credit',
-      :rule_id => 1
-    }
-
-    assert flash.has_key?(:notice)
-    assert_response :redirect
-    assert_redirected_to :action => 'index'
-
-    assert_equal num_contracts + 1, Contract.count
+    get :new
+    assert_difference('Contract.count') do
+      form = select_form "main_form"
+      form.contract.opening_time = 9
+      form.contract.closing_time = 18
+      form.submit
+      assert flash.has_key?(:notice)
+      assert_response :redirect
+      assert_redirected_to :action => 'index'
+    end
   end
 
   def test_edit
@@ -77,7 +66,9 @@ class ContractsControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, :id => 1
+    get :edit, :id => 1
+    form = select_form "main_form"
+    form.submit
 
     assert flash.has_key?(:notice)
     assert_response :redirect
@@ -101,24 +92,28 @@ class ContractsControllerTest < Test::Unit::TestCase
     get :supported_software, :id => 1
     assert_response :success
     assert_template 'supported_software'
-  end
-
-  def test_ajax_add_software
-    xhr :get, :ajax_add_software, :value => 2  
-    assert_response :success
-    assert_template 'contracts/_software'
+    versions = Contract.find(1).versions
+    assert_no_difference('Version.count') do
+      form = select_form "main_form"
+      form.submit
+      assert_response :redirect
+      assert_redirected_to contract_path(:id => 1)
+    end
   end
 
   def test_add_software
     get :supported_software, :id => 1
+    assert_response :success
+    assert_template 'supported_software'
     versions = Contract.find(1).versions
-    assert_no_difference('versions.count') do
+    assert_no_difference('Version.count') do
       form = select_form "main_form"
       form.submit
     end
-    assert_difference('versions.count') do
-      post :add_software, :id => 1, :software => { "-933231574" => {"software"=>"1", "paquet_id"=>"", "version"=>"xx", "active"=>"on"}, "-932877093"=>{"software"=>"1", "paquet_id"=>"1", "version"=>"x", "active"=>"on"}}
-    end
+    xhr :post, :ajax_add_software, :select => {
+      :software => Logiciel.find(:first).id }
+    assert_response :success
+    assert_template 'contracts/_software'
   end
 
 end
