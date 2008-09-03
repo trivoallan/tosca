@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-26 11:49+0200\n"
-"PO-Revision-Date: 2008-08-21 11:18+0200\n"
+"POT-Creation-Date: 2008-09-03 18:52+0200\n"
+"PO-Revision-Date: 2008-09-03 18:55+0200\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -81,9 +81,8 @@ msgid "Welcome %s %s"
 msgstr ""
 
 #: app/controllers/account_controller.rb:261
-#, fuzzy
 msgid "Your contract '%s' is near its end date : %s"
-msgstr "The·%s·contract has·a·new·request:·%s"
+msgstr ""
 
 #: app/controllers/application.rb:99
 msgid ""
@@ -185,19 +184,19 @@ msgstr ""
 msgid "Contract was successfully updated."
 msgstr ""
 
-#: app/controllers/contracts_controller.rb:138
+#: app/controllers/contracts_controller.rb:136
 msgid "Unknown rules for contract \"%s\""
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:115
+#: app/controllers/contributions_controller.rb:114
 msgid "The contribution has been created successfully."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:137
+#: app/controllers/contributions_controller.rb:135
 msgid "The contribution has been updated successfully."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:192
+#: app/controllers/contributions_controller.rb:191
 msgid "The associated request does not exist"
 msgstr ""
 
@@ -312,7 +311,7 @@ msgstr ""
 #: app/views/demandes/tabs/_appels.html.erb:2
 #: app/views/phonecalls/_calls_info.html.erb:26
 #: app/views/phonecalls/_calls_list.html.erb:6
-#: app/views/phonecalls/_form.html.erb:10 app/views/releases/_form.html.erb:11
+#: app/views/phonecalls/_form.html.erb:10 app/views/releases/_form.html.erb:12
 #: app/views/releases/show.html.erb:13 app/views/tags/_form.html.erb:12
 #: app/views/tags/show.html.erb:11
 msgid "Contract"
@@ -352,14 +351,14 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:138 app/helpers/links_helper.rb:134
 #: app/views/account/_menu.html.erb:18 app/views/account/_menu.html.erb:20
-#: app/views/archives/show.html.erb:5
+#: app/views/archives/show.html.erb:5 app/views/bienvenue/index.html.erb:73
 #: app/views/contracts/supported_software.html.erb:11
 #: app/views/contracts/supported_software.html.erb:29
 #: app/views/contributions/_contributions_admin.html.erb:7
 #: app/views/contributions/_contributions_info.html.erb:32
 #: app/views/contributions/_contributions_info.html.erb:49
 #: app/views/contributions/_form.html.erb:8
-#: app/views/demandes/_form.html.erb:74
+#: app/views/demandes/_form.html.erb:75
 #: app/views/demandes/_infos_request.html.erb:26
 #: app/views/demandes/lists/_requests_table.html.erb:4
 #: app/views/groupes/index.html.erb:5 app/views/knowledges/_form.html.erb:16
@@ -400,7 +399,7 @@ msgstr ""
 #: app/controllers/reporting_controller.rb:423
 #: app/helpers/contributions_helper.rb:7
 #: app/views/contributions/_contributions_info.html.erb:45
-#: app/views/demandes/_form.html.erb:119
+#: app/views/demandes/_form.html.erb:120
 #: app/views/demandes/_infos_request.html.erb:20
 #: app/views/demandes/lists/_pending_table.html.erb:12
 #: app/views/demandes/lists/_requests_table.html.erb:9
@@ -473,7 +472,8 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:198
 #: app/helpers/application_helper.rb:181 app/helpers/commitments_helper.rb:54
-#: app/helpers/commitments_helper.rb:55
+#: app/helpers/commitments_helper.rb:55 app/helpers/engagements_helper.rb:47
+#: app/helpers/engagements_helper.rb:48
 #: app/views/reporting/_comex_tableaux.html.erb:20
 msgid "None"
 msgstr ""
@@ -524,15 +524,15 @@ msgstr ""
 msgid "List of your supported software"
 msgstr ""
 
-#: app/controllers/logiciels_controller.rb:88
+#: app/controllers/logiciels_controller.rb:90
 msgid "The software %s has been created succesfully."
 msgstr ""
 
-#: app/controllers/logiciels_controller.rb:104
+#: app/controllers/logiciels_controller.rb:106
 msgid "The software %s has been updated successfully."
 msgstr ""
 
-#: app/controllers/logiciels_controller.rb:115
+#: app/controllers/logiciels_controller.rb:117
 msgid "The software %s has been successfully deleted."
 msgstr ""
 
@@ -785,7 +785,7 @@ msgstr ""
 msgid " workdays"
 msgstr ""
 
-#: app/helpers/application_helper.rb:296
+#: app/helpers/application_helper.rb:292
 msgid "An error has occured"
 msgstr ""
 
@@ -909,7 +909,7 @@ msgstr ""
 msgid "Export in %s"
 msgstr ""
 
-#: app/helpers/forms_helper.rb:139 app/views/account/_menu.html.erb:42
+#: app/helpers/forms_helper.rb:141 app/views/account/_menu.html.erb:42
 #: app/views/clients/_clients_info.html.erb:28
 #: app/views/contributions/_contributions_info.html.erb:28
 #: app/views/demandes/lists/_requests_info.html.erb:34
@@ -921,7 +921,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: app/helpers/forms_helper.rb:144 app/views/knowledges/new.html.erb:5
+#: app/helpers/forms_helper.rb:146 app/views/knowledges/new.html.erb:5
 #: app/views/permissions/new.html.erb:5 app/views/versions/new.html.erb:5
 msgid "Add"
 msgstr ""
@@ -953,8 +953,8 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: app/helpers/links_helper.rb:119 app/views/contracts/index.html.erb:5
-#: app/views/logiciels/show.html.erb:49
+#: app/helpers/links_helper.rb:119 app/views/bienvenue/index.html.erb:17
+#: app/views/contracts/index.html.erb:5 app/views/logiciels/show.html.erb:49
 #: app/views/phonecalls/_calls_info.html.erb:52
 #: app/views/reporting/general.html.erb:22
 #: app/views/reporting/general.html.erb:23
@@ -1137,7 +1137,7 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: app/helpers/static_image.rb:63
+#: app/helpers/static_image.rb:63 app/views/bienvenue/about.html.erb:3
 #: app/views/demandes/_infos_request.html.erb:68
 #: app/views/demandes/lists/_requests_info.html.erb:62
 #: app/views/welcome/about.html.erb:3
@@ -1331,7 +1331,7 @@ msgstr "Inactive"
 msgid "Client|Creator"
 msgstr ""
 
-#: app/models/client.rb:36
+#: app/models/client.rb:35
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
 msgstr ""
 
@@ -1420,7 +1420,6 @@ msgid "commitment"
 msgstr ""
 
 #: app/models/commitment.rb:-
-#, fuzzy
 msgid "Commitment|Severity"
 msgstr "Severity"
 
@@ -1521,7 +1520,6 @@ msgid "Document|Version"
 msgstr ""
 
 #: app/models/document.rb:-
-#, fuzzy
 msgid "Document|Delivered on"
 msgstr "Delivered on"
 
@@ -2035,23 +2033,23 @@ msgstr "Password"
 msgid "User|Pwd confirmation"
 msgstr "Confirm your password"
 
-#: app/models/user.rb:73
+#: app/models/user.rb:79
 msgid "Password missing"
 msgstr ""
 
-#: app/models/user.rb:75
+#: app/models/user.rb:81
 msgid "Password is different from its confirmation"
 msgstr ""
 
-#: app/models/user.rb:79
+#: app/models/user.rb:85
 msgid "Your password is too long (max. 20)"
 msgstr ""
 
-#: app/models/user.rb:81
+#: app/models/user.rb:87
 msgid "Your password is too short (min. 5)"
 msgstr ""
 
-#: app/models/user.rb:85
+#: app/models/user.rb:91
 msgid "You must have specify a password."
 msgstr ""
 
@@ -2091,7 +2089,7 @@ msgstr ""
 #: app/views/account/_edit_recipient.html.erb:5
 #: app/views/account/_show_recipient.html.erb:6
 #: app/views/account/_users_list.html.erb:14
-#: app/views/demandes/_form.html.erb:50
+#: app/views/demandes/_form.html.erb:51
 #: app/views/demandes/tabs/_appels.html.erb:2
 #: app/views/documents/_form.html.erb:6
 #: app/views/phonecalls/_calls_info.html.erb:24
@@ -2490,7 +2488,7 @@ msgid "Create"
 msgstr ""
 
 #: app/views/archives/_form.html.erb:3 app/views/archives/index.html.erb:6
-#: app/views/archives/show.html.erb:16 app/views/releases/_form.html.erb:7
+#: app/views/archives/show.html.erb:16 app/views/releases/_form.html.erb:8
 #: app/views/releases/index.html.erb:6 app/views/releases/show.html.erb:10
 #: app/views/releases/show.html.erb:15
 msgid "Release"
@@ -2529,6 +2527,184 @@ msgstr ""
 
 #: app/views/attachments/new.html.erb:1
 msgid "New attachment"
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:8 app/views/bienvenue/index.html.erb:78
+#: app/views/welcome/about.html.erb:8 app/views/welcome/index.html.erb:78
+msgid "Don't hesitate to"
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:9 app/views/welcome/about.html.erb:9
+msgid "contact us"
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:10 app/views/welcome/about.html.erb:10
+msgid "if needed"
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:14 app/views/welcome/about.html.erb:14
+msgid "About"
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:16 app/views/welcome/about.html.erb:16
+msgid "This application was created by <b>Michel Loiseleur</b> at "
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:18 app/views/welcome/about.html.erb:18
+msgid ""
+"This journey would not have been possible without\n"
+"      the <b>developers</b> who have taken part in this project,\n"
+"      without the testers who have contributed to it's quality and\n"
+"      without quite a bit of <b>free software</b> which has enabled the\n"
+"      development to be fast and agile. They are all warmly thanked here.\n"
+"      %s would be nothing without them."
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:26 app/views/welcome/about.html.erb:26
+msgid "Developers"
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:36 app/views/welcome/about.html.erb:36
+msgid "Quality Assurance"
+msgstr ""
+
+#: app/views/bienvenue/about.html.erb:44 app/views/welcome/about.html.erb:44
+msgid "Free software used by %s"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:2 app/views/welcome/index.html.erb:2
+msgid "connected"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:3 app/views/welcome/admin.html.erb:2
+#: app/views/welcome/index.html.erb:3
+msgid "Contents"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:5 app/views/welcome/index.html.erb:5
+msgid "Welcome to the 08000LINUX management tool"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:20
+msgid "You can see the list of %s:"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:20 app/views/welcome/index.html.erb:20
+msgid "requests"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:22
+msgid "You can also %s."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:22 app/views/welcome/index.html.erb:22
+msgid "make a request"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:25 app/views/welcome/index.html.erb:25
+msgid ""
+"You are not %s, so you cannot access the requests interface of our service."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:30
+#: app/views/documents/_documents_info.html.erb:44
+#: app/views/welcome/index.html.erb:30
+msgid "Documents"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:32 app/views/welcome/index.html.erb:32
+msgid "You can browse %s. "
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:32 app/views/welcome/index.html.erb:32
+msgid "your directory"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:33 app/views/welcome/index.html.erb:33
+msgid "You will find there all documents we have delivered to you"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:34 app/views/welcome/index.html.erb:34
+msgid "You can also consult your %s online."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:34 app/views/welcome/index.html.erb:34
+msgid "activity report"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:36 app/views/welcome/index.html.erb:36
+msgid "When you are %s, you can access an activity report"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:37 app/views/welcome/index.html.erb:37
+msgid "dynamically showing the activity of our service for you in real time."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:38 app/views/welcome/index.html.erb:38
+msgid "You also have access to all documents we may deliver to you."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:44 app/views/welcome/index.html.erb:44
+#: app/views/welcome/suggestions.html.erb:1
+msgid "Idea Box"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:45 app/views/welcome/index.html.erb:45
+msgid ""
+"You have an idea which can improve our services?<br />\n"
+"    Your comments and suggestions are welcome in %s."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:47
+#: app/views/demandes/lists/pending.html.erb:15
+#: app/views/welcome/index.html.erb:47
+msgid "the idea box"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:55 app/views/welcome/index.html.erb:55
+msgid "Offer"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:59 app/views/welcome/index.html.erb:59
+msgid "You benefit from one of our offers, which detail is available here: %s"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:62 app/views/welcome/index.html.erb:62
+msgid "We hope this tool wil give you entire satisfaction."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:65 app/views/welcome/index.html.erb:65
+msgid "Your call number is"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:67 app/views/welcome/index.html.erb:67
+msgid "and your access code is %s"
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:74 app/views/welcome/index.html.erb:74
+msgid "You can see the list of %s."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:75 app/views/welcome/index.html.erb:75
+msgid ""
+"This software is sorted into a precise and simple %s, distributed by "
+"activity group."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:77 app/views/welcome/index.html.erb:77
+msgid ""
+"We have a large range of offers for support with a SLA. This Service Level "
+"Agreement can be very strong and is guaranteed by contract."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:79 app/views/welcome/index.html.erb:79
+msgid "contact us."
+msgstr ""
+
+#: app/views/bienvenue/index.html.erb:81 app/views/welcome/index.html.erb:81
+msgid ""
+"You can consult and follow all the %s done by our team in Open Source "
+"communities."
 msgstr ""
 
 #: app/views/changelogs/_form.html.erb:3
@@ -2740,7 +2916,7 @@ msgstr ""
 msgid "Domain"
 msgstr ""
 
-#: app/views/contracts/_form.html.erb:37 app/views/demandes/_form.html.erb:109
+#: app/views/contracts/_form.html.erb:37 app/views/demandes/_form.html.erb:110
 msgid "Commitments"
 msgstr ""
 
@@ -3053,25 +3229,25 @@ msgstr ""
 msgid "Concerning"
 msgstr ""
 
-#: app/views/demandes/_form.html.erb:57
+#: app/views/demandes/_form.html.erb:58 app/views/demandes/_form.html.erb:123
 #: app/views/demandes/_infos_request.html.erb:40
 msgid "Assigned to"
 msgstr ""
 
-#: app/views/demandes/_form.html.erb:88
+#: app/views/demandes/_form.html.erb:89
 #: app/views/demandes/_infos_request.html.erb:33
 msgid "CC"
 msgstr ""
 
-#: app/views/demandes/_form.html.erb:94
+#: app/views/demandes/_form.html.erb:95
 msgid "Demande|Expected on"
 msgstr "Expected on"
 
-#: app/views/demandes/_form.html.erb:129
+#: app/views/demandes/_form.html.erb:139
 msgid "Detailed description"
 msgstr ""
 
-#: app/views/demandes/_form.html.erb:137
+#: app/views/demandes/_form.html.erb:147
 msgid "Add a file"
 msgstr ""
 
@@ -3238,11 +3414,6 @@ msgid ""
 "Feel free to inform us in %s if you feel some requests should not be here."
 msgstr ""
 
-#: app/views/demandes/lists/pending.html.erb:15
-#: app/views/welcome/index.html.erb:47
-msgid "the idea box"
-msgstr ""
-
 #: app/views/demandes/lists/pending.html.erb:23
 msgid "My team has not any pending request"
 msgstr ""
@@ -3384,16 +3555,11 @@ msgid "Titre"
 msgstr ""
 
 #: app/views/documents/_documents_info.html.erb:36
-msgid "Nom de fichier"
+msgid "Name of the file"
 msgstr ""
 
 #: app/views/documents/_documents_info.html.erb:41
 msgid "Statistics"
-msgstr ""
-
-#: app/views/documents/_documents_info.html.erb:44
-#: app/views/welcome/index.html.erb:30
-msgid "Documents"
 msgstr ""
 
 #: app/views/documents/_form.html.erb:26
@@ -3625,7 +3791,7 @@ msgstr ""
 #: app/helpers/contributions_helper.rb:7
 #: app/views/contracts/supported_software.html.erb:12
 #: app/views/demandes/_version.html.erb:3 app/views/logiciels/show.html.erb:59
-#: app/views/logiciels/show.html.erb:62 app/views/releases/_form.html.erb:3
+#: app/views/logiciels/show.html.erb:62 app/views/releases/_form.html.erb:4
 #: app/views/releases/show.html.erb:14 app/views/versions/_form.html.erb:12
 #: app/views/versions/_versions_info.html.erb:23
 #: app/views/versions/show.html.erb:15
@@ -3774,11 +3940,11 @@ msgstr ""
 msgid "Ended on"
 msgstr ""
 
-#: app/views/releases/_form.html.erb:15
+#: app/views/releases/_form.html.erb:16
 msgid "Is this release packaged ?"
 msgstr ""
 
-#: app/views/releases/_form.html.erb:19
+#: app/views/releases/_form.html.erb:20
 msgid "Is this release inactive ?"
 msgstr ""
 
@@ -4496,52 +4662,6 @@ msgstr ""
 msgid "Version of a software"
 msgstr ""
 
-#: app/views/welcome/about.html.erb:8 app/views/welcome/index.html.erb:78
-msgid "Don't hesitate to"
-msgstr ""
-
-#: app/views/welcome/about.html.erb:9
-msgid "contact us"
-msgstr ""
-
-#: app/views/welcome/about.html.erb:10
-msgid "if needed"
-msgstr ""
-
-#: app/views/welcome/about.html.erb:14
-msgid "About"
-msgstr ""
-
-#: app/views/welcome/about.html.erb:16
-msgid "This application was created by <b>Michel Loiseleur</b> at "
-msgstr ""
-
-#: app/views/welcome/about.html.erb:18
-msgid ""
-"This journey would not have been possible without\n"
-"      the <b>developers</b> who have taken part in this project,\n"
-"      without the testers who have contributed to it's quality and\n"
-"      without quite a bit of <b>free software</b> which has enabled the\n"
-"      development to be fast and agile. They are all warmly thanked here.\n"
-"      %s would be nothing without them."
-msgstr ""
-
-#: app/views/welcome/about.html.erb:26
-msgid "Developers"
-msgstr ""
-
-#: app/views/welcome/about.html.erb:36
-msgid "Quality Assurance"
-msgstr ""
-
-#: app/views/welcome/about.html.erb:44
-msgid "Free software used by %s"
-msgstr ""
-
-#: app/views/welcome/admin.html.erb:2 app/views/welcome/index.html.erb:3
-msgid "Contents"
-msgstr ""
-
 #: app/views/welcome/admin.html.erb:4
 msgid "You have %s rights on this portal"
 msgstr ""
@@ -4610,122 +4730,12 @@ msgstr ""
 msgid "Digest report"
 msgstr ""
 
-#: app/views/welcome/index.html.erb:2
-msgid "connected"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:5
-msgid "Welcome to the 08000LINUX management tool"
-msgstr ""
-
 #: app/views/welcome/index.html.erb:20
 msgid "You can see the list of %s"
 msgstr ""
 
-#: app/views/welcome/index.html.erb:20
-msgid "requests"
-msgstr ""
-
 #: app/views/welcome/index.html.erb:22
 msgid "You can also %s"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:22
-msgid "make a request"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:25
-msgid ""
-"You are not %s, so you cannot access the requests interface of our service."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:32
-msgid "You can browse %s. "
-msgstr ""
-
-#: app/views/welcome/index.html.erb:32
-msgid "your directory"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:33
-msgid "You will find there all documents we have delivered to you"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:34
-msgid "You can also consult your %s online."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:34
-msgid "activity report"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:36
-msgid "When you are %s, you can access an activity report"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:37
-msgid "dynamically showing the activity of our service for you in real time."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:38
-msgid "You also have access to all documents we may deliver to you."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:44
-#: app/views/welcome/suggestions.html.erb:1
-msgid "Idea Box"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:45
-msgid ""
-"You have an idea which can improve our services?<br />\n"
-"    Your comments and suggestions are welcome in %s."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:55
-msgid "Offer"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:59
-msgid "You benefit from one of our offers, which detail is available here: %s"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:62
-msgid "We hope this tool wil give you entire satisfaction."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:65
-msgid "Your call number is"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:67
-msgid "and your access code is %s"
-msgstr ""
-
-#: app/views/welcome/index.html.erb:74
-msgid "You can see the list of %s."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:75
-msgid ""
-"This software is sorted into a precise and simple %s, distributed by "
-"activity group."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:77
-msgid ""
-"We have a large range of offers for support with a SLA. This Service Level "
-"Agreement can be very strong and is guaranteed by contract."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:79
-msgid "contact us."
-msgstr ""
-
-#: app/views/welcome/index.html.erb:81
-msgid ""
-"You can consult and follow all the %s done by our team in Open Source "
-"communities."
 msgstr ""
 
 #: app/views/welcome/plan.html.erb:2

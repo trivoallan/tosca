@@ -110,8 +110,7 @@ class ContributionsController < ApplicationController
 
   def create
     @contribution = Contribution.new(params[:contribution])
-    _link2request
-    if @contribution.save
+    if _link2request && @contribution.save
       flash[:notice] = _('The contribution has been created successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
@@ -132,8 +131,7 @@ class ContributionsController < ApplicationController
 
   def update
     @contribution = Contribution.find(params[:id])
-    _link2request
-    if @contribution.update_attributes(params[:contribution])
+    if _link2request && @contribution.update_attributes(params[:contribution])
       flash[:notice] = _('The contribution has been updated successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
@@ -188,8 +186,10 @@ private
     begin
       demande = Demande.find(params[:demande][:id].to_i) unless params[:demande][:id].blank?
       @contribution.demande = demande
+      true
     rescue
       flash[:warn] = _('The associated request does not exist')
+      false
     end
   end
 end

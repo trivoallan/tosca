@@ -288,11 +288,7 @@ module ApplicationHelper
 
   def show_warn
     @@warn ||= %Q{<div id="information_error" class="information error">
-       <div class="close_information">#{delete_button('information_error')}</div>
-       <script type="text/javascript">
-          setTimeout(function() { new Effect.Fade("information_error",{duration:1});
-                                }, 3000);
-       </script>}
+       <div class="close_information">#{delete_button('information_error')}</div>}
     @@warn.dup << "<h2>" + _('An error has occured') + "</h2>
        <ul><li>" << flash[:warn] << "</li></ul></div>"
   end

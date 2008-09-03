@@ -135,7 +135,7 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     if (middle_date > start_date and middle_date < end_date)
       @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
-      @report[:middle_report] = compute_nb_month(@report[:middle_date], end_date)
+      @report[:middle_report] = period
       @report[:total_report] = compute_nb_month(start_date, end_date)
     else
       flash.now[:warn] = _('incorrect parameters')
@@ -249,31 +249,31 @@ class ReportingController < ApplicationController
   ##
   # Calcul un tableaux du respect des délais
   # pour les 3 étapes : prise en compte, contournée, corrigée
-  def compute_temps(donnees)
+  def compute_temps(data)
     demandes = Demande.find(:all)
-    rappels = donnees[:temps_de_rappel]
-    contournements = donnees[:temps_de_contournement]
-    corrections = donnees[:temps_de_correction]
+    rappels = data[:temps_de_rappel]
+    workarounds = data[:temps_de_contournement]
+    corrections = data[:temps_de_correction]
     last_index = rappels[0].size
     2.times {|i|
       rappels[i].push 0.0
-      contournements[i].push 0.0
+      workarounds[i].push 0.0
       corrections[i].push 0.0
     }
 
     size = 0
     demandes.each do |d|
-      e = d.commitment
+      c = d.commitment
       interval = d.contract.interval.hours
-      next unless e
+      next unless c
 
       elapsed = d.elapsed
       fill_one_report(rappels, elapsed.taken_into_account,
                       1.hour, last_index)
-      fill_one_report(contournements, elapsed.workaround,
-                      e.contournement * interval, last_index)
+      fill_one_report(workarounds, elapsed.workaround,
+                      c.workaround * interval, last_index)
       fill_one_report(corrections, elapsed.correction,
-                      e.correction * interval, last_index)
+                      c.correction * interval, last_index)
       size += 1
     end
 
@@ -281,7 +281,7 @@ class ReportingController < ApplicationController
       size = size.to_f
       2.times {|i|
         rappels[i][last_index] = (rappels[i][last_index].to_f / size) * 100
-        contournements[i][last_index] = (contournements[i][last_index].to_f / size) * 100
+        workarounds[i][last_index] = (workarounds[i][last_index].to_f / size) * 100
         corrections[i][last_index] = (corrections[i][last_index].to_f / size) * 100
       }
     end
