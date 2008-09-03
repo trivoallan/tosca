@@ -8,6 +8,8 @@ class Release < ActiveRecord::Base
 
   has_many :archives, :dependent => :destroy
 
+  validates_presence_of :version
+
   def full_name
     @full_name ||= "#{self.version.full_name} r#{self.name}"
   end
