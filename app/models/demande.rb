@@ -83,6 +83,19 @@ class Demande < ActiveRecord::Base
     "#{typedemande.name} (#{severite.name}) : #{resume}"
   end
 
+  def contract_id=(new_id)
+    new_contract = Contract.find(new_id)
+    rules_changed = true if !self.new_record? && new_contract.rule_type != self.contract.rule_type
+    # we need to update this attribute before refreshing elapsed cache.
+    write_attribute(:contract_id, new_id)
+    self.contract = new_contract
+    if rules_changed
+      self.commentaires.each { |c| c.update_attribute :elapsed, 0 }
+      self.reset_elapsed
+    end
+  end
+
+
   def full_software_name
     result = ""
     result = logiciel.name if self.logiciel
@@ -174,14 +187,14 @@ class Demande < ActiveRecord::Base
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
-  SELECT_LIST = 'demandes.*, severites.name as severites_name, 
-    logiciels.name as logiciels_name, clients.name as clients_name, 
+  SELECT_LIST = 'demandes.*, severites.name as severites_name,
+    logiciels.name as logiciels_name, clients.name as clients_name,
     typedemandes.name as typedemandes_name, statuts.name as statuts_name' unless defined? SELECT_LIST
   JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id
     INNER JOIN recipients ON recipients.id=demandes.recipient_id
     INNER JOIN clients ON clients.id = recipients.client_id
-    INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id 
-    INNER JOIN statuts ON statuts.id = demandes.statut_id 
+    INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id
+    INNER JOIN statuts ON statuts.id = demandes.statut_id
     LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id ' unless defined? JOINS_LIST
 
   def self.content_columns
@@ -267,7 +280,7 @@ class Demande < ActiveRecord::Base
   # clearly slows uselessly Tosca.
   def commitment
     return nil unless contract_id && severite_id && typedemande_id
-    self.contract.commitments.find(:first, :conditions => 
+    self.contract.commitments.find(:first, :conditions =>
         {:typedemande_id => self.typedemande_id, :severite_id => self.severite_id})
   end
 
