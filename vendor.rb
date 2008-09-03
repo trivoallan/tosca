@@ -1,29 +1,44 @@
 #!/usr/bin/env ruby
 
-# A appeler comme ceci :
+# You want to call it like this :
 # find . -name "*.rb" | grep -v "vendor" | xargs ./vendor.rb
 
-require '/usr/lib/ruby/1.8/fileutils'
+require 'fileutils'
 
-copyright = [
-  "#####################################################\n",
-  "# Copyright Linagora SA 2006 - Tous droits réservés.#\n",
-  "#####################################################\n" ]
+copyright = <<-EOF
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+EOF
+
+copyright = copyright.split "\n"
+# need to add it back for comparison with readlines
+copyright.each { |l| l << "\n" }
 
 tmp = "/tmp/tmp.rb"
 $*.each do |arg|
-  rename = false
-  File.open(arg, File::RDWR) { |file|
+  File.open(arg, File::RDWR) do |file|
     lines = file.readlines
-    if (lines[1] === copyright[1])
-      rename = true
-      File.open(tmp, File::CREAT | File::RDWR) { |new|
-        new.print lines[3..-1]
-      }
+    unless (copyright - lines).empty?
+      file.rewind
+      file.print copyright
+      file.print lines
     end
-  }
-  if rename
-    File.delete(arg)
-    FileUtils.mv tmp, arg
   end
 end
