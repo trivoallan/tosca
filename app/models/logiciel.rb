@@ -67,4 +67,9 @@ class Logiciel < ActiveRecord::Base
     result
   end
 
+  include Comparable
+  def <=>(other)
+    self.name <=> other.name
+  end
+
 end

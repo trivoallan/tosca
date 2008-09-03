@@ -1,6 +1,4 @@
 class Version < ActiveRecord::Base
-  include Comparable
-
   belongs_to :logiciel
 
   has_many :releases, :dependent => :destroy
@@ -31,18 +29,19 @@ class Version < ActiveRecord::Base
     @name
   end
 
+  include Comparable
   def <=>(other)
     return 1 if other.nil? or not other.is_a?(Version)
+    res = self.logiciel <=> other.logiciel
+    return res unless res == 0
 
     #ri Comparable for more info
-    if self.generic? and not other.generic?
-      return 1
-    elsif not self.generic? and other.generic?
-      return -1
-    end
+    res = 1 if self.generic? and not other.generic?
+    res = -1 if not self.generic? and other.generic?
 
     #If both are generic or both are not
-    self.name <=> other.name
+    res = self.name <=> other.name if res == 0
+    res
   end
 
 end
