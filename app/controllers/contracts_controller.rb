@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-  helper :clients,:engagements,:ingenieurs
+  helper :clients, :commitments, :ingenieurs, :versions
 
   def index
     @contract_pages, @contracts = paginate :contracts, :per_page => 25
@@ -8,15 +8,15 @@ class ContractsController < ApplicationController
   # Used to know which contracts need to be renewed
   def actives
     options = { :per_page => 10, :include => [:client], :order =>
-      'contracts.cloture', :conditions => 'clients.inactive = 0' }
+      'contracts.end_date', :conditions => 'clients.inactive = 0' }
     @contract_pages, @contracts = paginate :contracts, options
     render :action => 'index'
   end
 
-
   def show
     @contract = Contract.find(params[:id])
     @teams = @contract.teams
+    @versions = @contract.versions
   end
 
   def new
@@ -38,13 +38,19 @@ class ContractsController < ApplicationController
   end
 
   def create
-    # It's needed because manager are scoped, at this point
     _aggregate_commitments
+    # It's needed because manager are scoped, at this point
     Client.send(:with_exclusive_scope) do
       @contract = Contract.new(params[:contract])
     end
     @contract.creator = session[:user]
+    # Due to a limitation of Rails <= 2.1, we cannot create a full
+    # association in one pass.
+    # TODO : review this problem on a > Rails
+    engineers =  @contract.engineer_users.dup
+    @contract.engineer_users = []
     if @contract.save
+      @contract.update_attribute :engineer_users, engineers
       flash[:notice] = _('Contract was successfully created.')
       redirect_to contracts_path
     else
@@ -74,13 +80,52 @@ class ContractsController < ApplicationController
     redirect_to contracts_path
   end
 
+  def ajax_add_software
+    selected = params[:select]
+    if selected.blank? || !selected.has_key?(:software)
+      return render(:nothing => true)
+    end
+    @logiciel = Logiciel.find(selected[:software])
+    render(:update) { |page|
+      page.insert_html(:before, "end", :partial => "software")
+      page.visual_effect(:appear, @random_id)
+    }
+  end
+
+  def supported_software
+    @contract = Contract.find(params[:id]) unless @contract
+    @versions = @contract.versions
+    @logiciels = Logiciel.find_select
+  end
+
+  def add_software
+    @contract = Contract.find(params[:id])
+    software = params['software'] || []
+    versions = Array.new
+    software.each do |s|
+      # get rid of the random_field hack
+      s = s[1]
+      next unless s.is_a? Hash
+      # It's 2 lines but fast find_or_create call
+      version = Version.find(:first, :conditions => s, :include => :logiciel)
+      version = Version.create(s) unless version
+      versions << version if version.valid?
+    end
+    @contract.versions = versions
+    if @contract.save
+      redirect_to contract_path(@contract)
+    else
+      supported_software and render :action => supported_software
+    end
+  end
+
 private
   def _form
     # Needed in order to be able to auto-associate with it
     Client.send(:with_exclusive_scope) do
       @clients = Client.find_select
     end
-    @engagements = Engagement.find(:all, Engagement::OPTIONS)
+    @commitments = Commitment.find(:all, Commitment::OPTIONS)
     @ingenieurs = User.find_select(User::EXPERT_OPTIONS)
     @teams = Team.find_select
     @contract_team = @contract.teams
@@ -98,11 +143,11 @@ private
   def _aggregate_commitments
     contract, ids = params[:contract], []
     return unless contract
-    contract.keys.grep(/^engagement_ids/).each{|k|
+    contract.keys.grep(/^commitment_ids/).each{|k|
       value = contract.delete(k)
       ids << value unless value == '0'
     }
-    contract[:engagement_ids] = ids
+    contract[:commitment_ids] = ids
   end
 
 end

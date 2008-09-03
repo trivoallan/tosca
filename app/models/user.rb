@@ -5,17 +5,16 @@ class User < ActiveRecord::Base
   include InactiveRecord
   include PasswordGenerator
 
-  acts_as_reportable
   belongs_to :image
   belongs_to :role
   belongs_to :team
 
-  has_many :piecejointes
+  has_many :attachments
   has_many :documents
   has_many :commentaires
 
   has_one :ingenieur, :dependent => :destroy
-  has_one :beneficiaire, :dependent => :destroy
+  has_one :recipient, :dependent => :destroy
 
   has_and_belongs_to_many :own_contracts, :class_name => "Contract"
 
@@ -64,13 +63,12 @@ class User < ActiveRecord::Base
     # false will invalidate the save
     true
   end
-
+  
   after_save do |record|
-    # To make sure we have only one time a contract
+    # To make sure we have only one time a engineer
     if record.team
       record.own_contracts = record.own_contracts - record.team.contracts
     end
-    # false will invalidate the save
     true
   end
 
@@ -105,7 +103,7 @@ class User < ActiveRecord::Base
   def associate_recipient(client_id)
     client = nil
     client = Client.find(client_id.to_i) unless client_id.nil?
-    self.beneficiaire = Beneficiaire.new(:user => self, :client => client)
+    self.recipient = Recipient.new(:user => self, :client => client)
     self.client = true
   end
 
@@ -157,10 +155,15 @@ class User < ActiveRecord::Base
   # The contracts of a User = his contracts + the contracts of his team
   def contracts
     contracts = self.own_contracts.dup
-    if self.team
-      contracts.concat(self.team.contracts)
-    end
+    contracts.concat(self.team.contracts) if self.team
     contracts
+  end
+
+  def active_contracts
+    options = { :conditions => { :inactive => false } }
+    result = self.own_contracts.find(:all, options)
+    result.concat(self.team.contracts.find(:all, options)) if self.team
+    result
   end
 
   # cached, coz' it's used in scopes
@@ -185,11 +188,11 @@ class User < ActiveRecord::Base
   end
 
   def self.reset_permission_strings
-    @@permission_strings = Array.new(Role.count)
+    @@permission_strings = Array.new(7)
   end
 
   # Cache permission strings, not the best way
-  @@permission_strings = Array.new(Role.count)
+  @@permission_strings = Array.new(7)
   def permission_strings(role_id)
     @@permission_strings[role_id] ||=
       Role.find(role_id).permissions.collect{|p| Regexp.new(p.name) }
@@ -201,17 +204,8 @@ class User < ActiveRecord::Base
   end
 
   # specialisation, since an Account can be <inactive>.
-  def find_select(options = { })
+  def self.find_select(options = { })
     find_active4select(options)
-  end
-
-  # For Ruport :
-  def beneficiaire_client_name
-    beneficiaire.client.name if beneficiaire
-  end
-
-  def role_name
-    role.name if role
   end
 
 end

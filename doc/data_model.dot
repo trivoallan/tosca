@@ -1,0 +1,83 @@
+digraph x {
+
+//rotate=90;
+{rank=min; Statut TypeRequest Statut }
+
+Rule [label="Rule\nComponent\nTimeCredit"]
+
+Recipient -> User [arrowhead=dot,arrowtail=odot,dir=both]
+Recipient -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
+Recipient -> Client [arrowhead=dot,dir=both,arrowtail=crow]
+Recipient -> Recipient [arrowhead=dot,arrowtail=odot,dir=both]
+
+Client -> Image [arrowhead=dot,dir=both,arrowtail=crow]
+Client -> Socle [arrowhead=crow,dir=both,arrowtail=crow]
+
+Commentaire -> Request [arrowhead=dot,dir=both,arrowtail=crow]
+Commentaire -> User [arrowhead=dot,dir=both,arrowtail=crow]
+Commentaire -> Attachment [arrowhead=odot,dir=both,arrowtail=dot]
+Commentaire -> Statut [arrowhead=odot]
+
+Contract -> User [arrowhead=crow,dir=both,arrowtail=crow]
+Contract -> Commitment [arrowhead=crow,arrowtail=crow,dir=both]
+Contract -> Rule [arrowhead=dot,arrowtail=crow]
+
+User -> Image [arrowhead=dot,dir=both,arrowtail=crow]
+User -> Role [arrowhead=dot,arrowtail=crow,dir=both]
+Engineer -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
+Engineer -> User [arrowhead=dot,arrowtail=odot,dir=both]
+Engineer -> Phonecall [arrowhead=crow,dir=both,arrowtail=dot]
+
+News -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
+News -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
+News -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+
+Request -> TypeRequest [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Elapsed [arrowhead=dot,dir=both,arrowtail=dot]
+Request -> Severite [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Recipient [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Socle [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Statut [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
+Request -> Software [arrowhead=odot,dir=both,arrowtail=crow]
+Request -> Release [arrowhead=odot,dir=both,arrowtail=crow]
+Request -> Version [arrowhead=odot,dir=both,arrowtail=crow]
+
+Software -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
+Software -> License [arrowhead=dot,dir=both,arrowtail=crow]
+Software -> Groupe [arrowhead=dot,dir=both,arrowtail=crow]
+Software -> Image [arrowhead=dot,dir=both,arrowtail=crow]
+
+
+Version -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+Version -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
+
+Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
+
+
+Preference -> User [arrowhead=dot,arrowtail=dot,dir=both]
+Socle -> Machine [arrowhead=dot,dir=both,arrowtail=dot]
+Machine -> Machine [arrowhead=dot,dir=both,arrowtail=odot]
+UrlSoftware -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+UrlSoftware -> Typeurl [arrowhead=dot,dir=both,arrowtail=crow]
+Commitment -> Severite [arrowhead=dot,dir=both,arrowtail=crow]
+Commitment -> TypeRequest [arrowhead=dot,dir=both,arrowtail=crow]
+Role -> Permission [arrowhead=crow,arrowtail=crow,dir=both]
+Urlreversement -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
+
+Contribution -> Etatreversement [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Typecontribution [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Version [arrowhead=dot,arrowtail=crow,dir=both]
+Contribution -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
+Attachment -> User [arrowtail=crow,dir=both,arrowhead=dot]
+Document -> Client [arrowhead=dot,dir=both,arrowtail=crow]
+Document -> Typedocument [arrowhead=dot,dir=both,arrowtail=crow]
+Document -> User [arrowhead=dot,dir=both,arrowtail=crow]
+
+
+}

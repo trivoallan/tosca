@@ -218,7 +218,7 @@ module PluginAWeek #:nodoc:
                 attributes = {:attribute => attribute, :preferenced_id => preferenced_id, :preferenced_type => preferenced_type}
                 
                 # Find an existing preference or build a new one
-                preference = preferences.find(:first, :conditions => attributes) ||  preferences.build(attributes)
+                preference = preferences.find(:first, :conditions => attributes) || preferences.build(attributes)
                 preference.value = value
                 preference.save!
               end

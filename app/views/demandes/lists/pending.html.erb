@@ -1,23 +1,29 @@
-<h1><%= (@demandes.empty? ? _('No pending request') :
-         n_('My pending request', 'My pending requests', @demandes.size)) %> (Beta)</h1>
+<h1><%= (@own_requests.empty? ? _('No pending request') :
+         n_('My pending request', 'My pending requests', @own_requests.size)) %>
+    <%= StaticImage::spinner %></h1>
 
-<% links = show_pages_links(@demande_pages, 'une nouvelle demande',
-                    :no_new_links => true) %>
-<%= links %>
-
-<%=render( :partial => 'demandes/lists/requests_table' )%>
-
-<%= links %>
-
-<div class="show" style="margin: 0px auto">
+<div class="show" style="margin: 0px auto; display: none">
   <p><%= _('This list only contains requests which require an action on your behalf.') %></p>
   <%=  _('In technical terms, this list contains all requests ') %>
-   <% if @beneficiaire %>
+   <% if @recipient %>
        <%= _('for which our services have requested further information or your validation.') %>
    <% elsif @ingenieur %>
        <%= _("that are active (SLA is running), and all suspended requests where the last comment is from a customer, or that are newly assigned to you.") %>
    <% end %>
   <br /><br /><hr />
-  <p><%= auto_link(_('Feel free to inform us in %s if you feel some requests should not be here.') % 
-           [ link_to(_('the idea box'), suggestions_bienvenue_path) ]) %></p>
+  <p><%= auto_link(_('Feel free to inform us in %s if you feel some requests should not be here.') %
+           [ link_to(_('the idea box'), suggestions_welcome_path) ]) %></p>
 </div>
+
+<% unless @own_requests.empty? %>
+  <%= render :partial => 'demandes/lists/pending_table',
+             :locals => { :requests => @own_requests } %>
+<% end %>
+
+<h1><%= (@team_requests.empty? ? _('My team has not any pending request') :
+         n_("My team has %d pending request", "My team has %d pending requests", @team_requests.size) % @team_requests.size) %></h1>
+
+<% unless @team_requests.empty? %>
+  <%= render :partial => 'demandes/lists/pending_table',
+             :locals => { :requests => @team_requests } %>
+<% end %>

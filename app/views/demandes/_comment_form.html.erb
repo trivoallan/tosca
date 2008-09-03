@@ -27,7 +27,7 @@
 <table width="100%" class="commentaire">
  <tr class="public">
   <td class="infos" align="center"><br />
-     <%= avatar(@beneficiaire, @ingenieur) %><br />
+     <%= avatar(@recipient, @ingenieur) %><br />
      <br /><br />
     <% if @ingenieur %>
        <label for="commentaire_prive"><%= _("Private ?") %></label>
@@ -41,7 +41,7 @@
     <% end %>
   </td><td class="text" align="center" style="margin: 0; padding: 2px;">
    <%= text_area :commentaire, :corps, :style => "width:100%;", :rows => 15 %>
-     <%= file_column_field('piecejointe', 'file', :size => 65) %><br />
+     <%= file_column_field('attachment', 'file', :size => 65) %><br />
      <%= submit_tag _("Answer") %>
   </td>
  </tr>

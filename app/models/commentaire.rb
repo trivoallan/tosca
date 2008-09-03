@@ -1,7 +1,7 @@
 class Commentaire < ActiveRecord::Base
   belongs_to :demande
   belongs_to :user
-  belongs_to :piecejointe
+  belongs_to :attachment
   belongs_to :statut
   belongs_to :severite
   belongs_to :ingenieur
@@ -11,17 +11,27 @@ class Commentaire < ActiveRecord::Base
   validates_presence_of :user
 
   validate do |record|
+    request = record.demande
     if record.demande.nil?
       record.errors.add_to_base _('You must indicate a valid request')
     end
+    if (request && request.new_record? != true &&
+        request.first_comment_id != record.id &&
+        request.statut_id == record.statut_id)
+      record.errors.add_to_base _('The status of this request has already been changed.')
+    end
+    if (record.statut_id && record.prive)
+      record.errors.add_to_base _('You cannot privately change the status')
+    end
+  end
+  
+  before_validation do |record|
+    if not Statut::NEED_COMMENT.include? record.statut_id and html2text(record.corps).strip.empty?
+      record.corps = _("The request is now %s.") % record.statut
+    end
   end
 
-
-  # On détruit l'éventuelle pièce jointe
-  # le belongs_to ne permet pas d'appeler :dependent :'(
-
-  # permet de récuperer l'état du commentaire en texte
-  # le booléen correspondant est :  prive = true || false
+  # State in words of the comment (private or public)
   def etat
     ( prive ? _("private") : _("public") )
   end
@@ -37,11 +47,11 @@ class Commentaire < ActiveRecord::Base
 
   # This method search, create and add an attachment to the comment
   def add_attachment(params)
-    attachment = params[:piecejointe]
+    attachment = params[:attachment]
     return false unless attachment and !attachment[:file].blank?
-    attachment = Piecejointe.new(attachment)
+    attachment = Attachment.new(attachment)
     attachment.commentaire = self
-    attachment.save and self.update_attribute(:piecejointe_id, attachment.id)
+    attachment.save and self.update_attribute(:attachment_id, attachment.id)
   end
 
   def fragments
@@ -49,16 +59,6 @@ class Commentaire < ActiveRecord::Base
   end
 
   private
-  before_create :check_status
-  def check_status
-    request = self.demande
-    if (request && request.statut_id == self.statut_id)
-      request.errors.add_to_base _('The status of this request has already been changed.')
-    end
-    if (self.statut_id && self.prive)
-      request.errors.add_to_base _('You cannot privately change the status')
-    end
-  end
 
   # We destroy a few things, if appropriate
   # Attachments, Elapsed Time or Request coherence is checked
@@ -82,7 +82,7 @@ class Commentaire < ActiveRecord::Base
     end
 
     request.elapsed.remove(self) if request.elapsed
-    self.piecejointe.destroy unless self.piecejointe.nil?
+    self.attachment.destroy unless self.attachment.nil?
     true
   end
 
@@ -94,8 +94,8 @@ class Commentaire < ActiveRecord::Base
     options = { :order => 'created_on DESC', :conditions =>
       'commentaires.statut_id IS NOT NULL' }
     last_one = request.commentaires.find(:first, options)
-    return request.update_attribute(:statut_id, last_one.statut_id) if last_one
-    true
+    return true unless last_one
+    request.update_attribute(:statut_id, last_one.statut_id)
   end
 
   # update request attributes, when creating a comment
@@ -135,7 +135,5 @@ class Commentaire < ActiveRecord::Base
 
     request.save
   end
-
-
 
 end

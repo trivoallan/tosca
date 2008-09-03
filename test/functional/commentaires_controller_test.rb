@@ -10,7 +10,7 @@ class CommentairesController; def rescue_action(e) raise e end; end
 # and validate within the test suite the _not_allowed? effect of the
 # CommentaireController
 class CommentairesControllerTest < Test::Unit::TestCase
-  fixtures :commentaires, :demandes, :beneficiaires, :users,
+  fixtures :commentaires, :demandes, :recipients, :users,
   :permissions, :roles, :permissions_roles, :ingenieurs,
   :statuts, :clients, :credits, :components, :contracts, :contracts_users
 
@@ -67,7 +67,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
       :commentaire => {
         :demande_id => 1,
         :user_id => 2,
-        :piecejointe_id => 1,
+        :attachment_id => 1,
         :corps => 'Voici un autre commentaire',
         :prive => 0,
         :created_on => '2006-09-21 08:19:30',
@@ -99,7 +99,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
         "statut_id" => "3"
       },
       :mce_editor_0_formatSelect => "",
-      :piecejointe => { "file_temp" => "", "file" => "" }
+      :attachment => { "file_temp" => "", "file" => "" }
          })
 
     # TODO : why it's not a success ????

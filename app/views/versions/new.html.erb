@@ -1,0 +1,8 @@
+<h1><%= _('Add a new version')%></h1>
+
+<% form_tag versions_path, :id => 'main_form' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Add') %>
+<% end %>
+
+<%= link_to_back %>

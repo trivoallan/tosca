@@ -6,24 +6,28 @@
 <% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
 
-<% # used for iteration in ajaxified list %>
+<%# used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
 <div class="menu_title" onclick="Element.toggle('menu_actions');Element.toggle('test1');Element.toggle('test2');">
-<span id="test1"><%= StaticImage::expand %> </span>
-<span id="test2" style="display: none;"><%= StaticImage::hide %></span>
-<%= _('Actions')%> </div>
+  <span id="test1"><%= StaticImage::expand %> </span>
+  <span id="test2" style="display: none;"><%= StaticImage::hide %></span>
+  <%= _('Actions')%>
+</div>
 
 <ul class="menu" id="menu_actions">
  <li><%= link_to(_('Submit a contribution'), new_contribution_path)%></li>
  <li><%= link_to(_('Selection interface'), select_contributions_path)%></li>
- <li><%= contributions_export_link %></li>
  <li><%= link_to _('Administration interface'), admin_contributions_path %></li>
+ <% Contribution::actions.each do |a| %>
+   <li><%= send(a) %></li>
+ <% end %>
 </ul>
 
-
 <div class="menu_title" onclick="Element.toggle('menu_recherche');">
-> <%=_('Search')%></div>
+  > <%=_('Search')%>
+</div>
+
 <ul class="menu" id="menu_recherche">
  <li><b><%=_('Software')%> </b><br />
      <%= text_field :filters, :software %></li>
@@ -37,13 +41,12 @@
      <%= select_filter(@contracts, 'contract') %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_synthese');">
-> <%=_('Summary')%></div>
-<ul class="menu" id="menu_synthese">
+<div class="menu_title" onclick="Element.toggle('menu_synthesis');">
+  > <%=_('Summary')%>
+</div>
+<ul class="menu" id="menu_synthesis">
  <li><b><%=_('Contributions')%> : </b><%=@count[:contributions]%></li>
- <li><b><%=_('Softwares')%> : </b><%=@count[:logiciels]%></li>
- <%#TODO <li><b>Communautés : </b>...</li> %>
- <%#TODO <li><b>Délais moyen : </b>...</li>%>
+ <li><b><%=_('Software')%> : </b><%=@count[:logiciels]%></li>
 </ul>
 
 <% end %>

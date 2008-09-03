@@ -32,6 +32,7 @@ module FormsHelper
       end
     end
     out << '</tr></table>'
+    out << "<input id=\"#{name_w3c}_\" type=\"hidden\" name=\"#{name}[]\" value=\"\" >"
   end
 
   # Collection have to contain object which respond to 'id' and 'name'
@@ -126,55 +127,69 @@ module FormsHelper
   end
   alias_method :search_demande, :search_demande_field
 
-
-
-  # write the label with the field.
-  # heavily used in account with show_table_form
-  # call it like this :
-  # lstm_text_field(_('User|phone'), 'user', 'phone')
-  def lstm_text_field(label, mmodel, field, options = {})
-    [ "<label for=\"#{mmodel}_#{field}\">#{label}</label>",
-      text_field(mmodel, field, options) ]
+  # Create the original auto_complete field 
+  def auto_complete(object, method, tag_options = {}, completion_options = {})
+    completion_options[:skip_style] = true
+    text_field_with_auto_complete(object, method, tag_options)
   end
 
-  def lstm_password_field(label, model, field,
-                          options = {:size => 16, :value => ''})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      password_field(model, field, options) ]
+  # Create the auto_complete field wich insert the choice after click to the table.
+  def auto_complete_list(object, method, objectcollection, name, tag_options = {}, completion_options = {})
+    @name =  name
+    out = "<table>"
+    out << "<tr><td cilspan=\"2\">"
+    tag_options[:value]= _("Search") + "..."
+    tag_options[:onfocus] = "$('#{object}_#{method}').value = \"\" "
+    tag_options[:onblur] = "$('#{object}_#{method}').value = \"#{_("Search") + "..."}\""
+    completion_options[:skip_style] = true
+    completion_options[:indicator] = "spinner_#{object}_#{method}"
+    out << "<label>" << _("Add")<< " "<< _(object.to_s) << "</label>"
+    out << "</td></tr><tr><td>"
+    out << text_field_with_auto_complete(object, method, tag_options, completion_options)
+    field = "#{object}_#{method}"
+    @field = field
+    spinner = image_tag("spinner.gif", :id => "spinner_#{field}",:style=> "display: none;")
+    out << %Q{</td><td width="20">#{spinner}</td></tr>}
+    out << "</table>"
+    out << "<ul>"
+    objectcollection.each do |c|
+      @value = c.id
+      @html_id = "li_#{@field}_#{@value}"
+      @content = "#{c.name} #{delete_button(@html_id)}"
+      out << "#{render :partial => 'applications/auto_complete_insert'}"
+    end
+    # We need an empty one, which is used to insert
+    @content = ""
+    @value = ""
+    @html_id = "li_#{@field}_"
+    @new_record = true
+    out << "#{render :partial => 'applications/auto_complete_insert'}"
+    out << "</ul>"
   end
 
-  def lstm_text_area(label, model, field, options = {})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      text_area(model, field, options) ]
+  # Create the choice list for auto_compete
+  def auto_complete_choice( object, method, collection, name , options={})
+    return '' if collection.nil? || collection.empty?
+    @field = "#{object}_#{method}"
+    @name = name
+    content_tag(:ul, collection.map do |c|
+      @value = c.id
+      @html_id = "li_#{@field}_#{@value}"
+      @content = "#{c.name} #{delete_button(@html_id)}"
+      html_id_empty = "li_#{@field}_"
+      @new_record = true
+      js_call = "if ($('#{@html_id}')==null){" << update_page do |page|
+          page.insert_html :before, html_id_empty, :partial => 'applications/auto_complete_insert'
+          page.visual_effect(:appear, @html_id)
+        end << "} tosca_reset(\"#{@field}\")"
+      out = link_to_function(c.name, js_call, :class => :no_hover)
+      content_tag(:li, out)
+    end )
   end
 
-  # Used for hiding field which will be displaye by ajax_*
-  # call it like this :
-  #   lstm_ajax_field('Bénéficiaire', :appel, :beneficiaires),
-  def lstm_ajax_field(label, model, field)
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      "<div id=\"#{field}\"></div>" ]
+  # Apply a fade effect and delete the html element
+  def delete_button(id)
+    link_to_function(StaticImage::delete, %Q{tosca_remove("#{id}")}, :class => :no_hover)
   end
 
-  # put a select field in a lazy way
-  # call it like this :
-  #  lstm_select_field('Contract', :appel, :contract, @contracts, :spinner => true)
-  # options :
-  #  * spinner : put the spinner for ajax stuff
-  def lstm_select_field(label, model, field, collection, options = {})
-    result = [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-               collection_select(model, field.to_s + '_id', collection,
-                                 :last, :first, PROMPT_SELECT)  ]
-    result.last << ' ' + StaticImage::spinner if options.has_key? :spinner
-    result
-  end
-
-  def lstm_datetime_field(label, model, field, options={})
-    [ "<label for=\"#{model}_#{field}\">#{label}</label>",
-      datetime_select(model, field) ]
-  end
-
-  def lstm_hline
-    [ '<hr/>', nil ]
-  end
 end

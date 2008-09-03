@@ -35,23 +35,23 @@ requests_csv = []
 comments_csv = []
 attachments_csv = []
 
-requests_csv << ["id", "beneficiaire", "resume", "severite", "logiciel", "created_on", "typedemande", "statut de sortie"]
-comments_csv << ["id", "demande_id", "piecejointe_id", "corps", "created_on", "déposeur"]
+requests_csv << ["id", "recipient", "resume", "severite", "logiciel", "created_on", "typedemande", "statut de sortie"]
+comments_csv << ["id", "demande_id", "attachment_id", "corps", "created_on", "déposeur"]
 attachments_csv << ["id", "name"]
 
 requests.each do |d|
   name_logiciel = d.logiciel ? d.logiciel.name : ""
-  requests_csv << [d.id, d.beneficiaire.user.name_clean, d.resume, d.severite.name, name_logiciel, d.created_on, d.typedemande.name, d.statut.name]
+  requests_csv << [d.id, d.recipient.user.name_clean, d.resume, d.severite.name, name_logiciel, d.created_on, d.typedemande.name, d.statut.name]
 
   d.commentaires.find(:all, :conditions => { :prive => false }).each do |c|
     name_user = c.user.client? ? c.user.name : "Linagora"
-    comments_csv << [c.id, c.demande_id, c.piecejointe_id, c.corps, c.created_on, name_user]
+    comments_csv << [c.id, c.demande_id, c.attachment_id, c.corps, c.created_on, name_user]
   end
 
-  d.piecejointes.each do |p|
+  d.attachments.each do |p|
     attachments_csv << [p.id, p.file_relative_path]
     Dir.mkdir("./#{destdir}/#{p.file_relative_path.split('/')[0]}")
-    File.copy("files/piecejointe/file/#{p.file_relative_path}","#{destdir}/#{p.file_relative_path.split('/')[0]}")
+    File.copy("files/attachment/file/#{p.file_relative_path}","#{destdir}/#{p.file_relative_path.split('/')[0]}")
   end
 end
 

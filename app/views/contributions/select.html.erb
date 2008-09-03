@@ -10,4 +10,6 @@
 <%= link_to _('Access to administration interface'), admin_contributions_path %><br />
 <%= link_to _('See all contributions'), list_contribution_path(:id => 'all') %><br />
 <%= link_to _('RSS'), formatted_list_contribution_path(:id => 'all', :client_id => params[:client_id], :format => 'atom') %><br />
-<p><%= contributions_export_link %></p>
+ <% Contribution::actions.each do |a| %>
+   <p><%= send(a) %></p>
+ <% end %>

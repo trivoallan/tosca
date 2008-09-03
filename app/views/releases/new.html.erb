@@ -1,0 +1,8 @@
+<h1><%=_('New release')%></h1>
+
+<% form_tag(releases_path, :multipart => true, :id => 'main_form') do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Validate') %>
+<% end %>
+
+<%= link_to_back %>

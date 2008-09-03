@@ -516,7 +516,7 @@ td.error div.link {
 .filtre_petitcomment {
 	font-size: 80%;
 }
-.boite_bienvenue {
+.boite_welcome {
 	font-weight: bold;
 	font-size: 200%;
 }
@@ -562,7 +562,6 @@ div.bloc_scroll, div.long_bloc_scroll {
       width: 99%;
       height: 10em;
       overflow: auto;
-      border: 1px solid #000;
       background-color: #f2fff2;
 }
 div.long_bloc_scroll { height: 31em; }
@@ -576,19 +575,22 @@ div.redbox_scroll {
   *  Auto Completion *
   ********************/
 div.auto_complete {
+  z-index:1;
+  border:1px solid #888;
+  -moz-border-radius: .5em .5em .5em .5em;
   width: 350px;
   background: #fff;
 }
 div.auto_complete ul {
-  border:1px solid #888;
-  margin:0;
+  margin-top:-1px;
+  margin-bottom:-1px;
   padding:0;
   width:100%;
 }
 div.auto_complete ul li {
-  margin-left: -1.5em;
-  margin-bottom: -2px;
-  margin:0;
+  margin-top:1px;
+  margin-bottom:1px;
+  -moz-border-radius: .5em .5em .5em .5em;
   padding:3px;
   background-image: none;
   list-style-type:none;
@@ -601,6 +603,9 @@ div.auto_complete ul strong.highlight {
   color: #800;
   margin:0;
   padding:0;
+}
+div.auto_complete a:hover {
+	color: #1A5270;
 }
 
 
@@ -787,7 +792,7 @@ option.severite_6 {
   background-color: #b0d295;
   float: left
 }
-.progress-contournement {
+.progress-workaround {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -1361,4 +1366,50 @@ h1.section {
   margin: 20px auto 0 auto;
   position: absolute;
   -moz-border-radius: 1em;
+}
+
+.datestamp div {
+    text-align: center;
+    line-height: 1.4em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Sans-Serif;
+    padding: 1px;
+    width: 2.9em;
+    background-color: #f0f0ff;
+    border: 1px;
+    border-style: solid;
+    border-color: #007062;
+    float: left;
+    margin-right: 10px;
+}
+
+.datestamp {
+    display: inline;
+    padding: 1px;
+    margin-right: 1em;
+
+}
+
+.datestamp span {
+    display: block;
+}
+
+.cal1 {
+    font-size: 1.5em;
+    letter-spacing: .2em;
+    padding-left: .2em
+}
+.cal1x {
+    letter-spacing: 0em;
+    padding-left: 0em
+}
+
+.cal2 {
+    font-weight: bold;
+    font-size: 2em;
+    line-height: .7em;
+}
+
+.cal3 {
+    font-size: .8em;
+    line-height: 1em;
 }

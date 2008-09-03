@@ -6,36 +6,42 @@
 <% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
 
-<% # used for iteration in ajaxified list %>
+<%# used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
 <div class="menu_title" onclick="Element.toggle('menu_action')">
-> Action</div>
+  > <%= _("Action") %>
+</div>
 <ul class="menu" id="menu_action">
  <li><%= link_to _('Add a document'), new_document_path %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_consultation')">
-> Consultation</div>
+  > <%= _("Consultation") %>
+</div>
+
 <ul class="menu" id="menu_consultation">
  <li><%= link_to _('Selection interface'), select_documents_path %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
-> Recherche (non fonctionnel)</div>
+  > <%= _("Search") %>
+</div>
+
 <ul class="menu" id="menu_recherche">
- <li><b>Type de document </b></li>
+ <li><b><%= _("Type of document") %></b></li>
  <li><%= select_filter(@typedocuments, 'typedocument') %></li>
- <li><b>Titre </b></li>
+ <li><b><%= _("Titre") %></b></li>
  <li><%= text_field :document, :titre %></li>
- <li><b>Nom de fichier</b></li>
+ <li><b><%= _("Name of the file") %></b></li>
  <li><%= text_field :document, :filename %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_stats')">
-> Statistiques</div>
+  > <%= _("Statistics") %>
+</div>
 <ul class="menu" id="menu_stats">
- <li><b>Documents: </b><%= @count[:documents] %></li>
+ <li><b><%= _("Documents")%> :  </b><%= @count[:documents] %></li>
 </ul>
 
 <% end %>

@@ -2,9 +2,8 @@
 # an Engineer. There's also a link to the contract, because those phones
 # calls can be in the 24/24 contract.
 class Phonecall < ActiveRecord::Base
-  acts_as_reportable
   belongs_to :ingenieur
-  belongs_to :beneficiaire
+  belongs_to :recipient
   belongs_to :demande
   belongs_to :contract
 
@@ -14,8 +13,8 @@ class Phonecall < ActiveRecord::Base
       record.errors.add_to_base _('The beginning of the call has to be before to its end.')
     end
     # recipient consistency
-    if record.beneficiaire and
-      record.beneficiaire.client_id != record.contract.client_id
+    if record.recipient and
+      record.recipient.client_id != record.contract.client_id
       record.errors.add_to_base _('recipient and client have to correspond.')
     end
   end
@@ -53,17 +52,6 @@ class Phonecall < ActiveRecord::Base
     else
       _("Phonecall of %s for %s") % [ ingenieur.name, contract.name ]
     end
-  end
-
-  # For Ruport :
-  def contract_name
-    contract.name
-  end
-  def ingenieur_name
-    ingenieur.name
-  end
-  def beneficiaire_name
-    beneficiaire ? beneficiaire.name : '-'
   end
 
 end

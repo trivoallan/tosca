@@ -1,13 +1,12 @@
 <%= error_messages_for 'contribution' %>
 
-<!--[form:contribution]-->
 <table class="form"><tr valign='top'><td>
 
 <p><label for="contribution_name"><%=_('Name')%></label><br />
 <%= text_field 'contribution', 'name', :size => 20 %></p>
 
 <p><label for="contribution_logiciel"><%=_('Software')%></label><br />
-<%= select(:contribution, :logiciel_id, @logiciels) %>
+<%= select_empty(:contribution, :logiciel_id, @logiciels) %>
 <%= StaticImage::spinner %></p>
 
 <p><label for="contribution_ingenieur"><%=_('Engineer')%></label><br />
@@ -19,14 +18,12 @@
 <p><label for="contribution_patch"><%=_('Patch')%></label><br />
 <%= file_column_field 'contribution', 'patch'  %></p>
 
-<p><label for="contribution_affected_version"><%=_('Affected version')%></label><br />
-<%= text_field 'contribution', 'affected_version', :size => 10 %></p>
-
-<p><label for="contribution_fixed_version"><%=_('Fixed version')%></label><br />
-<%= text_field 'contribution', 'fixed_version', :size => 10 %></p>
-
 <p><label for="contribution_typecontribution"><%=_('Kind of contribution')%></label><br />
 <%= select(:contribution, :typecontribution_id, @typecontributions) %></p>
+
+<div id="versions">
+  <%= render :partial => 'list_versions' %>
+</div>
 
 <% if @ingenieur %>
 <p><label for="contribution_id_mantis">Id Mantis</label><br />
@@ -40,36 +37,24 @@
 <%= text_field 'urlreversement', 'valeur' %></p>
 
 <p><label for="contribution_reverse"><%=_('Submitted on')%></label>
-<%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('reverse_le');"%></p>
-<div id='reverse_le' <%unless @contribution.reverse%>style="display: none;"<%end%>><%= date_select 'contribution', 'reverse_le', :start_year => 1995 %></div>
+<%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('contributed_on');"%></p>
+<div id='contributed_on' <%=hide_unless @contribution.reverse%> ><%= date_select :contribution, :contributed_on, :start_year => 1995 %></div>
 
 <p><label for="contribution_clos"><%=_('Closed on')%></label>
-<%= check_box 'contribution', 'clos', :onchange => "Element.toggle('cloture_le');"%></p>
-<div id='cloture_le' <%unless @contribution.clos%>style="display: none;"<%end%>><%= date_select 'contribution', 'cloture_le', :start_year => 1995 %></div>
+<%= check_box 'contribution', 'clos', :onchange => "Element.toggle('closed_on');"%></p>
+<div id='closed_on' <%= hide_unless @contribution.clos %> ><%= date_select :contribution, :closed_on, :start_year => 1995 %></div>
 
 </td><td>
 
-<p><label for="contribution_synthese"><%=_('Synthesis')%></label><br />
-<%= text_field 'contribution', 'synthese', :size => 87 %></p>
+<p><label for="contribution_synthesis"><%=_('Synthesis')%></label><br />
+<%= text_field :contribution, :synthesis, :size => 87 %></p>
 
-<p><label for="contribution_description_fonctionnelle"><%=_('Description (public)')%></label><br />
-<%= text_area 'contribution', 'description_fonctionnelle', :cols => 100, :rows => 20  %></p>
+<p><label for="contribution_description"><%=_('Description')%></label><br />
+<%= text_area :contribution, :description, :cols => 100, :rows => 20  %></p>
 
-<p><label for="contribution_description"><%=_('Technical details (private)')%></label><br />
-<%= text_area 'contribution', 'description', :cols => 100, :rows => 5  %></p>
-
-<% # deactivated : TO DO : think it a better a way %>
-<%# = observe_field 'contribution_logiciel_id', :update => 'paquets',
-  #       :before => "Element.show('spinner')", :success => "Element.hide('spinner')",
-  #       :url => ajax_paquets_contributions_path ,:with => 'id' %>
-
-</td></tr>
-<tr><td colspan="2">
-
-<div id="paquets">
-  <%= render :partial => "liste_paquets" %>
-</div>
+<%= observe_field 'contribution_logiciel_id', :replace => 'versions',
+  :before => "Element.show('spinner')", :success => "Element.hide('spinner')",
+  :url => ajax_list_versions_contributions_path, :with => :logiciel_id %>
 
 </td></tr>
 </table>
-<!--[eoform:contribution]-->

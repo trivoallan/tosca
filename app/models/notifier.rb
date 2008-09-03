@@ -33,7 +33,7 @@ class Notifier < ActionMailer::Base
 
   # This method requires 3 symbols in options :
   #   :user, :controller, :password
-  def user_signup(options, flash)
+  def user_signup(options, flash = nil)
     recipients  options[:user].email
     from        FROM
     subject     "Accès au Support Logiciel Libre"
@@ -45,9 +45,10 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function require 3 parameters for options :
-  #   :demande, :controller, :name
-  def request_new(options, flash)
+  # This function require 4 parameters for options :
+  #   :demande, :url_request
+  #   :name => user.name, :url_attachment
+  def request_new(options, flash = nil)
     demande =  options[:demande]
 
     recipients  compute_recipients(demande)
@@ -63,8 +64,11 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function needs 4 options for options :demande, :name, :commentaire, :url_request
-  def request_new_comment(options, flash)
+  # This function needs too much options :
+  #  { :demande, :name, :url_request, :url_attachment, :commentaire }
+  # And an optional
+  #  :modifications => {:statut_id, :ingenieur_id, :severite_id }
+  def request_new_comment(options, flash = nil)
     request = options[:demande]
     # needed in order to have correct recipients
     # for instance, send mail to the correct engineer
@@ -213,11 +217,11 @@ class Notifier < ActionMailer::Base
   # private indicates if it's reserved for internal use or not
   def compute_copy(demande, private = false)
     if private
-      demande.contract.mailinglist
+      demande.contract.internal_ml
     else
       res = []
       contract = demande.contract
-      [ contract.mailinglist, contract.customer_ml, demande.mail_cc ].each { |m|
+      [ contract.internal_ml, contract.customer_ml, demande.mail_cc ].each { |m|
         res << m unless m.blank?
       }
       res.join(',')
@@ -227,16 +231,16 @@ class Notifier < ActionMailer::Base
   def compute_recipients(demande, private = false)
     res = []
     # The client is not informed of private messages
-    res << demande.beneficiaire.user.email unless private
+    res << demande.recipient.user.email unless private
     # Request are not assigned, by default
     res << demande.ingenieur.user.email if demande.ingenieur
     res.join(',')
   end
 
   def message_notice(recipients, cc)
-    result = "<br />" << _("An e-mail informing") << " <b>#{recipients}</b> "
-    result << "<br />" << _("with a copy to") << " <b>#{cc}</b> " if cc
-    result << _("was sent.")
+    result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
+    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc
+    result << '.'
   end
 
   MULTIPART_CONTENT = 'multipart/alternative'
@@ -264,7 +268,7 @@ class Notifier < ActionMailer::Base
   end
 
   # Used for outgoing mails, in order to get a Tree of messages
-  # in mail softwares
+  # in mail software
   def message_id(id)
     "<#{id}@#{App::Name}.#{App::InternetAddress}>"
   end
@@ -274,7 +278,7 @@ class Notifier < ActionMailer::Base
   ######################################
 
   def list_id(contract)
-    "#{contract.name} <#{contract.mailinglist}>"
+    "#{contract.name} <#{contract.internal_ml}>"
   end
 =end
 end

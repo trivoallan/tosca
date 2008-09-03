@@ -13,7 +13,7 @@ class UrllogicielTest < Test::Unit::TestCase
     assert u.errors.on(:valeur)
     assert u.errors.on(:logiciel)
 
-    software = logiciels(:logiciel_00001)
+    software = Logiciel.find(:first)
     u.update_attributes(:valeur => 'rubyonrails.org', :logiciel => software)
     assert u.save
   end

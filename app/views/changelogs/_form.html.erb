@@ -1,13 +1,11 @@
 <%= error_messages_for 'changelog' %>
 
-<!--[form:changelog]-->
-<p><label for="changelog_date_modification">Date modification</label><br />
-<%= datetime_select 'changelog', 'date_modification'  %></p>
+<p><label for="changelog_modification_date"><%= _("Modification date") %></label><br />
+<%= datetime_select 'changelog', 'modification_date'  %></p>
 
-<p><label for="changelog_nom_modification">Nom modification</label><br />
-<%= text_field 'changelog', 'nom_modification'  %></p>
+<p><label for="changelog_name"><%= _("Name") %></label><br />
+<%= text_field 'changelog', 'name'  %></p>
 
-<p><label for="changelog_text_modification">Text modification</label><br />
-<%= text_area 'changelog', 'text_modification'  %></p>
-<!--[eoform:changelog]-->
+<p><label for="changelog_modification_text"><%= _("Modification text") %></label><br />
+<%= text_area 'changelog', 'modification_text'  %></p>
 

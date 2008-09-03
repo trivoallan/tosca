@@ -1,14 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-# Re-raise errors caught by the controller.
-# class DemandesController; def rescue_action(e) raise e end; end
 class DemandesControllerTest < ActionController::TestCase
 
-  fixtures :demandes, :commentaires, :users, :contracts_users,
-    :beneficiaires, :clients, :statuts, :ingenieurs, :severites,
-    :logiciels, :socles, :clients_socles, :paquets, :permissions, :roles,
-    :permissions_roles, :contracts, :contracts_engagements, :engagements,
-    :piecejointes, :typedemandes, :elapseds
+  fixtures :all
 
   def test_pending
     %w(admin manager expert customer).each do |l|
@@ -129,9 +123,9 @@ class DemandesControllerTest < ActionController::TestCase
       assert_response :success
       assert_template 'demandes/tabs/_tab_appels'
 
-      xhr :get, :ajax_piecejointes, :id => request_id
+      xhr :get, :ajax_attachments, :id => request_id
       assert_response :success
-      assert_template 'demandes/tabs/_tab_piecejointes'
+      assert_template 'demandes/tabs/_tab_attachments'
 
       xhr :get, :ajax_cns, :id => request_id
       assert_response :success
@@ -169,7 +163,6 @@ class DemandesControllerTest < ActionController::TestCase
     }
   end
 
-
   private
   def _test_ajax_form_methods
     # test the 3 ajax methods
@@ -184,6 +177,5 @@ class DemandesControllerTest < ActionController::TestCase
     xhr :get, :ajax_display_contract, :contract_id => session[:user].contracts.first.id
     assert_response :success
   end
-
 
 end

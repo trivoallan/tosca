@@ -1,15 +1,15 @@
 class Demande < ActiveRecord::Base
-  # see lib/jabber_notifier.rb
-  include JabberNotifier
   belongs_to :typedemande
   belongs_to :logiciel
+  belongs_to :version
+  belongs_to :release
   belongs_to :severite
   belongs_to :statut
   # 3 peoples involved in a request :
   #  1. The submitter (The one who has filled the request)
   #  2. The engineer (The one which is currently in charged of this request)
   #  3. The recipient (The one which has the problem)
-  belongs_to :beneficiaire
+  belongs_to :recipient
   belongs_to :ingenieur
   belongs_to :submitter, :class_name => 'User',
     :foreign_key => 'submitter_id'
@@ -19,11 +19,9 @@ class Demande < ActiveRecord::Base
   has_one :elapsed, :dependent => :destroy
   belongs_to :contribution
   belongs_to :socle
-  # TODO : there is no interface to this belongs_to /!\
-  belongs_to :binaire, :include => :paquet
 
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
-  has_many :piecejointes, :through => :commentaires
+  has_many :attachments, :through => :commentaires
 
   named_scope :actives, lambda { |contract_ids| { :conditions =>
       { :statut_id => Statut::OPENED, :contract_id => contract_ids }
@@ -49,8 +47,8 @@ class Demande < ActiveRecord::Base
     :foreign_key => "last_comment_id"
 
   # Validation
-  validates_presence_of :resume, :contract, :description, :beneficiaire,
-   :statut, :severite, :warn => _("You must indicate a %s for your request")
+  validates_presence_of :resume, :contract, :description, :recipient,
+    :statut, :severite, :warn => _("You must indicate a %s for your request")
   validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
 
@@ -60,8 +58,8 @@ class Demande < ActiveRecord::Base
   attr_accessor :description
 
   validate do |record|
-    if record.contract.nil? || record.beneficiaire.nil? ||
-        (record.contract.client_id != record.beneficiaire.client_id)
+    if record.contract.nil? || record.recipient.nil? ||
+        (record.contract.client_id != record.recipient.client_id)
       record.errors.add_to_base _('The client of this contract is not consistant with the client of this recipient.')
     end
   end
@@ -88,8 +86,8 @@ class Demande < ActiveRecord::Base
   acts_as_reportable
 
   # self-explanatory
-  TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})"
-  EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})"
+  TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})" unless defined? TERMINEES
+  EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})" unless defined? EN_COURS
 
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
@@ -102,19 +100,50 @@ class Demande < ActiveRecord::Base
     "#{id}-#{resume.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
-  def to_s
+  def name
     "#{typedemande.name} (#{severite.name}) : #{resume}"
+  end
+
+  def contract_id=(new_id)
+    new_contract = Contract.find(new_id)
+    rules_changed = true if !self.new_record? && new_contract.rule_type != self.contract.rule_type
+    # we need to update this attribute before refreshing elapsed cache.
+    write_attribute(:contract_id, new_id)
+    self.contract = new_contract
+    if rules_changed
+      self.commentaires.each { |c| c.update_attribute :elapsed, 0 }
+      self.reset_elapsed
+    end
+  end
+
+
+  def full_software_name
+    result = ""
+    result = logiciel.name if self.logiciel
+    result = version.full_software_name if self.version
+    result = release.full_software_name if self.release
+    result
+  end
+
+  # It associates request with the correct id since
+  # we maintain both the 2 cases.
+  # See _form of request for more details
+  def associate_software(revisions)
+    return unless revisions
+    id = revisions[1..-1].to_i # revisions is a String, not an Array
+    case revisions.first
+    when 'v'
+      self.version_id = id
+    when 'r'
+      self.release_id = id
+    end
   end
 
   # Remanent fields are those which persists after the first submit
   # It /!\ MUST /!^ be an _id field. See DemandesController#create.
   def self.remanent_fields
-    [ :contract_id, :beneficiaire_id, :typedemande_id, :severite_id,
+    [ :contract_id, :recipient_id, :typedemande_id, :severite_id,
       :socle_id, :logiciel_id, :ingenieur_id ]
-  end
-
-  def name
-    to_s
   end
 
   # Used in the cache/sweeper system
@@ -165,7 +194,7 @@ class Demande < ActiveRecord::Base
     # if we came from software view, it's sets automatically
     self.logiciel_id = params[:logiciel_id]
     # recipients
-    self.beneficiaire_id = recipient.id if recipient
+    self.recipient_id = recipient.id if recipient
   end
 
   # Description was moved to first comment mainly for
@@ -179,15 +208,15 @@ class Demande < ActiveRecord::Base
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
-  SELECT_LIST = 'demandes.*, severites.name as severites_name, ' +
-    'logiciels.name as logiciels_name, clients.name as clients_name, ' +
-    'typedemandes.name as typedemandes_name, statuts.name as statuts_name '
-  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' +
-    'INNER JOIN beneficiaires ON beneficiaires.id=demandes.beneficiaire_id '+
-    'INNER JOIN clients ON clients.id = beneficiaires.client_id '+
-    'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' +
-    'INNER JOIN statuts ON statuts.id = demandes.statut_id ' +
-    'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
+  SELECT_LIST = 'demandes.*, severites.name as severites_name,
+    logiciels.name as logiciels_name, clients.name as clients_name,
+    typedemandes.name as typedemandes_name, statuts.name as statuts_name' unless defined? SELECT_LIST
+  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id
+    INNER JOIN recipients ON recipients.id=demandes.recipient_id
+    INNER JOIN clients ON clients.id = recipients.client_id
+    INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id
+    INNER JOIN statuts ON statuts.id = demandes.statut_id
+    LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id ' unless defined? JOINS_LIST
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
@@ -196,8 +225,7 @@ class Demande < ActiveRecord::Base
   end
 
   def client
-    @client ||= ( beneficiaire ? beneficiaire.client : nil )
-    @client
+    @client ||= ( recipient ? recipient.client : nil )
   end
 
   # Returns the state of a request at date t
@@ -269,13 +297,12 @@ class Demande < ActiveRecord::Base
     self.class.record_timestamps = true
   end
 
-  def engagement
+  # TODO : add a commitment_id to Request Table. This helper method
+  # clearly slows uselessly Tosca.
+  def commitment
     return nil unless contract_id && severite_id && typedemande_id
-    conditions = [" contracts_engagements.contract_id = ? AND " +
-      "engagements.severite_id = ? AND engagements.typedemande_id = ? ",
-      contract_id, severite_id, typedemande_id ]
-    joins = " INNER JOIN contracts_engagements ON engagements.id = contracts_engagements.engagement_id"
-    Engagement.find(:first, :conditions => conditions, :joins => joins)
+    self.contract.commitments.find(:first, :conditions =>
+        {:typedemande_id => self.typedemande_id, :severite_id => self.severite_id})
   end
 
   # useful shortcut
@@ -283,48 +310,26 @@ class Demande < ActiveRecord::Base
     self.contract.interval
   end
 
-#  private
-  def affiche_delai(temps_passe, delai)
-    value = calcul_delai(temps_passe, delai)
-    return "-" if value == 0
-    distance = Time.in_words(value.abs, self.contract.interval)
-    if value >= 0
-      "<p style=\"color: green\">#{distance}</p>"
-    else
-      "<p style=\"color: red\">#{distance}</p>"
-    end
-  end
-
-  def calcul_delai(temps_passe, delai)
-    return 0 if delai == -1
-    - (temps_passe - delai * contract.interval_in_seconds)
-  end
-
-  protected
-  # this method must be protected and cannot be private as Ruby 1.8.6
-  def appellee
-    @appellee ||= self.commentaires.find(:first, :conditions => 'statut_id=2',
-                                         :order => 'updated_on ASC')
-  end
+  # We have to make it in two steps, coz of the whole validation. If you
+  # manage to cover all the case in one method, MLO will offer you a beer ;)
+  before_create :create_first_comment
+  after_create :finish_first_comment
 
   private
   def create_first_comment
-    comment = Commentaire.new do |c|
+    self.first_comment = Commentaire.new do |c|
       #We use id's because it's quicker
       c.corps = self.description
       c.ingenieur_id = self.ingenieur_id
-      c.demande_id = self.id
+      c.demande = self
       c.severite_id = self.severite_id
       c.statut_id = self.statut_id
-      c.user_id = self.beneficiaire.user_id
+      c.user_id = self.recipient.user_id
     end
-    if comment.save
-      self.first_comment = comment
-      self.save
-    else
-      self.destroy
-      throw Exception.new('Erreur dans la sauvegarde du premier commentaire')
-    end
+  end
+
+  def finish_first_comment
+    self.first_comment.update_attribute :demande_id, self.id
   end
 
 end

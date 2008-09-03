@@ -4,15 +4,13 @@ class AccountController < ApplicationController
 
   cache_sweeper :user_sweeper, :only => [:signup, :update]
 
-  # Pour l'import de plusieurs utilisateurs
-  require 'fastercsv'
   PasswordGenerator
 
   # No clear text password in the log.
   # See http://api.rubyonrails.org/classes/ActionController/Base.html#M000441
   filter_parameter_logging :password
 
-  helper :filters, :ingenieurs, :beneficiaires, :roles, :export
+  helper :filters, :ingenieurs, :recipients, :roles, :export
 
   around_filter :scope, :except => [:login, :logout, :lemon]
 
@@ -32,7 +30,7 @@ class AccountController < ApplicationController
         _login(session[:user])
         # When logged from an other tool, the referer is not a valid page
         session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
-        redirect_back_or_default bienvenue_path
+        redirect_back_or_default welcome_path
       else
         clear_sessions
         id = User.find_by_login(params['user_login'])
@@ -60,7 +58,7 @@ class AccountController < ApplicationController
     case request.method
     when :get # Display form
       @user = User.new(:role_id => 4, :client => true) # Default : customer
-      @user_recipient = Beneficiaire.new
+      @user_recipient = Recipient.new
     when :post # Process form
       @user = User.new(params['user'])
       @user.generate_password # from PasswordGenerator, see lib/
@@ -77,7 +75,7 @@ class AccountController < ApplicationController
         else
           # Those variables are used by _form in order to display the correct form
           associate_user
-          @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+          @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
         end
       rescue Exception => e
         connection.rollback_db_transaction
@@ -89,7 +87,7 @@ class AccountController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+    @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
     _form
   end
 
@@ -97,9 +95,8 @@ class AccountController < ApplicationController
   # adequate changes in the Finder and in the Test Suite
   # TODO : this method is too long
   def index
-    # init
     options = { :per_page => 15, :order => 'users.role_id, users.login',
-      :include => [:beneficiaire,:ingenieur,:role] }
+      :include => [:recipient,:ingenieur,:role] }
     conditions = []
     @roles = Role.find_select
 
@@ -113,7 +110,7 @@ class AccountController < ApplicationController
       # [ namespace, field, database field, operation ]
       conditions = Filters.build_conditions(accounts_filters, [
         [:name, 'users.name', :like ],
-        [:client_id, 'beneficiaires.client_id', :equal ],
+        [:client_id, 'recipients.client_id', :equal ],
         [:role_id, 'users.role_id', :equal ]
       ])
       flash[:conditions] = options[:conditions] = conditions
@@ -123,7 +120,7 @@ class AccountController < ApplicationController
     # Experts does not need to be scoped on accounts, but they can filter
     # only on their contract.
     scope = {}
-    if @beneficiaire
+    if @recipient
       scope = User.get_scope(session[:user].contract_ids)
     end
     User.send(:with_scope, scope) do
@@ -140,13 +137,13 @@ class AccountController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+    @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
     _form
   end
 
   def update
     @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.beneficiaire, @user.ingenieur
+    @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
 
     # Security Wall
     if session[:user].role_id > 2 # Not a manager nor an admin
@@ -167,7 +164,7 @@ class AccountController < ApplicationController
       redirect_to account_path(@user)
     else
       # Don't write this :  _form and render :action => 'edit'
-      # Else, tosca return an error. It don't find the template
+      # Else, tosca returns an error. It don't find the template
       _form
       render(:action => 'edit')
     end
@@ -185,16 +182,15 @@ class AccountController < ApplicationController
       # Unused : [ 'HTTP_AUTH_SN', :Cherif ],
       [ 'HTTP_AUTH_USER',  :login ] # TODO : check this field with Bayrem
     ]
-    redirect_to bienvenue_path
-    flash[:info] = "coucou"
+    redirect_to welcome_path
 =begin
     login = request.env['HTTP_AUTH_LOGIN']
-    return redirect_to(bienvenue_path) unless login
+    return redirect_to(welcome_path) unless login
     user = User.find(:first, :conditions => { :login => login })
     if user
       _login user
     end
-    redirect_to(bienvenue_path)
+    redirect_to(welcome_path)
 =end
   end
 
@@ -202,9 +198,8 @@ class AccountController < ApplicationController
   def become
     begin
       if @ingenieur
-        benef = Beneficiaire.find(params[:id])
         current_user = session[:user]
-        set_sessions(benef.user)
+        set_sessions(Recipient.find(params[:id]).user)
         session[:last_user] = current_user
       else
         flash[:warn] = _('You are not allowed to change your identity')
@@ -220,7 +215,7 @@ class AccountController < ApplicationController
   def ajax_place
     return render(:nothing => true) unless request.xhr? and params.has_key? :client
     if params[:client] == 'true'
-      @user_recipient = Beneficiaire.new
+      @user_recipient = Recipient.new
     else
       @user_engineer = Ingenieur.new
     end
@@ -237,7 +232,7 @@ class AccountController < ApplicationController
     client_id = params[:client_id].to_i
     user_id = (params.has_key?(:id) ? params[:id].to_i : nil)
     options = Contract::OPTIONS
-    conditions = [ 'contracts.cloture >= ?', Time.now]
+    conditions = [ 'contracts.end_date >= ?', Time.now]
     unless client_id == 0
       conditions.first << ' AND contracts.client_id = ?'
       conditions.push(client_id)
@@ -246,9 +241,6 @@ class AccountController < ApplicationController
     @contracts = Contract.find_select(options)
     @user = (user_id.blank? ? User.new : User.find(user_id))
   end
-
-
-
 
   # Format du fichier CSV
   COLUMNS = [ _('Full name'), _('Title'), _('Email'), _('Phone'),
@@ -260,6 +252,18 @@ private
     set_sessions(user)
     flash[:notice] = (_("Welcome %s %s") %
                       [ user.title, user.name]).gsub(' ', '&nbsp;')
+
+    if user.client?
+      user.active_contracts.each do |c|
+        if (c.end_date - Time.now).between?(0.month, 1.month)
+          message = '<br/><strong>'
+          message << '</strong>'
+          message << (_("Your contract '%s' is near its end date : %s") %
+            [c.name, complete_date(c.end_date)])
+          flash[:notice] << message
+        end
+      end
+    end
   end
 
   # Used to restrict operation
@@ -314,7 +318,7 @@ private
       @clients = Client.find_select
 
       @count[:users] = User.count
-      @count[:beneficiaires] = Beneficiaire.count
+      @count[:recipients] = Recipient.count
       @count[:ingenieurs] = Ingenieur.count
     end
   end
@@ -337,7 +341,7 @@ private
 
   # Used during login and logout
   def clear_sessions
-    @beneficiaire = nil
+    @recipient = nil
     @ingenieur = nil
     reset_session
   end
@@ -346,8 +350,8 @@ private
   # Put in a separate method in order to improve readiblity of the code
   def associate_user!
     associate_user
-    benef, inge = @user.beneficiaire, @user.ingenieur
-    benef.update_attributes(params[:beneficiaire]) if benef
+    benef, inge = @user.recipient, @user.ingenieur
+    benef.update_attributes(params[:recipient]) if benef
     inge.update_attributes(params[:ingenieur]) if inge
   end
 
@@ -365,6 +369,7 @@ private
   # TODO : this method is too fat, unused, untested and have a lots
   # of improvements possibility. It's deactivated for now, until
   # someone find some times in order have it work properly
+  # require 'fastercsv'
 =begin
   def multiple_signup
     _form

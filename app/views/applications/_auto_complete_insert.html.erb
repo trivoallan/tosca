@@ -1,0 +1,4 @@
+<li id='<%= @html_id %>' <%= %Q{style="display: none"} if @new_record %> >
+  <input name='<%=@name%>[]' value='<%=@value%>' type='hidden'>
+  <%= @content %>
+</li>

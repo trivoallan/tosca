@@ -2,14 +2,14 @@ module WeeklyReporting
 
   # Give the status of requests flow during a certain time,
   # specified from @date[:first_day] to @date[:end_day]
-  def compute_weekly_report(beneficiaire_ids)
+  def compute_weekly_report(recipient_ids)
     values = {
       :first_day => @date[:first_day],
       :last_day=> @date[:end_day],
-      :beneficiaire_ids => beneficiaire_ids
+      :recipient_ids => recipient_ids
     }
     scope = { :find => { :conditions =>
-        [ 'demandes.beneficiaire_id IN (:beneficiaire_ids) AND demandes.updated_on BETWEEN :first_day AND :last_day', values ] }
+        [ 'demandes.recipient_id IN (:recipient_ids) AND demandes.updated_on BETWEEN :first_day AND :last_day', values ] }
     }
     Demande.send(:with_scope, scope) {
       first_day = values[:first_day].to_formatted_s(:db)
@@ -17,7 +17,7 @@ module WeeklyReporting
 
       options = { :conditions =>
         [ 'demandes.created_on BETWEEN :first_day AND :last_day', values ],
-        :order => 'clients.name, demandes.id', :include => [{:beneficiaire => :client},
+        :order => 'clients.name, demandes.id', :include => [{:recipient => :client},
                                                            :statut,:typedemande] }
       @requests_created = Demande.find(:all, options)
 

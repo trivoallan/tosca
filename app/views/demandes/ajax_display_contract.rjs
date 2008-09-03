@@ -1,5 +1,4 @@
-page.replace_html("recipient", select(:demande, :beneficiaire_id, @beneficiaires))
-page.replace_html("system", select(:demande, :socle_id, @socles) )
+page.replace_html("recipient", select(:demande, :recipient_id, @recipients))
 if @ingenieur
    out = %Q{<select id="demande_ingenieur_id" name="demande[ingenieur_id]"><option value="">» </option>}
    out << options_from_collection_for_select(@ingenieurs, :last, :first)
@@ -8,3 +7,4 @@ if @ingenieur
    page.replace_html("engineer", out )
 end
 page.replace_html("logiciel", :partial => "logiciel")
+page.replace_html("version", :partial => "version")

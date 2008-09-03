@@ -6,7 +6,7 @@
 <% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
 
-<% # used for iteration in ajaxified list %>
+<%# used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
  <div class="menu_title" onclick="Element.toggle('menu_consultation')">
@@ -21,7 +21,7 @@
   <li><b><%= _('By name') %> </b><br />
       <%= select_filter(@experts, 'ingenieur') %></li>
   <li><b><%= _('By software') %> </b><br />
-      <%= select_filter(@softwares, 'logiciel') %></li>
+      <%= select_filter(@software, 'logiciel') %></li>
   <li><b><%= _('By technology') %> </b><br />
       <%= select_filter(@competences, 'competence') %></li>
 </ul>

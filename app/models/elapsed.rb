@@ -74,14 +74,16 @@ class Elapsed < ActiveRecord::Base
 
   def workaround_progress
     request = self.demande
-    return 0.0 unless request.engagement
-    progress(self.workaround(), request.engagement.contournement, request.interval)
+    commitment = request.commitment
+    return 0.0 unless commitment
+    progress(self.workaround(), commitment.workaround, request.interval)
   end
 
   def correction_progress
     request = self.demande
-    return 0.0 unless request.engagement
-    progress(self.correction(), request.engagement.correction, request.interval)
+    commitment = request.commitment
+    return 0.0 unless commitment
+    progress(self.correction(), commitment.correction, request.interval)
   end
 
   # TODO

@@ -1,18 +1,33 @@
 <%= error_messages_for 'phonecall' %>
 
-<% fields = [
-     lstm_text_field(_('Request'), :phonecall, :demande_id),
-     lstm_select_field(_('Contract'), :phonecall, :contract, @contracts, :spinner => true),
-     lstm_select_field(_('Engineer'), :phonecall, :ingenieur, @ingenieurs),
-     lstm_ajax_field(_('Recipient'), :phonecall, :beneficiaires),
-     lstm_hline,
-     lstm_datetime_field(_('Start of call'), :phonecall, :start),
-     lstm_datetime_field(_('End of call'), :phonecall, :end)
-  ]
-%>
-<%= show_table_form fields, :class => 'form' %>
+
+<table class="form">
+ <tbody>
+  <tr>
+   <th><label for="phonecall_demande_id"><%= _('Request Id')%></label></th>
+   <td><%= text_field :phonecall, :demande_id %></td>
+  </tr><tr>
+    <th><label for="phonecall_contract_id"><%= _('Contract') %></label></th>
+    <td><%= select :phonecall, :contract_id, @contracts %> <%= StaticImage::spinner %></td>
+  </tr><tr>
+    <th><label for="phonecall_ingenieur_id"><%= _('Engineers') %></label></th>
+    <td><%= select :phonecall, :ingenieur_id, @ingenieurs %></td>
+  </tr><tr>
+    <th><label for="phonecall_recipient_id"><%= _('Recipient') %></label></th>
+    <td><div id="recipients"><%= select_empty(:phonecall, :recipient_id, @recipients) %></div></td>
+  </tr><tr>
+    <td colspan="2"><hr /></td>
+  </tr><tr>
+    <th><label for="phonecall_start"><%= _('Start of call') %></label></th>
+    <td><%= datetime_select(:phonecall, :start) %></td>
+  </tr><tr>
+    <th><label for="phonecall_end"><%= _('End of call') %></label></th>
+    <td><%= datetime_select(:phonecall, :end) %></td>
+  </tr>
+ </tbody>
+</table>
 
 <% options = { :before => "Element.show('spinner')",
   :success => "Element.hide('spinner')", :with => 'id',
-  :update => 'beneficiaires', :url => ajax_beneficiaires_phonecalls_path, :method => :get } %>
+  :update => 'recipients', :url => ajax_recipients_phonecalls_path, :method => :get } %>
 <%= observe_field 'phonecall_contract_id', options %>

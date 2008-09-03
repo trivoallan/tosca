@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
-  fixtures :clients, :images, :severites, :beneficiaires, :users, :contracts,
+  fixtures :clients, :images, :severites, :recipients, :users, :contracts,
     :contributions, :logiciels, :components, :credits
 
   def test_to_strings
@@ -10,7 +10,10 @@ class ClientTest < Test::Unit::TestCase
 
   def test_logo
     image_file = fixture_file_upload('/files/logo_linagora.gif', 'image/gif')
-    client = Client.new(:name => "Testing logo", :creator => User.find(:first))
+    client = Client.new(:name => "Testing logo",
+      :creator => User.find(:first),
+      :description => "I a client with a nice logo",
+      :address => "I live next door")
     assert client.save
 
     images(:image_00001).destroy
@@ -26,7 +29,7 @@ class ClientTest < Test::Unit::TestCase
   def test_destroy
     Client.find(:all).each {  |c|
       c.destroy
-      assert Beneficiaire.find_all_by_client_id(c.id).empty?
+      assert Recipient.find_all_by_client_id(c.id).empty?
       assert Document.find_all_by_client_id(c.id).empty?
     }
   end
@@ -39,17 +42,26 @@ class ClientTest < Test::Unit::TestCase
     Client.find(:all).each { |c| check_ids c.contract_ids, Contract }
   end
 
+  def test_scope
+    Client.set_scope([Client.find(:first).id])
+    Client.find(:all)
+    Client.remove_scope
+  end
+
+  def test_overloaded_find_select
+    assert !Client.find_select.empty?
+  end
+
   def test_support_distribution
     Client.find(:all).each { |c|
       res = c.support_distribution
       assert !res.nil?
       assert(res == true || res == false)
-
     }
   end
 
-  def test_beneficiaire_ids
-    Client.find(:all).each { |c| check_ids c.beneficiaire_ids, Beneficiaire }
+  def test_recipient_ids
+    Client.find(:all).each { |c| check_ids c.recipient_ids, Recipient }
   end
 
   def test_ingenieurs
@@ -57,7 +69,7 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_logiciels
-    Client.find(:all).each{|c| c.logiciels.each{|i| assert_instance_of(Logiciel, i)}}
+    Client.find(:all).each{ |c| c.logiciels.each{ |i| assert_instance_of(Logiciel, i) } }
   end
 
   def test_contributions
@@ -77,14 +89,14 @@ class ClientTest < Test::Unit::TestCase
       name = c.name
       assert c.update_attribute(:inactive, true)
       assert_equal c.name , "<strike>#{name}</strike>"
-      c.beneficiaires.each do |b|
+      c.recipients.each do |b|
         assert b.user.inactive?
       end
 
       assert c.update_attribute(:inactive, false)
       assert_equal c.name , name
       # reload client, in order to avoid cache errors
-      Client.find(c.id).beneficiaires.each do |b|
+      Client.find(c.id).recipients.each do |b|
         assert !b.user.inactive?
       end
     }
@@ -94,7 +106,7 @@ class ClientTest < Test::Unit::TestCase
     columns = Client.content_columns.collect { |c| c.name }
     columns.sort!
 
-    assert_equal(["code_acces", "description", "name"], columns)
+    assert_equal(["access_code", "description", "name"], columns)
   end
-
+  
 end

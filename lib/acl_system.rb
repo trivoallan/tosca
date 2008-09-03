@@ -16,6 +16,7 @@
 module ACLSystem
 
   include LoginSystem
+  include PermissionCache
 
   protected
 
@@ -27,19 +28,7 @@ module ACLSystem
     user.authorized?(required_perm)
   end
 
-  def authorize_url?(options)
-    perm = "#{options[:controller]}/#{options[:action]}"
 
-    result = LoginSystem::public_user.authorized?(perm)
-
-    unless result
-      user = session[:user]
-      if user and user.authorized?(perm)
-        return true
-      end
-    end
-    result
-  end
 
 
 

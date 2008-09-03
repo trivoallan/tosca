@@ -6,7 +6,7 @@ class LogicielsController; def rescue_action(e) raise e end; end
 
 class LogicielsControllerTest < Test::Unit::TestCase
   fixtures :logiciels, :competences, :demandes, :commentaires, :contracts,
-    :beneficiaires, :contributions, :users, :clients, :credits, :components
+    :recipients, :contributions, :users, :clients, :credits, :components
 
   def setup
     @controller = LogicielsController.new
@@ -22,14 +22,14 @@ class LogicielsControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:logiciels)
 
     # tests the ajax filters
-    get :index, :filters => { :contract_id => 3}
+    xhr :get, :index, :filters => { :contract_id => 3}
     assert_response :success
     assigns(:logiciels).each do |l|
       software = Logiciel.find l.id
-      assert_equal software.paquets.first.contract.id, 3
+      assert_equal software.versions.first.contract.id, 3
     end
 
-    get :index, :filters => { :groupe_id => 2 }
+    xhr :get, :index, :filters => { :groupe_id => 2 }
     assert_response :success
     assigns(:logiciels).each { |l| assert_equal l.groupe_id, 2 }
 

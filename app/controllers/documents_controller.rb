@@ -33,7 +33,7 @@ class DocumentsController < ApplicationController
 
   def select
     @typedocuments = Typedocument.find(:all)
-    if @beneficiaire
+    if @recipient
       @typedocuments.delete_if { |t|
         Document.count(:conditions => "documents.typedocument_id = #{t.id}") == 0
       }

@@ -9,9 +9,6 @@ require_dependency 'login_system'
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency 'acl_system'
 
-#Scope
-require_dependency 'scope_system'
-
 class ApplicationController < ActionController::Base
   init_gettext 'tosca'
 
@@ -47,14 +44,14 @@ protected
     if request.xhr?
       render :text => ('<div class="information error">' + ERROR_MESSAGE + '</div>')
     else
-      redirect_back_or_default bienvenue_path
+      redirect_back_or_default welcome_path
     end
   end
 
   # Redirect back or default, if we can find it
   def redirect_back
     session[:return_to] ||= request.env['HTTP_REFERER']
-    redirect_back_or_default bienvenue_path
+    redirect_back_or_default welcome_path
   end
 
   # global variables (not pretty, but those two are really usefull)
@@ -77,7 +74,7 @@ protected
     user = session[:user]
     if user
       @ingenieur = user.ingenieur
-      @beneficiaire = user.beneficiaire
+      @recipient = user.recipient
     end
     true
   end
@@ -89,34 +86,16 @@ protected
     define_scope(user, is_connected, &block)
   end
 
-  # Overload till there is a fix in rails
-  def self.auto_complete_for(object, method, options = {})
-    define_method("auto_complete_for_#{object}_#{method}") do
-      column = object.to_s.pluralize + '.' + method.to_s
-      find_options = {
-        :conditions => [ "LOWER(#{column}) LIKE ?",
-                         '%' + params[object][method].downcase + '%' ],
-        :order => "#{column} ASC",
-        :limit => 10 }.merge!(options)
-
-      @items = object.to_s.camelize.constantize.find(:all, find_options)
-
-      render :inline => "<%= auto_complete_result @items, '#{method}' %>"
-    end
-  end
-
 private
 
   # This array contains all errors that we want to rescue nicely
   # It's mainly for search engine bots, which seems to love
   # hammering wrong address
-  RescuedErrors =
-    [ ActiveRecord::RecordNotFound, ActionController::RoutingError
-    ] unless defined? RescuedErrors
-
   def rescue_action_in_public(exception)
+    @@rescued_errors ||= [ ActiveRecord::RecordNotFound,
+                           ActionController::RoutingError ]
     msg = nil
-    RescuedErrors.each{ |k| if exception.is_a? k
+    @@rescued_errors.each{ |k| if exception.is_a? k
         msg = _('This address is not valid. If you think this is an error, do not hesitate to contact us.')
       end
     }
@@ -134,7 +113,7 @@ private
       render :text => ('<div class="information error">' + msg + '</div>')
     else
       flash[:warn] = msg
-      redirect_to(bienvenue_path, :status => :moved_permanently)
+      redirect_to(welcome_path, :status => :moved_permanently)
     end
 
   end

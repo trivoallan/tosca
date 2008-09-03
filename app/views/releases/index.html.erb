@@ -1,0 +1,16 @@
+<h1><%=_('List of releases')%></h1>
+
+<% links = show_pages_links(@release_pages, _('a release')) %>
+<%= links %>
+
+<% titles = [ _('Release'), _('Packaged'), _('Activated') ] %>
+
+<%= show_table(@releases, Release, titles) { |r|
+  result = ''
+  result << "<td>#{link_to_release(r)}</td>"
+  result << "<td>#{ 'X' if r.packaged? }</td>"
+  result << "<td>#{ 'X' unless r.inactive? }</td>"
+    result << "#{link_to_actions_table r}"
+}%>
+
+<%= links %>

@@ -1,7 +1,5 @@
-#
 class ReportingController < ApplicationController
   helper :demandes, :export
-  include ComexReporting
   include WeeklyReporting
   include DigestReporting
 
@@ -27,76 +25,8 @@ class ReportingController < ApplicationController
   # utilisé avant l'affichage
   def configuration
     _titles()
-    @contracts = (@beneficiaire ? @beneficiaire.client.contracts :
+    @contracts = (@recipient ? @recipient.client.contracts :
                  Contract.find(:all, Contract::OPTIONS))
-  end
-
-  def comex
-  end
-
-  # TODO : cut this method a lot, at minimum 3 pieces.
-  # The dispatcher could be separated from the date analyzer.
-  def comex_resultat
-    #_titles()
-    control = params[:control]
-    results = params[:results]
-    cns = params[:cns]
-    comex = params[:reporting]
-    weekly = params[:weekly]
-
-    clients = '(' << params[:clients].join(',') << ')'
-    @date, scope = {}, {}
-    if cns
-      @cns= cns
-      scope= { :conditions => "client_id IN #{clients}"} unless clients.include?('all')
-      Contract.send(:with_scope, :find => scope) {
-        cns_correction()
-      }
-      return
-    end
-     (redirect_to comex_reporting_path and return) unless results
-    if results[:first_day].blank? or results[:end_day].blank?
-      if results[:week_num].blank?
-        flash[:notice]= _('You must choose a period for the report')
-        redirect_to comex_reporting_path and return
-      else
-        @date[:first_day] = Time.now.beginning_of_year +
-         (results[:week_num].to_i-1).week
-        @date[:end_day] = @date[:first_day] + 7.days - 1.second
-      end
-    else
-      @date[:first_day] = results[:first_day].to_time.beginning_of_day
-      @date[:end_day] = results[:end_day].to_time.beginning_of_day +
-      1.day - 1.second
-    end
-    # user 'n developer sanity check
-    if @date[:first_day] > @date[:end_day]
-      flash[:notice]= _('The first day must precede the last day')
-      redirect_to comex_reporting_path and return
-    end
-    if comex
-      scope= { :conditions => "id IN #{clients}"} unless clients.include?('all')
-      Client.send(:with_scope, :find => scope) {
-        init_comex_report()
-      }
-      @clients.each do |client|
-        compute_comex_report(client)
-      end
-    end
-    flash[:clients]= @clients
-    flash[:requests]= @requests
-    flash[:total]= @total
-    return if comex
-
-    if weekly
-      options = { :select => 'id' }
-      unless clients.include?('all')
-        options[:conditions] = "beneficiaires.client_id IN #{clients}"
-      end
-      recipient_ids = Beneficiaire.find(:all, options).collect{|b| b.id}
-      compute_weekly_report(recipient_ids)
-    end
-    render :template => 'reporting/weekly'
   end
 
   def digest
@@ -184,9 +114,10 @@ class ReportingController < ApplicationController
     @contract = Contract.find(params[:reporting][:contract_id].to_i)
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titles = @@titles
-    @report[:start_date] = [ @contract.ouverture.beginning_of_month, Time.now ].min
+    @report[:start_date] = [ @contract.start_date.beginning_of_month,
+                             Time.now ].min
     @report[:end_date] = [ calendar2time(params[:end_date]),
-                           @contract.cloture.end_of_month ].min
+                           @contract.end_date.beginning_of_month].min
     @first_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
@@ -332,7 +263,7 @@ class ReportingController < ApplicationController
 
     size = 0
     demandes.each do |d|
-      e = d.engagement
+      e = d.commitment
       interval = d.contract.interval.hours
       next unless e
 
@@ -469,9 +400,9 @@ class ReportingController < ApplicationController
 
 
   ##
-  # Calcule le nombre de beneficiaire, de logiciel et contribution distinct par mois
+  # Calcule le nombre de recipient, de logiciel et contribution distinct par mois
   def compute_evolution(report)
-    report[0].push Demande.count('beneficiaire_id', :distinct => true)
+    report[0].push Demande.count('recipient_id', :distinct => true)
     report[1].push Demande.count('logiciel_id', :distinct => true)
     report[2].push Demande.count('contribution_id', :distinct => true)
   end
@@ -485,6 +416,7 @@ class ReportingController < ApplicationController
     total = :"#{name}_total"
     __write_graph(total, Gruff::Pie, _("Distributed on ") + "#{@report[:total_report]}" + _(" months")) if @data[total]
   end
+
   # Ecrit le graphe en utilisant les données indexées par 'name' dans @données
   # grâce au chemin d'accès spécifié dans @path[name]
   # graph sert à spécifier le type de graphe attendu

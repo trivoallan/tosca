@@ -37,7 +37,7 @@ module AccountHelper
   end
 
   def form_become(user)
-    recipient = user.beneficiaire
+    recipient = user.recipient
     result = ''
     if @ingenieur && recipient && !user.inactive?
       result << %Q{<form action="#{become_account_path(recipient)}" method="post">}

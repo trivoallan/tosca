@@ -1,37 +1,47 @@
 class Contract < ActiveRecord::Base
-  acts_as_reportable
-
   belongs_to :client
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
-  belongs_to :commercial, :class_name => 'Ingenieur'
+  belongs_to :salesman, :class_name => 'Ingenieur'
 
-  has_many :paquets, :dependent => :destroy
   has_many :demandes
-  has_many :binaires, :through => :paquets
   has_many :appels
   has_many :tags
+  has_many :releases
 
-  has_and_belongs_to_many :engagements, :order =>
+  has_and_belongs_to_many :versions, :order => 'versions.name DESC', :uniq => true
+  has_and_belongs_to_many :commitments, :uniq => true, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
-  has_and_belongs_to_many :users, :order => 'users.name'
+  has_and_belongs_to_many :users, :order => 'users.name', :uniq => true
+  # Those 2 ones are helpers, not _real_ relation ship
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
     :conditions => 'users.client = 0',
     :order => 'users.name ASC'
   has_and_belongs_to_many :recipient_users, :class_name => 'User',
-    :conditions => 'users.client = 1', :include => :beneficiaire,
+    :conditions => 'users.client = 1', :include => :recipient,
     :order => 'users.name ASC'
   has_and_belongs_to_many :teams, :order => 'teams.name', :uniq => true
 
   validates_presence_of :client, :rule, :creator
-  validates_numericality_of :heure_ouverture, :heure_fermeture,
+  validates_numericality_of :opening_time, :closing_time,
     :only_integer => true
-  validates_inclusion_of :heure_ouverture, :heure_fermeture, :in => 0..24
+  validates_inclusion_of :opening_time, :closing_time, :in => 0..24
 
   validate :must_open_before_close
 
   def must_open_before_close
-    errors.add_to_base("The schedules of this contract are invalid.") unless heure_ouverture < heure_fermeture
+    valid = true
+    if self.opening_time.to_i > self.closing_time.to_i
+      self.errors.add_to_base("The schedules of this contract are invalid.")
+      valid = false
+    end
+    valid
+  end
+
+  after_save do |record|
+    # To make sure we have only one time a engineer
+    record.engineer_users = record.engineer_users - (record.teams.collect { |t| t.users }.flatten)
+    true
   end
 
 
@@ -53,11 +63,11 @@ class Contract < ActiveRecord::Base
   end
 
   def interval_in_seconds
-    return (heure_fermeture - heure_ouverture) * 1.hour
+    return (closing_time - opening_time) * 1.hour
   end
 
   def interval
-    heure_fermeture - heure_ouverture
+    closing_time - opening_time
   end
 
   # We have open clients which can declare
@@ -66,41 +76,37 @@ class Contract < ActiveRecord::Base
     if rule_type == 'Rules::Component' and rule.max == -1
       return Logiciel.find(:all, :order => 'logiciels.name ASC')
     end
-    self._logiciels
+    Logiciel.find(:all, :conditions => { "contracts.id" => self.id },
+      :joins => { :versions => :contracts },
+      :group => "versions.logiciel_id")
   end
 
   # TODO : I am sure it could be better. Rework model ???
   def find_recipients_select
     options = { :conditions => 'users.inactive = 0' }
     self.recipient_users.find(:all, options).collect{|u|
-      [  u.name, u.beneficiaire.id ] if u.beneficiaire }
+      [  u.name, u.recipient.id ] if u.recipient }
   end
 
-  def ouverture_formatted
-    display_time read_attribute(:ouverture)
+  def start_date_formatted
+    display_time read_attribute(:start_date)
   end
 
-  def cloture_formatted
-    display_time read_attribute(:cloture)
+  def end_date_formatted
+    display_time read_attribute(:end_date)
   end
 
-  def find_engagement(request)
+  def find_commitment(request)
     options = { :conditions =>
-      [ 'engagements.typedemande_id = ? AND severite_id = ?',
+      [ 'commitments.typedemande_id = ? AND severite_id = ?',
         request.typedemande_id, request.severite_id ] }
-    self.engagements.find(:first, options)
-  end
-
-  def demandes
-    conditions = [ 'demandes.contract_id = ?', id]
-    # WHERE (demandes_paquets.demande_id = 62 )
-    Demande.find(:all, :conditions => conditions)
+    self.commitments.find(:first, options)
   end
 
   def typedemandes
-    joins = 'INNER JOIN engagements ON engagements.typedemande_id = typedemandes.id '
-    joins << 'INNER JOIN contracts_engagements ON engagements.id = contracts_engagements.engagement_id'
-    conditions = [ 'contracts_engagements.contract_id = ? ', id ]
+    joins = 'INNER JOIN commitments ON commitments.typedemande_id = typedemandes.id '
+    joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
+    conditions = [ 'commitments_contracts.contract_id = ? ', id ]
     Typedemande.find(:all,
                      :select => "DISTINCT typedemandes.*",
                      :conditions => conditions,
@@ -113,17 +119,10 @@ class Contract < ActiveRecord::Base
     "clients.inactive = 0" }
 
   def name
-    specialisation = read_attribute :name
+    specialisation = read_attribute(:name)
     res = "#{client.name} - #{rule.name}"
     res << " - #{specialisation}" unless specialisation.blank?
     res
   end
 
-  # used internally by wrapper :
-  # /!\ DO NOT USE DIRECTLY /!\
-  # use : logiciels() call
-  has_many :_logiciels, :through => :paquets, :group =>
-    'logiciels.id', :source => 'logiciel', :order => 'logiciels.name ASC'
-
-#  alias_method :to_s, :name
 end

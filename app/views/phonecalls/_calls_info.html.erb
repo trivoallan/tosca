@@ -10,7 +10,9 @@
 > <%= _('Action') %></div>
 <ul class="menu" id="menu_action">
  <li><%= link_to _('Add a call'), new_phonecall_path %></li>
- <li><%= phonecalls_export_images %></li>
+ <% Phonecall::actions.each do |a| %>
+   <li><%= send(a) %></li>
+ <% end %>
 </ul>
 
 
@@ -20,7 +22,7 @@
  <li><b><%= _('Expert') %></b></li>
  <li><%=select_filter(@ingenieurs, 'ingenieur')%></li>
  <li><b><%= _('Recipient') %></b></li>
- <li><%=select_filter(@beneficiaires, 'beneficiaire')%></li>
+ <li><%=select_filter(@recipients, 'recipient')%></li>
  <li><b><%= _('Contract') %></b></li>
  <li><%=select_filter(@contracts, 'contract')%></li>
 </ul>
@@ -49,7 +51,7 @@
  <li><b><%=_('Calls')%>: </b><%=@count[:phonecalls]%></li>
  <li><b><%=_('Requests')%>: </b><%=@count[:demandes] %></li>
  <li><b><%=_('Engineers')%>: </b><%=@count[:ingenieurs]%></li>
- <li><b><%=_('Recipients')%>: </b><%=@count[:beneficiaires]%></li>
+ <li><b><%=_('Recipients')%>: </b><%=@count[:recipients]%></li>
  <li><b><%=_('Total duration')%>: </b><%=Time.in_words @count[:somme]%></li>
  <li><b><%=_('Average duration')%>: </b><%=Time.in_words @count[:moyenne]%></li>
 </ul>

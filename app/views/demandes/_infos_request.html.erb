@@ -1,0 +1,75 @@
+<% cache("requests/#{@demande.id}/info-#{session[:user].kind}") do %>
+<%= div_toogle _('Action'), 'menu_action', :class => 'menu_title' %>
+<ul class="menu" id="menu_action">
+  <% if @ingenieur %>
+    <% options = { :logiciel_id => @demande.logiciel_id, :request_id => @demande.id } %>
+    <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
+    <li><%= _('Link to a contribution')%><br />
+        <% form_tag link_contribution_demande_path(@demande.id) do %>
+      <%= select_onchange @contributions, 'demande', 'contribution_id' %>
+    <% end %></li>
+    <% if @demande.contribution %>
+       <li><%= link_to_unlink_contribution(@demande.id) %></li>
+    <% end %>
+    <li><%= link_to_add_call @demande.id %></li>
+  <% end %>
+  <li><%= link_to _("Print"), print_demande_path(@demande.id),
+            :target => '_blank' %></li>
+</ul>
+
+<%= div_toogle _('Summary'), 'menu_resume', :class => "menu_title" %>
+<ul class="menu" id="menu_resume">
+  <% if @ingenieur and @demande.socle and @demande.socle.machine%>
+     <li><b><%= _("Vm") %>: </b><%=h @demande.socle.machine %></li>
+  <% end %>
+  <li><b><%= _("System") %>: </b><%= link_to_socle @demande.socle %></li>
+  <li><b><%= _("Software") %>: </b><%= link_to_request_software @demande %></li>
+  <li><b><%=_("Status")%>: </b>
+       <%= link_to_box_on_status(@demande) %> <%=help_on_status%></li>
+  <li><b><%= _("Type")%>: </b><%= @demande.typedemande.name %></li>
+  <li><b><%= _("Severity")%>: </b>
+       <%= @demande.severite.name %> <%=help_on_severity%></li>
+  <% unless @demande.mail_cc.blank? %>
+     <li><b><%= _('CC') %>: </b><%= @demande.mail_cc.gsub(',', ',<br />') %></li>
+  <% end %>
+  <% submitter_id = @demande.submitter_id %>
+  <% if submitter_id != 0 && @demande.recipient.user_id != submitter_id %>
+    <li><b><%=_("Declared by")%>: </b><%= @demande.submitter.name %></li>
+  <% end %>
+  <% if @demande.ingenieur %>
+    <li><b><%=_("Assigned to")%>: </b> <%= @demande.ingenieur.name %> </li>
+  <% end %>
+</ul>
+
+<%= div_toogle _('Recipent'), 'menu_recipient', :class => "menu_title" %>
+<% user = @demande.recipient.user %>
+<ul class="menu" id="menu_recipient">
+  <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
+     <%= link_to_show(account_path(user)) if @ingenieur %></li>
+  <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
+  <% contract = @demande.contract %>
+  <li><b><%= _('Concerning') %>: </b><%= link_to contract, contract_path(contract) %></li>
+</ul>
+
+<%= div_toogle _("Life cycle"), 'life_cycle_menu', :class => "menu_title" %>
+<ul class="menu" id="life_cycle_menu">
+  <li><b><%= _("Created on") %>: </b><%= @demande.created_on_formatted %></li>
+  <li><b><%= _("Updated on") %>: </b><%= @demande.updated_on_formatted %></li>
+  <% if @demande.elapsed %>
+     <li><b><%= _("Time elapsed") %>: </b><%= @demande.elapsed_formatted %></li>
+  <% end %>
+  <% contribution = @demande.contribution %>
+  <% if contribution %>
+    <li><%= link_to_request_contribution(contribution) %></li>
+  <% end %>
+
+</ul>
+
+<%= div_toogle _("Help"), 'menu_help', :class => "menu_title" %>
+<ul class="menu" id="menu_help">
+ <li><%= public_link_to_howto_request %></li>
+</ul>
+<%# mandatory for seeing last link ... :/ %>
+<br />
+
+<% end # Cache %>

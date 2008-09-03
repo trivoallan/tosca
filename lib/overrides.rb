@@ -1,32 +1,3 @@
-
-
-class String
-  # this convenience method search an url in a string and add the "http://" needed
-  # RFC sur les URLS : link:"http://rfc.net/rfc1738.html"
-  # Made from this regexp : link:"http://www.editeurjavascript.com/scripts/scripts_formulaires_3_250.php"
-  #
-  # It works with :
-  #  "www.google.com"
-  #  "http://www.google.com"
-  #  "toto tutu djdjdjd google.com" >
-  #  "toto tutu djdjdjd http://truc.machin.com/touo/sdqsd?tutu=1&machin google.com/toto/ddk?tr=1&machin"
-  #TODO: A améliorer
-  def urlize
-    (self.gsub(/(\s+|^)[a-zA-Z]([\w-]{0,61}\w)?\.[a-zA-Z]([\w-]{0,61}\w)?(\.[a-zA-Z]([\w-]{0,61}\w)?)?/) { |s| " http://" + s.strip }).strip
-  end
-
-  # Small convenience method which replace each space by its unbreakable html
-  # equivalent.
-  #
-  # Call it like this :
-  #   "this is a test".unbreak
-  #     this&nbsp;is&nbsp;a&nbsp;test"
-  def unbreak
-    self.gsub(' ', '&nbsp;')
-  end
-
-end
-
 # Used to put expiry caches on images/pictures
 if defined? Mongrel::DirHandler
   module Mongrel
@@ -45,24 +16,18 @@ if defined? Mongrel::DirHandler
   end
 end
 
-module Ruport::Reportable::InstanceMethods
-  # Overrides, since Ruport is not really active for supporting edge rails.
-  # Maybe we can remove it with a further version of acts_as_reportable
-  # It's broken as of version 1.1.0.
-  def get_attributes_with_options(options = {})
-        attrs = attributes()
-        attrs = attrs.inject({}) {|h,(k,v)|
-                  h["#{options[:qualify_attribute_names]}.#{k}"] = v; h
-                } if options[:qualify_attribute_names]
-        attrs
+class Module
+  def include_all_modules_from(parent_module)
+    parent_module.constants.each do |const|
+      mod = parent_module.const_get(const)
+      if mod.class == Module && !defined? mod
+        send(:include, mod)
+        include_all_modules_from(mod)
       end
-
-
+    end
+  end
 end
 
-
-# View Optimization : no '\n'
-ActionView::Base.erb_trim_mode = '>'
 
 # TODO : find a lib or a way to compute holidays
 # of other countries. It's only France, for now.
@@ -173,7 +138,7 @@ class Time
 
   # FONCTION vers lib/lstm.rb:time_in_french_words
   def distance_of_time_in_french_words(distance_in_seconds, contract)
-    dayly_time = contract.heure_fermeture - contract.heure_ouverture # in hours
+    dayly_time = contract.closing_time - contract.opening_time # in hours
     Time.in_words(distance_in_seconds, dayly_time)
   end
 
@@ -257,7 +222,7 @@ class Time
 end
 
 #############################################
-# Needed coz of f***ing Debian              #
+# Needed for Debian                         #
 # We had to override this in order to fix   #
 # an issue when gettext_localize call this  #
 # interface                                 #
@@ -300,18 +265,42 @@ class ActionController::Caching::Sweeper
   end
 end
 
+#To not have an error if routes = nil
+module ActionController
+  class Base
+    def url_for(options = nil) #:doc:
+      case options || options={}
+        when String
+          options
+        when Hash
+          @url.rewrite(rewrite_options(options))
+        else
+          polymorphic_url(options)
+      end
+    end
+  end
+end
+
+module ActionView
+  class Base
+    include PermissionCache
+  end
+end
 
 # This module is overloaded in order to display link_to lazily
 # and efficiently. It display links <b>only</b> if the user
 # has the right access to the ressource.
 module ActionView::Helpers::UrlHelper
+  include PermissionCache
+
 
   # this link_to display a link whatever happens, to all the internet world
   alias_method :public_link_to, :link_to
   # this link_to is a specialised one which only returns a link
   # if the user is connected and has the right access to the ressource
   # requested. See public_link_to for everyone links.
-  def link_to(name, options = {}, html_options = nil, *parameters_for_method_reference)
+
+  def link_to(name, options = {}, html_options = nil)
     action = nil
     return nil unless options
 
@@ -362,18 +351,6 @@ module ActionView::Helpers::UrlHelper
     end
   end
 
-  # Used to be called with the routes overrides. See acl_system.rb for more deeper
-  # explanation. It's used to allow public access.
-  def authorize_url?(options)
-    perm = "#{options[:controller]}/#{options[:action]}"
-    result = LoginSystem::public_user.authorized?(perm)
-
-    unless result
-      user = session[:user]
-      return true if user and user.authorized?(perm)
-    end
-    result
-  end
 end
 
 
@@ -388,7 +365,6 @@ module ActiveRecord
     def self.remove_scope
       self.scoped_methods.pop
     end
-
 
     # By convention, all tosca records have or implements a 'name' method,
     # used mainly for displaying and selecting them. It's also their default
@@ -414,7 +390,7 @@ module ActiveRecord
     end
 
     # Same as #find_select, but returns only active objects
-    def self.find_active4select(options = {})
+    def self.find_active4select(options = {}, collect = true)
       options[:select] = 'id, name'
       table_name = self.table_name
       if options.has_key? :conditions
@@ -423,7 +399,9 @@ module ActiveRecord
         options[:conditions] = "#{table_name}.inactive = 0"
       end
       options[:order] ||= "#{table_name}.name ASC"
-      self.find(:all, options).collect{ |o| [o.name, o.id]}
+      res = self.find(:all, options)
+      res.collect!{ |o| [o.name, o.id] } if collect
+      res
     end
 
 
@@ -522,6 +500,33 @@ module TMail
       #The only thing to comment.
       #add_message_id
       add_date
+    end
+  end
+end
+
+# Add the possibility to create an aut_complete on methods
+module AutoComplete
+  module ClassMethods
+    def auto_complete_for(object, method, model = nil, field = nil, options = {})
+      define_method("auto_complete_for_#{object}_#{method}") do
+        if object.to_s.camelize.constantize.methods.include? method.to_s
+          search = params[object][method]
+          collection = object.to_s.camelize.constantize.find(:all, options)
+          result = []
+          collection.each do |c|
+            result.push c if c.send(method).downcase.include? search.downcase or search == "*"
+          end
+          limit = options[:limit].nil? ? 10 : options[:limit]
+          @items = result.sort_by {|r| r.send(method)}[0..limit]
+        else
+          find_options = {
+            :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ],
+            :order => "#{method} ASC",
+            :limit => 10 }.merge!(options)
+          @items = object.to_s.camelize.constantize.find(:all, find_options)
+        end
+        render :inline => "<%= auto_complete_choice('#{object}', '#{method}', @items, '#{model}[#{field}_ids]') %>"
+      end
     end
   end
 end

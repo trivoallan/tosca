@@ -17,8 +17,8 @@
    <%= link_to_remote_tab _('History'), 'ajax_history', options %>
  </li>
  <li>
-   <% options[:url] = ajax_piecejointes_demande_path(request_id) %>
-   <%= link_to_remote_tab _('Attachments'), 'ajax_piecejointes', options %>
+   <% options[:url] = ajax_attachments_demande_path(request_id) %>
+   <%= link_to_remote_tab _('Attachments'), 'ajax_attachments', options %>
  </li>
  <li>
    <% options[:url] = ajax_appels_demande_path(request_id) %>

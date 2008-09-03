@@ -1,7 +1,7 @@
 class ContributionsController < ApplicationController
-  helper :filters, :demandes, :paquets, :binaires, :export, :urlreversements, :logiciels
+  helper :filters, :demandes, :versions, :export, :urlreversements, :logiciels
 
-  cache_sweeper :contribution_sweeper, :only => [:create, :update]
+  cache_sweeper :contribution_sweeper, :only => [ :create, :update ]
 
   # Show all contribs and who's done 'em
   def experts
@@ -39,7 +39,6 @@ class ContributionsController < ApplicationController
     end
   end
 
-  # TODO : c'est pas très rails tout ça (mais c'est moins lent)
   def select
     client_id = params[:client_id].to_s
     unless read_fragment "contributions/select_#{client_id || 'all'}"
@@ -99,11 +98,11 @@ class ContributionsController < ApplicationController
   def new
     @contribution = Contribution.new
     @urlreversement = Urlreversement.new
-    # we can precise the software with this, see softwares/show for more info
+    # we can precise the software with this, see software/show for more info
     @contribution.logiciel_id = params[:logiciel_id]
     # submitted state, by default
     @contribution.etatreversement_id = 4
-    @contribution.reverse_le = Date.today
+    @contribution.contributed_on = Date.today
     @demande = Demande.new(); @demande.id = params[:request_id]
     @contribution.ingenieur = @ingenieur
     _form
@@ -148,31 +147,22 @@ class ContributionsController < ApplicationController
     redirect_to contributions_path
   end
 
-  def ajax_paquets
-    return render(:text => '') unless request.xml_http_request? and params[:id]
-
-    # la magie de rails est cassé pour la 1.2.2, en mode production
-    # donc je dois le faire manuellement
-    # TODO : vérifier pour les versions > 1.2.2 en _production_ (!)
-    clogiciel = [ 'paquets.logiciel_id = ?', params[:id].to_i ]
-    options = Paquet::OPTIONS.dup
-    options[:conditions] = clogiciel
-    @paquets = Paquet.find_select(options)
-    options = Binaire::OPTIONS.dup
-    options[:conditions] = clogiciel
-    @binaires = Binaire.find_select(options)
-
-    render :partial => 'liste_paquets', :layout => false
+  def ajax_list_versions
+    return render(:nothing => true) unless request.xml_http_request? and params[:logiciel_id]
+    @versions = Logiciel.find(params[:logiciel_id]).versions.collect { |v| [v.full_software_name, v.id] }
   end
 
 private
   def _form
     @logiciels = Logiciel.find_select
-    @paquets = @contribution.paquets || []
-    @binaires = @contribution.binaires || []
     @etatreversements = Etatreversement.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @typecontributions = Typecontribution.find_select
+    if @contribution.logiciel_id
+      @versions = @contribution.logiciel.versions.find_select
+    else
+      @versions = Version.all.collect { |v| [v.full_software_name, v.id] }
+    end
   end
 
   def _panel
@@ -189,14 +179,14 @@ private
   def _update(contribution)
     url = params[:urlreversement]
     contribution.urlreversements.create(url) unless url.blank?
-    contribution.reverse_le = nil if params[:contribution][:reverse] == '0'
-    contribution.cloture_le = nil if params[:contribution][:clos] == '0'
+    contribution.contributed_on = nil if params[:contribution][:reverse] == '0'
+    contribution.closed_on = nil if params[:contribution][:clos] == '0'
     contribution.save
   end
 
   def _link2request()
     begin
-      demande = Demande.find(params[:demande][:id]) unless params[:demande][:id].blank?
+      demande = Demande.find(params[:demande][:id].to_i) unless params[:demande][:id].blank?
       @contribution.demande = demande
     rescue
       flash[:warn] = _('The associated request does not exist')

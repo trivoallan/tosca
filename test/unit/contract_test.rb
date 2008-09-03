@@ -1,26 +1,25 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContractTest < Test::Unit::TestCase
-  fixtures :contracts, :logiciels, :paquets, :contracts_engagements, :engagements,
-    :demandes, :components, :credits, :clients, :users, :contracts_users, :ingenieurs
+  fixtures :all
 
   def test_to_strings
-    check_strings Contract, :ouverture_formatted, :cloture_formatted
+    check_strings Contract, :start_date_formatted, :end_date_formatted
   end
 
   def test_dates
-    c = Contract.find 1
+    c = Contract.find(1)
     # Schedule check
-    assert c.heure_ouverture <= c.heure_fermeture
-    c.heure_ouverture = -1
+    assert c.opening_time <= c.closing_time
+    c.opening_time = -1
     assert !c.save
-    c.heure_ouverture = 25
+    c.opening_time = 25
     assert !c.save
-    c.heure_ouverture = 12
-    c.heure_fermeture = 9
+    c.opening_time = 12
+    c.closing_time = 9
     assert !c.save
-    c.heure_ouverture = 9
-    c.heure_fermeture = 12
+    c.opening_time = 9
+    c.closing_time = 12
     assert c.save
   end
 
@@ -33,15 +32,6 @@ class ContractTest < Test::Unit::TestCase
   def test_logiciels
     Contract.find(:first).logiciels.each{ |l| assert l.is_a?(Logiciel)}
   end
-
-=begin TODO
-  def test_find_engagement
-    c = Contract.find :first
-    request = Demande.find :first
-    e = Engagement.find :first
-    assert_equal c.find_engagement(request), e
-  end
-=end
 
   def test_demandes
     c = Contract.find :first
@@ -57,6 +47,21 @@ class ContractTest < Test::Unit::TestCase
     end
   end
 
+  def test_credit?
+    Contract.find(:first).credit?
+  end
+
+  def test_find_recipients_select
+    recipients = Contract.find(:first).find_recipients_select
+    assert !recipients.empty?
+  end
+
+  def test_scope
+    Contract.set_scope([Contract.find(:first).id])
+    Contract.find(:all)
+    Contract.remove_scope
+  end
+
   def test_engineer_users
     Contract.find(:all).each do |c|
       c.engineer_users.each { |i|
@@ -65,7 +70,7 @@ class ContractTest < Test::Unit::TestCase
       }
     end
   end
-  
+
   def test_engineers
     Contract.find(:all).each do |c|
       c.engineers.each { |i|

@@ -10,7 +10,7 @@
 <%= show_table(@contributions, Contribution, titres) { |c|
   result = ''
   # tache = c.todo(max_jours)
-  versions = nil # c.paquets.collect{|p| p.version } * ', '
+  versions = nil # c.versions.collect{|p| p.version } * ', '
   result << "<td>#{public_link_to_logiciel c.logiciel}"
   result << " (#{versions})" unless versions.blank?
   result << " </td>"
@@ -19,13 +19,13 @@
   # result << "<td " + (tache ? "style='background-color:orange'>#{tache}" : ">") +"</td>"
   result << "<td>#{c.etatreversement.name if c.etatreversement}</td>"
   result << "<td>#{link_to_contribution c}</td>"
-  result << "<td style='color:green'><span class=\"date\">#{c.reverse_le_formatted}</span></td>"
+  result << "<td style='color:green'><span class=\"date\">#{c.contributed_on_formatted}</span></td>"
 
   result << "<td style='color:red'>"
-  result << "<span class=\"date\">#{c.cloture_le_formatted}</span>" if c.clos
+  result << "<span class=\"date\">#{c.closed_on_formatted}</span>" if c.clos
   result << "</td>"
 
-  result << "<td nowrap>#{Time.in_words(c.delai)}</td>"
+  result << "<td nowrap>#{Time.in_words(c.delay)}</td>"
   result << "<td><span class=\"date\">#{c.updated_on_formatted}</span></td>"
   result << "#{link_to_actions_table c}"
 }%>

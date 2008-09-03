@@ -1,5 +1,5 @@
 <h1><%= _('Call n°%s') % @phonecall.id %></h1>
-<%= logo_client(@phonecall.beneficiaire.client) if @phonecall.beneficiaire %>
+<%= logo_client(@phonecall.recipient.client) if @phonecall.recipient %>
 
 <table class="show">
 
@@ -12,7 +12,7 @@
     <td><%= @phonecall.ingenieur.name %></td></tr>
 
 <tr><td><b><%= _('Recipient')%></b></td>
-    <td><%= @phonecall.beneficiaire.name if @phonecall.beneficiaire %></td></tr>
+    <td><%= @phonecall.recipient.name if @phonecall.recipient %></td></tr>
 
 <tr><td colspan="2"><hr/></td></tr>
 <tr><td><b><%= _('Started on')%></b></td>

@@ -3,8 +3,7 @@
 
 
 class Role < ActiveRecord::Base
-  acts_as_reportable
-  has_and_belongs_to_many :permissions
+  has_and_belongs_to_many :permissions, :uniq => true
   has_many :users
 
 end

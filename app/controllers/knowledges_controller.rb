@@ -81,11 +81,11 @@ class KnowledgesController < ApplicationController
   private
   def _form
     @competences = Competence.find_select
-    @softwares = Logiciel.find_select
+    @software = Logiciel.find_select
   end
 
   def _panel
-    @softwares = Logiciel.find_select
+    @software = Logiciel.find_select
     @competences = Competence.find_select
     @experts = Ingenieur.find_select(User::SELECT_OPTIONS)
   end

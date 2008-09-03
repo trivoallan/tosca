@@ -1,0 +1,36 @@
+<% time = Time.now.hash.abs
+   # A random field is mandatory for sending nicefully
+   # multiple versions of the same software
+   random_field = "software[#{time}]" %>
+
+<% if @version.nil? %>
+  <script type="text/javascript">
+  <%= update_page do |page|
+        # allows to use this page as a cli
+        page.delay(0.5) { page["#{random_field}[name]"].focus() }
+        # allows to choose successively the same software
+        page["select_software"].value = "";
+      end %>
+  </script>
+  <% @version= Version.new(:name => " ", :logiciel => @logiciel) %>
+<% end %>
+
+<% new_record = @version.new_record? %>
+<% @random_id = "s#{time}_#{@logiciel.id}" %>
+<tr id="<%=@random_id%>" class="<%=cycle('odd', 'even', :name => "software")%>"
+  <%= hide_unless new_record %> >
+  <td><%= hidden_field_tag "#{random_field}[logiciel_id]", @logiciel.id %><%= @logiciel %></td>
+  <% if new_record %>
+    <td><%= text_field_tag("#{random_field}[name]") %></td>
+    <td><%= check_box_tag("#{random_field}[generic]") %><td>
+  <% else %>
+    <td><%= @version.name %><%= hidden_field_tag "#{random_field}[name]", @version.read_attribute(:name) %></td>
+    <td><%= @version.generic? ? _('Yes') : _('No') %><%= hidden_field_tag "#{random_field}[generic]", @version.generic %></td>
+  <% end %>
+  <td>
+   <%# Only admin can remove a software, since it can have a great impact on requests %>
+   <%= delete_button @random_id if new_record || session[:user].role_id == 1 %>
+  </td>
+</tr>
+
+

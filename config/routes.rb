@@ -1,32 +1,27 @@
 
 # special overrides, since routes can be reloaded
 # in rails, even in production.
-require 'routes_overrides'
+require_dependency 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
-
   # The priority is based upon order of creation:
   #   first created -> highest priority.
 
   # RESTful routes without ORM
-  # it generates helper likes admin_bienvenue_url and admin_bienvenue_path
+  # it generates helper likes admin_welcome_url and admin_welcome_path
   # all those helpers only have GET method.
   # See overrides.rb for without_orm source code
-  sweet_home = { :controller => 'bienvenue', :action => 'index',
+  sweet_home = { :controller => 'welcome', :action => 'index',
                  :conditions => { :method => :get } }
-  map.bienvenue '/', sweet_home
+  map.welcome '/', sweet_home
 
-  map.without_orm('bienvenue', %w(admin plan about deroulement
+  map.without_orm('welcome', %w(admin plan about deroulement
     index natures statut suggestions declaration))
-  map.without_orm('bienvenue', %w(suggestions), :post)
-  map.without_orm('reporting', %w(comex comex_resultat configuration flux general digest digest_resultat))
+  map.without_orm('welcome', %w(suggestions), :post)
+  map.without_orm('reporting', %w(configuration flux general digest digest_resultat))
   map.without_orm('access', %w(denied))
   map.without_orm('alerts', %w(on_submit index))
   map.without_orm('alerts', %w(ajax_on_submit), :post)
-  map.without_orm('export', %w(demandes_ods phonecalls_ods users_ods
-    contributions_ods comex_ods) )
-
-  map.formatted_export(%w(requests contributions users phonecalls comex))
 
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
@@ -34,6 +29,14 @@ ActionController::Routing::Routes.draw do |map|
   %w(file patch fichier archive).each { |file|
     map.files(":file_type/#{file}/:id/:filename", options)
   }
+
+  # Autoloading Extensions Routes
+  extension_path = "#{RAILS_ROOT}/vendor/extensions"
+  Dir.foreach( extension_path ) { |ext|
+    next if ext == '.'
+    route_path = File.join extension_path, ext, 'config', 'routes.rb'
+    map.routes_from_plugin(ext.to_sym) if File.exists? route_path
+  } if File.exists? extension_path
 
   # RESTful routes with ORM
   # Sample call :
@@ -49,40 +52,40 @@ ActionController::Routing::Routes.draw do |map|
     :new => { :signup => :any, # TODO : reactive it :multiple_signup => :any,
       :ajax_place => :post, :ajax_contracts => :post }
   map.resources :arches
-  map.resources :binaires
+  map.resources :archives
   map.resources :changelogs
   map.resources :clients, :collection => { :stats => :get }
   map.resources :commentaires, :member => {
      :change_state => :post,
      :comment => :post }
   map.resources :competences
-  map.resources :conteneurs
   map.resources :contracts,
     :collection => {
-      :ajax_choose => :post, :actives => :get }
+      :ajax_choose => :post, :actives => :get, :ajax_add_software => :post, :add_software => :post },
+      :member => { :supported_software => :get }
   map.resources :contributions,
-    :collection => { :admin => :any, :select => :get, :experts => :get },
+    :collection => { :admin => :any, :select => :get, :experts => :get, :ajax_list_versions => :post },
     :member => { :list => :get }
   map.resources :demandes,
     :collection => { :pending => :get,
-      :ajax_display_commitment => :post,
-      :ajax_display_version => :post,
-      :ajax_display_contract => :post },
-    :member => { :print => :get,
+      :ajax_renew => :post, # in pending view
+      :ajax_display_commitment => :post, # in new/edit form
+      :ajax_display_version => :post, # in new/edit form
+      :ajax_display_contract => :post }, # in new/edit form
+    :member => { :print => :get, # All members are in show view
       :link_contribution => :post,
       :unlink_contribution => :post,
       :ajax_description => :get,
       :ajax_comments => :get,
       :ajax_history => :get,
-      :ajax_piecejointes => :get,
+      :ajax_attachments => :get,
       :ajax_appels => :get,
       :ajax_cns => :get }
-  map.resources :dependances
   map.resources :distributeurs
   map.resources :documents,
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
-  map.resources :engagements
+  map.resources :commitments
   map.resources :etatreversements
   map.resources :fichiers
   map.resources :fournisseurs
@@ -101,11 +104,10 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :newsletter => :get, :newsletter_result => :post }
   map.resources :ossas
   map.resources :pages
-  map.resources :paquets, :collection =>
-    { :auto_complete_for_paquet_name => :any}
   map.resources :permissions
-  map.resources :phonecalls,  :collection => { :ajax_beneficiaires => :get }
-  map.resources :piecejointes, :member => { :uv => :get }
+  map.resources :phonecalls,  :collection => { :ajax_recipients => :get }
+  map.resources :attachments
+  map.resources :releases
   map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
 
@@ -120,7 +122,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :severites
   map.resources :supports
   map.resources :tags
-  map.resources :teams
+  map.resources :teams, :collection => { :auto_complete_for_contract_name => :post }
   map.resources :time_tickets
   map.resources :typecontributions
   map.resources :typedemandes
@@ -128,11 +130,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :typeurls
   map.resources :urllogiciels
   map.resources :urlreversements
+  map.resources :versions
 
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
-  # map.connect '', :controller => "bienvenue"
+  # map.connect '', :controller => "welcome"
 
   # Sample of named route:
   # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'

@@ -1,5 +1,3 @@
-
-
 namespace :doc do
   WWW_ROOT='/var/www/rdoc/'
 
@@ -32,7 +30,7 @@ namespace :doc do
         options << "-o #{WWW_ROOT}plugins/#{plugin}"
         options << "--title '#{plugin.titlecase} Plugin Documentation'"
         options << '--line-numbers' << '--inline-source'
-	options << '-c utf8 --quiet'
+      	options << '-c utf8 --quiet'
         options << '-T doc/template'
 
         files.include("#{plugin_base}/lib/**/*.rb")

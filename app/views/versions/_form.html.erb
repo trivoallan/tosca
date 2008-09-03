@@ -1,0 +1,22 @@
+<%= error_messages_for 'version' %>
+
+<table class="topbox">
+ <tr>
+  <td>
+   <table class="show">
+     <tr>
+       <th><label for="version_logiciel_id"><%= _('Software')%></label></th>
+       <td><%= select(:version, :logiciel_id, @logiciels) %></td>
+     </tr>
+     <tr>
+       <th><label for="version_name"><%= _('Version')%></label></th>
+       <td><%= text_field :version, :name  %></td>
+     </tr>
+     <tr>
+       <th><label for="version_generic"><%= _('Generic ?')%></label></th>
+       <td><%= check_box :version, :generic %></td>
+     </tr>
+   </table>
+  </td>
+  </tr>
+</table>

@@ -1,10 +1,19 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class LogicielTest < Test::Unit::TestCase
-  fixtures :logiciels, :competences, :images
+  fixtures :logiciels, :competences, :images, :contracts
 
   def test_to_strings
     check_strings Logiciel
+  end
+
+  def test_scope
+    Logiciel.set_scope([Contract.find(:first).id])
+    Logiciel.remove_scope
+  end
+
+  def test_arrays
+    check_arrays Logiciel
   end
 
   def test_and_upload_logos

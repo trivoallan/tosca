@@ -1,59 +1,45 @@
---- 
-contribution_00001: 
+contribution_0001:
   name: Copy Paste from an html page with soup tags
   created_on: 2007-12-26 16:24:57 +01:00
   patch: sw-html-insert-unknown-tags.diff
   logiciel_id: 1
   updated_on: 2007-12-26 16:25:40 +01:00
-  description_fonctionnelle: "<p>A wrong html page, but which could be correctly displayed, was not well pasted in Writer.</p><p>This is particularly disturbing because of the different  behavior between Writer html engine and the Firefox one : Gecko. Gecko display the value contained between 2 unknowns tags. For instance :</p><ul><li> &quot;&lt;unknown&gt;sample&lt;/unknown&gt;&quot; =&gt; &quot;sample&quot;</li></ul><p>But OpenOffice, in Writer only, ignores it totally. For instance</p><ul><li>&quot;&lt;unknown&gt;sample&lt;/unknown&gt;&quot; =&gt; &quot;&quot;</li></ul><p>The attached fix unifies the behaviors between those 2 engines. It was approved for Go-Oo, the Novell Community version of OOo, see the first link for the commit.</p><p>&nbsp;</p>"
-  reverse_le: 2007-12-17 16:28:00 +01:00
+  description: "<p>A wrong html page, but which could be correctly displayed, was not well pasted in Writer.</p><p>This is particularly disturbing because of the different  behavior between Writer html engine and the Firefox one : Gecko. Gecko display the value contained between 2 unknowns tags. For instance :</p><ul><li> &quot;&lt;unknown&gt;sample&lt;/unknown&gt;&quot; =&gt; &quot;sample&quot;</li></ul><p>But OpenOffice, in Writer only, ignores it totally. For instance</p><ul><li>&quot;&lt;unknown&gt;sample&lt;/unknown&gt;&quot; =&gt; &quot;&quot;</li></ul><p>The attached fix unifies the behaviors between those 2 engines. It was approved for Go-Oo, the Novell Community version of OOo, see the first link for the commit.</p><p>&nbsp;</p>"
+  contributed_on: 2007-12-17 16:28:00 +01:00
   ingenieur_id: 1
   id: 1
-  affected_version: "2.3"
-  description: ""
-  id_mantis: 
-  cloture_le: 2007-12-18 08:35:00 +01:00
+  affected_version_id: 2
+  closed_on: 2007-12-18 08:35:00 +01:00
   typecontribution_id: 1
-  synthese: A wrong html page, but which could be correctly displayed, was not well pasted in Writer
+  synthesis: A wrong html page, but which could be correctly displayed, was not well pasted in Writer
   etatreversement_id: 3
+
 contribution_0002:
   created_on: 2006-10-23 15:52:00
   name: import date de Word
   logiciel_id: 1
   patch: openoffice.org-2.1.0-import-date.patch
   affected_version: 2.3
-  description_fonctionnelle: "<p>Fix l\xE2\x80\x99import des dates de Ms Office 2003 dans OOo 2.0.x<br />Correspond aux demandes 74 et 9 dans mantis.</p>   \t<p>Le correctif a \xC3\xA9t\xC3\xA9 adapt\xC3\xA9 en version communautaire en 2.1.x.</p>"
+  description: "<p>Fix l\xE2\x80\x99import des dates de Ms Office 2003 dans OOo 2.0.x<br />Correspond aux demandes 74 et 9 dans mantis.</p>   \t<p>Le correctif a \xC3\xA9t\xC3\xA9 adapt\xC3\xA9 en version communautaire en 2.1.x.</p>"
   updated_on: 2007-12-14 12:07:00
   ingenieur_id: 1
-  reverse_le: 2007-01-04 17:24:00
+  contributed_on: 2007-01-04 17:24:00
   id: 2
-  fixed_version: 
-  description: ""
-  cloture_le: 2007-10-02 12:27:00
-  id_mantis: 
-  synthese: "Corrige un probl\xC3\xA8me d'import de document Word dans OpenOffice, au niveau des dates."
-  typecontribution_id: 1 
-  etatreversement_id: 3 
-  created_on: 2006-10-23 15:52:00 +02:00
-  updated_on: 2007-12-14 12:07:00 +01:00
-  reverse_le: 2007-01-04 17:24:00 +01:00
-  cloture_le: 2007-10-02 12:27:00 +02:00
+  closed_on: 2007-10-02 12:27:00
+  synthesis: "Corrige un probl\xC3\xA8me d'import de document Word dans OpenOffice, au niveau des dates."
+  typecontribution_id: 1
+  etatreversement_id: 3
+
 contribution_0003:
   created_on: 2007-04-19 14:25:06
   name: "Gestion des certificats pour la t\xC3\xA9l\xC3\xA9d\xC3\xA9claration"
   logiciel_id: "2"
-  patch: ""
-  affected_version: 2.0.0.2
-  description_fonctionnelle: "Il y avait une r\xC3\xA9gression introduite en version 2.0.0.1 au niveau de la gestion des certificats qui \xC3\xA9tait susceptible d&#39;emp\xC3\xAAcher la t\xC3\xA9l\xC3\xA9d\xC3\xA9claration."
+  affected_version_id: 1
+  description: "Il y avait une r\xC3\xA9gression introduite en version 2.0.0.1 au niveau de la gestion des certificats qui \xC3\xA9tait susceptible d&#39;emp\xC3\xAAcher la t\xC3\xA9l\xC3\xA9d\xC3\xA9claration."
   updated_on: 2007-12-14 11:20:31
   ingenieur_id: 1
-  reverse_le: 2007-02-15 14:23:00
+  contributed_on: 2007-02-15 14:23:00
   id: "3"
-  fixed_version: 
-  description: ""
-  cloture_le: 2007-02-16 14:23:00
-  id_mantis: ""
-  synthese: "Il y avait une r\xC3\xA9gression introduite en version 2.0.0.1 au niveau de la gestion des certificats qui \xC3\xA9tait susceptible d'emp\xC3\xAAcher la t\xC3\xA9l\xC3\xA9d\xC3\xA9claration."
+  synthesis: "Il y avait une r\xC3\xA9gression introduite en version 2.0.0.1 au niveau de la gestion des certificats qui \xC3\xA9tait susceptible d'emp\xC3\xAAcher la t\xC3\xA9l\xC3\xA9d\xC3\xA9claration."
   typecontribution_id: "1"
   etatreversement_id: "5"
-

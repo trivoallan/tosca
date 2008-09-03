@@ -1,0 +1,9 @@
+<h1><%=_('Editing a commitment')%></b></h1>
+
+<% form_tag commitment_path(@commitment), :method => :put do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Validate') %>
+<% end %>
+
+<%= link_to_show_and_list(@commitment) %>
+

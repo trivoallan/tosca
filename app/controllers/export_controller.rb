@@ -1,4 +1,3 @@
-
 =begin
   send formatted output directly to the HTTP response
   source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
@@ -30,17 +29,17 @@ class ExportController < ApplicationController
 
   def compute_contributions(type)
     methods = ['pname_typecontribution', 'pname_logiciel', 'version_to_s',
-      'pname_etatreversement', 'delai_in_french_words', 'clos_enhance',
-      'reverse_le_formatted']
-    options = { :order => 'contributions.reverse_le ASC',
+      'pname_etatreversement', 'delay_in_words', 'clos_enhance',
+      'contributed_on_formatted']
+    options = { :order => 'contributions.contributed_on ASC',
       :include => [:logiciel, :etatreversement, :demande],
       :conditions => flash[:conditions],
       :methods => methods }
 
     report = Contribution.report_table(:all, options)
     columns= [ 'id','pname_typecontribution', 'pname_logiciel',
-      'version_to_s','pname_etatreversement', 'synthese',
-      'reverse_le_formatted','clos_enhance','delai_in_french_words' ]
+      'version_to_s','pname_etatreversement', 'synthesis',
+      'contributed_on_formatted','clos_enhance','delay_in_words' ]
     unless report.column_names.empty?
       report.reorder(columns)
       report.rename_columns columns,
@@ -65,12 +64,12 @@ class ExportController < ApplicationController
 
   def compute_users(type)
     options = { :order => 'users.login', :include =>
-      [:beneficiaire,:ingenieur,:role], :conditions => flash[:conditions],
-      :methods => ['beneficiaire_client_name', 'role_name']
+      [:recipient,:ingenieur,:role], :conditions => flash[:conditions],
+      :methods => ['recipient_client_name', 'role_name']
     }
     report = User.report_table(:all, options)
     columns = ['id','login','name','email','telephone',
-      'beneficiaire_client_name', 'role_name']
+      'recipient_client_name', 'role_name']
 
     report.reorder columns
     report.rename_columns columns,
@@ -93,9 +92,9 @@ class ExportController < ApplicationController
   end
 
   def compute_phonecalls(type)
-    columns= ['contract_name', 'ingenieur_name', 'beneficiaire_name']
+    columns= ['contract_name', 'ingenieur_name', 'recipient_name']
     options = { :order => 'phonecalls.start', :include =>
-      [:beneficiaire,:ingenieur,:contract,:demande],
+      [:recipient,:ingenieur,:contract,:demande],
       :conditions => flash[:conditions],
       :methods => columns }
     report = Phonecall.report_table(:all, options)
@@ -151,7 +150,7 @@ class ExportController < ApplicationController
     :pdf  => [ '.pdf', 'application/pdf' ],
     :html => [ '.html', 'text/html' ],
     :ods  => [ '.ods', 'application/vnd.oasis.opendocument.spreadsheet']
-  }
+  } unless defined? MIME_EXTENSION
 
   # Generate and upload a report to the user with a predefined name.
   #
@@ -161,7 +160,7 @@ class ExportController < ApplicationController
     flash[:conditions] = flash[:conditions]
     file_extension = MIME_EXTENSION[type].first
     content_type = MIME_EXTENSION[type].last
-    prefix = ( @beneficiaire ? @beneficiaire.client.name : 'OSSA' )
+    prefix = ( @recipient ? @recipient.client.name : 'OSSA' )
     suffix = Time.now.strftime('%d_%m_%Y')
     filename = [ prefix, params[:action], suffix].join('_') + file_extension
 

@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  helper :demandes, :socles, :engagements, :contracts, :filters
+  helper :demandes, :socles, :commitments, :contracts, :filters
 
   def index
     options = { :per_page => 10, :order => 'clients.name',
@@ -51,10 +51,10 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
     # allows to see only binaries of this client for all without scope
     begin
-      Binaire.set_scope(@client.contract_ids) if @ingenieur
+      Version.set_scope(@client.contract_ids)
       render
     ensure
-      Binaire.remove_scope if @ingenieur
+      Version.remove_scope
     end
   end
 
@@ -66,7 +66,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(params[:client])
     @client.creator = session[:user]
-    if @client.save and add_logo
+    if add_logo && @client.save
       flash[:notice] = _('Client created successfully.') + '<br />' +
         _('You have now to create the associated contract.')
       redirect_to new_contract_path(:id => @client.id)
@@ -82,7 +82,7 @@ class ClientsController < ApplicationController
 
   def update
     @client = Client.find(params[:id])
-    if @client.update_attributes(params[:client]) && add_logo
+    if add_logo && @client.update_attributes(params[:client])
       flash[:notice] = _('Client updated successfully.')
       redirect_to client_path(@client)
     else

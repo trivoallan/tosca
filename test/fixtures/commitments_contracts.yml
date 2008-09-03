@@ -1,0 +1,72 @@
+join_00000:
+  commitment_id: "1"
+  contract_id: "1"
+join_00001:
+  commitment_id: "2"
+  contract_id: "1"
+join_00002:
+  commitment_id: "3"
+  contract_id: "1"
+join_00003:
+  commitment_id: "44"
+  contract_id: "26"
+join_00004:
+  commitment_id: "45"
+  contract_id: "26"
+join_00005:
+  commitment_id: "46"
+  contract_id: "26"
+join_00006:
+  commitment_id: "17"
+  contract_id: "40"
+join_00007:
+  commitment_id: "18"
+  contract_id: "40"
+join_00008:
+  commitment_id: "19"
+  contract_id: "40"
+join_00009:
+  commitment_id: "45"
+  contract_id: "40"
+join_00010:
+  commitment_id: "27"
+  contract_id: "40"
+join_00011:
+  commitment_id: "22"
+  contract_id: "40"
+join_00012:
+  commitment_id: "13"
+  contract_id: "6"
+join_00013:
+  commitment_id: "14"
+  contract_id: "6"
+join_00014:
+  commitment_id: "19"
+  contract_id: "6"
+join_00015:
+  commitment_id: "20"
+  contract_id: "6"
+join_00016:
+  commitment_id: "27"
+  contract_id: "6"
+join_00017:
+  commitment_id: "29"
+  contract_id: "9"
+join_00018:
+  commitment_id: "2"
+  contract_id: "18"
+join_00019:
+  commitment_id: "3"
+  contract_id: "2"
+join_00020:
+  commitment_id: "1"
+  contract_id: "2"
+join_00021:
+  commitment_id: "2"
+  contract_id: "2"
+join_00022:
+  commitment_id: 6
+  contract_id: 1
+join_00023:
+  commitment_id: 7
+  contract_id: 6

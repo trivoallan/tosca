@@ -29,10 +29,10 @@ end
 args=ARGV
 options.parse!(ARGV)
 
-models = [ Arch, Conteneur, Etatreversement, Groupe, Rules::Component,
+models = [ Arch, Etatreversement, Groupe, Rules::Component,
            Rules::Credit, Role, Statut, Typecontribution, Typedemande,
            Typedocument, Typeurl, Competence, Permission ]
-files = %w(arches conteneurs etatreversements groupes ossas roles
+files = %w(arches etatreversements groupes ossas roles
           permissions statuts typecontributions typedemandes
           typedocuments typeurls competences permissions
           permissions_roles time_tickets )
@@ -49,13 +49,13 @@ files = %w(arches conteneurs etatreversements groupes ossas roles
 action_name = @action.to_s.capitalize
 if @action == :dump or @action == :dumpall
   if @action == :dumpall
-    models = [ Arch,Beneficiaire,Binaire,Changelog,Client,Commentaire,
-	  Competence,Conteneur,Contract,Contribution,Demande,Dependance,
-	  Distributeur,Document,Elapsed,Engagement,Etatreversement,Fichier,
-	  Fichierbinaire,Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
-      Mainteneur,New,Rules::Component,Rules::Credit,Paquet,Permission,Phonecall,
-      Piecejointe,Preference,Role,Severite,Socle,Statut,Typecontribution,
-      Typedemande,Typedocument,Typeurl,User ]
+    models = [ Arch,Recipient,Changelog,Client,Commentaire,
+	  Competence,Contract,Contribution,Demande,
+          Distributeur,Document,Elapsed,Commitment,Etatreversement,Fichier,
+          Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
+          Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,
+          Attachment,Preference,Role,Severite,Socle,Statut,Typecontribution,
+          Typedemande,Typedocument,Typeurl,User ]
   end
   models.each do |m|
     puts "#{action_name} #{m}..." if $verbose

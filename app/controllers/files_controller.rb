@@ -1,4 +1,3 @@
-
 # UPLOAD > file_column.rb:l.596
 #  :root_path => File.join(RAILS_ROOT, "files"),
 
@@ -22,16 +21,16 @@ class FilesController < ApplicationController
     file_type = params[:file_type].intern
 
     # mapping path
-    map = {:piecejointe => 'file',
+    map = {:attachment => 'file',
            :contribution => 'patch',
            :document => 'file',
-           :binaire => 'archive' }
+           :archive => 'file' }
 
     # TODO : get model name without hash
-    model = { :piecejointe => Piecejointe,
+    model = { :attachment => Attachment,
               :contribution => Contribution,
               :document => Document,
-              :binaire => Binaire }
+              :archive => Archive }
 
     # Login needed for anything but contribution
     return if (file_type != :contribution && login_required() == false)
@@ -44,14 +43,15 @@ class FilesController < ApplicationController
     fullpath = [ root, params[:id], params[:filename].gsub(' ','+') ] * '/'
 
     # Attachment has to be restricted.
-    scope_active = (@beneficiaire and file_type == :piecejointe)
+    scope_active = (@recipient and file_type == :attachment)
 
     # Ensure that we can remove scope
     begin
-      Piecejointe.set_scope(@beneficiaire.client_id) if scope_active
-      target = model[file_type].find(params[:id])
+      Attachment.set_scope(@recipient.client_id) if scope_active
+      #Check if you have the right
+      model[file_type].find(params[:id])
     ensure
-      Piecejointe.remove_scope() if scope_active
+      Attachment.remove_scope() if scope_active
     end
     send_file fullpath
 

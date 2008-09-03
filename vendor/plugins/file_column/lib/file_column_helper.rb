@@ -4,7 +4,7 @@
 # automatically included into ActionView::Base, thereby making this module's
 # methods available in all your views.
 module FileColumnHelper
-  
+
   # Use this helper to create an upload field for a file_column attribute. This will generate
   # an additional hidden field to keep uploaded files during form-redisplays. For example,
   # when called with
@@ -27,7 +27,7 @@ module FileColumnHelper
     result = ActionView::Helpers::InstanceTag.new(object.dup, method.to_s+"_temp", self).to_input_field_tag("hidden", {})
     result << ActionView::Helpers::InstanceTag.new(object.dup, method, self).to_input_field_tag("file", options)
   end
-  
+
   # Creates an URL where an uploaded file can be accessed. When called for an Entry object with
   # id 42 (stored in <tt>@entry</tt>) like this
   #
@@ -57,10 +57,7 @@ module FileColumnHelper
   def url_for_file_column(object, method, options=nil)
     generic_url(object, method, "", options)
   end
-  
-  def url_for_uv_file_column(object, method, options = nil)
-    generic_url(object, method, "." << object.send("#{method}_options")[:uv][:theme] << ".html", options)
-  end
+
 
   # Same as +url_for_file_colum+ but allows you to access different versions
   # of the image that have been processed by RMagick.
@@ -95,7 +92,7 @@ module FileColumnHelper
   #
   # and
   #
-  #    <%= url_for_image_column @entry, "image", 
+  #    <%= url_for_image_column @entry, "image",
   #       :size => "50x50", :crop => "1:1", :name => "thumb" %>
   #
   # will produce something like this:
@@ -127,20 +124,14 @@ module FileColumnHelper
       url_for_file_column(object, method, subdir)
     end
   end
-  
+
   def method_name(object, method)
     case object
     when String, Symbol
       object = instance_variable_get("@#{object.to_s}")
     end
   end
-  
-  def url_for_uv_column(object, method)
-    object.send("#{method}_state").transform_with_uv
-    file_suffix = "." << object.send("#{method}_options")[:uv][:theme] << ".html"
-    generic_url(object, method, file_suffix)
-  end
-  
+
   private
   def generic_url(object, method, file_suffix, options = nil)
     case object
@@ -160,7 +151,7 @@ module FileColumnHelper
           subdir = options
       end
     end
-    
+
     relative_path = object.send("#{method}_relative_path", subdir)
     return nil unless relative_path
 

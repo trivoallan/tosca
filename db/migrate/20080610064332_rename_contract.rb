@@ -15,7 +15,7 @@ class RenameContract < ActiveRecord::Migration
 #    rename_table :contrats_teams, :contracts_teams
 #    rename_column :contracts_teams, :contrat_id, :contract_id
 #    add_index :contracts_teams, :contract_id
-#    
+    
 #    rename_table :contrats_users, :contracts_users
 #    rename_column :contracts_users, :contrat_id, :contract_id
 #    add_index :contracts_users, :contract_id

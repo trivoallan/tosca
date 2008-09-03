@@ -9,25 +9,23 @@ $ sudo apt-get install libmysqlclient-dev libwmf-bin libmagick9-dev ruby1.8-dev 
 
 
 $ sudo gem install rails
-$ sudo rake gem:install
+$ sudo rake gems:install
 $ rake db:create:all
 $ rake tosca:generate
 $ rake l10n:mo
-This one is optional :
-$ sudo cp app/views/rescues/_trace.erb /usr/lib/ruby/gems/1.8/gems/actionpack-2.0.2/lib/action_controller/templates/rescues/_trace.erb
 
 
 With Details
 ============
 *** You need some devel packages before installing required gems.
-  ruby-devel mysql-devel libMagick-devel oniguruma-devel mysql-ruby
+  ruby-devel mysql-devel libMagick-devel mysql-ruby
 
 The first three are commonly available on linux distribution. Oniguruma and
  the C bindings to MySQL are commonly unavailable, so a tarball of sources is
 provided in tools/ directory.
 
 *** After that, you need those gems :
-  sudo gem install rails rmagick mysql gettext ruport ruport-util ultraviolet rubyzip -y
+  sudo gem install rails rmagick mysql gettext -y
 In order to be able to :
 * launch the rails app (rails)
 * resize image (rmagick)
@@ -35,12 +33,6 @@ In order to be able to :
 * having multilingual support (gettext)
 * generate ods report (ruport and ruport-util)
 * having cool js preview (ultraviolet)
-
-*** And you will need a small patch over action_controller gem
-(dependency of rails) :
-  sudo cp app/views/rescues/_trace.erb /usr/lib/ruby/gems/1.8/gems/actionpack-2.0.2/lib/action_controller/templates/rescues/_trace.erb
-OR, if you are on f***ing Debian :
-  sudo cp app/views/rescues/_trace.erb /var/lib/ruby/gems/1.8/gems/actionpack-2.0.2/lib/action_controller/templates/rescues/_trace.erb
 
 If you encounter problems when editing fields, you'll need to patch the system's date.rb in (/usr/lib/ruby/1.8/date.rb for me), line 252:
 <code>

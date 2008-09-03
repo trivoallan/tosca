@@ -10,15 +10,15 @@ module ClientsHelper
   # :text texte du lien à afficher
   # :image image du client à afficher à la place
   def link_to_my_client(image = false)
-    return nil unless @beneficiaire
-    label = image ? logo_client(@beneficiaire.client) : _('My&nbsp;Offer')
-    link_to label, client_path(@beneficiaire.client_id)
+    return nil unless @recipient
+    label = image ? logo_client(@recipient.client) : _('My&nbsp;Offer')
+    link_to label, client_path(@recipient.client_id)
   end
 
 
   # Create a link to modify the active value in the form filter
   # Usage :
-  #  <%= remote_link_to_clients(:all) %> to display all the softwares
+  #  <%= remote_link_to_clients(:all) %> to display all the software
   def remote_link_to_clients( param)
     ajax_call = PagesHelper::AJAX_OPTIONS.dup.update(:url => clients_path)
     if param == :actives

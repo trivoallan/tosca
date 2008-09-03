@@ -1,6 +1,4 @@
 class Ingenieur < ActiveRecord::Base
-  acts_as_reportable
-
   belongs_to :user, :dependent => :destroy
 
   has_many :knowledges, :order => 'knowledges.level DESC'
@@ -13,7 +11,6 @@ class Ingenieur < ActiveRecord::Base
     joins = 'INNER JOIN contracts_users cu ON cu.user_id=users.id'
     conditions = [ 'cu.contract_id = ?', contract_id ]
     options = {:find => {:conditions => conditions, :joins => joins}}
-    result = []
     Ingenieur.send(:with_scope, options) do
       Ingenieur.find_select(User::SELECT_OPTIONS)
     end
@@ -24,4 +21,9 @@ class Ingenieur < ActiveRecord::Base
   def name
     user.name
   end
+
+  def trigram
+    @trigram ||= user.login[0..2].upcase!
+  end
+
 end

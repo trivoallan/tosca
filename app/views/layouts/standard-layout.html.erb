@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=Locale.get%>" lang="<%=Locale.get%>">
 <head>
- <%#precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
+ <%# precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
  <% locale = Locale.get.language.intern %>
  <% user = session[:user] %>
  <% role_localised = :"#{locale}#{user.role_id}" if user %>
@@ -30,7 +30,6 @@
 		verify_html : false,
 		entity_encoding : "raw",
         remove_script_host : false,
-        <%# content_css : "<%=stylesheet_path 'custom_tiny'", %>
         theme : 'advanced',
         theme_advanced_buttons1 : "formatselect,bold,italic,underline,strikethrough,separator,bullist,numlist,forecolor,separator,link,unlink,separator,undo,redo,separator,code",
         theme_advanced_buttons2 : "",
@@ -42,10 +41,10 @@
  <title><%= @page_title || _(controller.controller_name)%></title>
 </head>
 <body>
-  <% # All the menu are built during first rendering or during login, in account controller %>
+  <%# All the menu are built during first rendering or during login, in account controller %>
   <% @@public_menu[locale] ||= build_simple_menu([
        public_link_to_home,
-       public_link_to_softwares,
+       public_link_to_software,
        public_link_to_contributions,
        public_link_to_about ]) %>
   <% @@menu[role_localised] ||= build_simple_menu([
@@ -56,13 +55,13 @@
         link_to_admin,
         public_link_to_about
        ], :form => true) if user %>
-  <% #TODO : formulaire de login en haut ? %>
+  <%# TODO : formulaire de login en haut ? %>
   <% @@public_links[locale] ||= build_simple_menu([
         link_to_redbox(_('Log in'), 'login_box')], :class => 'account_menu') %>
   <div id="header">
     <table>
       <tr valign="top">
-        <td valign="middle" width="145"><%= public_link_to StaticImage::logo_08000, bienvenue_url%>
+        <td valign="middle" width="145"><%= public_link_to StaticImage::logo_08000, welcome_url%>
         </td>
         <td><%= (user ? @@menu[role_localised] : @@public_menu[locale]) %></td>
         <td align="right">
@@ -81,15 +80,16 @@
   </div><!-- end of header -->
 
   <div id="content_div">
+    <!-- Javascript starts to be used here : -->
+    <%= javascript_include_tag('calendar', "calendar-#{locale}",
+         'calendar-setup', 'prototype', 'effects', 'controls',
+         'application', 'redbox', 'tosca', :cache => "all-#{locale}") %>
+
     <div id="information">
        <%= show_notice if flash[:notice] %>
        <%= show_warn if flash[:warn] %>
     </div><!-- end of information -->
 
-    <!-- Javascript starts to be used here : -->
-    <%= javascript_include_tag('calendar', "calendar-#{locale}",
-         'calendar-setup', 'prototype', 'effects', 'controls',
-         'application', 'redbox', :cache => "all-#{locale}") %>
 
     <table id="content_table">
       <tr valign="top">

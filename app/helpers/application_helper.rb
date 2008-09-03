@@ -1,4 +1,3 @@
-
 # Methods added to this helper will be available to all templates
 # in the application. Don't ever add a method to this one without a really good
 # reason. Anyway, this is a big helper, so find by keyword :
@@ -13,14 +12,22 @@ module ApplicationHelper
   include FormsHelper
   include LinksHelper
   include ImagesHelper
-  include FilesHelper
-
+  include DatesHelper
 
   ### TEXT #####################################################################
   # indent text and escape HTML caracters
   # Use on descriptions, comments, etc.
   def indent(text)
     (text.is_a? String) ? word_wrap(text).gsub("\n", '<br />') : text
+  end
+
+  # Small helper which prints '-' if something is nil or something.name
+  def name(something)
+    something ? something.name : '-'
+  end
+
+  def hide_unless(condition)
+    (condition ? %Q{style="display: none;"} : '')
   end
 
   # Show a help message
@@ -44,10 +51,10 @@ module ApplicationHelper
   #  * :no_title : Set it to true for not displaying emphasis
   #  * :puce : allows to specify its own tag instead of '&lt;li&gt;'
   #  * :edit : name of the controllers needed to decorate list with
-  #   an edit link and a delete link. Used widely in the show view of softwares.
+  #   an edit link and a delete link. Used widely in the show view of software.
   # If there is no block given, the field is displayed as is, with 'to_s' method.
   # Call it like :
-  #   <%= show_list(@contribution.binaires, 'contribution') {|e| e.name} %>
+  #   <%= show_list(@contribution.releases, 'contribution') {|e| e.name} %>
   def show_list(elements, name = '', options = {})
     elements.compact!
     size = elements.size
@@ -62,7 +69,7 @@ module ApplicationHelper
       result << "<b>#{name.capitalize} : </b><br />"
     end
 
-    # used mainly in bienvenue/about
+    # used mainly in welcome/about
     return show_simple_list(result, elements) unless block_given?
 
     # It can really be pretty ruby. We keep it under the hand
@@ -148,7 +155,7 @@ module ApplicationHelper
         result << "</tr>"
       }
     end
-    result << '</table><br />'
+    result << '</table>'
   end
 
   # show_total(elements.size, ar, options)
@@ -270,20 +277,24 @@ module ApplicationHelper
   ### INFORMATIONS #########################################################
 
   def show_notice
-      "<div id=\"information_notice\" class=\"information notice\">
-         <div class=\"close_information\" onclick=\"Element.hide('information_notice')\">" <<
-         StaticImage::hide_notice << "</div>
-         <p>" << flash[:notice] << "</p>
-       </div>"
+    @@notice ||= %Q{<div id="information_notice" class="information notice">
+       <div class="close_information">#{delete_button('information_notice')}</div>
+       <script type="text/javascript">
+          setTimeout(function() { new Effect.Fade("information_notice",{duration:1});
+                                }, 3000);
+       </script>}
+    @@notice.dup << "<p>" << flash[:notice] << "</p></div>"
   end
 
   def show_warn
-      "<div id=\"information_error\" class=\"information error\">
-         <div class=\"close_information\" onclick=\"Element.hide('information_error')\">" <<
-         StaticImage::hide_notice << "</div>
-         <h2>" + _('An error has occured') + "</h2>
-         <ul><li>" << flash[:warn] << "</li></ul>
-       </div>"
+    @@warn ||= %Q{<div id="information_error" class="information error">
+       <div class="close_information">#{delete_button('information_error')}</div>
+       <script type="text/javascript">
+          setTimeout(function() { new Effect.Fade("information_error",{duration:1});
+                                }, 3000);
+       </script>}
+    @@warn.dup << "<h2>" + _('An error has occured') + "</h2>
+       <ul><li>" << flash[:warn] << "</li></ul></div>"
   end
 
 end

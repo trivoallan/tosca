@@ -24,7 +24,8 @@ module ImagesHelper
   #  <%= logo_client(@client) %>
   #  <%= logo_client(@client, :small) %>
   def logo_client(client, size = :thumb)
-    return '' if client.nil? or client.image.blank? or size.nil?
+    return '' if client.nil? or size.nil?
+    return client.name if client.image.blank?
     if size == :thumb
       size = (client.inactive? ? :inactive_thumb : :thumb)
     end
@@ -32,11 +33,16 @@ module ImagesHelper
               image_options(client.name_clean))
   end
 
+  # Display the software's logo, if possible
+  # Possible options are those specified in image model.
+  # Currently :small, :thumb, :medium, :inactive_thumb
   def software_logo(software, options = {})
     return '' if software.nil? or software.image.blank?
-    image_tag(url_for_image_column(software.image, 'image',
-                                   options[:size] || :small) || software.name,
-              :class => "aligned_picture")
+    size = options[:size] || :small
+    path = url_for_image_column(software.image, 'image', size)
+    return '' if path.blank?
+    image_tag(path, :class => "aligned_picture",
+              :alt => software.name, :title => software.name)
   end
 
   #TODO Merger avec StaticImage
@@ -48,8 +54,7 @@ module ImagesHelper
 
   # See usage in reporting_helper#progress_bar
   # It show a percentage of progression.
-  def image_percent(percent, color)
-    desc = _('progress bar')
+  def image_percent(percent, color, desc)
     style = "background-position: #{percent}px; background-color: #{color};"
     options = { :alt => desc, :title => desc, :style => style,
       :class => 'percentImage no_hover aligned_picture' }
@@ -57,7 +62,7 @@ module ImagesHelper
   end
 
   # call it like :
-  # <%= link_to_new_paquet(@logiciel) %>
+  # <%= link_to_new_version(@logiciel) %>
   def link_to_new_client_logo()
     options = LinksHelper::NO_HOVER.dup.update(:target => '_blank')
     link_to(image_create(_('a logo')), new_img_path, options)

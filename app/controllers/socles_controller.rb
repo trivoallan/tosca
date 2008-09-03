@@ -1,5 +1,5 @@
 class SoclesController < ApplicationController
-  helper :clients,:binaires,:machines,:paquets
+  helper :clients, :machines, :versions
 
   def index
     @socle_pages, @socles = paginate :socles, :per_page => 250,
@@ -8,9 +8,6 @@ class SoclesController < ApplicationController
 
   def show
     @socle = Socle.find(params[:id], :include => [:machine])
-    options = { :order => 'binaires.name,paquets.version',
-      :include => [:paquet] }
-    @binaires = Binaire.find_all_by_socle_id(@socle.id, options)
   end
 
   def new

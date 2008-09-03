@@ -14,9 +14,11 @@ class Statut < ActiveRecord::Base
 
   # used in lib/comex_reporting and models/demande.rb
   # Please be EXTREMELY cautious if you touch them.
-  OPENED = [ 1, 2, 3, 4, 5] # We need to work on it
-  CLOSED = [ 6, 7, 8] # The time count is now less/not important
+  OPENED = [ 1, 2, 3, 4, 5 ] # We need to work on it
+  CLOSED = [ 6, 7, 8 ] # The time count is now less/not important
 
+  NEED_COMMENT = [ 3, 4, 8 ] #These status need a comment if you use them, Suspended, Analysed, Cancelled
+  
   Running = [ 1, 2, 4, 5 ] # Chrono is up
 
   # We do not want in any case a modification on those ids
@@ -27,9 +29,7 @@ class Statut < ActiveRecord::Base
   Active = 2
   Bypassed = 5
   Fixed = 6
-
-
-
+  
   # Give possible status for next step of a request
   # It follows scheme on the 08000linux wiki
   # Even recipient can change some status,

@@ -7,7 +7,7 @@
 #
 # It contains also general links in the header/footer part
 #
-require 'mime/types'
+# require 'mime/types'
 
 module LinksHelper
 
@@ -25,6 +25,7 @@ module LinksHelper
   def link_to_file(record, file, options={}, public = false)
     return '-' unless record
     filepath = record.send(file)
+   
     unless filepath.blank? or not File.exist?(filepath)
       filename = filepath[/[._ \-a-zA-Z0-9]*$/]
       if options.has_key? :image
@@ -68,10 +69,8 @@ module LinksHelper
                    image_tag(url_for_image_column(record, method, :fit_size)),
                      NO_HOVER.dup.update(:background_close => true))
       #Text
-      elsif mime_type =~ /^text\//
-        link_to(StaticImage::view, uv_piecejointe_path(record),
-                NO_HOVER.dup.update(:popup =>
-                  [filename, 'height=600,width=800,scrollbars=yes']))
+      elsif mime_type =~ /^text\// && defined? UvHelper
+        link_to_uv(record, filename)
       else
         '-'
       end
@@ -106,14 +105,14 @@ EOS
   #   <%= link_to_no_hover image_create(_('new url')), path %>
   def link_to_no_hover(*args)
     args << LinksHelper::NO_HOVER
-    link_to *args
+    link_to(*args)
   end
 
   ### Header ###
   # TODO : put all those methods into another module
   # and merge it dynamically in this module
   def public_link_to_home
-    public_link_to(_('Home'), bienvenue_path)
+    public_link_to(_('Home'), welcome_path)
   end
 
   def link_to_requests
@@ -131,7 +130,7 @@ EOS
             _('Consult requests which are waiting an action from you'))
   end
 
-  def public_link_to_softwares
+  def public_link_to_software
     public_link_to(_('Software'), logiciels_path, :title =>
                    _('Access to the list of software'))
   end
@@ -143,13 +142,13 @@ EOS
 
   # About page
   def public_link_to_about()
-    public_link_to('?', about_bienvenue_path,
+    public_link_to('?', about_welcome_path,
                    :title => _("About %s") % App::Name)
   end
 
   # No cache for this one. It's not a public link /!\
   def link_to_admin
-    link_to(_('Administration'), admin_bienvenue_path,
+    link_to(_('Administration'), admin_welcome_path,
             :title => _('Administration interface'))
   end
 

@@ -1,6 +1,12 @@
-<%= public_link_to _('Home'), bienvenue_path %> >
-  <%= public_link_to _('Contributions'), select_contributions_path %> >
-    <%= @logiciel ? @logiciel.name : _('All') %></h1>
+<h1>
+  <%= public_link_to _('Home'), welcome_path %> >
+    <%= public_link_to _('Contributions'), select_contributions_path %> >
+      <% if @logiciel %>
+        <%= public_link_to_logiciel(@logiciel) %>
+      <% else %>
+        <%= public_link_to(_('All'), logiciels_path) %>
+      <% end %>
+</h1>
 
 <% links = show_pages_links(@contribution_pages, _('a new contribution')) %>
 <%= links %>
@@ -10,8 +16,8 @@
    <%= link_to_edit(contribution) %>
    <%= public_link_to contribution.name, contribution_path(contribution) %>
   </h2>
-  <%= "#{contribution.synthese}<br />" %>
+  <%= "#{contribution.synthesis}<br />" %>
 <% end %>
 
-
+<br/>
 <%= links %>

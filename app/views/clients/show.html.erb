@@ -1,4 +1,4 @@
-<h1><%= (@client.image ? logo_client(@client) : @client.name) %>
+<h1><%= logo_client(@client) %>
   <%= link_to_edit edit_client_path(@client)%> </h1>
 
 <table class="topbox">
@@ -12,10 +12,10 @@
      </tr>
     <% end %>
 
-    <% unless @client.adresse.blank? %>
+    <% unless @client.address.blank? %>
      <tr><td colspan="2">
       <fieldset>
-       <legend><%= _('Address')%></legend><%= @client.adresse %>
+       <legend><%= _('Address')%></legend><%= @client.address %>
       </fieldset>
      </td></tr>
     <% end %>
@@ -26,18 +26,16 @@
     result = ''
     edit = link_to_edit(edit_contract_path(c))
     result << "#{edit}&nbsp;" if edit
-    result << "(#{c.chrono})&nbsp;" if @ingenieur and c.chrono != 0
-    result << "<b>#{c.rule.name}</b>"
-    result << _(" from %s to %s") % [c.ouverture_formatted, c.cloture_formatted]
+    result << "<b>#{link_to c.rule.name, contract_path(c)}</b>"
+    result << _(" from %s to %s") % [c.start_date_formatted, c.end_date_formatted]
     result << ' '
     if c.rule.max == -1
       result << _("on your complete system")
     else
-      result << _("concerning %s source packages ") % c.paquets_count
-      result << _("and %s binaries") % c.binaires.size
+      result << _("concerning %s releases") % c.releases.size
     end
     result << '.'
-    result << show_table_engagements(c.engagements)
+    result << show_table_commitments(c.commitments)
     result } %>
    <b><%= _("View") %></b> <%=_("the")%>
       <%= link_to(_('Activity report'), general_reporting_path) %><br/>
@@ -45,19 +43,19 @@
       <%= link_to(_('Contributions'),
             list_contribution_path(:id => 'all', :client_id => @client.id)) %>
   </td><td>
-
-   <%= show_list(@client.socles, _('system')) {|s|
-    result = ''
-    result << link_to_socle(s).to_s << ' : '
-    result << pluralize(s.binaires.count, _("binary"))
-   } %>
-
-   <% unless @client.demandes.empty? %>
-    <div class="long_bloc_scroll">
-    <%= show_list(@client.demandes, _('request')) {|d|
-      link_to_demande(d) } %>
-    </div>
-   <% end %>
+   <table class="show">
+    <tr><td>
+     <%= show_list(@client.socles, _('system')) do |s|
+           link_to_socle(s).to_s
+         end %>
+     <% unless @client.demandes.empty? %>
+      <b><%= n_('Request', 'Requests', @client.demandes.size) %></b>
+      <div class="long_bloc_scroll">
+       <%= show_list(@client.demandes) {|d| link_to_demande(d) } %>
+      </div>
+     <% end %>
+    </td></tr>
+   </table>
   </td>
  </tr>
 </table>

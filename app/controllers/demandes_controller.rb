@@ -1,12 +1,12 @@
 class DemandesController < ApplicationController
-  helper :filters, :contributions, :logiciels, :export, :phonecalls,
+  helper :filters, :contributions, :logiciels, :phonecalls,
     :socles, :commentaires, :account, :reporting
 
   cache_sweeper :demande_sweeper, :only =>
     [:create, :update, :destroy, :link_contribution, :unlink_contribution]
 
   def pending
-    options = { :per_page => 10, :order => 'updated_on DESC',
+    options = { :order => 'updated_on DESC',
       :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST }
     conditions = [ [ ] ]
 
@@ -14,36 +14,54 @@ class DemandesController < ApplicationController
 
     conditions.first << 'demandes.statut_id IN (?)'
     conditions << Statut::OPENED
-    conditions.first << '(demandes.expected_on > NOW() OR demandes.expected_on IS NULL)'
+    conditions.first << '(demandes.expected_on < NOW() OR demandes.expected_on IS NULL)'
 
     # find request where :
     # 1. Engineer : When SLA is running Or SLA is suspended  and ( a question from the recipient is not answered OR he just has been assigned )
     # 2. Recipient : When a question from the engineer is not answered
     if @ingenieur # 3 == Suspendue
       conditions.first << ('(demandes.statut_id <> 3 OR (demandes.statut_id = 3 AND ' +
-               '(commentaires.user_id = beneficiaires.user_id OR commentaires.ingenieur_id IS NOT NULL) ) )' )
+               '(commentaires.user_id = recipients.user_id OR commentaires.ingenieur_id IS NOT NULL) ) )' )
     else
-      conditions.first << '(demandes.statut_id = 3 AND commentaires.user_id <> beneficiaires.user_id)'
+      conditions.first << '(demandes.statut_id = 3 AND commentaires.user_id <> recipients.user_id)'
     end
 
     if @ingenieur
-      conditions.first << 'demandes.ingenieur_id = ?'
-      conditions << @ingenieur.id
-    elsif @beneficiaire
-      conditions.first << 'demandes.beneficiaire_id = ?'
-      conditions << @beneficiaire.id
-    else
-      throw Exception.new("unidentified")
+      conditions.first << 'demandes.ingenieur_id IN (?)'
+    elsif @recipient
+      conditions.first << 'demandes.recipient_id = (?)'
     end
-
     conditions[0] = conditions.first.join(' AND ')
     options[:conditions] = conditions
 
-    @demande_pages, @demandes = paginate :demandes, options
+    own_id = (@ingenieur ? @ingenieur.id : @recipient.id)
+    conditions << [ own_id ]
+    @own_requests = Demande.find(:all, options)
+
+    # Update last condition to the whole team
+    if @ingenieur
+      conditions[-1] = session[:user].team.engineers_id
+    elsif @recipient
+      conditions[-1] = @recipient.client.recipient_ids
+    end
+    # It's better to not display twice same request
+    conditions[-1].delete(own_id)
+
+    @team_requests = Demande.find(:all, options)
 
     render :template => 'demandes/lists/pending'
   end
 
+  # Track of renewed request is done with expected_on
+  # visual effects are in js.erb view
+  def ajax_renew
+    expected_on, @request_ids = params[:expected_on].to_i, params[:request_ids]
+    return if expected_on <= 0 || @request_ids.empty?
+    expected = Time.now + expected_on.days
+    Demande.find(@request_ids).each {|r|
+      r.update_attribute(:expected_on, expected)
+    }
+  end
 
   def index
     #special case : direct show
@@ -108,11 +126,11 @@ class DemandesController < ApplicationController
     unless @demande
       @demande = Demande.new(params.has_key?(:demande) ? params[:demande] : nil)
     end
-    _form @beneficiaire
+    _form @recipient
 
     @demande.statut_id = (@ingenieur ? 2 : 1)
     unless params.has_key? :demande
-      @demande.set_defaults(@ingenieur, @beneficiaire, params)
+      @demande.set_defaults(@ingenieur, @recipient, params)
     end
   end
 
@@ -122,9 +140,13 @@ class DemandesController < ApplicationController
     @demande.submitter = user # it's the current user
     @demande.statut_id = (@ingenieur ? 2 : 1)
     if @demande.contract.nil?
-      contracts = @demande.beneficiaire.contracts
+      contracts = @demande.recipient.contracts
       @demande.contract = contracts.first if contracts.size == 1
     end
+
+    revisions = params[:software][:revision_id] if params[:software]
+    @demande.associate_software(revisions)
+
     if @demande.save
       options = { :conditions => [ 'demandes.submitter_id = ?', user.id ]}
       flash[:notice] = _("You have successfully submitted your %s request.") %
@@ -138,12 +160,10 @@ class DemandesController < ApplicationController
       options = { :demande => @demande, :url_request => demande_url(@demande),
         :name => user.name, :url_attachment => url_attachment }
 
-      @demande.send_jabber_notification()
-
       Notifier::deliver_request_new(options, flash)
       redirect_to _similar_request
     else
-      _form @beneficiaire
+      _form @recipient
       render :action => 'new'
     end
   end
@@ -168,27 +188,35 @@ class DemandesController < ApplicationController
   def ajax_display_version
     return render(:nothing => true) unless params.has_key? :demande
     request = params[:demande]
+    contract_id = request[:contract_id]
     logiciel_id = request[:logiciel_id]
-    socle_id = request[:socle_id]
-    if logiciel_id.blank? || socle_id.blank?
-      @binaires = []
+    if logiciel_id.blank? or contract_id.blank?
+      @versions = []
     else
-      logiciel = Logiciel.find(logiciel_id.to_i)
-      options = { :conditions => ['binaires.socle_id = ?', socle_id.to_i],
-        :include => [:paquet], :order => 'paquets.name' }
-      @binaires = logiciel.binaires.find(:all, options).collect{ |b| [b.paquet.version, b.id]}
+      logiciel = Logiciel.find(logiciel_id)
+      contract = Contract.find(contract_id)
+
+      @versions = logiciel.releases_contract(contract.id).collect do |r|
+        #case...when seems not to work
+        if r.type == Version
+          id = "v#{r.id}"
+        elsif r.type == Release
+          id = "r#{r.id}"
+        end
+        [ r.name, id ]
+      end
     end
   end
 
   def edit
     @demande = Demande.find(params[:id])
-    _form @beneficiaire
+    _form @recipient
   end
 
   def show
     @demande = Demande.find(params[:id], :include => [:first_comment]) unless @demande
     @page_title = @demande.resume
-    @partial_for_summary = 'infos_demande'
+    @partial_for_summary = 'infos_request'
     unless read_fragment "requests/#{@demande.id}/front-#{session[:user].role_id}"
       @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande)
       @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
@@ -196,10 +224,10 @@ class DemandesController < ApplicationController
       # TODO c'est pas dry, cf ajax_comments
       options = { :order => 'created_on DESC', :include => [:user],
         :limit => 1, :conditions => { :demande_id => @demande.id } }
-      options[:conditions][:prive] = false if @beneficiaire
+      options[:conditions][:prive] = false if @recipient
       @last_commentaire = Commentaire.find(:first, options)
 
-      @statuts = @demande.statut.possible(@beneficiaire)
+      @statuts = @demande.statut.possible(@recipient)
       options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
         [ 'contributions.logiciel_id = ?', @demande.logiciel_id ] }
       @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
@@ -242,16 +270,16 @@ class DemandesController < ApplicationController
     @demande_id = params[:id]
     conditions = [ 'phonecalls.demande_id = ? ', @demande_id ]
     options = { :conditions => conditions, :order => 'phonecalls.start',
-      :include => [:beneficiaire,:ingenieur,:contract,:demande] }
+      :include => [:recipient,:ingenieur,:contract,:demande] }
     @phonecalls = Phonecall.find(:all, options)
     render :partial => 'demandes/tabs/tab_appels', :layout => false
   end
 
-  def ajax_piecejointes
+  def ajax_attachments
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @demande_id = params[:id]
-    set_piecejointes(@demande_id)
-    render :partial => 'demandes/tabs/tab_piecejointes', :layout => false
+    set_attachments(@demande_id)
+    render :partial => 'demandes/tabs/tab_attachments', :layout => false
   end
 
   def ajax_cns
@@ -262,7 +290,7 @@ class DemandesController < ApplicationController
 
   def update
     @demande = Demande.find(params[:id])
-    @demande.paquets = Paquet.find(params[:paquet_ids]) if params[:paquet_ids]
+    @demande.versions = Paquet.find(params[:version_ids]) if params[:version_ids]
     request = params[:demande]
     # description is delocalized into the first comment, mainly for db perf.
     description = request[:description]
@@ -271,7 +299,7 @@ class DemandesController < ApplicationController
       flash[:notice] = _("The request has been updated successfully.")
       redirect_to demande_path(@demande)
     else
-      _form @beneficiaire
+      _form @recipient
       render :action => 'edit'
     end
   end
@@ -291,7 +319,7 @@ class DemandesController < ApplicationController
 
   def print
     @demande = Demande.find(params[:id])
-    set_piecejointes(@demande.id)
+    set_attachments(@demande.id)
     set_comments(@demande.id)
   end
 
@@ -323,10 +351,10 @@ class DemandesController < ApplicationController
   # call it like this : _form4contract Contract.find(:first)
   def _form4contract(contract)
     result = true
-    @beneficiaires = contract.find_recipients_select
-    result = false if @beneficiaires.empty?
-    @socles = contract.client.find_socles_select
-    @logiciels = contract.logiciels.collect{|l| [l.name, l.id] }
+    @recipients = contract.find_recipients_select
+    result = false if @recipients.empty?
+    @versions = []
+    @logiciels = contract.logiciels.collect { |l| [ l.name, l.id ] }
     if @ingenieur
       @ingenieurs = Ingenieur.find_select_by_contract_id(contract.id)
       @teams = Team.on_contract_id(contract.id)
@@ -335,24 +363,24 @@ class DemandesController < ApplicationController
   end
 
   #TODO : redo
-  def _form(beneficiaire)
+  def _form(recipient)
     @contracts = Contract.find_select(Contract::OPTIONS)
     if @contracts.empty?
-      flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling a request. Please contat %s if you think it's not normal") % App::TeamEmail
-      return redirect_to(bienvenue_path)
+      flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling a request. Please contact %s if you think it's not normal") % App::TeamEmail
+      return redirect_to(welcome_path)
     end
-    if beneficiaire
-      client = beneficiaire.client
+    if recipient
+      client = recipient.client
       @typedemandes = client.typedemandes.collect{|td| [td.name, td.id]}
     else
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
       @typedemandes = Typedemande.find_select
     end
-    @binaires = []
+    @versions = []
     @severites = Severite.find_select
     first_comment = @demande.first_comment
     @demande.description = first_comment.corps if first_comment
-    @demande.beneficiaire = beneficiaire if beneficiaire
+    @demande.recipient = recipient if recipient
     if @demande.contract
       _form4contract(@demande.contract)
     elsif !@contracts.empty?
@@ -369,10 +397,10 @@ class DemandesController < ApplicationController
     redirect_to demande_path(@demande)
   end
 
-  def set_piecejointes(demande_id)
+  def set_attachments(demande_id)
     options = { :conditions => filter_comments(demande_id), :order =>
       'commentaires.updated_on DESC', :include => [:commentaire] }
-    @piecejointes = Piecejointe.find(:all, options)
+    @attachments = Attachment.find(:all, options)
   end
 
   def set_comments(demande_id)
@@ -410,7 +438,7 @@ class DemandesController < ApplicationController
 
   # define what is a similar request.
   # Used during create.
-  # It _just_ returns a correct path.
+  # It *just* returns a correct path.
   def _similar_request
     options = { :demande => Hash.new }
     request = options[:demande]
@@ -433,6 +461,6 @@ end
 #  :with => "severite_id" }
 #%>
 #<%= observe_field "demande_logiciel_id",
-# {:url => {:action => :ajax_update_paquets},
-#  :update => :demande_paquets,
+# {:url => {:action => :ajax_update_versions},
+#  :update => :demande_versions,
 #  :with => "logiciel_id"} %>

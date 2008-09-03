@@ -1,4 +1,4 @@
-<% client = (@beneficiaire ? @beneficiaire.client : nil) %>
+<% client = (@recipient ? @recipient.client : nil) %>
 <% display_name = (client ? client.name : App::Name) %>
 
 <%#= render_partial 'form' %>

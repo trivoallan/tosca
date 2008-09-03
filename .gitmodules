@@ -1,0 +1,3 @@
+[submodule "vendor/extensions"]
+	path = vendor/extensions
+	url = tosca-project.net:/var/git/extensions.git

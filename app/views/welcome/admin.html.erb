@@ -1,0 +1,60 @@
+
+<h2 class="spacer"><%= _('Contents')%></h2>
+
+<%= _('You have %s rights on this portal') % session[:user].role %>
+<table class="sommaire"><tr><td>
+<div class="sommaire show">
+  <h3><%= _('Users') %></h3>
+  <% links = [
+        link_to(_('User list'), accounts_path),
+        link_to(_('Add a user'), signup_new_account_path) ] %>
+  <%= show_list(links, _('User management')) %>
+  <% if session[:user].role_id <= 2 # manager %>
+    <% links = [
+          link_to(_('Teams'), teams_path) ] %>
+    <%= show_list(links, _("Teams management")) %>
+  <% end %>
+  <% if session[:user].role_id == 1 # admin %>
+   <% links = [
+        link_to( _('Permissions'), permissions_path),
+        link_to( _('Roles'), roles_path) ] %>
+   <%= show_list(links, _('Permission management')) %>
+  <% end %>
+  <% links = [
+        link_to( _('Skills'), knowledges_path) ] %>
+  <%= show_list(links, _('Skill management')) %>
+</div>
+
+<div class="sommaire show">
+  <h3><%= _('Customers') %></h3>
+  <p><%= _('You have to create a client before creating a contract') %>.</p>
+  <% links = [
+        link_to( _('Customers'), clients_path),
+        link_to( _('Contracts'), contracts_path)  ] %>
+  <%= show_list(links, _('Customer management')) %>
+</div>
+
+</td><td>
+ <div class="sommaire show">
+   <h3><%= _('Plateform')%></h3>
+   <p><%= _('System management')%></p>
+  <% links = [
+        link_to( _('Systems'), socles_path),
+        link_to( _('Machines'), machines_path),
+        link_to( _('Architectures'), arches_path) ] %>
+  <%= show_list(links) %>
+  <p><%= _('Source management')%></p>
+  <% links = [
+         link_to( _('Software list'), logiciels_path),
+         link_to( _('Software categorization'), groupes_path),
+         link_to( _('Versions'), versions_path),
+         link_to( _('Releases'), releases_path) ] %>
+   <%= show_list(links) %>
+ </div>
+  <div class="sommaire show">
+  <h3><%= _('Reporting')%></h3>
+  <% links = [
+      link_to( _('Digest report'), digest_reporting_path) ] %>
+  <%= show_list(links) %>
+ </div>
+</td></tr></table>

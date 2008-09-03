@@ -1,7 +1,0 @@
-<% for column in Conteneur.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @conteneur.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to_edit_and_list(@conteneur) %> 

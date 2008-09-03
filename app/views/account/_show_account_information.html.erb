@@ -1,5 +1,3 @@
-<% # TODO : delete this method when it will be totally unused %>
-<% # = show_table_form fields %>
 <table class="show" id="show_account">
   <tr>
     <td colspan="2"><%= avatar(@user_recipient, @user_engineer) %></td>
@@ -35,11 +33,11 @@
     <th><%= _('User|Role') %></th>
     <td><%= @user.role.name %></td>
   </tr>
-   <% unless @user.informations.blank? %>
+  <% unless @user.informations.blank? %>
     <tr><td colspan="2"><fieldset>
-     <legend><%=_('User|Informations')%></legend><%= @user.informations %>
+      <legend><%=_('User|Informations')%></legend><%= @user.informations %>
     </fieldset></td></tr>
-   <% end %>
+  <% end %>
 </table>
 
 <table class="show" id="show_account">

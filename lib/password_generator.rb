@@ -2,7 +2,6 @@ module PasswordGenerator
 
   @@mkpasswd = nil
   def generate_password
-    srand if @@mkpasswd.nil?
     @@mkpasswd ||= File.exist?('/usr/bin/mkpasswd')
     generated = ''
     # mkpasswd bug with control characters

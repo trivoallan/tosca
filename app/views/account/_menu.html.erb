@@ -2,10 +2,10 @@
     <% menu[:titles], menu[:links] = [], [] %>
 
     <% menu[:titles] << link_to_home(:image=> true) %>
-    <%# menu[:titles] << link_to('Accueil',bienvenue_url) %>
+    <%# menu[:titles] << link_to('Accueil',welcome_url) %>
     <% menu[:links] << [
         (link_to_edit session[:user]),
-        (link_to _('Plan'), plan_bienvenue_path),
+        (link_to _('Plan'), plan_welcome_path),
         (link_to _('Disconnect'), logout_account_path),
         (link_to_about),
       ] %>
@@ -17,8 +17,8 @@
       ] %>
     <% menu[:titles] << link_to( _('Software'), logiciels_path) %>
     <% menu[:links] << [
-        (link_to _('Softwares'), logiciels_path),
-        (link_to _('Packages'), paquets_path),
+        (link_to _('Software'), logiciels_path),
+        (link_to _('Packages'), versions_path),
         (link_to_contributions),
       ] %>
     <% menu[:titles] << link_to(i _('Directory'), select_documents_path) %>

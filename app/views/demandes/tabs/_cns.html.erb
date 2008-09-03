@@ -1,6 +1,6 @@
 <div class="demande_tab_content" name="demande_tab_content">
 
-<% commitment = @demande.engagement %>
+<% commitment = @demande.commitment %>
 <% elapsed = @demande.elapsed %>
 <% interval = @demande.interval %>
 <% if commitment.nil? %>
@@ -26,13 +26,13 @@
    </tr>
    <% progress = elapsed.workaround_progress %>
    <tr class="<%= cycle('even', 'odd') %>">
-    <% if commitment.contournement <= 0 %>
+    <% if commitment.workaround <= 0 %>
      <td colspan="4"><%= _("Your request has no commitment for workaround time") %></td>
     <% else %>
      <td><%= progress_image(elapsed.workaround?, progress) %></td>
      <th><%= _("Workaround") %></th>
      <td><%= progress_bar(elapsed.workaround_progress) %></td>
-     <td><%= progress_text(elapsed.workaround, commitment.contournement.days, interval) %></td>
+     <td><%= progress_text(elapsed.workaround, commitment.workaround.days, interval) %></td>
     <% end %>
    </tr>
   <% progress = elapsed.correction_progress %>

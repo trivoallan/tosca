@@ -2,39 +2,43 @@
 
 <p><label><%= _("Recipient :") %></label>
 <% if client %>
-<%= select('demande', 'beneficiaire_id',
-      client.beneficiaires.collect{|l| [ l.name, l.id]}) %>
-<% #collection_select(:demande, :beneficiaire_id, client, :id, :name, PROMPT_SELECT) %></p>
+  <%= select('demande', 'recipient_id',
+        client.recipients.collect{|l| [ l.name, l.id]}) %>
 <% end %>
+</p>
 
 <p><label><%= _("Engineer :") %></label>
 <% if client %>
 <%= select('demande', 'ingenieur_id',
         client.ingenieurs.collect{|l| [ l.name, l.id]},
         :include_blank => true) %>
-<% #collection_select(:demande, :ingenieur_id, client, :id, :name, PROMPT_SELECT) %></p>
 <% end %>
+</p>
 
 <p><label><%= _("Request type :") %></label>
 <% if client %>
-<%= select('demande', 'typedemande_id',
-        client.typedemandes.collect{|l| [ l.name, l.id]}) %></p>
+  <%= select('demande', 'typedemande_id',
+          client.typedemandes.collect{|l| [ l.name, l.id]}) %>
 <% end %>
+</p>
 
 <p><label><%= _("Severity :") %></label>
 <% if client %>
-<%= select('demande', 'severite_id',
-        client.severites.collect{|l| [ l.name, l.id]}) %></p>
+  <%= select('demande', 'severite_id',
+          client.severites.collect{|l| [ l.name, l.id]}) %>
 <% end %>
+</p>
 
 <p><label><%= _("Base :") %></label>
 <% if client %>
-<%= select('demande', 'socle_id',
-        client.socles.collect{|l| [ l.name, l.id]}) %></p>
+  <%= select('demande', 'socle_id',
+          client.socles.collect{|l| [ l.name, l.id]}) %>
 <% end %>
+</p>
 
 <p><label><%= _("Software :") %></label>
 <% if client %>
-<%= select('demande', 'logiciel_id',
-        client.logiciels.collect{|l| [ l.name, l.id]}) %></p>
+  <%= select('demande', 'logiciel_id',
+          client.logiciels.collect{|l| [ l.name, l.id]}) %>
 <% end %>
+</p>

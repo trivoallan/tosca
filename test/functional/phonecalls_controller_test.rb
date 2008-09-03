@@ -5,7 +5,7 @@ require 'phonecalls_controller'
 class PhonecallsController; def rescue_action(e) raise e end; end
 
 class PhonecallsControllerTest < Test::Unit::TestCase
-  fixtures :phonecalls, :ingenieurs, :beneficiaires, :contracts, :users,
+  fixtures :phonecalls, :ingenieurs, :recipients, :contracts, :users,
   :components, :credits, :clients
 
   def setup
@@ -25,7 +25,7 @@ class PhonecallsControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:phonecalls)
     # tests for the ajax filters :
     test_filter :ingenieur_id, 1
-    test_filter :beneficiaire_id, 1
+    test_filter :recipient_id, 1
     test_filter :contract_id, 1
 
     get :index, :filters => { :after => '2006-03-01' }
@@ -65,7 +65,7 @@ class PhonecallsControllerTest < Test::Unit::TestCase
       :end => '2007-03-16 16:41:00',
       :ingenieur_id => 1,
       :contract_id => 1,
-      :beneficiaire_id => 1
+      :recipient_id => 1
     }
 
     assert flash.has_key?(:notice)
@@ -91,7 +91,7 @@ class PhonecallsControllerTest < Test::Unit::TestCase
       :end => '2007-03-16 16:41:00',
       :ingenieur_id => 1,
       :contract_id => 1,
-      :beneficiaire_id => 1}
+      :recipient_id => 1}
     }
 
     assert flash.has_key?(:notice)

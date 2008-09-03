@@ -30,14 +30,16 @@ class LoadPermissions < ActiveRecord::Migration
     access = [ [ '.*/.*', 'Full access' ] ]
     add_permission.call(roles, access)
 
+    # TODO : this one contains rights to an extension.
+    # There should be a mecanism to load new rights of an extension.
     roles = [ manager_id, expert_id, customer_id, viewer_id ]
     access = [ [ '/auto_complete', 'All kinds of Auto completion' ],
                [ '/ajax', 'All kinds of ajax view' ],
                [ '^account/(edit|update|show)$', 'Viewing and editing its own account' ],
-               [ '^bienvenue/suggestions$', 'Allow comments on this software' ],
+               [ '^welcome/suggestions$', 'Allow comments on this software' ],
                [ '^export/', 'All kinds of export' ],
                [ '^files/download$', 'All kinds of download' ],
-               [ '^piecejointes/uv$', 'Attachments preview' ],
+               [ '^attachments/uv$', 'Attachments preview' ],
                [ '^reporting/(configuration|general)$', 'Activity Report' ]
              ]
     add_permission.call(roles, access)
@@ -46,13 +48,13 @@ class LoadPermissions < ActiveRecord::Migration
     access = [ [ '^account/become$',
                  'Helper for customer account' ],
                [ '^phonecalls/(?!destroy)', 'Manage calls' ],
-               [ '^bienvenue/admin$', 'Administration page' ],
+               [ '^welcome/admin$', 'Administration page' ],
                [ '^commentaires/(?!destroy)', 'Manage comments' ],
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
                [ '^documents/(?!destroy)', 'Manage documents' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
                [ '^socles/(?!destroy)', "Manage systems" ],
-               [ '^urllogiciels/(?!destroy)', 'Manage urls of softwares' ],
+               [ '^urllogiciels/(?!destroy)', 'Manage urls of software' ],
                [ '^urlreversements/', 'Manage their own urls of contributions' ],
                [ '^tags/', 'Manage tags' ]
              ]
@@ -65,15 +67,16 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
                [ '^contracts/(?!destroy)', 'Manage contracts' ],
                [ '^demandes/(?!destroy)', 'Manage requests' ],
-               [ '^engagements/(?!destroy)', 'Manage Service Level Agreement' ],
-               [ '^groupes/(?!destroy)', 'Manage groups of softwares' ],
-               [ '^images/(?!destroy)', 'Manage logos of softwares & clients' ],
-               [ '^ingenieurs/(?!(destroy|new))',
-                 'List knowledges of human ressources' ],
-               [ '^logiciels/(?!destroy)', 'Manage softwares' ],
-               [ '^paquets/(?!destroy)', 'Manage packages' ],
+               [ '^commitments/(?!destroy)', 'Manage Service Level Agreement' ],
+               [ '^groupes/(?!destroy)', 'Manage groups of software' ],
+               [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
+               [ '^ingenieurs/(?!(destroy|new))', 'Manage human ressources' ],
+               [ '^logiciels/(?!destroy)', 'Manage software' ],
                [ '^machines/(?!destroy)', 'Manage servers' ],
-               [ '^teams/(?!destroy)', 'Manage teams' ]
+               [ '^releases/(?!destroy)', 'Manage releases' ],
+               [ '^teams/(?!destroy)', 'Manage teams' ],
+               [ '^releases/(?!destroy)', 'Manage release' ],
+               [ '^versions/(?!destroy)', 'Manage version' ]
              ]
     add_permission.call(roles, access)
 
@@ -84,8 +87,10 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^logiciels/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
                [ '^socles/show$', 'Read-only access to system' ],
-               [ '^teams/(index|show)$', 'Read-only access to the teams' ],
-               [ '^tags/(index|show|create|new)$', 'Read-only access to the tags' ]
+               [ '^teams/(index|show)$', 'Read-only access to teams' ],
+               [ '^releases/(index|show)$', 'Read-only access to versions' ],
+               [ '^tags/(index|show|create|new)$', 'Read-only access to the tags' ],
+               [ '^versions/(index|show)$', 'Read-only access to versions' ]
              ]
     add_permission.call(roles, access)
 
@@ -115,12 +120,12 @@ class LoadPermissions < ActiveRecord::Migration
     roles = [ public_id ]
     access = [ [ '^access/denied$', 'Page for denying access' ],
                [ '^account/(login|logout)$', 'Access to login system' ],
-               [ '^bienvenue/(index|about|plan)$', 'Access to home pages' ],
+               [ '^welcome/(index|about|plan)$', 'Access to home pages' ],
                [ '^contributions/(index|select|show|list|feed)',
                  'Public read access to contributions' ],
                [ '^groupes/(index|show)', 'Public read access to groups' ],
                [ '^logiciels/(index|show)',
-                 'Public read access to softwares' ],
+                 'Public read access to software' ],
                [ '^statuts/(index|help)$', 'Explanation of status' ] ]
     add_permission.call(roles, access)
 

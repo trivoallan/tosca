@@ -54,8 +54,6 @@ class Test::Unit::TestCase
     form.submit
   end
 
-#  FILES_ROOT = "#{File.expand_path(RAILS_ROOT)}/test/fixtures/files"
-
   def uploaded_file(path, content_type="application/octet-stream", filename=nil)
     filename ||= File.basename(path)
     t = Tempfile.new(filename)
@@ -122,6 +120,30 @@ class Test::Unit::TestCase
         end
 
       }
+    }
+  end
+
+
+  ArrayMethods = [ :content_columns ] unless defined? ArrayMethods
+  # Will call all common methods involved with arrays
+  # You can add specific methods.
+  # Ex : check_strings(Demande, :remanent_fields)
+  # => will call all ArrayMethods and the additionnal remanent_fields
+  # Note : All test methods are instance ones.
+  def check_arrays(klass, *methods)
+    ArrayMethods.each { |m|
+      begin
+        assert !klass.send(m).empty? if klass.respond_to? m
+      rescue Exception => e
+        raise Exception.new("check arrays failed on #{m} for model #{klass}")
+      end
+    }
+    methods.each { |m|
+      begin
+        assert !klass.send(m).empty?
+      rescue Exception => e
+        raise Exception.new("check arrays failed on #{m} for model #{klass}")
+      end
     }
   end
 
