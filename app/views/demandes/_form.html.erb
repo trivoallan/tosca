@@ -50,7 +50,7 @@
       <tr>
         <th><label for="demande_recipient_id"><%= _("Recipient") %></label></th>
         <%# Warning, the code of this cell is also in ajax_display_contract.rjs %>
-        <td><div id="recipient"><%= select_empty(:demande, :recipient_id, @recipients) %></div></td>
+        <td><div id="recipient"><%= select(:demande, :recipient_id, @recipients) %></div></td>
       </tr>
 
       <% if @ingenieur %>

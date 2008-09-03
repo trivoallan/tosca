@@ -29,7 +29,9 @@ class LogicielsController < ApplicationController
     if software_filters
       # we do not want an include since it's only for filtering.
       unless software_filters['contract_id'].blank?
-        options[:joins] = 'INNER JOIN versions ON versions.logiciel_id=logiciels.id'
+        options[:joins] =
+          'INNER JOIN versions ON versions.logiciel_id=logiciels.id ' +
+          'INNER JOIN contracts_versions cv ON cv.version_id=versions.id'
       end
 
       # Specification of a filter f :
@@ -39,7 +41,7 @@ class LogicielsController < ApplicationController
         [:software, 'logiciels.name', :like ],
         [:description, 'logiciels.description', :like ],
         [:groupe_id, 'logiciels.groupe_id', :equal ],
-        [:contract_id, ' versions.contract_id', :in ]
+        [:contract_id, ' cv.contract_id', :in ]
       ])
       @filters = software_filters
     end

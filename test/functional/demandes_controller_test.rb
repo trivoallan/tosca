@@ -1,7 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-# Re-raise errors caught by the controller.
-# class DemandesController; def rescue_action(e) raise e end; end
 class DemandesControllerTest < ActionController::TestCase
 
   fixtures :all
