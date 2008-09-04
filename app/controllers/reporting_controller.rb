@@ -91,9 +91,9 @@ class ReportingController < ApplicationController
       write3graph(:evolution, Gruff::Line)
       write3graph(:annulation, Gruff::Bar)
 
-      write3graph(:temps_de_rappel, Gruff::Line)
-      write3graph(:temps_de_contournement, Gruff::Line)
-      write3graph(:temps_de_correction, Gruff::Line)
+      write3graph(:callback_time, Gruff::Line)
+      write3graph(:workaround_time, Gruff::Line)
+      write3graph(:correction_time, Gruff::Line)
     end
 
     #     write_graph(:top5_demandes, Gruff::Pie)
@@ -171,11 +171,11 @@ class ReportingController < ApplicationController
      [ [:informations], [:anomalies], [:'évolutions'] ]
 
     # calcul des délais
-    @data[:temps_de_rappel] =
+    @data[:callback_time] =
      [ [:'délais_respectés'], [:'hors_délai'] ]
-    @data[:temps_de_contournement] =
+    @data[:workaround_time] =
      [ [:'délais_respectés'], [:'hors_délai'] ]
-    @data[:temps_de_correction] =
+    @data[:correction_time] =
      [ [:'délais_respectés'], [:'hors_délai'] ]
 
 
@@ -255,13 +255,13 @@ class ReportingController < ApplicationController
   # pour les 3 étapes : prise en compte, contournée, corrigée
   def compute_temps(donnees)
     demandes = Demande.find(:all)
-    rappels = donnees[:temps_de_rappel]
-    contournements = donnees[:temps_de_contournement]
-    corrections = donnees[:temps_de_correction]
+    rappels = donnees[:callback_time]
+    workarounds = donnees[:workaround_time]
+    corrections = donnees[:correction_time]
     last_index = rappels[0].size
     2.times {|i|
       rappels[i].push 0.0
-      contournements[i].push 0.0
+      workarounds[i].push 0.0
       corrections[i].push 0.0
     }
 
@@ -273,8 +273,8 @@ class ReportingController < ApplicationController
       elapsed = d.elapsed
       fill_one_report(rappels, elapsed.taken_into_account,
                       1.hour, last_index)
-      fill_one_report(contournements, elapsed.workaround,
-                      e.contournement * interval, last_index)
+      fill_one_report(workarounds, elapsed.workaround,
+                      e.workaround * interval, last_index)
       fill_one_report(corrections, elapsed.correction,
                       e.correction * interval, last_index)
     end
@@ -284,7 +284,7 @@ class ReportingController < ApplicationController
       size = size.to_f
       2.times {|i|
         rappels[i][last_index] = (rappels[i][last_index].to_f / size) * 100
-        contournements[i][last_index] = (contournements[i][last_index].to_f / size) * 100
+        workarounds[i][last_index] = (workarounds[i][last_index].to_f / size) * 100
         corrections[i][last_index] = (corrections[i][last_index].to_f / size) * 100
       }
     end
@@ -468,9 +468,9 @@ class ReportingController < ApplicationController
       :top5_logiciels => _('Top 5 of the most discussed software'),
 
       :processing_time => _('Processing time'),
-      :temps_de_rappel => _('Response time'),
-      :temps_de_contournement => _('Workaround time'),
-      :temps_de_correction => _('Correction time')
+      :callback_time => _('Response time'),
+      :workaround_time => _('Workaround time'),
+      :correction_time => _('Correction time')
     }
   end
 

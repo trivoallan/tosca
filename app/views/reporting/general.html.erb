@@ -39,15 +39,15 @@
 <p class="break_here"/>
 
 <h1 class="chapter"><a name=<%='"'+@titles[:processing_time]+'"'%>><%= '3. '+@titles[:processing_time] %></a></h1>
-<h2 class="chapter"><a name=<%='"'+@titles[:temps_de_rappel]+'"'%>>3.1 <%= @titles[:temps_de_rappel] %></a></h2>
- <%= report_repartition(:temps_de_rappel, :with2rows => _('Requests')) %><%= gap %>
- <%= report_evolution(:temps_de_rappel, :with2rows => _('Requests')) %><%= gap %>
-<h2 class="chapter"><a name=<%='"'+@titles[:temps_de_contournement]+'"'%>>3.2 <%= @titles[:temps_de_contournement] %></a></h2>
- <%= report_repartition(:temps_de_contournement, :with2rows => _('Requests')) %><%= gap %>
- <%= report_evolution(:temps_de_contournement, :with2rows => _('Requests')) %><%= gap %>
-<h2 class="chapter"><a name=<%='"'+@titles[:temps_de_correction]+'"'%>>3.3 <%= @titles[:temps_de_correction] %></a></h2>
- <%= report_repartition(:temps_de_correction, :with2rows => _('Requests')) %><%= gap %>
- <%= report_evolution(:temps_de_correction, :with2rows => _('Requests')) %><%= gap %>
+<h2 class="chapter"><a name=<%='"'+@titles[:callback_time]+'"'%>>3.1 <%= @titles[:callback_time] %></a></h2>
+ <%= report_repartition(:callback_time, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_evolution(:callback_time, :with2rows => _('Requests')) %><%= gap %>
+<h2 class="chapter"><a name=<%='"'+@titles[:workaround_time]+'"'%>>3.2 <%= @titles[:workaround_time] %></a></h2>
+ <%= report_repartition(:workaround_time, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_evolution(:workaround_time, :with2rows => _('Requests')) %><%= gap %>
+<h2 class="chapter"><a name=<%='"'+@titles[:correction_time]+'"'%>>3.3 <%= @titles[:correction_time] %></a></h2>
+ <%= report_repartition(:correction_time, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_evolution(:correction_time, :with2rows => _('Requests')) %><%= gap %>
 <p class="break_here"/>
 
 </div><!-- end of report -->
