@@ -119,16 +119,6 @@
     <tr>
       <th colspan="2"><label for="demande_resume"><%= _("Summary") %></label></th>
     </tr>
-    <% if @ingenieur %>
-     <tr><th><label for="demande_ingenieur_id"><%=_("Assigned to")%></label></th>
-      <td><div id="engineer">
-          <select id="demande_ingenieur_id" name="demande[ingenieur_id]"><option value="">» </option>
-            <%= options_from_collection_for_select(@ingenieurs, :last, :first, @demande.ingenieur_id) %>
-            <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name, @demande.ingenieur_id) %>
-         </select>
-      </div></td>
-     </tr>
-    <% end %>
     <tr>
       <td colspan="2"><%= text_field :demande, :resume, :size => 60, :maxlength => 70 %></td>
     </tr>
@@ -148,7 +138,7 @@
     </tr>
 
     <tr>
-      <td colspan="2"><%= file_column_field 'attachment', 'file', :size => 55 %></td>
+      <td colspan="2"><%= file_column_field 'attachment', 'file', :size => 50 %></td>
     <% else %>
       <td colspan="2"></td>
     <% end %>

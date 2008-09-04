@@ -128,14 +128,14 @@ class Notifier < ActionMailer::Base
 
   def reporting_digest(user, data, mode, now)
     from       FROM
-    recipients user.email
+   recipients user.email
 
     case mode.to_sym
     when :day
       time = now.strftime("%A %d %B %Y")
       subject _("Daily digest for ") << time
     when :week
-      time = now.strftime("%U").to_i.ordinalize.to_s << _(" week of ") << now.year.to_s
+      time = _ordinalize(now.strftime("%U").to_i) << _(" week of ") << now.year.to_s
       subject _("Weekly digest for ") << time
     when :month
       time = now.strftime("%B of %Y")
@@ -257,7 +257,7 @@ class Notifier < ActionMailer::Base
 
   def message_notice(recipients, cc)
     result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
-    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc
+    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc && !cc.blank?
     result << '.'
   end
 

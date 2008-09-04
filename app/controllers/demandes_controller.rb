@@ -168,7 +168,7 @@ class DemandesController < ApplicationController
     if @demande.save
       options = { :conditions => [ 'demandes.submitter_id = ?', user.id ]}
       flash[:notice] = _("You have successfully submitted your %s request.") %
-        Demande.count(options).ordinalize
+        _ordinalize(Demande.count(options))
       @demande.first_comment.add_attachment(params)
       @comment = @demande.first_comment
       # needed in order to send properly the email

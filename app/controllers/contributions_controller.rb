@@ -165,7 +165,7 @@ class ContributionsController < ApplicationController
 
   def ajax_list_versions
     return render(:nothing => true) unless request.xml_http_request? and params[:logiciel_id]
-    @versions = Logiciel.find(params[:logiciel_id]).versions.collect { |v| [v.full_software_name, v.id] }
+    @versions = Logiciel.find(params[:logiciel_id]).versions.find_select # collect { |v| [v.full_software_name, v.id] }
   end
 
 private
@@ -177,7 +177,7 @@ private
     if @contribution.logiciel_id
       @versions = @contribution.logiciel.versions.find_select
     else
-      @versions = Version.all.collect { |v| [v.full_software_name, v.id] }
+      @versions = Version.all.find_select # collect { |v| [v.full_software_name, v.id] }
     end
   end
 

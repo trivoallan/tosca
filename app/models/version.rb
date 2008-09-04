@@ -47,6 +47,12 @@ class Version < ActiveRecord::Base
     @name
   end
 
+  def name=(value)
+    new_value = value.gsub(/\.[xX*]/, "")
+    self.generic = true if new_value != value
+    write_attribute(:name, new_value)
+  end
+
   include Comparable
   def <=>(other)
     return 1 if other.nil? or not other.is_a?(Version)

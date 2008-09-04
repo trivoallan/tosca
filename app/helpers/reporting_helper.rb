@@ -162,7 +162,7 @@ module ReportingHelper
       name = data[index][0].to_s
       head = name.gsub(/_(terminees|en_cours)/, '').gsub('_','&nbsp;').capitalize
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
-      out << '<tr><th>'+_('Finished')+'</th><th>'+_('Running')+'</th></tr>' if twolines
+      out << "<tr><th>#{_('Running')}</th><th>#{_('Finished')}</th></tr>" if twolines
       out << '<tr>'
       color = colors[index]
       # un <td> quoiqu'il se passe

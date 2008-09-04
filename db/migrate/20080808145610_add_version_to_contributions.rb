@@ -63,7 +63,7 @@ class AddVersionToContributions < ActiveRecord::Migration
               v.generic = false
             end
           end
-          version.save!
+          version.save! unless Version.find(:first, :conditions => version.attributes)
           type_version_id = version.id
         end
         c.write_attribute(type_version, type_version_id)

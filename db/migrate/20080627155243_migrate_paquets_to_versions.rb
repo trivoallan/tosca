@@ -158,12 +158,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     # We are forced to make it in two pass, since there's a strange caching
     # model for saving in rails 2.1
     Contract.all.each do |c|
-      # /!\ DO _NOT_ OPTIMIZE THOSE LINES /!\
-      versions = c.versions
-      c.versions = []
-      versions.uniq!
-      c.save
-      c.versions = versions
+      c.versions.uniq!
       c.save!
     end
     puts "Remove duplicate versions of Contracts"

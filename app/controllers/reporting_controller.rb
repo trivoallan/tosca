@@ -21,26 +21,26 @@ class ReportingController < ApplicationController
   include WeeklyReporting
   include DigestReporting
 
-  # Les couleurs par défauts sont dans l'ordre alphabétique des severités :
-  # ( bloquante, majeure, mineure, sans objet )
-  # TODO : faire un hash @@couleurs{} contenant les tableaux
+  # Default colors are distributed by alphabetical order of severity
+  # ( blocking, major, minor, none )
+  # TODO : implement a better solution, with a hash ?
   colors =  [
-  # clair,    foncé,    #couleur
-    "#dd0000", "#ff2222", #rouge
-    "#dd8242", "#ffa464", #orange
-    "#dddd00", "#ffff22", #jaune
-    "#84dd00", "#a6ff22", #vert
-    "#0082dd", "#22a4ff", #bleu
+    # dark,    # light,   # colour
+    "#ff2222", "#dd0000", # red
+    "#ffa464", "#dd8242", # orange
+    "#ffff22", "#dddd00", # yellow
+    "#a6ff22", "#84dd00", # green
+    "#22a4ff", "#0082dd", # blue
   ]
-  # les index de tableau commencent à 0
+  # Array starts at 0, but Gruff need a start at 1
   @@couleurs_degradees = ( [nil] << colors ).flatten
   @@couleurs = ( [nil] << colors.values_at(1, 3, 5, 7, 9) ).flatten
-  # on modifie ensuite pour les autres type de données :
+  # Subset for specific graphs
   @@couleurs_delais = ( [nil] << colors.values_at(7, 1) ).flatten
   @@couleurs_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
   @@couleurs_types_degradees = ( [nil] << colors.values_at(2, 3, 6, 7, 8, 9) ).flatten
 
-  # utilisé avant l'affichage
+  # allows to launch activity report
   def configuration
     _titles()
     @contracts = (@recipient ? @recipient.client.contracts :
