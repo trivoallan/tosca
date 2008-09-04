@@ -47,8 +47,8 @@ class AddVersionToContributions < ActiveRecord::Migration
       #We create a version if there is none
       [:fixed_version, :affected_version].each do |type_version|
         type_version_value = c.read_attribute(type_version)
-        type_version_id = logiciel.versions.find_by_name(type_version_value)
-        if type_version_id.nil? && !type_version_value.blank?
+        version = logiciel.versions.find_by_name(type_version_value)
+        if version.nil? && !type_version_value.blank?
           version = Version.new do |v|
             v.logiciel_id = logiciel.id
             case type_version_value
@@ -69,9 +69,8 @@ class AddVersionToContributions < ActiveRecord::Migration
           else
             version.save!
           end
-          type_version_id = version.id
-        end
-        c.write_attribute(type_version, type_version_id)
+       end
+        c.write_attribute(type_version, version) if version
       end
       c.save
     end
