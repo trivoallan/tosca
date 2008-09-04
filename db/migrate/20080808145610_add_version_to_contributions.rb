@@ -21,9 +21,6 @@ class AddVersionToContributions < ActiveRecord::Migration
   class Contribution < ActiveRecord::Base
     belongs_to :version
     belongs_to :logiciel
-
-    belongs_to :affected_version, :class_name => "Version"
-    belongs_to :fixed_version, :class_name => "Version"
   end
 
   class Logiciel < ActiveRecord::Base
@@ -70,7 +67,7 @@ class AddVersionToContributions < ActiveRecord::Migration
             version.save!
           end
        end
-        c.write_attribute(type_version, version) if version
+        c.write_attribute("#{type_version}_id", version.id) if version
       end
       c.save
     end
