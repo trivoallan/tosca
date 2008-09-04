@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 # Be sure to restart your web server when you modify this file.
 
 # Uncomment below to force Rails into production mode when
@@ -44,7 +62,8 @@ Rails::Initializer.run do |config|
 
   ### External libs ###
   # Used to i18n and l10n
-  config.gem 'gettext', :version => '1.91.0'
+  config.gem 'gettext', :lib => 'gettext/rails'
+  config.gem 'gettext', :lib => 'gettext/utils' # needed by gettext_localize
 
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution

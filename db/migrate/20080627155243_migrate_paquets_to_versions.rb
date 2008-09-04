@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 #For moving files
 require 'fileutils'
 
@@ -40,6 +58,10 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
 
   class Logiciel < ActiveRecord::Base
     has_many :versions, :order => "name DESC", :dependent => :destroy
+  end
+
+  class Contract < ActiveRecord::Base
+     has_and_belongs_to_many :versions
   end
 
   def self.up
@@ -132,7 +154,15 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
       end
     end
     puts "Remove duplicate Versions done"
-    
+
+    # We are forced to make it in two pass, since there's a strange caching
+    # model for saving in rails 2.1
+    Contract.all.each do |c|
+      c.versions.uniq!
+      c.save!
+    end
+    puts "Remove duplicate versions of Contracts"
+
     #Generic versions
     Version.all.each do |v|
       case v.name
@@ -174,16 +204,8 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
           :contract_id => b.paquet.contract_id })
 
         release.each do |r|
-          archive = Archive.create(:file => b.archive, :release_id => release.id)
-
-          old_path = File.join(old_archive_path, b.id.to_s)
-          if File.exists? old_path
-            new_path = File.join(new_archive_path, archive.id.to_s)
-            FileUtils.mkdir_p(new_path)
-            puts "Copy from #{old_path} to #{new_path}"
-            FileUtils.cp_r(Dir.glob("#{old_path}/*"), new_path)
-          else
-            puts "archive not present on file system : #{b.archive}"
+          File.open(File.join(old_archive_path, b.id.to_s, b.archive)) do |f|
+            Archive.create(:file => f, :release_id => release.id)
           end
         end
       end

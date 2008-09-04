@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class ContributionsController < ApplicationController
   helper :filters, :demandes, :versions, :export, :urlreversements, :logiciels
 
@@ -110,8 +128,7 @@ class ContributionsController < ApplicationController
 
   def create
     @contribution = Contribution.new(params[:contribution])
-    _link2request
-    if @contribution.save
+    if _link2request && @contribution.save
       flash[:notice] = _('The contribution has been created successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
@@ -132,8 +149,7 @@ class ContributionsController < ApplicationController
 
   def update
     @contribution = Contribution.find(params[:id])
-    _link2request
-    if @contribution.update_attributes(params[:contribution])
+    if _link2request && @contribution.update_attributes(params[:contribution])
       flash[:notice] = _('The contribution has been updated successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
@@ -149,7 +165,7 @@ class ContributionsController < ApplicationController
 
   def ajax_list_versions
     return render(:nothing => true) unless request.xml_http_request? and params[:logiciel_id]
-    @versions = Logiciel.find(params[:logiciel_id]).versions.collect { |v| [v.full_software_name, v.id] }
+    @versions = Logiciel.find(params[:logiciel_id]).versions.find_select # collect { |v| [v.full_software_name, v.id] }
   end
 
 private
@@ -161,7 +177,7 @@ private
     if @contribution.logiciel_id
       @versions = @contribution.logiciel.versions.find_select
     else
-      @versions = Version.all.collect { |v| [v.full_software_name, v.id] }
+      @versions = Version.all.find_select # collect { |v| [v.full_software_name, v.id] }
     end
   end
 
@@ -186,10 +202,12 @@ private
 
   def _link2request()
     begin
-      demande = Demande.find(params[:demande][:id]) unless params[:demande][:id].blank?
+      demande = Demande.find(params[:demande][:id].to_i) unless params[:demande][:id].blank?
       @contribution.demande = demande
+      true
     rescue
       flash[:warn] = _('The associated request does not exist')
+      false
     end
   end
 end

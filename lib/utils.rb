@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 #For html2text
 require 'cgi'
@@ -8,7 +26,7 @@ module App
 
   # application
   Name = "TOSCA"
-  Version = "0.7.3"
+  Version = "0.7.4"
   Copyright = " ©2006-2008 Linagora SA".gsub(' ','&nbsp;')
   FilesPath = File.join RAILS_ROOT, 'files'
 
@@ -103,10 +121,28 @@ def html2text(html)
   text
 end
 
-#This method clean a string from
-def cleanize(text)
-
+def _ordinalize(number)
+  if Locale.get.language =~ /fr/
+    case number
+    when 1; "#{number}er"
+    when 2; "#{number}nd"
+    else    "#{number}eme"
+    end
+  else
+    if (11..13).include?(number.to_i % 100)
+      "#{number}th"
+    else
+      case number.to_i % 10
+      when 1; "#{number}st"
+      when 2; "#{number}nd"
+      when 3; "#{number}rd"
+      else    "#{number}th"
+      end
+    end
+  end
 end
+
+
 
 
 module Utils

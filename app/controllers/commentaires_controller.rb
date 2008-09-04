@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class CommentairesController < ApplicationController
   helper :demandes
 
@@ -15,7 +33,7 @@ class CommentairesController < ApplicationController
     @commentaire = Commentaire.find(params[:id])
   end
 
-  #utilisé par la vue "comment" de Demande pour en ajouter un
+  #Used by the comment view of a request to add one
   def comment
     commentaire, id = params[:commentaire], params[:id]
     return render(:nothing => true) unless id && commentaire
@@ -23,25 +41,29 @@ class CommentairesController < ApplicationController
     user = session[:user]
     request = Demande.find(id)
 
+    # firewall ;)
     return render(:nothing => true) unless user && request
 
-    changed = {}
     # check on attributes change
+    # Find a way to put it in the model despite the access from request view
+    changed = {}
     %w{statut_id ingenieur_id severite_id}.each do |attr|
       changed[attr] = true unless commentaire[attr].blank?
     end
-    
     if (changed[:statut_id] or changed[:severite_id]) and params[:commentaire][:prive]
       params[:commentaire][:prive] = false
       flash[:warn] = _("A comment can not be private if there is a change in<br/>
         the <b>status</b> or in the <b>severity</b>")
     end
 
-    @comment = Commentaire.new(commentaire)
-    @comment.demande, @comment.user = request, user
-    @comment.add_attachment(params)
+    @comment = Commentaire.new(commentaire) do |c|
+      c.demande, c.user = request, user
+      c.add_attachment(params)
+    end
 
-    # on vérifie et on envoie le courrier
+    request.update_attribute :expected_on, Time.now if user.client?
+
+    #We verify and send an email
     if @comment.save
       flash[:notice] = _("Your comment was successfully added.")
       url_attachment = render_to_string(:layout => false, :template => '/attachment')
@@ -52,8 +74,8 @@ class CommentairesController < ApplicationController
       }
       Notifier::deliver_request_new_comment(options, flash)
     else
-      flash[:warn] = _("An error has occured.") + '<br />' +
-        @comment.errors.full_messages.join('<br />')
+      flash[:warn] = _("An error has occured.") + '<br/>' +
+        @comment.errors.full_messages.join('<br/>')
       flash[:old_body] = @comment.corps
     end
 

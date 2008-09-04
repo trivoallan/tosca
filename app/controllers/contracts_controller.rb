@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class ContractsController < ApplicationController
   helper :clients, :commitments, :ingenieurs, :versions
 
@@ -86,7 +104,6 @@ class ContractsController < ApplicationController
       return render(:nothing => true)
     end
     @logiciel = Logiciel.find(selected[:software])
-    @random_id = "s#{rand(10000)}_#{@logiciel.id}"
     render(:update) { |page|
       page.insert_html(:before, "end", :partial => "software")
       page.visual_effect(:appear, @random_id)
@@ -94,28 +111,29 @@ class ContractsController < ApplicationController
   end
 
   def supported_software
-    @contract = Contract.find(params[:id])
-    @releases = @contract.releases
+    @contract = Contract.find(params[:id]) unless @contract
+    @versions = @contract.versions
     @logiciels = Logiciel.find_select
   end
 
-  # TODO : include version.packaged or not ?
   def add_software
     @contract = Contract.find(params[:id])
-    redirect_to contract_path(@contract)
-    softs = params['software']
-    return unless softs
-    softs.each do |s|
+    software = params['software'] || []
+    versions = Array.new
+    software.each do |s|
       # get rid of the random_field hack
       s = s[1]
       next unless s.is_a? Hash
       # It's 2 lines but fast find_or_create call
-      version = Version.find(:first, :conditions => s)
+      version = Version.find(:first, :conditions => s, :include => :logiciel)
       version = Version.create(s) unless version
-      unless version.contract_ids.include?(@contract.id)
-        version.contracts << @contract
-      end
-      version.save
+      versions << version if version.valid?
+    end
+    @contract.versions = versions
+    if @contract.save
+      redirect_to contract_path(@contract)
+    else
+      supported_software and render :action => supported_software
     end
   end
 

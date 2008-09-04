@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class Notifier < ActionMailer::Base
   helper :mail
 
@@ -110,14 +128,14 @@ class Notifier < ActionMailer::Base
 
   def reporting_digest(user, data, mode, now)
     from       FROM
-    recipients user.email
+   recipients user.email
 
     case mode.to_sym
     when :day
       time = now.strftime("%A %d %B %Y")
       subject _("Daily digest for ") << time
     when :week
-      time = now.strftime("%U").to_i.ordinalize.to_s << _(" week of ") << now.year.to_s
+      time = _ordinalize(now.strftime("%U").to_i) << _(" week of ") << now.year.to_s
       subject _("Weekly digest for ") << time
     when :month
       time = now.strftime("%B of %Y")
@@ -238,9 +256,9 @@ class Notifier < ActionMailer::Base
   end
 
   def message_notice(recipients, cc)
-    result = "<br />" << _("An e-mail informing") << " <b>#{recipients}</b> "
-    result << "<br />" << _("with a copy to") << " <b>#{cc}</b> " if cc
-    result << _("was sent.")
+    result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
+    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc && !cc.blank?
+    result << '.'
   end
 
   MULTIPART_CONTENT = 'multipart/alternative'

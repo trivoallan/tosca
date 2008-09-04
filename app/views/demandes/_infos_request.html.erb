@@ -1,6 +1,5 @@
 <% cache("requests/#{@demande.id}/info-#{session[:user].kind}") do %>
-<div class="menu_title" onclick="Element.toggle('menu_action')">
-> <%= _('Action') %></div>
+<%= div_toogle _('Action'), 'menu_action', :class => 'menu_title' %>
 <ul class="menu" id="menu_action">
   <% if @ingenieur %>
     <% options = { :logiciel_id => @demande.logiciel_id, :request_id => @demande.id } %>
@@ -18,8 +17,7 @@
             :target => '_blank' %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_resume')">
-> <%= _('Summary') %></div>
+<%= div_toogle _('Summary'), 'menu_resume', :class => "menu_title" %>
 <ul class="menu" id="menu_resume">
   <% if @ingenieur and @demande.socle and @demande.socle.machine%>
      <li><b><%= _("Vm") %>: </b><%=h @demande.socle.machine %></li>
@@ -43,19 +41,17 @@
   <% end %>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_recipient')">
-> <%= _('Recipent') %></div>
+<%= div_toogle _('Recipent'), 'menu_recipient', :class => "menu_title" %>
 <% user = @demande.recipient.user %>
 <ul class="menu" id="menu_recipient">
   <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
      <%= link_to_show(account_path(user)) if @ingenieur %></li>
   <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
-  <% client = @demande.recipient.client %>
-  <li><b><%= _('Company') %>: </b><%= link_to client.name, client_path(client) %></li>
+  <% contract = @demande.contract %>
+  <li><b><%= _('Concerning') %>: </b><%= link_to contract, contract_path(contract) %></li>
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('life_cycle_menu')" >
-> <%=_("Life cycle") %></div>
+<%= div_toogle _("Life cycle"), 'life_cycle_menu', :class => "menu_title" %>
 <ul class="menu" id="life_cycle_menu">
   <li><b><%= _("Created on") %>: </b><%= @demande.created_on_formatted %></li>
   <li><b><%= _("Updated on") %>: </b><%= @demande.updated_on_formatted %></li>
@@ -69,9 +65,8 @@
 
 </ul>
 
-<div class="menu_title" onclick="Element.toggle('menu_aide')">
-> <%= _("Help") %></div>
-<ul class="menu" id="menu_aide">
+<%= div_toogle _("Help"), 'menu_help', :class => "menu_title" %>
+<ul class="menu" id="menu_help">
  <li><%= public_link_to_howto_request %></li>
 </ul>
 <%# mandatory for seeing last link ... :/ %>

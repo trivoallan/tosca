@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class Contract < ActiveRecord::Base
   belongs_to :client
   belongs_to :rule, :polymorphic => true
@@ -9,17 +27,18 @@ class Contract < ActiveRecord::Base
   has_many :tags
   has_many :releases
 
-  has_and_belongs_to_many :commitments, :order =>
+  has_and_belongs_to_many :versions, :order => 'versions.name DESC', :uniq => true
+  has_and_belongs_to_many :commitments, :uniq => true, :order =>
     'typedemande_id, severite_id', :include => [:severite,:typedemande]
-  has_and_belongs_to_many :users, :order => 'users.name'
+  has_and_belongs_to_many :users, :order => 'users.name', :uniq => true
+  # Those 2 ones are helpers, not _real_ relation ship
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
     :conditions => 'users.client = 0',
     :order => 'users.name ASC'
   has_and_belongs_to_many :recipient_users, :class_name => 'User',
     :conditions => 'users.client = 1', :include => :recipient,
     :order => 'users.name ASC'
-  has_and_belongs_to_many :teams, :order => 'teams.name'
-  has_and_belongs_to_many :versions, :order => 'versions.name DESC'
+  has_and_belongs_to_many :teams, :order => 'teams.name', :uniq => true
 
   validates_presence_of :client, :rule, :creator
   validates_numericality_of :opening_time, :closing_time,
@@ -29,10 +48,20 @@ class Contract < ActiveRecord::Base
   validate :must_open_before_close
 
   def must_open_before_close
-    if opening_time > closing_time
-      errors.add_to_base("The schedules of this contract are invalid.")
+    valid = true
+    if self.opening_time.to_i > self.closing_time.to_i
+      self.errors.add_to_base("The schedules of this contract are invalid.")
+      valid = false
     end
+    valid
   end
+
+  after_save do |record|
+    # To make sure we have only one time a engineer
+    record.engineer_users = record.engineer_users - (record.teams.collect { |t| t.users }.flatten)
+    true
+  end
+
 
   Rules = [ 'Rules::Credit', 'Rules::Component' ]
 

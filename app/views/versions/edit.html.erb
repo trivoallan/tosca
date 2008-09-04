@@ -1,6 +1,6 @@
 <h1><%= _('Edit a version')%></h1>
 
-<% form_tag version_path(@version), :method => :put do %>
+<% form_tag version_path(@version), :method => :put, :id => 'main_form' do %>
   <%= render :partial => 'form' %>
   <%= submit_tag _('Save') %>
 <% end %>

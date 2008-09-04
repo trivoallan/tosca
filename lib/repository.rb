@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 # Repository Module for Tosca
 # Written by Adrien Cunin - June/July 2008 - Linagora
 
@@ -13,31 +31,18 @@ module Repository
       url = splitted[1]
       distro = splitted[2]
       components = splitted[3]
-      rawsources, rawpackages  = '', ''
+      rawpackages  = ''
       for component in components.split(' ')
-        open(url+'/dists/'+distro+'/'+component+'/source/Sources.gz') do |file|
-          gz = Zlib::GzipReader.new(file)
-          rawsources << gz.read
-          gz.close
+        pkg_url = url+'/dists/'+distro+'/'+component+'/binary-i386/Packages.gz'
+        begin
+          open(pkg_url) do |file|
+            gz = Zlib::GzipReader.new(file)
+            rawpackages << gz.read
+            gz.close
+          end
+        rescue Exception => e
+          puts "Failed to open #{pkg_url} : #{e}"
         end
-        open(url+'/dists/'+distro+'/'+component+'/binary-i386/Packages.gz') do |file|
-          gz = Zlib::GzipReader.new(file)
-          rawpackages << gz.read
-          gz.close
-        end
-      end
-    end
-
-    i = 0
-    sources = []
-    rawsources.each_line do |line|
-      field = line.split(': ', 2)[0]
-      if ['Package', 'Binary'].include? field
-        if field == 'Package'
-          i += 1
-          sources[i] = {}
-        end
-        sources[i][field] = line.split(': ', 2)[1].strip
       end
     end
 
@@ -45,7 +50,7 @@ module Repository
     packages = []
     rawpackages.each_line do |line|
       field = line.split(': ', 2)[0]
-      if ['Package', 'Version', 'Description'].include? field
+      if %w(Package Version Description).include? field
         if field == 'Package'
           i += 1
           packages[i] = {}
@@ -53,9 +58,7 @@ module Repository
         packages[i][field] = line.split(': ', 2)[1].strip
       end
     end
-
-    return { :sources => sources, :packages => packages }
-
+    packages 
   end
 
 end

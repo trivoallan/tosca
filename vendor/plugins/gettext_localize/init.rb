@@ -1,19 +1,3 @@
-
-
-# Ruby unicode support
-$KCODE = 'u'
-require 'jcode'
-
-# require gettext for ruby
-begin
-  # requires correct gettext version if Rails 1.2
-  gem 'gettext', '>= 1.9'
-  require 'gettext/rails'
-  require 'gettext/utils'
-rescue
-  raise StandardError.new("gettext could not be loaded: #{$!}")
-end
-
 # global methods
 # all in the GettextLocalize module
 require 'gettext_localize'

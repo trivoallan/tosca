@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 require File.dirname(__FILE__) + '/../test_helper'
 require 'logiciels_controller'
 
@@ -22,14 +40,14 @@ class LogicielsControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:logiciels)
 
     # tests the ajax filters
-    get :index, :filters => { :contract_id => 3}
+    xhr :get, :index, :filters => { :contract_id => 3}
     assert_response :success
     assigns(:logiciels).each do |l|
       software = Logiciel.find l.id
       assert_equal software.versions.first.contract.id, 3
     end
 
-    get :index, :filters => { :groupe_id => 2 }
+    xhr :get, :index, :filters => { :groupe_id => 2 }
     assert_response :success
     assigns(:logiciels).each { |l| assert_equal l.groupe_id, 2 }
 

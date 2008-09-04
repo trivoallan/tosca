@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class Statut < ActiveRecord::Base
   has_many :demandes
 
@@ -14,9 +32,11 @@ class Statut < ActiveRecord::Base
 
   # used in lib/comex_reporting and models/demande.rb
   # Please be EXTREMELY cautious if you touch them.
-  OPENED = [ 1, 2, 3, 4, 5] # We need to work on it
-  CLOSED = [ 6, 7, 8] # The time count is now less/not important
+  OPENED = [ 1, 2, 3, 4, 5 ] # We need to work on it
+  CLOSED = [ 6, 7, 8 ] # The time count is now less/not important
 
+  NEED_COMMENT = [ 3, 4, 8 ] #These status need a comment if you use them, Suspended, Analysed, Cancelled
+  
   Running = [ 1, 2, 4, 5 ] # Chrono is up
 
   # We do not want in any case a modification on those ids
@@ -27,9 +47,7 @@ class Statut < ActiveRecord::Base
   Active = 2
   Bypassed = 5
   Fixed = 6
-
-
-
+  
   # Give possible status for next step of a request
   # It follows scheme on the 08000linux wiki
   # Even recipient can change some status,

@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
@@ -58,8 +76,6 @@ class User < ActiveRecord::Base
       number.gsub!(/(\d\d)/, '\1.').chop!
     elsif number =~ /\d\d(\D\d\d){4}/ #01.40_50f60$70
       number.gsub!(/\D/, ".")
-    else
-      number.gsub(/(\d\d)/, '\1.').chop
     end
     record.phone = number
     # false will invalidate the save
@@ -67,11 +83,10 @@ class User < ActiveRecord::Base
   end
 
   after_save do |record|
-    # To make sure we have only one time a contract
+    # To make sure we have only one time a engineer
     if record.team
-      record.own_contracts = record.own_contracts - record.team.contracts
+      record.own_contracts -= record.team.contracts
     end
-    # false will invalidate the save
     true
   end
 
@@ -158,10 +173,15 @@ class User < ActiveRecord::Base
   # The contracts of a User = his contracts + the contracts of his team
   def contracts
     contracts = self.own_contracts.dup
-    if self.team
-      contracts.concat(self.team.contracts)
-    end
+    contracts.concat(self.team.contracts) if self.team
     contracts
+  end
+
+  def active_contracts
+    options = { :conditions => { :inactive => false } }
+    result = self.own_contracts.find(:all, options)
+    result.concat(self.team.contracts.find(:all, options)) if self.team
+    result
   end
 
   # cached, coz' it's used in scopes

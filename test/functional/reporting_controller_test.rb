@@ -1,31 +1,27 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 require File.dirname(__FILE__) + '/../test_helper'
-require 'reporting_controller'
 
-# Re-raise errors caught by the controller.
-class ReportingController; def rescue_action(e) raise e end; end
+class ReportingControllerTest < ActionController::TestCase
 
-class ReportingControllerTest < Test::Unit::TestCase
   def setup
-    @controller = ReportingController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-
     login 'admin', 'admin'
-  end
-
-  def test_comex
-    get :comex
-    assert_response :success
-    assert_template 'comex'
-  end
-  def test_comex_tableaux
-    get :comex_resultat, {
-      :results => { :week_num => 33 },
-      :clients => ['all'],
-      :reporting => 'Voir le rapport pour cette semaine'
-    }
-    assert_response :success
-    assert_template 'comex_resultat'
   end
 
 =begin
@@ -41,4 +37,5 @@ class ReportingControllerTest < Test::Unit::TestCase
     assert_template 'comex_resultat'
   end
 =end
+
 end

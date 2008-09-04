@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class Team < ActiveRecord::Base
 
   belongs_to :contact, :class_name => 'User',
@@ -9,11 +27,11 @@ class Team < ActiveRecord::Base
       :joins => 'INNER JOIN contracts_teams ct ON ct.team_id=teams.id'}
   }
 
-  has_and_belongs_to_many :contracts
+  has_and_belongs_to_many :contracts, :uniq => true
 
   validates_uniqueness_of :name
   validates_presence_of :name, :contact
-
+  
   # Nice URL
   def to_param
     "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
@@ -23,7 +41,6 @@ class Team < ActiveRecord::Base
     joins = 'INNER JOIN contracts_users cu ON cu.user_id=users.id'
     conditions = [ 'cu.contract_id = ?', contract_id ]
     options = {:find => {:conditions => conditions, :joins => joins}}
-    result = []
     Ingenieur.send(:with_scope, options) do
       Ingenieur.find_select(User::SELECT_OPTIONS)
     end

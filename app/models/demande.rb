@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class Demande < ActiveRecord::Base
   belongs_to :typedemande
   belongs_to :logiciel
@@ -65,8 +83,8 @@ class Demande < ActiveRecord::Base
   end
 
   # self-explanatory
-  TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})"
-  EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})"
+  TERMINEES = "demandes.statut_id IN (#{Statut::CLOSED.join(',')})" unless defined? TERMINEES
+  EN_COURS = "demandes.statut_id IN (#{Statut::OPENED.join(',')})" unless defined? EN_COURS
 
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
@@ -82,6 +100,19 @@ class Demande < ActiveRecord::Base
   def name
     "#{typedemande.name} (#{severite.name}) : #{resume}"
   end
+
+  def contract_id=(new_id)
+    new_contract = Contract.find(new_id)
+    rules_changed = true if !self.new_record? && new_contract.rule_type != self.contract.rule_type
+    # we need to update this attribute before refreshing elapsed cache.
+    write_attribute(:contract_id, new_id)
+    self.contract = new_contract
+    if rules_changed
+      self.commentaires.each { |c| c.update_attribute :elapsed, 0 }
+      self.reset_elapsed
+    end
+  end
+
 
   def full_software_name
     result = ""
@@ -174,15 +205,15 @@ class Demande < ActiveRecord::Base
   # We use finder for overused view mainly (demandes/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
-  SELECT_LIST = 'demandes.*, severites.name as severites_name, ' +
-    'logiciels.name as logiciels_name, clients.name as clients_name, ' +
-    'typedemandes.name as typedemandes_name, statuts.name as statuts_name '
-  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id ' +
-    'INNER JOIN recipients ON recipients.id=demandes.recipient_id '+
-    'INNER JOIN clients ON clients.id = recipients.client_id '+
-    'INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id ' +
-    'INNER JOIN statuts ON statuts.id = demandes.statut_id ' +
-    'LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id '
+  SELECT_LIST = 'demandes.*, severites.name as severites_name,
+    logiciels.name as logiciels_name, clients.name as clients_name,
+    typedemandes.name as typedemandes_name, statuts.name as statuts_name' unless defined? SELECT_LIST
+  JOINS_LIST = 'INNER JOIN severites ON severites.id=demandes.severite_id
+    INNER JOIN recipients ON recipients.id=demandes.recipient_id
+    INNER JOIN clients ON clients.id = recipients.client_id
+    INNER JOIN typedemandes ON typedemandes.id = demandes.typedemande_id
+    INNER JOIN statuts ON statuts.id = demandes.statut_id
+    LEFT OUTER JOIN logiciels ON logiciels.id = demandes.logiciel_id ' unless defined? JOINS_LIST
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
@@ -267,7 +298,7 @@ class Demande < ActiveRecord::Base
   # clearly slows uselessly Tosca.
   def commitment
     return nil unless contract_id && severite_id && typedemande_id
-    self.contract.commitments.find(:first, :conditions => 
+    self.contract.commitments.find(:first, :conditions =>
         {:typedemande_id => self.typedemande_id, :severite_id => self.severite_id})
   end
 

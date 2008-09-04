@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 class AccountController < ApplicationController
   helper :knowledges
@@ -164,7 +182,7 @@ class AccountController < ApplicationController
       redirect_to account_path(@user)
     else
       # Don't write this :  _form and render :action => 'edit'
-      # Else, tosca return an error. It don't find the template
+      # Else, tosca returns an error. It don't find the template
       _form
       render(:action => 'edit')
     end
@@ -252,14 +270,15 @@ private
     set_sessions(user)
     flash[:notice] = (_("Welcome %s %s") %
                       [ user.title, user.name]).gsub(' ', '&nbsp;')
-    
+
     if user.client?
-      user.contracts.each do |c|
+      user.active_contracts.each do |c|
         if (c.end_date - Time.now).between?(0.month, 1.month)
-          flash[:notice] << '<br/><strong>'
-          flash[:notice] << (_('Your contract %s is near its end. (end date : %s)') % 
+          message = '<br/><strong>'
+          message << '</strong>'
+          message << (_("Your contract '%s' is near its end date : %s") %
             [c.name, complete_date(c.end_date)])
-          flash[:notice] << '</strong>'
+          flash[:notice] << message
         end
       end
     end

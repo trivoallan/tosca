@@ -6,7 +6,7 @@
 <% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters', :method => :get})) do %>
 
-<% # used for iteration in ajaxified list %>
+<%# used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
 <div class="menu_title" onclick="Element.toggle('menu_consultation')">

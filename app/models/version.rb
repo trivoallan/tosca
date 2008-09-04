@@ -1,12 +1,28 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class Version < ActiveRecord::Base
-  include Comparable
-
   belongs_to :logiciel
 
   has_many :releases, :dependent => :destroy
   has_many :contributions
 
-  has_and_belongs_to_many :contracts
+  has_and_belongs_to_many :contracts, :uniq => true
 
   validates_presence_of :logiciel, :name
 
@@ -31,18 +47,25 @@ class Version < ActiveRecord::Base
     @name
   end
 
+  def name=(value)
+    new_value = value.gsub(/\.[xX*]/, "")
+    self.generic = true if new_value != value
+    write_attribute(:name, new_value)
+  end
+
+  include Comparable
   def <=>(other)
     return 1 if other.nil? or not other.is_a?(Version)
+    res = self.logiciel <=> other.logiciel
+    return res unless res == 0
 
     #ri Comparable for more info
-    if self.generic? and not other.generic?
-      return 1
-    elsif not self.generic? and other.generic?
-      return -1
-    end
+    res = 1 if self.generic? and not other.generic?
+    res = -1 if not self.generic? and other.generic?
 
     #If both are generic or both are not
-    self.name <=> other.name
+    res = self.name <=> other.name if res == 0
+    res
   end
 
 end

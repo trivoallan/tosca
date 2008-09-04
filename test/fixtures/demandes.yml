@@ -1,4 +1,4 @@
-demande_00001: 
+demande_00001:
   created_on: 2008-01-01 00:00:01 +01:00
   logiciel_id: 1
   updated_on: 2008-01-01 00:00:01 +01:00
@@ -38,13 +38,13 @@ demande_00002:
   socle_id: 17
   mail_cc: ""
   first_comment_id: 2
-  contribution_id: 2 
+  contribution_id: 2
 
 demande_00004:
   created_on: 2008-04-16 16:55:46
   logiciel_id: 2
   updated_on: 2008-05-13 12:21:27
-  mantis_id: 
+  mantis_id:
   last_comment_id: 7976
   ingenieur_id: 2
   id: 4
@@ -53,20 +53,20 @@ demande_00004:
   severite_id: 2
   resume: "Pb question et t\xC3\xA9l\xC3\xA9chargement"
   recipient_id: 4
-  contract_id: 26
+  contract_id: 2
   statut_id: 3
-  mail_cc: 
+  mail_cc:
   socle_id: 2
   typedemande_id: 2
   first_comment_id: 7572
-  contribution_id: 
+  contribution_id:
   recipient_id: 2
 
 demande_00005:
   created_on: 2007-12-04 08:49:26
   logiciel_id: 2
   updated_on: 2008-05-07 15:02:43
-  mantis_id: 
+  mantis_id:
   last_comment_id: 7943
   ingenieur_id: 1
   id: 5
@@ -77,17 +77,17 @@ demande_00005:
   recipient_id: 1
   contract_id: 40
   statut_id: 3
-  mail_cc: 
+  mail_cc:
   socle_id: 2
   typedemande_id: 2
   first_comment_id: 4739
-  contribution_id: 
+  contribution_id:
 
 demande_00006:
   created_on: 2008-02-18 10:26:04
   logiciel_id: 3
   updated_on: 2008-04-07 20:32:32
-  mantis_id: 
+  mantis_id:
   last_comment_id: 7360
   ingenieur_id: 2
   id: 6
@@ -98,17 +98,17 @@ demande_00006:
   recipient_id: 2
   contract_id: 40
   statut_id: 3
-  mail_cc: 
+  mail_cc:
   socle_id: 2
   typedemande_id: 2
   first_comment_id: 6406
-  contribution_id: 
+  contribution_id:
 
 demande_00007:
   created_on: 2008-04-23 16:37:53
   logiciel_id: 150
   updated_on: 2008-04-29 16:47:35
-  mantis_id: 
+  mantis_id:
   last_comment_id: 7834
   ingenieur_id: 3
   id: "7"

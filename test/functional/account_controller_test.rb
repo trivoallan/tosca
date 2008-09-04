@@ -1,10 +1,26 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 require File.dirname(__FILE__) + '/../test_helper'
 
 # Each Controller Test should test all _public_ methods
 class AccountControllerTest < ActionController::TestCase
-  fixtures :users, :roles, :permissions_roles, :permissions, :clients,
-    :contracts_users, :contracts, :images, :recipients, :credits,
-    :components, :clients, :ingenieurs
+  fixtures :all
 
   def test_login_and_logout
     %w(admin manager expert customer viewer).each { |l|
@@ -129,9 +145,8 @@ class AccountControllerTest < ActionController::TestCase
   def test_lemon
     login 'admin', 'admin'
     get :lemon
-    assert_response :success
+    assert_response :redirect
   end
-
 
   def test_become
     %w(admin manager expert).each { |l|
@@ -155,7 +170,6 @@ class AccountControllerTest < ActionController::TestCase
     test.call(:client => 'false')
     assert_not_nil assigns(:user_engineer)
   end
-
 
   def test_ajax_contracts
     login 'manager', 'manager'

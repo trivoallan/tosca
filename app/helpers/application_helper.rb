@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 # Methods added to this helper will be available to all templates
 # in the application. Don't ever add a method to this one without a really good
 # reason. Anyway, this is a big helper, so find by keyword :
@@ -12,7 +30,6 @@ module ApplicationHelper
   include FormsHelper
   include LinksHelper
   include ImagesHelper
-  include FilesHelper
   include DatesHelper
 
   ### TEXT #####################################################################
@@ -278,20 +295,20 @@ module ApplicationHelper
   ### INFORMATIONS #########################################################
 
   def show_notice
-      "<div id=\"information_notice\" class=\"information notice\">
-         <div class=\"close_information\" onclick=\"Element.hide('information_notice')\">" <<
-         StaticImage::hide_notice << "</div>
-         <p>" << flash[:notice] << "</p>
-       </div>"
+    @@notice ||= %Q{<div id="information_notice" class="information notice">
+       <div class="close_information">#{delete_button('information_notice')}</div>
+       <script type="text/javascript">
+          setTimeout(function() { new Effect.Fade("information_notice",{duration:1});
+                                }, 3000);
+       </script>}
+    @@notice.dup << "<p>" << flash[:notice] << "</p></div>"
   end
 
   def show_warn
-      "<div id=\"information_error\" class=\"information error\">
-         <div class=\"close_information\" onclick=\"Element.hide('information_error')\">" <<
-         StaticImage::hide_notice << "</div>
-         <h2>" + _('An error has occured') + "</h2>
-         <ul><li>" << flash[:warn] << "</li></ul>
-       </div>"
+    @@warn ||= %Q{<div id="information_error" class="information error">
+       <div class="close_information">#{delete_button('information_error')}</div>}
+    @@warn.dup << "<h2>" + _('An error has occured') + "</h2>
+       <ul><li>" << flash[:warn] << "</li></ul></div>"
   end
 
 end

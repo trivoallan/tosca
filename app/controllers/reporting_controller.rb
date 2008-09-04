@@ -1,28 +1,46 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class ReportingController < ApplicationController
   helper :demandes, :export
   include WeeklyReporting
   include DigestReporting
 
-  # Les couleurs par défauts sont dans l'ordre alphabétique des severités :
-  # ( bloquante, majeure, mineure, sans objet )
-  # TODO : faire un hash @@couleurs{} contenant les tableaux
+  # Default colors are distributed by alphabetical order of severity
+  # ( blocking, major, minor, none )
+  # TODO : implement a better solution, with a hash ?
   colors =  [
-  # clair,    foncé,    #couleur
-    "#dd0000", "#ff2222", #rouge
-    "#dd8242", "#ffa464", #orange
-    "#dddd00", "#ffff22", #jaune
-    "#84dd00", "#a6ff22", #vert
-    "#0082dd", "#22a4ff", #bleu
+    # dark,    # light,   # colour
+    "#ff2222", "#dd0000", # red
+    "#ffa464", "#dd8242", # orange
+    "#ffff22", "#dddd00", # yellow
+    "#a6ff22", "#84dd00", # green
+    "#22a4ff", "#0082dd", # blue
   ]
-  # les index de tableau commencent à 0
+  # Array starts at 0, but Gruff need a start at 1
   @@couleurs_degradees = ( [nil] << colors ).flatten
   @@couleurs = ( [nil] << colors.values_at(1, 3, 5, 7, 9) ).flatten
-  # on modifie ensuite pour les autres type de données :
+  # Subset for specific graphs
   @@couleurs_delais = ( [nil] << colors.values_at(7, 1) ).flatten
   @@couleurs_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
   @@couleurs_types_degradees = ( [nil] << colors.values_at(2, 3, 6, 7, 8, 9) ).flatten
 
-  # utilisé avant l'affichage
+  # allows to launch activity report
   def configuration
     _titles()
     @contracts = (@recipient ? @recipient.client.contracts :
@@ -114,9 +132,10 @@ class ReportingController < ApplicationController
     @contract = Contract.find(params[:reporting][:contract_id].to_i)
     @data, @path, @report, @colors = {}, {}, {}, {}
     @titles = @@titles
-    @report[:start_date] = [@contract.start_date.beginning_of_month, Time.now].min
-    @report[:end_date] = [calendar2time(params[:end_date]),
-    @contract.end_date.beginning_of_month].min
+    @report[:start_date] = [ @contract.start_date.beginning_of_month,
+                             Time.now ].min
+    @report[:end_date] = [ calendar2time(params[:end_date]),
+                           @contract.end_date.beginning_of_month].min
     @first_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
@@ -130,15 +149,11 @@ class ReportingController < ApplicationController
       @labels[i] = c if ((i % 2) == 0)
       i += 1
     end
-    if period == 1
-      middle_date = end_date.beginning_of_month
-    else
-      middle_date = end_date.months_ago(period - 1)
-    end
+    middle_date = end_date.months_ago(period)
     start_date = @report[:start_date]
     if (middle_date > start_date and middle_date < end_date)
       @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
-      @report[:middle_report] = compute_nb_month(@report[:middle_date], end_date)
+      @report[:middle_report] = period
       @report[:total_report] = compute_nb_month(start_date, end_date)
     else
       flash.now[:warn] = _('incorrect parameters')
@@ -215,9 +230,8 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     end_date = @report[:end_date]
 
-    liste = @contract.client.recipients.collect{|b| b.id} # .join(',')
-    demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.recipient_id IN (?)',
-                 nil, nil, liste ]
+    demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.contract_id = ?',
+                 nil, nil, @contract.id ]
     until (start_date > end_date) do
       infdate = "#{start_date.strftime('%y-%m')}-01"
       start_date = start_date.advance(:months => 1)
@@ -253,7 +267,7 @@ class ReportingController < ApplicationController
   ##
   # Calcul un tableaux du respect des délais
   # pour les 3 étapes : prise en compte, contournée, corrigée
-  def compute_temps(donnees)
+  def compute_temps(data)
     demandes = Demande.find(:all)
     rappels = donnees[:callback_time]
     workarounds = donnees[:workaround_time]
@@ -265,21 +279,22 @@ class ReportingController < ApplicationController
       corrections[i].push 0.0
     }
 
+    size = 0
     demandes.each do |d|
-      e = d.commitment
+      c = d.commitment
       interval = d.contract.interval.hours
-      next unless e
+      next unless c
 
       elapsed = d.elapsed
       fill_one_report(rappels, elapsed.taken_into_account,
                       1.hour, last_index)
       fill_one_report(workarounds, elapsed.workaround,
-                      e.workaround * interval, last_index)
+                      c.workaround * interval, last_index)
       fill_one_report(corrections, elapsed.correction,
-                      e.correction * interval, last_index)
+                      c.correction * interval, last_index)
+      size += 1
     end
 
-    size = demandes.size
     if size > 0
       size = size.to_f
       2.times {|i|

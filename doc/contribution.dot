@@ -1,0 +1,32 @@
+digraph contribution {
+
+//rotate=90;
+
+
+Request -> Recipient [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
+Request -> Release [arrowhead=odot,dir=both,arrowtail=crow]
+Request -> Version [arrowhead=odot,dir=both,arrowtail=crow]
+Request -> Software [arrowhead=odot,dir=both,arrowtail=crow]
+
+
+Version -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+Version -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
+
+Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
+
+
+Urlreversement -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
+
+Contribution -> Etatreversement [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Typecontribution [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Version [arrowhead=dot,arrowtail=crow,dir=both]
+Contribution -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
+
+
+
+}

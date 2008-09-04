@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class DemandesController < ApplicationController
   helper :filters, :contributions, :logiciels, :phonecalls,
     :socles, :commentaires, :account, :reporting
@@ -15,16 +33,6 @@ class DemandesController < ApplicationController
     conditions.first << 'demandes.statut_id IN (?)'
     conditions << Statut::OPENED
     conditions.first << '(demandes.expected_on < NOW() OR demandes.expected_on IS NULL)'
-
-    # find request where :
-    # 1. Engineer : When SLA is running Or SLA is suspended  and ( a question from the recipient is not answered OR he just has been assigned )
-    # 2. Recipient : When a question from the engineer is not answered
-    if @ingenieur # 3 == Suspendue
-      conditions.first << ('(demandes.statut_id <> 3 OR (demandes.statut_id = 3 AND ' +
-               '(commentaires.user_id = recipients.user_id OR commentaires.ingenieur_id IS NOT NULL) ) )' )
-    else
-      conditions.first << '(demandes.statut_id = 3 AND commentaires.user_id <> recipients.user_id)'
-    end
 
     if @ingenieur
       conditions.first << 'demandes.ingenieur_id IN (?)'
@@ -150,7 +158,7 @@ class DemandesController < ApplicationController
     if @demande.save
       options = { :conditions => [ 'demandes.submitter_id = ?', user.id ]}
       flash[:notice] = _("You have successfully submitted your %s request.") %
-        Demande.count(options).ordinalize
+        _ordinalize(Demande.count(options))
       @demande.first_comment.add_attachment(params)
       @comment = @demande.first_comment
       # needed in order to send properly the email
@@ -216,7 +224,7 @@ class DemandesController < ApplicationController
   def show
     @demande = Demande.find(params[:id], :include => [:first_comment]) unless @demande
     @page_title = @demande.resume
-    @partial_for_summary = 'infos_demande'
+    @partial_for_summary = 'infos_request'
     unless read_fragment "requests/#{@demande.id}/front-#{session[:user].role_id}"
       @commentaire = Commentaire.new(:elapsed => 1, :demande => @demande)
       @commentaire.corps = flash[:old_body] if flash.has_key? :old_body

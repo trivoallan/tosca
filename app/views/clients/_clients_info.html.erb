@@ -5,17 +5,17 @@
 
 <% form_remote_tag( options.dup.update(:html => {
     :id => 'filters', :name => 'filters'})) do %>
- <% # used for iteration in ajaxified list %>
+ <%# used for iteration in ajaxified list %>
  <%= hidden_field_tag 'page', '1' %>
  <%# used_by remote_link_to_clients %>
  <input id="filters_active" name="filters[active]" type="hidden" value="0" />
 
-
- <div class="menu_title" onclick="Element.toggle('menu_action')">
- > <%= _('Action') %></div>
- <ul class="menu" id="menu_action">
-  <li><%= link_to _('Create a new client'), new_client_path %></li>
- </ul>
+  <div class="menu_title" onclick="Element.toggle('menu_action')">
+    > <%= _('Action') %>
+  </div>
+  <ul class="menu" id="menu_action">
+    <li><%= link_to _('Create a new client'), new_client_path %></li>
+  </ul>
 
  <div class="menu_title" onclick="Element.toggle('menu_consultation')">
  > <%= _('Consultation') %></div>

@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class LoadPermissions < ActiveRecord::Migration
   class Role < ActiveRecord::Base
     has_and_belongs_to_many :permissions
@@ -70,12 +88,13 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^commitments/(?!destroy)', 'Manage Service Level Agreement' ],
                [ '^groupes/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
-               [ '^ingenieurs/(?!(destroy|new))',
-                 'List knowledges of human ressources' ],
+               [ '^ingenieurs/(?!(destroy|new))', 'Manage human ressources' ],
                [ '^logiciels/(?!destroy)', 'Manage software' ],
                [ '^machines/(?!destroy)', 'Manage servers' ],
                [ '^releases/(?!destroy)', 'Manage releases' ],
-               [ '^teams/(?!destroy)', 'Manage teams' ]
+               [ '^teams/(?!destroy)', 'Manage teams' ],
+               [ '^releases/(?!destroy)', 'Manage release' ],
+               [ '^versions/(?!destroy)', 'Manage version' ]
              ]
     add_permission.call(roles, access)
 
@@ -86,8 +105,10 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^logiciels/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
                [ '^socles/show$', 'Read-only access to system' ],
-               [ '^teams/(index|show)$', 'Read-only access to the teams' ],
-               [ '^tags/(index|show|create|new)$', 'Read-only access to the tags' ]
+               [ '^teams/(index|show)$', 'Read-only access to teams' ],
+               [ '^releases/(index|show)$', 'Read-only access to versions' ],
+               [ '^tags/(index|show|create|new)$', 'Read-only access to the tags' ],
+               [ '^versions/(index|show)$', 'Read-only access to versions' ]
              ]
     add_permission.call(roles, access)
 

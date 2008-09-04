@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class Commentaire < ActiveRecord::Base
   belongs_to :demande
   belongs_to :user
@@ -23,15 +41,15 @@ class Commentaire < ActiveRecord::Base
     if (record.statut_id && record.prive)
       record.errors.add_to_base _('You cannot privately change the status')
     end
-
+  end
+  
+  before_validation do |record|
+    if not Statut::NEED_COMMENT.include? record.statut_id and html2text(record.corps).strip.empty?
+      record.corps = _("The request is now %s.") % record.statut
+    end
   end
 
-
-  # On détruit l'éventuelle pièce jointe
-  # le belongs_to ne permet pas d'appeler :dependent :'(
-
-  # permet de récuperer l'état du commentaire en texte
-  # le booléen correspondant est :  prive = true || false
+  # State in words of the comment (private or public)
   def etat
     ( prive ? _("private") : _("public") )
   end
@@ -135,7 +153,5 @@ class Commentaire < ActiveRecord::Base
 
     request.save
   end
-
-
 
 end

@@ -3,7 +3,7 @@
 
 <table class="topbox">
  <tr>
-  <td style="width: 36em;"> <% # Left pane %>
+  <td style="width: 36em;"> <%# Left pane %>
    <table class="show">
     <tr>
      <td style="vertical-align: middle"><b><%= _('Client') %></b></td>
@@ -39,8 +39,8 @@
      <td><%= complete_date(@contract.start_date) %></td>
     </tr>
     <tr>
-	 <td><b><%= _('End') %></b></td>
-     <td><%= complete_date(@contract.end_date) %></td>
+      <td><b><%= _('End') %></b></td>
+      <td><%= complete_date(@contract.end_date) %></td>
     </tr>
     <tr>
      <td colspan="2">
@@ -67,7 +67,7 @@
      </td>
     </tr>
    </table>
-  </td><td> <% # Right pane %>
+  </td><td> <%# Right pane %>
    <table class="show">
     <tr>
      <td style="width: 36em;">
@@ -101,7 +101,7 @@
 <% elsif false %>
   <p><b><%= _('Number of tickets') %> : </b><%= @contract.tickets_total %></p>
   <p><b><%= _('Number of used tickets') %> : </b><%= @contract.tickets_consommes %></p>
-                                          <% #We specify the plural for internationnalisation %>
+                                          <%#We specify the plural for internationnalisation %>
   <p><b><%= _('Time per ticket') %> : </b><%= pluralize(@contract.ticket_temps, _("minute"), _("minutes")) %></p>
 
   <br/><h1><b><%= _("Error, wrong type of contract") %></b></h1>

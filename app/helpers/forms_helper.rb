@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 # This module contains all the stuff related to forms.
 module FormsHelper
 
@@ -127,72 +145,69 @@ module FormsHelper
   end
   alias_method :search_demande, :search_demande_field
 
+  # Create the original auto_complete field 
   def auto_complete(object, method, tag_options = {}, completion_options = {})
     completion_options[:skip_style] = true
     text_field_with_auto_complete(object, method, tag_options)
   end
 
+  # Create the auto_complete field wich insert the choice after click to the table.
   def auto_complete_list(object, method, objectcollection, name, tag_options = {}, completion_options = {})
-    @object = object
-    @method = method
     @name =  name
     out = "<table>"
     out << "<tr><td cilspan=\"2\">"
     tag_options[:value]= _("Search") + "..."
     tag_options[:onfocus] = "$('#{object}_#{method}').value = \"\" "
-    #tag_options[:onblur] = "if ($('#{object}_#{method}').value ==\"\") { $('#{object}_#{method}').value = \"#{_("Search")}\"}"
     tag_options[:onblur] = "$('#{object}_#{method}').value = \"#{_("Search") + "..."}\""
     completion_options[:skip_style] = true
-    completion_options[:indicator] = "spinner_#{@object}_#{@method}"
+    completion_options[:indicator] = "spinner_#{object}_#{method}"
     out << "<label>" << _("Add")<< " "<< _(object.to_s) << "</label>"
     out << "</td></tr><tr><td>"
     out << text_field_with_auto_complete(object, method, tag_options, completion_options)
-    out << "</td><td width=\"20\">#{image_tag("spinner.gif", :id => "spinner_#{@object}_#{@method}",:style=> "display: none;")}</td></tr>"
+    field = "#{object}_#{method}"
+    @field = field
+    spinner = image_tag("spinner.gif", :id => "spinner_#{field}",:style=> "display: none;")
+    out << %Q{</td><td width="20">#{spinner}</td></tr>}
     out << "</table>"
     out << "<ul>"
     objectcollection.each do |c|
-      @content = c.name
       @value = c.id
-      @html_id = "li_#{@object}_#{@method}_#{@value}"
-      @button = delete_button @html_id
+      @html_id = "li_#{@field}_#{@value}"
+      @content = "#{c.name} #{delete_button(@html_id)}"
       out << "#{render :partial => 'applications/auto_complete_insert'}"
     end
     # We need an empty one, which is used to insert
     @content = ""
     @value = ""
-    @button = ""
-    @html_id = "li_#{@object}_#{@method}_"
+    @html_id = "li_#{@field}_"
     @new_record = true
     out << "#{render :partial => 'applications/auto_complete_insert'}"
     out << "</ul>"
   end
 
+  # Create the choice list for auto_compete
   def auto_complete_choice( object, method, collection, name , options={})
     return '' if collection.nil? || collection.empty?
-    @object = object
-    @method = method
+    @field = "#{object}_#{method}"
     @name = name
     content_tag(:ul, collection.map do |c|
       @value = c.id
-      @content = c.name
-      @html_id = "li_#{@object}_#{@method}_#{@value}"
-      @html_id_empty = "li_#{@object}_#{@method}_"
-      @button = delete_button @html_id
+      @html_id = "li_#{@field}_#{@value}"
+      @content = "#{c.name} #{delete_button(@html_id)}"
+      html_id_empty = "li_#{@field}_"
       @new_record = true
-      out = link_to_function(c.name, "if ($('#{@html_id}')==null){" << update_page { |page|
-          page.insert_html :before, @html_id_empty, :partial => 'applications/auto_complete_insert'
+      js_call = "if ($('#{@html_id}')==null){" << update_page do |page|
+          page.insert_html :before, html_id_empty, :partial => 'applications/auto_complete_insert'
           page.visual_effect(:appear, @html_id)
-        } << "}"<< update_page { |page| page.delay(0.001) { page["#{object}_#{method}"].value = "" }}, :class => :no_hover)
+        end << "} tosca_reset(\"#{@field}\")"
+      out = link_to_function(c.name, js_call, :class => :no_hover)
       content_tag(:li, out)
     end )
   end
 
+  # Apply a fade effect and delete the html element
   def delete_button(id)
-    link_to_function(StaticImage::delete, :class => :no_hover ) { |page|
-      page.visual_effect :fade, id.to_s, :duration => 0.5
-      #We wait for the nice effect to finish
-      page.delay(0.5) { page.remove id }
-    }
+    link_to_function(StaticImage::delete, %Q{tosca_remove("#{id}")}, :class => :no_hover)
   end
 
 end

@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 # For a smaller stack trace in dev
 require 'image'
 require 'demande'
@@ -29,7 +47,9 @@ class LogicielsController < ApplicationController
     if software_filters
       # we do not want an include since it's only for filtering.
       unless software_filters['contract_id'].blank?
-        options[:joins] = 'INNER JOIN versions ON versions.logiciel_id=logiciels.id'
+        options[:joins] =
+          'INNER JOIN versions ON versions.logiciel_id=logiciels.id ' +
+          'INNER JOIN contracts_versions cv ON cv.version_id=versions.id'
       end
 
       # Specification of a filter f :
@@ -39,7 +59,7 @@ class LogicielsController < ApplicationController
         [:software, 'logiciels.name', :like ],
         [:description, 'logiciels.description', :like ],
         [:groupe_id, 'logiciels.groupe_id', :equal ],
-        [:contract_id, ' versions.contract_id', :in ]
+        [:contract_id, ' cv.contract_id', :in ]
       ])
       @filters = software_filters
     end

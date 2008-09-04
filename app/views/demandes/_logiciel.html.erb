@@ -2,7 +2,7 @@
   <% if @logiciels.size > 1 %>
     <%= select_empty(:demande, :logiciel_id, @logiciels) %>
   <% elsif @logiciels.size == 1 %>
-    <% #We have a collect [logiciel.name, logiciel.id ] %>
+    <%# We have a collect [logiciel.name, logiciel.id ] %>
     <%= @logiciels.first.first %>
     <%= hidden_field(:demande, :logiciel_id, :value => @logiciels.first.last) %>
   <% end %>
@@ -10,5 +10,5 @@
   <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
       "Form.serializeElements($('demande_logiciel_id','demande_contract_id'))",
       :url => ajax_display_version_demandes_path) %>
-  <%= observe_field "demande_logiciel_id", options %>
+  <%= observe_field "demande_logiciel_id", options unless @logiciels.empty? %>
 </div>

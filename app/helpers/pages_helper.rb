@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 module PagesHelper
   # add_create_link
@@ -124,13 +142,31 @@ module PagesHelper
   #Call it like this : toggle("my_id")
   #You just need a html element with an id="my_id"
   def toggle(id)
-    images = image_tag("next_page.png", :id => "plus_#{id}") + image_tag("next_task.png", :id => "moins_#{id}", :style => "display: none")
+    images = image_tag("navigation_expand.gif", :id => "show_#{id}") + image_tag("navigation_hide.gif", :id => "hide_#{id}", :style => "display: none")
     link_to_function(images, nil, :class => "no_hover") do |page|
-      page[:"moins_#{id}"].toggle
-      page[:"plus_#{id}"].toggle
-      #page[:"#{id}"].visual_effect :blind_down
+      page[:"hide_#{id}"].toggle
+      page[:"show_#{id}"].toggle
       page[:"#{id}"].toggle
     end
+  end
+  
+  def div_toogle(value, id, options = {})
+    options[:onclick] = update_page do |page|
+      page[:"hide_#{id}"].toggle
+      page[:"show_#{id}"].toggle
+      page.visual_effect :toggle_blind, id, :duration => 0.5
+    end
+    
+    style_hide, style_show = "", ""
+    style_hide = "display: none" unless options.has_key?(:hide)
+    style_show = "display: none" if options[:hide] 
+    options.delete(:hide)
+    
+    result = tag('div', options, true)
+    result << image_tag("navigation_hide.gif", :id => "show_#{id}", :style => style_show)
+    result << image_tag("navigation_expand.gif", :id => "hide_#{id}", :style => style_hide)
+    result << "&nbsp;#{value}"
+    result << '</div>'
   end
 
   private
@@ -140,12 +176,11 @@ module PagesHelper
     html_options = {:title => title }
     if ajax_call
       page = "document.forms['filters'].page.value=#{page.number}; #{ajax_call}"
-      link = link_to_function(image, page, html_options)
+      link_to_function(image, page, html_options)
     else
       page = { :page => page }
-      link = public_link_to(image, page, html_options)
+      public_link_to(image, page, html_options)
     end
   end
-
-
+  
 end

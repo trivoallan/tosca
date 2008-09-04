@@ -1,3 +1,21 @@
+#
+# Copyright (c) 2006-2008 Linagora
+#
+# This file is part of Tosca
+#
+# Tosca is free software, you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# Tosca is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 class Logiciel < ActiveRecord::Base
   acts_as_taggable
 
@@ -13,7 +31,7 @@ class Logiciel < ActiveRecord::Base
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
 
-  has_and_belongs_to_many :competences
+  has_and_belongs_to_many :competences, :uniq => true
 
   validates_presence_of :name, :message =>
     _('You have to specify a name')
@@ -65,6 +83,11 @@ class Logiciel < ActiveRecord::Base
       end
     end
     result
+  end
+
+  include Comparable
+  def <=>(other)
+    self.name <=> other.name
   end
 
 end
