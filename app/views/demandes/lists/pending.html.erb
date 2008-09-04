@@ -20,10 +20,12 @@
              :locals => { :requests => @own_requests } %>
 <% end %>
 
-<h1><%= (@team_requests.empty? ? _('My team has not any pending request') :
+<% unless @own_requests.empty? && @team_requests.empty? %>
+ <h1><%= (@team_requests.empty? ? _('My team has not any pending request') :
          n_("My team has %d pending request", "My team has %d pending requests", @team_requests.size) % @team_requests.size) %></h1>
 
-<% unless @team_requests.empty? %>
+ <% unless @team_requests.empty? %>
   <%= render :partial => 'demandes/lists/pending_table',
              :locals => { :requests => @team_requests } %>
+ <% end %>
 <% end %>

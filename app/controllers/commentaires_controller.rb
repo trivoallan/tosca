@@ -41,23 +41,27 @@ class CommentairesController < ApplicationController
     user = session[:user]
     request = Demande.find(id)
 
+    # firewall ;)
     return render(:nothing => true) unless user && request
 
-    changed = {}
     # check on attributes change
+    # Find a way to put it in the model despite the access from request view
+    changed = {}
     %w{statut_id ingenieur_id severite_id}.each do |attr|
       changed[attr] = true unless commentaire[attr].blank?
     end
-    
     if (changed[:statut_id] or changed[:severite_id]) and params[:commentaire][:prive]
       params[:commentaire][:prive] = false
       flash[:warn] = _("A comment can not be private if there is a change in<br/>
         the <b>status</b> or in the <b>severity</b>")
     end
-    
-    @comment = Commentaire.new(commentaire)
-    @comment.demande, @comment.user = request, user
-    @comment.add_attachment(params)
+
+    @comment = Commentaire.new(commentaire) do |c|
+      c.demande, c.user = request, user
+      c.add_attachment(params)
+    end
+
+    request.update_attribute :expected_on, Time.now if user.client?
 
     #We verify and send an email
     if @comment.save

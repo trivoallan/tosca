@@ -22,7 +22,7 @@
   <td><%= hidden_field_tag "#{random_field}[logiciel_id]", @logiciel.id %><%= @logiciel %></td>
   <% if new_record %>
     <td><%= text_field_tag("#{random_field}[name]") %></td>
-    <td><%= check_box_tag("#{random_field}[generic]") %><td>
+    <td><%= check_box_tag("#{random_field}[generic]") %></td>
   <% else %>
     <td><%= @version.name %><%= hidden_field_tag "#{random_field}[name]", @version.read_attribute(:name) %></td>
     <td><%= @version.generic? ? _('Yes') : _('No') %><%= hidden_field_tag "#{random_field}[generic]", @version.generic %></td>
@@ -32,5 +32,3 @@
    <%= delete_button @random_id if new_record || session[:user].role_id == 1 %>
   </td>
 </tr>
-
-
