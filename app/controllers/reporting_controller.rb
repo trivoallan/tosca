@@ -269,9 +269,9 @@ class ReportingController < ApplicationController
   # pour les 3 étapes : prise en compte, contournée, corrigée
   def compute_temps(data)
     demandes = Demande.find(:all)
-    rappels = donnees[:callback_time]
-    workarounds = donnees[:workaround_time]
-    corrections = donnees[:correction_time]
+    rappels = data[:callback_time]
+    workarounds = data[:workaround_time]
+    corrections = data[:correction_time]
     last_index = rappels[0].size
     2.times {|i|
       rappels[i].push 0.0
