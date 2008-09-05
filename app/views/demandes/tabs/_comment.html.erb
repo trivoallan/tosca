@@ -16,7 +16,6 @@
 
       <% display_edit = (@ingenieur or (user and @recipient.user_id == user.id)) ? true : false %>
       <%= link_to(StaticImage::edit, edit_commentaire_path(comment), edit_ho) if display_edit %>&nbsp;
-      <%= comment.created_on.strftime("%H:%M") %>
       <% if @ingenieur %>
         <%= link_to(StaticImage::delete, commentaire_path(comment), delete_ho) %>&nbsp;
       <% end %>
@@ -26,6 +25,7 @@
     </td>
     <td style="vertical-align: middle;">
       <%= pretty_date(comment.created_on) %>
+      &nbsp;<small><%= comment.created_on.strftime("%H:%M") %></small>
    </td>
   </tr>
 </table>
