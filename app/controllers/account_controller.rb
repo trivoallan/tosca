@@ -271,15 +271,13 @@ private
     flash[:notice] = (_("Welcome %s %s") %
                       [ user.title, user.name]).gsub(' ', '&nbsp;')
 
-    if user.client?
-      user.active_contracts.each do |c|
-        if (c.end_date - Time.now).between?(0.month, 1.month)
-          message = '<br/><strong>'
-          message << '</strong>'
-          message << (_("Your contract '%s' is near its end date : %s") %
-            [c.name, complete_date(c.end_date)])
-          flash[:notice] << message
-        end
+    user.active_contracts.each do |c|
+      if (c.end_date - Time.now).between?(0.month, 1.month)
+        message = '<br/><strong>'
+        message << '</strong>'
+        message << (_("Your contract '%s' is near its end date : %s") %
+            [c.name, c.end_date_formatted])
+        flash[:notice] << message
       end
     end
   end
