@@ -180,6 +180,8 @@ class User < ActiveRecord::Base
   def active_contracts
     options = { :conditions => { :inactive => false } }
     result = self.own_contracts.find(:all, options)
+    # options are modified within a relationship finder, so we need to reset it
+    options = { :conditions => { :inactive => false } }
     result.concat(self.team.contracts.find(:all, options)) if self.team
     result
   end

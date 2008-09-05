@@ -48,7 +48,8 @@ class DemandesController < ApplicationController
 
     # Update last condition to the whole team
     if @ingenieur
-      conditions[-1] = session[:user].team.engineers_id
+      team = session[:user].team
+      conditions[-1] = (team ? team.engineers_id : [])
     elsif @recipient
       conditions[-1] = @recipient.client.recipient_ids
     end
