@@ -43,7 +43,14 @@ page_cache_path = File.join RAILS_ROOT, 'public', 'cache'
 
 # Used to have extension
 # See http://github.com/pivotal/desert/tree/master for more info
-require 'desert'
+begin
+  require 'desert'
+rescue
+  # It cannot be loaded in config.gem, so we need this hack for freezed version
+  desert_path = File.join(RAILS_ROOT, 'vendor', 'gems', 'desert-0.2.1', 'lib')
+  $LOAD_PATH.unshift desert_path
+  require 'desert'
+end
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
