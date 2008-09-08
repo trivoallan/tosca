@@ -40,3 +40,11 @@ a:hover {
   border-bottom: none;
   color: #eee;
 }
+
+.menu_title {
+  border-top: 1px solid #ffffff; 
+  border-bottom: 1px solid #999999;
+  background-color: #dddddd; 
+  font-weight: bold;
+  cursor: pointer;
+}

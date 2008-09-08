@@ -241,7 +241,7 @@ module DemandesHelper
   # TODO : this implementation can be improved a LOT
   def help_on_status
     @@help_on_status ||= '<a href="http://www.08000linux.com/wiki/index.php/%C3%89tats_demande"' <<
-       'target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
       image_tag("question_mark.gif") <<
     '</a>'
   end
@@ -252,7 +252,7 @@ module DemandesHelper
   # TODO : this implementation can be improved a LOT
   def help_on_severity
     @@help_on_severity ||= '<a href="http://www.08000linux.com/wiki/index.php/Severite_demande"' <<
-       'target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
       image_tag("question_mark.gif") <<
     '</a>'
   end

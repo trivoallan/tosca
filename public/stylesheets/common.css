@@ -735,21 +735,6 @@ option.severite_6 {
 	border-bottom: 1px solid #990066;
 	width: 100%;
 }
-.menu_title {
-	border-top: 1px solid #ffffff;
-	border-bottom: 1px solid #999999;
-	width: 100%;
-	background-color: #dddddd;
-	font-weight: bold;
-	cursor: pointer;
-	cursor: hand;
-}
-ul.menu li {
-	color: black;
-	list-style-image: url(../images/puce.png);
-	margin-left: -1.5em;
-	margin-bottom: -2px;
-}
 
 /******************** reporting *******************/
 
