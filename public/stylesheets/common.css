@@ -1,10 +1,3 @@
-/**
- * Copyright Linagora SA 2007 - Tous droits réservés.
- * common.css
- */
-
-/****************** balise html classiques ************/
-
 /* No hover for link with image */
 .no_hover:hover { background: none; }
 
@@ -27,7 +20,6 @@ fieldset legend { font-weight: bold; }
 
 span.right { float: right; }
 span.left {	float: left; }
-.spacer { clear: both; }
 
 input { -moz-border-radius: .5em .5em .5em .5em; }
 input:focus { background-color: #ffffcc; }
