@@ -228,15 +228,13 @@ module ApplicationHelper
   def build_simple_menu(menu, options={})
     return unless menu.is_a? Array
     menu.compact!
-    class_name = options[:class] ||= 'simple_menu'
     out = ''
-    out << '<div class="'+ class_name +'">'
     out << form_tag(demandes_path || '', :method => :get) if options.has_key? :form
     out << ' <ul>'
     menu.each { |e| out << "<li>#{e}</li>" }
     out << ' </ul>'
     out << '</form>' if options[:form]
-    out << '</div>'
+    #            <li id="current"><a href="#">Button 1</a></li>
   end
 
   # Build a menu from a hash of 2 arrays : titles and links

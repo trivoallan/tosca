@@ -3,109 +3,11 @@
  * common.css
  */
 
-body {
-	margin: 0;
-	padding: 0;
-	color: #000;
-	background-color: #eaeafa;
-	font-size: 1em;
-    /* keep DRY : one font-family for all */
-	font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
-  	font-size:   12px;
-  	line-height: 18px;
-}
-
-/****************** structure/ layout ****************/
-
-#header {
-	vertical-align: middle;
-	width: 100%;
-	background-color: #e2efe2;
-	border-bottom: 1px solid #dddddd;
-	height: 2.2em;
-	z-index: 1;
-}
-#header table{
-	vertical-align: middle;
-	width:100%;
-	height:100%;
-}
-
-#content_table{
-	width: 100%;
-	border-collapse: collapse;
-	text-align: left;
-	height: 85%;
-}
-#bodycontent {
-	margin: 0;
-	padding: 2em;
-	/* keep some space for positionned-fixed footer */
-	padding-bottom: 5em;
-	/* use min-height < 50em for small screen */
-	height: 84%;
-	min-height: 50em;
-}
-#footer {
-	position: fixed; /* IE ignore it  */
-	/*position: relative;*/
-	color: black;
-	background-color: #e2efe2; /*background-color: #EEEEEE; /*#e2efe2;*/
-	width: 100%;
-	text-align: center;
-	bottom: 0;
-	border-top: 1px solid #dddddd; /*#cfc8cf;*/
-	z-index: 1;
-}
-#footer table {
-	width: 100%;
-}
-
-
 /****************** balise html classiques ************/
 
-h1 {
-	font-size: 155%;
-	text-align: left;
-	padding: 0 0 .5em 0;
-	margin: 0;
-}
-h2 {
-	font-size: 140%;
-	margin: 1em auto .5em 0.5em;
-}
-p {
-	text-align:left;
-	margin: 0;
-}
-p img {
-	vertical-align: middle;
-}
-
-a, a:active, a:visited, a:focus {
-	text-decoration: none;
-	color: #1A5270;
-	font-weight: bold;
-}
-a:hover {
-	text-decoration: underline;
-	color: #226644;
-
-	/* Repris de menu, si ça plait on fusionne  */
-	text-decoration: none;
-	border-bottom: none;
-	color: #eee;
-	background-color: #1A5260;
-}
 /* No hover for link with image */
 .no_hover:hover { background: none; }
 
-label {
-	font-weight: bold;
-}
-
-ul { list-style-type: square; }
-li img { vertical-align: middle; }
 caption {
 	font-size: 80%;
 	color: #114188;
@@ -130,8 +32,6 @@ span.left {	float: left; }
 input { -moz-border-radius: .5em .5em .5em .5em; }
 input:focus { background-color: #ffffcc; }
 textarea:focus { background-color: #ffffcc; }
-
-
 
 /***********
   * Tables *
@@ -336,9 +236,6 @@ pre {
 
 .help {
 	background-color: #FFFFFF;
-}
-#information {
-
 }
 
 /** Messages d'informations
@@ -763,7 +660,6 @@ option.severite_6 {
 }
 
 
-
 /******************************************
  * Barre de progression
  ******************************************/
@@ -804,8 +700,6 @@ option.severite_6 {
  * Mise en page
  **************************************/
 
-.content {
-}
 .summary {
 	width: 19em;
 	height: 100%; /*84%;*/
@@ -864,125 +758,6 @@ ul.menu li {
 	margin-left: -1.5em;
 	margin-bottom: -2px;
 }
-
-/**
- * Copyright Linagora SA 2007 - Tous droits réservés.
- * made by Guillaume Dufloux, inspired from http://collaboa.org/
- * Dynamic menu
- */
-
-.simple_menu {
-  vertical-align: middle;
-  position: absolute;
-  width: 50em;
-  top: 0.2em;
-  left: 190px;
-  z-index: 0;
-}
-
-.account_menu {
-  vertical-align: middle;
-  position: float;
-  top: 0.2em;
-}
-.simple_menu ul, .account_menu ul {
-  margin: 0; padding: 0;
-  list-style: none;
-}
-.simple_menu li, .account_menu li {
-  display: inline;
-}
-.simple_menu a, .account_menu a {
-  padding: 0 9px;
-  margin: 0;
-  line-height: 200%;
-  text-decoration: none;
-  border-bottom: none;
-}
-
-.simple_menu a {
-  float: left;
-}
-.account_menu a {
-  float: right;
-}
-
-.simple_menu a:hover, .account_menu a:hover{
-  color: #eee;
-  background-color: #1A5260;
-}
-
-.simple_menu .no_hover:hover {
-	background: none;
-}
-
-
-/**
- * advanced menu (NON YET USED)
- * http://css.alsacreations.com/xmedia/exemples/deroulant/menu-horizontal2.htm
- */
-
-#menu .liste_menu, #menu .liste_title, #menu ul, #menu li {
-margin: 0;
-padding: 0;
-list-style-type: none;
-}
-#menu {
-position: absolute;
-top: 3em;
-left: 50px;
-z-index:100;
-}
-#menu .liste_menu{
-float: left;
-width: 8em; /* keep it for IE */
-margin: 0;
-background: #eee;
-}
-#menu .liste_title {
-height: 2em;
-cursor: pointer;
-text-align: center;
-font-weight: bold;
-}
-
-
-#menu a {
-  padding: 0 10px;
-  margin: 0;
-  font-size: 12px;
-  line-height: 200%;
-}
-#menu a:hover {
-  color: #eee;
-  background-color: #1A5260;
-}
-
-
-#menu .liste_items {
-display: none;
-padding: 1em;
-padding-top:0;
-}
-#menu li {
-text-align: left;
-}
-
-/* PB with IE :
-   le hover ne s'applique qu'aux elements 'a href'
-.liste_menu:hover {
-background: #eee;
-border: 1px solid #ccc;
-} /**/
-
-
-
-
-/**
- * Copyright Linagora SA 2007 - Tous droits réservés.
- * reporting.css
- */
-
 
 /******************** reporting *******************/
 
