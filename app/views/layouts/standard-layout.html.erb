@@ -10,9 +10,13 @@
  <% @@public_head[locale] =
       '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
       "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
-      "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
-      stylesheet_link_tag(:all, :media => 'all', :cache => true)
+      "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" #<<
+      #stylesheet_link_tag(:all, :media => 'all', :cache => true)
  %>
+<link href="/stylesheets/tosca.css" rel="stylesheet" type="text/css" />
+<!--[if lte IE 7]>
+<link href="/stylesheets/patch_my_layout.css" rel="stylesheet" type="text/css" />
+<![endif]-->
  <%= @@public_head[locale] %>
   <!-- TinyMCE can be loaded after the page : -->
   <%= javascript_include_tag('tiny_mce/tiny_mce') %>
@@ -55,87 +59,91 @@
         link_to_admin,
         public_link_to_about
        ], :form => true) if user %>
-  <%# TODO : formulaire de login en haut ? %>
-  <% @@public_links[locale] ||= build_simple_menu([
-        link_to_redbox(_('Log in'), 'login_box')], :class => 'account_menu') %>
-  <div id="header">
-    <table>
-      <tr valign="top">
-        <td valign="middle" width="145"><%= public_link_to StaticImage::logo_08000, welcome_url%>
-        </td>
-        <td><%= (user ? @@menu[role_localised] : @@public_menu[locale]) %></td>
-        <td align="right">
+
+<div id="page_margins">
+    <div id="border-top">
+      <div id="edge-tl"></div>
+      <div id="edge-tr"></div>
+    </div>
+    <div id="page">
+      <div id="header">
+        <div id="topnav">
+          <!-- start: skip link navigation -->
+          <a class="skip" title="skip link" href="#navigation">Skip to the navigation</a><span class="hideme">.</span>
+          <a class="skip" title="skip link" href="#content">Skip to the content</a><span class="hideme">.</span>
+          <!-- end: skip link navigation -->
+          <% @@public_links[locale] ||= link_to_redbox(_('Log in'), 'login_box') %>
           <% if user %>
             <% infos = [
-                 public_link_to(_("Logout"), logout_accounts_path),
-                 link_to(_("My account"), edit_account_path(user))
-		       ] %>
-            <%= build_simple_menu(infos, :class => 'account_menu') %>
+                link_to(_("My account"), edit_account_path(user)),
+                public_link_to(_("Logout"), logout_accounts_path) ] %>
+             <%= infos.join(' | ') %>
           <% else %>
             <%= @@public_links[locale] %>
           <% end %>
-        </td>
-      </tr>
-    </table>
-  </div><!-- end of header -->
+        </div>
+        <%= public_link_to StaticImage::logo_08000, welcome_url%>
+      </div>
+      <div id="nav">
+        <a id="navigation" name="navigation"></a>
+        <div id="nav_main">
+          <%= (user ? @@menu[role_localised] : @@public_menu[locale]) %>
 
-  <div id="content_div">
-    <!-- Javascript starts to be used here : -->
-    <%= javascript_include_tag('calendar', "calendar-#{locale}",
+        </div>
+      </div>
+      <div id="teaser">
+        <%= show_notice if flash[:notice] %>
+        <%= show_warn if flash[:warn] %>
+      </div>
+      <!-- Javascript starts to be used here : -->
+      <%= javascript_include_tag('calendar', "calendar-#{locale}",
          'calendar-setup', 'prototype', 'effects', 'controls',
          'application', 'redbox', 'tosca', :cache => "all-#{locale}") %>
 
-    <div id="information">
-       <%= show_notice if flash[:notice] %>
-       <%= show_warn if flash[:warn] %>
-    </div><!-- end of information -->
-
-
-    <table id="content_table">
-      <tr valign="top">
+      <div id="main">
         <% if @partial_for_summary %>
-        <td width="1" height="100%">
-          <div id="summary" class="summary">
+        <div id="col1" onclick="Element.toggle('col1_content')" title="Montrer/cacher le menu latéral">
+          <div id="col1_content" class="clearfix">
             <%= render_partial @partial_for_summary %>
           </div>
-        </td>
-        <td class="summary_toggle" width="2" height="100%"
-            onclick="Element.toggle('summary')" title="Montrer/cacher le menu latéral">
-        </td>
+        </div>
+        <div id="col3">
+          <div id="col3_content" class="clearfix">
         <% end %>
-        <td>
-          <div id="bodycontent">
-            <%= @content_for_layout %>
+        
+        <%= @content_for_layout %>
+          
+        <% if @partial_for_summary %>
           </div>
-        </td>
-      </tr>
-    </table><!-- end of content_table -->
-  </div><!-- end of content_div -->
-
-  <div id="footer">
-    <% @@footer ||=
-       '<table>' <<
-         '<tr>' <<
-           '<td valign="middle" align="center">' <<
-              public_link_to(App::ServiceFullName,
-				             App::CompanySite + App::CompanySitePath) <<
-              '&nbsp;' <<
-              public_link_to(StaticImage::ruby, 'http://rubyonrails.org/', :class => 'no_hover') <<
-              '&nbsp;' <<
-              public_link_to(App::Copyright, App::CompanySite) <<
-           '</td>' <<
-        '</tr>' <<
-      '</table>'
-     %>
-    <%= @@footer %>
-  </div><!-- end of footer -->
-
+          <!-- IE Column Clearing -->
+          <div id="ie_clearing"> &#160; </div>
+        </div>
+        <% end %>
+      </div>
+      <!-- begin: #footer -->
+      <div id="footer">
+        <% @@footer ||=
+            public_link_to(App::ServiceFullName,
+                           App::CompanySite + App::CompanySitePath) <<
+                  '&nbsp;' <<
+                  public_link_to(StaticImage::ruby, 'http://rubyonrails.org/') <<
+                  '&nbsp;' <<
+                  public_link_to(App::Copyright, App::CompanySite)
+         %>
+         <%= @@footer %>
+      </div>
+    </div>
+    <div id="border-bottom">
+      <div id="edge-bl"></div>
+      <div id="edge-br"></div>
+    </div>
+  </div>
+  
   <% unless user %>
     <div id="login_box" style="display: none">
       <%= render :file => "account/login", :locals => { :show_close_icon => true } %>
     </div>
   <% end %>
-
 
 </body>
 </html>
