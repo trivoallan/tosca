@@ -31,6 +31,7 @@ class CommentairesController < ApplicationController
 
   def show
     @commentaire = Commentaire.find(params[:id])
+    @demande = @commentaire.demande
   end
 
   #Used by the comment view of a request to add one

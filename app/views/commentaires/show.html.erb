@@ -1,8 +1,9 @@
-<% for column in Commentaire.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @commentaire.send(column.name) %>
-</p>
-<% end %>
+<h1><%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %></h1>
+
+<%= render :partial => "demandes/tabs/description" %>
+
+<%= render :partial => "demandes/tabs/comment", :locals =>
+         { :comment => @commentaire } %>
 
 <%= link_to 'Modifier', edit_commentaire_path(@commentaire) %> |
 <%= link_to_demande @commentaire.demande, :text => 'Retour à la demande' %>
