@@ -17,6 +17,8 @@ h2 {
   padding: 0.3em 0 0.3em 0;
 }
 
+#col1_content { padding: 0 0 0 0 }
+
 #footer {
   color: black;
   background-color: #e2efe2;
@@ -56,6 +58,8 @@ a:hover {
   font-weight: bold;
   cursor: pointer;
 }
+
+ul { margin: 0 0 1em 0; }
 
 .aligned_picture { vertical-align: middle; }
 
@@ -327,7 +331,6 @@ option.severite_6 {
 }
 
 /******************** reporting *******************/
-
 
 table.report tr td {
 	text-align: center;

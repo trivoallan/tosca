@@ -143,11 +143,6 @@ td.error div.link {
 }
 
 
-/* largeur des balises inputs */
-.list input.text {
-	width: 250px;
-}
-
 /******************************************
  * Tabulations (onglets)
  ******************************************/
