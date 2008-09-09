@@ -26,4 +26,5 @@ class Archive < ActiveRecord::Base
   def name
     read_attribute(:file)
   end
+
 end

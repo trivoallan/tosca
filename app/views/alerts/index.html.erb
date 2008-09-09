@@ -1,7 +1,5 @@
 <h1><%= _('Alerts')%></h1>
-
 <h2><%= _('Please select the team you want to monitor')%></h2>
-
 <% form_tag(on_submit_alerts_path, :method => :get) do %>
   <p><%= hm_radio_button(:team, :ids, @teams, :size => 3) %></p>
   <br/>

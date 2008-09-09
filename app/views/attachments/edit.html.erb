@@ -1,9 +1,9 @@
-<h1><%= _('Editing attachment') %></h1>
+<h1><%= _('Edit anattachment') %></h1>
 
 <% form_tag attachment_path(@attachment),
      {:method => :put, :multipart => true} do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag _('Edit') %>
 <% end %>
 
 <%= link_to_show_and_list @attachment %>
