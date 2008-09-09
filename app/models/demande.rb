@@ -113,7 +113,6 @@ class Demande < ActiveRecord::Base
     end
   end
 
-
   def full_software_name
     result = ""
     result = logiciel.name if self.logiciel

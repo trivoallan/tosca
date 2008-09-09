@@ -18,7 +18,6 @@
 #
 module CommitmentsHelper
 
-
   def link_to_new_commitment()
     link_to(image_create('commitment'), new_commitment_path)
   end
@@ -31,7 +30,7 @@ module CommitmentsHelper
   #  cf /contracts/new pour le voir
   # TODO : a partial should be better
   def show_form_commitments(object_commitment, commitments, name)
-    out = '<table>'
+    out = '<table class="full">'
     out << '<tr><th>'
     out << _('Request')
     out << '</th><th>'

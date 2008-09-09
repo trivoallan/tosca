@@ -32,7 +32,7 @@ module ImagesHelper
 
   # por éviter la réaffection de desc à chaque coup
   def my_options(desc = '', size = nil )
-    options = { :alt => desc, :title => desc, :class => 'no_hover' }
+    options = { :alt => desc, :title => desc }
     options[:size] = size if size
     options
   end
@@ -65,7 +65,7 @@ module ImagesHelper
 
   #TODO Merger avec StaticImage
   def image_options(desc = '', size = nil )
-    options = { :alt => desc, :title => desc, :class => 'no_hover' }
+    options = { :alt => desc, :title => desc }
     options[:size] = size if size
     options
   end
@@ -75,7 +75,7 @@ module ImagesHelper
   def image_percent(percent, color, desc)
     style = "background-position: #{percent}px; background-color: #{color};"
     options = { :alt => desc, :title => desc, :style => style,
-      :class => 'percentImage no_hover aligned_picture' }
+      :class => 'percentImage aligned_picture' }
     image_tag('percentimage.png', options)
   end
 

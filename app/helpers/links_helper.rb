@@ -29,10 +29,6 @@
 
 module LinksHelper
 
-  # this contains the hash for escaping hover effect for images
-  # this is put in every links with image
-  NO_HOVER = { :class => 'no_hover' }
-
   ALIGNED_PICTURE = { :class => 'aligned_picture' }
 
   # Call it like this : link_to_file(document, 'file')
@@ -47,15 +43,15 @@ module LinksHelper
     unless filepath.blank? or not File.exist?(filepath)
       filename = filepath[/[._ \-a-zA-Z0-9]*$/]
       if options.has_key? :image
-        show = StaticImage::patch and html_options = NO_HOVER
+        show = StaticImage::patch
       else
-        show = filename and html_options = {}
+        show = filename
       end
       url = url_for_file_column(record, file, :absolute => true)
       if public
-        public_link_to show, url, html_options
+        public_link_to show, url
       else
-        link_to show, url, html_options
+        link_to show
       end
     end
   end
@@ -66,7 +62,7 @@ module LinksHelper
 
   #Call it like link_to_file
   # TODO : This method clearly needs more work.
-  def link_to_file_redbox(record, method, options={}, public = false)
+  def link_to_file_redbox(record, method)
     return '-' unless record
 
     file_exec = record.file_options[:file_exec]
@@ -85,7 +81,7 @@ module LinksHelper
       if mime_type =~ /^image\//
         redbox_div(relative_path,
                    image_tag(url_for_image_column(record, method, :fit_size)),
-                     NO_HOVER.dup.update(:background_close => true))
+                     :background_close => true)
       #Text
       elsif mime_type =~ /^text\// && defined? UvHelper
         link_to_uv(record, filename)
@@ -101,13 +97,13 @@ module LinksHelper
   def redbox_div(relative_path, content, options = {})
     return '' if relative_path.blank? or content.nil?
     content << '<div style="position: absolute;top: 0;right: 0;">'
-    content << link_to_close_redbox(StaticImage::hide_notice, NO_HOVER) << '</div>'
+    content << link_to_close_redbox(StaticImage::hide_notice) << '</div>'
     content = link_to_close_redbox(content) if options.has_key? :background_close
     return  <<EOS
       <div id="#{relative_path}" style="display: none;">
         #{content}
       </div>
-      #{link_to_redbox(StaticImage::view, relative_path, :class => 'no_hover')}
+      #{link_to_redbox(StaticImage::view, relative_path)}
 EOS
   end
 
@@ -115,15 +111,6 @@ EOS
   def delete_options(objet_name)
     @@delete_options.update(:confirm =>
         _('Do you really want to delete %s') % objet_name)
-  end
-
-  # This short helper allows to make an image link
-  # It's different from the text link coz' the dynamic background is removed
-  # Call it like this :
-  #   <%= link_to_no_hover image_create(_('new url')), path %>
-  def link_to_no_hover(*args)
-    args << LinksHelper::NO_HOVER
-    link_to(*args)
   end
 
   ### Header ###

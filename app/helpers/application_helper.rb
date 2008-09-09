@@ -24,7 +24,6 @@
 # - LISTS ET TABLES
 # - TIME
 
-
 module ApplicationHelper
   include PagesHelper
   include FormsHelper

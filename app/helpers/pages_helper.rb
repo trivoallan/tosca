@@ -35,21 +35,21 @@ module PagesHelper
   def link_to_show(ar)
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'show', :id => ar })
-    link_to StaticImage::view, url, { :class => 'nobackground' }
+    link_to StaticImage::view, url
   end
 
   # same behaviour as link_to_show
   def link_to_edit(ar)
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'edit', :id => ar })
-    link_to StaticImage::edit, url, { :class => 'nobackground' }
+    link_to StaticImage::edit, url
   end
 
   # same behaviour as link_to_show
   def link_to_delete(ar)
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'destroy', :id => ar })
-    link_to StaticImage::delete,  url, :class => 'nobackground', :method => :delete,
+    link_to StaticImage::delete,  url, :method => :delete,
         :confirm => _('Do you really want to destroy this object ?')
   end
 
@@ -108,17 +108,17 @@ module PagesHelper
       options.delete :url
     end
 
-    result = '<table class="pages"><tr>'
+    result = '<table><tr>'
     unless options.has_key? :no_new_links
       result << "<td>#{link_to_new(message, options)}</td>"
     end
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
 
     if pages.current.previous
-      link = link_to_page(pages, pages.first, _('First page'),
+      link = link_to_page(pages.first, _('First page'),
                           StaticImage::first_page, ajax_call)
       result << "<td>#{link}</td>"
-      link = link_to_page(pages, pages.current.previous, _('Previous page'),
+      link = link_to_page(pages.current.previous, _('Previous page'),
                           StaticImage::previous_page, ajax_call)
       result << "<td>#{link}</td>"
     end
@@ -128,10 +128,10 @@ module PagesHelper
       result << _('&nbsp; on ') << pages.last.last_item.to_s << '&nbsp;</small></td>'
     end
     if pages.current.next
-      link = link_to_page(pages, pages.current.next, _('Next page'),
+      link = link_to_page(pages.current.next, _('Next page'),
                           StaticImage::next_page, ajax_call)
       result << "<td>#{link}</td>"
-      link = link_to_page(pages, pages.last, _('Last page'),
+      link = link_to_page(pages.last, _('Last page'),
                           StaticImage::last_page,ajax_call)
       result << "<td>#{link}</td>"
     end
@@ -143,7 +143,7 @@ module PagesHelper
   #You just need a html element with an id="my_id"
   def toggle(id)
     images = image_tag("navigation_expand.gif", :id => "show_#{id}") + image_tag("navigation_hide.gif", :id => "hide_#{id}", :style => "display: none")
-    link_to_function(images, nil, :class => "no_hover") do |page|
+    link_to_function(images, nil) do |page|
       page[:"hide_#{id}"].toggle
       page[:"show_#{id}"].toggle
       page[:"#{id}"].toggle
@@ -172,7 +172,7 @@ module PagesHelper
   private
   ## intern functions
   # used in show_page_links
-  def link_to_page(pages, page, title, image, ajax_call)
+  def link_to_page(page, title, image, ajax_call)
     html_options = {:title => title }
     if ajax_call
       page = "document.forms['filters'].page.value=#{page.number}; #{ajax_call}"

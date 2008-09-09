@@ -378,10 +378,6 @@ td.error div.link {
 	margin: .5em 0 0 0;
 }
 
-.aligned_picture { vertical-align: middle; }
-.aligned_picture:hover { background: none; }
-
-
 /****************************************************/
 
 /* fixe la largeur des labels dans la parties des filtres */
@@ -1118,31 +1114,6 @@ h1.section {
   margin: 20px auto 0 auto;
   position: absolute;
   -moz-border-radius: 1em;
-}
-
-.datestamp div {
-    text-align: center;
-    line-height: 1.4em;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Sans-Serif;
-    padding: 1px;
-    width: 2.9em;
-    background-color: #f0f0ff;
-    border: 1px;
-    border-style: solid;
-    border-color: #007062;
-    float: left;
-    margin-right: 10px;
-}
-
-.datestamp {
-    display: inline;
-    padding: 1px;
-    margin-right: 1em;
-
-}
-
-.datestamp span {
-    display: block;
 }
 
 .cal1 {

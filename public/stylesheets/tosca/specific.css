@@ -48,3 +48,30 @@ a:hover {
   font-weight: bold;
   cursor: pointer;
 }
+
+.aligned_picture { vertical-align: middle; }
+
+.datestamp div {
+    text-align: center;
+    line-height: 1.4em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Sans-Serif;
+    padding: 1px;
+    width: 2.9em;
+    background-color: #f0f0ff;
+    border: 1px;
+    border-style: solid;
+    border-color: #007062;
+    float: left;
+    margin-right: 10px;
+}
+
+.datestamp {
+    display: inline;
+    padding: 1px;
+    margin-right: 1em;
+
+}
+
+.datestamp span {
+    display: block;
+}
