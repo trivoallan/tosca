@@ -83,7 +83,21 @@ a:hover {
     display: block;
 }
 
+.show, .help, .info {
+  background-color: #f2fff2;
+  -moz-border-radius: 1em;
+  vertical-align: top;
+  padding: 1em 1em 1em 1em;
+}
+
+div.login_box, div.show, div.help, div.info {
+  border-left: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
+  border-right: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+}
 .show th { background: none; text-align: left;}
+div.show { max-width: 95%;}
 
 /*************************
   * Bloc with scrollbars *

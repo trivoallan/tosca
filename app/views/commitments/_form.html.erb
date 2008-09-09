@@ -1,19 +1,15 @@
 <%= error_messages_for 'commitment' %>
 
-<!--[form:commitment]-->
-
-<p><label for="commitment_typedemande">Type de demande</label><br />
+<p><label for="commitment_typedemande"><%= _('Type of the request') %></label><br />
   <%= select(:commitment, :typedemande_id, @typedemandes) %>
 </p>
 
-<p><label for="commitment_severite">Severite</label><br />
+<p><label for="commitment_severite"><%= _('Severity') %></label><br />
   <%= select(:commitment, :severite_id, @severites) %>
 </p>	
 
-<p><label for="commitment_workaround">workaround</label><br />
+<p><label for="commitment_workaround"><%= _("Workaround") %></label><br />
 <%= text_field 'commitment', 'workaround'  %></p>
 
-<p><label for="commitment_correction">Correction</label><br />
+<p><label for="commitment_correction"><%= _('Correction') %> </label><br />
 <%= text_field 'commitment', 'correction'  %></p>
-<!--[eoform:commitment]-->
-

@@ -10,8 +10,6 @@ hr {
 	padding: 0em;
 	margin: 0em;
 }
-img { border:0;	}
-img:hover { background: none; }
 
 fieldset legend { font-weight: bold; }
 
@@ -22,11 +20,7 @@ input { -moz-border-radius: .5em .5em .5em .5em; }
 input:focus { background-color: #ffffcc; }
 textarea:focus { background-color: #ffffcc; }
 
-/***********
-  * Tables *
-  **********/
 table { border-collapse: collapse; }
-/* used in comments */
 table.commentaire tr.public { background: white; }
 table.commentaire tr.prive  { background: #E6E6E6; }
 table.commentaire td.infos {
@@ -133,16 +127,8 @@ table.list td {
 
 /***************** bloc standard ***************/
 
-/* it's applied to DIV's AND TABLE's */
-.form, .show, .help, .info {
-  background-color: #f2fff2;
-  -moz-border-radius: 1em;
-  vertical-align: top;
-  padding: 1em 1em 1em 1em;
-}
-
 .show tr td fieldset {
-	width: 35em;
+  width: 35em;
 }
 /*style for the left column in edit pages*/
 div.edit {
@@ -151,21 +137,12 @@ div.edit {
   padding-right: 20px;
 }
 
-div.form { max-width: 35em; }
 div.info { width: 100%; }
 
 /* used mainly in show view, where we don't want 100% width */
 .info  {
     width: 33%;
     max-width: 45em;
-}
-
-/* predefined pretty width and 3D border just for DIV's */
-div.login_box, div.form, div.show, div.help, div.info {
-	border-left: 1px solid #ffffff;
-	border-top: 1px solid #ffffff;
-	border-right: 1px solid #999999;
-	border-bottom: 1px solid #999999;
 }
 
 /* personnalisation du select des severites : non actif */

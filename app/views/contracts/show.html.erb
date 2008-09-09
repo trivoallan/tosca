@@ -1,9 +1,9 @@
 <% links = link_to_edit_and_list(@contract) %>
 <%= links %>
 
-<table class="topbox">
- <tr>
-  <td style="width: 36em;"> <%# Left pane %>
+<div class="subcolumns">
+  <div class="c50l">
+    <div class="show">
    <table class="show">
     <tr>
      <td style="vertical-align: middle"><b><%= _('Client') %></b></td>
@@ -67,7 +67,8 @@
      </td>
     </tr>
    </table>
-  </td><td> <%# Right pane %>
+</div></div>
+<div class="c50r"><div class="show">
    <table class="show">
     <tr>
      <td style="width: 36em;">
@@ -81,14 +82,9 @@
      </td>
     </tr>
    </table>
-  </td>
- </tr>
-</table>
+</div></div>
+</div>
 
-
-
-
-<br/>
 <br/>
 
 <%= links %>

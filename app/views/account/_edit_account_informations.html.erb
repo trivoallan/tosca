@@ -2,7 +2,7 @@
 <%# only Manager & Admin role can do all things with an account %>
 <%# See doc about roles for more information %>
 <% manager = (session[:user].role_id <= 2) %>
-<div class="form">
+<div class="show">
   <table class="show">
     <% if create_account %>
      <tr>
