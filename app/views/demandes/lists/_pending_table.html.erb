@@ -1,20 +1,20 @@
 <% return if requests.empty? %>
 <% options = { :before => "Element.show('spinner')",
-               :html => { :id => 'pending_request_form' },
                :url => ajax_renew_demandes_path } %>
 <% form_remote_tag(options) do %>
-<table class="full" id="request_content">
+<table class="full">
  <thead>
    <tr>
     <th width='2%'><%= StaticImage::checkbox %></th>
     <th width='2%'><%= _('Id') %></th>
     <th width='2%'><%= _('Resp.') %></th>
     <th><%= _('Summary') %></th>
-    <th><%= _('Workaround') %></th>
-    <th><%= _('Correction') %></th>
+    <th width="10"><%= _('Workaround') %></th>
+    <th width="10"><%= _('Correction') %></th>
    </tr>
    <tr><td colspan="6"><hr /></td></tr>
- </thead><tbody>
+ </thead>
+ <tbody>
   <% requests.each do |request| %>
    <% elapsed = request.elapsed %>
    <% interval = request.interval %>
@@ -38,7 +38,8 @@
     <% end %>
    </tr>
   <% end %>
- </tbody><tfoot>
+ </tbody>
+  <tfoot>
    <tr><td colspan="6"><hr /></td></tr>
    <tr><td colspan="6">
      <%=_('Selected requests can wait')%>

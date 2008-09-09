@@ -31,7 +31,7 @@
         <td><%= demande.clients_name %></td>
        <% end %>
         <% recipient = demande.recipient if recipient.id != demande.recipient_id %>
-        <td class="wrapped"><b><%= link_to_demande demande %></b></td>
+        <td><b><%= link_to_demande demande %></b></td>
         <td>
          <% if @ingenieur %>
           <% if ingenieur.nil? || (ingenieur.id != demande.ingenieur_id)

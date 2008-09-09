@@ -21,27 +21,8 @@ input:focus { background-color: #ffffcc; }
 textarea:focus { background-color: #ffffcc; }
 
 table { border-collapse: collapse; }
-table.commentaire tr.public { background: white; }
-table.commentaire tr.prive  { background: #E6E6E6; }
-table.commentaire td.infos {
-	vertical-align: top;
-	padding-right: 2px;
-	width: 20%;
-}
+  
 
-table.commentaire td.text {
-	border-left: 1px solid #999999;
-	padding-left: 13px;
-	width: 75%;
-	max-width: 55em;
-}
-table.commentaire td.text p { margin: 10px; }
-
-table.commentaire {
-	border: 1px solid #999999;
-	margin: 0.5em;
-	width: 100%;
-}
 /* used for error messages*/
 table.main td.error {
 	vertical-align : top;
@@ -288,12 +269,6 @@ td.error div.link {
 
 
 
-/************************** date **********************/
-
-.date {
-	font-size: smaller;
-}
-
 /************************* stats **********************/
 
 .stat_titre {
@@ -534,64 +509,6 @@ option.severite_6 {
 /******************************************
  * Tabulations (onglets)
  ******************************************/
-
-.demande_tab {
-	/*padding-bottom: 5em;*/
-}
-.demande_tabnav {
-	color: #000000;
-	margin: 12px 0px 0px 0px;
-	padding: 0px;
-	z-index: 2;
-	padding-left: 10px
-}
-.demande_tabnav li {
-	display: inline;
-	overflow: hidden;
-	list-style-type: none;
-}
-.demande_tabnav a, a.active {
-	color: #000000;
-	background:  #FFEBBF;
-	font: bold 1em "Trebuchet MS", Arial, sans-serif;
-	border: 2px solid #cfc8cf;
-	padding: 2px 5px 2px 5px;
-	margin: 0;
-	border-bottom: 0;
-	text-decoration: none;
-	-moz-border-radius: .5em .5em 0 0;
-}
-.demande_tabnav a.active {
-	background: #cfc8cf;
-}
-.demande_tabnav a:hover {
-	color: #FFFFFF;
-	background: #FFD880;
-}
-.demande_tabnav a:visited {
-	color: black;
-}
-.demande_tabnav a.active:hover {
-	background: #FFB000;
-	color: #FFEBBF;
-}
-.demande_tab_content {
-	text-align: justify;
-	background: #DDDDDD;
-	padding: 0.5em;
-	margin: 0;
-	margin-top: 0px;
-	border: 1px solid #cfc8cf;
-	z-index: -1;
-}
-.demande_tab_content p {
-	margin: 10px;
-}
-
-.demande_tab_content td {
-  margin-right: 1em;
-  padding-right: 1em;
-}
 
 /* history */
 .demande_tab_content .history {

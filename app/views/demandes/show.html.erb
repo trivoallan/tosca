@@ -2,7 +2,6 @@
   # require : @demande, @contributions, @count
   #           @users_ingenieurs
 %>
-
 <%# It's separated by roles, since viewer & customer see different things %>
 <% cache("requests/#{@demande.id}/front-#{session[:user].role_id}") do %>
  <div class="content">
