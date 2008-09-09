@@ -258,8 +258,8 @@ class StaticImage < Static::ActionView
     if result.nil?
       desc = (d.respond_to?(:severites_name) ? d.severites_name : d.severite.name)
       file_name = "severite_#{d.severite_id}.gif"
-      @@images_severite[d.severite_id] = image_tag(file_name, :title =>
-                                                   desc, :alt => desc, :class => 'aligned_picture')
+      @@images_severite[d.severite_id] = image_tag(file_name, :title => desc, 
+        :alt => desc, :class => 'aligned_picture')
       result = @@images_severite[d.severite_id]
     end
     result

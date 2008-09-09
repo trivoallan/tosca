@@ -34,7 +34,7 @@ module LogicielsHelper
   def link_to_new_urllogiciel(logiciel_id)
     return '-' unless logiciel_id
     options = new_urllogiciel_path(:logiciel_id => logiciel_id)
-    link_to(image_create('an url'), options, LinksHelper::NO_HOVER)
+    link_to(image_create('an url'), options)
   end
 
   # Create a link to modify the active value in the form filter

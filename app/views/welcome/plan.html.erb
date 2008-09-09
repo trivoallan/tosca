@@ -1,7 +1,8 @@
-<h1 class="spacer"><%= App::Name %></h1>
-<h2 class="spacer"><%= _('Plan/access allowed') %></h2>
+<h1><%= App::Name %></h1>
+<h2><%= _('Plan/access allowed') %></h2>
 
-<table class="sommaire">
+<div class="subcolumns">
+
   <% init_builder
      image_only_bloc = [] %>
 
@@ -14,21 +15,21 @@
       <% elsif not texts.empty? %>
         <% humanize_controller = _(r.first.humanize) %>
         <%# We use named cycles so each one is independent from the others %>
-        <%= cycle("<tr>", "", :name => "start") %>
-        <td><div class="sommaire show">
+        <%= cycle("<div class=\"c50l\">", "<div class=\"c50r\">", :name => "start") %>
+        <div class="show">
           <% header = r.last.include?("index") ? link_to(humanize_controller, :controller => r.first) : humanize_controller %>
           <h2><%= header %> <%= images.join(" ") unless images.empty? %></h2>
             <%= _("This part of the application") %>
             <ul>
               <li><%= texts.join("</li><li>") %></li>
             </ul>
-        </div></td>
-        <%= cycle("", "</tr>", :name => "end") %>
+        </div>
+      </div>
       <% end %>
   <% end %>
 
-  <tr><td>
-  <div class="sommaire show">
+  <%= cycle("<div class=\"c50l\">", "<div class=\"c50r\">", :name => "start") %>
+  <div class="show">
     <h2><%= _("Others parts") %></h2>
     <ul>
     <% image_only_bloc.each do |i| %>
@@ -36,5 +37,6 @@
     <% end %>
     </ul>
   </div>
-  </td></tr>
-</table>
+  </div>
+
+</div>

@@ -33,7 +33,6 @@ module ClientsHelper
     link_to label, client_path(@recipient.client_id)
   end
 
-
   # Create a link to modify the active value in the form filter
   # Usage :
   #  <%= remote_link_to_clients(:all) %> to display all the software

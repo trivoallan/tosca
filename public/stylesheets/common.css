@@ -1,10 +1,3 @@
-/**
- * Copyright Linagora SA 2007 - Tous droits réservés.
- * common.css
- */
-
-/****************** balise html classiques ************/
-
 /* No hover for link with image */
 .no_hover:hover { background: none; }
 
@@ -27,7 +20,6 @@ fieldset legend { font-weight: bold; }
 
 span.right { float: right; }
 span.left {	float: left; }
-.spacer { clear: both; }
 
 input { -moz-border-radius: .5em .5em .5em .5em; }
 input:focus { background-color: #ffffcc; }
@@ -386,10 +378,6 @@ td.error div.link {
 	margin: .5em 0 0 0;
 }
 
-.aligned_picture { vertical-align: middle; }
-.aligned_picture:hover { background: none; }
-
-
 /****************************************************/
 
 /* fixe la largeur des labels dans la parties des filtres */
@@ -742,21 +730,6 @@ option.severite_6 {
 .underline {
 	border-bottom: 1px solid #990066;
 	width: 100%;
-}
-.menu_title {
-	border-top: 1px solid #ffffff;
-	border-bottom: 1px solid #999999;
-	width: 100%;
-	background-color: #dddddd;
-	font-weight: bold;
-	cursor: pointer;
-	cursor: hand;
-}
-ul.menu li {
-	color: black;
-	list-style-image: url(../images/puce.png);
-	margin-left: -1.5em;
-	margin-bottom: -2px;
 }
 
 /******************** reporting *******************/
@@ -1141,31 +1114,6 @@ h1.section {
   margin: 20px auto 0 auto;
   position: absolute;
   -moz-border-radius: 1em;
-}
-
-.datestamp div {
-    text-align: center;
-    line-height: 1.4em;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Sans-Serif;
-    padding: 1px;
-    width: 2.9em;
-    background-color: #f0f0ff;
-    border: 1px;
-    border-style: solid;
-    border-color: #007062;
-    float: left;
-    margin-right: 10px;
-}
-
-.datestamp {
-    display: inline;
-    padding: 1px;
-    margin-right: 1em;
-
-}
-
-.datestamp span {
-    display: block;
 }
 
 .cal1 {

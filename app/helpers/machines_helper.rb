@@ -25,5 +25,4 @@ module MachinesHelper
     link_to c.to_s, machine_path(c)
   end
 
-
 end

@@ -145,7 +145,7 @@ module DemandesHelper
 
   # Link to access a ticket
   def link_to_comment(ar)
-      link_to StaticImage::view, demande_path(ar), { :class => 'nobackground' }
+      link_to StaticImage::view, demande_path(ar)
   end
 
   #usage : link_to_help('state') to link to the help page
@@ -163,10 +163,8 @@ module DemandesHelper
   end
 
   # Display a css bar for graphic representation of a ticket timeline
-  # Options
-  #  * (no options yet)
   # Need adequat CSS stylesheet
-  def show_cns_bar(demande, options={})
+  def show_cns_bar(demande)
     #done, limit = 0, 100
     return '' unless demande.is_a?(Demande)
     done = demande.temps_correction
@@ -181,7 +179,6 @@ module DemandesHelper
     out << '  <div class="progress-restant tooltip" style="width: '+remains.to_s+'%;" title="'+remains.to_s+'%  restant"> </div>'
     out << '</span>'
   end
-
 
   # TODO : Some patches can be refused by the community, and this
   # method does not treat this case.
@@ -241,7 +238,7 @@ module DemandesHelper
   # TODO : this implementation can be improved a LOT
   def help_on_status
     @@help_on_status ||= '<a href="http://www.08000linux.com/wiki/index.php/%C3%89tats_demande"' <<
-       'target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
       image_tag("question_mark.gif") <<
     '</a>'
   end
@@ -252,11 +249,10 @@ module DemandesHelper
   # TODO : this implementation can be improved a LOT
   def help_on_severity
     @@help_on_severity ||= '<a href="http://www.08000linux.com/wiki/index.php/Severite_demande"' <<
-       'target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
       image_tag("question_mark.gif") <<
     '</a>'
   end
-
 
   # Shows a popup with the description of a status for the request.
   # Ex: <%= link_to_box_on_status(@demande) %>

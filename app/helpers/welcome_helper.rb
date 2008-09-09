@@ -74,5 +74,4 @@ module WelcomeHelper
     texts.uniq!
   end
 
-
 end

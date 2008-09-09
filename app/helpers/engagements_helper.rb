@@ -18,7 +18,6 @@
 #
 module EngagementsHelper
 
-
   def link_to_new_engagement()
     link_to(image_create('engagement'), new_engagement_path)
   end
@@ -32,8 +31,15 @@ module EngagementsHelper
   # TODO : a partial should be better
   def show_form_engagements(object_engagement, engagements, name)
     out = '<table>'
-    out << '<tr><th>Demande</th><th>Sévérité</th>'
-    out << '<th>Contournement | Correction</th></tr>'
+    out << '<tr><th>'
+    out << _('Request')
+    out << '</th><th>'
+    out << _('Severity')
+    out << '</th><th>'
+    out << _('Workaround')
+    out << ' | '
+    out << _('Correction')
+    out << '</th></tr>'
     last_typedemande_id = 0
     last_severite_id = 0
     last_cycle = cycle('even', 'odd')
@@ -78,7 +84,7 @@ module EngagementsHelper
 
   def show_table_engagements(engagements)
     result = ''
-    titres = ['Demande','Sévérité','Contournement','Correction']
+    titres = [_('Request'), _('Severity'), _('Workaround'), _('Correction')]
     oldtypedemande = nil
     result << show_table(engagements, Engagement, titres) { |e|
       out = ''
