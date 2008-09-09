@@ -1,8 +1,8 @@
-<h1>Ajouter un changelog</h1>
+<h1><%= _('Add a changelog') %></h1>
 
 <% form_tag changelogs_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag "Ajouter" %>
+  <%= submit_tag _('Add') %>
 <% end %>
 
 <%= link_to_back %>
