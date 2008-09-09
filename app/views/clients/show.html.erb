@@ -1,63 +1,67 @@
 <h1><%= logo_client(@client) %>
   <%= link_to_edit edit_client_path(@client)%> </h1>
 
-<table class="topbox">
- <tr>
-  <td style="width: 36em;">
-   <table class="show">
-    <% for column in Client.content_columns %>
-     <tr>
-      <td><b><%= _(column.human_name) %>:</b></td>
-      <td><%= @client.send(column.name) %></td>
-     </tr>
-    <% end %>
+<div class="subcolumns">
+  <div class="c50l">
+    <div class="form">
+      <table class="show">
+      <% for column in Client.content_columns %>
+       <tr>
+        <td><b><%= _(column.human_name) %>:</b></td>
+        <td><%= @client.send(column.name) %></td>
+       </tr>
+      <% end %>
 
-    <% unless @client.address.blank? %>
-     <tr><td colspan="2">
-      <fieldset>
-       <legend><%= _('Address')%></legend><%= @client.address %>
-      </fieldset>
-     </td></tr>
-    <% end %>
-   </table>
-
-   <%= link_to_new_contract(@client.id) %>
-   <%= show_list(@client.contracts, _('contract')) { |c|
-    result = ''
-    edit = link_to_edit(edit_contract_path(c))
-    result << "#{edit}&nbsp;" if edit
-    result << "<b>#{link_to c.rule.name, contract_path(c)}</b>"
-    result << _(" from %s to %s") % [c.start_date_formatted, c.end_date_formatted]
-    result << ' '
-    if c.rule.max == -1
-      result << _("on your complete system")
-    else
-      result << _("concerning %s releases") % c.releases.size
-    end
-    result << '.'
-    result << show_table_commitments(c.commitments)
-    result } %>
-   <b><%= _("View") %></b> <%=_("the")%>
-      <%= link_to(_('Activity report'), general_reporting_path) %><br/>
-   <b><%= _("View") %></b> <%=n_('the','the',2)%>
-      <%= link_to(_('Contributions'),
-            list_contribution_path(:id => 'all', :client_id => @client.id)) %>
-  </td><td>
-   <table class="show">
-    <tr><td>
-     <%= show_list(@client.socles, _('system')) do |s|
-           link_to_socle(s).to_s
-         end %>
-     <% unless @client.demandes.empty? %>
-      <b><%= n_('Request', 'Requests', @client.demandes.size) %></b>
-      <div class="long_bloc_scroll">
-       <%= show_list(@client.demandes) {|d| link_to_demande(d) } %>
+      <% unless @client.address.blank? %>
+       <tr><td colspan="2">
+        <fieldset>
+         <legend><%= _('Address')%></legend><%= @client.address %>
+        </fieldset>
+       </td></tr>
+      <% end %>
+      </table>
+    </div>
+    <div class="form">
+       <%= link_to_new_contract(@client.id) %>
+       <%= show_list(@client.contracts, _('contract')) { |c|
+        result = ''
+        edit = link_to_edit(edit_contract_path(c))
+        result << "#{edit}&nbsp;" if edit
+        result << "<b>#{link_to c.rule.name, contract_path(c)}</b>"
+        result << _(" from %s to %s") % [c.start_date_formatted, c.end_date_formatted]
+        result << ' '
+        if c.rule.max == -1
+          result << _("on your complete system")
+        else
+          result << _("concerning %s releases") % c.releases.size
+        end
+        result << '.'
+        result << show_table_commitments(c.commitments)
+        result } %>
+       <b><%= _("View") %></b> <%=_("the")%>
+          <%= link_to(_('Activity report'), general_reporting_path) %><br/>
+       <b><%= _("View") %></b> <%=n_('the','the',2)%>
+          <%= link_to(_('Contributions'),
+                list_contribution_path(:id => 'all', :client_id => @client.id)) %>
       </div>
-     <% end %>
-    </td></tr>
-   </table>
-  </td>
- </tr>
-</table>
+  </div>
+  <div class="c50r">
+    <div class="form">
+      <table class="show">
+        <tr><td>
+         <%= show_list(@client.socles, _('system')) do |s|
+               link_to_socle(s).to_s
+             end %>
+         <% unless @client.demandes.empty? %>
+          <b><%= n_('Request', 'Requests', @client.demandes.size) %></b>
+          <div class="long_bloc_scroll">
+           <%= show_list(@client.demandes) {|d| link_to_demande(d) } %>
+          </div>
+         <% end %>
+        </td></tr>
+      </table>
+    </div>
+  </div>
+</div>
 
 <%= link_to_edit_and_list @client %>

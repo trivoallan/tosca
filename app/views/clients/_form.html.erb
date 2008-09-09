@@ -1,43 +1,46 @@
 <%= error_messages_for 'client' %>
 
-<table class="topbox">
- <tr>
-  <td>
-   <table class="show">
-    <tr>
-     <td><label for="client_name"><%= _("Name") %></label></td>
-     <td><%= text_field :client, :name  %></td>
-    </tr><tr>
-     <td colspan="2"><p><label for="client_description"><%= _("Description") %></label><br />
-        <%= text_area :client, :description, :rows => 10 %></p></td>
-    </tr><tr>
-     <td colspan="2"><label for="client_adresse"><%= _("Address") %></label><br />
-         <%= text_area :client, :address, :rows => 9 %></td>
-    </tr>
-   </table>
-  </td><td  >
-   <table class="show" style="width: 36em;">
-    <tr>
-     <td><label for="client_inactive"><%= _("Inactive") %></label></td>
-     <td><%= check_box :client, :inactive %></td>
-    </tr><tr>
-     <td colspan="2"><label for="client_image"><%= _("Logo") %></label></td>
-    </tr><tr>
-     <td colspan="2"><%=  file_column_field 'image', 'image'  %></td>
-    </tr><tr>
-     <td><label for="client_access_code"><%= _("Access code") %></label></td>
-     <td><%= text_field :client, :access_code, :size => 5 %></td>
-    </tr><tr>
-     <td colspan="2">
-      <p><label><%= _("Systems") %></label> <%= link_to_new_socle %></p>
-         <%# as of Firefox 2.x, the px approach is scalable between %>
-         <%# different resolution, when em is not %>
-         <div class="bloc_scroll" style="height: 299px;">
-         <%= hbtm_check_box(@client.socles, @socles, 'client[socle_ids]', :size => 2) %>
-         </div>
-     </td>
-    </tr>
-   </table>
-  </td>
- </tr>
-</table>
+<div class="subcolumns">
+  <div class="c50l">
+    <div class="form">
+      <table class="show">
+        <tr>
+         <td><label for="client_name"><%= _("Name") %></label></td>
+         <td><%= text_field :client, :name  %></td>
+        </tr><tr>
+         <td colspan="2"><p><label for="client_description"><%= _("Description") %></label><br />
+            <%= text_area :client, :description, :rows => 10 %></p></td>
+        </tr><tr>
+         <td colspan="2"><label for="client_adresse"><%= _("Address") %></label><br />
+             <%= text_area :client, :address, :rows => 9 %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="c50r">
+    <div class="form">
+      <table class="show" style="width: 36em;">
+        <tr>
+         <td><label for="client_inactive"><%= _("Inactive") %></label></td>
+         <td><%= check_box :client, :inactive %></td>
+        </tr><tr>
+       <td colspan="2"><label for="client_image"><%= _("Logo") %></label></td>
+        </tr><tr>
+         <td colspan="2"><%=  file_column_field 'image', 'image'  %></td>
+        </tr><tr>
+       <td><label for="client_access_code"><%= _("Access code") %></label></td>
+       <td><%= text_field :client, :access_code, :size => 5 %></td>
+        </tr><tr>
+         <td colspan="2">
+          <p><label><%= _("Systems") %></label> <%= link_to_new_socle %></p>
+             <%# as of Firefox 2.x, the px approach is scalable between %>
+             <%# different resolution, when em is not %>
+             <div class="bloc_scroll" style="height: 299px;">
+             <%= hbtm_check_box(@client.socles, @socles, 'client[socle_ids]', :size => 2) %>
+             </div>
+         </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
