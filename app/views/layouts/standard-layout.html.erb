@@ -2,22 +2,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=Locale.get%>" lang="<%=Locale.get%>">
 <head>
- <%# precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
- <% locale = Locale.get.language.intern %>
- <% user = session[:user] %>
- <% role_localised = :"#{locale}#{user.role_id}" if user %>
- <% @@public_menu ||= {}; @@public_links ||= {}; @@public_head ||= {}; @@menu ||= {} %>
- <% @@public_head[locale] =
+  <%# precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
+  <% locale = Locale.get.language.intern %>
+  <% user = session[:user] %>
+  <% role_localised = :"#{locale}#{user.role_id}" if user %>
+  <% @@public_menu ||= {}; @@public_links ||= {}; @@public_head ||= {}; @@menu ||= {} %>
+  <% @@public_head[locale] =
       '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
       "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
-      "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" #<<
-      #stylesheet_link_tag(:all, :media => 'all', :cache => true)
- %>
-<link href="/stylesheets/tosca.css" rel="stylesheet" type="text/css" />
-<!--[if lte IE 7]>
-<link href="/stylesheets/patch_my_layout.css" rel="stylesheet" type="text/css" />
-<![endif]-->
- <%= @@public_head[locale] %>
+      "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
+      stylesheet_link_tag("yaml/core/base.css", "yaml/navigation/nav_shinybuttons.css", 
+        "builder/basemod.css", "builder/content_default.css", "common.css",  "tosca/specific.css",
+        "yaml/print/print_003_draft.css", "tosca/custom_tiny.css",
+        :media => 'all', :cache => true) <<
+      "<!--[if lte IE 7]>" <<
+      stylesheet_link_tag("ie_hacks/patch.css", :media => 'all', :cache => true) << 
+      "<![endif]-->"
+  %>
+  <%= @@public_head[locale] %>
   <!-- TinyMCE can be loaded after the page : -->
   <%= javascript_include_tag('tiny_mce/tiny_mce') %>
   <%# Tuned according to the wiki : http://wiki.moxiecode.com/index.php/TinyMCE:Performance_tuning_TinyMCE %>

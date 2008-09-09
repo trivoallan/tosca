@@ -138,15 +138,10 @@ table.list td {
 
 /* it's applied to DIV's AND TABLE's */
 .form, .show, .help, .info {
-	background-color: #f2fff2;
-	-moz-border-radius: 1em;
-	vertical-align: top;
-	padding: 1em 1em 1em 1em;
-	margin: 1em 0.5em 1em 0.5em;
-}
-
-.show tr td, tr th {
-	padding: 0.2em 0.5em 0.2em 0.5em;
+  background-color: #f2fff2;
+  -moz-border-radius: 1em;
+  vertical-align: top;
+  padding: 1em 1em 1em 1em;
 }
 
 .show tr td fieldset {
@@ -159,7 +154,7 @@ div.edit {
   padding-right: 20px;
 }
 
-div.show, div.form { max-width: 35em; }
+div.form { max-width: 35em; }
 div.info { width: 100%; }
 
 /* used mainly in show view, where we don't want 100% width */
@@ -437,23 +432,6 @@ table.sommaire tr td {
 /* largeur des balises inputs */
 .list input.text {
 	width: 250px;
-}
-
-
-/*************************
-  * Bloc with scrollbars *
-  ************************/
-div.bloc_scroll, div.long_bloc_scroll {
-      width: 99%;
-      height: 10em;
-      overflow: auto;
-      background-color: #f2fff2;
-}
-div.long_bloc_scroll { height: 31em; }
-div.redbox_scroll {
-  width: 100%;
-  max-height: 600px;
-  overflow: auto;
 }
 
 /*********************

@@ -2,20 +2,18 @@
 
 <h1><%= get_title(@user) %></h1>
 
-<table border="0" class="topbox">
-  <tr>
-   <td>
-     <%= render :partial => "show_account_information" %>
-   </td>
-   <td>
-     <% if @ingenieur # do not display this part to customer, for now %>
-       <%= render :partial => "show_engineer" %>
-       <%= render :partial => "show_recipient" %>
-     <% end %>
-   </td>
-  </tr>
-</table>
-
+<div class="subcolumns">
+  <div class="c50l">
+    <%= render :partial => "show_account_information" %>
+  </div>
+  <%# do not display this part to customer, for now%>
+  <% if @ingenieur %>
+  <div class="c50r">
+    <%= render :partial => "show_engineer" %>
+    <%= render :partial => "show_recipient" %>
+  </div>
+  <% end %>
+</div>
 <br />
 
 <%= link_to_edit_and_list(@user) %>

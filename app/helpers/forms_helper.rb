@@ -31,7 +31,7 @@ module FormsHelper
   def hbtm_check_box( objectcollection, collection, name , options={})
     return '' if collection.nil? || collection.empty?
     objectcollection = objectcollection.collect { |c| [ c.name, c.id ] }
-    out = '<table class="list"><tr>' and count = 1
+    out = '<table><tr>' and count = 1
     options_size = options[:size]
     length = collection.size
     name_w3c = name.gsub(/[^a-z1-9]+/i, '_')

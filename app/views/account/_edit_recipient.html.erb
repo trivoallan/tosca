@@ -2,6 +2,7 @@
 				     controller.action_name == 'ajax_place') %>
 
 <% if @user_recipient and not session[:user].recipient %>
+<div class="form">
   <h1><b><%= _('Recipient') %></b></h1><br />
 
   <p><label for="recipient_client">Client</label>
@@ -9,10 +10,13 @@
   </p>
   <hr />
 
-  <div id="contracts"><%= _('Contracts')%><br />
-    <%= hbtm_check_box( @user.own_contracts, @contracts, 'user[own_contract_ids]', :size => 2) %>
+  <p><label><%= _('Contracts')%></label></p>
+  <div id="contracts" class="bloc_scroll">
+    <%# We display only the contracts of the user %>
+    <%= hbtm_check_box( @user.own_contracts, @contracts, 'user[own_contract_ids]', :size => 1) %>
   </div>
 
   <%= observe_client_field if create_account %>
   <%= observe_client_list %>
+</div>
 <% end %>

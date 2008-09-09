@@ -2,113 +2,113 @@
 <%# only Manager & Admin role can do all things with an account %>
 <%# See doc about roles for more information %>
 <% manager = (session[:user].role_id <= 2) %>
-<table class="show" id="show_account">
-  <% if create_account %>
-   <tr>
-    <th><label><%= _('Type') %></label></th>
-    <td>
-      <%= radio_button(:user, :client, 'true') %>
-      <label for="user_client_true"><%= _('Recipient') %></label>
-      <%= radio_button(:user, :client, 'false') %>
-      <label for="user_client_false"><%= _('Expert') %></label>
-    </td>
-   </tr>
-  <% else %>
-   <tr>
-    <td colspan="2" style="text-align: center;">
-      <%= avatar(@user_recipient, @user_engineer) %>
-    </td>
-   </tr>
-  <% end %>
-  <tr>
-    <td colspan="2"><hr /></td>
-  </tr><tr>
-    <th><label for="user_name"><%= _('User|Name') %></label></th>
-    <td><%= text_field :user, :name %></td>
-  </tr><tr>
-    <th><label for="user_title"><%= _('User|Title') %></label></th>
-    <td><%= text_field :user, :title %></td>
-  </tr><tr>
-    <th><label for="user_email"><%= _('User|Email') %></label></th>
-    <td><%= text_field :user, :email %></td>
-  </tr><tr>
-    <th><label for="user_phone"><%= _('User|Phone') %></label></th>
-    <td><%= text_field :user, :phone %></td>
-  </tr>
-  <% if @user.team %>
-  <tr>
-    <th><%= _('User|Team') %></th>
-    <td><%= @user.team.name %></td>
-  </tr>
-  <% end %>
-  <% if manager && !create_account %>
-   <tr>
-    <th><label for="user_inactive"><%= _('User|Inactive') %></label></th>
-    <td><%= check_box :user, :inactive %></td>
-   </tr>
-  <% end %>
-  <tr>
-    <td colspan="2"><hr /></td>
-  </tr>
-  <% if manager %>
-   <tr>
-    <th><label for="user_login"><%= _('User|Login') %></label></th>
-    <td><%= text_field :user, :login %></td>
-   </tr>
-  <% elsif !@user.login.blank? %>
-   <tr>
-    <th><%= _('User|Login') %></th>
-    <td><%= @user.login %></td>
-  </tr>
-  <% end %>
-  <% unless create_account %>
-   <tr style="display:none;">
-    <th><label>Prevent Firefox to autocomplete the true password field</label></th>
-    <td><input type='password' name="fake" id="fake" /></td>
-   </tr><tr>
-    <th><label for="user_pwd"><%= _('Modify your password') %></label></th>
-    <td><%= password_field :user, :pwd %></td>
-   </tr><tr>
-    <th><label for="user_pwd_confirmation"><%= _('Confirm this last') %></label></th>
-    <td><%= password_field :user, :pwd_confirmation %></td>
-   </tr>
-  <% end %>
+<div class="form">
+  <table class="show">
+    <% if create_account %>
+     <tr>
+      <th><label><%= _('Type') %></label></th>
+      <td>
+        <%= radio_button(:user, :client, 'true') %>
+        <label for="user_client_true"><%= _('Recipient') %></label>
+        <%= radio_button(:user, :client, 'false') %>
+        <label for="user_client_false"><%= _('Expert') %></label>
+      </td>
+     </tr>
+    <% else %>
+     <tr>
+      <td colspan="2" style="text-align: center;">
+        <%= avatar(@user_recipient, @user_engineer) %>
+      </td>
+     </tr>
+    <% end %>
+    <tr>
+      <td colspan="2"><hr /></td>
+    </tr><tr>
+      <th><label for="user_name"><%= _('User|Name') %></label></th>
+      <td><%= text_field :user, :name %></td>
+    </tr><tr>
+      <th><label for="user_title"><%= _('User|Title') %></label></th>
+      <td><%= text_field :user, :title %></td>
+    </tr><tr>
+      <th><label for="user_email"><%= _('User|Email') %></label></th>
+      <td><%= text_field :user, :email %></td>
+    </tr><tr>
+      <th><label for="user_phone"><%= _('User|Phone') %></label></th>
+      <td><%= text_field :user, :phone %></td>
+    </tr>
+    <% if @user.team %>
+    <tr>
+      <th><%= _('User|Team') %></th>
+      <td><%= @user.team.name %></td>
+    </tr>
+    <% end %>
+    <% if manager && !create_account %>
+     <tr>
+      <th><label for="user_inactive"><%= _('User|Inactive') %></label></th>
+      <td><%= check_box :user, :inactive %></td>
+     </tr>
+    <% end %>
+    <tr>
+      <td colspan="2"><hr /></td>
+    </tr>
+    <% if manager %>
+     <tr>
+      <th><label for="user_login"><%= _('User|Login') %></label></th>
+      <td><%= text_field :user, :login %></td>
+     </tr>
+    <% elsif !@user.login.blank? %>
+     <tr>
+      <th><%= _('User|Login') %></th>
+      <td><%= @user.login %></td>
+    </tr>
+    <% end %>
+    <% unless create_account %>
+     <tr style="display:none;">
+      <th><label>Prevent Firefox to autocomplete the true password field</label></th>
+      <td><input type='password' name="fake" id="fake" /></td>
+     </tr><tr>
+      <th><label for="user_pwd"><%= _('Modify your password') %></label></th>
+      <td><%= password_field :user, :pwd %></td>
+     </tr><tr>
+      <th><label for="user_pwd_confirmation"><%= _('Confirm this last') %></label></th>
+      <td><%= password_field :user, :pwd_confirmation %></td>
+     </tr>
+    <% end %>
 
-  <% if @ingenieur %>
-  <tr>
-    <td colspan="2"><hr/></td>
-  </tr>
-  <tr>
-    <th><%= _("Receive a summary of daily activities") %></th>
-    <td><%= check_box :user, :preferred_digest_daily %></td>
-  </tr>
-  <tr>
-    <th><%= _("Receive a summary of weekly activities") %></th>
-    <td><%= check_box :user, :preferred_digest_weekly %></td>
-  </tr>
-  <tr>
-    <th><%= _("Receive a summary of monthly activities") %></th>
-    <td><%= check_box :user, :preferred_digest_monthly %></td>
-  </tr>
-  <% end %>
+    <% if @ingenieur %>
+    <tr>
+      <td colspan="2"><hr/></td>
+    </tr>
+    <tr>
+      <th><%= _("Receive a summary of daily activities") %></th>
+      <td><%= check_box :user, :preferred_digest_daily %></td>
+    </tr>
+    <tr>
+      <th><%= _("Receive a summary of weekly activities") %></th>
+      <td><%= check_box :user, :preferred_digest_weekly %></td>
+    </tr>
+    <tr>
+      <th><%= _("Receive a summary of monthly activities") %></th>
+      <td><%= check_box :user, :preferred_digest_monthly %></td>
+    </tr>
+    <% end %>
 
-  <% if manager %>
-   <tr>
-    <td colspan="2"><hr /></td>
-   </tr><tr>
-    <th><%= _('User|Role') %></th>
-    <td><div id="roles"><%= hm_radio_button(:user, :role_id, @roles, :size => 3) %></div></td>
-   </tr>
-  <% end %>
-  <tr>
-    <td colspan="2"><fieldset>
-     <legend><%=_('User|Informations')%></legend>
-     <% options = { :rows => 12, :cols => 58 } %>
-     <%= text_area(:user, :informations, options) %>
-    </fieldset></td>
-  </tr>
-</table>
-
+    <% if manager %>
+     <tr>
+      <td colspan="2"><hr /></td>
+     </tr><tr>
+      <th><%= _('User|Role') %></th>
+      <td><div id="roles"><%= hm_radio_button(:user, :role_id, @roles, :size => 3) %></div></td>
+     </tr>
+    <% end %>
+    <tr>
+      <td colspan="2"><fieldset>
+       <legend><%=_('User|Informations')%></legend>
+       <%= text_area(:user, :informations) %>
+      </fieldset></td>
+    </tr>
+  </table>
+</div>
 <%
 =begin
  TODO : reactivate multiple_signup, when we have enough ressources

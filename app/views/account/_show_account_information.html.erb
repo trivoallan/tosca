@@ -1,4 +1,5 @@
-<table class="show" id="show_account">
+<div class="form">
+<table class="show">
   <tr>
     <td colspan="2"><%= avatar(@user_recipient, @user_engineer) %></td>
   </tr><tr>
@@ -39,8 +40,10 @@
     </fieldset></td></tr>
   <% end %>
 </table>
+</div>
 
-<table class="show" id="show_account">
+<div class="form">
+<table class="show">
   <tr>
     <td colspan="2"><h2><%= _("Preferences") %></h2></td>
   </tr>
@@ -57,3 +60,4 @@
     <td><%= "X" if @user.prefers_digest_monthly? %></td>
   </tr>
 </table>
+</div>

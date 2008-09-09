@@ -2,7 +2,7 @@
 				     controller.action_name == 'ajax_place') %>
 
 <% if @user_engineer %>
-
+<div class="form">
   <h1><b><%= _('Engineer') %></b></h1><br />
 
   <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b></p>
@@ -36,4 +36,5 @@
 
   <%= observe_client_field if create_account %>
   <%= observe_client_list %>
+</div>
 <% end %>
