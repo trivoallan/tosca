@@ -18,7 +18,7 @@
 <%= show_table(@clients, Client, titres, :add_lines => [addline]) { |c|
   result = ''
   total = 0
-  result << "<td>#{link_to_no_hover logo_client(c), client_path(c)}</td>"
+  result << "<td>#{link_to logo_client(c), client_path(c)}</td>"
   @typedemandes.each{ |t|
     count = c.demandes.find_all_by_typedemande_id(t.id).size
     result << "<td>#{count}</td>"

@@ -8,11 +8,10 @@
   <% cache("requests/#{@demande.id}/front-#{session[:user].role_id}") do %>
    <h1>
     <% options = edit_demande_path(@demande.id) %>
-    <% html_options = { :class => 'no_hover' } %>
-    <%= link_to(StaticImage::edit, options, html_options) %>
+    <%= link_to(StaticImage::edit, options) %>
     <%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %>
     <% options = print_demande_path(@demande.id) %>
-    <%= link_to(StaticImage::print, options, html_options) %>
+    <%= link_to(StaticImage::print, options) %>
    </h1>
 
    <%= render :partial => 'demandes/tabs/tab_comments' %>

@@ -72,7 +72,7 @@
     <tr>
      <td style="width: 36em;">
        <p><b><%= _('Supported software') %> :
-            <%= link_to StaticImage::edit, { :action => "supported_software", :controller => "contracts"} , :class => "no_hover" %></b></p>
+            <%= link_to StaticImage::edit, { :action => "supported_software", :controller => "contracts"} %></b></p>
        <% unless @versions.empty? %>
        <div class="long_bloc_scroll">
        <%= show_list(@contract.versions) { |v| link_to v.full_software_name, v } %>

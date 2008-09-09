@@ -69,7 +69,7 @@ module ContributionsHelper
     if text
       link_to(text, options)
     else
-      link_to_no_hover image_create(_('a contribution')), options
+      link_to image_create(_('a contribution')), options
     end
   end
 

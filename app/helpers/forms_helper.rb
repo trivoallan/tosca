@@ -200,14 +200,14 @@ module FormsHelper
           page.insert_html :before, html_id_empty, :partial => 'applications/auto_complete_insert'
           page.visual_effect(:appear, @html_id)
         end << "} tosca_reset(\"#{@field}\")"
-      out = link_to_function(c.name, js_call, :class => :no_hover)
+      out = link_to_function(c.name, js_call)
       content_tag(:li, out)
     end )
   end
 
   # Apply a fade effect and delete the html element
   def delete_button(id)
-    link_to_function(StaticImage::delete, %Q{tosca_remove("#{id}")}, :class => :no_hover)
+    link_to_function(StaticImage::delete, %Q{tosca_remove("#{id}")})
   end
 
 end

@@ -30,8 +30,7 @@
         <td>
          <%= select_empty "select", "software", @logiciels, {},
                           { :onchange => remote_function(options) } %>
-         <%= link_to image_create(_('a software')), new_logiciel_path,
-                          LinksHelper::NO_HOVER %>
+         <%= link_to image_create(_('a software')), new_logiciel_path %>
         </td>
         <td width="20"> <%= StaticImage::spinner %></td>
 

@@ -139,7 +139,7 @@ module ApplicationHelper
   def show_table(elements, ar, titles, options = {})
     return '<p>' << _('No %s at the moment') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
-    result = "<table #{width} class=\"fixed\">"
+    result = "<table #{width} class=\"full\">"
     content_columns = options.has_key?(:content_columns)
 
     if titles

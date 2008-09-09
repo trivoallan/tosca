@@ -1,6 +1,3 @@
-/* No hover for link with image */
-.no_hover:hover { background: none; }
-
 caption {
 	font-size: 80%;
 	color: #114188;

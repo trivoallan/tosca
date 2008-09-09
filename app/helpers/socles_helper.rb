@@ -26,6 +26,6 @@ module SoclesHelper
   end
 
   def link_to_new_socle
-    link_to(image_create(_('a system')), new_socle_path, LinksHelper::NO_HOVER)
+    link_to(image_create(_('a system')), new_socle_path)
   end
 end
