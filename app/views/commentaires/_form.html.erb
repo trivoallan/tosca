@@ -1,17 +1,12 @@
 <%= error_messages_for 'commentaire' %>
 
-<!--[form:commentaire]-->
-
-<p><label for="commentaire_description">Rédigez votre commentaire ici</label><br />
-<%= text_area 'commentaire', 'corps'  %></p>
+<p><label for="commentaire_description"><%= _('Write your comment here"') %></label><br />
+<%= text_area 'commentaire', 'corps' %></p>
 
 <% if @ingenieur %>
-  <p><label for="commentaire_prive">Ce commentaire est-il privé ?</label>
+  <p><label for="commentaire_prive"><%= _('Is this comment private ?') %></label>
   <%= check_box("commentaire", "prive", {}) %></p>
 <% end %>
 
-<p><label for="piecejointe_file">Vous pouvez également joindre un fichier</label><br />
-<%= file_column_field 'piecejointe', 'file'  %></p>
-
-<!--[eoform:commentaire]-->
-
+<p><label for="piecejointe_file"><%= _('You may also add a file') %></label><br />
+<%= file_column_field 'piecejointe', 'file' %></p>
