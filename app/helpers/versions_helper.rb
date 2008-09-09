@@ -29,7 +29,7 @@ module VersionsHelper
   def link_to_new_version(logiciel = nil)
     return '' unless logiciel
     path = new_version_path(:logiciel_id => logiciel.id,:referent => logiciel.referent)
-    link_to_no_hover(image_create(_('a package')), path)
+    link_to(image_create(_('a package')), path)
   end
 
 end

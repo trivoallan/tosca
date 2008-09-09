@@ -9,6 +9,14 @@ body {
   line-height: 18px;
 }
 
+h1 {
+  padding: 0.5em 0 0.5em 0;
+}
+
+h2 {
+  padding: 0.3em 0 0.3em 0;
+}
+
 #footer {
   color: black;
   background-color: #e2efe2;
@@ -69,9 +77,27 @@ a:hover {
     display: inline;
     padding: 1px;
     margin-right: 1em;
-
 }
 
 .datestamp span {
     display: block;
+}
+
+.show th { background: none; text-align: left;}
+
+/*************************
+  * Bloc with scrollbars *
+  ************************/
+div.bloc_scroll, div.long_bloc_scroll {
+  width: 99%;
+  height: auto;
+  max-height: 10em;
+  overflow: auto;
+  background-color: #f2fff2;
+}
+div.long_bloc_scroll { max-height: 31em; }
+div.redbox_scroll {
+  width: 100%;
+  max-height: 600px;
+  overflow: auto;
 }

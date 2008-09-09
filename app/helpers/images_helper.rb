@@ -82,8 +82,7 @@ module ImagesHelper
   # call it like :
   # <%= link_to_new_version(@logiciel) %>
   def link_to_new_client_logo()
-    options = LinksHelper::NO_HOVER.dup.update(:target => '_blank')
-    link_to(image_create(_('a logo')), new_img_path, options)
+    link_to(image_create(_('a logo')), new_img_path, :target => '_blank')
   end
 
 

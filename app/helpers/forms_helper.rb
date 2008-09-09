@@ -31,7 +31,7 @@ module FormsHelper
   def hbtm_check_box( objectcollection, collection, name , options={})
     return '' if collection.nil? || collection.empty?
     objectcollection = objectcollection.collect { |c| [ c.name, c.id ] }
-    out = '<table class="list"><tr>' and count = 1
+    out = '<table><tr>' and count = 1
     options_size = options[:size]
     length = collection.size
     name_w3c = name.gsub(/[^a-z1-9]+/i, '_')
@@ -200,14 +200,14 @@ module FormsHelper
           page.insert_html :before, html_id_empty, :partial => 'applications/auto_complete_insert'
           page.visual_effect(:appear, @html_id)
         end << "} tosca_reset(\"#{@field}\")"
-      out = link_to_function(c.name, js_call, :class => :no_hover)
+      out = link_to_function(c.name, js_call)
       content_tag(:li, out)
     end )
   end
 
   # Apply a fade effect and delete the html element
   def delete_button(id)
-    link_to_function(StaticImage::delete, %Q{tosca_remove("#{id}")}, :class => :no_hover)
+    link_to_function(StaticImage::delete, %Q{tosca_remove("#{id}")})
   end
 
 end

@@ -1,9 +1,8 @@
-<h1>Liste des pièces jointes</h1>
+<h1><%= _("List of the attachments") %></h1>
 
+<%= show_pages_links(@attachment_pages, _('an attachment')) %>
 
-<%= show_pages_links(@attachment_pages, 'une pièce jointe') %>
-
-<% titres = ['Id','Fichier','Taille','Déposé le','Par']%>
+<% titres = [ _('Id'), _('File'), _('Size'), _('Sumbitted on'), _('By')]%>
 <%= show_table(@attachments, Attachment, titres) { |p|
   result = ''
   result << "<td>##{p.id}</td>"
@@ -14,4 +13,4 @@
   result << "#{link_to_actions_table p}"
 }%>
 
-<%= show_pages_links(@attachment_pages, 'une pièce jointe') %>
+<%= show_pages_links(@attachment_pages, _('an attachment')) %>

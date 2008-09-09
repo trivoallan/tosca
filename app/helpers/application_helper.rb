@@ -136,19 +136,19 @@ module ApplicationHelper
   #   :content_columns > active l'affichage des content_columns si positionné à true
   #   :add_lines > affiche à la fin le tableau de lignes passé [[line1],[line2]]
   # TODO : intégrer width et style dans une seule option
-  def show_table(elements, ar, titres, options = {})
-    return '<p>' << _('No %s  at the moment') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
+  def show_table(elements, ar, titles, options = {})
+    return '<p>' << _('No %s at the moment') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
-    result = "<table #{width} class=\"show\">"
+    result = "<table #{width} class=\"full\">"
     content_columns = options.has_key?(:content_columns)
 
-    if titres.size > 0
+    if titles
       result << '<tr>'
       if (content_columns)
         ar.content_columns.each{|c| result <<  "<th>#{c.human_name}</th>"}
       end
       #On doit mettre nowrap="nowrap" pour que ça soit valide XHTML
-      titres.each {|t| result << "<th nowrap=\"nowrap\">#{t}</th>" }
+      titles.each {|t| result << "<th nowrap=\"nowrap\">#{t}</th>" }
       result << '</tr>'
     end
 

@@ -8,7 +8,7 @@
 <%= show_table(@archives, Archive, titles) { |a|
   result = ''
   result << "<td>#{link_to_archive(a)}</td>"
-  result << "<td>#{a.size}</td>"
+  result << "<td>#{number_to_human_size(a.size)}</td>"
   result << "<td>#{link_to_release(a.release)}</td>"
   result << "#{link_to_actions_table a}"
 }%>

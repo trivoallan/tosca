@@ -1,14 +1,11 @@
-<h1>Liste des changelogs</h1>
+<h1><%= _('List of the changelogs') %></h1>
 
-<%= show_pages_links(@changelog_pages, 'un changelog') %>
+<%= show_pages_links(@changelog_pages, _('a changelog')) %>
 
-<% titres = []%>
-<%= show_table(@changelogs, Changelog, titres, :content_columns => true) { |c|
+<% titles = [] %>
+<%= show_table(@changelogs, Changelog, titles, :content_columns => true) { |c|
   result = ''
   result << "#{link_to_actions_table c}"
 }%>
 
-
-<%= show_pages_links(@changelog_pages, 'un changelog') %>
-
-
+<%= show_pages_links(@changelog_pages, _('a changelog')) %>

@@ -1,15 +1,12 @@
-<table class="topbox">
- <tr>
-  <td>
+<div class="subcolumns">
+  <div class="c50l">
     <%= render :partial => "edit_account_informations" %>
-  </td><td>
-    <%# do not display this part to customer, for now %>
-    <% if @ingenieur %>
-     <div class="show" id="place">
-      <%= render :partial => "edit_engineer" %>
-      <%= render :partial => "edit_recipient" %>
-     </div>
-    <% end %>
-  </td>
- </tr>
-</table>
+  </div>
+  <%# do not display this part to customer, for now %>
+  <% if @ingenieur %>
+   <div class="c50r" id="place">
+    <%= render :partial => "edit_engineer" %>
+    <%= render :partial => "edit_recipient" %>
+   </div>
+  <% end %>
+</div>
