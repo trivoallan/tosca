@@ -17,6 +17,10 @@ h2 {
   padding: 0.3em 0 0.3em 0;
 }
 
+input, select {
+  width: 95%;
+}
+
 #col1_content { padding: 0 0 0 0 }
 
 #footer {
@@ -214,6 +218,13 @@ table.commentaire td.text p { margin: 10px; }
   margin-right: 1em;
   padding-right: 1em;
 }
+
+/* history */
+.demande_tab_content .history {
+  font-size: 95%;
+  padding: 0.5em;
+}
+
 
 /******************************************
  * Progress bars
@@ -742,4 +753,30 @@ div.auto_complete ul strong.highlight {
 }
 div.auto_complete a:hover {
 	color: #1A5270;
+}
+
+/* progress bar in the CNS view */
+.percentImage {
+  background: url(../images/percentimage_back2.png) no-repeat;
+}
+
+.cal1 {
+  font-size: 1.5em;
+  letter-spacing: .2em;
+  padding-left: .2em
+}
+.cal1x {
+  letter-spacing: 0em;
+  padding-left: 0em
+}
+
+.cal2 {
+  font-weight: bold;
+  font-size: 2em;
+  line-height: .7em;
+}
+
+.cal3 {
+  font-size: .8em;
+  line-height: 1em;
 }
