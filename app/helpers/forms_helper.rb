@@ -140,8 +140,8 @@ module FormsHelper
   #    out <<  search_demande_field
   #    out << end_form_tag
   #  end
-  def search_demande_field(options = {})
-    text_field('numero', '', 'size' => 3)
+  def search_demande_field
+    text_field('numero', '', 'size' => 3, :title => _("Quick access to a request : type the request number here"))
   end
   alias_method :search_demande, :search_demande_field
 

@@ -31,6 +31,18 @@ input:focus { background-color: #ffffcc; }
 textarea:focus { background-color: #ffffcc; }
 table { border-collapse: collapse; }
 
+.show tr td fieldset {
+  width: 35em;
+}
+
+div.info { width: 100%; }
+
+/* used mainly in show view, where we don't want 100% width */
+.info  {
+  width: 33%;
+  max-width: 45em;
+}
+
 #col1 input, #col1 select {
   width: 95%;
 }
