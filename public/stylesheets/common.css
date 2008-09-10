@@ -1,34 +1,7 @@
-hr {
-  color: #114188;
-  clear: both;
-  padding: 0em;
-  margin: 0em;
-}
-
-fieldset legend { font-weight: bold; }
-
-span.right { float: right; }
-span.left {	float: left; }
-
-input { -moz-border-radius: .5em .5em .5em .5em; }
-input:focus { background-color: #ffffcc; }
-textarea:focus { background-color: #ffffcc; }
-
-table { border-collapse: collapse; }
-  
-
-/* used for error messages*/
-table.main td.error {
-	vertical-align : top;
-	padding : 150px 0 0 150px;
-}
-
 table.pages td { vertical-align: baseline; }
 table.topbox td { vertical-align: top; }
 
-
 /***************** bloc standard ***************/
-
 .show tr td fieldset {
   width: 35em;
 }
@@ -43,102 +16,7 @@ div.info { width: 100%; }
 
 /* used mainly in show view, where we don't want 100% width */
 .info  {
-    width: 33%;
-    max-width: 45em;
-}
-
-
-/************************* listes **********************/
-
-.code {
-	padding: 5px;
-	overflow: auto;
-	width: 95%;
-	max-height: 450px;
-	margin: 0px auto;
-	line-height: 100%;
-	border: silver 2px dotted;
-}
-
-
-/***************** aide et informations ***************/
-
-.help {
-	background-color: #FFFFFF;
-}
-
-/** Messages d'informations
- * Tous les messages heritent de la classe .information
- * Ainsi, tous les messages sont homogènes au niveau du style
- * On précise *en plus* le type d'info concerné : error, notice ou rappel
- * Surcharger les classe de type pour préciser la couleur par exemple
- * Exemple : <div class="information notice"></div>
- */
-.information {
-	font-weight: bold;
-	margin: 1em 0em 1em 0em;
-	padding: 1em;
-}
-.close_information {
-	float: right;
-	cursor: pointer;
-}
-.error {
-	background-color: #FFD9D9;
-	border: 1px solid Red;
-	color: red;
-}
-.notice {
-	background-color: #D9FFD9;
-	border: 1px solid Green;
-	color: green;
-}
-
-
-/** Messages d'erreurs
- * ce sont les messages générées lors des validates des models
- * cf: ActionView::Helpers::ActiveRecordHelper (config/environment.rb)
- */
-td.error div.title {
-	color : red;
-	font-size : 120%;
-	font-weight : bold;
-	background : white;
-}
-td.error div.message {
-
-}
-td.error div.link {
-	margin-top : 1em;
-}
-
-#errorExplanation {
-  width: 400px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-
-#errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  background-color: #c00;
-  color: #fff;
-}
-
-#errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 5px;
-}
-
-#errorExplanation ul li {
-  font-size: 12px;
-  list-style: square;
+  width: 33%;
+  max-width: 45em;
 }
 

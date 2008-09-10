@@ -17,7 +17,21 @@ h2 {
   padding: 0.3em 0 0.3em 0;
 }
 
-input, select {
+hr {
+  color: #114188;
+  clear: both;
+  padding: 0em;
+  margin: 0em;
+}
+
+fieldset legend { font-weight: bold; }
+
+input { -moz-border-radius: .5em .5em .5em .5em; }
+input:focus { background-color: #ffffcc; }
+textarea:focus { background-color: #ffffcc; }
+table { border-collapse: collapse; }
+
+#col1 input, #col1 select {
   width: 95%;
 }
 
@@ -779,4 +793,53 @@ div.auto_complete a:hover {
 .cal3 {
   font-size: .8em;
   line-height: 1em;
+}
+
+/***************** aide et informations ***************/
+
+.help {
+  background-color: #FFFFFF;
+}
+
+/** Messages d'informations
+ * Tous les messages heritent de la classe .information
+ * Ainsi, tous les messages sont homogènes au niveau du style
+ * On précise *en plus* le type d'info concerné : error, notice ou rappel
+ * Surcharger les classe de type pour préciser la couleur par exemple
+ * Exemple : <div class="information notice"></div>
+ */
+.information {
+  font-weight: bold;
+  margin: 1em 0em 1em 0em;
+  padding: 1em;
+}
+.close_information {
+  float: right;
+  cursor: pointer;
+}
+.error {
+  background-color: #FFD9D9;
+  border: 1px solid Red;
+  color: red;
+}
+.notice {
+  background-color: #D9FFD9;
+  border: 1px solid Green;
+  color: green;
+}
+
+td.error div.title {
+  color : red;
+  font-size : 120%;
+  font-weight : bold;
+  background : white;
+}
+
+td.error div.link {
+  margin-top : 1em;
+}
+
+table.main td.error {
+  vertical-align : top;
+  padding : 150px 0 0 150px;
 }
