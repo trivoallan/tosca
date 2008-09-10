@@ -11,7 +11,7 @@
 
 <div class="menu_title" onclick="Element.toggle('menu_consultation')">
   > <%= _('Consultation')%></div>
-<ul class="menu" id="menu_consultation">
+<ul id="menu_consultation">
  <li><%= link_to _('Software list'), :controller => 'logiciels' %></li>
  <li><%= link_to _('Releases list'), :controller => 'releases' %></li>
 </ul>
@@ -19,14 +19,14 @@
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
   > <%= _('Search')%></div>
-<ul class="menu" id="menu_recherche">
+<ul id="menu_recherche">
   <li><b><%= _('Version')%> </b></li>
   <li><%= text_field :version, :name %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
   > <%= _('Perimeter')%></div>
-<ul class="menu" id="menu_perimetre">
+<ul id="menu_perimetre">
   <li><b><%= _('Versions')%> : </b><%=  @count[:versions] %></li>
 </ul>
 

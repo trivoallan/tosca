@@ -1,16 +1,7 @@
-table.pages td { vertical-align: baseline; }
-table.topbox td { vertical-align: top; }
-
 /***************** bloc standard ***************/
 .show tr td fieldset {
   width: 35em;
 }
-/*style for the left column in edit pages*/
-/*div.edit {
-  float: left;
-  margin-right: 30px;
-  padding-right: 20px;
-}*/
 
 div.info { width: 100%; }
 
