@@ -17,6 +17,26 @@ h2 {
   padding: 0.3em 0 0.3em 0;
 }
 
+hr {
+  color: #114188;
+  clear: both;
+  padding: 0em;
+  margin: 0em;
+}
+
+fieldset legend { font-weight: bold; }
+
+input { -moz-border-radius: .5em .5em .5em .5em; }
+input:focus { background-color: #ffffcc; }
+textarea:focus { background-color: #ffffcc; }
+table { border-collapse: collapse; }
+
+#col1 input, #col1 select {
+  width: 95%;
+}
+
+#col1_content { padding: 0 0 0 0 }
+
 #footer {
   color: black;
   background-color: #e2efe2;
@@ -57,6 +77,8 @@ a:hover {
   cursor: pointer;
 }
 
+ul { margin: 0 0 1em 0; }
+
 .aligned_picture { vertical-align: middle; }
 
 .datestamp div {
@@ -83,7 +105,21 @@ a:hover {
     display: block;
 }
 
+.show, .help, .info {
+  background-color: #f2fff2;
+  -moz-border-radius: 1em;
+  vertical-align: top;
+  padding: 1em 1em 1em 1em;
+}
+
+div.login_box, div.show, div.help, div.info {
+  border-left: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
+  border-right: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+}
 .show th { background: none; text-align: left;}
+.show { max-width: 90%;}
 
 /*************************
   * Bloc with scrollbars *
@@ -100,4 +136,710 @@ div.redbox_scroll {
   width: 100%;
   max-height: 600px;
   overflow: auto;
+}
+
+/*************************
+  * Table comment	 *
+  ************************/
+table.commentaire tr.public { background: white; }
+table.commentaire tr.prive  { background: #E6E6E6; }
+
+table.commentaire td.infos {
+  vertical-align: top;
+  padding-right: 2px;
+  width: 20%;
+}
+
+table.commentaire td.text {
+  border-left: 1px solid #999999;
+  padding-left: 13px;
+  width: 75%;
+}
+
+table.commentaire {
+  border: 1px solid #999999;
+  width: 100%;
+}
+
+table.commentaire td.text p { margin: 10px; }
+
+.date {
+  font-size: smaller;
+}
+
+/*************************
+  * Tabs in requestt	 *
+  ************************/
+
+.demande_tabnav {
+  color: #000000;
+  margin: 12px 0px 0px 0px;
+  padding: 0px;
+  z-index: 2;
+  padding-left: 10px
+}
+
+.demande_tabnav li {
+  display: inline;
+  overflow: hidden;
+  list-style-type: none;
+}
+
+.demande_tabnav a, a.active {
+  color: #000000;
+  background:  #FFEBBF;
+  font: bold 1em "Trebuchet MS", Arial, sans-serif;
+  border: 2px solid #cfc8cf;
+  padding: 2px 5px 2px 5px;
+  margin: 0;
+  border-bottom: 0;
+  text-decoration: none;
+  -moz-border-radius: .5em .5em 0 0;
+}
+
+.demande_tabnav a.active {
+  background: #cfc8cf;
+}
+
+.demande_tabnav a:hover {
+  color: #FFFFFF;
+  background: #FFD880;
+}
+
+.demande_tabnav a:visited {
+  color: black;
+}
+
+.demande_tabnav a.active:hover {
+  background: #FFB000;
+  color: #FFEBBF;
+}
+
+.demande_tab_content {
+  text-align: justify;
+  background: #DDDDDD;
+  padding: 0.5em;
+  margin: 0;
+  margin-top: 0px;
+  border: 1px solid #cfc8cf;
+  z-index: -1;
+}
+.demande_tab_content p {
+  margin: 10px;
+}
+
+.demande_tab_content td {
+  margin-right: 1em;
+  padding-right: 1em;
+}
+
+/* history */
+.demande_tab_content .history {
+  font-size: 95%;
+  padding: 0.5em;
+}
+
+
+/******************************************
+ * Progress bars
+ ******************************************/
+
+.progress-border {
+  width: 70px;
+  height: 15px;
+  background: #fff;
+  border: 1px solid silver;
+  margin: 1px;
+  padding: 0px;
+  position: relative;
+  float: right;
+}
+.progress-correction {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f2ab99;
+  float: left
+}
+.progress-restant {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #b0d295;
+  float: left
+}
+.progress-workaround {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color:#e7e0c4;
+  float: left
+}
+
+a.nobackground {
+  background: none;
+  text-decoration: none;
+}
+
+/*
+ * Alternate color between table lines or cells
+ */
+
+.even { background-color: #f0f0f0; }
+.even:hover { background-color: #e2efe2; }
+.odd { background-color: #e0e0e0; }
+.odd:hover {	background-color: #e2efe2; }
+
+/***************************************
+ * Statut d'une demande en couleur
+ ***************************************/
+
+/* enregistree */
+.demande_1 	{background: #f03730; /*red;*/}
+.demande_1:hover{background: #f03700;}
+
+/* priseencompte */
+.demande_2 	{background: #ffa26e; /*orange;*/}
+.demande_2:hover{background: #ffa23e; }
+
+/* suspendue */
+.demande_3	{background: #ffffba; /*yellow;*/}
+.demande_3:hover{background: #ffff88; }
+
+/* analysee */
+.demande_4 	{background: #a0e0f0; /*cyan;*/}
+.demande_4:hover{background: #a0e0c0;}
+
+/* contournee */
+.demande_5 	{background: #90EEa0; /* lightgreen; */}
+.demande_5:hover{background: #90EE70; }
+
+/* corrigee */
+.demande_6 	{background: #67ccfd;}
+.demande_6:hover{background: #67cccd;}
+
+/* cloturee */
+.demande_7 	{background: #c9c9af; /*grey;*/}
+.demande_7:hover{background: #c9c97f; }
+
+/* annulee */
+.demande_8 	{background: #D3D3D3; /*lightgrey;*/}
+.demande_8:hover{background: #D3D3a3;}
+
+/* all lines are clickable */
+#demandes_list, #cns tr *:hover {
+	cursor: pointer;
+}
+
+/***************************************
+ *                severite
+ ***************************************/
+
+/* TODO : options du select severite en couleur  */
+option.severite_1 {
+ 	background-color: white;
+}
+option.severite_2 {
+ 	background-color: green;
+}
+option.severite_3 {
+ 	background-color: yellow;
+}
+option.severite_4 {
+ 	background-color: orange;
+}
+option.severite_5 {
+ 	background-color: red;
+}
+option.severite_6 {
+ 	background-color: black;
+}
+
+/******************** reporting *******************/
+
+table.report tr td {
+	text-align: center;
+}
+
+/* formulaire de saisie mois et ann� */
+.report_form {
+	background-color: #d2dfd2;
+	float:right;
+	padding: 1em;
+	margin-left: 2em;
+	border: 1px solid grey;
+}
+/* page de reporting */
+.report {
+	background-color: white;
+	padding: 3em;
+}
+/* tableaux statistiques */
+.report_item, .report_sommaire {
+	width: 100%;
+	margin-top: 10px;
+}
+.report_graph {
+	width: 40%;
+}
+.report_legend {
+	text-align: center;
+	text-align: center;
+	width: 20%;
+}
+.report_data {
+	/*background-color: #d2dfd2;*/
+	width: 40%;
+	vertical-align: top;
+}
+.report_data table tr td {
+	text-align: center;
+}
+
+
+/** titres du reporting **/
+
+h1.title {
+	font-size: 300%;
+	text-align: center;
+	line-height: normal;
+}
+
+h1.chapter {
+	font-size: 300%;
+	padding: 5pt;
+	line-height: normal;
+}
+
+h2.chapter {
+	font-size: 200%;
+	padding: 5pt;
+	line-height: normal;
+}
+
+h1.section {
+	font-size: 100%;
+	text-align: center;
+	padding: 20pt;
+	line-height: normal;
+}
+
+/** bandeau d'images du reporting **/
+
+.report_images {
+	margin: 2em;
+	text-align: center;
+}
+
+#left  {
+	margin: 2px;
+	float: left;
+	width: 40%;
+	text-align: center;
+}
+
+#right {
+	margin: 2px;
+	float: right;
+	width: 40%;
+	text-align: center;
+}
+
+#middle {
+	margin: 2px;
+	float: left;
+	width: 18%;
+	text-align: center;
+}
+
+/* Distributed as part of The Coolest DHTML Calendar
+   Author: Mihai Bazon, www.bazon.net/mishoo
+   Copyright Dynarch.com 2005, www.dynarch.com
+   Thanks jira for the pretty cloths
+*/
+
+/* Added by MLO : Hover on calendar images */
+.calendar_over {
+  margin: 0px;
+  border: 1px solid red;
+}
+
+.calendar_out {
+  margin: 1px;
+  border: none;
+}
+
+/* Real calendar stuff */
+.calendar, .calendar table {
+  border: 1px solid #bdb2bf;
+  font-size: 11px;
+  color: #000;
+  cursor: default;
+  background: url("../images/normal-bg.gif");
+}
+
+.calendar {
+  border-color: #797979;
+}
+
+/* Header part -- contains navigation buttons and day names. */
+
+.calendar .button { /* "<<", "<", ">", ">>" buttons have this class */
+  text-align: center;    /* They are the navigation buttons */
+  padding: 2px;          /* Make the buttons seem like they're pressing */
+  background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000;
+  font-weight: bold;
+}
+
+.calendar .nav div {
+  background: transparent url("../images/menuarrow.gif") no-repeat 100% 100%;
+}
+
+.calendar thead tr { background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000; }
+
+.calendar thead .title { /* This holds the current "month, year" */
+  font-weight: bold;      /* Pressing it will take you to the current date */
+  text-align: center;
+  padding: 2px;
+  background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000;
+}
+
+.calendar thead .headrow { /* Row <TR> containing navigation buttons */
+}
+
+.calendar thead .name { /* Cells <TD> containing the day names */
+  border-bottom: 1px solid #797979;
+  padding: 2px;
+  text-align: center;
+  color: #000;
+}
+
+.calendar thead .weekend { /* How a weekend day name shows in header */
+  color: #c44;
+}
+
+.calendar thead .hilite { /* How do the buttons in header appear when hover */
+  background: url("../images/hover-bg.gif");
+  border-bottom: 1px solid #797979;
+  padding: 2px 2px 1px 2px;
+}
+
+.calendar thead .active { /* Active (pressed) buttons in header */
+  background: url("../images/active-bg.gif"); color: #fff;
+  padding: 3px 1px 0px 3px;
+  border-bottom: 1px solid #797979;
+}
+
+.calendar thead .daynames { /* Row <TR> containing the day names */
+  background: url("../images/dark-bg.gif");
+}
+
+/* The body part -- contains all the days in month. */
+
+.calendar tbody .day { /* Cells <TD> containing month days dates */
+  width: 2em;
+  color: #000;
+  text-align: right;
+  padding: 2px 4px 2px 2px;
+}
+.calendar tbody .day.othermonth {
+  font-size: 80%;
+  color: #999;
+}
+.calendar tbody .day.othermonth.oweekend {
+  color: #f99;
+}
+
+.calendar table .wn {
+  padding: 2px 3px 2px 2px;
+  border-right: 1px solid #797979;
+  background: url("../images/dark-bg.gif");
+}
+
+.calendar tbody .rowhilite td,
+.calendar tbody .rowhilite td.wn {
+  background: url("../images/rowhover-bg.gif");
+}
+
+.calendar tbody td.today { font-weight: bold; /* background: url("../images/today-bg.gif") no-repeat 70% 50%; */ }
+
+.calendar tbody td.hilite { /* Hovered cells <TD> */
+  background: url("../images/hover-bg.gif");
+  padding: 1px 3px 1px 1px;
+  border: 1px solid #bbb;
+}
+
+.calendar tbody td.active { /* Active (pressed) cells <TD> */
+  padding: 2px 2px 0px 2px;
+}
+
+.calendar tbody td.weekend { /* Cells showing weekend days */
+  color: #c44;
+}
+
+.calendar tbody td.selected { /* Cell showing selected date */
+  font-weight: bold;
+  border: 1px solid #797979;
+  padding: 1px 3px 1px 1px;
+  background: url("../images/active-bg.gif"); color: #fff;
+}
+
+.calendar tbody .disabled { color: #999; }
+
+.calendar tbody .emptycell { /* Empty cells (the best is to hide them) */
+  visibility: hidden;
+}
+
+.calendar tbody .emptyrow { /* Empty row (some months need less than 6 rows) */
+  display: none;
+}
+
+/* The footer part -- status bar and "Close" button */
+
+.calendar tfoot .footrow { /* The <TR> in footer (only one right now) */
+  text-align: center;
+}
+
+.calendar tfoot .ttip { /* Tooltip (status bar) cell <TD> */
+  padding: 2px;
+  background: url("../images/status-bg.gif") repeat-x 0 0;
+  color: #000;
+}
+
+.calendar tfoot .hilite { /* Hover style for buttons in footer */
+  background: #afa;
+  border: 1px solid #084;
+  color: #000;
+  padding: 1px;
+}
+
+.calendar tfoot .active { /* Active (pressed) style for buttons in footer */
+  background: #7c7;
+  padding: 2px 0px 0px 2px;
+}
+
+/* Combo boxes (menus that display months/years for direct selection) */
+
+.calendar .combo {
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 0px;
+  width: 4em;
+  cursor: default;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: #797979;
+  background: url("../images/normal-bg.gif"); color: #000;
+  z-index: 100;
+  font-size: 90%;
+}
+
+.calendar .combo .label,
+.calendar .combo .label-IEfix {
+  text-align: center;
+  padding: 1px;
+}
+
+.calendar .combo .label-IEfix {
+  width: 4em;
+}
+
+.calendar .combo .hilite {
+  background: url("../images/hover-bg.gif"); color: #000;
+}
+
+.calendar .combo .active {
+  background: url("../images/active-bg.gif"); color: #fff;
+  font-weight: bold;
+}
+
+.calendar td.time {
+  border-top: 1px solid #797979;
+  padding: 1px 0px;
+  text-align: center;
+  background: url("../images/dark-bg.gif");
+}
+
+.calendar td.time .hour,
+.calendar td.time .minute,
+.calendar td.time .ampm {
+  padding: 0px 5px 0px 6px;
+  font-weight: bold;
+  background: url("../images/normal-bg.gif"); color: #000;
+}
+
+.calendar td.time .hour,
+.calendar td.time .minute {
+	font-family: monospace;
+}
+
+.calendar td.time .ampm {
+  text-align: center;
+}
+
+.calendar td.time .colon {
+  padding: 0px 2px 0px 3px;
+  font-weight: bold;
+}
+
+.calendar td.time span.hilite {
+  background: url("../images/hover-bg.gif"); color: #000;
+}
+
+.calendar td.time span.active {
+  background: url("../images/active-bg.gif"); color: #fff;
+}
+
+/************************************
+  * RedBox : used for shadowed box, *
+  * like the login one              *
+  ***********************************/
+#RB_overlay {
+  position: absolute;
+  z-index:100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height:100%;
+  background-color: #000;
+  opacity: .6;
+  filter: alpha(opacity=60);
+}
+
+#RB_loading {
+  position: relative;
+  top: 200px;
+  z-index: 101;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  text-align: center;
+  background: #666 url(../images/redbox_spinner.gif) no-repeat center center;
+  border: 2px solid black;
+}
+#RB_window {
+  z-index: 102;
+  background-color: #FFFFFF;
+  display: block;
+  text-align: left;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+  position: absolute;
+  -moz-border-radius: 1em;
+}
+
+/*********************
+  *  Auto Completion *
+  ********************/
+div.auto_complete {
+  z-index:1;
+  border:1px solid #888;
+  -moz-border-radius: .5em .5em .5em .5em;
+  width: 350px;
+  background: #fff;
+}
+div.auto_complete ul {
+  margin-top:-1px;
+  margin-bottom:-1px;
+  padding:0;
+  width:100%;
+}
+div.auto_complete ul li {
+  margin-top:1px;
+  margin-bottom:1px;
+  -moz-border-radius: .5em .5em .5em .5em;
+  padding:3px;
+  background-image: none;
+  list-style-type:none;
+  list-style-image:none;
+}
+div.auto_complete ul li.selected {
+  background-color: #e2efe2;
+}
+div.auto_complete ul strong.highlight {
+  color: #800;
+  margin:0;
+  padding:0;
+}
+div.auto_complete a:hover {
+	color: #1A5270;
+}
+
+/* progress bar in the CNS view */
+.percentImage {
+  background: url(../images/percentimage_back2.png) no-repeat;
+}
+
+.cal1 {
+  font-size: 1.5em;
+  letter-spacing: .2em;
+  padding-left: .2em
+}
+.cal1x {
+  letter-spacing: 0em;
+  padding-left: 0em
+}
+
+.cal2 {
+  font-weight: bold;
+  font-size: 2em;
+  line-height: .7em;
+}
+
+.cal3 {
+  font-size: .8em;
+  line-height: 1em;
+}
+
+/***************** aide et informations ***************/
+
+.help {
+  background-color: #FFFFFF;
+}
+
+/** Messages d'informations
+ * Tous les messages heritent de la classe .information
+ * Ainsi, tous les messages sont homogènes au niveau du style
+ * On précise *en plus* le type d'info concerné : error, notice ou rappel
+ * Surcharger les classe de type pour préciser la couleur par exemple
+ * Exemple : <div class="information notice"></div>
+ */
+.information {
+  font-weight: bold;
+  margin: 1em 0em 1em 0em;
+  padding: 1em;
+}
+.close_information {
+  float: right;
+  cursor: pointer;
+}
+.error {
+  background-color: #FFD9D9;
+  border: 1px solid Red;
+  color: red;
+}
+.notice {
+  background-color: #D9FFD9;
+  border: 1px solid Green;
+  color: green;
+}
+
+td.error div.title {
+  color : red;
+  font-size : 120%;
+  font-weight : bold;
+  background : white;
+}
+
+td.error div.link {
+  margin-top : 1em;
+}
+
+table.main td.error {
+  vertical-align : top;
+  padding : 150px 0 0 150px;
 }

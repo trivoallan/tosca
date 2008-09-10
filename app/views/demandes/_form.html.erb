@@ -5,9 +5,8 @@
      else false
    end %>
 
-<table><tr>
-
-<td valign="top">
+<div class="subcolumns">
+  <div class="c50l">
   <div class="show">
     <table>
 
@@ -112,9 +111,10 @@
       </tr>
     </table>
   </div>
-</td>
+</div>
 
-<td valign="top" class="show">
+<div class="c50r">
+  <div class="show">
   <table>
     <tr>
       <th colspan="2"><label for="demande_resume"><%= _("Summary") %></label></th>
@@ -145,9 +145,10 @@
     </tr>
 
   </table>
-</td>
+</div>
+</div>
 
-</tr></table>
+</div>
 
 <% fields = %w(demande_typedemande_id) %>
 <% fields << 'demande_contract_id' if @contracts.size > 1 %>

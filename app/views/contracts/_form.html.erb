@@ -1,8 +1,9 @@
 <%= error_messages_for 'contract' %>
 
-<table class="topbox">
-  <tr><td>
-    <table class="form">
+<div class="subcolumns">
+  <div class="c50l">
+    <div class="show">
+    <table class="show">
       <tr>
         <th><label for="contract_client_id"><%=_('Customer')%></label></th>
         <td><%= select(:contract, :client_id, @clients) %></td>
@@ -38,9 +39,10 @@
         <td><%= show_form_commitments(@contract.commitments, @commitments, 'contract[commitment_ids]') %></td>
       </tr>
     </table>
-  </td>
-  <td>
-    <table class="form">
+</div></div>
+<div class="c50r">
+  <div class="show">
+    <table>
      <tr>
       <th><label><%= _("Type") %></label></th>
        <td><% Contract::Rules.each do |r| %>
@@ -76,5 +78,5 @@
       </td>
      </tr>
     </table>
-  </td></tr>
-</table>
+</div></div>
+</div>

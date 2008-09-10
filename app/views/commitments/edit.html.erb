@@ -1,4 +1,4 @@
-<h1><%=_('Editing a commitment')%></b></h1>
+<h1><%=_('Editing a commitment')%></h1>
 
 <% form_tag commitment_path(@commitment), :method => :put do %>
   <%= render :partial => 'form' %>
@@ -6,4 +6,3 @@
 <% end %>
 
 <%= link_to_show_and_list(@commitment) %>
-

@@ -1,4 +1,4 @@
-<h1>Editing commentaire</h1>
+<h1><%= _('Edit a comment') %></h1>
 
 <% form_tag commentaire_path(@commentaire), :method => :put do %>
   <%= render :partial => 'form' %>
@@ -7,4 +7,4 @@
 
 <%= link_to 'Show', commentaire_path(@commentaire) %> |
 <%= link_to_back %>
-<%= link_to_demande @commentaire.demande, :text => 'Retour à la demande' %>
+<%= link_to_demande @commentaire.demande, :text => _('Return to the request') %>

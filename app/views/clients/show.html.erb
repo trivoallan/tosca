@@ -3,7 +3,7 @@
 
 <div class="subcolumns">
   <div class="c50l">
-    <div class="form">
+    <div class="show">
       <table class="show">
       <% for column in Client.content_columns %>
        <tr>
@@ -21,7 +21,7 @@
       <% end %>
       </table>
     </div>
-    <div class="form">
+    <div class="show">
        <%= link_to_new_contract(@client.id) %>
        <%= show_list(@client.contracts, _('contract')) { |c|
         result = ''
@@ -46,7 +46,7 @@
       </div>
   </div>
   <div class="c50r">
-    <div class="form">
+    <div class="show">
       <table class="show">
         <tr><td>
          <%= show_list(@client.socles, _('system')) do |s|

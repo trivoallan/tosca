@@ -1,9 +1,9 @@
-<h1>Liste des commentaires</h1>
+<h1><% _('List of the comments') %></h1>
 
-<%= show_pages_links(@commentaire_pages, 'un commentaire') %>
+<%= show_pages_links(@commentaire_pages, _('a comment')) %>
 
-<% titres = ['Demande','Corps','Crée le', 'Màj le']%>
-<%= show_table(@commentaires, Commentaire, titres) { |c|
+<% titles = [_('Request'), _('Body'), _('Created on'), _('Updated on')]%>
+<%= show_table(@commentaires, Commentaire, titles) { |c|
   result = ''
   result << "<td>#{link_to_demande c.demande}</td>"
   result << "<td>#{indent c.corps}</td>"
@@ -12,6 +12,5 @@
   result << "#{link_to_actions_table c}"
 }%>
 
-<%= show_pages_links(@commentaire_pages, 'un commentaire') %>
-
+<%= show_pages_links(@commentaire_pages,  _('a comment')) %>
 

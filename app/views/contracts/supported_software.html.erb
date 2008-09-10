@@ -6,7 +6,7 @@
                :with => "Form.Element.serialize('select_software')"
                } %>
 <% form_tag( {:action => "add_software"}, :id => "main_form") do %>
-<table class="form" cellpadding="5" >
+<table class="show" cellpadding="5" >
   <tr>
     <th width="70"><%= _('Software') %></th>
     <th><%= _('Version') %></th>
@@ -21,7 +21,7 @@
   <tr id="end"></tr>
 </table>
 
-<table class="form" cellpadding="5">
+<table class="show" cellpadding="5">
   <tr><td>
     <fieldset><legend><%= _('Add software') %></legend>
     <table cellpadding="5">
@@ -33,7 +33,6 @@
          <%= link_to image_create(_('a software')), new_logiciel_path %>
         </td>
         <td width="20"> <%= StaticImage::spinner %></td>
-
       </tr>
     </table>
     </fieldset>
@@ -42,7 +41,7 @@
 
 <input name='id' type='hidden' value='<%= @contract.id %>'>
 
-<table class="form" cellpadding="5">
+<table class="show" cellpadding="5">
   <tr><td>
     <%= submit_tag _('Validate') %>
   </td></tr>
