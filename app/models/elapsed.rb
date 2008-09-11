@@ -20,7 +20,7 @@ class Elapsed < ActiveRecord::Base
   belongs_to :request
 
   # Ctor, which ask for the depending request and rule
-  # Call it like this : Elapsed.new(@request)
+  # Call it like this : Elapsed.new(@request_tosca)
   def initialize(request)
     super(:request => request, :until_now => 0)
   end

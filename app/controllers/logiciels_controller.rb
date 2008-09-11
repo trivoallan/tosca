@@ -16,10 +16,6 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# For a smaller stack trace in dev
-require 'image'
-require 'request'
-require 'contribution'
 
 class LogicielsController < ApplicationController
   helper :filters, :versions, :requests, :competences, :contributions, :licenses

@@ -1,12 +1,12 @@
 Bonjour,<br />
 
 <p>
- <% url_request = "<a href=\"#{@url_request}\">request ##{@request.id}</a>" %>
+ <% url_request = "<a href=\"#{@url_request}\">request ##{@request_tosca.id}</a>" %>
 &nbsp;&nbsp;Un nouveau ticket <%= url_request %> a été déclaré par <%= h @name %>.
 </p>
 
 <hr noshade size="1px"/>
-<%= @request.description %><br />
+<%= @request_tosca.description %><br />
 <hr noshade size="1px"/><br />
 
 

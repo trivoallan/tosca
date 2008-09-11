@@ -17,6 +17,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Request < ActiveRecord::Base
+  acts_as_taggable
+  
   belongs_to :typerequest
   belongs_to :logiciel
   belongs_to :version

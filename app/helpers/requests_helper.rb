@@ -113,7 +113,7 @@ module RequestsHelper
   # Used to call remote ajax action
   # Call it like :
   #  <% options = { :update => 'request_tab',
-  #     :url => { :action => nil, :id => @request.id },
+  #     :url => { :action => nil, :id => @request_tosca.id },
   #     :before => "Element.show('spinner')",
   #     :success => "Element.hide('spinner')" } %>
   #  <%= link_to_remote_tab('Description', 'ajax_description', options) %>
@@ -242,7 +242,7 @@ module RequestsHelper
   end
 
   # Shows a popup with the description of a status for the request.
-  # Ex: <%= link_to_box_on_status(@request) %>
+  # Ex: <%= link_to_box_on_status(@request_tosca) %>
   def link_to_box_on_status(request)
     return '' unless request
     options = { :popup => ['help_statut', 'height=300,width=600'] }

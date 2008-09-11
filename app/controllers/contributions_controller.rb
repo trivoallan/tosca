@@ -121,7 +121,7 @@ class ContributionsController < ApplicationController
     # submitted state, by default
     @contribution.etatreversement_id = 4
     @contribution.contributed_on = Date.today
-    @request = Request.new(); @request.id = params[:request_id]
+    @request_tosca = Request.new(); @request_tosca.id = params[:request_id]
     @contribution.ingenieur = @ingenieur
     _form
   end
@@ -139,7 +139,7 @@ class ContributionsController < ApplicationController
 
   def edit
     @contribution = Contribution.find(params[:id])
-    @request = @contribution.request
+    @request_tosca = @contribution.request
     _form
   end
 

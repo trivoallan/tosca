@@ -2,7 +2,7 @@
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')",
     :method => :get }
-   request_id = @request ? @request.id : @request_id %>
+   request_id = @request_tosca ? @request_tosca.id : @request_id %>
 <ul class="request_tabnav" id="request_tabnav">
  <li>
    <% options[:url] = ajax_description_request_path(request_id) %>

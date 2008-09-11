@@ -29,9 +29,9 @@ module PagesHelper
 
   # 2 ways of use it
   # First, within the good controller :
-  #   <%= link_to_show(@request) %>
+  #   <%= link_to_show(@request_tosca) %>
   # Second, with an other controller :
-  #   <%= link_to_show(edit_request_path(@request))%>
+  #   <%= link_to_show(edit_request_path(@request_tosca))%>
   def link_to_show(ar)
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'show', :id => ar })

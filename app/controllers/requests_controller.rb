@@ -132,41 +132,41 @@ class RequestsController < ApplicationController
   end
 
   def new
-    unless @request
-      @request = Request.new(params.has_key?(:request) ? params[:request] : nil)
+    unless @request_tosca
+      @request_tosca = Request.new(params.has_key?(:request) ? params[:request] : nil)
     end
     _form @recipient
 
-    @request.statut_id = (@ingenieur ? 2 : 1)
+    @request_tosca.statut_id = (@ingenieur ? 2 : 1)
     unless params.has_key? :request
-      @request.set_defaults(@ingenieur, @recipient, params)
+      @request_tosca.set_defaults(@ingenieur, @recipient, params)
     end
   end
 
   def create
-    @request = Request.new(params[:request])
+    @request_tosca = Request.new(params[:request])
     user = session[:user]
-    @request.submitter = user # it's the current user
-    @request.statut_id = (@ingenieur ? 2 : 1)
-    if @request.contract.nil?
-      contracts = @request.recipient.contracts
-      @request.contract = contracts.first if contracts.size == 1
+    @request_tosca.submitter = user # it's the current user
+    @request_tosca.statut_id = (@ingenieur ? 2 : 1)
+    if @request_tosca.contract.nil?
+      contracts = @request_tosca.recipient.contracts
+      @request_tosca.contract = contracts.first if contracts.size == 1
     end
 
     revisions = params[:software][:revision_id] if params[:software]
-    @request.associate_software(revisions)
+    @request_tosca.associate_software(revisions)
 
-    if @request.save
+    if @request_tosca.save
       options = { :conditions => [ 'requests.submitter_id = ?', user.id ]}
       flash[:notice] = _("You have successfully submitted your %s request.") %
         _ordinalize(Request.count(options))
-      @request.first_comment.add_attachment(params)
-      @comment = @request.first_comment
+      @request_tosca.first_comment.add_attachment(params)
+      @comment = @request_tosca.first_comment
       # needed in order to send properly the email
-      @request.first_comment.request.reload
+      @request_tosca.first_comment.request.reload
       url_attachment = render_to_string(:layout => false,
                                         :template => '/attachment')
-      options = { :request => @request, :url_request => request_url(@request),
+      options = { :request => @request_tosca, :url_request => request_url(@request_tosca),
         :name => user.name, :url_attachment => url_attachment }
 
       Notifier::deliver_request_new(options, flash)
@@ -181,7 +181,7 @@ class RequestsController < ApplicationController
   # packages which are subjects to SLA.
   def ajax_display_commitment
     return render(:nothing => true) unless params.has_key? :request
-    @request = Request.new(params[:request])
+    @request_tosca = Request.new(params[:request])
   end
 
   # Used when submitting new request, in order to select
@@ -218,39 +218,39 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    @request = Request.find(params[:id])
+    @request_tosca = Request.find(params[:id])
     _form @recipient
   end
 
   def show
-    @request = Request.find(params[:id], :include => [:first_comment]) unless @request
-    @page_title = @request.resume
+    @request_tosca = Request.find(params[:id], :include => [:first_comment]) unless @request_tosca
+    @page_title = @request_tosca.resume
     @partial_for_summary = 'infos_request'
-    unless read_fragment "requests/#{@request.id}/front-#{session[:user].role_id}"
-      @commentaire = Commentaire.new(:elapsed => 1, :request => @request)
+    unless read_fragment "requests/#{@request_tosca.id}/front-#{session[:user].role_id}"
+      @commentaire = Commentaire.new(:elapsed => 1, :request => @request_tosca)
       @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
 
       # TODO c'est pas dry, cf ajax_comments
       options = { :order => 'created_on DESC', :include => [:user],
-        :limit => 1, :conditions => { :request_id => @request.id } }
+        :limit => 1, :conditions => { :request_id => @request_tosca.id } }
       options[:conditions][:prive] = false if @recipient
       @last_commentaire = Commentaire.find(:first, options)
 
-      @statuts = @request.statut.possible(@recipient)
+      @statuts = @request_tosca.statut.possible(@recipient)
       options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
-        [ 'contributions.logiciel_id = ?', @request.logiciel_id ] }
+        [ 'contributions.logiciel_id = ?', @request_tosca.logiciel_id ] }
       @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
       if @ingenieur
         @severites = Severite.find_select
-        @ingenieurs = Ingenieur.find_select_by_contract_id(@request.contract_id)
-        @teams = Team.on_contract_id(@request.contract_id)
+        @ingenieurs = Ingenieur.find_select_by_contract_id(@request_tosca.contract_id)
+        @teams = Team.on_contract_id(@request_tosca.contract_id)
       end
     end
   end
 
   def ajax_description
     return render(:text => '') unless request.xhr? and params.has_key? :id
-    @request = Request.find(params[:id]) unless @request
+    @request_tosca = Request.find(params[:id]) unless @request_tosca
     render :partial => 'requests/tabs/tab_description', :layout => false
   end
 
@@ -293,20 +293,20 @@ class RequestsController < ApplicationController
 
   def ajax_cns
     return render(:text => '') unless request.xhr? and params.has_key? :id
-    @request = Request.find(params[:id]) unless @request
+    @request_tosca = Request.find(params[:id]) unless @request_tosca
     render :partial => 'requests/tabs/tab_cns', :layout => false
   end
 
   def update
-    @request = Request.find(params[:id])
-    @request.versions = Paquet.find(params[:version_ids]) if params[:version_ids]
+    @request_tosca = Request.find(params[:id])
+    @request_tosca.versions = Paquet.find(params[:version_ids]) if params[:version_ids]
     request = params[:request]
     # description is delocalized into the first comment, mainly for db perf.
     description = request[:description]
-    if @request.update_attributes(request) &&
-        @request.first_comment.update_attribute(:corps, description)
+    if @request_tosca.update_attributes(request) &&
+        @request_tosca.first_comment.update_attribute(:corps, description)
       flash[:notice] = _("The request has been updated successfully.")
-      redirect_to request_path(@request)
+      redirect_to request_path(@request_tosca)
     else
       _form @recipient
       render :action => 'edit'
@@ -327,9 +327,9 @@ class RequestsController < ApplicationController
   end
 
   def print
-    @request = Request.find(params[:id])
-    set_attachments(@request.id)
-    set_comments(@request.id)
+    @request_tosca = Request.find(params[:id])
+    set_attachments(@request_tosca.id)
+    set_comments(@request_tosca.id)
   end
 
   private
@@ -339,8 +339,8 @@ class RequestsController < ApplicationController
     else
       flash_text = _("This contribution is now linked")
     end
-    @request = Request.find(demand_id) unless @request
-    @request.update_attributes!(:contribution_id => contribution_id)
+    @request_tosca = Request.find(demand_id) unless @request_tosca
+    @request_tosca.update_attributes!(:contribution_id => contribution_id)
     flash[:notice] = flash_text
     redirect_to request_path(demand_id)
   end
@@ -387,15 +387,15 @@ class RequestsController < ApplicationController
     end
     @versions = []
     @severites = Severite.find_select
-    first_comment = @request.first_comment
-    @request.description = first_comment.corps if first_comment
-    @request.recipient = recipient if recipient
-    if @request.contract
-      _form4contract(@request.contract)
+    first_comment = @request_tosca.first_comment
+    @request_tosca.description = first_comment.corps if first_comment
+    @request_tosca.recipient = recipient if recipient
+    if @request_tosca.contract
+      _form4contract(@request_tosca.contract)
     elsif !@contracts.empty?
       Contract.find(:all).each { |c|
         if _form4contract(c)
-          @request.contract = c
+          @request_tosca.contract = c
           break
         end
       }
@@ -403,7 +403,7 @@ class RequestsController < ApplicationController
   end
 
   def redirect_to_comment
-    redirect_to request_path(@request)
+    redirect_to request_path(@request_tosca)
   end
 
   def set_attachments(request_id)
@@ -452,7 +452,7 @@ class RequestsController < ApplicationController
     options = { :request => Hash.new }
     request = options[:request]
     Request.remanent_fields.each { |f|
-      value = @request.send(f)
+      value = @request_tosca.send(f)
       request[f] = value unless value.blank? || value == 0
     }
     new_request_path(options)

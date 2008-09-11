@@ -11,7 +11,7 @@
      end
    end %>
 
-<% url_request = "<a href=\"#{@url_request}\">request ##{@request.id}</a>" %>
+<% url_request = "<a href=\"#{@url_request}\">request ##{@request_tosca.id}</a>" %>
 <% if @commentaire.prive %>
   <i><%= h @name %></i> a écrit un commentaire <b>non visible</b> par le bénéficiaire pour la <%= url_request %> :
 <% else %>

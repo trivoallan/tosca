@@ -27,7 +27,7 @@ class MainteneursControllerTest < Test::Unit::TestCase
 
   def setup
     @controller = MainteneursController.new
-    @request    = ActionController::TestRequest.new
+    @request_tosca    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end

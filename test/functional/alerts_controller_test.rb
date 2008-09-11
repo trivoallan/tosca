@@ -25,7 +25,7 @@ class AlertsController; def rescue_action(e) raise e end; end
 class AlertsControllerTest < Test::Unit::TestCase
   def setup
     @controller = AlertsController.new
-    @request    = ActionController::TestRequest.new
+    @request_tosca    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
 

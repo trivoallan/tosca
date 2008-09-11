@@ -33,7 +33,7 @@
        <label for="commentaire_prive"><%= _("Private ?") %></label>
      <%= check_box(:commentaire, :prive) %><br />
      <br /><br /><br /><br /><br /><br /><br />
-     <% if @request.contract.credit? %>
+     <% if @request_tosca.contract.credit? %>
       <%= text_field :commentaire, :elapsed, :size => 1 %>
       <label for="commentaire_elapsed"><%= _('Tickets spent') %></label>
      <% end %>

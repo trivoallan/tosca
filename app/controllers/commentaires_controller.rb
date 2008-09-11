@@ -31,7 +31,7 @@ class CommentairesController < ApplicationController
 
   def show
     @commentaire = Commentaire.find(params[:id])
-    @request = @commentaire.request
+    @request_tosca = @commentaire.request
   end
 
   #Used by the comment view of a request to add one

@@ -58,8 +58,8 @@
         <td>
           <div id="engineer">
             <select id="request_ingenieur_id" name="request[ingenieur_id]"><option value="">» </option>
-              <%= options_from_collection_for_select(@ingenieurs, :last, :first, @request.ingenieur_id) %>
-              <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name, @request.ingenieur_id) %>
+              <%= options_from_collection_for_select(@ingenieurs, :last, :first, @request_tosca.ingenieur_id) %>
+              <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name, @request_tosca.ingenieur_id) %>
             </select>
           </div>
         </td>
@@ -107,7 +107,7 @@
 
       <tr>
         <th><%= _("Commitments") %></th>
-        <td><div id="commitment"><%= display_commitment(@request)%></div></td>
+        <td><div id="commitment"><%= display_commitment(@request_tosca)%></div></td>
       </tr>
     </table>
   </div>

@@ -27,7 +27,7 @@ class TypedocumentsControllerTest < Test::Unit::TestCase
 
   def setup
     @controller = TypedocumentsController.new
-    @request    = ActionController::TestRequest.new
+    @request_tosca    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end

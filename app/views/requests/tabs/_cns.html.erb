@@ -1,8 +1,8 @@
 <div class="request_tab_content" name="request_tab_content">
 
-<% commitment = @request.commitment %>
-<% elapsed = @request.elapsed %>
-<% interval = @request.interval %>
+<% commitment = @request_tosca.commitment %>
+<% elapsed = @request_tosca.elapsed %>
+<% interval = @request_tosca.interval %>
 <% if commitment.nil? %>
   <p><%= _("Your request is not subject to a SLA.") %></p>
 <% else %>
@@ -43,7 +43,7 @@
      <td><%= progress_image(elapsed.correction?, progress) %></td>
      <th><%= _("Correction") %></th>
      <td><%= progress_bar(progress) %></td>
-     <td><%= progress_text(elapsed.correction, commitment.correction.days, @request.interval) %></td>
+     <td><%= progress_text(elapsed.correction, commitment.correction.days, @request_tosca.interval) %></td>
     <% end %>
    </tr>
   </tbody>
