@@ -40,13 +40,13 @@ class ReleasesController < ApplicationController
   def create
     @release = Release.new(params[:release])
     if @release.version.generic?
-      flash[:warn] = _("This release can not be created, because it is associated 
+      flash[:warn] = _("This release can not be created, because it is associated
         with a generic version.<br/>Please create a specific version below.")
       redirect_to new_version_path(:version_id => @release.version_id)
     else
       if @release.save
         flash[:notice] = _('This release has been successfully created.')
-        redirect_to version_path(@release.version)
+        redirect_to(@release.version ? version_path(@release.version) : @release)
       else
         _form
         render :action => 'new'
@@ -84,5 +84,5 @@ class ReleasesController < ApplicationController
     @versions = Version.all.collect { |v| [ v.full_name, v.id ]}
     @contracts = Contract.find_select(Contract::OPTIONS)
   end
-  
+
 end
