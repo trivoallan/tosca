@@ -1,9 +1,8 @@
 <%= error_messages_for 'version' %>
 
-<table class="topbox">
- <tr>
-  <td>
-   <table class="show">
+<div class="subcolumns"><div class="c50l">
+<div class="show">
+   <table>
      <tr>
        <th><label for="version_logiciel_id"><%= _('Software')%></label></th>
        <td><%= select(:version, :logiciel_id, @logiciels) %></td>
@@ -17,6 +16,5 @@
        <td><%= check_box :version, :generic %></td>
      </tr>
    </table>
-  </td>
-  </tr>
-</table>
+ </div>
+</div></div>

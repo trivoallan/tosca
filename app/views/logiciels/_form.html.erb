@@ -23,7 +23,7 @@
  <%= select(:logiciel, :groupe_id, @groupes) %></p>
 
 <p><label for="logiciel_competence_ids"><%=_('Technologies')%></label></p>
-<div id='competences' class='competences'> 
+<div id='competences'> 
 <%= hbtm_check_box( @logiciel.competences, @competences, 'logiciel[competence_ids]', :size => 4) %>
 </div>
 <%= render :partial => 'tags' %>

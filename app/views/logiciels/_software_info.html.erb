@@ -15,7 +15,7 @@
 <% if session[:user] %>
  <div class="menu_title" onclick="Element.toggle('menu_consultation')">
  > <%= _('Consultation') %></div>
- <ul class="menu" id="menu_consultation">
+ <ul id="menu_consultation">
   <% if @recipient %>
    <li><%= remote_link_to_software :supported %></li>
    <li><%= remote_link_to_software :all %></li>
@@ -26,7 +26,7 @@
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
 > <%= _('Search') %></div>
-<ul class="menu" id="menu_recherche">
+<ul id="menu_recherche">
  <li><b><%= _('By name') %></b><br />
      <%= text_field :filters, :software %></li>
  <% if @ingenieur %>
@@ -37,7 +37,7 @@
 
 <div class="menu_title" onclick="Element.toggle('menu_caracteristique')">
 > <%=_('Characteristic')%></div>
-<ul class="menu" id="menu_caracteristique">
+<ul id="menu_caracteristique">
  <li><b><%= _('Description') %> </b><br />
      <%= text_field :filters, :description %></li>
  <li><b><%= _('Group') %> </b><br />
@@ -46,7 +46,7 @@
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
 > <%=_('Perimeter')%></div>
-<ul class="menu" id="menu_perimetre">
+<ul id="menu_perimetre">
  <li><b><%=_('Technologies')%>: </b><%=@count[:technologies]%></li>
  <li><b><%=_('Versions')%>: </b><%=@count[:versions]%></li>
   <li><b><%=_('Software')%>: </b><%=@count[:software]%></li>

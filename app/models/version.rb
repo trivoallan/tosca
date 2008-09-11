@@ -24,7 +24,19 @@ class Version < ActiveRecord::Base
 
   has_and_belongs_to_many :contracts, :uniq => true
 
-  validates_presence_of :logiciel, :name
+  validates_presence_of :logiciel
+  
+  before_validation do |record|
+    result = false
+    result = true if record.generic? #We may not have a version name if generic
+    result = true if record.read_attribute(:name) and not record.read_attribute(:name).empty?
+    result
+  end
+  
+  #reset name
+  after_save do |record|
+    @name = nil if @name
+  end
 
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
@@ -43,7 +55,11 @@ class Version < ActiveRecord::Base
   def name
     return @name if @name
     @name = read_attribute(:name)
-    @name = "#{@name}.*" if self.generic?
+    if self.generic?
+      #We do this to have version like "*" without a real version 
+      @name = "#{@name}." if @name and not @name.empty?
+      @name = "#{@name}*"
+    end
     @name
   end
 

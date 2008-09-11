@@ -38,6 +38,33 @@ class VersionTest < ActiveSupport::TestCase
     v_generic = versions(:version_ff_2_generic)
     assert_equal("2.*", v_generic.name)
   end
+  
+  def test_validation
+    v = Version.new(:logiciel_id => 1)
+    assert !v.save
+    
+    v = Version.new(:logiciel_id => 1)
+    v.generic = true
+    assert v.save
+    assert_equal "*", v.to_s
+    
+    v = Version.new(:logiciel_id => 1)
+    v.generic = false
+    v.name = ""
+    assert !v.save
+    
+    v = Version.new(:logiciel_id => 1)
+    v.generic = false
+    v.name = "2"
+    assert v.save
+    assert_equal "2", v.to_s
+    
+    v = Version.new(:logiciel_id => 1)
+    v.generic = true
+    v.name = "2"
+    assert v.save
+    assert_equal "2.*", v.to_s
+  end
 
   def test_compare
     ff_1_5 = versions(:version_ff_1_5)
