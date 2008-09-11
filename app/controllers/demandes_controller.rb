@@ -37,7 +37,7 @@ class DemandesController < ApplicationController
     if @ingenieur
       conditions.first << 'demandes.ingenieur_id IN (?)'
     elsif @recipient
-      conditions.first << 'demandes.recipient_id = (?)'
+      conditions.first << 'demandes.recipient_id IN (?)'
     end
     conditions[0] = conditions.first.join(' AND ')
     options[:conditions] = conditions
