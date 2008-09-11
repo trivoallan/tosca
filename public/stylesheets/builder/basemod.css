@@ -46,9 +46,9 @@
   #col3_content { padding: 0 20px 0 10px }
 
 
-  /* set column dividers */ 
+  /* set column dividers */
   #col3 { border-left: 1px #ddd solid }
-	
+
   /*-------------------------------------------------------------------------*/
 
   #page_margins {
@@ -112,7 +112,7 @@
     float:left;
     width: 20px;
     height: 20px;
-    background-image:  url(images/gfxborder/corner_bl.gif);
+    background-image:  url(../images/gfxborder/corner_bl.gif);
     background-position: bottom left;
   }
 
