@@ -33,7 +33,7 @@ class UserSweeper < ActionController::Caching::Sweeper
   private
   def expire_cache_for(record)
     # Refresh User Info on each cache displaying it
-    Demande.actives(record.contract_ids).each { |d|
+    Request.actives(record.contract_ids).each { |d|
       expire_fragments d.fragments
     }
   end

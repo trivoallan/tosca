@@ -84,7 +84,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^clients/(?!destroy)', 'Manage clients' ],
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
                [ '^contracts/(?!destroy)', 'Manage contracts' ],
-               [ '^demandes/(?!destroy)', 'Manage requests' ],
+               [ '^requests/(?!destroy)', 'Manage requests' ],
                [ '^commitments/(?!destroy)', 'Manage Service Level Agreement' ],
                [ '^groupes/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
@@ -101,7 +101,7 @@ class LoadPermissions < ActiveRecord::Migration
     roles = [ expert_id, customer_id, viewer_id ]
     access = [ [ '^binaires/(show|index)$', 'Read-only access to binaries' ],
                [ '^clients/show$', 'Read-only access to clients offers' ] ,
-               [ '^demandes/(index|print|show)$', 'Read access to requests' ],
+               [ '^requests/(index|print|show)$', 'Read access to requests' ],
                [ '^logiciels/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
                [ '^socles/show$', 'Read-only access to system' ],
@@ -114,7 +114,7 @@ class LoadPermissions < ActiveRecord::Migration
 
     roles = [ expert_id ]
     access = [ [ '^clients/index$', 'Read-only access to list clients offers' ],
-               [ '^demandes/(link|unlink)_contribution$', 'Link contribution with request' ],
+               [ '^requests/(link|unlink)_contribution$', 'Link contribution with request' ],
                [ '^contracts/(index|show)$', 'Read-only access to contracts'] ]
     add_permission.call(roles, access)
 
@@ -131,7 +131,7 @@ class LoadPermissions < ActiveRecord::Migration
     roles = [ manager_id, expert_id, customer_id ]
     access = [ [ '^commentaires/(comment|show|edit|update)$',
                   'Hability to comment a request' ],
-                [ '^demandes/(new|create|pending)$',
+                [ '^requests/(new|create|pending)$',
                    'Write access to requests & Pending View' ] ]
     add_permission.call(roles, access)
 

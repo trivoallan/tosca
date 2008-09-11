@@ -18,11 +18,11 @@
 #
 # For a smaller stack trace in dev
 require 'image'
-require 'demande'
+require 'request'
 require 'contribution'
 
 class LogicielsController < ApplicationController
-  helper :filters, :versions, :demandes, :competences, :contributions, :licenses
+  helper :filters, :versions, :requests, :competences, :contributions, :licenses
 
   # Not used for the moment
   # auto_complete_for :logiciel, :name
@@ -85,11 +85,11 @@ class LogicielsController < ApplicationController
   def show
     @logiciel = Logiciel.find(params[:id])
     if @recipient
-      @demandes = @recipient.demandes.find(:all, :conditions =>
-                                              ['demandes.logiciel_id=?', params[:id]])
+      @requests = @recipient.requests.find(:all, :conditions =>
+                                              ['requests.logiciel_id=?', params[:id]])
     else
-      @demandes = Demande.find(:all, :conditions =>
-                               ['demandes.logiciel_id=?',params[:id]])
+      @requests = Request.find(:all, :conditions =>
+                               ['requests.logiciel_id=?',params[:id]])
     end
   end
 

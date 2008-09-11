@@ -50,7 +50,7 @@ class ExportController < ApplicationController
       'pname_etatreversement', 'delay_in_words', 'clos_enhance',
       'contributed_on_formatted']
     options = { :order => 'contributions.contributed_on ASC',
-      :include => [:logiciel, :etatreversement, :demande],
+      :include => [:logiciel, :etatreversement, :request],
       :conditions => flash[:conditions],
       :methods => methods }
 
@@ -112,7 +112,7 @@ class ExportController < ApplicationController
   def compute_phonecalls(type)
     columns= ['contract_name', 'ingenieur_name', 'recipient_name']
     options = { :order => 'phonecalls.start', :include =>
-      [:recipient,:ingenieur,:contract,:demande],
+      [:recipient,:ingenieur,:contract,:request],
       :conditions => flash[:conditions],
       :methods => columns }
     report = Phonecall.report_table(:all, options)
@@ -130,26 +130,26 @@ class ExportController < ApplicationController
   # return the contents of a request in a table in  ods
   def requests
     respond_to do |format|
-      format.html { redirect_to demandes_path }
+      format.html { redirect_to requests_path }
       format.xml {
         # TODO : make an xml export : a finder +
         #  render :xml => @requests.to_xml should be enough)
       }
-      format.ods { compute_demandes(:ods, {}) }
+      format.ods { compute_requests(:ods, {}) }
     end
   end
 
-  def compute_demandes(type, options_generate)
+  def compute_requests(type, options_generate)
     columns = [ 'id', 'logiciels_name', 'clients_name', 'severites_name',
       'created_on_formatted', 'socle', 'updated_on_formatted', 'resume',
-      'statuts_name', 'typedemandes_name'
+      'statuts_name', 'typerequests_name'
     ]
-    options= { :order => 'demandes.created_on', :conditions => flash[:conditions],
-      :select => Demande::SELECT_LIST, :joins => Demande::JOINS_LIST,
+    options= { :order => 'requests.created_on', :conditions => flash[:conditions],
+      :select => Request::SELECT_LIST, :joins => Request::JOINS_LIST,
       :methods => columns
      }
     report = nil
-    report = Demande.report_table(:all, options)
+    report = Request.report_table(:all, options)
     unless report.column_names.empty?
       report.reorder columns
       report.rename_columns columns,

@@ -47,9 +47,9 @@
      <tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:logiciel_id => @logiciel.id)%> <br />
         <% options[:edit] = nil %>
         <% options[:public_summarized] = true %>
-        <% if @demandes.size > 0  %>
+        <% if @requests.size > 0  %>
          <div class="bloc_scroll">
-           <%=show_list(@demandes, _('Request'), options) {|d| link_to_demande d}%>
+           <%=show_list(@requests, _('Request'), options) {|d| link_to_request d}%>
          </div>
         <% end %>
      </tr>

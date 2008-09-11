@@ -67,7 +67,7 @@ module PagesHelper
   end
 
 
-  # link_to_actions_table(demande)
+  # link_to_actions_table(request)
   def link_to_actions_table(ar, options = {})
     return '' unless ar
     actions = [ link_to_show(ar), link_to_edit(ar), link_to_delete(ar) ]
@@ -86,16 +86,16 @@ module PagesHelper
 
 =begin
  call it like this :
- <%= show_pages_links @demande_pages, 'déposer une nouvelle demande' %>
+ <%= show_pages_links @request_pages, 'déposer une nouvelle request' %>
  if you want ajax links, you must specificy the remote function this way :
- <%= show_pages_links @demande_pages, 'déposer une demande',
-       :url => '/demandes/update_list' %>
+ <%= show_pages_links @request_pages, 'déposer une request',
+       :url => '/requests/update_list' %>
  (!) you will need an StaticImage::spinner too (!)
  If you want to display a list of objects in a distant controller,
  e. g. : displaying the flow requests in reporting controller, then you
  need to precise the controller like this :
- <%= show_pages_links @demande_pages, 'déposer une demande',
-       :controller => 'demandes' %>
+ <%= show_pages_links @request_pages, 'déposer une request',
+       :controller => 'requests' %>
   You have 2 parameters in options :
       :url : for ajaxified page links
       :no_new_links : avoid '+' links to create new one

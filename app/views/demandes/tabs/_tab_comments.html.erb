@@ -1,7 +1,0 @@
-<% print_mode = (controller.action_name == 'print') %>
-<%= render :partial => 'demandes/tabs/tab_menu' unless print_mode %>
-<% cache("requests/#{@demande_id || @demande.id}/comments-#{session[:user].kind}") do %>
- <div class="demande_tab_content">
-  <%= render :partial => 'demandes/tabs/comment', :collection => @commentaires %>
- </div>
-<% end %>

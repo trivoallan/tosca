@@ -22,7 +22,7 @@
 class Phonecall < ActiveRecord::Base
   belongs_to :ingenieur
   belongs_to :recipient
-  belongs_to :demande
+  belongs_to :request
   belongs_to :contract
 
   validate do |record|
@@ -65,8 +65,8 @@ class Phonecall < ActiveRecord::Base
   end
 
   def name
-    if demande
-      _("Phonecall of %s on '%s'") % [ Time.in_words(length), demande.resume ]
+    if request
+      _("Phonecall of %s on '%s'") % [ Time.in_words(length), request.resume ]
     else
       _("Phonecall of %s for %s") % [ ingenieur.name, contract.name ]
     end

@@ -1,9 +1,0 @@
-<div class="show">
-  <% for column in Typedemande.content_columns %>
-  <p>
-    <b><%= column.human_name %>:</b> <%= @typedemande.send(column.name) %>
-  </p>
-  <% end %>
-  <br />
-  <%= link_to_edit_and_list @typedemande %>
-</div>

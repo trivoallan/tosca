@@ -37,8 +37,8 @@ class Attachment < ActiveRecord::Base
   def self.set_scope(client_id)
     joins = ''
     joins << 'LEFT OUTER JOIN commentaires ON commentaires.attachment_id = attachments.id '
-    joins << 'LEFT OUTER JOIN demandes ON demandes.id = commentaires.demande_id '
-    joins << 'LEFT OUTER JOIN recipients ON recipients.id = demandes.recipient_id '
+    joins << 'LEFT OUTER JOIN requests ON requests.id = commentaires.request_id '
+    joins << 'LEFT OUTER JOIN recipients ON recipients.id = requests.recipient_id '
     self.scoped_methods << { :find => {
        :conditions => [ 'recipients.client_id = ?', client_id ],
        :joins => joins }

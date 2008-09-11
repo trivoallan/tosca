@@ -17,21 +17,21 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class CommentairesController < ApplicationController
-  helper :demandes
+  helper :requests
 
   cache_sweeper :commentaire_sweeper, :only =>
     [:comment, :update, :destroy]
   # A comment is created only from the request interface
-  cache_sweeper :demande_sweeper, :only => [:comment]
+  cache_sweeper :request_sweeper, :only => [:comment]
 
   def index
     @commentaire_pages, @commentaires = paginate :commentaires,
-    :per_page => 10, :include => [:demande]
+    :per_page => 10, :include => [:request]
   end
 
   def show
     @commentaire = Commentaire.find(params[:id])
-    @demande = @commentaire.demande
+    @request = @commentaire.request
   end
 
   #Used by the comment view of a request to add one
@@ -40,7 +40,7 @@ class CommentairesController < ApplicationController
     return render(:nothing => true) unless id && commentaire
 
     user = session[:user]
-    request = Demande.find(id)
+    request = Request.find(id)
 
     # firewall ;)
     return render(:nothing => true) unless user && request
@@ -58,7 +58,7 @@ class CommentairesController < ApplicationController
     end
 
     @comment = Commentaire.new(commentaire) do |c|
-      c.demande, c.user = request, user
+      c.request, c.user = request, user
       c.add_attachment(params)
     end
 
@@ -68,9 +68,9 @@ class CommentairesController < ApplicationController
     if @comment.save
       flash[:notice] = _("Your comment was successfully added.")
       url_attachment = render_to_string(:layout => false, :template => '/attachment')
-      options = { :demande => request, :commentaire => @comment,
+      options = { :request => request, :commentaire => @comment,
         :name => user.name, :modifications => changed,
-        :url_request => demande_url(request),
+        :url_request => request_url(request),
         :url_attachment => url_attachment
       }
       Notifier::deliver_request_new_comment(options, flash)
@@ -80,7 +80,7 @@ class CommentairesController < ApplicationController
       flash[:old_body] = @comment.corps
     end
 
-    redirect_to demande_path(request)
+    redirect_to request_path(request)
   end
 
   # We could only create a comment with comment method, from
@@ -113,18 +113,18 @@ class CommentairesController < ApplicationController
   def destroy
     return redirect_to_home unless params[:id]
     commentaire = Commentaire.find(params[:id])
-    demande = commentaire.demande_id
+    request = commentaire.request_id
     if commentaire.destroy
       flash[:notice] = _("The comment was successfully destroyed.")
     else
       flash[:warn] = _('You cannot delete the first comment')
     end
-    redirect_to demande_path(demande)
+    redirect_to request_path(request)
   end
 
   private
   def _form
-    @demandes = Demande.find(:all)
+    @requests = Request.find(:all)
     @users = User.find_select
     @statuts = Statut.find_select
   end
@@ -132,7 +132,7 @@ class CommentairesController < ApplicationController
   def _not_allowed?
     if @recipient and @commentaire.user_id != @recipient.user_id
       flash[:warn] = _('You are not allowed to edit this comment')
-      redirect_to demande_path(@commentaire.demande)
+      redirect_to request_path(@commentaire.request)
       return true
     end
     false

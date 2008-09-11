@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Commentaire < ActiveRecord::Base
-  belongs_to :demande
+  belongs_to :request
   belongs_to :user
   belongs_to :attachment
   belongs_to :statut
@@ -29,8 +29,8 @@ class Commentaire < ActiveRecord::Base
   validates_presence_of :user
 
   validate do |record|
-    request = record.demande
-    if record.demande.nil?
+    request = record.request
+    if record.request.nil?
       record.errors.add_to_base _('You must indicate a valid request')
     end
     if (request && request.new_record? != true &&
@@ -56,7 +56,7 @@ class Commentaire < ActiveRecord::Base
 
   # Used for outgoing mails feature, to keep track of the request.
   def mail_id
-    return "#{self.demande_id}_#{self.id}"
+    return "#{self.request_id}_#{self.id}"
   end
 
   def name
@@ -82,7 +82,7 @@ class Commentaire < ActiveRecord::Base
   # Attachments, Elapsed Time or Request coherence is checked
   before_destroy :delete_dependancies
   def delete_dependancies
-    request = self.demande
+    request = self.request
 
     # We MUST have at least the first comment in a request
     return false if request.first_comment_id == self.id
@@ -108,7 +108,7 @@ class Commentaire < ActiveRecord::Base
   def update_status
     return true if self.statut_id.nil? || self.statut_id == 0
 
-    request = self.demande
+    request = self.request
     options = { :order => 'created_on DESC', :conditions =>
       'commentaires.statut_id IS NOT NULL' }
     last_one = request.commentaires.find(:first, options)
@@ -120,7 +120,7 @@ class Commentaire < ActiveRecord::Base
   after_create :update_request
   def update_request
     fields = %w(statut_id ingenieur_id severite_id)
-    request = self.demande
+    request = self.request
 
     # Update all attributes
     if request.first_comment_id != self.id

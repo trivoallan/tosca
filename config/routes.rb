@@ -84,7 +84,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get, :experts => :get, :ajax_list_versions => :post },
     :member => { :list => :get }
-  map.resources :demandes,
+  map.resources :requests,
     :collection => { :pending => :get,
       :ajax_renew => :post, # in pending view
       :ajax_display_commitment => :post, # in new/edit form
@@ -143,7 +143,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :teams, :collection => { :auto_complete_for_contract_name => :post }
   map.resources :time_tickets
   map.resources :typecontributions
-  map.resources :typedemandes
+  map.resources :typerequests
   map.resources :typedocuments
   map.resources :typeurls
   map.resources :urllogiciels

@@ -4,9 +4,9 @@
 <table class="show">
 
 <tr><td colspan="2"></td></tr>
-<% if @phonecall.demande %>
+<% if @phonecall.request %>
 <tr><td><b><%= _('Request') %></b></td>
-    <td><%= link_to_demande @phonecall.demande %></td></tr>
+    <td><%= link_to_request @phonecall.request %></td></tr>
 <% end %>
 <tr><td><b><%= _('Interlocutor')%></b></td>
     <td><%= @phonecall.ingenieur.name %></td></tr>

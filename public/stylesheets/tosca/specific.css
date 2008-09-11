@@ -183,7 +183,7 @@ table.commentaire td.text p { margin: 10px; }
   * Tabs in requestt	 *
   ************************/
 
-.demande_tabnav {
+.request_tabnav {
   color: #000000;
   margin: 12px 0px 0px 0px;
   padding: 0px;
@@ -191,13 +191,13 @@ table.commentaire td.text p { margin: 10px; }
   padding-left: 10px
 }
 
-.demande_tabnav li {
+.request_tabnav li {
   display: inline;
   overflow: hidden;
   list-style-type: none;
 }
 
-.demande_tabnav a, a.active {
+.request_tabnav a, a.active {
   color: #000000;
   background:  #FFEBBF;
   font: bold 1em "Trebuchet MS", Arial, sans-serif;
@@ -209,25 +209,25 @@ table.commentaire td.text p { margin: 10px; }
   -moz-border-radius: .5em .5em 0 0;
 }
 
-.demande_tabnav a.active {
+.request_tabnav a.active {
   background: #cfc8cf;
 }
 
-.demande_tabnav a:hover {
+.request_tabnav a:hover {
   color: #FFFFFF;
   background: #FFD880;
 }
 
-.demande_tabnav a:visited {
+.request_tabnav a:visited {
   color: black;
 }
 
-.demande_tabnav a.active:hover {
+.request_tabnav a.active:hover {
   background: #FFB000;
   color: #FFEBBF;
 }
 
-.demande_tab_content {
+.request_tab_content {
   text-align: justify;
   background: #DDDDDD;
   padding: 0.5em;
@@ -236,17 +236,17 @@ table.commentaire td.text p { margin: 10px; }
   border: 1px solid #cfc8cf;
   z-index: -1;
 }
-.demande_tab_content p {
+.request_tab_content p {
   margin: 10px;
 }
 
-.demande_tab_content td {
+.request_tab_content td {
   margin-right: 1em;
   padding-right: 1em;
 }
 
 /* history */
-.demande_tab_content .history {
+.request_tab_content .history {
   font-size: 95%;
   padding: 0.5em;
 }
@@ -303,43 +303,43 @@ a.nobackground {
 .odd:hover {	background-color: #e2efe2; }
 
 /***************************************
- * Statut d'une demande en couleur
+ * Statut d'une request en couleur
  ***************************************/
 
 /* enregistree */
-.demande_1 	{background: #f03730; /*red;*/}
-.demande_1:hover{background: #f03700;}
+.request_1 	{background: #f03730; /*red;*/}
+.request_1:hover{background: #f03700;}
 
 /* priseencompte */
-.demande_2 	{background: #ffa26e; /*orange;*/}
-.demande_2:hover{background: #ffa23e; }
+.request_2 	{background: #ffa26e; /*orange;*/}
+.request_2:hover{background: #ffa23e; }
 
 /* suspendue */
-.demande_3	{background: #ffffba; /*yellow;*/}
-.demande_3:hover{background: #ffff88; }
+.request_3	{background: #ffffba; /*yellow;*/}
+.request_3:hover{background: #ffff88; }
 
 /* analysee */
-.demande_4 	{background: #a0e0f0; /*cyan;*/}
-.demande_4:hover{background: #a0e0c0;}
+.request_4 	{background: #a0e0f0; /*cyan;*/}
+.request_4:hover{background: #a0e0c0;}
 
 /* contournee */
-.demande_5 	{background: #90EEa0; /* lightgreen; */}
-.demande_5:hover{background: #90EE70; }
+.request_5 	{background: #90EEa0; /* lightgreen; */}
+.request_5:hover{background: #90EE70; }
 
 /* corrigee */
-.demande_6 	{background: #67ccfd;}
-.demande_6:hover{background: #67cccd;}
+.request_6 	{background: #67ccfd;}
+.request_6:hover{background: #67cccd;}
 
 /* cloturee */
-.demande_7 	{background: #c9c9af; /*grey;*/}
-.demande_7:hover{background: #c9c97f; }
+.request_7 	{background: #c9c9af; /*grey;*/}
+.request_7:hover{background: #c9c97f; }
 
 /* annulee */
-.demande_8 	{background: #D3D3D3; /*lightgrey;*/}
-.demande_8:hover{background: #D3D3a3;}
+.request_8 	{background: #D3D3D3; /*lightgrey;*/}
+.request_8:hover{background: #D3D3a3;}
 
 /* all lines are clickable */
-#demandes_list, #cns tr *:hover {
+#requests_list, #cns tr *:hover {
 	cursor: pointer;
 }
 

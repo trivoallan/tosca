@@ -27,23 +27,23 @@ module WeeklyReporting
       :recipient_ids => recipient_ids
     }
     scope = { :find => { :conditions =>
-        [ 'demandes.recipient_id IN (:recipient_ids) AND demandes.updated_on BETWEEN :first_day AND :last_day', values ] }
+        [ 'requests.recipient_id IN (:recipient_ids) AND requests.updated_on BETWEEN :first_day AND :last_day', values ] }
     }
-    Demande.send(:with_scope, scope) {
+    Request.send(:with_scope, scope) {
       first_day = values[:first_day].to_formatted_s(:db)
       last_day = values[:last_day].to_formatted_s(:db)
 
       options = { :conditions =>
-        [ 'demandes.created_on BETWEEN :first_day AND :last_day', values ],
-        :order => 'clients.name, demandes.id', :include => [{:recipient => :client},
-                                                           :statut,:typedemande] }
-      @requests_created = Demande.find(:all, options)
+        [ 'requests.created_on BETWEEN :first_day AND :last_day', values ],
+        :order => 'clients.name, requests.id', :include => [{:recipient => :client},
+                                                           :statut,:typerequest] }
+      @requests_created = Request.find(:all, options)
 
-      options[:conditions] = [ 'demandes.statut_id = ?', 7 ] # 7 => Closed.
-      @requests_closed = Demande.find(:all, options)
+      options[:conditions] = [ 'requests.statut_id = ?', 7 ] # 7 => Closed.
+      @requests_closed = Request.find(:all, options)
 
-      options[:conditions] = [ 'demandes.statut_id = ?', 8 ] # 8 => Cancelled.
-      @requests_cancelled = Demande.find(:all, options)
+      options[:conditions] = [ 'requests.statut_id = ?', 8 ] # 8 => Cancelled.
+      @requests_cancelled = Request.find(:all, options)
     }
   end
 end

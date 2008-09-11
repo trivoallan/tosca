@@ -25,7 +25,7 @@ class Logiciel < ActiveRecord::Base
 
   has_many :contributions
   has_many :knowledges
-  has_many :demandes
+  has_many :requests
   has_many :urllogiciels, :dependent => :destroy,
     :order => 'urllogiciels.typeurl_id'
   has_many :releases, :through => :versions

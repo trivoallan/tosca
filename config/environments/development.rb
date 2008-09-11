@@ -39,5 +39,5 @@ Dependencies.explicitly_unloadable_constants =
   %w(Struct::Knowledges Struct::Contributions Struct::Software Struct::Calls
      Struct::Clients Struct::Requests Struct::Accounts
      Scope::SCOPE_CLIENT Scope::SCOPE_CONTRACT
-     Demande::TERMINEES Demande::EN_COURS
-     Demande::SELECT_LIST DEMANDE::JOINS_LIST)
+     Request::TERMINEES Request::EN_COURS
+     Request::SELECT_LIST DEMANDE::JOINS_LIST)

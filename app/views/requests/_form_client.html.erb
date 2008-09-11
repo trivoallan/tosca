@@ -1,0 +1,44 @@
+<% client = @request.client %>
+
+<p><label><%= _("Recipient :") %></label>
+<% if client %>
+  <%= select('request', 'recipient_id',
+        client.recipients.collect{|l| [ l.name, l.id]}) %>
+<% end %>
+</p>
+
+<p><label><%= _("Engineer :") %></label>
+<% if client %>
+<%= select('request', 'ingenieur_id',
+        client.ingenieurs.collect{|l| [ l.name, l.id]},
+        :include_blank => true) %>
+<% end %>
+</p>
+
+<p><label><%= _("Request type :") %></label>
+<% if client %>
+  <%= select('request', 'typerequest_id',
+          client.typerequests.collect{|l| [ l.name, l.id]}) %>
+<% end %>
+</p>
+
+<p><label><%= _("Severity :") %></label>
+<% if client %>
+  <%= select('request', 'severite_id',
+          client.severites.collect{|l| [ l.name, l.id]}) %>
+<% end %>
+</p>
+
+<p><label><%= _("Base :") %></label>
+<% if client %>
+  <%= select('request', 'socle_id',
+          client.socles.collect{|l| [ l.name, l.id]}) %>
+<% end %>
+</p>
+
+<p><label><%= _("Software :") %></label>
+<% if client %>
+  <%= select('request', 'logiciel_id',
+          client.logiciels.collect{|l| [ l.name, l.id]}) %>
+<% end %>
+</p>

@@ -94,8 +94,8 @@ class ClientTest < Test::Unit::TestCase
     Client.find(:all).each{|c| c.contributions.each{|i| assert_instance_of(Contribution, i)}}
   end
 
-  def test_typedemandes
-    Client.find(:all).each{|c| c.typedemandes.each{|i| assert_instance_of(Typedemande, i)}}
+  def test_typerequests
+    Client.find(:all).each{|c| c.typerequests.each{|i| assert_instance_of(Typerequest, i)}}
   end
 
   def test_severites

@@ -1,0 +1,40 @@
+<%############ infos requests #########################
+  # require : @request, @contributions, @count
+  #           @users_ingenieurs
+%>
+<%# It's separated by roles, since viewer & customer see different things %>
+<% cache("requests/#{@request.id}/front-#{session[:user].role_id}") do %>
+ <div class="content">
+   <% if @request.logiciel %>
+     <div style="float: right">
+        <%= public_link_to(software_logo(@request.logiciel),
+	                       logiciel_path(@request.logiciel)) %>
+     </div>
+   <% end %>
+   <h1>
+    <% options = edit_request_path(@request.id) %>
+    <%= link_to(StaticImage::edit, options) %>
+    <%= "[#{sprintf "%06d", @request.id}] #{@request.resume}" %>
+    <% options = print_request_path(@request.id) %>
+    <%= link_to(StaticImage::print, options) %>
+   </h1>
+
+   <%= render(:partial => 'requests/tabs/comment', :locals =>
+         { :comment => @last_commentaire }) %>
+
+   <div>
+    <% if session[:user].authorized? "commentaires/comment" %>
+     <% action = comment_commentaire_path(@request) %>
+     <% form_tag(action, :method => :post, :multipart => true) do %>
+      <%= render :partial => 'comment_form' %>
+      <p>&nbsp;</p>
+     <% end %>
+    <% end %>
+   </div>
+
+   <%# see tab_menu for ajax links %>
+   <div class="request_tab" id="request_tab">
+    <%= render :partial => 'requests/tabs/tab_description' %>
+   </div>
+ </div>
+<% end %>

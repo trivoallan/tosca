@@ -11,8 +11,8 @@
     <% old_request = d.request_at %>
     <% d_id = "request_#{request.id}" %>
     <li>
-      <h3><%= toggle(d_id) %>&nbsp;<%= "##{request.id} " + link_to_demande(request) %></h3>
-      <%= request.typedemande %>
+      <h3><%= toggle(d_id) %>&nbsp;<%= "##{request.id} " + link_to_request(request) %></h3>
+      <%= request.typerequest %>
       <%= request.severite %><%= " (#{old_request.severite})" if old_request.severite and old_request.severite != request.severite %>,
       <%= request.statut %><%= " (#{old_request.statut})" if old_request.statut and old_request.statut != request.statut %>,
       <%= _("open since %s") % distance_of_time_in_words_to_now(request.created_on) %><br/><br/>

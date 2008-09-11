@@ -1,0 +1,51 @@
+<% return if requests.empty? %>
+<% options = { :before => "Element.show('spinner')",
+               :url => ajax_renew_requests_path } %>
+<% form_remote_tag(options) do %>
+<table class="full">
+ <thead>
+   <tr>
+    <th width='2%'><%= StaticImage::checkbox %></th>
+    <th width='2%'><%= _('Id') %></th>
+    <th width='2%'><%= _('Resp.') %></th>
+    <th><%= _('Summary') %></th>
+    <th width="10"><%= _('Workaround') %></th>
+    <th width="10"><%= _('Correction') %></th>
+   </tr>
+   <tr><td colspan="6"><hr /></td></tr>
+ </thead>
+ <tbody>
+  <% requests.each do |request| %>
+   <% elapsed = request.elapsed %>
+   <% interval = request.interval %>
+   <% commitment = request.commitment %>
+   <tr class="<%=cycle('odd', 'even')%>" id="request_<%=request.id%>">
+    <td><%= check_box_tag 'request_ids[]', request.id, false, :id => "request_ids_#{request.id}" %></td>
+    <td><label for="request_ids_<%=request.id%>"><%= request.id %></label></td>
+    <td><%= (request.ingenieur ? request.ingenieur.trigram : '-') %></td>
+    <td title="<%= "[#{request.logiciels_name}] #{request.clients_name}" %>">
+      <%= link_to request.resume, request_path(request) %>
+    </td>
+    <% if commitment.nil? %>
+      <td>-</td><td>-</td>
+    <% else %>
+     <% progress = elapsed.workaround_progress %>
+     <% desc = progress_text(elapsed.workaround, commitment.workaround.days, interval) if progress > 0 %>
+     <td><%= progress_bar(progress, desc) %></td>
+     <% progress = elapsed.correction_progress %>
+     <% desc = progress_text(elapsed.correction, commitment.correction.days, interval) if progress > 0 %>
+     <td><%= progress_bar(progress, desc) %></td>
+    <% end %>
+   </tr>
+  <% end %>
+ </tbody>
+  <tfoot>
+   <tr><td colspan="6"><hr /></td></tr>
+   <tr><td colspan="6">
+     <%=_('Selected requests can wait')%>
+     <%= text_field_tag :expected_on, "15", :size => '2' %> <%=_('days')%>
+     <%= submit_tag _("before renewal") %>
+   </td></tr>
+ </tfoot>
+</table>
+<% end %>

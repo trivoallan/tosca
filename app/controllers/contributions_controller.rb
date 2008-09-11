@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContributionsController < ApplicationController
-  helper :filters, :demandes, :versions, :export, :urlreversements, :logiciels
+  helper :filters, :requests, :versions, :export, :urlreversements, :logiciels
 
   cache_sweeper :contribution_sweeper, :only => [ :create, :update ]
 
@@ -42,7 +42,7 @@ class ContributionsController < ApplicationController
     client_id = params[:client_id].to_s
     unless client_id.blank? || client_id == '1' # Main client
       options[:conditions].merge!({'contracts.client_id' => params[:client_id]})
-      options[:include] = {:demande => :contract}
+      options[:include] = {:request => :contract}
     end
     # Dirty hack in order to show main client' contributions
     # TODO : remove it in september.
@@ -65,7 +65,7 @@ class ContributionsController < ApplicationController
       options[:select] = 'DISTINCT logiciels.*'
       unless client_id.blank? || client_id == '1'
         options[:conditions] = { 'contracts.client_id' => params[:client_id] }
-        options[:joins] = { :contributions => { :demande => :contract } }
+        options[:joins] = { :contributions => { :request => :contract } }
       end
       # Dirty hack in order to show main client' contributions
       # TODO : remove it in september.
@@ -80,7 +80,7 @@ class ContributionsController < ApplicationController
   def admin
     conditions = []
     options = { :per_page => 10, :order => 'contributions.updated_on DESC',
-      :include => [:logiciel,:etatreversement,:demande] }
+      :include => [:logiciel,:etatreversement,:request] }
 
     if params.has_key? :filters
       session[:contributions_filters] =
@@ -97,7 +97,7 @@ class ContributionsController < ApplicationController
         [:contribution, 'contributions.name', :like ],
         [:etatreversement_id, 'contributions.etatreversement_id', :equal ],
         [:ingenieur_id, 'contributions.ingenieur_id', :equal ],
-        [:contract_id, 'demandes.contract_id', :equal ]
+        [:contract_id, 'requests.contract_id', :equal ]
       ])
       @filters = contributions_filters
     end
@@ -121,7 +121,7 @@ class ContributionsController < ApplicationController
     # submitted state, by default
     @contribution.etatreversement_id = 4
     @contribution.contributed_on = Date.today
-    @demande = Demande.new(); @demande.id = params[:request_id]
+    @request = Request.new(); @request.id = params[:request_id]
     @contribution.ingenieur = @ingenieur
     _form
   end
@@ -139,7 +139,7 @@ class ContributionsController < ApplicationController
 
   def edit
     @contribution = Contribution.find(params[:id])
-    @demande = @contribution.demande
+    @request = @contribution.request
     _form
   end
 
@@ -202,8 +202,8 @@ private
 
   def _link2request()
     begin
-      demande = Demande.find(params[:demande][:id].to_i) unless params[:demande][:id].blank?
-      @contribution.demande = demande
+      request = Request.find(params[:request][:id].to_i) unless params[:request][:id].blank?
+      @contribution.request = request
       true
     rescue
       flash[:warn] = _('The associated request does not exist')

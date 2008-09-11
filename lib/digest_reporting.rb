@@ -20,7 +20,7 @@ module DigestReporting
 
   #contract is a Contract, requests is an array of DigestRequests
   DigestContracts = Struct.new(:contract, :requests)
-  #request is a Demande, request_at is a Demande, comments is an array of Commentaire
+  #request is a Request, request_at is a Request, comments is an array of Commentaire
   DigestRequests = Struct.new(:request, :request_at, :comments)
 
   def digest_result(period)
@@ -31,8 +31,8 @@ module DigestReporting
     @period = _(@period)
 
     options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contract_id ASC", :include => [:typedemande, :severite, :statut]}
-    requests = Demande.find(:all, options)
+     :order => "contract_id ASC", :include => [:typerequest, :severite, :statut]}
+    requests = Request.find(:all, options)
 
     @result = Array.new
     last_contract_id = nil
@@ -56,7 +56,7 @@ module DigestReporting
     end
   end
 
-  #important is an array of Demande, other is an array of DigestContracts
+  #important is an array of Request, other is an array of DigestContracts
   DigestManagers = Struct.new(:important, :other)
 
   def digest_managers(period)
@@ -67,8 +67,8 @@ module DigestReporting
     @period = _(@period)
     
     options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contract_id ASC", :include => [:typedemande, :severite, :statut]}
-    requests = Demande.find(:all, options)
+     :order => "contract_id ASC", :include => [:typerequest, :severite, :statut]}
+    requests = Request.find(:all, options)
     
     @result = DigestManagers.new    
     @result.important = Array.new

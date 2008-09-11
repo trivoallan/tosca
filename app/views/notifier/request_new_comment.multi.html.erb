@@ -11,12 +11,12 @@
      end
    end %>
 
-<% url_demande = "<a href=\"#{@url_request}\">demande ##{@demande.id}</a>" %>
+<% url_request = "<a href=\"#{@url_request}\">request ##{@request.id}</a>" %>
 <% if @commentaire.prive %>
-  <i><%= h @name %></i> a écrit un commentaire <b>non visible</b> par le bénéficiaire pour la <%= url_demande %> :
+  <i><%= h @name %></i> a écrit un commentaire <b>non visible</b> par le bénéficiaire pour la <%= url_request %> :
 <% else %>
   <% modified = modified.empty? ? 'commentée' : modified.join(' et ') %>
-  La <%= url_demande %> vient d&lsquo;être <%=modified%> par <i><%= h @name %></i> :
+  La <%= url_request %> vient d&lsquo;être <%=modified%> par <i><%= h @name %></i> :
 <% end %>
 <br />
 
@@ -24,7 +24,7 @@
 <%= @commentaire.corps %><br />
 <hr noshade size="1px"/>
 <% if @modifications["severite_id"] %>
-  La demande a été requalifiée avec une sévérité <b><%=@commentaire.severite.name%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severite_demande">Cette page</a> vous présente en détail la signification de ce changement.<br />
+  La request a été requalifiée avec une sévérité <b><%=@commentaire.severite.name%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severite_request">Cette page</a> vous présente en détail la signification de ce changement.<br />
 <% end %>
 
 <%= render :partial => 'end_mail' %>

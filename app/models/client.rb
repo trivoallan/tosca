@@ -30,7 +30,7 @@ class Client < ActiveRecord::Base
   has_and_belongs_to_many :socles, :uniq => true
 
   has_many :versions, :through => :contracts
-  has_many :demandes, :through => :recipients # , :source => :demandes
+  has_many :requests, :through => :recipients # , :source => :requests
 
   belongs_to :creator, :class_name => 'User'
 
@@ -107,28 +107,28 @@ class Client < ActiveRecord::Base
   end
 
   def contributions
-    return [] if demandes.empty?
+    return [] if requests.empty?
     Contribution.find(:all,
                    :conditions => "contributions.id IN (" +
-                     "SELECT DISTINCT demandes.contribution_id FROM demandes " +
-                     "WHERE demandes.recipient_id IN (" +
+                     "SELECT DISTINCT requests.contribution_id FROM requests " +
+                     "WHERE requests.recipient_id IN (" +
                      recipients.collect{|c| c.id}.join(',') + "))"
                    )
   end
 
-  def typedemandes
-    joins = 'INNER JOIN commitments ON commitments.typedemande_id = typedemandes.id '
+  def typerequests
+    joins = 'INNER JOIN commitments ON commitments.typerequest_id = typerequests.id '
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
     conditions = [ 'commitments_contracts.contract_id IN (' +
         'SELECT contracts.id FROM contracts WHERE contracts.client_id = ?)', id ]
-    Typedemande.find(:all,
-                     :select => "DISTINCT typedemandes.*",
+    Typerequest.find(:all,
+                     :select => "DISTINCT typerequests.*",
                      :conditions => conditions,
                      :joins => joins)
   end
 
   # TODO : à revoir, on pourrait envisager de moduler les sévérités selon
-  # les type de demandes
+  # les type de requests
   def severites
     Severite.find(:all)
   end

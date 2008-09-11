@@ -1,9 +1,0 @@
-<h1><%= @title %><%= StaticImage::spinner %></h1>
-
-<% links = show_pages_links(@demande_pages, _('a new request'),
-                    :url => demandes_path) %>
-<%= links %>
-
-<%= render :partial => 'demandes/lists/requests_table' %>
-
-<%= links %>

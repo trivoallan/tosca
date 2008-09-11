@@ -1,0 +1,23 @@
+<script type="text/javascript"><!--
+  window.onload = print();
+//--></script>
+
+<h1><%= @request.resume %></h1>
+<%= render :partial => 'requests/tabs/description' %>
+<br />
+
+<h1><%= _("Comments") %></h1>
+<%= render :partial => 'requests/tabs/tab_comments' %>
+<br />
+
+<h1><%= _("History") %></h1>
+<%= render :partial => 'requests/tabs/history' %>
+<br />
+
+<h1><%= _("Phonecalls") %></h1>
+<%= render :partial => 'requests/tabs/appels' %>
+<br />
+
+<h1><%= _("SLA") %></h1>
+<%= render :partial => 'requests/tabs/cns' %>
+<br />

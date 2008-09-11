@@ -64,16 +64,16 @@ class Notifier < ActionMailer::Base
   end
 
   # This function require 4 parameters for options :
-  #   :demande, :url_request
+  #   :request, :url_request
   #   :name => user.name, :url_attachment
   def request_new(options, flash = nil)
-    demande =  options[:demande]
+    request =  options[:request]
 
-    recipients  compute_recipients(demande)
-    cc          compute_copy(demande)
+    recipients  compute_recipients(request)
+    cc          compute_copy(request)
     from        FROM
-    subject     "[OSSA:##{demande.id}] : #{demande.resume}"
-    headers     headers_mail_request(demande.first_comment)
+    subject     "[OSSA:##{request.id}] : #{request.resume}"
+    headers     headers_mail_request(request.first_comment)
 
     html_and_text_body(options);
 
@@ -83,11 +83,11 @@ class Notifier < ActionMailer::Base
   end
 
   # This function needs too much options :
-  #  { :demande, :name, :url_request, :url_attachment, :commentaire }
+  #  { :request, :name, :url_request, :url_attachment, :commentaire }
   # And an optional
   #  :modifications => {:statut_id, :ingenieur_id, :severite_id }
   def request_new_comment(options, flash = nil)
-    request = options[:demande]
+    request = options[:request]
     # needed in order to have correct recipients
     # for instance, send mail to the correct engineer
     # when reaffecting a request
@@ -233,25 +233,25 @@ class Notifier < ActionMailer::Base
   end
 
   # private indicates if it's reserved for internal use or not
-  def compute_copy(demande, private = false)
+  def compute_copy(request, private = false)
     if private
-      demande.contract.internal_ml
+      request.contract.internal_ml
     else
       res = []
-      contract = demande.contract
-      [ contract.internal_ml, contract.customer_ml, demande.mail_cc ].each { |m|
+      contract = request.contract
+      [ contract.internal_ml, contract.customer_ml, request.mail_cc ].each { |m|
         res << m unless m.blank?
       }
       res.join(',')
     end
   end
 
-  def compute_recipients(demande, private = false)
+  def compute_recipients(request, private = false)
     res = []
     # The client is not informed of private messages
-    res << demande.recipient.user.email unless private
+    res << request.recipient.user.email unless private
     # Request are not assigned, by default
-    res << demande.ingenieur.user.email if demande.ingenieur
+    res << request.ingenieur.user.email if request.ingenieur
     res.join(',')
   end
 
@@ -281,7 +281,7 @@ class Notifier < ActionMailer::Base
     headers = Hash.new
     headers[HEADER_MESSAGE_ID] = message_id(comment.mail_id)
     #Refers to the request
-    headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id(comment.demande.first_comment.mail_id)
+    headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id(comment.request.first_comment.mail_id)
     return headers
   end
 

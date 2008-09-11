@@ -20,7 +20,7 @@ class Ingenieur < ActiveRecord::Base
   belongs_to :user, :dependent => :destroy
 
   has_many :knowledges, :order => 'knowledges.level DESC'
-  has_many :demandes
+  has_many :requests
   has_many :phonecalls
 
   INCLUDE = [:user]

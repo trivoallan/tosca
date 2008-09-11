@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ClientsController < ApplicationController
-  helper :demandes, :socles, :commitments, :contracts, :filters
+  helper :requests, :socles, :commitments, :contracts, :filters
 
   def index
     options = { :per_page => 10, :order => 'clients.name',
@@ -62,7 +62,7 @@ class ClientsController < ApplicationController
 
   def stats
     index
-    @typedemandes = Typedemande.find(:all)
+    @typerequests = Typerequest.find(:all)
   end
 
   def show

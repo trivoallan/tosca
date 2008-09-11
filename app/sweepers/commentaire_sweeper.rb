@@ -35,6 +35,6 @@ class CommentaireSweeper < ActionController::Caching::Sweeper
   def expire_cache_for(record)
     expire_fragments(record.fragments)
     # Comments are displayed in request view
-    expire_fragments(record.demande.fragments)
+    expire_fragments(record.request.fragments)
   end
 end

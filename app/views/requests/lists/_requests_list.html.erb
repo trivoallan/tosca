@@ -1,0 +1,9 @@
+<h1><%= @title %><%= StaticImage::spinner %></h1>
+
+<% links = show_pages_links(@request_pages, _('a new request'),
+                    :url => requests_path) %>
+<%= links %>
+
+<%= render :partial => 'requests/lists/requests_table' %>
+
+<%= links %>

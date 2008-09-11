@@ -17,10 +17,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'demandes_controller'
+require 'requests_controller'
 
 # Re-raise errors caught by the controller.
-# class DemandesController; def rescue_action(e) raise e end; end
+# class RequestsController; def rescue_action(e) raise e end; end
 class ExportControllerTest < Test::Unit::TestCase
 
    fixtures :all

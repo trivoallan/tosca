@@ -51,17 +51,17 @@ class ContractTest < Test::Unit::TestCase
     Contract.find(:first).logiciels.each{ |l| assert l.is_a?(Logiciel)}
   end
 
-  def test_demandes
+  def test_requests
     c = Contract.find :first
-    c.demandes.each{ |d|
-      assert d.is_a?(Demande)
+    c.requests.each{ |d|
+      assert d.is_a?(Request)
       assert_equal d.contract_id, c.id
     }
   end
 
-  def test_typedemandes
+  def test_typerequests
     Contract.find(:all).each do |c|
-      c.typedemandes.each{ |td| assert_kind_of Typedemande, td }
+      c.typerequests.each{ |td| assert_kind_of Typerequest, td }
     end
   end
 

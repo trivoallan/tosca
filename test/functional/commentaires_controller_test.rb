@@ -28,7 +28,7 @@ class CommentairesController; def rescue_action(e) raise e end; end
 # and validate within the test suite the _not_allowed? effect of the
 # CommentaireController
 class CommentairesControllerTest < Test::Unit::TestCase
-  fixtures :commentaires, :demandes, :recipients, :users,
+  fixtures :commentaires, :requests, :recipients, :users,
   :permissions, :roles, :permissions_roles, :ingenieurs,
   :statuts, :clients, :credits, :components, :contracts, :contracts_users
 
@@ -83,7 +83,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
     post :update, {
       :id => 1,
       :commentaire => {
-        :demande_id => 1,
+        :request_id => 1,
         :user_id => 2,
         :attachment_id => 1,
         :corps => 'Voici un autre commentaire',
@@ -106,9 +106,9 @@ class CommentairesControllerTest < Test::Unit::TestCase
   # It was when a comment posted for cancellation of a request,
   # put back request in "saved" status.
   def test_comment
-    old_statut_id = Demande.find(1).statut_id
+    old_statut_id = Request.find(1).statut_id
 
-    post(:comment, { :id => "2-une-autre-demandes",
+    post(:comment, { :id => "2-une-autre-requests",
       :commentaire => {
         "corps" => "promenons nous dans les bois",
         "prive" => "0",
@@ -122,10 +122,10 @@ class CommentairesControllerTest < Test::Unit::TestCase
 
     # TODO : why it's not a success ????
     assert_response :redirect
-    assert_redirected_to(:controller => "demandes", :action => "show",
+    assert_redirected_to(:controller => "requests", :action => "show",
                          :id => "2-Copie-d-une-question-dans-OOo")
 
-    assert(Demande.find(1).statut_id == old_statut_id)
+    assert(Request.find(1).statut_id == old_statut_id)
   end
 
 end

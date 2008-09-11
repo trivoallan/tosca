@@ -40,19 +40,19 @@ module CommitmentsHelper
     out << ' | ' 
     out << _('Correction')
     out << '</th></tr>'
-    last_typedemande_id = 0
+    last_typerequest_id = 0
     last_severite_id = 0
     last_cycle = cycle('even', 'odd')
     selecteds = object_commitment.collect{|o| o.id }
     e = commitments.pop
     while (e) do
-      out << '<tr><td colspan="5"><hr/></td></tr>' if e.typedemande_id != last_typedemande_id
+      out << '<tr><td colspan="5"><hr/></td></tr>' if e.typerequest_id != last_typerequest_id
       last_cycle = cycle('even', 'odd') if e.severite_id != last_severite_id
       out << "<tr class=\"#{last_cycle}\">"
       out << '<td>'
-      if e.typedemande_id != last_typedemande_id
-        out << "<strong>#{e.typedemande.name}</strong>"
-        last_typedemande_id = e.typedemande_id
+      if e.typerequest_id != last_typerequest_id
+        out << "<strong>#{e.typerequest.name}</strong>"
+        last_typerequest_id = e.typerequest_id
       end
       out << '</td><td>'
       if e.severite_id != last_severite_id
@@ -64,7 +64,7 @@ module CommitmentsHelper
       severities.push ['» ',0]
       # selecteds = []
       out << %Q{<select id="contract_commitment_ids"
-         name="contract[commitment_ids_#{last_typedemande_id}_#{last_severite_id}]">}
+         name="contract[commitment_ids_#{last_typerequest_id}_#{last_severite_id}]">}
       while (e) do
         workaround = Time.in_words(e.workaround.days, true)
         correction = Time.in_words(e.correction.days, true)
@@ -85,18 +85,18 @@ module CommitmentsHelper
   def show_table_commitments(commitments)
     result = ''
     titres = [_('Request'), _('Severity'), _('Workaround'), _('Correction')]
-    oldtypedemande = nil
+    oldtyperequest = nil
     result << show_table(commitments, Commitment, titres) { |e|
       out = ''
-      out << (oldtypedemande == e.typedemande_id ? '<td></td>' :
-                "<td>#{e.typedemande.name}</td>" )
+      out << (oldtyperequest == e.typerequest_id ? '<td></td>' :
+                "<td>#{e.typerequest.name}</td>" )
       out << "<td>#{e.severite.name}</td>"
       out << "<td>#{Time.in_words(e.workaround.days, true)}</td>"
       out << "<td>#{Time.in_words(e.correction.days, true)}</td>"
       if controller.controller_name == 'commitments'
         out << "#{link_to_actions_table e}"
       end
-      oldtypedemande = e.typedemande_id
+      oldtyperequest = e.typerequest_id
      out
     }
     result

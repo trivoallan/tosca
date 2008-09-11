@@ -17,12 +17,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Elapsed < ActiveRecord::Base
-  belongs_to :demande
+  belongs_to :request
 
   # Ctor, which ask for the depending request and rule
   # Call it like this : Elapsed.new(@request)
   def initialize(request)
-    super(:demande => request, :until_now => 0)
+    super(:request => request, :until_now => 0)
   end
 
   # self-update with a comment
@@ -85,20 +85,20 @@ class Elapsed < ActiveRecord::Base
   end
 
   def taken_into_account_progress
-    request = self.demande
+    request = self.request
     # 1 hour = 1/24 of a day
     progress(taken_into_account, (1/24.0), request.interval)
   end
 
   def workaround_progress
-    request = self.demande
+    request = self.request
     commitment = request.commitment
     return 0.0 unless commitment
     progress(self.workaround(), commitment.workaround, request.interval)
   end
 
   def correction_progress
-    request = self.demande
+    request = self.request
     commitment = request.commitment
     return 0.0 unless commitment
     progress(self.correction(), commitment.correction, request.interval)
@@ -126,7 +126,7 @@ class Elapsed < ActiveRecord::Base
     value = read_attribute(value)
     return value unless value.nil?
 
-    request = self.demande
+    request = self.request
     result = self.until_now
     return result unless request.time_running?
     current = Commentaire.new(:created_on => Time.now, :statut_id => request.statut_id)

@@ -4,12 +4,12 @@
 <%= show_pages_links(@client_pages, _("a client")) %>
 <%
   titres = [ _("Name") ]
-  @typedemandes.each { |t| titres << t.name  }
+  @typerequests.each { |t| titres << t.name  }
   titres << _("TOTAL")
   total = 0
   addline = ['' ]
-  @typedemandes.each { |t|
-    sub_total =  Demande.find_all_by_typedemande_id(t.id).size
+  @typerequests.each { |t|
+    sub_total =  Request.find_all_by_typerequest_id(t.id).size
     addline << "<b>#{sub_total}</b>"
     total += sub_total
   }
@@ -19,8 +19,8 @@
   result = ''
   total = 0
   result << "<td>#{link_to logo_client(c), client_path(c)}</td>"
-  @typedemandes.each{ |t|
-    count = c.demandes.find_all_by_typedemande_id(t.id).size
+  @typerequests.each{ |t|
+    count = c.requests.find_all_by_typerequest_id(t.id).size
     result << "<td>#{count}</td>"
     total += count
   }

@@ -18,13 +18,13 @@ Bonjour,
       <% severite = request.severite
          severite = "sans sévérité"
 
-         request_type = request.typedemande.to_s
+         request_type = request.typerequest.to_s
          type = ""
          case request_type
          when "Anomalie"
            type = "L'" << request_type
          else
-           type = "La demande "
+           type = "La request "
            case request_type
            when "Évolution", "Information"
              type << "d'"

@@ -1,0 +1,8 @@
+# Change owner of all requests from one to another
+
+new_recipient_id = Recipient.find_by_user_id(id_new).id
+old_recipient_id = Recipient.find_by_user_id(id_new).id
+
+Request.find_by_recipient_id(old_recipient_id).each do |d|
+  d.update_attribute :recipient_id, new_benef_id
+end

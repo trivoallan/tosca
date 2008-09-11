@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ReportingController < ApplicationController
-  helper :demandes, :export
+  helper :requests, :export
   include WeeklyReporting
   include DigestReporting
 
@@ -114,7 +114,7 @@ class ReportingController < ApplicationController
       write3graph(:correction_time, Gruff::Line)
     end
 
-    #     write_graph(:top5_demandes, Gruff::Pie)
+    #     write_graph(:top5_requests, Gruff::Pie)
     #     write_graph(:top5_logiciels, Gruff::Pie)
     # on nettoie
     @first_col.each { |c| c.gsub!('\n','') }
@@ -230,15 +230,15 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     end_date = @report[:end_date]
 
-    demandes = [ 'demandes.created_on BETWEEN ? AND ? AND demandes.contract_id = ?',
+    requests = [ 'requests.created_on BETWEEN ? AND ? AND requests.contract_id = ?',
                  nil, nil, @contract.id ]
     until (start_date > end_date) do
       infdate = "#{start_date.strftime('%y-%m')}-01"
       start_date = start_date.advance(:months => 1)
       supdate = "#{start_date.strftime('%y-%m')}-01"
 
-      demandes[1], demandes[2] = infdate, supdate
-      Demande.send(:with_scope, { :find => { :conditions => demandes } }) do
+      requests[1], requests[2] = infdate, supdate
+      Request.send(:with_scope, { :find => { :conditions => requests } }) do
         compute_repartition @data[:repartition]
         compute_severite @data[:severite]
         compute_resolution @data[:resolution]
@@ -258,7 +258,7 @@ class ReportingController < ApplicationController
     #TODO : se débarrasser de cet héritage legacy
     #       compute_top5_logiciels @data[:top5_logiciels]
     #       Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
-    #         compute_top5_demandes @data[:top5_demandes]
+    #         compute_top5_requests @data[:top5_requests]
     #       end
     #     end
   end
@@ -268,7 +268,7 @@ class ReportingController < ApplicationController
   # Calcul un tableaux du respect des délais
   # pour les 3 étapes : prise en compte, contournée, corrigée
   def compute_temps(data)
-    demandes = Demande.find(:all)
+    requests = Request.find(:all)
     rappels = data[:callback_time]
     workarounds = data[:workaround_time]
     corrections = data[:correction_time]
@@ -280,7 +280,7 @@ class ReportingController < ApplicationController
     }
 
     size = 0
-    demandes.each do |d|
+    requests.each do |d|
       c = d.commitment
       interval = d.contract.interval.hours
       next unless c
@@ -317,9 +317,9 @@ class ReportingController < ApplicationController
 
   ##
   # TODO : le faire marcher si y a moins de 5 logiciels
-  # Sort les 5 logiciels qui ont eu le plus de demandes
+  # Sort les 5 logiciels qui ont eu le plus de requests
   def compute_top5_logiciels(report)
-    logiciels = Demande.count(:group => "logiciel_id")
+    logiciels = Request.count(:group => "logiciel_id")
     logiciels = logiciels.sort {|a,b| a[1]<=>b[1]}
     5.times do |i|
       values = logiciels.pop
@@ -330,10 +330,10 @@ class ReportingController < ApplicationController
   end
 
   ##
-  # TODO : le faire marcher si y a moins de 5 demandes
-  # Sort les 5 demandes les plus commentées de l'année
-  def compute_top5_demandes(report)
-    commentaires = Commentaire.count(:group => 'demande_id')
+  # TODO : le faire marcher si y a moins de 5 requests
+  # Sort les 5 requests les plus commentées de l'année
+  def compute_top5_requests(report)
+    commentaires = Commentaire.count(:group => 'request_id')
     commentaires = commentaires.sort {|a,b| a[1]<=>b[1]}
     5.times do |i|
       values = commentaires.pop
@@ -344,42 +344,42 @@ class ReportingController < ApplicationController
   end
 
   ##
-  # Compte les demandes annulées selon leur type
+  # Compte les requests annulées selon leur type
   def compute_annulation(report)
     # TODO : faire des requêtes paramètrées, avec des ?
-    informations = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 1 ] }
-    anomalies = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 2 ] }
-    evolutions = { :conditions => [ 'statut_id = 8 AND typedemande_id = ?', 5 ] }
+    informations = { :conditions => [ 'statut_id = 8 AND typerequest_id = ?', 1 ] }
+    anomalies = { :conditions => [ 'statut_id = 8 AND typerequest_id = ?', 2 ] }
+    evolutions = { :conditions => [ 'statut_id = 8 AND typerequest_id = ?', 5 ] }
 
-    report[0].push Demande.count(informations)
-    report[1].push Demande.count(anomalies)
-    report[2].push Demande.count(evolutions)
+    report[0].push Request.count(informations)
+    report[1].push Request.count(anomalies)
+    report[2].push Request.count(evolutions)
   end
 
 
   ##
-  # Compte les demandes selon leur nature
+  # Compte les requests selon leur nature
   def compute_repartition(report)
     # TODO : faire des requêtes paramètrées, avec des ?
-    informations = { :conditions => "typedemande_id = 1" }
-    anomalies = { :conditions => "typedemande_id = 2" }
-    evolutions = { :conditions => "typedemande_id = 5" }
+    informations = { :conditions => "typerequest_id = 1" }
+    anomalies = { :conditions => "typerequest_id = 2" }
+    evolutions = { :conditions => "typerequest_id = 5" }
 
-    Demande.send(:with_scope, { :find => { :conditions => Demande::TERMINEES } }) do
-      report[0].push Demande.count(informations)
-      report[1].push Demande.count(anomalies)
-      report[2].push Demande.count(evolutions)
+    Request.send(:with_scope, { :find => { :conditions => Request::TERMINEES } }) do
+      report[0].push Request.count(informations)
+      report[1].push Request.count(anomalies)
+      report[2].push Request.count(evolutions)
     end
 
-    Demande.send(:with_scope, { :find => { :conditions => Demande::EN_COURS } }) do
-      report[3].push Demande.count(informations)
-      report[4].push Demande.count(anomalies)
-      report[5].push Demande.count(evolutions)
+    Request.send(:with_scope, { :find => { :conditions => Request::EN_COURS } }) do
+      report[3].push Request.count(informations)
+      report[4].push Request.count(anomalies)
+      report[5].push Request.count(evolutions)
     end
   end
 
   ##
-  # Compte les demandes par sévérités
+  # Compte les requests par sévérités
   def compute_severite(report)
     severites = []
     # TODO : requête paramètréé, avec ?
@@ -387,42 +387,42 @@ class ReportingController < ApplicationController
       severites.concat [ { :conditions => "severite_id = #{i}" } ]
     end
 
-    Demande.send(:with_scope, { :find => { :conditions => Demande::TERMINEES } }) do
+    Request.send(:with_scope, { :find => { :conditions => Request::TERMINEES } }) do
       4.times do |t|
-        report[t].push Demande.count(severites[t])
+        report[t].push Request.count(severites[t])
       end
     end
-    Demande.send(:with_scope, { :find => { :conditions => Demande::EN_COURS } }) do
+    Request.send(:with_scope, { :find => { :conditions => Request::EN_COURS } }) do
       4.times do |t|
-        report[t+4].push Demande.count(severites[t])
+        report[t+4].push Request.count(severites[t])
       end
     end
   end
 
   ##
-  # Compte le nombre de demande Annulée, Cloturée ou en cours de traitement
+  # Compte le nombre de request Annulée, Cloturée ou en cours de traitement
   def compute_resolution(report)
-    condition = 'demandes.statut_id = ?'
+    condition = 'requests.statut_id = ?'
     contournee = { :conditions => [condition, 5] }
     corrigee = { :conditions => [condition, 6] }
     cloturee = { :conditions => [condition, 7] }
     annulee = { :conditions => [condition, 8] }
     en_cours = { :conditions => 'statut_id NOT IN (5,6,7,8)' }
 
-    report[0].push Demande.count(contournee)
-    report[1].push Demande.count(corrigee)
-    report[2].push Demande.count(cloturee)
-    report[3].push Demande.count(annulee)
-    report[4].push Demande.count(en_cours)
+    report[0].push Request.count(contournee)
+    report[1].push Request.count(corrigee)
+    report[2].push Request.count(cloturee)
+    report[3].push Request.count(annulee)
+    report[4].push Request.count(en_cours)
   end
 
 
   ##
   # Calcule le nombre de recipient, de logiciel et contribution distinct par mois
   def compute_evolution(report)
-    report[0].push Demande.count('recipient_id', :distinct => true)
-    report[1].push Demande.count('logiciel_id', :distinct => true)
-    report[2].push Demande.count('contribution_id', :distinct => true)
+    report[0].push Request.count('recipient_id', :distinct => true)
+    report[1].push Request.count('logiciel_id', :distinct => true)
+    report[2].push Request.count('contribution_id', :distinct => true)
   end
 
 
@@ -479,7 +479,7 @@ class ReportingController < ApplicationController
       :annulation => _('Cancelled requests'),
       :evolution => _('Evolution of the activity volume'),
 
-      :top5_demandes => _('Top 5 of the most discussed requests'),
+      :top5_requests => _('Top 5 of the most discussed requests'),
       :top5_logiciels => _('Top 5 of the most discussed software'),
 
       :processing_time => _('Processing time'),

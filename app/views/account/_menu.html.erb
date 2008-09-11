@@ -9,10 +9,10 @@
     (link_to _('Disconnect'), logout_account_path),
     (link_to_about),
   ] %>
-<% menu[:titles] << link_to( _('Request'), demandes_path) %>
+<% menu[:titles] << link_to( _('Request'), requests_path) %>
 <% menu[:links] << [
-    (link_to _('Request list'), demandes_path),
-    (link_to _('Submit a request'), new_demande_path),
+    (link_to _('Request list'), requests_path),
+    (link_to _('Submit a request'), new_request_path),
     (link_to _('Calls'), phonecalls_path),
   ] %>
 <% menu[:titles] << link_to( _('Software'), logiciels_path) %>

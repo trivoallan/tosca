@@ -5,7 +5,7 @@
 <% titles = [_('Request'), _('Body'), _('Created on'), _('Updated on')]%>
 <%= show_table(@commentaires, Commentaire, titles) { |c|
   result = ''
-  result << "<td>#{link_to_demande c.demande}</td>"
+  result << "<td>#{link_to_request c.request}</td>"
   result << "<td>#{indent c.corps}</td>"
   result << "<td>#{c.created_on_formatted}</td>"
   result << "<td>#{c.updated_on_formatted}</td>"

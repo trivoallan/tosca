@@ -121,17 +121,17 @@ EOS
   end
 
   def link_to_requests
-    link_to(_('Requests'), demandes_path, :title =>
+    link_to(_('Requests'), requests_path, :title =>
             _('Consult requests'))
   end
 
   def link_to_all_requests
-    link_to(_('All the requests'), demandes_path, :title =>
+    link_to(_('All the requests'), requests_path, :title =>
             _('Consult all the requests'))
   end
 
   def link_to_tobd_requests
-    link_to(_('Pending Requests'), pending_demandes_path, :title =>
+    link_to(_('Pending Requests'), pending_requests_path, :title =>
             _('Consult requests which are waiting an action from you'))
   end
 

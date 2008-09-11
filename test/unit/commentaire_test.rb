@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CommentaireTest < Test::Unit::TestCase
-  fixtures :commentaires, :demandes, :users
+  fixtures :commentaires, :requests, :users
 
   def test_to_strings
     check_strings Commentaire
@@ -36,17 +36,17 @@ class CommentaireTest < Test::Unit::TestCase
 
   def test_create_commentaire
     c = Commentaire.new(:corps => 'this is a comment',
-                        :demande => Demande.find(:first),
+                        :request => Request.find(:first),
                         :user => User.find(:first))
     assert c.save!
     c = Commentaire.new(:corps => 'this is a comment',
-                        :demande => Demande.find(:first),
+                        :request => Request.find(:first),
                         :user => User.find(:first),
                         :prive => false, :statut_id => 1)
     assert c.save!
     # cannot change privately the status
     c = Commentaire.new(:corps => 'this is a comment',
-                        :demande => Demande.find(:first),
+                        :request => Request.find(:first),
                         :user => User.find(:first),
                         :prive => true, :statut_id => 1)
     assert !c.save
@@ -59,7 +59,7 @@ class CommentaireTest < Test::Unit::TestCase
 
   # last call to destroy will cover the special case of update_status
   def test_update_status
-    d = Demande.find(:first)
+    d = Request.find(:first)
     d.commentaires.each { d.destroy }
   end
   
@@ -67,7 +67,7 @@ class CommentaireTest < Test::Unit::TestCase
     #Should not work
     Statut::NEED_COMMENT.each do |s|
       c = Commentaire.new(:corps => "",
-        :demande => Demande.find(:first),
+        :request => Request.find(:first),
         :user => User.find(:first),
         :prive => false, :statut_id => s)
       assert_equal(false, c.save)
@@ -76,7 +76,7 @@ class CommentaireTest < Test::Unit::TestCase
     #Should work
     ([1,2,3,4,5,6,7,8] - Statut::NEED_COMMENT).each do |s|
       c = Commentaire.new(:corps => "",
-        :demande => Demande.find(:first),
+        :request => Request.find(:first),
         :user => User.find(:first),
         :prive => false, :statut_id => s)
       assert c.save!

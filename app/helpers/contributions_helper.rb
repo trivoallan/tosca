@@ -46,7 +46,7 @@ module ContributionsHelper
       path << "?client_id=#{params[:client_id]}"
       options = { :conditions => { :logiciel_id => logiciel.id } }
       unless client_id == '1' # Main client, with the old portal
-        options[:include] = { :demande => :contract }
+        options[:include] = { :request => :contract }
         options[:conditions].merge!({'contracts.client_id' => params[:client_id]})
       end
       # Dirty hack in order to show main client' contributions
@@ -85,9 +85,9 @@ module ContributionsHelper
     public_link_to(c.name, contribution_path(c))
   end
 
-  # une contribution peut être liée à une demande externe
-  # le "any" indique que la demande peut etre sur n'importe quel tracker
-  def link_to_any_demande(contribution)
+  # une contribution peut être liée à une request externe
+  # le "any" indique que la request peut etre sur n'importe quel tracker
+  def link_to_any_request(contribution)
     return ' - ' if not contribution or not contribution.id_mantis
     out = ''
     if contribution.id_mantis

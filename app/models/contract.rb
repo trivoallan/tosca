@@ -22,14 +22,14 @@ class Contract < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :salesman, :class_name => 'Ingenieur'
 
-  has_many :demandes
+  has_many :requests
   has_many :appels
   has_many :tags
   has_many :releases
 
   has_and_belongs_to_many :versions, :order => 'versions.name DESC', :uniq => true
   has_and_belongs_to_many :commitments, :uniq => true, :order =>
-    'typedemande_id, severite_id', :include => [:severite,:typedemande]
+    'typerequest_id, severite_id', :include => [:severite,:typerequest]
   has_and_belongs_to_many :users, :order => 'users.name', :uniq => true
   # Those 2 ones are helpers, not _real_ relation ship
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
@@ -116,17 +116,17 @@ class Contract < ActiveRecord::Base
 
   def find_commitment(request)
     options = { :conditions =>
-      [ 'commitments.typedemande_id = ? AND severite_id = ?',
-        request.typedemande_id, request.severite_id ] }
+      [ 'commitments.typerequest_id = ? AND severite_id = ?',
+        request.typerequest_id, request.severite_id ] }
     self.commitments.find(:first, options)
   end
 
-  def typedemandes
-    joins = 'INNER JOIN commitments ON commitments.typedemande_id = typedemandes.id '
+  def typerequests
+    joins = 'INNER JOIN commitments ON commitments.typerequest_id = typerequests.id '
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
     conditions = [ 'commitments_contracts.contract_id = ? ', id ]
-    Typedemande.find(:all,
-                     :select => "DISTINCT typedemandes.*",
+    Typerequest.find(:all,
+                     :select => "DISTINCT typerequests.*",
                      :conditions => conditions,
                      :joins => joins)
   end

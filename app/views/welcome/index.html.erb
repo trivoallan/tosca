@@ -15,9 +15,9 @@
     <div class="show">
      <h3><%= _('Requests')%></h3>
     <% if user %>
-      <p><%= _("You can see the list of %s") % link_to(_("requests"), demandes_path) %>.</p>
+      <p><%= _("You can see the list of %s") % link_to(_("requests"), requests_path) %>.</p>
       <% if role_id < 5 # 5 : viewer access %>
-        <p><%= _("You can also %s") % link_to(_("make a request"), new_demande_path) %>.</p>
+        <p><%= _("You can also %s") % link_to(_("make a request"), new_request_path) %>.</p>
       <% end %>
     <% else %>
       <p><%= _("You are not %s, so you cannot access the requests interface of our service.") % connected%></p>

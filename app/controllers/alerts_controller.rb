@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class AlertsController < ApplicationController
-  helper :demandes
+  helper :requests
 
   def index
     @teams = Team.find_select
@@ -37,8 +37,8 @@ class AlertsController < ApplicationController
   private
   def new_request
     team = Team.find(flash[:team_ids])
-    conditions = [ 'demandes.contract_id IN (?) AND demandes.statut_id = 1', team.contract_ids ]
-    @requests_found = Demande.find(:all, :conditions => conditions)
+    conditions = [ 'requests.contract_id IN (?) AND requests.statut_id = 1', team.contract_ids ]
+    @requests_found = Request.find(:all, :conditions => conditions)
   end
 
 end

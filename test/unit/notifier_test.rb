@@ -20,7 +20,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'notifier'
 
 class NotifierTest < Test::Unit::TestCase
-  fixtures :users, :demandes
+  fixtures :users, :requests
   CHARSET = "utf-8"
 
   include ActionMailer::Quoting
@@ -45,8 +45,8 @@ class NotifierTest < Test::Unit::TestCase
   end
 
   def test_request_new
-    request = Demande.find(:first)
-    options = { :demande => request, :name => request.submitter.name,
+    request = Request.find(:first)
+    options = { :request => request, :name => request.submitter.name,
       :url_request => "www.request.com", :url_attachment => "www.attachment.com" }
     response = Notifier::deliver_request_new(options)
     assert_match request.resume, response.subject
@@ -57,9 +57,9 @@ class NotifierTest < Test::Unit::TestCase
   end
 
   def test_request_new_comment
-    request = Demande.find(:first)
+    request = Request.find(:first)
     comment = request.first_comment
-    options = { :demande => request, :name => request.submitter.name,
+    options = { :request => request, :name => request.submitter.name,
       :url_request => "www.request.com", :url_attachment => "www.attachment.com",
       :modifications => {:statut_id => true, :ingenieur_id => true, :severite_id => true},
       :commentaire => comment }

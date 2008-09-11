@@ -1,9 +1,0 @@
-<h1><%= _("Editing a demande type") %></h1>
-
-<% form_tag typedemande_path(@typedemande), :method => :put do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _("Edit") %>
-<% end %>
-
-<%= link_to _("List"), typedemande_path(@typedemande) %> |
-<%= link_to_back %>

@@ -1,9 +1,9 @@
-<h1><%= "[#{sprintf "%06d", @demande.id}] #{@demande.resume}" %></h1>
+<h1><%= "[#{sprintf "%06d", @request.id}] #{@request.resume}" %></h1>
 
-<%= render :partial => "demandes/tabs/description" %>
+<%= render :partial => "requests/tabs/description" %>
 
-<%= render :partial => "demandes/tabs/comment", :locals =>
+<%= render :partial => "requests/tabs/comment", :locals =>
          { :comment => @commentaire } %>
 
 <%= link_to 'Modifier', edit_commentaire_path(@commentaire) %> |
-<%= link_to_demande @commentaire.demande, :text => _('Return to the request') %>
+<%= link_to_request @commentaire.request, :text => _('Return to the request') %>

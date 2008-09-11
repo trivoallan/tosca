@@ -7,4 +7,4 @@
 
 <%= link_to 'Show', commentaire_path(@commentaire) %> |
 <%= link_to_back %>
-<%= link_to_demande @commentaire.demande, :text => _('Return to the request') %>
+<%= link_to_request @commentaire.request, :text => _('Return to the request') %>

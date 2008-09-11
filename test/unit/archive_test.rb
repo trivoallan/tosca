@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ArchiveTest < Test::Unit::TestCase
-  fixtures :attachments, :commentaires, :clients, :demandes, :recipients
+  fixtures :attachments, :commentaires, :clients, :requests, :recipients
 
 #  def test_to_strings
 #    check_strings Attachment

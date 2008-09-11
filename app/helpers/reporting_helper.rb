@@ -21,7 +21,7 @@ module ReportingHelper
   # Renvoit les titres du tableau
   # Data contient les entêtes. Les options applicable sont :
   # :without_firstcol => permet de ne pas afficher la première colonne
-  # :divise => spécifie si on prends en compte les demandes vivantes
+  # :divise => spécifie si on prends en compte les requests vivantes
   # :with2rows => affichera les entêtes sur 2 lignes, il <b>contient</b> l'intitulé
   # TODO : renommer with2rows en title
   def fill_titles(data, options)
@@ -206,14 +206,12 @@ module ReportingHelper
     out
   end
 
-  # Affiche les tableaux de reporting.
-  # 2 options possible :
-  # :without_firstcol désactive la première colonne, des dates
-  # :divise permet de n'afficher que la moitié des colonnes
-  # :width spécifie la taille du tableau
-  # pour les tableaux contenant les informations des demandes
-  # en cours et des demandes terminées
-  # TODO : first_col, options[:without_firstcol] : à refactorer
+  # Print reporting tables
+  # options are :
+  # :without_firstcol : disabled the column with the dates
+  # :divise : display only half of the columns
+  # :width : force the width
+  # TODO : first_col, options[:without_firstcol] : needs more love
   def show_report_table(first_col, name, titres, options = {})
     elements = @data[name]
     return 'aucune donnée' unless elements and elements.size > 0
@@ -316,7 +314,7 @@ module ReportingHelper
         client = r.recipient.client
         result << "<li><b>#{ client.name}</b> :"
       end
-      result << ' ' << link_to(r.id.to_s, demande_path(r))
+      result << ' ' << link_to(r.id.to_s, request_path(r))
     end
     result << '</li>' if client
     result << '</ol>'

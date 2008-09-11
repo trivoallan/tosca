@@ -1,0 +1,55 @@
+<table id="requests_list" class="full">
+   <tr>
+      <th width='2%'><%= _('Id') %><%#= sortable_header(:id, :label => _("Id")) %></th>
+      <th width='7%'><%= _('Software') %><%#= sortable_header(:logiciel_id, :label => _("Software")) %></th>
+      <th width='7%' colspan="2"><%= _('Type')%><%#= sortable_header(:typerequest_id, :label => _("Type")) %></th>
+      <% if @ingenieur %>
+        <th width='7%'><%= _('Client')%><%#= sortable_header(:client_id , :label => _("Client")) %></th>
+      <% end %>
+      <th><%= _('Summary')%><%#= sortable_header(:description, :label => _("Summary")) %></th>
+      <th width='10%'>
+       <% if @ingenieur %>
+         <%=_('Owner')%><%#= sortable_header(:ingenieur_id, :label => _("Owner")) %>
+       <% else %>
+         <%=_('Submitter')%><%#= sortable_header(:recipient_id, :label => _("Submitter")) %>
+       <% end %>
+      </th>
+
+      <th width='8%'><%=_('Updated on')%><%#= sortable_header(:updated_on, :label => _("Updated on"), :descend => true) %></th>
+   </tr>
+
+   <% recipient = Recipient.new(:id => 0) %>
+   <% ingenieur = Ingenieur.new(:id => 0)
+      def ingenieur.name; '-'; end %>
+   <% for request in @requests %>
+   <tr <%= tr_attributes(request_path(request)) %>>
+        <td><%= request.id %></td>
+        <td><%= request.logiciels_name %></td>
+        <td></td>
+        <td nowrap="nowrap"><span class="request_<%=request.statut_id%>">&nbsp;<%= request.typerequests_name %><%= StaticImage::severite(request) %></span></td>
+       <% if @ingenieur %>
+        <td><%= request.clients_name %></td>
+       <% end %>
+        <% recipient = request.recipient if recipient.id != request.recipient_id %>
+        <td><b><%= link_to_request request %></b></td>
+        <td>
+         <% if @ingenieur %>
+          <% if ingenieur.nil? || (ingenieur.id != request.ingenieur_id)
+               ingenieur = request.ingenieur
+             end %>
+          <%= name(ingenieur) %>
+         <% else %>
+          <%= recipient %>
+         <% end %>
+        </td>
+        <td><span class="date"><%= request.updated_on_formatted %></span></td>
+   </tr>
+   <% end %>
+
+<% if @requests.size == 0 %>
+  <tr><td colspan="11">
+    <p><%= _("No request found.") %></p>
+  </td></tr>
+<% end %>
+
+</table>
