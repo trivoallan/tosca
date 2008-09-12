@@ -24,6 +24,17 @@ class Tag
   belongs_to :competence
   belongs_to :contract
 
+  def full_name
+    name = self.name.dup
+    if self.contract_id
+      name << " (#{self.contract.name})"
+    elsif self.competence_id
+      name << " (#{self.competence.name})"
+    else
+      #Something ?
+    end
+    name
+  end
 
   def self.find_or_create_with_like_by_name(name)
     find(:first, :conditions => ["name LIKE ?", name]) || create(:name => name)
