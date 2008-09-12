@@ -338,7 +338,9 @@ class RequestsController < ApplicationController
   
   def ajax_untag
     @request_tosca = Request.find(params[:id])
-    @request_tosca.tag_list.remove(params[:tag_name])
+    tag = Tag.first(:conditions => {:name => params[:tag_name], 
+        :contract_id => @request_tosca.contract_id})
+    @request_tosca.tags = @request_tosca.tags - [tag]
     @request_tosca.save!
     head :ok
   end

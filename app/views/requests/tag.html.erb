@@ -5,6 +5,7 @@
       <h2><%= _("Add a tag to this request") %></h2>
       <% success = update_page do |page|
            page.hide 'spinner'
+           page['tag_name'].value = ""
          end
          options = { :url => ajax_add_tag_request_url(@request_tosca),
           :method => :post, :with => "'tag_name=' + $('tag_name').value",
