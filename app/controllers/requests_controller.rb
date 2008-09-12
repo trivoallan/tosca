@@ -345,7 +345,9 @@ class RequestsController < ApplicationController
   
   def ajax_add_tag
     @request_tosca = Request.find(params[:id])
-    @request_tosca.tag_list.add(params[:tag_name])
+    tag = Tag.find_or_create_with_like_by_name_and_contract_id(params[:tag_name], 
+      @request_tosca.contract_id)
+    @request_tosca.tags << tag
     @request_tosca.save!
     render :partial => "requests/tags/show_tags"
   end

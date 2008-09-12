@@ -28,12 +28,17 @@ class Tag
   def self.find_or_create_with_like_by_name(name)
     find(:first, :conditions => ["name LIKE ?", name]) || create(:name => name)
   end
+  
+  def self.find_or_create_with_like_by_name_and_contract_id(name, contract_id)
+    conditions = ["tags.name LIKE ? AND tags.contract_id = ?", name, contract_id]
+    self.first(:conditions => conditions) || self.create(:name => name, :contract_id => contract_id)
+  end
 
   def self.get_generic_tag
     return Tag.find(:all, :conditions => ["competence_id IS NULL and contract_id IS NULL"] )
   end
 
-  def self.get_competence_tag (competences = nil)
+  def self.get_competence_tag(competences = nil)
     if competences.nil?
       conditions = ["competence_id IS NOT NULL"]
     else
@@ -42,7 +47,7 @@ class Tag
     return Tag.find( :all, :conditions => conditions )
   end
 
-  def self.get_contract_tag (contracts = nil)
+  def self.get_contract_tag(contracts = nil)
     if contracts.nil?
       conditions = ["contract_id IS NOT NULL"]
     else
