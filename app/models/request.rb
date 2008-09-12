@@ -102,6 +102,10 @@ class Request < ActiveRecord::Base
   def name
     "#{typerequest.name} (#{severite.name}) : #{resume}"
   end
+  
+  def pretty_id
+    "[#{sprintf "%06d", self.id}]"
+  end
 
   def contract_id=(new_id)
     new_contract = Contract.find(new_id)

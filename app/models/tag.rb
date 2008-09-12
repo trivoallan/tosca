@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
 require 'vendor/plugins/acts_as_taggable_on_steroids/lib/tag.rb'
 class Tag 
   

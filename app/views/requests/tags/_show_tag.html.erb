@@ -1,0 +1,14 @@
+<% 
+  id = "request_#{@request_tosca.id}_tag_#{tag.downcase}"
+  success = update_page do |page|
+    page.hide 'spinner'
+    page.visual_effect :fade, id, :duration => 0.5
+    page.delay(0.5) do 
+      page.remove id
+    end
+  end
+  options = { :url => ajax_untag_request_url(@request_tosca), 
+   :method => :delete, :with => "'tag_name=#{tag}'",
+   :before => "Element.show('spinner')",
+   :success => success } %>
+<li id="<%=id%>"><%= tag %> <%= link_to_remote StaticImage::delete, options %></li>

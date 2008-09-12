@@ -1,0 +1,6 @@
+<ul id="tags_request">
+<% @request_tosca.tags.each do |tag| %>
+  <%= render :partial => "requests/tags/show_tag", 
+    :locals => { :tag => tag.to_s } %>
+<% end %>
+</ul>

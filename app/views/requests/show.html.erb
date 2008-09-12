@@ -14,7 +14,7 @@
    <h1>
     <% options = edit_request_path(@request_tosca.id) %>
     <%= link_to(StaticImage::edit, options) %>
-    <%= "[#{sprintf "%06d", @request_tosca.id}] #{@request_tosca.resume}" %>
+    <%= "#{@request_tosca.pretty_id} #{@request_tosca.resume}" %>
     <% options = print_request_path(@request_tosca.id) %>
     <%= link_to(StaticImage::print, options) %>
    </h1>

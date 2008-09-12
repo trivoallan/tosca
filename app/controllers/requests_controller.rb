@@ -331,6 +331,24 @@ class RequestsController < ApplicationController
     set_attachments(@request_tosca.id)
     set_comments(@request_tosca.id)
   end
+  
+  def tag
+    @request_tosca = Request.find(params[:id])
+  end
+  
+  def ajax_untag
+    @request_tosca = Request.find(params[:id])
+    @request_tosca.tag_list.remove(params[:tag_name])
+    @request_tosca.save!
+    head :ok
+  end
+  
+  def ajax_add_tag
+    @request_tosca = Request.find(params[:id])
+    @request_tosca.tag_list.add(params[:tag_name])
+    @request_tosca.save!
+    render :partial => "requests/tags/show_tags"
+  end
 
   private
   def update_contribution( demand_id , contribution_id )

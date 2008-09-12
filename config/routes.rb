@@ -84,21 +84,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get, :experts => :get, :ajax_list_versions => :post },
     :member => { :list => :get }
-  map.resources :requests,
-    :collection => { :pending => :get,
-      :ajax_renew => :post, # in pending view
-      :ajax_display_commitment => :post, # in new/edit form
-      :ajax_display_version => :post, # in new/edit form
-      :ajax_display_contract => :post }, # in new/edit form
-    :member => { :print => :get, # All members are in show view
-      :link_contribution => :post,
-      :unlink_contribution => :post,
-      :ajax_description => :get,
-      :ajax_comments => :get,
-      :ajax_history => :get,
-      :ajax_attachments => :get,
-      :ajax_appels => :get,
-      :ajax_cns => :get }
   map.resources :distributeurs
   map.resources :documents,
     :collection => { :select => :get },
@@ -126,6 +111,24 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :phonecalls,  :collection => { :ajax_recipients => :get }
   map.resources :attachments
   map.resources :releases
+  map.resources :requests,
+    :collection => { :pending => :get,
+      :ajax_renew => :post, # in pending view
+      :ajax_display_commitment => :post, # in new/edit form
+      :ajax_display_version => :post, # in new/edit form
+      :ajax_display_contract => :post }, # in new/edit form
+    :member => { :print => :get, # All members are in show view
+      :link_contribution => :post,
+      :unlink_contribution => :post,
+      :tag => :get,
+      :ajax_description => :get,
+      :ajax_comments => :get,
+      :ajax_history => :get,
+      :ajax_attachments => :get,
+      :ajax_appels => :get,
+      :ajax_cns => :get,
+      :ajax_untag => :delete,
+      :ajax_add_tag => :post }
   map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
 
