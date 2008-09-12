@@ -136,6 +136,11 @@ class ContractsController < ApplicationController
       supported_software and render :action => supported_software
     end
   end
+  
+  def tags
+    @contract = Contract.find(params[:id])
+    @tags = Tag.find(:all, :conditions => { :contract_id => @contract.id })
+  end
 
 private
   def _form

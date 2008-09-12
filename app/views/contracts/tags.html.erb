@@ -1,0 +1,6 @@
+<h1><%= _("Tags of the contract %s") % @contract.name %></h1>
+<ul>
+<% @tags.each do |tag| %>
+  <li><%= tag.name %></li>
+<% end %>
+</ul>
