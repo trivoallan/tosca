@@ -66,9 +66,8 @@ module PagesHelper
     [ link_to_show(ar), link_to_back ].compact.join('|')
   end
 
-
   # link_to_actions_table(request)
-  def link_to_actions_table(ar, options = {})
+  def link_to_actions_table(ar)
     return '' unless ar
     actions = [ link_to_show(ar), link_to_edit(ar), link_to_delete(ar) ]
     actions.compact!
@@ -142,7 +141,8 @@ module PagesHelper
   #Call it like this : toggle("my_id")
   #You just need a html element with an id="my_id"
   def toggle(id)
-    images = image_tag("navigation_expand.gif", :id => "show_#{id}") + image_tag("navigation_hide.gif", :id => "hide_#{id}", :style => "display: none")
+    images = image_tag("icons/navigation_expand.gif", :id => "show_#{id}") + 
+      image_tag("icons/navigation_hide.gif", :id => "hide_#{id}", :style => "display: none")
     link_to_function(images, nil) do |page|
       page[:"hide_#{id}"].toggle
       page[:"show_#{id}"].toggle
@@ -163,8 +163,10 @@ module PagesHelper
     options.delete(:hide)
     
     result = tag('div', options, true)
-    result << image_tag("navigation_hide.gif", :id => "show_#{id}", :style => style_show)
-    result << image_tag("navigation_expand.gif", :id => "hide_#{id}", :style => style_hide)
+    result << image_tag("icons/navigation_hide.gif", 
+      :id => "show_#{id}", :style => style_show)
+    result << image_tag("icons/navigation_expand.gif", 
+      :id => "hide_#{id}", :style => style_hide)
     result << "&nbsp;#{value}"
     result << '</div>'
   end
