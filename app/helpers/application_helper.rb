@@ -93,31 +93,20 @@ module ApplicationHelper
     # It can really be pretty ruby. We keep it under the hand
     # until yarv comes and so this code will be reasonabily fast
     # yield_or_default = proc {|e| (block_given? ? yield(e) : e) }
-
-    # TODO : remove this 'puce' option, change code using this options
-    # and use CSS class instead.
-    if options.has_key? :puce
-      puce = " #{options[:puce]} "
-      elements.each { |e|
-        elt = yield(e)
-        result << puce << elt << '<br />' unless elt.blank?
-      }
-    else
-      result << '<ul>'
-      edit = options[:edit]
-      edit_call, delete_call = "edit_#{edit}_path","#{edit}_path" if edit
-      elements.each { |e|
-        elt = yield(e)
-        unless elt.blank?
-          result << '<li>'
-          result << link_to_edit(send(edit_call, e)).to_s << ' ' if edit
-          result << elt
-          result << ' ' << link_to_delete(send(delete_call, e)).to_s if edit
-          result << '</li>'
-        end
-      }
-      result << '</ul>'
-    end
+    result << '<ul>'
+    edit = options[:edit]
+    edit_call, delete_call = "edit_#{edit}_path","#{edit}_path" if edit
+    elements.each { |e|
+      elt = yield(e)
+      unless elt.blank?
+        result << '<li>'
+        result << link_to_edit(send(edit_call, e)).to_s << ' ' if edit
+        result << elt
+        result << ' ' << link_to_delete(send(delete_call, e)).to_s if edit
+        result << '</li>'
+      end
+    }
+    result << '</ul>'
     result
   end
 

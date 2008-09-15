@@ -226,7 +226,7 @@ module RequestsHelper
   def help_on_status
     @@help_on_status ||= '<a href="http://www.08000linux.com/wiki/index.php/%C3%89tats_request"' <<
        ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
-      image_tag("question_mark.gif") <<
+      image_tag("icons/question_mark.gif") <<
     '</a>'
   end
 
@@ -237,7 +237,7 @@ module RequestsHelper
   def help_on_severity
     @@help_on_severity ||= '<a href="http://www.08000linux.com/wiki/index.php/Severite_request"' <<
        ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
-      image_tag("question_mark.gif") <<
+      image_tag("icons/question_mark.gif") <<
     '</a>'
   end
 

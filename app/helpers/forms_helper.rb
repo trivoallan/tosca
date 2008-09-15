@@ -16,12 +16,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
 # This module contains all the stuff related to forms.
 module FormsHelper
 
   PROMPT_SELECT = { :prompt => '» ' }
 
-  ### FORMULAIRES ##################################################
+  ### Forms ##################################################
 
   # Collection doit contenir des objects qui ont un 'id' et un 'name'
   # objectcollection contient le tableau des objects déjà présents

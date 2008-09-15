@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
+
 # This helpers is here to put links helper not really
 # related to any model or controller.
 #
@@ -157,13 +157,4 @@ EOS
             :title => _('Administration interface'))
   end
 
-
-  # lien vers un compte existant
-  # DEPRECATED : préferer link_to_edit(id)
-  # TODO : passer id en options, avec @session[:user].id par défaut
-  # TODO : title en options, avec 'Le compte' par défaut
-  def link_to_modify_account(account_id, title=_('My&nbsp;account'))
-    return '' unless account_id
-    link_to title, account_path(account_id)
-  end
 end

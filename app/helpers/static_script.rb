@@ -28,12 +28,12 @@ class StaticScript < Static::ActionView
 
   @@date_from = nil
   def self.date_from
-    @@date_from ||= image_tag('cal.gif', @@date_opt.dup.update(:id => 'date_from'))
+    @@date_from ||= image_tag('icons/cal.gif', @@date_opt.dup.update(:id => 'date_from'))
   end
 
   @@date_to = nil
   def self.date_to
-    @@date_to ||= image_tag('cal.gif', @@date_opt.dup.update(:id => 'date_to'))
+    @@date_to ||= image_tag('icons/cal.gif', @@date_opt.dup.update(:id => 'date_to'))
   end
 
   # used to generate js for calendar. It uses an array of 2 arguments. See

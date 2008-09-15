@@ -573,7 +573,7 @@ h1.section {
   background: url("../images/rowhover-bg.gif");
 }
 
-.calendar tbody td.today { font-weight: bold; /* background: url("../images/today-bg.gif") no-repeat 70% 50%; */ }
+.calendar tbody td.today { font-weight: bold; }
 
 .calendar tbody td.hilite { /* Hovered cells <TD> */
   background: url("../images/hover-bg.gif");

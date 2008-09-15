@@ -25,7 +25,7 @@ module ImagesHelper
 
   def image_create(message)
     desc = _("Add %s") % message
-    image_tag("create_icon.png", StaticImage::options(desc, '16x16'))
+    image_tag("icons/create.png", StaticImage::options(desc, '16x16'))
   end
 
   private
