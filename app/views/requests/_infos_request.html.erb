@@ -1,5 +1,5 @@
 <% cache("requests/#{@request_tosca.id}/info-#{session[:user].kind}") do %>
-<%= div_toogle _('Action'), 'menu_action', :class => 'menu_title' %>
+<%= div_toggle _('Action'), 'menu_action', :class => 'menu_title' %>
 <ul id="menu_action">
   <% if @ingenieur %>
     <% options = { :logiciel_id => @request_tosca.logiciel_id, :request_id => @request_tosca.id } %>
@@ -17,7 +17,7 @@
             :target => '_blank' %></li>
 </ul>
 
-<%= div_toogle _('Summary'), 'menu_resume', :class => "menu_title" %>
+<%= div_toggle _('Summary'), 'menu_resume', :class => "menu_title" %>
 <ul id="menu_resume">
   <% if @ingenieur and @request_tosca.socle and @request_tosca.socle.machine%>
      <li><b><%= _("Vm") %>: </b><%=h @request_tosca.socle.machine %></li>
@@ -41,7 +41,7 @@
   <% end %>
 </ul>
 
-<%= div_toogle _('Recipent'), 'menu_recipient', :class => "menu_title" %>
+<%= div_toggle _('Recipent'), 'menu_recipient', :class => "menu_title" %>
 <% user = @request_tosca.recipient.user %>
 <ul id="menu_recipient">
   <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
@@ -51,7 +51,7 @@
   <li><b><%= _('Concerning') %>: </b><%= link_to contract, contract_path(contract) %></li>
 </ul>
 
-<%= div_toogle _("Life cycle"), 'life_cycle_menu', :class => "menu_title" %>
+<%= div_toggle _("Life cycle"), 'life_cycle_menu', :class => "menu_title" %>
 <ul id="life_cycle_menu">
   <li><b><%= _("Created on") %>: </b><%= @request_tosca.created_on_formatted %></li>
   <li><b><%= _("Updated on") %>: </b><%= @request_tosca.updated_on_formatted %></li>
@@ -64,7 +64,13 @@
   <% end %>
 </ul>
 
-<%= div_toogle _("Help"), 'menu_help', :class => "menu_title" %>
+<%= div_toggle _("Tags"), 'tags_menu', :class => "menu_title", :hide => true %>
+<ul id="tags_menu">
+  <li><b><%= _("Tags") %>: </b><%= @request_tosca.tag_list.join(', ') %></li>
+  <li><%= link_to _("Edit the tags for this request"), tag_request_url(@request_tosca) %></li>
+</ul>
+
+<%= div_toggle _("Help"), 'menu_help', :class => "menu_title" %>
 <ul id="menu_help">
  <li><%= public_link_to_howto_request %></li>
 </ul>

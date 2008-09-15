@@ -150,7 +150,15 @@ module PagesHelper
     end
   end
   
-  def div_toogle(value, id, options = {})
+  #To have a nice div to click on to toggle on other tag
+  #Call it like this :
+  #<%= div_toggle("Some text", "id") %>
+  #<ul id="id">
+  #</ul>
+  #Options : 
+  #Any reguler html_options (like :class, etc)
+  #hide : The toggle tag is hiden by default
+  def div_toggle(value, id, options = {})
     options[:onclick] = update_page do |page|
       page[:"hide_#{id}"].toggle
       page[:"show_#{id}"].toggle

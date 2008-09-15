@@ -12,7 +12,7 @@
 <%# see remote_link_to_(dead|active|all)_request in requests_helper %>
 <input id="filters_active" name="filters[active]" type="hidden" value="0" />
 
-<%= div_toogle _('Actions'), 'menu_actions', :class => "menu_title" %>
+<%= div_toggle _('Actions'), 'menu_actions', :class => "menu_title" %>
 <ul class="menu" id="menu_actions">
  <% path = new_request_path %>
  <% if session[:user].authorized? path %>
@@ -24,14 +24,14 @@
  <% end %>
 </ul>
 
-<%= div_toogle _('Flow'), 'menu_flow', :class => "menu_title" %>
+<%= div_toggle _('Flow'), 'menu_flow', :class => "menu_title" %>
 <ul class="menu" id="menu_flow">
   <li><%= remote_link_to_all_request %></li>
   <li><%= remote_link_to_active_request %></li>
   <li><%= remote_link_to_dead_request %></li>
 </ul>
 
-<%= div_toogle _('Search'), 'menu_search', :class => "menu_title" %>
+<%= div_toggle _('Search'), 'menu_search', :class => "menu_title" %>
 <ul class="menu" id="menu_search">
  <li><b><%=_('By word')%></b><br />
      <%= text_field :filters, :text %></li>
@@ -43,7 +43,7 @@
  <% end %>
 </ul>
 
-<%= div_toogle _('Attributes'), 'menu_attributes', :class => "menu_title" %>
+<%= div_toggle _('Attributes'), 'menu_attributes', :class => "menu_title" %>
 <ul class="menu" id="menu_attributes">
  <li><b><%=_('Type')%> </b><br />
      <%=select_filter(@typerequests, :typerequest) %></li>
@@ -53,13 +53,13 @@
      <%=select_filter(@statuts, :statut) %></li>
 </ul>
 
-<%= div_toogle _('Settings'), 'menu_settings', :class => "menu_title", :hide => true %>
+<%= div_toggle _('Settings'), 'menu_settings', :class => "menu_title", :hide => true %>
 <ul class="menu" id="menu_settings" style="display: none">
  <li><b><%=_('Limit')%></b><br />
      <%= text_field :filters, :limit %></li>
 </ul>
 
-<%= div_toogle _('Help'), 'menu_help', :class => "menu_title" %>
+<%= div_toggle _('Help'), 'menu_help', :class => "menu_title" %>
 <ul class="menu" id="menu_help">
  <li><%= public_link_to_help_new_request %></li>
  <li><%= public_link_to_howto_request %></li>
