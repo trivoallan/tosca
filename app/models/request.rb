@@ -19,6 +19,8 @@
 class Request < ActiveRecord::Base
   acts_as_taggable
   
+  has_one :elapsed, :dependent => :destroy
+  
   belongs_to :typerequest
   belongs_to :logiciel
   belongs_to :version
@@ -35,11 +37,10 @@ class Request < ActiveRecord::Base
     :foreign_key => 'submitter_id'
 
   belongs_to :contract
-  has_many :phonecalls
-  has_one :elapsed, :dependent => :destroy
   belongs_to :contribution
   belongs_to :socle
 
+  has_many :phonecalls
   has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
   has_many :attachments, :through => :commentaires
 

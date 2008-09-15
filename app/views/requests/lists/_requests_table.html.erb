@@ -24,11 +24,32 @@
    <% for request in @requests %>
    <tr <%= tr_attributes(request_path(request)) %>>
         <td><%= request.id %></td>
-        <td><%= request.logiciels_name %></td>
+        <% #When we have a dirty hack, we have to make others ...
+           if request.respond_to? :logiciels_name
+             logiciel_name = request.logiciels_name
+           else
+             logiciel_name = request.logiciel.name
+           end 
+        %>        
+        <td><%= logiciel_name %></td>
         <td></td>
-        <td nowrap="nowrap"><span class="request_<%=request.statut_id%>">&nbsp;<%= request.typerequests_name %><%= StaticImage::severite(request) %></span></td>
+        <% #Yet another dirty hack ...
+           if request.respond_to? :typerequests_name
+             typerequests_name = request.typerequests_name
+           else
+             typerequests_name = request.typerequest.name
+           end 
+        %>  
+        <td nowrap="nowrap"><span class="request_<%=request.statut_id%>">&nbsp;<%= typerequests_name %><%= StaticImage::severite(request) %></span></td>
        <% if @ingenieur %>
-        <td><%= request.clients_name %></td>
+        <% #Dirty hacks are really bad ...
+           if request.respond_to? :clients_name
+             clients_name = request.clients_name
+           else
+             clients_name = request.client.name
+           end 
+        %>  
+        <td><%= clients_name %></td>
        <% end %>
         <% recipient = request.recipient if recipient.id != request.recipient_id %>
         <td><b><%= link_to_request request %></b></td>

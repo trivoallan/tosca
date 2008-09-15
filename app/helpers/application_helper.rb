@@ -30,6 +30,7 @@ module ApplicationHelper
   include LinksHelper
   include ImagesHelper
   include DatesHelper
+  include TagsHelper
 
   ### TEXT #####################################################################
   # indent text and escape HTML caracters
