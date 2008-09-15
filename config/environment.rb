@@ -74,7 +74,7 @@ Rails::Initializer.run do |config|
 
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
-  config.gem 'rmagick', :version => '1.15.15'
+  config.gem 'rmagick', :version => '1.15.15', :lib => "RMagick"
   # Used to load the extension mechanism
   config.gem 'desert', :version => '0.2.1'
 
