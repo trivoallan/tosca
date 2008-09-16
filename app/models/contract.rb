@@ -142,5 +142,13 @@ class Contract < ActiveRecord::Base
     res << " - #{specialisation}" unless specialisation.blank?
     res
   end
+  
+  def total_elapsed
+    total = 0
+    self.requests.each do |r|
+      total += r.elapsed.until_now
+    end
+    total
+  end
 
 end

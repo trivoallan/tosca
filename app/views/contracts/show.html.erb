@@ -12,21 +12,29 @@
     <tr>
      <td><b><%= _('Name') %></b></td>
      <td><%= @contract %></td>
+    </tr>
+    
     <% rule = @contract.rule %>
     <% if rule %>
+    <tr>
+      <td colspan="2">
+        <%= _("You have spent <b>%s</b>") % pluralize(@contract.total_elapsed, rule.measure)%>
+      </td>
     </tr>
     <tr>
-     <td colspan="2">&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
+      <td>&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
        <i><%= rule.short_description %> <%= link_to_rule(rule) %></i></td>
+     </tr>
     <% end %>
-    </tr>
-    <tr>
+
     <% if @contract.salesman %>
+    <tr>
      <td><b><%= _('Salesman Contact') %></b></td>
      <td><%= @contract.salesman.name %></td>
     </tr>
-    <tr>
     <% end %>
+
+    <tr>
      <td><b><%= _('Internal mailing list') %></b></td>
      <td><%= @contract.internal_ml %></td>
     </tr>

@@ -48,5 +48,9 @@ class Rules::Component < ActiveRecord::Base
       _('Illimited offer on a maximum of %d components') % max
     end
   end
+  
+  def measure
+    _("second")
+  end
 
 end
