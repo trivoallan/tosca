@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 15:13+0200\n"
+"POT-Creation-Date: 2008-09-16 16:56+0200\n"
 "PO-Revision-Date: 2008-09-04 17:58+0200\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
@@ -614,7 +614,7 @@ msgid "Correction time"
 msgstr ""
 
 #: app/controllers/requests_controller.rb:89 app/helpers/links_helper.rb:129
-#: app/helpers/requests_helper.rb:177
+#: app/helpers/requests_helper.rb:169
 msgid "All the requests"
 msgstr ""
 
@@ -641,12 +641,12 @@ msgid ""
 msgstr ""
 
 #: app/controllers/requests_controller.rb:460
-#: app/helpers/requests_helper.rb:163
+#: app/helpers/requests_helper.rb:155
 msgid "Active requests"
 msgstr ""
 
 #: app/controllers/requests_controller.rb:463
-#: app/helpers/requests_helper.rb:170
+#: app/helpers/requests_helper.rb:162
 msgid "Finished requests"
 msgstr ""
 
@@ -830,7 +830,7 @@ msgstr ""
 
 #: app/helpers/commitments_helper.rb:39 app/helpers/commitments_helper.rb:87
 #: app/helpers/engagements_helper.rb:39 app/helpers/engagements_helper.rb:87
-#: app/helpers/requests_helper.rb:193 app/views/commitments/_form.html.erb:11
+#: app/helpers/requests_helper.rb:185 app/views/commitments/_form.html.erb:11
 #: app/views/reporting/_comex_cns.html.erb:20
 #: app/views/requests/lists/_pending_table.html.erb:12
 #: app/views/requests/tabs/_cns.html.erb:33
@@ -839,7 +839,7 @@ msgstr ""
 
 #: app/helpers/commitments_helper.rb:41 app/helpers/commitments_helper.rb:87
 #: app/helpers/engagements_helper.rb:41 app/helpers/engagements_helper.rb:87
-#: app/helpers/requests_helper.rb:194 app/views/commitments/_form.html.erb:14
+#: app/helpers/requests_helper.rb:186 app/views/commitments/_form.html.erb:14
 #: app/views/reporting/_comex_cns.html.erb:21
 #: app/views/requests/lists/_pending_table.html.erb:13
 #: app/views/requests/tabs/_cns.html.erb:44
@@ -1068,31 +1068,31 @@ msgstr ""
 msgid "New request"
 msgstr ""
 
-#: app/helpers/requests_helper.rb:124
+#: app/helpers/requests_helper.rb:116
 msgid "Unlink the contribution"
 msgstr ""
 
-#: app/helpers/requests_helper.rb:151
+#: app/helpers/requests_helper.rb:143
 msgid "patch"
 msgstr ""
 
-#: app/helpers/requests_helper.rb:153
+#: app/helpers/requests_helper.rb:145
 msgid "The %s has been accepted by the community"
 msgstr ""
 
-#: app/helpers/requests_helper.rb:154
+#: app/helpers/requests_helper.rb:146
 msgid "The %s has been submitted by the community"
 msgstr ""
 
-#: app/helpers/requests_helper.rb:164
+#: app/helpers/requests_helper.rb:156
 msgid "show requests waiting to be processed"
 msgstr ""
 
-#: app/helpers/requests_helper.rb:171
+#: app/helpers/requests_helper.rb:163
 msgid "show requests that were processed"
 msgstr ""
 
-#: app/helpers/requests_helper.rb:178
+#: app/helpers/requests_helper.rb:170
 msgid "show all the requests"
 msgstr ""
 
@@ -1416,7 +1416,7 @@ msgstr ""
 
 #: app/models/commitment.rb:-
 #, fuzzy
-msgid "Commitment|Severity"
+msgid "Commitment|Severite"
 msgstr "Severity"
 
 #: app/models/commitment.rb:-
@@ -1686,43 +1686,43 @@ msgstr ""
 msgid "Mainteneur|Name"
 msgstr "Name"
 
-#: app/models/notifier.rb:136
+#: app/models/notifier.rb:135
 msgid "Daily digest for "
 msgstr ""
 
-#: app/models/notifier.rb:138
+#: app/models/notifier.rb:137
 msgid " week of "
 msgstr ""
 
-#: app/models/notifier.rb:139
+#: app/models/notifier.rb:138
 msgid "Weekly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:142
+#: app/models/notifier.rb:141
 msgid "Monthly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:145
+#: app/models/notifier.rb:144
 msgid "Yearly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:189
+#: app/models/notifier.rb:188
 msgid "Possible error in your e-mail"
 msgstr ""
 
-#: app/models/notifier.rb:200
+#: app/models/notifier.rb:199
 msgid "Multiple accounts with the same e-mail"
 msgstr ""
 
-#: app/models/notifier.rb:212
+#: app/models/notifier.rb:211
 msgid "Mailing list does not exists"
 msgstr ""
 
-#: app/models/notifier.rb:259
+#: app/models/notifier.rb:258
 msgid "An e-mail was sent to "
 msgstr ""
 
-#: app/models/notifier.rb:260
+#: app/models/notifier.rb:259
 msgid "with a copy to"
 msgstr ""
 
@@ -2389,7 +2389,7 @@ msgid "Validate"
 msgstr ""
 
 #: app/views/account/login.html.erb:4
-msgid "08000linux login"
+msgid "%s login"
 msgstr ""
 
 #: app/views/account/logout.html.erb:2
@@ -2721,7 +2721,7 @@ msgid "Statistics by clients"
 msgstr ""
 
 #: app/views/commentaires/_form.html.erb:3
-msgid "Write your comment here\""
+msgid "Write your comment here"
 msgstr ""
 
 #: app/views/commentaires/_form.html.erb:7
@@ -3105,7 +3105,7 @@ msgid "Edit this contribution"
 msgstr ""
 
 #: app/views/contributions/list.atom.builder:2
-msgid "Contributions of 08000linux.com"
+msgid "Contributions of %s"
 msgstr ""
 
 #: app/views/contributions/list.html.erb:7
@@ -3136,27 +3136,27 @@ msgstr ""
 msgid "RSS"
 msgstr ""
 
-#: app/views/contributions/show.html.erb:19
+#: app/views/contributions/show.html.erb:15
 msgid "link"
 msgstr ""
 
-#: app/views/contributions/show.html.erb:24
+#: app/views/contributions/show.html.erb:20
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr ""
 
-#: app/views/contributions/show.html.erb:27
+#: app/views/contributions/show.html.erb:23
 msgid "and its has been approved on %s"
 msgstr ""
 
-#: app/views/contributions/show.html.erb:30
+#: app/views/contributions/show.html.erb:26
 msgid "This bug has been discovered in the version %s "
 msgstr ""
 
-#: app/views/contributions/show.html.erb:33
+#: app/views/contributions/show.html.erb:29
 msgid "and has been fixed in the version %s"
 msgstr ""
 
-#: app/views/contributions/show.html.erb:36
+#: app/views/contributions/show.html.erb:32
 msgid "This patch was not submitted to the community"
 msgstr ""
 
@@ -4768,7 +4768,7 @@ msgid "connected"
 msgstr ""
 
 #: app/views/welcome/index.html.erb:6
-msgid "Welcome to the 08000LINUX management tool"
+msgid "Welcome to the %s management tool"
 msgstr ""
 
 #: app/views/welcome/index.html.erb:18

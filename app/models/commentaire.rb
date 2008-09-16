@@ -46,7 +46,7 @@ class Commentaire < ActiveRecord::Base
   
   before_validation do |record|
     if not Statut::NEED_COMMENT.include? record.statut_id and html2text(record.corps).strip.empty?
-      record.corps = _("The request is now %s.") % record.statut
+      record.corps = _("The request is now %s.") % record.statut.name
     end
   end
 

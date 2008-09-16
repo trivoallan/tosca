@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 15:13+0200\n"
+"POT-Creation-Date: 2008-09-16 16:56+0200\n"
 "PO-Revision-Date: 2008-09-04 17:58+0200\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
@@ -629,7 +629,7 @@ msgid "Correction time"
 msgstr "Temps de correction"
 
 #: app/controllers/requests_controller.rb:89 app/helpers/links_helper.rb:129
-#: app/helpers/requests_helper.rb:177
+#: app/helpers/requests_helper.rb:169
 msgid "All the requests"
 msgstr "Toutes les requests"
 
@@ -659,12 +659,12 @@ msgstr ""
 "pas normal."
 
 #: app/controllers/requests_controller.rb:460
-#: app/helpers/requests_helper.rb:163
+#: app/helpers/requests_helper.rb:155
 msgid "Active requests"
 msgstr "Requests actives"
 
 #: app/controllers/requests_controller.rb:463
-#: app/helpers/requests_helper.rb:170
+#: app/helpers/requests_helper.rb:162
 msgid "Finished requests"
 msgstr "Requests terminées"
 
@@ -850,7 +850,7 @@ msgstr "%s se sont écoulé(e)s"
 
 #: app/helpers/commitments_helper.rb:39 app/helpers/commitments_helper.rb:87
 #: app/helpers/engagements_helper.rb:39 app/helpers/engagements_helper.rb:87
-#: app/helpers/requests_helper.rb:193 app/views/commitments/_form.html.erb:11
+#: app/helpers/requests_helper.rb:185 app/views/commitments/_form.html.erb:11
 #: app/views/reporting/_comex_cns.html.erb:20
 #: app/views/requests/lists/_pending_table.html.erb:12
 #: app/views/requests/tabs/_cns.html.erb:33
@@ -859,7 +859,7 @@ msgstr "Contournée"
 
 #: app/helpers/commitments_helper.rb:41 app/helpers/commitments_helper.rb:87
 #: app/helpers/engagements_helper.rb:41 app/helpers/engagements_helper.rb:87
-#: app/helpers/requests_helper.rb:194 app/views/commitments/_form.html.erb:14
+#: app/helpers/requests_helper.rb:186 app/views/commitments/_form.html.erb:14
 #: app/views/reporting/_comex_cns.html.erb:21
 #: app/views/requests/lists/_pending_table.html.erb:13
 #: app/views/requests/tabs/_cns.html.erb:44
@@ -887,7 +887,7 @@ msgstr "Exporter en %s"
 
 #: app/helpers/forms_helper.rb:145
 msgid "Quick access to a request : type the request number here"
-msgstr ""
+msgstr "Accès rapide à une demande : tapez ici le numéro de la demande"
 
 #: app/helpers/forms_helper.rb:160 app/views/account/_menu.html.erb:42
 #: app/views/clients/_clients_info.html.erb:28
@@ -1088,37 +1088,38 @@ msgstr "Légende des statuts"
 msgid "New request"
 msgstr "Nouvelle request"
 
-#: app/helpers/requests_helper.rb:124
+#: app/helpers/requests_helper.rb:116
 msgid "Unlink the contribution"
 msgstr "Délier la contribution"
 
-#: app/helpers/requests_helper.rb:151
+#: app/helpers/requests_helper.rb:143
 msgid "patch"
 msgstr "correctif"
 
-#: app/helpers/requests_helper.rb:153
+#: app/helpers/requests_helper.rb:145
 msgid "The %s has been accepted by the community"
 msgstr "Le %s a été accepté par la communauté"
 
-#: app/helpers/requests_helper.rb:154
+#: app/helpers/requests_helper.rb:146
 msgid "The %s has been submitted by the community"
 msgstr "Le %s a été proposé à la communauté"
 
-#: app/helpers/requests_helper.rb:164
+#: app/helpers/requests_helper.rb:156
 msgid "show requests waiting to be processed"
 msgstr "montrer les requests qui attendent d'être traitées"
 
-#: app/helpers/requests_helper.rb:171
+#: app/helpers/requests_helper.rb:163
 msgid "show requests that were processed"
 msgstr "montrer les requests qui ont déjà été traitées"
 
-#: app/helpers/requests_helper.rb:178
+#: app/helpers/requests_helper.rb:170
 msgid "show all the requests"
 msgstr "montrer toutes les requests"
 
 #: app/helpers/reversements_helper.rb:24
 msgid "the contribution is alone : it is not linked to an interaction"
 msgstr ""
+"cette contribution est orpheline : elle n'est pas lié à une interaction"
 
 #: app/helpers/socles_helper.rb:29
 msgid "a system"
@@ -1187,7 +1188,7 @@ msgstr "Page d'Accueil"
 
 #: app/helpers/static_image.rb:160 app/helpers/static_image.rb:166
 msgid "Tosca on Rails"
-msgstr ""
+msgstr "Tosca on Rails"
 
 #: app/helpers/static_image.rb:182
 #: app/views/requests/_infos_request.html.erb:16
@@ -1436,7 +1437,8 @@ msgid "commitment"
 msgstr "engagement"
 
 #: app/models/commitment.rb:-
-msgid "Commitment|Severity"
+#, fuzzy
+msgid "Commitment|Severite"
 msgstr "Sévérité"
 
 #: app/models/commitment.rb:-
@@ -1705,43 +1707,43 @@ msgstr "mainteneur"
 msgid "Mainteneur|Name"
 msgstr "Nom"
 
-#: app/models/notifier.rb:136
+#: app/models/notifier.rb:135
 msgid "Daily digest for "
 msgstr "Rapport d'activité pour "
 
-#: app/models/notifier.rb:138
+#: app/models/notifier.rb:137
 msgid " week of "
 msgstr " semaine "
 
-#: app/models/notifier.rb:139
+#: app/models/notifier.rb:138
 msgid "Weekly digest for "
 msgstr "Activité hebdomadaire pour "
 
-#: app/models/notifier.rb:142
+#: app/models/notifier.rb:141
 msgid "Monthly digest for "
 msgstr "Activité mensuelle pour "
 
-#: app/models/notifier.rb:145
+#: app/models/notifier.rb:144
 msgid "Yearly digest for "
 msgstr "Activité annuelle pour "
 
-#: app/models/notifier.rb:189
+#: app/models/notifier.rb:188
 msgid "Possible error in your e-mail"
 msgstr "Erreur possible dans votre adresse e-mail"
 
-#: app/models/notifier.rb:200
+#: app/models/notifier.rb:199
 msgid "Multiple accounts with the same e-mail"
 msgstr "Plusieurs comptes avec le même e-mail"
 
-#: app/models/notifier.rb:212
+#: app/models/notifier.rb:211
 msgid "Mailing list does not exists"
 msgstr "Mailingliste inexistante"
 
-#: app/models/notifier.rb:259
+#: app/models/notifier.rb:258
 msgid "An e-mail was sent to "
 msgstr "Un e-mail a été envoyé à "
 
-#: app/models/notifier.rb:260
+#: app/models/notifier.rb:259
 msgid "with a copy to"
 msgstr "avec en copie"
 
@@ -1889,7 +1891,7 @@ msgstr "Offre illimitée sur un maximum de %d composants"
 
 #: app/models/rules/component.rb:53
 msgid "second"
-msgstr ""
+msgstr "seconde"
 
 #: app/models/rules/credit.rb:29
 msgid "%d time-credit"
@@ -1907,7 +1909,7 @@ msgstr "Jusqu'a %d ticket de %s"
 
 #: app/models/rules/credit.rb:50
 msgid "ticket"
-msgstr ""
+msgstr "ticket"
 
 #: app/models/severite.rb:-
 msgid "severite"
@@ -2409,8 +2411,9 @@ msgid "Validate"
 msgstr "Valider"
 
 #: app/views/account/login.html.erb:4
-msgid "08000linux login"
-msgstr "Identifiant du 08000Linux"
+#, fuzzy
+msgid "%s login"
+msgstr "identifiant"
 
 #: app/views/account/logout.html.erb:2
 msgid "Logout ..."
@@ -2575,7 +2578,7 @@ msgstr "Nouvelle pièce jointe"
 
 #: app/views/attachments/show.html.erb:5
 msgid "Download"
-msgstr ""
+msgstr "Télécharger"
 
 #: app/views/changelogs/_form.html.erb:3
 msgid "Modification date"
@@ -2740,8 +2743,8 @@ msgid "Statistics by clients"
 msgstr "Statistiques par clients"
 
 #: app/views/commentaires/_form.html.erb:3
-msgid "Write your comment here\""
-msgstr ""
+msgid "Write your comment here"
+msgstr "Écrivez votre commentaire ici"
 
 #: app/views/commentaires/_form.html.erb:7
 msgid "Is this comment private ?"
@@ -2938,7 +2941,7 @@ msgstr "Client"
 
 #: app/views/contracts/show.html.erb:21
 msgid "You have spent <b>%s</b>"
-msgstr ""
+msgstr "Vous avez passé <b>%s</b>"
 
 #: app/views/contracts/show.html.erb:56
 msgid "Contractual commitments"
@@ -3124,8 +3127,9 @@ msgid "Edit this contribution"
 msgstr "Modifier cette contribution"
 
 #: app/views/contributions/list.atom.builder:2
-msgid "Contributions of 08000linux.com"
-msgstr "Les contributions du 08000linux.com"
+#, fuzzy
+msgid "Contributions of %s"
+msgstr "Contributions"
 
 #: app/views/contributions/list.html.erb:7
 msgid "All"
@@ -3155,27 +3159,27 @@ msgstr "Consulter toutes les contributions"
 msgid "RSS"
 msgstr "RSS"
 
-#: app/views/contributions/show.html.erb:19
+#: app/views/contributions/show.html.erb:15
 msgid "link"
 msgstr "liens"
 
-#: app/views/contributions/show.html.erb:24
+#: app/views/contributions/show.html.erb:20
 msgid "This contribution has been submitted on %s by <b>%s</b>"
 msgstr "Cette contribution a été déposée le %s par <b>%s</b>"
 
-#: app/views/contributions/show.html.erb:27
+#: app/views/contributions/show.html.erb:23
 msgid "and its has been approved on %s"
 msgstr "et a été accepté le %s"
 
-#: app/views/contributions/show.html.erb:30
+#: app/views/contributions/show.html.erb:26
 msgid "This bug has been discovered in the version %s "
 msgstr "Ce bug a été découvert dans la version %s"
 
-#: app/views/contributions/show.html.erb:33
+#: app/views/contributions/show.html.erb:29
 msgid "and has been fixed in the version %s"
 msgstr "et a été corrigé dans la version %s"
 
-#: app/views/contributions/show.html.erb:36
+#: app/views/contributions/show.html.erb:32
 msgid "This patch was not submitted to the community"
 msgstr "Ce correctif n'a pas été soumis à la communauté"
 
@@ -4730,7 +4734,8 @@ msgstr ""
 
 #: app/views/welcome/about.html.erb:25
 msgid "It is now an Open Source software you can get at "
-msgstr "C'est maintenant un logiciel Open Source que vous pouvez récupérer sur "
+msgstr ""
+"C'est maintenant un logiciel Open Source que vous pouvez récupérer sur "
 
 #: app/views/welcome/about.html.erb:26
 msgid "the homepage of the project"
@@ -4825,7 +4830,8 @@ msgid "connected"
 msgstr "connecté"
 
 #: app/views/welcome/index.html.erb:6
-msgid "Welcome to the 08000LINUX management tool"
+#, fuzzy
+msgid "Welcome to the %s management tool"
 msgstr "Bienvenue sur l'outil de gestion du 08000LINUX"
 
 #: app/views/welcome/index.html.erb:18
@@ -5045,6 +5051,12 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
+
+#~ msgid "08000linux login"
+#~ msgstr "Identifiant du 08000Linux"
+
+#~ msgid "Contributions of 08000linux.com"
+#~ msgstr "Les contributions du 08000linux.com"
 
 #~ msgid "Submission of a request"
 #~ msgstr "Dépôt d'une request"
