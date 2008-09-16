@@ -112,14 +112,6 @@ module RequestsHelper
       link_to StaticImage::view, request_path(ar)
   end
 
-  #usage : link_to_help('state') to link to the help page
-  # for states demand
-  def link_to_help(topic)
-      link_to StaticImage::help,
-        'http://www.08000linux.com/wiki/index.php/%C3%89tats_request',
-        { :class => 'aligned_picture' }
-  end
-
   def link_to_unlink_contribution( demand_id )
     link_to(_('Unlink the contribution'),
             unlink_contribution_request_path(demand_id),
@@ -201,10 +193,11 @@ module RequestsHelper
   # Show the '?' icon with the link on status explanation on the wiki
   # TODO : this implementation can be improved a LOT
   def help_on_status
-    @@help_on_status ||= '<a href="http://www.08000linux.com/wiki/index.php/%C3%89tats_request"' <<
-       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
-      image_tag("icons/question_mark.gif") <<
-    '</a>'
+#    @@help_on_status ||= '<a href="http://www.08000linux.com/wiki/index.php/%C3%89tats_demande"' <<
+#       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+#      image_tag("icons/question_mark.gif") <<
+#    '</a>'
+    "TODO : Replace the link"
   end
 
 
@@ -212,10 +205,11 @@ module RequestsHelper
   # Show the '?' icon with the link on severity explanation on the wiki
   # TODO : this implementation can be improved a LOT
   def help_on_severity
-    @@help_on_severity ||= '<a href="http://www.08000linux.com/wiki/index.php/Severite_request"' <<
-       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
-      image_tag("icons/question_mark.gif") <<
-    '</a>'
+#    @@help_on_severity ||= '<a href="http://www.08000linux.com/wiki/index.php/Severite_request"' <<
+#       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+#      image_tag("icons/question_mark.gif") <<
+#    '</a>'
+    "TODO : Replace the link"
   end
 
   # Shows a popup with the description of a status for the request.

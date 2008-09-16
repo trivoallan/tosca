@@ -3,7 +3,7 @@
 <link rel="alternate" href="contributions/all/list.atom" title="" type="application/atom+xml" />
 <table><tr><td rowspan="2"><%= StaticImage::tosca %> </td><td><h2 class="spacer"><%=_('Contents')%></h2></td></tr>
   <tr><td>
-     <%= _('Welcome to the 08000LINUX management tool')%><%= user ? ", #{user.title} #{user.name}" : '.' %>
+     <%= _('Welcome to the %s management tool') % App::ServiceFullName %><%= user ? ", #{user.title} #{user.name}" : '.' %>
   </td></tr>
 </table>
 
@@ -71,7 +71,7 @@
   <% unless user %>
     <p><%=_("We have a large range of offers for support with a SLA. This Service Level Agreement can be very strong and is guaranteed by contract.")%>
        <%=_("Don't hesitate to")%>
-       <%=mail_to('contact@08000linux.com',_('contact us.'))%></p><br />
+       <%=mail_to(App::TeamEmail, _('contact us.'))%></p><br />
   <% end %>
   <p><%=_("You can consult and follow all the %s done by our team in Open Source communities.") % public_link_to_contributions  %></p>
  </div>

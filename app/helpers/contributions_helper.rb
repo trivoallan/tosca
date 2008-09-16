@@ -84,17 +84,4 @@ module ContributionsHelper
     return '-' unless c
     public_link_to(c.name, contribution_path(c))
   end
-
-  # une contribution peut être liée à une request externe
-  # le "any" indique que la request peut etre sur n'importe quel tracker
-  def link_to_any_request(contribution)
-    return ' - ' if not contribution or not contribution.id_mantis
-    out = ''
-    if contribution.id_mantis
-      out << "<a href=\"http://www.08000linux.com/clients/minefi_SLL/mantis/view.php?id=#{contribution.id_mantis}\">
-       Mantis ##{contribution.id_mantis}</a>"
-    end
-    out
-  end
-
 end

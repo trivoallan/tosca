@@ -19,7 +19,6 @@
 class Notifier < ActionMailer::Base
   helper :mail
 
-  FROM = 'lstm@noreply.08000linux.com'
   HTML_CONTENT = 'text/html'
   TEXT_CONTENT = 'text/plain'
 
@@ -32,7 +31,7 @@ class Notifier < ActionMailer::Base
   def error_message(exception, trace, session, params, env)
     @recipients = App::DeveloppersEmail
     @cc = App::MaintenerEmail
-    @from = FROM
+    @from = App::FromEmail
     @content_type = HTML_CONTENT
     @subject = "Time to fix this one : #{env['REQUEST_URI']}"
     user = "Nobody"
@@ -53,7 +52,7 @@ class Notifier < ActionMailer::Base
   #   :user, :controller, :password
   def user_signup(options, flash = nil)
     recipients  options[:user].email
-    from        FROM
+    from        App::FromEmail
     subject     "Accès au Support Logiciel Libre"
 
     html_and_text_body(options);
@@ -71,7 +70,7 @@ class Notifier < ActionMailer::Base
 
     recipients  compute_recipients(request)
     cc          compute_copy(request)
-    from        FROM
+    from        App::FromEmail
     subject     "[#{App::ServiceName}##{request.id}] : #{request.resume}"
     headers     headers_mail_request(request.first_comment)
 
@@ -96,7 +95,7 @@ class Notifier < ActionMailer::Base
 
     recipients compute_recipients(request, comment.prive)
     cc         compute_copy(request, comment.prive)
-    from       FROM
+    from       App::FromEmail
     subject    "[#{App::ServiceName}:##{request.id}] : #{request.resume}"
     headers    headers_mail_request(comment)
 
@@ -116,7 +115,7 @@ class Notifier < ActionMailer::Base
       else
         recipients App::MaintenerEmail
     end
-    from    FROM
+    from    App::FromEmail
     subject "[Suggestion] => #{to}"
 
     options = Hash.new
@@ -127,7 +126,7 @@ class Notifier < ActionMailer::Base
   end
 
   def reporting_digest(user, data, mode, now)
-    from       FROM
+    from       App::FromEmail
    recipients user.email
 
     case mode.to_sym
@@ -183,9 +182,9 @@ class Notifier < ActionMailer::Base
   def email_not_exist(to)
     logger.info("E-mail #{to} does not exists in database")
 
-    from       FROM
+    from       App::FromEmail
     recipients to
-    bcc        MAIL_TOSCA
+    bcc        App::TeamEmail
     subject    "#{App::InternetAddress} : " << _("Possible error in your e-mail")
 
     html_and_text_body
@@ -195,7 +194,7 @@ class Notifier < ActionMailer::Base
   def email_multiple_account(to)
     logger.info("E-mail #{to} corresponds to multiple users")
 
-    from       FROM
+    from       App::FromEmail
     recipients to
     subject    "#{App::InternetAddress} : " << _("Multiple accounts with the same e-mail")
 
@@ -207,7 +206,7 @@ class Notifier < ActionMailer::Base
     mailinglist = adresses.grep(/#{App::InternetAddress}$/)
     logger.info("This(These) e-mail(s) #{mailinglist} does not correspond to a valid mailing-list")
 
-    from       FROM
+    from       App::FromEmail
     recipients to
     subject    "#{App::InternetAddress} : " << _("Mailing list does not exists")
 

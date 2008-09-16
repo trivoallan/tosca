@@ -49,7 +49,6 @@ class Statut < ActiveRecord::Base
   Fixed = 6
   
   # Give possible status for next step of a request
-  # It follows scheme on the 08000linux wiki
   # Even recipient can change some status,
   # when it's for closed or cancelled a request.
   # TODO : allow dynamic editing of this logic in Web Browser

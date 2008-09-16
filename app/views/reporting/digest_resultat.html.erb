@@ -24,7 +24,7 @@
             <% if com_user and com_user.client? and com_user.recipient %>
               <%= logo_client(com_user.recipient.client, :small) %>
             <% else %>
-              <%= StaticImage::logo_08000_small %>
+              <%= StaticImage::logo_service_small %>
             <% end %> : <%= digest_text(com.corps, 120) %>
           </li>
         <% end %>

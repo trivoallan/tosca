@@ -15,8 +15,7 @@
   result << " (#{versions})" unless versions.blank?
   result << " </td>"
   result << "<td>#{link_to_file c, 'patch', :image => true}</td>"
-  result << "<td nowrap=\"nowrap\">#{link_to_any_request c}</td>"
-  # result << "<td " + (tache ? "style='background-color:orange'>#{tache}" : ">") +"</td>"
+  result << "<td nowrap=\"nowrap\">#{link_to_request c}</td>"
   result << "<td>#{c.etatreversement.name if c.etatreversement}</td>"
   result << "<td>#{link_to_contribution c}</td>"
   result << "<td style='color:green'><span class=\"date\">#{c.contributed_on_formatted}</span></td>"

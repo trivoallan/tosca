@@ -23,6 +23,8 @@ module App
   TeamEmail = "tosca@tosca-project.com"
   # Used for feedback on this tool
   DeveloppersEmail = "tosca@tosca-project.com"
+  #From mail, used for outgoing mails
+  FromEmail = 'lstm@noreply.08000linux.com'
 
   # Used for jabber notification
   JabberAccount = "tosca@jabber.fr"
@@ -37,6 +39,10 @@ module App
   # service
   ServiceName = "Tosca"
   ServiceFullName = "Tosca bugtracking".gsub(' ','&nbsp;')
+  #The name ofthe images for your service
+  ServiceImage = 'logo_08000.gif'
+  ServiceImageSmall = 'logo_08000_small.gif'
+
   CompanyName = "Linagora"
   CompanySite = "http://www.linagora.com"
   CompanySitePath = "/tosca"

@@ -9,7 +9,7 @@
       <% if user and user.client? and user.recipient %>
         <%= logo_client(user.recipient.client) %>
       <% else %>
-        <%= StaticImage::logo_08000 %>
+        <%= StaticImage::logo_service %>
       <% end %><br />
       <%= user.name if user %><br />
 

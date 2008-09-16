@@ -23,7 +23,7 @@ module AccountHelper
       logo_client(recipient.client)
     else
       if engineer.image_id.blank?
-        StaticImage::logo_08000
+        StaticImage::logo_service
       else
         image_tag(url_for_file_column(engineer.image, 'image', 'thumb'))
       end

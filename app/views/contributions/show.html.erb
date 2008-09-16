@@ -9,10 +9,6 @@
 </h2>
 <div class="info">
   <%= @contribution.description %>
-  <% if @contribution.id_mantis && @ingenieur %>
-     <p><b>Request du portail v1 : </b>
-        <%=link_to_any_request @contribution %></p>
-  <% end %>
 
   <%= link_to_new_urlreversement(@contribution.id) %>
   <% options = { :edit => 'urlreversement' } %>
