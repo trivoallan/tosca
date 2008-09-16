@@ -22,9 +22,7 @@ desc "Configure a new Tosca instance"
       FileUtils.cp "#{root}/config/database.yml.sample",
                    "#{root}/config/database.yml"
     end
-    # TODO : Transform lib/config.rb into a YAML file,
-    # so we can ask,parse & change it properly
-    FileUtils.cp "#{root}/lib/config.rb.sample", "#{root}/lib/config.rb"
+    FileUtils.cp "#{root}/config/config.rb.sample", "#{root}/config/config.rb"
 
     Rake::Task['l10n:mo'].invoke
     Rake::Task['db:create'].invoke
