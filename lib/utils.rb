@@ -20,35 +20,6 @@
 #For html2text
 require 'cgi'
 
-# Meta data ici :
-# ajouter par Lstm
-module App
-
-  # application
-  Name = "TOSCA"
-  Version = "0.7.4"
-  Copyright = " ©2006-2008 Linagora SA".gsub(' ','&nbsp;')
-  FilesPath = File.join RAILS_ROOT, 'files'
-
-  # service
-  ServiceName = "OSSA"
-  ServiceFullName = "Open Source Software Assurance".gsub(' ','&nbsp;')
-  CompanyName = "Linagora"
-  CompanySite = "http://www.linagora.com"
-  CompanySitePath = "/ossa"
-
-  # contacts
-  PhonePrefix = "08000"
-  PhoneCode = "54689"
-  PhoneText = "LINUX"
-
-  InternetAddress = "08000linux.com"
-
-  ContactPhone = "08000 54689"
-  ContactMail = "team@08000linux.com"
-
-end
-
 # Converts the date value of a calendar into a Time object
 # Value is expected to be a string in the form : "YYYY-MM-DD"
 #

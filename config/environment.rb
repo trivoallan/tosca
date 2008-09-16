@@ -35,8 +35,8 @@ require 'utils'
 
 path = File.join RAILS_ROOT, 'config', 'database.yml'
 Utils.check_files(path, 'Your database is not configured')
-path = File.join RAILS_ROOT, 'lib', 'config.rb'
-Utils.check_files(path, 'Your mail server is not configured')
+path = File.join RAILS_ROOT, 'config', 'config.rb'
+Utils.check_files(path, 'The configuration of the application is not done')
 
 cache_path = File.join RAILS_ROOT, 'tmp', 'cache'
 page_cache_path = File.join RAILS_ROOT, 'public', 'cache'

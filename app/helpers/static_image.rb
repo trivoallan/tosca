@@ -157,13 +157,13 @@ class StaticImage < Static::ActionView
 
   @@ruby = nil
   def self.ruby
-    desc = _("OSSA on rails")
+    desc = _("Tosca on Rails")
     @@ruby ||= image_tag('ruby.png', options(desc, '15x15'))
   end
 
   @@linagora = nil
   def self.linagora
-    desc = _("OSSA on rails")
+    desc = _("Tosca on Rails")
     @@linagora ||= image_tag('logo_linagora.gif', options(desc, '176x44'))
   end
 

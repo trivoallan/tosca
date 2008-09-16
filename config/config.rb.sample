@@ -1,0 +1,53 @@
+#####################################################
+# Copyright Linagora SA 2006 - Tous droits réservés.#
+#####################################################
+# Include your application configuration below
+ActionMailer::Base.smtp_settings = {
+  :address  => "smtp",
+  :port  => 25,
+  :domain  => 'company.com',
+  :dev_mailto => "dev@company.com"
+
+  #:user_name  => "",
+  #:password  => "",
+#  :authentication  => :login
+}
+ActionMailer::Base.default_charset = "UTF-8"
+
+module App
+  # Used to send test emails. Put your own if you intend to develop on TOSCA
+  
+  # Used for test on its local computer
+  MaintenerEmail = "tosca@tosca-project.com"
+  # Used for feedback on service
+  TeamEmail		 = "tosca@tosca-project.com"
+  # Used for feedback on this tool
+  DeveloppersEmail = "tosca@tosca-project.com"
+  # Used for jabber notification
+  JabberAccount = "tosca@jabber.fr"
+  JabberPassword = "tosca"
+
+  # Application
+  Name = "TOSCA"
+  Version = "0.7.4"
+  Copyright = " ©2006-2008 Linagora SA".gsub(' ','&nbsp;')
+  FilesPath = File.join RAILS_ROOT, 'files'
+
+  # service
+  ServiceName = "Tosca"
+  ServiceFullName = "Tosca bugtracking".gsub(' ','&nbsp;')
+  CompanyName = "Linagora"
+  CompanySite = "http://www.linagora.com"
+  CompanySitePath = "/tosca"
+
+  # contacts
+  PhonePrefix = "08000"
+  PhoneCode = "54689"
+  PhoneText = "LINUX"
+
+  InternetAddress = "tosca-project.com"
+
+  ContactPhone = PhonePrefix + " " + PhoneCode
+  ContactMail = "tosca@tosca-project.com"
+
+end
