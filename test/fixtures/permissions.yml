@@ -19,6 +19,14 @@ permission_00099:
   name: ^requests/(index|print|show)$
   info: Read access to requests
   id: 99
+permission_00121: 
+  name: ^contracts/tags$
+  info: Manage tags for a contract
+  id: 121
+permission_00122: 
+  name: ^requests/tag$
+  info: Manage tags for a request
+  id: 122
 permission_00100: 
   name: ^logiciels/(index|show)$
   info: Read-only access to software
