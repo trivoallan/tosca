@@ -1,6 +1,6 @@
 commentaire_00001:
   created_on: 2008-01-01 00:00:01 +01:00
-  corps: "Dans le document joint, le retrait du fond de page fonctionne bien mais apr\xC3\xA8s sauvegarde et r\xC3\xA9ouverture du fichier il appara\xC3\xAEt \xC3\xA0 nouveau. Cordialement.\r\n"
+  corps: "Bla Bla"
   updated_on: 2008-04-07 11:18:02 +02:00
   prive: false
   ingenieur_id: 1
@@ -13,7 +13,7 @@ commentaire_00001:
   attachment_id: 1
 commentaire_00002:
   created_on: 2008-01-01 00:00:01 +01:00
-  corps: "<p>Bonjour,</p><p>Lorsque l&#39;on fait un couper-coller d&#39;une question sur le site e l&#39;Assembl\xC3\xA9ee vers Writer, le r\xC3\xA9sultat est un tableau vide :</p><p>http://questions.assemblee-nationale.fr/q13/13-8502QE.htm</p><p>Pouvez-vous m&#39;indiquer la cause de ce comportement ?</p><p>Edit: Suite \xC3\xA0 la demande 537, on constate aussi un probl\xC3\xA8me \xC3\xA0 similaire :  http://www.assemblee-nationale.fr/13/cri/2007-2008/20080017.asp#P189_8754</p><p>Cordialement. </p><p>&nbsp;</p>"
+  corps: "Bla Bla"
   updated_on: 2008-04-07 11:18:02 +02:00
   prive: false
   ingenieur_id: 2
@@ -26,7 +26,7 @@ commentaire_00002:
   attachment_id: 2
 commentaire_00003:
   created_on: 2008-01-01 00:00:02 +01:00
-  corps: "le logo me semble un peu disproportionnee, par ailleurs."
+  corps: "Bla Bla"
   updated_on: 2008-01-01 00:00:02 +01:00
   prive: false
   ingenieur_id: 2
@@ -39,7 +39,7 @@ commentaire_00003:
   attachment_id: 3
 commentaire_00004:
   created_on: 2008-04-16 16:55:46
-  corps: "<p>Bonjour,</p><p>- Pour le t\xC3\xA9l\xC3\xA9chargement d&#39;un DCE\xC2\xA0 la saisie d&#39;une apostrophe dans l&#39;adresse a pour effet de ne pas mettre \xC3\xA0 jour la base de donn\xC3\xA9es (table t\xC3\xA9l\xC3\xA9chargement)</p><p>- lorsque l&#39;on pose une question sur une concultation la saisie d&#39;une apostrophe dans la champ &quot;question&quot; a pour effet de rendre le message suivant &quot;Impossible de poster la question&quot;</p><p>cordialement</p><p>&nbsp;</p><p>&nbsp;</p>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:30:14
   ingenieur_id:
   prive: "0"
@@ -52,7 +52,7 @@ commentaire_00004:
   attachment_id:
 commentaire_00005:
   created_on: 2008-04-16 16:56:22
-  corps: "Bien re\xC3\xA7u."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:30:14
   ingenieur_id: "24"
   prive: "0"
@@ -65,7 +65,7 @@ commentaire_00005:
   attachment_id:
 commentaire_00006:
   created_on: 2008-04-16 16:57:56
-  corps: "\xC3\xA7a a l&#39;odeur d&#39;un &quot;add_slashes&quot; \xC3\xA0 placer au bon endroit, non ?"
+  corps: "Bla Bla"
   updated_on: 2008-04-16 16:57:56
   ingenieur_id:
   prive: "1"
@@ -78,7 +78,7 @@ commentaire_00006:
   attachment_id:
 commentaire_00007:
   created_on: 2008-04-16 18:10:36
-  corps: "Faut faire gaffe pour Oracle c&#39;est pas des slashes"
+  corps: "Bla Bla"
   updated_on: 2008-04-16 18:10:36
   ingenieur_id:
   prive: "1"
@@ -91,7 +91,7 @@ commentaire_00007:
   attachment_id:
 commentaire_00008:
   created_on: 2008-04-30 10:23:14
-  corps: "<p>Bonjour,</p><p>&nbsp;</p><p>L&#39;application a \xC3\xA9t\xC3\xA9 corrig\xC3\xA9e. Je vais uploader la version 1.8.10 de l&#39;application corrigeant ces probl\xC3\xA8mes.</p><p>&nbsp;</p><p>Cordialement, </p>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:30:15
   ingenieur_id: "18"
   prive: "0"
@@ -104,11 +104,7 @@ commentaire_00008:
   attachment_id:
 commentaire_00009:
   created_on: 2008-05-13 12:21:27
-  corps: "<p>Bonjour,</p>\r\n\
-    <p></p>\r\n\
-    <p>Peut-on cl\xC3\xB4turer cette demande ?</p>\r\n\
-    <p></p>\r\n\
-    <p>Cordialement,</p>"
+  corps: "Bla Bla"
   updated_on: 2008-05-13 12:21:27
   ingenieur_id:
   prive: "0"
@@ -121,7 +117,7 @@ commentaire_00009:
   attachment_id:
 commentaire_00010:
   created_on: 2008-04-23 16:37:53
-  corps: "<p>Bonjour,</p><p>Certaines fois, et pour des raisons non expliqu\xC3\xA9s pour l&#39;instant, le poste affiche ce genre de message lors de l&#39;ouverture d&#39;une console:<br />&quot;id: ne peut trouver le nom de l&#39;identificateur de groupe 10513&quot;<br />Cet id correspond au groupe principal (GID) des utilisateurs du poste Linux: &quot;utilisa. du domaine&quot;. Cela entraine que le GID n&#39;est plus reconnu par le syst\xC3\xA8me (il est affich\xC3\xA9 que de mani\xC3\xA8re num\xC3\xA9rique) et visiblement cause des problemes pour certains programmes. Est-il possible de savoir comment est-il possible de palier \xC3\xA0 ce souci, sachant qu&#39;un restart du daemon winbind et une re-execution de la commande &quot;id&quot; ne suffisent pas ?</p><p>Cordialement,</p>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:30:18
   ingenieur_id:
   prive: "0"
@@ -134,7 +130,7 @@ commentaire_00010:
   attachment_id:
 commentaire_00011:
   created_on: 2008-04-23 16:41:21
-  corps: "Bien re\xC3\xA7u."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:30:18
   ingenieur_id: "38"
   prive: "0"
@@ -147,7 +143,7 @@ commentaire_00011:
   attachment_id:
 commentaire_00012:
   created_on: 2008-04-23 17:51:34
-  corps: "<p>Bonjour,</p><p>Tout semble indiquer que par moment, et ceci \xC3\xA9tant li\xC3\xA9 \xC3\xA0 une charge r\xC3\xA9seau importante, vous obteniez un timeout sur la r\xC3\xA9solution des GID/UID...</p><p>Winbind d\xC3\xA9tecte la pr\xC3\xA9sence du r\xC3\xA9seau au d\xC3\xA9marrage du service, active le mode offline ou online, mais ne sait pas switcher automatiquement...<br /> </p><p>Une solution simple pour palier \xC3\xA0 ce soucis est d&#39;effectuer le test suivant, pour que Winbind n&#39;interroge que son cache pour la r\xC3\xA9solution des GID/UID :</p><p>sudo smbcontrol winbind offline</p><p>&nbsp;</p><p>A ce stade, la requ\xC3\xA8te n&#39;adressera plus le DC, mais le cache de Winbind, et vous pouvez tester \xC3\xA0 nouveau \xC3\xA0 l&#39;aide de la commande &quot;id&quot;. Si notre diagnostique est le bon, cela devrait fonctionner...</p><p>&nbsp;</p><p>Utiliser Winbind en mode offline pr\xC3\xA9sentera un autre avantage : Pas de probl\xC3\xA8mes en cas de coupure du r\xC3\xA9seau, Winbind ne sachant pas passer en mode offline automatiquement.</p><p>L&#39;inconv\xC3\xA9nient de ce syst\xC3\xA8me est que lors de l&#39;ajout d&#39;un nouveau compte AD, il faudra attendre le rafraichissement du cache Winbind pour pouvoir s&#39;authentifier, soit dans votre cas un maximum de 900 secondes.</p><p>&nbsp;</p><p>Si le test et la solution vous conviennent, il est possible de configurer Winbind pour ne faire que du offline en cr\xC3\xA9ant sur le poste le fichier suivant : </p><pre>/etc/security/pam_winbind.conf</pre><pre>Le contenu du fichier doit \xC3\xAAtre le suivant :</pre><pre>[global]<br /># request a cached login if possible<br /># (need &quot;winbind offline logon = yes&quot; in smb.conf)<br />cached_login = yes </pre><pre> </pre><p>Lorsque la configuration est activ\xC3\xA9e red\xC3\xA9marrez le service winbind (sudo invoke-rc.d winbind restart) et saisir la commande suivante pour test :</p><pre>wbinfo -K YOURDOM\\\\youruser%password</pre><pre>Vous devriez voir l&#39;information suivante :</pre><pre>user_flgs: LOGON_CACHED_ACCOUNT</pre><p>&nbsp;</p><p>Si la solution r\xC3\xA9soud le probl\xC3\xA8me et si le d\xC3\xA9lai de 900 secondes pour les nouveaux comptes vous parait acceptable, nous pourrons alors proc\xC3\xA9der \xC3\xA0 l&#39;industrialisation de la solution.</p><p>&nbsp;</p><p>Merci de votre retour concernant la validation du fait qu&#39;un switch de Winbind en mode offline permet la r\xC3\xA9solution des GID, ce qui confirmerait ou infirmerait, dans tous les cas, notre diagnostique. </p>"
+  corps: "Bla Bla"
   updated_on: 2008-04-23 17:53:38
   ingenieur_id:
   prive: "0"
@@ -160,7 +156,7 @@ commentaire_00012:
   attachment_id:
 commentaire_00013:
   created_on: 2008-04-24 13:12:25
-  corps: "<p>Nous allons tester cela, car le probleme ne r\xC3\xA9apparait pas \xC3\xA0 chaque fois. Par contre, avec un winbind en mode offline, plusieurs interrogations de posent:</p><p>1) si l&#39;utilisateur change son mot de passe depuis le poste linux, qu&#39;en serait-il ? (le mdp serai chang\xC3\xA9 apr\xC3\xA8s 900sec maximum, ou bien directement ..?)<br />2) Est-ce que cela contienura d&#39;afficher le message au login comme quoi il a pris les credencials en cache ? (comme lorsque winbind ne detecte pas le r\xC3\xA9seau) ?<br />3) Existe-t-il une mani\xC3\xA8re de forcer le rafraichissement du cache ? (se loguer/reloguer par exemple)</p>"
+  corps: "Bla Bla"
   updated_on: 2008-04-24 13:12:25
   ingenieur_id:
   prive: "0"
@@ -173,7 +169,7 @@ commentaire_00013:
   attachment_id:
 commentaire_00014:
   created_on: 2008-04-24 16:04:35
-  corps: "<p>Demandes similaires : </p><ul><li>\xC2\xA0https://bugs.launchpad.net/ubuntu/+source/samba/+bug/47886</li><li>http://www.mail-archive.com/samba@lists.samba.org/msg14332.html</li></ul><p>\xC3\xA7a peut \xC3\xAAtre dans glibc, \xC3\xA7a peut \xC3\xAAtre dans samba, ...</p><p>&nbsp;</p>"
+  corps: "Bla Bla"
   updated_on: 2008-04-24 16:04:35
   ingenieur_id:
   prive: "1"
@@ -186,7 +182,7 @@ commentaire_00014:
   attachment_id:
 commentaire_00015:
   created_on: 2008-04-24 16:15:56
-  corps: "<p>Il semble que je sois all\xC3\xA9 un peu vite sur les tests...</p><p>&nbsp;</p><p>Vraissemblablement ma pr\xC3\xA9c\xC3\xA9dente hypoth\xC3\xA8se est fause.</p><p>D&#39;une part, la gestion de la r\xC3\xA9solution des groupes et users est un proc\xC3\xA9ssus ind\xC3\xA9pendant du login.</p><p>&nbsp;</p><p>Le poste effectue normalement d\xC3\xA9j\xC3\xA0 a r\xC3\xA9solution des UID/GID en cache.</p><p>Le cache est rafraichi toutes les 900 secondes.</p><p>&nbsp;</p><p>J&#39;ai pens\xC3\xA9 aux options &quot;winbind enum groups&quot;\xC2\xA0 et &quot;winbind enum users&quot;, mais le test est caduque, car d&#39;une part le probl\xC3\xA8me est connu avec et sans l&#39;option et d&#39;autre part la non activation de l&#39;\xC3\xA9num\xC3\xA9ration ne produirait pas un effet random, mais fixe, d\xC3\xA9sactivant un appel syst\xC3\xA8me.</p><p>&nbsp;</p><p>Il faut d\xC3\xA9ja savoir en d\xC3\xA9tail d&#39;ou provient l&#39;erreur, et donc je pense que certains tests cot\xC3\xA9 sagem seraient interessants.</p><p>&nbsp;</p><p>Lorsque le probl\xC3\xA8me se produit, il faudrait tester les commandes suivantes :</p><p>id</p><p>groups</p><p>wbinfo -u</p><p>wbinfo -g\xC2\xA0</p><p>wbinfo -t</p><p>getent group</p><p>&nbsp;</p><p>Il nous faudrait aussi les logs samba et winbind.</p><p>&nbsp;</p><p>Le cot\xC3\xA9 random est le plus p\xC3\xA9nible.</p><p>Il est possible que pour une raison quelconque, le cache ne se raffraichisse pas (timeout ou autre) et soit donc corrompu avant raffraichissement, d&#39;o\xC3\xB9 le cot\xC3\xA9 random de la chose.</p><p>&nbsp;</p><p>Le bug est connu chez ubuntu, et sans r\xC3\xA9ponse pour le moment:</p><p>https://bugs.launchpad.net/ubuntu/+source/samba/+bug/47886\xC2\xA0</p><p>&nbsp;</p><p>Il est \xC3\xA9galement report\xC3\xA9 par pas mal de gens sur le net, pas un seul n&#39;a une solution valable...</p><p>&nbsp;</p><p>Un test qui a corrig\xC3\xA9 le probl\xC3\xA8me pour un gars, supprimer les lignes &#39;idmap UID...&#39; et &#39;idmap GID...&#39; et laisser Winbind faire sa sauce... C&#39;est le seul exemple que j&#39;ai pu trouver d&#39;un mec qui a r\xC3\xA9solu son probl\xC3\xA8me...\xC2\xA0</p>"
+  corps: "Bla Bla"
   updated_on: 2008-04-24 16:15:56
   ingenieur_id:
   prive: "1"
@@ -199,7 +195,7 @@ commentaire_00015:
   attachment_id:
 commentaire_00016:
   created_on: 2008-04-24 16:28:58
-  corps: "<p>Autre duplicate du m\xC3\xAAme bug :</p><p>https://bugs.edge.launchpad.net/ubuntu/+source/samba/+bug/207791</p><p>&nbsp;</p><p>Likewise-open, un fork de winbind, am\xC3\xA9lior\xC3\xA9, semble avoir le m\xC3\xAAme probl\xC3\xA8me...\xC2\xA0</p>"
+  corps: "Bla Bla"
   updated_on: 2008-04-24 16:28:58
   ingenieur_id:
   prive: "1"
@@ -212,7 +208,7 @@ commentaire_00016:
   attachment_id:
 commentaire_00017:
   created_on: 2008-04-25 16:34:53
-  corps: "Bonjour,<br /><br />Apr\xC3\xA8s une seconde analyse du probl\xC3\xA8me, il apparait que notre premier diagnostique n&#39;est pas le bon.<br />En effet, le probl\xC3\xA8me est li\xC3\xA9 \xC3\xA0 la partie NSS de Winbind, quand le mode offline joue sur la gestion de l&#39;authentification, PAM.<br /><br />Le probl\xC3\xA8me est plus complexe que pr\xC3\xA9vu.<br /><br />Il existe de nombreuses r\xC3\xA9f\xC3\xA9rences \xC3\xA0 ce bug, report\xC3\xA9es sur divers BTS, et toutes les distributions semblent touch\xC3\xA9es, comment en attestent les bugs suivants :<br />- https://bugs.launchpad.net/ubuntu/+source/samba/+bug/47886<br />- http://www.mail-archive.com/samba@lists.samba.org/msg14332.html<br />- http://lists.samba.org/archive/samba/2003-January/060586.html<br /><br />Une erreur de r\xC3\xA9solution de GID en nom de groupe peut avoir plusieurs causes, entre autres :<br />- Probl\xC3\xA8me de reg\xC3\xA9n\xC3\xA9ration du cache Winbind<br />- Timeout de connection RPC sur le contr\xC3\xB4leur de domaine AD<br />- Perte de versions sur le r\xC3\xA9seau<br />- Bug al\xC3\xA9atoire de la libnss-winbind dans un \xC3\xA9tat particulier du poste<br /><br />Du fait du cot\xC3\xA9 al\xC3\xA9atoire du comportement, et surtout du cot\xC3\xA9 temporaire du dysfonctionnement, la n\xC3\xA9cessaire collecte de donn\xC3\xA9es afin d&#39;analyser et diagnostiquer la source du probl\xC3\xA8me demande un plan d&#39;action.<br /><br />De fait, nous vous proposons les actions suivantes \xC3\xA0 notre niveau :<br />- Ecriture d&#39;un script de collecte, qui tourne en boucle et au moment ou le probl\xC3\xA8me apparait, enregistre le log de certaines commandes afin de confirmer ou infirmer nos hypotheses. Le script en plus de cela isole et empacte les logs de samba/winbind et nous cr\xC3\xA9e une copie analysable des divers cache au moment pr\xC3\xA9cis du dysfonctionnement.<br />Les commandes \xC3\xA0 analyser sont entre autres :<br />wbinfo -g<br />wbinfo -u<br />wbinfo -t<br />getent groups<br />getent group &lt;un_groupe_ad&gt;<br />id<br /><br />Toutes les r\xC3\xA9f\xC3\xA9rences au bug notent que certaines de ces commandes fonctionnent et d&#39;autres ne fonctionnent pas.<br />Confirmer cela nous permettra d&#39;analyser le fonctionnement de winbind sur l&#39;appel pr\xC3\xA9cis de ces commandes afin de d\xC3\xA9terminer si le r\xC3\xA9seau ou le cache sont utilis\xC3\xA9s, de mani\xC3\xA8re, en recoupant avec les logs, cibler avec pr\xC3\xA9cision la cause et l&#39;appel g\xC3\xA9n\xC3\xA9rant l&#39;erreur.<br /><br />Le script serait \xC3\xA0 installer sur une ou plusieurs de vos machines, fonctionnant en t\xC3\xA2che de fond, et affichera un warning tout en envoyant un mail lorsque le dysfonctionnement sera constat\xC3\xA9, de mani\xC3\xA8re \xC3\xA0 \xC3\xA9viter \xC3\xA0 vos services de v\xC3\xA9rifier r\xC3\xA9guli\xC3\xA8rement l&#39;\xC3\xA9tat de la chose.<br /><br />Etes-vous en accord avec cette approche ?"
+  corps: "Bla Bla"
   updated_on: 2008-04-25 16:34:53
   ingenieur_id:
   prive: "0"
@@ -225,7 +221,7 @@ commentaire_00017:
   attachment_id:
 commentaire_00018:
   created_on: 2008-04-29 12:01:52
-  corps: "Suspension de la demande en attente de retour."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:30:18
   ingenieur_id:
   prive: "0"
@@ -238,7 +234,7 @@ commentaire_00018:
   attachment_id:
 commentaire_00019:
   created_on: 2008-04-29 16:47:34
-  corps: "<p>Bonjour,</p><p>L&#39;approche me parait correcte, n\xC3\xA9anmoins pour la diffusion du r\xC3\xA9sultat, l&#39;envoi par mail peut se r\xC3\xA9veler probl\xC3\xA9matique du fait de l&#39;utilisation de Lotus Notes. Il serai plus judicieux d&#39;effectuer cela par ftp par exemple. De plus, il faut penser que le script doit etre facilement d\xC3\xA9sinstallable.</p>"
+  corps: "Bla Bla"
   updated_on: 2008-04-29 16:47:34
   ingenieur_id:
   prive: "0"
@@ -251,8 +247,7 @@ commentaire_00019:
   attachment_id:
 commentaire_00020:
   created_on: 2007-01-17 18:10:37
-  corps: "Quelle est la strat\xC3\xA9gie de prise en compte de modifications des fichiers de configuration du connecteur d'acc\xC3\xA8s \xC3\xA0 Tomcat ou de l'ajout de virtual hosts?\r\n\
-    En particulier, que font vos autres clients en cas d'une erreur dans la nouvelle configuration? (proc\xC3\xA9dure de validation et retour arri\xC3\xA8re?)"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id: "3"
   prive: "0"
@@ -265,7 +260,7 @@ commentaire_00020:
   attachment_id:
 commentaire_00021:
   created_on: 2007-01-17 18:12:14
-  corps: "Demande prise en compte."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id: "3"
   prive: "0"
@@ -278,7 +273,7 @@ commentaire_00021:
   attachment_id:
 commentaire_00022:
   created_on: 2007-01-17 18:17:43
-  corps: "Client rappel\xC3\xA9 \xC3\xA0 18h18.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-17 18:17:43
   ingenieur_id:
   prive: "0"
@@ -291,7 +286,7 @@ commentaire_00022:
   attachment_id:
 commentaire_00023:
   created_on: 2007-01-17 18:51:06
-  corps: "Le responsable de la demande a chang\xC3\xA9"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id: "14"
   prive: "0"
@@ -304,7 +299,7 @@ commentaire_00023:
   attachment_id:
 commentaire_00024:
   created_on: 2007-01-18 12:34:58
-  corps: "Nous avons bien analys\xC3\xA9 votre demande."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id:
   prive: "0"
@@ -317,7 +312,7 @@ commentaire_00024:
   attachment_id:
 commentaire_00025:
   created_on: 2007-01-18 12:39:11
-  corps: "Bonjour,\r<br/>\r<br/>L'ajout du connecteur mod_jk en tant que module \xC3\xA0 Apache n\xC3\xA9cessite un red\xC3\xA9marrage, donc une interruption de service.\r<br/>Les modifications apport\xC3\xA9es aux param\xC3\xA8tres du connecteur d'acc\xC3\xA8s \xC3\xA0 Tomcat (fichier de configuration workers.properties) demandent aussi un rechargement du service Apache.\r<br/>Ces derniers (h\xC3\xB4te et port d''\xC3\xA9coute de Tomcat par exemple) ne sont pas cens\xC3\xA9s \xC3\xAAtre souvent chang\xC3\xA9s.\r<br/>L'ajout de VirtualHosts dans Apache, avec le connecteur d\xC3\xA9j\xC3\xA0 actif, permet de d'utiliser les ressources de ce dernier pour une Webapp par exemple. Il reste n\xC3\xA9cessaire de recharger la configuration d'Apache pour la prise en compte du nouveau VirtualHost.\r<br/>\r<br/>Enfin, pour ce type de configuration, il est important de stocker les diff\xC3\xA9rentes versions, pour minimiser le temps de bascule arri\xC3\xA8re.\r<br/>Une autre solution, est d'utiliser les fonctionnalit\xC3\xA9s de load-balancing.\r<br/>Prenons l'exemple de deux serveurs Web avec Apache et deux serveurs applicatifs avec Tomcat. Il peut \xC3\xAAtre judicieux de d\xC3\xA9ployer deux nouveaux serveurs en entr\xC3\xA9e, que nous appelons des VS (Virtual Servers) qui vont permettre de bloquer le traffic sur une branche (VS --> Apache --> Tomcat). L'autre branche \xC3\xA9tant isol\xC3\xA9e par son VS,vous pouvez effectuer les mises \xC3\xA0 jour n\xC3\xA9cessaires sans impacter le service, et valider l'interaction entre Apache et Tomcat par exemple.\r<br/>\r<br/>Nous restons \xC3\xA0 votre disposition pour toute information compl\xC3\xA9mentaire.\r<br/>Cordialement.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id:
   prive: "0"
@@ -330,7 +325,7 @@ commentaire_00025:
   attachment_id:
 commentaire_00026:
   created_on: 2007-01-18 12:39:51
-  corps: "Le responsable de la demande a chang\xC3\xA9"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id: "3"
   prive: "0"
@@ -343,7 +338,7 @@ commentaire_00026:
   attachment_id:
 commentaire_00027:
   created_on: 2007-01-22 15:28:26
-  corps: "Rappel du b\xC3\xA9n\xC3\xA9ficiaire pour fermer la demande. B\xC3\xA9n\xC3\xA9ficiaire absente."
+  corps: "Bla Bla"
   updated_on: 2007-01-22 15:28:26
   ingenieur_id:
   prive: "1"
@@ -356,7 +351,7 @@ commentaire_00027:
   attachment_id:
 commentaire_00028:
   created_on: 2007-01-23 10:37:23
-  corps: "Rappel de Mme Dupond Jeanne pour lui demander un compl\xC3\xA9ment d'informations.\r<br/>Nous laissons cette demande suspendue en attendant les d\xC3\xA9tails techniques.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-23 10:37:23
   ingenieur_id:
   prive: "0"
@@ -369,7 +364,7 @@ commentaire_00028:
   attachment_id:
 commentaire_00029:
   created_on: 2007-02-27 17:15:34
-  corps: "Suite \xC3\xA0 mon appel, une nouvelle demande d'information sera ouverte."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id:
   prive: "0"
@@ -382,7 +377,7 @@ commentaire_00029:
   attachment_id:
 commentaire_00030:
   created_on: 2007-02-27 17:16:55
-  corps: "Demande cl\xC3\xB4tur\xC3\xA9e."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id:
   prive: "0"
@@ -395,7 +390,7 @@ commentaire_00030:
   attachment_id:
 commentaire_00031:
   created_on: 2007-12-04 08:49:26
-  corps: "<p>Circonstances :<br />---------------<br />Syst\xC3\xA8me de fichier mont\xC3\xA9 avec konqueror.<br />Ouverture du fichier<br />&quot;smb://filer1/dev_projets3/rg_ultimate/doc/MLTV_rout\xC3\xA9/MLTV.doc&quot;</p><p>Symptome :<br />----------<br />OpenOffice se lance, mais il plante tout de suite avec le message d&#39;erreur :<br />&quot;Une erreur g\xC3\xA9n\xC3\xA9rale internet s&#39;est produite&quot;<br />L&#39;ouverture dans Kate par exemple ne pose aucun probleme, mais le r\xC3\xA9sultat est inexploitable car Kate ne peut pas\xC2\xA0interpr\xC3\xA9ter de .doc</p><p>Workaround :<br />------------<br />La recopie du fichier dans un autre r\xC3\xA9pertoire ou en local (dans /tmp par<br />exemple) permet d&#39;ouvrir quand m\xC3\xAAme le fichier.</p>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:57
   ingenieur_id:
   prive: "0"
@@ -408,7 +403,7 @@ commentaire_00031:
   attachment_id:
 commentaire_00032:
   created_on: 2007-12-04 08:50:43
-  corps: Nous prenons en compte votre demande.
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:57
   ingenieur_id:
   prive: "0"
@@ -421,7 +416,7 @@ commentaire_00032:
   attachment_id:
 commentaire_00033:
   created_on: 2007-12-04 08:52:10
-  corps: "<p>Bonjour,</p><p>Quelle est votre version d&#39;OpenOffice ?\xC2\xA0</p><p>Pouvez-vous nous envoyer le fichier concern\xC3\xA9 ?</p><p>\xC2\xA0Merci par avance.</p><p>Cordialement.</p><p><br />Rich</p>"
+  corps: "Bla Bla"
   updated_on: 2007-12-04 08:52:10
   ingenieur_id:
   prive: "0"
@@ -434,7 +429,7 @@ commentaire_00033:
   attachment_id:
 commentaire_00034:
   created_on: 2007-12-04 09:23:08
-  corps: "M. Roch prend en charge votre demande."
+  corps: "Bla Bla"
   updated_on: 2007-12-04 09:23:08
   ingenieur_id: "31"
   prive: "0"
@@ -447,7 +442,7 @@ commentaire_00034:
   attachment_id:
 commentaire_00035:
   created_on: 2008-01-02 10:26:08
-  corps: "R\xC3\xA9attribution."
+  corps: "Bla Bla"
   updated_on: 2008-01-02 10:26:08
   ingenieur_id: "38"
   prive: "0"
@@ -460,8 +455,7 @@ commentaire_00035:
   attachment_id:
 commentaire_00036:
   created_on: 2008-01-07 17:29:18
-  corps: "Bonjour,<br><br>Le probl\xC3\xA8me est-il g\xC3\xA9n\xC3\xA9ral, ou ne concerne-t-il qu'un nombre limit\xC3\xA9 de fichiers ?<br>\r\n\
-    Pourriez-vous nous envoyer le fichier cit\xC3\xA9 dans votre rapport de boggue"
+  corps: "Bla Bla"
   updated_on: 2008-01-07 17:29:18
   ingenieur_id:
   prive: "0"
@@ -474,15 +468,7 @@ commentaire_00036:
   attachment_id:
 commentaire_00037:
   created_on: 2008-01-07 18:18:03
-  corps: "Nous n'arrivons pas \xC3\xA0 reproduire le probl\xC3\xA8me avec notre serveur samba local.<br>\r\n\
-    Pourriez-vous nous indiquer :<br>\r\n\
-    - Le type de serveur de fichier (windows ou samba)<br>\r\n\
-    - Si samba, la version du serveur de fichier.<br>\r\n\
-    - Si samba, quelle est l'OS du serveur et sa version.<br>\r\n\
-    - Si le probl\xC3\xA8me appara\xC3\xAEt lorsque l'utilisateur lui-m\xC3\xAAme cr\xC3\xA9e le r\xC3\xA9pertoire comportant un accent.<br>\r\n\
-    - Si le fichier n'\xC3\xA9tait pas d\xC3\xA9j\xC3\xA0 ouvert par un autre utilisateur.<br><br>\r\n\
-    \r\n\
-    D'avance merci"
+  corps: "Bla Bla"
   updated_on: 2008-01-07 18:18:03
   ingenieur_id:
   prive: "0"
@@ -495,7 +481,7 @@ commentaire_00037:
   attachment_id:
 commentaire_00038:
   created_on: 2008-02-07 14:18:23
-  corps: "<p>Bonjour,</p><p>&nbsp;</p><p>\xC2\xA0\xC2\xA0\xC2\xA0 Avez vous de nouvelles informations sur cette demande ?</p><p>&nbsp;</p><p>Merci,<br />  </p>"
+  corps: "Bla Bla"
   updated_on: 2008-02-07 14:18:23
   ingenieur_id:
   prive: "0"
@@ -508,7 +494,7 @@ commentaire_00038:
   attachment_id:
 commentaire_00039:
   created_on: 2008-02-07 16:51:30
-  corps: "Le serveur de fichier est un serveur NetApp. Sous windows, ce fichier s&#39;ouvre sans probleme, tandis que sous Linux il ya une &quot;erreur internet g\xC3\xA9n\xC3\xA9rale&quot;, de plus le fichier n&#39;est pas ouvert par quelqu&#39;un d&#39;autre. Le probleme n&#39;apparait pas lorsque l&#39;utilisateur cr\xC3\xA9\xC3\xA9 lui meme le fichier."
+  corps: "Bla Bla"
   updated_on: 2008-02-07 16:51:30
   ingenieur_id:
   prive: "0"
@@ -521,7 +507,7 @@ commentaire_00039:
   attachment_id:
 commentaire_00040:
   created_on: 2008-03-27 14:42:51
-  corps: "<p>Bonjour,</p><p>Apr\xC3\xA8s de nouveaux tests,\xC2\xA0 nous pouvons vous confirmer \xC3\xA0 nouveau qu&#39;avec un serveur de fichiers Windows ou Samba, le probl\xC3\xA8me n&#39;est pas reproductible.</p><p>Le dysfonctionnement est li\xC3\xA9 \xC3\xA0 l&#39;encodage des noms de fichiers utilis\xC3\xA9 et sp\xC3\xA9cifi\xC3\xA9 au sain du protocole smb par le serveur.\xC2\xA0</p><p>Le composant utilis\xC3\xA9 par OpenOffice.org pour la gestion du protocole smb est &quot;vfs&quot;, moins abouti que le composant standard &quot;ioslave&quot; de KDE.</p><p>Le probl\xC3\xA8me semble \xC3\xAAtre li\xC3\xA9 \xC3\xA0 une limitation fonctionnelle de VFS, lequel interpr\xC3\xAAte mal les informations d&#39;encodage des noms de fichiers de votre serveur Netapp.</p><p>Le fait que cela fonctionne correctement sur la base d&#39;un serveur Samba montre un possible double dysfonctionnement VFS/Netapp sur ce point, ioslave samblant corriger ou ignorer l&#39;encodage sp\xC3\xA9cifi\xC3\xA9 cot\xC3\xA9 serveur.</p><p>&nbsp;</p><p>En tout \xC3\xA9tat de cause, Netapp utilisant une API propri\xC3\xA9taire non document\xC3\xA9e, le probl\xC3\xA8me sera complexe \xC3\xA0 corriger.</p><p>&nbsp;</p><p>Il est possible de contourner le probl\xC3\xA8me temporairement en copiant localement le fichier et en l&#39;\xC3\xA9ditant, puis en le recopiant sur le serveur.</p><p>Konqueror, tout comme kate, utilise ioslave pendant la copie, et cela devrait fonctionner.\xC2\xA0</p>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:58
   ingenieur_id:
   prive: "0"
@@ -534,7 +520,7 @@ commentaire_00040:
   attachment_id:
 commentaire_00041:
   created_on: 2008-04-18 11:25:53
-  corps: "<p>Suite \xC3\xA0 l&#39;entretien t\xC3\xA9l\xC3\xA9phonique avec Mr Poa de ce matin, nous sommes en attente de r\xC3\xA9ception de l&#39;application d&#39;emulation de serveur Netapp afin de tenter de reproduire le probl\xC3\xA8me, chose qui nous est indispensable pour avancer sur cette demande. </p>"
+  corps: "Bla Bla"
   updated_on: 2008-04-18 11:25:53
   ingenieur_id:
   prive: "0"
@@ -547,7 +533,7 @@ commentaire_00041:
   attachment_id:
 commentaire_00042:
   created_on: 2008-05-07 15:02:42
-  corps: <p>Nous sommes en attente de vos tests.</p><p>&nbsp;</p>
+  corps: "Bla Bla"
   updated_on: 2008-05-07 15:02:42
   ingenieur_id:
   prive: "0"
@@ -560,7 +546,7 @@ commentaire_00042:
   attachment_id:
 commentaire_00043:
   created_on: 2008-02-18 10:26:04
-  corps: "<p>Bug 111\xC2\xA0BugZilla Poste Piltoe\xC2\xA0:</p><p>Remarquer sur le poste de Ced, apr\xC3\xA8s une perte de r\xC3\xA9seau winbind<br />d\xC3\xA9sactive le compte m\xC3\xAAme en local et m\xC3\xAAme si le user est en cours<br />d&#39;utilisation. un ps -aux remplacait un blanc au lieu de\xC2\xA0l&#39;utilisateur, cituation<br />redevenu normal quand on restart winbind</p><p>\xC2\xA0Solution temporaire : cr\xC3\xA9er le fichier /etc/network/if-down.d/winbind</p><p>#!/nin/bash</p><p>/etc/init.d/winbind restart</p><p>Dans le fichier /etc/network/ip-up.d/winbind</p><p>suppression de la ligne </p><p>/etc/init.d/winbind stop</p>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:29:52
   ingenieur_id:
   prive: "0"
@@ -573,7 +559,7 @@ commentaire_00043:
   attachment_id:
 commentaire_00044:
   created_on: 2008-02-18 10:28:03
-  corps: Demande prise en compte
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:29:52
   ingenieur_id:
   prive: "0"
@@ -586,7 +572,7 @@ commentaire_00044:
   attachment_id:
 commentaire_00045:
   created_on: 2008-02-18 15:14:17
-  corps: "<p>Tout d&#39;abord, le script semble maladroit : tel quel, il ressemble plus \xC3\xA0 un &quot;restart&quot; qu&#39;\xC3\xA0 un &quot;start&quot;, arr\xC3\xAAter puis relancer ne devrait pas \xC3\xAAtre le comportement normal d&#39;un start.</p><p>\xC2\xA02 solutions : ajouter l&#39;entr\xC3\xA9e status et tester le status sur start (pour interdire le d\xC3\xA9marrage d&#39;un service d\xC3\xA9j\xC3\xA0 d\xC3\xA9marr\xC3\xA9), ou tester la pr\xC3\xA9sence du fichier lock.</p><p>&nbsp;</p>"
+  corps: "Bla Bla"
   updated_on: 2008-02-18 15:14:17
   ingenieur_id:
   prive: "1"
@@ -599,7 +585,7 @@ commentaire_00045:
   attachment_id:
 commentaire_00046:
   created_on: 2008-04-07 20:30:48
-  corps: "<p>Bonjour,</p><p>&nbsp;</p><p>Le service Winbind n&#39;\xC3\xA0 pas besoin d&#39;\xC3\xAAtre relancer.</p><p>Il sera plus juste\xC2\xA0 d&#39;effectuer un rechargement de la configuration de winbind pour un fonctionnement plus homog\xC3\xA8ne. </p><p>Pourriez vous donc efefctuer le test suivant,\xC2\xA0 remplacer votre code dans /etc/network/if-up.d et /etc/network/if-down.d</p><p>\xC2\xA0----------------------------------</p><p>#!/bin/bash</p><p>invoke-rc.d winbind reload </p><p>----------------------------------- </p><p>&nbsp;</p><p>Cdlt, </p>"
+  corps: "Bla Bla"
   updated_on: 2008-04-07 20:30:48
   ingenieur_id:
   prive: "0"
@@ -612,7 +598,7 @@ commentaire_00046:
   attachment_id:
 commentaire_00047:
   created_on: 2008-04-07 20:32:31
-  corps: "Demande supendue suite au commentaire pr\xC3\xA9c\xC3\xA9dent, en attente d&#39;un retour du b\xC3\xA9n\xC3\xA9ficiare."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:29:52
   ingenieur_id:
   prive: "0"
@@ -625,16 +611,7 @@ commentaire_00047:
   attachment_id:
 commentaire_00048:
   created_on: 2007-01-11 15:22:23
-  corps: "Nous devons r\xC3\xA8gler le probl\xC3\xA8me d'une prestation faite par Linagora. \r\n\
-    \r\n\
-    Cette prestation a \xC3\xA9t\xC3\xA9 faite en 2 temps, et a donn\xC3\xA9 lieu a 2 livrables :\r\n\
-    1) Une documentation sur la fabrication d'un DVD custom \xC3\xA0 partir des iso CentOS 4.2\r\n\
-    2) Une documenation pour pouvoir booter avec le DVD, mais utiliser une image mise \xC3\xA0 jour (nouveaux rpms) stock\xC3\xA9e sur un disque dur usb.\r\n\
-    \r\n\
-    \r\n\
-    Nous avons retrouv\xC3\xA9 les 2 documentations dont il est question et nous avons propos\xC3\xA9 de signaler \xC3\xA0 chaque fois que nous validons une \xC3\xA9tape. \r\n\
-    \r\n\
-    Ca nous permettra de ne pas attendre la fin de notre travail pour nous signaler une erreur en amont, et donc de faire avancer cette tache le plus efficacement possible.\r\n"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id: "17"
   prive: "0"
@@ -647,7 +624,7 @@ commentaire_00048:
   attachment_id:
 commentaire_00049:
   created_on: 2007-01-11 15:37:27
-  corps: "Document de cr\xC3\xA9ation d'un DVD bootable de la distribution CentOs v 4.2 . "
+  corps: "Bla Bla"
   updated_on: 2007-01-11 15:37:27
   ingenieur_id:
   prive: "0"
@@ -660,7 +637,7 @@ commentaire_00049:
   attachment_id: "57"
 commentaire_00050:
   created_on: 2007-01-11 15:39:04
-  corps: "Documenation pour pouvoir booter avec le DVD et  utiliser une image mise \xC3\xA0 jour stock\xC3\xA9e sur un disque dur usb."
+  corps: "Bla Bla"
   updated_on: 2007-01-11 15:39:04
   ingenieur_id:
   prive: "0"
@@ -673,7 +650,7 @@ commentaire_00050:
   attachment_id: "58"
 commentaire_00051:
   created_on: 2007-01-15 12:05:20
-  corps: "voici le dernier mail d'\xC3\xA9change avec Linagora sur le sujet."
+  corps: "Bla Bla"
   updated_on: 2007-01-15 12:05:20
   ingenieur_id:
   prive: "0"
@@ -686,7 +663,7 @@ commentaire_00051:
   attachment_id: "59"
 commentaire_00052:
   created_on: 2007-01-15 15:07:55
-  corps: "Bien re\xC3\xA7u, merci"
+  corps: "Bla Bla"
   updated_on: 2007-01-15 15:07:55
   ingenieur_id:
   prive: "0"
@@ -699,7 +676,7 @@ commentaire_00052:
   attachment_id:
 commentaire_00053:
   created_on: 2007-01-19 11:55:11
-  corps: "Nous avons obtenu un arbre complet pour la cr\xC3\xA9ation du dvd. Nous n'avons pas encore inclus dans l'image usb, les correctifs pour l'installation du disque usb.\r<br/>Nous avons corrig\xC3\xA9 et d\xC3\xA9taill\xC3\xA9 certaines \xC3\xA9tapes, notamment concernant la cr\xC3\xA9ation des fichiers *.ks.cfg.\r<br/>Nous n'avons pas encore rencontr\xC3\xA9 de probl\xC3\xA8me bloquant, nous poursuivons notre nettoyage.\r<br/>\r<br/>Nous comptons livrer une premi\xC3\xA8re version de la documentation apr\xC3\xA8s validation du dvd contenant un anaconda patch\xC3\xA9.\r<br/>La deuxi\xC3\xA8me version permettra de mettre \xC3\xA0 jour l'iso du disque usb sans toucher au dvd.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-19 11:55:11
   ingenieur_id:
   prive: "0"
@@ -712,7 +689,7 @@ commentaire_00053:
   attachment_id:
 commentaire_00054:
   created_on: 2007-01-22 13:42:50
-  corps: "Nous rencontrons notre premier probl\xC3\xA8me r\xC3\xA9el. L'installeur nous dis que le DVD du lecteur n'est pas un CD CentOS valide. \r<br/>Nous allons regarder le code source pour en trouver la cause.\r<br/>\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-22 13:42:50
   ingenieur_id:
   prive: "0"
@@ -725,7 +702,7 @@ commentaire_00054:
   attachment_id:
 commentaire_00055:
   created_on: 2007-01-23 11:34:52
-  corps: "La cause a \xC3\xA9t\xC3\xA9 trouv\xC3\xA9e. Il compare l'empreinte temporelle de 2 fichiers. Ces fichiers se nomment .buildstamp, le premier est dans initrd, le second dans le stage2.\r<br/>\r<br/>Nous r\xC3\xA9fl\xC3\xA9chissons maintenant \xC3\xA0 un moyen efficace de  r\xC3\xA8gler ce probl\xC3\xA8me.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-23 11:34:52
   ingenieur_id:
   prive: "0"
@@ -738,7 +715,7 @@ commentaire_00055:
   attachment_id:
 commentaire_00056:
   created_on: 2007-01-23 17:31:06
-  corps: "Le rem\xC3\xA8de \xC3\xA0 ce probl\xC3\xA8me est d\xC3\xA9sormais connu.\r<br/>\r<br/>C'est le script 'buildinstall', fourni par CentOS, qui ne change que la moiti\xC3\xA9 des empreintes temporelles. Comme cette empreinte ne pr\xC3\xA9sente pas d'int\xC3\xA9r\xC3\xAAt dans le cadre de cette prestation, nous refabriquons un dvd en \xC3\xA9vitant cette \xC3\xA9tape.\r<br/>\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-23 17:31:06
   ingenieur_id:
   prive: "0"
@@ -751,7 +728,7 @@ commentaire_00056:
   attachment_id:
 commentaire_00057:
   created_on: 2007-01-23 18:58:29
-  corps: "L'installation du dvd s'est enfin d\xC3\xA9roul\xC3\xA9e avec succ\xC3\xA8s (!)\r<br/>\r<br/>Vous trouverez en pi\xC3\xA8ce jointe la documentation qui permet de cr\xC3\xA9er ce dit dvd. Nous continuons nos travaux pour le passage au disque usb et aux mises \xC3\xA0 jour de l'image iso.\r<br/>\r<br/>Vous \xC3\xAAtes cordialement invit\xC3\xA9s \xC3\xA0 nous faire remonter d\xC3\xA8s que possible les \xC3\xA9ventuelles coquilles du document, pendant la poursuite de nos travaux sur les autres points.\r<br/>\r<br/>Ca nous permettra mutuellement d'avoir un r\xC3\xA9sultat de qualit\xC3\xA9 le plus rapidement possible\r<br/>\r<br/>\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-23 18:58:29
   ingenieur_id:
   prive: "0"
@@ -764,7 +741,7 @@ commentaire_00057:
   attachment_id: "60"
 commentaire_00058:
   created_on: 2007-01-24 11:03:40
-  corps: "Bonjour.\r<br/>\r<br/>Je viens de lire votre document \"creation_image_originelle.odt\". Je n'ai pas le temps en ce moment de d\xC3\xA9rouler la proc\xC3\xA9dure, mais de toute fa\xC3\xA7on elle n'aboutirait pas :\r<br/>- Vous \xC3\xAAtes partie de la doc qui \xC3\xA9tait en regression, la configuration de X-windows n'est pas l\xC3\xA0.\r<br/>- Il manque l'inhibition de \"Se linux\".\r<br/>- le fichier finalisation.sh n'est pas \xC3\xA0 la derni\xC3\xA8re version livr\xC3\xA9e (voir ce qui avait \xC3\xA9t\xC3\xA9 d\xC3\xA9pos\xC3\xA9 en r\xC3\xA9f\xC3\xA9rence sur votre site ftp).\r<br/>\r<br/>Sinon, il me semble que l'on ne soit pas compris. Je vous renvoie \xC3\xA0 mon mail archiv\xC3\xA9 ci-dessus. Le DVD d'installation d'une borne est une chose, hormis des probl\xC3\xA8mes de r\xC3\xA9gression de documentation, la prestation avait abouti.\r<br/>J'attends pour ce qui est le point B dans ce mail, un Cd d'install 1/4 patch\xC3\xA9 mais d'origine CentOS et une image ISO \xC3\xA0 stocker sur un disque Usb. Sinon, on va repartir dans les m\xC3\xAAmes probl\xC3\xA8matiques : vos coll\xC3\xA8gues m'affirmait que l'image ISO du disque Usb devait \xC3\xAAtre identique \xC3\xA0 celle du DVD de Boot. Ce n'est pas la fonctionnalit\xC3\xA9 attendue.\r<br/>\r<br/>Cordialement.\r"
+  corps: "Bla Bla"
   updated_on: 2007-01-24 11:03:40
   ingenieur_id:
   prive: "0"
@@ -777,7 +754,7 @@ commentaire_00058:
   attachment_id:
 commentaire_00059:
   created_on: 2007-01-24 19:03:37
-  corps: Elle m'a permis d'installer l'image DVD, et je suis bien partie du CD1 de CentOS 4.2.
+  corps: "Bla Bla"
   updated_on: 2007-01-24 19:03:37
   ingenieur_id:
   prive: "0"
@@ -790,7 +767,7 @@ commentaire_00059:
   attachment_id: "61"
 commentaire_00060:
   created_on: 2007-01-24 19:05:34
-  corps: "Je vais donc d\xC3\xA9sormais me concentrer uniquement sur le point A, et tenter de corriger les r\xC3\xA9gressions que vous nous avez communiqu\xC3\xA9.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-24 19:05:34
   ingenieur_id:
   prive: "0"
@@ -803,7 +780,7 @@ commentaire_00060:
   attachment_id:
 commentaire_00061:
   created_on: 2007-01-25 10:24:57
-  corps: "Vous trouverez dans cette nouvelle livraison 2 des 3 points que vous avez \xC3\xA9voqu\xC3\xA9. L'inhibition de selinux et le fichier finalisation.sh nous semblent dor\xC3\xA9navant complet.\r<br/>\r<br/>Concernant la configuration de xorg.conf, je vous avoue ne pas avoir trouv\xC3\xA9 de quoi vous parlez. Il y a d\xC3\xA9j\xC3\xA0 le patch \xC3\xA0 appliquer ainsi que les d\xC3\xA9tails pour la configuration.\r<br/>\r<br/>J'ai relu avec attention le mail que vous nous avez transmis (pi\xC3\xA8ce jointe #59) mais je n'ai trouv\xC3\xA9 aucun \xC3\xA9l\xC3\xA9ment. J'ai tent\xC3\xA9 de vous appeller sans succ\xC3\xA8s. Je ne trouve rien qui ne soit pas d\xC3\xA9j\xC3\xA0 dans le document.\r<br/>\r<br/>\r<br/>Pourriez-vous me d\xC3\xA9tailler la configuration attendue, s'il vous plait ? \r<br/>\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
   prive: "0"
@@ -816,7 +793,7 @@ commentaire_00061:
   attachment_id: "62"
 commentaire_00062:
   created_on: 2007-01-25 10:28:22
-  corps: "Nous vous avons d\xC3\xA9sormais livr\xC3\xA9 les 2 documentations. \r<br/>Tooo_Creation_DVD et Tooo_Installation_HDD_USB.\r<br/>\r<br/>Nous re-pr\xC3\xA9cisons bien ici qu'il faut que les 2 images aient la m\xC3\xAAme base pour que l'installeur anaconda les accepte.\r<br/>\r<br/>Nous sommes donc d\xC3\xA9sormais dans l'attente de votre part d'un \xC3\xA9claircissement sur xorg et de la validation de notre livraison.\r<br/>\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
   prive: "0"
@@ -829,7 +806,7 @@ commentaire_00062:
   attachment_id:
 commentaire_00063:
   created_on: 2007-01-26 09:52:39
-  corps: "Bonjour.\r<br/>\r<br/>Pour la partie xorg, un patch avait \xC3\xA9t\xC3\xA9 rajout\xC3\xA9 pour d\xC3\xA9activ\xC3\xA9 dpms. Vous le trouverez dans le r\xC3\xA9pertoire CreationDvd\\Modifxorg de votre site ftp qui a servi de r\xC3\xA9f\xC3\xA9rence.\r<br/>\r<br/>Cordialement."
+  corps: "Bla Bla"
   updated_on: 2007-01-26 09:52:39
   ingenieur_id:
   prive: "0"
@@ -842,7 +819,7 @@ commentaire_00063:
   attachment_id:
 commentaire_00064:
   created_on: 2007-01-26 10:31:38
-  corps: "Bonjour.\r<br/>\r<br/>Je ne comprends pas. Votre document \"Tooo_Creation_DVD.odt\" du 25/1/07 ne configure toujours pas Xwindows, le fichier finalisation.sh n'est aussi toujours pas complet.\r<br/>\r<br/>Pour le document \"Tooo_Installation_HDD_USB.odt\", il ne prend pas en compte la partie \"REMARQUE IMPORTANTE\" du chapitre B-3 de mon mail \"mail-21-09-06.txt\". En cons\xC3\xA9quence, le CD de boot est toujours d\xC3\xA9pendant d'une modification de l'image du DVD d'installation d'une borne.\r<br/>Dans ce mail, nous attendions un exemple de syntaxe \xC3\xA0 taper au prompt pour faire une installation \xC3\xA0 partir d'un disque USB (B-3). En gros, comment indiquer le device, le r\xC3\xA9pertoire, avec bien sur le ks.cfg sur le disque Usb, pour ne plus d\xC3\xA9pendre du Cd de boot.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-26 10:31:38
   ingenieur_id:
   prive: "0"
@@ -855,7 +832,7 @@ commentaire_00064:
   attachment_id:
 commentaire_00065:
   created_on: 2007-01-26 11:25:58
-  corps: Nous allons corriger la documentaiton suivant vos remarques
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
   prive: "0"
@@ -868,7 +845,7 @@ commentaire_00065:
   attachment_id:
 commentaire_00066:
   created_on: 2007-01-26 13:38:35
-  corps: "Suite \xC3\xA0 notre conversation t\xC3\xA9l\xC3\xA9phonique, nous allons :\r<br/>- remettre la bonne version de finalisation.sh\r<br/>- compl\xC3\xA9ter la proc\xC3\xA9dure d'installation par disque USB\r<br/>- compl\xC3\xA9ter la partie concernant x window dans la proc\xC3\xA9dure de fabrication d'une image iso pour DVD\r<br/>\r<br/>et enfin valider ou non le comportement de chargement des fichiers ks. Celui du cdrom comme celui de l'image iso charg\xC3\xA9 ensuite.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
   prive: "0"
@@ -881,7 +858,7 @@ commentaire_00066:
   attachment_id:
 commentaire_00067:
   created_on: 2007-01-26 14:29:00
-  corps: "Voici la mise \xC3\xA0 jour de la documentation pour la partie DVD"
+  corps: "Bla Bla"
   updated_on: 2007-01-26 14:29:00
   ingenieur_id:
   prive: "0"
@@ -894,7 +871,7 @@ commentaire_00067:
   attachment_id: "63"
 commentaire_00068:
   created_on: 2007-01-26 14:29:31
-  corps: Et voici celle concernant la partie USB
+  corps: "Bla Bla"
   updated_on: 2007-01-26 14:29:31
   ingenieur_id:
   prive: "0"
@@ -907,7 +884,7 @@ commentaire_00068:
   attachment_id: "64"
 commentaire_00069:
   created_on: 2007-01-26 14:30:15
-  corps: "Nous avons termin\xC3\xA9 notre livraison.\r<br/>Merci de nous indiquer si elle vous convient et si tous les points soulev\xC3\xA9s sont r\xC3\xA9solus.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
   prive: "0"
@@ -920,7 +897,7 @@ commentaire_00069:
   attachment_id:
 commentaire_00080:
   created_on: 2007-01-29 08:25:15
-  corps: "Suite \xC3\xA0 une remarque pertinente de mon coll\xC3\xA8gue, nous effectuons une relivraison des 2 documents, avec une correction mineure sur le pied de page.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-01-29 08:25:15
   ingenieur_id:
   prive: "0"
@@ -933,7 +910,7 @@ commentaire_00080:
   attachment_id:
 commentaire_00081:
   created_on: 2007-01-29 08:26:42
-  corps: "Voici donc la derni\xC3\xA8re version de la documentation concernant le DVD"
+  corps: "Bla Bla"
   updated_on: 2007-01-29 08:26:42
   ingenieur_id:
   prive: "0"
@@ -946,7 +923,7 @@ commentaire_00081:
   attachment_id: "65"
 commentaire_00082:
   created_on: 2007-01-29 08:28:01
-  corps: Et voici celle concernant l'installation sur disque USB, via boot sur un cdrom.
+  corps: "Bla Bla"
   updated_on: 2007-01-29 08:28:01
   ingenieur_id:
   prive: "0"
@@ -959,7 +936,7 @@ commentaire_00082:
   attachment_id: "66"
 commentaire_00083:
   created_on: 2007-03-08 18:09:16
-  corps: "Ces documentations ont \xC3\xA9t\xC3\xA9 v\xC3\xA9rifi\xC3\xA9s par un nouveau coll\xC3\xA8gue, donc avec un nouveau regard.\r<br/>\r<br/>Les deux documents sont fournis en pi\xC3\xA8ce jointes pour corrections. \r<br/>\r<br/>Deux chose nous interpellent :\r<br/>1 / Nous n'avons pas eu besoin de patcher le CD de Boot pour installer \xC3\xA0 partir du disque USB. Un CDROM 1/4 d'origine CentOS permet sans aucun probl\xC3\xA8me d'installer \xC3\xA0 partir d'une image iso sur un disque USB. Cette image ISO doit par contre \xC3\xAAtre patch\xC3\xA9e.\r<br/>\r<br/>2/ Le fichier ipddusb.ks.cfg pr\xC3\xA9sent sur le disque usb, permet pas d'installer \xC3\xA0 partir d'un cdrom d'origine CentOS, puisque sa partie %post va chercher des donn\xC3\xA9es sur le cdrom. Ceci ne correspond pas \xC3\xA0 la fonctionnalit\xC3\xA9 demand\xC3\xA9. Notre coll\xC3\xA8gue a propos\xC3\xA9 un fichier qui lui s'affranchit de ce CDROM.\r<br/>\r<br/>Nous n'avons pas pris en compte ces deux remarques dans la correction des documents. Nous attendons une livraison de documentation qui solutionnent ces deux points afin que vous poussiez \xC3\xAAtre engag\xC3\xA9s dans le cas de la garantie."
+  corps: "Bla Bla"
   updated_on: 2007-03-08 18:09:16
   ingenieur_id:
   prive: "0"
@@ -972,7 +949,7 @@ commentaire_00083:
   attachment_id: "98"
 commentaire_00084:
   created_on: 2007-03-08 18:10:09
-  corps: Suite documentation
+  corps: "Bla Bla"
   updated_on: 2007-03-08 18:10:09
   ingenieur_id:
   prive: "0"
@@ -985,7 +962,7 @@ commentaire_00084:
   attachment_id: "99"
 commentaire_00085:
   created_on: 2007-03-08 18:10:54
-  corps: Suite fichier cfg d'exemple
+  corps: "Bla Bla"
   updated_on: 2007-03-08 18:10:54
   ingenieur_id:
   prive: "0"
@@ -998,7 +975,7 @@ commentaire_00085:
   attachment_id: "100"
 commentaire_00086:
   created_on: 2007-03-09 12:07:11
-  corps: "Voici la version approuv\xC3\xA9 de l'installation sur disque."
+  corps: "Bla Bla"
   updated_on: 2007-03-09 12:07:11
   ingenieur_id:
   prive: "0"
@@ -1011,7 +988,7 @@ commentaire_00086:
   attachment_id: "101"
 commentaire_00087:
   created_on: 2007-03-09 12:08:20
-  corps: Et celle pour l'installation sur DVD
+  corps: "Bla Bla"
   updated_on: 2007-03-09 12:08:20
   ingenieur_id:
   prive: "0"
@@ -1024,7 +1001,7 @@ commentaire_00087:
   attachment_id: "102"
 commentaire_00088:
   created_on: 2007-03-09 12:14:00
-  corps: "Le fichier ipddusb.ks.cfg semble correct. Nous le validons en l'\xC3\xA9tat.\r<br/>\r<br/>voici la r\xC3\xA9ponse \xC3\xA0 vos 2 interpellations :\r<br/>1 / Nous n'avons pas eu besoin de patcher le CD de >Boot pour installer \xC3\xA0 partir du disque USB. Un CDROM 1/4 d'origine CentOS permet sans aucun probl\xC3\xA8me d'installer \xC3\xA0 partir d'une image iso sur un disque USB. Cette image ISO doit par contre \xC3\xAAtre patch\xC3\xA9e.\r<br/>=> Avec la derni\xC3\xA8re m\xC3\xA9thode propos\xC3\xA9e, o\xC3\xB9 l'on positionne le p\xC3\xA9riph\xC3\xA9rique au boot, ce n'est effectivement pas la peine.\r<br/>\r<br/>2/ Le fichier ipddusb.ks.cfg pr\xC3\xA9sent sur le disque >usb, permet pas d'installer \xC3\xA0 partir d'un cdrom d'origine CentOS, puisque sa partie %post va chercher des donn\xC3\xA9es sur le cdrom. Ceci ne correspond pas \xC3\xA0 la fonctionnalit\xC3\xA9 demand\xC3\xA9. Notre coll\xC3\xA8gue a propos\xC3\xA9 un fichier qui lui s'affranchit de ce CDROM. \r<br/>=> Fichier accept\xC3\xA9.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-03-09 12:24:48
   ingenieur_id:
   prive: "0"
@@ -1037,7 +1014,7 @@ commentaire_00088:
   attachment_id:
 commentaire_00089:
   created_on: 2007-03-09 17:09:27
-  corps: "Vous avez accept\xC3\xA9 les corrections que nous apportions \xC3\xA0 votre documentation. Nous vous en remer\xC3\xA7ions mais cela n'est pour nous pas suffissant.\r<br/>Le patch sur le CD de boot est inutile. La documentation devrait prendre en compte cette inutilit\xC3\xA9. Enfin, si vous accept\xC3\xA9 notre fichier de configuration, il faut l'int\xC3\xA9grer \xC3\xA0 la documentation.\r<br/>En effet, celle-ci doit d\xC3\xA9crire un processus qui fonctionne de bout en bout.\r<br/>A notre sens, le document \"Tooo_Installation_HDD_USB.odt\" devrait expliquer 1/ la modification du fichier ipdvd.ks.cfg pour l'adapter au cas d'utilisation d'un disque usb en ipddusb.ks.cfg\r<br/>2/  un chapitre installation"
+  corps: "Bla Bla"
   updated_on: 2007-03-09 17:09:27
   ingenieur_id:
   prive: "0"
@@ -1050,7 +1027,7 @@ commentaire_00089:
   attachment_id:
 commentaire_00090:
   created_on: 2007-03-09 18:33:17
-  corps: "Point 1 : La documentation sur la cr\xC3\xA9ation du DVD inclut la fabrication du fichier n\xC3\xA9cessaire \xC3\xA0 l'installation par disque USB. Cette approche permet de ne pas avoir \xC3\xA0 toucher \xC3\xA0 l'image iso DVD quand on veut installer depuis le disque dur USB. L'image est d\xC3\xA9j\xC3\xA0 \"pr\xC3\xAAte\". \r<br/>L'approche que vous sugg\xC3\xA9rez force \xC3\xA0 d\xC3\xA9compresser l'image, ins\xC3\xA9rer le fichier ipddusb et refaire l'image. C'est un processus long, couteux et inutile.\r<br/>Notre approche est certe discutable, mais  nous l'avons choisie, nous l'assumons et la conservons en l'\xC3\xA9tat. Ce point est donc rejet\xC3\xA9.\r<br/>\r<br/>\r<br/>Point 2 : Il y a d\xC3\xA9j\xC3\xA0 un chapitre installation. L'installation est enti\xC3\xA8rement automatis\xC3\xA9e. Une fois pass\xC3\xA9e l'\xC3\xA9tape de la ligne \xC3\xA0 taper sur isolinux, il n'y a plus rien \xC3\xA0 faire. Et cette \xC3\xA9tape est expliqu\xC3\xA9e en d\xC3\xA9tail. Je vous prie de m'excuser, mais j'ai besoin de pr\xC3\xA9cision sur ce point.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-03-09 18:33:17
   ingenieur_id:
   prive: "0"
@@ -1063,7 +1040,7 @@ commentaire_00090:
   attachment_id:
 commentaire_00091:
   created_on: 2007-03-12 09:56:42
-  corps: "Le point 2 est obscur par que l'explication est tronqu\xC3\xA9e. Surement que la longueur du commentaire de cet outil est limit\xC3\xA9. Je vous le reposte.\r<br/>Pour le point 1, nous ne nous comprenons pas. Le patch est inutile sur le CD de Boot d'origine CentOS et il est n\xC3\xA9cessaire sur l'image ISO de la borne I3G. C'est la description du patch sur le CD d'origine Centos que nous voulons voir disparaitre."
+  corps: "Bla Bla"
   updated_on: 2007-03-12 09:56:42
   ingenieur_id:
   prive: "0"
@@ -1076,7 +1053,7 @@ commentaire_00091:
   attachment_id:
 commentaire_00092:
   created_on: 2007-03-12 10:08:50
-  corps: "En fin de compte, le point 2 n'est pas tronqu\xC3\xA9. Le chapitre installation de la doc \"Tooo_Installation_HDD_USB.odt\" nous convient. J'\xC3\xA9num\xC3\xA9rais ce que cette documentation devrait contenir \xC3\xA0 notre sens(modif du fichier \"ipddusb.ks.cfg \" et chapitre installation sans la partie concernant le patch du CD d'origine CentOS).\r<br/>\r<br/>Le fichier \"ipddusb.ks.cfg \"  dans l'image ISO est inutile. Seul celui pr\xC3\xA9sent dans le r\xC3\xA9pertoire /mnt/removable/mod est pris en compte par l'installation. Nous n'avons jamais demand\xC3\xA9 la nouvelle approche que vous nous attribu\xC3\xA9e. Notre demande \xC3\xA9tait : \"Si vous acceptez notre fichier de configuration, la documentation que vous fournissez doit d\xC3\xA9crire ce nouveau contenu\". \r<br/>Le mieux est qu'on en discute au t\xC3\xA9l\xC3\xA9phone. Je suis disponible cette apr\xC3\xA8s midi \xC3\xA0 partir de 14h."
+  corps: "Bla Bla"
   updated_on: 2007-03-12 10:08:50
   ingenieur_id:
   prive: "0"
@@ -1089,7 +1066,7 @@ commentaire_00092:
   attachment_id:
 commentaire_00093:
   created_on: 2007-03-12 10:12:18
-  corps: "Voici la documentation mis \xC3\xA0 jour selon le point 1. \r<br/>\r<br/>J'attend donc la description compl\xC3\xA8te du point 2. \r<br/>\r<br/>\r<br/>Merci,\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-03-12 10:12:18
   ingenieur_id:
   prive: "0"
@@ -1102,7 +1079,7 @@ commentaire_00093:
   attachment_id: "107"
 commentaire_00094:
   created_on: 2007-03-12 10:12:37
-  corps: "Le responsable de la demande a chang\xC3\xA9"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id: "1"
   prive: "0"
@@ -1115,7 +1092,7 @@ commentaire_00094:
   attachment_id:
 commentaire_00095:
   created_on: 2007-03-12 10:19:17
-  corps: "Et voici la documentation nettoy\xC3\xA9e des \xC3\xA9tapes inutiles.\r<br/>\r<br/>Etes vous d\xC3\xA9sormais satisfait ?\r<br/>\r<br/>Je vous appelerai de toute fa\xC3\xA7on, pour faire le point sur vos 4 demandes."
+  corps: "Bla Bla"
   updated_on: 2007-03-12 10:19:17
   ingenieur_id:
   prive: "0"
@@ -1128,7 +1105,7 @@ commentaire_00095:
   attachment_id: "108"
 commentaire_00096:
   created_on: 2007-03-12 14:52:05
-  corps: "Dans la doc du fichier Tooo_Installation_HDD_USB.odt, il reste une confusion entre l'image modifi\xC3\xA9 du CD de boot CentOS qui porte le m\xC3\xAAme nom que celle du disque usb correspondant \xC3\xA0 l'installation de la borne I3G. On pourrait par exemple appel\xC3\xA9 la premi\xC3\xA8re boot.iso.\r<br/>Apr\xC3\xA8s cette minime modification de cette derni\xC3\xA8re version de la doc, il ne reste plus que la prise en compte de ce dernier point :\r<br/>>A notre sens, le >Document \"Tooo_Installation_HDD_USB.odt\" >devrait expliquer 1/ la modification du fichier >ipdvd.ks.cfg pour l'adapter au cas >d'utilisation d'un disque usb en ipddusb.ks.cfg \r<br/>Je ne sais pas s'il faut modifier le contenu de ipddusb.ks.cfg de la premi\xC3\xA8re doc (Ce qui est le plus rapide) ou l'effacer de la premi\xC3\xA8re doc puis d'expliquer dans \"Tooo_Installation_HDD_USB.odt\" comment en partie %post, il faut l'adapter pour ne plus r\xC3\xA9f\xC3\xA9rencer des acc\xC3\xA8s au CD ROM.\r<br/>\r<br/>En tout cas, il faut que le nouveau contenu de ce fichier soit r\xC3\xA9f\xC3\xA9renc\xC3\xA9 dans une des deux documentations, et que l'ancien contenu disparaissent. Ceci cloturait cet incident.\r<br/>\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-03-12 14:52:05
   ingenieur_id:
   prive: "0"
@@ -1141,7 +1118,7 @@ commentaire_00096:
   attachment_id:
 commentaire_00097:
   created_on: 2007-03-12 15:55:15
-  corps: "Suite \xC3\xA0 notre conversation t\xC3\xA9l\xC3\xA9phonique, voici la documentation du disque USB, sp\xC3\xA9cifiant la cr\xC3\xA9ation de l'ipddusb.\r<br/>\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-03-12 15:55:15
   ingenieur_id:
   prive: "0"
@@ -1154,7 +1131,7 @@ commentaire_00097:
   attachment_id: "109"
 commentaire_00098:
   created_on: 2007-03-12 15:56:05
-  corps: "et voici celle du DVD, incluant le premier des 2 poins que vous avez \xC3\xA9voqu\xC3\xA9 sur la demande 272.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-03-12 15:56:05
   ingenieur_id:
   prive: "0"
@@ -1167,7 +1144,7 @@ commentaire_00098:
   attachment_id: "110"
 commentaire_00099:
   created_on: 2007-03-12 15:57:12
-  corps: "Nous sommes d\xC3\xA9sormais en l'attente de votre r\xC3\xA9ponse sur la validit\xC3\xA9 des changements, pour \xC3\xA9ventuellement clore cette demande.\r<br/>\r<br/>Merci.\r<br/>"
+  corps: "Bla Bla"
   updated_on: 2007-03-12 15:57:12
   ingenieur_id:
   prive: "0"
@@ -1180,7 +1157,7 @@ commentaire_00099:
   attachment_id:
 commentaire_00100:
   created_on: 2007-03-12 17:22:03
-  corps: "La doc Tooo_Creation_DVD.odt fait encore r\xC3\xA9f\xC3\xA9rence au fichier ipddusb.ks.cfg dans le chapitre \"Modification des options par d\xC3\xA9faut du bootloader GRUB\". Son contenu a bien \xC3\xA9t\xC3\xA9 effac\xC3\xA9, mais les explications en parle.\r<br/>Ensuite pour le deuxi\xC3\xA8me fichier, vous avez bien le descriptif du fichier ipddusb.ks.cfg par contre ce n'est pas la version que l'on vous avez transmis en comment #854. Le votre r\xC3\xA9f\xC3\xA9rence toujours le cdrom."
+  corps: "Bla Bla"
   updated_on: 2007-03-12 17:22:03
   ingenieur_id:
   prive: "0"
@@ -1193,7 +1170,7 @@ commentaire_00100:
   attachment_id:
 commentaire_00101:
   created_on: 2007-03-13 09:30:49
-  corps: "les remarques ont \xC3\xA9t\xC3\xA9 pris en compte sur la documentation du DVD. On ne trouve plus le terme ipddusb dans le document."
+  corps: "Bla Bla"
   updated_on: 2007-03-13 09:30:49
   ingenieur_id:
   prive: "0"
@@ -1206,7 +1183,7 @@ commentaire_00101:
   attachment_id: "111"
 commentaire_00102:
   created_on: 2007-03-13 09:41:03
-  corps: "Et voici la 2\xC3\xA8me documentation, \xC3\xA9galement corrig\xC3\xA9e selon les remarques.\r<br/>\r<br/>Je n'ai rien oubli\xC3\xA9 ?"
+  corps: "Bla Bla"
   updated_on: 2007-03-13 09:41:03
   ingenieur_id:
   prive: "0"
@@ -1219,7 +1196,7 @@ commentaire_00102:
   attachment_id: "112"
 commentaire_00103:
   created_on: 2007-03-13 10:50:02
-  corps: Merci C'est excellent. Nous pouvons cloturer cet incident.
+  corps: "Bla Bla"
   updated_on: 2007-03-13 10:50:02
   ingenieur_id:
   prive: "0"
@@ -1232,7 +1209,7 @@ commentaire_00103:
   attachment_id:
 commentaire_00104:
   created_on: 2007-03-13 14:59:46
-  corps: voici une bonne nouvelle
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
   prive: "0"
@@ -1245,7 +1222,7 @@ commentaire_00104:
   attachment_id:
 commentaire_00105:
   created_on: 2007-03-13 15:00:03
-  corps: "je le signale \xC3\xA0 M Paul"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
   prive: "0"
@@ -1258,7 +1235,7 @@ commentaire_00105:
   attachment_id:
 commentaire_00106:
   created_on: 2007-06-18 15:11:09
-  corps: <p>Lors de la cr&eacute;ation d&#39;un document sur le bureau &agrave; partir de l&#39;appui sur le bouton droit de la souris et l&#39;entr&eacute;e &quot;Nouveau document...&quot;, le document est cr&eacute;&eacute; sans l&#39;extensions associ&eacute;e au fichier. </p><p>Ce fonctionnement est risque de nombreuses erreures d&#39;interop&eacute;rabilit&eacute; s&#39;il est coupl&eacute; avec la fonctionnalit&eacute; &quot;Envoyer par messagerie...&quot;&nbsp;</p>
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
   prive: "0"
@@ -1271,7 +1248,7 @@ commentaire_00106:
   attachment_id:
 commentaire_00107:
   created_on: 2007-06-18 15:11:55
-  corps: Bien re&ccedil;u.
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id: "1"
   prive: "0"
@@ -1284,7 +1261,7 @@ commentaire_00107:
   attachment_id:
 commentaire_00108:
   created_on: 2007-06-18 15:11:59
-  corps: "Le responsable de la demande a chang\xC3\xA9"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id: "30"
   prive: "0"
@@ -1297,9 +1274,7 @@ commentaire_00108:
   attachment_id:
 commentaire_00109:
   created_on: 2007-06-20 12:45:02
-  corps: "Ce probl\xC3\xA8me est extr\xC3\xAAmement compliqu\xC3\xA9 \xC3\xA0 corriger.\r\n\
-    Il a \xC3\xA9t\xC3\xA9 propos\xC3\xA9 de supprimer cette fonctionnalit\xC3\xA9 qui est au demeurant fonctionnelle.\r\n\
-    Nous sommes en attente d'accord de l'BB  pour appliquer ce changement."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
   prive: "0"
@@ -1312,7 +1287,7 @@ commentaire_00109:
   attachment_id:
 commentaire_00110:
   created_on: 2007-06-25 10:43:14
-  corps: <p>R&eacute;ponse de monsieur John:</p><p>&nbsp;La suppression de la fonctionnalit&eacute; ne peut &ecirc;tre qu&#39;une mesure d&#39;attente<br />de la correction d&eacute;finitive de cette anomalie.<br /><br />En tout &eacute;tat de cause celle-ci doit rester ouverte.<br /><br />Cordialement,<br /></p>
+  corps: "Bla Bla"
   updated_on: 2007-06-25 10:43:14
   ingenieur_id:
   prive: "0"
@@ -1325,7 +1300,7 @@ commentaire_00110:
   attachment_id:
 commentaire_00111:
   created_on: 2007-11-02 17:15:35
-  corps: "<p>Bonsoir,</p><p>Il ne me semble pas que la solution d&#39;attente ait \xC3\xA9t\xC3\xA9 int\xC3\xA9gr\xC3\xA9e \xC3\xA0 la livraison.</p><p>Cordialement.\xC2\xA0</p>"
+  corps: "Bla Bla"
   updated_on: 2007-11-02 17:15:35
   ingenieur_id:
   prive: "0"
@@ -1338,7 +1313,7 @@ commentaire_00111:
   attachment_id:
 commentaire_00112:
   created_on: 2007-11-15 16:10:20
-  corps: "<p>La solution d&#39;attente est bien int\xC3\xA9gr\xC3\xA9e au Service Pack 1.</p><p>&nbsp;</p>"
+  corps: "Bla Bla"
   updated_on: 2007-11-15 16:10:20
   ingenieur_id: "1"
   prive: "0"
@@ -1351,7 +1326,7 @@ commentaire_00112:
   attachment_id:
 commentaire_00113:
   created_on: 2007-11-16 18:17:32
-  corps: "<p>Bonjour,</p><p>Alors c&#39;est parfait, il me semble possible de cl\xC3\xB4turer la fiche.</p><p>Cordialement.\xC2\xA0</p>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
   prive: "0"
@@ -1364,7 +1339,7 @@ commentaire_00113:
   attachment_id:
 commentaire_00114:
   created_on: 2007-11-16 18:21:07
-  corps: "<p>Bonsoir,</p><p>Je suis all\xC3\xA9 trop vite. En v\xC3\xA9rifiant avec un clic droit sur mon bureau sur mon poste en SP1 j&#39;ai toujours l&#39;option de cr\xC3\xA9ation d&#39;un fichier texte.</p><p>Cordialement.\xC2\xA0</p>"
+  corps: "Bla Bla"
   updated_on: 2007-11-16 18:21:07
   ingenieur_id:
   prive: "0"
@@ -1377,7 +1352,7 @@ commentaire_00114:
   attachment_id:
 commentaire_00115:
   created_on: 2007-11-16 19:24:40
-  corps: "<p>Nous r\xC3\xA9ouvrons donc la demande.</p><p>&nbsp;</p>"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
   prive: "0"
@@ -1390,7 +1365,7 @@ commentaire_00115:
   attachment_id:
 commentaire_00116:
   created_on: 2007-11-16 23:24:03
-  corps: "D\xC3\xA9sol\xC3\xA9 et merci."
+  corps: "Bla Bla"
   updated_on: 2007-11-16 23:24:03
   ingenieur_id:
   prive: "0"
@@ -1403,7 +1378,7 @@ commentaire_00116:
   attachment_id:
 commentaire_00117:
   created_on: 2007-12-14 15:41:45
-  corps: Nous allons parfaire le correctif.
+  corps: "Bla Bla"
   updated_on: 2007-12-14 15:41:45
   ingenieur_id: "38"
   prive: "0"
@@ -1416,7 +1391,7 @@ commentaire_00117:
   attachment_id:
 commentaire_00118:
   created_on: 2007-12-14 15:42:12
-  corps: "Marcel, c&#39;est \xC3\xA0 faire avant fin janvier, y a le temps :)"
+  corps: "Bla Bla"
   updated_on: 2007-12-14 15:42:12
   ingenieur_id:
   prive: "1"
@@ -1429,7 +1404,7 @@ commentaire_00118:
   attachment_id:
 commentaire_00119:
   created_on: 2008-01-28 19:48:54
-  corps: "Il est n\xC3\xA9cessaire de patcher kdebase pour ne pas installer les deux templates restant"
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
   prive: "0"
@@ -1442,7 +1417,7 @@ commentaire_00119:
   attachment_id:
 commentaire_00120:
   created_on: 2008-01-28 19:49:14
-  corps: <p>chgt de status</p><p>&nbsp;</p>
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
   prive: "0"
@@ -1455,7 +1430,7 @@ commentaire_00120:
   attachment_id:
 commentaire_00121:
   created_on: 2008-01-28 19:49:43
-  corps: "Le version pr\xC3\xA9sent sur notre d\xC3\xA9pot contient le fix propos\xC3\xA9 et celui-ci sera disponible lors de la prochaine mise \xC3\xA0 jour."
+  corps: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
   prive: "0"

@@ -8,7 +8,7 @@ request_00001:
   id: 1
   submitter_id: 1
   severite_id: 3
-  resume: "Retrait d'un fond de page impossible sous Writer"
+  resume: "Can not remove something"
   expected_on:
   recipient_id: 1
   statut_id: 2
@@ -29,7 +29,7 @@ request_00002:
   id: 2
   submitter_id: 2
   severite_id: 3
-  resume: "Copie d'une question dans OOo"
+  resume: "Copy something in a software"
   expected_on:
   recipient_id: 2
   statut_id: 2
@@ -51,7 +51,7 @@ request_00004:
   submitter_id: 2
   expected_on: 2008-05-15 10:23:14
   severite_id: 2
-  resume: "Pb question et t\xC3\xA9l\xC3\xA9chargement"
+  resume: "Problem of something"
   recipient_id: 4
   contract_id: 2
   statut_id: 3
@@ -73,7 +73,7 @@ request_00005:
   submitter_id: 2
   expected_on: 2008-05-22 15:02:43
   severite_id: 3
-  resume: "Probleme avec fichier dont le chemin comporte des accents"
+  resume: "Problem with files"
   recipient_id: 1
   contract_id: 40
   statut_id: 3
@@ -94,7 +94,7 @@ request_00006:
   submitter_id: 2
   expected_on: 2008-04-22 20:32:32
   severite_id: 3
-  resume: "Bug Winbind unmap user."
+  resume: "Bug in a software"
   recipient_id: 2
   contract_id: 40
   statut_id: 3
@@ -115,7 +115,7 @@ request_00007:
   submitter_id: "2"
   expected_on: 2008-05-14 16:47:35
   severite_id: "2"
-  resume: "Nom de groupes non affich\xC3\xA9s"
+  resume: "Something is not printed"
   recipient_id: "1"
   contract_id: "1"
   statut_id: "3"
@@ -136,7 +136,7 @@ request_00008:
   submitter_id: "2"
   expected_on:
   severite_id: "3"
-  resume: "Rechargement configuration Apache"
+  resume: "Reload something"
   recipient_id: "1"
   contract_id: "6"
   statut_id: "7"
@@ -157,7 +157,7 @@ request_00009:
   submitter_id: "2"
   expected_on:
   severite_id: "2"
-  resume: Faire une iso custom CentOS
+  resume: "Error on an iso"
   recipient_id: "2"
   contract_id: "2"
   statut_id: "7"
@@ -178,7 +178,7 @@ request_00010:
   submitter_id: "5"
   expected_on: 2008-02-12 19:49:43
   severite_id: "2"
-  resume: "Cr\xC3\xA9ation d'un document sur le bureau"
+  resume: "Create a doc"
   recipient_id: "2"
   contract_id: "2"
   statut_id: "6"
