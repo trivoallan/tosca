@@ -20,9 +20,10 @@ module App
   # Used for test on its local computer
   MaintenerEmail = "tosca@tosca-project.com"
   # Used for feedback on service
-  TeamEmail		 = "tosca@tosca-project.com"
+  TeamEmail = "tosca@tosca-project.com"
   # Used for feedback on this tool
   DeveloppersEmail = "tosca@tosca-project.com"
+
   # Used for jabber notification
   JabberAccount = "tosca@jabber.fr"
   JabberPassword = "tosca"

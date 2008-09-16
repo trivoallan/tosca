@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
 =begin
   send formatted output directly to the HTTP response
   source : http://wiki.rubyonrails.org/rails/pages/HowtoExportDataAsCSV
@@ -178,7 +179,7 @@ class ExportController < ApplicationController
     flash[:conditions] = flash[:conditions]
     file_extension = MIME_EXTENSION[type].first
     content_type = MIME_EXTENSION[type].last
-    prefix = ( @recipient ? @recipient.client.name : 'OSSA' )
+    prefix = ( @recipient ? @recipient.client.name : App::ServiceName )
     suffix = Time.now.strftime('%d_%m_%Y')
     filename = [ prefix, params[:action], suffix].join('_') + file_extension
 

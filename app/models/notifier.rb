@@ -72,7 +72,7 @@ class Notifier < ActionMailer::Base
     recipients  compute_recipients(request)
     cc          compute_copy(request)
     from        FROM
-    subject     "[OSSA:##{request.id}] : #{request.resume}"
+    subject     "[#{App::ServiceName}##{request.id}] : #{request.resume}"
     headers     headers_mail_request(request.first_comment)
 
     html_and_text_body(options);
@@ -97,7 +97,7 @@ class Notifier < ActionMailer::Base
     recipients compute_recipients(request, comment.prive)
     cc         compute_copy(request, comment.prive)
     from       FROM
-    subject    "[OSSA:##{request.id}] : #{request.resume}"
+    subject    "[#{App::ServiceName}:##{request.id}] : #{request.resume}"
     headers    headers_mail_request(comment)
 
     html_and_text_body(options)

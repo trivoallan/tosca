@@ -1,5 +1,5 @@
 <div class="content" id="content">
-  <h1><%= _('OSSA activity from ') %>
+  <h1><%= _('%s activity from ') % App::ServiceName %>
     <span class="date"><%= @date[:first_day].strftime("%A %d %B %Y") %></span> <%= _('to') %>
     <span class="date"><%= @date[:end_day].strftime("%A %d %B %Y") %></span></h1>
   <br />

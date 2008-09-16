@@ -2,30 +2,34 @@
   <div class="c50l">
     <div class="show">
       <h3><%=_('Help')%></h3>
-  <% links = [ public_link_to_help_new_request,
-               public_link_to_howto_request,
-               public_link_to_help_request_status ] %>
+  <% links = [ "TODO : Make a doc to submit a request",
+               "TODO : The life cycle of a request",
+               "TODO : Help on the status" ] %>
   <%= show_list(links) %>
   <p><%=_("Don't hesitate to")%>
-    <%=mail_to('contact@08000linux.com',_('contact us'))%>
-    <%=_("if needed")%>.</p>
+    <%=  mail_to(App::TeamEmail, _('contact us'))%>
+    <%=  _("if needed")%>.</p>
  </div>
 
  <div class="show">
   <h1><%= _('About')%> <%=App::Name%> v<%=App::Version%></h1>
 
-  <p><%= _('This application was created by <b>Michel Loiseleur</b> at ')%>
-      <a href="http://www.linagora.com">Linagora</a>.</p>
+  <p><%= _('This application was created at ')%>
+      <a href="http://www.linagora.com">Linagora</a><%= _(" by the OSSA Team.")%></p>
       <p><%= _('This journey would not have been possible without
       the <b>developers</b> who have taken part in this project,
       without the testers who have contributed to it\'s quality and
       without quite a bit of <b>free software</b> which has enabled the
       development to be fast and agile. They are all warmly thanked here.
       %s would be nothing without them.') % App::Name %></p>
+      <p><%= _("It is now an Open Source software you can get at ") %>
+      <a href="http://www.tosca-project.com"><%= _("the homepage of the project")%></a>.
+      </p>
  </div>
  <div class="show">
    <h2><%= _('Developers')%></h2>
   <ul>
+    <li>Michel Loiseleur</li>
     <li>Adrien Grellier</li>
     <li>Guillaume Dufloux</li>
     <li>Julien Heyman</li>

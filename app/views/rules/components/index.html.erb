@@ -1,6 +1,7 @@
 <h1><%= _('List of components offers') %></h1>
 
-<% links = show_pages_links(@component_pages, _('an ossa offer')) %>
+<% text = _('an %s offer') % App::ServiceName  %>
+<% links = show_pages_links(@component_pages, text) %>
 <%= links %>
 
 <% titles = [_('Component|Name')] %>

@@ -31,7 +31,7 @@ class LoadRequestStatus < ActiveRecord::Migration
       [ 'Contournée', "Vous avez accepté une de nos solutions de contournement. <br /> Nous continuons à travailler et la demande repassera en \"Suspendue\" dès que nous vous proposons une solution de correction <br />" ],
       [ 'Corrigée', "Vous avez accepté une de nos solutions de correction. <br /> Nous soumettons maintenant notre correctif à la communauté, pour pouvoir clôturer la demande." ],
       [ 'Clôturée', "L'anomalie est considérée comme définitivement close, le correctif ayant été soumis à la communauté. <br />" ],
-      [ 'Annulée', "D'une manière générale, une demande est annulée quand son traitement n'est pas du ressort de l'unité OSSA. <br>Les cas possibles d'annulation sont : <br></p><ul><li>problème dont la cause matérielle, </li><li>problème dont la cause est un logiciel ou un ensemble de logiciels non assurés, </li><li>demande nécessitant une évolution du logiciel assuré </li><li>cas d'exclusion prévus contractuellement.</li></ul>" ] ].each { |s|
+      [ 'Annulée', "D'une manière générale, une demande est annulée quand son traitement n'est pas du ressort de notre unité. <br>Les cas possibles d'annulation sont : <br></p><ul><li>problème dont la cause matérielle, </li><li>problème dont la cause est un logiciel ou un ensemble de logiciels non assurés, </li><li>demande nécessitant une évolution du logiciel assuré </li><li>cas d'exclusion prévus contractuellement.</li></ul>" ] ].each { |s|
       Statut.create(:nom => s.first, :description => s.last)
     }
   end

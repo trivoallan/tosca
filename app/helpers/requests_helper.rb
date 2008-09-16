@@ -36,29 +36,6 @@ module RequestsHelper
     link_to text, request_path(request)
   end
 
-  #Spécifique à l'OSSA donc on ne traduit pas
-  # Link to the inline help to post a request
-  NEW_WINDOW = { :target => '_blank' }
-  def public_link_to_help_new_request
-    public_link_to(_("Submission of a request"),
-        "http://www.08000linux.com/wiki/index.php/D%C3%A9claration_request",
-        NEW_WINDOW)
-  end
-
-  # Link to the the inline help about life cycle of a demand
-  def public_link_to_howto_request
-    public_link_to(_("The life cycle of a request"),
-        "http://www.08000linux.com/wiki/index.php/D%C3%A9roulement_request",
-        NEW_WINDOW)
-  end
-
-  #Link to the inline help about the differents states of a demand
-  def public_link_to_help_request_status
-    public_link_to(_("Help on the status"),
-        'http://www.08000linux.com/wiki/index.php/%C3%89tats_request',
-        NEW_WINDOW)
-  end
-
   def public_link_to_status_legend
     public_link_to(_("Legend of statutes"), statuts_path, NEW_WINDOW)
   end
