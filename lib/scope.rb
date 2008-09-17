@@ -28,7 +28,7 @@ module Scope
     # defined locally since this file is loaded by application controller
     # it reduces dramatically loading time
     @@scope_client ||= [ Client, Document ]
-    @@scope_contract ||= [ Release, Contract, Request, Phonecall ]
+    @@scope_contract ||= [ Release, Contract, Request, Phonecall, Tag ]
     if is_connected
       recipient, ingenieur = user.recipient, user.ingenieur
       apply = ((ingenieur and user.restricted?) || recipient)

@@ -35,6 +35,13 @@ class Tag
     end
     name
   end
+  
+  # See ApplicationController#scope
+  def self.set_scope(contract_ids)
+    scope = { :conditions =>
+      [ 'tags.contract_id IN (?)', contract_ids ] }
+    self.scoped_methods << { :find => scope, :count => scope }
+  end
 
   def self.find_or_create_with_like_by_name(name)
     find(:first, :conditions => ["name LIKE ?", name]) || create(:name => name)
