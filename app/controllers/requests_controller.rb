@@ -166,7 +166,8 @@ class RequestsController < ApplicationController
       @request_tosca.first_comment.request.reload
       url_attachment = render_to_string(:layout => false,
                                         :template => '/attachment')
-      options = { :request => @request_tosca, :url_request => request_url(@request_tosca),
+      options = { :request_tosca => @request_tosca, 
+        :url_request => request_url(@request_tosca),
         :name => user.name, :url_attachment => url_attachment }
 
       Notifier::deliver_request_new(options, flash)

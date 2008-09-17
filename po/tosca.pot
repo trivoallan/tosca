@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-09-16 16:56+0200\n"
+"POT-Creation-Date: 2008-09-17 11:56+0200\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1485,7 +1485,7 @@ msgid "Document|Version"
 msgstr ""
 
 #: app/models/document.rb:-
-msgid "Document|Delivered on"
+msgid "Document|Date delivery"
 msgstr ""
 
 #: app/models/elapsed.rb:-
@@ -3310,6 +3310,14 @@ msgstr ""
 msgid "Add a new knowledge"
 msgstr ""
 
+#: app/views/layouts/standard-layout.html.erb:74
+msgid "Skip to the navigation"
+msgstr ""
+
+#: app/views/layouts/standard-layout.html.erb:75
+msgid "Skip to the content"
+msgstr ""
+
 #: app/views/layouts/standard-layout.html.erb:81
 msgid "Logout"
 msgstr ""
@@ -3740,7 +3748,7 @@ msgstr ""
 msgid ""
 "You will observe in particular that the numbers have sometimes on their "
 "right side a second number between brackets: the first corresponds to the "
-"number of requests, whereas the second indicates,  if needed, which requests "
+"number of requests, whereas the second indicates, if needed, which requests "
 "are still “active”."
 msgstr ""
 

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 16:56+0200\n"
+"POT-Creation-Date: 2008-09-17 11:56+0200\n"
 "PO-Revision-Date: 2008-09-04 17:58+0200\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
@@ -1512,7 +1512,8 @@ msgid "Document|Version"
 msgstr "Version"
 
 #: app/models/document.rb:-
-msgid "Document|Delivered on"
+#, fuzzy
+msgid "Document|Date delivery"
 msgstr "Date de livraison"
 
 #: app/models/elapsed.rb:-
@@ -3340,6 +3341,16 @@ msgstr "Mise à jour de votre connaissance"
 msgid "Add a new knowledge"
 msgstr "Ajouter une connaissance"
 
+#: app/views/layouts/standard-layout.html.erb:74
+#, fuzzy
+msgid "Skip to the navigation"
+msgstr "Cette partie de l'application"
+
+#: app/views/layouts/standard-layout.html.erb:75
+#, fuzzy
+msgid "Skip to the content"
+msgstr "Liste des commentaires"
+
 #: app/views/layouts/standard-layout.html.erb:81
 msgid "Logout"
 msgstr "Déconnexion"
@@ -3782,10 +3793,11 @@ msgstr ""
 "pour dessiner les graphiques qui vous sont présentés dans la même zone. "
 
 #: app/views/reporting/_introduction.html.erb:13
+#, fuzzy
 msgid ""
 "You will observe in particular that the numbers have sometimes on their "
 "right side a second number between brackets: the first corresponds to the "
-"number of requests, whereas the second indicates, Oif needed, which requests "
+"number of requests, whereas the second indicates, if needed, which requests "
 "are still “active”."
 msgstr ""
 "Vous observerez notamment que les nombres sont parfois accompagnés d'un "
@@ -5051,3 +5063,6 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
+
+#~ msgid "Document|Delivered on"
+#~ msgstr "Date de livraison"

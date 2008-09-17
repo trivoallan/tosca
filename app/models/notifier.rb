@@ -66,7 +66,7 @@ class Notifier < ActionMailer::Base
   #   :request, :url_request
   #   :name => user.name, :url_attachment
   def request_new(options, flash = nil)
-    request =  options[:request]
+    request =  options[:request_tosca]
 
     recipients  compute_recipients(request)
     cc          compute_copy(request)
@@ -86,7 +86,7 @@ class Notifier < ActionMailer::Base
   # And an optional
   #  :modifications => {:statut_id, :ingenieur_id, :severite_id }
   def request_new_comment(options, flash = nil)
-    request = options[:request]
+    request = options[:request_tosca]
     # needed in order to have correct recipients
     # for instance, send mail to the correct engineer
     # when reaffecting a request

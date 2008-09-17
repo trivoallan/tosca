@@ -68,7 +68,7 @@ class CommentairesController < ApplicationController
     if @comment.save
       flash[:notice] = _("Your comment was successfully added.")
       url_attachment = render_to_string(:layout => false, :template => '/attachment')
-      options = { :request => request, :commentaire => @comment,
+      options = { :request_tosca => request, :commentaire => @comment,
         :name => user.name, :modifications => changed,
         :url_request => request_url(request),
         :url_attachment => url_attachment
