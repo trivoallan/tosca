@@ -205,7 +205,7 @@ msgstr "La contribution a bien été mise à jour."
 
 #: app/controllers/contributions_controller.rb:209
 msgid "The associated request does not exist"
-msgstr "La request associée n'existe pas"
+msgstr "La demande associée n'existe pas"
 
 #: app/controllers/documents_controller.rb:87
 msgid "Your document was successfully created"
@@ -408,7 +408,7 @@ msgstr "Restant à clore"
 #: app/views/alerts/_ajax_on_submit.html.erb:10
 #: app/views/reporting/_comex_tableaux.html.erb:10
 msgid "New requests"
-msgstr "nouvelles requests"
+msgstr "Nouvelles demandes"
 
 #: app/controllers/export_controller.rb:210
 msgid ""
@@ -580,25 +580,25 @@ msgstr ""
 #: app/views/reporting/_sommaire.html.erb:7
 #: app/views/reporting/general.html.erb:20
 msgid "Distribution of your requests"
-msgstr "Répartition de vos requests"
+msgstr "Répartition de vos demandes"
 
 #: app/controllers/reporting_controller.rb:473
 msgid "Distribution of requests"
-msgstr "Répartition de vos requests"
+msgstr "Répartition de vos demandes"
 
 #: app/controllers/reporting_controller.rb:474
 #: app/controllers/reporting_controller.rb:475
 msgid "Severity of your requests"
-msgstr "Sévérité de vos requests"
+msgstr "Sévérité de vos demandes"
 
 #: app/controllers/reporting_controller.rb:476
 #: app/controllers/reporting_controller.rb:477
 msgid "Resolution of your requests"
-msgstr "Répartition de vos requests"
+msgstr "Répartition de vos demandes"
 
 #: app/controllers/reporting_controller.rb:479
 msgid "Cancelled requests"
-msgstr "Requests annulées"
+msgstr "Demandes annulées"
 
 #: app/controllers/reporting_controller.rb:480
 msgid "Evolution of the activity volume"
@@ -606,7 +606,7 @@ msgstr "Évolution du volume d'activité"
 
 #: app/controllers/reporting_controller.rb:482
 msgid "Top 5 of the most discussed requests"
-msgstr "Top 5 des requests les plus discutées"
+msgstr "Top 5 des demandes les plus discutées"
 
 #: app/controllers/reporting_controller.rb:483
 msgid "Top 5 of the most discussed software"
@@ -631,19 +631,19 @@ msgstr "Temps de correction"
 #: app/controllers/requests_controller.rb:89 app/helpers/links_helper.rb:129
 #: app/helpers/requests_helper.rb:169
 msgid "All the requests"
-msgstr "Toutes les requests"
+msgstr "Toutes les demandes"
 
 #: app/controllers/requests_controller.rb:161
 msgid "You have successfully submitted your %s request."
-msgstr "Vous avez soumis avec succès votre %s request"
+msgstr "Vous avez soumis avec succès votre %s demande"
 
 #: app/controllers/requests_controller.rb:308
 msgid "The request has been updated successfully."
-msgstr "La request a bien été mise à jour."
+msgstr "La demande a bien été mise à jour."
 
 #: app/controllers/requests_controller.rb:360
 msgid "The demand has now no contribution"
-msgstr "Le request n'a plus de contributions"
+msgstr "La demande n'a plus de contributions"
 
 #: app/controllers/requests_controller.rb:362
 msgid "This contribution is now linked"
@@ -655,18 +655,18 @@ msgid ""
 "filling a request. Please contact %s if you think it's not normal"
 msgstr ""
 "Il semble que vous ne soyez pas associé(e) à un contrat, ce qui vous empêche "
-"de déposer une request. Veuillez contacter %s si vous pensez que ce n'est "
+"de déposer une demande. Veuillez contacter %s si vous pensez que ce n'est "
 "pas normal."
 
 #: app/controllers/requests_controller.rb:460
 #: app/helpers/requests_helper.rb:155
 msgid "Active requests"
-msgstr "Requests actives"
+msgstr "Demandes actives"
 
 #: app/controllers/requests_controller.rb:463
 #: app/helpers/requests_helper.rb:162
 msgid "Finished requests"
-msgstr "Requests terminées"
+msgstr "Demandes terminées"
 
 #: app/controllers/roles_controller.rb:38
 msgid "The role %s was succefully created."
@@ -728,11 +728,11 @@ msgstr "Le type de contribution a été mis à jour avec succès."
 
 #: app/controllers/typerequests_controller.rb:35
 msgid "A new type of request was successfully created."
-msgstr "Un nouveau type de request a bien été créé."
+msgstr "Un nouveau type de demande a bien été créé."
 
 #: app/controllers/typerequests_controller.rb:49
 msgid "A request type was successfully updated."
-msgstr "Le groupe a été mis à jour avec succès."
+msgstr "Le type de demande a été mis à jour avec succès."
 
 #: app/controllers/typeurls_controller.rb:35
 msgid "A url type was successfully created."
@@ -830,23 +830,23 @@ msgstr "N'afficher que les clients inactifs"
 
 #: app/helpers/commentaires_helper.rb:32
 msgid "This request has been taken into account by %s."
-msgstr "Cette request a été prise en compte par %s."
+msgstr "Cette demande a été prise en compte par %s."
 
 #: app/helpers/commentaires_helper.rb:34
 msgid "This request has been assigned to %s by %s."
-msgstr "Cette request a été prise en charge par %s."
+msgstr "Cette demande a été prise en charge par %s."
 
 #: app/helpers/commentaires_helper.rb:40
 msgid "This request has been changed in %s by %s."
-msgstr "Cette request a été %s par %s."
+msgstr "Cette demande a été %s par %s."
 
 #: app/helpers/commentaires_helper.rb:45
 msgid "This request has been requalified in %s by %s."
-msgstr "Cette request a été requalifiée en %s par %s."
+msgstr "Cette demande a été requalifiée en %s par %s."
 
 #: app/helpers/commentaires_helper.rb:51
 msgid "%s has been spent by %s on this request."
-msgstr "%s se sont écoulé(e)s"
+msgstr "%s se sont écoulé(e)s sur cette demande."
 
 #: app/helpers/commitments_helper.rb:39 app/helpers/commitments_helper.rb:87
 #: app/helpers/engagements_helper.rb:39 app/helpers/engagements_helper.rb:87
@@ -952,23 +952,23 @@ msgstr "Accueil"
 #: app/views/reporting/general.html.erb:48
 #: app/views/reporting/general.html.erb:49 app/views/welcome/index.html.erb:16
 msgid "Requests"
-msgstr "Requests"
+msgstr "Demandes"
 
 #: app/helpers/links_helper.rb:125
 msgid "Consult requests"
-msgstr "Consulter les requests"
+msgstr "Consulter les demandes"
 
 #: app/helpers/links_helper.rb:130
 msgid "Consult all the requests"
-msgstr "Consulter toutes les requests"
+msgstr "Consulter toutes les demandes"
 
 #: app/helpers/links_helper.rb:134
 msgid "Pending Requests"
-msgstr "Requests à traiter"
+msgstr "Demandes à traiter"
 
 #: app/helpers/links_helper.rb:135
 msgid "Consult requests which are waiting an action from you"
-msgstr "Consulter les requests qui nécessitent une action de votre part"
+msgstr "Consulter les demandes qui nécessitent une action de votre part"
 
 #: app/helpers/links_helper.rb:140
 msgid "Access to the list of software"
@@ -1086,7 +1086,7 @@ msgstr "Légende des statuts"
 
 #: app/helpers/requests_helper.rb:107
 msgid "New request"
-msgstr "Nouvelle request"
+msgstr "Nouvelle demande"
 
 #: app/helpers/requests_helper.rb:116
 msgid "Unlink the contribution"
@@ -1106,15 +1106,15 @@ msgstr "Le %s a été proposé à la communauté"
 
 #: app/helpers/requests_helper.rb:156
 msgid "show requests waiting to be processed"
-msgstr "montrer les requests qui attendent d'être traitées"
+msgstr "montrer les demandes qui attendent d'être traitées"
 
 #: app/helpers/requests_helper.rb:163
 msgid "show requests that were processed"
-msgstr "montrer les requests qui ont déjà été traitées"
+msgstr "montrer les demandes qui ont déjà été traitées"
 
 #: app/helpers/requests_helper.rb:170
 msgid "show all the requests"
-msgstr "montrer toutes les requests"
+msgstr "montrer toutes les demandes"
 
 #: app/helpers/reversements_helper.rb:24
 msgid "the contribution is alone : it is not linked to an interaction"
@@ -1249,7 +1249,7 @@ msgstr "permet de commenter"
 
 #: app/helpers/welcome_helper.rb:46
 msgid "prints the life cycle of a request"
-msgstr "affiche le cycle de vie d'une request"
+msgstr "affiche le cycle de vie d'une demande"
 
 #: app/helpers/welcome_helper.rb:47
 msgid "is ajaxified"
@@ -1406,11 +1406,11 @@ msgstr "Votre commentaire doit au moins avoir 5 caractères"
 
 #: app/models/commentaire.rb:34
 msgid "You must indicate a valid request"
-msgstr "Vous devez indiquer une request valide"
+msgstr "Vous devez indiquer une demande valide"
 
 #: app/models/commentaire.rb:40
 msgid "The status of this request has already been changed."
-msgstr "Le statut de cette request a déjà été changé."
+msgstr "Le statut de cette demande a déjà été changé."
 
 #: app/models/commentaire.rb:43
 msgid "You cannot privately change the status"
@@ -1418,7 +1418,7 @@ msgstr "Vous ne pouvez changer le statut avec un commentaire privé"
 
 #: app/models/commentaire.rb:49
 msgid "The request is now %s."
-msgstr "La request est désormais %s."
+msgstr "La demande est désormais %s."
 
 #: app/models/commentaire.rb:55
 msgid "private"
@@ -1430,7 +1430,7 @@ msgstr "public"
 
 #: app/models/commentaire.rb:97
 msgid "This request seems to be unstable."
-msgstr "Cette request semble être inconsistante."
+msgstr "Cette demande semble être inconsistante."
 
 #: app/models/commitment.rb:-
 msgid "commitment"
@@ -1451,7 +1451,7 @@ msgstr "Correction"
 
 #: app/models/commitment.rb:-
 msgid "Commitment|Typerequest"
-msgstr "Type de request"
+msgstr "Type de demande"
 
 #: app/models/competence.rb:-
 msgid "competence"
@@ -1861,7 +1861,7 @@ msgstr "jour"
 
 #: app/models/request.rb:72
 msgid "You must indicate a %s for your request"
-msgstr "Vous devez indiquer un %s pour votre request"
+msgstr "Vous devez indiquer un %s pour votre demande"
 
 #: app/models/request.rb:84
 msgid ""
@@ -2009,7 +2009,7 @@ msgstr "Description"
 
 #: app/models/typerequest.rb:-
 msgid "typerequest"
-msgstr "type de request"
+msgstr "type de demande"
 
 #: app/models/typerequest.rb:-
 msgid "Typerequest|Name"
@@ -2235,13 +2235,13 @@ msgstr "Déconnexion"
 
 #: app/views/account/_menu.html.erb:14
 msgid "Request list"
-msgstr "Liste des requests"
+msgstr "Liste des demandes"
 
 #: app/views/account/_menu.html.erb:15
 #: app/views/requests/lists/_requests_info.html.erb:19
 #: app/views/requests/new.html.erb:1
 msgid "Submit a request"
-msgstr "Déposer une request"
+msgstr "Déposer une demande"
 
 #: app/views/account/_menu.html.erb:16
 #: app/views/phonecalls/_calls_info.html.erb:51
@@ -2446,15 +2446,15 @@ msgstr "Créer un compte"
 
 #: app/views/alerts/_ajax_on_submit.html.erb:5
 msgid "The contract %s has a new request : %s"
-msgstr "Le contrat %s a une nouvelle request : %s"
+msgstr "Le contrat %s a une nouvelle demande : %s"
 
 #: app/views/alerts/_ajax_on_submit.html.erb:7
 msgid "There is %d new requests."
-msgstr "Il y a %d nouvelles requests."
+msgstr "Il y a %d nouvelles demandes."
 
 #: app/views/alerts/_ajax_on_submit.html.erb:15
 msgid "There is no new request"
-msgstr "Il n'y a aucune nouvelle request"
+msgstr "Il n'y a aucune nouvelle demande"
 
 #: app/views/alerts/index.html.erb:1
 msgid "Alerts"
@@ -2761,7 +2761,7 @@ msgstr "Éditer un commentaire"
 #: app/views/commentaires/edit.html.erb:10
 #: app/views/commentaires/show.html.erb:9
 msgid "Return to the request"
-msgstr "Retour à la request"
+msgstr "Retour à la demande"
 
 #: app/views/commentaires/index.html.erb:1
 msgid "List of the comments"
@@ -2791,7 +2791,7 @@ msgstr "Mis à jour le"
 
 #: app/views/commitments/_form.html.erb:3
 msgid "Type of the request"
-msgstr "Type de la request"
+msgstr "Type de la demande"
 
 #: app/views/commitments/edit.html.erb:1
 msgid "Editing a commitment"
@@ -3088,7 +3088,7 @@ msgstr "Auteur"
 
 #: app/views/contributions/_form.html.erb:18
 msgid "Request number"
-msgstr "Numéro de request"
+msgstr "Numéro de la demande"
 
 #: app/views/contributions/_form.html.erb:25
 msgid "Kind of contribution"
@@ -3568,7 +3568,7 @@ msgstr "Durée"
 
 #: app/views/phonecalls/_form.html.erb:7
 msgid "Request Id"
-msgstr "ID de la request"
+msgstr "ID de la demande"
 
 #: app/views/phonecalls/_form.html.erb:21
 msgid "Start of call"
@@ -3770,7 +3770,7 @@ msgid ""
 "the third graph show another view of the summary through a bar chart showing "
 "the evolution of these data over the duration of the deal"
 msgstr ""
-"le troisième graphique vous offre une autre vision de vos requests à travers "
+"le troisième graphique vous offre une autre vision de vos demandes à travers "
 "un histographe d'évolution de ces données sur la durée du marché "
 
 #: app/views/reporting/_introduction.html.erb:11
@@ -3785,13 +3785,13 @@ msgstr ""
 msgid ""
 "You will observe in particular that the numbers have sometimes on their "
 "right side a second number between brackets: the first corresponds to the "
-"number of requests, whereas the second indicates,  if needed, which requests "
+"number of requests, whereas the second indicates, Oif needed, which requests "
 "are still “active”."
 msgstr ""
 "Vous observerez notamment que les nombres sont parfois accompagnés d'un "
 "second nombre entre parenthèses. Le premier correspond au nombre de "
-"requests, alors que le second indique, si cela est nécessaire, quelles sont "
-"les requests encore “en activité“. "
+"demandes, alors que le second indique, si cela est nécessaire, quelles sont "
+"les demandes encore “en activité“. "
 
 #: app/views/reporting/_sommaire.html.erb:5
 #: app/views/reporting/general.html.erb:14
@@ -3878,7 +3878,7 @@ msgstr "Historique du %s pour %s"
 
 #: app/views/reporting/delai.html.erb:13
 msgid "Time of taking into account the requests"
-msgstr "Temps de prise en compte des requests"
+msgstr "Temps de prise en compte des demandes"
 
 #: app/views/reporting/delai.html.erb:15
 msgid "Estimation in minutes"
@@ -3886,7 +3886,7 @@ msgstr "Estimation en minutes"
 
 #: app/views/reporting/delai.html.erb:17
 msgid "Workaround time of the requests in working days"
-msgstr "Temps de contournement des requests en jours ouvrées"
+msgstr "Temps de contournement des demandes en jours ouvrées"
 
 #: app/views/reporting/delai.html.erb:19
 msgid "Estimate made in working days"
@@ -4019,7 +4019,7 @@ msgstr "Ingénieur :"
 
 #: app/views/requests/_form_client.html.erb:18
 msgid "Request type :"
-msgstr "Nature de la request :"
+msgstr "Nature de la demande :"
 
 #: app/views/requests/_form_client.html.erb:25
 msgid "Severity :"
@@ -4072,7 +4072,7 @@ msgstr "Éditer les tags de cette demande"
 
 #: app/views/requests/edit.html.erb:1
 msgid "Update the request %s (administration)"
-msgstr "Mise à jour de la requête %s (administrateur)"
+msgstr "Mise à jour de la demande %s (administrateur)"
 
 #: app/views/requests/lists/_pending_table.html.erb:10
 msgid "Resp."
@@ -4080,7 +4080,7 @@ msgstr "Resp."
 
 #: app/views/requests/lists/_pending_table.html.erb:45
 msgid "Selected requests can wait"
-msgstr "Les requests sélectionnées peuvent attendre"
+msgstr "Les demandes sélectionnées peuvent attendre"
 
 #: app/views/requests/lists/_pending_table.html.erb:46
 msgid "days"
@@ -4124,7 +4124,7 @@ msgstr "Limite"
 
 #: app/views/requests/lists/_requests_list.html.erb:3
 msgid "a new request"
-msgstr "une nouvelle request"
+msgstr "une nouvelle demande"
 
 #: app/views/requests/lists/_requests_table.html.erb:14
 #: app/views/tags/_form.html.erb:7 app/views/tags/index.html.erb:5
@@ -4134,28 +4134,28 @@ msgstr "Déclarant"
 
 #: app/views/requests/lists/_requests_table.html.erb:72
 msgid "No request found."
-msgstr "Aucune request trouvée"
+msgstr "Aucune demande trouvée"
 
 #: app/views/requests/lists/pending.html.erb:1
 msgid "No pending request"
-msgstr "Aucune request en attente"
+msgstr "Aucune demande en attente"
 
 #: app/views/requests/lists/pending.html.erb:2
 msgid "My pending request"
 msgid_plural "My pending requests"
-msgstr[0] "Ma request en attente"
-msgstr[1] "Mes requests en attente"
+msgstr[0] "Ma demande en attente"
+msgstr[1] "Mes demandes en attente"
 
 #: app/views/requests/lists/pending.html.erb:5
 msgid ""
 "This list only contains requests which require an action on your behalf."
 msgstr ""
-"Cette liste contient seulement les requests qui attendent une action de "
+"Cette liste contient seulement les demandes qui attendent une action de "
 "votre part."
 
 #: app/views/requests/lists/pending.html.erb:6
 msgid "In technical terms, this list contains all requests "
-msgstr "En termes techniques, cette liste contient toutes les requests "
+msgstr "En termes techniques, cette liste contient toutes les demandes "
 
 #: app/views/requests/lists/pending.html.erb:8
 msgid ""
@@ -4169,7 +4169,7 @@ msgid ""
 "that are active (SLA is running), and all suspended requests where the last "
 "comment is from a customer, or that are newly assigned to you."
 msgstr ""
-"qui sont actives (la CNS court), et toutes les requests suspendues où le "
+"qui sont actives (la CNS court), et toutes les demandes suspendues où le "
 "dernier commentaire vient du client, ou qui vous sont nouvellement "
 "attribuées."
 
@@ -4177,7 +4177,7 @@ msgstr ""
 msgid ""
 "Feel free to inform us in %s if you feel some requests should not be here."
 msgstr ""
-"N'hésitez pas à nous contacter dans %s si vous pensez qu'une request ne "
+"N'hésitez pas à nous contacter dans %s si vous pensez qu'une demande ne "
 "devrait pas être dans cette liste."
 
 #: app/views/requests/lists/pending.html.erb:14
@@ -4187,13 +4187,13 @@ msgstr "la boite à idées"
 
 #: app/views/requests/lists/pending.html.erb:22
 msgid "My team has not any pending request"
-msgstr "Mon équipe n'a pas de request en attente"
+msgstr "Mon équipe n'a pas de demande en attente"
 
 #: app/views/requests/lists/pending.html.erb:23
 msgid "My team has %d pending request"
 msgid_plural "My team has %d pending requests"
-msgstr[0] "Mon équipe a %d request en attente"
-msgstr[1] "Mon équipe a %d requests en attente"
+msgstr[0] "Mon équipe a %d demande en attente"
+msgstr[1] "Mon équipe a %d demandes en attente"
 
 #: app/views/requests/new.html.erb:3
 msgid "Please fill in the fields below."
@@ -4205,7 +4205,7 @@ msgstr "Un de nos consultants vous contactera dans moins d'une heure."
 
 #: app/views/requests/new.html.erb:9
 msgid "Submit this request"
-msgstr "Déposer cette request"
+msgstr "Déposer cette demande"
 
 #: app/views/requests/new.html.erb:20
 msgid ""
@@ -4260,7 +4260,7 @@ msgstr "Lien"
 
 #: app/views/requests/tabs/_cns.html.erb:7
 msgid "Your request is not subject to a SLA."
-msgstr "Votre request n'est pas soumise à CNS."
+msgstr "Votre demande n'est pas soumise à CNS."
 
 #: app/views/requests/tabs/_cns.html.erb:9
 msgid "Service Level Agreement"
@@ -4284,11 +4284,11 @@ msgstr "Prise en compte"
 
 #: app/views/requests/tabs/_cns.html.erb:30
 msgid "Your request has no commitment for workaround time"
-msgstr "Votre request n'a pas d'engagement de contournement"
+msgstr "Votre demande n'a pas d'engagement de contournement"
 
 #: app/views/requests/tabs/_cns.html.erb:41
 msgid "Your request has no commitment for correction time"
-msgstr "Votre request n'a pas d'engagement de correction"
+msgstr "Votre demande n'a pas d'engagement de correction"
 
 #: app/views/requests/tabs/_comment.html.erb:2
 msgid "Are you sure you want to delete this comment ?"
@@ -4585,7 +4585,7 @@ msgstr "Créer un nouveau type de documents"
 
 #: app/views/typerequests/edit.html.erb:1
 msgid "Editing a request type"
-msgstr "Éditer un type de request"
+msgstr "Éditer un type de demande"
 
 #: app/views/typerequests/edit.html.erb:8
 msgid "List"
@@ -4593,16 +4593,16 @@ msgstr "Liste"
 
 #: app/views/typerequests/index.html.erb:1
 msgid "List of the types of requests"
-msgstr "Liste des types des requests"
+msgstr "Liste des types des demandes"
 
 #: app/views/typerequests/index.html.erb:3
 #: app/views/typerequests/index.html.erb:11
 msgid "a new type of request"
-msgstr "un nouveaux type de request"
+msgstr "un nouveaux type de demande"
 
 #: app/views/typerequests/new.html.erb:1
 msgid "A new type of request"
-msgstr "Une nouvelle type de request"
+msgstr "Une nouvelle type de demande"
 
 #: app/views/typeurls/edit.html.erb:1
 msgid "Editing typeurl"
@@ -4848,7 +4848,7 @@ msgstr "Vous pouvez aussi %s"
 
 #: app/views/welcome/index.html.erb:20
 msgid "make a request"
-msgstr "faire une nouvelle request"
+msgstr "faire une nouvelle demande"
 
 #: app/views/welcome/index.html.erb:23
 msgid ""
@@ -4974,7 +4974,7 @@ msgstr "Autre composants"
 
 #: app/views/welcome/statuts.html.erb:1
 msgid "Status of the Requests"
-msgstr "Statuts des requests"
+msgstr "Statuts des demandes"
 
 #: app/views/welcome/statuts.html.erb:5
 msgid "Status list"
@@ -5051,36 +5051,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
-
-#~ msgid "08000linux login"
-#~ msgstr "Identifiant du 08000Linux"
-
-#~ msgid "Contributions of 08000linux.com"
-#~ msgstr "Les contributions du 08000linux.com"
-
-#~ msgid "Submission of a request"
-#~ msgstr "Dépôt d'une request"
-
-#~ msgid "The life cycle of a request"
-#~ msgstr "Le cycle de vie d'une request"
-
-#~ msgid "Help on the status"
-#~ msgstr "Aide sur les statuts"
-
-#~ msgid "My&nbsp;account"
-#~ msgstr "Mon&nbsp;compte"
-
-#~ msgid "OSSA on rails"
-#~ msgstr "OSSA on Rails"
-
-#~ msgid "an ossa offer"
-#~ msgstr "une offre ossa"
-
-#~ msgid "Document|Date delivery"
-#~ msgstr "Date de livraison"
-
-#~ msgid "You can see the list of %s:"
-#~ msgstr "Vous pouvez consulter la liste des %s"
-
-#~ msgid "You can also %s."
-#~ msgstr "Vous pouvez aussi %s"
