@@ -18,7 +18,7 @@
 #
 class RequestsController < ApplicationController
   helper :filters, :contributions, :logiciels, :phonecalls,
-    :socles, :commentaires, :account, :reporting
+    :socles, :comments, :account, :reporting
 
   cache_sweeper :request_sweeper, :only =>
     [:create, :update, :destroy, :link_contribution, :unlink_contribution]
@@ -28,7 +28,7 @@ class RequestsController < ApplicationController
       :select => Request::SELECT_LIST, :joins => Request::JOINS_LIST }
     conditions = [ [ ] ]
 
-    options[:joins] += 'INNER JOIN commentaires ON commentaires.id = requests.last_comment_id'
+    options[:joins] += 'INNER JOIN comments ON comments.id = requests.last_comment_id'
 
     conditions.first << 'requests.statut_id IN (?)'
     conditions << Statut::OPENED
@@ -228,14 +228,14 @@ class RequestsController < ApplicationController
     @page_title = @request_tosca.resume
     @partial_for_summary = 'infos_request'
     unless read_fragment "requests/#{@request_tosca.id}/front-#{session[:user].role_id}"
-      @commentaire = Commentaire.new(:elapsed => 1, :request => @request_tosca)
-      @commentaire.corps = flash[:old_body] if flash.has_key? :old_body
+      @comment = Comment.new(:elapsed => 1, :request => @request_tosca)
+      @comment.text = flash[:old_body] if flash.has_key? :old_body
 
       # TODO c'est pas dry, cf ajax_comments
       options = { :order => 'created_on DESC', :include => [:user],
         :limit => 1, :conditions => { :request_id => @request_tosca.id } }
-      options[:conditions][:prive] = false if @recipient
-      @last_commentaire = Commentaire.find(:first, options)
+      options[:conditions][:private] = false if @recipient
+      @last_comment = Comment.find(:first, options)
 
       @statuts = @request_tosca.statut.possible(@recipient)
       options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
@@ -266,10 +266,10 @@ class RequestsController < ApplicationController
     return render(:text => '') unless request.xhr? and params.has_key? :id
     @request_id = params[:id]
     unless read_fragment "requests/#{@request_id}/history"
-      @last_commentaire = nil # Prevents some insidious call with functionnal tests
+      @last_comment = nil # Prevents some insidious call with functionnal tests
       conditions = filter_comments(@request_id)
       conditions[0] << " AND statut_id IS NOT NULL"
-      @commentaires = Commentaire.find(:all, :conditions => conditions,
+      @comments = Comment.find(:all, :conditions => conditions,
         :order => "created_on ASC", :include => [:user,:statut,:severite])
     end
     render :partial => 'requests/tabs/tab_history', :layout => false
@@ -305,7 +305,7 @@ class RequestsController < ApplicationController
     # description is delocalized into the first comment, mainly for db perf.
     description = request[:description]
     if @request_tosca.update_attributes(request) &&
-        @request_tosca.first_comment.update_attribute(:corps, description)
+        @request_tosca.first_comment.update_attribute(:text, description)
       flash[:notice] = _("The request has been updated successfully.")
       redirect_to request_path(@request_tosca)
     else
@@ -411,7 +411,7 @@ class RequestsController < ApplicationController
     @versions = []
     @severites = Severite.find_select
     first_comment = @request_tosca.first_comment
-    @request_tosca.description = first_comment.corps if first_comment
+    @request_tosca.description = first_comment.text if first_comment
     @request_tosca.recipient = recipient if recipient
     if @request_tosca.contract
       _form4contract(@request_tosca.contract)
@@ -431,14 +431,14 @@ class RequestsController < ApplicationController
 
   def set_attachments(request_id)
     options = { :conditions => filter_comments(request_id), :order =>
-      'commentaires.updated_on DESC', :include => [:commentaire] }
+      'comments.updated_on DESC', :include => [:comment] }
     @attachments = Attachment.find(:all, options)
   end
 
   def set_comments(request_id)
     fragment = "requests/#{request_id}/comments-#{session[:user].kind}"
     if action_name == 'print' || !read_fragment(fragment)
-      @commentaires = Commentaire.find(:all, :conditions =>
+      @comments = Comment.find(:all, :conditions =>
         filter_comments(request_id), :order => "created_on ASC",
         :include => [:user,:statut,:severite])
     end
@@ -447,9 +447,9 @@ class RequestsController < ApplicationController
   # Private comments & attachments should not be read by recipients
   def filter_comments(request_id)
     if @ingenieur
-      [ 'commentaires.request_id = ?', request_id ]
+      [ 'comments.request_id = ?', request_id ]
     else
-      [ 'commentaires.request_id = ? AND commentaires.prive = 0 ', request_id ]
+      [ 'comments.request_id = ? AND comments.private = 0 ', request_id ]
     end
   end
 

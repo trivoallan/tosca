@@ -5,8 +5,8 @@ digraph Request {
 Recipient -> User [arrowhead=dot,arrowtail=odot,dir=both]
 Recipient -> Customer [arrowhead=dot,dir=both,arrowtail=crow]
 
-Commentaire -> Request [arrowhead=dot,dir=both,arrowtail=crow]
-Commentaire -> User [arrowhead=dot,dir=both,arrowtail=crow]
+Comment -> Request [arrowhead=dot,dir=both,arrowtail=crow]
+Comment -> User [arrowhead=dot,dir=both,arrowtail=crow]
 
 Contract -> User [arrowhead=crow,dir=both,arrowtail=crow]
 Contract -> Rule [arrowhead=dot,arrowtail=crow]

@@ -34,8 +34,8 @@ class RequestTest < Test::Unit::TestCase
     # must have a recipient
     assert request.save
 
-    # commentaire table must have things now ...
-    c = Commentaire.find :first, :conditions => { :request_id => request.id }
+    # comment table must have things now ...
+    c = Comment.find :first, :conditions => { :request_id => request.id }
     assert_equal c.request_id, request.id
     assert_equal c.severite, request.severite
     assert_equal c.statut, request.statut

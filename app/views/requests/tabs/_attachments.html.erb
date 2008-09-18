@@ -9,8 +9,8 @@
       result << "<td>##{pj.id}</td>"
       result << "<td>#{link_to_file(pj, 'file')}</td>"
       result << "<td>#{file_size(pj.file)}</td>"
-      result << "<td>#{pj.commentaire.created_on_formatted}</td>"
-      result << "<td>#{pj.commentaire.user.name}</td>"
+      result << "<td>#{pj.comment.created_on_formatted}</td>"
+      result << "<td>#{pj.comment.user.name}</td>"
       result << "<td>#{link_to_file_redbox(pj, :file)}</td>"
     end
     result

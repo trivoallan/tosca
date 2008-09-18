@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-module CommentairesHelper
+module CommentsHelper
 
   def display_history(comment, rule, contract)
     out = []
@@ -58,7 +58,7 @@ module CommentairesHelper
 
   def display_comment(c)
     result = ''
-    result << c.corps
+    result << c.text
     attachment = c.attachment
     unless attachment.blank? or attachment.file.blank?
       result << "<br /><br />#{StaticImage::folder} "

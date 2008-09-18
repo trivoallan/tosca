@@ -16,28 +16,28 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class CommentairesController < ApplicationController
+class CommentsController < ApplicationController
   helper :requests
 
-  cache_sweeper :commentaire_sweeper, :only =>
+  cache_sweeper :comment_sweeper, :only =>
     [:comment, :update, :destroy]
   # A comment is created only from the request interface
   cache_sweeper :request_sweeper, :only => [:comment]
 
   def index
-    @commentaire_pages, @commentaires = paginate :commentaires,
+    @comment_pages, @comments = paginate :comments,
     :per_page => 10, :include => [:request]
   end
 
   def show
-    @commentaire = Commentaire.find(params[:id])
-    @request_tosca = @commentaire.request
+    @comment = Comment.find(params[:id])
+    @request_tosca = @comment.request
   end
 
   #Used by the comment view of a request to add one
   def comment
-    commentaire, id = params[:commentaire], params[:id]
-    return render(:nothing => true) unless id && commentaire
+    comment, id = params[:comment], params[:id]
+    return render(:nothing => true) unless id && comment
 
     user = session[:user]
     request = Request.find(id)
@@ -49,15 +49,15 @@ class CommentairesController < ApplicationController
     # Find a way to put it in the model despite the access from request view
     changed = {}
     %w{statut_id ingenieur_id severite_id}.each do |attr|
-      changed[attr] = true unless commentaire[attr].blank?
+      changed[attr] = true unless comment[attr].blank?
     end
-    if (changed[:statut_id] or changed[:severite_id]) and params[:commentaire][:prive]
-      params[:commentaire][:prive] = false
+    if (changed[:statut_id] or changed[:severite_id]) and params[:comment][:private]
+      params[:comment][:private] = false
       flash[:warn] = _("A comment can not be private if there is a change in<br/>
         the <b>status</b> or in the <b>severity</b>")
     end
 
-    @comment = Commentaire.new(commentaire) do |c|
+    @comment = Comment.new(comment) do |c|
       c.request, c.user = request, user
       c.add_attachment(params)
     end
@@ -68,7 +68,7 @@ class CommentairesController < ApplicationController
     if @comment.save
       flash[:notice] = _("Your comment was successfully added.")
       url_attachment = render_to_string(:layout => false, :template => '/attachment')
-      options = { :request_tosca => request, :commentaire => @comment,
+      options = { :request_tosca => request, :comment => @comment,
         :name => user.name, :modifications => changed,
         :url_request => request_url(request),
         :url_attachment => url_attachment
@@ -77,7 +77,7 @@ class CommentairesController < ApplicationController
     else
       flash[:warn] = _("An error has occured.") + '<br/>' +
         @comment.errors.full_messages.join('<br/>')
-      flash[:old_body] = @comment.corps
+      flash[:old_body] = @comment.text
     end
 
     redirect_to request_path(request)
@@ -93,18 +93,18 @@ class CommentairesController < ApplicationController
   end
 
   def edit
-    @commentaire = Commentaire.find(params[:id])
+    @comment = Comment.find(params[:id])
     return if _not_allowed?
-    # @commentaire.errors.clear
+    # @comment.errors.clear
     _form
   end
 
   def update
-    @commentaire = Commentaire.find(params[:id])
+    @comment = Comment.find(params[:id])
     return if _not_allowed?
-    if @commentaire.update_attributes(params[:commentaire])
+    if @comment.update_attributes(params[:comment])
       flash[:notice] = _("The comment was successfully updated.")
-      redirect_to commentaire_path(@commentaire)
+      redirect_to comment_path(@comment)
     else
       _form and render :action => 'edit'
     end
@@ -112,9 +112,9 @@ class CommentairesController < ApplicationController
 
   def destroy
     return redirect_to_home unless params[:id]
-    commentaire = Commentaire.find(params[:id])
-    request = commentaire.request_id
-    if commentaire.destroy
+    comment = Comment.find(params[:id])
+    request = comment.request_id
+    if comment.destroy
       flash[:notice] = _("The comment was successfully destroyed.")
     else
       flash[:warn] = _('You cannot delete the first comment')
@@ -130,9 +130,9 @@ class CommentairesController < ApplicationController
   end
 
   def _not_allowed?
-    if @recipient and @commentaire.user_id != @recipient.user_id
+    if @recipient and @comment.user_id != @recipient.user_id
       flash[:warn] = _('You are not allowed to edit this comment')
-      redirect_to request_path(@commentaire.request)
+      redirect_to request_path(@comment.request)
       return true
     end
     false

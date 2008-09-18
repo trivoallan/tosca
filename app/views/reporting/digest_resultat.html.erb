@@ -25,7 +25,7 @@
               <%= logo_client(com_user.recipient.client, :small) %>
             <% else %>
               <%= StaticImage::logo_service_small %>
-            <% end %> : <%= digest_text(com.corps, 120) %>
+            <% end %> : <%= digest_text(com.text, 120) %>
           </li>
         <% end %>
 

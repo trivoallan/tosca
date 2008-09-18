@@ -1331,47 +1331,47 @@ msgid "commentaire"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Request"
+msgid "Comment|Request"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|User"
+msgid "Comment|User"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Attachment"
+msgid "Comment|Attachment"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Corps"
+msgid "Comment|Corps"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Created on"
+msgid "Comment|Created on"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Updated on"
+msgid "Comment|Updated on"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Prive"
+msgid "Comment|Prive"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Severite"
+msgid "Comment|Severite"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Statut"
+msgid "Comment|Statut"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Ingenieur"
+msgid "Comment|Ingenieur"
 msgstr ""
 
 #: app/models/commentaire.rb:-
-msgid "Commentaire|Elapsed"
+msgid "Comment|Elapsed"
 msgstr ""
 
 #: app/models/commentaire.rb:28

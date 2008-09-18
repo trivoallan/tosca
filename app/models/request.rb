@@ -41,8 +41,8 @@ class Request < ActiveRecord::Base
   belongs_to :socle
 
   has_many :phonecalls
-  has_many :commentaires, :order => "created_on ASC", :dependent => :destroy
-  has_many :attachments, :through => :commentaires
+  has_many :comments, :order => "created_on ASC", :dependent => :destroy
+  has_many :attachments, :through => :comments
 
   named_scope :actives, lambda { |contract_ids| { :conditions =>
       { :statut_id => Statut::OPENED, :contract_id => contract_ids }
@@ -61,10 +61,10 @@ class Request < ActiveRecord::Base
 
   # Key pointers to the request history
   # /!\ used to store the description /!\
-  belongs_to :first_comment, :class_name => "Commentaire",
+  belongs_to :first_comment, :class_name => "Comment",
     :foreign_key => "first_comment_id"
   # /!\ the last _public_ comment /!\
-  belongs_to :last_comment, :class_name => "Commentaire",
+  belongs_to :last_comment, :class_name => "Comment",
     :foreign_key => "last_comment_id"
 
   # Validation
@@ -115,7 +115,7 @@ class Request < ActiveRecord::Base
     write_attribute(:contract_id, new_id)
     self.contract = new_contract
     if rules_changed
-      self.commentaires.each { |c| c.update_attribute :elapsed, 0 }
+      self.comments.each { |c| c.update_attribute :elapsed, 0 }
       self.reset_elapsed
     end
   end
@@ -166,21 +166,21 @@ class Request < ActiveRecord::Base
   end
 
   def find_other_comment(comment_id)
-    cond = [ 'commentaires.prive <> 1 AND commentaires.id <> ?', comment_id ]
-    self.commentaires.find(:first, :conditions => cond)
+    cond = [ 'comments.private <> 1 AND comments.id <> ?', comment_id ]
+    self.comments.find(:first, :conditions => cond)
   end
 
   def find_status_comment_before(comment)
     options = { :order => 'created_on DESC', :conditions =>
-      [ 'commentaires.statut_id IS NOT NULL AND commentaires.created_on < ?',
+      [ 'comments.statut_id IS NOT NULL AND comments.created_on < ?',
         comment.created_on ]}
-    self.commentaires.find(:first, options)
+    self.comments.find(:first, options)
   end
 
   def last_status_comment
     options = { :order => 'created_on DESC', :conditions =>
-      'commentaires.statut_id IS NOT NULL' }
-    self.commentaires.find(:first, options)
+      'comments.statut_id IS NOT NULL' }
+    self.comments.find(:first, options)
   end
 
   def time_running?
@@ -204,7 +204,7 @@ class Request < ActiveRecord::Base
   # DB performance reason : it's easier to be fast without black hole
   # like TEXT column
   def description
-    (first_comment ? first_comment.corps : @description)
+    (first_comment ? first_comment.text : @description)
   end
 
   # /!\ Dirty Hack Warning /!\
@@ -240,13 +240,13 @@ class Request < ActiveRecord::Base
 
     options = {:conditions => ["statut_id IS NOT NULL AND created_on <= ?", t],
       :order => "created_on DESC" }
-    statut_id = self.commentaires.find(:first, options).statut_id
+    statut_id = self.comments.find(:first, options).statut_id
 
     options[:conditions] = [ "severite_id IS NOT NULL AND created_on <= ?", t ]
-    severite_id = self.commentaires.find(:first, options).severite_id
+    severite_id = self.comments.find(:first, options).severite_id
 
     options[:conditions] = [ "ingenieur_id IS NOT NULL AND created_on <= ?", t ]
-    com_ingenieur = self.commentaires.find(:first, options)
+    com_ingenieur = self.comments.find(:first, options)
     ingenieur_id = com_ingenieur ? com_ingenieur.ingenieur_id : nil
 
     result = self.clone
@@ -281,16 +281,16 @@ class Request < ActiveRecord::Base
     self.class.record_timestamps = false
     rule = self.contract.rule
     self.elapsed = Elapsed.new(self)
-    options = { :conditions => 'commentaires.statut_id IS NOT NULL',
-      :order => "commentaires.created_on ASC" }
-    life_cycle = self.commentaires.find(:all, options)
+    options = { :conditions => 'comments.statut_id IS NOT NULL',
+      :order => "comments.created_on ASC" }
+    life_cycle = self.comments.find(:all, options)
 
     # first one is different : it's the submission of the request
     life_cycle.first.update_attribute :elapsed, rule.elapsed_on_create
 
     # all the others
     previous, contract = life_cycle.first, self.contract
-    life_cycle.each do |step| # a step is a Commentaire object
+    life_cycle.each do |step| # a step is a Comment object
       step.update_attribute :elapsed, rule.compute_between(previous, step, contract)
       self.elapsed.add step
       previous = step
@@ -320,9 +320,9 @@ class Request < ActiveRecord::Base
 
   private
   def create_first_comment
-    self.first_comment = Commentaire.new do |c|
+    self.first_comment = Comment.new do |c|
       #We use id's because it's quicker
-      c.corps = self.description
+      c.text = self.description
       c.ingenieur_id = self.ingenieur_id
       c.request = self
       c.severite_id = self.severite_id

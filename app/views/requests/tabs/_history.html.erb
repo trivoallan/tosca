@@ -9,7 +9,7 @@
   </tr>
 
   <% contract, rule = nil, nil %>
-  <% @commentaires.each do |c| %>
+  <% @comments.each do |c| %>
      <% contract ||= c.request.contract %>
      <% rule ||= contract.rule %>
      <% history = display_history(c, rule, contract) %>

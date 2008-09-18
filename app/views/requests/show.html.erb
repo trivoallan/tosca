@@ -20,11 +20,11 @@
    </h1>
 
    <%= render(:partial => 'requests/tabs/comment', :locals =>
-         { :comment => @last_commentaire }) %>
+         { :comment => @last_comment }) %>
 
    <div>
-    <% if session[:user].authorized? "commentaires/comment" %>
-     <% action = comment_commentaire_path(@request_tosca) %>
+    <% if session[:user].authorized? "comments/comment" %>
+     <% action = comment_comment_path(@request_tosca) %>
      <% form_tag(action, :method => :post, :multipart => true) do %>
       <%= render :partial => 'comment_form' %>
       <p>&nbsp;</p>

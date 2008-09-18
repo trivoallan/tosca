@@ -141,7 +141,7 @@ msgstr "Clients inactifs"
 msgid "Active clients"
 msgstr "Clients actifs"
 
-#: app/controllers/commentaires_controller.rb:56
+#: app/controllers/comments_controller.rb:56
 msgid ""
 "A comment can not be private if there is a change in<br/>\n"
 "        the <b>status</b> or in the <b>severity</b>"
@@ -149,27 +149,27 @@ msgstr ""
 "Un commentaire ne peut être privé s'il y a un changement<br/>\\n\"\n"
 "\"        du <b>statut</b> ou de la <b>sévérité</b>\""
 
-#: app/controllers/commentaires_controller.rb:69
+#: app/controllers/comments_controller.rb:69
 msgid "Your comment was successfully added."
 msgstr "Votre commentaire a été créé avec succès."
 
-#: app/controllers/commentaires_controller.rb:78
+#: app/controllers/comments_controller.rb:78
 msgid "An error has occured."
 msgstr "Une erreur est survenue"
 
-#: app/controllers/commentaires_controller.rb:106
+#: app/controllers/comments_controller.rb:106
 msgid "The comment was successfully updated."
 msgstr "Le commentaire a été mis à jour avec succès."
 
-#: app/controllers/commentaires_controller.rb:118
+#: app/controllers/comments_controller.rb:118
 msgid "The comment was successfully destroyed."
 msgstr "Le commentaire a été détruit avec succès."
 
-#: app/controllers/commentaires_controller.rb:120
+#: app/controllers/comments_controller.rb:120
 msgid "You cannot delete the first comment"
 msgstr "Vous ne pouvez effacer le premier commentaire"
 
-#: app/controllers/commentaires_controller.rb:134
+#: app/controllers/comments_controller.rb:134
 msgid "You are not allowed to edit this comment"
 msgstr "Vous n'êtes pas autorisé à modifier ce commentaire"
 
@@ -828,23 +828,23 @@ msgstr "N'afficher que les clients actifs"
 msgid "Display only inactive clients"
 msgstr "N'afficher que les clients inactifs"
 
-#: app/helpers/commentaires_helper.rb:32
+#: app/helpers/comments_helper.rb:32
 msgid "This request has been taken into account by %s."
 msgstr "Cette demande a été prise en compte par %s."
 
-#: app/helpers/commentaires_helper.rb:34
+#: app/helpers/comments_helper.rb:34
 msgid "This request has been assigned to %s by %s."
 msgstr "Cette demande a été prise en charge par %s."
 
-#: app/helpers/commentaires_helper.rb:40
+#: app/helpers/comments_helper.rb:40
 msgid "This request has been changed in %s by %s."
 msgstr "Cette demande a été %s par %s."
 
-#: app/helpers/commentaires_helper.rb:45
+#: app/helpers/comments_helper.rb:45
 msgid "This request has been requalified in %s by %s."
 msgstr "Cette demande a été requalifiée en %s par %s."
 
-#: app/helpers/commentaires_helper.rb:51
+#: app/helpers/comments_helper.rb:51
 msgid "%s has been spent by %s on this request."
 msgstr "%s se sont écoulé(e)s sur cette demande."
 
@@ -1352,83 +1352,83 @@ msgid "Cannot (de)activate associated recipients due to : \"%s\""
 msgstr ""
 "Ne peut pas (dés)activer les bénéficiaires associés à cause de : \"%s\""
 
-#: app/models/commentaire.rb:-
-msgid "commentaire"
+#: app/models/comment.rb:-
+msgid "comment"
 msgstr "commentaire"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Request"
+#: app/models/comment.rb:-
+msgid "Comment|Request"
 msgstr "Request"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|User"
+#: app/models/comment.rb:-
+msgid "Comment|User"
 msgstr "Utilisateur"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Attachment"
+#: app/models/comment.rb:-
+msgid "Comment|Attachment"
 msgstr "Fichier joint"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Corps"
+#: app/models/comment.rb:-
+msgid "Comment|Corps"
 msgstr "Corps"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Created on"
+#: app/models/comment.rb:-
+msgid "Comment|Created on"
 msgstr "Créé le"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Updated on"
+#: app/models/comment.rb:-
+msgid "Comment|Updated on"
 msgstr "Mis à jour le"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Prive"
+#: app/models/comment.rb:-
+msgid "Comment|Prive"
 msgstr "Privé"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Severite"
+#: app/models/comment.rb:-
+msgid "Comment|Severite"
 msgstr "Sévérité"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Statut"
+#: app/models/comment.rb:-
+msgid "Comment|Statut"
 msgstr "Statut"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Ingenieur"
+#: app/models/comment.rb:-
+msgid "Comment|Ingenieur"
 msgstr "Ingénieur"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Elapsed"
+#: app/models/comment.rb:-
+msgid "Comment|Elapsed"
 msgstr "Passé"
 
-#: app/models/commentaire.rb:28
+#: app/models/comment.rb:28
 msgid "You must have a comment with at least 5 characters"
 msgstr "Votre commentaire doit au moins avoir 5 caractères"
 
-#: app/models/commentaire.rb:34
+#: app/models/comment.rb:34
 msgid "You must indicate a valid request"
 msgstr "Vous devez indiquer une demande valide"
 
-#: app/models/commentaire.rb:40
+#: app/models/comment.rb:40
 msgid "The status of this request has already been changed."
 msgstr "Le statut de cette demande a déjà été changé."
 
-#: app/models/commentaire.rb:43
+#: app/models/comment.rb:43
 msgid "You cannot privately change the status"
 msgstr "Vous ne pouvez changer le statut avec un commentaire privé"
 
-#: app/models/commentaire.rb:49
+#: app/models/comment.rb:49
 msgid "The request is now %s."
 msgstr "La demande est désormais %s."
 
-#: app/models/commentaire.rb:55
+#: app/models/comment.rb:55
 msgid "private"
 msgstr "privé"
 
-#: app/models/commentaire.rb:55
+#: app/models/comment.rb:55
 msgid "public"
 msgstr "public"
 
-#: app/models/commentaire.rb:97
+#: app/models/comment.rb:97
 msgid "This request seems to be unstable."
 msgstr "Cette demande semble être inconsistante."
 
@@ -2395,7 +2395,7 @@ msgstr "Modifier %s"
 #: app/views/account/edit.html.erb:6 app/views/account/login.html.erb:18
 #: app/views/account/signup.html.erb:6 app/views/alerts/index.html.erb:6
 #: app/views/archives/edit.html.erb:5 app/views/archives/new.html.erb:5
-#: app/views/commentaires/edit.html.erb:5
+#: app/views/comments/edit.html.erb:5
 #: app/views/commitments/edit.html.erb:5
 #: app/views/contracts/supported_software.html.erb:46
 #: app/views/contributions/edit.html.erb:6 app/views/documents/edit.html.erb:6
@@ -2731,7 +2731,7 @@ msgstr "système"
 #: app/views/clients/show.html.erb:56 app/helpers/commitments_helper.rb:35
 #: app/helpers/commitments_helper.rb:87 app/helpers/engagements_helper.rb:35
 #: app/helpers/engagements_helper.rb:87 app/views/account/_menu.html.erb:12
-#: app/views/commentaires/index.html.erb:5
+#: app/views/comments/index.html.erb:5
 #: app/views/contributions/_contributions_admin.html.erb:7
 #: app/views/logiciels/show.html.erb:52 app/views/phonecalls/show.html.erb:8
 msgid "Request"
@@ -2743,47 +2743,47 @@ msgstr[1] "Requests"
 msgid "Statistics by clients"
 msgstr "Statistiques par clients"
 
-#: app/views/commentaires/_form.html.erb:3
+#: app/views/comments/_form.html.erb:3
 msgid "Write your comment here"
 msgstr "Écrivez votre commentaire ici"
 
-#: app/views/commentaires/_form.html.erb:7
+#: app/views/comments/_form.html.erb:7
 msgid "Is this comment private ?"
 msgstr "Est ce que ce commentaire est privé ?"
 
-#: app/views/commentaires/_form.html.erb:11
+#: app/views/comments/_form.html.erb:11
 msgid "You may also add a file"
 msgstr "Vous pouvez aussi ajouter un fichier"
 
-#: app/views/commentaires/edit.html.erb:1
+#: app/views/comments/edit.html.erb:1
 msgid "Edit a comment"
 msgstr "Éditer un commentaire"
 
-#: app/views/commentaires/edit.html.erb:10
-#: app/views/commentaires/show.html.erb:9
+#: app/views/comments/edit.html.erb:10
+#: app/views/comments/show.html.erb:9
 msgid "Return to the request"
 msgstr "Retour à la demande"
 
-#: app/views/commentaires/index.html.erb:1
+#: app/views/comments/index.html.erb:1
 msgid "List of the comments"
 msgstr "Liste des commentaires"
 
-#: app/views/commentaires/index.html.erb:3
-#: app/views/commentaires/index.html.erb:15
+#: app/views/comments/index.html.erb:3
+#: app/views/comments/index.html.erb:15
 msgid "a comment"
 msgstr "un commentaire"
 
-#: app/views/commentaires/index.html.erb:5
+#: app/views/comments/index.html.erb:5
 msgid "Body"
 msgstr "Corps"
 
-#: app/views/commentaires/index.html.erb:5
+#: app/views/comments/index.html.erb:5
 #: app/views/requests/_infos_request.html.erb:56
 #: app/views/requests/tabs/_attachments.html.erb:5
 msgid "Created on"
 msgstr "Créé le"
 
-#: app/views/commentaires/index.html.erb:5
+#: app/views/comments/index.html.erb:5
 #: app/views/contributions/_contributions_admin.html.erb:8
 #: app/views/requests/_infos_request.html.erb:57
 #: app/views/requests/lists/_requests_table.html.erb:18

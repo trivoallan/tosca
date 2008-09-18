@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Commentaire < ActiveRecord::Base
+class Comment < ActiveRecord::Base
   belongs_to :request
   belongs_to :user
   belongs_to :attachment
@@ -24,7 +24,7 @@ class Commentaire < ActiveRecord::Base
   belongs_to :severite
   belongs_to :ingenieur
 
-  validates_length_of :corps, :minimum => 5,
+  validates_length_of :text, :minimum => 5,
     :warn => _('You must have a comment with at least 5 characters')
   validates_presence_of :user
 
@@ -39,20 +39,20 @@ class Commentaire < ActiveRecord::Base
         record.new_record?)
       record.errors.add_to_base _('The status of this request has already been changed.')
     end
-    if (record.statut_id && record.prive)
+    if (record.statut_id && record.private)
       record.errors.add_to_base _('You cannot privately change the status')
     end
   end
   
   before_validation do |record|
-    if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and html2text(record.corps).strip.empty?
-      record.corps = _("The request is now %s.") % record.statut.name
+    if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and html2text(record.text).strip.empty?
+      record.text = _("The request is now %s.") % record.statut.name
     end
   end
 
   # State in words of the comment (private or public)
   def etat
-    ( prive ? _("private") : _("public") )
+    ( private ? _("private") : _("public") )
   end
 
   # Used for outgoing mails feature, to keep track of the request.
@@ -69,7 +69,7 @@ class Commentaire < ActiveRecord::Base
     attachment = params[:attachment]
     return false unless attachment and !attachment[:file].blank?
     attachment = Attachment.new(attachment)
-    attachment.commentaire = self
+    attachment.comment = self
     attachment.save and self.update_attribute(:attachment_id, attachment.id)
   end
 
@@ -91,7 +91,7 @@ class Commentaire < ActiveRecord::Base
     # Updating last_comment pointer
     # TODO : Is this last_comment pointer really needed ?
     # Since we have the view cache, it does not seem pertinent, now
-    if !self.prive and request.last_comment_id == self.id
+    if !self.private and request.last_comment_id == self.id
       last_comment = request.find_other_comment(self.id)
       if !last_comment
         self.errors.add_to_base(_('This request seems to be unstable.'))
@@ -111,8 +111,8 @@ class Commentaire < ActiveRecord::Base
 
     request = self.request
     options = { :order => 'created_on DESC', :conditions =>
-      'commentaires.statut_id IS NOT NULL' }
-    last_one = request.commentaires.find(:first, options)
+      'comments.statut_id IS NOT NULL' }
+    last_one = request.comments.find(:first, options)
     return true unless last_one
     request.update_attribute(:statut_id, last_one.statut_id)
   end
@@ -150,7 +150,7 @@ class Commentaire < ActiveRecord::Base
     end
     request.elapsed.add(self)
 
-    request.last_comment_id = self.id unless self.prive
+    request.last_comment_id = self.id unless self.private
 
     request.save
   end

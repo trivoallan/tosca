@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
   has_many :attachments
   has_many :documents
-  has_many :commentaires
+  has_many :comments
 
   has_one :ingenieur, :dependent => :destroy
   has_one :recipient, :dependent => :destroy

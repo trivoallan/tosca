@@ -136,33 +136,33 @@ msgstr ""
 msgid "Active clients"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:56
+#: app/controllers/comments_controller.rb:56
 msgid ""
 "A comment can not be private if there is a change in<br/>\n"
 "        the <b>status</b> or in the <b>severity</b>"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:69
+#: app/controllers/comments_controller.rb:69
 msgid "Your comment was successfully added."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:78
+#: app/controllers/comments_controller.rb:78
 msgid "An error has occured."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:106
+#: app/controllers/comments_controller.rb:106
 msgid "The comment was successfully updated."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:118
+#: app/controllers/comments_controller.rb:118
 msgid "The comment was successfully destroyed."
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:120
+#: app/controllers/comments_controller.rb:120
 msgid "You cannot delete the first comment"
 msgstr ""
 
-#: app/controllers/commentaires_controller.rb:134
+#: app/controllers/comments_controller.rb:134
 msgid "You are not allowed to edit this comment"
 msgstr ""
 
@@ -808,23 +808,23 @@ msgstr ""
 msgid "Display only inactive clients"
 msgstr ""
 
-#: app/helpers/commentaires_helper.rb:32
+#: app/helpers/comments_helper.rb:32
 msgid "This request has been taken into account by %s."
 msgstr ""
 
-#: app/helpers/commentaires_helper.rb:34
+#: app/helpers/comments_helper.rb:34
 msgid "This request has been assigned to %s by %s."
 msgstr ""
 
-#: app/helpers/commentaires_helper.rb:40
+#: app/helpers/comments_helper.rb:40
 msgid "This request has been changed in %s by %s."
 msgstr ""
 
-#: app/helpers/commentaires_helper.rb:45
+#: app/helpers/comments_helper.rb:45
 msgid "This request has been requalified in %s by %s."
 msgstr ""
 
-#: app/helpers/commentaires_helper.rb:51
+#: app/helpers/comments_helper.rb:51
 msgid "%s has been spent by %s on this request."
 msgstr ""
 
@@ -1330,83 +1330,83 @@ msgstr ""
 msgid "Cannot (de)activate associated recipients due to : \"%s\""
 msgstr ""
 
-#: app/models/commentaire.rb:-
-msgid "commentaire"
+#: app/models/comment.rb:-
+msgid "comment"
 msgstr ""
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Request"
+#: app/models/comment.rb:-
+msgid "Comment|Request"
 msgstr ""
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|User"
+#: app/models/comment.rb:-
+msgid "Comment|User"
 msgstr "User"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Attachment"
+#: app/models/comment.rb:-
+msgid "Comment|Attachment"
 msgstr ""
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Corps"
+#: app/models/comment.rb:-
+msgid "Comment|Corps"
 msgstr ""
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Created on"
+#: app/models/comment.rb:-
+msgid "Comment|Created on"
 msgstr "Created on"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Updated on"
+#: app/models/comment.rb:-
+msgid "Comment|Updated on"
 msgstr "Updated on"
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Prive"
+#: app/models/comment.rb:-
+msgid "Comment|Prive"
 msgstr ""
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Severite"
+#: app/models/comment.rb:-
+msgid "Comment|Severite"
 msgstr ""
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Statut"
+#: app/models/comment.rb:-
+msgid "Comment|Statut"
 msgstr ""
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Ingenieur"
+#: app/models/comment.rb:-
+msgid "Comment|Ingenieur"
 msgstr ""
 
-#: app/models/commentaire.rb:-
-msgid "Commentaire|Elapsed"
+#: app/models/comment.rb:-
+msgid "Comment|Elapsed"
 msgstr "Elapsed"
 
-#: app/models/commentaire.rb:28
+#: app/models/comment.rb:28
 msgid "You must have a comment with at least 5 characters"
 msgstr ""
 
-#: app/models/commentaire.rb:34
+#: app/models/comment.rb:34
 msgid "You must indicate a valid request"
 msgstr ""
 
-#: app/models/commentaire.rb:40
+#: app/models/comment.rb:40
 msgid "The status of this request has already been changed."
 msgstr ""
 
-#: app/models/commentaire.rb:43
+#: app/models/comment.rb:43
 msgid "You cannot privately change the status"
 msgstr ""
 
-#: app/models/commentaire.rb:49
+#: app/models/comment.rb:49
 msgid "The request is now %s."
 msgstr ""
 
-#: app/models/commentaire.rb:55
+#: app/models/comment.rb:55
 msgid "private"
 msgstr ""
 
-#: app/models/commentaire.rb:55
+#: app/models/comment.rb:55
 msgid "public"
 msgstr ""
 
-#: app/models/commentaire.rb:97
+#: app/models/comment.rb:97
 msgid "This request seems to be unstable."
 msgstr ""
 
@@ -2372,7 +2372,7 @@ msgstr ""
 #: app/views/account/edit.html.erb:6 app/views/account/login.html.erb:18
 #: app/views/account/signup.html.erb:6 app/views/alerts/index.html.erb:6
 #: app/views/archives/edit.html.erb:5 app/views/archives/new.html.erb:5
-#: app/views/commentaires/edit.html.erb:5
+#: app/views/comments/edit.html.erb:5
 #: app/views/commitments/edit.html.erb:5
 #: app/views/contracts/supported_software.html.erb:46
 #: app/views/contributions/edit.html.erb:6 app/views/documents/edit.html.erb:6
@@ -2708,7 +2708,7 @@ msgstr ""
 #: app/views/clients/show.html.erb:56 app/helpers/commitments_helper.rb:35
 #: app/helpers/commitments_helper.rb:87 app/helpers/engagements_helper.rb:35
 #: app/helpers/engagements_helper.rb:87 app/views/account/_menu.html.erb:12
-#: app/views/commentaires/index.html.erb:5
+#: app/views/comments/index.html.erb:5
 #: app/views/contributions/_contributions_admin.html.erb:7
 #: app/views/logiciels/show.html.erb:52 app/views/phonecalls/show.html.erb:8
 msgid "Request"
@@ -2720,47 +2720,47 @@ msgstr[1] ""
 msgid "Statistics by clients"
 msgstr ""
 
-#: app/views/commentaires/_form.html.erb:3
+#: app/views/comments/_form.html.erb:3
 msgid "Write your comment here"
 msgstr ""
 
-#: app/views/commentaires/_form.html.erb:7
+#: app/views/comments/_form.html.erb:7
 msgid "Is this comment private ?"
 msgstr ""
 
-#: app/views/commentaires/_form.html.erb:11
+#: app/views/comments/_form.html.erb:11
 msgid "You may also add a file"
 msgstr ""
 
-#: app/views/commentaires/edit.html.erb:1
+#: app/views/comments/edit.html.erb:1
 msgid "Edit a comment"
 msgstr ""
 
-#: app/views/commentaires/edit.html.erb:10
-#: app/views/commentaires/show.html.erb:9
+#: app/views/comments/edit.html.erb:10
+#: app/views/comments/show.html.erb:9
 msgid "Return to the request"
 msgstr ""
 
-#: app/views/commentaires/index.html.erb:1
+#: app/views/comments/index.html.erb:1
 msgid "List of the comments"
 msgstr ""
 
-#: app/views/commentaires/index.html.erb:3
-#: app/views/commentaires/index.html.erb:15
+#: app/views/comments/index.html.erb:3
+#: app/views/comments/index.html.erb:15
 msgid "a comment"
 msgstr ""
 
-#: app/views/commentaires/index.html.erb:5
+#: app/views/comments/index.html.erb:5
 msgid "Body"
 msgstr ""
 
-#: app/views/commentaires/index.html.erb:5
+#: app/views/comments/index.html.erb:5
 #: app/views/requests/_infos_request.html.erb:56
 #: app/views/requests/tabs/_attachments.html.erb:5
 msgid "Created on"
 msgstr ""
 
-#: app/views/commentaires/index.html.erb:5
+#: app/views/comments/index.html.erb:5
 #: app/views/contributions/_contributions_admin.html.erb:8
 #: app/views/requests/_infos_request.html.erb:57
 #: app/views/requests/lists/_requests_table.html.erb:18

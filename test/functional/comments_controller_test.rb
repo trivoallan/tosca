@@ -17,24 +17,24 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'commentaires_controller'
+require 'comments_controller'
 
 # Re-raise errors caught by the controller.
-class CommentairesController; def rescue_action(e) raise e end; end
+class CommentsController; def rescue_action(e) raise e end; end
 
 # TODO : As of Rails 2.0.2, the "setup" method is broken
 #
 # When it will be possible, this one can migrate into ActionController::TestCase
 # and validate within the test suite the _not_allowed? effect of the
-# CommentaireController
-class CommentairesControllerTest < Test::Unit::TestCase
-  fixtures :commentaires, :requests, :recipients, :users,
+# CommentController
+class CommentsControllerTest < Test::Unit::TestCase
+  fixtures :comments, :requests, :recipients, :users,
   :permissions, :roles, :permissions_roles, :ingenieurs,
   :statuts, :clients, :credits, :components, :contracts, :contracts_users
 
   def setup
-    @controller = CommentairesController.new
-    @request_tosca    = ActionController::TestRequest.new
+    @controller = CommentsController.new
+    @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
@@ -56,7 +56,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:commentaires)
+    assert_not_nil assigns(:comments)
   end
 
   def test_show
@@ -65,8 +65,8 @@ class CommentairesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:commentaire)
-    assert assigns(:commentaire)
+    assert_not_nil assigns(:comment)
+    assert assigns(:comment)
   end
 
   def test_edit
@@ -75,19 +75,19 @@ class CommentairesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:commentaire)
-    assert assigns(:commentaire)
+    assert_not_nil assigns(:comment)
+    assert assigns(:comment)
   end
 
   def test_update
     post :update, {
       :id => 1,
-      :commentaire => {
+      :comment => {
         :request_id => 1,
         :user_id => 2,
         :attachment_id => 1,
-        :corps => 'Voici un autre commentaire',
-        :prive => 0,
+        :text => 'Voici un autre comment',
+        :private => 0,
         :created_on => '2006-09-21 08:19:30',
         :updated_on => '2007-07-12 14:21:17',
         :severite_id => 1,
@@ -109,9 +109,9 @@ class CommentairesControllerTest < Test::Unit::TestCase
     old_statut_id = Request.find(1).statut_id
 
     post(:comment, { :id => "2-une-autre-requests",
-      :commentaire => {
-        "corps" => "promenons nous dans les bois",
-        "prive" => "0",
+      :comment => {
+        "text" => "promenons nous dans les bois",
+        "private" => "0",
         "ingenieur_id" => "",
         "severite_id" => "",
         "statut_id" => "3"
@@ -123,7 +123,7 @@ class CommentairesControllerTest < Test::Unit::TestCase
     # TODO : why it's not a success ????
     assert_response :redirect
     assert_redirected_to(:controller => "requests", :action => "show",
-                         :id => "2-Copie-d-une-question-dans-OOo")
+                         :id => "2-Copy-something-in-a-software")
 
     assert(Request.find(1).statut_id == old_statut_id)
   end

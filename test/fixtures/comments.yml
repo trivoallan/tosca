@@ -1,8 +1,8 @@
-commentaire_00001:
+comment_00001:
   created_on: 2008-01-01 00:00:01 +01:00
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-07 11:18:02 +02:00
-  prive: false
+  private: false
   ingenieur_id: 1
   request_id: 1
   id: 1
@@ -11,11 +11,11 @@ commentaire_00001:
   statut_id: 2
   user_id: 4
   attachment_id: 1
-commentaire_00002:
+comment_00002:
   created_on: 2008-01-01 00:00:01 +01:00
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-07 11:18:02 +02:00
-  prive: false
+  private: false
   ingenieur_id: 2
   request_id: 2
   id: 2
@@ -24,11 +24,11 @@ commentaire_00002:
   statut_id: 2
   user_id: 4
   attachment_id: 2
-commentaire_00003:
+comment_00003:
   created_on: 2008-01-01 00:00:02 +01:00
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-01-01 00:00:02 +01:00
-  prive: false
+  private: false
   ingenieur_id: 2
   request_id: 2
   id: 3
@@ -37,12 +37,12 @@ commentaire_00003:
   statut_id:
   user_id: 5
   attachment_id: 3
-commentaire_00004:
+comment_00004:
   created_on: 2008-04-16 16:55:46
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:30:14
   ingenieur_id: 2
-  prive: "0"
+  private: "0"
   request_id: "4"
   id: "7572"
   elapsed: "0"
@@ -50,12 +50,12 @@ commentaire_00004:
   statut_id: "1"
   user_id: "187"
   attachment_id:
-commentaire_00005:
+comment_00005:
   created_on: 2008-04-16 16:56:22
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:30:14
   ingenieur_id: "24"
-  prive: "0"
+  private: "0"
   request_id: "4"
   id: "7573"
   elapsed: "1"
@@ -63,12 +63,12 @@ commentaire_00005:
   statut_id: "2"
   user_id: "2"
   attachment_id:
-commentaire_00006:
+comment_00006:
   created_on: 2008-04-16 16:57:56
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-16 16:57:56
   ingenieur_id:
-  prive: "1"
+  private: "1"
   request_id: "4"
   id: "7574"
   elapsed: "0"
@@ -76,12 +76,12 @@ commentaire_00006:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00007:
+comment_00007:
   created_on: 2008-04-16 18:10:36
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-16 18:10:36
   ingenieur_id:
-  prive: "1"
+  private: "1"
   request_id: "4"
   id: "7581"
   elapsed: "0"
@@ -89,12 +89,12 @@ commentaire_00007:
   statut_id:
   user_id: "73"
   attachment_id:
-commentaire_00008:
+comment_00008:
   created_on: 2008-04-30 10:23:14
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:30:15
   ingenieur_id: "18"
-  prive: "0"
+  private: "0"
   request_id: "4"
   id: "7853"
   elapsed: "1"
@@ -102,12 +102,12 @@ commentaire_00008:
   statut_id: "3"
   user_id: "73"
   attachment_id:
-commentaire_00009:
+comment_00009:
   created_on: 2008-05-13 12:21:27
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-13 12:21:27
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "4"
   id: "7976"
   elapsed: "0"
@@ -115,12 +115,12 @@ commentaire_00009:
   statut_id:
   user_id: "73"
   attachment_id:
-commentaire_00010:
+comment_00010:
   created_on: 2008-04-23 16:37:53
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:30:18
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "7"
   id: "7736"
   elapsed: "0"
@@ -128,12 +128,12 @@ commentaire_00010:
   statut_id: "1"
   user_id: "232"
   attachment_id:
-commentaire_00011:
+comment_00011:
   created_on: 2008-04-23 16:41:21
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:30:18
   ingenieur_id: "38"
-  prive: "0"
+  private: "0"
   request_id: "7"
   id: "7737"
   elapsed: "208"
@@ -141,12 +141,12 @@ commentaire_00011:
   statut_id: "2"
   user_id: "2"
   attachment_id:
-commentaire_00012:
+comment_00012:
   created_on: 2008-04-23 17:51:34
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-23 17:53:38
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "7"
   id: "7739"
   elapsed: "0"
@@ -154,12 +154,12 @@ commentaire_00012:
   statut_id:
   user_id: "152"
   attachment_id:
-commentaire_00013:
+comment_00013:
   created_on: 2008-04-24 13:12:25
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-24 13:12:25
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "7"
   id: "7757"
   elapsed: "0"
@@ -167,12 +167,12 @@ commentaire_00013:
   statut_id:
   user_id: "232"
   attachment_id:
-commentaire_00014:
+comment_00014:
   created_on: 2008-04-24 16:04:35
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-24 16:04:35
   ingenieur_id:
-  prive: "1"
+  private: "1"
   request_id: "7"
   id: "7762"
   elapsed: "0"
@@ -180,12 +180,12 @@ commentaire_00014:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00015:
+comment_00015:
   created_on: 2008-04-24 16:15:56
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-24 16:15:56
   ingenieur_id:
-  prive: "1"
+  private: "1"
   request_id: "7"
   id: "7763"
   elapsed: "0"
@@ -193,12 +193,12 @@ commentaire_00015:
   statut_id:
   user_id: "152"
   attachment_id:
-commentaire_00016:
+comment_00016:
   created_on: 2008-04-24 16:28:58
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-24 16:28:58
   ingenieur_id:
-  prive: "1"
+  private: "1"
   request_id: "7"
   id: "7764"
   elapsed: "0"
@@ -206,12 +206,12 @@ commentaire_00016:
   statut_id:
   user_id: "152"
   attachment_id:
-commentaire_00017:
+comment_00017:
   created_on: 2008-04-25 16:34:53
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-25 16:34:53
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "7"
   id: "7784"
   elapsed: "0"
@@ -219,12 +219,12 @@ commentaire_00017:
   statut_id:
   user_id: "152"
   attachment_id:
-commentaire_00018:
+comment_00018:
   created_on: 2008-04-29 12:01:52
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:30:18
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "7"
   id: "7821"
   elapsed: "112831"
@@ -232,12 +232,12 @@ commentaire_00018:
   statut_id: "3"
   user_id: "152"
   attachment_id:
-commentaire_00019:
+comment_00019:
   created_on: 2008-04-29 16:47:34
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-29 16:47:34
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "7"
   id: "7834"
   elapsed: "0"
@@ -245,12 +245,12 @@ commentaire_00019:
   statut_id:
   user_id: "232"
   attachment_id:
-commentaire_00020:
+comment_00020:
   created_on: 2007-01-17 18:10:37
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id: "3"
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "2212"
   elapsed: "0"
@@ -258,12 +258,12 @@ commentaire_00020:
   statut_id: "1"
   user_id: "68"
   attachment_id:
-commentaire_00021:
+comment_00021:
   created_on: 2007-01-17 18:12:14
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id: "3"
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "658"
   elapsed: "97"
@@ -271,12 +271,12 @@ commentaire_00021:
   statut_id: "2"
   user_id: "1"
   attachment_id:
-commentaire_00022:
+comment_00022:
   created_on: 2007-01-17 18:17:43
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-17 18:17:43
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "659"
   elapsed: "0"
@@ -284,12 +284,12 @@ commentaire_00022:
   statut_id:
   user_id: "4"
   attachment_id:
-commentaire_00023:
+comment_00023:
   created_on: 2007-01-17 18:51:06
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id: "14"
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "2213"
   elapsed: "2332"
@@ -297,12 +297,12 @@ commentaire_00023:
   statut_id: "2"
   user_id: "4"
   attachment_id:
-commentaire_00024:
+comment_00024:
   created_on: 2007-01-18 12:34:58
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "5"
   elapsed: "20632"
@@ -310,12 +310,12 @@ commentaire_00024:
   statut_id: "4"
   user_id: "1"
   attachment_id:
-commentaire_00025:
+comment_00025:
   created_on: 2007-01-18 12:39:11
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "665"
   elapsed: "253"
@@ -323,12 +323,12 @@ commentaire_00025:
   statut_id: "3"
   user_id: "1"
   attachment_id:
-commentaire_00026:
+comment_00026:
   created_on: 2007-01-18 12:39:51
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id: "3"
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "2214"
   elapsed: "0"
@@ -336,12 +336,12 @@ commentaire_00026:
   statut_id: "3"
   user_id: "1"
   attachment_id:
-commentaire_00027:
+comment_00027:
   created_on: 2007-01-22 15:28:26
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-22 15:28:26
   ingenieur_id:
-  prive: "1"
+  private: "1"
   request_id: "8"
   id: "668"
   elapsed: "0"
@@ -349,12 +349,12 @@ commentaire_00027:
   statut_id:
   user_id: "1"
   attachment_id:
-commentaire_00028:
+comment_00028:
   created_on: 2007-01-23 10:37:23
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-23 10:37:23
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "670"
   elapsed: "0"
@@ -362,12 +362,12 @@ commentaire_00028:
   statut_id:
   user_id: "1"
   attachment_id:
-commentaire_00029:
+comment_00029:
   created_on: 2007-02-27 17:15:34
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "799"
   elapsed: "0"
@@ -375,12 +375,12 @@ commentaire_00029:
   statut_id: "6"
   user_id: "1"
   attachment_id:
-commentaire_00030:
+comment_00030:
   created_on: 2007-02-27 17:16:55
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:05
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "8"
   id: "800"
   elapsed: "0"
@@ -388,12 +388,12 @@ commentaire_00030:
   statut_id: "7"
   user_id: "1"
   attachment_id:
-commentaire_00031:
+comment_00031:
   created_on: 2007-12-04 08:49:26
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:57
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "4739"
   elapsed: "0"
@@ -401,12 +401,12 @@ commentaire_00031:
   statut_id: "1"
   user_id: "232"
   attachment_id:
-commentaire_00032:
+comment_00032:
   created_on: 2007-12-04 08:50:43
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:57
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "4740"
   elapsed: "77"
@@ -414,12 +414,12 @@ commentaire_00032:
   statut_id: "2"
   user_id: "1"
   attachment_id:
-commentaire_00033:
+comment_00033:
   created_on: 2007-12-04 08:52:10
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-12-04 08:52:10
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "4741"
   elapsed: "0"
@@ -427,12 +427,12 @@ commentaire_00033:
   statut_id:
   user_id: "1"
   attachment_id:
-commentaire_00034:
+comment_00034:
   created_on: 2007-12-04 09:23:08
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-12-04 09:23:08
   ingenieur_id: "31"
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "4743"
   elapsed: "0"
@@ -440,12 +440,12 @@ commentaire_00034:
   statut_id:
   user_id: "1"
   attachment_id:
-commentaire_00035:
+comment_00035:
   created_on: 2008-01-02 10:26:08
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-01-02 10:26:08
   ingenieur_id: "38"
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "5299"
   elapsed: "0"
@@ -453,12 +453,12 @@ commentaire_00035:
   statut_id:
   user_id: "3"
   attachment_id:
-commentaire_00036:
+comment_00036:
   created_on: 2008-01-07 17:29:18
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-01-07 17:29:18
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "5362"
   elapsed: "0"
@@ -466,12 +466,12 @@ commentaire_00036:
   statut_id:
   user_id: "152"
   attachment_id:
-commentaire_00037:
+comment_00037:
   created_on: 2008-01-07 18:18:03
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-01-07 18:18:03
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "5364"
   elapsed: "0"
@@ -479,12 +479,12 @@ commentaire_00037:
   statut_id:
   user_id: "152"
   attachment_id:
-commentaire_00038:
+comment_00038:
   created_on: 2008-02-07 14:18:23
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-02-07 14:18:23
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "6193"
   elapsed: "0"
@@ -492,12 +492,12 @@ commentaire_00038:
   statut_id:
   user_id: "11"
   attachment_id:
-commentaire_00039:
+comment_00039:
   created_on: 2008-02-07 16:51:30
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-02-07 16:51:30
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "6209"
   elapsed: "0"
@@ -505,12 +505,12 @@ commentaire_00039:
   statut_id:
   user_id: "232"
   attachment_id:
-commentaire_00040:
+comment_00040:
   created_on: 2008-03-27 14:42:51
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:58
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "7130"
   elapsed: "2580728"
@@ -518,12 +518,12 @@ commentaire_00040:
   statut_id: "3"
   user_id: "152"
   attachment_id:
-commentaire_00041:
+comment_00041:
   created_on: 2008-04-18 11:25:53
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-18 11:25:53
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "7651"
   elapsed: "0"
@@ -531,12 +531,12 @@ commentaire_00041:
   statut_id:
   user_id: "152"
   attachment_id:
-commentaire_00042:
+comment_00042:
   created_on: 2008-05-07 15:02:42
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-07 15:02:42
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "5"
   id: "7943"
   elapsed: "0"
@@ -544,12 +544,12 @@ commentaire_00042:
   statut_id:
   user_id: "265"
   attachment_id:
-commentaire_00043:
+comment_00043:
   created_on: 2008-02-18 10:26:04
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:29:52
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "6"
   id: "6406"
   elapsed: "0"
@@ -557,12 +557,12 @@ commentaire_00043:
   statut_id: "1"
   user_id: "214"
   attachment_id:
-commentaire_00044:
+comment_00044:
   created_on: 2008-02-18 10:28:03
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:29:52
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "6"
   id: "6407"
   elapsed: "119"
@@ -570,12 +570,12 @@ commentaire_00044:
   statut_id: "2"
   user_id: "273"
   attachment_id:
-commentaire_00045:
+comment_00045:
   created_on: 2008-02-18 15:14:17
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-02-18 15:14:17
   ingenieur_id:
-  prive: "1"
+  private: "1"
   request_id: "6"
   id: "6446"
   elapsed: "0"
@@ -583,12 +583,12 @@ commentaire_00045:
   statut_id:
   user_id: "4"
   attachment_id:
-commentaire_00046:
+comment_00046:
   created_on: 2008-04-07 20:30:48
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-04-07 20:30:48
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "6"
   id: "7359"
   elapsed: "0"
@@ -596,12 +596,12 @@ commentaire_00046:
   statut_id:
   user_id: "273"
   attachment_id:
-commentaire_00047:
+comment_00047:
   created_on: 2008-04-07 20:32:31
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:29:52
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "6"
   id: "7360"
   elapsed: "1137868"
@@ -609,12 +609,12 @@ commentaire_00047:
   statut_id: "3"
   user_id: "273"
   attachment_id:
-commentaire_00048:
+comment_00048:
   created_on: 2007-01-11 15:22:23
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id: "17"
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "2208"
   elapsed: "0"
@@ -622,12 +622,12 @@ commentaire_00048:
   statut_id: "2"
   user_id: "71"
   attachment_id:
-commentaire_00049:
+comment_00049:
   created_on: 2007-01-11 15:37:27
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-11 15:37:27
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "644"
   elapsed: "0"
@@ -635,12 +635,12 @@ commentaire_00049:
   statut_id:
   user_id: "71"
   attachment_id: "57"
-commentaire_00050:
+comment_00050:
   created_on: 2007-01-11 15:39:04
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-11 15:39:04
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "645"
   elapsed: "0"
@@ -648,12 +648,12 @@ commentaire_00050:
   statut_id:
   user_id: "71"
   attachment_id: "58"
-commentaire_00051:
+comment_00051:
   created_on: 2007-01-15 12:05:20
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-15 12:05:20
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "647"
   elapsed: "0"
@@ -661,12 +661,12 @@ commentaire_00051:
   statut_id:
   user_id: "72"
   attachment_id: "59"
-commentaire_00052:
+comment_00052:
   created_on: 2007-01-15 15:07:55
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-15 15:07:55
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "649"
   elapsed: "0"
@@ -674,12 +674,12 @@ commentaire_00052:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00053:
+comment_00053:
   created_on: 2007-01-19 11:55:11
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-19 11:55:11
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "666"
   elapsed: "0"
@@ -687,12 +687,12 @@ commentaire_00053:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00054:
+comment_00054:
   created_on: 2007-01-22 13:42:50
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-22 13:42:50
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "667"
   elapsed: "0"
@@ -700,12 +700,12 @@ commentaire_00054:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00055:
+comment_00055:
   created_on: 2007-01-23 11:34:52
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-23 11:34:52
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "672"
   elapsed: "0"
@@ -713,12 +713,12 @@ commentaire_00055:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00056:
+comment_00056:
   created_on: 2007-01-23 17:31:06
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-23 17:31:06
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "673"
   elapsed: "0"
@@ -726,12 +726,12 @@ commentaire_00056:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00057:
+comment_00057:
   created_on: 2007-01-23 18:58:29
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-23 18:58:29
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "674"
   elapsed: "0"
@@ -739,12 +739,12 @@ commentaire_00057:
   statut_id:
   user_id: "2"
   attachment_id: "60"
-commentaire_00058:
+comment_00058:
   created_on: 2007-01-24 11:03:40
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-24 11:03:40
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "675"
   elapsed: "0"
@@ -752,12 +752,12 @@ commentaire_00058:
   statut_id:
   user_id: "72"
   attachment_id:
-commentaire_00059:
+comment_00059:
   created_on: 2007-01-24 19:03:37
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-24 19:03:37
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "676"
   elapsed: "0"
@@ -765,12 +765,12 @@ commentaire_00059:
   statut_id:
   user_id: "2"
   attachment_id: "61"
-commentaire_00060:
+comment_00060:
   created_on: 2007-01-24 19:05:34
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-24 19:05:34
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "677"
   elapsed: "0"
@@ -778,12 +778,12 @@ commentaire_00060:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00061:
+comment_00061:
   created_on: 2007-01-25 10:24:57
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "678"
   elapsed: "1"
@@ -791,12 +791,12 @@ commentaire_00061:
   statut_id: "4"
   user_id: "2"
   attachment_id: "62"
-commentaire_00062:
+comment_00062:
   created_on: 2007-01-25 10:28:22
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "679"
   elapsed: "1"
@@ -804,12 +804,12 @@ commentaire_00062:
   statut_id: "3"
   user_id: "2"
   attachment_id:
-commentaire_00063:
+comment_00063:
   created_on: 2007-01-26 09:52:39
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-26 09:52:39
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "682"
   elapsed: "0"
@@ -817,12 +817,12 @@ commentaire_00063:
   statut_id:
   user_id: "72"
   attachment_id:
-commentaire_00064:
+comment_00064:
   created_on: 2007-01-26 10:31:38
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-26 10:31:38
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "683"
   elapsed: "0"
@@ -830,12 +830,12 @@ commentaire_00064:
   statut_id:
   user_id: "72"
   attachment_id:
-commentaire_00065:
+comment_00065:
   created_on: 2007-01-26 11:25:58
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "684"
   elapsed: "0"
@@ -843,12 +843,12 @@ commentaire_00065:
   statut_id: "2"
   user_id: "2"
   attachment_id:
-commentaire_00066:
+comment_00066:
   created_on: 2007-01-26 13:38:35
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "685"
   elapsed: "1"
@@ -856,12 +856,12 @@ commentaire_00066:
   statut_id: "4"
   user_id: "2"
   attachment_id:
-commentaire_00067:
+comment_00067:
   created_on: 2007-01-26 14:29:00
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-26 14:29:00
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "686"
   elapsed: "0"
@@ -869,12 +869,12 @@ commentaire_00067:
   statut_id:
   user_id: "2"
   attachment_id: "63"
-commentaire_00068:
+comment_00068:
   created_on: 2007-01-26 14:29:31
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-26 14:29:31
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "687"
   elapsed: "0"
@@ -882,12 +882,12 @@ commentaire_00068:
   statut_id:
   user_id: "2"
   attachment_id: "64"
-commentaire_00069:
+comment_00069:
   created_on: 2007-01-26 14:30:15
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "688"
   elapsed: "1"
@@ -895,12 +895,12 @@ commentaire_00069:
   statut_id: "3"
   user_id: "2"
   attachment_id:
-commentaire_00080:
+comment_00080:
   created_on: 2007-01-29 08:25:15
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-29 08:25:15
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "690"
   elapsed: "0"
@@ -908,12 +908,12 @@ commentaire_00080:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00081:
+comment_00081:
   created_on: 2007-01-29 08:26:42
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-29 08:26:42
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "691"
   elapsed: "0"
@@ -921,12 +921,12 @@ commentaire_00081:
   statut_id:
   user_id: "2"
   attachment_id: "65"
-commentaire_00082:
+comment_00082:
   created_on: 2007-01-29 08:28:01
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-01-29 08:28:01
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "692"
   elapsed: "0"
@@ -934,12 +934,12 @@ commentaire_00082:
   statut_id:
   user_id: "2"
   attachment_id: "66"
-commentaire_00083:
+comment_00083:
   created_on: 2007-03-08 18:09:16
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-08 18:09:16
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "852"
   elapsed: "0"
@@ -947,12 +947,12 @@ commentaire_00083:
   statut_id:
   user_id: "72"
   attachment_id: "98"
-commentaire_00084:
+comment_00084:
   created_on: 2007-03-08 18:10:09
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-08 18:10:09
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "853"
   elapsed: "0"
@@ -960,12 +960,12 @@ commentaire_00084:
   statut_id:
   user_id: "72"
   attachment_id: "99"
-commentaire_00085:
+comment_00085:
   created_on: 2007-03-08 18:10:54
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-08 18:10:54
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "854"
   elapsed: "0"
@@ -973,12 +973,12 @@ commentaire_00085:
   statut_id:
   user_id: "72"
   attachment_id: "100"
-commentaire_00086:
+comment_00086:
   created_on: 2007-03-09 12:07:11
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-09 12:07:11
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "859"
   elapsed: "0"
@@ -986,12 +986,12 @@ commentaire_00086:
   statut_id:
   user_id: "2"
   attachment_id: "101"
-commentaire_00087:
+comment_00087:
   created_on: 2007-03-09 12:08:20
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-09 12:08:20
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "860"
   elapsed: "0"
@@ -999,12 +999,12 @@ commentaire_00087:
   statut_id:
   user_id: "2"
   attachment_id: "102"
-commentaire_00088:
+comment_00088:
   created_on: 2007-03-09 12:14:00
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-09 12:24:48
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "861"
   elapsed: "0"
@@ -1012,12 +1012,12 @@ commentaire_00088:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00089:
+comment_00089:
   created_on: 2007-03-09 17:09:27
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-09 17:09:27
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "869"
   elapsed: "0"
@@ -1025,12 +1025,12 @@ commentaire_00089:
   statut_id:
   user_id: "72"
   attachment_id:
-commentaire_00090:
+comment_00090:
   created_on: 2007-03-09 18:33:17
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-09 18:33:17
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "873"
   elapsed: "0"
@@ -1038,12 +1038,12 @@ commentaire_00090:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00091:
+comment_00091:
   created_on: 2007-03-12 09:56:42
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-12 09:56:42
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "877"
   elapsed: "0"
@@ -1051,12 +1051,12 @@ commentaire_00091:
   statut_id:
   user_id: "72"
   attachment_id:
-commentaire_00092:
+comment_00092:
   created_on: 2007-03-12 10:08:50
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-12 10:08:50
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "878"
   elapsed: "0"
@@ -1064,12 +1064,12 @@ commentaire_00092:
   statut_id:
   user_id: "72"
   attachment_id:
-commentaire_00093:
+comment_00093:
   created_on: 2007-03-12 10:12:18
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-12 10:12:18
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "879"
   elapsed: "0"
@@ -1077,12 +1077,12 @@ commentaire_00093:
   statut_id:
   user_id: "2"
   attachment_id: "107"
-commentaire_00094:
+comment_00094:
   created_on: 2007-03-12 10:12:37
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id: "1"
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "2209"
   elapsed: "0"
@@ -1090,12 +1090,12 @@ commentaire_00094:
   statut_id: "3"
   user_id: "2"
   attachment_id:
-commentaire_00095:
+comment_00095:
   created_on: 2007-03-12 10:19:17
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-12 10:19:17
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "880"
   elapsed: "0"
@@ -1103,12 +1103,12 @@ commentaire_00095:
   statut_id:
   user_id: "2"
   attachment_id: "108"
-commentaire_00096:
+comment_00096:
   created_on: 2007-03-12 14:52:05
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-12 14:52:05
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "883"
   elapsed: "0"
@@ -1116,12 +1116,12 @@ commentaire_00096:
   statut_id:
   user_id: "72"
   attachment_id:
-commentaire_00097:
+comment_00097:
   created_on: 2007-03-12 15:55:15
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-12 15:55:15
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "884"
   elapsed: "0"
@@ -1129,12 +1129,12 @@ commentaire_00097:
   statut_id:
   user_id: "2"
   attachment_id: "109"
-commentaire_00098:
+comment_00098:
   created_on: 2007-03-12 15:56:05
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-12 15:56:05
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "885"
   elapsed: "0"
@@ -1142,12 +1142,12 @@ commentaire_00098:
   statut_id:
   user_id: "2"
   attachment_id: "110"
-commentaire_00099:
+comment_00099:
   created_on: 2007-03-12 15:57:12
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-12 15:57:12
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "886"
   elapsed: "0"
@@ -1155,12 +1155,12 @@ commentaire_00099:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00100:
+comment_00100:
   created_on: 2007-03-12 17:22:03
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-12 17:22:03
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "889"
   elapsed: "0"
@@ -1168,12 +1168,12 @@ commentaire_00100:
   statut_id:
   user_id: "72"
   attachment_id:
-commentaire_00101:
+comment_00101:
   created_on: 2007-03-13 09:30:49
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-13 09:30:49
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "892"
   elapsed: "0"
@@ -1181,12 +1181,12 @@ commentaire_00101:
   statut_id:
   user_id: "2"
   attachment_id: "111"
-commentaire_00102:
+comment_00102:
   created_on: 2007-03-13 09:41:03
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-13 09:41:03
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "893"
   elapsed: "0"
@@ -1194,12 +1194,12 @@ commentaire_00102:
   statut_id:
   user_id: "2"
   attachment_id: "112"
-commentaire_00103:
+comment_00103:
   created_on: 2007-03-13 10:50:02
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-03-13 10:50:02
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "895"
   elapsed: "0"
@@ -1207,12 +1207,12 @@ commentaire_00103:
   statut_id:
   user_id: "72"
   attachment_id:
-commentaire_00104:
+comment_00104:
   created_on: 2007-03-13 14:59:46
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "896"
   elapsed: "0"
@@ -1220,12 +1220,12 @@ commentaire_00104:
   statut_id: "6"
   user_id: "2"
   attachment_id:
-commentaire_00105:
+comment_00105:
   created_on: 2007-03-13 15:00:03
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:04
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "9"
   id: "897"
   elapsed: "0"
@@ -1233,12 +1233,12 @@ commentaire_00105:
   statut_id: "7"
   user_id: "2"
   attachment_id:
-commentaire_00106:
+comment_00106:
   created_on: 2007-06-18 15:11:09
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "2391"
   elapsed: "0"
@@ -1246,12 +1246,12 @@ commentaire_00106:
   statut_id: "1"
   user_id: "111"
   attachment_id:
-commentaire_00107:
+comment_00107:
   created_on: 2007-06-18 15:11:55
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id: "1"
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "1286"
   elapsed: "1"
@@ -1259,12 +1259,12 @@ commentaire_00107:
   statut_id: "2"
   user_id: "2"
   attachment_id:
-commentaire_00108:
+comment_00108:
   created_on: 2007-06-18 15:11:59
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id: "30"
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "2392"
   elapsed: "4"
@@ -1272,12 +1272,12 @@ commentaire_00108:
   statut_id: "2"
   user_id: "109"
   attachment_id:
-commentaire_00109:
+comment_00109:
   created_on: 2007-06-20 12:45:02
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "1324"
   elapsed: "1"
@@ -1285,12 +1285,12 @@ commentaire_00109:
   statut_id: "3"
   user_id: "152"
   attachment_id:
-commentaire_00110:
+comment_00110:
   created_on: 2007-06-25 10:43:14
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-06-25 10:43:14
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "1415"
   elapsed: "0"
@@ -1298,12 +1298,12 @@ commentaire_00110:
   statut_id:
   user_id: "111"
   attachment_id:
-commentaire_00111:
+comment_00111:
   created_on: 2007-11-02 17:15:35
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-11-02 17:15:35
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "4016"
   elapsed: "0"
@@ -1311,12 +1311,12 @@ commentaire_00111:
   statut_id:
   user_id: "159"
   attachment_id:
-commentaire_00112:
+comment_00112:
   created_on: 2007-11-15 16:10:20
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-11-15 16:10:20
   ingenieur_id: "1"
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "4269"
   elapsed: "0"
@@ -1324,12 +1324,12 @@ commentaire_00112:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00113:
+comment_00113:
   created_on: 2007-11-16 18:17:32
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "4301"
   elapsed: "0"
@@ -1337,12 +1337,12 @@ commentaire_00113:
   statut_id: "7"
   user_id: "159"
   attachment_id:
-commentaire_00114:
+comment_00114:
   created_on: 2007-11-16 18:21:07
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-11-16 18:21:07
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "4305"
   elapsed: "0"
@@ -1350,12 +1350,12 @@ commentaire_00114:
   statut_id:
   user_id: "159"
   attachment_id:
-commentaire_00115:
+comment_00115:
   created_on: 2007-11-16 19:24:40
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "4307"
   elapsed: "0"
@@ -1363,12 +1363,12 @@ commentaire_00115:
   statut_id: "2"
   user_id: "2"
   attachment_id:
-commentaire_00116:
+comment_00116:
   created_on: 2007-11-16 23:24:03
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-11-16 23:24:03
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "4309"
   elapsed: "0"
@@ -1376,12 +1376,12 @@ commentaire_00116:
   statut_id:
   user_id: "159"
   attachment_id:
-commentaire_00117:
+comment_00117:
   created_on: 2007-12-14 15:41:45
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-12-14 15:41:45
   ingenieur_id: "38"
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "5002"
   elapsed: "0"
@@ -1389,12 +1389,12 @@ commentaire_00117:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00118:
+comment_00118:
   created_on: 2007-12-14 15:42:12
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2007-12-14 15:42:12
   ingenieur_id:
-  prive: "1"
+  private: "1"
   request_id: "10"
   id: "5003"
   elapsed: "0"
@@ -1402,12 +1402,12 @@ commentaire_00118:
   statut_id:
   user_id: "2"
   attachment_id:
-commentaire_00119:
+comment_00119:
   created_on: 2008-01-28 19:48:54
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "5994"
   elapsed: "1"
@@ -1415,12 +1415,12 @@ commentaire_00119:
   statut_id: "4"
   user_id: "152"
   attachment_id:
-commentaire_00120:
+comment_00120:
   created_on: 2008-01-28 19:49:14
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "5995"
   elapsed: "0"
@@ -1428,12 +1428,12 @@ commentaire_00120:
   statut_id: "3"
   user_id: "152"
   attachment_id:
-commentaire_00121:
+comment_00121:
   created_on: 2008-01-28 19:49:43
-  corps: "Bla Bla"
+  text: "Bla Bla"
   updated_on: 2008-05-10 15:28:22
   ingenieur_id:
-  prive: "0"
+  private: "0"
   request_id: "10"
   id: "5996"
   elapsed: "0"

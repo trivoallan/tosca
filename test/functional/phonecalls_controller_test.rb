@@ -28,7 +28,7 @@ class PhonecallsControllerTest < Test::Unit::TestCase
 
   def setup
     @controller = PhonecallsController.new
-    @request_tosca    = ActionController::TestRequest.new
+    @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
     login 'admin', 'admin'

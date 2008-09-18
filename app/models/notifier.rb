@@ -82,7 +82,7 @@ class Notifier < ActionMailer::Base
   end
 
   # This function needs too much options :
-  #  { :request, :name, :url_request, :url_attachment, :commentaire }
+  #  { :request, :name, :url_request, :url_attachment, :comment }
   # And an optional
   #  :modifications => {:statut_id, :ingenieur_id, :severite_id }
   def request_new_comment(options, flash = nil)
@@ -91,10 +91,10 @@ class Notifier < ActionMailer::Base
     # for instance, send mail to the correct engineer
     # when reaffecting a request
     request.reload
-    comment = options[:commentaire]
+    comment = options[:comment]
 
-    recipients compute_recipients(request, comment.prive)
-    cc         compute_copy(request, comment.prive)
+    recipients compute_recipients(request, comment.private)
+    cc         compute_copy(request, comment.private)
     from       App::FromEmail
     subject    "[#{App::ServiceName}:##{request.id}] : #{request.resume}"
     headers    headers_mail_request(comment)

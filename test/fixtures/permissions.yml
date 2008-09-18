@@ -52,7 +52,7 @@ permission_00111:
   info: List accounts
   id: 111
 permission_00112: 
-  name: ^commentaires/(comment|show|edit|update)$
+  name: ^comments/(comment|show|edit|update)$
   info: Hability to comment a request
   id: 112
 permission_00080: 
@@ -156,7 +156,7 @@ permission_00062:
   info: All kinds of Auto completion
   id: 62
 permission_00073: 
-  name: ^commentaires/(?!destroy)
+  name: ^comments/(?!destroy)
   info: Manage comments
   id: 73
 permission_00095: 

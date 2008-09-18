@@ -23,11 +23,11 @@ require 'attachments_controller'
 class AttachmentsController; def rescue_action(e) raise e end; end
 
 class AttachmentsControllerTest < Test::Unit::TestCase
-  fixtures :attachments, :commentaires
+  fixtures :attachments, :comments
 
   def setup
     @controller = AttachmentsController.new
-    @request_tosca    = ActionController::TestRequest.new
+    @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
@@ -63,7 +63,7 @@ class AttachmentsControllerTest < Test::Unit::TestCase
 
     post :create, :attachment => {
       :file => uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/upload_document.png"),
-      :commentaire => Commentaire.find(:first)
+      :comment => Comment.find(:first)
     }
 
     assert_response :redirect

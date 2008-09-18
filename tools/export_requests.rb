@@ -54,16 +54,16 @@ comments_csv = []
 attachments_csv = []
 
 requests_csv << ["id", "recipient", "resume", "severite", "logiciel", "created_on", "typerequest", "statut de sortie"]
-comments_csv << ["id", "request_id", "attachment_id", "corps", "created_on", "déposeur"]
+comments_csv << ["id", "request_id", "attachment_id", "text", "created_on", "déposeur"]
 attachments_csv << ["id", "name"]
 
 requests.each do |d|
   name_logiciel = d.logiciel ? d.logiciel.name : ""
   requests_csv << [d.id, d.recipient.user.name_clean, d.resume, d.severite.name, name_logiciel, d.created_on, d.typerequest.name, d.statut.name]
 
-  d.commentaires.find(:all, :conditions => { :prive => false }).each do |c|
+  d.comments.find(:all, :conditions => { :private => false }).each do |c|
     name_user = c.user.client? ? c.user.name : "Linagora"
-    comments_csv << [c.id, c.request_id, c.attachment_id, c.corps, c.created_on, name_user]
+    comments_csv << [c.id, c.request_id, c.attachment_id, c.text, c.created_on, name_user]
   end
 
   d.attachments.each do |p|

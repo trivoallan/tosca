@@ -8,8 +8,8 @@
   result << "<td>##{p.id}</td>"
   result << "<td>#{link_to_file(p, 'file')}</td>"
   result << "<td>#{file_size(p.file)}</td>"
-  result << "<td>#{p.commentaire.created_on_formatted if p.commentaire}</td>"
-  result << "<td>#{p.commentaire.user.name if p.commentaire}</td>"
+  result << "<td>#{p.comment.created_on_formatted if p.comment}</td>"
+  result << "<td>#{p.comment.user.name if p.comment}</td>"
   result << "#{link_to_actions_table p}"
 }%>
 

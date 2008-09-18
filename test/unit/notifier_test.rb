@@ -39,8 +39,8 @@ class NotifierTest < Test::Unit::TestCase
     newpass = 'newpass'
     user.pwd = newpass
     response = Notifier::deliver_user_signup :user => user, :password => newpass
-    assert_match /identifiant : #{user.login}/, response.body
-    assert_match /mot de passe: #{newpass}/, response.body
+    assert_match(/identifiant : #{user.login}/, response.body)
+    assert_match(/mot de passe: #{newpass}/, response.body)
     assert_equal user.email, response.to[0]
   end
 
@@ -62,10 +62,10 @@ class NotifierTest < Test::Unit::TestCase
     options = { :request => request, :name => request.submitter.name,
       :url_request => "www.request.com", :url_attachment => "www.attachment.com",
       :modifications => {:statut_id => true, :ingenieur_id => true, :severite_id => true},
-      :commentaire => comment }
+      :comment => comment }
     response = Notifier::deliver_request_new_comment(options)
     assert_match request.resume, response.subject
-    assert_match html2text(comment.corps), response.body
+    assert_match html2text(comment.text), response.body
     assert_match options[:url_request], response.body
     assert_match options[:url_attachment], response.body
     assert_match options[:name], response.body

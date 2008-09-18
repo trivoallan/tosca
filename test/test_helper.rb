@@ -51,7 +51,7 @@ class Test::Unit::TestCase
 
   # Add more helper methods to be used by all tests here...
 
-  def login login, password
+  def login(login, password)
     controller = @controller
     @controller = AccountController.new
     post :login, :user_login => login, :user_password => password,
@@ -90,7 +90,6 @@ class Test::Unit::TestCase
     uploaded_file(path, 'image/gif', filename)
   end
 
-
   # Call it like this :
   #   check_ajax_filter :severite_id, 2, :requests
   # For testing an ajax filters for "severite_id" field on
@@ -110,7 +109,6 @@ class Test::Unit::TestCase
       assert klass.find(i)
     }
   end
-
 
   # List of all common methods used on an ActiveRecord to display (a part) of it
   StringMethods = [ :to_s, :name, :to_param, :name_clean,

@@ -1,16 +1,16 @@
 <h1><% _('List of the comments') %></h1>
 
-<%= show_pages_links(@commentaire_pages, _('a comment')) %>
+<%= show_pages_links(@comment_pages, _('a comment')) %>
 
 <% titles = [_('Request'), _('Body'), _('Created on'), _('Updated on')]%>
-<%= show_table(@commentaires, Commentaire, titles) { |c|
+<%= show_table(@comments, Comment, titles) { |c|
   result = ''
   result << "<td>#{link_to_request c.request}</td>"
-  result << "<td>#{indent c.corps}</td>"
+  result << "<td>#{indent c.text}</td>"
   result << "<td>#{c.created_on_formatted}</td>"
   result << "<td>#{c.updated_on_formatted}</td>"
   result << "#{link_to_actions_table c}"
 }%>
 
-<%= show_pages_links(@commentaire_pages,  _('a comment')) %>
+<%= show_pages_links(@comment_pages,  _('a comment')) %>
 

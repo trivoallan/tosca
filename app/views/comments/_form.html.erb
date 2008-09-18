@@ -1,0 +1,12 @@
+<%= error_messages_for 'comment' %>
+
+<p><label for="comment_description"><%= _('Write your comment here') %></label><br />
+<%= text_area 'comment', 'text' %></p>
+
+<% if @ingenieur %>
+  <p><label for="comment_private"><%= _('Is this comment private ?') %></label>
+  <%= check_box("comment", "private", {}) %></p>
+<% end %>
+
+<p><label for="piecejointe_file"><%= _('You may also add a file') %></label><br />
+<%= file_column_field 'piecejointe', 'file' %></p>

@@ -27,7 +27,7 @@ class TypecontributionsControllerTest < Test::Unit::TestCase
 
   def setup
     @controller = TypecontributionsController.new
-    @request_tosca    = ActionController::TestRequest.new
+    @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end

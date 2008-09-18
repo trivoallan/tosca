@@ -20,7 +20,7 @@ module DigestReporting
 
   #contract is a Contract, requests is an array of DigestRequests
   DigestContracts = Struct.new(:contract, :requests)
-  #request is a Request, request_at is a Request, comments is an array of Commentaire
+  #request is a Request, request_at is a Request, comments is an array of Comment
   DigestRequests = Struct.new(:request, :request_at, :comments)
 
   def digest_result(period)
@@ -49,7 +49,7 @@ module DigestReporting
       dr = DigestRequests.new
       dr.request = r
       dr.request_at = r.state_at(updated)
-      dr.comments = r.commentaires.find(:all, options)
+      dr.comments = r.comments.find(:all, options)
       @result.last.requests.push(dr)
 
       last_contract_id = r.contract_id
@@ -91,7 +91,7 @@ module DigestReporting
         dr  = DigestRequests.new
         dr.request = r
         dr.request_at = r.state_at(updated)
-        dr.comments = r.commentaires.find(:all, options)
+        dr.comments = r.comments.find(:all, options)
         @result.other.last.requests.push(dr)
       end
 

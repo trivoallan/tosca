@@ -2,6 +2,6 @@
 <%= render :partial => 'requests/tabs/tab_menu' unless print_mode %>
 <% cache("requests/#{@request_id || @request_tosca.id}/comments-#{session[:user].kind}") do %>
  <div class="request_tab_content">
-  <%= render :partial => 'requests/tabs/comment', :collection => @commentaires %>
+  <%= render :partial => 'requests/tabs/comment', :collection => @comments %>
  </div>
 <% end %>

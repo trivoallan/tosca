@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class CommentaireSweeper < ActionController::Caching::Sweeper
+class CommentSweeper < ActionController::Caching::Sweeper
   # All the cache used for comments are in the
   # 'comment' action of the 'request' controller.
-  observe Commentaire
+  observe Comment
 
   # If our sweeper detects that a Comment was created call this
   def after_save(comment)

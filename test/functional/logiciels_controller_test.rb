@@ -23,12 +23,12 @@ require 'logiciels_controller'
 class LogicielsController; def rescue_action(e) raise e end; end
 
 class LogicielsControllerTest < Test::Unit::TestCase
-  fixtures :logiciels, :competences, :requests, :commentaires, :contracts,
+  fixtures :logiciels, :competences, :requests, :comments, :contracts,
     :recipients, :contributions, :users, :clients, :credits, :components
 
   def setup
     @controller = LogicielsController.new
-    @request_tosca    = ActionController::TestRequest.new
+    @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end

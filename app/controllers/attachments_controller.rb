@@ -19,7 +19,7 @@
 class AttachmentsController < ApplicationController
   def index
     @attachment_pages, @attachments = paginate :attachments, :per_page => 10,
-    :include => [:commentaire]
+    :include => [:comment]
   end
 
   def show

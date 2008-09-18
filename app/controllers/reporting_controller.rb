@@ -257,7 +257,7 @@ class ReportingController < ApplicationController
     @data.update(total_report)
     #TODO : se débarrasser de cet héritage legacy
     #       compute_top5_logiciels @data[:top5_logiciels]
-    #       Commentaire.with_scope({ :find => { :conditions => @conditions } }) do
+    #       Comment.with_scope({ :find => { :conditions => @conditions } }) do
     #         compute_top5_requests @data[:top5_requests]
     #       end
     #     end
@@ -333,10 +333,10 @@ class ReportingController < ApplicationController
   # TODO : le faire marcher si y a moins de 5 requests
   # Sort les 5 requests les plus commentées de l'année
   def compute_top5_requests(report)
-    commentaires = Commentaire.count(:group => 'request_id')
-    commentaires = commentaires.sort {|a,b| a[1]<=>b[1]}
+    comments = Comment.count(:group => 'request_id')
+    comments = comments.sort {|a,b| a[1]<=>b[1]}
     5.times do |i|
-      values = commentaires.pop
+      values = comments.pop
       name = values[0].to_s # "##{values[0]} (#{values[1]})"
       report.push [ name.intern ]
       report[i].push values[1]

@@ -153,27 +153,27 @@ div.redbox_scroll {
 /*************************
   * Table comment	 *
   ************************/
-table.commentaire tr.public { background: white; }
-table.commentaire tr.prive  { background: #E6E6E6; }
+table.comment tr.public { background: white; }
+table.comment tr.private  { background: #E6E6E6; }
 
-table.commentaire td.infos {
+table.comment td.infos {
   vertical-align: top;
   padding-right: 2px;
   width: 20%;
 }
 
-table.commentaire td.text {
+table.comment td.text {
   border-left: 1px solid #999999;
   padding-left: 13px;
   width: 75%;
 }
 
-table.commentaire {
+table.comment {
   border: 1px solid #999999;
   width: 100%;
 }
 
-table.commentaire td.text p { margin: 10px; }
+table.comment td.text p { margin: 10px; }
 
 .date {
   font-size: smaller;

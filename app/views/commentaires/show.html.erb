@@ -1,9 +1,0 @@
-<h1><%= "#{@request_tosca.full_id} #{@request_tosca.resume}" %></h1>
-
-<%= render :partial => "requests/tabs/description" %>
-
-<%= render :partial => "requests/tabs/comment", :locals =>
-         { :comment => @commentaire } %>
-
-<%= link_to 'Modifier', edit_commentaire_path(@commentaire) %> |
-<%= link_to_request @commentaire.request, :text => _('Return to the request') %>
