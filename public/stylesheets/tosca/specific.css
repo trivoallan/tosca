@@ -69,6 +69,7 @@ label {
 ul { list-style-type: square; }
 li img { vertical-align: middle; }
 
+/*
 a, a:active, a:visited, a:focus {
   text-decoration: none;
   color: #1A5270;
@@ -80,11 +81,12 @@ a:hover {
   border-bottom: none;
   color: #eee;
 }
+*/
 
 .menu_title {
-  border-top: 1px solid #ffffff; 
+  border-top: 1px solid #ffffff;
   border-bottom: 1px solid #999999;
-  background-color: #dddddd; 
+  background-color: #dddddd;
   font-weight: bold;
   cursor: pointer;
 }

@@ -220,4 +220,27 @@ module RequestsHelper
     link_to(request.statut.name, help_statut_path(request.statut_id), options)
   end
 
+  NEW_WINDOW = { :target => '_blank' }
+  # Link to the inline help to post a request
+  def public_link_to_help_new_request
+    public_link_to(_("Submission of a request"),
+                   App::Help::NewRequestUrl, NEW_WINDOW)
+  end
+
+  # Link to the the inline help about life cycle of a demand
+  def public_link_to_howto_request
+    public_link_to(_("The life cycle of a request"),
+                   App::Help::LifeCycleUrl, NEW_WINDOW)
+  end
+
+  # Link to the inline help about the differents states of a demand
+  def public_link_to_help_request_status
+    public_link_to(_("Help on the status"),
+                   App::Help::RequestStatusUrl, NEW_WINDOW)
+  end
+
+  def public_link_to_status_legend
+    public_link_to(_("Legend of statutes"), statuts_path, NEW_WINDOW)
+  end
+
 end

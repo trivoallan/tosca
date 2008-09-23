@@ -16,7 +16,7 @@ ActionMailer::Base.default_charset = "UTF-8"
 
 module App
   # Used to send test emails. Put your own if you intend to develop on TOSCA
-  
+
   # Used for test on its local computer
   MaintenerEmail = "tosca@tosca-project.com"
   # Used for feedback on service
@@ -56,5 +56,11 @@ module App
 
   ContactPhone = PhonePrefix + " " + PhoneCode
   ContactMail = "tosca@tosca-project.com"
+
+  module Help
+    NewRequestUrl = "http://redmine.tosca-project.net/wiki/tosca/NewRequest"
+	LifeCycleUrl = "http://redmine.tosca-project.net/wiki/tosca/LifeCycle"
+	RequestStatusUrl = "http://redmine.tosca-project.net/wiki/tosca/RequestStatus"
+  end
 
 end
