@@ -6,27 +6,33 @@
 <ul class="request_tabnav" id="request_tabnav">
  <li>
    <% options[:url] = ajax_description_request_path(request_id) %>
-   <%= link_to_remote_tab _('Description'), 'ajax_description', options %>
+   <% desc = _('Description') + ' ' + StaticImage::description %>
+   <%= link_to_remote_tab(desc, 'ajax_description', options) %>
  </li>
  <li>
    <% options[:url] = ajax_comments_request_path(request_id) %>
-   <%= link_to_remote_tab _('Comments'), 'ajax_comments', options %>
+   <% desc = _('Comments') + ' ' + StaticImage::comments %>
+   <%= link_to_remote_tab(desc, 'ajax_comments', options) %>
  </li>
  <li>
    <% options[:url] = ajax_history_request_path(request_id) %>
-   <%= link_to_remote_tab _('History'), 'ajax_history', options %>
+   <% desc = _('History') + ' ' + StaticImage::history %>
+   <%= link_to_remote_tab(desc, 'ajax_history', options) %>
  </li>
  <li>
    <% options[:url] = ajax_attachments_request_path(request_id) %>
-   <%= link_to_remote_tab _('Attachments'), 'ajax_attachments', options %>
+   <% desc = _('Attachments') + ' ' + StaticImage::documents %>
+   <%= link_to_remote_tab(desc, 'ajax_attachments', options) %>
  </li>
  <li>
    <% options[:url] = ajax_appels_request_path(request_id) %>
-   <%= link_to_remote_tab _('Phonecalls'), 'ajax_appels', options %>
+   <% desc = _('Phonecalls') + ' ' + StaticImage::telephone %>
+   <%= link_to_remote_tab(desc, 'ajax_appels', options) %>
  </li>
  <li>
    <% options[:url] = ajax_cns_request_path(request_id) %>
-   <%= link_to_remote_tab _('SLA'), 'ajax_cns', options %>
+   <% desc =  _('SLA') + ' ' + StaticImage::sla_running %>
+   <%= link_to_remote_tab(desc, 'ajax_cns', options) %>
  </li>
  <li>
    <%= StaticImage::spinner %>

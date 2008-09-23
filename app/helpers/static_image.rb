@@ -37,7 +37,7 @@ class StaticImage < Static::ActionView
 
   #########################################################
 
-  # por éviter la réaffection de desc à chaque coup
+  # To have globals options
   def self.options(desc = '', size = nil)
     options = { :alt => desc, :title => desc, :class => 'aligned_picture' }
     options[:size] = size if size
@@ -47,13 +47,13 @@ class StaticImage < Static::ActionView
   @@view = nil
   def self.view
     desc = _("View")
-    @@view ||= image_tag('icons/view.png', options(desc, '15x15'))
+    @@view ||= image_tag('icons/zoom.png', options(desc, '16x16'))
   end
 
   @@edit = nil
   def self.edit
     desc = _("Update")
-    @@edit ||= image_tag('icons/edit.gif', options(desc, '15x15'))
+    @@edit ||= image_tag('icons/pencil.png', options(desc, '16x16'))
   end
 
   # You should prefer to use
@@ -61,81 +61,81 @@ class StaticImage < Static::ActionView
   @@new = nil
   def self.new
     desc = _("New")
-    @@new ||= image_tag('icons/create.png', options(desc, '16x16'))
+    @@new ||= image_tag('icons/add.png', options(desc, '16x16'))
   end
 
   @@delete = nil
   def self.delete
     desc = _("Delete")
-    @@delete ||= image_tag('icons/delete.gif', options(desc, '15x17'))
+    @@delete ||= image_tag('icons/cancel.png', options(desc, '16x16'))
   end
 
   @@hide_notice = nil
   def self.hide_notice
     desc = _("Hide")
-    @@hide_notice ||= image_tag('icons/delete.gif', options(desc, '15x17'))
+    @@hide_notice ||= image_tag('icons/cancel.png', options(desc, '16x16'))
   end
 
   @@help= nil
   def self.help
     desc = _("Help")
-    @@help ||= image_tag('icons/help.png', options(desc, '15x15'))
+    @@help ||= image_tag('icons/help.png', options(desc, '16x16'))
   end
 
   # Navigation
   @@back = nil
   def self.back
     desc = _("Back")
-    @@back ||= image_tag("icons/back.gif", options(desc, '15x15'))
+    @@back ||= image_tag("icons/arrow_undo.png", options(desc, '16x16'))
   end
 
   @@first_page = nil
   def self.first_page
     desc = _("First page")
-    @@first_page ||= image_tag("icons/first_page.png", options(desc, '14x14'))
+    @@first_page ||= image_tag("icons/resultset_first.png", options(desc, '16x16'))
   end
 
   @@previous_page = nil
   def self.previous_page
     desc = _("Previous page")
-    @@previous_page ||= image_tag("icons/previous_page.png", options(desc, '14x14'))
+    @@previous_page ||= image_tag("icons/resultset_previous.png", options(desc, '16x16'))
   end
 
   @@next_page = nil
   def self.next_page
     desc = _("Next page")
-    @@next_page ||= image_tag("icons/next_page.png", options(desc, '14x14'))
+    @@next_page ||= image_tag("icons/resultset_next.png", options(desc, '16x16'))
   end
 
   @@last_page = nil
   def self.last_page
     desc = _("Last page")
-    @@last_page ||= image_tag("icons/last_page.png", options(desc, '14x14'))
+    @@last_page ||= image_tag("icons/resultset_last.png", options(desc, '16x16'))
   end
 
   @@folder = nil
   def self.folder
     desc = _("File")
-    @@folder ||= image_tag('icons/folder.gif', options(desc, '16x16'))
+    @@folder ||= image_tag('icons/folder.png', options(desc, '16x16'))
   end
 
   @@patch = nil
   def self.patch
     desc = _("Contribution")
-    @@patch ||= image_tag('icons/patch.gif', options(desc, '16x16'))
+    @@patch ||= image_tag('icons/page_code.png', options(desc, '16x16'))
   end
 
   # Security
   @@public = nil
   def self.public
     desc = _("Make public")
-    @@public ||= image_tag('icons/public.png', options(desc, '17x16'))
+    @@public ||= image_tag('icons/lock_open.png', options(desc, '16x16'))
   end
 
   @@private = nil
   def self.private
     desc = _("Make private")
-    @@private ||= image_tag('icons/private.png', options(desc, '12x14'))
+    @@private ||= image_tag('icons/lock.png', options(desc, '16x16'))
   end
 
   # Logos
@@ -158,7 +158,7 @@ class StaticImage < Static::ActionView
   @@ruby = nil
   def self.ruby
     desc = _("Tosca on Rails")
-    @@ruby ||= image_tag('ruby.png', options(desc, '15x15'))
+    @@ruby ||= image_tag('icons/ruby.png', options(desc, '15x15'))
   end
 
   @@linagora = nil
@@ -180,7 +180,7 @@ class StaticImage < Static::ActionView
   @@print = nil
   def self.print
     desc = _("Print")
-    @@print ||= image_tag('icons/print.png', options(desc, '22x22'))
+    @@print ||= image_tag('icons/printer.png', options(desc, '16x16'))
   end
 
   # type mime icons
@@ -214,7 +214,7 @@ class StaticImage < Static::ActionView
   @@icon_tag = nil
   def self.icon_tag
     desc = _("Manage tags")
-    @@icon_tag ||= image_tag('icons/tag.gif', options(desc, '39x39'))
+    @@icon_tag ||= image_tag('icons/tag_red.gif', options(desc, '16x16'))
   end
 
   @@expand = nil
@@ -234,21 +234,46 @@ class StaticImage < Static::ActionView
 
   @@sla_ok = nil
   def self.sla_ok
-    @@sla_ok ||= image_tag 'icons/sla_ok.png', options('Time achieved', '16x16')
+    @@sla_ok ||= image_tag 'icons/accept.png', options('Time achieved', '16x16')
   end
 
   @@sla_running = nil
   def self.sla_running
-    @@sla_running ||= image_tag 'icons/sla_running.png', options('Time is running', '16x16')
+    @@sla_running ||= image_tag 'icons/time.png', options('Time is running', '16x16')
   end
 
   @@sla_exceeded = nil
   def self.sla_exceeded
-    @@sla_exceeded ||= image_tag 'icons/sla_exceeded.png', options('Time exceeded', '16x16')
+    @@sla_exceeded ||= image_tag 'icons/exclamation.png', options('Time exceeded', '16x16')
   end
+  
+  @@comments = nil
+  def self.comments
+    @@comments ||= image_tag('icons/comments.png', options('Comments', '16x16'))
+  end
+  
+  @@documents = nil
+  def self.documents
+    @@documents ||= image_tag('icons/page_copy.png', options('Attachments', '16x16'))
+  end
+  
+  @@telephone = nil
+  def self.telephone
+    @@telephone ||= image_tag('icons/telephone.png', options('Phonecalls', '16x16'))
+  end
+  
+  @@description = nil
+  def self.description
+    @@description ||= image_tag('icons/book_open.png', options('Description', '16x16'))
+  end
+  
+  @@history = nil
+  def self.history
+    @@history ||= image_tag('icons/film.png', options('History', '16x16'))
+  end
+  
   ##############################################
   # Severity
-
   # Display an icon matching severity
   # They are stored in an array in order to cover all of 'em
   @@images_severite = Array.new(Severite.count)
