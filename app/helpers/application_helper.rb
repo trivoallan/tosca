@@ -133,13 +133,13 @@ module ApplicationHelper
     content_columns = options.has_key?(:content_columns)
 
     if titles
-      result << '<tr>'
+      result << '<thead><tr>'
       if (content_columns)
         ar.content_columns.each{|c| result <<  "<th>#{c.human_name}</th>"}
       end
       #On doit mettre nowrap="nowrap" pour que ça soit valide XHTML
       titles.each {|t| result << "<th nowrap=\"nowrap\">#{t}</th>" }
-      result << '</tr>'
+      result << '</tr></thead>'
     end
 
     elements.each_index { |i|

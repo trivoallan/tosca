@@ -30,6 +30,7 @@ input { -moz-border-radius: .5em .5em .5em .5em; }
 input:focus { background-color: #ffffcc; }
 textarea:focus { background-color: #ffffcc; }
 table { border-collapse: collapse; }
+thead { border: 1px solid black;}
 
 .show tr td fieldset {
   width: 35em;
@@ -122,6 +123,10 @@ ul { margin: 0 0 1em 0; }
   -moz-border-radius: 1em;
   vertical-align: top;
   padding: 1em 1em 1em 1em;
+}
+
+.show {
+  margin: 2em 2em 2em 2em;
 }
 
 div.login_box, div.show, div.help, div.info {
