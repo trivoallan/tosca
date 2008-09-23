@@ -51,12 +51,12 @@ div.info { width: 100%; }
 
 #footer {
   color: black;
-  background-color: #e2efe2;
   text-align: center;
+  width: 95%;
   bottom: 0;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #000000;
   z-index: 1;
-}
+} 
 
 p img {
   vertical-align: middle;
@@ -120,7 +120,7 @@ ul { margin: 0 0 1em 0; }
 }
 
 .show, .help, .info {
-  background-color: #f2fff2;
+  background-color: #e7e7e7;
   -moz-border-radius: 1em;
   vertical-align: top;
   padding: 1em 1em 1em 1em;

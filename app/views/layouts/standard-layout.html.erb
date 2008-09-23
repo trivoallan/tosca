@@ -11,12 +11,12 @@
       '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
       "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
       "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
-      stylesheet_link_tag("yaml/core/base.css", "yaml/navigation/nav_shinybuttons.css", 
+      stylesheet_link_tag("yaml/core/base.css", "yaml/navigation/nav_shinybuttons.css",
         "builder/basemod.css", "builder/content_default.css", "tosca/specific.css",
         "yaml/print/print_003_draft.css", "tosca/custom_tiny.css",
         :media => 'all', :cache => true) <<
       "<!--[if lte IE 7]>" <<
-      stylesheet_link_tag("ie_hacks/patch.css", :media => 'all', :cache => true) << 
+      stylesheet_link_tag("ie_hacks/patch.css", :media => 'all', :cache => true) <<
       "<![endif]-->"
   %>
   <%= @@public_head[locale] %>
@@ -70,10 +70,6 @@
     <div id="page">
       <div id="header">
         <div id="topnav">
-          <!-- start: skip link navigation -->
-          <a class="skip" title="skip link" href="#navigation"><%= _("Skip to the navigation") %></a><span class="hideme">.</span>
-          <a class="skip" title="skip link" href="#content"><%= _("Skip to the content") %></a><span class="hideme">.</span>
-          <!-- end: skip link navigation -->
           <% @@public_links[locale] ||= link_to_redbox(image_connect, 'login_box') %>
           <% if user %>
             <% infos = [
@@ -84,7 +80,7 @@
             <%= @@public_links[locale] %>
           <% end %>
         </div>
-        <%= public_link_to StaticImage::logo_service, welcome_url%>
+          <%# = public_link_to StaticImage::logo_service, welcome_url%>
       </div>
       <div id="nav">
         <a id="navigation" name="navigation"></a>
@@ -113,9 +109,9 @@
         <div id="col3">
           <div id="col3_content" class="clearfix">
         <% end %>
-        
+
         <%= @content_for_layout %>
-          
+
         <% if @partial_for_summary %>
           </div>
           <!-- IE Column Clearing -->
@@ -141,7 +137,7 @@
       <div id="edge-br"></div>
     </div>
   </div>
-  
+
   <% unless user %>
     <div id="login_box" style="display: none">
       <%= render :file => "account/login", :locals => { :show_close_icon => true } %>

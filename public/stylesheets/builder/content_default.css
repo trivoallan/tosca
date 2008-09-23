@@ -104,10 +104,10 @@
   #topnav a:hover,
   #topnav a:active{ text-decoration:underline; background-color: transparent; }
   
-  #footer a { color: #aac; background:transparent; font-weight: bold; }
+  #footer a { color: #000; background:transparent; font-weight: bold; }
   #footer a:focus,
   #footer a:hover,
-  #footer a:active { color: #fff; background-color: transparent; text-decoration:underline; }
+  #footer a:active { color: #000; background-color: transparent; text-decoration:underline; }
 
   /**
    * Tables | Tabellen
