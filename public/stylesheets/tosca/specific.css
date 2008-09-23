@@ -30,7 +30,6 @@ input { -moz-border-radius: .5em .5em .5em .5em; }
 input:focus { background-color: #ffffcc; }
 textarea:focus { background-color: #ffffcc; }
 table { border-collapse: collapse; }
-thead { border: 1px solid black;}
 
 .show tr td fieldset {
   width: 35em;

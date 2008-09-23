@@ -272,6 +272,7 @@ class StaticImage < Static::ActionView
     @@history ||= image_tag('icons/film.png', options('History', '16x16'))
   end
   
+  
   ##############################################
   # Severity
   # Display an icon matching severity

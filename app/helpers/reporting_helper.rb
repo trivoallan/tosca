@@ -141,7 +141,6 @@ module ReportingHelper
   def report_legend(name)
     out = ''
     data = @data[name].sort{|x,y| x[0].to_s <=> y[0].to_s}
-    options = { :without_firstcol => true }
     colors = @colors[name]
     return out unless colors and colors.size > 0
 

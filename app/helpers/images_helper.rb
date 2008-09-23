@@ -23,9 +23,22 @@
 
 module ImagesHelper
 
+  #Create icon with a nice tooltip
   def image_create(message)
     desc = _("Add %s") % message
     image_tag("icons/add.png", StaticImage::options(desc, '16x16'))
+  end
+  
+  #Disconnect icon with the tooltip
+  def image_disconnect
+    desc = _('Logout')
+    image_tag('icons/disconnect.png', StaticImage::options(desc, '16x16'))
+  end
+  
+  #Connect icon with the tooltip
+  def image_connect
+    desc = _('Log in')
+    image_tag('icons/connect.png', StaticImage::options(desc, '16x16'))
   end
 
   private
@@ -84,6 +97,5 @@ module ImagesHelper
   def link_to_new_client_logo()
     link_to(image_create(_('a logo')), new_img_path, :target => '_blank')
   end
-
 
 end
