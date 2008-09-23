@@ -56,7 +56,7 @@ div.info { width: 100%; }
   bottom: 0;
   border-top: 1px solid #000000;
   z-index: 1;
-} 
+}
 
 p img {
   vertical-align: middle;
@@ -136,7 +136,10 @@ div.login_box, div.show, div.help, div.info {
   border-right: 1px solid #999999;
   border-bottom: 1px solid #999999;
 }
+
 .show th { background: none; text-align: left;}
+/* restore good color for "full" table within a show element */
+.full th { background-color: #444444; }
 .show { max-width: 90%;}
 
 /*************************

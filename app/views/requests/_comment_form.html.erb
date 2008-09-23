@@ -1,4 +1,4 @@
-<table><tr>
+<table width="100%" style="width: 100%;"><tr>
   <td><b><u><%= _("Your answer :") %></u></b></td>
 
   <% unless @statuts.empty? %>
@@ -41,7 +41,7 @@
     <% end %>
   </td><td class="text" align="center">
    <%= text_area :comment, :text, :style => 'width:100%;' %>
-     <%= file_column_field('attachment', 'file', :size => 65) %><br />
+     <%= file_column_field('attachment', 'file', :size => 45) %><br />
      <%= submit_tag _("Answer") %>
   </td>
  </tr>

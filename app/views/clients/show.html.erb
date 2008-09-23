@@ -4,7 +4,7 @@
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
-      <table class="show">
+      <table>
       <% for column in Client.content_columns %>
        <tr>
         <td><b><%= _(column.human_name) %>:</b></td>
@@ -47,7 +47,7 @@
   </div>
   <div class="c50r">
     <div class="show">
-      <table class="show">
+      <table>
         <tr><td>
          <%= show_list(@client.socles, _('system')) do |s|
                link_to_socle(s).to_s
