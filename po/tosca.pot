@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-09-24 16:41+0200\n"
+"POT-Creation-Date: 2008-09-24 18:29+0200\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1555,7 +1555,7 @@ msgid "Contribution|Contributed on"
 msgstr ""
 
 #: app/models/contribution.rb:-
-msgid "Contribution|Etatreversement"
+msgid "Contribution|contributionstate"
 msgstr ""
 
 #: app/models/contribution.rb:-
@@ -1563,7 +1563,7 @@ msgid "Contribution|Closed on"
 msgstr ""
 
 #: app/models/contribution.rb:-
-msgid "Contribution|Logiciel"
+msgid "Contribution|Software"
 msgstr ""
 
 #: app/models/contribution.rb:-
@@ -4939,14 +4939,14 @@ msgid "About"
 msgstr ""
 
 #: app/views/welcome/about.html.erb:17
-msgid "This application was created at "
-msgstr ""
-
-#: app/views/welcome/about.html.erb:18
-msgid " by the OSSA Team."
+msgid "This software was created at"
 msgstr ""
 
 #: app/views/welcome/about.html.erb:19
+msgid "by the OSSA Team."
+msgstr ""
+
+#: app/views/welcome/about.html.erb:20
 msgid ""
 "This journey would not have been possible without\n"
 "      the <b>developers</b> who have taken part in this project,\n"
@@ -4956,23 +4956,23 @@ msgid ""
 "      %s would be nothing without them."
 msgstr ""
 
-#: app/views/welcome/about.html.erb:25
+#: app/views/welcome/about.html.erb:26
 msgid "It is now an Open Source software you can get at "
 msgstr ""
 
-#: app/views/welcome/about.html.erb:26
+#: app/views/welcome/about.html.erb:27
 msgid "the homepage of the project"
 msgstr ""
 
-#: app/views/welcome/about.html.erb:30
+#: app/views/welcome/about.html.erb:31
 msgid "Developers"
 msgstr ""
 
-#: app/views/welcome/about.html.erb:43
+#: app/views/welcome/about.html.erb:44
 msgid "Quality Assurance"
 msgstr ""
 
-#: app/views/welcome/about.html.erb:52
+#: app/views/welcome/about.html.erb:53
 msgid "Free software used by %s"
 msgstr ""
 
