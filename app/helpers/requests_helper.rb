@@ -193,11 +193,10 @@ module RequestsHelper
   # Show the '?' icon with the link on status explanation on the wiki
   # TODO : this implementation can be improved a LOT
   def help_on_status
-#    @@help_on_status ||= '<a href="http://www.08000linux.com/wiki/index.php/%C3%89tats_demande"' <<
-#       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
-#      image_tag("icons/question_mark.gif") <<
-#    '</a>'
-    "TODO : Replace the link"
+    @@help_on_status ||= %Q{<a href="#{App::Help::RequestStatusUrl}"} <<
+       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+      image_tag("icons/question_mark.gif") <<
+    '</a>'
   end
 
 
@@ -205,11 +204,10 @@ module RequestsHelper
   # Show the '?' icon with the link on severity explanation on the wiki
   # TODO : this implementation can be improved a LOT
   def help_on_severity
-#    @@help_on_severity ||= '<a href="http://www.08000linux.com/wiki/index.php/Severite_request"' <<
-#       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
-#      image_tag("icons/question_mark.gif") <<
-#    '</a>'
-    "TODO : Replace the link"
+    @@help_on_severity ||= %Q{<a href="#{App::Help::RequestSeverityUrl}"} <<
+       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+      image_tag("icons/question_mark.gif") <<
+      '</a>'
   end
 
   # Shows a popup with the description of a status for the request.
