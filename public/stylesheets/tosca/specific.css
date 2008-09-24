@@ -2,11 +2,12 @@ body {
   margin: 0;
   padding: 0;
   color: #000;
-  background-color: #eaeafa;
+  /*background-color: #eaeafa;*/
   font-size: 1em;
   font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
   font-size:   12px;
   line-height: 18px;
+  background: #3b69ad none;
 }
 
 h1 {
@@ -58,6 +59,10 @@ div.info { width: 100%; }
   z-index: 1;
 }
 
+#nav_main ul li {
+  line-height: 1.5m;
+}
+
 p img {
   vertical-align: middle;
 }
@@ -66,7 +71,7 @@ label {
   font-weight: bold;
 }
 
-ul { list-style-type: square; }
+ul { list-style-type: square; margin: 0 0 1em 0; }
 li img { vertical-align: middle; }
 
 /*
@@ -90,8 +95,6 @@ a:hover {
   font-weight: bold;
   cursor: pointer;
 }
-
-ul { margin: 0 0 1em 0; }
 
 .aligned_picture { vertical-align: middle; }
 
