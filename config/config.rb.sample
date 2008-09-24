@@ -59,9 +59,9 @@ module App
 
   module Help
     NewRequestUrl = "http://redmine.tosca-project.net/wiki/tosca/NewRequest"
-	LifeCycleUrl = "http://redmine.tosca-project.net/wiki/tosca/LifeCycle"
-	RequestStatusUrl = "http://redmine.tosca-project.net/wiki/tosca/RequestStatus"
-	RequestSeverityUrl = "http://redmine.tosca-project.net/wiki/tosca/RequestSeverity"
+    LifeCycleUrl = "http://redmine.tosca-project.net/wiki/tosca/LifeCycle"
+    RequestStatusUrl = "http://redmine.tosca-project.net/wiki/tosca/RequestStatus"
+    RequestSeverityUrl = "http://redmine.tosca-project.net/wiki/tosca/RequestSeverity"
   end
 
 end

@@ -74,19 +74,9 @@ label {
 ul { list-style-type: square; margin: 0 0 1em 0; }
 li img { vertical-align: middle; }
 
-/*
-a, a:active, a:visited, a:focus {
-  text-decoration: none;
-  color: #1A5270;
-  font-weight: bold;
+a:focus, a:hover, a:active {
+  background-color: transparent;
 }
-
-a:hover {
-  text-decoration: none;
-  border-bottom: none;
-  color: #eee;
-}
-*/
 
 .menu_title {
   border-top: 1px solid #ffffff;
