@@ -2,8 +2,8 @@
 
 <div class="subcolumns">
   <div class="c50l">
-    <div class="show">
-    <table class="show">
+    <div class="show tinymce">
+    <table>
       <tr>
         <th><label for="contract_client_id"><%=_('Customer')%></label></th>
         <td><%= select(:contract, :client_id, @clients) %></td>
@@ -35,8 +35,9 @@
         <th><label for="contract_name"><%= _("Domain") %></label></th>
         <td><%= text_field :contract, :name %></td>
       </tr><tr>
-        <th><label><%=_('Commitments')%> <%= link_to_new_commitment %></label></th>
-        <td><%= show_form_commitments(@contract.commitments, @commitments, 'contract[commitment_ids]') %></td>
+        <th colspan="2"><label><%=_('Commitments')%> <%= link_to_new_commitment %></label></th>
+      </tr><tr>
+        <td colspan="2"><%= show_form_commitments(@contract.commitments, @commitments, 'contract[commitment_ids]') %></td>
       </tr>
     </table>
 </div></div>
