@@ -39,7 +39,7 @@ module LinksHelper
   def link_to_file(record, file, options={}, public = false)
     return '-' unless record
     filepath = record.send(file)
-   
+
     unless filepath.blank? or not File.exist?(filepath)
       filename = filepath[/[._ \-a-zA-Z0-9]*$/]
       if options.has_key? :image
@@ -51,7 +51,7 @@ module LinksHelper
       if public
         public_link_to show, url
       else
-        link_to show
+        link_to show, url
       end
     end
   end
