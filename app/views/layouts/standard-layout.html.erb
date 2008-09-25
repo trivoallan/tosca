@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=Locale.get%>" lang="<%=Locale.get%>">
 <head>
   <%# precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
+  <%# TODO : since Rails has a cache system now, Tosca should use the cache("...") call instead of those hacks. %>
   <% locale = Locale.get.language.intern %>
   <% user = session[:user] %>
   <% role_localised = :"#{locale}#{user.role_id}" if user %>
@@ -11,7 +12,7 @@
       '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
       "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
       "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
-      stylesheet_link_tag("yaml/core/base.css", "builder/basemod.css", 
+      stylesheet_link_tag("yaml/core/base.css", "builder/basemod.css",
         "builder/content_default.css", "tosca/specific.css", "tosca/navigation.css",
         "tosca/print.css", "tosca/custom_tiny.css", "tosca/calendar.css",
         "tosca/ajax.css", "tosca/big_calendar.css",
@@ -44,7 +45,9 @@
         theme_advanced_toolbar_align : 'left',
         theme_advanced_toolbar_location : 'top'
      }); //]]> </script>
-
+  <%= javascript_include_tag('calendar', "calendar-#{locale}",
+        'calendar-setup', 'prototype', 'effects', 'controls',
+        'application', 'redbox', 'tosca', :cache => "all-#{locale}") %>
  <title><%= @page_title || _(controller.controller_name)%></title>
 </head>
 <body>
@@ -62,7 +65,6 @@
         link_to_admin,
         public_link_to_about
        ], :form => true) if user %>
-
   <div id="page_margins">
     <div id="page">
       <div id="header">
@@ -96,10 +98,6 @@
           <%= show_warn if flash[:warn] %>
         </div>
       <% end %>
-      <!-- Javascript starts to be used here : -->
-      <%= javascript_include_tag('calendar', "calendar-#{locale}",
-         'calendar-setup', 'prototype', 'effects', 'controls',
-         'application', 'redbox', 'tosca', :cache => "all-#{locale}") %>
 
       <div id="main">
         <%#onclick="Element.toggle('col1_content')" title="Montrer/cacher le menu latéral"%>
@@ -131,7 +129,7 @@
          <%= @@footer %>
       </div>
     </div>
-  
+
   <% unless user %>
     <div id="login_box" style="display: none">
       <%= render :file => "account/login", :locals => { :show_close_icon => true } %>

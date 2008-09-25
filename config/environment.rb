@@ -163,15 +163,4 @@ if defined? GettextLocalize
   GettextLocalize::default_methods = [:param, :header, :session]
 end
 
-# Preload of controllers/models during boot.
-if RAILS_ENV == 'production'
-  require_dependency 'application'
-  path = File.join RAILS_ROOT, 'app', 'models'
-  Dir.foreach( path ) { |f|
-    silence_warnings{require_dependency f
-    } if f =~ /\.rb$/}
-  path = File.join RAILS_ROOT, 'app', 'controllers'
-  Dir.foreach( path ) { |f|
-    silence_warnings{require_dependency f
-    } if f =~ /\.rb$/}
-end
+
