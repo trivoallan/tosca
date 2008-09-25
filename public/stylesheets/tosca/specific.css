@@ -124,9 +124,9 @@ div.login_box, div.show, div.help, div.info {
   border-bottom: 1px solid #999999;
 }
 
-div.tinymce {
-  width: 36em;
-}
+/* used mainly in div.show box in order to nicely
+ * encapsulate a tinymce editing area*/
+div.tinymce { width: 36em; }
 .show th { background: none; text-align: left;}
 /* restore good color for "full" table within a show element */
 .full th { background-color: #444444; color: white; }
