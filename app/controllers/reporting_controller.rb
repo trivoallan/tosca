@@ -56,9 +56,8 @@ class ReportingController < ApplicationController
     year = params[:year] if params.has_key? :year
     @time = Time.mktime(year, month)
 
-    conditions = [ 'created_on <= ? and created_on >= ?',
-      @time.end_of_month,
-      @time.beginning_of_month ]
+    conditions = [ 'created_on BETWEEN ? AND ?',
+      @time.end_of_month, @time.beginning_of_month ]
 
     requests = Request.find(:all, :conditions => conditions)
     @number_requests = requests.size
