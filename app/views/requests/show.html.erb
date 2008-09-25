@@ -6,7 +6,7 @@
 <% cache("requests/#{@request_tosca.id}/front-#{session[:user].role_id}") do %>
  <div class="content">
    <% if @request_tosca.logiciel %>
-     <div style="float: right">
+     <div class="software">
         <%= public_link_to(software_logo(@request_tosca.logiciel),
 	                       logiciel_path(@request_tosca.logiciel)) %>
      </div>
@@ -25,12 +25,8 @@
    </div>
               
    <script type="text/javascript">
-     $$('div.comment-container:first-child > div.comment-content').invoke('show');
-     $$('div.comment-container:last-child > div.comment-content').invoke('show');
-     
-     function showAllComments() {
-       $$('div.comment-content').invoke('show');
-     }
+     $$('div.comment-container:first-child').invoke('removeClassName', 'collapsed');
+     $$('div.comment-container:last-child').invoke('removeClassName', 'collapsed');
    </script>
 
    <div>

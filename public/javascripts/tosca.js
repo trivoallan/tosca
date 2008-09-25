@@ -13,3 +13,7 @@ function tosca_reset(dom_id) {
 		$(dom_id).value = '';
     }, 1);
 }
+
+function tosca_show_all_comments() {
+ $$('div.comment-container').invoke('removeClassName', 'collapsed');
+}
