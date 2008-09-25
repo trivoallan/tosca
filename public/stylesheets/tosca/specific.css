@@ -149,8 +149,18 @@ div.redbox_scroll {
 /*************************
   * Comments	 *
   ************************/
+div.software {
+  float: right;
+  margin: 10px;
+}
 div.comment-container {
   
+}
+div.collapsed div.comment-content {
+  display: none;
+}
+div.collapsed div.comment-header {
+  margin-top: -3px;
 }
 div.private {
   background-color: #eee;
@@ -163,6 +173,7 @@ div.comment-header {
 }
 div.comment-content {
   padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid #777;
   border-top: none;
   -moz-border-radius: 0 0 5px 5px;
@@ -503,6 +514,8 @@ h1.section {
  * Exemple : <div class="information notice"></div>
  */
 .information {
+  position: fixed;
+  top: 20px;
   font-weight: bold;
   margin: 1em 0em 1em 0em;
   padding: 1em;
