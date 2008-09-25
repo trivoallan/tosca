@@ -20,9 +20,9 @@ module RequestsHelper
 
   # Display a link to a request
   # Options
-  #  * :pre_text (deprecated) display before
   #  * :show_id display the id
-  #  * icon_severite display severity icon
+  #  * :icon_severite display severity icon
+  #  * :limit display only :limit caracters
   def link_to_request(request, options = {})
     return '-' unless request
     text = options[:text]

@@ -1,0 +1,114 @@
+== CalendarGrid
+
+CalendarGrid lets you build output like a calendar, with padding days at the
+beginning and end of months, just like `cal`:
+
+   S  M Tu  W Th  F  S
+            1  2  3  4
+   5  6  7  8  9 10 11
+  12 13 14 15 16 17 18
+  19 20 21 22 23 24 25
+  26 27 28 29 30
+
+It sports a flexible data structure so you can format it any way you want. 
+
+You can also provide a 'plugin' to each day to give it extra knowledge. For 
+example, this code was originally created for a booking system, so each day
+knew whether it was booked or not.
+
+Calendars default to starting on Sunday. To change that for all calendars, use
+
+  CalendarGrid::Builder.start_wday = x
+  
+To change the starting day for a single Builder instance, use
+
+  builder = CalendarGrid::Builder.new
+  builder.start_wday = x
+  
+Where start_wday is an integer, as used by Date or Time.
+
+== Basic Usage
+
+  require 'calendar_grid'
+  
+  cal = CalendarGrid.build
+  puts "Calendar from #{cal.first.strftime("%D")} to #{cal.last.strftime("%D")}"
+  
+  cal.years.each do |y|
+    puts y.year
+    y.months.each do |m|
+      puts m.strftime("%B")
+      s = m.weeks.collect do |w|
+        w.collect { |day| "#{(day.proxy?) ? '* ' : day.strftime("%d")}" }.join(" ")
+      end
+      puts s
+      puts
+    end
+  end
+    
+This creates a calendar from the current month out 12 months:
+
+  Calendar from 06/01/05 to 05/31/06
+  2005
+
+  June
+  *  *  01 02 03 04 05
+  06 07 08 09 10 11 12
+  13 14 15 16 17 18 19
+  20 21 22 23 24 25 26
+  27 28 29 30 *  *  * 
+
+  July
+  *  *  *  *  01 02 03
+  04 05 06 07 08 09 10
+  11 12 13 14 15 16 17
+  18 19 20 21 22 23 24
+  25 26 27 28 29 30 31
+
+  ...
+    
+    
+== Plugin Usage
+
+See test/plugin_test.rb for exact usage, but here is a simple example. Say you
+want to highlight every third day of the month. Create a class to provide the
+method 'day_is_mod_three?'
+
+  class ThirdDayPlugin
+    def initialize(day)
+      @day = day
+    end
+    def day_is_mod_three?
+      @day.day % 3 == 0
+    end
+  end
+  
+  # create a day with the plugin
+  nine = CalendarGrid::Day.new(Time.local(2005,5,9)) do |day|
+    ThirdDayPlugin.new day
+  end  
+  eight = CalendarGrid::Day.new(Time.local(2005,5,8)) do |day|
+    ThirdDayPlugin.new day
+  end  
+  
+Now, in addition to CalendarGrid::Day's normal methods, it responds to
+day_is_mod_three?
+  
+  nine.is_mod_three? => true
+  eight.is_mod_three? => false
+    
+To add the plugin to every Day of a calendar, just provide the same block to
+CalendarGrid::Builder#build or CalendarGrid.build  
+
+  cal = CalendarGrid.build do |day|
+    ThirdDayPlugin.new day
+  end  
+  
+== Author
+
+* Ryan Carver (mailto:ryan@fivesevensix.com)
+
+Originally created for Graham Arrowsmith in May of 2005
+
+This library is released under the terms of the GNU LGPL. See LICENSE for more details.
+
