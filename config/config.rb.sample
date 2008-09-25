@@ -16,18 +16,18 @@ ActionMailer::Base.default_charset = "UTF-8"
 
 module App
   # Used to send test emails. Put your own if you intend to develop on TOSCA
-  
+
   # Used for test on its local computer
-  MaintenerEmail = "tosca@tosca-project.com"
+  MaintenerEmail = "tosca@tosca-project.net"
   # Used for feedback on service
-  TeamEmail = "tosca@tosca-project.com"
+  TeamEmail = "tosca@tosca-project.net"
   # Used for feedback on this tool
-  DeveloppersEmail = "tosca@tosca-project.com"
+  DeveloppersEmail = "tosca@tosca-project.net"
   #From mail, used for outgoing mails
-  FromEmail = 'lstm@noreply.08000linux.com'
+  FromEmail = 'tosca@noreply.tosca-project.net'
 
   # Used for jabber notification
-  JabberAccount = "tosca@jabber.fr"
+  JabberAccount = "tosca@tosca-project.net"
   JabberPassword = "tosca"
 
   # Application
@@ -39,12 +39,12 @@ module App
   # service
   ServiceName = "Tosca"
   ServiceFullName = "Tosca bugtracking".gsub(' ','&nbsp;')
-  #The name ofthe images for your service
+  # Logos of service, put them in public/image/
   ServiceImage = 'logo_08000.gif'
   ServiceImageSmall = 'logo_08000_small.gif'
 
   CompanyName = "Linagora"
-  CompanySite = "http://www.linagora.com"
+  CompanySite = "http://www.08000linux.com"
   CompanySitePath = "/tosca"
 
   # contacts
@@ -52,9 +52,16 @@ module App
   PhoneCode = "54689"
   PhoneText = "LINUX"
 
-  InternetAddress = "tosca-project.com"
+  InternetAddress = "tosca-project.net"
 
   ContactPhone = PhonePrefix + " " + PhoneCode
   ContactMail = "tosca@tosca-project.com"
+
+  module Help
+    NewRequestUrl = "http://redmine.tosca-project.net/wiki/tosca/NewRequest"
+    LifeCycleUrl = "http://redmine.tosca-project.net/wiki/tosca/LifeCycle"
+    RequestStatusUrl = "http://redmine.tosca-project.net/wiki/tosca/RequestStatus"
+    RequestSeverityUrl = "http://redmine.tosca-project.net/wiki/tosca/RequestSeverity"
+  end
 
 end

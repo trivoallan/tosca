@@ -1,0 +1,53 @@
+/**
+ *
+ * Used for the BIG calendar views
+ *
+ **/
+
+.big_calendar {
+  width: 100%;
+  border-color: transparent;
+  margin: 0px;
+}
+
+.month_caption {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.weekdays {
+  background: url('../../images/weekday.jpg');
+  padding: 5px;
+  font-size: 1.5em;
+  color: #FFFFFF;
+  border-color: #000000;
+  border-width: 2pt;
+  border-style: solid;
+  text-align: center;
+}
+
+.big_calendar_date {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #000000;
+  border: none;
+  text-align: left;
+}
+
+.holidays {
+  color: #808080;
+  text-align: left;
+}
+
+.big_calendar_events {
+  font-size: 1em;
+  border-color: #000000;
+  border-width: 1pt;
+  border-style: solid;
+  text-align: left;
+  padding: 5px;
+  background-color: #FFFFFF;
+}

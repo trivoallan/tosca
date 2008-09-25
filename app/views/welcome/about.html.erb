@@ -2,9 +2,9 @@
   <div class="c50l">
     <div class="show">
       <h3><%=_('Help')%></h3>
-  <% links = [ "TODO : Make a doc to submit a request",
-               "TODO : The life cycle of a request",
-               "TODO : Help on the status" ] %>
+ <% links = [ public_link_to_help_new_request,
+              public_link_to_howto_request,
+              public_link_to_help_request_status ] %>
   <%= show_list(links) %>
   <p><%=_("Don't hesitate to")%>
     <%=  mail_to(App::TeamEmail, _('contact us'))%>
@@ -14,8 +14,9 @@
  <div class="show">
   <h1><%= _('About')%> <%=App::Name%> v<%=App::Version%></h1>
 
-  <p><%= _('This application was created at ')%>
-      <a href="http://www.linagora.com">Linagora</a><%= _(" by the OSSA Team.")%></p>
+  <p><%= _('This software was created at')%>
+      <a href="http://www.linagora.com">Linagora</a>
+      <%= _("by the OSSA Team.")%></p>
       <p><%= _('This journey would not have been possible without
       the <b>developers</b> who have taken part in this project,
       without the testers who have contributed to it\'s quality and
@@ -23,7 +24,7 @@
       development to be fast and agile. They are all warmly thanked here.
       %s would be nothing without them.') % App::Name %></p>
       <p><%= _("It is now an Open Source software you can get at ") %>
-      <a href="http://www.tosca-project.com"><%= _("the homepage of the project")%></a>.
+      <a href="http://www.tosca-project.net"><%= _("the homepage of the project")%></a>.
       </p>
  </div>
  <div class="show">
@@ -71,12 +72,11 @@
             <li><a href="http://form-test-helper.googlecode.com/svn/form_test_helper/">Form Test Helper (MIT)</a></li>
           </ul>
         </li>
-        <li><a href="http://www.yaml.de/en/home.html">YAML, the (X)HTML/CSS framework (Creative Commons Attribution 2.0 License)</a></li>
-        <li><a href="http://www.famfamfam.com/lab/icons/silk/">Fam Fam Fam Silk Icons (Creative Commons Attribution 2.5 License)</a></li>
+        <li><a href="http://www.yaml.de/en/home.html">YAML, the (X)HTML/CSS framework (CCA 2.0)</a></li>
+        <li><a href="http://www.famfamfam.com/lab/icons/silk/">Fam Fam Fam Silk Icons (CCA 2.5)</a></li>
         <li><a href="http://www.mysql.com">MySQL (GPL)</a></li>
         <li><a href="http://httpd.apache.org/">Apache (APL)</a></li>
       </ul>
      </div>
   </div>
 </div>
-

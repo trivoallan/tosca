@@ -79,7 +79,7 @@ module PagesHelper
     :success => "Element.hide('spinner')" }
 
   AJAX_OPTIONS =
-    SPINNER_OPTIONS.dup.update(:update => 'content', :method => :get,
+    SPINNER_OPTIONS.dup.update(:update => 'col3_content', :method => :get,
       :with => "Form.serialize(document.forms['filters'])"
     )
 
@@ -141,7 +141,7 @@ module PagesHelper
   #Call it like this : toggle("my_id")
   #You just need a html element with an id="my_id"
   def toggle(id)
-    images = image_tag("icons/navigation_expand.gif", :id => "show_#{id}") + 
+    images = image_tag("icons/navigation_expand.gif", :id => "show_#{id}") +
       image_tag("icons/navigation_hide.gif", :id => "hide_#{id}", :style => "display: none")
     link_to_function(images, nil) do |page|
       page[:"hide_#{id}"].toggle
@@ -149,13 +149,13 @@ module PagesHelper
       page[:"#{id}"].toggle
     end
   end
-  
+
   #To have a nice div to click on to toggle on other tag
   #Call it like this :
   #<%= div_toggle("Some text", "id") %>
   #<ul id="id">
   #</ul>
-  #Options : 
+  #Options :
   #Any reguler html_options (like :class, etc)
   #hide : The toggle tag is hiden by default
   def div_toggle(value, id, options = {})
@@ -164,16 +164,16 @@ module PagesHelper
       page[:"show_#{id}"].toggle
       page.visual_effect :toggle_blind, id, :duration => 0.5
     end
-    
+
     style_hide, style_show = "", ""
     style_hide = "display: none" unless options.has_key?(:hide)
-    style_show = "display: none" if options[:hide] 
+    style_show = "display: none" if options[:hide]
     options.delete(:hide)
-    
+
     result = tag('div', options, true)
-    result << image_tag("icons/navigation_hide.gif", 
+    result << image_tag("icons/navigation_hide.gif",
       :id => "show_#{id}", :style => style_show)
-    result << image_tag("icons/navigation_expand.gif", 
+    result << image_tag("icons/navigation_expand.gif",
       :id => "hide_#{id}", :style => style_hide)
     result << "&nbsp;#{value}"
     result << '</div>'
@@ -192,5 +192,5 @@ module PagesHelper
       public_link_to(image, page, html_options)
     end
   end
-  
+
 end

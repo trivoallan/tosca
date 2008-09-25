@@ -1,0 +1,25 @@
+<h1><%= n_("New request for %s",
+  "New requests %s", @number_requests) % _(@time.strftime('%B %Y')) %></h1>
+
+<%
+  #We create next/previous month links
+  link_previous = link_to(StaticImage::previous_page, 
+    calendar_reporting_path(:month => @time.month-1,
+      :year => @time.year))
+  link_next = link_to(StaticImage::next_page, 
+    calendar_reporting_path(:month => @time.month+1,
+      :year => @time.year))
+  
+  title = link_previous 
+  title << "&nbsp;"
+  title << ( n_("%s new request has been submitted", 
+      "%s new requests has been submitted", @number_requests) % @number_requests )
+  title << "&nbsp;"
+  title << link_next
+%>
+
+<%= calendar(@time, :title => title) do |time|
+  @requests[time.day].map do |e| 
+    link_to("##{e.id}", request_path(e), :title => e.resume)
+  end.join(', ') if @requests.has_key? time.day
+end %>

@@ -2,11 +2,12 @@ body {
   margin: 0;
   padding: 0;
   color: #000;
-  background-color: #eaeafa;
+  /*background-color: #eaeafa;*/
   font-size: 1em;
   font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
   font-size:   12px;
   line-height: 18px;
+  background: #3b69ad none;
 }
 
 h1 {
@@ -55,19 +56,11 @@ label {
   font-weight: bold;
 }
 
-ul { list-style-type: square; }
+ul { list-style-type: square; margin: 0 0 1em 0; }
 li img { vertical-align: middle; }
 
-a, a:active, a:visited, a:focus {
-  text-decoration: none;
-  color: #1A5270;
-  font-weight: bold;
-}
-
-a:hover {
-  text-decoration: none;
-  border-bottom: none;
-  color: #eee;
+a:focus, a:hover, a:active {
+  background-color: transparent;
 }
 
 .menu_title {
@@ -114,7 +107,7 @@ ul { margin: 0 0 1em 0; }
 }
 
 .show, .help, .info {
-  background-color: #f2fff2;
+  background-color: #e7e7e7;
   -moz-border-radius: 1em;
   vertical-align: top;
   padding: 1em 1em 1em 1em;
@@ -130,7 +123,10 @@ div.login_box, div.show, div.help, div.info {
   border-right: 1px solid #999999;
   border-bottom: 1px solid #999999;
 }
+
 .show th { background: none; text-align: left;}
+/* restore good color for "full" table within a show element */
+.full th { background-color: #444444; }
 .show { max-width: 90%;}
 
 /*************************

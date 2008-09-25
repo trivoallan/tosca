@@ -20,9 +20,9 @@ module RequestsHelper
 
   # Display a link to a request
   # Options
-  #  * :pre_text (deprecated) display before
   #  * :show_id display the id
-  #  * icon_severite display severity icon
+  #  * :icon_severite display severity icon
+  #  * :limit display only :limit caracters
   def link_to_request(request, options = {})
     return '-' unless request
     text = options[:text]
@@ -193,11 +193,10 @@ module RequestsHelper
   # Show the '?' icon with the link on status explanation on the wiki
   # TODO : this implementation can be improved a LOT
   def help_on_status
-#    @@help_on_status ||= '<a href="http://www.08000linux.com/wiki/index.php/%C3%89tats_demande"' <<
-#       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
-#      image_tag("icons/question_mark.gif") <<
-#    '</a>'
-    "TODO : Replace the link"
+    @@help_on_status ||= %Q{<a href="#{App::Help::RequestStatusUrl}"} <<
+       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+      image_tag("icons/question_mark.gif") <<
+    '</a>'
   end
 
 
@@ -205,11 +204,10 @@ module RequestsHelper
   # Show the '?' icon with the link on severity explanation on the wiki
   # TODO : this implementation can be improved a LOT
   def help_on_severity
-#    @@help_on_severity ||= '<a href="http://www.08000linux.com/wiki/index.php/Severite_request"' <<
-#       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
-#      image_tag("icons/question_mark.gif") <<
-#    '</a>'
-    "TODO : Replace the link"
+    @@help_on_severity ||= %Q{<a href="#{App::Help::RequestSeverityUrl}"} <<
+       ' target="_blank" class="aligned_picture" style="vertical-align: top;">' <<
+      image_tag("icons/question_mark.gif") <<
+      '</a>'
   end
 
   # Shows a popup with the description of a status for the request.
@@ -218,6 +216,29 @@ module RequestsHelper
     return '' unless request
     options = { :popup => ['help_statut', 'height=300,width=600'] }
     link_to(request.statut.name, help_statut_path(request.statut_id), options)
+  end
+
+  NEW_WINDOW = { :target => '_blank' }
+  # Link to the inline help to post a request
+  def public_link_to_help_new_request
+    public_link_to(_("Submission of a request"),
+                   App::Help::NewRequestUrl, NEW_WINDOW)
+  end
+
+  # Link to the the inline help about life cycle of a demand
+  def public_link_to_howto_request
+    public_link_to(_("The life cycle of a request"),
+                   App::Help::LifeCycleUrl, NEW_WINDOW)
+  end
+
+  # Link to the inline help about the differents states of a demand
+  def public_link_to_help_request_status
+    public_link_to(_("Help on the status"),
+                   App::Help::RequestStatusUrl, NEW_WINDOW)
+  end
+
+  def public_link_to_status_legend
+    public_link_to(_("Legend of statutes"), statuts_path, NEW_WINDOW)
   end
 
 end

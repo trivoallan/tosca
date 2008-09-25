@@ -120,14 +120,14 @@
       <th colspan="2"><label for="request_resume"><%= _("Summary") %></label></th>
     </tr>
     <tr>
-      <td colspan="2"><%= text_field :request, :resume, :size => 60, :maxlength => 70 %></td>
+      <td colspan="2"><%= text_field :request, :resume, :size => 45, :maxlength => 70 %></td>
     </tr>
 
     <tr>
       <td colspan="2">
         <fieldset style="width: 45em;">
           <legend><%=  _("Detailed description") %></legend>
-          <%= text_area 'request', 'description', :cols => 75, :rows =>17 %>
+          <%= text_area 'request', 'description', :cols => 55, :rows =>17 %>
         </fieldset>
       </td>
     </tr>
@@ -138,7 +138,7 @@
     </tr>
 
     <tr>
-      <td colspan="2"><%= file_column_field 'attachment', 'file', :size => 50 %></td>
+      <td colspan="2"><%= file_column_field 'attachment', 'file', :size => 40 %></td>
     <% else %>
       <td colspan="2"></td>
     <% end %>

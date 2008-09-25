@@ -47,6 +47,30 @@ class ReportingController < ApplicationController
                  Contract.find(:all, Contract::OPTIONS))
   end
 
+  # To display new requests by months
+  def calendar
+    #Get the parameters
+    month = Time.today.month
+    month = params[:month] if params.has_key? :month
+    year = Time.today.year
+    year = params[:year] if params.has_key? :year
+    @time = Time.mktime(year, month)
+
+    conditions = [ 'created_on <= ? and created_on >= ?',
+      @time.end_of_month,
+      @time.beginning_of_month ]
+
+    requests = Request.find(:all, :conditions => conditions)
+    @number_requests = requests.size
+
+    #We build a hash of { number_day => [new requests of the day]}
+    @requests = {}
+    requests.each do |r|
+      @requests[r.created_on.day] ||= Array.new
+      @requests[r.created_on.day].push(r)
+    end
+  end
+
   def digest
   end
 

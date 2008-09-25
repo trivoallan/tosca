@@ -17,7 +17,7 @@
         "tosca/ajax.css", "tosca/big_calendar.css",
         :media => 'all', :cache => true) <<
       "<!--[if lte IE 7]>" <<
-      stylesheet_link_tag("ie_hacks/patch.css", :media => 'all', :cache => true) << 
+      stylesheet_link_tag("ie_hacks/patch.css", :media => 'all', :cache => true) <<
       "<![endif]-->"
   %>
   <%= @@public_head[locale] %>
@@ -81,7 +81,7 @@
             <%= @@public_links[locale] %>
           <% end %>
         </div>
-        <%= public_link_to StaticImage::logo_service, welcome_url%>
+          <%# = public_link_to StaticImage::logo_service, welcome_url%>
       </div>
       <div id="nav">
         <a id="navigation" name="navigation"></a>
