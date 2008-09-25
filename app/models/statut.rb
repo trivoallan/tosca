@@ -36,7 +36,7 @@ class Statut < ActiveRecord::Base
   CLOSED = [ 6, 7, 8 ] # The time count is now less/not important
 
   NEED_COMMENT = [ 3, 4, 8 ] #These status need a comment if you use them, Suspended, Analysed, Cancelled
-  
+
   Running = [ 1, 2, 4, 5 ] # Chrono is up
 
   # We do not want in any case a modification on those ids
@@ -47,7 +47,7 @@ class Statut < ActiveRecord::Base
   Active = 2
   Bypassed = 5
   Fixed = 6
-  
+
   # Give possible status for next step of a request
   # Even recipient can change some status,
   # when it's for closed or cancelled a request.
@@ -63,7 +63,7 @@ class Statut < ActiveRecord::Base
         when 2 then 'id IN (3,4,5,6,7,8)'  # Active -> Suspended, Analysed, Bypassed, Fixed, Closed, Cancelled
         when 3 then 'id IN (2,4,5,6,7,8)'  # Suspended -> Active, Analysed, Bypassed, Fixed, Closed, Cancelled
         when 4 then 'id IN (3)'            # Analysed -> Suspended
-        when 5 then 'id IN (3,2)'          # Bypassed -> Suspended, Active
+        when 5 then 'id IN (2,3,6,7,8)'    # Bypassed -> Active, Suspended, Fixed, Closed, Cancelled
         when 6 then 'id IN (7,2)'          # Fixed -> Closed, Active
         when 7 then 'id IN (2)'            # Closed -> Active
         when 8 then 'id IN (2)'            # Cancelled -> Active
