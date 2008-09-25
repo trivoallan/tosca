@@ -2,29 +2,31 @@
   _("Are you sure you want to delete this comment ?") } %>
 <% user = comment.user %>
 
-<table class="comment">
- <tr class="<%=(comment.private ? 'private' : 'public')%>">
-   <td class="infos" align="center">
-      <span><%= _("Comment %s") % "##{comment.id}" %> <%= "(#{comment.etat})" if comment.private %></span><br />
-      <% if user and user.client? and user.recipient %>
-        <%= logo_client(user.recipient.client) %>
-      <% else %>
-        <%= StaticImage::logo_service %>
-      <% end %><br />
-      <%= user.name if user %><br />
+<div class="comment-container <%=(comment.private ? 'private' : 'public')%>">
+  <div class="comment-header" onclick="showAllComments()">
+    <strong><%= user.name if user %></strong>
+    - <span><%= comment.created_on.to_s(:short)  %> (<%= _("%s ago") % distance_of_time_in_words_to_now(comment.created_on) %>)</span>
+  </div>
+  <div class="comment-content" style="display: none;">
+    <table class="comment-table">
+      <td class="infos" align="center">
+        <% if user and user.client? and user.recipient %>
+          <%= logo_client(user.recipient.client) %>
+        <% else %>
+          <%= StaticImage::logo_service %>
+        <% end %><br />
 
-      <% display_edit = (@ingenieur or (user and @recipient.user_id == user.id)) ? true : false %>
-      <%= link_to(StaticImage::edit, edit_comment_path(comment)) if display_edit %>&nbsp;
-      <% if @ingenieur %>
-        <%= link_to(StaticImage::delete, comment_path(comment), delete_ho) %>&nbsp;
-      <% end %>
-      <%= '<br />' if display_edit %>
-   </td><td class="text">
-      <%= display_comment comment %>
-    </td>
-    <td style="vertical-align: middle;">
-      <%= pretty_date(comment.created_on) %>
-      &nbsp;<small><%= comment.created_on.strftime("%H:%M") %></small>
-   </td>
-  </tr>
-</table>
+        <% display_edit = (@ingenieur or (user and @recipient.user_id == user.id)) ? true : false %>
+        <%= link_to(StaticImage::edit, edit_comment_path(comment)) if display_edit %>&nbsp;
+        <% if @ingenieur %>
+          <%= link_to(StaticImage::delete, comment_path(comment), delete_ho) %>&nbsp;
+        <% end %>
+        <%= '<br />' if display_edit %>
+      </td>
+      <td class="text">
+        <%= display_comment comment %>
+      </td>
+    </table>
+  </div>
+</div>
+

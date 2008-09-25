@@ -5,16 +5,6 @@
    request_id = @request_tosca ? @request_tosca.id : @request_id %>
 <ul class="request_tabnav" id="request_tabnav">
  <li>
-   <% options[:url] = ajax_description_request_path(request_id) %>
-   <% desc = _('Description') + ' ' + StaticImage::description %>
-   <%= link_to_remote_tab(desc, 'ajax_description', options) %>
- </li>
- <li>
-   <% options[:url] = ajax_comments_request_path(request_id) %>
-   <% desc = _('Comments') + ' ' + StaticImage::comments %>
-   <%= link_to_remote_tab(desc, 'ajax_comments', options) %>
- </li>
- <li>
    <% options[:url] = ajax_history_request_path(request_id) %>
    <% desc = _('History') + ' ' + StaticImage::history %>
    <%= link_to_remote_tab(desc, 'ajax_history', options) %>

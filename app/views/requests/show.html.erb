@@ -19,8 +19,19 @@
     <%= link_to(StaticImage::print, options) %>
    </h1>
 
-   <%= render(:partial => 'requests/tabs/comment', :locals =>
-         { :comment => @last_comment }) %>
+   <div id="comment-list">
+     <%= render(:partial => 'requests/tabs/comment',
+  							:collection => @request_tosca.comments) %>
+   </div>
+              
+   <script type="text/javascript">
+     $$('div.comment-container:first-child > div.comment-content').invoke('show');
+     $$('div.comment-container:last-child > div.comment-content').invoke('show');
+     
+     function showAllComments() {
+       $$('div.comment-content').invoke('show');
+     }
+   </script>
 
    <div>
     <% if session[:user].authorized? "comments/comment" %>

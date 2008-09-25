@@ -15,6 +15,19 @@
 @media screen, projection
 {
  /**
+  * Bugfix for IE 3-Pixel-Jog Bug
+  *
+  * @bugfix
+  * @affected   IE 5.x/Win, IE6
+  * @css-for    IE 5.x/Win, IE6
+  * @valid      yes
+  */
+
+  * html #col3 {height: 1%}
+  * html #col1 {margin-right: -3px}
+  * html #col3 {margin-left: 74%}
+  
+ /**
   * min-width/max-width workaround for IE
   *
   * @workaround
@@ -29,5 +42,9 @@
 
     /* JS-Expression for min-/max-width simulation */
     width: expression((document.documentElement && document.documentElement.clientHeight) ? ((document.documentElement.clientWidth < 740) ? "740px" : ((document.documentElement.clientWidth > (100/100 * document.documentElement.clientWidth)) ? "100%" : "auto" )) : ((document.body.clientWidth < 740) ? "740px" : ((document.body.clientWidth > (100/100 * document.body.clientWidth)) ? "100%" : "auto" )));
+  }
+  
+  #col3 input, #col3 select {
+    width: 90%;
   }
 }

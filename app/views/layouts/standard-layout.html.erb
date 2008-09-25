@@ -11,9 +11,10 @@
       '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
       "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
       "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
-      stylesheet_link_tag("yaml/core/base.css", "yaml/navigation/nav_shinybuttons.css", 
-        "builder/basemod.css", "builder/content_default.css", "tosca/specific.css",
-        "yaml/print/print_003_draft.css", "tosca/custom_tiny.css",
+      stylesheet_link_tag("yaml/core/base.css", "builder/basemod.css", 
+        "builder/content_default.css", "tosca/specific.css", "tosca/navigation.css",
+        "yaml/print/print_003_draft.css", "tosca/custom_tiny.css", "tosca/calendar.css",
+        "tosca/ajax.css", "tosca/big_calendar.css",
         :media => 'all', :cache => true) <<
       "<!--[if lte IE 7]>" <<
       stylesheet_link_tag("ie_hacks/patch.css", :media => 'all', :cache => true) << 
@@ -57,16 +58,12 @@
         public_link_to_home,
         link_to_tobd_requests,
         link_to_all_requests,
-        '<a>'+search_request+'</a>',
+        search_request,
         link_to_admin,
         public_link_to_about
        ], :form => true) if user %>
 
-<div id="page_margins">
-    <div id="border-top">
-      <div id="edge-tl"></div>
-      <div id="edge-tr"></div>
-    </div>
+  <div id="page_margins">
     <div id="page">
       <div id="header">
         <div id="topnav">
@@ -93,34 +90,32 @@
 
         </div>
       </div>
-      <div id="teaser">
-        <%= show_notice if flash[:notice] %>
-        <%= show_warn if flash[:warn] %>
-      </div>
+      <% if flash[:notice] || flash[:warn] %>
+        <div id="teaser">
+          <%= show_notice if flash[:notice] %>
+          <%= show_warn if flash[:warn] %>
+        </div>
+      <% end %>
       <!-- Javascript starts to be used here : -->
       <%= javascript_include_tag('calendar', "calendar-#{locale}",
          'calendar-setup', 'prototype', 'effects', 'controls',
          'application', 'redbox', 'tosca', :cache => "all-#{locale}") %>
 
       <div id="main">
-        <% if @partial_for_summary %>
-         <%#onclick="Element.toggle('col1_content')" title="Montrer/cacher le menu latéral"%>
+        <%#onclick="Element.toggle('col1_content')" title="Montrer/cacher le menu latéral"%>
         <div id="col1">
           <div id="col1_content" class="clearfix">
-            <%= render_partial @partial_for_summary %>
+            <%= @content_for_layout %>
           </div>
         </div>
-        <div id="col3">
-          <div id="col3_content" class="clearfix">
-        <% end %>
-        
-        <%= @content_for_layout %>
-          
         <% if @partial_for_summary %>
+          <div id="col3">
+            <div id="col3_content" class="clearfix">
+              <%= render_partial @partial_for_summary %>
+            </div>
+            <!-- IE Column Clearing -->
+            <div id="ie_clearing"> &#160; </div>
           </div>
-          <!-- IE Column Clearing -->
-          <div id="ie_clearing"> &#160; </div>
-        </div>
         <% end %>
       </div>
       <!-- begin: #footer -->
@@ -136,17 +131,13 @@
          <%= @@footer %>
       </div>
     </div>
-    <div id="border-bottom">
-      <div id="edge-bl"></div>
-      <div id="edge-br"></div>
-    </div>
-  </div>
   
   <% unless user %>
     <div id="login_box" style="display: none">
       <%= render :file => "account/login", :locals => { :show_close_icon => true } %>
     </div>
   <% end %>
+  </div>
 
 </body>
 </html>

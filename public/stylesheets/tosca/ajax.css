@@ -1,0 +1,77 @@
+/************************************
+  * RedBox : used for shadowed box, *
+  * like the login one              *
+  ***********************************/
+#RB_overlay {
+  position: absolute;
+  z-index:100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height:100%;
+  background-color: #000;
+  opacity: .6;
+  filter: alpha(opacity=60);
+}
+
+#RB_loading {
+  position: relative;
+  top: 200px;
+  z-index: 101;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  text-align: center;
+  background: #666 url(../images/redbox_spinner.gif) no-repeat center center;
+  border: 2px solid black;
+}
+#RB_window {
+  z-index: 102;
+  background-color: #FFFFFF;
+  display: block;
+  text-align: left;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+  position: absolute;
+  -moz-border-radius: 1em;
+}
+
+/*********************
+  *  Auto Completion *
+  ********************/
+div.auto_complete {
+  z-index:1;
+  border:1px solid #888;
+  -moz-border-radius: .5em .5em .5em .5em;
+  width: 350px;
+  background: #fff;
+}
+div.auto_complete ul {
+  margin-top:-1px;
+  margin-bottom:-1px;
+  padding:0;
+  width:100%;
+}
+div.auto_complete ul li {
+  margin-top:1px;
+  margin-bottom:1px;
+  -moz-border-radius: .5em .5em .5em .5em;
+  padding:3px;
+  background-image: none;
+  list-style-type:none;
+  list-style-image:none;
+}
+div.auto_complete ul li.selected {
+  background-color: #e2efe2;
+}
+div.auto_complete ul strong.highlight {
+  color: #800;
+  margin:0;
+  padding:0;
+}
+div.auto_complete a:hover {
+	color: #1A5270;
+}
