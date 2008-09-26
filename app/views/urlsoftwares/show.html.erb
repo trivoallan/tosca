@@ -1,0 +1,15 @@
+<% for column in Urlsoftware.content_columns %>
+<p>
+  <b><%= _(column.human_name) %>:</b> <%= @urlsoftware.send(column.name) %>
+</p>
+<% end %>
+
+<p><b><%=_('Software')%>:</b> 
+   <%= public_link_to_software @urlsoftware.software %>
+</p>
+
+<p><b>
+   <%=_('Kind') %>:</b> <%=h @urlsoftware.typeurl.name %>
+</p>
+
+<%= link_to_edit_and_list(@urlsoftware) %>

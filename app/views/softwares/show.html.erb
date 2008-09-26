@@ -1,0 +1,79 @@
+<%= public_link_to _('Homepage') , welcome_path %> >
+ <%= public_link_to _('Software') , softwares_path %> >
+  <%= public_link_to @software.groupe, groupe_path(@software.groupe_id) %> >
+   <%= @software %> <%= link_to_edit(@software) %>
+<div class="subcolumns">
+  <div class="c50l">
+    <div class="show">
+   <table>
+     <tr><td><b><%= _('Name') %></b> </td>
+       <td><%= @software.name %>
+        <% unless @software.image.blank? %>
+          <%= software_logo(@software, :size => :thumb) %>
+        <% end %>
+      </td></tr>
+     <tr><td><b><%= _('Summary') %></b> </td>
+         <td><%= @software.resume %></td></tr>
+     <tr><td colspan="2">
+          <fieldset><legend><%=_('Description')%></legend>
+           <%= @software.description %>
+          </fieldset></td></tr>
+     <% if @ingenieur %>
+      <tr><td><b><%= _('Reference') %></b></td>
+          <td><%=h @software.referent %></td></tr>
+     <% end %>
+
+     <tr><td><b><%= _('Copyright') %></b></td>
+         <td><%=h @software.license.name if @software.license %></td></tr>
+
+     <tr><td><b><%= _('Technologies') %></b></td>
+         <td><%= @software.competences.collect{|c| c.name}.join(', ') %></td></tr>
+
+     <tr><td><b><%= _('Group') %></b></td>
+         <td><%= public_link_to(@software.groupe.name, groupe_path(@software.groupe_id) ) if @software.groupe %></td></tr>
+
+     <tr><td><b><%= _('Links') %></b> <%= link_to_new_urlsoftware(@software.id) %></td>
+         <% options = {:no_title => true, :edit => 'urlsoftware'} %>
+         <td><%= show_list(@software.urlsoftwares, 'url', options) {|u|
+             "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.typeurl.name}</a>"
+            } %>
+         </td></tr>
+   </table>
+ </div>
+</div>
+<div class="c50r">
+    <div class="show">
+   <table>
+     <tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:software_id => @software.id)%> <br />
+        <% options[:edit] = nil %>
+        <% options[:public_summarized] = true %>
+        <% if @requests.size > 0  %>
+         <div class="bloc_scroll">
+           <%=show_list(@requests, _('Request'), options) {|d| link_to_request d}%>
+         </div>
+        <% end %>
+     </tr>
+
+     <tr><td><b><%=n_('Version', 'Versions', @software.versions.size)%></b> <%= link_to_new_version(@software) %></td>
+       <td>
+          <% options[:edit] = 'version' %>
+          <%= show_list(@software.versions, _('Version'), options) do |version|
+             link_to_version version
+          end %>
+       </td>
+     </tr>
+
+     <tr><td colspan="2"><b><%=_('Contributions')%></b>
+         <%= link_to_new_contribution(nil, :software_id => @software.id)%><br />
+         <%= public_table_of_contributions(@software.contributions) %> </td>
+     </tr>
+
+     <tr><td><b><%=_('Tags')%></b></td>
+        <td><%= @software.tag_list %></td>
+     </tr>
+   </table>
+ </div>
+ </div>
+ </div>
+
+<%= link_to_edit_and_list @software %>

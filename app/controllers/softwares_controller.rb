@@ -17,11 +17,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-class LogicielsController < ApplicationController
+class SoftwaresController < ApplicationController
   helper :filters, :versions, :requests, :competences, :contributions, :licenses
 
   # Not used for the moment
-  # auto_complete_for :logiciel, :name
+  # auto_complete_for :software, :name
 
   # ajaxified list
   def index
@@ -32,7 +32,7 @@ class LogicielsController < ApplicationController
       @title = _('List of your supported software')
     end
 
-    options = { :per_page => 10, :order => 'logiciels.name', :include => [:groupe] }
+    options = { :per_page => 10, :order => 'softwares.name', :include => [:groupe] }
     conditions = []
 
     if params.has_key? :filters
@@ -44,7 +44,7 @@ class LogicielsController < ApplicationController
       # we do not want an include since it's only for filtering.
       unless software_filters['contract_id'].blank?
         options[:joins] =
-          'INNER JOIN versions ON versions.logiciel_id=logiciels.id ' +
+          'INNER JOIN versions ON versions.software_id=softwares.id ' +
           'INNER JOIN contracts_versions cv ON cv.version_id=versions.id'
       end
 
@@ -52,9 +52,9 @@ class LogicielsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(software_filters, [
-        [:software, 'logiciels.name', :like ],
-        [:description, 'logiciels.description', :like ],
-        [:groupe_id, 'logiciels.groupe_id', :equal ],
+        [:software, 'softwares.name', :like ],
+        [:description, 'softwares.description', :like ],
+        [:groupe_id, 'softwares.groupe_id', :equal ],
         [:contract_id, ' cv.contract_id', :in ]
       ])
       @filters = software_filters
@@ -63,10 +63,10 @@ class LogicielsController < ApplicationController
 
     # optional scope, for customers
     begin
-      Logiciel.set_scope(@recipient.contract_ids) if scope
-      @logiciel_pages, @logiciels = paginate :logiciels, options
+      Software.set_scope(@recipient.contract_ids) if scope
+      @software_pages, @softwares = paginate :softwares, options
     ensure
-      Logiciel.remove_scope if scope
+      Software.remove_scope if scope
     end
 
     # panel on the left side. cookies is here for a correct 'back' button
@@ -79,30 +79,30 @@ class LogicielsController < ApplicationController
   end
 
   def show
-    @logiciel = Logiciel.find(params[:id])
+    @software = Software.find(params[:id])
     if @recipient
       @requests = @recipient.requests.find(:all, :conditions =>
-                                              ['requests.logiciel_id=?', params[:id]])
+                                              ['requests.software_id=?', params[:id]])
     else
       @requests = Request.find(:all, :conditions =>
-                               ['requests.logiciel_id=?',params[:id]])
+                               ['requests.software_id=?',params[:id]])
     end
   end
 
   def card
-    @logiciel = Logiciel.find(params[:id])
+    @software = Software.find(params[:id])
   end
 
   def new
-    @logiciel = Logiciel.new
+    @software = Software.new
     _form
   end
 
   def create
-    @logiciel = Logiciel.new(params[:logiciel])
-    if @logiciel.save and add_logo
-      flash[:notice] = _('The software %s has been created succesfully.') % @logiciel.name
-      redirect_to logiciel_path(@logiciel)
+    @software = Software.new(params[:software])
+    if @software.save and add_logo
+      flash[:notice] = _('The software %s has been created succesfully.') % @software.name
+      redirect_to software_path(@software)
     else
       add_image_errors
       _form and render :action => 'new'
@@ -110,15 +110,15 @@ class LogicielsController < ApplicationController
   end
 
   def edit
-    @logiciel = Logiciel.find(params[:id])
+    @software = Software.find(params[:id])
     _form
   end
 
   def update
-    @logiciel = Logiciel.find(params[:id])
-    if @logiciel.update_attributes(params[:logiciel]) and add_logo
-      flash[:notice] = _('The software %s has been updated successfully.') % @logiciel.name
-      redirect_to logiciel_path(@logiciel)
+    @software = Software.find(params[:id])
+    if @software.update_attributes(params[:software]) and add_logo
+      flash[:notice] = _('The software %s has been updated successfully.') % @software.name
+      redirect_to software_path(@software)
     else
       add_image_errors
       _form and render :action => 'edit'
@@ -126,16 +126,16 @@ class LogicielsController < ApplicationController
   end
 
   def destroy
-    @logiciel = Logiciel.find(params[:id])
-    @logiciel.destroy
-    flash[:notice] = _('The software %s has been successfully deleted.') % @logiciel.name
-    redirect_to logiciels_path
+    @software = Software.find(params[:id])
+    @software.destroy
+    flash[:notice] = _('The software %s has been successfully deleted.') % @software.name
+    redirect_to softwares_path
   end
 
   def ajax_update_tags
-    @logiciel = Logiciel.find(:first, :conditions => { :name => params["logiciel"]["name"] } )
-    @competences_check = Competence.find(params["logiciel"]["competence_ids"]) unless params["logiciel"]["competence_ids"] == [""]
-    render :partial => 'logiciels/tags', :layout => false
+    @software = Software.find(:first, :conditions => { :name => params["software"]["name"] } )
+    @competences_check = Competence.find(params["software"]["competence_ids"]) unless params["software"]["competence_ids"] == [""]
+    render :partial => 'softwares/tags', :layout => false
   end
 
 private
@@ -151,24 +151,24 @@ private
     @groupes = Groupe.find_select
 
     stats = Struct.new(:technologies, :versions, :software)
-    @count = stats.new(Competence.count, Version.count, Logiciel.count)
+    @count = stats.new(Competence.count, Version.count, Software.count)
   end
 
   def add_logo
     image = params[:image]
     unless image.nil? || image[:image].blank?
-      image[:description] = @logiciel.name
-      @logiciel.image = Image.new(image)
-      return @logiciel.image.save
+      image[:description] = @software.name
+      @software.image = Image.new(image)
+      return @software.image.save
     end
     return true
   end
 
-  # because :save resets @logiciel.errors
+  # because :save resets @software.errors
   def add_image_errors
-    unless @logiciel.image.nil?
-      @logiciel.image.errors.each do |attr, msg|
-        @logiciel.errors.add :image, msg
+    unless @software.image.nil?
+      @software.image.errors.each do |attr, msg|
+        @software.errors.add :image, msg
       end
     end
   end

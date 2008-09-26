@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Logiciel < ActiveRecord::Base
+class Software < ActiveRecord::Base
   acts_as_taggable
 
   has_one :image, :dependent => :destroy
@@ -26,8 +26,8 @@ class Logiciel < ActiveRecord::Base
   has_many :contributions
   has_many :knowledges
   has_many :requests
-  has_many :urllogiciels, :dependent => :destroy,
-    :order => 'urllogiciels.typeurl_id'
+  has_many :urlsoftwares, :dependent => :destroy,
+    :order => 'urlsoftwares.typeurl_id'
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
 
@@ -68,7 +68,7 @@ class Logiciel < ActiveRecord::Base
   ReleasesContract = Struct.new(:name, :id, :type)
   # Returns all the version and the last release of each version
   # Returns Array of ContractReleases
-  # Call it like : Logiciel.first.releases_contract(Contract.first.id)
+  # Call it like : Software.first.releases_contract(Contract.first.id)
   def releases_contract(contract_id)
     result = []
     self.versions.find(:all,

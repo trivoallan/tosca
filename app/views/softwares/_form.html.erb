@@ -1,0 +1,30 @@
+<%= error_messages_for 'software' %>
+
+<p><label for="software_name"><%=_('Name')%></label><br />
+<%= text_field 'software', 'name'  %></p>
+
+<p><label for="software_resume"><%=_('Summary')%></label><br />
+<%= text_field 'software', 'resume' %></p>
+
+<p><label for="software_description"><%=_('Description')%></label><br />
+<%= text_area 'software', 'description', :cols => 60 %></p>
+
+<p><label for="image_image"><%=_('Logo')%></label><br />
+<%= file_column_field 'image', 'image' %></p>
+
+<p><label for="software_referent"><%=_('Base name')%></label><br />
+<%= text_field 'software', 'referent' %></p>
+
+<p><label for="software_licence_id"><%=_('Copyright')%></label>
+   <%= link_to_new_license %><br />
+   <%= select(:software, :license_id, @licenses) %></p>
+
+<p><label for="software_groupe_id"><%=_('Group')%></label><br />
+ <%= select(:software, :groupe_id, @groupes) %></p>
+
+<p><label for="software_competence_ids"><%=_('Technologies')%></label></p>
+<div id='competences'> 
+<%= hbtm_check_box( @software.competences, @competences, 'software[competence_ids]', :size => 4) %>
+</div>
+<%= render :partial => 'tags' %>
+<%= observe_form("form_software", :update => 'tags', :url => ajax_update_tags_softwares_path, :on => :click, :method => :get ) %>

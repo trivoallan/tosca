@@ -16,24 +16,24 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-module LogicielsHelper
+module SoftwaresHelper
 
-  # Display a link to a Logiciel (software)
+  # Display a link to a Software (software)
   # Options :
   #   * :size => size of the picture,
   #      (:small, :thumb & so on. See app/models/image.rb for full list)
   # Call it like this
-  # public_link_to_logiciel @logiciel
-  # public_link_to_logiciel @logiciel, :size => :thumb
-  def public_link_to_logiciel(logiciel, options = {})
-    return '-' unless logiciel and logiciel.is_a? Logiciel
-    public_link_to logiciel.name, logiciel_path(logiciel), options
+  # public_link_to_software @software
+  # public_link_to_software @software, :size => :thumb
+  def public_link_to_software(software, options = {})
+    return '-' unless software and software.is_a? Software
+    public_link_to software.name, software_path(software), options
   end
 
-  # Link to create a new url for a Logiciel
-  def link_to_new_urllogiciel(logiciel_id)
-    return '-' unless logiciel_id
-    options = new_urllogiciel_path(:logiciel_id => logiciel_id)
+  # Link to create a new url for a Software
+  def link_to_new_urlsoftware(software_id)
+    return '-' unless software_id
+    options = new_urlsoftware_path(:software_id => software_id)
     link_to(image_create('an url'), options)
   end
 
@@ -41,7 +41,7 @@ module LogicielsHelper
   # Usage :
   #  <%= remote_link_to_software(:all) %> to display all the software
   def remote_link_to_software( param)
-    ajax_call = PagesHelper::AJAX_OPTIONS.dup.update(:url => logiciels_path)
+    ajax_call = PagesHelper::AJAX_OPTIONS.dup.update(:url => softwares_path)
     if param == :supported
       text = _('My supported software')
       description = _('Display only software supported by your contract')

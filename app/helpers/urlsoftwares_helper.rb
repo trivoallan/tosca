@@ -16,15 +16,5 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Urllogiciel < ActiveRecord::Base
-  belongs_to :typeurl
-  belongs_to :logiciel
-
-  validates_presence_of :valeur
-  validates_presence_of :logiciel
-
-  def name
-    valeur
-  end
-
+module UrlsoftwaresHelper
 end

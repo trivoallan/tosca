@@ -4,14 +4,14 @@
   <% out = "<table class=\"list\"><tr>" and count = 1 %>
   <% options_size = 2 %>
   <% length = collection.size %>
-  <% name = 'logiciel[tag_list]' %>
+  <% name = 'software[tag_list]' %>
   <% name_w3c = name.gsub(/[^a-z1-9]+/i, '_') %>
   <% for donnee in collection %>
     <% out << "<td class=\"#{cycle('odd', 'even')}\">" %>
     <% out <<  "<label for=\"#{name_w3c}_#{donnee.id}\">" %>
     <% out <<   "<input id=\"#{name_w3c}_#{donnee.id}\" type=\"checkbox\" " %>
     <% out <<      "name=\"#{name}[]\" value=\"#{donnee.name}\" " %>
-    <% out <<      'checked="checked" ' if @logiciel.tags.include? donnee %>
+    <% out <<      'checked="checked" ' if @software.tags.include? donnee %>
     <% out <<   "/>#{donnee}" %>
     <% out <<  "</label>" %>
     <% out << "</td>" %>

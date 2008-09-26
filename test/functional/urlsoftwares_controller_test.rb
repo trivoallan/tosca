@@ -17,16 +17,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'urllogiciels_controller'
+require 'urlsoftwares_controller'
 
 # Re-raise errors caught by the controller.
-class UrllogicielsController; def rescue_action(e) raise e end; end
+class UrlsoftwaresController; def rescue_action(e) raise e end; end
 
-class UrllogicielsControllerTest < Test::Unit::TestCase
-  fixtures :urllogiciels, :logiciels
+class UrlsoftwaresControllerTest < Test::Unit::TestCase
+  fixtures :urlsoftwares, :softwares
 
   def setup
-    @controller = UrllogicielsController.new
+    @controller = UrlsoftwaresController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -36,7 +36,7 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:urllogiciels)
+    assert_not_nil assigns(:urlsoftwares)
   end
 
   def test_show
@@ -45,8 +45,8 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:urllogiciel)
-    assert assigns(:urllogiciel).valid?
+    assert_not_nil assigns(:urlsoftware)
+    assert assigns(:urlsoftware).valid?
   end
 
   def test_new
@@ -55,23 +55,23 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:urllogiciel)
+    assert_not_nil assigns(:urlsoftware)
   end
 
   def test_create
-    num_urllogiciels = Urllogiciel.count
+    num_urlsoftwares = Urlsoftware.count
 
-    post :create, :urllogiciel => {
-      :logiciel_id => 1,
+    post :create, :urlsoftware => {
+      :software_id => 1,
       :typeurl_id => 1,
       :valeur => "www.disney.fr"
 
     }
 
     assert_response :redirect
-    assert_redirected_to logiciel_path(assigns(:urllogiciel).logiciel)
+    assert_redirected_to software_path(assigns(:urlsoftware).software)
 
-    assert_equal num_urllogiciels + 1, Urllogiciel.count
+    assert_equal num_urlsoftwares + 1, Urlsoftware.count
   end
 
   def test_edit
@@ -80,26 +80,26 @@ class UrllogicielsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:urllogiciel)
-    assert assigns(:urllogiciel).valid?
+    assert_not_nil assigns(:urlsoftware)
+    assert assigns(:urlsoftware).valid?
   end
 
   def test_update
     post :update, :id => 1
     assert_response :redirect
-    assert_redirected_to logiciel_path(assigns(:urllogiciel).logiciel)
+    assert_redirected_to software_path(assigns(:urlsoftware).software)
   end
 
   def test_destroy
-    url = Urllogiciel.find(1)
+    url = Urlsoftware.find(1)
     assert_not_nil url
 
     post :destroy, :id => 1
     assert_response :redirect
-    assert_redirected_to logiciel_path(url.logiciel)
+    assert_redirected_to software_path(url.software)
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Urllogiciel.find(1)
+      Urlsoftware.find(1)
     }
   end
 end

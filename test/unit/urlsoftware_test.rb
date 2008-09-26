@@ -16,5 +16,24 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-module UrllogicielsHelper
+require File.dirname(__FILE__) + '/../test_helper'
+
+class UrlsoftwareTest < Test::Unit::TestCase
+  fixtures :urlsoftwares, :softwares
+
+  def test_to_strings
+    check_strings Urlsoftware
+  end
+
+  def test_presences
+    u = Urlsoftware.new
+    assert !u.save
+    assert u.errors.on(:valeur)
+    assert u.errors.on(:software)
+
+    software = Software.find(:first)
+    u.update_attributes(:valeur => 'rubyonrails.org', :software => software)
+    assert u.save
+  end
+
 end

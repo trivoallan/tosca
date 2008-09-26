@@ -1,12 +1,12 @@
 <h1><%=_("List of software's links")%></h1>
 
-<% links = show_pages_links(@urllogiciel_pages, _('a new url')) %>
+<% links = show_pages_links(@urlsoftware_pages, _('a new url')) %>
 <%= links %>
 
 <% titles = [_('Software'),_('Url'),_('Kind')]%>
-<%= show_table(@urllogiciels, Urllogiciel, titles) { |u|
+<%= show_table(@urlsoftwares, Urlsoftware, titles) { |u|
   result = ''
-  result << "<td>#{u.logiciel.name}</td>"
+  result << "<td>#{u.software.name}</td>"
   result << "<td>#{u.valeur}</td>"
   result << "<td>#{u.typeurl.name}</td>"
   result << link_to_actions_table(u)

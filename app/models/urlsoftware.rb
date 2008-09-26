@@ -16,24 +16,15 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-require File.dirname(__FILE__) + '/../test_helper'
+class Urlsoftware < ActiveRecord::Base
+  belongs_to :typeurl
+  belongs_to :software
 
-class UrllogicielTest < Test::Unit::TestCase
-  fixtures :urllogiciels, :logiciels
+  validates_presence_of :valeur
+  validates_presence_of :software
 
-  def test_to_strings
-    check_strings Urllogiciel
-  end
-
-  def test_presences
-    u = Urllogiciel.new
-    assert !u.save
-    assert u.errors.on(:valeur)
-    assert u.errors.on(:logiciel)
-
-    software = Logiciel.find(:first)
-    u.update_attributes(:valeur => 'rubyonrails.org', :logiciel => software)
-    assert u.save
+  def name
+    valeur
   end
 
 end

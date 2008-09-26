@@ -16,54 +16,54 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class UrllogicielsController < ApplicationController
-  helper :logiciels
+class UrlsoftwaresController < ApplicationController
+  helper :softwares
 
   def index
-    @urllogiciel_pages, @urllogiciels = paginate :urllogiciels,
-     :per_page => 10, :include => [:logiciel,:typeurl],
-     :order => 'urllogiciels.logiciel_id'
+    @urlsoftware_pages, @urlsoftwares = paginate :urlsoftwares,
+     :per_page => 10, :include => [:software,:typeurl],
+     :order => 'urlsoftwares.software_id'
   end
 
   def show
-    @urllogiciel = Urllogiciel.find(params[:id])
+    @urlsoftware = Urlsoftware.find(params[:id])
   end
 
   def new
-    @urllogiciel = Urllogiciel.new
-    @urllogiciel.logiciel_id = params[:logiciel_id]
+    @urlsoftware = Urlsoftware.new
+    @urlsoftware.software_id = params[:software_id]
     _form
   end
 
   def create
-    @urllogiciel = Urllogiciel.new(params[:urllogiciel])
-    if @urllogiciel.save
+    @urlsoftware = Urlsoftware.new(params[:urlsoftware])
+    if @urlsoftware.save
       flash[:notice] = _('The url of "%s" has been created successfully.') %
-        @urllogiciel.valeur
-      redirect_to logiciel_path(@urllogiciel.logiciel)
+        @urlsoftware.valeur
+      redirect_to software_path(@urlsoftware.software)
     else
       _form and render :action => 'new'
     end
   end
 
   def edit
-    @urllogiciel = Urllogiciel.find(params[:id])
+    @urlsoftware = Urlsoftware.find(params[:id])
     _form
   end
 
   def update
-    @urllogiciel = Urllogiciel.find(params[:id])
-    if @urllogiciel.update_attributes(params[:urllogiciel])
+    @urlsoftware = Urlsoftware.find(params[:id])
+    if @urlsoftware.update_attributes(params[:urlsoftware])
       flash[:notice] = _("The Url has bean updated successfully.")
-      redirect_to logiciel_path(@urllogiciel.logiciel)
+      redirect_to software_path(@urlsoftware.software)
     else
       _form and render :action => 'edit'
     end
   end
 
   def destroy
-    url = Urllogiciel.find(params[:id])
-    return_url = logiciel_path(url.logiciel)
+    url = Urlsoftware.find(params[:id])
+    return_url = software_path(url.software)
     url.destroy
     redirect_to return_url
   end
@@ -71,6 +71,6 @@ class UrllogicielsController < ApplicationController
 private
   def _form
     @typeurls = Typeurl.find_select
-    @logiciels = Logiciel.find_select
+    @softwares = Software.find_select
   end
 end
