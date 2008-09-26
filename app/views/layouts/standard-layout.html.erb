@@ -48,48 +48,51 @@
   <%= javascript_include_tag('calendar', "calendar-#{locale}",
         'calendar-setup', 'prototype', 'effects', 'controls',
         'application', 'redbox', 'tosca', :cache => "all-#{locale}") %>
- <title><%= @page_title || _(controller.controller_name)%></title>
+ <title><%= @page_title || _(controller.controller_name) %></title>
 </head>
 <body>
   <%# All the menu are built during first rendering or during login, in account controller %>
   <% @@public_menu[locale] ||= build_simple_menu([
        public_link_to_home,
        public_link_to_software,
-       public_link_to_contributions,
-       public_link_to_about ]) %>
-  <% @@menu[role_localised] ||= build_simple_menu([
+       public_link_to_contributions ])
+     @@menu[role_localised] ||= build_simple_menu([
         public_link_to_home,
         link_to_tobd_requests,
         link_to_all_requests,
         search_request,
-        link_to_admin,
-        public_link_to_about
+        link_to_admin
        ], :form => true) if user %>
   <div id="page_margins">
     <div id="page">
-      <div id="header">
+      
+      <div id="header">        
         <div id="topnav">
           <!-- start: skip link navigation -->
           <a class="skip" title="skip link" href="#navigation"><%= _("Skip to the navigation") %></a><span class="hideme">.</span>
           <a class="skip" title="skip link" href="#content"><%= _("Skip to the content") %></a><span class="hideme">.</span>
           <!-- end: skip link navigation -->
+        </div>
+          <%# = public_link_to StaticImage::logo_service, welcome_url%>
+      </div>
+      
+      <div id="nav">
+        <a id="navigation" name="navigation"></a>
+        <div id="nav_main">
+          <%= (user ? @@menu[role_localised] : @@public_menu[locale]) %>
+          
+          <ul style="float: right; margin-right: 25px;">
           <% @@public_links[locale] ||= link_to_redbox(image_connect, 'login_box') %>
           <% if user %>
             <% infos = [
                 link_to(_('My account'), edit_account_path(user)),
                 public_link_to(image_disconnect, logout_accounts_path) ] %>
-             <%= infos.join(' | ') %>
+            <li><%= infos.join('</li><li>') %></li>
           <% else %>
-            <%= @@public_links[locale] %>
+            <li><%= @@public_links[locale] %></li>
           <% end %>
-        </div>
-          <%# = public_link_to StaticImage::logo_service, welcome_url%>
-      </div>
-      <div id="nav">
-        <a id="navigation" name="navigation"></a>
-        <div id="nav_main">
-          <%= (user ? @@menu[role_localised] : @@public_menu[locale]) %>
-
+          <li><%= public_link_to_about %></li>
+          </ul> 
         </div>
       </div>
       <% if flash[:notice] || flash[:warn] %>
@@ -100,8 +103,7 @@
       <% end %>
 
       <div id="main">
-        <%#onclick="Element.toggle('col1_content')" title="Montrer/cacher le menu latéral"%>
-        <div id="col1">
+        <div id="col1" <%=' style="width: 75%"' if @partial_for_summary%>>
           <div id="col1_content" class="clearfix">
             <%= @content_for_layout %>
           </div>

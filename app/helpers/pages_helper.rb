@@ -79,7 +79,7 @@ module PagesHelper
     :success => "Element.hide('spinner')" }
 
   AJAX_OPTIONS =
-    SPINNER_OPTIONS.dup.update(:update => 'col3_content', :method => :get,
+    SPINNER_OPTIONS.dup.update(:update => 'col1_content', :method => :get,
       :with => "Form.serialize(document.forms['filters'])"
     )
 
