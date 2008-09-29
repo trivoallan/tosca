@@ -17,36 +17,36 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class CommentsController < ApplicationController
-  helper :requests
+  helper :issues
 
   cache_sweeper :comment_sweeper, :only =>
     [:comment, :update, :destroy]
-  # A comment is created only from the request interface
-  cache_sweeper :request_sweeper, :only => [:comment]
+  # A comment is created only from the issue interface
+  cache_sweeper :issue_sweeper, :only => [:comment]
 
   def index
     @comment_pages, @comments = paginate :comments,
-    :per_page => 10, :include => [:request]
+    :per_page => 10, :include => [:issue]
   end
 
   def show
     @comment = Comment.find(params[:id])
-    @request_tosca = @comment.request
+    @issue = @comment.issue
   end
 
-  #Used by the comment view of a request to add one
+  #Used by the comment view of an issue to add one
   def comment
     comment, id = params[:comment], params[:id]
     return render(:nothing => true) unless id && comment
 
     user = session[:user]
-    request = Request.find(id)
+    issue = Issue.find(id)
 
     # firewall ;)
-    return render(:nothing => true) unless user && request
+    return render(:nothing => true) unless user && issue
 
     # check on attributes change
-    # Find a way to put it in the model despite the access from request view
+    # Find a way to put it in the model despite the access from issue view
     changed = {}
     %w{statut_id ingenieur_id severite_id}.each do |attr|
       changed[attr] = true unless comment[attr].blank?
@@ -58,33 +58,33 @@ class CommentsController < ApplicationController
     end
 
     @comment = Comment.new(comment) do |c|
-      c.request, c.user = request, user
+      c.issue, c.user = issue, user
       c.add_attachment(params)
     end
 
-    request.update_attribute :expected_on, Time.now if user.client?
+    issue.update_attribute :expected_on, Time.now if user.client?
 
     #We verify and send an email
     if @comment.save
       flash[:notice] = _("Your comment was successfully added.")
       url_attachment = render_to_string(:layout => false, :template => '/attachment')
-      options = { :request_tosca => request, :comment => @comment,
+      options = { :issue => issue, :comment => @comment,
         :name => user.name, :modifications => changed,
-        :url_request => request_url(request),
+        :url_issue => issue_url(issue),
         :url_attachment => url_attachment
       }
-      Notifier::deliver_request_new_comment(options, flash)
+      Notifier::deliver_issue_new_comment(options, flash)
     else
       flash[:warn] = _("An error has occured.") + '<br/>' +
         @comment.errors.full_messages.join('<br/>')
       flash[:old_body] = @comment.text
     end
 
-    redirect_to request_path(request)
+    redirect_to issue_path(issue)
   end
 
   # We could only create a comment with comment method, from
-  # request view
+  # issue view
   def new
     render :nothing => true
   end
@@ -113,18 +113,18 @@ class CommentsController < ApplicationController
   def destroy
     return redirect_to_home unless params[:id]
     comment = Comment.find(params[:id])
-    request = comment.request_id
+    issue = comment.issue_id
     if comment.destroy
       flash[:notice] = _("The comment was successfully destroyed.")
     else
       flash[:warn] = _('You cannot delete the first comment')
     end
-    redirect_to request_path(request)
+    redirect_to issue_path(issue)
   end
 
   private
   def _form
-    @requests = Request.find(:all)
+    @issues = Issue.find(:all)
     @users = User.find_select
     @statuts = Statut.find_select
   end
@@ -132,7 +132,7 @@ class CommentsController < ApplicationController
   def _not_allowed?
     if @recipient and @comment.user_id != @recipient.user_id
       flash[:warn] = _('You are not allowed to edit this comment')
-      redirect_to request_path(@comment.request)
+      redirect_to issue_path(@comment.issue)
       return true
     end
     false

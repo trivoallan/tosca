@@ -1,0 +1,78 @@
+<table id="issues_list" class="full">
+  <thead>
+   <tr>
+      <th width='2%'><%= _('Id') %><%#= sortable_header(:id, :label => _("Id")) %></th>
+      <th width='7%'><%= _('Software') %><%#= sortable_header(:software_id, :label => _("Software")) %></th>
+      <th width='7%' colspan="2"><%= _('Type')%><%#= sortable_header(:typeissue_id, :label => _("Type")) %></th>
+      <% if @ingenieur %>
+        <th width='7%'><%= _('Client')%><%#= sortable_header(:client_id , :label => _("Client")) %></th>
+      <% end %>
+      <th><%= _('Summary')%><%#= sortable_header(:description, :label => _("Summary")) %></th>
+      <th width='10%'>
+       <% if @ingenieur %>
+         <%=_('Owner')%><%#= sortable_header(:ingenieur_id, :label => _("Owner")) %>
+       <% else %>
+         <%=_('Submitter')%><%#= sortable_header(:recipient_id, :label => _("Submitter")) %>
+       <% end %>
+      </th>
+
+      <th width='8%'><%=_('Updated on')%><%#= sortable_header(:updated_on, :label => _("Updated on"), :descend => true) %></th>
+   </tr>
+ </thead>
+
+   <% recipient = Recipient.new(:id => 0) %>
+   <% ingenieur = Ingenieur.new(:id => 0)
+      def ingenieur.name; '-'; end %>
+   <% for issue in @issues %>
+   <tr <%= tr_attributes(issue_path(issue)) %>>
+        <td><%= issue.id %></td>
+        <% #When we have a dirty hack, we have to make others ...
+           if issue.respond_to? :softwares_name
+             software_name = issue.softwares_name
+           else
+             software_name = issue.software.name
+           end 
+        %>        
+        <td><%= software_name %></td>
+        <td></td>
+        <% #Yet another dirty hack ...
+           if issue.respond_to? :typeissues_name
+             typeissues_name = issue.typeissues_name
+           else
+             typeissues_name = issue.typeissue.name
+           end 
+        %>  
+        <td nowrap="nowrap"><span class="issue_<%=issue.statut_id%>">&nbsp;<%= typeissues_name %><%= StaticImage::severite(issue) %></span></td>
+       <% if @ingenieur %>
+        <% #Dirty hacks are really bad ...
+           if issue.respond_to? :clients_name
+             clients_name = issue.clients_name
+           else
+             clients_name = issue.client.name
+           end 
+        %>  
+        <td><%= clients_name %></td>
+       <% end %>
+        <% recipient = issue.recipient if recipient.id != issue.recipient_id %>
+        <td><b><%= link_to_issue issue %></b></td>
+        <td>
+         <% if @ingenieur %>
+          <% if ingenieur.nil? || (ingenieur.id != issue.ingenieur_id)
+               ingenieur = issue.ingenieur
+             end %>
+          <%= name(ingenieur) %>
+         <% else %>
+          <%= recipient %>
+         <% end %>
+        </td>
+        <td><span class="date"><%= issue.updated_on_formatted %></span></td>
+   </tr>
+   <% end %>
+
+<% if @issues.size == 0 %>
+  <tr><td colspan="11">
+    <p><%= _("No issue found.") %></p>
+  </td></tr>
+<% end %>
+
+</table>

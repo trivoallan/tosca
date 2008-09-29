@@ -58,10 +58,10 @@ module App
   ContactMail = "tosca@tosca-project.com"
 
   module Help
-    NewRequestUrl = "http://redmine.tosca-project.net/wiki/tosca/NewRequest"
+    NewIssueUrl = "http://redmine.tosca-project.net/wiki/tosca/NewIssue"
     LifeCycleUrl = "http://redmine.tosca-project.net/wiki/tosca/LifeCycle"
-    RequestStatusUrl = "http://redmine.tosca-project.net/wiki/tosca/RequestStatus"
-    RequestSeverityUrl = "http://redmine.tosca-project.net/wiki/tosca/RequestSeverity"
+    IssueStatusUrl = "http://redmine.tosca-project.net/wiki/tosca/IssueStatus"
+    IssueSeverityUrl = "http://redmine.tosca-project.net/wiki/tosca/IssueSeverity"
   end
 
 end

@@ -1,4 +1,4 @@
-<h1><%= _('Status of the Requests')%></h1>
+<h1><%= _('Status of the Issues')%></h1>
 <br />
 <br />
 
@@ -6,7 +6,7 @@
 
 <table>
 <% for statut in @statuts %>
-  <tr class=<%= "request_" + statut.id.to_s %> >
+  <tr class=<%= "issue_" + statut.id.to_s %> >
     <td><%=h statut.name %></td>
     <td><%=h statut.description %></td>
   </tr>

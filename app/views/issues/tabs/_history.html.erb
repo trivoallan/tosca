@@ -1,0 +1,26 @@
+<% cache("issues/#{@issue_id || @issue.id}/history") do %>
+<div class="issue_tab_content" name="issue_tab_content">
+
+<table>
+  <tr>
+    <th><%= _("Date") %></th>
+    <th></th>
+    <th><%= _("Change(s)") %></th>
+  </tr>
+
+  <% contract, rule = nil, nil %>
+  <% @comments.each do |c| %>
+     <% contract ||= c.issue.contract %>
+     <% rule ||= contract.rule %>
+     <% history = display_history(c, rule, contract) %>
+     <% unless history.nil? %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td><%= c.created_on_formatted %></td>
+        <td>&nbsp;</td>
+        <td><%= history %></td>
+      </tr>
+     <% end %>
+  <% end %>
+</table>
+</div>
+<% end %>

@@ -25,7 +25,7 @@ class Recipient < ActiveRecord::Base
 
   # TODO : revoir la hiérarchie avec un nested tree (!)
   belongs_to :recipient
-  has_many :requests, :dependent => :destroy
+  has_many :issues, :dependent => :destroy
 
   validates_presence_of :client
 

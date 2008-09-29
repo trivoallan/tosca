@@ -18,7 +18,7 @@
 #
 class CommentSweeper < ActionController::Caching::Sweeper
   # All the cache used for comments are in the
-  # 'comment' action of the 'request' controller.
+  # 'comment' action of the 'issue' controller.
   observe Comment
 
   # If our sweeper detects that a Comment was created call this
@@ -34,7 +34,7 @@ class CommentSweeper < ActionController::Caching::Sweeper
   private
   def expire_cache_for(record)
     expire_fragments(record.fragments)
-    # Comments are displayed in request view
-    expire_fragments(record.request.fragments)
+    # Comments are displayed in issue view
+    expire_fragments(record.issue.fragments)
   end
 end

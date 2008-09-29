@@ -4,7 +4,7 @@
                             :url => admin_contributions_path) %>
 <%= links %>
 
-<% titres = [_('Software'), _('Patch'), _('Request'), _('State'), _('Name'),
+<% titres = [_('Software'), _('Patch'), _('Issue'), _('State'), _('Name'),
              _('Submitted on'), _('Closed on'), _('Delay'), _('Updated on')]%>
 <% form_tag(contributions_path) do %>
 <%= show_table(@contributions, Contribution, titres) { |c|
@@ -15,7 +15,7 @@
   result << " (#{versions})" unless versions.blank?
   result << " </td>"
   result << "<td>#{link_to_file c, 'patch', :image => true}</td>"
-  result << "<td nowrap=\"nowrap\">#{link_to_request(c.request) if c.request}</td>"
+  result << "<td nowrap=\"nowrap\">#{link_to_issue(c.issue) if c.issue}</td>"
   result << "<td>#{c.etatreversement.name if c.etatreversement}</td>"
   result << "<td>#{link_to_contribution c}</td>"
   result << "<td style='color:green'><span class=\"date\">#{c.contributed_on_formatted}</span></td>"

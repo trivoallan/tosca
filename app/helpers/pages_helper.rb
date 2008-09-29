@@ -29,9 +29,9 @@ module PagesHelper
 
   # 2 ways of use it
   # First, within the good controller :
-  #   <%= link_to_show(@request_tosca) %>
+  #   <%= link_to_show(@issue_tosca) %>
   # Second, with an other controller :
-  #   <%= link_to_show(edit_request_path(@request_tosca))%>
+  #   <%= link_to_show(edit_issue_path(@issue_tosca))%>
   def link_to_show(ar)
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'show', :id => ar })
@@ -66,7 +66,7 @@ module PagesHelper
     [ link_to_show(ar), link_to_back ].compact.join('|')
   end
 
-  # link_to_actions_table(request)
+  # link_to_actions_table(issue)
   def link_to_actions_table(ar)
     return '' unless ar
     actions = [ link_to_show(ar), link_to_edit(ar), link_to_delete(ar) ]
@@ -85,20 +85,20 @@ module PagesHelper
 
 =begin
  call it like this :
- <%= show_pages_links @request_pages, 'déposer une nouvelle request' %>
+ <%= show_pages_links @issue_pages, 'déposer une nouvelle issue' %>
  if you want ajax links, you must specificy the remote function this way :
- <%= show_pages_links @request_pages, 'déposer une request',
-       :url => '/requests/update_list' %>
+ <%= show_pages_links @issue_pages, 'déposer une issue',
+       :url => '/issues/update_list' %>
  (!) you will need an StaticImage::spinner too (!)
  If you want to display a list of objects in a distant controller,
- e. g. : displaying the flow requests in reporting controller, then you
+ e. g. : displaying the flow issues in reporting controller, then you
  need to precise the controller like this :
- <%= show_pages_links @request_pages, 'déposer une request',
-       :controller => 'requests' %>
+ <%= show_pages_links @issue_pages, 'déposer une issue',
+       :controller => 'issues' %>
   You have 2 parameters in options :
       :url : for ajaxified page links
       :no_new_links : avoid '+' links to create new one
-        (used in 'to be done' request, for isntance).
+        (used in 'to be done' issue, for isntance).
 =end
   def show_pages_links(pages, message, options = {} )
     if options.has_key? :url

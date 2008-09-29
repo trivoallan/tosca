@@ -11,58 +11,58 @@ Bonjour,
   <% contract = c.contract %>
   <h4>Contrat : <%= contract.name %></h4>
   <ul>
-  <% c.requests.each do |d| %>
-    <% request = d.request %>
-    <% old_request = d.request_at %>
+  <% c.issues.each do |d| %>
+    <% issue = d.issue %>
+    <% old_issue = d.issue_at %>
     <li>
-      <% severite = request.severite
+      <% severite = issue.severite
          severite = "sans sévérité"
 
-         request_type = request.typerequest.to_s
+         issue_type = issue.typeissue.to_s
          type = ""
-         case request_type
+         case issue_type
          when "Anomalie"
-           type = "L'" << request_type
+           type = "L'" << issue_type
          else
-           type = "La request "
-           case request_type
+           type = "La demande "
+           case issue_type
            when "Évolution", "Information"
              type << "d'"
            else
              type << "de "
            end
-           type << request_type
+           type << issue_type
          end
 
          software = ""
-         software = " (#{request.software})" if request.software
+         software = " (#{issue.software})" if issue.software
       %>
 
-      <%= "##{request.id}#{software} " %>
+      <%= "##{issue.id}#{software} " %>
 
-      <% if request.statut_id == 7 #Clôturée %>
+      <% if issue.statut_id == 7 #Clôturée %>
         => <i>Clôturée</i>
       <% else %>
-        <%= ": #{type} #{severite} est #{request.statut}" %>, ouverte depuis <%= distance_of_time_in_words_to_now(request.created_on) %>
-        <% if request.elapsed.workaround? and not request.statut_id == 5 #Contournée %>
+        <%= ": #{type} #{severite} est #{issue.statut}" %>, ouverte depuis <%= distance_of_time_in_words_to_now(issue.created_on) %>
+        <% if issue.elapsed.workaround? and not issue.statut_id == 5 #Contournée %>
           a été <i>contournée</i>
         <% end %>
-        <% if request.elapsed.workaround? and
-              request.elapsed.correction? and
-              ( not request.statut_id == 5 and not request.statut_id == 6 ) %>
+        <% if issue.elapsed.workaround? and
+              issue.elapsed.correction? and
+              ( not issue.statut_id == 5 and not issue.statut_id == 6 ) %>
           et
-        <% elsif request.elapsed.correction? and not request.elapsed.workaround? %>
+        <% elsif issue.elapsed.correction? and not issue.elapsed.workaround? %>
           a été
         <% end %>
-        <% if request.elapsed.correction? and not request.statut_id == 6 #Corrigée %>
+        <% if issue.elapsed.correction? and not issue.statut_id == 6 #Corrigée %>
           <i>corrigée</i>
         <% end %>
 
-        <% if old_request.severite and old_request.severite != request.severite %>
-          a eu sa <strong>sévérité modifiée</strong> (anciennement : <%= old_request.severite %>)
+        <% if old_issue.severite and old_issue.severite != issue.severite %>
+          a eu sa <strong>sévérité modifiée</strong> (anciennement : <%= old_issue.severite %>)
         <% end %>
-        <% if old_request.statut and old_request.statut != request.statut %>
-          a eu son <strong>statut modifié</strong> (anciennement : <%= old_request.statut %>)
+        <% if old_issue.statut and old_issue.statut != issue.statut %>
+          a eu son <strong>statut modifié</strong> (anciennement : <%= old_issue.statut %>)
         <% end %>
       <% end %>
     </li>

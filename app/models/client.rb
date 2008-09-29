@@ -30,7 +30,7 @@ class Client < ActiveRecord::Base
   has_and_belongs_to_many :socles, :uniq => true
 
   has_many :versions, :through => :contracts
-  has_many :requests, :through => :recipients # , :source => :requests
+  has_many :issues, :through => :recipients # , :source => :issues
 
   belongs_to :creator, :class_name => 'User'
 
@@ -107,28 +107,28 @@ class Client < ActiveRecord::Base
   end
 
   def contributions
-    return [] if requests.empty?
+    return [] if issues.empty?
     Contribution.find(:all,
                    :conditions => "contributions.id IN (" +
-                     "SELECT DISTINCT requests.contribution_id FROM requests " +
-                     "WHERE requests.recipient_id IN (" +
+                     "SELECT DISTINCT issues.contribution_id FROM issues " +
+                     "WHERE issues.recipient_id IN (" +
                      recipients.collect{|c| c.id}.join(',') + "))"
                    )
   end
 
-  def typerequests
-    joins = 'INNER JOIN commitments ON commitments.typerequest_id = typerequests.id '
+  def typeissues
+    joins = 'INNER JOIN commitments ON commitments.typeissue_id = typeissues.id '
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
     conditions = [ 'commitments_contracts.contract_id IN (' +
         'SELECT contracts.id FROM contracts WHERE contracts.client_id = ?)', id ]
-    Typerequest.find(:all,
-                     :select => "DISTINCT typerequests.*",
+    Typeissue.find(:all,
+                     :select => "DISTINCT typeissues.*",
                      :conditions => conditions,
                      :joins => joins)
   end
 
   # TODO : à revoir, on pourrait envisager de moduler les sévérités selon
-  # les type de requests
+  # les type de issues
   def severites
     Severite.find(:all)
   end

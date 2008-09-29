@@ -28,7 +28,7 @@
     <td><%= @version.generic? ? _('Yes') : _('No') %><%= hidden_field_tag "#{random_field}[generic]", @version.generic %></td>
   <% end %>
   <td>
-   <%# Only admin can remove a software, since it can have a great impact on requests %>
+   <%# Only admin can remove a software, since it can have a great impact on issues %>
    <%= delete_button @random_id if new_record || session[:user].role_id == 1 %>
   </td>
 </tr>

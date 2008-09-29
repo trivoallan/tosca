@@ -3,14 +3,14 @@
     <span class="date"><%= @date[:first_day].strftime("%A %d %B %Y") %></span> <%= _('to') %>
     <span class="date"><%= @date[:end_day].strftime("%A %d %B %Y") %></span></h1>
   <br />
-  <h2>I. <%=@requests_created.size%>
-    <%=n_('request created', 'requests created', @requests_created.size)%></h2>
-  <%= display_weekly_requests(@requests_created) %>
-  <h2>II. <%=@requests_closed.size%>
-    <%=n_('request closed', 'requests closed', @requests_closed.size)%></h2>
-  <%= display_weekly_requests(@requests_closed) %>
-  <h2>III. <%=@requests_cancelled.size%>
-    <%=n_('request cancelled', 'requests cancelled', @requests_cancelled.size)%></h2>
-  <%= display_weekly_requests(@requests_cancelled) %>
+  <h2>I. <%=@issues_created.size%>
+    <%=n_('issue created', 'issues created', @issues_created.size)%></h2>
+  <%= display_weekly_issues(@issues_created) %>
+  <h2>II. <%=@issues_closed.size%>
+    <%=n_('issue closed', 'issues closed', @issues_closed.size)%></h2>
+  <%= display_weekly_issues(@issues_closed) %>
+  <h2>III. <%=@issues_cancelled.size%>
+    <%=n_('issue cancelled', 'issues cancelled', @issues_cancelled.size)%></h2>
+  <%= display_weekly_issues(@issues_cancelled) %>
   </ol>
 </div>

@@ -22,14 +22,14 @@ class Contract < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :salesman, :class_name => 'Ingenieur'
 
-  has_many :requests
+  has_many :issues
   has_many :appels
   has_many :tags
   has_many :releases
 
   has_and_belongs_to_many :versions, :order => 'versions.name DESC', :uniq => true
   has_and_belongs_to_many :commitments, :uniq => true, :order =>
-    'typerequest_id, severite_id', :include => [:severite,:typerequest]
+    'typeissue_id, severite_id', :include => [:severite,:typeissue]
   has_and_belongs_to_many :users, :order => 'users.name', :uniq => true
   # Those 2 ones are helpers, not _real_ relation ship
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
@@ -89,7 +89,7 @@ class Contract < ActiveRecord::Base
   end
 
   # We have open clients which can declare
-  # requests on everything. It's with the "socle" field.
+  # issues on everything. It's with the "socle" field.
   def softwares
     if rule_type == 'Rules::Component' and rule.max == -1
       return Software.find(:all, :order => 'softwares.name ASC')
@@ -114,19 +114,19 @@ class Contract < ActiveRecord::Base
     display_time read_attribute(:end_date)
   end
 
-  def find_commitment(request)
+  def find_commitment(issue)
     options = { :conditions =>
-      [ 'commitments.typerequest_id = ? AND severite_id = ?',
-        request.typerequest_id, request.severite_id ] }
+      [ 'commitments.typeissue_id = ? AND severite_id = ?',
+        issue.typeissue_id, issue.severite_id ] }
     self.commitments.find(:first, options)
   end
 
-  def typerequests
-    joins = 'INNER JOIN commitments ON commitments.typerequest_id = typerequests.id '
+  def typeissues
+    joins = 'INNER JOIN commitments ON commitments.typeissue_id = typeissues.id '
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
     conditions = [ 'commitments_contracts.contract_id = ? ', id ]
-    Typerequest.find(:all,
-                     :select => "DISTINCT typerequests.*",
+    Typeissue.find(:all,
+                     :select => "DISTINCT typeissues.*",
                      :conditions => conditions,
                      :joins => joins)
   end
@@ -145,7 +145,7 @@ class Contract < ActiveRecord::Base
   
   def total_elapsed
     total = 0
-    self.requests.each do |r|
+    self.issues.each do |r|
       total += r.elapsed.until_now
     end
     total

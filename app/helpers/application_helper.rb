@@ -218,7 +218,7 @@ module ApplicationHelper
     return unless menu.is_a? Array
     menu.compact!
     out = ''
-    out << form_tag(requests_path || '', :method => :get) if options.has_key? :form
+    out << form_tag(issues_path || '', :method => :get) if options.has_key? :form
     out << ' <ul>'
     menu.each { |e| out << "<li>#{e}</li>" }
     out << ' </ul>'

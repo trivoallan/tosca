@@ -16,13 +16,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# This class represent a phone Call for a Request from a Recipient to
+# This class represent a phone Call for an Issue from a Recipient to
 # an Engineer. There's also a link to the contract, because those phones
 # calls can be in the 24/24 contract.
 class Phonecall < ActiveRecord::Base
   belongs_to :ingenieur
   belongs_to :recipient
-  belongs_to :request
+  belongs_to :issue
   belongs_to :contract
 
   validate do |record|
@@ -65,8 +65,8 @@ class Phonecall < ActiveRecord::Base
   end
 
   def name
-    if request
-      _("Phonecall of %s on '%s'") % [ Time.in_words(length), request.resume ]
+    if issue
+      _("Phonecall of %s on '%s'") % [ Time.in_words(length), issue.resume ]
     else
       _("Phonecall of %s for %s") % [ ingenieur.name, contract.name ]
     end

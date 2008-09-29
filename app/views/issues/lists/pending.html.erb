@@ -1,0 +1,25 @@
+<% # Don't display both if one is empty %>
+<% unless @own_issues.empty? %>
+ <h1><%= n_('My pending issue', 'My pending issues', @own_issues.size) %>
+    <%= StaticImage::spinner %></h1>
+
+ <% unless @own_issues.empty? %>
+   <%= render :partial => 'issues/lists/pending_table',
+             :locals => { :issues => @own_issues } %>
+ <% end %>
+<% end %>
+
+<% # Don't display both if one is empty %>
+<% unless @team_issues.empty? %>
+ <h1><%= n_("My team has %d pending issue", "My team has %d pending issues",
+            @team_issues.size) % @team_issues.size %></h1>
+
+ <% unless @team_issues.empty? %>
+  <%= render :partial => 'issues/lists/pending_table',
+             :locals => { :issues => @team_issues } %>
+ <% end %>
+<% end %>
+
+<% if @team_issues.empty? && @own_issues.empty? %>
+  <h1><%= _('No pending issue') %></h1>
+<% end %>

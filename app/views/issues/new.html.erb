@@ -1,0 +1,22 @@
+<h1><%= _("Submit an issue") %> <%= StaticImage::spinner %></h1>
+
+<p><%= _("Please fill in the fields below.") %></p>
+<p><%= _("One of our consultants will then contact you in less than one hour.") %></p>
+
+<% form_tag( issues_path, {:multipart => true, :id => 'main_form',
+             :name => 'main_form' }) do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _("Submit this issue") %>
+<% end %>
+
+<p>&nbsp;</p>
+
+<%= link_to_back %>
+
+<p>&nbsp;</p>
+
+<% if false #deactivated, for now %>
+<% client = @recipient.client %>
+<p><%= _("Nota : One day work corresponds to the time of opening of the daily service defined in the contract %s : %s, that is to say %s hours.") % [ client.name, client.support.name, client.support.interval ] %>
+<br /><%= _("The working days are from Monday to Friday, except weekends and public holidays.") %></p>
+<% end %>

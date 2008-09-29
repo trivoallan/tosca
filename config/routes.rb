@@ -111,7 +111,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :phonecalls,  :collection => { :ajax_recipients => :get }
   map.resources :attachments
   map.resources :releases
-  map.resources :requests,
+  map.resources :issues,
     :collection => { :pending => :get,
       :ajax_renew => :post, # in pending view
       :ajax_display_commitment => :post, # in new/edit form
@@ -125,7 +125,7 @@ ActionController::Routing::Routes.draw do |map|
       :ajax_comments => :get,
       :ajax_history => :get,
       :ajax_attachments => :get,
-      :ajax_appels => :get,
+      :ajax_phonecalls => :get,
       :ajax_cns => :get,
       :ajax_untag => :delete,
       :ajax_add_tag => :post }
@@ -146,7 +146,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :teams, :collection => { :auto_complete_for_contract_name => :post }
   map.resources :time_tickets
   map.resources :typecontributions
-  map.resources :typerequests
+  map.resources :typeissues
   map.resources :typedocuments
   map.resources :typeurls
   map.resources :urlsoftwares

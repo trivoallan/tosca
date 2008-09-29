@@ -1,4 +1,0 @@
-@request_ids.each { |i|
-  page.visual_effect :fade, "request_#{i}", :duration => 0.5
-}
-page.hide 'spinner'

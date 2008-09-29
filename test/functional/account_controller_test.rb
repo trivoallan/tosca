@@ -42,7 +42,7 @@ class AccountControllerTest < ActionController::TestCase
       get :new
       assert_response :redirect
       assert_redirected_to signup_new_account_path
-      # TODO : test ajax things. See requests_controller_test if you need sample
+      # TODO : test ajax things. See issues_controller_test if you need sample
     }
   end
 

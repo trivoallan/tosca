@@ -13,14 +13,14 @@
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
-     <h3><%= _('Requests')%></h3>
+     <h3><%= _('Issues')%></h3>
     <% if user %>
-      <p><%= _("You can see the list of %s") % link_to(_("requests"), requests_path) %>.</p>
+      <p><%= _("You can see the list of %s") % link_to(_("issues"), issues_path) %>.</p>
       <% if role_id < 5 # 5 : viewer access %>
-        <p><%= _("You can also %s") % link_to(_("make a request"), new_request_path) %>.</p>
+        <p><%= _("You can also %s") % link_to(_("make an issue"), new_issue_path) %>.</p>
       <% end %>
     <% else %>
-      <p><%= _("You are not %s, so you cannot access the requests interface of our service.") % connected%></p>
+      <p><%= _("You are not %s, so you cannot access the issues interface of our service.") % connected%></p>
     <% end %>
     </div>
      <div class="show">

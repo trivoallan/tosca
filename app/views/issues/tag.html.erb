@@ -1,0 +1,27 @@
+<h1><%= _("Manage tags for the issue %s") % @issue.pretty_id %> <%=StaticImage::spinner%></h1>
+<div class="subcolumns">
+  <div class="c50l">
+    <div class="show">
+      <h2><%= _("Add a tag to this issue") %></h2>
+      <% success = update_page do |page|
+           page.hide 'spinner'
+           page['tag_name'].value = ""
+         end
+         options = { :url => ajax_add_tag_issue_url(@issue),
+          :method => :post, :with => "'tag_name=' + $('tag_name').value",
+          :update => "tags_issue",
+          :before => "Element.show('spinner')",
+          :success => success }
+      %>
+      <%= text_field_tag :tag_name %>
+      <%= submit_to_remote "add_tag_button", _("Add"), options %>
+      <% observe_field :tag_name %>
+    </div>
+  </div>
+  <div class="c50r">
+    <div class="show">
+      <h2><%= _("Tags of this issue") %></h2>
+      <%= render :partial => "issues/tags/show_tags" %>
+    </div>
+  </div>
+</div>

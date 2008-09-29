@@ -52,10 +52,10 @@
          <%= show_list(@client.socles, _('system')) do |s|
                link_to_socle(s).to_s
              end %>
-         <% unless @client.requests.empty? %>
-          <b><%= n_('Request', 'Requests', @client.requests.size) %></b>
+         <% unless @client.issues.empty? %>
+          <b><%= n_('Issue', 'Issues', @client.issues.size) %></b>
           <div class="long_bloc_scroll">
-           <%= show_list(@client.requests) {|d| link_to_request(d) } %>
+           <%= show_list(@client.issues) {|d| link_to_issue(d) } %>
           </div>
          <% end %>
         </td></tr>

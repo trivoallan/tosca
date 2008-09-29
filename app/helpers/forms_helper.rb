@@ -136,16 +136,16 @@ module FormsHelper
   # Display a quick form field to go to a ticket
   # TODO : use yield to include what we want in the form
   # Call it like :
-  #  if session[:user] && session[:user].authorized?('requests/index')
-  #    out << form_tag(requests_path)
-  #    out <<  search_request_field
+  #  if session[:user] && session[:user].authorized?('issues/index')
+  #    out << form_tag(issues_path)
+  #    out <<  search_issue_field
   #    out << end_form_tag
   #  end
-  def search_request_field
+  def search_issue_field
     text_field('numero', '', :size => 3,
-      :title => _("Quick access to a request : type the request number here"))
+      :title => _("Quick access to an issue : type the issue number here"))
   end
-  alias_method :search_request, :search_request_field
+  alias_method :search_issue, :search_issue_field
 
   # Create the original auto_complete field 
   def auto_complete(object, method, tag_options = {}, completion_options = {})

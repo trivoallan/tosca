@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Statut < ActiveRecord::Base
-  has_many :requests
+  has_many :issues
 
   #######################################
   N_('Submitted') #1  	Enregistrée     #
@@ -30,7 +30,7 @@ class Statut < ActiveRecord::Base
   N_('Cancelled') #8    Annulée         #
   #######################################
 
-  # used in lib/comex_reporting and models/request.rb
+  # used in lib/comex_reporting and models/issue.rb
   # Please be EXTREMELY cautious if you touch them.
   OPENED = [ 1, 2, 3, 4, 5 ] # We need to work on it
   CLOSED = [ 6, 7, 8 ] # The time count is now less/not important
@@ -48,9 +48,9 @@ class Statut < ActiveRecord::Base
   Bypassed = 5
   Fixed = 6
 
-  # Give possible status for next step of a request
+  # Give possible status for next step of an issue
   # Even recipient can change some status,
-  # when it's for closed or cancelled a request.
+  # when it's for closed or cancelled an issue.
   # TODO : allow dynamic editing of this logic in Web Browser
   def possible(recipient = nil)
     search =

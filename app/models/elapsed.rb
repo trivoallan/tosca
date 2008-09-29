@@ -17,12 +17,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Elapsed < ActiveRecord::Base
-  belongs_to :request
+  belongs_to :issue
 
-  # Ctor, which ask for the depending request and rule
-  # Call it like this : Elapsed.new(@request_tosca)
-  def initialize(request)
-    super(:request => request, :until_now => 0)
+  # Ctor, which ask for the depending issue and rule
+  # Call it like this : Elapsed.new(@issue_tosca)
+  def initialize(issue)
+    super(:issue => issue, :until_now => 0)
   end
 
   # self-update with a comment
@@ -85,23 +85,23 @@ class Elapsed < ActiveRecord::Base
   end
 
   def taken_into_account_progress
-    request = self.request
+    issue = self.issue
     # 1 hour = 1/24 of a day
-    progress(taken_into_account, (1/24.0), request.interval)
+    progress(taken_into_account, (1/24.0), issue.interval)
   end
 
   def workaround_progress
-    request = self.request
-    commitment = request.commitment
+    issue = self.issue
+    commitment = issue.commitment
     return 0.0 unless commitment
-    progress(self.workaround(), commitment.workaround, request.interval)
+    progress(self.workaround(), commitment.workaround, issue.interval)
   end
 
   def correction_progress
-    request = self.request
-    commitment = request.commitment
+    issue = self.issue
+    commitment = issue.commitment
     return 0.0 unless commitment
-    progress(self.correction(), commitment.correction, request.interval)
+    progress(self.correction(), commitment.correction, issue.interval)
   end
 
   # TODO
@@ -126,12 +126,12 @@ class Elapsed < ActiveRecord::Base
     value = read_attribute(value)
     return value unless value.nil?
 
-    request = self.request
+    issue = self.issue
     result = self.until_now
-    return result unless request.time_running?
-    current = Comment.new(:created_on => Time.now, :statut_id => request.statut_id)
-    last = request.last_status_comment
-    contract = request.contract
+    return result unless issue.time_running?
+    current = Comment.new(:created_on => Time.now, :statut_id => issue.statut_id)
+    last = issue.last_status_comment
+    contract = issue.contract
     result += contract.rule.compute_between(last, current, contract)
   end
 

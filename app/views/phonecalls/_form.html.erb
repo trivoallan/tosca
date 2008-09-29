@@ -4,8 +4,8 @@
 <table class="show">
  <tbody>
   <tr>
-   <th><label for="phonecall_request_id"><%= _('Request Id')%></label></th>
-   <td><%= text_field :phonecall, :request_id %></td>
+   <th><label for="phonecall_issue_id"><%= _('Issue Id')%></label></th>
+   <td><%= text_field :phonecall, :issue_id %></td>
   </tr><tr>
     <th><label for="phonecall_contract_id"><%= _('Contract') %></label></th>
     <td><%= select :phonecall, :contract_id, @contracts %> <%= StaticImage::spinner %></td>

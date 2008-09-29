@@ -1,0 +1,10 @@
+page.replace_html("recipient", select(:issue, :recipient_id, @recipients))
+if @ingenieur
+   out = %Q{<select id="issue_ingenieur_id" name="issue[ingenieur_id]"><option value="">» </option>}
+   out << options_from_collection_for_select(@ingenieurs, :last, :first)
+   out << option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name)
+   out << "</select>"
+   page.replace_html("engineer", out )
+end
+page.replace_html("software", :partial => "software")
+page.replace_html("version", :partial => "version")

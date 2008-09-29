@@ -28,7 +28,7 @@ module Scope
     # defined locally since this file is loaded by application controller
     # it reduces dramatically loading time
     @@scope_client ||= [ Client, Document ]
-    @@scope_contract ||= [ Release, Contract, Request, Phonecall, Tag ]
+    @@scope_contract ||= [ Release, Contract, Issue, Phonecall, Tag ]
     if is_connected
       recipient, ingenieur = user.recipient, user.ingenieur
       apply = ((ingenieur and user.restricted?) || recipient)
@@ -43,8 +43,8 @@ module Scope
         @@scope_client.each {|m| m.set_scope(client_ids) }
       end
     else
-      # Forbid access to request if we are not connected. It's just a paranoia.
-      Request.set_scope([0])
+      # Forbid access to issue if we are not connected. It's just a paranoia.
+      Issue.set_scope([0])
     end
     begin
       yield
@@ -55,7 +55,7 @@ module Scope
           @@scope_contract.each { |m| m.remove_scope }
         end
       else
-        Request.remove_scope
+        Issue.remove_scope
       end
     end
   end

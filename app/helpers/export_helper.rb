@@ -18,8 +18,8 @@
 #
 module ExportHelper
 
-  def requests_export_link
-    export_link formatted_requests_export_path(:ods)
+  def issues_export_link
+    export_link formatted_issues_export_path(:ods)
   end
 
   def phonecalls_export_images

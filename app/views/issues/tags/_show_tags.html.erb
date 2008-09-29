@@ -1,0 +1,6 @@
+<ul id="tags_issue">
+<% @issue_tosca.tags.each do |tag| %>
+  <%= render :partial => "issues/tags/show_tag", 
+    :locals => { :tag => tag } %>
+<% end %>
+</ul>

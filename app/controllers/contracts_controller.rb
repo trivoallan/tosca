@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContractsController < ApplicationController
-  helper :clients, :commitments, :ingenieurs, :versions, :requests
+  helper :clients, :commitments, :ingenieurs, :versions, :issues
 
   def index
     @contract_pages, @contracts = paginate :contracts, :per_page => 25
@@ -140,10 +140,10 @@ class ContractsController < ApplicationController
   def tags
     @contract = Contract.find(params[:id])
     # We get the tags only for this contract
-    @tags = Request.tag_counts(:conditions => { :contract_id => @contract.id })
+    @tags = Issue.tag_counts(:conditions => { :contract_id => @contract.id })
     if params[:tag] and not params[:tag].empty?
       tags = params[:tag].split(",")
-      @requests = Request.find_tagged_with(tags, 
+      @issues = Issue.find_tagged_with(tags, 
         :conditions => { :contract_id => @contract.id })
       @tag_with = tags
     end

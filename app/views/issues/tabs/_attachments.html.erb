@@ -1,0 +1,19 @@
+<div id='issue_tab_content' class='issue_tab_content'>
+  <% if @attachments.size > 0 %>
+    <b><u><%= pluralize(@attachments.size, _("Attachment")) %></u></b>
+  <% end %>
+  <% titres = [_("Id"), _("Link"), _("Size"), _("Created on"), _("By") ] %>
+  <%= show_table(@attachments, Attachment, titres, :total => false) { |pj|
+    result = ''
+    if File.exist?(pj.file.to_s)
+      result << "<td>##{pj.id}</td>"
+      result << "<td>#{link_to_file(pj, 'file')}</td>"
+      result << "<td>#{file_size(pj.file)}</td>"
+      result << "<td>#{pj.comment.created_on_formatted}</td>"
+      result << "<td>#{pj.comment.user.name}</td>"
+      result << "<td>#{link_to_file_redbox(pj, :file)}</td>"
+    end
+    result
+  } %>
+  <p>&nbsp;</p>
+</div>

@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class AlertsController < ApplicationController
-  helper :requests
+  helper :issues
 
   def index
     @teams = Team.find_select
@@ -25,20 +25,20 @@ class AlertsController < ApplicationController
 
   def on_submit
     flash[:team_ids] = params[:team][:ids]
-    new_request
+    new_issue
   end
 
   def ajax_on_submit
     flash[:team_ids] = flash[:team_ids]
-    new_request
+    new_issue
     render :partial => 'ajax_on_submit'
   end
 
   private
-  def new_request
+  def new_issue
     team = Team.find(flash[:team_ids])
-    conditions = [ 'requests.contract_id IN (?) AND requests.statut_id = 1', team.contract_ids ]
-    @requests_found = Request.find(:all, :conditions => conditions)
+    conditions = [ 'issues.contract_id IN (?) AND issues.statut_id = 1', team.contract_ids ]
+    @issues_found = Issue.find(:all, :conditions => conditions)
   end
 
 end

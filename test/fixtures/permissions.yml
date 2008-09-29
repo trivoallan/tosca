@@ -92,8 +92,8 @@ permission_00179:
   info: Public read access to contributions
   id: 179
 permission_00170: 
-  name: ^requests/(link|unlink)_contribution$
-  info: Link contribution with request
+  name: ^issues/(link|unlink)_contribution$
+  info: Link contribution with issue
   id: 170
 permission_00158: 
   name: ^versions/(?!destroy)
@@ -128,8 +128,8 @@ permission_00160:
   info: Read-only access to clients offers
   id: 160
 permission_00148: 
-  name: ^requests/(?!destroy)
-  info: Manage requests
+  name: ^issues/(?!destroy)
+  info: Manage issues
   id: 148
 permission_00126: 
   name: ^account/(edit|update|show)$
@@ -168,8 +168,8 @@ permission_00149:
   info: Manage Service Level Agreement
   id: 149
 permission_00161: 
-  name: ^requests/(index|print|show)$
-  info: Read access to requests
+  name: ^issues/(index|print|show)$
+  info: Read access to issues
   id: 161
 permission_00162: 
   name: ^softwares/(index|show)$
@@ -197,7 +197,7 @@ permission_00173:
   id: 173
 permission_00174: 
   name: ^commentaires/(comment|show|edit|update)$
-  info: Hability to comment a request
+  info: Hability to comment a issue
   id: 174
 permission_00152: 
   name: ^ingenieurs/(?!(destroy|new))
@@ -236,6 +236,6 @@ permission_00153:
   info: Manage software
   id: 153
 permission_00175: 
-  name: ^requests/(new|create|pending)$
-  info: Write access to requests & Pending View
+  name: ^issues/(new|create|pending)$
+  info: Write access to issues & Pending View
   id: 175

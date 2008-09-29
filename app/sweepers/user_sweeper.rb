@@ -17,15 +17,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class UserSweeper < ActionController::Caching::Sweeper
-  # Currently used to maintain cache correctly for request & comments
+  # Currently used to maintain cache correctly for issue & comments
   observe User
 
-  # If sweeper detects that a Request was created or updated
+  # If sweeper detects that an Issue was created or updated
   def after_save(record)
     expire_cache_for(record)
   end
 
-  # If sweeper detects that a Request was deleted call this
+  # If sweeper detects that an Issue was deleted call this
   def after_destroy(record)
     expire_cache_for(record)
   end
@@ -33,7 +33,7 @@ class UserSweeper < ActionController::Caching::Sweeper
   private
   def expire_cache_for(record)
     # Refresh User Info on each cache displaying it
-    Request.actives(record.contract_ids).each { |d|
+    Issue.actives(record.contract_ids).each { |d|
       expire_fragments d.fragments
     }
   end

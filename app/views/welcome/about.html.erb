@@ -2,9 +2,9 @@
   <div class="c50l">
     <div class="show">
       <h3><%=_('Help')%></h3>
- <% links = [ public_link_to_help_new_request,
-              public_link_to_howto_request,
-              public_link_to_help_request_status ] %>
+ <% links = [ public_link_to_help_new_issue,
+              public_link_to_howto_issue,
+              public_link_to_help_issue_status ] %>
   <%= show_list(links) %>
   <p><%=_("Don't hesitate to")%>
     <%=  mail_to(App::TeamEmail, _('contact us'))%>

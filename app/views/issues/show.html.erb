@@ -1,0 +1,43 @@
+<%# It's separated by roles, since viewer & customer see different things %>
+<% cache("issues/#{@issue.id}/front-#{session[:user].role_id}") do %>
+ <div class="content">
+   <% if @issue.software %>
+     <div class="software">
+        <%= public_link_to(software_logo(@issue.software),
+	                       software_path(@issue.software)) %>
+     </div>
+   <% end %>
+   <h1>
+    <% options = edit_issue_path(@issue.id) %>
+    <%= link_to(StaticImage::edit, options) %>
+    <%= "#{@issue.pretty_id} #{@issue.resume}" %>
+    <% options = print_issue_path(@issue.id) %>
+    <%= link_to(StaticImage::print, options) %>
+   </h1>
+
+   <div id="comment-list">
+     <%= render(:partial => 'issues/tabs/comment',
+  							:collection => @issue.comments) %>
+   </div>
+
+   <script type="text/javascript">
+     $$('div.comment-container:first-child').invoke('removeClassName', 'collapsed');
+     $$('div.comment-container:last-child').invoke('removeClassName', 'collapsed');
+   </script>
+
+   <div>
+    <% if session[:user].authorized? "comments/comment" %>
+     <% action = comment_comment_path(@issue) %>
+     <% form_tag(action, :method => :post, :multipart => true) do %>
+      <%= render :partial => 'comment_form' %>
+      <p>&nbsp;</p>
+     <% end %>
+    <% end %>
+   </div>
+
+   <%# see tab_menu for ajax links %>
+   <div class="issue_tab" id="issue_tab">
+    <%= render :partial => 'issues/tabs/tab_description' %>
+   </div>
+ </div>
+<% end %>

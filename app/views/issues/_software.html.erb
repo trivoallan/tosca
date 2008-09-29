@@ -1,0 +1,14 @@
+<div id="software">
+  <% if @softwares.size > 1 %>
+    <%= select_empty(:issue, :software_id, @softwares) %>
+  <% elsif @softwares.size == 1 %>
+    <%# We have a collect [software.name, software.id ] %>
+    <%= @softwares.first.first %>
+    <%= hidden_field(:issue, :software_id, :value => @softwares.first.last) %>
+  <% end %>
+
+  <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
+      "Form.serializeElements($('issue_software_id','issue_contract_id'))",
+      :url => ajax_display_version_issues_path) %>
+  <%= observe_field "issue_software_id", options unless @softwares.empty? %>
+</div>

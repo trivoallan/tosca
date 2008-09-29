@@ -18,36 +18,36 @@
 
 <%# penser à mettre à jour le sommaire si vous changer les titres ! %>
 
-<h1 class="chapter"><a name=<%='"'+_('Distribution of your requests')+'"'%>><%= '1. '+_('Distribution of your requests') %></a></h1>
+<h1 class="chapter"><a name=<%='"'+_('Distribution of your issues')+'"'%>><%= '1. '+_('Distribution of your issues') %></a></h1>
 <h2 class="chapter"><a name=<%='"'+_('distribution')+'"'%>>1.1 <%= @titles[:repartition] %></a></h2>
- <%= report_repartition(:repartition, :with2rows => _('Requests')) %><%= gap %>
- <%= report_evolution(:repartition, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_repartition(:repartition, :with2rows => _('Issues')) %><%= gap %>
+ <%= report_evolution(:repartition, :with2rows => _('Issues')) %><%= gap %>
 <h2 class="chapter"><a name=<%= '"' + _('severity') + '"' %>>1.2 <%= @titles[:severite] %></a></h2>
- <%= report_repartition(:severite, :with2rows=> _('Requests')) %><%= gap %>
- <%= report_evolution(:severite, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_repartition(:severite, :with2rows=> _('Issues')) %><%= gap %>
+ <%= report_evolution(:severite, :with2rows => _('Issues')) %><%= gap %>
 <h2 class="chapter"><a name=<%= '"' + _('resolution') + '"' %>>1.3 <%= @titles[:resolution] %></a></h2>
- <%= report_repartition(:resolution, :with2rows => _('Requests')) %><%= gap %>
- <%= report_evolution(:resolution, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_repartition(:resolution, :with2rows => _('Issues')) %><%= gap %>
+ <%= report_evolution(:resolution, :with2rows => _('Issues')) %><%= gap %>
 <p class="break_here"/>
 
 <h1 class="chapter"><a name=<%='"'+_('Various statistics')+'"'%>><%= '2. '+_('Various statistics') %></a></h1>
 <h2 class="chapter"><a name=<%='"'+_('evolution')+'"'%>>2.1 <%= @titles[:evolution] %></a></h2>
  <%= report_evolution(:evolution, :with2rows => _('Number')) %><%= gap %>
 <h2 class="chapter"><a name=<%='"'+_('canceled')+'"'%>>2.2 <%= @titles[:annulation] %></a></h2>
- <%= report_repartition(:annulation, :with2rows => _('Requests')) %><%= gap %>
- <%= report_evolution(:annulation, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_repartition(:annulation, :with2rows => _('Issues')) %><%= gap %>
+ <%= report_evolution(:annulation, :with2rows => _('Issues')) %><%= gap %>
 <p class="break_here"/>
 
 <h1 class="chapter"><a name=<%='"'+@titles[:processing_time]+'"'%>><%= '3. '+@titles[:processing_time] %></a></h1>
 <h2 class="chapter"><a name=<%='"'+@titles[:callback_time]+'"'%>>3.1 <%= @titles[:callback_time] %></a></h2>
- <%= report_repartition(:callback_time, :with2rows => _('Requests')) %><%= gap %>
- <%= report_evolution(:callback_time, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_repartition(:callback_time, :with2rows => _('Issues')) %><%= gap %>
+ <%= report_evolution(:callback_time, :with2rows => _('Issues')) %><%= gap %>
 <h2 class="chapter"><a name=<%='"'+@titles[:workaround_time]+'"'%>>3.2 <%= @titles[:workaround_time] %></a></h2>
- <%= report_repartition(:workaround_time, :with2rows => _('Requests')) %><%= gap %>
- <%= report_evolution(:workaround_time, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_repartition(:workaround_time, :with2rows => _('Issues')) %><%= gap %>
+ <%= report_evolution(:workaround_time, :with2rows => _('Issues')) %><%= gap %>
 <h2 class="chapter"><a name=<%='"'+@titles[:correction_time]+'"'%>>3.3 <%= @titles[:correction_time] %></a></h2>
- <%= report_repartition(:correction_time, :with2rows => _('Requests')) %><%= gap %>
- <%= report_evolution(:correction_time, :with2rows => _('Requests')) %><%= gap %>
+ <%= report_repartition(:correction_time, :with2rows => _('Issues')) %><%= gap %>
+ <%= report_evolution(:correction_time, :with2rows => _('Issues')) %><%= gap %>
 <p class="break_here"/>
 
 </div><!-- end of report -->

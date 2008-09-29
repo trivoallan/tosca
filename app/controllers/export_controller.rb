@@ -40,7 +40,7 @@ class ExportController < ApplicationController
       format.html { redirect_to contributions_path }
       format.xml {
         # TODO : make an xml export : a finder +
-        #  render :xml => @requests.to_xml should be enough)
+        #  render :xml => @issues.to_xml should be enough)
       }
       format.ods { compute_contributions(:ods) }
     end
@@ -51,7 +51,7 @@ class ExportController < ApplicationController
       'pname_etatreversement', 'delay_in_words', 'clos_enhance',
       'contributed_on_formatted']
     options = { :order => 'contributions.contributed_on ASC',
-      :include => [:software, :etatreversement, :request],
+      :include => [:software, :etatreversement, :issue],
       :conditions => flash[:conditions],
       :methods => methods }
 
@@ -75,7 +75,7 @@ class ExportController < ApplicationController
       format.html { redirect_to accounts_path }
       format.xml {
         # TODO : make an xml export : a finder +
-        #  render :xml => @requests.to_xml should be enough)
+        #  render :xml => @issues.to_xml should be enough)
       }
       format.ods { compute_users(:ods) }
     end
@@ -104,7 +104,7 @@ class ExportController < ApplicationController
       format.html { redirect_to phonecalls_path }
       format.xml {
         # TODO : make an xml export : a finder +
-        #  render :xml => @requests.to_xml should be enough)
+        #  render :xml => @issues.to_xml should be enough)
       }
       format.ods { compute_phonecalls(:ods) }
     end
@@ -113,7 +113,7 @@ class ExportController < ApplicationController
   def compute_phonecalls(type)
     columns= ['contract_name', 'ingenieur_name', 'recipient_name']
     options = { :order => 'phonecalls.start', :include =>
-      [:recipient,:ingenieur,:contract,:request],
+      [:recipient,:ingenieur,:contract,:issue],
       :conditions => flash[:conditions],
       :methods => columns }
     report = Phonecall.report_table(:all, options)
@@ -128,29 +128,29 @@ class ExportController < ApplicationController
     generate_report(report, type, {})
   end
 
-  # return the contents of a request in a table in  ods
-  def requests
+  # return the contents of an issue in a table in  ods
+  def issues
     respond_to do |format|
-      format.html { redirect_to requests_path }
+      format.html { redirect_to issues_path }
       format.xml {
         # TODO : make an xml export : a finder +
-        #  render :xml => @requests.to_xml should be enough)
+        #  render :xml => @issues.to_xml should be enough)
       }
-      format.ods { compute_requests(:ods, {}) }
+      format.ods { compute_issues(:ods, {}) }
     end
   end
 
-  def compute_requests(type, options_generate)
+  def compute_issues(type, options_generate)
     columns = [ 'id', 'softwares_name', 'clients_name', 'severites_name',
       'created_on_formatted', 'socle', 'updated_on_formatted', 'resume',
-      'statuts_name', 'typerequests_name'
+      'statuts_name', 'typeissues_name'
     ]
-    options= { :order => 'requests.created_on', :conditions => flash[:conditions],
-      :select => Request::SELECT_LIST, :joins => Request::JOINS_LIST,
+    options= { :order => 'issues.created_on', :conditions => flash[:conditions],
+      :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST,
       :methods => columns
      }
     report = nil
-    report = Request.report_table(:all, options)
+    report = Issue.report_table(:all, options)
     unless report.column_names.empty?
       report.reorder columns
       report.rename_columns columns,
@@ -202,12 +202,12 @@ class ExportController < ApplicationController
   #export the comex table in ods
   def comex
     clients = flash[:clients]
-    requests= flash[:requests]
+    issues= flash[:issues]
     total = flash[:total]
     data = []
     row = ['', _('To be closed')+ " (I)",'','','',
-      _('New requests'),'','','',
-      _("Requests closed \n this week") + ' (IV)','','','',
+      _('New issues'),'','','',
+      _("Issues closed \n this week") + ' (IV)','','','',
       _("Total in progress \n end week") + ' (V=I+III-IV)','','','',
       _('TOTAL')
     ]
@@ -221,18 +221,18 @@ class ExportController < ApplicationController
     clients.each do |c|
       name = c.name.intern
       row = [name]
-      repeat4times row,requests[:last_week][name],1
-      repeat4times row,requests[:new][name],1
-      repeat4times row,requests[:closed][name],1
+      repeat4times row,issues[:last_week][name],1
+      repeat4times row,issues[:new][name],1
+      repeat4times row,issues[:closed][name],1
       repeat4times row, total[:active][name],0
       row << total[:final][name]
       data << row
     end
 
     row = [_('TOTALS')]
-    repeat4times row, requests[:last_week][:total],0
-    repeat4times row, requests[:new][:total],0
-    repeat4times row, requests[:closed][:total],0
+    repeat4times row, issues[:last_week][:total],0
+    repeat4times row, issues[:new][:total],0
+    repeat4times row, issues[:closed][:total],0
     repeat4times row, total[:active][:total],0
     row << total[:final][:total]
     data << row
@@ -241,7 +241,7 @@ class ExportController < ApplicationController
     generate_report(report, :ods, {})
 
     flash[:clients]= flash[:clients]
-    flash[:requests]= flash[:requests]
+    flash[:issues]= flash[:issues]
     flash[:total]= flash[:total]
   end
 

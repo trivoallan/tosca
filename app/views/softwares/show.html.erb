@@ -44,12 +44,12 @@
 <div class="c50r">
     <div class="show">
    <table>
-     <tr><td colspan="2"><b><%=_('Requests')%></b> <%= link_to_new_request(:software_id => @software.id)%> <br />
+     <tr><td colspan="2"><b><%=_('Issues')%></b> <%= link_to_new_issue(:software_id => @software.id)%> <br />
         <% options[:edit] = nil %>
         <% options[:public_summarized] = true %>
-        <% if @requests.size > 0  %>
+        <% if @issues.size > 0  %>
          <div class="bloc_scroll">
-           <%=show_list(@requests, _('Request'), options) {|d| link_to_request d}%>
+           <%=show_list(@issues, _('Issue'), options) {|d| link_to_issue d}%>
          </div>
         <% end %>
      </tr>

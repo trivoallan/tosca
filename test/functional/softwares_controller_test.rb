@@ -23,7 +23,7 @@ require 'softwares_controller'
 class SoftwaresController; def rescue_action(e) raise e end; end
 
 class SoftwaresControllerTest < Test::Unit::TestCase
-  fixtures :softwares, :competences, :requests, :comments, :contracts,
+  fixtures :softwares, :competences, :issues, :comments, :contracts,
     :recipients, :contributions, :users, :clients, :credits, :components
 
   def setup

@@ -20,7 +20,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'notifier'
 
 class NotifierTest < Test::Unit::TestCase
-  fixtures :users, :requests
+  fixtures :users, :issues
   CHARSET = "utf-8"
 
   include ActionMailer::Quoting
@@ -44,29 +44,29 @@ class NotifierTest < Test::Unit::TestCase
     assert_equal user.email, response.to[0]
   end
 
-  def test_request_new
-    request = Request.find(:first)
-    options = { :request => request, :name => request.submitter.name,
-      :url_request => "www.request.com", :url_attachment => "www.attachment.com" }
-    response = Notifier::deliver_request_new(options)
-    assert_match request.resume, response.subject
-    assert_match html2text(request.description), response.body
-    assert_match options[:url_request], response.body
+  def test_issue_new
+    issue = Issue.find(:first)
+    options = { :issue => issue, :name => issue.submitter.name,
+      :url_issue => "www.issue.com", :url_attachment => "www.attachment.com" }
+    response = Notifier::deliver_issue_new(options)
+    assert_match issue.resume, response.subject
+    assert_match html2text(issue.description), response.body
+    assert_match options[:url_issue], response.body
     assert_match options[:url_attachment], response.body
     assert_match options[:name], response.body
   end
 
-  def test_request_new_comment
-    request = Request.find(:first)
-    comment = request.first_comment
-    options = { :request => request, :name => request.submitter.name,
-      :url_request => "www.request.com", :url_attachment => "www.attachment.com",
+  def test_issue_new_comment
+    issue = Issue.find(:first)
+    comment = issue.first_comment
+    options = { :issue => issue, :name => issue.submitter.name,
+      :url_issue => "www.issue.com", :url_attachment => "www.attachment.com",
       :modifications => {:statut_id => true, :ingenieur_id => true, :severite_id => true},
       :comment => comment }
-    response = Notifier::deliver_request_new_comment(options)
-    assert_match request.resume, response.subject
+    response = Notifier::deliver_issue_new_comment(options)
+    assert_match issue.resume, response.subject
     assert_match html2text(comment.text), response.body
-    assert_match options[:url_request], response.body
+    assert_match options[:url_issue], response.body
     assert_match options[:url_attachment], response.body
     assert_match options[:name], response.body
   end

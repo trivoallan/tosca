@@ -7,8 +7,8 @@
     <tr>
       <td></td>
 	<th colspan="4"><%= _('To be closed') %> (I)=(IV) <br /> <%= _('"last week"') %> </th>
-	<th colspan="4"><%= _('New requests') %> (III)</th>
-        <th colspan="4"><%= _('Requests closed <br /> this week') %> (IV)</th>
+	<th colspan="4"><%= _('New issues') %> (III)</th>
+        <th colspan="4"><%= _('Issues closed <br /> this week') %> (IV)</th>
 	<th colspan="4"><%= _('Total in progress <br /> end week') %> (V=I+III-IV)</th>
 	<th colspan="4"><%= _('TOTAL') %> (VI)</th>
     </tr><tr>
@@ -26,13 +26,13 @@
       <td><%= c %></td>
         <% name = c.name.intern %>
 	<% 4.times do |i| %>
-	  <td><%= @requests[:last_week][name][i+1] %></td>
+	  <td><%= @issues[:last_week][name][i+1] %></td>
         <% end %>
 	<% 4.times do |i| %>
-          <td><%= @requests[:new][name][i+1] %></td>
+          <td><%= @issues[:new][name][i+1] %></td>
         <% end %>
 	<% 4.times do |i| %>
-          <td><%= @requests[:closed][name][i+1] %></td>
+          <td><%= @issues[:closed][name][i+1] %></td>
         <% end %>
 	<% 4.times do |i| %>
           <td><%= @total[:active][name][i] %></td>
@@ -43,13 +43,13 @@
      <tr><td colspan="18"><hr /></td></tr><tr>
 	<th><%= _('TOTALS') %></th>
         <% 4.times do |i| %>
-	    <td><%= @requests[:last_week][:total][i] %></td>
+	    <td><%= @issues[:last_week][:total][i] %></td>
         <% end %>
         <% 4.times do |i| %>
-            <td><%= @requests[:new][:total][i] %></td>
+            <td><%= @issues[:new][:total][i] %></td>
         <% end %>
         <% 4.times do |i| %>
-	    <td><%= @requests[:closed][:total][i] %></td>
+	    <td><%= @issues[:closed][:total][i] %></td>
         <% end %>
         <% 4.times do |i| %>
 	    <td><%= @total[:active][:total][i] %></td>

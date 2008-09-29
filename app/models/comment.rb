@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Comment < ActiveRecord::Base
-  belongs_to :request
+  belongs_to :issue
   belongs_to :user
   belongs_to :attachment
   belongs_to :statut
@@ -29,15 +29,15 @@ class Comment < ActiveRecord::Base
   validates_presence_of :user
 
   validate do |record|
-    request = record.request
-    if record.request.nil?
-      record.errors.add_to_base _('You must indicate a valid request')
+    issue = record.issue
+    if record.issue.nil?
+      record.errors.add_to_base _('You must indicate a valid issue')
     end
-    if (request && request.new_record? != true &&
-        request.first_comment_id != record.id &&
-        request.statut_id == record.statut_id &&
+    if (issue && issue.new_record? != true &&
+        issue.first_comment_id != record.id &&
+        issue.statut_id == record.statut_id &&
         record.new_record?)
-      record.errors.add_to_base _('The status of this request has already been changed.')
+      record.errors.add_to_base _('The status of this issue has already been changed.')
     end
     if (record.statut_id && record.private)
       record.errors.add_to_base _('You cannot privately change the status')
@@ -46,7 +46,7 @@ class Comment < ActiveRecord::Base
   
   before_validation do |record|
     if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and html2text(record.text).strip.empty?
-      record.text = _("The request is now %s.") % record.statut.name
+      record.text = _("The issue is now %s.") % record.statut.name
     end
   end
 
@@ -55,9 +55,9 @@ class Comment < ActiveRecord::Base
     ( private ? _("private") : _("public") )
   end
 
-  # Used for outgoing mails feature, to keep track of the request.
+  # Used for outgoing mails feature, to keep track of the issue.
   def mail_id
-    return "#{self.request_id}_#{self.id}"
+    return "#{self.issue_id}_#{self.id}"
   end
 
   def name
@@ -80,27 +80,27 @@ class Comment < ActiveRecord::Base
   private
 
   # We destroy a few things, if appropriate
-  # Attachments, Elapsed Time or Request coherence is checked
+  # Attachments, Elapsed Time or Issue coherence is checked
   before_destroy :delete_dependancies
   def delete_dependancies
-    request = self.request
+    issue = self.issue
 
-    # We MUST have at least the first comment in a request
-    return false if request.first_comment_id == self.id
+    # We MUST have at least the first comment in an issue
+    return false if issue.first_comment_id == self.id
 
     # Updating last_comment pointer
     # TODO : Is this last_comment pointer really needed ?
     # Since we have the view cache, it does not seem pertinent, now
-    if !self.private and request.last_comment_id == self.id
-      last_comment = request.find_other_comment(self.id)
+    if !self.private and issue.last_comment_id == self.id
+      last_comment = issue.find_other_comment(self.id)
       if !last_comment
-        self.errors.add_to_base(_('This request seems to be unstable.'))
+        self.errors.add_to_base(_('This issue seems to be unstable.'))
         return false
       end
-      request.update_attribute :last_comment_id, last_comment.id
+      issue.update_attribute :last_comment_id, last_comment.id
     end
 
-    request.elapsed.remove(self) if request.elapsed
+    issue.elapsed.remove(self) if issue.elapsed
     self.attachment.destroy unless self.attachment.nil?
     true
   end
@@ -109,50 +109,50 @@ class Comment < ActiveRecord::Base
   def update_status
     return true if self.statut_id.nil? || self.statut_id == 0
 
-    request = self.request
+    issue = self.issue
     options = { :order => 'created_on DESC', :conditions =>
       'comments.statut_id IS NOT NULL' }
-    last_one = request.comments.find(:first, options)
+    last_one = issue.comments.find(:first, options)
     return true unless last_one
-    request.update_attribute(:statut_id, last_one.statut_id)
+    issue.update_attribute(:statut_id, last_one.statut_id)
   end
 
-  # update request attributes, when creating a comment
-  after_create :update_request
-  def update_request
+  # update issue attributes, when creating a comment
+  after_create :update_issue
+  def update_issue
     fields = %w(statut_id ingenieur_id severite_id)
-    request = self.request
+    issue = self.issue
 
     # Update all attributes
-    if request.first_comment_id != self.id
+    if issue.first_comment_id != self.id
       fields.each do |attr|
-        request[attr] = self[attr] if self[attr] and request[attr] != self[attr]
+        issue[attr] = self[attr] if self[attr] and issue[attr] != self[attr]
       end
     else
-      fields.each { |attr| self[attr] = request[attr] }
+      fields.each { |attr| self[attr] = issue[attr] }
     end
 
     # auto-assignment to current engineer
-    if request.ingenieur_id.nil? && self.user.ingenieur
-      request.ingenieur = self.user.ingenieur
+    if issue.ingenieur_id.nil? && self.user.ingenieur
+      issue.ingenieur = self.user.ingenieur
     end
 
     # update cache of elapsed time
-    contract = request.contract
+    contract = issue.contract
     rule = contract.rule
-    if request.elapsed.nil?
-      request.elapsed = Elapsed.new(request)
+    if issue.elapsed.nil?
+      issue.elapsed = Elapsed.new(issue)
       self.update_attribute :elapsed, rule.elapsed_on_create
     elsif !self.statut_id.nil?
-      last_status_comment = request.find_status_comment_before(self)
+      last_status_comment = issue.find_status_comment_before(self)
       elapsed = rule.compute_between(last_status_comment, self, contract)
       self.update_attribute :elapsed, elapsed
     end
-    request.elapsed.add(self)
+    issue.elapsed.add(self)
 
-    request.last_comment_id = self.id unless self.private
+    issue.last_comment_id = self.id unless self.private
 
-    request.save
+    issue.save
   end
 
 end

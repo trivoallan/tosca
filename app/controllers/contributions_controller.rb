@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContributionsController < ApplicationController
-  helper :filters, :requests, :versions, :export, :urlreversements, :softwares
+  helper :filters, :issues, :versions, :export, :urlreversements, :softwares
 
   cache_sweeper :contribution_sweeper, :only => [ :create, :update ]
 
@@ -42,7 +42,7 @@ class ContributionsController < ApplicationController
     client_id = params[:client_id].to_s
     unless client_id.blank? || client_id == '1' # Main client
       options[:conditions].merge!({'contracts.client_id' => params[:client_id]})
-      options[:include] = {:request => :contract}
+      options[:include] = {:issue => :contract}
     end
     # Dirty hack in order to show main client' contributions
     # TODO : remove it in september.
@@ -65,7 +65,7 @@ class ContributionsController < ApplicationController
       options[:select] = 'DISTINCT softwares.*'
       unless client_id.blank? || client_id == '1'
         options[:conditions] = { 'contracts.client_id' => params[:client_id] }
-        options[:joins] = { :contributions => { :request => :contract } }
+        options[:joins] = { :contributions => { :issue => :contract } }
       end
       # Dirty hack in order to show main client' contributions
       # TODO : remove it in september.
@@ -80,7 +80,7 @@ class ContributionsController < ApplicationController
   def admin
     conditions = []
     options = { :per_page => 10, :order => 'contributions.updated_on DESC',
-      :include => [:software,:etatreversement,:request] }
+      :include => [:software,:etatreversement,:issue] }
 
     if params.has_key? :filters
       session[:contributions_filters] =
@@ -97,7 +97,7 @@ class ContributionsController < ApplicationController
         [:contribution, 'contributions.name', :like ],
         [:etatreversement_id, 'contributions.etatreversement_id', :equal ],
         [:ingenieur_id, 'contributions.ingenieur_id', :equal ],
-        [:contract_id, 'requests.contract_id', :equal ]
+        [:contract_id, 'issues.contract_id', :equal ]
       ])
       @filters = contributions_filters
     end
@@ -121,14 +121,14 @@ class ContributionsController < ApplicationController
     # submitted state, by default
     @contribution.etatreversement_id = 4
     @contribution.contributed_on = Date.today
-    @request_tosca = Request.new(); @request_tosca.id = params[:request_id]
+    @issue = Issue.new(); @issue.id = params[:issue_id]
     @contribution.ingenieur = @ingenieur
     _form
   end
 
   def create
     @contribution = Contribution.new(params[:contribution])
-    if _link2request && @contribution.save
+    if _link2issue && @contribution.save
       flash[:notice] = _('The contribution has been created successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
@@ -139,7 +139,7 @@ class ContributionsController < ApplicationController
 
   def edit
     @contribution = Contribution.find(params[:id])
-    @request_tosca = @contribution.request
+    @issue = @contribution.issue
     _form
   end
 
@@ -149,7 +149,7 @@ class ContributionsController < ApplicationController
 
   def update
     @contribution = Contribution.find(params[:id])
-    if _link2request && @contribution.update_attributes(params[:contribution])
+    if _link2issue && @contribution.update_attributes(params[:contribution])
       flash[:notice] = _('The contribution has been updated successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
@@ -164,7 +164,7 @@ class ContributionsController < ApplicationController
   end
 
   def ajax_list_versions
-    return render(:nothing => true) unless request.xml_http_request? and params[:software_id]
+    return render(:nothing => true) unless issue.xml_http_issue? and params[:software_id]
     @versions = Software.find(params[:software_id]).versions.find_select # collect { |v| [v.full_software_name, v.id] }
   end
 
@@ -200,13 +200,13 @@ private
     contribution.save
   end
 
-  def _link2request()
+  def _link2issue()
     begin
-      request = Request.find(params[:request][:id].to_i) unless params[:request][:id].blank?
-      @contribution.request = request
+      issue = Issue.find(params[:issue][:id].to_i) unless params[:issue][:id].blank?
+      @contribution.issue = issue
       true
     rescue
-      flash[:warn] = _('The associated request does not exist')
+      flash[:warn] = _('The associated issue does not exist')
       false
     end
   end

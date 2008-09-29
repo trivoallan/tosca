@@ -1,5 +1,5 @@
-<h1><%= n_("New request for %s",
-  "New requests %s", @number_requests) % _(@time.strftime('%B %Y')) %></h1>
+<h1><%= n_("New issue for %s",
+  "New issues %s", @number_issues) % _(@time.strftime('%B %Y')) %></h1>
 
 <%
   #We create next/previous month links
@@ -12,14 +12,14 @@
   
   title = link_previous 
   title << "&nbsp;"
-  title << ( n_("%s new request has been submitted", 
-      "%s new requests has been submitted", @number_requests) % @number_requests )
+  title << ( n_("%s new issue has been submitted", 
+      "%s new issues has been submitted", @number_issues) % @number_issues )
   title << "&nbsp;"
   title << link_next
 %>
 
 <%= calendar(@time, :title => title) do |time|
-  @requests[time.day].map do |e| 
-    link_to("##{e.id}", request_path(e), :title => e.resume)
-  end.join(', ') if @requests.has_key? time.day
+  @issues[time.day].map do |e| 
+    link_to("##{e.id}", issue_path(e), :title => e.resume)
+  end.join(', ') if @issues.has_key? time.day
 end %>

@@ -1,0 +1,13 @@
+<h1><%= _("List of the types of issues") %></h1>
+
+<%= show_pages_links(@typeissue_pages, _("a new type of issue")) %>
+
+<% titres = [] %>
+<%= show_table(@typeissues, Typeissue, titres, :content_columns => true) { |m|
+  result = ''
+  result << "#{link_to_actions_table m}"
+}%>
+
+<%= show_pages_links(@typeissue_pages, _("a new type of issue")) %>
+
+

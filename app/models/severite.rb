@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Severite < ActiveRecord::Base
-  has_many :requests
+  has_many :issues
   has_many :commitments
 
 end

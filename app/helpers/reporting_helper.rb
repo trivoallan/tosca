@@ -21,7 +21,7 @@ module ReportingHelper
   # Renvoit les titres du tableau
   # Data contient les entêtes. Les options applicable sont :
   # :without_firstcol => permet de ne pas afficher la première colonne
-  # :divise => spécifie si on prends en compte les requests vivantes
+  # :divise => spécifie si on prends en compte les issues vivantes
   # :with2rows => affichera les entêtes sur 2 lignes, il <b>contient</b> l'intitulé
   # TODO : renommer with2rows en title
   def fill_titles(data, options)
@@ -301,19 +301,19 @@ module ReportingHelper
 
 
 
-  # Display nicely the requests for the weekly report. See
+  # Display nicely the issues for the weekly report. See
   # reporting/weekly.rhtml for more information.
-  # It takes a list of requests, where client and recipients are preloaded.
-  def display_weekly_requests(requests)
+  # It takes a list of issues, where client and recipients are preloaded.
+  def display_weekly_issues(issues)
     client = nil
     result = '<ol>'
-    requests.each do |r|
+    issues.each do |r|
       if client != r.recipient.client
         result << '</li>' unless client.nil?
         client = r.recipient.client
         result << "<li><b>#{ client.name}</b> :"
       end
-      result << ' ' << link_to(r.id.to_s, request_path(r))
+      result << ' ' << link_to(r.id.to_s, issue_path(r))
     end
     result << '</li>' if client
     result << '</ol>'

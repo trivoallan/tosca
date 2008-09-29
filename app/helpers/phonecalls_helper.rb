@@ -23,9 +23,9 @@ module PhonecallsHelper
     link_to StaticImage::view, phonecall_url(:id => phonecall.id)
   end
 
-  # call it like : link_to_add_call request.id
-  def link_to_add_call(request_id)
-    return '-' unless request_id
-    link_to _('Add a phone call'), new_phonecall_url(:id => request_id)
+  # call it like : link_to_add_call issue.id
+  def link_to_add_call(issue_id)
+    return '-' unless issue_id
+    link_to _('Add a phone call'), new_phonecall_url(:id => issue_id)
   end
 end

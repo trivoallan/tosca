@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CommentTest < Test::Unit::TestCase
-  fixtures :comments, :requests, :users
+  fixtures :comments, :issues, :users
 
   def test_to_strings
     check_strings Comment
@@ -36,21 +36,21 @@ class CommentTest < Test::Unit::TestCase
 
   def test_create_comment
     c = Comment.new(:text => 'this is a comment',
-                        :request => Request.find(:first),
+                        :issue => Issue.find(:first),
                         :user => User.find(:first))
     assert c.save!
     c = Comment.new(:text => 'this is a comment',
-                        :request => Request.find(:first),
+                        :issue => Issue.find(:first),
                         :user => User.find(:first),
                         :private => false, :statut_id => 1)
     assert c.save!
     # cannot change privately the status
     c = Comment.new(:text => 'this is a comment',
-                        :request => Request.find(:first),
+                        :issue => Issue.find(:first),
                         :user => User.find(:first),
                         :private => true, :statut_id => 1)
     assert !c.save
-    # cannot declare a comment without a request
+    # cannot declare a comment without a issue
     c = Comment.new(:text => 'this is a comment',
                         :user => User.find(:first),
                         :private => true, :statut_id => 1)
@@ -59,7 +59,7 @@ class CommentTest < Test::Unit::TestCase
 
   # last call to destroy will cover the special case of update_status
   def test_update_status
-    d = Request.find(:first)
+    d = Issue.find(:first)
     d.comments.each { d.destroy }
   end
   
@@ -67,7 +67,7 @@ class CommentTest < Test::Unit::TestCase
     #Should not work
     Statut::NEED_COMMENT.each do |s|
       c = Comment.new(:text => "",
-        :request => Request.find(:first),
+        :issue => Issue.find(:first),
         :user => User.find(:first),
         :private => false, :statut_id => s)
       assert_equal(false, c.save)
@@ -76,7 +76,7 @@ class CommentTest < Test::Unit::TestCase
     #Should work
     ([1,2,3,4,5,6,7,8] - Statut::NEED_COMMENT).each do |s|
       c = Comment.new(:text => "",
-        :request => Request.find(:first),
+        :issue => Issue.find(:first),
         :user => User.find(:first),
         :private => false, :statut_id => s)
       assert c.save!

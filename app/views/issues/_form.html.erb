@@ -1,0 +1,161 @@
+<%= error_messages_for 'issue' %>
+
+<% new_issue = case controller.action_name
+     when 'new', 'create' then true
+     else false
+   end %>
+
+<div class="subcolumns">
+  <div class="c50l">
+  <div class="show">
+    <table>
+
+      <tr>
+        <th><label for="issue_typeissue_id"><%= _("Type") %></label></th>
+        <td><%= select(:issue, :typeissue_id, @typeissues) %>
+          <% if new_issue %>
+            <%= select(:issue, :severite_id, @severites) %>
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <th><label for="issue_contract_id"><%= _("Concerning") %></label></th>
+
+        <% if @contracts.size > 1 %>
+          <td>
+            <% if @ingenieur %>
+              <%# We have an empty to make sure YOU choose the contract %>
+              <%= select_empty(:issue, :contract_id, @contracts) %>
+            <% elsif @recipient %>
+              <%= select(:issue, :contract_id, @contracts) %>
+            <% end %>
+
+            <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with => "contract_id",
+                 :url => ajax_display_contract_issues_path) %>
+            <%= observe_field "issue_contract_id", options %>
+          </td>
+        <% elsif @contracts.size == 1 %>
+          <td colspan="2">
+            <%# we ensure script kiddie can not pervert this field on the server side %>
+            <%= @contracts.first.first %>
+            <%= hidden_field(:issue, :contract_id, :value => @contracts.first.last) %>
+          </td>
+        <% else %>
+          <td colspan="2"></td>
+        <% end %>
+      </tr>
+
+      <tr>
+        <th><label for="issue_recipient_id"><%= _("Recipient") %></label></th>
+        <%# Warning, the code of this cell is also in ajax_display_contract.rjs %>
+        <td><div id="recipient"><%= select(:issue, :recipient_id, @recipients) %></div></td>
+      </tr>
+
+      <% if @ingenieur %>
+      <tr>
+        <th><label for="issue_ingenieur_id"><%=_("Assigned to")%></label></th>
+        <td>
+          <div id="engineer">
+            <select id="issue_ingenieur_id" name="issue[ingenieur_id]"><option value="">» </option>
+              <%= options_from_collection_for_select(@ingenieurs, :last, :first, @issue.ingenieur_id) %>
+              <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name, @issue.ingenieur_id) %>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+
+      <tr>
+        <td colspan="2"><hr /></td>
+      </tr>
+
+      <tr>
+        <th><label for="issue_software_id"><%= _("Software") %></label></th>
+        <td><%= render :partial => 'software' %></td>
+      </tr>
+
+      <tr id="version">
+        <%= render :partial => 'version' %>
+      </tr>
+
+      <% if @ingenieur %>
+      <tr>
+        <td colspan="2"><hr /></td>
+      </tr>
+
+      <tr>
+        <th><label for="issue_mail_cc"><%= _("CC") %></label></th>
+        <td><%= text_field :issue, :mail_cc, :size => 20 %></td>
+      </tr>
+
+      <% unless new_issue %>
+      <tr>
+        <th><label for="issue_expected_on"><%= _("Issue|Expected on") %></label></th>
+        <td>
+          <%= text_field :issue, :expected_on, :size => 20 %>
+          <span class="calendarPicker"><%= StaticScript::date_from %></span>
+          <%= StaticScript::script_date('issue_expected_on', 'date_from') %>
+        </td>
+      </tr>
+      <% end %>
+      <% end %>
+
+      <tr>
+        <td colspan="2"><hr /></td>
+      </tr>
+
+      <tr>
+        <th><%= _("Commitments") %></th>
+        <td><div id="commitment"><%= display_commitment(@issue)%></div></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="c50r">
+  <div class="show tinymce">
+  <table>
+    <tr>
+      <th colspan="2"><label for="issue_resume"><%= _("Summary") %></label></th>
+    </tr>
+    <tr>
+      <td colspan="2"><%= text_field :issue, :resume, :size => 45, :maxlength => 70 %></td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <fieldset style="width: 45em;">
+          <legend><%=  _("Detailed description") %></legend>
+          <%= text_area 'issue', 'description', :cols => 55, :rows =>17 %>
+        </fieldset>
+      </td>
+    </tr>
+
+    <tr>
+    <% if new_issue %>
+      <th colspan="2"><label for="attachment_file"><%= _("Add a file") %></label></th>
+    </tr>
+
+    <tr>
+      <td colspan="2"><%= file_column_field 'attachment', 'file', :size => 35 %></td>
+    <% else %>
+      <td colspan="2"></td>
+    <% end %>
+    </tr>
+
+  </table>
+</div>
+</div>
+
+</div>
+
+<% fields = %w(issue_typeissue_id) %>
+<% fields << 'issue_contract_id' if @contracts.size > 1 %>
+<% fields << 'issue_severite_id' if new_issue %>
+<% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
+     "Form.serializeElements($('#{fields.join("','")}'))",
+     :url => ajax_display_commitment_issues_path) %>
+<% fields.each do |field| %>
+  <%= observe_field field, options %>
+<% end %>

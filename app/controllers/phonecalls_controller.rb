@@ -17,11 +17,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class PhonecallsController < ApplicationController
-  helper :filters, :export, :requests, :clients
+  helper :filters, :export, :issues, :clients
 
   def index
     options = { :per_page => 15, :order => 'phonecalls.start', :include =>
-      [:recipient,:ingenieur,:contract,:request] }
+      [:recipient,:ingenieur,:contract,:issue] }
     conditions = []
 
     if params.has_key? :filters
@@ -59,8 +59,8 @@ class PhonecallsController < ApplicationController
     @phonecall = Phonecall.new(params[:phonecall])
     if @phonecall.save
       flash[:notice] = _('The call was successfully created.')
-      request = @phonecall.request
-      redirect_to(request ? request_path(request) : phonecalls_path)
+      issue = @phonecall.issue
+      redirect_to(issue ? issue_path(issue) : phonecalls_path)
     else
       _form and render :action => 'new'
     end
@@ -73,7 +73,7 @@ class PhonecallsController < ApplicationController
   def new
     @phonecall = Phonecall.new
     @phonecall.ingenieur = @ingenieur
-    @phonecall.request_id = params[:id]
+    @phonecall.issue_id = params[:id]
     _form
   end
 
@@ -86,8 +86,8 @@ class PhonecallsController < ApplicationController
     @phonecall = Phonecall.find(params[:id])
     if @phonecall.update_attributes(params[:phonecall])
       flash[:notice] = _('The phone call has been updated.')
-      request = @phonecall.request
-      redirect_to(request ? request_path(request) : phonecalls_path)
+      issue = @phonecall.issue
+      redirect_to(issue ? issue_path(issue) : phonecalls_path)
     else
       _form and render :action => 'edit'
     end
@@ -99,7 +99,7 @@ class PhonecallsController < ApplicationController
   end
 
   def ajax_recipients
-    return render(:nothing) unless request.xml_http_request?
+    return render(:nothing) unless issue.xml_http_issue?
 
     # la magie de rails est cassé pour la 1.2.2, en mode production
     # donc je dois le faire manuellement
@@ -132,7 +132,7 @@ class PhonecallsController < ApplicationController
     @count[:phonecalls] = Phonecall.count
     @count[:recipients] = Phonecall.count 'recipient_id', {}
     @count[:ingenieurs] = Phonecall.count('ingenieur_id', {})
-    @count[:requests] = Phonecall.count('request_id', :distinct => true)
+    @count[:issues] = Phonecall.count('issue_id', :distinct => true)
     diff = 'TIME_TO_SEC(TIMEDIFF(end,start))'
     @count[:somme] = Phonecall.sum(diff).to_i
     @count[:moyenne] = Phonecall.average(diff).to_i

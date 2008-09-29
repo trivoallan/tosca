@@ -12,7 +12,7 @@
   </tr>
 
 <% for statut in @statuts %>
-  <tr class=<%= "request_#{statut.id}" %>>
+  <tr class=<%= "issue_#{statut.id}" %>>
     <td><%= statut.id %>
   <% for column in Statut.content_columns %>
     <td><%= statut.send(column.name) %></td>

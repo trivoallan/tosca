@@ -11,9 +11,9 @@
   <%= link_to tag.name, tags_contract_url(@contract, :tag => tag.name), :class => css_class %>
 <% end %>
 
-<% if @requests %>
+<% if @issues %>
   <br/><br/>
-  <h1><%= n_('Request of this contract tagged with %s', 
-    'Requests of this contract tagged with %s', @requests.size) % @tag_with.join(_(" or ")) %></h1>
-  <%= render :partial => 'requests/lists/requests_table' %>
+  <h1><%= n_('Issue of this contract tagged with %s', 
+    'Issues of this contract tagged with %s', @issues.size) % @tag_with.join(_(" or ")) %></h1>
+  <%= render :partial => 'issues/lists/issues_table' %>
 <% end %>

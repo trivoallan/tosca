@@ -1,0 +1,13 @@
+Bonjour,<br />
+
+<p>
+ <% url_issue = "<a href=\"#{@url_issue}\">issue ##{@issue.id}</a>" %>
+&nbsp;&nbsp;Un nouveau ticket <%= url_issue %> a été déclaré par <%= h @name %>.
+</p>
+
+<hr noshade size="1px"/>
+<%= @issue.description %><br />
+<hr noshade size="1px"/><br />
+
+
+<%= render :partial => 'end_mail'%>

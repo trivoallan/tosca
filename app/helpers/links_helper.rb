@@ -120,19 +120,19 @@ EOS
     public_link_to(_('Home'), welcome_path)
   end
 
-  def link_to_requests
-    link_to(_('Requests'), requests_path, :title =>
-            _('Consult requests'))
+  def link_to_issues
+    link_to(_('Issues'), issues_path, :title =>
+            _('Consult issues'))
   end
 
-  def link_to_all_requests
-    link_to(_('All the requests'), requests_path, :title =>
-            _('Consult all the requests'))
+  def link_to_all_issues
+    link_to(_('All the issues'), issues_path, :title =>
+            _('Consult all the issues'))
   end
 
-  def link_to_tobd_requests
-    link_to(_('Pending Requests'), pending_requests_path, :title =>
-            _('Consult requests which are waiting an action from you'))
+  def link_to_tobd_issues
+    link_to(_('Pending Issues'), pending_issues_path, :title =>
+            _('Consult issues which are waiting an action from you'))
   end
 
   def public_link_to_softwares

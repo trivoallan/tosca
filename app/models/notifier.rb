@@ -63,16 +63,16 @@ class Notifier < ActionMailer::Base
   end
 
   # This function require 4 parameters for options :
-  #   :request, :url_request
+  #   :issue, :url_issue
   #   :name => user.name, :url_attachment
-  def request_new(options, flash = nil)
-    request =  options[:request_tosca]
+  def issue_new(options, flash = nil)
+    issue =  options[:issue]
 
-    recipients  compute_recipients(request)
-    cc          compute_copy(request)
+    recipients  compute_recipients(issue)
+    cc          compute_copy(issue)
     from        App::FromEmail
-    subject     "[#{App::ServiceName}##{request.id}] : #{request.resume}"
-    headers     headers_mail_request(request.first_comment)
+    subject     "[#{App::ServiceName}##{issue.id}] : #{issue.resume}"
+    headers     headers_mail_issue(issue.first_comment)
 
     html_and_text_body(options);
 
@@ -82,22 +82,22 @@ class Notifier < ActionMailer::Base
   end
 
   # This function needs too much options :
-  #  { :request, :name, :url_request, :url_attachment, :comment }
+  #  { :issue, :name, :url_issue, :url_attachment, :comment }
   # And an optional
   #  :modifications => {:statut_id, :ingenieur_id, :severite_id }
-  def request_new_comment(options, flash = nil)
-    request = options[:request_tosca]
+  def issue_new_comment(options, flash = nil)
+    issue = options[:issue]
     # needed in order to have correct recipients
     # for instance, send mail to the correct engineer
-    # when reaffecting a request
-    request.reload
+    # when reaffecting an issue
+    issue.reload
     comment = options[:comment]
 
-    recipients compute_recipients(request, comment.private)
-    cc         compute_copy(request, comment.private)
+    recipients compute_recipients(issue, comment.private)
+    cc         compute_copy(issue, comment.private)
     from       App::FromEmail
-    subject    "[#{App::ServiceName}:##{request.id}] : #{request.resume}"
-    headers    headers_mail_request(comment)
+    subject    "[#{App::ServiceName}:##{issue.id}] : #{issue.resume}"
+    headers    headers_mail_issue(comment)
 
     html_and_text_body(options)
 
@@ -232,25 +232,25 @@ class Notifier < ActionMailer::Base
   end
 
   # private indicates if it's reserved for internal use or not
-  def compute_copy(request, private = false)
+  def compute_copy(issue, private = false)
     if private
-      request.contract.internal_ml
+      issue.contract.internal_ml
     else
       res = []
-      contract = request.contract
-      [ contract.internal_ml, contract.customer_ml, request.mail_cc ].each { |m|
+      contract = issue.contract
+      [ contract.internal_ml, contract.customer_ml, issue.mail_cc ].each { |m|
         res << m unless m.blank?
       }
       res.join(',')
     end
   end
 
-  def compute_recipients(request, private = false)
+  def compute_recipients(issue, private = false)
     res = []
     # The client is not informed of private messages
-    res << request.recipient.user.email unless private
-    # Request are not assigned, by default
-    res << request.ingenieur.user.email if request.ingenieur
+    res << issue.recipient.user.email unless private
+    # Issue are not assigned, by default
+    res << issue.ingenieur.user.email if issue.ingenieur
     res.join(',')
   end
 
@@ -276,11 +276,11 @@ class Notifier < ActionMailer::Base
   end
 
   #For mail headers : http://www.expita.com/header1.html
-  def headers_mail_request(comment)
+  def headers_mail_issue(comment)
     headers = Hash.new
     headers[HEADER_MESSAGE_ID] = message_id(comment.mail_id)
-    #Refers to the request
-    headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id(comment.request.first_comment.mail_id)
+    #Refers to the issue
+    headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id(comment.issue.first_comment.mail_id)
     return headers
   end
 

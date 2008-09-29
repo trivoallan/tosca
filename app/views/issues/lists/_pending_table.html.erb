@@ -1,0 +1,51 @@
+<% return if issues.empty? %>
+<% options = { :before => "Element.show('spinner')",
+               :url => ajax_renew_issues_path } %>
+<% form_remote_tag(options) do %>
+<table class="full">
+ <thead>
+   <tr>
+    <th width='2%'><%= StaticImage::checkbox %></th>
+    <th width='2%'><%= _('Id') %></th>
+    <th width='2%'><%= _('Resp.') %></th>
+    <th><%= _('Summary') %></th>
+    <th width="10"><%= _('Workaround') %></th>
+    <th width="10"><%= _('Correction') %></th>
+   </tr>
+   <tr><td colspan="6"><hr /></td></tr>
+ </thead>
+ <tbody>
+  <% issues.each do |issue| %>
+   <% elapsed = issue.elapsed %>
+   <% interval = issue.interval %>
+   <% commitment = issue.commitment %>
+   <tr class="<%=cycle('odd', 'even')%>" id="issue_<%=issue.id%>">
+    <td><%= check_box_tag 'issue_ids[]', issue.id, false, :id => "issue_ids_#{issue.id}" %></td>
+    <td><label for="issue_ids_<%=issue.id%>"><%= issue.id %></label></td>
+    <td><%= (issue.ingenieur ? issue.ingenieur.trigram : '-') %></td>
+    <td title="<%= "[#{issue.softwares_name}] #{issue.clients_name}" %>">
+      <%= link_to issue.resume, issue_path(issue) %>
+    </td>
+    <% if commitment.nil? %>
+      <td>-</td><td>-</td>
+    <% else %>
+     <% progress = elapsed.workaround_progress %>
+     <% desc = progress_text(elapsed.workaround, commitment.workaround.days, interval) if progress > 0 %>
+     <td><%= progress_bar(progress, desc) %></td>
+     <% progress = elapsed.correction_progress %>
+     <% desc = progress_text(elapsed.correction, commitment.correction.days, interval) if progress > 0 %>
+     <td><%= progress_bar(progress, desc) %></td>
+    <% end %>
+   </tr>
+  <% end %>
+ </tbody>
+  <tfoot>
+   <tr><td colspan="6"><hr /></td></tr>
+   <tr><td colspan="6">
+     <%=_('Selected issues can wait')%>
+     <%= text_field_tag :expected_on, "15", :size => '2' %> <%=_('days')%>
+     <%= submit_tag _("before renewal") %>
+   </td></tr>
+ </tfoot>
+</table>
+<% end %>

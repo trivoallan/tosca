@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Contribution < ActiveRecord::Base
-  has_one :request
+  has_one :issue
   has_many :urlreversements
 
   belongs_to :typecontribution

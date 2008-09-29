@@ -43,7 +43,7 @@ module WelcomeHelper
       'login'=> [_('allows to log in in the application')],
       'plan'=> [_('display this map')],
       'comment'=> _('allows to comment'),
-      'deroulement'=> _('prints the life cycle of a request'),
+      'deroulement'=> _('prints the life cycle of an issue'),
       [/ajax/, /auto_complete/] => _('is ajaxified'),
       /_ods/ => _('allows to export datas in ODS')
     }

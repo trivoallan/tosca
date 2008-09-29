@@ -32,7 +32,7 @@ module EngagementsHelper
   def show_form_engagements(object_engagement, engagements, name)
     out = '<table>'
     out << '<tr><th>'
-    out << _('Request')
+    out << _('Issue')
     out << '</th><th>'
     out << _('Severity')
     out << '</th><th>'
@@ -40,19 +40,19 @@ module EngagementsHelper
     out << ' | '
     out << _('Correction')
     out << '</th></tr>'
-    last_typerequest_id = 0
+    last_typeissue_id = 0
     last_severite_id = 0
     last_cycle = cycle('even', 'odd')
     selecteds = object_engagement.collect{|o| o.id }
     e = engagements.pop
     while (e) do
-      out << '<tr><td colspan="5"><hr/></td></tr>' if e.typerequest_id != last_typerequest_id
+      out << '<tr><td colspan="5"><hr/></td></tr>' if e.typeissue_id != last_typeissue_id
       last_cycle = cycle('even', 'odd') if e.severite_id != last_severite_id
       out << "<tr class=\"#{last_cycle}\">"
       out << '<td>'
-      if e.typerequest_id != last_typerequest_id
-        out << "<strong>#{e.typerequest.name}</strong>"
-        last_typerequest_id = e.typerequest_id
+      if e.typeissue_id != last_typeissue_id
+        out << "<strong>#{e.typeissue.name}</strong>"
+        last_typeissue_id = e.typeissue_id
       end
       out << '</td><td>'
       if e.severite_id != last_severite_id
@@ -64,7 +64,7 @@ module EngagementsHelper
       severities.push ['» ',0]
       # selecteds = []
       out << %Q{<select id="contract_engagement_ids"
-         name="contract[engagement_ids_#{last_typerequest_id}_#{last_severite_id}]">}
+         name="contract[engagement_ids_#{last_typeissue_id}_#{last_severite_id}]">}
       while (e) do
         workaround = Time.in_words(e.contournement.days, true)
         correction = Time.in_words(e.correction.days, true)
@@ -84,19 +84,19 @@ module EngagementsHelper
 
   def show_table_engagements(engagements)
     result = ''
-    titres = [_('Request'), _('Severity'), _('Workaround'), _('Correction')]
-    oldtyperequest = nil
+    titres = [_('Issue'), _('Severity'), _('Workaround'), _('Correction')]
+    oldtypeissue = nil
     result << show_table(engagements, Engagement, titres) { |e|
       out = ''
-      out << (oldtyperequest == e.typerequest_id ? '<td></td>' :
-                "<td>#{e.typerequest.name}</td>" )
+      out << (oldtypeissue == e.typeissue_id ? '<td></td>' :
+                "<td>#{e.typeissue.name}</td>" )
       out << "<td>#{e.severite.name}</td>"
       out << "<td>#{Time.in_words(e.contournement.days, true)}</td>"
       out << "<td>#{Time.in_words(e.correction.days, true)}</td>"
       if controller.controller_name == 'engagements'
         out << "#{link_to_actions_table e}"
       end
-      oldtyperequest = e.typerequest_id
+      oldtypeissue = e.typeissue_id
      out
     }
     result

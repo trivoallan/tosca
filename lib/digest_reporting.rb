@@ -18,10 +18,10 @@
 #
 module DigestReporting
 
-  #contract is a Contract, requests is an array of DigestRequests
-  DigestContracts = Struct.new(:contract, :requests)
-  #request is a Request, request_at is a Request, comments is an array of Comment
-  DigestRequests = Struct.new(:request, :request_at, :comments)
+  #contract is a Contract, issues is an array of DigestIssues
+  DigestContracts = Struct.new(:contract, :issues)
+  #issue is a Issue, issue_at is a Issue, comments is an array of Comment
+  DigestIssues = Struct.new(:issue, :issue_at, :comments)
 
   def digest_result(period)
     @period = period
@@ -31,32 +31,32 @@ module DigestReporting
     @period = _(@period)
 
     options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contract_id ASC", :include => [:typerequest, :severite, :statut]}
-    requests = Request.find(:all, options)
+     :order => "contract_id ASC", :include => [:typeissue, :severite, :statut]}
+    issues = Issue.find(:all, options)
 
     @result = Array.new
     last_contract_id = nil
-    requests.each do |r|
+    issues.each do |r|
       if last_contract_id != r.contract_id
         dc = DigestContracts.new
         dc.contract = r.contract
-        dc.requests = Array.new
+        dc.issues = Array.new
         @result.push(dc)
       end
 
       options = { :conditions => [ "created_on >= ? ", updated ] }
 
-      dr = DigestRequests.new
-      dr.request = r
-      dr.request_at = r.state_at(updated)
+      dr = DigestIssues.new
+      dr.issue = r
+      dr.issue_at = r.state_at(updated)
       dr.comments = r.comments.find(:all, options)
-      @result.last.requests.push(dr)
+      @result.last.issues.push(dr)
 
       last_contract_id = r.contract_id
     end
   end
 
-  #important is an array of Request, other is an array of DigestContracts
+  #important is an array of Issue, other is an array of DigestContracts
   DigestManagers = Struct.new(:important, :other)
 
   def digest_managers(period)
@@ -67,18 +67,18 @@ module DigestReporting
     @period = _(@period)
     
     options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contract_id ASC", :include => [:typerequest, :severite, :statut]}
-    requests = Request.find(:all, options)
+     :order => "contract_id ASC", :include => [:typeissue, :severite, :statut]}
+    issues = Issue.find(:all, options)
     
     @result = DigestManagers.new    
     @result.important = Array.new
     @result.other = Array.new
     last_contract_id = nil
-    requests.each do |r|
+    issues.each do |r|
       if last_contract_id != r.contract_id and not r.critical?
         dc = DigestContracts.new
         dc.contract = r.contract
-        dc.requests = Array.new
+        dc.issues = Array.new
         @result.other.push(dc)
       end
       
@@ -88,11 +88,11 @@ module DigestReporting
  
         options = { :conditions => [ "created_on >= ? ", updated ] }
 
-        dr  = DigestRequests.new
-        dr.request = r
-        dr.request_at = r.state_at(updated)
+        dr  = DigestIssues.new
+        dr.issue = r
+        dr.issue_at = r.state_at(updated)
         dr.comments = r.comments.find(:all, options)
-        @result.other.last.requests.push(dr)
+        @result.other.last.issues.push(dr)
       end
 
       last_contract_id = r.contract_id

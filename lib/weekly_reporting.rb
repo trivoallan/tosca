@@ -18,7 +18,7 @@
 #
 module WeeklyReporting
 
-  # Give the status of requests flow during a certain time,
+  # Give the status of issues flow during a certain time,
   # specified from @date[:first_day] to @date[:end_day]
   def compute_weekly_report(recipient_ids)
     values = {
@@ -27,23 +27,23 @@ module WeeklyReporting
       :recipient_ids => recipient_ids
     }
     scope = { :find => { :conditions =>
-        [ 'requests.recipient_id IN (:recipient_ids) AND requests.updated_on BETWEEN :first_day AND :last_day', values ] }
+        [ 'issues.recipient_id IN (:recipient_ids) AND issues.updated_on BETWEEN :first_day AND :last_day', values ] }
     }
-    Request.send(:with_scope, scope) {
+    Issue.send(:with_scope, scope) {
       first_day = values[:first_day].to_formatted_s(:db)
       last_day = values[:last_day].to_formatted_s(:db)
 
       options = { :conditions =>
-        [ 'requests.created_on BETWEEN :first_day AND :last_day', values ],
-        :order => 'clients.name, requests.id', :include => [{:recipient => :client},
-                                                           :statut,:typerequest] }
-      @requests_created = Request.find(:all, options)
+        [ 'issues.created_on BETWEEN :first_day AND :last_day', values ],
+        :order => 'clients.name, issues.id', :include => [{:recipient => :client},
+                                                           :statut,:typeissue] }
+      @issues_created = Issue.find(:all, options)
 
-      options[:conditions] = [ 'requests.statut_id = ?', 7 ] # 7 => Closed.
-      @requests_closed = Request.find(:all, options)
+      options[:conditions] = [ 'issues.statut_id = ?', 7 ] # 7 => Closed.
+      @issues_closed = Issue.find(:all, options)
 
-      options[:conditions] = [ 'requests.statut_id = ?', 8 ] # 8 => Cancelled.
-      @requests_cancelled = Request.find(:all, options)
+      options[:conditions] = [ 'issues.statut_id = ?', 8 ] # 8 => Cancelled.
+      @issues_cancelled = Issue.find(:all, options)
     }
   end
 end

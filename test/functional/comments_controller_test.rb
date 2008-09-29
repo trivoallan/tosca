@@ -28,7 +28,7 @@ class CommentsController; def rescue_action(e) raise e end; end
 # and validate within the test suite the _not_allowed? effect of the
 # CommentController
 class CommentsControllerTest < Test::Unit::TestCase
-  fixtures :comments, :requests, :recipients, :users,
+  fixtures :comments, :issues, :recipients, :users,
   :permissions, :roles, :permissions_roles, :ingenieurs,
   :statuts, :clients, :credits, :components, :contracts, :contracts_users
 
@@ -83,7 +83,7 @@ class CommentsControllerTest < Test::Unit::TestCase
     post :update, {
       :id => 1,
       :comment => {
-        :request_id => 1,
+        :issue_id => 1,
         :user_id => 2,
         :attachment_id => 1,
         :text => 'Voici un autre comment',
@@ -103,12 +103,12 @@ class CommentsControllerTest < Test::Unit::TestCase
 
 
   # This test is one of the severe issue encountered in production
-  # It was when a comment posted for cancellation of a request,
-  # put back request in "saved" status.
+  # It was when a comment posted for cancellation of a issue,
+  # put back issue in "saved" status.
   def test_comment
-    old_statut_id = Request.find(1).statut_id
+    old_statut_id = Issue.find(1).statut_id
 
-    post(:comment, { :id => "2-une-autre-requests",
+    post(:comment, { :id => "2-une-autre-issues",
       :comment => {
         "text" => "promenons nous dans les bois",
         "private" => "0",
@@ -122,10 +122,10 @@ class CommentsControllerTest < Test::Unit::TestCase
 
     # TODO : why it's not a success ????
     assert_response :redirect
-    assert_redirected_to(:controller => "requests", :action => "show",
+    assert_redirected_to(:controller => "issues", :action => "show",
                          :id => "2-Copy-something-in-a-software")
 
-    assert(Request.find(1).statut_id == old_statut_id)
+    assert(Issue.find(1).statut_id == old_statut_id)
   end
 
 end

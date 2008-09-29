@@ -1,0 +1,4 @@
+@issue_ids.each { |i|
+  page.visual_effect :fade, "issue_#{i}", :duration => 0.5
+}
+page.hide 'spinner'

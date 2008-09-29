@@ -17,10 +17,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'requests_controller'
+require 'issues_controller'
 
 # Re-raise errors caught by the controller.
-# class RequestsController; def rescue_action(e) raise e end; end
+# class IssuesController; def rescue_action(e) raise e end; end
 class ExportControllerTest < Test::Unit::TestCase
 
    fixtures :all
@@ -49,8 +49,8 @@ class ExportControllerTest < Test::Unit::TestCase
     assert_response :success
   end
 
-  def test_requests
-    get :requests, :format => 'ods'
+  def test_issues
+    get :issues, :format => 'ods'
     assert_response :success
   end
 

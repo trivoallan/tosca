@@ -1,0 +1,30 @@
+<% modified = [] %>
+<% if @modifications["statut_id"]
+     modified << "<b>#{@comment.statut.name}</b>"
+   end %>
+<% if @modifications["ingenieur_id"]
+     name = @comment.ingenieur.name
+     if @name == name
+       modified << "prise en charge" # self-assignement
+     else
+       modified << "assignée à <b>#{name}</b>"
+     end
+   end %>
+
+<% url_issue = "<a href=\"#{@url_issue}\">demande ##{@issue.id}</a>" %>
+<% if @comment.private %>
+  <i><%= h @name %></i> a écrit un comment <b>non visible</b> par le bénéficiaire pour la <%= url_issue %> :
+<% else %>
+  <% modified = modified.empty? ? 'commentée' : modified.join(' et ') %>
+  La <%= url_issue %> vient d&lsquo;être <%=modified%> par <i><%= h @name %></i> :
+<% end %>
+<br />
+
+<hr noshade size="1px"/>
+<%= @comment.text %><br />
+<hr noshade size="1px"/>
+<% if @modifications["severite_id"] %>
+  La demande a été requalifiée avec une sévérité <b><%=@comment.severite.name%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severite_issue">Cette page</a> vous présente en détail la signification de ce changement.<br />
+<% end %>
+
+<%= render :partial => 'end_mail' %>

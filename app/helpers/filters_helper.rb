@@ -20,7 +20,7 @@ module FiltersHelper
 
   # Provides a select box to filter choice
   # select_filter(@softwares, :software)
-  # select_filter(@types, :typerequest, :title => '» Type')
+  # select_filter(@types, :typeissue, :title => '» Type')
   def select_filter(list, property, options = {:title => '» '})
     out = ''
     field = "#{property}_id"

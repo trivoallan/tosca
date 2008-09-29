@@ -18,7 +18,7 @@
 #
 
 class SoftwaresController < ApplicationController
-  helper :filters, :versions, :requests, :competences, :contributions, :licenses
+  helper :filters, :versions, :issues, :competences, :contributions, :licenses
 
   # Not used for the moment
   # auto_complete_for :software, :name
@@ -81,11 +81,11 @@ class SoftwaresController < ApplicationController
   def show
     @software = Software.find(params[:id])
     if @recipient
-      @requests = @recipient.requests.find(:all, :conditions =>
-                                              ['requests.software_id=?', params[:id]])
+      @issues = @recipient.issues.find(:all, :conditions =>
+                                              ['issues.software_id=?', params[:id]])
     else
-      @requests = Request.find(:all, :conditions =>
-                               ['requests.software_id=?',params[:id]])
+      @issues = Issue.find(:all, :conditions =>
+                               ['issues.software_id=?',params[:id]])
     end
   end
 

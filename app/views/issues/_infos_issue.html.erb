@@ -1,0 +1,78 @@
+<% cache("issues/#{@issue.id}/info-#{session[:user].kind}") do %>
+<%= div_toggle _('Action'), 'menu_action', :class => 'menu_title' %>
+<ul id="menu_action">
+  <% if @ingenieur %>
+    <% options = { :software_id => @issue.software_id, :issue_id => @issue.id } %>
+    <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
+    <li><%= _('Link to a contribution')%><br />
+        <% form_tag link_contribution_issue_path(@issue.id) do %>
+      <%= select_onchange @contributions, 'issue', 'contribution_id' %>
+    <% end %></li>
+    <% if @issue.contribution %>
+       <li><%= link_to_unlink_contribution(@issue.id) %></li>
+    <% end %>
+    <li><%= link_to_add_call @issue.id %></li>
+  <% end %>
+  <li><%= link_to _("Print"), print_issue_path(@issue.id),
+            :target => '_blank' %></li>
+</ul>
+
+<%= div_toggle _('Summary'), 'menu_resume', :class => "menu_title" %>
+<ul id="menu_resume">
+  <% if @ingenieur and @issue.socle and @issue.socle.machine%>
+     <li><b><%= _("Vm") %>: </b><%=h @issue.socle.machine %></li>
+  <% end %>
+  <li><b><%= _("System") %>: </b><%= link_to_socle @issue.socle %></li>
+  <li><b><%= _("Software") %>: </b><%= link_to_issue_software @issue %></li>
+  <li><b><%=_("Status")%>: </b>
+       <%= link_to_box_on_status(@issue) %> <%=help_on_status%></li>
+  <li><b><%= _("Type")%>: </b><%= @issue.typeissue.name %></li>
+  <li><b><%= _("Severity")%>: </b>
+       <%= @issue.severite.name %> <%=help_on_severity%></li>
+  <% unless @issue.mail_cc.blank? %>
+     <li><b><%= _('CC') %>: </b><%= @issue.mail_cc.gsub(',', ',<br />') %></li>
+  <% end %>
+  <% submitter_id = @issue.submitter_id %>
+  <% if submitter_id != 0 && @issue.recipient.user_id != submitter_id %>
+    <li><b><%=_("Declared by")%>: </b><%= @issue.submitter.name %></li>
+  <% end %>
+  <% if @issue.ingenieur %>
+    <li><b><%=_("Assigned to")%>: </b> <%= @issue.ingenieur.name %> </li>
+  <% end %>
+</ul>
+
+<%= div_toggle _('Recipent'), 'menu_recipient', :class => "menu_title" %>
+<% user = @issue.recipient.user %>
+<ul id="menu_recipient">
+  <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
+     <%= link_to_show(account_path(user)) if @ingenieur %></li>
+  <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
+  <% contract = @issue.contract %>
+  <li><b><%= _('Concerning') %>: </b><%= link_to contract, contract_path(contract) %></li>
+</ul>
+
+<%= div_toggle _("Life cycle"), 'life_cycle_menu', :class => "menu_title" %>
+<ul id="life_cycle_menu">
+  <li><b><%= _("Created on") %>: </b><%= @issue.created_on_formatted %></li>
+  <li><b><%= _("Updated on") %>: </b><%= @issue.updated_on_formatted %></li>
+  <% if @issue.elapsed %>
+     <li><b><%= _("Time elapsed") %>: </b><%= @issue.elapsed_formatted %></li>
+  <% end %>
+  <% contribution = @issue.contribution %>
+  <% if contribution %>
+    <li><%= link_to_issue_contribution(contribution) %></li>
+  <% end %>
+</ul>
+
+<%= div_toggle _("Tags"), 'tags_menu', :class => "menu_title", :hide => true %>
+<ul id="tags_menu">
+  <li><b><%= _("Tags") %>: </b><%= @issue.tag_list.join(', ') %></li>
+  <li><%= link_to _("Edit the tags for this issue"), tag_issue_url(@issue) %></li>
+</ul>
+
+<%= div_toggle _("Help"), 'menu_help', :class => "menu_title" %>
+<ul id="menu_help">
+ <li><%= public_link_to_howto_issue %></li>
+</ul>
+
+<% end # Cache %>

@@ -1,0 +1,30 @@
+<% options = { :update => 'issue_tab',
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')",
+    :method => :get }
+   issue_id = @issue ? @issue.id : @issue_id %>
+<ul class="issue_tabnav" id="issue_tabnav">
+ <li>
+   <% options[:url] = ajax_history_issue_path(issue_id) %>
+   <% desc = _('History') + ' ' + StaticImage::history %>
+   <%= link_to_remote_tab(desc, 'ajax_history', options) %>
+ </li>
+ <li>
+   <% options[:url] = ajax_attachments_issue_path(issue_id) %>
+   <% desc = _('Attachments') + ' ' + StaticImage::documents %>
+   <%= link_to_remote_tab(desc, 'ajax_attachments', options) %>
+ </li>
+ <li>
+   <% options[:url] = ajax_appels_issue_path(issue_id) %>
+   <% desc = _('Phonecalls') + ' ' + StaticImage::telephone %>
+   <%= link_to_remote_tab(desc, 'ajax_appels', options) %>
+ </li>
+ <li>
+   <% options[:url] = ajax_cns_issue_path(issue_id) %>
+   <% desc =  _('SLA') + ' ' + StaticImage::sla_running %>
+   <%= link_to_remote_tab(desc, 'ajax_cns', options) %>
+ </li>
+ <li>
+   <%= StaticImage::spinner %>
+ </li>
+</ul>

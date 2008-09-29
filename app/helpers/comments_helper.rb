@@ -29,26 +29,26 @@ module CommentsHelper
     ingenieur = comment.ingenieur
     unless ingenieur.nil?
       if ingenieur.user_id == comment.user_id
-        out << (_('This request has been taken into account by %s.') % name )
+        out << (_('This issue has been taken into account by %s.') % name )
       else
-        out << (_('This request has been assigned to %s by %s.') %
+        out << (_('This issue has been assigned to %s by %s.') %
                 [ "<b>#{ingenieur.name}</b>", name ])
       end
     end
     statut = comment.statut
     unless statut.nil?
-      out << (_('This request has been changed in %s by %s.') %
+      out << (_('This issue has been changed in %s by %s.') %
               [ "<b>#{statut.name}</b>", name ])
     end
     severite = comment.severite
     unless severite.nil?
-      out << (_('This request has been requalified in %s by %s.') %
+      out << (_('This issue has been requalified in %s by %s.') %
               [ "<b>#{severite.name}</b>" , name ])
     end
     elapsed = comment.elapsed
     unless elapsed.nil? || elapsed == 0
       elapsed = rule.elapsed_formatted(elapsed, contract)
-      out << (_('%s has been spent by %s on this request.') %
+      out << (_('%s has been spent by %s on this issue.') %
               [ "<b>#{elapsed}</b>" , name ])
     end
     return nil if out.empty?
