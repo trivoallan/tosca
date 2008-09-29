@@ -18,7 +18,7 @@
 #
 class IssuesController < ApplicationController
   helper :filters, :contributions, :softwares, :phonecalls,
-    :socles, :comments, :account, :reporting
+    :socles, :comments, :account, :reporting, :links
 
   cache_sweeper :issue_sweeper, :only =>
     [:create, :update, :destroy, :link_contribution, :unlink_contribution]
