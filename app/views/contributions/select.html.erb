@@ -1,8 +1,8 @@
  <h1><%= _('Contributions') %></h1>
 
 <% cache("contributions/select_#{params[:client_id] || 'all'}") do %>
-  <%= show_list(@logiciels, _('contribution'), :no_title => true) { |l|
-      "<b>#{public_link_to_contribution_logiciel l, params }</b> : #{l.resume}"
+  <%= show_list(@softwares, _('contribution'), :no_title => true) { |l|
+      "<b>#{public_link_to_contribution_software l, params }</b> : #{l.resume}"
   } %>
 <% end %>
 

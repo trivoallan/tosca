@@ -22,7 +22,7 @@ class Contribution < ActiveRecord::Base
 
   belongs_to :typecontribution
   belongs_to :etatreversement
-  belongs_to :logiciel
+  belongs_to :software
   belongs_to :ingenieur
 
   belongs_to :affected_version, :class_name => "Version"
@@ -31,7 +31,7 @@ class Contribution < ActiveRecord::Base
   file_column :patch, :fix_file_extensions => nil
 
   validates_length_of :name, :within => 3..100
-  validates_presence_of :logiciel,
+  validates_presence_of :software,
     :warn => _('You have to specify a software.')
 
   def self.content_columns
@@ -52,7 +52,7 @@ class Contribution < ActiveRecord::Base
   def summary
     out = ''
     out << typecontribution.name + _(' on ') if typecontribution
-    out << logiciel.name
+    out << software.name
     out << " #{affected_version}" if affected_version
     out
   end

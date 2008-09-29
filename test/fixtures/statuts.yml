@@ -22,7 +22,7 @@ statut_00007:
 statut_00008: 
   name: "Annul\xC3\xA9e"
   id: 8
-  description: "D'une mani\xC3\xA8re g\xC3\xA9n\xC3\xA9rale, une demande est annul\xC3\xA9e quand son traitement n'est pas du ressort de l'unit\xC3\xA9 OSSA. <br>Les cas possibles d'annulation sont : <br></p><ul><li>probl\xC3\xA8me dont la cause mat\xC3\xA9rielle, </li><li>probl\xC3\xA8me dont la cause est un logiciel ou un ensemble de logiciels non assur\xC3\xA9s, </li><li>demande n\xC3\xA9cessitant une \xC3\xA9volution du logiciel assur\xC3\xA9 </li><li>cas d'exclusion pr\xC3\xA9vus contractuellement.</li></ul>"
+  description: "D'une mani\xC3\xA8re g\xC3\xA9n\xC3\xA9rale, une demande est annul\xC3\xA9e quand son traitement n'est pas du ressort de l'unit\xC3\xA9 OSSA. <br>Les cas possibles d'annulation sont : <br></p><ul><li>probl\xC3\xA8me dont la cause mat\xC3\xA9rielle, </li><li>probl\xC3\xA8me dont la cause est un software ou un ensemble de softwares non assur\xC3\xA9s, </li><li>demande n\xC3\xA9cessitant une \xC3\xA9volution du software assur\xC3\xA9 </li><li>cas d'exclusion pr\xC3\xA9vus contractuellement.</li></ul>"
 statut_00001: 
   name: "Enregistr\xC3\xA9e"
   id: 1

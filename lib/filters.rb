@@ -39,7 +39,7 @@ module Filters
   end
 
   class Knowledges < Struct.new('Knowledges', :ingenieur_id,
-                                :logiciel_id, :competence_id)
+                                :software_id, :competence_id)
     extend Shared
   end
 
@@ -48,7 +48,7 @@ module Filters
     extend Shared
   end
 
-  class Software < Struct.new('Software', :software, :groupe_id,
+  class Softwares < Struct.new('Softwares', :software, :groupe_id,
                                :contract_id, :description )
     extend Shared
   end
@@ -81,11 +81,11 @@ module Filters
   # :like, :in & :equal
   # Call it like :
   # conditions = Filters.build_conditions(params, [
-  #   ['logiciel', 'name', 'paquets.name', :like ],
-  #   ['logiciel', 'description', 'paquets.description', :like ],
-  #   ['filters', 'groupe_id', 'logiciels.groupe_id', :equal ],
-  #   ['filters', 'competence_id', 'competences_logiciels.competence_id', :equal ],
-  #   ['filters', 'client_id', ' paquets.contract_id', :in ]
+  #   ['software', 'name', 'versions.name', :like ],
+  #   ['software', 'description', 'versions.description', :like ],
+  #   ['filters', 'groupe_id', 'softwares.groupe_id', :equal ],
+  #   ['filters', 'knowledge_id', 'competences_softwares.competence_id', :equal ],
+  #   ['filters', 'client_id', ' versions.contract_id', :in ]
   # ])
   # flash[:conditions] = options[:conditions] = conditions
   # This helpers is here mainly for avoiding SQL injection.

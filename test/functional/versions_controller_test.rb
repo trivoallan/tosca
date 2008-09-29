@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class VersionsControllerTest < ActionController::TestCase
-  fixtures :versions, :logiciels, :releases
+  fixtures :versions, :softwares, :releases
 
   def test_should_get_index
     %w(admin manager expert).each do |l|
@@ -44,7 +44,7 @@ class VersionsControllerTest < ActionController::TestCase
         form.version.name = "beta 2"
         form.submit
       end
-      assert_redirected_to logiciel_path(assigns(:version).logiciel)
+      assert_redirected_to software_path(assigns(:version).software)
     end
   end
 

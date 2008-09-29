@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class RequestsController < ApplicationController
-  helper :filters, :contributions, :logiciels, :phonecalls,
+  helper :filters, :contributions, :softwares, :phonecalls,
     :socles, :comments, :account, :reporting
 
   cache_sweeper :request_sweeper, :only =>
@@ -105,7 +105,7 @@ class RequestsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(requests_filters, [
-        [:text, 'logiciels.name', 'requests.resume', :dual_like ],
+        [:text, 'softwares.name', 'requests.resume', :dual_like ],
         [:contract_id, 'requests.contract_id', :equal ],
         [:ingenieur_id, 'requests.ingenieur_id', :equal ],
         [:typerequest_id, 'requests.typerequest_id', :equal ],
@@ -199,14 +199,14 @@ class RequestsController < ApplicationController
     return render(:nothing => true) unless params.has_key? :request
     request = params[:request]
     contract_id = request[:contract_id]
-    logiciel_id = request[:logiciel_id]
-    if logiciel_id.blank? or contract_id.blank?
+    software_id = request[:software_id]
+    if software_id.blank? or contract_id.blank?
       @versions = []
     else
-      logiciel = Logiciel.find(logiciel_id)
+      software = Software.find(software_id)
       contract = Contract.find(contract_id)
 
-      @versions = logiciel.releases_contract(contract.id).collect do |r|
+      @versions = software.releases_contract(contract.id).collect do |r|
         #case...when seems not to work
         if r.type == Version
           id = "v#{r.id}"
@@ -239,7 +239,7 @@ class RequestsController < ApplicationController
 
       @statuts = @request_tosca.statut.possible(@recipient)
       options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
-        [ 'contributions.logiciel_id = ?', @request_tosca.logiciel_id ] }
+        [ 'contributions.software_id = ?', @request_tosca.software_id ] }
       @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
       if @ingenieur
         @severites = Severite.find_select
@@ -386,7 +386,7 @@ class RequestsController < ApplicationController
     @recipients = contract.find_recipients_select
     result = false if @recipients.empty?
     @versions = []
-    @logiciels = contract.logiciels.collect { |l| [ l.name, l.id ] }
+    @softwares = contract.softwares.collect { |l| [ l.name, l.id ] }
     if @ingenieur
       @ingenieurs = Ingenieur.find_select_by_contract_id(contract.id)
       @teams = Team.on_contract_id(contract.id)
@@ -492,7 +492,7 @@ end
 #  :update => :delai,
 #  :with => "severite_id" }
 #%>
-#<%= observe_field "request_logiciel_id",
+#<%= observe_field "request_software_id",
 # {:url => {:action => :ajax_update_versions},
 #  :update => :request_versions,
-#  :with => "logiciel_id"} %>
+#  :with => "software_id"} %>

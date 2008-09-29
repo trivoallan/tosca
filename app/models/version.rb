@@ -17,14 +17,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Version < ActiveRecord::Base
-  belongs_to :logiciel
+  belongs_to :software
 
   has_many :releases, :dependent => :destroy
   has_many :contributions
 
   has_and_belongs_to_many :contracts, :uniq => true
 
-  validates_presence_of :logiciel
+  validates_presence_of :software
   
   before_validation do |record|
     result = false
@@ -49,7 +49,7 @@ class Version < ActiveRecord::Base
   end
 
   def full_software_name
-    @full_software_name ||= "#{self.logiciel.name} #{self.full_name}"
+    @full_software_name ||= "#{self.software.name} #{self.full_name}"
   end
 
   def name
@@ -72,7 +72,7 @@ class Version < ActiveRecord::Base
   include Comparable
   def <=>(other)
     return 1 if other.nil? or not other.is_a?(Version)
-    res = self.logiciel <=> other.logiciel
+    res = self.software <=> other.software
     return res unless res == 0
 
     #ri Comparable for more info

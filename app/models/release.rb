@@ -36,8 +36,8 @@ class Release < ActiveRecord::Base
     @full_software_name ||= "#{self.version.full_software_name} r#{self.name}"
   end
 
-  def logiciel
-    version.logiciel
+  def software
+    version.software
   end
 
   def <=>(other)

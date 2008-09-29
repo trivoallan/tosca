@@ -17,5 +17,5 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Typeurl < ActiveRecord::Base
-  has_many :urllogiciel
+  has_many :urlsoftware
 end

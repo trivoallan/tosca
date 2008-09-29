@@ -2,7 +2,7 @@
 <%= div_toggle _('Action'), 'menu_action', :class => 'menu_title' %>
 <ul id="menu_action">
   <% if @ingenieur %>
-    <% options = { :logiciel_id => @request_tosca.logiciel_id, :request_id => @request_tosca.id } %>
+    <% options = { :software_id => @request_tosca.software_id, :request_id => @request_tosca.id } %>
     <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
     <li><%= _('Link to a contribution')%><br />
         <% form_tag link_contribution_request_path(@request_tosca.id) do %>

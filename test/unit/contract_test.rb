@@ -47,8 +47,8 @@ class ContractTest < Test::Unit::TestCase
     assert_equal c.interval_in_seconds, interval * 1.hour
   end
 
-  def test_logiciels
-    Contract.find(:first).logiciels.each{ |l| assert l.is_a?(Logiciel)}
+  def test_softwares
+    Contract.find(:first).softwares.each{ |l| assert l.is_a?(Software)}
   end
 
   def test_requests

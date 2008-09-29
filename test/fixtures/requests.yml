@@ -1,6 +1,6 @@
 request_00001:
   created_on: 2008-01-01 00:00:01 +01:00
-  logiciel_id: 1
+  software_id: 1
   updated_on: 2008-01-01 00:00:01 +01:00
   mantis_id:
   last_comment_id: 0
@@ -21,7 +21,7 @@ request_00001:
 
 request_00002:
   created_on: 2008-01-01 00:00:01 +01:00
-  logiciel_id: 1
+  software_id: 1
   updated_on: 2008-01-01 00:00:01 +01:00
   mantis_id:
   last_comment_id: 0
@@ -42,7 +42,7 @@ request_00002:
 
 request_00004:
   created_on: 2008-04-16 16:55:46
-  logiciel_id: 2
+  software_id: 2
   updated_on: 2008-05-13 12:21:27
   mantis_id:
   last_comment_id: 7976
@@ -64,7 +64,7 @@ request_00004:
 
 request_00005:
   created_on: 2007-12-04 08:49:26
-  logiciel_id: 2
+  software_id: 2
   updated_on: 2008-05-07 15:02:43
   mantis_id:
   last_comment_id: 7943
@@ -85,7 +85,7 @@ request_00005:
 
 request_00006:
   created_on: 2008-02-18 10:26:04
-  logiciel_id: 3
+  software_id: 3
   updated_on: 2008-04-07 20:32:32
   mantis_id:
   last_comment_id: 7360
@@ -106,7 +106,7 @@ request_00006:
 
 request_00007:
   created_on: 2008-04-23 16:37:53
-  logiciel_id: 150
+  software_id: 150
   updated_on: 2008-04-29 16:47:35
   mantis_id:
   last_comment_id: 7834
@@ -127,7 +127,7 @@ request_00007:
 
 request_00008:
   created_on: 2007-01-17 18:10:47
-  logiciel_id: 2
+  software_id: 2
   updated_on: 2007-08-27 10:35:12
   mantis_id:
   last_comment_id: "800"
@@ -148,7 +148,7 @@ request_00008:
 
 request_00009:
   created_on: 2007-01-11 15:22:33
-  logiciel_id: 3
+  software_id: 3
   updated_on: 2007-08-27 10:35:12
   mantis_id:
   last_comment_id: "897"
@@ -169,7 +169,7 @@ request_00009:
 
 request_00010:
   created_on: 2007-06-18 15:11:19
-  logiciel_id: 2
+  software_id: 2
   updated_on: 2008-01-28 19:49:43
   mantis_id:
   last_comment_id: "5996"

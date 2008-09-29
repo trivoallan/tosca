@@ -2,7 +2,7 @@
 typedocument_00001: 
   name: Bon de commande
   id: 1
-  description: "Bon des Unit\xC3\xA9s d'Oeuvre command\xC3\xA9s dans le cadre de march\xC3\xA9 Support Logiciel Libre."
+  description: "Bon des Unit\xC3\xA9s d'Oeuvre command\xC3\xA9s dans le cadre de march\xC3\xA9 Support Software Libre."
 typedocument_00002: 
   name: Compte-Rendu
   id: 2
@@ -18,11 +18,11 @@ typedocument_00004:
 typedocument_00005: 
   name: Newsletter
   id: 5
-  description: "Lettre d'information mensuel sur votre p\xC3\xA9rim\xC3\xA8tre logiciel."
+  description: "Lettre d'information mensuel sur votre p\xC3\xA9rim\xC3\xA8tre software."
 typedocument_00006: 
   name: Audit
   id: 6
-  description: "Rapport d'audit sur des \xC3\xA9l\xC3\xA9ments logiciels ou mat\xC3\xA9riels pr\xC3\xA9cis"
+  description: "Rapport d'audit sur des \xC3\xA9l\xC3\xA9ments softwares ou mat\xC3\xA9riels pr\xC3\xA9cis"
 typedocument_00007: 
   name: Documentation
   id: 7

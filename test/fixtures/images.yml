@@ -1,26 +1,26 @@
 ---
 image_00001:
-  logiciel_id:
+  software_id:
   id: 1
   description:
   image: logo_linagora.gif
 image_00002:
-  logiciel_id: 1
+  software_id: 1
   id: 2
   description: Logo OpenOffice
   image: Logo_OpenOffice.org.png
 image_00003:
-  logiciel_id:
+  software_id:
   id: 3
   description: Logo AliaSource
   image: logo_aliasource.jpg
 image_00004:
-  logiciel_id: 2
+  software_id: 2
   id: 4
   description: Logo Firefox
   image: logo_firefox.gif
 image_00005:
-  logiciel_id: 3
+  software_id: 3
   id: 5
   description: Logo CVS
   image: logo_cvs.gif

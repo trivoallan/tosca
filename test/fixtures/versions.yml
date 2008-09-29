@@ -1,35 +1,35 @@
 version_ff_2_0_0_13:
   name: "2.0.0.13"
-  logiciel_id: 2
+  software_id: 2
   generic: false
   id: 1
 
 version_oo_2_4:
   name: "2.4"
-  logiciel_id: 1
+  software_id: 1
   generic: false
   id: 2
 
 version_ff_2_generic:
   name: "2"
-  logiciel_id: 2
+  software_id: 2
   generic: true
   id: 3
 
 version_ff_2_0_0_12:
   name: "2.0.0.12"
-  logiciel_id: 2
+  software_id: 2
   generic: false
   id: 4
 
 version_ff_1_5:
   name: "1.5"
-  logiciel_id: 2
+  software_id: 2
   generic: false
   id: 5
 
 version_ff_3_generic:
   name: "3"
-  logiciel_id: 2
+  software_id: 2
   generic: true
   id: 6

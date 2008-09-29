@@ -103,7 +103,7 @@ class ContractsController < ApplicationController
     if selected.blank? || !selected.has_key?(:software)
       return render(:nothing => true)
     end
-    @logiciel = Logiciel.find(selected[:software])
+    @software = Software.find(selected[:software])
     render(:update) { |page|
       page.insert_html(:before, "end", :partial => "software")
       page.visual_effect(:appear, @random_id)
@@ -113,7 +113,7 @@ class ContractsController < ApplicationController
   def supported_software
     @contract = Contract.find(params[:id]) unless @contract
     @versions = @contract.versions
-    @logiciels = Logiciel.find_select
+    @softwares = Software.find_select
   end
 
   def add_software
@@ -125,7 +125,7 @@ class ContractsController < ApplicationController
       s = s[1]
       next unless s.is_a? Hash
       # It's 2 lines but fast find_or_create call
-      version = Version.find(:first, :conditions => s, :include => :logiciel)
+      version = Version.find(:first, :conditions => s, :include => :software)
       version = Version.create(s) unless version
       versions << version if version.valid?
     end

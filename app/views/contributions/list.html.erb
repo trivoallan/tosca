@@ -1,10 +1,10 @@
 <h1>
   <%= public_link_to _('Home'), welcome_path %> >
     <%= public_link_to _('Contributions'), select_contributions_path %> >
-      <% if @logiciel %>
-        <%= public_link_to_logiciel(@logiciel) %>
+      <% if @software %>
+        <%= public_link_to_software(@software) %>
       <% else %>
-        <%= public_link_to(_('All'), logiciels_path) %>
+        <%= public_link_to(_('All'), softwares_path) %>
       <% end %>
 </h1>
 

@@ -36,15 +36,15 @@ module ContributionsHelper
     out << '</table></div>'
   end
 
-  # call it like : link_to_contribution_logiciel
-  def public_link_to_contribution_logiciel(logiciel, params = {})
-    return '-' unless logiciel
-    path = list_contribution_path(logiciel.id)
+  # call it like : link_to_contribution_software
+  def public_link_to_contribution_software(software, params = {})
+    return '-' unless software
+    path = list_contribution_path(software.id)
     client_id = params[:client_id]
     count = 0
     unless client_id.blank?
       path << "?client_id=#{params[:client_id]}"
-      options = { :conditions => { :logiciel_id => logiciel.id } }
+      options = { :conditions => { :software_id => software.id } }
       unless client_id == '1' # Main client, with the old portal
         options[:include] = { :request => :contract }
         options[:conditions].merge!({'contracts.client_id' => params[:client_id]})
@@ -57,9 +57,9 @@ module ContributionsHelper
         count = Contribution.count(:all,options)
       end
     else
-      count = logiciel.contributions.size
+      count = software.contributions.size
     end
-    public_link_to "#{logiciel.name} (#{count})", path
+    public_link_to "#{software.name} (#{count})", path
   end
 
   # call it like :

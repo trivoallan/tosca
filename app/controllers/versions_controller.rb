@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class VersionsController < ApplicationController
-  helper :filters, :logiciels, :releases
+  helper :filters, :softwares, :releases
 
   def index
     options = { :per_page => 15 }
@@ -54,14 +54,14 @@ class VersionsController < ApplicationController
       @version = Version.new
     end
     _form
-    @version.logiciel_id = params[:logiciel_id] if params[:logiciel_id]
+    @version.software_id = params[:software_id] if params[:software_id]
   end
   
   def create
     @version = Version.new(params[:version])
     if @version.save
       flash[:notice] = _('The version %s has been created.') % @version.name
-      redirect_to logiciel_path(@version.logiciel)
+      redirect_to software_path(@version.software)
     else
       _form
       render :action => 'new'
@@ -90,7 +90,7 @@ class VersionsController < ApplicationController
 
   private
   def _form
-    @logiciels = Logiciel.find_select
+    @softwares = Software.find_select
     @groupes = Groupe.find_select
     @socles = Socle.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)

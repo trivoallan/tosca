@@ -20,7 +20,7 @@ class GroupesController < ApplicationController
   # public access to the list
   before_filter :login_required, :except => [:index,:show]
 
-  helper :logiciels
+  helper :softwares
 
   def index
     @groupe_pages, @groupes = paginate :groupes, :per_page => 20,

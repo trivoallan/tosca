@@ -38,7 +38,7 @@
 
 <p><label><%= _("Software :") %></label>
 <% if client %>
-  <%= select('request', 'logiciel_id',
-          client.logiciels.collect{|l| [ l.name, l.id]}) %>
+  <%= select('request', 'software_id',
+          client.softwares.collect{|l| [ l.name, l.id]}) %>
 <% end %>
 </p>

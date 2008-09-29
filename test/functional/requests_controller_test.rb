@@ -155,7 +155,7 @@ class RequestsControllerTest < ActionController::TestCase
     %w(admin manager expert).each { |l|
       login l, l
       request = session[:user].contracts.first.requests.first
-      contribution_id = request.logiciel.contributions.first.id
+      contribution_id = request.software.contributions.first.id
 
       post :link_contribution, :id => request.id, :contribution_id => contribution_id
       assert_response :redirect
@@ -188,7 +188,7 @@ class RequestsControllerTest < ActionController::TestCase
       :typerequest_id => '2' }
     assert_response :success
 
-    xhr :get, :ajax_display_version, :request => { :logiciel_id => "1",
+    xhr :get, :ajax_display_version, :request => { :software_id => "1",
       :socle_id => "1"}
     assert_response :success
 

@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Image < ActiveRecord::Base
-  belongs_to :logiciel
+  belongs_to :software
   has_one :client
   
   validates_presence_of :image, :message => _('You must select a file to upload')
@@ -42,7 +42,7 @@ class Image < ActiveRecord::Base
   }, :root_path => File.join(RAILS_ROOT, "public")
 
   def name
-    return _("Logo '%s'") % logiciel.name if logiciel
+    return _("Logo '%s'") % software.name if software
     return _("Logo '%s'") % client.name if client
     description
   end

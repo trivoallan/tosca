@@ -36,7 +36,7 @@ class SoftwaresController < ApplicationController
     conditions = []
 
     if params.has_key? :filters
-      session[:software_filters] = Filters::Software.new(params[:filters])
+      session[:software_filters] = Filters::Softwares.new(params[:filters])
     end
     conditions = nil
     software_filters = session[:software_filters]

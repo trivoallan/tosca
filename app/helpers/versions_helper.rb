@@ -25,10 +25,10 @@ module VersionsHelper
   end
 
   # call it like :
-  # <%= link_to_new_version(@logiciel) %>
-  def link_to_new_version(logiciel = nil)
-    return '' unless logiciel
-    path = new_version_path(:logiciel_id => logiciel.id,:referent => logiciel.referent)
+  # <%= link_to_new_version(@software) %>
+  def link_to_new_version(software = nil)
+    return '' unless software
+    path = new_version_path(:software_id => software.id,:referent => software.referent)
     link_to(image_create(_('a package')), path)
   end
 

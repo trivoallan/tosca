@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class UrlreversementsController < ApplicationController
-  helper :logiciels
+  helper :softwares
 
   def index
     @urlreversement_pages, @urlreversements = paginate :urlreversements,

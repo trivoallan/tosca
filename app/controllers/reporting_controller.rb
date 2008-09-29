@@ -138,7 +138,7 @@ class ReportingController < ApplicationController
     end
 
     #     write_graph(:top5_requests, Gruff::Pie)
-    #     write_graph(:top5_logiciels, Gruff::Pie)
+    #     write_graph(:top5_softwares, Gruff::Pie)
     # on nettoie
     @first_col.each { |c| c.gsub!('\n','') }
   end
@@ -204,7 +204,7 @@ class ReportingController < ApplicationController
     @data[:resolution] =
      [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:en_cours] ]
     @data[:evolution] =
-     [ [:'bénéficiaires'], [:logiciels], [:contributions] ] # TODO : [:interactions]
+     [ [:'bénéficiaires'], [:softwares], [:contributions] ] # TODO : [:interactions]
     @data[:annulation] =
      [ [:informations], [:anomalies], [:'évolutions'] ]
 
@@ -279,7 +279,7 @@ class ReportingController < ApplicationController
     @data.update(middle_report)
     @data.update(total_report)
     #TODO : se débarrasser de cet héritage legacy
-    #       compute_top5_logiciels @data[:top5_logiciels]
+    #       compute_top5_softwares @data[:top5_softwares]
     #       Comment.with_scope({ :find => { :conditions => @conditions } }) do
     #         compute_top5_requests @data[:top5_requests]
     #       end
@@ -339,14 +339,14 @@ class ReportingController < ApplicationController
 
 
   ##
-  # TODO : le faire marcher si y a moins de 5 logiciels
-  # Sort les 5 logiciels qui ont eu le plus de requests
-  def compute_top5_logiciels(report)
-    logiciels = Request.count(:group => "logiciel_id")
-    logiciels = logiciels.sort {|a,b| a[1]<=>b[1]}
+  # TODO : le faire marcher si y a moins de 5 softwares
+  # Sort les 5 softwares qui ont eu le plus de requests
+  def compute_top5_softwares(report)
+    softwares = Request.count(:group => "software_id")
+    softwares = softwares.sort {|a,b| a[1]<=>b[1]}
     5.times do |i|
-      values = logiciels.pop
-      name = Logiciel.find(values[0]).name
+      values = softwares.pop
+      name = Software.find(values[0]).name
       report.push [ name.intern ]
       report[i].push values[1]
     end
@@ -441,10 +441,10 @@ class ReportingController < ApplicationController
 
 
   ##
-  # Calcule le nombre de recipient, de logiciel et contribution distinct par mois
+  # Calcule le nombre de recipient, de software et contribution distinct par mois
   def compute_evolution(report)
     report[0].push Request.count('recipient_id', :distinct => true)
-    report[1].push Request.count('logiciel_id', :distinct => true)
+    report[1].push Request.count('software_id', :distinct => true)
     report[2].push Request.count('contribution_id', :distinct => true)
   end
 
@@ -503,7 +503,7 @@ class ReportingController < ApplicationController
       :evolution => _('Evolution of the activity volume'),
 
       :top5_requests => _('Top 5 of the most discussed requests'),
-      :top5_logiciels => _('Top 5 of the most discussed software'),
+      :top5_softwares => _('Top 5 of the most discussed software'),
 
       :processing_time => _('Processing time'),
       :callback_time => _('Response time'),

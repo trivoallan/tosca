@@ -6,5 +6,5 @@ if @ingenieur
    out << "</select>"
    page.replace_html("engineer", out )
 end
-page.replace_html("logiciel", :partial => "logiciel")
+page.replace_html("software", :partial => "software")
 page.replace_html("version", :partial => "version")

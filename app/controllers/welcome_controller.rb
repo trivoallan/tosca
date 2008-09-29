@@ -18,7 +18,7 @@
 #
 class WelcomeController < ApplicationController
   # Includes somme helpers
-  helper :requests, :account, :contributions, :logiciels, :groupes, :documents, :clients
+  helper :requests, :account, :contributions, :softwares, :groupes, :documents, :clients
 
   # Default page, redirect if necessary
   def index

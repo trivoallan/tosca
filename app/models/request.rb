@@ -22,7 +22,7 @@ class Request < ActiveRecord::Base
   has_one :elapsed, :dependent => :destroy
   
   belongs_to :typerequest
-  belongs_to :logiciel
+  belongs_to :software
   belongs_to :version
   belongs_to :release
   belongs_to :severite
@@ -122,7 +122,7 @@ class Request < ActiveRecord::Base
 
   def full_software_name
     result = ""
-    result = logiciel.name if self.logiciel
+    result = software.name if self.software
     result = version.full_software_name if self.version
     result = release.full_software_name if self.release
     result
@@ -146,7 +146,7 @@ class Request < ActiveRecord::Base
   # It /!\ MUST /!^ be an _id field. See RequestsController#create.
   def self.remanent_fields
     [ :contract_id, :recipient_id, :typerequest_id, :severite_id,
-      :socle_id, :logiciel_id, :ingenieur_id ]
+      :socle_id, :software_id, :ingenieur_id ]
   end
 
   # Used in the cache/sweeper system
@@ -195,7 +195,7 @@ class Request < ActiveRecord::Base
     # without severity, by default
     self.severite_id = 4
     # if we came from software view, it's sets automatically
-    self.logiciel_id = params[:logiciel_id]
+    self.software_id = params[:software_id]
     # recipients
     self.recipient_id = recipient.id if recipient
   end
@@ -212,14 +212,14 @@ class Request < ActiveRecord::Base
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
   SELECT_LIST = 'requests.*, severites.name as severites_name,
-    logiciels.name as logiciels_name, clients.name as clients_name,
+    softwares.name as softwares_name, clients.name as clients_name,
     typerequests.name as typerequests_name, statuts.name as statuts_name' unless defined? SELECT_LIST
   JOINS_LIST = 'INNER JOIN severites ON severites.id=requests.severite_id
     INNER JOIN recipients ON recipients.id=requests.recipient_id
     INNER JOIN clients ON clients.id = recipients.client_id
     INNER JOIN typerequests ON typerequests.id = requests.typerequest_id
     INNER JOIN statuts ON statuts.id = requests.statut_id
-    LEFT OUTER JOIN logiciels ON logiciels.id = requests.logiciel_id ' unless defined? JOINS_LIST
+    LEFT OUTER JOIN softwares ON softwares.id = requests.software_id ' unless defined? JOINS_LIST
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||

@@ -21,7 +21,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class ContractsControllerTest < ActionController::TestCase
 
   fixtures :contracts, :commitments, :clients, :severites, :typerequests,
-    :credits, :components, :logiciels
+    :credits, :components, :softwares
 
   def setup
     login 'admin', 'admin'
@@ -129,7 +129,7 @@ class ContractsControllerTest < ActionController::TestCase
       form.submit
     end
     xhr :post, :ajax_add_software, :select => {
-      :software => Logiciel.find(:first).id }
+      :software => Software.find(:first).id }
     assert_response :success
     assert_template 'contracts/_software'
   end

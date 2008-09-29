@@ -45,7 +45,7 @@ module RequestsHelper
   def link_to_request_software(request)
     return '-' unless request
     path = ""
-    path = logiciel_path(request.logiciel) if request.logiciel
+    path = software_path(request.software) if request.software
     path = version_path(request.version) if request.version
     path = release_path(request.release) if request.release
     link_to request.full_software_name, path
@@ -148,7 +148,7 @@ module RequestsHelper
 
   # TODO : beaucoup trop de copier coller, c'est honteux !
   # TODO/MLO : me taper sur les doigts et faire une version propre
-  # begining of factorisation in logiciels_helper
+  # begining of factorisation in softwares_helper
   def remote_link_to_active_request
     ajax_call =  PagesHelper::AJAX_OPTIONS.dup.update(:url => requests_path)
     js_call = "document.forms['filters'].elements['filters[active]'].value=1; #{remote_function(ajax_call)}"

@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ReleasesControllerTest < ActionController::TestCase
-  fixtures :versions, :logiciels, :releases, :contracts, :clients,
+  fixtures :versions, :softwares, :releases, :contracts, :clients,
     :credits, :components
 
   def test_should_get_index

@@ -1,8 +1,8 @@
-<% logiciel = @version.logiciel %>
+<% software = @version.software %>
 <%= public_link_to _('Homepage') , welcome_url%> >
- <%= public_link_to _('Software') , logiciels_path %> >
-  <%= public_link_to logiciel.groupe.name, logiciel_path(logiciel.groupe_id) %> >
-   <%= public_link_to logiciel, logiciel_path(logiciel) %> >
+ <%= public_link_to _('Software') , softwares_path %> >
+  <%= public_link_to software.groupe.name, software_path(software.groupe_id) %> >
+   <%= public_link_to software, software_path(software) %> >
     <%= @version %>
      <%= link_to_edit(@version) %>
 
@@ -11,7 +11,7 @@
 <table>
   <tr><td>
    <div class="show">
-    <p><b><%= _('Software') + ' : '%></b> <%= @version.logiciel.name %></p>
+    <p><b><%= _('Software') + ' : '%></b> <%= @version.software.name %></p>
     <p><b><%= _('Version') + ' : '%></b> <%= @version %></p>
     <p><b><%= _('Generic ?') %></b> <%= @version.generic? ? _('Yes') : _('No')%></p>
    </div>

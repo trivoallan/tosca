@@ -38,7 +38,7 @@ class KnowledgesControllerTest < ActionController::TestCase
     login 'admin', 'admin'
     assert_difference('Knowledge.count') do
       post :create, :knowledge => { :ingenieur_id => Ingenieur.find(:first).id,
-                                    :logiciel_id => Logiciel.find(:first).id,
+                                    :software_id => Software.find(:first).id,
                                     :level => 3 }
     end
 

@@ -1,54 +1,54 @@
 --- 
 knowledge_00007: 
-  logiciel_id: 
+  software_id: 
   level: 3
   ingenieur_id: 1
   id: 7
   competence_id: 14
 knowledge_00008: 
-  logiciel_id: 
+  software_id: 
   level: 2
   ingenieur_id: 1
   id: 8
   competence_id: 2
 knowledge_00009: 
-  logiciel_id: 1
+  software_id: 1
   level: 5
   ingenieur_id: 1
   id: 9
   competence_id: 
 knowledge_00001: 
-  logiciel_id: 1
+  software_id: 1
   level: 4
   ingenieur_id: 3
   id: 1
   competence_id: 
 knowledge_00002: 
-  logiciel_id: 
+  software_id: 
   level: 2
   ingenieur_id: 3
   id: 2
   competence_id: 3
 knowledge_00003: 
-  logiciel_id: 
+  software_id: 
   level: 2
   ingenieur_id: 3
   id: 3
   competence_id: 4
 knowledge_00004: 
-  logiciel_id: 
+  software_id: 
   level: 3
   ingenieur_id: 3
   id: 4
   competence_id: 13
 knowledge_00005: 
-  logiciel_id: 
+  software_id: 
   level: 1
   ingenieur_id: 1
   id: 5
   competence_id: 7
 knowledge_00006: 
-  logiciel_id: 
+  software_id: 
   level: 4
   ingenieur_id: 1
   id: 6

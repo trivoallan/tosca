@@ -1,4 +1,4 @@
-<h1><%= "Groupe logiciels \"#{@groupe.name}\"" %></h1>
+<h1><%= "Groupe softwares \"#{@groupe.name}\"" %></h1>
 
 <table class="show">
 <% for column in Groupe.content_columns %>
@@ -7,9 +7,9 @@
 <% end %>
 
   <tr>
-    <td><b>Logiciels:</b>
-    <td><%= show_list(@groupe.logiciels, 'Logiciels',
-             {:no_title => true}) { |l| public_link_to_logiciel l} %></td>
+    <td><b>Softwares:</b>
+    <td><%= show_list(@groupe.softwares, 'Softwares',
+             {:no_title => true}) { |l| public_link_to_software l} %></td>
   </tr>
 
 </table>

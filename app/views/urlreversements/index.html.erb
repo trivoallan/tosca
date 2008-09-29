@@ -7,7 +7,7 @@
 <%= show_table(@urlreversements, Urlreversement, titres) { |u|
   result = ''
   contribution = u.contribution
-  result << "<td>#{public_link_to_logiciel contribution.logiciel if contribution}</td>"
+  result << "<td>#{public_link_to_software contribution.software if contribution}</td>"
   result << "<td><a href=\"#{u.valeur}\">#{u.valeur}</a></td>"
   result << "<td>#{contribution.name if contribution}</td>"
   result << link_to_actions_table(u)

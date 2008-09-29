@@ -18,20 +18,20 @@
 #
 require File.dirname(__FILE__) + '/../test_helper'
 
-class LogicielTest < Test::Unit::TestCase
-  fixtures :logiciels, :competences, :images, :contracts
+class SoftwareTest < Test::Unit::TestCase
+  fixtures :softwares, :competences, :images, :contracts
 
   def test_to_strings
-    check_strings Logiciel
+    check_strings Software
   end
 
   def test_scope
-    Logiciel.set_scope([Contract.find(:first).id])
-    Logiciel.remove_scope
+    Software.set_scope([Contract.find(:first).id])
+    Software.remove_scope
   end
 
   def test_arrays
-    check_arrays Logiciel
+    check_arrays Software
   end
 
   def test_and_upload_logos
@@ -44,10 +44,10 @@ class LogicielTest < Test::Unit::TestCase
 
   # We need to upload files in order to have working logo in test environment.
   def upload_logo(path, mimetype, id)
-    @software ||= Logiciel.find(:first)
+    @software ||= Software.find(:first)
     image_file = fixture_file_upload(path, mimetype)
     Image.find(id).destroy
-    image = Image.new(:image => image_file, :logiciel => @software)
+    image = Image.new(:image => image_file, :software => @software)
     image.id = id
     image.save!
   end

@@ -19,15 +19,15 @@
 class Knowledge < ActiveRecord::Base
   belongs_to :ingenieur
   belongs_to :competence
-  belongs_to :logiciel
+  belongs_to :software
 
   validates_presence_of :ingenieur_id
   validate do |record|
     # length consistency
-    if record.competence && record.logiciel
+    if record.competence && record.software
       record.errors.add_to_base _('You have to specify a software or a domain.')
     end
-    if !record.competence && !record.logiciel
+    if !record.competence && !record.software
       record.errors.add_to_base _('You cannot specify a software and a domain.')
     end
   end
@@ -37,7 +37,7 @@ class Knowledge < ActiveRecord::Base
     :greater_than => 0, :lesser_than => 6
 
   def name
-    ( competence_id && competence_id != 0 ? competence.name : logiciel.name )
+    ( competence_id && competence_id != 0 ? competence.name : software.name )
   end
 
 end

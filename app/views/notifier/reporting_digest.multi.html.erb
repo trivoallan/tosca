@@ -34,11 +34,11 @@ Bonjour,
            type << request_type
          end
 
-         logiciel = ""
-         logiciel = " (#{request.logiciel})" if request.logiciel
+         software = ""
+         software = " (#{request.software})" if request.software
       %>
 
-      <%= "##{request.id}#{logiciel} " %>
+      <%= "##{request.id}#{software} " %>
 
       <% if request.statut_id == 7 #Clôturée %>
         => <i>Clôturée</i>

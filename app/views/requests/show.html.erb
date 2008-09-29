@@ -5,10 +5,10 @@
 <%# It's separated by roles, since viewer & customer see different things %>
 <% cache("requests/#{@request_tosca.id}/front-#{session[:user].role_id}") do %>
  <div class="content">
-   <% if @request_tosca.logiciel %>
+   <% if @request_tosca.software %>
      <div class="software">
-        <%= public_link_to(software_logo(@request_tosca.logiciel),
-	                       logiciel_path(@request_tosca.logiciel)) %>
+        <%= public_link_to(software_logo(@request_tosca.software),
+	                       software_path(@request_tosca.software)) %>
      </div>
    <% end %>
    <h1>

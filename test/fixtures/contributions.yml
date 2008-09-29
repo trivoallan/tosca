@@ -2,7 +2,7 @@ contribution_0001:
   name: Copy Paste from an html page with soup tags
   created_on: 2007-12-26 16:24:57 +01:00
   patch: sw-html-insert-unknown-tags.diff
-  logiciel_id: 1
+  software_id: 1
   updated_on: 2007-12-26 16:25:40 +01:00
   description: "<p>A wrong html page, but which could be correctly displayed, was not well pasted in Writer.</p><p>This is particularly disturbing because of the different  behavior between Writer html engine and the Firefox one : Gecko. Gecko display the value contained between 2 unknowns tags. For instance :</p><ul><li> &quot;&lt;unknown&gt;sample&lt;/unknown&gt;&quot; =&gt; &quot;sample&quot;</li></ul><p>But OpenOffice, in Writer only, ignores it totally. For instance</p><ul><li>&quot;&lt;unknown&gt;sample&lt;/unknown&gt;&quot; =&gt; &quot;&quot;</li></ul><p>The attached fix unifies the behaviors between those 2 engines. It was approved for Go-Oo, the Novell Community version of OOo, see the first link for the commit.</p><p>&nbsp;</p>"
   contributed_on: 2007-12-17 16:28:00 +01:00
@@ -17,7 +17,7 @@ contribution_0001:
 contribution_0002:
   created_on: 2006-10-23 15:52:00
   name: import date de Word
-  logiciel_id: 1
+  software_id: 1
   patch: openoffice.org-2.1.0-import-date.patch
   affected_version: 2.3
   description: "<p>Fix l\xE2\x80\x99import des dates de Ms Office 2003 dans OOo 2.0.x<br />Correspond aux demandes 74 et 9 dans mantis.</p>   \t<p>Le correctif a \xC3\xA9t\xC3\xA9 adapt\xC3\xA9 en version communautaire en 2.1.x.</p>"
@@ -33,7 +33,7 @@ contribution_0002:
 contribution_0003:
   created_on: 2007-04-19 14:25:06
   name: "Gestion des certificats pour la t\xC3\xA9l\xC3\xA9d\xC3\xA9claration"
-  logiciel_id: "2"
+  software_id: "2"
   affected_version_id: 1
   description: "Il y avait une r\xC3\xA9gression introduite en version 2.0.0.1 au niveau de la gestion des certificats qui \xC3\xA9tait susceptible d&#39;emp\xC3\xAAcher la t\xC3\xA9l\xC3\xA9d\xC3\xA9claration."
   updated_on: 2007-12-14 11:20:31

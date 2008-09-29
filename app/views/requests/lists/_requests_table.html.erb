@@ -2,7 +2,7 @@
   <thead>
    <tr>
       <th width='2%'><%= _('Id') %><%#= sortable_header(:id, :label => _("Id")) %></th>
-      <th width='7%'><%= _('Software') %><%#= sortable_header(:logiciel_id, :label => _("Software")) %></th>
+      <th width='7%'><%= _('Software') %><%#= sortable_header(:software_id, :label => _("Software")) %></th>
       <th width='7%' colspan="2"><%= _('Type')%><%#= sortable_header(:typerequest_id, :label => _("Type")) %></th>
       <% if @ingenieur %>
         <th width='7%'><%= _('Client')%><%#= sortable_header(:client_id , :label => _("Client")) %></th>
@@ -27,13 +27,13 @@
    <tr <%= tr_attributes(request_path(request)) %>>
         <td><%= request.id %></td>
         <% #When we have a dirty hack, we have to make others ...
-           if request.respond_to? :logiciels_name
-             logiciel_name = request.logiciels_name
+           if request.respond_to? :softwares_name
+             software_name = request.softwares_name
            else
-             logiciel_name = request.logiciel.name
+             software_name = request.software.name
            end 
         %>        
-        <td><%= logiciel_name %></td>
+        <td><%= software_name %></td>
         <td></td>
         <% #Yet another dirty hack ...
            if request.respond_to? :typerequests_name

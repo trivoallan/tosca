@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContributionsControllerTest < ActionController::TestCase
-  fixtures :contributions, :logiciels, :etatreversements, :users,
+  fixtures :contributions, :softwares, :etatreversements, :users,
     :ingenieurs, :typecontributions, :recipients
 
   def setup
@@ -39,7 +39,7 @@ class ContributionsControllerTest < ActionController::TestCase
   def check_select
     assert_response :success
     assert_template 'select'
-    assert_not_nil assigns(:logiciels)
+    assert_not_nil assigns(:softwares)
   end
 
   def test_should_get_list
@@ -77,7 +77,7 @@ class ContributionsControllerTest < ActionController::TestCase
 
   def test_should_be_able_to_create
     get :new, :request_id => Request.find(:first).id,
-              :logiciel_id => Logiciel.find(:first).id
+              :software_id => Software.find(:first).id
     assert_template 'new'
     assert_response :success
 

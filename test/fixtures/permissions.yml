@@ -116,7 +116,7 @@ permission_00169:
   info: Read-only access to list clients offers
   id: 169
 permission_00181: 
-  name: ^logiciels/(index|show)
+  name: ^softwares/(index|show)
   info: Public read access to software
   id: 181
 permission_00182: 
@@ -172,11 +172,11 @@ permission_00161:
   info: Read access to requests
   id: 161
 permission_00162: 
-  name: ^logiciels/(index|show)$
+  name: ^softwares/(index|show)$
   info: Read-only access to software
   id: 162
 permission_00140: 
-  name: ^urllogiciels/(?!destroy)
+  name: ^urlsoftwares/(?!destroy)
   info: Manage urls of software
   id: 140
 permission_00128: 
@@ -232,7 +232,7 @@ permission_00131:
   info: Activity Report
   id: 131
 permission_00153: 
-  name: ^logiciels/(?!destroy)
+  name: ^softwares/(?!destroy)
   info: Manage software
   id: 153
 permission_00175: 

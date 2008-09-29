@@ -98,7 +98,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :images, :singular => 'img'
   map.resources :knowledges
   map.resources :licenses
-  map.resources :logiciels,
+  map.resources :softwares,
     :collection => {:ajax_update_tags => :get}
   map.resources :machines
   map.resources :mainteneurs
@@ -149,7 +149,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :typerequests
   map.resources :typedocuments
   map.resources :typeurls
-  map.resources :urllogiciels
+  map.resources :urlsoftwares
   map.resources :urlreversements
   map.resources :versions
 

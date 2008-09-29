@@ -19,7 +19,7 @@
 require 'contribution'
 
 class ReleasesController < ApplicationController
-  helper :versions, :logiciels, :archives
+  helper :versions, :softwares, :archives
 
   def index
     @release_pages, @releases = paginate :releases, :per_page => 10,
@@ -78,7 +78,7 @@ class ReleasesController < ApplicationController
   def _form
     options = {}
     if @release.version
-      options = { :conditions => [ 'contributions.logiciel_id = ?', @release.version.logiciel_id ] }
+      options = { :conditions => [ 'contributions.software_id = ?', @release.version.software_id ] }
     end
     @contributions = Contribution.find_select(options)
     @versions = Version.all.collect { |v| [ v.full_name, v.id ]}

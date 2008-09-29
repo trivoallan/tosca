@@ -90,13 +90,13 @@ class Contract < ActiveRecord::Base
 
   # We have open clients which can declare
   # requests on everything. It's with the "socle" field.
-  def logiciels
+  def softwares
     if rule_type == 'Rules::Component' and rule.max == -1
-      return Logiciel.find(:all, :order => 'logiciels.name ASC')
+      return Software.find(:all, :order => 'softwares.name ASC')
     end
-    Logiciel.find(:all, :conditions => { "contracts.id" => self.id },
+    Software.find(:all, :conditions => { "contracts.id" => self.id },
       :joins => { :versions => :contracts },
-      :group => "versions.logiciel_id")
+      :group => "versions.software_id")
   end
 
   # TODO : I am sure it could be better. Rework model ???
