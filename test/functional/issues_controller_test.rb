@@ -137,9 +137,9 @@ class IssuesControllerTest < ActionController::TestCase
       assert_response :success
       assert_template 'issues/tabs/_tab_history'
 
-      xhr :get, :ajax_appels, :id => issue_id
+      xhr :get, :ajax_phonecalls, :id => issue_id
       assert_response :success
-      assert_template 'issues/tabs/_tab_appels'
+      assert_template 'issues/tabs/_tab_phonecalls'
 
       xhr :get, :ajax_attachments, :id => issue_id
       assert_response :success

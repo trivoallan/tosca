@@ -73,8 +73,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^reporting/', 'Access to all kinds of reporting' ],
                [ '^socles/(?!destroy)', "Manage systems" ],
                [ '^urllogiciels/(?!destroy)', 'Manage urls of software' ],
-               [ '^urlreversements/', 'Manage their own urls of contributions' ],
-               [ '^tags/', 'Manage tags' ]
+               [ '^urlreversements/', 'Manage their own urls of contributions' ]
              ]
     add_permission.call(roles, access)
 
@@ -94,6 +93,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^releases/(?!destroy)', 'Manage releases' ],
                [ '^teams/(?!destroy)', 'Manage teams' ],
                [ '^releases/(?!destroy)', 'Manage release' ],
+               [ '^tags/', 'Manage tags' ],
                [ '^versions/(?!destroy)', 'Manage version' ]
              ]
     add_permission.call(roles, access)

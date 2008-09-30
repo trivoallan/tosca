@@ -83,10 +83,10 @@ module LinksHelper
                    image_tag(url_for_image_column(record, method, :fit_size)),
                      :background_close => true)
       #Text
-      elsif mime_type =~ /^text\// && defined? UvHelper
+      elsif mime_type =~ /^text\// && defined?(UvHelper)
         link_to_uv(record, filename)
       else
-        '-'
+        '-' + mime_type
       end
     end
   end

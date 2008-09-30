@@ -17,9 +17,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-require 'vendor/plugins/acts_as_taggable_on_steroids/lib/tag.rb'
-class Tag 
-  
+require_dependency 'vendor/plugins/acts_as_taggable_on_steroids/lib/tag.rb'
+class Tag
+
   belongs_to :user
   belongs_to :competence
   belongs_to :contract
@@ -35,18 +35,19 @@ class Tag
     end
     name
   end
-  
+
   # See ApplicationController#scope
+  # Users can only see their contractual tags or generic ones
   def self.set_scope(contract_ids)
     scope = { :conditions =>
-      [ 'tags.contract_id IN (?)', contract_ids ] }
+      [ 'tags.contract_id IN (?) OR tags.contract_id IS NULL', contract_ids ] }
     self.scoped_methods << { :find => scope, :count => scope }
   end
 
   def self.find_or_create_with_like_by_name(name)
     find(:first, :conditions => ["name LIKE ?", name]) || create(:name => name)
   end
-  
+
   def self.find_or_create_with_like_by_name_and_contract_id(name, contract_id)
     conditions = ["tags.name LIKE ? AND tags.contract_id = ?", name, contract_id]
     self.first(:conditions => conditions) || self.create(:name => name, :contract_id => contract_id)

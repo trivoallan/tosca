@@ -15,9 +15,9 @@
    <%= link_to_remote_tab(desc, 'ajax_attachments', options) %>
  </li>
  <li>
-   <% options[:url] = ajax_appels_issue_path(issue_id) %>
+   <% options[:url] = ajax_phonecalls_issue_path(issue_id) %>
    <% desc = _('Phonecalls') + ' ' + StaticImage::telephone %>
-   <%= link_to_remote_tab(desc, 'ajax_appels', options) %>
+   <%= link_to_remote_tab(desc, 'ajax_phonecalls', options) %>
  </li>
  <li>
    <% options[:url] = ajax_cns_issue_path(issue_id) %>

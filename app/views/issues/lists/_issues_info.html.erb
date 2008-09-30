@@ -20,7 +20,7 @@
  <% end %>
  <li><%= link_to _("Activity report"), general_reporting_path %></li>
  <% Issue::actions.each do |a| %>
-   <li><%#= send(a) %></li>
+   <li><%= send(a) %></li>
  <% end %>
 </ul>
 
