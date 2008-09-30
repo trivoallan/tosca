@@ -1,8 +1,8 @@
 <div class="issue_tab_content" name="issue_tab_content">
 
-<% commitment = @issue_tosca.commitment %>
-<% elapsed = @issue_tosca.elapsed %>
-<% interval = @issue_tosca.interval %>
+<% commitment = @issue.commitment %>
+<% elapsed = @issue.elapsed %>
+<% interval = @issue.interval %>
 <% if commitment.nil? %>
   <p><%= _("Your issue is not subject to a SLA.") %></p>
 <% else %>
@@ -43,7 +43,7 @@
      <td><%= progress_image(elapsed.correction?, progress) %></td>
      <th><%= _("Correction") %></th>
      <td><%= progress_bar(progress) %></td>
-     <td><%= progress_text(elapsed.correction, commitment.correction.days, @issue_tosca.interval) %></td>
+     <td><%= progress_text(elapsed.correction, commitment.correction.days, @issue.interval) %></td>
     <% end %>
    </tr>
   </tbody>

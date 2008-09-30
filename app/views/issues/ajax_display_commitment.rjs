@@ -1,1 +1,1 @@
-page.replace_html("commitment", display_commitment(@issue_tosca))
+page.replace_html("commitment", display_commitment(@issue))

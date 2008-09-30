@@ -20,7 +20,7 @@ class Elapsed < ActiveRecord::Base
   belongs_to :issue
 
   # Ctor, which ask for the depending issue and rule
-  # Call it like this : Elapsed.new(@issue_tosca)
+  # Call it like this : Elapsed.new(@issue)
   def initialize(issue)
     super(:issue => issue, :until_now => 0)
   end

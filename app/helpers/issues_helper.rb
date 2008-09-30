@@ -90,7 +90,7 @@ module IssuesHelper
   # Used to call remote ajax action
   # Call it like :
   #  <% options = { :update => 'issue_tab',
-  #     :url => { :action => nil, :id => @issue_tosca.id },
+  #     :url => { :action => nil, :id => @issue.id },
   #     :before => "Element.show('spinner')",
   #     :success => "Element.hide('spinner')" } %>
   #  <%= link_to_remote_tab('Description', 'ajax_description', options) %>
@@ -211,7 +211,7 @@ module IssuesHelper
   end
 
   # Shows a popup with the description of a status for the issue.
-  # Ex: <%= link_to_box_on_status(@issue_tosca) %>
+  # Ex: <%= link_to_box_on_status(@issue) %>
   def link_to_box_on_status(issue)
     return '' unless issue
     options = { :popup => ['help_statut', 'height=300,width=600'] }
