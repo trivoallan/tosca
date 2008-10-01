@@ -2,12 +2,10 @@ body {
   margin: 0;
   padding: 0;
   color: #000;
-  /*background-color: #eaeafa;*/
   font-size: 1em;
   font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
   font-size:   12px;
   line-height: 18px;
-  background: #3b69ad none;
 }
 
 h1 {
@@ -46,6 +44,10 @@ div.info { width: 100%; }
 
 #col3 input, #col3 select {
   width: 95%;
+}
+
+#footer a, #footer a:hover {
+  color: #fff;
 }
 
 p img {
@@ -517,11 +519,14 @@ h1.section {
  * Exemple : <div class="information notice"></div>
  */
 .information {
-  position: fixed;
-  top: 20px;
+  position: absolute;
+  top: 25px;
+  width: 50%;
+  margin-left:25%;
+  margin-right:25%;
   font-weight: bold;
-  margin: 1em 0em 1em 0em;
   padding: 1em;
+  z-index: 3;
 }
 .close_information {
   float: right;
