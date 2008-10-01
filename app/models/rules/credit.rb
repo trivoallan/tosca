@@ -45,9 +45,5 @@ class Rules::Credit < ActiveRecord::Base
         [ max, Time.in_words(time.hours) ]
     end
   end
-  
-  def measure
-    _("ticket")
-  end
 
 end

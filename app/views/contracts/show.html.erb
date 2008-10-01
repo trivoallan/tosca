@@ -4,7 +4,7 @@
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
-   <table class="show">
+   <table>
     <tr>
      <td style="vertical-align: middle"><b><%= _('Client') %></b></td>
      <td><%= link_to logo_client(@contract.client), @contract.client %></td>
@@ -13,16 +13,11 @@
      <td><b><%= _('Name') %></b></td>
      <td><%= @contract %></td>
     </tr>
-    
+
     <% rule = @contract.rule %>
     <% if rule %>
     <tr>
-      <td colspan="2">
-        <%= _("You have spent <b>%s</b>") % pluralize(@contract.total_elapsed, rule.measure)%>
-      </td>
-    </tr>
-    <tr>
-      <td>&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
+      <td colspan="2">&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
        <i><%= rule.short_description %> <%= link_to_rule(rule) %></i></td>
      </tr>
     <% end %>
@@ -77,7 +72,7 @@
    </table>
 </div></div>
 <div class="c50r"><div class="show">
-   <table class="show">
+   <table>
     <tr>
      <td style="width: 36em;">
        <p><b><%= _('Supported software') %> :

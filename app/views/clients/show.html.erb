@@ -23,7 +23,7 @@
     </div>
     <div class="show">
        <%= link_to_new_contract(@client.id) %>
-       <%= show_list(@client.contracts, _('contract')) { |c|
+       <%= show_list(@client.contracts, _('contract')) do |c|
         result = ''
         edit = link_to_edit(edit_contract_path(c))
         result << "#{edit}&nbsp;" if edit
@@ -37,6 +37,13 @@
         end
         result << '.'
         result << show_table_commitments(c.commitments)
+        result << "<b>#{c.rule.elapsed_formatted(c.total_elapsed, c)}</b> "
+        result << _('has already been spent')
+        result
+      end %>
+      </td>
+    </tr>
+
         result } %>
        <b><%= _("View") %></b> <%=_("the")%>
           <%= link_to(_('Activity report'), general_reporting_path) %><br/>
