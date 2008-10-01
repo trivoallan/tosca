@@ -272,7 +272,7 @@ class ReportingController < ApplicationController
     end
     # on fais bien attention à ne merger avec @data
     # qu'APRES avoir calculé toutes les sommes
-    middle_report = compute_data_period('middle', @report[:middle_report])
+    middle_report = compute_data_period('middle', @report[:middle_report] + 1)
     total_report = compute_data_period('total', @report[:total_report])
 
     # Maintenant on peut mettre à jour @data

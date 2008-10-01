@@ -64,8 +64,7 @@
        <td colspan="2">
        <fieldset>
         <legend><%=_('Engineers assigned to this contract')%></legend>
-        <%= hbtm_check_box(@contract.engineer_users, @ingenieurs,
-                         'contract[engineer_user_ids]', :size => 3) %>
+        <%= auto_complete_list :user, :name, @contract.engineer_users, 'contract[engineer_user_ids]' %>
        </fieldset>
       </td>
      </tr>

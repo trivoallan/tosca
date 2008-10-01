@@ -18,7 +18,8 @@
 #
 class TeamsController < ApplicationController
   auto_complete_for :contract, :name, :team, :contract
-
+  auto_complete_for :user, :name, :team, :user,
+                    :conditions => { :client => false }
   def index
     @team_pages, @teams = paginate :teams, :per_page => 25
   end

@@ -15,8 +15,7 @@
 <p>
   <fieldset>
     <legend><%=_('Team members')%></legend>
-    <%= hbtm_check_box(@team.users, @users,
-                         'team[user_ids]', :size => 3) %>
+    <%= auto_complete_list :user, :name, @team.users, "team[user_ids]" %>
   </fieldset>
 </p>
 <p>
