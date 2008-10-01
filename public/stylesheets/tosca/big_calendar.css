@@ -19,7 +19,7 @@
 }
 
 .weekdays {
-  background: url('../../images/weekday.jpg');
+  background: url('../images/weekday.jpg');
   padding: 5px;
   font-size: 1.5em;
   color: #FFFFFF;

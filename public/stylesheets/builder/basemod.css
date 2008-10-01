@@ -23,7 +23,7 @@
   #header { 
     padding: 45px 2em 1em 20px; 
     color: #000; 
-    background: transparent url("../../images/banner-bg.png") repeat-x;
+    background: transparent url("../images/banner-bg.png") repeat-x;
     display: none;
   }
   #topnav { color: #aaa; background: transparent; }

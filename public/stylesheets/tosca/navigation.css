@@ -25,7 +25,7 @@
     float: left;
     display: inline;
     /* Repeat the main color from the image */
-    background: #c0c0c0 url("../../images/nav-bg.gif") repeat-x center right;
+    background: #c0c0c0 url("../images/nav-bg.gif") repeat-x center right;
     border-top: 1px #333 solid;
     border-bottom: 1px #333 solid;
     line-height: 0;
