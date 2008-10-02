@@ -358,7 +358,7 @@ class IssuesController < ApplicationController
   private
   def update_contribution( demand_id , contribution_id )
     if contribution_id == nil
-*      flash_text = _("This issue is no longer linked to a contribution")
+      flash_text = _("This issue is no longer linked to a contribution")
     else
       flash_text = _("This contribution is now linked")
     end
