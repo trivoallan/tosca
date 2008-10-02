@@ -86,7 +86,7 @@ class IssuesController < ApplicationController
     end
 
     conditions = nil
-    @title = _('All the issues')
+    @title = _('All issues')
 
     issues_filters = session[:issues_filters]
 
@@ -358,7 +358,7 @@ class IssuesController < ApplicationController
   private
   def update_contribution( demand_id , contribution_id )
     if contribution_id == nil
-      flash_text = _("The demand has now no contribution")
+*      flash_text = _("This issue is no longer linked to a contribution")
     else
       flash_text = _("This contribution is now linked")
     end

@@ -37,7 +37,7 @@ module IssuesHelper
   end
 
   def public_link_to_status_legend
-    public_link_to(_("Legend of statutes"), statuts_path, NEW_WINDOW)
+    public_link_to(_("Status legend"), statuts_path, NEW_WINDOW)
   end
 
   # Display a link to the software or version or release
@@ -166,7 +166,7 @@ module IssuesHelper
   def remote_link_to_all_issue
     ajax_call =  PagesHelper::AJAX_OPTIONS.dup.update(:url => issues_path)
     js_call = "document.forms['filters'].elements['filters[active]'].value=0; #{remote_function(ajax_call)}"
-    link_to_function(_('All the issues'), js_call,
+    link_to_function(_('All issues'), js_call,
                      _('show all the issues'))
   end
 
@@ -238,7 +238,7 @@ module IssuesHelper
   end
 
   def public_link_to_status_legend
-    public_link_to(_("Legend of statutes"), statuts_path, NEW_WINDOW)
+    public_link_to(_("Status legend"), statuts_path, NEW_WINDOW)
   end
 
 end

@@ -126,8 +126,8 @@ EOS
   end
 
   def link_to_all_issues
-    link_to(_('All the issues'), issues_path, :title =>
-            _('Consult all the issues'))
+    link_to(_('All issues'), issues_path, :title =>
+            _('Consult all issues'))
   end
 
   def link_to_tobd_issues

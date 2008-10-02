@@ -43,10 +43,10 @@ class Comment < ActiveRecord::Base
       record.errors.add_to_base _('You cannot privately change the status')
     end
   end
-  
+
   before_validation do |record|
     if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and html2text(record.text).strip.empty?
-      record.text = _("The issue is now %s.") % record.statut.name
+      record.text = _("The issue is now %s.") % _(record.statut.name)
     end
   end
 
