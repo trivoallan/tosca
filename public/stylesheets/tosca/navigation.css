@@ -80,7 +80,7 @@
   #nav_main ul li a:focus,
   #nav_main ul li a:hover,
   #nav_main ul li a:active  { background: #eee; color: #333; text-decoration: none; }
-
+  
   #nav_main ul li#current {
     /* Repeat the main color from the image */
     background: transparent;
@@ -93,4 +93,18 @@
   #nav_main ul li#current a:focus,
   #nav_main ul li#current a:hover,
   #nav_main ul li#current a:active { background: transparent; color: #fff; text-decoration: none; }
+  
+  #nav_main a.logo {
+    float: right;
+    margin-right: 15px;
+  }
+  
+  #nav_main ul.nav_user {
+    float: right;
+    margin-right: 0.8em;
+  }
+  
+  #nav_main a.disconnect, #nav_main a.connect {
+    padding: 0.4em 0.8em;
+  }
 }
