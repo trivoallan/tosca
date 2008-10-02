@@ -25,7 +25,6 @@ hr {
 
 fieldset legend { font-weight: bold; }
 
-input { -moz-border-radius: .5em .5em .5em .5em; }
 input:focus { background-color: #ffffcc; }
 textarea:focus { background-color: #ffffcc; }
 table { border-collapse: collapse; }
