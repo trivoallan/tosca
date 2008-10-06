@@ -45,6 +45,7 @@ class ContractsController < ApplicationController
     @contract = Contract.new
     @contract.client_id = params[:id]
     @contract.rule_type = 'Rules::Component'
+    @contract.opening_time, @contract.closing_time = 9, 18
     _form
   end
 
@@ -63,19 +64,20 @@ class ContractsController < ApplicationController
     # It's needed because manager are scoped, at this point
     Client.send(:with_exclusive_scope) do
       @contract = Contract.new(params[:contract])
-    end
-    @contract.creator = session[:user]
-    # Due to a limitation of Rails <= 2.1, we cannot create a full
-    # association in one pass.
-    # TODO : review this problem on a > Rails
-    engineers =  @contract.engineer_users.dup
-    @contract.engineer_users = []
-    if @contract.save
-      @contract.update_attribute :engineer_users, engineers
-      flash[:notice] = _('Contract was successfully created.')
-      redirect_to contracts_path
-    else
-      _form and render :action => 'new'
+      @contract.creator = session[:user]
+      # Due to a limitation of Rails <= 2.1, we cannot create a full
+      # association in one pass.
+      # TODO : review this problem on a > Rails
+      engineers =  @contract.engineer_users.dup
+      @contract.engineer_users = []
+      if @contract.save
+        @contract.update_attribute :engineer_users, engineers
+        flash[:notice] = _('Contract was successfully created.')
+        redirect_to contracts_path
+      else
+        @contract.engineer_users = engineers
+        _form and render :action => 'new'
+      end
     end
   end
 

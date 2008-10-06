@@ -186,14 +186,15 @@ class User < ActiveRecord::Base
     result
   end
 
-  # cached, coz' it's used in scopes
+  # TODO : provide a cache for those really often used & costly 2 methods
   def contract_ids
-    @contract_ids ||= self.contracts.collect {|c| c.id }
+    self.contracts.collect &:id
   end
 
-  # cached, coz' it's used in scopes
   def client_ids
-    @client_ids ||= self.contracts.collect {|c| c.client_id }
+    res = self.contracts.collect &:client_id
+    res.uniq!
+    res
   end
 
   def kind
