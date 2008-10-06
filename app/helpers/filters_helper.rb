@@ -32,9 +32,9 @@ module FiltersHelper
                            "filters[#{field}]", options)
   end
 
-  # TODO cas particulier pour select_filter(@severites, :severite)
+  # TODO cas particulier pour select_filter(@severities, :severity)
   # les couleurs associée peuvent etre utilise dans le style du select
-  def select_filter_severite
+  def select_filter_severity
     "TODO"
   end
 

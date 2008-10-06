@@ -42,7 +42,7 @@
              typeissues_name = issue.typeissue.name
            end 
         %>  
-        <td nowrap="nowrap"><span class="issue_<%=issue.statut_id%>">&nbsp;<%= typeissues_name %><%= StaticImage::severite(issue) %></span></td>
+        <td nowrap="nowrap"><span class="issue_<%=issue.statut_id%>">&nbsp;<%= typeissues_name %><%= StaticImage::severity(issue) %></span></td>
        <% if @ingenieur %>
         <% #Dirty hacks are really bad ...
            if issue.respond_to? :clients_name

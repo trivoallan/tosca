@@ -7,7 +7,7 @@ issue_00001:
   ingenieur_id: 1
   id: 1
   submitter_id: 1
-  severite_id: 3
+  severity_id: 3
   resume: "Can not remove something"
   expected_on:
   recipient_id: 1
@@ -28,7 +28,7 @@ issue_00002:
   ingenieur_id: 3
   id: 2
   submitter_id: 2
-  severite_id: 3
+  severity_id: 3
   resume: "Copy something in a software"
   expected_on:
   recipient_id: 2
@@ -50,7 +50,7 @@ issue_00004:
   id: 4
   submitter_id: 2
   expected_on: 2008-05-15 10:23:14
-  severite_id: 2
+  severity_id: 2
   resume: "Problem of something"
   recipient_id: 4
   contract_id: 2
@@ -72,7 +72,7 @@ issue_00005:
   id: 5
   submitter_id: 2
   expected_on: 2008-05-22 15:02:43
-  severite_id: 3
+  severity_id: 3
   resume: "Problem with files"
   recipient_id: 1
   contract_id: 40
@@ -93,7 +93,7 @@ issue_00006:
   id: 6
   submitter_id: 2
   expected_on: 2008-04-22 20:32:32
-  severite_id: 3
+  severity_id: 3
   resume: "Bug in a software"
   recipient_id: 2
   contract_id: 40
@@ -114,7 +114,7 @@ issue_00007:
   id: "7"
   submitter_id: "2"
   expected_on: 2008-05-14 16:47:35
-  severite_id: "2"
+  severity_id: "2"
   resume: "Something is not printed"
   recipient_id: "1"
   contract_id: "1"
@@ -135,7 +135,7 @@ issue_00008:
   id: "8"
   submitter_id: "2"
   expected_on:
-  severite_id: "3"
+  severity_id: "3"
   resume: "Reload something"
   recipient_id: "1"
   contract_id: "6"
@@ -156,7 +156,7 @@ issue_00009:
   id: "9"
   submitter_id: "2"
   expected_on:
-  severite_id: "2"
+  severity_id: "2"
   resume: "Error on an iso"
   recipient_id: "2"
   contract_id: "2"
@@ -177,7 +177,7 @@ issue_00010:
   id: "10"
   submitter_id: "5"
   expected_on: 2008-02-12 19:49:43
-  severite_id: "2"
+  severity_id: "2"
   resume: "Create a doc"
   recipient_id: "2"
   contract_id: "2"

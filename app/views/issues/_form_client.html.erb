@@ -24,8 +24,8 @@
 
 <p><label><%= _("Severity :") %></label>
 <% if client %>
-  <%= select('issue', 'severite_id',
-          client.severites.collect{|l| [ l.name, l.id]}) %>
+  <%= select('issue', 'severity_id',
+          client.severities.collect{|l| [ l.name, l.id]}) %>
 <% end %>
 </p>
 

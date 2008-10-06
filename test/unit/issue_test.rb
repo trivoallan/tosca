@@ -29,7 +29,7 @@ class IssueTest < Test::Unit::TestCase
     recipient = recipients(:recipient_00001)
     issue = Issue.new({:description => 'description', :resume => 'resume',
         :recipient => recipient, :submitter => recipient.user,
-        :statut => statuts(:statut_00001), :severite => severites(:severite_00001),
+        :statut => statuts(:statut_00001), :severity => severities(:severity_00001),
         :contract => recipient.user.contracts.first })
     # must have a recipient
     assert issue.save
@@ -37,7 +37,7 @@ class IssueTest < Test::Unit::TestCase
     # comment table must have things now ...
     c = Comment.find :first, :conditions => { :issue_id => issue.id }
     assert_equal c.issue_id, issue.id
-    assert_equal c.severite, issue.severite
+    assert_equal c.severity, issue.severity
     assert_equal c.statut, issue.statut
     assert_equal c.ingenieur, issue.ingenieur
   end

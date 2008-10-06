@@ -41,7 +41,7 @@ class IssuesControllerTest < ActionController::TestCase
       check_ajax_filter(:contract_id, Contract.find(:first).id, :issues)
       check_ajax_filter(:ingenieur_id, Ingenieur.find(:first).id, :issues)
       check_ajax_filter(:typeissue_id, Typeissue.find(:first).id, :issues)
-      check_ajax_filter(:severite_id, Severite.find(:first).id, :issues)
+      check_ajax_filter(:severity_id, Severity.find(:first).id, :issues)
       check_ajax_filter(:statut_id, Statut.find(:first).id, :issues)
       # The search box cannot be checked with the helper
       xhr :get, :index, :filters => { :text => "openoffice" }
@@ -184,7 +184,7 @@ class IssuesControllerTest < ActionController::TestCase
   private
   def _test_ajax_form_methods
     # test the 3 ajax methods
-    xhr :get, :ajax_display_commitment, :issue => { :severite_id => '2',
+    xhr :get, :ajax_display_commitment, :issue => { :severity_id => '2',
       :typeissue_id => '2' }
     assert_response :success
 

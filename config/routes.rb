@@ -141,7 +141,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :socles
   map.resources :statuts, :member => { :help => :get }
-  map.resources :severites
+  map.resources :severities
   map.resources :supports
   map.resources :tags
   map.resources :teams, :collection => {

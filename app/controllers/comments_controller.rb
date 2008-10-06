@@ -48,10 +48,10 @@ class CommentsController < ApplicationController
     # check on attributes change
     # Find a way to put it in the model despite the access from issue view
     changed = {}
-    %w{statut_id ingenieur_id severite_id}.each do |attr|
+    %w{statut_id ingenieur_id severity_id}.each do |attr|
       changed[attr] = true unless comment[attr].blank?
     end
-    if (changed[:statut_id] or changed[:severite_id]) and params[:comment][:private]
+    if (changed[:statut_id] or changed[:severity_id]) and params[:comment][:private]
       params[:comment][:private] = false
       flash[:warn] = _("A comment can not be private if there is a change in<br/>
         the <b>status</b> or in the <b>severity</b>")

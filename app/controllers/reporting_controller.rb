@@ -403,20 +403,20 @@ class ReportingController < ApplicationController
   ##
   # Compte les issues par sévérités
   def compute_severity(report)
-    severitys = []
+    severities = []
     # TODO : requête paramètréé, avec ?
      (1..4).each do |i|
-      severitys.concat [ { :conditions => "severite_id = #{i}" } ]
+      severities.concat [ { :conditions => "severity_id = #{i}" } ]
     end
 
     Issue.send(:with_scope, { :find => { :conditions => Issue::TERMINEES } }) do
       4.times do |t|
-        report[t].push Issue.count(severitys[t])
+        report[t].push Issue.count(severities[t])
       end
     end
     Issue.send(:with_scope, { :find => { :conditions => Issue::EN_COURS } }) do
       4.times do |t|
-        report[t+4].push Issue.count(severitys[t])
+        report[t+4].push Issue.count(severities[t])
       end
     end
   end

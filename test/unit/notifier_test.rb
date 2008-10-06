@@ -61,7 +61,7 @@ class NotifierTest < Test::Unit::TestCase
     comment = issue.first_comment
     options = { :issue => issue, :name => issue.submitter.name,
       :url_issue => "www.issue.com", :url_attachment => "www.attachment.com",
-      :modifications => {:statut_id => true, :ingenieur_id => true, :severite_id => true},
+      :modifications => {:statut_id => true, :ingenieur_id => true, :severity_id => true},
       :comment => comment }
     response = Notifier::deliver_issue_new_comment(options)
     assert_match issue.resume, response.subject

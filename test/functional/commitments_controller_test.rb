@@ -23,7 +23,7 @@ require 'commitments_controller'
 class CommitmentsController; def rescue_action(e) raise e end; end
 
 class CommitmentsControllerTest < Test::Unit::TestCase
-  fixtures :commitments, :typeissues, :severites
+  fixtures :commitments, :typeissues, :severities
 
   def setup
     @controller = CommitmentsController.new

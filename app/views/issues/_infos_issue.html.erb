@@ -28,7 +28,7 @@
        <%= link_to_box_on_status(@issue) %> <%=help_on_status%></li>
   <li><b><%= _("Type")%>: </b><%= @issue.typeissue.name %></li>
   <li><b><%= _("Severity")%>: </b>
-       <%= @issue.severite.name %> <%=help_on_severity%></li>
+       <%= @issue.severity.name %> <%=help_on_severity%></li>
   <% unless @issue.mail_cc.blank? %>
      <li><b><%= _('CC') %>: </b><%= @issue.mail_cc.gsub(',', ',<br />') %></li>
   <% end %>

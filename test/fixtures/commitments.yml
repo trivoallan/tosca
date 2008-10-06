@@ -1,108 +1,108 @@
 commitment_00002: 
   id: 2
-  severite_id: 2
+  severity_id: 2
   typeissue_id: 2
   correction: 20.0
   workaround: 5.0
 commitment_00003: 
   id: 3
-  severite_id: 3
+  severity_id: 3
   typeissue_id: 2
   correction: -1.0
   workaround: 5.0
 commitment_00005: 
   id: 5
-  severite_id: 1
+  severity_id: 1
   typeissue_id: 1
   correction: 1.0
   workaround: -1.0
 commitment_00006: 
   id: 6
-  severite_id: 2
+  severity_id: 2
   typeissue_id: 1
   correction: 1.0
   workaround: -1.0
 commitment_00007: 
   id: 7
-  severite_id: 3
+  severity_id: 3
   typeissue_id: 1
   correction: 1.0
   workaround: -1.0
 commitment_00001: 
   id: 1
-  severite_id: 1
+  severity_id: 1
   typeissue_id: 2
   correction: 5.0
   workaround: 0.16
 commitment_00008: 
   id: "44"
-  severite_id: "1"
+  severity_id: "1"
   typeissue_id: "2"
   correction: "15"
   workaround: "1"
 commitment_00009: 
   id: "45"
-  severite_id: "2"
+  severity_id: "2"
   typeissue_id: "2"
   correction: "15"
   workaround: "8"
 commitment_00010: 
   id: "46"
-  severite_id: "3"
+  severity_id: "3"
   typeissue_id: "2"
   correction: "-1"
   workaround: "8"
 commitment_00011: 
   id: "17"
-  severite_id: "2"
+  severity_id: "2"
   typeissue_id: "1"
   correction: "5"
   workaround: "5"
 commitment_00012: 
   id: "18"
-  severite_id: "3"
+  severity_id: "3"
   typeissue_id: "1"
   correction: "5"
   workaround: "5"
 commitment_00013: 
   id: "19"
-  severite_id: "1"
+  severity_id: "1"
   typeissue_id: "2"
   correction: "5"
   workaround: "3"
 commitment_00015: 
   id: "27"
-  severite_id: "3"
+  severity_id: "3"
   typeissue_id: "2"
   correction: "20"
   workaround: "10"
 commitment_00016: 
   id: "22"
-  severite_id: "4"
+  severity_id: "4"
   typeissue_id: "5"
   correction: "-1"
   workaround: "-1"
 commitment_00017: 
   id: "13"
-  severite_id: "1"
+  severity_id: "1"
   typeissue_id: "1"
   correction: "1"
   workaround: "1"
 commitment_00018: 
   id: "14"
-  severite_id: "2"
+  severity_id: "2"
   typeissue_id: "1"
   correction: "1"
   workaround: "1"
 commitment_00019: 
   id: "20"
-  severite_id: "2"
+  severity_id: "2"
   typeissue_id: "2"
   correction: "10"
   workaround: "5"
 commitment_00020: 
   id: "29"
-  severite_id: "2"
+  severity_id: "2"
   typeissue_id: "2"
   correction: "-1"
   workaround: "-1"

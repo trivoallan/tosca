@@ -16,46 +16,46 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class SeveritesController < ApplicationController
+class SeveritiesController < ApplicationController
 
   def index
-    @severite_pages, @severites = paginate :severites, :per_page => 10
+    @severity_pages, @severities = paginate :severities, :per_page => 10
   end
 
   def show
-    @severite = Severite.find(params[:id])
+    @severity = Severity.find(params[:id])
   end
 
   def new
-    @severite = Severite.new
+    @severity = Severity.new
   end
 
   def create
-    @severite = Severite.new(params[:severite])
-    if @severite.save
+    @severity = Severity.new(params[:severity])
+    if @severity.save
       flash[:notice] = _("Severity was successfully created.")
-      redirect_to severites_path
+      redirect_to severities_path
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @severite = Severite.find(params[:id])
+    @severity = Severity.find(params[:id])
   end
 
   def update
-    @severite = Severite.find(params[:id])
-    if @severite.update_attributes(params[:severite])
+    @severity = Severity.find(params[:id])
+    if @severity.update_attributes(params[:severity])
       flash[:notice] = _("Severity was successfully updated.")
-      redirect_to severite_path(@severite)
+      redirect_to severity_path(@severity)
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Severite.find(params[:id]).destroy
-    redirect_to severites_path
+    Severity.find(params[:id]).destroy
+    redirect_to severities_path
   end
 end

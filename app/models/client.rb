@@ -127,10 +127,10 @@ class Client < ActiveRecord::Base
                      :joins => joins)
   end
 
-  # TODO : à revoir, on pourrait envisager de moduler les sévérités selon
-  # les type de issues
-  def severites
-    Severite.find(:all)
+  # TODO : it could & should be dynamic. Is there really a sense to severity
+  # for an evolution issue ?
+  def severities
+    Severity.find(:all)
   end
 
   # pretty urls for client

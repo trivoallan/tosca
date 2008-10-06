@@ -21,7 +21,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :attachment
   belongs_to :statut
-  belongs_to :severite
+  belongs_to :severity
   belongs_to :ingenieur
 
   validates_length_of :text, :minimum => 5,
@@ -120,7 +120,7 @@ class Comment < ActiveRecord::Base
   # update issue attributes, when creating a comment
   after_create :update_issue
   def update_issue
-    fields = %w(statut_id ingenieur_id severite_id)
+    fields = %w(statut_id ingenieur_id severity_id)
     issue = self.issue
 
     # Update all attributes

@@ -15,8 +15,8 @@ Bonjour,
     <% issue = d.issue %>
     <% old_issue = d.issue_at %>
     <li>
-      <% severite = issue.severite
-         severite = "sans sévérité"
+      <% severity = issue.severity
+         severity = "sans sévérité"
 
          issue_type = issue.typeissue.to_s
          type = ""
@@ -43,7 +43,7 @@ Bonjour,
       <% if issue.statut_id == 7 #Clôturée %>
         => <i>Clôturée</i>
       <% else %>
-        <%= ": #{type} #{severite} est #{issue.statut}" %>, ouverte depuis <%= distance_of_time_in_words_to_now(issue.created_on) %>
+        <%= ": #{type} #{severity} est #{issue.statut}" %>, ouverte depuis <%= distance_of_time_in_words_to_now(issue.created_on) %>
         <% if issue.elapsed.workaround? and not issue.statut_id == 5 #Contournée %>
           a été <i>contournée</i>
         <% end %>
@@ -58,8 +58,8 @@ Bonjour,
           <i>corrigée</i>
         <% end %>
 
-        <% if old_issue.severite and old_issue.severite != issue.severite %>
-          a eu sa <strong>sévérité modifiée</strong> (anciennement : <%= old_issue.severite %>)
+        <% if old_issue.severity and old_issue.severity != issue.severity %>
+          a eu sa <strong>sévérité modifiée</strong> (anciennement : <%= old_issue.severity %>)
         <% end %>
         <% if old_issue.statut and old_issue.statut != issue.statut %>
           a eu son <strong>statut modifié</strong> (anciennement : <%= old_issue.statut %>)

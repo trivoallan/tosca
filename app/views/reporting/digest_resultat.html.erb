@@ -13,7 +13,7 @@
     <li>
       <h3><%= toggle(d_id) %>&nbsp;<%= "##{issue.id} " + link_to_issue(issue) %></h3>
       <%= issue.typeissue %>
-      <%= issue.severite %><%= " (#{old_issue.severite})" if old_issue.severite and old_issue.severite != issue.severite %>,
+      <%= issue.severity %><%= " (#{old_issue.severity})" if old_issue.severity and old_issue.severity != issue.severity %>,
       <%= issue.statut %><%= " (#{old_issue.statut})" if old_issue.statut and old_issue.statut != issue.statut %>,
       <%= _("open since %s") % distance_of_time_in_words_to_now(issue.created_on) %><br/><br/>
       <ul id="<%= d_id %>" style="list-style: none; display: none;">

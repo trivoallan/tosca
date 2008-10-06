@@ -109,7 +109,7 @@ class IssuesController < ApplicationController
         [:contract_id, 'issues.contract_id', :equal ],
         [:ingenieur_id, 'issues.ingenieur_id', :equal ],
         [:typeissue_id, 'issues.typeissue_id', :equal ],
-        [:severite_id, 'issues.severite_id', :equal ],
+        [:severity_id, 'issues.severity_id', :equal ],
         [:statut_id, 'issues.statut_id', :equal ]
       ], special_cond)
       @filters = issues_filters
@@ -242,7 +242,7 @@ class IssuesController < ApplicationController
         [ 'contributions.software_id = ?', @issue.software_id ] }
       @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
       if @ingenieur
-        @severites = Severite.find_select
+        @severities = Severity.find_select
         @ingenieurs = Ingenieur.find_select_by_contract_id(@issue.contract_id)
         @teams = Team.on_contract_id(@issue.contract_id)
       end
@@ -270,7 +270,7 @@ class IssuesController < ApplicationController
       conditions = filter_comments(@issue_id)
       conditions[0] << " AND statut_id IS NOT NULL"
       @comments = Comment.find(:all, :conditions => conditions,
-        :order => "created_on ASC", :include => [:user,:statut,:severite])
+        :order => "created_on ASC", :include => [:user,:statut,:severity])
     end
     render :partial => 'issues/tabs/tab_history', :layout => false
   end
@@ -371,7 +371,7 @@ class IssuesController < ApplicationController
   def _panel
     @statuts = Statut.find_select(:order => 'id')
     @typeissues = Typeissue.find_select()
-    @severites = Severite.find_select()
+    @severities = Severity.find_select()
     if @ingenieur
       @contracts = Contract.find_select(Contract::OPTIONS)
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
@@ -409,7 +409,7 @@ class IssuesController < ApplicationController
       @typeissues = Typeissue.find_select
     end
     @versions = []
-    @severites = Severite.find_select
+    @severities = Severity.find_select
     first_comment = @issue.first_comment
     @issue.description = first_comment.text if first_comment
     @issue.recipient = recipient if recipient
@@ -440,7 +440,7 @@ class IssuesController < ApplicationController
     if action_name == 'print' || !read_fragment(fragment)
       @comments = Comment.find(:all, :conditions =>
         filter_comments(issue_id), :order => "created_on ASC",
-        :include => [:user,:statut,:severite])
+        :include => [:user,:statut,:severity])
     end
   end
 
@@ -487,10 +487,10 @@ end
 # {:url => {:action => :ajax_update_delai},
 #  :update => :delai,
 #  :frequency => 15 } %>
-#<%= observe_field "issue_severite_id", {
+#<%= observe_field "issue_severity_id", {
 #  :url => {:action => :ajax_update_delai},
 #  :update => :delai,
-#  :with => "severite_id" }
+#  :with => "severity_id" }
 #%>
 #<%= observe_field "issue_software_id",
 # {:url => {:action => :ajax_update_versions},

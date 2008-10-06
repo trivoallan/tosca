@@ -21,7 +21,7 @@ module IssuesHelper
   # Display a link to an issue
   # Options
   #  * :show_id display the id
-  #  * :icon_severite display severity icon
+  #  * :icon_severity display severity icon
   #  * :limit display only :limit caracters
   def link_to_issue(issue, options = {})
     return '-' unless issue
@@ -30,7 +30,7 @@ module IssuesHelper
       limit = options[:limit] || 50
       text = ''
       text << "##{issue.id} " if options.has_key? :show_id
-      text << "#{StaticImage::severite(issue)} " if options.has_key? :icon_severite #TODO
+      text << "#{StaticImage::severity(issue)} " if options.has_key? :icon_severity #TODO
       text << truncate(issue.resume, limit)
     end
     link_to text, issue_path(issue)

@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Commitment < ActiveRecord::Base
-  belongs_to :severite
+  belongs_to :severity
   belongs_to :typeissue
   has_and_belongs_to_many :contracts, :uniq => true
 
@@ -37,13 +37,13 @@ class Commitment < ActiveRecord::Base
   end
 
   def to_s
-    "#{self.typeissue.name} | #{self.severite.name} : " +
+    "#{self.typeissue.name} | #{self.severity.name} : " +
       "#{Time.in_words(self.workaround.days, true)} " +
       "/ #{Time.in_words(self.correction.days, true)}"
   end
 
-  INCLUDE = [:typeissue,:severite]
-  ORDER = 'commitments.typeissue_id, commitments.severite_id DESC, commitments.workaround DESC'
+  INCLUDE = [:typeissue,:severity]
+  ORDER = 'commitments.typeissue_id, commitments.severity_id DESC, commitments.workaround DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
 end

@@ -23,8 +23,8 @@
 <hr noshade size="1px"/>
 <%= @comment.text %><br />
 <hr noshade size="1px"/>
-<% if @modifications["severite_id"] %>
-  La demande a été requalifiée avec une sévérité <b><%=@comment.severite.name%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severite_issue">Cette page</a> vous présente en détail la signification de ce changement.<br />
+<% if @modifications["severity_id"] %>
+  La demande a été requalifiée avec une sévérité <b><%=@comment.severity.name%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severity_issue">Cette page</a> vous présente en détail la signification de ce changement.<br />
 <% end %>
 
 <%= render :partial => 'end_mail' %>

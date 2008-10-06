@@ -40,10 +40,10 @@ module CommentsHelper
       out << (_('This issue has been changed in %s by %s.') %
               [ "<b>#{statut.name}</b>", name ])
     end
-    severite = comment.severite
-    unless severite.nil?
+    severity = comment.severity
+    unless severity.nil?
       out << (_('This issue has been requalified in %s by %s.') %
-              [ "<b>#{severite.name}</b>" , name ])
+              [ "<b>#{severity.name}</b>" , name ])
     end
     elapsed = comment.elapsed
     unless elapsed.nil? || elapsed == 0

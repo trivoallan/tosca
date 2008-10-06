@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CommitmentTest < Test::Unit::TestCase
-  fixtures :commitments, :severites, :typeissues
+  fixtures :commitments, :severities, :typeissues
 
   def test_to_strings
     check_strings Commitment

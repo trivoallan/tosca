@@ -90,7 +90,7 @@ class CommentsControllerTest < Test::Unit::TestCase
         :private => 0,
         :created_on => '2006-09-21 08:19:30',
         :updated_on => '2007-07-12 14:21:17',
-        :severite_id => 1,
+        :severity_id => 1,
         :statut_id => 7,
         :ingenieur_id => 1
       }
@@ -113,7 +113,7 @@ class CommentsControllerTest < Test::Unit::TestCase
         "text" => "promenons nous dans les bois",
         "private" => "0",
         "ingenieur_id" => "",
-        "severite_id" => "",
+        "severity_id" => "",
         "statut_id" => "3"
       },
       :mce_editor_0_formatSelect => "",

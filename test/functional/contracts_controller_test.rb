@@ -20,7 +20,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ContractsControllerTest < ActionController::TestCase
 
-  fixtures :contracts, :commitments, :clients, :severites, :typeissues,
+  fixtures :contracts, :commitments, :clients, :severities, :typeissues,
     :credits, :components, :softwares
 
   def setup

@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
-  fixtures :clients, :images, :severites, :recipients, :users, :contracts,
+  fixtures :clients, :images, :severities, :recipients, :users, :contracts,
     :contributions, :softwares, :components, :credits
 
   def test_to_strings
@@ -98,8 +98,8 @@ class ClientTest < Test::Unit::TestCase
     Client.find(:all).each{|c| c.typeissues.each{|i| assert_instance_of(Typeissue, i)}}
   end
 
-  def test_severites
-    Client.find(:all).each{|c| c.severites.each{|i| assert_instance_of(Severite, i)}}
+  def test_severities
+    Client.find(:all).each{|c| c.severities.each{|i| assert_instance_of(Severity, i)}}
   end
 
   def test_inactive

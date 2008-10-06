@@ -41,13 +41,13 @@ module CommitmentsHelper
     out << _('Correction')
     out << '</th></tr>'
     last_typeissue_id = 0
-    last_severite_id = 0
+    last_severity_id = 0
     last_cycle = cycle('even', 'odd')
     selecteds = object_commitment.collect{|o| o.id }
     e = commitments.pop
     while (e) do
       out << '<tr><td colspan="5"><hr/></td></tr>' if e.typeissue_id != last_typeissue_id
-      last_cycle = cycle('even', 'odd') if e.severite_id != last_severite_id
+      last_cycle = cycle('even', 'odd') if e.severity_id != last_severity_id
       out << "<tr class=\"#{last_cycle}\">"
       out << '<td>'
       if e.typeissue_id != last_typeissue_id
@@ -55,23 +55,23 @@ module CommitmentsHelper
         last_typeissue_id = e.typeissue_id
       end
       out << '</td><td>'
-      if e.severite_id != last_severite_id
-        out << e.severite.name
-        last_severite_id = e.severite_id
+      if e.severity_id != last_severity_id
+        out << e.severity.name
+        last_severity_id = e.severity_id
       end
       out << '</td><td>'
       severities = []
       severities.push ['» ',0]
       # selecteds = []
       out << %Q{<select id="contract_commitment_ids"
-         name="contract[commitment_ids_#{last_typeissue_id}_#{last_severite_id}]">}
+         name="contract[commitment_ids_#{last_typeissue_id}_#{last_severity_id}]">}
       while (e) do
         workaround = Time.in_words(e.workaround.days, true)
         correction = Time.in_words(e.correction.days, true)
         workaround = _('None') if workaround == '-'
         correction = _('None') if correction == '-'
         severities.push ["#{workaround} | #{correction}", e.id]
-        break if commitments.empty? || (commitments.last.severite_id != last_severite_id)
+        break if commitments.empty? || (commitments.last.severity_id != last_severity_id)
         e = commitments.pop
       end
       out << options_for_select(severities, selecteds)
@@ -90,7 +90,7 @@ module CommitmentsHelper
       out = ''
       out << (oldtypeissue == e.typeissue_id ? '<td></td>' :
                 "<td>#{e.typeissue.name}</td>" )
-      out << "<td>#{e.severite.name}</td>"
+      out << "<td>#{e.severity.name}</td>"
       out << "<td>#{Time.in_words(e.workaround.days, true)}</td>"
       out << "<td>#{Time.in_words(e.correction.days, true)}</td>"
       if controller.controller_name == 'commitments'

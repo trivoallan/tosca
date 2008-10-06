@@ -19,8 +19,8 @@
 class CommitmentsController < ApplicationController
   def index
     @commitment_pages, @commitments = paginate :commitments,
-    :per_page => 20, :order => "typeissue_id, severite_id",
-    :include => [:typeissue,:severite]
+    :per_page => 20, :order => "typeissue_id, severity_id",
+    :include => [:typeissue,:severity]
   end
 
   def show
@@ -66,6 +66,6 @@ class CommitmentsController < ApplicationController
   private
   def _form
     @typeissues = Typeissue.find_select
-    @severites = Severite.find_select
+    @severities = Severity.find_select
   end
 end

@@ -25,7 +25,7 @@ class Issue < ActiveRecord::Base
   belongs_to :software
   belongs_to :version
   belongs_to :release
-  belongs_to :severite
+  belongs_to :severity
   belongs_to :statut
   # 3 peoples involved in an issue :
   #  1. The submitter (The one who has filled the issue)
@@ -69,7 +69,7 @@ class Issue < ActiveRecord::Base
 
   # Validation
   validates_presence_of :resume, :contract, :description, :recipient,
-    :statut, :severite, :warn => _("You must indicate a %s for your issue")
+    :statut, :severity, :warn => _("You must indicate a %s for your issue")
   validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
 
@@ -101,7 +101,7 @@ class Issue < ActiveRecord::Base
   end
 
   def name
-    "#{typeissue.name} (#{severite.name}) : #{resume}"
+    "#{typeissue.name} (#{severity.name}) : #{resume}"
   end
 
   def pretty_id
@@ -145,7 +145,7 @@ class Issue < ActiveRecord::Base
   # Remanent fields are those which persists after the first submit
   # It /!\ MUST /!^ be an _id field. See IssuesController#create.
   def self.remanent_fields
-    [ :contract_id, :recipient_id, :typeissue_id, :severite_id,
+    [ :contract_id, :recipient_id, :typeissue_id, :severity_id,
       :socle_id, :software_id, :ingenieur_id ]
   end
 
@@ -188,7 +188,7 @@ class Issue < ActiveRecord::Base
     # self-assignment
     self.ingenieur = expert
     # without severity, by default
-    self.severite_id = 4
+    self.severity_id = 4
     # if we came from software view, it's sets automatically
     self.software_id = params[:software_id]
     # recipients
@@ -206,10 +206,10 @@ class Issue < ActiveRecord::Base
   # We use finder for overused view mainly (issues/list)
   # It's about 40% faster with this crap (from 2.8 r/s to 4.0 r/s)
   # it's not enough, but a good start :)
-  SELECT_LIST = 'issues.*, severites.name as severites_name,
+  SELECT_LIST = 'issues.*, severities.name as severities_name,
     softwares.name as softwares_name, clients.name as clients_name,
     typeissues.name as typeissues_name, statuts.name as statuts_name' unless defined? SELECT_LIST
-  JOINS_LIST = 'INNER JOIN severites ON severites.id=issues.severite_id
+  JOINS_LIST = 'INNER JOIN severities ON severities.id=issues.severity_id
     INNER JOIN recipients ON recipients.id=issues.recipient_id
     INNER JOIN clients ON clients.id = recipients.client_id
     INNER JOIN typeissues ON typeissues.id = issues.typeissue_id
@@ -228,7 +228,7 @@ class Issue < ActiveRecord::Base
 
   # Returns the state of an issue at date t
   # The result is a READ ONLY clone with the 3 indicators
-  #   statut_id, ingenieur_id & severite_id
+  #   statut_id, ingenieur_id & severity_id
   def state_at(t)
     return self if t >= self.updated_on
     return Issue.new if t < self.created_on
@@ -237,8 +237,8 @@ class Issue < ActiveRecord::Base
       :order => "created_on DESC" }
     statut_id = self.comments.find(:first, options).statut_id
 
-    options[:conditions] = [ "severite_id IS NOT NULL AND created_on <= ?", t ]
-    severite_id = self.comments.find(:first, options).severite_id
+    options[:conditions] = [ "severity_id IS NOT NULL AND created_on <= ?", t ]
+    severity_id = self.comments.find(:first, options).severity_id
 
     options[:conditions] = [ "ingenieur_id IS NOT NULL AND created_on <= ?", t ]
     com_ingenieur = self.comments.find(:first, options)
@@ -246,7 +246,7 @@ class Issue < ActiveRecord::Base
 
     result = self.clone
     result.attributes = { :statut_id => statut_id,
-      :ingenieur_id => ingenieur_id, :severite_id => severite_id }
+      :ingenieur_id => ingenieur_id, :severity_id => severity_id }
     result.readonly!
     result
   end
@@ -298,9 +298,9 @@ class Issue < ActiveRecord::Base
   # TODO : add a commitment_id to Issue Table. This helper method
   # clearly slows uselessly Tosca.
   def commitment
-    return nil unless contract_id && severite_id && typeissue_id
+    return nil unless contract_id && severity_id && typeissue_id
     self.contract.commitments.find(:first, :conditions =>
-        {:typeissue_id => self.typeissue_id, :severite_id => self.severite_id})
+        {:typeissue_id => self.typeissue_id, :severity_id => self.severity_id})
   end
 
   # useful shortcut
@@ -320,7 +320,7 @@ class Issue < ActiveRecord::Base
       c.text = self.description
       c.ingenieur_id = self.ingenieur_id
       c.issue = self
-      c.severite_id = self.severite_id
+      c.severity_id = self.severity_id
       c.statut_id = self.statut_id
       c.user_id = self.recipient.user_id
     end

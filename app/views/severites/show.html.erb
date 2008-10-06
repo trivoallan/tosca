@@ -1,8 +1,0 @@
-<% for column in Severite.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @severite.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to _("Edit"), edit_severite_path(@severite) %> |
-<%= link_to _("Back"), severites_path %>

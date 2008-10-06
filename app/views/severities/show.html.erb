@@ -1,0 +1,8 @@
+<% for column in Severity.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%= @severity.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to _("Edit"), edit_severity_path(@severity) %> |
+<%= link_to _("Back"), severities_path %>

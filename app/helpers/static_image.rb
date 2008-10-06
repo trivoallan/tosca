@@ -277,15 +277,15 @@ class StaticImage < Static::ActionView
   # Severity
   # Display an icon matching severity
   # They are stored in an array in order to cover all of 'em
-  @@images_severite = Array.new(Severite.count)
-  def self.severite(d)
-    result = @@images_severite[d.severite_id]
+  @@images_severity = Array.new(Severity.count)
+  def self.severity(d)
+    result = @@images_severity[d.severity_id]
     if result.nil?
-      desc = (d.respond_to?(:severites_name) ? d.severites_name : d.severite.name)
-      file_name = "severite_#{d.severite_id}.gif"
-      @@images_severite[d.severite_id] = image_tag(file_name, :title => desc, 
+      desc = (d.respond_to?(:severities_name) ? d.severities_name : d.severity.name)
+      file_name = "severity_#{d.severity_id}.gif"
+      @@images_severity[d.severity_id] = image_tag(file_name, :title => desc, 
         :alt => desc, :class => 'aligned_picture')
-      result = @@images_severite[d.severite_id]
+      result = @@images_severity[d.severity_id]
     end
     result
   end

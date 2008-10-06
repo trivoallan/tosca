@@ -14,7 +14,7 @@
         <th><label for="issue_typeissue_id"><%= _("Type") %></label></th>
         <td><%= select(:issue, :typeissue_id, @typeissues) %>
           <% if new_issue %>
-            <%= select(:issue, :severite_id, @severites) %>
+            <%= select(:issue, :severity_id, @severities) %>
           <% end %>
         </td>
       </tr>
@@ -152,7 +152,7 @@
 
 <% fields = %w(issue_typeissue_id) %>
 <% fields << 'issue_contract_id' if @contracts.size > 1 %>
-<% fields << 'issue_severite_id' if new_issue %>
+<% fields << 'issue_severity_id' if new_issue %>
 <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>
      "Form.serializeElements($('#{fields.join("','")}'))",
      :url => ajax_display_commitment_issues_path) %>

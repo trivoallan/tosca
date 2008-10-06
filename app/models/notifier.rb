@@ -84,7 +84,7 @@ class Notifier < ActionMailer::Base
   # This function needs too much options :
   #  { :issue, :name, :url_issue, :url_attachment, :comment }
   # And an optional
-  #  :modifications => {:statut_id, :ingenieur_id, :severite_id }
+  #  :modifications => {:statut_id, :ingenieur_id, :severity_id }
   def issue_new_comment(options, flash = nil)
     issue = options[:issue]
     # needed in order to have correct recipients

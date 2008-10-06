@@ -31,7 +31,7 @@ module DigestReporting
     @period = _(@period)
 
     options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contract_id ASC", :include => [:typeissue, :severite, :statut]}
+     :order => "contract_id ASC", :include => [:typeissue, :severity, :statut]}
     issues = Issue.find(:all, options)
 
     @result = Array.new
@@ -67,7 +67,7 @@ module DigestReporting
     @period = _(@period)
     
     options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contract_id ASC", :include => [:typeissue, :severite, :statut]}
+     :order => "contract_id ASC", :include => [:typeissue, :severity, :statut]}
     issues = Issue.find(:all, options)
     
     @result = DigestManagers.new    

@@ -16,5 +16,12 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SeveritesHelper
+require File.dirname(__FILE__) + '/../test_helper'
+
+class SeverityTest < Test::Unit::TestCase
+  fixtures :severities
+
+  def test_to_strings
+    check_strings Severity
+  end
 end
