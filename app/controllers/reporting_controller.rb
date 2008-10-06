@@ -33,12 +33,12 @@ class ReportingController < ApplicationController
     "#22a4ff", "#0082dd", # blue
   ]
   # Array starts at 0, but Gruff need a start at 1
-  @@couleurs_degradees = ( [nil] << colors ).flatten
-  @@couleurs = ( [nil] << colors.values_at(1, 3, 5, 7, 9) ).flatten
+  @@dark_colors = ( [nil] << colors ).flatten
+  @@colors = ( [nil] << colors.values_at(1, 3, 5, 7, 9) ).flatten
   # Subset for specific graphs
-  @@couleurs_delais = ( [nil] << colors.values_at(7, 1) ).flatten
-  @@couleurs_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
-  @@couleurs_types_degradees = ( [nil] << colors.values_at(2, 3, 6, 7, 8, 9) ).flatten
+  @@sla_colors = ( [nil] << colors.values_at(7, 1) ).flatten
+  @@colors_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
+  @@dark_colors_types = ( [nil] << colors.values_at(2, 3, 6, 7, 8, 9) ).flatten
 
   # allows to launch activity report
   def configuration
@@ -89,28 +89,28 @@ class ReportingController < ApplicationController
     init_data_general
     fill_data_general
 
-    # TODO : trouver un bon moyen de faire un cache
-    @data.each_pair do |name, data| # each_key do |name|
-      #sha1 = Digest::SHA1.hexdigest("-#{qui}-#{name}-")
+    @data.each_pair do |name, data|
+      # sha1 = Digest::SHA1.hexdigest("-#{qui}-#{name}-")
+      # TODO : it's not safe to store it that way
       @path[name] = "reporting/#{name}.png"
       size = data.size
-      if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
+      if (not data.empty? and data[0].to_s =~ /_(closed|active)/)
         # cas d'une légende à deux colonnes : degradé obligatoire
-        if name.to_s =~ /^severite/
-          @colors[name] = @@couleurs_degradees[1..size]
-        elsif name.to_s =~ /^repartition/
-          @colors[name] = @@couleurs_types_degradees[1..size]
+        if name.to_s =~ /^severity/
+          @colors[name] = @@dark_colors[1..size]
+        elsif name.to_s =~ /^distribution/
+          @colors[name] = @@dark_colors_types[1..size]
         else
-          @colors[name] = @@couleurs_degradees[1..size]
+          @colors[name] = @@dark_colors[1..size]
         end
       else
         # cas d'une légende à une colonne : pas de degradé
         if name.to_s =~ /^temps/
-          @colors[name] = @@couleurs_delais[1..size]
-        elsif name.to_s =~ /^annulation/
-          @colors[name] = @@couleurs_types[1..size]
+          @colors[name] = @@sla_colors[1..size]
+        elsif name.to_s =~ /^cancelled/
+          @colors[name] = @@colors_types[1..size]
         else
-          @colors[name] = @@couleurs[1..size]
+          @colors[name] = @@colors[1..size]
         end
       end
     end
@@ -125,12 +125,12 @@ class ReportingController < ApplicationController
     # on remplit
     i_want_to_draw_graphs = true
     if (i_want_to_draw_graphs)
-      write3graph(:repartition, Gruff::StackedBar)
-      write3graph(:severite, Gruff::StackedBar)
+      write3graph(:distribution, Gruff::StackedBar)
+      write3graph(:severity, Gruff::StackedBar)
       write3graph(:resolution, Gruff::StackedBar)
 
       write3graph(:evolution, Gruff::Line)
-      write3graph(:annulation, Gruff::Bar)
+      write3graph(:cancelled, Gruff::Bar)
 
       write3graph(:callback_time, Gruff::Line)
       write3graph(:workaround_time, Gruff::Line)
@@ -191,21 +191,21 @@ class ReportingController < ApplicationController
   # initialisation de @data
   def init_data_general
     # Répartions par mois (StackedBar)
-    # _terminees doit être en premier
-    @data[:repartition]  =
-     [ [:informations_terminees], [:anomalies_terminees],
-     [:evolutions_terminees], [:informations_en_cours],
-     [:anomalies_en_cours], [:evolutions_en_cours] ]
-    @data[:severite] =
-     [ [:bloquantes_terminees], [:majeures_terminees],
-     [:mineures_terminees], [:sans_objet_terminees],
-     [:bloquantes_en_cours], [:majeures_en_cours],
-     [:mineures_en_cours], [:sans_objet_en_cours] ]
+    # _closed doit être en premier
+    @data[:distribution]  =
+     [ [:informations_closed], [:anomalies_closed],
+     [:evolutions_closed], [:informations_active],
+     [:anomalies_active], [:evolutions_active] ]
+    @data[:severity] =
+     [ [:bloquantes_closed], [:majeures_closed],
+     [:mineures_closed], [:sans_objet_closed],
+     [:bloquantes_active], [:majeures_active],
+     [:mineures_active], [:sans_objet_active] ]
     @data[:resolution] =
-     [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:en_cours] ]
+     [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:active] ]
     @data[:evolution] =
      [ [:'bénéficiaires'], [:softwares], [:contributions] ] # TODO : [:interactions]
-    @data[:annulation] =
+    @data[:cancelled] =
      [ [:informations], [:anomalies], [:'évolutions'] ]
 
     # calcul des délais
@@ -262,11 +262,11 @@ class ReportingController < ApplicationController
 
       issues[1], issues[2] = infdate, supdate
       Issue.send(:with_scope, { :find => { :conditions => issues } }) do
-        compute_repartition @data[:repartition]
-        compute_severite @data[:severite]
+        compute_distribution @data[:distribution]
+        compute_severity @data[:severity]
         compute_resolution @data[:resolution]
-        compute_annulation @data[:annulation]
-        compute_temps @data
+        compute_cancelled @data[:cancelled]
+        compute_time @data
         compute_evolution @data[:evolution]
       end
     end
@@ -290,14 +290,14 @@ class ReportingController < ApplicationController
   ##
   # Calcul un tableaux du respect des délais
   # pour les 3 étapes : prise en compte, contournée, corrigée
-  def compute_temps(data)
+  def compute_time(data)
     issues = Issue.find(:all)
-    rappels = data[:callback_time]
+    phonecalls = data[:callback_time]
     workarounds = data[:workaround_time]
     corrections = data[:correction_time]
-    last_index = rappels[0].size
+    last_index = phonecalls[0].size
     2.times {|i|
-      rappels[i].push 0.0
+      phonecalls[i].push 0.0
       workarounds[i].push 0.0
       corrections[i].push 0.0
     }
@@ -309,7 +309,7 @@ class ReportingController < ApplicationController
       next unless c
 
       elapsed = d.elapsed
-      fill_one_report(rappels, elapsed.taken_into_account,
+      fill_one_report(phonecalls, elapsed.taken_into_account,
                       1.hour, last_index)
       fill_one_report(workarounds, elapsed.workaround,
                       c.workaround * interval, last_index)
@@ -318,13 +318,12 @@ class ReportingController < ApplicationController
       size += 1
     end
 
-    if size > 0
-      size = size.to_f
-      2.times {|i|
-        rappels[i][last_index] = (rappels[i][last_index].to_f / size) * 100
-        workarounds[i][last_index] = (workarounds[i][last_index].to_f / size) * 100
-        corrections[i][last_index] = (corrections[i][last_index].to_f / size) * 100
-      }
+    size = size.to_f
+    return unless size > 0
+    2.times do |i|
+      phonecalls[i][last_index] = (phonecalls[i][last_index].to_f / size) * 100
+      workarounds[i][last_index] = (workarounds[i][last_index].to_f / size) * 100
+      corrections[i][last_index] = (corrections[i][last_index].to_f / size) * 100
     end
   end
 
@@ -368,7 +367,7 @@ class ReportingController < ApplicationController
 
   ##
   # Compte les issues annulées selon leur type
-  def compute_annulation(report)
+  def compute_cancelled(report)
     # TODO : faire des requêtes paramètrées, avec des ?
     informations = { :conditions => [ 'statut_id = 8 AND typeissue_id = ?', 1 ] }
     anomalies = { :conditions => [ 'statut_id = 8 AND typeissue_id = ?', 2 ] }
@@ -382,7 +381,7 @@ class ReportingController < ApplicationController
 
   ##
   # Compte les issues selon leur nature
-  def compute_repartition(report)
+  def compute_distribution(report)
     # TODO : faire des requêtes paramètrées, avec des ?
     informations = { :conditions => "typeissue_id = 1" }
     anomalies = { :conditions => "typeissue_id = 2" }
@@ -403,21 +402,21 @@ class ReportingController < ApplicationController
 
   ##
   # Compte les issues par sévérités
-  def compute_severite(report)
-    severites = []
+  def compute_severity(report)
+    severitys = []
     # TODO : requête paramètréé, avec ?
      (1..4).each do |i|
-      severites.concat [ { :conditions => "severite_id = #{i}" } ]
+      severitys.concat [ { :conditions => "severite_id = #{i}" } ]
     end
 
     Issue.send(:with_scope, { :find => { :conditions => Issue::TERMINEES } }) do
       4.times do |t|
-        report[t].push Issue.count(severites[t])
+        report[t].push Issue.count(severitys[t])
       end
     end
     Issue.send(:with_scope, { :find => { :conditions => Issue::EN_COURS } }) do
       4.times do |t|
-        report[t+4].push Issue.count(severites[t])
+        report[t+4].push Issue.count(severitys[t])
       end
     end
   end
@@ -430,13 +429,13 @@ class ReportingController < ApplicationController
     corrigee = { :conditions => [condition, 6] }
     cloturee = { :conditions => [condition, 7] }
     annulee = { :conditions => [condition, 8] }
-    en_cours = { :conditions => 'statut_id NOT IN (5,6,7,8)' }
+    active = { :conditions => 'statut_id NOT IN (5,6,7,8)' }
 
     report[0].push Issue.count(contournee)
     report[1].push Issue.count(corrigee)
     report[2].push Issue.count(cloturee)
     report[3].push Issue.count(annulee)
-    report[4].push Issue.count(en_cours)
+    report[4].push Issue.count(active)
   end
 
 
@@ -492,14 +491,14 @@ class ReportingController < ApplicationController
   # todo : une variable de classe localise (@@titles[locale])
   def _titles
     @@titles = {
-      :repartition => _('Distribution of your issues'),
-      :repartition_cumulee => _('Distribution of issues'),
-      :severite => _('Severity of your issues'),
-      :severite_cumulee => _('Severity of your issues'),
+      :distribution => _('Distribution of your issues'),
+      :distribution_cumulee => _('Distribution of issues'),
+      :severity => _('Severity of your issues'),
+      :severity_cumulee => _('Severity of your issues'),
       :resolution => _('Resolution of your issues'),
       :resolution_cumulee => _('Resolution of your issues'),
 
-      :annulation => _('Cancelled issues'),
+      :cancelled => _('Cancelled issues'),
       :evolution => _('Evolution of the activity volume'),
 
       :top5_issues => _('Top 5 of the most discussed issues'),

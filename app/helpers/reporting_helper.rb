@@ -91,7 +91,7 @@ module ReportingHelper
   # - l'un concernant la periode considérée (à gauche)
   # - l'autre concernant la totalité depuis le début du contract
   # TODO : style : center report_item tr td
-  def report_repartition(name, options= {})
+  def report_distribution(name, options= {})
     data = @data[name]
     if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
       options.update(:divise => true)
