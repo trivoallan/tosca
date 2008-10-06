@@ -195,10 +195,10 @@ table.comment-table td.text {
 }
 
 /*************************
-  * Tabs in requestt	 *
+  * Tabs in issuet	 *
   ************************/
 
-.request_tabnav {
+.issue_tabnav {
   color: #000000;
   margin: 12px 0px 0px 0px;
   padding: 0px;
@@ -206,13 +206,13 @@ table.comment-table td.text {
   padding-left: 10px
 }
 
-.request_tabnav li {
+.issue_tabnav li {
   display: inline;
   overflow: hidden;
   list-style-type: none;
 }
 
-.request_tabnav a, a.active {
+.issue_tabnav a, a.active {
   color: #000000;
   background:  #FFEBBF;
   font: bold 1em "Trebuchet MS", Arial, sans-serif;
@@ -224,25 +224,25 @@ table.comment-table td.text {
   -moz-border-radius: .5em .5em 0 0;
 }
 
-.request_tabnav a.active {
+.issue_tabnav a.active {
   background: #cfc8cf;
 }
 
-.request_tabnav a:hover {
+.issue_tabnav a:hover {
   color: #FFFFFF;
   background: #FFD880;
 }
 
-.request_tabnav a:visited {
+.issue_tabnav a:visited {
   color: black;
 }
 
-.request_tabnav a.active:hover {
+.issue_tabnav a.active:hover {
   background: #FFB000;
   color: #FFEBBF;
 }
 
-.request_tab_content {
+.issue_tab_content {
   text-align: justify;
   background: #DDDDDD;
   padding: 0.5em;
@@ -251,17 +251,17 @@ table.comment-table td.text {
   border: 1px solid #cfc8cf;
   z-index: -1;
 }
-.request_tab_content p {
+.issue_tab_content p {
   margin: 10px;
 }
 
-.request_tab_content td {
+.issue_tab_content td {
   margin-right: 1em;
   padding-right: 1em;
 }
 
 /* history */
-.request_tab_content .history {
+.issue_tab_content .history {
   font-size: 95%;
   padding: 0.5em;
 }
@@ -318,43 +318,43 @@ a.nobackground {
 .odd:hover {	background-color: #e2efe2; }
 
 /***************************************
- * Statut d'une request en couleur
+ * Statut d'une issue en couleur
  ***************************************/
 
 /* enregistree */
-.request_1 	{background: #f03730; /*red;*/}
-.request_1:hover{background: #f03700;}
+.issue_1 	{background: #f03730; /*red;*/}
+.issue_1:hover{background: #f03700;}
 
 /* priseencompte */
-.request_2 	{background: #ffa26e; /*orange;*/}
-.request_2:hover{background: #ffa23e; }
+.issue_2 	{background: #ffa26e; /*orange;*/}
+.issue_2:hover{background: #ffa23e; }
 
 /* suspendue */
-.request_3	{background: #ffffba; /*yellow;*/}
-.request_3:hover{background: #ffff88; }
+.issue_3	{background: #ffffba; /*yellow;*/}
+.issue_3:hover{background: #ffff88; }
 
 /* analysee */
-.request_4 	{background: #a0e0f0; /*cyan;*/}
-.request_4:hover{background: #a0e0c0;}
+.issue_4 	{background: #a0e0f0; /*cyan;*/}
+.issue_4:hover{background: #a0e0c0;}
 
 /* contournee */
-.request_5 	{background: #90EEa0; /* lightgreen; */}
-.request_5:hover{background: #90EE70; }
+.issue_5 	{background: #90EEa0; /* lightgreen; */}
+.issue_5:hover{background: #90EE70; }
 
 /* corrigee */
-.request_6 	{background: #67ccfd;}
-.request_6:hover{background: #67cccd;}
+.issue_6 	{background: #67ccfd;}
+.issue_6:hover{background: #67cccd;}
 
 /* cloturee */
-.request_7 	{background: #c9c9af; /*grey;*/}
-.request_7:hover{background: #c9c97f; }
+.issue_7 	{background: #c9c9af; /*grey;*/}
+.issue_7:hover{background: #c9c97f; }
 
 /* annulee */
-.request_8 	{background: #D3D3D3; /*lightgrey;*/}
-.request_8:hover{background: #D3D3a3;}
+.issue_8 	{background: #D3D3D3; /*lightgrey;*/}
+.issue_8:hover{background: #D3D3a3;}
 
 /* all lines are clickable */
-#requests_list, #cns tr *:hover {
+#issues_list, #cns tr *:hover {
 	cursor: pointer;
 }
 
