@@ -31,22 +31,29 @@ module FormsHelper
   # Ex : hbtm_check_box( @software.competences, @competences, 'competence_ids')
   def hbtm_check_box( objectcollection, collection, name , options={})
     return '' if collection.nil? || collection.empty?
-    objectcollection = objectcollection.collect { |c| [ c.name, c.id ] }
-    out = '<table><tr>' and count = 1
+    objects = objectcollection.collect { |c| [ c.name, c.id ] }
+    objects = Hash[*objects.flatten.reverse]
+    out = '<table class="full"><tr>' and count = 1
     options_size = options[:size]
     length = collection.size
     name_w3c = name.gsub(/[^a-z1-9]+/i, '_')
-    for donnee in collection
+    for data in collection
+      value = (data.is_a?(ActiveRecord::Base) ? data.name : data.first)
+      id = (data.is_a?(ActiveRecord::Base) ? data.id : data.last)
       out << "<td class=\"#{cycle('odd', 'even')}\">"
-      out <<  "<label for=\"#{name_w3c}_#{donnee.last}\">"
-      out <<   "<input id=\"#{name_w3c}_#{donnee.last}\" type=\"checkbox\" "
-      out <<      "name=\"#{name}[]\" value=\"#{donnee.last}\" "
-      out <<      'checked="checked" ' if objectcollection.include? donnee
-      out <<   "/>#{donnee.first}"
+      out <<  "<label for=\"#{name_w3c}_#{id}\">"
+      out <<   "<input id=\"#{name_w3c}_#{id}\" type=\"checkbox\" "
+      out <<      "name=\"#{name}[]\" value=\"#{id}\" "
+      out <<      'checked="checked" ' if objects.has_key?(id)
+      out <<   "/> #{value}"
       out <<  "</label>"
       out << "</td>"
       if options_size
-        out << "</tr><tr>" if (count % options_size == 0) and length > count
+        if (count % options_size == 0) and length > count
+          out << "</tr><tr>"
+          # allows to prettify like a chess the checkbox
+          cycle('odd','even') if (options_size % 2) == 0
+        end
         count += 1
       end
     end
@@ -147,7 +154,7 @@ module FormsHelper
   end
   alias_method :search_issue, :search_issue_field
 
-  # Create the original auto_complete field 
+  # Create the original auto_complete field
   def auto_complete(object, method, tag_options = {}, completion_options = {})
     completion_options[:skip_style] = true
     text_field_with_auto_complete(object, method, tag_options)
