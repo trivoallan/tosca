@@ -51,16 +51,18 @@
          <div class="bloc_scroll">
            <%=show_list(@issues, _('Issue'), options) {|d| link_to_issue d}%>
          </div>
-        <% end %>
+        <% end %></td>
      </tr>
 
-     <tr><td><b><%=n_('Version', 'Versions', @software.versions.size)%></b> <%= link_to_new_version(@software) %></td>
-       <td>
-          <% options[:edit] = 'version' %>
-          <%= show_list(@software.versions, _('Version'), options) do |version|
-             link_to_version version
-          end %>
-       </td>
+     <tr><td colspan="2"><b><%=n_('Version', 'Versions', @software.versions.size)%></b> <%= link_to_new_version(@software) %><br />
+         <% options[:edit] = 'version' %>
+         <% if @software.versions.size > 0 %>
+          <div class="bloc_scroll">
+           <%= show_list(@software.versions, _('Version'), options) do |version|
+              link_to_version version
+           end %>
+          </div>
+         <% end %></td>
      </tr>
 
      <tr><td colspan="2"><b><%=_('Contributions')%></b>

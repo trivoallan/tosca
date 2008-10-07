@@ -1,26 +1,5 @@
 <div id='tags' class='tags'>
-  <p><label><%=_('Tags')%></label></p>
-  <% collection = Tag.get_generic_tag + Tag.get_competence_tag(@competences_check)%>
-  <% out = "<table class=\"list\"><tr>" and count = 1 %>
-  <% options_size = 2 %>
-  <% length = collection.size %>
-  <% name = 'software[tag_list]' %>
-  <% name_w3c = name.gsub(/[^a-z1-9]+/i, '_') %>
-  <% for donnee in collection %>
-    <% out << "<td class=\"#{cycle('odd', 'even')}\">" %>
-    <% out <<  "<label for=\"#{name_w3c}_#{donnee.id}\">" %>
-    <% out <<   "<input id=\"#{name_w3c}_#{donnee.id}\" type=\"checkbox\" " %>
-    <% out <<      "name=\"#{name}[]\" value=\"#{donnee.name}\" " %>
-    <% out <<      'checked="checked" ' if @software.tags.include? donnee %>
-    <% out <<   "/>#{donnee}" %>
-    <% out <<  "</label>" %>
-    <% out << "</td>" %>
-    <% if options_size %>
-      <% out << "</tr><tr>" if (count % options_size == 0) and length > count %>
-      <% count += 1 %>
-    <% end %>
-  <% end %>
-  <% out << '</tr></table>' %>
-  <% out << "<input type=\"hidden\" value=\"\" name=\"#{name}[]\"/>" %>
-  <%= out%>
+ <p><label><%=_('Tags')%></label> <%= link_to_new_tag %></p>
+    <% tags = Tag.get_generic_tag + Tag.get_competence_tag(@software.competences) %>
+    <%= hbtm_check_box( @software.tags, tags, 'software[tag_ids]', :size => 4) %>
 </div>

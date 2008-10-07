@@ -18,7 +18,8 @@
 #
 
 class SoftwaresController < ApplicationController
-  helper :filters, :versions, :issues, :competences, :contributions, :licenses
+  helper :filters, :versions, :issues, :competences, :contributions,
+    :licenses, :groupes
 
   # Not used for the moment
   # auto_complete_for :software, :name
@@ -133,9 +134,10 @@ class SoftwaresController < ApplicationController
   end
 
   def ajax_update_tags
-    @software = Software.find(:first, :conditions => { :name => params["software"]["name"] } )
-    @competences_check = Competence.find(params["software"]["competence_ids"]) unless params["software"]["competence_ids"] == [""]
-    render :partial => 'softwares/tags', :layout => false
+    return unless request.xhr? && params.has_key?(:software)
+    software = params[:software]
+    @software = Software.new(software)
+    render :partial => 'tags', :layout => false
   end
 
 private

@@ -35,6 +35,7 @@ table { border-collapse: collapse; }
 }
 
 div.info { width: 100%; }
+table.full { width: 100%; }
 
 /* used mainly in show view, where we don't want 100% width */
 .info  {

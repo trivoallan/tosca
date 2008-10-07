@@ -21,4 +21,11 @@ module CompetencesHelper
   def liste_competences(competences)
     competences.collect{|c| c.name}.join(', ')
   end
+
+  # call it like :
+  # <%= link_to_new_competence %>
+  def link_to_new_competence()
+    link_to image_create(_('a technology')), new_competence_path
+  end
+
 end

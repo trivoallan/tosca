@@ -23,7 +23,7 @@ module ContributionsHelper
   def public_table_of_contributions(contribs)
     return '' unless contribs.size > 0
     columns = [ _('Date'), _('Version'), _('Summary') ]
-    out = '<div class="bloc_scroll"><table class="show"><tr>'
+    out = '<div class="bloc_scroll"><table class="full"><tr>'
     columns.each { |c| out << "<th>#{c}</th>" }
     out << '</tr>'
     contribs.each{|c|

@@ -23,6 +23,13 @@ module GroupesHelper
     @@groupes ||= public_link_to(_('classification'), groupes_url)
   end
 
+  # call it like :
+  # <%= link_to_new_group %>
+  def link_to_new_group()
+    link_to image_create(_('a group')), new_groupe_path
+  end
+
+
   # Lien vers la consultation d'UN groupe
   def link_to_groupe(groupe)
       link_to groupe.name, groupe_url(:id => groupe.id)
