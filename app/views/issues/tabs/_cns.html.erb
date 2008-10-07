@@ -7,7 +7,7 @@
   <p><%= _("Your issue is not subject to a SLA.") %></p>
 <% else %>
  <h1><%= _('Service Level Agreement') %></h1>
- <table class="show">
+ <table class="full">
   <thead>
    <tr>
     <th></th>
@@ -20,7 +20,7 @@
    <% progress = elapsed.taken_into_account_progress %>
    <tr class="<%= cycle('even', 'odd') %>">
     <td><%= progress_image(elapsed.taken_into_account?, progress) %></td>
-    <th><%= _("Taken into account") %></th>
+    <td><strong><%= _("Taken into account") %></strong></td>
     <td><%= progress_bar(progress) %></td>
     <td><%= progress_text(elapsed.taken_into_account, 1.hour, interval) %></td>
    </tr>
@@ -30,7 +30,7 @@
      <td colspan="4"><%= _("Your issue has no commitment for workaround time") %></td>
     <% else %>
      <td><%= progress_image(elapsed.workaround?, progress) %></td>
-     <th><%= _("Workaround") %></th>
+     <td><strong><%= _("Workaround") %></strong></td>
      <td><%= progress_bar(elapsed.workaround_progress) %></td>
      <td><%= progress_text(elapsed.workaround, commitment.workaround.days, interval) %></td>
     <% end %>
@@ -41,7 +41,7 @@
      <td colspan="4"><%= _("Your issue has no commitment for correction time") %></td>
     <% else %>
      <td><%= progress_image(elapsed.correction?, progress) %></td>
-     <th><%= _("Correction") %></th>
+     <td><strong><%= _("Correction") %></strong></td>
      <td><%= progress_bar(progress) %></td>
      <td><%= progress_text(elapsed.correction, commitment.correction.days, @issue.interval) %></td>
     <% end %>

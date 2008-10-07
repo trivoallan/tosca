@@ -160,7 +160,6 @@ div.software {
   margin: 10px;
 }
 div.comment-container {
-
 }
 div.collapsed div.comment-content {
   display: none;
@@ -175,6 +174,7 @@ div.comment-header {
   padding: 0 10px;
   border: 1px solid #777;
   border-bottom: none;
+  cursor: pointer;
   -moz-border-radius: 5px 5px 0 0;
 }
 div.comment-content {

@@ -14,6 +14,19 @@ function tosca_reset(dom_id) {
     }, 1);
 }
 
-function tosca_show_all_comments() {
+
+function tosca_toggle_comment(div_id) {
+	if ($(div_id).hasClassName('collapsed')) {
+		$(div_id).removeClassName('collapsed');
+	} else {
+		$(div_id).addClassName('collapsed');
+	}
+}
+
+function tosca_expand_all_comments() {
  $$('div.comment-container').invoke('removeClassName', 'collapsed');
+}
+
+function tosca_collapse_all_comments() {
+ $$('div.comment-container').invoke('addClassName', 'collapsed');
 }

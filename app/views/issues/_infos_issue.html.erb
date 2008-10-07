@@ -12,6 +12,8 @@
        <li><%= link_to_unlink_contribution(@issue.id) %></li>
     <% end %>
     <li><%= link_to_add_call @issue.id %></li>
+    <li><%= link_to_function _('Expand all'), 'tosca_expand_all_comments()' %></li>
+    <li><%= link_to_function _('Collapse all'), 'tosca_collapse_all_comments()' %></li>
   <% end %>
   <li><%= link_to _("Print"), print_issue_path(@issue.id),
             :target => '_blank' %></li>
