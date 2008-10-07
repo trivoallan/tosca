@@ -10,6 +10,7 @@ public/javascripts/all-*.js
 public/festivaltts_mp3/*
 public/image/*
 public/images/reporting/*
+public/stylesheets/images
 test/coverage/*
 tmp/*
 .dotest/

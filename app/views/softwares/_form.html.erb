@@ -29,6 +29,9 @@
      <th><label for="software_groupe_id"><%=_('Group')%></label>
       <%= link_to_new_group %></th>
      <td><%= select(:software, :groupe_id, @groupes) %></td>
+    </tr><tr>
+     <th><label for="software_private"><%=_('Private')%></label></th>
+     <td><%= check_box(:software, :private) %></td>
     </tr>
    </table>
 

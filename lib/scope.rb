@@ -45,6 +45,7 @@ module Scope
     else
       # Forbid access to issue if we are not connected. It's just a paranoia.
       Issue.set_scope([0])
+      Software.set_public_scope()
     end
     begin
       yield
@@ -56,6 +57,7 @@ module Scope
         end
       else
         Issue.remove_scope
+        Software.remove_scope
       end
     end
   end

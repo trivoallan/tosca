@@ -41,10 +41,9 @@ class Software < ActiveRecord::Base
     _('You have to specify at least one technology')
 
   # See ApplicationController#scope
-  def self.set_scope(contract_ids)
+  def self.set_public_scope()
     self.scoped_methods << { :find => { :conditions =>
-        [ 'contracts.id IN (?)', contract_ids ],
-        :include => [:versions => :contracts]} } if contract_ids
+        { :private => false } } }
   end
 
   # TODO : l'une des deux est de trop. Normalement c'est

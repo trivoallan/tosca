@@ -11,26 +11,34 @@
         <% unless @software.image.blank? %>
           <%= software_logo(@software, :size => :thumb) %>
         <% end %>
+        <% if @software.private? && @ingenieur %>
+          (<%= _('Private') %>)
+        <% end %>
       </td></tr>
-     <tr><td><b><%= _('Summary') %></b> </td>
+     <tr><th><%= _('Summary') %></th>
          <td><%= @software.resume %></td></tr>
      <tr><td colspan="2">
-          <fieldset><legend><%=_('Description')%></legend>
+          <fieldset>
            <%= @software.description %>
           </fieldset></td></tr>
      <% if @ingenieur %>
-      <tr><td><b><%= _('Reference') %></b></td>
+      <tr><th><%= _('Reference') %></th>
           <td><%=h @software.referent %></td></tr>
      <% end %>
 
-     <tr><td><b><%= _('Copyright') %></b></td>
+     <tr><th><%= _('Copyright') %></th>
          <td><%=h @software.license.name if @software.license %></td></tr>
 
-     <tr><td><b><%= _('Technologies') %></b></td>
+     <tr><th><%= _('Technologies') %></th>
          <td><%= @software.competences.collect{|c| c.name}.join(', ') %></td></tr>
 
-     <tr><td><b><%= _('Group') %></b></td>
+     <tr><th><%= _('Group') %></th>
          <td><%= public_link_to(@software.groupe.name, groupe_path(@software.groupe_id) ) if @software.groupe %></td></tr>
+
+     <tr><th><%=n_('Version', 'Versions', @software.versions.size)%></b> <%= link_to_new_version(@software) %></th>
+         <td><%= @software.versions.collect{|v| link_to_version v}.join(', ') %></td>
+     </tr>
+
 
      <tr><td><b><%= _('Links') %></b> <%= link_to_new_urlsoftware(@software.id) %></td>
          <% options = {:no_title => true, :edit => 'urlsoftware'} %>
@@ -52,17 +60,6 @@
            <%=show_list(@issues, _('Issue'), options) {|d| link_to_issue d}%>
          </div>
         <% end %></td>
-     </tr>
-
-     <tr><td colspan="2"><b><%=n_('Version', 'Versions', @software.versions.size)%></b> <%= link_to_new_version(@software) %><br />
-         <% options[:edit] = 'version' %>
-         <% if @software.versions.size > 0 %>
-          <div class="bloc_scroll">
-           <%= show_list(@software.versions, _('Version'), options) do |version|
-              link_to_version version
-           end %>
-          </div>
-         <% end %></td>
      </tr>
 
      <tr><td colspan="2"><b><%=_('Contributions')%></b>
