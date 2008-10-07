@@ -1,4 +1,4 @@
-software_00001: 
+software_00001:
   name: OpenOffice.org
   groupe_id: 2
   referent: openoffice.org
@@ -6,7 +6,8 @@ software_00001:
   resume: OpenOffice.org comprehensive office suite.
   description: "OpenOffice.org is an Open Source, community-developed, multi-platform office productivity suite.  It includes the key desktop applications, such as a word processor, spreadsheet, presentation manager, formula editor and drawing program, with a user interface and feature set similar to other office suites.  Sophisticated and flexible, OpenOffice.org also works transparently with a variety of file formats, including Microsoft Office.  Usage: Simply type &quot;ooffice&quot; to run OpenOffice.org or select the issueed component (Writer, Calc, Draw, Impress, etc.) from your desktop menu. The ooffice wrapper script will install a few files in the user&#39;s home, if necessary.  The OpenOffice.org team hopes you enjoy working with OpenOffice.org!  Note: Non-.vor templates covered under the GPL license."
   license_id: 3
-software_00002: 
+  private: false
+software_00002:
   name: Firefox
   groupe_id: "16"
   referent: firefox
@@ -14,7 +15,8 @@ software_00002:
   description: Mozilla Firefox is an open-source web browser, designed for standards <br />compliance, performance and portability.
   resume: Mozilla Firefox web browser
   license_id: "48"
-software_00003: 
+  private: false
+software_00003:
   name: CVS
   groupe_id: "10"
   referent: cvs
@@ -22,3 +24,13 @@ software_00003:
   description: CVS (Concurrent Version System) is a version control system that can<br/>record the history of your files (usually, but not always, source<br/>code). CVS only stores the differences between versions, instead of<br/>every version of every file you have ever created. CVS also keeps a log<br/>of who, when, and why changes occurred.<br/><br/>CVS is very helpful for managing releases and controlling the<br/>concurrent editing of source files among multiple authors. Instead of<br/>providing version control for a collection of files in a single<br/>directory, CVS provides version control for a hierarchical collection<br/>of directories consisting of revision controlled files. These<br/>directories and files can then be combined together to form a software<br/>release.
   resume: A version control system.
   license_id: "3"
+  private: false
+software_00004:
+  name: CustomLDAP
+  groupe_id: "10"
+  referent: custom
+  id: 4
+  description: A custom version of an LDAP server
+  resume: It's not a real one
+  license_id: "3"
+  private: true

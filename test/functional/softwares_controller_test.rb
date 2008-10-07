@@ -63,6 +63,18 @@ class SoftwaresControllerTest < Test::Unit::TestCase
     assert assigns(:software)
   end
 
+  # Some software should not be publicly visible.
+  def test_public_access
+    get :show, :id => 4
+    assert_response :success
+    assert_template 'show'
+
+    logout
+    assert_raise(ActiveRecord::RecordNotFound) {
+      get :show, :id => 4
+    }
+  end
+
   def test_new
     get :new
 
