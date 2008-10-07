@@ -42,7 +42,6 @@ class ReportingController < ApplicationController
 
   # allows to launch activity report
   def configuration
-    _titles()
     @contracts = (@recipient ? @recipient.client.contracts :
                  Contract.find(:all, Contract::OPTIONS))
   end
@@ -122,12 +121,12 @@ class ReportingController < ApplicationController
     # rmtree(reporting)
     # Dir.mkdir(reporting)
 
-    # on remplit
+    # writing graph on disk
     i_want_to_draw_graphs = true
     if (i_want_to_draw_graphs)
-      write3graph(:distribution, Gruff::StackedBar)
-      write3graph(:severity, Gruff::StackedBar)
-      write3graph(:resolution, Gruff::StackedBar)
+      write3graph(:by_type, Gruff::StackedBar)
+      write3graph(:by_severity, Gruff::StackedBar)
+      write3graph(:by_status, Gruff::StackedBar)
 
       write3graph(:evolution, Gruff::Line)
       write3graph(:cancelled, Gruff::Bar)
@@ -140,35 +139,34 @@ class ReportingController < ApplicationController
     #     write_graph(:top5_issues, Gruff::Pie)
     #     write_graph(:top5_softwares, Gruff::Pie)
     # on nettoie
-    @first_col.each { |c| c.gsub!('\n','') }
+    @months_col.each { |c| c.gsub!('\n','') }
   end
 
   private
 
   # initialise toutes les variables de classes nécessaire
   # path stocke les chemins d'accès, @données les données
-  # @first_col contient la première colonne et @contract le contract
+  # @months_col contient la première colonne et @contract le contract
   # sélectionné
   def init_class_var(params)
     period =  params[:reporting][:period].to_i
     return unless period > 0
     @contract = Contract.find(params[:reporting][:contract_id].to_i)
     @data, @path, @report, @colors = {}, {}, {}, {}
-    @titles = @@titles
     @report[:start_date] = [ @contract.start_date.beginning_of_month,
                              Time.now ].min
     @report[:end_date] = [ calendar2time(params[:end_date]),
                            @contract.end_date.beginning_of_month].min
-    @first_col = []
+    @months_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
     while (current_month <= end_date) do
-      @first_col.push current_month.strftime('%b \n%Y')
+      @months_col.push current_month.strftime('%b \n%Y')
       current_month = current_month.advance(:months => 1)
     end
     @labels = {}
     i = 0
-    @first_col.each do |c|
+    @months_col.each do |c|
       @labels[i] = c if ((i % 2) == 0)
       i += 1
     end
@@ -192,16 +190,15 @@ class ReportingController < ApplicationController
   def init_data_general
     # Répartions par mois (StackedBar)
     # _closed doit être en premier
-    @data[:distribution]  =
-     [ [:informations_closed], [:anomalies_closed],
-     [:evolutions_closed], [:informations_active],
-     [:anomalies_active], [:evolutions_active] ]
-    @data[:severity] =
-     [ [:bloquantes_closed], [:majeures_closed],
-     [:mineures_closed], [:sans_objet_closed],
-     [:bloquantes_active], [:majeures_active],
-     [:mineures_active], [:sans_objet_active] ]
-    @data[:resolution] =
+    @data[:by_type]  =
+     [ [:informations_active], [:anomalies_active], [:evolutions_active],
+       [:informations_closed], [:anomalies_closed], [:evolutions_closed] ]
+    @data[:by_severity] =
+      [ [:bloquantes_active], [:majeures_active],
+        [:mineures_active], [:sans_objet_active],
+        [:bloquantes_closed], [:majeures_closed],
+        [:mineures_closed], [:sans_objet_closed] ]
+    @data[:by_status] =
      [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:active] ]
     @data[:evolution] =
      [ [:'bénéficiaires'], [:softwares], [:contributions] ] # TODO : [:interactions]
@@ -233,7 +230,7 @@ class ReportingController < ApplicationController
     @data.each_key do |key|
       mykey = :"#{key}_#{period}"
       data[mykey] = []
-      ponderation = (key.to_s =~ /^temps/) ? true : false
+      ponderation = (key.to_s =~ /^time/) ? true : false
       @data[key].each do |value|
         result = []
         result.push value[0]
@@ -262,9 +259,9 @@ class ReportingController < ApplicationController
 
       issues[1], issues[2] = infdate, supdate
       Issue.send(:with_scope, { :find => { :conditions => issues } }) do
-        compute_distribution @data[:distribution]
-        compute_severity @data[:severity]
-        compute_resolution @data[:resolution]
+        compute_by_type @data[:by_type]
+        compute_by_severity @data[:by_severity]
+        compute_by_status @data[:by_status]
         compute_cancelled @data[:cancelled]
         compute_time @data
         compute_evolution @data[:evolution]
@@ -381,32 +378,39 @@ class ReportingController < ApplicationController
 
   ##
   # Compte les issues selon leur nature
-  def compute_distribution(report)
+  def compute_by_type(report)
     # TODO : faire des requêtes paramètrées, avec des ?
     informations = { :conditions => "typeissue_id = 1" }
     anomalies = { :conditions => "typeissue_id = 2" }
     evolutions = { :conditions => "typeissue_id = 5" }
 
-    Issue.send(:with_scope, { :find => { :conditions => Issue::TERMINEES } }) do
+    Issue.send(:with_scope, { :find => { :conditions => Issue::EN_COURS } }) do
       report[0].push Issue.count(informations)
       report[1].push Issue.count(anomalies)
       report[2].push Issue.count(evolutions)
     end
 
-    Issue.send(:with_scope, { :find => { :conditions => Issue::EN_COURS } }) do
+    Issue.send(:with_scope, { :find => { :conditions => Issue::TERMINEES } }) do
       report[3].push Issue.count(informations)
       report[4].push Issue.count(anomalies)
       report[5].push Issue.count(evolutions)
     end
+
   end
 
   ##
   # Compte les issues par sévérités
-  def compute_severity(report)
+  def compute_by_severity(report)
     severities = []
     # TODO : requête paramètréé, avec ?
      (1..4).each do |i|
       severities.concat [ { :conditions => "severity_id = #{i}" } ]
+    end
+
+    Issue.send(:with_scope, { :find => { :conditions => Issue::EN_COURS } }) do
+      4.times do |t|
+        report[t+4].push Issue.count(severities[t])
+      end
     end
 
     Issue.send(:with_scope, { :find => { :conditions => Issue::TERMINEES } }) do
@@ -414,16 +418,11 @@ class ReportingController < ApplicationController
         report[t].push Issue.count(severities[t])
       end
     end
-    Issue.send(:with_scope, { :find => { :conditions => Issue::EN_COURS } }) do
-      4.times do |t|
-        report[t+4].push Issue.count(severities[t])
-      end
-    end
   end
 
   ##
   # Compte le nombre de issue Annulée, Cloturée ou en cours de traitement
-  def compute_resolution(report)
+  def compute_by_status(report)
     condition = 'issues.statut_id = ?'
     contournee = { :conditions => [condition, 5] }
     corrigee = { :conditions => [condition, 6] }
@@ -488,15 +487,12 @@ class ReportingController < ApplicationController
   end
 
 
-  # todo : une variable de classe localise (@@titles[locale])
   def _titles
-    @@titles = {
+    @titles = {
       :distribution => _('Distribution of your issues'),
-      :distribution_cumulee => _('Distribution of issues'),
-      :severity => _('Severity of your issues'),
-      :severity_cumulee => _('Severity of your issues'),
-      :resolution => _('Resolution of your issues'),
-      :resolution_cumulee => _('Resolution of your issues'),
+      :by_type => _('By types'),
+      :by_severity => _('By severities'),
+      :by_status => _('By status'),
 
       :cancelled => _('Cancelled issues'),
       :evolution => _('Evolution of the activity volume'),

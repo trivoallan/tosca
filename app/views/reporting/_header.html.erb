@@ -1,4 +1,4 @@
-<% client = (@recipient ? @recipient.client : nil) %>
+<% client = (@contract ? @contract.client : nil) %>
 <% display_name = (client ? client.name : App::Name) %>
 
 <%#= render_partial 'form' %>

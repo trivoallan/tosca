@@ -36,7 +36,7 @@ module ReportingHelper
       result << '</tr><tr>'
       size.times do |t|
         result << '<th nowrap>'
-        result << data[t][0].to_s.gsub(/_(terminees|en_cours)/, '').gsub('_','&nbsp;').capitalize
+        result << data[t][0].to_s.gsub(/_(closed|active)/, '').gsub('_','&nbsp;').capitalize
         result << '</th>'
       end
     else
@@ -54,9 +54,10 @@ module ReportingHelper
   # options : one_row, muli_row et titre
   def report_evolution(name, options={})
     data = @data[name]
-    if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
+    if (not data.empty? and data[0].to_s =~ /_(closed|active)/)
       options.update(:divise => true)
     end
+    @first_col = @months_col
     table = ''
 #    table << '<div id="left">'
     table << '<table width="100%">'
@@ -93,8 +94,12 @@ module ReportingHelper
   # TODO : style : center report_item tr td
   def report_distribution(name, options= {})
     data = @data[name]
-    if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
+    if (not data.empty? and data[0].to_s =~ /_(closed|active)/)
+      @first_col = [ _('Running'), _('Closed') ]
+      options.update(:distribution => true)
       options.update(:divise => true)
+    else
+      options.update(:without_firstcol => true)
     end
     middle = :"#{name}_middle"
     total = :"#{name}_total"
@@ -117,10 +122,8 @@ module ReportingHelper
     table << '  </td>'
     table << ' </tr>'
 
-    # pas de deuxieme partie pour les calculs des delais
-    # (% affichés dans la première)
-    unless (name.to_s =~ /^temps/)
-      options.update(:without_firstcol => true)
+    # there's not 2nd part in *_time stuff
+    unless (name.to_s =~ /_time$/)
       table << ' <tr>'
       # cellule contenant le graphique
       table << '  <td class="report_data" align="center">'
@@ -145,7 +148,7 @@ module ReportingHelper
     return out unless colors and colors.size > 0
 
     out << '<table align="center">'
-    if (not data.empty? and data[0].to_s =~ /_(terminees|en_cours)/)
+    if (not data.empty? and data[0].to_s =~ /_(closed|active)/)
       twolines = true
       size = data.size / 2
     else
@@ -159,7 +162,7 @@ module ReportingHelper
     size.times do |i|
       index = (twolines ? i*2 : i)
       name = data[index][0].to_s
-      head = name.gsub(/_(terminees|en_cours)/, '').gsub('_','&nbsp;').capitalize
+      head = name.gsub(/_(closed|active)/, '').gsub('_','&nbsp;').capitalize
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
       out << "<tr><th>#{_('Running')}</th><th>#{_('Finished')}</th></tr>" if twolines
       out << '<tr>'
@@ -211,12 +214,12 @@ module ReportingHelper
   # :divise : display only half of the columns
   # :width : force the width
   # TODO : first_col, options[:without_firstcol] : needs more love
-  def show_report_table(first_col, name, titres, options = {})
+  def show_report_table(first_col, name, titles, options = {})
     elements = @data[name]
     return 'aucune donnée' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width}>"
-    result << titres
+    result << titles
 
     size = (options[:divise] ? (elements.size / 2) : elements.size)
 
@@ -224,17 +227,28 @@ module ReportingHelper
       result << "<tr class=\"#{cycle('even', 'odd')}\">"
       result << "<td>#{first_col[i]}</td>"  unless options[:without_firstcol]
 
-      size.times do |c|
-        en_cours = (options[:divise] ? elements[c+size][i + 1] : 0)
-        total = elements[c][i + 1] + en_cours
-        if (total.is_a? Float)
-            total = (total==0.0 ? '-' : "#{total.round}\%")
+      if options[:distribution]
+        size.times do |c|
+          result << "<td>#{elements[c+i*size].last}</td>"
         end
-        result << "<td>#{total}"
-        result << " (#{en_cours})" if en_cours != 0
-        result << "</td>"
+      else
+        size.times do |c|
+          running, total = 0, 0
+          if options[:divise]
+            running = elements[c][i + 1]
+            total = elements[c+size][i + 1]
+          else
+            total = elements[c][i + 1]
+          end
+          if (total.is_a? Float)
+            total = (total==0.0 ? '-' : "#{total.round}\%")
+          end
+          result << "<td>#{total}"
+          result << " (#{running})" if running != 0
+          result << "</td>"
+        end
+        i += 1
       end
-      i += 1
       result << '</tr>'
     }
     result << '</table>'
