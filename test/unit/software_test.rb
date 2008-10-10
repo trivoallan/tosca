@@ -26,7 +26,7 @@ class SoftwareTest < Test::Unit::TestCase
   end
 
   def test_scope
-    Software.set_scope([Contract.find(:first).id])
+    Software.set_public_scope
     Software.remove_scope
   end
 

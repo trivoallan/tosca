@@ -21,15 +21,15 @@ module ReportingHelper
   # Renvoit les titres du tableau
   # Data contient les entêtes. Les options applicable sont :
   # :without_firstcol => permet de ne pas afficher la première colonne
-  # :divise => spécifie si on prends en compte les issues vivantes
+  # :separated => spécifie si on prends en compte les issues vivantes
   # :with2rows => affichera les entêtes sur 2 lignes, il <b>contient</b> l'intitulé
   # TODO : renommer with2rows en title
   def fill_titles(data, options)
-    size = (options[:divise] ? data.size / 2 : data.size)
+    size = (options[:separated] ? data.size / 2 : data.size)
     result = ''
     return result unless size > 0
     result << '<tr>'
-    first = _('Period')
+    first = (options.has_key?(:distribution) ? _('Status') : _('Period'))
     if options[:with2rows]
       result << "<th rowspan=\"2\">#{first}</th>"  unless options[:without_firstcol]
       result << "<th nowrap colspan=\"#{size}\"><center>#{options[:with2rows]}</center></th>"
@@ -45,7 +45,11 @@ module ReportingHelper
       size.times do |t|
         titres.push data[t][0].to_s.gsub('_', '&nbsp;').capitalize
       end
-      titres.each {|t| result << "<th nowrap>#{t}</th>" }
+      titres.each do |t|
+        result << '<th nowrap>'
+        result << t.to_s.gsub(/_(closed|active)/, '').gsub('_','&nbsp;').capitalize
+        result << '</th>'
+      end
     end
     result << '</tr>'
   end
@@ -55,7 +59,7 @@ module ReportingHelper
   def report_evolution(name, options={})
     data = @data[name]
     if (not data.empty? and data[0].to_s =~ /_(closed|active)/)
-      options.update(:divise => true)
+      options.update(:separated => true)
     end
     @first_col = @months_col
     table = ''
@@ -94,12 +98,8 @@ module ReportingHelper
   # TODO : style : center report_item tr td
   def report_distribution(name, options= {})
     data = @data[name]
-    if (not data.empty? and data[0].to_s =~ /_(closed|active)/)
-      @first_col = [ _('Running'), _('Closed') ]
-      options.update(:distribution => true)
-      options.update(:divise => true)
-    else
-      options.update(:without_firstcol => true)
+    if options.has_key? :separated
+      @first_col = [ _('Running'), _('Finished') ]
     end
     middle = :"#{name}_middle"
     total = :"#{name}_total"
@@ -123,7 +123,7 @@ module ReportingHelper
     table << ' </tr>'
 
     # there's not 2nd part in *_time stuff
-    unless (name.to_s =~ /_time$/)
+    if options.has_key? :with_table
       table << ' <tr>'
       # cellule contenant le graphique
       table << '  <td class="report_data" align="center">'
@@ -211,7 +211,7 @@ module ReportingHelper
   # Print reporting tables
   # options are :
   # :without_firstcol : disabled the column with the dates
-  # :divise : display only half of the columns
+  # :separated : display only half of the columns
   # :width : force the width
   # TODO : first_col, options[:without_firstcol] : needs more love
   def show_report_table(first_col, name, titles, options = {})
@@ -221,20 +221,20 @@ module ReportingHelper
     result = "<table #{width}>"
     result << titles
 
-    size = (options[:divise] ? (elements.size / 2) : elements.size)
+    size = (options[:separated] ? (elements.size / 2) : elements.size)
 
     first_col.each_index { |i|
       result << "<tr class=\"#{cycle('even', 'odd')}\">"
       result << "<td>#{first_col[i]}</td>"  unless options[:without_firstcol]
 
-      if options[:distribution]
+      if options[:with_table]
         size.times do |c|
           result << "<td>#{elements[c+i*size].last}</td>"
         end
       else
         size.times do |c|
           running, total = 0, 0
-          if options[:divise]
+          if options[:separated]
             running = elements[c][i + 1]
             total = elements[c+size][i + 1]
           else

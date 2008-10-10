@@ -127,7 +127,7 @@
   font-weight: bold;
   border: 1px solid #797979;
   padding: 1px 3px 1px 1px;
-  background: url("../images/active-bg.gif"); color: #fff;
+  background: url("../images/active-bg.gif");
 }
 
 .calendar tbody .disabled { color: #999; }

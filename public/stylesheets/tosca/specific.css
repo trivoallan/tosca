@@ -389,7 +389,7 @@ table.report tr td {
 	text-align: center;
 }
 
-/* formulaire de saisie mois et ann� */
+/* reporting class' */
 .report_form {
 	background-color: #d2dfd2;
 	float:right;
@@ -412,11 +412,11 @@ table.report tr td {
 }
 .report_legend {
 	text-align: center;
-	text-align: center;
 	width: 20%;
 }
+.report_legend th { background-color: white; }
+.report_data th { background-color: white; }
 .report_data {
-	/*background-color: #d2dfd2;*/
 	width: 40%;
 	vertical-align: top;
 }
