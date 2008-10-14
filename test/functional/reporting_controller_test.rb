@@ -19,10 +19,27 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ReportingControllerTest < ActionController::TestCase
+  fixtures :all
 
   def setup
     login 'admin', 'admin'
   end
+
+  def test_reporting
+    get :configuration
+    assert_response :success
+    assert_template 'configuration'
+    assert_not_nil assigns(:contracts)
+
+    form = select_form 'main_form'
+    form.reporting.contract_ids = [ '1', '2' ]
+    form.submit
+
+    assert_response :success
+    assert_template 'general'
+    assert_not_nil assigns(:contracts)
+  end
+
 
 =begin
   # deactivated for now

@@ -42,8 +42,7 @@ class ReportingController < ApplicationController
 
   # allows to launch activity report
   def configuration
-    @contracts = (@recipient ? @recipient.client.contracts :
-                 Contract.find(:all, Contract::OPTIONS))
+    @contracts = session[:user].contracts
   end
 
   # To display new issues by months
@@ -84,7 +83,7 @@ class ReportingController < ApplicationController
 
     init_class_var(params)
     redirect_to configuration_reporting_path and return unless
-      @contract and (@report[:start_date] < @report[:end_date])
+      @contracts and (@report[:start_date] < @report[:end_date])
     init_data_general
     fill_data_general
 
@@ -151,12 +150,12 @@ class ReportingController < ApplicationController
   def init_class_var(params)
     period =  params[:reporting][:period].to_i
     return unless period > 0
-    @contract = Contract.find(params[:reporting][:contract_id].to_i)
+    @contracts = Contract.find(params[:reporting][:contract_ids].each(&:to_i))
     @data, @path, @report, @colors = {}, {}, {}, {}
-    @report[:start_date] = [ @contract.start_date.beginning_of_month,
-                             Time.now ].min
-    @report[:end_date] = [ calendar2time(params[:end_date]),
-                           @contract.end_date.beginning_of_month].min
+    dates = @contracts.collect {|c| c.start_date.beginning_of_month}
+    @report[:start_date] = (dates << Time.now).min
+    dates = @contracts.collect {|c| c.end_date.beginning_of_month}
+    @report[:end_date] = (dates << calendar2time(params[:end_date])).min
     @months_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
@@ -178,12 +177,12 @@ class ReportingController < ApplicationController
       @report[:total_report] = compute_nb_month(start_date, end_date)
     else
       flash.now[:warn] = _('incorrect parameters')
-      # condition de sortie
-      @contract = nil
+      # out condition
+      @contracts = nil
     end
   rescue
     flash.now[:warn] = _('incorrect parameters')
-    @contract = nil
+    @contracts = nil
   end
 
   # initialisation de @data
@@ -250,8 +249,8 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     end_date = @report[:end_date]
 
-    issues = [ 'issues.created_on BETWEEN ? AND ? AND issues.contract_id = ?',
-                 nil, nil, @contract.id ]
+    issues = [ 'issues.created_on BETWEEN ? AND ? AND issues.contract_id IN (?)',
+                 nil, nil, @contracts.collect(&:id) ]
     until (start_date > end_date) do
       infdate = "#{start_date.strftime('%y-%m')}-01"
       start_date = start_date.advance(:months => 1)
