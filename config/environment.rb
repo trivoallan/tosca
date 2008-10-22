@@ -23,7 +23,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.1' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.1.1' unless defined? RAILS_GEM_VERSION
 $KCODE='u'
 require 'jcode'
 
@@ -47,7 +47,7 @@ begin
   require 'desert'
 rescue
   # It cannot be loaded in config.gem, so we need this hack for freezed version
-  desert_path = File.join(RAILS_ROOT, 'vendor', 'gems', 'desert-0.2.1', 'lib')
+  desert_path = File.join(RAILS_ROOT, 'vendor', 'gems', 'desert-0.3.2', 'lib')
   $LOAD_PATH.unshift desert_path
   require 'desert'
 end
@@ -74,9 +74,9 @@ Rails::Initializer.run do |config|
 
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
-  config.gem 'rmagick', :version => '1.15.15', :lib => "RMagick"
+  # config.gem 'rmagick', :version => '1.15.15', :lib => "RMagick"
   # Used to load the extension mechanism
-  config.gem 'desert', :version => '0.2.1'
+  config.gem 'desert', :version => '0.3.2'
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
@@ -162,5 +162,3 @@ if defined? GettextLocalize
   GettextLocalize::default_locale = 'en_US'
   GettextLocalize::default_methods = [:param, :header, :session]
 end
-
-
