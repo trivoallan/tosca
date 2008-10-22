@@ -34,22 +34,13 @@ module ReportingHelper
       result << "<th rowspan=\"2\">#{first}</th>"  unless options[:without_firstcol]
       result << "<th nowrap colspan=\"#{size}\"><center>#{options[:with2rows]}</center></th>"
       result << '</tr><tr>'
-      size.times do |t|
-        result << '<th nowrap>'
-        result << data[t][0].to_s.gsub(/_(closed|active)/, '').gsub('_','&nbsp;').capitalize
-        result << '</th>'
-      end
     else
-      titres = []
-      titres.push first unless options[:without_firstcol]
-      size.times do |t|
-        titres.push data[t][0].to_s.gsub('_', '&nbsp;').capitalize
-      end
-      titres.each do |t|
-        result << '<th nowrap>'
-        result << t.to_s.gsub(/_(closed|active)/, '').gsub('_','&nbsp;').capitalize
-        result << '</th>'
-      end
+      result << '<th></th>'
+    end
+    size.times do |t|
+      result << '<th nowrap>'
+      result << data[t][0].to_s.gsub(/_(closed|active)/, '').capitalize
+      result << '</th>'
     end
     result << '</tr>'
   end
@@ -63,7 +54,6 @@ module ReportingHelper
     end
     @first_col = @months_col
     table = ''
-#    table << '<div id="left">'
     table << '<table width="100%">'
     table << ' <tr>'
 
@@ -71,20 +61,15 @@ module ReportingHelper
     table << '  <td class="report_graph">'
     table <<    report_graph(name, options) unless name.to_s =~ /^temps/
     table << '  </td>'
-#    table << '</div>'
 
     # cellule avec la légende
-#    table << '<div id="middle">'
-    table << '  <td class="report_legend">'
-    table <<    report_legend(name)
-    table << '  </td>'
-#    table << '</div>'
+    table << '  <td class="report_legend"><div align="center">'
+    table <<    report_legend(name, options)
+    table << '  </div></td>'
     # cellule contenant le tableau de données
-#    table << '<div id="right">'
     table << '  <td class="report_data">'
     table <<    report_data(name, options)
     table << '  </td>'
-#    table << '</div>'
 
     table << ' </tr>'
     table << '</table>'
@@ -98,6 +83,7 @@ module ReportingHelper
   # TODO : style : center report_item tr td
   def report_distribution(name, options= {})
     data = @data[name]
+    options[:distribution] = true
     if options.has_key? :separated
       @first_col = [ _('Running'), _('Finished') ]
     end
@@ -112,9 +98,9 @@ module ReportingHelper
     table <<    report_graph(middle, options)
     table << '  </td>'
     # cellule avec la légende
-    table << '  <td class="report_legend">'
-    table <<    report_legend(name)
-    table << '  </td>'
+    table << '  <td class="report_legend"><div align="center">'
+    table <<    report_legend(name, options)
+    table << '  </div></td>'
     # cellule contenant le graphique depuis le début
     table << '  <td class="report_data" align="center">'
     table << '  ' + _('Since the begining of your contract')
@@ -141,14 +127,17 @@ module ReportingHelper
     table
   end
 
-  def report_legend(name)
+  # Draws the legend graph, according to the <tt>name</tt> index.
+  # Options in use :
+  # * :separated : used to know if there are double or simple data lines
+  def report_legend(name, options)
     out = ''
     data = @data[name].sort{|x,y| x[0].to_s <=> y[0].to_s}
     colors = @colors[name]
     return out unless colors and colors.size > 0
 
     out << '<table align="center">'
-    if (not data.empty? and data[0].to_s =~ /_(closed|active)/)
+    if options.has_key?(:separated)
       twolines = true
       size = data.size / 2
     else
@@ -221,20 +210,22 @@ module ReportingHelper
     result = "<table #{width}>"
     result << titles
 
-    size = (options[:separated] ? (elements.size / 2) : elements.size)
+    separated = options.has_key? :separated
+    size = (separated ? (elements.size / 2) : elements.size)
 
     first_col.each_index { |i|
       result << "<tr class=\"#{cycle('even', 'odd')}\">"
-      result << "<td>#{first_col[i]}</td>"  unless options[:without_firstcol]
+      result << "<td>#{first_col[i]}</td>" # unless options[:without_firstcol]
 
       if options[:with_table]
         size.times do |c|
-          result << "<td>#{elements[c+i*size].last}</td>"
+          pos = (separated ? c+i*size : c)
+          result << "<td>#{elements[pos].last}</td>"
         end
       else
         size.times do |c|
           running, total = 0, 0
-          if options[:separated]
+          if separated
             running = elements[c][i + 1]
             total = elements[c+size][i + 1]
           else

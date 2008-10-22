@@ -121,7 +121,7 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # writing graph on disk
-    i_want_to_draw_graphs = true
+    i_want_to_draw_graphs = false
     if (i_want_to_draw_graphs)
       write3graph(:by_type, Gruff::StackedBar)
       write3graph(:by_severity, Gruff::StackedBar)
