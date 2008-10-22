@@ -31,14 +31,14 @@ module ReportingHelper
     result << '<tr>'
     first = (options.has_key?(:distribution) ? _('Status') : _('Period'))
     if options[:with2rows]
-      result << "<th rowspan=\"2\">#{first}</th>"  unless options[:without_firstcol]
-      result << "<th nowrap colspan=\"#{size}\"><center>#{options[:with2rows]}</center></th>"
+      result << %Q{<th rowspan="2">#{first}</th>} unless options[:without_firstcol]
+      result << %Q{<th nowrap="nowrap" colspan="#{size}"><div style="align: center">#{options[:with2rows]}</div></th>}
       result << '</tr><tr>'
     else
       result << '<th></th>'
     end
     size.times do |t|
-      result << '<th nowrap>'
+      result << '<th nowrap="nowrap">'
       result << data[t][0].to_s.gsub(/_(closed|active)/, '').capitalize
       result << '</th>'
     end
@@ -206,7 +206,7 @@ module ReportingHelper
   def show_report_table(first_col, name, titles, options = {})
     elements = @data[name]
     return 'aucune donnée' unless elements and elements.size > 0
-    width = ( options[:width] ? "width=#{options[:width]}" : '' )
+    width = ( options[:width] ? %Q{width="#{options[:width]}"} : '' )
     result = "<table #{width}>"
     result << titles
 
