@@ -212,6 +212,25 @@ class AccountController < ApplicationController
 =end
   end
 
+  def forgotten_password
+    case request.method
+    when :get
+      # Do nothing
+    when :post
+      user = params[:user]
+      return unless user && user.has_key?(:email) && user.has_key?(:login)
+      flash[:warn] = _('Unknown account')
+      conditions = { :email => user[:email], :login => user[:login] }
+      @user = User.find(:first, :conditions => conditions)
+      return unless @user
+      if @user.generate_password and @user.save
+        flash[:warn] = nil
+        flash[:notice] = _('Your new password has been generated.')
+        Notifier::deliver_user_signup({:user => @user}, flash)
+      end
+    end
+  end
+
   # Let an Engineer become a client user
   def become
     begin

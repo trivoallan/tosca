@@ -145,10 +145,13 @@ EOS
                    :title => _('Access to the list of contributions.'))
   end
 
-  # About page
   def public_link_to_about()
     public_link_to('?', about_welcome_path,
                    :title => _("About %s") % App::Name)
+  end
+
+  def public_link_to_forgotten_pwd
+    public_link_to(_('Forgotten password ?'), forgotten_password_accounts_path)
   end
 
   # No cache for this one. It's not a public link /!\

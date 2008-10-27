@@ -13,12 +13,11 @@
     <td><input type="password" name="user_password" id="user_password" size="16"/>
         <input type="hidden" name="user_crypt" id="user_crypt" size="24" value="false"/></td>
   </tr><tr>
-    <td colspan="2">
-      <center>
-        <input type="submit" name="login" value="<%=_('Validate')%> &#187;" class="primary" />
-        <input type="hidden" name="javascript" id="javascript" size="24" value="false"/>
-      </center>
-    </td>
+    <td colspan="2"><div style="text-align: right">
+        <input type="submit" name="login" value="<%=_('Validate')%> &#187;"/>
+    </div></td>
   </tr>
  </table>
 <% end %>
+<% # used to indent this link properly when this view is put in the red box %>
+&nbsp;&nbsp;&nbsp;<%= public_link_to_forgotten_pwd %>
