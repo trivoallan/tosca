@@ -1,16 +1,13 @@
 <h1><%= _("Access denied") %></h1>
 
 <div class="information error">
-<% text = "<p>" << _("This page is restricted.") << "</p>" <<
-          "<p>" << _("You can go to the homepage.") << "</p>" <<
-          "<p>" << _("You can also login with a user who has more rights :") << "</p>"
-%>
-<%= text %>
+<p><%= _("Access to this page is restricted.") %></p>
 </div>
 
-<%= render :file => "account/login" %>
+<%= render :file => "account/login", :use_full_path => true %>
 
 <%= public_link_to_home %>
+<%= public_link_to_forgotten_pwd %>
 
 <%# This is a hard link because it must point on the base url%>
 <p><a href="http://<%= request.host %>/"><%= _("Reconnect") %></a></p>
