@@ -35,7 +35,7 @@ config.action_view.debug_rjs                         = true
 config.action_mailer.raise_delivery_errors = false
 
 # Used to shut up warning about "already defined constant ..."
-Dependencies.explicitly_unloadable_constants =
+ ActiveSupport::Dependencies.explicitly_unloadable_constants =
   %w(Struct::Knowledges Struct::Contributions Struct::Software Struct::Calls
      Struct::Clients Struct::Requests Struct::Accounts
      Scope::SCOPE_CLIENT Scope::SCOPE_CONTRACT
