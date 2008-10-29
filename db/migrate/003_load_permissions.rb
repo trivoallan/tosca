@@ -137,7 +137,7 @@ class LoadPermissions < ActiveRecord::Migration
 
     roles = [ public_id ]
     access = [ [ '^access/denied$', 'Page for denying access' ],
-               [ '^account/(login|logout)$', 'Access to login system' ],
+               [ '^account/(login|logout|forgotten_password)$', 'Access to login system' ],
                [ '^welcome/(index|about|plan)$', 'Access to home pages' ],
                [ '^contributions/(index|select|show|list|feed)',
                  'Public read access to contributions' ],

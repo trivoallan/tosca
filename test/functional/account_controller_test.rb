@@ -46,6 +46,28 @@ class AccountControllerTest < ActionController::TestCase
     }
   end
 
+  def test_forgotten_password
+    logout
+    get :forgotten_password
+
+    form = select_form 'main_form'
+    form.user.login = 'customer'
+    form.user.email = App::MaintenerEmail
+    form.submit
+
+    assert_response :success
+    assert flash.has_key?(:notice)
+    assert !flash.has_key?(:warning)
+
+    user = assigns(:user)
+    assert_not_nil user
+    # Test login of the new password, freshly created
+    login user.login, user.pwd
+    assert_response :redirect
+    assert_redirected_to welcome_path
+    assert session[:user] == user
+  end
+
   def test_signup_recipient
     login 'manager', 'manager'
     get :signup

@@ -81,14 +81,14 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     remove_column :contracts, :paquets_count
 
     create_table :versions do |t|
-      t.integer :id, :logiciel_id
+      t.integer :logiciel_id
       t.string :name
       t.boolean :generic
     end
     add_index :versions, :logiciel_id
 
     create_table :releases do |t|
-      t.integer :id, :version_id, :contract_id
+      t.integer :version_id, :contract_id
       t.string :name, :default => '0'
       t.boolean :packaged, :default => false
       t.boolean :inactive, :default => false

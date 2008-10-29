@@ -133,7 +133,8 @@
 
   <% unless user %>
     <div id="login_box" style="display: none">
-      <%= render :file => "account/login", :locals => { :show_close_icon => true } %>
+     <%= render :file => "account/login", :use_full_path => true,
+                :locals => { :show_close_icon => true } %>
     </div>
   <% end %>
   </div>

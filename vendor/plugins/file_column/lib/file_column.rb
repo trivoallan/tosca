@@ -265,7 +265,7 @@ module FileColumn # :nodoc:
         File.rename(local_file_path, new_local_file_path) unless new_local_file_path == local_file_path
         local_file_path = new_local_file_path
       end
-      
+
       if options[:size]
         @instance['size'] = File.size(local_file_path)
       end
@@ -617,7 +617,7 @@ module FileColumn # :nodoc:
       # path to the unix "file" executable for
       # guessing the content-type of files
       :file_exec => "file",
-      
+
       #To add size of the file in db
       :size => false
     }
@@ -632,9 +632,8 @@ module FileColumn # :nodoc:
     def file_column(attr, options={})
       options = DEFAULT_OPTIONS.merge(options) if options
 
-      my_options = FileColumn::init_options(options,
-                                            Inflector.underscore(self.name).to_s,
-                                            attr.to_s)
+      my_name = ActiveSupport::Inflector.underscore(self.name).to_s
+      my_options = FileColumn::init_options(options, my_name, attr.to_s)
 
       state_attr = "@#{attr}_state".to_sym
       state_method = "#{attr}_state".to_sym
