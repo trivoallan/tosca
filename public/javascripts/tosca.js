@@ -30,3 +30,11 @@ function tosca_expand_all_comments() {
 function tosca_collapse_all_comments() {
  $$('div.comment-container').invoke('addClassName', 'collapsed');
 }
+
+function tosca_generate_hash(id) {
+  var now = new Date().getTime();
+  var rand = Math.random() * now;
+  var text = 'tosca' + now + rand;
+  $(id).value = hex_md5(text);
+  return true;
+}

@@ -20,7 +20,7 @@ class AlertsController < ApplicationController
   helper :issues
 
   def index
-    @teams = Team.find_select
+    @teams = Team.all
   end
 
   def on_submit

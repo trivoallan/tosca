@@ -1,7 +1,24 @@
 <h1><%= _('Alerts')%></h1>
-<h2><%= _('Please select the team you want to monitor')%></h2>
+<h2><%= _('Please select the teams you want to monitor')%></h2>
+
 <% form_tag(on_submit_alerts_path, :method => :get) do %>
-  <p><%= hm_radio_button(:team, :ids, @teams, :size => 3) %></p>
-  <br/>
-  <p><%= submit_tag _('Validate') %></p>
+<table class="full">
+  <thead>
+    <th><%= _('Teams') %></th>
+    <th><%= _('Hash') %></th>
+  </thead>
+  <tbody>
+    <% @teams.each do |team| %>
+    <tr>
+      <td><%= team %></td>
+      <td>
+        <% hash_id = "hash_#{team.id}" %>
+        <%= text_field(:alert, :hash, :id => hash_id) %>
+        <%= button_to_function(_("Generate a hash"), "tosca_generate_hash('#{hash_id}')") %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<p><%= submit_tag _('Validate') %></p>
 <% end %>
