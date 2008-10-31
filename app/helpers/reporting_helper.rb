@@ -32,15 +32,13 @@ module ReportingHelper
     first = (options.has_key?(:distribution) ? _('Status') : _('Period'))
     if options[:with2rows]
       result << %Q{<th rowspan="2">#{first}</th>} unless options[:without_firstcol]
-      result << %Q{<th nowrap="nowrap" colspan="#{size}"><div style="align: center">#{options[:with2rows]}</div></th>}
+      result << %Q[<th nowrap="nowrap" colspan="#{size}"><div style="text-align: center">#{options[:with2rows]}</div></th>]
       result << '</tr><tr>'
     else
       result << '<th></th>'
     end
     size.times do |t|
-      result << '<th nowrap="nowrap">'
-      result << data[t][0].to_s.gsub(/_(closed|active)/, '').capitalize
-      result << '</th>'
+      result << %Q{<th nowrap="nowrap">#{data[t][0]}</th>}
     end
     result << '</tr>'
   end
@@ -49,17 +47,14 @@ module ReportingHelper
   # options : one_row, muli_row et titre
   def report_evolution(name, options={})
     data = @data[name]
-    if (not data.empty? and data[0].to_s =~ /_(closed|active)/)
-      options.update(:separated => true)
-    end
     @first_col = @months_col
     table = ''
-    table << '<table width="100%">'
+    table << '<table style="width: 100%">'
     table << ' <tr>'
 
     # cellule contenant le graphique
     table << '  <td class="report_graph">'
-    table <<    report_graph(name, options) unless name.to_s =~ /^temps/
+    table <<    report_graph(name, options) unless name.to_s =~ /time/
     table << '  </td>'
 
     # cellule avec la légende
@@ -67,9 +62,9 @@ module ReportingHelper
     table <<    report_legend(name, options)
     table << '  </div></td>'
     # cellule contenant le tableau de données
-    table << '  <td class="report_data">'
+    table << '  <td class="report_data"><div align="center">'
     table <<    report_data(name, options)
-    table << '  </td>'
+    table << '  </div></td>'
 
     table << ' </tr>'
     table << '</table>'
@@ -132,7 +127,7 @@ module ReportingHelper
   # * :separated : used to know if there are double or simple data lines
   def report_legend(name, options)
     out = ''
-    data = @data[name].sort{|x,y| x[0].to_s <=> y[0].to_s}
+    data = @data[name] # .sort{|x,y| x[0].to_s <=> y[0].to_s}
     colors = @colors[name]
     return out unless colors and colors.size > 0
 
@@ -150,8 +145,7 @@ module ReportingHelper
     relative_url_root = "#{Static::ActionView.relative_url_root}reporting/"
     size.times do |i|
       index = (twolines ? i*2 : i)
-      name = data[index][0].to_s
-      head = name.gsub(/_(closed|active)/, '').gsub('_','&nbsp;').capitalize
+      head = data[index][0].to_s
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
       out << "<tr><th>#{_('Running')}</th><th>#{_('Finished')}</th></tr>" if twolines
       out << '<tr>'

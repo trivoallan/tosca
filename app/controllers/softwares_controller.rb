@@ -72,7 +72,7 @@ class SoftwaresController < ApplicationController
 
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
-      render :partial => 'software_list', :layout => false
+      render :layout => false
     else
       _panel
       @partial_for_summary = 'software_info'

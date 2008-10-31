@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-20 16:47+0200\n"
-"PO-Revision-Date: 2008-09-29 15:57+0200\n"
+"POT-Creation-Date: 2008-10-31 15:40+0100\n"
+"PO-Revision-Date: 2008-10-31 15:57+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -36,51 +36,63 @@ msgstr ""
 msgid "Edition succeeded"
 msgstr ""
 
-#: app/controllers/account_controller.rb:223
+#: app/controllers/account_controller.rb:222
+msgid "Unknown account"
+msgstr ""
+
+#: app/controllers/account_controller.rb:228
+msgid "Your new password has been generated."
+msgstr ""
+
+#: app/controllers/account_controller.rb:242
 msgid "You are not allowed to change your identity"
 msgstr ""
 
-#: app/controllers/account_controller.rb:227
+#: app/controllers/account_controller.rb:246
 msgid "Person not found"
 msgstr ""
 
-#: app/controllers/account_controller.rb:264
+#: app/controllers/account_controller.rb:283
 msgid "Full name"
 msgstr ""
 
-#: app/controllers/account_controller.rb:264
+#: app/controllers/account_controller.rb:283
 msgid "Title"
 msgstr ""
 
-#: app/controllers/account_controller.rb:264
+#: app/controllers/account_controller.rb:283
+#: app/views/account/forgotten_password.html.erb:9
 msgid "Email"
 msgstr ""
 
-#: app/controllers/account_controller.rb:264
+#: app/controllers/account_controller.rb:283
 #: app/views/issues/_infos_issue.html.erb:51
 msgid "Phone"
 msgstr ""
 
-#: app/controllers/account_controller.rb:265
+#: app/controllers/account_controller.rb:284
+#: app/views/account/forgotten_password.html.erb:6
 #: app/views/account/login.html.erb:9
 msgid "Login"
 msgstr ""
 
-#: app/controllers/account_controller.rb:265
+#: app/controllers/account_controller.rb:284
 #: app/views/account/login.html.erb:12
 msgid "Password"
 msgstr ""
 
-#: app/controllers/account_controller.rb:265
+#: app/controllers/account_controller.rb:284
+#: app/controllers/reporting_controller.rb:467
+#: app/controllers/reporting_controller.rb:481
 #: app/views/machines/index.html.erb:5
 msgid "Informations"
 msgstr ""
 
-#: app/controllers/account_controller.rb:271
+#: app/controllers/account_controller.rb:290
 msgid "Welcome %s %s"
 msgstr ""
 
-#: app/controllers/account_controller.rb:278
+#: app/controllers/account_controller.rb:297
 msgid "Your contract '%s' is near its end date : %s"
 msgstr ""
 
@@ -362,7 +374,7 @@ msgid "Last update"
 msgstr ""
 
 #: app/controllers/export_controller.rb:159
-#: app/controllers/reporting_controller.rb:461
+#: app/controllers/reporting_controller.rb:435
 #: app/helpers/contributions_helper.rb:25
 #: app/views/contributions/_contributions_info.html.erb:45
 #: app/views/issues/_form.html.erb:120
@@ -421,21 +433,25 @@ msgid "TOTAL"
 msgstr ""
 
 #: app/controllers/export_controller.rb:217
+#: app/controllers/reporting_controller.rb:470
 #: app/views/reporting/_comex_tableaux.html.erb:17
 msgid "Blocking"
 msgstr ""
 
 #: app/controllers/export_controller.rb:217
+#: app/controllers/reporting_controller.rb:470
 #: app/views/reporting/_comex_tableaux.html.erb:18
 msgid "Major"
 msgstr ""
 
 #: app/controllers/export_controller.rb:217
+#: app/controllers/reporting_controller.rb:470
 #: app/views/reporting/_comex_tableaux.html.erb:19
 msgid "Minor"
 msgstr ""
 
 #: app/controllers/export_controller.rb:217
+#: app/controllers/reporting_controller.rb:470
 #: app/helpers/application_helper.rb:188 app/helpers/commitments_helper.rb:71
 #: app/helpers/commitments_helper.rb:72 app/helpers/engagements_helper.rb:71
 #: app/helpers/engagements_helper.rb:72
@@ -554,73 +570,155 @@ msgstr ""
 msgid "This release has been successfully updated."
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:179
-#: app/controllers/reporting_controller.rb:184
+#: app/controllers/reporting_controller.rb:154
+#: app/controllers/reporting_controller.rb:159
 msgid "incorrect parameters"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:453
-#: app/controllers/reporting_controller.rb:455
+#: app/controllers/reporting_controller.rb:298
+msgid "Unknown"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:299
+msgid "Others"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:427
+#: app/controllers/reporting_controller.rb:429
 msgid "Distributed on "
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:453
-#: app/controllers/reporting_controller.rb:455
+#: app/controllers/reporting_controller.rb:427
+#: app/controllers/reporting_controller.rb:429
 #: app/views/reporting/_introduction.html.erb:4
 msgid " months"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:482
+#: app/controllers/reporting_controller.rb:456
 msgid ""
 "No data \n"
 "available"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:491
+#: app/controllers/reporting_controller.rb:467
+#: app/controllers/reporting_controller.rb:481
+msgid "Bugs"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:467
+msgid "Evolution"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:473
+#: app/controllers/reporting_controller.rb:475 app/models/statut.rb:30
+msgid "Cancelled"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:473
+#: app/controllers/reporting_controller.rb:475 app/models/statut.rb:27
+msgid "Bypassed"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:473
+#: app/controllers/reporting_controller.rb:475 app/models/statut.rb:28
+msgid "Fixed"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:473
+#: app/controllers/reporting_controller.rb:475 app/models/statut.rb:29
+msgid "Closed"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:473
+#: app/controllers/reporting_controller.rb:475 app/models/statut.rb:24
+msgid "Active"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:479
+#: app/views/phonecalls/_calls_info.html.erb:54
+msgid "Recipients"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:479 app/helpers/links_helper.rb:139
+msgid "Softwares"
+msgstr "Software"
+
+#: app/controllers/reporting_controller.rb:479 app/helpers/links_helper.rb:144
+#: app/views/clients/show.html.erb:51
+#: app/views/contributions/_contributions_info.html.erb:48
+#: app/views/contributions/list.html.erb:3
+#: app/views/contributions/select.html.erb:1
+#: app/views/contributions/show.html.erb:2
+#: app/views/softwares/show.html.erb:65
+msgid "Contributions"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:481
+msgid "Evolutions"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:485
+#: app/controllers/reporting_controller.rb:487
+#: app/controllers/reporting_controller.rb:489
+msgid "In time"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:485
+#: app/controllers/reporting_controller.rb:487
+#: app/controllers/reporting_controller.rb:489
+msgid "Out of time"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:519
 msgid "Distribution of your issues"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:492
+#: app/controllers/reporting_controller.rb:520
 msgid "By types"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:493
+#: app/controllers/reporting_controller.rb:521
 msgid "By severities"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:494
+#: app/controllers/reporting_controller.rb:522
 msgid "By status"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:496
+#: app/controllers/reporting_controller.rb:523
+#: app/views/knowledges/_knowledges_info.html.erb:23
+msgid "By software"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:525
 msgid "Cancelled issues"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:497
+#: app/controllers/reporting_controller.rb:526
 msgid "Evolution of the activity volume"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:499
+#: app/controllers/reporting_controller.rb:528
 msgid "Top 5 of the most discussed issues"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:500
+#: app/controllers/reporting_controller.rb:529
 msgid "Top 5 of the most discussed software"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:502
+#: app/controllers/reporting_controller.rb:531
 msgid "Processing time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:503
+#: app/controllers/reporting_controller.rb:532
 msgid "Response time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:504
+#: app/controllers/reporting_controller.rb:533
 msgid "Workaround time"
 msgstr ""
 
-#: app/controllers/reporting_controller.rb:505
+#: app/controllers/reporting_controller.rb:534
 msgid "Correction time"
 msgstr ""
 
@@ -978,11 +1076,12 @@ msgstr ""
 #: app/views/reporting/general.html.erb:23
 #: app/views/reporting/general.html.erb:26
 #: app/views/reporting/general.html.erb:29
-#: app/views/reporting/general.html.erb:37
-#: app/views/reporting/general.html.erb:38
-#: app/views/reporting/general.html.erb:45
+#: app/views/reporting/general.html.erb:32
+#: app/views/reporting/general.html.erb:40
+#: app/views/reporting/general.html.erb:41
 #: app/views/reporting/general.html.erb:48
 #: app/views/reporting/general.html.erb:51
+#: app/views/reporting/general.html.erb:54
 #: app/views/softwares/show.html.erb:55 app/views/welcome/index.html.erb:16
 msgid "Issues"
 msgstr ""
@@ -1003,36 +1102,27 @@ msgstr ""
 msgid "Consult issues which are waiting an action from you"
 msgstr ""
 
-#: app/helpers/links_helper.rb:139
-msgid "Softwares"
-msgstr "Software"
-
 #: app/helpers/links_helper.rb:140
 msgid "Access to the list of software"
-msgstr ""
-
-#: app/helpers/links_helper.rb:144 app/views/clients/show.html.erb:51
-#: app/views/contributions/_contributions_info.html.erb:48
-#: app/views/contributions/list.html.erb:3
-#: app/views/contributions/select.html.erb:1
-#: app/views/contributions/show.html.erb:2
-#: app/views/softwares/show.html.erb:65
-msgid "Contributions"
 msgstr ""
 
 #: app/helpers/links_helper.rb:145
 msgid "Access to the list of contributions."
 msgstr ""
 
-#: app/helpers/links_helper.rb:151
+#: app/helpers/links_helper.rb:150
 msgid "About %s"
 msgstr ""
 
-#: app/helpers/links_helper.rb:156
+#: app/helpers/links_helper.rb:154
+msgid "Forgotten password ?"
+msgstr ""
+
+#: app/helpers/links_helper.rb:159
 msgid "Administration"
 msgstr ""
 
-#: app/helpers/links_helper.rb:157
+#: app/helpers/links_helper.rb:160
 #: app/views/contributions/_contributions_info.html.erb:21
 msgid "Administration interface"
 msgstr ""
@@ -1085,27 +1175,27 @@ msgstr ""
 msgid "Period"
 msgstr ""
 
-#: app/helpers/reporting_helper.rb:91
+#: app/helpers/reporting_helper.rb:83
 msgid "Running"
 msgstr ""
 
-#: app/helpers/reporting_helper.rb:91
+#: app/helpers/reporting_helper.rb:83
 msgid "Finished"
 msgstr ""
 
-#: app/helpers/reporting_helper.rb:100
+#: app/helpers/reporting_helper.rb:92
 msgid "During the chosen period"
 msgstr ""
 
-#: app/helpers/reporting_helper.rb:109
+#: app/helpers/reporting_helper.rb:101
 msgid "Since the begining of your contract"
 msgstr ""
 
-#: app/helpers/reporting_helper.rb:256
+#: app/helpers/reporting_helper.rb:252
 msgid "progress bar"
 msgstr ""
 
-#: app/helpers/reporting_helper.rb:281
+#: app/helpers/reporting_helper.rb:277
 msgid "Exceedance"
 msgstr ""
 
@@ -1394,9 +1484,8 @@ msgid "Comment|Private"
 msgstr ""
 
 #: app/models/comment.rb:-
-#, fuzzy
 msgid "Comment|Severity"
-msgstr "User"
+msgstr ""
 
 #: app/models/comment.rb:-
 msgid "Comment|Statut"
@@ -1447,9 +1536,8 @@ msgid "commitment"
 msgstr ""
 
 #: app/models/commitment.rb:-
-#, fuzzy
 msgid "Commitment|Severity"
-msgstr "Correction"
+msgstr ""
 
 #: app/models/commitment.rb:-
 msgid "Commitment|Workaround"
@@ -1878,7 +1966,6 @@ msgid "severity"
 msgstr ""
 
 #: app/models/severity.rb:-
-#, fuzzy
 msgid "Severity|Name"
 msgstr "Name"
 
@@ -1919,9 +2006,8 @@ msgid "Software|Groupe"
 msgstr ""
 
 #: app/models/software.rb:-
-#, fuzzy
 msgid "Software|Private"
-msgstr "Description"
+msgstr ""
 
 #: app/models/software.rb:37
 msgid "You have to specify a name"
@@ -1939,32 +2025,12 @@ msgstr ""
 msgid "Submitted"
 msgstr ""
 
-#: app/models/statut.rb:24
-msgid "Active"
-msgstr ""
-
 #: app/models/statut.rb:25
 msgid "Suspended"
 msgstr ""
 
 #: app/models/statut.rb:26
 msgid "Analysed"
-msgstr ""
-
-#: app/models/statut.rb:27
-msgid "Bypassed"
-msgstr ""
-
-#: app/models/statut.rb:28
-msgid "Fixed"
-msgstr ""
-
-#: app/models/statut.rb:29
-msgid "Closed"
-msgstr ""
-
-#: app/models/statut.rb:30
-msgid "Cancelled"
 msgstr ""
 
 #: app/models/team.rb:-
@@ -2100,19 +2166,7 @@ msgid "Access denied"
 msgstr ""
 
 #: app/views/access/denied.html.erb:4
-msgid "This page is restricted."
-msgstr ""
-
-#: app/views/access/denied.html.erb:5
-msgid "You can go to the homepage."
-msgstr ""
-
-#: app/views/access/denied.html.erb:6
-msgid "You can also login with a user who has more rights :"
-msgstr ""
-
-#: app/views/access/denied.html.erb:16
-msgid "Reconnect"
+msgid "Access to this page is restricted."
 msgstr ""
 
 #: app/views/account/_edit_account_informations.html.erb:12
@@ -2394,7 +2448,7 @@ msgstr ""
 msgid "Modify %s"
 msgstr ""
 
-#: app/views/account/edit.html.erb:6 app/views/account/login.html.erb:18
+#: app/views/account/edit.html.erb:6 app/views/account/login.html.erb:17
 #: app/views/account/signup.html.erb:6 app/views/alerts/index.html.erb:6
 #: app/views/archives/edit.html.erb:5 app/views/archives/new.html.erb:5
 #: app/views/comments/edit.html.erb:5 app/views/commitments/edit.html.erb:5
@@ -2411,6 +2465,14 @@ msgstr ""
 msgid "Validate"
 msgstr ""
 
+#: app/views/account/forgotten_password.html.erb:4
+msgid "Forgotten password"
+msgstr ""
+
+#: app/views/account/forgotten_password.html.erb:13
+msgid "Send me a new password"
+msgstr ""
+
 #: app/views/account/login.html.erb:4
 msgid "%s login"
 msgstr ""
@@ -2420,8 +2482,8 @@ msgid "Logout ..."
 msgstr "Log out..."
 
 #: app/views/account/logout.html.erb:5
-msgid "You are now logout"
-msgstr "You·are·now·logged out"
+msgid "You are not anymore connected"
+msgstr ""
 
 #: app/views/account/multiple_signup.html.erb:2
 msgid "Create several accounts"
@@ -3624,10 +3686,6 @@ msgstr ""
 msgid "Add a knowledge"
 msgstr ""
 
-#: app/views/knowledges/_knowledges_info.html.erb:23
-msgid "By software"
-msgstr ""
-
 #: app/views/knowledges/_knowledges_info.html.erb:25
 msgid "By technology"
 msgstr ""
@@ -3755,10 +3813,6 @@ msgstr ""
 #: app/views/phonecalls/_calls_info.html.erb:53
 #: app/views/phonecalls/_form.html.erb:13
 msgid "Engineers"
-msgstr ""
-
-#: app/views/phonecalls/_calls_info.html.erb:54
-msgid "Recipients"
 msgstr ""
 
 #: app/views/phonecalls/_calls_info.html.erb:55
@@ -3996,8 +4050,8 @@ msgstr ""
 msgid "Introduction"
 msgstr ""
 
-#: app/views/reporting/_summary.html.erb:12
-#: app/views/reporting/general.html.erb:33
+#: app/views/reporting/_summary.html.erb:13
+#: app/views/reporting/general.html.erb:36
 msgid "Various statistics"
 msgstr ""
 
@@ -4121,7 +4175,7 @@ msgstr ""
 msgid "open since %s"
 msgstr ""
 
-#: app/views/reporting/general.html.erb:35
+#: app/views/reporting/general.html.erb:38
 msgid "Number"
 msgstr ""
 
@@ -4949,30 +5003,3 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
-
-#~ msgid "Contribution|Name"
-#~ msgstr "Name"
-
-#~ msgid "Contribution|Description"
-#~ msgstr "Description"
-
-#~ msgid "Contribution|Created on"
-#~ msgstr "Created on"
-
-#~ msgid "Contribution|Updated on"
-#~ msgstr "Updated on"
-
-#~ msgid "Issue|Version"
-#~ msgstr "Version"
-
-#~ msgid "Statut|Name"
-#~ msgstr "Name"
-
-#~ msgid "Statut|Description"
-#~ msgstr "Description"
-
-#~ msgid "User|Password"
-#~ msgstr "Password"
-
-#~ msgid "User|Information"
-#~ msgstr "Information"

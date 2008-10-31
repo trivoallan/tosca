@@ -1,1 +1,28 @@
-<%= render_partial 'clients_list' %>
+<h1><%= _('List of the clients') %> <%= StaticImage::spinner %></h1>
+
+<% links = show_pages_links(@client_pages, _("a client"), :url => clients_path) %>
+<%= links %>
+<% titles = [ _("Logo"), _("Name"), _("Systems"), _('Contracts'), _("Access code") ]%>
+<%= show_table(@clients, Client, titles) { |c|
+  result = ''
+  result <<  (c.image ? "<td>#{logo_client(c)}</td>" : '<td></td>')
+  result << "<td>#{link_to_client(c)}</td>"
+
+  result << '<td>'
+    c.socles.each {|s|
+      result << link_to_socle(s).to_s << '<br />'
+    }
+  result << '</td>'
+
+  result << '<td>'
+    c.contracts.each {|ct|
+      result << link_to_contract(ct).to_s << '<br />'
+    }
+  result << '</td>'
+
+  result << "<td>#{c.access_code}</td>"
+  result << "#{link_to_actions_table c}"
+}%>
+<%= links %>
+<%= link_to _('Add a logo'), new_img_path %><br />
+<%= link_to _('Stats'), stats_clients_path %><br />

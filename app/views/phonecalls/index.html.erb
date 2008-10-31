@@ -1,6 +1,19 @@
-<%# 'software_info' setted in controller %>
+<h1><%=_('List of calls')%> <%= StaticImage::spinner %></h1>
 
-<div class="content" id="content">
-  <%= render_partial 'calls_list' %>
-</div>
+<% links = show_pages_links(@phonecall_pages, _('a call'), :url => phonecalls_path) %>
+<%= links %>
 
+<% titles = [_('Contract'),_('Interlocutor'),_('Recipient'),_('Call'),
+    _('End of call'),_('Duration') ] %>
+<%= show_table(@phonecalls, Phonecall, titles) { |p|
+  result = ''
+  result << "<td>#{p.contract.name if p.contract}</td>"
+  result << "<td>#{p.ingenieur.name if p.ingenieur}</td>"
+  result << "<td>#{p.recipient ? p.recipient.name : '-' }</td>"
+  result << "<td>#{p.start_formatted}</td>"
+  result << "<td>#{p.end_formatted}</td>"
+  result << "<td>#{Time.in_words(p.length)}</td>"
+  result << "#{link_to_actions_table p}"
+} %>
+
+<%= links %>

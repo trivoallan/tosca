@@ -87,32 +87,7 @@ class ReportingController < ApplicationController
     init_data_general
     fill_data_general
 
-    @data.each_pair do |name, data|
-      # sha1 = Digest::SHA1.hexdigest("-#{qui}-#{name}-")
-      # TODO : it's not safe to store it that way
-      @path[name] = "reporting/#{name}.png"
-      size = data.size
-      if (not data.empty? and data[0].to_s =~ /_(closed|active)/)
-        # cas d'une légende à deux colonnes : degradé obligatoire
-        if name.to_s =~ /^severity/
-          @colors[name] = @@dark_colors[1..size]
-        elsif name.to_s =~ /^distribution/
-          @colors[name] = @@dark_colors_types[1..size]
-        else
-          @colors[name] = @@dark_colors[1..size]
-        end
-      else
-        # cas d'une légende à une colonne : pas de degradé
-        if name.to_s =~ /^temps/
-          @colors[name] = @@sla_colors[1..size]
-        elsif name.to_s =~ /^cancelled/
-          @colors[name] = @@colors_types[1..size]
-        else
-          @colors[name] = @@colors[1..size]
-        end
-      end
-    end
-
+    init_colors
 
     #on nettoie
     # TODO retravailler le nettoyage
@@ -121,11 +96,12 @@ class ReportingController < ApplicationController
     # Dir.mkdir(reporting)
 
     # writing graph on disk
-    i_want_to_draw_graphs = false
+    i_want_to_draw_graphs = true
     if (i_want_to_draw_graphs)
       write3graph(:by_type, Gruff::StackedBar)
       write3graph(:by_severity, Gruff::StackedBar)
       write3graph(:by_status, Gruff::StackedBar)
+      write3graph(:by_software, Gruff::StackedBar)
 
       write3graph(:evolution, Gruff::Line)
       write3graph(:cancelled, Gruff::Bar)
@@ -136,7 +112,6 @@ class ReportingController < ApplicationController
     end
 
     #     write_graph(:top5_issues, Gruff::Pie)
-    #     write_graph(:top5_softwares, Gruff::Pie)
     # on nettoie
     @months_col.each { |c| c.gsub!('\n','') }
   end
@@ -185,36 +160,6 @@ class ReportingController < ApplicationController
     @contracts = nil
   end
 
-  # initialisation de @data
-  def init_data_general
-    # Répartions par mois (StackedBar)
-    # _closed doit être en premier
-    @data[:by_type]  =
-     [ [:informations_active], [:anomalies_active], [:evolutions_active],
-       [:informations_closed], [:anomalies_closed], [:evolutions_closed] ]
-    @data[:by_severity] =
-      [ [:bloquantes_active], [:majeures_active],
-        [:mineures_active], [:sans_objet_active],
-        [:bloquantes_closed], [:majeures_closed],
-        [:mineures_closed], [:sans_objet_closed] ]
-    @data[:by_status] =
-     [ [:'contournées'], [:'corrigées'], [:'cloturées'], [:'annulées'], [:active] ]
-    @data[:evolution] =
-     [ [:'bénéficiaires'], [:softwares], [:contributions] ] # TODO : [:interactions]
-    @data[:cancelled] =
-     [ [:informations], [:anomalies], [:'évolutions'] ]
-
-    # calcul des délais
-    @data[:callback_time] =
-     [ [:'délais_respectés'], [:'hors_délai'] ]
-    @data[:workaround_time] =
-     [ [:'délais_respectés'], [:'hors_délai'] ]
-    @data[:correction_time] =
-     [ [:'délais_respectés'], [:'hors_délai'] ]
-
-
-  end
-
   # It's damn hard to compute a difference of month
   def compute_nb_month(start_date, end_date)
     end_date.month - start_date.month + 1 +
@@ -249,6 +194,8 @@ class ReportingController < ApplicationController
     start_date = @report[:start_date]
     end_date = @report[:end_date]
 
+    # We cannot know in advance what are the most important software
+    init_compute_by_software(@data[:by_software])
     issues = [ 'issues.created_on BETWEEN ? AND ? AND issues.contract_id IN (?)',
                  nil, nil, @contracts.collect(&:id) ]
     until (start_date > end_date) do
@@ -261,11 +208,13 @@ class ReportingController < ApplicationController
         compute_by_type @data[:by_type]
         compute_by_severity @data[:by_severity]
         compute_by_status @data[:by_status]
+        compute_by_software @data[:by_software]
         compute_cancelled @data[:cancelled]
         compute_time @data
         compute_evolution @data[:evolution]
       end
     end
+
     # on fais bien attention à ne merger avec @data
     # qu'APRES avoir calculé toutes les sommes
     middle_report = compute_data_period('middle', @report[:middle_report] + 1)
@@ -333,18 +282,43 @@ class ReportingController < ApplicationController
   end
 
 
-  ##
-  # TODO : le faire marcher si y a moins de 5 softwares
-  # Sort les 5 softwares qui ont eu le plus de issues
-  def compute_top5_softwares(report)
-    softwares = Issue.count(:group => "software_id")
-    softwares = softwares.sort {|a,b| a[1]<=>b[1]}
-    5.times do |i|
-      values = softwares.pop
-      name = Software.find(values[0]).name
-      report.push [ name.intern ]
-      report[i].push values[1]
+  def init_compute_by_software(report)
+    software = Issue.count(:group => "software_id", :conditions =>
+                           { :contract_id => @contracts.collect(&:id) })
+    software = software.sort {|a,b| a[1]<=>b[1]}
+    @software_ids = []
+
+    [ software.size, 8].min.times do |i|
+      software_id = software.pop[0]
+      next if software_id.nil?
+      @software_ids << software_id
+      name = Software.find(software_id).name
+      report.push [ name ]
     end
+    report.push [_('Unknown')]
+    report.push [_('Others')]
+  end
+
+  ##
+  #  Compute for each month which issues where on the top5 software
+  def compute_by_software(report)
+    index, total = 0, 0
+    @software_ids.each do |i|
+      count = Issue.count(:conditions => { :software_id => i})
+      report[index].push count
+      total += count
+      index += 1
+    end
+
+    # Unknown software
+    count = Issue.count(:conditions => { :software_id => nil })
+    report[index].push count
+    total += count
+    index += 1
+
+    # Others issues
+    count = Issue.count
+    report[index].push(count - total)
   end
 
   ##
@@ -423,16 +397,16 @@ class ReportingController < ApplicationController
   # Compte le nombre de issue Annulée, Cloturée ou en cours de traitement
   def compute_by_status(report)
     condition = 'issues.statut_id = ?'
-    contournee = { :conditions => [condition, 5] }
-    corrigee = { :conditions => [condition, 6] }
-    cloturee = { :conditions => [condition, 7] }
-    annulee = { :conditions => [condition, 8] }
+    bypassed = { :conditions => [condition, 5] }
+    fixed = { :conditions => [condition, 6] }
+    closed = { :conditions => [condition, 7] }
+    cancelled = { :conditions => [condition, 8] }
     active = { :conditions => 'statut_id NOT IN (5,6,7,8)' }
 
-    report[0].push Issue.count(contournee)
-    report[1].push Issue.count(corrigee)
-    report[2].push Issue.count(cloturee)
-    report[3].push Issue.count(annulee)
+    report[0].push Issue.count(cancelled)
+    report[1].push Issue.count(bypassed)
+    report[2].push Issue.count(fixed)
+    report[3].push Issue.count(closed)
     report[4].push Issue.count(active)
   end
 
@@ -473,7 +447,7 @@ class ReportingController < ApplicationController
     }
     g.sort = false
 
-    data = @data[name].sort{|x,y| x[0].to_s <=> y[0].to_s}
+    data = @data[name] # .sort{|x,y| x[0].to_s <=> y[0].to_s}
     data.each {|value| g.data(value[0], value[1..-1]) }
     g.labels = @labels
     g.hide_dots = true if g.respond_to? :hide_dots
@@ -486,12 +460,67 @@ class ReportingController < ApplicationController
   end
 
 
+  # 3 initialisations are needed : titles, colors & datas.
+  def init_data_general
+    # [:empty] are needed for helpers, which always consider that first column is a title one.
+    @data[:by_type]  =
+     [ [_('Informations')], [_('Bugs')], [_('Evolution')],
+       [:empty], [:empty], [:empty] ]
+    @data[:by_severity] =
+      [ [_('Blocking')], [_('Major')], [_('Minor')], [_('None')],
+        [:empty], [:empty], [:empty], [:empty] ]
+    @data[:by_status] =
+     [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
+    @data[:by_status] =
+     [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
+    @data[:by_software] = []
+
+    @data[:evolution] =
+     [ [_('Recipients')], [_('Softwares')], [_('Contributions')] ] # TODO : [:interactions]
+    @data[:cancelled] =
+     [ [_('Informations')], [_('Bugs')], [_('Evolutions')] ]
+
+    # calcul des délais
+    @data[:callback_time] =
+     [ [_('In time')], [_('Out of time')] ]
+    @data[:workaround_time] =
+     [ [_('In time')], [_('Out of time')] ]
+    @data[:correction_time] =
+     [ [_('In time')], [_('Out of time')] ]
+
+  end
+
+  # 3 initialisations are needed : titles, colors & datas.
+  def init_colors
+    @data.each_pair do |name, data|
+      # sha1 = Digest::SHA1.hexdigest("-#{qui}-#{name}-")
+      # TODO : it's not safe to store it that way
+      @path[name] = "reporting/#{name}.png"
+      size = data.size
+      case name.to_s
+      when /(by_type|by_status|by_software)/
+        @colors[name] = @@dark_colors_types[1..size]
+      when /by_severity/
+        @colors[name] = @@dark_colors[1..size]
+      when /^cancelled/
+        @colors[name] = @@colors_types[1..size]
+      when /time/
+        @colors[name] = @@sla_colors[1..size]
+      else
+        @colors[name] = @@colors[1..size]
+      end
+    end
+  end
+
+
+  # 3 initialisations are needed : titles, colors & datas.
   def _titles
     @titles = {
       :distribution => _('Distribution of your issues'),
       :by_type => _('By types'),
       :by_severity => _('By severities'),
       :by_status => _('By status'),
+      :by_software => _('By software'),
 
       :cancelled => _('Cancelled issues'),
       :evolution => _('Evolution of the activity volume'),

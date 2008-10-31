@@ -1,0 +1,26 @@
+<% options = { :update => 'col1_content', :method => :get,
+    :url => contracts_path,
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+
+<% form_remote_tag( options.dup.update(:html => {
+    :id => 'filters', :name => 'filters'})) do %>
+<%# used for iteration in ajaxified list %>
+<%= hidden_field_tag 'page', '1' %>
+<%# used_by remote_link_to_contracts %>
+<div class="menu_title" onclick="Element.toggle('menu_action')">
+  > <%= _('Action') %>
+</div>
+<ul id="menu_action">
+  <li><%= link_to _('Create a new contract'), new_contract_path %></li>
+</ul>
+
+<div class="menu_title" onclick="Element.toggle('menu_search')">
+> <%= _('Search') %></div>
+<ul id="menu_search">
+  <li><b><%= _('By name') %></b><br />
+    <%= text_field :filters, :text %></li>
+</ul>
+<% end %>
+
+<%= observe_form 'filters', options %>

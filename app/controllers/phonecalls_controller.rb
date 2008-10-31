@@ -48,7 +48,7 @@ class PhonecallsController < ApplicationController
     @phonecall_pages, @phonecalls = paginate :phonecalls, options
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
-      render :partial => 'calls_list', :layout => false
+      render :layout => false
     else
       _panel
       @partial_for_summary = 'calls_info'

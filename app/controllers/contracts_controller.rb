@@ -23,7 +23,35 @@ class ContractsController < ApplicationController
                     :conditions => { :client => false }
 
   def index
-    @contract_pages, @contracts = paginate :contracts, :per_page => 25
+    options = { :per_page => 25, :include => [:client],
+                :order => 'contracts.client_id' }
+
+    if params.has_key? :filters
+      session[:contracts_filters] = Filters::Contracts.new(params[:filters])
+    end
+
+    conditions = nil
+    contracts_filters = session[:contracts_filters]
+    if contracts_filters
+      # Specification of a filter f :
+      #   [ field, database field, operation ]
+      # All the fields must be coherent with lib/filters.rb related Struct.
+      conditions = Filters.build_conditions(contracts_filters, [
+        [:text, 'clients.name', 'contracts.name', :dual_like ]
+      ])
+      @filters = contracts_filters
+    end
+    flash[:conditions] = options[:conditions] = conditions
+
+    @contract_pages, @contracts = paginate :contracts, options
+
+    # panel on the left side.
+    if request.xhr?
+      render :layout => false
+    else
+      _panel
+      @partial_for_summary = 'contracts_info'
+    end
   end
 
   # Used to know which contracts need to be renewed
@@ -183,6 +211,9 @@ private
       ids << value unless value == '0'
     }
     contract[:commitment_ids] = ids
+  end
+
+  def _panel
   end
 
 end

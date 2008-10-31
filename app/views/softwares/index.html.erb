@@ -1,1 +1,20 @@
-<%= render_partial 'software_list' %>
+<h1><%= @title %> <%= StaticImage::spinner %></h1>
+
+<% links = show_pages_links(@software_pages, _('a new software'), :url => softwares_path) %>
+<%= links %>
+
+<% titres = [ _('Logo'), _('Name'), _('Description'),
+   _('Technologie(s)'), _('Group'), _('Version(s)') ] %>
+
+<%= show_table(@softwares, Software, titres) { |l|
+  result = ''
+  result << "<td>#{software_logo l}</td>"
+  result << "<td>#{public_link_to l.name, software_path(l)}</td>"
+  result << "<td>#{l.resume}</td>"
+  result << "<td>#{liste_competences l.competences}</td>"
+  result << "<td>#{l.groupe.name if l.groupe}</td>"
+  result << "<td>#{l.versions.size}</td>"
+  result << "#{link_to_actions_table l}"
+}%>
+
+<%= links %>
