@@ -32,7 +32,7 @@ module ReportingHelper
     first = (options.has_key?(:distribution) ? _('Status') : _('Period'))
     if options[:with2rows]
       result << %Q{<th rowspan="2">#{first}</th>} unless options[:without_firstcol]
-      result << %Q{<th nowrap="nowrap" colspan="#{size}"><div style="align: center">#{options[:with2rows]}</div></th>}
+      result << %Q[<th nowrap="nowrap" colspan="#{size}"><div style="text-align: center">#{options[:with2rows]}</div></th>]
       result << '</tr><tr>'
     else
       result << '<th></th>'
@@ -63,7 +63,7 @@ module ReportingHelper
     table << '  </td>'
 
     # cellule avec la légende
-    table << '  <td class="report_legend"><div align="center">'
+    table << '  <td class="report_legend"><div style="align :center">'
     table <<    report_legend(name, options)
     table << '  </div></td>'
     # cellule contenant le tableau de données
@@ -98,7 +98,7 @@ module ReportingHelper
     table <<    report_graph(middle, options)
     table << '  </td>'
     # cellule avec la légende
-    table << '  <td class="report_legend"><div align="center">'
+    table << '  <td class="report_legend"><div style="align: center">'
     table <<    report_legend(name, options)
     table << '  </div></td>'
     # cellule contenant le graphique depuis le début
