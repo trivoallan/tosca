@@ -53,7 +53,7 @@ class ClientsController < ApplicationController
 
     # panel on the left side.
     if request.xhr?
-      render :partial => 'clients_list', :layout => false
+      render :layout => false
     else
       _panel
       @partial_for_summary = 'clients_info'
