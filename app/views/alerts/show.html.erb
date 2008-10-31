@@ -3,7 +3,8 @@
 <div id="status">
   <%= render :partial => 'ajax_on_submit' %>
 </div>
-<% options = { :url => ajax_on_submit_alerts_path, :frequence => 15, :update =>
+<% url = { :action => :ajax_on_submit, :hash => params[:hash] } %>
+<% options = { :url => url, :frequence => 15, :update =>
     'status',  :before => "Element.show('spinner')",
                :success => "Element.hide('spinner')" } %>
 <%= periodically_call_remote(options) %>

@@ -1,20 +1,29 @@
 <h1><%= _('Alerts')%></h1>
 <h2><%= _('Please select the teams you want to monitor')%></h2>
 
-<% form_tag(on_submit_alerts_path, :method => :get) do %>
+<% form_tag(update_alerts_path, :method => :put) do %>
 <table class="full">
   <thead>
     <th><%= _('Teams') %></th>
     <th><%= _('Hash') %></th>
+    <th><%= _('Link to page') %></th>
   </thead>
   <tbody>
     <% @teams.each do |team| %>
     <tr>
-      <td><%= team %></td>
+      <td>
+        <%= link_to team.name, team_path(team) %>
+      </td>
       <td>
         <% hash_id = "hash_#{team.id}" %>
-        <%= text_field(:alert, :hash, :id => hash_id) %>
+        <% value = ""
+           value = team.alert.hash_value if team.alert %>
+        <%= text_field(:alert, :"#{hash_id}", :id => hash_id, :value => value) %>
         <%= button_to_function(_("Generate a hash"), "tosca_generate_hash('#{hash_id}')") %>
+      </td>
+      <td>
+        <% text = _("Alert page for team %s") % team %>
+        <%= link_to text, :action => :show, :hash => value %>
       </td>
     </tr>
     <% end %>
