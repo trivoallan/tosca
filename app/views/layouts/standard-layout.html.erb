@@ -1,31 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=Locale.get%>" lang="<%=Locale.get%>">
-<head>
-  <%# precomputing header for having 80 r/s instead of 55 (~63% of more speed) %>
-  <%# TODO : since Rails has a cache system now, Tosca should use the cache("...") call instead of those hacks. %>
-  <% locale = Locale.get.language.intern %>
-  <% user = session[:user] %>
-  <% role_localised = :"#{locale}#{user.role_id}" if user %>
-  <% @@public_menu ||= {}; @@public_links ||= {}; @@public_head ||= {}; @@menu ||= {} %>
-  <% @@public_head[locale] =
-      '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>' <<
-      "<link rel=\"shortcut icon\" href=\"#{StaticImage::favimage_ico}\" type=\"image/x-icon\" />" <<
-      "<link rel=\"icon\" href=\"#{StaticImage::favimage_png}\" type=\"image/png\" />" <<
-      stylesheet_link_tag("yaml/core/base.css", "builder/basemod.css",
+<% user = session[:user] %>
+<% role_id = (user ? user.role_id : 6) %>
+<% locale = Locale.get.language.intern %>
+<% role_localised = :"#{locale}#{user.role_id}" if user %>
+<% cache("layout/#{role_id}/head") do %>
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=Locale.get%>" lang="<%=Locale.get%>">
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>
+   <link rel="shortcut icon" href="<%=StaticImage::favimage_ico%>" type="image/x-icon" />
+   <link rel="icon" href="<%=StaticImage::favimage_png%>" type="image/png" />
+   <%= stylesheet_link_tag("yaml/core/base.css", "builder/basemod.css",
         "builder/content_default.css", "tosca/specific.css", "tosca/navigation.css",
         "tosca/print.css", "tosca/custom_tiny.css", "tosca/calendar.css",
         "tosca/ajax.css", "tosca/big_calendar.css",
-        :media => 'all', :cache => true) <<
-      "<!--[if lte IE 7]>" <<
-      stylesheet_link_tag("ie_hacks/patch.css", :media => 'all', :cache => true) <<
-      "<![endif]-->"
-  %>
-  <%= @@public_head[locale] %>
-  <!-- TinyMCE can be loaded after the page : -->
-  <%= javascript_include_tag('tiny_mce/tiny_mce') %>
-  <%# Tuned according to the wiki : http://wiki.moxiecode.com/index.php/TinyMCE:Performance_tuning_TinyMCE %>
-  <script type="text/javascript">
+        :media => 'all', :cache => true) %>
+   <!--[if lte IE 7]>
+     <%= stylesheet_link_tag("ie_hacks/patch.css", :media => 'all', :cache => true) %>
+   <![endif]-->
+
+   <!-- TinyMCE can be loaded after the page : -->
+   <%= javascript_include_tag('tiny_mce/tiny_mce') %>
+   <%# Tuned according to the wiki : http://wiki.moxiecode.com/index.php/TinyMCE:Performance_tuning_TinyMCE %>
+   <script type="text/javascript">
 	 //<![CDATA[
      tinyMCE.init({
         editor_deselector : 'mceNoEditor',
@@ -45,27 +42,16 @@
         theme_advanced_toolbar_align : 'left',
         theme_advanced_toolbar_location : 'top'
      }); //]]> </script>
-  <%= javascript_include_tag('calendar', "calendar-#{locale}",
+   <%= javascript_include_tag('calendar', "calendar-#{locale}",
         'calendar-setup', 'prototype', 'effects', 'controls',
         'application', 'redbox', 'tosca', :cache => "all-#{locale}") %>
+<% end %>
  <title><%= @page_title || _(controller.controller_name) %></title>
 </head>
 <body>
-  <%# All the menu are built during first rendering or during login, in account controller %>
-  <% @@public_menu[locale] ||= build_simple_menu([
-       public_link_to_home,
-       public_link_to_softwares,
-       public_link_to_contributions ])
-     @@menu[role_localised] ||= build_simple_menu([
-        public_link_to_home,
-        link_to_tobd_issues,
-        link_to_all_issues,
-        search_issue,
-        link_to_admin
-       ], :form => true) if user %>
   <div id="page_margins">
     <div id="page">
-
+     <% cache("layout/#{role_id}/menu") do %>
       <div id="header">
         <div id="topnav">
           <!-- start: skip link navigation -->
@@ -78,22 +64,25 @@
       <div id="nav">
         <a id="navigation" name="navigation"></a>
         <div id="nav_main">
-          <%= (user ? @@menu[role_localised] : @@public_menu[locale]) %>
+          <% if user %>
+            <%= build_simple_menu([ public_link_to_home, link_to_tobd_issues, link_to_all_issues, search_issue, link_to_admin ], :form => true) %>
+          <% else %>
+            <%= build_simple_menu([ public_link_to_home, public_link_to_softwares, public_link_to_contributions ]) %>
+          <% end %>
           <%= public_link_to StaticImage::logo_service, welcome_url, :class => "logo"%>
           <ul class="nav_user">
-          <% @@public_links[locale] ||= link_to_redbox(image_connect, 'login_box', :class => "connect") %>
           <% if user %>
-            <% infos = [
-                link_to(_('My account'), edit_account_path(user)),
-                public_link_to(image_disconnect, logout_accounts_path, :class => "disconnect") ] %>
+            <% infos = [ link_to(_('My account'), edit_account_path(user)),
+                         public_link_to(image_disconnect, logout_accounts_path, :class => "disconnect") ] %>
             <li><%= infos.join('</li><li>') %></li>
           <% else %>
-            <li><%= @@public_links[locale] %></li>
+            <li><%= link_to_redbox(image_connect, 'login_box', :class => "connect") %></li>
           <% end %>
           <li><%= public_link_to_about %></li>
           </ul>
         </div>
       </div>
+     <% end %>
       <% if flash[:notice] || flash[:warn] %>
         <div id="teaser">
           <%= show_notice if flash[:notice] %>
@@ -117,17 +106,13 @@
           </div>
         <% end %>
       </div>
+
+<% cache ("layout/#{role_id}/footer") do %>
       <!-- begin: #footer -->
       <div id="footer">
-        <% @@footer ||=
-            public_link_to(App::ServiceFullName,
-                           App::CompanySite + App::CompanySitePath) <<
-                  '&nbsp;' <<
-                  public_link_to(StaticImage::ruby, 'http://rubyonrails.org/') <<
-                  '&nbsp;' <<
-                  public_link_to(App::Copyright, App::CompanySite)
-         %>
-         <%= @@footer %>
+        <%= public_link_to(App::ServiceFullName, App::CompanySite + App::CompanySitePath) %>&nbsp;
+        <%= public_link_to(StaticImage::ruby, 'http://rubyonrails.org/') %>&nbsp;
+        <%= public_link_to(App::Copyright, App::CompanySite) %>
       </div>
     </div>
 
@@ -138,6 +123,6 @@
     </div>
   <% end %>
   </div>
-
-</body>
-</html>
+ </body>
+ </html>
+<% end %>
