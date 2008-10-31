@@ -45,7 +45,7 @@ class KnowledgesController < ApplicationController
 
     @knowledge_pages, @knowledges = paginate :knowledges, options
     if request.xhr?
-      render :partial => 'knowledges_list', :layout => false
+      render :layout => false
     else
       _panel
       @partial_for_summary = 'knowledges_info'

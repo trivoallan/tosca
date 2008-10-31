@@ -1,1 +1,48 @@
-<%= render_partial 'users_list' %>
+<h1><%= _('User list') %><%= StaticImage::spinner %></h1>
+
+<% links = show_pages_links(@user_pages, _('a new user'),
+                             :url => accounts_path) %>
+<%= links %>
+<% manager = session[:user].manager? %>
+<table class="full">
+  <tr>
+    <th><%= _('User|Title')%></th>
+    <th><%= _('User|Name')%></th>
+    <% if manager %>
+     <th><%= _('User|Role')%></th>
+     <th><%= _('Engineer')%></th>
+     <th><%= _('Recipient')%></th>
+    <% end %>
+    <th><%= _('User|Email')%></th>
+    <th><%= _('User|Phone')%></th>
+  </tr>
+
+  <% options = PagesHelper::AJAX_OPTIONS.dup %>
+  <% options[:method] = :put %>
+  <% @users.each_index do |i| %>
+   <% user = @users[i] %>
+   <% recipient = user.recipient %>
+   <% ingenieur = user.ingenieur %>
+   <tr class="<%= cycle('even', 'odd') %>">
+      <td><%= user.title %></td>
+      <td><%= user.name %></td>
+      <% if manager %>
+       <td><%= user.role.name %></td>
+       <td style="text-align: center"><%= 'X' if ingenieur %></td>
+       <td style="text-align: center"><%= 'X' if recipient %></td>
+      <% end %>
+      <td><%= mail_to user.email, user.email %></td>
+      <td><%= user.phone %></td>
+      <td><%= form_become(user) %></td>
+
+     <% if manager or session[:user].id == user.id %>
+      <td><%= link_to_show user %></td>
+      <td><%= link_to_edit user %></td>
+     <% else %>
+      <td></td><td></td>
+     <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<%= links %>
