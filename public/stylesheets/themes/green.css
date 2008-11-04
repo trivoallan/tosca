@@ -1,0 +1,58 @@
+/****************************
+  *  light green : #f2fff2;  *
+  *  dark green : #e2efe2; *
+  *  light purple : #eaeafa;*
+  **************************/
+#nav_main {
+ background: #e2efe2;
+ border-bottom: 1px solid #dddddd;
+ border-top: 0px;
+ padding: 2px;
+}
+
+#nav_main ul, #nav_main ul li { border: 0px }
+#nav_main ul li a { color: #1a5270; }
+#nav_main ul li input { background-color: white; color: black; }
+#nav_main ul li input:focus { background-color: #ffffcc; }
+#nav_main ul li a:focus, #nav_main ul li a:hover, #nav_main ul li a:active {
+  color: #eeeeee;
+  background-color: #1a5260;
+}
+
+body, #footer, .comment-header span { background-color: #e2efe2; }
+
+#page_margins { background-color: #ffffff; }
+#footer {
+  border-top: 1px solid #dddddd;
+  padding: 2px;
+}
+
+#col1, #col3_content, .show, .help, .info, .comment-content { background-color: #ffffff; }
+#col1_content { background-color: #eaeafa; margin-bottom: 10px; }
+#col3_content ul { background: #eee; }
+
+table.full {
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  background-color: #f2fff2;
+}
+table.full th {
+  background: none;
+  color: #000;
+}
+
+.comment-header { background-color:  #f2fff2; }
+
+a, a:active, a:visited, a:focus, #footer a, #footer a:hover { color: #1a5270; }
+
+/* Lists part */
+.menu_title {
+  color: #000;
+  background-color: #dddddd;
+  /* pseudo 3D effect */
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #999999;
+}
+/* purple icon for items */
+ul li { list-style-image: url(../images/icons/li-purple.png); }

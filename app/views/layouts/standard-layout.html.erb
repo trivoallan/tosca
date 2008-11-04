@@ -46,6 +46,7 @@
         'calendar-setup', 'prototype', 'effects', 'controls',
         'application', 'redbox', 'tosca', :cache => "all-#{locale}") %>
 <% end %>
+ <%= stylesheet_link_tag("themes/green.css", :media => 'all', :cache => true) %>
  <title><%= @page_title || _(controller.controller_name) %></title>
 </head>
 <body>

@@ -51,20 +51,13 @@ table.full { width: 100%; }
   color: #fff;
 }
 
-p img {
-  vertical-align: middle;
-}
-
-label {
-  font-weight: bold;
-}
-
+p img { vertical-align: middle; }
+label { font-weight: bold; }
 ul { list-style-type: square; margin: 0 0 1em 0; }
 li img { vertical-align: middle; }
+a:focus, a:hover, a:active { background-color: transparent; }
+a { font-weight: bold; }
 
-a:focus, a:hover, a:active {
-  background-color: transparent;
-}
 
 .menu_title {
   color: #fff;

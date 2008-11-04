@@ -1,5 +1,4 @@
 <table id="issues_list" class="full">
-  <thead>
    <tr>
       <th width='2%'><%= _('Id') %><%#= sortable_header(:id, :label => _("Id")) %></th>
       <th width='7%'><%= _('Software') %><%#= sortable_header(:software_id, :label => _("Software")) %></th>
@@ -18,7 +17,6 @@
 
       <th width='8%'><%=_('Updated on')%><%#= sortable_header(:updated_on, :label => _("Updated on"), :descend => true) %></th>
    </tr>
- </thead>
 
    <% recipient = Recipient.new(:id => 0) %>
    <% ingenieur = Ingenieur.new(:id => 0)
@@ -31,8 +29,8 @@
              software_name = issue.softwares_name
            else
              software_name = issue.software.name
-           end 
-        %>        
+           end
+        %>
         <td><%= software_name %></td>
         <td></td>
         <% #Yet another dirty hack ...
@@ -40,8 +38,8 @@
              typeissues_name = issue.typeissues_name
            else
              typeissues_name = issue.typeissue.name
-           end 
-        %>  
+           end
+        %>
         <td nowrap="nowrap"><span class="issue_<%=issue.statut_id%>">&nbsp;<%= typeissues_name %><%= StaticImage::severity(issue) %></span></td>
        <% if @ingenieur %>
         <% #Dirty hacks are really bad ...
@@ -49,8 +47,8 @@
              clients_name = issue.clients_name
            else
              clients_name = issue.client.name
-           end 
-        %>  
+           end
+        %>
         <td><%= clients_name %></td>
        <% end %>
         <% recipient = issue.recipient if recipient.id != issue.recipient_id %>

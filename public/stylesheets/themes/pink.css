@@ -1,0 +1,72 @@
+/****************************
+  *  light green : #f2fff2;  *
+  *  light pink : #ffccff; *
+  *  dark green : #e2efe2; *
+  *  dark pink : url(../images/nav-pink-bg.png);
+  *  light purple : #eaeafa;*
+  *  ultra light pink : #ffdffb;
+  **************************/
+#nav_main {
+ background: url(../images/nav-pink-bg.png);;
+ border-bottom: 1px solid #dddddd;
+ border-top: 0px;
+ padding: 2px;
+}
+
+#nav_main ul, #nav_main ul li { border: 0px; }
+#nav_main ul li a { color:  #ffcc66; /*black;*/ }
+#nav_main ul li input { background-color: white; color: black; }
+#nav_main ul li input:focus { background-color: #ffffcc; }
+#nav_main ul li a:focus, #nav_main ul li a:hover, #nav_main ul li a:active {
+  background: #ffccff;
+  color: black;
+}
+
+#footer { background-image: url(../images/nav-pink-bg.png); }
+body { background-color: #cb91cf; }
+
+#page_margins { background-color: #ffffff; }
+#footer {
+  border-top: 1px solid #dddddd;
+  padding: 2px;
+}
+
+#col1, #col3_content, .show, .help, .info, .comment-content { background-color: #ffffff; }
+#col1_content { background-color: #ffdffb; margin-bottom: 10px; }
+#col3_content ul { background: #ffdffb; }
+
+
+/* table part */
+table.full {
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  background:  #cb91cf;
+}
+table.full th {
+  background: none;
+  color: #000;
+}
+
+.even { background-color: #ffccff; }
+.even:hover { background-color: #e2efe2; }
+.odd { background-color: #ffdffb; }
+.odd:hover {	background-color: #e2efe2; }
+
+.issue_tab_content { background-color: #ffccff; }
+.comment-header { background-color:  #ffccff; }
+
+a, a:active, a:visited, a:focus { color: #ff6600; }
+#footer a { color: black; }
+#footer a:hover, #footer a:focus, #footer a:active { color: white; }
+
+/* Lists part */
+.menu_title {
+  color: #000;
+  background-color: #ffccff;
+  /* pseudo 3D effect */
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #999999;
+}
+/* purple icon for items */
+ul li { list-style-image: url(../images/icons/li-gray.png); }
