@@ -5,11 +5,12 @@
 <div id="comment_<%=comment.id%>"
      class="comment-container collapsed <%=(comment.private? ? 'private' : 'public')%>">
   <div class="comment-header" onclick="tosca_toggle_comment('comment_<%=comment.id%>')">
-    <strong><%= user.name if user %></strong>
+    <% if user %><strong><%= user.name %></strong><% end %>
     - <span><%= comment.created_on.to_s(:short) %></span>
   </div>
   <div class="comment-content">
     <table class="comment-table">
+     <tr>
       <td class="infos" align="center">
         <%= "##{comment.id}" %><br />
         <% if user and user.client? and user.recipient %>
@@ -28,6 +29,7 @@
       <td class="text">
         <%= display_comment comment %>
       </td>
+     </tr>
     </table>
   </div>
 </div>

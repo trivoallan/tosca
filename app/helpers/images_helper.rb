@@ -28,13 +28,13 @@ module ImagesHelper
     desc = _("Add %s") % message
     image_tag("icons/add.png", StaticImage::options(desc, '16x16'))
   end
-  
+
   #Disconnect icon with the tooltip
   def image_disconnect
     desc = _('Logout')
-    image_tag('icons/disconnect.png', StaticImage::options(desc, '16x16'))
+    image_tag('icons/disconnect.gif', StaticImage::options(desc, '16x16'))
   end
-  
+
   #Connect icon with the tooltip
   def image_connect
     desc = _('Log in')

@@ -1,15 +1,12 @@
 @charset "UTF-8";
 /**
  * "Yet Another Multicolumn Layout" - (X)HTML/CSS framework
- * (en) IE patch stylesheet 
+ * (en) IE patch stylesheet
  * (de) IE-Anpassungs-Stylesheet
  *
  * @creator     YAML Builder V1.0.2b (http://builder.yaml.de)
  * @file        patch_my_layout.css
  */
-
-/* Layout independent adjustments | Layout-unabhängige Anpassungen  */
-@import url(../yaml/core/iehacks.css);
 
 /* Layout-dependent adjustments | Layout-abhängige Anpassungen */
 @media screen, projection
@@ -26,7 +23,7 @@
   * html #col3 {height: 1%}
   * html #col1 {margin-right: -3px}
   * html #col3 {margin-left: 74%}
-  
+
  /**
   * min-width/max-width workaround for IE
   *
@@ -43,8 +40,9 @@
     /* JS-Expression for min-/max-width simulation */
     width: expression((document.documentElement && document.documentElement.clientHeight) ? ((document.documentElement.clientWidth < 740) ? "740px" : ((document.documentElement.clientWidth > (100/100 * document.documentElement.clientWidth)) ? "100%" : "auto" )) : ((document.body.clientWidth < 740) ? "740px" : ((document.body.clientWidth > (100/100 * document.body.clientWidth)) ? "100%" : "auto" )));
   }
-  
+
   #col3 input, #col3 select {
     width: 90%;
   }
+
 }
