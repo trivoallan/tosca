@@ -25,7 +25,7 @@
 #footer { background-image: url(../images/nav-pink-bg.png); }
 body { background-color: #cb91cf; }
 
-#page_margins { background-color: #ffffff; }
+#main, #page_margins { background-color: #ffffff; }
 #footer {
   border-top: 1px solid #dddddd;
   padding: 2px;

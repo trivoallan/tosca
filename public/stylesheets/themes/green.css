@@ -21,7 +21,7 @@
 
 body, #footer, .comment-header span { background-color: #e2efe2; }
 
-#page_margins { background-color: #ffffff; }
+#main, #page_margins { background-color: #ffffff; }
 #footer {
   border-top: 1px solid #dddddd;
   padding: 2px;

@@ -24,14 +24,7 @@
    <% for issue in @issues %>
    <tr <%= tr_attributes(issue_path(issue)) %>>
         <td><%= issue.id %></td>
-        <% #When we have a dirty hack, we have to make others ...
-           if issue.respond_to? :softwares_name
-             software_name = issue.softwares_name
-           else
-             software_name = issue.software.name
-           end
-        %>
-        <td><%= software_name %></td>
+        <td><%= issue.software_name %></td>
         <td></td>
         <% #Yet another dirty hack ...
            if issue.respond_to? :typeissues_name
@@ -42,14 +35,7 @@
         %>
         <td nowrap="nowrap"><span class="issue_<%=issue.statut_id%>">&nbsp;<%= typeissues_name %><%= StaticImage::severity(issue) %></span></td>
        <% if @ingenieur %>
-        <% #Dirty hacks are really bad ...
-           if issue.respond_to? :clients_name
-             clients_name = issue.clients_name
-           else
-             clients_name = issue.client.name
-           end
-        %>
-        <td><%= clients_name %></td>
+        <td><%= issue.client_name %></td>
        <% end %>
         <% recipient = issue.recipient if recipient.id != issue.recipient_id %>
         <td><b><%= link_to_issue issue %></b></td>

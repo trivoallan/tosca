@@ -128,6 +128,16 @@ class Issue < ActiveRecord::Base
     result
   end
 
+  # Dirty hacks are really bad ...
+  def client_name
+    (self.respond_to?(:client_name) ? self.clients_name : self.client.name)
+  end
+  # Dirty hacks are really bad ...
+  def software_name
+    (self.respond_to?(:softwares_name) ? self.softwares_name : self.software.name)
+  end
+
+
   # It associates issue with the correct id since
   # we maintain both the 2 cases.
   # See _form of issue for more details
