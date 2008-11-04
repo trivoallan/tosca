@@ -459,10 +459,10 @@ class IssuesController < ApplicationController
     case value
     when '1'
       @title = _('Active issues')
-      Issue::EN_COURS
+      Issue::OPENED
     when '-1'
       @title = _('Finished issues')
-      Issue::TERMINEES
+      Issue::CLOSED
     else
       nil
     end

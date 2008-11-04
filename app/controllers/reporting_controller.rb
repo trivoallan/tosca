@@ -357,13 +357,13 @@ class ReportingController < ApplicationController
     anomalies = { :conditions => "typeissue_id = 2" }
     evolutions = { :conditions => "typeissue_id = 5" }
 
-    Issue.send(:with_scope, { :find => { :conditions => Issue::EN_COURS } }) do
+    Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
       report[0].push Issue.count(informations)
       report[1].push Issue.count(anomalies)
       report[2].push Issue.count(evolutions)
     end
 
-    Issue.send(:with_scope, { :find => { :conditions => Issue::TERMINEES } }) do
+    Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
       report[3].push Issue.count(informations)
       report[4].push Issue.count(anomalies)
       report[5].push Issue.count(evolutions)
@@ -380,13 +380,13 @@ class ReportingController < ApplicationController
       severities.concat [ { :conditions => "severity_id = #{i}" } ]
     end
 
-    Issue.send(:with_scope, { :find => { :conditions => Issue::EN_COURS } }) do
+    Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
       4.times do |t|
         report[t+4].push Issue.count(severities[t])
       end
     end
 
-    Issue.send(:with_scope, { :find => { :conditions => Issue::TERMINEES } }) do
+    Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
       4.times do |t|
         report[t].push Issue.count(severities[t])
       end

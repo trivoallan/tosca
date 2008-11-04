@@ -86,8 +86,8 @@ class Issue < ActiveRecord::Base
   end
 
   # self-explanatory
-  TERMINEES = "issues.statut_id IN (#{Statut::CLOSED.join(',')})" unless defined? TERMINEES
-  EN_COURS = "issues.statut_id IN (#{Statut::OPENED.join(',')})" unless defined? EN_COURS
+  CLOSED = "issues.statut_id IN (#{Statut::CLOSED.join(',')})" unless defined? CLOSED
+  OPENED = "issues.statut_id IN (#{Statut::OPENED.join(',')})" unless defined? OPENED
 
   # See ApplicationController#scope
   def self.set_scope(contract_ids)

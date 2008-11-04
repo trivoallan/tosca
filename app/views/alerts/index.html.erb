@@ -1,12 +1,12 @@
 <h1><%= _('Alerts')%></h1>
-<h2><%= _('Please select the teams you want to monitor')%></h2>
+<h2><%= _('Please select the team you want to monitor')%></h2>
 
 <% form_tag(update_alerts_path, :method => :put) do %>
 <table class="full">
   <thead>
     <th><%= _('Teams') %></th>
     <th><%= _('Hash') %></th>
-    <th><%= _('Link to page') %></th>
+    <th><%= _('Link to the alert page') %></th>
   </thead>
   <tbody>
     <% @teams.each do |team| %>
