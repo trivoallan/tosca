@@ -1,8 +1,9 @@
-<% user = session[:user] -%>
-<% role_id = (user ? user.role_id : 6) -%>
-<% locale = Locale.get.language.intern -%>
-<% role_localised = :"#{locale}#{user.role_id}" if user -%>
-<% cache("layout/#{role_id}/head") do -%>
+<% #We use '-' and the end not to generate new lines
+  user = session[:user]
+  role_id = (user ? user.role_id : 6)
+  locale = Locale.get.language.intern
+  role_localised = :"#{locale}#{user.role_id}" if user
+  cache("layout/#{role_id}/head") do -%>
  <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=Locale.get%>" lang="<%=Locale.get%>">
