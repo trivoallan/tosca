@@ -33,6 +33,8 @@ class Comment < ActiveRecord::Base
     if record.issue.nil?
       record.errors.add_to_base _('You must indicate a valid issue')
     end
+    #We check if we are trying to change the status of the request, 
+    #but it has already the same status
     if (issue && issue.new_record? != true &&
         issue.first_comment_id != record.id &&
         issue.statut_id == record.statut_id &&
@@ -45,8 +47,13 @@ class Comment < ActiveRecord::Base
   end
 
   before_validation do |record|
-    if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and html2text(record.text).strip.empty?
-      record.text = _("The issue is now %s.") % _(record.statut.name)
+    #If the status was changed and we do not specify a text, we generate a default text
+    text = html2text(record.text).strip
+    if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and text.empty?
+      record.text << ( _("The issue is now %s.<br/>") % _(record.statut.name) )
+    end
+    if record.ingenieur and text.empty?
+      record.text << ( _("The issue is now managed by %s.<br/>") % _(record.ingenieur.name))
     end
   end
 
