@@ -1,12 +1,5 @@
-<% if @issues_found && !@issues_found.empty?%>
-
-  <% if @issues_found.size == 1 %>
-    <% contract = @issues_found.first.contract.name %>
-    <%= text_to_flash_player(_("The contract %s has a new issue : %s") % [ contract, @issue_found.first.resume ]) %>
-  <% else %>
-    <%= text_to_flash_player(_("There is %d new issues.") % @issues_found.size)%>
-  <% end %>
-
+<% if @issues_found and not @issues_found.empty?%>
+  <%= play_mp3(App::AlertFile) %>
   <%= show_list(@issues_found, _('New issues')) do |r|
         "##{r.id} #{r.contract} : #{r.resume}"
       end %>

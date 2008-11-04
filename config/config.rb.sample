@@ -57,6 +57,9 @@ module App
   ContactPhone = PhonePrefix + " " + PhoneCode
   ContactMail = "tosca@tosca-project.com"
 
+  #From http://www.freesound.org/samplesViewSingle.php?id=30988
+  AlertFile = "30988__UncleSigmund__ahhh.mp3"
+
   module Help
     NewIssueUrl = "http://redmine.tosca-project.net/wiki/tosca/NewIssue"
     LifeCycleUrl = "http://redmine.tosca-project.net/wiki/tosca/LifeCycle"
