@@ -87,21 +87,21 @@ class Elapsed < ActiveRecord::Base
   def taken_into_account_progress
     issue = self.issue
     # 1 hour = 1/24 of a day
-    progress(taken_into_account, (1/24.0), issue.interval)
+    progress(self.taken_into_account(), (1/24.0))
   end
 
   def workaround_progress
     issue = self.issue
     commitment = issue.commitment
     return 0.0 unless commitment
-    progress(self.workaround(), commitment.workaround, issue.interval)
+    progress(self.workaround(), commitment.workaround)
   end
 
   def correction_progress
     issue = self.issue
     commitment = issue.commitment
     return 0.0 unless commitment
-    progress(self.correction(), commitment.correction, issue.interval)
+    progress(self.correction(), commitment.correction)
   end
 
   # TODO
@@ -116,9 +116,9 @@ class Elapsed < ActiveRecord::Base
 
   # Compute progress from an 'elapsed' time in "interval" reference,
   # with 'commitment' day
-  def progress(elapsed, commitment, interval)
+  def progress(elapsed, commitment)
     return -1 if commitment == -1
-    elapsed / (commitment * interval).hours
+    elapsed / commitment.days
   end
 
   private
@@ -133,6 +133,7 @@ class Elapsed < ActiveRecord::Base
     last = issue.last_status_comment
     contract = issue.contract
     result += contract.rule.compute_between(last, current, contract)
+    result
   end
 
 
