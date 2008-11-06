@@ -28,7 +28,7 @@ class CommentTest < Test::Unit::TestCase
   # We ensure to call all the methods
   def test_helper_methods
     c = Comment.find :first
-    c.etat
+    c.state
     c.mail_id
     assert !c.add_attachment({})
     c.fragments

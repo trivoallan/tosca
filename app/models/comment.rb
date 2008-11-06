@@ -58,7 +58,7 @@ class Comment < ActiveRecord::Base
   end
 
   # State in words of the comment (private or public)
-  def etat
+  def state
     ( private ? _("private") : _("public") )
   end
 

@@ -22,6 +22,13 @@ class Notifier < ActionMailer::Base
   HTML_CONTENT = 'text/html'
   TEXT_CONTENT = 'text/plain'
 
+  #Header for mails
+  HEADER_MESSAGE_ID = "Message-Id"
+  HEADER_REFERENCES = "References"
+  HEADER_IN_REPLY_TO = "In-Reply-To"
+  HEADER_LIST_ID = "List-Id"
+  
+  
   # To send a text and html mail it's simple
   # fill the recipients, from, subject, cc, bcc of your mail
   # then call the html_and_text_body method with a parameter
@@ -147,38 +154,74 @@ class Notifier < ActionMailer::Base
     html_and_text_body({ :result => data.other, :important => data.important, :time => time })
   end
 
-  # http://i.loveruby.net/en/projects/tmail/doc/mail.html$
   # http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer
   # Kept In Order to have the code for generating recipients of a list
-=begin
   def receive(email)
     from = email.from.first
-
-    users = User.find(:all, :conditions => [ "email = ?", from ])
-    return Notifier::deliver_email_not_exist(from) if users.empty?
-    Notifier::deliver_email_multiple_account(from) if users.size != 1
-
-    possible_clients = Array.new
-    adresses = email.cc.nil? ? email.to : email.to.concat(email.cc)
-    for adresse in adresses
-      clients = Client.find(:all, :conditions => [ "mailingliste = ?", adresse ])
-      possible_clients.concat(clients)
+    
+    in_reply_to = email[HEADER_IN_REPLY_TO]
+    references =  email[HEADER_REFERENCES]
+    
+    in_reply_to_id = extract_issue_id(in_reply_to)
+    
+    #Is the id in in_reply_to is equal to one of references
+    unless not in_reply_to_id or not same_issue_id?(references, in_reply_to_id) 
+      #The email is probably not a response to a e-mail from Tosca
+      return Notifier::deliver_email_not_good(from)
     end
-
-    return Notifier::deliver_email_mailinglist_not_exist(from, adresses) if possible_clients.empty?
-    #We have a validate_uniqueness for Client.mailingliste so no need to test possible_clients.size > 1
-
-    user = users.first
-    client = possible_clients.first
-
-    email[HEADER_LIST_ID] = list_id(contract)
-    send_mail(client.contract.mailingliste, contract.ingenieurs.map { |e| e.user.email }, email)
+    
+    #One e-mail by user, or if multiple e-mail same person
+    user = User.find(:first, :conditions => [ "email = ?", from ])
+    return Notifier::deliver_email_not_exist(from) unless users
+    
+    issue = Issue.find(in_reply_to_id)
+    return Notifier::deliver_email_not_good(from) unless issue
+    
+    unless issue.contract.users.include? user
+      #The user has no rights on this contract
+      return Notifier::deliver_email_no_rights_contract(from)
+    end
+    
+    #The text of the comment
+    text = nil
+    attachment = nil
+    email.parts.each do |part|
+      if email.attachment?(part)
+        #This part is an attachment
+        #TODO
+      else
+        #This part is the mail
+        content_type = part.sub_type
+        if content_type and content_type.include?("text")
+          #This is the text part of the e-mail
+          #We remove the lines which come from the replied email
+          text = part.body.gsub(/^>.+$/, '')
+          #More lines but much faster
+          text.strip!
+          #We have a pseudo HTML comment
+          text.gsub!(/\n/, "<br/>")
+        elsif content_type and content_type.include?("html")
+          #This is the html part of the e-mail
+          text = part.body.split(/<\/?blockquote.*>/i)
+          text = text.join
+        end
+      end
+    end
+    
+    Comment.new do |c|
+      c.issue = issue
+      c.user = user
+      c.attachment = attachment
+      c.private = false
+      c.text = text
+    end.save!
+    
+    #TODO : find a way to send the notification of the comment
   end
-=end
 
   private
 
-  #Email when a received e-mail doe not exists in the database
+  #Email when a received e-mail does not exists in the database
   def email_not_exist(to)
     logger.info("E-mail #{to} does not exists in database")
 
@@ -189,37 +232,31 @@ class Notifier < ActionMailer::Base
 
     html_and_text_body
   end
-
-  #E-mail when multiple accounts have the same e-mail
-  def email_multiple_account(to)
-    logger.info("E-mail #{to} corresponds to multiple users")
-
+  
+  #Email when a received e-mail is not well formed
+  def email_not_good(to)
+    logger.info("Bad e-mail from #{to}")
+    
     from       App::FromEmail
     recipients to
-    subject    "#{App::InternetAddress} : " << _("Multiple accounts with the same e-mail")
-
+    bcc        App::TeamEmail
+    subject    "#{App::InternetAddress} : " << _("Possible error in your e-mail")
+    
     html_and_text_body
   end
-
-  #E-mail when mailinglist does not exists
-  def email_mailinglist_not_exist(to, adresses)
-    mailinglist = adresses.grep(/#{App::InternetAddress}$/)
-    logger.info("This(These) e-mail(s) #{mailinglist} does not correspond to a valid mailing-list")
-
+  
+  #Email when a user has no rights on a contract
+  #TODO
+  def email_no_rights_contract(to)
+    logger.info("Bad e-mail from #{to}")
+    
     from       App::FromEmail
     recipients to
-    subject    "#{App::InternetAddress} : " << _("Mailing list does not exists")
-
-    options = Hash.new
-    options[:mailinglist] = mailinglist
-
-    html_and_text_body(options)
+    bcc        App::TeamEmail
+    subject    "#{App::InternetAddress} : " << _("Possible error in your e-mail")
+    
+    html_and_text_body
   end
-
-  HEADER_MESSAGE_ID = "Message-Id"
-  HEADER_REFERENCES = "References"
-  HEADER_IN_REPLY_TO = "In-Reply-To"
-  HEADER_LIST_ID = "List-Id"
 
   #Usage : send_mail("toto@toto.com", ["tutu@toto.com", "tata@toto.com"], email)
   #The email param is a TMail::Mail
@@ -289,13 +326,24 @@ class Notifier < ActionMailer::Base
   def message_id(id)
     "<#{id}@#{App::Name}.#{App::InternetAddress}>"
   end
-
-=begin
-  # There is NO outgoing mails, sadly. #
-  ######################################
-
-  def list_id(contract)
-    "#{contract.name} <#{contract.internal_ml}>"
+  
+  #Extracts the issue number from a header
+  def extract_issue_id(string)
+    string = string.to_s
+    string.strip!
+    string.gsub!(/[<\>]/, '')
+    result = nil
+    result = string[/^\d+/] if string =~ /^\d+_\d+@#{App::Name}.#{App::InternetAddress}$/
+    return result
   end
-=end
+  
+  #Is the issue(s) id from a header is the same has the one in parameter
+  def same_issue_id?(header, issue_id)
+    header.to_s.split(" ").each do |e|
+      id = extract_issue_id(e)
+      return true if issue_id == id
+    end
+    false
+  end
+
 end
