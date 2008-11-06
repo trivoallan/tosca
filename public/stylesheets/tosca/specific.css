@@ -164,11 +164,12 @@ div.private {
   background-color: #eee;
 }
 div.comment-header {
-  padding: 0 10px;
+  padding: 0px 10px;
   border: 1px solid #777;
   border-bottom: none;
   cursor: pointer;
   -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
 }
 div.comment-content {
   padding: 10px;
@@ -176,9 +177,10 @@ div.comment-content {
   border: 1px solid #777;
   border-top: none;
   -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
 }
 table.comment-table {
-  width: 100%;
+  width: 99%;
 }
 table.comment-table td.infos {
   width: 20%;

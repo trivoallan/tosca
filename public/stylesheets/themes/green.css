@@ -32,17 +32,19 @@ body, #footer, .comment-header span { background-color: #e2efe2; }
 #col3_content ul { background: #eee; }
 
 table.full {
+  background-color: #f2fff2;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
-  background-color: #f2fff2;
 }
 table.full th {
   background: none;
   color: #000;
 }
 
-.comment-header { background-color:  #f2fff2; }
+div.collapsed div.comment-header { background:  #f2fff2; }
+div.comment-header { background:  #f2fff2; }
+
 
 a, a:active, a:visited, a:focus, #footer a, #footer a:hover { color: #1a5270; }
 

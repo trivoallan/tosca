@@ -1,23 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<% user = session[:user] %>
+<% role_id = (user ? user.role_id : 6) %>
+<% locale = Locale.get.language.intern %>
+<% role_localised = :"#{locale}#{user.role_id}" if user %>
 <% #We use '-' and the end not to generate new lines
-  user = session[:user]
-  role_id = (user ? user.role_id : 6)
-  locale = Locale.get.language.intern
-  role_localised = :"#{locale}#{user.role_id}" if user
   cache("layout/#{role_id}/head") do -%>
- <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=Locale.get%>" lang="<%=Locale.get%>">
  <head>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>
    <link rel="shortcut icon" href="<%=StaticImage::favimage_ico%>" type="image/x-icon" />
    <link rel="icon" href="<%=StaticImage::favimage_png%>" type="image/png" />
-   <%= stylesheet_link_tag("yaml/core/base.css", "builder/basemod.css",
-        "builder/content_default.css", "tosca/specific.css", "tosca/navigation.css",
-        "tosca/print.css", "tosca/custom_tiny.css", "tosca/calendar.css",
+   <%= stylesheet_link_tag("yaml/core/base.css", "yaml/core/print_base.css",
+        "builder/basemod.css", "builder/content_default.css", "tosca/specific.css",
+        "tosca/navigation.css", "tosca/print.css", "tosca/custom_tiny.css", "tosca/calendar.css",
         "tosca/ajax.css", "tosca/big_calendar.css",
         :media => 'all', :cache => true) %>
    <!--[if lte IE 7]>
-     <%= stylesheet_link_tag("ie_hacks/patch.css", :media => 'all', :cache => true) %>
+     <%= stylesheet_link_tag('yaml/core/iehacks.css', 'ie_hacks/patch.css', 'ie_hacks/tosca.css', :media => 'all', :cache => 'ie') %>
    <![endif]-->
 
    <!-- TinyMCE can be loaded after the page : -->
@@ -47,6 +47,7 @@
         'calendar-setup', 'prototype', 'effects', 'controls',
         'application', 'redbox', 'md5', 'tosca', :cache => "all-#{locale}") %>
 <% end %>
+ <%#= stylesheet_link_tag("themes/pink.css", :media => 'all') %>
  <title><%= @page_title || _(controller.controller_name) %></title>
 </head>
 <body>

@@ -14,15 +14,16 @@
     <% options = print_issue_path(@issue.id) %>
     <%= link_to(StaticImage::print, options) %>
    </h1>
-
-   <div id="comment-list">
+   <div id="comment-list" class="clearfix">
      <%= render(:partial => 'issues/tabs/comment',
-  							:collection => @issue.comments) %>
+	  					:collection => @issue.comments) %>
+     <!-- IE Column Clearing : this browser really sucks -->
+     <div id="ie_clearing"> &#160; </div>
    </div>
 
    <script type="text/javascript">
-     $$('div.comment-container:first-child').invoke('removeClassName', 'collapsed');
-     $$('div.comment-container:last-child').invoke('removeClassName', 'collapsed');
+     $('comment_<%=@issue.first_comment_id%>').removeClassName('collapsed');
+     $('comment_<%=@issue.last_comment_id%>').removeClassName('collapsed');
    </script>
 
    <div>
@@ -36,8 +37,10 @@
    </div>
 
    <%# see tab_menu for ajax links %>
-   <div class="issue_tab" id="issue_tab">
+   <div class="issue_tab clearfix" id="issue_tab">
     <%= render :partial => 'issues/tabs/tab_empty' %>
+     <!-- IE Column Clearing : this browser really sucks -->
+     <div id="ie_clearing"> &#160; </div>
    </div>
  </div>
 <% end %>

@@ -158,7 +158,7 @@ class StaticImage < Static::ActionView
   @@ruby = nil
   def self.ruby
     desc = _("Tosca on Rails")
-    @@ruby ||= image_tag('icons/ruby.png', options(desc, '15x15'))
+    @@ruby ||= image_tag('icons/ruby.gif', options(desc, '15x15'))
   end
 
   @@linagora = nil
@@ -210,7 +210,7 @@ class StaticImage < Static::ActionView
     @@spinner ||= image_tag('spinner.gif', :id => 'spinner',
                             :style=> 'display: none;')
   end
-  
+
   @@icon_tag = nil
   def self.icon_tag
     desc = _("Manage tags")
@@ -246,33 +246,33 @@ class StaticImage < Static::ActionView
   def self.sla_exceeded
     @@sla_exceeded ||= image_tag 'icons/exclamation.png', options('Time exceeded', '16x16')
   end
-  
+
   @@comments = nil
   def self.comments
     @@comments ||= image_tag('icons/comments.png', options('Comments', '16x16'))
   end
-  
+
   @@documents = nil
   def self.documents
     @@documents ||= image_tag('icons/page_copy.png', options('Attachments', '16x16'))
   end
-  
+
   @@telephone = nil
   def self.telephone
     @@telephone ||= image_tag('icons/telephone.png', options('Phonecalls', '16x16'))
   end
-  
+
   @@description = nil
   def self.description
     @@description ||= image_tag('icons/book_open.png', options('Description', '16x16'))
   end
-  
+
   @@history = nil
   def self.history
     @@history ||= image_tag('icons/film.png', options('History', '16x16'))
   end
-  
-  
+
+
   ##############################################
   # Severity
   # Display an icon matching severity
@@ -283,7 +283,7 @@ class StaticImage < Static::ActionView
     if result.nil?
       desc = (d.respond_to?(:severities_name) ? d.severities_name : d.severity.name)
       file_name = "severity_#{d.severity_id}.gif"
-      @@images_severity[d.severity_id] = image_tag(file_name, :title => desc, 
+      @@images_severity[d.severity_id] = image_tag(file_name, :title => desc,
         :alt => desc, :class => 'aligned_picture')
       result = @@images_severity[d.severity_id]
     end
