@@ -47,7 +47,8 @@
         'calendar-setup', 'prototype', 'effects', 'controls',
         'application', 'redbox', 'md5', 'tosca', :cache => "all-#{locale}") %>
 <% end %>
- <%#= stylesheet_link_tag("themes/pink.css", :media => 'all') %>
+ <% theme = session[:theme] %>
+ <%= stylesheet_link_tag(theme, :media => 'all') unless theme.blank? %>
  <title><%= @page_title || _(controller.controller_name) %></title>
 </head>
 <body>
@@ -75,6 +76,7 @@
           <ul class="nav_user">
           <% if user %>
             <% infos = [ link_to(_('My account'), edit_account_path(user)),
+                         link_to_remote_redbox('D', :url => theme_welcome_path, :method => :get, :update => 'theme_box'),
                          public_link_to(image_disconnect, logout_accounts_path, :class => "disconnect") ] %>
             <li><%= infos.join('</li><li>') %></li>
           <% else %>
@@ -118,6 +120,7 @@
       </div>
     </div>
 
+    <div id="theme_box" style="display: none"></div>
   <% unless user %>
     <div id="login_box" style="display: none">
      <%= render :file => "account/login", :use_full_path => true,
