@@ -67,7 +67,7 @@ class LoadPermissions < ActiveRecord::Migration
                  'Helper for customer account' ],
                [ '^phonecalls/(?!destroy)', 'Manage calls' ],
                [ '^welcome/admin$', 'Administration page' ],
-               [ '^commentaires/(?!destroy)', 'Manage comments' ],
+               [ '^comments/(?!destroy)', 'Manage comments' ],
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
                [ '^documents/(?!destroy)', 'Manage documents' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
@@ -129,7 +129,7 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ manager_id, expert_id, customer_id ]
-    access = [ [ '^commentaires/(comment|show|edit|update)$',
+    access = [ [ '^comments/(comment|show|edit|update)$',
                   'Hability to comment an issue' ],
                 [ '^issues/(new|create|pending)$',
                    'Write access to issues & Pending View' ] ]
