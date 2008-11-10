@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-04 17:52+0100\n"
-"PO-Revision-Date: 2008-10-31 15:57+0100\n"
+"POT-Creation-Date: 2008-11-10 09:20+0100\n"
+"PO-Revision-Date: 2008-11-10 09:22+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -863,7 +863,7 @@ msgstr "La version %s a été créée avec succès"
 msgid "The version %s has been updated."
 msgstr "La version %s a été mis à jour avec succès"
 
-#: app/controllers/welcome_controller.rb:48
+#: app/controllers/welcome_controller.rb:63
 msgid ""
 "Thank your for taking time in order to help us to improve this product. Your "
 "comments has been sent successfully."
@@ -872,7 +872,7 @@ msgstr ""
 "remarques ont bien été transmises."
 
 #: app/helpers/account_helper.rb:36
-#: app/views/layouts/standard-layout.html.erb:76
+#: app/views/layouts/standard-layout.html.erb:78
 msgid "My account"
 msgstr "Mon&nbsp;compte"
 
@@ -1382,6 +1382,10 @@ msgstr "est Web 2.0 !"
 msgid "allows to export datas in ODS"
 msgstr "permet de faire des exports ODS"
 
+#: app/helpers/welcome_helper.rb:80
+msgid "%s theme"
+msgstr "thème %s"
+
 #: app/models/alert.rb:-
 msgid "alert"
 msgstr "alerte"
@@ -1395,13 +1399,11 @@ msgid "Alert|Hash value"
 msgstr "Valeur du hash"
 
 #: app/models/alert.rb:-
-#, fuzzy
-msgid "Alert|Created on"
+msgid "Alert|Created at"
 msgstr "Créée le"
 
 #: app/models/alert.rb:-
-#, fuzzy
-msgid "Alert|Updated on"
+msgid "Alert|Updated at"
 msgstr "Mise à jour le"
 
 #: app/models/arch.rb:-
@@ -1841,43 +1843,36 @@ msgstr "mainteneur"
 msgid "Mainteneur|Name"
 msgstr "Nom"
 
-#: app/models/notifier.rb:135
+#: app/models/notifier.rb:142
 msgid "Daily digest for "
 msgstr "Rapport d'activité pour "
 
-#: app/models/notifier.rb:137
+#: app/models/notifier.rb:144
 msgid " week of "
 msgstr " semaine "
 
-#: app/models/notifier.rb:138
+#: app/models/notifier.rb:145
 msgid "Weekly digest for "
 msgstr "Activité hebdomadaire pour "
 
-#: app/models/notifier.rb:141
+#: app/models/notifier.rb:148
 msgid "Monthly digest for "
 msgstr "Activité mensuelle pour "
 
-#: app/models/notifier.rb:144
+#: app/models/notifier.rb:151
 msgid "Yearly digest for "
 msgstr "Activité annuelle pour "
 
-#: app/models/notifier.rb:188
+#: app/models/notifier.rb:231 app/models/notifier.rb:243
+#: app/models/notifier.rb:256
 msgid "Possible error in your e-mail"
 msgstr "Erreur possible dans votre adresse e-mail"
 
-#: app/models/notifier.rb:199
-msgid "Multiple accounts with the same e-mail"
-msgstr "Plusieurs comptes avec le même e-mail"
-
-#: app/models/notifier.rb:211
-msgid "Mailing list does not exists"
-msgstr "Mailingliste inexistante"
-
-#: app/models/notifier.rb:258
+#: app/models/notifier.rb:295
 msgid "An e-mail was sent to "
 msgstr "Un e-mail a été envoyé à "
 
-#: app/models/notifier.rb:259
+#: app/models/notifier.rb:296
 msgid "with a copy to"
 msgstr "avec en copie"
 
@@ -3774,11 +3769,11 @@ msgstr "Connaissance"
 msgid "Add a new knowledge"
 msgstr "Ajouter une connaissance"
 
-#: app/views/layouts/standard-layout.html.erb:59
+#: app/views/layouts/standard-layout.html.erb:61
 msgid "Skip to the navigation"
 msgstr "Passer à la navigation"
 
-#: app/views/layouts/standard-layout.html.erb:60
+#: app/views/layouts/standard-layout.html.erb:62
 msgid "Skip to the content"
 msgstr "Passer au contenu"
 
@@ -5052,6 +5047,10 @@ msgstr "Vos suggestions sur notre service :"
 #: app/views/welcome/suggestions.html.erb:12
 msgid "Your suggestions on our tool : "
 msgstr "Vos suggestion sur notre outil : "
+
+#: app/views/welcome/theme.html.erb:5
+msgid "Dress this site as you wish"
+msgstr "Habillez ce site comme bon vous semble"
 
 #: lib/overrides.rb:199
 msgid "Immediate"

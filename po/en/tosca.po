@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-04 17:52+0100\n"
-"PO-Revision-Date: 2008-10-31 15:57+0100\n"
+"POT-Creation-Date: 2008-11-10 09:20+0100\n"
+"PO-Revision-Date: 2008-11-10 09:27+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -845,14 +845,14 @@ msgstr ""
 msgid "The version %s has been updated."
 msgstr ""
 
-#: app/controllers/welcome_controller.rb:48
+#: app/controllers/welcome_controller.rb:63
 msgid ""
 "Thank your for taking time in order to help us to improve this product. Your "
 "comments has been sent successfully."
 msgstr ""
 
 #: app/helpers/account_helper.rb:36
-#: app/views/layouts/standard-layout.html.erb:76
+#: app/views/layouts/standard-layout.html.erb:78
 msgid "My account"
 msgstr ""
 
@@ -1361,6 +1361,10 @@ msgstr ""
 msgid "allows to export datas in ODS"
 msgstr ""
 
+#: app/helpers/welcome_helper.rb:80
+msgid "%s theme"
+msgstr ""
+
 #: app/models/alert.rb:-
 msgid "alert"
 msgstr ""
@@ -1374,13 +1378,11 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-#, fuzzy
-msgid "Alert|Created on"
+msgid "Alert|Created at"
 msgstr "Created on"
 
 #: app/models/alert.rb:-
-#, fuzzy
-msgid "Alert|Updated on"
+msgid "Alert|Updated at"
 msgstr "Updated on"
 
 #: app/models/arch.rb:-
@@ -1389,7 +1391,7 @@ msgstr ""
 
 #: app/models/arch.rb:-
 msgid "Arch|Name"
-msgstr ""
+msgstr "Name"
 
 #: app/models/archive.rb:-
 msgid "Archive|File"
@@ -1413,7 +1415,7 @@ msgstr ""
 
 #: app/models/attachment.rb:-
 msgid "Attachment|File"
-msgstr ""
+msgstr "File"
 
 #: app/models/changelog.rb:-
 msgid "changelog"
@@ -1441,11 +1443,11 @@ msgstr ""
 
 #: app/models/client.rb:-
 msgid "Client|Name"
-msgstr ""
+msgstr "Name"
 
 #: app/models/client.rb:-
 msgid "Client|Description"
-msgstr ""
+msgstr "Description"
 
 #: app/models/client.rb:-
 msgid "Client|Address"
@@ -1601,7 +1603,7 @@ msgstr ""
 
 #: app/models/document.rb:-
 msgid "Document|User"
-msgstr ""
+msgstr "User"
 
 #: app/models/document.rb:-
 msgid "Document|Typedocument"
@@ -1627,7 +1629,7 @@ msgstr "Description"
 
 #: app/models/document.rb:-
 msgid "Document|Created on"
-msgstr ""
+msgstr "Created on"
 
 #: app/models/document.rb:-
 msgid "Document|Updated on"
@@ -1699,7 +1701,7 @@ msgstr "Description"
 
 #: app/models/image.rb:-
 msgid "Image|Software"
-msgstr ""
+msgstr "Software"
 
 #: app/models/image.rb:45 app/models/image.rb:46
 msgid "Logo '%s'"
@@ -1749,7 +1751,7 @@ msgstr ""
 
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Competence"
-msgstr ""
+msgstr "skill"
 
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Software"
@@ -1819,43 +1821,36 @@ msgstr ""
 msgid "Mainteneur|Name"
 msgstr "Name"
 
-#: app/models/notifier.rb:135
+#: app/models/notifier.rb:142
 msgid "Daily digest for "
 msgstr ""
 
-#: app/models/notifier.rb:137
+#: app/models/notifier.rb:144
 msgid " week of "
 msgstr ""
 
-#: app/models/notifier.rb:138
+#: app/models/notifier.rb:145
 msgid "Weekly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:141
+#: app/models/notifier.rb:148
 msgid "Monthly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:144
+#: app/models/notifier.rb:151
 msgid "Yearly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:188
+#: app/models/notifier.rb:231 app/models/notifier.rb:243
+#: app/models/notifier.rb:256
 msgid "Possible error in your e-mail"
 msgstr ""
 
-#: app/models/notifier.rb:199
-msgid "Multiple accounts with the same e-mail"
-msgstr ""
-
-#: app/models/notifier.rb:211
-msgid "Mailing list does not exists"
-msgstr ""
-
-#: app/models/notifier.rb:258
+#: app/models/notifier.rb:295
 msgid "An e-mail was sent to "
 msgstr ""
 
-#: app/models/notifier.rb:259
+#: app/models/notifier.rb:296
 msgid "with a copy to"
 msgstr ""
 
@@ -3749,11 +3744,11 @@ msgstr ""
 msgid "Add a new knowledge"
 msgstr ""
 
-#: app/views/layouts/standard-layout.html.erb:59
+#: app/views/layouts/standard-layout.html.erb:61
 msgid "Skip to the navigation"
 msgstr ""
 
-#: app/views/layouts/standard-layout.html.erb:60
+#: app/views/layouts/standard-layout.html.erb:62
 msgid "Skip to the content"
 msgstr ""
 
@@ -4980,6 +4975,10 @@ msgstr ""
 
 #: app/views/welcome/suggestions.html.erb:12
 msgid "Your suggestions on our tool : "
+msgstr ""
+
+#: app/views/welcome/theme.html.erb:5
+msgid "Dress this site as you wish"
 msgstr ""
 
 #: lib/overrides.rb:199
