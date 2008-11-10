@@ -21,14 +21,17 @@
 # The mail environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
 config.cache_classes = true
+config.cache_store = :memory_store
 
 #We only need model and mails
 config.frameworks = [:action_mailer, :active_record]
 
 config.log_level = :info
 
+
 # Disable delivery errors if you bad email addresses should just be ignored
 config.action_mailer.raise_delivery_errors = false
+
 
 # View Optimization : no '\n'
 ActionView::Base.erb_trim_mode = '>'

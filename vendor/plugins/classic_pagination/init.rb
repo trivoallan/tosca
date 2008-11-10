@@ -21,13 +21,15 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require 'pagination'
-require 'pagination_helper'
+if config.frameworks.include? :action_controller
+  require 'pagination'
+  require 'pagination_helper'
 
-ActionController::Base.class_eval do
-  include ActionController::Pagination
-end
+  ActionController::Base.class_eval do
+    include ActionController::Pagination
+  end
 
-ActionView::Base.class_eval do
-  include ActionView::Helpers::PaginationHelper
+  ActionView::Base.class_eval do
+    include ActionView::Helpers::PaginationHelper
+  end
 end

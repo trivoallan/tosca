@@ -9,5 +9,5 @@ require 'validations'
 require 'test_case'
 
 ActiveRecord::Base.send(:include, FileColumn)
-ActionView::Base.send(:include, FileColumnHelper)
+ActionView::Base.send(:include, FileColumnHelper) if config.frameworks.include? :action_view
 ActiveRecord::Base.send(:include, FileColumn::Validations)

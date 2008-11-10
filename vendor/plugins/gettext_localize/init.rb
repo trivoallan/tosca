@@ -24,8 +24,10 @@ require 'gettext_localize_rails'
 # set paths with LC_MESSAGES
 GettextLocalize::set_locale_paths
 
-ActionView::Base.send(:include, GettextLocalize::Helper)
-ActionController::Base.send(:include, GettextLocalize::Controller)
-class ActionController::Base
-  before_filter{|c| c.set_default_gettext_locale }
+ActionView::Base.send(:include, GettextLocalize::Helper) if config.frameworks.include? :action_view
+if config.frameworks.include? :action_controller
+  ActionController::Base.send(:include, GettextLocalize::Controller)
+  class ActionController::Base
+    before_filter{|c| c.set_default_gettext_locale }
+  end
 end
