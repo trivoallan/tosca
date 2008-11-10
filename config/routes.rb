@@ -33,9 +33,8 @@ ActionController::Routing::Routes.draw do |map|
                  :conditions => { :method => :get } }
   map.welcome '/', sweet_home
 
-  map.without_orm('welcome', %w(admin plan about deroulement
-    index natures statut suggestions declaration))
-  map.without_orm('welcome', %w(suggestions), :post)
+  map.without_orm('welcome', %w(admin plan about index suggestions theme))
+  map.without_orm('welcome', %w(suggestions theme), :post)
   map.without_orm('reporting', %w(configuration flux general digest digest_resultat calendar))
   map.without_orm('access', %w(denied))
   map.without_orm('alerts', %w(index show))

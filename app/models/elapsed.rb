@@ -85,7 +85,6 @@ class Elapsed < ActiveRecord::Base
   end
 
   def taken_into_account_progress
-    issue = self.issue
     # 1 hour = 1/24 of a day
     progress(self.taken_into_account(), (1/24.0))
   end

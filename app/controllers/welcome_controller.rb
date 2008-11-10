@@ -33,7 +33,22 @@ class WelcomeController < ApplicationController
   def about
   end
 
-  #nodoc
+  # Used to select a theme, even without an account
+  def theme
+    case request.method
+    when :get
+      render :nothing unless request.xhr?
+      render :layout => false
+    when :post
+      theme = params[:theme]
+      session[:theme] = "themes/#{theme}.css" unless theme.blank?
+      redirect_to welcome_path
+    else
+      render :nothing
+    end
+  end
+
+  # nodoc
   def suggestions
     suggestion = params[:suggestion]
     if suggestion
