@@ -72,7 +72,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^documents/(?!destroy)', 'Manage documents' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
                [ '^socles/(?!destroy)', "Manage systems" ],
-               [ '^urllogiciels/(?!destroy)', 'Manage urls of software' ],
+               [ '^urlsoftwares/(?!destroy)', 'Manage urls of software' ],
                [ '^urlreversements/', 'Manage their own urls of contributions' ]
              ]
     add_permission.call(roles, access)
@@ -88,7 +88,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^groupes/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
                [ '^ingenieurs/(?!(destroy|new))', 'Manage human ressources' ],
-               [ '^logiciels/(?!destroy)', 'Manage software' ],
+               [ '^softwares/(?!destroy)', 'Manage software' ],
                [ '^machines/(?!destroy)', 'Manage servers' ],
                [ '^releases/(?!destroy)', 'Manage releases' ],
                [ '^teams/(?!destroy)', 'Manage teams' ],
@@ -102,7 +102,7 @@ class LoadPermissions < ActiveRecord::Migration
     access = [ [ '^binaires/(show|index)$', 'Read-only access to binaries' ],
                [ '^clients/show$', 'Read-only access to clients offers' ] ,
                [ '^issues/(index|print|show)$', 'Read access to issues' ],
-               [ '^logiciels/(index|show)$', 'Read-only access to software' ],
+               [ '^softwares/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
                [ '^socles/show$', 'Read-only access to system' ],
                [ '^teams/(index|show)$', 'Read-only access to teams' ],
@@ -142,7 +142,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^contributions/(index|select|show|list|feed)',
                  'Public read access to contributions' ],
                [ '^groupes/(index|show)', 'Public read access to groups' ],
-               [ '^logiciels/(index|show)',
+               [ '^softwares/(index|show)',
                  'Public read access to software' ],
                [ '^statuts/(index|help)$', 'Explanation of status' ] ]
     add_permission.call(roles, access)

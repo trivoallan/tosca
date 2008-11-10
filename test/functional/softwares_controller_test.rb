@@ -73,6 +73,9 @@ class SoftwaresControllerTest < Test::Unit::TestCase
     assert_raise(ActiveRecord::RecordNotFound) {
       get :show, :id => 4
     }
+    assert_response :redirect
+    assert_template 'denied'
+    assert_redirected_to denied_access_path
   end
 
   def test_new

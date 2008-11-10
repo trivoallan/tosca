@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-10 09:20+0100\n"
-"PO-Revision-Date: 2008-11-10 09:22+0100\n"
+"PO-Revision-Date: 2008-11-10 16:06+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4441,7 +4441,7 @@ msgstr "Groupe"
 
 #: app/views/softwares/_form.html.erb:37 app/views/softwares/show.html.erb:15
 msgid "Private"
-msgstr "Privé ?"
+msgstr "Privé"
 
 #: app/views/softwares/_form.html.erb:42
 #: app/views/softwares/_software_info.html.erb:50
