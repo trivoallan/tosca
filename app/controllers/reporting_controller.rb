@@ -42,7 +42,7 @@ class ReportingController < ApplicationController
 
   # allows to launch activity report
   def configuration
-    @contracts = session[:user].contracts
+    @contracts = session[:user].contracts.sort!{|a, b| a.name <=> b.name}
   end
 
   # To display new issues by months
