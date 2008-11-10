@@ -156,6 +156,11 @@ class Notifier < ActionMailer::Base
 
   # http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer
   # Kept In Order to have the code for generating recipients of a list
+  # To active incomming emails :
+  # Install postfix
+  # edit /etc/aliases
+  # add this line and replace tosca: by the username of incoming emails
+  # tosca: "|RAILS_ENV=mail /path/to/tosca/script/runner 'Notifier.receive(STDIN.read)'"
   def receive(email)
     from = email.from.first
     
@@ -165,61 +170,88 @@ class Notifier < ActionMailer::Base
     in_reply_to_id = extract_issue_id(in_reply_to)
     
     #Is the id in in_reply_to is equal to one of references
-    unless not in_reply_to_id or not same_issue_id?(references, in_reply_to_id) 
-      #The email is probably not a response to a e-mail from Tosca
-      return Notifier::deliver_email_not_good(from)
-    end
+#    unless not in_reply_to_id or not same_issue_id?(references, in_reply_to_id) 
+#      #The email is probably not a response to a e-mail from Tosca
+#      return Notifier::deliver_email_not_good(from)
+#    end
     
     #One e-mail by user, or if multiple e-mail same person
     user = User.find(:first, :conditions => [ "email = ?", from ])
-    return Notifier::deliver_email_not_exist(from) unless users
+    return Notifier::deliver_email_not_exist(from) unless user  
     
     issue = Issue.find(in_reply_to_id)
     return Notifier::deliver_email_not_good(from) unless issue
+    logger.info("Issue #{issue.inspect}")
     
     unless issue.contract.users.include? user
       #The user has no rights on this contract
       return Notifier::deliver_email_no_rights_contract(from)
     end
     
+    logger.info("We are creating the comment")
     #The text of the comment
     text = nil
     attachment = nil
-    email.parts.each do |part|
-      if email.attachment?(part)
-        #This part is an attachment
-        #TODO
-      else
-        #This part is the mail
-        content_type = part.sub_type
-        if content_type and content_type.include?("text")
-          #This is the text part of the e-mail
-          #We remove the lines which come from the replied email
-          text = part.body.gsub(/^>.+$/, '')
-          #More lines but much faster
-          text.strip!
-          #We have a pseudo HTML comment
-          text.gsub!(/\n/, "<br/>")
-        elsif content_type and content_type.include?("html")
-          #This is the html part of the e-mail
-          text = part.body.split(/<\/?blockquote.*>/i)
-          text = text.join
+    if email.parts.size > 0
+      email.parts.each do |part|
+        logger.info("Part sub_type #{part.sub_type}")
+        if email.attachment?(part)
+          #This part is an attachment
+          #TODO
+        else
+          #This part is the mail
+          text = get_text_from_email(part)
         end
       end
+    else
+      text = get_text_from_email(email)
     end
     
-    Comment.new do |c|
+    logger.info("We are saving the comment")
+    
+    comment = Comment.new do |c|
       c.issue = issue
       c.user = user
       c.attachment = attachment
       c.private = false
       c.text = text
-    end.save!
+    end
+    logger.info("Comment #{comment.inspect}")
+    comment.save
+    
+    logger.info("We are done")
     
     #TODO : find a way to send the notification of the comment
   end
 
   private
+  
+  def get_text_from_email(part)
+    content_type = part.sub_type
+    text = nil
+    logger.info("Subtype #{content_type.inspect}")
+    if content_type and content_type.include?("plain")
+      #This is the text part of the e-mail
+      #We remove the first lign before replied mail
+      text = part.body.gsub(/(\n[^>]*\n)(>)/, "\n" + '\2')
+      #We remove the lines which come from the replied email
+      text.gsub!(/^>.*$/, '')
+      #We remove the signature
+      text = text.split(/^-- $/).first
+      #More lines but much faster
+      text.strip!
+      #We have a pseudo HTML comment
+      text.gsub!(/\n/, "<br/>")
+    elsif content_type and content_type.include?("html")
+      #This is the html part of the e-mail
+      #We remove the first lign before replied mail
+      text = part.body.gsub(/(<br\/?>.*<br\/?>)(<\/?blockquote.*>)/i, '\2')
+      #We remove alle the text between blockquotes tags
+      text = text.split(/<\/?blockquote[^>]*>/i)
+      text = text.join
+    end
+    text
+  end
 
   #Email when a received e-mail does not exists in the database
   def email_not_exist(to)
