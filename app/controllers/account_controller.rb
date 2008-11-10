@@ -61,8 +61,12 @@ class AccountController < ApplicationController
 
   # Exit gracefully
   def logout
-    last_user = session[:last_user]
+    theme, last_user = session[:theme], session[:last_user]
     clear_sessions
+    # preserve theme, what ever happens
+    session[:theme] = theme
+
+    # in case of "su" style use, relog to previous one
     _login(last_user) if last_user
     redirect_to "/"
   end
@@ -363,12 +367,13 @@ private
   # et 500 en cas de modification
   # Le menu du layout est inclus pour des raisons de performances
   def set_sessions(user)
-    return_to = session[:return_to]
+    return_to, theme = session[:return_to], session[:theme]
+
     # clear_session erase session[:user]
     clear_sessions
 
     # restoring previously consulted page
-    session[:return_to] = return_to
+    session[:return_to], session[:theme] = return_to, theme
 
     # Set user properties
     session[:user] = user
