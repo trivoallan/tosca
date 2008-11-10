@@ -76,10 +76,11 @@
           <ul class="nav_user">
           <% if user %>
             <% infos = [ link_to(_('My account'), edit_account_path(user)),
-                         link_to_remote_redbox('D', :url => theme_welcome_path, :method => :get, :update => 'theme_box'),
+			             public_link_to_remote_theme,
                          public_link_to(image_disconnect, logout_accounts_path, :class => "disconnect") ] %>
             <li><%= infos.join('</li><li>') %></li>
           <% else %>
+            <li><%= public_link_to_remote_theme %></li>
             <li><%= link_to_redbox(image_connect, 'login_box', :class => "connect") %></li>
           <% end %>
           <li><%= public_link_to_about %></li>

@@ -160,4 +160,10 @@ EOS
             :title => _('Administration interface'))
   end
 
+
+  def public_link_to_remote_theme
+    link_to_remote_redbox(StaticImage.icon_css, :url => theme_welcome_path,
+                          :method => :get, :update => 'theme_box')
+  end
+
 end

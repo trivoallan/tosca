@@ -217,6 +217,11 @@ class StaticImage < Static::ActionView
     @@icon_tag ||= image_tag('icons/tag_red.gif', options(desc, '16x16'))
   end
 
+  @@icon_css = nil
+  def self.icon_css
+    @@icon_tag ||= image_tag('icons/css.png', options('', '16x16'))
+  end
+
   @@expand = nil
   def self.expand
     @@expand ||= image_tag('icons/navigation_expand.gif', options('expand'))
