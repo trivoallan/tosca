@@ -33,12 +33,13 @@ class ReportingController < ApplicationController
     "#22a4ff", "#0082dd", # blue
   ]
   # Array starts at 0, but Gruff need a start at 1
-  @@dark_colors = ( [nil] << colors ).flatten
-  @@colors = ( [nil] << colors.values_at(1, 3, 5, 7, 9) ).flatten
+  @@light_colors = ( [nil] << colors.values_at(0, 2, 4, 6, 8) ).flatten
+  @@colors = ( [nil] << colors.values_at(0, 2, 4, 6, 8, 1, 3, 5, 7, 9) ).flatten
   # Subset for specific graphs
   @@sla_colors = ( [nil] << colors.values_at(7, 1) ).flatten
+  @@severity_colors = ( [nil] << colors.values_at(0,2,4,6,1,3,5,7) ).flatten
   @@colors_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
-  @@dark_colors_types = ( [nil] << colors.values_at(2, 3, 6, 7, 8, 9) ).flatten
+  @@type_colors = ( [nil] << colors.values_at(2, 6, 8, 3, 7, 9) ).flatten
 
   # allows to launch activity report
   def configuration
@@ -55,8 +56,13 @@ class ReportingController < ApplicationController
     @time = Time.mktime(year, month)
 
     conditions = [ 'created_on BETWEEN ? AND ?',
-      @time.end_of_month, @time.beginning_of_month ]
+      @time.beginning_of_month, @time.end_of_month ]
 
+    # Adapt it ?
+    # SELECT DAYOFMONTH(issues.created_on), GROUP_CONCAT(id), GROUP_CONCAT(resume)
+    #   FROM issues
+    #   WHERE (created_on BETWEEN '2007-10-01 00:00:00' AND '2008-11-30 23:59:59')
+    #   GROUP BY DAYOFMONTH(issues.created_on);
     issues = Issue.find(:all, :conditions => conditions)
     @number_issues = issues.size
 
@@ -196,6 +202,7 @@ class ReportingController < ApplicationController
 
     # We cannot know in advance what are the most important software
     init_compute_by_software(@data[:by_software])
+    severites_filter = init_compute_by_severity
     issues = [ 'issues.created_on BETWEEN ? AND ? AND issues.contract_id IN (?)',
                  nil, nil, @contracts.collect(&:id) ]
     until (start_date > end_date) do
@@ -206,7 +213,7 @@ class ReportingController < ApplicationController
       issues[1], issues[2] = infdate, supdate
       Issue.send(:with_scope, { :find => { :conditions => issues } }) do
         compute_by_type @data[:by_type]
-        compute_by_severity @data[:by_severity]
+        compute_by_severity @data[:by_severity], severites_filter
         compute_by_status @data[:by_status]
         compute_by_software @data[:by_software]
         compute_cancelled @data[:cancelled]
@@ -352,43 +359,65 @@ class ReportingController < ApplicationController
   ##
   # Compte les issues selon leur nature
   def compute_by_type(report)
-    # TODO : faire des requêtes paramètrées, avec des ?
-    informations = { :conditions => "typeissue_id = 1" }
-    anomalies = { :conditions => "typeissue_id = 2" }
-    evolutions = { :conditions => "typeissue_id = 5" }
+    types = Array.new
+    @contracts.each do |c|
+      types.concat(c.client.typeissues)
+    end
+    types.uniq!
 
-    Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
-      report[0].push Issue.count(informations)
-      report[1].push Issue.count(anomalies)
-      report[2].push Issue.count(evolutions)
+    # 1st time, we have to fill dynamically labels
+    # There's 2 lines, since we diffentiate opened and closed issues.
+    if report.empty?
+      types.each { |type| report << [_(type.name)] }
+      types.each { |type| report << [:empty] }
     end
 
+    Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
+      types.each_with_index do |type, i|
+        conditions = { :conditions => { :typeissue_id => type.id } }
+        report[i].push Issue.count(conditions)
+      end
+    end
+
+    size = types.size
     Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
-      report[3].push Issue.count(informations)
-      report[4].push Issue.count(anomalies)
-      report[5].push Issue.count(evolutions)
+      types.each_with_index do |type, i|
+        conditions = { :conditions => { :typeissue_id => type.id } }
+        report[i+size].push Issue.count(conditions)
+      end
     end
 
   end
 
+  def init_compute_by_severity()
+    severities = Severity.all
+    severities.each_with_index do |s, i|
+      severities[i] = { :conditions => { :severity_id => s.id } }
+    end
+    severities
+  end
+
   ##
   # Compte les issues par sévérités
-  def compute_by_severity(report)
-    severities = []
-    # TODO : requête paramètréé, avec ?
-     (1..4).each do |i|
-      severities.concat [ { :conditions => "severity_id = #{i}" } ]
+  def compute_by_severity(report, filters)
+    # 1st time, we have to fill dynamically labels
+    # There's 2 lines, since we diffentiate opened and closed issues.
+    if report.empty?
+      severities = Severity.all
+      severities.each { |s| report << [_(s.name)] }
+      severities.size.times { report << [:empty] }
     end
 
+    size = filters.size
     Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
-      4.times do |t|
-        report[t+4].push Issue.count(severities[t])
+      size.times do |t|
+        report[t].push Issue.count(filters[t])
       end
     end
 
     Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
-      4.times do |t|
-        report[t].push Issue.count(severities[t])
+      size.times do |t|
+        report[t+size].push Issue.count(filters[t])
       end
     end
   end
@@ -463,17 +492,13 @@ class ReportingController < ApplicationController
   # 3 initialisations are needed : titles, colors & datas.
   def init_data_general
     # [:empty] are needed for helpers, which always consider that first column is a title one.
-    @data[:by_type]  =
-     [ [_('Informations')], [_('Bugs')], [_('Evolution')],
-       [:empty], [:empty], [:empty] ]
-    @data[:by_severity] =
-      [ [_('Blocking')], [_('Major')], [_('Minor')], [_('None')],
-        [:empty], [:empty], [:empty], [:empty] ]
+    @data[:by_type] = Array.new
+    @data[:by_severity] = Array.new
     @data[:by_status] =
      [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
     @data[:by_status] =
      [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
-    @data[:by_software] = []
+    @data[:by_software] = Array.new
 
     @data[:evolution] =
      [ [_('Recipients')], [_('Softwares')], [_('Contributions')] ] # TODO : [:interactions]
@@ -498,10 +523,14 @@ class ReportingController < ApplicationController
       @path[name] = "reporting/#{name}.png"
       size = data.size
       case name.to_s
-      when /(by_type|by_status|by_software)/
-        @colors[name] = @@dark_colors_types[1..size]
+      when /(by_type|by_software)/
+        @colors[name] = @@type_colors[1..size]
+      when /by_software/
+        @colors[name] = @@colors[1..size]
       when /by_severity/
-        @colors[name] = @@dark_colors[1..size]
+        @colors[name] = @@severity_colors[1..size]
+      when /by_status/
+        @colors[name] = @@light_colors[1..size]
       when /^cancelled/
         @colors[name] = @@colors_types[1..size]
       when /time/

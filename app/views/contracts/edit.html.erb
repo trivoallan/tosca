@@ -3,7 +3,7 @@
 <% form_tag contract_path(@contract), :id => 'main_form',
      :name => 'main_form' ,:method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag _('Edit') %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
 <%= link_to_show_and_list(@contract) %>

@@ -145,16 +145,16 @@ module ReportingHelper
     relative_url_root = "#{Static::ActionView.relative_url_root}reporting/"
     size.times do |i|
       index = (twolines ? i*2 : i)
-      head = data[index][0].to_s
+      head = data[i][0].to_s
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
       out << "<tr><th>#{_('Running')}</th><th>#{_('Finished')}</th></tr>" if twolines
       out << '<tr>'
-      color = colors[index]
+      color = colors[i]
       # un <td> quoiqu'il se passe
       out << "<td bgcolor=\"#{color}\"><img src=\"#{relative_url_root}#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       # un autre si twolines
       if twolines
-        color = colors[index+1]
+        color = colors[i+size]
         out << "<td bgcolor=\"#{color}\"><img src=\"#{relative_url_root}#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       end
       out << '</tr>'

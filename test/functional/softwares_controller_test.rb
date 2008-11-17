@@ -17,19 +17,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'softwares_controller'
 
-# Re-raise errors caught by the controller.
-class SoftwaresController; def rescue_action(e) raise e end; end
-
-class SoftwaresControllerTest < Test::Unit::TestCase
+class SoftwaresControllerTest < ActionController::TestCase
   fixtures :softwares, :competences, :issues, :comments, :contracts,
     :recipients, :contributions, :users, :clients, :credits, :components
 
   def setup
-    @controller = SoftwaresController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 
@@ -73,9 +66,6 @@ class SoftwaresControllerTest < Test::Unit::TestCase
     assert_raise(ActiveRecord::RecordNotFound) {
       get :show, :id => 4
     }
-    assert_response :redirect
-    assert_template 'denied'
-    assert_redirected_to denied_access_path
   end
 
   def test_new
