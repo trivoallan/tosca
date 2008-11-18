@@ -203,6 +203,7 @@ class ReportingController < ApplicationController
     # We cannot know in advance what are the most important software
     init_compute_by_software(@data[:by_software])
     severites_filter = init_compute_by_severity
+    init_compute_by_type
     issues = [ 'issues.created_on BETWEEN ? AND ? AND issues.contract_id IN (?)',
                  nil, nil, @contracts.collect(&:id) ]
     until (start_date > end_date) do
@@ -356,32 +357,34 @@ class ReportingController < ApplicationController
   end
 
 
+  def init_compute_by_type
+    @types = Array.new
+    @contracts.each do |c|
+      @types.concat(c.client.typeissues)
+    end
+    @types.uniq!
+  end
+
   ##
   # Compte les issues selon leur nature
   def compute_by_type(report)
-    types = Array.new
-    @contracts.each do |c|
-      types.concat(c.client.typeissues)
-    end
-    types.uniq!
-
     # 1st time, we have to fill dynamically labels
     # There's 2 lines, since we diffentiate opened and closed issues.
     if report.empty?
-      types.each { |type| report << [_(type.name)] }
-      types.each { |type| report << [:empty] }
+      @types.each { |type| report << [_(type.name)] }
+      @types.each { |type| report << [:empty] }
     end
 
     Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
-      types.each_with_index do |type, i|
+      @types.each_with_index do |type, i|
         conditions = { :conditions => { :typeissue_id => type.id } }
         report[i].push Issue.count(conditions)
       end
     end
 
-    size = types.size
+    size = @types.size
     Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
-      types.each_with_index do |type, i|
+      @types.each_with_index do |type, i|
         conditions = { :conditions => { :typeissue_id => type.id } }
         report[i+size].push Issue.count(conditions)
       end
@@ -523,8 +526,9 @@ class ReportingController < ApplicationController
       @path[name] = "reporting/#{name}.png"
       size = data.size
       case name.to_s
-      when /(by_type|by_software)/
-        @colors[name] = @@type_colors[1..size]
+      when /by_type/
+        size = @types.size
+        @colors[name] = @@colors[1..size] + @@colors[6..(size+6)]
       when /by_software/
         @colors[name] = @@colors[1..size]
       when /by_severity/

@@ -52,17 +52,18 @@ module ReportingHelper
     table << '<table style="width: 100%">'
     table << ' <tr>'
 
-    # cellule contenant le graphique
-    table << '  <td class="report_graph">'
-    table <<    report_graph(name, options) unless name.to_s =~ /time/
-    table << '  </td>'
+    unless options.has_key?(:without_graph)
+      table << '  <td class="report_graph">'
+      table <<    report_graph(name, options)
+      table << '  </td>'
+    end
 
     # cellule avec la légende
     table << '  <td class="report_legend"><div align="center">'
     table <<    report_legend(name, options)
     table << '  </div></td>'
     # cellule contenant le tableau de données
-    table << '  <td class="report_data"><div align="center">'
+    table << %Q[<td class="report_data" #{'colspan="2"' if options.has_key?(:without_graph)} align="center">]
     table <<    report_data(name, options)
     table << '  </div></td>'
 
@@ -149,12 +150,12 @@ module ReportingHelper
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
       out << "<tr><th>#{_('Running')}</th><th>#{_('Finished')}</th></tr>" if twolines
       out << '<tr>'
-      color = colors[i]
+      color = colors[i].to_s
       # un <td> quoiqu'il se passe
       out << "<td bgcolor=\"#{color}\"><img src=\"#{relative_url_root}#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       # un autre si twolines
       if twolines
-        color = colors[i+size]
+        color = colors[i+size].to_s
         out << "<td bgcolor=\"#{color}\"><img src=\"#{relative_url_root}#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       end
       out << '</tr>'
@@ -185,9 +186,16 @@ module ReportingHelper
       first_col = @first_col
     end
     options.update(:width => '5%')
-    out << show_report_table(first_col, name,
-                             fill_titles(data, options),
-                             options)
+    if options.has_key? :cut_table
+      cut = data.size / 2
+      out << show_report_table(first_col, data[0..cut],
+                               fill_titles(data[0..cut], options), options)
+      out << show_report_table(first_col, data[cut+1..-1],
+                               fill_titles(data[cut+1..-1], options), options)
+    else
+      out << show_report_table(first_col, data,
+                               fill_titles(data, options), options)
+    end
     out
   end
 
@@ -197,8 +205,7 @@ module ReportingHelper
   # :separated : display only half of the columns
   # :width : force the width
   # TODO : first_col, options[:without_firstcol] : needs more love
-  def show_report_table(first_col, name, titles, options = {})
-    elements = @data[name]
+  def show_report_table(first_col, elements, titles, options = {})
     return 'aucune donnée' unless elements and elements.size > 0
     width = ( options[:width] ? %Q{width="#{options[:width]}"} : '' )
     result = "<table #{width}>"
