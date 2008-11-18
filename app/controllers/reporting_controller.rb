@@ -33,8 +33,9 @@ class ReportingController < ApplicationController
     "#22a4ff", "#0082dd", # blue
   ]
   # Array starts at 0, but Gruff need a start at 1
-  @@light_colors = ( [nil] << colors.values_at(0, 2, 4, 6, 8) ).flatten
-  @@colors = ( [nil] << colors.values_at(0, 2, 4, 6, 8, 1, 3, 5, 7, 9) ).flatten
+  @@distinct_colors = ( [nil] << %w(#330065 #343397 #3399fe #339898 #339833 #99cb33
+      #fefe33 #fecb33 #fe9933 #fc3301 #fc3365 #970264) ).flatten
+  @@colors = ( [nil] << colors.values_at(2, 4, 6, 8, 0, 3, 5, 7, 9, 1) ).flatten
   # Subset for specific graphs
   @@sla_colors = ( [nil] << colors.values_at(7, 1) ).flatten
   @@severity_colors = ( [nil] << colors.values_at(0,2,4,6,1,3,5,7) ).flatten
@@ -296,7 +297,7 @@ class ReportingController < ApplicationController
     software = software.sort {|a,b| a[1]<=>b[1]}
     @software_ids = []
 
-    [ software.size, 8].min.times do |i|
+    [ software.size, 10].min.times do |i|
       software_id = software.pop[0]
       next if software_id.nil?
       @software_ids << software_id
@@ -530,7 +531,7 @@ class ReportingController < ApplicationController
         size = @types.size
         @colors[name] = @@colors[1..size] + @@colors[6..(size+6)]
       when /by_software/
-        @colors[name] = @@colors[1..size]
+        @colors[name] = @@distinct_colors[1..size]
       when /by_severity/
         @colors[name] = @@severity_colors[1..size]
       when /by_status/
