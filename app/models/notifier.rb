@@ -27,8 +27,8 @@ class Notifier < ActionMailer::Base
   HEADER_REFERENCES = "References"
   HEADER_IN_REPLY_TO = "In-Reply-To"
   HEADER_LIST_ID = "List-Id"
-  
-  
+
+
   # To send a text and html mail it's simple
   # fill the recipients, from, subject, cc, bcc of your mail
   # then call the html_and_text_body method with a parameter
@@ -134,7 +134,7 @@ class Notifier < ActionMailer::Base
 
   def reporting_digest(user, data, mode, now)
     from       App::FromEmail
-   recipients user.email
+    recipients user.email
 
     case mode.to_sym
     when :day
@@ -163,31 +163,31 @@ class Notifier < ActionMailer::Base
   # tosca: "|RAILS_ENV=mail /path/to/tosca/script/runner 'Notifier.receive(STDIN.read)'"
   def receive(email)
     from = email.from.first
-    
+
     in_reply_to = email[HEADER_IN_REPLY_TO]
     references =  email[HEADER_REFERENCES]
-    
+
     in_reply_to_id = extract_issue_id(in_reply_to)
-    
+
     #Is the id in in_reply_to is equal to one of references
-#    unless not in_reply_to_id or not same_issue_id?(references, in_reply_to_id) 
+#    unless not in_reply_to_id or not same_issue_id?(references, in_reply_to_id)
 #      #The email is probably not a response to a e-mail from Tosca
 #      return Notifier::deliver_email_not_good(from)
 #    end
-    
+
     #One e-mail by user, or if multiple e-mail same person
     user = User.find(:first, :conditions => [ "email = ?", from ])
-    return Notifier::deliver_email_not_exist(from) unless user  
-    
+    return Notifier::deliver_email_not_exist(from) unless user
+
     issue = Issue.find(in_reply_to_id)
     return Notifier::deliver_email_not_good(from) unless issue
     logger.info("Issue #{issue.inspect}")
-    
+
     unless issue.contract.users.include? user
       #The user has no rights on this contract
       return Notifier::deliver_email_no_rights_contract(from)
     end
-    
+
     logger.info("We are creating the comment")
     #The text of the comment
     text = nil
@@ -206,9 +206,9 @@ class Notifier < ActionMailer::Base
     else
       text = get_text_from_email(email)
     end
-    
+
     logger.info("We are saving the comment")
-    
+
     comment = Comment.new do |c|
       c.issue = issue
       c.user = user
@@ -218,14 +218,14 @@ class Notifier < ActionMailer::Base
     end
     logger.info("Comment #{comment.inspect}")
     comment.save
-    
+
     logger.info("We are done")
-    
+
     #TODO : find a way to send the notification of the comment
   end
 
   private
-  
+
   def get_text_from_email(part)
     content_type = part.sub_type
     text = nil
@@ -264,29 +264,29 @@ class Notifier < ActionMailer::Base
 
     html_and_text_body
   end
-  
+
   #Email when a received e-mail is not well formed
   def email_not_good(to)
     logger.info("Bad e-mail from #{to}")
-    
+
     from       App::FromEmail
     recipients to
     bcc        App::TeamEmail
     subject    "#{App::InternetAddress} : " << _("Possible error in your e-mail")
-    
+
     html_and_text_body
   end
-  
+
   #Email when a user has no rights on a contract
   #TODO
   def email_no_rights_contract(to)
     logger.info("Bad e-mail from #{to}")
-    
+
     from       App::FromEmail
     recipients to
     bcc        App::TeamEmail
     subject    "#{App::InternetAddress} : " << _("Possible error in your e-mail")
-    
+
     html_and_text_body
   end
 
@@ -358,7 +358,7 @@ class Notifier < ActionMailer::Base
   def message_id(id)
     "<#{id}@#{App::Name}.#{App::InternetAddress}>"
   end
-  
+
   #Extracts the issue number from a header
   def extract_issue_id(string)
     string = string.to_s
@@ -368,7 +368,7 @@ class Notifier < ActionMailer::Base
     result = string[/^\d+/] if string =~ /^\d+_\d+@#{App::Name}.#{App::InternetAddress}$/
     return result
   end
-  
+
   #Is the issue(s) id from a header is the same has the one in parameter
   def same_issue_id?(header, issue_id)
     header.to_s.split(" ").each do |e|
