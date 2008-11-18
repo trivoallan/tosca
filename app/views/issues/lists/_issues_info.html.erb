@@ -18,6 +18,7 @@
  <% if session[:user].authorized? path %>
    <li><%= link_to _("Submit an issue"), path %></li>
  <% end %>
+ <li><%= link_to( _('Distribution of issues in time'), calendar_reporting_path) %></li>
  <li><%= link_to _("Activity report"), general_reporting_path %></li>
  <% Issue::actions.each do |a| %>
    <li><%= send(a) %></li>
