@@ -160,6 +160,9 @@ class Comment < ActiveRecord::Base
     issue.last_comment_id = self.id unless self.private
 
     issue.save
+    
+    #Sending e-mail
+    Notifier::deliver_issue_new_comment(self)
   end
 
 end

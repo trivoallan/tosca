@@ -148,6 +148,8 @@ class IssuesController < ApplicationController
     user = session[:user]
     @issue.submitter = user # it's the current user
     @issue.statut_id = (@ingenieur ? 2 : 1)
+    
+    #If we have only one contract possible we auto asign it ti the request
     if @issue.contract.nil?
       contracts = @issue.recipient.contracts
       @issue.contract = contracts.first if contracts.size == 1
@@ -164,13 +166,8 @@ class IssuesController < ApplicationController
       @comment = @issue.first_comment
       # needed in order to send properly the email
       @issue.first_comment.issue.reload
-      url_attachment = render_to_string(:layout => false,
-                                        :template => '/attachment')
-      options = { :issue => @issue,
-        :url_issue => issue_url(@issue),
-        :name => user.name, :url_attachment => url_attachment }
 
-      Notifier::deliver_issue_new(options, flash)
+      flash[:notice] += message_notice(@issue.compute_recipients, @issue.compute_copy)
       redirect_to _similar_issue
     else
       _form @recipient
@@ -231,7 +228,7 @@ class IssuesController < ApplicationController
       @comment = Comment.new(:elapsed => 1, :issue => @issue)
       @comment.text = flash[:old_body] if flash.has_key? :old_body
 
-      # TODO c'est pas dry, cf ajax_comments
+      # TODO not dry, cf ajax_comments
       options = { :order => 'created_on DESC', :include => [:user],
         :limit => 1, :conditions => { :issue_id => @issue.id } }
       options[:conditions][:private] = false if @recipient

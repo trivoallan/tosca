@@ -47,7 +47,7 @@ module LinksHelper
       else
         show = filename
       end
-      url = url_for_file_column(record, file, :absolute => true)
+      url = url_for_file_column(record, file, :only_path => false)
       if public
         public_link_to show, url
       else

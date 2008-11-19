@@ -69,48 +69,46 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  # This function require 4 parameters for options :
-  #   :issue, :url_issue
-  #   :name => user.name, :url_attachment
-  def issue_new(options, flash = nil)
-    issue =  options[:issue]
+  # This function require 1 parameter : the issue
+  def issue_new(issue)
+    logger.info(issue.inspect)
+    
+    issue.reload
 
-    recipients  compute_recipients(issue)
-    cc          compute_copy(issue)
+    options = {}
+    options[:issue] = issue
+    options[:comment] = issue.first_comment
+    options[:attachment] = issue.first_comment.attachment
+
+    recipients  issue.compute_recipients
+    cc          issue.compute_copy
     from        App::FromEmail
     subject     "[#{App::ServiceName}##{issue.id}] : #{issue.resume}"
     headers     headers_mail_issue(issue.first_comment)
 
     html_and_text_body(options);
-
-    if flash and flash[:notice]
-      flash[:notice] += message_notice(@recipients, @cc)
-    end
   end
 
-  # This function needs too much options :
-  #  { :issue, :name, :url_issue, :url_attachment, :comment }
-  # And an optional
-  #  :modifications => {:statut_id, :ingenieur_id, :severity_id }
-  def issue_new_comment(options, flash = nil)
-    issue = options[:issue]
+  # This function require 1 parameter : the comment
+  def issue_new_comment(comment)
+    issue = comment.issue
     # needed in order to have correct recipients
     # for instance, send mail to the correct engineer
     # when reaffecting an issue
     issue.reload
-    comment = options[:comment]
+    
+    options = {}
+    options[:comment] = comment
+    options[:issue] = issue
+    options[:attachment] = comment.attachment
 
-    recipients compute_recipients(issue, comment.private)
-    cc         compute_copy(issue, comment.private)
+    recipients issue.compute_recipients(comment.private)
+    cc         issue.compute_copy(comment.private)
     from       App::FromEmail
     subject    "[#{App::ServiceName}:##{issue.id}] : #{issue.resume}"
     headers    headers_mail_issue(comment)
 
     html_and_text_body(options)
-
-    if flash and flash[:notice]
-      flash[:notice] += message_notice(@recipients, @cc)
-    end
   end
 
   def welcome_idea(text, to, from)
@@ -134,7 +132,7 @@ class Notifier < ActionMailer::Base
 
   def reporting_digest(user, data, mode, now)
     from       App::FromEmail
-   recipients user.email
+    recipients user.email
 
     case mode.to_sym
     when :day
@@ -170,10 +168,10 @@ class Notifier < ActionMailer::Base
     in_reply_to_id = extract_issue_id(in_reply_to)
     
     #Is the id in in_reply_to is equal to one of references
-#    unless not in_reply_to_id or not same_issue_id?(references, in_reply_to_id) 
-#      #The email is probably not a response to a e-mail from Tosca
-#      return Notifier::deliver_email_not_good(from)
-#    end
+    if not in_reply_to_id or not same_issue_id?(references, in_reply_to_id) 
+      #The email is probably not a response to a e-mail from Tosca
+      return Notifier::deliver_email_not_good(from)
+    end
     
     #One e-mail by user, or if multiple e-mail same person
     user = User.find(:first, :conditions => [ "email = ?", from ])
@@ -181,20 +179,17 @@ class Notifier < ActionMailer::Base
     
     issue = Issue.find(in_reply_to_id)
     return Notifier::deliver_email_not_good(from) unless issue
-    logger.info("Issue #{issue.inspect}")
     
     unless issue.contract.users.include? user
       #The user has no rights on this contract
       return Notifier::deliver_email_no_rights_contract(from)
     end
     
-    logger.info("We are creating the comment")
     #The text of the comment
     text = nil
     attachment = nil
     if email.parts.size > 0
       email.parts.each do |part|
-        logger.info("Part sub_type #{part.sub_type}")
         if email.attachment?(part)
           #This part is an attachment
           #TODO
@@ -207,8 +202,6 @@ class Notifier < ActionMailer::Base
       text = get_text_from_email(email)
     end
     
-    logger.info("We are saving the comment")
-    
     comment = Comment.new do |c|
       c.issue = issue
       c.user = user
@@ -216,10 +209,10 @@ class Notifier < ActionMailer::Base
       c.private = false
       c.text = text
     end
-    logger.info("Comment #{comment.inspect}")
+    logger.info("Text #{text.inspect}")
     comment.save
-    
-    logger.info("We are done")
+    logger.info("Comment #{comment.inspect  }")
+    logger.info("We are done\n\n\n\n")
     
     #TODO : find a way to send the notification of the comment
   end
@@ -229,15 +222,17 @@ class Notifier < ActionMailer::Base
   def get_text_from_email(part)
     content_type = part.sub_type
     text = nil
-    logger.info("Subtype #{content_type.inspect}")
     if content_type and content_type.include?("plain")
       #This is the text part of the e-mail
       #We remove the first lign before replied mail
       text = part.body.gsub(/(\n[^>]*\n)(>)/, "\n" + '\2')
+      logger.info("Text 1 #{text}")
       #We remove the lines which come from the replied email
       text.gsub!(/^>.*$/, '')
+      logger.info("Text 2 #{text}")
       #We remove the signature
       text = text.split(/^-- $/).first
+      logger.info("Text 3 #{text}")
       #More lines but much faster
       text.strip!
       #We have a pseudo HTML comment
@@ -289,7 +284,6 @@ class Notifier < ActionMailer::Base
     
     html_and_text_body
   end
-
   #Usage : send_mail("toto@toto.com", ["tutu@toto.com", "tata@toto.com"], email)
   #The email param is a TMail::Mail
   def send_mail(from, to, mail)
@@ -298,35 +292,6 @@ class Notifier < ActionMailer::Base
                     smtp_settings[:user_name], smtp_settings[:password], smtp_settings[:authentication]) do |smtp|
       smtp.sendmail(mail.encoded, from, to)
     end
-  end
-
-  # private indicates if it's reserved for internal use or not
-  def compute_copy(issue, private = false)
-    if private
-      issue.contract.internal_ml
-    else
-      res = []
-      contract = issue.contract
-      [ contract.internal_ml, contract.customer_ml, issue.mail_cc ].each { |m|
-        res << m unless m.blank?
-      }
-      res.join(',')
-    end
-  end
-
-  def compute_recipients(issue, private = false)
-    res = []
-    # The client is not informed of private messages
-    res << issue.recipient.user.email unless private
-    # Issue are not assigned, by default
-    res << issue.ingenieur.user.email if issue.ingenieur
-    res.join(',')
-  end
-
-  def message_notice(recipients, cc)
-    result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
-    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc && !cc.blank?
-    result << '.'
   end
 
   MULTIPART_CONTENT = 'multipart/alternative'

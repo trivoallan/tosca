@@ -67,13 +67,8 @@ class CommentsController < ApplicationController
     #We verify and send an email
     if @comment.save
       flash[:notice] = _("Your comment was successfully added.")
-      url_attachment = render_to_string(:layout => false, :template => '/attachment')
-      options = { :issue => issue, :comment => @comment,
-        :name => user.name, :modifications => changed,
-        :url_issue => issue_url(issue),
-        :url_attachment => url_attachment
-      }
-      Notifier::deliver_issue_new_comment(options, flash)
+      flash[:notice] += message_notice(issue.compute_recipients(@comment.private), 
+        issue.compute_copy(@comment.private))
     else
       flash[:warn] = _("An error has occured.") + '<br/>' +
         @comment.errors.full_messages.join('<br/>')

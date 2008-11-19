@@ -83,6 +83,9 @@ protected
       require 'static_script'
       require 'static_image'
       Static::ActionView.set_request(request())
+      
+      #Used for url in e-mails
+      ActionMailer::Base.default_url_options[:host] = request.host_with_port
       @@first_time = false
     end
     #    /!\
@@ -102,6 +105,13 @@ protected
     user = session[:user]
     is_connected = !user.nil?
     define_scope(user, is_connected, &block)
+  end
+  
+  #Compute the receiver of an email for the flash
+  def message_notice(recipients, cc)
+    result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
+    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc && !cc.blank?
+    result << '.'
   end
 
 private
