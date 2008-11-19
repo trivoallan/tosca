@@ -3,16 +3,14 @@
 <p><small><%= _('The management report enables you to consult an overview of the activity.') %></small></p>
 <table>
 <tr>
-  <td><label for="end_date"><%= _('End date') %></label>
-   <%= text_field_tag('end_date', Time.now.strftime('%Y-%m-%d')) %>
-   <span class="calendarPicker"><%= StaticScript::date_from %></span>
-   <%= StaticScript::script_date('end_date', 'date_from') %></td>
+  <td><label for="end_date"><%= _('End date') %>: </label>
+   <%= select_month(Time.now) %> <%= select_year(Time.now) %></td>
 </tr><tr>
   <td><label for="reporting_period"> <%= _('Over a period of') %></label>
       <%= text_field 'reporting', 'period', :size => 3,:value => 3 %> <%= _('months') %></td>
 </tr><tr>
   <td><label for="reporting_contract_id"><%= _('Concerning the contract') %> </label><br />
-      <select name="reporting[contract_ids][]" size="6" multiple="multiple">
+      <select name="reporting[contract_ids][]" size="6" multiple="multiple" style="width: 35em;">
          <%= options_from_collection_for_select(@contracts, :id, :to_s, "reporting") %>
       </select>
   </td>

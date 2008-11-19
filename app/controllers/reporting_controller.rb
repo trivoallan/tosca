@@ -118,9 +118,11 @@ class ReportingController < ApplicationController
       write3graph(:correction_time, Gruff::Line)
     end
 
-    #     write_graph(:top5_issues, Gruff::Pie)
-    # on nettoie
-    @months_col.each { |c| c.gsub!('\n','') }
+    # Used in order to force browser to reload graphs
+    timestamp = "--#{rand(10000)}--".hash.to_s[0..9]
+    @path.each{|p| p << '?' << timestamp }
+    # Cleaning titles
+     @months_col.each { |c| c.gsub!(' \n','&nbsp;') }
   end
 
   private
@@ -131,17 +133,19 @@ class ReportingController < ApplicationController
   # sélectionné
   def init_class_var(params)
     period =  params[:reporting][:period].to_i
-    return unless period > 0
+    reporting_date = params[:date]
+    return if period < 0 || reporting_date.nil?
+    reporting_date = Date.new(reporting_date['year'].to_i, reporting_date['month'].to_i)
     @contracts = Contract.find(params[:reporting][:contract_ids].each(&:to_i))
     @data, @path, @report, @colors = {}, {}, {}, {}
-    dates = @contracts.collect {|c| c.start_date.beginning_of_month}
-    @report[:start_date] = (dates << Time.now).min
-    dates = @contracts.collect {|c| c.end_date.beginning_of_month}
-    @report[:end_date] = (dates << calendar2time(params[:end_date])).min
+    dates = @contracts.collect {|c| c.start_date.beginning_of_month.to_date}
+    @report[:start_date] = (dates << Time.now.to_date).min
+    @report[:end_date] = reporting_date + 1.month - 1.day
     @months_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
     while (current_month <= end_date) do
+      # '\n' is used to force nice display in bar graphs
       @months_col.push current_month.strftime('%b \n%Y')
       current_month = current_month.advance(:months => 1)
     end
@@ -151,19 +155,19 @@ class ReportingController < ApplicationController
       @labels[i] = c if ((i % 2) == 0)
       i += 1
     end
-    middle_date = end_date.months_ago(period)
+    middle_date = reporting_date - (period - 1).months
     start_date = @report[:start_date]
     if (middle_date > start_date and middle_date < end_date)
       @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
       @report[:middle_report] = period
       @report[:total_report] = compute_nb_month(start_date, end_date)
     else
-      flash.now[:warn] = _('incorrect parameters')
+      flash[:warn] = _('incorrect parameters')
       # out condition
       @contracts = nil
     end
   rescue
-    flash.now[:warn] = _('incorrect parameters')
+    flash[:warn] = _('incorrect parameters')
     @contracts = nil
   end
 

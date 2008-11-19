@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-19 09:57+0100\n"
-"PO-Revision-Date: 2008-11-19 09:58+0100\n"
+"POT-Creation-Date: 2008-11-19 11:39+0100\n"
+"PO-Revision-Date: 2008-11-19 11:41+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgid "Password"
 msgstr "Mot de passe"
 
 #: app/controllers/account_controller.rb:288
-#: app/controllers/reporting_controller.rb:510
+#: app/controllers/reporting_controller.rb:514
 #: app/views/machines/index.html.erb:5
 msgid "Informations"
 msgstr "Informations"
@@ -381,7 +381,7 @@ msgid "Last update"
 msgstr "Mise à jour"
 
 #: app/controllers/export_controller.rb:159
-#: app/controllers/reporting_controller.rb:468
+#: app/controllers/reporting_controller.rb:472
 #: app/helpers/contributions_helper.rb:25
 #: app/views/contributions/_contributions_info.html.erb:45
 #: app/views/issues/_form.html.erb:120
@@ -582,31 +582,31 @@ msgstr "Cette release a bien été créée."
 msgid "This release has been successfully updated."
 msgstr "Cette release a été mise à jour."
 
-#: app/controllers/reporting_controller.rb:161
-#: app/controllers/reporting_controller.rb:166
+#: app/controllers/reporting_controller.rb:165
+#: app/controllers/reporting_controller.rb:170
 msgid "incorrect parameters"
 msgstr "paramètres incorrects"
 
-#: app/controllers/reporting_controller.rb:307
+#: app/controllers/reporting_controller.rb:311
 msgid "Unknown"
 msgstr "Non spécifié"
 
-#: app/controllers/reporting_controller.rb:308
+#: app/controllers/reporting_controller.rb:312
 msgid "Others"
 msgstr "Autres"
 
-#: app/controllers/reporting_controller.rb:460
-#: app/controllers/reporting_controller.rb:462
+#: app/controllers/reporting_controller.rb:464
+#: app/controllers/reporting_controller.rb:466
 msgid "Distributed on "
 msgstr "Répartie sur "
 
-#: app/controllers/reporting_controller.rb:460
-#: app/controllers/reporting_controller.rb:462
+#: app/controllers/reporting_controller.rb:464
+#: app/controllers/reporting_controller.rb:466
 #: app/views/reporting/_introduction.html.erb:4
 msgid " months"
 msgstr " mois"
 
-#: app/controllers/reporting_controller.rb:489
+#: app/controllers/reporting_controller.rb:493
 msgid ""
 "No data \n"
 "available"
@@ -614,41 +614,41 @@ msgstr ""
 "Aucune donnée \n"
 "disponible"
 
-#: app/controllers/reporting_controller.rb:502
-#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:30
+#: app/controllers/reporting_controller.rb:506
+#: app/controllers/reporting_controller.rb:508 app/models/statut.rb:30
 msgid "Cancelled"
 msgstr "Annulée"
 
-#: app/controllers/reporting_controller.rb:502
-#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:27
+#: app/controllers/reporting_controller.rb:506
+#: app/controllers/reporting_controller.rb:508 app/models/statut.rb:27
 msgid "Bypassed"
 msgstr "Contournée"
 
-#: app/controllers/reporting_controller.rb:502
-#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:28
+#: app/controllers/reporting_controller.rb:506
+#: app/controllers/reporting_controller.rb:508 app/models/statut.rb:28
 msgid "Fixed"
 msgstr "Corrigée"
 
-#: app/controllers/reporting_controller.rb:502
-#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:29
+#: app/controllers/reporting_controller.rb:506
+#: app/controllers/reporting_controller.rb:508 app/models/statut.rb:29
 msgid "Closed"
 msgstr "Fermée"
 
-#: app/controllers/reporting_controller.rb:502
-#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:24
+#: app/controllers/reporting_controller.rb:506
+#: app/controllers/reporting_controller.rb:508 app/models/statut.rb:24
 msgid "Active"
 msgstr "Actif"
 
-#: app/controllers/reporting_controller.rb:508
+#: app/controllers/reporting_controller.rb:512
 #: app/views/phonecalls/_calls_info.html.erb:54
 msgid "Recipients"
 msgstr "Bénéficiaires"
 
-#: app/controllers/reporting_controller.rb:508 app/helpers/links_helper.rb:139
+#: app/controllers/reporting_controller.rb:512 app/helpers/links_helper.rb:139
 msgid "Softwares"
 msgstr "Logiciels"
 
-#: app/controllers/reporting_controller.rb:508 app/helpers/links_helper.rb:144
+#: app/controllers/reporting_controller.rb:512 app/helpers/links_helper.rb:144
 #: app/views/clients/show.html.erb:51
 #: app/views/contributions/_contributions_info.html.erb:48
 #: app/views/contributions/list.html.erb:3
@@ -658,76 +658,76 @@ msgstr "Logiciels"
 msgid "Contributions"
 msgstr "Contributions"
 
-#: app/controllers/reporting_controller.rb:510
+#: app/controllers/reporting_controller.rb:514
 msgid "Bugs"
 msgstr "Anomalies"
 
-#: app/controllers/reporting_controller.rb:510
+#: app/controllers/reporting_controller.rb:514
 msgid "Evolutions"
 msgstr "Évolutions"
 
-#: app/controllers/reporting_controller.rb:514
-#: app/controllers/reporting_controller.rb:516
 #: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520
+#: app/controllers/reporting_controller.rb:522
 msgid "In time"
 msgstr "Délais respectés"
 
-#: app/controllers/reporting_controller.rb:514
-#: app/controllers/reporting_controller.rb:516
 #: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520
+#: app/controllers/reporting_controller.rb:522
 msgid "Out of time"
 msgstr "Hors délais"
 
-#: app/controllers/reporting_controller.rb:552
+#: app/controllers/reporting_controller.rb:556
 msgid "Distribution of your issues"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:553
+#: app/controllers/reporting_controller.rb:557
 msgid "By types"
 msgstr "Par types"
 
-#: app/controllers/reporting_controller.rb:554
+#: app/controllers/reporting_controller.rb:558
 msgid "By severities"
 msgstr "Par sévérités"
 
-#: app/controllers/reporting_controller.rb:555
+#: app/controllers/reporting_controller.rb:559
 msgid "By status"
 msgstr "Par statuts"
 
-#: app/controllers/reporting_controller.rb:556
+#: app/controllers/reporting_controller.rb:560
 #: app/views/knowledges/_knowledges_info.html.erb:23
 msgid "By software"
 msgstr "Par logiciel"
 
-#: app/controllers/reporting_controller.rb:558
+#: app/controllers/reporting_controller.rb:562
 msgid "Cancelled issues"
 msgstr "Demandes annulées"
 
-#: app/controllers/reporting_controller.rb:559
+#: app/controllers/reporting_controller.rb:563
 msgid "Evolution of the activity volume"
 msgstr "Évolution du volume d'activité"
 
-#: app/controllers/reporting_controller.rb:561
+#: app/controllers/reporting_controller.rb:565
 msgid "Top 5 of the most discussed issues"
 msgstr "Top 5 des demandes les plus discutées"
 
-#: app/controllers/reporting_controller.rb:562
+#: app/controllers/reporting_controller.rb:566
 msgid "Top 5 of the most discussed software"
 msgstr "Top 5 des logiciels les plus discutées"
 
-#: app/controllers/reporting_controller.rb:564
+#: app/controllers/reporting_controller.rb:568
 msgid "Processing time"
 msgstr "Temps de traitement"
 
-#: app/controllers/reporting_controller.rb:565
+#: app/controllers/reporting_controller.rb:569
 msgid "Response time"
 msgstr "Temps de réponse"
 
-#: app/controllers/reporting_controller.rb:566
+#: app/controllers/reporting_controller.rb:570
 msgid "Workaround time"
 msgstr "Temps de contournement"
 
-#: app/controllers/reporting_controller.rb:567
+#: app/controllers/reporting_controller.rb:571
 msgid "Correction time"
 msgstr "Temps de correction"
 
@@ -1389,11 +1389,11 @@ msgid "Alert|Hash value"
 msgstr "Valeur du hash"
 
 #: app/models/alert.rb:-
-msgid "Alert|Created at"
+msgid "Alert|Created on"
 msgstr "Créée le"
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated at"
+msgid "Alert|Updated on"
 msgstr "Mise à jour le"
 
 #: app/models/arch.rb:-
@@ -1762,8 +1762,8 @@ msgid "knowledge"
 msgstr "connaissance"
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|Competence"
-msgstr "Compétence"
+msgid "Knowledge|skill"
+msgstr "Connaissances"
 
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Software"
@@ -2375,6 +2375,7 @@ msgstr "Clients"
 
 #: app/views/account/_menu.html.erb:40 app/views/clients/show.html.erb:49
 #: app/views/issues/lists/_issues_info.html.erb:22
+#: app/views/reporting/_header.html.erb:8
 msgid "Activity report"
 msgstr "Rapport d'activité "
 
@@ -3990,7 +3991,7 @@ msgid "%s activity from "
 msgstr "Activité %s du "
 
 #: app/views/reporting/_comex_tableaux.html.erb:3
-#: app/views/reporting/_header.html.erb:9
+#: app/views/reporting/_header.html.erb:13
 #: app/views/reporting/weekly.html.erb:3
 msgid "to"
 msgstr "à"
@@ -4022,20 +4023,20 @@ msgstr ""
 msgid "End date"
 msgstr "Date de fin"
 
-#: app/views/reporting/_form.html.erb:11
+#: app/views/reporting/_form.html.erb:9
 msgid "Over a period of"
 msgstr "Sur une période de"
 
-#: app/views/reporting/_form.html.erb:12
-#: app/views/reporting/_header.html.erb:10
+#: app/views/reporting/_form.html.erb:10
+#: app/views/reporting/_header.html.erb:15
 msgid "months"
 msgstr "mois"
 
-#: app/views/reporting/_form.html.erb:14
+#: app/views/reporting/_form.html.erb:12
 msgid "Concerning the contract"
 msgstr "Portant sur le contrat"
 
-#: app/views/reporting/_form.html.erb:22
+#: app/views/reporting/_form.html.erb:20
 msgid ""
 "The report emphasizes the period considered compared to the period passed "
 "since the beginning of your contract. "
@@ -4043,11 +4044,11 @@ msgstr ""
 "Le rapport met en valeur la période considérée par rapport à la période "
 "écoulée depuis le debut de votre contrat."
 
-#: app/views/reporting/_header.html.erb:7
-msgid "Activity report of %s"
-msgstr "Rapport d'activité de %s"
+#: app/views/reporting/_header.html.erb:10
+msgid "of"
+msgstr "de"
 
-#: app/views/reporting/_header.html.erb:8
+#: app/views/reporting/_header.html.erb:12
 msgid "from"
 msgstr "de"
 
@@ -4075,13 +4076,18 @@ msgstr ""
 msgid ""
 "the first graph  is a summary over the chosen period corresponding to the "
 "number of months you selected, "
-msgstr "le premier graphique est un récapitulatif sur la période considérée correspondant au nombre de mois que vous avez sélectionné, "
+msgstr ""
+"le premier graphique est un récapitulatif sur la période considérée "
+"correspondant au nombre de mois que vous avez sélectionné, "
 
 #: app/views/reporting/_introduction.html.erb:9
 msgid ""
 "the second graph draws all data since the begining of the deal: it thus "
 "doesn't change with the period you've chosen, "
-msgstr "le second graphique récapitule l'ensemble des données depuis l'ouverture du marché : il ne varie donc pas quelque soit la période que vous aurez choisie, "
+msgstr ""
+"le second graphique récapitule l'ensemble des données depuis l'ouverture du "
+"marché : il ne varie donc pas quelque soit la période que vous aurez "
+"choisie, "
 
 #: app/views/reporting/_introduction.html.erb:10
 msgid ""

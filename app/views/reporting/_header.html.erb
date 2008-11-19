@@ -4,9 +4,14 @@
 <%#= render_partial 'form' %>
 
 <h1 class="title">
-  <%= _("Activity report of %s") % display_name %><br />
-  <%= _('from') %> <%= @report[:middle_date].strftime('%B %Y') %>
-  <%= _('to') %> <%= @report[:end_date].strftime('%B %Y') %>
+  <%= display_name %><br />
+  <%= _("Activity report") %><br />
+  <% if @report[:middle_date].month == @report[:end_date].month %>
+    <%= _('of') %> <%= @report[:middle_date].strftime('%B %Y') %>
+  <% else %>
+    <%= _('from') %> <%= @report[:middle_date].strftime('%B %Y') %>
+    <%= _('to') %> <%= @report[:end_date].strftime('%B %Y') %>
+  <% end %>
   (<%= @report[:middle_report] %> <%= _('months') %>)
 </h1>
 

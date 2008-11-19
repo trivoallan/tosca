@@ -227,8 +227,8 @@ module ReportingHelper
         size.times do |c|
           running, total = 0, 0
           if separated
-            running = elements[c][i + 1]
-            total = elements[c+size][i + 1]
+            running = elements[c*2][i + 1]
+            total = elements[c*2+1][i + 1]
           else
             total = elements[c][i + 1]
           end
