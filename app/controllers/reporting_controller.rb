@@ -35,10 +35,10 @@ class ReportingController < ApplicationController
   # Array starts at 0, but Gruff need a start at 1
   @@distinct_colors = ( [nil] << %w(#330065 #343397 #3399fe #339898 #339833 #99cb33
       #fefe33 #fecb33 #fe9933 #fc3301 #fc3365 #970264) ).flatten
-  @@colors = ( [nil] << colors.values_at(2, 4, 6, 8, 0, 3, 5, 7, 9, 1) ).flatten
+  @@colors = ( [nil] << colors.values_at(2,3, 4,5, 6,7, 8,9, 0,1) ).flatten
   # Subset for specific graphs
   @@sla_colors = ( [nil] << colors.values_at(7, 1) ).flatten
-  @@severity_colors = ( [nil] << colors.values_at(0,2,4,6,1,3,5,7) ).flatten
+  @@severity_colors = ( [nil] << colors.values_at(0,1, 2,3, 4,5, 6,7) ).flatten
   @@colors_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
   @@type_colors = ( [nil] << colors.values_at(2, 6, 8, 3, 7, 9) ).flatten
 
@@ -379,7 +379,7 @@ class ReportingController < ApplicationController
     Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
       @types.each_with_index do |type, i|
         conditions = { :conditions => { :typeissue_id => type.id } }
-        report[i].push Issue.count(conditions)
+        report[i*2].push Issue.count(conditions)
       end
     end
 
@@ -387,7 +387,7 @@ class ReportingController < ApplicationController
     Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
       @types.each_with_index do |type, i|
         conditions = { :conditions => { :typeissue_id => type.id } }
-        report[i+size].push Issue.count(conditions)
+        report[i*2+1].push Issue.count(conditions)
       end
     end
 
@@ -415,13 +415,13 @@ class ReportingController < ApplicationController
     size = filters.size
     Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
       size.times do |t|
-        report[t].push Issue.count(filters[t])
+        report[t*2].push Issue.count(filters[t])
       end
     end
 
     Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
       size.times do |t|
-        report[t+size].push Issue.count(filters[t])
+        report[t*2+1].push Issue.count(filters[t])
       end
     end
   end
@@ -528,14 +528,13 @@ class ReportingController < ApplicationController
       size = data.size
       case name.to_s
       when /by_type/
-        size = @types.size
-        @colors[name] = @@colors[1..size] + @@colors[6..(size+6)]
+        @colors[name] = @@colors[1..@types.size*2]
       when /by_software/
         @colors[name] = @@distinct_colors[1..size]
       when /by_severity/
         @colors[name] = @@severity_colors[1..size]
       when /by_status/
-        @colors[name] = @@light_colors[1..size]
+        @colors[name] = @@distinct_colors[1..size]
       when /^cancelled/
         @colors[name] = @@colors_types[1..size]
       when /time/

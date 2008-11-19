@@ -29,6 +29,7 @@
  <%= report_distribution(:by_status, :with_table => true, :without_firstcol => true) %><%= gap %>
  <%= report_evolution(:by_status, :with2rows => _('Issues')) %><%= gap %>
 <h2 class="chapter"><a name="by_software">1.4 <%= @titles[:by_software] %></a></h2>
+ <p><%=_('Software are selected over the duration of the deal')%>.</p>
  <%= report_distribution(:by_software, :with_table => true, :cut_table => true, :without_firstcol => true) %><%= gap %>
  <%= report_evolution(:by_software, :with2rows => _('Issues'), :without_graph => true) %><%= gap %>
 <p class="break_here"/>

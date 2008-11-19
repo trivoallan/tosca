@@ -98,7 +98,7 @@ module ReportingHelper
     table <<    report_legend(name, options)
     table << '  </div></td>'
     # cellule contenant le graphique depuis le début
-    table << '  <td class="report_data" align="center">'
+    table << '  <td class="report_graph" align="center">'
     table << '  ' + _('Since the begining of your contract')
     table <<    report_graph(total, options)
     table << '  </td>'
@@ -150,12 +150,12 @@ module ReportingHelper
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
       out << "<tr><th>#{_('Running')}</th><th>#{_('Finished')}</th></tr>" if twolines
       out << '<tr>'
-      color = colors[i].to_s
+      color = colors[index].to_s
       # un <td> quoiqu'il se passe
       out << "<td bgcolor=\"#{color}\"><img src=\"#{relative_url_root}#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       # un autre si twolines
       if twolines
-        color = colors[i+size].to_s
+        color = colors[index+1].to_s
         out << "<td bgcolor=\"#{color}\"><img src=\"#{relative_url_root}#{color.gsub('#','x')}.png\" alt=\"#{color}\"/>&nbsp;</td>"
       end
       out << '</tr>'
@@ -220,7 +220,7 @@ module ReportingHelper
 
       if options[:with_table]
         size.times do |c|
-          pos = (separated ? c+i*size : c)
+          pos = (separated ? c*2+i : c)
           result << "<td>#{elements[pos].last}</td>"
         end
       else
