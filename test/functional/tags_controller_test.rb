@@ -62,7 +62,7 @@ class TagsControllerTest < ActionController::TestCase
   end
 
   def test_should_get_edit
-    %w(admin manager expert).each do |l|
+    %w(admin manager).each do |l|
       login l, l
       get :edit, :id => tags(:tag_00001).id
       assert_response :success
@@ -70,7 +70,7 @@ class TagsControllerTest < ActionController::TestCase
   end
 
   def test_should_update_tag
-    %w(admin manager expert).each do |l|
+    %w(admin manager).each do |l|
       login l, l
       get :edit, :id => tags(:tag_00001).id
       form = select_form "main_form"

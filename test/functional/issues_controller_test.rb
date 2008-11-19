@@ -125,10 +125,6 @@ class IssuesControllerTest < ActionController::TestCase
       assert_response :success
       assert_template 'show'
 
-      xhr :get, :ajax_description, :id => issue_id
-      assert_response :success
-      assert_template 'issues/tabs/_tab_description'
-
       xhr :get, :ajax_comments, :id => issue_id
       assert_response :success
       assert_template 'issues/tabs/_tab_comments'

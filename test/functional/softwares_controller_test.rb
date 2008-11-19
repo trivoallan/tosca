@@ -17,19 +17,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'softwares_controller'
 
-# Re-raise errors caught by the controller.
-class SoftwaresController; def rescue_action(e) raise e end; end
-
-class SoftwaresControllerTest < Test::Unit::TestCase
+class SoftwaresControllerTest < ActionController::TestCase
   fixtures :softwares, :competences, :issues, :comments, :contracts,
     :recipients, :contributions, :users, :clients, :credits, :components
 
   def setup
-    @controller = SoftwaresController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 

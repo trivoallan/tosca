@@ -58,7 +58,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^export/', 'All kinds of export' ],
                [ '^files/download$', 'All kinds of download' ],
                [ '^attachments/uv$', 'Attachments preview' ],
-               [ '^reporting/(configuration|general)$', 'Activity Report' ]
+               [ '^reporting/(configuration|general|calendar)$', 'Activity Report' ]
              ]
     add_permission.call(roles, access)
 
@@ -67,12 +67,12 @@ class LoadPermissions < ActiveRecord::Migration
                  'Helper for customer account' ],
                [ '^phonecalls/(?!destroy)', 'Manage calls' ],
                [ '^welcome/admin$', 'Administration page' ],
-               [ '^commentaires/(?!destroy)', 'Manage comments' ],
+               [ '^comments/(?!destroy)', 'Manage comments' ],
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
                [ '^documents/(?!destroy)', 'Manage documents' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
                [ '^socles/(?!destroy)', "Manage systems" ],
-               [ '^urllogiciels/(?!destroy)', 'Manage urls of software' ],
+               [ '^urlsoftwares/(?!destroy)', 'Manage urls of software' ],
                [ '^urlreversements/', 'Manage their own urls of contributions' ]
              ]
     add_permission.call(roles, access)
@@ -88,7 +88,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^groupes/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
                [ '^ingenieurs/(?!(destroy|new))', 'Manage human ressources' ],
-               [ '^logiciels/(?!destroy)', 'Manage software' ],
+               [ '^softwares/(?!destroy)', 'Manage software' ],
                [ '^machines/(?!destroy)', 'Manage servers' ],
                [ '^releases/(?!destroy)', 'Manage releases' ],
                [ '^teams/(?!destroy)', 'Manage teams' ],
@@ -102,7 +102,7 @@ class LoadPermissions < ActiveRecord::Migration
     access = [ [ '^binaires/(show|index)$', 'Read-only access to binaries' ],
                [ '^clients/show$', 'Read-only access to clients offers' ] ,
                [ '^issues/(index|print|show)$', 'Read access to issues' ],
-               [ '^logiciels/(index|show)$', 'Read-only access to software' ],
+               [ '^softwares/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
                [ '^socles/show$', 'Read-only access to system' ],
                [ '^teams/(index|show)$', 'Read-only access to teams' ],
@@ -129,7 +129,7 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ manager_id, expert_id, customer_id ]
-    access = [ [ '^commentaires/(comment|show|edit|update)$',
+    access = [ [ '^comments/(comment|show|edit|update)$',
                   'Hability to comment an issue' ],
                 [ '^issues/(new|create|pending)$',
                    'Write access to issues & Pending View' ] ]
@@ -138,11 +138,11 @@ class LoadPermissions < ActiveRecord::Migration
     roles = [ public_id ]
     access = [ [ '^access/denied$', 'Page for denying access' ],
                [ '^account/(login|logout|forgotten_password)$', 'Access to login system' ],
-               [ '^welcome/(index|about|plan)$', 'Access to home pages' ],
+               [ '^welcome/(index|about|theme|plan)', 'Access to home pages' ],
                [ '^contributions/(index|select|show|list|feed)',
                  'Public read access to contributions' ],
                [ '^groupes/(index|show)', 'Public read access to groups' ],
-               [ '^logiciels/(index|show)',
+               [ '^softwares/(index|show)',
                  'Public read access to software' ],
                [ '^statuts/(index|help)$', 'Explanation of status' ] ]
     add_permission.call(roles, access)

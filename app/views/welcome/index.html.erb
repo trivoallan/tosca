@@ -42,40 +42,56 @@
           Your comments and suggestions are welcome in %s.") %
           link_to(_('the idea box'), suggestions_welcome_path) %></p>
        </div>
-       <% end %>
+      <% end %>
   </div>
   <div class="c50r">
-     <% if @recipient %>
- <div class="show">
-   <h3><%= _('Offer')%></h3>
-  <% client = @recipient.client %>
-  <table>
-    <tr><td style="width: 1%;" rowspan="2"><%=logo_client client%> </td><td>
-      <%= _("You benefit from one of our offers, which detail is available here: %s") % link_to_my_client %></td>
-    </tr>
-  </table>
-  <p><%= _('We hope this tool wil give you entire satisfaction.')%></p>
-  <% access_code = @recipient.client.access_code %>
-  <% unless access_code.blank? %>
-   <p><%= _('Your call number is')%>
-   <b><%=App::PhonePrefix%>&nbsp;<%=App::PhoneCode %></b>,
-   <b><%= _("and your access code is %s") % access_code %></b></p>
-  <% end %>
- </div>
- <% end %>
+   <% if @recipient %>
+     <div class="show">
+      <h3><%= _('Offer')%></h3>
+      <% client = @recipient.client %>
+     <table>
+      <tr><td style="width: 1%;" rowspan="2"><%=logo_client client%> </td><td>
+       <%= _("You benefit from one of our offers, which detail is available here: %s") % link_to_my_client %></td>
+      </tr>
+     </table>
+     <p><%= _('We hope this tool wil give you entire satisfaction.')%></p>
+     <% access_code = @recipient.client.access_code %>
+     <% unless access_code.blank? %>
+      <p><%= _('Your call number is')%>
+      <b><%=App::PhonePrefix%>&nbsp;<%=App::PhoneCode %></b>,
+      <b><%= _("and your access code is %s") % access_code %></b></p>
+     <% end %>
+    </div>
+   <% end %>
 
- <div class="show">
-  <h3><%=_('Software')%></h3>
-  <p><%= _("You can see the list of %s.") % public_link_to_softwares %>
-     <%= _("This software is sorted into a precise and simple %s, distributed by activity group.") % public_link_to_groupes %></p><br />
-  <% unless user %>
-    <p><%=_("We have a large range of offers for support with a SLA. This Service Level Agreement can be very strong and is guaranteed by contract.")%>
-       <%=_("Don't hesitate to")%>
-       <%=mail_to(App::TeamEmail, _('contact us.'))%></p><br />
-  <% end %>
-  <p><%=_("You can consult and follow all the %s done by our team in Open Source communities.") % public_link_to_contributions  %></p>
- </div>
-</div>
+   <div class="show">
+    <h3><%=_('Software')%></h3>
+    <p><%= _("You can see the list of %s.") % public_link_to_softwares %>
+       <%= _("This software is sorted into a precise and simple %s, distributed by activity group.") % public_link_to_groupes %></p><br />
+    <% unless user %>
+     <p><%=_("We have a large range of offers for support with a SLA. This Service Level Agreement can be very strong and is guaranteed by contract.")%>
+        <%=_("Don't hesitate to")%>
+        <%=mail_to(App::TeamEmail, _('contact us.'))%></p><br />
+    <% end %>
+    <p><%=_("You can consult and follow all the %s done by our team in Open Source communities.") % public_link_to_contributions  %></p>
+   </div>
+
+   <div class="show">
+    <h3><%=_('This site has changed')%></h3>
+    <p><%= _("As you can see, this tool has been updated. Here is a shortlist of changes : ") %>.
+    <ul>
+     <li><%= _('You can now choose a theme between three if you click on this icon %s, in the top bar') % public_link_to_remote_theme %></li>
+     <li><%= _('Your %s is more detailed and include a new section about software')  % link_to(_('activity report'), general_reporting_path) %></li>
+     <li><%= _('Detailed view of your issues is improved, with a new dynamic comment approach') %></li>
+     <% if @ingenieur %>
+      <li><%= _('a new alert page is available, allowing all teams to monitor its own contract')%></li>
+      <li><%= _('A new search engine is available in contracts list')%></li>
+      <li><%= _('A new system, tag-based, allowing to regroup software or issue at your convenience')%></li>
+     <% end %>
+     <li><%= _('A new view on issue is available : %s') % link_to( _('Distribution of issues in time'), calendar_reporting_path) %></li>
+    </ul>
+   </div>
+  </div>
 </div>
 
 <% end %>

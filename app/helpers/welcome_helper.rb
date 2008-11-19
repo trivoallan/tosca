@@ -78,7 +78,7 @@ module WelcomeHelper
   def preview_image(theme)
     image = image_tag("screenshots/#{theme}_preview.png",
                       StaticImage.options(_('%s theme') % theme, '258x142'))
-    link_to(image, theme_welcome_path(:theme => theme), :method => :post)
+    public_link_to(image, theme_welcome_path(:theme => theme), :method => :post)
   end
 
 end

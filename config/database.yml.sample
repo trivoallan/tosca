@@ -36,3 +36,11 @@ production:
   password: 
   host: localhost
   encoding: utf8
+
+mail:
+  adapter: mysql
+  database: tosca
+  username: root
+  password: 
+  host: localhost
+  encoding: utf8

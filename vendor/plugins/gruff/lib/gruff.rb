@@ -1,5 +1,5 @@
 # Extra full path added to fix loading errors on some installations.
-
+if RAILS_ENV != 'mail'
 %w(
   base
   area
@@ -21,4 +21,5 @@
   mini/side_bar
 ).each do |filename|
   require File.dirname(__FILE__) + "/gruff/#{filename}"
+end
 end

@@ -26,7 +26,7 @@ software_00003:
   license_id: "3"
   private: false
 software_00004:
-  name: CustomLDAP
+  name: ZimbraLDAP
   groupe_id: "10"
   referent: custom
   id: 4

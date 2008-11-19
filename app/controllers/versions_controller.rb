@@ -56,7 +56,7 @@ class VersionsController < ApplicationController
     _form
     @version.software_id = params[:software_id] if params[:software_id]
   end
-  
+
   def create
     @version = Version.new(params[:version])
     if @version.save

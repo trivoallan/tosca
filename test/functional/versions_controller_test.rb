@@ -41,7 +41,7 @@ class VersionsControllerTest < ActionController::TestCase
 
       assert_difference('Version.count') do
         form = select_form 'main_form'
-        form.version.name = "beta 2"
+        form.version.name = "beta #{l}"
         form.submit
       end
       assert_redirected_to software_path(assigns(:version).software)
@@ -65,11 +65,11 @@ class VersionsControllerTest < ActionController::TestCase
     end
   end
 
-  def a_test_should_update_version
+  def test_should_update_version
     %w(admin manager).each do |l|
       login l, l
 
-      put :update, :id => versions(:one).id, :version => { }
+      put :update, :id => versions(:version_ff_3_generic).id, :version => { }
       assert_redirected_to version_path(assigns(:version))
     end
   end

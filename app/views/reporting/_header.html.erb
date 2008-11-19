@@ -1,11 +1,10 @@
-<% client = (@contract ? @contract.client : nil) %>
+<% client = (@contracts ? @contracts.first.client : nil) %>
 <% display_name = (client ? client.name : App::Name) %>
 
 <%#= render_partial 'form' %>
 
 <h1 class="title">
-  <%= display_name %><br />
-  <%= _("Activity report of %s") % App::Name %><br />
+  <%= _("Activity report of %s") % display_name %><br />
   <%= _('from') %> <%= @report[:middle_date].strftime('%B %Y') %>
   <%= _('to') %> <%= @report[:end_date].strftime('%B %Y') %>
   (<%= @report[:middle_report] %> <%= _('months') %>)

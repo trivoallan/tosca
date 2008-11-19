@@ -59,7 +59,7 @@ Rails::Initializer.run do |config|
   config.frameworks -= [ :action_web_service ] # , :action_mailer ]
 
   # Extension are like rails plugins
-  config.plugin_paths += %W( #{RAILS_ROOT}/vendor/extensions )
+  config.plugin_paths += %W( #{RAILS_ROOT}/vendor/extensions ) unless RAILS_ENV == 'mail'
 
   # Sweepers are used to cleanup cache nicely
   config.load_paths += %W( #{RAILS_ROOT}/app/sweepers )
@@ -71,7 +71,7 @@ Rails::Initializer.run do |config|
   # Used to i18n and l10n
   config.gem 'gettext', :lib => 'gettext/rails'
   config.gem 'gettext', :lib => 'gettext/utils' # needed by gettext_localize
-  
+
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
   # config.gem 'rmagick', :version => '1.15.15', :lib => "RMagick"

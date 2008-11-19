@@ -65,12 +65,12 @@ module DigestReporting
     updated = Time.now.send("beginning_of_#{@period}")
     # We must localise it after getting the (english) helper for the start date
     @period = _(@period)
-    
+
     options = { :conditions => [ "updated_on >= ? ", updated ],
      :order => "contract_id ASC", :include => [:typeissue, :severity, :statut]}
     issues = Issue.find(:all, options)
-    
-    @result = DigestManagers.new    
+
+    @result = DigestManagers.new
     @result.important = Array.new
     @result.other = Array.new
     last_contract_id = nil
@@ -81,11 +81,11 @@ module DigestReporting
         dc.issues = Array.new
         @result.other.push(dc)
       end
-      
+
       if r.critical?
         @result.important.push(r)
-      else 
- 
+      else
+
         options = { :conditions => [ "created_on >= ? ", updated ] }
 
         dr  = DigestIssues.new
