@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-18 11:49+0100\n"
-"PO-Revision-Date: 2008-11-18 12:00+0100\n"
+"POT-Creation-Date: 2008-11-19 09:57+0100\n"
+"PO-Revision-Date: 2008-11-19 09:58+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgid "Password"
 msgstr "Mot de passe"
 
 #: app/controllers/account_controller.rb:288
-#: app/controllers/reporting_controller.rb:509
+#: app/controllers/reporting_controller.rb:510
 #: app/views/machines/index.html.erb:5
 msgid "Informations"
 msgstr "Informations"
@@ -354,7 +354,7 @@ msgstr "Id"
 #: app/views/urlsoftwares/show.html.erb:7 app/views/versions/_form.html.erb:7
 #: app/views/versions/_versions_list.html.erb:6
 #: app/views/versions/show.html.erb:3 app/views/versions/show.html.erb:14
-#: app/views/welcome/index.html.erb:68 app/views/welcome/index.html.erb:121
+#: app/views/welcome/index.html.erb:68
 msgid "Software"
 msgstr "Logiciel"
 
@@ -381,7 +381,7 @@ msgid "Last update"
 msgstr "Mise à jour"
 
 #: app/controllers/export_controller.rb:159
-#: app/controllers/reporting_controller.rb:467
+#: app/controllers/reporting_controller.rb:468
 #: app/helpers/contributions_helper.rb:25
 #: app/views/contributions/_contributions_info.html.erb:45
 #: app/views/issues/_form.html.erb:120
@@ -582,31 +582,31 @@ msgstr "Cette release a bien été créée."
 msgid "This release has been successfully updated."
 msgstr "Cette release a été mise à jour."
 
-#: app/controllers/reporting_controller.rb:160
-#: app/controllers/reporting_controller.rb:165
+#: app/controllers/reporting_controller.rb:161
+#: app/controllers/reporting_controller.rb:166
 msgid "incorrect parameters"
 msgstr "paramètres incorrects"
 
-#: app/controllers/reporting_controller.rb:306
+#: app/controllers/reporting_controller.rb:307
 msgid "Unknown"
 msgstr "Non spécifié"
 
-#: app/controllers/reporting_controller.rb:307
+#: app/controllers/reporting_controller.rb:308
 msgid "Others"
 msgstr "Autres"
 
-#: app/controllers/reporting_controller.rb:459
-#: app/controllers/reporting_controller.rb:461
+#: app/controllers/reporting_controller.rb:460
+#: app/controllers/reporting_controller.rb:462
 msgid "Distributed on "
 msgstr "Répartie sur "
 
-#: app/controllers/reporting_controller.rb:459
-#: app/controllers/reporting_controller.rb:461
+#: app/controllers/reporting_controller.rb:460
+#: app/controllers/reporting_controller.rb:462
 #: app/views/reporting/_introduction.html.erb:4
 msgid " months"
 msgstr " mois"
 
-#: app/controllers/reporting_controller.rb:488
+#: app/controllers/reporting_controller.rb:489
 msgid ""
 "No data \n"
 "available"
@@ -614,41 +614,41 @@ msgstr ""
 "Aucune donnée \n"
 "disponible"
 
-#: app/controllers/reporting_controller.rb:501
-#: app/controllers/reporting_controller.rb:503 app/models/statut.rb:30
+#: app/controllers/reporting_controller.rb:502
+#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:30
 msgid "Cancelled"
 msgstr "Annulée"
 
-#: app/controllers/reporting_controller.rb:501
-#: app/controllers/reporting_controller.rb:503 app/models/statut.rb:27
+#: app/controllers/reporting_controller.rb:502
+#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:27
 msgid "Bypassed"
 msgstr "Contournée"
 
-#: app/controllers/reporting_controller.rb:501
-#: app/controllers/reporting_controller.rb:503 app/models/statut.rb:28
+#: app/controllers/reporting_controller.rb:502
+#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:28
 msgid "Fixed"
 msgstr "Corrigée"
 
-#: app/controllers/reporting_controller.rb:501
-#: app/controllers/reporting_controller.rb:503 app/models/statut.rb:29
+#: app/controllers/reporting_controller.rb:502
+#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:29
 msgid "Closed"
 msgstr "Fermée"
 
-#: app/controllers/reporting_controller.rb:501
-#: app/controllers/reporting_controller.rb:503 app/models/statut.rb:24
+#: app/controllers/reporting_controller.rb:502
+#: app/controllers/reporting_controller.rb:504 app/models/statut.rb:24
 msgid "Active"
 msgstr "Actif"
 
-#: app/controllers/reporting_controller.rb:507
+#: app/controllers/reporting_controller.rb:508
 #: app/views/phonecalls/_calls_info.html.erb:54
 msgid "Recipients"
 msgstr "Bénéficiaires"
 
-#: app/controllers/reporting_controller.rb:507 app/helpers/links_helper.rb:139
+#: app/controllers/reporting_controller.rb:508 app/helpers/links_helper.rb:139
 msgid "Softwares"
 msgstr "Logiciels"
 
-#: app/controllers/reporting_controller.rb:507 app/helpers/links_helper.rb:144
+#: app/controllers/reporting_controller.rb:508 app/helpers/links_helper.rb:144
 #: app/views/clients/show.html.erb:51
 #: app/views/contributions/_contributions_info.html.erb:48
 #: app/views/contributions/list.html.erb:3
@@ -658,23 +658,23 @@ msgstr "Logiciels"
 msgid "Contributions"
 msgstr "Contributions"
 
-#: app/controllers/reporting_controller.rb:509
+#: app/controllers/reporting_controller.rb:510
 msgid "Bugs"
 msgstr "Anomalies"
 
-#: app/controllers/reporting_controller.rb:509
+#: app/controllers/reporting_controller.rb:510
 msgid "Evolutions"
 msgstr "Évolutions"
 
-#: app/controllers/reporting_controller.rb:513
-#: app/controllers/reporting_controller.rb:515
-#: app/controllers/reporting_controller.rb:517
+#: app/controllers/reporting_controller.rb:514
+#: app/controllers/reporting_controller.rb:516
+#: app/controllers/reporting_controller.rb:518
 msgid "In time"
 msgstr "Délais respectés"
 
-#: app/controllers/reporting_controller.rb:513
-#: app/controllers/reporting_controller.rb:515
-#: app/controllers/reporting_controller.rb:517
+#: app/controllers/reporting_controller.rb:514
+#: app/controllers/reporting_controller.rb:516
+#: app/controllers/reporting_controller.rb:518
 msgid "Out of time"
 msgstr "Hors délais"
 
@@ -1088,12 +1088,12 @@ msgstr "Accueil"
 #: app/views/reporting/general.html.erb:23
 #: app/views/reporting/general.html.erb:26
 #: app/views/reporting/general.html.erb:29
-#: app/views/reporting/general.html.erb:32
-#: app/views/reporting/general.html.erb:40
+#: app/views/reporting/general.html.erb:33
 #: app/views/reporting/general.html.erb:41
-#: app/views/reporting/general.html.erb:48
-#: app/views/reporting/general.html.erb:51
-#: app/views/reporting/general.html.erb:54
+#: app/views/reporting/general.html.erb:42
+#: app/views/reporting/general.html.erb:49
+#: app/views/reporting/general.html.erb:52
+#: app/views/reporting/general.html.erb:55
 #: app/views/softwares/show.html.erb:55 app/views/welcome/index.html.erb:16
 msgid "Issues"
 msgstr "Demandes"
@@ -1389,11 +1389,11 @@ msgid "Alert|Hash value"
 msgstr "Valeur du hash"
 
 #: app/models/alert.rb:-
-msgid "Alert|Created on"
+msgid "Alert|Created at"
 msgstr "Créée le"
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated on"
+msgid "Alert|Updated at"
 msgstr "Mise à jour le"
 
 #: app/models/arch.rb:-
@@ -1762,8 +1762,8 @@ msgid "knowledge"
 msgstr "connaissance"
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|skill"
-msgstr "Connaissances"
+msgid "Knowledge|Competence"
+msgstr "Compétence"
 
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Software"
@@ -3522,7 +3522,7 @@ msgid "Update the issue %s (administration)"
 msgstr "Mise à jour de la demande %s (administrateur)"
 
 #: app/views/issues/lists/_issues_info.html.erb:21
-#: app/views/welcome/admin.html.erb:58 app/views/welcome/index.html.erb:144
+#: app/views/welcome/admin.html.erb:58 app/views/welcome/index.html.erb:91
 msgid "Distribution of issues in time"
 msgstr "Répartition de vos demandes dans le temps"
 
@@ -3990,7 +3990,7 @@ msgid "%s activity from "
 msgstr "Activité %s du "
 
 #: app/views/reporting/_comex_tableaux.html.erb:3
-#: app/views/reporting/_header.html.erb:10
+#: app/views/reporting/_header.html.erb:9
 #: app/views/reporting/weekly.html.erb:3
 msgid "to"
 msgstr "à"
@@ -4027,7 +4027,7 @@ msgid "Over a period of"
 msgstr "Sur une période de"
 
 #: app/views/reporting/_form.html.erb:12
-#: app/views/reporting/_header.html.erb:11
+#: app/views/reporting/_header.html.erb:10
 msgid "months"
 msgstr "mois"
 
@@ -4043,11 +4043,11 @@ msgstr ""
 "Le rapport met en valeur la période considérée par rapport à la période "
 "écoulée depuis le debut de votre contrat."
 
-#: app/views/reporting/_header.html.erb:8
+#: app/views/reporting/_header.html.erb:7
 msgid "Activity report of %s"
 msgstr "Rapport d'activité de %s"
 
-#: app/views/reporting/_header.html.erb:9
+#: app/views/reporting/_header.html.erb:8
 msgid "from"
 msgstr "de"
 
@@ -4073,20 +4073,15 @@ msgstr ""
 
 #: app/views/reporting/_introduction.html.erb:8
 msgid ""
-"the first pie chart is a summary over the chosen period corresponding to the "
+"the first graph  is a summary over the chosen period corresponding to the "
 "number of months you selected, "
-msgstr ""
-"le premier camembert est un récapitulatif sur la période considérée "
-"correspondant au nombre de mois que vous avez sélectionné, "
+msgstr "le premier graphique est un récapitulatif sur la période considérée correspondant au nombre de mois que vous avez sélectionné, "
 
 #: app/views/reporting/_introduction.html.erb:9
 msgid ""
-"the second pie chart draws all data since the begining of the deal: it thus "
+"the second graph draws all data since the begining of the deal: it thus "
 "doesn't change with the period you've chosen, "
-msgstr ""
-"le second camembert récapitule l'ensemble des données depuis l'ouverture du "
-"marché : il ne varie donc pas quelque soit la période que vous aurez "
-"choisie, "
+msgstr "le second graphique récapitule l'ensemble des données depuis l'ouverture du marché : il ne varie donc pas quelque soit la période que vous aurez choisie, "
 
 #: app/views/reporting/_introduction.html.erb:10
 msgid ""
@@ -4122,7 +4117,7 @@ msgid "Introduction"
 msgstr "Introduction"
 
 #: app/views/reporting/_summary.html.erb:12
-#: app/views/reporting/general.html.erb:36
+#: app/views/reporting/general.html.erb:37
 msgid "Various statistics"
 msgstr "Statistiques diverses"
 
@@ -4246,7 +4241,11 @@ msgstr "Contrat : "
 msgid "open since %s"
 msgstr "ouverte depuis %s"
 
-#: app/views/reporting/general.html.erb:38
+#: app/views/reporting/general.html.erb:31
+msgid "Software are selected over the duration of the deal"
+msgstr "Les logiciels sont sélectionnés sur toute la durée des contrats"
+
+#: app/views/reporting/general.html.erb:39
 msgid "Number"
 msgstr "Nombre"
 
@@ -4736,7 +4735,6 @@ msgid "Version of a software"
 msgstr "Versiond d'un logiciel"
 
 #: app/views/welcome/about.html.erb:9 app/views/welcome/index.html.erb:73
-#: app/views/welcome/index.html.erb:126
 msgid "Don't hesitate to"
 msgstr "N'hésitez pas à"
 
@@ -4913,30 +4911,29 @@ msgid "You can also consult your %s online."
 msgstr "Vous pouvez aussi consulter votre %s en ligne."
 
 #: app/views/welcome/index.html.erb:31 app/views/welcome/index.html.erb:84
-#: app/views/welcome/index.html.erb:137
 msgid "activity report"
 msgstr "rapport d'activité "
 
-#: app/views/welcome/index.html.erb:33 app/views/welcome/index.html.erb:86
+#: app/views/welcome/index.html.erb:33
 msgid "When you are %s, you can access an activity report"
 msgstr "Quand vous êtes %s, vous avez accès à un rapport d'activité"
 
-#: app/views/welcome/index.html.erb:34 app/views/welcome/index.html.erb:87
+#: app/views/welcome/index.html.erb:34
 msgid "dynamically showing the activity of our service for you in real time."
 msgstr "dynamique montrant l'activité de notre service en temps réel."
 
-#: app/views/welcome/index.html.erb:35 app/views/welcome/index.html.erb:88
+#: app/views/welcome/index.html.erb:35
 msgid "You also have access to all documents we may deliver to you."
 msgstr ""
 "Vous avez aussi accès à l'ensemble des documents que nous pouvons vous "
 "livrer."
 
-#: app/views/welcome/index.html.erb:40 app/views/welcome/index.html.erb:93
+#: app/views/welcome/index.html.erb:40
 #: app/views/welcome/suggestions.html.erb:1
 msgid "Idea Box"
 msgstr "Boite à idées"
 
-#: app/views/welcome/index.html.erb:41 app/views/welcome/index.html.erb:94
+#: app/views/welcome/index.html.erb:41
 msgid ""
 "You have an idea which can improve our services?<br />\n"
 "          Your comments and suggestions are welcome in %s."
@@ -4944,37 +4941,37 @@ msgstr ""
 "Vous avez une idée pour améliorer nos services ?<br />\n"
 "   Vos commentaires et suggestions sont les bienvenues dans %s."
 
-#: app/views/welcome/index.html.erb:43 app/views/welcome/index.html.erb:96
+#: app/views/welcome/index.html.erb:43
 msgid "the idea box"
 msgstr "la boite à idées"
 
-#: app/views/welcome/index.html.erb:50 app/views/welcome/index.html.erb:103
+#: app/views/welcome/index.html.erb:50
 msgid "Offer"
 msgstr "Offre"
 
-#: app/views/welcome/index.html.erb:54 app/views/welcome/index.html.erb:107
+#: app/views/welcome/index.html.erb:54
 msgid "You benefit from one of our offers, which detail is available here: %s"
 msgstr ""
 "Vous avez accès à une de nos offres, dont vous pouvez consulter le détail à "
 "tout moment : %s"
 
-#: app/views/welcome/index.html.erb:57 app/views/welcome/index.html.erb:110
+#: app/views/welcome/index.html.erb:57
 msgid "We hope this tool wil give you entire satisfaction."
 msgstr "Nous espérons que cet outil vous donnera entière satisfaction."
 
-#: app/views/welcome/index.html.erb:60 app/views/welcome/index.html.erb:113
+#: app/views/welcome/index.html.erb:60
 msgid "Your call number is"
 msgstr "Votre numéro d'appel est le "
 
-#: app/views/welcome/index.html.erb:62 app/views/welcome/index.html.erb:115
+#: app/views/welcome/index.html.erb:62
 msgid "and your access code is %s"
 msgstr "et votre code d'accès est %s"
 
-#: app/views/welcome/index.html.erb:69 app/views/welcome/index.html.erb:122
+#: app/views/welcome/index.html.erb:69
 msgid "You can see the list of %s."
 msgstr "Vous pouvez consulter la liste des %s."
 
-#: app/views/welcome/index.html.erb:70 app/views/welcome/index.html.erb:123
+#: app/views/welcome/index.html.erb:70
 msgid ""
 "This software is sorted into a precise and simple %s, distributed by "
 "activity group."
@@ -4982,7 +4979,7 @@ msgstr ""
 "Ces logiciels sont répartis selon une %s précise et simple, par groupe "
 "d'activité."
 
-#: app/views/welcome/index.html.erb:72 app/views/welcome/index.html.erb:125
+#: app/views/welcome/index.html.erb:72
 msgid ""
 "We have a large range of offers for support with a SLA. This Service Level "
 "Agreement can be very strong and is guaranteed by contract."
@@ -4991,11 +4988,11 @@ msgstr ""
 "maintenance avec une CNS. Cette Convention de Niveau de Service peut être "
 "très courte et garantie par contrat."
 
-#: app/views/welcome/index.html.erb:74 app/views/welcome/index.html.erb:127
+#: app/views/welcome/index.html.erb:74
 msgid "contact us."
 msgstr "nous contacter."
 
-#: app/views/welcome/index.html.erb:76 app/views/welcome/index.html.erb:129
+#: app/views/welcome/index.html.erb:76
 msgid ""
 "You can consult and follow all the %s done by our team in Open Source "
 "communities."
@@ -5003,52 +5000,59 @@ msgstr ""
 "Vous pouvez consulter et suivre toutes les %s faites par notre équipe dans "
 "les communautés Open Source."
 
-#: app/views/welcome/index.html.erb:80 app/views/welcome/index.html.erb:133
+#: app/views/welcome/index.html.erb:80
 msgid "This site has changed"
 msgstr "Ce site a changé"
 
-#: app/views/welcome/index.html.erb:81 app/views/welcome/index.html.erb:134
+#: app/views/welcome/index.html.erb:81
 msgid ""
 "As you can see, this tool has been updated. Here is a shortlist of changes : "
-msgstr "Comme vous pouvez le voir, cet outil a été mis à jour. Voici une courte liste des changements : "
+msgstr ""
+"Comme vous pouvez le voir, cet outil a été mis à jour. Voici une courte "
+"liste des changements : "
 
 #: app/views/welcome/index.html.erb:83
 msgid ""
-"You can now choose a theme between three if you click on the css icon, in "
-"the top bar"
-msgstr "Vous pouvez désormais choisir un thème parmi 3 choix, si vous cliquer sur l'icône css dans la barre du haut"
-
-#: app/views/welcome/index.html.erb:84 app/views/welcome/index.html.erb:137
-msgid "Your %s is more detailed and include a new section about software"
-msgstr "Votre %s est plus détaillée et inclut une nouvelle section concernant les logiciels"
-
-#: app/views/welcome/index.html.erb:136
-msgid ""
 "You can now choose a theme between three if you click on this icon %s, in "
 "the top bar"
-msgstr "Vous pouvez désormais choisir un thème parmi trois si vous cliquez sur l'icône %s, dans la barre du haut"
+msgstr ""
+"Vous pouvez désormais choisir un thème parmi trois si vous cliquez sur "
+"l'icône %s, dans la barre du haut"
 
-#: app/views/welcome/index.html.erb:138
+#: app/views/welcome/index.html.erb:84
+msgid "Your %s is more detailed and include a new section about software"
+msgstr ""
+"Votre %s est plus détaillée et inclut une nouvelle section concernant les "
+"logiciels"
+
+#: app/views/welcome/index.html.erb:85
 msgid ""
 "Detailed view of your issues is improved, with a new dynamic comment approach"
-msgstr "La vue détaillée des demandes est améliorée, avec une approche par commentaire dynamique"
+msgstr ""
+"La vue détaillée des demandes est améliorée, avec une approche par "
+"commentaire dynamique"
 
-#: app/views/welcome/index.html.erb:140
+#: app/views/welcome/index.html.erb:87
 msgid ""
 "a new alert page is available, allowing all teams to monitor its own contract"
-msgstr "Une nouvelle page d'alerte est disponible, permettant à toutes les équipes de surveiller leurs propres contrats"
+msgstr ""
+"Une nouvelle page d'alerte est disponible, permettant à toutes les équipes "
+"de surveiller leurs propres contrats"
 
-#: app/views/welcome/index.html.erb:141
+#: app/views/welcome/index.html.erb:88
 msgid "A new search engine is available in contracts list"
-msgstr "Un nouveau moteur de recherche est disponible dans la liste des contrats"
+msgstr ""
+"Un nouveau moteur de recherche est disponible dans la liste des contrats"
 
-#: app/views/welcome/index.html.erb:142
+#: app/views/welcome/index.html.erb:89
 msgid ""
 "A new system, tag-based, allowing to regroup software or issue at your "
 "convenience"
-msgstr "Un nouveau système, basé sur les étiquettes, permet de regrouper les logiciels ou les demandes à votre convenance"
+msgstr ""
+"Un nouveau système, basé sur les étiquettes, permet de regrouper les "
+"logiciels ou les demandes à votre convenance"
 
-#: app/views/welcome/index.html.erb:144
+#: app/views/welcome/index.html.erb:91
 msgid "A new view on issue is available : %s"
 msgstr "Une nouvelle vue sur les demandes est disponible : %s"
 
