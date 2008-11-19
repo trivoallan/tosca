@@ -1,8 +1,11 @@
 Bonjour,<br />
 
 <p>
- <% url_issue = "<a href=\"#{@url_issue}\">issue ##{@issue.id}</a>" %>
-&nbsp;&nbsp;Un nouveau ticket <%= url_issue %> a été déclaré par <%= h @name %>.
+ <% 
+  url_issue = url_for(:controller => "issues", :action => "show", :id => @issue.id, 
+   :only_path => false)
+  link_to_issue = "<a href=\"#{url_issue}\">demande ##{@issue.id}</a>" %>
+&nbsp;&nbsp;Un nouveau ticket <%= link_to_issue %> a été déclaré par <%= h @issue.submitter.name %>.
 </p>
 
 <hr noshade size="1px"/>

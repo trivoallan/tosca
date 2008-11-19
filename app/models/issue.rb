@@ -321,7 +321,32 @@ class Issue < ActiveRecord::Base
   # We have to make it in two steps, coz of the whole validation. If you
   # manage to cover all the case in one method, MLO will offer you a beer ;)
   before_create :create_first_comment
-  after_create :finish_first_comment
+  after_create :do_after_create
+  
+  
+  # Generate the cc for an outgoing mail for this issue
+  # private indicates if it's reserved for internal use or not
+  def compute_copy(private = false)
+    if private
+      contract.internal_ml
+    else
+      res = []
+      [ contract.internal_ml, contract.customer_ml, mail_cc ].each { |m|
+        res << m unless m.blank?
+      }
+      res.join(',')
+    end
+  end
+
+  # Generate the to for an outgoing mail for this issue
+  def compute_recipients(private = false)
+    res = []
+    # The client is not informed of private messages
+    res << recipient.user.email unless private
+    # Issue are not assigned, by default
+    res << ingenieur.user.email if ingenieur
+    res.join(',')
+  end
 
   private
   def create_first_comment
@@ -336,8 +361,10 @@ class Issue < ActiveRecord::Base
     end
   end
 
-  def finish_first_comment
+  def do_after_create
     self.first_comment.update_attribute :issue_id, self.id
+    #Sending e-mail when a issue is created
+    Notifier::deliver_issue_new(self)
   end
 
 end

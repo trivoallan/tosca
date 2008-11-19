@@ -1,30 +1,29 @@
+<% name = @comment.user %>
+
 <% modified = [] %>
-<% if @modifications["statut_id"]
+<% if @comment.statut_id
      modified << "<b>#{@comment.statut.name}</b>"
    end %>
-<% if @modifications["ingenieur_id"]
-     name = @comment.ingenieur.name
-     if @name == name
-       modified << "prise en charge" # self-assignement
-     else
-       modified << "assignée à <b>#{name}</b>"
-     end
+<% if @comment.ingenieur_id
+     modified << "assignée à <b>#{@comment.ingenieur.name}</b>"
    end %>
 
-<% url_issue = "<a href=\"#{@url_issue}\">demande ##{@issue.id}</a>" %>
+<% url_issue = url_for(:controller => "issues", :action => "show", :id => @issue.id, 
+   :only_path => false)
+   link_to_issue = "<a href=\"#{url_issue}\">demande ##{@issue.id}</a>" %>
 <% if @comment.private %>
-  <i><%= h @name %></i> a écrit un comment <b>non visible</b> par le bénéficiaire pour la <%= url_issue %> :
+  <i><%= h name %></i> a écrit un comment <b>non visible</b> par le bénéficiaire pour la <%= link_to_issue %> :
 <% else %>
   <% modified = modified.empty? ? 'commentée' : modified.join(' et ') %>
-  La <%= url_issue %> vient d&lsquo;être <%=modified%> par <i><%= h @name %></i> :
+  La <%= link_to_issue %> vient d&lsquo;être <%=modified%> par <i><%= h name %></i> :
 <% end %>
 <br />
 
 <hr noshade size="1px"/>
 <%= @comment.text %><br />
 <hr noshade size="1px"/>
-<% if @modifications["severity_id"] %>
-  La demande a été requalifiée avec une sévérité <b><%=@comment.severity.name%></b>. <a href="https://www.08000linux.com/wiki/index.php/Severity_issue">Cette page</a> vous présente en détail la signification de ce changement.<br />
+<% if @comment.severity_id %>
+  La demande a été requalifiée avec une sévérité <b><%=@comment.severity.name%></b>. <a href="<%= App::Help::IssueSeverityUrl%>">Cette page</a> vous présente en détail la signification de ce changement.<br />
 <% end %>
 
 <%= render :partial => 'end_mail' %>
