@@ -84,7 +84,7 @@ Rails::Initializer.run do |config|
 
   # Use the file store with a custom storage path (if the directory doesn’t already exist it will be created)
   config.cache_store = :file_store, cache_path
-
+  
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
   # config.action_controller.session_store = :active_record_store
@@ -133,7 +133,7 @@ require 'overrides'
 # Check and create used dirs, which are not on the SCM
 log_path = File.join RAILS_ROOT, 'log'
 paths = [ log_path, page_cache_path, cache_path ]
-paths.each { |path| FileUtils.mkdir_p(path) unless File.exists? path }
+paths.each { |p| FileUtils.mkdir_p(p) unless File.exists? p }
 
 # French TimeZone, mandatory coz' of debian nerds :/
 ENV['TZ'] = 'Europe/Paris'
