@@ -31,27 +31,18 @@
 <h2 class="chapter"><a name="by_software">1.4 <%= @titles[:by_software] %></a></h2>
  <p><%=_('Software are selected over the duration of the deal')%>.</p>
  <%= report_distribution(:by_software, :with_table => true, :cut_table => true, :without_firstcol => true) %><%= gap %>
- <%= report_evolution(:by_software, :with2rows => _('Issues'), :without_graph => true) %><%= gap %>
+ <%= report_evolution(:by_software, :with2rows => _('Issues'), :only_graph => true) %><%= gap %>
 <p class="break_here"/>
 
 
-<h1 class="chapter"><a name="various_stats">2. <%= _('Various statistics') %></a></h1>
-<h2 class="chapter"><a name="evolution">2.1 <%= @titles[:evolution] %></a></h2>
- <%= report_evolution(:evolution, :with2rows => _('Number')) %><%= gap %>
-<h2 class="chapter"><a name="cancelled">2.2 <%= @titles[:cancelled] %></a></h2>
- <%= report_distribution(:cancelled, :with2rows => _('Issues')) %><%= gap %>
- <%= report_evolution(:cancelled, :with2rows => _('Issues')) %><%= gap %>
-<p class="break_here"/>
-
-
-<h1 class="chapter"><a name="processing_time">3. <%= @titles[:processing_time] %></a></h1>
-<h2 class="chapter"><a name="callback_time">3.1 <%= @titles[:callback_time] %></a></h2>
+<h1 class="chapter"><a name="rocessing_time">2. <%= @titles[:processing_time] %></a></h1>
+<h2 class="chapter"><a name="callback_time">2.1 <%= @titles[:callback_time] %></a></h2>
  <%= report_distribution(:callback_time) %><%= gap %>
  <%= report_evolution(:callback_time, :with2rows => _('Issues'), :without_graph => true) %><%= gap %>
-<h2 class="chapter"><a name="workaround_time">3.2 <%= @titles[:workaround_time] %></a></h2>
+<h2 class="chapter"><a name="workaround_time">2.2 <%= @titles[:workaround_time] %></a></h2>
  <%= report_distribution(:workaround_time) %><%= gap %>
  <%= report_evolution(:workaround_time, :with2rows => _('Issues'), :without_graph => true) %><%= gap %>
-<h2 class="chapter"><a name="correction_time">3.3 <%= @titles[:correction_time] %></a></h2>
+<h2 class="chapter"><a name="correction_time">2.3 <%= @titles[:correction_time] %></a></h2>
  <%= report_distribution(:correction_time) %><%= gap %>
  <%= report_evolution(:correction_time, :with2rows => _('Issues'), :without_graph => true) %><%= gap %>
 <p class="break_here"/>

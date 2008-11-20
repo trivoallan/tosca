@@ -53,19 +53,18 @@ module ReportingHelper
     table << ' <tr>'
 
     unless options.has_key?(:without_graph)
-      table << '  <td class="report_graph">'
-      table <<    report_graph(name, options)
-      table << '  </td>'
+      table << '<td>&nbsp;</td>' if options.has_key?(:only_graph)
+      table << '<td class="report_graph">'
+      table <<   report_graph(name, options)
+      table << '</td>'
+      table << "<td>&nbsp;</td>"
     end
 
-    # cellule avec la légende
-    table << '  <td class="report_legend"><div align="center">'
-    table <<    report_legend(name, options)
-    table << '  </div></td>'
-    # cellule contenant le tableau de données
-    table << %Q[<td class="report_data" #{'colspan="2"' if options.has_key?(:without_graph)} align="center">]
-    table <<    report_data(name, options)
-    table << '  </div></td>'
+    unless options.has_key?(:only_graph)
+      table << %Q[<td class="report_data" #{'colspan="3"' if options.has_key?(:without_graph)}><div align="center">]
+      table <<    report_data(name, options)
+      table << '  </div></td>'
+    end
 
     table << ' </tr>'
     table << '</table>'
@@ -90,7 +89,7 @@ module ReportingHelper
     table << ' <tr>'
     # cellule contenant le graphique de la periode
     table << '  <td class="report_graph" align="center">'
-    table << '  ' + _('During the chosen period')
+    table << "  <h3>#{_('During the chosen period')}</h3>"
     table <<    report_graph(middle, options)
     table << '  </td>'
     # cellule avec la légende
@@ -99,7 +98,7 @@ module ReportingHelper
     table << '  </div></td>'
     # cellule contenant le graphique depuis le début
     table << '  <td class="report_graph" align="center">'
-    table << '  ' + _('Since the begining of your contract')
+    table << "  <h3>#{_('Since the begining of your contract')}</h3>"
     table <<    report_graph(total, options)
     table << '  </td>'
     table << ' </tr>'
@@ -186,15 +185,17 @@ module ReportingHelper
       first_col = @first_col
     end
     options.update(:width => '5%')
-    if options.has_key? :cut_table
-      cut = data.size / 2
-      out << show_report_table(first_col, data[0..cut],
-                               fill_titles(data[0..cut], options), options)
-      out << show_report_table(first_col, data[cut+1..-1],
-                               fill_titles(data[cut+1..-1], options), options)
+    cleaned_data = remove_empty_columns(data.dup)
+    size = cleaned_data.size
+    if options.has_key?(:cut_table) && size >= 4
+      cut = size / 2
+      out << show_report_table(first_col, cleaned_data[0..cut-1],
+                               fill_titles(cleaned_data[0..cut-1], options), options)
+      out << show_report_table(first_col, cleaned_data[cut..-1],
+                               fill_titles(cleaned_data[cut..-1], options), options)
     else
-      out << show_report_table(first_col, data,
-                               fill_titles(data, options), options)
+      out << show_report_table(first_col, cleaned_data,
+                               fill_titles(cleaned_data, options), options)
     end
     out
   end
@@ -206,17 +207,18 @@ module ReportingHelper
   # :width : force the width
   # TODO : first_col, options[:without_firstcol] : needs more love
   def show_report_table(first_col, elements, titles, options = {})
-    return 'aucune donnée' unless elements and elements.size > 0
+    return _('no data') unless elements and elements.size > 0
     width = ( options[:width] ? %Q{width="#{options[:width]}"} : '' )
     result = "<table #{width}>"
     result << titles
+
 
     separated = options.has_key? :separated
     size = (separated ? (elements.size / 2) : elements.size)
 
     first_col.each_index { |i|
       result << "<tr class=\"#{cycle('even', 'odd')}\">"
-      result << "<td>#{first_col[i]}</td>" # unless options[:without_firstcol]
+      result << "<td>#{first_col[i]}<br /></td>" # unless options[:without_firstcol]
 
       if options[:with_table]
         size.times do |c|
@@ -244,6 +246,21 @@ module ReportingHelper
       result << '</tr>'
     }
     result << '</table>'
+  end
+
+  # Used in order to hide'em.
+  def remove_empty_columns(elements)
+    elements.reject do |line|
+      there_is_data = false
+      line.each do |v|
+        next if v.is_a?(String)
+        if v.to_i != 0
+          there_is_data = true
+          break
+        end
+      end
+      !there_is_data
+    end
   end
 
   # TODO : find 3 images. Maybe include this helper in static image  ??

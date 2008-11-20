@@ -25,22 +25,23 @@ class ReportingController < ApplicationController
   # ( blocking, major, minor, none )
   # TODO : implement a better solution, with a hash ?
   colors =  [
-    # dark,    # light,   # colour
-    "#ff2222", "#dd0000", # red
+    # light,   # dark,    # colour
+    "#ff6363", "#dd0000", # red
     "#ffa464", "#dd8242", # orange
-    "#ffff22", "#dddd00", # yellow
-    "#a6ff22", "#84dd00", # green
-    "#22a4ff", "#0082dd", # blue
+    "#c0ff63", "#6ab200", # green
+    "#3399fe", "#330065", # blue
+    "#ffff63", "#b2b200", # yellow
   ]
   # Array starts at 0, but Gruff need a start at 1
   @@distinct_colors = ( [nil] << %w(#330065 #343397 #3399fe #339898 #339833 #99cb33
       #fefe33 #fecb33 #fe9933 #fc3301 #fc3365 #970264) ).flatten
   @@colors = ( [nil] << colors.values_at(2,3, 4,5, 6,7, 8,9, 0,1) ).flatten
   # Subset for specific graphs
-  @@sla_colors = ( [nil] << colors.values_at(7, 1) ).flatten
+  @@sla_colors = ( [nil] << colors.values_at(5, 1) ).flatten
   @@severity_colors = ( [nil] << colors.values_at(0,1, 2,3, 4,5, 6,7) ).flatten
   @@colors_types = ( [nil] << colors.values_at(3, 7, 9) ).flatten
   @@type_colors = ( [nil] << colors.values_at(2, 6, 8, 3, 7, 9) ).flatten
+  @@status_colors = ( [nil] <<  %w(#339898 #343397 #330065 #3399fe #339833) ).flatten
 
   # allows to launch activity report
   def configuration
@@ -108,10 +109,7 @@ class ReportingController < ApplicationController
       write3graph(:by_type, Gruff::StackedBar)
       write3graph(:by_severity, Gruff::StackedBar)
       write3graph(:by_status, Gruff::StackedBar)
-      write3graph(:by_software, Gruff::StackedBar)
-
-      write3graph(:evolution, Gruff::Line)
-      write3graph(:cancelled, Gruff::Bar)
+      write3graph(:by_software, Gruff::Line)
 
       write3graph(:callback_time, Gruff::Line)
       write3graph(:workaround_time, Gruff::Line)
@@ -120,7 +118,7 @@ class ReportingController < ApplicationController
 
     # Used in order to force browser to reload graphs
     timestamp = "--#{rand(10000)}--".hash.to_s[0..9]
-    @path.each{|p| p << '?' << timestamp }
+    @path.each_value {|v| v << "?#{timestamp}" }
     # Cleaning titles
      @months_col.each { |c| c.gsub!(' \n','&nbsp;') }
   end
@@ -140,7 +138,7 @@ class ReportingController < ApplicationController
     @data, @path, @report, @colors = {}, {}, {}, {}
     dates = @contracts.collect {|c| c.start_date.beginning_of_month.to_date}
     @report[:start_date] = (dates << Time.now.to_date).min
-    @report[:end_date] = reporting_date + 1.month - 1.day
+    @report[:end_date] = reporting_date + period.month - 1.day
     @months_col = []
     current_month = @report[:start_date]
     end_date = @report[:end_date]
@@ -155,7 +153,7 @@ class ReportingController < ApplicationController
       @labels[i] = c if ((i % 2) == 0)
       i += 1
     end
-    middle_date = reporting_date - (period - 1).months
+    middle_date = reporting_date
     start_date = @report[:start_date]
     if (middle_date > start_date and middle_date < end_date)
       @report[:middle_date] = [ middle_date, start_date ].max.beginning_of_month
@@ -222,9 +220,7 @@ class ReportingController < ApplicationController
         compute_by_severity @data[:by_severity], severites_filter
         compute_by_status @data[:by_status]
         compute_by_software @data[:by_software]
-        compute_cancelled @data[:cancelled]
         compute_time @data
-        compute_evolution @data[:evolution]
       end
     end
 
@@ -325,13 +321,13 @@ class ReportingController < ApplicationController
 
     # Unknown software
     count = Issue.count(:conditions => { :software_id => nil })
-    report[index].push count
+    report[index].push(count ? count : nil)
     total += count
     index += 1
 
     # Others issues
-    count = Issue.count
-    report[index].push(count - total)
+    others = Issue.count - total
+    report[index].push(others ? others : nil)
   end
 
   ##
@@ -346,19 +342,6 @@ class ReportingController < ApplicationController
       report.push [ name.intern ]
       report[i].push values[1]
     end
-  end
-
-  ##
-  # Compte les issues annulées selon leur type
-  def compute_cancelled(report)
-    # TODO : faire des requêtes paramètrées, avec des ?
-    informations = { :conditions => [ 'statut_id = 8 AND typeissue_id = ?', 1 ] }
-    anomalies = { :conditions => [ 'statut_id = 8 AND typeissue_id = ?', 2 ] }
-    evolutions = { :conditions => [ 'statut_id = 8 AND typeissue_id = ?', 5 ] }
-
-    report[0].push Issue.count(informations)
-    report[1].push Issue.count(anomalies)
-    report[2].push Issue.count(evolutions)
   end
 
 
@@ -377,7 +360,7 @@ class ReportingController < ApplicationController
     # There's 2 lines, since we diffentiate opened and closed issues.
     if report.empty?
       @types.each { |type| report << [_(type.name)] }
-      @types.each { |type| report << [:empty] }
+      @types.each { |type| report << [_(type.name)] }
     end
 
     Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
@@ -413,7 +396,7 @@ class ReportingController < ApplicationController
     if report.empty?
       severities = Severity.all
       severities.each { |s| report << [_(s.name)] }
-      severities.size.times { report << [:empty] }
+      severities.each { |s| report << [_(s.name)] }
     end
 
     size = filters.size
@@ -448,15 +431,6 @@ class ReportingController < ApplicationController
   end
 
 
-  ##
-  # Calcule le nombre de recipient, de software et contribution distinct par mois
-  def compute_evolution(report)
-    report[0].push Issue.count('recipient_id', :distinct => true)
-    report[1].push Issue.count('software_id', :distinct => true)
-    report[2].push Issue.count('contribution_id', :distinct => true)
-  end
-
-
   # Lance l'écriture des _3_ graphes
   def write3graph(name, graph)
     __write_graph(name, graph)
@@ -487,7 +461,7 @@ class ReportingController < ApplicationController
     data = @data[name] # .sort{|x,y| x[0].to_s <=> y[0].to_s}
     data.each {|value| g.data(value[0], value[1..-1]) }
     g.labels = @labels
-    g.hide_dots = true if g.respond_to? :hide_dots
+    # g.hide_dots = true if g.respond_to? :hide_dots
     g.hide_legend = true
     # TODO : mettre ca dans les metadatas
     g.no_data_message = _("No data \navailable")
@@ -507,11 +481,6 @@ class ReportingController < ApplicationController
     @data[:by_status] =
      [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
     @data[:by_software] = Array.new
-
-    @data[:evolution] =
-     [ [_('Recipients')], [_('Softwares')], [_('Contributions')] ] # TODO : [:interactions]
-    @data[:cancelled] =
-     [ [_('Informations')], [_('Bugs')], [_('Evolutions')] ]
 
     # calcul des délais
     @data[:callback_time] =
@@ -538,9 +507,7 @@ class ReportingController < ApplicationController
       when /by_severity/
         @colors[name] = @@severity_colors[1..size]
       when /by_status/
-        @colors[name] = @@distinct_colors[1..size]
-      when /^cancelled/
-        @colors[name] = @@colors_types[1..size]
+        @colors[name] = @@status_colors[1..size]
       when /time/
         @colors[name] = @@sla_colors[1..size]
       else
@@ -558,9 +525,6 @@ class ReportingController < ApplicationController
       :by_severity => _('By severities'),
       :by_status => _('By status'),
       :by_software => _('By software'),
-
-      :cancelled => _('Cancelled issues'),
-      :evolution => _('Evolution of the activity volume'),
 
       :top5_issues => _('Top 5 of the most discussed issues'),
       :top5_softwares => _('Top 5 of the most discussed software'),

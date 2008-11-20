@@ -1,10 +1,17 @@
 <% client = (@contracts ? @contracts.first.client : nil) %>
-<% display_name = (client ? client.name : App::Name) %>
 
-<%#= render_partial 'form' %>
+<div class="report_images" style="float: left;">
+  <%= StaticImage::linagora %>
+</div>
+<% if client %>
+<div class="report_images" style="float: right;">
+  <%= image_tag(url_for_file_column(client.image, 'image', 'thumb')) %>
+</div>
+<% end %>
+
 
 <h1 class="title">
-  <%= display_name %><br />
+  <%= (client ? client.name : App::Name) %><br />
   <%= _("Activity report") %><br />
   <% if @report[:middle_date].month == @report[:end_date].month %>
     <%= _('of') %> <%= @report[:middle_date].strftime('%B %Y') %>
@@ -14,8 +21,3 @@
   <% end %>
   (<%= @report[:middle_report] %> <%= _('months') %>)
 </h1>
-
-<div class="report_images">
-  <%= StaticImage::linagora %>
-  <%= image_tag(url_for_file_column(client.image, 'image', 'thumb')) if client %>
-</div>
