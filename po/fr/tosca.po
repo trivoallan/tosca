@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-21 17:40+0100\n"
-"PO-Revision-Date: 2008-11-21 17:41+0100\n"
+"PO-Revision-Date: 2008-11-21 19:31+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5001,9 +5001,7 @@ msgstr ""
 
 #: app/views/welcome/index.html.erb:84
 msgid "Your %s is more detailed and include a new section about software"
-msgstr ""
-"Votre %s est plus détaillée et inclut une nouvelle section concernant les "
-"logiciels"
+msgstr "Votre %s est plus détaillé et inclut une nouvelle section concernant les logiciels"
 
 #: app/views/welcome/index.html.erb:85
 msgid ""
