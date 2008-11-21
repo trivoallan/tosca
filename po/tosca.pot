@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-11-21 12:24+0100\n"
+"POT-Creation-Date: 2008-11-21 17:40+0100\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1152,6 +1152,14 @@ msgstr ""
 
 #: app/helpers/reporting_helper.rb:83
 msgid "Finished"
+msgstr ""
+
+#: app/helpers/reporting_helper.rb:92
+msgid "During the chosen period"
+msgstr ""
+
+#: app/helpers/reporting_helper.rb:101
+msgid "Since the beginning of your contract"
 msgstr ""
 
 #: app/helpers/reporting_helper.rb:210

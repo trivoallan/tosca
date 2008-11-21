@@ -89,7 +89,7 @@ module ReportingHelper
     table << ' <tr>'
     # cellule contenant le graphique de la periode
     table << '  <td class="report_graph" align="center">'
-    table << "  <h3>#{_('During the chosen period')}</h3>"
+    table << "  <h3>%s</h3>" % _('During the chosen period')
     table <<    report_graph(middle, options)
     table << '  </td>'
     # cellule avec la légende
@@ -98,7 +98,7 @@ module ReportingHelper
     table << '  </div></td>'
     # cellule contenant le graphique depuis le début
     table << '  <td class="report_graph" align="center">'
-    table << "  <h3>#{_('Since the begining of your contract')}</h3>"
+    table << "  <h3>%s</h3>" % _('Since the beginning of your contract')
     table <<    report_graph(total, options)
     table << '  </td>'
     table << ' </tr>'
