@@ -40,6 +40,16 @@ class Software < ActiveRecord::Base
   validates_length_of :competences, :minimum => 1, :message =>
     _('You have to specify at least one technology')
 
+
+  # See ApplicationController#scope
+  def self.set_scope(contract_ids)
+    @@scope_joins ||= " LEFT OUTER JOIN `versions` ON versions.software_id = softwares.id INNER JOIN contracts_versions ON versions.id = contracts_versions.version_id "
+    self.scoped_methods << { :find => { :conditions =>
+        [ 'contracts_versions.contract_id IN (?)', contract_ids ],
+        :joins => @@scope_joins } } if contract_ids
+  end
+
+
   # See ApplicationController#scope
   def self.set_public_scope()
     self.scoped_methods << { :find => { :conditions =>

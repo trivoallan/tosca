@@ -12,11 +12,11 @@
        <li><%= link_to_unlink_contribution(@issue.id) %></li>
     <% end %>
     <li><%= link_to_add_call @issue.id %></li>
-    <li><%= link_to_function _('Expand all'), 'tosca_expand_all_comments()' %></li>
-    <li><%= link_to_function _('Collapse all'), 'tosca_collapse_all_comments()' %></li>
   <% end %>
   <li><%= link_to _("Print"), print_issue_path(@issue.id),
             :target => '_blank' %></li>
+  <li><%= link_to_function _('Expand all'), 'tosca_expand_all_comments()' %></li>
+  <li><%= link_to_function _('Collapse all'), 'tosca_collapse_all_comments()' %></li>
 </ul>
 
 <%= div_toggle _('Summary'), 'menu_resume', :class => "menu_title" %>
@@ -66,11 +66,15 @@
   <% end %>
 </ul>
 
-<%= div_toggle _("Tags"), 'tags_menu', :class => "menu_title", :hide => true %>
-<ul id="tags_menu">
-  <li><b><%= _("Tags") %>: </b><%= @issue.tag_list.join(', ') %></li>
-  <li><%= link_to _("Edit the tags for this issue"), tag_issue_url(@issue) %></li>
-</ul>
+<% unless @issue.tag_list.empty? %>
+ <%= div_toggle _("Tags"), 'tags_menu', :class => "menu_title", :hide => true %>
+ <ul id="tags_menu">
+   <li><b><%= _("Tags") %>: </b><%= @issue.tag_list.join(', ') %></li>
+   <% if @ingenieur %>
+    <li><%= link_to _("Edit the tags for this issue"), tag_issue_url(@issue) %></li>
+   <% end %>
+ </ul>
+<% end %>
 
 <%= div_toggle _("Help"), 'menu_help', :class => "menu_title" %>
 <ul id="menu_help">
