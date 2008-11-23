@@ -46,29 +46,19 @@ class NotifierTest < Test::Unit::TestCase
 
   def test_issue_new
     issue = Issue.find(:first)
-    options = { :issue => issue, :name => issue.submitter.name,
-      :url_issue => "www.issue.com", :url_attachment => "www.attachment.com" }
-    response = Notifier::deliver_issue_new(options)
+    response = Notifier::deliver_issue_new(issue)
     assert_match issue.resume, response.subject
     assert_match html2text(issue.description), response.body
-    assert_match options[:url_issue], response.body
-    assert_match options[:url_attachment], response.body
-    assert_match options[:name], response.body
+    assert_match issue.submitter.name, response.body
   end
 
   def test_issue_new_comment
     issue = Issue.find(:first)
     comment = issue.first_comment
-    options = { :issue => issue, :name => issue.submitter.name,
-      :url_issue => "www.issue.com", :url_attachment => "www.attachment.com",
-      :modifications => {:statut_id => true, :ingenieur_id => true, :severity_id => true},
-      :comment => comment }
-    response = Notifier::deliver_issue_new_comment(options)
+    response = Notifier::deliver_issue_new_comment(comment)
     assert_match issue.resume, response.subject
     assert_match html2text(comment.text), response.body
-    assert_match options[:url_issue], response.body
-    assert_match options[:url_attachment], response.body
-    assert_match options[:name], response.body
+    assert_match issue.submitter.name, response.body
   end
 
   def test_welcome_idea
