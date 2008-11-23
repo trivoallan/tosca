@@ -23,7 +23,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.1.1' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
 $KCODE='u'
 require 'jcode'
 
@@ -67,10 +67,19 @@ Rails::Initializer.run do |config|
   # Distinguish cache from normal pages
   config.action_controller.page_cache_directory = page_cache_path
 
+  # Default host, mainly use for tests, real host is detected on first http
+  # request, see ApplicationController for more info.
+  config.action_mailer.default_url_options = { :host => "localhost" }
+
+
   ### External libs ###
   # Used to i18n and l10n
   config.gem 'gettext', :lib => 'gettext/rails'
   config.gem 'gettext', :lib => 'gettext/utils' # needed by gettext_localize
+
+  # Used to get up2date pagination on list
+  config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
+
 
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
@@ -84,7 +93,7 @@ Rails::Initializer.run do |config|
 
   # Use the file store with a custom storage path (if the directory doesn’t already exist it will be created)
   config.cache_store = :file_store, cache_path
-  
+
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
   # config.action_controller.session_store = :active_record_store
