@@ -47,9 +47,8 @@ table.full { width: 100%; }
   width: 95%;
 }
 
-#footer a, #footer a:hover {
-  color: #fff;
-}
+#footer a, #footer a:hover { color: #fff; }
+
 
 p img { vertical-align: middle; }
 label { font-weight: bold; }
@@ -75,8 +74,6 @@ a { font-weight: bold; }
 }
 
 ul { margin: 0 0 1em 0; }
-
-.aligned_picture { vertical-align: middle; }
 
 .datestamp div {
     text-align: center;
@@ -144,6 +141,13 @@ div.redbox_scroll {
   max-height: 600px;
   overflow: auto;
 }
+
+/*******************
+  * Pagination CSS *
+  *****************/
+span.pagination img { vertical-align: middle; }
+span.disabled img { display: none; }
+
 
 /*************************
   * Comments	 *
@@ -531,6 +535,8 @@ h1.section {
 .percentImage {
   background: url(../images/percentimage_back2.png) no-repeat;
 }
+
+
 
 .cal1 {
   font-size: 1.5em;

@@ -30,7 +30,7 @@
  <li><b><%= _('By name') %></b><br />
      <%= text_field :filters, :software %></li>
  <% if @ingenieur %>
-  <li><b><%= _('By client') %> </b><br />
+  <li><b><%= _('By contract') %> </b><br />
       <%= select_filter(@contracts, 'contract') %></li>
  <% end %>
 </ul>
@@ -42,14 +42,6 @@
      <%= text_field :filters, :description %></li>
  <li><b><%= _('Group') %> </b><br />
      <%= select_filter(@groupes, 'groupe') %></li>
-</ul>
-
-<div class="menu_title" onclick="Element.toggle('menu_perimetre')">
-> <%=_('Perimeter')%></div>
-<ul id="menu_perimetre">
- <li><b><%=_('Technologies')%>: </b><%=@count[:technologies]%></li>
- <li><b><%=_('Versions')%>: </b><%=@count[:versions]%></li>
-  <li><b><%=_('Software')%>: </b><%=@count[:software]%></li>
 </ul>
 
 <% end %>

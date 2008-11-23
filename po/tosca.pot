@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-11-21 17:40+0100\n"
+"POT-Creation-Date: 2008-11-23 15:53+0100\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,11 +90,11 @@ msgstr ""
 msgid "Your contract '%s' is near its end date : %s"
 msgstr ""
 
-#: app/controllers/application.rb:112
+#: app/controllers/application.rb:112 app/models/notifier.rb:345
 msgid "An e-mail was sent to "
 msgstr ""
 
-#: app/controllers/application.rb:113
+#: app/controllers/application.rb:113 app/models/notifier.rb:346
 msgid "with a copy to"
 msgstr ""
 
@@ -341,9 +341,7 @@ msgstr ""
 #: app/views/issues/lists/_issues_table.html.erb:4
 #: app/views/issues/lists/_pending_table.html.erb:11
 #: app/views/knowledges/_form.html.erb:16 app/views/releases/show.html.erb:4
-#: app/views/releases/show.html.erb:12
-#: app/views/softwares/_software_info.html.erb:52
-#: app/views/softwares/show.html.erb:2
+#: app/views/releases/show.html.erb:12 app/views/softwares/show.html.erb:2
 #: app/views/urlreversements/index.html.erb:6
 #: app/views/urlsoftwares/_form.html.erb:6
 #: app/views/urlsoftwares/index.html.erb:6
@@ -386,7 +384,7 @@ msgstr ""
 #: app/views/issues/lists/_pending_table.html.erb:13
 #: app/views/reporting/_comex_cns.html.erb:22
 #: app/views/reporting/general.html.erb:7
-#: app/views/softwares/_form.html.erb:11 app/views/softwares/show.html.erb:18
+#: app/views/softwares/_form.html.erb:11 app/views/softwares/show.html.erb:15
 msgid "Summary"
 msgstr ""
 
@@ -723,15 +721,15 @@ msgstr ""
 msgid "List of your supported software"
 msgstr ""
 
-#: app/controllers/softwares_controller.rb:105
+#: app/controllers/softwares_controller.rb:106
 msgid "The software %s has been created succesfully."
 msgstr ""
 
-#: app/controllers/softwares_controller.rb:121
+#: app/controllers/softwares_controller.rb:122
 msgid "The software %s has been updated successfully."
 msgstr ""
 
-#: app/controllers/softwares_controller.rb:132
+#: app/controllers/softwares_controller.rb:133
 msgid "The software %s has been successfully deleted."
 msgstr ""
 
@@ -956,15 +954,23 @@ msgstr ""
 msgid "Add %s"
 msgstr ""
 
-#: app/helpers/images_helper.rb:34
+#: app/helpers/images_helper.rb:33
+msgid "Previous Page"
+msgstr ""
+
+#: app/helpers/images_helper.rb:36
+msgid "Next Page"
+msgstr ""
+
+#: app/helpers/images_helper.rb:41
 msgid "Logout"
 msgstr ""
 
-#: app/helpers/images_helper.rb:40 app/views/account/logout.html.erb:13
+#: app/helpers/images_helper.rb:47 app/views/account/logout.html.erb:13
 msgid "Log in"
 msgstr ""
 
-#: app/helpers/images_helper.rb:98
+#: app/helpers/images_helper.rb:105
 msgid "a logo"
 msgstr ""
 
@@ -1723,7 +1729,7 @@ msgid "knowledge"
 msgstr ""
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|Competence"
+msgid "Knowledge|skill"
 msgstr ""
 
 #: app/models/knowledge.rb:-
@@ -2381,7 +2387,7 @@ msgstr ""
 #: app/views/mainteneurs/_form.html.erb:4
 #: app/views/permissions/_form.html.erb:4 app/views/roles/_form.html.erb:3
 #: app/views/severities/_form.html.erb:3 app/views/socles/_form.html.erb:3
-#: app/views/softwares/_form.html.erb:8 app/views/softwares/index.html.erb:6
+#: app/views/softwares/_form.html.erb:8 app/views/softwares/index.html.erb:4
 #: app/views/softwares/show.html.erb:9 app/views/statuts/_form.html.erb:3
 #: app/views/tags/_form.html.erb:4 app/views/tags/index.html.erb:5
 #: app/views/tags/show.html.erb:7 app/views/teams/index.html.erb:5
@@ -2401,7 +2407,6 @@ msgstr ""
 
 #: app/views/account/_users_info.html.erb:38
 #: app/views/phonecalls/_calls_info.html.erb:49
-#: app/views/softwares/_software_info.html.erb:48
 #: app/views/versions/_versions_info.html.erb:28
 msgid "Perimeter"
 msgstr ""
@@ -2694,7 +2699,7 @@ msgstr ""
 #: app/views/images/index.html.erb:6 app/views/machines/_form.html.erb:22
 #: app/views/roles/index.html.erb:4 app/views/softwares/_form.html.erb:16
 #: app/views/softwares/_software_info.html.erb:41
-#: app/views/softwares/index.html.erb:6 app/views/statuts/_form.html.erb:6
+#: app/views/softwares/index.html.erb:4 app/views/statuts/_form.html.erb:6
 #: app/views/typecontributions/_form.html.erb:6
 #: app/views/typedocuments/_form.html.erb:6
 msgid "Description"
@@ -2709,7 +2714,7 @@ msgid "Inactive"
 msgstr ""
 
 #: app/views/clients/_form.html.erb:27 app/views/clients/index.html.erb:5
-#: app/views/softwares/_form.html.erb:19 app/views/softwares/index.html.erb:6
+#: app/views/softwares/_form.html.erb:19 app/views/softwares/index.html.erb:4
 msgid "Logo"
 msgstr ""
 
@@ -3489,6 +3494,7 @@ msgid "By word"
 msgstr ""
 
 #: app/views/issues/lists/_issues_info.html.erb:40
+#: app/views/softwares/_software_info.html.erb:33
 msgid "By contract"
 msgstr ""
 
@@ -4359,17 +4365,15 @@ msgstr ""
 
 #: app/views/softwares/_form.html.erb:33
 #: app/views/softwares/_software_info.html.erb:43
-#: app/views/softwares/index.html.erb:7 app/views/softwares/show.html.erb:35
+#: app/views/softwares/index.html.erb:5 app/views/softwares/show.html.erb:35
 msgid "Group"
 msgstr ""
 
-#: app/views/softwares/_form.html.erb:37 app/views/softwares/show.html.erb:15
+#: app/views/softwares/_form.html.erb:37 app/views/softwares/show.html.erb:12
 msgid "Private"
 msgstr ""
 
-#: app/views/softwares/_form.html.erb:42
-#: app/views/softwares/_software_info.html.erb:50
-#: app/views/softwares/show.html.erb:32
+#: app/views/softwares/_form.html.erb:42 app/views/softwares/show.html.erb:32
 msgid "Technologies"
 msgstr ""
 
@@ -4378,19 +4382,8 @@ msgstr ""
 msgid "List of the versions"
 msgstr ""
 
-#: app/views/softwares/_software_info.html.erb:33
-msgid "By client"
-msgstr ""
-
 #: app/views/softwares/_software_info.html.erb:39
 msgid "Characteristic"
-msgstr ""
-
-#: app/views/softwares/_software_info.html.erb:51
-#: app/views/versions/_versions_info.html.erb:30
-#: app/views/versions/_versions_list.html.erb:6
-#: app/views/welcome/admin.html.erb:50
-msgid "Versions"
 msgstr ""
 
 #: app/views/softwares/edit.html.erb:1
@@ -4401,12 +4394,8 @@ msgstr ""
 msgid "a new software"
 msgstr ""
 
-#: app/views/softwares/index.html.erb:7
+#: app/views/softwares/index.html.erb:5
 msgid "Technologie(s)"
-msgstr ""
-
-#: app/views/softwares/index.html.erb:7
-msgid "Version(s)"
 msgstr ""
 
 #: app/views/softwares/new.html.erb:1
@@ -4642,6 +4631,12 @@ msgstr ""
 
 #: app/views/versions/_versions_info.html.erb:16
 msgid "Releases list"
+msgstr ""
+
+#: app/views/versions/_versions_info.html.erb:30
+#: app/views/versions/_versions_list.html.erb:6
+#: app/views/welcome/admin.html.erb:50
+msgid "Versions"
 msgstr ""
 
 #: app/views/versions/_versions_list.html.erb:3
@@ -4988,6 +4983,10 @@ msgstr ""
 
 #: app/views/welcome/theme.html.erb:5
 msgid "Dress this site as you wish"
+msgstr ""
+
+#: config/initializers/will_paginate.rb:11 lib/overrides.rb:563
+msgid "Displaying entries <b>%d&nbsp;-&nbsp;%d</b> of <b>%d</b> in total"
 msgstr ""
 
 #: lib/overrides.rb:199
