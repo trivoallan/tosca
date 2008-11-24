@@ -29,6 +29,13 @@ module ImagesHelper
     image_tag("icons/add.png", StaticImage::options(desc, '16x16'))
   end
 
+  def image_next_page
+    image_tag("icons/resultset_next.png", StaticImage::options(_('Previous Page'), '16x16'))
+  end
+  def image_prev_page
+    image_tag("icons/resultset_previous.png", StaticImage::options(_('Next Page'), '16x16'))
+  end
+
   #Disconnect icon with the tooltip
   def image_disconnect
     desc = _('Logout')

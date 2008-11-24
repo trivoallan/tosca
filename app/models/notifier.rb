@@ -72,7 +72,7 @@ class Notifier < ActionMailer::Base
   # This function require 1 parameter : the issue
   def issue_new(issue)
     logger.info(issue.inspect)
-    
+
     issue.reload
 
     options = {}
@@ -96,7 +96,7 @@ class Notifier < ActionMailer::Base
     # for instance, send mail to the correct engineer
     # when reaffecting an issue
     issue.reload
-    
+
     options = {}
     options[:comment] = comment
     options[:issue] = issue
@@ -168,7 +168,7 @@ class Notifier < ActionMailer::Base
     in_reply_to_id = extract_issue_id(in_reply_to)
 
     #Is the id in in_reply_to is equal to one of references
-    if not in_reply_to_id or not same_issue_id?(references, in_reply_to_id) 
+    if not in_reply_to_id or not same_issue_id?(references, in_reply_to_id)
       #The email is probably not a response to a e-mail from Tosca
       return Notifier::deliver_email_not_good(from)
     end
@@ -338,6 +338,13 @@ class Notifier < ActionMailer::Base
       return true if issue_id == id
     end
     false
+  end
+
+  #Compute the receiver of an email for the flash
+  def message_notice(recipients, cc)
+    result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
+    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc && !cc.blank?
+    result << '.'
   end
 
 end

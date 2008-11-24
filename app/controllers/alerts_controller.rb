@@ -28,7 +28,7 @@ class AlertsController < ApplicationController
       #Check if the params are well formed
       if param.first =~ /hash_\d+/ and not param.last.empty?
         #We create or find this alert
-        alert = Alert.find_or_create_by_team_id(param.first.gsub(/\d+/).first)
+        alert = Alert.find_or_create_by_team_id(param.first.gsub(/hash_/, ''))
         alert.update_attribute(:hash_value, param.last)
       end
     end

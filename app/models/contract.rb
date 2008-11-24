@@ -138,11 +138,11 @@ class Contract < ActiveRecord::Base
 
   def name
     specialisation = read_attribute(:name)
-    res = "#{client.name} - #{rule.name}"
+    res = "#{client.name} "
     res << " - #{specialisation}" unless specialisation.blank?
     res
   end
-  
+
   def total_elapsed
     total = 0
     self.issues.each do |r|

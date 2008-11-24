@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-21 17:40+0100\n"
-"PO-Revision-Date: 2008-11-21 19:31+0100\n"
+"POT-Creation-Date: 2008-11-23 15:53+0100\n"
+"PO-Revision-Date: 2008-11-23 15:56+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -95,11 +95,11 @@ msgstr "Bienvenue %s %s"
 msgid "Your contract '%s' is near its end date : %s"
 msgstr "Le contrat '%s' est près de sa date de fin : %s"
 
-#: app/controllers/application.rb:112
+#: app/controllers/application.rb:112 app/models/notifier.rb:345
 msgid "An e-mail was sent to "
 msgstr "Un e-mail a été envoyé à "
 
-#: app/controllers/application.rb:113
+#: app/controllers/application.rb:113 app/models/notifier.rb:346
 msgid "with a copy to"
 msgstr "avec en copie"
 
@@ -352,9 +352,7 @@ msgstr "Id"
 #: app/views/issues/lists/_issues_table.html.erb:4
 #: app/views/issues/lists/_pending_table.html.erb:11
 #: app/views/knowledges/_form.html.erb:16 app/views/releases/show.html.erb:4
-#: app/views/releases/show.html.erb:12
-#: app/views/softwares/_software_info.html.erb:52
-#: app/views/softwares/show.html.erb:2
+#: app/views/releases/show.html.erb:12 app/views/softwares/show.html.erb:2
 #: app/views/urlreversements/index.html.erb:6
 #: app/views/urlsoftwares/_form.html.erb:6
 #: app/views/urlsoftwares/index.html.erb:6
@@ -397,7 +395,7 @@ msgstr "Mise à jour"
 #: app/views/issues/lists/_pending_table.html.erb:13
 #: app/views/reporting/_comex_cns.html.erb:22
 #: app/views/reporting/general.html.erb:7
-#: app/views/softwares/_form.html.erb:11 app/views/softwares/show.html.erb:18
+#: app/views/softwares/_form.html.erb:11 app/views/softwares/show.html.erb:15
 msgid "Summary"
 msgstr "Résumé"
 
@@ -745,15 +743,15 @@ msgstr "Liste des logiciels"
 msgid "List of your supported software"
 msgstr "Liste de vos logiciels supportés"
 
-#: app/controllers/softwares_controller.rb:105
+#: app/controllers/softwares_controller.rb:106
 msgid "The software %s has been created succesfully."
 msgstr "Le logiciel %s a été créé avec succès"
 
-#: app/controllers/softwares_controller.rb:121
+#: app/controllers/softwares_controller.rb:122
 msgid "The software %s has been updated successfully."
 msgstr "Le logiciel %s a été mis à jour avec succès."
 
-#: app/controllers/softwares_controller.rb:132
+#: app/controllers/softwares_controller.rb:133
 msgid "The software %s has been successfully deleted."
 msgstr "Le logiciel %s a été effacé avec succès"
 
@@ -980,15 +978,23 @@ msgstr "un groupe"
 msgid "Add %s"
 msgstr "Ajouter %s"
 
-#: app/helpers/images_helper.rb:34
+#: app/helpers/images_helper.rb:33
+msgid "Previous Page"
+msgstr "Page précédente"
+
+#: app/helpers/images_helper.rb:36
+msgid "Next Page"
+msgstr "Page suivante"
+
+#: app/helpers/images_helper.rb:41
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/helpers/images_helper.rb:40 app/views/account/logout.html.erb:13
+#: app/helpers/images_helper.rb:47 app/views/account/logout.html.erb:13
 msgid "Log in"
 msgstr "S'identifier"
 
-#: app/helpers/images_helper.rb:98
+#: app/helpers/images_helper.rb:105
 msgid "a logo"
 msgstr "un logo"
 
@@ -1749,8 +1755,8 @@ msgid "knowledge"
 msgstr "connaissance"
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|Competence"
-msgstr "Compétence"
+msgid "Knowledge|skill"
+msgstr "Connaissances"
 
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Software"
@@ -2407,7 +2413,7 @@ msgstr "Rechercher"
 #: app/views/mainteneurs/_form.html.erb:4
 #: app/views/permissions/_form.html.erb:4 app/views/roles/_form.html.erb:3
 #: app/views/severities/_form.html.erb:3 app/views/socles/_form.html.erb:3
-#: app/views/softwares/_form.html.erb:8 app/views/softwares/index.html.erb:6
+#: app/views/softwares/_form.html.erb:8 app/views/softwares/index.html.erb:4
 #: app/views/softwares/show.html.erb:9 app/views/statuts/_form.html.erb:3
 #: app/views/tags/_form.html.erb:4 app/views/tags/index.html.erb:5
 #: app/views/tags/show.html.erb:7 app/views/teams/index.html.erb:5
@@ -2427,7 +2433,6 @@ msgstr "Rôles"
 
 #: app/views/account/_users_info.html.erb:38
 #: app/views/phonecalls/_calls_info.html.erb:49
-#: app/views/softwares/_software_info.html.erb:48
 #: app/views/versions/_versions_info.html.erb:28
 msgid "Perimeter"
 msgstr "Périmètre"
@@ -2720,7 +2725,7 @@ msgstr "Par système"
 #: app/views/images/index.html.erb:6 app/views/machines/_form.html.erb:22
 #: app/views/roles/index.html.erb:4 app/views/softwares/_form.html.erb:16
 #: app/views/softwares/_software_info.html.erb:41
-#: app/views/softwares/index.html.erb:6 app/views/statuts/_form.html.erb:6
+#: app/views/softwares/index.html.erb:4 app/views/statuts/_form.html.erb:6
 #: app/views/typecontributions/_form.html.erb:6
 #: app/views/typedocuments/_form.html.erb:6
 msgid "Description"
@@ -2735,7 +2740,7 @@ msgid "Inactive"
 msgstr "Inactif"
 
 #: app/views/clients/_form.html.erb:27 app/views/clients/index.html.erb:5
-#: app/views/softwares/_form.html.erb:19 app/views/softwares/index.html.erb:6
+#: app/views/softwares/_form.html.erb:19 app/views/softwares/index.html.erb:4
 msgid "Logo"
 msgstr "Logo"
 
@@ -3515,6 +3520,7 @@ msgid "By word"
 msgstr "Par mot"
 
 #: app/views/issues/lists/_issues_info.html.erb:40
+#: app/views/softwares/_software_info.html.erb:33
 msgid "By contract"
 msgstr "Par contrat"
 
@@ -4409,17 +4415,15 @@ msgstr "License"
 
 #: app/views/softwares/_form.html.erb:33
 #: app/views/softwares/_software_info.html.erb:43
-#: app/views/softwares/index.html.erb:7 app/views/softwares/show.html.erb:35
+#: app/views/softwares/index.html.erb:5 app/views/softwares/show.html.erb:35
 msgid "Group"
 msgstr "Groupe"
 
-#: app/views/softwares/_form.html.erb:37 app/views/softwares/show.html.erb:15
+#: app/views/softwares/_form.html.erb:37 app/views/softwares/show.html.erb:12
 msgid "Private"
 msgstr "Privé"
 
-#: app/views/softwares/_form.html.erb:42
-#: app/views/softwares/_software_info.html.erb:50
-#: app/views/softwares/show.html.erb:32
+#: app/views/softwares/_form.html.erb:42 app/views/softwares/show.html.erb:32
 msgid "Technologies"
 msgstr "Technologies"
 
@@ -4428,20 +4432,9 @@ msgstr "Technologies"
 msgid "List of the versions"
 msgstr "Liste des versions"
 
-#: app/views/softwares/_software_info.html.erb:33
-msgid "By client"
-msgstr "Par client"
-
 #: app/views/softwares/_software_info.html.erb:39
 msgid "Characteristic"
 msgstr "Caracteristique"
-
-#: app/views/softwares/_software_info.html.erb:51
-#: app/views/versions/_versions_info.html.erb:30
-#: app/views/versions/_versions_list.html.erb:6
-#: app/views/welcome/admin.html.erb:50
-msgid "Versions"
-msgstr "Versions"
 
 #: app/views/softwares/edit.html.erb:1
 msgid "Edit a software"
@@ -4451,13 +4444,9 @@ msgstr "Modifier un logiciel"
 msgid "a new software"
 msgstr "un nouveau logiciel"
 
-#: app/views/softwares/index.html.erb:7
+#: app/views/softwares/index.html.erb:5
 msgid "Technologie(s)"
 msgstr "Technologie(s)"
-
-#: app/views/softwares/index.html.erb:7
-msgid "Version(s)"
-msgstr "Version(s)"
 
 #: app/views/softwares/new.html.erb:1
 msgid "Add a new software"
@@ -4693,6 +4682,12 @@ msgstr "Liste des Logiciels"
 #: app/views/versions/_versions_info.html.erb:16
 msgid "Releases list"
 msgstr "Liste des releases"
+
+#: app/views/versions/_versions_info.html.erb:30
+#: app/views/versions/_versions_list.html.erb:6
+#: app/views/welcome/admin.html.erb:50
+msgid "Versions"
+msgstr "Versions"
 
 #: app/views/versions/_versions_list.html.erb:3
 msgid "a version"
@@ -5001,7 +4996,9 @@ msgstr ""
 
 #: app/views/welcome/index.html.erb:84
 msgid "Your %s is more detailed and include a new section about software"
-msgstr "Votre %s est plus détaillé et inclut une nouvelle section concernant les logiciels"
+msgstr ""
+"Votre %s est plus détaillé et inclut une nouvelle section concernant les "
+"logiciels"
 
 #: app/views/welcome/index.html.erb:85
 msgid ""
@@ -5075,6 +5072,10 @@ msgstr "Vos suggestion sur notre outil : "
 #: app/views/welcome/theme.html.erb:5
 msgid "Dress this site as you wish"
 msgstr "Habillez ce site comme bon vous semble"
+
+#: config/initializers/will_paginate.rb:11 lib/overrides.rb:563
+msgid "Displaying entries <b>%d&nbsp;-&nbsp;%d</b> of <b>%d</b> in total"
+msgstr "Résultats <b>%d&nbsp;-&nbsp;%d</b> sur un total de <b>%d</b>"
 
 #: lib/overrides.rb:199
 msgid "Immediate"

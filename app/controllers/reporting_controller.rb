@@ -299,7 +299,7 @@ class ReportingController < ApplicationController
 
     [ software.size, 10].min.times do |i|
       software_id = software.pop[0]
-      next if software_id.nil?
+      next if software_id.nil? || software_id == 0
       @software_ids << software_id
       name = Software.find(software_id).name
       report.push [ name ]

@@ -33,7 +33,8 @@ class SoftwaresController < ApplicationController
       @title = _('List of your supported software')
     end
 
-    options = { :per_page => 10, :order => 'softwares.name', :include => [:groupe] }
+    options = { :per_page => 15, :order => 'softwares.name',
+                :include => [:groupe,:image,:competences], :page => params[:page] }
     conditions = []
 
     if params.has_key? :filters
@@ -65,7 +66,7 @@ class SoftwaresController < ApplicationController
     # optional scope, for customers
     begin
       Software.set_scope(@recipient.contract_ids) if scope
-      @software_pages, @softwares = paginate :softwares, options
+      @softwares = Software.paginate options
     ensure
       Software.remove_scope if scope
     end
@@ -151,9 +152,6 @@ private
     @contracts = Contract.find_select(Contract::OPTIONS) if @ingenieur
     @technologies = Competence.find_select
     @groupes = Groupe.find_select
-
-    stats = Struct.new(:technologies, :versions, :software)
-    @count = stats.new(Competence.count, Version.count, Software.count)
   end
 
   def add_logo

@@ -9,7 +9,7 @@ namespace :l10n do
   desc "Update pot/po files."
   task :po do
     require 'gettext/utils'
-    GetText.update_pofiles("tosca", Dir.glob("{app,lib,bin}/**/*.{rb,erb,rjs,builder}").sort, "tosca 0.7.5")
+    GetText.update_pofiles("tosca", Dir.glob("{app,lib,bin,config}/**/*.{rb,erb,rjs,builder}").sort, "tosca 0.7.5")
   end
 
   desc "Create mo-files"

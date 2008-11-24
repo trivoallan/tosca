@@ -8,9 +8,6 @@
    <table>
      <tr><td><b><%= _('Name') %></b> </td>
        <td><%= @software.name %>
-        <% unless @software.image.blank? %>
-          <%= software_logo(@software, :size => :thumb) %>
-        <% end %>
         <% if @software.private? && @ingenieur %>
           (<%= _('Private') %>)
         <% end %>
@@ -19,6 +16,9 @@
          <td><%= @software.resume %></td></tr>
      <tr><td colspan="2">
           <fieldset>
+           <% unless @software.image.blank? %>
+            <div style="float: left; padding: 0.2em 0.5em;"><%= software_logo(@software, :size => :thumb) %></div>
+           <% end %>
            <%= @software.description %>
           </fieldset></td></tr>
      <% if @ingenieur %>
