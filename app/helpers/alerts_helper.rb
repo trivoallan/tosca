@@ -22,7 +22,7 @@ module AlertsHelper
   MP3_FOLDER_URL = "mp3"
   
   def play_mp3(filename)
-    mp3 = "../../#{MP3_FOLDER_URL}/#{filename}"
+    mp3 = "../#{MP3_FOLDER_URL}/#{filename}"
     options = "&amp;autostart=1&amp;autoreplay=1&amp;bgcolor=FFFFFF"
     param = "#{mp3_folder_path}?mp3=#{mp3}#{options}"
     "<object type=\"application/x-shockwave-flash\" 
@@ -31,7 +31,7 @@ module AlertsHelper
   end
  
   def mp3_folder_path
-    "../../#{MP3_FOLDER_URL}/#{MP3_FLASH_PLAYER}"
+    "../#{MP3_FOLDER_URL}/#{MP3_FLASH_PLAYER}"
   end
   
 end
