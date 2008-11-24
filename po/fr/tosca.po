@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-23 15:53+0100\n"
-"PO-Revision-Date: 2008-11-23 15:56+0100\n"
+"POT-Creation-Date: 2008-11-24 09:58+0100\n"
+"PO-Revision-Date: 2008-11-24 10:03+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -213,15 +213,15 @@ msgstr "Le contrat a été mis à jour avec succès."
 msgid "Unknown rules for contract \"%s\""
 msgstr "Règles inconnu pour le contrat \"%s\""
 
-#: app/controllers/contributions_controller.rb:132
+#: app/controllers/contributions_controller.rb:130
 msgid "The contribution has been created successfully."
 msgstr "La contribution a été créée avec succès"
 
-#: app/controllers/contributions_controller.rb:153
+#: app/controllers/contributions_controller.rb:151
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
-#: app/controllers/contributions_controller.rb:209
+#: app/controllers/contributions_controller.rb:207
 msgid "The associated issue does not exist"
 msgstr "La demande associée n'existe pas"
 
@@ -358,8 +358,8 @@ msgstr "Id"
 #: app/views/urlsoftwares/index.html.erb:6
 #: app/views/urlsoftwares/show.html.erb:7 app/views/versions/_form.html.erb:7
 #: app/views/versions/_versions_list.html.erb:6
-#: app/views/versions/show.html.erb:3 app/views/versions/show.html.erb:14
-#: app/views/welcome/index.html.erb:68
+#: app/views/versions/index.html.erb:5 app/views/versions/show.html.erb:3
+#: app/views/versions/show.html.erb:14 app/views/welcome/index.html.erb:68
 msgid "Software"
 msgstr "Logiciel"
 
@@ -1755,8 +1755,9 @@ msgid "knowledge"
 msgstr "connaissance"
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|skill"
-msgstr "Connaissances"
+#, fuzzy
+msgid "Knowledge|Competence"
+msgstr "Niveau"
 
 #: app/models/knowledge.rb:-
 msgid "Knowledge|Software"
@@ -4429,6 +4430,7 @@ msgstr "Technologies"
 
 #: app/views/softwares/_software_info.html.erb:23
 #: app/views/versions/_versions_list.html.erb:1
+#: app/views/versions/index.html.erb:1
 msgid "List of the versions"
 msgstr "Liste des versions"
 
@@ -4685,11 +4687,12 @@ msgstr "Liste des releases"
 
 #: app/views/versions/_versions_info.html.erb:30
 #: app/views/versions/_versions_list.html.erb:6
-#: app/views/welcome/admin.html.erb:50
+#: app/views/versions/index.html.erb:5 app/views/welcome/admin.html.erb:50
 msgid "Versions"
 msgstr "Versions"
 
 #: app/views/versions/_versions_list.html.erb:3
+#: app/views/versions/index.html.erb:3
 msgid "a version"
 msgstr "une version"
 
@@ -5073,7 +5076,19 @@ msgstr "Vos suggestion sur notre outil : "
 msgid "Dress this site as you wish"
 msgstr "Habillez ce site comme bon vous semble"
 
-#: config/initializers/will_paginate.rb:11 lib/overrides.rb:563
+#: config/initializers/will_paginate.rb:6
+msgid "No entries found"
+msgstr "Aucun résultat"
+
+#: config/initializers/will_paginate.rb:7
+msgid "Displaying <b>1</b> entry"
+msgstr "<b>1</b> résultat"
+
+#: config/initializers/will_paginate.rb:8
+msgid "Displaying <b>all %d</b> entries"
+msgstr "<b>%d</b> résultats"
+
+#: config/initializers/will_paginate.rb:11
 msgid "Displaying entries <b>%d&nbsp;-&nbsp;%d</b> of <b>%d</b> in total"
 msgstr "Résultats <b>%d&nbsp;-&nbsp;%d</b> sur un total de <b>%d</b>"
 
@@ -5130,3 +5145,6 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
+
+#~ msgid "Knowledge|skill"
+#~ msgstr "Connaissances"

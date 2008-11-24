@@ -20,7 +20,7 @@ class VersionsController < ApplicationController
   helper :filters, :softwares, :releases
 
   def index
-    options = { :per_page => 15 }
+    options = { :per_page => 15, :page => params[:page] }
 
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]
@@ -30,11 +30,11 @@ class VersionsController < ApplicationController
      ]) unless params_version.blank?
     flash[:conditions] = options[:conditions] = conditions
 
-    @version_pages, @versions = paginate :versions, options
+    @versions = Version.paginate options
 
     # panel on the left side
     if request.xhr?
-      render :partial => 'versions_list', :layout => false
+      render :layout => false
     else
       _panel
       @partial_for_summary = 'versions_info'

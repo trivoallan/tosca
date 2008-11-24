@@ -118,7 +118,7 @@ class AccountController < ApplicationController
   # TODO : this method is too long
   def index
     options = { :per_page => 15, :order => 'users.role_id, users.login',
-      :include => [:recipient,:ingenieur,:role] }
+      :include => [:recipient,:ingenieur,:role], :page => params[:page] }
     conditions = []
     @roles = Role.find_select
 
@@ -146,7 +146,7 @@ class AccountController < ApplicationController
       scope = User.get_scope(session[:user].contract_ids)
     end
     User.send(:with_scope, scope) do
-      @user_pages, @users = paginate :users, options
+      @users = User.paginate options
     end
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
