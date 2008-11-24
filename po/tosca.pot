@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-11-23 15:53+0100\n"
+"POT-Creation-Date: 2008-11-24 09:58+0100\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,15 +202,15 @@ msgstr ""
 msgid "Unknown rules for contract \"%s\""
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:132
+#: app/controllers/contributions_controller.rb:130
 msgid "The contribution has been created successfully."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:153
+#: app/controllers/contributions_controller.rb:151
 msgid "The contribution has been updated successfully."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:209
+#: app/controllers/contributions_controller.rb:207
 msgid "The associated issue does not exist"
 msgstr ""
 
@@ -347,8 +347,8 @@ msgstr ""
 #: app/views/urlsoftwares/index.html.erb:6
 #: app/views/urlsoftwares/show.html.erb:7 app/views/versions/_form.html.erb:7
 #: app/views/versions/_versions_list.html.erb:6
-#: app/views/versions/show.html.erb:3 app/views/versions/show.html.erb:14
-#: app/views/welcome/index.html.erb:68
+#: app/views/versions/index.html.erb:5 app/views/versions/show.html.erb:3
+#: app/views/versions/show.html.erb:14 app/views/welcome/index.html.erb:68
 msgid "Software"
 msgstr ""
 
@@ -1729,7 +1729,7 @@ msgid "knowledge"
 msgstr ""
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|skill"
+msgid "Knowledge|Competence"
 msgstr ""
 
 #: app/models/knowledge.rb:-
@@ -4379,6 +4379,7 @@ msgstr ""
 
 #: app/views/softwares/_software_info.html.erb:23
 #: app/views/versions/_versions_list.html.erb:1
+#: app/views/versions/index.html.erb:1
 msgid "List of the versions"
 msgstr ""
 
@@ -4635,11 +4636,12 @@ msgstr ""
 
 #: app/views/versions/_versions_info.html.erb:30
 #: app/views/versions/_versions_list.html.erb:6
-#: app/views/welcome/admin.html.erb:50
+#: app/views/versions/index.html.erb:5 app/views/welcome/admin.html.erb:50
 msgid "Versions"
 msgstr ""
 
 #: app/views/versions/_versions_list.html.erb:3
+#: app/views/versions/index.html.erb:3
 msgid "a version"
 msgstr ""
 
@@ -4985,7 +4987,19 @@ msgstr ""
 msgid "Dress this site as you wish"
 msgstr ""
 
-#: config/initializers/will_paginate.rb:11 lib/overrides.rb:563
+#: config/initializers/will_paginate.rb:6
+msgid "No entries found"
+msgstr ""
+
+#: config/initializers/will_paginate.rb:7
+msgid "Displaying <b>1</b> entry"
+msgstr ""
+
+#: config/initializers/will_paginate.rb:8
+msgid "Displaying <b>all %d</b> entries"
+msgstr ""
+
+#: config/initializers/will_paginate.rb:11
 msgid "Displaying entries <b>%d&nbsp;-&nbsp;%d</b> of <b>%d</b> in total"
 msgstr ""
 
