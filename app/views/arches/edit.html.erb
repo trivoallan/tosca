@@ -1,9 +1,0 @@
-<h1><%= _('Edit an architecture')%></h1>
-
-<% form_tag(arch_path(@arch), :method => :put) do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _('Edit') %>
-<% end %>
-
-<br />
-<%= link_to_show_and_list(@arch) %>
