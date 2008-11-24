@@ -78,7 +78,8 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ manager_id ]
-    access = [ [ '^account/(signup|new|create)', 'Manage account' ],
+    access = [ [ '^alerts/', 'Manage alerts' ],
+               [ '^account/(signup|new|create)', 'Manage account' ],
                [ '^binaires/(?!destroy)', 'Manage binaries' ],
                [ '^clients/(?!destroy)', 'Manage clients' ],
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
@@ -136,7 +137,8 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ public_id ]
-    access = [ [ '^access/denied$', 'Page for denying access' ],
+    access = [ [ '^alerts/(show|ajax_on_submit)', 'Alert page' ],
+               [ '^access/denied$', 'Page for denying access' ],
                [ '^account/(login|logout|forgotten_password)$', 'Access to login system' ],
                [ '^welcome/(index|about|theme|plan)', 'Access to home pages' ],
                [ '^contributions/(index|select|show|list|feed)',
