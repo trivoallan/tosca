@@ -1,5 +1,30 @@
-<%# 'contributions_info' setted in controller%>
+<h1><%= _('List of contributions') + StaticImage::spinner %></h1>
 
-<div class="content" id="content">
-  <%= render_partial 'contributions_admin' %>
-</div>
+<% options = { :create_label => _('a contribution'), :url => admin_contributions_path } %>
+<% paginated_section(@contributions, options) do %>
+ <% titles = [_('Software'), _('Name'), _('State'),
+             _('Submitted on'), _('Closed on'), _('Delay'), _('Updated on')]%>
+ <% form_tag(contributions_path) do %>
+ <%= show_table(@contributions, Contribution, titles) { |c|
+   result = ''
+   # tache = c.todo(max_jours)
+   versions = nil # c.versions.collect{|p| p.version } * ', '
+   result << "<td>#{public_link_to_software c.software}"
+   result << " (#{versions})" unless versions.blank?
+   result << " </td>"
+   result << '<td>' << link_to_contribution(c)
+   result << '<br />' << "##{c.issue.id} : " << link_to_issue(c.issue) if c.issue
+   result << '</td>'
+   result << "<td>#{c.etatreversement.name if c.etatreversement}</td>"
+   result << "<td style='color:green'><span class=\"date\">#{c.contributed_on_formatted}</span></td>"
+
+   result << "<td style='color:red'>"
+   result << "<span class=\"date\">#{c.closed_on_formatted}</span>" if c.clos
+   result << "</td>"
+
+   result << "<td nowrap>#{Time.in_words(c.delay)}</td>"
+   result << "<td><span class=\"date\">#{c.updated_on_formatted}</span></td>"
+   result << "#{link_to_actions_table c}"
+ }%>
+ <% end %>
+<% end %>

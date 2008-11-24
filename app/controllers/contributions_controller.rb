@@ -33,24 +33,18 @@ class ContributionsController < ApplicationController
   end
 
   def list
-    options = { :order => "contributions.created_on DESC" }
+    options = { :order => "contributions.created_on DESC", :page => params[:page] }
     options[:conditions] = { }
     unless params[:id] == 'all'
       @software = Software.find(params[:id])
       options[:conditions] = { :software_id => @software.id }
     end
     client_id = params[:client_id].to_s
-    unless client_id.blank? || client_id == '1' # Main client
+    unless client_id.blank?
       options[:conditions].merge!({'contracts.client_id' => params[:client_id]})
       options[:include] = {:issue => :contract}
     end
-    # Dirty hack in order to show main client' contributions
-    # TODO : remove it in september.
-    condition = (client_id == '1' ? "contributions.id_mantis IS NOT NULL" : '')
-    scope = { :find => { :conditions => condition } }
-    Contribution.send(:with_scope, scope) do
-      @contribution_pages, @contributions = paginate :contributions, options
-    end
+    @contributions = Contribution.paginate options
     respond_to do |format|
       format.html
       format.atom
@@ -63,24 +57,18 @@ class ContributionsController < ApplicationController
       options = { :order => 'softwares.name ASC' }
       options[:joins] = :contributions
       options[:select] = 'DISTINCT softwares.*'
-      unless client_id.blank? || client_id == '1'
+      unless client_id.blank?
         options[:conditions] = { 'contracts.client_id' => params[:client_id] }
         options[:joins] = { :contributions => { :issue => :contract } }
       end
-      # Dirty hack in order to show main client' contributions
-      # TODO : remove it in september.
-      condition = (client_id == '1' ? "contributions.id_mantis IS NOT NULL" : '')
-      scope = { :find => { :conditions => condition } }
-      Software.send(:with_scope, scope) do
-        @softwares = Software.find(:all, options)
-      end
+      @softwares = Software.find(:all, options)
     end
   end
 
   def admin
     conditions = []
     options = { :per_page => 10, :order => 'contributions.updated_on DESC',
-      :include => [:software,:etatreversement,:issue] }
+      :include => [:software,:etatreversement,:issue], :page => params[:page] }
 
     if params.has_key? :filters
       session[:contributions_filters] =
@@ -103,10 +91,10 @@ class ContributionsController < ApplicationController
     end
     flash[:conditions] = options[:conditions] = conditions
 
-    @contribution_pages, @contributions = paginate :contributions, options
+    @contributions = Contribution.paginate options
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
-      render :partial => 'contributions_admin', :layout => false
+      render :layout => false
     else
       _panel
       @partial_for_summary = 'contributions_info'

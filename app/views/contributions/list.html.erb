@@ -1,4 +1,4 @@
-<h1>
+<p>
   <%= public_link_to _('Home'), welcome_path %> >
     <%= public_link_to _('Contributions'), select_contributions_path %> >
       <% if @software %>
@@ -6,18 +6,16 @@
       <% else %>
         <%= public_link_to(_('All'), softwares_path) %>
       <% end %>
-</h1>
+</p>
 
-<% links = show_pages_links(@contribution_pages, _('a new contribution')) %>
-<%= links %>
-
-<% @contributions.each do |contribution| %>
+<% paginated_section(@contributions, :create_label => _('a new contribution')) do %>
+ <% @contributions.each do |contribution| %>
   <h2>
    <%= link_to_edit(contribution) %>
    <%= public_link_to contribution.name, contribution_path(contribution) %>
   </h2>
   <%= "#{contribution.synthesis}<br />" %>
+ <% end %>
 <% end %>
 
 <br/>
-<%= links %>
