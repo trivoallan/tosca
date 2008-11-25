@@ -73,7 +73,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :arches
   map.resources :archives
   map.resources :changelogs
-  map.resources :clients, :collection => { :stats => :get }
+  map.resources :clients
   map.resources :comments, :member => {
      :change_state => :post,
      :comment => :post }

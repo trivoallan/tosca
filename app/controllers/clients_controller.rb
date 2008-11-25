@@ -60,11 +60,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  def stats
-    index
-    @typeissues = Typeissue.find(:all)
-  end
-
   def show
     @client = Client.find(params[:id])
     # allows to see only binaries of this client for all without scope

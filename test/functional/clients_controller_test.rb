@@ -25,13 +25,6 @@ class ClientsControllerTest < ActionController::TestCase
     login 'admin', 'admin'
   end
 
-  def test_stats
-    get :stats
-    assert_response :success
-    assert_template 'stats'
-    assert_not_nil assigns(:clients)
-  end
-
   def test_index
     %w(admin manager expert).each do |l|
       login l, l

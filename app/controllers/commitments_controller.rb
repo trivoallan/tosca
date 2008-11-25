@@ -20,7 +20,7 @@ class CommitmentsController < ApplicationController
   def index
     options = { :per_page => 20, :order => "typeissue_id, severity_id",
       :include => [:typeissue,:severity], :page => params[:page] }
-    @commitments = Paginate options
+    @commitments = Commitment.paginate options
   end
 
   def show

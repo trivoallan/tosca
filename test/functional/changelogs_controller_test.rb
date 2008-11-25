@@ -35,8 +35,7 @@ class ChangelogsControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_response :success
-    assert_template 'index'
-    assert_not_nil assigns(:changelogs)
+    assert_template 'nil' #testing that the page is empty
   end
 
   def test_show
