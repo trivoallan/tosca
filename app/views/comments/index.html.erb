@@ -1,16 +1,14 @@
 <h1><% _('List of the comments') %></h1>
 
-<%= show_pages_links(@comment_pages, _('a comment')) %>
-
-<% titles = [_('Issue'), _('Body'), _('Created on'), _('Updated on')]%>
-<%= show_table(@comments, Comment, titles) { |c|
-  result = ''
-  result << "<td>#{link_to_issue c.issue}</td>"
-  result << "<td>#{indent c.text}</td>"
-  result << "<td>#{c.created_on_formatted}</td>"
-  result << "<td>#{c.updated_on_formatted}</td>"
-  result << "#{link_to_actions_table c}"
-}%>
-
-<%= show_pages_links(@comment_pages,  _('a comment')) %>
-
+<% paginated_section(@comments, :create_label => _('a comment')) do %>
+ <% titles = [_('Issue'), _('Body'), _('Created on'), _('Updated on')]%>
+ <%= show_table(@comments, Comment, titles) { |c|
+   result = ''
+   result << "<td>#{link_to_issue c.issue}</td>"
+   result << "<td>#{indent c.text}</td>"
+   result << "<td>#{c.created_on_formatted}</td>"
+   result << "<td>#{c.updated_on_formatted}</td>"
+   result << "#{link_to_actions_table c}"
+ }%>
+ <%= page_entries_info @comments %><br />
+<% end %>

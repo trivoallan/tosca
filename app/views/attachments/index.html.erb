@@ -1,16 +1,15 @@
 <h1><%= _("List of the attachments") %></h1>
 
-<%= show_pages_links(@attachment_pages, _('an attachment')) %>
-
-<% titres = [ _('Id'), _('File'), _('Size'), _('Sumbitted on'), _('By')]%>
-<%= show_table(@attachments, Attachment, titres) { |p|
-  result = ''
-  result << "<td>##{p.id}</td>"
-  result << "<td>#{link_to_file(p, 'file')}</td>"
-  result << "<td>#{file_size(p.file)}</td>"
-  result << "<td>#{p.comment.created_on_formatted if p.comment}</td>"
-  result << "<td>#{p.comment.user.name if p.comment}</td>"
-  result << "#{link_to_actions_table p}"
-}%>
-
-<%= show_pages_links(@attachment_pages, _('an attachment')) %>
+<% paginated_section(@attachments, :create_label => _('an attachment')) do %>
+ <% titles = [ _('Id'), _('File'), _('Size'), _('Sumbitted on'), _('By')]%>
+ <%= show_table(@attachments, Attachment, titles) { |p|
+   result = ''
+   result << "<td>##{p.id}</td>"
+   result << "<td>#{link_to_file(p, 'file')}</td>"
+   result << "<td>#{file_size(p.file)}</td>"
+   result << "<td>#{p.comment.created_on_formatted if p.comment}</td>"
+   result << "<td>#{p.comment.user.name if p.comment}</td>"
+   result << "#{link_to_actions_table p}"
+ }%>
+ <%= page_entries_info @attachments %><br />
+<% end %>

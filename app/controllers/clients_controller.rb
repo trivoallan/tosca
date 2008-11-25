@@ -20,8 +20,8 @@ class ClientsController < ApplicationController
   helper :issues, :socles, :commitments, :contracts, :filters
 
   def index
-    options = { :per_page => 10, :order => 'clients.name',
-      :include => [:image] }
+    options = { :per_page => 15, :order => 'clients.name',
+      :include => [:image], :page => params[:page] }
 
     if params.has_key? :filters
       session[:clients_filters] = Filters::Clients.new(params[:filters])
@@ -49,7 +49,7 @@ class ClientsController < ApplicationController
     end
     flash[:conditions] = options[:conditions] = conditions
 
-    @client_pages, @clients = paginate :clients, options
+    @clients = Client.paginate options
 
     # panel on the left side.
     if request.xhr?

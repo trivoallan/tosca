@@ -25,8 +25,8 @@ class CommentsController < ApplicationController
   cache_sweeper :issue_sweeper, :only => [:comment]
 
   def index
-    @comment_pages, @comments = paginate :comments,
-    :per_page => 10, :include => [:issue]
+    options = { :per_page => 10, :include => [:issue], :page => params[:page] }
+    @comments = Comment.paginate options
   end
 
   def show
@@ -67,7 +67,7 @@ class CommentsController < ApplicationController
     #We verify and send an email
     if @comment.save
       flash[:notice] = _("Your comment was successfully added.")
-      flash[:notice] += message_notice(issue.compute_recipients(@comment.private), 
+      flash[:notice] += message_notice(issue.compute_recipients(@comment.private),
         issue.compute_copy(@comment.private))
     else
       flash[:warn] = _("An error has occured.") + '<br/>' +

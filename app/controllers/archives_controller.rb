@@ -20,8 +20,7 @@ class ArchivesController < ApplicationController
   helper :releases, :archives
 
   def index
-    @archive_pages, @archives = paginate :archives, :per_page => 10,
-      :include => :release
+    render :nothing => true
   end
 
   def show
@@ -69,5 +68,5 @@ class ArchivesController < ApplicationController
   def _form
     @releases = Release.all.collect { |r| [r.full_software_name, r.id ]}
   end
-  
+
 end

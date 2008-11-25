@@ -18,7 +18,7 @@
 #
 class ChangelogsController < ApplicationController
   def index
-    @changelog_pages, @changelogs = paginate :changelogs, :per_page => 10
+    render :nothing => true
   end
 
   def show
@@ -58,4 +58,3 @@ class ChangelogsController < ApplicationController
     redirect_to changelogs_path
   end
 end
-
