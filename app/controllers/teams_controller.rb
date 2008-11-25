@@ -66,7 +66,7 @@ class TeamsController < ApplicationController
 
 private
   def _form
-    @users = Ingenieur.find(:all).collect { |i| [i.user.name, i.user.id] }
+    @users = Ingenieur.find(:all, :include => :user).collect { |i| [i.user.name, i.user.id] }
     @contracts = Contract.find_select(Contract::OPTIONS)
   end
 

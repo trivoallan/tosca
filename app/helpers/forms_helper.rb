@@ -163,6 +163,7 @@ module FormsHelper
   # Create the auto_complete field wich insert the choice after click to the table.
   def auto_complete_list(object, method, objectcollection, name, tag_options = {}, completion_options = {})
     @name =  name
+    @new_record = false
     out = "<table>"
     out << "<tr><td cilspan=\"2\">"
     tag_options[:value]= _("Search") + "..."
