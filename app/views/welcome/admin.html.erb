@@ -39,6 +39,7 @@
    <h3><%= _('Plateform')%></h3>
    <p><%= _('System management')%></p>
   <% links = [
+        link_to( _('Alerts'), alerts_path),
         link_to( _('Systems'), socles_path),
         link_to( _('Machines'), machines_path),
         link_to( _('Architectures'), arches_path) ] %>
