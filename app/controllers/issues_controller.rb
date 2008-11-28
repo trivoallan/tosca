@@ -21,7 +21,7 @@ class IssuesController < ApplicationController
     :socles, :comments, :account, :reporting, :links
 
   cache_sweeper :issue_sweeper, :only =>
-    [:create, :update, :destroy, :link_contribution, :unlink_contribution]
+    [:create, :update, :destroy, :link_contribution, :unlink_contribution, :ajax_add_tag]
 
   def pending
     options = { :order => 'updated_on DESC',
