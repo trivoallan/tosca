@@ -37,7 +37,7 @@ class ContractsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(contracts_filters, [
-        [:text, 'clients.name', 'contracts.name', :dual_like ]
+        [:text, 'clients.name', 'contracts.name', :multiple_like ]
       ])
       @filters = contracts_filters
     end

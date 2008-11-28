@@ -110,8 +110,8 @@ module Filters
                   "#{f[1]}>?"
                 when :lesser_than
                   "#{f[1]}<?"
-                when :dual_like
-                  "(#{f[1]} LIKE (?) OR #{f[2]} LIKE (?))"
+                when :multiple_like
+                  '(' << f[1..-2].collect{|v| "#{v} LIKE ?"}.join(' OR ') << ')'
                 else
                   "#{f[1]} #{f[2]} (?)"
                 end
@@ -120,9 +120,8 @@ module Filters
         case f.last
         when :like
           conditions.push "%#{value}%"
-        when :dual_like
-          temp = "%#{value}%"
-          conditions.push temp, temp
+        when :multiple_like
+          conditions.push *(Array.new(f[1..-2].size, "%#{value}%"))
         else
           conditions.push value
         end

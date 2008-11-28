@@ -105,7 +105,7 @@ class IssuesController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(issues_filters, [
-        [:text, 'softwares.name', 'issues.resume', :dual_like ],
+        [:text, 'softwares.name', 'issues.resume', :multiple_like ],
         [:contract_id, 'issues.contract_id', :equal ],
         [:ingenieur_id, 'issues.ingenieur_id', :equal ],
         [:typeissue_id, 'issues.typeissue_id', :equal ],
@@ -148,7 +148,7 @@ class IssuesController < ApplicationController
     user = session[:user]
     @issue.submitter = user # it's the current user
     @issue.statut_id = (@ingenieur ? 2 : 1)
-    
+
     #If we have only one contract possible we auto asign it ti the request
     if @issue.contract.nil?
       contracts = @issue.recipient.contracts

@@ -42,7 +42,7 @@ class ClientsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(clients_filters, [
-        [:text, 'clients.name', 'clients.description', :dual_like ],
+        [:text, 'clients.name', 'clients.description', :multiple_like ],
         [:system_id, 'clients_socles.socle_id', :equal ]
       ], special_cond)
       @filters = clients_filters
