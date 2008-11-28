@@ -28,6 +28,7 @@
         edit = link_to_edit(edit_contract_path(c))
         result << "#{edit}&nbsp;" if edit
         result << "<b>#{link_to c.rule.name, contract_path(c)}</b>"
+        result << ' ' << c.rule.short_description
         result << _(" from %s to %s") % [c.start_date_formatted, c.end_date_formatted]
         result << ' '
         if c.rule.max == -1
