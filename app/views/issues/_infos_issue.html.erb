@@ -66,15 +66,15 @@
   <% end %>
 </ul>
 
-<% unless @issue.tag_list.empty? %>
  <%= div_toggle _("Tags"), 'tags_menu', :class => "menu_title", :hide => true %>
  <ul id="tags_menu">
-   <li><b><%= _("Tags") %>: </b><%= @issue.tag_list.join(', ') %></li>
+   <% unless @issue.tag_list.empty? %>
+    <li><b><%= _("Tags") %>: </b><%= @issue.tag_list.join(', ') %></li>
+   <% end %>
    <% if @ingenieur %>
     <li><%= link_to _("Edit the tags for this issue"), tag_issue_url(@issue) %></li>
    <% end %>
  </ul>
-<% end %>
 
 <%= div_toggle _("Help"), 'menu_help', :class => "menu_title" %>
 <ul id="menu_help">

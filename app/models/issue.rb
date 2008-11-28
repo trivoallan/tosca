@@ -130,11 +130,17 @@ class Issue < ActiveRecord::Base
 
   # Dirty hacks are really bad ...
   def client_name
-    (self.respond_to?(:client_name) ? self.clients_name : self.client.name)
+    (self.respond_to?(:clients_name) ? self.clients_name : self.client.name)
   end
   # Dirty hacks are really bad ...
   def software_name
-    (self.respond_to?(:softwares_name) ? self.softwares_name : self.software.name)
+    if self.respond_to?(:softwares_name)
+      self.softwares_name
+    elsif self.software
+      self.software.name
+    else 
+      "-"
+    end
   end
 
 
