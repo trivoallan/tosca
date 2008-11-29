@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-24 09:58+0100\n"
-"PO-Revision-Date: 2008-11-24 10:03+0100\n"
+"PO-Revision-Date: 2008-11-29 12:56+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3277,7 +3277,7 @@ msgstr "Ajouter un document"
 
 #: app/views/documents/_documents_info.html.erb:32
 msgid "Type of document"
-msgstr "type de documents"
+msgstr "Type de documents"
 
 #: app/views/documents/_documents_info.html.erb:34
 msgid "Titre"

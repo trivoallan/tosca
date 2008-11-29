@@ -33,29 +33,25 @@ class DocumentsController < ApplicationController
     else
       conditions = nil
     end
-    @document_pages, @documents = paginate :documents, :per_page => 10,
-      :order => "documents.date_delivery DESC", :conditions => conditions,
-      :include => [:user]
+    options = { :per_page => 25, :page => params[:page], :order =>
+      'documents.date_delivery DESC', :conditions => conditions,
+      :include => [:user] }
+    @documents = Document.paginate options
 
-    # Disabled, beacause the search boxes in the panel don't work.
-    # It may be repaired in a future version.
-    #
-    # panel on the left side
-#    if request.xhr?
-#      render :partial => 'documents_list', :layout => false
-#    else
-#      _panel
-#      @partial_for_summary = 'documents_info'
-#    end
+    if request.xhr?
+      render :layout => false
+    else
+      _panel
+      @partial_for_summary = 'documents_info'
+    end
   end
 
   def select
     @typedocuments = Typedocument.find(:all)
-    if @recipient
-      @typedocuments.delete_if { |t|
-        Document.count(:conditions => "documents.typedocument_id = #{t.id}") == 0
-      }
+    @typedocuments.delete_if do |t|
+      Document.count(:conditions => "documents.typedocument_id = #{t.id}") == 0
     end
+  end
 
     # TODO : fusionner avec la répétition dans l'index
     # panel on the left side
@@ -66,16 +62,12 @@ class DocumentsController < ApplicationController
 #      @partial_for_summary = 'documents_info'
 #    end
 
-  end
-
   def show
     @document = Document.find(params[:id])
   end
 
   def new
-    @document = Document.new
-    # we can have the type predefined if we are already on a category
-    @document.typedocument_id = params[:id]
+    @document = Document.new(:typedocument_id => params[:id])
     _form
   end
 
@@ -121,9 +113,7 @@ class DocumentsController < ApplicationController
   end
 
   def _panel
-    @count = {}
     @typedocuments = Typedocument.find_select
-    @count[:documents] = Document.count
   end
 
 end

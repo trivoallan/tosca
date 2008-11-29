@@ -1,22 +1,21 @@
 <% document_type = (@typedocument ?  @typedocument.name : _('all directories')) %>
-<h1><%=_('Documents available in %s') % [ document_type ] %></h1>
+<h1><%=_('Documents available in %s') % [ document_type ] %>
+    <%= StaticImage::spinner %></h1>
 <br />
 
-<% options = (@typedocument ? {:id => @typedocument.id} : {} )%>
-<% links = show_pages_links(@document_pages, _('a document'), options) %>
-<%= links %>
-
-<% titres = [_('Document|Title'), _('Document|File'), _('Size'), _('Document|Delivery_on')] %>
-<%= show_table(@documents, Document, titres, :total => false) { |document|
-  result = ''
-  result << "<td>#{document.title}</td>"
-  result << "<td>#{link_to_file document, 'file'}</td>"
-  result << "<td>#{file_size(document.file)}</td>"
-  result << "<td>#{document.date_delivery_on_formatted}</td>"
-  result << "#{link_to_actions_table document}"
-}%>
-
-
-<%= links %>
-
+<% options = { :create_label => _('a document'), :remote_url =>
+   list_document_path(@typedocument ? {:id => @typedocument.id} : {} ) } %>
+<% paginated_section(@documents, options) do %>
+ <% titles = [_('Document|Title'), _('Document|File'), _('Size'), _('Document|Delivery_on')] %>
+ <%= show_table(@documents, Document, titles, :total => false) do |document|
+   result = ''
+   result << "<td>#{document.title}</td>"
+   result << "<td>#{link_to_file document, 'file'}</td>"
+   result << "<td>#{file_size(document.file)}</td>"
+   result << "<td>#{document.date_delivery_on_formatted}</td>"
+   result << "#{link_to_actions_table document}"
+ end %>
+ <%= page_entries_info @documents %><br />
+<% end %>
+<br />
 <%= link_to _('Return to selection'), select_documents_path %>
