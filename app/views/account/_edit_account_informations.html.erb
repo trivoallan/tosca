@@ -3,7 +3,7 @@
 <%# See doc about roles for more information %>
 <% manager = (session[:user].role_id <= 2) %>
 <div class="show">
-  <table class="show">
+  <table>
     <% if create_account %>
      <tr>
       <th><label><%= _('Type') %></label></th>
