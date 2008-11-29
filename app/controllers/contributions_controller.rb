@@ -127,7 +127,6 @@ class ContributionsController < ApplicationController
 
   def edit
     @contribution = Contribution.find(params[:id])
-    @issue = @contribution.issue
     _form
   end
 
@@ -165,7 +164,7 @@ private
     if @contribution.software_id
       @versions = @contribution.software.versions.find_select
     else
-      @versions = Version.all.find_select # collect { |v| [v.full_software_name, v.id] }
+      @versions = [] # Version.all.find_select
     end
   end
 
