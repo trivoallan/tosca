@@ -1,5 +1,7 @@
 <% links = link_to_edit_and_list(@contract) %>
 <%= links %>
+<% teams = @contract.teams %>
+<% versions = @contract.versions %>
 
 <div class="subcolumns">
   <div class="c50l">
@@ -62,8 +64,8 @@
               link_to u.name, account_path(u)
             end %>
         </td><td>
-         <% title = n_('Team','Teams', @teams.size ) %>
-         <%= show_list(@teams, title) { |t| link_to t.name, team_path(t) } %>
+         <% title = n_('Team','Teams', teams.size ) %>
+         <%= show_list(teams, title) { |t| link_to t.name, team_path(t) } %>
         </td>
     </tr></table>
       </fieldset>
@@ -77,9 +79,9 @@
      <td style="width: 36em;">
        <p><b><%= _('Supported software') %> :
             <%= link_to StaticImage::edit, { :action => "supported_software", :controller => "contracts"} %></b></p>
-       <% unless @versions.empty? %>
+       <% unless versions.empty? %>
        <div class="long_bloc_scroll">
-        <%= show_list(@versions) { |v| link_to v.full_software_name, v } %>
+        <%= show_list(versions) { |v| link_to v.full_software_name, v } %>
        </div>
        <% end %>
      </td>

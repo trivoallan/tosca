@@ -24,7 +24,7 @@ class ContractsController < ApplicationController
 
   def index
     options = { :per_page => 25, :include => [:client],
-                :order => 'contracts.client_id' }
+      :order => 'contracts.client_id', :page => params[:page] }
 
     if params.has_key? :filters
       session[:contracts_filters] = Filters::Contracts.new(params[:filters])
@@ -43,7 +43,7 @@ class ContractsController < ApplicationController
     end
     flash[:conditions] = options[:conditions] = conditions
 
-    @contract_pages, @contracts = paginate :contracts, options
+    @contracts = Contract.paginate options
 
     # panel on the left side.
     if request.xhr?
@@ -56,24 +56,20 @@ class ContractsController < ApplicationController
 
   # Used to know which contracts need to be renewed
   def actives
-    options = { :per_page => 10, :include => [:client], :order =>
-      'contracts.end_date', :conditions => 'clients.inactive = 0' }
-    @contract_pages, @contracts = paginate :contracts, options
+    options = { :per_page => 10, :include => [:client], :page => params[:page],
+      :order => 'contracts.end_date', :conditions => 'clients.inactive = 0' }
+    @contracts = Contract.paginate options
     render :action => 'index'
   end
 
   def show
     @contract = Contract.find(params[:id])
-    @teams = @contract.teams
-    @versions = @contract.versions
   end
 
   def new
-    # It is the default contract
-    @contract = Contract.new
-    @contract.client_id = params[:id]
-    @contract.rule_type = 'Rules::Component'
-    @contract.opening_time, @contract.closing_time = 9, 18
+    # TODO : put default contract into a config yml file ?
+    @contract = Contract.new(:client_id => params[:id], :rule_type =>
+          'Rules::Component', :opening_time => 9, :closing_time => 18)
     _form
   end
 
