@@ -1,14 +1,12 @@
 <h1><%= _('List of components offers') %></h1>
 
 <% text = _('an %s offer') % App::ServiceName  %>
-<% links = show_pages_links(@component_pages, text) %>
-<%= links %>
-
-<% titles = [_('Component|Name')] %>
-<%= show_table(@components, Rules::Component, titles) { |c|
-  result = ''
-  result << "<td>#{c.name}</td>"
-  result << link_to_actions_table(c)
-} %>
-
-<%= links %>
+<% paginated_section(@components, :create_label => text) do %>
+ <% titles = [_('Component|Name')] %>
+ <%= show_table(@components, Rules::Component, titles) do |c|
+   result = ''
+   result << "<td>#{c.name}</td>"
+   result << link_to_actions_table(c)
+ end %>
+ <%= page_entries_info @components %><br />
+<% end %>

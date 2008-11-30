@@ -70,7 +70,6 @@ ActionController::Routing::Routes.draw do |map|
                      :lemon => :any, :forgotten_password => :any },
     :new => { :signup => :any, # TODO : reactive it :multiple_signup => :any,
       :ajax_place => :post, :ajax_contracts => :post }
-  map.resources :arches
   map.resources :archives
   map.resources :changelogs
   map.resources :clients
@@ -86,7 +85,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get, :experts => :get, :ajax_list_versions => :post },
     :member => { :list => :get }
-  map.resources :distributeurs
   map.resources :documents,
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
@@ -103,7 +101,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :softwares,
     :collection => {:ajax_update_tags => :get}
   map.resources :machines
-  map.resources :mainteneurs
   # 'news'.singularize == 'news' So problems comes
   map.resources :news, :singular => 'new',
     :collection => { :newsletter => :get, :newsletter_result => :post }

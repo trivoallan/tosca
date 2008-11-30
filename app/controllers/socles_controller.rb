@@ -20,8 +20,9 @@ class SoclesController < ApplicationController
   helper :clients, :machines, :versions
 
   def index
-    @socle_pages, @socles = paginate :socles, :per_page => 250,
-    :include => [:machine], :order=> 'socles.name'
+    options = { :page => params[:page], :include => [:machine],
+      :order=> 'socles.name' }
+    @socles = Socle.paginate options
   end
 
   def show

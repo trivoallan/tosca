@@ -1,15 +1,14 @@
 <h1><%= _('Permission List')%></h1>
 
-<%= show_pages_links(@permission_pages, _('a permission') ) %>
 
-<% titres = [ _('Allow to')]%>
-<%= show_table(@permissions, Permission, titres, :content_columns => true) { |p|
+<% paginated_section(@permissions, :create_label => _('a permission')) do %>
+ <% titles = [ _('Allow to')]%>
+ <%= show_table(@permissions, Permission, titles, :content_columns => true) do |p|
   result = ''
   result << "<td>#{p.roles.sort!{|a,b| a.id <=> b.id}.collect{|r| link_to(r.name, edit_role_path(r.id))}.join(', ')}</td>"
   result << "#{link_to_actions_table p}"
-}%>
-
-
-<%= show_pages_links(@permission_pages, _('a permission') )%>
+ end %>
+ <%= page_entries_info @permissions %><br />
+<% end %>
 
 <%= link_to _('Role list'), roles_path %>

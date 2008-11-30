@@ -19,7 +19,7 @@
 class Rules::CreditsController < ApplicationController
 
   def index
-    @credit_pages, @credits = paginate Rules::Credit, :per_page => 10
+    @credits = Rules::Credit.paginate :page => params[:page]
   end
 
   def show

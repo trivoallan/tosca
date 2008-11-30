@@ -18,8 +18,8 @@
 #
 class EtatreversementsController < ApplicationController
   def index
-    @etatreversement_pages, @etatreversements =
-      paginate :etatreversements, :per_page => 10
+    options = { :per_page => 10, :page => params[:page] }
+    @etatreversements = Etatreversement.paginate options
   end
 
   def show

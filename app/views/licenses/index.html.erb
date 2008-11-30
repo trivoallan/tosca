@@ -1,12 +1,9 @@
-<h1>Liste des licenses Open Source</h1>
+<h1><%= _('Open Source License') %></h1>
 
-<%= show_pages_links(@license_pages, 'une license OS') %>
-
-<% titres = []%>
-<%= show_table(@licenses, License, titres, :content_columns => true) { |m|
-  result = ''
-  result << "#{link_to_actions_table m}"
-}%>
-
-<%= show_pages_links(@license_pages, 'une license OS') %>
-
+<% paginated_section(@licenses, :create_label => _('a new licence')) do %>
+ <%= show_table(@licenses, License, [], :content_columns => true) do |m|
+   result = ''
+   result << "#{link_to_actions_table m}"
+ end %>
+ <%= page_entries_info @licenses %><br />
+<% end %>

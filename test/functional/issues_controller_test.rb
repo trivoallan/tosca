@@ -36,7 +36,7 @@ class IssuesControllerTest < ActionController::TestCase
       login l, l
       get :index
       assert_response :success
-      assert_template 'index'
+      assert_template '_issues_list'
 
       check_ajax_filter(:contract_id, Contract.find(:first).id, :issues)
       check_ajax_filter(:ingenieur_id, Ingenieur.find(:first).id, :issues)

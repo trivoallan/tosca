@@ -18,7 +18,7 @@
 #
 class LicensesController < ApplicationController
   def index
-    @license_pages, @licenses = paginate :licenses, :per_page => 10
+    @licenses = License.paginate :page => params[:page]
   end
 
   def show
