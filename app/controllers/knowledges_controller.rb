@@ -22,7 +22,7 @@ class KnowledgesController < ApplicationController
 
   def index
     options = { :per_page => 25, :order => 'knowledges.ingenieur_id',
-      :include => [:ingenieur, :competence, :software] }
+      :include => [:ingenieur, :competence, :software], :page => params[:page] }
 
     if params.has_key? :filters
       session[:knowledges_filters] =
@@ -43,7 +43,7 @@ class KnowledgesController < ApplicationController
     end
     flash[:conditions] = options[:conditions] = conditions
 
-    @knowledge_pages, @knowledges = paginate :knowledges, options
+    @knowledges  = Knowledge.paginate options
     if request.xhr?
       render :layout => false
     else

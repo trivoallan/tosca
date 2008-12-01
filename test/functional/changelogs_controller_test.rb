@@ -17,25 +17,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'changelogs_controller'
 
-# Re-raise errors caught by the controller.
-class ChangelogsController; def rescue_action(e) raise e end; end
-
-class ChangelogsControllerTest < Test::Unit::TestCase
+class ChangelogsControllerTest < ActionController::TestCase
   fixtures :changelogs
 
   def setup
-    @controller = ChangelogsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 
   def test_index
     get :index
     assert_response :success
-    assert_template 'nil' #testing that the page is empty
+    assert_template nil #testing that the page is empty
   end
 
   def test_show

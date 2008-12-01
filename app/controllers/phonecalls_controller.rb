@@ -21,7 +21,7 @@ class PhonecallsController < ApplicationController
 
   def index
     options = { :per_page => 15, :order => 'phonecalls.start', :include =>
-      [:recipient,:ingenieur,:contract,:issue] }
+      [:recipient,:ingenieur,:contract,:issue], :page => params[:page] }
     conditions = []
 
     if params.has_key? :filters
@@ -45,7 +45,7 @@ class PhonecallsController < ApplicationController
       flash[:conditions] = options[:conditions] = conditions
     end
 
-    @phonecall_pages, @phonecalls = paginate :phonecalls, options
+    @phonecalls = Phonecall.paginate options
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
       render :layout => false

@@ -37,6 +37,9 @@ table { border-collapse: collapse; }
 div.info { width: 100%; }
 table.full { width: 100%; }
 
+/* visible in roles/ view */
+th a { color: lightgreen; }
+
 /* used mainly in show view, where we don't want 100% width */
 .info  {
   width: 33%;

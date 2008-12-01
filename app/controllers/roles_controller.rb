@@ -18,7 +18,7 @@
 #
 class RolesController < ApplicationController
   def index
-    options = { :order => 'permissions.name', :include => [:roles] }
+    options = { :order => 'permissions.name', :include => :roles }
     @permissions = Permission.find(:all, options)
     @roles = Role.find(:all)
   end

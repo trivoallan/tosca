@@ -17,8 +17,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ImagesController < ApplicationController
+
   def index
-    @image_pages, @images = paginate :images, :per_page => 10
+    @images = Image.paginate :page => params[:page]
   end
 
   def show

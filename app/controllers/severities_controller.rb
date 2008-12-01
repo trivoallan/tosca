@@ -19,7 +19,7 @@
 class SeveritiesController < ApplicationController
 
   def index
-    @severity_pages, @severities = paginate :severities, :per_page => 10
+    @severities = Severity.paginate :page => params[:page]
   end
 
   def show

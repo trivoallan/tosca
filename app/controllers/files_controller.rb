@@ -66,7 +66,7 @@ class FilesController < ApplicationController
     # Ensure that we can remove scope
     begin
       Attachment.set_scope(@recipient.client_id) if scope_active
-      #Check if you have the right
+      # Check if you have the right, with the scope model of Tosca
       model[file_type].find(params[:id])
     ensure
       Attachment.remove_scope() if scope_active

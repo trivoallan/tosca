@@ -23,8 +23,8 @@ class GroupesController < ApplicationController
   helper :softwares
 
   def index
-    @groupe_pages, @groupes = paginate :groupes, :per_page => 20,
-    :order => 'groupes.name'
+    options = { :order => 'groupes.name', :page => params[:page] }
+    @groupes = Groupe.paginate options
   end
 
   def show

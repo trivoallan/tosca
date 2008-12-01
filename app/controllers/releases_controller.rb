@@ -22,8 +22,7 @@ class ReleasesController < ApplicationController
   helper :versions, :softwares, :archives
 
   def index
-    @release_pages, @releases = paginate :releases, :per_page => 10,
-      :include => :version
+    @releases = Release.paginate :include => :version, :page => params[:page]
   end
 
   def show

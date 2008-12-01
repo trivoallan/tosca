@@ -21,7 +21,7 @@
   font-size: 11px;
   color: #000;
   cursor: default;
-  background: url("../images/normal-bg.gif");
+  background: url("../images/calendar/normal-bg.gif");
 }
 
 .calendar {
@@ -33,21 +33,21 @@
 .calendar .button { /* "<<", "<", ">", ">>" buttons have this class */
   text-align: center;    /* They are the navigation buttons */
   padding: 2px;          /* Make the buttons seem like they're pressing */
-  background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000;
+  background: url("../images/calendar/title-bg.gif") repeat-x 0 100%; color: #000;
   font-weight: bold;
 }
 
 .calendar .nav div {
-  background: transparent url("../images/menuarrow.gif") no-repeat 100% 100%;
+  background: transparent url("../images/calendar/menuarrow.gif") no-repeat 100% 100%;
 }
 
-.calendar thead tr { background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000; }
+.calendar thead tr { background: url("../images/calendar/title-bg.gif") repeat-x 0 100%; color: #000; }
 
 .calendar thead .title { /* This holds the current "month, year" */
   font-weight: bold;      /* Pressing it will take you to the current date */
   text-align: center;
   padding: 2px;
-  background: url("../images/title-bg.gif") repeat-x 0 100%; color: #000;
+  background: url("../images/calendar/title-bg.gif") repeat-x 0 100%; color: #000;
 }
 
 .calendar thead .headrow { /* Row <TR> containing navigation buttons */
@@ -65,19 +65,19 @@
 }
 
 .calendar thead .hilite { /* How do the buttons in header appear when hover */
-  background: url("../images/hover-bg.gif");
+  background: url("../images/calendar/hover-bg.gif");
   border-bottom: 1px solid #797979;
   padding: 2px 2px 1px 2px;
 }
 
 .calendar thead .active { /* Active (pressed) buttons in header */
-  background: url("../images/active-bg.gif"); color: #fff;
+  background: url("../images/calendar/active-bg.gif"); color: #fff;
   padding: 3px 1px 0px 3px;
   border-bottom: 1px solid #797979;
 }
 
 .calendar thead .daynames { /* Row <TR> containing the day names */
-  background: url("../images/dark-bg.gif");
+  background: url("../images/calendar/dark-bg.gif");
 }
 
 /* The body part -- contains all the days in month. */
@@ -99,18 +99,18 @@
 .calendar table .wn {
   padding: 2px 3px 2px 2px;
   border-right: 1px solid #797979;
-  background: url("../images/dark-bg.gif");
+  background: url("../images/calendar/dark-bg.gif");
 }
 
 .calendar tbody .rowhilite td,
 .calendar tbody .rowhilite td.wn {
-  background: url("../images/rowhover-bg.gif");
+  background: url("../images/calendar/rowhover-bg.gif");
 }
 
 .calendar tbody td.today { font-weight: bold; }
 
 .calendar tbody td.hilite { /* Hovered cells <TD> */
-  background: url("../images/hover-bg.gif");
+  background: url("../images/calendar/hover-bg.gif");
   padding: 1px 3px 1px 1px;
   border: 1px solid #bbb;
 }
@@ -127,7 +127,7 @@
   font-weight: bold;
   border: 1px solid #797979;
   padding: 1px 3px 1px 1px;
-  background: url("../images/active-bg.gif");
+  background: url("../images/calendar/active-bg.gif");
 }
 
 .calendar tbody .disabled { color: #999; }
@@ -148,7 +148,7 @@
 
 .calendar tfoot .ttip { /* Tooltip (status bar) cell <TD> */
   padding: 2px;
-  background: url("../images/status-bg.gif") repeat-x 0 0;
+  background: url("../images/calendar/status-bg.gif") repeat-x 0 0;
   color: #000;
 }
 
@@ -176,7 +176,7 @@
   border-width: 0 1px 1px 1px;
   border-style: solid;
   border-color: #797979;
-  background: url("../images/normal-bg.gif"); color: #000;
+  background: url("../images/calendar/normal-bg.gif"); color: #000;
   z-index: 100;
   font-size: 90%;
 }
@@ -192,11 +192,11 @@
 }
 
 .calendar .combo .hilite {
-  background: url("../images/hover-bg.gif"); color: #000;
+  background: url("../images/calendar/hover-bg.gif"); color: #000;
 }
 
 .calendar .combo .active {
-  background: url("../images/active-bg.gif"); color: #fff;
+  background: url("../images/calendar/active-bg.gif"); color: #fff;
   font-weight: bold;
 }
 
@@ -204,7 +204,7 @@
   border-top: 1px solid #797979;
   padding: 1px 0px;
   text-align: center;
-  background: url("../images/dark-bg.gif");
+  background: url("../images/calendar/dark-bg.gif");
 }
 
 .calendar td.time .hour,
@@ -212,7 +212,7 @@
 .calendar td.time .ampm {
   padding: 0px 5px 0px 6px;
   font-weight: bold;
-  background: url("../images/normal-bg.gif"); color: #000;
+  background: url("../images/calendar/normal-bg.gif"); color: #000;
 }
 
 .calendar td.time .hour,
@@ -230,9 +230,9 @@
 }
 
 .calendar td.time span.hilite {
-  background: url("../images/hover-bg.gif"); color: #000;
+  background: url("../images/calendar/hover-bg.gif"); color: #000;
 }
 
 .calendar td.time span.active {
-  background: url("../images/active-bg.gif"); color: #fff;
+  background: url("../images/calendar/active-bg.gif"); color: #fff;
 }

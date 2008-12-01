@@ -21,7 +21,7 @@ class IssuesController < ApplicationController
     :socles, :comments, :account, :reporting, :links
 
   cache_sweeper :issue_sweeper, :only =>
-    [:create, :update, :destroy, :link_contribution, :unlink_contribution]
+    [:create, :update, :destroy, :link_contribution, :unlink_contribution, :ajax_add_tag]
 
   def pending
     options = { :order => 'updated_on DESC',
@@ -114,12 +114,12 @@ class IssuesController < ApplicationController
       ], special_cond)
       @filters = issues_filters
     end
-    options = { :per_page => per_page, :order => order,
+    options = { :per_page => per_page, :order => order, :page => params[:page],
       :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST }
 
     flash[:conditions] = options[:conditions] = conditions if conditions
 
-    @issue_pages, @issues = paginate :issues, options
+    @issues = Issue.paginate options
 
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
@@ -127,7 +127,7 @@ class IssuesController < ApplicationController
     else
       _panel
       @partial_for_summary = 'issues/lists/issues_info'
-      render :template => 'issues/lists/index'
+      render :template => 'issues/lists/_issues_list'
     end
   end
 

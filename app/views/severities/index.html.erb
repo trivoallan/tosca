@@ -1,11 +1,9 @@
 <h1>Liste des sévérités</h1>
 
-<%= show_pages_links(@severity_pages, _("a new severity")) %>
-
-<% titres = [] %>
-<%= show_table(@severities, Severity, titres, :content_columns => true) { |p|
-  result = ''
-  result << "#{link_to_actions_table p}"
-}%>
-
-<%= show_pages_links(@severity_pages, _("a new severity")) %>
+<% paginated_section(@severities, :create_label => _('a new severity')) do %>
+ <%= show_table(@severities, Severity, [], :content_columns => true) do |p|
+   result = ''
+   result << "#{link_to_actions_table p}"
+ end %>
+ <%= page_entries_info @severities %><br />
+<% end %>
