@@ -72,6 +72,7 @@
             <%= build_simple_menu([ public_link_to_home, public_link_to_softwares, public_link_to_contributions ]) %>
           <% end %>
           <%= public_link_to StaticImage::logo_service, welcome_url, :class => "logo"%>
+      <% end %>
           <ul class="nav_user">
           <% if user %>
             <% infos = [ link_to(_('My account'), edit_account_path(user)),
@@ -86,8 +87,7 @@
           </ul>
         </div>
       </div>
-     <% end %>
-      <% if flash[:notice] || flash[:warn] %>
+     <% if flash[:notice] || flash[:warn] %>
         <div id="teaser">
           <%= show_notice if flash[:notice] %>
           <%= show_warn if flash[:warn] %>
