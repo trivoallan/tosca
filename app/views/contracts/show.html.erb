@@ -31,6 +31,14 @@
     </tr>
     <% end %>
 
+    <% if @contract.manager %>
+    <tr>
+     <td><b><%= _('Technical Account Manager') %></b></td>
+     <% manager = @contract.manager %>
+     <td><%= link_to manager.name, account_path(manager) %></td>
+    </tr>
+    <% end %>
+
     <tr>
      <td><b><%= _('Internal mailing list') %></b></td>
      <td><%= @contract.internal_ml %></td>
