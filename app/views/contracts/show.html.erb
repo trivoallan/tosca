@@ -24,18 +24,18 @@
      </tr>
     <% end %>
 
-    <% if @contract.salesman %>
+    <% salesman = @contract.salesman %>
+    <% if salesman %>
     <tr>
      <td><b><%= _('Salesman Contact') %></b></td>
-     <% salesman = @contract.salesman %>
      <td><%= link_to salesman.name, account_path(salesman) %></td>
     </tr>
     <% end %>
 
-    <% if @contract.manager %>
+    <% manager = @contract.manager %>
+    <% if manager %>
     <tr>
      <td><b><%= _('Technical Account Manager') %></b></td>
-     <% manager = @contract.manager %>
      <td><%= link_to manager.name, account_path(manager) %></td>
     </tr>
     <% end %>
