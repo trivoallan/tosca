@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-12-02 09:01+0100\n"
+"POT-Creation-Date: 2008-12-02 10:57+0100\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1348,11 +1348,11 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Created at"
+msgid "Alert|Created on"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated at"
+msgid "Alert|Updated on"
 msgstr ""
 
 #: app/models/archive.rb:-

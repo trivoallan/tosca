@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-02 09:01+0100\n"
+"POT-Creation-Date: 2008-12-02 10:57+0100\n"
 "PO-Revision-Date: 2008-12-02 09:14+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
@@ -1352,12 +1352,12 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Created at"
-msgstr ""
+msgid "Alert|Created on"
+msgstr "Created on"
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated at"
-msgstr ""
+msgid "Alert|Updated on"
+msgstr "Updated on"
 
 #: app/models/archive.rb:-
 msgid "Archive|File"
