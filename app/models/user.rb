@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :attachments
   has_many :documents
   has_many :comments
+  has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :manager_id
 
   has_one :ingenieur, :dependent => :destroy
   has_one :recipient, :dependent => :destroy

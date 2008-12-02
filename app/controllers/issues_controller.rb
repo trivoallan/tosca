@@ -49,8 +49,11 @@ class IssuesController < ApplicationController
     # Update last condition to the managed contracts
     @manager_issues = nil
     managed_ids = []
-    if @ingenieur and @ingenieur.managed_contracts and not @ingenieur.managed_contracts.empty?
-      managed_ids = @ingenieur.managed_contracts.collect { |c| c.engineer_user_ids }.flatten.uniq!
+    user = session[:user]
+    if @ingenieur and user.managed_contracts
+      p user
+      p user.managed_contracts
+      managed_ids = user.managed_contracts.collect { |c| c.engineers }.flatten.uniq!
       conditions[-1] = managed_ids
       # It's better to not display twice same issue
       conditions[-1].delete(own_id)
@@ -59,7 +62,7 @@ class IssuesController < ApplicationController
     
     # Update last condition to the whole team
     if @ingenieur
-      team = session[:user].team
+      team = user.team
       conditions[-1] = (team ? team.engineers_id : [])
       conditions[-1].delete(managed_ids)
     elsif @recipient

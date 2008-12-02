@@ -22,8 +22,7 @@ class Ingenieur < ActiveRecord::Base
   has_many :knowledges, :order => 'knowledges.level DESC'
   has_many :issues
   has_many :phonecalls
-  has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :manager_id
-
+  
   INCLUDE = [:user]
 
   def self.find_select_by_contract_id(contract_id)
