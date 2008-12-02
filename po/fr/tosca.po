@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-02 10:57+0100\n"
+"POT-Creation-Date: 2008-12-02 16:49+0100\n"
 "PO-Revision-Date: 2008-12-02 09:14+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
@@ -400,7 +400,7 @@ msgstr "Statut"
 
 #: app/controllers/export_controller.rb:159
 #: app/views/account/_edit_account_informations.html.erb:9
-#: app/views/contracts/_form.html.erb:48 app/views/contracts/index.html.erb:6
+#: app/views/contracts/_form.html.erb:51 app/views/contracts/index.html.erb:6
 #: app/views/documents/_form.html.erb:16 app/views/issues/_form.html.erb:14
 #: app/views/issues/_infos_issue.html.erb:31
 #: app/views/issues/lists/_issues_info.html.erb:49
@@ -493,28 +493,28 @@ msgstr "Une image a bien été créée."
 msgid "An image was successfully updated."
 msgstr "Une image a bien été mise à jour."
 
-#: app/controllers/issues_controller.rb:89 app/helpers/issues_helper.rb:169
+#: app/controllers/issues_controller.rb:67 app/helpers/issues_helper.rb:169
 #: app/helpers/links_helper.rb:129
 msgid "All issues"
 msgstr "Toutes les demandes"
 
-#: app/controllers/issues_controller.rb:163
+#: app/controllers/issues_controller.rb:141
 msgid "You have successfully submitted your %s issue."
 msgstr "Vous avez soumis avec succès votre %s demande"
 
-#: app/controllers/issues_controller.rb:306
+#: app/controllers/issues_controller.rb:284
 msgid "The issue has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
-#: app/controllers/issues_controller.rb:358
+#: app/controllers/issues_controller.rb:336
 msgid "This issue is no longer linked to a contribution"
 msgstr "La demande n'est plus liée à une contribution"
 
-#: app/controllers/issues_controller.rb:360
+#: app/controllers/issues_controller.rb:338
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/issues_controller.rb:398
+#: app/controllers/issues_controller.rb:376
 msgid ""
 "It seems that you are not associated to a contract, which prevents you from "
 "filling an issue. Please contact %s if you think it's not normal"
@@ -523,11 +523,11 @@ msgstr ""
 "de déposer une demande. Veuillez contacter %s si vous pensez que ce n'est "
 "pas normal."
 
-#: app/controllers/issues_controller.rb:458 app/helpers/issues_helper.rb:155
+#: app/controllers/issues_controller.rb:436 app/helpers/issues_helper.rb:155
 msgid "Active issues"
 msgstr "Demandes actives"
 
-#: app/controllers/issues_controller.rb:461 app/helpers/issues_helper.rb:162
+#: app/controllers/issues_controller.rb:439 app/helpers/issues_helper.rb:162
 msgid "Finished issues"
 msgstr "Demandes terminées"
 
@@ -2128,31 +2128,31 @@ msgstr "Type d'url"
 msgid "Urlsoftware|Valeur"
 msgstr "Valeur"
 
-#: app/models/user.rb:46
+#: app/models/user.rb:47
 msgid "User|Pwd"
 msgstr "Mot de passe"
 
-#: app/models/user.rb:47
+#: app/models/user.rb:48
 msgid "User|Pwd confirmation"
 msgstr "Confirmation du mot de passe"
 
-#: app/models/user.rb:97
+#: app/models/user.rb:98
 msgid "Password missing"
 msgstr "Mot de passe manquant"
 
-#: app/models/user.rb:99
+#: app/models/user.rb:100
 msgid "Password is different from its confirmation"
 msgstr "Mot de passe différent de sa confirmation"
 
-#: app/models/user.rb:103
+#: app/models/user.rb:104
 msgid "Your password is too long (max. 20)"
 msgstr "Votre mot de passe est trop long (max. 20 caractères)"
 
-#: app/models/user.rb:105
+#: app/models/user.rb:106
 msgid "Your password is too short (min. 5)"
 msgstr "Votre mot de passe est trop court (min. 5)"
 
-#: app/models/user.rb:109
+#: app/models/user.rb:110
 msgid "You must have specify a password."
 msgstr "Vous devez préciser un mot de passe"
 
@@ -2670,7 +2670,7 @@ msgstr "Description"
 msgid "Address"
 msgstr "Adresse"
 
-#: app/views/clients/_form.html.erb:24 app/views/contracts/_form.html.erb:20
+#: app/views/clients/_form.html.erb:24 app/views/contracts/_form.html.erb:23
 msgid "Inactive"
 msgstr "Inactif"
 
@@ -2855,62 +2855,66 @@ msgstr "Nouvelle compétence"
 msgid "Create a new contract"
 msgstr "Créér un nouveau contrat"
 
-#: app/views/contracts/_form.html.erb:11 app/views/contracts/show.html.erb:29
+#: app/views/contracts/_form.html.erb:11 app/views/contracts/show.html.erb:30
 msgid "Salesman Contact"
 msgstr "Contact Commercial"
 
-#: app/views/contracts/_form.html.erb:14 app/views/contracts/show.html.erb:35
+#: app/views/contracts/_form.html.erb:14 app/views/contracts/show.html.erb:38
+msgid "Technical Account Manager"
+msgstr ""
+
+#: app/views/contracts/_form.html.erb:17 app/views/contracts/show.html.erb:44
 msgid "Internal mailing list"
 msgstr "Mailing liste interne"
 
-#: app/views/contracts/_form.html.erb:17 app/views/contracts/show.html.erb:39
+#: app/views/contracts/_form.html.erb:20 app/views/contracts/show.html.erb:48
 msgid "Customer mailing list"
 msgstr "Mailing liste cliente"
 
-#: app/views/contracts/_form.html.erb:23 app/views/contracts/index.html.erb:7
-#: app/views/contracts/show.html.erb:43
+#: app/views/contracts/_form.html.erb:26 app/views/contracts/index.html.erb:7
+#: app/views/contracts/show.html.erb:52
 msgid "Start"
 msgstr "Début"
 
-#: app/views/contracts/_form.html.erb:26 app/views/contracts/index.html.erb:7
-#: app/views/contracts/show.html.erb:47
+#: app/views/contracts/_form.html.erb:29 app/views/contracts/index.html.erb:7
+#: app/views/contracts/show.html.erb:56
 msgid "End"
 msgstr "Fin"
 
-#: app/views/contracts/_form.html.erb:29
+#: app/views/contracts/_form.html.erb:32
 msgid "Technological survey"
 msgstr "Veilles technologiques"
 
-#: app/views/contracts/_form.html.erb:32
+#: app/views/contracts/_form.html.erb:35
 msgid "Newsletter"
 msgstr "Lettre d'information"
 
-#: app/views/contracts/_form.html.erb:35
+#: app/views/contracts/_form.html.erb:38
 #: app/views/knowledges/_form.html.erb:14
 msgid "Domain"
 msgstr "Domaine"
 
-#: app/views/contracts/_form.html.erb:38 app/views/issues/_form.html.erb:109
+#: app/views/contracts/_form.html.erb:41 app/views/issues/_form.html.erb:109
 msgid "Commitments"
 msgstr "Engagements"
 
-#: app/views/contracts/_form.html.erb:54
+#: app/views/contracts/_form.html.erb:57
 msgid "Ruled by"
 msgstr "Régie par"
 
-#: app/views/contracts/_form.html.erb:60
+#: app/views/contracts/_form.html.erb:63
 msgid "Schedules"
 msgstr "Horaires"
 
-#: app/views/contracts/_form.html.erb:61 app/views/contracts/_form.html.erb:62
+#: app/views/contracts/_form.html.erb:64 app/views/contracts/_form.html.erb:65
 msgid "h"
 msgstr "h"
 
-#: app/views/contracts/_form.html.erb:66
+#: app/views/contracts/_form.html.erb:69
 msgid "Engineers assigned to this contract"
 msgstr "Ingénieurs affiliés à ce contrat"
 
-#: app/views/contracts/_form.html.erb:74
+#: app/views/contracts/_form.html.erb:77
 msgid "Teams managing this contract"
 msgstr "Équipes gérant ce contrat"
 
@@ -2959,39 +2963,39 @@ msgstr "Nouveau contrat"
 msgid "Client"
 msgstr "Client"
 
-#: app/views/contracts/show.html.erb:53
+#: app/views/contracts/show.html.erb:62
 msgid "Contractual commitments"
 msgstr "Engagements contractuels"
 
-#: app/views/contracts/show.html.erb:60
+#: app/views/contracts/show.html.erb:69
 msgid "Human ressources"
 msgstr "Ressources humaines"
 
-#: app/views/contracts/show.html.erb:62
+#: app/views/contracts/show.html.erb:71
 msgid "expert"
 msgid_plural "experts"
 msgstr[0] "expert"
 msgstr[1] "experts"
 
-#: app/views/contracts/show.html.erb:67
+#: app/views/contracts/show.html.erb:76
 msgid "Team"
 msgid_plural "Teams"
 msgstr[0] "Équipe"
 msgstr[1] "Équipes"
 
-#: app/views/contracts/show.html.erb:80
+#: app/views/contracts/show.html.erb:89
 msgid "Supported software"
 msgstr "Mes logiciels supportés"
 
-#: app/views/contracts/show.html.erb:92
+#: app/views/contracts/show.html.erb:101
 msgid "Manage tags for this contract"
 msgstr "Gérer les tags de ce contrat"
 
-#: app/views/contracts/show.html.erb:105
+#: app/views/contracts/show.html.erb:114
 msgid "Obligation"
 msgstr "Astreinte"
 
-#: app/views/contracts/show.html.erb:106
+#: app/views/contracts/show.html.erb:115
 #: app/views/issues/_infos_issue.html.erb:27
 #: app/views/machines/_form.html.erb:17 app/views/machines/index.html.erb:5
 #: app/views/machines/show.html.erb:9 app/views/socles/_form.html.erb:9
@@ -2999,27 +3003,27 @@ msgstr "Astreinte"
 msgid "System"
 msgstr "Système"
 
-#: app/views/contracts/show.html.erb:108
+#: app/views/contracts/show.html.erb:117
 msgid "Number of tickets"
 msgstr "Nombre de tickets"
 
-#: app/views/contracts/show.html.erb:109
+#: app/views/contracts/show.html.erb:118
 msgid "Number of used tickets"
 msgstr "Nombre de tickets inutilisés"
 
-#: app/views/contracts/show.html.erb:111
+#: app/views/contracts/show.html.erb:120
 msgid "Time per ticket"
 msgstr "Temps par ticket"
 
-#: app/views/contracts/show.html.erb:111
+#: app/views/contracts/show.html.erb:120
 msgid "minute"
 msgstr "minute"
 
-#: app/views/contracts/show.html.erb:111
+#: app/views/contracts/show.html.erb:120
 msgid "minutes"
 msgstr "minutes"
 
-#: app/views/contracts/show.html.erb:113
+#: app/views/contracts/show.html.erb:122
 msgid "Error, wrong type of contract"
 msgstr "Erreur, mauvais type de contrat"
 
@@ -3510,13 +3514,19 @@ msgid_plural "My pending issues"
 msgstr[0] "Ma demande en attente"
 msgstr[1] "Mes demandes en attente"
 
-#: app/views/issues/lists/pending.html.erb:14
+#: app/views/issues/lists/pending.html.erb:11
+msgid "The contracts I manage has %d pending issue"
+msgid_plural "The contracts I manage has %d pending issues"
+msgstr[0] "Les contrats que je gère ont %d demande en attente"
+msgstr[1] "Les contrats que je gère ont %d demandes en attente"
+
+#: app/views/issues/lists/pending.html.erb:20
 msgid "My team has %d pending issue"
 msgid_plural "My team has %d pending issues"
 msgstr[0] "Mon équipe a %d demande en attente"
 msgstr[1] "Mon équipe a %d demandes en attente"
 
-#: app/views/issues/lists/pending.html.erb:24
+#: app/views/issues/lists/pending.html.erb:28
 msgid "No pending issue"
 msgstr "Aucune demande en attente"
 
