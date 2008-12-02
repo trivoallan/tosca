@@ -22,30 +22,28 @@
       </table>
     </div>
     <div class="show">
-       <%= link_to_new_contract(@client.id) %>
+       <%= link_to_new_contract(@client.id) %><br />
        <%= show_list(@client.contracts, _('contract')) do |c|
         result = ''
         edit = link_to_edit(edit_contract_path(c))
         result << "#{edit}&nbsp;" if edit
         result << "<b>#{link_to c.rule.name, contract_path(c)}</b>"
-        result << ' ' << c.rule.short_description
         result << _(" from %s to %s") % [c.start_date_formatted, c.end_date_formatted]
         result << ' '
         if c.rule.max == -1
-          result << _("on your complete system")
-        else
+          result << _('on your complete system')
+        elsif c.releases.size > 0
           result << _("concerning %s releases") % c.releases.size
         end
         result << '.'
         result << show_table_commitments(c.commitments)
-        result << "<b>#{c.rule.elapsed_formatted(c.total_elapsed, c)}</b> "
-        result << _('has already been spent')
+        result << c.rule.complete_description(c.total_elapsed, c) if c.total_elapsed > 1
+        result << '<br />&nbsp;'
         result
       end %>
       </td>
     </tr>
 
-        result } %>
        <b><%= _("View") %></b> <%=_("the")%>
           <%= link_to(_('Activity report'), general_reporting_path) %><br/>
        <b><%= _("View") %></b> <%=n_('the','the',2)%>
