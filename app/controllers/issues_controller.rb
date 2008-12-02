@@ -49,10 +49,9 @@ class IssuesController < ApplicationController
     # Update last condition to the managed contracts
     @manager_issues = nil
     managed_ids = []
-    if @ingenieur
-      contracts = @ingenieur.managed_contracts
-      managed_ids = contracts.collect { |c| c.engineer_user_ids }.flatten.uniq!
-      conditions[-1] = (contracts ? managed_ids : [])
+    if @ingenieur and @ingenieur.managed_contracts and not @ingenieur.managed_contracts.empty?
+      managed_ids = @ingenieur.managed_contracts.collect { |c| c.engineer_user_ids }.flatten.uniq!
+      conditions[-1] = managed_ids
       # It's better to not display twice same issue
       conditions[-1].delete(own_id)
       @manager_issues = Issue.find(:all, options)

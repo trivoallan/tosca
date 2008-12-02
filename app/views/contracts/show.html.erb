@@ -27,7 +27,8 @@
     <% if @contract.salesman %>
     <tr>
      <td><b><%= _('Salesman Contact') %></b></td>
-     <td><%= @contract.salesman.name %></td>
+     <% salesman = @contract.salesman %>
+     <td><%= link_to salesman.name, account_path(salesman) %></td>
     </tr>
     <% end %>
 

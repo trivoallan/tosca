@@ -20,8 +20,8 @@ class Contract < ActiveRecord::Base
   belongs_to :client
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
-  belongs_to :salesman, :class_name => 'Ingenieur'
-  belongs_to :manager, :class_name => 'Ingenieur'
+  belongs_to :salesman, :class_name => 'User'
+  belongs_to :manager, :class_name => 'User'
 
   has_many :issues
   has_many :appels
