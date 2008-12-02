@@ -9,7 +9,8 @@
 
 <% if @ingenieur and not @manager_issues.empty? %>
   <h1><%= n_('The contracts I manage has %d pending issue', 
-  'The contracts I manage has %d pending issues') % @manager_issues.size %>
+  'The contracts I manage has %d pending issues', 
+  @manager_issues.size) % @manager_issues.size %>
     <%= StaticImage::spinner %></h1>
   <%= render :partial => 'issues/lists/pending_table',
              :locals => { :issues => @manager_issues } %>
