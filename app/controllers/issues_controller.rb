@@ -24,54 +24,17 @@ class IssuesController < ApplicationController
     [:create, :update, :destroy, :link_contribution, :unlink_contribution, :ajax_add_tag]
 
   def pending
-    options = { :order => 'updated_on DESC',
-      :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST }
-    conditions = [ [ ] ]
-
-    options[:joins] += 'INNER JOIN comments ON comments.id = issues.last_comment_id'
-
-    conditions.first << 'issues.statut_id IN (?)'
-    conditions << Statut::OPENED
-    conditions.first << '(issues.expected_on < NOW() OR issues.expected_on IS NULL)'
-
-    if @ingenieur
-      conditions.first << 'issues.ingenieur_id IN (?)'
-    elsif @recipient
-      conditions.first << 'issues.recipient_id IN (?)'
-    end
-    conditions[0] = conditions.first.join(' AND ')
-    options[:conditions] = conditions
-
-    own_id = (@ingenieur ? @ingenieur.id : @recipient.id)
-    conditions << [ own_id ]
-    @own_issues = Issue.find(:all, options)
-
-    # Update last condition to the managed contracts
-    @manager_issues = nil
-    managed_ids = []
     user = session[:user]
-    if @ingenieur and user.managed_contracts
-      p user
-      p user.managed_contracts
-      managed_ids = user.managed_contracts.collect { |c| c.engineers }.flatten.uniq!
-      conditions[-1] = managed_ids
-      # It's better to not display twice same issue
-      conditions[-1].delete(own_id)
-      @manager_issues = Issue.find(:all, options)
+    @own_issues = Issue.find_pending_user(user)
+    
+    @manager_issues = []
+    unless user.client?
+      @manager_issues = Issue.find_pending_contracts(user.managed_contract_ids)
+      @manager_issues = @manager_issues - @own_issues
     end
     
-    # Update last condition to the whole team
-    if @ingenieur
-      team = user.team
-      conditions[-1] = (team ? team.engineers_id : [])
-      conditions[-1].delete(managed_ids)
-    elsif @recipient
-      conditions[-1] = @recipient.client.recipient_ids
-    end
-    # It's better to not display twice same issue
-    conditions[-1].delete(own_id)
-
-    @team_issues = Issue.find(:all, options)
+    @team_issues = Issue.find_pending_contracts(user.contracts)
+    @team_issues = @team_issues - @manager_issues - @own_issues
 
     render :template => 'issues/lists/pending'
   end

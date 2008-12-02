@@ -353,8 +353,54 @@ class Issue < ActiveRecord::Base
     res << ingenieur.user.email if ingenieur
     res.join(',')
   end
+  
+  #Find the pending requests of a user
+  def self.find_pending_user(user)
+    options, conditions = build_conditions_pending
+
+    own_id = nil
+    if user.client?
+      conditions.first << 'issues.recipient_id IN (?)'
+      own_id = user.recipient.id
+    else
+      conditions.first << 'issues.ingenieur_id IN (?)'
+      own_id = user.ingenieur.id
+    end
+    conditions[0] = conditions.first.join(' AND ')
+    options[:conditions] = conditions
+
+    conditions << [ own_id ]
+    Issue.find(:all, options)
+  end
+  
+  #Find the pending requests from a list of contracts
+  def self.find_pending_contracts(contract_ids)
+    options, conditions = build_conditions_pending
+
+    conditions.first << 'issues.contract_id IN (?)'
+    conditions[0] = conditions.first.join(' AND ')
+    options[:conditions] = conditions
+
+    conditions << contract_ids
+    Issue.find(:all, options)
+  end
 
   private
+  
+  def self.build_conditions_pending
+    options = { :order => 'updated_on DESC',
+      :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST }
+    conditions = [ [ ] ]
+
+    options[:joins] += 'INNER JOIN comments ON comments.id = issues.last_comment_id'
+
+    conditions.first << 'issues.statut_id IN (?)'
+    conditions << Statut::OPENED
+    conditions.first << '(issues.expected_on < NOW() OR issues.expected_on IS NULL)'
+    
+    [ options, conditions ]
+  end
+  
   def create_first_comment
     self.first_comment = Comment.new do |c|
       #We use id's because it's quicker
