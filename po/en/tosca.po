@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-02 16:49+0100\n"
+"POT-Creation-Date: 2008-12-04 09:02+0100\n"
 "PO-Revision-Date: 2008-12-02 09:14+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
@@ -66,7 +66,7 @@ msgid "Email"
 msgstr ""
 
 #: app/controllers/account_controller.rb:287
-#: app/views/issues/_infos_issue.html.erb:51
+#: app/views/issues/_infos_issue.html.erb:37
 msgid "Phone"
 msgstr ""
 
@@ -281,7 +281,7 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:125
 #: app/views/contributions/_contributions_info.html.erb:40
-#: app/views/issues/tabs/_phonecalls.html.erb:2
+#: app/views/issues/tabs/_phonecalls.html.erb:3
 #: app/views/phonecalls/_calls_info.html.erb:26
 #: app/views/phonecalls/_form.html.erb:10
 #: app/views/phonecalls/index.html.erb:5 app/views/releases/_form.html.erb:12
@@ -292,7 +292,7 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:125
 #: app/views/issues/lists/_issues_table.html.erb:12
-#: app/views/issues/tabs/_phonecalls.html.erb:2
+#: app/views/issues/tabs/_phonecalls.html.erb:3
 msgid "Owner"
 msgstr ""
 
@@ -334,7 +334,7 @@ msgstr ""
 #: app/views/contributions/_form.html.erb:11
 #: app/views/contributions/admin.html.erb:5 app/views/groupes/index.html.erb:5
 #: app/views/issues/_form.html.erb:74
-#: app/views/issues/_infos_issue.html.erb:28
+#: app/views/issues/_infos_issue.html.erb:14
 #: app/views/issues/lists/_issues_table.html.erb:4
 #: app/views/issues/lists/_pending_table.html.erb:11
 #: app/views/knowledges/_form.html.erb:16 app/views/releases/show.html.erb:4
@@ -353,7 +353,7 @@ msgstr ""
 #: app/helpers/engagements_helper.rb:37 app/helpers/engagements_helper.rb:87
 #: app/views/commitments/_form.html.erb:7
 #: app/views/issues/_comment_form.html.erb:12
-#: app/views/issues/_infos_issue.html.erb:32
+#: app/views/issues/_infos_issue.html.erb:18
 #: app/views/issues/lists/_issues_info.html.erb:51
 msgid "Severity"
 msgstr ""
@@ -375,7 +375,7 @@ msgstr ""
 #: app/helpers/contributions_helper.rb:25
 #: app/views/contributions/_contributions_info.html.erb:45
 #: app/views/issues/_form.html.erb:120
-#: app/views/issues/_infos_issue.html.erb:22
+#: app/views/issues/_infos_issue.html.erb:8
 #: app/views/issues/lists/_issues_table.html.erb:9
 #: app/views/issues/lists/_pending_table.html.erb:13
 #: app/views/reporting/_comex_cns.html.erb:22
@@ -386,7 +386,7 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:159 app/helpers/reporting_helper.rb:32
 #: app/views/issues/_comment_form.html.erb:6
-#: app/views/issues/_infos_issue.html.erb:29
+#: app/views/issues/_infos_issue.html.erb:15
 #: app/views/issues/lists/_issues_info.html.erb:53
 msgid "Status"
 msgstr ""
@@ -395,7 +395,7 @@ msgstr ""
 #: app/views/account/_edit_account_informations.html.erb:9
 #: app/views/contracts/_form.html.erb:51 app/views/contracts/index.html.erb:6
 #: app/views/documents/_form.html.erb:16 app/views/issues/_form.html.erb:14
-#: app/views/issues/_infos_issue.html.erb:31
+#: app/views/issues/_infos_issue.html.erb:17
 #: app/views/issues/lists/_issues_info.html.erb:49
 #: app/views/issues/lists/_issues_table.html.erb:5
 msgid "Type"
@@ -1221,7 +1221,7 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: app/helpers/static_image.rb:81 app/views/issues/_infos_issue.html.erb:79
+#: app/helpers/static_image.rb:81 app/views/issues/_infos_issue.html.erb:65
 #: app/views/issues/lists/_issues_info.html.erb:63
 #: app/views/welcome/about.html.erb:4
 msgid "Help"
@@ -1263,7 +1263,7 @@ msgstr ""
 msgid "Tosca on Rails"
 msgstr ""
 
-#: app/helpers/static_image.rb:182 app/views/issues/_infos_issue.html.erb:16
+#: app/helpers/static_image.rb:182
 msgid "Print"
 msgstr ""
 
@@ -1352,11 +1352,13 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Created on"
+#, fuzzy
+msgid "Alert|Created at"
 msgstr "Created on"
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated on"
+#, fuzzy
+msgid "Alert|Updated at"
 msgstr "Updated on"
 
 #: app/models/archive.rb:-
@@ -1816,19 +1818,23 @@ msgstr "Name"
 msgid "Permission|Info"
 msgstr ""
 
-#: app/models/phonecall.rb:31
+#: app/models/phonecall.rb:28
+msgid "phonecall"
+msgstr ""
+
+#: app/models/phonecall.rb:33
 msgid "The beginning of the call has to be before to its end."
 msgstr ""
 
-#: app/models/phonecall.rb:36
+#: app/models/phonecall.rb:38
 msgid "recipient and client have to correspond."
 msgstr ""
 
-#: app/models/phonecall.rb:69
+#: app/models/phonecall.rb:71
 msgid "Phonecall of %s on '%s'"
 msgstr ""
 
-#: app/models/phonecall.rb:71
+#: app/models/phonecall.rb:73
 msgid "Phonecall of %s for %s"
 msgstr ""
 
@@ -2159,7 +2165,7 @@ msgstr ""
 #: app/views/account/_show_recipient.html.erb:4
 #: app/views/account/index.html.erb:13 app/views/documents/_form.html.erb:6
 #: app/views/issues/_form.html.erb:50
-#: app/views/issues/tabs/_phonecalls.html.erb:2
+#: app/views/issues/tabs/_phonecalls.html.erb:3
 #: app/views/phonecalls/_calls_info.html.erb:24
 #: app/views/phonecalls/_form.html.erb:16
 #: app/views/phonecalls/index.html.erb:5 app/views/phonecalls/show.html.erb:14
@@ -2762,7 +2768,7 @@ msgid "Body"
 msgstr ""
 
 #: app/views/comments/index.html.erb:4
-#: app/views/issues/_infos_issue.html.erb:58
+#: app/views/issues/_infos_issue.html.erb:44
 #: app/views/issues/tabs/_attachments.html.erb:5
 msgid "Created on"
 msgstr ""
@@ -2770,7 +2776,7 @@ msgstr ""
 #: app/views/comments/index.html.erb:4
 #: app/views/contributions/_contributions_admin.html.erb:8
 #: app/views/contributions/admin.html.erb:6
-#: app/views/issues/_infos_issue.html.erb:59
+#: app/views/issues/_infos_issue.html.erb:45
 #: app/views/issues/lists/_issues_table.html.erb:18
 msgid "Updated on"
 msgstr ""
@@ -2974,7 +2980,7 @@ msgid "Obligation"
 msgstr ""
 
 #: app/views/contracts/show.html.erb:115
-#: app/views/issues/_infos_issue.html.erb:27
+#: app/views/issues/_infos_issue.html.erb:13
 #: app/views/machines/_form.html.erb:17 app/views/machines/index.html.erb:5
 #: app/views/machines/show.html.erb:9 app/views/socles/_form.html.erb:9
 #: app/views/socles/index.html.erb:5
@@ -3312,17 +3318,17 @@ msgid "Answer"
 msgstr ""
 
 #: app/views/issues/_form.html.erb:23
-#: app/views/issues/_infos_issue.html.erb:53
+#: app/views/issues/_infos_issue.html.erb:39
 msgid "Concerning"
 msgstr ""
 
 #: app/views/issues/_form.html.erb:57
-#: app/views/issues/_infos_issue.html.erb:42
+#: app/views/issues/_infos_issue.html.erb:28
 msgid "Assigned to"
 msgstr ""
 
 #: app/views/issues/_form.html.erb:88
-#: app/views/issues/_infos_issue.html.erb:35
+#: app/views/issues/_infos_issue.html.erb:21
 msgid "CC"
 msgstr ""
 
@@ -3362,55 +3368,47 @@ msgstr ""
 msgid "Software :"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:6
-msgid "Add a contribution"
-msgstr ""
-
-#: app/views/issues/_infos_issue.html.erb:7
-msgid "Link to a contribution"
-msgstr ""
-
-#: app/views/issues/_infos_issue.html.erb:18
+#: app/views/issues/_infos_issue.html.erb:4
 msgid "Expand all"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:19
+#: app/views/issues/_infos_issue.html.erb:5
 msgid "Collapse all"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:25
+#: app/views/issues/_infos_issue.html.erb:11
 msgid "Vm"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:39
+#: app/views/issues/_infos_issue.html.erb:25
 msgid "Declared by"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:46
+#: app/views/issues/_infos_issue.html.erb:32
 msgid "Recipent"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:49 app/views/teams/index.html.erb:5
+#: app/views/issues/_infos_issue.html.erb:35 app/views/teams/index.html.erb:5
 #: app/views/teams/show.html.erb:4
 msgid "Contact"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:56
+#: app/views/issues/_infos_issue.html.erb:42
 msgid "Life cycle"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:61
+#: app/views/issues/_infos_issue.html.erb:47
 msgid "Time elapsed"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:69
-#: app/views/issues/_infos_issue.html.erb:72
+#: app/views/issues/_infos_issue.html.erb:55
+#: app/views/issues/_infos_issue.html.erb:58
 #: app/views/softwares/_tags.html.erb:2 app/views/softwares/show.html.erb:70
 #: app/views/tags/show.html.erb:2
 msgid "Tags"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:75
+#: app/views/issues/_infos_issue.html.erb:61
 msgid "Edit the tags for this issue"
 msgstr ""
 
@@ -3498,13 +3496,13 @@ msgid_plural "The contracts I manage has %d pending issues"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/views/issues/lists/pending.html.erb:20
+#: app/views/issues/lists/pending.html.erb:21
 msgid "My team has %d pending issue"
 msgid_plural "My team has %d pending issues"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/views/issues/lists/pending.html.erb:28
+#: app/views/issues/lists/pending.html.erb:29
 msgid "No pending issue"
 msgstr ""
 
@@ -3549,6 +3547,14 @@ msgstr ""
 #: app/views/issues/print.html.erb:17
 #: app/views/issues/tabs/_tab_menu.html.erb:24
 msgid "SLA"
+msgstr ""
+
+#: app/views/issues/tabs/_actions.html.erb:4
+msgid "Add a contribution"
+msgstr ""
+
+#: app/views/issues/tabs/_actions.html.erb:6
+msgid "Link to a contribution"
 msgstr ""
 
 #: app/views/issues/tabs/_attachments.html.erb:3
@@ -3599,15 +3605,15 @@ msgstr ""
 msgid "Change(s)"
 msgstr ""
 
-#: app/views/issues/tabs/_phonecalls.html.erb:2
+#: app/views/issues/tabs/_phonecalls.html.erb:3
 msgid "Phone call"
 msgstr ""
 
-#: app/views/issues/tabs/_phonecalls.html.erb:3
+#: app/views/issues/tabs/_phonecalls.html.erb:4
 msgid "End of phonecall"
 msgstr ""
 
-#: app/views/issues/tabs/_phonecalls.html.erb:3
+#: app/views/issues/tabs/_phonecalls.html.erb:4
 #: app/views/phonecalls/index.html.erb:6
 msgid "Duration"
 msgstr ""

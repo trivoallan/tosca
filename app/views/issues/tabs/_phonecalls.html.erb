@@ -1,4 +1,5 @@
 <div id='issue_tab_content' class='issue_tab_content'>
+ <%= link_to_add_call @issue_id || @issue.id %><br />
  <% titles = [_("Contract"), _("Owner"), _("Recipient"), _("Phone call"),
      _("End of phonecall"), _("Duration")] %>
  <%= show_table(@phonecalls, Phonecall, titles) { |a|

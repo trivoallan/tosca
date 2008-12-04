@@ -25,6 +25,8 @@ class Phonecall < ActiveRecord::Base
   belongs_to :issue
   belongs_to :contract
 
+  N_('phonecall')
+
   validate do |record|
     # length consistency
     if record.end < record.start

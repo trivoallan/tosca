@@ -127,7 +127,7 @@ module ApplicationHelper
   #   :add_lines > affiche à la fin le tableau de lignes passé [[line1],[line2]]
   # TODO : intégrer width et style dans une seule option
   def show_table(elements, ar, titles, options = {})
-    return '<p>' << _('No %s at the moment') % ar.table_name.singularize + '</p>' unless elements and elements.size > 0
+    return '<p>' << _('No %s at the moment') % _(ar.table_name.singularize) + '</p>' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width} class=\"full\">"
     content_columns = options.has_key?(:content_columns)
