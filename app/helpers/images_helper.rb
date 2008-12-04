@@ -48,6 +48,18 @@ module ImagesHelper
     image_tag('icons/connect.png', StaticImage::options(desc, '16x16'))
   end
 
+  def image_star(desc)
+    image_tag('icons/star.png', StaticImage::options(desc, '16x16'))
+  end
+
+  def image_expand_all
+    image_tag('icons/expand_all.png', StaticImage::options(_('Expand all'), '16x16'))
+  end
+
+  def image_collapse_all
+    image_tag('icons/collapse_all.png', StaticImage::options(_('Collapse all'), '16x16'))
+  end
+
   private
 
   # por éviter la réaffection de desc à chaque coup

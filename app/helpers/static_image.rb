@@ -278,6 +278,7 @@ class StaticImage < Static::ActionView
   end
 
 
+
   ##############################################
   # Severity
   # Display an icon matching severity

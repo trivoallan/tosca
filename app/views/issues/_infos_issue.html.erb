@@ -1,9 +1,4 @@
 <% cache("issues/#{@issue.id}/info-#{session[:user].kind}") do %>
-<%= div_toggle _('Action'), 'menu_action', :class => 'menu_title' %>
-<ul id="menu_action">
-  <li><%= link_to_function _('Expand all'), 'tosca_expand_all_comments()' %></li>
-  <li><%= link_to_function _('Collapse all'), 'tosca_collapse_all_comments()' %></li>
-</ul>
 
 <%= div_toggle _('Summary'), 'menu_resume', :class => "menu_title" %>
 <ul id="menu_resume">
