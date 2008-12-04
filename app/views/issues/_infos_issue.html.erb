@@ -1,20 +1,6 @@
 <% cache("issues/#{@issue.id}/info-#{session[:user].kind}") do %>
 <%= div_toggle _('Action'), 'menu_action', :class => 'menu_title' %>
 <ul id="menu_action">
-  <% if @ingenieur %>
-    <% options = { :software_id => @issue.software_id, :issue_id => @issue.id } %>
-    <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
-    <li><%= _('Link to a contribution')%><br />
-        <% form_tag link_contribution_issue_path(@issue.id) do %>
-      <%= select_onchange @contributions, 'issue', 'contribution_id' %>
-    <% end %></li>
-    <% if @issue.contribution %>
-       <li><%= link_to_unlink_contribution(@issue.id) %></li>
-    <% end %>
-    <li><%= link_to_add_call @issue.id %></li>
-  <% end %>
-  <li><%= link_to _("Print"), print_issue_path(@issue.id),
-            :target => '_blank' %></li>
   <li><%= link_to_function _('Expand all'), 'tosca_expand_all_comments()' %></li>
   <li><%= link_to_function _('Collapse all'), 'tosca_collapse_all_comments()' %></li>
 </ul>

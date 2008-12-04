@@ -12,19 +12,20 @@
     <table class="comment-table">
      <tr>
       <td class="infos" align="center">
-        <%= "##{comment.id}" %><br />
+        <% display_edit = (@ingenieur or (user and @recipient.user_id == user.id)) %>
+        <p>
+         <%= link_to(StaticImage::edit, edit_comment_path(comment)) if display_edit %>
+         <%= "##{comment.id}" %>
+         <%= link_to(StaticImage::delete, comment_path(comment), delete_ho) if @ingenieur %><br />
         <% if user and user.client? and user.recipient %>
           <%= logo_client(user.recipient.client) %>
         <% else %>
           <%= StaticImage::logo_service %>
         <% end %><br />
-
-        <% display_edit = (@ingenieur or (user and @recipient.user_id == user.id)) ? true : false %>
-        <%= link_to(StaticImage::edit, edit_comment_path(comment)) if display_edit %>&nbsp;
-        <% if @ingenieur %>
-          <%= link_to(StaticImage::delete, comment_path(comment), delete_ho) %>&nbsp;
+        <% if @ingenieur && user %>
+          <%= user.phone %>
         <% end %>
-        <%= '<br />' if display_edit %>
+        </p>
       </td>
       <td class="text">
         <%= display_comment comment %>

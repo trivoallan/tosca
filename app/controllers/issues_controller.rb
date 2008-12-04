@@ -26,13 +26,13 @@ class IssuesController < ApplicationController
   def pending
     user = session[:user]
     @own_issues = Issue.find_pending_user(user)
-    
+
     @manager_issues = []
     unless user.client?
       @manager_issues = Issue.find_pending_contracts(user.managed_contract_ids)
       @manager_issues = @manager_issues - @own_issues
     end
-    
+
     @team_issues = Issue.find_pending_contracts(user.contracts)
     @team_issues = @team_issues - @manager_issues - @own_issues
 
@@ -213,9 +213,6 @@ class IssuesController < ApplicationController
       @last_comment = Comment.find(:first, options)
 
       @statuts = @issue.statut.possible(@recipient)
-      options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
-        [ 'contributions.software_id = ?', @issue.software_id ] }
-      @contributions = Contribution.find(:all, options).collect{|c| [c.name, c.id]} || []
       if @ingenieur
         @severities = Severity.find_select
         @ingenieurs = Ingenieur.find_select_by_contract_id(@issue.contract_id)
@@ -224,21 +221,8 @@ class IssuesController < ApplicationController
     end
   end
 
-  def ajax_description
-    return render(:text => '') unless request.xhr? and params.has_key? :id
-    @issue = Issue.find(params[:id]) unless @issue
-    render :partial => 'issues/tabs/tab_description', :layout => false
-  end
-
-  def ajax_comments
-    return render(:text => '') unless request.xhr? and params.has_key? :id
-    @issue_id = params[:id]
-    set_comments(@issue_id)
-    render :partial => "issues/tabs/tab_comments", :layout => false
-  end
-
   def ajax_history
-    return render(:text => '') unless request.xhr? and params.has_key? :id
+    return render(:nothing => true) unless request.xhr?
     @issue_id = params[:id]
     unless read_fragment "issues/#{@issue_id}/history"
       @last_comment = nil # Prevents some insidious call with functionnal tests
@@ -251,7 +235,7 @@ class IssuesController < ApplicationController
   end
 
   def ajax_phonecalls
-    return render(:text => '') unless request.xhr? and params.has_key? :id
+    return render(:nothing => true) unless request.xhr?
     @issue_id = params[:id]
     conditions = [ 'phonecalls.issue_id = ? ', @issue_id ]
     options = { :conditions => conditions, :order => 'phonecalls.start',
@@ -261,10 +245,21 @@ class IssuesController < ApplicationController
   end
 
   def ajax_attachments
-    return render(:text => '') unless request.xhr? and params.has_key? :id
+    return render(:nothing => true) unless request.xhr?
     @issue_id = params[:id]
     set_attachments(@issue_id)
     render :partial => 'issues/tabs/tab_attachments', :layout => false
+  end
+
+  def ajax_actions
+    return render(:nothing => true) unless request.xhr? and params.has_key? :id
+    @issue = Issue.find(params[:id])
+    software_id = @issue.software_id
+    options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
+      [ 'contributions.software_id = ?', software_id ] }
+    @contributions = (software_id ?
+       Contribution.find(:all, options).collect{|c| [c.name, c.id]} : [])
+    render :partial => 'issues/tabs/tab_actions', :layout => false
   end
 
   def ajax_cns

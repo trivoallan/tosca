@@ -1,0 +1,16 @@
+<div id='issue_tab_content' class='issue_tab_content'>
+ <ul>
+  <% options = { :software_id => @issue.software_id, :issue_id => @issue.id } %>
+  <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
+ <% unless @contributions.empty? %>
+  <li><%= _('Link to a contribution')%>
+      <% form_tag link_contribution_issue_path(@issue.id) do %>
+        <%= select_onchange @contributions, 'issue', 'contribution_id' %>
+      <% end %></li>
+ <% end %>
+ <% if @issue.contribution %>
+  <li><%= link_to_unlink_contribution(@issue.id) %></li>
+ <% end %>
+  <li><%= link_to_add_call @issue.id %></li>
+ </ul>
+</div>

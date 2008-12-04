@@ -120,12 +120,11 @@ ActionController::Routing::Routes.draw do |map|
       :link_contribution => :post,
       :unlink_contribution => :post,
       :tag => :get,
-      :ajax_description => :get,
-      :ajax_comments => :get,
       :ajax_history => :get,
       :ajax_attachments => :get,
       :ajax_phonecalls => :get,
       :ajax_cns => :get,
+      :ajax_actions => :get,
       :ajax_untag => :delete,
       :ajax_add_tag => :post }
   map.resources :reporting, :collection => { :flux => :get }
