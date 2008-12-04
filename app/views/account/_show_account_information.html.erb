@@ -1,5 +1,5 @@
 <div class="show">
-<table class="show">
+<table>
   <tr>
     <td colspan="2"><%= avatar(@user_recipient, @user_engineer) %></td>
   </tr><tr>
@@ -18,7 +18,7 @@
     <th><%= _('User|Phone') %></th>
     <td><%= @user.phone %></td>
   </tr>
-  <% if @user.team %>  
+  <% if @user.team %>
   <tr>
     <th><%= _('User|Team') %></th>
     <td><%= @user.team.name %></td>
@@ -43,7 +43,7 @@
 </div>
 
 <div class="show">
-<table class="show">
+<table>
   <tr>
     <td colspan="2"><h2><%= _("Preferences") %></h2></td>
   </tr>
