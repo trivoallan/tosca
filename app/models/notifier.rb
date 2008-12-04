@@ -71,8 +71,6 @@ class Notifier < ActionMailer::Base
 
   # This function require 1 parameter : the issue
   def issue_new(issue)
-    logger.info(issue.inspect)
-
     issue.reload
 
     options = {}
@@ -83,7 +81,7 @@ class Notifier < ActionMailer::Base
     recipients  issue.compute_recipients
     cc          issue.compute_copy
     from        App::FromEmail
-    subject     "[#{App::ServiceName}##{issue.id}] : #{issue.resume}"
+    subject     "[#{issue.contract.domain} - ##{issue.id}] #{issue.resume}"
     headers     headers_mail_issue(issue.first_comment)
 
     html_and_text_body(options);
@@ -105,7 +103,7 @@ class Notifier < ActionMailer::Base
     recipients issue.compute_recipients(comment.private)
     cc         issue.compute_copy(comment.private)
     from       App::FromEmail
-    subject    "[#{App::ServiceName}:##{issue.id}] : #{issue.resume}"
+    subject     "[#{issue.contract.domain} - ##{issue.id}] #{issue.resume}"
     headers    headers_mail_issue(comment)
 
     html_and_text_body(options)
