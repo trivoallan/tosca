@@ -70,11 +70,11 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^comments/(?!destroy)', 'Manage comments' ],
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
                [ '^documents/(?!destroy)', 'Manage documents' ],
+               [ '^issues/(?!destroy)', 'Manage issues' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
                [ '^socles/(?!destroy)', "Manage systems" ],
                [ '^urlsoftwares/(?!destroy)', 'Manage urls of software' ],
-               [ '^urlreversements/', 'Manage their own urls of contributions' ],
-               [ '^issues/edit', 'Edit issues' ]
+               [ '^urlreversements/', 'Manage their own urls of contributions' ]
              ]
     add_permission.call(roles, access)
 
@@ -85,7 +85,6 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^clients/(?!destroy)', 'Manage clients' ],
                [ '^competences/(?!destroy)', 'Manage knowledge' ],
                [ '^contracts/(?!destroy)', 'Manage contracts' ],
-               [ '^issues/(?!destroy)', 'Manage issues' ],
                [ '^commitments/(?!destroy)', 'Manage Service Level Agreement' ],
                [ '^groupes/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
