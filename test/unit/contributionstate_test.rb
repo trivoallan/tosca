@@ -18,10 +18,10 @@
 #
 require File.dirname(__FILE__) + '/../test_helper'
 
-class EtatreversementTest < Test::Unit::TestCase
-  fixtures :etatreversements
+class ContributionstateTest < Test::Unit::TestCase
+  fixtures :contributionstates
 
   def test_to_strings
-    check_strings Etatreversement
+    check_strings Contributionstate
   end
 end

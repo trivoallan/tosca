@@ -1666,16 +1666,16 @@ msgstr "Correction"
 msgid "Elapsed|Until now"
 msgstr "Jusqu'à maintenant"
 
-#: app/models/etatreversement.rb:-
-msgid "etatreversement"
+#: app/models/contributionstate.rb:-
+msgid "contributionstate"
 msgstr "État de reversement"
 
-#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:4
-msgid "Etatreversement|Name"
+#: app/models/contributionstate.rb:- app/views/contributionstates/_form.html.erb:4
+msgid "Contributionstate|Name"
 msgstr "Nom"
 
-#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:7
-msgid "Etatreversement|Description"
+#: app/models/contributionstate.rb:- app/views/contributionstates/_form.html.erb:7
+msgid "Contributionstate|Description"
 msgstr "Description"
 
 #: app/models/groupe.rb:-
@@ -3287,7 +3287,7 @@ msgstr "Déposé par"
 msgid "Document|Updated_on"
 msgstr "Mis à jour le"
 
-#: app/views/etatreversements/index.html.erb:4
+#: app/views/contributionstates/index.html.erb:4
 msgid "a new state"
 msgstr "un nouvel état"
 

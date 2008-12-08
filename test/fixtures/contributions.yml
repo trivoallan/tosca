@@ -12,7 +12,7 @@ contribution_0001:
   closed_on: 2007-12-18 08:35:00 +01:00
   typecontribution_id: 1
   synthesis: A wrong html page, but which could be correctly displayed, was not well pasted in Writer
-  etatreversement_id: 3
+  contributionstate_id: 3
 
 contribution_0002:
   created_on: 2006-10-23 15:52:00
@@ -28,7 +28,7 @@ contribution_0002:
   closed_on: 2007-10-02 12:27:00
   synthesis: "Corrige un probl\xC3\xA8me d'import de document Word dans OpenOffice, au niveau des dates."
   typecontribution_id: 1
-  etatreversement_id: 3
+  contributionstate_id: 3
 
 contribution_0003:
   created_on: 2007-04-19 14:25:06
@@ -42,4 +42,4 @@ contribution_0003:
   id: "3"
   synthesis: "Il y avait une r\xC3\xA9gression introduite en version 2.0.0.1 au niveau de la gestion des certificats qui \xC3\xA9tait susceptible d'emp\xC3\xAAcher la t\xC3\xA9l\xC3\xA9d\xC3\xA9claration."
   typecontribution_id: "1"
-  etatreversement_id: "5"
+  contributionstate_id: "5"

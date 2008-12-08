@@ -17,16 +17,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'etatreversements_controller'
+require 'contributionstates_controller'
 
 # Re-raise errors caught by the controller.
-class EtatreversementsController; def rescue_action(e) raise e end; end
+class ContributionstatesController; def rescue_action(e) raise e end; end
 
-class EtatreversementsControllerTest < Test::Unit::TestCase
-  fixtures :etatreversements
+class ContributionstatesControllerTest < Test::Unit::TestCase
+  fixtures :contributionstates
 
   def setup
-    @controller = EtatreversementsController.new
+    @controller = ContributionstatesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -36,7 +36,7 @@ class EtatreversementsControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:etatreversements)
+    assert_not_nil assigns(:contributionstates)
   end
 
   def test_show
@@ -45,8 +45,8 @@ class EtatreversementsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:etatreversement)
-    assert assigns(:etatreversement).valid?
+    assert_not_nil assigns(:contributionstate)
+    assert assigns(:contributionstate).valid?
   end
 
   def test_new
@@ -55,19 +55,19 @@ class EtatreversementsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:etatreversement)
+    assert_not_nil assigns(:contributionstate)
   end
 
   def test_create
-    num_etatreversements = Etatreversement.count
+    num_contributionstates = Contributionstate.count
 
-    post :create, :etatreversement => { :name => "screwed",
+    post :create, :contributionstate => { :name => "screwed",
                                         :description =>  "self explanatory" }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
-    assert_equal num_etatreversements + 1, Etatreversement.count
+    assert_equal num_contributionstates + 1, Contributionstate.count
   end
 
   def test_edit
@@ -76,8 +76,8 @@ class EtatreversementsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:etatreversement)
-    assert assigns(:etatreversement).valid?
+    assert_not_nil assigns(:contributionstate)
+    assert assigns(:contributionstate).valid?
   end
 
   def test_update
@@ -87,14 +87,14 @@ class EtatreversementsControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Etatreversement.find(1)
+    assert_not_nil Contributionstate.find(1)
 
     post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Etatreversement.find(1)
+      Contributionstate.find(1)
     }
   end
 end

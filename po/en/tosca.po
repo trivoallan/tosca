@@ -1646,16 +1646,16 @@ msgstr "Correction"
 msgid "Elapsed|Until now"
 msgstr ""
 
-#: app/models/etatreversement.rb:-
-msgid "etatreversement"
+#: app/models/contributionstate.rb:-
+msgid "contributionstate"
 msgstr "contributionstate"
 
-#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:4
-msgid "Etatreversement|Name"
+#: app/models/contributionstate.rb:- app/views/contributionstates/_form.html.erb:4
+msgid "Contributionstate|Name"
 msgstr "Name"
 
-#: app/models/etatreversement.rb:- app/views/etatreversements/_form.html.erb:7
-msgid "Etatreversement|Description"
+#: app/models/contributionstate.rb:- app/views/contributionstates/_form.html.erb:7
+msgid "Contributionstate|Description"
 msgstr "Description"
 
 #: app/models/groupe.rb:-
@@ -3267,7 +3267,7 @@ msgstr ""
 msgid "Document|Updated_on"
 msgstr "Updated on"
 
-#: app/views/etatreversements/index.html.erb:4
+#: app/views/contributionstates/index.html.erb:4
 msgid "a new state"
 msgstr ""
 

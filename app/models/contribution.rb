@@ -21,7 +21,7 @@ class Contribution < ActiveRecord::Base
   has_many :urlreversements
 
   belongs_to :typecontribution
-  belongs_to :etatreversement
+  belongs_to :contributionstate
   belongs_to :software
   belongs_to :ingenieur
 

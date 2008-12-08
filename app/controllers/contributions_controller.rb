@@ -23,7 +23,7 @@ class ContributionsController < ApplicationController
 
   # Show all contribs and who's done 'em
   def experts
-    options = { :order => 'contributions.ingenieur_id, contributions.etatreversement_id' }
+    options = { :order => 'contributions.ingenieur_id, contributions.contributionstate_id' }
     @contributions = Contribution.find(:all, options)
   end
 
@@ -68,7 +68,7 @@ class ContributionsController < ApplicationController
   def admin
     conditions = []
     options = { :per_page => 10, :order => 'contributions.updated_on DESC',
-      :include => [:software,:etatreversement,:issue], :page => params[:page] }
+      :include => [:software,:contributionstate,:issue], :page => params[:page] }
 
     if params.has_key? :filters
       session[:contributions_filters] =
@@ -83,7 +83,7 @@ class ContributionsController < ApplicationController
       conditions = Filters.build_conditions(contributions_filters, [
         [:software, 'softwares.name', :like ],
         [:contribution, 'contributions.name', :like ],
-        [:etatreversement_id, 'contributions.etatreversement_id', :equal ],
+        [:contributionstate_id, 'contributions.contributionstate_id', :equal ],
         [:ingenieur_id, 'contributions.ingenieur_id', :equal ],
         [:contract_id, 'issues.contract_id', :equal ]
       ])
@@ -107,7 +107,7 @@ class ContributionsController < ApplicationController
     # we can precise the software with this, see software/show for more info
     @contribution.software_id = params[:software_id]
     # submitted state, by default
-    @contribution.etatreversement_id = 4
+    @contribution.contributionstate_id = 4
     @contribution.contributed_on = Date.today
     @issue = Issue.new(); @issue.id = params[:issue_id]
     @contribution.ingenieur = @ingenieur
@@ -158,7 +158,7 @@ class ContributionsController < ApplicationController
 private
   def _form
     @softwares = Software.find_select
-    @etatreversements = Etatreversement.find_select
+    @contributionstates = Contributionstate.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @typecontributions = Typecontribution.find_select
     if @contribution.software_id
@@ -169,7 +169,7 @@ private
   end
 
   def _panel
-    @etatreversements = Etatreversement.find_select
+    @contributionstates = Contributionstate.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
     @softwares = Software.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)

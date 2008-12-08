@@ -32,8 +32,8 @@
               <td><%= text_field 'contribution', 'id_mantis', :size => 3 %></td></tr>
         <% end %>
       <tr>
-        <th><label for="contribution_etatreversement"><%=_('State')%></label></th>
-        <td><%= select(:contribution, :etatreversement_id, @etatreversements) %></td>
+        <th><label for="contribution_contributionstate"><%=_('State')%></label></th>
+        <td><%= select(:contribution, :contributionstate_id, @contributionstates) %></td>
       </tr><tr>
         <th colspan="2"><label for="urlreversement_valeur"><%=_('Add an url for the community issue')%></label></th>
       </tr><tr>

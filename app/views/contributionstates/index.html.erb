@@ -1,0 +1,24 @@
+<h1>Listing contributionstates</h1>
+
+
+<% paginated_section(@contributionstates, :create_label => _('a new state')) do %>
+ <table>
+  <tr>
+  <% for column in Contributionstate.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+
+  <% for contributionstate in @contributionstates %>
+   <tr>
+   <% for column in Contributionstate.content_columns %>
+     <td><%= contributionstate.send(column.name) %></td>
+   <% end %>
+     <%= link_to_actions_table contributionstate %>
+   </tr>
+  <% end %>
+ </table>
+ <%= page_entries_info @contributionstates %><br />
+<% end %>
+
+<br />

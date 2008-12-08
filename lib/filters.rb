@@ -44,7 +44,7 @@ module Filters
   end
 
   class Contributions < Struct.new('Contributions', :software, :ingenieur_id,
-                             :contribution, :etatreversement_id, :contract_id)
+                             :contribution, :contributionstate_id, :contract_id)
     extend Shared
   end
 

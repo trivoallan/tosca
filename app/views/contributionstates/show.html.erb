@@ -1,0 +1,8 @@
+<% for column in Contributionstate.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%= @contributionstate.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_contributionstate_path(@contributionstate) %> |
+<%= link_to 'Back', contributionstates_path %>

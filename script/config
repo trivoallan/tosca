@@ -29,10 +29,10 @@ end
 args=ARGV
 options.parse!(ARGV)
 
-models = [ Arch, Etatreversement, Groupe, Rules::Component,
+models = [ Arch, Contributionstate, Groupe, Rules::Component,
            Rules::Credit, Role, Statut, Typecontribution, Typerequest,
            Typedocument, Typeurl, Skill, Permission ]
-files = %w(arches etatreversements groupes ossas roles
+files = %w(arches contributionstates groupes ossas roles
           permissions statuts typecontributions typerequests
           typedocuments typeurls skills permissions
           permissions_roles time_tickets )
@@ -51,7 +51,7 @@ if @action == :dump or @action == :dumpall
   if @action == :dumpall
     models = [ Arch,Recipient,Changelog,Client,Comment,
 	  Skill,Contract,Contribution,Request,
-          Distributeur,Document,Elapsed,Commitment,Etatreversement,Fichier,
+          Distributeur,Document,Elapsed,Commitment,Contributionstate,Fichier,
           Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
           Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,
           Attachment,Preference,Role,Severite,Socle,Statut,Typecontribution,

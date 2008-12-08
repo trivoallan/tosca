@@ -15,7 +15,7 @@
    result << '<td>' << link_to_contribution(c)
    result << '<br />' << "##{c.issue.id} : " << link_to_issue(c.issue) if c.issue
    result << '</td>'
-   result << "<td>#{c.etatreversement.name if c.etatreversement}</td>"
+   result << "<td>#{c.contributionstate.name if c.contributionstate}</td>"
    result << "<td style='color:green'><span class=\"date\">#{c.contributed_on_formatted}</span></td>"
 
    result << "<td style='color:red'>"

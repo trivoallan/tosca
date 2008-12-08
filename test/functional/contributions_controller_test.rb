@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContributionsControllerTest < ActionController::TestCase
-  fixtures :contributions, :softwares, :etatreversements, :users,
+  fixtures :contributions, :softwares, :contributionstates, :users,
     :ingenieurs, :typecontributions, :recipients
 
   def setup

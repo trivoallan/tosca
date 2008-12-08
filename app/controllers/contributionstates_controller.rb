@@ -16,46 +16,46 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class EtatreversementsController < ApplicationController
+class ContributionstatesController < ApplicationController
   def index
     options = { :per_page => 10, :page => params[:page] }
-    @etatreversements = Etatreversement.paginate options
+    @contributionstates = Contributionstate.paginate options
   end
 
   def show
-    @etatreversement = Etatreversement.find(params[:id])
+    @contributionstate = Contributionstate.find(params[:id])
   end
 
   def new
-    @etatreversement = Etatreversement.new
+    @contributionstate = Contributionstate.new
   end
 
   def create
-    @etatreversement = Etatreversement.new(params[:etatreversement])
-    if @etatreversement.save
-      flash[:notice] = 'Etatreversement was successfully created.'
-      redirect_to etatreversements_path
+    @contributionstate = Contributionstate.new(params[:contributionstate])
+    if @contributionstate.save
+      flash[:notice] = 'Contributionstate was successfully created.'
+      redirect_to contributionstates_path
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @etatreversement = Etatreversement.find(params[:id])
+    @contributionstate = Contributionstate.find(params[:id])
   end
 
   def update
-    @etatreversement = Etatreversement.find(params[:id])
-    if @etatreversement.update_attributes(params[:etatreversement])
-      flash[:notice] = 'Etatreversement was successfully updated.'
-      redirect_to etatreversement_path(@etatreversement)
+    @contributionstate = Contributionstate.find(params[:id])
+    if @contributionstate.update_attributes(params[:contributionstate])
+      flash[:notice] = 'Contributionstate was successfully updated.'
+      redirect_to contributionstate_path(@contributionstate)
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Etatreversement.find(params[:id]).destroy
-    redirect_to etatreversements_path
+    Contributionstate.find(params[:id]).destroy
+    redirect_to contributionstates_path
   end
 end

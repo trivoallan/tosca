@@ -89,7 +89,7 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
   map.resources :commitments
-  map.resources :etatreversements
+  map.resources :contributionstates
   map.resources :fichiers
   map.resources :fournisseurs
   map.resources :groupes

@@ -1,8 +1,0 @@
-<% for column in Etatreversement.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @etatreversement.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', edit_etatreversement_path(@etatreversement) %> |
-<%= link_to 'Back', etatreversements_path %>
