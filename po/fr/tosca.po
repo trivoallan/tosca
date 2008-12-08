@@ -1263,7 +1263,7 @@ msgstr "Aide"
 #: app/views/severities/show.html.erb:8 app/views/teams/new.html.erb:8
 #: app/views/teams/show.html.erb:13
 #: app/views/contributiontypes/show.html.erb:8
-#: app/views/typedocuments/show.html.erb:8 app/views/typeurls/show.html.erb:8
+#: app/views/documenttypes/show.html.erb:8 app/views/typeurls/show.html.erb:8
 msgid "Back"
 msgstr "Retour"
 
@@ -1605,7 +1605,7 @@ msgid "Document|User"
 msgstr "Utilisateur"
 
 #: app/models/document.rb:-
-msgid "Document|Typedocument"
+msgid "Document|Documenttype"
 msgstr "Type de document"
 
 #: app/models/document.rb:-
@@ -2087,16 +2087,16 @@ msgstr "Nom"
 msgid "Contributiontype|Description"
 msgstr "Description"
 
-#: app/models/typedocument.rb:-
-msgid "typedocument"
+#: app/models/documenttype.rb:-
+msgid "documenttype"
 msgstr "type de document"
 
-#: app/models/typedocument.rb:-
-msgid "Typedocument|Name"
+#: app/models/documenttype.rb:-
+msgid "Documenttype|Name"
 msgstr "Nom"
 
-#: app/models/typedocument.rb:-
-msgid "Typedocument|Description"
+#: app/models/documenttype.rb:-
+msgid "Documenttype|Description"
 msgstr "Description"
 
 #: app/models/typeissue.rb:-
@@ -2419,7 +2419,7 @@ msgstr "Rechercher"
 #: app/views/tags/_form.html.erb:4 app/views/tags/index.html.erb:5
 #: app/views/tags/show.html.erb:7 app/views/teams/index.html.erb:5
 #: app/views/contributiontypes/_form.html.erb:3
-#: app/views/typedocuments/_form.html.erb:3
+#: app/views/documenttypes/_form.html.erb:3
 #: app/views/typeissues/_form.html.erb:3 app/views/typeurls/_form.html.erb:3
 msgid "Name"
 msgstr "Nom"
@@ -2593,8 +2593,8 @@ msgstr "Éditer une pièce jointe"
 #: app/views/tags/edit.html.erb:5 app/views/teams/show.html.erb:12
 #: app/views/contributiontypes/edit.html.erb:5
 #: app/views/contributiontypes/show.html.erb:7
-#: app/views/typedocuments/edit.html.erb:5
-#: app/views/typedocuments/show.html.erb:7
+#: app/views/documenttypes/edit.html.erb:5
+#: app/views/documenttypes/show.html.erb:7
 #: app/views/typeissues/edit.html.erb:5 app/views/typeurls/show.html.erb:7
 msgid "Edit"
 msgstr "Modifier"
@@ -2676,7 +2676,7 @@ msgstr "Par système"
 #: app/views/softwares/_software_info.html.erb:41
 #: app/views/softwares/index.html.erb:4 app/views/statuts/_form.html.erb:6
 #: app/views/contributiontypes/_form.html.erb:6
-#: app/views/typedocuments/_form.html.erb:6
+#: app/views/documenttypes/_form.html.erb:6
 msgid "Description"
 msgstr "Description"
 
@@ -2839,7 +2839,7 @@ msgstr "A nouvel engagement"
 #: app/views/severities/new.html.erb:5 app/views/socles/new.html.erb:5
 #: app/views/tags/new.html.erb:5 app/views/teams/new.html.erb:5
 #: app/views/contributiontypes/new.html.erb:5
-#: app/views/typedocuments/new.html.erb:5 app/views/typeissues/new.html.erb:5
+#: app/views/documenttypes/new.html.erb:5 app/views/typeissues/new.html.erb:5
 #: app/views/typeurls/new.html.erb:5
 msgid "Create"
 msgstr "Créer"
@@ -4525,20 +4525,20 @@ msgstr "Créer un nouveau type de contribution"
 msgid "A new typeof contribution"
 msgstr "Un nouveau type de contribution"
 
-#: app/views/typedocuments/edit.html.erb:1
-msgid "Editing typedocument"
+#: app/views/documenttypes/edit.html.erb:1
+msgid "Editing documenttype"
 msgstr "Éditer un type de document"
 
-#: app/views/typedocuments/index.html.erb:1
+#: app/views/documenttypes/index.html.erb:1
 msgid "List of the types of documents"
 msgstr "Liste des types de docuements"
 
-#: app/views/typedocuments/index.html.erb:3
-#: app/views/typedocuments/index.html.erb:11
+#: app/views/documenttypes/index.html.erb:3
+#: app/views/documenttypes/index.html.erb:11
 msgid "a new type of document"
 msgstr "un nouveau type de documents"
 
-#: app/views/typedocuments/new.html.erb:1
+#: app/views/documenttypes/new.html.erb:1
 msgid "Create a new type of documents"
 msgstr "Créer un nouveau type de documents"
 

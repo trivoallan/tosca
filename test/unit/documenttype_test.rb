@@ -18,10 +18,10 @@
 #
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TypedocumentTest < Test::Unit::TestCase
-  fixtures :typedocuments
+class DocumenttypeTest < Test::Unit::TestCase
+  fixtures :documenttypes
 
   def test_to_strings
-    check_strings Typedocument
+    check_strings Documenttype
   end
 end

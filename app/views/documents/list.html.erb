@@ -1,10 +1,10 @@
-<% document_type = (@typedocument ?  @typedocument.name : _('all directories')) %>
+<% document_type = (@documenttype ?  @documenttype.name : _('all directories')) %>
 <h1><%=_('Documents available in %s') % [ document_type ] %>
     <%= StaticImage::spinner %></h1>
 <br />
 
 <% options = { :create_label => _('a document'), :remote_url =>
-   list_document_path(@typedocument ? {:id => @typedocument.id} : {} ) } %>
+   list_document_path(@documenttype ? {:id => @documenttype.id} : {} ) } %>
 <% paginated_section(@documents, options) do %>
  <% titles = [_('Document|Title'), _('Document|File'), _('Size'), _('Document|Delivery_on')] %>
  <%= show_table(@documents, Document, titles, :total => false) do |document|

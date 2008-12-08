@@ -1,8 +1,0 @@
-<% for column in Typedocument.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @typedocument.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to _("Edit"), edit_typedocument_path(@typedocument) %> |
-<%= link_to _("Back"), typedocuments_path %>

@@ -9,7 +9,7 @@ document_version_00001:
   version: 2
   description: Explain how to implements a n-n relationship
   user_id: 1
-  typedocument_id: 7
+  documenttype_id: 7
   date_delivery: 2007-12-25 00:00:00 +01:00
   file: has_many_and_belongs_to_many.pdf
 document_version_00002: 
@@ -22,6 +22,6 @@ document_version_00002:
   version: 1
   description: Explain What Goes Where in a rails developped software.
   user_id: 1
-  typedocument_id: 3
+  documenttype_id: 3
   date_delivery: 2007-12-25 00:00:00 +01:00
   file: rails_files_cheatsheet.pdf

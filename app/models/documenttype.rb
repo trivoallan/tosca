@@ -16,6 +16,6 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Typedocument < ActiveRecord::Base
+class Documenttype < ActiveRecord::Base
   has_many :documents
 end

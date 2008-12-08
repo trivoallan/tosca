@@ -31,10 +31,10 @@ options.parse!(ARGV)
 
 models = [ Arch, Contributionstate, Groupe, Rules::Component,
            Rules::Credit, Role, Statut, Contributiontype, Typerequest,
-           Typedocument, Typeurl, Skill, Permission ]
+           Documenttype, Typeurl, Skill, Permission ]
 files = %w(arches contributionstates groupes ossas roles
           permissions statuts contributiontypes typerequests
-          typedocuments typeurls skills permissions
+          documenttypes typeurls skills permissions
           permissions_roles time_tickets )
 
 =begin
@@ -55,7 +55,7 @@ if @action == :dump or @action == :dumpall
           Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
           Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,
           Attachment,Preference,Role,Severite,Socle,Statut,Contributiontype,
-          Typerequest,Typedocument,Typeurl,User ]
+          Typerequest,Documenttype,Typeurl,User ]
   end
   models.each do |m|
     puts "#{action_name} #{m}..." if $verbose

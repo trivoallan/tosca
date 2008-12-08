@@ -1,0 +1,8 @@
+<% for column in Documenttype.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%= @documenttype.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to _("Edit"), edit_documenttype_path(@documenttype) %> |
+<%= link_to _("Back"), documenttypes_path %>

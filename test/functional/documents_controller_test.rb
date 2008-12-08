@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DocumentsControllerTest < ActionController::TestCase
-  fixtures :documents, :typedocuments, :clients, :roles, :permissions,
+  fixtures :documents, :documenttypes, :clients, :roles, :permissions,
     :permissions_roles, :users, :contracts, :contracts_users
 
   def test_index
@@ -28,7 +28,7 @@ class DocumentsControllerTest < ActionController::TestCase
       get :index
       assert_response :success
       assert_template 'select'
-      assert_not_nil assigns(:typedocuments)
+      assert_not_nil assigns(:documenttypes)
     }
   end
 

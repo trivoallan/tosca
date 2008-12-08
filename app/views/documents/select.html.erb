@@ -1,7 +1,7 @@
 <h1><%=_('Repository access')%></h1>
 
-<%= show_list(@typedocuments, nil) { |t|
-      link_to_typedocument t
+<%= show_list(@documenttypes, nil) { |t|
+      link_to_documenttype t
 } %>
 
 <%= link_to _('Submit a file'), new_document_path %>

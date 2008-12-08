@@ -147,7 +147,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :time_tickets
   map.resources :contributiontypes
   map.resources :typeissues
-  map.resources :typedocuments
+  map.resources :documenttypes
   map.resources :typeurls
   map.resources :urlsoftwares
   map.resources :urlreversements

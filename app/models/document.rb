@@ -18,7 +18,7 @@
 #
 class Document < ActiveRecord::Base
   belongs_to :client
-  belongs_to :typedocument
+  belongs_to :documenttype
   belongs_to :user
   file_column :file, :fix_file_extensions => nil
 
@@ -26,7 +26,7 @@ class Document < ActiveRecord::Base
   #versioning, qui s'occupe de la table documents_versions
   acts_as_versioned
   validates_length_of :title, :within => 3..60
-  validates_presence_of :title, :file, :user, :client, :typedocument
+  validates_presence_of :title, :file, :user, :client, :documenttype
 
   def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions =>

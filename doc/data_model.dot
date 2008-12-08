@@ -76,7 +76,7 @@ Contribution -> Version [arrowhead=dot,arrowtail=crow,dir=both]
 Contribution -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
 Attachment -> User [arrowtail=crow,dir=both,arrowhead=dot]
 Document -> Client [arrowhead=dot,dir=both,arrowtail=crow]
-Document -> Typedocument [arrowhead=dot,dir=both,arrowtail=crow]
+Document -> Documenttype [arrowhead=dot,dir=both,arrowtail=crow]
 Document -> User [arrowhead=dot,dir=both,arrowtail=crow]
 
 

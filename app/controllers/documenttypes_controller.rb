@@ -16,46 +16,46 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class TypedocumentsController < ApplicationController
+class DocumenttypesController < ApplicationController
   def index
-    @typedocument_pages, @typedocuments = paginate :typedocuments, :per_page => 10
+    @documenttype_pages, @documenttypes = paginate :documenttypes, :per_page => 10
   end
 
   def show
-    @typedocument = Typedocument.find(params[:id])
+    @documenttype = Documenttype.find(params[:id])
   end
 
   def new
-    @typedocument = Typedocument.new
+    @documenttype = Documenttype.new
   end
 
   def create
-    @typedocument = Typedocument.new(params[:typedocument])
-    if @typedocument.save
-      flash[:notice] = 'Typedocument was successfully created.'
-      redirect_to typedocuments_path
+    @documenttype = Documenttype.new(params[:documenttype])
+    if @documenttype.save
+      flash[:notice] = 'Documenttype was successfully created.'
+      redirect_to documenttypes_path
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @typedocument = Typedocument.find(params[:id])
+    @documenttype = Documenttype.find(params[:id])
   end
 
   def update
-    @typedocument = Typedocument.find(params[:id])
-    if @typedocument.update_attributes(params[:typedocument])
-      flash[:notice] = 'Typedocument was successfully updated.'
-      redirect_to typedocument_path(@typedocument)
+    @documenttype = Documenttype.find(params[:id])
+    if @documenttype.update_attributes(params[:documenttype])
+      flash[:notice] = 'Documenttype was successfully updated.'
+      redirect_to documenttype_path(@documenttype)
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Typedocument.find(params[:id]).destroy
-    redirect_to typedocuments_path
+    Documenttype.find(params[:id]).destroy
+    redirect_to documenttypes_path
   end
 
 end

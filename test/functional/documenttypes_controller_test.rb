@@ -17,16 +17,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'typedocuments_controller'
+require 'documenttypes_controller'
 
 # Re-raise errors caught by the controller.
-class TypedocumentsController; def rescue_action(e) raise e end; end
+class DocumenttypesController; def rescue_action(e) raise e end; end
 
-class TypedocumentsControllerTest < Test::Unit::TestCase
-  fixtures :typedocuments
+class DocumenttypesControllerTest < Test::Unit::TestCase
+  fixtures :documenttypes
 
   def setup
-    @controller = TypedocumentsController.new
+    @controller = DocumenttypesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -36,7 +36,7 @@ class TypedocumentsControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:typedocuments)
+    assert_not_nil assigns(:documenttypes)
   end
 
   def test_show
@@ -45,8 +45,8 @@ class TypedocumentsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:typedocument)
-    assert assigns(:typedocument).valid?
+    assert_not_nil assigns(:documenttype)
+    assert assigns(:documenttype).valid?
   end
 
   def test_new
@@ -55,19 +55,19 @@ class TypedocumentsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:typedocument)
+    assert_not_nil assigns(:documenttype)
   end
 
   def test_create
-    num_typedocuments = Typedocument.count
+    num_documenttypes = Documenttype.count
 
-    post :create, :typedocument => { :name => "specification", :description =>
+    post :create, :documenttype => { :name => "specification", :description =>
       "the most hated type of document" }
 
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
-    assert_equal num_typedocuments + 1, Typedocument.count
+    assert_equal num_documenttypes + 1, Documenttype.count
   end
 
   def test_edit
@@ -76,8 +76,8 @@ class TypedocumentsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:typedocument)
-    assert assigns(:typedocument).valid?
+    assert_not_nil assigns(:documenttype)
+    assert assigns(:documenttype).valid?
   end
 
   def test_update
@@ -87,14 +87,14 @@ class TypedocumentsControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Typedocument.find(1)
+    assert_not_nil Documenttype.find(1)
 
     post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Typedocument.find(1)
+      Documenttype.find(1)
     }
   end
 end
