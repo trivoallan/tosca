@@ -63,9 +63,7 @@ class UrlsoftwaresControllerTest < Test::Unit::TestCase
 
     post :create, :urlsoftware => {
       :software_id => 1,
-      :typeurl_id => 1,
       :valeur => "www.disney.fr"
-
     }
 
     assert_response :redirect

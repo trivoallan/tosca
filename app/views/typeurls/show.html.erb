@@ -1,8 +1,0 @@
-<% for column in Typeurl.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @typeurl.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to _("Edit"), edit_typeurl_path(@typeurl) %> |
-<%= link_to _("Back"), typeurls_path %>

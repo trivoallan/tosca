@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-08 19:00+0100\n"
+"POT-Creation-Date: 2008-12-08 19:27+0100\n"
 "PO-Revision-Date: 2008-12-04 09:03+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
@@ -778,14 +778,6 @@ msgstr "L'équipe '%s' a été créé avec succès."
 msgid "Team %s was successfully updated."
 msgstr "L'équipe '%s' a été mise à jour avec succès."
 
-#: app/controllers/typeurls_controller.rb:35
-msgid "A url type was successfully created."
-msgstr "Un type d'url a été crée avec succès."
-
-#: app/controllers/typeurls_controller.rb:49
-msgid "A url type was successfully updated."
-msgstr "Un type d'url a été mis à jour avec succès."
-
 #: app/controllers/urlreversements_controller.rb:39
 msgid "Urlreversement was successfully created."
 msgstr "Urlreversement a été crée avec succès."
@@ -1263,7 +1255,7 @@ msgstr "Aide"
 #: app/views/contributiontypes/show.html.erb:8
 #: app/views/documenttypes/show.html.erb:8
 #: app/views/severities/show.html.erb:8 app/views/teams/new.html.erb:8
-#: app/views/teams/show.html.erb:13 app/views/typeurls/show.html.erb:8
+#: app/views/teams/show.html.erb:13
 msgid "Back"
 msgstr "Retour"
 
@@ -1384,11 +1376,11 @@ msgid "Alert|Hash value"
 msgstr "Valeur du hash"
 
 #: app/models/alert.rb:-
-msgid "Alert|Created on"
+msgid "Alert|Created at"
 msgstr "Créée le"
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated on"
+msgid "Alert|Updated at"
 msgstr "Mise à jour le"
 
 #: app/models/archive.rb:-
@@ -1775,7 +1767,7 @@ msgid "knowledge"
 msgstr "connaissance"
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|Skill"
+msgid "Knowledge|skill"
 msgstr "Niveau"
 
 #: app/models/knowledge.rb:-
@@ -2065,15 +2057,15 @@ msgstr "Groupe"
 msgid "Software|Private"
 msgstr "Privé"
 
-#: app/models/software.rb:37
+#: app/models/software.rb:36
 msgid "You have to specify a name"
 msgstr "Vous devez spécifier un nom"
 
-#: app/models/software.rb:39
+#: app/models/software.rb:38
 msgid "You have to specify a group"
 msgstr "Vous devez spécifier un groupe"
 
-#: app/models/software.rb:41
+#: app/models/software.rb:40
 msgid "You have to specify at least one technology"
 msgstr "Vous devez spécifier au moins une technologie"
 
@@ -2109,14 +2101,6 @@ msgstr "Cache des membres"
 msgid "Team|Contact"
 msgstr "Contact"
 
-#: app/models/typeurl.rb:-
-msgid "typeurl"
-msgstr "type d'url"
-
-#: app/models/typeurl.rb:-
-msgid "Typeurl|Name"
-msgstr "Nom"
-
 #: app/models/urlreversement.rb:-
 msgid "urlreversement"
 msgstr "url de reversement"
@@ -2136,10 +2120,6 @@ msgstr "url du logiciel"
 #: app/models/urlsoftware.rb:-
 msgid "Urlsoftware|Software"
 msgstr "Logiciel"
-
-#: app/models/urlsoftware.rb:-
-msgid "Urlsoftware|Typeurl"
-msgstr "Type d'url"
 
 #: app/models/urlsoftware.rb:-
 msgid "Urlsoftware|Valeur"
@@ -2422,7 +2402,7 @@ msgstr "Rechercher"
 #: app/views/softwares/index.html.erb:4 app/views/softwares/show.html.erb:9
 #: app/views/statuts/_form.html.erb:3 app/views/tags/_form.html.erb:4
 #: app/views/tags/index.html.erb:5 app/views/tags/show.html.erb:7
-#: app/views/teams/index.html.erb:5 app/views/typeurls/_form.html.erb:3
+#: app/views/teams/index.html.erb:5
 msgid "Name"
 msgstr "Nom"
 
@@ -2597,7 +2577,6 @@ msgstr "Éditer une pièce jointe"
 #: app/views/severities/edit.html.erb:5 app/views/severities/show.html.erb:7
 #: app/views/skills/edit.html.erb:5 app/views/socles/edit.html.erb:5
 #: app/views/tags/edit.html.erb:5 app/views/teams/show.html.erb:12
-#: app/views/typeurls/show.html.erb:7
 msgid "Edit"
 msgstr "Modifier"
 
@@ -2842,7 +2821,7 @@ msgstr "A nouvel engagement"
 #: app/views/roles/new.html.erb:5 app/views/rules/components/new.html.erb:5
 #: app/views/severities/new.html.erb:5 app/views/skills/new.html.erb:5
 #: app/views/socles/new.html.erb:5 app/views/tags/new.html.erb:5
-#: app/views/teams/new.html.erb:5 app/views/typeurls/new.html.erb:5
+#: app/views/teams/new.html.erb:5
 msgid "Create"
 msgstr "Créer"
 
@@ -4569,28 +4548,6 @@ msgstr "Équipe %s"
 msgid "Members"
 msgstr "Membres"
 
-#: app/views/typeurls/edit.html.erb:1
-msgid "Editing typeurl"
-msgstr "Éditer un type d'url"
-
-#: app/views/typeurls/index.html.erb:1
-msgid "List of the types for an software url"
-msgstr "Liste des types d'url pour un logiciel"
-
-#: app/views/typeurls/index.html.erb:3
-msgid "a new type of url"
-msgstr "une nouvelle url"
-
-#: app/views/typeurls/index.html.erb:11
-#: app/views/urlreversements/index.html.erb:3
-#: app/views/urlsoftwares/index.html.erb:3
-msgid "a new url"
-msgstr "une nouvelle url"
-
-#: app/views/typeurls/new.html.erb:1
-msgid "Create a New typeurl"
-msgstr "Créér un nouveau type d'url"
-
 #: app/views/urlreversements/_form.html.erb:3
 msgid "Valeur"
 msgstr "Valeur"
@@ -4603,6 +4560,11 @@ msgstr "Modifier l'url"
 msgid "List of urls in contributions"
 msgstr "Liste des url dans contributions"
 
+#: app/views/urlreversements/index.html.erb:3
+#: app/views/urlsoftwares/index.html.erb:3
+msgid "a new url"
+msgstr "une nouvelle url"
+
 #: app/views/urlreversements/new.html.erb:1
 msgid "Add an url to follow your contribution"
 msgstr "Ajouter une url pour suivre votre contribution"
@@ -4611,12 +4573,6 @@ msgstr "Ajouter une url pour suivre votre contribution"
 msgid "Value"
 msgstr "Valeur"
 
-#: app/views/urlsoftwares/_form.html.erb:9
-#: app/views/urlsoftwares/index.html.erb:6
-#: app/views/urlsoftwares/show.html.erb:12
-msgid "Kind"
-msgstr "Type"
-
 #: app/views/urlsoftwares/edit.html.erb:1
 msgid "Editing url of \"%s\""
 msgstr "Éditer l'url de \"%s\""
@@ -4624,6 +4580,10 @@ msgstr "Éditer l'url de \"%s\""
 #: app/views/urlsoftwares/index.html.erb:1
 msgid "List of software's links"
 msgstr "Liste des liens logiciels"
+
+#: app/views/urlsoftwares/index.html.erb:6
+msgid "Kind"
+msgstr "Type"
 
 #: app/views/urlsoftwares/new.html.erb:1
 msgid "Add an url for a software"
@@ -5100,3 +5060,4 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
+

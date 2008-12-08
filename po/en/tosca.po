@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-08 19:00+0100\n"
+"POT-Creation-Date: 2008-12-08 19:27+0100\n"
 "PO-Revision-Date: 2008-12-02 09:14+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
@@ -760,14 +760,6 @@ msgstr ""
 msgid "Team %s was successfully updated."
 msgstr ""
 
-#: app/controllers/typeurls_controller.rb:35
-msgid "A url type was successfully created."
-msgstr ""
-
-#: app/controllers/typeurls_controller.rb:49
-msgid "A url type was successfully updated."
-msgstr ""
-
 #: app/controllers/urlreversements_controller.rb:39
 msgid "Urlreversement was successfully created."
 msgstr ""
@@ -1242,7 +1234,7 @@ msgstr ""
 #: app/views/contributiontypes/show.html.erb:8
 #: app/views/documenttypes/show.html.erb:8
 #: app/views/severities/show.html.erb:8 app/views/teams/new.html.erb:8
-#: app/views/teams/show.html.erb:13 app/views/typeurls/show.html.erb:8
+#: app/views/teams/show.html.erb:13
 msgid "Back"
 msgstr ""
 
@@ -1363,11 +1355,11 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Created on"
+msgid "Alert|Created at"
 msgstr "Created on"
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated on"
+msgid "Alert|Updated at"
 msgstr "Updated on"
 
 #: app/models/archive.rb:-
@@ -1753,7 +1745,7 @@ msgid "knowledge"
 msgstr ""
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|Skill"
+msgid "Knowledge|skill"
 msgstr "skill"
 
 #: app/models/knowledge.rb:-
@@ -2043,15 +2035,15 @@ msgstr ""
 msgid "Software|Private"
 msgstr ""
 
-#: app/models/software.rb:37
+#: app/models/software.rb:36
 msgid "You have to specify a name"
 msgstr ""
 
-#: app/models/software.rb:39
+#: app/models/software.rb:38
 msgid "You have to specify a group"
 msgstr ""
 
-#: app/models/software.rb:41
+#: app/models/software.rb:40
 msgid "You have to specify at least one technology"
 msgstr ""
 
@@ -2087,14 +2079,6 @@ msgstr ""
 msgid "Team|Contact"
 msgstr ""
 
-#: app/models/typeurl.rb:-
-msgid "typeurl"
-msgstr ""
-
-#: app/models/typeurl.rb:-
-msgid "Typeurl|Name"
-msgstr "Name"
-
 #: app/models/urlreversement.rb:-
 msgid "urlreversement"
 msgstr "contributionstate"
@@ -2113,10 +2097,6 @@ msgstr ""
 
 #: app/models/urlsoftware.rb:-
 msgid "Urlsoftware|Software"
-msgstr ""
-
-#: app/models/urlsoftware.rb:-
-msgid "Urlsoftware|Typeurl"
 msgstr ""
 
 #: app/models/urlsoftware.rb:-
@@ -2400,7 +2380,7 @@ msgstr ""
 #: app/views/softwares/index.html.erb:4 app/views/softwares/show.html.erb:9
 #: app/views/statuts/_form.html.erb:3 app/views/tags/_form.html.erb:4
 #: app/views/tags/index.html.erb:5 app/views/tags/show.html.erb:7
-#: app/views/teams/index.html.erb:5 app/views/typeurls/_form.html.erb:3
+#: app/views/teams/index.html.erb:5
 msgid "Name"
 msgstr ""
 
@@ -2575,7 +2555,6 @@ msgstr ""
 #: app/views/severities/edit.html.erb:5 app/views/severities/show.html.erb:7
 #: app/views/skills/edit.html.erb:5 app/views/socles/edit.html.erb:5
 #: app/views/tags/edit.html.erb:5 app/views/teams/show.html.erb:12
-#: app/views/typeurls/show.html.erb:7
 msgid "Edit"
 msgstr ""
 
@@ -2820,7 +2799,7 @@ msgstr ""
 #: app/views/roles/new.html.erb:5 app/views/rules/components/new.html.erb:5
 #: app/views/severities/new.html.erb:5 app/views/skills/new.html.erb:5
 #: app/views/socles/new.html.erb:5 app/views/tags/new.html.erb:5
-#: app/views/teams/new.html.erb:5 app/views/typeurls/new.html.erb:5
+#: app/views/teams/new.html.erb:5
 msgid "Create"
 msgstr ""
 
@@ -4523,28 +4502,6 @@ msgstr ""
 msgid "Members"
 msgstr ""
 
-#: app/views/typeurls/edit.html.erb:1
-msgid "Editing typeurl"
-msgstr ""
-
-#: app/views/typeurls/index.html.erb:1
-msgid "List of the types for an software url"
-msgstr ""
-
-#: app/views/typeurls/index.html.erb:3
-msgid "a new type of url"
-msgstr ""
-
-#: app/views/typeurls/index.html.erb:11
-#: app/views/urlreversements/index.html.erb:3
-#: app/views/urlsoftwares/index.html.erb:3
-msgid "a new url"
-msgstr ""
-
-#: app/views/typeurls/new.html.erb:1
-msgid "Create a New typeurl"
-msgstr ""
-
 #: app/views/urlreversements/_form.html.erb:3
 msgid "Valeur"
 msgstr ""
@@ -4557,6 +4514,11 @@ msgstr ""
 msgid "List of urls in contributions"
 msgstr ""
 
+#: app/views/urlreversements/index.html.erb:3
+#: app/views/urlsoftwares/index.html.erb:3
+msgid "a new url"
+msgstr ""
+
 #: app/views/urlreversements/new.html.erb:1
 msgid "Add an url to follow your contribution"
 msgstr ""
@@ -4565,18 +4527,16 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: app/views/urlsoftwares/_form.html.erb:9
-#: app/views/urlsoftwares/index.html.erb:6
-#: app/views/urlsoftwares/show.html.erb:12
-msgid "Kind"
-msgstr ""
-
 #: app/views/urlsoftwares/edit.html.erb:1
 msgid "Editing url of \"%s\""
 msgstr ""
 
 #: app/views/urlsoftwares/index.html.erb:1
 msgid "List of software's links"
+msgstr ""
+
+#: app/views/urlsoftwares/index.html.erb:6
+msgid "Kind"
 msgstr ""
 
 #: app/views/urlsoftwares/new.html.erb:1

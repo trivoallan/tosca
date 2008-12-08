@@ -17,7 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Urlsoftware < ActiveRecord::Base
-  belongs_to :typeurl
   belongs_to :software
 
   validates_presence_of :valeur

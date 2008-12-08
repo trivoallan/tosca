@@ -26,8 +26,7 @@ class Software < ActiveRecord::Base
   has_many :contributions
   has_many :knowledges
   has_many :issues
-  has_many :urlsoftwares, :dependent => :destroy,
-    :order => 'urlsoftwares.typeurl_id'
+  has_many :urlsoftwares, :dependent => :destroy
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
 

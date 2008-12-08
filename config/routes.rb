@@ -148,7 +148,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contributiontypes
   map.resources :issuetypes
   map.resources :documenttypes
-  map.resources :typeurls
   map.resources :urlsoftwares
   map.resources :urlreversements
   map.resources :versions
