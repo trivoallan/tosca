@@ -744,11 +744,11 @@ msgstr ""
 msgid "Team %s was successfully updated."
 msgstr ""
 
-#: app/controllers/typecontributions_controller.rb:35
+#: app/controllers/contributiontypes_controller.rb:35
 msgid "A new type of contribution was successfully created."
 msgstr ""
 
-#: app/controllers/typecontributions_controller.rb:49
+#: app/controllers/contributiontypes_controller.rb:49
 msgid "A Type of contribution was successfully updated."
 msgstr ""
 
@@ -1123,7 +1123,7 @@ msgid "First page"
 msgstr ""
 
 #: app/helpers/pages_helper.rb:120 app/helpers/static_image.rb:100
-#: app/views/typecontributions/index.html.erb:20
+#: app/views/contributiontypes/index.html.erb:20
 msgid "Previous page"
 msgstr ""
 
@@ -1136,7 +1136,7 @@ msgid "&nbsp; on "
 msgstr ""
 
 #: app/helpers/pages_helper.rb:130 app/helpers/static_image.rb:106
-#: app/views/typecontributions/index.html.erb:21
+#: app/views/contributiontypes/index.html.erb:21
 msgid "Next page"
 msgstr ""
 
@@ -1241,7 +1241,7 @@ msgstr ""
 #: app/helpers/static_image.rb:88 app/views/changelogs/show.html.erb:8
 #: app/views/severities/show.html.erb:8 app/views/teams/new.html.erb:8
 #: app/views/teams/show.html.erb:13
-#: app/views/typecontributions/show.html.erb:8
+#: app/views/contributiontypes/show.html.erb:8
 #: app/views/typedocuments/show.html.erb:8 app/views/typeurls/show.html.erb:8
 msgid "Back"
 msgstr ""
@@ -2055,16 +2055,16 @@ msgstr ""
 msgid "Team|Contact"
 msgstr ""
 
-#: app/models/typecontribution.rb:-
-msgid "typecontribution"
+#: app/models/contributiontype.rb:-
+msgid "contributiontype"
 msgstr ""
 
-#: app/models/typecontribution.rb:-
-msgid "Typecontribution|Name"
+#: app/models/contributiontype.rb:-
+msgid "Contributiontype|Name"
 msgstr "Name"
 
-#: app/models/typecontribution.rb:-
-msgid "Typecontribution|Description"
+#: app/models/contributiontype.rb:-
+msgid "Contributiontype|Description"
 msgstr "Description"
 
 #: app/models/typedocument.rb:-
@@ -2398,7 +2398,7 @@ msgstr ""
 #: app/views/softwares/show.html.erb:9 app/views/statuts/_form.html.erb:3
 #: app/views/tags/_form.html.erb:4 app/views/tags/index.html.erb:5
 #: app/views/tags/show.html.erb:7 app/views/teams/index.html.erb:5
-#: app/views/typecontributions/_form.html.erb:3
+#: app/views/contributiontypes/_form.html.erb:3
 #: app/views/typedocuments/_form.html.erb:3
 #: app/views/typeissues/_form.html.erb:3 app/views/typeurls/_form.html.erb:3
 msgid "Name"
@@ -2571,8 +2571,8 @@ msgstr ""
 #: app/views/permissions/edit.html.erb:5 app/views/severities/edit.html.erb:5
 #: app/views/severities/show.html.erb:7 app/views/socles/edit.html.erb:5
 #: app/views/tags/edit.html.erb:5 app/views/teams/show.html.erb:12
-#: app/views/typecontributions/edit.html.erb:5
-#: app/views/typecontributions/show.html.erb:7
+#: app/views/contributiontypes/edit.html.erb:5
+#: app/views/contributiontypes/show.html.erb:7
 #: app/views/typedocuments/edit.html.erb:5
 #: app/views/typedocuments/show.html.erb:7
 #: app/views/typeissues/edit.html.erb:5 app/views/typeurls/show.html.erb:7
@@ -2618,7 +2618,7 @@ msgstr ""
 
 #: app/views/changelogs/edit.html.erb:8 app/views/clients/edit.html.erb:8
 #: app/views/reporting/delai.html.erb:6
-#: app/views/typecontributions/edit.html.erb:8
+#: app/views/contributiontypes/edit.html.erb:8
 msgid "Show"
 msgstr ""
 
@@ -2655,7 +2655,7 @@ msgstr ""
 #: app/views/roles/index.html.erb:4 app/views/softwares/_form.html.erb:16
 #: app/views/softwares/_software_info.html.erb:41
 #: app/views/softwares/index.html.erb:4 app/views/statuts/_form.html.erb:6
-#: app/views/typecontributions/_form.html.erb:6
+#: app/views/contributiontypes/_form.html.erb:6
 #: app/views/typedocuments/_form.html.erb:6
 msgid "Description"
 msgstr "Description"
@@ -2818,7 +2818,7 @@ msgstr ""
 #: app/views/roles/new.html.erb:5 app/views/rules/components/new.html.erb:5
 #: app/views/severities/new.html.erb:5 app/views/socles/new.html.erb:5
 #: app/views/tags/new.html.erb:5 app/views/teams/new.html.erb:5
-#: app/views/typecontributions/new.html.erb:5
+#: app/views/contributiontypes/new.html.erb:5
 #: app/views/typedocuments/new.html.erb:5 app/views/typeissues/new.html.erb:5
 #: app/views/typeurls/new.html.erb:5
 msgid "Create"
@@ -4465,19 +4465,19 @@ msgstr ""
 msgid "Members"
 msgstr ""
 
-#: app/views/typecontributions/edit.html.erb:1
+#: app/views/contributiontypes/edit.html.erb:1
 msgid "Editing a type of contribution"
 msgstr ""
 
-#: app/views/typecontributions/index.html.erb:1
+#: app/views/contributiontypes/index.html.erb:1
 msgid "List of the types of contribution"
 msgstr ""
 
-#: app/views/typecontributions/index.html.erb:25
+#: app/views/contributiontypes/index.html.erb:25
 msgid "Create a new type of contribution"
 msgstr ""
 
-#: app/views/typecontributions/new.html.erb:1
+#: app/views/contributiontypes/new.html.erb:1
 msgid "A new typeof contribution"
 msgstr ""
 

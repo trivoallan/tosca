@@ -22,8 +22,8 @@
       </tr><tr>
         <td colspan="2"><%= file_column_field 'contribution', 'patch'  %></td>
       </tr><tr>
-        <th><label for="contribution_typecontribution"><%=_('Kind of contribution')%></label></th>
-        <td><%= select(:contribution, :typecontribution_id, @typecontributions) %></td>
+        <th><label for="contribution_contributiontype"><%=_('Kind of contribution')%></label></th>
+        <td><%= select(:contribution, :contributiontype_id, @contributiontypes) %></td>
       </tr><tr id="versions">
         <%= render :partial => 'list_versions' %>
       </tr>

@@ -160,7 +160,7 @@ private
     @softwares = Software.find_select
     @contributionstates = Contributionstate.find_select
     @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
-    @typecontributions = Typecontribution.find_select
+    @contributiontypes = Contributiontype.find_select
     if @contribution.software_id
       @versions = @contribution.software.versions.find_select
     else

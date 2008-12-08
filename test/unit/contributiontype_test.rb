@@ -16,6 +16,12 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Typecontribution < ActiveRecord::Base
-  has_many :contributions
+require File.dirname(__FILE__) + '/../test_helper'
+
+class ContributiontypeTest < Test::Unit::TestCase
+  fixtures :contributiontypes
+
+  def test_to_strings
+    check_strings Contributiontype
+  end
 end

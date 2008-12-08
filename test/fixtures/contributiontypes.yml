@@ -1,13 +1,13 @@
 --- 
-typecontribution_00001: 
+contributiontype_00001: 
   name: Correction
   id: 1
   description: ""
-typecontribution_00002: 
+contributiontype_00002: 
   name: "\xC3\x89volution"
   id: 2
   description: ""
-typecontribution_00003: 
+contributiontype_00003: 
   name: Backport
   id: 3
   description: ""

@@ -145,7 +145,7 @@ ActionController::Routing::Routes.draw do |map|
     :auto_complete_for_contract_name => :post,
     :auto_complete_for_user_name => :post }
   map.resources :time_tickets
-  map.resources :typecontributions
+  map.resources :contributiontypes
   map.resources :typeissues
   map.resources :typedocuments
   map.resources :typeurls

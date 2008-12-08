@@ -70,7 +70,7 @@ Role -> Permission [arrowhead=crow,arrowtail=crow,dir=both]
 Urlreversement -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
 
 Contribution -> Contributionstate [arrowhead=dot,dir=both,arrowtail=crow]
-Contribution -> Typecontribution [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Contributiontype [arrowhead=dot,dir=both,arrowtail=crow]
 Contribution -> Software [arrowhead=dot,dir=both,arrowtail=crow]
 Contribution -> Version [arrowhead=dot,arrowtail=crow,dir=both]
 Contribution -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
