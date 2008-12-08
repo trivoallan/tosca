@@ -2,7 +2,7 @@ class RenameTypeissue2Issuetype < ActiveRecord::Migration
   def self.up
     rename_table :typeissues, :issuetypes
     
-    rename_column :commitments, :typeissue_id, :issuetypes_id
+    rename_column :commitments, :typeissue_id, :issuetype_id
     rename_column :issues, :typeissue_id, :issuetypes_id
   end
 
