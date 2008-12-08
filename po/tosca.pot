@@ -748,11 +748,11 @@ msgstr ""
 msgid "A Type of contribution was successfully updated."
 msgstr ""
 
-#: app/controllers/typeissues_controller.rb:35
+#: app/controllers/issuetypes_controller.rb:35
 msgid "A new type of issue was successfully created."
 msgstr ""
 
-#: app/controllers/typeissues_controller.rb:49
+#: app/controllers/issuetypes_controller.rb:49
 msgid "An issue type was successfully updated."
 msgstr ""
 
@@ -1551,7 +1551,7 @@ msgid "Commitment|Correction"
 msgstr ""
 
 #: app/models/commitment.rb:-
-msgid "Commitment|Typeissue"
+msgid "Commitment|Issuetype"
 msgstr ""
 
 #: app/models/skill.rb:-
@@ -2073,12 +2073,12 @@ msgstr ""
 msgid "Documenttype|Description"
 msgstr ""
 
-#: app/models/typeissue.rb:-
-msgid "typeissue"
+#: app/models/issuetype.rb:-
+msgid "issuetype"
 msgstr ""
 
-#: app/models/typeissue.rb:-
-msgid "Typeissue|Name"
+#: app/models/issuetype.rb:-
+msgid "Issuetype|Name"
 msgstr ""
 
 #: app/models/typeurl.rb:-
@@ -2394,7 +2394,7 @@ msgstr ""
 #: app/views/tags/show.html.erb:7 app/views/teams/index.html.erb:5
 #: app/views/contributiontypes/_form.html.erb:3
 #: app/views/documenttypes/_form.html.erb:3
-#: app/views/typeissues/_form.html.erb:3 app/views/typeurls/_form.html.erb:3
+#: app/views/issuetypes/_form.html.erb:3 app/views/typeurls/_form.html.erb:3
 msgid "Name"
 msgstr ""
 
@@ -2569,7 +2569,7 @@ msgstr ""
 #: app/views/contributiontypes/show.html.erb:7
 #: app/views/documenttypes/edit.html.erb:5
 #: app/views/documenttypes/show.html.erb:7
-#: app/views/typeissues/edit.html.erb:5 app/views/typeurls/show.html.erb:7
+#: app/views/issuetypes/edit.html.erb:5 app/views/typeurls/show.html.erb:7
 msgid "Edit"
 msgstr ""
 
@@ -2813,7 +2813,7 @@ msgstr ""
 #: app/views/severities/new.html.erb:5 app/views/socles/new.html.erb:5
 #: app/views/tags/new.html.erb:5 app/views/teams/new.html.erb:5
 #: app/views/contributiontypes/new.html.erb:5
-#: app/views/documenttypes/new.html.erb:5 app/views/typeissues/new.html.erb:5
+#: app/views/documenttypes/new.html.erb:5 app/views/issuetypes/new.html.erb:5
 #: app/views/typeurls/new.html.erb:5
 msgid "Create"
 msgstr ""
@@ -4492,24 +4492,24 @@ msgstr ""
 msgid "Create a new type of documents"
 msgstr ""
 
-#: app/views/typeissues/edit.html.erb:1
+#: app/views/issuetypes/edit.html.erb:1
 msgid "Editing an issue type"
 msgstr ""
 
-#: app/views/typeissues/edit.html.erb:8
+#: app/views/issuetypes/edit.html.erb:8
 msgid "List"
 msgstr ""
 
-#: app/views/typeissues/index.html.erb:1
+#: app/views/issuetypes/index.html.erb:1
 msgid "List of the types of issues"
 msgstr ""
 
-#: app/views/typeissues/index.html.erb:3
-#: app/views/typeissues/index.html.erb:11
+#: app/views/issuetypes/index.html.erb:3
+#: app/views/issuetypes/index.html.erb:11
 msgid "a new type of issue"
 msgstr ""
 
-#: app/views/typeissues/new.html.erb:1
+#: app/views/issuetypes/new.html.erb:1
 msgid "A new type of issue"
 msgstr ""
 

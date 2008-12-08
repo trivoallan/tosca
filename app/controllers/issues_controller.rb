@@ -86,7 +86,7 @@ class IssuesController < ApplicationController
         [:text, 'softwares.name', 'issues.resume', :multiple_like ],
         [:contract_id, 'issues.contract_id', :equal ],
         [:ingenieur_id, 'issues.ingenieur_id', :equal ],
-        [:typeissue_id, 'issues.typeissue_id', :equal ],
+        [:issuetype_id, 'issues.issuetype_id', :equal ],
         [:severity_id, 'issues.severity_id', :equal ],
         [:statut_id, 'issues.statut_id', :equal ]
       ], special_cond)
@@ -340,7 +340,7 @@ class IssuesController < ApplicationController
 
   def _panel
     @statuts = Statut.find_select(:order => 'id')
-    @typeissues = Typeissue.find_select()
+    @issuetypes = Issuetype.find_select()
     @severities = Severity.find_select()
     if @ingenieur
       @contracts = Contract.find_select(Contract::OPTIONS)
@@ -373,10 +373,10 @@ class IssuesController < ApplicationController
     end
     if recipient
       client = recipient.client
-      @typeissues = client.typeissues.collect{|td| [td.name, td.id]}
+      @issuetypes = client.issuetypes.collect{|td| [td.name, td.id]}
     else
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
-      @typeissues = Typeissue.find_select
+      @issuetypes = Issuetype.find_select
     end
     @versions = []
     @severities = Severity.find_select

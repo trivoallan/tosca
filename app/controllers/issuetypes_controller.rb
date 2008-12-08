@@ -16,45 +16,45 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class TypeissuesController < ApplicationController
+class IssuetypesController < ApplicationController
   def index
-    @typeissue_pages, @typeissues = paginate :typeissues, :per_page => 10
+    @issuetype_pages, @issuetypes = paginate :issuetypes, :per_page => 10
   end
 
   def show
-    @typeissue = Typeissue.find(params[:id])
+    @issuetype = Issuetype.find(params[:id])
   end
 
   def new
-    @typeissue = Typeissue.new
+    @issuetype = Issuetype.new
   end
 
   def create
-    @typeissue = Typeissue.new(params[:typeissue])
-    if @typeissue.save
+    @issuetype = Issuetype.new(params[:issuetype])
+    if @issuetype.save
       flash[:notice] = _("A new type of issue was successfully created.")
-      redirect_to typeissues_path
+      redirect_to issuetypes_path
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @typeissue = Typeissue.find(params[:id])
+    @issuetype = Issuetype.find(params[:id])
   end
 
   def update
-    @typeissue = Typeissue.find(params[:id])
-    if @typeissue.update_attributes(params[:typeissue])
+    @issuetype = Issuetype.find(params[:id])
+    if @issuetype.update_attributes(params[:issuetype])
       flash[:notice] = _("An issue type was successfully updated.")
-      redirect_to typeissue_path(@typeissue)
+      redirect_to issuetype_path(@issuetype)
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Typeissue.find(params[:id]).destroy
-    redirect_to typeissues_path
+    Issuetype.find(params[:id]).destroy
+    redirect_to issuetypes_path
   end
 end

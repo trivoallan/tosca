@@ -18,8 +18,8 @@
 #
 class CommitmentsController < ApplicationController
   def index
-    options = { :per_page => 20, :order => "typeissue_id, severity_id",
-      :include => [:typeissue,:severity], :page => params[:page] }
+    options = { :per_page => 20, :order => "issuetype_id, severity_id",
+      :include => [:issuetype,:severity], :page => params[:page] }
     @commitments = Commitment.paginate options
   end
 
@@ -65,7 +65,7 @@ class CommitmentsController < ApplicationController
 
   private
   def _form
-    @typeissues = Typeissue.find_select
+    @issuetypes = Issuetype.find_select
     @severities = Severity.find_select
   end
 end

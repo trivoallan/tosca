@@ -1,9 +1,0 @@
-<div class="show">
-  <% for column in Typeissue.content_columns %>
-  <p>
-    <b><%= column.human_name %>:</b> <%= @typeissue.send(column.name) %>
-  </p>
-  <% end %>
-  <br />
-  <%= link_to_edit_and_list @typeissue %>
-</div>

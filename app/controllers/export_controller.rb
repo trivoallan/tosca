@@ -143,7 +143,7 @@ class ExportController < ApplicationController
   def compute_issues(type, options_generate)
     columns = [ 'id', 'softwares_name', 'clients_name', 'severities_name',
       'created_on_formatted', 'socle', 'updated_on_formatted', 'resume',
-      'statuts_name', 'typeissues_name'
+      'statuts_name', 'issuetypes_name'
     ]
     options= { :order => 'issues.created_on', :conditions => flash[:conditions],
       :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST,

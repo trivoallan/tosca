@@ -16,7 +16,5 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Typeissue < ActiveRecord::Base
-  has_many :commitments
-  has_many :issues
+module IssuetypesHelper
 end

@@ -21,7 +21,7 @@ class Issue < ActiveRecord::Base
 
   has_one :elapsed, :dependent => :destroy
 
-  belongs_to :typeissue
+  belongs_to :issuetype
   belongs_to :software
   belongs_to :version
   belongs_to :release
@@ -101,7 +101,7 @@ class Issue < ActiveRecord::Base
   end
 
   def name
-    "#{typeissue.name} (#{severity.name}) : #{resume}"
+    "#{issuetype.name} (#{severity.name}) : #{resume}"
   end
 
   def pretty_id
@@ -161,7 +161,7 @@ class Issue < ActiveRecord::Base
   # Remanent fields are those which persists after the first submit
   # It /!\ MUST /!^ be an _id field. See IssuesController#create.
   def self.remanent_fields
-    [ :contract_id, :recipient_id, :typeissue_id, :severity_id,
+    [ :contract_id, :recipient_id, :issuetype_id, :severity_id,
       :socle_id, :software_id, :ingenieur_id ]
   end
 
@@ -224,11 +224,11 @@ class Issue < ActiveRecord::Base
   # it's not enough, but a good start :)
   SELECT_LIST = 'issues.*, severities.name as severities_name,
     softwares.name as softwares_name, clients.name as clients_name,
-    typeissues.name as typeissues_name, statuts.name as statuts_name' unless defined? SELECT_LIST
+    issuetypes.name as issuetypes_name, statuts.name as statuts_name' unless defined? SELECT_LIST
   JOINS_LIST = 'INNER JOIN severities ON severities.id=issues.severity_id
     INNER JOIN recipients ON recipients.id=issues.recipient_id
     INNER JOIN clients ON clients.id = recipients.client_id
-    INNER JOIN typeissues ON typeissues.id = issues.typeissue_id
+    INNER JOIN issuetypes ON issuetypes.id = issues.issuetype_id
     INNER JOIN statuts ON statuts.id = issues.statut_id
     LEFT OUTER JOIN softwares ON softwares.id = issues.software_id ' unless defined? JOINS_LIST
 
@@ -314,9 +314,9 @@ class Issue < ActiveRecord::Base
   # TODO : add a commitment_id to Issue Table. This helper method
   # clearly slows uselessly Tosca.
   def commitment
-    return nil unless contract_id && severity_id && typeissue_id
+    return nil unless contract_id && severity_id && issuetype_id
     self.contract.commitments.find(:first, :conditions =>
-        {:typeissue_id => self.typeissue_id, :severity_id => self.severity_id})
+        {:issuetype_id => self.issuetype_id, :severity_id => self.severity_id})
   end
 
   # useful shortcut

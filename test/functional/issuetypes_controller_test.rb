@@ -17,16 +17,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'typeissues_controller'
+require 'issuetypes_controller'
 
 # Re-raise errors caught by the controller.
-class TypeissuesController; def rescue_action(e) raise e end; end
+class IssuetypesController; def rescue_action(e) raise e end; end
 
-class TypeissuesControllerTest < Test::Unit::TestCase
-  fixtures :typeissues
+class IssuetypesControllerTest < Test::Unit::TestCase
+  fixtures :issuetypes
 
   def setup
-    @controller = TypeissuesController.new
+    @controller = IssuetypesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -36,7 +36,7 @@ class TypeissuesControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:typeissues)
+    assert_not_nil assigns(:issuetypes)
   end
 
   def test_show
@@ -45,8 +45,8 @@ class TypeissuesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:typeissue)
-    assert assigns(:typeissue).valid?
+    assert_not_nil assigns(:issuetype)
+    assert assigns(:issuetype).valid?
   end
 
   def test_new
@@ -55,18 +55,18 @@ class TypeissuesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:typeissue)
+    assert_not_nil assigns(:issuetype)
   end
 
   def test_create
-    num_typeissues = Typeissue.count
+    num_issuetypes = Issuetype.count
 
-    post :create, :typeissue => {}
+    post :create, :issuetype => {}
 
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
-    assert_equal num_typeissues + 1, Typeissue.count
+    assert_equal num_issuetypes + 1, Issuetype.count
   end
 
   def test_edit
@@ -75,8 +75,8 @@ class TypeissuesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:typeissue)
-    assert assigns(:typeissue).valid?
+    assert_not_nil assigns(:issuetype)
+    assert assigns(:issuetype).valid?
   end
 
   def test_update
@@ -86,14 +86,14 @@ class TypeissuesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Typeissue.find(1)
+    assert_not_nil Issuetype.find(1)
 
     post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Typeissue.find(1)
+      Issuetype.find(1)
     }
   end
 end

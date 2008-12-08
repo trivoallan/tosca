@@ -30,7 +30,7 @@ class Contract < ActiveRecord::Base
 
   has_and_belongs_to_many :versions, :order => 'versions.name DESC', :uniq => true
   has_and_belongs_to_many :commitments, :uniq => true, :order =>
-    'typeissue_id, severity_id', :include => [:severity,:typeissue]
+    'issuetype_id, severity_id', :include => [:severity,:issuetype]
   has_and_belongs_to_many :users, :order => 'users.name', :uniq => true
   # Those 2 ones are helpers, not _real_ relation ship
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
@@ -117,17 +117,17 @@ class Contract < ActiveRecord::Base
 
   def find_commitment(issue)
     options = { :conditions =>
-      [ 'commitments.typeissue_id = ? AND severity_id = ?',
-        issue.typeissue_id, issue.severity_id ] }
+      [ 'commitments.issuetype_id = ? AND severity_id = ?',
+        issue.issuetype_id, issue.severity_id ] }
     self.commitments.find(:first, options)
   end
 
-  def typeissues
-    joins = 'INNER JOIN commitments ON commitments.typeissue_id = typeissues.id '
+  def issuetypes
+    joins = 'INNER JOIN commitments ON commitments.issuetype_id = issuetypes.id '
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
     conditions = [ 'commitments_contracts.contract_id = ? ', id ]
-    Typeissue.find(:all,
-                     :select => "DISTINCT typeissues.*",
+    Issuetype.find(:all,
+                     :select => "DISTINCT issuetypes.*",
                      :conditions => conditions,
                      :joins => joins)
   end

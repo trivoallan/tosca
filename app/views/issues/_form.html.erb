@@ -11,8 +11,8 @@
     <table>
 
       <tr>
-        <th><label for="issue_typeissue_id"><%= _("Type") %></label></th>
-        <td><%= select(:issue, :typeissue_id, @typeissues) %>
+        <th><label for="issue_issuetype_id"><%= _("Type") %></label></th>
+        <td><%= select(:issue, :issuetype_id, @issuetypes) %>
           <% if new_issue %>
             <%= select(:issue, :severity_id, @severities) %>
           <% end %>
@@ -150,7 +150,7 @@
 
 </div>
 
-<% fields = %w(issue_typeissue_id) %>
+<% fields = %w(issue_issuetype_id) %>
 <% fields << 'issue_contract_id' if @contracts.size > 1 %>
 <% fields << 'issue_severity_id' if new_issue %>
 <% options = PagesHelper::SPINNER_OPTIONS.dup.update(:with =>

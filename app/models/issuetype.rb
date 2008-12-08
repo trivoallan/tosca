@@ -16,13 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-require File.dirname(__FILE__) + '/../test_helper'
-
-class TypeissueTest < Test::Unit::TestCase
-  fixtures :typeissues
-
-  def test_to_strings
-    check_strings Typeissue
-  end
-
+class Issuetype < ActiveRecord::Base
+  has_many :commitments
+  has_many :issues
 end

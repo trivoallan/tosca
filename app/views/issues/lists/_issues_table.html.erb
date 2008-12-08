@@ -2,7 +2,7 @@
    <tr>
       <th width='2%'><%= _('Id') %><%#= sortable_header(:id, :label => _("Id")) %></th>
       <th width='7%'><%= _('Software') %><%#= sortable_header(:software_id, :label => _("Software")) %></th>
-      <th width='7%' colspan="2"><%= _('Type')%><%#= sortable_header(:typeissue_id, :label => _("Type")) %></th>
+      <th width='7%' colspan="2"><%= _('Type')%><%#= sortable_header(:issuetype_id, :label => _("Type")) %></th>
       <% if @ingenieur %>
         <th width='7%'><%= _('Client')%><%#= sortable_header(:client_id , :label => _("Client")) %></th>
       <% end %>
@@ -27,13 +27,13 @@
         <td><%= issue.software_name %></td>
         <td></td>
         <% #Yet another dirty hack ...
-           if issue.respond_to? :typeissues_name
-             typeissues_name = issue.typeissues_name
+           if issue.respond_to? :issuetypes_name
+             issuetypes_name = issue.issuetypes_name
            else
-             typeissues_name = issue.typeissue.name
+             issuetypes_name = issue.issuetype.name
            end
         %>
-        <td nowrap="nowrap"><span class="issue_<%=issue.statut_id%>">&nbsp;<%= typeissues_name %><%= StaticImage::severity(issue) %></span></td>
+        <td nowrap="nowrap"><span class="issue_<%=issue.statut_id%>">&nbsp;<%= issuetypes_name %><%= StaticImage::severity(issue) %></span></td>
        <% if @ingenieur %>
         <td><%= issue.client_name %></td>
        <% end %>

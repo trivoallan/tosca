@@ -348,7 +348,7 @@ class ReportingController < ApplicationController
   def init_compute_by_type
     @types = Array.new
     @contracts.each do |c|
-      @types.concat(c.client.typeissues)
+      @types.concat(c.client.issuetypes)
     end
     @types.uniq!
   end
@@ -365,7 +365,7 @@ class ReportingController < ApplicationController
 
     Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
       @types.each_with_index do |type, i|
-        conditions = { :conditions => { :typeissue_id => type.id } }
+        conditions = { :conditions => { :issuetype_id => type.id } }
         report[i*2].push Issue.count(conditions)
       end
     end
@@ -373,7 +373,7 @@ class ReportingController < ApplicationController
     size = @types.size
     Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
       @types.each_with_index do |type, i|
-        conditions = { :conditions => { :typeissue_id => type.id } }
+        conditions = { :conditions => { :issuetype_id => type.id } }
         report[i*2+1].push Issue.count(conditions)
       end
     end

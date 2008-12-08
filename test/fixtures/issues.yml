@@ -13,7 +13,7 @@ issue_00001:
   recipient_id: 1
   statut_id: 2
   contract_id: 1
-  typeissue_id: 2
+  issuetype_id: 2
   socle_id: 17
   mail_cc: ""
   first_comment_id: 1
@@ -34,7 +34,7 @@ issue_00002:
   recipient_id: 2
   statut_id: 2
   contract_id: 2
-  typeissue_id: 2
+  issuetype_id: 2
   socle_id: 17
   mail_cc: ""
   first_comment_id: 2
@@ -57,7 +57,7 @@ issue_00004:
   statut_id: 3
   mail_cc:
   socle_id: 2
-  typeissue_id: 2
+  issuetype_id: 2
   first_comment_id: 7572
   contribution_id:
   recipient_id: 2
@@ -79,7 +79,7 @@ issue_00005:
   statut_id: 3
   mail_cc:
   socle_id: 2
-  typeissue_id: 2
+  issuetype_id: 2
   first_comment_id: 4739
   contribution_id:
 
@@ -100,7 +100,7 @@ issue_00006:
   statut_id: 3
   mail_cc:
   socle_id: 2
-  typeissue_id: 2
+  issuetype_id: 2
   first_comment_id: 6406
   contribution_id:
 
@@ -121,7 +121,7 @@ issue_00007:
   statut_id: "3"
   mail_cc:
   socle_id: "3"
-  typeissue_id: "1"
+  issuetype_id: "1"
   first_comment_id: "7736"
   contribution_id:
 
@@ -142,7 +142,7 @@ issue_00008:
   statut_id: "7"
   mail_cc:
   socle_id:
-  typeissue_id: "1"
+  issuetype_id: "1"
   first_comment_id: "2212"
   contribution_id:
 
@@ -163,7 +163,7 @@ issue_00009:
   statut_id: "7"
   mail_cc:
   socle_id:
-  typeissue_id: "2"
+  issuetype_id: "2"
   first_comment_id: "2208"
   contribution_id:
 
@@ -184,6 +184,6 @@ issue_00010:
   statut_id: "6"
   mail_cc:
   socle_id: "28"
-  typeissue_id: "2"
+  issuetype_id: "2"
   first_comment_id: "2391"
   contribution_id:

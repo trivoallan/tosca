@@ -40,19 +40,19 @@ module EngagementsHelper
     out << ' | '
     out << _('Correction')
     out << '</th></tr>'
-    last_typeissue_id = 0
+    last_issuetype_id = 0
     last_severity_id = 0
     last_cycle = cycle('even', 'odd')
     selecteds = object_engagement.collect{|o| o.id }
     e = engagements.pop
     while (e) do
-      out << '<tr><td colspan="5"><hr/></td></tr>' if e.typeissue_id != last_typeissue_id
+      out << '<tr><td colspan="5"><hr/></td></tr>' if e.issuetype_id != last_issuetype_id
       last_cycle = cycle('even', 'odd') if e.severity_id != last_severity_id
       out << "<tr class=\"#{last_cycle}\">"
       out << '<td>'
-      if e.typeissue_id != last_typeissue_id
-        out << "<strong>#{e.typeissue.name}</strong>"
-        last_typeissue_id = e.typeissue_id
+      if e.issuetype_id != last_issuetype_id
+        out << "<strong>#{e.issuetype.name}</strong>"
+        last_issuetype_id = e.issuetype_id
       end
       out << '</td><td>'
       if e.severity_id != last_severity_id
@@ -64,7 +64,7 @@ module EngagementsHelper
       severities.push ['» ',0]
       # selecteds = []
       out << %Q{<select id="contract_engagement_ids"
-         name="contract[engagement_ids_#{last_typeissue_id}_#{last_severity_id}]">}
+         name="contract[engagement_ids_#{last_issuetype_id}_#{last_severity_id}]">}
       while (e) do
         workaround = Time.in_words(e.contournement.days, true)
         correction = Time.in_words(e.correction.days, true)
@@ -85,18 +85,18 @@ module EngagementsHelper
   def show_table_engagements(engagements)
     result = ''
     titres = [_('Issue'), _('Severity'), _('Workaround'), _('Correction')]
-    oldtypeissue = nil
+    oldissuetype = nil
     result << show_table(engagements, Engagement, titres) { |e|
       out = ''
-      out << (oldtypeissue == e.typeissue_id ? '<td></td>' :
-                "<td>#{e.typeissue.name}</td>" )
+      out << (oldissuetype == e.issuetype_id ? '<td></td>' :
+                "<td>#{e.issuetype.name}</td>" )
       out << "<td>#{e.severity.name}</td>"
       out << "<td>#{Time.in_words(e.contournement.days, true)}</td>"
       out << "<td>#{Time.in_words(e.correction.days, true)}</td>"
       if controller.controller_name == 'engagements'
         out << "#{link_to_actions_table e}"
       end
-      oldtypeissue = e.typeissue_id
+      oldissuetype = e.issuetype_id
      out
     }
     result

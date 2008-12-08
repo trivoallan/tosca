@@ -16,5 +16,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-module TypeissuesHelper
+require File.dirname(__FILE__) + '/../test_helper'
+
+class IssuetypeTest < Test::Unit::TestCase
+  fixtures :issuetypes
+
+  def test_to_strings
+    check_strings Issuetype
+  end
+
 end
