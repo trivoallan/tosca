@@ -76,7 +76,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :comments, :member => {
      :change_state => :post,
      :comment => :post }
-  map.resources :competences
+  map.resources :skills
   map.resources :contracts,
     :collection => {
       :ajax_choose => :post, :actives => :get, :ajax_add_software => :post,

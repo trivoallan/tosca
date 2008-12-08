@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Competence < ActiveRecord::Base
+class Skill < ActiveRecord::Base
   has_many :knowledges
   has_many :ingenieurs, :through => :knowledges
   has_many :tags

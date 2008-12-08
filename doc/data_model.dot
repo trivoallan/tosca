@@ -24,7 +24,7 @@ Contract -> Rule [arrowhead=dot,arrowtail=crow]
 
 User -> Image [arrowhead=dot,dir=both,arrowtail=crow]
 User -> Role [arrowhead=dot,arrowtail=crow,dir=both]
-Engineer -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
+Engineer -> Skill [arrowhead=crow,arrowtail=crow,dir=both]
 Engineer -> User [arrowhead=dot,arrowtail=odot,dir=both]
 Engineer -> Phonecall [arrowhead=crow,dir=both,arrowtail=dot]
 
@@ -46,7 +46,7 @@ Request -> Software [arrowhead=odot,dir=both,arrowtail=crow]
 Request -> Release [arrowhead=odot,dir=both,arrowtail=crow]
 Request -> Version [arrowhead=odot,dir=both,arrowtail=crow]
 
-Software -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
+Software -> Skill [arrowhead=crow,arrowtail=crow,dir=both]
 Software -> License [arrowhead=dot,dir=both,arrowtail=crow]
 Software -> Groupe [arrowhead=dot,dir=both,arrowtail=crow]
 Software -> Image [arrowhead=dot,dir=both,arrowtail=crow]

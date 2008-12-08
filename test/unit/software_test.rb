@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SoftwareTest < Test::Unit::TestCase
-  fixtures :softwares, :competences, :images, :contracts
+  fixtures :softwares, :skills, :images, :contracts
 
   def test_to_strings
     check_strings Software

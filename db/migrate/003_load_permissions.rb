@@ -83,7 +83,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^account/(signup|new|create)', 'Manage account' ],
                [ '^binaires/(?!destroy)', 'Manage binaries' ],
                [ '^clients/(?!destroy)', 'Manage clients' ],
-               [ '^competences/(?!destroy)', 'Manage knowledge' ],
+               [ '^skills/(?!destroy)', 'Manage knowledge' ],
                [ '^contracts/(?!destroy)', 'Manage contracts' ],
                [ '^commitments/(?!destroy)', 'Manage Service Level Agreement' ],
                [ '^groupes/(?!destroy)', 'Manage groups of software' ],

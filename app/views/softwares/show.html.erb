@@ -30,7 +30,7 @@
          <td><%=h @software.license.name if @software.license %></td></tr>
 
      <tr><th><%= _('Technologies') %></th>
-         <td><%= @software.competences.collect{|c| c.name}.join(', ') %></td></tr>
+         <td><%= @software.skills.collect{|c| c.name}.join(', ') %></td></tr>
 
      <tr><th><%= _('Group') %></th>
          <td><%= public_link_to(@software.groupe.name, groupe_path(@software.groupe_id) ) if @software.groupe %></td></tr>

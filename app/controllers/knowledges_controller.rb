@@ -22,7 +22,7 @@ class KnowledgesController < ApplicationController
 
   def index
     options = { :per_page => 25, :order => 'knowledges.ingenieur_id',
-      :include => [:ingenieur, :competence, :software], :page => params[:page] }
+      :include => [:ingenieur, :skill, :software], :page => params[:page] }
 
     if params.has_key? :filters
       session[:knowledges_filters] =
@@ -36,7 +36,7 @@ class KnowledgesController < ApplicationController
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(knowledges_filters, [
         [:software_id, 'knowledges.software_id', :equal ],
-        [:competence_id, 'knowledges.competence_id', :equal ],
+        [:skill_id, 'knowledges.skill_id', :equal ],
         [:ingenieur_id, 'knowledges.ingenieur_id', :equal ]
       ])
       @filters = knowledges_filters
@@ -98,13 +98,13 @@ class KnowledgesController < ApplicationController
 
   private
   def _form
-    @competences = Competence.find_select
+    @skills = Skill.find_select
     @software = Software.find_select
   end
 
   def _panel
     @software = Software.find_select
-    @competences = Competence.find_select
+    @skills = Skill.find_select
     @experts = Ingenieur.find_select(User::SELECT_OPTIONS)
   end
 

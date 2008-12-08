@@ -183,12 +183,12 @@ msgstr "Vous ne pouvez effacer le premier commentaire"
 msgid "You are not allowed to edit this comment"
 msgstr "Vous n'êtes pas autorisé à modifier ce commentaire"
 
-#: app/controllers/competences_controller.rb:37
+#: app/controllers/skills_controller.rb:37
 #: app/controllers/tags_controller.rb:38
 msgid "Skill was successfully created."
 msgstr "La compétence a été créée avec succès."
 
-#: app/controllers/competences_controller.rb:51
+#: app/controllers/skills_controller.rb:51
 #: app/controllers/tags_controller.rb:53
 msgid "Skill was successfully updated."
 msgstr "La compétence a été mise à jour avec succès."
@@ -914,7 +914,7 @@ msgstr "Contournée"
 msgid "Correction"
 msgstr "Correction"
 
-#: app/helpers/competences_helper.rb:28
+#: app/helpers/skills_helper.rb:28
 msgid "a technology"
 msgstr "une technologie"
 
@@ -1580,12 +1580,12 @@ msgstr "Correction"
 msgid "Commitment|Typeissue"
 msgstr "Type de demande"
 
-#: app/models/competence.rb:-
-msgid "competence"
+#: app/models/skill.rb:-
+msgid "skill"
 msgstr "compétence"
 
-#: app/models/competence.rb:-
-msgid "Competence|Name"
+#: app/models/skill.rb:-
+msgid "Skill|Name"
 msgstr "Nom"
 
 #: app/models/contribution.rb:35
@@ -1749,7 +1749,7 @@ msgid "knowledge"
 msgstr "connaissance"
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|Competence"
+msgid "Knowledge|Skill"
 msgstr "Niveau"
 
 #: app/models/knowledge.rb:-
@@ -2406,7 +2406,7 @@ msgstr "Rechercher"
 #: app/views/account/_users_info.html.erb:26
 #: app/views/archives/show.html.erb:14 app/views/changelogs/_form.html.erb:6
 #: app/views/clients/_form.html.erb:8 app/views/clients/index.html.erb:5
-#: app/views/competences/_form.html.erb:3 app/views/contracts/index.html.erb:6
+#: app/views/skills/_form.html.erb:3 app/views/contracts/index.html.erb:6
 #: app/views/contracts/show.html.erb:15
 #: app/views/contributions/_contributions_admin.html.erb:7
 #: app/views/contributions/_form.html.erb:7
@@ -2586,7 +2586,7 @@ msgstr "Éditer une pièce jointe"
 
 #: app/views/attachments/edit.html.erb:6 app/views/changelogs/edit.html.erb:5
 #: app/views/changelogs/show.html.erb:7 app/views/clients/edit.html.erb:5
-#: app/views/competences/edit.html.erb:5 app/views/groupes/edit.html.erb:5
+#: app/views/skills/edit.html.erb:5 app/views/groupes/edit.html.erb:5
 #: app/views/images/edit.html.erb:5 app/views/machines/edit.html.erb:5
 #: app/views/permissions/edit.html.erb:5 app/views/severities/edit.html.erb:5
 #: app/views/severities/show.html.erb:7 app/views/socles/edit.html.erb:5
@@ -2831,7 +2831,7 @@ msgstr "un engagement possible"
 msgid "A new commitment"
 msgstr "A nouvel engagement"
 
-#: app/views/commitments/new.html.erb:5 app/views/competences/new.html.erb:5
+#: app/views/commitments/new.html.erb:5 app/views/skills/new.html.erb:5
 #: app/views/contracts/new.html.erb:5 app/views/contributions/new.html.erb:5
 #: app/views/groupes/new.html.erb:5 app/views/images/new.html.erb:5
 #: app/views/machines/new.html.erb:5 app/views/phonecalls/new.html.erb:5
@@ -2844,24 +2844,24 @@ msgstr "A nouvel engagement"
 msgid "Create"
 msgstr "Créer"
 
-#: app/views/competences/edit.html.erb:1
+#: app/views/skills/edit.html.erb:1
 msgid "Editing skill"
 msgstr "Éditer la compétence"
 
-#: app/views/competences/index.html.erb:1
+#: app/views/skills/index.html.erb:1
 msgid "Skill list"
 msgstr "Liste des compétences"
 
-#: app/views/competences/index.html.erb:3 app/views/tags/index.html.erb:3
+#: app/views/skills/index.html.erb:3 app/views/tags/index.html.erb:3
 #: app/views/tags/index.html.erb:20
 msgid "a skill"
 msgstr "une compétence"
 
-#: app/views/competences/index.html.erb:4
+#: app/views/skills/index.html.erb:4
 msgid "Resources"
 msgstr "Ressources"
 
-#: app/views/competences/new.html.erb:1
+#: app/views/skills/new.html.erb:1
 msgid "New skill"
 msgstr "Nouvelle compétence"
 
@@ -4438,7 +4438,7 @@ msgstr "Nouveau statut"
 
 #: app/views/tags/_form.html.erb:10 app/views/tags/index.html.erb:5
 #: app/views/tags/show.html.erb:9
-msgid "Competence"
+msgid "Skill"
 msgstr "Compétence"
 
 #: app/views/tags/edit.html.erb:1

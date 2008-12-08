@@ -12,7 +12,7 @@ Contract -> User [arrowhead=crow,dir=both,arrowtail=crow]
 Contract -> Rule [arrowhead=dot,arrowtail=crow]
 
 User -> Role [arrowhead=dot,arrowtail=crow,dir=both]
-Engineer -> Competence [arrowhead=crow,arrowtail=crow,dir=both]
+Engineer -> Skill [arrowhead=crow,arrowtail=crow,dir=both]
 Engineer -> User [arrowhead=dot,arrowtail=odot,dir=both]
 
 Request -> TypeRequest [arrowhead=dot,dir=both,arrowtail=crow]

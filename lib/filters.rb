@@ -39,7 +39,7 @@ module Filters
   end
 
   class Knowledges < Struct.new('Knowledges', :ingenieur_id,
-                                :software_id, :competence_id)
+                                :software_id, :skill_id)
     extend Shared
   end
 
@@ -88,7 +88,7 @@ module Filters
   #   ['software', 'name', 'versions.name', :like ],
   #   ['software', 'description', 'versions.description', :like ],
   #   ['filters', 'groupe_id', 'softwares.groupe_id', :equal ],
-  #   ['filters', 'knowledge_id', 'competences_softwares.competence_id', :equal ],
+  #   ['filters', 'knowledge_id', 'skills_softwares.skill_id', :equal ],
   #   ['filters', 'client_id', ' versions.contract_id', :in ]
   # ])
   # flash[:conditions] = options[:conditions] = conditions

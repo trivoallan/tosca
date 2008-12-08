@@ -17,16 +17,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'competences_controller'
+require 'skills_controller'
 
 # Re-raise errors caught by the controller.
-class CompetencesController; def rescue_action(e) raise e end; end
+class SkillsController; def rescue_action(e) raise e end; end
 
-class CompetencesControllerTest < Test::Unit::TestCase
-  fixtures :competences
+class SkillsControllerTest < Test::Unit::TestCase
+  fixtures :skills
 
   def setup
-    @controller = CompetencesController.new
+    @controller = SkillsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -36,7 +36,7 @@ class CompetencesControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:competences)
+    assert_not_nil assigns(:skills)
   end
 
   def test_show
@@ -45,8 +45,8 @@ class CompetencesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:competence)
-    assert assigns(:competence).valid?
+    assert_not_nil assigns(:skill)
+    assert assigns(:skill).valid?
   end
 
   def test_new
@@ -55,18 +55,18 @@ class CompetencesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:competence)
+    assert_not_nil assigns(:skill)
   end
 
   def test_create
-    num_competences = Competence.count
+    num_skills = Skill.count
 
-    post :create, :competence => {}
+    post :create, :skill => {}
 
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
-    assert_equal num_competences + 1, Competence.count
+    assert_equal num_skills + 1, Skill.count
   end
 
   def test_edit
@@ -75,8 +75,8 @@ class CompetencesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:competence)
-    assert assigns(:competence).valid?
+    assert_not_nil assigns(:skill)
+    assert assigns(:skill).valid?
   end
 
   def test_update
@@ -86,14 +86,14 @@ class CompetencesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Competence.find(1)
+    assert_not_nil Skill.find(1)
 
     post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Competence.find(1)
+      Skill.find(1)
     }
   end
 end

@@ -21,15 +21,15 @@ require_dependency 'vendor/plugins/acts_as_taggable_on_steroids/lib/tag.rb'
 class Tag
 
   belongs_to :user
-  belongs_to :competence
+  belongs_to :skill
   belongs_to :contract
 
   def full_name
     name = self.name.dup
     if self.contract_id
       name << " (#{self.contract.name})"
-    elsif self.competence_id
-      name << " (#{self.competence.name})"
+    elsif self.skill_id
+      name << " (#{self.skill.name})"
     else
       #Something ?
     end
@@ -54,14 +54,14 @@ class Tag
   end
 
   def self.get_generic_tag
-    return Tag.find(:all, :conditions => ["competence_id IS NULL and contract_id IS NULL"] )
+    return Tag.find(:all, :conditions => ["skill_id IS NULL and contract_id IS NULL"] )
   end
 
-  def self.get_competence_tag(competences = nil)
-    if competences.nil?
-      conditions = ["competence_id IS NOT NULL"]
+  def self.get_skill_tag(skills = nil)
+    if skills.nil?
+      conditions = ["skill_id IS NOT NULL"]
     else
-      conditions = ["competence_id IN (?) ", competences ]
+      conditions = ["skill_id IN (?) ", skills ]
     end
     return Tag.find( :all, :conditions => conditions )
   end

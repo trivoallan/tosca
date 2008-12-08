@@ -18,10 +18,10 @@
 #
 require File.dirname(__FILE__) + '/../test_helper'
 
-class CompetenceTest < Test::Unit::TestCase
-  fixtures :competences
+class SkillTest < Test::Unit::TestCase
+  fixtures :skills
 
   def test_to_strings
-    check_strings Competence
+    check_strings Skill
   end
 end

@@ -1,24 +1,24 @@
 tag_00001:
   name: Ajax
   id: "1"
-  competence_id: "14"
+  skill_id: "14"
   contract_id:
   user_id: "1"
 tag_00002:
   name: Eclipse
   id: "2"
-  competence_id: "7"
+  skill_id: "7"
   contract_id:
   user_id: "1"
 tag_00003:
   name: Fun
   id: "3"
-  competence_id: "12"
+  skill_id: "12"
   contract_id:
   user_id: "1"
 tag_00004:
   name: Hard
   id: "4"
-  competence_id:
+  skill_id:
   contract_id:
   user_id: "1"

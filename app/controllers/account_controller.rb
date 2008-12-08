@@ -341,7 +341,7 @@ private
 
   def _form_engineer
     return unless @user_engineer
-    @competences = Competence.find_select
+    @competences = Skill.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)
     # For usability matters, list of checkable own_contracts
     # won't contains any already available by the team.

@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SoftwaresControllerTest < ActionController::TestCase
-  fixtures :softwares, :competences, :issues, :comments, :contracts,
+  fixtures :softwares, :skills, :issues, :comments, :contracts,
     :recipients, :contributions, :users, :clients, :credits, :components
 
   def setup
@@ -87,7 +87,7 @@ class SoftwaresControllerTest < ActionController::TestCase
       :description=> 'un bon software.',
       :resume=> 'Outil de compilation pour java',
       :license_id=> 2,
-      :competence_ids => [1]
+      :skill_ids => [1]
     }
 
     assert flash.has_key?(:notice)
@@ -115,7 +115,7 @@ class SoftwaresControllerTest < ActionController::TestCase
         :description=> 'un bon software.',
         :resume=> 'Outil de compilation pour java',
         :license_id=> 2,
-        :competence_ids => [1]
+        :skill_ids => [1]
     }
     post :update, { :id => 1, :software => options }
 

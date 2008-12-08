@@ -1,5 +1,5 @@
 <div id='tags' class='tags'>
  <p><label><%=_('Tags')%></label> <%= link_to_new_tag %></p>
-    <% tags = Tag.get_generic_tag + Tag.get_competence_tag(@software.competences) %>
+    <% tags = Tag.get_generic_tag + Tag.get_skill_tag(@software.skills) %>
     <%= hbtm_check_box( @software.tags, tags, 'software[tag_ids]', :size => 4) %>
 </div>

@@ -31,10 +31,10 @@ options.parse!(ARGV)
 
 models = [ Arch, Etatreversement, Groupe, Rules::Component,
            Rules::Credit, Role, Statut, Typecontribution, Typerequest,
-           Typedocument, Typeurl, Competence, Permission ]
+           Typedocument, Typeurl, Skill, Permission ]
 files = %w(arches etatreversements groupes ossas roles
           permissions statuts typecontributions typerequests
-          typedocuments typeurls competences permissions
+          typedocuments typeurls skills permissions
           permissions_roles time_tickets )
 
 =begin
@@ -50,7 +50,7 @@ action_name = @action.to_s.capitalize
 if @action == :dump or @action == :dumpall
   if @action == :dumpall
     models = [ Arch,Recipient,Changelog,Client,Comment,
-	  Competence,Contract,Contribution,Request,
+	  Skill,Contract,Contribution,Request,
           Distributeur,Document,Elapsed,Commitment,Etatreversement,Fichier,
           Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
           Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,

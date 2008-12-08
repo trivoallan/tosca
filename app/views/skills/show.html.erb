@@ -1,0 +1,8 @@
+<% for column in Skill.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%= @skill.send(column.name) %>
+</p>
+<% end %>
+
+<br />
+<%= link_to_edit_and_list @skill%>

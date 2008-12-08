@@ -16,16 +16,16 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-module CompetencesHelper
+module SkillsHelper
 
-  def liste_competences(competences)
-    competences.collect{|c| c.name}.join(', ')
+  def liste_skills(skills)
+    skills.collect{|c| c.name}.join(', ')
   end
 
   # call it like :
-  # <%= link_to_new_competence %>
-  def link_to_new_competence()
-    link_to image_create(_('a technology')), new_competence_path
+  # <%= link_to_new_skill %>
+  def link_to_new_skill()
+    link_to image_create(_('a technology')), new_skill_path
   end
 
 end

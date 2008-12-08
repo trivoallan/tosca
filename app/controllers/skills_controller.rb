@@ -16,47 +16,47 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class CompetencesController < ApplicationController
+class SkillsController < ApplicationController
   def index
-    options = { :per_page => 50, :order => 'competences.name',
+    options = { :per_page => 50, :order => 'skills.name',
       :page => params[:page] }
-    @competences = Competence.paginate options
+    @skills = Skill.paginate options
   end
 
   def show
-    @competence = Competence.find(params[:id])
+    @skill = Skill.find(params[:id])
   end
 
   def new
-    @competence = Competence.new
+    @skill = Skill.new
   end
 
   def create
-    @competence = Competence.new(params[:competence])
-    if @competence.save
+    @skill = Skill.new(params[:skill])
+    if @skill.save
       flash[:notice] = _('Skill was successfully created.')
-      redirect_to competences_path
+      redirect_to skills_path
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @competence = Competence.find(params[:id])
+    @skill = Skill.find(params[:id])
   end
 
   def update
-    @competence = Competence.find(params[:id])
-    if @competence.update_attributes(params[:competence])
+    @skill = Skill.find(params[:id])
+    if @skill.update_attributes(params[:skill])
       flash[:notice] = _('Skill was successfully updated.')
-      redirect_to competence_path(@competence)
+      redirect_to skill_path(@skill)
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Competence.find(params[:id]).destroy
-    redirect_to competences_path
+    Skill.find(params[:id]).destroy
+    redirect_to skills_path
   end
 end

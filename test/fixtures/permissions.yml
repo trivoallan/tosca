@@ -36,7 +36,7 @@ permission_00001:
   info: Full access
   id: 1
 permission_00023: 
-  name: ^competences/(?!destroy)
+  name: ^skills/(?!destroy)
   info: Manage knowledge
   id: 23
 permission_00045: 
