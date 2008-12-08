@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-12-04 09:02+0100\n"
+"POT-Creation-Date: 2008-12-08 16:35+0100\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgid "Email"
 msgstr ""
 
 #: app/controllers/account_controller.rb:287
-#: app/views/issues/_infos_issue.html.erb:37
+#: app/views/issues/_infos_issue.html.erb:32
 msgid "Phone"
 msgstr ""
 
@@ -90,11 +90,11 @@ msgstr ""
 msgid "Your contract '%s' is near its end date : %s"
 msgstr ""
 
-#: app/controllers/application.rb:112 app/models/notifier.rb:345
+#: app/controllers/application.rb:112 app/models/notifier.rb:343
 msgid "An e-mail was sent to "
 msgstr ""
 
-#: app/controllers/application.rb:113 app/models/notifier.rb:346
+#: app/controllers/application.rb:113 app/models/notifier.rb:344
 msgid "with a copy to"
 msgstr ""
 
@@ -329,8 +329,7 @@ msgstr ""
 #: app/views/contributions/_contributions_info.html.erb:49
 #: app/views/contributions/_form.html.erb:11
 #: app/views/contributions/admin.html.erb:5 app/views/groupes/index.html.erb:5
-#: app/views/issues/_form.html.erb:74
-#: app/views/issues/_infos_issue.html.erb:14
+#: app/views/issues/_form.html.erb:74 app/views/issues/_infos_issue.html.erb:9
 #: app/views/issues/lists/_issues_table.html.erb:4
 #: app/views/issues/lists/_pending_table.html.erb:11
 #: app/views/knowledges/_form.html.erb:16 app/views/releases/show.html.erb:4
@@ -349,7 +348,7 @@ msgstr ""
 #: app/helpers/engagements_helper.rb:37 app/helpers/engagements_helper.rb:87
 #: app/views/commitments/_form.html.erb:7
 #: app/views/issues/_comment_form.html.erb:12
-#: app/views/issues/_infos_issue.html.erb:18
+#: app/views/issues/_infos_issue.html.erb:13
 #: app/views/issues/lists/_issues_info.html.erb:51
 msgid "Severity"
 msgstr ""
@@ -371,7 +370,7 @@ msgstr ""
 #: app/helpers/contributions_helper.rb:25
 #: app/views/contributions/_contributions_info.html.erb:45
 #: app/views/issues/_form.html.erb:120
-#: app/views/issues/_infos_issue.html.erb:8
+#: app/views/issues/_infos_issue.html.erb:3
 #: app/views/issues/lists/_issues_table.html.erb:9
 #: app/views/issues/lists/_pending_table.html.erb:13
 #: app/views/reporting/_comex_cns.html.erb:22
@@ -382,7 +381,7 @@ msgstr ""
 
 #: app/controllers/export_controller.rb:159 app/helpers/reporting_helper.rb:32
 #: app/views/issues/_comment_form.html.erb:6
-#: app/views/issues/_infos_issue.html.erb:15
+#: app/views/issues/_infos_issue.html.erb:10
 #: app/views/issues/lists/_issues_info.html.erb:53
 msgid "Status"
 msgstr ""
@@ -391,7 +390,7 @@ msgstr ""
 #: app/views/account/_edit_account_informations.html.erb:9
 #: app/views/contracts/_form.html.erb:51 app/views/contracts/index.html.erb:6
 #: app/views/documents/_form.html.erb:16 app/views/issues/_form.html.erb:14
-#: app/views/issues/_infos_issue.html.erb:17
+#: app/views/issues/_infos_issue.html.erb:12
 #: app/views/issues/lists/_issues_info.html.erb:49
 #: app/views/issues/lists/_issues_table.html.erb:5
 msgid "Type"
@@ -487,29 +486,29 @@ msgstr ""
 msgid "You have successfully submitted your %s issue."
 msgstr ""
 
-#: app/controllers/issues_controller.rb:284
+#: app/controllers/issues_controller.rb:279
 msgid "The issue has been updated successfully."
 msgstr ""
 
-#: app/controllers/issues_controller.rb:336
+#: app/controllers/issues_controller.rb:331
 msgid "This issue is no longer linked to a contribution"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:338
+#: app/controllers/issues_controller.rb:333
 msgid "This contribution is now linked"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:376
+#: app/controllers/issues_controller.rb:371
 msgid ""
 "It seems that you are not associated to a contract, which prevents you from "
 "filling an issue. Please contact %s if you think it's not normal"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:436 app/helpers/issues_helper.rb:155
+#: app/controllers/issues_controller.rb:431 app/helpers/issues_helper.rb:155
 msgid "Active issues"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:439 app/helpers/issues_helper.rb:162
+#: app/controllers/issues_controller.rb:434 app/helpers/issues_helper.rb:162
 msgid "Finished issues"
 msgstr ""
 
@@ -799,6 +798,10 @@ msgid ""
 "comments has been sent successfully."
 msgstr ""
 
+#: app/controllers/welcome_controller.rb:74
+msgid "Cache cleared !"
+msgstr ""
+
 #: app/helpers/account_helper.rb:36
 #: app/views/layouts/standard-layout.html.erb:78
 msgid "My account"
@@ -961,7 +964,15 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: app/helpers/images_helper.rb:105
+#: app/helpers/images_helper.rb:56 app/views/issues/show.html.erb:6
+msgid "Expand all"
+msgstr ""
+
+#: app/helpers/images_helper.rb:60 app/views/issues/show.html.erb:8
+msgid "Collapse all"
+msgstr ""
+
+#: app/helpers/images_helper.rb:117
 msgid "a logo"
 msgstr ""
 
@@ -1086,7 +1097,7 @@ msgstr ""
 msgid "Forgotten password ?"
 msgstr ""
 
-#: app/helpers/links_helper.rb:159
+#: app/helpers/links_helper.rb:159 app/views/welcome/admin.html.erb:62
 msgid "Administration"
 msgstr ""
 
@@ -1217,7 +1228,7 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: app/helpers/static_image.rb:81 app/views/issues/_infos_issue.html.erb:65
+#: app/helpers/static_image.rb:81 app/views/issues/_infos_issue.html.erb:60
 #: app/views/issues/lists/_issues_info.html.erb:63
 #: app/views/welcome/about.html.erb:4
 msgid "Help"
@@ -1348,11 +1359,11 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Created at"
+msgid "Alert|Created on"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated at"
+msgid "Alert|Updated on"
 msgstr ""
 
 #: app/models/archive.rb:-
@@ -1775,28 +1786,28 @@ msgstr ""
 msgid "Machine|Description"
 msgstr ""
 
-#: app/models/notifier.rb:140
+#: app/models/notifier.rb:138
 msgid "Daily digest for "
 msgstr ""
 
-#: app/models/notifier.rb:142
+#: app/models/notifier.rb:140
 msgid " week of "
 msgstr ""
 
-#: app/models/notifier.rb:143
+#: app/models/notifier.rb:141
 msgid "Weekly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:146
+#: app/models/notifier.rb:144
 msgid "Monthly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:149
+#: app/models/notifier.rb:147
 msgid "Yearly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:255 app/models/notifier.rb:267
-#: app/models/notifier.rb:280
+#: app/models/notifier.rb:253 app/models/notifier.rb:265
+#: app/models/notifier.rb:278
 msgid "Possible error in your e-mail"
 msgstr ""
 
@@ -2358,7 +2369,6 @@ msgstr ""
 #: app/views/clients/_clients_info.html.erb:14
 #: app/views/contracts/_contracts_info.html.erb:12
 #: app/views/documents/_documents_info.html.erb:13
-#: app/views/issues/_infos_issue.html.erb:2
 #: app/views/phonecalls/_calls_info.html.erb:10
 msgid "Action"
 msgstr ""
@@ -2762,7 +2772,7 @@ msgid "Body"
 msgstr ""
 
 #: app/views/comments/index.html.erb:4
-#: app/views/issues/_infos_issue.html.erb:44
+#: app/views/issues/_infos_issue.html.erb:39
 #: app/views/issues/tabs/_attachments.html.erb:5
 msgid "Created on"
 msgstr ""
@@ -2770,7 +2780,7 @@ msgstr ""
 #: app/views/comments/index.html.erb:4
 #: app/views/contributions/_contributions_admin.html.erb:8
 #: app/views/contributions/admin.html.erb:6
-#: app/views/issues/_infos_issue.html.erb:45
+#: app/views/issues/_infos_issue.html.erb:40
 #: app/views/issues/lists/_issues_table.html.erb:18
 msgid "Updated on"
 msgstr ""
@@ -2974,7 +2984,7 @@ msgid "Obligation"
 msgstr ""
 
 #: app/views/contracts/show.html.erb:115
-#: app/views/issues/_infos_issue.html.erb:13
+#: app/views/issues/_infos_issue.html.erb:8
 #: app/views/machines/_form.html.erb:17 app/views/machines/index.html.erb:5
 #: app/views/machines/show.html.erb:9 app/views/socles/_form.html.erb:9
 #: app/views/socles/index.html.erb:5
@@ -3312,17 +3322,17 @@ msgid "Answer"
 msgstr ""
 
 #: app/views/issues/_form.html.erb:23
-#: app/views/issues/_infos_issue.html.erb:39
+#: app/views/issues/_infos_issue.html.erb:34
 msgid "Concerning"
 msgstr ""
 
 #: app/views/issues/_form.html.erb:57
-#: app/views/issues/_infos_issue.html.erb:28
+#: app/views/issues/_infos_issue.html.erb:23
 msgid "Assigned to"
 msgstr ""
 
 #: app/views/issues/_form.html.erb:88
-#: app/views/issues/_infos_issue.html.erb:21
+#: app/views/issues/_infos_issue.html.erb:16
 msgid "CC"
 msgstr ""
 
@@ -3362,47 +3372,39 @@ msgstr ""
 msgid "Software :"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:4
-msgid "Expand all"
-msgstr ""
-
-#: app/views/issues/_infos_issue.html.erb:5
-msgid "Collapse all"
-msgstr ""
-
-#: app/views/issues/_infos_issue.html.erb:11
+#: app/views/issues/_infos_issue.html.erb:6
 msgid "Vm"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:25
+#: app/views/issues/_infos_issue.html.erb:20
 msgid "Declared by"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:32
+#: app/views/issues/_infos_issue.html.erb:27
 msgid "Recipent"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:35 app/views/teams/index.html.erb:5
+#: app/views/issues/_infos_issue.html.erb:30 app/views/teams/index.html.erb:5
 #: app/views/teams/show.html.erb:4
 msgid "Contact"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:42
+#: app/views/issues/_infos_issue.html.erb:37
 msgid "Life cycle"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:47
+#: app/views/issues/_infos_issue.html.erb:42
 msgid "Time elapsed"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:55
-#: app/views/issues/_infos_issue.html.erb:58
+#: app/views/issues/_infos_issue.html.erb:50
+#: app/views/issues/_infos_issue.html.erb:53
 #: app/views/softwares/_tags.html.erb:2 app/views/softwares/show.html.erb:70
 #: app/views/tags/show.html.erb:2
 msgid "Tags"
 msgstr ""
 
-#: app/views/issues/_infos_issue.html.erb:61
+#: app/views/issues/_infos_issue.html.erb:56
 msgid "Edit the tags for this issue"
 msgstr ""
 
@@ -4721,6 +4723,10 @@ msgstr ""
 
 #: app/views/welcome/admin.html.erb:57
 msgid "Digest report"
+msgstr ""
+
+#: app/views/welcome/admin.html.erb:64
+msgid "Clear cache"
 msgstr ""
 
 #: app/views/welcome/index.html.erb:2
