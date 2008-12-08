@@ -64,6 +64,17 @@ class WelcomeController < ApplicationController
       redirect_to_home
     end
   end
+  
+  #Action to clear the cache of Tosca 
+  # !! ONLY FOR ADMINS !!
+  def clear_cache
+    if session[:user].role_id == 1
+      #TODO : Find a better way, and call directly the rake task tmp:cache:clear
+      FileUtils.rm_rf(Dir['tmp/cache/[^.]*'])
+      flash[:notice] = _("Cache cleared !")
+    end
+    redirect_to_home
+  end
 
 protected
 

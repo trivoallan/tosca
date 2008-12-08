@@ -58,5 +58,11 @@
       link_to( _('Distribution of issues in time'), calendar_reporting_path) ] %>
   <%= show_list(links) %>
  </div>
+   <div class="show">
+    <h3><%= _('Administration')%></h3>
+    <% links = [
+        link_to( _('Clear cache'), clear_cache_welcome_path) ] %>
+    <%= show_list(links) %>
+   </div>
   </div>
 </div>
