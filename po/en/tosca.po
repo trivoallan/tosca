@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-08 16:35+0100\n"
+"POT-Creation-Date: 2008-12-08 19:00+0100\n"
 "PO-Revision-Date: 2008-12-02 09:14+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
@@ -176,16 +176,6 @@ msgstr ""
 msgid "You are not allowed to edit this comment"
 msgstr ""
 
-#: app/controllers/skills_controller.rb:37
-#: app/controllers/tags_controller.rb:38
-msgid "Skill was successfully created."
-msgstr ""
-
-#: app/controllers/skills_controller.rb:51
-#: app/controllers/tags_controller.rb:53
-msgid "Skill was successfully updated."
-msgstr ""
-
 #: app/controllers/contracts_controller.rb:99
 msgid "Contract was successfully created."
 msgstr ""
@@ -208,6 +198,14 @@ msgstr ""
 
 #: app/controllers/contributions_controller.rb:196
 msgid "The associated issue does not exist"
+msgstr ""
+
+#: app/controllers/contributiontypes_controller.rb:35
+msgid "A new type of contribution was successfully created."
+msgstr ""
+
+#: app/controllers/contributiontypes_controller.rb:49
+msgid "A Type of contribution was successfully updated."
 msgstr ""
 
 #: app/controllers/documents_controller.rb:79
@@ -516,6 +514,14 @@ msgstr ""
 msgid "Finished issues"
 msgstr ""
 
+#: app/controllers/issuetypes_controller.rb:35
+msgid "A new type of issue was successfully created."
+msgstr ""
+
+#: app/controllers/issuetypes_controller.rb:49
+msgid "An issue type was successfully updated."
+msgstr ""
+
 #: app/controllers/knowledges_controller.rb:75
 msgid "Your knowledge was successfully created."
 msgstr ""
@@ -700,6 +706,16 @@ msgstr ""
 msgid "Severity was successfully updated."
 msgstr ""
 
+#: app/controllers/skills_controller.rb:37
+#: app/controllers/tags_controller.rb:38
+msgid "Skill was successfully created."
+msgstr ""
+
+#: app/controllers/skills_controller.rb:51
+#: app/controllers/tags_controller.rb:53
+msgid "Skill was successfully updated."
+msgstr ""
+
 #: app/controllers/socles_controller.rb:41
 msgid "A System was successfully created."
 msgstr ""
@@ -742,22 +758,6 @@ msgstr ""
 
 #: app/controllers/teams_controller.rb:54
 msgid "Team %s was successfully updated."
-msgstr ""
-
-#: app/controllers/contributiontypes_controller.rb:35
-msgid "A new type of contribution was successfully created."
-msgstr ""
-
-#: app/controllers/contributiontypes_controller.rb:49
-msgid "A Type of contribution was successfully updated."
-msgstr ""
-
-#: app/controllers/issuetypes_controller.rb:35
-msgid "A new type of issue was successfully created."
-msgstr ""
-
-#: app/controllers/issuetypes_controller.rb:49
-msgid "An issue type was successfully updated."
 msgstr ""
 
 #: app/controllers/typeurls_controller.rb:35
@@ -892,10 +892,6 @@ msgstr ""
 #: app/views/issues/tabs/_cns.html.erb:44
 #: app/views/reporting/_comex_cns.html.erb:21
 msgid "Correction"
-msgstr ""
-
-#: app/helpers/skills_helper.rb:28
-msgid "a technology"
 msgstr ""
 
 #: app/helpers/contracts_helper.rb:31 app/views/contracts/index.html.erb:4
@@ -1101,7 +1097,7 @@ msgstr ""
 msgid "Forgotten password ?"
 msgstr ""
 
-#: app/helpers/links_helper.rb:159 app/views/welcome/admin.html.erb:62
+#: app/helpers/links_helper.rb:159 app/views/welcome/admin.html.erb:63
 msgid "Administration"
 msgstr ""
 
@@ -1190,6 +1186,10 @@ msgstr ""
 msgid "the contribution is alone : it is not linked to an interaction"
 msgstr ""
 
+#: app/helpers/skills_helper.rb:28
+msgid "a technology"
+msgstr ""
+
 #: app/helpers/socles_helper.rb:29
 msgid "a system"
 msgstr ""
@@ -1239,10 +1239,10 @@ msgid "Help"
 msgstr ""
 
 #: app/helpers/static_image.rb:88 app/views/changelogs/show.html.erb:8
-#: app/views/severities/show.html.erb:8 app/views/teams/new.html.erb:8
-#: app/views/teams/show.html.erb:13
 #: app/views/contributiontypes/show.html.erb:8
-#: app/views/documenttypes/show.html.erb:8 app/views/typeurls/show.html.erb:8
+#: app/views/documenttypes/show.html.erb:8
+#: app/views/severities/show.html.erb:8 app/views/teams/new.html.erb:8
+#: app/views/teams/show.html.erb:13 app/views/typeurls/show.html.erb:8
 msgid "Back"
 msgstr ""
 
@@ -1363,12 +1363,10 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-#, fuzzy
 msgid "Alert|Created on"
 msgstr "Created on"
 
 #: app/models/alert.rb:-
-#, fuzzy
 msgid "Alert|Updated on"
 msgstr "Updated on"
 
@@ -1560,14 +1558,6 @@ msgstr "Correction"
 msgid "Commitment|Issuetype"
 msgstr ""
 
-#: app/models/skill.rb:-
-msgid "skill"
-msgstr "skill"
-
-#: app/models/skill.rb:-
-msgid "Skill|Name"
-msgstr "Name"
-
 #: app/models/contribution.rb:35
 msgid "You have to specify a software."
 msgstr ""
@@ -1575,6 +1565,32 @@ msgstr ""
 #: app/models/contribution.rb:54
 msgid " on "
 msgstr ""
+
+#: app/models/contributionstate.rb:-
+msgid "contributionstate"
+msgstr "contributionstate"
+
+#: app/models/contributionstate.rb:-
+#: app/views/contributionstates/_form.html.erb:4
+msgid "Contributionstate|Name"
+msgstr "Name"
+
+#: app/models/contributionstate.rb:-
+#: app/views/contributionstates/_form.html.erb:7
+msgid "Contributionstate|Description"
+msgstr "Description"
+
+#: app/models/contributiontype.rb:-
+msgid "contributiontype"
+msgstr ""
+
+#: app/models/contributiontype.rb:-
+msgid "Contributiontype|Name"
+msgstr "Name"
+
+#: app/models/contributiontype.rb:-
+msgid "Contributiontype|Description"
+msgstr "Description"
 
 #: app/models/document.rb:-
 msgid "document"
@@ -1622,6 +1638,18 @@ msgstr ""
 msgid "Document|Date delivery"
 msgstr ""
 
+#: app/models/documenttype.rb:-
+msgid "documenttype"
+msgstr ""
+
+#: app/models/documenttype.rb:-
+msgid "Documenttype|Name"
+msgstr "Name"
+
+#: app/models/documenttype.rb:-
+msgid "Documenttype|Description"
+msgstr "Description"
+
 #: app/models/elapsed.rb:-
 msgid "elapsed"
 msgstr ""
@@ -1645,18 +1673,6 @@ msgstr "Correction"
 #: app/models/elapsed.rb:-
 msgid "Elapsed|Until now"
 msgstr ""
-
-#: app/models/contributionstate.rb:-
-msgid "contributionstate"
-msgstr "contributionstate"
-
-#: app/models/contributionstate.rb:- app/views/contributionstates/_form.html.erb:4
-msgid "Contributionstate|Name"
-msgstr "Name"
-
-#: app/models/contributionstate.rb:- app/views/contributionstates/_form.html.erb:7
-msgid "Contributionstate|Description"
-msgstr "Description"
 
 #: app/models/groupe.rb:-
 msgid "groupe"
@@ -1723,6 +1739,14 @@ msgid ""
 "The client of this contract is not consistant with the client of this "
 "recipient."
 msgstr ""
+
+#: app/models/issuetype.rb:-
+msgid "issuetype"
+msgstr ""
+
+#: app/models/issuetype.rb:-
+msgid "Issuetype|Name"
+msgstr "Name"
 
 #: app/models/knowledge.rb:-
 msgid "knowledge"
@@ -1971,6 +1995,14 @@ msgstr ""
 msgid "Severity|Name"
 msgstr "Name"
 
+#: app/models/skill.rb:-
+msgid "skill"
+msgstr "skill"
+
+#: app/models/skill.rb:-
+msgid "Skill|Name"
+msgstr "Name"
+
 #: app/models/socle.rb:-
 msgid "socle"
 msgstr ""
@@ -2054,38 +2086,6 @@ msgstr ""
 #: app/models/team.rb:-
 msgid "Team|Contact"
 msgstr ""
-
-#: app/models/contributiontype.rb:-
-msgid "contributiontype"
-msgstr ""
-
-#: app/models/contributiontype.rb:-
-msgid "Contributiontype|Name"
-msgstr "Name"
-
-#: app/models/contributiontype.rb:-
-msgid "Contributiontype|Description"
-msgstr "Description"
-
-#: app/models/documenttype.rb:-
-msgid "documenttype"
-msgstr ""
-
-#: app/models/documenttype.rb:-
-msgid "Documenttype|Name"
-msgstr "Name"
-
-#: app/models/documenttype.rb:-
-msgid "Documenttype|Description"
-msgstr "Description"
-
-#: app/models/issuetype.rb:-
-msgid "issuetype"
-msgstr ""
-
-#: app/models/issuetype.rb:-
-msgid "Issuetype|Name"
-msgstr "Name"
 
 #: app/models/typeurl.rb:-
 msgid "typeurl"
@@ -2386,21 +2386,21 @@ msgstr ""
 #: app/views/account/_users_info.html.erb:26
 #: app/views/archives/show.html.erb:14 app/views/changelogs/_form.html.erb:6
 #: app/views/clients/_form.html.erb:8 app/views/clients/index.html.erb:5
-#: app/views/skills/_form.html.erb:3 app/views/contracts/index.html.erb:6
-#: app/views/contracts/show.html.erb:15
+#: app/views/contracts/index.html.erb:6 app/views/contracts/show.html.erb:15
 #: app/views/contributions/_contributions_admin.html.erb:7
 #: app/views/contributions/_form.html.erb:7
-#: app/views/contributions/admin.html.erb:5 app/views/groupes/_form.html.erb:4
-#: app/views/groupes/index.html.erb:5 app/views/knowledges/index.html.erb:5
-#: app/views/permissions/_form.html.erb:4 app/views/roles/_form.html.erb:3
-#: app/views/severities/_form.html.erb:3 app/views/socles/_form.html.erb:3
-#: app/views/softwares/_form.html.erb:8 app/views/softwares/index.html.erb:4
-#: app/views/softwares/show.html.erb:9 app/views/statuts/_form.html.erb:3
-#: app/views/tags/_form.html.erb:4 app/views/tags/index.html.erb:5
-#: app/views/tags/show.html.erb:7 app/views/teams/index.html.erb:5
+#: app/views/contributions/admin.html.erb:5
 #: app/views/contributiontypes/_form.html.erb:3
-#: app/views/documenttypes/_form.html.erb:3
-#: app/views/issuetypes/_form.html.erb:3 app/views/typeurls/_form.html.erb:3
+#: app/views/documenttypes/_form.html.erb:3 app/views/groupes/_form.html.erb:4
+#: app/views/groupes/index.html.erb:5 app/views/issuetypes/_form.html.erb:3
+#: app/views/knowledges/index.html.erb:5
+#: app/views/permissions/_form.html.erb:4 app/views/roles/_form.html.erb:3
+#: app/views/severities/_form.html.erb:3 app/views/skills/_form.html.erb:3
+#: app/views/socles/_form.html.erb:3 app/views/softwares/_form.html.erb:8
+#: app/views/softwares/index.html.erb:4 app/views/softwares/show.html.erb:9
+#: app/views/statuts/_form.html.erb:3 app/views/tags/_form.html.erb:4
+#: app/views/tags/index.html.erb:5 app/views/tags/show.html.erb:7
+#: app/views/teams/index.html.erb:5 app/views/typeurls/_form.html.erb:3
 msgid "Name"
 msgstr ""
 
@@ -2566,16 +2566,16 @@ msgstr ""
 
 #: app/views/attachments/edit.html.erb:6 app/views/changelogs/edit.html.erb:5
 #: app/views/changelogs/show.html.erb:7 app/views/clients/edit.html.erb:5
-#: app/views/skills/edit.html.erb:5 app/views/groupes/edit.html.erb:5
-#: app/views/images/edit.html.erb:5 app/views/machines/edit.html.erb:5
-#: app/views/permissions/edit.html.erb:5 app/views/severities/edit.html.erb:5
-#: app/views/severities/show.html.erb:7 app/views/socles/edit.html.erb:5
-#: app/views/tags/edit.html.erb:5 app/views/teams/show.html.erb:12
 #: app/views/contributiontypes/edit.html.erb:5
 #: app/views/contributiontypes/show.html.erb:7
 #: app/views/documenttypes/edit.html.erb:5
-#: app/views/documenttypes/show.html.erb:7
-#: app/views/issuetypes/edit.html.erb:5 app/views/typeurls/show.html.erb:7
+#: app/views/documenttypes/show.html.erb:7 app/views/groupes/edit.html.erb:5
+#: app/views/images/edit.html.erb:5 app/views/issuetypes/edit.html.erb:5
+#: app/views/machines/edit.html.erb:5 app/views/permissions/edit.html.erb:5
+#: app/views/severities/edit.html.erb:5 app/views/severities/show.html.erb:7
+#: app/views/skills/edit.html.erb:5 app/views/socles/edit.html.erb:5
+#: app/views/tags/edit.html.erb:5 app/views/teams/show.html.erb:12
+#: app/views/typeurls/show.html.erb:7
 msgid "Edit"
 msgstr ""
 
@@ -2617,8 +2617,8 @@ msgid "Edit a changelog"
 msgstr ""
 
 #: app/views/changelogs/edit.html.erb:8 app/views/clients/edit.html.erb:8
-#: app/views/reporting/delai.html.erb:6
 #: app/views/contributiontypes/edit.html.erb:8
+#: app/views/reporting/delai.html.erb:6
 msgid "Show"
 msgstr ""
 
@@ -2650,13 +2650,13 @@ msgid "By system"
 msgstr ""
 
 #: app/views/clients/_form.html.erb:11
-#: app/views/contributions/_form.html.erb:60 app/views/images/_form.html.erb:6
-#: app/views/images/index.html.erb:4 app/views/machines/_form.html.erb:22
+#: app/views/contributions/_form.html.erb:60
+#: app/views/contributiontypes/_form.html.erb:6
+#: app/views/documenttypes/_form.html.erb:6 app/views/images/_form.html.erb:6
+#: app/views/images/index.html.erb:4 app/views/machines/_form.html.erb:21
 #: app/views/roles/index.html.erb:4 app/views/softwares/_form.html.erb:16
 #: app/views/softwares/_software_info.html.erb:41
 #: app/views/softwares/index.html.erb:4 app/views/statuts/_form.html.erb:6
-#: app/views/contributiontypes/_form.html.erb:6
-#: app/views/documenttypes/_form.html.erb:6
 msgid "Description"
 msgstr "Description"
 
@@ -2811,38 +2811,17 @@ msgstr ""
 msgid "A new commitment"
 msgstr ""
 
-#: app/views/commitments/new.html.erb:5 app/views/skills/new.html.erb:5
-#: app/views/contracts/new.html.erb:5 app/views/contributions/new.html.erb:5
-#: app/views/groupes/new.html.erb:5 app/views/images/new.html.erb:5
+#: app/views/commitments/new.html.erb:5 app/views/contracts/new.html.erb:5
+#: app/views/contributions/new.html.erb:5
+#: app/views/contributiontypes/new.html.erb:5
+#: app/views/documenttypes/new.html.erb:5 app/views/groupes/new.html.erb:5
+#: app/views/images/new.html.erb:5 app/views/issuetypes/new.html.erb:5
 #: app/views/machines/new.html.erb:5 app/views/phonecalls/new.html.erb:5
 #: app/views/roles/new.html.erb:5 app/views/rules/components/new.html.erb:5
-#: app/views/severities/new.html.erb:5 app/views/socles/new.html.erb:5
-#: app/views/tags/new.html.erb:5 app/views/teams/new.html.erb:5
-#: app/views/contributiontypes/new.html.erb:5
-#: app/views/documenttypes/new.html.erb:5 app/views/issuetypes/new.html.erb:5
-#: app/views/typeurls/new.html.erb:5
+#: app/views/severities/new.html.erb:5 app/views/skills/new.html.erb:5
+#: app/views/socles/new.html.erb:5 app/views/tags/new.html.erb:5
+#: app/views/teams/new.html.erb:5 app/views/typeurls/new.html.erb:5
 msgid "Create"
-msgstr ""
-
-#: app/views/skills/edit.html.erb:1
-msgid "Editing skill"
-msgstr ""
-
-#: app/views/skills/index.html.erb:1
-msgid "Skill list"
-msgstr ""
-
-#: app/views/skills/index.html.erb:3 app/views/tags/index.html.erb:3
-#: app/views/tags/index.html.erb:20
-msgid "a skill"
-msgstr ""
-
-#: app/views/skills/index.html.erb:4
-msgid "Resources"
-msgstr ""
-
-#: app/views/skills/new.html.erb:1
-msgid "New skill"
 msgstr ""
 
 #: app/views/contracts/_contracts_info.html.erb:15
@@ -2991,7 +2970,7 @@ msgstr ""
 
 #: app/views/contracts/show.html.erb:115
 #: app/views/issues/_infos_issue.html.erb:8
-#: app/views/machines/_form.html.erb:17 app/views/machines/index.html.erb:5
+#: app/views/machines/_form.html.erb:16 app/views/machines/index.html.erb:5
 #: app/views/machines/show.html.erb:9 app/views/socles/_form.html.erb:9
 #: app/views/socles/index.html.erb:5
 msgid "System"
@@ -3202,6 +3181,26 @@ msgstr ""
 msgid "This patch was not submitted to the community"
 msgstr ""
 
+#: app/views/contributionstates/index.html.erb:4
+msgid "a new state"
+msgstr ""
+
+#: app/views/contributiontypes/edit.html.erb:1
+msgid "Editing a type of contribution"
+msgstr ""
+
+#: app/views/contributiontypes/index.html.erb:1
+msgid "List of the types of contribution"
+msgstr ""
+
+#: app/views/contributiontypes/index.html.erb:25
+msgid "Create a new type of contribution"
+msgstr ""
+
+#: app/views/contributiontypes/new.html.erb:1
+msgid "A new typeof contribution"
+msgstr ""
+
 #: app/views/documents/_documents_info.html.erb:16
 #: app/views/documents/new.html.erb:1
 msgid "Add a document"
@@ -3267,8 +3266,21 @@ msgstr ""
 msgid "Document|Updated_on"
 msgstr "Updated on"
 
-#: app/views/contributionstates/index.html.erb:4
-msgid "a new state"
+#: app/views/documenttypes/edit.html.erb:1
+msgid "Editing documenttype"
+msgstr ""
+
+#: app/views/documenttypes/index.html.erb:1
+msgid "List of the types of documents"
+msgstr ""
+
+#: app/views/documenttypes/index.html.erb:3
+#: app/views/documenttypes/index.html.erb:11
+msgid "a new type of document"
+msgstr ""
+
+#: app/views/documenttypes/new.html.erb:1
+msgid "Create a new type of documents"
 msgstr ""
 
 #: app/views/groupes/edit.html.erb:1
@@ -3636,6 +3648,27 @@ msgstr ""
 msgid "Tags of this issue"
 msgstr ""
 
+#: app/views/issuetypes/edit.html.erb:1
+msgid "Editing an issue type"
+msgstr ""
+
+#: app/views/issuetypes/edit.html.erb:8
+msgid "List"
+msgstr ""
+
+#: app/views/issuetypes/index.html.erb:1
+msgid "List of the types of issues"
+msgstr ""
+
+#: app/views/issuetypes/index.html.erb:3
+#: app/views/issuetypes/index.html.erb:11
+msgid "a new type of issue"
+msgstr ""
+
+#: app/views/issuetypes/new.html.erb:1
+msgid "A new type of issue"
+msgstr ""
+
 #: app/views/knowledges/_form.html.erb:9
 msgid "Choose a domain OR a software"
 msgstr ""
@@ -3703,15 +3736,15 @@ msgstr ""
 msgid "a new licence"
 msgstr ""
 
-#: app/views/machines/_form.html.erb:6
+#: app/views/machines/_form.html.erb:5
 msgid "Access : DNS (IP)"
 msgstr ""
 
-#: app/views/machines/_form.html.erb:9 app/views/socles/index.html.erb:5
-msgid "Virtual"
+#: app/views/machines/_form.html.erb:8
+msgid "Virtual ?"
 msgstr ""
 
-#: app/views/machines/_form.html.erb:12
+#: app/views/machines/_form.html.erb:11
 msgid "Host"
 msgstr ""
 
@@ -4267,6 +4300,27 @@ msgstr ""
 msgid "New severity"
 msgstr ""
 
+#: app/views/skills/edit.html.erb:1
+msgid "Editing skill"
+msgstr ""
+
+#: app/views/skills/index.html.erb:1
+msgid "Skill list"
+msgstr ""
+
+#: app/views/skills/index.html.erb:3 app/views/tags/index.html.erb:3
+#: app/views/tags/index.html.erb:20
+msgid "a skill"
+msgstr ""
+
+#: app/views/skills/index.html.erb:4
+msgid "Resources"
+msgstr ""
+
+#: app/views/skills/new.html.erb:1
+msgid "New skill"
+msgstr ""
+
 #: app/views/socles/_form.html.erb:6 app/views/socles/show.html.erb:9
 msgid "Computer :"
 msgstr ""
@@ -4296,6 +4350,10 @@ msgstr ""
 
 #: app/views/socles/index.html.erb:5
 msgid "Computer"
+msgstr ""
+
+#: app/views/socles/index.html.erb:5
+msgid "Virtual"
 msgstr ""
 
 #: app/views/socles/index.html.erb:18
@@ -4463,60 +4521,6 @@ msgstr ""
 
 #: app/views/teams/show.html.erb:9
 msgid "Members"
-msgstr ""
-
-#: app/views/contributiontypes/edit.html.erb:1
-msgid "Editing a type of contribution"
-msgstr ""
-
-#: app/views/contributiontypes/index.html.erb:1
-msgid "List of the types of contribution"
-msgstr ""
-
-#: app/views/contributiontypes/index.html.erb:25
-msgid "Create a new type of contribution"
-msgstr ""
-
-#: app/views/contributiontypes/new.html.erb:1
-msgid "A new typeof contribution"
-msgstr ""
-
-#: app/views/documenttypes/edit.html.erb:1
-msgid "Editing documenttype"
-msgstr ""
-
-#: app/views/documenttypes/index.html.erb:1
-msgid "List of the types of documents"
-msgstr ""
-
-#: app/views/documenttypes/index.html.erb:3
-#: app/views/documenttypes/index.html.erb:11
-msgid "a new type of document"
-msgstr ""
-
-#: app/views/documenttypes/new.html.erb:1
-msgid "Create a new type of documents"
-msgstr ""
-
-#: app/views/issuetypes/edit.html.erb:1
-msgid "Editing an issue type"
-msgstr ""
-
-#: app/views/issuetypes/edit.html.erb:8
-msgid "List"
-msgstr ""
-
-#: app/views/issuetypes/index.html.erb:1
-msgid "List of the types of issues"
-msgstr ""
-
-#: app/views/issuetypes/index.html.erb:3
-#: app/views/issuetypes/index.html.erb:11
-msgid "a new type of issue"
-msgstr ""
-
-#: app/views/issuetypes/new.html.erb:1
-msgid "A new type of issue"
 msgstr ""
 
 #: app/views/typeurls/edit.html.erb:1
@@ -4731,7 +4735,7 @@ msgstr ""
 msgid "Digest report"
 msgstr ""
 
-#: app/views/welcome/admin.html.erb:64
+#: app/views/welcome/admin.html.erb:65
 msgid "Clear cache"
 msgstr ""
 
