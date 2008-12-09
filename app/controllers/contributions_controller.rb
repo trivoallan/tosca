@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContributionsController < ApplicationController
-  helper :filters, :issues, :versions, :export, :urlreversements, :softwares
+  helper :filters, :issues, :versions, :export, :contributionurls, :softwares
 
   cache_sweeper :contribution_sweeper, :only => [ :create, :update ]
 
@@ -103,7 +103,7 @@ class ContributionsController < ApplicationController
 
   def new
     @contribution = Contribution.new
-    @urlreversement = Urlreversement.new
+    @contributionurl = Contributionurl.new
     # we can precise the software with this, see software/show for more info
     @contribution.software_id = params[:software_id]
     # submitted state, by default
@@ -180,8 +180,8 @@ private
   end
 
   def _update(contribution)
-    url = params[:urlreversement]
-    contribution.urlreversements.create(url) unless url.blank?
+    url = params[:contributionurl]
+    contribution.contributionurls.create(url) unless url.blank?
     contribution.contributed_on = nil if params[:contribution][:reverse] == '0'
     contribution.closed_on = nil if params[:contribution][:clos] == '0'
     contribution.save

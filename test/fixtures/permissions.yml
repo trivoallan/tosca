@@ -204,7 +204,7 @@ permission_00008:
   info: Attachments preview
   id: 8
 permission_00019: 
-  name: ^urlreversements/
+  name: ^contributionurls/
   info: Manage their own urls of contributions
   id: 19
 permission_00031: 

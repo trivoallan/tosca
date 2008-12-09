@@ -16,16 +16,23 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-module UrlreversementsHelper
+require File.dirname(__FILE__) + '/../test_helper'
 
-  def link_to_edit_urlreversement(u)
-    return '-' unless u
-    link_to StaticImage::edit, edit_urlreversement_path(u.id)
+class ContributionurlTest < Test::Unit::TestCase
+  fixtures :contributionurls, :contributions
+
+  def test_to_strings
+    check_strings Contributionurl
   end
 
-  def link_to_new_urlreversement(contribution_id)
-    path = new_urlreversement_path(:contribution_id => contribution_id)
-    link_to image_create(_('new url')), path
-  end
+  def test_attributes_presences
+    u = Contributionurl.new
+    assert !u.save
+    assert u.errors.on(:valeur)
+    assert u.errors.on(:contribution)
 
+    contrib = contributions(:contribution_0001)
+    u.update_attributes(:valeur => 'rubyonrails.org', :contribution => contrib)
+    assert u.save
+  end
 end

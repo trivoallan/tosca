@@ -16,14 +16,16 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Urlreversement < ActiveRecord::Base
-  belongs_to :contribution
+module ContributionurlsHelper
 
-  validates_presence_of :valeur
-  validates_presence_of :contribution
+  def link_to_edit_contributionurl(u)
+    return '-' unless u
+    link_to StaticImage::edit, edit_contributionurl_path(u.id)
+  end
 
-  def name
-    valeur
+  def link_to_new_contributionurl(contribution_id)
+    path = new_contributionurl_path(:contribution_id => contribution_id)
+    link_to image_create(_('new url')), path
   end
 
 end

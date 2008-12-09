@@ -1,0 +1,8 @@
+<%= error_messages_for 'contributionurl' %>
+
+<p><label for="contributionurl_valeur"><%= _("Valeur") %></label><br />
+<%= text_field 'contributionurl', 'valeur'  %></p>
+
+<p><label for="contributionurl_contribution"><%= _("Contribution") %></label><br />
+  <%= select( :contributionurl, :contribution_id,
+              @contributions.collect { |c| [ c.name, c.id ] }) %></p>

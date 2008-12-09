@@ -16,50 +16,50 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class UrlreversementsController < ApplicationController
+class ContributionurlsController < ApplicationController
   helper :softwares
 
   def index
-    @urlreversement_pages, @urlreversements = paginate :urlreversements,
+    @contributionurl_pages, @contributionurls = paginate :contributionurls,
     :per_page => 10
   end
 
   def show
-    @urlreversement = Urlreversement.find(params[:id])
+    @contributionurl = Contributionurl.find(params[:id])
   end
 
   def new
-    @urlreversement = Urlreversement.new
+    @contributionurl = Contributionurl.new
     _form
   end
 
   def create
-    @urlreversement = Urlreversement.new(params[:urlreversement])
-    if @urlreversement.save
-      flash[:notice] = _('Urlreversement was successfully created.')
-      redirect_to contribution_path(@urlreversement.contribution_id)
+    @contributionurl = Contributionurl.new(params[:contributionurl])
+    if @contributionurl.save
+      flash[:notice] = _('Contributionurl was successfully created.')
+      redirect_to contribution_path(@contributionurl.contribution_id)
     else
       _form and render :action => 'new'
     end
   end
 
   def edit
-    @urlreversement = Urlreversement.find(params[:id])
+    @contributionurl = Contributionurl.find(params[:id])
     _form
   end
 
   def update
-    @urlreversement = Urlreversement.find(params[:id])
-    if @urlreversement.update_attributes(params[:urlreversement])
-      flash[:notice] = _('Urlreversement was successfully updated.')
-      redirect_to contribution_path(@urlreversement.contribution_id)
+    @contributionurl = Contributionurl.find(params[:id])
+    if @contributionurl.update_attributes(params[:contributionurl])
+      flash[:notice] = _('Contributionurl was successfully updated.')
+      redirect_to contribution_path(@contributionurl.contribution_id)
     else
       _form and render :action => 'edit'
     end
   end
 
   def destroy
-    url = Urlreversement.find(params[:id])
+    url = Contributionurl.find(params[:id])
     if session[:user].role_id != 1 and # admin_role
         url.contribution.ingenieur_id != @ingenieur.id
       flash[:warn] = _('You are not the author of this one.')
@@ -73,7 +73,7 @@ private
   def _form
     @contributions = Contribution.find(:all)
     if params[:contribution_id]
-      @urlreversement.contribution_id = params[:contribution_id].to_i
+      @contributionurl.contribution_id = params[:contribution_id].to_i
     end
   end
 end

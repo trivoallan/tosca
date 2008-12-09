@@ -149,7 +149,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :issuetypes
   map.resources :documenttypes
   map.resources :urlsoftwares
-  map.resources :urlreversements
+  map.resources :contributionurls
   map.resources :versions
 
   # Sample of regular route:

@@ -17,16 +17,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'urlreversements_controller'
+require 'contributionurls_controller'
 
 # Re-raise errors caught by the controller.
-class UrlreversementsController; def rescue_action(e) raise e end; end
+class ContributionurlsController; def rescue_action(e) raise e end; end
 
-class UrlreversementsControllerTest < Test::Unit::TestCase
-  fixtures :urlreversements
+class ContributionurlsControllerTest < Test::Unit::TestCase
+  fixtures :contributionurls
 
   def setup
-    @controller = UrlreversementsController.new
+    @controller = ContributionurlsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -36,7 +36,7 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:urlreversements)
+    assert_not_nil assigns(:contributionurls)
   end
 
   def test_show
@@ -45,8 +45,8 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:urlreversement)
-    assert assigns(:urlreversement).valid?
+    assert_not_nil assigns(:contributionurl)
+    assert assigns(:contributionurl).valid?
   end
 
   def test_new
@@ -55,13 +55,13 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:urlreversement)
+    assert_not_nil assigns(:contributionurl)
   end
 
   def test_create
-    num_urlreversements = Urlreversement.count
+    num_contributionurls = Contributionurl.count
 
-    post :create, :urlreversement => {
+    post :create, :contributionurl => {
       :valeur => 'une valeur',
       :contribution_id => 1
     }
@@ -69,7 +69,7 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
     assert_response :redirect
     assert_redirected_to contribution_path(1)
 
-    assert_equal num_urlreversements + 1, Urlreversement.count
+    assert_equal num_contributionurls + 1, Contributionurl.count
   end
 
   def test_edit
@@ -78,8 +78,8 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:urlreversement)
-    assert assigns(:urlreversement).valid?
+    assert_not_nil assigns(:contributionurl)
+    assert assigns(:contributionurl).valid?
   end
 
   def test_update
@@ -89,14 +89,14 @@ class UrlreversementsControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Urlreversement.find(1)
+    assert_not_nil Contributionurl.find(1)
 
     post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Urlreversement.find(1)
+      Contributionurl.find(1)
     }
   end
 end

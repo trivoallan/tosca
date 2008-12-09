@@ -1,8 +1,0 @@
-<%= error_messages_for 'urlreversement' %>
-
-<p><label for="urlreversement_valeur"><%= _("Valeur") %></label><br />
-<%= text_field 'urlreversement', 'valeur'  %></p>
-
-<p><label for="urlreversement_contribution"><%= _("Contribution") %></label><br />
-  <%= select( :urlreversement, :contribution_id,
-              @contributions.collect { |c| [ c.name, c.id ] }) %></p>

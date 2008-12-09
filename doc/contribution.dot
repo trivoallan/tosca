@@ -19,7 +19,7 @@ Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
 Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
 
 
-Urlreversement -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
+Contributionurl -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
 
 Contribution -> Contributionstate [arrowhead=dot,dir=both,arrowtail=crow]
 Contribution -> Contributiontype [arrowhead=dot,dir=both,arrowtail=crow]

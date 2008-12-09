@@ -16,23 +16,14 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-require File.dirname(__FILE__) + '/../test_helper'
+class Contributionurl < ActiveRecord::Base
+  belongs_to :contribution
 
-class UrlreversementTest < Test::Unit::TestCase
-  fixtures :urlreversements, :contributions
+  validates_presence_of :valeur
+  validates_presence_of :contribution
 
-  def test_to_strings
-    check_strings Urlreversement
+  def name
+    valeur
   end
 
-  def test_attributes_presences
-    u = Urlreversement.new
-    assert !u.save
-    assert u.errors.on(:valeur)
-    assert u.errors.on(:contribution)
-
-    contrib = contributions(:contribution_0001)
-    u.update_attributes(:valeur => 'rubyonrails.org', :contribution => contrib)
-    assert u.save
-  end
 end

@@ -66,7 +66,7 @@ UrlSoftware -> Software [arrowhead=dot,dir=both,arrowtail=crow]
 Commitment -> Severite [arrowhead=dot,dir=both,arrowtail=crow]
 Commitment -> TypeRequest [arrowhead=dot,dir=both,arrowtail=crow]
 Role -> Permission [arrowhead=crow,arrowtail=crow,dir=both]
-Urlreversement -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
+Contributionurl -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
 
 Contribution -> Contributionstate [arrowhead=dot,dir=both,arrowtail=crow]
 Contribution -> Contributiontype [arrowhead=dot,dir=both,arrowtail=crow]

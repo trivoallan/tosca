@@ -18,7 +18,7 @@
 #
 class Contribution < ActiveRecord::Base
   has_one :issue
-  has_many :urlreversements
+  has_many :contributionurls
 
   belongs_to :contributiontype
   belongs_to :contributionstate
