@@ -86,7 +86,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^skills/(?!destroy)', 'Manage knowledge' ],
                [ '^contracts/(?!destroy)', 'Manage contracts' ],
                [ '^commitments/(?!destroy)', 'Manage Service Level Agreement' ],
-               [ '^groupes/(?!destroy)', 'Manage groups of software' ],
+               [ '^groups/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
                [ '^ingenieurs/(?!(destroy|new))', 'Manage human ressources' ],
                [ '^softwares/(?!destroy)', 'Manage software' ],
@@ -143,7 +143,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^welcome/(index|about|theme|plan)', 'Access to home pages' ],
                [ '^contributions/(index|select|show|list|feed)',
                  'Public read access to contributions' ],
-               [ '^groupes/(index|show)', 'Public read access to groups' ],
+               [ '^groups/(index|show)', 'Public read access to groups' ],
                [ '^softwares/(index|show)',
                  'Public read access to software' ],
                [ '^statuts/(index|help)$', 'Explanation of status' ] ]

@@ -16,24 +16,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-module GroupesHelper
+require File.dirname(__FILE__) + '/../test_helper'
 
-  @@groupes = nil
-  def public_link_to_groupes
-    @@groupes ||= public_link_to(_('classification'), groupes_url)
+class GroupTest < Test::Unit::TestCase
+  fixtures :groups
+
+  def test_to_strings
+    check_strings Group
   end
-
-  # call it like :
-  # <%= link_to_new_group %>
-  def link_to_new_group()
-    link_to image_create(_('a group')), new_groupe_path
-  end
-
-
-  # Lien vers la consultation d'UN groupe
-  def link_to_groupe(groupe)
-      link_to groupe.name, groupe_url(:id => groupe.id)
-  end
-
 
 end

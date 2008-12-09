@@ -17,16 +17,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'groupes_controller'
+require 'groups_controller'
 
 # Re-raise errors caught by the controller.
-class GroupesController; def rescue_action(e) raise e end; end
+class GroupsController; def rescue_action(e) raise e end; end
 
-class GroupesControllerTest < Test::Unit::TestCase
-  fixtures :groupes
+class GroupsControllerTest < Test::Unit::TestCase
+  fixtures :groups
 
   def setup
-    @controller = GroupesController.new
+    @controller = GroupsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -36,7 +36,7 @@ class GroupesControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:groupes)
+    assert_not_nil assigns(:groups)
   end
 
   def test_show
@@ -45,8 +45,8 @@ class GroupesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:groupe)
-    assert assigns(:groupe).valid?
+    assert_not_nil assigns(:group)
+    assert assigns(:group).valid?
   end
 
   def test_new
@@ -55,18 +55,18 @@ class GroupesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:groupe)
+    assert_not_nil assigns(:group)
   end
 
   def test_create
-    num_groupes = Groupe.count
+    num_groups = Group.count
 
-    post :create, :groupe => {}
+    post :create, :group => {}
 
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
-    assert_equal num_groupes + 1, Groupe.count
+    assert_equal num_groups + 1, Group.count
   end
 
   def test_edit
@@ -75,8 +75,8 @@ class GroupesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:groupe)
-    assert assigns(:groupe).valid?
+    assert_not_nil assigns(:group)
+    assert assigns(:group).valid?
   end
 
   def test_update
@@ -86,14 +86,14 @@ class GroupesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_not_nil Groupe.find(1)
+    assert_not_nil Group.find(1)
 
     post :destroy, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Groupe.find(1)
+      Group.find(1)
     }
   end
 end

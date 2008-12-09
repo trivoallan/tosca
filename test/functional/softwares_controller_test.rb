@@ -40,9 +40,9 @@ class SoftwaresControllerTest < ActionController::TestCase
       assert_equal software.versions.first.contract.id, 3
     end
 
-    xhr :get, :index, :filters => { :groupe_id => 2 }
+    xhr :get, :index, :filters => { :group_id => 2 }
     assert_response :success
-    assigns(:softwares).each { |l| assert_equal l.groupe_id, 2 }
+    assigns(:softwares).each { |l| assert_equal l.group_id, 2 }
 
   end
 
@@ -82,7 +82,7 @@ class SoftwaresControllerTest < ActionController::TestCase
 
     post :create, :software => {
       :name=> 'ANT',
-      :groupe_id=> 4,
+      :group_id=> 4,
       :referent=> 'ant',
       :description=> 'un bon software.',
       :resume=> 'Outil de compilation pour java',
@@ -110,7 +110,7 @@ class SoftwaresControllerTest < ActionController::TestCase
   def test_update
     options = {
         :name => 'ANT',
-        :groupe_id=> 4,
+        :group_id=> 4,
         :referent=> 'ant',
         :description=> 'un bon software.',
         :resume=> 'Outil de compilation pour java',

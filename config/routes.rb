@@ -92,7 +92,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contributionstates
   map.resources :fichiers
   map.resources :fournisseurs
-  map.resources :groupes
+  map.resources :groups
   # We cannot have 'image' for singular, coz'
   # image_path is used in ActionView::Helpers of Rails
   map.resources :images, :singular => 'img'

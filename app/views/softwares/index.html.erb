@@ -8,7 +8,7 @@
    result << "<td>#{public_link_to l.name, software_path(l)}</td>"
    result << "<td>#{l.resume}</td>"
    result << "<td>#{liste_skills l.skills}</td>"
-   result << "<td>#{l.groupe.name if l.groupe}</td>"
+   result << "<td>#{l.group.name if l.group}</td>"
    result << "#{link_to_actions_table l}"
  }%>
  <%= page_entries_info @softwares %><br />

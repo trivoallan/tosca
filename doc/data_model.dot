@@ -48,7 +48,7 @@ Request -> Version [arrowhead=odot,dir=both,arrowtail=crow]
 
 Software -> Skill [arrowhead=crow,arrowtail=crow,dir=both]
 Software -> License [arrowhead=dot,dir=both,arrowtail=crow]
-Software -> Groupe [arrowhead=dot,dir=both,arrowtail=crow]
+Software -> Group [arrowhead=dot,dir=both,arrowtail=crow]
 Software -> Image [arrowhead=dot,dir=both,arrowtail=crow]
 
 

@@ -91,7 +91,7 @@ class VersionsController < ApplicationController
   private
   def _form
     @softwares = Software.find_select
-    @groupes = Groupe.find_select
+    @groups = Group.find_select
     @socles = Socle.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)
   end

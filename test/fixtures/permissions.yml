@@ -68,7 +68,7 @@ permission_00057:
   info: Public read access to contributions
   id: 57
 permission_00058: 
-  name: ^groupes/(index|show)
+  name: ^groups/(index|show)
   info: Public read access to groups
   id: 58
 permission_00036: 
@@ -136,7 +136,7 @@ permission_00005:
   info: Allow comments on this software
   id: 5
 permission_00027: 
-  name: ^groupes/(?!destroy)
+  name: ^groups/(?!destroy)
   info: Manage groups of software
   id: 27
 permission_00049: 

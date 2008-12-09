@@ -3,7 +3,7 @@
 <% software = release.software %>
 <%= public_link_to _('Home'), welcome_path %> >
  <%= public_link_to _('Software'), softwares_path %> >
-  <%= public_link_to software.groupe.name, software_path(software.groupe_id) %> >
+  <%= public_link_to software.group.name, software_path(software.group_id) %> >
    <%= public_link_to software, software_path(software) %> >
     <%= link_to version, version_path(version) %> >
      <%= link_to_release(release) %> >

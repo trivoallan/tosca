@@ -16,51 +16,51 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class GroupesController < ApplicationController
+class GroupsController < ApplicationController
   # public access to the list
   before_filter :login_required, :except => [:index,:show]
 
   helper :softwares
 
   def index
-    options = { :order => 'groupes.name', :page => params[:page] }
-    @groupes = Groupe.paginate options
+    options = { :order => 'groups.name', :page => params[:page] }
+    @groups = Group.paginate options
   end
 
   def show
-    @groupe = Groupe.find(params[:id])
+    @group = Group.find(params[:id])
   end
 
   def new
-    @groupe = Groupe.new
+    @group = Group.new
   end
 
   def create
-    @groupe = Groupe.new(params[:groupe])
-    if @groupe.save
+    @group = Group.new(params[:group])
+    if @group.save
       flash[:notice] = _('Group was successfully created.')
-      redirect_to groupes_path
+      redirect_to groups_path
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @groupe = Groupe.find(params[:id])
+    @group = Group.find(params[:id])
   end
 
   def update
-    @groupe = Groupe.find(params[:id])
-    if @groupe.update_attributes(params[:groupe])
+    @group = Group.find(params[:id])
+    if @group.update_attributes(params[:group])
       flash[:notice] = _('Group was successfully updated.')
-      redirect_to groupe_path(@groupe)
+      redirect_to group_path(@group)
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Groupe.find(params[:id]).destroy
-    redirect_to groupes_path
+    Group.find(params[:id]).destroy
+    redirect_to groups_path
   end
 end

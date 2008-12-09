@@ -19,7 +19,7 @@
 
 class SoftwaresController < ApplicationController
   helper :filters, :versions, :issues, :skills, :contributions,
-    :licenses, :groupes
+    :licenses, :groups
 
   # Not used for the moment
   # auto_complete_for :software, :name
@@ -34,7 +34,7 @@ class SoftwaresController < ApplicationController
     end
 
     options = { :per_page => 15, :order => 'softwares.name',
-                :include => [:groupe,:image,:skills], :page => params[:page] }
+                :include => [:group,:image,:skills], :page => params[:page] }
     conditions = []
 
     if params.has_key? :filters
@@ -56,7 +56,7 @@ class SoftwaresController < ApplicationController
       conditions = Filters.build_conditions(software_filters, [
         [:software, 'softwares.name', :like ],
         [:description, 'softwares.description', :like ],
-        [:groupe_id, 'softwares.groupe_id', :equal ],
+        [:group_id, 'softwares.group_id', :equal ],
         [:contract_id, ' cv.contract_id', :in ]
       ])
       @filters = software_filters
@@ -144,14 +144,14 @@ class SoftwaresController < ApplicationController
 private
   def _form
     @skills = Skill.find_select
-    @groupes = Groupe.find_select
+    @groups = Group.find_select
     @licenses = License.find_select
   end
 
   def _panel
     @contracts = Contract.find_select(Contract::OPTIONS) if @ingenieur
     @technologies = Skill.find_select
-    @groupes = Groupe.find_select
+    @groups = Group.find_select
   end
 
   def add_logo

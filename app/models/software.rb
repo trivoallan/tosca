@@ -21,7 +21,7 @@ class Software < ActiveRecord::Base
 
   has_one :image, :dependent => :destroy
   belongs_to :license
-  belongs_to :groupe
+  belongs_to :group
 
   has_many :contributions
   has_many :knowledges
@@ -34,7 +34,7 @@ class Software < ActiveRecord::Base
 
   validates_presence_of :name, :message =>
     _('You have to specify a name')
-  validates_presence_of :groupe, :message =>
+  validates_presence_of :group, :message =>
     _('You have to specify a group')
   validates_length_of :skills, :minimum => 1, :message =>
     _('You have to specify at least one technology')

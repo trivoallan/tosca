@@ -1,6 +1,6 @@
 <%= public_link_to _('Homepage') , welcome_path %> >
  <%= public_link_to _('Software') , softwares_path %> >
-  <%= public_link_to @software.groupe, groupe_path(@software.groupe_id) %> >
+  <%= public_link_to @software.group, group_path(@software.group_id) %> >
    <%= @software %> <%= link_to_edit(@software) %>
 <div class="subcolumns">
   <div class="c50l">
@@ -33,7 +33,7 @@
          <td><%= @software.skills.collect{|c| c.name}.join(', ') %></td></tr>
 
      <tr><th><%= _('Group') %></th>
-         <td><%= public_link_to(@software.groupe.name, groupe_path(@software.groupe_id) ) if @software.groupe %></td></tr>
+         <td><%= public_link_to(@software.group.name, group_path(@software.group_id) ) if @software.group %></td></tr>
 
      <tr><th><%=n_('Version', 'Versions', @software.versions.size)%> <%= link_to_new_version(@software) %></th>
          <td><%= @software.versions.collect{|v| link_to_version v}.join(', ') %></td>

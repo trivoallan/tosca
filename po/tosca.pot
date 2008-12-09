@@ -326,7 +326,7 @@ msgstr ""
 #: app/views/contributions/_contributions_info.html.erb:32
 #: app/views/contributions/_contributions_info.html.erb:49
 #: app/views/contributions/_form.html.erb:11
-#: app/views/contributions/admin.html.erb:5 app/views/groupes/index.html.erb:5
+#: app/views/contributions/admin.html.erb:5 app/views/groups/index.html.erb:5
 #: app/views/issues/_form.html.erb:74 app/views/issues/_infos_issue.html.erb:9
 #: app/views/issues/lists/_issues_table.html.erb:4
 #: app/views/issues/lists/_pending_table.html.erb:11
@@ -459,11 +459,11 @@ msgstr ""
 msgid "This file does not exist."
 msgstr ""
 
-#: app/controllers/groupes_controller.rb:41
+#: app/controllers/groups_controller.rb:41
 msgid "Group was successfully created."
 msgstr ""
 
-#: app/controllers/groupes_controller.rb:55
+#: app/controllers/groups_controller.rb:55
 msgid "Group was successfully updated."
 msgstr ""
 
@@ -924,11 +924,11 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: app/helpers/groupes_helper.rb:23
+#: app/helpers/groups_helper.rb:23
 msgid "classification"
 msgstr ""
 
-#: app/helpers/groupes_helper.rb:29 app/views/groupes/index.html.erb:4
+#: app/helpers/groups_helper.rb:29 app/views/groups/index.html.erb:4
 msgid "a group"
 msgstr ""
 
@@ -1662,12 +1662,12 @@ msgstr ""
 msgid "Elapsed|Until now"
 msgstr ""
 
-#: app/models/groupe.rb:-
-msgid "groupe"
+#: app/models/group.rb:-
+msgid "group"
 msgstr ""
 
-#: app/models/groupe.rb:-
-msgid "Groupe|Name"
+#: app/models/group.rb:-
+msgid "Group|Name"
 msgstr ""
 
 #: app/models/image.rb:-
@@ -2024,7 +2024,7 @@ msgid "Software|License"
 msgstr ""
 
 #: app/models/software.rb:-
-msgid "Software|Groupe"
+msgid "Software|Group"
 msgstr ""
 
 #: app/models/software.rb:-
@@ -2367,8 +2367,8 @@ msgstr ""
 #: app/views/contributions/_form.html.erb:7
 #: app/views/contributions/admin.html.erb:5
 #: app/views/contributiontypes/_form.html.erb:3
-#: app/views/documenttypes/_form.html.erb:3 app/views/groupes/_form.html.erb:4
-#: app/views/groupes/index.html.erb:5 app/views/issuetypes/_form.html.erb:3
+#: app/views/documenttypes/_form.html.erb:3 app/views/groups/_form.html.erb:4
+#: app/views/groups/index.html.erb:5 app/views/issuetypes/_form.html.erb:3
 #: app/views/knowledges/index.html.erb:5
 #: app/views/permissions/_form.html.erb:4 app/views/roles/_form.html.erb:3
 #: app/views/severities/_form.html.erb:3 app/views/skills/_form.html.erb:3
@@ -2545,7 +2545,7 @@ msgstr ""
 #: app/views/contributiontypes/edit.html.erb:5
 #: app/views/contributiontypes/show.html.erb:7
 #: app/views/documenttypes/edit.html.erb:5
-#: app/views/documenttypes/show.html.erb:7 app/views/groupes/edit.html.erb:5
+#: app/views/documenttypes/show.html.erb:7 app/views/groups/edit.html.erb:5
 #: app/views/images/edit.html.erb:5 app/views/issuetypes/edit.html.erb:5
 #: app/views/machines/edit.html.erb:5 app/views/permissions/edit.html.erb:5
 #: app/views/severities/edit.html.erb:5 app/views/severities/show.html.erb:7
@@ -2789,7 +2789,7 @@ msgstr ""
 #: app/views/commitments/new.html.erb:5 app/views/contracts/new.html.erb:5
 #: app/views/contributions/new.html.erb:5
 #: app/views/contributiontypes/new.html.erb:5
-#: app/views/documenttypes/new.html.erb:5 app/views/groupes/new.html.erb:5
+#: app/views/documenttypes/new.html.erb:5 app/views/groups/new.html.erb:5
 #: app/views/images/new.html.erb:5 app/views/issuetypes/new.html.erb:5
 #: app/views/machines/new.html.erb:5 app/views/phonecalls/new.html.erb:5
 #: app/views/roles/new.html.erb:5 app/views/rules/components/new.html.erb:5
@@ -3258,15 +3258,15 @@ msgstr ""
 msgid "Create a new type of documents"
 msgstr ""
 
-#: app/views/groupes/edit.html.erb:1
+#: app/views/groups/edit.html.erb:1
 msgid "Editing group"
 msgstr ""
 
-#: app/views/groupes/index.html.erb:1
+#: app/views/groups/index.html.erb:1
 msgid "Group list"
 msgstr ""
 
-#: app/views/groupes/new.html.erb:1
+#: app/views/groups/new.html.erb:1
 msgid "New group"
 msgstr ""
 
