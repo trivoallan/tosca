@@ -139,7 +139,7 @@ class Issue < ActiveRecord::Base
     elsif self.software
       self.software.name
     else
-      "-"
+      '-'
     end
   end
 
