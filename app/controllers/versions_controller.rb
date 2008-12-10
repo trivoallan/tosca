@@ -20,7 +20,7 @@ class VersionsController < ApplicationController
   helper :filters, :softwares, :releases
 
   def index
-    options = { :per_page => 15, :page => params[:page] }
+    options = { :page => params[:page] }
 
     # Specification of a filter f :
     # [ namespace, field, database field, operation ]

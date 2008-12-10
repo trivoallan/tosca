@@ -139,8 +139,8 @@ class Contract < ActiveRecord::Base
 
   def name
     specialisation = read_attribute(:name)
-    res = "#{client.name} "
-    res << " - #{specialisation}" unless specialisation.blank?
+    res = (client ? client.name : '-')
+    res = "#{res} - #{specialisation}" unless specialisation.blank?
     res
   end
 

@@ -1,14 +1,13 @@
 <h1><%= _("List of the teams") %></h1>
 
-<%= show_pages_links(@team_pages, _('a team')) %>
-
-<% titles = [_('Name'), _('Contact'), _('Motto')]%>
-<%= show_table(@teams, Team, titles) { |t|
-  result = ''
-  result << "<td>#{link_to t.name, team_path(t)}</td>"
-  result << "<td>#{link_to t.contact, account_path(t.contact)}</td>"
-  result << "<td>#{t.motto}</td>"
-  result << "#{link_to_actions_table t}"
-}%>
-
-<%= show_pages_links(@team_pages, _('a team')) %><br />
+<% paginated_section(@teams, :create_label => _('a team')) do %>
+ <% titles = [_('Name'), _('Contact'), _('Motto')]%>
+ <%= show_table(@teams, Team, titles) do |t|
+   result = ''
+   result << "<td>#{link_to t.name, team_path(t)}</td>"
+   result << "<td>#{link_to t.contact, account_path(t.contact)}</td>"
+   result << "<td>#{t.motto}</td>"
+   result << "#{link_to_actions_table t}"
+ end %><br />
+ <%= page_entries_info @teams %>
+<% end %>

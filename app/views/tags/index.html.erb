@@ -1,20 +1,19 @@
 <h1><%= _('Tags list')%></h1>
 
-<%= show_pages_links(@tag_pages, _('a skill') ) %>
 
-<% titles = [ _('Name'), _('Submitter'), _('Skill'), _('Contrat')]%>
-<%= show_table(@tags, Tag, titles) { |t|
-  result = ''
-  result << "<td>#{t.name}</td>"
-  result << "<td>#{t.user}</td>"
-  result << "<td>#{t.skill}</td>"
-  if t.contract.nil?
-    result << "<td>#{t.contract}</td>"
-  else
-    result << "<td>#{t.contract.name}</td>"
-  end
-  result << "#{link_to_actions_table t}"
-}%>
-
-
-<%= show_pages_links @tag_pages, _('a skill') %>
+<% paginated_section(@tags, :create_label => _('a skill')) do %>
+ <% titles = [ _('Name'), _('Submitter'), _('Skill'), _('Contrat')]%>
+ <%= show_table(@tags, Tag, titles) do |t|
+   result = ''
+   result << "<td>#{t.name}</td>"
+   result << "<td>#{t.user}</td>"
+   result << "<td>#{t.skill}</td>"
+   if t.contract.nil?
+     result << "<td>#{t.contract}</td>"
+   else
+     result << "<td>#{t.contract.name}</td>"
+   end
+   result << "#{link_to_actions_table t}"
+ end %><br />
+ <%= page_entries_info @tags %>
+<% end %>

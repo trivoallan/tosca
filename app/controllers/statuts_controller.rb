@@ -18,8 +18,7 @@
 #
 class StatutsController < ApplicationController
   def index
-    @statut_pages, @statuts = paginate :statuts, :per_page => 10, 
-      :order => 'id'
+    @statuts = Statut.all(:order => 'id')
   end
 
   def help

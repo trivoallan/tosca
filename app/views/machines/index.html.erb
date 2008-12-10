@@ -1,12 +1,11 @@
 <h1><%= _('IT infrastructure of Virtual machines of %s') % App::ServiceName %></h1>
 
-<%= show_pages_links(@machine_pages, _('a machine') ) %>
 
 <% titres = [ _('Customer'), _('System') , _('Access (IP)') , _('Informations') ]%>
 <%= show_table(@machines, Machine, titres) { |m|
   result = ''
   result << '<td>'
-  m.socle.clients.each do |c| 
+  m.socle.clients.each do |c|
     result << "#{c.name}<br />"
   end if m.socle
   result << '</td>'
@@ -15,5 +14,3 @@
   result << "<td>#{m.description}</td>"
   result << "#{link_to_actions_table m}"
 }%>
-
-<%= show_pages_links(@machine_pages, _('a machine') ) %>

@@ -17,18 +17,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'issuetypes_controller'
-
-# Re-raise errors caught by the controller.
-class IssuetypesController; def rescue_action(e) raise e end; end
-
-class IssuetypesControllerTest < Test::Unit::TestCase
+class IssuetypesControllerTest < ActionController::TestCase
   fixtures :issuetypes
 
   def setup
-    @controller = IssuetypesController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 

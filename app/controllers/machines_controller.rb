@@ -20,9 +20,9 @@ class MachinesController < ApplicationController
   helper :socles
 
   def index
-    options = { :per_page => 250, :include => [:socle,:hote], :order =>
+    options = { :include => [:socle,:hote], :order =>
         'machines.hote_id, machines.acces' }
-    @machine_pages, @machines = paginate :machines, options
+    @machines = Machine.all(options)
   end
 
   def show

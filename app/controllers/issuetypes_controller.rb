@@ -18,7 +18,7 @@
 #
 class IssuetypesController < ApplicationController
   def index
-    @issuetype_pages, @issuetypes = paginate :issuetypes, :per_page => 10
+    @issuetypes = Issuetype.all
   end
 
   def show

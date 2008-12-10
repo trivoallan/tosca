@@ -18,8 +18,7 @@
 #
 class TagsController < ApplicationController
   def index
-    options = { :per_page => 50, :order => 'tags.name' }
-    @tag_pages, @tags = paginate :tags, options
+    @tags = Tag.paginate :order => 'tags.name', :page => params[:page]
   end
 
   def show
@@ -68,4 +67,3 @@ private
     @contracts = Contract.find_select(Contract::OPTIONS)
   end
 end
-

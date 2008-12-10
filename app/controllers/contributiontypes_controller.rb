@@ -18,7 +18,7 @@
 #
 class ContributiontypesController < ApplicationController
   def index
-    @contributiontype_pages, @contributiontypes = paginate :contributiontypes, :per_page => 10
+    @contributiontypes = Contributiontype.all
   end
 
   def show

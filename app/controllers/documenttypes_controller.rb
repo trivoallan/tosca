@@ -18,7 +18,7 @@
 #
 class DocumenttypesController < ApplicationController
   def index
-    @documenttype_pages, @documenttypes = paginate :documenttypes, :per_page => 10
+    @documenttypes = Documenttype.all
   end
 
   def show

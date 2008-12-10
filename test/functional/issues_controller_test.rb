@@ -125,9 +125,9 @@ class IssuesControllerTest < ActionController::TestCase
       assert_response :success
       assert_template 'show'
 
-      xhr :get, :ajax_comments, :id => issue_id
+      xhr :get, :ajax_actions, :id => issue_id
       assert_response :success
-      assert_template 'issues/tabs/_tab_comments'
+      assert_template 'issues/tabs/_tab_actions'
 
       xhr :get, :ajax_history, :id => issue_id
       assert_response :success
@@ -144,6 +144,7 @@ class IssuesControllerTest < ActionController::TestCase
       xhr :get, :ajax_cns, :id => issue_id
       assert_response :success
       assert_template 'issues/tabs/_tab_cns'
+      logout
     }
   end
 
