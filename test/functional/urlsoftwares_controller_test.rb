@@ -17,26 +17,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'urlsoftwares_controller'
 
-# Re-raise errors caught by the controller.
-class UrlsoftwaresController; def rescue_action(e) raise e end; end
-
-class UrlsoftwaresControllerTest < Test::Unit::TestCase
+class UrlsoftwaresControllerTest < ActionController::TestCase
   fixtures :urlsoftwares, :softwares
 
   def setup
-    @controller = UrlsoftwaresController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 
   def test_index
     get :index
     assert_response :success
-    assert_template 'index'
-    assert_not_nil assigns(:urlsoftwares)
+    assert_template nil
   end
 
   def test_show

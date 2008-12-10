@@ -20,9 +20,7 @@ class UrlsoftwaresController < ApplicationController
   helper :softwares
 
   def index
-    @urlsoftware_pages, @urlsoftwares = paginate :urlsoftwares,
-     :per_page => 10, :include => [:software],
-     :order => 'urlsoftwares.software_id'
+    render :nothing => true
   end
 
   def show

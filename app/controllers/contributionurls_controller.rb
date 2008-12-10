@@ -20,8 +20,7 @@ class ContributionurlsController < ApplicationController
   helper :softwares
 
   def index
-    @contributionurl_pages, @contributionurls = paginate :contributionurls,
-    :per_page => 10
+    render :nothing => true
   end
 
   def show

@@ -17,26 +17,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'contributionurls_controller'
 
-# Re-raise errors caught by the controller.
-class ContributionurlsController; def rescue_action(e) raise e end; end
-
-class ContributionurlsControllerTest < Test::Unit::TestCase
+class ContributionurlsControllerTest < ActionController::TestCase
   fixtures :contributionurls
 
   def setup
-    @controller = ContributionurlsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 
   def test_index
     get :index
     assert_response :success
-    assert_template 'index'
-    assert_not_nil assigns(:contributionurls)
+    assert_template nil
   end
 
   def test_show
