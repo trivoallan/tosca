@@ -2,8 +2,11 @@
   _("Are you sure you want to delete this comment ?") } %>
 <% user = comment.user %>
 
+<% class_collapsed = 'collapsed' %>
+<% class_collapsed = '' if not_collapsed %>
+
 <div id="comment_<%=comment.id%>"
-     class="comment-container collapsed <%=(comment.private? ? 'private' : 'public')%>">
+     class="comment-container <%=class_collapsed%> <%=(comment.private? ? 'private' : 'public')%>">
   <div class="comment-header" onclick="tosca_toggle_comment('comment_<%=comment.id%>')">
     <% if user %><strong><%= user.name %></strong><% end %>
     - <span><%= comment.created_on.to_s(:short) %></span>

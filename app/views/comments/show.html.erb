@@ -3,7 +3,7 @@
 <%= render :partial => "issues/tabs/description" %>
 
 <%= render :partial => "issues/tabs/comment", :locals =>
-         { :comment => @comment } %>
+         { :comment => @comment, :not_collapsed => true } %>
 
-<%= link_to 'Modifier', edit_comment_path(@comment) %> |
+<%= link_to _('Edit'), edit_comment_path(@comment) %> |
 <%= link_to_issue @comment.issue, :text => _('Return to the issue') %>
