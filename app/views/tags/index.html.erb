@@ -2,12 +2,12 @@
 
 <%= show_pages_links(@tag_pages, _('a skill') ) %>
 
-<% titles = [ _('Name'), _('Submitter'), _('Competence'), _('Contrat')]%>
+<% titles = [ _('Name'), _('Submitter'), _('Skill'), _('Contrat')]%>
 <%= show_table(@tags, Tag, titles) { |t|
   result = ''
   result << "<td>#{t.name}</td>"
   result << "<td>#{t.user}</td>"
-  result << "<td>#{t.competence}</td>"
+  result << "<td>#{t.skill}</td>"
   if t.contract.nil?
     result << "<td>#{t.contract}</td>"
   else

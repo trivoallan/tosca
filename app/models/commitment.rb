@@ -18,7 +18,7 @@
 #
 class Commitment < ActiveRecord::Base
   belongs_to :severity
-  belongs_to :typeissue
+  belongs_to :issuetype
   has_and_belongs_to_many :contracts, :uniq => true
 
   validates_each :correction, :workaround do |record, attr, value|
@@ -37,13 +37,13 @@ class Commitment < ActiveRecord::Base
   end
 
   def to_s
-    "#{self.typeissue.name} | #{self.severity.name} : " +
+    "#{self.issuetype.name} | #{self.severity.name} : " +
       "#{Time.in_words(self.workaround.days, true)} " +
       "/ #{Time.in_words(self.correction.days, true)}"
   end
 
-  INCLUDE = [:typeissue,:severity]
-  ORDER = 'commitments.typeissue_id, commitments.severity_id DESC, commitments.workaround DESC'
+  INCLUDE = [:issuetype,:severity]
+  ORDER = 'commitments.issuetype_id, commitments.severity_id DESC, commitments.workaround DESC'
   OPTIONS = { :include => INCLUDE, :order => ORDER }
 
 end

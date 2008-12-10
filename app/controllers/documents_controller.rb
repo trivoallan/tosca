@@ -28,8 +28,8 @@ class DocumentsController < ApplicationController
     flash[:notice]= flash[:notice]
     redirect_to select_documents_path and return unless params[:id]
     unless params[:id] == 'all'
-      @typedocument = Typedocument.find(params[:id])
-      conditions = ["documents.typedocument_id = ?", @typedocument.id]
+      @documenttype = Documenttype.find(params[:id])
+      conditions = ["documents.documenttype_id = ?", @documenttype.id]
     else
       conditions = nil
     end
@@ -47,9 +47,9 @@ class DocumentsController < ApplicationController
   end
 
   def select
-    @typedocuments = Typedocument.find(:all)
-    @typedocuments.delete_if do |t|
-      Document.count(:conditions => "documents.typedocument_id = #{t.id}") == 0
+    @documenttypes = Documenttype.find(:all)
+    @documenttypes.delete_if do |t|
+      Document.count(:conditions => "documents.documenttype_id = #{t.id}") == 0
     end
   end
 
@@ -67,7 +67,7 @@ class DocumentsController < ApplicationController
   end
 
   def new
-    @document = Document.new(:typedocument_id => params[:id])
+    @document = Document.new(:documenttype_id => params[:id])
     _form
   end
 
@@ -100,20 +100,20 @@ class DocumentsController < ApplicationController
 
   def destroy
     doc = Document.find(params[:id])
-    typedocument_id = doc.typedocument_id
+    documenttype_id = doc.documenttype_id
     doc.destroy
-    redirect_to list_document_path(:id => typedocument_id)
+    redirect_to list_document_path(:id => documenttype_id)
   end
 
   private
   def _form
     @clients = Client.find_select
-    @typedocuments = Typedocument.find_select
+    @documenttypes = Documenttype.find_select
     @users = User.find_select
   end
 
   def _panel
-    @typedocuments = Typedocument.find_select
+    @documenttypes = Documenttype.find_select
   end
 
 end

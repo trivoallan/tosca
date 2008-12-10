@@ -1,0 +1,8 @@
+<h1><%= _('New group')%></h1>
+
+<% form_tag groups_path do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Create') %>
+<% end %>
+
+<%= link_to_back %>

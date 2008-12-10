@@ -36,7 +36,7 @@ module WeeklyReporting
       options = { :conditions =>
         [ 'issues.created_on BETWEEN :first_day AND :last_day', values ],
         :order => 'clients.name, issues.id', :include => [{:recipient => :client},
-                                                           :statut,:typeissue] }
+                                                           :statut,:issuetype] }
       @issues_created = Issue.find(:all, options)
 
       options[:conditions] = [ 'issues.statut_id = ?', 7 ] # 7 => Closed.

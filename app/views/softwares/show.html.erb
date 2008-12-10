@@ -1,6 +1,6 @@
 <%= public_link_to _('Homepage') , welcome_path %> >
  <%= public_link_to _('Software') , softwares_path %> >
-  <%= public_link_to @software.groupe, groupe_path(@software.groupe_id) %> >
+  <%= public_link_to @software.group, group_path(@software.group_id) %> >
    <%= @software %> <%= link_to_edit(@software) %>
 <div class="subcolumns">
   <div class="c50l">
@@ -30,12 +30,12 @@
          <td><%=h @software.license.name if @software.license %></td></tr>
 
      <tr><th><%= _('Technologies') %></th>
-         <td><%= @software.competences.collect{|c| c.name}.join(', ') %></td></tr>
+         <td><%= @software.skills.collect{|c| c.name}.join(', ') %></td></tr>
 
      <tr><th><%= _('Group') %></th>
-         <td><%= public_link_to(@software.groupe.name, groupe_path(@software.groupe_id) ) if @software.groupe %></td></tr>
+         <td><%= public_link_to(@software.group.name, group_path(@software.group_id) ) if @software.group %></td></tr>
 
-     <tr><th><%=n_('Version', 'Versions', @software.versions.size)%></b> <%= link_to_new_version(@software) %></th>
+     <tr><th><%=n_('Version', 'Versions', @software.versions.size)%> <%= link_to_new_version(@software) %></th>
          <td><%= @software.versions.collect{|v| link_to_version v}.join(', ') %></td>
      </tr>
 
@@ -43,7 +43,7 @@
      <tr><td><b><%= _('Links') %></b> <%= link_to_new_urlsoftware(@software.id) %></td>
          <% options = {:no_title => true, :edit => 'urlsoftware'} %>
          <td><%= show_list(@software.urlsoftwares, 'url', options) {|u|
-             "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.typeurl.name}</a>"
+             "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a>"
             } %>
          </td></tr>
    </table>

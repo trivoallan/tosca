@@ -1,0 +1,43 @@
+--- 
+skill_00014: 
+  name: Web
+  id: 14
+skill_00003: 
+  name: Annuaires
+  id: 3
+skill_00004: 
+  name: C / C++
+  id: 4
+skill_00005: 
+  name: C# / Mono
+  id: 5
+skill_00006: 
+  name: Gestion
+  id: 6
+skill_00007: 
+  name: Java / J2ee
+  id: 7
+skill_00008: 
+  name: OpenOffice
+  id: 8
+skill_00010: 
+  name: Php
+  id: 10
+skill_00009: 
+  name: Perl
+  id: 9
+skill_00011: 
+  name: Python
+  id: 11
+skill_00012: 
+  name: Ruby
+  id: 12
+skill_00001: 
+  name: "Admin / R\xC3\xA9seau"
+  id: 1
+skill_00002: 
+  name: "Admin / Syst\xC3\xA8me"
+  id: 2
+skill_00013: 
+  name: SGBD / SQL
+  id: 13

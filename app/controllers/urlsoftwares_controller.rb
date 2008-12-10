@@ -21,7 +21,7 @@ class UrlsoftwaresController < ApplicationController
 
   def index
     @urlsoftware_pages, @urlsoftwares = paginate :urlsoftwares,
-     :per_page => 10, :include => [:software,:typeurl],
+     :per_page => 10, :include => [:software],
      :order => 'urlsoftwares.software_id'
   end
 
@@ -70,7 +70,6 @@ class UrlsoftwaresController < ApplicationController
 
 private
   def _form
-    @typeurls = Typeurl.find_select
     @softwares = Software.find_select
   end
 end

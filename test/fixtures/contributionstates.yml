@@ -1,0 +1,17 @@
+--- 
+contributionstate_00003: 
+  name: "accept\xC3\xA9e"
+  id: 3
+  description: "Correctif accept\xC3\xA9 dans la branche principale du projet."
+contributionstate_00004: 
+  name: "propos\xC3\xA9e"
+  id: 4
+  description: "\xC3\x89changes en cours pour d\xC3\xA9terminer les modalit\xC3\xA9s d'int\xC3\xA9gration du correctif."
+contributionstate_00001: 
+  name: "rejet\xC3\xA9e"
+  id: 1
+  description: "Correctif soumis mais non accept\xC3\xA9 par la communaut\xC3\xA9."
+contributionstate_00002: 
+  name: "non revers\xC3\xA9e"
+  id: 2
+  description: "Ce correctif n'est pas revers\xC3\xA9 \xC3\xA0 la communaut\xC3\xA9. C'est souvent le cas des backport."

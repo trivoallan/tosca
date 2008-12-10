@@ -1,5 +1,5 @@
 <% options = { :update => 'col1_content',
-    :url => list_document_path(@typedocument ? {:id => @typedocument.id} : {} ),
+    :url => list_document_path(@documenttype ? {:id => @documenttype.id} : {} ),
     :before => "Element.show('spinner')",
     :success => "Element.hide('spinner')" } %>
 
@@ -30,7 +30,7 @@
 
 <ul class="menu" id="menu_recherche">
  <li><b><%= _("Type of document") %></b><br />
-     <%= select_filter(@typedocuments, 'typedocument') %></li>
+     <%= select_filter(@documenttypes, 'documenttype') %></li>
  <li><b><%= _("Titre") %></b><br />
      <%= text_field :document, :titre %></li>
  <li><b><%= _("Name of the file") %></b><br />

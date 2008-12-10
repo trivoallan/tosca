@@ -33,7 +33,7 @@ ActionController::Routing::Routes.draw do |map|
                  :conditions => { :method => :get } }
   map.welcome '/', sweet_home
 
-  map.without_orm('welcome', %w(admin plan about index suggestions theme))
+  map.without_orm('welcome', %w(admin plan about index suggestions theme clear_cache))
   map.without_orm('welcome', %w(suggestions theme), :post)
   map.without_orm('reporting', %w(configuration flux general digest digest_resultat calendar))
   map.without_orm('access', %w(denied))
@@ -76,7 +76,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :comments, :member => {
      :change_state => :post,
      :comment => :post }
-  map.resources :competences
+  map.resources :skills
   map.resources :contracts,
     :collection => {
       :ajax_choose => :post, :actives => :get, :ajax_add_software => :post,
@@ -89,10 +89,10 @@ ActionController::Routing::Routes.draw do |map|
     :collection => { :select => :get },
     :member => { :list => :get, :destroy => :delete }
   map.resources :commitments
-  map.resources :etatreversements
+  map.resources :contributionstates
   map.resources :fichiers
   map.resources :fournisseurs
-  map.resources :groupes
+  map.resources :groups
   # We cannot have 'image' for singular, coz'
   # image_path is used in ActionView::Helpers of Rails
   map.resources :images, :singular => 'img'
@@ -145,12 +145,11 @@ ActionController::Routing::Routes.draw do |map|
     :auto_complete_for_contract_name => :post,
     :auto_complete_for_user_name => :post }
   map.resources :time_tickets
-  map.resources :typecontributions
-  map.resources :typeissues
-  map.resources :typedocuments
-  map.resources :typeurls
+  map.resources :contributiontypes
+  map.resources :issuetypes
+  map.resources :documenttypes
   map.resources :urlsoftwares
-  map.resources :urlreversements
+  map.resources :contributionurls
   map.resources :versions
 
   # Sample of regular route:

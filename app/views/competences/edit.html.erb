@@ -1,9 +1,0 @@
-<h1><%= _('Editing skill')%></h1>
-
-<% form_tag competence_path(@competence), :method => :put do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _('Edit') %>
-<% end %>
-
-<br />
-<%= link_to_show_and_list @competence %>

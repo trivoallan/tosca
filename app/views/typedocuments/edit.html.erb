@@ -1,9 +1,0 @@
-<h1><%= _("Editing typedocument") %></h1>
-
-<% form_tag typedocument_path(@typedocument), :method => :put do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _("Edit") %>
-<% end %>
-
-<%= link_to 'Show', typedocument_path(@typedocument) %> |
-<%= link_to_back %>

@@ -1,12 +1,11 @@
 <%= error_messages_for 'machine' %>
 
-<!--[form:machine]-->
 <div class="show" style="width: 70%">
   <div style="float:left; margin_right: 30px; padding-right: 40px;">
     <p><label for="machine_acces"><%= _('Access : DNS (IP)')%></label><br />
     <%= text_field 'machine', 'acces'  %></p>
 
-    <p><label for="machine_virtuelle"><%= _('Virtual') << '?' %></label> 
+    <p><label for="machine_virtuelle"><%= _('Virtual ?')%></label> 
     <%= check_box 'machine', 'virtuelle'%></p>
 
     <p><label for="machine_hote_id"><%= _('Host')%></label> 
@@ -25,5 +24,3 @@
   <div style="clear: both"></div>
 
 </div>
-<!--[eoform:machine]-->
-

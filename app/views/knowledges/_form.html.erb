@@ -11,8 +11,8 @@
   <th><label for="knowledge_level"><%= _('Level') %></label></th>
   <td><%= text_field :knowledge, :level, :size => 1, :maxlength => 1 %></td>
 
-  <th><label for="knowledge_competence_id"><%= _('Domain') %></label></th>
-  <td><%= select_empty(:knowledge, :competence_id, @competences) %></td>
+  <th><label for="knowledge_skill_id"><%= _('Domain') %></label></th>
+  <td><%= select_empty(:knowledge, :skill_id, @skills) %></td>
   <th><label for="knowledge_software_id"><%= _('Software') %></label></th>
   <td><%= select_empty(:knowledge, :software_id, @software) %></td>
  </tr>

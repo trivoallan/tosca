@@ -28,7 +28,7 @@ module FormsHelper
   # objectcollection contient le tableau des objects déjà présents
   # C'est la fonction to_s qui est utilisée pour le label
   # L'option :size permet une mise en colonne
-  # Ex : hbtm_check_box( @software.competences, @competences, 'competence_ids')
+  # Ex : hbtm_check_box( @software.skills, @skills, 'skill_ids')
   def hbtm_check_box( objectcollection, collection, name , options={})
     return '' if collection.nil? || collection.empty?
     objects = objectcollection.collect { |c| [ c.name, c.id ] }

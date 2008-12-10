@@ -1,0 +1,9 @@
+<h1><%= _("Editing an issue type") %></h1>
+
+<% form_tag issuetype_path(@issuetype), :method => :put do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _("Edit") %>
+<% end %>
+
+<%= link_to _("List"), issuetype_path(@issuetype) %> |
+<%= link_to_back %>

@@ -1,0 +1,9 @@
+<h1><%= _("Editing a type of contribution") %></h1>
+
+<% form_tag contributiontype_path(@contributiontype), :method => :put do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _("Edit") %>
+<% end %>
+
+<%= link_to _("Show"), contributiontype_path(@contributiontype) %> |
+<%= link_to_back %>

@@ -81,7 +81,7 @@ class Notifier < ActionMailer::Base
     recipients  issue.compute_recipients
     cc          issue.compute_copy
     from        App::FromEmail
-    subject     "[#{issue.contract.domain} - ##{issue.id}] #{issue.resume}"
+    subject     subject_from_issue(issue)
     headers     headers_mail_issue(issue.first_comment)
 
     html_and_text_body(options);
@@ -103,7 +103,7 @@ class Notifier < ActionMailer::Base
     recipients issue.compute_recipients(comment.private)
     cc         issue.compute_copy(comment.private)
     from       App::FromEmail
-    subject     "[#{issue.contract.domain} - ##{issue.id}] #{issue.resume}"
+    subject    subject_from_issue(issue)
     headers    headers_mail_issue(comment)
 
     html_and_text_body(options)
@@ -343,6 +343,11 @@ class Notifier < ActionMailer::Base
     result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
     result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc && !cc.blank?
     result << '.'
+  end
+  
+  #Generate the subject of a e-mail from an issue
+  def subject_from_issue(issue)
+    "[#{issue.contract.read_attribute(:name)} - ##{issue.id}] #{issue.resume}"
   end
 
 end

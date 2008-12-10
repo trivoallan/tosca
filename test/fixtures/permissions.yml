@@ -36,7 +36,7 @@ permission_00001:
   info: Full access
   id: 1
 permission_00023: 
-  name: ^competences/(?!destroy)
+  name: ^skills/(?!destroy)
   info: Manage knowledge
   id: 23
 permission_00045: 
@@ -68,7 +68,7 @@ permission_00057:
   info: Public read access to contributions
   id: 57
 permission_00058: 
-  name: ^groupes/(index|show)
+  name: ^groups/(index|show)
   info: Public read access to groups
   id: 58
 permission_00036: 
@@ -136,7 +136,7 @@ permission_00005:
   info: Allow comments on this software
   id: 5
 permission_00027: 
-  name: ^groupes/(?!destroy)
+  name: ^groups/(?!destroy)
   info: Manage groups of software
   id: 27
 permission_00049: 
@@ -204,7 +204,7 @@ permission_00008:
   info: Attachments preview
   id: 8
 permission_00019: 
-  name: ^urlreversements/
+  name: ^contributionurls/
   info: Manage their own urls of contributions
   id: 19
 permission_00031: 

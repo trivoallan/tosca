@@ -1,8 +1,0 @@
-<% for column in Typecontribution.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%= @typecontribution.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to _("Edit"), edit_typecontribution_path(@typecontribution) %> |
-<%= link_to _("Back"), typecontributions_path %>

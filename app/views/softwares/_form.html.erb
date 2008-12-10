@@ -30,18 +30,18 @@
       <%= link_to_new_license %></th>
      <td><%= select(:software, :license_id, @licenses) %></td>
     </tr><tr>
-     <th><label for="software_groupe_id"><%=_('Group')%></label>
+     <th><label for="software_group_id"><%=_('Group')%></label>
       <%= link_to_new_group %></th>
-     <td><%= select(:software, :groupe_id, @groupes) %></td>
+     <td><%= select(:software, :group_id, @groups) %></td>
     </tr><tr>
      <th><label for="software_private"><%=_('Private')%></label></th>
      <td><%= check_box(:software, :private) %></td>
     </tr>
    </table>
 
-   <p><label><%=_('Technologies')%></label> <%= link_to_new_competence %></p>
-     <%= hbtm_check_box( @software.competences, @competences,
-                         'software[competence_ids]', :size => 4) %>
+   <p><label><%=_('Technologies')%></label> <%= link_to_new_skill %></p>
+     <%= hbtm_check_box( @software.skills, @skills,
+                         'software[skill_ids]', :size => 4) %>
    <% # Tags are dynamically dependent of related technologies %>
    <%= render :partial => 'tags' %>
    <%= observe_form('form_software', :update => 'tags',

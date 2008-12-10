@@ -19,8 +19,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ContributionsControllerTest < ActionController::TestCase
-  fixtures :contributions, :softwares, :etatreversements, :users,
-    :ingenieurs, :typecontributions, :recipients
+  fixtures :contributions, :softwares, :contributionstates, :users,
+    :ingenieurs, :contributiontypes, :recipients
 
   def setup
     login 'admin', 'admin'
@@ -83,7 +83,7 @@ class ContributionsControllerTest < ActionController::TestCase
 
     form = select_form 'main_form'
     form.contribution.name = 'a new contribution'
-    form.urlreversement.valeur = 'http://www.tosca-project.net'
+    form.contributionurl.valeur = 'http://www.tosca-project.net'
     form.submit
 
     assert_response :redirect

@@ -1,0 +1,17 @@
+<h1><%= "Group softwares \"#{@group.name}\"" %></h1>
+
+<table class="show">
+<% for column in Group.content_columns %>
+<tr><td><b><%= column.human_name %>:</b>
+    <td><%=h @group.send(column.name) %></td></tr>
+<% end %>
+
+  <tr>
+    <td><b>Softwares:</b>
+    <td><%= show_list(@group.softwares, 'Softwares',
+             {:no_title => true}) { |l| public_link_to_software l} %></td>
+  </tr>
+
+</table>
+
+<%= link_to_edit_and_list @group %>

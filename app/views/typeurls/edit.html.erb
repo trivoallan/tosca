@@ -1,9 +1,0 @@
-<h1><%= _("Editing typeurl") %></h1>
-
-<% form_tag typeurl_path(@typeurl), :method => :put do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Show', typeurl_path(@typeurl) %> |
-<%= link_to_back %>

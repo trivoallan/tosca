@@ -1,0 +1,9 @@
+<h1>Editing contributionstate</h1>
+
+<% form_tag contributionstate_path(@contributionstate), :method => :put do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', contributionstate_path(@contributionstate) %> |
+<%= link_to_back %>

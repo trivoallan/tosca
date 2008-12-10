@@ -1,7 +1,7 @@
 <%= error_messages_for 'commitment' %>
 
-<p><label for="commitment_typeissue"><%= _('Type of the issue') %></label><br />
-  <%= select(:commitment, :typeissue_id, @typeissues) %>
+<p><label for="commitment_issuetype"><%= _('Type of the issue') %></label><br />
+  <%= select(:commitment, :issuetype_id, @issuetypes) %>
 </p>
 
 <p><label for="commitment_severity"><%= _('Severity') %></label><br />

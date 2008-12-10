@@ -39,16 +39,16 @@ module Filters
   end
 
   class Knowledges < Struct.new('Knowledges', :ingenieur_id,
-                                :software_id, :competence_id)
+                                :software_id, :skill_id)
     extend Shared
   end
 
   class Contributions < Struct.new('Contributions', :software, :ingenieur_id,
-                             :contribution, :etatreversement_id, :contract_id)
+                             :contribution, :contributionstate_id, :contract_id)
     extend Shared
   end
 
-  class Softwares < Struct.new('Softwares', :software, :groupe_id,
+  class Softwares < Struct.new('Softwares', :software, :group_id,
                                :contract_id, :description )
     extend Shared
   end
@@ -67,7 +67,7 @@ module Filters
   end
 
   class Issues < Struct.new('Issues', :text, :contract_id, :ingenieur_id,
-                              :typeissue_id, :severity_id, :statut_id,
+                              :issuetype_id, :severity_id, :statut_id,
                               :active, :limit)
     extend Shared
   end
@@ -87,8 +87,8 @@ module Filters
   # conditions = Filters.build_conditions(params, [
   #   ['software', 'name', 'versions.name', :like ],
   #   ['software', 'description', 'versions.description', :like ],
-  #   ['filters', 'groupe_id', 'softwares.groupe_id', :equal ],
-  #   ['filters', 'knowledge_id', 'competences_softwares.competence_id', :equal ],
+  #   ['filters', 'group_id', 'softwares.group_id', :equal ],
+  #   ['filters', 'knowledge_id', 'skills_softwares.skill_id', :equal ],
   #   ['filters', 'client_id', ' versions.contract_id', :in ]
   # ])
   # flash[:conditions] = options[:conditions] = conditions

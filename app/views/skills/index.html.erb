@@ -1,0 +1,11 @@
+<h1><%= _('Skill list')%></h1>
+
+<% paginated_section(@skills, :create_label => _('a skill')) do %>
+ <% titles = [ _('Resources')]%>
+ <%= show_table(@skills, Skill, titles, :content_columns => true) do |c|
+   result = ''
+   result << "<td>#{c.ingenieurs.count}</td>"
+   result << "#{link_to_actions_table c}"
+ end %>
+ <%= page_entries_info @skills %><br />
+<% end %>

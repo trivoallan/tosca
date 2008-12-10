@@ -21,23 +21,22 @@ class Software < ActiveRecord::Base
 
   has_one :image, :dependent => :destroy
   belongs_to :license
-  belongs_to :groupe
+  belongs_to :group
 
   has_many :contributions
   has_many :knowledges
   has_many :issues
-  has_many :urlsoftwares, :dependent => :destroy,
-    :order => 'urlsoftwares.typeurl_id'
+  has_many :urlsoftwares, :dependent => :destroy
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
 
-  has_and_belongs_to_many :competences, :uniq => true
+  has_and_belongs_to_many :skills, :uniq => true
 
   validates_presence_of :name, :message =>
     _('You have to specify a name')
-  validates_presence_of :groupe, :message =>
+  validates_presence_of :group, :message =>
     _('You have to specify a group')
-  validates_length_of :competences, :minimum => 1, :message =>
+  validates_length_of :skills, :minimum => 1, :message =>
     _('You have to specify at least one technology')
 
 

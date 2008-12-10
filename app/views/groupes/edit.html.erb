@@ -1,8 +1,0 @@
-<h1><%= _('Editing group')%></h1>
-
-<% form_tag groupe_path(@groupe), :method => :put do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _('Edit') %>
-<% end %>
-<br />
-<%= link_to_show_and_list @groupe %>

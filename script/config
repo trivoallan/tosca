@@ -29,12 +29,12 @@ end
 args=ARGV
 options.parse!(ARGV)
 
-models = [ Arch, Etatreversement, Groupe, Rules::Component,
-           Rules::Credit, Role, Statut, Typecontribution, Typerequest,
-           Typedocument, Typeurl, Competence, Permission ]
-files = %w(arches etatreversements groupes ossas roles
-          permissions statuts typecontributions typerequests
-          typedocuments typeurls competences permissions
+models = [ Arch, Contributionstate, Group, Rules::Component,
+           Rules::Credit, Role, Statut, Contributiontype, Typerequest,
+           Documenttype, Skill, Permission ]
+files = %w(arches contributionstates groups ossas roles
+          permissions statuts contributiontypes typerequests
+          documenttypes skills permissions
           permissions_roles time_tickets )
 
 =begin
@@ -50,12 +50,12 @@ action_name = @action.to_s.capitalize
 if @action == :dump or @action == :dumpall
   if @action == :dumpall
     models = [ Arch,Recipient,Changelog,Client,Comment,
-	  Competence,Contract,Contribution,Request,
-          Distributeur,Document,Elapsed,Commitment,Etatreversement,Fichier,
-          Groupe,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
+	  Skill,Contract,Contribution,Request,
+          Distributeur,Document,Elapsed,Commitment,Contributionstate,Fichier,
+          Group,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
           Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,
-          Attachment,Preference,Role,Severite,Socle,Statut,Typecontribution,
-          Typerequest,Typedocument,Typeurl,User ]
+          Attachment,Preference,Role,Severite,Socle,Statut,Contributiontype,
+          Typerequest,Documenttype,User ]
   end
   models.each do |m|
     puts "#{action_name} #{m}..." if $verbose

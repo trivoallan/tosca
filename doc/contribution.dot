@@ -19,10 +19,10 @@ Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
 Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
 
 
-Urlreversement -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
+Contributionurl -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
 
-Contribution -> Etatreversement [arrowhead=dot,dir=both,arrowtail=crow]
-Contribution -> Typecontribution [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Contributionstate [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Contributiontype [arrowhead=dot,dir=both,arrowtail=crow]
 Contribution -> Software [arrowhead=dot,dir=both,arrowtail=crow]
 Contribution -> Version [arrowhead=dot,arrowtail=crow,dir=both]
 Contribution -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]

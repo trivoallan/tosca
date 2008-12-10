@@ -1,0 +1,22 @@
+--- 
+issuetype_00001: 
+  name: Information
+  id: 1
+issuetype_00002: 
+  name: Anomalie
+  id: 2
+issuetype_00003: 
+  name: "\xC3\x89volution"
+  id: 3
+issuetype_00004: 
+  name: Monitorat
+  id: 4
+issuetype_00005: 
+  name: Intervention
+  id: 5
+issuetype_00006: 
+  name: "\xC3\x89tude"
+  id: 6
+issuetype_00007: 
+  name: Livraison
+  id: 7

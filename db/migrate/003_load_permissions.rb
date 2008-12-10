@@ -70,10 +70,11 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^comments/(?!destroy)', 'Manage comments' ],
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
                [ '^documents/(?!destroy)', 'Manage documents' ],
+               [ '^issues/(?!destroy)', 'Manage issues' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
                [ '^socles/(?!destroy)', "Manage systems" ],
                [ '^urlsoftwares/(?!destroy)', 'Manage urls of software' ],
-               [ '^urlreversements/', 'Manage their own urls of contributions' ]
+               [ '^contributionurls/', 'Manage their own urls of contributions' ]
              ]
     add_permission.call(roles, access)
 
@@ -82,11 +83,10 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^account/(signup|new|create)', 'Manage account' ],
                [ '^binaires/(?!destroy)', 'Manage binaries' ],
                [ '^clients/(?!destroy)', 'Manage clients' ],
-               [ '^competences/(?!destroy)', 'Manage knowledge' ],
+               [ '^skills/(?!destroy)', 'Manage knowledge' ],
                [ '^contracts/(?!destroy)', 'Manage contracts' ],
-               [ '^issues/(?!destroy)', 'Manage issues' ],
                [ '^commitments/(?!destroy)', 'Manage Service Level Agreement' ],
-               [ '^groupes/(?!destroy)', 'Manage groups of software' ],
+               [ '^groups/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
                [ '^ingenieurs/(?!(destroy|new))', 'Manage human ressources' ],
                [ '^softwares/(?!destroy)', 'Manage software' ],
@@ -143,7 +143,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^welcome/(index|about|theme|plan)', 'Access to home pages' ],
                [ '^contributions/(index|select|show|list|feed)',
                  'Public read access to contributions' ],
-               [ '^groupes/(index|show)', 'Public read access to groups' ],
+               [ '^groups/(index|show)', 'Public read access to groups' ],
                [ '^softwares/(index|show)',
                  'Public read access to software' ],
                [ '^statuts/(index|help)$', 'Explanation of status' ] ]

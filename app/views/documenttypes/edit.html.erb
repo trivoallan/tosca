@@ -1,0 +1,9 @@
+<h1><%= _("Editing documenttype") %></h1>
+
+<% form_tag documenttype_path(@documenttype), :method => :put do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _("Edit") %>
+<% end %>
+
+<%= link_to 'Show', documenttype_path(@documenttype) %> |
+<%= link_to_back %>

@@ -1,0 +1,13 @@
+<h1><%= _('Group list')%></h1>
+
+
+<% paginated_section(@groups, :create_label => _('a group')) do %>
+ <% titles = [_('Name') , _('Software') ]%>
+ <%= show_table(@groups, Group, titles) do |g|
+   result = ''
+   result << "<td>#{g.name }</td>"
+   result << "<td>#{g.softwares.size}</td>"
+   result << "#{link_to_actions_table g}"
+ end %>
+ <% page_entries_info @groups %><br />
+<% end %>

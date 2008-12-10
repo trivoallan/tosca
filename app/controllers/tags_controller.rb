@@ -64,7 +64,7 @@ class TagsController < ApplicationController
 
 private
   def _form
-    @competences = Competence.find_select
+    @skills = Skill.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)
   end
 end

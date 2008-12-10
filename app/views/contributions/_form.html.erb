@@ -22,8 +22,8 @@
       </tr><tr>
         <td colspan="2"><%= file_column_field 'contribution', 'patch'  %></td>
       </tr><tr>
-        <th><label for="contribution_typecontribution"><%=_('Kind of contribution')%></label></th>
-        <td><%= select(:contribution, :typecontribution_id, @typecontributions) %></td>
+        <th><label for="contribution_contributiontype"><%=_('Kind of contribution')%></label></th>
+        <td><%= select(:contribution, :contributiontype_id, @contributiontypes) %></td>
       </tr><tr id="versions">
         <%= render :partial => 'list_versions' %>
       </tr>
@@ -32,12 +32,12 @@
               <td><%= text_field 'contribution', 'id_mantis', :size => 3 %></td></tr>
         <% end %>
       <tr>
-        <th><label for="contribution_etatreversement"><%=_('State')%></label></th>
-        <td><%= select(:contribution, :etatreversement_id, @etatreversements) %></td>
+        <th><label for="contribution_contributionstate"><%=_('State')%></label></th>
+        <td><%= select(:contribution, :contributionstate_id, @contributionstates) %></td>
       </tr><tr>
-        <th colspan="2"><label for="urlreversement_valeur"><%=_('Add an url for the community issue')%></label></th>
+        <th colspan="2"><label for="contributionurl_valeur"><%=_('Add an url for the community issue')%></label></th>
       </tr><tr>
-        <td colspan="2"><%= text_field 'urlreversement', 'valeur' %></td>
+        <td colspan="2"><%= text_field 'contributionurl', 'valeur' %></td>
       </tr><tr>
         <th><label for="contribution_reverse"><%=_('Submitted ?')%></label>
             <%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('contributed_on');"%></th>

@@ -18,10 +18,10 @@
 #
 class Contribution < ActiveRecord::Base
   has_one :issue
-  has_many :urlreversements
+  has_many :contributionurls
 
-  belongs_to :typecontribution
-  belongs_to :etatreversement
+  belongs_to :contributiontype
+  belongs_to :contributionstate
   belongs_to :software
   belongs_to :ingenieur
 
@@ -51,7 +51,7 @@ class Contribution < ActiveRecord::Base
 
   def summary
     out = ''
-    out << typecontribution.name + _(' on ') if typecontribution
+    out << contributiontype.name + _(' on ') if contributiontype
     out << software.name
     out << " #{affected_version}" if affected_version
     out

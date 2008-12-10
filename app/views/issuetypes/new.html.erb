@@ -1,0 +1,8 @@
+<h1><%= _("A new type of issue") %></h1>
+
+<% form_tag issuetypes_path do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _("Create") %>
+<% end %>
+
+<%= link_to_back %>

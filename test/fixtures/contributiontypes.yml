@@ -1,0 +1,13 @@
+--- 
+contributiontype_00001: 
+  name: Correction
+  id: 1
+  description: ""
+contributiontype_00002: 
+  name: "\xC3\x89volution"
+  id: 2
+  description: ""
+contributiontype_00003: 
+  name: Backport
+  id: 3
+  description: ""
