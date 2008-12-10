@@ -1,7 +1,5 @@
 <h1><%=_('List of urls in contributions')%></h1>
 
-<% links = show_pages_links(@contributionurl_pages, _('a new url')) %>
-<%= links %>
 
 <% titres = [_('Software'), _('Url'), _('Contribution')]%>
 <%= show_table(@contributionurls, Contributionurl, titres) { |u|
@@ -12,5 +10,3 @@
   result << "<td>#{contribution.name if contribution}</td>"
   result << link_to_actions_table(u)
 }%>
-
-<%= links %>
