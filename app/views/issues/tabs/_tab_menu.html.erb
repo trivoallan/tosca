@@ -24,11 +24,13 @@
    <% desc =  _('SLA') + ' ' + StaticImage::sla_running %>
    <%= link_to_remote_tab(desc, 'ajax_cns', options) %>
  </li>
+ <% if @ingenieur %>
  <li>
    <% options[:url] = ajax_actions_issue_path(issue_id) %>
    <% desc =  "#{_('Actions')} #{image_star(_('Actions'))}" %>
    <%= link_to_remote_tab(desc, 'ajax_actions', options) %>
  </li>
+ <% end %>
  <li>
    <%= StaticImage::spinner %>
  </li>
