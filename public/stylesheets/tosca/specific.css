@@ -30,9 +30,6 @@ input:focus { background-color: #ffffcc; }
 textarea:focus { background-color: #ffffcc; }
 table { border-collapse: collapse; }
 
-.show tr td fieldset {
-  width: 35em;
-}
 
 div.info { width: 100%; }
 table.full { width: 100%; }
@@ -46,16 +43,18 @@ th a { color: lightgreen; }
   max-width: 45em;
 }
 
+
 #col3 input, #col3 select {
   width: 95%;
 }
 
 #footer a, #footer a:hover { color: #fff; }
 
-
+/* realign radio button. See account form for an example */
+td input.radio { position: relative; top: 2px; }
 p img { vertical-align: middle; }
 label { font-weight: bold; }
-ul { list-style-type: square; margin: 0 0 1em 0; }
+ul { list-style-type: disc; margin: 0 0 1em 0; }
 li img { vertical-align: middle; }
 a:focus, a:hover, a:active { background-color: transparent; }
 a { font-weight: bold; }
@@ -118,6 +117,7 @@ div.login_box, div.show, div.help, div.info {
   border-top: 1px solid #ffffff;
   border-right: 1px solid #999999;
   border-bottom: 1px solid #999999;
+  width: 100%;
 }
 
 /* used mainly in div.show box in order to nicely

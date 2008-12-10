@@ -58,7 +58,7 @@ module FormsHelper
       end
     end
     out << '</tr></table>'
-    out << "<input id=\"#{name_w3c}_\" type=\"hidden\" name=\"#{name}[]\" value=\"\" >"
+    out << "<input id=\"#{name_w3c}_\" type=\"hidden\" name=\"#{name}[]\" value=\"\" />"
   end
 
   # Collection have to contain object which respond to 'id' and 'name'
@@ -72,8 +72,8 @@ module FormsHelper
     options_size = options[:size]
     count = 1
     for data in collection
-      out << radio_button(object, param, data.last)
-      out << "<label for=\"#{object}_#{param}_#{data.last}\">#{data.first}</label> "
+      out << radio_button(object, param, data.last, :class => 'radio')
+      out << " <label for=\"#{object}_#{param}_#{data.last}\">#{data.first}</label> "
       if options_size
         out << '<br />' if (count % options_size == 0)
         count += 1
