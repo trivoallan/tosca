@@ -4600,7 +4600,7 @@ msgstr "Rapport d'activité"
 
 #: app/views/welcome/admin.html.erb:65
 msgid "Clear cache"
-msgstr "Nottoyer le cache"
+msgstr "Nettoyer le cache"
 
 #: app/views/welcome/index.html.erb:2
 msgid "connected"
