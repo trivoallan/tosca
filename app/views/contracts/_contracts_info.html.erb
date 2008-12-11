@@ -18,8 +18,14 @@
 <div class="menu_title" onclick="Element.toggle('menu_search')">
 > <%= _('Search') %></div>
 <ul id="menu_search">
-  <li><b><%= _('By name') %></b><br />
-    <%= text_field :filters, :text %></li>
+  <li>
+    <b><%= _('By name') %></b><br />
+    <%= text_field :filters, :text %>
+  </li>
+  <li>
+    <b><%= _('By manager') %></b><br/>
+    <%= select_filter(@managers, :manager) %>
+  </li>
 </ul>
 <% end %>
 

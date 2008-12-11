@@ -1,6 +1,6 @@
 <%= select(:contract, :rule_id, @rules) %>
 <% options = PagesHelper::SPINNER_OPTIONS.dup.update(
-    :url => ajax_choose_contracts_path, :with => 'value' ) %>
+    :url => ajax_choose_rule_type_contracts_path, :with => 'value' ) %>
 <%# TODO : When #7895 is solved, removed this multi-field observer %>
 <%# See: http://dev.rubyonrails.org/ticket/7895 %>
 <% Contract::Rules.each do |r| %>

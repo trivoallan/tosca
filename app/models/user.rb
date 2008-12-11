@@ -147,7 +147,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Pour la gestion des roles/perms :
+  def self.managers
+   self.find_select( { :joins => :own_contracts, :group => "users.id",
+     :conditions => "contracts.manager_id = users.id" } )
+  end
+
+  # To manage permissions/roles :
 
   # Return true/false if User is authorized for resource.
   def authorized?(resource)
@@ -212,7 +217,7 @@ class User < ActiveRecord::Base
   def self.reset_permission_strings
     @@permission_strings = Array.new(7)
   end
-
+  
   # Cache permission strings, not the best way
   @@permission_strings = Array.new(7)
   def permission_strings(role_id)

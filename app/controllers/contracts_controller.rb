@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContractsController < ApplicationController
-  helper :clients, :commitments, :ingenieurs, :versions, :issues
+  helper :clients, :commitments, :ingenieurs, :versions, :issues, :filters
 
   auto_complete_for :user, :name, :contract, :engineer_user,
                     :conditions => { :client => false }
@@ -37,7 +37,8 @@ class ContractsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(contracts_filters, [
-        [:text, 'clients.name', 'contracts.name', :multiple_like ]
+        [:text, 'clients.name', 'contracts.name', :multiple_like],
+        [:manager_id, 'contracts.manager_id', :equal]
       ])
       @filters = contracts_filters
     end
@@ -73,7 +74,7 @@ class ContractsController < ApplicationController
     _form
   end
 
-  def ajax_choose
+  def ajax_choose_rule_type
     value = params[:value]
     render :nothing => true and return unless request.xhr? && !value.blank?
     @rules = []
@@ -210,6 +211,7 @@ private
   end
 
   def _panel
+    @managers = User.managers
   end
 
 end

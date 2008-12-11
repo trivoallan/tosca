@@ -400,8 +400,8 @@ module ActiveRecord
     # /!\ Beware of applying the collect!{|c| [ c.name, c.id ] } before
     #     displaying it /!\
     def self.find_select(options = {}, collect = true)
-      options[:select] = "#{self.table_name}.id, #{self.table_name}.name"
-      options[:order] ||= "#{self.table_name}.name ASC"
+      options[:select] = "#{table_name}.id, #{table_name}.name"
+      options[:order] ||= "#{table_name}.name ASC"
       res = self.find(:all, options)
       res.collect!{ |o| [o.name, o.id] } if collect
       res
@@ -409,8 +409,7 @@ module ActiveRecord
 
     # Same as #find_select, but returns only active objects
     def self.find_active4select(options = {}, collect = true)
-      options[:select] = 'id, name'
-      table_name = self.table_name
+      options[:select] = "#{table_name}.id, #{table_name}.name"
       if options.has_key? :conditions
         options[:conditions] += " AND #{table_name}.inactive = 0"
       else

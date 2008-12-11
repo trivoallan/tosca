@@ -81,7 +81,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :skills
   map.resources :contracts,
     :collection => {
-      :ajax_choose => :post, :actives => :get, :ajax_add_software => :post,
+      :ajax_choose_rule_type => :post, :actives => :get, :ajax_add_software => :post,
       :add_software => :post, :auto_complete_for_user_name => :post },
     :member => { :supported_software => :get, :tags => :get }
   map.resources :contributions,
