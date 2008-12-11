@@ -74,7 +74,7 @@ class ContractsController < ApplicationController
     _form
   end
 
-  def ajax_choose
+  def ajax_choose_rule_type
     value = params[:value]
     render :nothing => true and return unless request.xhr? && !value.blank?
     @rules = []
