@@ -162,7 +162,7 @@ class Issue < ActiveRecord::Base
   # It /!\ MUST /!^ be an _id field. See IssuesController#create.
   def self.remanent_fields
     [ :contract_id, :recipient_id, :issuetype_id, :severity_id,
-      :socle_id, :software_id, :ingenieur_id ]
+      :socle_id, :software_id, :ingenieur_id, :version_id ]
   end
 
   # Used in the cache/sweeper system

@@ -77,6 +77,10 @@ class Software < ActiveRecord::Base
   # Returns all the version and the last release of each version
   # Returns Array of ContractReleases
   # Call it like : Software.first.releases_contract(Contract.first.id)
+  # It's used in _form4versions of issues_controller.
+  # /!\ Do NOT touch this method without looking at
+  #         1. _form4versions /!\
+  #         2. issues/_version.html.erb /!\
   def releases_contract(contract_id)
     result = []
     self.versions.find(:all,

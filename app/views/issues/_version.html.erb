@@ -5,6 +5,7 @@
 </th>
 <td>
   <% unless @versions.empty? %>
-    <%= select_empty(:software, :revision_id, @versions) %>
+    <% options = { :selected => (@issue.version_id ? "v#{@issue.version_id}" : "r#{@issue.release_id}") } %>
+    <%= select_empty(:software, :revision_id, @versions, options) %>
   <% end %>
 </td>

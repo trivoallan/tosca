@@ -172,25 +172,8 @@ class IssuesController < ApplicationController
   # correct version of a software
   def ajax_display_version
     return render(:nothing => true) unless params.has_key? :issue
-    issue = params[:issue]
-    contract_id = issue[:contract_id]
-    software_id = issue[:software_id]
-    if software_id.blank? or contract_id.blank?
-      @versions = []
-    else
-      software = Software.find(software_id)
-      contract = Contract.find(contract_id)
-
-      @versions = software.releases_contract(contract.id).collect do |r|
-        #case...when seems not to work
-        if r.type == Version
-          id = "v#{r.id}"
-        elsif r.type == Release
-          id = "r#{r.id}"
-        end
-        [ r.name, id ]
-      end
-    end
+    @issue = Issue.new(params[:issue])
+    _form4versions
   end
 
   def edit
@@ -355,13 +338,31 @@ class IssuesController < ApplicationController
     result = true
     @recipients = contract.find_recipients_select
     result = false if @recipients.empty?
-    @versions = []
     @softwares = contract.softwares.collect { |l| [ l.name, l.id ] }
     if @ingenieur
       @ingenieurs = Ingenieur.find_select_by_contract_id(contract.id)
       @teams = Team.on_contract_id(contract.id)
     end
     result
+  end
+
+  def _form4versions()
+    software_id, contract_id = @issue.software_id.to_i, @issue.contract_id.to_i
+    if software_id == 0 || contract_id == 0
+      @versions = []
+    else
+      software = Software.find(software_id)
+      contract = Contract.find(contract_id)
+
+      @versions = software.releases_contract(contract.id).collect do |r|
+        id = (r.type == Version ? "v#{r.id}" : "r#{r.id}")
+        if ((@issue.version_id == r.id && r.type.is_a?(Version)) ||
+          (@issue.release_id == r.id && r.type.is_a?(Release)))
+          @selected_version = id
+        end
+        [ r.name, id ]
+      end
+    end
   end
 
   #TODO : redo
@@ -378,7 +379,7 @@ class IssuesController < ApplicationController
       @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
       @issuetypes = Issuetype.find_select
     end
-    @versions = []
+    _form4versions
     @severities = Severity.find_select
     first_comment = @issue.first_comment
     @issue.description = first_comment.text if first_comment
