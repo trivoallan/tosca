@@ -18,7 +18,7 @@
 #
 class Contribution < ActiveRecord::Base
   has_one :issue
-  has_many :contributionurls
+  has_many :hyperlinks, :dependent => :destroy, :as => :model
 
   belongs_to :contributiontype
   belongs_to :contributionstate

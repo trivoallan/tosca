@@ -1,7 +1,0 @@
-<% for column in Contributionurl.content_columns %>
-<p>
-  <b><%= _(column.human_name) %>:</b> <%= @contributionurl.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to_edit_and_list(@contributionurl) %>

@@ -19,7 +19,7 @@
 
 class SoftwaresController < ApplicationController
   helper :filters, :versions, :issues, :skills, :contributions,
-    :licenses, :groups
+    :licenses, :groups, :hyperlinks
 
   # Not used for the moment
   # auto_complete_for :software, :name

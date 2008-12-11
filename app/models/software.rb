@@ -26,7 +26,7 @@ class Software < ActiveRecord::Base
   has_many :contributions
   has_many :knowledges
   has_many :issues
-  has_many :urlsoftwares, :dependent => :destroy
+  has_many :hyperlinks, :dependent => :destroy, :as => :model
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
 

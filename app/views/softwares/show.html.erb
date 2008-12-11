@@ -39,11 +39,10 @@
          <td><%= @software.versions.collect{|v| link_to_version v}.join(', ') %></td>
      </tr>
 
-
-     <tr><td><b><%= _('Links') %></b> <%= link_to_new_urlsoftware(@software.id) %></td>
-         <% options = {:no_title => true, :edit => 'urlsoftware'} %>
-         <td><%= show_list(@software.urlsoftwares, 'url', options) {|u|
-             "<a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a>"
+     <tr><td><b><%= _('Links') %></b> <%= link_to_new_hyperlink("software", @software.id) %></td>
+         <% options = {:no_title => true, :edit => 'hyperlink'} %>
+         <td><%= show_list(@software.hyperlinks, 'hyperlink', options) {|u|
+             "<a href=\"#{u.name.urlize}\" target=\"_blank\">#{u.name}</a>"
             } %>
          </td></tr>
    </table>

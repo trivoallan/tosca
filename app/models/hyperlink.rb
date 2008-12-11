@@ -16,23 +16,8 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-require File.dirname(__FILE__) + '/../test_helper'
+class Hyperlink < ActiveRecord::Base
+  belongs_to :model, :polymorphic => true
 
-class ContributionurlTest < Test::Unit::TestCase
-  fixtures :contributionurls, :contributions
-
-  def test_to_strings
-    check_strings Contributionurl
-  end
-
-  def test_attributes_presences
-    u = Contributionurl.new
-    assert !u.save
-    assert u.errors.on(:valeur)
-    assert u.errors.on(:contribution)
-
-    contrib = contributions(:contribution_0001)
-    u.update_attributes(:valeur => 'rubyonrails.org', :contribution => contrib)
-    assert u.save
-  end
+  validates_presence_of :name, :model_type, :model_id
 end

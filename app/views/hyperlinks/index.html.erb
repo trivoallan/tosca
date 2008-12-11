@@ -1,0 +1,24 @@
+<h1><%= _("Listing the urls") %></h1>
+
+<table>
+  <tr>
+    <th><%= _("Name") %></th>
+    <th><%= _("Model type") %></th>
+    <th><%= _("Model id") %></th>
+  </tr>
+
+<% for hyperlink in @hyperlinks %>
+  <tr>
+    <td><%=h hyperlink.name %></td>
+    <td><%=h hyperlink.model_type %></td>
+    <td><%=h hyperlink.model_id %></td>
+    <td><%= link_to _('Show'), hyperlink %></td>
+    <td><%= link_to _('Edit'), edit_hyperlink_path(hyperlink) %></td>
+    <td><%= link_to _('Destroy'), hyperlink, :confirm => _('Are you sure?'), :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to _('A new url'), new_hyperlink_path %>

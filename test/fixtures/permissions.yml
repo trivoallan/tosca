@@ -203,10 +203,6 @@ permission_00008:
   name: ^attachments/uv$
   info: Attachments preview
   id: 8
-permission_00019: 
-  name: ^contributionurls/
-  info: Manage their own urls of contributions
-  id: 19
 permission_00031: 
   name: ^machines/(?!destroy)
   info: Manage servers

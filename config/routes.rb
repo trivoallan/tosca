@@ -22,6 +22,8 @@
 require_dependency 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
+  map.resources :hyperlinks
+
   # The priority is based upon order of creation:
   #   first created -> highest priority.
 
@@ -148,8 +150,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contributiontypes
   map.resources :issuetypes
   map.resources :documenttypes
-  map.resources :urlsoftwares
-  map.resources :contributionurls
+  map.resources :urls
   map.resources :versions
 
   # Sample of regular route:

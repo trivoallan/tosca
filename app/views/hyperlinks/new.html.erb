@@ -1,0 +1,23 @@
+<h1><%= _("A new url") %></h1>
+
+<% form_for(@hyperlink) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :model_type %><br />
+    <%= f.text_field :model_type %>
+  </p>
+  <p>
+    <%= f.label :model_id %><br />
+    <%= f.text_field :model_id %>
+  </p>
+  <p>
+    <%= f.submit _("Create") %>
+  </p>
+<% end %>
+
+<%= link_to _('Back'), hyperlinks_path %>

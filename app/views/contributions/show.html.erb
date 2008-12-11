@@ -8,12 +8,14 @@
   <%= link_to_edit(@contribution) %>
 </h2>
 <div class="info">
-  <%= @contribution.description %>
+  <p>
+    <%= @contribution.description %>
+  </p>
 
-  <%= link_to_new_contributionurl(@contribution.id) %>
-  <% options = { :edit => 'contributionurl' } %>
-  <%= show_list(@contribution.contributionurls, _('link'), options) do |u|
-        " <a href=\"#{u.valeur.urlize}\" target=\"_blank\">#{u.valeur}</a> "
+  <%= link_to_new_hyperlink("contribution", @contribution.id) %>
+  <% options = { :edit => 'hyperlink' } %>
+  <%= show_list(@contribution.hyperlinks, _('link'), options) do |u|
+        " <a href=\"#{u.name.urlize}\" target=\"_blank\">#{u.name}</a> "
   end %>
 
   <% if @contribution.contributed_on %>

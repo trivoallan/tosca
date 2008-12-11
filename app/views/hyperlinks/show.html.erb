@@ -1,0 +1,18 @@
+<p>
+  <b><%= _('Name') %> :</b>
+  <%=h @hyperlink.name %>
+</p>
+
+<p>
+  <b><%= _('Model type') %> :</b>
+  <%=h @hyperlink.model_type %>
+</p>
+
+<p>
+  <b><%= _('Model id') %> :</b>
+  <%=h @hyperlink.model_id %>
+</p>
+
+
+<%= link_to _('Edit'), edit_hyperlink_path(@hyperlink) %> |
+<%= link_to _('Back'), hyperlinks_path %>
