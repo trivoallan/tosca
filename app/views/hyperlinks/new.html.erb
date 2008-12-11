@@ -9,11 +9,11 @@
   </p>
   <p>
     <%= f.label :model_type %><br />
-    <%= f.text_field :model_type %>
+    <%= (@hyperlink.model_type ? @hyperlink.model_type : f.text_field(:model_type)) %>
   </p>
   <p>
     <%= f.label :model_id %><br />
-    <%= f.text_field :model_id %>
+    <%= (@hyperlink.model_id ? @hyperlink.model_id : f.text_field(:model_id)) %>
   </p>
   <p>
     <%= f.submit _("Create") %>
