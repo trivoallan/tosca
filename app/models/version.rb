@@ -45,7 +45,11 @@ class Version < ActiveRecord::Base
   end
 
   def full_name
-    "v#{self.name}"
+    if self.read_attribute(:name).empty?
+      _("all versions")
+    else
+      "v#{self.name}"
+    end
   end
 
   def full_software_name
