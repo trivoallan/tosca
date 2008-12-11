@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2008-12-11 16:11+0100\n"
+"POT-Creation-Date: 2008-12-11 16:29+0100\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1916,6 +1916,10 @@ msgstr ""
 
 #: app/models/version.rb:-
 msgid "Version|Generic"
+msgstr ""
+
+#: app/models/version.rb:49
+msgid "all versions"
 msgstr ""
 
 #: app/views/access/denied.html.erb:1

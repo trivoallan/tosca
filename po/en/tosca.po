@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-11 16:11+0100\n"
+"POT-Creation-Date: 2008-12-11 16:29+0100\n"
 "PO-Revision-Date: 2008-12-02 09:14+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
@@ -1924,6 +1924,10 @@ msgstr "Name"
 
 #: app/models/version.rb:-
 msgid "Version|Generic"
+msgstr ""
+
+#: app/models/version.rb:49
+msgid "all versions"
 msgstr ""
 
 #: app/views/access/denied.html.erb:1
