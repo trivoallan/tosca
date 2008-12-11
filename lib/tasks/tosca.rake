@@ -11,7 +11,39 @@ namespace :tosca do
   task :install do
   end
 
-desc "Configure a new Tosca instance"
+  desc "Unpacks the specified gems and its dependencies into vendor/gems"
+  task :unpack_gems => 'gems:base' do
+    require 'rubygems'
+    require 'rubygems/gem_runner'
+    gems = []
+    Rails.configuration.gems.each do |gem|
+      gem.install unless gem.loaded?
+      gems << gem
+      gems << gem.dependencies
+      # gem.dependencies.each {|g| puts g.name }
+    end
+    gems.flatten!
+    # gems.uniq! does not work on a Rails::GemDependency Array.
+    tmp, indexes = Hash.new, []
+    gems.dup.each_with_index do |g,idx|
+      # Hoe gem sucks :
+      # it has particular rights which forbids 2 consecutive unpacking
+      hash = (g.name == 'hoe' ? "#{g.name}" : "#{g.name} #{g.requirement.to_s}").to_sym
+      indexes << idx if tmp.has_key?(hash)
+      tmp[hash] = true
+    end
+    indexes.reverse!
+    indexes.each{|i| gems.delete_at(i)}
+
+    gems.sort!{|a,b| a.name <=> b.name}
+    gems.each do |gem|
+      next unless !gem.frozen? && (ENV['GEM'].blank? || ENV['GEM'] == gem.name)
+      gem.unpack_to(File.join(RAILS_ROOT, 'vendor', 'gems')) unless gem.frozen?
+    end
+  end
+
+
+  desc "Configure a new Tosca instance"
   task :install do
     require 'fileutils'
     root = RAILS_ROOT
