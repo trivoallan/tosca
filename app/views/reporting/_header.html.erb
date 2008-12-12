@@ -11,7 +11,7 @@
 
 
 <h1 class="title">
-  <%= (client ? client.name : App::Name) %><br />
+  <%= (client ? client.name : Tosca::App::Name) %><br />
   <%= _("Activity report") %><br />
   <% if @report[:middle_date].month == @report[:end_date].month %>
     <%= _('of') %> <%= @report[:middle_date].strftime('%B %Y') %>

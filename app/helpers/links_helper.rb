@@ -147,7 +147,7 @@ EOS
 
   def public_link_to_about()
     public_link_to('?', about_welcome_path,
-                   :title => _("About %s") % App::Name)
+                   :title => _("About %s") % Tosca::App::Name)
   end
 
   def public_link_to_forgotten_pwd
