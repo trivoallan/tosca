@@ -318,7 +318,7 @@ class Notifier < ActionMailer::Base
   # Used for outgoing mails, in order to get a Tree of messages
   # in mail software
   def message_id(id)
-    "<#{id}@#{App::Name}.#{App::InternetAddress}>"
+    "<#{id}@#{Tosca::App::Name}.#{App::InternetAddress}>"
   end
 
   #Extracts the issue number from a header
@@ -327,7 +327,7 @@ class Notifier < ActionMailer::Base
     string.strip!
     string.gsub!(/[<\>]/, '')
     result = nil
-    result = string[/^\d+/] if string =~ /^\d+_\d+@#{App::Name}.#{App::InternetAddress}$/
+    result = string[/^\d+/] if string =~ /^\d+_\d+@#{Tosca::App::Name}.#{App::InternetAddress}$/
     return result
   end
 

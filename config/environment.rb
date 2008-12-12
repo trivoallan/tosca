@@ -166,8 +166,8 @@ end
 
 # Default conf for gettextlocalize, used for Dates & Currency
 if defined? GettextLocalize
-  GettextLocalize::app_name = App::Name
-  GettextLocalize::app_version = App::Version
+  GettextLocalize::app_name = Tosca::App::Name
+  GettextLocalize::app_version = Tosca::App::Version
   GettextLocalize::default_locale = 'en_US'
   GettextLocalize::default_methods = [:param, :header, :session]
 end
