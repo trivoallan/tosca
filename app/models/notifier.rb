@@ -153,10 +153,12 @@ class Notifier < ActionMailer::Base
   # http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer
   # Kept In Order to have the code for generating recipients of a list
   # To active incomming emails :
-  # Install postfix
+  # $ sudo apt-get install postfix
   # edit /etc/aliases
   # add this line and replace tosca: by the username of incoming emails
   # tosca: "|RAILS_ENV=mail /path/to/tosca/script/runner 'Notifier.receive(STDIN.read)'"
+  # $ sudo newaliases
+  # You're ready for it, congratulations !
   def receive(email)
     from = email.from.first
 
