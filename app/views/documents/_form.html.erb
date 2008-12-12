@@ -1,7 +1,5 @@
-.
 <%= error_messages_for 'document' %>
 <div class="show" style="width: 70%">
-  <!--[form:document]-->
   <div class="edit">
     <p><label for="document_client_id"><%= _('Recipient') %></label><br />
     <%= select(:document, :client_id, @clients) %>
@@ -33,6 +31,5 @@
     <p><label for="document_description"><%= _('Document|Description') %></label><br />
     <%= text_area 'document', 'description'  %></p>
   </div>
-  <!--[eoform:document]-->
   <div style="clear: both"> </div>
 </div>
