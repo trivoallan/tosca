@@ -76,6 +76,10 @@ module Filters
     extend Shared
   end
 
+  class Documents < Struct.new('Documents', :name, :documenttype_id)
+    extend Shared
+  end
+
   # build the conditions query, from a well specified array of filters
   # Specification of a filter f :
   # [ namespace, field, database field, operation ]

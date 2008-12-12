@@ -16,10 +16,10 @@
     </p>
 
     <p><label for="document_title"><%= _('Document|Title') %></label><br />
-    <%= text_field 'document', 'title'  %></p>
+    <%= text_field :document, :name %></p>
 
     <p><label for="document_file"><%= _('Document|File') %></label><br />
-    <%= file_column_field 'document', 'file'  %></p>
+    <%= file_column_field :document, 'file' %></p>
 
     <p><label for ="document_date_delivery"><%= _('Document|Delivery_date') %></label><br />
     <%= text_field :document, :date_delivery,  :size => 8 %>
@@ -29,7 +29,7 @@
   </div>
   <div style="float: left">
     <p><label for="document_description"><%= _('Document|Description') %></label><br />
-    <%= text_area 'document', 'description'  %></p>
+    <%= text_area :document, :description %></p>
   </div>
   <div style="clear: both"> </div>
 </div>

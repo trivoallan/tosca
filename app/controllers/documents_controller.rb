@@ -20,26 +20,30 @@ class DocumentsController < ApplicationController
   helper :filters
 
   def index
-    @documenttypes = Documenttype.find(:all)
-    @documenttypes.delete_if do |t|
-      Document.count(:conditions => "documents.documenttype_id = #{t.id}") == 0
-    end
-  end
+    options = { :per_page => 25, :include => [:client],
+      :order => 'documents.date_delivery DESC', :page => params[:page] }
 
-  def list
-    flash[:notice]= flash[:notice]
-    redirect_to documents_path and return unless params[:id]
-    unless params[:id] == 'all'
-      @documenttype = Documenttype.find(params[:id])
-      conditions = ["documents.documenttype_id = ?", @documenttype.id]
-    else
-      conditions = nil
+    if params.has_key? :filters
+      session[:documents_filters] = Filters::Documents.new(params[:filters])
     end
-    options = { :per_page => 25, :page => params[:page], :order =>
-      'documents.date_delivery DESC', :conditions => conditions,
-      :include => [:user] }
+
+    conditions = nil
+    documents_filters = session[:documents_filters]
+    if documents_filters
+      # Specification of a filter f :
+      #   [ field, database field, operation ]
+      # All the fields must be coherent with lib/filters.rb related Struct.
+      conditions = Filters.build_conditions(documents_filters, [
+        [:name, 'documents.name', :like],
+        [:documenttype_id, 'documents.documenttype_id', :equal]
+      ])
+      @filters = documents_filters
+    end
+    flash[:conditions] = options[:conditions] = conditions
+
     @documents = Document.paginate options
 
+    # panel on the left side.
     if request.xhr?
       render :layout => false
     else
@@ -47,15 +51,6 @@ class DocumentsController < ApplicationController
       @partial_for_summary = 'documents_info'
     end
   end
-
-   # TODO : fusionner avec la répétition dans l'index
-    # panel on the left side
-#    if request.xhr?
-#      render :partial => 'documents_list', :layout => false
-#    else
-#      _panel
-#      @partial_for_summary = 'documents_info'
-#    end
 
   def show
     @document = Document.find(params[:id])
@@ -97,7 +92,7 @@ class DocumentsController < ApplicationController
     doc = Document.find(params[:id])
     documenttype_id = doc.documenttype_id
     doc.destroy
-    redirect_to list_document_path(:id => documenttype_id)
+    redirect_to documents_path(:id => documenttype_id)
   end
 
   private
@@ -109,6 +104,9 @@ class DocumentsController < ApplicationController
 
   def _panel
     @documenttypes = Documenttype.find_select
+    if params.has_key?(:filters) and params[:filters].has_key?(:documenttype)
+      @documenttype = Documentype.find(params[:filters][:documenttype_id])
+    end
   end
 
 end

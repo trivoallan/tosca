@@ -1,8 +1,19 @@
-<h1><%=_('Repository access')%></h1>
+<% document_type = (@documenttype ?  @documenttype.name : _('all directories')) %>
+<h1><%=_('Documents available in %s') % [ document_type ] %>
+    <%= StaticImage::spinner %></h1>
+<br />
 
-<%= show_list(@documenttypes, nil) { |t|
-      link_to_documenttype t
-} %>
-
-<%= link_to _('Submit a file'), new_document_path %>
-<%= link_to_new(_('a file')) %>
+<% options = { :create_label => _('a document'), :remote_url => documents_path } %>
+<% paginated_section(@documents, options) do %>
+ <% titles = [_('Document|Title'), _('Document|File'), _('Size'), _('Document|Delivery_on')] %>
+ <%= show_table(@documents, Document, titles, :total => false) do |document|
+   result = ''
+   result << "<td>#{document.name}</td>"
+   result << "<td>#{link_to_file document, 'file'}</td>"
+   result << "<td>#{file_size(document.file)}</td>"
+   result << "<td>#{document.date_delivery_on_formatted}</td>"
+   result << "#{link_to_actions_table document}"
+ end %>
+ <%= page_entries_info @documents %><br />
+<% end %>
+<br />

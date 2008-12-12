@@ -22,11 +22,11 @@ class Document < ActiveRecord::Base
   belongs_to :user
   file_column :file, :fix_file_extensions => nil
 
-
-  #versioning, qui s'occupe de la table documents_versions
+  #versioning
   acts_as_versioned
-  validates_length_of :title, :within => 3..60
-  validates_presence_of :title, :file, :user, :client, :documenttype
+
+  validates_length_of :name, :within => 3..60
+  validates_presence_of :name, :file, :user, :client, :documenttype
 
   def self.set_scope(client_ids)
     self.scoped_methods << { :find => { :conditions =>
@@ -38,16 +38,7 @@ class Document < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{title.gsub(/[^a-z1-9]+/i, '-')}"
-  end
-
-  def name
-    title
-  end
-
-  def self.content_columns
-    @content_columns ||= columns.reject { |c| c.primary ||
-        c.name =~ /(_id|_on|date_delivery|fichier)$/ || c.name == inheritance_column }
+    "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
   end
 
 end

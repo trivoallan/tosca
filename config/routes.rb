@@ -87,8 +87,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get, :experts => :get, :ajax_list_versions => :post },
     :member => { :list => :get }
-  map.resources :documents,
-    :member => { :list => :get, :destroy => :delete }
+  map.resources :documents
   map.resources :commitments
   map.resources :contributionstates
   map.resources :fichiers
