@@ -20,8 +20,10 @@ class DocumentsController < ApplicationController
   helper :filters
 
   def index
-    select
-    render :action => "select"
+    @documenttypes = Documenttype.find(:all)
+    @documenttypes.delete_if do |t|
+      Document.count(:conditions => "documents.documenttype_id = #{t.id}") == 0
+    end
   end
 
   def list
@@ -46,14 +48,7 @@ class DocumentsController < ApplicationController
     end
   end
 
-  def select
-    @documenttypes = Documenttype.find(:all)
-    @documenttypes.delete_if do |t|
-      Document.count(:conditions => "documents.documenttype_id = #{t.id}") == 0
-    end
-  end
-
-    # TODO : fusionner avec la répétition dans l'index
+   # TODO : fusionner avec la répétition dans l'index
     # panel on the left side
 #    if request.xhr?
 #      render :partial => 'documents_list', :layout => false
