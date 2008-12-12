@@ -28,7 +28,7 @@ class DocumentsController < ApplicationController
 
   def list
     flash[:notice]= flash[:notice]
-    redirect_to select_documents_path and return unless params[:id]
+    redirect_to documents_path and return unless params[:id]
     unless params[:id] == 'all'
       @documenttype = Documenttype.find(params[:id])
       conditions = ["documents.documenttype_id = ?", @documenttype.id]
@@ -72,7 +72,7 @@ class DocumentsController < ApplicationController
     _form
     if @document.save
       flash[:notice] = _('Your document was successfully created')
-      redirect_to select_documents_path
+      redirect_to documents_path
     else
       render :action => 'new'
     end

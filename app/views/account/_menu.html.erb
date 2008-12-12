@@ -21,7 +21,7 @@
     (link_to _('Packages'), versions_path),
     (link_to_contributions),
   ] %>
-<% menu[:titles] << link_to( _('Directory'), select_documents_path) %>
+<% menu[:titles] << link_to( _('Directory'), documents_path) %>
 <% out_table = []
      Documenttype.find(:all).each {|t| out_table << (link_to_documenttype t)}
      menu[:links] << out_table

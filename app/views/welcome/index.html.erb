@@ -26,7 +26,7 @@
      <div class="show">
        <h3><%= _('Documents')%></h3>
       <% if user %>
-      <p><%= _('You can browse %s. ') % link_to(_('your directory'), select_documents_path)%>
+      <p><%= _('You can browse %s. ') % link_to(_('your directory'), documents_path)%>
       <%= _('You will find there all documents we have delivered to you')%>.</p>
       <p><%= _('You can also consult your %s online.') % link_to(_('activity report'), general_reporting_path)%></p>
       <% else %>
