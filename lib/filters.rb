@@ -76,7 +76,7 @@ module Filters
     extend Shared
   end
 
-  class Documents < Struct.new('Documents', :name, :documenttype_id)
+  class Documents < Struct.new('Documents', :name, :documenttype_id, :filename)
     extend Shared
   end
 

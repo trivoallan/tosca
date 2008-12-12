@@ -24,6 +24,8 @@
      <%= select_filter(@documenttypes, :documenttype) %></li>
  <li><b><%= _("Title") %></b><br />
      <%= text_field :filters, :name %></li>
+ <li><b><%= _("Filename") %></b><br />
+     <%= text_field :filters, :filename %></li>
 </ul>
 
 <% end %>

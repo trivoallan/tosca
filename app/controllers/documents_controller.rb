@@ -35,7 +35,8 @@ class DocumentsController < ApplicationController
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(documents_filters, [
         [:name, 'documents.name', :like],
-        [:documenttype_id, 'documents.documenttype_id', :equal]
+        [:documenttype_id, 'documents.documenttype_id', :equal],
+        [:filename, 'documents.file', :like]
       ])
       @filters = documents_filters
     end
