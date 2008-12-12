@@ -39,9 +39,6 @@ module App
   # service
   ServiceName = "Tosca"
   ServiceFullName = "Tosca bugtracking".gsub(' ','&nbsp;')
-  # Logos of service, put them in public/image/
-  ServiceImage = 'logo_08000.gif' # should not excede 25px in height
-  ServiceImageSmall = 'logo_08000_small.gif'
 
   CompanyName = "Linagora"
   CompanySite = "http://www.08000linux.com"

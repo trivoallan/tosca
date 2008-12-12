@@ -141,12 +141,12 @@ class StaticImage < Static::ActionView
   # Logos
   @@logo_service = nil
   def self.logo_service
-    @@logo_service ||= image_tag(App::ServiceImage, options(App::ContactPhone))
+    @@logo_service ||= image_tag("service_image.gif", options(App::ContactPhone))
   end
 
   @@logo_service_small = nil
   def self.logo_service_small
-    @@logo_service_small ||= image_tag(App::ServiceImageSmall, options(App::ContactPhone))
+    @@logo_service_small ||= image_tag("service_image_small.gif", options(App::ContactPhone))
   end
 
   @@tosca = nil
