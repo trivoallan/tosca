@@ -45,13 +45,9 @@ module App
   CompanySitePath = "/tosca"
 
   # contacts
-  PhonePrefix = "08000"
-  PhoneCode = "54689"
-  PhoneText = "LINUX"
-
   InternetAddress = "tosca-project.net"
 
-  ContactPhone = PhonePrefix + " " + PhoneCode
+  ContactPhone = "08000 LINUX (08000 54689)"
   ContactMail = "tosca@tosca-project.com"
 
   #From http://www.freesound.org/samplesViewSingle.php?id=30988
