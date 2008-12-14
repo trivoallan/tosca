@@ -27,21 +27,18 @@ class DocumentsControllerTest < ActionController::TestCase
       login l, l
       get :index
       assert_response :success
-      assert_template 'select'
-      assert_not_nil assigns(:documenttypes)
-    }
-  end
-
-  def test_list
-    %w(admin manager expert customer viewer).each { |l|
-      login l, l
-      get :list, :id => 1
-
-      assert_response :success
-      assert_template 'list'
+      assert_template 'index'
       assert_not_nil assigns(:documents)
+
+      check_ajax_filter(:documenttype_id, Documenttype.first.id, :documents)
+      # Search box cannot be checked with the helper, atm
+      xhr :get, :index, :filters => { :name => "many" }
+      assert_response :success
+      xhr :get, :index, :filters => { :filename => "cheatsheet" }
+      assert_response :success
     }
   end
+
 
   def test_show
     %w(admin manager expert).each { |l|
@@ -59,7 +56,6 @@ class DocumentsControllerTest < ActionController::TestCase
   def test_create
     %w(admin manager expert).each { |l|
       login l, l
-      num_documents = Document.count
       get :new
 
       assert_response :success
@@ -67,16 +63,14 @@ class DocumentsControllerTest < ActionController::TestCase
       assert_not_nil assigns(:document)
 
       form = select_form 'main_form'
-      form.document.title = "this is a legal picture"
+      form.document.name = "this is a legal picture"
       form.document.file = uploaded_png("#{File.expand_path(RAILS_ROOT)}/test/fixtures/upload_document.png")
-      form.submit
 
+      assert_difference('Document.count') { form.submit }
       assert flash.has_key?(:notice)
       assert !flash.has_key?(:warning)
       assert_response :redirect
-      assert_redirected_to :action => 'select'
-
-      assert_equal num_documents + 1, Document.count
+      assert_redirected_to :action => 'index'
     }
   end
 
@@ -89,7 +83,7 @@ class DocumentsControllerTest < ActionController::TestCase
       assert_not_nil assigns(:document)
 
       form = select_form 'main_form'
-      form.document.title = "this is a new title"
+      form.document.name = "this is a new title"
       form.submit
 
       assert_response :redirect
@@ -99,12 +93,14 @@ class DocumentsControllerTest < ActionController::TestCase
 
   def test_destroy
     login 'admin', 'admin'
-    document = Document.find(:first)
+    document = Document.first
     assert_not_nil document
 
-    post :destroy, :id => document.id
+    assert_difference('Document.count', -1) do
+      delete :destroy, :id => document.id
+    end
     assert_response :redirect
-    assert_redirected_to :action => 'list'
+    assert_redirected_to documents_path
 
     assert_raise(ActiveRecord::RecordNotFound) {
       Document.find(document.id)

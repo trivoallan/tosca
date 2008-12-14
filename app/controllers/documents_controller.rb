@@ -90,10 +90,8 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    doc = Document.find(params[:id])
-    documenttype_id = doc.documenttype_id
-    doc.destroy
-    redirect_to documents_path(:id => documenttype_id)
+    Document.find(params[:id]).destroy
+    redirect_to documents_path
   end
 
   private

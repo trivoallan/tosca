@@ -1,7 +1,7 @@
 ---
 document_00001:
   created_on: 2007-12-25 18:27:31 +01:00
-  title: A Many-to-Many tutorial for Rails
+  name: A Many-to-Many tutorial for Rails
   updated_on: 2007-12-25 18:27:31 +01:00
   client_id: 1
   id: 1
@@ -13,7 +13,7 @@ document_00001:
   file: has_many_and_belongs_to_many.pdf
 document_00002:
   created_on: 2007-12-25 18:31:49 +01:00
-  title: Rails files cheatsheet
+  name: Rails files cheatsheet
   updated_on: 2007-12-25 18:31:49 +01:00
   client_id: 2
   id: 2

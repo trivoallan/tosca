@@ -8,12 +8,20 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :model_type %><br />
-    <%= (@hyperlink.model_type ? @hyperlink.model_type : f.text_field(:model_type)) %>
+    <%= f.label :model_type %>
+    <% if @hyperlink.model_type %>
+      <%= @hyperlink.model_type.to_s %><%= f.hidden_field(:model_type) %>
+    <% else %>
+      <br /><%= f.text_field(:model_type) %>
+    <% end %>
   </p>
   <p>
-    <%= f.label :model_id %><br />
-    <%= (@hyperlink.model_id ? @hyperlink.model_id : f.text_field(:model_id)) %>
+    <%= f.label :model_id %>
+    <% if @hyperlink.model_id %>
+      <%= @hyperlink.model_id.to_s %><%= f.hidden_field(:model_id) %>
+    <% else %>
+      <br /><%= f.text_field(:model_id) %>
+    <% end %>
   </p>
   <p>
     <%= f.submit _("Create") %>

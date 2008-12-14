@@ -1,45 +1,57 @@
 require 'test_helper'
 
 class HyperlinksControllerTest < ActionController::TestCase
+
+  def setup
+    login 'admin', 'admin'
+  end
+
   def test_should_get_index
     get :index
     assert_response :success
     assert_not_nil assigns(:hyperlinks)
   end
 
-  def test_should_get_new
-    get :new
-    assert_response :success
-  end
-
   def test_should_create_hyperlink
-    assert_difference('Hyperlink.count') do
-      post :create, :hyperlink => { }
-    end
+    get :new, :model_type => 'contribution', :model_id => 1
+    assert_response :success
+    form = select_form 'new_hyperlink'
+    form.hyperlink.name = 'http://www.tosca-project.net'
+    assert_difference('Hyperlink.count') { form.submit }
 
-    assert_redirected_to hyperlink_path(assigns(:hyperlink))
+    assert_response :redirect
+    assert_redirected_to(:controller => 'contributions',
+                         :action => :show, :id => 1)
   end
 
   def test_should_show_hyperlink
-    get :show, :id => hyperlinks(:one).id
-    assert_response :success
-  end
-
-  def test_should_get_edit
-    get :edit, :id => hyperlinks(:one).id
+    get :show, :id => hyperlinks(:hyperlink_00001).id
     assert_response :success
   end
 
   def test_should_update_hyperlink
-    put :update, :id => hyperlinks(:one).id, :hyperlink => { }
-    assert_redirected_to hyperlink_path(assigns(:hyperlink))
+    hyperlink = hyperlinks(:hyperlink_00001)
+    get :edit, :id => hyperlink.id
+    assert_response :success
+
+    form = select_form "edit_hyperlink_#{hyperlink.id}"
+    form.hyperlink.name = 'http://redmine.tosca-project.net'
+    form.submit
+    assert_response :redirect
+    assert_redirected_to(:controller => hyperlink.model_type.pluralize,
+                         :action => :show, :id => hyperlink.model_id)
   end
 
   def test_should_destroy_hyperlink
+    hyperlink = hyperlinks(:hyperlink_00001)
     assert_difference('Hyperlink.count', -1) do
-      delete :destroy, :id => hyperlinks(:one).id
+      delete :destroy, :id => hyperlink.id
     end
 
-    assert_redirected_to hyperlinks_path
+    assert_response :redirect
+    assert_redirected_to(:controller => hyperlink.model_type.pluralize,
+                         :action => :show, :id => hyperlink.model_id)
+    hyperlink.save
   end
+
 end

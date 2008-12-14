@@ -22,17 +22,17 @@ class DocumentTest < Test::Unit::TestCase
   fixtures :documents, :document_versions
 
   def test_to_strings
-    check_strings Document, :date_delivery_on_formatted, :title
+    check_strings Document, :date_delivery_on_formatted, :name
   end
 
   def test_versions
     d = documents(:document_00001)
-    orig_title = d.title
-    d.update_attribute :title, "this is a new title"
+    orig_name = d.name
+    d.update_attribute :name, "this is a new title"
 
     newd = Document.find(1)
-    assert_equal newd.title, "this is a new title"
-    assert_equal newd.versions.first.title, orig_title
+    assert_equal newd.name, "this is a new title"
+    assert_equal newd.versions.first.name, orig_name
   end
 
   # This test is really important.
