@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-11 16:29+0100\n"
+"POT-Creation-Date: 2008-12-15 11:27+0100\n"
 "PO-Revision-Date: 2008-12-02 09:14+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
@@ -57,6 +57,8 @@ msgid "Full name"
 msgstr ""
 
 #: app/controllers/account_controller.rb:287
+#: app/views/documents/_documents_info.html.erb:25
+#: app/views/documents/show.html.erb:1
 msgid "Title"
 msgstr ""
 
@@ -94,11 +96,11 @@ msgstr ""
 msgid "Your contract '%s' is near its end date : %s"
 msgstr ""
 
-#: app/controllers/application.rb:112 app/models/notifier.rb:343
+#: app/controllers/application.rb:112 app/models/notifier.rb:345
 msgid "An e-mail was sent to "
 msgstr ""
 
-#: app/controllers/application.rb:113 app/models/notifier.rb:344
+#: app/controllers/application.rb:113 app/models/notifier.rb:346
 msgid "with a copy to"
 msgstr ""
 
@@ -208,11 +210,11 @@ msgstr ""
 msgid "A Type of contribution was successfully updated."
 msgstr ""
 
-#: app/controllers/documents_controller.rb:79
+#: app/controllers/documents_controller.rb:70
 msgid "Your document was successfully created"
 msgstr ""
 
-#: app/controllers/documents_controller.rb:94
+#: app/controllers/documents_controller.rb:85
 msgid "your document was successfully updated"
 msgstr ""
 
@@ -257,29 +259,29 @@ msgstr ""
 msgid "You have successfully submitted your %s issue."
 msgstr ""
 
-#: app/controllers/issues_controller.rb:279
+#: app/controllers/issues_controller.rb:262
 msgid "The issue has been updated successfully."
 msgstr ""
 
-#: app/controllers/issues_controller.rb:331
+#: app/controllers/issues_controller.rb:314
 msgid "This issue is no longer linked to a contribution"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:333
+#: app/controllers/issues_controller.rb:316
 msgid "This contribution is now linked"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:371
+#: app/controllers/issues_controller.rb:372
 msgid ""
 "It seems that you are not associated to a contract, which prevents you from "
 "filling an issue. Please contact %s if you think it's not normal"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:431 app/helpers/issues_helper.rb:155
+#: app/controllers/issues_controller.rb:432 app/helpers/issues_helper.rb:155
 msgid "Active issues"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:434 app/helpers/issues_helper.rb:162
+#: app/controllers/issues_controller.rb:435 app/helpers/issues_helper.rb:162
 msgid "Finished issues"
 msgstr ""
 
@@ -691,7 +693,7 @@ msgstr ""
 #: app/views/clients/_clients_info.html.erb:28
 #: app/views/contracts/_contracts_info.html.erb:19
 #: app/views/contributions/_contributions_info.html.erb:28
-#: app/views/documents/_documents_info.html.erb:28
+#: app/views/documents/_documents_info.html.erb:20
 #: app/views/issues/lists/_issues_info.html.erb:35
 #: app/views/knowledges/_knowledges_info.html.erb:19
 #: app/views/phonecalls/_calls_info.html.erb:20
@@ -1017,7 +1019,7 @@ msgstr ""
 #: app/helpers/static_image.rb:88 app/views/changelogs/show.html.erb:8
 #: app/views/contributiontypes/show.html.erb:8
 #: app/views/documenttypes/show.html.erb:8
-#: app/views/hyperlinks/edit.html.erb:24 app/views/hyperlinks/new.html.erb:23
+#: app/views/hyperlinks/edit.html.erb:24 app/views/hyperlinks/new.html.erb:31
 #: app/views/hyperlinks/show.html.erb:18 app/views/severities/show.html.erb:8
 #: app/views/teams/new.html.erb:8 app/views/teams/show.html.erb:13
 msgid "Back"
@@ -1381,17 +1383,17 @@ msgstr ""
 msgid "Document|Client"
 msgstr ""
 
-#: app/models/document.rb:- app/views/documents/_form.html.erb:20
-#: app/views/documents/list.html.erb:9
-msgid "Document|Title"
-msgstr "Title"
+#: app/models/document.rb:-
+#, fuzzy
+msgid "Document|Name"
+msgstr "Name"
 
-#: app/models/document.rb:- app/views/documents/_form.html.erb:23
-#: app/views/documents/list.html.erb:9 app/views/documents/show.html.erb:7
+#: app/models/document.rb:- app/views/documents/_form.html.erb:21
+#: app/views/documents/index.html.erb:8 app/views/documents/show.html.erb:3
 msgid "Document|File"
 msgstr "File"
 
-#: app/models/document.rb:- app/views/documents/_form.html.erb:33
+#: app/models/document.rb:- app/views/documents/_form.html.erb:31
 msgid "Document|Description"
 msgstr "Description"
 
@@ -1627,8 +1629,8 @@ msgstr ""
 msgid "Yearly digest for "
 msgstr ""
 
-#: app/models/notifier.rb:253 app/models/notifier.rb:265
-#: app/models/notifier.rb:278
+#: app/models/notifier.rb:255 app/models/notifier.rb:267
+#: app/models/notifier.rb:280
 msgid "Possible error in your e-mail"
 msgstr ""
 
@@ -1940,7 +1942,7 @@ msgstr ""
 
 #: app/views/account/_edit_account_informations.html.erb:9
 #: app/views/contracts/_form.html.erb:51 app/views/contracts/index.html.erb:6
-#: app/views/documents/_form.html.erb:16 app/views/issues/_form.html.erb:14
+#: app/views/documents/_form.html.erb:14 app/views/issues/_form.html.erb:14
 #: app/views/issues/_infos_issue.html.erb:12
 #: app/views/issues/lists/_issues_info.html.erb:49
 #: app/views/issues/lists/_issues_table.html.erb:5
@@ -1950,7 +1952,7 @@ msgstr ""
 #: app/views/account/_edit_account_informations.html.erb:12
 #: app/views/account/_edit_recipient.html.erb:6
 #: app/views/account/_show_recipient.html.erb:4
-#: app/views/account/index.html.erb:13 app/views/documents/_form.html.erb:6
+#: app/views/account/index.html.erb:13 app/views/documents/_form.html.erb:4
 #: app/views/issues/_form.html.erb:50
 #: app/views/issues/tabs/_phonecalls.html.erb:3
 #: app/views/phonecalls/_calls_info.html.erb:24
@@ -2354,7 +2356,7 @@ msgid "New archive"
 msgstr ""
 
 #: app/views/archives/show.html.erb:15 app/views/attachments/index.html.erb:4
-#: app/views/documents/list.html.erb:9 app/views/documents/show.html.erb:8
+#: app/views/documents/index.html.erb:8 app/views/documents/show.html.erb:4
 #: app/views/issues/tabs/_attachments.html.erb:5
 msgid "Size"
 msgstr ""
@@ -2442,7 +2444,6 @@ msgid "Create a new client"
 msgstr ""
 
 #: app/views/clients/_clients_info.html.erb:21
-#: app/views/documents/_documents_info.html.erb:20
 #: app/views/knowledges/_knowledges_info.html.erb:13
 #: app/views/softwares/_software_info.html.erb:17
 #: app/views/versions/_versions_info.html.erb:13
@@ -2463,6 +2464,7 @@ msgstr ""
 #: app/views/clients/_form.html.erb:11
 #: app/views/contributions/_form.html.erb:60
 #: app/views/contributiontypes/_form.html.erb:6
+#: app/views/documents/show.html.erb:2
 #: app/views/documenttypes/_form.html.erb:6 app/views/images/_form.html.erb:6
 #: app/views/images/index.html.erb:4 app/views/machines/_form.html.erb:21
 #: app/views/roles/index.html.erb:4 app/views/softwares/_form.html.erb:16
@@ -2626,7 +2628,7 @@ msgstr ""
 #: app/views/contributions/new.html.erb:5
 #: app/views/contributiontypes/new.html.erb:5
 #: app/views/documenttypes/new.html.erb:5 app/views/groups/new.html.erb:5
-#: app/views/hyperlinks/new.html.erb:19 app/views/images/new.html.erb:5
+#: app/views/hyperlinks/new.html.erb:27 app/views/images/new.html.erb:5
 #: app/views/issuetypes/new.html.erb:5 app/views/machines/new.html.erb:5
 #: app/views/phonecalls/new.html.erb:5 app/views/roles/new.html.erb:5
 #: app/views/rules/components/new.html.erb:5
@@ -2723,7 +2725,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: app/views/contracts/ajax_choose.rjs:4
+#: app/views/contracts/ajax_choose_rule_type.rjs:4
 msgid "Does not exist"
 msgstr ""
 
@@ -2897,12 +2899,11 @@ msgid "Submit a contribution"
 msgstr ""
 
 #: app/views/contributions/_contributions_info.html.erb:20
-#: app/views/documents/_documents_info.html.erb:24
 msgid "Selection interface"
 msgstr ""
 
 #: app/views/contributions/_contributions_info.html.erb:36
-#: app/views/documents/_form.html.erb:11
+#: app/views/documents/_form.html.erb:9
 msgid "Author"
 msgstr ""
 
@@ -3037,19 +3038,20 @@ msgstr ""
 msgid "Add a document"
 msgstr ""
 
-#: app/views/documents/_documents_info.html.erb:32
+#: app/views/documents/_documents_info.html.erb:23
 msgid "Type of document"
 msgstr ""
 
-#: app/views/documents/_documents_info.html.erb:34
-msgid "Titre"
-msgstr ""
+#: app/views/documents/_documents_info.html.erb:27
+#, fuzzy
+msgid "Filename"
+msgstr "Name"
 
-#: app/views/documents/_documents_info.html.erb:36
-msgid "Name of the file"
-msgstr ""
+#: app/views/documents/_form.html.erb:18 app/views/documents/index.html.erb:8
+msgid "Document|Title"
+msgstr "Title"
 
-#: app/views/documents/_form.html.erb:26
+#: app/views/documents/_form.html.erb:24
 msgid "Document|Delivery_date"
 msgstr "Delivery date"
 
@@ -3057,43 +3059,27 @@ msgstr "Delivery date"
 msgid "Modify the document :"
 msgstr ""
 
-#: app/views/documents/list.html.erb:1
+#: app/views/documents/index.html.erb:1
 msgid "all directories"
 msgstr ""
 
-#: app/views/documents/list.html.erb:2
+#: app/views/documents/index.html.erb:2
 msgid "Documents available in %s"
 msgstr ""
 
-#: app/views/documents/list.html.erb:6
+#: app/views/documents/index.html.erb:6
 msgid "a document"
 msgstr ""
 
-#: app/views/documents/list.html.erb:9
+#: app/views/documents/index.html.erb:8
 msgid "Document|Delivery_on"
 msgstr "Delivered on"
 
-#: app/views/documents/list.html.erb:21
-msgid "Return to selection"
-msgstr ""
-
-#: app/views/documents/select.html.erb:1
-msgid "Repository access"
-msgstr ""
-
-#: app/views/documents/select.html.erb:7
-msgid "Submit a file"
-msgstr ""
-
-#: app/views/documents/select.html.erb:8
-msgid "a file"
-msgstr ""
-
-#: app/views/documents/show.html.erb:9
+#: app/views/documents/show.html.erb:5
 msgid "Submitted by"
 msgstr ""
 
-#: app/views/documents/show.html.erb:11
+#: app/views/documents/show.html.erb:7
 msgid "Document|Updated_on"
 msgstr "Updated on"
 
