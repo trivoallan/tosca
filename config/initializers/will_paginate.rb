@@ -15,4 +15,19 @@ module WillPaginate::ViewHelpers
        ]
     end
   end
+
+  # Fix r#58 : restore create_link when there's no page
+  def will_paginate_with_create_link(collection = nil, options = {})
+    options, collection = collection, nil if collection.is_a? Hash
+    page_links = will_paginate_without_create_link(collection, options)
+    if page_links
+      page_links
+    else
+      create_image = @template.image_create(options[:create_label])
+      @template.link_to(create_image, { :action => 'new' })
+    end
+  end
+
+  alias_method_chain :will_paginate, :create_link
+
 end
