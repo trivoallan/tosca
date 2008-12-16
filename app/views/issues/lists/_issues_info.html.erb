@@ -36,11 +36,11 @@
 <ul class="menu" id="menu_search">
  <li><b><%=_('By word')%></b><br />
      <%= text_field :filters, :text %></li>
- <% if @ingenieur %>
+ <% if session[:user].engineer? %>
   <li><b><%=_('By contract')%></b><br />
       <%= select_filter(@contracts, :contract) %></li>
   <li><b><%=_('By expert')%></b><br />
-  <%= select_filter(@ingenieurs, :ingenieur, { :first_value => @ingenieur, :first_name => _("[ Me ]") }) %></li>
+  <%= select_filter(@engineers, :engineer, { :first_value => @engineer, :first_name => _("[ Me ]") }) %></li>
  <% end %>
 </ul>
 

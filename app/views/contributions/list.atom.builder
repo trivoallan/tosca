@@ -9,7 +9,7 @@ atom_feed do |feed|
       entry.title("[#{contribution.software.name}] #{contribution.synthesis}")
       entry.content(contribution.description, :type => 'html')
       entry.author do |author|
-        author.name(contribution.ingenieur.name)
+        author.name(contribution.engineer.name)
       end
     end
   end

@@ -26,14 +26,16 @@ class User < ActiveRecord::Base
   belongs_to :image
   belongs_to :role
   belongs_to :team
+  belongs_to :client, :counter_cache => true
 
   has_many :attachments
   has_many :documents
   has_many :comments
+  has_many :issues, :dependent => :destroy
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :manager_id
 
-  has_one :ingenieur, :dependent => :destroy
-  has_one :recipient, :dependent => :destroy
+  has_many :knowledges, :order => 'knowledges.level DESC'
+  has_many :phonecalls
 
   has_and_belongs_to_many :own_contracts, :class_name => "Contract"
 
@@ -46,7 +48,6 @@ class User < ActiveRecord::Base
 
   N_('User|Pwd')
   N_('User|Pwd confirmation')
-
 
   #Preferences
   preference :digest_daily, :default => false
@@ -65,6 +66,10 @@ class User < ActiveRecord::Base
 
   def manager?
     role_id <= 2
+  end
+
+  def trigram
+    @trigram ||= self.login[0..2].upcase!
   end
 
   # TODO : this formatting method has to be in an helper, a lib or a plugin.
@@ -120,21 +125,21 @@ class User < ActiveRecord::Base
 
   # Associate current User to a recipient profile
   def associate_recipient(client_id)
-    client = nil
-    client = Client.find(client_id.to_i) unless client_id.nil?
-    self.recipient = Recipient.new(:user => self, :client => client)
-    self.client = true
+    c_id = nil
+    c_id = Client.find(client_id.to_i).id unless client_id.nil?
+    self.client_id = c_id
+    self.save
   end
 
   # Associate current User to an Engineer profile
-  def associate_engineer()
-    self.ingenieur = Ingenieur.new(:user => self)
-    self.client = false
+  def associate_engineer
+    self.client_id = 0
+    self.save
   end
 
   SELECT_OPTIONS = { :include => [:user], :order =>
     'users.name ASC', :conditions => 'users.inactive = 0' }
-  EXPERT_OPTIONS = { :conditions => 'users.client = 0 AND users.inactive = 0',
+  EXPERT_OPTIONS = { :conditions => 'users.client = 0 AND users.inactive = 0 AND users.client_id IS NULL',
     :order => 'users.name' }
 
   def self.authenticate(login, pass, crypt = 'false')
@@ -167,6 +172,31 @@ class User < ActiveRecord::Base
     return match
   end
 
+  def recipient?
+    self.client_id != 0
+  end
+  
+  def engineer?
+    not recipient?
+  end
+
+  def self.engineers
+    User.find(:all, :conditions => 'users.client_id IS NULL')
+  end
+
+  def self.recipients
+    User.find(:all, :conditions => 'users.client_id IS NOT NULL')
+  end
+
+  def self.find_select_by_contract_id(contract_id)
+    joins = 'INNER JOIN contracts_users cu ON cu.user_id=users.id'
+    conditions = [ 'cu.contract_id = ?', contract_id ]
+    options = {:find => {:conditions => conditions, :joins => joins}}
+    User.send(:with_scope, options) do
+      User.find_select(User::SELECT_OPTIONS)
+    end
+  end
+
   def name
     strike(:name)
   end
@@ -194,17 +224,17 @@ class User < ActiveRecord::Base
 
   # TODO : provide a cache for those really often used & costly 2 methods
   def contract_ids
-    self.contracts.collect &:id
+    self.contracts.collect(&:id)
   end
 
   def client_ids
-    res = self.contracts.collect &:client_id
+    res = self.contracts.collect(&:client_id)
     res.uniq!
     res
   end
 
   def kind
-    (client? ? 'recipient' : 'expert')
+    (recipient? ? 'recipient' : 'expert')
   end
 
   def team_manager?

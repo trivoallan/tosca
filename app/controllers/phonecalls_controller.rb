@@ -21,7 +21,7 @@ class PhonecallsController < ApplicationController
 
   def index
     options = { :per_page => 15, :order => 'phonecalls.start', :include =>
-      [:recipient,:ingenieur,:contract,:issue], :page => params[:page] }
+      [:user,:contract,:issue], :page => params[:page] }
     conditions = []
 
     if params.has_key? :filters
@@ -35,7 +35,7 @@ class PhonecallsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(calls_filters, [
-        [:ingenieur_id, 'phonecalls.ingenieur_id', :equal ],
+        [:engineer_id, 'phonecalls.engineer_id', :equal ],
         [:recipient_id, 'phonecalls.recipient_id', :equal ],
         [:contract_id, 'phonecalls.contract_id', :equal ],
         [:after, 'phonecalls.start', :greater_than ],
@@ -72,7 +72,7 @@ class PhonecallsController < ApplicationController
 
   def new
     @phonecall = Phonecall.new
-    @phonecall.ingenieur = @ingenieur
+    @phonecall.engineer = session[:user]
     @phonecall.issue_id = params[:id]
     _form
   end
@@ -115,7 +115,7 @@ class PhonecallsController < ApplicationController
 
   private
   def _form
-    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
+    @engineers = User.find_select(User::EXPERT_OPTIONS)
     @contracts = Contract.find_select(Contract::OPTIONS)
     contract = @phonecall.contract || Contract.find(@contracts.first.last.to_i)
     @recipients =
@@ -125,13 +125,13 @@ class PhonecallsController < ApplicationController
   # variables utilisé par le panneau de gauche
   def _panel
     @count = {}
-    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
+    @engineers = User.find_select(User::EXPERT_OPTIONS)
     @contracts = Contract.find_select(Contract::OPTIONS)
     @recipients = Recipient.find_select(User::SELECT_OPTIONS)
 
     @count[:phonecalls] = Phonecall.count
     @count[:recipients] = Phonecall.count 'recipient_id', {}
-    @count[:ingenieurs] = Phonecall.count('ingenieur_id', {})
+    @count[:engineers] = Phonecall.count('engineer_id', {})
     @count[:issues] = Phonecall.count('issue_id', :distinct => true)
     diff = 'TIME_TO_SEC(TIMEDIFF(end,start))'
     @count[:somme] = Phonecall.sum(diff).to_i

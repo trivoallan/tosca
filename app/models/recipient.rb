@@ -18,16 +18,9 @@
 #
 class Recipient < ActiveRecord::Base
   belongs_to :user
-  belongs_to :client, :counter_cache => true
   has_many :phonecalls
 
   INCLUDE = [:user]
-
-  # TODO : revoir la hiérarchie avec un nested tree (!)
-  belongs_to :recipient
-  has_many :issues, :dependent => :destroy
-
-  validates_presence_of :client
 
   def name
     (user ? user.name : '-')

@@ -39,9 +39,9 @@
 <ul id="menu_perimeter">
   <li><b><%= _('Logins: ')%> </b><%=@count[:users]%></li>
   <li><b><%= _('Recipients: ')%></b><%=@count[:recipients]%></li>
-  <li><b><%= _('Engineers: ')%></b><%=@count[:ingenieurs]%></li>
+  <li><b><%= _('Engineers: ')%></b><%=@count[:engineers]%></li>
   <li><b><%= _('Inconsistencies: ')%></b><%=(@count[:users] -
-    (@count[:recipients] + @count[:ingenieurs])).to_s %></li>
+    (@count[:recipients] + @count[:engineers])).to_s %></li>
 </ul>
 <% end %>
 

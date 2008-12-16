@@ -68,12 +68,12 @@ class UserTest < Test::Unit::TestCase
     c = clients(:client_00001)
     u.associate_recipient(c.id)
     assert u.recipient
-    assert_equal u.recipient.client, c
-    assert_equal u.client?, true
+    assert_equal u.client, c
+    assert_equal u.recipient?, true
 
     u.associate_engineer
     assert u.ingenieur
-    assert_equal u.client, false
+    assert_equal u.engineer?, true
   end
 
   def test_authorized

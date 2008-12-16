@@ -1,5 +1,5 @@
 <div id='issue_tab_content' class='issue_tab_content'>
-<% if @ingenieur %>
+<% if session[:user].engineer? %>
  <ul>
   <% options = { :software_id => @issue.software_id, :issue_id => @issue.id } %>
   <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>

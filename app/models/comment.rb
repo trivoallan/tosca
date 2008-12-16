@@ -22,7 +22,8 @@ class Comment < ActiveRecord::Base
   belongs_to :attachment
   belongs_to :statut
   belongs_to :severity
-  belongs_to :ingenieur
+  belongs_to :engineer, :class_name => 'User',
+    :conditions => 'users.client_id IS NULL'
 
   validates_length_of :text, :minimum => 5,
     :warn => _('You must have a comment with at least 5 characters')
@@ -52,8 +53,8 @@ class Comment < ActiveRecord::Base
     if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and text.empty?
       record.text << ( _("The issue is now %s.<br/>") % _(record.statut.name) )
     end
-    if record.ingenieur and text.empty?
-      record.text << ( _("The issue is now managed by %s.<br/>") % _(record.ingenieur.name))
+    if record.engineer and text.empty?
+      record.text << ( _("The issue is now managed by %s.<br/>") % _(record.engineer.name))
     end
   end
 
@@ -127,7 +128,7 @@ class Comment < ActiveRecord::Base
   # update issue attributes, when creating a comment
   after_create :update_issue
   def update_issue
-    fields = %w(statut_id ingenieur_id severity_id)
+    fields = %w(statut_id engineer_id severity_id)
     issue = self.issue
 
     # Update all attributes
@@ -140,8 +141,8 @@ class Comment < ActiveRecord::Base
     end
 
     # auto-assignment to current engineer
-    if issue.ingenieur_id.nil? && self.user.ingenieur
-      issue.ingenieur = self.user.ingenieur
+    if issue.engineer_id.nil? && self.user.engineer?
+      issue.engineer = self.user
     end
 
     # update cache of elapsed time

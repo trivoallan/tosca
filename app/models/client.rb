@@ -21,23 +21,24 @@ class Client < ActiveRecord::Base
   include InactiveRecord
 
   belongs_to :image
-  has_many :recipients, :dependent => :destroy
-  has_many :active_recipients, :class_name => 'Recipient', :include => :user,
-    :conditions => 'users.inactive = 0'
+  has_many :recipients, :class_name => 'User', :dependent => :destroy,
+    :conditions => 'users.client_id IS NOT NULL'
+  has_many :active_recipients, :class_name => 'User',
+    :conditions => 'users.inactive = 0 AND users.client IS NOT NULL'
   has_many :contracts, :dependent => :destroy
   has_many :documents, :dependent => :destroy
 
   has_and_belongs_to_many :socles, :uniq => true
 
   has_many :versions, :through => :contracts
-  has_many :issues, :through => :recipients # , :source => :issues
+  has_many :issues, :through => :recipients
 
   belongs_to :creator, :class_name => 'User'
 
   validates_presence_of :name, :creator
   validates_length_of :name, :in => 3..50
 
-  SELECT_OPTIONS = { :include => {:recipients => [:user]},
+  SELECT_OPTIONS = { :include => :recipients,
     :conditions => 'clients.inactive = 0 AND users.inactive = 0' }
 
   after_save :desactivate_recipients
@@ -46,7 +47,7 @@ class Client < ActiveRecord::Base
     begin
       connection.begin_db_transaction
       value = (inactive? ? 1 : 0)
-      connection.update "UPDATE users u, recipients b SET u.inactive = #{value} WHERE b.client_id=#{self.id} AND b.user_id=u.id"
+      connection.update "UPDATE users u, recipients b SET u.inactive = #{value} WHERE u.client_id=#{self.id} AND b.user_id=u.id"
       connection.commit_db_transaction
     rescue Exception => e
       connection.rollback_db_transaction
@@ -68,10 +69,6 @@ class Client < ActiveRecord::Base
         [ 'clients.id IN (?)', client_ids ]} }
   end
 
-  def contract_ids
-    self.contracts.find(:all, :select => 'id').collect{|c| c.id}
-  end
-
   # TODO : it's slow & ugly
   # returns true if we have a contract to support an entire distribution
   # for this client, false otherwise.
@@ -85,12 +82,12 @@ class Client < ActiveRecord::Base
     @recipient_ids ||= self.recipients.find(:all, :select => 'id').collect{|c| c.id}
   end
 
-  def ingenieurs
+  def engineers
     return [] if contracts.empty?
     options = { :include => [:user],
-      :conditions => [ 'cu.contract_id IN (?)', contract_ids ],
+      :conditions => [ 'cu.contract_id IN (?) AND users.client_id IS NULL', contract_ids ],
       :joins => 'INNER JOIN contracts_users cu ON cu.user_id=users.id' }
-    Ingenieur.find(:all, options)
+    User.find(:all, options)
   end
 
   def softwares
@@ -102,18 +99,17 @@ class Client < ActiveRecord::Base
     # default case, when there is an association with releases.
     conditions = [ 'softwares.id IN (SELECT DISTINCT versions.software_id ' +
                    ' FROM versions WHERE versions.contract_id IN (?)) ',
-                   contracts.collect{ |c| c.id } ]
+                   contracts_ids ]
     Software.find(:all, :conditions => conditions, :order => 'softwares.name')
   end
 
   def contributions
-    return [] if issues.empty?
+    #return [] if issues.empty?
     Contribution.find(:all,
-                   :conditions => "contributions.id IN (" +
-                     "SELECT DISTINCT issues.contribution_id FROM issues " +
-                     "WHERE issues.recipient_id IN (" +
-                     recipients.collect{|c| c.id}.join(',') + "))"
-                   )
+                      :conditions => "contributions.id IN (" +
+                        "SELECT DISTINCT issues.contribution_id FROM issues " +
+                        "WHERE issues.recipient_id IN (" +
+                        recipients.collect{|c| c.id}.join(',') + "))")
   end
 
   def issuetypes

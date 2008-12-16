@@ -4,7 +4,7 @@
  <% titles = [ _('Resources')]%>
  <%= show_table(@skills, Skill, titles, :content_columns => true) do |c|
    result = ''
-   result << "<td>#{c.ingenieurs.count}</td>"
+   result << "<td>#{c.engineers.count}</td>"
    result << "#{link_to_actions_table c}"
  end %>
  <%= page_entries_info @skills %><br />

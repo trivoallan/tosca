@@ -20,15 +20,13 @@
   <% options[:method] = :put %>
   <% @users.each_index do |i| %>
    <% user = @users[i] %>
-   <% recipient = user.recipient %>
-   <% ingenieur = user.ingenieur %>
    <tr class="<%= cycle('even', 'odd') %>">
       <td><%= user.title %></td>
       <td><%= user.name %></td>
       <% if manager %>
        <td><%= user.role.name %></td>
-       <td style="text-align: center"><%= 'X' if ingenieur %></td>
-       <td style="text-align: center"><%= 'X' if recipient %></td>
+       <td style="text-align: center"><%= 'X' if user.engineer? %></td>
+       <td style="text-align: center"><%= 'X' if user.recipient? %></td>
       <% end %>
       <td><%= mail_to user.email, user.email %></td>
       <td><%= user.phone %></td>

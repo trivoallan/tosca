@@ -23,7 +23,8 @@ class Contribution < ActiveRecord::Base
   belongs_to :contributiontype
   belongs_to :contributionstate
   belongs_to :software
-  belongs_to :ingenieur
+  belongs_to :engineer, :class_name => 'User',
+    :conditions => 'users.client_id IS NULL'
 
   belongs_to :affected_version, :class_name => "Version"
   belongs_to :fixed_version, :class_name => "Version"

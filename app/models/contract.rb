@@ -34,10 +34,10 @@ class Contract < ActiveRecord::Base
   has_and_belongs_to_many :users, :order => 'users.name', :uniq => true
   # Those 2 ones are helpers, not _real_ relation ship
   has_and_belongs_to_many :engineer_users, :class_name => 'User',
-    :conditions => 'users.client = 0',
+    :conditions => 'users.client_id IS NULL',
     :order => 'users.name ASC'
   has_and_belongs_to_many :recipient_users, :class_name => 'User',
-    :conditions => 'users.client = 1', :include => :recipient,
+    :conditions => 'users.client_id IS NOT NULL', :include => :recipient,
     :order => 'users.name ASC'
   has_and_belongs_to_many :teams, :order => 'teams.name', :uniq => true
 

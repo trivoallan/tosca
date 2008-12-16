@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
     # check on attributes change
     # Find a way to put it in the model despite the access from issue view
     changed = {}
-    %w{statut_id ingenieur_id severity_id}.each do |attr|
+    %w{statut_id engineer_id severity_id}.each do |attr|
       changed[attr] = true unless comment[attr].blank?
     end
     if (changed[:statut_id] or changed[:severity_id]) and params[:comment][:private]

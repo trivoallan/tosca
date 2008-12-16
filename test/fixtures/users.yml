@@ -5,12 +5,12 @@ user_customer:
   title: the royal
   role_id: 4
   inactive: false
-  client: true
   id: 4
   phone: "666"
   restricted: true
   password: c921769f9e42e4876d204fcd51ba16124fb8477f
   login: customer
+  client_id: 2
   image_id: 
   email: <%= App::MaintenerEmail %>
 user_viewer: 
@@ -19,8 +19,8 @@ user_viewer:
   title: the powerless
   role_id: 5
   inactive: false
-  client: true
   id: 5
+  client_id: 1
   phone: "000"
   restricted: true
   password: 8b34fc039696a3815940c5672ba2efaa76ab51ac
@@ -33,7 +33,6 @@ user_admin:
   title: "\xC3\xB4 r\xC3\xA9v\xC3\xA9r\xC3\xA9"
   role_id: 1
   inactive: false
-  client: false
   id: 1
   phone: ""
   restricted: false
@@ -42,13 +41,13 @@ user_admin:
   image_id: 
   email: <%= App::MaintenerEmail %>
   team_id: 2
+  client_id: 0
 user_manager: 
   name: Manager
   informations: ""
   title: the lovely
   role_id: 2
   inactive: false
-  client: false
   id: 2
   phone: ""
   restricted: true
@@ -57,13 +56,13 @@ user_manager:
   image_id: 
   email: <%= App::MaintenerEmail %>
   team_id: 1
+  client_id: 0
 user_expert: 
   name: Expert
   informations: ""
   title: the handy
   role_id: 3
   inactive: false
-  client: false
   id: 3
   phone: "69"
   restricted: true
@@ -72,3 +71,4 @@ user_expert:
   image_id: 
   email: <%= App::MaintenerEmail %>
   team_id: 2
+  client_id: 0

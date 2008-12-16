@@ -19,10 +19,9 @@
 class KnowledgesController < ApplicationController
   helper :filters
 
-
   def index
-    options = { :per_page => 25, :order => 'knowledges.ingenieur_id',
-      :include => [:ingenieur, :skill, :software], :page => params[:page] }
+    options = { :per_page => 25, :order => 'knowledges.engineer_id',
+      :include => [:user, :skill, :software], :page => params[:page] }
 
     if params.has_key? :filters
       session[:knowledges_filters] =
@@ -37,7 +36,7 @@ class KnowledgesController < ApplicationController
       conditions = Filters.build_conditions(knowledges_filters, [
         [:software_id, 'knowledges.software_id', :equal ],
         [:skill_id, 'knowledges.skill_id', :equal ],
-        [:ingenieur_id, 'knowledges.ingenieur_id', :equal ]
+        [:engineer_id, 'knowledges.engineer_id', :equal ]
       ])
       @filters = knowledges_filters
     end
@@ -69,11 +68,11 @@ class KnowledgesController < ApplicationController
 
   def create
     @knowledge = Knowledge.new(params[:knowledge])
-    @knowledge.ingenieur_id = @ingenieur.id
+    @knowledge.engineer_id = session[:user].id
 
     if @knowledge.save
       flash[:notice] = _('Your knowledge was successfully created.')
-      redirect_to(account_path(@knowledge.ingenieur.user))
+      redirect_to(account_path(@knowledge.engineer))
     else
       _form and render :action => "new"
     end
@@ -83,7 +82,7 @@ class KnowledgesController < ApplicationController
     @knowledge = Knowledge.find(params[:id])
     if @knowledge.update_attributes(params[:knowledge])
       flash[:notice] = _('Your knowledge was successfully updated.')
-      redirect_to(account_path(@knowledge.ingenieur.user))
+      redirect_to(account_path(@knowledge.engineer))
     else
       _form and render :action => "edit"
     end
@@ -105,7 +104,7 @@ class KnowledgesController < ApplicationController
   def _panel
     @software = Software.find_select
     @skills = Skill.find_select
-    @experts = Ingenieur.find_select(User::SELECT_OPTIONS)
+    @experts = User.find_select(User::EXPERT_OPTIONS)
   end
 
 end

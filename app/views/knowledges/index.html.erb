@@ -6,9 +6,9 @@
  <% last_engineer_id = 0 %>
  <%= show_table(@knowledges, Knowledge, titles) do |k|
    result = ''
-   if k.ingenieur_id != last_engineer_id
-     last_engineer_id = k.ingenieur_id
-     name = k.ingenieur.user.name
+   if k.engineer_id != last_engineer_id
+     last_engineer_id = k.engineer_id
+     name = k.engineer.user.name
    else
      name = ' - '
    end

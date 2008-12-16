@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContractsController < ApplicationController
-  helper :clients, :commitments, :ingenieurs, :versions, :issues, :filters
+  helper :clients, :commitments, :engineers, :versions, :issues, :filters
 
   auto_complete_for :user, :name, :contract, :engineer_user,
                     :conditions => { :client => false }
@@ -186,7 +186,7 @@ private
       @clients = Client.find_select
     end
     @commitments = Commitment.find(:all, Commitment::OPTIONS)
-    @ingenieurs = User.find_select(User::EXPERT_OPTIONS)
+    @engineers = User.find_select(User::EXPERT_OPTIONS)
     @teams = Team.find_select
     @contract_team = @contract.teams
     @rules = []

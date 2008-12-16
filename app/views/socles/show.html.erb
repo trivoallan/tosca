@@ -4,7 +4,7 @@
 </p>
 <% end %>
 
-<% if @ingenieur %>
+<% if session[:user].engineer? %>
 <p>
 <b><%= _('Computer :')%></b> <%= link_to_machine(@socle.machine) %>
 </p>

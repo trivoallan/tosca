@@ -3,11 +3,6 @@
 <div title="<%= _("Show an account") %>" class="show">
   <h1><b><%= _('Engineer') %></b></h1><br />
 
-  <% for column in Ingenieur.content_columns %>
-   <p><b><%= column.human_name %>:</b> <%= @user_engineer.send(column.name) %>
-   </p>
-  <% end %>
-
   <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b>
   <% unless @user_engineer.knowledges.empty? %>
      <% options = {:edit => 'knowledge', :no_title => true } %>

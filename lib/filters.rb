@@ -38,12 +38,12 @@ module Filters
     end
   end
 
-  class Knowledges < Struct.new('Knowledges', :ingenieur_id,
+  class Knowledges < Struct.new('Knowledges', :engineer_id,
                                 :software_id, :skill_id)
     extend Shared
   end
 
-  class Contributions < Struct.new('Contributions', :software, :ingenieur_id,
+  class Contributions < Struct.new('Contributions', :software, :engineer_id,
                              :contribution, :contributionstate_id, :contract_id)
     extend Shared
   end
@@ -53,7 +53,7 @@ module Filters
     extend Shared
   end
 
-  class Calls < Struct.new('Calls', :ingenieur_id, :recipient_id,
+  class Calls < Struct.new('Calls', :engineer_id, :recipient_id,
                             :contract_id, :after, :before)
     extend Shared
   end
@@ -66,7 +66,7 @@ module Filters
     extend Shared
   end
 
-  class Issues < Struct.new('Issues', :text, :contract_id, :ingenieur_id,
+  class Issues < Struct.new('Issues', :text, :contract_id, :engineer_id,
                               :issuetype_id, :severity_id, :statut_id,
                               :active, :limit)
     extend Shared
@@ -125,7 +125,7 @@ module Filters
         when :like
           conditions.push "%#{value}%"
         when :multiple_like
-          conditions.push *(Array.new(f[1..-2].size, "%#{value}%"))
+          conditions.push(*(Array.new(f[1..-2].size, "%#{value}%")))
         else
           conditions.push value
         end

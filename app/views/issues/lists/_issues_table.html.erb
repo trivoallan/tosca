@@ -3,13 +3,13 @@
       <th width='2%'><%= _('Id') %><%#= sortable_header(:id, :label => _("Id")) %></th>
       <th width='7%'><%= _('Software') %><%#= sortable_header(:software_id, :label => _("Software")) %></th>
       <th width='7%' colspan="2"><%= _('Type')%><%#= sortable_header(:issuetype_id, :label => _("Type")) %></th>
-      <% if @ingenieur %>
+      <% if session[:user].engineer? %>
         <th width='7%'><%= _('Client')%><%#= sortable_header(:client_id , :label => _("Client")) %></th>
       <% end %>
       <th><%= _('Summary')%><%#= sortable_header(:description, :label => _("Summary")) %></th>
       <th width='10%'>
-       <% if @ingenieur %>
-         <%=_('Owner')%><%#= sortable_header(:ingenieur_id, :label => _("Owner")) %>
+       <% if session[:user].engineer? %>
+         <%=_('Owner')%><%#= sortable_header(:engineer_id, :label => _("Owner")) %>
        <% else %>
          <%=_('Submitter')%><%#= sortable_header(:recipient_id, :label => _("Submitter")) %>
        <% end %>
@@ -18,9 +18,6 @@
       <th width='8%'><%=_('Updated on')%><%#= sortable_header(:updated_on, :label => _("Updated on"), :descend => true) %></th>
    </tr>
 
-   <% recipient = Recipient.new(:id => 0) %>
-   <% ingenieur = Ingenieur.new(:id => 0)
-      def ingenieur.name; '-'; end %>
    <% for issue in @issues %>
    <tr <%= tr_attributes(issue_path(issue)) %>>
         <td><%= issue.id %></td>
@@ -34,20 +31,18 @@
            end
         %>
         <td nowrap="nowrap"><span class="issue_<%=issue.statut_id%>">&nbsp;<%= issuetypes_name %><%= StaticImage::severity(issue) %></span></td>
-       <% if @ingenieur %>
+       <% if session[:user].engineer? %>
         <td><%= issue.client_name %></td>
        <% end %>
         <% recipient = issue.recipient if recipient.id != issue.recipient_id %>
         <td><b><%= link_to_issue issue %></b></td>
         <td>
-         <% if @ingenieur %>
-          <% if ingenieur.nil? || (ingenieur.id != issue.ingenieur_id)
-               ingenieur = issue.ingenieur
-             end %>
-          <%= name(ingenieur) %>
-         <% else %>
+        <% if session[:user].engineer? %>
+          <% engineer = issue.engineer %>
+          <%= name(engineer) %>
+        <% else %>
           <%= recipient %>
-         <% end %>
+        <% end %>
         </td>
         <td><span class="date"><%= issue.updated_on_formatted %></span></td>
    </tr>

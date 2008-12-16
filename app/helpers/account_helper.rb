@@ -30,7 +30,7 @@ module AccountHelper
     end
   end
 
-  def get_title(user)
+  def get_title
     result = ''
     if session[:user].id == @user.id
       result << _('My account')
@@ -55,10 +55,9 @@ module AccountHelper
   end
 
   def form_become(user)
-    recipient = user.recipient
     result = ''
-    if @ingenieur && recipient && !user.inactive?
-      result << %Q{<form action="#{become_account_path(recipient)}" method="post">}
+    if session[:user].engineer? && user && !user.inactive?
+      result << %Q{<form action="#{become_account_path(user)}" method="post">}
       result << %Q{<input name="commit" value='#{_('Become')}' type="submit" /></form>}
     end
     result

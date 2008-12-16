@@ -31,8 +31,10 @@ class Issue < ActiveRecord::Base
   #  1. The submitter (The one who has filled the issue)
   #  2. The engineer (The one which is currently in charged of this issue)
   #  3. The recipient (The one which has the problem)
-  belongs_to :recipient
-  belongs_to :ingenieur
+  belongs_to :recipient, :class_name => 'User',
+    :conditions => 'users.client_id IS NOT NULL'
+  belongs_to :engineer, :class_name => 'User',
+  :conditions => 'users.client_id IS NULL'
   belongs_to :submitter, :class_name => 'User',
     :foreign_key => 'submitter_id'
 
@@ -162,7 +164,7 @@ class Issue < ActiveRecord::Base
   # It /!\ MUST /!^ be an _id field. See IssuesController#create.
   def self.remanent_fields
     [ :contract_id, :recipient_id, :issuetype_id, :severity_id,
-      :socle_id, :software_id, :ingenieur_id, :version_id ]
+      :socle_id, :software_id, :engineer_id, :version_id ]
   end
 
   # Used in the cache/sweeper system
@@ -202,7 +204,7 @@ class Issue < ActiveRecord::Base
   def set_defaults(expert, recipient, params)
     return if self.statut_id
     # self-assignment
-    self.ingenieur = expert
+    self.engineer_id = expert.id
     # without severity, by default
     self.severity_id = 4
     # if we came from software view, it's sets automatically
@@ -244,7 +246,7 @@ class Issue < ActiveRecord::Base
 
   # Returns the state of an issue at date t
   # The result is a READ ONLY clone with the 3 indicators
-  #   statut_id, ingenieur_id & severity_id
+  #   statut_id, engineer_id & severity_id
   def state_at(t)
     return self if t >= self.updated_on
     return Issue.new if t < self.created_on
@@ -256,13 +258,13 @@ class Issue < ActiveRecord::Base
     options[:conditions] = [ "severity_id IS NOT NULL AND created_on <= ?", t ]
     severity_id = self.comments.find(:first, options).severity_id
 
-    options[:conditions] = [ "ingenieur_id IS NOT NULL AND created_on <= ?", t ]
-    com_ingenieur = self.comments.find(:first, options)
-    ingenieur_id = com_ingenieur ? com_ingenieur.ingenieur_id : nil
+    options[:conditions] = [ "engineer_id IS NOT NULL AND created_on <= ?", t ]
+    com_engineer = self.comments.find(:first, options)
+    engineer_id = com_engineer ? com_engineer.engineer_id : nil
 
     result = self.clone
     result.attributes = { :statut_id => statut_id,
-      :ingenieur_id => ingenieur_id, :severity_id => severity_id }
+      :engineer_id => engineer_id, :severity_id => severity_id }
     result.readonly!
     result
   end
@@ -350,7 +352,7 @@ class Issue < ActiveRecord::Base
     # The client is not informed of private messages
     res << recipient.user.email unless private
     # Issue are not assigned, by default
-    res << ingenieur.user.email if ingenieur
+    res << engineer.email if engineer
     res.join(',')
   end
 
@@ -358,14 +360,12 @@ class Issue < ActiveRecord::Base
   def self.find_pending_user(user)
     options, conditions = build_conditions_pending
 
-    own_id = nil
-    if user.client?
+    if user.recipient?
       conditions.first << 'issues.recipient_id IN (?)'
-      own_id = user.recipient.id
     else
-      conditions.first << 'issues.ingenieur_id IN (?)'
-      own_id = user.ingenieur.id
+      conditions.first << 'issues.engineer_id IN (?)'
     end
+    own_id = user.id
     conditions[0] = conditions.first.join(' AND ')
     options[:conditions] = conditions
 
@@ -406,7 +406,7 @@ class Issue < ActiveRecord::Base
     self.first_comment = Comment.new do |c|
       #We use id's because it's quicker
       c.text = self.description
-      c.ingenieur_id = self.ingenieur_id
+      c.engineer_id = self.engineer_id
       c.issue = self
       c.severity_id = self.severity_id
       c.statut_id = self.statut_id

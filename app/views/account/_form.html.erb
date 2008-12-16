@@ -3,7 +3,7 @@
     <%= render :partial => "edit_account_informations" %>
   </div>
   <%# do not display this part to customer, for now %>
-  <% if @ingenieur %>
+  <% if session[:user].engineer? %>
    <div class="c50r" id="place">
     <%= render :partial => "edit_engineer" %>
     <%= render :partial => "edit_recipient" %>

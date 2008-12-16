@@ -20,7 +20,7 @@
 # an Engineer. There's also a link to the contract, because those phones
 # calls can be in the 24/24 contract.
 class Phonecall < ActiveRecord::Base
-  belongs_to :ingenieur
+  belongs_to :engineer
   belongs_to :recipient
   belongs_to :issue
   belongs_to :contract
@@ -38,7 +38,7 @@ class Phonecall < ActiveRecord::Base
       record.errors.add_to_base _('recipient and client have to correspond.')
     end
   end
-  validates_presence_of :ingenieur, :contract
+  validates_presence_of :engineer, :contract
 
   # This reduced the scope of Calls to contract_ids in parameters.
   # With this, every Recipient only see what he is concerned of
@@ -70,7 +70,7 @@ class Phonecall < ActiveRecord::Base
     if issue
       _("Phonecall of %s on '%s'") % [ Time.in_words(length), issue.resume ]
     else
-      _("Phonecall of %s for %s") % [ ingenieur.name, contract.name ]
+      _("Phonecall of %s for %s") % [ engineer.name, contract.name ]
     end
   end
 

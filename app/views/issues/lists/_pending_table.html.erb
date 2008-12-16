@@ -24,7 +24,7 @@
    <tr class="<%=cycle('odd', 'even')%>" id="issue_<%=issue.id%>">
     <td><%= check_box_tag 'issue_ids[]', issue.id, false, :id => "issue_ids_#{issue.id}" %></td>
     <td><label for="issue_ids_<%=issue.id%>"><%= issue.id %></label></td>
-    <td><%= (issue.ingenieur ? issue.ingenieur.trigram : '-') %></td>
+    <td><%= (issue.engineer ? issue.engineer.trigram : '-') %></td>
     <td><%= issue.software_name %></td>
     <td><%= issue.client_name %></td>
     <td title="<%= "[#{issue.softwares_name}] #{issue.clients_name}" %>">

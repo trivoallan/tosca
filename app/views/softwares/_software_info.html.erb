@@ -29,7 +29,7 @@
 <ul id="menu_recherche">
  <li><b><%= _('By name') %></b><br />
      <%= text_field :filters, :software %></li>
- <% if @ingenieur %>
+ <% if session[:user].engineer? %>
   <li><b><%= _('By contract') %> </b><br />
       <%= select_filter(@contracts, 'contract') %></li>
  <% end %>

@@ -75,7 +75,7 @@
      </tr>
     <% end %>
 
-    <% if @ingenieur %>
+    <% if session[:user].engineer? %>
     <tr>
       <td colspan="2"><hr/></td>
     </tr>

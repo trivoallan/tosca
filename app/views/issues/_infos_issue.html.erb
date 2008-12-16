@@ -2,7 +2,7 @@
 
 <%= div_toggle _('Summary'), 'menu_resume', :class => "menu_title" %>
 <ul id="menu_resume">
-  <% if @ingenieur and @issue.socle and @issue.socle.machine%>
+  <% if session[:user].engineer? and @issue.socle and @issue.socle.machine%>
      <li><b><%= _("Vm") %>: </b><%=h @issue.socle.machine %></li>
   <% end %>
   <li><b><%= _("System") %>: </b><%= link_to_socle @issue.socle %></li>
@@ -19,8 +19,8 @@
   <% if submitter_id != 0 && @issue.recipient.user_id != submitter_id %>
     <li><b><%=_("Declared by")%>: </b><%= @issue.submitter.name %></li>
   <% end %>
-  <% if @issue.ingenieur %>
-    <li><b><%=_("Assigned to")%>: </b> <%= @issue.ingenieur.name %> </li>
+  <% if @issue.engineer %>
+    <li><b><%=_("Assigned to")%>: </b> <%= @issue.engineer.name %> </li>
   <% end %>
 </ul>
 
@@ -28,7 +28,7 @@
 <% user = @issue.recipient.user %>
 <ul id="menu_recipient">
   <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
-     <%= link_to_show(account_path(user)) if @ingenieur %></li>
+     <%= link_to_show(account_path(user)) if session[:user].engineer? %></li>
   <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
   <% contract = @issue.contract %>
   <li><b><%= _('Concerning') %>: </b><%= link_to contract, contract_path(contract) %></li>
@@ -52,7 +52,7 @@
    <% unless @issue.tag_list.empty? %>
     <li><b><%= _("Tags") %>: </b><%= @issue.tag_list.join(', ') %></li>
    <% end %>
-   <% if @ingenieur %>
+   <% if session[:user].engineer? %>
     <li><%= link_to _("Edit the tags for this issue"), tag_issue_url(@issue) %></li>
    <% end %>
  </ul>

@@ -18,7 +18,7 @@
 #
 class Skill < ActiveRecord::Base
   has_many :knowledges
-  has_many :ingenieurs, :through => :knowledges
+  has_many :engineers, :through => :knowledges
   has_many :tags
   has_and_belongs_to_many :softwares, :uniq => true
 end

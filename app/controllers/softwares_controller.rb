@@ -149,7 +149,7 @@ private
   end
 
   def _panel
-    @contracts = Contract.find_select(Contract::OPTIONS) if @ingenieur
+    @contracts = Contract.find_select(Contract::OPTIONS) if session[:user].engineer?
     @technologies = Skill.find_select
     @groups = Group.find_select
   end

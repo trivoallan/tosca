@@ -4,8 +4,8 @@
 <% if @comment.statut_id
      modified << "<b>#{@comment.statut.name}</b>"
    end %>
-<% if @comment.ingenieur_id
-     modified << "assignée à <b>#{@comment.ingenieur.name}</b>"
+<% if @comment.engineer_id
+     modified << "assignée à <b>#{@comment.engineer.name}</b>"
    end %>
 
 <% url_issue = url_for(:controller => "issues", :action => "show", :id => @issue.id, 

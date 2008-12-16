@@ -74,7 +74,7 @@ module IssuesHelper
 
   # Display more nicely change to history table
   # Use it like :
-  #  <%= display_history_changes(issue.ingenieur_id, old_ingenieur_id, Ingenieur) %>
+  #  <%= display_history_changes(issue.engineer_id, old_engineer_id, User) %>
   def display_history_changes(field, old_field, model)
     if field
       if old_field and old_field == field

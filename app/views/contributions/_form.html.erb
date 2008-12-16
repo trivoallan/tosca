@@ -12,8 +12,8 @@
         <td><%= select_empty(:contribution, :software_id, @softwares) %>
             <%= StaticImage::spinner %></td>
       </tr><tr>
-        <th><label for="contribution_ingenieur"><%=_('Engineer')%></label></th>
-        <td><%= select(:contribution, :ingenieur_id, @ingenieurs) %></td>
+        <th><label for="contribution_engineer"><%=_('Engineer')%></label></th>
+        <td><%= select(:contribution, :engineer_id, @engineers) %></td>
       </tr><tr>
         <th><label for="issue_id"><%=_('Issue number')%></label></th>
         <td><%= text_field :issue, :id, :size => 5 %></td>
@@ -27,7 +27,7 @@
       </tr><tr id="versions">
         <%= render :partial => 'list_versions' %>
       </tr>
-        <% if @ingenieur %>
+        <% if session[:user].engineer? %>
           <tr><th><label for="contribution_id_mantis">Id Mantis</label></th>
               <td><%= text_field 'contribution', 'id_mantis', :size => 3 %></td></tr>
         <% end %>

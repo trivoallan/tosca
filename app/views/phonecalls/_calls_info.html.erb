@@ -20,7 +20,7 @@
 > <%= _('Search') %></div>
 <ul class="menu" id="menu_recherche">
  <li><b><%= _('Expert') %></b></li>
- <li><%=select_filter(@ingenieurs, 'ingenieur')%></li>
+ <li><%=select_filter(@engineers, 'engineer')%></li>
  <li><b><%= _('Recipient') %></b></li>
  <li><%=select_filter(@recipients, 'recipient')%></li>
  <li><b><%= _('Contract') %></b></li>
@@ -44,13 +44,12 @@
 </ul>
 
 
-
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
 > <%= _('Perimeter')%></div>
 <ul class="menu" id="menu_perimetre">
  <li><b><%=_('Calls')%>: </b><%=@count[:phonecalls]%></li>
  <li><b><%=_('Issues')%>: </b><%=@count[:issues] %></li>
- <li><b><%=_('Engineers')%>: </b><%=@count[:ingenieurs]%></li>
+ <li><b><%=_('Engineers')%>: </b><%=@count[:engineers]%></li>
  <li><b><%=_('Recipients')%>: </b><%=@count[:recipients]%></li>
  <li><b><%=_('Total duration')%>: </b><%=Time.in_words @count[:somme]%></li>
  <li><b><%=_('Average duration')%>: </b><%=Time.in_words @count[:moyenne]%></li>

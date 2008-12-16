@@ -24,7 +24,7 @@
 
         <% if @contracts.size > 1 %>
           <td>
-            <% if @ingenieur %>
+            <% if session[:user].engineer? %>
               <%# We have an empty to make sure YOU choose the contract %>
               <%= select_empty(:issue, :contract_id, @contracts) %>
             <% elsif @recipient %>
@@ -52,14 +52,14 @@
         <td><div id="recipient"><%= select(:issue, :recipient_id, @recipients) %></div></td>
       </tr>
 
-      <% if @ingenieur %>
+      <% if session[:user].engineer? %>
       <tr>
-        <th><label for="issue_ingenieur_id"><%=_("Assigned to")%></label></th>
+        <th><label for="issue_engineer_id"><%=_("Assigned to")%></label></th>
         <td>
           <div id="engineer">
-            <select id="issue_ingenieur_id" name="issue[ingenieur_id]"><option value="">» </option>
-              <%= options_from_collection_for_select(@ingenieurs, :last, :first, @issue.ingenieur_id) %>
-              <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name, @issue.ingenieur_id) %>
+            <select id="issue_engineer_id" name="issue[engineer_id]"><option value="">» </option>
+              <%= options_from_collection_for_select(@engineer, :last, :first, @issue.engineer_id) %>
+              <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name, @issue.engineer_id) %>
             </select>
           </div>
         </td>
@@ -79,7 +79,7 @@
         <%= render :partial => 'version' %>
       </tr>
 
-      <% if @ingenieur %>
+      <% if session[:user].engineer? %>
       <tr>
         <td colspan="2"><hr /></td>
       </tr>

@@ -85,7 +85,7 @@ class IssuesController < ApplicationController
       conditions = Filters.build_conditions(issues_filters, [
         [:text, 'softwares.name', 'issues.resume', :multiple_like ],
         [:contract_id, 'issues.contract_id', :equal ],
-        [:ingenieur_id, 'issues.ingenieur_id', :equal ],
+        [:engineer_id, 'issues.engineer_id', :equal ],
         [:issuetype_id, 'issues.issuetype_id', :equal ],
         [:severity_id, 'issues.severity_id', :equal ],
         [:statut_id, 'issues.statut_id', :equal ]
@@ -115,9 +115,9 @@ class IssuesController < ApplicationController
     end
     _form @recipient
 
-    @issue.statut_id = (@ingenieur ? 2 : 1)
+    @issue.statut_id = (session[:user].engineer? ? 2 : 1)
     unless params.has_key? :issue
-      @issue.set_defaults(@ingenieur, @recipient, params)
+      @issue.set_defaults(, @recipient, params)
     end
   end
 
@@ -125,7 +125,7 @@ class IssuesController < ApplicationController
     @issue = Issue.new(params[:issue])
     user = session[:user]
     @issue.submitter = user # it's the current user
-    @issue.statut_id = (@ingenieur ? 2 : 1)
+    @issue.statut_id = (session[:user].engineer? ? 2 : 1)
 
     #If we have only one contract possible we auto asign it ti the request
     if @issue.contract.nil?
@@ -196,9 +196,9 @@ class IssuesController < ApplicationController
       @last_comment = Comment.find(:first, options)
 
       @statuts = @issue.statut.possible(@recipient)
-      if @ingenieur
+      if session[:user].engineer?
         @severities = Severity.find_select
-        @ingenieurs = Ingenieur.find_select_by_contract_id(@issue.contract_id)
+        @engineers = User.find_select_by_contract_id(@issue.contract_id)
         @teams = Team.on_contract_id(@issue.contract_id)
       end
     end
@@ -222,7 +222,7 @@ class IssuesController < ApplicationController
     @issue_id = params[:id]
     conditions = [ 'phonecalls.issue_id = ? ', @issue_id ]
     options = { :conditions => conditions, :order => 'phonecalls.start',
-      :include => [:recipient,:ingenieur,:contract,:issue] }
+      :include => [:user,:contract,:issue] }
     @phonecalls = Phonecall.find(:all, options)
     render :partial => 'issues/tabs/tab_phonecalls', :layout => false
   end
@@ -325,9 +325,9 @@ class IssuesController < ApplicationController
     @statuts = Statut.find_select(:order => 'id')
     @issuetypes = Issuetype.find_select()
     @severities = Severity.find_select()
-    if @ingenieur
+    if session[:user].engineer?
       @contracts = Contract.find_select(Contract::OPTIONS)
-      @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
+      @engineers = User.find_select(User::EXPERT_OPTIONS)
     end
   end
 
@@ -339,8 +339,8 @@ class IssuesController < ApplicationController
     @recipients = contract.find_recipients_select
     result = false if @recipients.empty?
     @softwares = contract.softwares.collect { |l| [ l.name, l.id ] }
-    if @ingenieur
-      @ingenieurs = Ingenieur.find_select_by_contract_id(contract.id)
+    if session[:user].engineer?
+      @engineers = User.find_select_by_contract_id(contract.id)
       @teams = Team.on_contract_id(contract.id)
     end
     result
@@ -376,7 +376,7 @@ class IssuesController < ApplicationController
       client = recipient.client
       @issuetypes = client.issuetypes.collect{|td| [td.name, td.id]}
     else
-      @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
+      @engineers = User.find_select(User::EXPERT_OPTIONS)
       @issuetypes = Issuetype.find_select
     end
     _form4versions
@@ -417,7 +417,7 @@ class IssuesController < ApplicationController
 
   # Private comments & attachments should not be read by recipients
   def filter_comments(issue_id)
-    if @ingenieur
+    if session[:user].engineer?
       [ 'comments.issue_id = ?', issue_id ]
     else
       [ 'comments.issue_id = ? AND comments.private = 0 ', issue_id ]

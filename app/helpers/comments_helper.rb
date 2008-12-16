@@ -26,13 +26,13 @@ module CommentsHelper
       name = "<b>-</b>"
     end
 
-    ingenieur = comment.ingenieur
-    unless ingenieur.nil?
-      if ingenieur.user_id == comment.user_id
+    engineer = comment.engineer
+    unless engineer.nil?
+      if engineer.id == comment.user_id
         out << (_('This issue has been taken into account by %s.') % name )
       else
         out << (_('This issue has been assigned to %s by %s.') %
-                [ "<b>#{ingenieur.name}</b>", name ])
+                [ "<b>#{engineer.name}</b>", name ])
       end
     end
     statut = comment.statut

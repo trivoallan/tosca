@@ -23,7 +23,7 @@ class ContributionsController < ApplicationController
 
   # Show all contribs and who's done 'em
   def experts
-    options = { :order => 'contributions.ingenieur_id, contributions.contributionstate_id' }
+    options = { :order => 'contributions.engineer_id, contributions.contributionstate_id' }
     @contributions = Contribution.find(:all, options)
   end
 
@@ -84,7 +84,7 @@ class ContributionsController < ApplicationController
         [:software, 'softwares.name', :like ],
         [:contribution, 'contributions.name', :like ],
         [:contributionstate_id, 'contributions.contributionstate_id', :equal ],
-        [:ingenieur_id, 'contributions.ingenieur_id', :equal ],
+        [:engineer_id, 'contributions.engineer_id', :equal ],
         [:contract_id, 'issues.contract_id', :equal ]
       ])
       @filters = contributions_filters
@@ -109,7 +109,7 @@ class ContributionsController < ApplicationController
     @contribution.contributionstate_id = 4
     @contribution.contributed_on = Date.today
     @issue = Issue.new(); @issue.id = params[:issue_id]
-    @contribution.ingenieur = @ingenieur
+    @contribution.engineer = session[:user]
     _form
   end
 
@@ -151,14 +151,14 @@ class ContributionsController < ApplicationController
 
   def ajax_list_versions
     return render(:nothing => true) unless issue.xml_http_issue? and params[:software_id]
-    @versions = Software.find(params[:software_id]).versions.find_select # collect { |v| [v.full_software_name, v.id] }
+    @versions = Software.find(params[:software_id]).versions.find_select
   end
 
 private
   def _form
     @softwares = Software.find_select
     @contributionstates = Contributionstate.find_select
-    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
+    @engineers = User.find_select(User::EXPERT_OPTIONS)
     @contributiontypes = Contributiontype.find_select
     if @contribution.software_id
       @versions = @contribution.software.versions.find_select
@@ -169,7 +169,7 @@ private
 
   def _panel
     @contributionstates = Contributionstate.find_select
-    @ingenieurs = Ingenieur.find_select(User::SELECT_OPTIONS)
+    @engineers = User.find_select(User::EXPERT_OPTIONS)
     @softwares = Software.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)
     # count
@@ -186,7 +186,7 @@ private
     contribution.save
   end
 
-  def _link2issue()
+  def _link2issue
     begin
       issue = Issue.find(params[:issue][:id].to_i) unless params[:issue][:id].blank?
       @contribution.issue = issue

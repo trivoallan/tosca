@@ -83,7 +83,7 @@
      <li><%= _('You can now choose a theme between three if you click on this icon %s, in the top bar') % public_link_to_remote_theme %></li>
      <li><%= _('Your %s is more detailed and include a new section about software')  % link_to(_('activity report'), general_reporting_path) %></li>
      <li><%= _('Detailed view of your issues is improved, with a new dynamic comment approach') %></li>
-     <% if @ingenieur %>
+     <% if user and user.engineer? %>
       <li><%= _('a new alert page is available, allowing all teams to monitor its own contract')%></li>
       <li><%= _('A new search engine is available in contracts list')%></li>
       <li><%= _('A new system, tag-based, allowing to regroup software or issue at your convenience')%></li>

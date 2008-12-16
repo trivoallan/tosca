@@ -28,7 +28,7 @@ class AccountController < ApplicationController
   # See http://api.rubyonrails.org/classes/ActionController/Base.html#M000441
   filter_parameter_logging :password
 
-  helper :filters, :ingenieurs, :recipients, :roles, :export
+  helper :filters, :recipients, :roles, :export
 
   around_filter :scope, :except => [:login, :logout, :lemon]
 
@@ -79,8 +79,7 @@ class AccountController < ApplicationController
   def signup
     case request.method
     when :get # Display form
-      @user = User.new(:role_id => 4, :client => true) # Default : customer
-      @user_recipient = Recipient.new
+      @user = User.new(:role_id => 4) # Default : customer
     when :post # Process form
       @user = User.new(params['user'])
       @user.generate_password # from PasswordGenerator, see lib/
@@ -97,7 +96,6 @@ class AccountController < ApplicationController
         else
           # Those variables are used by _form in order to display the correct form
           associate_user
-          @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
         end
       rescue Exception => e
         connection.rollback_db_transaction
@@ -109,7 +107,6 @@ class AccountController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
     _form
   end
 
@@ -118,7 +115,7 @@ class AccountController < ApplicationController
   # TODO : this method is too long
   def index
     options = { :per_page => 15, :order => 'users.role_id, users.login',
-      :include => [:recipient,:ingenieur,:role], :page => params[:page] }
+      :include => [:role], :page => params[:page] }
     conditions = []
     @roles = Role.find_select
 
@@ -159,13 +156,11 @@ class AccountController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
     _form
   end
 
   def update
     @user = User.find(params[:id])
-    @user_recipient, @user_engineer = @user.recipient, @user.ingenieur
 
     # Security Wall
     if session[:user].role_id > 2 # Not a manager nor an admin
@@ -174,11 +169,11 @@ class AccountController < ApplicationController
     end
 
     res = @user.update_attributes(params[:user])
-    if res and @user_recipient
-      res &= @user_recipient.update_attributes(params[:user_recipient])
+    if res and res.recipient?
+      res &= @user.update_attributes(params[:user_recipient])
     end
-    if res and @user_engineer
-      res &= @user_engineer.update_attributes(params[:user_engineer])
+    if res and res.engineer?
+      res &= @user.update_attributes(params[:user_engineer])
     end
     if res # update of account fully ok
       set_sessions @user if session[:user] == @user
@@ -238,9 +233,9 @@ class AccountController < ApplicationController
   # Let an Engineer become a client user
   def become
     begin
-      if @ingenieur
+      if session[:user].engineer?
         current_user = session[:user]
-        set_sessions(Recipient.find(params[:id]).user)
+        set_sessions(User.find(params[:id]))
         session[:last_user] = current_user
       else
         flash[:warn] = _('You are not allowed to change your identity')
@@ -255,11 +250,6 @@ class AccountController < ApplicationController
   # Used during creation to display engineer or recipient form
   def ajax_place
     return render(:nothing => true) unless request.xhr? and params.has_key? :client
-    if params[:client] == 'true'
-      @user_recipient = Recipient.new
-    else
-      @user_engineer = Ingenieur.new
-    end
     @user = User.new
     _form
   end
@@ -357,8 +347,8 @@ private
       @clients = Client.find_select
 
       @count[:users] = User.count
-      @count[:recipients] = Recipient.count
-      @count[:ingenieurs] = Ingenieur.count
+      @count[:recipients] = User.recipients.count
+      @count[:engineers] = User.engineers.count
     end
   end
 
@@ -381,8 +371,6 @@ private
 
   # Used during login and logout
   def clear_sessions
-    @recipient = nil
-    @ingenieur = nil
     reset_session
   end
 
@@ -390,9 +378,8 @@ private
   # Put in a separate method in order to improve readiblity of the code
   def associate_user!
     associate_user
-    benef, inge = @user.recipient, @user.ingenieur
-    benef.update_attributes(params[:recipient]) if benef
-    inge.update_attributes(params[:ingenieur]) if inge
+    @user.update_attributes(params[:recipient]) if @user.recipient?
+    @user.update_attributes(params[:engineer]) if @user.engineer?
   end
 
   # This one does not save anything, used when form was incorrectly setted

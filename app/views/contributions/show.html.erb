@@ -20,7 +20,7 @@
 
   <% if @contribution.contributed_on %>
       <%= _('This contribution has been submitted on %s by <b>%s</b>') %
-            [ @contribution.contributed_on_formatted, @contribution.ingenieur.name ] %>
+            [ @contribution.contributed_on_formatted, @contribution.engineer.name ] %>
       <% if @contribution.closed_on %>
          <%= _('and its has been approved on %s') % @contribution.closed_on_formatted %>
       <% end %>.<br/>
@@ -34,7 +34,7 @@
       <%= _('This patch was not submitted to the community') %>
   <% end %><br />
 
-  <% if @ingenieur && @contribution.issue %>
+  <% if session[:user].engineer? && @contribution.issue %>
     <%= link_to_issue(@contribution.issue, :show_id => true, :icon_severity => true) %><br/>
   <% end %>
 </div>

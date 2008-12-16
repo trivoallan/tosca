@@ -17,11 +17,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Knowledge < ActiveRecord::Base
-  belongs_to :ingenieur
+  belongs_to :engineer, :class_name => 'User',
+    :conditions => 'users.client_id IS NULL'
   belongs_to :skill
   belongs_to :software
 
-  validates_presence_of :ingenieur_id
+  validates_presence_of :engineer_id
   validate do |record|
     # length consistency
     if record.skill && record.software

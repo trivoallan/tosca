@@ -9,8 +9,8 @@
 
 <p><label><%= _("Engineer :") %></label>
 <% if client %>
-<%= select('issue', 'ingenieur_id',
-        client.ingenieurs.collect{|l| [ l.name, l.id]},
+<%= select('issue', 'engineer_id',
+        client.engineers.collect{|l| [ l.name, l.id]},
         :include_blank => true) %>
 <% end %>
 </p>

@@ -1,10 +1,9 @@
 <%= error_messages_for 'knowledge' %>
 
-<!--[form:knowledge]-->
 <table class="show">
  <tr>
   <th><%= _('Expert')%></th>
-  <td><%= @ingenieur.name %></td>
+  <td><%= @engineer.name %></td>
 
   <th colspan="4" align="center"><%= _('Choose a domain OR a software') %></th>
  </tr><tr>
@@ -17,4 +16,3 @@
   <td><%= select_empty(:knowledge, :software_id, @software) %></td>
  </tr>
 </table>
-<!--[eoform:knowledge]-->

@@ -88,23 +88,12 @@ protected
       ActionMailer::Base.default_url_options[:host] = request.host_with_port
       @@first_time = false
     end
-    #    /!\
-    # don't forget to take a look at accout/clear_session method
-    # if you add something here. And don't add something here too ;).
-    #    /!\
-    user = session[:user]
-    if user
-      @ingenieur = user.ingenieur
-      @recipient = user.recipient
-    end
     true
   end
 
-  # Todo : Why is there 2 times the same information in args of define_scope ???
   def scope(&block)
     user = session[:user]
-    is_connected = !user.nil?
-    define_scope(user, is_connected, &block)
+    define_scope(user, &block)
   end
   
   #Compute the receiver of an email for the flash

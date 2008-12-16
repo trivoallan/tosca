@@ -7,15 +7,15 @@
     <%= select_empty(:comment, :statut_id, @statuts) %>
   </td>
   <% end %>
-  <% if @ingenieur %>
+  <% if session[:user].engineer? %>
   <td align="center">
     <label for="comment_severity_id"><%= _("Severity") %></label>
     <%= select_empty(:comment, :severity_id, @severities) %>
   </td>
   <td align="center">
-    <label for="comment_ingenieur_id"><%= _("Assign") %></label>
-    <select id="comment_ingenieur_id" name="comment[ingenieur_id]"><option value="">» </option>
-       <%= options_from_collection_for_select(@ingenieurs, :last, :first) %>
+    <label for="comment_engineer_id"><%= _("Assign") %></label>
+    <select id="comment_engineer_id" name="comment[engineer_id]"><option value="">» </option>
+       <%= options_from_collection_for_select(@engineer, :last, :first) %>
        <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name) %>
     </select>
   </td>
@@ -27,9 +27,9 @@
 <table width="100%" class="comment">
  <tr class="public">
   <td class="infos" align="center"><br />
-     <%= avatar(@recipient, @ingenieur) %><br />
+     <%= avatar(@recipient, @engineer) %><br />
      <br /><br />
-    <% if @ingenieur %>
+    <% if session[:user].engineer? %>
        <label for="comment_private"><%= _("Private ?") %></label>
      <%= check_box(:comment, :private) %><br />
      <br /><br /><br /><br /><br /><br /><br />

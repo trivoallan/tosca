@@ -8,7 +8,7 @@
    <table>
      <tr><td><b><%= _('Name') %></b> </td>
        <td><%= @software.name %>
-        <% if @software.private? && @ingenieur %>
+        <% if @software.private? && session[:user].engineer? %>
           (<%= _('Private') %>)
         <% end %>
       </td></tr>
@@ -21,7 +21,7 @@
            <% end %>
            <%= @software.description %>
           </fieldset></td></tr>
-     <% if @ingenieur %>
+     <% if session[:user].engineer? %>
       <tr><th><%= _('Reference') %></th>
           <td><%=h @software.referent %></td></tr>
      <% end %>
