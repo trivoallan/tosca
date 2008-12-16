@@ -18,15 +18,11 @@
 #
 module AccountHelper
 
-  def avatar(recipient, engineer)
-    if recipient
-      logo_client(recipient.client)
+  def avatar(user)
+    if user.recipient?
+      logo_client(user.client)
     else
-      if engineer.image_id.blank?
-        StaticImage::logo_service
-      else
-        image_tag(url_for_file_column(engineer.image, 'image', 'thumb'))
-      end
+      StaticImage::logo_service
     end
   end
 
