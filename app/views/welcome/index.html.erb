@@ -9,7 +9,7 @@
 
 <%# 6 : public access %>
 <% role_id = (user ? user.role_id : 6) %>
-<% cache("welcome/#{role_id}/#{@recipient.client_id if @recipient}") do %>
+<% cache("welcome/#{role_id}/#{user.client_id if user and user.recipient?}") do %>
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
@@ -45,17 +45,17 @@
       <% end %>
   </div>
   <div class="c50r">
-   <% if @recipient %>
+   <% if user and user.recipient? %>
      <div class="show">
       <h3><%= _('Offer')%></h3>
-      <% client = @recipient.client %>
+      <% client = user.client %>
      <table>
       <tr><td style="width: 1%;" rowspan="2"><%=logo_client client%> </td><td>
        <%= _("You benefit from one of our offers, which detail is available here: %s") % link_to_my_client %></td>
       </tr>
      </table>
      <p><%= _('We hope this tool wil give you entire satisfaction.')%></p>
-     <% access_code = @recipient.client.access_code %>
+     <% access_code = user.client.access_code %>
      <% unless access_code.blank? %>
       <p><%= _('Your call number is')%>
       <b><%=App::ContactPhone %></b>,

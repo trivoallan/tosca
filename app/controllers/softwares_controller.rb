@@ -28,13 +28,13 @@ class SoftwaresController < ApplicationController
   def index
     scope = nil
     @title = _('List of software')
-    if @recipient && params['active'] != '0'
+    if session[:user].recipient? && params['active'] != '0'
       scope = :supported
       @title = _('List of your supported software')
     end
 
-    options = { :per_page => 15, :order => 'softwares.name',
-                :include => [:group,:image,:skills], :page => params[:page] }
+    options = { :order => 'softwares.name', :include =>
+      [:group,:image,:skills], :page => params[:page] }
     conditions = []
 
     if params.has_key? :filters
@@ -65,7 +65,7 @@ class SoftwaresController < ApplicationController
 
     # optional scope, for customers
     begin
-      Software.set_scope(@recipient.contract_ids) if scope
+      Software.set_scope(session[:user].contract_ids) if scope
       @softwares = Software.paginate options
     ensure
       Software.remove_scope if scope
@@ -82,12 +82,11 @@ class SoftwaresController < ApplicationController
 
   def show
     @software = Software.find(params[:id])
-    if @recipient
-      @issues = @recipient.issues.find(:all, :conditions =>
-                                              ['issues.software_id=?', params[:id]])
+    conditions = { :conditions => ['issues.software_id=?', params[:id]] }
+    if session[:user].recipient?
+      @issues = session[:user].issues.find(:all, conditions)
     else
-      @issues = Issue.find(:all, :conditions =>
-                               ['issues.software_id=?',params[:id]])
+      @issues = Issue.find(:all, conditions)
     end
   end
 

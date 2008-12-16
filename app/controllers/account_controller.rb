@@ -42,10 +42,10 @@ class AccountController < ApplicationController
       # For automatic login from an other web tool,
       # password is provided already encrypted
       user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
-      if @logged_user = User.authenticate(params['user_login'],
+      if user = User.authenticate(params['user_login'],
                                           params['user_password'],
                                           user_crypt)
-        _login(session[:user])
+        _login(user)
         # When logged from an other tool, the referer is not a valid page
         session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
         redirect_back_or_default welcome_path

@@ -22,7 +22,7 @@ class Team < ActiveRecord::Base
     :foreign_key => 'contact_id'
 
   has_one :alert
-  
+
   has_many :users
   named_scope :on_contract_id, lambda { |contract_id |
     { :conditions => ['ct.contract_id = ?', contract_id],
@@ -33,7 +33,7 @@ class Team < ActiveRecord::Base
 
   validates_uniqueness_of :name
   validates_presence_of :name, :contact
-  
+
   # Nice URL
   def to_param
     "#{id}-#{name.gsub(/[^a-z1-9]+/i, '-')}"
@@ -49,13 +49,13 @@ class Team < ActiveRecord::Base
   end
 
   def engineers_id
-    options = { :conditions => 'users.client = 0 AND users.inactive = 0 AND users.client_id IS NULL',
+    options = { :conditions => 'users.inactive = 0 AND users.client_id IS NULL',
       :order => 'users.name', :select => 'users.id' }
     self.users.find(:all, options).collect{|e| e.id}
   end
 
   def engineers_collection_select
-    options = { :conditions => 'users.client = 0 AND users.inactive = 0 AND users.client_id IS NULL',
+    options = { :conditions => 'users.inactive = 0 AND users.client_id IS NULL',
       :order => 'users.name', :select => 'users.id, users.name' }
     self.users.find(:all, options)
   end

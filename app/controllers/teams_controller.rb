@@ -19,7 +19,7 @@
 class TeamsController < ApplicationController
   auto_complete_for :contract, :name, :team, :contract
   auto_complete_for :user, :name, :team, :user,
-                    :conditions => { :client => false }
+                    :conditions => { :client_id => nil }
   def index
     @teams = Team.paginate :page => params[:page]
   end

@@ -16,7 +16,7 @@
  <div class="menu_title" onclick="Element.toggle('menu_consultation')">
  > <%= _('Consultation') %></div>
  <ul id="menu_consultation">
-  <% if @recipient %>
+  <% if session[:user].recipient? %>
    <li><%= remote_link_to_software :supported %></li>
    <li><%= remote_link_to_software :all %></li>
   <% end %>

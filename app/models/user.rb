@@ -137,9 +137,9 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  SELECT_OPTIONS = { :order => 'users.name ASC', 
+  SELECT_OPTIONS = { :order => 'users.name ASC',
     :conditions => 'users.inactive = 0' }
-  EXPERT_OPTIONS = { :conditions => 'users.client = 0 AND users.inactive = 0 AND users.client_id IS NULL',
+  EXPERT_OPTIONS = { :conditions => 'users.inactive = 0 AND users.client_id IS NULL',
     :order => 'users.name' }
 
   def self.authenticate(login, pass, crypt = 'false')
@@ -175,10 +175,11 @@ class User < ActiveRecord::Base
   def recipient?
     not engineer?
   end
-  
+
   def engineer?
     self.client_id.nil?
   end
+  alias_method :expert?, :engineer?
 
   def self.engineers
     User.find(:all, :conditions => 'users.client_id IS NULL')
@@ -247,7 +248,7 @@ class User < ActiveRecord::Base
   def self.reset_permission_strings
     @@permission_strings = Array.new(7)
   end
-  
+
   # Cache permission strings, not the best way
   @@permission_strings = Array.new(7)
   def permission_strings(role_id)
