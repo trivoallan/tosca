@@ -3,7 +3,7 @@
 <p><label for="comment_description"><%= _('Write your comment here') %></label><br />
 <%= text_area 'comment', 'text' %></p>
 
-<% if session[:user].engineer? %>
+<% if @logged_user.engineer? %>
   <p><label for="comment_private"><%= _('Is this comment private ?') %></label>
   <%= check_box("comment", "private", {}) %></p>
 <% end %>

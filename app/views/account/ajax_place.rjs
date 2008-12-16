@@ -1,3 +1,3 @@
-page.replace_html("place", :partial => "edit_engineer") if @user_engineer
-page.replace_html("place", :partial => "edit_recipient") if @user_recipient
+page.replace_html("place", :partial => "edit_engineer") if @user.engineer?
+page.replace_html("place", :partial => "edit_recipient") if @user.recipient?
 page.replace_html("roles", hm_radio_button(:user, :role_id, @roles, :size => 3)) if @user and @roles

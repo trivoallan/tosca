@@ -1,7 +1,7 @@
 <% create_account = (controller.action_name == 'signup') %>
 <%# only Manager & Admin role can do all things with an account %>
 <%# See doc about roles for more information %>
-<% manager = (session[:user].role_id <= 2) %>
+<% manager = (@logged_user.role_id <= 2) %>
 <div class="show" style="width: 100%;">
   <table  style="width: 100%;">
     <% if create_account %>
@@ -75,7 +75,7 @@
      </tr>
     <% end %>
 
-    <% if session[:user].engineer? %>
+    <% if @logged_user.engineer? %>
     <tr>
       <td colspan="2"><hr/></td>
     </tr>

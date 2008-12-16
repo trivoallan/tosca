@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   has_many :attachments
   has_many :documents
   has_many :comments
-  has_many :issues, :dependent => :destroy
+  has_many :issues, :dependent => :destroy, :foreign_key => :recipient_id
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :manager_id
 
   has_many :knowledges, :order => 'knowledges.level DESC', :foreign_key => :engineer_id
@@ -137,8 +137,8 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  SELECT_OPTIONS = { :include => [:user], :order =>
-    'users.name ASC', :conditions => 'users.inactive = 0' }
+  SELECT_OPTIONS = { :order => 'users.name ASC', 
+    :conditions => 'users.inactive = 0' }
   EXPERT_OPTIONS = { :conditions => 'users.client = 0 AND users.inactive = 0 AND users.client_id IS NULL',
     :order => 'users.name' }
 

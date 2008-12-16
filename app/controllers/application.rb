@@ -88,12 +88,12 @@ protected
       ActionMailer::Base.default_url_options[:host] = request.host_with_port
       @@first_time = false
     end
+    @logged_user = session[:user]
     true
   end
 
   def scope(&block)
-    user = session[:user]
-    define_scope(user, &block)
+    define_scope(session[:user], &block)
   end
   
   #Compute the receiver of an email for the flash

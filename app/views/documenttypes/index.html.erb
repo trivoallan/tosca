@@ -1,7 +1,5 @@
 <h1><%= _("List of the types of documents") %></h1>
 
-
-
 <% titres = [] %>
 <%= show_table(@documenttypes, Documenttype, titres, :content_columns => true) { |m|
   result = ''

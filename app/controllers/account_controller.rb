@@ -42,9 +42,9 @@ class AccountController < ApplicationController
       # For automatic login from an other web tool,
       # password is provided already encrypted
       user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
-      if session[:user] = User.authenticate(params['user_login'],
-                                                    params['user_password'],
-                                                    user_crypt)
+      if @logged_user = User.authenticate(params['user_login'],
+                                          params['user_password'],
+                                          user_crypt)
         _login(session[:user])
         # When logged from an other tool, the referer is not a valid page
         session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
@@ -129,7 +129,7 @@ class AccountController < ApplicationController
       # [ namespace, field, database field, operation ]
       conditions = Filters.build_conditions(accounts_filters, [
         [:name, 'users.name', :like ],
-        [:client_id, 'recipients.client_id', :equal ],
+        [:client_id, 'users.client_id', :equal ],
         [:role_id, 'users.role_id', :equal ]
       ])
       flash[:conditions] = options[:conditions] = conditions
@@ -139,8 +139,8 @@ class AccountController < ApplicationController
     # Experts does not need to be scoped on accounts, but they can filter
     # only on their contract.
     scope = {}
-    if @recipient
-      scope = User.get_scope(session[:user].contract_ids)
+    if @logged_user.recipient?
+      scope = User.get_scope(@logged_user.contract_ids)
     end
     User.send(:with_scope, scope) do
       @users = User.paginate options
@@ -163,7 +163,7 @@ class AccountController < ApplicationController
     @user = User.find(params[:id])
 
     # Security Wall
-    if session[:user].role_id > 2 # Not a manager nor an admin
+    if @logged_user.role_id > 2 # Not a manager nor an admin
       params[:user].delete :role_id
       params[:user].delete :contract_ids
     end
@@ -176,7 +176,7 @@ class AccountController < ApplicationController
       res &= @user.update_attributes(params[:user_engineer])
     end
     if res # update of account fully ok
-      set_sessions @user if session[:user] == @user
+      set_sessions @user if @logged_user == @user
       flash[:notice]  = _("Edition succeeded")
       redirect_to account_path(@user)
     else
@@ -233,8 +233,8 @@ class AccountController < ApplicationController
   # Let an Engineer become a client user
   def become
     begin
-      if session[:user].engineer?
-        current_user = session[:user]
+      if @logged_user.engineer?
+        current_user = @logged_user
         set_sessions(User.find(params[:id]))
         session[:last_user] = current_user
       else
@@ -310,8 +310,8 @@ private
 
   # Partial variables used in forms
   def _form
-    conditions = (@user_engineer ?
-                  [ 'roles.id BETWEEN ? AND 3', session[:user].role_id ] :
+    conditions = (@logged_user.engineer? ?
+                  [ 'roles.id BETWEEN ? AND 3', @logged_user.role_id ] :
                   'roles.id BETWEEN 4 AND 5')
     options = { :order => 'id', :conditions => conditions }
     @roles = Role.find_select(options)
@@ -319,9 +319,9 @@ private
   end
 
   def _form_recipient
-    return unless @user_recipient
+    return unless @user.recipient?
     @clients = Client.find_select({}, false)
-    client_id = (@user_recipient.client ? @user_recipient.client_id : @clients.first.id)
+    client_id = (@user.recipient? ? @user.client_id : @clients.first.id)
     options = { :conditions => ['contracts.client_id = ?', client_id ]}
 
     @contracts = Contract.find_select(Contract::OPTIONS.merge(options))
@@ -330,7 +330,7 @@ private
   end
 
   def _form_engineer
-    return unless @user_engineer
+    return unless @user.engineer?
     @competences = Skill.find_select
     @contracts = Contract.find_select(Contract::OPTIONS)
     # For usability matters, list of checkable own_contracts
@@ -342,13 +342,13 @@ private
 
   # Variables utilisé par le panneau de gauche
   def _panel
-    if session[:user].role_id <= 2
+    if @logged_user.role_id <= 2
       @count = {}
       @clients = Client.find_select
 
       @count[:users] = User.count
-      @count[:recipients] = User.recipients.count
-      @count[:engineers] = User.engineers.count
+      @count[:recipients] = User.recipients.size
+      @count[:engineers] = User.engineers.size
     end
   end
 

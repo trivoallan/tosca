@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContractsController < ApplicationController
-  helper :clients, :commitments, :engineers, :versions, :issues, :filters
+  helper :clients, :commitments, :versions, :issues, :filters
 
   auto_complete_for :user, :name, :contract, :engineer_user,
                     :conditions => { :client => false }
@@ -89,7 +89,7 @@ class ContractsController < ApplicationController
     # It's needed because manager are scoped, at this point
     Client.send(:with_exclusive_scope) do
       @contract = Contract.new(params[:contract])
-      @contract.creator = session[:user]
+      @contract.creator = @logged_user
       # Due to a limitation of Rails <= 2.1, we cannot create a full
       # association in one pass.
       # TODO : review this problem on a > Rails

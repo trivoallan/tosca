@@ -1,13 +1,13 @@
 <%= error_messages_for 'user' %><br />
 
-<h1><%= get_title(@user) %></h1>
+<h1><%= get_title %></h1>
 
 <div class="subcolumns">
   <div class="c50l">
     <%= render :partial => "show_account_information" %>
   </div>
   <%# do not display this part to customer, for now%>
-  <% if session[:user].engineer? %>
+  <% if @logged_user.engineer? %>
   <div class="c50r">
     <%= render :partial => "show_engineer" %>
     <%= render :partial => "show_recipient" %>

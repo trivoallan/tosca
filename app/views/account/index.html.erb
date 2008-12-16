@@ -2,7 +2,7 @@
 
 <% options = { :create_label => _('a new user'), :remote_url => accounts_path } %>
 <% paginated_section(@users, options) do %>
- <% manager = session[:user].manager? %>
+ <% manager = @logged_user.manager? %>
  <table class="full">
   <tr>
     <th><%= _('User|Title')%></th>
@@ -32,7 +32,7 @@
       <td><%= user.phone %></td>
       <td><%= form_become(user) %></td>
 
-     <% if manager or session[:user].id == user.id %>
+     <% if manager or @logged_user.id == user.id %>
       <td><%= link_to_show user %></td>
       <td><%= link_to_edit user %></td>
      <% else %>
