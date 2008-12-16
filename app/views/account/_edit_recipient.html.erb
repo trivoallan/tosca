@@ -1,7 +1,7 @@
 <% create_account = (controller.action_name == 'signup' ||
 				     controller.action_name == 'ajax_place') %>
 
-<% if @user_recipient and not session[:user].recipient %>
+<% if @user.recipient? %>
 <div class="show">
   <h1><b><%= _('Recipient') %></b></h1><br />
 

@@ -20,7 +20,7 @@ class RemoveIngenieurAndRecipient < ActiveRecord::Migration
     remove_column :recipients, :client_id
     remove_column :users, :client
 
-    add_column :users, :client_id, :integer
+    add_column :users, :client_id, :integer, :default => nil, :null => true
 
     add_column :knowledges, :engineer_id, :integer
     add_index :knowledges, :engineer_id

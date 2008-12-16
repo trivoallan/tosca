@@ -41,7 +41,6 @@ user_admin:
   image_id: 
   email: <%= App::MaintenerEmail %>
   team_id: 2
-  client_id: 0
 user_manager: 
   name: Manager
   informations: ""
@@ -56,7 +55,6 @@ user_manager:
   image_id: 
   email: <%= App::MaintenerEmail %>
   team_id: 1
-  client_id: 0
 user_expert: 
   name: Expert
   informations: ""
@@ -71,4 +69,3 @@ user_expert:
   image_id: 
   email: <%= App::MaintenerEmail %>
   team_id: 2
-  client_id: 0

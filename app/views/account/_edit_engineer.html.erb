@@ -1,14 +1,14 @@
 <% create_account = (controller.action_name == 'signup' ||
 				     controller.action_name == 'ajax_place') %>
 
-<% if @user_engineer %>
+<% if @user.engineer? %>
 <div class="show">
   <h1><b><%= _('Engineer') %></b></h1><br />
 
   <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b></p>
-  <% unless @user_engineer.knowledges.empty? %>
+  <% unless @user.knowledges.empty? %>
      <% options = {:edit => 'knowledge', :no_title => true} %>
-     <%= show_list(@user_engineer.knowledges, '', options) do |k|
+     <%= show_list(@user.knowledges, '', options) do |k|
         link_to_knowledge k
       end %>
   <hr />

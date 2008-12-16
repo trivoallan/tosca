@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   has_many :issues, :dependent => :destroy
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :manager_id
 
-  has_many :knowledges, :order => 'knowledges.level DESC'
+  has_many :knowledges, :order => 'knowledges.level DESC', :foreign_key => :engineer_id
   has_many :phonecalls
 
   has_and_belongs_to_many :own_contracts, :class_name => "Contract"
@@ -133,7 +133,7 @@ class User < ActiveRecord::Base
 
   # Associate current User to an Engineer profile
   def associate_engineer
-    self.client_id = 0
+    self.client_id = nil
     self.save
   end
 
@@ -173,11 +173,11 @@ class User < ActiveRecord::Base
   end
 
   def recipient?
-    self.client_id != 0
+    not engineer?
   end
   
   def engineer?
-    not recipient?
+    self.client_id.nil?
   end
 
   def self.engineers
