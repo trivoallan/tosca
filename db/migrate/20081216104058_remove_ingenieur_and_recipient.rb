@@ -17,7 +17,6 @@ class RemoveIngenieurAndRecipient < ActiveRecord::Migration
 
   def self.up
     remove_column :ingenieurs, :image_id
-    remove_column :recipients, :client_id
     remove_column :users, :client
 
     add_column :users, :client_id, :integer, :default => nil, :null => true
