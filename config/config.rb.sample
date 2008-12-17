@@ -24,7 +24,7 @@ module App
   # Used for feedback on this tool
   DeveloppersEmail = "tosca@tosca-project.net"
   #From mail, used for outgoing mails
-  FromEmail = 'tosca@noreply.tosca-project.net'
+  NoReplyEmail = 'noreply@tosca-project.net'
 
   # Used for jabber notification
   JabberAccount = "tosca@tosca-project.net"

@@ -144,7 +144,6 @@ class IssuesController < ApplicationController
       @comment = @issue.first_comment
       # needed in order to send properly the email
       @issue.first_comment.issue.reload
-
       flash[:notice] += message_notice(@issue.compute_recipients, @issue.compute_copy)
       redirect_to _similar_issue
     else

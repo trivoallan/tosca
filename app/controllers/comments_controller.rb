@@ -67,8 +67,9 @@ class CommentsController < ApplicationController
     #We verify and send an email
     if @comment.save
       flash[:notice] = _("Your comment was successfully added.")
-      flash[:notice] += message_notice(issue.compute_recipients(@comment.private),
-        issue.compute_copy(@comment.private))
+      to = issue.compute_recipients(@comment.private)
+      cc = issue.compute_copy(@comment.private)
+      flash[:notice] += message_notice(to, cc)
     else
       flash[:warn] = _("An error has occured.") + '<br/>' +
         @comment.errors.full_messages.join('<br/>')
