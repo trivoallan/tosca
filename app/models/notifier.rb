@@ -245,13 +245,6 @@ class Notifier < ActionMailer::Base
     str.gsub(/[^a-z1-9 ]+/i, '-')
   end
 
-
-  # Used for outgoing mails, in order to get a Tree of messages
-  # in mail software
-  def message_id(id)
-    "<#{id}@#{App::Name}.#{App::InternetAddress}>"
-  end
-
   def get_text_from_email(part)
     content_type = part.sub_type
     text = nil
@@ -342,23 +335,11 @@ class Notifier < ActionMailer::Base
       :body => message_html
   end
 
-<<<<<<< HEAD:app/models/notifier.rb
-  #For mail headers : http://www.expita.com/header1.html
-  def headers_mail_issue(comment)
-    headers = Hash.new
-    headers[HEADER_MESSAGE_ID] = message_id(comment.mail_id)
-    #Refers to the issue
-    headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id(comment.issue.first_comment.mail_id)
-    return headers
-  end
-
   # Used for outgoing mails, in order to get a Tree of messages
   # in mail software
   def message_id(id)
     "<#{id}@#{Tosca::App::Name}.#{App::InternetAddress}>"
   end
-=======
->>>>>>> 4939915... fix Bug #63:app/models/notifier.rb
 
   #Extracts the issue number from a header
   def extract_issue_id(string)
