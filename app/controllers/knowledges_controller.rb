@@ -21,7 +21,7 @@ class KnowledgesController < ApplicationController
 
   def index
     options = { :per_page => 25, :order => 'knowledges.engineer_id',
-      :include => [:user, :skill, :software], :page => params[:page] }
+      :include => [:engineer, :skill, :software], :page => params[:page] }
 
     if params.has_key? :filters
       session[:knowledges_filters] =
