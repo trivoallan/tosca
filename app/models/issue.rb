@@ -200,16 +200,16 @@ class Issue < ActiveRecord::Base
   end
 
   # set the default for a new issue
-  def set_defaults(expert, recipient, params)
+  def set_defaults(user, params)
     return if self.statut_id
     # self-assignment
-    self.engineer_id = expert.id if expert
+    self.engineer_id = user.id if user.engineer?
     # without severity, by default
     self.severity_id = 4
     # if we came from software view, it's sets automatically
     self.software_id = params[:software_id]
     # recipients
-    self.recipient_id = recipient.id if recipient
+    self.recipient_id = user.id if user.recipient?
   end
 
   # Description was moved to first comment mainly for

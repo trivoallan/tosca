@@ -117,7 +117,7 @@ class IssuesController < ApplicationController
 
     @issue.statut_id = (session[:user].engineer? ? 2 : 1)
     unless params.has_key? :issue
-      @issue.set_defaults(, @recipient, params)
+      @issue.set_defaults(session[:user], params)
     end
   end
 

@@ -84,8 +84,8 @@ class IssueTest < Test::Unit::TestCase
   def test_set_defaults
     issue = Issue.find(:first)
     issue.statut_id = nil
-    issue.set_defaults(nil, issue.recipient, {})
-    issue.set_defaults(issue.engineer, nil, {})
+    issue.set_defaults(issue.recipient, {})
+    issue.set_defaults(issue.engineer, {})
   end
 
 =begin
