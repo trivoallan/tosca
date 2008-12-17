@@ -1,6 +1,5 @@
 <h1><%= _("List of the types of issues") %></h1>
 
-
 <% titles = [] %>
 <%= show_table(@issuetypes, Issuetype, titles, :content_columns => true) { |m|
   result = ''

@@ -118,24 +118,6 @@ module IssuesHelper
             :method => :post)
   end
 
-  # Display a css bar for graphic representation of a ticket timeline
-  # Need adequat CSS stylesheet
-  def show_cns_bar(issue)
-    #done, limit = 0, 100
-    return '' unless issue.is_a?(Issue)
-    done = issue.temps_correction
-    limit = issue.delais_correction
-    return '' unless done.is_a?(Numeric) && limit.is_a?(Numeric) && done <= limit
-
-    out = ''
-    progress = (100*(done.to_f / limit.to_f)).round
-    remains = (100 - progress)
-    out << '<span class="progress-border">'
-    out << '  <div class="progress-correction tooltip" style="width: '+progress.to_s+'%;" title="'+progress.to_s+'%  écoulé"> </div>'
-    out << '  <div class="progress-restant tooltip" style="width: '+remains.to_s+'%;" title="'+remains.to_s+'%  restant"> </div>'
-    out << '</span>'
-  end
-
   # TODO : Some patches can be refused by the community, and this
   # method does not treat this case.
   def link_to_issue_contribution(contribution)

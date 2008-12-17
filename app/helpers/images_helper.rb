@@ -95,7 +95,7 @@ module ImagesHelper
               :alt => software.name, :title => software.name)
   end
 
-  #TODO Merger avec StaticImage
+  #TODO Merge with StaticImage
   def image_options(desc = '', size = nil )
     options = { :alt => desc, :title => desc }
     options[:size] = size if size

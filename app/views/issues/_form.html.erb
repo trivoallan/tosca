@@ -27,7 +27,7 @@
             <% if session[:user].engineer? %>
               <%# We have an empty to make sure YOU choose the contract %>
               <%= select_empty(:issue, :contract_id, @contracts) %>
-            <% elsif @recipient %>
+            <% else #recipient %>
               <%= select(:issue, :contract_id, @contracts) %>
             <% end %>
 
@@ -58,7 +58,7 @@
         <td>
           <div id="engineer">
             <select id="issue_engineer_id" name="issue[engineer_id]"><option value="">» </option>
-              <%= options_from_collection_for_select(@engineer, :last, :first, @issue.engineer_id) %>
+              <%= options_from_collection_for_select(session[:user], :last, :first, @issue.engineer_id) %>
               <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name, @issue.engineer_id) %>
             </select>
           </div>

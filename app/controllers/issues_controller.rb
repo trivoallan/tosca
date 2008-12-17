@@ -125,7 +125,7 @@ class IssuesController < ApplicationController
     @issue = Issue.new(params[:issue])
     user = session[:user]
     @issue.submitter = user # it's the current user
-    @issue.statut_id = (session[:user].engineer? ? 2 : 1)
+    @issue.statut_id = (user.engineer? ? 2 : 1)
 
     #If we have only one contract possible we auto asign it ti the request
     if @issue.contract.nil?
@@ -185,7 +185,8 @@ class IssuesController < ApplicationController
     @issue = Issue.find(params[:id], :include => [:first_comment]) unless @issue
     @page_title = @issue.resume
     @partial_for_summary = 'infos_issue'
-    unless read_fragment "issues/#{@issue.id}/front-#{session[:user].role_id}"
+    user = session[:user]
+    unless read_fragment "issues/#{@issue.id}/front-#{user.role_id}"
       @comment = Comment.new(:elapsed => 1, :issue => @issue)
       @comment.text = flash[:old_body] if flash.has_key? :old_body
 
@@ -195,8 +196,8 @@ class IssuesController < ApplicationController
       options[:conditions][:private] = false if @recipient
       @last_comment = Comment.find(:first, options)
 
-      @statuts = @issue.statut.possible(@recipient)
-      if session[:user].engineer?
+      @statuts = @issue.statut.possible(user)
+      if user.engineer?
         @severities = Severity.find_select
         @engineers = User.find_select_by_contract_id(@issue.contract_id)
         @teams = Team.on_contract_id(@issue.contract_id)
@@ -262,7 +263,7 @@ class IssuesController < ApplicationController
       flash[:notice] = _("The issue has been updated successfully.")
       redirect_to issue_path(@issue)
     else
-      _form @recipient
+      _form session[:user]
       render :action => 'edit'
     end
   end
@@ -372,7 +373,7 @@ class IssuesController < ApplicationController
       flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling an issue. Please contact %s if you think it's not normal") % App::TeamEmail
       return redirect_to(welcome_path)
     end
-    if recipient
+    if recipient and recipient.recipient?
       client = recipient.client
       @issuetypes = client.issuetypes.collect{|td| [td.name, td.id]}
     else

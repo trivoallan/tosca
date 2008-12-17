@@ -15,7 +15,8 @@
     <table class="comment-table">
      <tr>
       <td class="infos" align="center">
-        <% display_edit = (@engineer or (user and @recipient.user_id == user.id)) %>
+        <% display_edit = (session[:user].engineer? or
+            (user and session[:user].recipient? and session[:user].id == user.id)) %>
         <p>
          <%= link_to(StaticImage::edit, edit_comment_path(comment)) if display_edit %>
          <%= "##{comment.id}" %>

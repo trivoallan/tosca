@@ -57,7 +57,6 @@ module PagesHelper
     link_to(StaticImage::back, :action =>'index')
   end
 
-
   def link_to_edit_and_list(ar)
     [ link_to_new, link_to_edit(ar), link_to_back ].compact.join(' | ')
   end

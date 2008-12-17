@@ -46,7 +46,6 @@ module ReportingHelper
   # élément de reporting : 2 cellules
   # options : one_row, muli_row et titre
   def report_evolution(name, options={})
-    data = @data[name]
     @first_col = @months_col
     table = ''
     table << '<table style="width: 100%">'
@@ -77,7 +76,6 @@ module ReportingHelper
   # - l'autre concernant la totalité depuis le début du contract
   # TODO : style : center report_item tr td
   def report_distribution(name, options= {})
-    data = @data[name]
     options[:distribution] = true
     if options.has_key? :separated
       @first_col = [ _('Running'), _('Finished') ]
@@ -321,8 +319,6 @@ module ReportingHelper
     end
     return '<select id=\'clients\' multiple=\'multiple\' name=\'clients[]\' size="' << number_items.to_s << '">' <<  items << '</select>'
   end
-
-
 
   # Display nicely the issues for the weekly report. See
   # reporting/weekly.rhtml for more information.

@@ -223,7 +223,6 @@ module ApplicationHelper
     menu.each { |e| out << "<li>#{e}</li>" }
     out << ' </ul>'
     out << '</form>' if options[:form]
-    #            <li id="current"><a href="#">Button 1</a></li>
   end
 
   # Build a menu from a hash of 2 arrays : titles and links

@@ -29,11 +29,9 @@ module GroupsHelper
     link_to image_create(_('a group')), new_group_path
   end
 
-
   # Lien vers la consultation d'UN groupe
   def link_to_group(group)
       link_to group.name, group_url(:id => group.id)
   end
-
 
 end

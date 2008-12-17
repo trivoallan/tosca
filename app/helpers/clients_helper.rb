@@ -28,9 +28,10 @@ module ClientsHelper
   # :text texte du lien à afficher
   # :image image du client à afficher à la place
   def link_to_my_client(image = false)
-    return nil unless @recipient
-    label = image ? logo_client(@recipient.client) : _('My&nbsp;Offer')
-    link_to label, client_path(@recipient.client_id)
+    user = session[:user]
+    return nil unless user.recipient?
+    label = image ? logo_client(user.client) : _('My&nbsp;Offer')
+    link_to label, client_path(user.client_id)
   end
 
   # Create a link to modify the active value in the form filter
