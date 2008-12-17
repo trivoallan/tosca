@@ -38,9 +38,9 @@ class Attachment < ActiveRecord::Base
     joins = ''
     joins << 'LEFT OUTER JOIN comments ON comments.attachment_id = attachments.id '
     joins << 'LEFT OUTER JOIN issues ON issues.id = comments.issue_id '
-    joins << 'LEFT OUTER JOIN recipients ON recipients.id = issues.recipient_id '
+    joins << 'LEFT OUTER JOIN users ON users.id = issues.recipient_id '
     self.scoped_methods << { :find => {
-       :conditions => [ 'recipients.client_id = ?', client_id ],
+       :conditions => [ 'users.client_id = ?', client_id ],
        :joins => joins }
     }
   end

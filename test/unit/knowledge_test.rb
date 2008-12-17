@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class KnowledgeTest < ActiveSupport::TestCase
-  fixtures :knowledges, :skills, :softwares, :ingenieurs
+  fixtures :knowledges, :skills, :softwares
 
   # Common test, see the Wiki for more info
   def test_to_strings
@@ -31,7 +31,7 @@ class KnowledgeTest < ActiveSupport::TestCase
     assert !obj.valid?
     obj = Knowledge.new(:skill => Skill.find(:first),
                         :software => Software.find(:first),
-                        :ingenieur => Ingenieur.find(:first),
+                        :engineer => User.find(:first),
                         :level => 3)
     assert !obj.valid?
     obj.skill = nil

@@ -37,7 +37,7 @@ class Contract < ActiveRecord::Base
     :conditions => 'users.client_id IS NULL',
     :order => 'users.name ASC'
   has_and_belongs_to_many :recipient_users, :class_name => 'User',
-    :conditions => 'users.client_id IS NOT NULL', :include => :recipient,
+    :conditions => 'users.client_id IS NOT NULL',
     :order => 'users.name ASC'
   has_and_belongs_to_many :teams, :order => 'teams.name', :uniq => true
 
@@ -100,11 +100,10 @@ class Contract < ActiveRecord::Base
       :group => "versions.software_id")
   end
 
-  # TODO : I am sure it could be better. Rework model ???
-  def find_recipients_select
+    def find_recipients_select
     options = { :conditions => 'users.inactive = 0' }
     self.recipient_users.find(:all, options).collect{|u|
-      [  u.name, u.recipient.id ] if u.recipient }
+      [  u.name, u.id ] }
   end
 
   def start_date_formatted

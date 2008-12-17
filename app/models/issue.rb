@@ -29,8 +29,8 @@ class Issue < ActiveRecord::Base
   belongs_to :statut
   # 3 peoples involved in an issue :
   #  1. The submitter (The one who has filled the issue)
-  #  2. The engineer (The one which is currently in charged of this issue)
-  #  3. The recipient (The one which has the problem)
+  #  2. The engineer (The one who is currently in charged of this issue)
+  #  3. The recipient (The one who has the problem)
   belongs_to :recipient, :class_name => 'User',
     :conditions => 'users.client_id IS NOT NULL'
   belongs_to :engineer, :class_name => 'User',
@@ -144,8 +144,7 @@ class Issue < ActiveRecord::Base
       '-'
     end
   end
-
-
+  
   # It associates issue with the correct id since
   # we maintain both the 2 cases.
   # See _form of issue for more details
@@ -204,7 +203,7 @@ class Issue < ActiveRecord::Base
   def set_defaults(expert, recipient, params)
     return if self.statut_id
     # self-assignment
-    self.engineer_id = expert.id
+    self.engineer_id = expert.id if expert
     # without severity, by default
     self.severity_id = 4
     # if we came from software view, it's sets automatically
@@ -228,7 +227,7 @@ class Issue < ActiveRecord::Base
     softwares.name as softwares_name, clients.name as clients_name,
     issuetypes.name as issuetypes_name, statuts.name as statuts_name' unless defined? SELECT_LIST
   JOINS_LIST = 'INNER JOIN severities ON severities.id=issues.severity_id
-    INNER JOIN recipients ON recipients.id=issues.recipient_id
+    INNER JOIN users ON users.id=issues.recipient_id
     INNER JOIN clients ON clients.id = recipients.client_id
     INNER JOIN issuetypes ON issuetypes.id = issues.issuetype_id
     INNER JOIN statuts ON statuts.id = issues.statut_id
@@ -331,7 +330,6 @@ class Issue < ActiveRecord::Base
   before_create :create_first_comment
   after_create :do_after_create
 
-
   # Generate the cc for an outgoing mail for this issue
   # private indicates if it's reserved for internal use or not
   def compute_copy(private = false)
@@ -350,7 +348,7 @@ class Issue < ActiveRecord::Base
   def compute_recipients(private = false)
     res = []
     # The client is not informed of private messages
-    res << recipient.user.email unless private
+    res << recipient.email unless private
     # Issue are not assigned, by default
     res << engineer.email if engineer
     res.join(',')
@@ -410,7 +408,7 @@ class Issue < ActiveRecord::Base
       c.issue = self
       c.severity_id = self.severity_id
       c.statut_id = self.statut_id
-      c.user_id = self.recipient.user_id
+      c.user_id = self.recipient_id
     end
   end
 

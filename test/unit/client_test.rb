@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
-  fixtures :clients, :images, :severities, :recipients, :users, :contracts,
+  fixtures :clients, :images, :severities, :users, :contracts,
     :contributions, :softwares, :components, :credits
 
   def test_to_strings
@@ -45,15 +45,14 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    Client.find(:all).each {  |c|
+    Client.find(:all).each { |c|
       c.destroy
-      assert Recipient.find_all_by_client_id(c.id).empty?
       assert Document.find_all_by_client_id(c.id).empty?
     }
   end
 
   def test_desactivate_recipients
-    Client.find(:all).each {  |c| c.desactivate_recipients }
+    Client.find(:all).each { |c| c.desactivate_recipients }
   end
 
   def test_contract_ids
@@ -79,11 +78,15 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_recipient_ids
-    Client.find(:all).each { |c| check_ids c.recipient_ids, Recipient }
+    Client.find(:all).each { |c| check_ids c.recipient_ids, User }
   end
 
   def test_ingenieurs
-    Client.find(:all).each{|c| c.ingenieurs.each{|i| assert_instance_of(Ingenieur, i)}}
+    Client.find(:all).each do |c|
+      c.engineers.each do |e|
+        assert_instance_of(User, e) and assert_nil(e.client_id)
+      end
+    end
   end
 
   def test_softwares
@@ -103,21 +106,22 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_inactive
-    Client.find(:all).each { |c|
+    Client.find(:all).each do |c|
       name = c.name
       assert c.update_attribute(:inactive, true)
+      c.desactivate_recipients
       assert_equal c.name , "<strike>#{name}</strike>"
-      c.recipients.each do |b|
-        assert b.user.inactive?
+      c.recipients.each do |r|
+        assert r.inactive?
       end
 
       assert c.update_attribute(:inactive, false)
-      assert_equal c.name , name
+      assert_equal c.name, name
       # reload client, in order to avoid cache errors
       Client.find(c.id).recipients.each do |b|
-        assert !b.user.inactive?
+        assert !b.inactive?
       end
-    }
+    end
   end
 
   def test_content_columns

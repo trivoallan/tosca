@@ -84,7 +84,7 @@ class ContractTest < Test::Unit::TestCase
     Contract.find(:all).each do |c|
       c.engineer_users.each { |i|
         assert_kind_of User, i
-        assert i.ingenieur
+        assert i.id
       }
     end
   end
@@ -93,7 +93,7 @@ class ContractTest < Test::Unit::TestCase
     Contract.find(:all).each do |c|
       c.engineers.each { |i|
         assert_kind_of User, i
-        assert i.ingenieur
+        assert i.id
       }
     end
   end

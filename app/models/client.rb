@@ -47,7 +47,7 @@ class Client < ActiveRecord::Base
     begin
       connection.begin_db_transaction
       value = (inactive? ? 1 : 0)
-      connection.update "UPDATE users u, recipients b SET u.inactive = #{value} WHERE u.client_id=#{self.id} AND b.user_id=u.id"
+      connection.update "UPDATE users u SET u.inactive = #{value} WHERE u.client_id=#{self.id}"
       connection.commit_db_transaction
     rescue Exception => e
       connection.rollback_db_transaction
@@ -84,8 +84,7 @@ class Client < ActiveRecord::Base
 
   def engineers
     return [] if contracts.empty?
-    options = { :include => [:user],
-      :conditions => [ 'cu.contract_id IN (?) AND users.client_id IS NULL', contract_ids ],
+    options = { :conditions => [ 'cu.contract_id IN (?) AND users.client_id IS NULL', contract_ids ],
       :joins => 'INNER JOIN contracts_users cu ON cu.user_id=users.id' }
     User.find(:all, options)
   end
@@ -104,7 +103,7 @@ class Client < ActiveRecord::Base
   end
 
   def contributions
-    #return [] if issues.empty?
+    return [] if self.recipients.empty?
     Contribution.find(:all,
                       :conditions => "contributions.id IN (" +
                         "SELECT DISTINCT issues.contribution_id FROM issues " +

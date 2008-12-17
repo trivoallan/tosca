@@ -26,11 +26,11 @@ class IssueTest < Test::Unit::TestCase
   end
 
   def test_presence_of_attributes
-    recipient = recipients(:recipient_00001)
+    recipient = users(:user_customer)
     issue = Issue.new({:description => 'description', :resume => 'resume',
-        :recipient => recipient, :submitter => recipient.user,
+        :recipient => recipient, :submitter => recipient,
         :statut => statuts(:statut_00001), :severity => severities(:severity_00001),
-        :contract => recipient.user.contracts.first })
+        :contract => recipient.contracts.first })
     # must have a recipient
     assert issue.save
 
@@ -39,7 +39,7 @@ class IssueTest < Test::Unit::TestCase
     assert_equal c.issue_id, issue.id
     assert_equal c.severity, issue.severity
     assert_equal c.statut, issue.statut
-    assert_equal c.ingenieur, issue.ingenieur
+    assert_equal c.engineer, issue.engineer
   end
 
   def test_scope
@@ -85,7 +85,7 @@ class IssueTest < Test::Unit::TestCase
     issue = Issue.find(:first)
     issue.statut_id = nil
     issue.set_defaults(nil, issue.recipient, {})
-    issue.set_defaults(issue.ingenieur, nil, {})
+    issue.set_defaults(issue.engineer, nil, {})
   end
 
 =begin

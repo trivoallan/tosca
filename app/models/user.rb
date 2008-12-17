@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   belongs_to :image
   belongs_to :role
   belongs_to :team
-  belongs_to :client, :counter_cache => true
+  belongs_to :client
 
   has_many :attachments
   has_many :documents
