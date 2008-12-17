@@ -183,10 +183,6 @@ permission_00007:
   name: ^files/download$
   info: All kinds of download
   id: 7
-permission_00029: 
-  name: ^ingenieurs/(?!(destroy|new))
-  info: Manage human ressources
-  id: 29
 permission_00041: 
   name: ^paquets/(index|show)$
   info: Read-only access to package

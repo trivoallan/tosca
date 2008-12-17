@@ -49,13 +49,13 @@ files = %w(arches contributionstates groups ossas roles
 action_name = @action.to_s.capitalize
 if @action == :dump or @action == :dumpall
   if @action == :dumpall
-    models = [ Arch,Recipient,Changelog,Client,Comment,
-	  Skill,Contract,Contribution,Request,
-          Distributeur,Document,Elapsed,Commitment,Contributionstate,Fichier,
-          Group,Image,Ingenieur,Knowledge,License,Logiciel,Machine,
-          Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,
-          Attachment,Preference,Role,Severite,Socle,Statut,Contributiontype,
-          Typerequest,Documenttype,User ]
+    models = [ Arch,Changelog,Client,Comment,
+      Skill,Contract,Contribution,Request,
+      Distributeur,Document,Elapsed,Commitment,Contributionstate,Fichier,
+      Group,Image,Knowledge,License,Logiciel,Machine,
+      Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,
+      Attachment,Preference,Role,Severite,Socle,Statut,Contributiontype,
+      Typerequest,Documenttype,User ]
   end
   models.each do |m|
     puts "#{action_name} #{m}..." if $verbose
