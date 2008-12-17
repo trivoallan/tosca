@@ -20,8 +20,10 @@
 # an Engineer. There's also a link to the contract, because those phones
 # calls can be in the 24/24 contract.
 class Phonecall < ActiveRecord::Base
-  belongs_to :engineer
-  belongs_to :recipient
+  belongs_to :engineer, :class_name => 'User',
+    :conditions => 'users.client_id IS NULL'
+  belongs_to :recipient, :class_name => 'User',
+    :conditions => 'users.client_id IS NOT NULL'
   belongs_to :issue
   belongs_to :contract
 

@@ -186,7 +186,13 @@ class User < ActiveRecord::Base
   end
 
   def self.recipients
-    User.find(:all, :conditions => 'users.client_id IS NOT NULL')
+    User.find_select(:all, :conditions => 'users.client_id IS NOT NULL')
+  end
+
+  def self.find_select_recipients
+    options = SELECT_OPTIONS.dup
+    options[:conditions] += ' AND users.client_id IS NOT NULL'
+    User.find_select(options)
   end
 
   def self.find_select_by_contract_id(contract_id)
