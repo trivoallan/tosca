@@ -23,8 +23,7 @@ require 'phonecalls_controller'
 class PhonecallsController; def rescue_action(e) raise e end; end
 
 class PhonecallsControllerTest < Test::Unit::TestCase
-  fixtures :phonecalls, :ingenieurs, :recipients, :contracts, :users,
-  :components, :credits, :clients
+  fixtures :phonecalls, :contracts, :users, :components, :credits, :clients
 
   def setup
     @controller = PhonecallsController.new
@@ -42,7 +41,7 @@ class PhonecallsControllerTest < Test::Unit::TestCase
 
     assert_not_nil assigns(:phonecalls)
     # tests for the ajax filters :
-    test_filter :ingenieur_id, 1
+    test_filter :engineer_id, 1
     test_filter :recipient_id, 1
     test_filter :contract_id, 1
 
@@ -81,7 +80,7 @@ class PhonecallsControllerTest < Test::Unit::TestCase
     post :create, :phonecall => {
       :start => '2006-03-16 22:41:00',
       :end => '2007-03-16 16:41:00',
-      :ingenieur_id => 1,
+      :engineer_id => 1,
       :contract_id => 1,
       :recipient_id => 1
     }
@@ -107,7 +106,7 @@ class PhonecallsControllerTest < Test::Unit::TestCase
     post :update, { :id => @first_id,
       :phonecall => { :start => '2006-03-16 22:41:00',
       :end => '2007-03-16 16:41:00',
-      :ingenieur_id => 1,
+      :engineer_id => 1,
       :contract_id => 1,
       :recipient_id => 1}
     }

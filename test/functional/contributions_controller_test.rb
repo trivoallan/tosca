@@ -20,7 +20,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ContributionsControllerTest < ActionController::TestCase
   fixtures :contributions, :softwares, :contributionstates, :users,
-    :ingenieurs, :contributiontypes, :recipients
+    :contributiontypes
 
   def setup
     login 'admin', 'admin'

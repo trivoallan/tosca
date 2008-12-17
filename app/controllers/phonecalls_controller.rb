@@ -21,7 +21,7 @@ class PhonecallsController < ApplicationController
 
   def index
     options = { :per_page => 15, :order => 'phonecalls.start', :include =>
-      [:user,:contract,:issue], :page => params[:page] }
+      [:engineer, :recipient ,:contract,:issue], :page => params[:page] }
     conditions = []
 
     if params.has_key? :filters
@@ -127,7 +127,7 @@ class PhonecallsController < ApplicationController
     @count = {}
     @engineers = User.find_select(User::EXPERT_OPTIONS)
     @contracts = Contract.find_select(Contract::OPTIONS)
-    @recipients = Recipient.find_select(User::SELECT_OPTIONS)
+    @recipients = User.find_select_recipients
 
     @count[:phonecalls] = Phonecall.count
     @count[:recipients] = Phonecall.count 'recipient_id', {}
