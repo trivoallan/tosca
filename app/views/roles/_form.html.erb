@@ -6,7 +6,6 @@
 <p><label for="role_info"><%= _('Short description') %></label><br />
 <%= text_field 'role', 'info' %></p>
 
-
 <p><label for="role_permission"><%= _('Permissions') %></label><br />
   <%= hbtm_check_box(@role.permissions, @permissions, 'role[permission_ids]', :size => 4) %>
 </p>

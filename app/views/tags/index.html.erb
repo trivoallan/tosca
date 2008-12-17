@@ -1,6 +1,5 @@
 <h1><%= _('Tags list')%></h1>
 
-
 <% paginated_section(@tags, :create_label => _('a skill')) do %>
  <% titles = [ _('Name'), _('Submitter'), _('Skill'), _('Contrat')]%>
  <%= show_table(@tags, Tag, titles) do |t|

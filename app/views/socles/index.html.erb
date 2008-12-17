@@ -1,13 +1,12 @@
 <h1><%= _('System list')%></h1>
 
-
 <% paginated_section(@socles, :create_label => _('a customer system')) do %>
  <% titles = [_('System'), _('Computer'), _('Virtual'), _('Customers')]%>
  <%= show_table(@socles, Socle, titles) do |m|
    result = ''
    result << "<td>#{link_to_socle(m)}</td>"
    result << "<td>#{m.machine.to_s if m.machine}</td>"
-   result << "<td>#{'VM' if m.machine and m.machine.virtuelle}</td>"
+   result << "<td>#{_('VM') if m.machine and m.machine.virtuelle}</td>"
    result << '<td>'
    m.clients.each { |c| result << "#{link_to_client(c)}<br />" }
    result << '</td>'

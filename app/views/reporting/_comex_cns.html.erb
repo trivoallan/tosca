@@ -4,10 +4,10 @@
 <p><%=_('The progressions bar represent the progress ratio of the contract: ')%></p><br />
 <ul>
   <li><%=progress_bar(0)%><%=_('The contract has not been started yet') %></li>
-  <li><%=progress_bar( 25) %> 25%</li>
-  <li><%=progress_bar( 50) %> 50%</li>
-  <li><%=progress_bar( 75) %> 75%</li>
-  <li><%=progress_bar( 110) %> <%= _('The contract is outdated! ') %><br /><br /></li>
+  <li><%=progress_bar(25) %> 25%</li>
+  <li><%=progress_bar(50) %> 50%</li>
+  <li><%=progress_bar(75) %> 75%</li>
+  <li><%=progress_bar(110) %> <%= _('The contract is outdated! ') %><br /><br /></li>
 </ul>
  <p><%= _('The indicated time is the one elapsed before the end of the SLA.') %></p>
  <ul>
@@ -39,6 +39,6 @@
         </tr>
         <% end %>
       </table></li>
-  <%end %>
+  <%  end %>
   </ul>
 </div>
