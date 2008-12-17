@@ -56,10 +56,10 @@ class RemoveIngenieurAndRecipient < ActiveRecord::Migration
       r.user.update_attribute(:client_id, r.client_id)
 
       r.phonecalls.each do |p|
-        p.recipient_id = user.id
+        p.recipient_id = r.user.id
       end
       r.issues.each do |i|
-        p.recipient_id = user.id
+        i.recipient_id = r.user.id
       end
     end
 
