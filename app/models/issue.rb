@@ -144,7 +144,7 @@ class Issue < ActiveRecord::Base
       '-'
     end
   end
-  
+
   # It associates issue with the correct id since
   # we maintain both the 2 cases.
   # See _form of issue for more details
@@ -203,13 +203,15 @@ class Issue < ActiveRecord::Base
   def set_defaults(user, params)
     return if self.statut_id
     # self-assignment
-    self.engineer_id = user.id if user.engineer?
+    if user.engineer?
+      self.engineer_id = user.id
+    else
+      self.recipient_id = user.id
+    end
     # without severity, by default
     self.severity_id = 4
     # if we came from software view, it's sets automatically
     self.software_id = params[:software_id]
-    # recipients
-    self.recipient_id = user.id if user.recipient?
   end
 
   # Description was moved to first comment mainly for
