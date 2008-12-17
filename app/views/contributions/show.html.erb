@@ -34,7 +34,7 @@
       <%= _('This patch was not submitted to the community') %>
   <% end %><br />
 
-  <% if @logged_user.engineer? && @contribution.issue %>
+  <% if session[:user] and session[:user].engineer? and @contribution.issue %>
     <%= link_to_issue(@contribution.issue, :show_id => true, :icon_severity => true) %><br/>
   <% end %>
 </div>

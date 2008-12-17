@@ -37,12 +37,12 @@ class KnowledgesControllerTest < ActionController::TestCase
   def test_should_create_knowledge
     login 'admin', 'admin'
     assert_difference('Knowledge.count') do
-      post :create, :knowledge => { :ingenieur_id => Ingenieur.find(:first).id,
+      post :create, :knowledge => { :engineer_id => User.find(:first).id,
                                     :software_id => Software.find(:first).id,
                                     :level => 3 }
     end
 
-    assert_redirected_to account_path(assigns(:knowledge).ingenieur.user)
+    assert_redirected_to account_path(assigns(:knowledge).engineer)
   end
 
   def test_should_show_knowledge
@@ -60,7 +60,7 @@ class KnowledgesControllerTest < ActionController::TestCase
   def test_should_update_knowledge
     login 'admin', 'admin'
     put :update, :id => Knowledge.find(:first).id, :knowledge => { }
-    assert_redirected_to account_path(assigns(:knowledge).ingenieur.user)
+    assert_redirected_to account_path(assigns(:knowledge).engineer)
   end
 
   def test_should_destroy_knowledge
