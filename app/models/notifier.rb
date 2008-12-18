@@ -61,8 +61,12 @@ class Notifier < ActionMailer::Base
   # This method requires 3 symbols in options :
   #   :user, :controller, :password
   def user_signup(options, flash = nil)
+    #options[:session_user] is nil if we call this method from forgot_password
+    email_from =
+      options[:session_user] ? options[:session_user].email : App::NoReplyEmail
+
     recipients  options[:user].email
-    from        options[:session_user].email
+    from        email_from
     reply_to    App::NoReplyEmail
     subject     "Accès au Support Logiciel Libre"
 

@@ -79,7 +79,7 @@ class AccountControllerTest < ActionController::TestCase
     form.submit
 
     user = assigns(:user)
-    assert_not_nil user.recipient
+    assert user.recipient?
     assert_redirected_to account_path(user)
     assert flash.has_key?(:notice)
     assert !flash.has_key?(:warning)
@@ -104,7 +104,7 @@ class AccountControllerTest < ActionController::TestCase
     form.submit
 
     user = assigns(:user)
-    assert_not_nil user.ingenieur
+    assert user.engineer?
     assert_redirected_to account_path(user)
     assert flash.has_key?(:notice)
     assert !flash.has_key?(:warning)
@@ -136,7 +136,7 @@ class AccountControllerTest < ActionController::TestCase
       # We cannot user check_ajax_filters, since it's a distant field
       xhr :get, :index, :filters => { :client_id => 1 }
       assert_response :success
-      assigns(:users).each { |u| assert_equal u.recipient.client_id, 1 }
+      assigns(:users).each { |u| assert_equal u.client_id, 1 }
 
       xhr :get, :index, :filters => { :role_id => 1 }
       assert_response :success
@@ -173,7 +173,7 @@ class AccountControllerTest < ActionController::TestCase
   def test_become
     %w(admin manager expert).each { |l|
       login l, l
-      post :become, :id => Recipient.find(:first).id
+      post :become, :id => User.recipients.first.id
       assert_response :redirect
       assert_redirected_to welcome_path
     }

@@ -28,7 +28,7 @@ class IssuesController < ApplicationController
     @own_issues = Issue.find_pending_user(user)
 
     @manager_issues = []
-    unless user.client?
+    unless user.recipient?
       @manager_issues = Issue.find_pending_contracts(user.managed_contract_ids)
       @manager_issues = @manager_issues - @own_issues
     end
@@ -222,7 +222,7 @@ class IssuesController < ApplicationController
     @issue_id = params[:id]
     conditions = [ 'phonecalls.issue_id = ? ', @issue_id ]
     options = { :conditions => conditions, :order => 'phonecalls.start',
-      :include => [:user,:contract,:issue] }
+      :include => [:engineer, :recipient,:contract,:issue] }
     @phonecalls = Phonecall.find(:all, options)
     render :partial => 'issues/tabs/tab_phonecalls', :layout => false
   end

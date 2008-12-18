@@ -1,8 +1,8 @@
 Bonjour,<br />
 
-<% if @user.client %>
+<% if @user.recipient? %>
   <p>
-&nbsp;&nbsp;Vous recevez ce courriel car vous avez été identifié(e) en tant que bénéficiaire du marché passé entre <%= App::CompanyName %> et <%= @user.recipient.client.name %>.
+&nbsp;&nbsp;Vous recevez ce courriel car vous avez été identifié(e) en tant que bénéficiaire du marché passé entre <%= App::CompanyName %> et <%= @user.client.name %>.
   </p>
   <%= render :partial => 'user_access' %>
 <% else %>

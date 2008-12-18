@@ -28,9 +28,9 @@ class CommentsController; def rescue_action(e) raise e end; end
 # and validate within the test suite the _not_allowed? effect of the
 # CommentController
 class CommentsControllerTest < Test::Unit::TestCase
-  fixtures :comments, :issues, :recipients, :users,
-  :permissions, :roles, :permissions_roles, :ingenieurs,
-  :statuts, :clients, :credits, :components, :contracts, :contracts_users
+  fixtures :comments, :issues, :users, :permissions, :roles,
+    :permissions_roles, :statuts, :clients, :credits, :components,
+    :contracts, :contracts_users
 
   def setup
     @controller = CommentsController.new
@@ -38,7 +38,6 @@ class CommentsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
-
 
   def test_new
     get :new
@@ -92,7 +91,7 @@ class CommentsControllerTest < Test::Unit::TestCase
         :updated_on => '2007-07-12 14:21:17',
         :severity_id => 1,
         :statut_id => 7,
-        :ingenieur_id => 1
+        :engineer_id => 1
       }
     }
 
@@ -112,7 +111,7 @@ class CommentsControllerTest < Test::Unit::TestCase
       :comment => {
         "text" => "promenons nous dans les bois",
         "private" => "0",
-        "ingenieur_id" => "",
+        "engineer_id" => "",
         "severity_id" => "",
         "statut_id" => "3"
       },

@@ -16,7 +16,7 @@
      <li><b><%= _('CC') %>: </b><%= @issue.mail_cc.gsub(',', ',<br />') %></li>
   <% end %>
   <% submitter_id = @issue.submitter_id %>
-  <% if submitter_id != 0 && @issue.recipient.user_id != submitter_id %>
+  <% if submitter_id != 0 and @issue.recipient.id != submitter_id %>
     <li><b><%=_("Declared by")%>: </b><%= @issue.submitter.name %></li>
   <% end %>
   <% if @issue.engineer %>
@@ -25,7 +25,7 @@
 </ul>
 
 <%= div_toggle _('Recipent'), 'menu_recipient', :class => "menu_title" %>
-<% user = @issue.recipient.user %>
+<% user = @issue.recipient %>
 <ul id="menu_recipient">
   <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
      <%= link_to_show(account_path(user)) if session[:user].engineer? %></li>

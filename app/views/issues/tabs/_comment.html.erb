@@ -21,12 +21,12 @@
          <%= link_to(StaticImage::edit, edit_comment_path(comment)) if display_edit %>
          <%= "##{comment.id}" %>
          <%= link_to(StaticImage::delete, comment_path(comment), delete_ho) if session[:user].engineer? %><br />
-        <% if user and user.client? and user.recipient %>
-          <%= logo_client(user.recipient.client) %>
+        <% if user and user.recipient? %>
+          <%= logo_client(user.client) %>
         <% else %>
           <%= StaticImage::logo_service %>
         <% end %><br />
-        <% if session[:user].engineer? && user %>
+        <% if session[:user].engineer? and user %>
           <%= user.phone %>
         <% end %>
         </p>

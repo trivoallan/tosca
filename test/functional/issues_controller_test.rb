@@ -39,7 +39,7 @@ class IssuesControllerTest < ActionController::TestCase
       assert_template '_issues_list'
 
       check_ajax_filter(:contract_id, Contract.first.id, :issues)
-      check_ajax_filter(:ingenieur_id, Ingenieur.first.id, :issues)
+      check_ajax_filter(:engineer_id, User.first.id, :issues)
       check_ajax_filter(:issuetype_id, Issuetype.first.id, :issues)
       check_ajax_filter(:severity_id, Severity.first.id, :issues)
       check_ajax_filter(:statut_id, Statut.first.id, :issues)

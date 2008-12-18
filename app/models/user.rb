@@ -186,7 +186,7 @@ class User < ActiveRecord::Base
   end
 
   def self.recipients
-    User.find_select(:all, :conditions => 'users.client_id IS NOT NULL')
+    User.find(:all, :conditions => 'users.client_id IS NOT NULL')
   end
 
   def self.find_select_recipients

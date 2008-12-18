@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
       c.add_attachment(params)
     end
 
-    issue.update_attribute :expected_on, Time.now if user.client?
+    issue.update_attribute :expected_on, Time.now if user.recipient?
 
     #We verify and send an email
     if @comment.save

@@ -229,8 +229,8 @@ class Issue < ActiveRecord::Base
     softwares.name as softwares_name, clients.name as clients_name,
     issuetypes.name as issuetypes_name, statuts.name as statuts_name' unless defined? SELECT_LIST
   JOINS_LIST = 'INNER JOIN severities ON severities.id=issues.severity_id
-    INNER JOIN users ON users.id=issues.recipient_id
-    INNER JOIN clients ON clients.id = recipients.client_id
+    INNER JOIN users ON users.id = issues.recipient_id
+    INNER JOIN clients ON clients.id = users.client_id
     INNER JOIN issuetypes ON issuetypes.id = issues.issuetype_id
     INNER JOIN statuts ON statuts.id = issues.statut_id
     LEFT OUTER JOIN softwares ON softwares.id = issues.software_id ' unless defined? JOINS_LIST

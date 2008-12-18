@@ -15,7 +15,7 @@
   <td align="center">
     <label for="comment_engineer_id"><%= _("Assign") %></label>
     <select id="comment_engineer_id" name="comment[engineer_id]"><option value="">» </option>
-       <%= options_from_collection_for_select(session[:user], :last, :first) %>
+       <%= options_from_collection_for_select(@engineers, :last, :first) %>
        <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name) %>
     </select>
   </td>

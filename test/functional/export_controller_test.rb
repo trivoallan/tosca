@@ -23,7 +23,7 @@ require 'issues_controller'
 # class IssuesController; def rescue_action(e) raise e end; end
 class ExportControllerTest < Test::Unit::TestCase
 
-   fixtures :all
+  fixtures :all
 
   def setup
     @controller = ExportController.new
@@ -32,8 +32,7 @@ class ExportControllerTest < Test::Unit::TestCase
 
     login 'admin', 'admin'
   end
-
-
+  
   def test_contributions
     get :contributions, :format => 'ods'
     assert_response :success
