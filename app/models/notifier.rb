@@ -221,8 +221,6 @@ class Notifier < ActionMailer::Base
     headers     _headers_mail_issue(issue, comment)
   end
 
-
-
   #For mail headers : http://www.expita.com/header1.html
   def _headers_mail_issue(issue, comment)
     headers = Hash.new
