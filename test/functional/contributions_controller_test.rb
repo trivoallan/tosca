@@ -75,6 +75,13 @@ class ContributionsControllerTest < ActionController::TestCase
     assert_redirected_to contribution_path(assigns(:contribution))
   end
 
+  # Without params.
+  def test_new
+    get :new
+    assert_template 'new'
+    assert_response :success
+  end
+
   def test_should_be_able_to_create
     get :new, :issue_id => Issue.find(:first).id,
               :software_id => Software.find(:first).id
