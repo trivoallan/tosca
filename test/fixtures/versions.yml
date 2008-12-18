@@ -33,3 +33,9 @@ version_ff_3_generic:
   software_id: 2
   generic: true
   id: 6
+
+version_ff_all:
+  name: ""
+  software_id: 2
+  generic: true
+  id: 7
