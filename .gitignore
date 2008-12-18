@@ -12,9 +12,8 @@ public/festivaltts_mp3/*
 public/image/*
 public/images/reporting/*
 public/stylesheets/images
-rcov/
+test/coverage/*
 tmp/*
 .dotest/
 doc/*
 *.*~
-
