@@ -170,10 +170,10 @@ class AccountController < ApplicationController
     end
 
     res = @user.update_attributes(params[:user])
-    if res and res.recipient?
+    if res and @user.recipient?
       res &= @user.update_attributes(params[:user_recipient])
     end
-    if res and res.engineer?
+    if res and @user.engineer?
       res &= @user.update_attributes(params[:user_engineer])
     end
     if res # update of account fully ok
