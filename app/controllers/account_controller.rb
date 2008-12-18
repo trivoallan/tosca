@@ -28,7 +28,7 @@ class AccountController < ApplicationController
   # See http://api.rubyonrails.org/classes/ActionController/Base.html#M000441
   filter_parameter_logging :password
 
-  helper :filters, :recipients, :roles, :export
+  helper :filters, :roles, :export
 
   around_filter :scope, :except => [:login, :logout, :lemon]
 
@@ -81,7 +81,7 @@ class AccountController < ApplicationController
     when :get # Display form
       @user = User.new(:role_id => 4) # Default : customer
     when :post # Process form
-      @user = User.new(params['user'])
+      @user = User.new(params[:user])
       @user.generate_password # from PasswordGenerator, see lib/
       connection = @user.connection
       begin
