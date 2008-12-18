@@ -232,7 +232,7 @@ class Notifier < ActionMailer::Base
     headers[HEADER_XSOFTWARE]  = asciify(issue.software.name) if issue.software
     headers[HEADER_XCONTRACT]  = asciify!(issue.contract.to_s)
     headers[HEADER_XCLIENT]    = asciify(issue.client.name)
-    headers[HEADER_XASSIGNEE]  = asciify(issue.ingenieur.name) if issue.ingenieur
+    headers[HEADER_XASSIGNEE]  = asciify(issue.engineer.name) if issue.engineer
     return headers
   end
 
