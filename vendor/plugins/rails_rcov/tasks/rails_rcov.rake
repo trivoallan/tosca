@@ -119,7 +119,7 @@ else
     class << self
       attr_accessor :output_dir, :options
       def to_params
-        "-o \"#{@output_dir}\" -T -x \"rubygems/*,rcov*\" --rails #{@options}"
+        "-o \"#{@output_dir}\" -T -x \"rubygems/*,rcov*\,gems/*\" --rails #{@options}"
       end
     end
     
