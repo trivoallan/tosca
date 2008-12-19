@@ -89,7 +89,7 @@ class ContractsController < ApplicationController
     # It's needed because manager are scoped, at this point
     Client.send(:with_exclusive_scope) do
       @contract = Contract.new(params[:contract])
-      @contract.creator = @logged_user
+      @contract.creator = session[:user]
       # Due to a limitation of Rails <= 2.1, we cannot create a full
       # association in one pass.
       # TODO : review this problem on a > Rails

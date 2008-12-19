@@ -1,17 +1,17 @@
 <% create_account = (controller.action_name == 'signup') %>
 <%# only Manager & Admin role can do all things with an account %>
 <%# See doc about roles for more information %>
-<% manager = (@logged_user.role_id <= 2) %>
+<% manager = (session[:user].role_id <= 2) %>
 <div class="show" style="width: 100%;">
   <table  style="width: 100%;">
     <% if create_account %>
      <tr style="width: 100%;">
       <td><label><%= _('Type') %></label></td>
       <td>
-        <%= radio_button(:user, :client, 'true') %>
-        <label for="user_client_true"><%= _('Recipient') %></label>
-        <%= radio_button(:user, :client, 'false') %>
-        <label for="user_client_false"><%= _('Expert') %></label>
+        <%= radio_button(:user, :client_form, 'true') %>
+        <label for="user_client_form_true"><%= _('Recipient') %></label>
+        <%= radio_button(:user, :client_form, 'false') %>
+        <label for="user_client_form_false"><%= _('Expert') %></label>
       </td>
      </tr>
     <% else %>
@@ -75,7 +75,7 @@
      </tr>
     <% end %>
 
-    <% if @logged_user.engineer? %>
+    <% if session[:user].engineer? %>
     <tr>
       <td colspan="2"><hr/></td>
     </tr>

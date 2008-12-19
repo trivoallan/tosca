@@ -64,6 +64,15 @@ class User < ActiveRecord::Base
     self.password = User.sha1(pass)
   end
 
+  #Specific methods used in forms
+  #TODO: find a better way
+  def client_form
+    recipient?
+  end
+  def client_form=(client)
+    #Nothing to do
+  end
+
   def manager?
     role_id <= 2
   end

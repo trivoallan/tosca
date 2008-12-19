@@ -41,4 +41,4 @@
 <% menu[:titles] << _('Search') %>
 <% menu[:links] << [] %>
 
-<%= build_menu(menu) if @logged_user %>
+<%= build_menu(menu) if session[:user] %>

@@ -7,7 +7,7 @@
     <%= render :partial => "show_account_information" %>
   </div>
   <%# do not display this part to customer, for now%>
-  <% if @logged_user.engineer? %>
+  <% if session[:user].engineer? %>
   <div class="c50r">
     <%= render :partial => "show_engineer" %>
     <%= render :partial => "show_recipient" %>

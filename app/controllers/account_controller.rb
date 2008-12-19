@@ -42,10 +42,11 @@ class AccountController < ApplicationController
       # For automatic login from an other web tool,
       # password is provided already encrypted
       user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
-      if user = User.authenticate(params['user_login'],
-                                          params['user_password'],
-                                          user_crypt)
-        _login(user)
+      session[:user] = User.authenticate(params['user_login'],
+        params['user_password'], user_crypt)
+      
+      if session[:user]
+        _login(session[:user])
         # When logged from an other tool, the referer is not a valid page
         session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
         redirect_back_or_default welcome_path
@@ -79,7 +80,7 @@ class AccountController < ApplicationController
   def signup
     case request.method
     when :get # Display form
-      @user = User.new(:role_id => 4) # Default : customer
+      @user = User.new(:role_id => 4, :client_id => 0) # Default : customer
     when :post # Process form
       @user = User.new(params[:user])
       @user.generate_password # from PasswordGenerator, see lib/
@@ -140,8 +141,8 @@ class AccountController < ApplicationController
     # Experts does not need to be scoped on accounts, but they can filter
     # only on their contract.
     scope = {}
-    if @logged_user.recipient?
-      scope = User.get_scope(@logged_user.contract_ids)
+    if session[:user].recipient?
+      scope = User.get_scope(session[:user].contract_ids)
     end
     User.send(:with_scope, scope) do
       @users = User.paginate options
@@ -164,20 +165,20 @@ class AccountController < ApplicationController
     @user = User.find(params[:id])
 
     # Security Wall
-    if @logged_user.role_id > 2 # Not a manager nor an admin
+    if session[:user].role_id > 2 # Not a manager nor an admin
       params[:user].delete :role_id
       params[:user].delete :contract_ids
     end
 
     res = @user.update_attributes(params[:user])
-    if res and res.recipient?
+    if res and @user.recipient?
       res &= @user.update_attributes(params[:user_recipient])
     end
-    if res and res.engineer?
+    if res and @user.engineer?
       res &= @user.update_attributes(params[:user_engineer])
     end
     if res # update of account fully ok
-      set_sessions @user if @logged_user == @user
+      set_sessions @user if session[:user] == @user
       flash[:notice]  = _("Edition succeeded")
       redirect_to account_path(@user)
     else
@@ -235,8 +236,8 @@ class AccountController < ApplicationController
   # Let an Engineer become a client user
   def become
     begin
-      if @logged_user.engineer?
-        current_user = @logged_user
+      if session[:user].engineer?
+        current_user = session[:user]
         set_sessions(User.find(params[:id]))
         session[:last_user] = current_user
       else
@@ -253,6 +254,8 @@ class AccountController < ApplicationController
   def ajax_place
     return render(:nothing => true) unless request.xhr? and params.has_key? :client
     @user = User.new
+    @user.client_id = nil
+    @user.client_id = 0 if params[:client] == "true"
     _form
   end
 
@@ -312,8 +315,8 @@ private
 
   # Partial variables used in forms
   def _form
-    conditions = (@logged_user.engineer? ?
-                  [ 'roles.id BETWEEN ? AND 3', @logged_user.role_id ] :
+    conditions = (@user.engineer? ?
+                  [ 'roles.id BETWEEN ? AND 3', session[:user].role_id ] :
                   'roles.id BETWEEN 4 AND 5')
     options = { :order => 'id', :conditions => conditions }
     @roles = Role.find_select(options)
@@ -322,12 +325,8 @@ private
 
   def _form_recipient
     return unless @user.recipient?
-    @clients = Client.find_select({}, false)
-    client_id = (@user.recipient? ? @user.client_id : @clients.first.id)
-    options = { :conditions => ['contracts.client_id = ?', client_id ]}
+    @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
 
-    @contracts = Contract.find_select(Contract::OPTIONS.merge(options))
-    @clients.collect!{|c| [c.name, c.id] }
     @user.role_id = 4 if @user.new_record?
   end
 
@@ -344,7 +343,7 @@ private
 
   # Variables utilisé par le panneau de gauche
   def _panel
-    if @logged_user.role_id <= 2
+    if session[:user].role_id <= 2
       @count = {}
       @clients = Client.find_select
 
@@ -386,7 +385,7 @@ private
 
   # This one does not save anything, used when form was incorrectly setted
   def associate_user
-    if params[:user][:client]=='false'
+    if params[:user][:client] == 'false'
       @user.associate_engineer
     elsif params.has_key? :user_recipient
       @user.associate_recipient(params[:user_recipient][:client_id])

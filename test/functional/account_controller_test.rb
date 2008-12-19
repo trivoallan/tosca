@@ -100,7 +100,7 @@ class AccountControllerTest < ActionController::TestCase
     form.user.email = App::MaintenerEmail
     form.user.login = "engineer"
     # field used to indicate that's an expert account
-    form.user.client = "false"
+    form.user.client_form = "false"
     form.submit
 
     user = assigns(:user)
@@ -187,9 +187,9 @@ class AccountControllerTest < ActionController::TestCase
       assert_template 'ajax_place'
       assert_not_nil assigns(:user)
     end
-    test.call(:client => 'true')
+    test.call(:client_form => 'true')
     assert_not_nil assigns(:user_recipient)
-    test.call(:client => 'false')
+    test.call(:client_form => 'false')
     assert_not_nil assigns(:user_engineer)
   end
 

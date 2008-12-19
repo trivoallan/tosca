@@ -40,8 +40,8 @@ module AccountHelper
   def observe_client_field
     @@options ||= PagesHelper::SPINNER_OPTIONS.dup.\
       update(:with => "client", :url => 'ajax_place')
-    observe_field("user_client_true", @@options) <<
-      observe_field("user_client_false", @@options)
+      observe_field("user_client_form_true", @@options) <<
+      observe_field("user_client_form_false", @@options)
   end
 
   def observe_client_list
