@@ -184,4 +184,56 @@ class UserTest < Test::Unit::TestCase
     assert_equal(manager.kind, kind_expert)
     assert_equal(admin.kind, kind_expert)
   end
+  
+  def test_trigram
+    user = users(:user_expert)
+    assert_equal(user.trigram, "EXP")
+  end
+  
+  def test_engineers
+    User.engineers.each do |u|
+      assert_nil u.client_id
+    end
+  end
+  
+  def test_recipients
+    User.recipients.each do |u|
+      assert_not_nil u.client_id
+    end
+  end
+  
+  def test_managers
+    User.managers.each do |u|
+      user = User.find(u.last)
+      assert_equal user.name, u.first
+      #The user is at least a manager of one of his contracts
+      assert user.contracts.collect { |c| c.manager_id == user.id}.include?(true)
+    end
+  end
+  
+  def test_find_select_recipients
+    User.find_select_recipients do |u|
+      user = User.find(u.last)
+      assert_equal user.name, u.first
+      assert user.recipient?
+    end
+  end
+  
+  def test_active_contracts
+    User.all.each do |u|
+      u.active_contracts.each do |c|
+        assert !c.inactive?
+      end
+    end
+  end
+  
+  def test_find_select_by_contract_id
+    Contract.all.each do |c|
+      User.find_select_by_contract_id(c.id).each do |u|
+        user = User.find(u.last)
+        assert_equal user.name, u.first
+        assert user.contracts.collect { |contract| contract.id == c.id }.include?(true)
+      end
+    end
+  end
 end
