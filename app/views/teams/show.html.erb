@@ -1,13 +1,15 @@
-<h1><%= _("Team %s") % @team.name %></h1>
-<p>
-  <% manager = @team.contact %>
-  <b><%= _("Contact") %> : </b><%= link_to manager.name, account_path(manager) %>
-</p>
-<p>
-  <b><%= _("Motto") %> : </b><%= @team.motto %>
-</p>
-<%= show_list(@team.users, _('Members')) {|u| link_to u.name, account_path(u)} %>
-<%= show_list(@team.contracts, _('Contracts')) {|c| link_to c.name, contract_path(c)} %>
-
+<h1><%= _("Team %s") % @team.name %> <%= link_to_edit(@team) %></h1>
+<div class="subcolumns">
+ <div class="c50l"><div class="show">
+  <p>
+   <% manager = @team.contact %>
+   <b><%= _("Contact") %> : </b><%= link_to manager.name, account_path(manager) %>
+  </p>
+  <p><b><%= _("Motto") %> : </b><%= @team.motto %></p>
+  <%= show_list(@team.users, _('Members')) {|u| link_to u.name, account_path(u)} %>
+ </div></div> <div class="c50r"><div class="show">
+  <%= show_list(@team.contracts, _('Contracts')) {|c| link_to c.name, contract_path(c)} %>
+ </div></div>
+</div>
 <%= link_to _('Edit'), edit_team_path(@team) %> |
 <%= link_to _('Back'), teams_path %>

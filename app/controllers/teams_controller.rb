@@ -26,6 +26,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @team.contracts.sort!{|c1, c2| c1.name <=> c2.name}
   end
 
   def new
