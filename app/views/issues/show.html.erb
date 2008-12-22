@@ -20,7 +20,7 @@
    </h1>
    <div id="comment-list" class="clearfix">
      <%= render(:partial => 'issues/tabs/comment',
-       :collection => @issue.comments, :not_collapsed => false) %>
+       :collection => @issue.comments, :locals =>{:not_collapsed => false}) %>
      <!-- IE Column Clearing : this browser really sucks -->
      <div id="ie_clearing"> &#160; </div>
    </div>
