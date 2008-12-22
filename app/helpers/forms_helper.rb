@@ -171,7 +171,6 @@ module FormsHelper
     tag_options[:onblur] = "$('#{object}_#{method}').value = \"#{_("Search") + "..."}\""
     completion_options[:skip_style] = true
     completion_options[:indicator] = "spinner_#{object}_#{method}"
-    out << "<label>" << _("Add")<< " "<< _(object.to_s) << "</label>"
     out << "</td></tr><tr><td>"
     out << text_field_with_auto_complete(object, method, tag_options, completion_options)
     field = "#{object}_#{method}"
