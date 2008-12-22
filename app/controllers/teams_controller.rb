@@ -30,13 +30,13 @@ class TeamsController < ApplicationController
   end
 
   def new
-    _form
     @team = Team.new
+    _form
   end
 
   def edit
-    _form
     @team = Team.find(params[:id])
+    _form
   end
 
   def create
@@ -68,7 +68,7 @@ class TeamsController < ApplicationController
 private
   def _form
     @users = User.find_select(User::EXPERT_OPTIONS)
-    @contracts = Contract.find_select(Contract::OPTIONS)
+    @team.contracts.sort!{|c1, c2| c1.name <=> c2.name}
   end
 
 end
