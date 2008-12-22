@@ -43,7 +43,7 @@ class IssuesController < ApplicationController
   # visual effects are in js.erb view
   def ajax_renew
     expected_on, @issue_ids = params[:expected_on].to_i, params[:issue_ids]
-    return if expected_on <= 0 || @issue_ids.empty?
+    return if expected_on <= 0 or @issues_id.nil? or @issue_ids.empty?
     expected = Time.now + expected_on.days
     Issue.find(@issue_ids).each {|r|
       r.update_attribute(:expected_on, expected)
