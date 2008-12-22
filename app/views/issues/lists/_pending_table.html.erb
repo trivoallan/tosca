@@ -27,7 +27,7 @@
     <td><%= (issue.engineer ? issue.engineer.trigram : '-') %></td>
     <td><%= issue.software_name %></td>
     <td><%= issue.client_name %></td>
-    <td title="<%= "[#{issue.softwares_name}] #{issue.clients_name}" %>">
+    <td title="<%= "[#{issue.software_name}] #{issue.client_name}" %>">
       <%= link_to issue.resume, issue_path(issue) %>
     </td>
     <% if commitment.nil? %>
