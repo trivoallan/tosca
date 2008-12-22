@@ -20,14 +20,29 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class IssuesControllerTest < ActionController::TestCase
 
-  fixtures :all
-
   def test_pending
     %w(admin manager expert customer).each do |l|
       login l, l
       get :pending
       assert_response :success
       assert_template 'pending'
+    end
+
+    %w(admin manager expert).each do |l|
+      login l, l
+      issue, now = session[:user].contracts.first.issues.first, Time.now
+      issue.update_attribute(:expected_on, now)
+
+      xhr :get, :ajax_renew
+      assert_response :success
+      issue.reload
+      assert_not_equal issue.expected_on, (now + 15.days)
+
+
+      xhr :get, :ajax_renew, :expected_on => "15", :issue_ids => [issue.id]
+      assert_response :success
+      issue.reload
+      assert_in_delta issue.expected_on, (now + 15.days), 2.seconds
     end
   end
 
