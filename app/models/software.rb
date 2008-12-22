@@ -29,6 +29,7 @@ class Software < ActiveRecord::Base
   has_many :hyperlinks, :dependent => :destroy, :as => :model
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
+  has_many :subscribers, :through => :knowledges
 
   has_and_belongs_to_many :skills, :uniq => true
 
@@ -95,6 +96,10 @@ class Software < ActiveRecord::Base
       end
     end
     result
+  end
+
+  def subscribers
+    self.subscriptions.collect { |s| s.user }
   end
 
   include Comparable

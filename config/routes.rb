@@ -22,6 +22,8 @@
 require_dependency 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
+  map.resources :subscriptions
+
   map.resources :hyperlinks
 
   # The priority is based upon order of creation:
@@ -126,7 +128,9 @@ ActionController::Routing::Routes.draw do |map|
       :ajax_cns => :get,
       :ajax_actions => :get,
       :ajax_untag => :delete,
-      :ajax_add_tag => :post }
+      :ajax_add_tag => :post,
+      :ajax_subscribe => :post,
+      :ajax_unsubscribe => :delete }
   map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
 

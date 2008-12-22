@@ -28,6 +28,8 @@ class Contract < ActiveRecord::Base
   has_many :tags
   has_many :releases
 
+  has_many :subscriptions, :as => :model
+
   has_and_belongs_to_many :versions, :order => 'versions.name DESC', :uniq => true
   has_and_belongs_to_many :commitments, :uniq => true, :order =>
     'issuetype_id, severity_id', :include => [:severity,:issuetype]
@@ -100,7 +102,7 @@ class Contract < ActiveRecord::Base
       :group => "versions.software_id")
   end
 
-    def find_recipients_select
+  def find_recipients_select
     options = { :conditions => 'users.inactive = 0' }
     self.recipient_users.find(:all, options).collect{|u|
       [  u.name, u.id ] }
@@ -149,6 +151,10 @@ class Contract < ActiveRecord::Base
       total += r.elapsed.until_now
     end
     total
+  end
+
+  def subscribers
+    self.subscriptions.collect { |s| s.user }
   end
 
 end

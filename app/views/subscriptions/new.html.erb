@@ -1,0 +1,23 @@
+<h1><%= _('Create a new subscription') %></h1>
+
+<% form_for(@subscription) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.select :user_id, @users %>
+  </p>
+  <p>
+    <%= f.label :model_id %><br />
+    <%= f.text_field :model_id %>
+  </p>
+  <p>
+    <%= f.label :model_type %><br />
+    <%= f.text_field :model_type %>
+  </p>
+  <p>
+    <%= f.submit _('Create') %>
+  </p>
+<% end %>
+
+<%= link_to _('Back'), subscriptions_path %>

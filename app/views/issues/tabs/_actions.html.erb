@@ -1,18 +1,47 @@
 <div id='issue_tab_content' class='issue_tab_content'>
 <% if session[:user].engineer? %>
- <ul>
-  <% options = { :software_id => @issue.software_id, :issue_id => @issue.id } %>
-  <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
- <% unless @contributions.empty? %>
-  <li><%= _('Link to a contribution')%>
+  <ul>
+    <%  
+      if @issue.subscribed? session[:user]
+        alert = _('You are now unsibscribed to this issue')
+        url = ajax_unsubscribe_issue_url(@issue)
+        icon = StaticImage::unsubscribe
+        text = _('Unsubscribe to this issue')
+        method = :delete
+      else
+        alert = _('You are now subscribed to this issue')
+        url = ajax_subscribe_issue_url(@issue)
+        icon = StaticImage::subscribe
+        text = _('Subscribe to this issue')
+        method = :post
+      end
+      success = update_page do |page|
+        page.hide 'spinner'
+        page.alert(alert)
+      end
+      options = { :url => url,
+        :method => method,
+        :update => 'issue_tab',
+        :before => "Element.show('spinner')",
+        :success => success }
+    %>
+    <li><%= link_to_remote icon, options %> <%= text %></li>
+    <% options = { :software_id => @issue.software_id, :issue_id => @issue.id } %>
+    <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
+    
+    <% unless @contributions.empty? %>
+    <li><%= _('Link to a contribution')%>
       <% form_tag link_contribution_issue_path(@issue.id) do %>
         <%= select_onchange @contributions, 'issue', 'contribution_id' %>
-      <% end %></li>
- <% end %>
- <% if @issue.contribution %>
-  <li><%= link_to_unlink_contribution(@issue.id) %></li>
- <% end %>
-  <li><%= link_to_add_call @issue.id %></li>
- </ul>
+      <% end %>
+    </li>
+    <% end %>
+
+  <% if @issue.contribution %>
+    <li><%= link_to_unlink_contribution(@issue.id) %></li>
+  <% end %>
+
+    <li><%= link_to_add_call @issue.id %></li>
+  </ul>
 <% end %>
 </div>

@@ -308,6 +308,22 @@ class IssuesController < ApplicationController
     render :partial => "issues/tags/show_tags"
   end
 
+  def ajax_subscribe
+    return unless session[:user]
+    Subscription.create(:user => session[:user],
+      :model => Issue.find(params[:id]))
+    ajax_actions
+  end
+
+  def ajax_unsubscribe
+    return unless session[:user]
+    issue = Issue.find(params[:id])
+    Subscription.delete_all(:user_id => session[:user].id,
+      :model_type => 'issue',
+      :model_id => issue.id)
+    ajax_actions
+  end
+
   private
   def update_contribution( demand_id , contribution_id )
     if contribution_id == nil

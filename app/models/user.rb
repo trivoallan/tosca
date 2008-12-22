@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
 
   has_many :knowledges, :order => 'knowledges.level DESC', :foreign_key => :engineer_id
   has_many :phonecalls
+  has_many :subscriptions
 
   has_and_belongs_to_many :own_contracts, :class_name => "Contract"
 
@@ -264,6 +265,18 @@ class User < ActiveRecord::Base
     @@permission_strings = Array.new(7)
   end
 
+  def contracts_subscribed
+    models_subscribed(Contract)
+  end
+  
+  def issues_subscribed
+    models_subscribed(Issue)
+  end
+  
+  def softwares_subscribed
+    models_subscribed(Software)
+  end
+
   # Cache permission strings, not the best way
   @@permission_strings = Array.new(7)
   def permission_strings(role_id)
@@ -281,4 +294,7 @@ class User < ActiveRecord::Base
     find_active4select(options)
   end
 
+  def models_subscribed(model)
+    self.subscriptions.select { |s| s.model.is_a? model }.collect { |s| s.model }
+  end
 end

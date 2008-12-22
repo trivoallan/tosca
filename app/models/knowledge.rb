@@ -22,6 +22,8 @@ class Knowledge < ActiveRecord::Base
   belongs_to :skill
   belongs_to :software
 
+  has_many :subscritions, :as => :model
+
   validates_presence_of :engineer_id
   validate do |record|
     # length consistency

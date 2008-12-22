@@ -45,6 +45,7 @@ class Issue < ActiveRecord::Base
   has_many :phonecalls
   has_many :comments, :order => "created_on ASC", :dependent => :destroy
   has_many :attachments, :through => :comments
+  has_many :subscriptions, :as => :model
 
   named_scope :actives, lambda { |contract_ids| { :conditions =>
       { :statut_id => Statut::OPENED, :contract_id => contract_ids }
@@ -354,6 +355,11 @@ class Issue < ActiveRecord::Base
     # Issue are not assigned, by default
     res << engineer.email if engineer
     res.join(',')
+  end
+
+  def subscribed?(user)
+    not (Subscription.all(:conditions => {:user_id => user.id,
+          :model_type => 'issue', :model_id => self.id}).empty?)
   end
 
   #Find the pending requests of a user

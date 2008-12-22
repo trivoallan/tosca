@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @subscription.user_id %>
+</p>
+
+<p>
+  <b>Model:</b>
+  <%=h @subscription.model_id %>
+</p>
+
+<p>
+  <b>Model type:</b>
+  <%=h @subscription.model_type %>
+</p>
+
+<p>
+  <b>Updated on:</b>
+  <%=h @subscription.updated_on %>
+</p>
+
+
+<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
+<%= link_to 'Back', subscriptions_path %>

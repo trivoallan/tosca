@@ -277,6 +277,15 @@ class StaticImage < Static::ActionView
     @@history ||= image_tag('icons/film.png', options('History', '16x16'))
   end
 
+  @@subscribe = nil
+  def self.subscribe
+    @@subscribe ||= image_tag('icons/report_add.png', options('Subscribe', '16x16'))
+  end
+
+  @@unsubscribe = nil
+  def self.unsubscribe
+    @@unsubscribe ||= image_tag('icons/report_delete.png', options('Unsubscribe', '16x16'))
+  end
 
 
   ##############################################

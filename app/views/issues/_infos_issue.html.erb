@@ -47,15 +47,26 @@
   <% end %>
 </ul>
 
- <%= div_toggle _("Tags"), 'tags_menu', :class => "menu_title", :hide => true %>
- <ul id="tags_menu">
-   <% unless @issue.tag_list.empty? %>
+<%= div_toggle _("Tags"), 'tags_menu', :class => "menu_title", :hide => true %>
+<ul id="tags_menu">
+  <% unless @issue.tag_list.empty? %>
     <li><b><%= _("Tags") %>: </b><%= @issue.tag_list.join(', ') %></li>
-   <% end %>
-   <% if session[:user].engineer? %>
+  <% end %>
+  <% if session[:user].engineer? %>
     <li><%= link_to _("Edit the tags for this issue"), tag_issue_url(@issue) %></li>
-   <% end %>
- </ul>
+ <% end %>
+</ul>
+
+<%= div_toggle _("Subscribers"), 'subscribers_menu', :class => "menu_title" %>
+<ul id="subscribers_menu">
+<% unless @issue.subscriptions.empty? %>
+  <% @issue.subscriptions.each do |u| %>
+    <li><%= link_to u.user, account_path(u.user) %></li>
+  <% end %>
+<% end %>
+</ul>
+
+
 
 <%= div_toggle _("Help"), 'menu_help', :class => "menu_title" %>
 <ul id="menu_help">
