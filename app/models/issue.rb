@@ -332,6 +332,7 @@ class Issue < ActiveRecord::Base
   # manage to cover all the case in one method, MLO will offer you a beer ;)
   before_create :create_first_comment
   after_create :do_after_create
+  after_save :do_after_save
 
   # Generate the cc for an outgoing mail for this issue
   # private indicates if it's reserved for internal use or not
@@ -360,6 +361,10 @@ class Issue < ActiveRecord::Base
   def subscribed?(user)
     not (Subscription.all(:conditions => {:user_id => user.id,
           :model_type => 'issue', :model_id => self.id}).empty?)
+  end
+
+  def subscribers
+    self.subscriptions.collect { |s| s.user }
   end
 
   #Find the pending requests of a user
@@ -424,6 +429,15 @@ class Issue < ActiveRecord::Base
     self.first_comment.update_attribute :issue_id, self.id
     #Sending e-mail when a issue is created
     Notifier::deliver_issue_new(self)
+  end
+
+  def do_after_save(record)
+    res = true
+    #If there is a change of engineer, we subscribe the new one
+    if record.engineer and record.engineer != self.engineer
+      res = Subscribe.create(:user => record.engineer, :model => self)
+    end
+    res
   end
 
 end

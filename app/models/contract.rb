@@ -50,6 +50,8 @@ class Contract < ActiveRecord::Base
 
   validate :must_open_before_close
 
+  after_save :after_save_contract
+
   def must_open_before_close
     valid = true
     if self.opening_time.to_i > self.closing_time.to_i
@@ -58,13 +60,6 @@ class Contract < ActiveRecord::Base
     end
     valid
   end
-
-  after_save do |record|
-    # To make sure we have only one time a engineer
-    record.engineer_users = record.engineer_users - (record.teams.collect { |t| t.users }.flatten)
-    true
-  end
-
 
   Rules = [ 'Rules::Credit', 'Rules::Component' ]
 
@@ -155,6 +150,24 @@ class Contract < ActiveRecord::Base
 
   def subscribers
     self.subscriptions.collect { |s| s.user }
+  end
+
+  def subscribed?(user)
+    not (Subscription.all(:conditions => {:user_id => user.id,
+          :model_type => 'contract', :model_id => self.id}).empty?)
+  end
+
+  private
+  def after_save_contract(record)
+    # To make sure we have only one time a engineer
+    record.engineer_users = record.engineer_users -
+      (record.teams.collect { |t| t.users }.flatten)
+    
+    #If we have a new manager we subscribe him
+    if record.manager != self.manager
+      Subscription.create(:user => record.manager, :model => self)
+    end
+    true
   end
 
 end

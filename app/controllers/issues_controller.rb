@@ -18,7 +18,7 @@
 #
 class IssuesController < ApplicationController
   helper :filters, :contributions, :softwares, :phonecalls,
-    :socles, :comments, :account, :reporting, :links
+    :socles, :comments, :account, :reporting, :links, :subscriptions
 
   cache_sweeper :issue_sweeper, :only =>
     [:create, :update, :destroy, :link_contribution, :unlink_contribution, :ajax_add_tag]
@@ -319,7 +319,7 @@ class IssuesController < ApplicationController
   def ajax_unsubscribe
     return unless session[:user]
     issue = Issue.find(params[:id])
-    Subscription.delete_all(:user_id => session[:user].id,
+    Subscription.destroy_all(:user_id => session[:user].id,
       :model_type => 'issue',
       :model_id => issue.id)
     ajax_actions

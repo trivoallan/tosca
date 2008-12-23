@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContractsController < ApplicationController
-  helper :clients, :commitments, :versions, :issues, :filters
+  helper :clients, :commitments, :versions, :issues, :filters, :subscriptions
 
   auto_complete_for :user, :name, :contract, :engineer_user,
                     :conditions => { :client => false }
@@ -179,7 +179,28 @@ class ContractsController < ApplicationController
     end
   end
 
+  def ajax_subscribe
+    _ajax(Subscription.create(:user => session[:user],
+      :model_id => params[:id], :model_type => 'Contract'))
+  end
+
+  def ajax_unsubscribe
+    _ajax(Subscription.destroy_all(:user_id => session[:user].id,
+        :model_type => 'Contract', :model_id => params[:id]))
+  end
+
 private
+  def _ajax(test)
+    return unless session[:user]
+    if test
+      status = :ok
+    else
+      status = :bad_request
+    end
+    show
+    render :partial => 'subscribers', :status => status
+  end
+
   def _form
     # Needed in order to be able to auto-associate with it
     Client.send(:with_exclusive_scope) do

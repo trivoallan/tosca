@@ -58,15 +58,7 @@
 </ul>
 
 <%= div_toggle _("Subscribers"), 'subscribers_menu', :class => "menu_title" %>
-<ul id="subscribers_menu">
-<% unless @issue.subscriptions.empty? %>
-  <% @issue.subscriptions.each do |u| %>
-    <li><%= link_to u.user, account_path(u.user) %></li>
-  <% end %>
-<% end %>
-</ul>
-
-
+<%= subscribers_list(@issue, :id => 'subscribers_menu') %>
 
 <%= div_toggle _("Help"), 'menu_help', :class => "menu_title" %>
 <ul id="menu_help">

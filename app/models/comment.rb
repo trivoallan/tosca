@@ -166,4 +166,17 @@ class Comment < ActiveRecord::Base
     Notifier::deliver_issue_new_comment(self)
   end
 
+  after_save :subscribe_engineer
+  def subscribe_engineer
+    res = true
+    #Subscribe the engineer that has deposit the comment
+    res &= Subscribe.create(:user => self.user,
+      :model => self.issue) if self.user and self.user.engineer?
+
+    #Subscribe the new engineer who is responsible for the request
+    res &=Subscribe.create(:user => self.engineer,
+      :model => self.issue) if self.engineer
+    res
+  end
+
 end

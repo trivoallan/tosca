@@ -1,31 +1,8 @@
 <div id='issue_tab_content' class='issue_tab_content'>
 <% if session[:user].engineer? %>
   <ul>
-    <%  
-      if @issue.subscribed? session[:user]
-        alert = _('You are now unsibscribed to this issue')
-        url = ajax_unsubscribe_issue_url(@issue)
-        icon = StaticImage::unsubscribe
-        text = _('Unsubscribe to this issue')
-        method = :delete
-      else
-        alert = _('You are now subscribed to this issue')
-        url = ajax_subscribe_issue_url(@issue)
-        icon = StaticImage::subscribe
-        text = _('Subscribe to this issue')
-        method = :post
-      end
-      success = update_page do |page|
-        page.hide 'spinner'
-        page.alert(alert)
-      end
-      options = { :url => url,
-        :method => method,
-        :update => 'issue_tab',
-        :before => "Element.show('spinner')",
-        :success => success }
-    %>
-    <li><%= link_to_remote icon, options %> <%= text %></li>
+    <li><%= link_to_subscription(@issue, {:update => 'issue_tab'}) %></li>
+
     <% options = { :software_id => @issue.software_id, :issue_id => @issue.id } %>
     <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
     
