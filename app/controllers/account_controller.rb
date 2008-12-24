@@ -41,19 +41,15 @@ class AccountController < ApplicationController
     when :post
       # For automatic login from an other web tool,
       # password is provided already encrypted
-      user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
-      user = User.authenticate(params['user_login'], params['user_password'],
-                               user_crypt)
+      user = User.authenticate(params['user_login'], params['user_password'])
       if user
         _login(user)
-        # When logged from an other tool, the referer is not a valid page
-        session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
         redirect_back_or_default welcome_path
       else
         clear_sessions
         id = User.find_by_login(params['user_login'])
         flash.now[:warn] = _("Connexion failure")
-        flash.now[:warn] << ", " << _("your account has been desactivated") if id and id.inactive?
+        flash.now[:warn] << ', ' << _("your account has been desactivated") if id and id.inactive?
       end
     else # Display form
     end

@@ -152,11 +152,10 @@ class User < ActiveRecord::Base
   EXPERT_OPTIONS = { :conditions => 'users.inactive = 0 AND users.client_id IS NULL',
     :order => 'users.name' }
 
-  def self.authenticate(login, pass, crypt = 'false')
+  def self.authenticate(login, pass)
     User.with_exclusive_scope() do
-      pass = sha1(pass) if crypt == 'false'
-      user = User.find(:first, :conditions =>
-                              ['login = ? AND password = ?', login, pass])
+      conditions = ['login = ? AND password = ?', login, sha1(pass)]
+      user = User.find(:first, :conditions => conditions)
       return nil if user and user.inactive?
       user
     end
@@ -268,11 +267,11 @@ class User < ActiveRecord::Base
   def contracts_subscribed
     models_subscribed(Contract)
   end
-  
+
   def issues_subscribed
     models_subscribed(Issue)
   end
-  
+
   def softwares_subscribed
     models_subscribed(Software)
   end
