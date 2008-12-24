@@ -1,19 +1,7 @@
---- 
-subscription_953125641: 
-  updated_on: 2008-12-22 16:08:56 +01:00
-  model_type: MyString
-  id: 953125641
-  user_id: 1
-  model_id: 1
-subscription_996332877: 
-  updated_on: 2008-12-22 16:08:56 +01:00
-  model_type: MyString
-  id: 996332877
-  user_id: 1
-  model_id: 1
-subscription_996332878: 
-  updated_on: 2008-12-24 14:29:40 +01:00
+---
+subscription_one:
+  updated_on: <%= Time.now %>
   model_type: Contract
-  id: 996332878
+  id: 1
   user_id: 2
   model_id: 1
