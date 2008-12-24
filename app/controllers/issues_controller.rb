@@ -105,7 +105,7 @@ class IssuesController < ApplicationController
       render :partial => 'issues/lists/issues_list', :layout => false
     else
       _panel
-      @partial_for_summary = 'issues/lists/issues_info'
+      @partial_for_summary = 'index_panel'
       render :template => 'issues/lists/_issues_list'
     end
   end
@@ -184,7 +184,7 @@ class IssuesController < ApplicationController
   def show
     @issue = Issue.find(params[:id], :include => [:first_comment]) unless @issue
     @page_title = @issue.resume
-    @partial_for_summary = 'infos_issue'
+    @partial_for_summary = 'show_panel'
     user = @session_user
     unless read_fragment "issues/#{@issue.id}/front-#{user.role_id}"
       @comment = Comment.new(:elapsed => 1, :issue => @issue)

@@ -37,7 +37,7 @@ class VersionsController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'versions_info'
+      @partial_for_summary = 'index_panel'
     end
   end
 

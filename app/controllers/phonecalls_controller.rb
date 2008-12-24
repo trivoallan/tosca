@@ -51,7 +51,7 @@ class PhonecallsController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'calls_info'
+      @partial_for_summary = 'index_panel'
     end
   end
 

@@ -97,7 +97,7 @@ class ContributionsController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'contributions_info'
+      @partial_for_summary = 'admin_panel'
     end
   end
 

@@ -49,7 +49,7 @@ class DocumentsController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'documents_info'
+      @partial_for_summary = 'index_panel'
     end
   end
 

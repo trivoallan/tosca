@@ -147,7 +147,7 @@ class AccountController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'users_info'
+      @partial_for_summary = 'index_panel'
     end
   end
 

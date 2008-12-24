@@ -51,7 +51,7 @@ class ContractsController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'contracts_info'
+      @partial_for_summary = 'index_panel'
     end
   end
 
