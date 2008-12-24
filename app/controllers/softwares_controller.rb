@@ -28,7 +28,7 @@ class SoftwaresController < ApplicationController
   def index
     scope = nil
     @title = _('List of software')
-    if session[:user].recipient? && params['active'] != '0'
+    if @session_user.recipient? && params['active'] != '0'
       scope = :supported
       @title = _('List of your supported software')
     end
@@ -65,7 +65,7 @@ class SoftwaresController < ApplicationController
 
     # optional scope, for customers
     begin
-      Software.set_scope(session[:user].contract_ids) if scope
+      Software.set_scope(@session_user.contract_ids) if scope
       @softwares = Software.paginate options
     ensure
       Software.remove_scope if scope
@@ -83,8 +83,8 @@ class SoftwaresController < ApplicationController
   def show
     @software = Software.find(params[:id])
     conditions = { :conditions => ['issues.software_id=?', params[:id]] }
-    if session[:user].recipient?
-      @issues = session[:user].issues.find(:all, conditions)
+    if @session_user.recipient?
+      @issues = @session_user.issues.find(:all, conditions)
     else
       @issues = Issue.find(:all, conditions)
     end
@@ -148,7 +148,7 @@ private
   end
 
   def _panel
-    @contracts = Contract.find_select(Contract::OPTIONS) if session[:user].engineer?
+    @contracts = Contract.find_select(Contract::OPTIONS) if @session_user.engineer?
     @technologies = Skill.find_select
     @groups = Group.find_select
   end

@@ -64,7 +64,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(params[:document])
-    @document.user = session[:user]
+    @document.user = @session_user
     _form
     if @document.save
       flash[:notice] = _('Your document was successfully created')

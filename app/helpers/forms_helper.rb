@@ -143,7 +143,7 @@ module FormsHelper
   # Display a quick form field to go to a ticket
   # TODO : use yield to include what we want in the form
   # Call it like :
-  #  if session[:user] && session[:user].authorized?('issues/index')
+  #  if @session_user && @session_user.authorized?('issues/index')
   #    out << form_tag(issues_path)
   #    out <<  search_issue_field
   #    out << end_form_tag

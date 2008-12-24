@@ -288,7 +288,7 @@ module ReportingHelper
     color = "rgb( #{red}, #{green},0)"
 
     result = image_percent(1.23*percent, color, desc)
-    result << " (#{(percent).round} %) " if session[:user].engineer?
+    result << " (#{(percent).round} %) " if @session_user.engineer?
     result
   end
 

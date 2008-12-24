@@ -32,7 +32,7 @@ class TagsController < ApplicationController
 
   def create
     @tag = Tag.new(params[:tag])
-    @tag.user_id = session[:user].id
+    @tag.user_id = @session_user.id
     if @tag.save
       flash[:notice] = _('Skill was successfully created.')
       redirect_to tags_path

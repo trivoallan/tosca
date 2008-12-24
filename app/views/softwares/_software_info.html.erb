@@ -12,11 +12,11 @@
 <%# used_by remote_link_to_software %>
 <%= hidden_field_tag 'active', '1' %>
 
-<% if session[:user] %>
+<% if @session_user %>
  <div class="menu_title" onclick="Element.toggle('menu_consultation')">
  > <%= _('Consultation') %></div>
  <ul id="menu_consultation">
-  <% if session[:user].recipient? %>
+  <% if @session_user.recipient? %>
    <li><%= remote_link_to_software :supported %></li>
    <li><%= remote_link_to_software :all %></li>
   <% end %>
@@ -29,7 +29,7 @@
 <ul id="menu_recherche">
  <li><b><%= _('By name') %></b><br />
      <%= text_field :filters, :software %></li>
- <% if session[:user].engineer? %>
+ <% if @session_user.engineer? %>
   <li><b><%= _('By contract') %> </b><br />
       <%= select_filter(@contracts, 'contract') %></li>
  <% end %>

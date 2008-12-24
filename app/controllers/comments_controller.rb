@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
     comment, id = params[:comment], params[:id]
     return render(:nothing => true) unless id && comment
 
-    user = session[:user]
+    user = @session_user
     issue = Issue.find(id)
 
     # firewall ;)
@@ -126,7 +126,7 @@ class CommentsController < ApplicationController
   end
 
   def _not_allowed?
-    if session[:user].recipient? and @comment.user_id != session[:user].id
+    if @session_user.recipient? and @comment.user_id != @session_user.id
       flash[:warn] = _('You are not allowed to edit this comment')
       redirect_to issue_path(@comment.issue)
       return true

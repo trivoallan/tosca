@@ -72,7 +72,7 @@ class PhonecallsController < ApplicationController
 
   def new
     @phonecall = Phonecall.new
-    @phonecall.engineer = session[:user]
+    @phonecall.engineer = @session_user
     @phonecall.issue_id = params[:id]
     _form
   end

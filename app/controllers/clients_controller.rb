@@ -78,7 +78,7 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(params[:client])
-    @client.creator = session[:user]
+    @client.creator = @session_user
     if add_logo && @client.save
       flash[:notice] = _('Client created successfully.') + '<br />' +
         _('You have now to create the associated contract.')

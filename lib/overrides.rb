@@ -349,7 +349,7 @@ module ActionView::Helpers::UrlHelper
     # does not have access to the page. See the hack to define_url_helper
     # for more information
 
-    user = session[:user]
+    user = @session_user
     unless user.nil? or url.blank?
       required_perm = nil
       if options.is_a?(Hash) and options.has_key? :action

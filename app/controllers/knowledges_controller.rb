@@ -68,7 +68,7 @@ class KnowledgesController < ApplicationController
 
   def create
     @knowledge = Knowledge.new(params[:knowledge])
-    @knowledge.engineer_id = session[:user].id
+    @knowledge.engineer_id = @session_user.id
 
     if @knowledge.save
       flash[:notice] = _('Your knowledge was successfully created.')

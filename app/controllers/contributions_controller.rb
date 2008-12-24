@@ -109,7 +109,7 @@ class ContributionsController < ApplicationController
     @contribution.contributionstate_id = 4
     @contribution.contributed_on = Date.today
     @issue = Issue.new(); @issue.id = params[:issue_id]
-    @contribution.engineer = session[:user]
+    @contribution.engineer = @session_user
     _form
   end
 

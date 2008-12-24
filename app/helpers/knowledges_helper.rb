@@ -27,7 +27,7 @@ module KnowledgesHelper
   end
 
   def link_to_new_knowledge
-    return '' if session[:user].engineer?
+    return '' if @session_user.engineer?
     options = new_knowledge_path
     link_to(image_create('a knowledge'), options)
   end

@@ -42,11 +42,10 @@ class AccountController < ApplicationController
       # For automatic login from an other web tool,
       # password is provided already encrypted
       user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
-      session[:user] = User.authenticate(params['user_login'],
-        params['user_password'], user_crypt)
-
-      if session[:user]
-        _login(session[:user])
+      user = User.authenticate(params['user_login'], params['user_password'],
+                               user_crypt)
+      if user
+        _login(user)
         # When logged from an other tool, the referer is not a valid page
         session[:return_to] ||= request.env['HTTP_REFERER'] unless user_crypt
         redirect_back_or_default welcome_path
@@ -90,7 +89,7 @@ class AccountController < ApplicationController
         if @user.save
           associate_user!
           Notifier::deliver_user_signup({:user => @user,
-              :session_user => session[:user]}, flash)
+              :session_user => @session_user}, flash)
           # The commit has to be after sending email, not before
           connection.commit_db_transaction
           flash[:notice] = _("Account successfully created.")
@@ -141,8 +140,8 @@ class AccountController < ApplicationController
     # Experts does not need to be scoped on accounts, but they can filter
     # only on their contract.
     scope = {}
-    if session[:user].recipient?
-      scope = User.get_scope(session[:user].contract_ids)
+    if @session_user.recipient?
+      scope = User.get_scope(@session_user.contract_ids)
     end
     User.send(:with_scope, scope) do
       @users = User.paginate options
@@ -165,7 +164,7 @@ class AccountController < ApplicationController
     @user = User.find(params[:id])
 
     # Security Wall
-    if session[:user].role_id > 2 # Not a manager nor an admin
+    if @session_user.role_id > 2 # Not a manager nor an admin
       params[:user].delete :role_id
       params[:user].delete :contract_ids
     end
@@ -178,7 +177,7 @@ class AccountController < ApplicationController
       res &= @user.update_attributes(params[:user_engineer])
     end
     if res # update of account fully ok
-      set_sessions @user if session[:user] == @user
+      set_sessions @user if @session_user == @user
       flash[:notice]  = _("Edition succeeded")
       redirect_to account_path(@user)
     else
@@ -228,7 +227,7 @@ class AccountController < ApplicationController
         flash[:warn] = nil
         flash[:notice] = _('Your new password has been generated.')
         Notifier::deliver_user_signup({:user => @user,
-              :session_user => session[:user]}, flash)
+              :session_user => @session_user}, flash)
       end
     end
   end
@@ -236,8 +235,8 @@ class AccountController < ApplicationController
   # Let an Engineer become a client user
   def become
     begin
-      if session[:user].engineer?
-        current_user = session[:user]
+      if @session_user.engineer?
+        current_user = @session_user
         set_sessions(User.find(params[:id]))
         session[:last_user] = current_user
       else
@@ -315,7 +314,7 @@ private
   # Partial variables used in forms
   def _form
     conditions = (@user.engineer? ?
-                  [ 'roles.id BETWEEN ? AND 3', session[:user].role_id ] :
+                  [ 'roles.id BETWEEN ? AND 3', @session_user.role_id ] :
                   'roles.id BETWEEN 4 AND 5')
     options = { :order => 'id', :conditions => conditions }
     @roles = Role.find_select(options)
@@ -341,7 +340,7 @@ private
 
   # Variables utilisé par le panneau de gauche
   def _panel
-    if session[:user].role_id <= 2
+    if @session_user.role_id <= 2
       @count = {}
       @clients = Client.find_select
 
@@ -351,14 +350,12 @@ private
     end
   end
 
-  # variable utilisateurs; nécessite session[:user]
-  # penser à mettre à jour les pages statiques 404
-  # et 500 en cas de modification
-  # Le menu du layout est inclus pour des raisons de performances
+  # session variables, needs @session_user
+  # DO NOT forget to check 404 & 500 error pages if you change this method
   def set_sessions(user)
     return_to, theme = session[:return_to], session[:theme]
 
-    # clear_session erase session[:user]
+    # clear_session erase @session_user
     clear_sessions
 
     # restoring previously consulted page

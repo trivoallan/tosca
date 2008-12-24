@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<% user = session[:user] %>
+<% user = @session_user %>
 <% role_id = (user ? user.role_id : 6) %>
 <% locale = Locale.get.language.intern %>
 <% cache("layout/#{role_id}/head") do %>

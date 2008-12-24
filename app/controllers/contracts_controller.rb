@@ -89,7 +89,7 @@ class ContractsController < ApplicationController
     # It's needed because manager are scoped, at this point
     Client.send(:with_exclusive_scope) do
       @contract = Contract.new(params[:contract])
-      @contract.creator = session[:user]
+      @contract.creator = @session_user
       # Due to a limitation of Rails <= 2.1, we cannot create a full
       # association in one pass.
       # TODO : review this problem on a > Rails
@@ -113,7 +113,7 @@ class ContractsController < ApplicationController
 
   def update
     @contract = Contract.find(params[:id])
-    @contract.creator = session[:user] unless @contract.creator
+    @contract.creator = @session_user unless @contract.creator
     _aggregate_commitments
     if @contract.update_attributes(params[:contract])
       flash[:notice] = _('Contract was successfully updated.')
@@ -180,12 +180,12 @@ class ContractsController < ApplicationController
   end
 
   def ajax_subscribe
-    _ajax(Subscription.create(:user => session[:user],
+    _ajax(Subscription.create(:user => @session_user,
                               :model => Contract.find(params[:id])))
   end
 
   def ajax_unsubscribe
-    _ajax(Subscription.destroy_by_user_and_model(session[:user],
+    _ajax(Subscription.destroy_by_user_and_model(@session_user,
                                                  Contract.find(params[:id])))
   end
 

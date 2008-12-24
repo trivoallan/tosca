@@ -2,7 +2,7 @@ module SubscriptionsHelper
 
   def link_to_subscription(model, options = {})
     model_name = model.class.name
-    if model.subscribed? session[:user]
+    if model.subscribed? @session_user
       alert_success = _('You are now unsubscribed to this %s') % model_name
       alert_failure = _('You can not unsubscribe to this %s') % model_name
       url = send("ajax_unsubscribe_#{model_name.underscore}_url", model)

@@ -3,7 +3,7 @@
 
 <% menu[:titles] << link_to_home(:image=> true) %>
 <% menu[:links] << [
-    (link_to_edit session[:user]),
+    (link_to_edit @session_user),
     (link_to _('Plan'), plan_welcome_path),
     (link_to _('Disconnect'), logout_account_path),
     (link_to_about),
@@ -27,7 +27,7 @@
     %>
 <% menu[:titles] << link_to( _('Users'), accounts_path) %>
 <% menu[:links] << [
-     (link_to_edit session[:user]),
+     (link_to_edit @session_user),
      (link_to _('User list'), accounts_path),
      (link_to _('Add a user'), signup_new_account_path),
      (link_to _('Role management'), roles_path)
@@ -41,4 +41,4 @@
 <% menu[:titles] << _('Search') %>
 <% menu[:links] << [] %>
 
-<%= build_menu(menu) if session[:user] %>
+<%= build_menu(menu) if @session_user %>

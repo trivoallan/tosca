@@ -15,7 +15,7 @@
 <%= div_toggle _('Actions'), 'menu_actions', :class => "menu_title" %>
 <ul class="menu" id="menu_actions">
  <% path = new_issue_path %>
- <% if session[:user].authorized? path %>
+ <% if @session_user.authorized? path %>
    <li><%= link_to _("Submit an issue"), path %></li>
  <% end %>
  <li><%= link_to( _('Distribution of issues in time'), calendar_reporting_path) %></li>
@@ -36,11 +36,11 @@
 <ul class="menu" id="menu_search">
  <li><b><%=_('By word')%></b><br />
      <%= text_field :filters, :text %></li>
- <% if session[:user].engineer? %>
+ <% if @session_user.engineer? %>
   <li><b><%=_('By contract')%></b><br />
       <%= select_filter(@contracts, :contract) %></li>
   <li><b><%=_('By expert')%></b><br />
-  <%= select_filter(@engineers, :engineer, { :first_value => session[:user],
+  <%= select_filter(@engineers, :engineer, { :first_value => @session_user,
       :first_name => _("[ Me ]") }) %></li>
  <% end %>
 </ul>

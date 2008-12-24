@@ -7,7 +7,7 @@
 <%# used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
-<% manager = (session[:user].role_id <= 2) %>
+<% manager = (@session_user.role_id <= 2) %>
 <% if manager %>
  <div class="menu_title" onclick="Element.toggle('menu_action')">
   > <%= _('Action') %></div>
