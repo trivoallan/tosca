@@ -8,9 +8,9 @@
      <tr style="width: 100%;">
       <td><label><%= _('Type') %></label></td>
       <td>
-        <%= radio_button(:user, :client_form, 'true') %>
+        <%= radio_button(:user, :client_form, 'true', :class => 'radio') %>
         <label for="user_client_form_true"><%= _('Recipient') %></label>
-        <%= radio_button(:user, :client_form, 'false') %>
+        <%= radio_button(:user, :client_form, 'false', :class => 'radio') %>
         <label for="user_client_form_false"><%= _('Expert') %></label>
       </td>
      </tr>
