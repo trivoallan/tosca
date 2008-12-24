@@ -44,7 +44,7 @@ class AccountController < ApplicationController
       user_crypt = params.has_key?('user_crypt') ? params['user_crypt'] : 'false'
       session[:user] = User.authenticate(params['user_login'],
         params['user_password'], user_crypt)
-      
+
       if session[:user]
         _login(session[:user])
         # When logged from an other tool, the referer is not a valid page
@@ -254,8 +254,7 @@ class AccountController < ApplicationController
   def ajax_place
     return render(:nothing => true) unless request.xhr? and params.has_key? :client
     @user = User.new
-    @user.client_id = nil
-    @user.client_id = 0 if params[:client] == "true"
+    @user.client_id = (params[:client] == 'true' ? 0 : nil)
     _form
   end
 
@@ -325,8 +324,7 @@ private
 
   def _form_recipient
     return unless @user.recipient?
-    @clients = [Client.new(:id => 0, :name => '» ')].concat(Client.find_select)
-
+    @clients = Client.find_select
     @user.role_id = 4 if @user.new_record?
   end
 
@@ -385,7 +383,7 @@ private
 
   # This one does not save anything, used when form was incorrectly setted
   def associate_user
-    if params[:user][:client] == 'false'
+    if params[:user][:client_form] == 'false'
       @user.associate_engineer
     elsif params.has_key? :user_recipient
       @user.associate_recipient(params[:user_recipient][:client_id])
