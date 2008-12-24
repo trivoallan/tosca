@@ -45,10 +45,7 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    Client.find(:all).each { |c|
-      c.destroy
-      assert Document.find_all_by_client_id(c.id).empty?
-    }
+    Client.find(:all).each { |c| c.destroy }
   end
 
   def test_desactivate_recipients
@@ -130,5 +127,5 @@ class ClientTest < Test::Unit::TestCase
 
     assert_equal(["access_code", "description", "name"], columns)
   end
-  
+
 end

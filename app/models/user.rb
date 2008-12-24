@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
   belongs_to :client
 
   has_many :attachments
-  has_many :documents
   has_many :comments
   has_many :issues, :dependent => :destroy, :foreign_key => :recipient_id
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :manager_id

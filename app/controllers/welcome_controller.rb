@@ -18,7 +18,7 @@
 #
 class WelcomeController < ApplicationController
   # Includes somme helpers
-  helper :issues, :account, :contributions, :softwares, :groups, :documents, :clients
+  helper :issues, :account, :contributions, :softwares, :groups, :clients
 
   # Default page, redirect if necessary
   def index
@@ -64,8 +64,8 @@ class WelcomeController < ApplicationController
       redirect_to_home
     end
   end
-  
-  #Action to clear the cache of Tosca 
+
+  #Action to clear the cache of Tosca
   # !! ONLY FOR ADMINS !!
   def clear_cache
     if @session_user.role_id == 1

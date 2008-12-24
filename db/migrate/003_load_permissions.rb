@@ -69,7 +69,6 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^welcome/admin$', 'Administration page' ],
                [ '^comments/(?!destroy)', 'Manage comments' ],
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
-               [ '^documents/(?!destroy)', 'Manage documents' ],
                [ '^issues/(?!destroy)', 'Manage issues' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
                [ '^socles/(?!destroy)', "Manage systems" ],
@@ -115,12 +114,6 @@ class LoadPermissions < ActiveRecord::Migration
     access = [ [ '^clients/index$', 'Read-only access to list clients offers' ],
                [ '^issues/(link|unlink)_contribution$', 'Link contribution with issue' ],
                [ '^contracts/(index|show)$', 'Read-only access to contracts'] ]
-    add_permission.call(roles, access)
-
-    roles = [ customer_id, viewer_id ]
-    access = [ [ '^documents/(select|list|index)$',
-                 'Read-only access to documents' ]
-             ]
     add_permission.call(roles, access)
 
     roles = [ manager_id, expert_id, customer_id, viewer_id ]

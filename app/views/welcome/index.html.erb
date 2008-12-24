@@ -26,13 +26,10 @@
      <div class="show">
        <h3><%= _('Documents')%></h3>
       <% if user %>
-      <p><%= _('You can browse %s. ') % link_to(_('your directory'), documents_path)%>
-      <%= _('You will find there all documents we have delivered to you')%>.</p>
-      <p><%= _('You can also consult your %s online.') % link_to(_('activity report'), general_reporting_path)%></p>
+      <p><%= _('You can consult your %s online.') % link_to(_('activity report'), general_reporting_path)%></p>
       <% else %>
         <p><%= _("When you are %s, you can access an activity report") % connected %><br />
            <%= _("dynamically showing the activity of our service for you in real time.")%></p><br />
-        <p><%= _("You also have access to all documents we may deliver to you.")%></p>
       <% end %>
      </div>
       <% if user %>

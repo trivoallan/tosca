@@ -26,7 +26,6 @@ class Client < ActiveRecord::Base
   has_many :active_recipients, :class_name => 'User',
     :conditions => 'users.inactive = 0 AND users.client IS NOT NULL'
   has_many :contracts, :dependent => :destroy
-  has_many :documents, :dependent => :destroy
 
   has_and_belongs_to_many :socles, :uniq => true
 

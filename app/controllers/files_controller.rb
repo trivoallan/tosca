@@ -41,13 +41,11 @@ class FilesController < ApplicationController
     # mapping path
     map = {:attachment => 'file',
            :contribution => 'patch',
-           :document => 'file',
            :archive => 'file' }
 
     # TODO : get model name without hash
     model = { :attachment => Attachment,
               :contribution => Contribution,
-              :document => Document,
               :archive => Archive }
 
     # Login needed for anything but contribution

@@ -91,7 +91,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get, :experts => :get, :ajax_list_versions => :post },
     :member => { :list => :get }
-  map.resources :documents
   map.resources :commitments
   map.resources :contributionstates
   map.resources :fichiers
@@ -153,7 +152,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :time_tickets
   map.resources :contributiontypes
   map.resources :issuetypes
-  map.resources :documenttypes
   map.resources :urls
   map.resources :versions
 
