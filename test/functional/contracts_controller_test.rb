@@ -46,9 +46,7 @@ class ContractsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_template 'show'
-
-    assert_not_nil assigns(:contract)
-    assert assigns(:contract).valid?
+    assert_valid assigns(:contract)
   end
 
   def test_new
@@ -56,7 +54,6 @@ class ContractsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_template 'new'
-
     assert_not_nil assigns(:contract)
   end
 
@@ -78,9 +75,7 @@ class ContractsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_template 'edit'
-
-    assert_not_nil assigns(:contract)
-    assert assigns(:contract).valid?
+    assert_valid assigns(:contract)
   end
 
   def test_update
@@ -101,9 +96,37 @@ class ContractsControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
-    assert_raise(ActiveRecord::RecordNotFound) {
-      Contract.find(1)
-    }
+    assert_raise(ActiveRecord::RecordNotFound) { Contract.find(1) }
+  end
+
+  # test tam change => automatic subscription change
+  def test_tam_subscription
+    get :edit, :id => 1
+    form = select_form "main_form"
+    form.contract.manager_id = 2 # admin => manager
+    form.submit
+    assert_response :redirect
+    assert_valid assigns(:contract)
+    assert_redirected_to :action => 'show', :id => 1
+
+    manager = User.find_by_login('manager')
+    assert_equal assigns(:contract).manager, manager
+    assert assigns(:contract).subscribers.include?(manager)
+  end
+
+  def test_user_subscription
+    get :show, :id => 1
+    admin = User.find_by_login('admin')
+
+    xhr :post, :ajax_subscribe, :id => 1
+    assert_response :success
+    assert_template '_subscribers'
+    assert assigns(:contract).subscribers.include?(admin)
+
+    xhr :delete, :ajax_unsubscribe, :id => 1
+    assert_response :success
+    assert_template '_subscribers'
+    assert !assigns(:contract).subscribers.include?(admin)
   end
 
   def test_supported_software
