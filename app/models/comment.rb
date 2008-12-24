@@ -169,12 +169,12 @@ class Comment < ActiveRecord::Base
   after_save :automatic_subscribtion
   def automatic_subscribtion
     #Try to subscribe engineer that has deposit the comment
-    Subscribe.create(:user => self.user,
-                     :model => self.issue) if self.user.engineer?
+    Subscription.create(:user => self.user,
+                        :model => self.issue) if self.user.engineer?
 
     #Try to subscribe new engineer who is responsible for the request
-    Subscribe.create(:user => self.engineer,
-                     :model => self.issue) if self.engineer
+    Subscription.create(:user => self.engineer,
+                        :model => self.issue) if self.engineer
     true
   end
 
