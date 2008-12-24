@@ -17,25 +17,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'comments_controller'
 
-# Re-raise errors caught by the controller.
-class CommentsController; def rescue_action(e) raise e end; end
-
-# TODO : As of Rails 2.0.2, the "setup" method is broken
-#
-# When it will be possible, this one can migrate into ActionController::TestCase
-# and validate within the test suite the _not_allowed? effect of the
-# CommentController
-class CommentsControllerTest < Test::Unit::TestCase
-  fixtures :comments, :issues, :users, :permissions, :roles,
-    :permissions_roles, :statuts, :clients, :credits, :components,
-    :contracts, :contracts_users
+class CommentsControllerTest < ActionController::TestCase
 
   def setup
-    @controller = CommentsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
   end
 
