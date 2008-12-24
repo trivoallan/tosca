@@ -181,22 +181,17 @@ class ContractsController < ApplicationController
 
   def ajax_subscribe
     _ajax(Subscription.create(:user => session[:user],
-      :model_id => params[:id], :model_type => 'Contract'))
+                              :model => Contract.find(params[:id])))
   end
 
   def ajax_unsubscribe
-    _ajax(Subscription.destroy_all(:user_id => session[:user].id,
-        :model_type => 'Contract', :model_id => params[:id]))
+    _ajax(Subscription.destroy_by_user_and_model(session[:user],
+                                                 Contract.find(params[:id])))
   end
 
 private
   def _ajax(test)
-    return unless session[:user]
-    if test
-      status = :ok
-    else
-      status = :bad_request
-    end
+    status = (test ? :ok : :bad_request)
     show
     render :partial => 'subscribers', :status => status
   end
@@ -206,7 +201,7 @@ private
     Client.send(:with_exclusive_scope) do
       @clients = Client.find_select
     end
-    @commitments = Commitment.find(:all, Commitment::OPTIONS)
+    @commitments = Commitment.all(Commitment::OPTIONS)
     @engineers = User.find_select(User::EXPERT_OPTIONS)
     @teams = Team.find_select
     @contract_team = @contract.teams

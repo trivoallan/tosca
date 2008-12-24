@@ -242,7 +242,7 @@ class IssuesController < ApplicationController
     options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
       [ 'contributions.software_id = ?', software_id ] }
     @contributions = (software_id ?
-       Contribution.find(:all, options).collect{|c| [c.name, c.id]} : [])
+       Contribution.all(options).collect{|c| [c.name, c.id]} : [])
     render :partial => 'issues/tabs/tab_actions', :layout => false
   end
 
@@ -310,18 +310,14 @@ class IssuesController < ApplicationController
   end
 
   def ajax_subscribe
-    return unless session[:user]
     Subscription.create(:user => session[:user],
-      :model => Issue.find(params[:id]))
+                        :model => Issue.find(params[:id]))
     ajax_actions
   end
 
   def ajax_unsubscribe
-    return unless session[:user]
-    issue = Issue.find(params[:id])
-    Subscription.destroy_all(:user_id => session[:user].id,
-      :model_type => 'issue',
-      :model_id => issue.id)
+    Subscription.destroy_by_user_and_model(session[:user],
+                                           Issue.find(params[:id]))
     ajax_actions
   end
 
