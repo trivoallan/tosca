@@ -34,7 +34,7 @@ class Comment < ActiveRecord::Base
     if record.issue.nil?
       record.errors.add_to_base _('You must indicate a valid issue')
     end
-    #We check if we are trying to change the status of the request, 
+    #We check if we are trying to change the status of the request,
     #but it has already the same status
     if (issue && issue.new_record? != true &&
         issue.first_comment_id != record.id &&
@@ -161,22 +161,21 @@ class Comment < ActiveRecord::Base
     issue.last_comment_id = self.id unless self.private
 
     issue.save
-    
+
     #Sending e-mail
     Notifier::deliver_issue_new_comment(self)
   end
 
-  after_save :subscribe_engineer
-  def subscribe_engineer
-    res = true
-    #Subscribe the engineer that has deposit the comment
-    res &= Subscribe.create(:user => self.user,
-      :model => self.issue) if self.user and self.user.engineer?
+  after_save :automatic_subscribtion
+  def automatic_subscribtion
+    #Try to subscribe engineer that has deposit the comment
+    Subscribe.create(:user => self.user,
+                     :model => self.issue) if self.user.engineer?
 
-    #Subscribe the new engineer who is responsible for the request
-    res &=Subscribe.create(:user => self.engineer,
-      :model => self.issue) if self.engineer
-    res
+    #Try to subscribe new engineer who is responsible for the request
+    Subscribe.create(:user => self.engineer,
+                     :model => self.issue) if self.engineer
+    true
   end
 
 end
