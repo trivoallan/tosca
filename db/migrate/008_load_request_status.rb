@@ -37,6 +37,6 @@ class LoadRequestStatus < ActiveRecord::Migration
   end
 
   def self.down
-    Statut.find(:all).each{ |s| s.destroy }
+    Statut.destroy_all
   end
 end
