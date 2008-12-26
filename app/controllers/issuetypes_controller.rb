@@ -17,12 +17,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class IssuetypesController < ApplicationController
+  helper :workflows
+
   def index
     @issuetypes = Issuetype.all
   end
 
   def show
     @issuetype = Issuetype.find(params[:id])
+    @issuetype.workflows.all(:order => 'statut_id')
   end
 
   def new
