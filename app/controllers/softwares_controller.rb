@@ -28,7 +28,7 @@ class SoftwaresController < ApplicationController
   def index
     scope = nil
     @title = _('List of software')
-    if @session_user.recipient? && params['active'] != '0'
+    if @session_user and @session_user.recipient? && params['active'] != '0'
       scope = :supported
       @title = _('List of your supported software')
     end
@@ -148,7 +148,7 @@ private
   end
 
   def _panel
-    @contracts = Contract.find_select(Contract::OPTIONS) if @session_user.engineer?
+    @contracts = Contract.find_select(Contract::OPTIONS) if @session_user and @session_user.engineer?
     @technologies = Skill.find_select
     @groups = Group.find_select
   end
