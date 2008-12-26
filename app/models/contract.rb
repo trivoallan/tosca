@@ -85,7 +85,7 @@ class Contract < ActiveRecord::Base
   end
 
   # We have open clients which can declare
-  # issues on everything. It's with the "socle" field.
+  # issues on everything.
   def softwares
     if rule_type == 'Rules::Component' and rule.max == -1
       return Software.find(:all, :order => 'softwares.name ASC')

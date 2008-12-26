@@ -5,7 +5,7 @@ class DropDocuments < ActiveRecord::Migration
     drop_table :documents
     drop_table :document_versions
     drop_table :documenttypes
-    FileUtils.rm_r "#{RAILS_ROOT}/files/document"
+    FileUtils.rm_rf "#{RAILS_ROOT}/files/document"
   end
 
   def self.down

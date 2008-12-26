@@ -58,7 +58,7 @@ module Filters
     extend Shared
   end
 
-  class Clients < Struct.new('Clients', :text, :system_id, :active)
+  class Clients < Struct.new('Clients', :text, :active)
     extend Shared
   end
 

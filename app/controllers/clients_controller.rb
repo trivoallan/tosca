@@ -23,32 +23,7 @@ class ClientsController < ApplicationController
     options = { :per_page => 15, :order => 'clients.name',
       :include => [:image], :page => params[:page] }
 
-    if params.has_key? :filters
-      session[:clients_filters] = Filters::Clients.new(params[:filters])
-    end
-
-    conditions = nil
-    clients_filters = session[:clients_filters]
-    if clients_filters
-      # Here is the trick for the "active" part of the view
-      special_cond = _active_filters(clients_filters[:active])
-
-      # we do not want an include since it's only for filtering.
-      unless clients_filters['system_id'].blank?
-        options[:joins] = 'INNER JOIN clients_socles ON clients_socles.client_id=clients.id'
-      end
-
-      # Specification of a filter f :
-      #   [ field, database field, operation ]
-      # All the fields must be coherent with lib/filters.rb related Struct.
-      conditions = Filters.build_conditions(clients_filters, [
-        [:text, 'clients.name', 'clients.description', :multiple_like ],
-        [:system_id, 'clients_socles.socle_id', :equal ]
-      ], special_cond)
-      @filters = clients_filters
-    end
-    flash[:conditions] = options[:conditions] = conditions
-
+    options[:conditions] = _clients_filters
     @clients = Client.paginate options
 
     # panel on the left side.
@@ -111,6 +86,30 @@ class ClientsController < ApplicationController
   private
   def _form
     @socles = Socle.find_select
+  end
+
+  def _clients_filters
+    if params.has_key? :filters
+      session[:clients_filters] = Filters::Clients.new(params[:filters])
+    end
+
+    conditions = nil
+    clients_filters = session[:clients_filters]
+    if clients_filters
+      # Here is the trick for the "active" part of the view
+      special_cond = _active_filters(clients_filters[:active])
+
+      # Specification of a filter f :
+      #   [ field, database field, operation ]
+      # All the fields must be coherent with lib/filters.rb related Struct.
+      conditions = Filters.build_conditions(clients_filters, [
+        [:text, 'clients.name',
+                'clients.context',
+                'clients.address', :multiple_like ]
+      ], special_cond)
+      @filters = clients_filters
+    end
+    conditions
   end
 
   def _panel

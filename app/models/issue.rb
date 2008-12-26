@@ -40,7 +40,6 @@ class Issue < ActiveRecord::Base
 
   belongs_to :contract
   belongs_to :contribution
-  belongs_to :socle
 
   has_many :phonecalls
   has_many :comments, :order => "created_on ASC", :dependent => :destroy
@@ -164,7 +163,7 @@ class Issue < ActiveRecord::Base
   # It /!\ MUST /!^ be an _id field. See IssuesController#create.
   def self.remanent_fields
     [ :contract_id, :recipient_id, :issuetype_id, :severity_id,
-      :socle_id, :software_id, :engineer_id, :version_id ]
+      :software_id, :engineer_id, :version_id ]
   end
 
   # Used in the cache/sweeper system

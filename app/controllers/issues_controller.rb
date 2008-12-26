@@ -96,6 +96,7 @@ class IssuesController < ApplicationController
     options = { :per_page => per_page, :order => order, :page => params[:page],
       :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST }
 
+    # Flash is used for export. TODO : should be in the extension.
     flash[:conditions] = options[:conditions] = conditions if conditions
 
     @issues = Issue.paginate options
