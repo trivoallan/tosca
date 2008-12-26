@@ -71,7 +71,6 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
                [ '^issues/(?!destroy)', 'Manage issues' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
-               [ '^socles/(?!destroy)', "Manage systems" ],
                [ '^hyperlinks/(?!destroy)', 'Manage the urls' ]
              ]
     add_permission.call(roles, access)
@@ -87,7 +86,6 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^groups/(?!destroy)', 'Manage groups of software' ],
                [ '^images/(?!destroy)', 'Manage logos of software & clients' ],
                [ '^softwares/(?!destroy)', 'Manage software' ],
-               [ '^machines/(?!destroy)', 'Manage servers' ],
                [ '^releases/(?!destroy)', 'Manage releases' ],
                [ '^teams/(?!destroy)', 'Manage teams' ],
                [ '^releases/(?!destroy)', 'Manage release' ],
@@ -102,7 +100,6 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^issues/(index|print|show)$', 'Read access to issues' ],
                [ '^softwares/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
-               [ '^socles/show$', 'Read-only access to system' ],
                [ '^teams/(index|show)$', 'Read-only access to teams' ],
                [ '^releases/(index|show)$', 'Read-only access to versions' ],
                [ '^tags/(index|show|create|new)$', 'Read-only access to the tags' ],
