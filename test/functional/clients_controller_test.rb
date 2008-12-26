@@ -33,7 +33,6 @@ class ClientsControllerTest < ActionController::TestCase
       assert_template 'index'
       assert_not_nil assigns(:clients)
 
-      check_ajax_filter(:system_id, Socle.find(:first).id, :clients)
       # The search box cannot be checked with the helper
       xhr :get, :index, :filters => { :text => "linagora" }
       assert_response :success

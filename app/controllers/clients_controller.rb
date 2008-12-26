@@ -112,7 +112,6 @@ class ClientsController < ApplicationController
   end
 
   def _panel
-    @systems = Socle.find_select
   end
 
   def add_logo
