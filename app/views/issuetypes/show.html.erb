@@ -5,7 +5,7 @@
   <h1><%= _("Workflow of %s") % @issuetype.name%></h1>
   <p><%= "#{_('Workflows')} #{link_to_new_workflow(@issuetype.id)}" %></p>
   <%= show_list(@issuetype.workflows, '', :no_title => true, :edit => 'workflow') do |w|
-        "<b>#{w.statut.name}</b> => (#{w.allowed_status.join(', ')})"
+        w.name
       end %>
 </div>
   <%= link_to_edit_and_list @issuetype %>

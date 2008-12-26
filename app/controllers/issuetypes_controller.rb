@@ -25,7 +25,7 @@ class IssuetypesController < ApplicationController
 
   def show
     @issuetype = Issuetype.find(params[:id])
-    @issuetype.workflows.all(:order => 'statut_id')
+    @issuetype.workflows.sort!
   end
 
   def new

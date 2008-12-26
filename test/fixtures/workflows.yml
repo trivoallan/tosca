@@ -1,0 +1,213 @@
+--- 
+workflow_00028: 
+  issuetype_id: 7
+  id: 28
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  statut_id: 8
+workflow_00006: 
+  issuetype_id: 2
+  id: 6
+  allowed_status_ids: 
+  - "2"
+  - "8"
+  statut_id: 1
+workflow_00017: 
+  issuetype_id: 3
+  id: 17
+  allowed_status_ids: 
+  - "2"
+  statut_id: 8
+workflow_00018: 
+  issuetype_id: 3
+  id: 18
+  allowed_status_ids: 
+  - "2"
+  - "7"
+  - "8"
+  statut_id: 3
+workflow_00007: 
+  issuetype_id: 2
+  id: 7
+  allowed_status_ids: 
+  - "3"
+  - "4"
+  - "7"
+  - "8"
+  statut_id: 2
+workflow_00008: 
+  issuetype_id: 2
+  id: 8
+  allowed_status_ids: 
+  - "2"
+  - "4"
+  - "5"
+  - "6"
+  - "7"
+  - "8"
+  statut_id: 3
+workflow_00019: 
+  issuetype_id: 5
+  id: 19
+  allowed_status_ids: 
+  - "2"
+  - "8"
+  statut_id: 1
+workflow_00020: 
+  issuetype_id: 5
+  id: 20
+  allowed_status_ids: 
+  - "3"
+  - "7"
+  - "8"
+  statut_id: 2
+workflow_00009: 
+  issuetype_id: 2
+  id: 9
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  - "7"
+  statut_id: 4
+workflow_00010: 
+  issuetype_id: 2
+  id: 10
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  - "6"
+  - "7"
+  statut_id: 5
+workflow_00021: 
+  issuetype_id: 5
+  id: 21
+  allowed_status_ids: 
+  - "2"
+  - "7"
+  - "8"
+  statut_id: 3
+workflow_00022: 
+  issuetype_id: 5
+  id: 22
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  statut_id: 7
+workflow_00011: 
+  issuetype_id: 2
+  id: 11
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  - "7"
+  statut_id: 6
+workflow_00012: 
+  issuetype_id: 2
+  id: 12
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  statut_id: 8
+workflow_00001: 
+  issuetype_id: 1
+  id: 1
+  allowed_status_ids: 
+  - "2"
+  - "8"
+  statut_id: 1
+workflow_00023: 
+  issuetype_id: 5
+  id: 23
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  statut_id: 8
+workflow_00024: 
+  issuetype_id: 7
+  id: 24
+  allowed_status_ids: 
+  - "2"
+  - "8"
+  statut_id: 1
+workflow_00002: 
+  issuetype_id: 1
+  id: 2
+  allowed_status_ids: 
+  - "3"
+  - "7"
+  - "8"
+  statut_id: 2
+workflow_00013: 
+  issuetype_id: 2
+  id: 13
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  statut_id: 7
+workflow_00014: 
+  issuetype_id: 3
+  id: 14
+  allowed_status_ids: 
+  - "2"
+  - "8"
+  statut_id: 1
+workflow_00003: 
+  issuetype_id: 1
+  id: 3
+  allowed_status_ids: 
+  - "2"
+  - "7"
+  - "8"
+  statut_id: 3
+workflow_00025: 
+  issuetype_id: 7
+  id: 25
+  allowed_status_ids: 
+  - "3"
+  - "7"
+  - "8"
+  statut_id: 2
+workflow_00026: 
+  issuetype_id: 7
+  id: 26
+  allowed_status_ids: 
+  - "2"
+  - "7"
+  - "8"
+  statut_id: 3
+workflow_00004: 
+  issuetype_id: 1
+  id: 4
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  statut_id: 7
+workflow_00015: 
+  issuetype_id: 3
+  id: 15
+  allowed_status_ids: 
+  - "3"
+  - "7"
+  - "8"
+  statut_id: 2
+workflow_00016: 
+  issuetype_id: 3
+  id: 16
+  allowed_status_ids: 
+  - "2"
+  statut_id: 7
+workflow_00005: 
+  issuetype_id: 1
+  id: 5
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  statut_id: 8
+workflow_00027: 
+  issuetype_id: 7
+  id: 27
+  allowed_status_ids: 
+  - "2"
+  - "3"
+  statut_id: 7
