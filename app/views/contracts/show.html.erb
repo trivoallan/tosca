@@ -1,11 +1,14 @@
 <% links = link_to_edit_and_list(@contract) %>
 <%= links %>
+<% manager = @contract.manager %>
+<% rule = @contract.rule %>
 <% teams = @contract.teams %>
 <% versions = @contract.versions %>
+<% salesman = @contract.salesman %>
 <%= StaticImage::spinner %>
 <div class="subcolumns">
-  <div class="c50l">
-    <div class="show">
+ <div class="c50l">
+  <div class="show">
    <table>
     <tr>
      <td style="vertical-align: middle"><b><%= _('Client') %></b></td>
@@ -16,15 +19,13 @@
      <td><%= @contract %></td>
     </tr>
 
-    <% rule = @contract.rule %>
     <% if rule %>
     <tr>
-      <td colspan="2">&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
-       <i><%= rule.short_description %> <%= link_to_rule(rule) %></i></td>
+     <td colspan="2">&nbsp;&nbsp;<%= link_to_edit_rule(rule) %>
+                     <i><%= rule.short_description %> <%= link_to_rule(rule) %></i></td>
      </tr>
     <% end %>
 
-    <% salesman = @contract.salesman %>
     <% if salesman %>
     <tr>
      <td><b><%= _('Salesman Contact') %></b></td>
@@ -32,7 +33,6 @@
     </tr>
     <% end %>
 
-    <% manager = @contract.manager %>
     <% if manager %>
     <tr>
      <td><b><%= _('Technical Account Manager') %></b></td>
@@ -40,10 +40,13 @@
     </tr>
     <% end %>
 
+    <% if @session_user.expert? %>
     <tr>
      <td><b><%= _('Internal mailing list') %></b></td>
      <td><%= @contract.internal_ml %></td>
     </tr>
+    <% end %>
+
     <tr>
      <td><b><%= _('Customer mailing list') %></b></td>
      <td><%= @contract.customer_ml %></td>
@@ -56,37 +59,36 @@
       <td><b><%= _('End') %></b></td>
       <td><%= complete_date(@contract.end_date) %></td>
     </tr>
-    <tr>
-     <td colspan="2">
-      <fieldset>
-       <legend><%= _("Contractual commitments") %></legend>
-       <%= show_table_commitments @contract.commitments %>
-      </fieldset>
-     </td>
-    </tr><tr>
-     <td colspan="2">
-      <fieldset>
-       <legend><%= _("Human ressources") %></legend>
-       <table width="100%"><tr><td>
-        <% title = n_('expert', 'experts', @contract.engineer_users.size) %>
-        <%= show_list(@contract.engineer_users, title) do |u|
+   </table>
+  </div><div class="show">
+   <fieldset>
+    <legend><%= _("Contractual commitments") %></legend>
+     <%= show_table_commitments @contract.commitments %>
+   </fieldset>
+  </div>
+ </div><div class="c50r">
+   <div class="show">
+    <fieldset>
+     <legend><%= _("Human ressources") %>:</legend>
+     <table width="100%"><tr>
+       <th><%= n_('Expert', 'Experts', @contract.engineer_users.size) %></th>
+       <th><%= n_('Team','Teams', teams.size ) %></th>
+      </tr><tr>
+       <td>
+        <%= show_list(@contract.engineer_users, '', :no_title => true) do |u|
               link_to u.name, account_path(u)
             end %>
-        </td><td>
-         <% title = n_('Team','Teams', teams.size ) %>
-         <%= show_list(teams, title) { |t| link_to t.name, team_path(t) } %>
-        </td>
-    </tr></table>
-      </fieldset>
-     </td>
-    </tr>
-   </table>
-</div></div>
-<div class="c50r"><div class="show">
+       </td><td>
+        <%= show_list(teams, '', :no_title => true) { |t| link_to t.name, team_path(t) } %>
+       </td>
+      </tr>
+     </table>
+    </fieldset>
+   </div><div class="show">
    <table>
     <tr>
      <td style="width: 36em;">
-       <p><b><%= _('Supported software') %> :
+       <p><b><%= _('Supported software') %>:
             <%= link_to StaticImage::edit, { :action => "supported_software", :controller => "contracts"} %></b></p>
        <% unless versions.empty? %>
        <div class="long_bloc_scroll">
@@ -98,13 +100,15 @@
    </table>
   </div>
   <div class="show">
-    <p><b><%= _('Manage tags for this contract') %></b></p>
-    <%= link_to StaticImage::icon_tag, tags_contract_url(@contract) %>
+    <p><b><%= _('Tags') %>:</b>
+    <%= link_to StaticImage::icon_tag, tags_contract_url(@contract) %></p>
   </div>
+ <% if @session_user.expert? %>
   <div class="show" id="subscribers">
     <%= render :partial => 'subscribers' %>
   </div>
-</div>
+ <% end %>
+ </div>
 </div>
 
 <br/>
