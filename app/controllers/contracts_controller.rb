@@ -142,7 +142,9 @@ class ContractsController < ApplicationController
 
   def supported_software
     @contract = Contract.find(params[:id]) unless @contract
-    @versions = @contract.versions
+    ordered_by_software = { :include => [:software], :order =>
+      'softwares.name ASC, versions.name DESC' }
+    @versions = @contract.versions.all(ordered_by_software)
     @softwares = Software.find_select
   end
 
