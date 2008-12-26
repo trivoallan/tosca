@@ -27,6 +27,7 @@
        <h3><%= _('Documents')%></h3>
       <% if user %>
       <p><%= _('You can consult your %s online.') % link_to(_('activity report'), general_reporting_path)%></p>
+      <p><%= _("You cann also see the %s") % link_to( _('Distribution of issues in time'), calendar_reporting_path) %></p>
       <% else %>
         <p><%= _("When you are %s, you can access an activity report") % connected %><br />
            <%= _("dynamically showing the activity of our service for you in real time.")%></p><br />

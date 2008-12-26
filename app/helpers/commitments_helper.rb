@@ -32,12 +32,12 @@ module CommitmentsHelper
   def show_form_commitments(object_commitment, commitments, name)
     out = '<table class="full">'
     out << '<tr><th>'
-    out << _('Issue')
+    out << _('Type')
     out << '</th><th>'
     out << _('Severity')
     out << '</th><th>'
     out << _('Workaround')
-    out << ' | ' 
+    out << ' | '
     out << _('Correction')
     out << '</th></tr>'
     last_issuetype_id = 0

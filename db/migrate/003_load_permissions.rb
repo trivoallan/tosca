@@ -97,10 +97,11 @@ class LoadPermissions < ActiveRecord::Migration
     roles = [ expert_id, customer_id, viewer_id ]
     access = [ [ '^binaires/(show|index)$', 'Read-only access to binaries' ],
                [ '^clients/show$', 'Read-only access to clients offers' ] ,
+               [ '^contracts/(index|show)$', 'Read-only access to contracts'],
                [ '^issues/(index|print|show)$', 'Read access to issues' ],
                [ '^softwares/(index|show)$', 'Read-only access to software' ],
                [ '^paquets/(index|show)$', 'Read-only access to package' ],
-               [ '^teams/(index|show)$', 'Read-only access to teams' ],
+               [ '^teams/show$', 'Read-only access to teams' ],
                [ '^releases/(index|show)$', 'Read-only access to versions' ],
                [ '^tags/(index|show|create|new)$', 'Read-only access to the tags' ],
                [ '^versions/(index|show)$', 'Read-only access to versions' ]
@@ -109,8 +110,8 @@ class LoadPermissions < ActiveRecord::Migration
 
     roles = [ expert_id ]
     access = [ [ '^clients/index$', 'Read-only access to list clients offers' ],
-               [ '^issues/(link|unlink)_contribution$', 'Link contribution with issue' ],
-               [ '^contracts/(index|show)$', 'Read-only access to contracts'] ]
+               [ '^teams/index$', 'Read-only access to teams' ],
+               [ '^issues/(link|unlink)_contribution$', 'Link contribution with issue' ] ]
     add_permission.call(roles, access)
 
     roles = [ manager_id, expert_id, customer_id, viewer_id ]

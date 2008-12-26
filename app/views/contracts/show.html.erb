@@ -84,8 +84,9 @@
       </tr>
      </table>
     </fieldset>
-   </div><div class="show">
-   <table>
+   </div>
+   <% if @session_user.expert? or (@session_user.recipient? && !versions.empty?) %>
+   <div class="show"><table>
     <tr>
      <td style="width: 36em;">
        <p><b><%= _('Supported software') %>:
@@ -97,17 +98,19 @@
        <% end %>
      </td>
     </tr>
-   </table>
-  </div>
-  <div class="show">
+   </table></div>
+   <% end %>
+   <% if @session_user.expert? or (@session_user.recipient? && !versions.empty?) %>
+   <div class="show">
     <p><b><%= _('Tags') %>:</b>
     <%= link_to StaticImage::icon_tag, tags_contract_url(@contract) %></p>
-  </div>
- <% if @session_user.expert? %>
-  <div class="show" id="subscribers">
-    <%= render :partial => 'subscribers' %>
-  </div>
- <% end %>
+   </div>
+   <% end %>
+   <% if @session_user.expert? %>
+   <div class="show" id="subscribers">
+     <%= render :partial => 'subscribers' %>
+   </div>
+   <% end %>
  </div>
 </div>
 
