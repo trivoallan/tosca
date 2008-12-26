@@ -1,26 +1,8 @@
-<h1><%= logo_client(@client) %>
-  <%= link_to_edit edit_client_path(@client)%> </h1>
+<%= public_link_to _('Homepage') , welcome_path %> >
+ <%= @client.name %> <%= link_to_edit edit_client_path(@client)%>
 
 <div class="subcolumns">
   <div class="c50l">
-    <div class="show">
-      <table>
-      <% for column in Client.content_columns %>
-       <tr>
-        <td><b><%= _(column.human_name) %>:</b></td>
-        <td><%= @client.send(column.name) %></td>
-       </tr>
-      <% end %>
-
-      <% unless @client.address.blank? %>
-       <tr><td colspan="2">
-        <fieldset>
-         <legend><%= _('Address')%></legend><%= @client.address %>
-        </fieldset>
-       </td></tr>
-      <% end %>
-      </table>
-    </div>
     <div class="show">
        <%= link_to_new_contract(@client.id) %><br />
        <%= show_list(@client.contracts, _('contract')) do |c|
@@ -43,27 +25,46 @@
       end %>
       </td>
     </tr>
-
-       <b><%= _("View") %></b> <%=_("the")%>
-          <%= link_to(_('Activity report'), general_reporting_path) %><br/>
-       <b><%= _("View") %></b> <%=n_('the','the',2)%>
-          <%= link_to(_('Contributions'),
-                list_contribution_path(:id => 'all', :client_id => @client.id)) %>
       </div>
   </div>
   <div class="c50r">
-    <div class="show">
-      <table>
-        <tr><td>
-         <% unless @client.issues.empty? %>
-          <b><%= n_('Issue', 'Issues', @client.issues.size) %></b>
-          <div class="long_bloc_scroll">
-           <%= show_list(@client.issues) {|d| link_to_issue(d) } %>
-          </div>
-         <% end %>
-        </td></tr>
+   <div class="show">
+    <% if @session_user.expert? %>
+      <table class="full">
+       <tr>
+        <td><b><%= _('Name') %></b></td>
+        <td><%= @client.name %></td>
+        <td rowspan="2" align="right"><%= logo_client(@client) if @client.image %></td>
+       </tr><tr>
+        <td><b><%= _('Access code') %></b></td>
+        <td><%= @client.access_code %></td>
+       </tr>
+      <% unless @client.address.blank? %>
+       <tr><td colspan="3">
+        <fieldset>
+         <legend><%= _('Address')%></legend><%= @client.address %>
+        </fieldset>
+       </td></tr>
+      <% end %>
+      <% unless @client.context.blank? %>
+       <tr><td colspan="3">
+        <fieldset>
+         <legend><%= _('Context')%></legend><%= @client.context %>
+        </fieldset>
+       </td></tr>
+      <% end %>
       </table>
-    </div>
+     <% end %>
+    <ul>
+     <li><%= _("View") %></b> <%=_("the")%>
+         <%= link_to(_('Activity report'), general_reporting_path) %></li>
+     <li><%= _("View") %></b> <%=n_('the','the',2)%>
+         <%= link_to(_('Contributions'),
+             list_contribution_path(:id => 'all', :client_id => @client.id)) %></li>
+     <li><%= link_to( _('Distribution of issues in time'), calendar_reporting_path) %></li>
+    </ul>
+
+   </div>
   </div>
 </div>
 

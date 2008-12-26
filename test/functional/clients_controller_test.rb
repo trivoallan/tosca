@@ -102,5 +102,7 @@ class ClientsControllerTest < ActionController::TestCase
     assert_raise(ActiveRecord::RecordNotFound) {
       Client.find(client.id)
     }
+    # restore client
+    client.save!
   end
 end
