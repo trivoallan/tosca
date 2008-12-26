@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ClientsController < ApplicationController
-  helper :issues, :socles, :commitments, :contracts, :filters
+  helper :issues, :commitments, :contracts, :filters
 
   def index
     options = { :per_page => 15, :order => 'clients.name',
@@ -85,7 +85,6 @@ class ClientsController < ApplicationController
 
   private
   def _form
-    @socles = Socle.find_select
   end
 
   def _clients_filters

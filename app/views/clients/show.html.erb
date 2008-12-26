@@ -55,9 +55,6 @@
     <div class="show">
       <table>
         <tr><td>
-         <%= show_list(@client.socles, _('system')) do |s|
-               link_to_socle(s).to_s
-             end %>
          <% unless @client.issues.empty? %>
           <b><%= n_('Issue', 'Issues', @client.issues.size) %></b>
           <div class="long_bloc_scroll">

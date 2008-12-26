@@ -1,8 +1,0 @@
-<h1><%= _('Editing a system') %></h1>
-
-<% form_tag socle_path(@socle), :method => :put do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _('Edit') %>
-<% end %>
-<br />
-<%= link_to_show_and_list @socle %>

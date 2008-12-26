@@ -28,17 +28,8 @@
         </tr><tr>
          <td colspan="2"><%=  file_column_field 'image', 'image'  %></td>
         </tr><tr>
-       <td><label for="client_access_code"><%= _("Access code") %></label></td>
-       <td><%= text_field :client, :access_code, :size => 5 %></td>
-        </tr><tr>
-         <td colspan="2">
-          <p><label><%= _("Systems") %></label> <%= link_to_new_socle %></p>
-             <%# as of Firefox 2.x, the px approach is scalable between %>
-             <%# different resolution, when em is not %>
-             <div class="bloc_scroll" style="height: 299px;">
-             <%= hbtm_check_box(@client.socles, @socles, 'client[socle_ids]', :size => 2) %>
-             </div>
-         </td>
+         <td><label for="client_access_code"><%= _("Access code") %></label></td>
+         <td><%= text_field :client, :access_code, :size => 5 %></td>
         </tr>
       </table>
     </div>

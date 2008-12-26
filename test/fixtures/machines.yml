@@ -1,9 +1,0 @@
---- 
-machine_00001: 
-  virtuelle: false
-  id: 1
-  hote_id: 
-  description: "Local Server"
-  socle_id: 1
-  acces: localhost (127.0.0.1)
-

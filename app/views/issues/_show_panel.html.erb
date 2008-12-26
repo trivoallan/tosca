@@ -2,10 +2,6 @@
 
 <%= div_toggle _('Summary'), 'menu_resume', :class => "menu_title" %>
 <ul id="menu_resume">
-  <% if @session_user.engineer? and @issue.socle and @issue.socle.machine%>
-     <li><b><%= _("Vm") %>: </b><%=h @issue.socle.machine %></li>
-  <% end %>
-  <li><b><%= _("System") %>: </b><%= link_to_socle @issue.socle %></li>
   <li><b><%= _("Software") %>: </b><%= link_to_issue_software @issue %></li>
   <li><b><%=_("Status")%>: </b>
        <%= link_to_box_on_status(@issue) %> <%=help_on_status%></li>

@@ -18,7 +18,7 @@
 #
 class IssuesController < ApplicationController
   helper :filters, :contributions, :softwares, :phonecalls,
-    :socles, :comments, :account, :reporting, :links, :subscriptions
+  :comments, :account, :reporting, :links, :subscriptions
 
   cache_sweeper :issue_sweeper, :only =>
     [:create, :update, :destroy, :link_contribution, :unlink_contribution, :ajax_add_tag]
