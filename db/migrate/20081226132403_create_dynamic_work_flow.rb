@@ -12,7 +12,7 @@ class CreateDynamicWorkFlow < ActiveRecord::Migration
     add_index(:workflows, [:issuetype_id, :statut_id], :unique => true)
 
     add_column :statuts, :active, :boolean, :null => false, :default => true
-    statuts = Statut.all(:order => id)
+    statuts = Statut.all(:order => :id)
     statuts.each{|s| s.update_attribute(:active, (s.id <= 4))}
 
     # Clean up unused or messed up^Issue types
