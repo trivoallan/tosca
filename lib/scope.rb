@@ -27,7 +27,7 @@ module Scope
   def define_scope(user)
     # defined locally since this file is loaded by application controller
     # it reduces dramatically loading time
-    @@scope_client ||= [ Client, Document ]
+    @@scope_client ||= [ Client ]
     @@scope_contract ||= [ Release, Contract, Issue, Phonecall, Tag ]
     is_connected = !user.nil?
     if is_connected

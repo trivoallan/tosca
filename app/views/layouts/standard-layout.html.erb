@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<% user = session[:user] %>
+<% user = @session_user %>
 <% role_id = (user ? user.role_id : 6) %>
 <% locale = Locale.get.language.intern %>
 <% cache("layout/#{role_id}/head") do %>
@@ -94,15 +94,15 @@
       <% end %>
 
       <div id="main">
-        <div id="col1" <%=' style="width: 75%"' if @partial_for_summary%>>
+        <div id="col1" <%=' style="width: 75%"' if @partial_panel%>>
           <div id="col1_content" class="clearfix">
             <%= @content_for_layout %>
           </div>
         </div>
-        <% if @partial_for_summary %>
+        <% if @partial_panel %>
           <div id="col3">
             <div id="col3_content" class="clearfix">
-              <%= render_partial @partial_for_summary %>
+              <%= render_partial @partial_panel %>
             </div>
             <!-- IE Column Clearing -->
             <div id="ie_clearing"> &#160; </div>

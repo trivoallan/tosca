@@ -52,7 +52,7 @@ module WelcomeHelper
   def build_bloc(elt, texts, icons)
     controller = elt.first
     elt.last.each do |action|
-      next unless session[:user].authorized? "#{controller}/#{action}"
+      next unless @session_user.authorized? "#{controller}/#{action}"
       options = { :controller => controller, :action => action }
       ### Texts ###
       @@texts.each { |i| case action; when *(i.first)

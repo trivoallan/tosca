@@ -15,18 +15,18 @@
     <table class="comment-table">
      <tr>
       <td class="infos" align="center">
-        <% display_edit = (session[:user].engineer? or
-            (user and session[:user].recipient? and session[:user].id == user.id)) %>
+        <% display_edit = (@session_user.engineer? or
+            (user and @session_user.recipient? and @session_user.id == user.id)) %>
         <p>
          <%= link_to(StaticImage::edit, edit_comment_path(comment)) if display_edit %>
          <%= "##{comment.id}" %>
-         <%= link_to(StaticImage::delete, comment_path(comment), delete_ho) if session[:user].engineer? %><br />
+         <%= link_to(StaticImage::delete, comment_path(comment), delete_ho) if @session_user.engineer? %><br />
         <% if user and user.recipient? %>
           <%= logo_client(user.client) %>
         <% else %>
           <%= StaticImage::logo_service %>
         <% end %><br />
-        <% if session[:user].engineer? and user %>
+        <% if @session_user.engineer? and user %>
           <%= user.phone %>
         <% end %>
         </p>

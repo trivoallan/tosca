@@ -2,7 +2,7 @@ module SubscriptionsHelper
 
   def link_to_subscription(model, options = {})
     model_name = model.class.name
-    if model.subscribed? session[:user]
+    if model.subscribed? @session_user
       alert_success = _('You are now unsubscribed to this %s') % model_name
       alert_failure = _('You can not unsubscribe to this %s') % model_name
       url = send("ajax_unsubscribe_#{model_name.underscore}_url", model)
@@ -25,28 +25,21 @@ module SubscriptionsHelper
       :failure => "alert('#{alert_failure}')",
       :complete => "Element.hide('spinner')")
     result = link_to_remote(icon, options)
-    result << ' '
-    result << link_to_remote(text, options)
+    result << " #{link_to_remote(text, options)}"
   end
 
   def subscribers_list(model, options = {})
     subscribers = model.subscribers
-    result = ''
-    if options.has_key? :id
-      result << "<ul id=\"#{options[:id]}\">"
+    result, options_id = '', options[:id]
+    if options_id
+      result << %Q{<ul id="#{options_id}">}
     else
       result << '<ul>'
     end
-    if subscribers.size == 0
-      result << '<li>'
-      result << _('There is no subscribers.')
-      result << '</li>'
+    if subscribers.empty?
+      result << "<li>#{_('There is no subscribers.')}</li>"
     else
-      subscribers.each do |u|
-        result << '<li>'
-        result << link_to(u, account_path(u))
-        result << '</li>'
-      end
+      subscribers.each{|u| result << "<li>#{link_to(u, account_path(u))}</li>"}
     end
     result << '</ul>'
   end

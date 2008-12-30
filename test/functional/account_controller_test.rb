@@ -20,7 +20,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 # Each Controller Test should test all _public_ methods
 class AccountControllerTest < ActionController::TestCase
-  fixtures :all
 
   def test_login_and_logout
     %w(admin manager expert customer viewer).each { |l|
@@ -94,6 +93,7 @@ class AccountControllerTest < ActionController::TestCase
   def test_signup_expert
     login 'manager', 'manager'
     get :signup
+    assert_response :success
     form = select_form 'main_form'
     # 3 fields are mandatory
     form.user.name = "Engineer"
@@ -104,6 +104,7 @@ class AccountControllerTest < ActionController::TestCase
     form.submit
 
     user = assigns(:user)
+    assert_valid user
     assert user.engineer?
     assert_redirected_to account_path(user)
     assert flash.has_key?(:notice)
@@ -179,6 +180,7 @@ class AccountControllerTest < ActionController::TestCase
     }
   end
 
+  # Test the dynamic recipient/expert panel on the right side
   def test_ajax_place
     login 'manager', 'manager'
     test = Proc.new do |params|
@@ -187,10 +189,12 @@ class AccountControllerTest < ActionController::TestCase
       assert_template 'ajax_place'
       assert_not_nil assigns(:user)
     end
-    test.call(:client_form => 'true')
-    assert_not_nil assigns(:user_recipient)
-    test.call(:client_form => 'false')
-    assert_not_nil assigns(:user_engineer)
+    test.call(:client => 'true')
+    assert_not_nil assigns(:user)
+    assert assigns(:user).recipient?
+    test.call(:client => 'false')
+    assert_not_nil assigns(:user)
+    assert assigns(:user).engineer?
   end
 
   def test_ajax_contracts

@@ -1,5 +1,5 @@
 <%# It's separated by roles, since viewer & customer see different things %>
-<% cache("issues/#{@issue.id}/front-#{session[:user].role_id}") do %>
+<% cache("issues/#{@issue.id}/front-#{@session_user.role_id}") do %>
  <div class="content">
      <div class="software">
       <p><%= image_expand_all %>
@@ -31,7 +31,7 @@
    </script>
 
    <div>
-    <% if session[:user].authorized? "comments/comment" %>
+    <% if @session_user.authorized? "comments/comment" %>
      <% action = comment_comment_path(@issue) %>
      <% form_tag(action, :method => :post, :multipart => true) do %>
       <%= render :partial => 'comment_form' %>

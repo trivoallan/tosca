@@ -1,8 +1,0 @@
-<h1><%= _('Add a document') %></h1>
-
-<% form_tag( documents_path, { :multipart => true, :id => 'main_form' }) do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _('Submit')%>
-<% end %>
-
-<%= link_to_back %>

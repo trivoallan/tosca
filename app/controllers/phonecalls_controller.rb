@@ -51,7 +51,7 @@ class PhonecallsController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'calls_info'
+      @partial_panel = 'index_panel'
     end
   end
 
@@ -72,7 +72,7 @@ class PhonecallsController < ApplicationController
 
   def new
     @phonecall = Phonecall.new
-    @phonecall.engineer = session[:user]
+    @phonecall.engineer = @session_user
     @phonecall.issue_id = params[:id]
     _form
   end

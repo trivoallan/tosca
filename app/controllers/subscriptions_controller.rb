@@ -11,50 +11,27 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/new
   def new
-    @subscription = Subscription.new
-    _form
+    render(:nothing => true)
   end
 
   # GET /subscriptions/1/edit
   def edit
-    @subscription = Subscription.find(params[:id])
-    _form
+    render(:nothing => true)
   end
 
   # POST /subscriptions
   def create
-    @subscription = Subscription.new(params[:subscription])
-
-    if @subscription.save
-      flash[:notice] = _('The subscription was successfully created.')
-      redirect_to(@subscription)
-    else
-      render :action => "new"
-    end
+    render(:nothing => true)
   end
 
   # PUT /subscriptions/1
   def update
-    @subscription = Subscription.find(params[:id])
-
-    if @subscription.update_attributes(params[:subscription])
-      flash[:notice] = _('The subscription was successfully updated.')
-      redirect_to(@subscription)
-    else
-      render :action => "edit"
-    end
+    render(:nothing => true)
   end
 
   # DELETE /subscriptions/1
   def destroy
-    @subscription = Subscription.find(params[:id])
-    @subscription.destroy
-
-   redirect_to(subscriptions_url)
+    render(:nothing => true)
   end
 
-  private
-  def _form
-    @users = User.all
-  end
 end

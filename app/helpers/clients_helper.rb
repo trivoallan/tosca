@@ -28,7 +28,7 @@ module ClientsHelper
   # :text texte du lien à afficher
   # :image image du client à afficher à la place
   def link_to_my_client(image = false)
-    user = session[:user]
+    user = @session_user
     return nil unless user.recipient?
     label = image ? logo_client(user.client) : _('My&nbsp;Offer')
     link_to label, client_path(user.client_id)

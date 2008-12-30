@@ -41,13 +41,11 @@ class FilesController < ApplicationController
     # mapping path
     map = {:attachment => 'file',
            :contribution => 'patch',
-           :document => 'file',
            :archive => 'file' }
 
     # TODO : get model name without hash
     model = { :attachment => Attachment,
               :contribution => Contribution,
-              :document => Document,
               :archive => Archive }
 
     # Login needed for anything but contribution
@@ -61,11 +59,11 @@ class FilesController < ApplicationController
     fullpath = [ root, params[:id], params[:filename].gsub(' ','+') ] * '/'
 
     # Attachment has to be restricted.
-    scope_active = (session[:user].recipient? and file_type == :attachment)
+    scope_active = (@session_user.recipient? and file_type == :attachment)
 
     # Ensure that we can remove scope
     begin
-      Attachment.set_scope(session[:user].client_id) if scope_active
+      Attachment.set_scope(@session_user.client_id) if scope_active
       # Check if you have the right, with the scope model of Tosca
       model[file_type].find(params[:id])
     ensure

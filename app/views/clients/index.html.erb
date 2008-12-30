@@ -2,17 +2,11 @@
 
 <% options = { :create_label => _("a client"), :url => clients_path } %>
 <% paginated_section(@clients, options) do %>
- <% titles = [ _("Logo"), _("Name"), _("Systems"), _('Contracts'), _("Access code") ]%>
+ <% titles = [ _("Logo"), _("Name"), _('Contracts'), _("Access code") ]%>
  <%= show_table(@clients, Client, titles) { |c|
    result = ''
    result <<  (c.image ? "<td>#{logo_client(c)}</td>" : '<td></td>')
    result << "<td>#{link_to_client(c)}</td>"
-
-   result << '<td>'
-     c.socles.each {|s|
-       result << link_to_socle(s).to_s << '<br />'
-     }
-   result << '</td>'
 
    result << '<td>'
      c.contracts.each {|ct|

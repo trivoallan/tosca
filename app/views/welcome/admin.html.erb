@@ -1,6 +1,6 @@
 <h2><%= _('Contents')%></h2>
 
-<%= _('You have %s rights on this portal') % session[:user].role %>
+<%= _('You have %s rights on this portal') % @session_user.role %>
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
@@ -9,12 +9,12 @@
         link_to(_('User list'), accounts_path),
         link_to(_('Add a user'), signup_new_account_path) ] %>
   <%= show_list(links, _('User management')) %>
-  <% if session[:user].role_id <= 2 # manager %>
+  <% if @session_user.role_id <= 2 # manager %>
     <% links = [
           link_to(_('Teams'), teams_path) ] %>
     <%= show_list(links, _("Teams management")) %>
   <% end %>
-  <% if session[:user].role_id == 1 # admin %>
+  <% if @session_user.role_id == 1 # admin %>
    <% links = [
         link_to( _('Permissions'), permissions_path),
         link_to( _('Roles'), roles_path) ] %>
@@ -39,9 +39,7 @@
    <h3><%= _('Plateform')%></h3>
    <p><%= _('System management')%></p>
   <% links = [
-        link_to( _('Alerts'), alerts_path),
-        link_to( _('Systems'), socles_path),
-        link_to( _('Machines'), machines_path) ] %>
+        link_to( _('Alerts'), alerts_path) ] %>
   <%= show_list(links) %>
   <p><%= _('Source management')%></p>
   <% links = [
@@ -58,7 +56,7 @@
       link_to( _('Distribution of issues in time'), calendar_reporting_path) ] %>
   <%= show_list(links) %>
  </div>
-   <% if session[:user].role_id == 1 %>
+   <% if @session_user.role_id == 1 %>
    <div class="show">
     <h3><%= _('Administration')%></h3>
     <% links = [

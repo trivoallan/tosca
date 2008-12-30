@@ -79,7 +79,7 @@ module ApplicationHelper
     result = ''
     return '' unless size > 0
 
-    if !session[:user] && options.has_key?(:public_summarised)
+    if !@session_user && options.has_key?(:public_summarised)
       return "<u><b>#{pluralize(size, name.to_s.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
@@ -118,14 +118,14 @@ module ApplicationHelper
   end
 
   # Call it like :
-  # <% titres = ['Fichier', 'Taille', 'Auteur', 'Maj'] %>
-  # <%= show_table(@documents, Document, titres) { |e| "<td>#{e.name}</td>" } %>
-  # N'oubliez pas d'utiliser les <td></td>
-  # 3 options
-  #   :total > désactive le décompte total si positionné à false
-  #   :content_columns > active l'affichage des content_columns si positionné à true
-  #   :add_lines > affiche à la fin le tableau de lignes passé [[line1],[line2]]
-  # TODO : intégrer width et style dans une seule option
+  # <% titles = ['File', 'Size', 'Author', 'Updated on'] %>
+  # <%= show_table(@attachments, Attachment, titles) { |e| "<td>#{e.name}</td>" } %>
+  # Do NOT forget to use <td></td>
+  # Options
+  #   :total > deactivate total count
+  #   :content_columns > use Rails AR fonctionnality
+  #   :add_lines > add the string at the end of the table
+  #   :width > html options for global table width
   def show_table(elements, ar, titles, options = {})
     return '<p>' << _('No %s at the moment') % _(ar.table_name.singularize) + '</p>' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )

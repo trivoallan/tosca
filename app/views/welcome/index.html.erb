@@ -1,4 +1,4 @@
-<% user = session[:user] %>
+<% user = @session_user %>
 <% connected = public_link_to(_('connected'), login_accounts_path) %>
 <link rel="alternate" href="contributions/all/list.atom" title="" type="application/atom+xml" />
 <table><tr><td rowspan="2"><%= StaticImage::tosca %> </td><td><h2 class="spacer"><%=_('Contents')%></h2></td></tr>
@@ -26,13 +26,11 @@
      <div class="show">
        <h3><%= _('Documents')%></h3>
       <% if user %>
-      <p><%= _('You can browse %s. ') % link_to(_('your directory'), documents_path)%>
-      <%= _('You will find there all documents we have delivered to you')%>.</p>
-      <p><%= _('You can also consult your %s online.') % link_to(_('activity report'), general_reporting_path)%></p>
+      <p><%= _('You can consult your %s online.') % link_to(_('activity report'), general_reporting_path)%></p>
+      <p><%= _("You cann also see the %s") % link_to( _('Distribution of issues in time'), calendar_reporting_path) %></p>
       <% else %>
         <p><%= _("When you are %s, you can access an activity report") % connected %><br />
            <%= _("dynamically showing the activity of our service for you in real time.")%></p><br />
-        <p><%= _("You also have access to all documents we may deliver to you.")%></p>
       <% end %>
      </div>
       <% if user %>

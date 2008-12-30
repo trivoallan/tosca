@@ -7,9 +7,12 @@
   </p>
   <p><b><%= _("Motto") %> : </b><%= @team.motto %></p>
   <%= show_list(@team.users, _('Members')) {|u| link_to u.name, account_path(u)} %>
- </div></div> <div class="c50r"><div class="show">
-  <%= show_list(@team.contracts, _('Contracts')) {|c| link_to c.name, contract_path(c)} %>
- </div></div>
+ </div></div> <div class="c50r">
+  <% if @session_user.expert? %>
+   <div class="show">
+    <%= show_list(@team.contracts, _('Contracts')) {|c| link_to c.name, contract_path(c)} %>
+   </div>
+  <% end %>
+ </div>
 </div>
-<%= link_to _('Edit'), edit_team_path(@team) %> |
-<%= link_to _('Back'), teams_path %>
+<%= link_to_edit_and_list(@team) %>

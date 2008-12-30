@@ -200,8 +200,7 @@ class IssuesControllerTest < ActionController::TestCase
       :issuetype_id => '2' }
     assert_response :success
 
-    xhr :get, :ajax_display_version, :issue => { :software_id => "1",
-      :socle_id => "1"}
+    xhr :get, :ajax_display_version, :issue => { :software_id => "1" }
     assert_response :success
 
     xhr :get, :ajax_display_contract, :contract_id => session[:user].contracts.first.id

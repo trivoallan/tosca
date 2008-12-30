@@ -1,5 +1,5 @@
 <div id='issue_tab_content' class='issue_tab_content'>
-<% if session[:user].engineer? %>
+<% if @session_user.engineer? %>
   <ul>
     <li><%= link_to_subscription(@issue, {:update => 'issue_tab'}) %></li>
 

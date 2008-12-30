@@ -18,13 +18,13 @@
 #
 class IssuesController < ApplicationController
   helper :filters, :contributions, :softwares, :phonecalls,
-    :socles, :comments, :account, :reporting, :links, :subscriptions
+  :comments, :account, :reporting, :links, :subscriptions
 
   cache_sweeper :issue_sweeper, :only =>
     [:create, :update, :destroy, :link_contribution, :unlink_contribution, :ajax_add_tag]
 
   def pending
-    user = session[:user]
+    user = @session_user
     @own_issues = Issue.find_pending_user(user)
 
     @manager_issues = []
@@ -43,7 +43,7 @@ class IssuesController < ApplicationController
   # visual effects are in js.erb view
   def ajax_renew
     expected_on  = params[:expected_on].to_i
-    @issue_ids = params[:issue_ids] or []
+    @issue_ids = params[:issue_ids] || []
     return if expected_on <= 0 or @issue_ids.empty?
     expected = Time.now + expected_on.days
     Issue.find(@issue_ids).each {|r|
@@ -96,6 +96,7 @@ class IssuesController < ApplicationController
     options = { :per_page => per_page, :order => order, :page => params[:page],
       :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST }
 
+    # Flash is used for export. TODO : should be in the extension.
     flash[:conditions] = options[:conditions] = conditions if conditions
 
     @issues = Issue.paginate options
@@ -105,7 +106,7 @@ class IssuesController < ApplicationController
       render :partial => 'issues/lists/issues_list', :layout => false
     else
       _panel
-      @partial_for_summary = 'issues/lists/issues_info'
+      @partial_panel = 'index_panel'
       render :template => 'issues/lists/_issues_list'
     end
   end
@@ -116,15 +117,15 @@ class IssuesController < ApplicationController
     end
     _form @recipient
 
-    @issue.statut_id = (session[:user].engineer? ? 2 : 1)
+    @issue.statut_id = (@session_user.engineer? ? 2 : 1)
     unless params.has_key? :issue
-      @issue.set_defaults(session[:user], params)
+      @issue.set_defaults(@session_user, params)
     end
   end
 
   def create
     @issue = Issue.new(params[:issue])
-    user = session[:user]
+    user = @session_user
     @issue.submitter = user # it's the current user
     @issue.statut_id = (user.engineer? ? 2 : 1)
 
@@ -184,8 +185,8 @@ class IssuesController < ApplicationController
   def show
     @issue = Issue.find(params[:id], :include => [:first_comment]) unless @issue
     @page_title = @issue.resume
-    @partial_for_summary = 'infos_issue'
-    user = session[:user]
+    @partial_panel = 'show_panel'
+    user = @session_user
     unless read_fragment "issues/#{@issue.id}/front-#{user.role_id}"
       @comment = Comment.new(:elapsed => 1, :issue => @issue)
       @comment.text = flash[:old_body] if flash.has_key? :old_body
@@ -242,7 +243,7 @@ class IssuesController < ApplicationController
     options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
       [ 'contributions.software_id = ?', software_id ] }
     @contributions = (software_id ?
-       Contribution.find(:all, options).collect{|c| [c.name, c.id]} : [])
+       Contribution.all(options).collect{|c| [c.name, c.id]} : [])
     render :partial => 'issues/tabs/tab_actions', :layout => false
   end
 
@@ -263,7 +264,7 @@ class IssuesController < ApplicationController
       flash[:notice] = _("The issue has been updated successfully.")
       redirect_to issue_path(@issue)
     else
-      _form session[:user]
+      _form @session_user
       render :action => 'edit'
     end
   end
@@ -310,18 +311,14 @@ class IssuesController < ApplicationController
   end
 
   def ajax_subscribe
-    return unless session[:user]
-    Subscription.create(:user => session[:user],
-      :model => Issue.find(params[:id]))
+    Subscription.create(:user => @session_user,
+                        :model => Issue.find(params[:id]))
     ajax_actions
   end
 
   def ajax_unsubscribe
-    return unless session[:user]
-    issue = Issue.find(params[:id])
-    Subscription.destroy_all(:user_id => session[:user].id,
-      :model_type => 'issue',
-      :model_id => issue.id)
+    Subscription.destroy_by_user_and_model(@session_user,
+                                           Issue.find(params[:id]))
     ajax_actions
   end
 
@@ -342,7 +339,7 @@ class IssuesController < ApplicationController
     @statuts = Statut.find_select(:order => 'id')
     @issuetypes = Issuetype.find_select()
     @severities = Severity.find_select()
-    if session[:user].engineer?
+    if @session_user.engineer?
       @contracts = Contract.find_select(Contract::OPTIONS)
       @engineers = User.find_select(User::EXPERT_OPTIONS)
     end
@@ -356,7 +353,7 @@ class IssuesController < ApplicationController
     @recipients = contract.find_recipients_select
     result = false if @recipients.empty?
     @softwares = contract.softwares.collect { |l| [ l.name, l.id ] }
-    if session[:user].engineer?
+    if @session_user.engineer?
       @engineers = User.find_select_by_contract_id(contract.id)
       @teams = Team.on_contract_id(contract.id)
     end
@@ -424,7 +421,7 @@ class IssuesController < ApplicationController
   end
 
   def set_comments(issue_id)
-    fragment = "issues/#{issue_id}/comments-#{session[:user].kind}"
+    fragment = "issues/#{issue_id}/comments-#{@session_user.kind}"
     if action_name == 'print' || !read_fragment(fragment)
       @comments = Comment.find(:all, :conditions =>
         filter_comments(issue_id), :order => "created_on ASC",
@@ -434,7 +431,7 @@ class IssuesController < ApplicationController
 
   # Private comments & attachments should not be read by recipients
   def filter_comments(issue_id)
-    if session[:user].engineer?
+    if @session_user.engineer?
       [ 'comments.issue_id = ?', issue_id ]
     else
       [ 'comments.issue_id = ? AND comments.private = 0 ', issue_id ]

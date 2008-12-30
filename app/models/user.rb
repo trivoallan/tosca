@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
   belongs_to :client
 
   has_many :attachments
-  has_many :documents
   has_many :comments
   has_many :issues, :dependent => :destroy, :foreign_key => :recipient_id
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :manager_id
@@ -152,11 +151,10 @@ class User < ActiveRecord::Base
   EXPERT_OPTIONS = { :conditions => 'users.inactive = 0 AND users.client_id IS NULL',
     :order => 'users.name' }
 
-  def self.authenticate(login, pass, crypt = 'false')
+  def self.authenticate(login, pass)
     User.with_exclusive_scope() do
-      pass = sha1(pass) if crypt == 'false'
-      user = User.find(:first, :conditions =>
-                              ['login = ? AND password = ?', login, pass])
+      conditions = ['login = ? AND password = ?', login, sha1(pass)]
+      user = User.find(:first, :conditions => conditions)
       return nil if user and user.inactive?
       user
     end
@@ -268,11 +266,11 @@ class User < ActiveRecord::Base
   def contracts_subscribed
     models_subscribed(Contract)
   end
-  
+
   def issues_subscribed
     models_subscribed(Issue)
   end
-  
+
   def softwares_subscribed
     models_subscribed(Software)
   end

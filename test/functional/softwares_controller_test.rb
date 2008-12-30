@@ -27,6 +27,13 @@ class SoftwaresControllerTest < ActionController::TestCase
   end
 
   def test_index
+    browse_index
+    # test public access
+    logout
+    browse_index
+  end
+
+  def browse_index
     get :index
     assert_response :success
     assert_template 'index'
@@ -43,7 +50,6 @@ class SoftwaresControllerTest < ActionController::TestCase
     xhr :get, :index, :filters => { :group_id => 2 }
     assert_response :success
     assigns(:softwares).each { |l| assert_equal l.group_id, 2 }
-
   end
 
   def test_show

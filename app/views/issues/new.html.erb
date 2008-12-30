@@ -15,7 +15,7 @@
 
 <p>&nbsp;</p>
 
-<% user = session[:user] %>
+<% user = @session_user %>
 <% if false and user.recipient? #deactivated, for now %>
 <% client = user.client %>
 <p><%= _("Nota : One day work corresponds to the time of opening of the daily service defined in the contract %s : %s, that is to say %s hours.") % [ client.name, client.support.name, client.support.interval ] %>

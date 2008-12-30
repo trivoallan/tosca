@@ -1,0 +1,74 @@
+<% options = { :update => 'col1_content', :method => :get,
+    :url => issues_path,
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+
+<% form_remote_tag( options.dup.update(:html => {
+    :id => 'filters', :name => 'filters'})) do %>
+
+<%# used for iteration in ajaxified list %>
+<%= hidden_field_tag 'page', '1' %>
+<%# All issue => 0, Active issue => 1, Dead issue => -1 %>
+<%# see remote_link_to_(dead|active|all)_issue in issues_helper %>
+<input id="filters_active" name="filters[active]" type="hidden" value="0" />
+
+<%= div_toggle _('Actions'), 'menu_actions', :class => "menu_title" %>
+<ul class="menu" id="menu_actions">
+ <% path = new_issue_path %>
+ <% if @session_user.authorized? path %>
+   <li><%= link_to _("Submit an issue"), path %></li>
+ <% end %>
+ <li><%= link_to( _('Distribution of issues in time'), calendar_reporting_path) %></li>
+ <li><%= link_to _("Activity report"), general_reporting_path %></li>
+ <% Issue::actions.each do |a| %>
+   <li><%= send(a) %></li>
+ <% end %>
+</ul>
+
+<%= div_toggle _('Flow'), 'menu_flow', :class => "menu_title" %>
+<ul class="menu" id="menu_flow">
+  <li><%= remote_link_to_all_issue %></li>
+  <li><%= remote_link_to_active_issue %></li>
+  <li><%= remote_link_to_dead_issue %></li>
+</ul>
+
+<%= div_toggle _('Search'), 'menu_search', :class => "menu_title" %>
+<ul class="menu" id="menu_search">
+ <li><b><%=_('By word')%></b><br />
+     <%= text_field :filters, :text %></li>
+ <% if @session_user.engineer? %>
+  <li><b><%=_('By contract')%></b><br />
+      <%= select_filter(@contracts, :contract) %></li>
+  <li><b><%=_('By expert')%></b><br />
+  <%= select_filter(@engineers, :engineer, { :first_value => @session_user,
+      :first_name => _("[ Me ]") }) %></li>
+ <% end %>
+</ul>
+
+<%= div_toggle _('Attributes'), 'menu_attributes', :class => "menu_title" %>
+<ul class="menu" id="menu_attributes">
+ <li><b><%=_('Type')%> </b><br />
+     <%=select_filter(@issuetypes, :issuetype) %></li>
+ <li><b><%=_('Severity')%></b><br />
+     <%=select_filter(@severities, :severity) %></li>
+ <li><b><%=_('Status')%></b><br />
+     <%=select_filter(@statuts, :statut) %></li>
+</ul>
+
+<%= div_toggle _('Settings'), 'menu_settings', :class => "menu_title", :hide => true %>
+<ul class="menu" id="menu_settings" style="display: none">
+ <li><b><%=_('Limit')%></b><br />
+     <%= text_field :filters, :limit %></li>
+</ul>
+
+<%= div_toggle _('Help'), 'menu_help', :class => "menu_title" %>
+<ul class="menu" id="menu_help">
+  <li><%= public_link_to_help_new_issue %></li>
+  <li><%= public_link_to_howto_issue %></li>
+  <li><%= public_link_to_help_issue_status %></li>
+  <li><%= public_link_to_status_legend %></li>
+</ul>
+
+<% end # form_remote %>
+
+<%= observe_form 'filters', options %>

@@ -1,5 +1,5 @@
 page.replace_html("recipient", select(:issue, :recipient_id, @recipients))
-if session[:user].engineer?
+if @session_user.engineer?
    out = %Q{<select id="issue_engineer_id" name="issue[engineer_id]"><option value="">» </option>}
    out << options_from_collection_for_select(@engineers, :last, :first)
    out << option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name)

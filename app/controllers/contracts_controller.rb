@@ -51,7 +51,7 @@ class ContractsController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'contracts_info'
+      @partial_panel = 'index_panel'
     end
   end
 
@@ -89,7 +89,7 @@ class ContractsController < ApplicationController
     # It's needed because manager are scoped, at this point
     Client.send(:with_exclusive_scope) do
       @contract = Contract.new(params[:contract])
-      @contract.creator = session[:user]
+      @contract.creator = @session_user
       # Due to a limitation of Rails <= 2.1, we cannot create a full
       # association in one pass.
       # TODO : review this problem on a > Rails
@@ -113,7 +113,7 @@ class ContractsController < ApplicationController
 
   def update
     @contract = Contract.find(params[:id])
-    @contract.creator = session[:user] unless @contract.creator
+    @contract.creator = @session_user unless @contract.creator
     _aggregate_commitments
     if @contract.update_attributes(params[:contract])
       flash[:notice] = _('Contract was successfully updated.')
@@ -142,7 +142,9 @@ class ContractsController < ApplicationController
 
   def supported_software
     @contract = Contract.find(params[:id]) unless @contract
-    @versions = @contract.versions
+    ordered_by_software = { :include => [:software], :order =>
+      'softwares.name ASC, versions.name DESC' }
+    @versions = @contract.versions.all(ordered_by_software)
     @softwares = Software.find_select
   end
 
@@ -180,23 +182,18 @@ class ContractsController < ApplicationController
   end
 
   def ajax_subscribe
-    _ajax(Subscription.create(:user => session[:user],
-      :model_id => params[:id], :model_type => 'Contract'))
+    _ajax(Subscription.create(:user => @session_user,
+                              :model => Contract.find(params[:id])))
   end
 
   def ajax_unsubscribe
-    _ajax(Subscription.destroy_all(:user_id => session[:user].id,
-        :model_type => 'Contract', :model_id => params[:id]))
+    _ajax(Subscription.destroy_by_user_and_model(@session_user,
+                                                 Contract.find(params[:id])))
   end
 
 private
   def _ajax(test)
-    return unless session[:user]
-    if test
-      status = :ok
-    else
-      status = :bad_request
-    end
+    status = (test ? :ok : :bad_request)
     show
     render :partial => 'subscribers', :status => status
   end
@@ -206,7 +203,7 @@ private
     Client.send(:with_exclusive_scope) do
       @clients = Client.find_select
     end
-    @commitments = Commitment.find(:all, Commitment::OPTIONS)
+    @commitments = Commitment.all(Commitment::OPTIONS)
     @engineers = User.find_select(User::EXPERT_OPTIONS)
     @teams = Team.find_select
     @contract_team = @contract.teams

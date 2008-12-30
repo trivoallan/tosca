@@ -50,8 +50,6 @@ class Contract < ActiveRecord::Base
 
   validate :must_open_before_close
 
-  after_save :after_save_contract
-
   def must_open_before_close
     valid = true
     if self.opening_time.to_i > self.closing_time.to_i
@@ -87,7 +85,7 @@ class Contract < ActiveRecord::Base
   end
 
   # We have open clients which can declare
-  # issues on everything. It's with the "socle" field.
+  # issues on everything.
   def softwares
     if rule_type == 'Rules::Component' and rule.max == -1
       return Software.find(:all, :order => 'softwares.name ASC')
@@ -149,25 +147,28 @@ class Contract < ActiveRecord::Base
   end
 
   def subscribers
-    self.subscriptions.collect { |s| s.user }
+    self.subscriptions.collect(&:user)
   end
 
   def subscribed?(user)
-    not (Subscription.all(:conditions => {:user_id => user.id,
-          :model_type => 'contract', :model_id => self.id}).empty?)
+    return false if user.nil?
+    conditions = {:user_id => user.id,
+      :model_type => 'contract', :model_id => self.id}
+    Subscription.count(:conditions => conditions) >= 1
   end
 
   private
-  def after_save_contract(record)
-    # To make sure we have only one time a engineer
+  # To make sure we have only once an engineer
+  before_save do |record|
     record.engineer_users = record.engineer_users -
-      (record.teams.collect { |t| t.users }.flatten)
-    
-    #If we have a new manager we subscribe him
-    if record.manager != self.manager
-      Subscription.create(:user => record.manager, :model => self)
+      (record.teams.collect(&:users).flatten)
+  end
+
+  # Ensure tam is subscribed
+  after_save do |record|
+    unless record.subscribed?(record.manager)
+      Subscription.create(:user => record.manager, :model => record)
     end
-    true
   end
 
 end

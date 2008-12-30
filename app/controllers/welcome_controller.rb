@@ -18,7 +18,7 @@
 #
 class WelcomeController < ApplicationController
   # Includes somme helpers
-  helper :issues, :account, :contributions, :softwares, :groups, :documents, :clients
+  helper :issues, :account, :contributions, :softwares, :groups, :clients
 
   # Default page, redirect if necessary
   def index
@@ -54,21 +54,21 @@ class WelcomeController < ApplicationController
     if suggestion
       unless suggestion[:team].blank?
         Notifier::deliver_welcome_idea(suggestion[:team],
-                                       :team, session[:user])
+                                       :team, @session_user)
       end
       unless suggestion[:tosca].blank?
         Notifier::deliver_welcome_idea(suggestion[:tosca],
-                                       :tosca, session[:user])
+                                       :tosca, @session_user)
       end
       flash[:notice] = _("Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.")
       redirect_to_home
     end
   end
-  
-  #Action to clear the cache of Tosca 
+
+  #Action to clear the cache of Tosca
   # !! ONLY FOR ADMINS !!
   def clear_cache
-    if session[:user].role_id == 1
+    if @session_user.role_id == 1
       #TODO : Find a better way, and call directly the rake task tmp:cache:clear
       FileUtils.rm_rf(Dir['tmp/cache/[^.]*'])
       flash[:notice] = _("Cache cleared !")

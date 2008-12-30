@@ -24,7 +24,7 @@
    <% desc =  _('SLA') + ' ' + StaticImage::sla_running %>
    <%= link_to_remote_tab(desc, 'ajax_cns', options) %>
  </li>
- <% if session[:user].engineer? %>
+ <% if @session_user.engineer? %>
  <li>
    <% options[:url] = ajax_actions_issue_path(issue_id) %>
    <% desc =  "#{_('Actions')} #{image_star(_('Actions'))}" %>

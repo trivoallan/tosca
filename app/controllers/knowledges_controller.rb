@@ -47,7 +47,7 @@ class KnowledgesController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'knowledges_info'
+      @partial_panel = 'index_panel'
     end
 
   end
@@ -68,7 +68,7 @@ class KnowledgesController < ApplicationController
 
   def create
     @knowledge = Knowledge.new(params[:knowledge])
-    @knowledge.engineer_id = session[:user].id
+    @knowledge.engineer_id = @session_user.id
 
     if @knowledge.save
       flash[:notice] = _('Your knowledge was successfully created.')

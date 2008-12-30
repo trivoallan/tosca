@@ -7,7 +7,7 @@
     <%= select_empty(:comment, :statut_id, @statuts) %>
   </td>
   <% end %>
-  <% if session[:user].engineer? %>
+  <% if @session_user.engineer? %>
   <td align="center">
     <label for="comment_severity_id"><%= _("Severity") %></label>
     <%= select_empty(:comment, :severity_id, @severities) %>
@@ -27,9 +27,9 @@
 <table width="100%" class="comment">
  <tr class="public">
   <td class="infos" align="center"><br />
-     <%= avatar(session[:user]) %><br />
+     <%= avatar(@session_user) %><br />
      <br /><br />
-    <% if session[:user].engineer? %>
+    <% if @session_user.engineer? %>
        <label for="comment_private"><%= _("Private ?") %></label>
      <%= check_box(:comment, :private) %><br />
      <br /><br /><br /><br /><br /><br /><br />

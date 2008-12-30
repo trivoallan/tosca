@@ -27,7 +27,7 @@
       </tr><tr id="versions">
         <%= render :partial => 'list_versions' %>
       </tr>
-        <% if session[:user].engineer? %>
+        <% if @session_user.engineer? %>
           <tr><th><label for="contribution_id_mantis">Id Mantis</label></th>
               <td><%= text_field 'contribution', 'id_mantis', :size => 3 %></td></tr>
         <% end %>

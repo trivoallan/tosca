@@ -37,7 +37,7 @@ class VersionsController < ApplicationController
       render :layout => false
     else
       _panel
-      @partial_for_summary = 'versions_info'
+      @partial_panel = 'index_panel'
     end
   end
 
@@ -91,9 +91,6 @@ class VersionsController < ApplicationController
   private
   def _form
     @softwares = Software.find_select
-    @groups = Group.find_select
-    @socles = Socle.find_select
-    @contracts = Contract.find_select(Contract::OPTIONS)
   end
 
   def _panel

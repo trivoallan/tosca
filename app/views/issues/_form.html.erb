@@ -24,7 +24,7 @@
 
         <% if @contracts.size > 1 %>
           <td>
-            <% if session[:user].engineer? %>
+            <% if @session_user.engineer? %>
               <%# We have an empty to make sure YOU choose the contract %>
               <%= select_empty(:issue, :contract_id, @contracts) %>
             <% else #recipient %>
@@ -52,7 +52,7 @@
         <td><div id="recipient"><%= select(:issue, :recipient_id, @recipients) %></div></td>
       </tr>
 
-      <% if session[:user].engineer? %>
+      <% if @session_user.engineer? %>
       <tr>
         <th><label for="issue_engineer_id"><%=_("Assigned to")%></label></th>
         <td>
@@ -79,7 +79,7 @@
         <%= render :partial => 'version' %>
       </tr>
 
-      <% if session[:user].engineer? %>
+      <% if @session_user.engineer? %>
       <tr>
         <td colspan="2"><hr /></td>
       </tr>

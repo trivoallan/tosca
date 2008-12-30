@@ -27,7 +27,9 @@ module FormsHelper
   # Collection doit contenir des objects qui ont un 'id' et un 'name'
   # objectcollection contient le tableau des objects déjà présents
   # C'est la fonction to_s qui est utilisée pour le label
-  # L'option :size permet une mise en colonne
+  # Option
+  #   :size => set a column disposition
+  #   :no_empty_field => do not set the additional empty field
   # Ex : hbtm_check_box( @software.skills, @skills, 'skill_ids')
   def hbtm_check_box( objectcollection, collection, name , options={})
     return '' if collection.nil? || collection.empty?
@@ -58,7 +60,11 @@ module FormsHelper
       end
     end
     out << '</tr></table>'
-    out << "<input id=\"#{name_w3c}_\" type=\"hidden\" name=\"#{name}[]\" value=\"\" />"
+    unless options.has_key? :no_empty_field
+      # Needed for clearing an hbtm relation
+      out << "<input id=\"#{name_w3c}_\" type=\"hidden\" name=\"#{name}[]\" value=\"\" />"
+    end
+    out
   end
 
   # Collection have to contain object which respond to 'id' and 'name'
@@ -143,7 +149,7 @@ module FormsHelper
   # Display a quick form field to go to a ticket
   # TODO : use yield to include what we want in the form
   # Call it like :
-  #  if session[:user] && session[:user].authorized?('issues/index')
+  #  if @session_user && @session_user.authorized?('issues/index')
   #    out << form_tag(issues_path)
   #    out <<  search_issue_field
   #    out << end_form_tag

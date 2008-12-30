@@ -19,4 +19,15 @@
 class Issuetype < ActiveRecord::Base
   has_many :commitments
   has_many :issues
+  has_many :workflows
+
+  def self.allowed_status(from_status_id)
+    w = self.workflows.first(:conditions => {:status_id => from_status_id})
+    if w
+      w.allowed_status_ids
+    else # default case : nearly all statuses
+      [2,3,4,5,6,7,8].delete_if{|s| s == from_status_id}
+    end
+  end
+
 end

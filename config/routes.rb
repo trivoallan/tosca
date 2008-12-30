@@ -22,10 +22,6 @@
 require_dependency 'routes_overrides'
 
 ActionController::Routing::Routes.draw do |map|
-  map.resources :subscriptions
-
-  map.resources :hyperlinks
-
   # The priority is based upon order of creation:
   #   first created -> highest priority.
 
@@ -48,7 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   # routing files to prevent download from public access
   # TODO : convertir en route nommée
   options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
-  %w(file patch fichier archive).each { |file|
+  %w(file patch archive).each { |file|
     map.files(":file_type/#{file}/:id/:filename", options)
   }
 
@@ -91,12 +87,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get, :experts => :get, :ajax_list_versions => :post },
     :member => { :list => :get }
-  map.resources :documents
   map.resources :commitments
   map.resources :contributionstates
-  map.resources :fichiers
-  map.resources :fournisseurs
   map.resources :groups
+  map.resources :hyperlinks
   # We cannot have 'image' for singular, coz'
   # image_path is used in ActionView::Helpers of Rails
   map.resources :images, :singular => 'img'
@@ -104,12 +98,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :licenses
   map.resources :softwares,
     :collection => {:ajax_update_tags => :get}
-  map.resources :machines
-  # 'news'.singularize == 'news' So problems comes
-  map.resources :news, :singular => 'new',
-    :collection => { :newsletter => :get, :newsletter_result => :post }
-  map.resources :ossas
-  map.resources :pages
   map.resources :permissions
   map.resources :phonecalls,  :collection => { :ajax_recipients => :get }
   map.resources :attachments
@@ -142,9 +130,10 @@ ActionController::Routing::Routes.draw do |map|
     map.resources :credits, :controller => "rules/credits",
       :path_prefix => "/rules", :name_prefix => 'rules_'
 
+  map.resources :severities
   map.resources :socles
   map.resources :statuts, :member => { :help => :get }
-  map.resources :severities
+  map.resources :subscriptions
   map.resources :supports
   map.resources :tags
   map.resources :teams, :collection => {
@@ -153,9 +142,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :time_tickets
   map.resources :contributiontypes
   map.resources :issuetypes
-  map.resources :documenttypes
-  map.resources :urls
   map.resources :versions
+  map.resources :workflows
 
   # Sample of regular route:
   # map.connect 'products/:id', :controller => 'catalog', :action => 'view'

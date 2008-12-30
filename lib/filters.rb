@@ -58,7 +58,7 @@ module Filters
     extend Shared
   end
 
-  class Clients < Struct.new('Clients', :text, :system_id, :active)
+  class Clients < Struct.new('Clients', :text, :active)
     extend Shared
   end
 
@@ -73,10 +73,6 @@ module Filters
   end
 
   class Accounts < Struct.new('Accounts', :name, :client_id, :role_id)
-    extend Shared
-  end
-
-  class Documents < Struct.new('Documents', :name, :documenttype_id, :filename)
     extend Shared
   end
 
