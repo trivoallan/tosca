@@ -98,4 +98,14 @@ class ContractTest < Test::Unit::TestCase
     end
   end
 
+  def test_subscribers
+    Contract.find(:all).each do |c|
+      c.subscribers.each do |s|
+        assert_kind_of User, s
+        assert s.id
+        assert s.contracts_subscribed.include? c
+      end
+    end
+  end
+
 end

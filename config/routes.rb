@@ -120,7 +120,8 @@ ActionController::Routing::Routes.draw do |map|
       :ajax_untag => :delete,
       :ajax_add_tag => :post,
       :ajax_subscribe => :post,
-      :ajax_unsubscribe => :delete }
+      :ajax_unsubscribe => :delete,
+      :ajax_subscribe_someone => :post }
   map.resources :reporting, :collection => { :flux => :get }
   map.resources :roles
 

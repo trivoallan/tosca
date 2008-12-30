@@ -244,6 +244,9 @@ class IssuesController < ApplicationController
       [ 'contributions.software_id = ?', software_id ] }
     @contributions = (software_id ?
        Contribution.all(options).collect{|c| [c.name, c.id]} : [])
+    if @session_user.engineer?
+      @engineers = User.find_select_engineers_by_contract_id(@issue.contract_id)
+    end
     render :partial => 'issues/tabs/tab_actions', :layout => false
   end
 
@@ -320,6 +323,12 @@ class IssuesController < ApplicationController
     Subscription.destroy_by_user_and_model(@session_user,
                                            Issue.find(params[:id]))
     ajax_actions
+  end
+
+  def ajax_subscribe_someone
+    res = Subscription.create(:user_id => params[:user_id],
+      :model => Issue.find(params[:id]))
+    head(res ? :ok : :error)
   end
 
   private

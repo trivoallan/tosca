@@ -364,7 +364,7 @@ class Issue < ActiveRecord::Base
   end
 
   def subscribers
-    self.subscriptions.collect { |s| s.user }
+    (self.subscriptions.collect(&:user) + (self.contract.subscribers)).uniq
   end
 
   #Find the pending requests of a user

@@ -212,6 +212,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.find_select_engineers_by_contract_id(contract_id)
+    joins = 'INNER JOIN contracts_users cu ON cu.user_id=users.id'
+    conditions = [ 'cu.contract_id = ?', contract_id ]
+    options = {:find => {:conditions => conditions, :joins => joins}}
+    User.send(:with_scope, options) do
+      User.find_select(User::EXPERT_OPTIONS)
+    end
+  end
+
   def name
     strike(:name)
   end
