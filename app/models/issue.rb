@@ -337,11 +337,12 @@ class Issue < ActiveRecord::Base
   # Generate the cc for an outgoing mail for this issue
   # private indicates if it's reserved for internal use or not
   def compute_copy(private = false)
+    subscribers_emails = subscribers.collect { |s| s.email }.join(',')
     if private
-      contract.internal_ml
+      subscribers_emails
     else
       res = []
-      [ contract.internal_ml, contract.customer_ml, mail_cc ].each { |m|
+      [ contract.customer_ml, mail_cc, subscribers_emails ].each { |m|
         res << m unless m.blank?
       }
       res.join(',')
@@ -439,5 +440,5 @@ class Issue < ActiveRecord::Base
     end
     res
   end
-
+ 
 end
