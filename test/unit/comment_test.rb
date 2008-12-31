@@ -36,24 +36,24 @@ class CommentTest < Test::Unit::TestCase
 
   def test_create_comment
     c = Comment.new(:text => 'this is a comment',
-                        :issue => Issue.find(:first),
-                        :user => User.find(:first))
+      :issue => Issue.find(:first),
+      :user => User.find(:first))
     assert c.save!
     c = Comment.new(:text => 'this is a comment',
-                        :issue => Issue.find(:first),
-                        :user => User.find(:first),
-                        :private => false, :statut_id => 1)
+      :issue => Issue.find(:first),
+      :user => User.find(:first),
+      :private => false, :statut_id => 1)
     assert c.save!
     # cannot change privately the status
     c = Comment.new(:text => 'this is a comment',
-                        :issue => Issue.find(:first),
-                        :user => User.find(:first),
-                        :private => true, :statut_id => 1)
+      :issue => Issue.find(:first),
+      :user => User.find(:first),
+      :private => true, :statut_id => 1)
     assert !c.save
     # cannot declare a comment without a issue
     c = Comment.new(:text => 'this is a comment',
-                        :user => User.find(:first),
-                        :private => true, :statut_id => 1)
+      :user => User.find(:first),
+      :private => true, :statut_id => 1)
     assert !c.save
   end
 
@@ -83,4 +83,13 @@ class CommentTest < Test::Unit::TestCase
     end
   end
 
+  def test_automatic_subscription
+    issue = Issue.find(:first)
+    user = User.find(:first)
+    c = Comment.new(:text => 'this is a comment',
+      :issue => issue,
+      :user => user)
+    assert c.save!
+    assert issue.subscribed?(user)
+  end
 end

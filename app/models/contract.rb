@@ -153,7 +153,7 @@ class Contract < ActiveRecord::Base
   def subscribed?(user)
     return false if user.nil?
     conditions = {:user_id => user.id,
-      :model_type => 'contract', :model_id => self.id}
+      :model_type => 'Contract', :model_id => self.id}
     Subscription.count(:conditions => conditions) >= 1
   end
 

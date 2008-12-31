@@ -90,7 +90,7 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_engineers
-    Contract.find(:all).each do |c|
+    Contract.all.each do |c|
       c.engineers.each { |i|
         assert_kind_of User, i
         assert i.id
@@ -99,12 +99,19 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_subscribers
-    Contract.find(:all).each do |c|
+    Contract.all.each do |c|
       c.subscribers.each do |s|
         assert_kind_of User, s
         assert s.id
         assert s.contracts_subscribed.include? c
       end
+    end
+  end
+
+  def test_tam_subscribed
+    Contract.all.each do |c|
+      #We only test contracts with a tam
+      assert c.subscribed?(c.manager) if c.manager
     end
   end
 
