@@ -2,9 +2,9 @@
 				     controller.action_name == 'ajax_place') %>
 <% if @user.engineer? %>
 <div class="show">
-  <h1><b><%= _('Engineer') %></b></h1><br />
+  <h1><b><%= _('Engineer') %></b></h1>
 
-  <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b></p>
+  <p><h3><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </h3></p>
   <% unless @user.knowledges.empty? %>
      <% options = {:edit => 'knowledge', :no_title => true} %>
      <%= show_list(@user.knowledges, '', options) do |k|
@@ -13,8 +13,17 @@
   <hr />
   <% end %>
 
+  <p><h3><%= _('Subscriptions :') %></h3></p>
+  <% unless @user.contracts_subscribed.empty? %>
+    <%= show_list(@user.contracts_subscribed, 'contract') { |c| link_to_contract c } %>
+  <% end %>
+  <% unless @user.softwares_subscribed.empty? %>
+    <%= show_list(@user.softwares_subscribed, 'software') { |s| link_to_softwares s } %>
+  <% end %>
+  <hr/>
+
   <% unless @contracts.empty? %>
-   <p><label><%= _('Contracts')%></label></p>
+   <p><h3><%= _('Contracts :')%></h3></p>
    <div id="contracts" class="long_bloc_scroll">
     <%# We display only the contracts of the user %>
     <%= hbtm_check_box( @user.own_contracts,
@@ -24,7 +33,7 @@
   <% end %>
 
   <% if @user.team %>
-  <p><label><%= _('Contracts of the Team') %></label></p>
+  <p><h3><%= _('Contracts of the Team :') %></h3></p>
   <div id="team_contracts" class="long_bloc_scroll">
     <%= show_list(@user.team.contracts, '') do |c|
            link_to c.name, contract_path(c)

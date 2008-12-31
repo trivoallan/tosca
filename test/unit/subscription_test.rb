@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class SubscriptionTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  fixtures :all
+
+  def test_strings
+    check_strings Subscription
   end
+
 end

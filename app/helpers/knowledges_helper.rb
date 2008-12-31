@@ -23,11 +23,13 @@ module KnowledgesHelper
   def link_to_knowledge(k)
     return '-' unless k and k.is_a? Knowledge
     name = "#{k.level} - #{k.name}"
-    link_to name, knowledge_path(k)
+    res = link_to name, knowledge_path(k)
+    res << ' ' + StaticImage::subscription if k.subscribed?
+    res
   end
 
   def link_to_new_knowledge
-    return '' if @session_user.engineer?
+    return '' unless @session_user.engineer?
     options = new_knowledge_path
     link_to(image_create('a knowledge'), options)
   end

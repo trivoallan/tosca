@@ -18,7 +18,7 @@
 #
 
 class AccountController < ApplicationController
-  helper :knowledges
+  helper :knowledges, :contracts, :issues
 
   cache_sweeper :user_sweeper, :only => [:signup, :update]
 

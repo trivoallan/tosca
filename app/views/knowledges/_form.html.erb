@@ -1,18 +1,21 @@
 <%= error_messages_for 'knowledge' %>
 
 <table class="show">
- <tr>
-  <th><%= _('Expert')%></th>
-  <td><%= @session_user.name %></td>
+  <tr>
+    <th colspan="2"><%= _('User')%> <%= @session_user.name %></th>
+    <th colspan="4" align="center"><%= _('Choose a domain OR a software') %></th>
+  </tr>
+  <tr>
+    <th><label for="knowledge_level"><%= _('Level') %></label></th>
+    <td><%= text_field :knowledge, :level, :size => 1, :maxlength => 1 %></td>
 
-  <th colspan="4" align="center"><%= _('Choose a domain OR a software') %></th>
- </tr><tr>
-  <th><label for="knowledge_level"><%= _('Level') %></label></th>
-  <td><%= text_field :knowledge, :level, :size => 1, :maxlength => 1 %></td>
-
-  <th><label for="knowledge_skill_id"><%= _('Domain') %></label></th>
-  <td><%= select_empty(:knowledge, :skill_id, @skills) %></td>
-  <th><label for="knowledge_software_id"><%= _('Software') %></label></th>
-  <td><%= select_empty(:knowledge, :software_id, @software) %></td>
- </tr>
+    <th><label for="knowledge_skill_id"><%= _('Domain') %></label></th>
+    <td><%= select_empty(:knowledge, :skill_id, @skills) %></td>
+    <th><label for="knowledge_software_id"><%= _('Software') %></label></th>
+    <td><%= select_empty(:knowledge, :software_id, @software) %></td>
+  </tr>
+  <tr>
+    <th><label for="knowledge_subscribed"><%= _('Subscribed ?') %></label></th>
+    <td><%= check_box(:knowledge, :subscribed) %></td>
+  </tr>
 </table>

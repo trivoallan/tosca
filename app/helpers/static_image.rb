@@ -287,6 +287,10 @@ class StaticImage < Static::ActionView
     @@unsubscribe ||= image_tag('icons/report_delete.png', options('Unsubscribe', '16x16'))
   end
 
+  @@subscription = nil
+  def self.subscription
+    @@subscription ||= image_tag('icons/feed.png', options('Subscribed', '16x16'))
+  end
 
   ##############################################
   # Severity

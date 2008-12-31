@@ -22,7 +22,7 @@ class Knowledge < ActiveRecord::Base
   belongs_to :skill
   belongs_to :software
 
-  has_many :subscritions, :as => :model
+  has_many :subscriptions, :as => :model
 
   validates_presence_of :engineer_id
   validate do |record|
@@ -41,6 +41,29 @@ class Knowledge < ActiveRecord::Base
 
   def name
     ( skill_id && skill_id != 0 ? skill.name : software.name )
+  end
+
+  def subscribed=(value)
+    if value == '1'
+      Subscription.create(:user => self.engineer, :model => self)
+    else
+      Subscription.destroy_by_user_and_model(self.engineer, self)
+    end
+  end
+  def subscribed
+    return 0 unless self.engineer and self.engineer.id and self.id
+    (Subscription.find(:all, :conditions => { :user_id => self.engineer.id,
+      :model_id => self.id, :model_type => 'Knowledge'}).empty? ? 0 : 1)
+  end
+  
+  def subscribed?
+    (self.subscribed == 1)
+  end
+
+  def find_subscriptions_by_user(user)
+    Subscription.find(:all, :conditions => { :user_id => user.id,
+        :model_id => self.id,
+        :model_type => 'Knowledge'})
   end
 
 end
