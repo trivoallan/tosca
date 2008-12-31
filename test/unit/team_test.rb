@@ -29,5 +29,26 @@ class TeamTest < ActiveSupport::TestCase
     assert_equal ossa.to_param, "1-OSSA"
     assert_equal support.to_param, "2-Support"
   end
-  
+ 
+  def test_engineers_id
+    Team.all.each do |t|
+      t.engineers_id.each do |id|
+        user = User.find(id)
+        assert user
+        assert user.engineer?
+        assert user.team.id == t.id
+      end
+    end
+  end
+ 
+  def test_engineers_collection_select
+    Team.all.each do |t|
+      t.engineers_collection_select.each do |e|
+        user = User.find(e.id)
+        assert user.engineer?
+        assert user.team.id = t.id
+      end
+    end
+  end
+
 end

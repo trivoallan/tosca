@@ -236,4 +236,40 @@ class UserTest < Test::Unit::TestCase
       end
     end
   end
+
+  def test_find_select_engineers_by_contract_id
+    Contract.all.each do |c|
+      User.find_select_engineers_by_contract_id(c.id).each do |u|
+        user = User.find(u.last)
+        assert_equal user.name, u.first
+        assert user.engineer?
+        assert user.contracts.collect { |contract| contract.id == c.id }.include?(true)
+      end
+    end
+  end
+
+  def test_contracts_subscribed
+    User.all.each do |u|
+      u.contracts_subscribed.each do |c|
+        assert_kind_of Contract, c
+      end
+    end
+  end
+
+  def test_issues_subscribed
+    User.all.each do |u|
+      u.issues_subscribed.each do |c|
+        assert_kind_of Issue, c
+      end
+    end
+  end
+
+  def test_softwares_subscribed
+    User.all.each do |u|
+      u.softwares_subscribed.each do |c|
+        assert_kind_of Software, c
+      end
+    end
+  end
+  
 end
