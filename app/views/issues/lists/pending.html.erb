@@ -7,13 +7,13 @@
              :locals => { :issues => @own_issues } %>
 <% end %>
 
-<% if @session_user.engineer? and not @manager_issues.empty? %>
+<% if @session_user.engineer? and not @tam_issues.empty? %>
   <h1><%= n_('The contracts I manage has %d pending issue', 
   'The contracts I manage has %d pending issues', 
-  @manager_issues.size) % @manager_issues.size %>
+  @tam_issues.size) % @tam_issues.size %>
     <%= StaticImage::spinner %></h1>
   <%= render :partial => 'issues/lists/pending_table',
-             :locals => { :issues => @manager_issues } %>
+             :locals => { :issues => @tam_issues } %>
 <% end %>
 
 <% # Don't display both if one is empty %>
@@ -25,6 +25,6 @@
              :locals => { :issues => @team_issues } %>
 <% end %>
 
-<% if @team_issues.empty? and @own_issues.empty? and @manager_issues.empty? %>
+<% if @team_issues.empty? and @own_issues.empty? and @tam_issues.empty? %>
   <h1><%= _('No pending issue') %></h1>
 <% end %>

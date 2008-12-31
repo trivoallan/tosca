@@ -27,14 +27,14 @@ class IssuesController < ApplicationController
     user = @session_user
     @own_issues = Issue.find_pending_user(user)
 
-    @manager_issues = []
+    @tam_issues = []
     unless user.recipient?
-      @manager_issues = Issue.find_pending_contracts(user.managed_contract_ids)
-      @manager_issues = @manager_issues - @own_issues
+      @tam_issues = Issue.find_pending_contracts(user.managed_contract_ids)
+      @tam_issues = @tam_issues - @own_issues
     end
 
     @team_issues = Issue.find_pending_contracts(user.contracts)
-    @team_issues = @team_issues - @manager_issues - @own_issues
+    @team_issues = @team_issues - @tam_issues - @own_issues
 
     render :template => 'issues/lists/pending'
   end

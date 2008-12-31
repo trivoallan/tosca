@@ -38,7 +38,7 @@ class ContractsController < ApplicationController
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(contracts_filters, [
         [:text, 'clients.name', 'contracts.name', :multiple_like],
-        [:manager_id, 'contracts.manager_id', :equal]
+        [:tam_id, 'contracts.tam_id', :equal]
       ])
       @filters = contracts_filters
     end
@@ -229,7 +229,7 @@ private
   end
 
   def _panel
-    @managers = User.managers
+    @tams = User.tams
   end
 
 end

@@ -111,7 +111,7 @@ class ContractTest < Test::Unit::TestCase
   def test_tam_subscribed
     Contract.all.each do |c|
       #We only test contracts with a tam
-      assert c.subscribed?(c.manager) if c.manager
+      assert c.subscribed?(c.tam) if c.tam
     end
   end
 

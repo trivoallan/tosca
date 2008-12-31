@@ -103,14 +103,14 @@ class ContractsControllerTest < ActionController::TestCase
   def test_tam_subscription
     get :edit, :id => 1
     form = select_form "main_form"
-    form.contract.manager_id = 2 # admin => manager
+    form.contract.tam_id = 2 # admin => tam
     form.submit
     assert_response :redirect
     assert_valid assigns(:contract)
     assert_redirected_to :action => 'show', :id => 1
 
     manager = User.find_by_login('manager')
-    assert_equal assigns(:contract).manager, manager
+    assert_equal assigns(:contract).tam, manager
     assert assigns(:contract).subscribers.include?(manager)
   end
 

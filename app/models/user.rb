@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   has_many :attachments
   has_many :comments
   has_many :issues, :dependent => :destroy, :foreign_key => :recipient_id
-  has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :manager_id
+  has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :tam_id
 
   has_many :knowledges, :order => 'knowledges.level DESC', :foreign_key => :engineer_id
   has_many :phonecalls
@@ -160,9 +160,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.managers
+  def self.tams
    self.find_select( { :joins => :own_contracts, :group => "users.id",
-     :conditions => "contracts.manager_id = users.id" } )
+     :conditions => "contracts.tam_id = users.id" } )
   end
 
   # To manage permissions/roles :

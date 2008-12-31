@@ -21,7 +21,7 @@ class Contract < ActiveRecord::Base
   belongs_to :rule, :polymorphic => true
   belongs_to :creator, :class_name => 'User'
   belongs_to :salesman, :class_name => 'User'
-  belongs_to :manager, :class_name => 'User'
+  belongs_to :tam, :class_name => 'User'
 
   has_many :issues
   has_many :appels
@@ -166,8 +166,8 @@ class Contract < ActiveRecord::Base
 
   # Ensure tam is subscribed
   after_save do |record|
-    unless record.subscribed?(record.manager)
-      Subscription.create(:user => record.manager, :model => record)
+    unless record.subscribed?(record.tam)
+      Subscription.create(:user => record.tam, :model => record)
     end
   end
 

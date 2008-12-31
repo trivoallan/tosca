@@ -202,12 +202,12 @@ class UserTest < Test::Unit::TestCase
     end
   end
 
-  def test_managers
-    User.managers.each do |u|
+  def test_tams
+    User.tams.each do |u|
       user = User.find(u.last)
       assert_equal user.name, u.first
-      #The user is at least a manager of one of his contracts
-      assert user.contracts.collect { |c| c.manager_id == user.id}.include?(true)
+      #The user is at least a tam of one of his contracts
+      assert user.contracts.collect { |c| c.tam_id == user.id}.include?(true)
     end
   end
 
