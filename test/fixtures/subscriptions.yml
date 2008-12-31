@@ -3,13 +3,16 @@ subscription_one:
   model_type: Contract
   user_id: 2
   model_id: 1
+  id: 1
 subscription_two:
   updated_on: <%= Time.now %>
   model_type: Contract
   user_id: 1
   model_id: 1
+  id: 2
 subscription_three:
   updated_on: <%= Time.now %>
   model_type: Contract
   user_id: 1
   model_id: 2
+  id: 3
