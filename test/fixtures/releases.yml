@@ -1,31 +1,29 @@
-release_ff_2_0_0_13_r_1:
+--- 
+release_00001: 
+  name: "1"
+  version_id: 1
+  inactive: false
   id: 1
-  name: "1"
-  version_id: 1
-  contract_id: 2
   packaged: false
+  contract_id: 2
+release_00002: 
+  name: "2"
+  version_id: 1
   inactive: false
-
-release_ff_2_0_0_13_r_2:
   id: 2
-  name: "2"
-  version_id: 1
-  contract_id: 2
   packaged: false
-  inactive: false
-
-release_ff_2_0_0_12_r_1:
-  id: 3
+  contract_id: 2
+release_00003: 
   name: "1"
   version_id: 4
-  contract_id: 2
-  packaged: false
   inactive: false
-
-release_ff_2_0_0_12_r_2:
-  id: 4
+  id: 3
+  packaged: false
+  contract_id: 2
+release_00004: 
   name: "2"
   version_id: 4
-  contract_id: 2
-  packaged: false
   inactive: false
+  id: 4
+  packaged: false
+  contract_id: 2

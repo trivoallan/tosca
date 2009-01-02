@@ -1,18 +1,25 @@
-subscription_one:
-  updated_on: <%= Time.now %>
+--- 
+subscription_00009: 
+  updated_on: 2009-01-02 16:55:03 +01:00
+  model_type: Issue
+  id: 9
+  user_id: 2
+  model_id: 12
+subscription_00001: 
+  updated_on: 
   model_type: Contract
+  id: 1
   user_id: 2
   model_id: 1
-  id: 1
-subscription_two:
-  updated_on: <%= Time.now %>
+subscription_00002: 
+  updated_on: 
   model_type: Contract
+  id: 2
   user_id: 1
   model_id: 1
-  id: 2
-subscription_three:
-  updated_on: <%= Time.now %>
+subscription_00003: 
+  updated_on: 
   model_type: Contract
+  id: 3
   user_id: 1
   model_id: 2
-  id: 3

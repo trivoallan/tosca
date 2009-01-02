@@ -1,8 +1,9 @@
-elapsed_01693: 
-  until_now: 0
-  issue_id: 1
-  id: 1693
-  taken_into_account: 0
+--- 
+elapsed_01613: 
+  until_now: 113039
+  issue_id: 1008
+  id: 1613
+  taken_into_account: 208
   workaround: 
   correction: 
 elapsed_01000: 
@@ -12,25 +13,18 @@ elapsed_01000:
   taken_into_account: 46
   workaround: 56033
   correction: 56033
+elapsed_01693: 
+  until_now: 0
+  issue_id: 1
+  id: 1693
+  taken_into_account: 0
+  workaround: 
+  correction: 
 elapsed_01694: 
   until_now: 1
   issue_id: 2
   id: 1694
   taken_into_account: 1
-  workaround: 
-  correction: 
-elapsed_01695: 
-  until_now: 1
-  issue_id: 4
-  id: 1695
-  taken_into_account: 1
-  workaround: 
-  correction: 
-elapsed_01596: 
-  until_now: 300448
-  issue_id: 991
-  id: 1596
-  taken_into_account: 36
   workaround: 
   correction: 
 elapsed_00914: 
@@ -40,53 +34,18 @@ elapsed_00914:
   taken_into_account: 0
   workaround: 317416
   correction: 317416
-elapsed_01696: 
-  until_now: 2580806
-  issue_id: 5
-  id: 1696
-  taken_into_account: 78
+elapsed_01596: 
+  until_now: 300448
+  issue_id: 991
+  id: 1596
+  taken_into_account: 36
   workaround: 
   correction: 
-elapsed_01697: 
-  until_now: 1137988
-  issue_id: 6
-  id: 1697
-  taken_into_account: 120
-  workaround: 
-  correction: 
-elapsed_00916: 
-  until_now: 23314
-  issue_id: 256
-  id: 916
-  taken_into_account: 97
-  workaround: 23314
-  correction: 23314
-elapsed_01192: 
-  until_now: 2580805
-  issue_id: 662
-  id: 1192
-  taken_into_account: 77
-  workaround: 
-  correction: 
-elapsed_01698: 
-  until_now: 113039
-  issue_id: 7
-  id: 1698
-  taken_into_account: 208
-  workaround: 
-  correction: 
-elapsed_01699: 
-  until_now: 23314
-  issue_id: 8
-  id: 1699
-  taken_into_account: 97
-  workaround: 23314
-  correction: 23314
-elapsed_01480: 
-  until_now: 1137987
-  issue_id: 866
-  id: 1480
-  taken_into_account: 119
+elapsed_01695: 
+  until_now: 1
+  issue_id: 4
+  id: 1695
+  taken_into_account: 1
   workaround: 
   correction: 
 elapsed_01700: 
@@ -96,6 +55,27 @@ elapsed_01700:
   taken_into_account: 1
   workaround: 1
   correction: 1
+elapsed_01696: 
+  until_now: 2580806
+  issue_id: 5
+  id: 1696
+  taken_into_account: 78
+  workaround: 
+  correction: 
+elapsed_00916: 
+  until_now: 23314
+  issue_id: 256
+  id: 916
+  taken_into_account: 97
+  workaround: 23314
+  correction: 23314
+elapsed_01697: 
+  until_now: 1137988
+  issue_id: 6
+  id: 1697
+  taken_into_account: 120
+  workaround: 
+  correction: 
 elapsed_01701: 
   until_now: 1650168
   issue_id: 10
@@ -103,10 +83,38 @@ elapsed_01701:
   taken_into_account: 1
   workaround: 3
   correction: 3
-elapsed_01613: 
+elapsed_01698: 
   until_now: 113039
-  issue_id: 1008
-  id: 1613
+  issue_id: 7
+  id: 1698
   taken_into_account: 208
+  workaround: 
+  correction: 
+elapsed_01192: 
+  until_now: 2580805
+  issue_id: 662
+  id: 1192
+  taken_into_account: 77
+  workaround: 
+  correction: 
+elapsed_01699: 
+  until_now: 23314
+  issue_id: 8
+  id: 1699
+  taken_into_account: 97
+  workaround: 23314
+  correction: 23314
+elapsed_01704: 
+  until_now: 0
+  issue_id: 12
+  id: 1704
+  taken_into_account: 0
+  workaround: 
+  correction: 
+elapsed_01480: 
+  until_now: 1137987
+  issue_id: 866
+  id: 1480
+  taken_into_account: 119
   workaround: 
   correction: 
