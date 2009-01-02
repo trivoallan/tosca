@@ -335,7 +335,7 @@ class Issue < ActiveRecord::Base
   # Generate the cc for an outgoing mail for this issue
   # private indicates if it's reserved for internal use or not
   def compute_copy(private = false)
-    subscribers_emails = subscribers.collect { |s| s.email }.join(',')
+    subscribers_emails = subscribers.collect { |s| s.email_name }.join(',')
     if private
       subscribers_emails
     else
@@ -351,9 +351,9 @@ class Issue < ActiveRecord::Base
   def compute_recipients(private = false)
     res = []
     # The client is not informed of private messages
-    res << recipient.email unless private
+    res << recipient.email_name unless private
     # Issue are not assigned, by default
-    res << engineer.email if engineer
+    res << engineer.email_name if engineer
     res.join(',')
   end
 
@@ -363,7 +363,9 @@ class Issue < ActiveRecord::Base
   end
 
   def subscribers
-    (self.subscriptions.collect(&:user) + (self.contract.subscribers)).uniq
+    software_subscribers = (self.software ? self.software.subscribers : [])
+    (self.subscriptions.collect(&:user) + self.contract.subscribers +
+      software_subscribers).uniq
   end
 
   #Find the pending requests of a user

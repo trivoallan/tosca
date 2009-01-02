@@ -219,7 +219,7 @@ class Notifier < ActionMailer::Base
   def _common_issue_headers(issue, comment, user)
     recipients  issue.compute_recipients
     cc          issue.compute_copy
-    from        user.email
+    from        user.email_name
     reply_to    App::NoReplyEmail
     subject     "[#{issue.id}] #{issue.resume}"
     headers     _headers_mail_issue(issue, comment)

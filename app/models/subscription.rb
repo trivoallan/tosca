@@ -12,7 +12,7 @@ class Subscription < ActiveRecord::Base
 
   def name
     _('Subscription for %s on %s #%s') %
-      [ self.user.name, self.model.type, self.model.id ]
+      [ self.user.name, self.model_type, self.model_id ]
   end
 
   def self.destroy_by_user_and_model(user, model)

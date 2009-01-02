@@ -291,6 +291,12 @@ class User < ActiveRecord::Base
       Role.find(role_id).permissions.collect{|p| Regexp.new(p.name) }
   end
 
+  #Generate a field for an email
+  #like : Toto Tutu <tutu.toto@truc.com>
+  def email_name
+    "#{self.name} <#{self.email}>"
+  end
+
   private
   def self.sha1(pass)
     Digest::SHA1.hexdigest("linagora--#{pass}--")
