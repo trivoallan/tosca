@@ -114,7 +114,7 @@ end
 
 # MLO : sql session store, 1.5x times faster than Active record store
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.
-  update(:database_tam => SqlSessionStore)
+  update(:database_manager => SqlSessionStore)
 SqlSessionStore.session_class = MysqlSession
 
 # MLO : Type of cache. See http://api.rubyonrails.org/classes/ActionController/Caching.html
