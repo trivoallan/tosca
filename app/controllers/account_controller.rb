@@ -49,7 +49,7 @@ class AccountController < ApplicationController
         clear_sessions
         id = User.find_by_login(params['user_login'])
         flash.now[:warn] = _("Connexion failure")
-        flash.now[:warn] << ', ' << _("your account has been desactivated") if id and id.inactive?
+        flash.now[:warn] += _(", your account has been desactivated") if id and id.inactive?
       end
     else # Display form
     end
