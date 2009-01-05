@@ -26,7 +26,7 @@ class Subscription < ActiveRecord::Base
     return true if self.model_type != 'Contract'
     similars = { :model_type => self.model_type, :model_id => self.model_id }
     if self.class.count(:conditions => similars) <= 1
-      self.errors.add_to_base(_('You can not unsubscribe to this contract, because your are the last one watching it.'))
+      self.errors.add_to_base(_('You can not unsubscribe to this contract, because your are the only one watching it.'))
       false
     else
       true
