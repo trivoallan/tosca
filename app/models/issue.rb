@@ -341,7 +341,7 @@ class Issue < ActiveRecord::Base
     else
       res = []
       [ contract.customer_ml, mail_cc, subscribers_emails ].each { |m|
-        res << m unless m.blank?
+        res << m unless m.nil? or m.blank?
       }
       res.join(', ')
     end
