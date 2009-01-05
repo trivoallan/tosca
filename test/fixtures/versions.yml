@@ -1,36 +1,41 @@
---- 
-version_00001: 
-  name: 2.0.0.13
+version_ff_2_0_0_13:
+  name: "2.0.0.13"
+  software_id: 2
   generic: false
   id: 1
-  software_id: 2
-version_00002: 
+
+version_oo_2_4:
   name: "2.4"
+  software_id: 1
   generic: false
   id: 2
-  software_id: 1
-version_00003: 
+
+version_ff_2_generic:
   name: "2"
+  software_id: 2
   generic: true
   id: 3
+
+version_ff_2_0_0_12:
+  name: "2.0.0.12"
   software_id: 2
-version_00004: 
-  name: 2.0.0.12
   generic: false
   id: 4
-  software_id: 2
-version_00005: 
+
+version_ff_1_5:
   name: "1.5"
+  software_id: 2
   generic: false
   id: 5
-  software_id: 2
-version_00006: 
+
+version_ff_3_generic:
   name: "3"
+  software_id: 2
   generic: true
   id: 6
-  software_id: 2
-version_00007: 
+
+version_ff_all:
   name: ""
+  software_id: 2
   generic: true
   id: 7
-  software_id: 2
