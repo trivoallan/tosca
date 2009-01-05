@@ -341,7 +341,7 @@ class Issue < ActiveRecord::Base
     else
       res = []
       [ contract.customer_ml, mail_cc, subscribers_emails ].each { |m|
-        res << m unless m.blank?
+        res << m unless m.nil? or m.blank?
       }
       res.join(', ')
     end
@@ -364,8 +364,11 @@ class Issue < ActiveRecord::Base
 
   def subscribers
     software_subscribers = (self.software ? self.software.subscribers : [])
-    (self.subscriptions.collect(&:user) + self.contract.subscribers +
-      software_subscribers).uniq
+    res = self.subscriptions.collect(&:user).concat(
+          self.contract.subscribers).concat(
+          software_subscribers)
+    res.uniq!
+    res
   end
 
   #Find the pending requests of a user
