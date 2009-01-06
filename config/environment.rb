@@ -96,7 +96,7 @@ Rails::Initializer.run do |config|
 
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
-  # config.action_controller.session_store = :active_record_store
+  config.action_controller.session_store = :active_record_store
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -111,11 +111,6 @@ Rails::Initializer.run do |config|
 
   # See Rails::Configuration for more options
 end
-
-# MLO : sql session store, 1.5x times faster than Active record store
-ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.
-  update(:database_manager => SqlSessionStore)
-SqlSessionStore.session_class = MysqlSession
 
 # MLO : Type of cache. See http://api.rubyonrails.org/classes/ActionController/Caching.html
 ActionController::Base.cache_store = :file_store, cache_path
