@@ -68,7 +68,7 @@ class Client < ActiveRecord::Base
   end
 
   def recipient_ids
-    @recipient_ids ||= self.recipients.find.all(:select => 'id').collect{|c| c.id}
+    @recipient_ids ||= self.recipients.all(:select => 'id').collect(&:id)
   end
 
   def engineers
