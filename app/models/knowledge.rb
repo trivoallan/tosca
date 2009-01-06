@@ -50,6 +50,7 @@ class Knowledge < ActiveRecord::Base
       Subscription.destroy_by_user_and_model(self.engineer, self)
     end
   end
+  
   def subscribed
     return 0 unless self.engineer and self.engineer.id and self.id
     (Subscription.find(:all, :conditions => { :user_id => self.engineer.id,
