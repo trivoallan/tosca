@@ -57,7 +57,7 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_scope
-    Client.set_scope([Client.find(:first).id])
+    Client.set_scope([Client.first(:order => :id).id])
     Client.find(:all)
     Client.remove_scope
   end
@@ -87,7 +87,7 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_softwares
-    Client.find(:all).each{ |c| c.softwares.each{ |i| assert_instance_of(Software, i) } }
+    Client.all.each{ |c| c.softwares.each { |i| assert_instance_of(Software, i) } }
   end
 
   def test_contributions

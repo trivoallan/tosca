@@ -82,7 +82,7 @@ class IssueTest < Test::Unit::TestCase
   end
 
   def test_set_defaults
-    issue = Issue.find(:first)
+    issue = Issue.first(:order => :id)
     issue.statut_id = nil
     issue.set_defaults(issue.recipient, {})
     issue.set_defaults(issue.engineer, {})

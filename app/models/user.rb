@@ -147,8 +147,8 @@ class User < ActiveRecord::Base
   end
 
   SELECT_OPTIONS = { :order => 'users.name ASC',
-    :conditions => 'users.inactive = 0' }
-  EXPERT_OPTIONS = { :conditions => 'users.inactive = 0 AND users.client_id IS NULL',
+    :conditions => ['users.inactive = ?', false ] }
+  EXPERT_OPTIONS = { :conditions => [ 'users.inactive = ? AND users.client_id IS NULL', false ],
     :order => 'users.name' }
 
   def self.authenticate(login, pass)
@@ -161,7 +161,7 @@ class User < ActiveRecord::Base
   end
 
   def self.tams
-   self.find_select( { :joins => :own_contracts, :group => "users.id",
+   self.find_select( { :joins => :own_contracts, :group => "users.id, users.name",
      :conditions => "contracts.tam_id = users.id" } )
   end
 
@@ -199,14 +199,13 @@ class User < ActiveRecord::Base
 
   def self.find_select_recipients
     options = SELECT_OPTIONS.dup
-    options[:conditions] += ' AND users.client_id IS NOT NULL'
+    options[:conditions][0] += ' AND users.client_id IS NOT NULL'
     User.find_select(options)
   end
 
   def self.find_select_by_contract_id(contract_id)
-    joins = 'INNER JOIN contracts_users cu ON cu.user_id=users.id'
-    conditions = [ 'cu.contract_id = ?', contract_id ]
-    options = {:find => {:conditions => conditions, :joins => joins}}
+    conditions = [ 'contracts_users.contract_id = ?', contract_id ]
+    options = {:find => {:conditions => conditions, :joins => :own_contracts}}
     User.send(:with_scope, options) do
       User.find_select(User::SELECT_OPTIONS)
     end

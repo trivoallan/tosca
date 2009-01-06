@@ -178,7 +178,7 @@ class Issue < ActiveRecord::Base
   end
 
   def find_other_comment(comment_id)
-    cond = [ 'comments.private <> 1 AND comments.id <> ?', comment_id ]
+    cond = [ 'comments.private <> ? AND comments.id <> ?', true, comment_id ]
     self.comments.find(:first, :conditions => cond)
   end
 
@@ -359,7 +359,7 @@ class Issue < ActiveRecord::Base
 
   def subscribed?(user)
     not (Subscription.all(:conditions => {:user_id => user.id,
-          :model_type => 'issue', :model_id => self.id}).empty?)
+          :model_type => 'Issue', :model_id => self.id}).empty?)
   end
 
   def subscribers

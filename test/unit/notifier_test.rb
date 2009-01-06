@@ -35,7 +35,7 @@ class NotifierTest < Test::Unit::TestCase
   end
 
   def test_user_signup
-    user = User.find(:first)
+    user = User.first(:order => :id)
     sender = users(:user_admin)
     newpass = 'newpass'
     user.pwd = newpass
@@ -47,7 +47,7 @@ class NotifierTest < Test::Unit::TestCase
   end
 
   def test_issue_new
-    issue = Issue.find(:first)
+    issue = Issue.first(:order => :id)
     response = Notifier::deliver_issue_new(issue)
     assert_match issue.resume, response.subject
     assert_match html2text(issue.description), response.body
@@ -55,7 +55,7 @@ class NotifierTest < Test::Unit::TestCase
   end
 
   def test_issue_new_comment
-    issue = Issue.find(:first)
+    issue = Issue.first(:order => :id)
     comment = issue.first_comment
     response = Notifier::deliver_issue_new_comment(comment)
     assert_match issue.resume, response.subject
@@ -64,7 +64,7 @@ class NotifierTest < Test::Unit::TestCase
   end
 
   def test_welcome_idea
-    user = User.find(:first)
+    user = User.first(:order => :id)
     text = "this is an automated test suggestion"
     [:team,:tosca,:bullshit].each { |to|
       response = Notifier::deliver_welcome_idea(text, to, user)

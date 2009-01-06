@@ -273,8 +273,6 @@ class CGI
   end
 end
 
-
-
 class ActionController::Caching::Sweeper
   # Helper, in order to expire fragments, see ActiveRecord#fragments()
   # for more info
@@ -372,7 +370,6 @@ module ActionView::Helpers::UrlHelper
 end
 
 
-
 # This module is overloaded, mainly for performance
 # and the scope stuff.
 module ActiveRecord
@@ -402,7 +399,7 @@ module ActiveRecord
     def self.find_select(options = {}, collect = true)
       options[:select] = "#{table_name}.id, #{table_name}.name"
       options[:order] ||= "#{table_name}.name ASC"
-      res = self.find(:all, options)
+      res = self.all(options)
       res.collect!{ |o| [o.name, o.id] } if collect
       res
     end
@@ -411,12 +408,14 @@ module ActiveRecord
     def self.find_active4select(options = {}, collect = true)
       options[:select] = "#{table_name}.id, #{table_name}.name"
       if options.has_key? :conditions
-        options[:conditions] += " AND #{table_name}.inactive = 0"
+        options[:conditions] = [ options[:conditions] ] if options[:conditions].is_a?(String)
+        options[:conditions][0] += " AND #{table_name}.inactive = ?"
+        options[:conditions].concat([false])
       else
-        options[:conditions] = "#{table_name}.inactive = 0"
+        options[:conditions] = [ "#{table_name}.inactive = ?", false ]
       end
       options[:order] ||= "#{table_name}.name ASC"
-      res = self.find(:all, options)
+      res = self.all(options)
       res.collect!{ |o| [o.name, o.id] } if collect
       res
     end

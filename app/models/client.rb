@@ -36,22 +36,14 @@ class Client < ActiveRecord::Base
   validates_length_of :name, :in => 3..50
 
   SELECT_OPTIONS = { :include => :recipients,
-    :conditions => 'clients.inactive = 0 AND users.inactive = 0' }
+    :conditions => ['clients.inactive = ? AND users.inactive = ?', false, false ] }
 
   after_save :desactivate_recipients
 
   def desactivate_recipients
-    begin
-      connection.begin_db_transaction
-      value = (inactive? ? 1 : 0)
-      connection.update "UPDATE users u SET u.inactive = #{value} WHERE u.client_id=#{self.id}"
-      connection.commit_db_transaction
-    rescue Exception => e
-      connection.rollback_db_transaction
-      errors.add_to_base(_('Cannot (de)activate associated recipients due to : "%s"') % e.message)
-      return false
+    self.recipients.each do |r|
+      r.update_attribute(:inactive, self.inactive)
     end
-    true
   end
 
   def self.content_columns

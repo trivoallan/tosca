@@ -88,17 +88,16 @@ class Contract < ActiveRecord::Base
   # issues on everything.
   def softwares
     if rule_type == 'Rules::Component' and rule.max == -1
-      return Software.find(:all, :order => 'softwares.name ASC')
+      return Software.all(:order => 'softwares.name ASC')
     end
-    Software.find(:all, :conditions => { "contracts.id" => self.id },
+    Software.all(:conditions => { "contracts.id" => self.id },
       :joins => { :versions => :contracts },
-      :group => "versions.software_id")
+      :order => 'softwares.name')
   end
 
   def find_recipients_select
-    options = { :conditions => 'users.inactive = 0' }
-    self.recipient_users.find(:all, options).collect{|u|
-      [  u.name, u.id ] }
+    options = { :conditions => ['users.inactive = ?', false]}
+    self.recipient_users.find(:all, options).collect { |u| [u.name, u.id ] }
   end
 
   def start_date_formatted
@@ -129,7 +128,7 @@ class Contract < ActiveRecord::Base
   INCLUDE = [:client]
   ORDER = 'clients.name ASC'
   OPTIONS = { :include => INCLUDE, :order => ORDER, :conditions =>
-    "clients.inactive = 0" }
+    ["clients.inactive = ?", false] }
 
   def name
     specialisation = read_attribute(:name)

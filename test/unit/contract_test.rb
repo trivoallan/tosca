@@ -70,7 +70,7 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_find_recipients_select
-    recipients = Contract.find(:first).find_recipients_select
+    recipients = Contract.first(:order => :id).find_recipients_select
     assert !recipients.empty?
   end
 
