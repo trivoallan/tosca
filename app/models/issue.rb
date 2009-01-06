@@ -363,7 +363,10 @@ class Issue < ActiveRecord::Base
   end
 
   def subscribers
-    software_subscribers = (self.software ? self.software.subscribers : [])
+    software_subscribers = []
+    (self.software ? self.software.subscribers : []).each do |s|
+      software_subscribers << s if s.contracts.include?(self.contract)
+    end
     res = self.subscriptions.collect(&:user).concat(
           self.contract.subscribers).concat(
           software_subscribers)
