@@ -131,10 +131,10 @@ class ClientsController < ApplicationController
     case value.to_i
     when -1
       @title = _('Inactive clients')
-      'clients.inactive = 1'
+      [ 'clients.inactive = ?', true ]
     else # '1' & default are the same.
       @title = _('Active clients')
-      'clients.inactive = 0'
+      [ 'clients.inactive = ?', false ]
     end
   end
 

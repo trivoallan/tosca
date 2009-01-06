@@ -74,7 +74,7 @@ class ClientsControllerTest < ActionController::TestCase
   end
 
   def test_update
-    get :edit, :id => Client.find(:first).id
+    get :edit, :id => Client.first(:order => :id).id
     assert_response :success
     assert_template 'edit'
     assert_not_nil assigns(:client)

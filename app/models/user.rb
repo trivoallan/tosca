@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   has_many :phonecalls
   has_many :subscriptions
 
-  has_and_belongs_to_many :own_contracts, :class_name => 'Contract'
+  has_and_belongs_to_many :own_contracts, :class_name => 'Contract', :order => :id
 
   validates_length_of :login, :within => 3..20
   validates_length_of :password, :within => 5..40

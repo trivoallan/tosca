@@ -95,7 +95,7 @@ class VersionsController < ApplicationController
 
   def _panel
     @count = {}
-    @clients = Client.find_select(:conditions => 'clients.inactive = 0')
+    @clients = Client.find_select
     @count[:versions] = Version.count
   end
 

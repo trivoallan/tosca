@@ -83,9 +83,9 @@ class Software < ActiveRecord::Base
   #         2. issues/_version.html.erb /!\
   def releases_contract(contract_id)
     result = []
-    self.versions.find(:all,
+    self.versions.all(
       :conditions => { "contracts.id" =>  contract_id },
-      :joins => :contracts, :group => "versions.id").each do |v|
+      :joins => :contracts, :order => "versions.id").each do |v|
       releases = v.releases
       if releases.empty?
         result.push ReleasesContract.new(v.full_name, v.id, Version)

@@ -133,7 +133,7 @@ class PhonecallsController < ApplicationController
     @count[:recipients] = Phonecall.count 'recipient_id', {}
     @count[:engineers] = Phonecall.count('engineer_id', {})
     @count[:issues] = Phonecall.count('issue_id', :distinct => true)
-    diff = 'TIME_TO_SEC(TIMEDIFF(end,start))'
+    diff = 'TIME_TO_SEC(TIMEDIFF(phonecalls.end,phonecalls.start))'
     @count[:somme] = Phonecall.sum(diff).to_i
     @count[:moyenne] = Phonecall.average(diff).to_i
   end

@@ -213,7 +213,7 @@ class IssuesController < ApplicationController
       @last_comment = nil # Prevents some insidious call with functionnal tests
       conditions = filter_comments(@issue_id)
       conditions[0] << " AND statut_id IS NOT NULL"
-      @comments = Comment.find(:all, :conditions => conditions,
+      @comments = Comment.all(:conditions => conditions,
         :order => "created_on ASC", :include => [:user,:statut,:severity])
     end
     render :partial => 'issues/tabs/tab_history', :layout => false
@@ -443,7 +443,7 @@ class IssuesController < ApplicationController
     if @session_user.engineer?
       [ 'comments.issue_id = ?', issue_id ]
     else
-      [ 'comments.issue_id = ? AND comments.private = 0 ', issue_id ]
+      [ 'comments.issue_id = ? AND comments.private = ? ', issue_id, false ]
     end
   end
 
