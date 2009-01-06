@@ -47,7 +47,7 @@ namespace :tosca do
 
     FileUtils.cp "#{root}/config/config.rb.sample", "#{root}/config/config.rb"
     # needed for dev mode, when stylesheets are not cached in single file.
-    FileUtils.ln_s '../../public/images/' 'public/stylesheets/images'
+    FileUtils.ln_s '../../public/images/', 'public/stylesheets/images', :force => true
 
     Rake::Task['l10n:mo'].invoke
     Rake::Task['db:create'].invoke
