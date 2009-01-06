@@ -24,7 +24,7 @@ class Client < ActiveRecord::Base
   has_many :recipients, :class_name => 'User', :dependent => :destroy,
     :conditions => 'users.client_id IS NOT NULL'
   has_many :active_recipients, :class_name => 'User',
-    :conditions => 'users.inactive = 0 AND users.client IS NOT NULL'
+    :conditions => [ 'users.inactive = ? AND users.client_id IS NOT NULL', false ]
   has_many :contracts, :dependent => :destroy
 
   has_many :versions, :through => :contracts
@@ -68,7 +68,7 @@ class Client < ActiveRecord::Base
   end
 
   def recipient_ids
-    @recipient_ids ||= self.recipients.find(:all, :select => 'id').collect{|c| c.id}
+    @recipient_ids ||= self.recipients.find.all(:select => 'id').collect{|c| c.id}
   end
 
   def engineers
@@ -114,7 +114,7 @@ class Client < ActiveRecord::Base
   # TODO : it could & should be dynamic. Is there really a sense to severity
   # for an evolution issue ?
   def severities
-    Severity.find(:all)
+    Severity.all
   end
 
   # pretty urls for client

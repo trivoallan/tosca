@@ -55,7 +55,7 @@ class Team < ActiveRecord::Base
   def engineers_collection_select
     options = { :conditions => ['users.inactive = ? AND users.client_id IS NULL', false ],
       :order => 'users.name', :select => 'users.id, users.name' }
-    self.users.find(:all, options)
+    self.users.all(options)
   end
 
 end

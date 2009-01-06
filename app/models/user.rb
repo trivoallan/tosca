@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   has_many :phonecalls
   has_many :subscriptions
 
-  has_and_belongs_to_many :own_contracts, :class_name => "Contract"
+  has_and_belongs_to_many :own_contracts, :class_name => 'Contract'
 
   validates_length_of :login, :within => 3..20
   validates_length_of :password, :within => 5..40
@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
   def self.authenticate(login, pass)
     User.with_exclusive_scope() do
       conditions = ['login = ? AND password = ?', login, sha1(pass)]
-      user = User.find(:first, :conditions => conditions)
+      user = User.first(:conditions => conditions)
       return nil if user and user.inactive?
       user
     end
@@ -190,11 +190,11 @@ class User < ActiveRecord::Base
   alias_method :expert?, :engineer?
 
   def self.engineers
-    User.find(:all, :conditions => 'users.client_id IS NULL')
+    User.all(:conditions => 'users.client_id IS NULL')
   end
 
   def self.recipients
-    User.find(:all, :conditions => 'users.client_id IS NOT NULL')
+    User.all(:conditions => 'users.client_id IS NOT NULL')
   end
 
   def self.find_select_recipients
@@ -302,7 +302,7 @@ class User < ActiveRecord::Base
   end
 
   # specialisation, since an Account can be <inactive>.
-  def self.find_select(options = { })
+  def self.find_select(options = {})
     find_active4select(options)
   end
 

@@ -49,7 +49,6 @@ class Software < ActiveRecord::Base
         :joins => @@scope_joins } } if contract_ids
   end
 
-
   # See ApplicationController#scope
   def self.set_public_scope()
     self.scoped_methods << { :find => { :conditions =>

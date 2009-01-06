@@ -54,7 +54,7 @@ class Tag
   end
 
   def self.get_generic_tag
-    return Tag.find(:all, :conditions => ["skill_id IS NULL and contract_id IS NULL"] )
+    return Tag.all(:conditions => ["skill_id IS NULL and contract_id IS NULL"] )
   end
 
   def self.get_skill_tag(skills = nil)
@@ -63,7 +63,7 @@ class Tag
     else
       conditions = ["skill_id IN (?) ", skills ]
     end
-    return Tag.find( :all, :conditions => conditions )
+    return Tag.all(:conditions => conditions )
   end
 
   def self.get_contract_tag(contracts = nil)
@@ -72,7 +72,7 @@ class Tag
     else
       conditions = ["contract_id IN (?) ", contracts ]
     end
-    return Tag.find( :all, :conditions => conditions )
+    return Tag.all(:conditions => conditions)
   end
 
 end

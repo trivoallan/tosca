@@ -128,4 +128,11 @@ class ClientTest < Test::Unit::TestCase
     assert_equal(["access_code", "context", "name"], columns)
   end
 
+  def test_active_recipients
+    Client.all.each do |c|
+      c.active_recipients.each do |r|
+        assert !r.inactive?
+      end
+    end
+  end
 end
