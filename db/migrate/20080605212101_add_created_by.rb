@@ -21,8 +21,8 @@ class AddCreatedBy < ActiveRecord::Migration
   class Contract < ActiveRecord::Base; end
 
   def self.up
-    add_column :clients, :creator_id, :integer, :null => false
-    add_column :contracts, :creator_id, :integer, :null => false
+    add_column :clients, :creator_id, :integer, :null => false, :default => 1
+    add_column :contracts, :creator_id, :integer, :null => false, :default => 1
     Client.update_all("creator_id = 1")
     Contract.update_all("creator_id = 1")
   end

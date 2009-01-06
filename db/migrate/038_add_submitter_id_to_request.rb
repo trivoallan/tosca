@@ -23,7 +23,7 @@ class AddSubmitterIdToRequest < ActiveRecord::Migration
   class Beneficiaire < ActiveRecord::Base; end
 
   def self.up
-#    add_column :demandes, :submitter_id, :integer, :null => false, :default => 0
+    add_column :demandes, :submitter_id, :integer, :null => false, :default => 0
 
     Demande.all.each do |d|
       d.submitter_id = Beneficiaire.first(:conditions => { :id => d.beneficiaire_id }).user_id
