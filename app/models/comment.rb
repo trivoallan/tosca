@@ -167,6 +167,8 @@ class Comment < ActiveRecord::Base
   end
 
   after_save :automatic_subscribtion
+  # TODO : this subscription should be communicated, in a way or another
+  # e.g. : by email or with the flash box.
   def automatic_subscribtion
     #Try to subscribe engineer that has deposit the comment
     Subscription.create(:user => self.user,
