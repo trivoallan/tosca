@@ -7,10 +7,6 @@ namespace :tosca do
   desc "Generate a default Database with default values."
   task :generate => [ 'db:create', 'db:migrate', 'db:fixtures:load']
 
-  desc "Configure a new Tosca instance"
-  task :install do
-  end
-
   desc "Unpacks the specified gems and its dependencies into vendor/gems"
   task :unpack_gems => 'gems:base' do
     require 'rubygems'
@@ -49,11 +45,6 @@ namespace :tosca do
     root = RAILS_ROOT
     FileUtils.mkdir_p "#{root}/log"
 
-    print "Use default access to mysql [Y/n] ?"
-    if STDIN.gets.chomp! != 'n'
-      FileUtils.cp "#{root}/config/database.yml.sample",
-                   "#{root}/config/database.yml"
-    end
     FileUtils.cp "#{root}/config/config.rb.sample", "#{root}/config/config.rb"
     # needed for dev mode, when stylesheets are not cached in single file.
     FileUtils.ln_s '../../public/images/' 'public/stylesheets/images'
