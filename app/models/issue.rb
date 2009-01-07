@@ -358,8 +358,7 @@ class Issue < ActiveRecord::Base
   end
 
   def subscribed?(user)
-    not (Subscription.all(:conditions => {:user_id => user.id,
-          :model_type => 'Issue', :model_id => self.id}).empty?)
+    self.subscribers.include?(user)
   end
 
   def subscribers

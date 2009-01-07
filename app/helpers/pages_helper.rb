@@ -164,9 +164,9 @@ module PagesHelper
       page.visual_effect :toggle_blind, id, :duration => 0.5
     end
 
-    style_hide, style_show = "", ""
-    style_hide = "display: none" unless options.has_key?(:hide)
-    style_show = "display: none" if options[:hide]
+    style_hide, style_show = '', ''
+    style_hide = 'display: none' unless options.has_key?(:hide)
+    style_show = 'display: none' if options.has_key?(:hide)
     options.delete(:hide)
 
     result = tag('div', options, true)

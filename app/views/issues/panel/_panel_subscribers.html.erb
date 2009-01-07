@@ -1,0 +1,21 @@
+<% if @session_user.engineer? %>
+  <%= div_toggle _('Subscribers'), 'subscribers_menu', :class => "menu_title",
+    :id => 'div_subscribers_menu', :hide => true %>
+  <ul id="subscribers_menu" style="display: none">
+    <li><%= link_to_subscription(@issue, {:replace => 'div_subscribers_menu'}) %></li>
+    <li>
+      <%= _('Subscribe to this issue') %>
+      <%= select_onchange @engineers_subscribers, 0, 'user_id', :onchange => '', :id => 'subscribe' %>
+      <%= observe_field('subscribe', {:url => ajax_subscribe_someone_issue_url(@issue.id),
+          :method => :post,
+          :before => "Element.show('spinner')",
+          :success => "alert('#{_('Succesfully subscribe')}')",
+          :failure => "alert('#{_('Not so good')}')",
+          :complete => "Element.hide('spinner')",
+          :with => 'user_id'}) %>
+    </li>
+    <li><%= _('Subscribers') %>
+      <%= subscribers_list(@issue) %>
+    </li>
+  </ul>
+<% end %>

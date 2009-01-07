@@ -204,6 +204,7 @@ class IssuesController < ApplicationController
         @teams = Team.on_contract_id(@issue.contract_id)
       end
     end
+    _panel_subscribers
   end
 
   def ajax_history
@@ -244,9 +245,6 @@ class IssuesController < ApplicationController
       [ 'contributions.software_id = ?', software_id ] }
     @contributions = (software_id ?
        Contribution.all(options).collect{|c| [c.name, c.id]} : [])
-    if @session_user.engineer?
-      @engineers = User.find_select_engineers_by_contract_id(@issue.contract_id)
-    end
     render :partial => 'issues/tabs/tab_actions', :layout => false
   end
 
@@ -316,13 +314,15 @@ class IssuesController < ApplicationController
   def ajax_subscribe
     Subscription.create(:user => @session_user,
                         :model => Issue.find(params[:id]))
-    ajax_actions
+    _panel_subscribers
+    render :partial => 'issues/panel/panel_subscribers', :layout => false
   end
 
   def ajax_unsubscribe
     Subscription.destroy_by_user_and_model(@session_user,
                                            Issue.find(params[:id]))
-    ajax_actions
+    _panel_subscribers
+    render :partial => 'issues/panel/panel_subscribers', :layout => false
   end
 
   def ajax_subscribe_someone
@@ -342,6 +342,14 @@ class IssuesController < ApplicationController
     @issue.update_attributes!(:contribution_id => contribution_id)
     flash[:notice] = flash_text
     redirect_to issue_path(demand_id)
+  end
+
+  def _panel_subscribers
+    if @session_user.engineer?
+      @issue ||= Issue.find(params[:id])
+      @engineers_subscribers =
+        User.find_select_engineers_by_contract_id(@issue.contract_id)
+    end
   end
 
   def _panel
@@ -476,17 +484,3 @@ class IssuesController < ApplicationController
   end
 
 end
-
-#<%= observe_form "issue_form",
-# {:url => {:action => :ajax_update_delai},
-#  :update => :delai,
-#  :frequency => 15 } %>
-#<%= observe_field "issue_severity_id", {
-#  :url => {:action => :ajax_update_delai},
-#  :update => :delai,
-#  :with => "severity_id" }
-#%>
-#<%= observe_field "issue_software_id",
-# {:url => {:action => :ajax_update_versions},
-#  :update => :issue_versions,
-#  :with => "software_id"} %>

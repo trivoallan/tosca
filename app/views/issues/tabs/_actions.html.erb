@@ -1,20 +1,6 @@
 <div id='issue_tab_content' class='issue_tab_content'>
 <% if @session_user.engineer? %>
   <ul>
-    <li><%= link_to_subscription(@issue, {:update => 'issue_tab'}) %></li>
-    <li>
-      <%= _('Subscribe') %>
-      <%= select_onchange @engineers, 0, 'user_id', :onchange => '', :id => 'subscribe' %>
-      <%= _('to this issue') %>
-      <%= observe_field('subscribe', {:url => ajax_subscribe_someone_issue_url(@issue.id),
-        :method => :post,
-        :before => "Element.show('spinner')",
-        :success => "alert('#{_('Succesfully subscribe')}')",
-        :failure => "alert('#{_('Not so good')}')",
-        :complete => "Element.hide('spinner')",
-        :with => 'user_id'}) %>
-    </li>
-
     <% options = { :software_id => @issue.software_id, :issue_id => @issue.id } %>
     <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
     
