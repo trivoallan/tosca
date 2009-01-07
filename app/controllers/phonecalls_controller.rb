@@ -122,7 +122,7 @@ class PhonecallsController < ApplicationController
       contract.client.recipients.find_select(User::SELECT_OPTIONS)
   end
 
-  # variables utilisé par le panneau de gauche
+  # Used on the right panel
   def _panel
     @count = {}
     @engineers = User.find_select(User::EXPERT_OPTIONS)
@@ -133,9 +133,6 @@ class PhonecallsController < ApplicationController
     @count[:recipients] = Phonecall.count 'recipient_id', {}
     @count[:engineers] = Phonecall.count('engineer_id', {})
     @count[:issues] = Phonecall.count('issue_id', :distinct => true)
-    diff = 'TIME_TO_SEC(TIMEDIFF(phonecalls.end,phonecalls.start))'
-    @count[:somme] = Phonecall.sum(diff).to_i
-    @count[:moyenne] = Phonecall.average(diff).to_i
   end
 
 end

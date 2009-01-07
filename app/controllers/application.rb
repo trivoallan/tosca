@@ -99,8 +99,8 @@ protected
 
   #Compute the receiver of an email for the flash
   def message_notice(recipients, cc)
-    result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
-    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc && !cc.blank?
+    result = "<br />" << _("An e-mail was sent to ") << " <b>#{html2text(recipients)}</b> "
+    result << "<br />" << _("with a copy to") << " <b>#{html2text(cc)}</b>" if cc && !cc.blank?
     result << '.'
   end
 
