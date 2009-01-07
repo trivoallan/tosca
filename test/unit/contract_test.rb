@@ -115,4 +115,36 @@ class ContractTest < Test::Unit::TestCase
     end
   end
 
+  def test_create
+    tam = User.first(:order => :id)
+    c = Contract.new(:client => Client.first,
+      :opening_time => 8,
+      :closing_time => 19,
+      :creator => tam,
+      :rule => Rules::Component.first,
+      :tam => tam,
+      :start_date => "2007-12-24",
+      :end_date => "2012-12-24")
+    assert c.save!
+    assert c.subscribed?(tam)
+  end
+
+  def test_find_commitment
+    Contract.all.each do |c|
+      c.issues.each do |i|
+        assert_instance_of Commitment, c.find_commitment(i)
+      end
+    end
+  end
+
+  def test_total_elapsed
+    Contract.all.each do |c|
+      total = 0
+      c.issues.each do |r|
+        total += r.elapsed.until_now
+      end
+      assert_equal(c.total_elapsed, total)
+    end
+  end
+
 end

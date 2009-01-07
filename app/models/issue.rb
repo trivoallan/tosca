@@ -367,9 +367,9 @@ class Issue < ActiveRecord::Base
     (self.software ? self.software.subscribers : []).each do |s|
       software_subscribers << s if s.contracts.include?(self.contract)
     end
-    res = self.subscriptions.collect(&:user).concat(
-          self.contract.subscribers).concat(
-          software_subscribers)
+    res = self.subscriptions.collect(&:user).
+      concat(self.contract.subscribers).
+      concat(software_subscribers)
     res.uniq!
     res
   end
