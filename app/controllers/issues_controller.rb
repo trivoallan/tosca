@@ -42,7 +42,7 @@ class IssuesController < ApplicationController
   # Track of renewed issue is done with expected_on
   # visual effects are in js.erb view
   def ajax_renew
-    expected_on  = params[:expected_on].to_i
+    expected_on = params[:expected_on].to_i
     @issue_ids = params[:issue_ids] || []
     return if expected_on <= 0 or @issue_ids.empty?
     expected = Time.now + expected_on.days

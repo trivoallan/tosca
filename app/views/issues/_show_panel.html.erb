@@ -13,10 +13,10 @@
     <% end %>
     <% submitter_id = @issue.submitter_id %>
     <% if submitter_id != 0 and @issue.recipient.id != submitter_id %>
-      <li><b><%=_("Declared by")%>: </b><%= @issue.submitter.name %></li>
+      <li><b><%=_("Declared by")%>: </b><%= link_to_user(@issue.submitter) %></li>
     <% end %>
     <% if @issue.engineer %>
-      <li><b><%=_("Assigned to")%>: </b> <%= @issue.engineer.name %> </li>
+      <li><b><%=_("Assigned to")%>: </b> <%= link_to_user(@issue.engineer) %> </li>
     <% end %>
   </ul>
 
