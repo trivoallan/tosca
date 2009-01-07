@@ -43,7 +43,7 @@ class IssueTest < Test::Unit::TestCase
   end
 
   def test_scope
-    Issue.set_scope([Contract.find(:first).id])
+    Issue.set_scope([Contract.first(:order => :id).id])
     Issue.find(:all)
     Issue.remove_scope
   end
@@ -53,7 +53,7 @@ class IssueTest < Test::Unit::TestCase
   end
 
   def test_fragments
-    assert !Issue.find(:first).fragments.empty?
+    assert !Issue.first(:order => :id).fragments.empty?
   end
 
   def test_finder
@@ -78,7 +78,7 @@ class IssueTest < Test::Unit::TestCase
   end
 
   def test_reset_elapsed
-    Issue.find(:first).reset_elapsed
+    Issue.first(:order => :id).reset_elapsed
   end
 
   def test_set_defaults

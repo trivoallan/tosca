@@ -67,7 +67,7 @@ class IssuesControllerTest < ActionController::TestCase
   def test_edit
     %w(admin manager).each do |l|
       login l, l
-      get :edit, :id => Issue.find(:first).id
+      get :edit, :id => Issue.first(:order => :id).id
       assert_response :success
       assert_template 'edit'
 
@@ -79,7 +79,7 @@ class IssuesControllerTest < ActionController::TestCase
   def test_update
     %w(admin manager).each do |l|
       login l, l
-      get :edit, :id => Issue.find(:first).id
+      get :edit, :id => Issue.first(:order => :id).id
       assert_response :success
       assert_template 'edit'
 

@@ -29,9 +29,9 @@ class KnowledgeTest < ActiveSupport::TestCase
   def test_validation
     obj = Knowledge.new(:skill => nil, :software => nil)
     assert !obj.valid?
-    obj = Knowledge.new(:skill => Skill.find(:first),
-                        :software => Software.find(:first),
-                        :engineer => User.find(:first),
+    obj = Knowledge.new(:skill => Skill.first(:order => :id),
+                        :software => Software.first(:order => :id),
+                        :engineer => User.first(:order => :id),
                         :level => 3)
     assert !obj.valid?
     obj.skill = nil

@@ -44,7 +44,7 @@ class SoftwareTest < Test::Unit::TestCase
 
   # We need to upload files in order to have working logo in test environment.
   def upload_logo(path, mimetype, id)
-    @software ||= Software.find(:first)
+    @software ||= Software.first(:order => :id)
     image_file = fixture_file_upload(path, mimetype)
     Image.find(id).destroy
     image = Image.new(:image => image_file, :software => @software)

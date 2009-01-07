@@ -90,7 +90,7 @@ class ClientsControllerTest < ActionController::TestCase
   end
 
   def test_destroy
-    client = Client.find(:first).clone
+    client = Client.first(:order => :id).clone
     client.save!
 
     assert_difference('Client.count', -1) do

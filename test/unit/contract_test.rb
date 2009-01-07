@@ -42,13 +42,13 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_invervals
-    c = Contract.find(:first)
+    c = Contract.first(:order => :id)
     interval = c.interval
     assert_equal c.interval_in_seconds, interval * 1.hour
   end
 
   def test_softwares
-    Contract.find(:first).softwares.each{ |l| assert l.is_a?(Software)}
+    Contract.first(:order => :id).softwares.each{ |l| assert l.is_a?(Software)}
   end
 
   def test_issues
@@ -66,7 +66,7 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_credit?
-    Contract.find(:first).credit?
+    Contract.first(:order => :id).credit?
   end
 
   def test_find_recipients_select
@@ -75,7 +75,7 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_scope
-    Contract.set_scope([Contract.find(:first).id])
+    Contract.set_scope([Contract.first(:order => :id).id])
     Contract.find(:all)
     Contract.remove_scope
   end

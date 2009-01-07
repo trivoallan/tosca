@@ -88,7 +88,7 @@ class ImagesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    image = Image.find(:first)
+    image = Image.first(:order => :id)
     assert_not_nil image
 
     assert_difference('Image.count', -1) do

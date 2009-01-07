@@ -30,7 +30,7 @@ class ContributionTest < Test::Unit::TestCase
   end
 
   def test_fragments
-    assert !Contribution.find(:first).fragments.empty?
+    assert !Contribution.first(:order => :id).fragments.empty?
   end
 
   def test_delay
