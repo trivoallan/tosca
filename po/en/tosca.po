@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-05 17:22+0100\n"
+"POT-Creation-Date: 2009-01-07 14:39+0100\n"
 "PO-Revision-Date: 2009-01-05 17:38+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
@@ -25,7 +25,7 @@ msgid "Connexion failure"
 msgstr ""
 
 #: app/controllers/account_controller.rb:52
-msgid "your account has been desactivated"
+msgid ", your account has been desactivated"
 msgstr ""
 
 #: app/controllers/account_controller.rb:91
@@ -248,7 +248,7 @@ msgstr ""
 msgid "You have successfully submitted your %s issue."
 msgstr ""
 
-#: app/controllers/issues_controller.rb:267
+#: app/controllers/issues_controller.rb:265
 msgid "The issue has been updated successfully."
 msgstr ""
 
@@ -260,17 +260,17 @@ msgstr ""
 msgid "This contribution is now linked"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:395
+#: app/controllers/issues_controller.rb:403
 msgid ""
 "It seems that you are not associated to a contract, which prevents you from "
 "filling an issue. Please contact %s if you think it's not normal"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:455 app/helpers/issues_helper.rb:137
+#: app/controllers/issues_controller.rb:463 app/helpers/issues_helper.rb:137
 msgid "Active issues"
 msgstr ""
 
-#: app/controllers/issues_controller.rb:458 app/helpers/issues_helper.rb:144
+#: app/controllers/issues_controller.rb:466 app/helpers/issues_helper.rb:144
 msgid "Finished issues"
 msgstr ""
 
@@ -990,7 +990,7 @@ msgid "Hide"
 msgstr ""
 
 #: app/helpers/static_image.rb:81 app/views/issues/_index_panel.html.erb:64
-#: app/views/issues/_show_panel.html.erb:59 app/views/welcome/about.html.erb:4
+#: app/views/issues/_show_panel.html.erb:58 app/views/welcome/about.html.erb:4
 msgid "Help"
 msgstr ""
 
@@ -1141,11 +1141,13 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Created at"
+#, fuzzy
+msgid "Alert|Created on"
 msgstr "Created on"
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated at"
+#, fuzzy
+msgid "Alert|Updated on"
 msgstr "Updated on"
 
 #: app/models/archive.rb:-
@@ -1226,10 +1228,6 @@ msgstr "Inactive"
 
 #: app/models/client.rb:-
 msgid "Client|Creator"
-msgstr ""
-
-#: app/models/client.rb:51
-msgid "Cannot (de)activate associated recipients due to : \"%s\""
 msgstr ""
 
 #: app/models/comment.rb:-
@@ -1334,6 +1332,10 @@ msgstr "Correction"
 
 #: app/models/commitment.rb:-
 msgid "Commitment|Issuetype"
+msgstr ""
+
+#: app/models/commitment.rb:25
+msgid "must be >= 0."
 msgstr ""
 
 #: app/models/contribution.rb:36
@@ -1477,7 +1479,8 @@ msgid "knowledge"
 msgstr ""
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|Skill"
+#, fuzzy
+msgid "Knowledge|skill"
 msgstr "skill"
 
 #: app/models/knowledge.rb:-
@@ -1777,7 +1780,7 @@ msgstr ""
 
 #: app/models/subscription.rb:29
 msgid ""
-"You can not unsubscribe to this contract, because your are the last one "
+"You can not unsubscribe to this contract, because your are the only one "
 "watching it."
 msgstr ""
 
@@ -2628,7 +2631,8 @@ msgid "No"
 msgstr ""
 
 #: app/views/contracts/_subscribers.html.erb:1
-#: app/views/issues/_show_panel.html.erb:56
+#: app/views/issues/panel/_panel_subscribers.html.erb:2
+#: app/views/issues/panel/_panel_subscribers.html.erb:17
 msgid "Subscribers"
 msgstr ""
 
@@ -3176,6 +3180,11 @@ msgid ""
 "holidays."
 msgstr ""
 
+#: app/views/issues/panel/_panel_subscribers.html.erb:7
+#, fuzzy
+msgid "Subscribe to this issue"
+msgstr "issue"
+
 #: app/views/issues/print.html.erb:5
 msgid "Comments"
 msgstr ""
@@ -3195,19 +3204,11 @@ msgstr ""
 msgid "SLA"
 msgstr ""
 
-#: app/views/issues/tabs/_actions.html.erb:6
-msgid "Subscribe"
-msgstr ""
-
-#: app/views/issues/tabs/_actions.html.erb:8
-msgid "to this issue"
-msgstr ""
-
-#: app/views/issues/tabs/_actions.html.erb:19
+#: app/views/issues/tabs/_actions.html.erb:5
 msgid "Add a contribution"
 msgstr ""
 
-#: app/views/issues/tabs/_actions.html.erb:22
+#: app/views/issues/tabs/_actions.html.erb:8
 msgid "Link to a contribution"
 msgstr ""
 
