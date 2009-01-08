@@ -85,6 +85,9 @@ def html2text(html)
       gsub(/<\/?u[^>]*>/i, "").
       gsub(/<[^>]*>/, '')
   )
+  # OOo does not know the Unbreakable UTF-8 char, as of OOo 2.4.1, Hardy.
+  text.gsub!(/\240/, ' ')
+
   for i in (0...links.size).to_a
     text = text + "\n  [#{i+1}] <#{CGI.unescapeHTML(links[i])}>" unless links[i].nil?
   end
