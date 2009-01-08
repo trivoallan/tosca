@@ -405,7 +405,7 @@ class Issue < ActiveRecord::Base
   # TODO : Use memoization as described here, when Tosca is on Rails >= 2.2
   # http://www.railway.at/articles/2008/09/20/a-guide-to-memoization
   def self.build_conditions_pending
-    options = { :order => 'updated_on DESC',
+    options = { :order => 'issues.updated_on DESC',
       :select => Issue::SELECT_LIST, :joins => Issue::JOINS_LIST }
     conditions = [ [ ] ]
 
@@ -413,7 +413,8 @@ class Issue < ActiveRecord::Base
 
     conditions.first << 'issues.statut_id IN (?)'
     conditions << Statut::OPENED
-    conditions.first << '(issues.expected_on < NOW() OR issues.expected_on IS NULL)'
+    conditions.first << '(issues.expected_on < ? OR issues.expected_on IS NULL)'
+    conditions << Time.now
 
     [ options, conditions ]
   end
