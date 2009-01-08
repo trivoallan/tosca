@@ -1,8 +1,0 @@
-<h1><%=_('Edit a phone call')%></h1>
-
-<% form_tag(phonecall_path(@phonecall), :method => :put) do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag _('Validate') %>
-<% end %>
-
-<%= link_to_back %>

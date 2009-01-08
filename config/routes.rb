@@ -99,7 +99,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :softwares,
     :collection => {:ajax_update_tags => :get}
   map.resources :permissions
-  map.resources :phonecalls,  :collection => { :ajax_recipients => :get }
   map.resources :attachments
   map.resources :releases
   map.resources :issues,
@@ -114,7 +113,6 @@ ActionController::Routing::Routes.draw do |map|
       :tag => :get,
       :ajax_history => :get,
       :ajax_attachments => :get,
-      :ajax_phonecalls => :get,
       :ajax_cns => :get,
       :ajax_actions => :get,
       :ajax_untag => :delete,

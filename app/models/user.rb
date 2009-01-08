@@ -34,7 +34,6 @@ class User < ActiveRecord::Base
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :tam_id
 
   has_many :knowledges, :order => 'knowledges.level DESC', :foreign_key => :engineer_id
-  has_many :phonecalls
   has_many :subscriptions
 
   has_and_belongs_to_many :own_contracts, :class_name => 'Contract', :order => :id
