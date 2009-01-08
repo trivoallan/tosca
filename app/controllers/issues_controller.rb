@@ -197,7 +197,7 @@ class IssuesController < ApplicationController
       options[:conditions][:private] = false if @recipient
       @last_comment = Comment.find(:first, options)
 
-      @statuts = @issue.statut.possible(user)
+      @statuts = @issue.issuetype.allowed_statuses(@issue.statut_id, @session_user)
       if user.engineer?
         @severities = Severity.find_select
         @engineers = User.find_select_by_contract_id(@issue.contract_id)

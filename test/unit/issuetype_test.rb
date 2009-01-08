@@ -36,6 +36,15 @@ class IssuetypeTest < Test::Unit::TestCase
   end
 
   def test_allowed_statuses
+    statuses = Statut.all
+    users = User.all
+    Issuetype.all.each do |i|
+      statuses.each do |s|
+        users.each do |u|
+          assert_instance_of Array, i.allowed_statuses(s, u)
+        end
+      end
+    end
   end
 
 end
