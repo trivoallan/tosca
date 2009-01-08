@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContributionsController < ApplicationController
-  helper :filters, :issues, :versions, :export, :hyperlinks, :softwares
+  helper :filters, :issues, :versions, :hyperlinks, :softwares
 
   cache_sweeper :contribution_sweeper, :only => [ :create, :update ]
 
