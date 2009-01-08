@@ -33,7 +33,7 @@ class Rules::Credit < ActiveRecord::Base
   # rule.compute_elapsed_between(last_status_comment, self)
   # It won't do anything : the credit spent is filled manually, not computed
   def compute_between(last, current, contract)
-    current.elapsed || 0
+    current.elapsed
   end
 
   def short_description

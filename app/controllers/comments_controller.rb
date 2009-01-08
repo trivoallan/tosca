@@ -60,6 +60,8 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment) do |c|
       c.issue, c.user = issue, user
       c.add_attachment(params)
+      # Nil is not allowed for a heavily-used for computation value
+      c.elapsed ||= 0
     end
 
     issue.update_attribute :expected_on, Time.now if user.recipient?
