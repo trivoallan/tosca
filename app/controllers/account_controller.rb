@@ -76,30 +76,21 @@ class AccountController < ApplicationController
     case request.method
     when :get # Display form
       @user = User.new(:role_id => 4, :client_id => 0) # Default : customer
+      _form
     when :post # Process form
       @user = User.new(params[:user])
       @user.generate_password # from PasswordGenerator, see lib/
-      connection = @user.connection
-      begin
-        connection.begin_db_transaction
-        if @user.save
-          associate_user!
-          Notifier::deliver_user_signup({:user => @user,
-              :session_user => @session_user}, flash)
-          # The commit has to be after sending email, not before
-          connection.commit_db_transaction
-          flash[:notice] = _("Account successfully created.")
-          redirect_to account_path(@user)
-        else
-          # Those variables are used by _form in order to display the correct form
-          associate_user
-        end
-      rescue Exception => e
-        connection.rollback_db_transaction
-        flash[:warn] = e.message
+      _associate_user
+      if @user.save
+        Notifier::deliver_user_signup({:user => @user,
+                                        :session_user => @session_user}, flash)
+        # The commit has to be after sending email, not before
+        flash[:notice] = _("Account successfully created.")
+        redirect_to account_path(@user)
+      else
+        _form
       end
     end
-    _form
   end
 
   def show
@@ -368,14 +359,7 @@ private
 
   # Used during signup, It saves the associated recipient/expert
   # Put in a separate method in order to improve readiblity of the code
-  def associate_user!
-    associate_user
-    @user.update_attributes(params[:recipient]) if @user.recipient?
-    @user.update_attributes(params[:engineer]) if @user.engineer?
-  end
-
-  # This one does not save anything, used when form was incorrectly setted
-  def associate_user
+  def _associate_user
     if params[:user][:client_form] == 'false'
       @user.associate_engineer
     elsif params.has_key? :user_recipient
