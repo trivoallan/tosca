@@ -27,7 +27,11 @@ issue_id = @issue ? @issue.id : @issue_id %>
     </li>
   <% end %>
   <% Issue::tabs.each do |t| %>
-    <li><%= send(t) %></li>
+    <li>
+      <% options[:url] = send("ajax_#{t}_issue_path", issue_id) %>
+      <% desc =  "#{_(t.capitalize)} " << StaticImage.send(t) %>
+      <%= link_to_remote_tab(desc, "ajax_#{t}", options) %>
+     </li>
   <% end %>
   <li>
     <%= StaticImage::spinner %>

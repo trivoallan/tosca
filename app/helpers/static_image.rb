@@ -262,9 +262,9 @@ class StaticImage < Static::ActionView
     @@documents ||= image_tag('icons/page_copy.png', options('Attachments', '16x16'))
   end
 
-  @@telephone = nil
-  def self.telephone
-    @@telephone ||= image_tag('icons/telephone.png', options('Phonecalls', '16x16'))
+  @@phonecalls = nil
+  def self.phonecalls
+    @@phonecalls ||= image_tag('icons/phonecalls.png', options('Phonecalls', '16x16'))
   end
 
   @@description = nil
