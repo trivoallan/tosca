@@ -25,4 +25,17 @@ class IssuetypeTest < Test::Unit::TestCase
     check_strings Issuetype
   end
 
+
+  def test_allowed_statuses_ids
+    statuses = Statut.all
+    Issuetype.all.each do |i|
+      statuses.each do |s|
+        assert_instance_of Array, i.allowed_statuses_ids(s)
+      end
+    end
+  end
+
+  def test_allowed_statuses
+  end
+
 end

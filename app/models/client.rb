@@ -75,7 +75,7 @@ class Client < ActiveRecord::Base
     return [] if contracts.empty?
     options = { :conditions => [ 'cu.contract_id IN (?) AND users.client_id IS NULL', contract_ids ],
       :joins => 'INNER JOIN contracts_users cu ON cu.user_id=users.id' }
-    User.find(:all, options)
+    User.all(options)
   end
 
   def softwares
@@ -88,13 +88,12 @@ class Client < ActiveRecord::Base
     conditions = [ 'softwares.id IN (SELECT DISTINCT versions.software_id ' +
                    ' FROM versions WHERE versions.contract_id IN (?)) ',
                    contracts_ids ]
-    Software.find(:all, :conditions => conditions, :order => 'softwares.name')
+    Software.all(:conditions => conditions, :order => 'softwares.name')
   end
 
   def contributions
     return [] if self.recipients.empty?
-    Contribution.find(:all,
-                      :conditions => "contributions.id IN (" +
+    Contribution.all(:conditions => "contributions.id IN (" +
                         "SELECT DISTINCT issues.contribution_id FROM issues " +
                         "WHERE issues.recipient_id IN (" +
                         recipients.collect{|c| c.id}.join(',') + "))")
@@ -105,10 +104,9 @@ class Client < ActiveRecord::Base
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
     conditions = [ 'commitments_contracts.contract_id IN (' +
         'SELECT contracts.id FROM contracts WHERE contracts.client_id = ?)', id ]
-    Issuetype.find(:all,
-                     :select => "DISTINCT issuetypes.*",
-                     :conditions => conditions,
-                     :joins => joins)
+    Issuetype.all(:select => "DISTINCT issuetypes.*",
+                  :conditions => conditions,
+                  :joins => joins)
   end
 
   # TODO : it could & should be dynamic. Is there really a sense to severity
