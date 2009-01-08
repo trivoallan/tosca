@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-07 14:39+0100\n"
-"PO-Revision-Date: 2009-01-05 17:38+0100\n"
+"PO-Revision-Date: 2009-01-08 09:58+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -1141,12 +1141,10 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-#, fuzzy
 msgid "Alert|Created on"
 msgstr "Created on"
 
 #: app/models/alert.rb:-
-#, fuzzy
 msgid "Alert|Updated on"
 msgstr "Updated on"
 
@@ -1479,7 +1477,6 @@ msgid "knowledge"
 msgstr ""
 
 #: app/models/knowledge.rb:-
-#, fuzzy
 msgid "Knowledge|skill"
 msgstr "skill"
 
@@ -3181,9 +3178,8 @@ msgid ""
 msgstr ""
 
 #: app/views/issues/panel/_panel_subscribers.html.erb:7
-#, fuzzy
 msgid "Subscribe to this issue"
-msgstr "issue"
+msgstr ""
 
 #: app/views/issues/print.html.erb:5
 msgid "Comments"
