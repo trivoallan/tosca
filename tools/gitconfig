@@ -17,6 +17,8 @@
   untracked = cyan
 [alias]
   ci = commit
+  co = checkout
+  smu = submodule update
   # list local commits, after fetch, before merge
   lc = log ORIG_HEAD.. --stat --no-merges
   # during conflict, a simple commit is enough after that.
