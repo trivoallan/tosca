@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class IssuesController < ApplicationController
-  helper :filters, :contributions, :softwares, :phonecalls,
+  helper :filters, :contributions, :softwares,
   :comments, :account, :reporting, :links, :subscriptions
 
   cache_sweeper :issue_sweeper, :only =>
@@ -218,16 +218,6 @@ class IssuesController < ApplicationController
         :order => "created_on ASC", :include => [:user,:statut,:severity])
     end
     render :partial => 'issues/tabs/tab_history', :layout => false
-  end
-
-  def ajax_phonecalls
-    return render(:nothing => true) unless request.xhr?
-    @issue_id = params[:id]
-    conditions = [ 'phonecalls.issue_id = ? ', @issue_id ]
-    options = { :conditions => conditions, :order => 'phonecalls.start',
-      :include => [:engineer, :recipient,:contract,:issue] }
-    @phonecalls = Phonecall.find(:all, options)
-    render :partial => 'issues/tabs/tab_phonecalls', :layout => false
   end
 
   def ajax_attachments

@@ -10,6 +10,7 @@ module ArActions
     def inherited(subclass)
       super(subclass)
       subclass.send(:class_variable_set, :@@actions, [])
+      subclass.send(:class_variable_set, :@@tabs, [])
     end
 
     # Used to define actions in extension.
@@ -19,9 +20,18 @@ module ArActions
       class_variable_get(:@@actions)
     end
 
-    #
+    def tabs
+      class_variable_get(:@@tabs)      
+    end
+
     def register_action(action)
       actions << action unless actions.include? action
     end
+    
+    # Used to define tabs in extensions
+    def register_tab(tab)
+      tabs << tab unless tabs.include? tab
+    end
+
   end
 end

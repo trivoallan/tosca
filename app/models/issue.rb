@@ -41,7 +41,6 @@ class Issue < ActiveRecord::Base
   belongs_to :contract
   belongs_to :contribution
 
-  has_many :phonecalls
   has_many :comments, :order => "created_on ASC", :dependent => :destroy
   has_many :attachments, :through => :comments
   has_many :subscriptions, :as => :model
