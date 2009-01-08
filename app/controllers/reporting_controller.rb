@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ReportingController < ApplicationController
-  helper :issues, :export
+  helper :issues
   include WeeklyReporting
   include DigestReporting
 
