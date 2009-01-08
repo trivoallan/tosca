@@ -91,10 +91,10 @@ class ContractTest < Test::Unit::TestCase
 
   def test_engineers
     Contract.all.each do |c|
-      c.engineers.each { |i|
+      c.engineers.each do |i|
         assert_kind_of User, i
         assert i.id
-      }
+      end
     end
   end
 
@@ -103,7 +103,7 @@ class ContractTest < Test::Unit::TestCase
       c.subscribers.each do |s|
         assert_kind_of User, s
         assert s.id
-        assert s.contracts_subscribed.include? c
+        assert s.contracts_subscribed.include?(c)
       end
     end
   end

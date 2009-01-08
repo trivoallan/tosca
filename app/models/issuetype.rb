@@ -22,8 +22,8 @@ class Issuetype < ActiveRecord::Base
   has_many :workflows
 
   # Only ids, it's use is restricted to expert view
-  def self.allowed_statuses_ids(from_status_id)
-    w = self.workflows.first(:conditions => {:status_id => from_status_id})
+  def allowed_statuses_ids(from_status_id)
+    w = self.workflows.first(:conditions => {:statut_id => from_status_id})
     if w
       res = w.allowed_status_ids
     else # default case : nearly all statuses
@@ -32,10 +32,10 @@ class Issuetype < ActiveRecord::Base
   end
 
   # Status objects, can be used for every views
-  def self.allowed_statuses(from_status_id, user)
-    @@active_statuses ||= Statut.all(:conditions => ["status.active = ?", true]).collect(&:id)
+  def allowed_statuses(from_status_id, user)
+    @@active_statuses ||= Statut.all(:conditions => ["statuts.active = ?", true]).collect(&:id)
     statuses_ids = allowed_statuses_ids(from_status_id)
-    statuses_ids =- @@active_statuses if user.recipient?
+    statuses_ids -= @@active_statuses if user.recipient?
     return statuses_ids if statuses_ids.empty?
     Statut.find_select(:conditions => ['statuts.id IN (?)', statuses_ids ],
                        :order => 'statuts.id')
