@@ -31,17 +31,19 @@ module SubscriptionsHelper
   def subscribers_list(model, options = {})
     subscribers = model.subscribers
     result, options_id = '', options[:id]
-    if options_id
-      result << %Q{<ul id="#{options_id}">}
-    else
-      result << '<ul>'
+    unless options.has_key?(:no_ul)
+      if options_id
+        result << %Q{<ul id="#{options_id}">}
+      else
+        result << '<ul>'
+      end
     end
     if subscribers.empty?
       result << "<li>#{_('There is no subscribers.')}</li>"
     else
       subscribers.each{|u| result << "<li>#{link_to(u, account_path(u))}</li>"}
     end
-    result << '</ul>'
+    result << '</ul>' unless options.has_key?(:no_ul)
   end
 
 end

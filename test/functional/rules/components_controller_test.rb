@@ -45,13 +45,13 @@ class Rules::ComponentsControllerTest < ActionController::TestCase
 
   def test_should_show_component
     login 'admin', 'admin'
-    get :show, :id =>  Rules::Component.find(:first).id
+    get :show, :id =>  Rules::Component.first(:order => :id).id
     assert_response :success
   end
 
   def test_should_get_edit
     login 'admin', 'admin'
-    get :edit, :id => Rules::Component.find(:first).id
+    get :edit, :id => Rules::Component.first(:order => :id).id
     assert_response :success
   end
 
@@ -64,7 +64,7 @@ class Rules::ComponentsControllerTest < ActionController::TestCase
   def test_should_destroy_component
     login 'admin', 'admin'
     assert_difference('Rules::Component.count', -1) do
-      delete :destroy, :id =>  Rules::Component.find(:first).id
+      delete :destroy, :id =>  Rules::Component.first(:order => :id).id
     end
 
     assert_redirected_to rules_components_path

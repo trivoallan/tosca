@@ -29,7 +29,7 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_scope
-    assert !User.get_scope([Contract.find(:first).id]).empty?
+    assert !User.get_scope([Contract.first(:order => :id).id]).empty?
   end
 
   def test_reset_permission_strings

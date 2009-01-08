@@ -6,8 +6,7 @@
 <%# used for iteration in ajaxified list %>
 <%= hidden_field_tag 'page', '1' %>
 
-<div class="menu_title" onclick="Element.toggle('menu_action')">
-> <%= _('Action') %></div>
+<%= div_toggle _('Action'), 'menu_action', :class => "menu_title" %>
 <ul class="menu" id="menu_action">
  <li><%= link_to _('Add a call'), new_phonecall_path %></li>
  <% Phonecall::actions.each do |a| %>
@@ -15,10 +14,8 @@
  <% end %>
 </ul>
 
-
-<div class="menu_title" onclick="Element.toggle('menu_recherche')">
-> <%= _('Search') %></div>
-<ul class="menu" id="menu_recherche">
+<%= div_toggle _('Search'), 'menu_search', :class => "menu_title" %>
+<ul class="menu" id="menu_search">
  <li><b><%= _('Expert') %></b></li>
  <li><%=select_filter(@engineers, 'engineer')%></li>
  <li><b><%= _('Recipient') %></b></li>
@@ -27,11 +24,9 @@
  <li><%=select_filter(@contracts, 'contract')%></li>
 </ul>
 
-
 <% submit_function = remote_function(form_options) %>
-<div class="menu_title" onclick="Element.toggle('menu_periode')">
-> <%=_('Period')%></div>
-<ul class="menu" id="menu_periode">
+<%= div_toggle _('Period'), 'menu_period', :class => "menu_title" %>
+<ul class="menu" id="menu_period">
 <li><b><%= _('From')%> </b>&nbsp;
    <% html_options = { :style => "width: 7em;", :onchange => submit_function } %>
    <%= text_field :filters, :after, html_options %>
@@ -43,16 +38,12 @@
    <%= StaticScript::script_date('filters_before', 'date_to') %></li>
 </ul>
 
-
-<div class="menu_title" onclick="Element.toggle('menu_perimetre')">
-> <%= _('Perimeter')%></div>
-<ul class="menu" id="menu_perimetre">
+<%= div_toggle _('Perimeter'), 'menu_perimeter', :class => "menu_title" %>
+<ul class="menu" id="menu_perimeter">
  <li><b><%=_('Calls')%>: </b><%=@count[:phonecalls]%></li>
  <li><b><%=_('Issues')%>: </b><%=@count[:issues] %></li>
  <li><b><%=_('Engineers')%>: </b><%=@count[:engineers]%></li>
  <li><b><%=_('Recipients')%>: </b><%=@count[:recipients]%></li>
- <li><b><%=_('Total duration')%>: </b><%=Time.in_words @count[:somme]%></li>
- <li><b><%=_('Average duration')%>: </b><%=Time.in_words @count[:moyenne]%></li>
 </ul>
 
 <% end %>

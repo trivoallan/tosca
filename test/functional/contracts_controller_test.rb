@@ -133,26 +133,18 @@ class ContractsControllerTest < ActionController::TestCase
     get :supported_software, :id => 1
     assert_response :success
     assert_template 'supported_software'
-    versions = Contract.find(1).versions
-    assert_no_difference('Version.count') do
-      form = select_form "main_form"
-      form.submit
-      assert_response :redirect
-      assert_redirected_to contract_path(:id => 1)
-    end
+    form = select_form "main_form"
+    form.submit
+    assert_response :redirect
+    assert_redirected_to contract_path(:id => 1)
   end
 
   def test_add_software
     get :supported_software, :id => 1
     assert_response :success
     assert_template 'supported_software'
-    versions = Contract.find(1).versions
-    assert_no_difference('Version.count') do
-      form = select_form "main_form"
-      form.submit
-    end
     xhr :post, :ajax_add_software, :select => {
-      :software => Software.find(:first).id }
+      :software => Software.first(:order => :id).id }
     assert_response :success
     assert_template 'contracts/_software'
   end

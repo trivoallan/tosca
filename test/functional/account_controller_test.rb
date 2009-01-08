@@ -207,10 +207,10 @@ class AccountControllerTest < ActionController::TestCase
       assert_not_nil assigns(:user)
     end
     # test on a new user, without id
-    test.call(:client_id => Client.find(:first).id)
+    test.call(:client_id => Client.first(:order => :id).id)
     # test on an existing user, with his id
-    test.call(:client_id => Client.find(:first).id,
-              :id => User.find(:first).id)
+    test.call(:client_id => Client.first(:order => :id).id,
+              :id => User.first(:order => :id).id)
   end
 
 end

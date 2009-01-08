@@ -26,7 +26,7 @@ class ArchiveTest < Test::Unit::TestCase
 #  end
 #
 #  def test_scope
-#    Attachment.set_scope(Client.find(:first).id)
+#    Attachment.set_scope(Client.first(:order => :id).id)
 #    Attachment.find(:all)
 #    Attachment.remove_scope
 #  end

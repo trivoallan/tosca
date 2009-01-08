@@ -52,7 +52,7 @@ class ReleasesControllerTest < ActionController::TestCase
   def test_should_show_release
     %w(admin manager expert).each do |l|
       login l, l
-      get :show, :id => Release.find(:first).id
+      get :show, :id => Release.first(:order => :id).id
       assert_response :success
     end
   end
@@ -61,7 +61,7 @@ class ReleasesControllerTest < ActionController::TestCase
     %w(admin manager).each do |l|
       login l, l
 
-      get :edit, :id => Release.find(:first).id
+      get :edit, :id => Release.first(:order => :id).id
       assert_response :success
     end
   end

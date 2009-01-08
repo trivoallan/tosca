@@ -47,7 +47,7 @@ begin
   require 'desert'
 rescue
   # It cannot be loaded in config.gem, so we need this hack for freezed version
-  desert_path = File.join(RAILS_ROOT, 'vendor', 'gems', 'desert-0.3.2', 'lib')
+  desert_path = File.join(RAILS_ROOT, 'vendor', 'gems', 'desert-0.3.3', 'lib')
   $LOAD_PATH.unshift desert_path
   require 'desert'
 end
@@ -85,7 +85,7 @@ Rails::Initializer.run do |config|
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
   # config.gem 'rmagick', :version => '1.15.15', :lib => "RMagick"
   # Used to load the extension mechanism
-  config.gem 'desert', :version => '0.3.2'
+  config.gem 'desert', :version => '0.3.3'
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)

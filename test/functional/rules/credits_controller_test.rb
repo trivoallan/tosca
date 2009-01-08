@@ -45,26 +45,26 @@ class Rules::CreditsControllerTest < ActionController::TestCase
 
   def test_should_show_credit
     login 'admin', 'admin'
-    get :show, :id => Rules::Credit.find(:first).id
+    get :show, :id => Rules::Credit.first(:order => :id).id
     assert_response :success
   end
 
   def test_should_get_edit
     login 'admin', 'admin'
-    get :edit, :id =>  Rules::Credit.find(:first).id
+    get :edit, :id =>  Rules::Credit.first(:order => :id).id
     assert_response :success
   end
 
   def test_should_update_credit
     login 'admin', 'admin'
-    put :update, :id =>  Rules::Credit.find(:first).id, :credit => { }
+    put :update, :id =>  Rules::Credit.first(:order => :id).id, :credit => { }
     assert_redirected_to rules_credit_path(assigns(:credit))
   end
 
   def test_should_destroy_credit
     login 'admin', 'admin'
     assert_difference('Rules::Credit.count', -1) do
-      delete :destroy, :id =>  Rules::Credit.find(:first).id
+      delete :destroy, :id =>  Rules::Credit.first(:order => :id).id
     end
 
     assert_redirected_to rules_credits_path

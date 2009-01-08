@@ -83,8 +83,8 @@ class ContributionsControllerTest < ActionController::TestCase
   end
 
   def test_should_be_able_to_create
-    get :new, :issue_id => Issue.find(:first).id,
-              :software_id => Software.find(:first).id
+    get :new, :issue_id => Issue.first(:order => :id).id,
+              :software_id => Software.first(:order => :id).id
     assert_template 'new'
     assert_response :success
 

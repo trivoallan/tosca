@@ -35,7 +35,7 @@ class PermissionsControllerTest < ActionController::TestCase
 
   def test_show
     login 'admin', 'admin'
-    get :show, :id => Permission.find(:first).id
+    get :show, :id => Permission.first(:order => :id).id
 
     assert_response :success
     assert_template 'show'
@@ -62,7 +62,7 @@ class PermissionsControllerTest < ActionController::TestCase
 
   def test_edit_and_update
     login 'admin', 'admin'
-    get :edit, :id => Permission.find(:first).id
+    get :edit, :id => Permission.first(:order => :id).id
     assert_response :success
     assert_template 'edit'
     assert_not_nil assigns(:permission)
@@ -77,7 +77,7 @@ class PermissionsControllerTest < ActionController::TestCase
   end
 
   def test_destroy
-    perm = Permission.find(:first)
+    perm = Permission.first(:order => :id)
     assert_difference('Permission.count', -1) do
       post :destroy, :id =>  perm.id
       assert_response :redirect

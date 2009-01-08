@@ -358,15 +358,17 @@ class Issue < ActiveRecord::Base
   end
 
   def subscribed?(user)
-    not (Subscription.all(:conditions => {:user_id => user.id,
-          :model_type => 'Issue', :model_id => self.id}).empty?)
+    self.subscribers.include?(user)
   end
 
   def subscribers
-    software_subscribers = (self.software ? self.software.subscribers : [])
-    res = self.subscriptions.collect(&:user).concat(
-          self.contract.subscribers).concat(
-          software_subscribers)
+    software_subscribers = []
+    (self.software ? self.software.subscribers : []).each do |s|
+      software_subscribers << s if s.contracts.include?(self.contract)
+    end
+    res = self.subscriptions.collect(&:user).
+      concat(self.contract.subscribers).
+      concat(software_subscribers)
     res.uniq!
     res
   end

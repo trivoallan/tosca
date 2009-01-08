@@ -43,7 +43,7 @@ class Contract < ActiveRecord::Base
     :order => 'users.name ASC'
   has_and_belongs_to_many :teams, :order => 'teams.name', :uniq => true
 
-  validates_presence_of :client, :rule, :creator
+  validates_presence_of :client, :rule, :creator, :start_date, :end_date
   validates_numericality_of :opening_time, :closing_time,
     :only_integer => true
   validates_inclusion_of :opening_time, :closing_time, :in => 0..24

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-05 17:22+0100\n"
+"POT-Creation-Date: 2009-01-07 14:39+0100\n"
 "PO-Revision-Date: 2009-01-05 17:31+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
@@ -26,8 +26,8 @@ msgid "Connexion failure"
 msgstr "Échec lors de la connexion"
 
 #: app/controllers/account_controller.rb:52
-msgid "your account has been desactivated"
-msgstr "votre compte a été désactivé"
+msgid ", your account has been desactivated"
+msgstr ", votre compte a été désactivé"
 
 #: app/controllers/account_controller.rb:91
 msgid "Account successfully created."
@@ -255,7 +255,7 @@ msgstr "Toutes les demandes"
 msgid "You have successfully submitted your %s issue."
 msgstr "Vous avez soumis avec succès votre %s demande"
 
-#: app/controllers/issues_controller.rb:267
+#: app/controllers/issues_controller.rb:265
 msgid "The issue has been updated successfully."
 msgstr "La demande a bien été mise à jour."
 
@@ -267,7 +267,7 @@ msgstr "La demande n'est plus liée à une contribution"
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/issues_controller.rb:395
+#: app/controllers/issues_controller.rb:403
 msgid ""
 "It seems that you are not associated to a contract, which prevents you from "
 "filling an issue. Please contact %s if you think it's not normal"
@@ -276,11 +276,11 @@ msgstr ""
 "de déposer une demande. Veuillez contacter %s si vous pensez que ce n'est "
 "pas normal."
 
-#: app/controllers/issues_controller.rb:455 app/helpers/issues_helper.rb:137
+#: app/controllers/issues_controller.rb:463 app/helpers/issues_helper.rb:137
 msgid "Active issues"
 msgstr "Demandes actives"
 
-#: app/controllers/issues_controller.rb:458 app/helpers/issues_helper.rb:144
+#: app/controllers/issues_controller.rb:466 app/helpers/issues_helper.rb:144
 msgid "Finished issues"
 msgstr "Demandes terminées"
 
@@ -1007,7 +1007,7 @@ msgid "Hide"
 msgstr "Cacher"
 
 #: app/helpers/static_image.rb:81 app/views/issues/_index_panel.html.erb:64
-#: app/views/issues/_show_panel.html.erb:59 app/views/welcome/about.html.erb:4
+#: app/views/issues/_show_panel.html.erb:58 app/views/welcome/about.html.erb:4
 msgid "Help"
 msgstr "Aide"
 
@@ -1158,11 +1158,11 @@ msgid "Alert|Hash value"
 msgstr "Valeur du hash"
 
 #: app/models/alert.rb:-
-msgid "Alert|Created at"
+msgid "Alert|Created on"
 msgstr "Créée le"
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated at"
+msgid "Alert|Updated on"
 msgstr "Mise à jour le"
 
 #: app/models/archive.rb:-
@@ -1244,11 +1244,6 @@ msgstr "Inactif"
 #: app/models/client.rb:-
 msgid "Client|Creator"
 msgstr "Créateur"
-
-#: app/models/client.rb:51
-msgid "Cannot (de)activate associated recipients due to : \"%s\""
-msgstr ""
-"Ne peut pas (dés)activer les bénéficiaires associés à cause de : \"%s\""
 
 #: app/models/comment.rb:-
 msgid "comment"
@@ -1353,6 +1348,10 @@ msgstr "Correction"
 #: app/models/commitment.rb:-
 msgid "Commitment|Issuetype"
 msgstr "Type de demande"
+
+#: app/models/commitment.rb:25
+msgid "must be >= 0."
+msgstr "doit être >= 0."
 
 #: app/models/contribution.rb:36
 msgid "You have to specify a software."
@@ -1495,7 +1494,7 @@ msgid "knowledge"
 msgstr "connaissance"
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|Skill"
+msgid "Knowledge|skill"
 msgstr "Niveau"
 
 #: app/models/knowledge.rb:-
@@ -1795,9 +1794,11 @@ msgstr "Souscription pour %s de %s à #%s"
 
 #: app/models/subscription.rb:29
 msgid ""
-"You can not unsubscribe to this contract, because your are the last one "
+"You can not unsubscribe to this contract, because your are the only one "
 "watching it."
-msgstr "Vous ne pouvez vous désinscrire de ce contrat, parce que vous êtes le seul à être notifié"
+msgstr ""
+"Vous ne pouvez vous désinscrire de ce contrat, parce que vous êtes le seul à "
+"être notifié"
 
 #: app/models/team.rb:-
 msgid "team"
@@ -2646,7 +2647,8 @@ msgid "No"
 msgstr "Non"
 
 #: app/views/contracts/_subscribers.html.erb:1
-#: app/views/issues/_show_panel.html.erb:56
+#: app/views/issues/panel/_panel_subscribers.html.erb:2
+#: app/views/issues/panel/_panel_subscribers.html.erb:17
 msgid "Subscribers"
 msgstr "Souscrits"
 
@@ -3197,6 +3199,10 @@ msgid ""
 msgstr ""
 "Les jours ouvrés sont du Lundi au Vendredi, sauf week-ends et jours fériés."
 
+#: app/views/issues/panel/_panel_subscribers.html.erb:7
+msgid "Subscribe to this issue"
+msgstr "S'inscrire à cette demande"
+
 #: app/views/issues/print.html.erb:5
 msgid "Comments"
 msgstr "Commentaires"
@@ -3216,19 +3222,11 @@ msgstr "Appels"
 msgid "SLA"
 msgstr "CNS"
 
-#: app/views/issues/tabs/_actions.html.erb:6
-msgid "Subscribe"
-msgstr "Souscrire"
-
-#: app/views/issues/tabs/_actions.html.erb:8
-msgid "to this issue"
-msgstr "à cette demande"
-
-#: app/views/issues/tabs/_actions.html.erb:19
+#: app/views/issues/tabs/_actions.html.erb:5
 msgid "Add a contribution"
 msgstr "Ajouter une contribution"
 
-#: app/views/issues/tabs/_actions.html.erb:22
+#: app/views/issues/tabs/_actions.html.erb:8
 msgid "Link to a contribution"
 msgstr "Lier à une contribution"
 

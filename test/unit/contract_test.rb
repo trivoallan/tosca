@@ -42,13 +42,13 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_invervals
-    c = Contract.find(:first)
+    c = Contract.first(:order => :id)
     interval = c.interval
     assert_equal c.interval_in_seconds, interval * 1.hour
   end
 
   def test_softwares
-    Contract.find(:first).softwares.each{ |l| assert l.is_a?(Software)}
+    Contract.first(:order => :id).softwares.each{ |l| assert l.is_a?(Software)}
   end
 
   def test_issues
@@ -66,7 +66,7 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_credit?
-    Contract.find(:first).credit?
+    Contract.first(:order => :id).credit?
   end
 
   def test_find_recipients_select
@@ -75,7 +75,7 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_scope
-    Contract.set_scope([Contract.find(:first).id])
+    Contract.set_scope([Contract.first(:order => :id).id])
     Contract.find(:all)
     Contract.remove_scope
   end
@@ -112,6 +112,38 @@ class ContractTest < Test::Unit::TestCase
     Contract.all.each do |c|
       #We only test contracts with a tam
       assert c.subscribed?(c.tam) if c.tam
+    end
+  end
+
+  def test_create
+    tam = User.first(:order => :id)
+    c = Contract.new(:client => Client.first,
+      :opening_time => 8,
+      :closing_time => 19,
+      :creator => tam,
+      :rule => Rules::Component.first,
+      :tam => tam,
+      :start_date => "2007-12-24",
+      :end_date => "2012-12-24")
+    assert c.save!
+    assert c.subscribed?(tam)
+  end
+
+  def test_find_commitment
+    Contract.all.each do |c|
+      c.issues.each do |i|
+        assert_instance_of Commitment, c.find_commitment(i)
+      end
+    end
+  end
+
+  def test_total_elapsed
+    Contract.all.each do |c|
+      total = 0
+      c.issues.each do |r|
+        total += r.elapsed.until_now
+      end
+      assert_equal(c.total_elapsed, total)
     end
   end
 

@@ -59,4 +59,8 @@ module AccountHelper
     result
   end
 
+  def link_to_user(user)
+    link_to user.name, account_path(user)
+  end
+
 end
