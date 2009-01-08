@@ -1,13 +1,13 @@
 --- 
 severity_00001: 
-  name: Bloquante
+  name: Blocking
   id: 1
 severity_00002: 
-  name: Majeure
+  name: Major
   id: 2
 severity_00003: 
-  name: Mineure
+  name: Minor
   id: 3
 severity_00004: 
-  name: Aucune
+  name: None
   id: 4

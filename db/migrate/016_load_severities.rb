@@ -25,7 +25,7 @@ class LoadSeverities < ActiveRecord::Migration
 
     # known kind of urls for a software
     id = 1
-    %w(Bloquante Majeure Mineure Aucune).each {|n|
+    %w(Blocking Major Minor None).each {|n|
       s = Severite.new(:nom => n)
       s.id = id
       s.save
@@ -34,6 +34,7 @@ class LoadSeverities < ActiveRecord::Migration
   end
 
   def self.down
-    Severite.find(:all).each{ |s| s.destroy }
+    Severite.destroy_all
   end
+
 end

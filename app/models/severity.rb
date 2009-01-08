@@ -20,4 +20,17 @@ class Severity < ActiveRecord::Base
   has_many :issues
   has_many :commitments
 
+  ####################
+  N_('Blocking') # 1 #
+  N_('Major')    # 2 #
+  N_('Minor')    # 3 #
+  N_('None')     # 4 #
+  ####################
+
+  # It's one of the rare "heavily used & fixed" AR model,
+  # So we can include it in the translation mechanism
+  def name
+    _(read_attribute(:name))
+  end
+
 end

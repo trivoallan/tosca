@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
-"POT-Creation-Date: 2009-01-07 14:39+0100\n"
+"POT-Creation-Date: 2009-01-08 17:46+0100\n"
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,68 +24,68 @@ msgstr ""
 msgid ", your account has been desactivated"
 msgstr ""
 
-#: app/controllers/account_controller.rb:91
+#: app/controllers/account_controller.rb:88
 msgid "Account successfully created."
 msgstr ""
 
-#: app/controllers/account_controller.rb:177
+#: app/controllers/account_controller.rb:168
 msgid "Edition succeeded"
 msgstr ""
 
-#: app/controllers/account_controller.rb:218
+#: app/controllers/account_controller.rb:209
 msgid "Unknown account"
 msgstr ""
 
-#: app/controllers/account_controller.rb:224
+#: app/controllers/account_controller.rb:215
 msgid "Your new password has been generated."
 msgstr ""
 
-#: app/controllers/account_controller.rb:239
+#: app/controllers/account_controller.rb:230
 msgid "You are not allowed to change your identity"
 msgstr ""
 
-#: app/controllers/account_controller.rb:243
+#: app/controllers/account_controller.rb:234
 msgid "Person not found"
 msgstr ""
 
-#: app/controllers/account_controller.rb:276
+#: app/controllers/account_controller.rb:267
 msgid "Full name"
 msgstr ""
 
-#: app/controllers/account_controller.rb:276
+#: app/controllers/account_controller.rb:267
 msgid "Title"
 msgstr ""
 
-#: app/controllers/account_controller.rb:276
+#: app/controllers/account_controller.rb:267
 #: app/views/account/forgotten_password.html.erb:9
 msgid "Email"
 msgstr ""
 
-#: app/controllers/account_controller.rb:276
+#: app/controllers/account_controller.rb:267
 #: app/views/issues/_show_panel.html.erb:28
 msgid "Phone"
 msgstr ""
 
-#: app/controllers/account_controller.rb:277
+#: app/controllers/account_controller.rb:268
 #: app/views/account/forgotten_password.html.erb:6
 #: app/views/account/login.html.erb:9
 msgid "Login"
 msgstr ""
 
-#: app/controllers/account_controller.rb:277
+#: app/controllers/account_controller.rb:268
 #: app/views/account/login.html.erb:12
 msgid "Password"
 msgstr ""
 
-#: app/controllers/account_controller.rb:277
+#: app/controllers/account_controller.rb:268
 msgid "Informations"
 msgstr ""
 
-#: app/controllers/account_controller.rb:283
+#: app/controllers/account_controller.rb:274
 msgid "Welcome %s %s"
 msgstr ""
 
-#: app/controllers/account_controller.rb:290
+#: app/controllers/account_controller.rb:281
 msgid "Your contract '%s' is near its end date : %s"
 msgstr ""
 
@@ -147,27 +147,27 @@ msgid ""
 "        the <b>status</b> or in the <b>severity</b>"
 msgstr ""
 
-#: app/controllers/comments_controller.rb:69
+#: app/controllers/comments_controller.rb:71
 msgid "Your comment was successfully added."
 msgstr ""
 
-#: app/controllers/comments_controller.rb:74
+#: app/controllers/comments_controller.rb:76
 msgid "An error has occured."
 msgstr ""
 
-#: app/controllers/comments_controller.rb:102
+#: app/controllers/comments_controller.rb:104
 msgid "The comment was successfully updated."
 msgstr ""
 
-#: app/controllers/comments_controller.rb:114
+#: app/controllers/comments_controller.rb:116
 msgid "The comment was successfully destroyed."
 msgstr ""
 
-#: app/controllers/comments_controller.rb:116
+#: app/controllers/comments_controller.rb:118
 msgid "You cannot delete the first comment"
 msgstr ""
 
-#: app/controllers/comments_controller.rb:130
+#: app/controllers/comments_controller.rb:132
 msgid "You are not allowed to edit this comment"
 msgstr ""
 
@@ -549,7 +549,7 @@ msgstr ""
 
 #: app/helpers/application_helper.rb:188 app/helpers/commitments_helper.rb:71
 #: app/helpers/commitments_helper.rb:72 app/helpers/engagements_helper.rb:71
-#: app/helpers/engagements_helper.rb:72
+#: app/helpers/engagements_helper.rb:72 app/models/severity.rb:27
 #: app/views/reporting/_comex_tableaux.html.erb:20
 msgid "None"
 msgstr ""
@@ -681,7 +681,7 @@ msgstr ""
 #: app/views/contributions/_admin_panel.html.erb:28
 #: app/views/issues/_index_panel.html.erb:35
 #: app/views/knowledges/_index_panel.html.erb:19
-#: app/views/phonecalls/_index_panel.html.erb:20
+#: app/views/phonecalls/_index_panel.html.erb:17
 #: app/views/softwares/_index_panel.html.erb:28
 #: app/views/versions/_index_panel.html.erb:21
 msgid "Search"
@@ -791,7 +791,7 @@ msgid "Home"
 msgstr ""
 
 #: app/helpers/links_helper.rb:124 app/views/contracts/index.html.erb:6
-#: app/views/phonecalls/_index_panel.html.erb:51
+#: app/views/phonecalls/_index_panel.html.erb:44
 #: app/views/reporting/general.html.erb:23
 #: app/views/reporting/general.html.erb:26
 #: app/views/reporting/general.html.erb:29
@@ -906,7 +906,7 @@ msgid "Status"
 msgstr ""
 
 #: app/helpers/reporting_helper.rb:32
-#: app/views/phonecalls/_index_panel.html.erb:33
+#: app/views/phonecalls/_index_panel.html.erb:28
 msgid "Period"
 msgstr ""
 
@@ -1137,11 +1137,11 @@ msgid "Alert|Hash value"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Created on"
+msgid "Alert|Created at"
 msgstr ""
 
 #: app/models/alert.rb:-
-msgid "Alert|Updated on"
+msgid "Alert|Updated at"
 msgstr ""
 
 #: app/models/archive.rb:-
@@ -1473,7 +1473,7 @@ msgid "knowledge"
 msgstr ""
 
 #: app/models/knowledge.rb:-
-msgid "Knowledge|skill"
+msgid "Knowledge|Skill"
 msgstr ""
 
 #: app/models/knowledge.rb:-
@@ -1679,6 +1679,18 @@ msgstr ""
 msgid "Severity|Name"
 msgstr ""
 
+#: app/models/severity.rb:24 app/views/reporting/_comex_tableaux.html.erb:17
+msgid "Blocking"
+msgstr ""
+
+#: app/models/severity.rb:25 app/views/reporting/_comex_tableaux.html.erb:18
+msgid "Major"
+msgstr ""
+
+#: app/models/severity.rb:26 app/views/reporting/_comex_tableaux.html.erb:19
+msgid "Minor"
+msgstr ""
+
 #: app/models/skill.rb:-
 msgid "skill"
 msgstr ""
@@ -1875,7 +1887,7 @@ msgstr ""
 #: app/views/account/index.html.erb:13 app/views/issues/_form.html.erb:50
 #: app/views/issues/tabs/_phonecalls.html.erb:3
 #: app/views/phonecalls/_form.html.erb:15
-#: app/views/phonecalls/_index_panel.html.erb:24
+#: app/views/phonecalls/_index_panel.html.erb:21
 #: app/views/phonecalls/index.html.erb:5 app/views/phonecalls/show.html.erb:14
 msgid "Recipient"
 msgstr ""
@@ -1984,7 +1996,7 @@ msgstr ""
 #: app/views/account/_index_panel.html.erb:13
 #: app/views/clients/_index_panel.html.erb:14
 #: app/views/contracts/_index_panel.html.erb:12
-#: app/views/phonecalls/_index_panel.html.erb:10
+#: app/views/phonecalls/_index_panel.html.erb:9
 msgid "Action"
 msgstr ""
 
@@ -2027,7 +2039,7 @@ msgid "Roles "
 msgstr ""
 
 #: app/views/account/_index_panel.html.erb:38
-#: app/views/phonecalls/_index_panel.html.erb:48
+#: app/views/phonecalls/_index_panel.html.erb:41
 #: app/views/versions/_index_panel.html.erb:28
 msgid "Perimeter"
 msgstr ""
@@ -2066,7 +2078,7 @@ msgid "Submit an issue"
 msgstr ""
 
 #: app/views/account/_menu.html.erb:15
-#: app/views/phonecalls/_index_panel.html.erb:50
+#: app/views/phonecalls/_index_panel.html.erb:43
 msgid "Calls"
 msgstr ""
 
@@ -2678,7 +2690,7 @@ msgstr ""
 #: app/views/contracts/show.html.erb:74
 #: app/views/account/_edit_account_informations.html.erb:14
 #: app/views/knowledges/show.html.erb:3
-#: app/views/phonecalls/_index_panel.html.erb:22
+#: app/views/phonecalls/_index_panel.html.erb:19
 msgid "Expert"
 msgid_plural "Experts"
 msgstr[0] ""
@@ -2763,7 +2775,7 @@ msgstr ""
 #: app/views/contributions/_admin_panel.html.erb:40
 #: app/views/issues/tabs/_phonecalls.html.erb:3
 #: app/views/phonecalls/_form.html.erb:9
-#: app/views/phonecalls/_index_panel.html.erb:26
+#: app/views/phonecalls/_index_panel.html.erb:23
 #: app/views/phonecalls/index.html.erb:5 app/views/releases/_form.html.erb:11
 #: app/views/releases/show.html.erb:13 app/views/tags/_form.html.erb:11
 #: app/views/tags/show.html.erb:11
@@ -3412,7 +3424,7 @@ msgid "Issue Id"
 msgstr ""
 
 #: app/views/phonecalls/_form.html.erb:12
-#: app/views/phonecalls/_index_panel.html.erb:52
+#: app/views/phonecalls/_index_panel.html.erb:45
 msgid "Engineers"
 msgstr ""
 
@@ -3425,28 +3437,20 @@ msgstr ""
 msgid "End of call"
 msgstr ""
 
-#: app/views/phonecalls/_index_panel.html.erb:12
+#: app/views/phonecalls/_index_panel.html.erb:11
 msgid "Add a call"
 msgstr ""
 
-#: app/views/phonecalls/_index_panel.html.erb:35
+#: app/views/phonecalls/_index_panel.html.erb:30
 msgid "From"
 msgstr ""
 
-#: app/views/phonecalls/_index_panel.html.erb:40
+#: app/views/phonecalls/_index_panel.html.erb:35
 msgid "To"
 msgstr ""
 
-#: app/views/phonecalls/_index_panel.html.erb:53
+#: app/views/phonecalls/_index_panel.html.erb:46
 msgid "Recipients"
-msgstr ""
-
-#: app/views/phonecalls/_index_panel.html.erb:54
-msgid "Total duration"
-msgstr ""
-
-#: app/views/phonecalls/_index_panel.html.erb:55
-msgid "Average duration"
 msgstr ""
 
 #: app/views/phonecalls/edit.html.erb:1
@@ -3577,18 +3581,6 @@ msgstr ""
 
 #: app/views/reporting/_comex_tableaux.html.erb:13
 msgid "TOTAL"
-msgstr ""
-
-#: app/views/reporting/_comex_tableaux.html.erb:17
-msgid "Blocking"
-msgstr ""
-
-#: app/views/reporting/_comex_tableaux.html.erb:18
-msgid "Major"
-msgstr ""
-
-#: app/views/reporting/_comex_tableaux.html.erb:19
-msgid "Minor"
 msgstr ""
 
 #: app/views/reporting/_comex_tableaux.html.erb:22
