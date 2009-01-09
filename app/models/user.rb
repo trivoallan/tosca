@@ -17,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require 'digest/sha1'
+require 'ldap_tosca'
 
 class User < ActiveRecord::Base
   # Small utils for inactive & password, located in /lib/*.rb
@@ -128,7 +129,7 @@ class User < ActiveRecord::Base
   def self.get_scope(contract_ids)
     { :find => { :conditions =>
           [ 'contracts_users.contract_id IN (?) ', contract_ids ], :joins =>
-        'INNER JOIN contracts_users ON contracts_users.user_id=users.id ' } }
+          'INNER JOIN contracts_users ON contracts_users.user_id=users.id ' } }
   end
 
   # Associate current User to a recipient profile
@@ -151,17 +152,33 @@ class User < ActiveRecord::Base
     :order => 'users.name' } unless defined? User::EXPERT_OPTIONS
 
   def self.authenticate(login, pass)
+    user = nil
     User.with_exclusive_scope() do
-      conditions = ['login = ? AND password = ?', login, sha1(pass)]
-      user = User.first(:conditions => conditions)
+      if self.use_ldap?
+        ldap_user = self.get_user(login)
+        if ldap_user and self.authentificate_user(login, pass)
+          user = User.first(:conditions => { :login => login })
+          unless user
+            user = User.create(:login => ldap_user[:uid],
+              :name => ldap_user[:cn],
+              :email => ldap_user[:mail],
+              :role_id => 1)
+            #TODO send email, something
+          end
+        end
+        # else : the user is not in the ldap or we could not authentificate him
+      else
+        conditions = ['login = ? AND password = ?', login, sha1(pass)]
+        user = User.first(:conditions => conditions)
+      end
       return nil if user and user.inactive?
       user
     end
   end
 
   def self.tams
-   self.find_select( { :joins => :own_contracts, :group => "users.id, users.name",
-     :conditions => "contracts.tam_id = users.id" } )
+    self.find_select( { :joins => :own_contracts, :group => "users.id, users.name",
+        :conditions => "contracts.tam_id = users.id" } )
   end
 
   # To manage permissions/roles :
