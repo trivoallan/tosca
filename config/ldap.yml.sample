@@ -1,0 +1,10 @@
+ldap:
+  host: localhost
+  port: 389
+  binddn: "cn=admin,dc=linagora,dc=lan"
+  bindpw: linagora
+  filter: "(&(objectclass=person)(uid=?))"
+  basedn: "ou=People,dc=linagora,dc=lan"
+  scope: "LDAP::LDAP_SCOPE_ONELEVEL"
+  protocol: 3
+
