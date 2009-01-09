@@ -125,8 +125,8 @@ class Contract < ActiveRecord::Base
                      :joins => joins)
   end
 
-  INCLUDE = [:client] unless defined? Contract::INCLUDE
-  ORDER = 'clients.name ASC'unless defined? Contract::ORDER
+  INCLUDE = [:client]
+  ORDER = 'clients.name ASC'
   OPTIONS = { :include => INCLUDE, :order => ORDER, :conditions =>
     ["clients.inactive = ?", false] } unless defined? Contract::OPTIONS
 

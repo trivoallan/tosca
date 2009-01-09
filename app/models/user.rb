@@ -17,12 +17,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require 'digest/sha1'
-require 'ldap_tosca'
 
 class User < ActiveRecord::Base
   # Small utils for inactive & password, located in /lib/*.rb
   include InactiveRecord
   include PasswordGenerator
+  include LdapTosca
 
   belongs_to :image
   belongs_to :role
@@ -159,9 +159,10 @@ class User < ActiveRecord::Base
         if ldap_user and self.authentificate_user(login, pass)
           user = User.first(:conditions => { :login => login })
           unless user
-            user = User.create(:login => ldap_user[:uid],
-              :name => ldap_user[:cn],
-              :email => ldap_user[:mail],
+            user = User.create(:login => ldap_user['uid'],
+              :name => ldap_user['cn'],
+              :email => ldap_user['mail'],
+              :password => ldap_user['userpassword'],
               :role_id => 1)
             #TODO send email, something
           end
