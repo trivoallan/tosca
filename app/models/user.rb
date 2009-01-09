@@ -156,14 +156,14 @@ class User < ActiveRecord::Base
     User.with_exclusive_scope() do
       if self.use_ldap?
         ldap_user = self.get_user(login)
-        if ldap_user and self.authentificate_user(login, pass)
+        if ldap_user and self.authentificate_user(ldap_user['dn'].first, pass)
           user = User.first(:conditions => { :login => login })
           unless user
-            user = User.create(:login => ldap_user['uid'],
-              :name => ldap_user['cn'],
-              :email => ldap_user['mail'],
-              :password => ldap_user['userpassword'],
-              :role_id => 1)
+            user = User.create(:login => ldap_user['uid'].first,
+              :name => ldap_user['cn'].first,
+              :email => ldap_user['mail'].first,
+              :password => ldap_user['userPassword'].first,
+              :role_id => 5)
             #TODO send email, something
           end
         end

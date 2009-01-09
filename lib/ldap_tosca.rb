@@ -20,7 +20,7 @@ module LdapTosca
       result = self.connect(self.configuration['binddn'], self.configuration['bindpw']) do |conn|
         ldap_user = conn.search2(self.configuration['basedn'],
           LDAP::LDAP_SCOPE_ONELEVEL,
-          self.configuration['ldap_filter'].gsub(/\?/, login),
+          self.configuration['filter'].gsub(/\?/, login),
           READ_ATTRIBUTES).first
       end
       ldap_user || result
@@ -35,7 +35,7 @@ module LdapTosca
       result || ldap_conn
     end
 
-    private
+    protected
 
     #Load the configuration one time
     @@conf = nil
@@ -51,7 +51,7 @@ module LdapTosca
       ldap_conn.set_option(LDAP::LDAP_OPT_PROTOCOL_VERSION, self.configuration['protocol'])
       begin
         ldap_conn.bind(binddn, bindpw)
-        yield(ldap_con) unless ldap_conn.bound?
+        yield(ldap_conn) if ldap_conn.bound?
         ldap_conn.unbind
       rescue LDAP::ResultError
         ldap_conn.unbind if ldap_conn.bound?
