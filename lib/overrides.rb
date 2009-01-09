@@ -449,7 +449,7 @@ module ActiveRecord
       res
     end
 
-    #Is this model scoped or not ?
+    # Used to launch or not the scope system. See lib/scope.rb for more details
     def self.scope_client?
       false
     end
