@@ -151,32 +151,14 @@ class User < ActiveRecord::Base
   EXPERT_OPTIONS = { :conditions => [ 'users.inactive = ? AND users.client_id IS NULL', false ],
     :order => 'users.name' } unless defined? User::EXPERT_OPTIONS
 
+  # If you move/rename this method, do NOT forget to look at lib/ldap_tosca.rb /!\
   def self.authenticate(login, pass)
     user = nil
     User.with_exclusive_scope() do
-      if self.use_ldap?
-        ldap_user = self.get_user(login)
-        if ldap_user and self.authentificate_user(ldap_user['dn'].first, pass)
-          user = User.first(:conditions => { :login => login })
-          unless user
-            #Expert only for the moment
-            user = User.create(:login => ldap_user['uid'].first,
-              :name => ldap_user['cn'].first,
-              :email => ldap_user['mail'].first,
-              :password => ldap_user['userPassword'].first,
-              :client_id => nil,
-              :role_id => 3)
-            #TODO send email, something
-          end
-        end
-        # else : the user is not in the ldap or we could not authentificate him
-      else
-        conditions = ['login = ? AND password = ?', login, sha1(pass)]
-        user = User.first(:conditions => conditions)
-      end
-      return nil if user and user.inactive?
-      user
+      conditions = ['login = ? AND password = ?', login, sha1(pass)]
+      user = User.first(:conditions => conditions)
     end
+    (user and user.inactive? ? nil : user)
   end
 
   def self.tams

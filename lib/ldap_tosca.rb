@@ -1,15 +1,22 @@
+# Ldap authentication is active only if fill in the configuration file.
 module LdapTosca
+
+  CONFIGURATION_FILE = "#{RAILS_ROOT}/config/ldap.yml"
 
   def self.included(base)
     super(base)
-    base.extend(LdapToscaClassMethods)
-    require 'ldap' if base.use_ldap?
+    if File.exist?(CONFIGURATION_FILE)
+      require 'ldap'
+      base.extend(LdapToscaClassMethods)
+    end
   end
 
   module LdapToscaClassMethods
-    CONFIGURATION_FILE = "#{RAILS_ROOT}/config/ldap.yml"
-    def use_ldap?
-      File.exist?(CONFIGURATION_FILE)
+
+    @@conf = nil
+    def inherited(subclass)
+      super(subclass)
+      @@conf = YAML.load_file(CONFIGURATION_FILE)['ldap']
     end
 
     READ_ATTRIBUTES = ['uid', 'cn', 'mail', 'userpassword']
@@ -35,12 +42,33 @@ module LdapTosca
       result || ldap_conn
     end
 
+    # Key method, coming from User AR model
+    def authenticate(login, pass)
+      ldap_user = self.get_user(login)
+      return nil unless ldap_user and self.authentificate_user(ldap_user['dn'].first, pass)
+
+      user = nil
+      User.with_exclusive_scope() do
+        user = User.first(:conditions => { :login => login })
+      end
+      unless user
+        # Expert only for the moment
+        user = User.create(:login => ldap_user['uid'].first,
+          :name => ldap_user['cn'].first,
+          :email => ldap_user['mail'].first,
+          :password => ldap_user['userPassword'].first,
+          :client_id => nil,
+          :role_id => 3)
+        # TODO send email, something
+      end
+      (user and user.inactive? ? nil : user)
+    end
+
     protected
 
-    #Load the configuration one time
-    @@conf = nil
+    # It's setted when it's extended, see inherited
     def configuration
-      @@conf ||= YAML.load_file(CONFIGURATION_FILE)['ldap']
+      @@conf
     end
 
     #Connect to the LDAP and handle errors
