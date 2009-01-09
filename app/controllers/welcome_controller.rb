@@ -33,6 +33,10 @@ class WelcomeController < ApplicationController
   def about
   end
 
+  # Various administrative links
+  def admin
+  end
+
   # Used to select a theme, even without an account
   def theme
     case request.method
@@ -60,7 +64,7 @@ class WelcomeController < ApplicationController
         Notifier::deliver_welcome_idea(suggestion[:tosca],
                                        :tosca, @session_user)
       end
-      flash[:notice] = _("Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.")
+      flash[:notice] = _('Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.')
       redirect_to_home
     end
   end
