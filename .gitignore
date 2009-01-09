@@ -11,9 +11,11 @@ public/javascripts/all-*.js
 public/festivaltts_mp3/*
 public/image/*
 public/images/reporting/*
+public/images/images
 public/stylesheets/images
 test/coverage/*
 tmp/*
 .dotest/
 doc/*
 *.*~
+db/*.db
