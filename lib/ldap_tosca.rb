@@ -19,7 +19,7 @@ module LdapTosca
       ldap_user = nil
       result = self.connect(self.configuration['binddn'], self.configuration['bindpw']) do |conn|
         ldap_user = conn.search2(self.configuration['basedn'],
-          LDAP::LDAP_SCOPE_ONELEVEL,
+          eval(self.configuration['scope']),
           self.configuration['filter'].gsub(/\?/, login),
           READ_ATTRIBUTES).first
       end
