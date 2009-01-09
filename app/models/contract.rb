@@ -128,7 +128,7 @@ class Contract < ActiveRecord::Base
   INCLUDE = [:client]
   ORDER = 'clients.name ASC'
   OPTIONS = { :include => INCLUDE, :order => ORDER, :conditions =>
-    ["clients.inactive = ?", false] } unless defined? Contract::OPTIONS
+    ["clients.inactive = ?", false] }
 
   def name
     specialisation = read_attribute(:name)

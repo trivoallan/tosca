@@ -399,6 +399,9 @@ module ActiveRecord
     def self.find_select(options = {}, collect = true)
       options[:select] = "#{table_name}.id, #{table_name}.name"
       options[:order] ||= "#{table_name}.name ASC"
+      puts "********************************"
+      p options
+      puts "********************************"
       res = self.all(options)
       res.collect!{ |o| [o.name, o.id] } if collect
       res

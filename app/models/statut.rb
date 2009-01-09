@@ -21,7 +21,7 @@ class Statut < ActiveRecord::Base
 
   #######################################
   N_('Submitted') #1  	Enregistrée     #
-  N_('Active')    #2	Prise en compte #
+  N_('Accepted')  #2	Accepté         #
   N_('Suspended') #3	Suspendue       #
   N_('Analysed')  #4	Analysée        #
   N_('Bypassed')  #5 	Contournée      #
@@ -46,5 +46,11 @@ class Statut < ActiveRecord::Base
 
   # Used by elapsed cache, see Elapsed model for more info.
   Active, Bypassed, Fixed= 2, 5, 6
+
+  # It's one of the rare "heavily used & fixed" AR model,
+  # So we can include it in the translation mechanism
+  def name
+    _(read_attribute(:name))
+  end
 
 end
