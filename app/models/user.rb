@@ -159,11 +159,13 @@ class User < ActiveRecord::Base
         if ldap_user and self.authentificate_user(ldap_user['dn'].first, pass)
           user = User.first(:conditions => { :login => login })
           unless user
+            #Expert only for the moment
             user = User.create(:login => ldap_user['uid'].first,
               :name => ldap_user['cn'].first,
               :email => ldap_user['mail'].first,
               :password => ldap_user['userPassword'].first,
-              :role_id => 5)
+              :client_id => nil,
+              :role_id => 3)
             #TODO send email, something
           end
         end
