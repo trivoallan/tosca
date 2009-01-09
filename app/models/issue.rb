@@ -401,6 +401,11 @@ class Issue < ActiveRecord::Base
     Issue.find(:all, options)
   end
 
+  #This model is scoped by Contract
+  def self.scoped_contract?
+    true
+  end
+
   private
   # TODO : Use memoization as described here, when Tosca is on Rails >= 2.2
   # http://www.railway.at/articles/2008/09/20/a-guide-to-memoization

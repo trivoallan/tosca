@@ -448,6 +448,14 @@ module ActiveRecord
       end
       res
     end
+
+    #Is this model scoped or not ?
+    def self.scope_client?
+      false
+    end
+    def self.scope_contract?
+      false
+    end
   end
 end
 

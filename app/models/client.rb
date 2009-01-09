@@ -135,4 +135,9 @@ class Client < ActiveRecord::Base
     find_active4select(options, collect)
   end
 
+  #This model is scoped by Client
+  def self.scope_client?
+    true
+  end
+
 end

@@ -146,9 +146,9 @@ class User < ActiveRecord::Base
   end
 
   SELECT_OPTIONS = { :order => 'users.name ASC',
-    :conditions => ['users.inactive = ?', false ] }
+    :conditions => ['users.inactive = ?', false ] } unless defined? User::SELECT_OPTIONS
   EXPERT_OPTIONS = { :conditions => [ 'users.inactive = ? AND users.client_id IS NULL', false ],
-    :order => 'users.name' }
+    :order => 'users.name' } unless defined? User::EXPERT_OPTIONS
 
   def self.authenticate(login, pass)
     User.with_exclusive_scope() do

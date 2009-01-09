@@ -59,7 +59,7 @@ class Contract < ActiveRecord::Base
     valid
   end
 
-  Rules = [ 'Rules::Credit', 'Rules::Component' ]
+  Rules = [ 'Rules::Credit', 'Rules::Component' ] unless defined? Contract::Rules
 
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
@@ -125,10 +125,10 @@ class Contract < ActiveRecord::Base
                      :joins => joins)
   end
 
-  INCLUDE = [:client]
-  ORDER = 'clients.name ASC'
+  INCLUDE = [:client] unless defined? Contract::INCLUDE
+  ORDER = 'clients.name ASC'unless defined? Contract::ORDER
   OPTIONS = { :include => INCLUDE, :order => ORDER, :conditions =>
-    ["clients.inactive = ?", false] }
+    ["clients.inactive = ?", false] } unless defined? Contract::OPTIONS
 
   def name
     specialisation = read_attribute(:name)
@@ -154,6 +154,11 @@ class Contract < ActiveRecord::Base
     conditions = {:user_id => user.id,
       :model_type => 'Contract', :model_id => self.id}
     Subscription.count(:conditions => conditions) >= 1
+  end
+
+  #This model is scoped by Contract
+  def self.scoped_contract?
+    true
   end
 
   private

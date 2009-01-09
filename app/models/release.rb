@@ -54,4 +54,9 @@ class Release < ActiveRecord::Base
       } } if contract_ids
   end
 
+  #This model is scoped by Contract
+  def self.scoped_contract?
+    true
+  end
+
 end

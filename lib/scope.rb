@@ -27,8 +27,8 @@ module Scope
   def define_scope(user)
     # defined locally since this file is loaded by application controller
     # it reduces dramatically loading time
-    @@scope_client ||= [ Client ]
-    @@scope_contract ||= [ Release, Contract, Issue, Tag ]
+    @@scope_client ||= @@models.select(&:scope_client?)
+    @@scope_contract ||= @@models.select(&:scope_contract?)
     is_connected = !user.nil?
     if is_connected
       apply = ((user.engineer? and user.restricted?) || user.recipient?)
@@ -52,8 +52,8 @@ module Scope
     ensure
       if is_connected
         if apply
-          @@scope_client.each { |m| m.remove_scope }
-          @@scope_contract.each { |m| m.remove_scope }
+          @@scope_client.each(&:remove_scope)
+          @@scope_contract.each(&:remove_scope)
         end
       else
         Issue.remove_scope
@@ -61,5 +61,9 @@ module Scope
       end
     end
   end
+
+  #We load all the models
+  Dir.glob(RAILS_ROOT + '/app/models/*.rb').each { |file| require file }
+  @@models = Object.subclasses_of(ActiveRecord::Base)
 
 end

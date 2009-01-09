@@ -24,6 +24,11 @@ class Tag < ActiveRecord::Base
     read_attribute(:count).to_i
   end
   
+  #This model is scoped by Contract
+  def self.scoped_contract?
+    true
+  end
+
   class << self
     # Calculate the tag counts for all tags.
     #  :start_at - Restrict the tags to those created after a certain time
