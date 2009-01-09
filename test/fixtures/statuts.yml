@@ -1,33 +1,33 @@
---- 
-statut_00003: 
-  name: Suspendue
+---
+statut_00003:
+  name: Suspended
   id: 3
   description: "Nous attendons des informations pour pouvoir continuer de travailler sur votre demande.<br /> Ces informations peuvent \xC3\xAAtre des fichiers de configuration, des num\xC3\xA9ros de version ou le r\xC3\xA9sultat de commandes d'analyse.<br /> Si votre r\xC3\xA9ponse est positive \xC3\xA0 une demande de validation, elle prendra alors le statut \"Contourn\xC3\xA9e\" ou le statut \"Corrig\xC3\xA9e\"."
-statut_00004: 
-  name: "Analys\xC3\xA9e"
+statut_00004:
+  name: Analysed
   id: 4
   description: "Nous avons tous les \xC3\xA9l\xC3\xA9ments n\xC3\xA9cessaire pour r\xC3\xA8gler votre anomalie.<br /> A ce stade, vous ne devriez plus \xC3\xAAtre sollicit\xC3\xA9 pour des informations compl\xC3\xA9mentaires. <br /> Vous obtiendrez d\xC3\xA8s que possible des propositions de solution de contournement et de correction. <br /> Votre demande sera alors \"suspendue\", le temps pour vous de confirmer ou d'infirmer que le contournement ou la correction propos\xC3\xA9s vous conviennent. <br /> La demande prendra \xC3\xA9ventuellement de nouveau le statut \"Prise en compte\" s'il s'av\xC3\xA8re que nous sommes partis sur une mauvaise piste."
-statut_00005: 
-  name: "Contourn\xC3\xA9e"
+statut_00005:
+  name: Bypassed
   id: 5
   description: "Vous avez accept\xC3\xA9 une de nos solutions de contournement. <br /> Nous continuons \xC3\xA0 travailler et la demande repassera en \"Suspendue\" d\xC3\xA8s que nous vous proposons une solution de correction <br />"
-statut_00006: 
-  name: "Corrig\xC3\xA9e"
+statut_00006:
+  name: Fixed
   id: 6
   description: "Vous avez accept\xC3\xA9 une de nos solutions de correction. <br /> Nous soumettons maintenant notre correctif \xC3\xA0 la communaut\xC3\xA9, pour pouvoir cl\xC3\xB4turer la demande."
-statut_00007: 
-  name: "Cl\xC3\xB4tur\xC3\xA9e"
+statut_00007:
+  name: Closed
   id: 7
   description: "L'anomalie est consid\xC3\xA9r\xC3\xA9e comme d\xC3\xA9finitivement close, le correctif ayant \xC3\xA9t\xC3\xA9 soumis \xC3\xA0 la communaut\xC3\xA9. <br />"
-statut_00008: 
-  name: "Annul\xC3\xA9e"
+statut_00008:
+  name: Cancelled
   id: 8
   description: "D'une mani\xC3\xA8re g\xC3\xA9n\xC3\xA9rale, une demande est annul\xC3\xA9e quand son traitement n'est pas du ressort de l'unit\xC3\xA9 OSSA. <br>Les cas possibles d'annulation sont : <br></p><ul><li>probl\xC3\xA8me dont la cause mat\xC3\xA9rielle, </li><li>probl\xC3\xA8me dont la cause est un software ou un ensemble de softwares non assur\xC3\xA9s, </li><li>demande n\xC3\xA9cessitant une \xC3\xA9volution du software assur\xC3\xA9 </li><li>cas d'exclusion pr\xC3\xA9vus contractuellement.</li></ul>"
-statut_00001: 
-  name: "Enregistr\xC3\xA9e"
+statut_00001:
+  name: Submitted
   id: 1
   description: "Votre demande vient d'\xC3\xAAtre d\xC3\xA9clar\xC3\xA9e dans notre outil.<br /> Nous vous rappelons dans l'heure pour r\xC3\xA9unir toutes les informations n\xC3\xA9cessaires et vous informer de la prise en compte effective de votre demande."
-statut_00002: 
-  name: Prise en compte
+statut_00002:
+  name: Accepted
   id: 2
   description: "Votre demande est prise en compte par nos experts, qui font le n\xC3\xA9cessaire pour qualifier votre demande.<br /> Pour ce faire, ils vont p\xC3\xA9riodiquement vous demander des informations, ce qui suspendra le d\xC3\xA9compte du temps garanti. <br /> Une fois cette analyse compl\xC3\xA8te, votre demande prendra le statut \"Analys\xC3\xA9e\". Si nous nous apercevons que votre demande sort du p\xC3\xA9rim\xC3\xA8tre de votre contract, elle sera annul\xC3\xA9e, avec votre accord."
