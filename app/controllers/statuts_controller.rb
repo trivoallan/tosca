@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2008 Linagora
+# Copyright (c) 2006-2009 Linagora
 #
 # This file is part of Tosca
 #
