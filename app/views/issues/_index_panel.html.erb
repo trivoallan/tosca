@@ -40,19 +40,18 @@
   <li><b><%=_('By contract')%></b><br />
       <%= select_filter(@contracts, :contract) %></li>
   <li><b><%=_('By expert')%></b><br />
-  <%= select_filter(@engineers, :engineer, { :first_value => @session_user,
-      :first_name => _("[ Me ]") }) %></li>
+      <%= select_filter(@engineers, :engineer) %></li>
  <% end %>
 </ul>
 
 <%= div_toggle _('Attributes'), 'menu_attributes', :class => "menu_title" %>
 <ul class="menu" id="menu_attributes">
  <li><b><%=_('Type')%> </b><br />
-     <%=select_filter(@issuetypes, :issuetype) %></li>
+     <%= select_filter(@issuetypes, :issuetype) %></li>
  <li><b><%=_('Severity')%></b><br />
-     <%=select_filter(@severities, :severity) %></li>
+     <%= select_filter(@severities, :severity) %></li>
  <li><b><%=_('Status')%></b><br />
-     <%=select_filter(@statuts, :statut) %></li>
+     <%= select_filter(@statuts, :statut) %></li>
 </ul>
 
 <%= div_toggle _('Settings'), 'menu_settings', :class => "menu_title", :hide => true %>

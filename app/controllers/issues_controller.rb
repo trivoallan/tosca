@@ -17,8 +17,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class IssuesController < ApplicationController
-  helper :filters, :contributions, :softwares,
-  :comments, :account, :reporting, :links, :subscriptions
+  helper :contributions, :softwares, :comments,
+    :account, :reporting, :links, :subscriptions
 
   cache_sweeper :issue_sweeper, :only =>
     [:create, :update, :destroy, :link_contribution, :unlink_contribution, :ajax_add_tag]
@@ -85,7 +85,7 @@ class IssuesController < ApplicationController
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(issues_filters, [
         [:text, 'softwares.name', 'issues.resume', :multiple_like ],
-        [:contract_id, 'issues.contract_id', :equal ],
+        [:contract_id, 'issues.contract_id', :in ],
         [:engineer_id, 'issues.engineer_id', :equal ],
         [:issuetype_id, 'issues.issuetype_id', :equal ],
         [:severity_id, 'issues.severity_id', :equal ],
@@ -347,10 +347,27 @@ class IssuesController < ApplicationController
     @issuetypes = Issuetype.find_select()
     @severities = Severity.find_select()
     if @session_user.engineer?
-      @contracts = Contract.find_select(Contract::OPTIONS)
-      @engineers = User.find_select(User::EXPERT_OPTIONS)
+      @contracts = _panel_build_contracts
+      @engineers = [[ _('[ Me ]'), @session_user.id ]].concat(
+                    User.find_select(User::EXPERT_OPTIONS))
     end
   end
+
+  # Used to fill @contracts with various expert contracts associations
+  def _panel_build_contracts
+    contracts = []
+    team = @session_user.team
+    team_contract_ids = team.contract_ids if team
+    if team and !team_contract_ids.empty?
+      contracts.concat [[ _('[ Team ]'), team_contract_ids.to_json ]]
+    end
+    managed_contract_ids = @session_user.managed_contract_ids
+    unless managed_contract_ids.empty?
+      contracts.concat [[ _('[ Tam ]'), managed_contract_ids.to_json ]]
+    end
+    contracts.concat Contract.find_select(Contract::OPTIONS)
+  end
+
 
   # Take an ActiveRecord Contract in parameter
   # Returns false if the Contract is not complete

@@ -23,13 +23,18 @@ module Filters
       base.class_eval do
         define_method(:initialize) { |params, *args|
           if params.is_a? Hash
-            params.each {|key, value|
-              if key =~ /_id/ and value.is_a? String and not value.blank?
-                send("#{key}=", value.to_i)
-              else
-                send("#{key}=", value)
+            params.each do |key, value|
+              if value.is_a?(String) and not value.blank?
+                # TODO : use a real method, not a lame trick to
+                # detect JSON Array encoded String
+                if value =~ /\[/
+                  value = ActiveSupport::JSON.decode(value)
+                elsif key =~ /_id/
+                  value = value.to_i
+                end
               end
-            }
+              send("#{key}=", value)
+            end
           else
             super(*args.unshift(params))
           end
@@ -38,18 +43,8 @@ module Filters
     end
   end
 
-  class Knowledges < Struct.new('Knowledges', :engineer_id,
-                                :software_id, :skill_id)
-    extend Shared
-  end
 
-  class Contributions < Struct.new('Contributions', :software, :engineer_id,
-                             :contribution, :contributionstate_id, :contract_id)
-    extend Shared
-  end
-
-  class Softwares < Struct.new('Softwares', :software, :group_id,
-                               :contract_id, :description )
+  class Accounts < Struct.new('Accounts', :name, :client_id, :role_id)
     extend Shared
   end
 
@@ -66,13 +61,24 @@ module Filters
     extend Shared
   end
 
+  class Contributions < Struct.new('Contributions', :software, :engineer_id,
+                             :contribution, :contributionstate_id, :contract_id)
+    extend Shared
+  end
+
   class Issues < Struct.new('Issues', :text, :contract_id, :engineer_id,
                               :issuetype_id, :severity_id, :statut_id,
                               :active, :limit)
     extend Shared
   end
 
-  class Accounts < Struct.new('Accounts', :name, :client_id, :role_id)
+  class Knowledges < Struct.new('Knowledges', :engineer_id,
+                                :software_id, :skill_id)
+    extend Shared
+  end
+
+  class Softwares < Struct.new('Softwares', :software, :group_id,
+                               :contract_id, :description )
     extend Shared
   end
 
@@ -100,34 +106,33 @@ module Filters
   def self.build_conditions(params, filters, special_conditions = nil)
     conditions = [[]]
     condition_0 = conditions.first
-    filters.each { |f|
+    filters.each do |f|
       value = params[f.first]
-      unless value.blank?
-        query = case f.last
-                when :equal
-                  "#{f[1]}=?"
-                when :greater_than
-                  "#{f[1]}>?"
-                when :lesser_than
-                  "#{f[1]}<?"
-                when :multiple_like
-                  '(' << f[1..-2].collect{|v| "#{v} LIKE ?"}.join(' OR ') << ')'
-                else
-                  "#{f[1]} #{f[2]} (?)"
-                end
-        condition_0.push query
-        # now, fill in parameters of the query
-        case f.last
-        when :like
-          conditions.push "%#{value}%"
-        when :multiple_like
-          conditions.push(*(Array.new(f[1..-2].size, "%#{value}%")))
-        else
-          conditions.push value
-        end
+      next if value.nil? or value.blank?
+      query = case f.last
+              when :equal
+                "#{f[1]}=?"
+              when :greater_than
+                "#{f[1]}>?"
+              when :lesser_than
+                "#{f[1]}<?"
+              when :multiple_like
+                '(' << f[1..-2].collect{|v| "#{v} LIKE ?"}.join(' OR ') << ')'
+              else
+                "#{f[1]} #{f[2]} (?)"
+              end
+      condition_0.push query
+      # now, fill in parameters of the query
+      case f.last
+      when :like
+        conditions.push "%#{value}%"
+      when :multiple_like
+        conditions.push(*(Array.new(f[1..-2].size, "%#{value}%")))
+      else
+        conditions.push(value)
       end
-    }
-    condition_0.push special_conditions if special_conditions.is_a? String
+    end
+    condition_0.push special_conditions if special_conditions.is_a?(String)
     if condition_0.empty?
       nil
     else
