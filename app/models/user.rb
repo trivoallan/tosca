@@ -166,6 +166,10 @@ class User < ActiveRecord::Base
         :conditions => "contracts.tam_id = users.id" } )
   end
 
+  def self.admins
+    self.all(:conditions => { :role_id => 1 })
+  end
+
   # To manage permissions/roles :
 
   # Return true/false if User is authorized for resource.

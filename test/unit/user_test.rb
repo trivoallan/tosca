@@ -272,4 +272,10 @@ class UserTest < Test::Unit::TestCase
     end
   end
   
+  def test_admins
+    User.admins.each do |u|
+      assert u.role_id == 1
+    end
+  end
+  
 end

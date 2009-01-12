@@ -150,6 +150,15 @@ class Notifier < ActionMailer::Base
     html_and_text_body({ :result => data.other, :important => data.important, :time => time })
   end
 
+  def new_user_ldap(user)
+    recipients  User.admins.collect(&:email_name).join(', ')
+    from        App::NoReplyEmail
+    reply_to    App::NoReplyEmail
+    subject     "Nouvel utilisateur provenant du LDAP"
+
+    html_and_text_body({ :user => user });
+  end
+
   # http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer
   # Kept In Order to have the code for generating recipients of a list
   # To active incomming emails :

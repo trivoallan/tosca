@@ -59,7 +59,7 @@ module LdapTosca
           :password => ldap_user['userPassword'].first,
           :client_id => nil,
           :role_id => 3)
-        # TODO send email, something
+        Notifier::deliver_new_expert_ldap(user)
       end
       (user and user.inactive? ? nil : user)
     end
