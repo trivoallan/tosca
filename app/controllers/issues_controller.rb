@@ -464,7 +464,7 @@ class IssuesController < ApplicationController
   # Used during create.
   # It *just* returns a correct path.
   def _similar_issue
-    options = { :issue => Hash.new }
+    options = { :issue => {} }
     issue = options[:issue]
     Issue.remanent_fields.each { |f|
       value = @issue.send(f)

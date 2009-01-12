@@ -66,7 +66,7 @@ class Date
   }
 
   # Dynamic cache for variable holidays, for performance reason
-  @@variable_holidays = Hash.new
+  @@variable_holidays = {}
   def self.VariableHolidays(year)
     cache = @@variable_holidays[year]
     return cache unless cache.nil?

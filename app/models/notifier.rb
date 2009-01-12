@@ -120,7 +120,7 @@ class Notifier < ActionMailer::Base
     reply_to    App::NoReplyEmail
     subject "[Suggestion] => #{to}"
 
-    options = Hash.new
+    options = {}
     options[:suggestion] = text
     options[:author] = from
 
@@ -227,7 +227,7 @@ class Notifier < ActionMailer::Base
 
   #For mail headers : http://www.expita.com/header1.html
   def _headers_mail_issue(issue, comment)
-    headers = Hash.new
+    headers = {}
     headers[HEADER_MESSAGE_ID] = message_id(comment.mail_id)
     #Refers to the issue
     headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id(issue.first_comment.mail_id)
@@ -324,7 +324,7 @@ class Notifier < ActionMailer::Base
 
   MULTIPART_CONTENT = 'multipart/alternative'
   SUFFIX_VIEW = ".multi.html.erb"
-  def html_and_text_body(body = Hash.new)
+  def html_and_text_body(body = {})
     method = caller[0].slice(/`.+'/).delete("`'") + SUFFIX_VIEW
 
     message_html = render_message(method, body)
