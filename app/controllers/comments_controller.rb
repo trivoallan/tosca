@@ -122,7 +122,7 @@ class CommentsController < ApplicationController
 
   private
   def _form
-    @issues = Issue.find(:all)
+    @issues = Issue.all
     @users = User.find_select
     @statuts = Statut.find_select
   end

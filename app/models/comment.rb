@@ -120,7 +120,7 @@ class Comment < ActiveRecord::Base
     issue = self.issue
     options = { :order => 'created_on DESC', :conditions =>
       'comments.statut_id IS NOT NULL' }
-    last_one = issue.comments.find(:first, options)
+    last_one = issue.comments.first(options)
     return true unless last_one
     issue.update_attribute(:statut_id, last_one.statut_id)
   end

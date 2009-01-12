@@ -50,7 +50,7 @@ class Software < ActiveRecord::Base
   end
 
   # See ApplicationController#scope
-  def self.set_public_scope()
+  def self.set_public_scope
     self.scoped_methods << { :find => { :conditions =>
         { :private => false } } }
   end

@@ -151,13 +151,13 @@ class ContractsController < ApplicationController
   def add_software
     @contract = Contract.find(params[:id])
     software = params['software'] || []
-    versions = Array.new
+    versions = []
     software.each do |s|
       # get rid of the random_field hack
       s = s[1]
       next unless s.is_a? Hash
       # It's 2 lines but fast find_or_create call
-      version = Version.find(:first, :conditions => s, :include => :software)
+      version = Version.first(:conditions => s, :include => :software)
       version = Version.create(s) unless version
       versions << version if version.valid?
     end

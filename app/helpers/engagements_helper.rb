@@ -18,7 +18,7 @@
 #
 module EngagementsHelper
 
-  def link_to_new_engagement()
+  def link_to_new_engagement
     link_to(image_create('engagement'), new_engagement_path)
   end
 

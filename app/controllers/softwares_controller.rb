@@ -84,9 +84,9 @@ class SoftwaresController < ApplicationController
     @software = Software.find(params[:id])
     conditions = { :conditions => ['issues.software_id=?', params[:id]] }
     if @session_user.recipient?
-      @issues = @session_user.issues.find(:all, conditions)
+      @issues = @session_user.issues.all(conditions)
     else
-      @issues = Issue.find(:all, conditions)
+      @issues = Issue.all(conditions)
     end
   end
 

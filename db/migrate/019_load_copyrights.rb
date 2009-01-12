@@ -33,6 +33,6 @@ class LoadCopyrights < ActiveRecord::Migration
   end
 
   def self.down
-    License.find(:all).each{ |l| l.destroy }
+    License.all.each{ |l| l.destroy }
   end
 end

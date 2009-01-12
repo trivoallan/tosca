@@ -43,6 +43,6 @@ class LoadCommitments < ActiveRecord::Migration
   end
 
   def self.down
-    Engagement.find(:all).each{ |e| e.destroy }
+    Engagement.all.each{ |e| e.destroy }
   end
 end

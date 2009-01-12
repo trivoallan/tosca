@@ -19,7 +19,7 @@
 class HyperlinksController < ApplicationController
   # GET /hyperlinks
   def index
-    @hyperlinks = Hyperlink.find(:all)
+    @hyperlinks = Hyperlink.all
   end
 
   # GET /hyperlinks/1

@@ -309,7 +309,7 @@ module ReportingHelper
   # <%= box_clients(9) %> will show a multi-selection box
   #                       with 9 selectable items
   def box_clients(number_items)
-    elements = Client.find(:all, :select => 'id,name', :order => 'name')
+    elements = Client.all(:select => 'id,name', :order => 'name')
     items='<option value=\'all\' selected=\'selected\'>»</option>'
 
     elements.each do |elt|

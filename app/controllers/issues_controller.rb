@@ -195,7 +195,7 @@ class IssuesController < ApplicationController
       options = { :order => 'created_on DESC', :include => [:user],
         :limit => 1, :conditions => { :issue_id => @issue.id } }
       options[:conditions][:private] = false if @recipient
-      @last_comment = Comment.find(:first, options)
+      @last_comment = Comment.first(options)
 
       @statuts = @issue.issuetype.allowed_statuses(@issue.statut_id, @session_user)
       if user.engineer?
@@ -344,8 +344,8 @@ class IssuesController < ApplicationController
 
   def _panel
     @statuts = Statut.find_select(:order => 'id')
-    @issuetypes = Issuetype.find_select()
-    @severities = Severity.find_select()
+    @issuetypes = Issuetype.find_select
+    @severities = Severity.find_select
     if @session_user.engineer?
       @contracts = _panel_build_contracts
       @engineers = [[ _('[ Me ]'), @session_user.id ]].concat(
@@ -371,7 +371,7 @@ class IssuesController < ApplicationController
 
   # Take an ActiveRecord Contract in parameter
   # Returns false if the Contract is not complete
-  # call it like this : _form4contract Contract.find(:first)
+  # call it like this : _form4contract Contract.first
   def _form4contract(contract)
     result = true
     @recipients = contract.find_recipients_select
@@ -384,7 +384,7 @@ class IssuesController < ApplicationController
     result
   end
 
-  def _form4versions()
+  def _form4versions
     software_id, contract_id = @issue.software_id.to_i, @issue.contract_id.to_i
     if software_id == 0 || contract_id == 0
       @versions = []
@@ -425,7 +425,7 @@ class IssuesController < ApplicationController
     if @issue.contract
       _form4contract(@issue.contract)
     elsif !@contracts.empty?
-      Contract.find(:all).each { |c|
+      Contract.all.each { |c|
         if _form4contract(c)
           @issue.contract = c
           break
@@ -441,13 +441,13 @@ class IssuesController < ApplicationController
   def set_attachments(issue_id)
     options = { :conditions => filter_comments(issue_id), :order =>
       'comments.updated_on DESC', :include => [:comment] }
-    @attachments = Attachment.find(:all, options)
+    @attachments = Attachment.all(options)
   end
 
   def set_comments(issue_id)
     fragment = "issues/#{issue_id}/comments-#{@session_user.kind}"
     if action_name == 'print' || !read_fragment(fragment)
-      @comments = Comment.find(:all, :conditions =>
+      @comments = Comment.all(:conditions =>
         filter_comments(issue_id), :order => "created_on ASC",
         :include => [:user,:statut,:severity])
     end
@@ -481,7 +481,7 @@ class IssuesController < ApplicationController
   # Used during create.
   # It *just* returns a correct path.
   def _similar_issue
-    options = { :issue => Hash.new }
+    options = { :issue => {} }
     issue = options[:issue]
     Issue.remanent_fields.each { |f|
       value = @issue.send(f)

@@ -47,11 +47,11 @@ class HbtmBetweenContractsAndRecipients < ActiveRecord::Migration
     add_index :contracts_users, :user_id
     add_index :contracts_users, :contract_id
 
-    Beneficiaire.find(:all).each {|b|
+    Beneficiaire.all.each {|b|
       b.user.contracts = b.client.contracts
       b.user.save
     }
-    Ingenieur.find(:all).each { |i|
+    Ingenieur.all.each { |i|
       i.user.contracts = i.contracts
       i.user.save
     }
@@ -66,7 +66,7 @@ class HbtmBetweenContractsAndRecipients < ActiveRecord::Migration
     add_index :contracts_ingenieurs, :ingenieur_id
     add_index :contracts_ingenieurs, :contract_id
 
-    Ingenieur.find(:all).each { |i|
+    Ingenieur.all.each { |i|
       i.contracts = i.user.contracts
       i.save
     }

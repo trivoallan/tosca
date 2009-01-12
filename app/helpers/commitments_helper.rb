@@ -18,7 +18,7 @@
 #
 module CommitmentsHelper
 
-  def link_to_new_commitment()
+  def link_to_new_commitment
     link_to(image_create('commitment'), new_commitment_path)
   end
 

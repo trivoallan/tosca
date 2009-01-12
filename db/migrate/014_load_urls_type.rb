@@ -31,6 +31,6 @@ class LoadUrlsType < ActiveRecord::Migration
   end
 
   def self.down
-    Typeurl.find(:all).each{ |tu| tu.destroy }
+    Typeurl.all.each{ |tu| tu.destroy }
   end
 end

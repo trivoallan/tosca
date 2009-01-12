@@ -27,7 +27,7 @@ class MoveChronoNumber2contract < ActiveRecord::Migration
 
   def self.up
     add_column :contracts, :chrono, :integer, :default => 0, :null => false
-    Client.find(:all).each do |client|
+    Client.all.each do |client|
       client.contracts.each {|c| c.update_attribute(:chrono, client.chrono)}
     end
     remove_column :clients, :chrono
@@ -35,7 +35,7 @@ class MoveChronoNumber2contract < ActiveRecord::Migration
 
   def self.down
     add_column :clients, :chrono, :integer, :default => 0, :null => false
-    Client.find(:all).each do |client|
+    Client.all.each do |client|
       client.contracts.each {|c| client.update_attribute(:chrono, c.chrono)}
     end
     remove_column :contracts, :chrono

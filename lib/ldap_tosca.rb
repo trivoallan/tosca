@@ -48,7 +48,7 @@ module LdapTosca
       return nil unless ldap_user and self.authentificate_user(ldap_user['dn'].first, pass)
 
       user = nil
-      User.with_exclusive_scope() do
+      User.with_exclusive_scope do
         user = User.first(:conditions => { :login => login })
       end
       unless user

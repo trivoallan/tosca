@@ -178,20 +178,20 @@ class Issue < ActiveRecord::Base
 
   def find_other_comment(comment_id)
     cond = [ 'comments.private <> ? AND comments.id <> ?', true, comment_id ]
-    self.comments.find(:first, :conditions => cond)
+    self.comments.first(:conditions => cond)
   end
 
   def find_status_comment_before(comment)
     options = { :order => 'created_on DESC', :conditions =>
       [ 'comments.statut_id IS NOT NULL AND comments.created_on < ?',
         comment.created_on ]}
-    self.comments.find(:first, options)
+    self.comments.first(options)
   end
 
   def last_status_comment
     options = { :order => 'created_on DESC', :conditions =>
       'comments.statut_id IS NOT NULL' }
-    self.comments.find(:first, options)
+    self.comments.first(options)
   end
 
   def time_running?
@@ -253,13 +253,13 @@ class Issue < ActiveRecord::Base
 
     options = {:conditions => ["statut_id IS NOT NULL AND created_on <= ?", t],
       :order => "created_on DESC" }
-    statut_id = self.comments.find(:first, options).statut_id
+    statut_id = self.comments.first(options).statut_id
 
     options[:conditions] = [ "severity_id IS NOT NULL AND created_on <= ?", t ]
-    severity_id = self.comments.find(:first, options).severity_id
+    severity_id = self.comments.first(options).severity_id
 
     options[:conditions] = [ "engineer_id IS NOT NULL AND created_on <= ?", t ]
-    com_engineer = self.comments.find(:first, options)
+    com_engineer = self.comments.first(options)
     engineer_id = com_engineer ? com_engineer.engineer_id : nil
 
     result = self.clone
@@ -285,7 +285,7 @@ class Issue < ActiveRecord::Base
 
   # Used for migration or if there is an issue on the computing of issue
   # It can be used on all issue with a line like this in the console :
-  # <tt>Issue.find(:all).each{|r| r.reset_elapsed }</tt>
+  # <tt>Issue.all.each{|r| r.reset_elapsed }</tt>
   def reset_elapsed
     # clean previous existing elapsed
     Elapsed.destroy_all(['elapseds.issue_id = ?', self.id])
@@ -296,7 +296,7 @@ class Issue < ActiveRecord::Base
     self.elapsed = Elapsed.new(self)
     options = { :conditions => 'comments.statut_id IS NOT NULL',
       :order => "comments.created_on ASC" }
-    life_cycle = self.comments.find(:all, options)
+    life_cycle = self.comments.all(options)
 
     # first one is different : it's the submission of the issue
     life_cycle.first.update_attribute :elapsed, rule.elapsed_on_create
@@ -317,7 +317,7 @@ class Issue < ActiveRecord::Base
   # clearly slows uselessly Tosca.
   def commitment
     return nil unless contract_id && severity_id && issuetype_id
-    self.contract.commitments.find(:first, :conditions =>
+    self.contract.commitments.first(:conditions =>
         {:issuetype_id => self.issuetype_id, :severity_id => self.severity_id})
   end
 
@@ -386,7 +386,7 @@ class Issue < ActiveRecord::Base
     options[:conditions] = conditions
 
     conditions << [ own_id ]
-    Issue.find(:all, options)
+    Issue.all(options)
   end
 
   #Find the pending requests from a list of contracts
@@ -398,7 +398,7 @@ class Issue < ActiveRecord::Base
     options[:conditions] = conditions
 
     conditions << contract_ids
-    Issue.find(:all, options)
+    Issue.all(options)
   end
 
   #This model is scoped by Contract

@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
   # If you move/rename this method, do NOT forget to look at lib/ldap_tosca.rb /!\
   def self.authenticate(login, pass)
     user = nil
-    User.with_exclusive_scope() do
+    User.with_exclusive_scope do
       conditions = ['login = ? AND password = ?', login, sha1(pass)]
       user = User.first(:conditions => conditions)
     end
@@ -239,10 +239,10 @@ class User < ActiveRecord::Base
 
   def active_contracts
     options = { :conditions => { :inactive => false } }
-    result = self.own_contracts.find(:all, options)
+    result = self.own_contracts.all(options)
     # options are modified within a relationship finder, so we need to reset it
     options = { :conditions => { :inactive => false } }
-    result.concat(self.team.contracts.find(:all, options)) if self.team
+    result.concat(self.team.contracts.all(options)) if self.team
     result
   end
 

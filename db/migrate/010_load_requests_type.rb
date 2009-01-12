@@ -32,6 +32,6 @@ class LoadRequestsType < ActiveRecord::Migration
   end
 
   def self.down
-    Typedemande.find(:all).each{ |td| td.destroy }
+    Typedemande.all.each{ |td| td.destroy }
   end
 end

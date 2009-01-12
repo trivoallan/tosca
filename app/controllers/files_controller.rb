@@ -49,7 +49,7 @@ class FilesController < ApplicationController
               :archive => Archive }
 
     # Login needed for anything but contribution
-    return if (file_type != :contribution && login_required() == false)
+    return if (file_type != :contribution && login_required == false)
 
     # building path
     root = [ App::FilesPath, params[:file_type], map[file_type] ] * '/'
@@ -67,7 +67,7 @@ class FilesController < ApplicationController
       # Check if you have the right, with the scope model of Tosca
       model[file_type].find(params[:id])
     ensure
-      Attachment.remove_scope() if scope_active
+      Attachment.remove_scope if scope_active
     end
     send_file fullpath
 

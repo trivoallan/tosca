@@ -65,13 +65,13 @@ class ReportingController < ApplicationController
     #   FROM issues
     #   WHERE (created_on BETWEEN '2007-10-01 00:00:00' AND '2008-11-30 23:59:59')
     #   GROUP BY DAYOFMONTH(issues.created_on);
-    issues = Issue.find(:all, :conditions => conditions)
+    issues = Issue.all(:conditions => conditions)
     @number_issues = issues.size
 
     #We build a hash of { number_day => [new issues of the day]}
     @issues = {}
     issues.each do |r|
-      @issues[r.created_on.day] ||= Array.new
+      @issues[r.created_on.day] ||= []
       @issues[r.created_on.day].push(r)
     end
   end
@@ -85,7 +85,7 @@ class ReportingController < ApplicationController
   end
 
   def general
-    _titles()
+    _titles
     redirect_to configuration_reporting_path and return unless
       params[:reporting]
 
@@ -245,7 +245,7 @@ class ReportingController < ApplicationController
   # Calcul un tableaux du respect des délais
   # pour les 3 étapes : prise en compte, contournée, corrigée
   def compute_time(data)
-    issues = Issue.find(:all)
+    issues = Issue.all
     phonecalls = data[:callback_time]
     workarounds = data[:workaround_time]
     corrections = data[:correction_time]
@@ -346,7 +346,7 @@ class ReportingController < ApplicationController
 
 
   def init_compute_by_type
-    @types = Array.new
+    @types = []
     @contracts.each do |c|
       @types.concat(c.client.issuetypes)
     end
@@ -380,7 +380,7 @@ class ReportingController < ApplicationController
 
   end
 
-  def init_compute_by_severity()
+  def init_compute_by_severity
     severities = Severity.all
     severities.each_with_index do |s, i|
       severities[i] = { :conditions => { :severity_id => s.id } }
@@ -474,13 +474,13 @@ class ReportingController < ApplicationController
   # 3 initialisations are needed : titles, colors & datas.
   def init_data_general
     # [:empty] are needed for helpers, which always consider that first column is a title one.
-    @data[:by_type] = Array.new
-    @data[:by_severity] = Array.new
+    @data[:by_type] = []
+    @data[:by_severity] = []
     @data[:by_status] =
      [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
     @data[:by_status] =
      [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
-    @data[:by_software] = Array.new
+    @data[:by_software] = []
 
     # calcul des délais
     @data[:callback_time] =

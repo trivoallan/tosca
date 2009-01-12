@@ -191,7 +191,7 @@ class AccountController < ApplicationController
 =begin
     login = request.env['HTTP_AUTH_LOGIN']
     return redirect_to(welcome_path) unless login
-    user = User.find(:first, :conditions => { :login => login })
+    user = User.first(:conditions => { :login => login })
     if user
       _login user
     end
@@ -208,7 +208,7 @@ class AccountController < ApplicationController
       return unless user && user.has_key?(:email) && user.has_key?(:login)
       flash[:warn] = _('Unknown account')
       conditions = { :email => user[:email], :login => user[:login] }
-      @user = User.find(:first, :conditions => conditions)
+      @user = User.first(:conditions => conditions)
       return unless @user
       if @user.generate_password and @user.save
         flash[:warn] = nil

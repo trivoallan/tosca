@@ -44,7 +44,7 @@ class IssueTest < Test::Unit::TestCase
 
   def test_scope
     Issue.set_scope([Contract.first(:order => :id).id])
-    Issue.find(:all)
+    Issue.all
     Issue.remove_scope
   end
 
@@ -63,7 +63,7 @@ class IssueTest < Test::Unit::TestCase
   end
 
   def test_helpers_function
-    Issue.find(:all).each { |r|
+    Issue.all.each { |r|
       r.time_running?
       result = r.state_at(Time.now)
       assert_instance_of Issue, result

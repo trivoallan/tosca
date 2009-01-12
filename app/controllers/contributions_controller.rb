@@ -24,7 +24,7 @@ class ContributionsController < ApplicationController
   # Show all contribs and who's done 'em
   def experts
     options = { :order => 'contributions.engineer_id, contributions.contributionstate_id' }
-    @contributions = Contribution.find(:all, options)
+    @contributions = Contribution.all(options)
   end
 
   def index
@@ -61,7 +61,7 @@ class ContributionsController < ApplicationController
         options[:conditions] = { 'contracts.client_id' => params[:client_id] }
         options[:joins] = { :contributions => { :issue => :contract } }
       end
-      @softwares = Software.find(:all, options)
+      @softwares = Software.all(options)
     end
   end
 
@@ -108,7 +108,7 @@ class ContributionsController < ApplicationController
     # submitted state, by default
     @contribution.contributionstate_id = 4
     @contribution.contributed_on = Date.today
-    @issue = Issue.new(); @issue.id = params[:issue_id]
+    @issue = Issue.new; @issue.id = params[:issue_id]
     @contribution.engineer = @session_user
     _form
   end

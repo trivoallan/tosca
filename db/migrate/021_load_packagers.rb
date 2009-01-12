@@ -30,6 +30,6 @@ class LoadPackagers < ActiveRecord::Migration
   end
 
   def self.down
-    Mainteneur.find(:all).each{ |d| d.destroy }
+    Mainteneur.all.each{ |d| d.destroy }
   end
 end

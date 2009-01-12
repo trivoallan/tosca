@@ -20,7 +20,7 @@ namespace :tosca do
     end
     gems.flatten!
     # gems.uniq! does not work on a Rails::GemDependency Array.
-    tmp, indexes = Hash.new, []
+    tmp, indexes = {}, []
     gems.dup.each_with_index do |g,idx|
       # Hoe gem sucks :
       # it has particular rights which forbids 2 consecutive unpacking

@@ -82,7 +82,7 @@ class Client < ActiveRecord::Base
     return [] if contracts.empty?
     return contracts.first.softwares if contracts.size == 1
     # speedier if there is one openbar contract
-    contracts.each { |c| return Software.find(:all) if c.rule.max == -1 }
+    contracts.each { |c| return Software.all if c.rule.max == -1 }
 
     # default case, when there is an association with releases.
     conditions = [ 'softwares.id IN (SELECT DISTINCT versions.software_id ' +

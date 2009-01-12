@@ -25,7 +25,7 @@ module GroupsHelper
 
   # call it like :
   # <%= link_to_new_group %>
-  def link_to_new_group()
+  def link_to_new_group
     link_to image_create(_('a group')), new_group_path
   end
 
