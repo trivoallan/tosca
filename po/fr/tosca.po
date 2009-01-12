@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-08 17:46+0100\n"
-"PO-Revision-Date: 2009-01-08 17:50+0100\n"
+"PO-Revision-Date: 2009-01-12 17:37+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr ", votre compte a été désactivé"
 
 #: app/controllers/account_controller.rb:88
 msgid "Account successfully created."
-msgstr "Le compte a été crée avec succès."
+msgstr "Le compte a été créé avec succès."
 
 #: app/controllers/account_controller.rb:168
 msgid "Edition succeeded"
@@ -132,7 +132,7 @@ msgstr "Cette archive a été mise à jour."
 
 #: app/controllers/clients_controller.rb:58
 msgid "Client created successfully."
-msgstr "Le client a été crée avec succès"
+msgstr "Le client a été créé avec succès"
 
 #: app/controllers/clients_controller.rb:59
 msgid "You have now to create the associated contract."
@@ -516,7 +516,7 @@ msgstr "Le logiciel %s a été effacé avec succès"
 
 #: app/controllers/statuts_controller.rb:40
 msgid "Status was successfully created."
-msgstr "Le statut a été crée."
+msgstr "Le statut a été créé."
 
 #: app/controllers/statuts_controller.rb:54
 msgid "Statut was successfully updated."
