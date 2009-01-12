@@ -78,7 +78,17 @@ class User < ActiveRecord::Base
   end
 
   def trigram
-    @trigram ||= self.login[0..2].upcase!
+    return @trigram if @trigram
+    names = name.split(/ |-/)
+    case names.size
+    when 0..1 # ["Admin"] => ADM
+      @trigram = self.login[0..2].upcase!
+    when 2 # ["Jon", "Toto"] => JTO
+      @trigram = (b.first.first + b.last.first).upcase!
+    else # ["Jon", "Michael", "Toto"] => JMT
+      @trigram = (b.first.first + b[1].first + b.last.first).upcase!
+    end
+    @trigram
   end
 
   # TODO : this formatting method has to be in an helper, a lib or a plugin.
