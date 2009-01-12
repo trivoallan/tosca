@@ -28,7 +28,7 @@ class AccountController < ApplicationController
   # See http://api.rubyonrails.org/classes/ActionController/Base.html#M000441
   filter_parameter_logging :password
 
-  helper :filters, :roles
+  helper :roles
 
   around_filter :scope, :except => [:login, :logout, :lemon]
 

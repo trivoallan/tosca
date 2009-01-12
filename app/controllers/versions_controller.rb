@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class VersionsController < ApplicationController
-  helper :filters, :softwares, :releases
+  helper :softwares, :releases
 
   def index
     options = { :page => params[:page] }

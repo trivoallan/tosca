@@ -88,6 +88,21 @@ module FormsHelper
     out
   end
 
+  # Provides a select box to filter choice
+  # select_filter(@softwares, :software)
+  # select_filter(@types, :issuetype, :title => '» Type')
+  def select_filter(list, property, options = {:title => '» '})
+    out = ''
+    field = "#{property}_id"
+    # disabling auto submit, there is an observer in filter form
+    options[:onchange] = ''
+    filters = instance_variable_get(:@filters)
+    default_value = (filters ? filters.send(field) : nil)
+    out << select_onchange(list, default_value,
+                           "filters[#{field}]", options)
+  end
+
+
   # select_onchange(@clients, @current_client, 'client')
   # options
   # :width limit size of displayed characters
@@ -102,10 +117,6 @@ module FormsHelper
     options[:onchange] ||= 'this.form.submit();'
     options[:name] ||= name
 
-    if options.has_key?(:first_value)
-      options[:first_name] ||= options[:first_value].name
-      title.push([options[:first_name] , options[:first_value].id ])
-    end
     list = title.concat(list || [])
 
     default_value = (default.is_a?(Numeric) ? default : 0)

@@ -17,7 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class KnowledgesController < ApplicationController
-  helper :filters
 
   def index
     options = { :per_page => 25, :order => 'knowledges.engineer_id',

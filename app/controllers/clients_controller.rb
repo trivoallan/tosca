@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ClientsController < ApplicationController
-  helper :issues, :commitments, :contracts, :filters
+  helper :issues, :commitments, :contracts
 
   def index
     options = { :per_page => 15, :order => 'clients.name',

@@ -18,7 +18,7 @@
 #
 
 class SoftwaresController < ApplicationController
-  helper :filters, :versions, :issues, :skills, :contributions,
+  helper :versions, :issues, :skills, :contributions,
     :licenses, :groups, :hyperlinks
 
   # Not used for the moment
