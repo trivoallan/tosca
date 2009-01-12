@@ -45,20 +45,20 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    Client.all().each { |c| c.destroy }
+    Client.all.each { |c| c.destroy }
   end
 
   def test_desactivate_recipients
-    Client.all().each { |c| c.desactivate_recipients }
+    Client.all.each { |c| c.desactivate_recipients }
   end
 
   def test_contract_ids
-    Client.all().each { |c| check_ids c.contract_ids, Contract }
+    Client.all.each { |c| check_ids c.contract_ids, Contract }
   end
 
   def test_scope
     Client.set_scope([Client.first(:order => :id).id])
-    Client.all()
+    Client.all
     Client.remove_scope
   end
 
@@ -67,7 +67,7 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_support_distribution
-    Client.all().each { |c|
+    Client.all.each { |c|
       res = c.support_distribution
       assert !res.nil?
       assert(res == true || res == false)
@@ -75,11 +75,11 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_recipient_ids
-    Client.all().each { |c| check_ids c.recipient_ids, User }
+    Client.all.each { |c| check_ids c.recipient_ids, User }
   end
 
   def test_ingenieurs
-    Client.all().each do |c|
+    Client.all.each do |c|
       c.engineers.each do |e|
         assert_instance_of(User, e) and assert_nil(e.client_id)
       end
@@ -91,19 +91,19 @@ class ClientTest < Test::Unit::TestCase
   end
 
   def test_contributions
-    Client.all().each{|c| c.contributions.each{|i| assert_instance_of(Contribution, i)}}
+    Client.all.each{|c| c.contributions.each{|i| assert_instance_of(Contribution, i)}}
   end
 
   def test_issuetypes
-    Client.all().each{|c| c.issuetypes.each{|i| assert_instance_of(Issuetype, i)}}
+    Client.all.each{|c| c.issuetypes.each{|i| assert_instance_of(Issuetype, i)}}
   end
 
   def test_severities
-    Client.all().each{|c| c.severities.each{|i| assert_instance_of(Severity, i)}}
+    Client.all.each{|c| c.severities.each{|i| assert_instance_of(Severity, i)}}
   end
 
   def test_inactive
-    Client.all().each do |c|
+    Client.all.each do |c|
       name = c.name
       assert c.update_attribute(:inactive, true)
       c.desactivate_recipients

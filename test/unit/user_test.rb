@@ -37,11 +37,11 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_team_manager
-    User.all().each { |u| u.team_manager? }
+    User.all.each { |u| u.team_manager? }
   end
 
   def test_find_select
-    assert !User.find_select().empty?
+    assert !User.find_select.empty?
   end
 
   def test_authenticate
@@ -52,7 +52,7 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_generate_password
-    User.all().each do |u|
+    User.all.each do |u|
       u.generate_password
       assert u.save
     end
@@ -87,11 +87,11 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_contract_ids
-    User.all().each{ |u| check_ids u.contract_ids, Contract }
+    User.all.each{ |u| check_ids u.contract_ids, Contract }
   end
 
   def test_client_ids
-    User.all().each{ |u| check_ids u.client_ids, Client }
+    User.all.each{ |u| check_ids u.client_ids, Client }
   end
 
   def test_passwordchange

@@ -174,7 +174,7 @@ class Notifier < ActionMailer::Base
     end
 
     #One e-mail by user, or if multiple e-mail same person
-    user = User.find(:first, :conditions => [ "email = ?", from ])
+    user = User.first(:conditions => [ "email = ?", from ])
     return Notifier::deliver_email_not_exist(from) unless user
 
     issue = Issue.find(in_reply_to_id)

@@ -112,7 +112,7 @@ class Contract < ActiveRecord::Base
     options = { :conditions =>
       [ 'commitments.issuetype_id = ? AND severity_id = ?',
         issue.issuetype_id, issue.severity_id ] }
-    self.commitments.find(:first, options)
+    self.commitments.first(options)
   end
 
   def issuetypes

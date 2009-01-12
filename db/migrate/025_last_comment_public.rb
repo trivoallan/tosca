@@ -23,7 +23,7 @@ class LastCommentPublic < ActiveRecord::Migration
 
   def self.up
     Demande.all.each do |i|
-      i.last_comment_id = Commentaire.find(:first,
+      i.last_comment_id = Commentaire.first(
         :conditions => { :prive => false, :demande_id => i.id },
         :order_by => 'created_on DESC').id
       i.save!
@@ -32,7 +32,7 @@ class LastCommentPublic < ActiveRecord::Migration
 
   def self.down
     Demande.all.each do |i|
-      i.last_comment_id = Commentaire.find(:first, :conditions => { :demande_id => i.id },
+      i.last_comment_id = Commentaire.first(:conditions => { :demande_id => i.id },
         :order_by => 'created_on DESC').id
       i.save!
     end

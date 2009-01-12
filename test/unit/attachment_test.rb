@@ -27,7 +27,7 @@ class AttachmentTest < Test::Unit::TestCase
 
   def test_scope
     Attachment.set_scope(Client.first(:order => :id).id)
-    Attachment.all()
+    Attachment.all
     Attachment.remove_scope
   end
 

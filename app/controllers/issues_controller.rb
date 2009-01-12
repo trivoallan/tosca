@@ -195,7 +195,7 @@ class IssuesController < ApplicationController
       options = { :order => 'created_on DESC', :include => [:user],
         :limit => 1, :conditions => { :issue_id => @issue.id } }
       options[:conditions][:private] = false if @recipient
-      @last_comment = Comment.find(:first, options)
+      @last_comment = Comment.first(options)
 
       @statuts = @issue.issuetype.allowed_statuses(@issue.statut_id, @session_user)
       if user.engineer?
@@ -354,7 +354,7 @@ class IssuesController < ApplicationController
 
   # Take an ActiveRecord Contract in parameter
   # Returns false if the Contract is not complete
-  # call it like this : _form4contract Contract.find(:first)
+  # call it like this : _form4contract Contract.first
   def _form4contract(contract)
     result = true
     @recipients = contract.find_recipients_select
